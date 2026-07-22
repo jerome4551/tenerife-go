@@ -41,7 +41,7 @@ window.onunhandledrejection = function(e) {
 <meta http-equiv="Permissions-Policy" content="geolocation=(self), camera=(), microphone=(), payment=(), usb=(), accelerometer=(), gyroscope=(), magnetometer=()">
 
 <title>Tenerife Go — Mapa Interactivo</title>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://nominatim.openstreetmap.org https://router.project-osrm.org https://www.aemet.es https://opendata.aemet.es https://api.open-meteo.com https://marine-api.open-meteo.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://nominatim.openstreetmap.org https://router.project-osrm.org https://www.aemet.es https://opendata.aemet.es https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
 <!-- Google tag (gtag.js) — GA4 · Consent Mode v2 (básico) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -12661,10 +12661,12 @@ searchInput.addEventListener('keydown', (e) => {
   } else {
     const allLat = filtered.map(p => p.lat);
     const allLng = filtered.map(p => p.lng);
-    map.flyToBounds([
-      [Math.min(...allLat) - 0.02, Math.min(...allLng) - 0.02],
-      [Math.max(...allLat) + 0.02, Math.max(...allLng) + 0.02]
-    ], { padding: [50, 50], duration: 1.0 });
+    if (allLat.length && allLng.length) {
+      map.flyToBounds([
+        [Math.min(...allLat) - 0.02, Math.min(...allLng) - 0.02],
+        [Math.max(...allLat) + 0.02, Math.max(...allLng) + 0.02]
+      ], { padding: [50, 50], duration: 1.0 });
+    }
   }
 });
 
@@ -15715,7 +15717,7 @@ function fitMapToActiveBusLines() {
     if (line) line.paradas.forEach(p => coords.push([p.lat, p.lng]));
   });
   if (coords.length > 1) {
-    map.fitBounds(coords, { padding: [60, 60], maxZoom: 12, animate: true });
+    if (coords && coords.length) map.fitBounds(coords, { padding: [60, 60], maxZoom: 12, animate: true });
   } else if (coords.length === 1) {
     map.flyTo(coords[0], 13, { duration: 1.0 });
   }
@@ -20535,6 +20537,10 @@ function chatMatchKB(padded,tokset){
 function chatResolve(question,pos){
   var qn=chatNorm(question);
   if(!qn)return {kind:'fallback'};
+  var CHAT_ALIAS=[[' teid ',' teide '],[' sta cruz ',' santa cruz '],[' pto cruz ',' puerto de la cruz '],[' pto de la cruz ',' puerto de la cruz '],[' icod ',' icod de los vinos ']];
+  var qa=' '+qn+' ';
+  for(var al=0;al<CHAT_ALIAS.length;al++){ if(qa.indexOf(CHAT_ALIAS[al][0])>=0) qa=qa.split(CHAT_ALIAS[al][0]).join(CHAT_ALIAS[al][1]); }
+  qn=qa.trim().replace(/\s+/g,' ');
   var padded=' '+qn+' ';
   var toks=chatTokens(qn),tokset={};
   for(var i0=0;i0<toks.length;i0++){
@@ -20958,10 +20964,12 @@ function chatShowSet(ids,label){
     var la=[],ln=[];
     for(var i=0;i<ids.length;i++){var p=chatById(ids[i]);if(p){la.push(p.lat);ln.push(p.lng);}}
     if(la.length){
+      if(la.length&&ln.length){
       map.flyToBounds([
         [Math.min.apply(null,la)-0.02,Math.min.apply(null,ln)-0.02],
         [Math.max.apply(null,la)+0.02,Math.max.apply(null,ln)+0.02]
       ],{padding:[50,50],duration:1.0});
+      }
     }
   }catch(e4){}
 }
