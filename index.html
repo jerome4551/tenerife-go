@@ -17469,7 +17469,9 @@ window.addEventListener('hashchange', () => {
         hideWelcome();
       });
     }
-    el.addEventListener('click', hideWelcome);
+    // Solo el boton "Comenzar" entra en la app. Antes, un toque en
+    // cualquier punto de la pantalla la cerraba, y la gente se saltaba
+    // la bienvenida sin querer.
     updateWelcomeTexts();
 
     // Mantener el botón traducido cuando el usuario cambie de idioma
@@ -17482,18 +17484,14 @@ window.addEventListener('hashchange', () => {
       };
     }
 
-    // Primera vez → mostrar; siguientes → oculta directamente
-    var seen = false;
-    try { seen = localStorage.getItem(SEEN_KEY) === '1'; } catch (e) {}
-    if (seen) {
-      el.classList.add('hidden');
-      el.style.display = 'none';
-    } else {
-      el.style.display = 'flex'; animatePlacesCount();
-      el.classList.remove('hidden');
-      // Foco para que el lector de pantalla anuncie el botón
-      try { if (startBtn) startBtn.focus({ preventScroll: true }); } catch (e) {}
-    }
+    // La bienvenida se muestra SIEMPRE, en cada apertura de la app.
+    // Es la entrada de marca y donde el visitante elige idioma.
+    // (Antes se guardaba 'tenerife.welcome.seen' y se saltaba a partir
+    //  de la segunda visita, abriendo directamente el mapa.)
+    el.style.display = 'flex'; animatePlacesCount();
+    el.classList.remove('hidden');
+    // Foco para que el lector de pantalla anuncie el botón
+    try { if (startBtn) startBtn.focus({ preventScroll: true }); } catch (e) {}
   }
 
   // ── Bottom nav ─────────────────────────────────────────────────
