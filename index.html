@@ -14266,10 +14266,19 @@ function toggleGPS() {
   btn.classList.add('searching');
   showGpsToast(t().gpsSearching);
 
-  const opts = { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 };
+  // Estrategia pensada para movil:
+  //  1) Intento con alta precision PERO permitiendo un fix reciente en cache
+  //     (maximumAge) para que sea instantaneo si el telefono ya sabe donde esta.
+  //  2) Si agota tiempo o el GPS no da fix (tipico en interiores, calles
+  //     estrechas o dias nublados), se reintenta SIN alta precision: el
+  //     posicionamiento por WiFi/antenas es menos exacto pero mucho mas fiable.
+  // El fallo anterior era enableHighAccuracy:true + maximumAge:0, que en
+  // escritorio funciona (usa WiFi/IP) pero en movil fuerza un fix GPS en frio.
+  const gpsOptsHi  = { enableHighAccuracy: true,  timeout: 12000, maximumAge: 60000 };
+  const gpsOptsLow = { enableHighAccuracy: false, timeout: 25000, maximumAge: 300000 };
+  let gpsFallbackUsed = false;
 
-  gpsWatchId = navigator.geolocation.watchPosition(
-    (pos) => {
+  const onGpsSuccess = (pos) => {
       const { latitude: lat, longitude: lng, accuracy } = pos.coords;
       btn.classList.remove('searching');
       btn.classList.add('active');
@@ -14290,8 +14299,20 @@ function toggleGPS() {
         map.setView([lat, lng], Math.max(map.getZoom(), 14), { animate: true });
         gpsMarker._hasCentered = true;
       }
-    },
-    (err) => {
+  };
+
+  const onGpsError = (err) => {
+      // err.code: 1=permiso denegado · 2=posicion no disponible · 3=timeout
+      // Antes de rendirnos, reintento por red (mucho mas fiable en interiores).
+      if (!gpsFallbackUsed && (err.code === 2 || err.code === 3)) {
+        gpsFallbackUsed = true;
+        if (gpsWatchId !== null) { navigator.geolocation.clearWatch(gpsWatchId); gpsWatchId = null; }
+        try {
+          gpsWatchId = navigator.geolocation.watchPosition(onGpsSuccess, onGpsError, gpsOptsLow);
+          return;
+        } catch (e) { /* cae al manejo normal de error */ }
+      }
+
       gpsActive = false;
       btn.classList.remove('searching', 'active');
       if (gpsWatchId !== null) { navigator.geolocation.clearWatch(gpsWatchId); gpsWatchId = null; }
@@ -14300,9 +14321,9 @@ function toggleGPS() {
       const msg = err.code === 1 ? t().gpsDenied : t().gpsError;
       showGpsToast(msg, 'error');
       hideGpsToast(4000);
-    },
-    opts
-  );
+  };
+
+  gpsWatchId = navigator.geolocation.watchPosition(onGpsSuccess, onGpsError, gpsOptsHi);
 }
 
 document.addEventListener('click', () => {
@@ -16901,8 +16922,15 @@ window.addEventListener('hashchange', () => {
   function isIOS() {
     try {
       var ua = navigator.userAgent || '';
-      return /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+      if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) return true;
+      // iPadOS 13+ se identifica como "Macintosh": se distingue por ser tactil
+      if (/Macintosh/.test(ua) && typeof navigator.maxTouchPoints === 'number' && navigator.maxTouchPoints > 1) return true;
+      return false;
     } catch (_) { return false; }
+  }
+
+  function isAndroidUA() {
+    try { return /Android/i.test(navigator.userAgent || ''); } catch (_) { return false; }
   }
 
   function getInstallDismissed() {
@@ -16947,10 +16975,12 @@ window.addEventListener('hashchange', () => {
             }
             deferredInstallPrompt = null;
           })).catch(function(){});
-        } catch (_) {}
-      } else if (isIOS()) {
-        // iOS no soporta beforeinstallprompt → mostrar instrucciones
-        showIOSInstallInstructions();
+        } catch (_) { showInstallInstructions(); }
+      } else {
+        // Sin prompt nativo (iOS, iPadOS, escritorio o navegador sin soporte):
+        // mostramos siempre instrucciones. Antes aqui no ocurria nada y el
+        // boton parecia roto.
+        showInstallInstructions();
       }
     }));
     el.querySelector('.pwa-ib-close').addEventListener('click', safe(function() {
@@ -16974,16 +17004,29 @@ window.addEventListener('hashchange', () => {
     if (installBannerEl) installBannerEl.classList.remove('show');
   }
 
-  function showIOSInstallInstructions() {
-    // iOS no permite instalación programática — mostrar modal con instrucciones
+  function showInstallInstructions() {
+    // Textos por idioma. Chino en escapes \uXXXX para evitar problemas de codificacion.
+    var TX = {
+      es:{t:'Instalar la app',ios:'En <b>Safari</b>, toca el boton <b>Compartir</b> (cuadrado con flecha) y elige <b>Anadir a pantalla de inicio</b>.',and:'En <b>Chrome</b>, abre el menu <b>\u22EE</b> y elige <b>Instalar aplicacion</b>.',pc:'En el navegador, busca el icono de <b>instalar</b> en la barra de direcciones, o abre el menu y elige <b>Instalar</b>.',ok:'Entendido'},
+      en:{t:'Install the app',ios:'In <b>Safari</b>, tap the <b>Share</b> button (square with arrow) and choose <b>Add to Home Screen</b>.',and:'In <b>Chrome</b>, open the <b>\u22EE</b> menu and choose <b>Install app</b>.',pc:'In your browser, look for the <b>install</b> icon in the address bar, or open the menu and choose <b>Install</b>.',ok:'Got it'},
+      fr:{t:'Installer l\u2019app',ios:'Dans <b>Safari</b>, touche le bouton <b>Partager</b> (carre avec fleche) et choisis <b>Sur l\u2019ecran d\u2019accueil</b>.',and:'Dans <b>Chrome</b>, ouvre le menu <b>\u22EE</b> et choisis <b>Installer l\u2019application</b>.',pc:'Dans le navigateur, cherche l\u2019icone <b>installer</b> dans la barre d\u2019adresse, ou ouvre le menu et choisis <b>Installer</b>.',ok:'Compris'},
+      de:{t:'App installieren',ios:'Tippe in <b>Safari</b> auf <b>Teilen</b> (Quadrat mit Pfeil) und waehle <b>Zum Home-Bildschirm</b>.',and:'Oeffne in <b>Chrome</b> das Menue <b>\u22EE</b> und waehle <b>App installieren</b>.',pc:'Suche im Browser das <b>Installieren</b>-Symbol in der Adresszeile oder oeffne das Menue und waehle <b>Installieren</b>.',ok:'Verstanden'},
+      it:{t:'Installa l\u2019app',ios:'In <b>Safari</b>, tocca <b>Condividi</b> (quadrato con freccia) e scegli <b>Aggiungi a Home</b>.',and:'In <b>Chrome</b>, apri il menu <b>\u22EE</b> e scegli <b>Installa app</b>.',pc:'Nel browser, cerca l\u2019icona <b>installa</b> nella barra degli indirizzi, oppure apri il menu e scegli <b>Installa</b>.',ok:'Ho capito'},
+      nl:{t:'App installeren',ios:'Tik in <b>Safari</b> op <b>Deel</b> (vierkant met pijl) en kies <b>Zet op beginscherm</b>.',and:'Open in <b>Chrome</b> het menu <b>\u22EE</b> en kies <b>App installeren</b>.',pc:'Zoek in je browser het <b>installeren</b>-icoon in de adresbalk, of open het menu en kies <b>Installeren</b>.',ok:'Begrepen'},
+      zh:{t:'\u5B89\u88C5\u5E94\u7528',ios:'\u5728 <b>Safari</b> \u4E2D\u70B9\u51FB<b>\u5206\u4EAB</b>\u6309\u94AE\uFF08\u5E26\u7BAD\u5934\u7684\u65B9\u5757\uFF09\uFF0C\u9009\u62E9<b>\u6DFB\u52A0\u5230\u4E3B\u5C4F\u5E55</b>\u3002',and:'\u5728 <b>Chrome</b> \u4E2D\u6253\u5F00<b>\u22EE</b>\u83DC\u5355\uFF0C\u9009\u62E9<b>\u5B89\u88C5\u5E94\u7528</b>\u3002',pc:'\u5728\u6D4F\u89C8\u5668\u5730\u5740\u680F\u67E5\u627E<b>\u5B89\u88C5</b>\u56FE\u6807\uFF0C\u6216\u6253\u5F00\u83DC\u5355\u9009\u62E9<b>\u5B89\u88C5</b>\u3002',ok:'\u77E5\u9053\u4E86'},
+      zht:{t:'\u5B89\u88DD\u61C9\u7528',ios:'\u5728 <b>Safari</b> \u4E2D\u9EDE\u64CA<b>\u5206\u4EAB</b>\u6309\u9215\uFF08\u5E36\u7BAD\u982D\u7684\u65B9\u584A\uFF09\uFF0C\u9078\u64C7<b>\u52A0\u5165\u4E3B\u756B\u9762</b>\u3002',and:'\u5728 <b>Chrome</b> \u4E2D\u6253\u958B<b>\u22EE</b>\u9078\u55AE\uFF0C\u9078\u64C7<b>\u5B89\u88DD\u61C9\u7528\u7A0B\u5F0F</b>\u3002',pc:'\u5728\u700F\u89BD\u5668\u7DB2\u5740\u5217\u5C0B\u627E<b>\u5B89\u88DD</b>\u5716\u793A\uFF0C\u6216\u6253\u958B\u9078\u55AE\u9078\u64C7<b>\u5B89\u88DD</b>\u3002',ok:'\u77E5\u9053\u4E86'}
+    };
+    var L = TX.es;
+    try { if (typeof currentLang !== 'undefined' && TX[currentLang]) L = TX[currentLang]; } catch (_) {}
+    var body = isIOS() ? L.ios : (isAndroidUA() ? L.and : L.pc);
+
     var bd = ensureModalBackdrop();
     bd.querySelector('.pwa-modal').innerHTML =
-      '<h3>Instalar en iOS</h3>' +
+      '<h3>' + L.t + '</h3>' +
       '<p style="font-size:0.85rem;color:rgba(240,236,228,0.75);line-height:1.5;margin:0.5rem 0 1rem">' +
-      'En Safari, toca el botón <b>Compartir</b> (cuadrado con flecha arriba), ' +
-      'baja en el menú y selecciona <b>"Añadir a pantalla de inicio"</b>.</p>' +
+      body + '</p>' +
       '<div class="pwa-modal-actions">' +
-      '<button type="button" class="pwa-modal-ok">Entendido</button>' +
+      '<button type="button" class="pwa-modal-ok">' + L.ok + '</button>' +
       '</div>';
     bd.querySelector('.pwa-modal-ok').addEventListener('click', safe(function() {
       bd.classList.remove('show');
@@ -19394,7 +19437,7 @@ function adminGetGPS() {
       btn.disabled = false;
       btn.textContent = '📡 GPS';
     },
-    { timeout: 8000, maximumAge: 30000 }
+    { timeout: 20000, maximumAge: 120000, enableHighAccuracy: false }
   );
 }
 
@@ -23998,7 +24041,7 @@ function dpiNavigateTo(placeData) {
       checkRouteReady();
       if (typeof setRouteBackPlace === 'function') setRouteBackPlace(place);
     },
-    { timeout: 8000, enableHighAccuracy: false }
+    { timeout: 20000, enableHighAccuracy: false, maximumAge: 300000 }
   );
 }
 
