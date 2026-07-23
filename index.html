@@ -268,6 +268,9 @@ window.onunhandledrejection = function(e) {
   .shop-panel {
     position: fixed;
     inset: 0;
+    /* La barra de estado de iOS se dibuja encima en la app instalada:
+       sin esto, la cabecera y su boton de cerrar quedan bajo la hora. */
+    padding-top: env(safe-area-inset-top, 0px);
     background: var(--dark);
     z-index: 1100;
     display: flex;
@@ -661,6 +664,9 @@ window.onunhandledrejection = function(e) {
   .cart-panel {
     position: fixed;
     inset: 0;
+    /* La barra de estado de iOS se dibuja encima en la app instalada:
+       sin esto, la cabecera y su boton de cerrar quedan bajo la hora. */
+    padding-top: env(safe-area-inset-top, 0px);
     background: var(--dark);
     z-index: 1200;
     display: flex;
@@ -799,6 +805,9 @@ window.onunhandledrejection = function(e) {
   .booking-panel {
     position: fixed;
     inset: 0;
+    /* La barra de estado de iOS se dibuja encima en la app instalada:
+       sin esto, la cabecera y su boton de cerrar quedan bajo la hora. */
+    padding-top: env(safe-area-inset-top, 0px);
     background: var(--dark);
     z-index: 1300;
     display: flex;
@@ -4607,6 +4616,9 @@ window.onunhandledrejection = function(e) {
   .shop-panel {
     position: fixed;
     inset: 0;
+    /* La barra de estado de iOS se dibuja encima en la app instalada:
+       sin esto, la cabecera y su boton de cerrar quedan bajo la hora. */
+    padding-top: env(safe-area-inset-top, 0px);
     background: var(--dark);
     z-index: 1100;
     display: flex;
@@ -5000,6 +5012,9 @@ window.onunhandledrejection = function(e) {
   .cart-panel {
     position: fixed;
     inset: 0;
+    /* La barra de estado de iOS se dibuja encima en la app instalada:
+       sin esto, la cabecera y su boton de cerrar quedan bajo la hora. */
+    padding-top: env(safe-area-inset-top, 0px);
     background: var(--dark);
     z-index: 1200;
     display: flex;
@@ -5138,6 +5153,9 @@ window.onunhandledrejection = function(e) {
   .booking-panel {
     position: fixed;
     inset: 0;
+    /* La barra de estado de iOS se dibuja encima en la app instalada:
+       sin esto, la cabecera y su boton de cerrar quedan bajo la hora. */
+    padding-top: env(safe-area-inset-top, 0px);
     background: var(--dark);
     z-index: 1300;
     display: flex;
@@ -6051,7 +6069,7 @@ window.onunhandledrejection = function(e) {
     <div class="route-tabs">
       <button class="route-tab active" id="tab-planner" onclick="switchRouteTab('planner')">
         <span class="route-tab-icon">✨</span>
-        <span>Organiza tu día</span>
+        <span id="tab-planner-label">Organiza tu día</span>
       </button>
       <button class="route-tab" id="tab-day" onclick="switchRouteTab('day')">
         <span class="route-tab-icon">🗓️</span>
@@ -6069,7 +6087,7 @@ window.onunhandledrejection = function(e) {
         <div class="route-stop" id="stop-origin" onclick="activatePick('origin')">
           <div class="route-stop-dot origin">A</div>
           <div class="route-stop-text">
-            <div class="route-stop-label">Origen</div>
+            <div class="route-stop-label" id="route-lbl-origin">Origen</div>
             <div class="route-stop-name placeholder" id="stop-origin-name">Toca aquí para elegir…</div>
           </div>
           <button class="route-stop-clear" id="stop-origin-clear" onclick="clearStop('origin',event)" aria-label="Quitar origen">✕</button>
@@ -6093,7 +6111,7 @@ window.onunhandledrejection = function(e) {
         <div class="route-stop" id="stop-dest" onclick="activatePick('dest')">
           <div class="route-stop-dot dest">B</div>
           <div class="route-stop-text">
-            <div class="route-stop-label">Destino</div>
+            <div class="route-stop-label" id="route-lbl-dest">Destino</div>
             <div class="route-stop-name placeholder" id="stop-dest-name">Toca aquí para elegir…</div>
           </div>
           <button class="route-stop-clear" id="stop-dest-clear" onclick="clearStop('dest',event)" aria-label="Quitar destino">✕</button>
@@ -6183,45 +6201,16 @@ window.onunhandledrejection = function(e) {
 
       <!-- PASO 1: Tiempo -->
       <div id="dpi-step-1" class="dpi-step active">
-        <div class="dpi-step-title">¿Cuánto tiempo tienes?</div>
-        <div class="dp-time-grid">
-          <div class="dp-time-card" onclick="dpiSelectTime('morning')">
-            <div class="dp-time-icon">🌅</div>
-            <div class="dp-time-info"><div class="dp-time-label">Mañana</div><div class="dp-time-sub">2–3 h · 2 paradas</div></div>
-            <div class="dp-time-arrow">›</div>
-          </div>
-          <div class="dp-time-card" onclick="dpiSelectTime('halfday')">
-            <div class="dp-time-icon">☀️</div>
-            <div class="dp-time-info"><div class="dp-time-label">Medio día</div><div class="dp-time-sub">4–5 h · 3–4 paradas</div></div>
-            <div class="dp-time-arrow">›</div>
-          </div>
-          <div class="dp-time-card" onclick="dpiSelectTime('fullday')">
-            <div class="dp-time-icon">🌞</div>
-            <div class="dp-time-info"><div class="dp-time-label">Día completo</div><div class="dp-time-sub">7–8 h · 5–6 paradas</div></div>
-            <div class="dp-time-arrow">›</div>
-          </div>
-          <div class="dp-time-card" onclick="dpiSelectTime('afternoon')">
-            <div class="dp-time-icon">🌇</div>
-            <div class="dp-time-info"><div class="dp-time-label">Tarde</div><div class="dp-time-sub">3–4 h · 2–3 paradas</div></div>
-            <div class="dp-time-arrow">›</div>
-          </div>
-        </div>
+        <div class="dpi-step-title" id="dpi-time-title">¿Cuánto tiempo tienes?</div>
+        <div class="dp-time-grid" id="dpi-time-grid"></div>
       </div>
 
       <!-- PASO 2: Tipo -->
       <div id="dpi-step-2" class="dpi-step">
         <button onclick="dpiGoBack(1)" style="background:none;border:none;color:rgba(255,255,255,0.5);font-size:0.8rem;cursor:pointer;padding:0 0 10px;text-align:left;width:100%;">‹ Cambiar tiempo</button>
-        <div class="dpi-step-title">¿Qué quieres hacer? <span style="color:rgba(255,255,255,0.3);font-size:0.65rem;text-transform:none;letter-spacing:0">Elige uno o varios</span></div>
-        <div class="dp-zone-grid" id="dpi-zone-grid">
-          <div class="dp-zone-card" data-zone="naturaleza" onclick="dpiToggleZone(this)"><div class="dp-zone-icon">🌿</div><div class="dp-zone-label">Naturaleza</div><div class="dp-zone-sub">Rutas, volcanes</div></div>
-          <div class="dp-zone-card" data-zone="cultura" onclick="dpiToggleZone(this)"><div class="dp-zone-icon">🏛️</div><div class="dp-zone-label">Cultura</div><div class="dp-zone-sub">Historia, arte</div></div>
-          <div class="dp-zone-card" data-zone="museo" onclick="dpiToggleZone(this)"><div class="dp-zone-icon">🏺</div><div class="dp-zone-label">Museos</div><div class="dp-zone-sub">Exposiciones</div></div>
-          <div class="dp-zone-card" data-zone="playa" onclick="dpiToggleZone(this)"><div class="dp-zone-icon">🏖️</div><div class="dp-zone-label">Playa & Mar</div><div class="dp-zone-sub">Playas, piscinas</div></div>
-          <div class="dp-zone-card" data-zone="gastronomia" onclick="dpiToggleZone(this)"><div class="dp-zone-icon">🍽️</div><div class="dp-zone-label">Gastronomía</div><div class="dp-zone-sub">Guachinches, vinos</div></div>
-          <div class="dp-zone-card" data-zone="familia" onclick="dpiToggleZone(this)"><div class="dp-zone-icon">👨‍👩‍👧</div><div class="dp-zone-label">Familia</div><div class="dp-zone-sub">Niños, parques</div></div>
-          <div class="dp-zone-card" data-zone="mirador" onclick="dpiToggleZone(this)"><div class="dp-zone-icon">🔭</div><div class="dp-zone-label">Miradores</div><div class="dp-zone-sub">Vistas, fotos</div></div>
-          <div class="dp-zone-card" data-zone="mix" onclick="dpiToggleZone(this)"><div class="dp-zone-icon">✨</div><div class="dp-zone-label">Sorpréndeme</div><div class="dp-zone-sub">Mezcla de todo</div></div>
-        </div>
+        <div class="dpi-step-title"><span id="dpi-step-title-main">¿Qué quieres hacer?</span> <span id="dpi-step-title-sub" style="color:rgba(255,255,255,0.3);font-size:0.65rem;text-transform:none;letter-spacing:0">Elige uno o varios</span></div>
+        <!-- Tarjetas generadas desde DP_CARDS (ver dpiRenderCards) -->
+        <div class="dp-zone-grid" id="dpi-zone-grid"></div>
         <button id="dpi-confirm-btn" onclick="dpiConfirmZones()" style="display:none;width:100%;margin-top:12px;background:linear-gradient(135deg,#c9a84c,#a07830);border:none;color:#000;font-weight:700;font-size:0.9rem;padding:12px;border-radius:10px;cursor:pointer;">
           Crear itinerario →
         </button>
@@ -6230,29 +6219,8 @@ window.onunhandledrejection = function(e) {
             <!-- PASO 3: Transporte -->
       <div id="dpi-step-3" class="dpi-step">
         <button onclick="dpiGoBack(2)" style="background:none;border:none;color:rgba(255,255,255,0.5);font-size:0.8rem;cursor:pointer;padding:0 0 10px;text-align:left;width:100%;">‹ Cambiar actividades</button>
-        <div class="dpi-step-title">¿Cómo te mueves?</div>
-        <div class="dp-time-grid">
-          <div class="dp-time-card" onclick="dpiSelectTransport('coche',this)">
-            <div class="dp-time-icon">🚗</div>
-            <div class="dp-time-info"><div class="dp-time-label">Coche</div><div class="dp-time-sub">Máxima libertad, toda la isla</div></div>
-            <div class="dp-time-arrow">›</div>
-          </div>
-          <div class="dp-time-card" onclick="dpiSelectTransport('guagua',this)">
-            <div class="dp-time-icon">🚌</div>
-            <div class="dp-time-info"><div class="dp-time-label">Guagua</div><div class="dp-time-sub">TITSA, económico y fácil</div></div>
-            <div class="dp-time-arrow">›</div>
-          </div>
-          <div class="dp-time-card" onclick="dpiSelectTransport('pie',this)">
-            <div class="dp-time-icon">🚶</div>
-            <div class="dp-time-info"><div class="dp-time-label">A pie</div><div class="dp-time-sub">Rutas cercanas, ciudad</div></div>
-            <div class="dp-time-arrow">›</div>
-          </div>
-          <div class="dp-time-card" onclick="dpiSelectTransport('bici',this)">
-            <div class="dp-time-icon">🚲</div>
-            <div class="dp-time-info"><div class="dp-time-label">Bicicleta</div><div class="dp-time-sub">Rutas ciclistas y costa</div></div>
-            <div class="dp-time-arrow">›</div>
-          </div>
-        </div>
+        <div class="dpi-step-title" id="dpi-transport-title">¿Cómo te mueves?</div>
+        <div class="dp-time-grid" id="dpi-transport-grid"></div>
       </div>
 
       <!-- PASO 4: Resultado -->
@@ -7721,6 +7689,10 @@ try {
 
 let currentLang = 'es';
 
+/* Textos de interfaz que faltaban: barra inferior, pestanas de Rutas
+   y calculador A->B. Se aplican en setLang (ver applyUiTx). */
+const UI_TX = Object.assign({"shopTitle":{"es":"Tienda","en":"Shop","fr":"Boutique","de":"Shop","it":"Negozio","nl":"Winkel","zh":"\u5546\u5e97","zht":"\u5546\u5e97"},"shopExc":{"es":"Excursiones","en":"Tours","fr":"Excursions","de":"Touren","it":"Escursioni","nl":"Excursies","zh":"\u884c\u7a0b","zht":"\u884c\u7a0b"},"shopSouv":{"es":"Souvenirs","en":"Souvenirs","fr":"Souvenirs","de":"Souvenirs","it":"Souvenir","nl":"Souvenirs","zh":"\u7eaa\u5ff5\u54c1","zht":"\u7d00\u5ff5\u54c1"},"shopBiz":{"es":"Negocios","en":"Businesses","fr":"Commerces","de":"Betriebe","it":"Attivit\u00e0","nl":"Bedrijven","zh":"\u5546\u5bb6","zht":"\u5546\u5bb6"},"shopAd":{"es":"An\u00fanciate","en":"Advertise","fr":"Annoncez-vous","de":"Werben","it":"Pubblicizzati","nl":"Adverteren","zh":"\u6295\u653e\u5e7f\u544a","zht":"\u6295\u653e\u5ee3\u544a"},"shopSoon":{"es":"PR\u00d3XIMAMENTE","en":"COMING SOON","fr":"BIENT\u00d4T","de":"DEMN\u00c4CHST","it":"PROSSIMAMENTE","nl":"BINNENKORT","zh":"\u5373\u5c06\u63a8\u51fa","zht":"\u5373\u5c07\u63a8\u51fa"},"shopBook":{"es":"Reservar","en":"Book","fr":"R\u00e9server","de":"Buchen","it":"Prenota","nl":"Boeken","zh":"\u9884\u8ba2","zht":"\u9810\u8a02"},"shopBuy":{"es":"Comprar","en":"Buy","fr":"Acheter","de":"Kaufen","it":"Acquista","nl":"Kopen","zh":"\u8d2d\u4e70","zht":"\u8cfc\u8cb7"},"shopPerson":{"es":"/ persona","en":"/ person","fr":"/ personne","de":"/ Person","it":"/ persona","nl":"/ persoon","zh":"/ \u4eba","zht":"/ \u4eba"},"shopUnit":{"es":"/ unidad","en":"/ unit","fr":"/ unit\u00e9","de":"/ St\u00fcck","it":"/ unit\u00e0","nl":"/ stuk","zh":"/ \u4ef6","zht":"/ \u4ef6"},"shopPack":{"es":"/ pack","en":"/ pack","fr":"/ pack","de":"/ Set","it":"/ pack","nl":"/ pakket","zh":"/ \u5957","zht":"/ \u5957"},"shopBizEmpty":{"es":"Los primeros negocios partner aparecer\u00e1n aqu\u00ed.","en":"The first partner businesses will appear here.","fr":"Les premiers partenaires appara\u00eetront ici.","de":"Die ersten Partnerbetriebe erscheinen hier.","it":"Le prime attivit\u00e0 partner appariranno qui.","nl":"De eerste partnerbedrijven verschijnen hier.","zh":"\u9996\u6279\u5408\u4f5c\u5546\u5bb6\u5c06\u663e\u793a\u5728\u8fd9\u91cc\u3002","zht":"\u9996\u6279\u5408\u4f5c\u5546\u5bb6\u5c07\u986f\u793a\u5728\u9019\u88e1\u3002"},"shopBizCta":{"es":"\u00bfTienes un negocio en Tenerife? \u00a1An\u00fanciate!","en":"Got a business in Tenerife? Advertise with us!","fr":"Vous avez un commerce \u00e0 Tenerife ? Annoncez-vous !","de":"Betrieb auf Teneriffa? Werben Sie hier!","it":"Hai un\u2019attivit\u00e0 a Tenerife? Fatti pubblicit\u00e0!","nl":"Bedrijf op Tenerife? Adverteer hier!","zh":"\u5728\u7279\u5185\u91cc\u8d39\u6709\u751f\u610f\uff1f\u6765\u8fd9\u91cc\u6295\u653e\u5e7f\u544a\uff01","zht":"\u5728\u7279\u5167\u91cc\u8cbb\u6709\u751f\u610f\uff1f\u4f86\u9019\u88e1\u6295\u653e\u5ee3\u544a\uff01"}},{"navHome":{"es":"Inicio","en":"Home","fr":"Accueil","de":"Start","it":"Home","nl":"Start","zh":"\u9996\u9875","zht":"\u9996\u9801"},"navFav":{"es":"Favoritos","en":"Favorites","fr":"Favoris","de":"Favoriten","it":"Preferiti","nl":"Favorieten","zh":"\u6536\u85cf","zht":"\u6536\u85cf"},"navRoutes":{"es":"Rutas","en":"Routes","fr":"Itin\u00e9raires","de":"Routen","it":"Percorsi","nl":"Routes","zh":"\u8def\u7ebf","zht":"\u8def\u7dda"},"navShop":{"es":"Tienda","en":"Shop","fr":"Boutique","de":"Shop","it":"Negozio","nl":"Winkel","zh":"\u5546\u5e97","zht":"\u5546\u5e97"},"navChat":{"es":"Asistente","en":"Assistant","fr":"Assistant","de":"Assistent","it":"Assistente","nl":"Assistent","zh":"\u52a9\u624b","zht":"\u52a9\u624b"},"navAccount":{"es":"Cuenta","en":"Account","fr":"Compte","de":"Konto","it":"Account","nl":"Account","zh":"\u8d26\u6237","zht":"\u5e33\u6236"},"tabPlanner":{"es":"Organiza tu d\u00eda","en":"Plan your day","fr":"Organise ta journ\u00e9e","de":"Tag planen","it":"Organizza la giornata","nl":"Plan je dag","zh":"\u89c4\u5212\u4e00\u5929","zht":"\u898f\u5283\u4e00\u5929"},"routeOrigin":{"es":"Origen","en":"From","fr":"D\u00e9part","de":"Start","it":"Partenza","nl":"Vanaf","zh":"\u8d77\u70b9","zht":"\u8d77\u9ede"},"routeDest":{"es":"Destino","en":"To","fr":"Arriv\u00e9e","de":"Ziel","it":"Arrivo","nl":"Naar","zh":"\u7ec8\u70b9","zht":"\u7d42\u9ede"},"routePickHint":{"es":"Toca aqu\u00ed para elegir\u2026","en":"Tap here to choose\u2026","fr":"Touche ici pour choisir\u2026","de":"Hier tippen zum W\u00e4hlen\u2026","it":"Tocca qui per scegliere\u2026","nl":"Tik hier om te kiezen\u2026","zh":"\u70b9\u6b64\u9009\u62e9\u2026","zht":"\u9ede\u6b64\u9078\u64c7\u2026"},"routeAddrPh":{"es":"O escribe una direcci\u00f3n\u2026","en":"Or type an address\u2026","fr":"Ou saisis une adresse\u2026","de":"Oder Adresse eingeben\u2026","it":"Oppure scrivi un indirizzo\u2026","nl":"Of typ een adres\u2026","zh":"\u6216\u8f93\u5165\u5730\u5740\u2026","zht":"\u6216\u8f38\u5165\u5730\u5740\u2026"},"routeHint":{"es":"Elige en el mapa, escribe una direcci\u00f3n o usa el GPS","en":"Pick on the map, type an address or use GPS","fr":"Choisis sur la carte, saisis une adresse ou utilise le GPS","de":"Auf der Karte w\u00e4hlen, Adresse eingeben oder GPS nutzen","it":"Scegli sulla mappa, scrivi un indirizzo o usa il GPS","nl":"Kies op de kaart, typ een adres of gebruik gps","zh":"\u5728\u5730\u56fe\u4e0a\u9009\u62e9\u3001\u8f93\u5165\u5730\u5740\u6216\u4f7f\u7528 GPS","zht":"\u5728\u5730\u5716\u4e0a\u9078\u64c7\u3001\u8f38\u5165\u5730\u5740\u6216\u4f7f\u7528 GPS"},"routeByCar":{"es":"En coche","en":"By car","fr":"En voiture","de":"Mit dem Auto","it":"In auto","nl":"Met de auto","zh":"\u81ea\u9a7e","zht":"\u81ea\u99d5"},"routeByBus":{"es":"En guagua","en":"By bus","fr":"En bus","de":"Mit dem Bus","it":"In autobus","nl":"Met de bus","zh":"\u516c\u4ea4","zht":"\u516c\u8eca"},"routeCarDetail":{"es":"Ruta por carretera","en":"Road route","fr":"Itin\u00e9raire routier","de":"Stra\u00dfenroute","it":"Percorso stradale","nl":"Route over de weg","zh":"\u516c\u8def\u8def\u7ebf","zht":"\u516c\u8def\u8def\u7dda"},"routeBusCalc":{"es":"Calculando opciones de bus\u2026","en":"Checking bus options\u2026","fr":"Calcul des options de bus\u2026","de":"Busoptionen werden gepr\u00fcft\u2026","it":"Calcolo opzioni bus\u2026","nl":"Busopties berekenen\u2026","zh":"\u6b63\u5728\u67e5\u8be2\u516c\u4ea4\u65b9\u6848\u2026","zht":"\u6b63\u5728\u67e5\u8a62\u516c\u8eca\u65b9\u6848\u2026"},"routeBackPlace":{"es":"Volver al lugar","en":"Back to place","fr":"Retour au lieu","de":"Zur\u00fcck zum Ort","it":"Torna al luogo","nl":"Terug naar plek","zh":"\u8fd4\u56de\u5730\u70b9","zht":"\u8fd4\u56de\u5730\u9ede"},"routeMin":{"es":"min","en":"min","fr":"min","de":"Min.","it":"min","nl":"min","zh":"\u5206\u949f","zht":"\u5206\u9418"}});
+
 function t() { return LANGS[currentLang]; }
 
 // ──────────────────────────────────────────────────────────────
@@ -7740,9 +7712,61 @@ function localized(field) {
   return field[currentLang] || (currentLang === 'zht' ? field.zh : '') || field.en || field.es || '';
 }
 
+// Aplica los textos de interfaz que no estaban en LANGS: barra inferior,
+// pestañas del panel Rutas y calculador A→B. Se llama desde setLang.
+function applyUiTx() {
+  if (typeof UI_TX === 'undefined') return;
+  var lang = currentLang || 'es';
+  var g = function(k){ var e = UI_TX[k]; return e ? (e[lang] || e.es) : ''; };
+  var set = function(id, txt){ var el = document.getElementById(id); if (el && txt) el.textContent = txt; };
+  var ph  = function(id, txt){ var el = document.getElementById(id); if (el && txt) el.placeholder = txt; };
+  var lbl = function(id, txt){ var el = document.getElementById(id); if (el && txt) el.setAttribute('aria-label', txt); };
+
+  // Barra inferior (texto visible + etiqueta accesible del botón)
+  set('nav-lbl-home','' + g('navHome'));       lbl('v19-nav-home',    g('navHome'));
+  set('nav-lbl-fav', '' + g('navFav'));        lbl('v19-nav-fav',     g('navFav'));
+  set('nav-lbl-routes','' + g('navRoutes'));   lbl('v19-nav-routes',  g('navRoutes'));
+  set('nav-lbl-shop','' + g('navShop'));       lbl('v19-nav-shop',    g('navShop'));
+  set('nav-lbl-chat','' + g('navChat'));       lbl('v19-nav-chat',    g('navChat'));
+  set('nav-lbl-account','' + g('navAccount')); lbl('v19-nav-account', g('navAccount'));
+
+  // Pestaña del planificador
+  set('tab-planner-label', g('tabPlanner'));
+
+  // Tienda: pestanas, insignias, botones y textos por clase.
+  // El contenido de los articulos vendra de Supabase y se traducira alli.
+  set('shop-lbl-exc',  g('shopExc'));
+  set('shop-lbl-souv', g('shopSouv'));
+  set('shop-lbl-biz',  g('shopBiz'));
+  set('shop-lbl-ad',   g('shopAd'));
+  var each = function(sel, txt){
+    if (!txt) return;
+    var ns = document.querySelectorAll(sel);
+    for (var i = 0; i < ns.length; i++) ns[i].textContent = txt;
+  };
+  each('.badge-soon', g('shopSoon'));
+  each('.excursion-book-btn', g('shopBook'));
+  each('.souvenir-buy-btn', g('shopBuy'));
+
+  // Calculador A→B
+  set('route-lbl-origin', g('routeOrigin'));
+  set('route-lbl-dest',   g('routeDest'));
+  set('stop-origin-name', g('routePickHint'));
+  set('stop-dest-name',   g('routePickHint'));
+  ph('addr-origin-input', g('routeAddrPh'));
+  ph('addr-dest-input',   g('routeAddrPh'));
+  set('route-hint',       g('routeHint'));
+  set('route-car-detail', g('routeCarDetail'));
+  set('route-bus-detail', g('routeBusCalc'));
+  set('route-back-place-name', g('routeBackPlace'));
+}
+
 function setLang(lang) {
   if (!LANGS[lang]) lang = (lang === 'zht') ? 'zh' : 'es';
   currentLang = lang;
+  // Recordar la eleccion: antes se perdia al recargar y el turista
+  // volvia a encontrarse la app en espanol.
+  try { localStorage.setItem('tg_lang', lang); } catch (e) {}
   try { document.documentElement.lang = (lang === 'zht') ? 'zh-Hant' : (lang === 'zh') ? 'zh-Hans' : lang; } catch(e){}
   const L = t();
 
@@ -7789,6 +7813,9 @@ function setLang(lang) {
   // Marcadores (popups)
   updateMarkers();
   updateFilterStatus();
+
+  // Barra inferior, pestanas y calculador A->B
+  applyUiTx();
 
   // Ruta del día — refrescar textos
   refreshDayTripTexts();
@@ -13381,6 +13408,9 @@ function switchRouteTab(tab) {
     }
   }
   if (tab === 'ab') { cancelPicking(); }
+  // Las tarjetas del planificador se generan aqui, no en el arranque: su
+  // codigo esta mas abajo en el documento y al iniciar aun no existe.
+  if (tab === 'planner' && typeof dpiRenderCards === 'function') dpiRenderCards();
   activeRouteTab = tab;
   // Activar/desactivar tabs
   ['ab','day','planner'].forEach(t => {
@@ -13574,8 +13604,22 @@ async function calculateRoute() {
 
     const route = data.routes[0];
     const coords = route.geometry.coordinates.map(([lng, lat]) => [lat, lng]);
-    const distKm  = (route.distance / 1000).toFixed(1);
-    const timeMin = Math.round(route.duration / 60);
+    const distKmNum = route.distance / 1000;
+    const distKm  = distKmNum.toFixed(1);
+
+    /* OSRM devuelve tiempos de CIRCULACIÓN LIBRE: usa los límites de
+       velocidad de OpenStreetMap sin tráfico, semáforos, ni el hecho de
+       que las curvas de Tenerife no se toman al límite. En la práctica
+       se queda muy corto (llegaba a dar 7 min para 7 km = 61 km/h).
+
+       Corrección: se aplica como tope la MISMA velocidad media que ya
+       estaba calibrada para la estimación de respaldo (ver
+       drawFallbackRoute). Nunca acelera la ruta: si OSRM ya da un tiempo
+       mayor —porque conoce el trazado real— se respeta el suyo. */
+    const capKmH  = distKmNum < 15 ? 35 : (distKmNum < 40 ? 42 : 60);
+    const osrmMin = route.duration / 60;
+    const realMin = distKmNum / capKmH * 60;
+    const timeMin = Math.max(1, Math.round(Math.max(osrmMin, realMin)));
 
     // Halo exterior (sombra azul clara)
     const haloLine = L.polyline(coords, {
@@ -14771,6 +14815,9 @@ function refreshDayTripTexts() {
   if (mr) mr.textContent = L.daytripMyRoute;
   renderMyRoute();
   renderDayTripCatalog();
+  // Tarjetas de los dos planificadores: se regeneran en el idioma activo
+  if (typeof dpiRenderCards === 'function') dpiRenderCards();
+  if (typeof dpRenderZoneCards === 'function') dpRenderZoneCards();
 }
 
 // Reaccionar también si el hash cambia mientras la app está abierta
@@ -14781,8 +14828,20 @@ loadFavorites();
 updateFavBadge();
 updateMarkers({ immediate: true });
 openPlaceFromHash();
+// Restaurar el idioma guardado (o el del navegador la primera vez)
+try {
+  var _saved = localStorage.getItem('tg_lang');
+  if (!_saved) {
+    var _nav = (navigator.language || 'es').slice(0,2).toLowerCase();
+    if (LANGS[_nav]) _saved = _nav;
+  }
+  if (_saved && _saved !== currentLang) setLang(_saved);
+} catch (e) {}
+
 refreshDayTripTexts();
 updateDayTripBadge();
+if (typeof dpiRenderCards === 'function') dpiRenderCards();
+if (typeof dpRenderZoneCards === 'function') dpRenderZoneCards();
 
 // ══════════════════════════════════════════════════════════
 //  SISTEMA BUS TITSA
@@ -17404,29 +17463,29 @@ window.addEventListener('hashchange', () => {
 <nav class="v19-bottom-nav" role="navigation" aria-label="Navegación principal">
   <button class="v19-nav-item active" id="v19-nav-home" type="button" aria-current="page" aria-label="Inicio">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1V9.5z"/></svg>
-    <span>Inicio</span>
+    <span id="nav-lbl-home">Inicio</span>
   </button>
   <button class="v19-nav-item" id="v19-nav-fav" type="button" aria-label="Favoritos">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-    <span>Favoritos</span>
+    <span id="nav-lbl-fav">Favoritos</span>
     <span class="v19-nav-badge hidden" id="v19-nav-fav-badge">0</span>
   </button>
   <button class="v19-nav-item" id="v19-nav-routes" type="button" aria-label="Rutas">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
-    <span>Rutas</span>
+    <span id="nav-lbl-routes">Rutas</span>
   </button>
   <button class="v19-nav-item" id="v19-nav-shop" type="button" aria-label="Tienda" onclick="openShopPanel()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-    <span>Tienda</span>
+    <span id="nav-lbl-shop">Tienda</span>
   </button>
   <button class="v19-nav-item" id="v19-nav-chat" type="button" aria-label="Asistente" onclick="openChatPanel()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    <span>Asistente</span>
+    <span id="nav-lbl-chat">Asistente</span>
     <span class="v19-nav-badge hidden" id="chat-nav-badge" style="background:#c9a84c;color:#000">!</span>
   </button>
   <button class="v19-nav-item" id="v19-nav-account" type="button" aria-label="Cuenta" onclick="openAuthModal()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-    <span>Cuenta</span>
+    <span id="nav-lbl-account">Cuenta</span>
     <span class="auth-dot" id="v19-nav-account-dot" aria-hidden="true" style="position:absolute;top:6px;right:calc(50% - 18px);width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 2px var(--dark);opacity:0;transition:opacity 0.2s;pointer-events:none;"></span>
   </button>
 </nav>
@@ -17992,10 +18051,10 @@ window.addEventListener('hashchange', () => {
   </div>
 
   <div class="shop-tabs" role="tablist">
-    <button class="shop-tab active" id="shop-tab-excursions" role="tab" onclick="switchShopTab('excursions')">🌋 Excursiones</button>
-    <button class="shop-tab" id="shop-tab-souvenirs" role="tab" onclick="switchShopTab('souvenirs')">🛍️ Souvenirs</button>
-    <button class="shop-tab" id="shop-tab-businesses" role="tab" onclick="switchShopTab('businesses')">🏢 Negocios</button>
-    <button class="shop-tab" id="shop-tab-register" role="tab" onclick="switchShopTab('register')">➕ Anúnciate</button>
+    <button class="shop-tab active" id="shop-tab-excursions" role="tab" onclick="switchShopTab('excursions')"><span class="shop-tab-ico">🌋</span> <span id="shop-lbl-exc">Excursiones</span></button>
+    <button class="shop-tab" id="shop-tab-souvenirs" role="tab" onclick="switchShopTab('souvenirs')"><span class="shop-tab-ico">🛍️</span> <span id="shop-lbl-souv">Souvenirs</span></button>
+    <button class="shop-tab" id="shop-tab-businesses" role="tab" onclick="switchShopTab('businesses')"><span class="shop-tab-ico">🏢</span> <span id="shop-lbl-biz">Negocios</span></button>
+    <button class="shop-tab" id="shop-tab-register" role="tab" onclick="switchShopTab('register')"><span class="shop-tab-ico">➕</span> <span id="shop-lbl-ad">Anúnciate</span></button>
   </div>
 
   <div class="shop-content" id="shop-content">
@@ -18890,7 +18949,7 @@ function updateRouteEditFloat() {
   display:none; position:fixed; inset:0; z-index:99999;
   background:rgba(0,0,0,0.92); backdrop-filter:blur(8px);
   flex-direction:column; align-items:center; justify-content:flex-start;
-  overflow-y:auto; padding:16px 0 40px;
+  overflow-y:auto; padding:calc(16px + env(safe-area-inset-top, 0px)) 0 40px;
 }
 #admin-overlay.open { display:flex; }
 .admin-panel {
@@ -23486,78 +23545,15 @@ if (document.readyState !== 'loading') {
 
       <!-- PASO 1: Tiempo disponible -->
       <div class="dp-step active" id="dp-step-1">
-        <div class="dp-step-title">¿Cuánto tiempo tienes?</div>
-        <div class="dp-time-grid">
-          <div class="dp-time-card" onclick="dpSelectTime('morning')">
-            <div class="dp-time-icon">🌅</div>
-            <div class="dp-time-info">
-              <div class="dp-time-label">Mañana</div>
-              <div class="dp-time-sub">2–3 horas · 2 paradas</div>
-            </div>
-            <div class="dp-time-arrow">›</div>
-          </div>
-          <div class="dp-time-card" onclick="dpSelectTime('halfday')">
-            <div class="dp-time-icon">☀️</div>
-            <div class="dp-time-info">
-              <div class="dp-time-label">Medio día</div>
-              <div class="dp-time-sub">4–5 horas · 3–4 paradas</div>
-            </div>
-            <div class="dp-time-arrow">›</div>
-          </div>
-          <div class="dp-time-card" onclick="dpSelectTime('fullday')">
-            <div class="dp-time-icon">🌞</div>
-            <div class="dp-time-info">
-              <div class="dp-time-label">Día completo</div>
-              <div class="dp-time-sub">7–8 horas · 5–6 paradas</div>
-            </div>
-            <div class="dp-time-arrow">›</div>
-          </div>
-          <div class="dp-time-card" onclick="dpSelectTime('afternoon')">
-            <div class="dp-time-icon">🌇</div>
-            <div class="dp-time-info">
-              <div class="dp-time-label">Tarde</div>
-              <div class="dp-time-sub">3–4 horas · 2–3 paradas</div>
-            </div>
-            <div class="dp-time-arrow">›</div>
-          </div>
-        </div>
+        <div class="dp-step-title" id="dp-time-title">¿Cuánto tiempo tienes?</div>
+        <div class="dp-time-grid" id="dp-time-grid"></div>
       </div>
 
       <!-- PASO 2: Tipo de experiencia -->
       <div class="dp-step" id="dp-step-2">
-        <div class="dp-step-title">¿Qué tipo de día buscas?</div>
-        <div class="dp-zone-grid">
-          <div class="dp-zone-card" onclick="dpSelectZone('naturaleza')">
-            <div class="dp-zone-icon">🌿</div>
-            <div class="dp-zone-label">Naturaleza</div>
-            <div class="dp-zone-sub">Rutas, volcanes, paisajes</div>
-          </div>
-          <div class="dp-zone-card" onclick="dpSelectZone('cultura')">
-            <div class="dp-zone-icon">🏛️</div>
-            <div class="dp-zone-label">Cultura</div>
-            <div class="dp-zone-sub">Historia, arte, iglesias</div>
-          </div>
-          <div class="dp-zone-card" onclick="dpSelectZone('playa')">
-            <div class="dp-zone-icon">🏖️</div>
-            <div class="dp-zone-label">Playa & Mar</div>
-            <div class="dp-zone-sub">Playas, piscinas, surf</div>
-          </div>
-          <div class="dp-zone-card" onclick="dpSelectZone('gastronomia')">
-            <div class="dp-zone-icon">🍽️</div>
-            <div class="dp-zone-label">Gastronomía</div>
-            <div class="dp-zone-sub">Mercados, guachinches, vinos</div>
-          </div>
-          <div class="dp-zone-card" onclick="dpSelectZone('familia')">
-            <div class="dp-zone-icon">👨‍👩‍👧</div>
-            <div class="dp-zone-label">Familia</div>
-            <div class="dp-zone-sub">Parques, atracciones, niños</div>
-          </div>
-          <div class="dp-zone-card" onclick="dpSelectZone('mix')">
-            <div class="dp-zone-icon">✨</div>
-            <div class="dp-zone-label">Sorpréndeme</div>
-            <div class="dp-zone-sub">Mezcla de todo</div>
-          </div>
-        </div>
+        <div class="dp-step-title" id="dp-step2-title">¿Qué tipo de día buscas?</div>
+        <!-- Tarjetas generadas desde DP_CARDS (ver dpRenderZoneCards) -->
+        <div class="dp-zone-grid" id="dp-zone-grid"></div>
       </div>
 
       <!-- PASO 3: Itinerario generado -->
@@ -23607,14 +23603,50 @@ const DP_TIME_LABELS = {
 };
 
 // Categorías por tipo de experiencia
-const DP_ZONES = {
-  naturaleza: ['naturaleza','montana','senderismo','mirador','piscinas','faros'],
-  cultura:    ['cultura','museo','municipio','faros'],
-  playa:      ['playa','piscinas','surf','puerto_ocio'],
-  gastronomia:['gastronomia','mercadillo','municipio'],
-  familia:    ['familia','animales','playa','piscinas','museo'],
-  mix:        ['naturaleza','cultura','museo','playa','gastronomia','mirador','municipio','familia'],
-};
+/* Tarjetas del planificador. UNA sola fuente de verdad: de aqui salen
+   las tarjetas visibles, sus traducciones y el mapeo DP_ZONES. Antes
+   el HTML y DP_ZONES iban por separado y "Museos" y "Miradores" no
+   tenian mapeo: al elegirlos devolvia una mezcla aleatoria.
+   Solo categorias VISITABLES: farmacias, hospitales, gasolineras,
+   supermercados y demas servicios no son un plan de dia. */
+const DP_CARDS = [
+  {id:"naturaleza",icon:"\ud83c\udf3f",cats:["naturaleza","montana","senderismo"],tx:{"es":["Naturaleza","Rutas, volcanes"],"en":["Nature","Trails, volcanoes"],"fr":["Nature","Sentiers, volcans"],"de":["Natur","Wege, Vulkane"],"it":["Natura","Sentieri, vulcani"],"nl":["Natuur","Paden, vulkanen"],"zh":["\u81ea\u7136","\u6b65\u9053\u3001\u706b\u5c71"],"zht":["\u81ea\u7136","\u6b65\u9053\u3001\u706b\u5c71"]}},
+  {id:"cultura",icon:"\ud83c\udfdb\ufe0f",cats:["cultura","museo","municipio","faros"],tx:{"es":["Cultura","Historia, arte"],"en":["Culture","History, art"],"fr":["Culture","Histoire, art"],"de":["Kultur","Geschichte, Kunst"],"it":["Cultura","Storia, arte"],"nl":["Cultuur","Geschiedenis, kunst"],"zh":["\u6587\u5316","\u5386\u53f2\u3001\u827a\u672f"],"zht":["\u6587\u5316","\u6b77\u53f2\u3001\u85dd\u8853"]}},
+  {id:"museo",icon:"\ud83c\udffa",cats:["museo"],tx:{"es":["Museos","Exposiciones"],"en":["Museums","Exhibitions"],"fr":["Mus\u00e9es","Expositions"],"de":["Museen","Ausstellungen"],"it":["Musei","Mostre"],"nl":["Musea","Tentoonstellingen"],"zh":["\u535a\u7269\u9986","\u5c55\u89c8"],"zht":["\u535a\u7269\u9928","\u5c55\u89bd"]}},
+  {id:"playa",icon:"\ud83c\udfd6\ufe0f",cats:["playa","piscinas","puerto_ocio"],tx:{"es":["Playa & Mar","Playas, piscinas"],"en":["Beach & Sea","Beaches, pools"],"fr":["Plage & Mer","Plages, piscines"],"de":["Strand & Meer","Str\u00e4nde, Pools"],"it":["Spiaggia & Mare","Spiagge, piscine"],"nl":["Strand & Zee","Stranden, baden"],"zh":["\u6d77\u6ee9\u4e0e\u6d77","\u6d77\u6ee9\u3001\u5929\u7136\u6cf3\u6c60"],"zht":["\u6d77\u7058\u8207\u6d77","\u6d77\u7058\u3001\u5929\u7136\u6cf3\u6c60"]}},
+  {id:"gastronomia",icon:"\ud83c\udf7d\ufe0f",cats:["gastronomia","mercadillo"],tx:{"es":["Gastronom\u00eda","Guachinches, vinos"],"en":["Food & Wine","Guachinches, wines"],"fr":["Gastronomie","Guachinches, vins"],"de":["Gastronomie","Guachinches, Weine"],"it":["Gastronomia","Guachinches, vini"],"nl":["Eten & Wijn","Guachinches, wijnen"],"zh":["\u7f8e\u98df","\u4e61\u6751\u9152\u9986\u3001\u8461\u8404\u9152"],"zht":["\u7f8e\u98df","\u9109\u6751\u9152\u9928\u3001\u8461\u8404\u9152"]}},
+  {id:"familia",icon:"\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67",cats:["familia","animales","playa","piscinas","museo"],tx:{"es":["Familia","Ni\u00f1os, parques"],"en":["Family","Kids, parks"],"fr":["Famille","Enfants, parcs"],"de":["Familie","Kinder, Parks"],"it":["Famiglia","Bambini, parchi"],"nl":["Gezin","Kinderen, parken"],"zh":["\u4eb2\u5b50","\u513f\u7ae5\u3001\u516c\u56ed"],"zht":["\u89aa\u5b50","\u5152\u7ae5\u3001\u516c\u5712"]}},
+  {id:"mirador",icon:"\ud83d\udd2d",cats:["mirador","faros"],tx:{"es":["Miradores","Vistas, fotos"],"en":["Viewpoints","Views, photos"],"fr":["Points de vue","Panoramas, photos"],"de":["Aussichtspunkte","Ausblicke, Fotos"],"it":["Punti panoramici","Viste, foto"],"nl":["Uitzichtpunten","Uitzicht, foto"],"zh":["\u89c2\u666f\u53f0","\u98ce\u666f\u3001\u62cd\u7167"],"zht":["\u89c0\u666f\u53f0","\u98a8\u666f\u3001\u62cd\u7167"]}},
+  {id:"deporte",icon:"\ud83d\udeb4",cats:["deporte_publico","ciclismo","golf","escalada"],tx:{"es":["Deporte","Ciclismo, golf"],"en":["Sport","Cycling, golf"],"fr":["Sport","V\u00e9lo, golf"],"de":["Sport","Radfahren, Golf"],"it":["Sport","Ciclismo, golf"],"nl":["Sport","Fietsen, golf"],"zh":["\u8fd0\u52a8","\u9a91\u884c\u3001\u9ad8\u5c14\u592b"],"zht":["\u904b\u52d5","\u9a0e\u884c\u3001\u9ad8\u723e\u592b"]}},
+  {id:"aventura",icon:"\ud83c\udfc4",cats:["surf","buceo","kayak","windsurf","parapente","pesca"],tx:{"es":["Aventura","Surf, buceo, kayak"],"en":["Adventure","Surf, diving, kayak"],"fr":["Aventure","Surf, plong\u00e9e, kayak"],"de":["Abenteuer","Surfen, Tauchen, Kajak"],"it":["Avventura","Surf, immersioni, kayak"],"nl":["Avontuur","Surfen, duiken, kajak"],"zh":["\u5192\u9669","\u51b2\u6d6a\u3001\u6f5c\u6c34\u3001\u76ae\u5212\u8247"],"zht":["\u5192\u96aa","\u885d\u6d6a\u3001\u6f5b\u6c34\u3001\u7368\u6728\u821f"]}},
+  {id:"mercadillo",icon:"\ud83e\uddfa",cats:["mercadillo"],tx:{"es":["Mercadillos","Productos locales"],"en":["Markets","Local produce"],"fr":["March\u00e9s","Produits locaux"],"de":["M\u00e4rkte","Lokale Produkte"],"it":["Mercatini","Prodotti locali"],"nl":["Markten","Lokale producten"],"zh":["\u96c6\u5e02","\u672c\u5730\u7269\u4ea7"],"zht":["\u5e02\u96c6","\u5728\u5730\u7269\u7522"]}},
+  {id:"pueblos",icon:"\ud83c\udfd8\ufe0f",cats:["municipio","ciudad","puerto_ocio"],tx:{"es":["Pueblos & Paseos","Casco antiguo, puertos"],"en":["Towns & Strolls","Old town, marinas"],"fr":["Villages & Balades","Vieille ville, ports"],"de":["D\u00f6rfer & Spazierg\u00e4nge","Altstadt, H\u00e4fen"],"it":["Paesi & Passeggiate","Centro storico, porti"],"nl":["Dorpen & Wandelen","Oude stad, havens"],"zh":["\u6751\u9547\u6f2b\u6b65","\u8001\u57ce\u3001\u7801\u5934"],"zht":["\u6751\u93ae\u6f2b\u6b65","\u8001\u57ce\u3001\u78bc\u982d"]}},
+  {id:"petfriendly",icon:"\ud83d\udc15",cats:["petfriendly"],tx:{"es":["Con perro","Sitios pet friendly"],"en":["With dog","Pet friendly spots"],"fr":["Avec chien","Lieux pet friendly"],"de":["Mit Hund","Hundefreundlich"],"it":["Con cane","Luoghi pet friendly"],"nl":["Met hond","Hondvriendelijk"],"zh":["\u5e26\u5ba0\u7269","\u5ba0\u7269\u53cb\u597d\u5730\u70b9"],"zht":["\u651c\u5e36\u72ac\u96bb","\u5bf5\u7269\u53cb\u5584\u5730\u9ede"]}},
+  {id:"picnic",icon:"\ud83d\udd25",cats:["barbacoa","camping"],tx:{"es":["Picnic & BBQ","Zonas recreativas"],"en":["Picnic & BBQ","Recreation areas"],"fr":["Pique-nique & BBQ","Aires de loisirs"],"de":["Picknick & Grillen","Erholungsgebiete"],"it":["Picnic & BBQ","Aree ricreative"],"nl":["Picknick & BBQ","Recreatiegebieden"],"zh":["\u91ce\u9910\u70e7\u70e4","\u4f11\u95f2\u533a"],"zht":["\u91ce\u9910\u70e4\u8089","\u4f11\u9592\u5340"]}},
+  {id:"mix",icon:"\u2728",cats:["naturaleza","montana","senderismo","mirador","playa","piscinas","cultura","museo","gastronomia","mercadillo","familia","municipio","puerto_ocio","deporte_publico","faros"],tx:{"es":["Sorpr\u00e9ndeme","Mezcla de todo"],"en":["Surprise me","A bit of everything"],"fr":["Surprends-moi","Un peu de tout"],"de":["\u00dcberrasch mich","Von allem etwas"],"it":["Sorprendimi","Un po di tutto"],"nl":["Verras me","Van alles wat"],"zh":["\u7ed9\u6211\u60ca\u559c","\u5404\u79cd\u6df7\u642d"],"zht":["\u7d66\u6211\u9a5a\u559c","\u5404\u7a2e\u6df7\u642d"]}},
+];
+const DP_STEP_TITLE = {"es":["\u00bfQu\u00e9 quieres hacer?","Elige uno o varios"],"en":["What do you feel like?","Pick one or more"],"fr":["Envie de quoi ?","Choisis-en un ou plusieurs"],"de":["Worauf hast du Lust?","W\u00e4hle eins oder mehrere"],"it":["Cosa ti va di fare?","Scegline uno o pi\u00f9"],"nl":["Waar heb je zin in?","Kies er een of meer"],"zh":["\u60f3\u505a\u70b9\u4ec0\u4e48\uff1f","\u53ef\u591a\u9009"],"zht":["\u60f3\u505a\u9ede\u4ec0\u9ebc\uff1f","\u53ef\u591a\u9078"]};
+
+// DP_ZONES se deriva: imposible que una tarjeta se quede sin mapeo.
+const DP_ZONES = {};
+DP_CARDS.forEach(function(c){ DP_ZONES[c.id] = c.cats.slice(); });
+
+/* Tiempo, transporte y textos de interfaz de los dos planificadores,
+   en los 8 idiomas. Igual que DP_CARDS: una sola fuente de verdad,
+   las tarjetas se generan por JS y se regeneran al cambiar idioma. */
+const DP_TIMES = [
+  {id:"morning",icon:"\ud83c\udf05",tx:{"es":["Ma\u00f1ana","2\u20133 h \u00b7 2 paradas"],"en":["Morning","2\u20133 h \u00b7 2 stops"],"fr":["Matin","2\u20133 h \u00b7 2 \u00e9tapes"],"de":["Vormittag","2\u20133 Std. \u00b7 2 Stopps"],"it":["Mattina","2\u20133 h \u00b7 2 tappe"],"nl":["Ochtend","2\u20133 u \u00b7 2 stops"],"zh":["\u4e0a\u5348","2\u20133 \u5c0f\u65f6 \u00b7 2 \u7ad9"],"zht":["\u4e0a\u5348","2\u20133 \u5c0f\u6642 \u00b7 2 \u7ad9"]}},
+  {id:"afternoon",icon:"\ud83c\udf07",tx:{"es":["Tarde","3\u20134 h \u00b7 2\u20133 paradas"],"en":["Afternoon","3\u20134 h \u00b7 2\u20133 stops"],"fr":["Apr\u00e8s-midi","3\u20134 h \u00b7 2\u20133 \u00e9tapes"],"de":["Nachmittag","3\u20134 Std. \u00b7 2\u20133 Stopps"],"it":["Pomeriggio","3\u20134 h \u00b7 2\u20133 tappe"],"nl":["Middag","3\u20134 u \u00b7 2\u20133 stops"],"zh":["\u4e0b\u5348","3\u20134 \u5c0f\u65f6 \u00b7 2\u20133 \u7ad9"],"zht":["\u4e0b\u5348","3\u20134 \u5c0f\u6642 \u00b7 2\u20133 \u7ad9"]}},
+  {id:"halfday",icon:"\u2600\ufe0f",tx:{"es":["Medio d\u00eda","4\u20135 h \u00b7 3\u20134 paradas"],"en":["Half day","4\u20135 h \u00b7 3\u20134 stops"],"fr":["Demi-journ\u00e9e","4\u20135 h \u00b7 3\u20134 \u00e9tapes"],"de":["Halber Tag","4\u20135 Std. \u00b7 3\u20134 Stopps"],"it":["Mezza giornata","4\u20135 h \u00b7 3\u20134 tappe"],"nl":["Halve dag","4\u20135 u \u00b7 3\u20134 stops"],"zh":["\u534a\u5929","4\u20135 \u5c0f\u65f6 \u00b7 3\u20134 \u7ad9"],"zht":["\u534a\u5929","4\u20135 \u5c0f\u6642 \u00b7 3\u20134 \u7ad9"]}},
+  {id:"fullday",icon:"\ud83c\udf1e",tx:{"es":["D\u00eda completo","7\u20138 h \u00b7 5\u20136 paradas"],"en":["Full day","7\u20138 h \u00b7 5\u20136 stops"],"fr":["Journ\u00e9e enti\u00e8re","7\u20138 h \u00b7 5\u20136 \u00e9tapes"],"de":["Ganzer Tag","7\u20138 Std. \u00b7 5\u20136 Stopps"],"it":["Giornata intera","7\u20138 h \u00b7 5\u20136 tappe"],"nl":["Hele dag","7\u20138 u \u00b7 5\u20136 stops"],"zh":["\u4e00\u6574\u5929","7\u20138 \u5c0f\u65f6 \u00b7 5\u20136 \u7ad9"],"zht":["\u4e00\u6574\u5929","7\u20138 \u5c0f\u6642 \u00b7 5\u20136 \u7ad9"]}},
+];
+const DP_TRANSPORT = [
+  {id:"coche",icon:"\ud83d\ude97",tx:{"es":["Coche","M\u00e1xima libertad, toda la isla"],"en":["Car","Total freedom, whole island"],"fr":["Voiture","Libert\u00e9 totale, toute l\u2019\u00eele"],"de":["Auto","Volle Freiheit, ganze Insel"],"it":["Auto","Massima libert\u00e0, tutta l\u2019isola"],"nl":["Auto","Volledige vrijheid, hele eiland"],"zh":["\u81ea\u9a7e","\u6700\u81ea\u7531\uff0c\u5168\u5c9b\u901a\u884c"],"zht":["\u81ea\u99d5","\u6700\u81ea\u7531\uff0c\u5168\u5cf6\u901a\u884c"]}},
+  {id:"guagua",icon:"\ud83d\ude8c",tx:{"es":["Guagua","TITSA, econ\u00f3mico y f\u00e1cil"],"en":["Bus","TITSA, cheap and easy"],"fr":["Bus","TITSA, \u00e9conomique et simple"],"de":["Bus","TITSA, g\u00fcnstig und einfach"],"it":["Autobus","TITSA, economico e facile"],"nl":["Bus","TITSA, goedkoop en simpel"],"zh":["\u516c\u4ea4","TITSA\uff0c\u7ecf\u6d4e\u65b9\u4fbf"],"zht":["\u516c\u8eca","TITSA\uff0c\u7d93\u6fdf\u65b9\u4fbf"]}},
+  {id:"pie",icon:"\ud83d\udeb6",tx:{"es":["A pie","Rutas cercanas, ciudad"],"en":["Walking","Nearby routes, city"],"fr":["\u00c0 pied","Parcours proches, ville"],"de":["Zu Fu\u00df","Nahe Routen, Stadt"],"it":["A piedi","Percorsi vicini, citt\u00e0"],"nl":["Te voet","Routes dichtbij, stad"],"zh":["\u6b65\u884c","\u9644\u8fd1\u8def\u7ebf\u3001\u57ce\u533a"],"zht":["\u6b65\u884c","\u9644\u8fd1\u8def\u7dda\u3001\u57ce\u5340"]}},
+  {id:"bici",icon:"\ud83d\udeb2",tx:{"es":["Bicicleta","Rutas ciclistas y costa"],"en":["Bicycle","Cycle routes and coast"],"fr":["V\u00e9lo","Pistes cyclables et c\u00f4te"],"de":["Fahrrad","Radwege und K\u00fcste"],"it":["Bicicletta","Percorsi ciclabili e costa"],"nl":["Fiets","Fietsroutes en kust"],"zh":["\u81ea\u884c\u8f66","\u9a91\u884c\u8def\u7ebf\u4e0e\u6d77\u5cb8"],"zht":["\u81ea\u884c\u8eca","\u9a0e\u884c\u8def\u7dda\u8207\u6d77\u5cb8"]}},
+];
+const DP_UI = {"timeTitle":{"es":"\u00bfCu\u00e1nto tiempo tienes?","en":"How much time do you have?","fr":"Combien de temps as-tu ?","de":"Wie viel Zeit hast du?","it":"Quanto tempo hai?","nl":"Hoeveel tijd heb je?","zh":"\u4f60\u6709\u591a\u5c11\u65f6\u95f4\uff1f","zht":"\u4f60\u6709\u591a\u5c11\u6642\u9593\uff1f"},"transportTitle":{"es":"\u00bfC\u00f3mo te mueves?","en":"How do you get around?","fr":"Comment te d\u00e9places-tu ?","de":"Wie bist du unterwegs?","it":"Come ti muovi?","nl":"Hoe verplaats je je?","zh":"\u4f60\u600e\u4e48\u51fa\u884c\uff1f","zht":"\u4f60\u600e\u9ebc\u51fa\u884c\uff1f"},"dayTypeTitle":{"es":"\u00bfQu\u00e9 tipo de d\u00eda buscas?","en":"What kind of day are you after?","fr":"Quel genre de journ\u00e9e ?","de":"Was f\u00fcr ein Tag soll es sein?","it":"Che tipo di giornata cerchi?","nl":"Wat voor dag zoek je?","zh":"\u60f3\u8981\u4ec0\u4e48\u6837\u7684\u4e00\u5929\uff1f","zht":"\u60f3\u8981\u4ec0\u9ebc\u6a23\u7684\u4e00\u5929\uff1f"},"backTime":{"es":"\u2039 Cambiar tiempo","en":"\u2039 Change time","fr":"\u2039 Changer la dur\u00e9e","de":"\u2039 Zeit \u00e4ndern","it":"\u2039 Cambia durata","nl":"\u2039 Tijd wijzigen","zh":"\u2039 \u66f4\u6539\u65f6\u957f","zht":"\u2039 \u66f4\u6539\u6642\u9577"},"backActivities":{"es":"\u2039 Cambiar actividades","en":"\u2039 Change activities","fr":"\u2039 Changer d\u2019activit\u00e9s","de":"\u2039 Aktivit\u00e4ten \u00e4ndern","it":"\u2039 Cambia attivit\u00e0","nl":"\u2039 Activiteiten wijzigen","zh":"\u2039 \u66f4\u6539\u6d3b\u52a8","zht":"\u2039 \u66f4\u6539\u6d3b\u52d5"},"createBtn":{"es":"Crear itinerario \u2192","en":"Create itinerary \u2192","fr":"Cr\u00e9er l\u2019itin\u00e9raire \u2192","de":"Route erstellen \u2192","it":"Crea itinerario \u2192","nl":"Route maken \u2192","zh":"\u751f\u6210\u884c\u7a0b \u2192","zht":"\u7522\u751f\u884c\u7a0b \u2192"}};
 
 // Duración estimada por categoría (minutos)
 const DP_DURATION = {
@@ -23639,6 +23671,10 @@ let dpTime = null, dpZone = null;
 // ── ABRIR / CERRAR ────────────────────────────────────────────
 function openDayPlanner() {
   document.getElementById('dp-overlay').classList.add('open');
+  // Se generan aqui (y no solo al arrancar) porque este panel esta mas
+  // abajo en el documento que el codigo de inicio: al arrancar todavia
+  // no existe el contenedor. Ademas asi siempre salen en el idioma actual.
+  dpRenderZoneCards();
   dpReset();
 }
 function closeDayPlanner() {
@@ -23657,6 +23693,33 @@ function dpSelectTime(t) {
 }
 
 // ── PASO 2: seleccionar zona/tipo ────────────────────────────
+// Tarjetas de "Ruta del día". Comparten fuente con "Organiza tu día"
+// (DP_CARDS): mismos tipos, mismas traducciones, mismo mapeo de categorías.
+// Aquí la selección es simple: al tocar una tarjeta se genera el itinerario.
+function dpRenderZoneCards() {
+  var grid = document.getElementById('dp-zone-grid');
+  if (!grid || typeof DP_CARDS === 'undefined') return;
+  var lang = (typeof currentLang !== 'undefined' && currentLang) ? currentLang : 'es';
+  grid.innerHTML = '';
+  for (var i = 0; i < DP_CARDS.length; i++) {
+    var c  = DP_CARDS[i];
+    var tx = c.tx[lang] || c.tx.es;
+    var card = document.createElement('div');
+    card.className = 'dp-zone-card';
+    card.onclick = (function(id){ return function(){ dpSelectZone(id); }; })(c.id);
+    var ic = document.createElement('div');
+    ic.className = 'dp-zone-icon'; ic.textContent = c.icon;
+    var lb = document.createElement('div');
+    lb.className = 'dp-zone-label'; lb.textContent = tx[0];
+    var sb = document.createElement('div');
+    sb.className = 'dp-zone-sub'; sb.textContent = tx[1];
+    card.appendChild(ic); card.appendChild(lb); card.appendChild(sb);
+    grid.appendChild(card);
+  }
+  dpRenderOptionGrid('dp-time-grid', DP_TIMES, function(id){ dpSelectTime(id); });
+  dpApplyUiTexts();
+}
+
 function dpSelectZone(z) {
   dpZone = z;
   document.getElementById('dp-step-2').classList.remove('active');
@@ -23927,6 +23990,92 @@ function dpiToggleZone(card) {
   }
 }
 
+// Genera una rejilla de tarjetas (tiempo o transporte) en el idioma activo.
+// Se usa en los dos planificadores; 'onPick' recibe el id de la opción.
+function dpRenderOptionGrid(gridId, data, onPick) {
+  var grid = document.getElementById(gridId);
+  if (!grid || typeof data === 'undefined') return;
+  var lang = (typeof currentLang !== 'undefined' && currentLang) ? currentLang : 'es';
+  grid.innerHTML = '';
+  for (var i = 0; i < data.length; i++) {
+    var o  = data[i];
+    var tx = o.tx[lang] || o.tx.es;
+    var card = document.createElement('div');
+    card.className = 'dp-time-card';
+    card.dataset.opt = o.id;
+    card.onclick = (function(id, el){ return function(){ onPick(id, el); }; })(o.id, card);
+
+    var ic = document.createElement('div');
+    ic.className = 'dp-time-icon'; ic.textContent = o.icon;
+    var info = document.createElement('div');
+    info.className = 'dp-time-info';
+    var lb = document.createElement('div');
+    lb.className = 'dp-time-label'; lb.textContent = tx[0];
+    var sb = document.createElement('div');
+    sb.className = 'dp-time-sub'; sb.textContent = tx[1];
+    info.appendChild(lb); info.appendChild(sb);
+    var ar = document.createElement('div');
+    ar.className = 'dp-time-arrow'; ar.textContent = '\u203A';
+
+    card.appendChild(ic); card.appendChild(info); card.appendChild(ar);
+    grid.appendChild(card);
+  }
+}
+
+// Textos de interfaz de los planificadores en el idioma activo
+function dpApplyUiTexts() {
+  if (typeof DP_UI === 'undefined') return;
+  var lang = (typeof currentLang !== 'undefined' && currentLang) ? currentLang : 'es';
+  var pick = function(k){ return (DP_UI[k] && (DP_UI[k][lang] || DP_UI[k].es)) || ''; };
+  var set = function(id, txt){ var el = document.getElementById(id); if (el && txt) el.textContent = txt; };
+  set('dpi-time-title',      pick('timeTitle'));
+  set('dpi-transport-title', pick('transportTitle'));
+  set('dp-time-title',       pick('timeTitle'));
+  set('dp-step2-title',      pick('dayTypeTitle'));
+  var back1 = document.querySelector('#dpi-step-2 button[onclick*="dpiGoBack(1)"]');
+  if (back1) back1.textContent = pick('backTime');
+  var back2 = document.querySelector('#dpi-step-3 button[onclick*="dpiGoBack(2)"]');
+  if (back2) back2.textContent = pick('backActivities');
+  var mk = document.getElementById('dpi-confirm-btn');
+  if (mk) mk.textContent = pick('createBtn');
+}
+
+function dpiRenderCards() {
+  var grid = document.getElementById('dpi-zone-grid');
+  if (!grid) return;
+  var lang = (typeof currentLang !== 'undefined' && currentLang) ? currentLang : 'es';
+  grid.innerHTML = '';
+  for (var i = 0; i < DP_CARDS.length; i++) {
+    var c  = DP_CARDS[i];
+    var tx = c.tx[lang] || c.tx.es;
+    var card = document.createElement('div');
+    card.className = 'dp-zone-card';
+    card.dataset.zone = c.id;
+    if (dpiSelectedZones.indexOf(c.id) >= 0) card.classList.add('selected');
+    card.onclick = (function(el){ return function(){ dpiToggleZone(el); }; })(card);
+
+    var ic = document.createElement('div');
+    ic.className = 'dp-zone-icon'; ic.textContent = c.icon;
+    var lb = document.createElement('div');
+    lb.className = 'dp-zone-label'; lb.textContent = tx[0];
+    var sb = document.createElement('div');
+    sb.className = 'dp-zone-sub'; sb.textContent = tx[1];
+    card.appendChild(ic); card.appendChild(lb); card.appendChild(sb);
+    grid.appendChild(card);
+  }
+  // Titulo del paso, tambien traducido
+  var st = DP_STEP_TITLE[lang] || DP_STEP_TITLE.es;
+  var m = document.getElementById('dpi-step-title-main');
+  var s = document.getElementById('dpi-step-title-sub');
+  if (m) m.textContent = st[0];
+  if (s) s.textContent = st[1];
+
+  // Tiempo y transporte de este planificador, tambien traducidos
+  dpRenderOptionGrid('dpi-time-grid', DP_TIMES, function(id){ dpiSelectTime(id); });
+  dpRenderOptionGrid('dpi-transport-grid', DP_TRANSPORT, function(id, el){ dpiSelectTransport(id, el); });
+  dpApplyUiTexts();
+}
+
 function dpiConfirmZones() {
   if (!dpiSelectedZones.length) return;
   dpiZone = dpiSelectedZones.length === 1 ? dpiSelectedZones[0] : 'custom';
@@ -23954,6 +24103,35 @@ function dpiSelectTransport(t, card) {
   }, 350);
 }
 
+/* Radio de búsqueda en km según cómo se mueve el usuario y cuánto tiempo
+   tiene. Antes no existía: el itinerario salía disperso por toda la isla
+   (Santa Cruz → Adeje → La Laguna), con más tiempo en carretera que
+   visitando. Ahora las paradas se agrupan en una misma comarca. */
+const DP_RADIUS = {
+  pie:    { morning: 2,  afternoon: 2,  halfday: 3,  fullday: 5  },
+  bici:   { morning: 8,  afternoon: 9,  halfday: 14, fullday: 22 },
+  guagua: { morning: 9,  afternoon: 11, halfday: 16, fullday: 26 },
+  coche:  { morning: 13, afternoon: 16, halfday: 22, fullday: 35 }
+};
+
+// Ordena las paradas por vecino más próximo desde la primera: evita
+// zigzags aunque todas estén cerca.
+function dpOrderByProximity(list) {
+  if (list.length <= 2) return list;
+  const rest = list.slice(1);
+  const out  = [list[0]];
+  while (rest.length) {
+    const last = out[out.length - 1];
+    let bi = 0, bd = Infinity;
+    for (let i = 0; i < rest.length; i++) {
+      const d = haversineKm(last.lat, last.lng, rest[i].lat, rest[i].lng);
+      if (d < bd) { bd = d; bi = i; }
+    }
+    out.push(rest.splice(bi, 1)[0]);
+  }
+  return out;
+}
+
 function dpiGenerate() {
   const nStops = DP_STOPS[dpiTime] || 3;
   // Construir pool de categorías desde la selección múltiple
@@ -23966,29 +24144,61 @@ function dpiGenerate() {
   } else {
     cats = DP_ZONES[dpiZone] || DP_ZONES.mix;
   }
-  const pool   = (typeof places !== 'undefined' ? places : [])
-    .filter(p => cats.includes(p.category) && p.name && p.lat && p.lng)
-    .sort(() => Math.random() - 0.5);
+  const all  = (typeof places !== 'undefined' ? places : []);
+  const pool = all.filter(p => cats.includes(p.category) && p.name && p.lat && p.lng);
+  if (!pool.length) { dpiRenderResult([]); return; }
 
+  const radius = (DP_RADIUS[dpiTransport] || DP_RADIUS.coche)[dpiTime] || 22;
+
+  /* Se prueban varias semillas al azar y se elige la que forme el mejor
+     grupo cercano: primero que haya suficientes paradas, luego que haya
+     variedad de categorías. Así el día queda concentrado en una comarca. */
+  const shuffled = pool.slice().sort(() => Math.random() - 0.5);
+  const seeds = shuffled.slice(0, Math.min(14, shuffled.length));
+  let best = null;
+  for (const seed of seeds) {
+    for (const r of [radius, radius * 1.6, radius * 2.5]) {
+      const near = pool.filter(p => haversineKm(seed.lat, seed.lng, p.lat, p.lng) <= r);
+      if (near.length < Math.min(nStops, 2)) continue;
+      const variety = new Set(near.map(p => p.category)).size;
+      const score = Math.min(near.length, nStops * 3) * 10 + variety;
+      if (!best || score > best.score) best = { seed, near, score, r };
+      break; // este radio ya sirve para esta semilla
+    }
+  }
+  if (!best) best = { seed: shuffled[0], near: pool, r: radius };
+
+  // Selección dentro del grupo, priorizando variedad de categorías
+  const cand = best.near.slice().sort(() => Math.random() - 0.5);
   const selected = [];
   const usedCats = new Set();
-  for (const p of pool) {
+  for (const p of cand) {
     if (selected.length >= nStops) break;
     if (!usedCats.has(p.category)) { selected.push(p); usedCats.add(p.category); }
   }
-  for (const p of pool) {
+  for (const p of cand) {
     if (selected.length >= nStops) break;
     if (!selected.find(s => s.id === p.id)) selected.push(p);
   }
-  // Añadir gastronomía si día completo o medio día
-  if ((dpiTime === 'fullday' || dpiTime === 'halfday')) {
-    const g = (typeof places !== 'undefined' ? places : [])
-      .filter(p => p.category === 'gastronomia').sort(() => Math.random() - 0.5)[0];
-    if (g && !selected.find(s => s.id === g.id)) {
+
+  // Comida: también cercana. Antes se cogía de toda la isla y podía
+  // mandar a comer a 60 km del resto de paradas.
+  if (dpiTime === 'fullday' || dpiTime === 'halfday') {
+    const ref = selected[0] || best.seed;
+    const food = all
+      .filter(p => p.category === 'gastronomia' && p.name && p.lat && p.lng)
+      .filter(p => !selected.find(s => s.id === p.id))
+      .map(p => ({ p, d: haversineKm(ref.lat, ref.lng, p.lat, p.lng) }))
+      .filter(x => x.d <= best.r * 1.3)
+      .sort((a, b) => a.d - b.d)
+      .slice(0, 5);
+    if (food.length) {
+      const g = food[Math.floor(Math.random() * food.length)].p;
       selected.splice(Math.floor(selected.length / 2), 0, g);
     }
   }
-  dpiRenderResult(selected.slice(0, nStops + 1));
+
+  dpiRenderResult(dpOrderByProximity(selected.slice(0, nStops + 1)));
 }
 
 function dpiRenderResult(stops) {
@@ -24360,6 +24570,10 @@ function dpiGoBack(toStep) {
   if (toStep === 3) { /* vuelve a elegir transporte */ }
 }
 
+// Generacion inicial: este script esta al final del documento, asi que
+// aqui ya existen tanto los datos (DP_CARDS/DP_TIMES) como el HTML.
+try { dpiRenderCards(); } catch (e) {}
+
 function dpiReset() {
   dpiTime = null; dpiZone = null; dpiTransport = 'coche'; dpiSelectedZones = [];
   document.querySelectorAll('#dpi-zone-grid .dp-zone-card').forEach(c => c.classList.remove('selected'));
@@ -24515,6 +24729,10 @@ function closePrivacyPanel() {
   <button class="pp-link" onclick="openPrivacyPanel()" style="pointer-events:all;opacity:0.5;">
     Privacidad · RGPD
   </button>
+  <!-- Marca de version: permite comprobar que build esta ejecutando la app
+       instalada. Sin esto era imposible distinguir un fallo real de una
+       version antigua servida desde la cache del Service Worker. -->
+  <div id="app-build" style="font-size:0.6rem;color:rgba(201,168,76,0.35);text-align:center;margin-top:2px;pointer-events:none;">build 2026.07.23</div>
 </div>
 
 <!-- ════════════════════════════════════════════════════════════

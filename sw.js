@@ -15,7 +15,7 @@
    ══════════════════════════════════════════════════════════════════ */
 'use strict';
 
-var VERSION      = 'v1.0.0';
+var VERSION      = 'v1.1.0';
 var CACHE_SHELL  = 'tenerife-go-shell-' + VERSION;
 var CACHE_TILES  = 'tenerife-tiles-v1';   // se conserva entre versiones
 var MAX_TILES    = 3000;                  // tope para no llenar el movil
