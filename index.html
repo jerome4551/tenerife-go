@@ -1,7 +1,42 @@
 <!DOCTYPE html>
+<!--
+  ══════════════════════════════════════════════════════════════════════
+  TENERIFE GO — Guia turistica interactiva de Tenerife
+  https://jerome4551.github.io/tenerife-go
+
+  Copyright (c) 2026 Jerome B. Todos los derechos reservados.
+  All rights reserved.
+
+  Esta aplicacion y todo su contenido son obra original del autor:
+  el codigo fuente, los textos y descripciones de los 702 lugares,
+  las traducciones a 8 idiomas, la base de conocimiento del asistente,
+  el diseno, la identidad visual y la marca "Tenerife Go".
+
+  Protegido por el Real Decreto Legislativo 1/1996 (Ley de Propiedad
+  Intelectual, Espana), la Directiva 96/9/CE sobre bases de datos y los
+  tratados internacionales de derechos de autor (Convenio de Berna).
+
+  QUEDA PROHIBIDO, sin autorizacion expresa y por escrito del autor:
+    - Copiar, reproducir o redistribuir el codigo, total o parcialmente
+    - Crear obras derivadas, adaptaciones o versiones modificadas
+    - Extraer o reutilizar los textos, descripciones o la base de datos
+      de lugares (protegida como tal con independencia del codigo)
+    - Emplear la marca "Tenerife Go", el logotipo o la identidad visual
+
+  AVISO: que este codigo sea legible en el navegador es una condicion
+  tecnica inevitable de toda aplicacion web. NO constituye publicacion
+  en dominio publico, ni licencia de uso, ni renuncia a derecho alguno.
+
+  Cartografia (c) OpenStreetMap contributors (ODbL) y Esri.
+  Licencias, permisos y contacto: tenerife.go.app@gmail.com
+  ══════════════════════════════════════════════════════════════════════
+-->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="author" content="Jerome B">
+<meta name="copyright" content="Copyright (c) 2026 Jerome B - Todos los derechos reservados">
+<meta name="rights" content="https://jerome4551.github.io/tenerife-go">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
 <!-- Captura global de errores: evita "Uncaught Error: Script error." visible
      en pantalla. Los errores de scripts cross-origin en file:// son inevitables
@@ -581,7 +616,7 @@ window.onunhandledrejection = function(e) {
   /* ── CESTA DE COMPRA ─────────────────────────────────────────────── */
   .cart-btn {
     position: fixed;
-    bottom: 80px;
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
     right: 16px;
     width: 52px;
     height: 52px;
@@ -1016,7 +1051,7 @@ window.onunhandledrejection = function(e) {
   /* ── LEYENDA DEL MAPA v2 — cerrada por defecto, símbolos SVG ──── */
   .map-legend {
     position: fixed;
-    bottom: 82px;
+    bottom: calc(82px + env(safe-area-inset-bottom, 0px));
     left: 10px;
     z-index: 800;
     background: linear-gradient(180deg, rgba(27,35,48,0.94), rgba(18,24,35,0.94));
@@ -1097,7 +1132,7 @@ window.onunhandledrejection = function(e) {
   /* Píldora para abrir — visible por defecto */
   .map-legend-toggle {
     position: fixed;
-    bottom: 82px;
+    bottom: calc(82px + env(safe-area-inset-bottom, 0px));
     left: 10px;
     z-index: 800;
     background: linear-gradient(180deg, rgba(27,35,48,0.9), rgba(18,24,35,0.9));
@@ -1149,7 +1184,7 @@ window.onunhandledrejection = function(e) {
   /* ── AVISO MULTI-FILTRO ──────────────────────────────────────────── */
   .multifilter-toast {
     position: fixed;
-    bottom: 90px;
+    bottom: calc(120px + env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%) translateY(10px);
     z-index: 1050;
@@ -2299,7 +2334,7 @@ window.onunhandledrejection = function(e) {
   .popup-visit-btn { display: flex; align-items: center; justify-content: center; gap: var(--space-2); width: 100%; margin-top: 6px; padding: 6px 10px; background: rgba(148,163,184,0.07); border: 1px solid rgba(148,163,184,0.25); border-radius: 8px; color: #94A3B8; font-family: 'DM Sans', sans-serif; font-size: 0.74rem; font-weight: 600; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
   .popup-visit-btn.is-visited { background: rgba(74,222,128,0.10); border-color: rgba(74,222,128,0.35); color: #86EFAC; }
   .popup-visit-btn:active { background: rgba(148,163,184,0.15); }
-  .tg-toast { position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%) translateY(12px); max-width: 86vw; padding: 10px 16px; background: #1B2330; border: 1px solid rgba(212,175,55,0.45); border-radius: 12px; color: #F5C76B; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; box-shadow: 0 6px 24px rgba(0,0,0,0.45); opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; z-index: 12000; pointer-events: none; text-align: center; }
+  .tg-toast { position: fixed; left: 50%; bottom: calc(120px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%) translateY(12px); max-width: 86vw; padding: 10px 16px; background: #1B2330; border: 1px solid rgba(212,175,55,0.45); border-radius: 12px; color: #F5C76B; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; box-shadow: 0 6px 24px rgba(0,0,0,0.45); opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; z-index: 12000; pointer-events: none; text-align: center; }
   .tg-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   .tg-trophy-fab { position: fixed; right: 12px; bottom: calc(142px + env(safe-area-inset-bottom, 0px)); width: 36px; height: 36px; border-radius: 50%; background: rgba(27,35,48,0.88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(212,175,55,0.45); color: #F5C76B; font-size: 1rem; line-height: 1; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 900; box-shadow: 0 4px 14px rgba(0,0,0,0.4); }
   .tg-trophy-fab:active { transform: scale(0.94); }
@@ -2322,7 +2357,7 @@ window.onunhandledrejection = function(e) {
   /* ── TOAST DE COMPARTIR (copiado / error) ─────────────── */
   .share-toast {
     position: fixed;
-    bottom: 24px;
+    bottom: calc(120px + env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%) translateY(20px);
     z-index: 3000;
@@ -3141,7 +3176,7 @@ window.onunhandledrejection = function(e) {
   /* ── PANEL BUS ───────────────────────────────────────── */
   .bus-panel {
     position: absolute;
-    bottom: 56px;
+    bottom: calc(84px + env(safe-area-inset-bottom, 0px));
     right: 14px;
     width: 290px;
     max-height: calc(100vh - 130px);
@@ -3793,12 +3828,12 @@ window.onunhandledrejection = function(e) {
   .bus-popup-titsa-link:hover { background: rgba(59,130,246,0.2); }
 
   @media (max-width: 480px) {
-    .bus-panel { width: calc(100vw - 28px); right: 14px; left: 14px; bottom: 52px; }
+    .bus-panel { width: calc(100vw - 28px); right: 14px; left: 14px; bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
   }
 
   .filter-status {
     position: absolute;
-    bottom: 24px;
+    bottom: calc(120px + env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%);
     background: rgba(27,35,48,0.92);
@@ -4920,7 +4955,7 @@ window.onunhandledrejection = function(e) {
   /* ── CESTA DE COMPRA ─────────────────────────────────────────────── */
   .cart-btn {
     position: fixed;
-    bottom: 80px;
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
     right: 16px;
     width: 52px;
     height: 52px;
@@ -5355,7 +5390,7 @@ window.onunhandledrejection = function(e) {
   /* ── LEYENDA DEL MAPA v2 — cerrada por defecto, símbolos SVG ──── */
   .map-legend {
     position: fixed;
-    bottom: 82px;
+    bottom: calc(82px + env(safe-area-inset-bottom, 0px));
     left: 10px;
     z-index: 800;
     background: linear-gradient(180deg, rgba(27,35,48,0.94), rgba(18,24,35,0.94));
@@ -5436,7 +5471,7 @@ window.onunhandledrejection = function(e) {
   /* Píldora para abrir — visible por defecto */
   .map-legend-toggle {
     position: fixed;
-    bottom: 82px;
+    bottom: calc(82px + env(safe-area-inset-bottom, 0px));
     left: 10px;
     z-index: 800;
     background: linear-gradient(180deg, rgba(27,35,48,0.9), rgba(18,24,35,0.9));
@@ -5488,7 +5523,7 @@ window.onunhandledrejection = function(e) {
   /* ── AVISO MULTI-FILTRO ──────────────────────────────────────────── */
   .multifilter-toast {
     position: fixed;
-    bottom: 90px;
+    bottom: calc(120px + env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%) translateY(10px);
     z-index: 1050;
@@ -12041,7 +12076,13 @@ map.on('click', () => {
   }
 });
 
-const tileOptions = { bounds: tenerifeBounds, maxZoom: 19 };
+/* Las teselas necesitan un margen MAYOR que el limite de navegacion:
+   con el rectangulo exacto de la isla, en pantallas altas (movil) quedaban
+   bandas vacias arriba y abajo, que parecian un fallo de carga. El mar
+   alrededor es ligero y se cachea bien. maxBounds (donde puede moverse el
+   usuario) NO cambia: sigue anclado a Tenerife. */
+const tileBounds = L.latLngBounds(L.latLng(27.35, -17.65), L.latLng(29.20, -15.40));
+const tileOptions = { bounds: tileBounds, maxZoom: 19 };
 const layers = {
   streets: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { ...tileOptions, subdomains: ['a','b','c'], attribution: '© OpenStreetMap' }),
   satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, maxNativeZoom: 18, attribution: '© Esri', crossOrigin: false, detectRetina: true }),
@@ -16659,7 +16700,7 @@ window.addEventListener('hashchange', () => {
   /* Estilos del paso 6 — solo afectan a elementos nuevos */
   .pwa-install-banner {
     position: fixed;
-    bottom: 16px;
+    bottom: calc(120px + env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%) translateY(120%);
     background: #1B2330;
@@ -16859,7 +16900,7 @@ window.addEventListener('hashchange', () => {
      de paneles y se beneficia del backdrop-filter para integración. */
   .pwa-fab {
     position: fixed;
-    bottom: 82px;
+    bottom: calc(82px + env(safe-area-inset-bottom, 0px));
     right: 12px;
     width: 32px;
     height: 32px;
@@ -19242,29 +19283,41 @@ const ADMIN_PW_KEY   = 'tgo_admin_pw_hash';
 const ADMIN_SV_KEY   = 'tgo_admin_souvenirs';
 const ADMIN_EX_KEY   = 'tgo_admin_excursions';
 const ADMIN_AD_KEY   = 'tgo_admin_ads';
-const DEFAULT_PW     = ['Moni','06091988'].join(''); // código inicial — cambiar tras primer login
-
-// Hash simple (djb2) — no es criptográfico pero evita texto plano en localStorage
-function hashStr(str) {
-  let h = 5381;
-  for (let i = 0; i < str.length; i++) h = ((h << 5) + h) + str.charCodeAt(i);
-  return (h >>> 0).toString(36);
-}
-
-function getAdminPwHash() {
-  return localStorage.getItem(ADMIN_PW_KEY) || hashStr(DEFAULT_PW);
-}
-
-// ── CREDENCIALES ADMIN ───────────────────────────────────────────────
 const ADMIN_USER_KEY = 'tgo_admin_user';
-// Credenciales por defecto — Jerome debe cambiarlas desde el panel Ajustes
-// tras el primer login. Están partido en partes para evitar búsqueda trivial.
-const DEFAULT_USER = ['Jerome','istheboss','4551'].join('');
-const DEFAULT_CODE = ['Moni','06091988'].join('');
 
-function getAdminUserHash() {
-  return localStorage.getItem(ADMIN_USER_KEY) || hashStr(DEFAULT_USER);
+/* ── CREDENCIALES DE ADMINISTRADOR ─────────────────────────────────────
+   NO hay usuario ni codigo escritos aqui: el codigo fuente de cualquier
+   web es publico, asi que cualquier credencial en el archivo seria
+   legible. Se definen en el primer uso y se guardan SOLO en este
+   dispositivo, cifradas con SHA-256 (de una sola direccion: del hash no
+   se puede recuperar la clave).
+
+   El panel es una herramienta LOCAL: souvenirs, excursiones y anuncios
+   viven en localStorage de este navegador. No hay servidor detras, asi
+   que otra persona que abriera el panel en su movil solo veria su
+   propio almacenamiento vacio.                                          */
+
+async function hashStr(str) {
+  // SHA-256 con sal fija. Sustituye al antiguo djb2, que no era criptografico.
+  try {
+    const data = new TextEncoder().encode('tgo.admin.v2:' + str);
+    const buf  = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+  } catch (_) {
+    // crypto.subtle solo existe en contextos seguros (https). Respaldo
+    // para file:// — mas debil, pero el panel es local y sin impacto.
+    let h = 5381;
+    for (let i = 0; i < str.length; i++) h = ((h << 5) + h) + str.charCodeAt(i);
+    return 'legacy.' + (h >>> 0).toString(36);
+  }
 }
+
+function getAdminPwHash()   { return localStorage.getItem(ADMIN_PW_KEY); }
+function getAdminUserHash() { return localStorage.getItem(ADMIN_USER_KEY); }
+function adminHasCredentials() { return !!(getAdminPwHash() && getAdminUserHash()); }
+
+// true = el formulario esta creando credenciales; false = comprobandolas
+let adminSetupMode = false;
 
 function openAdminOverlay() {
   document.getElementById('admin-overlay').classList.add('open');
@@ -19273,6 +19326,22 @@ function openAdminOverlay() {
   document.getElementById('admin-login-error').textContent = '';
   document.getElementById('admin-login-view').style.display = 'block';
   document.getElementById('admin-main-view').style.display = 'none';
+
+  adminSetupMode = !adminHasCredentials();
+  const titleEl = document.querySelector('#admin-login-view .admin-login-title');
+  const btnEl   = document.querySelector('#admin-login-view .admin-login-btn');
+  const pwEl    = document.getElementById('admin-pw-field');
+  if (adminSetupMode) {
+    if (titleEl) titleEl.textContent = 'Crear acceso de administrador';
+    if (btnEl)   btnEl.textContent   = 'Crear acceso';
+    if (pwEl)    { pwEl.placeholder = 'Codigo secreto (min. 8)'; pwEl.autocomplete = 'new-password'; }
+    document.getElementById('admin-login-error').textContent =
+      'Primer uso en este dispositivo: elige tu usuario y codigo. Se guardan solo aqui, cifrados.';
+  } else {
+    if (titleEl) titleEl.textContent = 'Acceso de Administrador';
+    if (btnEl)   btnEl.textContent   = 'Entrar';
+    if (pwEl)    { pwEl.placeholder = 'Codigo secreto'; pwEl.autocomplete = 'current-password'; }
+  }
   setTimeout(() => document.getElementById('admin-user-field').focus(), 200);
 }
 
@@ -19280,22 +19349,38 @@ function closeAdmin() {
   document.getElementById('admin-overlay').classList.remove('open');
 }
 
-// ── LOGIN con usuario + código ────────────────────────────────────────
-function checkAdminPw() {
-  const user = document.getElementById('admin-user-field').value.trim();
-  const code = document.getElementById('admin-pw-field').value;
-  if (!user || !code) {
-    document.getElementById('admin-login-error').textContent = 'Introduce usuario y código.';
+// ── LOGIN / ALTA con usuario + código ─────────────────────────────────
+async function checkAdminPw() {
+  const user  = document.getElementById('admin-user-field').value.trim();
+  const code  = document.getElementById('admin-pw-field').value;
+  const errEl = document.getElementById('admin-login-error');
+
+  if (!user || !code) { errEl.textContent = 'Introduce usuario y codigo.'; return; }
+
+  if (adminSetupMode) {
+    if (user.length < 4) { errEl.textContent = 'El usuario debe tener al menos 4 caracteres.'; return; }
+    if (code.length < 8) { errEl.textContent = 'El codigo debe tener al menos 8 caracteres.'; return; }
+    try {
+      localStorage.setItem(ADMIN_USER_KEY, await hashStr(user));
+      localStorage.setItem(ADMIN_PW_KEY,   await hashStr(code));
+    } catch (_) { errEl.textContent = 'No se pudo guardar en este dispositivo.'; return; }
+    adminSetupMode = false;
+    errEl.textContent = '';
+    document.getElementById('admin-login-view').style.display = 'none';
+    document.getElementById('admin-main-view').style.display = 'block';
+    renderAdminAll();
     return;
   }
-  const userOk = hashStr(user) === getAdminUserHash();
-  const codeOk = hashStr(code) === getAdminPwHash();
+
+  const userOk = (await hashStr(user)) === getAdminUserHash();
+  const codeOk = (await hashStr(code)) === getAdminPwHash();
   if (userOk && codeOk) {
+    errEl.textContent = '';
     document.getElementById('admin-login-view').style.display = 'none';
     document.getElementById('admin-main-view').style.display = 'block';
     renderAdminAll();
   } else {
-    document.getElementById('admin-login-error').textContent = 'Usuario o código incorrecto.';
+    errEl.textContent = 'Usuario o codigo incorrecto.';
     document.getElementById('admin-user-field').value = '';
     document.getElementById('admin-pw-field').value = '';
   }
@@ -19675,24 +19760,24 @@ function renderAdminStats() {
 }
 
 // ── CAMBIAR CONTRASEÑA ────────────────────────────────────────────────
-function adminChangePw() {
+async function adminChangePw() {
   const newUser = document.getElementById('set-user-new').value.trim();
   const cur     = document.getElementById('set-pw-current').value;
   const nw      = document.getElementById('set-pw-new').value;
   const confirm = document.getElementById('set-pw-confirm').value;
   const msgEl   = document.getElementById('admin-pw-change-msg');
-  if (hashStr(cur) !== getAdminPwHash()) {
+  if ((await hashStr(cur)) !== getAdminPwHash()) {
     msgEl.style.color='#ef4444'; msgEl.textContent='Código actual incorrecto.'; return;
   }
-  if (nw.length < 6) {
-    msgEl.style.color='#ef4444'; msgEl.textContent='El nuevo código debe tener al menos 6 caracteres.'; return;
+  if (nw.length < 8) {
+    msgEl.style.color='#ef4444'; msgEl.textContent='El nuevo código debe tener al menos 8 caracteres.'; return;
   }
   if (nw !== confirm) {
     msgEl.style.color='#ef4444'; msgEl.textContent='Los códigos no coinciden.'; return;
   }
-  localStorage.setItem(ADMIN_PW_KEY, hashStr(nw));
+  localStorage.setItem(ADMIN_PW_KEY, await hashStr(nw));
   if (newUser.length >= 4) {
-    localStorage.setItem(ADMIN_USER_KEY, hashStr(newUser));
+    localStorage.setItem(ADMIN_USER_KEY, await hashStr(newUser));
     msgEl.style.color='#4ade80'; msgEl.textContent='✅ Usuario y código guardados.';
   } else {
     msgEl.style.color='#4ade80'; msgEl.textContent='✅ Código guardado. Usuario sin cambios.';
@@ -22294,7 +22379,7 @@ if (document.readyState !== 'loading') {
 #gpx-route-btn { flex-shrink: 0; }
 #gpx-day-btn { width: 100%; margin-top: 10px; }
 .gpx-toast {
-  position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
+  position: fixed; bottom: calc(120px + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%);
   background: rgba(10,10,20,0.95); color: #F5C76B;
   border: 1px solid rgba(212,175,55,0.4); border-radius: 12px;
   padding: 10px 16px; font-size: 0.75rem; font-weight: 600;
@@ -22540,7 +22625,7 @@ if (document.readyState !== 'loading') {
 <style>
 /* #fi-btn: estilos definidos en el módulo de microclimas */
 #fi-panel {
-  position: fixed; top: 66px; left: 12px; right: 12px; bottom: 84px;
+  position: fixed; top: 66px; left: 12px; right: 12px; bottom: calc(84px + env(safe-area-inset-bottom, 0px));
   z-index: 8797; width: auto; max-width: 420px; margin: 0 auto;
   background: rgba(10,10,20,0.94); backdrop-filter: blur(16px);
   border-radius: 16px; border: 1px solid rgba(212,175,55,0.22);
@@ -24426,7 +24511,7 @@ function closePrivacyPanel() {
 </div>
 
 <!-- Enlace pie de privacidad -->
-<div style="position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:900;pointer-events:none;">
+<div style="position:fixed;bottom:calc(80px + env(safe-area-inset-bottom, 0px));left:50%;transform:translateX(-50%);z-index:900;pointer-events:none;">
   <button class="pp-link" onclick="openPrivacyPanel()" style="pointer-events:all;opacity:0.5;">
     Privacidad · RGPD
   </button>
