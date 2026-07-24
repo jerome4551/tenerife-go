@@ -1836,6 +1836,77 @@ window.onunhandledrejection = function(e) {
     min-height: 72px;
   }
   .cat-chip:active { transform: scale(0.95); }
+
+
+  /* ---- Boton y panel del mar (mismo estilo que el del clima) ---- */
+  #mar-btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    color: #fff; font-size: 0.95rem; line-height: 1; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    transition: transform .12s ease, background .2s ease;
+  }
+  #mar-btn:active { transform: scale(0.93); }
+  #mar-btn.alerta { border-color: rgba(239,68,68,0.6); background: rgba(239,68,68,0.14); }
+  @media (max-width: 420px) { #mar-btn { width: 28px; height: 28px; font-size: 0.78rem; } }
+
+  #mar-panel {
+    display: none; position: fixed;
+    top: calc(60px + env(safe-area-inset-top, 0px));
+    left: 10px; right: 10px;
+    max-height: calc(100vh - 150px - env(safe-area-inset-top, 0px));
+    overflow-y: auto; z-index: 1250;
+    background: rgba(15,17,23,0.98); border: 1px solid rgba(201,168,76,0.28);
+    border-radius: 16px; padding: 12px 12px 8px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6); backdrop-filter: blur(16px);
+  }
+  .mar-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+  .mar-close { background: none; border: none; color: rgba(255,255,255,0.5); font-size: 1rem; cursor: pointer; padding: 2px 4px; }
+  .mar-footer { display: flex; align-items: center; justify-content: space-between;
+                margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.07); }
+  .mar-source { font-size: 0.58rem; color: rgba(255,255,255,0.3); }
+  .mar-refresh { background: none; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;
+                 color: rgba(255,255,255,0.6); font-size: 0.8rem; padding: 3px 9px; cursor: pointer; }
+  /* ---- EL MAR HOY ---- */
+  .mar-block { padding: 0 2px 6px; }
+  .mar-head { padding: 2px 4px 8px; }
+  .mar-title { font-family:'Cormorant Garamond',serif; font-size:1.15rem; color:var(--gold,#c9a84c); font-weight:600; }
+  .mar-sub { font-size:0.66rem; color:rgba(255,255,255,0.4); margin-top:1px; }
+  .mar-best { font-size:0.72rem; color:#7ecb8f; padding:4px 8px 8px; }
+  .mar-msg { font-size:0.78rem; color:rgba(255,255,255,0.55); padding:10px 8px; }
+  .mar-row { display:block; width:100%; text-align:left; background:rgba(255,255,255,0.035);
+             border:1px solid rgba(255,255,255,0.07); border-radius:12px;
+             padding:9px 11px; margin-bottom:7px; cursor:pointer; color:inherit; font:inherit; }
+  .mar-row.open { border-color:rgba(201,168,76,0.4); background:rgba(201,168,76,0.06); }
+  .mar-row-top { display:flex; align-items:center; gap:7px; }
+  .mar-name { font-weight:700; font-size:0.87rem; color:#fff; }
+  .mar-ref { font-size:0.63rem; color:rgba(255,255,255,0.35); flex:1; }
+  .mar-vals { font-size:0.72rem; color:rgba(255,255,255,0.6); margin-top:3px; }
+  .mar-guide { font-size:0.71rem; line-height:1.4; color:rgba(255,255,255,0.72); margin-top:5px; }
+  .mar-warn { font-size:0.71rem; line-height:1.4; margin-top:6px; padding:6px 8px;
+              border-radius:8px; background:rgba(239,68,68,0.14);
+              border:1px solid rgba(239,68,68,0.35); color:#fca5a5; }
+  .mar-warn-soft { background:rgba(245,158,11,0.12); border-color:rgba(245,158,11,0.3); color:#fcd34d; }
+  .mar-chip { font-size:0.63rem; font-weight:700; padding:2px 8px; border-radius:99px;
+              text-transform:uppercase; letter-spacing:0.03em; white-space:nowrap; }
+  .mar-calma     { background:rgba(52,211,153,0.18); color:#6ee7b7; }
+  .mar-moderado  { background:rgba(250,204,21,0.18);  color:#fde047; }
+  .mar-fuerte    { background:rgba(249,115,22,0.20);  color:#fdba74; }
+  .mar-peligroso { background:rgba(239,68,68,0.22);   color:#fca5a5; }
+  .mar-strip { display:flex; align-items:flex-end; gap:3px; height:56px; margin-top:9px;
+               padding-top:4px; border-top:1px solid rgba(255,255,255,0.08); }
+  .mar-bar-col { flex:1; display:flex; flex-direction:column; align-items:center; height:100%; }
+  .mar-bar { width:100%; border-radius:3px 3px 0 0; margin-top:auto; min-height:4px; }
+  .mar-bar.mar-calma     { background:#34d399; }
+  .mar-bar.mar-moderado  { background:#facc15; }
+  .mar-bar.mar-fuerte    { background:#f97316; }
+  .mar-bar.mar-peligroso { background:#ef4444; }
+  .mar-bar-h { font-size:0.52rem; color:rgba(255,255,255,0.35); margin-top:2px; }
+  .mar-bar-h.now { color:var(--gold,#c9a84c); font-weight:700; }
+  .mar-disclaimer { font-size:0.63rem; line-height:1.35; color:rgba(255,255,255,0.38);
+                    padding:8px 6px 2px; border-top:1px solid rgba(255,255,255,0.07); margin-top:4px; }
+  .mc-sep { height:1px; background:rgba(255,255,255,0.08); margin:6px 4px 10px; }
+
   /* ── Animaciones v25: pin drop · cascada chips · contadores ── */
   @keyframes tgoPinDrop { 0% { transform: translateY(-14px) scale(.85); opacity: 0; } 60% { transform: translateY(2px) scale(1.04); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
   .custom-marker.drop-in { animation: tgoPinDrop .38s cubic-bezier(.2,.8,.3,1.15) both; }
@@ -7816,6 +7887,8 @@ function setLang(lang) {
 
   // Barra inferior, pestanas y calculador A->B
   applyUiTx();
+  // Estado del mar: se repinta en el idioma nuevo
+  if (typeof marRender === 'function' && typeof marData !== 'undefined' && marData) marRender();
 
   // Ruta del día — refrescar textos
   refreshDayTripTexts();
@@ -14828,15 +14901,28 @@ loadFavorites();
 updateFavBadge();
 updateMarkers({ immediate: true });
 openPlaceFromHash();
-// Restaurar el idioma guardado (o el del navegador la primera vez)
-try {
-  var _saved = localStorage.getItem('tg_lang');
-  if (!_saved) {
-    var _nav = (navigator.language || 'es').slice(0,2).toLowerCase();
-    if (LANGS[_nav]) _saved = _nav;
+// Restaurar el idioma guardado (o el del navegador la primera vez).
+// IMPORTANTE: se espera a que el documento este completo. Este bloque se
+// ejecuta a mitad del archivo y la barra inferior, las pestanas de la
+// tienda y el planificador aparecen mas abajo: si se llamara aqui, esos
+// elementos aun no existirian y se quedarian en espanol.
+(function restoreLang() {
+  function apply() {
+    try {
+      var saved = localStorage.getItem('tg_lang');
+      if (!saved) {
+        var nav = (navigator.language || 'es').slice(0, 2).toLowerCase();
+        if (LANGS[nav]) saved = nav;
+      }
+      if (saved && LANGS[saved] && saved !== currentLang) setLang(saved);
+    } catch (e) {}
   }
-  if (_saved && _saved !== currentLang) setLang(_saved);
-} catch (e) {}
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', apply);
+  } else {
+    apply();
+  }
+})();
 
 refreshDayTripTexts();
 updateDayTripBadge();
@@ -21539,6 +21625,24 @@ function processUserMessage(text){
 /* Alerta integrada en topbar — sin ajuste del mapa */
 </style>
 
+<!-- BOTON Y PANEL DEL MAR (ocupan el hueco de la pildora de avisos) -->
+<button id="mar-btn" aria-label="Estado del mar" title="Estado del mar">🌊</button>
+
+<div id="mar-panel" role="dialog" aria-label="Estado del mar en Tenerife">
+  <div class="mar-header">
+    <div>
+      <div class="mar-title" id="mar-title"></div>
+      <div class="mar-sub" id="mar-sub"></div>
+    </div>
+    <button class="mar-close" id="mar-close" aria-label="Cerrar">✕</button>
+  </div>
+  <div id="mar-list"></div>
+  <div class="mar-footer">
+    <span class="mar-source">Open-Meteo · Atlantic/Canary</span>
+    <button class="mar-refresh" id="mar-refresh">↻</button>
+  </div>
+</div>
+
 <!-- PÍLDORA ALERTA (se inserta en topbar-right via JS) -->
 <div id="wx-pill">
   <div class="wx-pill-dot"></div>
@@ -21594,27 +21698,8 @@ const WX_LEVELS = { amarillo:'wx-amarillo', naranja:'wx-naranja', rojo:'wx-rojo'
 const WX_PRIORITY = { rojo:3, naranja:2, amarillo:1 };
 
 // ── DATOS DEMO (se usan cuando no hay API disponible) ─────────
-function getWxDemo() {
-  // Simula una respuesta realista de AEMET para Tenerife
-  // En producción esto viene de la API real
-  const ahora = new Date();
-  const hasta = new Date(ahora.getTime() + 6*3600*1000);
-  const fmt = d => d.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
-  
-  // Cambiar esto para simular distintas situaciones:
-  // return [];  ← sin alertas (la píldora no aparece)
-  return [
-    {
-      tipo: 'viento',
-      nivel: 'amarillo',
-      titulo: 'Viento fuerte',
-      desc: 'Rachas de viento de hasta 70 km/h en zonas de cumbre y norte de la isla. Se recomienda precaución en rutas de montaña.',
-      desde: fmt(ahora),
-      hasta: fmt(hasta),
-      zona: 'Tenerife'
-    }
-  ];
-}
+/* getWxDemo eliminada: generaba avisos meteorologicos ficticios
+   que se mostraban como oficiales cuando AEMET no respondia. */
 
 // ── FETCH ALERTAS (API AEMET + fallback demo) ─────────────────
 async function fetchWxAlerts(forceRefresh) {
@@ -21645,11 +21730,16 @@ async function fetchWxAlerts(forceRefresh) {
       const text = await res.text();
       alerts = parseAemetXML(text);
     } else {
-      alerts = getWxDemo();
+      alerts = [];
     }
   } catch(e) {
-    // Sin red o CORS → modo demo
-    alerts = getWxDemo();
+    /* Sin red, o AEMET rechaza la peticion del navegador (no envia
+       cabeceras CORS). ANTES aqui se devolvian alertas INVENTADAS
+       ("rachas de hasta 70 km/h"), que se mostraban siempre y a todo
+       el mundo como si fueran oficiales. Un aviso meteorologico falso
+       puede llevar a decisiones de seguridad equivocadas: preferimos
+       no mostrar nada a mostrar algo que no es cierto. */
+    alerts = [];
   }
 
   // Guardar caché
@@ -21705,7 +21795,10 @@ function parseAemetXML(xml) {
       });
     });
   } catch(e) {}
-  return alerts.length ? alerts : getWxDemo();
+  /* Si AEMET responde pero no hay avisos, eso significa exactamente eso:
+     NO hay avisos. Antes se devolvian alertas de demostracion, que el
+     usuario leia como oficiales. */
+  return alerts;
 }
 
 // ── RENDERIZAR ────────────────────────────────────────────────
@@ -21929,6 +22022,360 @@ if (document.readyState !== 'loading') {
   var MC_TIMEOUT   = 8000;           // 8 s
 
   // Zonas: coordenadas verificadas dentro de Tenerife
+/* ---------------------------------------------------------------
+   EL MAR HOY - estado del mar por costas, con prevision horaria.
+
+   Por que no basta la altura de la ola:
+     La energia que transporta una ola crece con el CUADRADO de su
+     altura y en proporcion al periodo (E ~ H^2 x T). Una ola de
+     1,5 m cada 6 s tiene la mitad de fuerza que otra de 1,5 m cada
+     12 s. El mar de fondo (periodo largo) es el que engana: parece
+     poca cosa desde la orilla y barre rocas y piscinas naturales.
+
+   Regla de seguridad: este modulo NUNCA autoriza el bano. El nivel
+   mas favorable dice "tranquilo", nunca "seguro". La bandera de la
+   playa y el socorrista mandan siempre.
+   --------------------------------------------------------------- */
+var MAR_COSTAS = [{"id":"norte","lat":28.5,"lng":-16.55,"ref":"Puerto de la Cruz","nm":{"es":"Norte","en":"North","fr":"Nord","de":"Norden","it":"Nord","nl":"Noord","zh":"\u5317\u5cb8","zht":"\u5317\u5cb8"}},{"id":"noroeste","lat":28.45,"lng":-16.9,"ref":"Garachico / Buenavista","nm":{"es":"Noroeste","en":"Northwest","fr":"Nord-ouest","de":"Nordwesten","it":"Nord-ovest","nl":"Noordwest","zh":"\u897f\u5317\u5cb8","zht":"\u897f\u5317\u5cb8"}},{"id":"anaga","lat":28.62,"lng":-16.12,"ref":"Anaga / Taganana","nm":{"es":"Anaga","en":"Anaga","fr":"Anaga","de":"Anaga","it":"Anaga","nl":"Anaga","zh":"\u963f\u7eb3\u52a0","zht":"\u963f\u7d0d\u52a0"}},{"id":"este","lat":28.35,"lng":-16.28,"ref":"Candelaria","nm":{"es":"Este","en":"East","fr":"Est","de":"Osten","it":"Est","nl":"Oost","zh":"\u4e1c\u5cb8","zht":"\u6771\u5cb8"}},{"id":"sureste","lat":27.98,"lng":-16.53,"ref":"El M\u00e9dano","nm":{"es":"Sureste","en":"Southeast","fr":"Sud-est","de":"S\u00fcdosten","it":"Sud-est","nl":"Zuidoost","zh":"\u4e1c\u5357\u5cb8","zht":"\u6771\u5357\u5cb8"}},{"id":"sur","lat":27.97,"lng":-16.72,"ref":"Los Cristianos","nm":{"es":"Sur","en":"South","fr":"Sud","de":"S\u00fcden","it":"Sud","nl":"Zuid","zh":"\u5357\u5cb8","zht":"\u5357\u5cb8"}},{"id":"oeste","lat":28.25,"lng":-16.93,"ref":"Los Gigantes","nm":{"es":"Oeste","en":"West","fr":"Ouest","de":"Westen","it":"Ovest","nl":"West","zh":"\u897f\u5cb8","zht":"\u897f\u5cb8"}}];
+var MAR_NIVELES = {"calma":{"nm":{"es":"Tranquilo","en":"Calm","fr":"Calme","de":"Ruhig","it":"Calmo","nl":"Rustig","zh":"\u5e73\u9759","zht":"\u5e73\u975c"},"g":{"es":"Mar poco movido. Aun as\u00ed, mira siempre la bandera de la playa.","en":"Little swell. Even so, always check the beach flag.","fr":"Mer peu agit\u00e9e. V\u00e9rifiez toujours le drapeau de la plage.","de":"Wenig Seegang. Achten Sie trotzdem immer auf die Strandflagge.","it":"Mare poco mosso. Controlla comunque sempre la bandiera.","nl":"Weinig golfslag. Let toch altijd op de strandvlag.","zh":"\u6d77\u9762\u8f83\u5e73\u9759\u3002\u4ecd\u8bf7\u7559\u610f\u6d77\u6ee9\u65d7\u5e1c\u3002","zht":"\u6d77\u9762\u8f03\u5e73\u975c\u3002\u4ecd\u8acb\u7559\u610f\u6d77\u7058\u65d7\u5e5f\u3002"}},"moderado":{"nm":{"es":"Moderado","en":"Moderate","fr":"Mod\u00e9r\u00e9","de":"M\u00e4\u00dfig","it":"Moderato","nl":"Matig","zh":"\u4e2d\u7b49","zht":"\u4e2d\u7b49"},"g":{"es":"Hay movimiento. B\u00e1\u00f1ate en playas con socorrista y no te alejes.","en":"Some movement. Swim on lifeguarded beaches and stay close in.","fr":"Mer remuante. Baignez-vous sur les plages surveill\u00e9es, restez pr\u00e8s du bord.","de":"Bewegte See. Nur an bewachten Str\u00e4nden baden und in Ufern\u00e4he bleiben.","it":"Mare mosso. Fai il bagno in spiagge con bagnino e resta vicino a riva.","nl":"Bewogen zee. Zwem bij bewaakte stranden en blijf dicht bij de kant.","zh":"\u6d77\u9762\u6709\u6d8c\u52a8\u3002\u8bf7\u5728\u6709\u6551\u751f\u5458\u7684\u6d77\u6ee9\u4e0b\u6c34\uff0c\u52ff\u8fdc\u79bb\u5cb8\u8fb9\u3002","zht":"\u6d77\u9762\u6709\u6e67\u52d5\u3002\u8acb\u5728\u6709\u6551\u751f\u54e1\u7684\u6d77\u7058\u4e0b\u6c34\uff0c\u52ff\u9060\u96e2\u5cb8\u908a\u3002"}},"fuerte":{"nm":{"es":"Fuerte","en":"Rough","fr":"Agit\u00e9","de":"Rau","it":"Agitato","nl":"Ruw","zh":"\u8f83\u5927","zht":"\u8f03\u5927"},"g":{"es":"Mar movido. Evita piscinas naturales, charcos y rocas: el agua barre sin aviso.","en":"Rough sea. Avoid natural pools, rock pools and rocks: waves sweep without warning.","fr":"Mer agit\u00e9e. \u00c9vitez piscines naturelles et rochers : les vagues balaient sans pr\u00e9venir.","de":"Raue See. Meiden Sie Naturbecken und Felsen: Wellen rei\u00dfen ohne Vorwarnung mit.","it":"Mare agitato. Evita piscine naturali e scogli: le onde travolgono senza preavviso.","nl":"Ruwe zee. Vermijd natuurlijke baden en rotsen: golven slaan onverwacht over.","zh":"\u6d77\u51b5\u8f83\u5dee\u3002\u8bf7\u8fdc\u79bb\u5929\u7136\u6cf3\u6c60\u4e0e\u7901\u77f3\uff1a\u6d6a\u4f1a\u6beb\u65e0\u9884\u8b66\u5730\u6251\u4e0a\u6765\u3002","zht":"\u6d77\u6cc1\u8f03\u5dee\u3002\u8acb\u9060\u96e2\u5929\u7136\u6cf3\u6c60\u8207\u7901\u77f3\uff1a\u6d6a\u6703\u6beb\u7121\u9810\u8b66\u5730\u64b2\u4e0a\u4f86\u3002"}},"peligroso":{"nm":{"es":"Peligroso","en":"Dangerous","fr":"Dangereux","de":"Gef\u00e4hrlich","it":"Pericoloso","nl":"Gevaarlijk","zh":"\u5371\u9669","zht":"\u5371\u96aa"},"g":{"es":"No te metas al agua ni te acerques a la orilla rocosa. Elige otra costa.","en":"Do not enter the water or go near rocky shores. Choose another coast.","fr":"N\u2019entrez pas dans l\u2019eau et n\u2019approchez pas des rochers. Changez de c\u00f4te.","de":"Nicht ins Wasser gehen, Felsk\u00fcste meiden. Andere K\u00fcste w\u00e4hlen.","it":"Non entrare in acqua n\u00e9 avvicinarti agli scogli. Scegli un\u2019altra costa.","nl":"Ga niet het water in en blijf weg van rotskust. Kies een andere kust.","zh":"\u8bf7\u52ff\u4e0b\u6c34\uff0c\u4e5f\u4e0d\u8981\u9760\u8fd1\u5ca9\u5cb8\u3002\u8bf7\u6539\u53bb\u5176\u4ed6\u6d77\u5cb8\u3002","zht":"\u8acb\u52ff\u4e0b\u6c34\uff0c\u4e5f\u4e0d\u8981\u9760\u8fd1\u5ca9\u5cb8\u3002\u8acb\u6539\u53bb\u5176\u4ed6\u6d77\u5cb8\u3002"}}};
+var MAR_T = {"title":{"es":"\ud83c\udf0a El mar hoy","en":"\ud83c\udf0a The sea today","fr":"\ud83c\udf0a La mer aujourd\u2019hui","de":"\ud83c\udf0a Das Meer heute","it":"\ud83c\udf0a Il mare oggi","nl":"\ud83c\udf0a De zee vandaag","zh":"\ud83c\udf0a \u4eca\u65e5\u6d77\u51b5","zht":"\ud83c\udf0a \u4eca\u65e5\u6d77\u6cc1"},"sub":{"es":"Estado por costas \u00b7 toca una para ver el d\u00eda","en":"By coast \u00b7 tap one to see the day","fr":"Par c\u00f4te \u00b7 touchez pour voir la journ\u00e9e","de":"Nach K\u00fcsten \u00b7 tippen f\u00fcr den Tagesverlauf","it":"Per costa \u00b7 tocca per vedere la giornata","nl":"Per kust \u00b7 tik voor het dagverloop","zh":"\u6309\u6d77\u5cb8\u5212\u5206 \u00b7 \u70b9\u51fb\u67e5\u770b\u5168\u5929","zht":"\u6309\u6d77\u5cb8\u5283\u5206 \u00b7 \u9ede\u64ca\u67e5\u770b\u5168\u5929"},"loading":{"es":"Consultando el estado del mar\u2026","en":"Checking sea conditions\u2026","fr":"Consultation de l\u2019\u00e9tat de la mer\u2026","de":"Seegang wird abgefragt\u2026","it":"Controllo dello stato del mare\u2026","nl":"Zeegang wordt opgehaald\u2026","zh":"\u6b63\u5728\u67e5\u8be2\u6d77\u51b5\u2026","zht":"\u6b63\u5728\u67e5\u8a62\u6d77\u6cc1\u2026"},"error":{"es":"Sin conexi\u00f3n. No se puede mostrar el estado del mar.","en":"No connection. Sea conditions unavailable.","fr":"Pas de connexion. \u00c9tat de la mer indisponible.","de":"Keine Verbindung. Seegang nicht verf\u00fcgbar.","it":"Nessuna connessione. Stato del mare non disponibile.","nl":"Geen verbinding. Zeegang niet beschikbaar.","zh":"\u65e0\u7f51\u7edc\u8fde\u63a5\uff0c\u65e0\u6cd5\u663e\u793a\u6d77\u51b5\u3002","zht":"\u7121\u7db2\u8def\u9023\u7dda\uff0c\u7121\u6cd5\u986f\u793a\u6d77\u6cc1\u3002"},"wave":{"es":"ola","en":"wave","fr":"vague","de":"Welle","it":"onda","nl":"golf","zh":"\u6d6a\u9ad8","zht":"\u6d6a\u9ad8"},"period":{"es":"periodo","en":"period","fr":"p\u00e9riode","de":"Periode","it":"periodo","nl":"periode","zh":"\u5468\u671f","zht":"\u9031\u671f"},"now":{"es":"ahora","en":"now","fr":"maintenant","de":"jetzt","it":"adesso","nl":"nu","zh":"\u5f53\u524d","zht":"\u76ee\u524d"},"best":{"es":"Costa m\u00e1s tranquila ahora","en":"Calmest coast right now","fr":"C\u00f4te la plus calme maintenant","de":"Ruhigste K\u00fcste jetzt","it":"Costa pi\u00f9 calma adesso","nl":"Rustigste kust nu","zh":"\u5f53\u524d\u6700\u5e73\u9759\u7684\u6d77\u5cb8","zht":"\u76ee\u524d\u6700\u5e73\u975c\u7684\u6d77\u5cb8"},"swellLong":{"es":"\u26a0\ufe0f Mar de fondo: la ola parece peque\u00f1a pero arrastra con mucha fuerza. Especial cuidado en piscinas naturales y rocas.","en":"\u26a0\ufe0f Long-period swell: waves look small but pull with great force. Take special care at natural pools and rocks.","fr":"\u26a0\ufe0f Houle longue : les vagues paraissent petites mais tirent tr\u00e8s fort. Prudence aux piscines naturelles et rochers.","de":"\u26a0\ufe0f Lange D\u00fcnung: Wellen wirken klein, ziehen aber sehr stark. Besondere Vorsicht an Naturbecken und Felsen.","it":"\u26a0\ufe0f Mare lungo: le onde sembrano piccole ma trascinano con forza. Attenzione a piscine naturali e scogli.","nl":"\u26a0\ufe0f Lange deining: golven lijken klein maar trekken hard. Extra voorzichtig bij natuurlijke baden en rotsen.","zh":"\u26a0\ufe0f \u957f\u5468\u671f\u6d8c\u6d6a\uff1a\u6d6a\u770b\u4f3c\u4e0d\u5927\uff0c\u4f46\u62c9\u529b\u6781\u5f3a\u3002\u5929\u7136\u6cf3\u6c60\u4e0e\u7901\u77f3\u5904\u5c24\u987b\u5c0f\u5fc3\u3002","zht":"\u26a0\ufe0f \u9577\u9031\u671f\u6e67\u6d6a\uff1a\u6d6a\u770b\u4f3c\u4e0d\u5927\uff0c\u4f46\u62c9\u529b\u6975\u5f37\u3002\u5929\u7136\u6cf3\u6c60\u8207\u7901\u77f3\u8655\u5c24\u9808\u5c0f\u5fc3\u3002"},"poolsWarn":{"es":"\ud83d\udd73\ufe0f Piscinas naturales: no recomendadas con este estado del mar.","en":"\ud83d\udd73\ufe0f Natural pools: not advisable with these sea conditions.","fr":"\ud83d\udd73\ufe0f Piscines naturelles : d\u00e9conseill\u00e9es avec cet \u00e9tat de la mer.","de":"\ud83d\udd73\ufe0f Naturbecken: bei diesem Seegang nicht ratsam.","it":"\ud83d\udd73\ufe0f Piscine naturali: sconsigliate con questo stato del mare.","nl":"\ud83d\udd73\ufe0f Natuurlijke baden: afgeraden bij deze zeegang.","zh":"\ud83d\udd73\ufe0f \u5929\u7136\u6cf3\u6c60\uff1a\u6b64\u6d77\u51b5\u4e0b\u4e0d\u5efa\u8bae\u524d\u5f80\u3002","zht":"\ud83d\udd73\ufe0f \u5929\u7136\u6cf3\u6c60\uff1a\u6b64\u6d77\u6cc1\u4e0b\u4e0d\u5efa\u8b70\u524d\u5f80\u3002"},"disclaimer":{"es":"Previsi\u00f3n Open-Meteo, no es un aviso oficial. La bandera de la playa y el socorrista mandan siempre.","en":"Open-Meteo forecast, not an official warning. The beach flag and lifeguard always take precedence.","fr":"Pr\u00e9vision Open-Meteo, pas un avis officiel. Le drapeau et le sauveteur priment toujours.","de":"Open-Meteo-Vorhersage, keine amtliche Warnung. Strandflagge und Rettungsschwimmer gelten immer.","it":"Previsione Open-Meteo, non \u00e8 un avviso ufficiale. La bandiera e il bagnino hanno sempre la precedenza.","nl":"Open-Meteo-verwachting, geen offici\u00eble waarschuwing. Strandvlag en strandwacht gaan altijd voor.","zh":"Open-Meteo \u9884\u62a5\uff0c\u975e\u5b98\u65b9\u8b66\u62a5\u3002\u6d77\u6ee9\u65d7\u5e1c\u4e0e\u6551\u751f\u5458\u7684\u6307\u793a\u59cb\u7ec8\u4f18\u5148\u3002","zht":"Open-Meteo \u9810\u5831\uff0c\u975e\u5b98\u65b9\u8b66\u5831\u3002\u6d77\u7058\u65d7\u5e5f\u8207\u6551\u751f\u54e1\u7684\u6307\u793a\u59cb\u7d42\u512a\u5148\u3002"}};
+
+// Indice de energia del oleaje: proporcional a H^2 x T.
+function marEnergia(h, per) {
+  var H = (typeof h === 'number' && h >= 0) ? h : 0;
+  var P = (typeof per === 'number' && per > 0) ? per : 6;
+  return H * H * P;
+}
+
+// Clasificacion conservadora, pensada para turistas que no conocen la
+// costa. Ademas del indice se aplican topes absolutos: una ola grande
+// es peligrosa aunque el periodo sea corto.
+function marNivel(d) {
+  var h = d.waveH || 0, p = d.waveP || 6;
+  var e = marEnergia(h, p);
+  if (h >= 2.5 || e >= 35) return 'peligroso';
+  if (h >= 1.5 || e >= 15) return 'fuerte';
+  /* Con mar de fondo se sube el nivel aunque la altura sea moderada:
+     es justo el estado en que la gente se confia, se acerca a las
+     rocas y una serie mas grande se la lleva. El texto de "fuerte"
+     dice expresamente que se eviten piscinas naturales y rocas. */
+  if (marFondoLargo(d))    return 'fuerte';
+  if (h >= 1.0 || e >= 6)  return 'moderado';
+  return 'calma';
+}
+
+// Mar de fondo: swell largo con altura apreciable. Es el caso que mas
+// accidentes causa en la costa norte porque no se ve venir.
+function marFondoLargo(d) {
+  var sh = d.swellH || 0, sp = d.swellP || 0;
+  return (sp >= 12 && sh >= 1.0) || (sp >= 14 && sh >= 0.7);
+}
+
+// Piscinas naturales: umbral mas estricto que el bano en playa.
+// Con mar de fondo se desaconsejan aunque la ola sea moderada.
+function marPiscinasOk(d) {
+  if (marFondoLargo(d)) return false;
+  var h = d.waveH || 0;
+  return h < 0.8 && marEnergia(h, d.waveP || 6) < 4.5;
+}
+
+// Orden de gravedad, para comparar costas entre si.
+var MAR_ORDEN = { calma: 0, moderado: 1, fuerte: 2, peligroso: 3 };
+
+
+// ---------------------------------------------------------------
+//  EL MAR HOY - obtencion de datos y pintado
+//  Todo el DOM se construye con createElement/textContent: ningun
+//  innerHTML con datos dinamicos (regla del proyecto).
+// ---------------------------------------------------------------
+
+var MAR_CACHE_KEY = 'tgo_mar_cache_v1';
+var MAR_CACHE_TTL = 30 * 60 * 1000;   // 30 min: el modelo se actualiza 2 veces/dia
+var MAR_TIMEOUT   = 9000;
+var marData = null;
+var marLoading = false;
+var marOpenCoast = null;
+
+function marLang() {
+  try {
+    if (typeof currentLang !== 'undefined' && MAR_T.title[currentLang]) return currentLang;
+  } catch (e) {}
+  return 'es';
+}
+function marTx(key) {
+  var e = MAR_T[key];
+  return e ? (e[marLang()] || e.es) : '';
+}
+
+function marCacheRead() {
+  try {
+    var raw = JSON.parse(localStorage.getItem(MAR_CACHE_KEY));
+    if (raw && raw.ts && (Date.now() - raw.ts) < MAR_CACHE_TTL) return raw.d;
+  } catch (e) {}
+  return null;
+}
+function marCacheWrite(d) {
+  try { localStorage.setItem(MAR_CACHE_KEY, JSON.stringify({ ts: Date.now(), d: d })); } catch (e) {}
+}
+
+// Une los datos de una costa: valores actuales + curva del dia
+function marParse(res, i) {
+  var cur = (res && res.current) || {};
+  var hr  = (res && res.hourly)  || {};
+  var horas = [];
+  var times = hr.time || [];
+  for (var k = 0; k < times.length; k++) {
+    horas.push({
+      t:      times[k],
+      waveH:  (hr.wave_height        || [])[k],
+      waveP:  (hr.wave_period        || [])[k],
+      swellH: (hr.swell_wave_height  || [])[k],
+      swellP: (hr.swell_wave_period  || [])[k]
+    });
+  }
+  return {
+    costa:  MAR_COSTAS[i],
+    waveH:  cur.wave_height,
+    waveP:  cur.wave_period,
+    swellH: cur.swell_wave_height,
+    swellP: cur.swell_wave_period,
+    horas:  horas
+  };
+}
+
+function marFetch(force) {
+  if (marLoading) return;
+  if (!force) {
+    var c = marCacheRead();
+    if (c) { marData = c; marRender(); return; }
+  }
+  marLoading = true;
+  marRender();
+
+  var lats = MAR_COSTAS.map(function (z) { return z.lat; }).join(',');
+  var lngs = MAR_COSTAS.map(function (z) { return z.lng; }).join(',');
+  var vars = 'wave_height,wave_period,swell_wave_height,swell_wave_period';
+  var url = 'https://marine-api.open-meteo.com/v1/marine'
+          + '?latitude=' + lats + '&longitude=' + lngs
+          + '&current=' + vars + '&hourly=' + vars
+          + '&forecast_days=1&timezone=Atlantic%2FCanary';
+
+  var ctrl = new AbortController();
+  var timer = setTimeout(function () { ctrl.abort(); }, MAR_TIMEOUT);
+
+  fetch(url, { signal: ctrl.signal })
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function (data) {
+      clearTimeout(timer);
+      var arr = Array.isArray(data) ? data : [data];
+      var out = [];
+      for (var i = 0; i < MAR_COSTAS.length; i++) out.push(marParse(arr[i], i));
+      marData = out;
+      marCacheWrite(out);
+      marLoading = false;
+      marRender();
+    })
+    .catch(function () {
+      clearTimeout(timer);
+      marLoading = false;
+      marData = 'error';
+      marRender();
+    });
+}
+
+// --- Pintado ----------------------------------------------------
+
+function marChip(nivel) {
+  var s = document.createElement('span');
+  s.className = 'mar-chip mar-' + nivel;
+  s.textContent = MAR_NIVELES[nivel].nm[marLang()] || MAR_NIVELES[nivel].nm.es;
+  return s;
+}
+
+function marRow(d) {
+  var nivel = marNivel(d);
+  var row = document.createElement('button');
+  row.type = 'button';
+  row.className = 'mar-row' + (marOpenCoast === d.costa.id ? ' open' : '');
+  row.onclick = function () {
+    marOpenCoast = (marOpenCoast === d.costa.id) ? null : d.costa.id;
+    marRender();
+  };
+
+  var top = document.createElement('div');
+  top.className = 'mar-row-top';
+  var nm = document.createElement('span');
+  nm.className = 'mar-name';
+  nm.textContent = d.costa.nm[marLang()] || d.costa.nm.es;
+  var ref = document.createElement('span');
+  ref.className = 'mar-ref';
+  ref.textContent = d.costa.ref;
+  top.appendChild(nm); top.appendChild(ref); top.appendChild(marChip(nivel));
+
+  var val = document.createElement('div');
+  val.className = 'mar-vals';
+  var h = (typeof d.waveH === 'number') ? d.waveH.toFixed(1) + ' m' : '\u2014';
+  var p = (typeof d.waveP === 'number') ? Math.round(d.waveP) + ' s' : '\u2014';
+  val.textContent = marTx('wave') + ' ' + h + '  \u00b7  ' + marTx('period') + ' ' + p;
+
+  row.appendChild(top); row.appendChild(val);
+
+  // Aviso de mar de fondo: el mas importante del modulo
+  if (marFondoLargo(d)) {
+    var w = document.createElement('div');
+    w.className = 'mar-warn';
+    w.textContent = marTx('swellLong');
+    row.appendChild(w);
+  }
+  // Piscinas naturales
+  if (!marPiscinasOk(d)) {
+    var pw = document.createElement('div');
+    pw.className = 'mar-warn mar-warn-soft';
+    pw.textContent = marTx('poolsWarn');
+    row.appendChild(pw);
+  }
+
+  var g = document.createElement('div');
+  g.className = 'mar-guide';
+  g.textContent = MAR_NIVELES[nivel].g[marLang()] || MAR_NIVELES[nivel].g.es;
+  row.appendChild(g);
+
+  // Curva del dia, solo si esta desplegada
+  if (marOpenCoast === d.costa.id && d.horas && d.horas.length) {
+    row.appendChild(marDayStrip(d));
+  }
+  return row;
+}
+
+// Franja de 24 h: una barra por hora, altura proporcional a la ola
+function marDayStrip(d) {
+  var wrap = document.createElement('div');
+  wrap.className = 'mar-strip';
+  var maxH = 0.6;
+  d.horas.forEach(function (h) { if (typeof h.waveH === 'number' && h.waveH > maxH) maxH = h.waveH; });
+  var nowH = new Date().getHours();
+
+  d.horas.forEach(function (h, i) {
+    if (i % 2 !== 0) return;                 // cada 2 h para que quepa
+    var col = document.createElement('div');
+    col.className = 'mar-bar-col';
+    var bar = document.createElement('div');
+    var nv = marNivel(h);
+    bar.className = 'mar-bar mar-' + nv;
+    var pct = Math.max(6, Math.round(((h.waveH || 0) / maxH) * 100));
+    bar.style.height = pct + '%';
+    var lb = document.createElement('div');
+    lb.className = 'mar-bar-h' + (i === nowH ? ' now' : '');
+    lb.textContent = String(i).padStart(2, '0');
+    col.appendChild(bar); col.appendChild(lb);
+    col.title = (typeof h.waveH === 'number' ? h.waveH.toFixed(1) + ' m' : '') +
+                (typeof h.waveP === 'number' ? ' \u00b7 ' + Math.round(h.waveP) + ' s' : '');
+    wrap.appendChild(col);
+  });
+  return wrap;
+}
+
+function marRender() {
+  var box = document.getElementById('mar-list');
+  if (!box) return;
+  box.textContent = '';
+
+  var ttl = document.getElementById('mar-title');
+  if (ttl) ttl.textContent = marTx('title');
+  var sub = document.getElementById('mar-sub');
+  if (sub) sub.textContent = marTx('sub');
+
+  if (marLoading) {
+    var l = document.createElement('div');
+    l.className = 'mar-msg';
+    l.textContent = marTx('loading');
+    box.appendChild(l);
+    return;
+  }
+  if (marData === 'error' || !marData) {
+    var e = document.createElement('div');
+    e.className = 'mar-msg';
+    e.textContent = marTx('error');
+    box.appendChild(e);
+    return;
+  }
+
+  // Costa mas tranquila: lo primero que necesita saber un turista
+  var mejor = null;
+  marData.forEach(function (d) {
+    var o = MAR_ORDEN[marNivel(d)];
+    if (mejor === null || o < mejor.o) mejor = { o: o, d: d };
+  });
+  if (mejor) {
+    var b = document.createElement('div');
+    b.className = 'mar-best';
+    b.textContent = marTx('best') + ': ' +
+                    (mejor.d.costa.nm[marLang()] || mejor.d.costa.nm.es);
+    box.appendChild(b);
+  }
+
+  marData.forEach(function (d) { box.appendChild(marRow(d)); });
+
+  marUpdateBtn();
+
+  var dis = document.createElement('div');
+  dis.className = 'mar-disclaimer';
+  dis.textContent = marTx('disclaimer');
+  box.appendChild(dis);
+}
+
+
+// --- Panel propio: apertura, colocacion y aviso en el boton --------
+
+function marToggle() {
+  var p = document.getElementById('mar-panel');
+  if (!p) return;
+  var abierto = (p.style.display === 'block');
+  p.style.display = abierto ? 'none' : 'block';
+  if (!abierto) marFetch(false);   // perezoso: solo al abrir
+}
+
+// Si alguna costa esta en nivel peligroso, el boton lo avisa sin
+// necesidad de abrir el panel. Es informacion de seguridad: debe verse.
+function marUpdateBtn() {
+  var b = document.getElementById('mar-btn');
+  if (!b || !marData || marData === 'error') return;
+  var grave = false;
+  marData.forEach(function (d) { if (marNivel(d) === 'peligroso') grave = true; });
+  if (grave) b.classList.add('alerta'); else b.classList.remove('alerta');
+}
+
+function marInit() {
+  var btn = document.getElementById('mar-btn');
+  var right = document.querySelector('.topbar-right');
+  if (btn && right) {
+    // Se coloca junto al termometro, en el hueco que dejo la pildora de avisos
+    var mc = document.getElementById('mc-btn');
+    if (mc && mc.parentNode === right) right.insertBefore(btn, mc.nextSibling);
+    else right.appendChild(btn);
+    btn.addEventListener('click', function (e) { e.stopPropagation(); marToggle(); });
+  }
+  var cl = document.getElementById('mar-close');
+  if (cl) cl.addEventListener('click', marToggle);
+  var rf = document.getElementById('mar-refresh');
+  if (rf) rf.addEventListener('click', function () { marFetch(true); });
+
+  document.addEventListener('click', function (e) {
+    var p = document.getElementById('mar-panel');
+    var b = document.getElementById('mar-btn');
+    if (p && p.style.display === 'block' && !p.contains(e.target) && b && !b.contains(e.target)) {
+      p.style.display = 'none';
+    }
+  });
+
+  // Consulta silenciosa al arrancar: solo para encender el aviso del boton
+  // si hay mar peligroso. No abre nada ni molesta.
+  setTimeout(function () { marFetch(false); }, 2500);
+}
+
+if (document.readyState !== 'loading') { marInit(); }
+else { document.addEventListener('DOMContentLoaded', marInit); }
+
   var MC_ZONES = [
     { name: 'Costa Adeje',      sub: { es:'Sur', en:'South', fr:'Sud', de:'Süden', it:'Sud', nl:'Zuiden', zh:'南部' }, lat: 28.0780, lng: -16.7370 },
     { name: 'El Médano',        sub: { es:'Sureste', en:'Southeast', fr:'Sud-est', de:'Südosten', it:'Sud-est', nl:'Zuidoosten', zh:'东南' }, lat: 28.0450, lng: -16.5360 },
@@ -24729,10 +25176,6 @@ function closePrivacyPanel() {
   <button class="pp-link" onclick="openPrivacyPanel()" style="pointer-events:all;opacity:0.5;">
     Privacidad · RGPD
   </button>
-  <!-- Marca de version: permite comprobar que build esta ejecutando la app
-       instalada. Sin esto era imposible distinguir un fallo real de una
-       version antigua servida desde la cache del Service Worker. -->
-  <div id="app-build" style="font-size:0.6rem;color:rgba(201,168,76,0.35);text-align:center;margin-top:2px;pointer-events:none;">build 2026.07.23</div>
 </div>
 
 <!-- ════════════════════════════════════════════════════════════
