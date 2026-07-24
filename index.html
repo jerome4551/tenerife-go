@@ -16335,7 +16335,7 @@ window.addEventListener('hashchange', () => {
   // Hasta que rellenes esto, la auth queda deshabilitada (modo invitado).
   // ─────────────────────────────────────────────────────────────────
   const SUPABASE_URL      = 'https://aupjvdrubjytryzqirdn.supabase.co';
-  const SUPABASE_ANON_KEY = 'sb_publishable_s046jzmX04KG2_F_VEf97w_R-9gr1ms';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF1cGp2ZHJ1Ymp5dHJ5enFpcmRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDQ5OTcsImV4cCI6MjA5NTYyMDk5N30.XbA_1KvYzGB2zsqpdsxzcfqglzd7OJK5G-kBvNrbTuE';
   /* Un 'const' de nivel superior pertenece a SU bloque <script>, no al
      ambito global. Otros bloques (como el de notificaciones, mucho mas
      abajo) no lo verian. Se exponen explicitamente. La clave publicable
@@ -22690,8 +22690,50 @@ function pushPedir() {
   document.body.appendChild(bd);
 }
 
+/* Re-guardado silencioso e idempotente. Se llama al abrir si el permiso
+   ya esta concedido: reenvia la suscripcion actual a Supabase por si un
+   guardado anterior fallo (p.ej. clave mal configurada). Sin preguntar
+   nada y sin avisos: si ya estaba guardada, el servidor lo ignora. */
+async function pushReSync() {
+  try {
+    if (Notification.permission !== 'granted') return;
+    var reg = await navigator.serviceWorker.ready;
+    var sub = await reg.pushManager.getSubscription();
+    if (!sub) {
+      sub = await reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: pushB64(VAPID_PUB)
+      });
+    }
+    var j = sub.toJSON();
+    if (!j || !j.keys) return;
+    var SB_URL = window.SUPABASE_URL, SB_KEY = window.SUPABASE_ANON_KEY;
+    if (!SB_URL || !SB_KEY) return;
+    await fetch(SB_URL + '/rest/v1/push_subs?on_conflict=endpoint', {
+      method: 'POST',
+      headers: {
+        'apikey': SB_KEY,
+        'Authorization': 'Bearer ' + SB_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'resolution=ignore-duplicates'
+      },
+      body: JSON.stringify({
+        endpoint: j.endpoint,
+        p256dh: j.keys.p256dh,
+        auth: j.keys.auth,
+        lang: (typeof currentLang !== 'undefined' ? currentLang : 'es')
+      })
+    });
+  } catch (e) {}
+}
+
 function pushInit() {
   if (!pushSoportado() || !pushInstalada()) return;   // navegador suelto: ni preguntar
+
+  // Si ya concedio el permiso, re-asegurar el guardado (idempotente) y salir.
+  if (Notification.permission === 'granted') { pushReSync(); return; }
+  if (Notification.permission === 'denied') return;   // no se puede volver a pedir
+
   var visitas = 0, preguntado = false;
   try {
     visitas = parseInt(localStorage.getItem(PUSH_VISITS_KEY) || '0', 10) + 1;
@@ -22700,7 +22742,6 @@ function pushInit() {
   } catch (e) {}
 
   if (preguntado) return;
-  if (Notification.permission !== 'default') return;  // ya decidio antes
   if (visitas < 3) return;                            // que use la app primero
 
   setTimeout(pushPedir, 6000);   // sin prisa: primero que vea el mapa

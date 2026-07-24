@@ -15,7 +15,7 @@
    ══════════════════════════════════════════════════════════════════ */
 'use strict';
 
-var VERSION      = 'v1.3.0';
+var VERSION      = 'v1.3.1';
 var CACHE_SHELL  = 'tenerife-go-shell-' + VERSION;
 var CACHE_TILES  = 'tenerife-tiles-v1';   // se conserva entre versiones
 var MAX_TILES    = 3000;                  // tope para no llenar el movil
@@ -240,7 +240,7 @@ self.addEventListener('message', function(event) {
    la tabla push_subs solo admite altas gracias a RLS. */
 var SW_VAPID_PUB = 'BJZPN4_lITIaqCcITXNGsLLYj0z3Pbe1Ni0ayXMlsqKUXY1vydDpHIuSyA4nTF0fxlb27Bnq6O0Bij467k_iy-I';
 var SW_SB_URL    = 'https://aupjvdrubjytryzqirdn.supabase.co';
-var SW_SB_KEY    = 'sb_publishable_s046jzmX04KG2_F_VEf97w_R-9gr1ms';
+var SW_SB_KEY    = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF1cGp2ZHJ1Ymp5dHJ5enFpcmRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDQ5OTcsImV4cCI6MjA5NTYyMDk5N30.XbA_1KvYzGB2zsqpdsxzcfqglzd7OJK5G-kBvNrbTuE';
 
 function swB64(base64) {
   var pad = '='.repeat((4 - base64.length % 4) % 4);
