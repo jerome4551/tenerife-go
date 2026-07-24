@@ -12228,9 +12228,51 @@ const clusterGroup = L.markerClusterGroup({
 map.addLayer(clusterGroup);
 
 function setStyle(style) {
-  map.removeLayer(layers[currentLayer]);
-  layers[style].addTo(map);
-  currentLayer = style;
+  /* Version defensiva. El cambio de capa fallaba en la app instalada sin
+     dar ninguna senal: ni error visible ni mapa en negro. Ahora cada paso
+     se comprueba y, si algo va mal, se dice en pantalla: en un movil no
+     hay consola donde mirar. */
+  try {
+    if (!layers[style]) { showLayerMsg('Capa no disponible: ' + style); return; }
+    if (typeof map === 'undefined' || !map) { showLayerMsg('El mapa aun no esta listo'); return; }
+
+    var anterior = layers[currentLayer];
+    if (anterior && map.hasLayer(anterior)) map.removeLayer(anterior);
+
+    var nueva = layers[style];
+    nueva.addTo(map);
+    currentLayer = style;
+
+    // Si las teselas no llegan, avisar en vez de dejar el mapa vacio
+    var fallos = 0;
+    nueva.off('tileerror');
+    nueva.on('tileerror', function () {
+      fallos++;
+      if (fallos === 6) showLayerMsg('No se pueden cargar las imagenes de esta capa');
+    });
+  } catch (err) {
+    showLayerMsg('Error al cambiar de capa: ' + (err && err.message ? err.message : err));
+  }
+}
+
+// Aviso breve en pantalla (sin consola, que en movil no se ve)
+function showLayerMsg(txt) {
+  try {
+    var el = document.getElementById('layer-msg');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'layer-msg';
+      el.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);' +
+        'top:calc(70px + env(safe-area-inset-top,0px));z-index:3000;max-width:88vw;' +
+        'background:rgba(239,68,68,0.95);color:#fff;font-size:0.76rem;line-height:1.35;' +
+        'padding:9px 14px;border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,0.5);';
+      document.body.appendChild(el);
+    }
+    el.textContent = txt;
+    el.style.display = 'block';
+    clearTimeout(el._t);
+    el._t = setTimeout(function () { el.style.display = 'none'; }, 5000);
+  } catch (e) {}
 }
 
 // ══════════════════════════════════════════════════════════
@@ -14229,7 +14271,12 @@ function toggleLayersDropdown(e) {
 
 function setStyleFromMenu(style) {
   // Cambiar capa del mapa
-  setStyle(style);
+  try {
+    setStyle(style);
+  } catch (err) {
+    showLayerMsg('Fallo al aplicar la capa: ' + (err && err.message ? err.message : err));
+    return;
+  }
 
   // Actualizar label activo en el botón
   const labels = { streets: t().streets, satellite: t().satellite, topo: t().topo };
@@ -22349,11 +22396,21 @@ function marInit() {
   var btn = document.getElementById('mar-btn');
   var right = document.querySelector('.topbar-right');
   if (btn && right) {
-    // Se coloca junto al termometro, en el hueco que dejo la pildora de avisos
-    var mc = document.getElementById('mc-btn');
-    if (mc && mc.parentNode === right) right.insertBefore(btn, mc.nextSibling);
-    else right.appendChild(btn);
     btn.addEventListener('click', function (e) { e.stopPropagation(); marToggle(); });
+    /* Colocacion junto al termometro. Se reintenta porque #mc-btn lo mueve
+       a la barra su propio init, que puede correr despues que este. */
+    var colocar = function () {
+      var mc = document.getElementById('mc-btn');
+      if (mc && mc.parentNode === right) { right.insertBefore(btn, mc.nextSibling); return true; }
+      return false;
+    };
+    if (!colocar()) {
+      right.appendChild(btn);
+      var intentos = 0;
+      var reintento = setInterval(function () {
+        if (colocar() || ++intentos > 20) clearInterval(reintento);
+      }, 100);
+    }
   }
   var cl = document.getElementById('mar-close');
   if (cl) cl.addEventListener('click', marToggle);
