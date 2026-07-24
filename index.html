@@ -1434,7 +1434,11 @@ window.onunhandledrejection = function(e) {
     min-width: 140px;
     animation: dropIn var(--t-fast) var(--ease-out);
   }
-  .layers-dropdown.open { display: flex; }
+  /* El desplegable queda desactivado: en la app instalada de iOS sus
+   opciones no respondian al toque y no habia forma de cambiar de
+   capa. Ahora el propio boton rota entre Calles, Satelite y Topo,
+   con addEventListener, que es el patron que si funciona aqui. */
+  .layers-dropdown, .layers-dropdown.open { display: none !important; }
 
   .layers-option {
     display: flex;
@@ -5905,7 +5909,7 @@ window.onunhandledrejection = function(e) {
     <!-- BOTÓN CAPAS (reemplaza Calles/Satélite/Topo) -->
     <button class="icon-btn dice-btn" id="dice-btn" onclick="surpriseMe()" title="Sorpréndeme" aria-label="Sorpréndeme">🎲</button>
     <div class="layers-selector" id="layers-selector">
-      <button class="icon-btn layers-btn" id="layers-btn" onclick="toggleLayersDropdown(event)" title="Capas del mapa">
+      <button class="icon-btn layers-btn" id="layers-btn" title="Capas del mapa">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
         <span class="layers-active-label" id="layers-active-label">Calles</span>
       </button>
@@ -14268,6 +14272,59 @@ function toggleLayersDropdown(e) {
   const dd = document.getElementById('layers-dropdown');
   dd.classList.toggle('open');
 }
+
+/* Cambio de capa por rotacion. Sustituye al menu desplegable, cuyas
+   opciones no respondian al toque en la app instalada de iOS: ni se
+   cambiaba de capa ni saltaba ningun error. Como son solo tres capas,
+   rotar con cada toque es mas simple y mas rapido en movil, y usa
+   addEventListener, el mismo patron de los botones que si funcionan. */
+var LAYER_CYCLE = ['streets', 'satellite', 'topo'];
+
+function cycleMapLayer() {
+  var i = LAYER_CYCLE.indexOf(currentLayer);
+  var next = LAYER_CYCLE[(i + 1) % LAYER_CYCLE.length];
+  setStyle(next);
+
+  var labels = { streets: t().streets, satellite: t().satellite, topo: t().topo };
+  var nombre = labels[next] || next;
+
+  var lb = document.getElementById('layers-active-label');
+  if (lb) lb.textContent = nombre;
+
+  // Confirmacion visible: en movil la etiqueta del boton es diminuta
+  showLayerToast(nombre);
+}
+
+function showLayerToast(txt) {
+  try {
+    var el = document.getElementById('layer-toast');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'layer-toast';
+      el.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);' +
+        'top:calc(70px + env(safe-area-inset-top,0px));z-index:3000;' +
+        'background:rgba(15,17,23,0.95);border:1px solid rgba(201,168,76,0.5);' +
+        'color:#c9a84c;font-size:0.8rem;font-weight:600;padding:7px 16px;' +
+        'border-radius:99px;box-shadow:0 6px 20px rgba(0,0,0,0.5);pointer-events:none;';
+      document.body.appendChild(el);
+    }
+    el.textContent = txt;
+    el.style.display = 'block';
+    clearTimeout(el._t);
+    el._t = setTimeout(function () { el.style.display = 'none'; }, 1600);
+  } catch (e) {}
+}
+
+function initLayersCycle() {
+  var b = document.getElementById('layers-btn');
+  if (!b) return;
+  b.addEventListener('click', function (e) {
+    e.stopPropagation();
+    cycleMapLayer();
+  });
+}
+if (document.readyState !== 'loading') { initLayersCycle(); }
+else { document.addEventListener('DOMContentLoaded', initLayersCycle); }
 
 function setStyleFromMenu(style) {
   // Cambiar capa del mapa
