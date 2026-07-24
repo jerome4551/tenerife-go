@@ -1,0 +1,47 @@
+# =====================================================================
+#  TENERIFE GO  ·  Notificacion diaria
+#  Este archivo va en el repo en:  .github/workflows/notificacion-diaria.yml
+#
+#  Se ejecuta a las 08:00 y 09:00 UTC. El script comprueba la hora real
+#  de Canarias y solo envia cuando alli son las 9 o las 10 de la manana,
+#  asi funciona igual en horario de verano y de invierno. La tabla
+#  push_sends evita que se mande dos veces el mismo dia.
+# =====================================================================
+name: Notificacion diaria Tenerife Go
+
+on:
+  schedule:
+    - cron: '0 8 * * *'   # 08:00 UTC  (09:00 en Canarias en verano)
+    - cron: '0 9 * * *'   # 09:00 UTC  (09:00 en Canarias en invierno)
+  workflow_dispatch:      # boton para lanzarlo a mano desde GitHub
+    inputs:
+      forzar:
+        description: 'Forzar envio ahora (ignora la hora). Solo para pruebas.'
+        type: boolean
+        default: false
+
+jobs:
+  enviar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repo
+        uses: actions/checkout@v4
+
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar web-push
+        run: npm install web-push@3
+
+      - name: Enviar notificaciones
+        env:
+          SUPABASE_URL:         ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          VAPID_PUBLIC:         ${{ secrets.VAPID_PUBLIC }}
+          VAPID_PRIVATE:        ${{ secrets.VAPID_PRIVATE }}
+          VAPID_SUBJECT:        'mailto:tenerife.go.app@gmail.com'
+          APP_URL:              'https://jerome4551.github.io/tenerife-go/'
+          FORCE:                ${{ (github.event_name == 'workflow_dispatch' && inputs.forzar) && '1' || '0' }}
+        run: node enviar-notificacion.js
