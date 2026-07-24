@@ -15,7 +15,7 @@
    ══════════════════════════════════════════════════════════════════ */
 'use strict';
 
-var VERSION      = 'v1.1.0';
+var VERSION      = 'v1.3.0';
 var CACHE_SHELL  = 'tenerife-go-shell-' + VERSION;
 var CACHE_TILES  = 'tenerife-tiles-v1';   // se conserva entre versiones
 var MAX_TILES    = 3000;                  // tope para no llenar el movil
@@ -227,4 +227,87 @@ self.addEventListener('message', function(event) {
     self.skipWaiting();
     return;
   }
+});
+
+
+/* ── NOTIFICACIONES ───────────────────────────────────────────────
+   Solo llegan a quien instalo la app y acepto expresamente. En iOS no
+   hay otra via: el Push API solo existe para apps de pantalla de
+   inicio, y el permiso debe pedirse tras una accion del usuario.      */
+
+/* Datos para reenganchar la suscripcion si el navegador la rota.
+   La clave publica y la clave anon son publicas (ya estan en index.html);
+   la tabla push_subs solo admite altas gracias a RLS. */
+var SW_VAPID_PUB = 'BJZPN4_lITIaqCcITXNGsLLYj0z3Pbe1Ni0ayXMlsqKUXY1vydDpHIuSyA4nTF0fxlb27Bnq6O0Bij467k_iy-I';
+var SW_SB_URL    = 'https://aupjvdrubjytryzqirdn.supabase.co';
+var SW_SB_KEY    = 'sb_publishable_s046jzmX04KG2_F_VEf97w_R-9gr1ms';
+
+function swB64(base64) {
+  var pad = '='.repeat((4 - base64.length % 4) % 4);
+  var b64 = (base64 + pad).replace(/-/g, '+').replace(/_/g, '/');
+  var raw = atob(b64);
+  var arr = new Uint8Array(raw.length);
+  for (var i = 0; i < raw.length; i++) arr[i] = raw.charCodeAt(i);
+  return arr;
+}
+
+self.addEventListener('push', function (event) {
+  var d = {};
+  try { d = event.data ? event.data.json() : {}; } catch (e) {
+    try { d = { body: event.data.text() }; } catch (e2) { d = {}; }
+  }
+  var titulo = d.title || 'Tenerife Go';
+  var opciones = {
+    body: d.body || '',
+    icon: d.icon || './icon-192.png',
+    badge: './icon-192.png',
+    tag: d.tag || 'tgo-diario',      // sustituye a la anterior, no acumula
+    renotify: false,
+    data: { url: d.url || './index.html' },
+    lang: d.lang || 'es'
+  };
+  event.waitUntil(self.registration.showNotification(titulo, opciones));
+});
+
+self.addEventListener('notificationclick', function (event) {
+  event.notification.close();
+  var destino = (event.notification.data && event.notification.data.url) || './index.html';
+  event.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true })
+      .then(function (lista) {
+        // Si la app ya esta abierta, se trae al frente en vez de duplicarla
+        for (var i = 0; i < lista.length; i++) {
+          if ('focus' in lista[i]) return lista[i].focus();
+        }
+        if (self.clients.openWindow) return self.clients.openWindow(destino);
+      })
+  );
+});
+
+/* Si el navegador rota la suscripcion, se vuelve a suscribir con la clave
+   VAPID y se guarda la nueva en Supabase (misma tabla que el cliente).
+   Antes apuntaba a './__resub', que no existe en GitHub Pages: el aviso
+   se perdia y el dispositivo dejaba de recibir sin que nadie lo supiera. */
+self.addEventListener('pushsubscriptionchange', function (event) {
+  event.waitUntil(
+    self.registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: swB64(SW_VAPID_PUB)
+    })
+      .then(function (nueva) {
+        var j = nueva.toJSON();
+        if (!j || !j.keys) return;
+        return fetch(SW_SB_URL + '/rest/v1/push_subs?on_conflict=endpoint', {
+          method: 'POST',
+          headers: {
+            'apikey': SW_SB_KEY,
+            'Authorization': 'Bearer ' + SW_SB_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'resolution=ignore-duplicates'
+          },
+          body: JSON.stringify({ endpoint: j.endpoint, p256dh: j.keys.p256dh, auth: j.keys.auth })
+        }).catch(function () {});
+      })
+      .catch(function () {})
+  );
 });

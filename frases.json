@@ -1,0 +1,216 @@
+{
+  "version": 1,
+  "_nota": "Añade frases nuevas al array 'frases'. Cada objeto debe tener los 8 idiomas (es,en,fr,de,it,nl,zh,zht). La frase del día se elige por el numero de dia del ano, asi que todos reciben la misma cada dia y rota sola.",
+  "titulo": {
+    "es": "Buenos días ☀️",
+    "en": "Good morning ☀️",
+    "fr": "Bonjour ☀️",
+    "de": "Guten Morgen ☀️",
+    "it": "Buongiorno ☀️",
+    "nl": "Goedemorgen ☀️",
+    "zh": "早安 ☀️",
+    "zht": "早安 ☀️"
+  },
+  "frases": [
+    {
+      "es": "Hoy la isla amanece para ti. Sal a descubrir un rincón nuevo.",
+      "en": "The island wakes up for you today. Go discover a new corner.",
+      "fr": "Aujourd’hui, l’île se réveille pour toi. Pars découvrir un nouveau coin.",
+      "de": "Heute erwacht die Insel für dich. Entdecke einen neuen Winkel.",
+      "it": "Oggi l’isola si sveglia per te. Va’ a scoprire un angolo nuovo.",
+      "nl": "Vandaag ontwaakt het eiland voor jou. Ontdek een nieuw plekje.",
+      "zh": "今天，这座岛为你醒来。去发现一个新角落吧。",
+      "zht": "今天，這座島為你醒來。去發現一個新角落吧。"
+    },
+    {
+      "es": "Un café, el mar de fondo y ganas de explorar. Buen día.",
+      "en": "A coffee, the sea behind it, and a wish to explore. Have a good day.",
+      "fr": "Un café, la mer en fond et l’envie d’explorer. Bonne journée.",
+      "de": "Ein Kaffee, das Meer im Hintergrund und Lust zu entdecken. Schönen Tag.",
+      "it": "Un caffè, il mare sullo sfondo e voglia di esplorare. Buona giornata.",
+      "nl": "Een koffie, de zee op de achtergrond en zin om te ontdekken. Fijne dag.",
+      "zh": "一杯咖啡，海就在身后，还有探索的心情。祝你有美好的一天。",
+      "zht": "一杯咖啡，海就在身後，還有探索的心情。祝你有美好的一天。"
+    },
+    {
+      "es": "La mejor foto de hoy aún no la has hecho. Ve a buscarla.",
+      "en": "Today’s best photo is still waiting. Go and take it.",
+      "fr": "La plus belle photo du jour t’attend encore. Va la chercher.",
+      "de": "Das beste Foto von heute fehlt noch. Geh und mach es.",
+      "it": "La foto più bella di oggi non l’hai ancora fatta. Va’ a cercarla.",
+      "nl": "De mooiste foto van vandaag moet je nog maken. Ga hem halen.",
+      "zh": "今天最好的照片你还没拍。出发去拍下它吧。",
+      "zht": "今天最好的照片你還沒拍。出發去拍下它吧。"
+    },
+    {
+      "es": "Camina despacio: Tenerife se disfruta sin prisa.",
+      "en": "Walk slowly: Tenerife is best enjoyed without rushing.",
+      "fr": "Marche doucement : Tenerife se savoure sans se presser.",
+      "de": "Geh langsam: Teneriffa genießt man ohne Eile.",
+      "it": "Cammina piano: Tenerife si gode senza fretta.",
+      "nl": "Loop rustig: Tenerife geniet je zonder haast.",
+      "zh": "慢慢走：特内里费值得你不慌不忙地享受。",
+      "zht": "慢慢走：特內里費值得你不慌不忙地享受。"
+    },
+    {
+      "es": "El plan perfecto no existe; el momento de salir, sí. Ahora.",
+      "en": "The perfect plan doesn’t exist; the moment to head out does. Now.",
+      "fr": "Le plan parfait n’existe pas ; le moment de sortir, si. Maintenant.",
+      "de": "Den perfekten Plan gibt es nicht; den Moment zum Aufbrechen schon. Jetzt.",
+      "it": "Il piano perfetto non esiste; il momento di uscire sì. Ora.",
+      "nl": "Het perfecte plan bestaat niet; het moment om te vertrekken wel. Nu.",
+      "zh": "完美的计划不存在，但出发的时机存在。就是现在。",
+      "zht": "完美的計畫不存在，但出發的時機存在。就是現在。"
+    },
+    {
+      "es": "Respira hondo: el aire de aquí sabe a vacaciones.",
+      "en": "Breathe deep: the air here tastes like holidays.",
+      "fr": "Respire à fond : ici, l’air a un goût de vacances.",
+      "de": "Atme tief durch: die Luft hier schmeckt nach Urlaub.",
+      "it": "Respira a fondo: qui l’aria sa di vacanza.",
+      "nl": "Adem diep in: de lucht hier smaakt naar vakantie.",
+      "zh": "深呼吸：这里的空气有假期的味道。",
+      "zht": "深呼吸：這裡的空氣有假期的味道。"
+    },
+    {
+      "es": "Hoy toca perderse un poco. Los mejores sitios salen así.",
+      "en": "Today, get a little lost. The best places show up that way.",
+      "fr": "Aujourd’hui, perds-toi un peu. Les plus beaux lieux se trouvent ainsi.",
+      "de": "Verirr dich heute ein wenig. So findet man die schönsten Orte.",
+      "it": "Oggi perditi un po’. I posti migliori si trovano così.",
+      "nl": "Verdwaal vandaag een beetje. Zo vind je de mooiste plekken.",
+      "zh": "今天，稍微迷路一下吧。最棒的地方往往这样出现。",
+      "zht": "今天，稍微迷路一下吧。最棒的地方往往這樣出現。"
+    },
+    {
+      "es": "El sol ya está fuera. ¿A qué esperas tú?",
+      "en": "The sun is already out. What are you waiting for?",
+      "fr": "Le soleil est déjà levé. Qu’attends-tu ?",
+      "de": "Die Sonne ist schon draußen. Worauf wartest du?",
+      "it": "Il sole è già fuori. Cosa aspetti?",
+      "nl": "De zon is al op. Waar wacht je nog op?",
+      "zh": "太阳已经出来了，你还在等什么？",
+      "zht": "太陽已經出來了，你還在等什麼？"
+    },
+    {
+      "es": "La isla es grande: hoy conquista un trocito más.",
+      "en": "The island is big: conquer a little more of it today.",
+      "fr": "L’île est grande : conquiers-en un petit bout de plus aujourd’hui.",
+      "de": "Die Insel ist groß: erobere heute ein Stückchen mehr.",
+      "it": "L’isola è grande: oggi conquistane un pezzetto in più.",
+      "nl": "Het eiland is groot: verover er vandaag een stukje meer van.",
+      "zh": "岛很大：今天再多征服一小块吧。",
+      "zht": "島很大：今天再多征服一小塊吧。"
+    },
+    {
+      "es": "Sonríe, estás en Tenerife. El día es tuyo.",
+      "en": "Smile, you’re in Tenerife. The day is yours.",
+      "fr": "Souris, tu es à Tenerife. La journée est à toi.",
+      "de": "Lächle, du bist auf Teneriffa. Der Tag gehört dir.",
+      "it": "Sorridi, sei a Tenerife. La giornata è tua.",
+      "nl": "Lach, je bent op Tenerife. De dag is van jou.",
+      "zh": "微笑吧，你在特内里费。今天是你的。",
+      "zht": "微笑吧，你在特內里費。今天是你的。"
+    },
+    {
+      "es": "Cada sendero lleva a una vista que recordarás. Elige uno.",
+      "en": "Every trail leads to a view you’ll remember. Pick one.",
+      "fr": "Chaque sentier mène à une vue inoubliable. Choisis-en un.",
+      "de": "Jeder Weg führt zu einer Aussicht, die du nie vergisst. Wähl einen.",
+      "it": "Ogni sentiero porta a un panorama che ricorderai. Scegline uno.",
+      "nl": "Elk pad leidt naar een uitzicht dat je bijblijft. Kies er een.",
+      "zh": "每条步道都通向一处难忘的风景。选一条走吧。",
+      "zht": "每條步道都通向一處難忘的風景。選一條走吧。"
+    },
+    {
+      "es": "No hay mal día con vistas al Teide. Sal a buscarlas.",
+      "en": "No bad day comes with a view of Teide. Go find it.",
+      "fr": "Aucun mauvais jour avec vue sur le Teide. Va la chercher.",
+      "de": "Kein schlechter Tag mit Blick auf den Teide. Geh ihn suchen.",
+      "it": "Non c’è brutta giornata con vista sul Teide. Va’ a cercarla.",
+      "nl": "Geen slechte dag met uitzicht op de Teide. Ga het zoeken.",
+      "zh": "有泰德峰的美景，就没有糟糕的一天。出发去找吧。",
+      "zht": "有泰德峰的美景，就沒有糟糕的一天。出發去找吧。"
+    },
+    {
+      "es": "Prueba algo nuevo hoy: un pueblo, un plato, una cala.",
+      "en": "Try something new today: a village, a dish, a cove.",
+      "fr": "Essaie quelque chose de nouveau aujourd’hui : un village, un plat, une crique.",
+      "de": "Probier heute etwas Neues: ein Dorf, ein Gericht, eine Bucht.",
+      "it": "Prova qualcosa di nuovo oggi: un paese, un piatto, una cala.",
+      "nl": "Probeer vandaag iets nieuws: een dorp, een gerecht, een baai.",
+      "zh": "今天试点新的：一个村庄、一道菜、一处海湾。",
+      "zht": "今天試點新的：一個村莊、一道菜、一處海灣。"
+    },
+    {
+      "es": "El mejor recuerdo es el que empieza al salir por la puerta.",
+      "en": "The best memory begins the moment you step out the door.",
+      "fr": "Le plus beau souvenir commence dès que tu passes la porte.",
+      "de": "Die schönste Erinnerung beginnt, sobald du zur Tür hinausgehst.",
+      "it": "Il ricordo più bello inizia appena esci dalla porta.",
+      "nl": "De mooiste herinnering begint zodra je de deur uit stapt.",
+      "zh": "最美的回忆，从你踏出家门的那一刻开始。",
+      "zht": "最美的回憶，從你踏出家門的那一刻開始。"
+    },
+    {
+      "es": "Hoy el mar te llama. Aunque solo sea para mirarlo.",
+      "en": "The sea is calling you today. Even if only to look at it.",
+      "fr": "Aujourd’hui, la mer t’appelle. Ne serait-ce que pour la regarder.",
+      "de": "Heute ruft dich das Meer. Und sei es nur, um es anzuschauen.",
+      "it": "Oggi il mare ti chiama. Anche solo per guardarlo.",
+      "nl": "De zee roept je vandaag. Al is het maar om ernaar te kijken.",
+      "zh": "今天，大海在呼唤你。哪怕只是去看看它。",
+      "zht": "今天，大海在呼喚你。哪怕只是去看看它。"
+    },
+    {
+      "es": "Un atardecer te espera esta tarde. Gánatelo moviéndote hoy.",
+      "en": "A sunset awaits you this evening. Earn it by getting out today.",
+      "fr": "Un coucher de soleil t’attend ce soir. Mérite-le en bougeant aujourd’hui.",
+      "de": "Heute Abend wartet ein Sonnenuntergang. Verdien ihn dir, indem du losziehst.",
+      "it": "Stasera ti aspetta un tramonto. Guadagnatelo muovendoti oggi.",
+      "nl": "Vanavond wacht een zonsondergang. Verdien hem door er vandaag op uit te gaan.",
+      "zh": "今晚有一场日落在等你。用今天的脚步去赢得它。",
+      "zht": "今晚有一場日落在等你。用今天的腳步去贏得它。"
+    },
+    {
+      "es": "Buenos días: hoy el plan lo pones tú. Sal a por él.",
+      "en": "Good morning: today the plan is up to you. Go get it.",
+      "fr": "Bonjour : aujourd’hui, le programme, c’est toi. Va le chercher.",
+      "de": "Guten Morgen: heute bestimmst du den Plan. Los, hol ihn dir.",
+      "it": "Buongiorno: oggi il piano lo decidi tu. Va’ a prenderlo.",
+      "nl": "Goedemorgen: vandaag bepaal jij het plan. Ga ervoor.",
+      "zh": "早安：今天的计划由你决定。出发去实现吧。",
+      "zht": "早安：今天的計畫由你決定。出發去實現吧。"
+    },
+    {
+      "es": "El norte, el sur… hoy elige un rumbo y ve.",
+      "en": "The north, the south… today pick a direction and go.",
+      "fr": "Le nord, le sud… aujourd’hui choisis un cap et pars.",
+      "de": "Der Norden, der Süden … heute wähl eine Richtung und los.",
+      "it": "Il nord, il sud… oggi scegli una direzione e vai.",
+      "nl": "Het noorden, het zuiden… kies vandaag een richting en ga.",
+      "zh": "北边、南边……今天选一个方向，出发吧。",
+      "zht": "北邊、南邊……今天選一個方向，出發吧。"
+    },
+    {
+      "es": "La isla huele a mar y a libertad. Sal a respirarla.",
+      "en": "The island smells of sea and freedom. Go breathe it in.",
+      "fr": "L’île sent la mer et la liberté. Sors la respirer.",
+      "de": "Die Insel riecht nach Meer und Freiheit. Geh sie einatmen.",
+      "it": "L’isola profuma di mare e libertà. Esci a respirarla.",
+      "nl": "Het eiland ruikt naar zee en vrijheid. Ga het inademen.",
+      "zh": "这座岛有海和自由的气息。出去好好呼吸吧。",
+      "zht": "這座島有海和自由的氣息。出去好好呼吸吧。"
+    },
+    {
+      "es": "Hoy hazte un favor: sal, muévete y sonríe.",
+      "en": "Do yourself a favor today: get out, move, and smile.",
+      "fr": "Fais-toi plaisir aujourd’hui : sors, bouge et souris.",
+      "de": "Tu dir heute etwas Gutes: raus, beweg dich und lächle.",
+      "it": "Oggi fatti un favore: esci, muoviti e sorridi.",
+      "nl": "Doe jezelf vandaag een plezier: ga naar buiten, beweeg en lach.",
+      "zh": "今天给自己一个礼物：出门，走走，微笑。",
+      "zht": "今天給自己一個禮物：出門，走走，微笑。"
+    }
+  ]
+}
