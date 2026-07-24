@@ -7762,11 +7762,25 @@ try {
   Object.assign(LANGS.zht, ZHT_OVERRIDES);
 } catch (e) {}
 
-let currentLang = 'es';
+/* El idioma se resuelve AQUI, antes de construir marcadores y listas.
+   Antes se restauraba despues, llamando a setLang, que rehace los 702
+   marcadores y el clustering: la app arrancaba haciendo el trabajo dos
+   veces y se notaba. */
+let currentLang = (function () {
+  try {
+    var g = localStorage.getItem('tg_lang');
+    if (g) return g;
+    var n = (navigator.language || 'es').slice(0, 2).toLowerCase();
+    return n;
+  } catch (e) { return 'es'; }
+})();
 
 /* Textos de interfaz que faltaban: barra inferior, pestanas de Rutas
    y calculador A->B. Se aplican en setLang (ver applyUiTx). */
 const UI_TX = Object.assign({"shopTitle":{"es":"Tienda","en":"Shop","fr":"Boutique","de":"Shop","it":"Negozio","nl":"Winkel","zh":"\u5546\u5e97","zht":"\u5546\u5e97"},"shopExc":{"es":"Excursiones","en":"Tours","fr":"Excursions","de":"Touren","it":"Escursioni","nl":"Excursies","zh":"\u884c\u7a0b","zht":"\u884c\u7a0b"},"shopSouv":{"es":"Souvenirs","en":"Souvenirs","fr":"Souvenirs","de":"Souvenirs","it":"Souvenir","nl":"Souvenirs","zh":"\u7eaa\u5ff5\u54c1","zht":"\u7d00\u5ff5\u54c1"},"shopBiz":{"es":"Negocios","en":"Businesses","fr":"Commerces","de":"Betriebe","it":"Attivit\u00e0","nl":"Bedrijven","zh":"\u5546\u5bb6","zht":"\u5546\u5bb6"},"shopAd":{"es":"An\u00fanciate","en":"Advertise","fr":"Annoncez-vous","de":"Werben","it":"Pubblicizzati","nl":"Adverteren","zh":"\u6295\u653e\u5e7f\u544a","zht":"\u6295\u653e\u5ee3\u544a"},"shopSoon":{"es":"PR\u00d3XIMAMENTE","en":"COMING SOON","fr":"BIENT\u00d4T","de":"DEMN\u00c4CHST","it":"PROSSIMAMENTE","nl":"BINNENKORT","zh":"\u5373\u5c06\u63a8\u51fa","zht":"\u5373\u5c07\u63a8\u51fa"},"shopBook":{"es":"Reservar","en":"Book","fr":"R\u00e9server","de":"Buchen","it":"Prenota","nl":"Boeken","zh":"\u9884\u8ba2","zht":"\u9810\u8a02"},"shopBuy":{"es":"Comprar","en":"Buy","fr":"Acheter","de":"Kaufen","it":"Acquista","nl":"Kopen","zh":"\u8d2d\u4e70","zht":"\u8cfc\u8cb7"},"shopPerson":{"es":"/ persona","en":"/ person","fr":"/ personne","de":"/ Person","it":"/ persona","nl":"/ persoon","zh":"/ \u4eba","zht":"/ \u4eba"},"shopUnit":{"es":"/ unidad","en":"/ unit","fr":"/ unit\u00e9","de":"/ St\u00fcck","it":"/ unit\u00e0","nl":"/ stuk","zh":"/ \u4ef6","zht":"/ \u4ef6"},"shopPack":{"es":"/ pack","en":"/ pack","fr":"/ pack","de":"/ Set","it":"/ pack","nl":"/ pakket","zh":"/ \u5957","zht":"/ \u5957"},"shopBizEmpty":{"es":"Los primeros negocios partner aparecer\u00e1n aqu\u00ed.","en":"The first partner businesses will appear here.","fr":"Les premiers partenaires appara\u00eetront ici.","de":"Die ersten Partnerbetriebe erscheinen hier.","it":"Le prime attivit\u00e0 partner appariranno qui.","nl":"De eerste partnerbedrijven verschijnen hier.","zh":"\u9996\u6279\u5408\u4f5c\u5546\u5bb6\u5c06\u663e\u793a\u5728\u8fd9\u91cc\u3002","zht":"\u9996\u6279\u5408\u4f5c\u5546\u5bb6\u5c07\u986f\u793a\u5728\u9019\u88e1\u3002"},"shopBizCta":{"es":"\u00bfTienes un negocio en Tenerife? \u00a1An\u00fanciate!","en":"Got a business in Tenerife? Advertise with us!","fr":"Vous avez un commerce \u00e0 Tenerife ? Annoncez-vous !","de":"Betrieb auf Teneriffa? Werben Sie hier!","it":"Hai un\u2019attivit\u00e0 a Tenerife? Fatti pubblicit\u00e0!","nl":"Bedrijf op Tenerife? Adverteer hier!","zh":"\u5728\u7279\u5185\u91cc\u8d39\u6709\u751f\u610f\uff1f\u6765\u8fd9\u91cc\u6295\u653e\u5e7f\u544a\uff01","zht":"\u5728\u7279\u5167\u91cc\u8cbb\u6709\u751f\u610f\uff1f\u4f86\u9019\u88e1\u6295\u653e\u5ee3\u544a\uff01"}},{"navHome":{"es":"Inicio","en":"Home","fr":"Accueil","de":"Start","it":"Home","nl":"Start","zh":"\u9996\u9875","zht":"\u9996\u9801"},"navFav":{"es":"Favoritos","en":"Favorites","fr":"Favoris","de":"Favoriten","it":"Preferiti","nl":"Favorieten","zh":"\u6536\u85cf","zht":"\u6536\u85cf"},"navRoutes":{"es":"Rutas","en":"Routes","fr":"Itin\u00e9raires","de":"Routen","it":"Percorsi","nl":"Routes","zh":"\u8def\u7ebf","zht":"\u8def\u7dda"},"navShop":{"es":"Tienda","en":"Shop","fr":"Boutique","de":"Shop","it":"Negozio","nl":"Winkel","zh":"\u5546\u5e97","zht":"\u5546\u5e97"},"navChat":{"es":"Asistente","en":"Assistant","fr":"Assistant","de":"Assistent","it":"Assistente","nl":"Assistent","zh":"\u52a9\u624b","zht":"\u52a9\u624b"},"navAccount":{"es":"Cuenta","en":"Account","fr":"Compte","de":"Konto","it":"Account","nl":"Account","zh":"\u8d26\u6237","zht":"\u5e33\u6236"},"tabPlanner":{"es":"Organiza tu d\u00eda","en":"Plan your day","fr":"Organise ta journ\u00e9e","de":"Tag planen","it":"Organizza la giornata","nl":"Plan je dag","zh":"\u89c4\u5212\u4e00\u5929","zht":"\u898f\u5283\u4e00\u5929"},"routeOrigin":{"es":"Origen","en":"From","fr":"D\u00e9part","de":"Start","it":"Partenza","nl":"Vanaf","zh":"\u8d77\u70b9","zht":"\u8d77\u9ede"},"routeDest":{"es":"Destino","en":"To","fr":"Arriv\u00e9e","de":"Ziel","it":"Arrivo","nl":"Naar","zh":"\u7ec8\u70b9","zht":"\u7d42\u9ede"},"routePickHint":{"es":"Toca aqu\u00ed para elegir\u2026","en":"Tap here to choose\u2026","fr":"Touche ici pour choisir\u2026","de":"Hier tippen zum W\u00e4hlen\u2026","it":"Tocca qui per scegliere\u2026","nl":"Tik hier om te kiezen\u2026","zh":"\u70b9\u6b64\u9009\u62e9\u2026","zht":"\u9ede\u6b64\u9078\u64c7\u2026"},"routeAddrPh":{"es":"O escribe una direcci\u00f3n\u2026","en":"Or type an address\u2026","fr":"Ou saisis une adresse\u2026","de":"Oder Adresse eingeben\u2026","it":"Oppure scrivi un indirizzo\u2026","nl":"Of typ een adres\u2026","zh":"\u6216\u8f93\u5165\u5730\u5740\u2026","zht":"\u6216\u8f38\u5165\u5730\u5740\u2026"},"routeHint":{"es":"Elige en el mapa, escribe una direcci\u00f3n o usa el GPS","en":"Pick on the map, type an address or use GPS","fr":"Choisis sur la carte, saisis une adresse ou utilise le GPS","de":"Auf der Karte w\u00e4hlen, Adresse eingeben oder GPS nutzen","it":"Scegli sulla mappa, scrivi un indirizzo o usa il GPS","nl":"Kies op de kaart, typ een adres of gebruik gps","zh":"\u5728\u5730\u56fe\u4e0a\u9009\u62e9\u3001\u8f93\u5165\u5730\u5740\u6216\u4f7f\u7528 GPS","zht":"\u5728\u5730\u5716\u4e0a\u9078\u64c7\u3001\u8f38\u5165\u5730\u5740\u6216\u4f7f\u7528 GPS"},"routeByCar":{"es":"En coche","en":"By car","fr":"En voiture","de":"Mit dem Auto","it":"In auto","nl":"Met de auto","zh":"\u81ea\u9a7e","zht":"\u81ea\u99d5"},"routeByBus":{"es":"En guagua","en":"By bus","fr":"En bus","de":"Mit dem Bus","it":"In autobus","nl":"Met de bus","zh":"\u516c\u4ea4","zht":"\u516c\u8eca"},"routeCarDetail":{"es":"Ruta por carretera","en":"Road route","fr":"Itin\u00e9raire routier","de":"Stra\u00dfenroute","it":"Percorso stradale","nl":"Route over de weg","zh":"\u516c\u8def\u8def\u7ebf","zht":"\u516c\u8def\u8def\u7dda"},"routeBusCalc":{"es":"Calculando opciones de bus\u2026","en":"Checking bus options\u2026","fr":"Calcul des options de bus\u2026","de":"Busoptionen werden gepr\u00fcft\u2026","it":"Calcolo opzioni bus\u2026","nl":"Busopties berekenen\u2026","zh":"\u6b63\u5728\u67e5\u8be2\u516c\u4ea4\u65b9\u6848\u2026","zht":"\u6b63\u5728\u67e5\u8a62\u516c\u8eca\u65b9\u6848\u2026"},"routeBackPlace":{"es":"Volver al lugar","en":"Back to place","fr":"Retour au lieu","de":"Zur\u00fcck zum Ort","it":"Torna al luogo","nl":"Terug naar plek","zh":"\u8fd4\u56de\u5730\u70b9","zht":"\u8fd4\u56de\u5730\u9ede"},"routeMin":{"es":"min","en":"min","fr":"min","de":"Min.","it":"min","nl":"min","zh":"\u5206\u949f","zht":"\u5206\u9418"}});
+
+// Si el idioma guardado o el del navegador no esta soportado, al espanol.
+if (!LANGS[currentLang]) currentLang = (currentLang === 'zht' && LANGS.zh) ? 'zh' : 'es';
 
 function t() { return LANGS[currentLang]; }
 
@@ -15010,15 +15024,23 @@ openPlaceFromHash();
 // ejecuta a mitad del archivo y la barra inferior, las pestanas de la
 // tienda y el planificador aparecen mas abajo: si se llamara aqui, esos
 // elementos aun no existirian y se quedarian en espanol.
-(function restoreLang() {
+/* El idioma ya quedo fijado al principio del archivo, asi que todo se
+   construyo directamente en ese idioma. Aqui solo faltan los textos de
+   elementos que viven mas abajo en el documento (barra inferior, pestanas
+   de la tienda, planificador) y que no existian aun. Es una pasada de
+   textos, no un re-render: antes se llamaba a setLang y eso rehacia los
+   702 marcadores en cada arranque. */
+(function applyLateTexts() {
   function apply() {
     try {
-      var saved = localStorage.getItem('tg_lang');
-      if (!saved) {
-        var nav = (navigator.language || 'es').slice(0, 2).toLowerCase();
-        if (LANGS[nav]) saved = nav;
-      }
-      if (saved && LANGS[saved] && saved !== currentLang) setLang(saved);
+      if (typeof applyUiTx === 'function') applyUiTx();
+      if (typeof dpiRenderCards === 'function') dpiRenderCards();
+      if (typeof dpRenderZoneCards === 'function') dpRenderZoneCards();
+      var flag = document.getElementById('lang-flag');
+      var code = document.getElementById('lang-code');
+      var L = LANGS[currentLang];
+      if (flag && L && L.flag) flag.textContent = L.flag;
+      if (code && L && L.code) code.textContent = L.code;
     } catch (e) {}
   }
   if (document.readyState === 'loading') {
@@ -16314,6 +16336,12 @@ window.addEventListener('hashchange', () => {
   // ─────────────────────────────────────────────────────────────────
   const SUPABASE_URL      = 'https://aupjvdrubjytryzqirdn.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_s046jzmX04KG2_F_VEf97w_R-9gr1ms';
+  /* Un 'const' de nivel superior pertenece a SU bloque <script>, no al
+     ambito global. Otros bloques (como el de notificaciones, mucho mas
+     abajo) no lo verian. Se exponen explicitamente. La clave publicable
+     ya es publica por diseno; esto no cambia nada de seguridad. */
+  window.SUPABASE_URL      = SUPABASE_URL;
+  window.SUPABASE_ANON_KEY = SUPABASE_ANON_KEY;
 
   // Si las claves no están configuradas, la app funciona en modo invitado
   const AUTH_CONFIGURED =
@@ -18009,6 +18037,7 @@ window.addEventListener('hashchange', () => {
 .v19t-dots i.on { background: #D4AF37; }
 .v19t-btns { display: flex; gap: 8px; align-items: center; }
 .v19t-skip { background: none; border: none; color: #8b93a5; font-size: 0.8rem; padding: 8px 6px; cursor: pointer; font-family: inherit; }
+.v19t-back { background: none; border: none; color: #8b93a5; font-size: 0.8rem; padding: 8px 6px; cursor: pointer; font-family: inherit; }
 .v19t-next {
   background: linear-gradient(180deg, #e9c458, #D4AF37 60%, #b8912f);
   color: #171106;
@@ -18056,14 +18085,14 @@ window.addEventListener('hashchange', () => {
   function markSeen() { try { localStorage.setItem(KEY, '1'); } catch (e) {} }
 
   var I18N = {
-    es: {pt:"¿Un tour rápido?",pb:"Te enseñamos lo esencial de Tenerife Go en 30 segundos.",yes:"Ver el tour",no:"Ahora no",skip:"Saltar",next:"Siguiente",done:"¡A explorar!",steps:[["Busca cualquier lugar","Más de 700 lugares verificados: playas, senderos, guachinches, miradores y mucho más."],["Filtra por categorías","Activa solo lo que te interesa hoy: naturaleza, gastronomía, cultura, deporte…"],["En tu idioma","Toda la app en 8 idiomas. Cámbialo aquí cuando quieras."],["Elige tu mapa","Calles, satélite o relieve: perfecto para planear rutas y senderos."],["Tu barra de viaje","Favoritos, rutas guiadas, tienda, asistente y tu cuenta, siempre a mano."],["Toca los marcadores","Cada punto del mapa tiene fotos, descripción, horarios y cómo llegar. ¡La isla es tuya!"]]},
-    en: {pt:"A quick tour?",pb:"Let us show you the essentials of Tenerife Go in 30 seconds.",yes:"Take the tour",no:"Not now",skip:"Skip",next:"Next",done:"Start exploring!",steps:[["Search any place","Over 700 verified places: beaches, trails, guachinches, viewpoints and much more."],["Filter by category","Show only what you fancy today: nature, food, culture, sports…"],["In your language","The whole app in 8 languages. Change it here anytime."],["Pick your map","Streets, satellite or terrain — perfect for planning hikes and routes."],["Your travel bar","Favourites, guided routes, shop, assistant and your account, always at hand."],["Tap the markers","Every point has photos, details, opening hours and directions. The island is yours!"]]},
-    fr: {pt:"Un tour rapide ?",pb:"Découvrez l'essentiel de Tenerife Go en 30 secondes.",yes:"Voir le tour",no:"Plus tard",skip:"Passer",next:"Suivant",done:"C'est parti !",steps:[["Cherchez un lieu","Plus de 700 lieux vérifiés : plages, sentiers, guachinches, miradors et bien plus."],["Filtrez par catégorie","Affichez seulement ce qui vous tente : nature, gastronomie, culture, sport…"],["Dans votre langue","Toute l'app en 8 langues. Changez-la ici à tout moment."],["Choisissez votre carte","Rues, satellite ou relief : idéal pour préparer randos et itinéraires."],["Votre barre de voyage","Favoris, itinéraires guidés, boutique, assistant et votre compte, toujours à portée."],["Touchez les marqueurs","Chaque point a photos, infos, horaires et itinéraire. L'île est à vous !"]]},
-    de: {pt:"Eine kurze Tour?",pb:"Wir zeigen dir Tenerife Go in 30 Sekunden.",yes:"Tour starten",no:"Später",skip:"Überspringen",next:"Weiter",done:"Los geht's!",steps:[["Orte suchen","Über 700 geprüfte Orte: Strände, Wanderwege, Guachinches, Aussichtspunkte und mehr."],["Nach Kategorien filtern","Zeig nur, was dich heute interessiert: Natur, Gastronomie, Kultur, Sport…"],["Deine Sprache","Die ganze App in 8 Sprachen. Hier jederzeit wechseln."],["Karte wählen","Straßen, Satellit oder Gelände – ideal für Routen und Wanderungen."],["Deine Reiseleiste","Favoriten, Routen, Shop, Assistent und dein Konto – immer griffbereit."],["Tippe auf die Marker","Jeder Punkt bietet Fotos, Infos, Öffnungszeiten und Anfahrt. Die Insel gehört dir!"]]},
-    it: {pt:"Un tour veloce?",pb:"Ti mostriamo Tenerife Go in 30 secondi.",yes:"Fai il tour",no:"Non ora",skip:"Salta",next:"Avanti",done:"Si parte!",steps:[["Cerca un luogo","Oltre 700 luoghi verificati: spiagge, sentieri, guachinches, miradores e molto altro."],["Filtra per categoria","Mostra solo ciò che ti va oggi: natura, gastronomia, cultura, sport…"],["Nella tua lingua","Tutta l'app in 8 lingue. Cambiala qui quando vuoi."],["Scegli la mappa","Strade, satellite o rilievo: perfetto per pianificare itinerari e trekking."],["La tua barra di viaggio","Preferiti, itinerari guidati, negozio, assistente e il tuo account, sempre a portata."],["Tocca i marcatori","Ogni punto ha foto, dettagli, orari e indicazioni. L'isola è tua!"]]},
-    nl: {pt:"Een snelle tour?",pb:"We laten je Tenerife Go zien in 30 seconden.",yes:"Start de tour",no:"Niet nu",skip:"Overslaan",next:"Volgende",done:"Op pad!",steps:[["Zoek een plek","Ruim 700 geverifieerde plekken: stranden, wandelroutes, guachinches, uitzichtpunten en meer."],["Filter op categorie","Toon alleen wat jij vandaag wilt: natuur, gastronomie, cultuur, sport…"],["In jouw taal","De hele app in 8 talen. Wissel hier wanneer je wilt."],["Kies je kaart","Straten, satelliet of terrein: ideaal voor routes en wandelingen."],["Jouw reisbalk","Favorieten, routes, winkel, assistent en je account, altijd bij de hand."],["Tik op de markers","Elk punt heeft foto's, info, openingstijden en routebeschrijving. Het eiland is van jou!"]]},
-    zh: {pt:"快速导览？",pb:"30秒了解应用的核心功能。",yes:"开始导览",no:"暂时不用",skip:"跳过",next:"下一步",done:"开始探索！",steps:[["搜索地点","700多个核实地点：海滩、步道、观景台、美食等。"],["按类别筛选","只显示你感兴趣的：自然、美食、文化、运动……"],["你的语言","应用支持8种语言，随时切换。"],["选择地图","街道、卫星或地形，规划路线更方便。"],["旅行工具栏","收藏、路线、商店、助手和账户。"],["点击标记","每个地点都有照片、简介、营业时间和路线。祝你玩得开心！"]]},
-    zht: {pt:"快速導覽？",pb:"30秒了解應用程式的核心功能。",yes:"開始導覽",no:"暫時不用",skip:"跳過",next:"下一步",done:"開始探索！",steps:[["搜尋地點","700多個核實地點：海灘、健行步道、觀景台、美食等。"],["依類別篩選","只顯示你感興趣的：自然、美食、文化、運動……"],["你的語言","應用程式支援8種語言，隨時切換。"],["選擇地圖","街道、衛星或地形，規劃路線更方便。"],["旅行工具列","收藏、路線、商店、助理與帳戶。"],["點擊標記","每個地點都有照片、簡介、營業時間與路線。祝你玩得開心！"]]}
+    es: {pt:"¿Un tour rápido?",pb:"Te enseñamos lo esencial de Tenerife Go en 30 segundos.",yes:"Ver el tour",no:"Ahora no",skip:"Saltar",next:"Siguiente",done:"¡A explorar!",back:"Atr\u00e1s",steps:[["Busca cualquier lugar","M\u00e1s de 700 lugares verificados: playas, senderos, guachinches, miradores y mucho m\u00e1s."],["Filtra por categor\u00edas","Activa solo lo que te interesa hoy: naturaleza, gastronom\u00eda, cultura, deporte\u2026"],["\u00bfSin plan? Tira el dado","Te lleva a un lugar al azar. Con filtros puestos, la sorpresa es a tu gusto."],["Elige tu mapa","Toca para cambiar entre calles, sat\u00e9lite y relieve. Ideal para senderos."],["Microclimas","Aqu\u00ed llueve en un pueblo y hace sol en el siguiente. Mira el tiempo real por zonas."],["El mar hoy","Estado del mar en 7 costas. Antes de ba\u00f1arte o ir a una piscina natural, m\u00edralo."],["Fiestas y tradiciones","Romer\u00edas, carnavales y fiestas patronales con sus fechas. La cultura de la isla."],["Guaguas","Paradas cercanas y l\u00edneas TITSA para moverte sin coche."],["En tu idioma","Toda la app en 8 idiomas. C\u00e1mbialo aqu\u00ed cuando quieras."],["Tu barra de viaje","Favoritos, rutas, tienda, asistente y tu cuenta, siempre a mano."],["Logros","Marca lugares como visitados y desbloquea trofeos mientras descubres la isla."],["Toca los marcadores","Cada punto tiene fotos, descripci\u00f3n, el tiempo all\u00ed y c\u00f3mo llegar. \u00a1La isla es tuya!"]]},
+    en: {pt:"A quick tour?",pb:"Let us show you the essentials of Tenerife Go in 30 seconds.",yes:"Take the tour",no:"Not now",skip:"Skip",next:"Next",done:"Start exploring!",back:"Back",steps:[["Search any place","Over 700 verified places: beaches, trails, guachinches, viewpoints and much more."],["Filter by category","Show only what you fancy today: nature, food, culture, sports\u2026"],["No plan? Roll the dice","It takes you to a random place. With filters on, the surprise is your kind of surprise."],["Pick your map","Tap to switch between streets, satellite and terrain. Great for hiking."],["Microclimates","It can rain in one village and be sunny in the next. Live weather by area."],["The sea today","Sea conditions on 7 coasts. Check it before swimming or visiting a natural pool."],["Fiestas & traditions","Romer\u00edas, carnivals and patron saint festivities with their dates."],["Buses","Nearby stops and TITSA lines so you can get around without a car."],["In your language","The whole app in 8 languages. Change it here anytime."],["Your travel bar","Favourites, routes, shop, assistant and your account, always at hand."],["Achievements","Mark places as visited and unlock trophies as you explore the island."],["Tap the markers","Every point has photos, details, local weather and directions. The island is yours!"]]},
+    fr: {pt:"Un tour rapide ?",pb:"Découvrez l'essentiel de Tenerife Go en 30 secondes.",yes:"Voir le tour",no:"Plus tard",skip:"Passer",next:"Suivant",done:"C'est parti !",back:"Retour",steps:[["Cherchez un lieu","Plus de 700 lieux v\u00e9rifi\u00e9s : plages, sentiers, guachinches, miradors et bien plus."],["Filtrez par cat\u00e9gorie","Affichez seulement ce qui vous tente : nature, gastronomie, culture, sport\u2026"],["Sans plan ? Lancez le d\u00e9","Il vous emm\u00e8ne au hasard. Avec des filtres, la surprise reste \u00e0 votre go\u00fbt."],["Choisissez votre carte","Touchez pour passer de rues \u00e0 satellite ou relief. Parfait pour les randos."],["Microclimats","Il pleut dans un village et il fait soleil dans le suivant. M\u00e9t\u00e9o en direct par zone."],["La mer aujourd\u2019hui","\u00c9tat de la mer sur 7 c\u00f4tes. \u00c0 consulter avant de vous baigner."],["F\u00eates et traditions","Romer\u00edas, carnavals et f\u00eates patronales avec leurs dates."],["Bus","Arr\u00eats proches et lignes TITSA pour circuler sans voiture."],["Dans votre langue","Toute l\u2019app en 8 langues. Changez-la ici \u00e0 tout moment."],["Votre barre de voyage","Favoris, itin\u00e9raires, boutique, assistant et votre compte, toujours \u00e0 port\u00e9e."],["Troph\u00e9es","Marquez les lieux visit\u00e9s et d\u00e9bloquez des troph\u00e9es en explorant l\u2019\u00eele."],["Touchez les marqueurs","Chaque point a photos, infos, m\u00e9t\u00e9o locale et itin\u00e9raire. L\u2019\u00eele est \u00e0 vous !"]]},
+    de: {pt:"Eine kurze Tour?",pb:"Wir zeigen dir Tenerife Go in 30 Sekunden.",yes:"Tour starten",no:"Später",skip:"Überspringen",next:"Weiter",done:"Los geht's!",back:"Zur\u00fcck",steps:[["Orte suchen","\u00dcber 700 gepr\u00fcfte Orte: Str\u00e4nde, Wanderwege, Guachinches, Aussichtspunkte und mehr."],["Nach Kategorien filtern","Zeig nur, was dich heute interessiert: Natur, Gastronomie, Kultur, Sport\u2026"],["Kein Plan? W\u00fcrfle","Bringt dich zu einem zuf\u00e4lligen Ort. Mit Filtern bleibt die \u00dcberraschung nach deinem Geschmack."],["Karte w\u00e4hlen","Tippen wechselt zwischen Stra\u00dfen, Satellit und Gel\u00e4nde. Ideal zum Wandern."],["Mikroklimas","Im einen Dorf regnet es, im n\u00e4chsten scheint die Sonne. Wetter je Gebiet, live."],["Das Meer heute","Seegang an 7 K\u00fcsten. Vor dem Baden oder einem Naturbecken unbedingt ansehen."],["Feste & Traditionen","Romer\u00edas, Karneval und Patronatsfeste mit ihren Terminen."],["Busse","Haltestellen in der N\u00e4he und TITSA-Linien, um ohne Auto unterwegs zu sein."],["Deine Sprache","Die ganze App in 8 Sprachen. Hier jederzeit wechseln."],["Deine Reiseleiste","Favoriten, Routen, Shop, Assistent und dein Konto \u2013 immer griffbereit."],["Erfolge","Markiere besuchte Orte und schalte Troph\u00e4en frei, w\u00e4hrend du die Insel entdeckst."],["Tippe auf die Marker","Jeder Punkt bietet Fotos, Infos, Wetter vor Ort und Anfahrt. Die Insel geh\u00f6rt dir!"]]},
+    it: {pt:"Un tour veloce?",pb:"Ti mostriamo Tenerife Go in 30 secondi.",yes:"Fai il tour",no:"Non ora",skip:"Salta",next:"Avanti",done:"Si parte!",back:"Indietro",steps:[["Cerca un luogo","Oltre 700 luoghi verificati: spiagge, sentieri, guachinches, miradores e molto altro."],["Filtra per categoria","Mostra solo ci\u00f2 che ti va oggi: natura, gastronomia, cultura, sport\u2026"],["Senza piani? Tira il dado","Ti porta in un luogo a caso. Con i filtri attivi, la sorpresa resta nei tuoi gusti."],["Scegli la mappa","Tocca per passare da strade a satellite o rilievo. Perfetto per il trekking."],["Microclimi","Piove in un paese e c\u2019\u00e8 sole in quello accanto. Meteo in tempo reale per zone."],["Il mare oggi","Stato del mare su 7 coste. Da controllare prima di fare il bagno."],["Feste e tradizioni","Romer\u00edas, carnevali e feste patronali con le loro date."],["Autobus","Fermate vicine e linee TITSA per muoverti senza auto."],["Nella tua lingua","Tutta l\u2019app in 8 lingue. Cambiala qui quando vuoi."],["La tua barra di viaggio","Preferiti, percorsi, negozio, assistente e il tuo account, sempre a portata."],["Obiettivi","Segna i luoghi visitati e sblocca trofei mentre scopri l\u2019isola."],["Tocca i marcatori","Ogni punto ha foto, dettagli, meteo locale e indicazioni. L\u2019isola \u00e8 tua!"]]},
+    nl: {pt:"Een snelle tour?",pb:"We laten je Tenerife Go zien in 30 seconden.",yes:"Start de tour",no:"Niet nu",skip:"Overslaan",next:"Volgende",done:"Op pad!",back:"Terug",steps:[["Zoek een plek","Meer dan 700 geverifieerde plekken: stranden, paden, guachinches, uitzichtpunten en meer."],["Filter op categorie","Toon alleen waar je vandaag zin in hebt: natuur, eten, cultuur, sport\u2026"],["Geen plan? Gooi de dobbelsteen","Brengt je naar een willekeurige plek. Met filters blijft de verrassing naar jouw smaak."],["Kies je kaart","Tik om te wisselen tussen straten, satelliet en reli\u00ebf. Ideaal voor wandelingen."],["Microklimaten","In het ene dorp regent het, in het volgende schijnt de zon. Live weer per gebied."],["De zee vandaag","Zeegang op 7 kusten. Bekijk het voor je gaat zwemmen of naar een natuurlijk bad gaat."],["Feesten & tradities","Romer\u00edas, carnavals en patroonsfeesten met hun data."],["Bussen","Haltes in de buurt en TITSA-lijnen om zonder auto rond te reizen."],["In jouw taal","De hele app in 8 talen. Wijzig het hier wanneer je wilt."],["Je reisbalk","Favorieten, routes, winkel, assistent en je account, altijd bij de hand."],["Prestaties","Markeer bezochte plekken en ontgrendel trofee\u00ebn terwijl je het eiland ontdekt."],["Tik op de markers","Elk punt heeft foto\u2019s, details, lokaal weer en de route. Het eiland is van jou!"]]},
+    zh: {pt:"快速导览？",pb:"30秒了解应用的核心功能。",yes:"开始导览",no:"暂时不用",skip:"跳过",next:"下一步",done:"开始探索！",back:"\u4e0a\u4e00\u6b65",steps:[["\u641c\u7d22\u4efb\u4f55\u5730\u70b9","700 \u591a\u4e2a\u7ecf\u6838\u5b9e\u7684\u5730\u70b9\uff1a\u6d77\u6ee9\u3001\u6b65\u9053\u3001\u4e61\u6751\u9152\u9986\u3001\u89c2\u666f\u53f0\u7b49\u7b49\u3002"],["\u6309\u7c7b\u522b\u7b5b\u9009","\u53ea\u663e\u793a\u4f60\u4eca\u5929\u60f3\u770b\u7684\uff1a\u81ea\u7136\u3001\u7f8e\u98df\u3001\u6587\u5316\u3001\u8fd0\u52a8\u2026\u2026"],["\u6ca1\u4e3b\u610f\uff1f\u63b7\u9ab0\u5b50","\u968f\u673a\u5e26\u4f60\u53bb\u4e00\u4e2a\u5730\u65b9\u3002\u5f00\u7740\u7b5b\u9009\u65f6\uff0c\u60ca\u559c\u4e5f\u5408\u4f60\u53e3\u5473\u3002"],["\u9009\u62e9\u5730\u56fe","\u70b9\u51fb\u53ef\u5728\u8857\u9053\u3001\u536b\u661f\u4e0e\u5730\u5f62\u4e4b\u95f4\u5207\u6362\uff0c\u5f92\u6b65\u65f6\u7279\u522b\u597d\u7528\u3002"],["\u5fae\u6c14\u5019","\u8fd9\u4e2a\u6751\u5728\u4e0b\u96e8\uff0c\u9694\u58c1\u6751\u5374\u662f\u6674\u5929\u3002\u53ef\u67e5\u770b\u5404\u533a\u57df\u7684\u5b9e\u65f6\u5929\u6c14\u3002"],["\u4eca\u65e5\u6d77\u51b5","7 \u6bb5\u6d77\u5cb8\u7684\u6d77\u51b5\u3002\u4e0b\u6c34\u6216\u524d\u5f80\u5929\u7136\u6cf3\u6c60\u524d\u8bf7\u5148\u67e5\u770b\u3002"],["\u8282\u5e86\u4e0e\u4f20\u7edf","\u671d\u5723\u6e38\u884c\u3001\u72c2\u6b22\u8282\u4e0e\u4e3b\u4fdd\u8282\u5e86\u53ca\u5176\u65e5\u671f\u3002"],["\u516c\u4ea4","\u9644\u8fd1\u7ad9\u70b9\u4e0e TITSA \u8def\u7ebf\uff0c\u6ca1\u6709\u8f66\u4e5f\u80fd\u5230\u5904\u8d70\u3002"],["\u4f60\u7684\u8bed\u8a00","\u6574\u4e2a\u5e94\u7528\u652f\u6301 8 \u79cd\u8bed\u8a00\uff0c\u968f\u65f6\u5728\u6b64\u5207\u6362\u3002"],["\u4f60\u7684\u65c5\u884c\u680f","\u6536\u85cf\u3001\u8def\u7ebf\u3001\u5546\u5e97\u3001\u52a9\u624b\u4e0e\u8d26\u6237\uff0c\u968f\u65f6\u53ef\u7528\u3002"],["\u6210\u5c31","\u628a\u53bb\u8fc7\u7684\u5730\u65b9\u6807\u8bb0\u4e3a\u5df2\u8bbf\u95ee\uff0c\u8fb9\u63a2\u7d22\u8fb9\u89e3\u9501\u5956\u676f\u3002"],["\u70b9\u6309\u5730\u56fe\u6807\u8bb0","\u6bcf\u4e2a\u5730\u70b9\u90fd\u6709\u7167\u7247\u3001\u4ecb\u7ecd\u3001\u5f53\u5730\u5929\u6c14\u4e0e\u8def\u7ebf\u3002\u6574\u5ea7\u5c9b\u5c7f\u4efb\u4f60\u63a2\u7d22\uff01"]]},
+    zht: {pt:"快速導覽？",pb:"30秒了解應用程式的核心功能。",yes:"開始導覽",no:"暫時不用",skip:"跳過",next:"下一步",done:"開始探索！",back:"\u4e0a\u4e00\u6b65",steps:[["\u641c\u5c0b\u4efb\u4f55\u5730\u9ede","700 \u591a\u500b\u7d93\u6838\u5be6\u7684\u5730\u9ede\uff1a\u6d77\u7058\u3001\u6b65\u9053\u3001\u9109\u6751\u9152\u9928\u3001\u89c0\u666f\u53f0\u7b49\u7b49\u3002"],["\u4f9d\u985e\u5225\u7be9\u9078","\u53ea\u986f\u793a\u4f60\u4eca\u5929\u60f3\u770b\u7684\uff1a\u81ea\u7136\u3001\u7f8e\u98df\u3001\u6587\u5316\u3001\u904b\u52d5\u2026\u2026"],["\u6c92\u4e3b\u610f\uff1f\u64f2\u9ab0\u5b50","\u96a8\u6a5f\u5e36\u4f60\u53bb\u4e00\u500b\u5730\u65b9\u3002\u958b\u8457\u7be9\u9078\u6642\uff0c\u9a5a\u559c\u4e5f\u5408\u4f60\u53e3\u5473\u3002"],["\u9078\u64c7\u5730\u5716","\u9ede\u64ca\u53ef\u5728\u8857\u9053\u3001\u885b\u661f\u8207\u5730\u5f62\u4e4b\u9593\u5207\u63db\uff0c\u5065\u884c\u6642\u7279\u5225\u597d\u7528\u3002"],["\u5fae\u6c23\u5019","\u9019\u500b\u6751\u5728\u4e0b\u96e8\uff0c\u9694\u58c1\u6751\u537b\u662f\u6674\u5929\u3002\u53ef\u67e5\u770b\u5404\u5340\u57df\u7684\u5373\u6642\u5929\u6c23\u3002"],["\u4eca\u65e5\u6d77\u6cc1","7 \u6bb5\u6d77\u5cb8\u7684\u6d77\u6cc1\u3002\u4e0b\u6c34\u6216\u524d\u5f80\u5929\u7136\u6cf3\u6c60\u524d\u8acb\u5148\u67e5\u770b\u3002"],["\u7bc0\u6176\u8207\u50b3\u7d71","\u671d\u8056\u904a\u884c\u3001\u5609\u5e74\u83ef\u8207\u4e3b\u4fdd\u7bc0\u6176\u53ca\u5176\u65e5\u671f\u3002"],["\u516c\u8eca","\u9644\u8fd1\u7ad9\u9ede\u8207 TITSA \u8def\u7dda\uff0c\u6c92\u6709\u8eca\u4e5f\u80fd\u5230\u8655\u8d70\u3002"],["\u4f60\u7684\u8a9e\u8a00","\u6574\u500b\u61c9\u7528\u652f\u63f4 8 \u7a2e\u8a9e\u8a00\uff0c\u96a8\u6642\u5728\u6b64\u5207\u63db\u3002"],["\u4f60\u7684\u65c5\u884c\u5217","\u6536\u85cf\u3001\u8def\u7dda\u3001\u5546\u5e97\u3001\u52a9\u624b\u8207\u5e33\u6236\uff0c\u96a8\u6642\u53ef\u7528\u3002"],["\u6210\u5c31","\u628a\u53bb\u904e\u7684\u5730\u65b9\u6a19\u8a18\u70ba\u5df2\u9020\u8a2a\uff0c\u908a\u63a2\u7d22\u908a\u89e3\u9396\u734e\u76c3\u3002"],["\u9ede\u6309\u5730\u5716\u6a19\u8a18","\u6bcf\u500b\u5730\u9ede\u90fd\u6709\u7167\u7247\u3001\u4ecb\u7d39\u3001\u7576\u5730\u5929\u6c23\u8207\u8def\u7dda\u3002\u6574\u5ea7\u5cf6\u5dbc\u4efb\u4f60\u63a2\u7d22\uff01"]]}
   };
 
   function LT() {
@@ -18076,12 +18105,19 @@ window.addEventListener('hashchange', () => {
   var STEPS = [
     { sel: '#search-input-wrap', r: 24 },
     { sel: '#category-btn',      r: 18 },
-    { sel: '#lang-btn',          r: 18 },
+    { sel: '#dice-btn',          r: 18 },
     { sel: '#layers-btn',        r: 18 },
+    { sel: '#mc-btn',            r: 18 },
+    { sel: '#mar-btn',           r: 18 },
+    { sel: '#fi-btn',            r: 18 },
+    { sel: '#bus-quick-btn',     r: 18 },
+    { sel: '#lang-btn',          r: 18 },
     { sel: '.v19-bottom-nav',    r: 20, pad: 5 },
+    { sel: '.tg-trophy-fab',     r: 18 },
     { sel: null }
   ];
   var idx = 0;
+  var backBtn = null;
   var root = null, hole, card, h3, p, dots, skipBtn, nextBtn, promptEl = null;
 
   function el(tag, cls) { var n = document.createElement(tag); if (cls) n.className = cls; return n; }
@@ -18106,8 +18142,9 @@ window.addEventListener('hashchange', () => {
     for (var i = 0; i < STEPS.length; i++) dots.appendChild(el('i'));
     var btns = el('div', 'v19t-btns');
     skipBtn = el('button', 'v19t-skip'); skipBtn.type = 'button';
+    backBtn = el('button', 'v19t-back'); backBtn.type = 'button';
     nextBtn = el('button', 'v19t-next'); nextBtn.type = 'button';
-    btns.appendChild(skipBtn); btns.appendChild(nextBtn);
+    btns.appendChild(skipBtn); btns.appendChild(backBtn); btns.appendChild(nextBtn);
     foot.appendChild(dots); foot.appendChild(btns);
     card.appendChild(h3); card.appendChild(p); card.appendChild(foot);
     root.appendChild(hole); root.appendChild(card);
@@ -18115,6 +18152,7 @@ window.addEventListener('hashchange', () => {
 
     skipBtn.addEventListener('click', endTour);
     nextBtn.addEventListener('click', next);
+    backBtn.addEventListener('click', function () { if (idx > 0) { idx--; place(idx); } });
     window.addEventListener('resize', function () {
       if (root.classList.contains('open')) place(idx);
     });
@@ -18128,6 +18166,9 @@ window.addEventListener('hashchange', () => {
     h3.textContent = L.steps[i][0];
     p.textContent = L.steps[i][1];
     skipBtn.textContent = L.skip;
+    // Retroceso: se oculta en el primer paso, no hay a donde volver
+    backBtn.textContent = L.back || 'Atras';
+    backBtn.style.display = (i === 0) ? 'none' : '';
     nextBtn.textContent = (i === STEPS.length - 1) ? L.done : L.next;
     for (var j = 0; j < dots.children.length; j++) {
       dots.children[j].className = (j === i) ? 'on' : '';
@@ -22247,21 +22288,26 @@ function marParse(res, i) {
   };
 }
 
-function marFetch(force) {
+function marFetch(force, ligero) {
   if (marLoading) return;
   if (!force) {
     var c = marCacheRead();
     if (c) { marData = c; marRender(); return; }
   }
   marLoading = true;
-  marRender();
+  if (!ligero) marRender();   // en modo ligero no se toca la interfaz
 
   var lats = MAR_COSTAS.map(function (z) { return z.lat; }).join(',');
   var lngs = MAR_COSTAS.map(function (z) { return z.lng; }).join(',');
   var vars = 'wave_height,wave_period,swell_wave_height,swell_wave_period';
+  /* En el arranque solo hace falta saber si alguna costa esta peligrosa
+     para encender el aviso del boton: se piden los valores actuales y
+     nada mas. Las 24 h (7 zonas x 24 h x 4 variables) solo se piden al
+     abrir el panel, que es cuando de verdad se muestran. */
   var url = 'https://marine-api.open-meteo.com/v1/marine'
           + '?latitude=' + lats + '&longitude=' + lngs
-          + '&current=' + vars + '&hourly=' + vars
+          + '&current=' + vars
+          + (ligero ? '' : '&hourly=' + vars)
           + '&forecast_days=1&timezone=Atlantic%2FCanary';
 
   var ctrl = new AbortController();
@@ -22275,15 +22321,14 @@ function marFetch(force) {
       var out = [];
       for (var i = 0; i < MAR_COSTAS.length; i++) out.push(marParse(arr[i], i));
       marData = out;
-      marCacheWrite(out);
+      if (!ligero) marCacheWrite(out);  // la version ligera no trae las 24 h
       marLoading = false;
-      marRender();
+      if (ligero) marUpdateBtn(); else marRender();
     })
     .catch(function () {
       clearTimeout(timer);
       marLoading = false;
-      marData = 'error';
-      marRender();
+      if (!ligero) { marData = 'error'; marRender(); }
     });
 }
 
@@ -22436,7 +22481,7 @@ function marToggle() {
   if (!p) return;
   var abierto = (p.style.display === 'block');
   p.style.display = abierto ? 'none' : 'block';
-  if (!abierto) marFetch(false);   // perezoso: solo al abrir
+  if (!abierto) marFetch(false, false);   // completa, con las 24 h
 }
 
 // Si alguna costa esta en nivel peligroso, el boton lo avisa sin
@@ -22484,11 +22529,186 @@ function marInit() {
 
   // Consulta silenciosa al arrancar: solo para encender el aviso del boton
   // si hay mar peligroso. No abre nada ni molesta.
-  setTimeout(function () { marFetch(false); }, 2500);
+  setTimeout(function () { marFetch(true, true); }, 4000);
 }
 
 if (document.readyState !== 'loading') { marInit(); }
 else { document.addEventListener('DOMContentLoaded', marInit); }
+
+/* --- NOTIFICACIONES DIARIAS --------------------------------------
+   Se ofrecen SOLO si la app esta instalada en la pantalla de inicio.
+   En iOS es obligatorio (el Push API no existe en una pestana suelta)
+   y en Android es lo sensato: no se pide permiso a quien todavia no
+   ha decidido quedarse.
+
+   Ademas no se pregunta nada mas abrir: hacen falta varias visitas.
+   Un permiso denegado no se puede volver a pedir nunca.            */
+
+var PUSH_TX = {"titulo":{"es":"\u00bfUn empuj\u00f3n cada ma\u00f1ana?","en":"A little nudge each morning?","fr":"Un petit mot chaque matin ?","de":"Jeden Morgen ein Ansto\u00df?","it":"Una spinta ogni mattina?","nl":"Elke ochtend een zetje?","zh":"\u6bcf\u5929\u65e9\u4e0a\u6765\u70b9\u7075\u611f\uff1f","zht":"\u6bcf\u5929\u65e9\u4e0a\u4f86\u9ede\u9748\u611f\uff1f"},"texto":{"es":"Una frase para empezar el d\u00eda y una idea de plan. Nada m\u00e1s: sin publicidad y sin agobiar.","en":"A line to start the day and an idea for a plan. Nothing else: no ads, no spam.","fr":"Une phrase pour commencer la journ\u00e9e et une id\u00e9e de sortie. Rien d\u2019autre : pas de pub, pas de spam.","de":"Ein Satz f\u00fcr den Tagesstart und eine Idee f\u00fcr einen Ausflug. Mehr nicht: keine Werbung, kein Spam.","it":"Una frase per iniziare la giornata e un\u2019idea per un piano. Nient\u2019altro: niente pubblicit\u00e0 n\u00e9 spam.","nl":"Een zin om de dag te beginnen en een idee voor een uitje. Meer niet: geen reclame, geen spam.","zh":"\u4e00\u53e5\u5f00\u542f\u4e00\u5929\u7684\u8bdd\uff0c\u52a0\u4e00\u4e2a\u73a9\u6cd5\u5efa\u8bae\u3002\u6ca1\u6709\u5e7f\u544a\uff0c\u4e5f\u4e0d\u4f1a\u6253\u6270\u3002","zht":"\u4e00\u53e5\u958b\u555f\u4e00\u5929\u7684\u8a71\uff0c\u52a0\u4e00\u500b\u73a9\u6cd5\u5efa\u8b70\u3002\u6c92\u6709\u5ee3\u544a\uff0c\u4e5f\u4e0d\u6703\u6253\u64fe\u3002"},"si":{"es":"S\u00ed, av\u00edsame","en":"Yes, notify me","fr":"Oui, pr\u00e9viens-moi","de":"Ja, benachrichtige mich","it":"S\u00ec, avvisami","nl":"Ja, waarschuw me","zh":"\u597d\uff0c\u63d0\u9192\u6211","zht":"\u597d\uff0c\u63d0\u9192\u6211"},"no":{"es":"Ahora no","en":"Not now","fr":"Plus tard","de":"Sp\u00e4ter","it":"Non ora","nl":"Nu niet","zh":"\u6682\u4e0d","zht":"\u66ab\u4e0d"},"ok":{"es":"\u2705 Listo. Nos vemos por la ma\u00f1ana.","en":"\u2705 Done. See you in the morning.","fr":"\u2705 C\u2019est fait. \u00c0 demain matin.","de":"\u2705 Fertig. Bis morgen fr\u00fch.","it":"\u2705 Fatto. Ci vediamo domattina.","nl":"\u2705 Klaar. Tot morgenochtend.","zh":"\u2705 \u5df2\u5f00\u542f\uff0c\u660e\u65e9\u89c1\u3002","zht":"\u2705 \u5df2\u958b\u555f\uff0c\u660e\u65e9\u898b\u3002"},"denegado":{"es":"Las notificaciones est\u00e1n bloqueadas. Puedes activarlas en los ajustes del m\u00f3vil.","en":"Notifications are blocked. You can enable them in your phone settings.","fr":"Les notifications sont bloqu\u00e9es. Active-les dans les r\u00e9glages du t\u00e9l\u00e9phone.","de":"Benachrichtigungen sind blockiert. Du kannst sie in den Einstellungen aktivieren.","it":"Le notifiche sono bloccate. Puoi attivarle nelle impostazioni del telefono.","nl":"Meldingen zijn geblokkeerd. Je kunt ze aanzetten in de instellingen.","zh":"\u901a\u77e5\u5df2\u88ab\u963b\u6b62\uff0c\u53ef\u5728\u624b\u673a\u8bbe\u7f6e\u4e2d\u5f00\u542f\u3002","zht":"\u901a\u77e5\u5df2\u88ab\u5c01\u9396\uff0c\u53ef\u5728\u624b\u6a5f\u8a2d\u5b9a\u4e2d\u958b\u555f\u3002"},"error":{"es":"No se pudo activar. Int\u00e9ntalo m\u00e1s tarde.","en":"Couldn\u2019t enable it. Try again later.","fr":"Impossible de l\u2019activer. R\u00e9essaie plus tard.","de":"Konnte nicht aktiviert werden. Sp\u00e4ter erneut versuchen.","it":"Non \u00e8 stato possibile attivarle. Riprova pi\u00f9 tardi.","nl":"Kon het niet inschakelen. Probeer het later.","zh":"\u5f00\u542f\u5931\u8d25\uff0c\u8bf7\u7a0d\u540e\u518d\u8bd5\u3002","zht":"\u958b\u555f\u5931\u6557\uff0c\u8acb\u7a0d\u5f8c\u518d\u8a66\u3002"}};
+var VAPID_PUB = 'BOvXkWkqEOKKr8bT68F-8-TitD6q1GGzdpItJfcA2YXZa3lKbveDGtO-7a6P944Fv6x0QpY2TtuzUb6zKbJjauA';
+var PUSH_ASK_KEY = 'tgo_push_asked';
+var PUSH_VISITS_KEY = 'tgo_visits';
+
+function pushTx(k) {
+  var l = (typeof currentLang !== 'undefined' && currentLang) ? currentLang : 'es';
+  var e = PUSH_TX[k];
+  return e ? (e[l] || e.es) : '';
+}
+
+// Esta instalada en la pantalla de inicio?
+function pushInstalada() {
+  try {
+    if (window.navigator.standalone === true) return true;            // iOS
+    return window.matchMedia('(display-mode: standalone)').matches;   // resto
+  } catch (e) { return false; }
+}
+
+function pushSoportado() {
+  return ('serviceWorker' in navigator) && ('PushManager' in window) && ('Notification' in window);
+}
+
+// base64url -> Uint8Array, formato que exige pushManager.subscribe
+function pushB64(base64) {
+  var pad = '='.repeat((4 - base64.length % 4) % 4);
+  var b64 = (base64 + pad).replace(/-/g, '+').replace(/_/g, '/');
+  var raw = atob(b64);
+  var arr = new Uint8Array(raw.length);
+  for (var i = 0; i < raw.length; i++) arr[i] = raw.charCodeAt(i);
+  return arr;
+}
+
+function pushToast(txt, ok) {
+  try {
+    var el = document.getElementById('push-toast');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'push-toast';
+      el.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);' +
+        'bottom:calc(120px + env(safe-area-inset-bottom,0px));z-index:4000;max-width:86vw;' +
+        'font-size:0.78rem;line-height:1.4;padding:10px 16px;border-radius:12px;' +
+        'box-shadow:0 6px 22px rgba(0,0,0,0.5);text-align:center;';
+      document.body.appendChild(el);
+    }
+    el.style.background = ok ? 'rgba(15,17,23,0.96)' : 'rgba(120,53,15,0.96)';
+    el.style.border = '1px solid ' + (ok ? 'rgba(201,168,76,0.5)' : 'rgba(245,158,11,0.5)');
+    el.style.color = ok ? '#c9a84c' : '#fcd34d';
+    el.textContent = txt;
+    el.style.display = 'block';
+    clearTimeout(el._t);
+    el._t = setTimeout(function () { el.style.display = 'none'; }, 4200);
+  } catch (e) {}
+}
+
+async function pushSuscribir() {
+  try {
+    var permiso = await Notification.requestPermission();
+    if (permiso !== 'granted') { pushToast(pushTx('denegado'), false); return false; }
+
+    var reg = await navigator.serviceWorker.ready;
+    var sub = await reg.pushManager.getSubscription();
+    if (!sub) {
+      sub = await reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: pushB64(VAPID_PUB)
+      });
+    }
+    var j = sub.toJSON();
+    if (!j || !j.keys) throw new Error('suscripcion incompleta');
+
+    /* Se guarda en Supabase. La tabla solo admite altas: no se puede
+       leer desde el cliente, asi que la lista de dispositivos no es
+       consultable por nadie salvo la funcion del servidor. */
+    var SB_URL = window.SUPABASE_URL, SB_KEY = window.SUPABASE_ANON_KEY;
+    if (!SB_URL || !SB_KEY) throw new Error('Supabase no configurado');
+
+    var resp = await fetch(SB_URL + '/rest/v1/push_subs', {
+      method: 'POST',
+      headers: {
+        'apikey': SB_KEY,
+        'Authorization': 'Bearer ' + SB_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'resolution=merge-duplicates'
+      },
+      body: JSON.stringify({
+        endpoint: j.endpoint,
+        p256dh: j.keys.p256dh,
+        auth: j.keys.auth,
+        lang: (typeof currentLang !== 'undefined' ? currentLang : 'es')
+      })
+    });
+    if (!resp.ok && resp.status !== 409) throw new Error('HTTP ' + resp.status);
+
+    pushToast(pushTx('ok'), true);
+    return true;
+  } catch (e) {
+    pushToast(pushTx('error'), false);
+    return false;
+  }
+}
+
+function pushPedir() {
+  var bd = document.createElement('div');
+  bd.style.cssText = 'position:fixed;inset:0;z-index:9800;background:rgba(0,0,0,0.6);' +
+    'display:flex;align-items:center;justify-content:center;padding:20px;';
+  var card = document.createElement('div');
+  card.style.cssText = 'background:#0F1117;border:1px solid rgba(201,168,76,0.35);' +
+    'border-radius:16px;padding:20px;max-width:330px;width:100%;' +
+    'box-shadow:0 12px 40px rgba(0,0,0,0.6);';
+
+  var h = document.createElement('div');
+  h.style.cssText = "font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#c9a84c;font-weight:600;margin-bottom:6px;";
+  h.textContent = pushTx('titulo');
+  var p = document.createElement('div');
+  p.style.cssText = 'font-size:0.82rem;line-height:1.5;color:rgba(255,255,255,0.72);margin-bottom:16px;';
+  p.textContent = pushTx('texto');
+
+  var fila = document.createElement('div');
+  fila.style.cssText = 'display:flex;gap:10px;justify-content:flex-end;';
+  var no = document.createElement('button');
+  no.type = 'button';
+  no.style.cssText = 'background:none;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);' +
+    'font-size:0.82rem;padding:8px 14px;border-radius:10px;cursor:pointer;';
+  no.textContent = pushTx('no');
+  var si = document.createElement('button');
+  si.type = 'button';
+  si.style.cssText = 'background:linear-gradient(135deg,#c9a84c,#a07830);border:none;color:#000;' +
+    'font-weight:700;font-size:0.82rem;padding:8px 16px;border-radius:10px;cursor:pointer;';
+  si.textContent = pushTx('si');
+
+  var cerrar = function () { try { document.body.removeChild(bd); } catch (e) {} };
+  no.onclick = function () { try { localStorage.setItem(PUSH_ASK_KEY, '1'); } catch (e) {} cerrar(); };
+  si.onclick = function () {
+    try { localStorage.setItem(PUSH_ASK_KEY, '1'); } catch (e) {}
+    cerrar();
+    pushSuscribir();
+  };
+
+  fila.appendChild(no); fila.appendChild(si);
+  card.appendChild(h); card.appendChild(p); card.appendChild(fila);
+  bd.appendChild(card);
+  bd.addEventListener('click', function (e) { if (e.target === bd) { no.onclick(); } });
+  document.body.appendChild(bd);
+}
+
+function pushInit() {
+  if (!pushSoportado() || !pushInstalada()) return;   // navegador suelto: ni preguntar
+  var visitas = 0, preguntado = false;
+  try {
+    visitas = parseInt(localStorage.getItem(PUSH_VISITS_KEY) || '0', 10) + 1;
+    localStorage.setItem(PUSH_VISITS_KEY, String(visitas));
+    preguntado = localStorage.getItem(PUSH_ASK_KEY) === '1';
+  } catch (e) {}
+
+  if (preguntado) return;
+  if (Notification.permission !== 'default') return;  // ya decidio antes
+  if (visitas < 3) return;                            // que use la app primero
+
+  setTimeout(pushPedir, 6000);   // sin prisa: primero que vea el mapa
+}
+
+if (document.readyState !== 'loading') { pushInit(); }
+else { document.addEventListener('DOMContentLoaded', pushInit); }
+
 
   var MC_ZONES = [
     { name: 'Costa Adeje',      sub: { es:'Sur', en:'South', fr:'Sud', de:'Süden', it:'Sud', nl:'Zuiden', zh:'南部' }, lat: 28.0780, lng: -16.7370 },
@@ -23334,85 +23554,181 @@ else { document.addEventListener('DOMContentLoaded', marInit); }
       desc:{ es:'Cabalgatas en todos los municipios; las de Santa Cruz y Garachico (con camellos) son las más espectaculares.',
              en:'Three Kings parades across the island; Santa Cruz and Garachico (with camels) host the most spectacular ones.',
              fr:'Défilés des Rois Mages dans toute l’île ; ceux de Santa Cruz et Garachico (avec chameaux) sont les plus spectaculaires.',
-             de:'Dreikönigsumzüge auf der ganzen Insel; die in Santa Cruz und Garachico (mit Kamelen) sind die spektakulärsten.' } },
+             de:'Dreikönigsumzüge auf der ganzen Insel; die in Santa Cruz und Garachico (mit Kamelen) sind die spektakulärsten.',
+             it:'Sfilate dei Re Magi in tutti i comuni; quelle di Santa Cruz e Garachico (con i cammelli) sono le più spettacolari.',
+             nl:'Driekoningenoptochten in alle gemeenten; die van Santa Cruz en Garachico (met kamelen) zijn het spectaculairst.',
+             zh:'全岛各市镇都有三王节巡游；圣克鲁斯和加拉奇科（有骆驼）的最为壮观。',
+             zht:'全島各市鎮都有三王節遊行；聖克魯斯與加拉奇科（有駱駝）的最為壯觀。' } },
     { emoji:'🎭', date:{ type:'easter', off:-47 }, lat:28.4682, lng:-16.2475,
       name:'Carnaval de Santa Cruz', place:'Santa Cruz de Tenerife',
       desc:{ es:'Fiesta de Interés Turístico Internacional y uno de los mayores carnavales del mundo: Gala de la Reina, coso y Entierro de la Sardina.',
              en:'Of International Tourist Interest and one of the world’s biggest carnivals: Queen’s Gala, main parade and the Burial of the Sardine.',
              fr:'Fête d’Intérêt Touristique International et l’un des plus grands carnavals du monde : Gala de la Reine, grand défilé et Enterrement de la Sardine.',
-             de:'Fest von internationalem touristischem Interesse und einer der größten Karnevals der Welt: Königinnen-Gala, Umzug und Beerdigung der Sardine.' } },
+             de:'Fest von internationalem touristischem Interesse und einer der größten Karnevals der Welt: Königinnen-Gala, Umzug und Beerdigung der Sardine.',
+             it:'Festa di Interesse Turistico Internazionale e uno dei più grandi carnevali del mondo: Gala della Regina, sfilata e Funerale della Sardina.',
+             nl:'Van internationaal toeristisch belang en een van de grootste carnavals ter wereld: koninginnengala, optocht en de begrafenis van de sardine.',
+             zh:'国际旅游节庆之一，也是世界最大的狂欢节之一：选后晚会、大巡游与「沙丁鱼葬礼」。',
+             zht:'國際旅遊節慶之一，也是世界最大的嘉年華之一：選后晚會、大遊行與「沙丁魚葬禮」。' } },
     { emoji:'⛪', date:{ type:'easter', off:-2 }, lat:28.4874, lng:-16.3159,
       name:'Semana Santa de La Laguna', place:'San Cristóbal de La Laguna',
       desc:{ es:'Procesiones por el casco histórico Patrimonio de la Humanidad; el Viernes Santo destaca la sobrecogedora Procesión del Silencio.',
              en:'Processions through the World Heritage old town; on Good Friday the haunting Silent Procession stands out.',
              fr:'Processions dans le centre historique classé au Patrimoine Mondial ; le Vendredi Saint, l’émouvante Procession du Silence.',
-             de:'Prozessionen durch die Welterbe-Altstadt; am Karfreitag die ergreifende Prozession der Stille.' } },
+             de:'Prozessionen durch die Welterbe-Altstadt; am Karfreitag die ergreifende Prozession der Stille.',
+             it:'Processioni nel centro storico Patrimonio dell’Umanità; il Venerdì Santo spicca la toccante Processione del Silenzio.',
+             nl:'Processies door de historische binnenstad (werelderfgoed); op Goede Vrijdag springt de indrukwekkende Stille Processie eruit.',
+             zh:'在世界遗产老城区举行游行；耶稣受难日的「静默游行」尤为动人。',
+             zht:'在世界遺產老城區舉行遊行；耶穌受難日的「靜默遊行」尤為動人。' } },
     { emoji:'🎆', date:{ type:'fixed', m:5, d:3 }, lat:28.3833, lng:-16.5860,
       name:'Fiestas de la Cruz', place:'Los Realejos · Santa Cruz',
       desc:{ es:'En Los Realejos, la rivalidad entre las calles El Sol y El Medio produce una de las mayores exhibiciones pirotécnicas de España.',
              en:'In Los Realejos, the rivalry between El Sol and El Medio streets produces one of Spain’s biggest fireworks displays.',
              fr:'À Los Realejos, la rivalité entre les rues El Sol et El Medio donne l’un des plus grands feux d’artifice d’Espagne.',
-             de:'In Los Realejos liefert die Rivalität der Straßen El Sol und El Medio eines der größten Feuerwerke Spaniens.' } },
+             de:'In Los Realejos liefert die Rivalität der Straßen El Sol und El Medio eines der größten Feuerwerke Spaniens.',
+             it:'A Los Realejos la rivalità tra le vie El Sol ed El Medio dà vita a uno dei più grandi spettacoli pirotecnici d’Europa.',
+             nl:'In Los Realejos leidt de rivaliteit tussen de straten El Sol en El Medio tot een van Europa’s grootste vuurwerkshows.',
+             zh:'在洛斯雷阿莱霍斯，El Sol 与 El Medio 两条街的较劲造就了欧洲规模最大的烟火表演之一。',
+             zht:'在洛斯雷阿萊霍斯，El Sol 與 El Medio 兩條街的較勁造就了歐洲規模最大的煙火表演之一。' } },
     { emoji:'🌼', date:{ type:'easter', off:60 }, lat:28.3897, lng:-16.5233,
       name:'Alfombras del Corpus', place:'La Orotava',
       desc:{ es:'Alfombras efímeras de flores y arenas volcánicas del Teide cubren las calles y la plaza del Ayuntamiento. Arte único en el mundo.',
              en:'Ephemeral carpets of flowers and volcanic Teide sands cover the streets and Town Hall square. Unique art in the world.',
              fr:'Tapis éphémères de fleurs et de sables volcaniques du Teide couvrent les rues et la place de la Mairie. Un art unique au monde.',
-             de:'Vergängliche Teppiche aus Blumen und Teide-Vulkansand bedecken Straßen und Rathausplatz. Weltweit einzigartige Kunst.' } },
+             de:'Vergängliche Teppiche aus Blumen und Teide-Vulkansand bedecken Straßen und Rathausplatz. Weltweit einzigartige Kunst.',
+             it:'Tappeti effimeri di fiori e sabbie vulcaniche del Teide ricoprono le strade e la piazza del Municipio. Arte che dura un giorno.',
+             nl:'Vergankelijke tapijten van bloemen en vulkanisch zand van de Teide bedekken de straten en het gemeenteplein. Kunst voor één dag.',
+             zh:'用鲜花与泰德火山的火山砂铺成的地毯覆盖街道与市政广场，只存在一天的艺术。',
+             zht:'用鮮花與泰德火山的火山砂鋪成的地毯覆蓋街道與市政廣場，只存在一天的藝術。' } },
     { emoji:'🚜', date:{ type:'month', m:6 }, lat:28.3905, lng:-16.5238,
       name:'Romería de San Isidro', place:'La Orotava',
       desc:{ es:'Una de las romerías más antiguas de Canarias: carretas engalanadas, trajes de mago, vino del país y música popular.',
              en:'One of the oldest pilgrimages in the Canaries: decorated carts, traditional dress, local wine and folk music.',
              fr:'L’un des plus anciens pèlerinages des Canaries : chars décorés, costumes traditionnels, vin local et musique populaire.',
-             de:'Eine der ältesten Wallfahrten der Kanaren: geschmückte Wagen, Trachten, Landwein und Volksmusik.' } },
+             de:'Eine der ältesten Wallfahrten der Kanaren: geschmückte Wagen, Trachten, Landwein und Volksmusik.',
+             it:'Una delle romerías più antiche delle Canarie: carri addobbati, abiti tradizionali, vino locale e musica popolare.',
+             nl:'Een van de oudste romerías van de Canarische Eilanden: versierde karren, klederdracht, lokale wijn en volksmuziek.',
+             zh:'加那利最古老的朝圣游行之一：装饰的牛车、传统服饰、本地葡萄酒与民谣。',
+             zht:'加那利最古老的朝聖遊行之一：裝飾的牛車、傳統服飾、在地葡萄酒與民謠。' } },
     { emoji:'🔥', date:{ type:'fixed', m:6, d:23 }, lat:28.4129, lng:-16.5570,
       name:'Noche de San Juan', place:'Playas de toda la isla',
       desc:{ es:'Hogueras en las playas la noche del 23 de junio; Playa Jardín en Puerto de la Cruz es uno de los puntos más mágicos.',
              en:'Bonfires on the beaches on the night of June 23rd; Playa Jardín in Puerto de la Cruz is one of the most magical spots.',
              fr:'Feux de joie sur les plages la nuit du 23 juin ; Playa Jardín à Puerto de la Cruz est l’un des lieux les plus magiques.',
-             de:'Lagerfeuer an den Stränden in der Nacht zum 23. Juni; Playa Jardín in Puerto de la Cruz ist einer der magischsten Orte.' } },
+             de:'Lagerfeuer an den Stränden in der Nacht zum 23. Juni; Playa Jardín in Puerto de la Cruz ist einer der magischsten Orte.',
+             it:'Falò sulle spiagge la notte del 23 giugno; Playa Jardín a Puerto de la Cruz è uno dei luoghi più magici.',
+             nl:'Vuren op de stranden in de nacht van 23 juni; Playa Jardín in Puerto de la Cruz is een van de mooiste plekken.',
+             zh:'6 月 23 日夜晚在各海滩点篝火；波多克鲁斯的 Playa Jardín 最有气氛。',
+             zht:'6 月 23 日夜晚在各海灘點篝火；波多克魯斯的 Playa Jardín 最有氣氛。' } },
     { emoji:'🐐', date:{ type:'fixed', m:6, d:24 }, lat:28.4178, lng:-16.5494,
       name:'Baño de las Cabras', place:'Puerto de la Cruz',
       desc:{ es:'Al amanecer del 24 de junio, tradición de origen guanche: los ganaderos bañan sus cabras en el mar del muelle pesquero.',
              en:'At dawn on June 24th, a tradition of Guanche origin: herders bathe their goats in the sea by the fishing dock.',
              fr:'À l’aube du 24 juin, tradition d’origine guanche : les éleveurs baignent leurs chèvres dans la mer du port de pêche.',
-             de:'Im Morgengrauen des 24. Juni, guanchischer Brauch: Hirten baden ihre Ziegen im Meer am Fischerhafen.' } },
+             de:'Im Morgengrauen des 24. Juni, guanchischer Brauch: Hirten baden ihre Ziegen im Meer am Fischerhafen.',
+             it:'All’alba del 24 giugno, tradizione di origine guanche: i pastori bagnano le capre nel mare del molo.',
+             nl:'Bij zonsopgang op 24 juni, een traditie van Guanche-oorsprong: herders baden hun geiten in zee bij de pier.',
+             zh:'6 月 24 日破晓时分的关切人古俗：牧人把山羊赶进码头边的海里洗浴。',
+             zht:'6 月 24 日破曉時分的關切人古俗：牧人把山羊趕進碼頭邊的海裡洗浴。' } },
     { emoji:'🍇', date:{ type:'nthsun', m:7, n:2 }, lat:28.4885, lng:-16.3140,
       name:'Romería de San Benito Abad', place:'San Cristóbal de La Laguna',
       desc:{ es:'Una de las mayores romerías de Canarias: miles de romeros, carretas con comida típica que se comparte y ganado engalanado.',
              en:'One of the biggest pilgrimages in the Canaries: thousands of pilgrims, carts sharing typical food, and adorned livestock.',
              fr:'L’un des plus grands pèlerinages des Canaries : des milliers de pèlerins, des chars partageant des mets typiques et du bétail paré.',
-             de:'Eine der größten Wallfahrten der Kanaren: Tausende Pilger, Wagen mit typischen Speisen zum Teilen und geschmücktes Vieh.' } },
+             de:'Eine der größten Wallfahrten der Kanaren: Tausende Pilger, Wagen mit typischen Speisen zum Teilen und geschmücktes Vieh.',
+             it:'Una delle più grandi romerías delle Canarie: migliaia di pellegrini, carri con cibo tipico condiviso e bestiame.',
+             nl:'Een van de grootste romerías van de Canarische Eilanden: duizenden deelnemers, karren met streekgerechten die worden gedeeld, en vee.',
+             zh:'加那利规模最大的朝圣游行之一：数千信众、载着乡土美食沿途分送的牛车与牲畜队伍。',
+             zht:'加那利規模最大的朝聖遊行之一：數千信眾、載著鄉土美食沿途分送的牛車與牲畜隊伍。' } },
     { emoji:'⛵', date:{ type:'fixed', m:7, d:16 }, lat:28.4178, lng:-16.5494,
       name:'Virgen del Carmen', place:'Puerto de la Cruz · Los Cristianos',
       desc:{ es:'La patrona de los marineros sale en procesión marítima: la Virgen embarca rodeada de decenas de barcos engalanados.',
              en:'The patron saint of sailors goes out in a sea procession: the Virgin sails surrounded by dozens of decorated boats.',
              fr:'La patronne des marins sort en procession maritime : la Vierge embarque entourée de dizaines de bateaux décorés.',
-             de:'Die Schutzpatronin der Seeleute zieht in einer Seeprozession aus: die Jungfrau fährt umgeben von Dutzenden geschmückter Boote.' } },
+             de:'Die Schutzpatronin der Seeleute zieht in einer Seeprozession aus: die Jungfrau fährt umgeben von Dutzenden geschmückter Boote.',
+             it:'La patrona dei marinai esce in processione marittima: la Vergine si imbarca circondata da decine di barche addobbate.',
+             nl:'De patrones van de zeelieden gaat in maritieme processie: het beeld vaart uit, omringd door tientallen versierde boten.',
+             zh:'海员主保圣母的海上巡游：圣像登船出海，数十艘装饰渔船随行。',
+             zht:'海員主保聖母的海上巡遊：聖像登船出海，數十艘裝飾漁船隨行。' } },
     { emoji:'🚶', date:{ type:'fixed', m:8, d:14 }, lat:28.3528, lng:-16.3697,
       name:'Peregrinación a Candelaria', place:'Candelaria',
       desc:{ es:'Miles de personas caminan de noche desde toda la isla hasta la Basílica de la Virgen de Candelaria, Patrona de Canarias.',
              en:'Thousands walk through the night from across the island to the Basilica of the Virgin of Candelaria, Patroness of the Canaries.',
              fr:'Des milliers de personnes marchent de nuit depuis toute l’île jusqu’à la Basilique de la Vierge de Candelaria, Patronne des Canaries.',
-             de:'Tausende wandern nachts von der ganzen Insel zur Basilika der Jungfrau von Candelaria, Schutzpatronin der Kanaren.' } },
+             de:'Tausende wandern nachts von der ganzen Insel zur Basilika der Jungfrau von Candelaria, Schutzpatronin der Kanaren.',
+             it:'Migliaia di persone camminano di notte da tutta l’isola fino alla Basilica della Virgen de Candelaria, patrona delle Canarie.',
+             nl:'Duizenden mensen lopen ’s nachts vanuit het hele eiland naar de basiliek van de Virgen de Candelaria, patrones van de Canarische Eilanden.',
+             zh:'数千人于夜间从全岛各地徒步前往坎德拉里亚圣母大殿——加那利群岛的主保圣母。',
+             zht:'數千人於夜間從全島各地徒步前往坎德拉里亞聖母大殿——加那利群島的主保聖母。' } },
     { emoji:'✨', date:{ type:'fixed', m:9, d:14 }, lat:28.4912, lng:-16.3127,
       name:'Fiestas del Cristo', place:'San Cristóbal de La Laguna',
       desc:{ es:'Las fiestas mayores de La Laguna: procesión del Cristo, conciertos y unos fuegos artificiales legendarios sobre la ciudad.',
              en:'La Laguna’s main festivities: procession of the Christ, concerts and legendary fireworks over the city.',
              fr:'Les grandes fêtes de La Laguna : procession du Christ, concerts et un feu d’artifice légendaire au-dessus de la ville.',
-             de:'Die Hauptfeste von La Laguna: Christus-Prozession, Konzerte und ein legendäres Feuerwerk über der Stadt.' } },
+             de:'Die Hauptfeste von La Laguna: Christus-Prozession, Konzerte und ein legendäres Feuerwerk über der Stadt.',
+             it:'Le feste principali di La Laguna: processione del Cristo, concerti e fuochi d’artificio leggendari.',
+             nl:'De grootste feesten van La Laguna: de Cristo-processie, concerten en legendarisch vuurwerk.',
+             zh:'拉拉古纳最盛大的节庆：基督圣像游行、音乐会，以及远近闻名的烟火。',
+             zht:'拉拉古納最盛大的節慶：基督聖像遊行、音樂會，以及遠近聞名的煙火。' } },
     { emoji:'🛷', date:{ type:'fixed', m:11, d:29 }, lat:28.3672, lng:-16.7110,
       name:'San Andrés y las Tablas', place:'Icod de los Vinos · La Laguna',
       desc:{ es:'En Icod, los jóvenes se lanzan calle abajo sobre tablas enceradas; en el norte se abren las bodegas con vino nuevo y castañas asadas.',
              en:'In Icod, youngsters hurtle downhill on waxed boards; across the north, wineries open with new wine and roasted chestnuts.',
              fr:'À Icod, les jeunes dévalent les rues sur des planches cirées ; dans le nord, les caves ouvrent avec vin nouveau et châtaignes grillées.',
-             de:'In Icod sausen Jugendliche auf gewachsten Brettern bergab; im Norden öffnen die Weinkeller mit neuem Wein und gerösteten Kastanien.' } },
+             de:'In Icod sausen Jugendliche auf gewachsten Brettern bergab; im Norden öffnen die Weinkeller mit neuem Wein und gerösteten Kastanien.',
+             it:'A Icod i giovani scendono per le strade su tavole di legno incerate; nel nord si aprono le cantine con il vino nuovo.',
+             nl:'In Icod glijden jongeren op geboende houten planken door de straten; in het noorden openen de bodega’s met de nieuwe wijn.',
+             zh:'在伊科德，年轻人踩着打蜡木板从街道滑下；北部的酒庄同时开桶迎新酒。',
+             zht:'在伊科德，年輕人踩著打蠟木板從街道滑下；北部的酒莊同時開桶迎新酒。' } },
     { emoji:'🎄', date:{ type:'month', m:12 }, lat:28.4682, lng:-16.2475,
       name:'Navidad y belenes', place:'Toda la isla',
       desc:{ es:'Belenes artesanales en cada municipio, el tradicional concierto de Navidad del puerto de Santa Cruz y el canto de Lo Divino.',
              en:'Handcrafted nativity scenes in every town, the traditional Christmas concert at Santa Cruz harbour and Lo Divino carols.',
              fr:'Crèches artisanales dans chaque commune, le traditionnel concert de Noël du port de Santa Cruz et les chants de Lo Divino.',
-             de:'Handgefertigte Krippen in jedem Ort, das traditionelle Weihnachtskonzert am Hafen von Santa Cruz und Lo-Divino-Gesänge.' } }
+             de:'Handgefertigte Krippen in jedem Ort, das traditionelle Weihnachtskonzert am Hafen von Santa Cruz und Lo-Divino-Gesänge.',
+             it:'Presepi artigianali in ogni comune, il tradizionale concerto di Natale al porto di Santa Cruz e i canti popolari.',
+             nl:'Ambachtelijke kerststallen in elke gemeente, het traditionele kerstconcert in de haven van Santa Cruz en volksliederen.',
+             zh:'各市镇的手工圣诞马槽、圣克鲁斯港的传统圣诞音乐会与民谣吟唱。',
+             zht:'各市鎮的手工聖誕馬槽、聖克魯斯港的傳統聖誕音樂會與民謠吟唱。' } },
+    { emoji:'🐂', date:{ type:'fixed', m:8, d:16 }, lat:28.3736, lng:-16.7639,
+      name:'Romería de San Roque', place:'Garachico',
+      desc:{ es:'Declarada de Interés Turístico Nacional. Carretas, yuntas de bueyes y rebaños acompañan al santo hasta su ermita, mientras los pescadores hacen una romería marítima por el litoral.',
+             en:'Declared of National Tourist Interest. Ox carts, yokes and flocks escort the saint to his chapel, while fishermen hold a parallel sea procession along the coast.',
+             fr:'Déclarée d’Intérêt Touristique National. Charrettes, attelages de bœufs et troupeaux accompagnent le saint jusqu’à son ermitage, tandis que les pêcheurs organisent une procession maritime.',
+             de:'Von nationalem touristischem Interesse. Ochsenkarren, Gespanne und Herden begleiten den Heiligen zu seiner Kapelle, während die Fischer eine Seeprozession entlang der Küste abhalten.',
+             it:'Dichiarata di Interesse Turistico Nazionale. Carri, gioghi di buoi e greggi accompagnano il santo fino al suo eremo, mentre i pescatori tengono una processione marittima lungo la costa.',
+             nl:'Van nationaal toeristisch belang. Ossenkarren, juk en kudden begeleiden de heilige naar zijn kapel, terwijl vissers een processie over zee houden langs de kust.',
+             zh:'获列为国家级旅游节庆。牛车、牛轭队与畜群护送圣像回到小教堂，渔民同时在海上举行随行巡游。',
+             zht:'獲列為國家級旅遊節慶。牛車、牛軛隊與畜群護送聖像回到小教堂，漁民同時在海上舉行隨行巡遊。' } },
+    { emoji:'🌾', date:{ type:'lastsun', m:4 }, lat:28.5203, lng:-16.32,
+      name:'Romería de San Marcos', place:'Tegueste',
+      desc:{ es:'Declarada de Interés Turístico Nacional y primera de las grandes romerías del año. Sus carretas se decoran con semillas y granos formando verdaderos mosaicos.',
+             en:'Declared of National Tourist Interest and the first of the year’s great romerías. Its carts are decorated with seeds and grains forming true mosaics.',
+             fr:'Déclarée d’Intérêt Touristique National et première des grandes romerías de l’année. Ses charrettes sont ornées de graines formant de véritables mosaïques.',
+             de:'Von nationalem touristischem Interesse und die erste der großen Romerías des Jahres. Die Wagen werden mit Samen und Körnern zu wahren Mosaiken geschmückt.',
+             it:'Dichiarata di Interesse Turistico Nazionale e prima delle grandi romerías dell’anno. I carri sono decorati con semi e granaglie che formano veri mosaici.',
+             nl:'Van nationaal toeristisch belang en de eerste grote romería van het jaar. De karren worden versierd met zaden en granen die ware mozaïeken vormen.',
+             zh:'获列为国家级旅游节庆，也是全年首场大型朝圣游行。牛车以各色种子与谷粒拼成图案，宛如镶嵌画。',
+             zht:'獲列為國家級旅遊節慶，也是全年首場大型朝聖遊行。牛車以各色種子與穀粒拼成圖案，宛如鑲嵌畫。' } },
+    { emoji:'⛵', date:{ type:'fixed', m:9, d:7 }, lat:28.3186, lng:-16.4128,
+      name:'Bajada de la Virgen del Socorro', place:'Güímar',
+      desc:{ es:'Considerada la romería más antigua de Canarias y declarada de Interés Turístico Regional. La Virgen baja hasta la ermita junto al mar el día 7 y regresa el 8, con la escenificación del Encuentro con los guanches.',
+             en:'Regarded as the oldest romería in the Canaries and declared of Regional Tourist Interest. The Virgin is carried down to the seaside chapel on the 7th and returns on the 8th, with a re-enactment of the Encounter with the Guanches.',
+             fr:'Considérée comme la plus ancienne romería des Canaries et déclarée d’Intérêt Touristique Régional. La Vierge descend à l’ermitage en bord de mer le 7 et remonte le 8, avec la mise en scène de la Rencontre avec les Guanches.',
+             de:'Gilt als älteste Romería der Kanaren und ist von regionalem touristischem Interesse. Die Jungfrau wird am 7. zur Kapelle am Meer getragen und kehrt am 8. zurück, mit der Nachstellung der Begegnung mit den Guanchen.',
+             it:'Considerata la romería più antica delle Canarie e dichiarata di Interesse Turistico Regionale. La Vergine scende all’eremo sul mare il giorno 7 e risale l’8, con la rievocazione dell’Incontro con i guanci.',
+             nl:'Geldt als de oudste romería van de Canarische Eilanden en is van regionaal toeristisch belang. Het Mariabeeld daalt op de 7e af naar de kapel aan zee en keert op de 8e terug, met een naspel van de Ontmoeting met de Guanchen.',
+             zh:'被视为加那利最古老的朝圣游行，列为区域级旅游节庆。圣母像于 7 日被抬往海边小教堂，8 日返回，途中重演与关切人相遇的场景。',
+             zht:'被視為加那利最古老的朝聖遊行，列為區域級旅遊節慶。聖母像於 7 日被抬往海邊小教堂，8 日返回，途中重演與關切人相遇的場景。' } },
+    { emoji:'👑', date:{ type:'fixed', m:10, d:9 }, lat:28.1227, lng:-16.726,
+      name:'Fiestas Patronales de Adeje', place:'Adeje',
+      desc:{ es:'Fiestas patronales en honor a la Virgen de la Encarnación y Santa Úrsula, del 9 al 18 de octubre. Son las fiestas mayores del municipio y reúnen a todos sus barrios.',
+             en:'Patron saint festivities honouring the Virgin of the Incarnation and Saint Ursula, from 9 to 18 October. They are the town’s main celebration and bring all its neighbourhoods together.',
+             fr:'Fêtes patronales en l’honneur de la Vierge de l’Incarnation et de Sainte Ursule, du 9 au 18 octobre. Ce sont les grandes fêtes de la commune et elles réunissent tous ses quartiers.',
+             de:'Patronatsfest zu Ehren der Jungfrau der Menschwerdung und der heiligen Ursula, vom 9. bis 18. Oktober. Es ist das Hauptfest der Gemeinde und vereint alle Stadtteile.',
+             it:'Feste patronali in onore della Vergine dell’Incarnazione e di Sant’Orsola, dal 9 al 18 ottobre. Sono le feste principali del comune e riuniscono tutti i suoi quartieri.',
+             nl:'Patroonsfeesten ter ere van de Maagd van de Menswording en de heilige Ursula, van 9 tot 18 oktober. Het zijn de grootste feesten van de gemeente en verenigen alle wijken.',
+             zh:'为纪念主保圣母「化身圣母」与共同主保圣女乌苏拉而举办，10 月 9 日至 18 日。这是全市最盛大的节庆，各街区共同参与。',
+             zht:'為紀念主保聖母「化身聖母」與共同主保聖女烏蘇拉而舉辦，10 月 9 日至 18 日。這是全市最盛大的節慶，各街區共同參與。' } },
   ];
 
   // ── Motor de fechas ────────────────────────────────────────
@@ -23431,11 +23747,19 @@ else { document.addEventListener('DOMContentLoaded', marInit); }
     var off = (7 - first.getDay()) % 7;
     return new Date(y, m-1, 1 + off + (n-1)*7);
   }
+  /* Ultimo domingo del mes. Hacia falta para la Romeria de Tegueste:
+     con 'nthsun' habria que fijar si es el 4o o el 5o domingo, y eso
+     cambia segun el ano. Asi el calculo es siempre correcto. */
+  function fiLastSunday(y, m) {
+    var last = new Date(y, m, 0);            // dia 0 del mes siguiente = ultimo del mes
+    return new Date(y, m-1, last.getDate() - last.getDay());
+  }
   function fiDateForYear(spec, y) {
-    if (spec.type === 'fixed')  return new Date(y, spec.m-1, spec.d);
-    if (spec.type === 'easter') return fiAddDays(fiEaster(y), spec.off);
-    if (spec.type === 'nthsun') return fiNthSunday(y, spec.m, spec.n);
-    if (spec.type === 'month')  return new Date(y, spec.m-1, 1);
+    if (spec.type === 'fixed')   return new Date(y, spec.m-1, spec.d);
+    if (spec.type === 'easter')  return fiAddDays(fiEaster(y), spec.off);
+    if (spec.type === 'nthsun')  return fiNthSunday(y, spec.m, spec.n);
+    if (spec.type === 'lastsun') return fiLastSunday(y, spec.m);
+    if (spec.type === 'month')   return new Date(y, spec.m-1, 1);
     return null;
   }
   // Próxima ocurrencia desde hoy (incluye hoy)
