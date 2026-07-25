@@ -15,7 +15,7 @@
    ══════════════════════════════════════════════════════════════════ */
 'use strict';
 
-var VERSION      = 'v1.3.1';
+var VERSION      = 'v1.3.2';
 var CACHE_SHELL  = 'tenerife-go-shell-' + VERSION;
 var CACHE_TILES  = 'tenerife-tiles-v1';   // se conserva entre versiones
 var MAX_TILES    = 3000;                  // tope para no llenar el movil
@@ -303,7 +303,7 @@ self.addEventListener('pushsubscriptionchange', function (event) {
             'apikey': SW_SB_KEY,
             'Authorization': 'Bearer ' + SW_SB_KEY,
             'Content-Type': 'application/json',
-            'Prefer': 'resolution=ignore-duplicates'
+            'Prefer': 'return=minimal, resolution=ignore-duplicates'
           },
           body: JSON.stringify({ endpoint: j.endpoint, p256dh: j.keys.p256dh, auth: j.keys.auth })
         }).catch(function () {});

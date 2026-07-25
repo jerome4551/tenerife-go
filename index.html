@@ -22627,7 +22627,7 @@ async function pushSuscribir() {
         'apikey': SB_KEY,
         'Authorization': 'Bearer ' + SB_KEY,
         'Content-Type': 'application/json',
-        'Prefer': 'resolution=ignore-duplicates'
+        'Prefer': 'return=minimal, resolution=ignore-duplicates'
       },
       body: JSON.stringify({
         endpoint: j.endpoint,
@@ -22715,7 +22715,7 @@ async function pushReSync() {
         'apikey': SB_KEY,
         'Authorization': 'Bearer ' + SB_KEY,
         'Content-Type': 'application/json',
-        'Prefer': 'resolution=ignore-duplicates'
+        'Prefer': 'return=minimal, resolution=ignore-duplicates'
       },
       body: JSON.stringify({
         endpoint: j.endpoint,
