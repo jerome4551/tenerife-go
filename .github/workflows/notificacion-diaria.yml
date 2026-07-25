@@ -6,6 +6,7 @@
 #  de Canarias y solo envia cuando alli son las 9 o las 10 de la manana,
 #  asi funciona igual en horario de verano y de invierno. La tabla
 #  push_sends evita que se mande dos veces el mismo dia.
+#  Un lanzamiento manual (Run workflow) SIEMPRE envia, ignorando la hora.
 # =====================================================================
 name: Notificacion diaria Tenerife Go
 
@@ -13,12 +14,7 @@ on:
   schedule:
     - cron: '0 8 * * *'   # 08:00 UTC  (09:00 en Canarias en verano)
     - cron: '0 9 * * *'   # 09:00 UTC  (09:00 en Canarias en invierno)
-  workflow_dispatch:      # boton para lanzarlo a mano desde GitHub
-    inputs:
-      forzar:
-        description: 'Forzar envio ahora (ignora la hora). Solo para pruebas.'
-        type: boolean
-        default: false
+  workflow_dispatch:      # boton para lanzarlo a mano (SIEMPRE envia, ignora la hora)
 
 jobs:
   enviar:
@@ -43,5 +39,5 @@ jobs:
           VAPID_PRIVATE:        ${{ secrets.VAPID_PRIVATE }}
           VAPID_SUBJECT:        'mailto:tenerife.go.app@gmail.com'
           APP_URL:              'https://jerome4551.github.io/tenerife-go/'
-          FORCE:                ${{ (github.event_name == 'workflow_dispatch' && inputs.forzar) && '1' || '0' }}
+          FORCE:                ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
         run: node enviar-notificacion.js
