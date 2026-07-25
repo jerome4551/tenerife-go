@@ -16311,6 +16311,8 @@ window.addEventListener('hashchange', () => {
       </div>
       <div class="auth-sync-status" id="auth-sync-status">Tus favoritos se guardan en la nube</div>
       <button type="button" class="auth-logout-btn" id="auth-logout-btn">Cerrar sesión</button>
+      <button type="button" id="auth-push-btn" style="width:100%;margin-top:12px;padding:12px;border:none;border-radius:10px;background:#D4AF37;color:#1a1a1a;font-weight:600;cursor:pointer;font-family:inherit;">Activar notificaciones</button>
+      <div id="auth-push-msg" style="margin-top:8px;font-size:13px;text-align:center;opacity:.9;color:#F5C76B;"></div>
     </div>
   </div>
 </div>
@@ -22621,27 +22623,28 @@ async function pushSuscribir() {
     var SB_URL = window.SUPABASE_URL, SB_KEY = window.SUPABASE_ANON_KEY;
     if (!SB_URL || !SB_KEY) throw new Error('Supabase no configurado');
 
-    var resp = await fetch(SB_URL + '/rest/v1/push_subs?on_conflict=endpoint', {
+    var resp = await fetch(SB_URL + '/rest/v1/rpc/guardar_push_sub', {
       method: 'POST',
       headers: {
         'apikey': SB_KEY,
         'Authorization': 'Bearer ' + SB_KEY,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal, resolution=ignore-duplicates'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        endpoint: j.endpoint,
-        p256dh: j.keys.p256dh,
-        auth: j.keys.auth,
-        lang: (typeof currentLang !== 'undefined' ? currentLang : 'es')
+        p_endpoint: j.endpoint,
+        p_p256dh: j.keys.p256dh,
+        p_auth: j.keys.auth,
+        p_lang: (typeof currentLang !== 'undefined' ? currentLang : 'es')
       })
     });
     if (!resp.ok && resp.status !== 409) throw new Error('HTTP ' + resp.status);
 
     pushToast(pushTx('ok'), true);
+    try { var _m = document.getElementById('auth-push-msg'); if (_m) _m.textContent = 'Notificaciones activadas ✓'; } catch (_) {}
     return true;
   } catch (e) {
     pushToast(pushTx('error'), false);
+    try { var _e = document.getElementById('auth-push-msg'); if (_e) _e.textContent = 'No se pudo activar: ' + (e && e.message ? e.message : 'error'); } catch (_) {}
     return false;
   }
 }
@@ -22709,19 +22712,18 @@ async function pushReSync() {
     if (!j || !j.keys) return;
     var SB_URL = window.SUPABASE_URL, SB_KEY = window.SUPABASE_ANON_KEY;
     if (!SB_URL || !SB_KEY) return;
-    await fetch(SB_URL + '/rest/v1/push_subs?on_conflict=endpoint', {
+    await fetch(SB_URL + '/rest/v1/rpc/guardar_push_sub', {
       method: 'POST',
       headers: {
         'apikey': SB_KEY,
         'Authorization': 'Bearer ' + SB_KEY,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal, resolution=ignore-duplicates'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        endpoint: j.endpoint,
-        p256dh: j.keys.p256dh,
-        auth: j.keys.auth,
-        lang: (typeof currentLang !== 'undefined' ? currentLang : 'es')
+        p_endpoint: j.endpoint,
+        p_p256dh: j.keys.p256dh,
+        p_auth: j.keys.auth,
+        p_lang: (typeof currentLang !== 'undefined' ? currentLang : 'es')
       })
     });
   } catch (e) {}
@@ -22747,8 +22749,19 @@ function pushInit() {
   setTimeout(pushPedir, 6000);   // sin prisa: primero que vea el mapa
 }
 
-if (document.readyState !== 'loading') { pushInit(); }
-else { document.addEventListener('DOMContentLoaded', pushInit); }
+window.pushSuscribir = pushSuscribir;
+function pushEngancharBoton() {
+  var b = document.getElementById('auth-push-btn');
+  if (!b || b._tgoHook) return;
+  b._tgoHook = true;
+  b.addEventListener('click', function () {
+    var el = document.getElementById('auth-push-msg');
+    if (el) el.textContent = 'Activando…';
+    pushSuscribir();
+  });
+}
+if (document.readyState !== 'loading') { pushInit(); pushEngancharBoton(); }
+else { document.addEventListener('DOMContentLoaded', function () { pushInit(); pushEngancharBoton(); }); }
 
 
   var MC_ZONES = [
