@@ -1,20 +1,21 @@
 # =====================================================================
 #  TENERIFE GO  ·  Notificacion diaria
-#  Este archivo va en el repo en:  .github/workflows/notificacion-diaria.yml
-#
-#  Se ejecuta a las 08:00 y 09:00 UTC. El script comprueba la hora real
-#  de Canarias y solo envia cuando alli son las 9 o las 10 de la manana,
-#  asi funciona igual en horario de verano y de invierno. La tabla
-#  push_sends evita que se mande dos veces el mismo dia.
-#  Un lanzamiento manual (Run workflow) SIEMPRE envia, ignorando la hora.
+#  Va en el repo en:  .github/workflows/notificacion-diaria.yml
+#  Se ejecuta sola cada manana. La franja de las 9/10 la aplica el script
+#  (hora real de Canarias). La tabla push_sends evita enviar dos veces.
+#  Un lanzamiento manual (Run workflow) siempre envia.
 # =====================================================================
 name: Notificacion diaria Tenerife Go
 
 on:
   schedule:
-    - cron: '0 8 * * *'   # 08:00 UTC  (09:00 en Canarias en verano)
-    - cron: '0 9 * * *'   # 09:00 UTC  (09:00 en Canarias en invierno)
-  workflow_dispatch:      # boton para lanzarlo a mano (SIEMPRE envia, ignora la hora)
+    # NO usar el minuto :00 (es el mas saturado y el que GitHub mas retrasa/salta).
+    # Varios intentos en la manana; push_sends evita que se envie mas de una vez.
+    - cron: '7 8 * * *'    # 08:07 UTC
+    - cron: '37 8 * * *'   # 08:37 UTC
+    - cron: '7 9 * * *'    # 09:07 UTC
+    - cron: '37 9 * * *'   # 09:37 UTC
+  workflow_dispatch:
 
 jobs:
   enviar:
