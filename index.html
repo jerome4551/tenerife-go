@@ -5891,12 +5891,15 @@ window.onunhandledrejection = function(e) {
   }
 </style>
 <style>
-.popup-sea{margin:8px 0;padding:9px 11px;border:1px solid rgba(96,165,250,0.35);border-radius:10px;background:rgba(14,25,40,0.6);}
-.popup-sea-title{font-weight:600;color:#93c5fd;font-size:13px;margin-bottom:6px;}
-.popup-sea-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:2px 0;gap:10px;}
-.popup-sea-k{color:#cbd5e1;}
-.popup-sea-v{font-weight:600;color:#e5e7eb;text-align:right;}
+.popup-sea-wrap{margin-top:8px;}
+.popup-sea-toggle{width:100%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 6px;border-radius:9px;cursor:pointer;border:1px solid rgba(96,165,250,0.4);background:rgba(96,165,250,0.10);color:#93c5fd;font-size:13px;font-weight:600;}
+.popup-sea-toggle.open{background:rgba(96,165,250,0.18);}
+.popup-sea-details{width:100%;box-sizing:border-box;margin-top:6px;padding:8px 10px;border:1px solid rgba(96,165,250,0.30);border-radius:10px;background:rgba(14,25,40,0.6);}
+.popup-sea-item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:3px 0;font-size:13px;min-width:0;}
+.popup-sea-k{color:#cbd5e1;white-space:nowrap;}
+.popup-sea-v{font-weight:600;color:#e5e7eb;text-align:right;word-break:break-word;}
 .popup-sea-loading,.popup-sea-err{font-size:12px;color:#9ca3af;text-align:center;padding:2px 0;}
+.popup-sea-warn{margin-top:8px;padding:7px 9px;border-radius:8px;font-size:12px;line-height:1.35;color:#fcd34d;background:rgba(251,191,36,0.10);border:1px solid rgba(251,191,36,0.35);}
 </style>
 </head>
 <body>
@@ -13158,6 +13161,17 @@ const SEA_TX = {
   zh:{loading:'正在加载海况…',error:'暂无海况数据',title:'这里的海',waves:'浪',water:'水温',wind:'风',uv:'紫外线',s_calm:'平静',s_mod:'中等',s_strong:'较大',s_vstrong:'很大',uv_low:'低',uv_mod:'中等',uv_high:'高',uv_vhigh:'很高',uv_ext:'极高',nd:'无数据'},
   zht:{loading:'正在載入海況…',error:'暫無海況資料',title:'這裡的海',waves:'浪',water:'水溫',wind:'風',uv:'紫外線',s_calm:'平靜',s_mod:'中等',s_strong:'較大',s_vstrong:'很大',uv_low:'低',uv_mod:'中等',uv_high:'高',uv_vhigh:'很高',uv_ext:'極高',nd:'無資料'}
 };
+var SEA_WARN = {
+  es:'Báñate solo con mar en calma y respeta banderas y cierres.',
+  en:'Swim only in calm seas and respect flags and closures.',
+  fr:'Baignez-vous uniquement par mer calme et respectez drapeaux et fermetures.',
+  de:'Nur bei ruhiger See baden, Flaggen und Sperrungen beachten.',
+  it:'Fai il bagno solo con mare calmo e rispetta bandiere e chiusure.',
+  nl:'Zwem alleen bij kalme zee en respecteer vlaggen en sluitingen.',
+  zh:'仅在海面平静时下水，遵守旗帜与关闭警示。',
+  zht:'僅在海面平靜時下水，遵守旗幟與關閉警示。'
+};
+Object.keys(SEA_WARN).forEach(function (k) { if (SEA_TX[k]) SEA_TX[k].warn = SEA_WARN[k]; });
 function seaTx() {
   var l = (typeof lang !== 'undefined' && lang) ? lang : 'es';
   return SEA_TX[l] || SEA_TX.es;
@@ -13199,42 +13213,56 @@ function seaBuildHtml(marine, weather) {
   var wdir  = (typeof wc.wind_direction_10m === 'number') ? wc.wind_direction_10m : null;
   var uv    = (typeof wc.uv_index === 'number') ? wc.uv_index : null;
   var st = seaWaveState(t, waveH), uvl = seaUvLevel(t, uv), arrow = seaWindArrow(wdir);
-  function row(label, value, color) {
-    return '<div class="popup-sea-row"><span class="popup-sea-k">' + escapeHtml(label) + '</span>'
+  function item(icon, label, value, color) {
+    return '<div class="popup-sea-item"><span class="popup-sea-k">' + icon + ' ' + escapeHtml(label) + '</span>'
          + '<span class="popup-sea-v"' + (color ? ' style="color:' + color + '"' : '') + '>' + value + '</span></div>';
   }
-  var html = '<div class="popup-sea-title">🌊 ' + escapeHtml(t.title) + '</div>';
-  html += row(t.waves, (waveH != null ? waveH.toFixed(1) + ' m · ' : '') + escapeHtml(st.txt), st.col);
-  html += row(t.water, (temp  != null ? Math.round(temp) + '°C' : escapeHtml(t.nd)), null);
-  html += row(t.wind,  (wind  != null ? Math.round(wind) + ' km/h ' + arrow : escapeHtml(t.nd)), null);
-  html += row(t.uv,    (uv    != null ? Math.round(uv) + ' · ' : '') + escapeHtml(uvl.txt), uvl.col);
+  var html = '';
+  html += item('🌊', t.waves, (waveH != null ? waveH.toFixed(1) + ' m · ' : '') + escapeHtml(st.txt), st.col);
+  html += item('🌡️', t.water, (temp  != null ? Math.round(temp) + '°C' : escapeHtml(t.nd)), null);
+  html += item('💨', t.wind,  (wind  != null ? Math.round(wind) + ' km/h ' + arrow : escapeHtml(t.nd)), null);
+  html += item('☀️', t.uv,    (uv    != null ? Math.round(uv) + ' · ' : '') + escapeHtml(uvl.txt), uvl.col);
+  if (t.warn) html += '<div class="popup-sea-warn">⚠️ ' + escapeHtml(t.warn) + '</div>';
   return html;
+}
+function seaLoadInto(det, place) {
+  if (det.dataset.loaded === 'done' || det.dataset.loaded === 'pending') return;
+  var c = SEA_CACHE[place.id];
+  if (c && (Date.now() - c.ts) < SEA_TTL) { det.innerHTML = c.html; det.dataset.loaded = 'done'; return; }
+  det.dataset.loaded = 'pending';
+  det.innerHTML = '<div class="popup-sea-loading">' + escapeHtml(seaTx().loading) + '</div>';
+  var mUrl = 'https://marine-api.open-meteo.com/v1/marine?latitude=' + place.lat + '&longitude=' + place.lng
+           + '&current=wave_height,wave_period,sea_surface_temperature&timezone=Atlantic%2FCanary';
+  var wUrl = 'https://api.open-meteo.com/v1/forecast?latitude=' + place.lat + '&longitude=' + place.lng
+           + '&current=wind_speed_10m,wind_direction_10m,uv_index&timezone=Atlantic%2FCanary';
+  Promise.all([
+    seaFetchJSON(mUrl).catch(function () { return null; }),
+    seaFetchJSON(wUrl).catch(function () { return null; })
+  ]).then(function (res) {
+    if (!res[0] && !res[1]) {
+      det.innerHTML = '<div class="popup-sea-err">' + escapeHtml(seaTx().error) + '</div>';
+      det.dataset.loaded = ''; return;
+    }
+    var html = seaBuildHtml(res[0], res[1]);
+    SEA_CACHE[place.id] = { ts: Date.now(), html: html };
+    det.innerHTML = html; det.dataset.loaded = 'done';
+  }).catch(function () {
+    det.innerHTML = '<div class="popup-sea-err">' + escapeHtml(seaTx().error) + '</div>';
+    det.dataset.loaded = '';
+  });
 }
 function attachSeaLoader(marker, place) {
   marker.on('popupopen', function () {
-    var box = document.querySelector('.popup-sea[data-place-id="' + place.id + '"]');
-    if (!box || box.dataset.loaded === 'done' || box.dataset.loaded === 'pending') return;
-    var c = SEA_CACHE[place.id];
-    if (c && (Date.now() - c.ts) < SEA_TTL) { box.innerHTML = c.html; box.dataset.loaded = 'done'; return; }
-    box.dataset.loaded = 'pending';
-    var mUrl = 'https://marine-api.open-meteo.com/v1/marine?latitude=' + place.lat + '&longitude=' + place.lng
-             + '&current=wave_height,wave_period,sea_surface_temperature&timezone=Atlantic%2FCanary';
-    var wUrl = 'https://api.open-meteo.com/v1/forecast?latitude=' + place.lat + '&longitude=' + place.lng
-             + '&current=wind_speed_10m,wind_direction_10m,uv_index&timezone=Atlantic%2FCanary';
-    Promise.all([
-      seaFetchJSON(mUrl).catch(function () { return null; }),
-      seaFetchJSON(wUrl).catch(function () { return null; })
-    ]).then(function (res) {
-      if (!res[0] && !res[1]) {
-        box.innerHTML = '<div class="popup-sea-err">' + escapeHtml(seaTx().error) + '</div>';
-        box.dataset.loaded = ''; return;
-      }
-      var html = seaBuildHtml(res[0], res[1]);
-      SEA_CACHE[place.id] = { ts: Date.now(), html: html };
-      box.innerHTML = html; box.dataset.loaded = 'done';
-    }).catch(function () {
-      box.innerHTML = '<div class="popup-sea-err">' + escapeHtml(seaTx().error) + '</div>';
-      box.dataset.loaded = '';
+    var wrap = document.querySelector('.popup-sea-wrap[data-place-id="' + place.id + '"]');
+    if (!wrap || wrap.dataset.wired === '1') return;
+    wrap.dataset.wired = '1';
+    var btn = wrap.querySelector('.popup-sea-toggle');
+    var det = wrap.querySelector('.popup-sea-details');
+    if (!btn || !det) return;
+    btn.addEventListener('click', function (ev) {
+      ev.preventDefault(); ev.stopPropagation();
+      if (det.hidden) { det.hidden = false; btn.classList.add('open'); seaLoadInto(det, place); }
+      else { det.hidden = true; btn.classList.remove('open'); }
     });
   });
 }
@@ -13483,10 +13511,14 @@ function _updateMarkersImpl() {
       const safeShareLbl = escapeHtml(L.shareBtn);
       const safeHowToLbl = escapeHtml(L.nearbyHowToBtn || '🚏 Cómo llegar en bus');
       const safeDirLbl   = escapeHtml(L.directionsBtn || '🚗 Cómo llegar en coche');
-      const _dirDest = encodeURIComponent(place.lat + ',' + place.lng);
-      const safeDirUrl = escapeAttr('https://www.google.com/maps/dir/?api=1&destination=' + _dirDest + '&travelmode=driving');
+      const _dirCoord = place.lat + ',' + place.lng;
+      const _dirIOS = /iPhone|iPad|iPod/.test(navigator.userAgent || '') ||
+                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      const safeDirUrl = escapeAttr(_dirIOS
+        ? ('https://maps.apple.com/?daddr=' + _dirCoord + '&dirflg=d')
+        : ('https://www.google.com/maps/dir/?api=1&destination=' + _dirCoord + '&travelmode=driving'));
       const seaBlock = COAST_CATS.includes(place.category)
-        ? `<div class="popup-sea" data-place-id="${safeId}"><div class="popup-sea-loading">${escapeHtml(seaTx().loading)}</div></div>`
+        ? `<div class="popup-sea-wrap" data-place-id="${safeId}"><button type="button" class="popup-sea-toggle">🌊 ${escapeHtml(seaTx().title)}</button><div class="popup-sea-details" hidden></div></div>`
         : '';
       const safeTags     = place.tags.map(tag => `<span class="popup-tag">${escapeHtml(tag)}</span>`).join('');
 
@@ -13521,7 +13553,7 @@ function _updateMarkersImpl() {
           <button class="popup-howto-btn" data-action="howto" data-place-id="${safeId}">
             ${safeHowToLbl}
           </button>
-          <a class="popup-howto-btn popup-car-btn" href="${safeDirUrl}" target="_blank" rel="noopener noreferrer" data-action="comollegar" data-place-id="${safeId}">
+          <a class="popup-howto-btn popup-car-btn" href="${safeDirUrl}" target="_blank" rel="noopener noreferrer">
             ${safeDirLbl}
           </a>
           <div class="popup-tap-hint" data-action="detail" data-place-id="${safeId}">👆 Ver descripción completa</div>
@@ -26109,6 +26141,8 @@ function closePrivacyPanel() {
       var place = null;
       for (var i = 0; i < places.length; i++) { if (places[i].id === pid) { place = places[i]; break; } }
       if (!place || typeof place.warn !== 'string' || !WARN_I18N[place.warn]) return;
+      // El aviso de mar ya se muestra dentro del desplegable del mar; no duplicar arriba.
+      if (place.warn === 'mar' && inner.querySelector('.popup-sea-wrap')) return;
       var banner = document.createElement('div');
       banner.className = 'popup-warn';
       banner.setAttribute('role', 'note');
