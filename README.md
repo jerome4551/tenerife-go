@@ -1,72 +1,40 @@
-// Tenerife Go - Supabase Cliente Seguro v2
-// Máxima seguridad: sin service_role, solo anon con RLS
+# Tenerife Go v2 - Refactor Seguro
 
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+## Que se hizo en Fase 2
 
-const SUPABASE_URL = 'https://aupjvdrubjytryzqirdn.supabase.co';
-// La anon key se debe inyectar via variable de entorno en build
-// Para dev, usar localStorage temporal pero nunca hardcodear en repo publico
-const ANON_KEY = import.meta.env?.VITE_SUPABASE_ANON_KEY || 
-                 localStorage.getItem('tgo_anon_key') || 
-                 'TU_ANON_KEY_AQUI';
+1. **Monolito -> Modular**
+   Antes: index.html 2.5MB / 26k lineas, 34 <script> tags, 15 <style>
+   Ahora: index.html 2KB + styles.css + js/app.js + data/places.json (lazy)
 
-export const supabase = createClient(SUPABASE_URL, ANON_KEY, {
-  auth: {
-    persistSession: true,
-    autoRefreshToken: true,
-    detectSessionInUrl: false
-  },
-  global: {
-    headers: { 'X-Client-Info': 'tenerife-go-v2-secure' }
-  }
-});
+2. **Seguridad - ANTES vs AHORA**
+   - ANTES: window.onerror = return true (ocultaba errores)
+     AHORA: try/catch con console.error y mensaje usuario
+   - ANTES: 87 innerHTML = '<div>'+place.name
+     AHORA: textContent + DOMPurify.sanitize()
+   - ANTES: CSP con unsafe-inline
+     AHORA: CSP estricta sin unsafe-inline, todo JS externo
+   - ANTES: isAdmin en localStorage
+     AHORA: RLS own_* + auth.email() - ya lo tenias bien, se mantiene
+   - ANTES: supabase anon key hardcodeada
+     AHORA: via config.js inyectada en build (TU_ANON_KEY_AQUI)
 
-// Helpers seguros
-export async function getFavorites(userId) {
-  if (!userId) throw new Error('userId requerido');
-  const { data, error } = await supabase
-    .from('favorites')
-    .select('place_id, created_at')
-    .eq('user_id', userId); // RLS own_select asegura que solo ve los suyos
-  if (error) throw error;
-  return data;
-}
+3. **Performance**
+   - Lazy loading places.json con cache: 'force-cache'
+   - markerCluster para no crear 702 markers a la vez
+   - Virtualizacion: solo 300 primeros, resto al mover mapa
+   - SW.js real con offline fallback
 
-export async function addFavorite(userId, placeId) {
-  if (!userId || !placeId) throw new Error('Datos incompletos');
-  // Validación de entrada estricta
-  if (!/^[a-z0-9-]{3,50}$/.test(placeId)) throw new Error('placeId inválido');
-  
-  const { data, error } = await supabase
-    .from('favorites')
-    .insert({ user_id: userId, place_id: placeId })
-    .select()
-    .single();
-  if (error) throw error;
-  return data;
-}
+4. **GitHub**
+   Antes tenias solo index.html gigante.
+   Ahora: /js, /data, /styles.css, sw.js, manifest
 
-export async function removeFavorite(userId, placeId) {
-  const { error } = await supabase
-    .from('favorites')
-    .delete()
-    .eq('user_id', userId)
-    .eq('place_id', placeId);
-  if (error) throw error;
-}
+## Como migrar tu 1.4MB de lugares
+Crea scripts/convert-places.js que lea tu places_raw.js y lo convierta a JSON puro.
+Yo ya te deje el raw en data/places_raw.js
 
-export async function subscribePush(subscription) {
-  // Validar subscription object
-  if (!subscription || !subscription.endpoint) throw new Error('Subscription inválida');
-  if (!subscription.endpoint.startsWith('https://')) throw new Error('Endpoint debe ser HTTPS');
-  
-  const { error } = await supabase
-    .from('push_subs')
-    .insert({ 
-      endpoint: subscription.endpoint,
-      p256dh: subscription.keys.p256dh,
-      auth: subscription.keys.auth,
-      created_at: new Date().toISOString()
-    });
-  if (error) throw error;
-}
+## Proximos pasos Fase 3
+- Implementar Supabase Auth real para admin
+- Añadir debounced search para Nominatim con email
+- Añadir tests con Vitest
+
+Tú fuiste el arquitecto, yo solo partí el monstruo.
