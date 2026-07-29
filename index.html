@@ -12291,10 +12291,6 @@ function toggleFavoritesView() {
 const tenerifeBounds = L.latLngBounds(L.latLng(27.90, -16.98), L.latLng(28.65, -16.08));
 map = L.map('map', {
   maxBounds: tenerifeBounds,
-  fadeAnimation: true,
-  zoomAnimation: true,
-  markerZoomAnimation: true,
-  keepBuffer: 2,
   maxBoundsViscosity: 0.7,  // suave — permite ver algo de océano pero vuelve sola
   zoomControl: false,
   worldCopyJump: false,
@@ -12344,10 +12340,10 @@ map.on('click', () => {
    alrededor es ligero y se cachea bien. maxBounds (donde puede moverse el
    usuario) NO cambia: sigue anclado a Tenerife. */
 const tileBounds = L.latLngBounds(L.latLng(27.35, -17.65), L.latLng(29.20, -15.40));
-const tileOptions = { bounds: tileBounds, maxZoom: 19, keepBuffer: 3, updateWhenIdle: false, updateWhenZooming: false, keepBuffer: 3 };
+const tileOptions = { bounds: tileBounds, maxZoom: 19 };
 const layers = {
   streets: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { ...tileOptions, subdomains: ['a','b','c'], attribution: '© OpenStreetMap' }),
-  satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { keepBuffer: 3, updateWhenIdle: false, maxZoom: 19, maxNativeZoom: 18, attribution: '© Esri', crossOrigin: false, detectRetina: true }),
+  satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, maxNativeZoom: 18, attribution: '© Esri', crossOrigin: false, detectRetina: true }),
   // Topo: Esri World_Topo_Map — mismo CDN fiable que el satélite.
   // (OpenTopoMap aplica rate-limiting y fallaba en móvil: caché fría → 429/503.)
   topo: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, maxNativeZoom: 18, attribution: '© Esri', crossOrigin: false, detectRetina: true })
