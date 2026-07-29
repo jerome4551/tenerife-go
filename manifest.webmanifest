@@ -1,44 +1,9 @@
-{
-  "name": "Tenerife Go \u2014 Mapa Interactivo",
-  "short_name": "Tenerife Go",
-  "description": "Guia turistica de Tenerife: mas de 700 lugares verificados en 8 idiomas. Mapa offline, rutas, clima y asistente.",
-  "start_url": "./index.html",
-  "scope": "./",
-  "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#0A0A0C",
-  "theme_color": "#0F1117",
-  "lang": "es",
-  "dir": "ltr",
-  "categories": [
-    "travel",
-    "navigation",
-    "lifestyle"
-  ],
-  "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-maskable-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "any"
-    }
-  ]
-}
+// Tenerife Go - Config segura
+// NUNCA expongas service_role, solo anon key y con RLS activado
+export const SUPABASE_URL = 'https://aupjvdrubjytryzqirdn.supabase.co';
+export const SUPABASE_ANON_KEY = 'TU_ANON_KEY_AQUI'; // se inyecta via env en build, no hardcodeada
+
+// Limites para evitar baneo OSM
+export const NOMINATIM_EMAIL = 'tenerife.go.app@gmail.com';
+export const DEBOUNCE_MS = 400;
+export const MAX_PLACES_PER_CATEGORY = 150;
