@@ -43,12 +43,13 @@
      pero no críticos — la app sigue funcionando si hay conexión. -->
 <script>
 window.onerror = function(msg, src, line, col, err) {
-  // "Script error." es el mensaje estándar para errores cross-origin (CDN en file://)
-  // Solo ocurre al abrir el archivo local directamente — en Netlify desaparece.
-  if (msg === 'Script error.' || msg === 'Script error') return true; // suprimir
-  // Otros errores: loguear en consola pero no bloquear
-  console.warn('[App error]', msg, src && src.split('/').pop(), line);
-  return true; // evita que el navegador muestre el error
+  // Seguro: loguear siempre, NO suprimir errores (para debugging y seguridad)
+  if (msg === 'Script error.' || msg === 'Script error') {
+    console.warn('[App] Script error cross-origin ignorado:', src);
+    return false;
+  }
+  console.error('[App error]', msg, src, line, col, err);
+  return false; // deja que el navegador también lo muestre si quiere
 };
 window.onunhandledrejection = function(e) {
   // Suprimir rechazos de Promise de scripts externos (Supabase, etc.)
@@ -194,6 +195,8 @@ window.onunhandledrejection = function(e) {
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin="anonymous"
   onerror="document.body.innerHTML='<div style=\'font-family:sans-serif;padding:2rem;color:#f87171;background:#0f1117;min-height:100vh\'><h2>⚠️ Sin conexión a internet</h2><p>Tenerife GO necesita conexión para cargar el mapa la primera vez.<br>Conéctate e intenta de nuevo.</p></div>'"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" crossorigin="anonymous"></script>
+
 <!-- Leaflet.markercluster -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js" crossorigin="anonymous"
@@ -6030,7 +6033,7 @@ window.onunhandledrejection = function(e) {
   <div class="search-bar-wrap">
     <div class="search-input-wrap" id="search-input-wrap" onclick="openSearch(event)">
       <span class="search-icon">🔍</span>
-      <input type="text" id="search-input" placeholder="Buscar lugar..." autocomplete="off" inputmode="search"/>
+      <input type="text" id="search-input" maxlength="100" placeholder="Buscar lugar..." autocomplete="off" maxlength="100" inputmode="search"/>
       <button class="search-clear" id="search-clear" onclick="clearSearch(event)" title="Borrar búsqueda">✕</button>
       <div class="search-suggestions" id="search-suggestions"></div>
       <div class="search-results-count" id="search-results-count"></div>
@@ -14180,6 +14183,20 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
+
+// Seguridad + Performance: debounce para búsqueda (evita lag y ReDoS)
+function debounce(fn, delay){ let t; return function(...args){ clearTimeout(t); t=setTimeout(()=>fn.apply(this,args), delay); }; }
+
+// Seguridad: wrapper seguro para innerHTML usando DOMPurify si está disponible
+function setSafeHTML(el, html){
+  if (!el) return;
+  if (window.DOMPurify && html) {
+    el.innerHTML = DOMPurify.sanitize(html, {ALLOWED_TAGS: ['div','span','b','i','br','p','a','button','h2','h3','h4','small','img','ul','li'], ALLOWED_ATTR: ['class','href','src','alt','title','data-*']});
+  } else {
+    el.innerHTML = html;
+  }
+}
+
 
 // Haversine: distancia en km entre dos puntos lat/lng
 function haversineKm(lat1, lng1, lat2, lng2) {
