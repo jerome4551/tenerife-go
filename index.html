@@ -5892,6 +5892,15 @@ window.onunhandledrejection = function(e) {
     outline: 2px solid #D4AF37 !important;
     outline-offset: 2px;
   }
+
+/* ¿Dónde me baño hoy? - banner superior */
+#bano-hoy-holder{position:absolute; top:62px; left:50%; transform:translateX(-50%); z-index:450; background:rgba(15,17,23,0.92); backdrop-filter:blur(12px); border:1px solid rgba(212,175,55,0.3); border-radius:14px; padding:10px 14px; display:none; max-width:92%; width:420px; box-shadow:0 8px 24px rgba(0,0,0,0.4);}
+.bano-hoy-head{font-size:13px; color:#d4af37; font-weight:600; margin-bottom:8px; text-align:center;}
+.bano-hoy-cards{display:flex; gap:8px; overflow-x:auto; scrollbar-width:none;}
+.bano-chip{flex:0 0 auto; background:linear-gradient(135deg,#1a2a1a,#2a3a2a); border:1px solid #4a6a4a; color:#e0f0d4; border-radius:20px; padding:7px 12px; font-size:12px; cursor:pointer; transition:all .2s;}
+.bano-chip:hover{background:#d4af37; color:#0a0a0c; transform:scale(1.05);}
+.bano-chip small{opacity:0.7; margin-left:4px;}
+
 </style>
 <style>
 .popup-sea-wrap{margin-top:8px;}
@@ -6413,6 +6422,8 @@ window.onunhandledrejection = function(e) {
 const LANGS = {
   es: {
     flag: '🇪🇸', code: 'ES',
+    banoHoyTitle: 'Hoy viento {dir} {speed}km/h → Báñate aquí:',
+    banoHoyIdeal: '% ideal',
     searchPlaceholder: 'Buscar lugar...',
     noResults: 'No se encontraron lugares',
     filterLabel: 'Filtrar',
@@ -6546,6 +6557,8 @@ const LANGS = {
   },
   en: {
     flag: '🇬🇧', code: 'EN',
+    banoHoyTitle: 'Today wind {dir} {speed}km/h → Swim here:',
+    banoHoyIdeal: '% ideal',
     searchPlaceholder: 'Search place...',
     noResults: 'No places found',
     filterLabel: 'Filter',
@@ -6679,6 +6692,8 @@ const LANGS = {
   },
   fr: {
     flag: '🇫🇷', code: 'FR',
+    banoHoyTitle: 'Auj. vent {dir} {speed}km/h → Baignez-vous ici :',
+    banoHoyIdeal: '% idéal',
     searchPlaceholder: 'Rechercher un lieu...',
     noResults: 'Aucun lieu trouvé',
     filterLabel: 'Filtrer',
@@ -6812,6 +6827,8 @@ const LANGS = {
   },
   de: {
     flag: '🇩🇪', code: 'DE',
+    banoHoyTitle: 'Heute Wind {dir} {speed}km/h → Hier baden:',
+    banoHoyIdeal: '% ideal',
     searchPlaceholder: 'Ort suchen...',
     noResults: 'Keine Orte gefunden',
     filterLabel: 'Filtern',
@@ -6949,6 +6966,8 @@ const LANGS = {
   // ══════════════════════════════════════════════════════════
   it: {
     flag: '🇮🇹', code: 'IT',
+    banoHoyTitle: 'Oggi vento {dir} {speed}km/h → Bagno qui:',
+    banoHoyIdeal: '% ideale',
     searchPlaceholder: 'Cerca un luogo...',
     noResults: 'Nessun luogo trovato',
     filterLabel: 'Filtra',
@@ -7080,6 +7099,8 @@ const LANGS = {
   // ══════════════════════════════════════════════════════════
   nl: {
     flag: '🇳🇱', code: 'NL',
+    banoHoyTitle: 'Vandaag wind {dir} {speed}km/h → Zwem hier:',
+    banoHoyIdeal: '% ideaal',
     searchPlaceholder: 'Zoek een plek...',
     noResults: 'Geen plekken gevonden',
     filterLabel: 'Filter',
@@ -7217,6 +7238,8 @@ const LANGS = {
   // ══════════════════════════════════════════════════════════
   zh: {
     flag: '🇨🇳', code: '简',
+    banoHoyTitle: '今日风 {dir} {speed}km/h → 在此游泳：',
+    banoHoyIdeal: '% 理想',
     searchPlaceholder: '搜索地点...',
     noResults: '未找到地点',
     filterLabel: '筛选',
@@ -26555,5 +26578,73 @@ function closePrivacyPanel() {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', show); else show();
 })();
 </script>
+<script>
+// ====== ¿DÓNDE ME BAÑO HOY? - Usa tu API marine + open-meteo ya existente ======
+const PLAYAS_ORIENTACION = {
+  // id playa -> {name, orientacion (hacia donde mira), shelter: array de vientos que la joden, lat,lng}
+  'playa-de-las-vistas': {name: 'Playa de Las Vistas', ori: 'S', badWind: ['S','SW'], lat:28.052, lng:-16.727},
+  'playa-de-los-cristianos': {name: 'Playa de Los Cristianos', ori: 'S', badWind: ['S'], lat:28.050, lng:-16.717},
+  'playa-la-arena-manga': {name: 'Playa La Arena', ori: 'W', badWind: ['W','NW'], lat:28.165, lng:-16.830},
+  'playa-amarilla': {name: 'Playa Amarilla', ori: 'SE', badWind: ['SE','E'], lat:28.0093, lng:-16.6384},
+  'playa-antequera': {name: 'Mana Nui / Montaña Amarilla', ori: 'SE', badWind: ['SE'], lat:28.0018, lng:-16.6241},
+  'playa-teresitas': {name: 'Playa Las Teresitas', ori: 'NE', badWind: ['NE','N'], lat:28.508, lng:-16.184},
+  'playa-jardin': {name: 'Playa Jardín', ori: 'NW', badWind: ['NW','W'], lat:28.414, lng:-16.558},
+  'playa-duque': {name: 'Playa del Duque', ori: 'W', badWind: ['W'], lat:28.091, lng:-16.741}
+};
+
+function windDirToCardinal(deg){
+  if (deg==null) return '?';
+  const dirs=['N','NE','E','SE','S','SW','W','NW'];
+  return dirs[Math.round(deg/45)%8];
+}
+
+function scorePlaya(playa, windDeg, windSpeed){
+  const card = windDirToCardinal(windDeg);
+  // Si viento viene de donde la playa está expuesta, mal score
+  let score=100;
+  if (playa.badWind.includes(card)) score-=60;
+  // Si viento fuerte >20kmh, penaliza más playas expuestas
+  if (windSpeed>20 && playa.badWind.some(b=>card.includes(b[0]))) score-=20;
+  // Bonus: playas del suroeste son buenas con alisio NE (viento más común)
+  if ((card==='NE' || card==='E') && (playa.ori==='S' || playa.ori==='SW' || playa.ori==='W')) score+=20;
+  return score;
+}
+
+async function fetchVientoHoy(){
+  try{
+    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=28.2916&longitude=-16.6291&current=wind_speed_10m,wind_direction_10m&windspeed_unit=kmh');
+    const j=await r.json();
+    return {speed: j.current.wind_speed_10m, dir: j.current.wind_direction_10m};
+  }catch(e){ return {speed: 15, dir: 45}; }
+}
+
+async function renderBanoHoy(){
+  const holder=document.getElementById('bano-hoy-holder');
+  if(!holder) return;
+  const viento=await fetchVientoHoy();
+  const dirCard=windDirToCardinal(viento.dir);
+  let list=Object.entries(PLAYAS_ORIENTACION).map(([id,p])=>({id, ...p, score: scorePlaya(p, viento.dir, viento.speed)})).sort((a,b)=>b.score-a.score).slice(0,3);
+  var tr = (typeof LANGS !== 'undefined' && LANGS[currentLang]) ? LANGS[currentLang] : LANGS.es;
+  var titleTpl = tr.banoHoyTitle || 'Hoy viento {dir} {speed}km/h → Báñate aquí:';
+  var title = titleTpl.replace('{dir}', dirCard).replace('{speed}', Math.round(viento.speed));
+  var idealTxt = tr.banoHoyIdeal || '% ideal';
+  holder.innerHTML='<div class="bano-hoy-head">🏖️ '+escapeHtml(title)+'</div><div class="bano-hoy-cards">'+list.map(p=>'<button class="bano-chip" onclick="goToPlace(\''+DOMPurify.sanitize(p.id)+'\')">✓ '+escapeHtml(p.name)+' <small>'+p.score+escapeHtml(idealTxt)+'</small></button>').join('')+'</div>';
+  holder.style.display='block';
+}
+
+function goToPlace(id){
+  // Busca el lugar y centra mapa
+  const place=places.find(p=>p.id===id || p.id.includes(id.split('-')[1]));
+  if(place && map){ map.setView([place.lat, place.lng], 14); }
+  // Si es tu nuevo punto Mana Nui, usa coords directas
+  if(id.includes('antequera') || id.includes('amarilla')){
+    map.setView([28.0018, -16.6241], 15);
+  }
+}
+
+// Auto-lanzar al cargar
+setTimeout(renderBanoHoy, 2000);
+</script>
+<div id="bano-hoy-holder"></div>
 </body>
 </html>
