@@ -35,17 +35,17 @@ alter table public.admins enable row level security;
 -- filtra nada: no revela la lista de admins ni permite consultar por
 -- otro usuario. El search_path fijo evita que se le cuele una tabla
 -- `admins` falsa desde otro esquema.
+--
+-- El cuerpo va entre comillas simples y no con $$ a proposito: al copiar
+-- y pegar, los $$ se escapan con facilidad y llegan al editor como \$\$,
+-- que Postgres rechaza con "syntax error at or near \".
 create or replace function public.es_admin()
 returns boolean
 language sql
 stable
 security definer
 set search_path = public
-as $$
-  select exists (
-    select 1 from public.admins where user_id = auth.uid()
-  );
-$$;
+as 'select exists (select 1 from public.admins where user_id = auth.uid())';
 
 revoke execute on function public.es_admin() from anon;
 grant  execute on function public.es_admin() to authenticated;
@@ -82,7 +82,11 @@ create index if not exists anuncios_visible_idx on public.anuncios (visible);
 
 alter table public.anuncios enable row level security;
 
+-- Los `drop policy if exists` estan para que todo el fichero se pueda
+-- volver a ejecutar sin errores: create policy no admite "if not exists".
+--
 -- Lectura: cualquiera ve los anuncios marcados como visibles.
+drop policy if exists "anuncios visibles son publicos" on public.anuncios;
 create policy "anuncios visibles son publicos"
   on public.anuncios for select
   to anon, authenticated
@@ -91,6 +95,7 @@ create policy "anuncios visibles son publicos"
 -- Escritura (y lectura de los ocultos): solo administradores.
 -- Las policies se suman, asi que un admin ve tanto los visibles por la
 -- de arriba como los ocultos por esta.
+drop policy if exists "solo admin gestiona anuncios" on public.anuncios;
 create policy "solo admin gestiona anuncios"
   on public.anuncios for all
   to authenticated
@@ -111,6 +116,7 @@ create table if not exists public.anuncios_privado (
 
 alter table public.anuncios_privado enable row level security;
 
+drop policy if exists "solo admin ve facturacion" on public.anuncios_privado;
 create policy "solo admin ve facturacion"
   on public.anuncios_privado for all
   to authenticated
