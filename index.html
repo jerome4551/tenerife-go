@@ -5894,8 +5894,6 @@ window.onunhandledrejection = function(e) {
   }
 
 /* ¿Dónde me baño hoy? - banner superior */
-
-/* Donde me bano hoy - dentro del panel del mar */
 .bano-hoy-wrap{margin:10px 12px 12px; padding:12px; background:linear-gradient(135deg, rgba(212,175,55,0.12), rgba(42,122,90,0.12)); border:1px solid rgba(212,175,55,0.28); border-radius:14px;}
 .bano-hoy-head{font-size:0.82rem; font-weight:700; color:#F5C76B; margin-bottom:8px; display:flex; align-items:center; gap:6px;}
 .bano-hoy-sub{font-size:0.62rem; color:rgba(255,255,255,0.45); margin-bottom:10px; line-height:1.3;}
@@ -5904,8 +5902,7 @@ window.onunhandledrejection = function(e) {
 .bano-chip:hover{background:rgba(212,175,55,0.18); border-color:rgba(212,175,55,0.5); transform:translateX(2px);}
 .bano-chip .bano-name{font-weight:600;}
 .bano-chip .bano-score{font-size:0.68rem; background:linear-gradient(135deg,#F5C76B,#D4AF37); color:#0F1117; border-radius:20px; padding:2px 8px; font-weight:800;}
-.bano-chip.bano-best{border-color:#D4AF37; background:rgba(212,175,55,0.14);}
-
+.bano-chip.bano-best{border-color:rgba(212,175,55,0.25); background:rgba(255,255,255,0.06);}
 
 </style>
 <style>
@@ -6430,7 +6427,6 @@ const LANGS = {
     flag: '🇪🇸', code: 'ES',
     banoHoyTitle: 'Hoy viento {dir} {speed}km/h → Báñate aquí:',
     banoHoyIdeal: '% ideal',
-    banoHoySub: 'Protegidas del viento de hoy',
     searchPlaceholder: 'Buscar lugar...',
     noResults: 'No se encontraron lugares',
     filterLabel: 'Filtrar',
@@ -6566,7 +6562,6 @@ const LANGS = {
     flag: '🇬🇧', code: 'EN',
     banoHoyTitle: 'Today wind {dir} {speed}km/h → Swim here:',
     banoHoyIdeal: '% ideal',
-    banoHoySub: 'Sheltered from today wind',
     searchPlaceholder: 'Search place...',
     noResults: 'No places found',
     filterLabel: 'Filter',
@@ -6702,7 +6697,6 @@ const LANGS = {
     flag: '🇫🇷', code: 'FR',
     banoHoyTitle: 'Auj. vent {dir} {speed}km/h → Baignez-vous ici :',
     banoHoyIdeal: '% idéal',
-    banoHoySub: 'Protegees du vent du jour',
     searchPlaceholder: 'Rechercher un lieu...',
     noResults: 'Aucun lieu trouvé',
     filterLabel: 'Filtrer',
@@ -6838,7 +6832,6 @@ const LANGS = {
     flag: '🇩🇪', code: 'DE',
     banoHoyTitle: 'Heute Wind {dir} {speed}km/h → Hier baden:',
     banoHoyIdeal: '% ideal',
-    banoHoySub: 'Vor heutigem Wind geschutzt',
     searchPlaceholder: 'Ort suchen...',
     noResults: 'Keine Orte gefunden',
     filterLabel: 'Filtern',
@@ -6978,7 +6971,6 @@ const LANGS = {
     flag: '🇮🇹', code: 'IT',
     banoHoyTitle: 'Oggi vento {dir} {speed}km/h → Bagno qui:',
     banoHoyIdeal: '% ideale',
-    banoHoySub: 'Protette dal vento di oggi',
     searchPlaceholder: 'Cerca un luogo...',
     noResults: 'Nessun luogo trovato',
     filterLabel: 'Filtra',
@@ -7112,7 +7104,6 @@ const LANGS = {
     flag: '🇳🇱', code: 'NL',
     banoHoyTitle: 'Vandaag wind {dir} {speed}km/h → Zwem hier:',
     banoHoyIdeal: '% ideaal',
-    banoHoySub: 'Beschut tegen de wind van vandaag',
     searchPlaceholder: 'Zoek een plek...',
     noResults: 'Geen plekken gevonden',
     filterLabel: 'Filter',
@@ -7252,7 +7243,6 @@ const LANGS = {
     flag: '🇨🇳', code: '简',
     banoHoyTitle: '今日风 {dir} {speed}km/h → 在此游泳：',
     banoHoyIdeal: '% 理想',
-    banoHoySub: '今日避风',
     searchPlaceholder: '搜索地点...',
     noResults: '未找到地点',
     filterLabel: '筛选',
@@ -7649,10 +7639,6 @@ Object.keys(AUTH_STRINGS).forEach(lang => {
 // — NUNCA pantalla en blanco. Las cadenas tradicionales se sustituyen
 // progresivamente vía ZHT_OVERRIDES; lo no traducido cae a simplificado.
 const ZHT_OVERRIDES = {
-    banoHoyTitle: '今日風 {dir} {speed}km/h → 在此游泳：',
-    banoHoyIdeal: '% 理想',
-    banoHoySub: '今日避風',
-
     authBtnGuest: '帳戶',
     authBtnUser: '我的帳戶',
     authModalTitle: '您的帳戶',
@@ -26600,15 +26586,14 @@ function closePrivacyPanel() {
 <script>
 // ====== ¿DÓNDE ME BAÑO HOY? - Usa tu API marine + open-meteo ya existente ======
 const PLAYAS_ORIENTACION = {
-  // id playa -> {name, orientacion (hacia donde mira), shelter: array de vientos que la joden, lat,lng}
-  'playa-de-las-vistas': {name: 'Playa de Las Vistas', ori: 'S', badWind: ['S','SW'], lat:28.052, lng:-16.727, realId: 'playa-de-las-vistas'},
-  'playa-de-los-cristianos': {name: 'Playa de Los Cristianos', ori: 'S', badWind: ['S'], lat:28.05, lng:-16.717, realId: 'playa-de-los-cristianos'},
-  'playa-la-arena-manga': {name: 'Playa La Arena', ori: 'W', badWind: ['W','NW'], lat:28.165, lng:-16.83, realId: 'playa-la-arena'},
-  'playa-amarilla': {name: 'Playa Amarilla', ori: 'SE', badWind: ['SE','E'], lat:28.0093, lng:-16.6384, realId: 'playa-amarilla'},
-  'playa-montana-amarilla-mananui': {name: 'Mana Nui / Montana Amarilla', ori: 'SE', badWind: ['SE'], lat:28.0018, lng:-16.6241, realId: null},
-  'playa-teresitas': {name: 'Playa Las Teresitas', ori: 'NE', badWind: ['NE','N'], lat:28.508, lng:-16.184, realId: 'playa-de-las-teresitas'},
-  'playa-jardin': {name: 'Playa Jardin', ori: 'NW', badWind: ['NW','W'], lat:28.414, lng:-16.558, realId: 'playa-jardin'},
-  'playa-duque': {name: 'Playa del Duque', ori: 'W', badWind: ['W'], lat:28.091, lng:-16.741, realId: 'playa-del-duque'}
+  'las-vistas': {name: 'Playa de Las Vistas', ori: 'S', badWind: ['S','SW'], lat:28.0527, lng:-16.7244, realId: 'las-vistas'},
+  'arena': {name: 'Playa La Arena', ori: 'W', badWind: ['W','NW'], lat:28.2297, lng:-16.8409, realId: 'arena'},
+  'playa-amarilla': {name: 'Playa Amarilla', ori: 'SE', badWind: ['SE','E'], lat:28.0091, lng:-16.6387, realId: 'playa-amarilla'},
+  'mananui': {name: 'Mana Nui - Montana Amarilla', ori: 'SE', badWind: ['SE'], lat:28.0018, lng:-16.6241, realId: null},
+  'teresitas': {name: 'Playa Las Teresitas', ori: 'NE', badWind: ['NE','N'], lat:28.5097, lng:-16.1847, realId: 'teresitas'},
+  'playa-jardin': {name: 'Playa Jardin', ori: 'NW', badWind: ['NW','W'], lat:28.4128, lng:-16.5585, realId: 'playa-jardin'},
+  'el-duque': {name: 'Playa del Duque', ori: 'W', badWind: ['W'], lat:28.0914, lng:-16.7439, realId: 'el-duque'},
+  'fanabe': {name: 'Playa Fanabe', ori: 'SW', badWind: ['SW','S'], lat:28.0852, lng:-16.7368, realId: 'fanabe'}
 };
 
 function windDirToCardinal(deg){
@@ -26644,67 +26629,30 @@ async function renderBanoHoy(){
   const dirCard=windDirToCardinal(viento.dir);
   let list=Object.entries(PLAYAS_ORIENTACION).map(([id,p])=>({id, ...p, score: scorePlaya(p, viento.dir, viento.speed)})).sort((a,b)=>b.score-a.score).slice(0,3);
   var tr = (typeof LANGS !== 'undefined' && LANGS[currentLang]) ? LANGS[currentLang] : LANGS.es;
-  var titleTpl = tr.banoHoyTitle || 'Hoy viento {dir} {speed}km/h -> Banate aqui:';
+  var titleTpl = tr.banoHoyTitle || 'Hoy viento {dir} {speed}km/h → Báñate aquí:';
   var title = titleTpl.replace('{dir}', dirCard).replace('{speed}', Math.round(viento.speed));
-  var subTxt = tr.banoHoySub || 'Protegidas del viento de hoy';
   var idealTxt = tr.banoHoyIdeal || '% ideal';
-  holder.innerHTML='<div class="bano-hoy-head">🏖️ '+escapeHtml(title)+'</div><div class="bano-hoy-sub">'+escapeHtml(subTxt)+'</div><div class="bano-hoy-cards">'+list.map((p,i)=>'<button class="bano-chip '+(i===0?'bano-best':'')+'" onclick="goToPlace(\''+DOMPurify.sanitize(p.id)+'\')"><span class="bano-name">✓ '+escapeHtml(p.name)+'</span><span class="bano-score">'+p.score+escapeHtml(idealTxt)+'</span></button>').join('')+'</div>';
+  holder.innerHTML='<div class="bano-hoy-head">🏖️ '+escapeHtml(title)+'</div><div class="bano-hoy-cards">'+list.map(p=>'<button class="bano-chip" onclick="goToPlace(\''+DOMPurify.sanitize(p.id)+'\')">✓ '+escapeHtml(p.name)+' <small>'+p.score+escapeHtml(idealTxt)+'</small></button>').join('')+'</div>';
   holder.style.display='block';
 }
 
-function goToPlace(id){
-  var p = PLAYAS_ORIENTACION[id];
-  if(!p) return;
-  if(typeof map !== 'undefined' && map && p.lat && p.lng){
-    map.setView([p.lat, p.lng], 15);
-    if(typeof closeMarPanel === 'function') try{ closeMarPanel(); }catch(e){}
-    if(p.realId && typeof places !== 'undefined'){
-      var realPlace = places.find(function(pl){ return pl.id===p.realId; });
-      if(realPlace && typeof showPlaceDetail === 'function'){
-        setTimeout(function(){ showPlaceDetail(realPlace.id); }, 400);
-        return;
-      }
-    }
-    if(!p.realId && typeof L !== 'undefined'){
-      var popup = L.popup().setLatLng([p.lat, p.lng]).setContent('<b>'+escapeHtml(p.name)+'</b><br><small>Mana Nui - Costa del Silencio</small>').openOn(map);
-    }
-  }
-}
-
-// Auto-lanzar al cargar
-var BANO_CACHE_KEY='tgo_bano_cache_v1';
-var BANO_CACHE_TTL=30*60*1000;
-async function fetchVientoHoyCached(){
+window.goToPlace = function(id){
   try{
-    var cached=localStorage.getItem(BANO_CACHE_KEY);
-    if(cached){
-      var obj=JSON.parse(cached);
-      if(Date.now()-obj.ts < BANO_CACHE_TTL) return obj.data;
+    var p = PLAYAS_ORIENTACION[id];
+    if(!p) return;
+    var marPanel = document.getElementById('mar-panel');
+    if(marPanel) marPanel.style.display='none';
+    var m = (typeof map !== 'undefined' && map && map.setView) ? map : (window.map || null);
+    if(m){ m.setView([p.lat, p.lng], 15, {animate:true}); }
+    if(p.realId && typeof places !== 'undefined' && typeof openDetailSheet === 'function'){
+      var real = places.find(function(pl){ return pl.id===p.realId; });
+      if(real){ setTimeout(function(){ openDetailSheet(real.id); }, 350); return; }
+    }
+    if(!p.realId && m && typeof L !== 'undefined'){
+      setTimeout(function(){ L.popup().setLatLng([p.lat, p.lng]).setContent('<b>'+p.name+'</b><br><small>Costa del Silencio</small>').openOn(m); }, 500);
     }
   }catch(e){}
-  var data=await fetchVientoHoy();
-  try{ localStorage.setItem(BANO_CACHE_KEY, JSON.stringify({ts:Date.now(), data:data})); }catch(e){}
-  return data;
-}
-async function renderBanoHoy(){
-  const holder=document.getElementById('bano-hoy-holder');
-  if(!holder) return;
-  const viento=await fetchVientoHoyCached();
-  const dirCard=windDirToCardinal(viento.dir);
-  let list=Object.entries(PLAYAS_ORIENTACION).map(([id,p])=>({id, ...p, score: scorePlaya(p, viento.dir, viento.speed)})).sort((a,b)=>b.score-a.score).slice(0,3);
-  var tr = (typeof LANGS !== 'undefined' && LANGS[currentLang]) ? LANGS[currentLang] : LANGS.es;
-  var titleTpl = tr.banoHoyTitle || 'Hoy viento';
-  var title = titleTpl.replace('{dir}', dirCard).replace('{speed}', Math.round(viento.speed));
-  var subTxt = tr.banoHoySub || 'Protegidas';
-  var idealTxt = tr.banoHoyIdeal || '% ideal';
-  holder.innerHTML='<div class="bano-hoy-head">🏖️ '+escapeHtml(title)+'</div><div class="bano-hoy-sub">'+escapeHtml(subTxt)+'</div><div class="bano-hoy-cards">'+list.map((p,i)=>'<button class="bano-chip '+(i===0?'bano-best':'')+'" onclick="goToPlace(\''+DOMPurify.sanitize(p.id)+'\')"><span class="bano-name">✓ '+escapeHtml(p.name)+'</span><span class="bano-score">'+p.score+escapeHtml(idealTxt)+'</span></button>').join('')+'</div>';
-  holder.style.display='block';
-}
-(function(){
-  var marBtn=document.getElementById('mar-btn');
-  if(marBtn){ marBtn.addEventListener('click', function(){ setTimeout(renderBanoHoy, 300); }); }
-})();
-setTimeout(renderBanoHoy, 1200);
+};
 
 // Auto-lanzar al cargar
 setTimeout(renderBanoHoy, 2000);
