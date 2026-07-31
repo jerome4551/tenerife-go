@@ -20101,11 +20101,12 @@ select.admin-input {
         <!-- Migracion: solo aparece si quedan anuncios de la epoca en que
              se guardaban en este dispositivo. -->
         <div class="admin-form" id="admin-migrar-box" style="margin-top:8px;display:none">
-          <div class="admin-form-title">☁️ Anuncios guardados solo en este móvil</div>
+          <div class="admin-form-title">☁️ Guardado solo en este móvil</div>
           <div style="font-size:0.76rem;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:8px">
-            Hay <strong id="admin-migrar-count">0</strong> anuncio(s) que se crearon
-            cuando el panel guardaba en local, así que no los ve nadie más.
-            Súbelos para que aparezcan en el mapa de todos.
+            Hay <strong id="admin-migrar-count">0</strong> elemento(s) (souvenirs,
+            excursiones o anuncios) creados cuando el panel guardaba en local,
+            así que no los ve nadie más. Súbelos para que aparezcan en la app
+            de todos.
           </div>
           <button class="admin-add-btn" onclick="adminSubirLocales()">Subir a la nube</button>
           <div class="admin-login-error" id="admin-migrar-msg"></div>
@@ -20147,10 +20148,16 @@ select.admin-input {
 //  Esquema y alta de administradores: ver supabase/anuncios.sql
 // ══════════════════════════════════════════════════════════════════════
 
+// Claves de localStorage: ya solo se usan para migrar lo que quedara
+// guardado en el dispositivo de la epoca en que el panel era local.
 const ADMIN_SV_KEY   = 'tgo_admin_souvenirs';
 const ADMIN_EX_KEY   = 'tgo_admin_excursions';
-const ADMIN_AD_KEY   = 'tgo_admin_ads';       // legado (migracion)
-const ADS_TABLE      = 'anuncios';            // tabla en Supabase
+const ADMIN_AD_KEY   = 'tgo_admin_ads';
+
+// Tablas en Supabase
+const ADS_TABLE      = 'anuncios';
+const SV_TABLE       = 'souvenirs';
+const EX_TABLE       = 'excursiones';
 
 /* Cliente de Supabase YA autenticado. Se coge del modulo de auth en vez
    de crear otro: uno nuevo iria como anonimo y la RLS no sabria quien
@@ -20173,11 +20180,48 @@ function adFromRow(r) {
   };
 }
 
+function svFromRow(r) {
+  return {
+    id: r.id, emoji: r.emoji, name: r.name, desc: r.descripcion,
+    info: r.info, price: Number(r.price) || 0, visible: r.visible
+  };
+}
+
+function exFromRow(r) {
+  return {
+    id: r.id, emoji: r.emoji, name: r.name, desc: r.descripcion,
+    duration: r.duration, location: r.location, diff: r.diff,
+    contact: r.contact, price: Number(r.price) || 0,
+    maxp: r.max_personas, visible: r.visible
+  };
+}
+
 /* Caches en memoria. Los renders del mapa y de la tienda son sincronos
    y se llaman desde muchos sitios; en vez de volverlos async se pintan
-   desde aqui y se refrescan con las funciones de abajo. */
-let adsPublicCache = [];   // solo visibles — lo que ve cualquier usuario
-let adsAdminCache  = [];   // todos, incluidos ocultos — solo si eres admin
+   desde aqui y se refrescan con las funciones de abajo.
+   Las "public" traen solo lo visible (es lo que la RLS deja leer a
+   cualquiera); las "admin" traen tambien lo oculto. */
+let adsPublicCache = [], adsAdminCache = [];
+let svPublicCache  = [], svAdminCache  = [];
+let exPublicCache  = [], exAdminCache  = [];
+
+/* Lectura generica. Devuelve null si no se pudo leer, para poder
+   distinguir "no hay nada" de "fallo la consulta" y no vaciar la
+   pantalla por un corte de red. */
+async function sbLeer(tabla, cols, soloVisibles) {
+  const sb = sbAdmin();
+  if (!sb) return null;
+  try {
+    let q = sb.from(tabla).select(cols);
+    if (soloVisibles) q = q.eq('visible', true);
+    const { data, error } = await q;
+    if (error) throw error;
+    return data || [];
+  } catch (e) {
+    console.warn('[' + tabla + '] no se pudo leer:', e.message || e);
+    return null;
+  }
+}
 
 /* ¿La sesion actual es de administrador? Lo responde el servidor con la
    funcion es_admin(); aqui no se puede falsear nada util, porque la
@@ -20192,40 +20236,66 @@ async function esAdmin() {
   } catch (e) { console.warn('[ADMIN] es_admin excepcion:', e); return false; }
 }
 
-// ── Lectura de anuncios ───────────────────────────────────────────────
+// ── Lectura: lo que ve cualquier usuario ──────────────────────────────
 async function refreshAdsPublic() {
-  const sb = sbAdmin();
-  if (!sb) return;
-  try {
-    const { data, error } = await sb
-      .from(ADS_TABLE)
-      .select('id,emoji,name,category,tagline,contact,zone,lat,lng,promo_text,promo_until,visible')
-      .eq('visible', true);
-    if (error) throw error;
-    adsPublicCache = (data || []).map(adFromRow);
-  } catch (e) {
-    console.warn('[ADS] no se pudieron cargar los anuncios:', e.message || e);
-    return;   // se queda lo que hubiera; nunca se rompe el mapa por esto
-  }
+  const filas = await sbLeer(ADS_TABLE,
+    'id,emoji,name,category,tagline,contact,zone,lat,lng,promo_text,promo_until,visible', true);
+  if (filas === null) return;   // fallo de red: se queda lo que hubiera
+  adsPublicCache = filas.map(adFromRow);
   try { renderShopAds(); } catch (_) {}
   try { renderAdMarkers(); } catch (_) {}
 }
 
+async function refreshSouvenirsPublic() {
+  const filas = await sbLeer(SV_TABLE, 'id,emoji,name,descripcion,info,price,visible', true);
+  if (filas === null) return;
+  svPublicCache = filas.map(svFromRow);
+  try { renderShopSouvenirs(); } catch (_) {}
+}
+
+async function refreshExcursionesPublic() {
+  const filas = await sbLeer(EX_TABLE,
+    'id,emoji,name,descripcion,duration,location,diff,contact,price,max_personas,visible', true);
+  if (filas === null) return;
+  exPublicCache = filas.map(exFromRow);
+  try { renderShopExcursions(); } catch (_) {}
+}
+
+/* Todo lo publico de una vez. Se llama al arrancar la app y despues de
+   cualquier alta o cambio, para que la tienda y el mapa cuadren. */
+async function refreshTiendaPublica() {
+  await Promise.all([
+    refreshAdsPublic(),
+    refreshSouvenirsPublic(),
+    refreshExcursionesPublic()
+  ]);
+}
+
+// ── Lectura: la del panel, que incluye lo oculto ──────────────────────
 async function refreshAdsAdmin() {
-  const sb = sbAdmin();
-  if (!sb) return;
-  try {
-    const { data, error } = await sb
-      .from(ADS_TABLE)
-      .select('*')
-      .order('created_at', { ascending: false });
-    if (error) throw error;
-    adsAdminCache = (data || []).map(adFromRow);
-  } catch (e) {
-    console.warn('[ADS] no se pudo cargar la lista de admin:', e.message || e);
-    adsAdminCache = [];
-  }
+  const filas = await sbLeer(ADS_TABLE, '*', false);
+  adsAdminCache = filas === null ? [] : filas.map(adFromRow);
   renderAdList();
+}
+
+async function refreshSouvenirsAdmin() {
+  const filas = await sbLeer(SV_TABLE, '*', false);
+  svAdminCache = filas === null ? [] : filas.map(svFromRow);
+  renderSouvenirList();
+}
+
+async function refreshExcursionesAdmin() {
+  const filas = await sbLeer(EX_TABLE, '*', false);
+  exAdminCache = filas === null ? [] : filas.map(exFromRow);
+  renderExcursionList();
+}
+
+async function refreshPanelAdmin() {
+  await Promise.all([
+    refreshAdsAdmin(),
+    refreshSouvenirsAdmin(),
+    refreshExcursionesAdmin()
+  ]);
 }
 
 // ── Apertura del panel ────────────────────────────────────────────────
@@ -20257,8 +20327,7 @@ async function openAdminOverlay() {
   errEl.textContent = '';
   loginView.style.display = 'none';
   mainView.style.display  = 'block';
-  renderAdminAll();
-  refreshAdsAdmin();
+  refreshPanelAdmin();
   actualizarCajaMigracion();
 }
 
@@ -20292,7 +20361,7 @@ function genId() {
 }
 
 // ══ SOUVENIRS ══
-function adminAddSouvenir() {
+async function adminAddSouvenir() {
   const emoji = (document.getElementById('sv-emoji').value.trim() || '🎁');
   const name  = document.getElementById('sv-name').value.trim();
   const desc  = document.getElementById('sv-desc').value.trim();
@@ -20301,20 +20370,22 @@ function adminAddSouvenir() {
   if (!name) { alert('El nombre es obligatorio'); return; }
   if (isNaN(price) || price < 0) { alert('Introduce un precio válido'); return; }
 
-  const arr = loadData(ADMIN_SV_KEY);
-  arr.push({ id: genId(), emoji, name, desc, price, info, visible: true });
-  saveData(ADMIN_SV_KEY, arr);
+  const sb = sbAdmin();
+  if (!sb) { alert('Sin conexión con el servidor. Inténtalo de nuevo.'); return; }
+  const { error } = await sb.from(SV_TABLE)
+    .insert({ emoji, name, descripcion: desc, info, price, visible: true });
+  if (error) { alert('No se pudo publicar: ' + error.message); return; }
 
   // limpiar
   ['sv-emoji','sv-name','sv-desc','sv-price','sv-info'].forEach(id => {
     document.getElementById(id).value = '';
   });
-  renderSouvenirList();
-  renderShopSouvenirs(); // actualizar la tienda en vivo
+  await refreshSouvenirsAdmin();
+  await refreshSouvenirsPublic();
 }
 
 function renderSouvenirList() {
-  const arr = loadData(ADMIN_SV_KEY);
+  const arr = svAdminCache;          // servidor, no localStorage
   const el  = document.getElementById('admin-souvenir-list');
   if (!arr.length) { el.innerHTML = '<div class="admin-empty-list">No hay souvenirs aún</div>'; return; }
   // SEGURIDAD: todo escapado; el id va por data-* y se enlaza con listeners.
@@ -20331,7 +20402,7 @@ function renderSouvenirList() {
       <button class="admin-item-del" data-admin-idx="${i}" data-admin-act="del">Borrar</button>
     </div>
   `).join('');
-  wireAdminItemButtons(el, ADMIN_SV_KEY, arr);
+  wireAdminItemButtons(el, SV_TABLE, arr);
 }
 
 /* Enlaza los botones Visible/Borrar de las listas del panel admin.
@@ -20349,7 +20420,7 @@ function wireAdminItemButtons(el, key, arr) {
 }
 
 // ══ EXCURSIONES ══
-function adminAddExcursion() {
+async function adminAddExcursion() {
   const emoji    = (document.getElementById('ex-emoji').value.trim() || '🌋');
   const name     = document.getElementById('ex-name').value.trim();
   const desc     = document.getElementById('ex-desc').value.trim();
@@ -20362,20 +20433,24 @@ function adminAddExcursion() {
   if (!name) { alert('El nombre es obligatorio'); return; }
   if (isNaN(price) || price < 0) { alert('Introduce un precio válido'); return; }
 
-  const arr = loadData(ADMIN_EX_KEY);
-  arr.push({ id: genId(), emoji, name, desc, price, duration, location, maxp, diff, contact, visible: true });
-  saveData(ADMIN_EX_KEY, arr);
+  const sb = sbAdmin();
+  if (!sb) { alert('Sin conexión con el servidor. Inténtalo de nuevo.'); return; }
+  const { error } = await sb.from(EX_TABLE).insert({
+    emoji, name, descripcion: desc, price, duration, location,
+    max_personas: maxp, diff, contact, visible: true
+  });
+  if (error) { alert('No se pudo publicar: ' + error.message); return; }
 
   ['ex-emoji','ex-name','ex-desc','ex-price','ex-duration','ex-location','ex-maxpeople','ex-contact'].forEach(id => {
     document.getElementById(id).value = '';
   });
   document.getElementById('ex-difficulty').value = '';
-  renderExcursionList();
-  renderShopExcursions();
+  await refreshExcursionesAdmin();
+  await refreshExcursionesPublic();
 }
 
 function renderExcursionList() {
-  const arr = loadData(ADMIN_EX_KEY);
+  const arr = exAdminCache;          // servidor, no localStorage
   const el  = document.getElementById('admin-excursion-list');
   if (!arr.length) { el.innerHTML = '<div class="admin-empty-list">No hay excursiones aún</div>'; return; }
   // SEGURIDAD: todo escapado; el id va por data-* y se enlaza con listeners.
@@ -20392,7 +20467,7 @@ function renderExcursionList() {
       <button class="admin-item-del" data-admin-idx="${i}" data-admin-act="del">Borrar</button>
     </div>
   `).join('');
-  wireAdminItemButtons(el, ADMIN_EX_KEY, arr);
+  wireAdminItemButtons(el, EX_TABLE, arr);
 }
 
 // ══ ANUNCIOS / RECOMENDACIONES EN EL MAPA ══
@@ -20635,60 +20710,52 @@ function renderAdMarkers() {
    El retardo deja tiempo a que el mapa y el SDK esten listos; si algo
    falla, refreshAdsPublic() no lanza y el mapa sigue funcionando. */
 document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(function() { refreshAdsPublic(); }, 1500);
+  setTimeout(function() { refreshTiendaPublica(); }, 1500);
 });
 
 // ── ACCIONES COMUNES ──────────────────────────────────────────────────
-async function adminDeleteItem(id, key) {
+/* `tabla` es siempre el nombre de la tabla en Supabase. Las tres
+   pestanas del panel van al servidor, asi que ya no hay rama local: si
+   la sesion no es de admin, la RLS rechaza la operacion y aqui solo se
+   ve el error. Es justo lo que se busca — la decision no la toma el
+   navegador. */
+function refrescarTras(tabla) {
+  if (tabla === ADS_TABLE) return Promise.all([refreshAdsAdmin(), refreshAdsPublic()]);
+  if (tabla === SV_TABLE)  return Promise.all([refreshSouvenirsAdmin(), refreshSouvenirsPublic()]);
+  return Promise.all([refreshExcursionesAdmin(), refreshExcursionesPublic()]);
+}
+
+function cacheAdminDe(tabla) {
+  if (tabla === ADS_TABLE) return adsAdminCache;
+  if (tabla === SV_TABLE)  return svAdminCache;
+  return exAdminCache;
+}
+
+async function adminDeleteItem(id, tabla) {
   if (!confirm('¿Borrar este elemento?')) return;
-
-  // Anuncios: viven en el servidor. Si la sesion no es de admin, la RLS
-  // rechaza el DELETE y aqui solo se ve el error — que es justo lo que
-  // se busca: la decision no la toma el navegador.
-  if (key === ADS_TABLE) {
-    const sb = sbAdmin();
-    if (!sb) { alert('Sin conexión con el servidor.'); return; }
-    const { error } = await sb.from(ADS_TABLE).delete().eq('id', id);
-    if (error) { alert('No se pudo borrar: ' + error.message); return; }
-    await refreshAdsAdmin();
-    await refreshAdsPublic();
-    return;
-  }
-
-  let arr = loadData(key).filter(x => x.id !== id);
-  saveData(key, arr);
-  renderAdminAll();
-  if (key === ADMIN_SV_KEY) renderShopSouvenirs();
-  else if (key === ADMIN_EX_KEY) renderShopExcursions();
+  const sb = sbAdmin();
+  if (!sb) { alert('Sin conexión con el servidor.'); return; }
+  const { error } = await sb.from(tabla).delete().eq('id', id);
+  if (error) { alert('No se pudo borrar: ' + error.message); return; }
+  await refrescarTras(tabla);
 }
 
-async function adminToggleVisible(id, key, btn) {
-  if (key === ADS_TABLE) {
-    const sb = sbAdmin();
-    if (!sb) { alert('Sin conexión con el servidor.'); return; }
-    const actual = adsAdminCache.find(x => x.id === id);
-    if (!actual) return;
-    const nuevo = !actual.visible;
-    const { error } = await sb.from(ADS_TABLE).update({ visible: nuevo }).eq('id', id);
-    if (error) { alert('No se pudo cambiar: ' + error.message); return; }
-    actual.visible = nuevo;
-    btn.textContent = nuevo ? 'Visible' : 'Oculto';
-    btn.classList.toggle('on', nuevo);
-    await refreshAdsPublic();
-    return;
-  }
-
-  let arr = loadData(key);
-  let item = arr.find(x => x.id === id);
-  if (!item) return;
-  item.visible = !item.visible;
-  saveData(key, arr);
-  btn.textContent = item.visible ? 'Visible' : 'Oculto';
-  btn.classList.toggle('on', item.visible);
-  if (key === ADMIN_SV_KEY) renderShopSouvenirs();
-  else if (key === ADMIN_EX_KEY) renderShopExcursions();
+async function adminToggleVisible(id, tabla, btn) {
+  const sb = sbAdmin();
+  if (!sb) { alert('Sin conexión con el servidor.'); return; }
+  const actual = cacheAdminDe(tabla).find(x => x.id === id);
+  if (!actual) return;
+  const nuevo = !actual.visible;
+  const { error } = await sb.from(tabla).update({ visible: nuevo }).eq('id', id);
+  if (error) { alert('No se pudo cambiar: ' + error.message); return; }
+  actual.visible = nuevo;
+  btn.textContent = nuevo ? 'Visible' : 'Oculto';
+  btn.classList.toggle('on', nuevo);
+  await refrescarTras(tabla);
 }
 
+// Repinta las tres listas con lo que ya hay en cache. Para recargar
+// del servidor se usa refreshPanelAdmin().
 function renderAdminAll() {
   renderSouvenirList();
   renderExcursionList();
@@ -20697,8 +20764,8 @@ function renderAdminAll() {
 
 // ── ESTADÍSTICAS ──────────────────────────────────────────────────────
 async function renderAdminStats() {
-  const sv = loadData(ADMIN_SV_KEY);
-  const ex = loadData(ADMIN_EX_KEY);
+  const sv = svAdminCache;
+  const ex = exAdminCache;
   const ad = adsAdminCache;
 
   // Quien esta logueado (sustituye al antiguo "cambiar usuario y codigo")
@@ -20729,25 +20796,32 @@ async function renderAdminStats() {
   `;
 }
 
-/* ── MIGRACION: anuncios que quedaron en este dispositivo ──────────────
-   Los que se crearon cuando el panel guardaba en local no los ve nadie
-   mas. Se ofrece subirlos una vez y despues se limpia la clave, para
-   que no queden dos copias descoordinadas. */
-function adsLocalesPendientes() {
+/* ── MIGRACION: lo que quedo guardado en este dispositivo ──────────────
+   Souvenirs, excursiones y anuncios creados cuando el panel guardaba en
+   local no los ve nadie mas. Se ofrece subirlos una vez y despues se
+   limpian las claves, para que no queden dos copias descoordinadas. */
+function localesPendientes() {
   try {
-    const a = loadData(ADMIN_AD_KEY2) || [];
-    const b = loadData(ADMIN_AD_KEY)  || [];
-    return a.concat(b);
-  } catch (_) { return []; }
+    return {
+      souvenirs:   loadData(ADMIN_SV_KEY)  || [],
+      excursiones: loadData(ADMIN_EX_KEY)  || [],
+      anuncios:   (loadData(ADMIN_AD_KEY2) || []).concat(loadData(ADMIN_AD_KEY) || [])
+    };
+  } catch (_) { return { souvenirs: [], excursiones: [], anuncios: [] }; }
+}
+
+function totalLocalesPendientes() {
+  const p = localesPendientes();
+  return p.souvenirs.length + p.excursiones.length + p.anuncios.length;
 }
 
 function actualizarCajaMigracion() {
   const box = document.getElementById('admin-migrar-box');
   if (!box) return;
-  const pend = adsLocalesPendientes();
-  box.style.display = pend.length ? '' : 'none';
+  const n = totalLocalesPendientes();
+  box.style.display = n ? '' : 'none';
   const c = document.getElementById('admin-migrar-count');
-  if (c) c.textContent = pend.length;
+  if (c) c.textContent = n;
 }
 
 async function adminSubirLocales() {
@@ -20755,43 +20829,78 @@ async function adminSubirLocales() {
   const sb = sbAdmin();
   if (!sb) { msgEl.textContent = 'Sin conexión con el servidor.'; return; }
 
-  const pend = adsLocalesPendientes();
-  if (!pend.length) { actualizarCajaMigracion(); return; }
+  const pend = localesPendientes();
+  if (!totalLocalesPendientes()) { actualizarCajaMigracion(); return; }
 
-  const filas = pend
-    .filter(a => !isNaN(parseFloat(a.lat)) && !isNaN(parseFloat(a.lng)) && (a.name || '').trim())
+  const num = v => { const n = Number(v); return isFinite(n) && n >= 0 ? n : 0; };
+  // Venia de un <input type="date">, pero si el dato quedo corrupto en
+  // localStorage, Postgres rechazaria toda la insercion de golpe.
+  const fecha = v => /^\d{4}-\d{2}-\d{2}$/.test(v || '') ? v : null;
+  const conNombre = x => (x && x.name && String(x.name).trim());
+
+  const svFilas = pend.souvenirs.filter(conNombre).map(s => ({
+    emoji: s.emoji || '🎁', name: String(s.name).trim(),
+    descripcion: s.desc || '', info: s.info || '',
+    price: num(s.price), visible: s.visible !== false
+  }));
+
+  const exFilas = pend.excursiones.filter(conNombre).map(e => ({
+    emoji: e.emoji || '🌋', name: String(e.name).trim(),
+    descripcion: e.desc || '', duration: e.duration || '',
+    location: e.location || '', diff: e.diff || '', contact: e.contact || '',
+    price: num(e.price), max_personas: parseInt(e.maxp, 10) || 0,
+    visible: e.visible !== false
+  }));
+
+  // Los anuncios necesitan coordenadas dentro de Tenerife: sin eso, el
+  // CHECK de la tabla los rechaza.
+  const adFilas = pend.anuncios
+    .filter(a => conNombre(a) && !isNaN(parseFloat(a.lat)) && !isNaN(parseFloat(a.lng)))
     .map(a => ({
-      emoji: a.emoji || '⭐',
-      name: String(a.name).trim(),
-      category: a.category || 'recomendacion',
-      tagline: a.tagline || '',
-      contact: a.contact || '',
-      zone: a.zone || '',
-      lat: parseFloat(a.lat),
-      lng: parseFloat(a.lng),
-      promo_text: a.promoText || '',
-      // El campo venia de un <input type="date">, pero si el dato quedo
-      // corrupto en localStorage, Postgres rechazaria toda la insercion.
-      promo_until: /^\d{4}-\d{2}-\d{2}$/.test(a.promoUntil || '') ? a.promoUntil : null,
+      emoji: a.emoji || '⭐', name: String(a.name).trim(),
+      category: a.category || 'recomendacion', tagline: a.tagline || '',
+      contact: a.contact || '', zone: a.zone || '',
+      lat: parseFloat(a.lat), lng: parseFloat(a.lng),
+      promo_text: a.promoText || '', promo_until: fecha(a.promoUntil),
       visible: a.visible !== false
     }));
 
-  if (!filas.length) {
-    msgEl.textContent = 'Ninguno tenía coordenadas válidas; no se ha subido nada.';
-    return;
-  }
+  const descartados = totalLocalesPendientes() - (svFilas.length + exFilas.length + adFilas.length);
 
   msgEl.style.color = ''; msgEl.textContent = 'Subiendo…';
-  const { error } = await sb.from(ADS_TABLE).insert(filas);
-  if (error) { msgEl.textContent = 'No se pudo subir: ' + error.message; return; }
 
-  // Solo se limpia lo local si el servidor confirmo la insercion.
-  saveData(ADMIN_AD_KEY2, []);
-  saveData(ADMIN_AD_KEY, []);
-  msgEl.style.color = '#4ade80';
-  msgEl.textContent = `Subidos ${filas.length}. Ya se ven en el mapa de todos.`;
-  await refreshAdsAdmin();
-  await refreshAdsPublic();
+  // Cada tabla por separado: si una falla, las otras ya subidas se
+  // conservan y solo se limpia de local lo que si llego al servidor.
+  const subidas = [
+    { filas: svFilas, tabla: SV_TABLE,  clave: ADMIN_SV_KEY },
+    { filas: exFilas, tabla: EX_TABLE,  clave: ADMIN_EX_KEY },
+    { filas: adFilas, tabla: ADS_TABLE, clave: null }
+  ];
+
+  let total = 0, fallo = '';
+  for (const s of subidas) {
+    if (!s.filas.length) continue;
+    const { error } = await sb.from(s.tabla).insert(s.filas);
+    if (error) { fallo = s.tabla + ': ' + error.message; break; }
+    total += s.filas.length;
+    if (s.clave) saveData(s.clave, []);
+    else { saveData(ADMIN_AD_KEY2, []); saveData(ADMIN_AD_KEY, []); }
+  }
+
+  if (fallo) {
+    msgEl.style.color = '#ef4444';
+    msgEl.textContent = 'No se pudo subir todo (' + fallo + '). Lo ya subido se conserva.';
+  } else if (!total) {
+    msgEl.style.color = '#ef4444';
+    msgEl.textContent = 'Nada válido que subir (falta el nombre, o coordenadas en los anuncios).';
+  } else {
+    msgEl.style.color = '#4ade80';
+    msgEl.textContent = 'Subidos ' + total + '. Ya los ve todo el mundo.' +
+      (descartados > 0 ? ' Se quedaron ' + descartados + ' sin subir por datos incompletos.' : '');
+  }
+
+  await refreshPanelAdmin();
+  await refreshTiendaPublica();
   actualizarCajaMigracion();
 }
 
@@ -20802,15 +20911,16 @@ async function adminSubirLocales() {
 
 // ── BORRAR TODO ───────────────────────────────────────────────────────
 function adminClearAll() {
-  /* Solo borra lo LOCAL. Los anuncios estan en el servidor y los ve
-     todo el mundo: borrarlos en bloque desde un boton, y encima con un
-     simple confirm(), es demasiado facil de pulsar sin querer. Se
-     quitan de uno en uno desde su lista. */
-  if (!confirm('⚠️ Esto borrará los souvenirs y excursiones guardados en este dispositivo. Los anuncios publicados NO se tocan. ¿Continuar?')) return;
-  [ADMIN_SV_KEY, ADMIN_EX_KEY].forEach(k => localStorage.removeItem(k));
-  renderAdminAll();
-  renderShopSouvenirs(); renderShopExcursions();
-  alert('Datos locales borrados. Los anuncios publicados siguen en su sitio.');
+  /* Solo borra los restos LOCALES sin subir. Lo publicado esta en el
+     servidor y lo ve todo el mundo: borrarlo en bloque desde un boton,
+     y encima con un simple confirm(), es demasiado facil de pulsar sin
+     querer. Se quita de uno en uno desde cada lista. */
+  const n = totalLocalesPendientes();
+  if (!n) { alert('No queda nada guardado solo en este dispositivo.'); return; }
+  if (!confirm('⚠️ Esto descartará ' + n + ' elemento(s) que aún están guardados solo en este móvil y NO se han subido. Lo ya publicado no se toca. ¿Continuar?')) return;
+  [ADMIN_SV_KEY, ADMIN_EX_KEY, ADMIN_AD_KEY, ADMIN_AD_KEY2].forEach(k => localStorage.removeItem(k));
+  actualizarCajaMigracion();
+  alert('Restos locales descartados. Lo publicado sigue en su sitio.');
 }
 
 // ══════════════════════════════════════════════════════════════════════
@@ -20855,7 +20965,7 @@ function bindExternalLink(btn, url) {
   });
 }
 function renderShopSouvenirs() {
-  const arr = loadData(ADMIN_SV_KEY).filter(x => x.visible);
+  const arr = svPublicCache.filter(x => x.visible);
   const container = document.getElementById('shop-tab-content-souvenirs');
   if (!container) return;
 
@@ -20890,7 +21000,7 @@ function renderShopSouvenirs() {
 }
 
 function renderShopExcursions() {
-  const arr = loadData(ADMIN_EX_KEY).filter(x => x.visible);
+  const arr = exPublicCache.filter(x => x.visible);
   const container = document.getElementById('shop-tab-content-excursions');
   if (!container) return;
 
