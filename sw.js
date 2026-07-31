@@ -15,7 +15,7 @@
    ══════════════════════════════════════════════════════════════════ */
 'use strict';
 
-var VERSION      = 'v1.3.4';
+var VERSION      = 'v1.3.5';
 var CACHE_SHELL  = 'tenerife-go-shell-' + VERSION;
 var CACHE_TILES  = 'tenerife-tiles-v1';   // se conserva entre versiones
 var MAX_TILES    = 3000;                  // tope para no llenar el movil
@@ -23,10 +23,19 @@ var MAX_TILES    = 3000;                  // tope para no llenar el movil
 /* Ficheros minimos de la app. Se mantiene corto a proposito: si uno
    fallara, toda la instalacion fallaria. Los extras se cachean solos
    conforme se usan. */
+/* Leaflet y MarkerCluster ya no vienen de un CDN: viven en ./vendor/.
+   Al ser del propio origen se precachean aqui, asi el mapa arranca sin
+   conexion desde la primera vez. Cada uno se pide por separado y con su
+   propio .catch, de modo que si alguno faltara no tumbaria la
+   instalacion entera. */
 var SHELL = [
   './',
   './index.html',
-  './manifest.webmanifest'
+  './manifest.webmanifest',
+  './vendor/leaflet.js',
+  './vendor/leaflet.css',
+  './vendor/leaflet.markercluster.js',
+  './vendor/MarkerCluster.css'
 ];
 
 /* Dominios de datos en vivo: NUNCA se interceptan ni se cachean. */
@@ -50,10 +59,16 @@ function isLiveApi(url) {
   return false;
 }
 
+/* Solo se cachean teselas de los dos proveedores que usa el mapa.
+   Antes bastaba con que la RUTA de cualquier dominio contuviera /tile/
+   o /tiles/ y acabara en .png: eso permitia guardar en el cache
+   permanente imagenes de cualquier web (https://loquesea.com/tiles/x.png)
+   que ademas se servian despues sin volver a pedirlas. La comprobacion
+   es ahora por dominio exacto o subdominio (a.tile…, 1.tile…). */
 function isMapTile(url) {
-  return url.hostname.indexOf('tile.openstreetmap.org') !== -1 ||
-         url.hostname.indexOf('tile.opentopomap.org')   !== -1 ||
-         /\/tiles?\//.test(url.pathname) && /\.(png|jpg|jpeg|webp)$/i.test(url.pathname);
+  var host = url.hostname.toLowerCase();
+  return /(^|\.)tile\.openstreetmap\.org$/.test(host) ||
+         /(^|\.)tile\.opentopomap\.org$/.test(host);
 }
 
 /* ── Instalacion: guardar la app ─────────────────────────────────── */
@@ -123,10 +138,17 @@ self.addEventListener('fetch', function(event) {
     event.respondWith(
       fetch(req)
         .then(function(res) {
-          var copy = res.clone();
-          caches.open(CACHE_SHELL).then(function(c) {
-            c.put('./index.html', copy);
-          }).catch(function() {});
+          /* Solo se guarda como "la app" una respuesta correcta y del
+             propio origen. Antes se guardaba CUALQUIER cosa: una pagina
+             de error 404/500 de GitHub Pages, o el portal cautivo de un
+             wifi de hotel, quedaban grabados como la app y se seguian
+             mostrando sin conexion hasta limpiar el cache a mano. */
+          if (res && res.ok && res.type === 'basic') {
+            var copy = res.clone();
+            caches.open(CACHE_SHELL).then(function(c) {
+              c.put('./index.html', copy);
+            }).catch(function() {});
+          }
           return res;
         })
         .catch(function() {

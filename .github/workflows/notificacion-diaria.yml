@@ -17,6 +17,14 @@ on:
     - cron: '37 9 * * *'   # 09:37 UTC
   workflow_dispatch:
 
+# El GITHUB_TOKEN de este job solo necesita leer el repo. Sin este bloque
+# hereda los permisos por defecto del repositorio, que en repos antiguos
+# son de escritura sobre todo (contents, packages, issues...): si alguna
+# dependencia del job fuera comprometida, ese token podria escribir en el
+# repo. Se reduce al minimo.
+permissions:
+  contents: read
+
 jobs:
   enviar:
     runs-on: ubuntu-latest
@@ -29,8 +37,11 @@ jobs:
         with:
           node-version: '20'
 
+      # Version exacta, no el rango "@3": el job corre con las claves VAPID
+      # y la service_role de Supabase en el entorno, asi que una release
+      # nueva de web-push entraria sola con acceso a esos secretos.
       - name: Instalar web-push
-        run: npm install web-push@3
+        run: npm install --no-audit --no-fund web-push@3.6.7
 
       - name: Enviar notificaciones
         env:

@@ -70,13 +70,52 @@ window.onunhandledrejection = function(e) {
      ════════════════════════════════════════════════════════════════════ -->
 <!-- CSP via server headers only (netlify.toml) -->
 
-<!-- Cabeceras de seguridad adicionales (las que se pueden setear vía meta) -->
+<!-- Cabeceras de seguridad adicionales.
+     AVISO HONESTO: de las tres de abajo, solo `referrer` funciona como
+     meta. X-Content-Type-Options y Permissions-Policy son cabeceras HTTP
+     de verdad: el navegador las IGNORA cuando van en un <meta>. Se dejan
+     porque no hacen dano y documentan la intencion, pero no protegen
+     nada mientras la app se sirva desde GitHub Pages, que no permite
+     cabeceras propias. Si algun dia se pone Cloudflare/Netlify delante,
+     hay que emitirlas de verdad ahi (junto con la CSP y, sobre todo,
+     Content-Security-Policy: frame-ancestors 'none'). -->
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Permissions-Policy" content="geolocation=(self), camera=(), microphone=(), payment=(), usb=(), accelerometer=(), gyroscope=(), magnetometer=()">
 
+<!-- Anti-clickjacking. `frame-ancestors` NO se puede aplicar desde un
+     <meta> (la especificacion CSP lo prohibe expresamente) y GitHub Pages
+     no permite mandar X-Frame-Options, asi que sin esto la app se puede
+     meter en un <iframe> de otra web y superponerle botones invisibles
+     para que el usuario pulse lo que no cree estar pulsando. Este script
+     va antes que nada para que actue cuanto antes. -->
+<script>
+(function(){
+  try {
+    if (window.top !== window.self) {
+      // Intento 1: salir del marco llevando al usuario a la app real.
+      try { window.top.location = window.self.location.href; } catch (_) {}
+      // Intento 2 (si el marco es cross-origin y bloquea lo anterior):
+      // no renderizar nada utilizable dentro del iframe.
+      document.documentElement.style.display = 'none';
+      document.addEventListener('DOMContentLoaded', function(){
+        document.documentElement.style.display = '';
+        document.body.textContent = '';
+        var a = document.createElement('a');
+        a.href = 'https://jerome4551.github.io/tenerife-go/';
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.textContent = 'Abrir Tenerife Go';
+        a.style.cssText = 'display:block;padding:2rem;font-family:sans-serif;color:#c9a84c;background:#0F1117;min-height:100vh';
+        document.body.appendChild(a);
+      });
+    }
+  } catch (_) {}
+})();
+</script>
+
 <title>Tenerife Go — Mapa Interactivo</title>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://nominatim.openstreetmap.org https://router.project-osrm.org https://www.aemet.es https://opendata.aemet.es https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://nominatim.openstreetmap.org https://router.project-osrm.org https://www.aemet.es https://opendata.aemet.es https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
 <!-- Google tag (gtag.js) — GA4 · Consent Mode v2 (básico) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -191,15 +230,41 @@ window.onunhandledrejection = function(e) {
 <meta name="msapplication-TileColor" content="#0F1117"/>
 <meta name="msapplication-TileImage" content="icon-192.png"/>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin="anonymous"
-  onerror="document.body.innerHTML='<div style=\'font-family:sans-serif;padding:2rem;color:#f87171;background:#0f1117;min-height:100vh\'><h2>⚠️ Sin conexión a internet</h2><p>Tenerife GO necesita conexión para cargar el mapa la primera vez.<br>Conéctate e intenta de nuevo.</p></div>'"></script>
+<!-- ════════════════════════════════════════════════════════════
+     Leaflet 1.9.4 + Leaflet.markercluster 1.5.3 — SERVIDOS EN LOCAL
+     Antes venian de cdnjs sin `integrity`: si ese CDN sirviera alguna
+     vez un fichero alterado, ese codigo correria con todos los permisos
+     de la pagina, incluido leer la sesion de Supabase en localStorage.
+     Ahora los ficheros viven en ./vendor/ y los cubre `script-src 'self'`
+     de la CSP, asi que no hace falta SRI y no hay tercero en quien
+     confiar. De paso el mapa deja de depender de que un CDN responda
+     para poder arrancar.
+     Los ficheros son los del paquete npm oficial, sin tocar (los .js
+     ya vienen minificados de origen). Para actualizar:
+       npm pack leaflet@X.Y.Z leaflet.markercluster@X.Y.Z
+       y copiar dist/ a vendor/
+     ════════════════════════════════════════════════════════════ -->
+<link rel="stylesheet" href="./vendor/leaflet.css"/>
+<script src="./vendor/leaflet.js"
+  onerror="document.body.innerHTML='<div style=\'font-family:sans-serif;padding:2rem;color:#f87171;background:#0f1117;min-height:100vh\'><h2>⚠️ No se pudo cargar el mapa</h2><p>Recarga la página. Si el problema sigue, vuelve a abrir Tenerife GO con conexión.</p></div>'"></script>
 <!-- Leaflet.markercluster -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js" crossorigin="anonymous"
+<link rel="stylesheet" href="./vendor/MarkerCluster.css"/>
+<script src="./vendor/leaflet.markercluster.js"
   onerror="console.warn('[INIT] MarkerCluster no cargó — clusters desactivados')"></script>
-<!-- Supabase SDK (auth + base de datos) — versión fijada para reproducibilidad -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" crossorigin="anonymous"
+<!-- Supabase SDK (auth + base de datos)
+     Version EXACTA + integrity (SRI). Antes ponia "@2", que es un rango:
+     jsDelivr servia la ultima 2.x publicada, asi que cualquier release
+     nueva (o comprometida) entraba sola en la app de todos los usuarios
+     sin pasar por este repo. Con la version fija + el hash, el navegador
+     rechaza el script si sus bytes no son exactamente los esperados.
+     Se apunta a dist/umd/supabase.js (fichero real del paquete npm) y no
+     a supabase.min.js, que jsDelivr genera al vuelo y cuyo hash no es
+     reproducible. Al subir de version hay que recalcular el hash:
+       npm pack @supabase/supabase-js@X.Y.Z
+       tar xzf ... && openssl dgst -sha384 -binary package/dist/umd/supabase.js | openssl base64 -A -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0/dist/umd/supabase.js"
+  integrity="sha384-faMlYZUtkJj+Sh6Bmu/L0GzPcraRWN6CW+9RH3GUrK/Z0WS9tgaNNt0tHiLxsbdb"
+  crossorigin="anonymous"
   onerror="console.warn('[INIT] Supabase no cargó — modo invitado')"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -19007,16 +19072,32 @@ function renderCartContent() {
   }
 
   const total = cart.reduce((s, i) => s + (i.price * (i.qty || 1)), 0);
-  contentEl.innerHTML = cart.map(item => `
+
+  /* SEGURIDAD: nombre, icono e id de la cesta vienen de localStorage y,
+     por la via de addSouvenirToCart(), del texto de las tarjetas de la
+     tienda (que el panel admin puede rellenar). Se escapan todos antes
+     de innerHTML y el id NUNCA se inyecta como literal JS: viaja en un
+     data-* y se lee con addEventListener mas abajo. Un onclick inline
+     no seria seguro ni escapando, porque el parser HTML decodifica las
+     entidades (&#39; vuelve a ser ') antes de compilar el JS. */
+  contentEl.innerHTML = cart.map((item, i) => `
     <div class="cart-item">
-      <div class="cart-item-icon">${item.icon || '📦'}</div>
+      <div class="cart-item-icon">${escapeHtml(item.icon || '📦')}</div>
       <div class="cart-item-info">
-        <div class="cart-item-name">${item.name}${item.qty > 1 ? ' x' + item.qty : ''}</div>
-        <div class="cart-item-price">${(item.price * (item.qty || 1)).toFixed(2).replace('.', ',')}€</div>
+        <div class="cart-item-name">${escapeHtml(item.name)}${item.qty > 1 ? ' x' + (parseInt(item.qty, 10) || 1) : ''}</div>
+        <div class="cart-item-price">${escapeHtml((item.price * (item.qty || 1)).toFixed(2).replace('.', ','))}€</div>
       </div>
-      <button class="cart-item-remove" onclick="removeFromCart('${item.id}')" aria-label="Eliminar">✕</button>
+      <button class="cart-item-remove" data-cart-index="${i}" aria-label="Eliminar">✕</button>
     </div>
   `).join('');
+
+  contentEl.querySelectorAll('.cart-item-remove').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const idx = parseInt(btn.dataset.cartIndex, 10);
+      const current = getCart();
+      if (idx >= 0 && idx < current.length) removeFromCart(current[idx].id);
+    });
+  });
 
   if (footerEl) {
     footerEl.style.display = 'block';
@@ -19999,19 +20080,35 @@ function renderSouvenirList() {
   const arr = loadData(ADMIN_SV_KEY);
   const el  = document.getElementById('admin-souvenir-list');
   if (!arr.length) { el.innerHTML = '<div class="admin-empty-list">No hay souvenirs aún</div>'; return; }
-  el.innerHTML = arr.map(sv => `
+  // SEGURIDAD: todo escapado; el id va por data-* y se enlaza con listeners.
+  el.innerHTML = arr.map((sv, i) => `
     <div class="admin-item">
-      <div class="admin-item-icon">${sv.emoji}</div>
+      <div class="admin-item-icon">${escapeHtml(sv.emoji)}</div>
       <div class="admin-item-body">
-        <div class="admin-item-name">${sv.name}</div>
-        <div class="admin-item-sub">${sv.desc || ''} ${sv.info ? '· '+sv.info : ''}</div>
-        <div class="admin-item-price">${sv.price.toFixed(2)}€</div>
+        <div class="admin-item-name">${escapeHtml(sv.name)}</div>
+        <div class="admin-item-sub">${escapeHtml(sv.desc || '')} ${sv.info ? '· '+escapeHtml(sv.info) : ''}</div>
+        <div class="admin-item-price">${escapeHtml(Number(sv.price).toFixed(2))}€</div>
       </div>
       <button class="admin-item-toggle ${sv.visible?'on':''}"
-        onclick="adminToggleVisible('${sv.id}','${ADMIN_SV_KEY}',this)">${sv.visible?'Visible':'Oculto'}</button>
-      <button class="admin-item-del" onclick="adminDeleteItem('${sv.id}','${ADMIN_SV_KEY}')">Borrar</button>
+        data-admin-idx="${i}" data-admin-act="toggle">${sv.visible?'Visible':'Oculto'}</button>
+      <button class="admin-item-del" data-admin-idx="${i}" data-admin-act="del">Borrar</button>
     </div>
   `).join('');
+  wireAdminItemButtons(el, ADMIN_SV_KEY, arr);
+}
+
+/* Enlaza los botones Visible/Borrar de las listas del panel admin.
+   El id se resuelve por indice desde el array ya cargado, de modo que
+   nunca viaja dentro de un manejador inline. */
+function wireAdminItemButtons(el, key, arr) {
+  el.querySelectorAll('[data-admin-idx]').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const item = arr[parseInt(btn.dataset.adminIdx, 10)];
+      if (!item) return;
+      if (btn.dataset.adminAct === 'del') adminDeleteItem(item.id, key);
+      else adminToggleVisible(item.id, key, btn);
+    });
+  });
 }
 
 // ══ EXCURSIONES ══
@@ -20044,19 +20141,21 @@ function renderExcursionList() {
   const arr = loadData(ADMIN_EX_KEY);
   const el  = document.getElementById('admin-excursion-list');
   if (!arr.length) { el.innerHTML = '<div class="admin-empty-list">No hay excursiones aún</div>'; return; }
-  el.innerHTML = arr.map(ex => `
+  // SEGURIDAD: todo escapado; el id va por data-* y se enlaza con listeners.
+  el.innerHTML = arr.map((ex, i) => `
     <div class="admin-item">
-      <div class="admin-item-icon">${ex.emoji}</div>
+      <div class="admin-item-icon">${escapeHtml(ex.emoji)}</div>
       <div class="admin-item-body">
-        <div class="admin-item-name">${ex.name}</div>
-        <div class="admin-item-sub">${ex.duration||''} ${ex.location?'· '+ex.location:''} ${ex.diff?'· '+ex.diff:''}</div>
-        <div class="admin-item-price">${ex.price.toFixed(2)}€/persona</div>
+        <div class="admin-item-name">${escapeHtml(ex.name)}</div>
+        <div class="admin-item-sub">${escapeHtml(ex.duration||'')} ${ex.location?'· '+escapeHtml(ex.location):''} ${ex.diff?'· '+escapeHtml(ex.diff):''}</div>
+        <div class="admin-item-price">${escapeHtml(Number(ex.price).toFixed(2))}€/persona</div>
       </div>
       <button class="admin-item-toggle ${ex.visible?'on':''}"
-        onclick="adminToggleVisible('${ex.id}','${ADMIN_EX_KEY}',this)">${ex.visible?'Visible':'Oculto'}</button>
-      <button class="admin-item-del" onclick="adminDeleteItem('${ex.id}','${ADMIN_EX_KEY}')">Borrar</button>
+        data-admin-idx="${i}" data-admin-act="toggle">${ex.visible?'Visible':'Oculto'}</button>
+      <button class="admin-item-del" data-admin-idx="${i}" data-admin-act="del">Borrar</button>
     </div>
   `).join('');
+  wireAdminItemButtons(el, ADMIN_EX_KEY, arr);
 }
 
 // ══ ANUNCIOS / RECOMENDACIONES EN EL MAPA ══
@@ -20168,17 +20267,16 @@ function renderAdList() {
   }
 
   // SEGURIDAD: todos los datos de usuario se escapan antes de innerHTML
-  el.innerHTML = arr.map(ad => {
+  el.innerHTML = arr.map((ad, i) => {
     const safeName    = escapeHtml(ad.name    || '');
     const safeTagline = escapeHtml(ad.tagline || '');
     const safeZone    = escapeHtml(ad.zone    || '');
     const safeContact = escapeHtml(ad.contact || '');
     const safePromo   = escapeHtml(ad.promoText || '');
     const safeEmoji   = escapeHtml(ad.emoji   || '⭐');
-    const safeId      = escapeAttr(ad.id);
-    const safeKey     = escapeAttr(ADMIN_AD_KEY2);
+    const safeUntil   = escapeHtml(ad.promoUntil || '');
     const coordInfo   = (ad.lat && ad.lng) ? `📍 ${parseFloat(ad.lat).toFixed(4)}, ${parseFloat(ad.lng).toFixed(4)}` : '⚠️ Sin coords';
-    const promoInfo   = safePromo ? `🎁 ${safePromo}${ad.promoUntil ? ' (hasta '+ad.promoUntil+')' : ''}` : '';
+    const promoInfo   = safePromo ? `🎁 ${safePromo}${safeUntil ? ' (hasta '+safeUntil+')' : ''}` : '';
     return `
     <div class="admin-item">
       <div class="admin-item-icon">${safeEmoji}</div>
@@ -20190,10 +20288,11 @@ function renderAdList() {
         ${safeContact ? `<div class="admin-item-sub" style="font-size:0.68rem">${safeContact}</div>` : ''}
       </div>
       <button class="admin-item-toggle ${ad.visible?'on':''}"
-        onclick="adminToggleVisible('${safeId}','${safeKey}',this)">${ad.visible?'Visible':'Oculto'}</button>
-      <button class="admin-item-del" onclick="adminDeleteItem('${safeId}','${safeKey}')">Borrar</button>
+        data-admin-idx="${i}" data-admin-act="toggle">${ad.visible?'Visible':'Oculto'}</button>
+      <button class="admin-item-del" data-admin-idx="${i}" data-admin-act="del">Borrar</button>
     </div>`;
   }).join('');
+  wireAdminItemButtons(el, ADMIN_AD_KEY2, arr);
 }
 
 // ── MARCADORES DE RECOMENDACIONES EN EL MAPA ──────────────────────────
@@ -20366,11 +20465,41 @@ function adminClearAll() {
 // ══════════════════════════════════════════════════════════════════════
 
 
-// Sanitizador para datos del panel admin (previene XSS desde localStorage manipulado)
+/* Sanitizador para datos del panel admin (previene XSS desde localStorage
+   manipulado).
+
+   LIMITE IMPORTANTE: esto solo es seguro para TEXTO y para valores de
+   atributo normales. NO sirve para meter datos dentro de un manejador
+   inline (onclick="...algo('AQUI')"): el parser HTML decodifica las
+   entidades ANTES de compilar el JS, asi que un &#39; vuelve a ser una
+   comilla y cierra la cadena. Por eso ningun dato variable se inyecta ya
+   como literal JS: se pasa por data-* o por addEventListener. */
 function escapeAdmin(str) {
   if (typeof str !== 'string') return '';
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
             .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+/* Valida una URL de contacto introducida en el panel admin. Devuelve la
+   URL tal cual si es de un esquema permitido, o '' si no lo es. Rechaza
+   javascript:, data:, vbscript: y cualquier otro esquema raro. */
+function safeExternalUrl(raw) {
+  if (typeof raw !== 'string') return '';
+  const v = raw.trim();
+  if (!v || v.length > 2048) return '';
+  if (/^(https?:\/\/|tel:|mailto:)/i.test(v)) return v;
+  // Atajos habituales sin esquema para WhatsApp
+  if (/^(wa\.me\/|api\.whatsapp\.com\/)/i.test(v)) return 'https://' + v;
+  return '';
+}
+
+/* Abre una URL externa desde un boton, sin onclick inline: la URL nunca
+   pasa por el parser HTML, asi que no hay forma de escapar del contexto. */
+function bindExternalLink(btn, url) {
+  if (!btn || !url) return;
+  btn.addEventListener('click', function() {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  });
 }
 function renderShopSouvenirs() {
   const arr = loadData(ADMIN_SV_KEY).filter(x => x.visible);
@@ -20423,8 +20552,7 @@ function renderShopExcursions() {
     const eD = escapeAdmin(ex.desc||''), eDu = escapeAdmin(ex.duration||'');
     const eLo = escapeAdmin(ex.location||''), eDi = escapeAdmin(ex.diff||'');
     const eP = escapeAdmin(ex.price.toFixed(2).replace('.',',')), eMx = parseInt(ex.maxp)||0;
-    const rawC = ex.contact||'';
-    const safeC = /^(https?:|tel:|wa\.me|api\.whatsapp\.com)/.test(rawC) ? escapeAdmin(rawC) : '';
+    const safeC = safeExternalUrl(ex.contact);
     div.innerHTML = `
       <div class="excursion-img">${eE}</div>
       <div class="excursion-body">
@@ -20438,16 +20566,21 @@ function renderShopExcursions() {
         </div>
         <div class="excursion-footer">
           <div class="excursion-price">${eP}€ <small>/ persona</small></div>
-          <button class="excursion-book-btn" ${safeC ? 'onclick="window.open(\''+safeC+'\',\'_blank\')"' : ''}>Reservar</button>
+          <button class="excursion-book-btn">Reservar</button>
         </div>
       </div>`;
+    if (safeC) bindExternalLink(div.querySelector('.excursion-book-btn'), safeC);
     frag.appendChild(div);
   });
   container.insertBefore(frag, container.firstChild);
 }
 
 function renderShopAds() {
-  const arr = loadData(ADMIN_AD_KEY).filter(x => x.visible);
+  /* ADMIN_AD_KEY2, no ADMIN_AD_KEY: los anuncios se guardan en la clave
+     v2 (adminAddAd) y migrateAds() vacia la antigua a proposito. Leyendo
+     la antigua, esta pestana salia siempre vacia por muchos negocios que
+     se anadieran desde el panel. */
+  const arr = loadData(ADMIN_AD_KEY2).filter(x => x.visible);
   const container = document.getElementById('shop-tab-content-businesses');
   if (!container) return;
 
@@ -20462,8 +20595,7 @@ function renderShopAds() {
     const aE = escapeAdmin(ad.emoji), aN = escapeAdmin(ad.name);
     const aT = escapeAdmin(ad.tagline||''), aZ = escapeAdmin(ad.zone||'');
     const aC = escapeAdmin(ad.contact||'');
-    const rawAC = ad.contact||'';
-    const safeAC = /^(https?:|tel:|wa\.me|api\.whatsapp\.com)/.test(rawAC) ? escapeAdmin(rawAC) : '';
+    const safeAC = safeExternalUrl(ad.contact);
     div.innerHTML = `
       <div class="excursion-img">${aE}</div>
       <div class="excursion-body">
@@ -20475,9 +20607,10 @@ function renderShopAds() {
         </div>
         <div class="excursion-footer">
           <div class="excursion-price" style="color:rgba(255,255,255,0.5);font-size:0.75rem">Negocio Partner</div>
-          ${safeAC ? '<button class="excursion-book-btn" onclick="window.open(\''+safeAC+'\',\'_blank\')">Contactar</button>' : ''}
+          ${safeAC ? '<button class="excursion-book-btn">Contactar</button>' : ''}
         </div>
       </div>`;
+    if (safeAC) bindExternalLink(div.querySelector('.excursion-book-btn'), safeAC);
     frag.appendChild(div);
   });
   container.insertBefore(frag, container.firstChild);
