@@ -20168,6 +20168,28 @@ function sbAdmin() {
   } catch (_) { return null; }
 }
 
+/* Traduce el error de Supabase a algo que se entienda.
+
+   Safari devuelve "TypeError: Load failed" cuando la peticion ni llega a
+   completarse. El caso mas habitual es que la tabla todavia no exista en
+   el proyecto: al no existir, la comprobacion previa de CORS falla y el
+   navegador no llega a ver el 404, asi que el mensaje de origen no dice
+   nada util. */
+function mensajeError(error, tabla) {
+  const m = (error && error.message) || 'error desconocido';
+  if (/load failed|failed to fetch|networkerror/i.test(m)) {
+    return 'no se pudo contactar con el servidor.\n\nSi el resto de la app va bien, lo mas probable es que falte crear la tabla "' +
+           tabla + '" en Supabase (fichero supabase/tienda.sql).';
+  }
+  if (/relation .* does not exist|schema cache/i.test(m)) {
+    return 'la tabla "' + tabla + '" no existe todavia en Supabase.\nEjecuta supabase/tienda.sql.';
+  }
+  if (/row-level security|violates row-level/i.test(m)) {
+    return 'tu cuenta no tiene permisos de administrador para esto.';
+  }
+  return m;
+}
+
 /* Fila de la tabla -> objeto que usa la app (la tabla va en snake_case
    por convencion de Postgres, la app en camelCase). */
 function adFromRow(r) {
@@ -20374,7 +20396,7 @@ async function adminAddSouvenir() {
   if (!sb) { alert('Sin conexión con el servidor. Inténtalo de nuevo.'); return; }
   const { error } = await sb.from(SV_TABLE)
     .insert({ emoji, name, descripcion: desc, info, price, visible: true });
-  if (error) { alert('No se pudo publicar: ' + error.message); return; }
+  if (error) { alert('No se pudo publicar: ' + mensajeError(error, SV_TABLE)); return; }
 
   // limpiar
   ['sv-emoji','sv-name','sv-desc','sv-price','sv-info'].forEach(id => {
@@ -20439,7 +20461,7 @@ async function adminAddExcursion() {
     emoji, name, descripcion: desc, price, duration, location,
     max_personas: maxp, diff, contact, visible: true
   });
-  if (error) { alert('No se pudo publicar: ' + error.message); return; }
+  if (error) { alert('No se pudo publicar: ' + mensajeError(error, EX_TABLE)); return; }
 
   ['ex-emoji','ex-name','ex-desc','ex-price','ex-duration','ex-location','ex-maxpeople','ex-contact'].forEach(id => {
     document.getElementById(id).value = '';
@@ -20566,7 +20588,7 @@ async function adminAddAd() {
       if (e2) console.warn('[ADS] no se guardó la facturación:', e2.message);
     }
   } catch (e) {
-    errEl.textContent = '⚠️ No se pudo publicar: ' + (e.message || 'error del servidor');
+    errEl.textContent = '⚠️ No se pudo publicar: ' + mensajeError(e, ADS_TABLE);
     return;
   }
 
@@ -20736,7 +20758,7 @@ async function adminDeleteItem(id, tabla) {
   const sb = sbAdmin();
   if (!sb) { alert('Sin conexión con el servidor.'); return; }
   const { error } = await sb.from(tabla).delete().eq('id', id);
-  if (error) { alert('No se pudo borrar: ' + error.message); return; }
+  if (error) { alert('No se pudo borrar: ' + mensajeError(error, tabla)); return; }
   await refrescarTras(tabla);
 }
 
@@ -20747,7 +20769,7 @@ async function adminToggleVisible(id, tabla, btn) {
   if (!actual) return;
   const nuevo = !actual.visible;
   const { error } = await sb.from(tabla).update({ visible: nuevo }).eq('id', id);
-  if (error) { alert('No se pudo cambiar: ' + error.message); return; }
+  if (error) { alert('No se pudo cambiar: ' + mensajeError(error, tabla)); return; }
   actual.visible = nuevo;
   btn.textContent = nuevo ? 'Visible' : 'Oculto';
   btn.classList.toggle('on', nuevo);
@@ -20881,7 +20903,7 @@ async function adminSubirLocales() {
   for (const s of subidas) {
     if (!s.filas.length) continue;
     const { error } = await sb.from(s.tabla).insert(s.filas);
-    if (error) { fallo = s.tabla + ': ' + error.message; break; }
+    if (error) { fallo = s.tabla + ': ' + mensajeError(error, s.tabla); break; }
     total += s.filas.length;
     if (s.clave) saveData(s.clave, []);
     else { saveData(ADMIN_AD_KEY2, []); saveData(ADMIN_AD_KEY, []); }
