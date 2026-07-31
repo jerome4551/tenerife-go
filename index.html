@@ -5894,6 +5894,8 @@ window.onunhandledrejection = function(e) {
   }
 
 /* ¿Dónde me baño hoy? - banner superior */
+
+/* Donde me bano hoy - dentro del panel del mar */
 .bano-hoy-wrap{margin:10px 12px 12px; padding:12px; background:linear-gradient(135deg, rgba(212,175,55,0.12), rgba(42,122,90,0.12)); border:1px solid rgba(212,175,55,0.28); border-radius:14px;}
 .bano-hoy-head{font-size:0.82rem; font-weight:700; color:#F5C76B; margin-bottom:8px; display:flex; align-items:center; gap:6px;}
 .bano-hoy-sub{font-size:0.62rem; color:rgba(255,255,255,0.45); margin-bottom:10px; line-height:1.3;}
@@ -5902,7 +5904,8 @@ window.onunhandledrejection = function(e) {
 .bano-chip:hover{background:rgba(212,175,55,0.18); border-color:rgba(212,175,55,0.5); transform:translateX(2px);}
 .bano-chip .bano-name{font-weight:600;}
 .bano-chip .bano-score{font-size:0.68rem; background:linear-gradient(135deg,#F5C76B,#D4AF37); color:#0F1117; border-radius:20px; padding:2px 8px; font-weight:800;}
-.bano-chip.bano-best{border-color:rgba(212,175,55,0.25); background:rgba(255,255,255,0.06);}
+.bano-chip.bano-best{border-color:#D4AF37; background:rgba(212,175,55,0.14);}
+
 
 </style>
 <style>
@@ -6427,6 +6430,19 @@ const LANGS = {
     flag: '🇪🇸', code: 'ES',
     banoHoyTitle: 'Hoy viento {dir} {speed}km/h → Báñate aquí:',
     banoHoyIdeal: '% ideal',
+    banoHoySub: 'Protegidas del viento de hoy',
+    parkingTitle: 'Parking y aforo',
+    parkingFree: '{free} libres de {total}',
+    parkingFull: 'Completo',
+    parkingNearby: 'Parking cercano',
+    parkingRealTime: 'Tiempo real',
+    parkingOccupancy: 'Ocupación {pct}%',
+    parkingAlmostFull: 'Casi completo',
+    parkingAvailable: 'Sitio disponible',
+    parkingUpdated: 'Actualizado {time}',
+    parkingBeach: 'Parking playa',
+    parkingTeide: 'Parking Teide',
+    parkingCapacity: 'Capacidad',
     searchPlaceholder: 'Buscar lugar...',
     noResults: 'No se encontraron lugares',
     filterLabel: 'Filtrar',
@@ -6562,6 +6578,19 @@ const LANGS = {
     flag: '🇬🇧', code: 'EN',
     banoHoyTitle: 'Today wind {dir} {speed}km/h → Swim here:',
     banoHoyIdeal: '% ideal',
+    banoHoySub: 'Sheltered from today wind',
+    parkingTitle: 'Parking & occupancy',
+    parkingFree: '{free} free of {total}',
+    parkingFull: 'Full',
+    parkingNearby: 'Nearby parking',
+    parkingRealTime: 'Real time',
+    parkingOccupancy: 'Occupancy {pct}%',
+    parkingAlmostFull: 'Almost full',
+    parkingAvailable: 'Spaces available',
+    parkingUpdated: 'Updated {time}',
+    parkingBeach: 'Beach parking',
+    parkingTeide: 'Teide parking',
+    parkingCapacity: 'Capacity',
     searchPlaceholder: 'Search place...',
     noResults: 'No places found',
     filterLabel: 'Filter',
@@ -6697,6 +6726,19 @@ const LANGS = {
     flag: '🇫🇷', code: 'FR',
     banoHoyTitle: 'Auj. vent {dir} {speed}km/h → Baignez-vous ici :',
     banoHoyIdeal: '% idéal',
+    banoHoySub: 'Protegees du vent du jour',
+    parkingTitle: 'Parking et occupation',
+    parkingFree: '{free} libres sur {total}',
+    parkingFull: 'Complet',
+    parkingNearby: 'Parking proche',
+    parkingRealTime: 'Temps réel',
+    parkingOccupancy: 'Occupation {pct}%',
+    parkingAlmostFull: 'Presque complet',
+    parkingAvailable: 'Places disponibles',
+    parkingUpdated: 'Mis à jour {time}',
+    parkingBeach: 'Parking plage',
+    parkingTeide: 'Parking Teide',
+    parkingCapacity: 'Capacité',
     searchPlaceholder: 'Rechercher un lieu...',
     noResults: 'Aucun lieu trouvé',
     filterLabel: 'Filtrer',
@@ -6832,6 +6874,19 @@ const LANGS = {
     flag: '🇩🇪', code: 'DE',
     banoHoyTitle: 'Heute Wind {dir} {speed}km/h → Hier baden:',
     banoHoyIdeal: '% ideal',
+    banoHoySub: 'Vor heutigem Wind geschutzt',
+    parkingTitle: 'Parkplatz & Auslastung',
+    parkingFree: '{free} frei von {total}',
+    parkingFull: 'Voll',
+    parkingNearby: 'Parkplatz in der Nähe',
+    parkingRealTime: 'Echtzeit',
+    parkingOccupancy: 'Auslastung {pct}%',
+    parkingAlmostFull: 'Fast voll',
+    parkingAvailable: 'Plätze frei',
+    parkingUpdated: 'Aktualisiert {time}',
+    parkingBeach: 'Strandparkplatz',
+    parkingTeide: 'Teide Parkplatz',
+    parkingCapacity: 'Kapazität',
     searchPlaceholder: 'Ort suchen...',
     noResults: 'Keine Orte gefunden',
     filterLabel: 'Filtern',
@@ -6971,6 +7026,19 @@ const LANGS = {
     flag: '🇮🇹', code: 'IT',
     banoHoyTitle: 'Oggi vento {dir} {speed}km/h → Bagno qui:',
     banoHoyIdeal: '% ideale',
+    banoHoySub: 'Protette dal vento di oggi',
+    parkingTitle: 'Parcheggio e occupazione',
+    parkingFree: '{free} liberi su {total}',
+    parkingFull: 'Completo',
+    parkingNearby: 'Parcheggio vicino',
+    parkingRealTime: 'Tempo reale',
+    parkingOccupancy: 'Occupazione {pct}%',
+    parkingAlmostFull: 'Quasi completo',
+    parkingAvailable: 'Posti disponibili',
+    parkingUpdated: 'Aggiornato {time}',
+    parkingBeach: 'Parcheggio spiaggia',
+    parkingTeide: 'Parcheggio Teide',
+    parkingCapacity: 'Capacità',
     searchPlaceholder: 'Cerca un luogo...',
     noResults: 'Nessun luogo trovato',
     filterLabel: 'Filtra',
@@ -7104,6 +7172,19 @@ const LANGS = {
     flag: '🇳🇱', code: 'NL',
     banoHoyTitle: 'Vandaag wind {dir} {speed}km/h → Zwem hier:',
     banoHoyIdeal: '% ideaal',
+    banoHoySub: 'Beschut tegen de wind van vandaag',
+    parkingTitle: 'Parking & bezetting',
+    parkingFree: '{free} vrij van {total}',
+    parkingFull: 'Vol',
+    parkingNearby: 'Parking in de buurt',
+    parkingRealTime: 'Realtime',
+    parkingOccupancy: 'Bezetting {pct}%',
+    parkingAlmostFull: 'Bijna vol',
+    parkingAvailable: 'Plaatsen beschikbaar',
+    parkingUpdated: 'Bijgewerkt {time}',
+    parkingBeach: 'Strandparking',
+    parkingTeide: 'Teide parking',
+    parkingCapacity: 'Capaciteit',
     searchPlaceholder: 'Zoek een plek...',
     noResults: 'Geen plekken gevonden',
     filterLabel: 'Filter',
@@ -7243,6 +7324,19 @@ const LANGS = {
     flag: '🇨🇳', code: '简',
     banoHoyTitle: '今日风 {dir} {speed}km/h → 在此游泳：',
     banoHoyIdeal: '% 理想',
+    banoHoySub: '今日避风',
+    parkingTitle: '停车场及占用率',
+    parkingFree: '{total}个车位中的{free}个空闲',
+    parkingFull: '已满',
+    parkingNearby: '附近停车场',
+    parkingRealTime: '实时',
+    parkingOccupancy: '占用率 {pct}%',
+    parkingAlmostFull: '接近满',
+    parkingAvailable: '有空位',
+    parkingUpdated: '更新于 {time}',
+    parkingBeach: '海滩停车场',
+    parkingTeide: '泰德停车场',
+    parkingCapacity: '容量',
     searchPlaceholder: '搜索地点...',
     noResults: '未找到地点',
     filterLabel: '筛选',
@@ -7639,6 +7733,10 @@ Object.keys(AUTH_STRINGS).forEach(lang => {
 // — NUNCA pantalla en blanco. Las cadenas tradicionales se sustituyen
 // progresivamente vía ZHT_OVERRIDES; lo no traducido cae a simplificado.
 const ZHT_OVERRIDES = {
+    banoHoyTitle: '今日風 {dir} {speed}km/h → 在此游泳：',
+    banoHoyIdeal: '% 理想',
+    banoHoySub: '今日避風',
+
     authBtnGuest: '帳戶',
     authBtnUser: '我的帳戶',
     authModalTitle: '您的帳戶',
@@ -7672,6 +7770,15 @@ const ZHT_OVERRIDES = {
     authMergeYes: '是，合併',
     authMergeNo: '否，忽略',
     authClose: '關閉',
+    parkingTitle: '停車場及佔用率',
+    parkingFree: '{total}個車位中的{free}個空閒',
+    parkingFull: '已滿',
+    parkingNearby: '附近停車場',
+    parkingRealTime: '即時',
+    parkingOccupancy: '佔用率 {pct}%',
+    parkingAlmostFull: '接近滿',
+    parkingAvailable: '有空位',
+    parkingCapacity: '容量',
     searchPlaceholder: '搜尋地點...',
     noResults: '未找到地點',
     filterLabel: '篩選',
@@ -8154,7 +8261,7 @@ const places = [
     cat:{ es:"Playa Exclusiva · Sur", en:"Exclusive Beach · South", fr:"Plage Exclusive · Sud", de:"Exklusiver Strand · Süden", it:"Spiaggia Esclusiva · Sud", nl:"Exclusief Strand · Zuiden", zh:"高档海滩 · 南部", zht:"高檔海灘 · 南部" },
     tags:["Exclusiva","Lujo","Dorada"] },
 
-  { id:"arena", category:"playa", name:"Playa La Arena", emoji:"⚫", color:"#455a64", lat:28.2297, lng:-16.8409, lifeguard:true, blueFlag:false,
+  { id:"arena", category:"playa", name:"Playa La Arena", emoji:"⚫", color:"#455a64", lat:28.23194, lng:-16.8401909, lifeguard:true, blueFlag:false,
     desc:{ es:"Playa de arena negra a los pies de Los Gigantes. Ambiente local y aguas limpias.", en:"Black sand beach at the foot of Los Gigantes cliffs. Local atmosphere and clean waters.", fr:"Plage de sable noir au pied des falaises de Los Gigantes. Ambiance locale et eaux propres.", de:"Schwarzer Sandstrand am Fuß der Los Gigantes-Klippen. Lokale Atmosphäre und sauberes Wasser.", it:"Spiaggia di sabbia nera ai piedi di Los Gigantes. Atmosfera locale e acque pulite.", nl:"Strand met zwart zand aan de voet van Los Gigantes. Lokale sfeer en schoon water.", zh:"洛斯希甘特斯断崖脚下的黑色沙滩。当地氛围，海水洁净。", zht:"洛斯希甘特斯斷崖腳下的黑色沙灘。當地氛圍，海水潔淨。" },
     cat:{ es:"Arena Negra · Puerto Santiago", en:"Black Sand · Puerto Santiago", fr:"Sable Noir · Puerto Santiago", de:"Schwarzer Sand · Puerto Santiago", it:"Sabbia Nera · Puerto Santiago", nl:"Zwart Zand · Puerto Santiago", zh:"黑沙滩 · 圣地亚哥港", zht:"黑沙灘 · 聖地亞哥港" },
     tags:["Arena Negra","Puerto Santiago"] },
@@ -8247,7 +8354,7 @@ const places = [
     cat:{ es:"Volcánico", en:"Volcanic", fr:"Volcanique", de:"Vulkanisch", it:"Vulcanico", nl:"Vulkanisch", zh:"火山", zht:"火山" },
     tags:["Senderismo","Volcánico","Fotografía","Iconic","Teide","Roca","Circular","Fácil","Popular"] },
 
-  { id:"montana-blanca", warn:"altura", category:"senderismo", name:"Montaña Blanca — Acceso Cumbre", emoji:"🏔️", color:"#90a4ae", lat:28.2596, lng:-16.6034,
+  { id:"montana-blanca", warn:"altura", category:"senderismo", name:"Montaña Blanca — Acceso Cumbre", emoji:"🏔️", color:"#90a4ae", lat:28.259658109488427, lng:-16.603249312245193,
     desc:{ es:"El punto de partida oficial para ascender a pie al Pico del Teide (3.715 m). Sendero 10 (TF-6) desde 2.350 m. Permiso gratuito obligatorio para los últimos 200 m. La ascensión completa dura entre 5 y 7 horas. Experiencia impresionante y exigente.", en:"The official starting point for hiking to Teide summit (3,715 m). Trail 10 (TF-6) from 2,350 m. Free permit required for the final 200 m. Full ascent takes 5–7 hours. Impressive and demanding experience.", fr:"Le point de départ officiel pour gravir le Pic du Teide (3 715 m) à pied. Sentier 10 (TF-6) depuis 2 350 m. Permis gratuit obligatoire pour les 200 derniers mètres. L'ascension complète dure 5 à 7 heures.", de:"Der offizielle Ausgangspunkt für die Wanderung zum Teide-Gipfel (3.715 m). Weg 10 (TF-6) ab 2.350 m. Kostenlose Genehmigung für die letzten 200 m erforderlich. Vollständiger Aufstieg dauert 5–7 Stunden.", it:"Il punto di partenza ufficiale per salire a piedi al Pico del Teide (3.715 m). Sentiero 10 (TF-6) da 2.350 m. Permesso gratuito obbligatorio per gli ultimi 200 m. La salita completa dura tra le 5 e le 7 ore. Esperienza impressionante e impegnativa.", nl:"Het officiële vertrekpunt om te voet de Pico del Teide (3.715 m) te beklimmen. Pad 10 (TF-6) vanaf 2.350 m. Gratis verplichte vergunning voor de laatste 200 m. De volledige beklimming duurt 5 tot 7 uur. Indrukwekkende en veeleisende ervaring.", zh:"徒步攀登泰德峰（3715米）的官方起点。10号步道（TF-6），起点海拔2350米。最后200米须办理免费的强制许可。全程登顶需5至7小时。震撼而具挑战的体验。", zht:"健行攀登泰德峰（3715公尺）的官方起點。10號步道（TF-6），起點海拔2350公尺。最後200公尺須辦理免費的強制許可。全程登頂需5至7小時。震撼而具挑戰的體驗。" },
     cat:{ es:"Senderismo · Cumbre Teide", en:"Hiking · Teide Summit", fr:"Randonnée · Sommet Teide", de:"Wandern · Teide-Gipfel", it:"Escursionismo · Vetta del Teide", nl:"Wandelen · Top van de Teide", zh:"徒步 · 泰德峰顶", zht:"健行 · 泰德峰頂" },
     tags:["Teide","Cumbre","Senderismo","Permiso","Exigente"] },
@@ -12715,6 +12822,42 @@ function openDetailSheet(placeId) {
   if (place.address) {
     infoEl.innerHTML = `<div class="popup-info"><div class="popup-info-addr">📍 ${escapeHtml(place.address)}</div></div>`;
   }
+
+  // ===== BLOQUE 3: Parking cercano con aforo en ficha playa ======
+  try{
+    var nearbyParkings = PARKINGS.filter(function(p){
+      if(!place.lat || !place.lng) return false;
+      var d = Math.sqrt(Math.pow(p.lat-place.lat,2)+Math.pow(p.lng-place.lng,2));
+      return d < 0.02; // ~2km
+    }).sort(function(a,b){
+      var da=Math.sqrt(Math.pow(a.lat-place.lat,2)+Math.pow(a.lng-place.lng,2));
+      var db=Math.sqrt(Math.pow(b.lat-place.lat,2)+Math.pow(b.lng-place.lng,2));
+      return da-db;
+    }).slice(0,2);
+
+    if(nearbyParkings.length>0){
+      var parkingHtml = '<div style="margin-top:12px; padding:10px; background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.2); border-radius:10px;">';
+      parkingHtml += '<div style="font-weight:700; font-size:0.8rem; margin-bottom:6px;">🅿️ '+(L.parkingNearby||'Parking cercano')+'</div>';
+      nearbyParkings.forEach(function(p){
+        var pName = (p.name && p.name[lang]) ? p.name[lang] : p.name.es;
+        parkingHtml += '<div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; font-size:0.78rem; border-bottom:1px solid rgba(255,255,255,0.06);">';
+        parkingHtml += '<span>'+escapeHtml(pName)+'</span>';
+        parkingHtml += '<span style="opacity:0.7;">'+p.capacity+' plazas</span>';
+        parkingHtml += '</div>';
+      });
+      parkingHtml += '<div style="font-size:0.65rem; opacity:0.5; margin-top:6px;">'+escapeHtml(L.parkingRealTime||'Tiempo real Teresitas')+'</div>';
+      parkingHtml += '</div>';
+      infoEl.innerHTML += parkingHtml;
+
+      // Intentar actualizar con dato real si es Teresitas
+      fetchParkingTeresitas().then(function(realData){
+        var listEl = infoEl.querySelectorAll('.parking-meta-real');
+        // Actualizar si es Teresitas
+      });
+    }
+  }catch(e){}
+
+
 
   // Foto: intentar la misma foto del popup
   const photoEl = document.getElementById('detail-sheet-photo');
@@ -26586,14 +26729,15 @@ function closePrivacyPanel() {
 <script>
 // ====== ¿DÓNDE ME BAÑO HOY? - Usa tu API marine + open-meteo ya existente ======
 const PLAYAS_ORIENTACION = {
-  'las-vistas': {name: 'Playa de Las Vistas', ori: 'S', badWind: ['S','SW'], lat:28.0527, lng:-16.7244, realId: 'las-vistas'},
-  'arena': {name: 'Playa La Arena', ori: 'W', badWind: ['W','NW'], lat:28.2297, lng:-16.8409, realId: 'arena'},
-  'playa-amarilla': {name: 'Playa Amarilla', ori: 'SE', badWind: ['SE','E'], lat:28.0091, lng:-16.6387, realId: 'playa-amarilla'},
-  'mananui': {name: 'Mana Nui - Montana Amarilla', ori: 'SE', badWind: ['SE'], lat:28.0018, lng:-16.6241, realId: null},
-  'teresitas': {name: 'Playa Las Teresitas', ori: 'NE', badWind: ['NE','N'], lat:28.5097, lng:-16.1847, realId: 'teresitas'},
-  'playa-jardin': {name: 'Playa Jardin', ori: 'NW', badWind: ['NW','W'], lat:28.4128, lng:-16.5585, realId: 'playa-jardin'},
-  'el-duque': {name: 'Playa del Duque', ori: 'W', badWind: ['W'], lat:28.0914, lng:-16.7439, realId: 'el-duque'},
-  'fanabe': {name: 'Playa Fanabe', ori: 'SW', badWind: ['SW','S'], lat:28.0852, lng:-16.7368, realId: 'fanabe'}
+  // id playa -> {name, orientacion (hacia donde mira), shelter: array de vientos que la joden, lat,lng}
+  'playa-de-las-vistas': {name: 'Playa de Las Vistas', ori: 'S', badWind: ['S','SW'], lat:28.052, lng:-16.727, realId: 'playa-de-las-vistas'},
+  'playa-de-los-cristianos': {name: 'Playa de Los Cristianos', ori: 'S', badWind: ['S'], lat:28.05, lng:-16.717, realId: 'playa-de-los-cristianos'},
+  'playa-la-arena-manga': {name: 'Playa La Arena', ori: 'W', badWind: ['W','NW'], lat:28.165, lng:-16.83, realId: 'playa-la-arena'},
+  'playa-amarilla': {name: 'Playa Amarilla', ori: 'SE', badWind: ['SE','E'], lat:28.0093, lng:-16.6384, realId: 'playa-amarilla'},
+  'playa-montana-amarilla-mananui': {name: 'Mana Nui / Montana Amarilla', ori: 'SE', badWind: ['SE'], lat:28.0018, lng:-16.6241, realId: null},
+  'playa-teresitas': {name: 'Playa Las Teresitas', ori: 'NE', badWind: ['NE','N'], lat:28.508, lng:-16.184, realId: 'playa-de-las-teresitas'},
+  'playa-jardin': {name: 'Playa Jardin', ori: 'NW', badWind: ['NW','W'], lat:28.414, lng:-16.558, realId: 'playa-jardin'},
+  'playa-duque': {name: 'Playa del Duque', ori: 'W', badWind: ['W'], lat:28.091, lng:-16.741, realId: 'playa-del-duque'}
 };
 
 function windDirToCardinal(deg){
@@ -26629,30 +26773,67 @@ async function renderBanoHoy(){
   const dirCard=windDirToCardinal(viento.dir);
   let list=Object.entries(PLAYAS_ORIENTACION).map(([id,p])=>({id, ...p, score: scorePlaya(p, viento.dir, viento.speed)})).sort((a,b)=>b.score-a.score).slice(0,3);
   var tr = (typeof LANGS !== 'undefined' && LANGS[currentLang]) ? LANGS[currentLang] : LANGS.es;
-  var titleTpl = tr.banoHoyTitle || 'Hoy viento {dir} {speed}km/h → Báñate aquí:';
+  var titleTpl = tr.banoHoyTitle || 'Hoy viento {dir} {speed}km/h -> Banate aqui:';
   var title = titleTpl.replace('{dir}', dirCard).replace('{speed}', Math.round(viento.speed));
+  var subTxt = tr.banoHoySub || 'Protegidas del viento de hoy';
   var idealTxt = tr.banoHoyIdeal || '% ideal';
-  holder.innerHTML='<div class="bano-hoy-head">🏖️ '+escapeHtml(title)+'</div><div class="bano-hoy-cards">'+list.map(p=>'<button class="bano-chip" onclick="goToPlace(\''+DOMPurify.sanitize(p.id)+'\')">✓ '+escapeHtml(p.name)+' <small>'+p.score+escapeHtml(idealTxt)+'</small></button>').join('')+'</div>';
+  holder.innerHTML='<div class="bano-hoy-head">🏖️ '+escapeHtml(title)+'</div><div class="bano-hoy-sub">'+escapeHtml(subTxt)+'</div><div class="bano-hoy-cards">'+list.map((p,i)=>'<button class="bano-chip '+(i===0?'bano-best':'')+'" onclick="goToPlace(\''+DOMPurify.sanitize(p.id)+'\')"><span class="bano-name">✓ '+escapeHtml(p.name)+'</span><span class="bano-score">'+p.score+escapeHtml(idealTxt)+'</span></button>').join('')+'</div>';
   holder.style.display='block';
 }
 
-window.goToPlace = function(id){
-  try{
-    var p = PLAYAS_ORIENTACION[id];
-    if(!p) return;
-    var marPanel = document.getElementById('mar-panel');
-    if(marPanel) marPanel.style.display='none';
-    var m = (typeof map !== 'undefined' && map && map.setView) ? map : (window.map || null);
-    if(m){ m.setView([p.lat, p.lng], 15, {animate:true}); }
-    if(p.realId && typeof places !== 'undefined' && typeof openDetailSheet === 'function'){
-      var real = places.find(function(pl){ return pl.id===p.realId; });
-      if(real){ setTimeout(function(){ openDetailSheet(real.id); }, 350); return; }
+function goToPlace(id){
+  var p = PLAYAS_ORIENTACION[id];
+  if(!p) return;
+  if(typeof map !== 'undefined' && map && p.lat && p.lng){
+    map.setView([p.lat, p.lng], 15);
+    if(typeof closeMarPanel === 'function') try{ closeMarPanel(); }catch(e){}
+    if(p.realId && typeof places !== 'undefined'){
+      var realPlace = places.find(function(pl){ return pl.id===p.realId; });
+      if(realPlace && typeof showPlaceDetail === 'function'){
+        setTimeout(function(){ showPlaceDetail(realPlace.id); }, 400);
+        return;
+      }
     }
-    if(!p.realId && m && typeof L !== 'undefined'){
-      setTimeout(function(){ L.popup().setLatLng([p.lat, p.lng]).setContent('<b>'+p.name+'</b><br><small>Costa del Silencio</small>').openOn(m); }, 500);
+    if(!p.realId && typeof L !== 'undefined'){
+      var popup = L.popup().setLatLng([p.lat, p.lng]).setContent('<b>'+escapeHtml(p.name)+'</b><br><small>Mana Nui - Costa del Silencio</small>').openOn(map);
+    }
+  }
+}
+
+// Auto-lanzar al cargar
+var BANO_CACHE_KEY='tgo_bano_cache_v1';
+var BANO_CACHE_TTL=30*60*1000;
+async function fetchVientoHoyCached(){
+  try{
+    var cached=localStorage.getItem(BANO_CACHE_KEY);
+    if(cached){
+      var obj=JSON.parse(cached);
+      if(Date.now()-obj.ts < BANO_CACHE_TTL) return obj.data;
     }
   }catch(e){}
-};
+  var data=await fetchVientoHoy();
+  try{ localStorage.setItem(BANO_CACHE_KEY, JSON.stringify({ts:Date.now(), data:data})); }catch(e){}
+  return data;
+}
+async function renderBanoHoy(){
+  const holder=document.getElementById('bano-hoy-holder');
+  if(!holder) return;
+  const viento=await fetchVientoHoyCached();
+  const dirCard=windDirToCardinal(viento.dir);
+  let list=Object.entries(PLAYAS_ORIENTACION).map(([id,p])=>({id, ...p, score: scorePlaya(p, viento.dir, viento.speed)})).sort((a,b)=>b.score-a.score).slice(0,3);
+  var tr = (typeof LANGS !== 'undefined' && LANGS[currentLang]) ? LANGS[currentLang] : LANGS.es;
+  var titleTpl = tr.banoHoyTitle || 'Hoy viento';
+  var title = titleTpl.replace('{dir}', dirCard).replace('{speed}', Math.round(viento.speed));
+  var subTxt = tr.banoHoySub || 'Protegidas';
+  var idealTxt = tr.banoHoyIdeal || '% ideal';
+  holder.innerHTML='<div class="bano-hoy-head">🏖️ '+escapeHtml(title)+'</div><div class="bano-hoy-sub">'+escapeHtml(subTxt)+'</div><div class="bano-hoy-cards">'+list.map((p,i)=>'<button class="bano-chip '+(i===0?'bano-best':'')+'" onclick="goToPlace(\''+DOMPurify.sanitize(p.id)+'\')"><span class="bano-name">✓ '+escapeHtml(p.name)+'</span><span class="bano-score">'+p.score+escapeHtml(idealTxt)+'</span></button>').join('')+'</div>';
+  holder.style.display='block';
+}
+(function(){
+  var marBtn=document.getElementById('mar-btn');
+  if(marBtn){ marBtn.addEventListener('click', function(){ setTimeout(renderBanoHoy, 300); }); }
+})();
+setTimeout(renderBanoHoy, 1200);
 
 // Auto-lanzar al cargar
 setTimeout(renderBanoHoy, 2000);
