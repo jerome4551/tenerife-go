@@ -27532,7 +27532,21 @@ function closePrivacyPanel() {
    app, asi que sus botones no podian llevar a ninguna parte. */
 const PLAYAS_ORIENTACION = {
   // id en places[] -> ori: hacia donde mira · badWind: vientos que la estropean
-  'las-vistas':     { ori: 'S',  badWind: ['S','SW'] },
+  /* Las Vistas mira al S, eso estaba bien. Lo que faltaba era el SE.
+
+     El alisio del NE, que es el habitual, entra ahi de tierra a mar
+     —terral— y ademas lo frenan el relieve de la isla y la Montana de
+     Guaza, asi que no la estropea: por eso no aparece en badWind y por
+     eso el bonus de alisio esta justificado. Lo que si le sopla de cara
+     es el sur, el sureste y el suroeste, que solo entran con borrascas
+     atlanticas o calima. El SE se quedaba en 80 por un efecto colateral
+     de la comparacion por inicial (el 'S' de 'SW' cuela en 'SE'), no
+     porque estuviera declarado.
+
+     Igual que Teresitas, esta protegida por escolleras y diques, y el
+     modelo de oleaje no los conoce: en dias movidos la descartara antes
+     de tiempo. Se deja asi, que es el lado prudente. */
+  'las-vistas':     { ori: 'S',  badWind: ['S','SE','SW'] },
   'el-duque':       { ori: 'W',  badWind: ['W'] },
   'arena':          { ori: 'W',  badWind: ['W','NW'] },
   'playa-amarilla': { ori: 'SE', badWind: ['SE','E'] },
