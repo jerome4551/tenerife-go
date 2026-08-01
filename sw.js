@@ -1,5 +1,5 @@
-// Tenerife Go SW v4 - endurecido - 2026-07-31
-const CACHE = 'tgo-v4-2026-07-31-secure';
+// Tenerife Go SW v5 - endurecido + notificaciones - 2026-08-01
+const CACHE = 'tgo-v5-2026-08-01-push';
 const CORE = [
   './', './index.html', './manifest.webmanifest',
   // Leaflet y MarkerCluster ya no vienen de un CDN: viven en ./vendor/.
@@ -76,6 +76,55 @@ self.addEventListener('fetch', e => {
         if (guardable(res)) guardar(req, res);
         return res;
       });
+    })
+  );
+});
+
+/* ── NOTIFICACIONES ────────────────────────────────────────────────
+   Sin estos dos manejadores la cadena de la notificacion diaria se
+   cortaba en el ultimo paso: la app suscribia el dispositivo, el
+   workflow enviaba el aviso con las claves VAPID... y aqui no habia
+   nadie escuchando. El navegador acaba mostrando su propio mensaje
+   generico de "este sitio se actualizo en segundo plano", y Chrome
+   puede llegar a cancelar la suscripcion si eso se repite.
+
+   El servidor manda {title, body, url, lang} desde
+   enviar-notificacion.js. Se leen con tolerancia: si el cuerpo no es
+   JSON valido se usa el texto tal cual, y si no hay nada se cae a un
+   titulo por defecto, porque una notificacion vacia es peor que una
+   escueta. */
+self.addEventListener('push', e => {
+  let d = {};
+  if (e.data) {
+    try { d = e.data.json() || {}; }
+    catch (_) { try { d = { body: e.data.text() }; } catch (__) { d = {}; } }
+  }
+  const titulo = d.title || 'Tenerife Go';
+  const opciones = {
+    body: d.body || '',
+    icon: './icon-192.png',
+    badge: './icon-192.png',
+    lang: d.lang || 'es',
+    // Una sola notificacion diaria: el tag hace que la nueva sustituya
+    // a la anterior en vez de amontonarse en la bandeja.
+    tag: 'tgo-diaria',
+    renotify: true,
+    data: { url: d.url || './index.html' }
+  };
+  e.waitUntil(self.registration.showNotification(titulo, opciones));
+});
+
+/* Al tocar la notificacion: si la app ya esta abierta se trae al frente
+   en vez de abrir una pestana mas. */
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  const destino = (e.notification.data && e.notification.data.url) || './index.html';
+  e.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(lista => {
+      for (const c of lista) {
+        if (c.url.indexOf(self.registration.scope) === 0 && 'focus' in c) return c.focus();
+      }
+      return self.clients.openWindow(destino);
     })
   );
 });
