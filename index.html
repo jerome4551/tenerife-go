@@ -254,10 +254,11 @@ window.onunhandledrejection = function(e) {
 <link rel="stylesheet" href="./vendor/leaflet.css"/>
 <script src="./vendor/leaflet.js"
   onerror="document.body.innerHTML='<div style=\'font-family:sans-serif;padding:2rem;color:#f87171;background:#0f1117;min-height:100vh\'><h2>⚠️ No se pudo cargar el mapa</h2><p>Recarga la página. Si el problema sigue, vuelve a abrir Tenerife GO con conexión.</p></div>'"></script>
-<!-- DOMPurify: lo usa safeInnerHTML() y el bloque "¿Donde me bano hoy?".
-     Version exacta (no un rango), asi que jsDelivr no puede colar una
-     release nueva sola. -->
-<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" crossorigin="anonymous"></script>
+<!-- DOMPurify se retiro: se descargaba en cada carga y no lo usaba nadie.
+     Su unico consumidor era setSafeHTML(), que tampoco se llamaba desde
+     ningun sitio. El escapado real de la app lo hacen escapeHtml() y
+     escapeAttr(). Si algun dia hace falta sanear HTML de terceros, que
+     se vendorice en ./vendor/ como Leaflet, no desde un CDN. -->
 
 <!-- Leaflet.markercluster -->
 <link rel="stylesheet" href="./vendor/MarkerCluster.css"/>
@@ -14732,15 +14733,6 @@ function escapeHtml(s) {
 // Seguridad + Performance: debounce para búsqueda (evita lag y ReDoS)
 function debounce(fn, delay){ let t; return function(...args){ clearTimeout(t); t=setTimeout(()=>fn.apply(this,args), delay); }; }
 
-// Seguridad: wrapper seguro para innerHTML usando DOMPurify si está disponible
-function setSafeHTML(el, html){
-  if (!el) return;
-  if (window.DOMPurify && html) {
-    el.innerHTML = DOMPurify.sanitize(html, {ALLOWED_TAGS: ['div','span','b','i','br','p','a','button','h2','h3','h4','small','img','ul','li'], ALLOWED_ATTR: ['class','href','src','alt','title','data-*']});
-  } else {
-    el.innerHTML = html;
-  }
-}
 
 
 // Haversine: distancia en km entre dos puntos lat/lng

@@ -180,8 +180,8 @@ Al escribir HTML:
 
 **Leaflet y MarkerCluster están alojados aquí**, no en un CDN: al ser
 del mismo origen los cubre `script-src 'self'`, y el mapa arranca aunque
-el CDN esté caído. El SDK de Supabase sí viene de jsDelivr, con versión
-exacta y `integrity`.
+el CDN esté caído. El SDK de Supabase, que es el único script que
+queda de un CDN, viene de jsDelivr con versión exacta y `integrity`.
 
 Estas cabeceras **no** funcionan dentro de un `<meta>` y el navegador
 las ignora: `X-Content-Type-Options`, `Permissions-Policy` y
@@ -192,8 +192,6 @@ porque GitHub Pages no permite cabeceras propias.
 
 Conocido y sin resolver:
 
-- **DOMPurify se carga sin `integrity`.** No se pudo calcular el hash
-  desde el entorno de desarrollo, que tiene el CDN bloqueado.
 - **Las coordenadas GPS exactas del usuario** se envían a
   `router.project-osrm.org`, que es un servidor de demostración público,
   y a `nominatim.openstreetmap.org`, cuya política de uso además pide un
