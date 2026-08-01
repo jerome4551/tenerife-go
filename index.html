@@ -27501,7 +27501,16 @@ const PLAYAS_ORIENTACION = {
   'arena':          { ori: 'W',  badWind: ['W','NW'] },
   'playa-amarilla': { ori: 'SE', badWind: ['SE','E'] },
   'teresitas':      { ori: 'NE', badWind: ['NE','N'] },
-  'playa-jardin':   { ori: 'NW', badWind: ['NW','W'] }
+
+  /* Playa Jardin queda fuera mientras dure la prohibicion. Su ficha en
+     places[] dice: "Bano prohibido actualmente por contaminacion
+     recurrente de vertidos de aguas residuales". El mar puede estar
+     tranquilo y el viento a favor —y entonces esto la recomendaba— pero
+     el agua no es apta. Ningun dato de oleaje detecta eso.
+
+     Para reactivarla: quitar noBano cuando se levante la prohibicion y
+     se actualice la descripcion del lugar. */
+  'playa-jardin':   { ori: 'NW', badWind: ['NW','W'], noBano: true }
 };
 
 function windDirToCardinal(deg){
@@ -27619,10 +27628,11 @@ async function renderBanoHoy(){
   if(!window.TGO_MAR || typeof window.TGO_MAR.nivel !== 'function'){ apagar(); return; }
 
   const ids = Object.keys(PLAYAS_ORIENTACION).map(function(id){
+    const o = PLAYAS_ORIENTACION[id];
+    if(o.noBano) return null;   // prohibicion de bano: ni se pide su dato
     const pl = (typeof places!=='undefined') ? places.find(function(q){ return q.id===id; }) : null;
     if(!pl) return null;
-    return { id:id, name:pl.name, lat:pl.lat, lng:pl.lng,
-             ori:PLAYAS_ORIENTACION[id].ori, badWind:PLAYAS_ORIENTACION[id].badWind };
+    return { id:id, name:pl.name, lat:pl.lat, lng:pl.lng, ori:o.ori, badWind:o.badWind };
   }).filter(Boolean);
 
   const datos = await fetchPlayasHoyCached(ids);
