@@ -5971,7 +5971,11 @@ window.onunhandledrejection = function(e) {
 .bano-chip{width:100%; text-align:left; background:rgba(15,17,23,0.85); border:1px solid rgba(255,255,255,0.12); color:#e8e8e8; border-radius:10px; padding:10px 12px; font-size:0.82rem; cursor:pointer; transition:all .2s; display:flex; justify-content:space-between; align-items:center;}
 .bano-chip:hover{background:rgba(212,175,55,0.18); border-color:rgba(212,175,55,0.5); transform:translateX(2px);}
 .bano-chip .bano-name{font-weight:600;}
-.bano-chip .bano-score{font-size:0.68rem; background:linear-gradient(135deg,#F5C76B,#D4AF37); color:#0F1117; border-radius:20px; padding:2px 8px; font-weight:800;}
+/* Sustituye al "100% ideal": el estado del mar y las cifras que lo
+   sostienen, en vez de un porcentaje que solo tenia cuatro valores. */
+.bano-chip .bano-datos{display:flex; flex-direction:column; align-items:flex-end; gap:3px; flex-shrink:0; margin-left:10px;}
+.bano-chip .bano-med{font-size:0.66rem; color:rgba(255,255,255,0.58); white-space:nowrap;}
+.bano-hoy-nada{font-size:0.75rem; line-height:1.45; color:rgba(255,255,255,0.72); background:rgba(245,158,11,0.10); border:1px solid rgba(245,158,11,0.28); border-radius:10px; padding:9px 11px;}
 .bano-chip.bano-best{border-color:#D4AF37; background:rgba(212,175,55,0.14);}
 
 
@@ -6496,9 +6500,9 @@ window.onunhandledrejection = function(e) {
 const LANGS = {
   es: {
     flag: '🇪🇸', code: 'ES',
-    banoHoyTitle: 'Hoy viento {dir} {speed}km/h → Báñate aquí:',
-    banoHoyIdeal: '% ideal',
-    banoHoySub: 'Protegidas del viento de hoy',
+    banoHoyTitle: 'Báñate hoy aquí:',
+    banoHoySub: 'Viento y mar de ahora · se descartan las costas movidas',
+    banoHoyNinguna: 'Hoy no hay ninguna playa que recomendar: el mar está movido en todas las costas.',
     parkingTitle: 'Parking y aforo',
     parkingFree: '{free} libres de {total}',
     parkingFull: 'Completo',
@@ -6645,9 +6649,9 @@ const LANGS = {
   },
   en: {
     flag: '🇬🇧', code: 'EN',
-    banoHoyTitle: 'Today wind {dir} {speed}km/h → Swim here:',
-    banoHoyIdeal: '% ideal',
-    banoHoySub: 'Sheltered from today wind',
+    banoHoyTitle: 'Swim here today:',
+    banoHoySub: 'Current wind and sea · rough coasts are excluded',
+    banoHoyNinguna: 'No beach to recommend today: the sea is rough on every coast.',
     parkingTitle: 'Parking & occupancy',
     parkingFree: '{free} free of {total}',
     parkingFull: 'Full',
@@ -6794,9 +6798,9 @@ const LANGS = {
   },
   fr: {
     flag: '🇫🇷', code: 'FR',
-    banoHoyTitle: 'Auj. vent {dir} {speed}km/h → Baignez-vous ici :',
-    banoHoyIdeal: '% idéal',
-    banoHoySub: 'Protégées du vent du jour',
+    banoHoyTitle: 'Baignez-vous ici aujourd’hui :',
+    banoHoySub: 'Vent et mer actuels · les côtes agitées sont écartées',
+    banoHoyNinguna: 'Aucune plage à recommander aujourd’hui : la mer est agitée sur toutes les côtes.',
     parkingTitle: 'Parking et occupation',
     parkingFree: '{free} libres sur {total}',
     parkingFull: 'Complet',
@@ -6943,9 +6947,9 @@ const LANGS = {
   },
   de: {
     flag: '🇩🇪', code: 'DE',
-    banoHoyTitle: 'Heute Wind {dir} {speed}km/h → Hier baden:',
-    banoHoyIdeal: '% ideal',
-    banoHoySub: 'Vor heutigem Wind geschützt',
+    banoHoyTitle: 'Heute hier baden:',
+    banoHoySub: 'Aktueller Wind und Seegang · raue Küsten werden ausgeschlossen',
+    banoHoyNinguna: 'Heute ist kein Strand zu empfehlen: die See ist an allen Küsten rau.',
     parkingTitle: 'Parkplatz & Auslastung',
     parkingFree: '{free} frei von {total}',
     parkingFull: 'Voll',
@@ -7096,9 +7100,9 @@ const LANGS = {
   // ══════════════════════════════════════════════════════════
   it: {
     flag: '🇮🇹', code: 'IT',
-    banoHoyTitle: 'Oggi vento {dir} {speed}km/h → Bagno qui:',
-    banoHoyIdeal: '% ideale',
-    banoHoySub: 'Protette dal vento di oggi',
+    banoHoyTitle: 'Oggi fai il bagno qui:',
+    banoHoySub: 'Vento e mare attuali · le coste agitate vengono escluse',
+    banoHoyNinguna: 'Oggi nessuna spiaggia da consigliare: il mare è mosso su tutte le coste.',
     parkingTitle: 'Parcheggio e occupazione',
     parkingFree: '{free} liberi su {total}',
     parkingFull: 'Completo',
@@ -7243,9 +7247,9 @@ const LANGS = {
   // ══════════════════════════════════════════════════════════
   nl: {
     flag: '🇳🇱', code: 'NL',
-    banoHoyTitle: 'Vandaag wind {dir} {speed}km/h → Zwem hier:',
-    banoHoyIdeal: '% ideaal',
-    banoHoySub: 'Beschut tegen de wind van vandaag',
+    banoHoyTitle: 'Zwem hier vandaag:',
+    banoHoySub: 'Huidige wind en zee · ruwe kusten vallen af',
+    banoHoyNinguna: 'Vandaag geen strand aan te raden: de zee is ruw aan alle kusten.',
     parkingTitle: 'Parking & bezetting',
     parkingFree: '{free} vrij van {total}',
     parkingFull: 'Vol',
@@ -7396,9 +7400,9 @@ const LANGS = {
   // ══════════════════════════════════════════════════════════
   zh: {
     flag: '🇨🇳', code: '简',
-    banoHoyTitle: '今日风 {dir} {speed}km/h → 在此游泳：',
-    banoHoyIdeal: '% 理想',
-    banoHoySub: '今日避风',
+    banoHoyTitle: '今天在这里游泳：',
+    banoHoySub: '当前风况与海况 · 已排除海面较大的海岸',
+    banoHoyNinguna: '今天没有可推荐的海滩：各处海岸海面都较大。',
     parkingTitle: '停车场及占用率',
     parkingFree: '{total}个车位中的{free}个空闲',
     parkingFull: '已满',
@@ -7808,9 +7812,9 @@ Object.keys(AUTH_STRINGS).forEach(lang => {
 // — NUNCA pantalla en blanco. Las cadenas tradicionales se sustituyen
 // progresivamente vía ZHT_OVERRIDES; lo no traducido cae a simplificado.
 const ZHT_OVERRIDES = {
-    banoHoyTitle: '今日風 {dir} {speed}km/h → 在此游泳：',
-    banoHoyIdeal: '% 理想',
-    banoHoySub: '今日避風',
+    banoHoyTitle: '今天在這裡游泳：',
+    banoHoySub: '當前風況與海況 · 已排除海面較大的海岸',
+    banoHoyNinguna: '今天沒有可推薦的海灘：各處海岸海面都較大。',
 
     authBtnGuest: '帳戶',
     authBtnUser: '我的帳戶',
@@ -23737,6 +23741,21 @@ function marInit() {
 if (document.readyState !== 'loading') { marInit(); }
 else { document.addEventListener('DOMContentLoaded', marInit); }
 
+/* Puente hacia "Banate aqui hoy", que vive en otro <script> y necesita
+   este mismo criterio para no recomendar una playa con el mar montado.
+
+   Se expone la clasificacion, no una copia de los umbrales. Copiarlos
+   es exactamente como se rompio la tabla de playas de aquel bloque: dos
+   copias del mismo dato que se separan y nadie se entera. Alli el
+   resultado fue un pin a 7,5 km de su sitio; aqui seria mandar a
+   alguien al agua. Si estos umbrales cambian, cambian para los dos. */
+window.TGO_MAR = {
+  nivel:      marNivel,
+  fondoLargo: marFondoLargo,
+  niveles:    MAR_NIVELES,
+  costas:     MAR_COSTAS
+};
+
 /* --- NOTIFICACIONES DIARIAS --------------------------------------
    Se ofrecen SOLO si la app esta instalada en la pantalla de inicio.
    En iOS es obligatorio (el Push API no existe en una pestana suelta)
@@ -27491,83 +27510,173 @@ function windDirToCardinal(deg){
   return dirs[Math.round(deg/45)%8];
 }
 
+/* Puntua SOLO el abrigo del viento. El mar no entra aqui: se filtra
+   antes, con el criterio del panel del mar. Mezclar las dos cosas en un
+   numero unico fue lo que dejo pasar la version anterior. */
 function scorePlaya(playa, windDeg, windSpeed){
   const card = windDirToCardinal(windDeg);
-  // Si viento viene de donde la playa está expuesta, mal score
   let score=100;
   if (playa.badWind.includes(card)) score-=60;
-  // Si viento fuerte >20kmh, penaliza más playas expuestas
   if (windSpeed>20 && playa.badWind.some(b=>card.includes(b[0]))) score-=20;
-  // Bonus: playas del suroeste son buenas con alisio NE (viento más común)
   if ((card==='NE' || card==='E') && (playa.ori==='S' || playa.ori==='SW' || playa.ori==='W')) score+=20;
-  // El resultado se pinta como porcentaje, asi que no puede pasar de 100:
-  // el bonus lo subia a 120 y salia "120% ideal".
   return Math.max(0, Math.min(100, score));
 }
 
-/* Devuelve null si no hay dato de viento. Antes devolvia un
-   {speed:15, dir:45} inventado y la cabecera decia "Hoy viento NE
-   15km/h" como si fuera la medicion de hoy. Es lo mismo que se quito
-   con getWxDemo: sin dato real, mejor no pintar nada, porque alguien
-   coge el coche fiandose. */
-async function fetchVientoHoy(){
+/* Pide viento Y oleaje EN CADA PLAYA, en dos peticiones por lotes, igual
+   que hace el panel del mar con sus siete costas.
+
+   Antes se pedia un solo viento para toda la isla en 28.2916,-16.6291
+   —la coordenada del schema.org de la cabecera, o sea el centroide de
+   Tenerife, que cae a 2,5 km del pico del Teide y a 12 km de la playa
+   mas cercana— y no se miraba el oleaje en absoluto. Con eso el panel
+   llegaba a recomendar "100% ideal" playas que el propio panel del mar,
+   dos dedos mas abajo, marcaba como PELIGROSO con olas de 3 m.
+
+   No se manda unidad de viento: km/h es el valor por defecto de
+   open-meteo. Aun asi se lee current_units y se convierte si viniera en
+   otra, que es mas barato que fiarse. */
+async function fetchPlayasHoy(ids){
+  if(!ids.length) return null;
+  const lat = ids.map(x=>x.lat).join(',');
+  const lng = ids.map(x=>x.lng).join(',');
+  const base = '?latitude='+lat+'&longitude='+lng+'&forecast_days=1&timezone=Atlantic%2FCanary';
+  const uMar = 'https://marine-api.open-meteo.com/v1/marine'+base+
+               '&current=wave_height,wave_period,swell_wave_height,swell_wave_period';
+  const uVie = 'https://api.open-meteo.com/v1/forecast'+base+
+               '&current=wind_speed_10m,wind_direction_10m';
+  const ctrl = new AbortController();
+  const timer = setTimeout(function(){ ctrl.abort(); }, 9000);
   try{
-    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=28.2916&longitude=-16.6291&current=wind_speed_10m,wind_direction_10m&windspeed_unit=kmh');
-    if(!r.ok) return null;
-    const j=await r.json();
-    const s=j && j.current ? j.current.wind_speed_10m : null;
-    const d=j && j.current ? j.current.wind_direction_10m : null;
-    if(typeof s!=='number' || typeof d!=='number' || !isFinite(s) || !isFinite(d)) return null;
-    return {speed: s, dir: d};
-  }catch(e){ return null; }
+    const [rM, rV] = await Promise.all([
+      fetch(uMar, {signal: ctrl.signal}),
+      fetch(uVie, {signal: ctrl.signal})
+    ]);
+    clearTimeout(timer);
+    if(!rM.ok || !rV.ok) return null;
+    const [jM, jV] = await Promise.all([rM.json(), rV.json()]);
+    const aM = Array.isArray(jM) ? jM : [jM];
+    const aV = Array.isArray(jV) ? jV : [jV];
+    if(aM.length !== ids.length || aV.length !== ids.length) return null;
+    const out = [];
+    for(let i=0;i<ids.length;i++){
+      const cm = (aM[i]||{}).current || {};
+      const cv = (aV[i]||{}).current || {};
+      const u  = ((aV[i]||{}).current_units || {}).wind_speed_10m || 'km/h';
+      let kmh = cv.wind_speed_10m;
+      if(typeof kmh === 'number'){
+        if(/m\/s/.test(u))      kmh = kmh * 3.6;
+        else if(/mph/.test(u))  kmh = kmh * 1.609344;
+        else if(/kn/.test(u))   kmh = kmh * 1.852;
+      }
+      const deg = cv.wind_direction_10m;
+      const h   = cm.wave_height;
+      // Sin viento o sin altura de ola no se puede juzgar esa playa.
+      if(typeof kmh!=='number' || !isFinite(kmh) || typeof deg!=='number' || !isFinite(deg)) continue;
+      if(typeof h!=='number'   || !isFinite(h)) continue;
+      out.push({
+        id: ids[i].id, name: ids[i].name, ori: ids[i].ori, badWind: ids[i].badWind,
+        windKmh: kmh, windDeg: deg,
+        waveH: h, waveP: cm.wave_period,
+        swellH: cm.swell_wave_height, swellP: cm.swell_wave_period
+      });
+    }
+    return out.length ? out : null;
+  }catch(e){
+    clearTimeout(timer);
+    return null;
+  }
 }
 
-/* Cache de 30 min. Si no hay dato no se guarda nada: guardar el null
-   dejaria el panel apagado media hora aunque la red vuelva enseguida. */
-var BANO_CACHE_KEY='tgo_bano_cache_v1';
+/* Cache de 30 min, misma ventana que el panel del mar. Clave v2: la v1
+   guardaba el viento inventado de la version anterior y no debe
+   reutilizarse. Si no hay dato no se guarda nada, para que el panel
+   vuelva en cuanto haya red y no se quede apagado media hora. */
+var BANO_CACHE_KEY='tgo_bano_cache_v2';
 var BANO_CACHE_TTL=30*60*1000;
-async function fetchVientoHoyCached(){
+async function fetchPlayasHoyCached(ids){
   try{
-    var cached=localStorage.getItem(BANO_CACHE_KEY);
-    if(cached){
-      var obj=JSON.parse(cached);
-      if(obj && obj.data && Date.now()-obj.ts < BANO_CACHE_TTL) return obj.data;
-    }
+    var c=JSON.parse(localStorage.getItem(BANO_CACHE_KEY));
+    if(c && c.data && Date.now()-c.ts < BANO_CACHE_TTL) return c.data;
   }catch(e){}
-  var data=await fetchVientoHoy();
+  var data=await fetchPlayasHoy(ids);
   if(data){ try{ localStorage.setItem(BANO_CACHE_KEY, JSON.stringify({ts:Date.now(), data:data})); }catch(e){} }
   return data;
 }
 
-/* Habia dos renderBanoHoy identicas seguidas —la segunda pisaba a la
-   primera— y dos setTimeout de arranque, asi que el panel se pintaba
-   dos veces. Queda una sola. */
+// 0,6 m en es/fr/de/it/nl · 0.6 m en en/zh/zht
+function banoNum(n, dec){
+  var s = Number(n).toFixed(dec);
+  return ['en','zh','zht'].indexOf(currentLang) === -1 ? s.replace('.', ',') : s;
+}
+
 async function renderBanoHoy(){
   const holder=document.getElementById('bano-hoy-holder');
   if(!holder) return;
-  const viento=await fetchVientoHoyCached();
-  // Sin viento no hay nada honesto que recomendar: se oculta el bloque.
-  if(!viento){ holder.innerHTML=''; holder.style.display='none'; return; }
-  const dirCard=windDirToCardinal(viento.dir);
-  let list=Object.keys(PLAYAS_ORIENTACION).map(function(id){
-    var ori=PLAYAS_ORIENTACION[id];
-    var pl=(typeof places!=='undefined') ? places.find(function(q){ return q.id===id; }) : null;
-    if(!pl) return null;   // el lugar ya no esta en places[]: no lo ofrezcamos
-    return {id:id, name:pl.name, score:scorePlaya(ori, viento.dir, viento.speed)};
-  }).filter(Boolean).sort(function(a,b){ return b.score-a.score; }).slice(0,3);
-  if(!list.length){ holder.innerHTML=''; holder.style.display='none'; return; }
+  const apagar = function(){ holder.innerHTML=''; holder.style.display='none'; };
+
+  // Sin el criterio del panel del mar no se recomienda nada: es la unica
+  // pieza que impide mandar a alguien a una costa con el mar montado.
+  if(!window.TGO_MAR || typeof window.TGO_MAR.nivel !== 'function'){ apagar(); return; }
+
+  const ids = Object.keys(PLAYAS_ORIENTACION).map(function(id){
+    const pl = (typeof places!=='undefined') ? places.find(function(q){ return q.id===id; }) : null;
+    if(!pl) return null;
+    return { id:id, name:pl.name, lat:pl.lat, lng:pl.lng,
+             ori:PLAYAS_ORIENTACION[id].ori, badWind:PLAYAS_ORIENTACION[id].badWind };
+  }).filter(Boolean);
+
+  const datos = await fetchPlayasHoyCached(ids);
+  if(!datos){ apagar(); return; }   // sin dato real no se inventa nada
+
   var tr = (typeof LANGS !== 'undefined' && LANGS[currentLang]) ? LANGS[currentLang] : LANGS.es;
-  var titleTpl = tr.banoHoyTitle || 'Hoy viento {dir} {speed}km/h -> Banate aqui:';
-  var title = titleTpl.replace('{dir}', dirCard).replace('{speed}', Math.round(viento.speed));
-  var subTxt = tr.banoHoySub || 'Protegidas del viento de hoy';
-  var idealTxt = tr.banoHoyIdeal || '% ideal';
+  var lang = currentLang || 'es';
+  var title  = tr.banoHoyTitle   || 'Banate hoy aqui:';
+  var subTxt = tr.banoHoySub     || 'Viento y mar de ahora';
+  var nadaTxt= tr.banoHoyNinguna || 'Hoy no hay ninguna playa que recomendar.';
+
+  // El filtro. "fuerte" y "peligroso" quedan fuera: sus propios textos
+  // dicen que se eviten las rocas y que se elija otra costa.
+  const RANGO = { calma:0, moderado:1 };
+  const aptas = datos.map(function(d){
+    d.nivel = window.TGO_MAR.nivel({ waveH:d.waveH, waveP:d.waveP, swellH:d.swellH, swellP:d.swellP });
+    d.score = scorePlaya(d, d.windDeg, d.windKmh);
+    return d;
+  }).filter(function(d){ return RANGO[d.nivel] !== undefined; })
+    .sort(function(a,b){
+      if(RANGO[a.nivel] !== RANGO[b.nivel]) return RANGO[a.nivel]-RANGO[b.nivel]; // mar primero
+      if(b.score !== a.score)               return b.score-a.score;               // luego abrigo
+      return a.waveH-b.waveH;                                                     // desempate real
+    }).slice(0,3);
+
+  var cab = '<div class="bano-hoy-head">\u{1F3D6}\uFE0F '+escapeHtml(title)+'</div>'+
+            '<div class="bano-hoy-sub">'+escapeHtml(subTxt)+'</div>';
+
+  if(!aptas.length){
+    // Que no haya ninguna es informacion util, no un fallo: hoy toca otra cosa.
+    holder.innerHTML = cab + '<div class="bano-hoy-nada">'+escapeHtml(nadaTxt)+'</div>';
+    holder.style.display='block';
+    return;
+  }
+
+  const niveles = window.TGO_MAR.niveles || {};
+  holder.innerHTML = cab + '<div class="bano-hoy-cards">' + aptas.map(function(d,i){
+    var nm = ((niveles[d.nivel]||{}).nm)||{};
+    return '<button class="bano-chip '+(i===0?'bano-best':'')+'" data-bano-id="'+escapeAttr(d.id)+'">'+
+             '<span class="bano-name">'+escapeHtml(d.name)+'</span>'+
+             '<span class="bano-datos">'+
+               '<span class="mar-chip mar-'+escapeAttr(d.nivel)+'">'+escapeHtml(nm[lang]||nm.es||d.nivel)+'</span>'+
+               '<span class="bano-med">\u{1F30A} '+escapeHtml(banoNum(d.waveH,1))+' m \u00B7 '+
+               '\u{1F4A8} '+escapeHtml(windDirToCardinal(d.windDeg))+' '+escapeHtml(banoNum(d.windKmh,0))+' km/h</span>'+
+             '</span>'+
+           '</button>';
+  }).join('') + '</div>';
+
   /* El id va en un data-* y se enlaza con addEventListener. Antes iba
      dentro de un onclick pasado por DOMPurify.sanitize(), que no vale
      para eso: DOMPurify limpia HTML, no escapa comillas para una cadena
      JavaScript. Ademas era una referencia directa a DOMPurify sin
-     comprobar, asi que si el CDN no respondia (bloqueador, sin red)
-     esto lanzaba y el bloque entero dejaba de funcionar. */
-  holder.innerHTML='<div class="bano-hoy-head">\u{1F3D6}\uFE0F '+escapeHtml(title)+'</div><div class="bano-hoy-sub">'+escapeHtml(subTxt)+'</div><div class="bano-hoy-cards">'+list.map((p,i)=>'<button class="bano-chip '+(i===0?'bano-best':'')+'" data-bano-id="'+escapeAttr(p.id)+'"><span class="bano-name">\u2713 '+escapeHtml(p.name)+'</span><span class="bano-score">'+p.score+escapeHtml(idealTxt)+'</span></button>').join('')+'</div>';
+     comprobar, asi que si el CDN no respondia esto lanzaba y el bloque
+     entero dejaba de funcionar. */
   holder.querySelectorAll('[data-bano-id]').forEach(function(btn){
     btn.addEventListener('click', function(){ goToPlace(btn.getAttribute('data-bano-id')); });
   });
@@ -27577,7 +27686,7 @@ async function renderBanoHoy(){
 /* Antes llamaba a showPlaceDetail() y closeMarPanel(), que no existen en
    la app —son openDetailSheet() y el propio panel—, asi que el boton
    solo movia el mapa por detras de un panel que se quedaba encima
-   tapandolo: no abria nada, ni con los ids correctos.
+   tapandolo: no abria nada.
 
    Zoom 15 esta por encima de disableClusteringAtZoom (13), asi que el
    marcador ya esta suelto y basta con openPopup(); no hace falta pasar
