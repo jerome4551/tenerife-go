@@ -6796,7 +6796,7 @@ const LANGS = {
     flag: '🇫🇷', code: 'FR',
     banoHoyTitle: 'Auj. vent {dir} {speed}km/h → Baignez-vous ici :',
     banoHoyIdeal: '% idéal',
-    banoHoySub: 'Protegees du vent du jour',
+    banoHoySub: 'Protégées du vent du jour',
     parkingTitle: 'Parking et occupation',
     parkingFree: '{free} libres sur {total}',
     parkingFull: 'Complet',
@@ -6945,7 +6945,7 @@ const LANGS = {
     flag: '🇩🇪', code: 'DE',
     banoHoyTitle: 'Heute Wind {dir} {speed}km/h → Hier baden:',
     banoHoyIdeal: '% ideal',
-    banoHoySub: 'Vor heutigem Wind geschutzt',
+    banoHoySub: 'Vor heutigem Wind geschützt',
     parkingTitle: 'Parkplatz & Auslastung',
     parkingFree: '{free} frei von {total}',
     parkingFull: 'Voll',
@@ -8176,6 +8176,10 @@ function setLang(lang) {
   applyUiTx();
   // Estado del mar: se repinta en el idioma nuevo
   if (typeof marRender === 'function' && typeof marData !== 'undefined' && marData) marRender();
+  // "Banate aqui hoy": igual. Sin esto se quedaba en el idioma con el
+  // que se pinto y solo cambiaba al cerrar y reabrir el panel del mar.
+  // Usa la cache de viento (30 min), asi que no dispara red.
+  if (typeof renderBanoHoy === 'function') renderBanoHoy();
 
   // Ruta del día — refrescar textos
   refreshDayTripTexts();
@@ -27461,16 +27465,24 @@ function closePrivacyPanel() {
 </script>
 <script>
 // ====== ¿DÓNDE ME BAÑO HOY? - Usa tu API marine + open-meteo ya existente ======
+/* Las claves son el id REAL del lugar en places[]. Antes esta tabla
+   llevaba su propio name/lat/lng copiados a mano y un realId aparte, y
+   las dos copias se habian separado: cinco de los ocho realId no existian
+   (playa-de-las-vistas por las-vistas, playa-del-duque por el-duque...)
+   y Playa La Arena estaba a 7,5 km de su sitio, en mar abierto frente a
+   Alcala. Aqui solo queda la orientacion; nombre y coordenadas salen de
+   places[], que es donde se mantienen.
+
+   Se quitaron Playa de Los Cristianos y Mana Nui: no son lugares de la
+   app, asi que sus botones no podian llevar a ninguna parte. */
 const PLAYAS_ORIENTACION = {
-  // id playa -> {name, orientacion (hacia donde mira), shelter: array de vientos que la joden, lat,lng}
-  'playa-de-las-vistas': {name: 'Playa de Las Vistas', ori: 'S', badWind: ['S','SW'], lat:28.052, lng:-16.727, realId: 'playa-de-las-vistas'},
-  'playa-de-los-cristianos': {name: 'Playa de Los Cristianos', ori: 'S', badWind: ['S'], lat:28.05, lng:-16.717, realId: 'playa-de-los-cristianos'},
-  'playa-la-arena-manga': {name: 'Playa La Arena', ori: 'W', badWind: ['W','NW'], lat:28.165, lng:-16.83, realId: 'playa-la-arena'},
-  'playa-amarilla': {name: 'Playa Amarilla', ori: 'SE', badWind: ['SE','E'], lat:28.0093, lng:-16.6384, realId: 'playa-amarilla'},
-  'playa-montana-amarilla-mananui': {name: 'Mana Nui / Montana Amarilla', ori: 'SE', badWind: ['SE'], lat:28.0018, lng:-16.6241, realId: null},
-  'playa-teresitas': {name: 'Playa Las Teresitas', ori: 'NE', badWind: ['NE','N'], lat:28.508, lng:-16.184, realId: 'playa-de-las-teresitas'},
-  'playa-jardin': {name: 'Playa Jardin', ori: 'NW', badWind: ['NW','W'], lat:28.414, lng:-16.558, realId: 'playa-jardin'},
-  'playa-duque': {name: 'Playa del Duque', ori: 'W', badWind: ['W'], lat:28.091, lng:-16.741, realId: 'playa-del-duque'}
+  // id en places[] -> ori: hacia donde mira · badWind: vientos que la estropean
+  'las-vistas':     { ori: 'S',  badWind: ['S','SW'] },
+  'el-duque':       { ori: 'W',  badWind: ['W'] },
+  'arena':          { ori: 'W',  badWind: ['W','NW'] },
+  'playa-amarilla': { ori: 'SE', badWind: ['SE','E'] },
+  'teresitas':      { ori: 'NE', badWind: ['NE','N'] },
+  'playa-jardin':   { ori: 'NW', badWind: ['NW','W'] }
 };
 
 function windDirToCardinal(deg){
@@ -27488,23 +27500,62 @@ function scorePlaya(playa, windDeg, windSpeed){
   if (windSpeed>20 && playa.badWind.some(b=>card.includes(b[0]))) score-=20;
   // Bonus: playas del suroeste son buenas con alisio NE (viento más común)
   if ((card==='NE' || card==='E') && (playa.ori==='S' || playa.ori==='SW' || playa.ori==='W')) score+=20;
-  return score;
+  // El resultado se pinta como porcentaje, asi que no puede pasar de 100:
+  // el bonus lo subia a 120 y salia "120% ideal".
+  return Math.max(0, Math.min(100, score));
 }
 
+/* Devuelve null si no hay dato de viento. Antes devolvia un
+   {speed:15, dir:45} inventado y la cabecera decia "Hoy viento NE
+   15km/h" como si fuera la medicion de hoy. Es lo mismo que se quito
+   con getWxDemo: sin dato real, mejor no pintar nada, porque alguien
+   coge el coche fiandose. */
 async function fetchVientoHoy(){
   try{
     const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=28.2916&longitude=-16.6291&current=wind_speed_10m,wind_direction_10m&windspeed_unit=kmh');
+    if(!r.ok) return null;
     const j=await r.json();
-    return {speed: j.current.wind_speed_10m, dir: j.current.wind_direction_10m};
-  }catch(e){ return {speed: 15, dir: 45}; }
+    const s=j && j.current ? j.current.wind_speed_10m : null;
+    const d=j && j.current ? j.current.wind_direction_10m : null;
+    if(typeof s!=='number' || typeof d!=='number' || !isFinite(s) || !isFinite(d)) return null;
+    return {speed: s, dir: d};
+  }catch(e){ return null; }
 }
 
+/* Cache de 30 min. Si no hay dato no se guarda nada: guardar el null
+   dejaria el panel apagado media hora aunque la red vuelva enseguida. */
+var BANO_CACHE_KEY='tgo_bano_cache_v1';
+var BANO_CACHE_TTL=30*60*1000;
+async function fetchVientoHoyCached(){
+  try{
+    var cached=localStorage.getItem(BANO_CACHE_KEY);
+    if(cached){
+      var obj=JSON.parse(cached);
+      if(obj && obj.data && Date.now()-obj.ts < BANO_CACHE_TTL) return obj.data;
+    }
+  }catch(e){}
+  var data=await fetchVientoHoy();
+  if(data){ try{ localStorage.setItem(BANO_CACHE_KEY, JSON.stringify({ts:Date.now(), data:data})); }catch(e){} }
+  return data;
+}
+
+/* Habia dos renderBanoHoy identicas seguidas —la segunda pisaba a la
+   primera— y dos setTimeout de arranque, asi que el panel se pintaba
+   dos veces. Queda una sola. */
 async function renderBanoHoy(){
   const holder=document.getElementById('bano-hoy-holder');
   if(!holder) return;
-  const viento=await fetchVientoHoy();
+  const viento=await fetchVientoHoyCached();
+  // Sin viento no hay nada honesto que recomendar: se oculta el bloque.
+  if(!viento){ holder.innerHTML=''; holder.style.display='none'; return; }
   const dirCard=windDirToCardinal(viento.dir);
-  let list=Object.entries(PLAYAS_ORIENTACION).map(([id,p])=>({id, ...p, score: scorePlaya(p, viento.dir, viento.speed)})).sort((a,b)=>b.score-a.score).slice(0,3);
+  let list=Object.keys(PLAYAS_ORIENTACION).map(function(id){
+    var ori=PLAYAS_ORIENTACION[id];
+    var pl=(typeof places!=='undefined') ? places.find(function(q){ return q.id===id; }) : null;
+    if(!pl) return null;   // el lugar ya no esta en places[]: no lo ofrezcamos
+    return {id:id, name:pl.name, score:scorePlaya(ori, viento.dir, viento.speed)};
+  }).filter(Boolean).sort(function(a,b){ return b.score-a.score; }).slice(0,3);
+  if(!list.length){ holder.innerHTML=''; holder.style.display='none'; return; }
   var tr = (typeof LANGS !== 'undefined' && LANGS[currentLang]) ? LANGS[currentLang] : LANGS.es;
   var titleTpl = tr.banoHoyTitle || 'Hoy viento {dir} {speed}km/h -> Banate aqui:';
   var title = titleTpl.replace('{dir}', dirCard).replace('{speed}', Math.round(viento.speed));
@@ -27516,78 +27567,41 @@ async function renderBanoHoy(){
      JavaScript. Ademas era una referencia directa a DOMPurify sin
      comprobar, asi que si el CDN no respondia (bloqueador, sin red)
      esto lanzaba y el bloque entero dejaba de funcionar. */
-  holder.innerHTML='<div class="bano-hoy-head">🏖️ '+escapeHtml(title)+'</div><div class="bano-hoy-sub">'+escapeHtml(subTxt)+'</div><div class="bano-hoy-cards">'+list.map((p,i)=>'<button class="bano-chip '+(i===0?'bano-best':'')+'" data-bano-id="'+escapeAttr(p.id)+'"><span class="bano-name">✓ '+escapeHtml(p.name)+'</span><span class="bano-score">'+p.score+escapeHtml(idealTxt)+'</span></button>').join('')+'</div>';
+  holder.innerHTML='<div class="bano-hoy-head">\u{1F3D6}\uFE0F '+escapeHtml(title)+'</div><div class="bano-hoy-sub">'+escapeHtml(subTxt)+'</div><div class="bano-hoy-cards">'+list.map((p,i)=>'<button class="bano-chip '+(i===0?'bano-best':'')+'" data-bano-id="'+escapeAttr(p.id)+'"><span class="bano-name">\u2713 '+escapeHtml(p.name)+'</span><span class="bano-score">'+p.score+escapeHtml(idealTxt)+'</span></button>').join('')+'</div>';
   holder.querySelectorAll('[data-bano-id]').forEach(function(btn){
     btn.addEventListener('click', function(){ goToPlace(btn.getAttribute('data-bano-id')); });
   });
   holder.style.display='block';
 }
 
+/* Antes llamaba a showPlaceDetail() y closeMarPanel(), que no existen en
+   la app —son openDetailSheet() y el propio panel—, asi que el boton
+   solo movia el mapa por detras de un panel que se quedaba encima
+   tapandolo: no abria nada, ni con los ids correctos.
+
+   Zoom 15 esta por encima de disableClusteringAtZoom (13), asi que el
+   marcador ya esta suelto y basta con openPopup(); no hace falta pasar
+   por clusterGroup.zoomToShowLayer(). openDetailSheet() se descarta sola
+   en pantallas anchas, por eso van los dos: popup en escritorio, ficha
+   completa en movil. */
 function goToPlace(id){
-  var p = PLAYAS_ORIENTACION[id];
-  if(!p) return;
-  if(typeof map !== 'undefined' && map && p.lat && p.lng){
-    map.setView([p.lat, p.lng], 15);
-    if(typeof closeMarPanel === 'function') try{ closeMarPanel(); }catch(e){}
-    if(p.realId && typeof places !== 'undefined'){
-      var realPlace = places.find(function(pl){ return pl.id===p.realId; });
-      if(realPlace && typeof showPlaceDetail === 'function'){
-        setTimeout(function(){ showPlaceDetail(realPlace.id); }, 400);
-        return;
-      }
-    }
-    if(!p.realId && typeof L !== 'undefined'){
-      var popup = L.popup().setLatLng([p.lat, p.lng]).setContent('<b>'+escapeHtml(p.name)+'</b><br><small>Mana Nui - Costa del Silencio</small>').openOn(map);
-    }
-  }
+  var pl = (typeof places!=='undefined') ? places.find(function(q){ return q.id===id; }) : null;
+  if(!pl || typeof map==='undefined' || !map) return;
+  var panel = document.getElementById('mar-panel');
+  if(panel) panel.style.display='none';
+  map.setView([pl.lat, pl.lng], 15);
+  setTimeout(function(){
+    var m = (typeof markerMap!=='undefined') ? markerMap[id] : null;
+    if(m && typeof map.hasLayer==='function' && map.hasLayer(m)) { try{ m.openPopup(); }catch(e){} }
+    if(typeof openDetailSheet === 'function') openDetailSheet(id);
+  }, 450);
 }
 
-// Auto-lanzar al cargar
-var BANO_CACHE_KEY='tgo_bano_cache_v1';
-var BANO_CACHE_TTL=30*60*1000;
-async function fetchVientoHoyCached(){
-  try{
-    var cached=localStorage.getItem(BANO_CACHE_KEY);
-    if(cached){
-      var obj=JSON.parse(cached);
-      if(Date.now()-obj.ts < BANO_CACHE_TTL) return obj.data;
-    }
-  }catch(e){}
-  var data=await fetchVientoHoy();
-  try{ localStorage.setItem(BANO_CACHE_KEY, JSON.stringify({ts:Date.now(), data:data})); }catch(e){}
-  return data;
-}
-async function renderBanoHoy(){
-  const holder=document.getElementById('bano-hoy-holder');
-  if(!holder) return;
-  const viento=await fetchVientoHoyCached();
-  const dirCard=windDirToCardinal(viento.dir);
-  let list=Object.entries(PLAYAS_ORIENTACION).map(([id,p])=>({id, ...p, score: scorePlaya(p, viento.dir, viento.speed)})).sort((a,b)=>b.score-a.score).slice(0,3);
-  var tr = (typeof LANGS !== 'undefined' && LANGS[currentLang]) ? LANGS[currentLang] : LANGS.es;
-  var titleTpl = tr.banoHoyTitle || 'Hoy viento';
-  var title = titleTpl.replace('{dir}', dirCard).replace('{speed}', Math.round(viento.speed));
-  var subTxt = tr.banoHoySub || 'Protegidas';
-  var idealTxt = tr.banoHoyIdeal || '% ideal';
-  /* El id va en un data-* y se enlaza con addEventListener. Antes iba
-     dentro de un onclick pasado por DOMPurify.sanitize(), que no vale
-     para eso: DOMPurify limpia HTML, no escapa comillas para una cadena
-     JavaScript. Ademas era una referencia directa a DOMPurify sin
-     comprobar, asi que si el CDN no respondia (bloqueador, sin red)
-     esto lanzaba y el bloque entero dejaba de funcionar. */
-  holder.innerHTML='<div class="bano-hoy-head">🏖️ '+escapeHtml(title)+'</div><div class="bano-hoy-sub">'+escapeHtml(subTxt)+'</div><div class="bano-hoy-cards">'+list.map((p,i)=>'<button class="bano-chip '+(i===0?'bano-best':'')+'" data-bano-id="'+escapeAttr(p.id)+'"><span class="bano-name">✓ '+escapeHtml(p.name)+'</span><span class="bano-score">'+p.score+escapeHtml(idealTxt)+'</span></button>').join('')+'</div>';
-  holder.querySelectorAll('[data-bano-id]').forEach(function(btn){
-    btn.addEventListener('click', function(){ goToPlace(btn.getAttribute('data-bano-id')); });
-  });
-  holder.style.display='block';
-}
 (function(){
   var marBtn=document.getElementById('mar-btn');
   if(marBtn){ marBtn.addEventListener('click', function(){ setTimeout(renderBanoHoy, 300); }); }
 })();
 setTimeout(renderBanoHoy, 1200);
-
-// Auto-lanzar al cargar
-setTimeout(renderBanoHoy, 2000);
 </script>
 </body>
 </html>
