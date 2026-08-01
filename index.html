@@ -27500,7 +27500,24 @@ const PLAYAS_ORIENTACION = {
   'el-duque':       { ori: 'W',  badWind: ['W'] },
   'arena':          { ori: 'W',  badWind: ['W','NW'] },
   'playa-amarilla': { ori: 'SE', badWind: ['SE','E'] },
-  'teresitas':      { ori: 'NE', badWind: ['NE','N'] },
+  /* Las Teresitas no lleva badWind: el dique la protege justo del oleaje
+     del N/NE, que es el dominante en esta costa. "Rompeolas que frena
+     las olas grandes", "aguas muy tranquilas gracias a un dique
+     protector", "muy segura para los ninos".
+
+     Antes tenia badWind ['NE','N'], que la dejaba en 20/100 con el
+     alisio, o sea con el viento mas frecuente del ano: la playa mas
+     resguardada de la isla era la que menos salia.
+
+     Cuidado con la otra mitad: el modelo de oleaje de open-meteo NO sabe
+     que el dique existe. Da la ola de mar abierto de esa celda, asi que
+     en dias movidos el filtro la descarta aunque por dentro este plana.
+     Se deja asi a proposito: pasarse de prudente es el unico error
+     aceptable en este panel.
+
+     ori solo alimenta el bonus de alisio, que se aplica a las que miran
+     al S/SW/W, de modo que en esta playa no interviene. */
+  'teresitas':      { ori: 'NE', badWind: [] },
 
   /* Playa Jardin queda fuera mientras dure la prohibicion. Su ficha en
      places[] dice: "Bano prohibido actualmente por contaminacion
