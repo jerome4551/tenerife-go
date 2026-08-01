@@ -12296,6 +12296,16 @@ const places = [
   // (indicado en `ancla`). plazas/precio/horario/aviso van vacios a
   // proposito: no se han verificado y el popup oculta lo que no tiene
   // valor. Rellenarlos aqui cuando se confirmen.
+  //
+  // LIMITE CONOCIDO: el pin marca el SITIO, no la boca exacta del
+  // aparcamiento; puede quedar a 100-200 m de donde se aparca de
+  // verdad. Sirve para conducir hasta alli, no para afinar al metro.
+  //
+  // Por eso se quito el de El Bollullo: la ficha de esa playa dice
+  // "Acceso por sendero", asi que un pin de parking sobre la arena
+  // mandaria a alguien a conducir a un sitio sin carretera. Si se
+  // conocen las coordenadas del aparcamiento de arriba, se vuelve a
+  // anadir con esas.
   { id:"pk-roques-garcia", category:"parking", name:"Parking Roques de García", emoji:"🅿️", color:"#3b82f6", lat:28.2247, lng:-16.6317, ancla:"roques-garcia",
     plazas:null, precio:"", horario:"", aviso:"",
     desc:{ es:"Aparcamiento del mirador y sendero circular de Roques de García, en el Parque Nacional del Teide.", en:"Car park for the Roques de García viewpoint and circular trail, in Teide National Park.", fr:"Parking du belvédère et du sentier circulaire de Roques de García, parc national du Teide.", de:"Parkplatz am Aussichtspunkt und Rundweg Roques de García im Teide-Nationalpark.", it:"Parcheggio del belvedere e del sentiero circolare di Roques de García, Parco Nazionale del Teide.", nl:"Parkeerplaats bij het uitzichtpunt en de rondwandeling Roques de García, Nationaal Park Teide.", zh:"泰德国家公园加西亚石观景台与环形步道的停车场。", zht:"泰德國家公園加西亞石觀景台與環形步道的停車場。" },
@@ -12366,11 +12376,6 @@ const places = [
     desc:{ es:"Aparcamiento de la playa de La Tejita, junto a Montaña Roja.", en:"Car park for La Tejita beach, next to Montaña Roja.", fr:"Parking de la plage de La Tejita, près de Montaña Roja.", de:"Parkplatz am Strand La Tejita, neben dem Montaña Roja.", it:"Parcheggio della spiaggia di La Tejita, accanto a Montaña Roja.", nl:"Parkeerplaats bij het strand La Tejita, naast Montaña Roja.", zh:"特希塔海滩停车场，紧邻红山。", zht:"特希塔海灘停車場，緊鄰紅山。" },
     cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
     tags:["Playa", "Kitesurf", "Sur"] },
-  { id:"pk-bollullo", category:"parking", name:"Parking Playa El Bollullo", emoji:"🅿️", color:"#3b82f6", lat:28.4175, lng:-16.5201, ancla:"bollullo",
-    plazas:null, precio:"", horario:"", aviso:"",
-    desc:{ es:"Aparcamiento del acceso a la playa de El Bollullo (La Orotava).", en:"Car park for the access path to El Bollullo beach (La Orotava).", fr:"Parking de l'accès à la plage d'El Bollullo (La Orotava).", de:"Parkplatz am Zugang zum Strand El Bollullo (La Orotava).", it:"Parcheggio dell'accesso alla spiaggia di El Bollullo (La Orotava).", nl:"Parkeerplaats bij de toegang tot het strand El Bollullo (La Orotava).", zh:"博柳略海滩通道停车场（拉奥罗塔瓦）。", zht:"博柳略海灘通道停車場（拉奧羅塔瓦）。" },
-    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
-    tags:["Playa", "Norte", "Arena negra"] },
 
 ];
 
