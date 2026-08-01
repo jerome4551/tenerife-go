@@ -6598,6 +6598,7 @@ const LANGS = {
     directionsBtn: '🚗 Cómo llegar en coche',
     busAccessToggleLabel: 'Accesible en bus (500 m)',
     categories: {
+      parking:     'Parkings',
       webcam:      'Webcams',
       ayuda:       'Ayuda & Apoyo',
       naturaleza:  'Naturaleza',
@@ -6746,6 +6747,7 @@ const LANGS = {
     directionsBtn: '🚗 Get there by car',
     busAccessToggleLabel: 'Bus accessible (500 m)',
     categories: {
+      parking:     'Car parks',
       webcam:      'Webcams',
       ayuda:       'Help & Support',
       naturaleza:  'Nature',
@@ -6894,6 +6896,7 @@ const LANGS = {
     directionsBtn: '🚗 Y aller en voiture',
     busAccessToggleLabel: 'Accessible en bus (500 m)',
     categories: {
+      parking:     'Parkings',
       webcam:      'Webcams',
       ayuda:       'Aide & Soutien',
       naturaleza:  'Nature',
@@ -7042,6 +7045,7 @@ const LANGS = {
     directionsBtn: '🚗 Mit dem Auto hinfahren',
     busAccessToggleLabel: 'Per Bus erreichbar (500 m)',
     categories: {
+      parking:     'Parkplätze',
       webcam:      'Webcams',
       ayuda:       'Hilfe & Unterstützung',
       naturaleza:  'Natur',
@@ -7194,6 +7198,7 @@ const LANGS = {
     directionsBtn: '🚗 Arrivare in auto',
     busAccessToggleLabel: 'Raggiungibile in bus (500 m)',
     categories: {
+      parking:     'Parcheggi',
       webcam:      'Webcam',
       ayuda:       'Aiuto & Supporto',
       naturaleza:  'Natura',
@@ -7340,6 +7345,7 @@ const LANGS = {
     directionsBtn: '🚗 Ernaartoe met de auto',
     busAccessToggleLabel: 'Bereikbaar met bus (500 m)',
     categories: {
+      parking:     'Parkeerplaatsen',
       webcam:      'Webcams',
       ayuda:       'Hulp & Steun',
       naturaleza:  'Natuur',
@@ -7492,6 +7498,7 @@ const LANGS = {
     directionsBtn: '🚗 驾车前往',
     busAccessToggleLabel: '公交可达(500 米)',
     categories: {
+      parking:     '停车场',
       webcam:      '实时影像',
       ayuda:       '帮助与支持',
       naturaleza:  '自然',
@@ -7934,6 +7941,7 @@ const ZHT_OVERRIDES = {
     directionsBtn: '🚗 開車前往',
     busAccessToggleLabel: '公車可達（500 公尺）',
     categories: {
+      parking:     '停車場',
       webcam:      '即時影像',
       ayuda:       '幫助與支持',
       naturaleza:  '自然',
@@ -8000,7 +8008,7 @@ let currentLang = (function () {
 
 /* Textos de interfaz que faltaban: barra inferior, pestanas de Rutas
    y calculador A->B. Se aplican en setLang (ver applyUiTx). */
-const UI_TX = Object.assign({"shopContact": {"es": "Contactar", "en": "Contact", "fr": "Contacter", "de": "Kontakt", "it": "Contatta", "nl": "Contact", "zh": "联系", "zht": "聯絡"}, "shopPartner": {"es": "Negocio Partner", "en": "Partner business", "fr": "Commerce partenaire", "de": "Partnerbetrieb", "it": "Attività partner", "nl": "Partnerbedrijf", "zh": "合作商家", "zht": "合作商家"}, "shopMaxPeople": {"es": "Máx. {n} personas", "en": "Max. {n} people", "fr": "Max. {n} personnes", "de": "Max. {n} Personen", "it": "Max {n} persone", "nl": "Max. {n} personen", "zh": "最多 {n} 人", "zht": "最多 {n} 人"}, "cartEmpty": {"es": "Tu cesta está vacía.", "en": "Your basket is empty.", "fr": "Votre panier est vide.", "de": "Dein Warenkorb ist leer.", "it": "Il tuo carrello è vuoto.", "nl": "Je mandje is leeg.", "zh": "购物篮是空的。", "zht": "購物籃是空的。"}, "cartEmptyHint": {"es": "Explora excursiones y souvenirs.", "en": "Browse tours and souvenirs.", "fr": "Parcourez les excursions et souvenirs.", "de": "Stöbere in Touren und Souvenirs.", "it": "Esplora escursioni e souvenir.", "nl": "Bekijk excursies en souvenirs.", "zh": "浏览行程与纪念品。", "zht": "瀏覽行程與紀念品。"}, "cartLoginMsg": {"es": "Inicia sesión para ver y guardar tu cesta", "en": "Sign in to view and save your basket", "fr": "Connectez-vous pour voir et garder votre panier", "de": "Melde dich an, um deinen Warenkorb zu sehen und zu speichern", "it": "Accedi per vedere e salvare il carrello", "nl": "Log in om je mandje te bekijken en te bewaren", "zh": "登录后即可查看并保存购物篮", "zht": "登入後即可查看並儲存購物籃"}, "cartLoginBtn": {"es": "Iniciar sesión", "en": "Sign in", "fr": "Se connecter", "de": "Anmelden", "it": "Accedi", "nl": "Inloggen", "zh": "登录", "zht": "登入"}, "adRecommend": {"es": "Recomendación de Jérôme", "en": "Jérôme's pick", "fr": "La recommandation de Jérôme", "de": "Jérômes Empfehlung", "it": "Il consiglio di Jérôme", "nl": "Jérômes aanrader", "zh": "Jérôme 的推荐", "zht": "Jérôme 的推薦"}},{"shopTitle":{"es":"Tienda","en":"Shop","fr":"Boutique","de":"Shop","it":"Negozio","nl":"Winkel","zh":"\u5546\u5e97","zht":"\u5546\u5e97"},"shopExc":{"es":"Excursiones","en":"Tours","fr":"Excursions","de":"Touren","it":"Escursioni","nl":"Excursies","zh":"\u884c\u7a0b","zht":"\u884c\u7a0b"},"shopSouv":{"es":"Souvenirs","en":"Souvenirs","fr":"Souvenirs","de":"Souvenirs","it":"Souvenir","nl":"Souvenirs","zh":"\u7eaa\u5ff5\u54c1","zht":"\u7d00\u5ff5\u54c1"},"shopBiz":{"es":"Negocios","en":"Businesses","fr":"Commerces","de":"Betriebe","it":"Attivit\u00e0","nl":"Bedrijven","zh":"\u5546\u5bb6","zht":"\u5546\u5bb6"},"shopAd":{"es":"An\u00fanciate","en":"Advertise","fr":"Annoncez-vous","de":"Werben","it":"Pubblicizzati","nl":"Adverteren","zh":"\u6295\u653e\u5e7f\u544a","zht":"\u6295\u653e\u5ee3\u544a"},"shopSoon":{"es":"PR\u00d3XIMAMENTE","en":"COMING SOON","fr":"BIENT\u00d4T","de":"DEMN\u00c4CHST","it":"PROSSIMAMENTE","nl":"BINNENKORT","zh":"\u5373\u5c06\u63a8\u51fa","zht":"\u5373\u5c07\u63a8\u51fa"},"shopBook":{"es":"Reservar","en":"Book","fr":"R\u00e9server","de":"Buchen","it":"Prenota","nl":"Boeken","zh":"\u9884\u8ba2","zht":"\u9810\u8a02"},"shopBuy":{"es":"Comprar","en":"Buy","fr":"Acheter","de":"Kaufen","it":"Acquista","nl":"Kopen","zh":"\u8d2d\u4e70","zht":"\u8cfc\u8cb7"},"shopPerson":{"es":"/ persona","en":"/ person","fr":"/ personne","de":"/ Person","it":"/ persona","nl":"/ persoon","zh":"/ \u4eba","zht":"/ \u4eba"},"shopUnit":{"es":"/ unidad","en":"/ unit","fr":"/ unit\u00e9","de":"/ St\u00fcck","it":"/ unit\u00e0","nl":"/ stuk","zh":"/ \u4ef6","zht":"/ \u4ef6"},"shopPack":{"es":"/ pack","en":"/ pack","fr":"/ pack","de":"/ Set","it":"/ pack","nl":"/ pakket","zh":"/ \u5957","zht":"/ \u5957"},"shopBizEmpty":{"es":"Los primeros negocios partner aparecer\u00e1n aqu\u00ed.","en":"The first partner businesses will appear here.","fr":"Les premiers partenaires appara\u00eetront ici.","de":"Die ersten Partnerbetriebe erscheinen hier.","it":"Le prime attivit\u00e0 partner appariranno qui.","nl":"De eerste partnerbedrijven verschijnen hier.","zh":"\u9996\u6279\u5408\u4f5c\u5546\u5bb6\u5c06\u663e\u793a\u5728\u8fd9\u91cc\u3002","zht":"\u9996\u6279\u5408\u4f5c\u5546\u5bb6\u5c07\u986f\u793a\u5728\u9019\u88e1\u3002"},"shopBizCta":{"es":"\u00bfTienes un negocio en Tenerife? \u00a1An\u00fanciate!","en":"Got a business in Tenerife? Advertise with us!","fr":"Vous avez un commerce \u00e0 Tenerife ? Annoncez-vous !","de":"Betrieb auf Teneriffa? Werben Sie hier!","it":"Hai un\u2019attivit\u00e0 a Tenerife? Fatti pubblicit\u00e0!","nl":"Bedrijf op Tenerife? Adverteer hier!","zh":"\u5728\u7279\u5185\u91cc\u8d39\u6709\u751f\u610f\uff1f\u6765\u8fd9\u91cc\u6295\u653e\u5e7f\u544a\uff01","zht":"\u5728\u7279\u5167\u91cc\u8cbb\u6709\u751f\u610f\uff1f\u4f86\u9019\u88e1\u6295\u653e\u5ee3\u544a\uff01"}},{"navHome":{"es":"Inicio","en":"Home","fr":"Accueil","de":"Start","it":"Home","nl":"Start","zh":"\u9996\u9875","zht":"\u9996\u9801"},"navFav":{"es":"Favoritos","en":"Favorites","fr":"Favoris","de":"Favoriten","it":"Preferiti","nl":"Favorieten","zh":"\u6536\u85cf","zht":"\u6536\u85cf"},"navRoutes":{"es":"Rutas","en":"Routes","fr":"Itin\u00e9raires","de":"Routen","it":"Percorsi","nl":"Routes","zh":"\u8def\u7ebf","zht":"\u8def\u7dda"},"navShop":{"es":"Tienda","en":"Shop","fr":"Boutique","de":"Shop","it":"Negozio","nl":"Winkel","zh":"\u5546\u5e97","zht":"\u5546\u5e97"},"navChat":{"es":"Asistente","en":"Assistant","fr":"Assistant","de":"Assistent","it":"Assistente","nl":"Assistent","zh":"\u52a9\u624b","zht":"\u52a9\u624b"},"navAccount":{"es":"Cuenta","en":"Account","fr":"Compte","de":"Konto","it":"Account","nl":"Account","zh":"\u8d26\u6237","zht":"\u5e33\u6236"},"tabPlanner":{"es":"Organiza tu d\u00eda","en":"Plan your day","fr":"Organise ta journ\u00e9e","de":"Tag planen","it":"Organizza la giornata","nl":"Plan je dag","zh":"\u89c4\u5212\u4e00\u5929","zht":"\u898f\u5283\u4e00\u5929"},"routeOrigin":{"es":"Origen","en":"From","fr":"D\u00e9part","de":"Start","it":"Partenza","nl":"Vanaf","zh":"\u8d77\u70b9","zht":"\u8d77\u9ede"},"routeDest":{"es":"Destino","en":"To","fr":"Arriv\u00e9e","de":"Ziel","it":"Arrivo","nl":"Naar","zh":"\u7ec8\u70b9","zht":"\u7d42\u9ede"},"routePickHint":{"es":"Toca aqu\u00ed para elegir\u2026","en":"Tap here to choose\u2026","fr":"Touche ici pour choisir\u2026","de":"Hier tippen zum W\u00e4hlen\u2026","it":"Tocca qui per scegliere\u2026","nl":"Tik hier om te kiezen\u2026","zh":"\u70b9\u6b64\u9009\u62e9\u2026","zht":"\u9ede\u6b64\u9078\u64c7\u2026"},"routeAddrPh":{"es":"O escribe una direcci\u00f3n\u2026","en":"Or type an address\u2026","fr":"Ou saisis une adresse\u2026","de":"Oder Adresse eingeben\u2026","it":"Oppure scrivi un indirizzo\u2026","nl":"Of typ een adres\u2026","zh":"\u6216\u8f93\u5165\u5730\u5740\u2026","zht":"\u6216\u8f38\u5165\u5730\u5740\u2026"},"routeHint":{"es":"Elige en el mapa, escribe una direcci\u00f3n o usa el GPS","en":"Pick on the map, type an address or use GPS","fr":"Choisis sur la carte, saisis une adresse ou utilise le GPS","de":"Auf der Karte w\u00e4hlen, Adresse eingeben oder GPS nutzen","it":"Scegli sulla mappa, scrivi un indirizzo o usa il GPS","nl":"Kies op de kaart, typ een adres of gebruik gps","zh":"\u5728\u5730\u56fe\u4e0a\u9009\u62e9\u3001\u8f93\u5165\u5730\u5740\u6216\u4f7f\u7528 GPS","zht":"\u5728\u5730\u5716\u4e0a\u9078\u64c7\u3001\u8f38\u5165\u5730\u5740\u6216\u4f7f\u7528 GPS"},"routeByCar":{"es":"En coche","en":"By car","fr":"En voiture","de":"Mit dem Auto","it":"In auto","nl":"Met de auto","zh":"\u81ea\u9a7e","zht":"\u81ea\u99d5"},"routeByBus":{"es":"En guagua","en":"By bus","fr":"En bus","de":"Mit dem Bus","it":"In autobus","nl":"Met de bus","zh":"\u516c\u4ea4","zht":"\u516c\u8eca"},"routeCarDetail":{"es":"Ruta por carretera","en":"Road route","fr":"Itin\u00e9raire routier","de":"Stra\u00dfenroute","it":"Percorso stradale","nl":"Route over de weg","zh":"\u516c\u8def\u8def\u7ebf","zht":"\u516c\u8def\u8def\u7dda"},"routeBusCalc":{"es":"Calculando opciones de bus\u2026","en":"Checking bus options\u2026","fr":"Calcul des options de bus\u2026","de":"Busoptionen werden gepr\u00fcft\u2026","it":"Calcolo opzioni bus\u2026","nl":"Busopties berekenen\u2026","zh":"\u6b63\u5728\u67e5\u8be2\u516c\u4ea4\u65b9\u6848\u2026","zht":"\u6b63\u5728\u67e5\u8a62\u516c\u8eca\u65b9\u6848\u2026"},"routeBackPlace":{"es":"Volver al lugar","en":"Back to place","fr":"Retour au lieu","de":"Zur\u00fcck zum Ort","it":"Torna al luogo","nl":"Terug naar plek","zh":"\u8fd4\u56de\u5730\u70b9","zht":"\u8fd4\u56de\u5730\u9ede"},"routeMin":{"es":"min","en":"min","fr":"min","de":"Min.","it":"min","nl":"min","zh":"\u5206\u949f","zht":"\u5206\u9418"}});
+const UI_TX = Object.assign({"parkingFreeOfCharge": {"es": "Gratuito", "en": "Free", "fr": "Gratuit", "de": "Kostenlos", "it": "Gratuito", "nl": "Gratis", "zh": "免费", "zht": "免費"}, "parkingPaid": {"es": "De pago", "en": "Paid", "fr": "Payant", "de": "Kostenpflichtig", "it": "A pagamento", "nl": "Betaald", "zh": "收费", "zht": "收費"}, "parkingHours": {"es": "Horario", "en": "Opening hours", "fr": "Horaires", "de": "Öffnungszeiten", "it": "Orari", "nl": "Openingstijden", "zh": "开放时间", "zht": "開放時間"}, "parkingSpaces": {"es": "{n} plazas", "en": "{n} spaces", "fr": "{n} places", "de": "{n} Plätze", "it": "{n} posti", "nl": "{n} plaatsen", "zh": "{n} 个车位", "zht": "{n} 個車位"}, "parkingNoLive": {"es": "Sin datos de ocupación en tiempo real", "en": "No real-time occupancy data", "fr": "Pas de données d'occupation en temps réel", "de": "Keine Echtzeit-Belegungsdaten", "it": "Nessun dato di occupazione in tempo reale", "nl": "Geen realtime bezettingsgegevens", "zh": "无实时占用数据", "zht": "無即時佔用數據"}},{"shopContact": {"es": "Contactar", "en": "Contact", "fr": "Contacter", "de": "Kontakt", "it": "Contatta", "nl": "Contact", "zh": "联系", "zht": "聯絡"}, "shopPartner": {"es": "Negocio Partner", "en": "Partner business", "fr": "Commerce partenaire", "de": "Partnerbetrieb", "it": "Attività partner", "nl": "Partnerbedrijf", "zh": "合作商家", "zht": "合作商家"}, "shopMaxPeople": {"es": "Máx. {n} personas", "en": "Max. {n} people", "fr": "Max. {n} personnes", "de": "Max. {n} Personen", "it": "Max {n} persone", "nl": "Max. {n} personen", "zh": "最多 {n} 人", "zht": "最多 {n} 人"}, "cartEmpty": {"es": "Tu cesta está vacía.", "en": "Your basket is empty.", "fr": "Votre panier est vide.", "de": "Dein Warenkorb ist leer.", "it": "Il tuo carrello è vuoto.", "nl": "Je mandje is leeg.", "zh": "购物篮是空的。", "zht": "購物籃是空的。"}, "cartEmptyHint": {"es": "Explora excursiones y souvenirs.", "en": "Browse tours and souvenirs.", "fr": "Parcourez les excursions et souvenirs.", "de": "Stöbere in Touren und Souvenirs.", "it": "Esplora escursioni e souvenir.", "nl": "Bekijk excursies en souvenirs.", "zh": "浏览行程与纪念品。", "zht": "瀏覽行程與紀念品。"}, "cartLoginMsg": {"es": "Inicia sesión para ver y guardar tu cesta", "en": "Sign in to view and save your basket", "fr": "Connectez-vous pour voir et garder votre panier", "de": "Melde dich an, um deinen Warenkorb zu sehen und zu speichern", "it": "Accedi per vedere e salvare il carrello", "nl": "Log in om je mandje te bekijken en te bewaren", "zh": "登录后即可查看并保存购物篮", "zht": "登入後即可查看並儲存購物籃"}, "cartLoginBtn": {"es": "Iniciar sesión", "en": "Sign in", "fr": "Se connecter", "de": "Anmelden", "it": "Accedi", "nl": "Inloggen", "zh": "登录", "zht": "登入"}, "adRecommend": {"es": "Recomendación de Jérôme", "en": "Jérôme's pick", "fr": "La recommandation de Jérôme", "de": "Jérômes Empfehlung", "it": "Il consiglio di Jérôme", "nl": "Jérômes aanrader", "zh": "Jérôme 的推荐", "zht": "Jérôme 的推薦"}},{"shopTitle":{"es":"Tienda","en":"Shop","fr":"Boutique","de":"Shop","it":"Negozio","nl":"Winkel","zh":"\u5546\u5e97","zht":"\u5546\u5e97"},"shopExc":{"es":"Excursiones","en":"Tours","fr":"Excursions","de":"Touren","it":"Escursioni","nl":"Excursies","zh":"\u884c\u7a0b","zht":"\u884c\u7a0b"},"shopSouv":{"es":"Souvenirs","en":"Souvenirs","fr":"Souvenirs","de":"Souvenirs","it":"Souvenir","nl":"Souvenirs","zh":"\u7eaa\u5ff5\u54c1","zht":"\u7d00\u5ff5\u54c1"},"shopBiz":{"es":"Negocios","en":"Businesses","fr":"Commerces","de":"Betriebe","it":"Attivit\u00e0","nl":"Bedrijven","zh":"\u5546\u5bb6","zht":"\u5546\u5bb6"},"shopAd":{"es":"An\u00fanciate","en":"Advertise","fr":"Annoncez-vous","de":"Werben","it":"Pubblicizzati","nl":"Adverteren","zh":"\u6295\u653e\u5e7f\u544a","zht":"\u6295\u653e\u5ee3\u544a"},"shopSoon":{"es":"PR\u00d3XIMAMENTE","en":"COMING SOON","fr":"BIENT\u00d4T","de":"DEMN\u00c4CHST","it":"PROSSIMAMENTE","nl":"BINNENKORT","zh":"\u5373\u5c06\u63a8\u51fa","zht":"\u5373\u5c07\u63a8\u51fa"},"shopBook":{"es":"Reservar","en":"Book","fr":"R\u00e9server","de":"Buchen","it":"Prenota","nl":"Boeken","zh":"\u9884\u8ba2","zht":"\u9810\u8a02"},"shopBuy":{"es":"Comprar","en":"Buy","fr":"Acheter","de":"Kaufen","it":"Acquista","nl":"Kopen","zh":"\u8d2d\u4e70","zht":"\u8cfc\u8cb7"},"shopPerson":{"es":"/ persona","en":"/ person","fr":"/ personne","de":"/ Person","it":"/ persona","nl":"/ persoon","zh":"/ \u4eba","zht":"/ \u4eba"},"shopUnit":{"es":"/ unidad","en":"/ unit","fr":"/ unit\u00e9","de":"/ St\u00fcck","it":"/ unit\u00e0","nl":"/ stuk","zh":"/ \u4ef6","zht":"/ \u4ef6"},"shopPack":{"es":"/ pack","en":"/ pack","fr":"/ pack","de":"/ Set","it":"/ pack","nl":"/ pakket","zh":"/ \u5957","zht":"/ \u5957"},"shopBizEmpty":{"es":"Los primeros negocios partner aparecer\u00e1n aqu\u00ed.","en":"The first partner businesses will appear here.","fr":"Les premiers partenaires appara\u00eetront ici.","de":"Die ersten Partnerbetriebe erscheinen hier.","it":"Le prime attivit\u00e0 partner appariranno qui.","nl":"De eerste partnerbedrijven verschijnen hier.","zh":"\u9996\u6279\u5408\u4f5c\u5546\u5bb6\u5c06\u663e\u793a\u5728\u8fd9\u91cc\u3002","zht":"\u9996\u6279\u5408\u4f5c\u5546\u5bb6\u5c07\u986f\u793a\u5728\u9019\u88e1\u3002"},"shopBizCta":{"es":"\u00bfTienes un negocio en Tenerife? \u00a1An\u00fanciate!","en":"Got a business in Tenerife? Advertise with us!","fr":"Vous avez un commerce \u00e0 Tenerife ? Annoncez-vous !","de":"Betrieb auf Teneriffa? Werben Sie hier!","it":"Hai un\u2019attivit\u00e0 a Tenerife? Fatti pubblicit\u00e0!","nl":"Bedrijf op Tenerife? Adverteer hier!","zh":"\u5728\u7279\u5185\u91cc\u8d39\u6709\u751f\u610f\uff1f\u6765\u8fd9\u91cc\u6295\u653e\u5e7f\u544a\uff01","zht":"\u5728\u7279\u5167\u91cc\u8cbb\u6709\u751f\u610f\uff1f\u4f86\u9019\u88e1\u6295\u653e\u5ee3\u544a\uff01"}},{"navHome":{"es":"Inicio","en":"Home","fr":"Accueil","de":"Start","it":"Home","nl":"Start","zh":"\u9996\u9875","zht":"\u9996\u9801"},"navFav":{"es":"Favoritos","en":"Favorites","fr":"Favoris","de":"Favoriten","it":"Preferiti","nl":"Favorieten","zh":"\u6536\u85cf","zht":"\u6536\u85cf"},"navRoutes":{"es":"Rutas","en":"Routes","fr":"Itin\u00e9raires","de":"Routen","it":"Percorsi","nl":"Routes","zh":"\u8def\u7ebf","zht":"\u8def\u7dda"},"navShop":{"es":"Tienda","en":"Shop","fr":"Boutique","de":"Shop","it":"Negozio","nl":"Winkel","zh":"\u5546\u5e97","zht":"\u5546\u5e97"},"navChat":{"es":"Asistente","en":"Assistant","fr":"Assistant","de":"Assistent","it":"Assistente","nl":"Assistent","zh":"\u52a9\u624b","zht":"\u52a9\u624b"},"navAccount":{"es":"Cuenta","en":"Account","fr":"Compte","de":"Konto","it":"Account","nl":"Account","zh":"\u8d26\u6237","zht":"\u5e33\u6236"},"tabPlanner":{"es":"Organiza tu d\u00eda","en":"Plan your day","fr":"Organise ta journ\u00e9e","de":"Tag planen","it":"Organizza la giornata","nl":"Plan je dag","zh":"\u89c4\u5212\u4e00\u5929","zht":"\u898f\u5283\u4e00\u5929"},"routeOrigin":{"es":"Origen","en":"From","fr":"D\u00e9part","de":"Start","it":"Partenza","nl":"Vanaf","zh":"\u8d77\u70b9","zht":"\u8d77\u9ede"},"routeDest":{"es":"Destino","en":"To","fr":"Arriv\u00e9e","de":"Ziel","it":"Arrivo","nl":"Naar","zh":"\u7ec8\u70b9","zht":"\u7d42\u9ede"},"routePickHint":{"es":"Toca aqu\u00ed para elegir\u2026","en":"Tap here to choose\u2026","fr":"Touche ici pour choisir\u2026","de":"Hier tippen zum W\u00e4hlen\u2026","it":"Tocca qui per scegliere\u2026","nl":"Tik hier om te kiezen\u2026","zh":"\u70b9\u6b64\u9009\u62e9\u2026","zht":"\u9ede\u6b64\u9078\u64c7\u2026"},"routeAddrPh":{"es":"O escribe una direcci\u00f3n\u2026","en":"Or type an address\u2026","fr":"Ou saisis une adresse\u2026","de":"Oder Adresse eingeben\u2026","it":"Oppure scrivi un indirizzo\u2026","nl":"Of typ een adres\u2026","zh":"\u6216\u8f93\u5165\u5730\u5740\u2026","zht":"\u6216\u8f38\u5165\u5730\u5740\u2026"},"routeHint":{"es":"Elige en el mapa, escribe una direcci\u00f3n o usa el GPS","en":"Pick on the map, type an address or use GPS","fr":"Choisis sur la carte, saisis une adresse ou utilise le GPS","de":"Auf der Karte w\u00e4hlen, Adresse eingeben oder GPS nutzen","it":"Scegli sulla mappa, scrivi un indirizzo o usa il GPS","nl":"Kies op de kaart, typ een adres of gebruik gps","zh":"\u5728\u5730\u56fe\u4e0a\u9009\u62e9\u3001\u8f93\u5165\u5730\u5740\u6216\u4f7f\u7528 GPS","zht":"\u5728\u5730\u5716\u4e0a\u9078\u64c7\u3001\u8f38\u5165\u5730\u5740\u6216\u4f7f\u7528 GPS"},"routeByCar":{"es":"En coche","en":"By car","fr":"En voiture","de":"Mit dem Auto","it":"In auto","nl":"Met de auto","zh":"\u81ea\u9a7e","zht":"\u81ea\u99d5"},"routeByBus":{"es":"En guagua","en":"By bus","fr":"En bus","de":"Mit dem Bus","it":"In autobus","nl":"Met de bus","zh":"\u516c\u4ea4","zht":"\u516c\u8eca"},"routeCarDetail":{"es":"Ruta por carretera","en":"Road route","fr":"Itin\u00e9raire routier","de":"Stra\u00dfenroute","it":"Percorso stradale","nl":"Route over de weg","zh":"\u516c\u8def\u8def\u7ebf","zht":"\u516c\u8def\u8def\u7dda"},"routeBusCalc":{"es":"Calculando opciones de bus\u2026","en":"Checking bus options\u2026","fr":"Calcul des options de bus\u2026","de":"Busoptionen werden gepr\u00fcft\u2026","it":"Calcolo opzioni bus\u2026","nl":"Busopties berekenen\u2026","zh":"\u6b63\u5728\u67e5\u8be2\u516c\u4ea4\u65b9\u6848\u2026","zht":"\u6b63\u5728\u67e5\u8a62\u516c\u8eca\u65b9\u6848\u2026"},"routeBackPlace":{"es":"Volver al lugar","en":"Back to place","fr":"Retour au lieu","de":"Zur\u00fcck zum Ort","it":"Torna al luogo","nl":"Terug naar plek","zh":"\u8fd4\u56de\u5730\u70b9","zht":"\u8fd4\u56de\u5730\u9ede"},"routeMin":{"es":"min","en":"min","fr":"min","de":"Min.","it":"min","nl":"min","zh":"\u5206\u949f","zht":"\u5206\u9418"}});
 
 // Si el idioma guardado o el del navegador no esta soportado, al espanol.
 if (!LANGS[currentLang]) currentLang = (currentLang === 'zht' && LANGS.zh) ? 'zh' : 'es';
@@ -12281,6 +12289,88 @@ const places = [
     tags:["Webcam","En directo","Santa Cruz"] },
 
 
+
+  // ══ PARKINGS ═══════════════════════════════════════════════════
+  // Coordenadas ancladas a lugares ya verificados de esta misma lista
+  // (indicado en `ancla`). plazas/precio/horario/aviso van vacios a
+  // proposito: no se han verificado y el popup oculta lo que no tiene
+  // valor. Rellenarlos aqui cuando se confirmen.
+  { id:"pk-roques-garcia", category:"parking", name:"Parking Roques de García", emoji:"🅿️", color:"#3b82f6", lat:28.2247, lng:-16.6317, ancla:"roques-garcia",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento del mirador y sendero circular de Roques de García, en el Parque Nacional del Teide.", en:"Car park for the Roques de García viewpoint and circular trail, in Teide National Park.", fr:"Parking du belvédère et du sentier circulaire de Roques de García, parc national du Teide.", de:"Parkplatz am Aussichtspunkt und Rundweg Roques de García im Teide-Nationalpark.", it:"Parcheggio del belvedere e del sentiero circolare di Roques de García, Parco Nazionale del Teide.", nl:"Parkeerplaats bij het uitzichtpunt en de rondwandeling Roques de García, Nationaal Park Teide.", zh:"泰德国家公园加西亚石观景台与环形步道的停车场。", zht:"泰德國家公園加西亞石觀景台與環形步道的停車場。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Teide", "Sendero", "Mirador"] },
+  { id:"pk-montana-blanca", category:"parking", name:"Parking Montaña Blanca", emoji:"🅿️", color:"#3b82f6", lat:28.2596, lng:-16.6032, ancla:"montana-blanca",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento del acceso a la cumbre por Montaña Blanca (TF-21).", en:"Car park for the Montaña Blanca summit access route (TF-21).", fr:"Parking de l'accès au sommet par Montaña Blanca (TF-21).", de:"Parkplatz am Gipfelzugang über Montaña Blanca (TF-21).", it:"Parcheggio dell'accesso alla vetta da Montaña Blanca (TF-21).", nl:"Parkeerplaats bij de route naar de top via Montaña Blanca (TF-21).", zh:"经白山（Montaña Blanca）登顶路线的停车场（TF-21）。", zht:"經白山（Montaña Blanca）登頂路線的停車場（TF-21）。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Teide", "Senderismo", "Cumbre"] },
+  { id:"pk-el-portillo", category:"parking", name:"Parking El Portillo", emoji:"🅿️", color:"#3b82f6", lat:28.3045, lng:-16.5666, ancla:"turismo-cv-portillo",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento del Centro de Visitantes de El Portillo, entrada norte del Parque Nacional.", en:"Car park at El Portillo Visitor Centre, northern entrance to the National Park.", fr:"Parking du centre des visiteurs d'El Portillo, entrée nord du parc national.", de:"Parkplatz am Besucherzentrum El Portillo, Nordeingang des Nationalparks.", it:"Parcheggio del Centro Visitatori di El Portillo, ingresso nord del Parco Nazionale.", nl:"Parkeerplaats bij bezoekerscentrum El Portillo, noordelijke ingang van het nationaal park.", zh:"国家公园北入口埃尔波蒂略游客中心停车场。", zht:"國家公園北入口埃爾波蒂略遊客中心停車場。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Teide", "Centro de visitantes"] },
+  { id:"pk-teleferico-teide", category:"parking", name:"Parking Teleférico del Teide", emoji:"🅿️", color:"#3b82f6", lat:28.2545, lng:-16.6258, ancla:"teide-teleforico",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento de la estación base del teleférico del Teide (TF-21).", en:"Car park at the Teide cable car base station (TF-21).", fr:"Parking de la gare de départ du téléphérique du Teide (TF-21).", de:"Parkplatz an der Talstation der Teide-Seilbahn (TF-21).", it:"Parcheggio della stazione a valle della funivia del Teide (TF-21).", nl:"Parkeerplaats bij het dalstation van de kabelbaan op de Teide (TF-21).", zh:"泰德缆车山下站停车场（TF-21）。", zht:"泰德纜車山下站停車場（TF-21）。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Teide", "Teleférico"] },
+  { id:"pk-canada-blanca", category:"parking", name:"Parking Cañada Blanca", emoji:"🅿️", color:"#3b82f6", lat:28.2242, lng:-16.6271, ancla:"turismo-cv-canada-blanca",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento del Centro de Visitantes Cañada Blanca y el Parador, en las Cañadas del Teide.", en:"Car park at Cañada Blanca Visitor Centre and the Parador, in Las Cañadas del Teide.", fr:"Parking du centre des visiteurs Cañada Blanca et du Parador, dans les Cañadas del Teide.", de:"Parkplatz am Besucherzentrum Cañada Blanca und am Parador in Las Cañadas del Teide.", it:"Parcheggio del Centro Visitatori Cañada Blanca e del Parador, nelle Cañadas del Teide.", nl:"Parkeerplaats bij bezoekerscentrum Cañada Blanca en de Parador in Las Cañadas del Teide.", zh:"泰德环形山内白谷游客中心与国营旅馆停车场。", zht:"泰德環形山內白谷遊客中心與國營旅館停車場。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Teide", "Centro de visitantes"] },
+  { id:"pk-samara", category:"parking", name:"Parking Mirador de Samara", emoji:"🅿️", color:"#3b82f6", lat:28.2667, lng:-16.726, ancla:"sendero-samara",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento del mirador y sendero de Samara (TF-38).", en:"Car park for the Samara viewpoint and trail (TF-38).", fr:"Parking du belvédère et du sentier de Samara (TF-38).", de:"Parkplatz am Aussichtspunkt und Wanderweg Samara (TF-38).", it:"Parcheggio del belvedere e del sentiero di Samara (TF-38).", nl:"Parkeerplaats bij uitzichtpunt en wandelpad Samara (TF-38).", zh:"萨马拉观景台与步道停车场（TF-38）。", zht:"薩馬拉觀景台與步道停車場（TF-38）。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Teide", "Sendero", "Mirador"] },
+  { id:"pk-cruz-carmen", category:"parking", name:"Parking Cruz del Carmen", emoji:"🅿️", color:"#3b82f6", lat:28.5308, lng:-16.2802, ancla:"turismo-cv-cruz-carmen",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento del Centro de Visitantes de Cruz del Carmen, en el Parque Rural de Anaga.", en:"Car park at Cruz del Carmen Visitor Centre, in Anaga Rural Park.", fr:"Parking du centre des visiteurs de Cruz del Carmen, parc rural d'Anaga.", de:"Parkplatz am Besucherzentrum Cruz del Carmen im Landschaftspark Anaga.", it:"Parcheggio del Centro Visitatori di Cruz del Carmen, Parco Rurale di Anaga.", nl:"Parkeerplaats bij bezoekerscentrum Cruz del Carmen in natuurpark Anaga.", zh:"阿纳加乡村公园卡门十字游客中心停车场。", zht:"阿納加鄉村公園卡門十字遊客中心停車場。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Anaga", "Laurisilva", "Centro de visitantes"] },
+  { id:"pk-benijo", category:"parking", name:"Parking Playa Benijo", emoji:"🅿️", color:"#3b82f6", lat:28.5721, lng:-16.1925, ancla:"benijo",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento junto a la playa de Benijo, final de la carretera de Anaga.", en:"Car park next to Benijo beach, at the end of the Anaga road.", fr:"Parking près de la plage de Benijo, au bout de la route d'Anaga.", de:"Parkplatz am Strand von Benijo, am Ende der Straße durch Anaga.", it:"Parcheggio vicino alla spiaggia di Benijo, alla fine della strada di Anaga.", nl:"Parkeerplaats bij het strand van Benijo, aan het einde van de weg door Anaga.", zh:"贝尼霍海滩旁停车场，位于阿纳加公路尽头。", zht:"貝尼霍海灘旁停車場，位於阿納加公路盡頭。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Anaga", "Playa"] },
+  { id:"pk-roque-bodegas", category:"parking", name:"Parking Roque de las Bodegas", emoji:"🅿️", color:"#3b82f6", lat:28.569, lng:-16.2051, ancla:"roque-bodegas",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento de la playa de Roque de las Bodegas y Almáciga (Anaga).", en:"Car park for Roque de las Bodegas and Almáciga beaches (Anaga).", fr:"Parking des plages de Roque de las Bodegas et Almáciga (Anaga).", de:"Parkplatz an den Stränden Roque de las Bodegas und Almáciga (Anaga).", it:"Parcheggio delle spiagge di Roque de las Bodegas e Almáciga (Anaga).", nl:"Parkeerplaats bij de stranden Roque de las Bodegas en Almáciga (Anaga).", zh:"阿纳加区博德加斯石与阿尔马西加海滩停车场。", zht:"阿納加區博德加斯石與阿爾馬西加海灘停車場。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Anaga", "Playa", "Restaurantes"] },
+  { id:"pk-teresitas", category:"parking", name:"Parking Playa Las Teresitas", emoji:"🅿️", color:"#3b82f6", lat:28.5097, lng:-16.1847, ancla:"teresitas",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento de la playa de Las Teresitas, en San Andrés.", en:"Car park for Las Teresitas beach, in San Andrés.", fr:"Parking de la plage de Las Teresitas, à San Andrés.", de:"Parkplatz am Strand Las Teresitas in San Andrés.", it:"Parcheggio della spiaggia di Las Teresitas, a San Andrés.", nl:"Parkeerplaats bij het strand Las Teresitas in San Andrés.", zh:"圣安德烈斯特雷西塔斯海滩停车场。", zht:"聖安德烈斯特雷西塔斯海灘停車場。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Playa", "Familias"] },
+  { id:"pk-masca", category:"parking", name:"Parking Masca", emoji:"🅿️", color:"#3b82f6", lat:28.3054, lng:-16.8399, ancla:"masca",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento del caserío de Masca, en el macizo de Teno (TF-436).", en:"Car park for Masca village, in the Teno massif (TF-436).", fr:"Parking du hameau de Masca, massif de Teno (TF-436).", de:"Parkplatz am Weiler Masca im Teno-Massiv (TF-436).", it:"Parcheggio del borgo di Masca, massiccio di Teno (TF-436).", nl:"Parkeerplaats bij het gehucht Masca, Teno-massief (TF-436).", zh:"特诺山区马斯卡村停车场（TF-436）。", zht:"特諾山區馬斯卡村停車場（TF-436）。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Teno", "Barranco", "Sendero"] },
+  { id:"pk-arenas-negras", category:"parking", name:"Parking Arenas Negras", emoji:"🅿️", color:"#3b82f6", lat:28.3199, lng:-16.7576, ancla:"ar-arenas-negras",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento del área recreativa de Arenas Negras y acceso a senderos (Garachico).", en:"Car park at Arenas Negras recreation area and trailheads (Garachico).", fr:"Parking de l'aire de loisirs d'Arenas Negras et accès aux sentiers (Garachico).", de:"Parkplatz am Erholungsgebiet Arenas Negras und Zugang zu Wanderwegen (Garachico).", it:"Parcheggio dell'area ricreativa di Arenas Negras e accesso ai sentieri (Garachico).", nl:"Parkeerplaats bij recreatiegebied Arenas Negras en start van wandelpaden (Garachico).", zh:"黑沙休闲区停车场与步道入口（加拉奇科）。", zht:"黑沙休閒區停車場與步道入口（加拉奇科）。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Senderismo", "Área recreativa"] },
+  { id:"pk-el-medano", category:"parking", name:"Parking El Médano", emoji:"🅿️", color:"#3b82f6", lat:28.0443, lng:-16.5384, ancla:"el-medano",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento del núcleo y la playa de El Médano, zona de windsurf y kitesurf.", en:"Car park for El Médano town and beach, windsurf and kitesurf spot.", fr:"Parking du bourg et de la plage d'El Médano, spot de windsurf et kitesurf.", de:"Parkplatz für Ort und Strand von El Médano, Windsurf- und Kitesurf-Revier.", it:"Parcheggio del paese e della spiaggia di El Médano, spot di windsurf e kitesurf.", nl:"Parkeerplaats bij het dorp en strand van El Médano, windsurf- en kitesurfplek.", zh:"梅达诺镇与海滩停车场，帆板与风筝冲浪地点。", zht:"梅達諾鎮與海灘停車場，帆板與風箏衝浪地點。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Playa", "Windsurf", "Sur"] },
+  { id:"pk-la-tejita", category:"parking", name:"Parking La Tejita", emoji:"🅿️", color:"#3b82f6", lat:28.0318, lng:-16.5566, ancla:"windsurf-la-tejita",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento de la playa de La Tejita, junto a Montaña Roja.", en:"Car park for La Tejita beach, next to Montaña Roja.", fr:"Parking de la plage de La Tejita, près de Montaña Roja.", de:"Parkplatz am Strand La Tejita, neben dem Montaña Roja.", it:"Parcheggio della spiaggia di La Tejita, accanto a Montaña Roja.", nl:"Parkeerplaats bij het strand La Tejita, naast Montaña Roja.", zh:"特希塔海滩停车场，紧邻红山。", zht:"特希塔海灘停車場，緊鄰紅山。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Playa", "Kitesurf", "Sur"] },
+  { id:"pk-bollullo", category:"parking", name:"Parking Playa El Bollullo", emoji:"🅿️", color:"#3b82f6", lat:28.4175, lng:-16.5201, ancla:"bollullo",
+    plazas:null, precio:"", horario:"", aviso:"",
+    desc:{ es:"Aparcamiento del acceso a la playa de El Bollullo (La Orotava).", en:"Car park for the access path to El Bollullo beach (La Orotava).", fr:"Parking de l'accès à la plage d'El Bollullo (La Orotava).", de:"Parkplatz am Zugang zum Strand El Bollullo (La Orotava).", it:"Parcheggio dell'accesso alla spiaggia di El Bollullo (La Orotava).", nl:"Parkeerplaats bij de toegang tot het strand El Bollullo (La Orotava).", zh:"博柳略海滩通道停车场（拉奥罗塔瓦）。", zht:"博柳略海灘通道停車場（拉奧羅塔瓦）。" },
+    cat:{ es:"Aparcamiento", en:"Car park", fr:"Parking", de:"Parkplatz", it:"Parcheggio", nl:"Parkeerplaats", zh:"停车场", zht:"停車場" },
+    tags:["Playa", "Norte", "Arena negra"] },
+
 ];
 
 // ══════════════════════════════════════════════════════════
@@ -12808,7 +12898,7 @@ const CAT_GROUPS = [
     labelIt: 'Pratico',
     labelNl: 'Praktisch',
     labelZh: '实用',
-    cats: ['supermercado', 'oficina_turismo', 'camping', 'webcam']
+    cats: ['parking', 'supermercado', 'oficina_turismo', 'camping', 'webcam']
   }
 ];
 
@@ -13875,6 +13965,32 @@ function _updateMarkersImpl() {
         healthInfo = `<div class="popup-info">${rows.join('')}</div>`;
       }
 
+      /* Ficha de parking. Solo se pinta lo que tiene valor: si no se ha
+         verificado el numero de plazas o el precio, no se muestra nada
+         en vez de inventarlo. La ocupacion en vivo NO se muestra porque
+         no hay ninguna fuente publica de la que sacarla; las claves
+         parkingFree/parkingOccupancy/parkingRealTime siguen definidas
+         para el dia que la haya, pero no se usan. */
+      let parkingInfo = '';
+      if (place.category === 'parking') {
+        const filas = [];
+        if (typeof place.plazas === 'number' && place.plazas > 0) {
+          filas.push('<div class="popup-info-row">🅿️ ' + escapeHtml(tx('parkingSpaces', { n: place.plazas })) + '</div>');
+        }
+        if (place.precio) {
+          const libre = /^(gratis|gratuito|free)$/i.test(String(place.precio).trim());
+          const txt = libre ? tx('parkingFreeOfCharge') : localized(place.precio);
+          filas.push('<div class="popup-info-row">💶 ' + escapeHtml(txt) + '</div>');
+        }
+        if (place.horario) {
+          filas.push('<div class="popup-info-row">🕐 ' + escapeHtml(tx('parkingHours')) + ': ' + escapeHtml(localized(place.horario)) + '</div>');
+        }
+        if (place.aviso) {
+          filas.push('<div class="popup-info-row" style="color:#fbbf24">⚠️ ' + escapeHtml(localized(place.aviso)) + '</div>');
+        }
+        if (filas.length) parkingInfo = '<div class="popup-info">' + filas.join('') + '</div>';
+      }
+
       // Enlace farmacia de guardia (solo para farmacias)
       const pharmacyLink = place.emoji === '💊'
         ? `<a href="https://www.farmaten.com/es/info/farmacias-abiertas-ahora-tenerife.html" target="_blank" rel="noopener noreferrer" class="popup-flag-link">${L.pharmacyGuardLink}</a>`
@@ -13926,6 +14042,7 @@ function _updateMarkersImpl() {
           <div class="popup-desc">${safeDesc}</div>
           ${badges.length ? `<div class="popup-badges">${badges.join('')}</div>` : ''}
           ${healthInfo}
+          ${parkingInfo}
           <div class="popup-tags">${safeTags}</div>
           ${flagLink}
           ${pharmacyLink}
