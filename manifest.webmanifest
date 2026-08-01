@@ -4,11 +4,24 @@
   "description": "Mapa interactivo de Tenerife - 720 lugares verificados",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0a0a0b",
-  "theme_color": "#22c55e",
+  "background_color": "#0F1117",
+  "theme_color": "#0F1117",
   "icons": [
-    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "./icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
