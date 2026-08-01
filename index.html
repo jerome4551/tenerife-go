@@ -16146,13 +16146,20 @@ const TITSA_LINES = [
      otras lineas de esta tabla (la 325 tiene tres para todo el
      trayecto).
 
-     PENDIENTE DE CONFIRMAR: frecuencia y precio exactos. No se ponen
-     cifras inventadas; parseFrequencyMinutes() cae a 30 min cuando no
-     encuentra un numero, que para el planificador es el lado prudente
-     (espera de mas, nunca de menos). */
+     Frecuencia y precio salen de la ficha de la linea en titsa.com. No
+     se pudieron comprobar desde aqui —el proxy tambien bloquea
+     titsa.com— asi que quedan como dato de segunda mano.
+
+     El 10-15 min es la frecuencia de hora punta y dias centrales; fuera
+     de esas horas espacia. Se pone esa porque es la que da la fuente y
+     porque es el mismo criterio que sigue el resto de la tabla, donde
+     cada linea lleva un solo rango.
+
+     El precio es el del billete suelto en efectivo o tarjeta bancaria;
+     con la Ten+ baja bastante. */
   {
     id:"bus-910", numero:"910", nombre:"Santa Cruz — San Andrés — Playa de Las Teresitas",
-    color:"#0288D1", tipo:"municipal", frecuencia:"alta frecuencia", precio:"consultar TITSA",
+    color:"#0288D1", tipo:"municipal", frecuencia:"10-15 min", precio:"1,25-2 €",
     paradas:[
       { id:"910-intercamb", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"910-sanandres", nombre:"San Andrés",                  lat:28.5050, lng:-16.1934, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
