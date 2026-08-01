@@ -8329,7 +8329,8 @@ const places = [
     cat:{ es:"Mirador · Parque Nacional", en:"Viewpoint · National Park", fr:"Belvédère · Parc National", de:"Aussichtspunkt · Nationalpark", it:"Belvedere · Parco Nazionale", nl:"Uitzichtpunt · Nationaal Park", zh:"观景台 · 国家公园", zht:"觀景台 · 國家公園" },
     tags:["Mirador","Teide","Amanecer","Fotografía","Parque Nacional"] },
 
-  { id:"teresitas", category:"playa", name:"Playa Las Teresitas", emoji:"🏝️", color:"#e67e22", lat:28.5097, lng:-16.1847, lifeguard:true, blueFlag:false,
+  { id:"teresitas", category:"playa", cats:["parking"], name:"Playa Las Teresitas", emoji:"🏝️", color:"#e67e22", lat:28.5097, lng:-16.1847, lifeguard:true, blueFlag:false,
+    parking:{ plazas:null, gratis:true, precioHora:null, precioDia:null, precioFecha:null, aviso:{es:"Acceso por la TF-11 desde Santa Cruz. También llega la guagua 910, con mucha frecuencia.", en:"Access on the TF-11 from Santa Cruz. Bus 910 also comes here, running frequently.", fr:"Accès par la TF-11 depuis Santa Cruz. Le bus 910 dessert aussi la plage, à fréquence élevée.", de:"Zufahrt über die TF-11 von Santa Cruz. Auch der Bus 910 fährt hierher, in dichtem Takt.", it:"Accesso dalla TF-11 da Santa Cruz. Ci arriva anche l’autobus 910, con corse frequenti.", nl:"Toegang via de TF-11 vanaf Santa Cruz. Ook bus 910 komt hier, met hoge frequentie.", zh:"经 TF-11 公路自圣克鲁斯前往。910 路公交也到这里，班次很密。", zht:"經 TF-11 公路自聖克魯斯前往。910 路公車也到這裡，班次很密。"} },
     desc:{ es:"La playa urbana más bonita de Tenerife. Arena dorada del Sahara, palmeras y aguas tranquilas. Socorrismo Cruz Roja todo el año.", en:"Tenerife's most beautiful urban beach. Saharan golden sand, palm trees and calm waters. Red Cross lifeguards all year.", fr:"La plus belle plage urbaine de Tenerife. Sable doré du Sahara, palmiers et eaux calmes. Sauveteurs toute l'année.", de:"Teneriffas schönster Stadtsstrand. Goldener Sahara-Sand, Palmen und ruhiges Wasser. Rettungsschwimmer ganzjährig.", it:"La spiaggia urbana più bella di Tenerife. Sabbia dorata del Sahara, palme e acque tranquille. Servizio di salvataggio della Croce Rossa tutto l'anno.", nl:"Het mooiste stadsstrand van Tenerife. Goudkleurig zand uit de Sahara, palmbomen en kalm water. Rode Kruis-strandwacht het hele jaar.", zh:"特内里费岛最美的城市海滩。来自撒哈拉的金色沙滩、棕榈树与平静海水。红十字会全年提供救生服务。", zht:"特內里費島最美的城市海灘。來自撒哈拉的金色沙灘、棕櫚樹與平靜海水。紅十字會全年提供救生服務。" },
     cat:{ es:"Playa Icónica", en:"Iconic Beach", fr:"Plage Emblématique", de:"Ikonischer Strand", it:"Spiaggia Iconica", nl:"Iconisch Strand", zh:"标志性海滩", zht:"標誌性海灘" },
     tags:["Arena Sahara","Familiar","Santa Cruz"] },
@@ -16128,6 +16129,34 @@ const TITSA_LINES = [
       { id:"477-arena",   nombre:"Playa de la Arena",                lat:28.2270, lng:-16.8420, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"477-ptosant", nombre:"Puerto de Santiago",               lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"477-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
+    ]
+  },
+  /* Linea 910 · Santa Cruz — San Andres — Las Teresitas.
+
+     Las tres coordenadas son datos que ya estaban en la app y
+     verificados: el Intercambiador es la misma parada que usan el
+     tranvia L1 y las nocturnas (28.4636,-16.2518), San Andres es el
+     lugar nucleo-san-andres y Las Teresitas es la propia playa. No se
+     inventa ninguna: desde el entorno de desarrollo no hay acceso a
+     ninguna fuente cartografica para comprobarla, y asi fue como Playa
+     La Arena acabo a 7,5 km de su sitio.
+
+     Por eso van solo tres paradas, las que se pueden sostener, en vez
+     del recorrido completo. Es la misma simplificacion que ya usan
+     otras lineas de esta tabla (la 325 tiene tres para todo el
+     trayecto).
+
+     PENDIENTE DE CONFIRMAR: frecuencia y precio exactos. No se ponen
+     cifras inventadas; parseFrequencyMinutes() cae a 30 min cuando no
+     encuentra un numero, que para el planificador es el lado prudente
+     (espera de mas, nunca de menos). */
+  {
+    id:"bus-910", numero:"910", nombre:"Santa Cruz — San Andrés — Playa de Las Teresitas",
+    color:"#0288D1", tipo:"municipal", frecuencia:"alta frecuencia", precio:"consultar TITSA",
+    paradas:[
+      { id:"910-intercamb", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"910-sanandres", nombre:"San Andrés",                  lat:28.5050, lng:-16.1934, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"910-teresitas", nombre:"Playa de Las Teresitas",      lat:28.5097, lng:-16.1847, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
     ]
   },
   {
