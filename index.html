@@ -22781,7 +22781,10 @@ function chatBuildContactBtn(){
   tx.appendChild(st);
   tx.appendChild(document.createTextNode(chatT('contactSub')));
   btn.appendChild(ic);btn.appendChild(tx);
-  btn.onclick=function(){window.open(CHAT_CONTACT_WA+'?text='+encodeURIComponent(CHAT_CONTACT_MSG),'_blank');};
+  /* noopener: sin el, la pagina que se abre recibe window.opener y puede
+   redirigir la pestana de la app a otro sitio. El resto de enlaces
+   externos ya pasan por bindExternalLink(), que lo pone. */
+  btn.onclick=function(){window.open(CHAT_CONTACT_WA+'?text='+encodeURIComponent(CHAT_CONTACT_MSG),'_blank','noopener,noreferrer');};
   return btn;
 }
 function addBotMessage(text,quickReplies,showContact,extra){
