@@ -17450,6 +17450,34 @@ const TITSA_LINES = [
      vuelven al nodo del tranvia en El Cardonal: se acabo el nodo
      partido.
 
+     LA FUENTE INSISTIO, con una explicacion nueva: que son dos paradas
+     distintas, la del tranvia en el puente de Los Menceyes
+     (28,46115/-16,30124) y la de guagua abajo, en los ramales de la
+     TF-2 (28,45892/-16,30453), y que hay que enlazarlas a pie con cinco
+     minutos de penalizacion.
+
+     Se midio lo que pasaria al aplicarlo. La L1 va de Taco a El
+     Cardonal y de ahi al Hospital Universitario:
+
+       como esta      582 m + 605 m  = 1,19 km   (en recta, 1,18)
+       con la ficha  2483 m + 2821 m = 5,30 km   (en recta, 1,18)
+
+     La parada se saldria 2,5 km de la via y volveria a entrar,
+     dibujando un pico de ida y vuelta de 4 km en mitad del mapa. Y los
+     saltos de las 21 paradas de la L1 van de 131 a 1029 metros: 2483 no
+     cabe ahi. Por eso sigue sin aplicarse.
+
+     El enlace peatonal tampoco resolveria nada. No hace falta
+     programarlo -findNearestStops ya busca paradas a 2 km a la redonda
+     y calcula el paseo- pero es que a 2,9 km no enlaza, y con razon:
+     nadie va a andar eso.
+
+     Para cerrarlo basta UNA coordenada de cualquier otra parada de la
+     L1: Taco, el Hospital Universitario o Las Mantecas. Si coincide con
+     la que hay, la cadena es buena y el par de la ficha esta
+     desplazado; si sale tambien 2,7 km al sur, entonces la cadena
+     entera esta mal y hay que rehacer las 21.
+
      OJO CON EL RESTO DE ESA TANDA. Si Taco, Tincer y El Cardonal venian
      mal, los demas puntos del suroeste que llegaron con ellos merecen
      una segunda mirada: Santa Maria del Mar se movio 4,2 km, La Gallega
