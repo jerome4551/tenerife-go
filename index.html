@@ -8027,6 +8027,14 @@ let currentLang = (function () {
    y calculador A->B. Se aplican en setLang (ver applyUiTx). */
 const UI_TX = Object.assign({"parkingSpaces": {"es": "{n} plazas", "en": "{n} spaces", "fr": "{n} places", "de": "{n} Plätze", "it": "{n} posti", "nl": "{n} plaatsen", "zh": "{n} 个车位", "zht": "{n} 個車位"}, "parkingFreeOfCharge": {"es": "Gratuito", "en": "Free", "fr": "Gratuit", "de": "Kostenlos", "it": "Gratuito", "nl": "Gratis", "zh": "免费", "zht": "免費"}, "parkingApprox": {"es": "aprox.", "en": "approx.", "fr": "env.", "de": "ca.", "it": "circa", "nl": "ong.", "zh": "约", "zht": "約"}, "parkingMaxDay": {"es": "máx. {n} €/día", "en": "max. {n} €/day", "fr": "max. {n} €/jour", "de": "max. {n} €/Tag", "it": "max {n} €/giorno", "nl": "max. {n} €/dag", "zh": "每日最多 {n} €", "zht": "每日最多 {n} €"}, "parkingPriceDate": {"es": "precio de {f}", "en": "price as of {f}", "fr": "tarif de {f}", "de": "Preis Stand {f}", "it": "prezzo di {f}", "nl": "prijs per {f}", "zh": "{f} 价格", "zht": "{f} 價格"}, "parkingHere": {"es": "Se puede aparcar aquí", "en": "Parking available here", "fr": "Stationnement possible ici", "de": "Hier kann geparkt werden", "it": "Qui si può parcheggiare", "nl": "Hier kun je parkeren", "zh": "此处可停车", "zht": "此處可停車"}},{"shopContact": {"es": "Contactar", "en": "Contact", "fr": "Contacter", "de": "Kontakt", "it": "Contatta", "nl": "Contact", "zh": "联系", "zht": "聯絡"}, "shopPartner": {"es": "Negocio Partner", "en": "Partner business", "fr": "Commerce partenaire", "de": "Partnerbetrieb", "it": "Attività partner", "nl": "Partnerbedrijf", "zh": "合作商家", "zht": "合作商家"}, "shopMaxPeople": {"es": "Máx. {n} personas", "en": "Max. {n} people", "fr": "Max. {n} personnes", "de": "Max. {n} Personen", "it": "Max {n} persone", "nl": "Max. {n} personen", "zh": "最多 {n} 人", "zht": "最多 {n} 人"}, "cartEmpty": {"es": "Tu cesta está vacía.", "en": "Your basket is empty.", "fr": "Votre panier est vide.", "de": "Dein Warenkorb ist leer.", "it": "Il tuo carrello è vuoto.", "nl": "Je mandje is leeg.", "zh": "购物篮是空的。", "zht": "購物籃是空的。"}, "cartEmptyHint": {"es": "Explora excursiones y souvenirs.", "en": "Browse tours and souvenirs.", "fr": "Parcourez les excursions et souvenirs.", "de": "Stöbere in Touren und Souvenirs.", "it": "Esplora escursioni e souvenir.", "nl": "Bekijk excursies en souvenirs.", "zh": "浏览行程与纪念品。", "zht": "瀏覽行程與紀念品。"}, "cartLoginMsg": {"es": "Inicia sesión para ver y guardar tu cesta", "en": "Sign in to view and save your basket", "fr": "Connectez-vous pour voir et garder votre panier", "de": "Melde dich an, um deinen Warenkorb zu sehen und zu speichern", "it": "Accedi per vedere e salvare il carrello", "nl": "Log in om je mandje te bekijken en te bewaren", "zh": "登录后即可查看并保存购物篮", "zht": "登入後即可查看並儲存購物籃"}, "cartLoginBtn": {"es": "Iniciar sesión", "en": "Sign in", "fr": "Se connecter", "de": "Anmelden", "it": "Accedi", "nl": "Inloggen", "zh": "登录", "zht": "登入"}, "adRecommend": {"es": "Recomendación de Jérôme", "en": "Jérôme's pick", "fr": "La recommandation de Jérôme", "de": "Jérômes Empfehlung", "it": "Il consiglio di Jérôme", "nl": "Jérômes aanrader", "zh": "Jérôme 的推荐", "zht": "Jérôme 的推薦"}},{"shopTitle":{"es":"Tienda","en":"Shop","fr":"Boutique","de":"Shop","it":"Negozio","nl":"Winkel","zh":"\u5546\u5e97","zht":"\u5546\u5e97"},"shopExc":{"es":"Excursiones","en":"Tours","fr":"Excursions","de":"Touren","it":"Escursioni","nl":"Excursies","zh":"\u884c\u7a0b","zht":"\u884c\u7a0b"},"shopSouv":{"es":"Souvenirs","en":"Souvenirs","fr":"Souvenirs","de":"Souvenirs","it":"Souvenir","nl":"Souvenirs","zh":"\u7eaa\u5ff5\u54c1","zht":"\u7d00\u5ff5\u54c1"},"shopBiz":{"es":"Negocios","en":"Businesses","fr":"Commerces","de":"Betriebe","it":"Attivit\u00e0","nl":"Bedrijven","zh":"\u5546\u5bb6","zht":"\u5546\u5bb6"},"shopAd":{"es":"An\u00fanciate","en":"Advertise","fr":"Annoncez-vous","de":"Werben","it":"Pubblicizzati","nl":"Adverteren","zh":"\u6295\u653e\u5e7f\u544a","zht":"\u6295\u653e\u5ee3\u544a"},"shopSoon":{"es":"PR\u00d3XIMAMENTE","en":"COMING SOON","fr":"BIENT\u00d4T","de":"DEMN\u00c4CHST","it":"PROSSIMAMENTE","nl":"BINNENKORT","zh":"\u5373\u5c06\u63a8\u51fa","zht":"\u5373\u5c07\u63a8\u51fa"},"shopBook":{"es":"Reservar","en":"Book","fr":"R\u00e9server","de":"Buchen","it":"Prenota","nl":"Boeken","zh":"\u9884\u8ba2","zht":"\u9810\u8a02"},"shopBuy":{"es":"Comprar","en":"Buy","fr":"Acheter","de":"Kaufen","it":"Acquista","nl":"Kopen","zh":"\u8d2d\u4e70","zht":"\u8cfc\u8cb7"},"shopPerson":{"es":"/ persona","en":"/ person","fr":"/ personne","de":"/ Person","it":"/ persona","nl":"/ persoon","zh":"/ \u4eba","zht":"/ \u4eba"},"shopUnit":{"es":"/ unidad","en":"/ unit","fr":"/ unit\u00e9","de":"/ St\u00fcck","it":"/ unit\u00e0","nl":"/ stuk","zh":"/ \u4ef6","zht":"/ \u4ef6"},"shopPack":{"es":"/ pack","en":"/ pack","fr":"/ pack","de":"/ Set","it":"/ pack","nl":"/ pakket","zh":"/ \u5957","zht":"/ \u5957"},"shopBizEmpty":{"es":"Los primeros negocios partner aparecer\u00e1n aqu\u00ed.","en":"The first partner businesses will appear here.","fr":"Les premiers partenaires appara\u00eetront ici.","de":"Die ersten Partnerbetriebe erscheinen hier.","it":"Le prime attivit\u00e0 partner appariranno qui.","nl":"De eerste partnerbedrijven verschijnen hier.","zh":"\u9996\u6279\u5408\u4f5c\u5546\u5bb6\u5c06\u663e\u793a\u5728\u8fd9\u91cc\u3002","zht":"\u9996\u6279\u5408\u4f5c\u5546\u5bb6\u5c07\u986f\u793a\u5728\u9019\u88e1\u3002"},"shopBizCta":{"es":"\u00bfTienes un negocio en Tenerife? \u00a1An\u00fanciate!","en":"Got a business in Tenerife? Advertise with us!","fr":"Vous avez un commerce \u00e0 Tenerife ? Annoncez-vous !","de":"Betrieb auf Teneriffa? Werben Sie hier!","it":"Hai un\u2019attivit\u00e0 a Tenerife? Fatti pubblicit\u00e0!","nl":"Bedrijf op Tenerife? Adverteer hier!","zh":"\u5728\u7279\u5185\u91cc\u8d39\u6709\u751f\u610f\uff1f\u6765\u8fd9\u91cc\u6295\u653e\u5e7f\u544a\uff01","zht":"\u5728\u7279\u5167\u91cc\u8cbb\u6709\u751f\u610f\uff1f\u4f86\u9019\u88e1\u6295\u653e\u5ee3\u544a\uff01"}},{"navHome":{"es":"Inicio","en":"Home","fr":"Accueil","de":"Start","it":"Home","nl":"Start","zh":"\u9996\u9875","zht":"\u9996\u9801"},"navFav":{"es":"Favoritos","en":"Favorites","fr":"Favoris","de":"Favoriten","it":"Preferiti","nl":"Favorieten","zh":"\u6536\u85cf","zht":"\u6536\u85cf"},"navRoutes":{"es":"Rutas","en":"Routes","fr":"Itin\u00e9raires","de":"Routen","it":"Percorsi","nl":"Routes","zh":"\u8def\u7ebf","zht":"\u8def\u7dda"},"navShop":{"es":"Tienda","en":"Shop","fr":"Boutique","de":"Shop","it":"Negozio","nl":"Winkel","zh":"\u5546\u5e97","zht":"\u5546\u5e97"},"navChat":{"es":"Asistente","en":"Assistant","fr":"Assistant","de":"Assistent","it":"Assistente","nl":"Assistent","zh":"\u52a9\u624b","zht":"\u52a9\u624b"},"navAccount":{"es":"Cuenta","en":"Account","fr":"Compte","de":"Konto","it":"Account","nl":"Account","zh":"\u8d26\u6237","zht":"\u5e33\u6236"},"tabPlanner":{"es":"Organiza tu d\u00eda","en":"Plan your day","fr":"Organise ta journ\u00e9e","de":"Tag planen","it":"Organizza la giornata","nl":"Plan je dag","zh":"\u89c4\u5212\u4e00\u5929","zht":"\u898f\u5283\u4e00\u5929"},"routeOrigin":{"es":"Origen","en":"From","fr":"D\u00e9part","de":"Start","it":"Partenza","nl":"Vanaf","zh":"\u8d77\u70b9","zht":"\u8d77\u9ede"},"routeDest":{"es":"Destino","en":"To","fr":"Arriv\u00e9e","de":"Ziel","it":"Arrivo","nl":"Naar","zh":"\u7ec8\u70b9","zht":"\u7d42\u9ede"},"routePickHint":{"es":"Toca aqu\u00ed para elegir\u2026","en":"Tap here to choose\u2026","fr":"Touche ici pour choisir\u2026","de":"Hier tippen zum W\u00e4hlen\u2026","it":"Tocca qui per scegliere\u2026","nl":"Tik hier om te kiezen\u2026","zh":"\u70b9\u6b64\u9009\u62e9\u2026","zht":"\u9ede\u6b64\u9078\u64c7\u2026"},"routeAddrPh":{"es":"O escribe una direcci\u00f3n\u2026","en":"Or type an address\u2026","fr":"Ou saisis une adresse\u2026","de":"Oder Adresse eingeben\u2026","it":"Oppure scrivi un indirizzo\u2026","nl":"Of typ een adres\u2026","zh":"\u6216\u8f93\u5165\u5730\u5740\u2026","zht":"\u6216\u8f38\u5165\u5730\u5740\u2026"},"routeHint":{"es":"Elige en el mapa, escribe una direcci\u00f3n o usa el GPS","en":"Pick on the map, type an address or use GPS","fr":"Choisis sur la carte, saisis une adresse ou utilise le GPS","de":"Auf der Karte w\u00e4hlen, Adresse eingeben oder GPS nutzen","it":"Scegli sulla mappa, scrivi un indirizzo o usa il GPS","nl":"Kies op de kaart, typ een adres of gebruik gps","zh":"\u5728\u5730\u56fe\u4e0a\u9009\u62e9\u3001\u8f93\u5165\u5730\u5740\u6216\u4f7f\u7528 GPS","zht":"\u5728\u5730\u5716\u4e0a\u9078\u64c7\u3001\u8f38\u5165\u5730\u5740\u6216\u4f7f\u7528 GPS"},"routeByCar":{"es":"En coche","en":"By car","fr":"En voiture","de":"Mit dem Auto","it":"In auto","nl":"Met de auto","zh":"\u81ea\u9a7e","zht":"\u81ea\u99d5"},"routeByBus":{"es":"En guagua","en":"By bus","fr":"En bus","de":"Mit dem Bus","it":"In autobus","nl":"Met de bus","zh":"\u516c\u4ea4","zht":"\u516c\u8eca"},"routeCarDetail":{"es":"Ruta por carretera","en":"Road route","fr":"Itin\u00e9raire routier","de":"Stra\u00dfenroute","it":"Percorso stradale","nl":"Route over de weg","zh":"\u516c\u8def\u8def\u7ebf","zht":"\u516c\u8def\u8def\u7dda"},"routeBusCalc":{"es":"Calculando opciones de bus\u2026","en":"Checking bus options\u2026","fr":"Calcul des options de bus\u2026","de":"Busoptionen werden gepr\u00fcft\u2026","it":"Calcolo opzioni bus\u2026","nl":"Busopties berekenen\u2026","zh":"\u6b63\u5728\u67e5\u8be2\u516c\u4ea4\u65b9\u6848\u2026","zht":"\u6b63\u5728\u67e5\u8a62\u516c\u8eca\u65b9\u6848\u2026"},"routeBackPlace":{"es":"Volver al lugar","en":"Back to place","fr":"Retour au lieu","de":"Zur\u00fcck zum Ort","it":"Torna al luogo","nl":"Terug naar plek","zh":"\u8fd4\u56de\u5730\u70b9","zht":"\u8fd4\u56de\u5730\u9ede"},"routeMin":{"es":"min","en":"min","fr":"min","de":"Min.","it":"min","nl":"min","zh":"\u5206\u949f","zht":"\u5206\u9418"}});
 
+/* Mensajes del planificador que se anadieron despues. Van por tx(),
+   asi que salen en el idioma que toque. El de "ya ha salido" hacia
+   falta desde que las dos lineas del Teide se descartan por hora:
+   sin el, la app contestaba "no hay lineas que conecten estos dos
+   puntos", que es falso y ademas empuja a alquilar un coche. */
+Object.assign(UI_TX, {"busYaSalio": {"es": "La guagua {n} al Teide sale una vez al día y ya ha salido hoy ({h}). Mañana vuelve a haber.", "en": "The {n} bus to Teide runs once a day and has already left today ({h}). There is another one tomorrow.", "fr": "Le bus {n} vers le Teide part une fois par jour et est déjà parti aujourd'hui ({h}). Il y en a un autre demain.", "de": "Der Bus {n} zum Teide fährt einmal am Tag und ist heute schon weg ({h}). Morgen fährt wieder einer.", "it": "L'autobus {n} per il Teide parte una volta al giorno ed è già partito oggi ({h}). Domani ce n'è un altro.", "nl": "Bus {n} naar de Teide rijdt één keer per dag en is vandaag al vertrokken ({h}). Morgen gaat er weer een.", "zh": "前往泰德峰的{n}路每天只发一班，今天的已经开走了（{h}）。明天还有一班。", "zht": "前往泰德峰的{n}路每天只發一班，今天的已經開走了（{h}）。明天還有一班。"}, "busSinConexion": {"es": "No hay líneas que conecten estos dos puntos.", "en": "No bus lines connect these two points.", "fr": "Aucune ligne ne relie ces deux points.", "de": "Keine Linie verbindet diese beiden Punkte.", "it": "Nessuna linea collega questi due punti.", "nl": "Geen enkele lijn verbindt deze twee punten.", "zh": "没有线路连接这两个地点。", "zht": "沒有路線連接這兩個地點。"}});
+Object.assign(UI_TX, {"busNoDisponible": {"es": "Sin conexión", "en": "No connection", "fr": "Pas de liaison", "de": "Keine Verbindung", "it": "Nessun collegamento", "nl": "Geen verbinding", "zh": "无直达", "zht": "無直達"}, "busSinRuta": {"es": "No se encontró una ruta en guagua para este trayecto.", "en": "No bus route found for this journey.", "fr": "Aucun itinéraire en bus trouvé pour ce trajet.", "de": "Für diese Strecke wurde keine Busverbindung gefunden.", "it": "Nessun percorso in autobus trovato per questo tragitto.", "nl": "Geen busroute gevonden voor dit traject.", "zh": "没有找到这段行程的公交路线。", "zht": "沒有找到這段行程的公車路線。"}});
+
 // Si el idioma guardado o el del navegador no esta soportado, al espanol.
 if (!LANGS[currentLang]) currentLang = (currentLang === 'zht' && LANGS.zh) ? 'zh' : 'es';
 
@@ -14889,10 +14897,55 @@ function busTimeBetween(line, idxA, idxB) {
   return (km / speed) * 60;
 }
 
+/* Hora actual en Canarias, en minutos desde medianoche.
+
+   Se pide la zona explicitamente en vez de usar la del navegador: quien
+   consulta desde Madrid o desde Londres esta planificando un viaje que
+   ocurre AQUI, y con su hora local se le ofrecerian guaguas que ya han
+   salido o se le esconderian las que aun no. Si el navegador no soporta
+   timeZone, se cae a la hora local, que para alguien que ya esta en la
+   isla es la misma. */
+function horaCanaria() {
+  try {
+    const f = new Intl.DateTimeFormat('es-ES', {
+      timeZone: 'Atlantic/Canary', hour: '2-digit', minute: '2-digit', hour12: false
+    });
+    const partes = f.formatToParts(new Date());
+    const h = parseInt(partes.find(x => x.type === 'hour').value, 10);
+    const m = parseInt(partes.find(x => x.type === 'minute').value, 10);
+    if (Number.isFinite(h) && Number.isFinite(m)) return h * 60 + m;
+  } catch (e) {}
+  const d = new Date();
+  return d.getHours() * 60 + d.getMinutes();
+}
+
+/* Lineas con un solo viaje al dia y hora fija: las dos del Teide.
+
+   "soloHasta" es la hora limite para que la opcion tenga sentido. Pasada
+   esa hora la linea NO se ofrece, ni como directa ni como transbordo. Sin
+   esto el planificador manda a alguien a la cumbre a las cinco de la
+   tarde con una guagua que salio a las nueve y media, y ahi arriba, a
+   2.000 metros y con la ultima bajada ya ida, eso no es un plan malo:
+   es dejar a alguien tirado.
+
+   Lo que si se ve siempre es el horario, que va en la nota traducida de
+   cada linea. Ocultar la opcion sin decir por que seria peor. */
+function lineaDisponibleAhora(line) {
+  if (!line || !line.soloHasta) return true;
+  const m = /^(\d{1,2}):(\d{2})$/.exec(line.soloHasta);
+  if (!m) return true;
+  return horaCanaria() <= parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
+}
+
 // Busca el mejor plan: rutas directas + 1 transbordo
 function findBestBusPlan(originStops, destStops) {
   const directOptions = [];
   const transferOptions = [];
+  /* Lineas que SI conectan estos dos puntos pero que ya han salido hoy.
+     Se apuntan para poder decirlo. "No hay lineas que conecten estos dos
+     puntos" seria mentira: las hay, y manana a las nueve y media vuelven
+     a salir. */
+  const fueraDeHorario = new Map();
 
   const lineStopsByLineId = new Map();
   for (const line of TITSA_LINES) {
@@ -14906,12 +14959,14 @@ function findBestBusPlan(originStops, destStops) {
   // 1) DIRECTAS
   for (const oStop of originStops) {
     for (const oLine of oStop.lines) {
+      const disponible = lineaDisponibleAhora(oLine.line);
       const lineStopMap = lineStopsByLineId.get(oLine.line.id);
       for (const dStop of destStops) {
         const dKey = `${dStop.stop.lat.toFixed(4)},${dStop.stop.lng.toFixed(4)}`;
         if (lineStopMap.has(dKey)) {
           const dIdx = lineStopMap.get(dKey);
           if (dIdx === oLine.stopIndex) continue;
+          if (!disponible) { fueraDeHorario.set(oLine.line.id, oLine.line); continue; }
           const busMin = busTimeBetween(oLine.line, oLine.stopIndex, dIdx);
           const walkAMin = (oStop.walkKm / BUS_PLAN.WALK_SPEED_KMH) * 60;
           const walkBMin = (dStop.walkKm / BUS_PLAN.WALK_SPEED_KMH) * 60;
@@ -14934,10 +14989,12 @@ function findBestBusPlan(originStops, destStops) {
   // 2) UN TRANSBORDO
   for (const oStop of originStops) {
     for (const oLine of oStop.lines) {
+      const dispO = lineaDisponibleAhora(oLine.line);
       const oLineMap = lineStopsByLineId.get(oLine.line.id);
       for (const dStop of destStops) {
         for (const dLine of dStop.lines) {
           if (dLine.line.id === oLine.line.id) continue;
+          const dispD = lineaDisponibleAhora(dLine.line);
           const dLineMap = lineStopsByLineId.get(dLine.line.id);
           let bestTransfer = null;
           for (const [k, idxInOrigin] of oLineMap.entries()) {
@@ -14952,6 +15009,11 @@ function findBestBusPlan(originStops, destStops) {
               const transferStop = oLine.line.paradas[idxInOrigin];
               bestTransfer = { total, busMin1, busMin2, transferStop };
             }
+          }
+          if (bestTransfer && !(dispO && dispD)) {
+            if (!dispO) fueraDeHorario.set(oLine.line.id, oLine.line);
+            if (!dispD) fueraDeHorario.set(dLine.line.id, dLine.line);
+            continue;
           }
           if (bestTransfer) {
             const walkAMin = (oStop.walkKm / BUS_PLAN.WALK_SPEED_KMH) * 60;
@@ -14980,7 +15042,11 @@ function findBestBusPlan(originStops, destStops) {
 
   directOptions.sort((a, b) => a.totalMin - b.totalMin);
   transferOptions.sort((a, b) => a.totalMin - b.totalMin);
-  return { direct: directOptions[0] || null, transfer: transferOptions[0] || null };
+  return {
+    direct: directOptions[0] || null,
+    transfer: transferOptions[0] || null,
+    fueraDeHorario: [...fueraDeHorario.values()]
+  };
 }
 
 async function calculateBusPlan() {
@@ -15027,8 +15093,10 @@ function showBusUnavailable(msg) {
   const warn    = document.getElementById('route-bus-warn');
   if (!card) return;
   card.classList.add('unavailable');
-  summary.textContent = 'Sin conexión';
-  detail.textContent = msg || 'No se encontró una ruta en bus para este trayecto.';
+  // El rotulo tambien: la tarjeta quedaba con el titulo en español y el
+  // mensaje traducido debajo.
+  summary.textContent = tx('busNoDisponible') || 'Sin conexión';
+  detail.textContent = msg || tx('busSinRuta') || 'No se encontró una ruta en bus para este trayecto.';
   if (warn) warn.style.display = 'none';
 }
 
@@ -15061,7 +15129,22 @@ function renderBusPlan(plan) {
   const warn    = document.getElementById('route-bus-warn');
 
   if (!plan.direct && !plan.transfer) {
-    showBusUnavailable('No hay líneas que conecten estos dos puntos.');
+    /* Si lo unico que falla es la hora, hay que decirlo. Que la app
+       conteste "no hay lineas" cuando la guagua existe y sale manana a
+       las nueve y media es una respuesta falsa, y ademas la que hace que
+       alguien alquile un coche sin necesitarlo. */
+    const tarde = Array.isArray(plan.fueraDeHorario) ? plan.fueraDeHorario : [];
+    if (tarde.length) {
+      const nums = tarde.map(l => l.numero).join(', ');
+      /* Solo la hora, no el texto entero de la frecuencia: ese lleva
+         "vuelta" y se colaba en aleman, en chino y en el resto. */
+      const hora = tarde.map(l => (/(\d{1,2}:\d{2})/.exec(l.frecuencia || '') || [])[1])
+                        .filter(Boolean)[0] || '';
+      showBusUnavailable(tx('busYaSalio', { n: nums, h: hora }) ||
+        ('La línea ' + nums + ' ya ha salido hoy. Vuelve a pasar mañana: ' + hora));
+    } else {
+      showBusUnavailable(tx('busSinConexion') || 'No hay líneas que conecten estos dos puntos.');
+    }
     return;
   }
   card.classList.remove('unavailable');
@@ -16300,7 +16383,9 @@ const TITSA_LINES = [
   // ═══════════ TURÍSTICAS / TEIDE ═══════════
   {
     id:"bus-348", numero:"348", nombre:"Puerto de la Cruz — Teide (El Portillo) 🌋",
-    color:"#6A1B9A", tipo:"teide", frecuencia:"1 servicio/día", precio:"~8,50 €", minutos:100,
+    color:"#6A1B9A", tipo:"teide", frecuencia:"09:30 · vuelta 16:00", precio:"~8,50 €", minutos:100,
+    soloHasta:"09:25",
+    nota:{ es:"Un solo viaje al día, todos los días. Sale a las 09:30 de la Estación de Guaguas del Puerto de la Cruz y llega al Parador a las 11:10. El regreso sale del Parador a las 16:00. Si la pierdes no hay otra: arriba no queda transporte público.", en:"One trip a day, every day. It leaves Puerto de la Cruz bus station at 09:30 and reaches the Parador at 11:10. The return leaves the Parador at 16:00. If you miss it there is no other: there is no public transport left up there.", fr:"Un seul trajet par jour, tous les jours. Départ de la gare routière de Puerto de la Cruz à 9h30, arrivée au Parador à 11h10. Le retour part du Parador à 16h00. Si vous le manquez il n'y en a pas d'autre : plus aucun transport public là-haut.", de:"Nur eine Fahrt am Tag, täglich. Abfahrt am Busbahnhof Puerto de la Cruz um 09:30 Uhr, Ankunft am Parador um 11:10 Uhr. Die Rückfahrt startet um 16:00 Uhr am Parador. Wer sie verpasst, hat keine zweite: dort oben fährt sonst nichts mehr.", it:"Una sola corsa al giorno, tutti i giorni. Parte dalla stazione di Puerto de la Cruz alle 09:30 e arriva al Parador alle 11:10. Il ritorno parte dal Parador alle 16:00. Se la perdi non ce n'è un'altra: lassù non resta nessun trasporto pubblico.", nl:"Eén rit per dag, elke dag. Vertrekt om 09:30 vanaf het busstation van Puerto de la Cruz en komt om 11:10 aan bij de Parador. De terugrit vertrekt om 16:00 bij de Parador. Mis je hem, dan is er geen andere: daarboven rijdt verder niets.", zh:"每天仅一班往返。09:30从克鲁斯港汽车站发车，11:10抵达帕拉多。返程16:00从帕拉多发车。错过就没有第二班了：山上没有其他公共交通。", zht:"每天僅一班往返。09:30從克魯斯港汽車站發車，11:10抵達帕拉多。返程16:00從帕拉多發車。錯過就沒有第二班了：山上沒有其他大眾運輸。" },
     paradas:[
       { id:"348-ptocz",   nombre:"Puerto de la Cruz · Estación",     lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
       { id:"348-botan",   nombre:"Puente del Botánico (4150)",       lat:28.4180, lng:-16.5350, esTerminal:false, municipio:"Puerto de la Cruz" },
@@ -16313,7 +16398,9 @@ const TITSA_LINES = [
   },
   {
     id:"bus-342", numero:"342", nombre:"Costa Adeje — Teide (El Portillo) 🌋",
-    color:"#8E24AA", tipo:"teide", frecuencia:"1 servicio/día", precio:"~8,50 €", minutos:135,
+    color:"#8E24AA", tipo:"teide", frecuencia:"09:25 · vuelta 15:40", precio:"~8,50 €", minutos:135,
+    soloHasta:"09:20",
+    nota:{ es:"Un solo viaje al día, todos los días. Sale a las 09:25 de la Estación de Costa Adeje y llega al Parador sobre las 11:40. El regreso sale del Parador a las 15:40. Si la pierdes no hay otra: arriba no queda transporte público.", en:"One trip a day, every day. It leaves Costa Adeje bus station at 09:25 and reaches the Parador around 11:40. The return leaves the Parador at 15:40. If you miss it there is no other: there is no public transport left up there.", fr:"Un seul trajet par jour, tous les jours. Départ de la gare de Costa Adeje à 9h25, arrivée au Parador vers 11h40. Le retour part du Parador à 15h40. Si vous le manquez il n'y en a pas d'autre : plus aucun transport public là-haut.", de:"Nur eine Fahrt am Tag, täglich. Abfahrt am Busbahnhof Costa Adeje um 09:25 Uhr, Ankunft am Parador gegen 11:40 Uhr. Die Rückfahrt startet um 15:40 Uhr am Parador. Wer sie verpasst, hat keine zweite: dort oben fährt sonst nichts mehr.", it:"Una sola corsa al giorno, tutti i giorni. Parte dalla stazione di Costa Adeje alle 09:25 e arriva al Parador verso le 11:40. Il ritorno parte dal Parador alle 15:40. Se la perdi non ce n'è un'altra: lassù non resta nessun trasporto pubblico.", nl:"Eén rit per dag, elke dag. Vertrekt om 09:25 vanaf het busstation van Costa Adeje en komt rond 11:40 aan bij de Parador. De terugrit vertrekt om 15:40 bij de Parador. Mis je hem, dan is er geen andere: daarboven rijdt verder niets.", zh:"每天仅一班往返。09:25从科斯塔阿德赫车站发车，约11:40抵达帕拉多。返程15:40从帕拉多发车。错过就没有第二班了：山上没有其他公共交通。", zht:"每天僅一班往返。09:25從科斯塔阿德赫車站發車，約11:40抵達帕拉多。返程15:40從帕拉多發車。錯過就沒有第二班了：山上沒有其他大眾運輸。" },
     paradas:[
       { id:"342-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
       { id:"342-loscris", nombre:"Los Cristianos",                   lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
