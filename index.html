@@ -17268,7 +17268,7 @@ const TITSA_LINES = [
     paradas:[
       { id:"213-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"213-chumberas", nombre:"Las Chumberas", lat:28.46424, lng:-16.31952, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"213-card", nombre:"El Cardonal", lat:28.45892, lng:-16.30453, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"213-card", nombre:"El Cardonal", lat:28.485, lng:-16.3015, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
   {
@@ -17309,7 +17309,7 @@ const TITSA_LINES = [
       { id:"232-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"232-cuesta", nombre:"La Cuesta", lat:28.4778, lng:-16.289, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"232-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"232-card", nombre:"El Cardonal", lat:28.45892, lng:-16.30453, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"232-card", nombre:"El Cardonal", lat:28.485, lng:-16.3015, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
   {
@@ -17394,7 +17394,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:15", hasta:"21:15" },
     paradas:[
       { id:"217-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
-      { id:"217-cardbus", nombre:"El Cardonal", lat:28.45892, lng:-16.30453, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"217-cardbus", nombre:"El Cardonal", lat:28.485, lng:-16.3015, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"217-hospu", nombre:"Hospital Universitario", lat:28.4859, lng:-16.3076, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
@@ -17413,19 +17413,30 @@ const TITSA_LINES = [
      Chamorga, Afur, Taborno, El Batan, El Bailadero y Las Mercedes
      tienen ya parada.
 
-     CUATRO COORDENADAS DE LA TANDA NO SE APLICAN, y conviene saber por
-     que:
+     CONFLICTO RESUELTO POR EL PROPIO TRANVIA. Habia tres coordenadas en
+     disputa -Taco, Tincer y El Cardonal- entre las que da la fuente y
+     las que ya estaban. Lo dirime la linea L1 sin necesidad de mirar
+     fuera: son 21 paradas seguidas, de Santa Cruz a La Trinidad, con
+     saltos de entre 131 y 1029 metros y siempre en la misma direccion.
+     Una cadena asi no se puede falsear por casualidad.
 
-       Taco     la fuente lo pone en 28,44895/-16,30212, que cae al SUR
-                del centro de Santa Cruz. Taco es un barrio de La Laguna,
-                al norte. Ademas el nodo que hay es el intercambiador del
-                tranvia L1 y lo usan once lineas. A 3,8 km de distancia,
-                mover eso deformaria el tranvia. No se toca.
-       Tincer   igual: nodo del tranvia L2, y la coordenada esta 4,6 km
-                al suroeste.
-       Taco y Tincer son los dos que hacen dudar del resto del grupo del
-       suroeste, porque vienen en la misma tanda y desplazados en la
-       misma direccion.
+     Dentro de ella, Taco esta en la posicion 11 y El Cardonal en la 12,
+     a 1029 y 582 metros de su parada anterior. Encajan. Las coordenadas
+     de la fuente los pondrian a 3,8 y 2,9 km de la via, rompiendo una
+     cadena que por lo demas es regular al metro. Tincer, terminal de la
+     L2, igual.
+
+     Asi que mandan las que ya estaban, y las guaguas 213, 217 y 232
+     vuelven al nodo del tranvia en El Cardonal: se acabo el nodo
+     partido.
+
+     OJO CON EL RESTO DE ESA TANDA. Si Taco, Tincer y El Cardonal venian
+     mal, los demas puntos del suroeste que llegaron con ellos merecen
+     una segunda mirada: Santa Maria del Mar se movio 4,2 km, La Gallega
+     3,6 y Añaza 2,2 solo con esa fuente. El de Ofra se sostiene aparte,
+     porque corregia algo que la auditoria ya marcaba -estaba a 100 m de
+     La Cuesta-, y el de Barrio de La Salud es de solo 1 km. Los otros
+     tres quedan sin confirmar.
 
      Santa Maria del Mar SI se mueve, 4,2 km, porque ahi no hay tranvia
      de por medio y el punto nuevo -costa sur- encaja con lo que es el
