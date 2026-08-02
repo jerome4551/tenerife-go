@@ -16232,7 +16232,7 @@ const TITSA_LINES = [
   {
     id:"bus-101", numero:"101", nombre:"La Laguna — La Orotava (Carretera General)",
     color:"#1565C0", tipo:"norte", frecuencia:"20-30 min", precio:"~3,50 €", minutos:50,
-    servicio:{ desde:"05:40", hasta:"00:40" },
+    servicio:{ desde:"06:00", hasta:"23:00" },
     paradas:[
       { id:"101-laguna",  nombre:"La Laguna · Intercambiador (2625)",lat:28.4853, lng:-16.3160, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
       { id:"101-tacor",   nombre:"Tacoronte · Casco",                lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
@@ -16270,7 +16270,7 @@ const TITSA_LINES = [
   {
     id:"bus-111", numero:"111", nombre:"Santa Cruz — Los Cristianos (Autopista)",
     color:"#C62828", tipo:"sur", frecuencia:"20-25 min", precio:"~3,50 €", minutos:83,
-    servicio:{ desde:"05:30", hasta:"21:25" },
+    servicio:{ desde:"05:30", hasta:"20:55" },
     paradas:[
       { id:"111-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"111-cande",   nombre:"Candelaria · Terminal",            lat:28.3564, lng:-16.3642, esTerminal:false, municipio:"Candelaria" },
@@ -16453,7 +16453,7 @@ const TITSA_LINES = [
        la 111, la 343, la 040 y la 415, asi que no se pierde nada. */
     id:"bus-470", numero:"470", nombre:"Los Cristianos — Costa del Silencio — El Médano",
     color:"#558B2F", tipo:"aeropuerto", frecuencia:"30-40 min", precio:"~2,50 €", minutos:70,
-    servicio:{ desde:"06:10", hasta:"21:50" },
+    servicio:{ desde:"06:10", hasta:"20:50" },
     paradas:[
       { id:"470-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
       { id:"470-galleta", nombre:"Las Galletas",                     lat:28.0070, lng:-16.6660, esTerminal:false, municipio:"Arona" },
@@ -17549,8 +17549,8 @@ const TITSA_LINES = [
      y 8 de 37. */
   {
     id:"bus-035", numero:"035", nombre:"Güímar — Fasnia — Arico — Granadilla",
-    color:"#5D4037", tipo:"sur", frecuencia:"60 min", precio:"desde 1,45 €", minutos:60,
-    servicio:{ desde:"06:10", hasta:"20:45" },
+    color:"#5D4037", tipo:"sur", frecuencia:"60 min", precio:"desde 1,45 €", minutos:95,
+    servicio:{ desde:"06:10", hasta:"18:50" },
     paradas:[
       { id:"035-guimar",  nombre:"Güímar",                lat:28.3186, lng:-16.4106, esTerminal:true,  municipio:"Güímar" },
       { id:"035-fasnia",  nombre:"Fasnia (Cruce)",         lat:28.2356, lng:-16.4422, esTerminal:false, municipio:"Fasnia" },
@@ -17645,19 +17645,17 @@ const TITSA_LINES = [
       { id:"015N-trinidad",  nombre:"La Trinidad (La Laguna)",         lat:28.4858, lng:-16.3133, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
     ]
   },
-  {
-    id:"bus-101N", numero:"101", nombre:"🦉 Santa Cruz — Puerto de la Cruz (Autopista · Nocturna)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~5,40 €",
-    servicio:{ desde:"23:40", hasta:"04:30" },
-    paradas:[
-      { id:"101N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"101N-laguna",   nombre:"La Laguna · Intercambiador (2625)",lat:28.4853, lng:-16.3160, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"101N-tacoront", nombre:"Tacoronte",                       lat:28.4753, lng:-16.4153, esTerminal:false, municipio:"Tacoronte" },
-      { id:"101N-victoria", nombre:"Cruce La Victoria (T) · 4003",    lat:28.4108, lng:-16.4639, esTerminal:false, municipio:"La Victoria de Acentejo" },
-      { id:"101N-orotava",  nombre:"La Orotava (Cruce)",              lat:28.3897, lng:-16.5236, esTerminal:false, municipio:"La Orotava" },
-      { id:"101N-pcruz",    nombre:"Puerto de la Cruz (Estación)",    lat:28.4136, lng:-16.5446, esTerminal:true,  municipio:"Puerto de la Cruz" },
-    ]
-  },
+  /* Aqui estaba la 101 nocturna. La fuente la ha dado de tres maneras
+     distintas: primero como buho 23:40-04:30, luego con la aclaracion de
+     que la 101 va de 06:00 a 23:00 y que "las expediciones de madrugada
+     se derivan a la 104". Se aplica lo ultimo y se retira: su recorrido
+     -Santa Cruz a Puerto de la Cruz por autopista de madrugada- es
+     exactamente el de la 104 nocturna, que si sigue.
+
+     Con ella se van tres paradas que no tenia ninguna otra linea:
+     Tacoronte (28,4753/-16,4153, el enlace, distinto del casco que usan
+     la 101 diurna y la 102), Cruce La Victoria (T) 4003 y La Orotava
+     (Cruce). Las tres eran enlaces de la TF-5 que solo servia ella. */
   {
     id:"bus-104N", numero:"104", nombre:"🦉 Santa Cruz — La Laguna — Tacoronte — Puerto de la Cruz (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~7,60 €", minutos:75,
@@ -17719,7 +17717,7 @@ const TITSA_LINES = [
   {
     id:"bus-934N", numero:"934", nombre:"🦉 Circular Intercambiador — Taco — Santa María del Mar — Añaza (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
-    servicio:{ desde:"22:45", hasta:"05:20" },
+    servicio:{ desde:"22:45", hasta:"05:25" },
     paradas:[
       { id:"934N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"934N-taco",     nombre:"Taco",                            lat:28.4830, lng:-16.2960, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
@@ -17731,7 +17729,7 @@ const TITSA_LINES = [
   {
     id:"bus-970", numero:"970", nombre:"🦉 Intercambiador — Barrio La Salud (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
-    servicio:{ desde:"23:45", hasta:"05:30" },
+    servicio:{ desde:"23:50", hasta:"05:15" },
     paradas:[
       { id:"970-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"970-salud",     nombre:"Barrio La Salud",                 lat:28.47895, lng:-16.27012, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
@@ -17769,7 +17767,7 @@ const TITSA_LINES = [
   {
     id:"bus-975", numero:"975", nombre:"🦉 Intercambiador — El Sobradillo — Llano del Moro (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"23:30 · 01:30 · 03:05", precio:"~1,40 €",
-    servicio:{ desde:"00:15", hasta:"04:45" },
+    servicio:{ desde:"23:50", hasta:"05:15" },
     paradas:[
       { id:"975-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"975-taco",      nombre:"Taco",                            lat:28.4830, lng:-16.2960, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
