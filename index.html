@@ -14919,22 +14919,36 @@ function horaCanaria() {
   return d.getHours() * 60 + d.getMinutes();
 }
 
-/* Lineas con un solo viaje al dia y hora fija: las dos del Teide.
+/* Ventana de servicio de una linea: {desde, hasta} en hora canaria.
 
-   "soloHasta" es la hora limite para que la opcion tenga sentido. Pasada
-   esa hora la linea NO se ofrece, ni como directa ni como transbordo. Sin
-   esto el planificador manda a alguien a la cumbre a las cinco de la
-   tarde con una guagua que salio a las nueve y media, y ahi arriba, a
-   2.000 metros y con la ultima bajada ya ida, eso no es un plan malo:
-   es dejar a alguien tirado.
+   Fuera de ella la linea NO se ofrece, ni como directa ni como
+   transbordo. Empezo por las dos del Teide, que tienen un solo viaje al
+   dia: sin esto el planificador mandaba a alguien a la cumbre a las
+   cinco de la tarde con una guagua que salio a las nueve y media, y ahi
+   arriba, a 2.000 metros y con la ultima bajada ya ida, eso no es un
+   plan malo, es dejar a alguien tirado.
 
-   Lo que si se ve siempre es el horario, que va en la nota traducida de
-   cada linea. Ocultar la opcion sin decir por que seria peor. */
+   Si "hasta" es menor que "desde" la ventana cruza la medianoche. Hace
+   falta para las nocturnas: la 711 va de las 21:55 a las 05:00, y con la
+   comparacion simple no estaria disponible nunca.
+
+   Es opcional. Una linea sin este campo se ofrece a cualquier hora, que
+   es lo que hacian todas hasta ahora.
+
+   Lo que se ve siempre es el horario, en la nota traducida de cada
+   linea, y si una se descarta por hora la tarjeta lo dice. Ocultar sin
+   explicar seria peor que no filtrar. */
 function lineaDisponibleAhora(line) {
-  if (!line || !line.soloHasta) return true;
-  const m = /^(\d{1,2}):(\d{2})$/.exec(line.soloHasta);
-  if (!m) return true;
-  return horaCanaria() <= parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
+  const v = line && line.servicio;
+  if (!v || !v.desde || !v.hasta) return true;
+  const min = function(t){
+    const m = /^(\d{1,2}):(\d{2})$/.exec(String(t));
+    return m ? parseInt(m[1], 10) * 60 + parseInt(m[2], 10) : null;
+  };
+  const a = min(v.desde), b = min(v.hasta);
+  if (a === null || b === null) return true;
+  const ahora = horaCanaria();
+  return (a <= b) ? (ahora >= a && ahora <= b) : (ahora >= a || ahora <= b);
 }
 
 // Busca el mejor plan: rutas directas + 1 transbordo
@@ -16233,13 +16247,46 @@ const TITSA_LINES = [
   // ═══════════ SUR (TF-1) ═══════════
   {
     id:"bus-111", numero:"111", nombre:"Santa Cruz — Los Cristianos (Autopista)",
-    color:"#C62828", tipo:"sur", frecuencia:"30 min", precio:"~3,50 €",
+    color:"#C62828", tipo:"sur", frecuencia:"20-25 min", precio:"~3,50 €", minutos:83,
+    servicio:{ desde:"05:25", hasta:"21:55" },
     paradas:[
       { id:"111-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"111-cande",   nombre:"Candelaria · Terminal",            lat:28.3564, lng:-16.3642, esTerminal:false, municipio:"Candelaria" },
       { id:"111-tfs",     nombre:"✈️ Aeropuerto Sur (TFS)",          lat:28.0445, lng:-16.5722, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"111-chafir",  nombre:"Las Chafiras",                     lat:28.0690, lng:-16.5990, esTerminal:false, municipio:"San Miguel de Abona" },
       { id:"111-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
+    ]
+  },
+  /* Lineas 103 y 108 · las dos que faltaban del corredor norte.
+
+     La 103 es la directa Santa Cruz - Puerto de la Cruz por la TF-5, sin
+     entrar en los pueblos: 43 minutos fijos. Es la que hay que coger
+     para subir al Teide desde Santa Cruz, porque enlaza con la 348 en la
+     estacion del Puerto. Van solo sus dos cabeceras, que es lo que es:
+     una directa. Las paradas de la TF-5 que pueda tener no se inventan.
+
+     La 108 va a Icod por Los Realejos, y con ella vuelve Los Realejos al
+     mapa: se habia quedado sin ninguna linea al retirar la 107. Su
+     coordenada sale del lugar ciudad-realejos.
+
+     Precio pendiente en las dos: no hay dato. */
+  {
+    id:"bus-103", numero:"103", nombre:"Santa Cruz — Puerto de la Cruz (Directa TF-5)",
+    color:"#1565C0", tipo:"norte", frecuencia:"15-30 min", precio:"consultar TITSA", minutos:43,
+    servicio:{ desde:"06:25", hasta:"21:40" },
+    paradas:[
+      { id:"103-sc",     nombre:"Santa Cruz · Intercambiador",       lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"103-ptocz",  nombre:"Puerto de la Cruz · Estación",      lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
+    ]
+  },
+  {
+    id:"bus-108", numero:"108", nombre:"Santa Cruz — Los Realejos — Icod de los Vinos",
+    color:"#0277BD", tipo:"norte", frecuencia:"60 min", precio:"consultar TITSA", minutos:75,
+    servicio:{ desde:"05:40", hasta:"22:10" },
+    paradas:[
+      { id:"108-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"108-realejos",nombre:"Los Realejos",                     lat:28.3852, lng:-16.5841, esTerminal:false, municipio:"Los Realejos" },
+      { id:"108-icod",    nombre:"Icod de los Vinos",                lat:28.3722, lng:-16.7178, esTerminal:true,  municipio:"Icod de los Vinos" },
     ]
   },
   /* Linea 110 · Santa Cruz - Costa Adeje, express por autopista.
@@ -16384,7 +16431,7 @@ const TITSA_LINES = [
   {
     id:"bus-348", numero:"348", nombre:"Puerto de la Cruz — Teide (El Portillo) 🌋",
     color:"#6A1B9A", tipo:"teide", frecuencia:"09:30 · vuelta 16:00", precio:"~8,50 €", minutos:100,
-    soloHasta:"09:25",
+    servicio:{ desde:"00:00", hasta:"09:25" },
     nota:{ es:"Un solo viaje al día, todos los días. Sale a las 09:30 de la Estación de Guaguas del Puerto de la Cruz y llega al Parador a las 11:10. El regreso sale del Parador a las 16:00. Si la pierdes no hay otra: arriba no queda transporte público.", en:"One trip a day, every day. It leaves Puerto de la Cruz bus station at 09:30 and reaches the Parador at 11:10. The return leaves the Parador at 16:00. If you miss it there is no other: there is no public transport left up there.", fr:"Un seul trajet par jour, tous les jours. Départ de la gare routière de Puerto de la Cruz à 9h30, arrivée au Parador à 11h10. Le retour part du Parador à 16h00. Si vous le manquez il n'y en a pas d'autre : plus aucun transport public là-haut.", de:"Nur eine Fahrt am Tag, täglich. Abfahrt am Busbahnhof Puerto de la Cruz um 09:30 Uhr, Ankunft am Parador um 11:10 Uhr. Die Rückfahrt startet um 16:00 Uhr am Parador. Wer sie verpasst, hat keine zweite: dort oben fährt sonst nichts mehr.", it:"Una sola corsa al giorno, tutti i giorni. Parte dalla stazione di Puerto de la Cruz alle 09:30 e arriva al Parador alle 11:10. Il ritorno parte dal Parador alle 16:00. Se la perdi non ce n'è un'altra: lassù non resta nessun trasporto pubblico.", nl:"Eén rit per dag, elke dag. Vertrekt om 09:30 vanaf het busstation van Puerto de la Cruz en komt om 11:10 aan bij de Parador. De terugrit vertrekt om 16:00 bij de Parador. Mis je hem, dan is er geen andere: daarboven rijdt verder niets.", zh:"每天仅一班往返。09:30从克鲁斯港汽车站发车，11:10抵达帕拉多。返程16:00从帕拉多发车。错过就没有第二班了：山上没有其他公共交通。", zht:"每天僅一班往返。09:30從克魯斯港汽車站發車，11:10抵達帕拉多。返程16:00從帕拉多發車。錯過就沒有第二班了：山上沒有其他大眾運輸。" },
     paradas:[
       { id:"348-ptocz",   nombre:"Puerto de la Cruz · Estación",     lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
@@ -16399,7 +16446,7 @@ const TITSA_LINES = [
   {
     id:"bus-342", numero:"342", nombre:"Costa Adeje — Teide (El Portillo) 🌋",
     color:"#8E24AA", tipo:"teide", frecuencia:"09:25 · vuelta 15:40", precio:"~8,50 €", minutos:135,
-    soloHasta:"09:20",
+    servicio:{ desde:"00:00", hasta:"09:20" },
     nota:{ es:"Un solo viaje al día, todos los días. Sale a las 09:25 de la Estación de Costa Adeje y llega al Parador sobre las 11:40. El regreso sale del Parador a las 15:40. Si la pierdes no hay otra: arriba no queda transporte público.", en:"One trip a day, every day. It leaves Costa Adeje bus station at 09:25 and reaches the Parador around 11:40. The return leaves the Parador at 15:40. If you miss it there is no other: there is no public transport left up there.", fr:"Un seul trajet par jour, tous les jours. Départ de la gare de Costa Adeje à 9h25, arrivée au Parador vers 11h40. Le retour part du Parador à 15h40. Si vous le manquez il n'y en a pas d'autre : plus aucun transport public là-haut.", de:"Nur eine Fahrt am Tag, täglich. Abfahrt am Busbahnhof Costa Adeje um 09:25 Uhr, Ankunft am Parador gegen 11:40 Uhr. Die Rückfahrt startet um 15:40 Uhr am Parador. Wer sie verpasst, hat keine zweite: dort oben fährt sonst nichts mehr.", it:"Una sola corsa al giorno, tutti i giorni. Parte dalla stazione di Costa Adeje alle 09:25 e arriva al Parador verso le 11:40. Il ritorno parte dal Parador alle 15:40. Se la perdi non ce n'è un'altra: lassù non resta nessun trasporto pubblico.", nl:"Eén rit per dag, elke dag. Vertrekt om 09:25 vanaf het busstation van Costa Adeje en komt rond 11:40 aan bij de Parador. De terugrit vertrekt om 15:40 bij de Parador. Mis je hem, dan is er geen andere: daarboven rijdt verder niets.", zh:"每天仅一班往返。09:25从科斯塔阿德赫车站发车，约11:40抵达帕拉多。返程15:40从帕拉多发车。错过就没有第二班了：山上没有其他公共交通。", zht:"每天僅一班往返。09:25從科斯塔阿德赫車站發車，約11:40抵達帕拉多。返程15:40從帕拉多發車。錯過就沒有第二班了：山上沒有其他大眾運輸。" },
     paradas:[
       { id:"342-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
@@ -16769,7 +16816,8 @@ const TITSA_LINES = [
      para Las Vistas y el Safari. No hay coordenada verificada. */
   {
     id:"bus-711N", numero:"711", nombre:"🦉 Santa Cruz — Aeropuerto Sur — Los Cristianos — Costa Adeje (Nocturna)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~9,35 €",
+    color:"#7c3aed", tipo:"nocturna", frecuencia:"30 min", precio:"~9,35 €", minutos:76,
+    servicio:{ desde:"21:55", hasta:"05:00" },
     paradas:[
       { id:"711N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"711N-caletil",  nombre:"Cruce Caletillas",                lat:28.3697, lng:-16.3683, esTerminal:false, municipio:"Candelaria" },
