@@ -5984,6 +5984,7 @@ window.onunhandledrejection = function(e) {
    sostienen, en vez de un porcentaje que solo tenia cuatro valores. */
 .bano-chip .bano-datos{display:flex; flex-direction:column; align-items:flex-end; gap:3px; flex-shrink:0; margin-left:10px;}
 .bano-chip .bano-med{font-size:0.66rem; color:rgba(255,255,255,0.58); white-space:nowrap;}
+.bano-chip .bano-aviso{font-size:0.64rem; color:#fbbf24; white-space:nowrap; font-weight:600;}
 .bano-hoy-nada{font-size:0.75rem; line-height:1.45; color:rgba(255,255,255,0.72); background:rgba(245,158,11,0.10); border:1px solid rgba(245,158,11,0.28); border-radius:10px; padding:9px 11px;}
 .bano-chip.bano-best{border-color:#D4AF37; background:rgba(212,175,55,0.14);}
 
@@ -6514,6 +6515,7 @@ const LANGS = {
     banoHoyTitle: 'Báñate hoy aquí:',
     banoHoySub: 'Viento y mar de ahora · se descartan las costas movidas',
     banoHoyNinguna: 'Hoy no hay ninguna playa que recomendar: el mar está movido en todas las costas.',
+    banoHoySinSocorrista: 'Sin socorrista',
     parkingTitle: 'Parking y aforo',
     parkingFree: '{free} libres de {total}',
     parkingFull: 'Completo',
@@ -6662,6 +6664,7 @@ const LANGS = {
     banoHoyTitle: 'Swim here today:',
     banoHoySub: 'Current wind and sea · rough coasts are excluded',
     banoHoyNinguna: 'No beach to recommend today: the sea is rough on every coast.',
+    banoHoySinSocorrista: 'No lifeguard',
     parkingTitle: 'Parking & occupancy',
     parkingFree: '{free} free of {total}',
     parkingFull: 'Full',
@@ -6810,6 +6813,7 @@ const LANGS = {
     banoHoyTitle: 'Baignez-vous ici aujourd’hui :',
     banoHoySub: 'Vent et mer actuels · les côtes agitées sont écartées',
     banoHoyNinguna: 'Aucune plage à recommander aujourd’hui : la mer est agitée sur toutes les côtes.',
+    banoHoySinSocorrista: 'Sans sauveteur',
     parkingTitle: 'Parking et occupation',
     parkingFree: '{free} libres sur {total}',
     parkingFull: 'Complet',
@@ -6958,6 +6962,7 @@ const LANGS = {
     banoHoyTitle: 'Heute hier baden:',
     banoHoySub: 'Aktueller Wind und Seegang · raue Küsten werden ausgeschlossen',
     banoHoyNinguna: 'Heute ist kein Strand zu empfehlen: die See ist an allen Küsten rau.',
+    banoHoySinSocorrista: 'Ohne Rettungsschwimmer',
     parkingTitle: 'Parkplatz & Auslastung',
     parkingFree: '{free} frei von {total}',
     parkingFull: 'Voll',
@@ -7110,6 +7115,7 @@ const LANGS = {
     banoHoyTitle: 'Oggi fai il bagno qui:',
     banoHoySub: 'Vento e mare attuali · le coste agitate vengono escluse',
     banoHoyNinguna: 'Oggi nessuna spiaggia da consigliare: il mare è mosso su tutte le coste.',
+    banoHoySinSocorrista: 'Senza bagnino',
     parkingTitle: 'Parcheggio e occupazione',
     parkingFree: '{free} liberi su {total}',
     parkingFull: 'Completo',
@@ -7256,6 +7262,7 @@ const LANGS = {
     banoHoyTitle: 'Zwem hier vandaag:',
     banoHoySub: 'Huidige wind en zee · ruwe kusten vallen af',
     banoHoyNinguna: 'Vandaag geen strand aan te raden: de zee is ruw aan alle kusten.',
+    banoHoySinSocorrista: 'Geen strandwacht',
     parkingTitle: 'Parking & bezetting',
     parkingFree: '{free} vrij van {total}',
     parkingFull: 'Vol',
@@ -7408,6 +7415,7 @@ const LANGS = {
     banoHoyTitle: '今天在这里游泳：',
     banoHoySub: '当前风况与海况 · 已排除海面较大的海岸',
     banoHoyNinguna: '今天没有可推荐的海滩：各处海岸海面都较大。',
+    banoHoySinSocorrista: '无救生员',
     parkingTitle: '停车场及占用率',
     parkingFree: '{total}个车位中的{free}个空闲',
     parkingFull: '已满',
@@ -7819,6 +7827,7 @@ const ZHT_OVERRIDES = {
     banoHoyTitle: '今天在這裡游泳：',
     banoHoySub: '當前風況與海況 · 已排除海面較大的海岸',
     banoHoyNinguna: '今天沒有可推薦的海灘：各處海岸海面都較大。',
+    banoHoySinSocorrista: '無救生員',
 
     authBtnGuest: '帳戶',
     authBtnUser: '我的帳戶',
@@ -27982,7 +27991,8 @@ async function renderBanoHoy(){
     if(o.noBano) return null;   // prohibicion de bano: ni se pide su dato
     const pl = (typeof places!=='undefined') ? places.find(function(q){ return q.id===id; }) : null;
     if(!pl) return null;
-    return { id:id, name:pl.name, lat:pl.lat, lng:pl.lng, ori:o.ori, badWind:o.badWind };
+    return { id:id, name:pl.name, lat:pl.lat, lng:pl.lng, ori:o.ori, badWind:o.badWind,
+             lifeguard:pl.lifeguard };
   }).filter(Boolean);
 
   const datos = await fetchPlayasHoyCached(ids);
@@ -27993,6 +28003,7 @@ async function renderBanoHoy(){
   var title  = tr.banoHoyTitle   || 'Banate hoy aqui:';
   var subTxt = tr.banoHoySub     || 'Viento y mar de ahora';
   var nadaTxt= tr.banoHoyNinguna || 'Hoy no hay ninguna playa que recomendar.';
+  var sinSocTxt = tr.banoHoySinSocorrista || 'Sin socorrista';
 
   // El filtro. "fuerte" y "peligroso" quedan fuera: sus propios textos
   // dicen que se eviten las rocas y que se elija otra costa.
@@ -28027,6 +28038,9 @@ async function renderBanoHoy(){
                '<span class="mar-chip mar-'+escapeAttr(d.nivel)+'">'+escapeHtml(nm[lang]||nm.es||d.nivel)+'</span>'+
                '<span class="bano-med">\u{1F30A} '+escapeHtml(banoNum(d.waveH,1))+' m \u00B7 '+
                '\u{1F4A8} '+escapeHtml(windDirToCardinal(d.windDeg))+' '+escapeHtml(banoNum(d.windKmh,0))+' km/h</span>'+
+               (d.lifeguard === false
+                 ? '<span class="bano-aviso">\u26A0\uFE0F '+escapeHtml(sinSocTxt)+'</span>'
+                 : '')+
              '</span>'+
            '</button>';
   }).join('') + '</div>';
