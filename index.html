@@ -16220,6 +16220,7 @@ const TITSA_LINES = [
   {
     id:"bus-101", numero:"101", nombre:"La Laguna — La Orotava (Carretera General)",
     color:"#1565C0", tipo:"norte", frecuencia:"20-30 min", precio:"~3,50 €", minutos:50,
+    servicio:{ desde:"05:40", hasta:"00:40" },
     paradas:[
       { id:"101-laguna",  nombre:"La Laguna · Intercambiador (2625)",lat:28.4853, lng:-16.3160, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
       { id:"101-tacor",   nombre:"Tacoronte · Casco",                lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
@@ -16232,6 +16233,7 @@ const TITSA_LINES = [
   {
     id:"bus-102", numero:"102", nombre:"Santa Cruz — Puerto de la Cruz (por Las Arenas)",
     color:"#0288D1", tipo:"norte", frecuencia:"~1 h", precio:"~5,50 €", minutos:60,
+    servicio:{ desde:"05:35", hasta:"23:40" },
     paradas:[
       { id:"102-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"102-laguna",  nombre:"La Laguna · Intercambiador (2625)",lat:28.4853, lng:-16.3160, esTerminal:false,  municipio:"San Cristóbal de La Laguna" },
@@ -16367,6 +16369,7 @@ const TITSA_LINES = [
   {
     id:"bus-343", numero:"343", nombre:"Puerto de la Cruz — Costa Adeje (vía TFN+TFS)",
     color:"#00695C", tipo:"aeropuerto", frecuencia:"~1 h", precio:"~10 €", minutos:100,
+    servicio:{ desde:"06:00", hasta:"19:20" },
     paradas:[
       { id:"343-ptocz",   nombre:"Puerto de la Cruz · Estación",     lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
       { id:"343-botan",   nombre:"Jardín Botánico",                  lat:28.4180, lng:-16.5350, esTerminal:false, municipio:"Puerto de la Cruz" },
@@ -16379,6 +16382,7 @@ const TITSA_LINES = [
   {
     id:"bus-040", numero:"040", nombre:"Aeropuerto Sur — Los Cristianos — Costa Adeje (Express)",
     color:"#00897B", tipo:"aeropuerto", frecuencia:"30 min", precio:"~3,75 €", minutos:30,
+    servicio:{ desde:"05:00", hasta:"21:30" },
     paradas:[
       { id:"040-tfs",     nombre:"✈️ Aeropuerto Sur TFS · Terminal", lat:28.0445, lng:-16.5722, esTerminal:true,  municipio:"Granadilla de Abona" },
       { id:"040-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
@@ -16840,7 +16844,10 @@ const TITSA_LINES = [
   },
   {
     id:"bus-355", numero:"355", nombre:"Buenavista — Masca — Santiago del Teide 🏔️",
+    /* Franja muy corta: al caserio de Masca solo se sube entre las once
+       y las siete y media. Fuera de ahi no se ofrece. */
     color:"#BF360C", tipo:"municipal", frecuencia:"3-4/día", precio:"~3 €",
+    servicio:{ desde:"11:00", hasta:"19:30" },
     paradas:[
       { id:"355-buena",   nombre:"Buenavista del Norte · Terminal",  lat:28.3718, lng:-16.8510, esTerminal:true,  municipio:"Buenavista del Norte" },
       { id:"355-masca",   nombre:"🏔️ Masca (Pueblo)",                lat:28.3050, lng:-16.8405, esTerminal:false, municipio:"Buenavista del Norte" },
@@ -17467,6 +17474,7 @@ const TITSA_LINES = [
   {
     id:"bus-104N", numero:"104", nombre:"🦉 Santa Cruz — La Laguna — Tacoronte — Puerto de la Cruz (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~7,60 €", minutos:75,
+    servicio:{ desde:"23:35", hasta:"04:10" },
     paradas:[
       { id:"104N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"104N-laguna",   nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
@@ -17487,15 +17495,20 @@ const TITSA_LINES = [
     ]
   },
   {
-    id:"bus-390N", numero:"390", nombre:"🦉 Puerto de la Cruz — Costa Adeje (Nocturna)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~9,35 €",
+    /* No es una buho. La ficha la da como servicio regular de 06:50 a
+       21:30, asi que deja el grupo de nocturnas y pierde el buho del
+       nombre. Es el tercer caso igual, despues de la 934 y la 014: en la
+       tabla habia lineas de dia metidas entre las de madrugada. */
+    id:"bus-390", numero:"390", nombre:"Puerto de la Cruz — Icod — Guía de Isora — Costa Adeje",
+    color:"#00838F", tipo:"norte", frecuencia:"60 min", precio:"~9,35 €",
+    servicio:{ desde:"06:50", hasta:"21:30" },
     paradas:[
-      { id:"390N-pcruz",    nombre:"Puerto de la Cruz (Estación)",    lat:28.4136, lng:-16.5446, esTerminal:true,  municipio:"Puerto de la Cruz" },
-      { id:"390N-icod",     nombre:"Icod de los Vinos",               lat:28.3722, lng:-16.7178, esTerminal:false, municipio:"Icod de los Vinos" },
-      { id:"390N-stiag",    nombre:"Santiago del Teide",              lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
-      { id:"390N-guia",     nombre:"Guía de Isora",                   lat:28.2125, lng:-16.7783, esTerminal:false, municipio:"Guía de Isora" },
-      { id:"390N-callao",   nombre:"Callao Salvaje / Playa Paraíso",  lat:28.0903, lng:-16.7886, esTerminal:false, municipio:"Adeje" },
-      { id:"390N-adeje",    nombre:"Estación Costa Adeje",            lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
+      { id:"390-pcruz",    nombre:"Puerto de la Cruz (Estación)",    lat:28.4136, lng:-16.5446, esTerminal:true,  municipio:"Puerto de la Cruz" },
+      { id:"390-icod",     nombre:"Icod de los Vinos",               lat:28.3722, lng:-16.7178, esTerminal:false, municipio:"Icod de los Vinos" },
+      { id:"390-stiag",    nombre:"Santiago del Teide",              lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"390-guia",     nombre:"Guía de Isora",                   lat:28.2125, lng:-16.7783, esTerminal:false, municipio:"Guía de Isora" },
+      { id:"390-callao",   nombre:"Callao Salvaje / Playa Paraíso",  lat:28.0903, lng:-16.7886, esTerminal:false, municipio:"Adeje" },
+      { id:"390-adeje",    nombre:"Estación Costa Adeje",            lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
     ]
   },
   /* Aqui estaba una 473 nocturna a Las Galletas. No existe: era una
@@ -17532,6 +17545,7 @@ const TITSA_LINES = [
   {
     id:"bus-971", numero:"971", nombre:"🦉 Intercambiador — Barrio Salud — Ofra (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
+    servicio:{ desde:"00:00", hasta:"05:00" },
     paradas:[
       { id:"971-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"971-salud",     nombre:"Barrio La Salud",                 lat:28.47895, lng:-16.27012, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
@@ -17541,6 +17555,7 @@ const TITSA_LINES = [
   {
     id:"bus-972", numero:"972", nombre:"🦉 Intercambiador — Barrio Salud (Nocturna · Variante)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
+    servicio:{ desde:"23:55", hasta:"04:30" },
     paradas:[
       { id:"972-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"972-salud",     nombre:"Barrio La Salud (alto)",          lat:28.47895, lng:-16.27012, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
