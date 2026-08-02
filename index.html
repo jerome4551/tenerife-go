@@ -16028,6 +16028,31 @@ if (typeof dpRenderZoneCards === 'function') dpRenderZoneCards();
    Leccion, porque costo dos vueltas: un listado de numeros no dice
    quien no existe, solo quien si. Y una cabecera de linea no es su
    recorrido.
+
+   SEGUNDA TANDA, tambien con la fuente delante:
+
+   - La 102 y la 104 NO van a Buenavista. Hacen Santa Cruz - Puerto de
+     la Cruz y ahi terminan. Se les quita la cola: Icod, Garachico, Los
+     Silos y Buenavista. Lo de Icod y Garachico no venia dicho con esas
+     palabras, se deduce de que la ruta acabe en Puerto de la Cruz;
+     conviene confirmarlo.
+
+   - Buenavista no estaba a 1,7 km: la terminal esta en el casco, en
+     Calle la Cancela 1, a 250 m de la plaza. Corregida en la 355, que
+     es la unica que la conserva.
+
+   - Los Silos y Garachico se quedan SIN NINGUNA LINEA. La que les
+     corresponde es la 363, que no esta en la tabla. Buenavista la
+     mantiene la 355; la fuente nombra tambien la 363 y la 369.
+
+   - Los enlaces de autopista llevan ya su nombre oficial: "Cruce La
+     Victoria (T)", codigo 4003, en el enlace 27 de la TF-5, y "Cruce de
+     Arico", en el enlace 42 de la TF-1. Las dos distancias al pueblo
+     -2,7 y 1,6 km- eran correctas: la parada esta en la autopista y el
+     pueblo arriba. Ya no salen como error.
+
+   - La 137 y la 711 llamaban distinto a la misma parada de Arico. Ahora
+     comparten nombre y nodo.
    ────────────────────────────────────────────────────────── */
 const TITSA_LINES = [
 
@@ -16089,18 +16114,14 @@ const TITSA_LINES = [
     ]
   },
   {
-    id:"bus-102", numero:"102", nombre:"Santa Cruz — Buenavista del Norte",
+    id:"bus-102", numero:"102", nombre:"Santa Cruz — Aeropuerto Norte — Puerto de la Cruz",
     color:"#0288D1", tipo:"norte", frecuencia:"~1 h", precio:"~5,50 €",
     paradas:[
       { id:"102-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"102-laguna",  nombre:"La Laguna · Intercambiador",       lat:28.4853, lng:-16.3160, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
+      { id:"102-laguna",  nombre:"La Laguna · Intercambiador",       lat:28.4853, lng:-16.3160, esTerminal:false,  municipio:"San Cristóbal de La Laguna" },
       { id:"102-tfn",     nombre:"✈️ Aeropuerto Norte (TFN)",        lat:28.4827, lng:-16.3414, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"102-tacor",   nombre:"Tacoronte · Casco",                lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
-      { id:"102-ptocz",   nombre:"Puerto de la Cruz · Intercambiador",lat:28.4148, lng:-16.5480, esTerminal:false, municipio:"Puerto de la Cruz" },
-      { id:"102-icod",    nombre:"Icod de los Vinos · Centro",       lat:28.3720, lng:-16.7200, esTerminal:false, municipio:"Icod de los Vinos" },
-      { id:"102-garach",  nombre:"Garachico · Puerto",               lat:28.3726, lng:-16.7620, esTerminal:false, municipio:"Garachico" },
-      { id:"102-silos",   nombre:"Los Silos · Centro",               lat:28.3800, lng:-16.8310, esTerminal:false, municipio:"Los Silos" },
-      { id:"102-buena",   nombre:"Buenavista del Norte · Terminal",  lat:28.3778, lng:-16.8670, esTerminal:true,  municipio:"Buenavista del Norte" },
+      { id:"102-ptocz",   nombre:"Puerto de la Cruz · Intercambiador",lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
     ]
   },
   /* La 107 estaba aqui: Puerto de la Cruz — Los Gigantes, por Los
@@ -16520,7 +16541,7 @@ const TITSA_LINES = [
     id:"bus-355", numero:"355", nombre:"Buenavista — Masca — Santiago del Teide 🏔️",
     color:"#BF360C", tipo:"municipal", frecuencia:"3-4/día", precio:"~3 €",
     paradas:[
-      { id:"355-buena",   nombre:"Buenavista del Norte",             lat:28.3778, lng:-16.8670, esTerminal:true,  municipio:"Buenavista del Norte" },
+      { id:"355-buena",   nombre:"Buenavista del Norte · Terminal",  lat:28.3718, lng:-16.8510, esTerminal:true,  municipio:"Buenavista del Norte" },
       { id:"355-masca",   nombre:"🏔️ Masca (Pueblo)",                lat:28.3050, lng:-16.8405, esTerminal:false, municipio:"Buenavista del Norte" },
       { id:"355-stiag",   nombre:"Santiago del Teide",               lat:28.2974, lng:-16.8155, esTerminal:true,  municipio:"Santiago del Teide" },
     ]
@@ -16552,7 +16573,7 @@ const TITSA_LINES = [
       { id:"711N-caletil",  nombre:"Cruce Caletillas",                lat:28.3697, lng:-16.3683, esTerminal:false, municipio:"Candelaria" },
       { id:"711N-candel",   nombre:"Cruce Candelaria",                lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
       { id:"711N-guimar",   nombre:"Cruce Güímar",                    lat:28.3186, lng:-16.4106, esTerminal:false, municipio:"Güímar" },
-      { id:"711N-arico",    nombre:"Cruce Arico",                     lat:28.1736, lng:-16.5147, esTerminal:false, municipio:"Arico" },
+      { id:"711N-arico",    nombre:"Cruce de Arico",                  lat:28.1736, lng:-16.5147, esTerminal:false, municipio:"Arico" },
       { id:"711N-chimich",  nombre:"Cruce Chimiche",                  lat:28.1450, lng:-16.5419, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"711N-sanisid",  nombre:"Cruce San Isidro",                lat:28.0989, lng:-16.5642, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"711N-aerop",    nombre:"✈️ Aeropuerto Sur (Reina Sofía)", lat:28.0444, lng:-16.5725, esTerminal:false, municipio:"Granadilla de Abona" },
@@ -16588,21 +16609,18 @@ const TITSA_LINES = [
       { id:"101N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"101N-laguna",   nombre:"La Laguna (Intercambiador)",      lat:28.4839, lng:-16.3203, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"101N-tacoront", nombre:"Tacoronte",                       lat:28.4753, lng:-16.4153, esTerminal:false, municipio:"Tacoronte" },
-      { id:"101N-victoria", nombre:"La Victoria de Acentejo",         lat:28.4108, lng:-16.4639, esTerminal:false, municipio:"La Victoria de Acentejo" },
+      { id:"101N-victoria", nombre:"Cruce La Victoria (T) · 4003",    lat:28.4108, lng:-16.4639, esTerminal:false, municipio:"La Victoria de Acentejo" },
       { id:"101N-orotava",  nombre:"La Orotava (Cruce)",              lat:28.3897, lng:-16.5236, esTerminal:false, municipio:"La Orotava" },
       { id:"101N-pcruz",    nombre:"Puerto de la Cruz (Estación)",    lat:28.4136, lng:-16.5446, esTerminal:true,  municipio:"Puerto de la Cruz" },
     ]
   },
   {
-    id:"bus-104N", numero:"104", nombre:"🦉 Santa Cruz — Icod — Buenavista (Nocturna)",
+    id:"bus-104N", numero:"104", nombre:"🦉 Santa Cruz — La Laguna — Puerto de la Cruz (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~7,60 €",
     paradas:[
       { id:"104N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"104N-laguna",   nombre:"La Laguna",                        lat:28.4839, lng:-16.3203, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"104N-pcruz",    nombre:"Puerto de la Cruz",               lat:28.4136, lng:-16.5446, esTerminal:false, municipio:"Puerto de la Cruz" },
-      { id:"104N-icod",     nombre:"Icod de los Vinos",               lat:28.3722, lng:-16.7178, esTerminal:false, municipio:"Icod de los Vinos" },
-      { id:"104N-garach",   nombre:"Garachico",                       lat:28.3742, lng:-16.7611, esTerminal:false, municipio:"Garachico" },
-      { id:"104N-buena",    nombre:"Buenavista del Norte",            lat:28.3778, lng:-16.8670, esTerminal:true,  municipio:"Buenavista del Norte" },
+      { id:"104N-pcruz",    nombre:"Puerto de la Cruz",               lat:28.4136, lng:-16.5446, esTerminal:true,  municipio:"Puerto de la Cruz" },
     ]
   },
   {
@@ -16613,7 +16631,7 @@ const TITSA_LINES = [
       { id:"137N-candel",   nombre:"Candelaria",                      lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
       { id:"137N-guimar",   nombre:"Güímar",                          lat:28.3186, lng:-16.4106, esTerminal:false, municipio:"Güímar" },
       { id:"137N-fasnia",   nombre:"Fasnia (Cruce)",                  lat:28.2356, lng:-16.4422, esTerminal:false, municipio:"Fasnia" },
-      { id:"137N-arico",    nombre:"Arico",                           lat:28.1736, lng:-16.5147, esTerminal:false, municipio:"Arico" },
+      { id:"137N-arico",    nombre:"Cruce de Arico",                  lat:28.1736, lng:-16.5147, esTerminal:false, municipio:"Arico" },
       { id:"137N-granad",   nombre:"Granadilla de Abona",             lat:28.1208, lng:-16.5775, esTerminal:true,  municipio:"Granadilla de Abona" },
     ]
   },
