@@ -16328,6 +16328,12 @@ const TITSA_LINES = [
   {
     id:"bus-110", numero:"110", nombre:"Santa Cruz — Costa Adeje (Express Autopista)",
     color:"#E53935", tipo:"sur", frecuencia:"30 min", precio:"9,05 €", minutos:55,
+    /* De 23:16 a 05:19 no circula. Sin esta ventana el planificador la
+       seguia ofreciendo de madrugada y le ganaba a la 711 por ser mas
+       rapida, mandando a alguien a esperar en el Intercambiador una
+       guagua que no viene hasta las cinco y veinte. Ahora en esa franja
+       el flujo cae solo a la buho 711, que es la que circula. */
+    servicio:{ desde:"05:20", hasta:"23:15" },
     paradas:[
       { id:"110-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"110-sanisidro",nombre:"San Isidro (Enlace TF-1)",        lat:28.0625, lng:-16.5635, esTerminal:false, municipio:"Granadilla de Abona" },
