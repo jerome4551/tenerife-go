@@ -14805,7 +14805,18 @@ function parseFrequencyMinutes(freqText) {
       const hi = dayMatch[2] ? parseInt(dayMatch[2], 10) : lo;
       if (lo > 0) viajes = (lo + hi) / 2;
     }
-    return Math.round(12 * 60 / viajes / 2);
+    /* Se limita a 60 minutos. La cuenta pura daba 360 para una guagua de
+       un viaje al dia, y con eso el planificador decia que el Teide esta
+       a siete horas y media del Puerto de la Cruz cuando el trayecto son
+       cien minutos. Un numero asi no informa: hace que alguien descarte
+       una excursion que si se puede hacer.
+
+       A una linea con un solo viaje al dia no se llega por casualidad,
+       se va a su hora, asi que la "espera media de quien aparece al
+       azar" no es el modelo bueno. Sesenta minutos es el margen de
+       planificacion, y quien avisa de verdad es el texto de la
+       frecuencia -"1 servicio/dia"- que se ve en la propia tarjeta. */
+    return Math.min(60, Math.round(12 * 60 / viajes / 2));
   }
   return 30;
 }
@@ -16185,7 +16196,7 @@ const TITSA_LINES = [
      Pendiente. */
   {
     id:"bus-110", numero:"110", nombre:"Santa Cruz — Costa Adeje (Express Autopista)",
-    color:"#E53935", tipo:"sur", frecuencia:"~2 h", precio:"~7 €", minutos:55,
+    color:"#E53935", tipo:"sur", frecuencia:"30 min", precio:"9,05 €", minutos:55,
     paradas:[
       { id:"110-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"110-sanisidro",nombre:"San Isidro (Enlace TF-1)",        lat:28.0625, lng:-16.5635, esTerminal:false, municipio:"Granadilla de Abona" },
@@ -16261,7 +16272,7 @@ const TITSA_LINES = [
      tarifa por tramos que se dio cubre otras seis lineas, no esta. */
   {
     id:"bus-415", numero:"415", nombre:"San Isidro — Aeropuerto Sur — Costa del Silencio — El Fraile",
-    color:"#5D4037", tipo:"sur", frecuencia:"60 min", precio:"1,45-2,45 €",
+    color:"#5D4037", tipo:"sur", frecuencia:"60 min", precio:"1,45-2,45 €", minutos:45,
     paradas:[
       { id:"415-sanisidro",nombre:"San Isidro (Enlace TF-1)",         lat:28.0625, lng:-16.5635, esTerminal:true,  municipio:"Granadilla de Abona" },
       { id:"415-tfs",      nombre:"✈️ Aeropuerto Sur (TFS)",          lat:28.0445, lng:-16.5722, esTerminal:false, municipio:"Granadilla de Abona" },
@@ -16289,7 +16300,7 @@ const TITSA_LINES = [
   // ═══════════ TURÍSTICAS / TEIDE ═══════════
   {
     id:"bus-348", numero:"348", nombre:"Puerto de la Cruz — Teide (El Portillo) 🌋",
-    color:"#6A1B9A", tipo:"teide", frecuencia:"1 servicio/día", precio:"~8,50 €",
+    color:"#6A1B9A", tipo:"teide", frecuencia:"1 servicio/día", precio:"~8,50 €", minutos:100,
     paradas:[
       { id:"348-ptocz",   nombre:"Puerto de la Cruz · Estación",     lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
       { id:"348-botan",   nombre:"Puente del Botánico (4150)",       lat:28.4180, lng:-16.5350, esTerminal:false, municipio:"Puerto de la Cruz" },
@@ -16302,7 +16313,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-342", numero:"342", nombre:"Costa Adeje — Teide (El Portillo) 🌋",
-    color:"#8E24AA", tipo:"teide", frecuencia:"1 servicio/día", precio:"~8,50 €",
+    color:"#8E24AA", tipo:"teide", frecuencia:"1 servicio/día", precio:"~8,50 €", minutos:135,
     paradas:[
       { id:"342-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
       { id:"342-loscris", nombre:"Los Cristianos",                   lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
@@ -16363,7 +16374,7 @@ const TITSA_LINES = [
      fuente. */
   {
     id:"bus-473", numero:"473", nombre:"Los Cristianos — Costa Adeje — Callao Salvaje — Los Gigantes",
-    color:"#EF6C00", tipo:"sur", frecuencia:"30-60 min", precio:"~3 €",
+    color:"#EF6C00", tipo:"sur", frecuencia:"30-60 min", precio:"~3 €", minutos:90,
     nota:{ es:"Última expedición sobre la 01:25, por el mismo recorrido. No hay una 473 nocturna a Las Galletas: eso lo cubren la 467 y la 470.", en:"Last run around 01:25, along the same route. There is no night 473 to Las Galletas: that is covered by the 467 and the 470.", fr:"Dernier départ vers 01h25, sur le même itinéraire. Il n'existe pas de 473 de nuit vers Las Galletas : ce sont les 467 et 470.", de:"Letzte Fahrt gegen 01:25 Uhr, auf derselben Strecke. Eine Nacht-473 nach Las Galletas gibt es nicht: das fahren die 467 und die 470.", it:"Ultima corsa verso l'01:25, sullo stesso percorso. Non esiste una 473 notturna per Las Galletas: la fanno la 467 e la 470.", nl:"Laatste rit rond 01:25, over dezelfde route. Er is geen nacht-473 naar Las Galletas: dat rijden de 467 en de 470.", zh:"末班车约01:25发出，路线不变。没有开往拉斯加列塔斯的473路夜班车：那一段由467路和470路负责。", zht:"末班車約01:25發出，路線不變。沒有開往拉斯加列塔斯的473路夜班車：那一段由467路和470路負責。" },
     paradas:[
       { id:"473-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
@@ -16383,7 +16394,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-477", numero:"477", nombre:"Costa Adeje — Los Gigantes (Directo)",
-    color:"#F57C00", tipo:"sur", frecuencia:"40-50 min", precio:"2,45-3,20 €",
+    color:"#F57C00", tipo:"sur", frecuencia:"40-50 min", precio:"2,45-3,20 €", minutos:50,
     paradas:[
       { id:"477-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
       { id:"477-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
@@ -16441,12 +16452,15 @@ const TITSA_LINES = [
     ]
   },
   {
-    id:"bus-471", numero:"471", nombre:"Los Cristianos — Costa Adeje (Costero, variante)",
-    color:"#26A69A", tipo:"sur", frecuencia:"consultar TITSA", precio:"desde 1,45 €",
+    id:"bus-471", numero:"471", nombre:"Los Cristianos — Costa Adeje — Callao Salvaje",
+    color:"#26A69A", tipo:"sur", frecuencia:"50 min", precio:"desde 1,45 €", minutos:45,
     paradas:[
       { id:"471-cristianos", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
       { id:"471-duque",      nombre:"Playa del Duque",           lat:28.0905, lng:-16.7460, esTerminal:false, municipio:"Adeje" },
-      { id:"471-adeje",      nombre:"Costa Adeje · Estación",    lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
+      { id:"471-adeje",      nombre:"Costa Adeje · Estación",    lat:28.0970, lng:-16.7440, esTerminal:false, municipio:"Adeje" },
+      /* La linea se amplio hasta Callao Salvaje. Coordenada del lugar
+         playa-callao, la misma que usa la 473. */
+      { id:"471-callao",     nombre:"Callao Salvaje",            lat:28.1274, lng:-16.7820, esTerminal:true,  municipio:"Adeje" },
     ]
   },
   {
@@ -16583,7 +16597,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-461", numero:"461", nombre:"El Cercado — Arguayo — Tamaimo — Los Gigantes (vecinal)",
-    color:"#795548", tipo:"municipal", frecuencia:"L-V, 3 salidas/día", precio:"1,45-2,10 €",
+    color:"#795548", tipo:"municipal", frecuencia:"L-V, 3 salidas/día", precio:"1,45-2,10 €", minutos:35,
     paradas:[
       { id:"461-cercado", nombre:"El Cercado (7574)",                lat:28.274389, lng:-16.812000, esTerminal:true,  municipio:"Santiago del Teide" },
       { id:"461-arguayo", nombre:"Arguayo (7575)",                   lat:28.271722, lng:-16.813333, esTerminal:false, municipio:"Santiago del Teide" },
@@ -16598,7 +16612,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-462", numero:"462", nombre:"Guía de Isora — Chío — Santiago del Teide — Los Gigantes (medianías)",
-    color:"#8D6E63", tipo:"municipal", frecuencia:"L-V, pocas salidas/día", precio:"1,45-2,10 €",
+    color:"#8D6E63", tipo:"municipal", frecuencia:"L-V, pocas salidas/día", precio:"1,45-2,10 €", minutos:50,
     paradas:[
       { id:"462-guia",    nombre:"Guía de Isora · Terminal (7494)",  lat:28.2125, lng:-16.7783, esTerminal:true,  municipio:"Guía de Isora" },
       { id:"462-chio",    nombre:"Chío (7482)",                      lat:28.211056, lng:-16.786972, esTerminal:false, municipio:"Guía de Isora" },
@@ -16629,7 +16643,7 @@ const TITSA_LINES = [
      Frecuencia y precio pendientes: no hay dato y no se inventa. */
   {
     id:"bus-363", numero:"363", nombre:"Puerto de la Cruz — Icod — Garachico — Buenavista",
-    color:"#00838F", tipo:"norte", frecuencia:"consultar TITSA", precio:"consultar TITSA",
+    color:"#00838F", tipo:"norte", frecuencia:"30 min · 60 min fines de semana", precio:"1,45-4,40 €", minutos:75,
     paradas:[
       { id:"363-pcruz",   nombre:"Puerto de la Cruz · Estación",     lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
       { id:"363-icod",    nombre:"Icod de los Vinos",                lat:28.3722, lng:-16.7178, esTerminal:false, municipio:"Icod de los Vinos" },
