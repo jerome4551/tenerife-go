@@ -16206,24 +16206,32 @@ const TITSA_LINES = [
   },
 
   // ═══════════ NORTE (TF-5) ═══════════
+  /* Linea 101 · no era Santa Cruz - Puerto de la Cruz.
+
+     Estaba con nueve paradas, de Santa Cruz al Loro Parque. La ficha
+     dice que es La Laguna - La Orotava por la carretera general, 50
+     minutos. Se le quitan las tres que sobran: Santa Cruz, el
+     Intercambiador del Puerto de la Cruz y el Loro Parque.
+
+     Santa Cruz - La Laguna lo hacen la 015 y la 103, y Santa Cruz -
+     Puerto de la Cruz la 102, la 103 y la 104, asi que no se pierde
+     ninguna conexion. Lo que si se queda sin ninguna linea es el Loro
+     Parque, que solo lo tenia esta. */
   {
-    id:"bus-101", numero:"101", nombre:"Santa Cruz — Puerto de la Cruz",
-    color:"#1565C0", tipo:"norte", frecuencia:"20-30 min", precio:"~3,50 €",
+    id:"bus-101", numero:"101", nombre:"La Laguna — La Orotava (Carretera General)",
+    color:"#1565C0", tipo:"norte", frecuencia:"20-30 min", precio:"~3,50 €", minutos:50,
     paradas:[
-      { id:"101-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"101-laguna",  nombre:"La Laguna · Intercambiador (2625)",lat:28.4853, lng:-16.3160, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
       { id:"101-tacor",   nombre:"Tacoronte · Casco",                lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
       { id:"101-sauzal",  nombre:"El Sauzal · Centro",               lat:28.4720, lng:-16.4280, esTerminal:false, municipio:"El Sauzal" },
       { id:"101-victoria",nombre:"La Victoria de Acentejo",          lat:28.4340, lng:-16.4709, esTerminal:false, municipio:"La Victoria de Acentejo" },
       { id:"101-sursula", nombre:"Santa Úrsula · Centro",            lat:28.4340, lng:-16.4940, esTerminal:false, municipio:"Santa Úrsula" },
-      { id:"101-orotava", nombre:"La Orotava · Centro",              lat:28.3900, lng:-16.5230, esTerminal:false, municipio:"La Orotava" },
-      { id:"101-ptocz",   nombre:"Puerto de la Cruz · Intercambiador",lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
-      { id:"101-loro",    nombre:"Puerto de la Cruz · Loro Parque",  lat:28.4205, lng:-16.5720, esTerminal:false, municipio:"Puerto de la Cruz" },
+      { id:"101-orotava", nombre:"La Orotava · Centro",              lat:28.3900, lng:-16.5230, esTerminal:true,  municipio:"La Orotava" },
     ]
   },
   {
     id:"bus-102", numero:"102", nombre:"Santa Cruz — Puerto de la Cruz (por Las Arenas)",
-    color:"#0288D1", tipo:"norte", frecuencia:"~1 h", precio:"~5,50 €",
+    color:"#0288D1", tipo:"norte", frecuencia:"~1 h", precio:"~5,50 €", minutos:60,
     paradas:[
       { id:"102-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"102-laguna",  nombre:"La Laguna · Intercambiador (2625)",lat:28.4853, lng:-16.3160, esTerminal:false,  municipio:"San Cristóbal de La Laguna" },
@@ -16358,7 +16366,7 @@ const TITSA_LINES = [
   // ═══════════ AEROPUERTO ═══════════
   {
     id:"bus-343", numero:"343", nombre:"Puerto de la Cruz — Costa Adeje (vía TFN+TFS)",
-    color:"#00695C", tipo:"aeropuerto", frecuencia:"~1 h", precio:"~10 €",
+    color:"#00695C", tipo:"aeropuerto", frecuencia:"~1 h", precio:"~10 €", minutos:100,
     paradas:[
       { id:"343-ptocz",   nombre:"Puerto de la Cruz · Estación",     lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
       { id:"343-botan",   nombre:"Jardín Botánico",                  lat:28.4180, lng:-16.5350, esTerminal:false, municipio:"Puerto de la Cruz" },
@@ -16370,7 +16378,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-040", numero:"040", nombre:"Aeropuerto Sur — Los Cristianos — Costa Adeje (Express)",
-    color:"#00897B", tipo:"aeropuerto", frecuencia:"30 min", precio:"~3,75 €",
+    color:"#00897B", tipo:"aeropuerto", frecuencia:"30 min", precio:"~3,75 €", minutos:30,
     paradas:[
       { id:"040-tfs",     nombre:"✈️ Aeropuerto Sur TFS · Terminal", lat:28.0445, lng:-16.5722, esTerminal:true,  municipio:"Granadilla de Abona" },
       { id:"040-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
@@ -16423,15 +16431,17 @@ const TITSA_LINES = [
        Costa del Silencio, da 30-40 min de dia. Las paradas no se tocan:
        la 470 ya tiene la de Costa del Silencio, y que sea o no la misma
        parada fisica que Minerva no se puede comprobar desde aqui. */
-    id:"bus-470", numero:"470", nombre:"Los Cristianos — El Médano — Aeropuerto Sur",
-    color:"#558B2F", tipo:"aeropuerto", frecuencia:"30-40 min", precio:"~2,50 €",
+    /* Termina en El Medano, no en el aeropuerto: la ficha la da como
+       Los Cristianos - El Medano, 70 minutos. El aeropuerto lo cubren
+       la 111, la 343, la 040 y la 415, asi que no se pierde nada. */
+    id:"bus-470", numero:"470", nombre:"Los Cristianos — Costa del Silencio — El Médano",
+    color:"#558B2F", tipo:"aeropuerto", frecuencia:"30-40 min", precio:"~2,50 €", minutos:70,
     paradas:[
       { id:"470-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
       { id:"470-galleta", nombre:"Las Galletas",                     lat:28.0070, lng:-16.6660, esTerminal:false, municipio:"Arona" },
       { id:"470-silenc",  nombre:"Costa del Silencio · Minerva (7306)",lat:28.0050, lng:-16.6460, esTerminal:false, municipio:"Arona" },
       { id:"470-golf",    nombre:"Golf del Sur / San Miguel",        lat:28.0290, lng:-16.6090, esTerminal:false, municipio:"San Miguel de Abona" },
-      { id:"470-medano",  nombre:"El Médano · Centro",               lat:28.0480, lng:-16.5380, esTerminal:false, municipio:"Granadilla de Abona" },
-      { id:"470-tfs",     nombre:"✈️ Aeropuerto Sur TFS",            lat:28.0445, lng:-16.5722, esTerminal:true,  municipio:"Granadilla de Abona" },
+      { id:"470-medano",  nombre:"El Médano · Centro",               lat:28.0480, lng:-16.5380, esTerminal:true , municipio:"Granadilla de Abona" },
     ]
   },
 
@@ -17406,11 +17416,12 @@ const TITSA_LINES = [
     ]
   },
   {
-    id:"bus-104N", numero:"104", nombre:"🦉 Santa Cruz — La Laguna — Puerto de la Cruz (Nocturna)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~7,60 €",
+    id:"bus-104N", numero:"104", nombre:"🦉 Santa Cruz — La Laguna — Tacoronte — Puerto de la Cruz (Nocturna)",
+    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~7,60 €", minutos:75,
     paradas:[
       { id:"104N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"104N-laguna",   nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"104N-tacoronte",nombre:"Tacoronte · Casco",               lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
       { id:"104N-pcruz",    nombre:"Puerto de la Cruz",               lat:28.4136, lng:-16.5446, esTerminal:true,  municipio:"Puerto de la Cruz" },
     ]
   },
