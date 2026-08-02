@@ -85,13 +85,43 @@ categorías en italiano otra. Merece la pena comprobarlo al añadir una.
 
 ### Guaguas
 
-`TITSA_LINES` tiene 35 líneas con 216 paradas. Cada línea lleva
-`frecuencia` y `precio` como texto libre; `parseFrequencyMinutes()` saca
-de ahí los minutos de espera para el planificador de rutas, y si no
-encuentra ningún número usa 30 minutos, que es el lado prudente.
+`TITSA_LINES` tiene 37 líneas con 228 paradas. Cada línea lleva
+`frecuencia` y `precio` como texto libre, y `parseFrequencyMinutes()`
+saca de ahí los minutos de espera para el planificador.
+
+Reconoce tres formas, por este orden: horas (`~1 h`), rangos y valores en
+minutos (`30-60 min`, `30 min`) y expediciones al día (`3-5/día`,
+`1 servicio/día`, `L-V, pocas salidas/día`). Lo último no es una
+frecuencia sino un horario, así que reparte los viajes en una jornada de
+12 h; sin cifra asume 2, el mínimo que implica un servicio de mañana y
+tarde. Antes caía al valor por defecto y **una guagua que pasa una vez al
+día se ofrecía como si viniera cada media hora** —las dos del Teide lo
+hacían—. Si no reconoce nada usa 30 minutos.
+
+Las nocturnas (`Madrugada`, `23:30 · 01:30 · 03:05`) siguen cayendo en
+ese valor por defecto. Es lo que queda por hacer aquí.
 
 Las paradas son una simplificación del recorrido, no la lista completa:
-varias líneas cubren todo su trayecto con tres o cuatro.
+varias líneas cubren todo su trayecto con tres o cuatro. En la 461 y la
+462 esa poda se lleva justo lo que les da sentido —los pueblos altos,
+Arguayo, Tamaimo, Chío—, porque de esos núcleos no hay coordenada
+verificada. Van marcadas en el código.
+
+El planificador agrupa las paradas por coordenada redondeada a cuatro
+decimales, así que **dos líneas solo hacen transbordo si comparten la
+coordenada exacta**. Por eso una parada que ya existe en otra línea se
+copia con la coordenada que ya tiene, aunque `places[]` dé otra: a 200 m
+ya son dos sitios distintos. Alcalá llegó a figurar con dos coordenadas
+separadas 3,7 km y el planificador la trataba como dos pueblos.
+
+Día y noche sí son nodos distintos a propósito: las búho paran en los
+cruces de la autopista (`Cruce Arico`) y las diurnas en el casco
+(`Arico`), a kilómetros de distancia. No se deben unificar.
+
+Un mismo número puede salir dos veces, una de día y otra de noche: la
+101, la 711 y la 473 lo hacen. Lo que distingue las entradas es el `id`
+—`bus-711` frente a `bus-711N`—, que es lo que usan todas las búsquedas
+del código; `numero` solo se pinta.
 
 El planificador agrupa las paradas por coordenada redondeada a cuatro
 decimales, así que **dos líneas solo hacen transbordo si comparten la

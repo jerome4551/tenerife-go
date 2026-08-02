@@ -14768,6 +14768,28 @@ function parseFrequencyMinutes(freqText) {
   if (singleMatch) {
     return Math.round(parseInt(singleMatch[1], 10) / 2);
   }
+  // "3-5/dia", "1 servicio/dia", "L-V, pocas salidas/dia". Esto no es una
+  // frecuencia, es un horario de unas pocas expediciones. Devolver los 30
+  // minutos de antes manda a alguien a esperar en una parada donde la
+  // guagua pasa una o dos veces al dia: la 348 y la 342 al Teide salen una
+  // vez, y el planificador las trataba como si vinieran cada media hora.
+  //
+  // Se reparten los viajes en una jornada de 12 h y se divide entre 2, el
+  // mismo criterio que con los rangos en minutos. Sin cifra se asume 2, el
+  // minimo que implica un servicio de manana y tarde.
+  //
+  // Va despues de los tres casos en minutos a proposito: si el texto dice
+  // "cada dia cada 20 min" gana el 20 min, que es el dato bueno.
+  if (/\bd[ií]a\b/.test(t)) {
+    const dayMatch = t.match(/(\d+)(?:\s*[-–]\s*(\d+))?\s*(?:servicios?|salidas?|viajes?|expediciones?)?\s*\/?\s*(?:al\s+)?d[ií]a/);
+    let viajes = 2;
+    if (dayMatch) {
+      const lo = parseInt(dayMatch[1], 10);
+      const hi = dayMatch[2] ? parseInt(dayMatch[2], 10) : lo;
+      if (lo > 0) viajes = (lo + hi) / 2;
+    }
+    return Math.round(12 * 60 / viajes / 2);
+  }
   return 30;
 }
 
@@ -15971,7 +15993,7 @@ const TITSA_LINES = [
       { id:"107-realej",  nombre:"Los Realejos",                     lat:28.4190, lng:-16.5890, esTerminal:false, municipio:"Los Realejos" },
       { id:"107-icod",    nombre:"Icod de los Vinos · El Drago",     lat:28.3720, lng:-16.7200, esTerminal:false, municipio:"Icod de los Vinos" },
       { id:"107-garach",  nombre:"Garachico · Puerto",               lat:28.3726, lng:-16.7620, esTerminal:false, municipio:"Garachico" },
-      { id:"107-stiag",   nombre:"Santiago del Teide",               lat:28.2980, lng:-16.8070, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"107-stiag",   nombre:"Santiago del Teide",               lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"107-ptosant", nombre:"Puerto de Santiago",               lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"107-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
     ]
@@ -16237,16 +16259,93 @@ const TITSA_LINES = [
       { id:"910-teresitas", nombre:"Playa de Las Teresitas",      lat:28.5097, lng:-16.1847, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
     ]
   },
+  /* Lineas 325, 461 y 462 · las otras tres que paran en la 7232.
+
+     La 325 estaba mal entera. Figuraba como "Los Gigantes — Santiago del
+     Teide (Masca)", una lanzadera corta de 3-5 viajes al dia a 2 €, y por
+     Masca no pasa: esa es la 355. La 325 es una interurbana de largo
+     recorrido que cruza la isla por el Puerto de Erjos, Puerto de la Cruz
+     - Icod - Santiago del Teide - Los Gigantes, todos los dias del ano,
+     cada 80-90 min, y tarda 1 h 40 de punta a punta. Cambia de tipo
+     "municipal" a "norte": no es una lanzadera, y cinco de sus paradas
+     estan en el norte. El precio se retira: los ~2 € eran los del
+     recorrido corto que no existe, y la fuente no da tarifa.
+
+     La 461 y la 462 son vecinales y escolares, de lunes a viernes, con
+     unas pocas expediciones al dia. Se anaden porque la ficha de la 7232
+     las lista, pero con un aviso: de sus recorridos solo se pueden poner
+     las paradas cuyas coordenadas ya estaban verificadas en places[]. Se
+     quedan fuera Arguayo, El Cercado, Las Manchas, Tamaimo, Valle de
+     Arriba, San Francisco, Cueva del Polvo, El Varadero, Chio y
+     Chiguergue, que es justo lo que les da sentido: son los pueblos altos.
+     Sin coordenada no se ponen, que asi fue como La Arena acabo a 7,5 km.
+     Tamaimo falta por lo mismo en la 325.
+
+     La frecuencia de las dos va como texto de horario, no como cifra de
+     espera, y por eso se enseno a parseFrequencyMinutes a leer "/dia":
+     antes devolvia 30 minutos para cualquier cosa que no llevara "min",
+     y eso convertia una guagua escolar de dos viajes al dia en algo que
+     el planificador ofrecia como si pasara cada media hora. La 462 va sin
+     numero de salidas porque la fuente no lo da —dice "pocos viajes,
+     manana y tarde"— y el planificador asume entonces el minimo, 2.
+
+     Ninguna de las dos circula sabados, domingos ni festivos. La tabla no
+     modela dias de servicio, asi que el aviso va en el propio texto de la
+     frecuencia, que es lo unico que el usuario ve.
+
+     OJO · la 325 y la 107 se pisan. La 107 que ya estaba en la tabla es
+     tambien Puerto de la Cruz - Los Gigantes, por Los Realejos, Icod y
+     Garachico; la 325 de la ficha sube por La Guancha y El Tanque. Pueden
+     ser dos servicios reales por vertientes distintas, o la fuente puede
+     estar mezclando las dos. Desde aqui no hay forma de comprobarlo, asi
+     que se anade la 325 tal como la da la fuente y no se toca la 107.
+     Pendiente de confirmar.
+
+     Las paradas que ya existian en otras lineas se copian con su
+     coordenada exacta, no con la del lugar de places[]: Puerto de la
+     Cruz Estacion como la usan la 101, 102, 107, 343 y 348, El Botanico
+     como la 343 y la 348, Icod como la 104 y la 390, y Guia de Isora
+     como la 390. Si se pusiera la del lugar quedarian a 200-700 m y
+     serian nodos distintos, y entonces el planificador no puede
+     transbordar entre ellas. Solo La Guancha y El Tanque salen de
+     places[], porque no tenian parada en ninguna linea.
+
+     Santiago del Teide pasa de 28,2980/-16,8070 a la coordenada del lugar
+     nucleo-santiago-teide, 28,2974/-16,8155, en las seis lineas que paran
+     ahi: 107, 325, 355, 390N, 461 y 462. Estaba partido en dos nodos a
+     830 m, asi que la 107 y la 355 no podian transbordar con la 325. */
   {
-    id:"bus-325", numero:"325", nombre:"Los Gigantes — Santiago del Teide (Masca)",
-    color:"#D84315", tipo:"municipal", frecuencia:"3-5/día", precio:"~2 €",
+    id:"bus-325", numero:"325", nombre:"Puerto de la Cruz — Icod — Santiago del Teide — Los Gigantes",
+    color:"#D84315", tipo:"norte", frecuencia:"80-90 min", precio:"consultar TITSA",
     paradas:[
-      { id:"325-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
-      { id:"325-ptosant", nombre:"Puerto de Santiago",               lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
-      /* La ficha oficial de la parada 7232 lista la 325 entre las lineas
-         que paran ahi. Coordenada del lugar arena. */
-      { id:"325-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
-      { id:"325-stiag",   nombre:"Santiago del Teide",               lat:28.2980, lng:-16.8070, esTerminal:true,  municipio:"Santiago del Teide" },
+      { id:"325-pcruz",    nombre:"Puerto de la Cruz · Estación",    lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
+      { id:"325-botanico", nombre:"El Botánico",                     lat:28.4180, lng:-16.5350, esTerminal:false, municipio:"Puerto de la Cruz" },
+      { id:"325-guancha",  nombre:"La Guancha",                      lat:28.3729, lng:-16.6534, esTerminal:false, municipio:"La Guancha" },
+      { id:"325-icod",     nombre:"Icod de los Vinos",               lat:28.3722, lng:-16.7178, esTerminal:false, municipio:"Icod de los Vinos" },
+      { id:"325-tanque",   nombre:"El Tanque",                       lat:28.3562, lng:-16.7792, esTerminal:false, municipio:"El Tanque" },
+      { id:"325-stiag",    nombre:"Santiago del Teide",              lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"325-arena",    nombre:"Playa de la Arena (7232)",        lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"325-ptosant",  nombre:"Puerto de Santiago",              lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"325-gigant",   nombre:"Los Gigantes · Terminal",         lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
+    ]
+  },
+  {
+    id:"bus-461", numero:"461", nombre:"Arguayo — Santiago del Teide — Los Gigantes (vecinal)",
+    color:"#795548", tipo:"municipal", frecuencia:"L-V, 3 salidas/día", precio:"consultar TITSA",
+    paradas:[
+      { id:"461-stiag",   nombre:"Santiago del Teide",               lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"461-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"461-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
+    ]
+  },
+  {
+    id:"bus-462", numero:"462", nombre:"Guía de Isora — Santiago del Teide — Los Gigantes (medianías)",
+    color:"#8D6E63", tipo:"municipal", frecuencia:"L-V, pocas salidas/día", precio:"consultar TITSA",
+    paradas:[
+      { id:"462-guia",    nombre:"Guía de Isora",                    lat:28.2125, lng:-16.7783, esTerminal:true,  municipio:"Guía de Isora" },
+      { id:"462-stiag",   nombre:"Santiago del Teide",               lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"462-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"462-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
     ]
   },
   {
@@ -16255,7 +16354,7 @@ const TITSA_LINES = [
     paradas:[
       { id:"355-buena",   nombre:"Buenavista del Norte",             lat:28.3778, lng:-16.8670, esTerminal:true,  municipio:"Buenavista del Norte" },
       { id:"355-masca",   nombre:"🏔️ Masca (Pueblo)",                lat:28.3050, lng:-16.8405, esTerminal:false, municipio:"Buenavista del Norte" },
-      { id:"355-stiag",   nombre:"Santiago del Teide",               lat:28.2980, lng:-16.8070, esTerminal:true,  municipio:"Santiago del Teide" },
+      { id:"355-stiag",   nombre:"Santiago del Teide",               lat:28.2974, lng:-16.8155, esTerminal:true,  municipio:"Santiago del Teide" },
     ]
   },
 
@@ -16323,7 +16422,7 @@ const TITSA_LINES = [
     paradas:[
       { id:"390N-pcruz",    nombre:"Puerto de la Cruz (Estación)",    lat:28.4136, lng:-16.5446, esTerminal:true,  municipio:"Puerto de la Cruz" },
       { id:"390N-icod",     nombre:"Icod de los Vinos",               lat:28.3722, lng:-16.7178, esTerminal:false, municipio:"Icod de los Vinos" },
-      { id:"390N-stiag",    nombre:"Santiago del Teide",              lat:28.2980, lng:-16.8070, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"390N-stiag",    nombre:"Santiago del Teide",              lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"390N-guia",     nombre:"Guía de Isora",                   lat:28.2125, lng:-16.7783, esTerminal:false, municipio:"Guía de Isora" },
       { id:"390N-callao",   nombre:"Callao Salvaje / Playa Paraíso",  lat:28.0903, lng:-16.7886, esTerminal:false, municipio:"Adeje" },
       { id:"390N-adeje",    nombre:"Estación Costa Adeje",            lat:28.0750, lng:-16.7350, esTerminal:true,  municipio:"Adeje" },
@@ -16517,12 +16616,12 @@ function buildBusPanel() {
       const freqLabel = L_.busFreqLabel || 'Frec.';
       const priceLabel = L_.busPriceLabel || 'Precio';
       item.innerHTML = `
-        <div class="bus-line-badge" style="background:${line.color}">${line.numero}</div>
+        <div class="bus-line-badge" style="background:${escapeAttr(line.color)}">${escapeHtml(line.numero)}</div>
         <div class="bus-line-info">
-          <div class="bus-line-name">${line.nombre}</div>
+          <div class="bus-line-name">${escapeHtml(line.nombre)}</div>
           <div class="bus-line-meta">
-            <span>🕐 ${line.frecuencia}</span>
-            <span>💶 ${line.precio}</span>
+            <span>🕐 ${escapeHtml(line.frecuencia)}</span>
+            <span>💶 ${escapeHtml(line.precio)}</span>
           </div>
         </div>
         <div class="bus-line-toggle"></div>
@@ -16584,12 +16683,12 @@ function renderBusSearchResults(list) {
       item.className = 'bus-line-item' + (isActive ? ' active' : '');
       item.onclick = () => toggleBusLine(line.id);
       item.innerHTML = `
-        <div class="bus-line-badge" style="background:${line.color}">${line.numero}</div>
+        <div class="bus-line-badge" style="background:${escapeAttr(line.color)}">${escapeHtml(line.numero)}</div>
         <div class="bus-line-info">
-          <div class="bus-line-name">${line.nombre}</div>
+          <div class="bus-line-name">${escapeHtml(line.nombre)}</div>
           <div class="bus-line-meta">
-            <span>🕐 ${line.frecuencia}</span>
-            <span>💶 ${line.precio}</span>
+            <span>🕐 ${escapeHtml(line.frecuencia)}</span>
+            <span>💶 ${escapeHtml(line.precio)}</span>
           </div>
         </div>
         <div class="bus-line-toggle"></div>
