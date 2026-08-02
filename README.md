@@ -76,8 +76,10 @@ Dos estructuras distintas, y conviene no confundirlas:
   que se fue añadiendo después. Se lee con `tx(clave, vars)`.
 
 Al cambiar de idioma, `setLang()` repinta marcadores, filtros, panel del
-mar y panel de baño. **Una sección nueva tiene que repintarse ahí
-también**: si no, se queda en el idioma anterior hasta recargar.
+mar, panel de baño y panel de guaguas. **Una sección nueva tiene que
+repintarse ahí también**: si no, se queda en el idioma anterior hasta
+recargar. El panel de guaguas llevaba tiempo sin estar en esa lista y
+sus rótulos de grupo se quedaban colgados.
 
 Una categoría sin nombre en un idioma **no da error: el chip
 desaparece**. Ese silencio ya escondió los parkings una vez, y seis
@@ -85,9 +87,16 @@ categorías en italiano otra. Merece la pena comprobarlo al añadir una.
 
 ### Guaguas
 
-`TITSA_LINES` tiene 37 líneas con 228 paradas. Cada línea lleva
-`frecuencia` y `precio` como texto libre, y `parseFrequencyMinutes()`
-saca de ahí los minutos de espera para el planificador.
+`TITSA_LINES` tiene 36 líneas con 221 paradas. Ese número **no se
+escribe en ninguna parte**: el subtítulo del panel lleva `{n}` en los 8
+idiomas y el render lo sustituye por `TITSA_LINES.length`. Decía 17
+durante mucho tiempo.
+
+Cada línea lleva `frecuencia` y `precio` como texto libre, y
+`parseFrequencyMinutes()` saca de ahí los minutos de espera para el
+planificador. `nota` es opcional y sí va traducida a los 8 idiomas: es
+donde caben los horarios de una línea de salidas fijas, que no se pueden
+resumir en una frecuencia.
 
 Reconoce tres formas, por este orden: horas (`~1 h`), rangos y valores en
 minutos (`30-60 min`, `30 min`) y expediciones al día (`3-5/día`,

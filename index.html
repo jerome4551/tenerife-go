@@ -3842,6 +3842,8 @@ window.onunhandledrejection = function(e) {
   .bus-line-name { font-size: 0.78rem; color: var(--text); font-weight: 500; line-height: 1.25; }
   .bus-line-meta { font-size: 0.6rem; color: var(--muted); margin-top: 2px; display: flex; gap: var(--space-3); flex-wrap: wrap; }
   .bus-line-meta span { display: flex; align-items: center; gap: var(--space-1); }
+  .bus-line-nota { font-size: 0.575rem; color: var(--muted); margin-top: 4px;
+                   line-height: 1.4; opacity: 0.9; }
 
   /* Toggle switch */
   .bus-line-toggle {
@@ -6466,7 +6468,9 @@ window.onunhandledrejection = function(e) {
         <button class="bus-panel-close" onclick="closeBusPanel()" aria-label="Cerrar panel de transporte">✕</button>
       </div>
     </div>
-    <div class="bus-panel-subtitle" id="bus-subtitle">TITSA · Tranvía · 17 líneas</div>
+    <!-- Sin numero: lo pone el render con el tamano real de TITSA_LINES.
+         Este es solo el texto que se ve el instante antes. -->
+    <div class="bus-panel-subtitle" id="bus-subtitle">TITSA · Tranvía</div>
 
     <!-- Buscador interno -->
     <div class="bus-search-wrap">
@@ -6576,7 +6580,7 @@ const LANGS = {
     daytripCenter: 'Centrar en el mapa',
     daytripInfo: 'Ver info',
     busTitle: 'Transporte Público',
-    busSubtitle: 'TITSA · Tranvía · 17 líneas',
+    busSubtitle: 'TITSA · Tranvía · {n} líneas',
     busClearAll: 'Quitar todas',
     busTypeTram: '🚊 Tranvía',
     busTypeNorth: '🔵 Norte',
@@ -6724,7 +6728,7 @@ const LANGS = {
     daytripCenter: 'Center on map',
     daytripInfo: 'View info',
     busTitle: 'Public Transport',
-    busSubtitle: 'TITSA · Tram · 17 lines',
+    busSubtitle: 'TITSA · Tram · {n} lines',
     busClearAll: 'Clear all',
     busTypeTram: '🚊 Tram',
     busTypeNorth: '🔵 North',
@@ -6872,7 +6876,7 @@ const LANGS = {
     daytripCenter: 'Centrer sur la carte',
     daytripInfo: 'Voir info',
     busTitle: 'Transport Public',
-    busSubtitle: 'TITSA · Tramway · 17 lignes',
+    busSubtitle: 'TITSA · Tramway · {n} lignes',
     busClearAll: 'Tout effacer',
     busTypeTram: '🚊 Tramway',
     busTypeNorth: '🔵 Nord',
@@ -7020,7 +7024,7 @@ const LANGS = {
     daytripCenter: 'Auf Karte zentrieren',
     daytripInfo: 'Info anzeigen',
     busTitle: 'Öffentlicher Verkehr',
-    busSubtitle: 'TITSA · Tram · 17 Linien',
+    busSubtitle: 'TITSA · Tram · {n} Linien',
     busClearAll: 'Alle entfernen',
     busTypeTram: '🚊 Straßenbahn',
     busTypeNorth: '🔵 Norden',
@@ -7172,7 +7176,7 @@ const LANGS = {
     daytripCenter: 'Centra sulla mappa',
     daytripInfo: 'Vedi info',
     busTitle: 'Trasporto pubblico',
-    busSubtitle: 'TITSA · Tram · 17 linee',
+    busSubtitle: 'TITSA · Tram · {n} linee',
     busClearAll: 'Rimuovi tutte',
     busTypeTram: '🚊 Tram',
     busTypeNorth: '🔵 Nord',
@@ -7318,7 +7322,7 @@ const LANGS = {
     daytripCenter: 'Op de kaart centreren',
     daytripInfo: 'Info bekijken',
     busTitle: 'Openbaar vervoer',
-    busSubtitle: 'TITSA · Tram · 17 lijnen',
+    busSubtitle: 'TITSA · Tram · {n} lijnen',
     busClearAll: 'Alles verwijderen',
     busTypeTram: '🚊 Tram',
     busTypeNorth: '🔵 Noord',
@@ -7470,7 +7474,7 @@ const LANGS = {
     daytripCenter: '在地图上居中',
     daytripInfo: '查看信息',
     busTitle: '公共交通',
-    busSubtitle: 'TITSA · 有轨电车 · 17 条线路',
+    busSubtitle: 'TITSA · 有轨电车 · {n} 条线路',
     busClearAll: '全部清除',
     busTypeTram: '🚊 有轨电车',
     busTypeNorth: '🔵 北部',
@@ -7912,7 +7916,7 @@ const ZHT_OVERRIDES = {
     daytripCenter: '在地圖上置中',
     daytripInfo: '查看資訊',
     busTitle: '大眾運輸',
-    busSubtitle: 'TITSA · 有軌電車 · 17 條路線',
+    busSubtitle: 'TITSA · 有軌電車 · {n} 條路線',
     busClearAll: '全部清除',
     busTypeTram: '🚊 有軌電車',
     busTypeNorth: '🔵 北部',
@@ -8183,6 +8187,9 @@ function setLang(lang) {
   // que se pinto y solo cambiaba al cerrar y reabrir el panel del mar.
   // Usa la cache de viento (30 min), asi que no dispara red.
   if (typeof renderBanoHoy === 'function') renderBanoHoy();
+  // El panel de guaguas tambien: las etiquetas de grupo y la nota de
+  // la 325 son traducidas y se quedaban en el idioma anterior.
+  if (typeof buildBusPanel === 'function') buildBusPanel();
 
   // Ruta del día — refrescar textos
   refreshDayTripTexts();
@@ -15985,19 +15992,17 @@ const TITSA_LINES = [
       { id:"102-buena",   nombre:"Buenavista del Norte · Terminal",  lat:28.3778, lng:-16.8670, esTerminal:true,  municipio:"Buenavista del Norte" },
     ]
   },
-  {
-    id:"bus-107", numero:"107", nombre:"Puerto de la Cruz — Los Gigantes",
-    color:"#283593", tipo:"norte", frecuencia:"~1 h", precio:"~4 €",
-    paradas:[
-      { id:"107-ptocz",   nombre:"Puerto de la Cruz · Intercambiador",lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
-      { id:"107-realej",  nombre:"Los Realejos",                     lat:28.4190, lng:-16.5890, esTerminal:false, municipio:"Los Realejos" },
-      { id:"107-icod",    nombre:"Icod de los Vinos · El Drago",     lat:28.3720, lng:-16.7200, esTerminal:false, municipio:"Icod de los Vinos" },
-      { id:"107-garach",  nombre:"Garachico · Puerto",               lat:28.3726, lng:-16.7620, esTerminal:false, municipio:"Garachico" },
-      { id:"107-stiag",   nombre:"Santiago del Teide",               lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
-      { id:"107-ptosant", nombre:"Puerto de Santiago",               lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
-      { id:"107-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
-    ]
-  },
+  /* La 107 estaba aqui: Puerto de la Cruz — Los Gigantes, por Los
+     Realejos, Icod y Garachico. Se retira porque la linea esta
+     cancelada, y su papel lo hace ahora la 325, que va mas abajo.
+
+     Lo unico que se pierde con ella es la parada de Los Realejos:
+     Icod, Garachico y Puerto de la Cruz siguen en la 102, la 104 y la
+     101, y Santiago del Teide, Puerto de Santiago y Los Gigantes en la
+     325. Los Realejos se queda sin ninguna linea de la tabla. No se
+     pasa a la 325 porque la fuente de su recorrido no lo nombra: por
+     ahi la 325 va por San Antonio, La Vera, San Juan de la Rambla y
+     Buen Paso. Meterlo seria inventarle una parada. */
 
   // ═══════════ SUR (TF-1) ═══════════
   {
@@ -16293,13 +16298,32 @@ const TITSA_LINES = [
      modela dias de servicio, asi que el aviso va en el propio texto de la
      frecuencia, que es lo unico que el usuario ve.
 
-     OJO · la 325 y la 107 se pisan. La 107 que ya estaba en la tabla es
-     tambien Puerto de la Cruz - Los Gigantes, por Los Realejos, Icod y
-     Garachico; la 325 de la ficha sube por La Guancha y El Tanque. Pueden
-     ser dos servicios reales por vertientes distintas, o la fuente puede
-     estar mezclando las dos. Desde aqui no hay forma de comprobarlo, asi
-     que se anade la 325 tal como la da la fuente y no se toca la 107.
-     Pendiente de confirmar.
+     La 325 y la 107 se pisaban, y ya no: la 107 esta cancelada y se ha
+     retirado de la tabla. Era el mismo Puerto de la Cruz - Los Gigantes
+     pero por Los Realejos y Garachico. Donde estaba queda el aviso de
+     que Los Realejos se ha quedado sin ninguna linea.
+
+     La 325 no va por intervalos, va con salidas fijas, cinco al dia en
+     laborables en cada sentido. Por eso la frecuencia dice "5
+     salidas/dia" -que parseFrequencyMinutes convierte en 72 minutos de
+     espera- y los horarios de verdad van en el campo nota, traducido a
+     los ocho idiomas, que es lo unico que ve el usuario. Los 80-90 min
+     que habia antes eran el hueco mas corto entre dos salidas, no el
+     normal: los reales van de 80 a 330 minutos.
+
+     Las horas se escriben "18:35" y nunca "18:35h". Con la hache,
+     parseFrequencyMinutes ve "35 h" y devuelve media jornada de espera.
+
+     Aparece San Juan de la Rambla, del lugar nucleo-san-juan-rambla, y
+     desaparece El Botanico. El Botanico salia en la primera version del
+     recorrido pero no en la detallada, y ademas esta al este de la
+     estacion mientras la linea tira al oeste: metia 2,6 km de ida y
+     vuelta falsos en cada calculo del planificador.
+
+     Del recorrido real -92 paradas- siguen faltando San Antonio, La
+     Vera, Buen Paso, Ruigomez, Erjos, Valle de Santiago, Tamaimo, San
+     Francisco, Cueva del Polvo y El Varadero. Ninguno tiene coordenada
+     verificada en places[].
 
      Las paradas que ya existian en otras lineas se copian con su
      coordenada exacta, no con la del lugar de places[]: Puerto de la
@@ -16316,10 +16340,20 @@ const TITSA_LINES = [
      830 m, asi que la 107 y la 355 no podian transbordar con la 325. */
   {
     id:"bus-325", numero:"325", nombre:"Puerto de la Cruz — Icod — Santiago del Teide — Los Gigantes",
-    color:"#D84315", tipo:"norte", frecuencia:"80-90 min", precio:"consultar TITSA",
+    color:"#283593", tipo:"norte", frecuencia:"5 salidas/día", precio:"consultar TITSA",
+    nota:{
+      es:"L-V desde Pto. de la Cruz 05:45 · 09:00 · 10:20 · 15:50 · 18:35. Desde Los Gigantes 08:05 · 11:10 · 12:50 · 18:30 · 20:45 (la última solo llega a Icod). Trayecto completo 1 h 45; a La Arena, unos 85 min desde el Puerto. Fin de semana con horario propio. Hacia el Puerto, pasado San Juan de la Rambla solo deja bajar, no recoge.",
+      en:"Mon-Fri from Puerto de la Cruz 05:45 · 09:00 · 10:20 · 15:50 · 18:35. From Los Gigantes 08:05 · 11:10 · 12:50 · 18:30 · 20:45 (the last one only reaches Icod). Full run 1 h 45; about 85 min from Puerto to La Arena. Weekends run to their own timetable. Heading to Puerto, past San Juan de la Rambla it only drops off, it does not pick up.",
+      fr:"Lun-ven depuis Puerto de la Cruz 05:45 · 09:00 · 10:20 · 15:50 · 18:35. Depuis Los Gigantes 08:05 · 11:10 · 12:50 · 18:30 · 20:45 (le dernier ne va que jusqu'à Icod). Trajet complet 1 h 45 ; environ 85 min de Puerto à La Arena. Horaire différent le week-end. Vers Puerto, après San Juan de la Rambla, la guagua ne fait que déposer, elle ne prend personne.",
+      de:"Mo-Fr ab Puerto de la Cruz 05:45 · 09:00 · 10:20 · 15:50 · 18:35. Ab Los Gigantes 08:05 · 11:10 · 12:50 · 18:30 · 20:45 (die letzte fährt nur bis Icod). Ganze Strecke 1 Std. 45; bis La Arena rund 85 Min. ab Puerto. Am Wochenende gilt ein eigener Fahrplan. Richtung Puerto lässt der Bus ab San Juan de la Rambla nur aussteigen, er nimmt niemanden mehr mit.",
+      it:"Lun-ven da Puerto de la Cruz 05:45 · 09:00 · 10:20 · 15:50 · 18:35. Da Los Gigantes 08:05 · 11:10 · 12:50 · 18:30 · 20:45 (l'ultima arriva solo a Icod). Percorso intero 1 h 45; a La Arena circa 85 min da Puerto. Nel fine settimana orario a parte. Verso Puerto, superata San Juan de la Rambla fa solo scendere, non carica più nessuno.",
+      nl:"Ma-vr vanaf Puerto de la Cruz 05:45 · 09:00 · 10:20 · 15:50 · 18:35. Vanaf Los Gigantes 08:05 · 11:10 · 12:50 · 18:30 · 20:45 (de laatste komt maar tot Icod). Hele rit 1 uur 45; naar La Arena ongeveer 85 min vanaf Puerto. In het weekend geldt een eigen dienstregeling. Richting Puerto laat de bus voorbij San Juan de la Rambla alleen mensen uitstappen, hij neemt niemand meer mee.",
+      zh:"周一至周五从克鲁斯港发车：05:45 · 09:00 · 10:20 · 15:50 · 18:35。从洛斯希甘特斯发车：08:05 · 11:10 · 12:50 · 18:30 · 20:45（末班只到伊科德）。全程约1小时45分；从克鲁斯港到拉阿雷纳约85分钟。周末另有班表。开往克鲁斯港方向时，过了圣胡安德拉兰布拉只下客，不再上客。",
+      zht:"週一至週五從克魯斯港發車：05:45 · 09:00 · 10:20 · 15:50 · 18:35。從洛斯希甘特斯發車：08:05 · 11:10 · 12:50 · 18:30 · 20:45（末班只到伊科德）。全程約1小時45分；從克魯斯港到拉阿雷納約85分鐘。週末另有班表。開往克魯斯港方向時，過了聖胡安德拉蘭布拉只下客，不再上客。"
+    },
     paradas:[
       { id:"325-pcruz",    nombre:"Puerto de la Cruz · Estación",    lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
-      { id:"325-botanico", nombre:"El Botánico",                     lat:28.4180, lng:-16.5350, esTerminal:false, municipio:"Puerto de la Cruz" },
+      { id:"325-sjrambla", nombre:"San Juan de la Rambla",           lat:28.3935, lng:-16.6492, esTerminal:false, municipio:"San Juan de la Rambla" },
       { id:"325-guancha",  nombre:"La Guancha",                      lat:28.3729, lng:-16.6534, esTerminal:false, municipio:"La Guancha" },
       { id:"325-icod",     nombre:"Icod de los Vinos",               lat:28.3722, lng:-16.7178, esTerminal:false, municipio:"Icod de los Vinos" },
       { id:"325-tanque",   nombre:"El Tanque",                       lat:28.3562, lng:-16.7792, esTerminal:false, municipio:"El Tanque" },
@@ -16569,6 +16603,9 @@ function initBusLayer() {
 // ── CONSTRUIR PANEL ───────────────────────────────────────
 function buildBusPanel() {
   const list = document.getElementById('bus-lines-list');
+  // Sin guardia esto reventaba al llamarlo desde setLang(), que corre al
+  // arrancar, antes de que el panel de guaguas exista en el DOM.
+  if (!list) return;
   const L_ = t();
   list.innerHTML = '';
 
@@ -16623,6 +16660,7 @@ function buildBusPanel() {
             <span>🕐 ${escapeHtml(line.frecuencia)}</span>
             <span>💶 ${escapeHtml(line.precio)}</span>
           </div>
+          ${line.nota ? `<div class="bus-line-nota">📅 ${escapeHtml(localized(line.nota))}</div>` : ''}
         </div>
         <div class="bus-line-toggle"></div>
       `;
@@ -16690,6 +16728,7 @@ function renderBusSearchResults(list) {
             <span>🕐 ${escapeHtml(line.frecuencia)}</span>
             <span>💶 ${escapeHtml(line.precio)}</span>
           </div>
+          ${line.nota ? `<div class="bus-line-nota">📅 ${escapeHtml(localized(line.nota))}</div>` : ''}
         </div>
         <div class="bus-line-toggle"></div>
       `;
@@ -16847,7 +16886,11 @@ function refreshBusPanelTexts() {
   const linkEl  = document.getElementById('bus-official-link');
 
   if (titleEl) titleEl.textContent = L_.busTitle || 'Transporte Público';
-  if (subEl)   subEl.textContent   = L_.busSubtitle || 'TITSA · Tranvía · 17 líneas';
+  // El numero sale de la tabla, no del texto: llevaba 17 escrito a mano
+  // con 36 lineas en la tabla, y cada vez que se anade una vuelve a
+  // quedarse viejo.
+  if (subEl)   subEl.textContent   = (L_.busSubtitle || 'TITSA · Tranvía · {n} líneas')
+                                       .replace('{n}', TITSA_LINES.length);
   if (inpEl)   inpEl.placeholder   = L_.busSearchPlaceholder || 'Buscar parada o línea...';
   if (linkEl)  linkEl.textContent  = L_.busOfficialLink || '🔗 titsa.com · metrotenerife.com';
 
