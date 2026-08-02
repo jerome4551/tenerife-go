@@ -14847,6 +14847,16 @@ function findNearestStops(lat, lng, n = BUS_PLAN.CANDIDATE_STOPS) {
 }
 
 // Tiempo en bus entre dos paradas (por sus índices) en una línea
+//
+// Si la linea trae "minutos" -el tiempo oficial de punta a punta- se
+// reparte proporcional a la distancia del tramo y se ignora la
+// velocidad media. Hace falta porque una sola velocidad no puede servir
+// para todo: la 110 es un express por la TF-1 y tarda 55 minutos en un
+// recorrido que a 28 km/h salian 200. Decirle a alguien que un viaje de
+// menos de una hora dura cuatro es tan inutil como no decirle nada.
+//
+// Sin "minutos" se sigue usando la velocidad media, que para una linea
+// que va parando por pueblos es razonable.
 function busTimeBetween(line, idxA, idxB) {
   const paradas = line.paradas;
   if (!paradas || idxA === idxB) return 0;
@@ -14855,6 +14865,13 @@ function busTimeBetween(line, idxA, idxB) {
   let km = 0;
   for (let i = from; i < to; i++) {
     km += haversineKm(paradas[i].lat, paradas[i].lng, paradas[i+1].lat, paradas[i+1].lng);
+  }
+  if (typeof line.minutos === 'number' && line.minutos > 0) {
+    let total = 0;
+    for (let i = 0; i < paradas.length - 1; i++) {
+      total += haversineKm(paradas[i].lat, paradas[i].lng, paradas[i+1].lat, paradas[i+1].lng);
+    }
+    if (total > 0) return line.minutos * (km / total);
   }
   km *= 1.25; // factor recorrido real vs línea recta
   const speed = line.tipo === 'tranvia' ? BUS_PLAN.TRAM_SPEED_KMH : BUS_PLAN.BUS_SPEED_KMH;
@@ -16099,26 +16116,50 @@ const TITSA_LINES = [
       { id:"111-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
     ]
   },
+  /* Linea 110 · Santa Cruz - Costa Adeje, express por autopista.
+
+     Tenia trece paradas y terminaba en Los Gigantes, cubriendo la costa
+     oeste entera. No es su recorrido: termina en la Estacion de Costa
+     Adeje. Lo del oeste lo hace la 473, y de hecho el plano oficial
+     rotula hacia Los Gigantes la 473 y la 477, y el indice de destinos
+     da "LOS GIGANTES 325 462 473 477 493", sin la 110.
+
+     Recorrido oficial en sentido Santa Cruz - Costa Adeje, cinco
+     paradas y unos 55 minutos. En sentido contrario puede llevar una
+     mas, y por eso la fuente dice "entre 5 y 6 segun el sentido"; la
+     tabla no modela sentidos, asi que van las cinco comunes.
+
+     Al recortarla se quedan sin ninguna linea Guimar Centro, Costa
+     Adeje CC Safari y Playa Paraiso. El resto lo cubren la 470, la 111,
+     la 343, la 040 y la 473.
+
+     Dos coordenadas que no salen de places[] y conviene saber de donde
+     vienen:
+
+       San Isidro es el enlace de la TF-1, no el pueblo, que queda 1,2 km
+       al noreste. Se reutiliza 28,0625/-16,5635, que es la que la app ya
+       tenia para San Isidro en la 711. Se retiro esa linea porque su
+       NUMERO no esta en el listado actual, no porque la coordenada
+       estuviera mal: nunca aparecio en la auditoria de coordenadas.
+
+       Magma no esta en places[], asi que se usa la coordenada de Las
+       Americas que esta linea ya llevaba y que comparten la 040 y la
+       473. El sitio exacto del auditorio no esta verificado; queda a
+       menos de un kilometro y sigue siendo el mismo nodo, que es lo que
+       necesita el planificador para transbordar.
+
+     Frecuencia y precio se quedan como estaban. Eran los del recorrido
+     largo que no existe, pero no hay dato nuevo y no se inventa uno.
+     Pendiente. */
   {
-    id:"bus-110", numero:"110", nombre:"Santa Cruz — Los Gigantes (Sur)",
-    color:"#E53935", tipo:"sur", frecuencia:"~2 h", precio:"~7 €",
+    id:"bus-110", numero:"110", nombre:"Santa Cruz — Costa Adeje (Express Autopista)",
+    color:"#E53935", tipo:"sur", frecuencia:"~2 h", precio:"~7 €", minutos:55,
     paradas:[
       { id:"110-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"110-guimar",  nombre:"Güímar · Centro",                  lat:28.3104, lng:-16.4107, esTerminal:false, municipio:"Güímar" },
-      { id:"110-medano",  nombre:"El Médano · Centro",               lat:28.0480, lng:-16.5380, esTerminal:false, municipio:"Granadilla de Abona" },
-      { id:"110-tfs",     nombre:"✈️ Aeropuerto Sur (TFS)",          lat:28.0445, lng:-16.5722, esTerminal:false, municipio:"Granadilla de Abona" },
-      { id:"110-galleta", nombre:"Las Galletas",                     lat:28.0070, lng:-16.6660, esTerminal:false, municipio:"Arona" },
+      { id:"110-sanisidro",nombre:"San Isidro (Enlace TF-1)",        lat:28.0625, lng:-16.5635, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"110-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
-      { id:"110-americas",nombre:"Las Américas · Centro Comercial",  lat:28.0680, lng:-16.7290, esTerminal:false, municipio:"Adeje" },
-      { id:"110-cadeje",  nombre:"Costa Adeje · CC Safari",          lat:28.0820, lng:-16.7370, esTerminal:false, municipio:"Adeje" },
-      { id:"110-paraiso", nombre:"Playa Paraíso",                    lat:28.1224, lng:-16.7737, esTerminal:false, municipio:"Adeje" },
-      /* Iban al reves y con las coordenadas cambiadas: Alcala figuraba a
-         28,1680, al sur de Playa San Juan, y la 110 sube hacia el norte.
-         Se ordenan y se copian de los lugares san-juan y alcala. */
-      { id:"110-sanjuan", nombre:"Playa San Juan",                   lat:28.1816, lng:-16.8171, esTerminal:false, municipio:"Guía de Isora" },
-      { id:"110-alcala",  nombre:"Alcalá",                           lat:28.2006, lng:-16.8286, esTerminal:false, municipio:"Guía de Isora" },
-      { id:"110-ptosant", nombre:"Puerto de Santiago",               lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
-      { id:"110-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
+      { id:"110-magma",   nombre:"Magma · Playa de las Américas",    lat:28.0680, lng:-16.7290, esTerminal:false, municipio:"Adeje" },
+      { id:"110-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
     ]
   },
   /* Aqui estaba la 711, "Santa Cruz - Costa Adeje (Express Sur)". El
@@ -16419,7 +16460,7 @@ const TITSA_LINES = [
      830 m, asi que la 107 y la 355 no podian transbordar con la 325. */
   {
     id:"bus-325", numero:"325", nombre:"Puerto de la Cruz — Icod — Santiago del Teide — Los Gigantes",
-    color:"#283593", tipo:"norte", frecuencia:"5 salidas/día", precio:"consultar TITSA",
+    color:"#283593", tipo:"norte", frecuencia:"5 salidas/día", precio:"consultar TITSA", minutos:105,
     nota:{
       es:"L-V desde Pto. de la Cruz 05:45 · 09:00 · 10:20 · 15:50 · 18:35. Desde Los Gigantes 08:05 · 11:10 · 12:50 · 18:30 · 20:45 (la última solo llega a Icod). Trayecto completo 1 h 45; a La Arena, unos 85 min desde el Puerto. Fin de semana con horario propio. Hacia el Puerto, pasado San Juan de la Rambla solo deja bajar, no recoge.",
       en:"Mon-Fri from Puerto de la Cruz 05:45 · 09:00 · 10:20 · 15:50 · 18:35. From Los Gigantes 08:05 · 11:10 · 12:50 · 18:30 · 20:45 (the last one only reaches Icod). Full run 1 h 45; about 85 min from Puerto to La Arena. Weekends run to their own timetable. Heading to Puerto, past San Juan de la Rambla it only drops off, it does not pick up.",
