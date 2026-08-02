@@ -17285,7 +17285,7 @@ const TITSA_LINES = [
     paradas:[
       { id:"213-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"213-chumberas", nombre:"Las Chumberas", lat:28.46424, lng:-16.31952, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"213-card", nombre:"El Cardonal", lat:28.485, lng:-16.3015, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"213-card", nombre:"Cruce de El Cardonal", lat:28.45892, lng:-16.30453, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
   {
@@ -17327,7 +17327,7 @@ const TITSA_LINES = [
       { id:"232-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"232-cuesta", nombre:"La Cuesta", lat:28.4778, lng:-16.289, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"232-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"232-card", nombre:"El Cardonal", lat:28.485, lng:-16.3015, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"232-card", nombre:"Cruce de El Cardonal", lat:28.45892, lng:-16.30453, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"232-gallega", nombre:"La Gallega", lat:28.44115, lng:-16.32984, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -17413,7 +17413,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:15", hasta:"21:15" },
     paradas:[
       { id:"217-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
-      { id:"217-cardbus", nombre:"El Cardonal", lat:28.485, lng:-16.3015, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"217-cardbus", nombre:"Cruce de El Cardonal", lat:28.45892, lng:-16.30453, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"217-hospu", nombre:"Hospital Universitario", lat:28.4859, lng:-16.3076, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
@@ -17450,33 +17450,38 @@ const TITSA_LINES = [
      vuelven al nodo del tranvia en El Cardonal: se acabo el nodo
      partido.
 
-     LA FUENTE INSISTIO, con una explicacion nueva: que son dos paradas
-     distintas, la del tranvia en el puente de Los Menceyes
-     (28,46115/-16,30124) y la de guagua abajo, en los ramales de la
-     TF-2 (28,45892/-16,30453), y que hay que enlazarlas a pie con cinco
-     minutos de penalizacion.
+     LO QUE ERA DE VERDAD: dos paradas con el mismo nombre. La del
+     tranvia, El Cardonal, sobre el puente de Los Menceyes; y una de
+     guagua, Cruce de El Cardonal, abajo en los ramales de la TF-2 hacia
+     Añaza. Fusionarlas fue cosa nuestra. Se separan: el tranvia se
+     queda donde estaba y la 213, la 217 y la 232 pasan a su propia
+     parada en 28,45892/-16,30453, con el nombre completo para que no
+     vuelvan a confundirse. A 2,9 km no hay enlace a pie posible, ni
+     falta: son sitios distintos.
 
-     Se midio lo que pasaria al aplicarlo. La L1 va de Taco a El
-     Cardonal y de ahi al Hospital Universitario:
+     LO QUE SIGUE SIN CERRAR es donde esta el tranvia en terminos
+     absolutos, y la ficha se contradice sola. Da como coordenada del
+     Hospital Universitario 28,45761/-16,29272 y a la vez dice que
+     nuestra cadena "no esta desplazada". Las dos cosas no pueden ser:
 
-       como esta      582 m + 605 m  = 1,19 km   (en recta, 1,18)
-       con la ficha  2483 m + 2821 m = 5,30 km   (en recta, 1,18)
+       Hospital Universitario, ficha contra tabla    3,47 km
+       El Cardonal, ficha contra tabla               2,65 km
 
-     La parada se saldria 2,5 km de la via y volveria a entrar,
-     dibujando un pico de ida y vuelta de 4 km en mitad del mapa. Y los
-     saltos de las 21 paradas de la L1 van de 131 a 1029 metros: 2483 no
-     cabe ahi. Por eso sigue sin aplicarse.
+     El par de la ficha es coherente consigo mismo -921 m entre sus dos
+     paradas, y ella dice 910- y el nuestro tambien, 605 m. Los dos
+     cuadran por dentro y estan a 3 km uno del otro.
 
-     El enlace peatonal tampoco resolveria nada. No hace falta
-     programarlo -findNearestStops ya busca paradas a 2 km a la redonda
-     y calcula el paseo- pero es que a 2,9 km no enlaza, y con razon:
-     nadie va a andar eso.
+     Y hay un detalle que juega EN CONTRA de nuestra cadena: de cabecera
+     a cabecera son 6,50 km en recta y la cadena suma 6,55 pasando por
+     el Hospital Universitario. Un tranvia real no va en linea recta;
+     una cadena tan pegada a la recta es lo que sale cuando alguien
+     interpola paradas entre dos extremos. Con el Hospital de la ficha
+     la suma seria 7,78, un rodeo del 20%, mas propio de una via de
+     verdad.
 
-     Para cerrarlo basta UNA coordenada de cualquier otra parada de la
-     L1: Taco, el Hospital Universitario o Las Mantecas. Si coincide con
-     la que hay, la cadena es buena y el par de la ficha esta
-     desplazado; si sale tambien 2,7 km al sur, entonces la cadena
-     entera esta mal y hay que rehacer las 21.
+     No se toca hasta tener una tercera coordenada que decida: mover 21
+     paradas por una suposicion es peor que dejarlas. Pero conviene no
+     dar el tranvia por bueno solo porque lleve ahi mucho tiempo.
 
      OJO CON EL RESTO DE ESA TANDA. Si Taco, Tincer y El Cardonal venian
      mal, los demas puntos del suroeste que llegaron con ellos merecen
