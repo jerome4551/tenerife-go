@@ -16677,7 +16677,11 @@ const TITSA_LINES = [
       { id:"711N-arico",    nombre:"Cruce de Arico",                  lat:28.1736, lng:-16.5147, esTerminal:false, municipio:"Arico" },
       { id:"711N-chimich",  nombre:"Cruce Chimiche",                  lat:28.1450, lng:-16.5419, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"711N-sanisid",  nombre:"Cruce San Isidro",                lat:28.0989, lng:-16.5642, esTerminal:false, municipio:"Granadilla de Abona" },
-      { id:"711N-aerop",    nombre:"✈️ Aeropuerto Sur (Reina Sofía)", lat:28.0444, lng:-16.5725, esTerminal:false, municipio:"Granadilla de Abona" },
+      /* Estaba a 31 m del nodo del aeropuerto que usan la 111, la 343, la
+         040 y la 470. Son la misma terminal, pero a 31 m el planificador
+         las trata como dos sitios y no deja transbordar: justo lo que
+         necesita alguien que aterriza de madrugada. Se unifica. */
+      { id:"711N-aerop",    nombre:"✈️ Aeropuerto Sur (Reina Sofía)", lat:28.0445, lng:-16.5722, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"711N-sanmig",   nombre:"Cruce San Miguel",                lat:28.0500, lng:-16.6178, esTerminal:false, municipio:"San Miguel de Abona" },
       { id:"711N-guaza",    nombre:"Cruce de Guaza",                  lat:28.0383, lng:-16.6850, esTerminal:false, municipio:"Arona" },
       { id:"711N-crist",    nombre:"Los Cristianos",                  lat:28.0497, lng:-16.7158, esTerminal:false, municipio:"Arona" },
