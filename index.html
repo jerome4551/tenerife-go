@@ -16428,6 +16428,7 @@ const TITSA_LINES = [
       { id:"415-tfs",      nombre:"✈️ Aeropuerto Sur (TFS)",          lat:28.0445, lng:-16.5722, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"415-galletas", nombre:"Las Galletas",                     lat:28.0070, lng:-16.6660, esTerminal:false, municipio:"Arona" },
       { id:"415-silencio", nombre:"Costa del Silencio · Minerva (7306)",lat:28.0050, lng:-16.6460, esTerminal:false, municipio:"Arona" },
+      { id:"415-fraile", nombre:"El Fraile (7314)", lat:28.01255, lng:-16.68532, esTerminal:true, municipio:"Arona" },
     ]
   },
   {
@@ -16536,6 +16537,7 @@ const TITSA_LINES = [
     nota:{ es:"Última expedición sobre la 01:25, por el mismo recorrido. No hay una 473 nocturna a Las Galletas: eso lo cubren la 467 y la 470.", en:"Last run around 01:25, along the same route. There is no night 473 to Las Galletas: that is covered by the 467 and the 470.", fr:"Dernier départ vers 01h25, sur le même itinéraire. Il n'existe pas de 473 de nuit vers Las Galletas : ce sont les 467 et 470.", de:"Letzte Fahrt gegen 01:25 Uhr, auf derselben Strecke. Eine Nacht-473 nach Las Galletas gibt es nicht: das fahren die 467 und die 470.", it:"Ultima corsa verso l'01:25, sullo stesso percorso. Non esiste una 473 notturna per Las Galletas: la fanno la 467 e la 470.", nl:"Laatste rit rond 01:25, over dezelfde route. Er is geen nacht-473 naar Las Galletas: dat rijden de 467 en de 470.", zh:"末班车约01:25发出，路线不变。没有开往拉斯加列塔斯的473路夜班车：那一段由467路和470路负责。", zht:"末班車約01:25發出，路線不變。沒有開往拉斯加列塔斯的473路夜班車：那一段由467路和470路負責。" },
     paradas:[
       { id:"473-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
+      { id:"473-camison", nombre:"El Camisón (7149/7150)", lat:28.05591, lng:-16.72624, esTerminal:false, municipio:"Arona" },
       { id:"473-magma",   nombre:"Magma · Playa de las Américas",    lat:28.0680, lng:-16.7290, esTerminal:false, municipio:"Adeje" },
       { id:"473-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:false, municipio:"Adeje" },
       { id:"473-torvisc", nombre:"Torviscas Alta",                   lat:28.0870, lng:-16.7390, esTerminal:false, municipio:"Adeje" },
@@ -16851,7 +16853,7 @@ const TITSA_LINES = [
     /* Franja muy corta: al caserio de Masca solo se sube entre las once
        y las siete y media. Fuera de ahi no se ofrece. */
     color:"#BF360C", tipo:"municipal", frecuencia:"3-4/día", precio:"~3 €",
-    servicio:{ desde:"11:00", hasta:"19:30" },
+    servicio:{ desde:"09:30", hasta:"18:00" },
     paradas:[
       { id:"355-buena",   nombre:"Buenavista del Norte · Terminal",  lat:28.3718, lng:-16.8510, esTerminal:true,  municipio:"Buenavista del Norte" },
       { id:"355-masca",   nombre:"🏔️ Masca (Pueblo)",                lat:28.3050, lng:-16.8405, esTerminal:false, municipio:"Buenavista del Norte" },
@@ -17238,7 +17240,8 @@ const TITSA_LINES = [
     servicio:{ desde:"06:10", hasta:"21:15" },
     paradas:[
       { id:"945-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
-      { id:"945-sanand", nombre:"San Andrés", lat:28.50291, lng:-16.19195, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"945-sanand", nombre:"San Andrés", lat:28.50291, lng:-16.19195, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"945-igueste", nombre:"Igueste de San Andrés", lat:28.53214, lng:-16.16115, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
   {
@@ -17248,7 +17251,8 @@ const TITSA_LINES = [
     paradas:[
       { id:"946-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"946-sanand", nombre:"San Andrés", lat:28.50291, lng:-16.19195, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
-      { id:"946-taganana", nombre:"Taganana", lat:28.55621, lng:-16.21324, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"946-taganana", nombre:"Taganana", lat:28.55621, lng:-16.21324, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"946-almaciga", nombre:"Almáciga", lat:28.57143, lng:-16.20215, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
   {
@@ -17404,6 +17408,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:30", hasta:"20:30" },
     paradas:[
       { id:"253-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"253-ortigal", nombre:"El Ortigal", lat:28.48124, lng:-16.39854, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"253-guamasa", nombre:"Guamasa", lat:28.48831, lng:-16.38125, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
@@ -17556,6 +17561,7 @@ const TITSA_LINES = [
       { id:"711N-sanmig",   nombre:"Cruce San Miguel",                lat:28.0500, lng:-16.6178, esTerminal:false, municipio:"San Miguel de Abona" },
       { id:"711N-guaza",    nombre:"Cruce de Guaza",                  lat:28.0383, lng:-16.6850, esTerminal:false, municipio:"Arona" },
       { id:"711N-crist",    nombre:"Los Cristianos",                  lat:28.0497, lng:-16.7158, esTerminal:false, municipio:"Arona" },
+      { id:"711N-camison", nombre:"El Camisón (7149/7150)", lat:28.05591, lng:-16.72624, esTerminal:false, municipio:"Arona" },
       { id:"711N-adeje",    nombre:"Estación Costa Adeje",            lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
     ]
   },
@@ -17618,16 +17624,21 @@ const TITSA_LINES = [
     ]
   },
   {
-    id:"bus-137N", numero:"137", nombre:"🦉 Santa Cruz — Granadilla (Nocturna · línea 737)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~6,90 €",
-    servicio:{ desde:"23:30", hasta:"05:15" },
+    /* La fuente se corrige a si misma: primero la dio como nocturna
+       23:30-05:15 y comercializada como 737, y despues aclaro que de
+       madrugada no existe con este numero -el servicio nocturno al
+       sureste es la 711 o las comarcales de la serie 700- y que la 137
+       es diurna, de 06:00 a 21:30. Se aplica lo segundo. */
+    id:"bus-137", numero:"137", nombre:"Santa Cruz — Güímar — Granadilla",
+    color:"#C62828", tipo:"sur", frecuencia:"60 min", precio:"~6,90 €",
+    servicio:{ desde:"06:00", hasta:"21:30" },
     paradas:[
-      { id:"137N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"137N-candel",   nombre:"Candelaria",                      lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
-      { id:"137N-guimar",   nombre:"Güímar",                          lat:28.3186, lng:-16.4106, esTerminal:false, municipio:"Güímar" },
-      { id:"137N-fasnia",   nombre:"Fasnia (Cruce)",                  lat:28.2356, lng:-16.4422, esTerminal:false, municipio:"Fasnia" },
-      { id:"137N-arico",    nombre:"Cruce de Arico",                  lat:28.1736, lng:-16.5147, esTerminal:false, municipio:"Arico" },
-      { id:"137N-granad",   nombre:"Granadilla de Abona",             lat:28.1208, lng:-16.5775, esTerminal:true,  municipio:"Granadilla de Abona" },
+      { id:"137-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"137-candel",   nombre:"Candelaria",                      lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
+      { id:"137-guimar",   nombre:"Güímar",                          lat:28.3186, lng:-16.4106, esTerminal:false, municipio:"Güímar" },
+      { id:"137-fasnia",   nombre:"Fasnia (Cruce)",                  lat:28.2356, lng:-16.4422, esTerminal:false, municipio:"Fasnia" },
+      { id:"137-arico",    nombre:"Cruce de Arico",                  lat:28.1736, lng:-16.5147, esTerminal:false, municipio:"Arico" },
+      { id:"137-granad",   nombre:"Granadilla de Abona",             lat:28.1208, lng:-16.5775, esTerminal:true,  municipio:"Granadilla de Abona" },
     ]
   },
   {
@@ -17637,7 +17648,7 @@ const TITSA_LINES = [
        tabla habia lineas de dia metidas entre las de madrugada. */
     id:"bus-390", numero:"390", nombre:"Puerto de la Cruz — Icod — Guía de Isora — Costa Adeje",
     color:"#00838F", tipo:"norte", frecuencia:"60 min", precio:"~9,35 €",
-    servicio:{ desde:"06:50", hasta:"21:30" },
+    servicio:{ desde:"06:15", hasta:"21:10" },
     paradas:[
       { id:"390-pcruz",    nombre:"Puerto de la Cruz (Estación)",    lat:28.4136, lng:-16.5446, esTerminal:true,  municipio:"Puerto de la Cruz" },
       { id:"390-icod",     nombre:"Icod de los Vinos",               lat:28.3722, lng:-16.7178, esTerminal:false, municipio:"Icod de los Vinos" },
