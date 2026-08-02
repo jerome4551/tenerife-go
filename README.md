@@ -85,13 +85,25 @@ categorías en italiano otra. Merece la pena comprobarlo al añadir una.
 
 ### Guaguas
 
-`TITSA_LINES` tiene 32 líneas con 205 paradas. Cada línea lleva
+`TITSA_LINES` tiene 35 líneas con 216 paradas. Cada línea lleva
 `frecuencia` y `precio` como texto libre; `parseFrequencyMinutes()` saca
 de ahí los minutos de espera para el planificador de rutas, y si no
 encuentra ningún número usa 30 minutos, que es el lado prudente.
 
 Las paradas son una simplificación del recorrido, no la lista completa:
 varias líneas cubren todo su trayecto con tres o cuatro.
+
+El planificador agrupa las paradas por coordenada redondeada a cuatro
+decimales, así que **dos líneas solo hacen transbordo si comparten la
+coordenada exacta**. Por eso las paradas repetidas se copian de
+`places[]` en vez de reescribirlas a mano: Alcalá figuraba con dos
+coordenadas distintas separadas 3,7 km y el planificador la trataba como
+dos sitios.
+
+Un mismo número puede salir dos veces, una de día y otra de noche: la
+101, la 711 y la 473 lo hacen. Lo que distingue las entradas es el `id`
+—`bus-711` frente a `bus-711N`—, que es lo que usan todas las búsquedas
+del código; `numero` solo se pinta.
 
 ---
 

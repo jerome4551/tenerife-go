@@ -16002,8 +16002,11 @@ const TITSA_LINES = [
       { id:"110-americas",nombre:"Las Américas · Centro Comercial",  lat:28.0680, lng:-16.7290, esTerminal:false, municipio:"Adeje" },
       { id:"110-cadeje",  nombre:"Costa Adeje · CC Safari",          lat:28.0820, lng:-16.7370, esTerminal:false, municipio:"Adeje" },
       { id:"110-paraiso", nombre:"Playa Paraíso",                    lat:28.1250, lng:-16.7970, esTerminal:false, municipio:"Adeje" },
-      { id:"110-alcala",  nombre:"Alcalá",                           lat:28.1680, lng:-16.8200, esTerminal:false, municipio:"Guía de Isora" },
-      { id:"110-sanjuan", nombre:"Playa San Juan",                   lat:28.1860, lng:-16.8350, esTerminal:false, municipio:"Guía de Isora" },
+      /* Iban al reves y con las coordenadas cambiadas: Alcala figuraba a
+         28,1680, al sur de Playa San Juan, y la 110 sube hacia el norte.
+         Se ordenan y se copian de los lugares san-juan y alcala. */
+      { id:"110-sanjuan", nombre:"Playa San Juan",                   lat:28.1816, lng:-16.8171, esTerminal:false, municipio:"Guía de Isora" },
+      { id:"110-alcala",  nombre:"Alcalá",                           lat:28.2006, lng:-16.8286, esTerminal:false, municipio:"Guía de Isora" },
       { id:"110-ptosant", nombre:"Puerto de Santiago",               lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"110-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
     ]
@@ -16104,19 +16107,65 @@ const TITSA_LINES = [
       { id:"116-cadeje",  nombre:"Costa Adeje · Terminal",           lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
     ]
   },
+  /* Lineas 473 y 477 · corredor de la costa oeste.
+
+     Fuente: ficha oficial de la parada 7232 (La Arena) en titsa.com. La
+     tabla tenia esta ruta —Los Cristianos, Las Americas, Torviscas,
+     Costa Adeje, Armenime, San Juan, Alcala, Playa de la Arena, Puerto
+     de Santiago, Los Gigantes— numerada como 477, y es la que la ficha
+     describe como 473: "Los Cristianos - Costa Adeje (Estacion) -
+     Callao Salvaje - Los Gigantes". La 477 es otra cosa: una directa
+     Costa Adeje - Los Gigantes, con frecuencia de 40-50 min. Van
+     separadas desde aqui.
+
+     La parada 7232 registra el sentido hacia Los Cristianos; la de
+     enfrente cubre el sentido Los Gigantes. La tabla no modela
+     sentidos, asi que cada linea lleva una sola lista de paradas.
+
+     Callao Salvaje se anade porque aparece en el nombre oficial de la
+     linea, con la coordenada del lugar playa-callao que ya estaba en la
+     app. Van despues de Armenime porque esta mas al norte (28,127 frente
+     a 28,114).
+
+     Tres coordenadas venian mal y se corrigen con las de places[]:
+     Alcala estaba a 28,1680 —al sur de Playa San Juan, imposible— y el
+     lugar alcala esta a 28,2006/-16,8286, unos 3,7 km mas al norte; San
+     Juan estaba a 1,8 km de la playa san-juan; y La Arena a 300 m de la
+     playa arena, cuya coordenada se rehizo con el GPS de la ficha
+     oficial. Se copian de places[], no se inventan: asi fue como La
+     Arena acabo a 7,5 km de su sitio.
+
+     Cambian de tipo "municipal" a "sur": no son lanzaderas, son el
+     corredor intermunicipal del oeste, como la 467 y la 471.
+
+     El precio de la 477 queda pendiente. La ficha da la frecuencia pero
+     no la tarifa, y no se ponen numeros inventados. La frecuencia y el
+     precio de la 473 son los que ya traia la entrada; la ficha no habla
+     de ellos, asi que se dejan como estaban en vez de moverlos sin
+     fuente. */
   {
-    id:"bus-477", numero:"477", nombre:"Los Cristianos — Los Gigantes (Costa Oeste)",
-    color:"#EF6C00", tipo:"municipal", frecuencia:"30-60 min", precio:"~3 €",
+    id:"bus-473", numero:"473", nombre:"Los Cristianos — Costa Adeje — Callao Salvaje — Los Gigantes",
+    color:"#EF6C00", tipo:"sur", frecuencia:"30-60 min", precio:"~3 €",
     paradas:[
-      { id:"477-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
-      { id:"477-americas",nombre:"Las Américas",                     lat:28.0680, lng:-16.7290, esTerminal:false, municipio:"Adeje" },
-      { id:"477-torvisc", nombre:"Torviscas",                        lat:28.0870, lng:-16.7390, esTerminal:false, municipio:"Adeje" },
-      { id:"477-cadeje",  nombre:"Costa Adeje",                      lat:28.0970, lng:-16.7440, esTerminal:false, municipio:"Adeje" },
-      { id:"477-armenime",nombre:"Armeñime",                         lat:28.1140, lng:-16.7660, esTerminal:false, municipio:"Adeje" },
-      { id:"477-sanjuan", nombre:"Playa San Juan",                   lat:28.1860, lng:-16.8350, esTerminal:false, municipio:"Guía de Isora" },
-      { id:"477-alcala",  nombre:"Alcalá",                           lat:28.1680, lng:-16.8200, esTerminal:false, municipio:"Guía de Isora" },
-      { id:"477-arena",   nombre:"Playa de la Arena",                lat:28.2270, lng:-16.8420, esTerminal:false, municipio:"Santiago del Teide" },
-      { id:"477-ptosant", nombre:"Puerto de Santiago",               lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"473-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
+      { id:"473-americas",nombre:"Las Américas",                     lat:28.0680, lng:-16.7290, esTerminal:false, municipio:"Adeje" },
+      { id:"473-torvisc", nombre:"Torviscas",                        lat:28.0870, lng:-16.7390, esTerminal:false, municipio:"Adeje" },
+      { id:"473-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:false, municipio:"Adeje" },
+      { id:"473-armenime",nombre:"Armeñime",                         lat:28.1140, lng:-16.7660, esTerminal:false, municipio:"Adeje" },
+      { id:"473-callao",  nombre:"Callao Salvaje",                   lat:28.1274, lng:-16.7820, esTerminal:false, municipio:"Adeje" },
+      { id:"473-sanjuan", nombre:"Playa San Juan",                   lat:28.1816, lng:-16.8171, esTerminal:false, municipio:"Guía de Isora" },
+      { id:"473-alcala",  nombre:"Alcalá",                           lat:28.2006, lng:-16.8286, esTerminal:false, municipio:"Guía de Isora" },
+      { id:"473-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"473-ptosant", nombre:"Puerto de Santiago",               lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"473-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
+    ]
+  },
+  {
+    id:"bus-477", numero:"477", nombre:"Costa Adeje — Los Gigantes (Directo)",
+    color:"#F57C00", tipo:"sur", frecuencia:"40-50 min", precio:"consultar TITSA",
+    paradas:[
+      { id:"477-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
+      { id:"477-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"477-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
     ]
   },
@@ -16150,7 +16199,7 @@ const TITSA_LINES = [
 
      Las tres coordenadas de cada una ya estaban en la app y verificadas:
      Los Cristianos Estacion y Costa Adeje Estacion las usan la 40, la
-     116, la 342, la 343, la 470 y la 477, y la parada de Playa del Duque
+     116, la 342, la 343, la 470 y la 473, y la parada de Playa del Duque
      la 116. No se inventa ninguna, que es la regla desde que Playa La
      Arena acabo a 7,5 km de su sitio.
 
@@ -16194,6 +16243,9 @@ const TITSA_LINES = [
     paradas:[
       { id:"325-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
       { id:"325-ptosant", nombre:"Puerto de Santiago",               lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
+      /* La ficha oficial de la parada 7232 lista la 325 entre las lineas
+         que paran ahi. Coordenada del lugar arena. */
+      { id:"325-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"325-stiag",   nombre:"Santiago del Teide",               lat:28.2980, lng:-16.8070, esTerminal:true,  municipio:"Santiago del Teide" },
     ]
   },
@@ -16277,6 +16329,20 @@ const TITSA_LINES = [
       { id:"390N-adeje",    nombre:"Estación Costa Adeje",            lat:28.0750, lng:-16.7350, esTerminal:true,  municipio:"Adeje" },
     ]
   },
+  /* CONFLICTO SIN RESOLVER · el recorrido de esta 473 nocturna.
+
+     Que el numero se repita entre diurna y nocturna es normal en esta
+     tabla: la 101 y la 711 hacen lo mismo, porque TITSA reutiliza el
+     numero de la linea de dia para su buho. Lo raro es otra cosa: la
+     ficha oficial de la parada 7232 dice que la 473 es la diurna Los
+     Cristianos - Costa Adeje - Callao Salvaje - Los Gigantes, es decir
+     el corredor del oeste, y esta nocturna baja al sureste, a Las
+     Galletas. La 101N y la 711N si repiten el trayecto de su diurna.
+
+     O el numero esta mal o el recorrido lo esta, y desde aqui no hay
+     forma de saber cual: el proxy bloquea titsa.com. Se deja como esta
+     en vez de borrar un servicio que puede existir o de inventarle otro
+     numero. Pendiente de la ficha de la linea para cerrarlo. */
   {
     id:"bus-473N", numero:"473", nombre:"🦉 Los Cristianos — Las Galletas (Nocturna Sur)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,55 €",
