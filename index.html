@@ -16114,7 +16114,7 @@ const TITSA_LINES = [
     ]
   },
   {
-    id:"bus-102", numero:"102", nombre:"Santa Cruz — Aeropuerto Norte — Puerto de la Cruz",
+    id:"bus-102", numero:"102", nombre:"Santa Cruz — Puerto de la Cruz (por Las Arenas)",
     color:"#0288D1", tipo:"norte", frecuencia:"~1 h", precio:"~5,50 €",
     paradas:[
       { id:"102-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
@@ -16230,6 +16230,45 @@ const TITSA_LINES = [
       { id:"040-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
     ]
   },
+  /* Linea 415 · San Isidro - Aeropuerto Sur - El Fraile.
+
+     Es la que llega a Playa Amarilla: para en Costa del Silencio,
+     parada Minerva 7306, a 700 m de la playa por el sendero. Se pedia
+     desde que se verifico esa playa y no se podia poner porque faltaban
+     las cabeceras.
+
+     Van solo las cuatro paradas cuyo nodo ya existe en la tabla, para
+     que compartan punto con las lineas que ya paran ahi y se pueda
+     transbordar. Faltan, por no tener coordenada verificada:
+
+       Las Chafiras, El Monte, Oroteanda   intermedias
+       El Fraile (7314, C/ San Sebastian)  CABECERA SUR
+
+     Sin El Fraile la linea se queda con una sola cabecera. Es lo que
+     hay: antes media linea de verdad que una entera con coordenadas
+     inventadas.
+
+     Ciudad del Nino (7033, TF-28) NO va: la fuente dice que es una
+     parada tecnica de servicios escolares de manana, no de la ruta
+     regular. Se nombraba en la primera version de este dato y por eso
+     se aclara aqui.
+
+     El orden es el de la fuente: Las Galletas antes que Costa del
+     Silencio, aunque Costa del Silencio quede mas al este. La carretera
+     baja a Las Galletas y luego entra en la urbanizacion.
+
+     Frecuencia de la ficha de la parada Minerva. Precio pendiente: la
+     tarifa por tramos que se dio cubre otras seis lineas, no esta. */
+  {
+    id:"bus-415", numero:"415", nombre:"San Isidro — Aeropuerto Sur — Costa del Silencio — El Fraile",
+    color:"#5D4037", tipo:"sur", frecuencia:"60 min", precio:"consultar TITSA",
+    paradas:[
+      { id:"415-sanisidro",nombre:"San Isidro (Enlace TF-1)",         lat:28.0625, lng:-16.5635, esTerminal:true,  municipio:"Granadilla de Abona" },
+      { id:"415-tfs",      nombre:"✈️ Aeropuerto Sur (TFS)",          lat:28.0445, lng:-16.5722, esTerminal:false, municipio:"Granadilla de Abona" },
+      { id:"415-galletas", nombre:"Las Galletas",                     lat:28.0070, lng:-16.6660, esTerminal:false, municipio:"Arona" },
+      { id:"415-silencio", nombre:"Costa del Silencio · Minerva (7306)",lat:28.0050, lng:-16.6460, esTerminal:false, municipio:"Arona" },
+    ]
+  },
   {
     /* La frecuencia era "~1 h". La ficha de la parada Minerva (7306), en
        Costa del Silencio, da 30-40 min de dia. Las paradas no se tocan:
@@ -16240,7 +16279,7 @@ const TITSA_LINES = [
     paradas:[
       { id:"470-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
       { id:"470-galleta", nombre:"Las Galletas",                     lat:28.0070, lng:-16.6660, esTerminal:false, municipio:"Arona" },
-      { id:"470-silenc",  nombre:"Costa del Silencio",               lat:28.0050, lng:-16.6460, esTerminal:false, municipio:"Arona" },
+      { id:"470-silenc",  nombre:"Costa del Silencio · Minerva (7306)",lat:28.0050, lng:-16.6460, esTerminal:false, municipio:"Arona" },
       { id:"470-golf",    nombre:"Golf del Sur / San Miguel",        lat:28.0290, lng:-16.6090, esTerminal:false, municipio:"San Miguel de Abona" },
       { id:"470-medano",  nombre:"El Médano · Centro",               lat:28.0480, lng:-16.5380, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"470-tfs",     nombre:"✈️ Aeropuerto Sur TFS",            lat:28.0445, lng:-16.5722, esTerminal:true,  municipio:"Granadilla de Abona" },
@@ -16253,7 +16292,7 @@ const TITSA_LINES = [
     color:"#6A1B9A", tipo:"teide", frecuencia:"1 servicio/día", precio:"~8,50 €",
     paradas:[
       { id:"348-ptocz",   nombre:"Puerto de la Cruz · Estación",     lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
-      { id:"348-botan",   nombre:"El Botánico",                      lat:28.4180, lng:-16.5350, esTerminal:false, municipio:"Puerto de la Cruz" },
+      { id:"348-botan",   nombre:"Puente del Botánico (4150)",       lat:28.4180, lng:-16.5350, esTerminal:false, municipio:"Puerto de la Cruz" },
       { id:"348-orotava", nombre:"La Orotava · Estación",            lat:28.3926, lng:-16.5235, esTerminal:false, municipio:"La Orotava" },
       { id:"348-aguamansa",nombre:"Aguamansa",                       lat:28.3620, lng:-16.5160, esTerminal:false, municipio:"La Orotava" },
       { id:"348-portillo",nombre:"🌋 El Portillo (Visitantes Teide)",lat:28.3060, lng:-16.5713, esTerminal:false, municipio:"Parque Nacional Teide" },
@@ -16338,13 +16377,13 @@ const TITSA_LINES = [
       { id:"473-sanjuan", nombre:"Playa San Juan",                   lat:28.1816, lng:-16.8171, esTerminal:false, municipio:"Guía de Isora" },
       { id:"473-alcala",  nombre:"Alcalá",                           lat:28.2006, lng:-16.8286, esTerminal:false, municipio:"Guía de Isora" },
       { id:"473-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
-      { id:"473-ptosant", nombre:"Puerto de Santiago",               lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"473-ptosant", nombre:"Puerto de Santiago (7222)",        lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"473-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
     ]
   },
   {
     id:"bus-477", numero:"477", nombre:"Costa Adeje — Los Gigantes (Directo)",
-    color:"#F57C00", tipo:"sur", frecuencia:"40-50 min", precio:"consultar TITSA",
+    color:"#F57C00", tipo:"sur", frecuencia:"40-50 min", precio:"2,45-3,20 €",
     paradas:[
       { id:"477-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
       { id:"477-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
@@ -16394,7 +16433,7 @@ const TITSA_LINES = [
      dos: no se ponen numeros inventados. */
   {
     id:"bus-467", numero:"467", nombre:"Los Cristianos — Las Américas — Costa Adeje (Costero)",
-    color:"#00897B", tipo:"sur", frecuencia:"15-20 min", precio:"consultar TITSA",
+    color:"#00897B", tipo:"sur", frecuencia:"15-20 min", precio:"desde 1,45 €",
     paradas:[
       { id:"467-cristianos", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
       { id:"467-duque",      nombre:"Playa del Duque",           lat:28.0905, lng:-16.7460, esTerminal:false, municipio:"Adeje" },
@@ -16403,7 +16442,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-471", numero:"471", nombre:"Los Cristianos — Costa Adeje (Costero, variante)",
-    color:"#26A69A", tipo:"sur", frecuencia:"consultar TITSA", precio:"consultar TITSA",
+    color:"#26A69A", tipo:"sur", frecuencia:"consultar TITSA", precio:"desde 1,45 €",
     paradas:[
       { id:"471-cristianos", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
       { id:"471-duque",      nombre:"Playa del Duque",           lat:28.0905, lng:-16.7460, esTerminal:false, municipio:"Adeje" },
@@ -16440,6 +16479,33 @@ const TITSA_LINES = [
      Chiguergue, que es justo lo que les da sentido: son los pueblos altos.
      Sin coordenada no se ponen, que asi fue como La Arena acabo a 7,5 km.
      Tamaimo falta por lo mismo en la 325.
+
+     RECORRIDOS COMPLETOS, tal como los da la fuente, con el codigo de
+     parada. Se guardan aqui porque las coordenadas no estan y sin ellas
+     no se pueden poner en la tabla; el dia que aparezcan, esto es lo que
+     hay que montar:
+
+       461  El Cercado 7574 (cabecera) · Arguayo 7575 ·
+            Parque Las Eras 7576 · El Pino 7577 ·
+            San Isidro Las Manchas 8147 · Cruces de Tamaimo 7580 y 7581 ·
+            Tamaimo 7582 · El Retamar 7584 · San Francisco 7243 ·
+            Cueva del Polvo 7241 · El Varadero 7236 ·
+            Playa de la Arena 7232 · Puerto de Santiago 7222 ·
+            Acantilado de Los Gigantes 7217
+
+       462  Guia de Isora Terminal 7494 · Correos 7477 ·
+            Las Veredas 7478 · Avenida Isora 7479 · El Junquito 7480 ·
+            Chio 7482 · Chiguergue 7486 (solo calendario escolar) ·
+            Arguayo 7575 · Valle de Arriba 7578 ·
+            Santiago del Teide Centro 7579 · Tamaimo 7582 ·
+            San Francisco 7243 · Cueva del Polvo 7241 ·
+            El Varadero 7236 · Playa de la Arena 7232 ·
+            Los Gigantes 7217
+
+     La 325 para tambien en Tamaimo, obligatoriamente, en Cruce de
+     Tamaimo 7581 bajando y Tamaimo Centro 7582. Es el punto de
+     transbordo entre el norte y las lineas de montana sin bajar a la
+     costa. Falta por lo mismo: no hay coordenada de Tamaimo.
 
      La frecuencia de las dos va como texto de horario, no como cifra de
      espera, y por eso se enseno a parseFrequencyMinutes a leer "/dia":
@@ -16495,7 +16561,7 @@ const TITSA_LINES = [
      830 m, asi que la 107 y la 355 no podian transbordar con la 325. */
   {
     id:"bus-325", numero:"325", nombre:"Puerto de la Cruz — Icod — Santiago del Teide — Los Gigantes",
-    color:"#283593", tipo:"norte", frecuencia:"5 salidas/día", precio:"consultar TITSA", minutos:105,
+    color:"#283593", tipo:"norte", frecuencia:"5 salidas/día", precio:"5,25-6 €", minutos:105,
     nota:{
       es:"L-V desde Pto. de la Cruz 05:45 · 09:00 · 10:20 · 15:50 · 18:35. Desde Los Gigantes 08:05 · 11:10 · 12:50 · 18:30 · 20:45 (la última solo llega a Icod). Trayecto completo 1 h 45; a La Arena, unos 85 min desde el Puerto. Fin de semana con horario propio. Hacia el Puerto, pasado San Juan de la Rambla solo deja bajar, no recoge.",
       en:"Mon-Fri from Puerto de la Cruz 05:45 · 09:00 · 10:20 · 15:50 · 18:35. From Los Gigantes 08:05 · 11:10 · 12:50 · 18:30 · 20:45 (the last one only reaches Icod). Full run 1 h 45; about 85 min from Puerto to La Arena. Weekends run to their own timetable. Heading to Puerto, past San Juan de la Rambla it only drops off, it does not pick up.",
@@ -16514,13 +16580,13 @@ const TITSA_LINES = [
       { id:"325-tanque",   nombre:"El Tanque",                       lat:28.3562, lng:-16.7792, esTerminal:false, municipio:"El Tanque" },
       { id:"325-stiag",    nombre:"Santiago del Teide",              lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"325-arena",    nombre:"Playa de la Arena (7232)",        lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
-      { id:"325-ptosant",  nombre:"Puerto de Santiago",              lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"325-ptosant",  nombre:"Puerto de Santiago (7222)",       lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"325-gigant",   nombre:"Los Gigantes · Terminal",         lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
     ]
   },
   {
     id:"bus-461", numero:"461", nombre:"Arguayo — Santiago del Teide — Los Gigantes (vecinal)",
-    color:"#795548", tipo:"municipal", frecuencia:"L-V, 3 salidas/día", precio:"consultar TITSA",
+    color:"#795548", tipo:"municipal", frecuencia:"L-V, 3 salidas/día", precio:"1,45-2,10 €",
     paradas:[
       { id:"461-stiag",   nombre:"Santiago del Teide",               lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"461-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
@@ -16529,9 +16595,9 @@ const TITSA_LINES = [
   },
   {
     id:"bus-462", numero:"462", nombre:"Guía de Isora — Santiago del Teide — Los Gigantes (medianías)",
-    color:"#8D6E63", tipo:"municipal", frecuencia:"L-V, pocas salidas/día", precio:"consultar TITSA",
+    color:"#8D6E63", tipo:"municipal", frecuencia:"L-V, pocas salidas/día", precio:"1,45-2,10 €",
     paradas:[
-      { id:"462-guia",    nombre:"Guía de Isora",                    lat:28.2125, lng:-16.7783, esTerminal:true,  municipio:"Guía de Isora" },
+      { id:"462-guia",    nombre:"Guía de Isora · Terminal (7494)",  lat:28.2125, lng:-16.7783, esTerminal:true,  municipio:"Guía de Isora" },
       { id:"462-stiag",   nombre:"Santiago del Teide",               lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"462-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"462-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
