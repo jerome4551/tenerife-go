@@ -16085,22 +16085,18 @@ const TITSA_LINES = [
       { id:"110-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
     ]
   },
-  {
-    id:"bus-711", numero:"711", nombre:"Santa Cruz — Costa Adeje (Express Sur)",
-    color:"#AD1457", tipo:"sur", frecuencia:"30-60 min", precio:"~4 €",
-    paradas:[
-      { id:"711-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"711-caletil", nombre:"Caletillas",                       lat:28.3760, lng:-16.3590, esTerminal:false, municipio:"Candelaria" },
-      { id:"711-cande",   nombre:"Candelaria",                       lat:28.3564, lng:-16.3642, esTerminal:false, municipio:"Candelaria" },
-      { id:"711-guimar",  nombre:"Güímar",                           lat:28.3104, lng:-16.4107, esTerminal:false, municipio:"Güímar" },
-      { id:"711-arico",   nombre:"Arico",                            lat:28.2167, lng:-16.5067, esTerminal:false, municipio:"Arico" },
-      { id:"711-sanisi",  nombre:"San Isidro",                       lat:28.0625, lng:-16.5635, esTerminal:false, municipio:"Granadilla de Abona" },
-      { id:"711-tfs",     nombre:"✈️ Aeropuerto Sur TFS",            lat:28.0445, lng:-16.5722, esTerminal:false, municipio:"Granadilla de Abona" },
-      { id:"711-guaza",   nombre:"Guaza",                            lat:28.0405, lng:-16.6740, esTerminal:false, municipio:"Arona" },
-      { id:"711-loscris", nombre:"Los Cristianos",                   lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
-      { id:"711-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
-    ]
-  },
+  /* Aqui estaba la 711, "Santa Cruz - Costa Adeje (Express Sur)". El
+     numero no existe: la lista oficial de lineas va por series 000, 100,
+     200, 300, 400 y 900, y no hay serie 700. El recorrido si es real
+     -hay express de Santa Cruz al sur por la TF-1-, pero ponerle otro
+     numero sin fuente seria inventarlo, y dejar el 711 en la pantalla
+     es mandar a alguien a esperar una guagua que no existe.
+
+     Con ella se van cuatro paradas que no tenia ninguna otra linea:
+     Caletillas, Arico, San Isidro y Guaza. Santa Cruz, Candelaria,
+     Guimar, el aeropuerto, Los Cristianos y Costa Adeje siguen
+     cubiertas. Los lugares en si no desaparecen de la app: solo deja de
+     haber una parada de guagua dibujada encima. */
 
   // ═══════════ AEROPUERTO ═══════════
   {
@@ -16116,7 +16112,7 @@ const TITSA_LINES = [
     ]
   },
   {
-    id:"bus-040", numero:"40", nombre:"Aeropuerto Sur — Los Cristianos — Costa Adeje (Express)",
+    id:"bus-040", numero:"040", nombre:"Aeropuerto Sur — Los Cristianos — Costa Adeje (Express)",
     color:"#00897B", tipo:"aeropuerto", frecuencia:"30 min", precio:"~3,75 €",
     paradas:[
       { id:"040-tfs",     nombre:"✈️ Aeropuerto Sur TFS · Terminal", lat:28.0445, lng:-16.5722, esTerminal:true,  municipio:"Granadilla de Abona" },
@@ -16172,19 +16168,15 @@ const TITSA_LINES = [
   },
 
   // ═══════════ LANZADERAS LOCALES ═══════════
-  {
-    id:"bus-116", numero:"116", nombre:"Los Cristianos — Costa Adeje (Lanzadera)",
-    color:"#F57F17", tipo:"municipal", frecuencia:"15-20 min", precio:"~1,45 €",
-    paradas:[
-      { id:"116-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
-      { id:"116-vistas",  nombre:"Playa de Las Vistas",              lat:28.0540, lng:-16.7210, esTerminal:false, municipio:"Arona" },
-      { id:"116-americas",nombre:"Las Américas · Av. Rafael Puig",   lat:28.0610, lng:-16.7270, esTerminal:false, municipio:"Adeje" },
-      { id:"116-siam",    nombre:"CC Safari / Siam Park",            lat:28.0740, lng:-16.7350, esTerminal:false, municipio:"Adeje" },
-      { id:"116-fanabe",  nombre:"Playa Fañabé",                     lat:28.0880, lng:-16.7420, esTerminal:false, municipio:"Adeje" },
-      { id:"116-duque",   nombre:"Playa del Duque",                  lat:28.0905, lng:-16.7460, esTerminal:false, municipio:"Adeje" },
-      { id:"116-cadeje",  nombre:"Costa Adeje · Terminal",           lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
-    ]
-  },
+  /* Y la 116, "Los Cristianos - Costa Adeje (Lanzadera)". El 116 tampoco
+     esta en la lista oficial, y eso que la serie 100 que si esta llega
+     al 112, 114, 120: la ausencia es del numero, no del tramo.
+
+     Con ella se van cuatro paradas de la franja turistica que no tenia
+     ninguna otra linea: Playa de Las Vistas, Las Americas Av. Rafael
+     Puig, CC Safari / Siam Park y Playa Fanabe. Los cuatro lugares
+     siguen en places[] con su ficha; lo que se pierde es el punto de
+     parada. La 467 y la 471 mantienen Playa del Duque. */
   /* Lineas 473 y 477 · corredor de la costa oeste.
 
      Fuente: ficha oficial de la parada 7232 (La Arena) en titsa.com. La
@@ -16445,7 +16437,10 @@ const TITSA_LINES = [
 
   // ═══════════ 🦉 LÍNEAS BÚHO / NOCTURNAS ═══════════
   // Servicio nocturno TITSA — operan en horario de madrugada
-  // Fuente: comunicado oficial TITSA (líneas 014, 015, 101, 104, 137, 390, 473, 711, 934, 970, 971, 972, 974, 975)
+  // Fuente: comunicado oficial TITSA (líneas 014, 015, 101, 104, 137, 390, 473, 934, 970, 971, 972, 974, 975)
+  // La 711 salia en esa lista y se ha retirado: el numero no existe en el
+  // listado oficial de lineas, que no tiene serie 700. Eso deja en duda la
+  // lista entera del comunicado, no solo esa entrada.
   {
     id:"bus-014", numero:"014", nombre:"🦉 Santa Cruz — La Laguna (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
@@ -16537,24 +16532,11 @@ const TITSA_LINES = [
       { id:"473N-gallet",   nombre:"Las Galletas",                    lat:28.0192, lng:-16.6531, esTerminal:true,  municipio:"Arona" },
     ]
   },
-  {
-    id:"bus-711N", numero:"711", nombre:"🦉 Santa Cruz — Aeropuerto Sur — Los Cristianos — Costa Adeje (Nocturna)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~9,35 €",
-    paradas:[
-      { id:"711N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"711N-caletil",  nombre:"Cruce Caletillas",                lat:28.3697, lng:-16.3683, esTerminal:false, municipio:"Candelaria" },
-      { id:"711N-candel",   nombre:"Cruce Candelaria",                lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
-      { id:"711N-guimar",   nombre:"Cruce Güímar",                    lat:28.3186, lng:-16.4106, esTerminal:false, municipio:"Güímar" },
-      { id:"711N-arico",    nombre:"Cruce Arico",                     lat:28.1736, lng:-16.5147, esTerminal:false, municipio:"Arico" },
-      { id:"711N-chimich",  nombre:"Cruce Chimiche",                  lat:28.1450, lng:-16.5419, esTerminal:false, municipio:"Granadilla de Abona" },
-      { id:"711N-sanisid",  nombre:"Cruce San Isidro",                lat:28.0989, lng:-16.5642, esTerminal:false, municipio:"Granadilla de Abona" },
-      { id:"711N-aerop",    nombre:"✈️ Aeropuerto Sur (Reina Sofía)", lat:28.0444, lng:-16.5725, esTerminal:false, municipio:"Granadilla de Abona" },
-      { id:"711N-sanmig",   nombre:"Cruce San Miguel",                lat:28.0500, lng:-16.6178, esTerminal:false, municipio:"San Miguel de Abona" },
-      { id:"711N-guaza",    nombre:"Cruce de Guaza",                  lat:28.0383, lng:-16.6850, esTerminal:false, municipio:"Arona" },
-      { id:"711N-crist",    nombre:"Los Cristianos",                  lat:28.0497, lng:-16.7158, esTerminal:false, municipio:"Arona" },
-      { id:"711N-adeje",    nombre:"Estación Costa Adeje",            lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
-    ]
-  },
+  /* Y aqui la 711 nocturna, por lo mismo. Era el unico servicio de
+     madrugada al aeropuerto sur en la tabla, asi que la perdida se nota:
+     se van Cruce Caletillas, Cruce Chimiche, Cruce San Isidro,
+     Aeropuerto Sur (Reina Sofia), Cruce San Miguel y Cruce de Guaza.
+     Los cruces de Candelaria, Guimar y Arico se quedan con la 137. */
   {
     id:"bus-934N", numero:"934", nombre:"🦉 Circular Intercambiador — Taco — Santa María del Mar — Añaza (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
