@@ -15927,7 +15927,44 @@ if (typeof dpRenderZoneCards === 'function') dpRenderZoneCards();
 //  SISTEMA BUS TITSA
 // ══════════════════════════════════════════════════════════
 
-// ── DATOS DE LÍNEAS ───────────────────────────────────────
+/* ── DATOS DE LÍNEAS ───────────────────────────────────────
+
+   AUDITORIA INTERNA · lo que quedo pendiente de mirar en titsa.com.
+
+   Desde el entorno de desarrollo no hay forma de comprobar nada contra
+   la fuente: el proxy bloquea titsa.com. Lo que si se puede es cruzar
+   la tabla consigo misma y con places[], y de ahi salieron seis
+   coordenadas corregidas y estas cinco dudas que no se tocan porque
+   arreglarlas sin fuente seria inventar:
+
+   1. La 711 diurna para en "Arico" a 28,2167/-16,5067, que esta 5,7 km
+      al norte del pueblo y tampoco coincide con el enlace de la TF-1
+      que usan la 711 nocturna y la 137 (28,1736/-16,5147). Es un
+      express por autopista, asi que dentro del pueblo no entra. Falta
+      saber a que enlace corresponde.
+
+   2. "La Victoria de Acentejo" salia en dos sitios separados 5,9 km, a
+      lados opuestos del pueblo. La diurna se ha llevado al pueblo
+      porque esa linea para en los cascos; la nocturna, que es la
+      variante por autopista, se deja como estaba a la espera de saber
+      su enlace.
+
+   3. Buenavista del Norte (1,7 km), Los Silos (1,9 km) y Las Galletas
+      (1,3 km) quedan lejos de su nucleo, pero las lineas que las usan
+      coinciden entre si. Puede ser que la terminal este de verdad
+      fuera del casco. Sin comprobarlo no se mueven.
+
+   4. La 137 nocturna llama "Arico" a la parada del enlace, y la 711
+      nocturna llama "Cruce Arico" a esa misma coordenada. Es el mismo
+      punto con dos nombres.
+
+   5. Precio pendiente en la 325, 461, 462, 467, 471 y 477.
+
+   Y un recordatorio del comparador: emparejar paradas con places[] por
+   nombre da falsos positivos. "El Cabezo" de la 473 nocturna salia a
+   38,9 km porque casaba con "Playa del Cabezo · Puertito de Guimar",
+   que es otro sitio. Antes de mover una coordenada, mirar el caso.
+   ────────────────────────────────────────────────────────── */
 const TITSA_LINES = [
 
   // ═══════════ TRANVÍA (Metropolitano de Tenerife) ═══════════
@@ -15978,9 +16015,9 @@ const TITSA_LINES = [
     paradas:[
       { id:"101-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"101-laguna",  nombre:"La Laguna · Intercambiador",       lat:28.4853, lng:-16.3160, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
-      { id:"101-tacor",   nombre:"Tacoronte · Casco",                lat:28.4760, lng:-16.3980, esTerminal:false, municipio:"Tacoronte" },
+      { id:"101-tacor",   nombre:"Tacoronte · Casco",                lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
       { id:"101-sauzal",  nombre:"El Sauzal · Centro",               lat:28.4720, lng:-16.4280, esTerminal:false, municipio:"El Sauzal" },
-      { id:"101-victoria",nombre:"La Victoria de Acentejo",          lat:28.4640, lng:-16.4690, esTerminal:false, municipio:"La Victoria de Acentejo" },
+      { id:"101-victoria",nombre:"La Victoria de Acentejo",          lat:28.4340, lng:-16.4709, esTerminal:false, municipio:"La Victoria de Acentejo" },
       { id:"101-sursula", nombre:"Santa Úrsula · Centro",            lat:28.4340, lng:-16.4940, esTerminal:false, municipio:"Santa Úrsula" },
       { id:"101-orotava", nombre:"La Orotava · Centro",              lat:28.3900, lng:-16.5230, esTerminal:false, municipio:"La Orotava" },
       { id:"101-ptocz",   nombre:"Puerto de la Cruz · Intercambiador",lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
@@ -15994,7 +16031,7 @@ const TITSA_LINES = [
       { id:"102-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"102-laguna",  nombre:"La Laguna · Intercambiador",       lat:28.4853, lng:-16.3160, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
       { id:"102-tfn",     nombre:"✈️ Aeropuerto Norte (TFN)",        lat:28.4827, lng:-16.3414, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"102-tacor",   nombre:"Tacoronte · Casco",                lat:28.4760, lng:-16.3980, esTerminal:false, municipio:"Tacoronte" },
+      { id:"102-tacor",   nombre:"Tacoronte · Casco",                lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
       { id:"102-ptocz",   nombre:"Puerto de la Cruz · Intercambiador",lat:28.4148, lng:-16.5480, esTerminal:false, municipio:"Puerto de la Cruz" },
       { id:"102-icod",    nombre:"Icod de los Vinos · Centro",       lat:28.3720, lng:-16.7200, esTerminal:false, municipio:"Icod de los Vinos" },
       { id:"102-garach",  nombre:"Garachico · Puerto",               lat:28.3726, lng:-16.7620, esTerminal:false, municipio:"Garachico" },
@@ -16038,7 +16075,7 @@ const TITSA_LINES = [
       { id:"110-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
       { id:"110-americas",nombre:"Las Américas · Centro Comercial",  lat:28.0680, lng:-16.7290, esTerminal:false, municipio:"Adeje" },
       { id:"110-cadeje",  nombre:"Costa Adeje · CC Safari",          lat:28.0820, lng:-16.7370, esTerminal:false, municipio:"Adeje" },
-      { id:"110-paraiso", nombre:"Playa Paraíso",                    lat:28.1250, lng:-16.7970, esTerminal:false, municipio:"Adeje" },
+      { id:"110-paraiso", nombre:"Playa Paraíso",                    lat:28.1224, lng:-16.7737, esTerminal:false, municipio:"Adeje" },
       /* Iban al reves y con las coordenadas cambiadas: Alcala figuraba a
          28,1680, al sur de Playa San Juan, y la 110 sube hacia el norte.
          Se ordenan y se copian de los lugares san-juan y alcala. */
@@ -16473,7 +16510,7 @@ const TITSA_LINES = [
       { id:"390N-stiag",    nombre:"Santiago del Teide",              lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"390N-guia",     nombre:"Guía de Isora",                   lat:28.2125, lng:-16.7783, esTerminal:false, municipio:"Guía de Isora" },
       { id:"390N-callao",   nombre:"Callao Salvaje / Playa Paraíso",  lat:28.0903, lng:-16.7886, esTerminal:false, municipio:"Adeje" },
-      { id:"390N-adeje",    nombre:"Estación Costa Adeje",            lat:28.0750, lng:-16.7350, esTerminal:true,  municipio:"Adeje" },
+      { id:"390N-adeje",    nombre:"Estación Costa Adeje",            lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
     ]
   },
   /* CONFLICTO SIN RESOLVER · el recorrido de esta 473 nocturna.
@@ -16515,7 +16552,7 @@ const TITSA_LINES = [
       { id:"711N-sanmig",   nombre:"Cruce San Miguel",                lat:28.0500, lng:-16.6178, esTerminal:false, municipio:"San Miguel de Abona" },
       { id:"711N-guaza",    nombre:"Cruce de Guaza",                  lat:28.0383, lng:-16.6850, esTerminal:false, municipio:"Arona" },
       { id:"711N-crist",    nombre:"Los Cristianos",                  lat:28.0497, lng:-16.7158, esTerminal:false, municipio:"Arona" },
-      { id:"711N-adeje",    nombre:"Estación Costa Adeje",            lat:28.0750, lng:-16.7350, esTerminal:true,  municipio:"Adeje" },
+      { id:"711N-adeje",    nombre:"Estación Costa Adeje",            lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
     ]
   },
   {
