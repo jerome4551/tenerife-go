@@ -1994,7 +1994,8 @@ window.onunhandledrejection = function(e) {
   .custom-marker.drop-in { animation: tgoPinDrop .38s cubic-bezier(.2,.8,.3,1.15) both; }
   @keyframes tgoChipIn { from { opacity: 0; transform: translateY(8px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
   .cat-chip.chip-in { animation: tgoChipIn .3s ease both; }
-  @media (prefers-reduced-motion: reduce) { .custom-marker.drop-in, .cat-chip.chip-in { animation: none; } }
+  .mc-temp.mc-temp-in { animation: tgoChipIn .32s ease both; }
+  @media (prefers-reduced-motion: reduce) { .custom-marker.drop-in, .cat-chip.chip-in, .mc-temp.mc-temp-in { animation: none; } }
   /* ── Banner de consentimiento (RGPD) ── */
   .consent-banner { position: fixed; left: 12px; right: 12px; bottom: calc(env(safe-area-inset-bottom, 0px) + 12px); z-index: 8000; background: rgba(12,12,14,0.97); border: 1px solid rgba(201,168,76,0.35); border-radius: 16px; padding: 14px 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); backdrop-filter: blur(8px); opacity: 0; transform: translateY(12px); transition: opacity .25s ease, transform .25s ease; }
   .consent-banner.show { opacity: 1; transform: translateY(0); }
@@ -12850,11 +12851,10 @@ let currentLayer = 'streets';
 // Se expanden al hacer zoom o al hacer clic.
 let _catCascade = false;
 window.__tgoRM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
-function tgoCountUp(el, target, suffix){
-  var from = Math.max(0, target - 8), t0 = null, dur = 520;
-  function step(ts){ if (t0 === null) t0 = ts; var p = Math.min(1, (ts - t0) / dur); p = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(from + (target - from) * p) + suffix; if (p < 1) requestAnimationFrame(step); }
-  requestAnimationFrame(step);
-}
+/* Aqui vivia tgoCountUp, el contador que subia la cifra desde
+   objetivo-8. Su unico usuario era la temperatura de los microclimas y
+   ya no lo usa: mientras contaba ensenaba numeros que no eran el dato.
+   Se retira entero en vez de dejarlo sin llamar. */
 const clusterGroup = L.markerClusterGroup({
   showCoverageOnHover: false,        // No mostrar el polígono al pasar el ratón
   spiderfyOnMaxZoom: true,           // Abrir en abanico cuando ya no se puede hacer más zoom
@@ -24360,11 +24360,24 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
         row.appendChild(badge);
       }
 
+      /* La temperatura se pinta ya buena. Antes salia con un contador
+         que arrancaba en temperatura-8 y subia en medio segundo, de modo
+         que durante mas de un segundo -el retardo era 120 + fila x 90 ms,
+         mas 520 de animacion- la pantalla ensenaba un numero que no era
+         el dato: con 32 grados reales en Costa Adeje se leia 24, y con 9
+         en el Teide se leia 1. Y si algo interrumpia la animacion, ahi se
+         quedaba. Un numero inventado es un numero inventado aunque dure
+         un segundo, y este ademas parecia una medicion.
+
+         La entrada sigue estando, pero como fundido: se mueve la
+         opacidad, no la cifra. */
       var temp = document.createElement('div');
       temp.className = 'mc-temp';
-      var _tv = Math.round(z.temp);
-      temp.textContent = (window.__tgoRM ? _tv : Math.max(0, _tv - 8)) + '°';
-      if (!window.__tgoRM) setTimeout(function(){ tgoCountUp(temp, _tv, '°'); }, 120 + idx * 90);
+      temp.textContent = Math.round(z.temp) + '°';
+      if (!window.__tgoRM) {
+        temp.classList.add('mc-temp-in');
+        temp.style.animationDelay = (idx * 70) + 'ms';
+      }
       row.appendChild(temp);
 
       list.appendChild(row);
@@ -24423,18 +24436,26 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
       })
       .then(function(data) {
         var arr = Array.isArray(data) ? data : [data];
+        /* Una zona sin temperatura se cae de la lista, no se pinta con
+           un cero. Antes el hueco se rellenaba con temp 0 y viento 0, y
+           eso salia en pantalla como "0°" al lado de las demas, con
+           pinta de medicion. En Tenerife un 0 en la costa es tan falso
+           como inventarlo. El cielo y el codigo si llevan valor por
+           defecto: solo mueven el orden, no se enseñan como cifra. */
         var zones = MC_ZONES.map(function(z, i) {
           var cur = (arr[i] && arr[i].current) ? arr[i].current : {};
+          if (typeof cur.temperature_2m !== 'number') return null;
           return {
             name:  z.name,
             sub:   z.sub[lang] || z.sub.es,
-            temp:  (typeof cur.temperature_2m === 'number') ? cur.temperature_2m : 0,
+            temp:  cur.temperature_2m,
             code:  (typeof cur.weather_code === 'number') ? cur.weather_code : 3,
             wind:  (typeof cur.wind_speed_10m === 'number') ? cur.wind_speed_10m : 0,
             cloud: (typeof cur.cloud_cover === 'number') ? cur.cloud_cover : 50,
             isDay: cur.is_day !== 0
           };
-        });
+        }).filter(Boolean);
+        if (!zones.length) { mcSetStatus(t.error); return; }
         mcWriteCache(zones);
         mcRender(zones);
       })
