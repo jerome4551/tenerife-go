@@ -16167,7 +16167,17 @@ const TITSA_LINES = [
   // ═══════════ TRANVÍA (Metropolitano de Tenerife) ═══════════
   {
     id:"tram-L1", numero:"L1", nombre:"Tranvía L1 — Intercambiador (Santa Cruz) ↔ La Trinidad (La Laguna)",
+    /* De lunes a viernes cierra a medianoche y no abre hasta las seis;
+       de 00:01 a 05:59 el relevo lo toma la 714 por autopista. Los fines
+       de semana y festivos hace 24 horas, cada 30 minutos de madrugada.
+
+       La tabla no modela dias de la semana, asi que se pone la ventana
+       de diario. El error que eso deja es el prudente: un sabado de
+       madrugada la app dira que no hay tranvia cuando si lo hay, y
+       ofrecera la 714, que tambien llega. Al reves -ofrecer el tranvia
+       un martes a las tres- seria mandar a alguien a un anden cerrado. */
     color:"#00BFA5", tipo:"tranvia", frecuencia:"5-15 min", precio:"~1,35 €",
+    servicio:{ desde:"06:00", hasta:"00:00" },
     paradas:[
       { id:"L1-intercamb", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"L1-fundac",    nombre:"Fundación",                   lat:28.4658, lng:-16.2540, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
@@ -16194,7 +16204,9 @@ const TITSA_LINES = [
   },
   {
     id:"tram-L2", numero:"L2", nombre:"Tranvía L2 — La Cuesta ↔ Tíncer",
+    /* Todos los dias, tambien fin de semana. La L2 nunca es nocturna. */
     color:"#26C6DA", tipo:"tranvia", frecuencia:"10-20 min", precio:"~1,35 €",
+    servicio:{ desde:"06:00", hasta:"00:00" },
     paradas:[
       { id:"L2-cuesta",   nombre:"La Cuesta",                lat:28.4778, lng:-16.2890, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
       { id:"L2-ingen",    nombre:"Ingenieros",               lat:28.4810, lng:-16.2945, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
@@ -16258,7 +16270,7 @@ const TITSA_LINES = [
   {
     id:"bus-111", numero:"111", nombre:"Santa Cruz — Los Cristianos (Autopista)",
     color:"#C62828", tipo:"sur", frecuencia:"20-25 min", precio:"~3,50 €", minutos:83,
-    servicio:{ desde:"05:25", hasta:"21:55" },
+    servicio:{ desde:"05:30", hasta:"21:25" },
     paradas:[
       { id:"111-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"111-cande",   nombre:"Candelaria · Terminal",            lat:28.3564, lng:-16.3642, esTerminal:false, municipio:"Candelaria" },
@@ -17168,8 +17180,8 @@ const TITSA_LINES = [
     paradas:[
       { id:"934-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"934-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"934-anaza", nombre:"Añaza", lat:28.42345, lng:-16.30712, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
-      { id:"934-stamar", nombre:"Santa María del Mar", lat:28.41624, lng:-16.31543, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"934-stamar", nombre:"Santa María del Mar", lat:28.41624, lng:-16.31543, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"934-anaza", nombre:"Añaza", lat:28.42345, lng:-16.30712, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
   {
@@ -17185,10 +17197,11 @@ const TITSA_LINES = [
   {
     id:"bus-936", numero:"936", nombre:"Intercambiador — Añaza — Alisios — Taco",
     color:"#9FA8DA", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:40,
-    servicio:{ desde:"05:45", hasta:"22:00" },
+    servicio:{ desde:"05:30", hasta:"22:30" },
     paradas:[
       { id:"936-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"936-anaza", nombre:"Añaza", lat:28.42345, lng:-16.30712, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"936-stamar", nombre:"Santa María del Mar", lat:28.41624, lng:-16.31543, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"936-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
@@ -17298,22 +17311,24 @@ const TITSA_LINES = [
   {
     id:"bus-231", numero:"231", nombre:"La Laguna — La Cuesta — Finca España",
     color:"#FF9800", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
-    servicio:{ desde:"06:10", hasta:"21:35" },
+    servicio:{ desde:"06:10", hasta:"21:30" },
     paradas:[
       { id:"231-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"231-cuesta", nombre:"La Cuesta", lat:28.4778, lng:-16.289, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"231-finca", nombre:"Finca España", lat:28.47355, lng:-16.30114, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"231-finca", nombre:"Finca España", lat:28.47355, lng:-16.30114, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"231-gallega", nombre:"La Gallega", lat:28.44115, lng:-16.32984, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
   {
     id:"bus-232", numero:"232", nombre:"La Laguna — La Cuesta — Taco — El Cardonal",
     color:"#FFA726", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €", minutos:30,
-    servicio:{ desde:"05:45", hasta:"22:15" },
+    servicio:{ desde:"05:40", hasta:"22:15" },
     paradas:[
       { id:"232-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"232-cuesta", nombre:"La Cuesta", lat:28.4778, lng:-16.289, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"232-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"232-card", nombre:"El Cardonal", lat:28.485, lng:-16.3015, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"232-card", nombre:"El Cardonal", lat:28.485, lng:-16.3015, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"232-gallega", nombre:"La Gallega", lat:28.44115, lng:-16.32984, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
   {
@@ -17523,6 +17538,37 @@ const TITSA_LINES = [
     ]
   },
 
+  /* Lineas 035 y 105 · los dos ejes comarcales que faltaban.
+
+     La 035 une Guimar con Granadilla por la carretera general, pasando
+     por Fasnia y Arico. Sus cuatro paradas ya tenian nodo, de la 137 y
+     la 711. La 105 sube de Santa Cruz a Punta del Hidalgo por La
+     Laguna, y las tres tambien.
+
+     Son las primeras de los dos huecos grandes, que estaban en 8 de 35
+     y 8 de 37. */
+  {
+    id:"bus-035", numero:"035", nombre:"Güímar — Fasnia — Arico — Granadilla",
+    color:"#5D4037", tipo:"sur", frecuencia:"60 min", precio:"desde 1,45 €", minutos:60,
+    servicio:{ desde:"06:10", hasta:"20:45" },
+    paradas:[
+      { id:"035-guimar",  nombre:"Güímar",                lat:28.3186, lng:-16.4106, esTerminal:true,  municipio:"Güímar" },
+      { id:"035-fasnia",  nombre:"Fasnia (Cruce)",         lat:28.2356, lng:-16.4422, esTerminal:false, municipio:"Fasnia" },
+      { id:"035-arico",   nombre:"Cruce de Arico",         lat:28.1736, lng:-16.5147, esTerminal:false, municipio:"Arico" },
+      { id:"035-granad",  nombre:"Granadilla de Abona",    lat:28.1208, lng:-16.5775, esTerminal:true,  municipio:"Granadilla de Abona" },
+    ]
+  },
+  {
+    id:"bus-105", numero:"105", nombre:"Santa Cruz — La Laguna — Punta del Hidalgo",
+    color:"#00796B", tipo:"norte", frecuencia:"30-45 min", precio:"desde 1,45 €", minutos:70,
+    servicio:{ desde:"05:35", hasta:"22:45" },
+    paradas:[
+      { id:"105-sc",      nombre:"Intercambiador (Santa Cruz)",        lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"105-laguna",  nombre:"La Laguna · Intercambiador (2625)",  lat:28.4853, lng:-16.3160, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"105-punta",   nombre:"Punta del Hidalgo",                  lat:28.5681, lng:-16.3265, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+
   // ═══════════ 🦉 LÍNEAS BÚHO / NOCTURNAS ═══════════
   // Servicio nocturno TITSA — operan en horario de madrugada
   // Fuente: comunicado oficial TITSA (líneas 014, 015, 101, 104, 137, 390, 473, 934, 970, 971, 972, 974, 975)
@@ -17544,7 +17590,7 @@ const TITSA_LINES = [
   {
     id:"bus-711N", numero:"711", nombre:"🦉 Santa Cruz — Aeropuerto Sur — Los Cristianos — Costa Adeje (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"30 min", precio:"~9,35 €", minutos:76,
-    servicio:{ desde:"21:55", hasta:"05:00" },
+    servicio:{ desde:"22:00", hasta:"05:00" },
     paradas:[
       { id:"711N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"711N-caletil",  nombre:"Cruce Caletillas",                lat:28.3697, lng:-16.3683, esTerminal:false, municipio:"Candelaria" },
