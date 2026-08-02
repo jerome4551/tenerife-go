@@ -16440,6 +16440,7 @@ const TITSA_LINES = [
        la 111, la 343, la 040 y la 415, asi que no se pierde nada. */
     id:"bus-470", numero:"470", nombre:"Los Cristianos — Costa del Silencio — El Médano",
     color:"#558B2F", tipo:"aeropuerto", frecuencia:"30-40 min", precio:"~2,50 €", minutos:70,
+    servicio:{ desde:"06:10", hasta:"21:50" },
     paradas:[
       { id:"470-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
       { id:"470-galleta", nombre:"Las Galletas",                     lat:28.0070, lng:-16.6660, esTerminal:false, municipio:"Arona" },
@@ -17559,8 +17560,18 @@ const TITSA_LINES = [
     ]
   },
   {
-    id:"bus-015N", numero:"015", nombre:"🦉 Santa Cruz — La Laguna (Nocturna · Vía Universidad)",
+    /* NOMENCLATURA. TITSA no pone una "N" a las nocturnas: a la variante
+       de madrugada le cambia el numero a la serie 700 para la tarifa
+       nocturna. Esta se comercializa como 714, la 137 como 737, y la 111
+       como 711 -que es la que ya llevaba ese numero y por eso no
+       encajaba en el listado de series 000 a 900-.
+
+       El "015N" de aqui es id interno nuestro, no de TITSA. El numero
+       comercial va en el nombre para que se pueda buscar por los dos: el
+       buscador mira numero y nombre. */
+    id:"bus-015N", numero:"015", nombre:"🦉 Santa Cruz — La Laguna (Nocturna · línea 714)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
+    servicio:{ desde:"23:15", hasta:"05:00" },
     paradas:[
       { id:"015N-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"015N-cuesta",    nombre:"La Cuesta",                       lat:28.4778, lng:-16.2890, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
@@ -17571,6 +17582,7 @@ const TITSA_LINES = [
   {
     id:"bus-101N", numero:"101", nombre:"🦉 Santa Cruz — Puerto de la Cruz (Autopista · Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~5,40 €",
+    servicio:{ desde:"23:40", hasta:"04:30" },
     paradas:[
       { id:"101N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"101N-laguna",   nombre:"La Laguna · Intercambiador (2625)",lat:28.4853, lng:-16.3160, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
@@ -17592,8 +17604,9 @@ const TITSA_LINES = [
     ]
   },
   {
-    id:"bus-137N", numero:"137", nombre:"🦉 Santa Cruz — Granadilla (Nocturna)",
+    id:"bus-137N", numero:"137", nombre:"🦉 Santa Cruz — Granadilla (Nocturna · línea 737)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~6,90 €",
+    servicio:{ desde:"23:30", hasta:"05:15" },
     paradas:[
       { id:"137N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"137N-candel",   nombre:"Candelaria",                      lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
@@ -17635,6 +17648,7 @@ const TITSA_LINES = [
   {
     id:"bus-934N", numero:"934", nombre:"🦉 Circular Intercambiador — Taco — Santa María del Mar — Añaza (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
+    servicio:{ desde:"22:45", hasta:"05:20" },
     paradas:[
       { id:"934N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"934N-taco",     nombre:"Taco",                            lat:28.4830, lng:-16.2960, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
@@ -17646,6 +17660,7 @@ const TITSA_LINES = [
   {
     id:"bus-970", numero:"970", nombre:"🦉 Intercambiador — Barrio La Salud (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
+    servicio:{ desde:"23:45", hasta:"05:30" },
     paradas:[
       { id:"970-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"970-salud",     nombre:"Barrio La Salud",                 lat:28.47895, lng:-16.27012, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
@@ -17671,8 +17686,9 @@ const TITSA_LINES = [
     ]
   },
   {
-    id:"bus-974", numero:"974", nombre:"🦉 Intercambiador — Taco — Tíncer (Nocturna)",
+    id:"bus-974", numero:"974", nombre:"🦉 Intercambiador — Añaza — Santa María del Mar (Nocturna exprés)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
+    servicio:{ desde:"23:50", hasta:"05:15" },
     paradas:[
       { id:"974-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"974-taco",      nombre:"Taco",                            lat:28.4830, lng:-16.2960, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
@@ -17680,8 +17696,9 @@ const TITSA_LINES = [
     ]
   },
   {
-    id:"bus-975", numero:"975", nombre:"🦉 Intercambiador — Taco — Los Majuelos — La Gallega (Nocturna)",
+    id:"bus-975", numero:"975", nombre:"🦉 Intercambiador — El Sobradillo — Llano del Moro (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"23:30 · 01:30 · 03:05", precio:"~1,40 €",
+    servicio:{ desde:"00:15", hasta:"04:45" },
     paradas:[
       { id:"975-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"975-taco",      nombre:"Taco",                            lat:28.4830, lng:-16.2960, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
