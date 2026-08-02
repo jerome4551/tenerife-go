@@ -17008,14 +17008,38 @@ const TITSA_LINES = [
      201, la 203 y la 253: de esas no se conoce ni una parada con
      coordenada aparte de la cabecera, y con una sola no hay linea.
 
-     El tiempo oficial solo se pone cuando cuadra con lo que se modela.
-     Si repartir los minutos de toda la linea sobre el trozo conocido da
-     menos de 10 km/h, el campo no se pone y se usa la velocidad media:
-     es la leccion de la 204, que con 35 minutos sobre 300 metros salia a
-     medio kilometro por hora. */
+     CUANDO VALE EL TIEMPO OFICIAL. Al principio se rechazaba por
+     velocidad: si repartir los minutos sobre el trozo modelado daba
+     menos de 10 km/h, fuera. Estaba MAL, y lo estaba en el sentido
+     peligroso. Una guagua urbana que serpentea por Miraflores, Serrano
+     y Ramon y Cajal recorre 2,6 km en linea recta y tarda 25 minutos de
+     verdad: seis kilometros por hora en linea recta es lo normal ahi, no
+     un sintoma de error.
+
+     La regla buena no es la velocidad, es esta: el tiempo oficial vale
+     si las dos paradas que se modelan SON las cabeceras reales de la
+     linea. Entonces los minutos son exactamente los de ese salto,
+     aunque la recta entre ellas sea corta.
+
+     Con ese criterio lo llevan la 901, la 906, la 919, la 920, la 220,
+     la 232, la 233 y la 018, que terminan donde dice su ficha. No lo
+     llevan la 904, la 908, la 911, la 912, la 914, la 933, la 939, la
+     941, la 946, la 947, la 213 y la 231, que se cortan antes de su
+     cabecera: ahi los minutos son de un recorrido mas largo del que se
+     dibuja, y ponerlos mentiria al reves.
+
+     Para esas doce manda la velocidad media, y funciona razonablemente
+     porque su recta si es larga: el problema de la recta corta solo
+     aparece en las urbanas que dan vueltas, y esas ya tienen su tiempo.
+
+     No se aplica penalizacion por parada intermedia. Haria falta el
+     numero real de paradas de cada linea, que esta en el GTFS de TITSA y
+     aqui no se tiene, y ademas seria estimar lo que ya se sabe: para las
+     ocho de arriba el dato exacto esta puesto, y para las doce de abajo
+     lo que falta no es un factor de correccion, son las coordenadas. */
   {
     id:"bus-901", numero:"901", nombre:"Intercambiador — Cuesta Piedra — Barrio de la Salud",
-    color:"#00838F", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    color:"#00838F", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:25,
     servicio:{ desde:"06:00", hasta:"21:45" },
     paradas:[
       { id:"901-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
@@ -17033,7 +17057,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-906", numero:"906", nombre:"Intercambiador — Barrio la Salud (por Plaza de Toros)",
-    color:"#00ACC1", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    color:"#00ACC1", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:25,
     servicio:{ desde:"06:00", hasta:"22:00" },
     paradas:[
       { id:"906-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
@@ -17078,7 +17102,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-919", numero:"919", nombre:"Intercambiador — Barrio de la Salud (por Barranco de Santos)",
-    color:"#29B6F6", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    color:"#29B6F6", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:20,
     servicio:{ desde:"06:30", hasta:"20:45" },
     paradas:[
       { id:"919-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
@@ -17087,7 +17111,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-920", numero:"920", nombre:"Intercambiador — Plaza de España — La Cuesta",
-    color:"#1E88E5", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    color:"#1E88E5", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:35,
     servicio:{ desde:"06:00", hasta:"21:30" },
     paradas:[
       { id:"920-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
@@ -17211,7 +17235,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-220", numero:"220", nombre:"La Laguna — Las Chumberas — Campus Guajara",
-    color:"#F57C00", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    color:"#F57C00", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €", minutos:15,
     servicio:{ desde:"07:15", hasta:"19:45" },
     paradas:[
       { id:"220-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
@@ -17239,7 +17263,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-232", numero:"232", nombre:"La Laguna — La Cuesta — Taco — El Cardonal",
-    color:"#FFA726", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    color:"#FFA726", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €", minutos:30,
     servicio:{ desde:"05:45", hasta:"22:15" },
     paradas:[
       { id:"232-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
@@ -17250,7 +17274,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-233", numero:"233", nombre:"La Laguna — Finca España — Taco",
-    color:"#FFB74D", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    color:"#FFB74D", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €", minutos:25,
     servicio:{ desde:"06:15", hasta:"21:20" },
     paradas:[
       { id:"233-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
@@ -17259,11 +17283,42 @@ const TITSA_LINES = [
   },
   {
     id:"bus-018", numero:"018", nombre:"La Laguna — Añaza (por centros comerciales)",
-    color:"#6D4C41", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    color:"#6D4C41", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €", minutos:45,
     servicio:{ desde:"06:00", hasta:"21:40" },
     paradas:[
       { id:"018-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"018-anaza", nombre:"Añaza", lat:28.428, lng:-16.285, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+
+  /* La 915 y la 201 llegan despues, confirmadas aparte.
+
+     La 915 conecta el Intercambiador con Ofra por Tio Pino y el Camino
+     del Hierro, solo laborables. Sus dos cabeceras se modelan, pero la
+     fuente no da duracion, asi que va sin tiempo oficial.
+
+     La 201 es circular: sale del Intercambiador de La Laguna hacia La
+     Verdellada por la Avenida Los Menceyes y vuelve por Cruz de Piedra,
+     30 minutos la vuelta entera. De La Verdellada no hay coordenada;
+     Cruz de Piedra si, del tranvia. Al ser circular sus dos cabeceras
+     son la misma parada, asi que el trozo modelado no es la linea
+     entera y no lleva tiempo oficial. */
+  {
+    id:"bus-915", numero:"915", nombre:"Intercambiador — Tío Pino — Camino del Hierro — Ofra",
+    color:"#0277BD", tipo:"municipal", frecuencia:"L-V, 15-20 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:00", hasta:"21:30" },
+    paradas:[
+      { id:"915-sc",   nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"915-ofra", nombre:"Ofra",                        lat:28.4780, lng:-16.2900, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-201", numero:"201", nombre:"La Laguna — Los Menceyes — La Verdellada — Cruz de Piedra (circular)",
+    color:"#E65100", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:30", hasta:"21:15" },
+    paradas:[
+      { id:"201-ll",     nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
+      { id:"201-piedra", nombre:"Cruz de Piedra",                    lat:28.4862, lng:-16.3162, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
     ]
   },
 
