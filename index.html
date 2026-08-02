@@ -16211,7 +16211,7 @@ const TITSA_LINES = [
     color:"#1565C0", tipo:"norte", frecuencia:"20-30 min", precio:"~3,50 €",
     paradas:[
       { id:"101-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"101-laguna",  nombre:"La Laguna · Intercambiador",       lat:28.4853, lng:-16.3160, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
+      { id:"101-laguna",  nombre:"La Laguna · Intercambiador (2625)",lat:28.4853, lng:-16.3160, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
       { id:"101-tacor",   nombre:"Tacoronte · Casco",                lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
       { id:"101-sauzal",  nombre:"El Sauzal · Centro",               lat:28.4720, lng:-16.4280, esTerminal:false, municipio:"El Sauzal" },
       { id:"101-victoria",nombre:"La Victoria de Acentejo",          lat:28.4340, lng:-16.4709, esTerminal:false, municipio:"La Victoria de Acentejo" },
@@ -16226,7 +16226,7 @@ const TITSA_LINES = [
     color:"#0288D1", tipo:"norte", frecuencia:"~1 h", precio:"~5,50 €",
     paradas:[
       { id:"102-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"102-laguna",  nombre:"La Laguna · Intercambiador",       lat:28.4853, lng:-16.3160, esTerminal:false,  municipio:"San Cristóbal de La Laguna" },
+      { id:"102-laguna",  nombre:"La Laguna · Intercambiador (2625)",lat:28.4853, lng:-16.3160, esTerminal:false,  municipio:"San Cristóbal de La Laguna" },
       { id:"102-tfn",     nombre:"✈️ Aeropuerto Norte (TFN)",        lat:28.4827, lng:-16.3414, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"102-tacor",   nombre:"Tacoronte · Casco",                lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
       { id:"102-ptocz",   nombre:"Puerto de la Cruz · Intercambiador",lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
@@ -16276,6 +16276,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:25", hasta:"21:40" },
     paradas:[
       { id:"103-sc",     nombre:"Santa Cruz · Intercambiador",       lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"103-laguna", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"103-ptocz",  nombre:"Puerto de la Cruz · Estación",      lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
     ]
   },
@@ -16831,6 +16832,160 @@ const TITSA_LINES = [
     ]
   },
 
+  /* ═══════ RED DE LA LAGUNA ═══════
+
+     El nodo de todo esto es el Intercambiador de La Laguna, parada 2625.
+     Estaba partido en dos coordenadas separadas 448 m -la 101 y la 102 en
+     una, la 101 nocturna y la 104 en otra- asi que lo primero fue
+     unificarlo: si no, colgar doce lineas de ahi no habria servido para
+     transbordar con las que ya estaban.
+
+     De las diecinueve lineas que da la fuente solo se pueden montar
+     doce, y varias con menos paradas de las que tienen. El motivo es
+     siempre el mismo: no hay coordenada verificada de los barrios. Se
+     quedan fuera del todo la 206, la 217, la 271, la 274, la 275, la
+     055, la 056, la 076 y la 077, de las que solo se conoce el
+     Intercambiador, y con una sola parada no se puede hacer una linea.
+
+     Las que si entran van con las paradas que se sostienen. La 204 llega
+     a la Trinidad, que ya estaba por las nocturnas; la 219 a Taco; la
+     260 al Barrio de La Salud; el resto a nucleos con lugar propio en
+     places[]. Los barrios intermedios -La Rua, El Rayo, La Verdellada,
+     Los Andenes, El Cardonal, San Matias, Finca Espana, Ravelo, El
+     Socorro- no se ponen. El nombre de la linea si los nombra, para que
+     se sepa por donde va.
+
+     La 051 y la 057 son la misma circular en sentidos opuestos. Aqui van
+     como dos lineales, cada una en su sentido, que es lo que el
+     planificador sabe usar.
+
+     La 015 que habia era la nocturna y no lo decia en el id. Pasa a
+     bus-015N, como la 101N o la 711N, y bus-015 queda para la diurna
+     directa, que es la que conecta con Santa Cruz en 15 minutos. */
+  {
+    id:"bus-015", numero:"015", nombre:"Santa Cruz — La Laguna (Directa)",
+    color:"#00695C", tipo:"norte", frecuencia:"10-15 min", precio:"desde 1,45 €", minutos:15,
+    servicio:{ desde:"05:00", hasta:"23:00" },
+    paradas:[
+      { id:"015-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"015-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-020", numero:"020", nombre:"Aerobús · La Laguna — Aeropuerto Norte",
+    color:"#00897B", tipo:"aeropuerto", frecuencia:"30 min", precio:"desde 1,45 €", minutos:10,
+    servicio:{ desde:"06:00", hasta:"22:00" },
+    paradas:[
+      { id:"020-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"020-tfn", nombre:"✈️ Aeropuerto Norte (TFN)", lat:28.4827, lng:-16.3414, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-050", numero:"050", nombre:"La Laguna — Tegueste — Bajamar — Punta del Hidalgo",
+    color:"#33691E", tipo:"norte", frecuencia:"30 min", precio:"desde 1,45 €", minutos:45,
+    servicio:{ desde:"05:40", hasta:"00:00" },
+    paradas:[
+      { id:"050-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"050-teg", nombre:"Tegueste", lat:28.5228, lng:-16.3379, esTerminal:false, municipio:"Tegueste" },
+      { id:"050-baj", nombre:"Bajamar", lat:28.5542, lng:-16.3445, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"050-ph", nombre:"Punta del Hidalgo", lat:28.5681, lng:-16.3265, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-051", numero:"051", nombre:"La Laguna — Tejina — Tacoronte (circular, sentido horario)",
+    color:"#558B2F", tipo:"norte", frecuencia:"60 min", precio:"desde 1,45 €", minutos:50,
+    servicio:{ desde:"05:00", hasta:"23:05" },
+    paradas:[
+      { id:"051-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"051-tej", nombre:"Tejina", lat:28.5332, lng:-16.3626, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"051-tac", nombre:"Tacoronte · Casco", lat:28.4808, lng:-16.4127, esTerminal:true, municipio:"Tacoronte" },
+    ]
+  },
+  {
+    id:"bus-052", numero:"052", nombre:"La Laguna — Tegueste (por El Socorro)",
+    color:"#689F38", tipo:"norte", frecuencia:"30 min", precio:"desde 1,45 €", minutos:25,
+    servicio:{ desde:"06:20", hasta:"21:20" },
+    paradas:[
+      { id:"052-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"052-teg", nombre:"Tegueste", lat:28.5228, lng:-16.3379, esTerminal:true, municipio:"Tegueste" },
+    ]
+  },
+  {
+    id:"bus-054", numero:"054", nombre:"La Laguna — Altos de El Sauzal — Ravelo",
+    color:"#7CB342", tipo:"norte", frecuencia:"60 min", precio:"desde 1,45 €", minutos:40,
+    servicio:{ desde:"05:50", hasta:"21:40" },
+    paradas:[
+      { id:"054-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"054-sau", nombre:"El Sauzal · Centro", lat:28.4793, lng:-16.4345, esTerminal:true, municipio:"El Sauzal" },
+    ]
+  },
+  {
+    id:"bus-057", numero:"057", nombre:"La Laguna — Tacoronte — Tejina (circular, sentido antihorario)",
+    color:"#827717", tipo:"norte", frecuencia:"60 min", precio:"desde 1,45 €", minutos:50,
+    servicio:{ desde:"05:05", hasta:"21:45" },
+    paradas:[
+      { id:"057-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"057-tac", nombre:"Tacoronte · Casco", lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
+      { id:"057-tej", nombre:"Tejina", lat:28.5332, lng:-16.3626, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-204", numero:"204", nombre:"La Laguna — La Rúa — El Rayo — Trinidad (circular)",
+    /* Sin "minutos": el tiempo oficial es el de la vuelta entera y de
+       esta linea solo se modelan las paradas con coordenada. Repartir
+       35 minutos sobre ese trozo daba medio kilometro por hora, o sea que el planificador
+       creia que ese salto tarda media hora. Sin el campo usa la
+       velocidad media, que aqui es mas honrada. */
+    color:"#455A64", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    servicio:{ desde:"07:05", hasta:"20:30" },
+    paradas:[
+      { id:"204-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"204-trin", nombre:"La Trinidad (Centro La Laguna)", lat:28.4858, lng:-16.3133, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-219", numero:"219", nombre:"La Laguna — El Cardonal — Taco — San Matías",
+    /* Sin "minutos": el tiempo oficial es el de la vuelta entera y de
+       esta linea solo se modelan las paradas con coordenada. Repartir
+       30 minutos sobre ese trozo daba 4 km/h, o sea que el planificador
+       creia que ese salto tarda media hora. Sin el campo usa la
+       velocidad media, que aqui es mas honrada. */
+    color:"#546E7A", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:05", hasta:"21:40" },
+    paradas:[
+      { id:"219-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"219-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-224", numero:"224", nombre:"La Laguna — Valle de Guerra — Tejina",
+    color:"#607D8B", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €", minutos:40,
+    servicio:{ desde:"05:25", hasta:"21:55" },
+    paradas:[
+      { id:"224-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"224-vg", nombre:"Valle de Guerra", lat:28.5179, lng:-16.3901, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"224-tej", nombre:"Tejina", lat:28.5332, lng:-16.3626, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-260", numero:"260", nombre:"La Laguna — Barrio de La Salud (por Finca España)",
+    color:"#78909C", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €", minutos:25,
+    servicio:{ desde:"06:30", hasta:"20:45" },
+    paradas:[
+      { id:"260-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"260-salud", nombre:"Barrio La Salud", lat:28.471, lng:-16.275, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-273", numero:"273", nombre:"La Laguna — Cruz del Carmen (Anaga)",
+    color:"#33691E", tipo:"municipal", frecuencia:"60 min", precio:"desde 1,45 €", minutos:25,
+    servicio:{ desde:"07:30", hasta:"18:30" },
+    paradas:[
+      { id:"273-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"273-cc", nombre:"Cruz del Carmen", lat:28.5308, lng:-16.2802, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+
   // ═══════════ 🦉 LÍNEAS BÚHO / NOCTURNAS ═══════════
   // Servicio nocturno TITSA — operan en horario de madrugada
   // Fuente: comunicado oficial TITSA (líneas 014, 015, 101, 104, 137, 390, 473, 934, 970, 971, 972, 974, 975)
@@ -16882,13 +17037,13 @@ const TITSA_LINES = [
     ]
   },
   {
-    id:"bus-015", numero:"015", nombre:"🦉 Santa Cruz — La Laguna (Nocturna · Vía Universidad)",
+    id:"bus-015N", numero:"015", nombre:"🦉 Santa Cruz — La Laguna (Nocturna · Vía Universidad)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
     paradas:[
-      { id:"015-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"015-cuesta",    nombre:"La Cuesta",                       lat:28.4778, lng:-16.2890, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"015-univ",      nombre:"Campus Guajara (Universidad)",    lat:28.4848, lng:-16.3175, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"015-trinidad",  nombre:"La Trinidad (La Laguna)",         lat:28.4858, lng:-16.3133, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
+      { id:"015N-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"015N-cuesta",    nombre:"La Cuesta",                       lat:28.4778, lng:-16.2890, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"015N-univ",      nombre:"Campus Guajara (Universidad)",    lat:28.4848, lng:-16.3175, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"015N-trinidad",  nombre:"La Trinidad (La Laguna)",         lat:28.4858, lng:-16.3133, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
     ]
   },
   {
@@ -16896,7 +17051,7 @@ const TITSA_LINES = [
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~5,40 €",
     paradas:[
       { id:"101N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"101N-laguna",   nombre:"La Laguna (Intercambiador)",      lat:28.4839, lng:-16.3203, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"101N-laguna",   nombre:"La Laguna · Intercambiador (2625)",lat:28.4853, lng:-16.3160, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"101N-tacoront", nombre:"Tacoronte",                       lat:28.4753, lng:-16.4153, esTerminal:false, municipio:"Tacoronte" },
       { id:"101N-victoria", nombre:"Cruce La Victoria (T) · 4003",    lat:28.4108, lng:-16.4639, esTerminal:false, municipio:"La Victoria de Acentejo" },
       { id:"101N-orotava",  nombre:"La Orotava (Cruce)",              lat:28.3897, lng:-16.5236, esTerminal:false, municipio:"La Orotava" },
@@ -16908,7 +17063,7 @@ const TITSA_LINES = [
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~7,60 €",
     paradas:[
       { id:"104N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"104N-laguna",   nombre:"La Laguna",                        lat:28.4839, lng:-16.3203, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"104N-laguna",   nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"104N-pcruz",    nombre:"Puerto de la Cruz",               lat:28.4136, lng:-16.5446, esTerminal:true,  municipio:"Puerto de la Cruz" },
     ]
   },
