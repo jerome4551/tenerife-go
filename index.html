@@ -16617,8 +16617,8 @@ const TITSA_LINES = [
   },
   {
     id:"bus-910", numero:"910", nombre:"Santa Cruz — San Andrés — Playa de Las Teresitas",
-    color:"#0288D1", tipo:"municipal", frecuencia:"10-15 min", precio:"1,25-2 €",
-    servicio:{ desde:"06:00", hasta:"22:30" },
+    color:"#0288D1", tipo:"municipal", frecuencia:"10-15 min", precio:"1,25-2 €", minutos:25,
+    servicio:{ desde:"05:10", hasta:"23:30" },
     paradas:[
       { id:"910-intercamb", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"910-sanandres", nombre:"San Andrés",                  lat:28.5050, lng:-16.1934, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
@@ -16986,6 +16986,287 @@ const TITSA_LINES = [
     ]
   },
 
+  /* ═══════ RED URBANA DE SANTA CRUZ Y RESTO DE LA LAGUNA ═══════
+
+     Veintisiete lineas mas. Casi todas van con dos o tres paradas: de
+     los barrios -Cuesta Piedra, Plaza del Principe, Barrio Nuevo, Muelle
+     Norte, Ramblas, Moraditas de Taco, Finca Espana, Pitis, Plaza de
+     Toros, Las Retamas, Ifara, Plaza de Espana, Mercado, Barranco de
+     Santos, Avenida de Anaga, Las Veredillas, El Tablero, Alisios,
+     Llano del Moro, Acoran, Costanera, Boca Cangrejo, Igueste de San
+     Andres, Taganana, Almaciga, El Bailadero, Chamorga, Las Chumberas,
+     Las Canteras, La Verdellada, San Lazaro, Tornero, Villa Benitez,
+     Guamasa y El Ortigal- no hay coordenada verificada.
+
+     Conviene decir que eso significa: estas lineas SALEN en el panel y
+     en el buscador, con su horario y su frecuencia, pero NO anaden
+     ninguna ruta nueva al planificador, porque no aportan un solo nodo
+     que no estuviera ya. La capacidad de calcular viajes solo crece con
+     coordenadas nuevas, no con lineas nuevas.
+
+     Se quedan fuera del todo la 902, la 903, la 905, la 921, la 940, la
+     201, la 203 y la 253: de esas no se conoce ni una parada con
+     coordenada aparte de la cabecera, y con una sola no hay linea.
+
+     El tiempo oficial solo se pone cuando cuadra con lo que se modela.
+     Si repartir los minutos de toda la linea sobre el trozo conocido da
+     menos de 10 km/h, el campo no se pone y se usa la velocidad media:
+     es la leccion de la 204, que con 35 minutos sobre 300 metros salia a
+     medio kilometro por hora. */
+  {
+    id:"bus-901", numero:"901", nombre:"Intercambiador — Cuesta Piedra — Barrio de la Salud",
+    color:"#00838F", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:00", hasta:"21:45" },
+    paradas:[
+      { id:"901-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"901-salud", nombre:"Barrio La Salud", lat:28.471, lng:-16.275, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-904", numero:"904", nombre:"Intercambiador — Barrio de la Salud — Finca España",
+    color:"#0097A7", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:20", hasta:"21:00" },
+    paradas:[
+      { id:"904-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"904-salud", nombre:"Barrio La Salud", lat:28.471, lng:-16.275, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-906", numero:"906", nombre:"Intercambiador — Barrio la Salud (por Plaza de Toros)",
+    color:"#00ACC1", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:00", hasta:"22:00" },
+    paradas:[
+      { id:"906-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"906-salud", nombre:"Barrio La Salud", lat:28.471, lng:-16.275, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-908", numero:"908", nombre:"Intercambiador — Ofra — Las Retamas",
+    color:"#26C6DA", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:00", hasta:"21:30" },
+    paradas:[
+      { id:"908-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"908-ofra", nombre:"Ofra", lat:28.478, lng:-16.29, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-911", numero:"911", nombre:"Intercambiador — Barrio de La Salud — Cuesta Piedra",
+    color:"#0288D1", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    servicio:{ desde:"05:30", hasta:"22:45" },
+    paradas:[
+      { id:"911-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"911-salud", nombre:"Barrio La Salud", lat:28.471, lng:-16.275, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-912", numero:"912", nombre:"Intercambiador — San Andrés — Ifara",
+    color:"#039BE5", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:30,
+    servicio:{ desde:"06:45", hasta:"21:00" },
+    paradas:[
+      { id:"912-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"912-sanand", nombre:"San Andrés", lat:28.505, lng:-16.1934, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-914", numero:"914", nombre:"Circular centro · Plaza de España — Weyler — Mercado",
+    color:"#4FC3F7", tipo:"municipal", frecuencia:"10-20 min", precio:"desde 1,45 €",
+    servicio:{ desde:"07:00", hasta:"20:30" },
+    paradas:[
+      { id:"914-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"914-weyler", nombre:"Plaza Weyler", lat:28.4707, lng:-16.2603, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-919", numero:"919", nombre:"Intercambiador — Barrio de la Salud (por Barranco de Santos)",
+    color:"#29B6F6", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:30", hasta:"20:45" },
+    paradas:[
+      { id:"919-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"919-salud", nombre:"Barrio La Salud", lat:28.471, lng:-16.275, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-920", numero:"920", nombre:"Intercambiador — Plaza de España — La Cuesta",
+    color:"#1E88E5", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:00", hasta:"21:30" },
+    paradas:[
+      { id:"920-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"920-cuesta", nombre:"La Cuesta", lat:28.4778, lng:-16.289, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-933", numero:"933", nombre:"Intercambiador — Taco — El Tablero",
+    color:"#3949AB", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:00", hasta:"21:30" },
+    paradas:[
+      { id:"933-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"933-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-934", numero:"934", nombre:"Intercambiador — Taco — Añaza — Santa María del Mar (circular SO)",
+    color:"#5C6BC0", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:40,
+    servicio:{ desde:"05:30", hasta:"22:30" },
+    paradas:[
+      { id:"934-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"934-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"934-anaza", nombre:"Añaza", lat:28.428, lng:-16.285, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"934-stamar", nombre:"Santa María del Mar", lat:28.436, lng:-16.279, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-935", numero:"935", nombre:"Intercambiador — Añaza — Alisios — Santa María del Mar",
+    color:"#7986CB", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:35,
+    servicio:{ desde:"06:00", hasta:"21:45" },
+    paradas:[
+      { id:"935-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"935-anaza", nombre:"Añaza", lat:28.428, lng:-16.285, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"935-stamar", nombre:"Santa María del Mar", lat:28.436, lng:-16.279, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-936", numero:"936", nombre:"Intercambiador — Añaza — Alisios — Taco",
+    color:"#9FA8DA", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:40,
+    servicio:{ desde:"05:45", hasta:"22:00" },
+    paradas:[
+      { id:"936-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"936-anaza", nombre:"Añaza", lat:28.428, lng:-16.285, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"936-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-937", numero:"937", nombre:"Intercambiador — Taco — Tíncer — Cruce El Sobradillo",
+    color:"#5E35B1", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:30,
+    servicio:{ desde:"06:15", hasta:"21:15" },
+    paradas:[
+      { id:"937-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"937-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"937-tincer", nombre:"Tíncer", lat:28.471, lng:-16.279, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"937-sobra", nombre:"El Sobradillo", lat:28.4595, lng:-16.292, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-939", numero:"939", nombre:"Intercambiador — El Sobradillo — Llano del Moro",
+    color:"#7E57C2", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:10", hasta:"20:30" },
+    paradas:[
+      { id:"939-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"939-sobra", nombre:"El Sobradillo", lat:28.4595, lng:-16.292, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-941", numero:"941", nombre:"Intercambiador — Añaza — Acorán — Boca Cangrejo",
+    color:"#9575CD", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    servicio:{ desde:"07:05", hasta:"19:45" },
+    paradas:[
+      { id:"941-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"941-anaza", nombre:"Añaza", lat:28.428, lng:-16.285, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-944", numero:"944", nombre:"El Tablero — La Gallega — Tíncer — Taco",
+    color:"#B39DDB", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:25,
+    servicio:{ desde:"06:30", hasta:"20:45" },
+    paradas:[
+      { id:"944-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"944-tincer", nombre:"Tíncer", lat:28.471, lng:-16.279, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"944-gallega", nombre:"La Gallega", lat:28.456, lng:-16.297, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-945", numero:"945", nombre:"Intercambiador — San Andrés — Igueste de San Andrés",
+    color:"#00695C", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:40,
+    servicio:{ desde:"06:10", hasta:"21:15" },
+    paradas:[
+      { id:"945-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"945-sanand", nombre:"San Andrés", lat:28.505, lng:-16.1934, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-946", numero:"946", nombre:"Intercambiador — San Andrés — Taganana — Almáciga (Anaga)",
+    color:"#00796B", tipo:"municipal", frecuencia:"60 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:30", hasta:"20:30" },
+    paradas:[
+      { id:"946-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"946-sanand", nombre:"San Andrés", lat:28.505, lng:-16.1934, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-947", numero:"947", nombre:"Intercambiador — San Andrés — El Bailadero — Chamorga",
+    color:"#00897B", tipo:"municipal", frecuencia:"2-3 salidas/día", precio:"desde 1,45 €",
+    servicio:{ desde:"06:30", hasta:"19:00" },
+    paradas:[
+      { id:"947-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"947-sanand", nombre:"San Andrés", lat:28.505, lng:-16.1934, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-213", numero:"213", nombre:"La Laguna — El Cardonal — Las Chumberas",
+    color:"#EF6C00", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:40", hasta:"21:00" },
+    paradas:[
+      { id:"213-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"213-card", nombre:"El Cardonal", lat:28.485, lng:-16.3015, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-220", numero:"220", nombre:"La Laguna — Las Chumberas — Campus Guajara",
+    color:"#F57C00", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    servicio:{ desde:"07:15", hasta:"19:45" },
+    paradas:[
+      { id:"220-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"220-guaj", nombre:"Campus Guajara (Universidad)", lat:28.4848, lng:-16.3175, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-222", numero:"222", nombre:"La Laguna — Valle de Guerra — Tejina (por Las Canteras)",
+    color:"#FB8C00", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €", minutos:35,
+    servicio:{ desde:"06:05", hasta:"21:10" },
+    paradas:[
+      { id:"222-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"222-vg", nombre:"Valle de Guerra", lat:28.5179, lng:-16.3901, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"222-tej", nombre:"Tejina", lat:28.5332, lng:-16.3626, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-231", numero:"231", nombre:"La Laguna — La Cuesta — Finca España",
+    color:"#FF9800", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:10", hasta:"21:35" },
+    paradas:[
+      { id:"231-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"231-cuesta", nombre:"La Cuesta", lat:28.4778, lng:-16.289, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-232", numero:"232", nombre:"La Laguna — La Cuesta — Taco — El Cardonal",
+    color:"#FFA726", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    servicio:{ desde:"05:45", hasta:"22:15" },
+    paradas:[
+      { id:"232-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"232-cuesta", nombre:"La Cuesta", lat:28.4778, lng:-16.289, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"232-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"232-card", nombre:"El Cardonal", lat:28.485, lng:-16.3015, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-233", numero:"233", nombre:"La Laguna — Finca España — Taco",
+    color:"#FFB74D", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:15", hasta:"21:20" },
+    paradas:[
+      { id:"233-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"233-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-018", numero:"018", nombre:"La Laguna — Añaza (por centros comerciales)",
+    color:"#6D4C41", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    servicio:{ desde:"06:00", hasta:"21:40" },
+    paradas:[
+      { id:"018-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"018-anaza", nombre:"Añaza", lat:28.428, lng:-16.285, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+
   // ═══════════ 🦉 LÍNEAS BÚHO / NOCTURNAS ═══════════
   // Servicio nocturno TITSA — operan en horario de madrugada
   // Fuente: comunicado oficial TITSA (líneas 014, 015, 101, 104, 137, 390, 473, 934, 970, 971, 972, 974, 975)
@@ -17028,8 +17309,13 @@ const TITSA_LINES = [
     ]
   },
   {
-    id:"bus-014", numero:"014", nombre:"🦉 Santa Cruz — La Laguna (Nocturna)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
+    /* Deja de ser solo nocturna: la fuente le da 05:15 a 02:30, que es
+       servicio casi continuo, y 40 minutos fijos por carretera general
+       sin pisar la autopista. Sigue en el grupo de nocturnas porque de
+       madrugada es de las pocas que quedan. */
+    id:"bus-014", numero:"014", nombre:"Santa Cruz — La Cuesta — La Laguna (casi continua)",
+    color:"#7c3aed", tipo:"nocturna", frecuencia:"Continua", precio:"~1,40 €", minutos:40,
+    servicio:{ desde:"05:15", hasta:"02:30" },
     paradas:[
       { id:"014-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"014-cuesta",    nombre:"La Cuesta",                       lat:28.4778, lng:-16.2890, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
