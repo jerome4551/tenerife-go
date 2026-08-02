@@ -16041,9 +16041,9 @@ if (typeof dpRenderZoneCards === 'function') dpRenderZoneCards();
      Calle la Cancela 1, a 250 m de la plaza. Corregida en la 355, que
      es la unica que la conserva.
 
-   - Los Silos y Garachico se quedan SIN NINGUNA LINEA. La que les
-     corresponde es la 363, que no esta en la tabla. Buenavista la
-     mantiene la 355; la fuente nombra tambien la 363 y la 369.
+   - Los Silos y Garachico se quedaron sin ninguna linea al recortar la
+     102 y la 104. RESUELTO: se ha anadido la 363, que es la que pasa
+     por los dos y la que muere en la terminal de Buenavista.
 
    - Los enlaces de autopista llevan ya su nombre oficial: "Cruce La
      Victoria (T)", codigo 4003, en el enlace 27 de la TF-5, y "Cruce de
@@ -16261,7 +16261,7 @@ const TITSA_LINES = [
      tarifa por tramos que se dio cubre otras seis lineas, no esta. */
   {
     id:"bus-415", numero:"415", nombre:"San Isidro — Aeropuerto Sur — Costa del Silencio — El Fraile",
-    color:"#5D4037", tipo:"sur", frecuencia:"60 min", precio:"consultar TITSA",
+    color:"#5D4037", tipo:"sur", frecuencia:"60 min", precio:"1,45-2,45 €",
     paradas:[
       { id:"415-sanisidro",nombre:"San Isidro (Enlace TF-1)",         lat:28.0625, lng:-16.5635, esTerminal:true,  municipio:"Granadilla de Abona" },
       { id:"415-tfs",      nombre:"✈️ Aeropuerto Sur (TFS)",          lat:28.0445, lng:-16.5722, esTerminal:false, municipio:"Granadilla de Abona" },
@@ -16480,32 +16480,28 @@ const TITSA_LINES = [
      Sin coordenada no se ponen, que asi fue como La Arena acabo a 7,5 km.
      Tamaimo falta por lo mismo en la 325.
 
-     RECORRIDOS COMPLETOS, tal como los da la fuente, con el codigo de
-     parada. Se guardan aqui porque las coordenadas no estan y sin ellas
-     no se pueden poner en la tabla; el dia que aparezcan, esto es lo que
-     hay que montar:
+     RECORRIDOS. Ya con las coordenadas GPS de los pueblos de montana,
+     la 461 lleva nueve paradas y la 462 once. Siguen faltando, por no
+     tener coordenada: Parque Las Eras 7576, El Pino 7577, los Cruces de
+     Tamaimo 7580 y 7581, El Retamar 7584 y El Varadero 7236 en la 461;
+     y Correos 7477, Las Veredas 7478, Avenida Isora 7479, El Junquito
+     7480 y El Varadero en la 462.
 
-       461  El Cercado 7574 (cabecera) · Arguayo 7575 ·
-            Parque Las Eras 7576 · El Pino 7577 ·
-            San Isidro Las Manchas 8147 · Cruces de Tamaimo 7580 y 7581 ·
-            Tamaimo 7582 · El Retamar 7584 · San Francisco 7243 ·
-            Cueva del Polvo 7241 · El Varadero 7236 ·
-            Playa de la Arena 7232 · Puerto de Santiago 7222 ·
-            Acantilado de Los Gigantes 7217
+     DOS COORDENADAS QUE NO CONVENCEN, aunque se usan:
 
-       462  Guia de Isora Terminal 7494 · Correos 7477 ·
-            Las Veredas 7478 · Avenida Isora 7479 · El Junquito 7480 ·
-            Chio 7482 · Chiguergue 7486 (solo calendario escolar) ·
-            Arguayo 7575 · Valle de Arriba 7578 ·
-            Santiago del Teide Centro 7579 · Tamaimo 7582 ·
-            San Francisco 7243 · Cueva del Polvo 7241 ·
-            El Varadero 7236 · Playa de la Arena 7232 ·
-            Los Gigantes 7217
+       Cueva del Polvo cae a 37 metros de la parada de Puerto de
+       Santiago. Puede ser: son dos paradas seguidas de la misma bajada.
+       Pero 37 m es muy poco para dos paradas distintas.
 
-     La 325 para tambien en Tamaimo, obligatoriamente, en Cruce de
-     Tamaimo 7581 bajando y Tamaimo Centro 7582. Es el punto de
-     transbordo entre el norte y las lineas de montana sin bajar a la
-     costa. Falta por lo mismo: no hay coordenada de Tamaimo.
+       Chio tiene EXACTAMENTE la misma latitud que el nucleo de Guia de
+       Isora, 28,2111, hasta la cuarta cifra, y queda a 900 m de el. Dos
+       puntos medidos por separado no suelen coincidir asi. Huele a
+       coordenada derivada de la otra, no medida. Chio se describe como
+       cruce de las medianias ALTAS y esta sale casi al mismo nivel que
+       el casco.
+
+     Ninguna de las dos rompe nada -las dos caen donde deben, en su
+     municipio y en el orden correcto de la ruta- pero conviene mirarlas.
 
      La frecuencia de las dos va como texto de horario, no como cifra de
      espera, y por eso se enseno a parseFrequencyMinutes a leer "/dia":
@@ -16579,28 +16575,67 @@ const TITSA_LINES = [
       { id:"325-icod",     nombre:"Icod de los Vinos",               lat:28.3722, lng:-16.7178, esTerminal:false, municipio:"Icod de los Vinos" },
       { id:"325-tanque",   nombre:"El Tanque",                       lat:28.3562, lng:-16.7792, esTerminal:false, municipio:"El Tanque" },
       { id:"325-stiag",    nombre:"Santiago del Teide",              lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"325-tamaimo",  nombre:"Tamaimo (7582)",                  lat:28.268028, lng:-16.821000, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"325-arena",    nombre:"Playa de la Arena (7232)",        lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"325-ptosant",  nombre:"Puerto de Santiago (7222)",       lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"325-gigant",   nombre:"Los Gigantes · Terminal",         lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
     ]
   },
   {
-    id:"bus-461", numero:"461", nombre:"Arguayo — Santiago del Teide — Los Gigantes (vecinal)",
+    id:"bus-461", numero:"461", nombre:"El Cercado — Arguayo — Tamaimo — Los Gigantes (vecinal)",
     color:"#795548", tipo:"municipal", frecuencia:"L-V, 3 salidas/día", precio:"1,45-2,10 €",
     paradas:[
-      { id:"461-stiag",   nombre:"Santiago del Teide",               lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"461-cercado", nombre:"El Cercado (7574)",                lat:28.274389, lng:-16.812000, esTerminal:true,  municipio:"Santiago del Teide" },
+      { id:"461-arguayo", nombre:"Arguayo (7575)",                   lat:28.271722, lng:-16.813333, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"461-manchas", nombre:"Las Manchas (8147)",               lat:28.260722, lng:-16.815028, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"461-tamaimo", nombre:"Tamaimo (7582)",                   lat:28.268028, lng:-16.821000, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"461-sanfran", nombre:"San Francisco (7243)",             lat:28.238361, lng:-16.836444, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"461-polvo",   nombre:"Cueva del Polvo (7241)",           lat:28.235389, lng:-16.838694, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"461-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
-      { id:"461-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
+      { id:"461-ptosant", nombre:"Puerto de Santiago (7222)",        lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"461-gigant",  nombre:"Los Gigantes · Terminal (7217)",   lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
     ]
   },
   {
-    id:"bus-462", numero:"462", nombre:"Guía de Isora — Santiago del Teide — Los Gigantes (medianías)",
+    id:"bus-462", numero:"462", nombre:"Guía de Isora — Chío — Santiago del Teide — Los Gigantes (medianías)",
     color:"#8D6E63", tipo:"municipal", frecuencia:"L-V, pocas salidas/día", precio:"1,45-2,10 €",
     paradas:[
       { id:"462-guia",    nombre:"Guía de Isora · Terminal (7494)",  lat:28.2125, lng:-16.7783, esTerminal:true,  municipio:"Guía de Isora" },
-      { id:"462-stiag",   nombre:"Santiago del Teide",               lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"462-chio",    nombre:"Chío (7482)",                      lat:28.211056, lng:-16.786972, esTerminal:false, municipio:"Guía de Isora" },
+      { id:"462-chiguer", nombre:"Chiguergue (7486)",                lat:28.227917, lng:-16.788806, esTerminal:false, municipio:"Guía de Isora" },
+      { id:"462-arguayo", nombre:"Arguayo (7575)",                   lat:28.271722, lng:-16.813333, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"462-vallear", nombre:"Valle de Arriba (7578)",           lat:28.291028, lng:-16.818472, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"462-stiag",   nombre:"Santiago del Teide · Centro (7579)",lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"462-tamaimo", nombre:"Tamaimo (7582)",                   lat:28.268028, lng:-16.821000, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"462-sanfran", nombre:"San Francisco (7243)",             lat:28.238361, lng:-16.836444, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"462-polvo",   nombre:"Cueva del Polvo (7241)",           lat:28.235389, lng:-16.838694, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"462-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
-      { id:"462-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
+      { id:"462-gigant",  nombre:"Los Gigantes · Terminal (7217)",   lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
+    ]
+  },
+  /* Linea 363 · Puerto de la Cruz - Icod - Buenavista.
+
+     Es la que devuelve Garachico y Los Silos a la tabla. Se quedaron sin
+     ninguna linea al recortar la 102 y la 104, que no llegan hasta alli.
+     La 363 si, y ademas es la que muere en la terminal de Buenavista.
+
+     Faltan La Caleta de Interian (4406) y Tierra de Trigo (4418): sin
+     coordenada. Garachico usa la de piscinas-garachico, que es
+     exactamente lo que describe la fuente -la parada junto al casco
+     historico y las piscinas naturales-; Los Silos la del nucleo, que
+     esta a pie de la Carretera General como dice la ficha; y Buenavista
+     el mismo nodo que ya usa la 355.
+
+     Frecuencia y precio pendientes: no hay dato y no se inventa. */
+  {
+    id:"bus-363", numero:"363", nombre:"Puerto de la Cruz — Icod — Garachico — Buenavista",
+    color:"#00838F", tipo:"norte", frecuencia:"consultar TITSA", precio:"consultar TITSA",
+    paradas:[
+      { id:"363-pcruz",   nombre:"Puerto de la Cruz · Estación",     lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
+      { id:"363-icod",    nombre:"Icod de los Vinos",                lat:28.3722, lng:-16.7178, esTerminal:false, municipio:"Icod de los Vinos" },
+      { id:"363-garach",  nombre:"Garachico · Piscina (4398)",       lat:28.3735, lng:-16.7661, esTerminal:false, municipio:"Garachico" },
+      { id:"363-silos",   nombre:"Los Silos · Estación (4414)",      lat:28.3655, lng:-16.8169, esTerminal:false, municipio:"Los Silos" },
+      { id:"363-buena",   nombre:"Buenavista del Norte · Terminal (4432)", lat:28.3718, lng:-16.8510, esTerminal:true,  municipio:"Buenavista del Norte" },
     ]
   },
   {
