@@ -16809,7 +16809,10 @@ const TITSA_LINES = [
      nodo ya en la tabla. Precio pendiente. */
   {
     id:"bus-354", numero:"354", nombre:"Puerto de la Cruz — La Guancha — Icod de los Vinos",
-    color:"#0097A7", tipo:"norte", frecuencia:"consultar TITSA", precio:"3,45 €", minutos:55,
+    /* Cada dos horas fijas: el tramo de Icod Alto es escarpado y la
+       vuelta es larga. Es la frecuencia mas espaciada de las lineas
+       regulares de la tabla. */
+    color:"#0097A7", tipo:"norte", frecuencia:"~2 h", precio:"3,45 €", minutos:55,
     servicio:{ desde:"05:55", hasta:"22:35" },
     paradas:[
       { id:"354-pcruz",   nombre:"Puerto de la Cruz · Estación",     lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
