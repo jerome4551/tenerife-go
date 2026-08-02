@@ -16011,12 +16011,23 @@ if (typeof dpRenderZoneCards === 'function') dpRenderZoneCards();
    c) La 348 lleva El Botanico y la 102 Buenavista del Norte Terminal,
       sin confirmar en el folleto.
 
-   El 116 no aparece ni una sola vez en los tres folletos, lo que
-   refuerza haberlo quitado. El 711 y el 107 SI aparecen, y mucho -el
-   711 treinta y una veces solo en el folleto del sur-, pero no estan en
-   el listado de lineas actuales. Existian en la red de 2020 y ya no.
-   Que la serie 700 no aparezca en el listado de hoy no significa que
-   nunca haya existido.
+   RESUELTO despues, con la fuente delante:
+
+   - El 116 no aparece ni una vez en los tres folletos y esta eliminado
+     desde hace anos. Fuera, confirmado.
+   - El 711 SI existe y esta activo: es la buho grande del sur. Se
+     retiro por error al no venir en un listado, y esta de vuelta. El
+     folleto lo nombra treinta y una veces solo en el sur.
+   - El 107 sigue fuera, cancelado.
+   - La 110 termina en la Estacion de Costa Adeje. Corregida.
+   - La 473 SI pasa por Las Americas y Torviscas: la cabecera del
+     folleto solo nombra los puntos principales, no el recorrido. Su
+     lista de paradas esta rehecha.
+   - La 473 nocturna a Las Galletas no existia. Retirada.
+
+   Leccion, porque costo dos vueltas: un listado de numeros no dice
+   quien no existe, solo quien si. Y una cabecera de linea no es su
+   recorrido.
    ────────────────────────────────────────────────────────── */
 const TITSA_LINES = [
 
@@ -16293,12 +16304,15 @@ const TITSA_LINES = [
   {
     id:"bus-473", numero:"473", nombre:"Los Cristianos — Costa Adeje — Callao Salvaje — Los Gigantes",
     color:"#EF6C00", tipo:"sur", frecuencia:"30-60 min", precio:"~3 €",
+    nota:{ es:"Última expedición sobre la 01:25, por el mismo recorrido. No hay una 473 nocturna a Las Galletas: eso lo cubren la 467 y la 470.", en:"Last run around 01:25, along the same route. There is no night 473 to Las Galletas: that is covered by the 467 and the 470.", fr:"Dernier départ vers 01h25, sur le même itinéraire. Il n'existe pas de 473 de nuit vers Las Galletas : ce sont les 467 et 470.", de:"Letzte Fahrt gegen 01:25 Uhr, auf derselben Strecke. Eine Nacht-473 nach Las Galletas gibt es nicht: das fahren die 467 und die 470.", it:"Ultima corsa verso l'01:25, sullo stesso percorso. Non esiste una 473 notturna per Las Galletas: la fanno la 467 e la 470.", nl:"Laatste rit rond 01:25, over dezelfde route. Er is geen nacht-473 naar Las Galletas: dat rijden de 467 en de 470.", zh:"末班车约01:25发出，路线不变。没有开往拉斯加列塔斯的473路夜班车：那一段由467路和470路负责。", zht:"末班車約01:25發出，路線不變。沒有開往拉斯加列塔斯的473路夜班車：那一段由467路和470路負責。" },
     paradas:[
       { id:"473-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
-      { id:"473-americas",nombre:"Las Américas",                     lat:28.0680, lng:-16.7290, esTerminal:false, municipio:"Adeje" },
-      { id:"473-torvisc", nombre:"Torviscas",                        lat:28.0870, lng:-16.7390, esTerminal:false, municipio:"Adeje" },
+      { id:"473-magma",   nombre:"Magma · Playa de las Américas",    lat:28.0680, lng:-16.7290, esTerminal:false, municipio:"Adeje" },
       { id:"473-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:false, municipio:"Adeje" },
+      { id:"473-torvisc", nombre:"Torviscas Alta",                   lat:28.0870, lng:-16.7390, esTerminal:false, municipio:"Adeje" },
+      { id:"473-fanabe",  nombre:"Playa Fañabé",                     lat:28.0880, lng:-16.7420, esTerminal:false, municipio:"Adeje" },
       { id:"473-armenime",nombre:"Armeñime",                         lat:28.1140, lng:-16.7660, esTerminal:false, municipio:"Adeje" },
+      { id:"473-paraiso", nombre:"Playa Paraíso",                    lat:28.1224, lng:-16.7737, esTerminal:false, municipio:"Adeje" },
       { id:"473-callao",  nombre:"Callao Salvaje",                   lat:28.1274, lng:-16.7820, esTerminal:false, municipio:"Adeje" },
       { id:"473-sanjuan", nombre:"Playa San Juan",                   lat:28.1816, lng:-16.8171, esTerminal:false, municipio:"Guía de Isora" },
       { id:"473-alcala",  nombre:"Alcalá",                           lat:28.2006, lng:-16.8286, esTerminal:false, municipio:"Guía de Isora" },
@@ -16518,6 +16532,36 @@ const TITSA_LINES = [
   // La 711 salia en esa lista y se ha retirado: el numero no existe en el
   // listado oficial de lineas, que no tiene serie 700. Eso deja en duda la
   // lista entera del comunicado, no solo esa entrada.
+  /* La 711 nocturna vuelve. Se retiro porque su numero no salia en el
+     listado de lineas actuales, y era un error: esta activa, es la buho
+     grande del sur, y aparece treinta y una veces en el folleto oficial
+     del sur. La que si esta eliminada desde hace anos es la 116.
+
+     Para en los enlaces de la TF-1 a demanda -Candelaria/Caletillas,
+     Arico, San Isidro, Guaza- y entra en la terminal del aeropuerto de
+     madrugada. El bloque se recupera igual que estaba, sin inventarle
+     paradas.
+
+     Falta El Camison, que segun la fuente es donde deja de madrugada
+     para Las Vistas y el Safari. No hay coordenada verificada. */
+  {
+    id:"bus-711N", numero:"711", nombre:"🦉 Santa Cruz — Aeropuerto Sur — Los Cristianos — Costa Adeje (Nocturna)",
+    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~9,35 €",
+    paradas:[
+      { id:"711N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"711N-caletil",  nombre:"Cruce Caletillas",                lat:28.3697, lng:-16.3683, esTerminal:false, municipio:"Candelaria" },
+      { id:"711N-candel",   nombre:"Cruce Candelaria",                lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
+      { id:"711N-guimar",   nombre:"Cruce Güímar",                    lat:28.3186, lng:-16.4106, esTerminal:false, municipio:"Güímar" },
+      { id:"711N-arico",    nombre:"Cruce Arico",                     lat:28.1736, lng:-16.5147, esTerminal:false, municipio:"Arico" },
+      { id:"711N-chimich",  nombre:"Cruce Chimiche",                  lat:28.1450, lng:-16.5419, esTerminal:false, municipio:"Granadilla de Abona" },
+      { id:"711N-sanisid",  nombre:"Cruce San Isidro",                lat:28.0989, lng:-16.5642, esTerminal:false, municipio:"Granadilla de Abona" },
+      { id:"711N-aerop",    nombre:"✈️ Aeropuerto Sur (Reina Sofía)", lat:28.0444, lng:-16.5725, esTerminal:false, municipio:"Granadilla de Abona" },
+      { id:"711N-sanmig",   nombre:"Cruce San Miguel",                lat:28.0500, lng:-16.6178, esTerminal:false, municipio:"San Miguel de Abona" },
+      { id:"711N-guaza",    nombre:"Cruce de Guaza",                  lat:28.0383, lng:-16.6850, esTerminal:false, municipio:"Arona" },
+      { id:"711N-crist",    nombre:"Los Cristianos",                  lat:28.0497, lng:-16.7158, esTerminal:false, municipio:"Arona" },
+      { id:"711N-adeje",    nombre:"Estación Costa Adeje",            lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
+    ]
+  },
   {
     id:"bus-014", numero:"014", nombre:"🦉 Santa Cruz — La Laguna (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
@@ -16585,30 +16629,13 @@ const TITSA_LINES = [
       { id:"390N-adeje",    nombre:"Estación Costa Adeje",            lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
     ]
   },
-  /* CONFLICTO SIN RESOLVER · el recorrido de esta 473 nocturna.
+  /* Aqui estaba una 473 nocturna a Las Galletas. No existe: era una
+     fusion de datos. La 473 real estira sus ultimas expediciones hasta
+     la 01:25 por su mismo recorrido del oeste, y Las Galletas la cubren
+     la 467 y la 470. Se retira el recorrido inventado y el horario de
+     madrugada se anota en la nota de la 473, que es donde sirve.
 
-     Que el numero se repita entre diurna y nocturna es normal en esta
-     tabla: la 101 y la 711 hacen lo mismo, porque TITSA reutiliza el
-     numero de la linea de dia para su buho. Lo raro es otra cosa: la
-     ficha oficial de la parada 7232 dice que la 473 es la diurna Los
-     Cristianos - Costa Adeje - Callao Salvaje - Los Gigantes, es decir
-     el corredor del oeste, y esta nocturna baja al sureste, a Las
-     Galletas. La 101N y la 711N si repiten el trayecto de su diurna.
-
-     O el numero esta mal o el recorrido lo esta, y desde aqui no hay
-     forma de saber cual: el proxy bloquea titsa.com. Se deja como esta
-     en vez de borrar un servicio que puede existir o de inventarle otro
-     numero. Pendiente de la ficha de la linea para cerrarlo. */
-  {
-    id:"bus-473N", numero:"473", nombre:"🦉 Los Cristianos — Las Galletas (Nocturna Sur)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,55 €",
-    paradas:[
-      { id:"473N-crist",    nombre:"Los Cristianos",                  lat:28.0497, lng:-16.7158, esTerminal:true,  municipio:"Arona" },
-      { id:"473N-chayof",   nombre:"Chayofa",                         lat:28.0719, lng:-16.7022, esTerminal:false, municipio:"Arona" },
-      { id:"473N-cabezo",   nombre:"El Cabezo",                       lat:28.0506, lng:-16.6664, esTerminal:false, municipio:"Arona" },
-      { id:"473N-gallet",   nombre:"Las Galletas",                    lat:28.0192, lng:-16.6531, esTerminal:true,  municipio:"Arona" },
-    ]
-  },
+     Con ella se van Chayofa y El Cabezo, que no tenian otra linea. */
   /* Y aqui la 711 nocturna, por lo mismo. Era el unico servicio de
      madrugada al aeropuerto sur en la tabla, asi que la perdida se nota:
      se van Cruce Caletillas, Cruce Chimiche, Cruce San Isidro,
