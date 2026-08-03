@@ -18206,6 +18206,72 @@ const TITSA_LINES = [
       { id:"494-gigant", nombre:"Los Gigantes · Terminal", lat:28.2443, lng:-16.8397, esTerminal:true , municipio:"Santiago del Teide" },
     ]
   },
+  /* SEIS FICHAS METROPOLITANAS, DE LAS QUE ENTRAN CINCO
+     La 032 -Güímar, El Socorro, Las Eras, La Sombrera- se queda fuera: de
+     sus cuatro paradas solo tenemos Güímar, y una linea de una parada no es
+     una linea. Faltan las otras tres coordenadas.
+
+     La 026 y la 055 llevan tarifa plana de 1,45 € aunque crucen de Santa
+     Cruz a La Laguna, porque van dentro del convenio comarcal. No es un
+     descuido: es su tarifa. */
+  {
+    id:"bus-010", numero:"010", nombre:"Santa Cruz — Caletillas — San Isidro — Aeropuerto Sur",
+    color:"#006064", tipo:"aeropuerto", frecuencia:"30-45 min", precio:"9,35 €", minutos:50,
+    servicio:{ desde:"05:10", hasta:"23:05" },
+    paradas:[
+      { id:"010-scint", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"010-calet", nombre:"Cruce Caletillas", lat:28.3697, lng:-16.3683, esTerminal:false, municipio:"Candelaria" },
+      { id:"010-sisid", nombre:"San Isidro (Enlace TF-1)", lat:28.0625, lng:-16.5635, esTerminal:false, municipio:"Granadilla de Abona" },
+      { id:"010-tfs", nombre:"✈️ Aeropuerto Sur (TFS)", lat:28.0445, lng:-16.5722, esTerminal:true , municipio:"Granadilla de Abona" },
+    ]
+  },
+  {
+    id:"bus-011", numero:"011", nombre:"La Laguna — Guamasa — Tacoronte (El Calvario) — El Sauzal",
+    /* La linea sigue hasta La Matanza, pero de La Matanza no hay coordenada. */
+    color:"#558B2F", tipo:"norte", frecuencia:"60-90 min", precio:"2,15 €", minutos:50,
+    servicio:{ desde:"06:30", hasta:"20:15" },
+    paradas:[
+      { id:"011-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:true , municipio:"San Cristóbal de La Laguna" },
+      { id:"011-guam", nombre:"Guamasa", lat:28.474102, lng:-16.375841, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"011-tacor", nombre:"Tacoronte · Casco", lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
+      { id:"011-sauzal", nombre:"El Sauzal · Centro", lat:28.4720, lng:-16.4280, esTerminal:true , municipio:"El Sauzal" },
+    ]
+  },
+  {
+    id:"bus-012", numero:"012", nombre:"La Laguna — Los Rodeos — Tacoronte — El Sauzal",
+    color:"#689F38", tipo:"norte", frecuencia:"60-90 min", precio:"2,15 €", minutos:45,
+    servicio:{ desde:"06:15", hasta:"20:45" },
+    paradas:[
+      { id:"012-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:true , municipio:"San Cristóbal de La Laguna" },
+      { id:"012-rodeos", nombre:"Cruce de Los Rodeos", lat:28.484251, lng:-16.342911, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"012-tacor", nombre:"Tacoronte · Casco", lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
+      { id:"012-sauzal", nombre:"El Sauzal · Centro", lat:28.4720, lng:-16.4280, esTerminal:true , municipio:"El Sauzal" },
+    ]
+  },
+  {
+    id:"bus-026", numero:"026", nombre:"Santa Cruz — Barrio La Salud — Finca España — La Verdellada — La Laguna",
+    color:"#00838F", tipo:"norte", frecuencia:"20-30 min", precio:"1,45 €", minutos:55,
+    servicio:{ desde:"06:00", hasta:"21:50" },
+    paradas:[
+      { id:"026-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"026-salud", nombre:"Barrio La Salud", lat:28.47895, lng:-16.27012, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"026-finca", nombre:"Finca España", lat:28.47355, lng:-16.30114, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"026-verd", nombre:"La Verdellada", lat:28.490105, lng:-16.319542, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"026-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:true , municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-055", numero:"055", nombre:"La Laguna — El Sobradillo — Los Majuelos — Barranco Grande",
+    /* El recorrido oficial pasa antes por Geneto, que no tiene coordenada. */
+    color:"#546E7A", tipo:"municipal", frecuencia:"20-30 min", precio:"1,45 €", minutos:25,
+    servicio:{ desde:"05:40", hasta:"21:10" },
+    paradas:[
+      { id:"055-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:true , municipio:"San Cristóbal de La Laguna" },
+      { id:"055-sobra", nombre:"El Sobradillo", lat:28.4595, lng:-16.292, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"055-maju", nombre:"Los Majuelos", lat:28.4670, lng:-16.2870, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"055-bgrande", nombre:"Barranco Grande", lat:28.438511, lng:-16.321482, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
 ];
 
 // ── ESTADO ────────────────────────────────────────────────
