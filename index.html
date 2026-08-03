@@ -8032,6 +8032,7 @@ const UI_TX = Object.assign({"parkingSpaces": {"es": "{n} plazas", "en": "{n} sp
    falta desde que las dos lineas del Teide se descartan por hora:
    sin el, la app contestaba "no hay lineas que conecten estos dos
    puntos", que es falso y ademas empuja a alquilar un coche. */
+Object.assign(UI_TX, {"busCaminataLarga": {"es": "Caminata larga hasta la parada ({km} km aprox. por calle).", "en": "Long walk to the stop (about {km} km by street).", "fr": "Longue marche jusqu'à l'arrêt (environ {km} km par la rue).", "de": "Langer Fußweg zur Haltestelle (ca. {km} km über die Straße).", "it": "Camminata lunga fino alla fermata (circa {km} km su strada).", "nl": "Lange wandeling naar de halte (ongeveer {km} km over straat).", "zh": "步行到车站较远（按街道约 {km} 公里）。", "zht": "步行到車站較遠（按街道約 {km} 公里）。"}, "busAltTransbordo": {"es": "Alternativa con transbordo: {l1}+{l2}, ~{min} min.", "en": "Alternative with a transfer: {l1}+{l2}, ~{min} min.", "fr": "Alternative avec correspondance : {l1}+{l2}, ~{min} min.", "de": "Alternative mit Umstieg: {l1}+{l2}, ~{min} Min.", "it": "Alternativa con cambio: {l1}+{l2}, ~{min} min.", "nl": "Alternatief met overstap: {l1}+{l2}, ~{min} min.", "zh": "换乘方案：{l1}+{l2}，约 {min} 分钟。", "zht": "轉乘方案：{l1}+{l2}，約 {min} 分鐘。"}, "busAltDirecta": {"es": "Alternativa directa: {l}, ~{min} min.", "en": "Direct alternative: {l}, ~{min} min.", "fr": "Alternative directe : {l}, ~{min} min.", "de": "Direkte Alternative: {l}, ~{min} Min.", "it": "Alternativa diretta: {l}, ~{min} min.", "nl": "Direct alternatief: {l}, ~{min} min.", "zh": "直达方案：{l}，约 {min} 分钟。", "zht": "直達方案：{l}，約 {min} 分鐘。"}});
 Object.assign(UI_TX, {"busYaSalio": {"es": "La guagua {n} al Teide sale una vez al día y ya ha salido hoy ({h}). Mañana vuelve a haber.", "en": "The {n} bus to Teide runs once a day and has already left today ({h}). There is another one tomorrow.", "fr": "Le bus {n} vers le Teide part une fois par jour et est déjà parti aujourd'hui ({h}). Il y en a un autre demain.", "de": "Der Bus {n} zum Teide fährt einmal am Tag und ist heute schon weg ({h}). Morgen fährt wieder einer.", "it": "L'autobus {n} per il Teide parte una volta al giorno ed è già partito oggi ({h}). Domani ce n'è un altro.", "nl": "Bus {n} naar de Teide rijdt één keer per dag en is vandaag al vertrokken ({h}). Morgen gaat er weer een.", "zh": "前往泰德峰的{n}路每天只发一班，今天的已经开走了（{h}）。明天还有一班。", "zht": "前往泰德峰的{n}路每天只發一班，今天的已經開走了（{h}）。明天還有一班。"}, "busSinConexion": {"es": "No hay líneas que conecten estos dos puntos.", "en": "No bus lines connect these two points.", "fr": "Aucune ligne ne relie ces deux points.", "de": "Keine Linie verbindet diese beiden Punkte.", "it": "Nessuna linea collega questi due punti.", "nl": "Geen enkele lijn verbindt deze twee punten.", "zh": "没有线路连接这两个地点。", "zht": "沒有路線連接這兩個地點。"}});
 Object.assign(UI_TX, {"busNoDisponible": {"es": "Sin conexión", "en": "No connection", "fr": "Pas de liaison", "de": "Keine Verbindung", "it": "Nessun collegamento", "nl": "Geen verbinding", "zh": "无直达", "zht": "無直達"}, "busSinRuta": {"es": "No se encontró una ruta en guagua para este trayecto.", "en": "No bus route found for this journey.", "fr": "Aucun itinéraire en bus trouvé pour ce trajet.", "de": "Für diese Strecke wurde keine Busverbindung gefunden.", "it": "Nessun percorso in autobus trovato per questo tragitto.", "nl": "Geen busroute gevonden voor dit traject.", "zh": "没有找到这段行程的公交路线。", "zht": "沒有找到這段行程的公車路線。"}});
 
@@ -14736,9 +14737,25 @@ function drawFallbackRoute() {
 
 // Constantes de planificación
 const BUS_PLAN = Object.freeze({
-  MAX_WALK_KM:        2.0,   // No tiene sentido andar más de 2 km a una parada
+  /* El tope se mide en metros de acera, no de recta. Se sube de 2,0 a 2,6
+     -que es 2,0 por el factor de rodeo- para que el alcance siga siendo
+     exactamente el mismo de antes: si se dejaba en 2,0 se quedaban sin
+     guagua 49 lugares, casi todos inicios de sendero como Masca, Montana
+     Blanca o los Roques de Garcia. Decirle a alguien que no hay ruta es
+     peor error que decirle que la caminata es larga. */
+  MAX_WALK_KM:        2.6,   // Andando de verdad, no en linea recta
   IDEAL_WALK_KM:      1.0,   // Distancia "cómoda" preferida
   WALK_SPEED_KMH:     4.5,   // Velocidad media andando
+  /* Nadie camina en linea recta: hay manzanas, barrancos y autopistas de
+     por medio. La distancia real de calle es mas larga que la recta, y en
+     la literatura de redes peatonales urbanas ese factor de rodeo cae
+     entre 1,2 y 1,4. Se usa 1,3, que es el valor central.
+
+     No es exacto -exacto solo lo daria un router peatonal de verdad, y el
+     servidor publico de OSRM solo ofrece perfil de coche-, pero es mucho
+     menos falso que la recta. El error que deja es el prudente: sobra
+     camino, no falta. Quedarse corto es perder la guagua. */
+  WALK_DETOUR:        1.30,  // Recta -> calle real
   BUS_SPEED_KMH:      28,    // Velocidad media bus (incluye paradas) en carretera
   TRAM_SPEED_KMH:     22,    // Tranvía urbano (más lento por paradas frecuentes)
   CANDIDATE_STOPS:    8,     // Cuántas paradas cercanas a A y a B considerar
@@ -14856,9 +14873,10 @@ function findNearestStops(lat, lng, n = BUS_PLAN.CANDIDATE_STOPS) {
   const idx = getBusPlanIndex();
   const results = [];
   for (const entry of idx.values()) {
-    const d = haversineKm(lat, lng, entry.stop.lat, entry.stop.lng);
+    const recta = haversineKm(lat, lng, entry.stop.lat, entry.stop.lng);
+    const d = recta * BUS_PLAN.WALK_DETOUR;   // metros de acera, no de recta
     if (d <= BUS_PLAN.MAX_WALK_KM) {
-      results.push({ stop: entry.stop, lines: entry.lines, walkKm: d });
+      results.push({ stop: entry.stop, lines: entry.lines, walkKm: d, rectaKm: recta });
     }
   }
   results.sort((a, b) => a.walkKm - b.walkKm);
@@ -15179,7 +15197,7 @@ function renderBusPlan(plan) {
     const lineBadge1 = renderLineBadge(p.line1);
     const lineBadge2 = renderLineBadge(p.line2);
     detail.innerHTML =
-      `<span class="leg">🚶 ${Math.round(p.walkAMin)} min</span>` +
+      `<span class="leg">🚶 ${Math.ceil(p.walkAMin)} min</span>` +
       `<span class="leg-sep">→</span>` +
       `<span class="leg">${lineBadge1} ${Math.round(p.busMin1 + p.waitMin1)} min</span>` +
       `<span class="leg-sep">→</span>` +
@@ -15187,28 +15205,33 @@ function renderBusPlan(plan) {
       `<span class="leg-sep">→</span>` +
       `<span class="leg">${lineBadge2} ${Math.round(p.busMin2 + p.waitMin2)} min</span>` +
       `<span class="leg-sep">→</span>` +
-      `<span class="leg">🚶 ${Math.round(p.walkBMin)} min</span>`;
+      `<span class="leg">🚶 ${Math.ceil(p.walkBMin)} min</span>`;
   } else {
     const p = best;
     const lineBadge = renderLineBadge(p.line);
     detail.innerHTML =
-      `<span class="leg">🚶 ${Math.round(p.walkAMin)} min</span>` +
+      `<span class="leg">🚶 ${Math.ceil(p.walkAMin)} min</span>` +
       `<span class="leg-sep">→</span>` +
       `<span class="leg">${lineBadge} ${Math.round(p.busMin + p.waitMin)} min</span>` +
       `<span class="leg-sep">→</span>` +
-      `<span class="leg">🚶 ${Math.round(p.walkBMin)} min</span>`;
+      `<span class="leg">🚶 ${Math.ceil(p.walkBMin)} min</span>`;
   }
 
   // Avisos
   const warnings = [];
   if (best.walkAKm > BUS_PLAN.IDEAL_WALK_KM || best.walkBKm > BUS_PLAN.IDEAL_WALK_KM) {
-    const maxKm = Math.max(best.walkAKm, best.walkBKm).toFixed(1);
-    warnings.push(`Caminata larga hasta parada (${maxKm} km).`);
+    /* Coma o punto decimal segun idioma: en aleman "1.4 km" se lee mil
+       cuatrocientos. El resto de la app ya escribe los precios con coma. */
+    const sepDec = (['en','zh','zht'].indexOf(currentLang) >= 0) ? '.' : ',';
+    const maxKm = Math.max(best.walkAKm, best.walkBKm).toFixed(1).replace('.', sepDec);
+    warnings.push(tx('busCaminataLarga', { km: maxKm }) || `Caminata larga hasta la parada (${maxKm} km).`);
   }
   if (plan.direct && plan.transfer && best === plan.direct && plan.transfer.totalMin < plan.direct.totalMin) {
-    warnings.push(`Alternativa con transbordo: ${escapeHtml(plan.transfer.line1.numero)}+${escapeHtml(plan.transfer.line2.numero)}, ~${Math.round(plan.transfer.totalMin)} min.`);
+    warnings.push(tx('busAltTransbordo', { l1: plan.transfer.line1.numero, l2: plan.transfer.line2.numero, min: Math.round(plan.transfer.totalMin) }) ||
+      `Alternativa con transbordo: ${plan.transfer.line1.numero}+${plan.transfer.line2.numero}, ~${Math.round(plan.transfer.totalMin)} min.`);
   } else if (plan.direct && plan.transfer && best === plan.transfer) {
-    warnings.push(`Alternativa directa: ${escapeHtml(plan.direct.line.numero)}, ~${Math.round(plan.direct.totalMin)} min.`);
+    warnings.push(tx('busAltDirecta', { l: plan.direct.line.numero, min: Math.round(plan.direct.totalMin) }) ||
+      `Alternativa directa: ${plan.direct.line.numero}, ~${Math.round(plan.direct.totalMin)} min.`);
   }
   if (warnings.length > 0) {
     warn.textContent = '⚠️ ' + warnings.join(' · ');
