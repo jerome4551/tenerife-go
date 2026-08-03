@@ -1,6 +1,6 @@
 # Qué me falta — Tenerife Go
 
-**Estado: 93 de 171 líneas (54 %) · 102 líneas y tranvías · 144 nodos · 0 sin precio, frecuencia ni horario.**
+**Estado: 94 de 171 líneas (55 %) · 103 líneas y tranvías · 144 nodos · 0 sin precio, frecuencia ni horario.**
 
 Cuatro peticiones. Son independientes: contesta la que quieras, en el orden que quieras.
 
@@ -30,7 +30,7 @@ Si un dato no existe o no lo sabes, escribe `no hay`. Eso también me sirve: dej
 
 ---
 
-## PETICIÓN 1 — 11 tiempos de trayecto · *lo que más rinde*
+## PETICIÓN 1 — 12 tiempos de trayecto · *lo que más rinde*
 
 > ### ⚠️ Esto NO es la ficha del Bloque 1
 >
@@ -58,6 +58,7 @@ El recorrido que va detrás es **el que tiene la app ahora**. Si no coincide con
 un tiempo puesto sobre un recorrido equivocado es peor que no tener tiempo.
 
 ```
+030 = ___ min     (Puerto de la Cruz · Estación → ✈️ Aeropuerto Norte (TFN))
 345 = ___ min     (Puerto de la Cruz · Estación → La Orotava · Estación → Aguamansa)
 351 = ___ min     (Puerto de la Cruz · Estación → La Orotava · Estación)
 353 = ___ min     (Puerto de la Cruz · Estación → Los Realejos → La Orotava · Estación)
@@ -81,15 +82,13 @@ San Honorato en `28.481242, -16.319736`: el bucle de la 204 pasa de 300 m a 1,7 
 
 ---
 
-## PETICIÓN 3 — la línea 030, a dos datos
+## ✅ PETICIÓN 3 — RESUELTA
 
-Tengo recorrido (Puerto de la Cruz ↔ Aeropuerto Norte), las dos coordenadas y la frecuencia
-(30 min) y la primera salida (06:30). Con estos dos datos la línea entra hoy.
+La 030 ya está dentro: `06:30 → 21:45`, 30 min, 4,75 € (3,40 € con Ten+). La ventana llega a las
+21:45 y no a las 21:00 porque esa es la última salida desde el aeropuerto, y cerrar antes dejaría
+a alguien en la terminal creyendo que no hay guagua.
 
-```
-030 última = __:__
-030 precio = ___ €
-```
+Le falta el tiempo de trayecto, así que está en la petición 1.
 
 ---
 

@@ -17007,6 +17007,27 @@ const TITSA_LINES = [
     ]
   },
   {
+    id:"bus-030", numero:"030", nombre:"Aeroexpress · Puerto de la Cruz — Aeropuerto Norte (TFN)",
+    /* La ventana va de la primera salida del dia a la ultima de cualquiera
+       de las dos cabeceras: sale de Puerto de la Cruz hasta las 21:00 y del
+       aeropuerto hasta las 21:45, asi que el servicio no se acaba hasta esa
+       hora. Poner 21:00 dejaria a alguien tirado en la terminal creyendo que
+       ya no hay guagua cuando si la hay.
+
+       Sin "minutos": el tiempo de trayecto no venia en el dato, y eso tiene
+       una consecuencia visible. Preguntando de Puerto de la Cruz al
+       aeropuerto norte el planificador ofrece hoy la 343 y no esta, porque
+       la 343 si lleva tiempo oficial y la 030 se estima por velocidad media
+       y sale peor parada. Siendo la express, deberia ganar ella. Se arregla
+       solo en cuanto haya el dato. */
+    color:"#0097A7", tipo:"aeropuerto", frecuencia:"30 min", precio:"4,75 € · 3,40 € con Ten+",
+    servicio:{ desde:"06:30", hasta:"21:45" },
+    paradas:[
+      { id:"030-pcruz", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true, municipio:"Puerto de la Cruz" },
+      { id:"030-tfn",   nombre:"✈️ Aeropuerto Norte (TFN)",    lat:28.4827, lng:-16.3414, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
     id:"bus-020", numero:"020", nombre:"Aerobús · La Laguna — Aeropuerto Norte",
     color:"#00897B", tipo:"aeropuerto", frecuencia:"30 min", precio:"2,65 € · menos con Ten+", minutos:10,
     servicio:{ desde:"06:00", hasta:"22:00" },
