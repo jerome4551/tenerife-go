@@ -16725,7 +16725,7 @@ const TITSA_LINES = [
       { id:"467-duque",      nombre:"Playa del Duque",           lat:28.0905, lng:-16.7460, esTerminal:false, municipio:"Adeje" },
       { id:"467-cristianos", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
       { id:"467-galletas",   nombre:"Las Galletas",              lat:28.0070, lng:-16.6660, esTerminal:false, municipio:"Arona" },
-      { id:"467-silencio",nombre:"Costa del Silencio",            lat:28.0058, lng:-16.6457, esTerminal:false, municipio:"Arona" },
+      { id:"467-silencio",nombre:"Costa del Silencio · Minerva (7306)", lat:28.0050, lng:-16.6460, esTerminal:false, municipio:"Arona" },
       { id:"467-medano",     nombre:"El Médano · Centro",        lat:28.0480, lng:-16.5380, esTerminal:true,  municipio:"Granadilla de Abona" },
     ]
   },
@@ -17020,7 +17020,7 @@ const TITSA_LINES = [
        la 343 si lleva tiempo oficial y la 030 se estima por velocidad media
        y sale peor parada. Siendo la express, deberia ganar ella. Se arregla
        solo en cuanto haya el dato. */
-    color:"#0097A7", tipo:"aeropuerto", frecuencia:"30 min", precio:"4,75 € · 3,40 € con Ten+",
+    color:"#0097A7", tipo:"aeropuerto", frecuencia:"30 min", precio:"4,75 € · 3,40 € con Ten+", minutos:30,
     servicio:{ desde:"06:30", hasta:"21:45" },
     paradas:[
       { id:"030-pcruz", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true, municipio:"Puerto de la Cruz" },
@@ -18011,7 +18011,7 @@ const TITSA_LINES = [
      en el mapa. Es el pueblo, no el anden exacto de la terminal. */
   {
     id:"bus-345", numero:"345", nombre:"Puerto de la Cruz — La Orotava — Aguamansa",
-    color:"#2E7D32", tipo:"norte", frecuencia:"50-60 min", precio:"1,45 €",
+    color:"#2E7D32", tipo:"norte", frecuencia:"50-60 min", precio:"1,45 €", minutos:45,
     servicio:{ desde:"06:00", hasta:"21:30" },
     paradas:[
       { id:"345-pcruz", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true , municipio:"Puerto de la Cruz" },
@@ -18021,7 +18021,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-351", numero:"351", nombre:"Puerto de la Cruz — La Orotava (directo)",
-    color:"#388E3C", tipo:"norte", frecuencia:"30 min", precio:"1,45 €",
+    color:"#388E3C", tipo:"norte", frecuencia:"30 min", precio:"1,45 €", minutos:25,
     servicio:{ desde:"06:15", hasta:"21:45" },
     paradas:[
       { id:"351-pcruz", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true , municipio:"Puerto de la Cruz" },
@@ -18030,7 +18030,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-353", numero:"353", nombre:"Puerto de la Cruz — Los Realejos — La Orotava (circuito del valle)",
-    color:"#43A047", tipo:"norte", frecuencia:"25-35 min", precio:"1,45 €",
+    color:"#43A047", tipo:"norte", frecuencia:"25-35 min", precio:"1,45 €", minutos:55,
     servicio:{ desde:"05:40", hasta:"21:40" },
     paradas:[
       { id:"353-pcruz", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true , municipio:"Puerto de la Cruz" },
@@ -18040,16 +18040,16 @@ const TITSA_LINES = [
   },
   {
     id:"bus-365", numero:"365", nombre:"Buenavista del Norte — Masca",
-    color:"#1B5E20", tipo:"norte", frecuencia:"4-6 salidas/día", precio:"1,45 €",
+    color:"#1B5E20", tipo:"norte", frecuencia:"4-6 salidas/día", precio:"1,45 €", minutos:40,
     servicio:{ desde:"05:55", hasta:"18:15" },
     paradas:[
       { id:"365-buena", nombre:"Buenavista del Norte · Terminal", lat:28.3718, lng:-16.8510, esTerminal:true , municipio:"Buenavista del Norte" },
-      { id:"365-masca", nombre:"🏔️ Masca (Pueblo)", lat:28.3054, lng:-16.8399, esTerminal:true , municipio:"Buenavista del Norte" },
+      { id:"365-masca", nombre:"🏔️ Masca (Pueblo)", lat:28.3050, lng:-16.8405, esTerminal:true , municipio:"Buenavista del Norte" },
     ]
   },
   {
     id:"bus-460", numero:"460", nombre:"Icod de los Vinos — Santiago del Teide — Guía de Isora — Costa Adeje",
-    color:"#00695C", tipo:"norte", frecuencia:"90-120 min", precio:"4,15 €",
+    color:"#00695C", tipo:"norte", frecuencia:"90-120 min", precio:"4,15 €", minutos:90,
     servicio:{ desde:"06:15", hasta:"20:15" },
     paradas:[
       { id:"460-icod", nombre:"Icod de los Vinos", lat:28.3722, lng:-16.7178, esTerminal:true , municipio:"Icod de los Vinos" },
@@ -18061,7 +18061,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-447", numero:"447", nombre:"Los Cristianos — Costa Adeje — Adeje (Las Torres)",
-    color:"#EF6C00", tipo:"sur", frecuencia:"20-40 min", precio:"1,45 €",
+    color:"#EF6C00", tipo:"sur", frecuencia:"20-40 min", precio:"1,45 €", minutos:40,
     servicio:{ desde:"05:40", hasta:"22:25" },
     paradas:[
       { id:"447-loscr", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:true , municipio:"Arona" },
@@ -18071,7 +18071,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-448", numero:"448", nombre:"Adeje (Las Torres) — La Caleta",
-    color:"#F57C00", tipo:"sur", frecuencia:"45-60 min", precio:"1,45 €",
+    color:"#F57C00", tipo:"sur", frecuencia:"45-60 min", precio:"1,45 €", minutos:20,
     servicio:{ desde:"06:40", hasta:"21:30" },
     paradas:[
       { id:"448-torres", nombre:"Adeje · Las Torres", lat:28.1221, lng:-16.7338, esTerminal:true , municipio:"Adeje" },
@@ -18080,7 +18080,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-450", numero:"450", nombre:"Costa Adeje — Los Cristianos — San Isidro",
-    color:"#FB8C00", tipo:"sur", frecuencia:"60 min", precio:"2,45 €",
+    color:"#FB8C00", tipo:"sur", frecuencia:"60 min", precio:"2,45 €", minutos:50,
     servicio:{ desde:"05:35", hasta:"21:55" },
     paradas:[
       { id:"450-cadeje", nombre:"Costa Adeje · Estación", lat:28.0970, lng:-16.7440, esTerminal:true , municipio:"Adeje" },
@@ -18090,7 +18090,12 @@ const TITSA_LINES = [
   },
   {
     id:"bus-492", numero:"492", nombre:"Chiguergue — Guía de Isora (circular)",
-    color:"#6D4C41", tipo:"sur", frecuencia:"3-5 salidas/día", precio:"1,45 €",
+        /* El comprobador marca esta linea a 6 km/h y es un falso positivo. La
+       492 es circular de sentido unico: entre Chiguergue y Guia de Isora hay
+       2 km en recta, pero la vuelta se los da por las medianias. Sus dos
+       cabeceras si son las que modelamos, que es la condicion para aplicar
+       el tiempo oficial, asi que los 20 minutos valen. */
+    color:"#6D4C41", tipo:"sur", frecuencia:"3-5 salidas/día", precio:"1,45 €", minutos:20,
     servicio:{ desde:"07:15", hasta:"18:40" },
     paradas:[
       { id:"492-chig", nombre:"Chiguergue (7486)", lat:28.227917, lng:-16.788806, esTerminal:true , municipio:"Guía de Isora" },
@@ -18099,7 +18104,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-493", numero:"493", nombre:"Guía de Isora — Playa San Juan — Alcalá — Los Gigantes (por TF-463)",
-    color:"#8D6E63", tipo:"sur", frecuencia:"60-90 min", precio:"2,10 €",
+    color:"#8D6E63", tipo:"sur", frecuencia:"60-90 min", precio:"2,10 €", minutos:55,
     servicio:{ desde:"06:30", hasta:"20:45" },
     paradas:[
       { id:"493-guia", nombre:"Guía de Isora", lat:28.2125, lng:-16.7783, esTerminal:true , municipio:"Guía de Isora" },
@@ -18111,7 +18116,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-494", numero:"494", nombre:"Guía de Isora — Playa San Juan — Alcalá — Los Gigantes (por Piedra Hincada)",
-    color:"#A1887F", tipo:"sur", frecuencia:"4 salidas/día", precio:"2,10 €",
+    color:"#A1887F", tipo:"sur", frecuencia:"4 salidas/día", precio:"2,10 €", minutos:45,
     servicio:{ desde:"07:35", hasta:"17:15" },
     paradas:[
       { id:"494-guia", nombre:"Guía de Isora", lat:28.2125, lng:-16.7783, esTerminal:true , municipio:"Guía de Isora" },
