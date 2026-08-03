@@ -17391,9 +17391,10 @@ const TITSA_LINES = [
      Con las cabeceras confirmadas, sus tiempos oficiales ya son aplicables
      y estan puestos: 20, 40, 35 y 75 minutos.
 
-     Siguen sin resolver la 908 y la 914, las dos circulares. Sus tiempos
-     estan aplicados sobre el recorrido que modelamos, que es un trozo del
-     bucle, asi que se quedan cortos por definicion. */
+     La 908 y la 914 tambien quedaron resueltas despues: la 908 no es
+     bucle, va y viene, y sus 25 minutos son de un sentido; la 914 si lo es
+     y vuelve al Intercambiador, con 15 minutos de ciclo entero. Las dos
+     estan ya modeladas asi. */
   {
     id:"bus-941", numero:"941", nombre:"Intercambiador — Añaza — Acorán — Boca Cangrejo",
     color:"#9575CD", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:20,
@@ -17915,11 +17916,6 @@ const TITSA_LINES = [
        21:30, asi que deja el grupo de nocturnas y pierde el buho del
        nombre. Es el tercer caso igual, despues de la 934 y la 014: en la
        tabla habia lineas de dia metidas entre las de madrugada. */
-    /* OJO: el recorrido oficial dice que la 390 es corta, Puerto de la
-       Cruz - Ayuntamiento de Los Realejos, y aqui la tenemos llegando a
-       Costa Adeje por Santiago del Teide y Guia de Isora. Una de las dos
-       cosas es falsa y no es un matiz: son 60 km de diferencia. Sin
-       resolver, no se le anade nada. */
     id:"bus-390", numero:"390", nombre:"Puerto de la Cruz — Las Arenas — La Vera — Los Realejos",
     color:"#00838F", tipo:"norte", frecuencia:"30-45 min", precio:"~9,35 €", minutos:25,
     servicio:{ desde:"06:20", hasta:"21:20" },
