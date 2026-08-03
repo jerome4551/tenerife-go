@@ -18395,6 +18395,110 @@ const TITSA_LINES = [
       { id:"100-pcruz", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true , municipio:"Puerto de la Cruz" },
     ]
   },
+  /* SERIE 400 · entran nueve de las veintidos
+     Las trece que faltan no es que les sobre una parada de en medio: les
+     falta una cabecera, y sin ella el tiempo oficial no se puede repartir.
+
+     Con nueve coordenadas entran las trece: Los Abrigos, IES Granadilla,
+     Valle San Lorenzo, Hospital del Sur, CC El Duque, Las Maretas, Palm-Mar,
+     IES San Miguel y Vera de Erques. */
+  {
+    id:"bus-408", numero:"408", nombre:"Granadilla — San Isidro — El Médano",
+    color:"#FF7043", tipo:"sur", frecuencia:"30-45 min", precio:"1,45 €", minutos:30,
+    servicio:{ desde:"06:00", hasta:"21:50" },
+    paradas:[
+      { id:"408-gr", nombre:"Granadilla de Abona", lat:28.1208, lng:-16.5775, esTerminal:true , municipio:"Granadilla de Abona" },
+      { id:"408-si", nombre:"San Isidro (Enlace TF-1)", lat:28.0625, lng:-16.5635, esTerminal:false, municipio:"Granadilla de Abona" },
+      { id:"408-me", nombre:"El Médano · Centro", lat:28.0480, lng:-16.5380, esTerminal:true , municipio:"Granadilla de Abona" },
+    ]
+  },
+  {
+    id:"bus-409", numero:"409", nombre:"San Miguel (El Roque) — San Isidro — El Médano",
+    /* Solo laborables y dias lectivos. Su cabecera es El Roque, y de El Roque
+       no hay coordenada: se usa el Cruce de San Miguel, que es lo mas cerca
+       que tenemos y esta en el mismo municipio. */
+    color:"#FF8A65", tipo:"sur", frecuencia:"4 salidas/día", precio:"1,45 €", minutos:35,
+    servicio:{ desde:"06:50", hasta:"15:30" },
+    paradas:[
+      { id:"409-sm", nombre:"Cruce San Miguel", lat:28.0500, lng:-16.6178, esTerminal:true , municipio:"San Miguel de Abona" },
+      { id:"409-si", nombre:"San Isidro (Enlace TF-1)", lat:28.0625, lng:-16.5635, esTerminal:false, municipio:"Granadilla de Abona" },
+      { id:"409-me", nombre:"El Médano · Centro", lat:28.0480, lng:-16.5380, esTerminal:true , municipio:"Granadilla de Abona" },
+    ]
+  },
+  {
+    id:"bus-411", numero:"411", nombre:"Granadilla — San Isidro — El Médano (Montaña Pelada)",
+    color:"#FFAB91", tipo:"sur", frecuencia:"6 salidas/día", precio:"1,45 €", minutos:35,
+    servicio:{ desde:"07:10", hasta:"19:30" },
+    paradas:[
+      { id:"411-gr", nombre:"Granadilla de Abona", lat:28.1208, lng:-16.5775, esTerminal:true , municipio:"Granadilla de Abona" },
+      { id:"411-si", nombre:"San Isidro (Enlace TF-1)", lat:28.0625, lng:-16.5635, esTerminal:false, municipio:"Granadilla de Abona" },
+      { id:"411-me", nombre:"El Médano · Centro", lat:28.0480, lng:-16.5380, esTerminal:true , municipio:"Granadilla de Abona" },
+    ]
+  },
+  {
+    id:"bus-416", numero:"416", nombre:"Granadilla — San Miguel — Los Cristianos",
+    /* Falta Valle San Lorenzo, sin coordenada. */
+    color:"#E64A19", tipo:"sur", frecuencia:"60 min", precio:"2,45 €", minutos:55,
+    servicio:{ desde:"05:45", hasta:"21:15" },
+    paradas:[
+      { id:"416-gr", nombre:"Granadilla de Abona", lat:28.1208, lng:-16.5775, esTerminal:true , municipio:"Granadilla de Abona" },
+      { id:"416-sm", nombre:"Cruce San Miguel", lat:28.0500, lng:-16.6178, esTerminal:false, municipio:"San Miguel de Abona" },
+      { id:"416-lc", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:true , municipio:"Arona" },
+    ]
+  },
+  {
+    id:"bus-417", numero:"417", nombre:"Costa Adeje — Guía de Isora",
+    /* Faltan Adeje casco y Tejina de Guia, las dos sin coordenada. */
+    color:"#BF360C", tipo:"sur", frecuencia:"60-90 min", precio:"2,45 €", minutos:50,
+    servicio:{ desde:"06:10", hasta:"21:20" },
+    paradas:[
+      { id:"417-ca", nombre:"Costa Adeje · Estación", lat:28.0970, lng:-16.7440, esTerminal:true , municipio:"Adeje" },
+      { id:"417-gi", nombre:"Guía de Isora · Terminal (7494)", lat:28.2125, lng:-16.7783, esTerminal:true , municipio:"Guía de Isora" },
+    ]
+  },
+  {
+    id:"bus-474", numero:"474", nombre:"Granadilla — Vilaflor — Arona",
+    /* Falta Cruz de Tea. */
+    color:"#6D4C41", tipo:"sur", frecuencia:"4 salidas/día", precio:"2,45 €", minutos:55,
+    servicio:{ desde:"06:30", hasta:"17:15" },
+    paradas:[
+      { id:"474-gr", nombre:"Granadilla de Abona", lat:28.1208, lng:-16.5775, esTerminal:true , municipio:"Granadilla de Abona" },
+      { id:"474-vi", nombre:"Vilaflor", lat:28.1583, lng:-16.6373, esTerminal:false, municipio:"Vilaflor" },
+      { id:"474-ar", nombre:"Arona (pueblo)", lat:28.0989, lng:-16.6808, esTerminal:true , municipio:"Arona" },
+    ]
+  },
+  {
+    id:"bus-480", numero:"480", nombre:"Arona — Los Cristianos",
+    /* Faltan La Camella y el Hospital del Sur. */
+    color:"#795548", tipo:"sur", frecuencia:"60-90 min", precio:"1,45 €", minutos:30,
+    servicio:{ desde:"06:30", hasta:"20:50" },
+    paradas:[
+      { id:"480-ar", nombre:"Arona (pueblo)", lat:28.0989, lng:-16.6808, esTerminal:true , municipio:"Arona" },
+      { id:"480-lc", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:true , municipio:"Arona" },
+    ]
+  },
+  {
+    id:"bus-482", numero:"482", nombre:"Vilaflor — La Escalona — Arona — Los Cristianos",
+    /* Falta Chayofa. */
+    color:"#8D6E63", tipo:"sur", frecuencia:"4 salidas/día", precio:"3,10 €", minutos:50,
+    servicio:{ desde:"07:15", hasta:"18:15" },
+    paradas:[
+      { id:"482-vi", nombre:"Vilaflor", lat:28.1583, lng:-16.6373, esTerminal:true , municipio:"Vilaflor" },
+      { id:"482-es", nombre:"La Escalona", lat:28.1487, lng:-16.6470, esTerminal:false, municipio:"Vilaflor" },
+      { id:"482-ar", nombre:"Arona (pueblo)", lat:28.0989, lng:-16.6808, esTerminal:false, municipio:"Arona" },
+      { id:"482-lc", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:true , municipio:"Arona" },
+    ]
+  },
+  {
+    id:"bus-484", numero:"484", nombre:"Granadilla — San Miguel — Las Chafiras",
+    color:"#A1887F", tipo:"sur", frecuencia:"60-90 min", precio:"1,75 €", minutos:35,
+    servicio:{ desde:"06:20", hasta:"20:10" },
+    paradas:[
+      { id:"484-gr", nombre:"Granadilla de Abona", lat:28.1208, lng:-16.5775, esTerminal:true , municipio:"Granadilla de Abona" },
+      { id:"484-sm", nombre:"Cruce San Miguel", lat:28.0500, lng:-16.6178, esTerminal:false, municipio:"San Miguel de Abona" },
+      { id:"484-ch", nombre:"Las Chafiras", lat:28.0690, lng:-16.5990, esTerminal:true , municipio:"San Miguel de Abona" },
+    ]
+  },
 ];
 
 // ── ESTADO ────────────────────────────────────────────────
