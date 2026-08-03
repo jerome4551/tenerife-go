@@ -16189,6 +16189,22 @@ if (typeof dpRenderZoneCards === 'function') dpRenderZoneCards();
    - La 137 y la 711 llamaban distinto a la misma parada de Arico. Ahora
      comparten nombre y nodo.
    ────────────────────────────────────────────────────────── */
+/* TARIFAS
+   =======
+   Dos modelos, y la tabla los distingue:
+
+   Urbanas de las series 200 y 900, mas el tranvia: tarifa plana. 1,45 € la
+   guagua y 1,35 € el tranvia, y se escribe la cifra sola.
+
+   Interurbanas: tarifa kilometrica. Las que tienen el precio de cabecera a
+   cabecera lo llevan escrito; las catorce que ponen "desde 1,45 €" es porque
+   el precio depende del tramo que hagas, y 1,45 € es donde arranca. Ese
+   "desde" no es una estimacion nuestra: es como funciona la tarifa.
+
+   Cuando una linea cobra distinto segun el tramo y la diferencia es grande,
+   ademas lleva nota. La 343 es el caso: 14,60 € el recorrido entero, 4,75 €
+   si solo vas al aeropuerto norte. */
+
 /* AUDITORIA DEL LISTADO OFICIAL
    ============================
    El listado de 171 numeros contra el que mediamos la cobertura tenia
@@ -16356,7 +16372,7 @@ const TITSA_LINES = [
   // ═══════════ SUR (TF-1) ═══════════
   {
     id:"bus-111", numero:"111", nombre:"Santa Cruz — Los Cristianos (Autopista)",
-    color:"#C62828", tipo:"sur", frecuencia:"20-25 min", precio:"~3,50 €", minutos:83,
+    color:"#C62828", tipo:"sur", frecuencia:"20-25 min", precio:"9,35 €", minutos:83,
     servicio:{ desde:"05:30", hasta:"20:55" },
     paradas:[
       { id:"111-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
@@ -16558,7 +16574,7 @@ const TITSA_LINES = [
        Los Cristianos - El Medano, 70 minutos. El aeropuerto lo cubren
        la 111, la 343, la 040 y la 415, asi que no se pierde nada. */
     id:"bus-470", numero:"470", nombre:"Los Cristianos — Costa del Silencio — El Médano",
-    color:"#558B2F", tipo:"aeropuerto", frecuencia:"30-40 min", precio:"~2,50 €", minutos:70,
+    color:"#558B2F", tipo:"aeropuerto", frecuencia:"30-40 min", precio:"3,30 €", minutos:70,
     servicio:{ desde:"06:10", hasta:"20:50" },
     paradas:[
       { id:"470-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
@@ -16980,7 +16996,7 @@ const TITSA_LINES = [
     id:"bus-355", numero:"355", nombre:"Buenavista — Masca — Santiago del Teide 🏔️",
     /* Franja muy corta: al caserio de Masca solo se sube entre las once
        y las siete y media. Fuera de ahi no se ofrece. */
-    color:"#BF360C", tipo:"municipal", frecuencia:"3-4/día", precio:"~3 €", minutos:55,
+    color:"#BF360C", tipo:"municipal", frecuencia:"3-4/día", precio:"2,50 €", minutos:55,
     servicio:{ desde:"09:30", hasta:"18:00" },
     paradas:[
       { id:"355-buena",   nombre:"Buenavista del Norte · Terminal",  lat:28.3718, lng:-16.8510, esTerminal:true,  municipio:"Buenavista del Norte" },
@@ -17021,7 +17037,7 @@ const TITSA_LINES = [
      directa, que es la que conecta con Santa Cruz en 15 minutos. */
   {
     id:"bus-015", numero:"015", nombre:"Santa Cruz — La Laguna (Directa)",
-    color:"#00695C", tipo:"norte", frecuencia:"10-15 min", precio:"desde 1,45 €", minutos:15,
+    color:"#00695C", tipo:"norte", frecuencia:"10-15 min", precio:"1,45 €", minutos:15,
     servicio:{ desde:"05:00", hasta:"23:00" },
     paradas:[
       { id:"015-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
@@ -17838,7 +17854,7 @@ const TITSA_LINES = [
      para Las Vistas y el Safari. No hay coordenada verificada. */
   {
     id:"bus-711N", numero:"711", nombre:"🦉 Santa Cruz — Aeropuerto Sur — Los Cristianos — Costa Adeje (Nocturna)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"30 min", precio:"~9,35 €", minutos:76,
+    color:"#7c3aed", tipo:"nocturna", frecuencia:"30 min", precio:"9,35 €", minutos:76,
     servicio:{ desde:"22:00", hasta:"05:00" },
     paradas:[
       { id:"711N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
@@ -17867,7 +17883,7 @@ const TITSA_LINES = [
        sin pisar la autopista. Sigue en el grupo de nocturnas porque de
        madrugada es de las pocas que quedan. */
     id:"bus-014", numero:"014", nombre:"Santa Cruz — La Cuesta — La Laguna (casi continua)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"Continua", precio:"~1,40 €", minutos:40,
+    color:"#7c3aed", tipo:"nocturna", frecuencia:"Continua", precio:"1,45 €", minutos:40,
     servicio:{ desde:"05:15", hasta:"02:30" },
     paradas:[
       { id:"014-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
@@ -17886,7 +17902,7 @@ const TITSA_LINES = [
        comercial va en el nombre para que se pueda buscar por los dos: el
        buscador mira numero y nombre. */
     id:"bus-015N", numero:"015", nombre:"🦉 Santa Cruz — La Laguna (Nocturna · línea 714)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €", minutos:25,
+    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"1,45 €", minutos:25,
     servicio:{ desde:"23:15", hasta:"05:00" },
     paradas:[
       { id:"015N-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
@@ -17908,7 +17924,7 @@ const TITSA_LINES = [
      (Cruce). Las tres eran enlaces de la TF-5 que solo servia ella. */
   {
     id:"bus-104N", numero:"104", nombre:"🦉 Santa Cruz — La Laguna — Tacoronte — Puerto de la Cruz (Nocturna)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~7,60 €", minutos:75,
+    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"7,10 €", minutos:75,
     servicio:{ desde:"23:35", hasta:"04:10" },
     paradas:[
       { id:"104N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
@@ -17927,7 +17943,7 @@ const TITSA_LINES = [
        sureste es la 711 o las comarcales de la serie 700- y que la 137
        es diurna, de 06:00 a 21:30. Se aplica lo segundo. */
     id:"bus-137", numero:"137", nombre:"Santa Cruz — Güímar — Granadilla",
-    color:"#C62828", tipo:"sur", frecuencia:"60 min", precio:"~6,90 €", minutos:110,
+    color:"#C62828", tipo:"sur", frecuencia:"60 min", precio:"8,45 €", minutos:110,
     servicio:{ desde:"06:00", hasta:"21:30" },
     paradas:[
       { id:"137-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
@@ -17944,7 +17960,7 @@ const TITSA_LINES = [
        nombre. Es el tercer caso igual, despues de la 934 y la 014: en la
        tabla habia lineas de dia metidas entre las de madrugada. */
     id:"bus-390", numero:"390", nombre:"Puerto de la Cruz — Las Arenas — La Vera — Los Realejos",
-    color:"#00838F", tipo:"norte", frecuencia:"30-45 min", precio:"desde 1,45 €", minutos:25,
+    color:"#00838F", tipo:"norte", frecuencia:"30-45 min", precio:"1,45 €", minutos:25,
     /* El precio era 9,35 €, el de la traza larga que llegaba a Costa Adeje.
        Para cinco kilometros eso es falso, asi que baja al minimo de la red
        mientras no haya el dato real. Un "desde" flojo es mejor que una
