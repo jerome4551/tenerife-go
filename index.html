@@ -17276,9 +17276,28 @@ const TITSA_LINES = [
       { id:"939-sobra", nombre:"El Sobradillo", lat:28.4595, lng:-16.292, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
+  /* Los cuatro tiempos de abajo salen del folleto oficial de TITSA
+     (GENERAL, febrero 2019). Solo se aplican a las lineas cuyas dos
+     cabeceras del folleto coinciden con las dos que modelamos nosotros.
+
+     De las diez que traian tiempo impreso, seis se caen en ese filtro, y
+     al caerse han destapado que el recorrido que teniamos no era el suyo:
+
+       908  el folleto la hace circular por Somosierra y Chamberi, no a
+            Ofra y Las Retamas como la teniamos.
+       911  va de MUELLE NORTE a OFRA (Juan XXIII). Nosotros la sacabamos
+            del Intercambiador, que no es su cabecera.
+       914  es circular y vuelve al Intercambiador.
+       933  va de TACO a EL TABLERO. Le habiamos puesto el Intercambiador
+            por delante.
+       939  va de TACO a LLANO DEL MORO, tampoco sale del Intercambiador.
+       947  no termina en Chamorga: sigue hasta PUNTA DE ANAGA.
+
+     Eso no se corrige aqui porque cambiar cabeceras mueve nodos y hay que
+     medirlo aparte. Queda anotado, que es lo que toca. */
   {
     id:"bus-941", numero:"941", nombre:"Intercambiador — Añaza — Acorán — Boca Cangrejo",
-    color:"#9575CD", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
+    color:"#9575CD", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:20,
     servicio:{ desde:"07:05", hasta:"19:45" },
     paradas:[
       { id:"941-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
@@ -17310,7 +17329,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-946", numero:"946", nombre:"Intercambiador — San Andrés — Taganana — Almáciga (Anaga)",
-    color:"#00796B", tipo:"municipal", frecuencia:"60 min", precio:"desde 1,45 €",
+    color:"#00796B", tipo:"municipal", frecuencia:"60 min", precio:"desde 1,45 €", minutos:55,
     servicio:{ desde:"06:30", hasta:"20:30" },
     paradas:[
       { id:"946-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
@@ -17834,7 +17853,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-971", numero:"971", nombre:"🦉 Intercambiador — Barrio Salud — Ofra (Nocturna)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
+    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €", minutos:30,
     servicio:{ desde:"00:00", hasta:"05:00" },
     paradas:[
       { id:"971-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
@@ -17844,7 +17863,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-972", numero:"972", nombre:"🦉 Intercambiador — Barrio Salud (Nocturna · Variante)",
-    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
+    color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €", minutos:15,
     servicio:{ desde:"23:55", hasta:"04:30" },
     paradas:[
       { id:"972-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
