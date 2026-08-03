@@ -16272,6 +16272,11 @@ const TITSA_LINES = [
       { id:"L1-chimisay",  nombre:"Chimisay",                     lat:28.4778, lng:-16.2776, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"L1-principes", nombre:"Príncipes de España",          lat:28.4789, lng:-16.2815, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"L1-candelar",  nombre:"🏥 Hospital La Candelaria",    lat:28.4801, lng:-16.2860, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      /* Esta es la parada de railes y solo la usa el tranvia. Las diez
+         lineas de guagua que compartian este punto se han bajado 4,8 km al
+         sur, a la darsena del intercambiador de Taco, donde entran de
+         verdad a hacer transbordo. Mezclarlas aqui era simular que la
+         guagua circula por la plataforma de las vias. */
       { id:"L1-taco",      nombre:"Taco (transbordo L2)",         lat:28.4830, lng:-16.2960, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"L1-cardonal",  nombre:"El Cardonal (transbordo L2)",  lat:28.4850, lng:-16.3015, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"L1-huc",       nombre:"🏥 Hospital Universitario",    lat:28.4859, lng:-16.3076, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
@@ -17144,7 +17149,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:05", hasta:"21:40" },
     paradas:[
       { id:"219-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
-      { id:"219-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"219-taco", nombre:"Taco · Intercambiador", lat:28.441405, lng:-16.307521, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"219-smatias", nombre:"San Matías", lat:28.448554, lng:-16.311742, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
@@ -17323,7 +17328,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:00", hasta:"21:30" },
     paradas:[
       { id:"933-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
-      { id:"933-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"933-taco", nombre:"Taco · Intercambiador", lat:28.441405, lng:-16.307521, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"933-bgrande", nombre:"Barranco Grande", lat:28.438511, lng:-16.321482, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"933-csmaria", nombre:"Cruce Santa María", lat:28.419405, lng:-16.312988, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"933-tablero", nombre:"El Tablero", lat:28.43552, lng:-16.32621, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
@@ -17335,7 +17340,7 @@ const TITSA_LINES = [
     servicio:{ desde:"05:30", hasta:"22:30" },
     paradas:[
       { id:"934-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
-      { id:"934-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"934-taco", nombre:"Taco · Intercambiador", lat:28.441405, lng:-16.307521, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"934-stamar", nombre:"Santa María del Mar", lat:28.41624, lng:-16.31543, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"934-anaza", nombre:"Añaza", lat:28.42345, lng:-16.30712, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
@@ -17358,7 +17363,7 @@ const TITSA_LINES = [
       { id:"936-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"936-anaza", nombre:"Añaza", lat:28.42345, lng:-16.30712, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"936-stamar", nombre:"Santa María del Mar", lat:28.41624, lng:-16.31543, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
-      { id:"936-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"936-taco", nombre:"Taco · Intercambiador", lat:28.441405, lng:-16.307521, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
   {
@@ -17367,7 +17372,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:15", hasta:"21:15" },
     paradas:[
       { id:"937-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
-      { id:"937-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"937-taco", nombre:"Taco · Intercambiador", lat:28.441405, lng:-16.307521, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"937-tincer", nombre:"Tíncer", lat:28.471, lng:-16.279, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"937-sobra", nombre:"El Sobradillo", lat:28.4595, lng:-16.292, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
@@ -17423,7 +17428,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:30", hasta:"20:45" },
     paradas:[
       { id:"944-tablero", nombre:"El Tablero", lat:28.43552, lng:-16.32621, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
-      { id:"944-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"944-taco", nombre:"Taco · Intercambiador", lat:28.441405, lng:-16.307521, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"944-tincer", nombre:"Tíncer", lat:28.471, lng:-16.279, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"944-gallega", nombre:"La Gallega", lat:28.44115, lng:-16.32984, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
@@ -17508,7 +17513,7 @@ const TITSA_LINES = [
     paradas:[
       { id:"232-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"232-cuesta", nombre:"La Cuesta", lat:28.4778, lng:-16.289, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"232-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"232-taco", nombre:"Taco · Intercambiador", lat:28.441405, lng:-16.307521, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"232-card", nombre:"Cruce de El Cardonal", lat:28.45892, lng:-16.30453, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"232-gallega", nombre:"La Gallega", lat:28.44115, lng:-16.32984, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
@@ -17520,7 +17525,7 @@ const TITSA_LINES = [
     paradas:[
       { id:"233-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"233-finca", nombre:"Finca España", lat:28.47355, lng:-16.30114, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"233-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"233-taco", nombre:"Taco · Intercambiador", lat:28.441405, lng:-16.307521, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
   {
@@ -17969,7 +17974,7 @@ const TITSA_LINES = [
     servicio:{ desde:"22:45", hasta:"05:25" },
     paradas:[
       { id:"934N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"934N-taco",     nombre:"Taco",                            lat:28.4830, lng:-16.2960, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"934N-taco",     nombre:"Taco · Intercambiador",                            lat:28.441405, lng:-16.307521, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"934N-stamaria", nombre:"Santa María del Mar",             lat:28.41624, lng:-16.31543, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"934N-anaza",    nombre:"Añaza",                           lat:28.42345, lng:-16.30712, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"934N-back",     nombre:"Intercambiador (Vuelta)",         lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
@@ -18009,7 +18014,7 @@ const TITSA_LINES = [
     servicio:{ desde:"23:50", hasta:"05:15" },
     paradas:[
       { id:"974-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"974-taco",      nombre:"Taco",                            lat:28.4830, lng:-16.2960, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"974-taco",      nombre:"Taco · Intercambiador",                            lat:28.441405, lng:-16.307521, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"974-tincer",    nombre:"Tíncer",                          lat:28.4710, lng:-16.2790, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -18019,7 +18024,7 @@ const TITSA_LINES = [
     servicio:{ desde:"23:50", hasta:"05:15" },
     paradas:[
       { id:"975-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"975-taco",      nombre:"Taco",                            lat:28.4830, lng:-16.2960, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"975-taco",      nombre:"Taco · Intercambiador",                            lat:28.441405, lng:-16.307521, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"975-tincer",    nombre:"Tíncer",                          lat:28.4710, lng:-16.2790, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"975-majuelo",   nombre:"Los Majuelos",                    lat:28.4670, lng:-16.2870, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"975-sobrad",    nombre:"El Sobradillo",                   lat:28.4595, lng:-16.2920, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
