@@ -16970,6 +16970,8 @@ const TITSA_LINES = [
       { id:"363-pcruz",   nombre:"Puerto de la Cruz · Estación",     lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
       { id:"363-icod",    nombre:"Icod de los Vinos",                lat:28.3722, lng:-16.7178, esTerminal:false, municipio:"Icod de los Vinos" },
       { id:"363-garach",  nombre:"Garachico · Piscina (4398)",       lat:28.3735, lng:-16.7661, esTerminal:false, municipio:"Garachico" },
+      { id:"363-interian", nombre:"La Caleta de Interián (4406)", lat:28.371905, lng:-16.785211, esTerminal:false, municipio:"Los Silos" },
+      { id:"363-tierratrigo", nombre:"Tierra de Trigo (4418)", lat:28.373412, lng:-16.804105, esTerminal:false, municipio:"Los Silos" },
       { id:"363-silos",   nombre:"Los Silos · Estación (4414)",      lat:28.3655, lng:-16.8169, esTerminal:false, municipio:"Los Silos" },
       { id:"363-buena",   nombre:"Buenavista del Norte · Terminal (4432)", lat:28.3718, lng:-16.8510, esTerminal:true,  municipio:"Buenavista del Norte" },
     ]
@@ -17785,8 +17787,9 @@ const TITSA_LINES = [
        Arico Viejo y Chimiche; de esos cuatro solo Chimiche tiene coordenada
        en la tabla (la comparte con la 711N, asi que ademas hace nodo).
 
-       Las Flores, El Escobonal y Arico Viejo se quedan fuera hasta que haya
-       GPS: media linea bien puesta vale mas que cuatro puntos inventados.
+       El Escobonal y Arico Viejo ya estan. Las Flores sigue fuera: la
+       coordenada que llego para ella cae a 19 km de Güímar, en pleno area
+       metropolitana, asi que es otro sitio con el mismo nombre.
 
        El Cruce de Arico se mantiene aunque no salga en el listado oficial
        de siete nombres. Ese listado son los hitos de una linea de 154
@@ -17797,6 +17800,8 @@ const TITSA_LINES = [
     paradas:[
       { id:"035-guimar",  nombre:"Güímar",                lat:28.3186, lng:-16.4106, esTerminal:true,  municipio:"Güímar" },
       { id:"035-fasnia",  nombre:"Fasnia (Cruce)",         lat:28.2356, lng:-16.4422, esTerminal:false, municipio:"Fasnia" },
+      { id:"035-escobonal", nombre:"El Escobonal", lat:28.231215, lng:-16.446305, esTerminal:false, municipio:"Güímar" },
+      { id:"035-aricoviejo", nombre:"Arico Viejo", lat:28.188402, lng:-16.491244, esTerminal:false, municipio:"Arico" },
       { id:"035-arico",   nombre:"Cruce de Arico",         lat:28.1736, lng:-16.5147, esTerminal:false, municipio:"Arico" },
       { id:"035-chimich", nombre:"Cruce Chimiche",         lat:28.1450, lng:-16.5419, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"035-granad",  nombre:"Granadilla de Abona",    lat:28.1208, lng:-16.5775, esTerminal:true,  municipio:"Granadilla de Abona" },
@@ -17958,6 +17963,9 @@ const TITSA_LINES = [
          revisarlas: una comarcal de 25 minutos no se comporta como una que
          cruzaba media isla. */
       { id:"390-pcruz",   nombre:"Puerto de la Cruz (Estación)",   lat:28.4136, lng:-16.5446, esTerminal:true, municipio:"Puerto de la Cruz" },
+      { id:"390-arenas", nombre:"Las Arenas", lat:28.406912, lng:-16.544185, esTerminal:false, municipio:"Puerto de la Cruz" },
+      { id:"390-vera", nombre:"La Vera", lat:28.402305, lng:-16.535841, esTerminal:false, municipio:"Puerto de la Cruz" },
+      { id:"390-montana", nombre:"La Montaña", lat:28.391584, lng:-16.531201, esTerminal:false, municipio:"Los Realejos" },
       { id:"390-realejos",nombre:"Los Realejos",                   lat:28.3852, lng:-16.5841, esTerminal:true, municipio:"Los Realejos" },
     ]
   },
@@ -18059,6 +18067,7 @@ const TITSA_LINES = [
       { id:"345-pcruz", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true , municipio:"Puerto de la Cruz" },
       { id:"345-orot", nombre:"La Orotava · Estación", lat:28.3926, lng:-16.5235, esTerminal:false, municipio:"La Orotava" },
       { id:"345-aguam", nombre:"Aguamansa", lat:28.3620, lng:-16.5160, esTerminal:true , municipio:"La Orotava" },
+      { id:"345-caldera", nombre:"La Caldera", lat:28.361405, lng:-16.512148, esTerminal:false, municipio:"La Orotava" },
     ]
   },
   {
