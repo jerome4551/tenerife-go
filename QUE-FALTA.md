@@ -1,6 +1,6 @@
 # Qué me falta — Tenerife Go
 
-**Estado: 93 de 171 líneas (54 %) · 102 líneas y tranvías · 143 nodos · 0 sin precio, frecuencia ni horario.**
+**Estado: 93 de 171 líneas (54 %) · 102 líneas y tranvías · 144 nodos · 0 sin precio, frecuencia ni horario.**
 
 Cuatro peticiones. Son independientes: contesta la que quieras, en el orden que quieras.
 
@@ -30,7 +30,7 @@ Si un dato no existe o no lo sabes, escribe `no hay`. Eso también me sirve: dej
 
 ---
 
-## PETICIÓN 1 — 12 tiempos de trayecto · *lo que más rinde*
+## PETICIÓN 1 — 11 tiempos de trayecto · *lo que más rinde*
 
 > ### ⚠️ Esto NO es la ficha del Bloque 1
 >
@@ -58,7 +58,6 @@ El recorrido que va detrás es **el que tiene la app ahora**. Si no coincide con
 un tiempo puesto sobre un recorrido equivocado es peor que no tener tiempo.
 
 ```
-204 = ___ min     (La Laguna · Intercambiador (2625) → La Trinidad (Centro La Laguna))
 345 = ___ min     (Puerto de la Cruz · Estación → La Orotava · Estación → Aguamansa)
 351 = ___ min     (Puerto de la Cruz · Estación → La Orotava · Estación)
 353 = ___ min     (Puerto de la Cruz · Estación → Los Realejos → La Orotava · Estación)
@@ -74,27 +73,11 @@ un tiempo puesto sobre un recorrido equivocado es peor que no tener tiempo.
 
 ---
 
-## PETICIÓN 2 — 2 coordenadas que desbloquean 2 líneas
+## ✅ PETICIÓN 2 — RESUELTA
 
-Estas dos no son de la lista larga. Cada una arregla un problema concreto y medido.
-
-**Tejina** — la coordenada que me mandaste (`28.531233, -16.379203`) está a **8,1 m** de la que
-ya tenía, así que no cambió nada: la línea 050 sigue dando un rodeo de 4,7 km (pasa de 10,6 a
-15,3 km). Tegueste, Bajamar y Punta del Hidalgo sí caen donde deben, y Tejina queda al oeste de
-los tres cuando geográficamente está entre ellos. Si el punto bueno es otro, debería caer cerca
-de **-16.355**, unos 2 km al este.
-
-```
-Tejina = ___ , ___        (o escribe `es correcta` y dejo de darle vueltas)
-```
-
-**Un punto del bucle de la 204** — confirmaste que es un anillo de 15 min, pero de ese anillo
-solo tengo el Intercambiador y La Trinidad, **separados 300 m**. Con esas dos, 15 minutos dan
-2,4 km/h y no puedo aplicarlos. Con un punto intermedio cualquiera, el tiempo encaja solo.
-
-```
-San Honorato = ___ , ___          (o Avenida de La Trinidad, o cualquier punto del anillo)
-```
+Tejina en `28.530911, -16.355104`: el rodeo de la 050 desaparece, la línea pasa de 15,3 a 11,7 km.
+San Honorato en `28.481242, -16.319736`: el bucle de la 204 pasa de 300 m a 1,7 km y ya lleva sus
+15 minutos.
 
 ---
 

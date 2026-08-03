@@ -10918,7 +10918,7 @@ const places = [
     cat:{ es:"Pueblo Aislado · Anaga", en:"Isolated Village · Anaga", fr:"Village Isolé · Anaga", de:"Abgelegenes Dorf · Anaga", it:"Paese Isolato · Anaga", nl:"Afgelegen Dorp · Anaga", zh:"隐世村镇 · 阿纳加", zht:"隱世村鎮 · 阿納加" },
     tags:["Anaga","Aislado","Local","Plataneras","Senderismo","Santa Cruz"] },
 
-  { id:"nucleo-tejina", category:"municipio", name:"Tejina", emoji:"🌽", color:"#7cb342", lat:28.53124, lng:-16.37912,
+  { id:"nucleo-tejina", category:"municipio", name:"Tejina", emoji:"🌽", color:"#7cb342", lat:28.530911, lng:-16.355104,
     desc:{ es:"Pueblo rural agrícola en el norte de La Laguna. Famoso por la Fiesta de los Corazones de Tejina (septiembre, Patrimonio de la Humanidad UNESCO), espectacular tradición popular única en el mundo. Vegas verdes y plataneras.", en:"Rural agricultural village in northern La Laguna. Famous for the Tejina Hearts Festival (September, UNESCO World Heritage), spectacular folk tradition unique in the world. Green meadows and banana plantations.", fr:"Village rural agricole au nord de La Laguna. Célèbre pour la Fête des Cœurs de Tejina (septembre, Patrimoine UNESCO), spectaculaire tradition populaire unique au monde. Vegas verdoyantes et bananeraies.", de:"Ländliches Agrardorf im Norden von La Laguna. Bekannt für das Tejina-Herzfest (September, UNESCO-Welterbe), spektakuläre Volkstradition, einzigartig in der Welt. Grüne Wiesen und Bananenplantagen.", it:"Paese rurale agricolo nel nord di La Laguna. Famoso per la Fiesta de los Corazones de Tejina (settembre, Patrimonio dell'Umanità UNESCO), spettacolare tradizione popolare unica al mondo. Campagne verdi e piantagioni di banane.", nl:"Landelijk landbouwdorp in het noorden van La Laguna. Bekend om de Fiesta de los Corazones de Tejina (september, UNESCO-werelderfgoed), een spectaculaire volkstraditie die uniek is in de wereld. Groene velden en bananenplantages.", zh:"拉拉古纳北部的乡村农业小镇。以特希纳之心节闻名（9月，联合国教科文人类遗产），是世上独一无二的壮观民俗传统。绿色田园与香蕉种植园。", zht:"拉拉古納北部的鄉村農業小鎮。以特希納之心節聞名（9月，聯合國教科文人類遺產），是世上獨一無二的壯觀民俗傳統。綠色田園與香蕉種植園。" },
     cat:{ es:"Pueblo Rural · La Laguna", en:"Rural Village · La Laguna", fr:"Village Rural · La Laguna", de:"Ländliches Dorf · La Laguna", it:"Paese Rurale · La Laguna", nl:"Landelijk Dorp · La Laguna", zh:"乡村小镇 · 拉拉古纳", zht:"鄉村小鎮 · 拉拉古納" },
     tags:["UNESCO","Corazones","Rural","Norte","Tradición","La Laguna"] },
@@ -17028,7 +17028,7 @@ const TITSA_LINES = [
          Hidalgo caen donde deben, asi que la que baila es Tejina, unos 2 km
          al oeste. Se deja el recorrido correcto y queda pedida la GPS. */
       { id:"050-teg", nombre:"Tegueste", lat:28.5228, lng:-16.3379, esTerminal:false, municipio:"Tegueste" },
-      { id:"050-tej", nombre:"Tejina", lat:28.53124, lng:-16.37912, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"050-tej", nombre:"Tejina", lat:28.530911, lng:-16.355104, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"050-baj", nombre:"Bajamar", lat:28.5542, lng:-16.3445, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"050-ph", nombre:"Punta del Hidalgo", lat:28.5681, lng:-16.3265, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
@@ -17039,7 +17039,7 @@ const TITSA_LINES = [
     servicio:{ desde:"05:00", hasta:"23:05" },
     paradas:[
       { id:"051-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
-      { id:"051-tej", nombre:"Tejina", lat:28.53124, lng:-16.37912, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"051-tej", nombre:"Tejina", lat:28.530911, lng:-16.355104, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"051-tac", nombre:"Tacoronte · Casco", lat:28.4808, lng:-16.4127, esTerminal:true, municipio:"Tacoronte" },
     ]
   },
@@ -17069,33 +17069,40 @@ const TITSA_LINES = [
     paradas:[
       { id:"057-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"057-tac", nombre:"Tacoronte · Casco", lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
-      { id:"057-tej", nombre:"Tejina", lat:28.53124, lng:-16.37912, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"057-tej", nombre:"Tejina", lat:28.530911, lng:-16.355104, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"057-teg", nombre:"Tegueste", lat:28.5228, lng:-16.3379, esTerminal:true, municipio:"Tegueste" },
     ]
   },
   {
     id:"bus-204", numero:"204", nombre:"La Laguna — La Rúa — El Rayo — Trinidad (circular)",
-    /* Ya tiene su final de verdad, San Matias, y con el el tiempo oficial
-       vale: 6,1 km en 25 minutos son 14,6 km/h. Antes, con la linea cortada
-       en Taco, esos mismos 25 minutos daban 4,7 km/h.
+    /* Bucle cerrado: sale del Intercambiador y vuelve a el. San Honorato
+       es el punto de inflexion sur, y sin el el anillo medido eran 300 m
+       -las dos paradas del centro, una al lado de la otra- donde 15 minutos
+       daban 1,1 km/h.
 
-       El trazado hace un zigzag de 2 km porque nuestro Taco cae al este de
-       La Laguna y de San Matias. Es la sospecha de siempre sobre Taco, no un
-       problema de esta linea. */
-    color:"#455A64", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+       Con San Honorato el anillo mide 1,7 km y sale a 6,8 km/h. El
+       recorrido real son 3,8 km; la diferencia es que del anillo solo
+       tenemos tres vertices y los tramos se cortan en recta. El tiempo es
+       el oficial y es lo que se muestra, asi que el error queda en la
+       distancia dibujada, no en los minutos. */
+    color:"#455A64", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €", minutos:15,
     servicio:{ desde:"07:05", hasta:"20:30" },
     paradas:[
       { id:"204-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
-      { id:"204-trin", nombre:"La Trinidad (Centro La Laguna)", lat:28.4858, lng:-16.3133, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"204-trin", nombre:"La Trinidad (Centro La Laguna)", lat:28.4858, lng:-16.3133, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"204-honorato", nombre:"Barrio de San Honorato", lat:28.481242, lng:-16.319736, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"204-vuelta", nombre:"La Laguna · Intercambiador (Vuelta)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
   {
     id:"bus-219", numero:"219", nombre:"La Laguna — El Cardonal — Taco — San Matías",
-    /* Sin "minutos": el tiempo oficial es el de la vuelta entera y de
-       esta linea solo se modelan las paradas con coordenada. Repartir
-       30 minutos sobre ese trozo daba 4 km/h, o sea que el planificador
-       creia que ese salto tarda media hora. Sin el campo usa la
-       velocidad media, que aqui es mas honrada. */
+    /* Ya tiene su final de verdad, San Matias, y con el los 25 minutos
+       oficiales valen: 6,1 km dan 14,6 km/h. Cortada en Taco, esos mismos
+       25 minutos daban 4,7 km/h y por eso estuvo sin el campo.
+
+       El trazado hace un zigzag de 2 km porque nuestro Taco cae al este de
+       La Laguna y de San Matias. Es la sospecha de siempre sobre Taco, no
+       un problema de esta linea. */
     color:"#546E7A", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €", minutos:25,
     servicio:{ desde:"06:05", hasta:"21:40" },
     paradas:[
@@ -17111,7 +17118,7 @@ const TITSA_LINES = [
     paradas:[
       { id:"224-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"224-vg", nombre:"Valle de Guerra", lat:28.51921, lng:-16.39124, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"224-tej", nombre:"Tejina", lat:28.53124, lng:-16.37912, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"224-tej", nombre:"Tejina", lat:28.530911, lng:-16.355104, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"224-ph", nombre:"Punta del Hidalgo", lat:28.5681, lng:-16.3265, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
@@ -17436,7 +17443,7 @@ const TITSA_LINES = [
     paradas:[
       { id:"222-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"222-vg", nombre:"Valle de Guerra", lat:28.51921, lng:-16.39124, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"222-tej", nombre:"Tejina", lat:28.53124, lng:-16.37912, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"222-tej", nombre:"Tejina", lat:28.530911, lng:-16.355104, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
   {
