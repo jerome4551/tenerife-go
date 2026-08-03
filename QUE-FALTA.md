@@ -1,76 +1,138 @@
 # Qué me falta — Tenerife Go
 
-Generado de la tabla real. Rellena solo los huecos `___`. Cada bloque es independiente.
+**Estado: 93 de 171 líneas (54 %) · 102 líneas y tranvías · 143 nodos · 0 sin precio, frecuencia ni horario.**
 
-**Estado: 93 de 171 líneas (54 %) · 100 líneas en la tabla · 0 sin precio, frecuencia ni horario.**
-
----
-
-## ✅ BLOQUES 1, 3 y 4 — cerrados salvo dos puntos
-
-Bloque 1 cerrado. Bloque 3: solo queda la 204 y las 11 líneas nuevas. Bloque 4: 7 de 9 resueltas — quedan la coordenada de Tejina y el punto intermedio de la 204.
+Cuatro peticiones. Son independientes: contesta la que quieras, en el orden que quieras.
 
 ---
 
-## BLOQUE 2 — la 030, a un solo dato
+## CÓMO CONTESTAR
+
+Copia la línea y pon el dato detrás. Nada más. Ejemplos de respuesta correcta:
 
 ```
-030  Puerto de la Cruz ↔ Aeropuerto Norte · cada 30 min · primera 06:30
-     última salida: __:__     ← solo esto
-     precio.......: ___ €
+345 = 40 min
+Tejina = 28.5290, -16.3550
+030 última = 21:45
+030 precio = 3,70 €
+```
+
+Reglas de formato:
+
+| dato | formato | ejemplo bueno | ejemplo malo |
+|---|---|---|---|
+| minutos | número entero, sin texto | `40` | `unos 40-45` |
+| coordenada | decimal con **punto**, lat primero | `28.5290, -16.3550` | `28°31'44"N` |
+| hora | 24 h con dos puntos | `21:45` | `9:45 PM` |
+| precio | euros con coma | `2,45 €` | `2.45` |
+
+Si un dato no existe o no lo sabes, escribe `no hay`. Eso también me sirve: dejo de pedirlo.
+
+---
+
+## PETICIÓN 1 — 12 tiempos de trayecto · *lo que más rinde*
+
+Un número por línea: **minutos de cabecera a cabecera, en un solo sentido**.
+Si la línea es un bucle, dime los minutos de la vuelta entera y añade la palabra `bucle`.
+
+El recorrido que va detrás es **el que tiene la app ahora**. Si no coincide con el real, dímelo:
+un tiempo puesto sobre un recorrido equivocado es peor que no tener tiempo.
+
+```
+204 = ___ min     (La Laguna · Intercambiador (2625) → La Trinidad (Centro La Laguna))
+345 = ___ min     (Puerto de la Cruz · Estación → La Orotava · Estación → Aguamansa)
+351 = ___ min     (Puerto de la Cruz · Estación → La Orotava · Estación)
+353 = ___ min     (Puerto de la Cruz · Estación → Los Realejos → La Orotava · Estación)
+365 = ___ min     (Buenavista del Norte · Terminal → 🏔️ Masca (Pueblo))
+447 = ___ min     (Los Cristianos · Estación → Costa Adeje · Estación → Adeje · Las Torres)
+448 = ___ min     (Adeje · Las Torres → La Caleta)
+450 = ___ min     (Costa Adeje · Estación → Los Cristianos · Estación → San Isidro (Enlace TF-1))
+460 = ___ min     (Icod de los Vinos → El Tanque → Santiago del Teide → Guía de Isora → Costa Adeje · Estación)
+492 = ___ min     (Chiguergue (7486) → Guía de Isora)
+493 = ___ min     (Guía de Isora → Playa San Juan → Alcalá → Puerto de Santiago (7222) → Los Gigantes · Terminal)
+494 = ___ min     (Guía de Isora → Playa San Juan → Alcalá → Los Gigantes · Terminal)
 ```
 
 ---
 
-## BLOQUE 3 — 12 líneas sin tiempo de trayecto
+## PETICIÓN 2 — 2 coordenadas que desbloquean 2 líneas
 
-Un número por línea: **minutos de cabecera a cabecera**. Las marcadas ⚠️ dependen del bloque 4;
-si el recorrido cambia, el tiempo cambia — contéstalas después.
+Estas dos no son de la lista larga. Cada una arregla un problema concreto y medido.
+
+**Tejina** — la coordenada que me mandaste (`28.531233, -16.379203`) está a **8,1 m** de la que
+ya tenía, así que no cambió nada: la línea 050 sigue dando un rodeo de 4,7 km (pasa de 10,6 a
+15,3 km). Tegueste, Bajamar y Punta del Hidalgo sí caen donde deben, y Tejina queda al oeste de
+los tres cuando geográficamente está entre ellos. Si el punto bueno es otro, debería caer cerca
+de **-16.355**, unos 2 km al este.
 
 ```
-204 ⚠️ La Laguna · Intercambiador (2625) → La Trinidad (Centro La Laguna)       ___ min
-345    Puerto de la Cruz · Estación → La Orotava · Estación → Aguamansa         ___ min
-351    Puerto de la Cruz · Estación → La Orotava · Estación                     ___ min
-353    Puerto de la Cruz · Estación → Los Realejos → La Orotava · Estación      ___ min
-365    Buenavista del Norte · Terminal → 🏔️ Masca (Pueblo)                      ___ min
-447    Los Cristianos · Estación → Costa Adeje · Estación → Adeje · Las Torre   ___ min
-448    Adeje · Las Torres → La Caleta                                           ___ min
-450    Costa Adeje · Estación → Los Cristianos · Estación → San Isidro (Enlac   ___ min
-460    Icod de los Vinos → El Tanque → Santiago del Teide → Guía de Isora → C   ___ min
-492    Chiguergue (7486) → Guía de Isora                                        ___ min
-493    Guía de Isora → Playa San Juan → Alcalá → Puerto de Santiago (7222) →    ___ min
-494    Guía de Isora → Playa San Juan → Alcalá → Los Gigantes · Terminal        ___ min
+Tejina = ___ , ___        (o escribe `es correcta` y dejo de darle vueltas)
+```
+
+**Un punto del bucle de la 204** — confirmaste que es un anillo de 15 min, pero de ese anillo
+solo tengo el Intercambiador y La Trinidad, **separados 300 m**. Con esas dos, 15 minutos dan
+2,4 km/h y no puedo aplicarlos. Con un punto intermedio cualquiera, el tiempo encaja solo.
+
+```
+San Honorato = ___ , ___          (o Avenida de La Trinidad, o cualquier punto del anillo)
 ```
 
 ---
 
-## BLOQUE 4 — 2 contradicciones
+## PETICIÓN 3 — la línea 030, a dos datos
 
-Aquí no necesito datos nuevos, necesito que arbitres. No toco ninguna hasta saberlo.
+Tengo recorrido (Puerto de la Cruz ↔ Aeropuerto Norte), las dos coordenadas y la frecuencia
+(30 min) y la primera salida (06:30). Con estos dos datos la línea entra hoy.
 
-**Tejina** — la coordenada que mandaste es la que ya teníamos
-  · lo pregunto porque: 28.531233,-16.379203 está a 8,1 m de nuestra 28.53124,-16.37912. Es el mismo punto, así que el rodeo de 4,7 km en la 050 sigue igual. Si el punto correcto es otro, tiene que estar unos 2 km al este, hacia -16.355
-  · respuesta: ___
-
-**204** — coordenada de Barrio de San Honorato o de Avenida de La Trinidad
-  · lo pregunto porque: confirmaste que es un bucle de 15 min, pero la app solo tiene Intercambiador y La Trinidad, a 300 m. Cerrando el bucle con esas dos salen 2,4 km/h. Con un punto intermedio del anillo, el tiempo encaja
-  · respuesta: ___
+```
+030 última = __:__
+030 precio = ___ €
+```
 
 ---
 
-## BLOQUE 5 — coordenadas
+## PETICIÓN 4 — coordenadas de paradas (21 prioritarias de 88)
 
-Las 88 paradas de `PARADAS-PENDIENTES.md`, formato `Nombre: lat, lng`. Empieza por la sección A.
+Estas 21 son las que más rinden: **no añaden líneas nuevas, rellenan líneas que ya funcionan**
+y que hoy solo tienen cabecera y final. Entre paréntesis, las líneas que las usan.
 
-Dos sueltas que bloquean cosas concretas:
-- **La Caldera** (La Orotava) — la 345 termina ahí y se queda en Aguamansa por no tenerla.
-- **Tejina** — la que tenemos da un rodeo de 4,5 km en la 050. Ver bloque 4.
+```
+Las Canteras = ___ , ___        (076 270 274 275)
+Chamberí = ___ , ___        (232 238 923)
+Barranco Grande = ___ , ___        (127 933)
+Ramblas = ___ , ___        (920 923)
+Aeropuerto Los Rodeos = ___ , ___        (343)
+Avda. 3 Mayo = ___ , ___        (104)
+Avda. Melchor Luz = ___ , ___        (104)
+Avenida del Ferry = ___ , ___        (711)
+Casas Cumbre = ___ , ___        (076)
+Costa San Miguel = ___ , ___        (415)
+Cruce Santa María = ___ , ___        (933)
+Cruce de Los Rodeos = ___ , ___        (253)
+EL BRONCO = ___ , ___        (204)
+Emp. Granadilla = ___ , ___        (110)
+LOS CAMPITOS (Las Casillas) = ___ , ___        (912)
+Los Baldíos = ___ , ___        (056)
+PUNTA DE ANAGA = ___ , ___        (947)
+Plaza del Cristo = ___ , ___        (204)
+SAN MATÍAS = ___ , ___        (219)
+San Lázaro = ___ , ___        (104)
+Valle Santiago = ___ , ___        (462)
+```
+
+Las 67 restantes están en `PARADAS-PENDIENTES.md`, sección B. Son de líneas que aún no existen
+en la app, así que rinden menos: úsalas solo si te sobran ganas.
 
 ---
 
-## Lo que NO necesito
+## LO QUE NO NECESITO
 
-- Listados de qué líneas existen. Ya tengo el mapa: 171 números.
-- Recorridos en texto. Los tengo de 121 líneas del folleto.
+Para que no gastes tiempo en esto:
 
-El cuello de botella es **tiempos, coordenadas y las contradicciones**.
+- **Listados de qué líneas existen.** Ya tengo el mapa completo: 171 números, y sé cuáles son
+  fantasma (nueve) gracias a tus dos auditorías.
+- **Recorridos en texto.** Los tengo de 121 líneas, sacados de los folletos.
+- **Horarios completos de salidas.** Solo uso primera y última; el resto no cabe en el modelo.
+- **Los folletos otra vez.** Están leídos y exprimidos.
+
+El cuello de botella son **12 números de minutos y unas cuantas coordenadas**. Nada más.
