@@ -17943,6 +17943,131 @@ const TITSA_LINES = [
     ]
   },
 
+  /* ONCE LINEAS NUEVAS · norte y suroeste
+     Frecuencia, precio y ventana salen de la base viva de TITSA, no del
+     folleto de 2019. Ninguna lleva "minutos": el tiempo de trayecto no
+     venia en el lote, asi que van con velocidad generica hasta que lo haya.
+
+     Ninguna tiene servicio de madrugada y todas cierran antes de las 22:30,
+     asi que no le quitan viajeros a las buho.
+
+     La 345 llega de verdad hasta La Caldera, un poco mas arriba de
+     Aguamansa, pero de La Caldera no hay coordenada: la linea se queda en
+     Aguamansa, que es la ultima parada que si sabemos situar.
+
+     "Adeje · Las Torres" usa la coordenada del casco de Adeje que ya estaba
+     en el mapa. Es el pueblo, no el anden exacto de la terminal. */
+  {
+    id:"bus-345", numero:"345", nombre:"Puerto de la Cruz — La Orotava — Aguamansa",
+    color:"#2E7D32", tipo:"norte", frecuencia:"50-60 min", precio:"1,45 €",
+    servicio:{ desde:"06:00", hasta:"21:30" },
+    paradas:[
+      { id:"345-pcruz", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true , municipio:"Puerto de la Cruz" },
+      { id:"345-orot", nombre:"La Orotava · Estación", lat:28.3926, lng:-16.5235, esTerminal:false, municipio:"La Orotava" },
+      { id:"345-aguam", nombre:"Aguamansa", lat:28.3620, lng:-16.5160, esTerminal:true , municipio:"La Orotava" },
+    ]
+  },
+  {
+    id:"bus-351", numero:"351", nombre:"Puerto de la Cruz — La Orotava (directo)",
+    color:"#388E3C", tipo:"norte", frecuencia:"30 min", precio:"1,45 €",
+    servicio:{ desde:"06:15", hasta:"21:45" },
+    paradas:[
+      { id:"351-pcruz", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true , municipio:"Puerto de la Cruz" },
+      { id:"351-orot", nombre:"La Orotava · Estación", lat:28.3926, lng:-16.5235, esTerminal:true , municipio:"La Orotava" },
+    ]
+  },
+  {
+    id:"bus-353", numero:"353", nombre:"Puerto de la Cruz — Los Realejos — La Orotava (circuito del valle)",
+    color:"#43A047", tipo:"norte", frecuencia:"25-35 min", precio:"1,45 €",
+    servicio:{ desde:"05:40", hasta:"21:40" },
+    paradas:[
+      { id:"353-pcruz", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true , municipio:"Puerto de la Cruz" },
+      { id:"353-reale", nombre:"Los Realejos", lat:28.3852, lng:-16.5841, esTerminal:false, municipio:"Los Realejos" },
+      { id:"353-orot", nombre:"La Orotava · Estación", lat:28.3926, lng:-16.5235, esTerminal:true , municipio:"La Orotava" },
+    ]
+  },
+  {
+    id:"bus-365", numero:"365", nombre:"Buenavista del Norte — Masca",
+    color:"#1B5E20", tipo:"norte", frecuencia:"4-6 salidas/día", precio:"1,45 €",
+    servicio:{ desde:"05:55", hasta:"18:15" },
+    paradas:[
+      { id:"365-buena", nombre:"Buenavista del Norte · Terminal", lat:28.3718, lng:-16.8510, esTerminal:true , municipio:"Buenavista del Norte" },
+      { id:"365-masca", nombre:"🏔️ Masca (Pueblo)", lat:28.3054, lng:-16.8399, esTerminal:true , municipio:"Buenavista del Norte" },
+    ]
+  },
+  {
+    id:"bus-460", numero:"460", nombre:"Icod de los Vinos — Santiago del Teide — Guía de Isora — Costa Adeje",
+    color:"#00695C", tipo:"norte", frecuencia:"90-120 min", precio:"4,15 €",
+    servicio:{ desde:"06:15", hasta:"20:15" },
+    paradas:[
+      { id:"460-icod", nombre:"Icod de los Vinos", lat:28.3722, lng:-16.7178, esTerminal:true , municipio:"Icod de los Vinos" },
+      { id:"460-tanque", nombre:"El Tanque", lat:28.3562, lng:-16.7792, esTerminal:false, municipio:"El Tanque" },
+      { id:"460-stgo", nombre:"Santiago del Teide", lat:28.2974, lng:-16.8155, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"460-guia", nombre:"Guía de Isora", lat:28.2125, lng:-16.7783, esTerminal:false, municipio:"Guía de Isora" },
+      { id:"460-cadeje", nombre:"Costa Adeje · Estación", lat:28.0970, lng:-16.7440, esTerminal:true , municipio:"Adeje" },
+    ]
+  },
+  {
+    id:"bus-447", numero:"447", nombre:"Los Cristianos — Costa Adeje — Adeje (Las Torres)",
+    color:"#EF6C00", tipo:"sur", frecuencia:"20-40 min", precio:"1,45 €",
+    servicio:{ desde:"05:40", hasta:"22:25" },
+    paradas:[
+      { id:"447-loscr", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:true , municipio:"Arona" },
+      { id:"447-cadeje", nombre:"Costa Adeje · Estación", lat:28.0970, lng:-16.7440, esTerminal:false, municipio:"Adeje" },
+      { id:"447-torres", nombre:"Adeje · Las Torres", lat:28.1221, lng:-16.7338, esTerminal:true , municipio:"Adeje" },
+    ]
+  },
+  {
+    id:"bus-448", numero:"448", nombre:"Adeje (Las Torres) — La Caleta",
+    color:"#F57C00", tipo:"sur", frecuencia:"45-60 min", precio:"1,45 €",
+    servicio:{ desde:"06:40", hasta:"21:30" },
+    paradas:[
+      { id:"448-torres", nombre:"Adeje · Las Torres", lat:28.1221, lng:-16.7338, esTerminal:true , municipio:"Adeje" },
+      { id:"448-caleta", nombre:"La Caleta", lat:28.1002, lng:-16.7548, esTerminal:true , municipio:"Adeje" },
+    ]
+  },
+  {
+    id:"bus-450", numero:"450", nombre:"Costa Adeje — Los Cristianos — San Isidro",
+    color:"#FB8C00", tipo:"sur", frecuencia:"60 min", precio:"2,45 €",
+    servicio:{ desde:"05:35", hasta:"21:55" },
+    paradas:[
+      { id:"450-cadeje", nombre:"Costa Adeje · Estación", lat:28.0970, lng:-16.7440, esTerminal:true , municipio:"Adeje" },
+      { id:"450-loscr", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
+      { id:"450-sisidro", nombre:"San Isidro (Enlace TF-1)", lat:28.0625, lng:-16.5635, esTerminal:true , municipio:"Granadilla de Abona" },
+    ]
+  },
+  {
+    id:"bus-492", numero:"492", nombre:"Chiguergue — Guía de Isora (circular)",
+    color:"#6D4C41", tipo:"sur", frecuencia:"3-5 salidas/día", precio:"1,45 €",
+    servicio:{ desde:"07:15", hasta:"18:40" },
+    paradas:[
+      { id:"492-chig", nombre:"Chiguergue (7486)", lat:28.227917, lng:-16.788806, esTerminal:true , municipio:"Guía de Isora" },
+      { id:"492-guia", nombre:"Guía de Isora", lat:28.2125, lng:-16.7783, esTerminal:true , municipio:"Guía de Isora" },
+    ]
+  },
+  {
+    id:"bus-493", numero:"493", nombre:"Guía de Isora — Playa San Juan — Alcalá — Los Gigantes (por TF-463)",
+    color:"#8D6E63", tipo:"sur", frecuencia:"60-90 min", precio:"2,10 €",
+    servicio:{ desde:"06:30", hasta:"20:45" },
+    paradas:[
+      { id:"493-guia", nombre:"Guía de Isora", lat:28.2125, lng:-16.7783, esTerminal:true , municipio:"Guía de Isora" },
+      { id:"493-psjuan", nombre:"Playa San Juan", lat:28.1816, lng:-16.8171, esTerminal:false, municipio:"Guía de Isora" },
+      { id:"493-alcala", nombre:"Alcalá", lat:28.2006, lng:-16.8286, esTerminal:false, municipio:"Guía de Isora" },
+      { id:"493-ptostgo", nombre:"Puerto de Santiago (7222)", lat:28.2352, lng:-16.8390, esTerminal:false, municipio:"Santiago del Teide" },
+      { id:"493-gigant", nombre:"Los Gigantes · Terminal", lat:28.2443, lng:-16.8397, esTerminal:true , municipio:"Santiago del Teide" },
+    ]
+  },
+  {
+    id:"bus-494", numero:"494", nombre:"Guía de Isora — Playa San Juan — Alcalá — Los Gigantes (por Piedra Hincada)",
+    color:"#A1887F", tipo:"sur", frecuencia:"4 salidas/día", precio:"2,10 €",
+    servicio:{ desde:"07:35", hasta:"17:15" },
+    paradas:[
+      { id:"494-guia", nombre:"Guía de Isora", lat:28.2125, lng:-16.7783, esTerminal:true , municipio:"Guía de Isora" },
+      { id:"494-psjuan", nombre:"Playa San Juan", lat:28.1816, lng:-16.8171, esTerminal:false, municipio:"Guía de Isora" },
+      { id:"494-alcala", nombre:"Alcalá", lat:28.2006, lng:-16.8286, esTerminal:false, municipio:"Guía de Isora" },
+      { id:"494-gigant", nombre:"Los Gigantes · Terminal", lat:28.2443, lng:-16.8397, esTerminal:true , municipio:"Santiago del Teide" },
+    ]
+  },
 ];
 
 // ── ESTADO ────────────────────────────────────────────────
