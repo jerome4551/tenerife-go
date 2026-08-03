@@ -16439,6 +16439,17 @@ const TITSA_LINES = [
        rapida, mandando a alguien a esperar en el Intercambiador una
        guagua que no viene hasta las cinco y veinte. Ahora en esa franja
        el flujo cae solo a la buho 711, que es la que circula. */
+    /* Los 55 minutos son Intercambiador de Santa Cruz - Estacion de Costa
+       Adeje, extremo a extremo y sin paradas comerciales. Sobre los 76,3 km
+       que mide nuestra cadena salen 83 km/h, que es mucho para una guagua y
+       por eso se reviso: la fuente lo confirma y lo explica, es express por
+       la TF-1 a velocidad de crucero y con carriles propios de entrada y
+       salida a los intercambiadores.
+
+       Queda dicho para que nadie lo "arregle" mas adelante creyendo que es
+       un error de dato. La comparacion que lo hacia sospechoso -la buho 711
+       hace el mismo corredor a 62 km/h- se explica porque la 711 para en
+       nueve enlaces y la 110 en ninguno. */
     servicio:{ desde:"05:20", hasta:"23:15" },
     paradas:[
       { id:"110-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
@@ -17723,6 +17734,11 @@ const TITSA_LINES = [
       { id:"076-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"076-canteras", nombre:"Las Canteras", lat:28.491322, lng:-16.326245, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"076-ccarmen", nombre:"Cruz del Carmen", lat:28.53115, lng:-16.27984, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      /* El rodeo de 4,5 km hasta Casas de La Cumbre no es un error del
+         calculo: la 076 se desvia de verdad a ese caserio aislado antes de
+         bajar por el barranco de Afur. La 077 se queda arriba, en el eje de
+         la carretera, y por eso no lo toca. */
+      { id:"076-cumbre", nombre:"Casas de La Cumbre", lat:28.536911, lng:-16.223405, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"076-afur", nombre:"Afur", lat:28.55831, lng:-16.26214, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
