@@ -17581,13 +17581,26 @@ const TITSA_LINES = [
      Son las primeras de los dos huecos grandes, que estaban en 8 de 35
      y 8 de 37. */
   {
-    id:"bus-035", numero:"035", nombre:"Güímar — Fasnia — Arico — Granadilla",
+    id:"bus-035", numero:"035", nombre:"Güímar — Fasnia — Arico — Granadilla (carretera vieja)",
+    /* La 035 es la linea de la carretera vieja del sur, la TF-28, no la de
+       la autopista. El recorrido oficial pasa por Las Flores, El Escobonal,
+       Arico Viejo y Chimiche; de esos cuatro solo Chimiche tiene coordenada
+       en la tabla (la comparte con la 711N, asi que ademas hace nodo).
+
+       Las Flores, El Escobonal y Arico Viejo se quedan fuera hasta que haya
+       GPS: media linea bien puesta vale mas que cuatro puntos inventados.
+
+       El Cruce de Arico se mantiene aunque no salga en el listado oficial
+       de siete nombres. Ese listado son los hitos de una linea de 154
+       paradas: dice quien esta, no dice quien no esta. */
     color:"#5D4037", tipo:"sur", frecuencia:"60 min", precio:"desde 1,45 €", minutos:95,
-    servicio:{ desde:"06:10", hasta:"18:50" },
+    servicio:{ desde:"06:10", hasta:"19:50" },
+    nota:{ es:"De lunes a viernes circula de 06:10 a 19:50, con una expedición extra a las 21:00 solo en días lectivos. Sábados, domingos y festivos hay una única salida, a las 08:15. Va por la carretera vieja, no por la autopista.", en:"Monday to Friday it runs from 06:10 to 19:50, with an extra run at 21:00 on school days only. On Saturdays, Sundays and holidays there is a single departure, at 08:15. It takes the old road, not the motorway.", fr:"Du lundi au vendredi de 6h10 à 19h50, avec un départ supplémentaire à 21h00 uniquement les jours d'école. Samedi, dimanche et jours fériés, un seul départ, à 8h15. Il emprunte l'ancienne route, pas l'autoroute.", de:"Montag bis Freitag von 06:10 bis 19:50 Uhr, mit einer zusätzlichen Fahrt um 21:00 Uhr nur an Schultagen. Samstags, sonntags und feiertags gibt es nur eine Abfahrt, um 08:15 Uhr. Er fährt über die alte Landstraße, nicht über die Autobahn.", it:"Dal lunedì al venerdì dalle 06:10 alle 19:50, con una corsa in più alle 21:00 solo nei giorni di scuola. Sabato, domenica e festivi c'è una sola partenza, alle 08:15. Passa per la strada vecchia, non per l'autostrada.", nl:"Maandag tot vrijdag van 06:10 tot 19:50, met een extra rit om 21:00 alleen op schooldagen. Op zaterdag, zondag en feestdagen is er één vertrek, om 08:15. Hij rijdt over de oude weg, niet over de snelweg.", zh:"周一至周五06:10至19:50运行，仅上课日21:00加开一班。周六、周日及节假日每天仅08:15一班。走老公路，不走高速。", zht:"週一至週五06:10至19:50運行，僅上課日21:00加開一班。週六、週日及假日每天僅08:15一班。走老公路，不走高速。" },
     paradas:[
       { id:"035-guimar",  nombre:"Güímar",                lat:28.3186, lng:-16.4106, esTerminal:true,  municipio:"Güímar" },
       { id:"035-fasnia",  nombre:"Fasnia (Cruce)",         lat:28.2356, lng:-16.4422, esTerminal:false, municipio:"Fasnia" },
       { id:"035-arico",   nombre:"Cruce de Arico",         lat:28.1736, lng:-16.5147, esTerminal:false, municipio:"Arico" },
+      { id:"035-chimich", nombre:"Cruce Chimiche",         lat:28.1450, lng:-16.5419, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"035-granad",  nombre:"Granadilla de Abona",    lat:28.1208, lng:-16.5775, esTerminal:true,  municipio:"Granadilla de Abona" },
     ]
   },
