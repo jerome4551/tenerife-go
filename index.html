@@ -16167,6 +16167,22 @@ const TITSA_LINES = [
   // ═══════════ TRANVÍA (Metropolitano de Tenerife) ═══════════
   {
     id:"tram-L1", numero:"L1", nombre:"Tranvía L1 — Intercambiador (Santa Cruz) ↔ La Trinidad (La Laguna)",
+    /* El Intercambiador estaba a 24 m del Mercado de Nuestra Señora de
+       Africa, que no es el Intercambiador. Lo delatan tres medidas: en
+       28.4578,-16.2568 hay dos lugares del propio fichero que lo nombran
+       -el parking del Intercambiador, a 0 m, y un alquiler de triciclos a
+       123 m-, mientras que en el sitio viejo lo que hay es el Mercado a
+       24 m y el TEA a 90 m.
+
+       La latitud la confirma una fuente de fuera: 28.45785 contra 28.4578,
+       seis metros. La longitud de esa misma fuente cae 1,2 km al este, ya
+       en el puerto, asi que de ahi solo se toma la latitud.
+
+       El nodo lo comparten 40 lineas y se ha movido entero: partirlo seria
+       dejar sin transbordo la mitad de la red de Santa Cruz.
+
+       El resto de la cola de Santa Cruz -Fundacion, Weyler, La Paz,
+       Puente Zurita- sigue sin ancla propia y no se toca. */
     /* De lunes a viernes cierra a medianoche y no abre hasta las seis;
        de 00:01 a 05:59 el relevo lo toma la 714 por autopista. Los fines
        de semana y festivos hace 24 horas, cada 30 minutos de madrugada.
@@ -16179,7 +16195,7 @@ const TITSA_LINES = [
     color:"#00BFA5", tipo:"tranvia", frecuencia:"5-15 min", precio:"~1,35 €",
     servicio:{ desde:"06:00", hasta:"00:00" },
     paradas:[
-      { id:"L1-intercamb", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"L1-intercamb", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"L1-fundac",    nombre:"Fundación",                   lat:28.4658, lng:-16.2540, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"L1-guimera",   nombre:"Teatro Guimerá",              lat:28.4680, lng:-16.2575, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"L1-weyler",    nombre:"Weyler",                       lat:28.4707, lng:-16.2603, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
@@ -16247,7 +16263,7 @@ const TITSA_LINES = [
     color:"#0288D1", tipo:"norte", frecuencia:"~1 h", precio:"~5,50 €", minutos:60,
     servicio:{ desde:"05:35", hasta:"23:40" },
     paradas:[
-      { id:"102-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"102-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"102-laguna",  nombre:"La Laguna · Intercambiador (2625)",lat:28.4853, lng:-16.3160, esTerminal:false,  municipio:"San Cristóbal de La Laguna" },
       { id:"102-tfn",     nombre:"✈️ Aeropuerto Norte (TFN)",        lat:28.4827, lng:-16.3414, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"102-tacor",   nombre:"Tacoronte · Casco",                lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
@@ -16272,7 +16288,7 @@ const TITSA_LINES = [
     color:"#C62828", tipo:"sur", frecuencia:"20-25 min", precio:"~3,50 €", minutos:83,
     servicio:{ desde:"05:30", hasta:"20:55" },
     paradas:[
-      { id:"111-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"111-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"111-cande",   nombre:"Candelaria · Terminal",            lat:28.3564, lng:-16.3642, esTerminal:false, municipio:"Candelaria" },
       { id:"111-tfs",     nombre:"✈️ Aeropuerto Sur (TFS)",          lat:28.0445, lng:-16.5722, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"111-chafir",  nombre:"Las Chafiras",                     lat:28.0690, lng:-16.5990, esTerminal:false, municipio:"San Miguel de Abona" },
@@ -16297,7 +16313,7 @@ const TITSA_LINES = [
     color:"#1565C0", tipo:"norte", frecuencia:"15-30 min", precio:"5,25 €", minutos:43,
     servicio:{ desde:"06:25", hasta:"21:40" },
     paradas:[
-      { id:"103-sc",     nombre:"Santa Cruz · Intercambiador",       lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"103-sc",     nombre:"Santa Cruz · Intercambiador",       lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"103-laguna", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"103-ptocz",  nombre:"Puerto de la Cruz · Estación",      lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
     ]
@@ -16307,7 +16323,7 @@ const TITSA_LINES = [
     color:"#0277BD", tipo:"norte", frecuencia:"60 min", precio:"7 €", minutos:75,
     servicio:{ desde:"05:40", hasta:"22:10" },
     paradas:[
-      { id:"108-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"108-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"108-realejos",nombre:"Los Realejos",                     lat:28.3852, lng:-16.5841, esTerminal:false, municipio:"Los Realejos" },
       { id:"108-icod",    nombre:"Icod de los Vinos",                lat:28.3722, lng:-16.7178, esTerminal:true,  municipio:"Icod de los Vinos" },
     ]
@@ -16357,7 +16373,7 @@ const TITSA_LINES = [
        el flujo cae solo a la buho 711, que es la que circula. */
     servicio:{ desde:"05:20", hasta:"23:15" },
     paradas:[
-      { id:"110-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"110-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"110-sanisidro",nombre:"San Isidro (Enlace TF-1)",        lat:28.0625, lng:-16.5635, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"110-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
       { id:"110-magma",   nombre:"Magma · Playa de las Américas",    lat:28.0680, lng:-16.7290, esTerminal:false, municipio:"Adeje" },
@@ -16655,7 +16671,7 @@ const TITSA_LINES = [
     color:"#0288D1", tipo:"municipal", frecuencia:"10-15 min", precio:"1,25-2 €", minutos:25,
     servicio:{ desde:"05:10", hasta:"23:30" },
     paradas:[
-      { id:"910-intercamb", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"910-intercamb", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"910-sanandres", nombre:"San Andrés",                  lat:28.50291, lng:-16.19195, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"910-teresitas", nombre:"Playa de Las Teresitas",      lat:28.5097, lng:-16.1847, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
     ]
@@ -16908,7 +16924,7 @@ const TITSA_LINES = [
     color:"#00695C", tipo:"norte", frecuencia:"10-15 min", precio:"desde 1,45 €", minutos:15,
     servicio:{ desde:"05:00", hasta:"23:00" },
     paradas:[
-      { id:"015-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"015-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"015-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
@@ -17085,7 +17101,7 @@ const TITSA_LINES = [
     color:"#00838F", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:25,
     servicio:{ desde:"06:00", hasta:"21:45" },
     paradas:[
-      { id:"901-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"901-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"901-salud", nombre:"Barrio La Salud", lat:28.47895, lng:-16.27012, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -17094,7 +17110,7 @@ const TITSA_LINES = [
     color:"#0097A7", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
     servicio:{ desde:"06:20", hasta:"21:00" },
     paradas:[
-      { id:"904-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"904-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"904-salud", nombre:"Barrio La Salud", lat:28.47895, lng:-16.27012, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"904-finca", nombre:"Finca España", lat:28.47355, lng:-16.30114, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
@@ -17104,7 +17120,7 @@ const TITSA_LINES = [
     color:"#00ACC1", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:25,
     servicio:{ desde:"06:00", hasta:"22:00" },
     paradas:[
-      { id:"906-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"906-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"906-salud", nombre:"Barrio La Salud", lat:28.47895, lng:-16.27012, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -17113,7 +17129,7 @@ const TITSA_LINES = [
     color:"#26C6DA", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
     servicio:{ desde:"06:00", hasta:"21:30" },
     paradas:[
-      { id:"908-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"908-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"908-ofra", nombre:"Ofra", lat:28.46122, lng:-16.28431, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -17122,7 +17138,7 @@ const TITSA_LINES = [
     color:"#0288D1", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
     servicio:{ desde:"05:30", hasta:"22:45" },
     paradas:[
-      { id:"911-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"911-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"911-salud", nombre:"Barrio La Salud", lat:28.47895, lng:-16.27012, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -17131,7 +17147,7 @@ const TITSA_LINES = [
     color:"#039BE5", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:30,
     servicio:{ desde:"06:45", hasta:"21:00" },
     paradas:[
-      { id:"912-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"912-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"912-sanand", nombre:"San Andrés", lat:28.50291, lng:-16.19195, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"912-ifara", nombre:"Ifara", lat:28.47743, lng:-16.26252, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
@@ -17141,7 +17157,7 @@ const TITSA_LINES = [
     color:"#4FC3F7", tipo:"municipal", frecuencia:"10-20 min", precio:"desde 1,45 €",
     servicio:{ desde:"07:00", hasta:"20:30" },
     paradas:[
-      { id:"914-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"914-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"914-weyler", nombre:"Plaza Weyler", lat:28.4707, lng:-16.2603, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -17150,7 +17166,7 @@ const TITSA_LINES = [
     color:"#29B6F6", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:20,
     servicio:{ desde:"06:30", hasta:"20:45" },
     paradas:[
-      { id:"919-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"919-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"919-salud", nombre:"Barrio La Salud", lat:28.47895, lng:-16.27012, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -17159,7 +17175,7 @@ const TITSA_LINES = [
     color:"#1E88E5", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:35,
     servicio:{ desde:"06:00", hasta:"21:30" },
     paradas:[
-      { id:"920-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"920-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"920-cuesta", nombre:"La Cuesta", lat:28.4778, lng:-16.289, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
@@ -17168,7 +17184,7 @@ const TITSA_LINES = [
     color:"#3949AB", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
     servicio:{ desde:"06:00", hasta:"21:30" },
     paradas:[
-      { id:"933-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"933-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"933-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"933-tablero", nombre:"El Tablero", lat:28.43552, lng:-16.32621, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
@@ -17178,7 +17194,7 @@ const TITSA_LINES = [
     color:"#5C6BC0", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:40,
     servicio:{ desde:"05:30", hasta:"22:30" },
     paradas:[
-      { id:"934-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"934-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"934-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"934-stamar", nombre:"Santa María del Mar", lat:28.41624, lng:-16.31543, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"934-anaza", nombre:"Añaza", lat:28.42345, lng:-16.30712, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
@@ -17189,7 +17205,7 @@ const TITSA_LINES = [
     color:"#7986CB", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:35,
     servicio:{ desde:"06:00", hasta:"21:45" },
     paradas:[
-      { id:"935-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"935-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"935-anaza", nombre:"Añaza", lat:28.42345, lng:-16.30712, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"935-stamar", nombre:"Santa María del Mar", lat:28.41624, lng:-16.31543, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
@@ -17199,7 +17215,7 @@ const TITSA_LINES = [
     color:"#9FA8DA", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:40,
     servicio:{ desde:"05:30", hasta:"22:30" },
     paradas:[
-      { id:"936-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"936-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"936-anaza", nombre:"Añaza", lat:28.42345, lng:-16.30712, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"936-stamar", nombre:"Santa María del Mar", lat:28.41624, lng:-16.31543, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"936-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
@@ -17210,7 +17226,7 @@ const TITSA_LINES = [
     color:"#5E35B1", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:30,
     servicio:{ desde:"06:15", hasta:"21:15" },
     paradas:[
-      { id:"937-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"937-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"937-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"937-tincer", nombre:"Tíncer", lat:28.471, lng:-16.279, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"937-sobra", nombre:"El Sobradillo", lat:28.4595, lng:-16.292, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
@@ -17221,7 +17237,7 @@ const TITSA_LINES = [
     color:"#7E57C2", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
     servicio:{ desde:"06:10", hasta:"20:30" },
     paradas:[
-      { id:"939-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"939-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"939-sobra", nombre:"El Sobradillo", lat:28.4595, lng:-16.292, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -17230,7 +17246,7 @@ const TITSA_LINES = [
     color:"#9575CD", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €",
     servicio:{ desde:"07:05", hasta:"19:45" },
     paradas:[
-      { id:"941-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"941-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"941-anaza", nombre:"Añaza", lat:28.42345, lng:-16.30712, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"941-acoran", nombre:"Acorán", lat:28.40695, lng:-16.30231, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"941-boca", nombre:"Boca Cangrejo", lat:28.40112, lng:-16.29452, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
@@ -17252,7 +17268,7 @@ const TITSA_LINES = [
     color:"#00695C", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:40,
     servicio:{ desde:"06:10", hasta:"21:15" },
     paradas:[
-      { id:"945-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"945-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"945-sanand", nombre:"San Andrés", lat:28.50291, lng:-16.19195, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"945-igueste", nombre:"Igueste de San Andrés", lat:28.53214, lng:-16.16115, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
@@ -17262,7 +17278,7 @@ const TITSA_LINES = [
     color:"#00796B", tipo:"municipal", frecuencia:"60 min", precio:"desde 1,45 €",
     servicio:{ desde:"06:30", hasta:"20:30" },
     paradas:[
-      { id:"946-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"946-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"946-sanand", nombre:"San Andrés", lat:28.50291, lng:-16.19195, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"946-taganana", nombre:"Taganana", lat:28.55621, lng:-16.21324, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"946-almaciga", nombre:"Almáciga", lat:28.57143, lng:-16.20215, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
@@ -17273,7 +17289,7 @@ const TITSA_LINES = [
     color:"#00897B", tipo:"municipal", frecuencia:"2-3 salidas/día", precio:"desde 1,45 €",
     servicio:{ desde:"06:30", hasta:"19:00" },
     paradas:[
-      { id:"947-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"947-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"947-sanand", nombre:"San Andrés", lat:28.50291, lng:-16.19195, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"947-chamorga", nombre:"Chamorga", lat:28.56112, lng:-16.15843, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
@@ -17368,7 +17384,7 @@ const TITSA_LINES = [
     color:"#0277BD", tipo:"municipal", frecuencia:"L-V, 15-20 min", precio:"desde 1,45 €",
     servicio:{ desde:"06:00", hasta:"21:30" },
     paradas:[
-      { id:"915-sc",   nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"915-sc",   nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"915-ofra", nombre:"Ofra",                        lat:28.46122, lng:-16.28431, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -17500,7 +17516,7 @@ const TITSA_LINES = [
     color:"#00ACC1", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:20,
     servicio:{ desde:"06:15", hasta:"21:30" },
     paradas:[
-      { id:"902-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"902-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"902-bnuevo", nombre:"Barrio Nuevo", lat:28.47952, lng:-16.25714, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -17509,7 +17525,7 @@ const TITSA_LINES = [
     color:"#7CB342", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €", minutos:30,
     servicio:{ desde:"06:45", hasta:"20:15" },
     paradas:[
-      { id:"940-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4636, lng:-16.2518, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"940-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"940-acoran", nombre:"Acorán", lat:28.40695, lng:-16.30231, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -17609,7 +17625,7 @@ const TITSA_LINES = [
     color:"#00796B", tipo:"norte", frecuencia:"30-45 min", precio:"desde 1,45 €", minutos:70,
     servicio:{ desde:"05:35", hasta:"22:45" },
     paradas:[
-      { id:"105-sc",      nombre:"Intercambiador (Santa Cruz)",        lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"105-sc",      nombre:"Intercambiador (Santa Cruz)",        lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"105-laguna",  nombre:"La Laguna · Intercambiador (2625)",  lat:28.4853, lng:-16.3160, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"105-punta",   nombre:"Punta del Hidalgo",                  lat:28.5681, lng:-16.3265, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
     ]
@@ -17638,7 +17654,7 @@ const TITSA_LINES = [
     color:"#7c3aed", tipo:"nocturna", frecuencia:"30 min", precio:"~9,35 €", minutos:76,
     servicio:{ desde:"22:00", hasta:"05:00" },
     paradas:[
-      { id:"711N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"711N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"711N-caletil",  nombre:"Cruce Caletillas",                lat:28.3697, lng:-16.3683, esTerminal:false, municipio:"Candelaria" },
       { id:"711N-candel",   nombre:"Cruce Candelaria",                lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
       { id:"711N-guimar",   nombre:"Cruce Güímar",                    lat:28.3186, lng:-16.4106, esTerminal:false, municipio:"Güímar" },
@@ -17666,7 +17682,7 @@ const TITSA_LINES = [
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Continua", precio:"~1,40 €", minutos:40,
     servicio:{ desde:"05:15", hasta:"02:30" },
     paradas:[
-      { id:"014-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"014-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"014-cuesta",    nombre:"La Cuesta",                       lat:28.4778, lng:-16.2890, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"014-trinidad",  nombre:"La Trinidad (La Laguna)",         lat:28.4858, lng:-16.3133, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
     ]
@@ -17685,7 +17701,7 @@ const TITSA_LINES = [
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
     servicio:{ desde:"23:15", hasta:"05:00" },
     paradas:[
-      { id:"015N-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"015N-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"015N-cuesta",    nombre:"La Cuesta",                       lat:28.4778, lng:-16.2890, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"015N-univ",      nombre:"Campus Guajara (Universidad)",    lat:28.4848, lng:-16.3175, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"015N-trinidad",  nombre:"La Trinidad (La Laguna)",         lat:28.4858, lng:-16.3133, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
@@ -17707,7 +17723,7 @@ const TITSA_LINES = [
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~7,60 €", minutos:75,
     servicio:{ desde:"23:35", hasta:"04:10" },
     paradas:[
-      { id:"104N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"104N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"104N-laguna",   nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"104N-tacoronte",nombre:"Tacoronte · Casco",               lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
       { id:"104N-pcruz",    nombre:"Puerto de la Cruz",               lat:28.4136, lng:-16.5446, esTerminal:true,  municipio:"Puerto de la Cruz" },
@@ -17723,7 +17739,7 @@ const TITSA_LINES = [
     color:"#C62828", tipo:"sur", frecuencia:"60 min", precio:"~6,90 €",
     servicio:{ desde:"06:00", hasta:"21:30" },
     paradas:[
-      { id:"137-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"137-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"137-candel",   nombre:"Candelaria",                      lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
       { id:"137-guimar",   nombre:"Güímar",                          lat:28.3186, lng:-16.4106, esTerminal:false, municipio:"Güímar" },
       { id:"137-fasnia",   nombre:"Fasnia (Cruce)",                  lat:28.2356, lng:-16.4422, esTerminal:false, municipio:"Fasnia" },
@@ -17765,11 +17781,11 @@ const TITSA_LINES = [
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
     servicio:{ desde:"22:45", hasta:"05:25" },
     paradas:[
-      { id:"934N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"934N-intercamb",nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"934N-taco",     nombre:"Taco",                            lat:28.4830, lng:-16.2960, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"934N-stamaria", nombre:"Santa María del Mar",             lat:28.41624, lng:-16.31543, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"934N-anaza",    nombre:"Añaza",                           lat:28.42345, lng:-16.30712, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
-      { id:"934N-back",     nombre:"Intercambiador (Vuelta)",         lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"934N-back",     nombre:"Intercambiador (Vuelta)",         lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
     ]
   },
   {
@@ -17777,7 +17793,7 @@ const TITSA_LINES = [
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
     servicio:{ desde:"23:50", hasta:"05:15" },
     paradas:[
-      { id:"970-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"970-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"970-salud",     nombre:"Barrio La Salud",                 lat:28.47895, lng:-16.27012, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -17786,7 +17802,7 @@ const TITSA_LINES = [
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
     servicio:{ desde:"00:00", hasta:"05:00" },
     paradas:[
-      { id:"971-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"971-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"971-salud",     nombre:"Barrio La Salud",                 lat:28.47895, lng:-16.27012, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"971-ofra",      nombre:"Ofra",                            lat:28.46122, lng:-16.28431, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
     ]
@@ -17796,7 +17812,7 @@ const TITSA_LINES = [
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
     servicio:{ desde:"23:55", hasta:"04:30" },
     paradas:[
-      { id:"972-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"972-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"972-salud",     nombre:"Barrio La Salud (alto)",          lat:28.47895, lng:-16.27012, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -17805,7 +17821,7 @@ const TITSA_LINES = [
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"~1,40 €",
     servicio:{ desde:"23:50", hasta:"05:15" },
     paradas:[
-      { id:"974-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"974-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"974-taco",      nombre:"Taco",                            lat:28.4830, lng:-16.2960, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"974-tincer",    nombre:"Tíncer",                          lat:28.4710, lng:-16.2790, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
     ]
@@ -17815,7 +17831,7 @@ const TITSA_LINES = [
     color:"#7c3aed", tipo:"nocturna", frecuencia:"23:30 · 01:30 · 03:05", precio:"~1,40 €",
     servicio:{ desde:"23:50", hasta:"05:15" },
     paradas:[
-      { id:"975-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4636, lng:-16.2518, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"975-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"975-taco",      nombre:"Taco",                            lat:28.4830, lng:-16.2960, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"975-tincer",    nombre:"Tíncer",                          lat:28.4710, lng:-16.2790, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"975-majuelo",   nombre:"Los Majuelos",                    lat:28.4670, lng:-16.2870, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
