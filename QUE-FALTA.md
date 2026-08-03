@@ -32,6 +32,25 @@ Si un dato no existe o no lo sabes, escribe `no hay`. Eso también me sirve: dej
 
 ## PETICIÓN 1 — 12 tiempos de trayecto · *lo que más rinde*
 
+> ### ⚠️ Esto NO es la ficha del Bloque 1
+>
+> La frecuencia, el precio, la primera y la última salida de esas 11 líneas **ya están dentro**,
+> verificadas campo a campo contra tu ficha: los 44 coinciden. No hace falta reenviarlas.
+>
+> Lo que falta es **un quinto campo distinto**: `minutos`, el tiempo de viaje.
+> Así está guardada hoy la 345, para que se vea de un vistazo:
+>
+> ```
+> id:"bus-345"  numero:"345"
+>   ✅ frecuencia: "50-60 min"          ← cada cuánto pasa
+>   ✅ precio:     "1,45 €"
+>   ✅ servicio:   06:00 → 21:30        ← primera y última salida del día
+>   ❌ minutos:    FALTA                ← cuánto se tarda en hacer el viaje
+> ```
+>
+> `frecuencia` es cuánto esperas en la parada. `minutos` es cuánto dura el viaje.
+> Sin ese número, el planificador estima la duración por velocidad media y se equivoca.
+
 Un número por línea: **minutos de cabecera a cabecera, en un solo sentido**.
 Si la línea es un bucle, dime los minutos de la vuelta entera y añade la palabra `bucle`.
 
