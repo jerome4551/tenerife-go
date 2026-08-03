@@ -16351,9 +16351,11 @@ const TITSA_LINES = [
     paradas:[
       { id:"111-sc",      nombre:"Santa Cruz · Intercambiador",      lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"111-cande",   nombre:"Candelaria · Terminal",            lat:28.3564, lng:-16.3642, esTerminal:false, municipio:"Candelaria" },
+      { id:"111-sanisid", nombre:"San Isidro (Enlace TF-1)",       lat:28.0625, lng:-16.5635, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"111-tfs",     nombre:"✈️ Aeropuerto Sur (TFS)",          lat:28.0445, lng:-16.5722, esTerminal:false, municipio:"Granadilla de Abona" },
       { id:"111-chafir",  nombre:"Las Chafiras",                     lat:28.0690, lng:-16.5990, esTerminal:false, municipio:"San Miguel de Abona" },
-      { id:"111-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
+      { id:"111-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:false,  municipio:"Arona" },
+      { id:"111-cadeje",  nombre:"Costa Adeje · Estación",         lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
     ]
   },
   /* Lineas 103 y 108 · las dos que faltaban del corredor norte.
@@ -16650,7 +16652,9 @@ const TITSA_LINES = [
     color:"#F57C00", tipo:"sur", frecuencia:"40-50 min", precio:"2,45-3,20 €", minutos:50,
     servicio:{ desde:"05:30", hasta:"20:40" },
     paradas:[
-      { id:"477-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
+      { id:"477-loscris", nombre:"Los Cristianos · Estación",      lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
+      { id:"477-cadeje",  nombre:"Costa Adeje · Estación",           lat:28.0970, lng:-16.7440, esTerminal:false,  municipio:"Adeje" },
+      { id:"477-psjuan",  nombre:"Playa San Juan",                 lat:28.1816, lng:-16.8171, esTerminal:false, municipio:"Guía de Isora" },
       { id:"477-arena",   nombre:"Playa de la Arena (7232)",         lat:28.2297, lng:-16.8410, esTerminal:false, municipio:"Santiago del Teide" },
       { id:"477-gigant",  nombre:"Los Gigantes · Terminal",          lat:28.2443, lng:-16.8397, esTerminal:true,  municipio:"Santiago del Teide" },
     ]
@@ -16711,10 +16715,12 @@ const TITSA_LINES = [
     color:"#00897B", tipo:"sur", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:70,
     servicio:{ desde:"05:00", hasta:"00:15" },
     paradas:[
-      { id:"467-adeje",      nombre:"Costa Adeje · Estación",    lat:28.0970, lng:-16.7440, esTerminal:true,  municipio:"Adeje" },
+      { id:"467-caleta",  nombre:"La Caleta",                     lat:28.1002, lng:-16.7548, esTerminal:true,  municipio:"Adeje" },
+      { id:"467-adeje",      nombre:"Costa Adeje · Estación",    lat:28.0970, lng:-16.7440, esTerminal:false,  municipio:"Adeje" },
       { id:"467-duque",      nombre:"Playa del Duque",           lat:28.0905, lng:-16.7460, esTerminal:false, municipio:"Adeje" },
       { id:"467-cristianos", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
       { id:"467-galletas",   nombre:"Las Galletas",              lat:28.0070, lng:-16.6660, esTerminal:false, municipio:"Arona" },
+      { id:"467-silencio",nombre:"Costa del Silencio",            lat:28.0058, lng:-16.6457, esTerminal:false, municipio:"Arona" },
       { id:"467-medano",     nombre:"El Médano · Centro",        lat:28.0480, lng:-16.5380, esTerminal:true,  municipio:"Granadilla de Abona" },
     ]
   },
@@ -16726,6 +16732,7 @@ const TITSA_LINES = [
       { id:"471-cristianos", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:true,  municipio:"Arona" },
       { id:"471-duque",      nombre:"Playa del Duque",           lat:28.0905, lng:-16.7460, esTerminal:false, municipio:"Adeje" },
       { id:"471-adeje",      nombre:"Costa Adeje · Estación",    lat:28.0970, lng:-16.7440, esTerminal:false, municipio:"Adeje" },
+      { id:"471-paraiso", nombre:"Playa Paraíso",                 lat:28.1224, lng:-16.7737, esTerminal:false, municipio:"Adeje" },
       /* La linea se amplio hasta Callao Salvaje. Coordenada del lugar
          playa-callao, la misma que usa la 473. */
       { id:"471-callao",     nombre:"Callao Salvaje",            lat:28.1274, lng:-16.7820, esTerminal:true,  municipio:"Adeje" },
