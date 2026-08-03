@@ -16199,6 +16199,11 @@ if (typeof dpRenderZoneCards === 'function') dpRenderZoneCards();
    menciones en los tres folletos, y ninguna de las dos auditorias los
    nombra pese a cubrir su comarca.
 
+   La 455 tampoco: existio como nocturna de apoyo entre Fanabe Plaza y
+   Costa del Silencio por Las Galletas, y sus expediciones se las repartieron
+   la 467 y la 711. Nunca llego a entrar en la tabla, asi que no hay nada que
+   borrar, pero deja de contar como pendiente. Son nueve, no ocho.
+
    Ocho faltaban: 100, 123, 124, 127, 131, 409, 430 y 463. El folleto las
    menciona entre 6 y 20 veces cada una, salvo la 100 que sale una sola vez.
 
@@ -17016,11 +17021,14 @@ const TITSA_LINES = [
     servicio:{ desde:"05:40", hasta:"00:00" },
     paradas:[
       { id:"050-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
-      /* El recorrido oficial mete Tejina entre Tegueste y Bajamar, pero
-         con la coordenada que tenemos de Tejina (-16.379) el tramo pasa
-         de 3,6 km a 8,1: se va al oeste y vuelve. O Tejina esta mal
-         situada o no va donde creemos. No se mete hasta aclararlo. */
+      /* Tejina va aqui, confirmado: es parada de paso de la 050 hacia la
+         costa, no cabecera. Lo que sigue sin cuadrar es su coordenada: con
+         la que tenemos (-16.379) el tramo Tegueste-Bajamar pasa de 3,6 km
+         a 8,1 porque se va al oeste y vuelve. Tegueste, Bajamar y Punta del
+         Hidalgo caen donde deben, asi que la que baila es Tejina, unos 2 km
+         al oeste. Se deja el recorrido correcto y queda pedida la GPS. */
       { id:"050-teg", nombre:"Tegueste", lat:28.5228, lng:-16.3379, esTerminal:false, municipio:"Tegueste" },
+      { id:"050-tej", nombre:"Tejina", lat:28.53124, lng:-16.37912, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"050-baj", nombre:"Bajamar", lat:28.5542, lng:-16.3445, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"050-ph", nombre:"Punta del Hidalgo", lat:28.5681, lng:-16.3265, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
@@ -17324,21 +17332,26 @@ const TITSA_LINES = [
      (GENERAL, febrero 2019). Solo se aplican a las lineas cuyas dos
      cabeceras del folleto coinciden con las dos que modelamos nosotros.
 
-     De las diez que traian tiempo impreso, seis se caen en ese filtro, y
-     al caerse han destapado que el recorrido que teniamos no era el suyo:
+     De las diez que traian tiempo impreso, seis se caian en ese filtro
+     porque el folleto les daba otras cabeceras. Contrastado despues contra
+     la aplicacion movil de TITSA, en cuatro de las seis el equivocado era
+     el folleto y la tabla ya estaba bien:
 
-       908  el folleto la hace circular por Somosierra y Chamberi, no a
-            Ofra y Las Retamas como la teniamos.
-       911  va de MUELLE NORTE a OFRA (Juan XXIII). Nosotros la sacabamos
-            del Intercambiador, que no es su cabecera.
-       914  es circular y vuelve al Intercambiador.
-       933  va de TACO a EL TABLERO. Le habiamos puesto el Intercambiador
-            por delante.
-       939  va de TACO a LLANO DEL MORO, tampoco sale del Intercambiador.
-       947  no termina en Chamorga: sigue hasta PUNTA DE ANAGA.
+       911  Intercambiador - Barrio de La Salud. El folleto decia Muelle
+            Norte - Ofra.
+       933  Intercambiador - El Tablero, pasando por Taco. El folleto la
+            arrancaba en Taco.
+       939  Intercambiador - El Sobradillo. El folleto decia Taco - Llano
+            del Moro.
+       947  Intercambiador - Chamorga. El folleto la estiraba hasta Punta
+            de Anaga.
 
-     Eso no se corrige aqui porque cambiar cabeceras mueve nodos y hay que
-     medirlo aparte. Queda anotado, que es lo que toca. */
+     Con las cabeceras confirmadas, sus tiempos oficiales ya son aplicables
+     y estan puestos: 20, 40, 35 y 75 minutos.
+
+     Siguen sin resolver la 908 y la 914, las dos circulares. Sus tiempos
+     estan aplicados sobre el recorrido que modelamos, que es un trozo del
+     bucle, asi que se quedan cortos por definicion. */
   {
     id:"bus-941", numero:"941", nombre:"Intercambiador — Añaza — Acorán — Boca Cangrejo",
     color:"#9575CD", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:20,

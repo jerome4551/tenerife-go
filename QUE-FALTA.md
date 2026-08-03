@@ -6,9 +6,9 @@ Generado de la tabla real. Rellena solo los huecos `___`. Cada bloque es indepen
 
 ---
 
-## ✅ BLOQUES 1 y 3 — casi cerrados
+## ✅ BLOQUES 1, 3 y 4 — casi cerrados
 
-Las 11 líneas nuevas están dentro, y 19 de los 21 tiempos aplicados. Quedan 13 líneas sin tiempo: las 11 nuevas (ese dato no venía) y la 204 y la 219, que están en el bloque 4.
+11 líneas nuevas dentro · 19 de 21 tiempos aplicados · 390 reconstruida · cabeceras de 911, 933, 939 y 947 confirmadas · 455 descartada · Tejina en la 050.
 
 ---
 
@@ -45,32 +45,36 @@ si el recorrido cambia, el tiempo cambia — contéstalas después.
 
 ---
 
-## BLOQUE 4 — 6 contradicciones
+## BLOQUE 4 — 7 contradicciones
 
 Aquí no necesito datos nuevos, necesito que arbitres. No toco ninguna hasta saberlo.
 
-**050** — ¿Tejina va entre Tegueste y Bajamar?
-  · lo pregunto porque: con nuestra coordenada de Tejina ese tramo pasa de 3,6 a 8,1 km: se va al oeste y vuelve
+**Tejina** — coordenada GPS
+  · lo pregunto porque: confirmaste que la 050 pasa por Tejina y ya está puesta, pero con la coordenada actual (-16.379) la línea da un rodeo de 4,7 km: pasa de 10,6 a 15,3 km. Tegueste, Bajamar y Punta del Hidalgo caen donde deben, así que la que baila es Tejina, unos 2 km al oeste
   · respuesta: ___
 
-**204** — ¿es circular y cuánto dura una vuelta?
-  · lo pregunto porque: me diste 15 min, pero la app solo modela dos paradas a 300 m: saldría 1,1 km/h y el planificador diría que tarda 15 min en cruzar la calle
+**204** — ¿es circular? ¿cuánto dura la vuelta y por dónde pasa?
+  · lo pregunto porque: me diste 15 min, pero la app solo modela dos paradas a 300 m: saldría 1,1 km/h y el planificador diría que tarda un cuarto de hora en cruzar la calle
   · respuesta: ___
 
-**219** — ¿llega a San Matías?
-  · lo pregunto porque: me diste 25 min; la app se queda en Taco y con eso salen 4,7 km/h. Si el final es San Matías necesito su coordenada
+**219** — coordenada de San Matías
+  · lo pregunto porque: me diste 25 min; la app se queda en Taco y salen 4,7 km/h. Con San Matías el tiempo encaja
   · respuesta: ___
 
-**455** — ¿existe esta línea?
-  · lo pregunto porque: 5 menciones en el folleto, no aparece en tu auditoría del sur
+**908** — ¿es circular? si lo es, ¿por dónde vuelve?
+  · lo pregunto porque: le puse tus 25 min sobre el tramo Intercambiador-Ofra; si es un bucle, ese tramo es solo un trozo
+  · respuesta: ___
+
+**914** — igual que la 908
+  · lo pregunto porque: 15 min sobre Intercambiador-Plaza Weyler, 1,2 km. Si es circular, falta el resto del bucle
   · respuesta: ___
 
 **936** — ¿también 70 min, como la 934?
   · lo pregunto porque: son circulares gemelas en sentidos inversos y el folleto les da una sola ficha
   · respuesta: ___
 
-**390** — frecuencia y ventana
-  · lo pregunto porque: ahora es comarcal de 25 min y sigue con la frecuencia y el horario de la traza larga
+**390** — frecuencia y ventana horaria
+  · lo pregunto porque: ya es la corta de 25 min, pero conserva la frecuencia (60 min) y el horario (06:15-21:10) de la traza larga
   · respuesta: ___
 
 ---
