@@ -18354,6 +18354,47 @@ const TITSA_LINES = [
       { id:"127-guimar", nombre:"Güímar", lat:28.3186, lng:-16.4106, esTerminal:true , municipio:"Güímar" },
     ]
   },
+  /* ULTIMO LOTE · entran tres de las diez
+     De las siete que faltan, seis no tienen ni cabecera ni paradas: hacen
+     falta Muelle Norte, Barrio de la Alegria, Cueva Bermeja, Maria Jimenez,
+     Los Gavilanes, Valleseco, La Quebrada, Avenida de Anaga, Plaza del
+     Principe, el Mercado, Moraditas de Taco y Suarez Guerra.
+
+     La septima es la 949 y no entra por otro motivo. La ficha la da como
+     "Intercambiador - Puerto de la Cruz" en 40 minutos y con tarifa urbana
+     de 1,45 €. Eso no puede ser: ese mismo trayecto lo hace la 100 en 45
+     minutos por 5,25 €, y la 102 en 60. Una linea urbana de tarifa plana no
+     cruza media isla. O el destino es otro sitio o la tarifa no es urbana,
+     y hasta saberlo no se pone. */
+  {
+    id:"bus-948", numero:"948", nombre:"Intercambiador — San Andrés — Playa de Las Teresitas",
+    color:"#0288D1", tipo:"municipal", frecuencia:"15-25 min", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"07:15", hasta:"20:30" },
+    paradas:[
+      { id:"948-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"948-sandres", nombre:"San Andrés", lat:28.5029, lng:-16.1919, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"948-teres", nombre:"🏖️ Playa de Las Teresitas", lat:28.5097, lng:-16.1847, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-954", numero:"954", nombre:"Intercambiador — El Sobradillo — La Gallega",
+    color:"#5E35B1", tipo:"municipal", frecuencia:"20-30 min", precio:"1,45 €", minutos:35,
+    servicio:{ desde:"06:00", hasta:"21:45" },
+    paradas:[
+      { id:"954-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"954-sobra", nombre:"El Sobradillo", lat:28.4595, lng:-16.292, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"954-gallega", nombre:"La Gallega", lat:28.44115, lng:-16.32984, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-100", numero:"100", nombre:"Santa Cruz — Puerto de la Cruz (express por la TF-5)",
+    color:"#00838F", tipo:"norte", frecuencia:"30-45 min", precio:"5,25 €", minutos:45,
+    servicio:{ desde:"06:15", hasta:"21:30" },
+    paradas:[
+      { id:"100-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"100-pcruz", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true , municipio:"Puerto de la Cruz" },
+    ]
+  },
 ];
 
 // ── ESTADO ────────────────────────────────────────────────
