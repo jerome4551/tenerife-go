@@ -17075,11 +17075,13 @@ const TITSA_LINES = [
   },
   {
     id:"bus-204", numero:"204", nombre:"La Laguna — La Rúa — El Rayo — Trinidad (circular)",
-    /* Sin "minutos": el tiempo oficial es el de la vuelta entera y de
-       esta linea solo se modelan las paradas con coordenada. Repartir
-       35 minutos sobre ese trozo daba medio kilometro por hora, o sea que el planificador
-       creia que ese salto tarda media hora. Sin el campo usa la
-       velocidad media, que aqui es mas honrada. */
+    /* Ya tiene su final de verdad, San Matias, y con el el tiempo oficial
+       vale: 6,1 km en 25 minutos son 14,6 km/h. Antes, con la linea cortada
+       en Taco, esos mismos 25 minutos daban 4,7 km/h.
+
+       El trazado hace un zigzag de 2 km porque nuestro Taco cae al este de
+       La Laguna y de San Matias. Es la sospecha de siempre sobre Taco, no un
+       problema de esta linea. */
     color:"#455A64", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
     servicio:{ desde:"07:05", hasta:"20:30" },
     paradas:[
@@ -17094,11 +17096,12 @@ const TITSA_LINES = [
        30 minutos sobre ese trozo daba 4 km/h, o sea que el planificador
        creia que ese salto tarda media hora. Sin el campo usa la
        velocidad media, que aqui es mas honrada. */
-    color:"#546E7A", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €",
+    color:"#546E7A", tipo:"municipal", frecuencia:"30 min", precio:"desde 1,45 €", minutos:25,
     servicio:{ desde:"06:05", hasta:"21:40" },
     paradas:[
       { id:"219-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
-      { id:"219-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"219-taco", nombre:"Taco", lat:28.483, lng:-16.296, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"219-smatias", nombre:"San Matías", lat:28.448554, lng:-16.311742, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
   {
@@ -17245,7 +17248,8 @@ const TITSA_LINES = [
     servicio:{ desde:"07:00", hasta:"20:30" },
     paradas:[
       { id:"914-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
-      { id:"914-weyler", nombre:"Plaza Weyler", lat:28.46824, lng:-16.25368, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"914-weyler", nombre:"Plaza Weyler", lat:28.46824, lng:-16.25368, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"914-vuelta", nombre:"Intercambiador (Vuelta)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
   {
@@ -17299,7 +17303,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-936", numero:"936", nombre:"Intercambiador — Añaza — Alisios — Taco",
-    color:"#9FA8DA", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:40,
+    color:"#9FA8DA", tipo:"municipal", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:70,
     servicio:{ desde:"05:30", hasta:"22:30" },
     paradas:[
       { id:"936-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
@@ -17869,8 +17873,8 @@ const TITSA_LINES = [
        cosas es falsa y no es un matiz: son 60 km de diferencia. Sin
        resolver, no se le anade nada. */
     id:"bus-390", numero:"390", nombre:"Puerto de la Cruz — Las Arenas — La Vera — Los Realejos",
-    color:"#00838F", tipo:"norte", frecuencia:"60 min", precio:"~9,35 €", minutos:25,
-    servicio:{ desde:"06:15", hasta:"21:10" },
+    color:"#00838F", tipo:"norte", frecuencia:"30-45 min", precio:"~9,35 €", minutos:25,
+    servicio:{ desde:"06:20", hasta:"21:20" },
     paradas:[
       /* Recorrido corregido. La traza larga que habia aqui -Icod, Santiago
          del Teide, Guia de Isora, Callao Salvaje, Costa Adeje- no es de esta

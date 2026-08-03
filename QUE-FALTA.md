@@ -6,9 +6,9 @@ Generado de la tabla real. Rellena solo los huecos `___`. Cada bloque es indepen
 
 ---
 
-## ✅ BLOQUES 1, 3 y 4 — casi cerrados
+## ✅ BLOQUES 1, 3 y 4 — cerrados salvo dos puntos
 
-11 líneas nuevas dentro · 19 de 21 tiempos aplicados · 390 reconstruida · cabeceras de 911, 933, 939 y 947 confirmadas · 455 descartada · Tejina en la 050.
+Bloque 1 cerrado. Bloque 3: solo queda la 204 y las 11 líneas nuevas. Bloque 4: 7 de 9 resueltas — quedan la coordenada de Tejina y el punto intermedio de la 204.
 
 ---
 
@@ -22,14 +22,13 @@ Generado de la tabla real. Rellena solo los huecos `___`. Cada bloque es indepen
 
 ---
 
-## BLOQUE 3 — 13 líneas sin tiempo de trayecto
+## BLOQUE 3 — 12 líneas sin tiempo de trayecto
 
 Un número por línea: **minutos de cabecera a cabecera**. Las marcadas ⚠️ dependen del bloque 4;
 si el recorrido cambia, el tiempo cambia — contéstalas después.
 
 ```
 204 ⚠️ La Laguna · Intercambiador (2625) → La Trinidad (Centro La Laguna)       ___ min
-219 ⚠️ La Laguna · Intercambiador (2625) → Taco                                 ___ min
 345    Puerto de la Cruz · Estación → La Orotava · Estación → Aguamansa         ___ min
 351    Puerto de la Cruz · Estación → La Orotava · Estación                     ___ min
 353    Puerto de la Cruz · Estación → Los Realejos → La Orotava · Estación      ___ min
@@ -45,36 +44,16 @@ si el recorrido cambia, el tiempo cambia — contéstalas después.
 
 ---
 
-## BLOQUE 4 — 7 contradicciones
+## BLOQUE 4 — 2 contradicciones
 
 Aquí no necesito datos nuevos, necesito que arbitres. No toco ninguna hasta saberlo.
 
-**Tejina** — coordenada GPS
-  · lo pregunto porque: confirmaste que la 050 pasa por Tejina y ya está puesta, pero con la coordenada actual (-16.379) la línea da un rodeo de 4,7 km: pasa de 10,6 a 15,3 km. Tegueste, Bajamar y Punta del Hidalgo caen donde deben, así que la que baila es Tejina, unos 2 km al oeste
+**Tejina** — la coordenada que mandaste es la que ya teníamos
+  · lo pregunto porque: 28.531233,-16.379203 está a 8,1 m de nuestra 28.53124,-16.37912. Es el mismo punto, así que el rodeo de 4,7 km en la 050 sigue igual. Si el punto correcto es otro, tiene que estar unos 2 km al este, hacia -16.355
   · respuesta: ___
 
-**204** — ¿es circular? ¿cuánto dura la vuelta y por dónde pasa?
-  · lo pregunto porque: me diste 15 min, pero la app solo modela dos paradas a 300 m: saldría 1,1 km/h y el planificador diría que tarda un cuarto de hora en cruzar la calle
-  · respuesta: ___
-
-**219** — coordenada de San Matías
-  · lo pregunto porque: me diste 25 min; la app se queda en Taco y salen 4,7 km/h. Con San Matías el tiempo encaja
-  · respuesta: ___
-
-**908** — ¿es circular? si lo es, ¿por dónde vuelve?
-  · lo pregunto porque: le puse tus 25 min sobre el tramo Intercambiador-Ofra; si es un bucle, ese tramo es solo un trozo
-  · respuesta: ___
-
-**914** — igual que la 908
-  · lo pregunto porque: 15 min sobre Intercambiador-Plaza Weyler, 1,2 km. Si es circular, falta el resto del bucle
-  · respuesta: ___
-
-**936** — ¿también 70 min, como la 934?
-  · lo pregunto porque: son circulares gemelas en sentidos inversos y el folleto les da una sola ficha
-  · respuesta: ___
-
-**390** — frecuencia y ventana horaria
-  · lo pregunto porque: ya es la corta de 25 min, pero conserva la frecuencia (60 min) y el horario (06:15-21:10) de la traza larga
+**204** — coordenada de Barrio de San Honorato o de Avenida de La Trinidad
+  · lo pregunto porque: confirmaste que es un bucle de 15 min, pero la app solo tiene Intercambiador y La Trinidad, a 300 m. Cerrando el bucle con esas dos salen 2,4 km/h. Con un punto intermedio del anillo, el tiempo encaja
   · respuesta: ___
 
 ---
