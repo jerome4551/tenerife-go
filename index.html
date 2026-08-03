@@ -16533,6 +16533,7 @@ const TITSA_LINES = [
       { id:"348-orotava", nombre:"La Orotava · Estación",            lat:28.3926, lng:-16.5235, esTerminal:false, municipio:"La Orotava" },
       { id:"348-aguamansa",nombre:"Aguamansa",                       lat:28.3620, lng:-16.5160, esTerminal:false, municipio:"La Orotava" },
       { id:"348-portillo",nombre:"🌋 El Portillo (Visitantes Teide)",lat:28.3060, lng:-16.5713, esTerminal:false, municipio:"Parque Nacional Teide" },
+      { id:"348-telef",   nombre:"🚡 Teleférico del Teide",         lat:28.2545, lng:-16.6258, esTerminal:false, municipio:"La Orotava" },
       { id:"348-canadas", nombre:"🌋 Las Cañadas del Teide",          lat:28.2470, lng:-16.6160, esTerminal:false, municipio:"Parque Nacional Teide" },
       { id:"348-parador", nombre:"🏨 Parador del Teide",             lat:28.2200, lng:-16.6160, esTerminal:true,  municipio:"Parque Nacional Teide" },
     ]
@@ -16888,6 +16889,7 @@ const TITSA_LINES = [
     servicio:{ desde:"05:55", hasta:"22:35" },
     paradas:[
       { id:"354-pcruz",   nombre:"Puerto de la Cruz · Estación",     lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
+      { id:"354-realejos",nombre:"Los Realejos",                     lat:28.3852, lng:-16.5841, esTerminal:false, municipio:"Los Realejos" },
       { id:"354-guancha", nombre:"La Guancha",                       lat:28.3729, lng:-16.6534, esTerminal:false, municipio:"La Guancha" },
       { id:"354-icod",    nombre:"Icod de los Vinos",                lat:28.3722, lng:-16.7178, esTerminal:true,  municipio:"Icod de los Vinos" },
     ]
@@ -16985,6 +16987,10 @@ const TITSA_LINES = [
     servicio:{ desde:"05:40", hasta:"00:00" },
     paradas:[
       { id:"050-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      /* El recorrido oficial mete Tejina entre Tegueste y Bajamar, pero
+         con la coordenada que tenemos de Tejina (-16.379) el tramo pasa
+         de 3,6 km a 8,1: se va al oeste y vuelve. O Tejina esta mal
+         situada o no va donde creemos. No se mete hasta aclararlo. */
       { id:"050-teg", nombre:"Tegueste", lat:28.5228, lng:-16.3379, esTerminal:false, municipio:"Tegueste" },
       { id:"050-baj", nombre:"Bajamar", lat:28.5542, lng:-16.3445, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"050-ph", nombre:"Punta del Hidalgo", lat:28.5681, lng:-16.3265, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
@@ -17026,7 +17032,8 @@ const TITSA_LINES = [
     paradas:[
       { id:"057-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"057-tac", nombre:"Tacoronte · Casco", lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
-      { id:"057-tej", nombre:"Tejina", lat:28.53124, lng:-16.37912, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"057-tej", nombre:"Tejina", lat:28.53124, lng:-16.37912, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"057-teg", nombre:"Tegueste", lat:28.5228, lng:-16.3379, esTerminal:true, municipio:"Tegueste" },
     ]
   },
   {
@@ -17064,7 +17071,8 @@ const TITSA_LINES = [
     paradas:[
       { id:"224-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"224-vg", nombre:"Valle de Guerra", lat:28.51921, lng:-16.39124, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"224-tej", nombre:"Tejina", lat:28.53124, lng:-16.37912, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"224-tej", nombre:"Tejina", lat:28.53124, lng:-16.37912, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"224-ph", nombre:"Punta del Hidalgo", lat:28.5681, lng:-16.3265, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
   {
@@ -17813,6 +17821,11 @@ const TITSA_LINES = [
        21:30, asi que deja el grupo de nocturnas y pierde el buho del
        nombre. Es el tercer caso igual, despues de la 934 y la 014: en la
        tabla habia lineas de dia metidas entre las de madrugada. */
+    /* OJO: el recorrido oficial dice que la 390 es corta, Puerto de la
+       Cruz - Ayuntamiento de Los Realejos, y aqui la tenemos llegando a
+       Costa Adeje por Santiago del Teide y Guia de Isora. Una de las dos
+       cosas es falsa y no es un matiz: son 60 km de diferencia. Sin
+       resolver, no se le anade nada. */
     id:"bus-390", numero:"390", nombre:"Puerto de la Cruz — Icod — Guía de Isora — Costa Adeje",
     color:"#00838F", tipo:"norte", frecuencia:"60 min", precio:"~9,35 €",
     servicio:{ desde:"06:15", hasta:"21:10" },
