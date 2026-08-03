@@ -16189,6 +16189,16 @@ if (typeof dpRenderZoneCards === 'function') dpRenderZoneCards();
    - La 137 y la 711 llamaban distinto a la misma parada de Arico. Ahora
      comparten nombre y nodo.
    ────────────────────────────────────────────────────────── */
+/* COORDENADA DE PARADA, NO DE BARRIO
+   ==================================
+   Cuando un barrio y su parada no coinciden, va la parada. La Verdellada,
+   Guamasa y El Ortigal se movieron por eso: las que teniamos eran el centro
+   del nucleo y las nuevas son la marquesina de la calzada por donde pasa la
+   guagua de verdad -Via de Ronda, TF-152 y TF-24-.
+
+   La diferencia era de 794 m, 1,7 km y 1,5 km, y en El Ortigal producia un
+   zigzag campo a traves porque la linea no abandona la carretera. */
+
 /* TARIFAS
    =======
    Dos modelos, y la tabla los distingue:
@@ -17584,7 +17594,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:30", hasta:"21:15" },
     paradas:[
       { id:"201-ll",     nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
-      { id:"201-verd",   nombre:"La Verdellada",                      lat:28.49072, lng:-16.31145, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"201-verd",   nombre:"La Verdellada",                      lat:28.490105, lng:-16.319542, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"201-piedra", nombre:"Cruz de Piedra",                    lat:28.4862, lng:-16.3162, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
     ]
   },
@@ -17609,7 +17619,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:10", hasta:"21:05" },
     paradas:[
       { id:"206-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
-      { id:"206-verd", nombre:"La Verdellada", lat:28.49072, lng:-16.31145, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"206-verd", nombre:"La Verdellada", lat:28.490105, lng:-16.319542, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"206-benito", nombre:"San Benito", lat:28.48911, lng:-16.32622, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
@@ -17630,8 +17640,8 @@ const TITSA_LINES = [
     paradas:[
       { id:"253-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"253-crodeos", nombre:"Cruce de Los Rodeos", lat:28.484251, lng:-16.342911, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"253-ortigal", nombre:"El Ortigal", lat:28.48124, lng:-16.39854, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"253-guamasa", nombre:"Guamasa", lat:28.48831, lng:-16.38125, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
+      { id:"253-ortigal", nombre:"El Ortigal", lat:28.469211, lng:-16.391245, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"253-guamasa", nombre:"Guamasa", lat:28.474102, lng:-16.375841, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
 
@@ -17803,9 +17813,9 @@ const TITSA_LINES = [
        Arico Viejo y Chimiche; de esos cuatro solo Chimiche tiene coordenada
        en la tabla (la comparte con la 711N, asi que ademas hace nodo).
 
-       El Escobonal y Arico Viejo ya estan. Las Flores sigue fuera: la
-       coordenada que llego para ella cae a 19 km de Güímar, en pleno area
-       metropolitana, asi que es otro sitio con el mismo nombre.
+       Las Flores, El Escobonal y Arico Viejo ya estan las tres. La primera
+       coordenada que llego de Las Flores caia a 19 km, en el barrio del
+       mismo nombre de La Laguna; la buena esta a 900 m de Güímar.
 
        El Cruce de Arico se mantiene aunque no salga en el listado oficial
        de siete nombres. Ese listado son los hitos de una linea de 154
@@ -17815,6 +17825,7 @@ const TITSA_LINES = [
     nota:{ es:"De lunes a viernes circula de 06:10 a 19:50, con una expedición extra a las 21:00 solo en días lectivos. Sábados, domingos y festivos hay una única salida, a las 08:15. Va por la carretera vieja, no por la autopista.", en:"Monday to Friday it runs from 06:10 to 19:50, with an extra run at 21:00 on school days only. On Saturdays, Sundays and holidays there is a single departure, at 08:15. It takes the old road, not the motorway.", fr:"Du lundi au vendredi de 6h10 à 19h50, avec un départ supplémentaire à 21h00 uniquement les jours d'école. Samedi, dimanche et jours fériés, un seul départ, à 8h15. Il emprunte l'ancienne route, pas l'autoroute.", de:"Montag bis Freitag von 06:10 bis 19:50 Uhr, mit einer zusätzlichen Fahrt um 21:00 Uhr nur an Schultagen. Samstags, sonntags und feiertags gibt es nur eine Abfahrt, um 08:15 Uhr. Er fährt über die alte Landstraße, nicht über die Autobahn.", it:"Dal lunedì al venerdì dalle 06:10 alle 19:50, con una corsa in più alle 21:00 solo nei giorni di scuola. Sabato, domenica e festivi c'è una sola partenza, alle 08:15. Passa per la strada vecchia, non per l'autostrada.", nl:"Maandag tot vrijdag van 06:10 tot 19:50, met een extra rit om 21:00 alleen op schooldagen. Op zaterdag, zondag en feestdagen is er één vertrek, om 08:15. Hij rijdt over de oude weg, niet over de snelweg.", zh:"周一至周五06:10至19:50运行，仅上课日21:00加开一班。周六、周日及节假日每天仅08:15一班。走老公路，不走高速。", zht:"週一至週五06:10至19:50運行，僅上課日21:00加開一班。週六、週日及假日每天僅08:15一班。走老公路，不走高速。" },
     paradas:[
       { id:"035-guimar",  nombre:"Güímar",                lat:28.3186, lng:-16.4106, esTerminal:true,  municipio:"Güímar" },
+      { id:"035-flores", nombre:"Las Flores", lat:28.324269, lng:-16.417242, esTerminal:false, municipio:"Güímar" },
       { id:"035-fasnia",  nombre:"Fasnia (Cruce)",         lat:28.2356, lng:-16.4422, esTerminal:false, municipio:"Fasnia" },
       { id:"035-escobonal", nombre:"El Escobonal", lat:28.231215, lng:-16.446305, esTerminal:false, municipio:"Güímar" },
       { id:"035-aricoviejo", nombre:"Arico Viejo", lat:28.188402, lng:-16.491244, esTerminal:false, municipio:"Arico" },
