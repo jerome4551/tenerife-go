@@ -3845,6 +3845,9 @@ window.onunhandledrejection = function(e) {
   .bus-line-meta span { display: flex; align-items: center; gap: var(--space-1); }
   .bus-line-nota { font-size: 0.575rem; color: var(--muted); margin-top: 4px;
                    line-height: 1.4; opacity: 0.9; }
+  .bus-pago { font-size: 0.6rem; color: var(--muted); line-height: 1.45;
+              padding: 8px 10px; margin-bottom: 8px; border-radius: 8px;
+              background: rgba(127,127,127,0.10); }
 
   /* Toggle switch */
   .bus-line-toggle {
@@ -8032,6 +8035,7 @@ const UI_TX = Object.assign({"parkingSpaces": {"es": "{n} plazas", "en": "{n} sp
    falta desde que las dos lineas del Teide se descartan por hora:
    sin el, la app contestaba "no hay lineas que conecten estos dos
    puntos", que es falso y ademas empuja a alquilar un coche. */
+Object.assign(UI_TX, {"busPago": {"es": "Puedes pagar acercando tarjeta bancaria, móvil o reloj al datáfono del conductor. Con la tarjeta Ten+ el billete sale más barato.", "en": "You can pay by tapping a bank card, phone or watch on the driver's card reader. The Ten+ card makes the fare cheaper.", "fr": "Vous pouvez payer en approchant une carte bancaire, un téléphone ou une montre du terminal du conducteur. La carte Ten+ réduit le prix.", "de": "Sie können bezahlen, indem Sie Bankkarte, Handy oder Uhr an das Lesegerät des Fahrers halten. Mit der Ten+-Karte wird die Fahrt günstiger.", "it": "Puoi pagare avvicinando carta bancaria, telefono o orologio al lettore dell'autista. Con la carta Ten+ il biglietto costa meno.", "nl": "Je kunt betalen door een bankpas, telefoon of horloge tegen de lezer van de chauffeur te houden. Met de Ten+-kaart is het ritje goedkoper.", "zh": "可直接用银行卡、手机或手表在司机的读卡器上刷卡付款。使用 Ten+ 卡票价更便宜。", "zht": "可直接用銀行卡、手機或手錶在司機的讀卡機上感應付款。使用 Ten+ 卡票價更便宜。"}});
 Object.assign(UI_TX, {"busCaminataLarga": {"es": "Caminata larga hasta la parada ({km} km aprox. por calle).", "en": "Long walk to the stop (about {km} km by street).", "fr": "Longue marche jusqu'à l'arrêt (environ {km} km par la rue).", "de": "Langer Fußweg zur Haltestelle (ca. {km} km über die Straße).", "it": "Camminata lunga fino alla fermata (circa {km} km su strada).", "nl": "Lange wandeling naar de halte (ongeveer {km} km over straat).", "zh": "步行到车站较远（按街道约 {km} 公里）。", "zht": "步行到車站較遠（按街道約 {km} 公里）。"}, "busAltTransbordo": {"es": "Alternativa con transbordo: {l1}+{l2}, ~{min} min.", "en": "Alternative with a transfer: {l1}+{l2}, ~{min} min.", "fr": "Alternative avec correspondance : {l1}+{l2}, ~{min} min.", "de": "Alternative mit Umstieg: {l1}+{l2}, ~{min} Min.", "it": "Alternativa con cambio: {l1}+{l2}, ~{min} min.", "nl": "Alternatief met overstap: {l1}+{l2}, ~{min} min.", "zh": "换乘方案：{l1}+{l2}，约 {min} 分钟。", "zht": "轉乘方案：{l1}+{l2}，約 {min} 分鐘。"}, "busAltDirecta": {"es": "Alternativa directa: {l}, ~{min} min.", "en": "Direct alternative: {l}, ~{min} min.", "fr": "Alternative directe : {l}, ~{min} min.", "de": "Direkte Alternative: {l}, ~{min} Min.", "it": "Alternativa diretta: {l}, ~{min} min.", "nl": "Direct alternatief: {l}, ~{min} min.", "zh": "直达方案：{l}，约 {min} 分钟。", "zht": "直達方案：{l}，約 {min} 分鐘。"}});
 Object.assign(UI_TX, {"busYaSalio": {"es": "La guagua {n} al Teide sale una vez al día y ya ha salido hoy ({h}). Mañana vuelve a haber.", "en": "The {n} bus to Teide runs once a day and has already left today ({h}). There is another one tomorrow.", "fr": "Le bus {n} vers le Teide part une fois par jour et est déjà parti aujourd'hui ({h}). Il y en a un autre demain.", "de": "Der Bus {n} zum Teide fährt einmal am Tag und ist heute schon weg ({h}). Morgen fährt wieder einer.", "it": "L'autobus {n} per il Teide parte una volta al giorno ed è già partito oggi ({h}). Domani ce n'è un altro.", "nl": "Bus {n} naar de Teide rijdt één keer per dag en is vandaag al vertrokken ({h}). Morgen gaat er weer een.", "zh": "前往泰德峰的{n}路每天只发一班，今天的已经开走了（{h}）。明天还有一班。", "zht": "前往泰德峰的{n}路每天只發一班，今天的已經開走了（{h}）。明天還有一班。"}, "busSinConexion": {"es": "No hay líneas que conecten estos dos puntos.", "en": "No bus lines connect these two points.", "fr": "Aucune ligne ne relie ces deux points.", "de": "Keine Linie verbindet diese beiden Punkte.", "it": "Nessuna linea collega questi due punti.", "nl": "Geen enkele lijn verbindt deze twee punten.", "zh": "没有线路连接这两个地点。", "zht": "沒有路線連接這兩個地點。"}});
 Object.assign(UI_TX, {"busNoDisponible": {"es": "Sin conexión", "en": "No connection", "fr": "Pas de liaison", "de": "Keine Verbindung", "it": "Nessun collegamento", "nl": "Geen verbinding", "zh": "无直达", "zht": "無直達"}, "busSinRuta": {"es": "No se encontró una ruta en guagua para este trayecto.", "en": "No bus route found for this journey.", "fr": "Aucun itinéraire en bus trouvé pour ce trajet.", "de": "Für diese Strecke wurde keine Busverbindung gefunden.", "it": "Nessun percorso in autobus trovato per questo tragitto.", "nl": "Geen busroute gevonden voor dit traject.", "zh": "没有找到这段行程的公交路线。", "zht": "沒有找到這段行程的公車路線。"}});
@@ -16444,8 +16448,11 @@ const TITSA_LINES = [
   },
   {
     id:"bus-040", numero:"040", nombre:"Aeropuerto Sur — Los Cristianos — Costa Adeje (Express)",
-    color:"#00897B", tipo:"aeropuerto", frecuencia:"30 min", precio:"~3,75 €", minutos:30,
-    servicio:{ desde:"05:00", hasta:"21:30" },
+    color:"#00897B", tipo:"aeropuerto", frecuencia:"30 min", precio:"3,70 € · 2,90 € con Ten+", minutos:30,
+    /* Ventana y tarifa revisadas contra TITSA actual, no contra el folleto:
+       el folleto es de 2019 y sus horas ya no valen. Sale antes -05:30- y
+       aguanta hasta las 21:40. */
+    servicio:{ desde:"05:30", hasta:"21:40" },
     paradas:[
       { id:"040-tfs",     nombre:"✈️ Aeropuerto Sur TFS · Terminal", lat:28.0445, lng:-16.5722, esTerminal:true,  municipio:"Granadilla de Abona" },
       { id:"040-loscris", nombre:"Los Cristianos · Estación",        lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
@@ -16965,7 +16972,7 @@ const TITSA_LINES = [
   },
   {
     id:"bus-020", numero:"020", nombre:"Aerobús · La Laguna — Aeropuerto Norte",
-    color:"#00897B", tipo:"aeropuerto", frecuencia:"30 min", precio:"desde 1,45 €", minutos:10,
+    color:"#00897B", tipo:"aeropuerto", frecuencia:"30 min", precio:"2,65 € · menos con Ten+", minutos:10,
     servicio:{ desde:"06:00", hasta:"22:00" },
     paradas:[
       { id:"020-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
@@ -17946,6 +17953,15 @@ function buildBusPanel() {
     renderBusSearchResults(list);
     return;
   }
+
+  /* Se puede pagar acercando la tarjeta al dataphono del conductor, no
+     solo en efectivo o con la Ten+. Es la duda numero uno de quien se
+     sube por primera vez, asi que va arriba del todo y no dentro de una
+     linea concreta. */
+  const avisoPago = document.createElement('div');
+  avisoPago.className = 'bus-pago';
+  avisoPago.textContent = '💳 ' + (tx('busPago') || '');
+  if (avisoPago.textContent.length > 3) list.appendChild(avisoPago);
 
   // Botón "Quitar todas" si hay líneas activas
   if (busActiveLines.size > 0) {
