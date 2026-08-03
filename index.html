@@ -16181,8 +16181,20 @@ const TITSA_LINES = [
        El nodo lo comparten 40 lineas y se ha movido entero: partirlo seria
        dejar sin transbordo la mitad de la red de Santa Cruz.
 
-       El resto de la cola de Santa Cruz -Fundacion, Weyler, La Paz,
-       Puente Zurita- sigue sin ancla propia y no se toca. */
+       La cola de Santa Cruz ya esta puesta, pero las longitudes venian
+       corridas una posicion respecto a su etiqueta. Lo delatan dos
+       coincidencias con lugares del propio fichero: la longitud que
+       llegaba como "Weyler" es la del Teatro Guimera con 23 m de error, y
+       la que llegaba como "La Paz" es la de Plaza Weyler con 18 m. Con las
+       etiquetas devueltas a su sitio, la parada del Teatro Guimera cae a
+       43 m del teatro. Con las etiquetas tal cual llegaban, caia a 718 m
+       del teatro y era Weyler la que se le ponia a 151 m, que es justo lo
+       que no puede ser.
+
+       Las latitudes no venian corridas y se aplican tal cual.
+
+       De Puente Zurita solo entra la latitud: bajo el corrimiento su
+       longitud es la unica que no llego nunca. */
     /* De lunes a viernes cierra a medianoche y no abre hasta las seis;
        de 00:01 a 05:59 el relevo lo toma la 714 por autopista. Los fines
        de semana y festivos hace 24 horas, cada 30 minutos de madrugada.
@@ -16196,11 +16208,11 @@ const TITSA_LINES = [
     servicio:{ desde:"06:00", hasta:"00:00" },
     paradas:[
       { id:"L1-intercamb", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
-      { id:"L1-fundac",    nombre:"Fundación",                   lat:28.4658, lng:-16.2540, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
-      { id:"L1-guimera",   nombre:"Teatro Guimerá",              lat:28.4680, lng:-16.2575, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
-      { id:"L1-weyler",    nombre:"Weyler",                       lat:28.4707, lng:-16.2603, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
-      { id:"L1-lapaz",     nombre:"La Paz",                       lat:28.4728, lng:-16.2620, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
-      { id:"L1-zurita",    nombre:"Puente Zurita",                lat:28.4744, lng:-16.2657, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"L1-fundac",    nombre:"Fundación",                   lat:28.46261, lng:-16.24641, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"L1-guimera",   nombre:"Teatro Guimerá",              lat:28.46658, lng:-16.25194, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"L1-weyler",    nombre:"Weyler",                       lat:28.46824, lng:-16.25368, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"L1-lapaz",     nombre:"La Paz",                       lat:28.46738, lng:-16.25732, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"L1-zurita",    nombre:"Puente Zurita",                lat:28.46786, lng:-16.2657, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"L1-cruzsen",   nombre:"Cruz del Señor",               lat:28.4757, lng:-16.2700, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"L1-conserv",   nombre:"Conservatorio",                lat:28.4769, lng:-16.2740, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"L1-chimisay",  nombre:"Chimisay",                     lat:28.4778, lng:-16.2776, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
@@ -17158,7 +17170,7 @@ const TITSA_LINES = [
     servicio:{ desde:"07:00", hasta:"20:30" },
     paradas:[
       { id:"914-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
-      { id:"914-weyler", nombre:"Plaza Weyler", lat:28.4707, lng:-16.2603, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"914-weyler", nombre:"Plaza Weyler", lat:28.46824, lng:-16.25368, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
   {
