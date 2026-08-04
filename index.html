@@ -18745,6 +18745,83 @@ const TITSA_LINES = [
       { id:"948-almaciga",nombre:"Almáciga",          lat:28.57143, lng:-16.20215, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
     ]
   },
+  /* SEIS LINEAS MAS
+     De las nueve coordenadas del lote entran seis. Se quedan fuera Tabaiba
+     Baja, que vuelve a caer a 7,5 km de Añaza y fuera del corredor de la
+     costa; Palm-Mar, que da 1,5 km de mar segun la mascara cuando los
+     pueblos costeros de verdad no pasan de 0,8; y el par Loro Parque y La
+     Longuera, que llego con una sola coordenada para dos sitios distintos. */
+  {
+    id:"bus-372", numero:"372", nombre:"Las Dehesas — Mayorazgo — Barrio de San Antonio",
+    /* Con Mayorazgo ya cuadra. Sin el daba 3,5 km/h, mas lento que andar. */
+        /* Sale a 6,4 km/h: es un circuito local del valle, y por la calle da
+       bastante mas vuelta que los 2,1 km de recta entre sus tres puntos.
+       Cabeceras correctas, que es la condicion. */
+    color:"#66BB6A", tipo:"norte", frecuencia:"30-60 min", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"06:45", hasta:"20:30" },
+    paradas:[
+      { id:"372-deh", nombre:"Las Dehesas", lat:28.397631, lng:-16.541254, esTerminal:true , municipio:"La Orotava" },
+      { id:"372-may", nombre:"Mayorazgo", lat:28.399581, lng:-16.536104, esTerminal:false, municipio:"La Orotava" },
+      { id:"372-sant", nombre:"Barrio de San Antonio", lat:28.402451, lng:-16.551842, esTerminal:true , municipio:"Los Realejos" },
+    ]
+  },
+  {
+    id:"bus-376", numero:"376", nombre:"La Orotava — Las Dehesas — El Rincón",
+    color:"#81C784", tipo:"norte", frecuencia:"6 salidas/día", precio:"1,45 €", minutos:25,
+    servicio:{ desde:"07:10", hasta:"19:00" },
+    paradas:[
+      { id:"376-orot", nombre:"La Orotava · Estación", lat:28.3926, lng:-16.5235, esTerminal:true , municipio:"La Orotava" },
+      { id:"376-deh", nombre:"Las Dehesas", lat:28.397631, lng:-16.541254, esTerminal:false, municipio:"La Orotava" },
+      { id:"376-rin", nombre:"El Rincón", lat:28.423911, lng:-16.521853, esTerminal:true , municipio:"La Orotava" },
+    ]
+  },
+  {
+    id:"bus-421", numero:"421", nombre:"Valle San Lorenzo — IES Las Galletas",
+    /* Faltan La Camella y Cabo Blanco, las dos de en medio. */
+    color:"#FFA726", tipo:"sur", frecuencia:"4 salidas/día", precio:"1,45 €", minutos:35,
+    servicio:{ desde:"07:05", hasta:"14:55" },
+    paradas:[
+      { id:"421-vsl", nombre:"Valle San Lorenzo", lat:28.096311, lng:-16.664853, esTerminal:true , municipio:"Arona" },
+      { id:"421-iesg", nombre:"IES Las Galletas", lat:28.014205, lng:-16.657512, esTerminal:true , municipio:"Arona" },
+    ]
+  },
+  {
+    id:"bus-123", numero:"123", nombre:"Santa Cruz — Caletillas — Candelaria — Igueste — Araya",
+    color:"#FB8C00", tipo:"sur", frecuencia:"6 salidas/día", precio:"2,65 €", minutos:50,
+    servicio:{ desde:"07:00", hasta:"19:40" },
+    paradas:[
+      { id:"123-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"123-cal", nombre:"Cruce Caletillas", lat:28.3697, lng:-16.3683, esTerminal:false, municipio:"Candelaria" },
+      { id:"123-can", nombre:"Candelaria", lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
+      { id:"123-igc", nombre:"Igueste de Candelaria", lat:28.368541, lng:-16.384211, esTerminal:false, municipio:"Candelaria" },
+      { id:"123-ara", nombre:"Araya", lat:28.349102, lng:-16.398541, esTerminal:true , municipio:"Candelaria" },
+    ]
+  },
+  {
+    id:"bus-486", numero:"486", nombre:"IES San Miguel — Las Chafiras — Guargacho — El Fraile",
+    /* Refuerzo comarcal: solo lectivos. */
+    color:"#FFB74D", tipo:"sur", frecuencia:"3 salidas/día", precio:"1,45 €", minutos:30,
+    servicio:{ desde:"07:00", hasta:"14:45" },
+    paradas:[
+      { id:"486-iessm", nombre:"IES San Miguel", lat:28.100911, lng:-16.621453, esTerminal:true , municipio:"San Miguel de Abona" },
+      { id:"486-chaf", nombre:"Las Chafiras", lat:28.0690, lng:-16.5990, esTerminal:false, municipio:"San Miguel de Abona" },
+      { id:"486-guar", nombre:"Guargacho", lat:28.043651, lng:-16.671952, esTerminal:false, municipio:"Arona" },
+      { id:"486-fra", nombre:"El Fraile (7314)", lat:28.01255, lng:-16.68532, esTerminal:true , municipio:"Arona" },
+    ]
+  },
+  {
+    id:"bus-903", numero:"903", nombre:"Intercambiador — Muelle Norte — Cueva Bermeja",
+    /* La coordenada que llego valia para Barrio de la Alegria y para Cueva
+       Bermeja a la vez, y son dos sitios. Se usa como Cueva Bermeja, que es
+       el final; Barrio de la Alegria, que va en medio, sigue sin ella. */
+    color:"#039BE5", tipo:"municipal", frecuencia:"20-30 min", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"06:10", hasta:"21:15" },
+    paradas:[
+      { id:"903-scb", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"903-mn", nombre:"Muelle Norte", lat:28.473502, lng:-16.244102, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"903-cber", nombre:"Cueva Bermeja", lat:28.484211, lng:-16.234102, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
 ];
 
 // ── ESTADO ────────────────────────────────────────────────
