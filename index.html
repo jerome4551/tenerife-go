@@ -16244,8 +16244,8 @@ if (typeof dpRenderZoneCards === 'function') dpRenderZoneCards();
    en la tabla: 035, 213, 220, 222 y 915. Estuve midiendo la cobertura contra
    un listado que no las contaba, asi que el porcentaje que daba salia bajo.
 
-   El listado bueno son 174 numeros. Eran 175 hasta que la 949 resulto no
-   existir: la aporto la misma fuente que luego lo reconocio, y no tiene ni
+   El listado bueno son 173 numeros. Eran 175 hasta que la 949 y la 954
+   resultaron no existir: la aporto la misma fuente que luego lo reconocio, y no tiene ni
    una mencion en los tres folletos. */
 const TITSA_LINES = [
 
@@ -17596,9 +17596,15 @@ const TITSA_LINES = [
      son la misma parada, asi que el trozo modelado no es la linea
      entera y no lleva tiempo oficial. */
   {
-    id:"bus-915", numero:"915", nombre:"Intercambiador — Tío Pino — Camino del Hierro — Ofra",
-    color:"#0277BD", tipo:"municipal", frecuencia:"L-V, 15-20 min", precio:"1,45 €", minutos:25,
-    servicio:{ desde:"06:00", hasta:"21:30" },
+    id:"bus-915", numero:"915", nombre:"Intercambiador — Camino del Hierro — Tío Pino — Ofra",
+    /* La fuente da una "coordenada de regulacion" de Ofra en
+       28.458632,-16.294105, a mil metros de la Ofra que ya comparten la 905,
+       la 908 y la 971. No se aplica: o es la misma parada con otra medida, y
+       entonces partir el nodo deja a esas cuatro lineas sin transbordo entre
+       ellas, o es otra parada distinta y entonces necesita otro nombre.
+       Faltan tambien Camino del Hierro y Tio Pino, que son las de en medio. */
+    color:"#0277BD", tipo:"municipal", frecuencia:"60 min", precio:"1,45 €", minutos:25,
+    servicio:{ desde:"06:20", hasta:"21:20" },
     paradas:[
       { id:"915-sc",   nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"915-ofra", nombre:"Ofra",                        lat:28.46122, lng:-16.28431, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
@@ -18380,16 +18386,7 @@ const TITSA_LINES = [
      cruza media isla. O el destino es otro sitio o la tarifa no es urbana,
      y hasta saberlo no se pone. */
 
-  {
-    id:"bus-954", numero:"954", nombre:"Intercambiador — El Sobradillo — La Gallega",
-    color:"#5E35B1", tipo:"municipal", frecuencia:"20-30 min", precio:"1,45 €", minutos:35,
-    servicio:{ desde:"06:00", hasta:"21:45" },
-    paradas:[
-      { id:"954-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
-      { id:"954-sobra", nombre:"El Sobradillo", lat:28.4595, lng:-16.292, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
-      { id:"954-gallega", nombre:"La Gallega", lat:28.44115, lng:-16.32984, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
-    ]
-  },
+
   {
     id:"bus-100", numero:"100", nombre:"Santa Cruz — Puerto de la Cruz (express por la TF-5)",
     color:"#00838F", tipo:"norte", frecuencia:"30-45 min", precio:"5,25 €", minutos:45,
@@ -18730,6 +18727,22 @@ const TITSA_LINES = [
       { id:"905-ram", nombre:"Ramblas", lat:28.468241, lng:-16.257522, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"905-wey", nombre:"Plaza Weyler", lat:28.46824, lng:-16.25368, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"905-ofr", nombre:"Ofra", lat:28.4612, lng:-16.2843, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-948", numero:"948", nombre:"Azanos — Taganana — Playa de Almáciga (Anaga)",
+    /* Segunda version de esta linea. La primera la daba de Santa Cruz a Las
+       Teresitas, calcada a la 910, y se retiro por eso. Esta es de Anaga y si
+       encaja: Azanos cae a 1,4 km de Taganana, que es donde tiene que estar.
+
+       Falta Benijo, que es su final. Los quince minutos se reparten sobre lo
+       que si tenemos y por eso sobran un poco, que es el lado prudente. */
+    color:"#00796B", tipo:"municipal", frecuencia:"50-100 min", precio:"1,45 €", minutos:15,
+    servicio:{ desde:"12:10", hasta:"18:50" },
+    paradas:[
+      { id:"948-azanos",  nombre:"Azanos",            lat:28.555231, lng:-16.198942, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"948-taganana",nombre:"Taganana",          lat:28.55621, lng:-16.21324, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"948-almaciga",nombre:"Almáciga",          lat:28.57143, lng:-16.20215, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
     ]
   },
 ];
