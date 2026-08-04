@@ -1,6 +1,6 @@
 # Auditoría — qué falta para cerrar
 
-**131 de 175 líneas (75 %)** · 135 entradas · 551 paradas · 171 nodos
+**130 de 174 líneas (75 %)** · 134 entradas · 548 paradas · 171 nodos
 **0 sin precio · 0 sin frecuencia · 0 sin horario · 0 sin tiempo · 0 fallos de integridad**
 
 Tres avisos de velocidad baja (492, 346 y 383) están comprobados y explicados en el código: son
@@ -105,12 +105,20 @@ Marcadas ★ las que son **cabecera**: sin ellas la línea no entra de ninguna f
 
 ---
 
-## Lo único que NO es una coordenada
+## Lo único que NO es una coordenada — RESUELTO
 
-**Línea 949.** La ficha la da como `Intercambiador → Puerto de la Cruz`, 40 min, tarifa urbana
-1,45 €. Ese trayecto lo hace la 100 en 45 min por 5,25 € y la 102 en 60. Una urbana de tarifa
-plana no cruza media isla más rápido que la express y por la cuarta parte. **¿Cuál es su
-destino real?**
+**949: no existe.** Confirmado por la fuente. Purgada del listado oficial, que pasa de 175 a
+174 números.
+
+**948: retirada también.** Llegó en el mismo lote que la 949 y traía dos problemas: cero
+menciones en los tres folletos, y dos recorridos incompatibles de la misma fuente (uno hasta
+Las Teresitas, otro por Azanos, Almáciga y Benijo). Con dos versiones que se contradicen no se
+puede elegir, y la que estaba puesta era calcada a la 910. **Si la 948 existe, dime cuál de los
+dos recorridos es y vuelve.**
+
+**915 y 954: bajo observación.** También tienen cero menciones en los folletos, pero no hay
+contradicción, así que se quedan. Ausencia en un documento de 2019 no prueba que una línea no
+exista.
 
 ---
 

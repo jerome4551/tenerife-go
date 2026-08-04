@@ -16244,7 +16244,9 @@ if (typeof dpRenderZoneCards === 'function') dpRenderZoneCards();
    en la tabla: 035, 213, 220, 222 y 915. Estuve midiendo la cobertura contra
    un listado que no las contaba, asi que el porcentaje que daba salia bajo.
 
-   El listado bueno son 175 numeros. */
+   El listado bueno son 174 numeros. Eran 175 hasta que la 949 resulto no
+   existir: la aporto la misma fuente que luego lo reconocio, y no tiene ni
+   una mencion en los tres folletos. */
 const TITSA_LINES = [
 
   // ═══════════ TRANVÍA (Metropolitano de Tenerife) ═══════════
@@ -16792,6 +16794,17 @@ const TITSA_LINES = [
     ]
   },
   {
+    /* Aqui vivio un rato una linea 948 con este mismo recorrido, que se
+       retiro. Llego en el mismo lote que la 949, que resulto ser inventada,
+       y traia dos problemas: cero menciones en los tres folletos y, sobre
+       todo, dos recorridos incompatibles de la misma fuente -uno hasta Las
+       Teresitas y otro por Azanos, Almaciga y Benijo-. Con dos versiones
+       que se contradicen no se puede elegir, y la que estaba puesta era
+       calcada a esta 910.
+
+       Quedan otras dos con cero menciones y sin contradiccion: la 915 y la
+       954. Esas no se tocan, porque ausencia en un folleto de 2019 no prueba
+       que una linea no exista. De eso ya nos llevamos un susto con la 711. */
     id:"bus-910", numero:"910", nombre:"Santa Cruz — San Andrés — Playa de Las Teresitas",
     color:"#0288D1", tipo:"municipal", frecuencia:"10-15 min", precio:"1,25-2 €", minutos:25,
     servicio:{ desde:"05:10", hasta:"23:30" },
@@ -18366,16 +18379,7 @@ const TITSA_LINES = [
      minutos por 5,25 €, y la 102 en 60. Una linea urbana de tarifa plana no
      cruza media isla. O el destino es otro sitio o la tarifa no es urbana,
      y hasta saberlo no se pone. */
-  {
-    id:"bus-948", numero:"948", nombre:"Intercambiador — San Andrés — Playa de Las Teresitas",
-    color:"#0288D1", tipo:"municipal", frecuencia:"15-25 min", precio:"1,45 €", minutos:20,
-    servicio:{ desde:"07:15", hasta:"20:30" },
-    paradas:[
-      { id:"948-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
-      { id:"948-sandres", nombre:"San Andrés", lat:28.5029, lng:-16.1919, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
-      { id:"948-teres", nombre:"🏖️ Playa de Las Teresitas", lat:28.5097, lng:-16.1847, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
-    ]
-  },
+
   {
     id:"bus-954", numero:"954", nombre:"Intercambiador — El Sobradillo — La Gallega",
     color:"#5E35B1", tipo:"municipal", frecuencia:"20-30 min", precio:"1,45 €", minutos:35,
