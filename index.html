@@ -16355,7 +16355,7 @@ const TITSA_LINES = [
       { id:"101-sauzal",  nombre:"El Sauzal · Centro",               lat:28.4720, lng:-16.4280, esTerminal:false, municipio:"El Sauzal" },
       { id:"101-victoria",nombre:"La Victoria de Acentejo",          lat:28.4340, lng:-16.4709, esTerminal:false, municipio:"La Victoria de Acentejo" },
       { id:"101-sursula", nombre:"Santa Úrsula · Centro",            lat:28.4340, lng:-16.4940, esTerminal:false, municipio:"Santa Úrsula" },
-      { id:"101-orotava", nombre:"La Orotava · Centro",              lat:28.3900, lng:-16.5230, esTerminal:true,  municipio:"La Orotava" },
+      { id:"101-orotava", nombre:"La Orotava · Centro",              lat:28.3926, lng:-16.5235, esTerminal:true,  municipio:"La Orotava" },
     ]
   },
   {
@@ -17947,7 +17947,7 @@ const TITSA_LINES = [
       { id:"104N-slazaro", nombre:"San Lázaro", lat:28.489211, lng:-16.335912, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"104N-tacoronte",nombre:"Tacoronte · Casco",               lat:28.4808, lng:-16.4127, esTerminal:false, municipio:"Tacoronte" },
       { id:"104N-melchor", nombre:"Avenida Melchor Luz", lat:28.414855, lng:-16.554101, esTerminal:false, municipio:"Puerto de la Cruz" },
-      { id:"104N-pcruz",    nombre:"Puerto de la Cruz",               lat:28.4136, lng:-16.5446, esTerminal:true,  municipio:"Puerto de la Cruz" },
+      { id:"104N-pcruz",    nombre:"Puerto de la Cruz",               lat:28.4148, lng:-16.5480, esTerminal:true,  municipio:"Puerto de la Cruz" },
     ]
   },
   {
@@ -17992,7 +17992,7 @@ const TITSA_LINES = [
          Frecuencia y ventana siguen siendo las de la traza larga y habra que
          revisarlas: una comarcal de 25 minutos no se comporta como una que
          cruzaba media isla. */
-      { id:"390-pcruz",   nombre:"Puerto de la Cruz (Estación)",   lat:28.4136, lng:-16.5446, esTerminal:true, municipio:"Puerto de la Cruz" },
+      { id:"390-pcruz",   nombre:"Puerto de la Cruz (Estación)",   lat:28.4148, lng:-16.5480, esTerminal:true, municipio:"Puerto de la Cruz" },
       { id:"390-arenas", nombre:"Las Arenas", lat:28.406912, lng:-16.544185, esTerminal:false, municipio:"Puerto de la Cruz" },
       { id:"390-vera", nombre:"La Vera", lat:28.402305, lng:-16.535841, esTerminal:false, municipio:"Puerto de la Cruz" },
       { id:"390-montana", nombre:"La Montaña", lat:28.391584, lng:-16.531201, esTerminal:false, municipio:"Los Realejos" },
@@ -18497,6 +18497,104 @@ const TITSA_LINES = [
       { id:"484-gr", nombre:"Granadilla de Abona", lat:28.1208, lng:-16.5775, esTerminal:true , municipio:"Granadilla de Abona" },
       { id:"484-sm", nombre:"Cruce San Miguel", lat:28.0500, lng:-16.6178, esTerminal:false, municipio:"San Miguel de Abona" },
       { id:"484-ch", nombre:"Las Chafiras", lat:28.0690, lng:-16.5990, esTerminal:true , municipio:"San Miguel de Abona" },
+    ]
+  },
+  /* ULTIMO LOTE DEL NORTE · entran nueve de las veinticuatro
+     Las quince que faltan necesitan 31 coordenadas que no tenemos. Las que
+     mas desbloquean son Las Dehesas (cuatro lineas), Barrio de San Antonio y
+     Plaza Reyes Catolicos (dos cada una). */
+  {
+    id:"bus-203", numero:"203", nombre:"La Laguna — San Lázaro — San Benito — La Trinidad (bucle)",
+    /* Faltan Tornero y Gavias. */
+    color:"#37474F", tipo:"municipal", frecuencia:"6 salidas/día", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"08:00", hasta:"19:55" },
+    paradas:[
+      { id:"203-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:true , municipio:"San Cristóbal de La Laguna" },
+      { id:"203-slaz", nombre:"San Lázaro", lat:28.489211, lng:-16.335912, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"203-sben", nombre:"San Benito", lat:28.49512, lng:-16.30845, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"203-trin", nombre:"La Trinidad (Centro La Laguna)", lat:28.4858, lng:-16.3133, esTerminal:true , municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-238", numero:"238", nombre:"Santa Cruz — Chamberí — San Matías",
+    color:"#455A64", tipo:"municipal", frecuencia:"40-50 min", precio:"1,45 €", minutos:30,
+    servicio:{ desde:"06:40", hasta:"21:30" },
+    paradas:[
+      { id:"238-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"238-cham", nombre:"Chamberí", lat:28.455243, lng:-16.273187, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"238-smat", nombre:"San Matías", lat:28.448554, lng:-16.311742, esTerminal:true , municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-270", numero:"270", nombre:"La Laguna — Las Canteras — Las Mercedes",
+    color:"#607D8B", tipo:"municipal", frecuencia:"30-60 min", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"06:05", hasta:"21:55" },
+    paradas:[
+      { id:"270-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:true , municipio:"San Cristóbal de La Laguna" },
+      { id:"270-cant", nombre:"Las Canteras", lat:28.491322, lng:-16.326245, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"270-merc", nombre:"Las Mercedes", lat:28.53498, lng:-16.29712, esTerminal:true , municipio:"San Cristóbal de La Laguna" },
+    ]
+  },
+  {
+    id:"bus-339", numero:"339", nombre:"🦉 Puerto de la Cruz — Los Realejos (nocturna del valle)",
+    /* Falta Realejo Alto. Es la de madrugada del valle. */
+    color:"#7c3aed", tipo:"nocturna", frecuencia:"60 min", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"23:00", hasta:"04:30" },
+    paradas:[
+      { id:"339-pc", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true , municipio:"Puerto de la Cruz" },
+      { id:"339-real", nombre:"Los Realejos", lat:28.3852, lng:-16.5841, esTerminal:true , municipio:"Los Realejos" },
+    ]
+  },
+  {
+    id:"bus-346", numero:"346", nombre:"La Orotava — Aguamansa",
+    /* Falta el Camino de Chasna. */
+    color:"#2E7D32", tipo:"norte", frecuencia:"60-90 min", precio:"1,45 €", minutos:30,
+    servicio:{ desde:"06:10", hasta:"20:50" },
+    paradas:[
+      { id:"346-orot", nombre:"La Orotava · Estación", lat:28.3926, lng:-16.5235, esTerminal:true , municipio:"La Orotava" },
+      { id:"346-agua", nombre:"Aguamansa", lat:28.3620, lng:-16.5160, esTerminal:true , municipio:"La Orotava" },
+    ]
+  },
+  {
+    id:"bus-347", numero:"347", nombre:"La Orotava — Benijos — Palo Blanco — Los Realejos",
+    /* Faltan Benijos y Palo Blanco, que son las dos de en medio. */
+    color:"#388E3C", tipo:"norte", frecuencia:"6 salidas/día", precio:"1,45 €", minutos:40,
+    servicio:{ desde:"07:15", hasta:"18:30" },
+    paradas:[
+      { id:"347-orot", nombre:"La Orotava · Estación", lat:28.3926, lng:-16.5235, esTerminal:true , municipio:"La Orotava" },
+      { id:"347-real", nombre:"Los Realejos", lat:28.3852, lng:-16.5841, esTerminal:true , municipio:"Los Realejos" },
+    ]
+  },
+  {
+    id:"bus-352", numero:"352", nombre:"Circuito del Valle · Puerto de la Cruz — La Orotava — Los Realejos",
+    /* Bucle: vuelve al Puerto. Falta Las Dehesas. */
+    color:"#43A047", tipo:"norte", frecuencia:"30-45 min", precio:"1,45 €", minutos:50,
+    servicio:{ desde:"05:45", hasta:"21:45" },
+    paradas:[
+      { id:"352-pc", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true , municipio:"Puerto de la Cruz" },
+      { id:"352-orot", nombre:"La Orotava · Estación", lat:28.3926, lng:-16.5235, esTerminal:false, municipio:"La Orotava" },
+      { id:"352-real", nombre:"Los Realejos", lat:28.3852, lng:-16.5841, esTerminal:false, municipio:"Los Realejos" },
+      { id:"352-pcv", nombre:"Puerto de la Cruz · Estación (Vuelta)", lat:28.4148, lng:-16.5480, esTerminal:true , municipio:"Puerto de la Cruz" },
+    ]
+  },
+  {
+    id:"bus-364", numero:"364", nombre:"Icod — La Guancha — San Juan de la Rambla",
+    color:"#558B2F", tipo:"norte", frecuencia:"6 salidas/día", precio:"1,45 €", minutos:35,
+    servicio:{ desde:"07:15", hasta:"19:15" },
+    paradas:[
+      { id:"364-icod", nombre:"Icod de los Vinos", lat:28.3722, lng:-16.7178, esTerminal:true , municipio:"Icod de los Vinos" },
+      { id:"364-guan", nombre:"La Guancha", lat:28.3729, lng:-16.6534, esTerminal:false, municipio:"La Guancha" },
+      { id:"364-sjr", nombre:"San Juan de la Rambla", lat:28.39125, lng:-16.64512, esTerminal:true , municipio:"San Juan de la Rambla" },
+    ]
+  },
+  {
+    id:"bus-383", numero:"383", nombre:"Puerto de la Cruz — Las Arenas — La Vera",
+    color:"#689F38", tipo:"norte", frecuencia:"30 min", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"06:30", hasta:"21:15" },
+    paradas:[
+      { id:"383-pc", nombre:"Puerto de la Cruz · Estación", lat:28.4148, lng:-16.5480, esTerminal:true , municipio:"Puerto de la Cruz" },
+      { id:"383-aren", nombre:"Las Arenas", lat:28.406912, lng:-16.544185, esTerminal:false, municipio:"Puerto de la Cruz" },
+      { id:"383-vera", nombre:"La Vera", lat:28.402305, lng:-16.535841, esTerminal:true , municipio:"Puerto de la Cruz" },
     ]
   },
 ];
