@@ -18822,6 +18822,50 @@ const TITSA_LINES = [
       { id:"903-cber", nombre:"Cueva Bermeja", lat:28.484211, lng:-16.234102, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
     ]
   },
+  /* TRES LINEAS MAS
+     Palm-Mar no entra y con ella se queda fuera la 468. La coordenada da
+     1,53 km de mar, y en el sur ese control es fiable: Las Galletas, Los
+     Cristianos, El Medano, Los Abrigos y El Fraile dan todos entre 0,00 y
+     0,11. No es como el norte, donde la mascara es mas gruesa y llega a
+     0,88 en sitios que existen. */
+  {
+    id:"bus-138", numero:"138", nombre:"Santa Cruz — Tabaiba Alta — Radazul Alto — Tabaiba Baja",
+    /* Faltan Tabaiba Alta y Radazul Alto, las dos de en medio. Por eso
+       dibuja lo mismo que la 139, aunque son lineas distintas. */
+    color:"#0097A7", tipo:"sur", frecuencia:"30-45 min", precio:"1,75 €", minutos:30,
+    servicio:{ desde:"06:30", hasta:"21:40" },
+    paradas:[
+      { id:"138-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"138-tab", nombre:"Tabaiba Baja", lat:28.401411, lng:-16.331205, esTerminal:true , municipio:"El Rosario" },
+    ]
+  },
+  {
+    id:"bus-139", numero:"139", nombre:"Santa Cruz — Radazul Bajo — Tabaiba Baja",
+    /* Falta Radazul Bajo. */
+    color:"#00ACC1", tipo:"sur", frecuencia:"60 min", precio:"1,75 €", minutos:30,
+    servicio:{ desde:"06:10", hasta:"21:10" },
+    paradas:[
+      { id:"139-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"139-tab", nombre:"Tabaiba Baja", lat:28.401411, lng:-16.331205, esTerminal:true , municipio:"El Rosario" },
+    ]
+  },
+  {
+    id:"bus-381", numero:"381", nombre:"Plaza Reyes Católicos — Loro Parque — La Longuera",
+    /* La Longuera queda al borde de lo aceptable en el control de costa:
+       1,2 km de mar cuando los costeros reales del norte no pasan de 0,9.
+       Puede estar un kilometro corrida. Se acepta porque sin ella esta
+       linea no existe y el error, si lo hay, es de un kilometro. */
+        /* Sale a 7,9 km/h. Es un circuito urbano del Puerto: 2,6 km en recta
+       entre tres puntos que por la calle dan bastante mas vuelta. Cabeceras
+       correctas, que es la condicion. */
+    color:"#26A69A", tipo:"norte", frecuencia:"30 min", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"06:45", hasta:"21:15" },
+    paradas:[
+      { id:"381-prc", nombre:"Plaza Reyes Católicos", lat:28.415302, lng:-16.549211, esTerminal:true , municipio:"Puerto de la Cruz" },
+      { id:"381-loro", nombre:"Loro Parque", lat:28.411648, lng:-16.564531, esTerminal:false, municipio:"Puerto de la Cruz" },
+      { id:"381-long", nombre:"La Longuera", lat:28.406981, lng:-16.574211, esTerminal:true , municipio:"Los Realejos" },
+    ]
+  },
 ];
 
 // ── ESTADO ────────────────────────────────────────────────
