@@ -18608,6 +18608,130 @@ const TITSA_LINES = [
       { id:"383-vera", nombre:"La Vera", lat:28.402305, lng:-16.535841, esTerminal:true , municipio:"Puerto de la Cruz" },
     ]
   },
+  /* ONCE LINEAS QUE ABREN NUEVE COORDENADAS
+     La 372 se queda fuera aunque tiene sus dos cabeceras: sin Mayorazgo, que
+     es medio recorrido, sus 20 minutos caen sobre 1,2 km en recta y dan
+     3,5 km/h. Eso es mas lento que ir andando, y el planificador acabaria
+     recomendando una guagua a quien llega antes a pie. */
+  {
+    id:"bus-410", numero:"410", nombre:"IES Granadilla — San Isidro — Los Abrigos",
+    /* Refuerzo escolar y laboral: cierra a las 15:10. */
+    color:"#FF7043", tipo:"sur", frecuencia:"60 min", precio:"1,45 €", minutos:40,
+    servicio:{ desde:"06:45", hasta:"15:10" },
+    paradas:[
+      { id:"410-iesg", nombre:"IES Granadilla", lat:28.118941, lng:-16.578502, esTerminal:true , municipio:"Granadilla de Abona" },
+      { id:"410-si", nombre:"San Isidro (Enlace TF-1)", lat:28.0625, lng:-16.5635, esTerminal:false, municipio:"Granadilla de Abona" },
+      { id:"410-abr", nombre:"Los Abrigos", lat:28.028452, lng:-16.661204, esTerminal:true , municipio:"Granadilla de Abona" },
+    ]
+  },
+  {
+    id:"bus-412", numero:"412", nombre:"IES Granadilla — San Isidro — Los Abrigos (complemento escolar)",
+    /* Mismo trazado que la 410 con otro horario. */
+    color:"#FF8A65", tipo:"sur", frecuencia:"4 salidas/día", precio:"1,45 €", minutos:40,
+    servicio:{ desde:"06:55", hasta:"14:45" },
+    paradas:[
+      { id:"412-iesg", nombre:"IES Granadilla", lat:28.118941, lng:-16.578502, esTerminal:true , municipio:"Granadilla de Abona" },
+      { id:"412-si", nombre:"San Isidro (Enlace TF-1)", lat:28.0625, lng:-16.5635, esTerminal:false, municipio:"Granadilla de Abona" },
+      { id:"412-abr", nombre:"Los Abrigos", lat:28.028452, lng:-16.661204, esTerminal:true , municipio:"Granadilla de Abona" },
+    ]
+  },
+  {
+    id:"bus-419", numero:"419", nombre:"IES Granadilla — Vilaflor — La Escalona",
+    color:"#E64A19", tipo:"sur", frecuencia:"3 salidas/día", precio:"2,45 €", minutos:50,
+    servicio:{ desde:"06:40", hasta:"15:05" },
+    paradas:[
+      { id:"419-iesg", nombre:"IES Granadilla", lat:28.118941, lng:-16.578502, esTerminal:true , municipio:"Granadilla de Abona" },
+      { id:"419-vil", nombre:"Vilaflor", lat:28.1583, lng:-16.6373, esTerminal:false, municipio:"Vilaflor" },
+      { id:"419-esc", nombre:"La Escalona", lat:28.1487, lng:-16.6470, esTerminal:true , municipio:"Vilaflor" },
+    ]
+  },
+  {
+    id:"bus-463", numero:"463", nombre:"Chimiche — IES Granadilla",
+    /* Faltan El Desierto y Los Blanquitos, las dos de en medio. */
+    color:"#D84315", tipo:"sur", frecuencia:"3 salidas/día", precio:"1,45 €", minutos:30,
+    servicio:{ desde:"06:55", hasta:"14:40" },
+    paradas:[
+      { id:"463-chi", nombre:"Cruce Chimiche", lat:28.1450, lng:-16.5419, esTerminal:true , municipio:"Granadilla de Abona" },
+      { id:"463-iesg", nombre:"IES Granadilla", lat:28.118941, lng:-16.578502, esTerminal:true , municipio:"Granadilla de Abona" },
+    ]
+  },
+  {
+    id:"bus-373", numero:"373", nombre:"Las Dehesas — La Orotava",
+    /* Falta La Florida. Con solo dos puntos la recta se queda corta y salen 4 km/h; el recorrido real da mas vueltas. */
+    color:"#2E7D32", tipo:"norte", frecuencia:"60 min", precio:"1,45 €", minutos:25,
+    servicio:{ desde:"06:40", hasta:"20:20" },
+    paradas:[
+      { id:"373-deh", nombre:"Las Dehesas", lat:28.397631, lng:-16.541254, esTerminal:true , municipio:"La Orotava" },
+      { id:"373-orot", nombre:"La Orotava · Estación", lat:28.3926, lng:-16.5235, esTerminal:true , municipio:"La Orotava" },
+    ]
+  },
+  {
+    id:"bus-483", numero:"483", nombre:"Los Cristianos — Las Chafiras — Los Abrigos",
+    color:"#8D6E63", tipo:"sur", frecuencia:"45-60 min", precio:"1,75 €", minutos:40,
+    servicio:{ desde:"06:15", hasta:"21:35" },
+    paradas:[
+      { id:"483-lc", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:true , municipio:"Arona" },
+      { id:"483-chaf", nombre:"Las Chafiras", lat:28.0690, lng:-16.5990, esTerminal:false, municipio:"San Miguel de Abona" },
+      { id:"483-abr", nombre:"Los Abrigos", lat:28.028452, lng:-16.661204, esTerminal:true , municipio:"Granadilla de Abona" },
+    ]
+  },
+  {
+    id:"bus-418", numero:"418", nombre:"Costa Adeje — Los Cristianos — Valle San Lorenzo",
+    /* Falta el Hospital del Sur. */
+    color:"#BF360C", tipo:"sur", frecuencia:"30-45 min", precio:"1,45 €", minutos:45,
+    servicio:{ desde:"06:00", hasta:"21:55" },
+    paradas:[
+      { id:"418-ca", nombre:"Costa Adeje · Estación", lat:28.0970, lng:-16.7440, esTerminal:true , municipio:"Adeje" },
+      { id:"418-lc", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
+      { id:"418-vsl", nombre:"Valle San Lorenzo", lat:28.096311, lng:-16.664853, esTerminal:true , municipio:"Arona" },
+    ]
+  },
+  {
+    id:"bus-420", numero:"420", nombre:"Costa Adeje — Los Cristianos — Valle San Lorenzo (refuerzo de tarde)",
+    /* Solo tardes de laborables. */
+    color:"#F4511E", tipo:"sur", frecuencia:"60 min", precio:"1,45 €", minutos:40,
+    servicio:{ desde:"14:15", hasta:"20:30" },
+    paradas:[
+      { id:"420-ca", nombre:"Costa Adeje · Estación", lat:28.0970, lng:-16.7440, esTerminal:true , municipio:"Adeje" },
+      { id:"420-lc", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
+      { id:"420-vsl", nombre:"Valle San Lorenzo", lat:28.096311, lng:-16.664853, esTerminal:true , municipio:"Arona" },
+    ]
+  },
+  {
+    id:"bus-382", numero:"382", nombre:"Plaza Reyes Católicos — Barrio de San Antonio",
+        /* El comprobador la marca a 6 km/h. Es urbana del valle: 1,5 km en recta
+       entre dos plazas, pero por la calle da bastante mas vuelta. Cabeceras
+       correctas, que es la condicion. Mismo caso que la 383 y la 492. */
+    color:"#43A047", tipo:"norte", frecuencia:"30-45 min", precio:"1,45 €", minutos:15,
+    servicio:{ desde:"07:00", hasta:"21:00" },
+    paradas:[
+      { id:"382-prc", nombre:"Plaza Reyes Católicos", lat:28.415302, lng:-16.549211, esTerminal:true , municipio:"Puerto de la Cruz" },
+      { id:"382-sant", nombre:"Barrio de San Antonio", lat:28.402451, lng:-16.551842, esTerminal:true , municipio:"Los Realejos" },
+    ]
+  },
+  {
+    id:"bus-131", numero:"131", nombre:"Santa Cruz — Caletillas — Candelaria — Igueste de Candelaria",
+    color:"#EF6C00", tipo:"sur", frecuencia:"5 salidas/día", precio:"2,65 €", minutos:45,
+    servicio:{ desde:"07:25", hasta:"18:50" },
+    paradas:[
+      { id:"131-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"131-cal", nombre:"Cruce Caletillas", lat:28.3697, lng:-16.3683, esTerminal:false, municipio:"Candelaria" },
+      { id:"131-can", nombre:"Candelaria", lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
+      { id:"131-igc", nombre:"Igueste de Candelaria", lat:28.368541, lng:-16.384211, esTerminal:true , municipio:"Candelaria" },
+    ]
+  },
+  {
+    id:"bus-905", numero:"905", nombre:"Muelle Norte — Ramblas — Plaza Weyler — Ofra",
+    /* Falta Suarez Guerra. */
+    color:"#00838F", tipo:"municipal", frecuencia:"10-15 min", precio:"1,45 €", minutos:30,
+    servicio:{ desde:"05:45", hasta:"22:30" },
+    paradas:[
+      { id:"905-mn", nombre:"Muelle Norte", lat:28.473502, lng:-16.244102, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"905-ram", nombre:"Ramblas", lat:28.468241, lng:-16.257522, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"905-wey", nombre:"Plaza Weyler", lat:28.46824, lng:-16.25368, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"905-ofr", nombre:"Ofra", lat:28.4612, lng:-16.2843, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
 ];
 
 // ── ESTADO ────────────────────────────────────────────────
