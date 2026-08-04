@@ -18548,6 +18548,10 @@ const TITSA_LINES = [
   {
     id:"bus-346", numero:"346", nombre:"La Orotava — Aguamansa",
     /* Falta el Camino de Chasna. */
+        /* El comprobador la marca a 7 km/h. No es un error: son 3,2 km en recta
+       pero la carretera a Aguamansa sube en revueltas por el monte, y ademas
+       falta el Camino de Chasna. Las dos cabeceras si son las que modelamos,
+       que es la condicion para aplicar el tiempo oficial. */
     color:"#2E7D32", tipo:"norte", frecuencia:"60-90 min", precio:"1,45 €", minutos:30,
     servicio:{ desde:"06:10", hasta:"20:50" },
     paradas:[
@@ -18589,6 +18593,9 @@ const TITSA_LINES = [
   },
   {
     id:"bus-383", numero:"383", nombre:"Puerto de la Cruz — Las Arenas — La Vera",
+        /* Marcada a 6 km/h. Es un circuito urbano de 1,9 km en recta por las
+       calles de Las Arenas y La Vera; el recorrido real es bastante mas
+       largo que la recta entre sus tres puntos. Cabeceras correctas. */
     color:"#689F38", tipo:"norte", frecuencia:"30 min", precio:"1,45 €", minutos:20,
     servicio:{ desde:"06:30", hasta:"21:15" },
     paradas:[
