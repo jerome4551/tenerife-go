@@ -11,7 +11,7 @@ trazado del mapa sea el real y no una recta entre las dos cabeceras.
 **La coordenada. Nada más.**
 
 ```
-Hospital del Sur = 28.086432, -16.618291
+Hospital del Sur = 28.0687853, -16.7052128
 ```
 
 Grados decimales, latitud primero, seis decimales, separadas por coma. La longitud de
@@ -146,10 +146,13 @@ Adeje casco       = ___ , ___     entre las dos                      · Adeje
 ```
 Costa Adeje [28.0970,-16.7440] → Los Cristianos [28.0514,-16.7143] → Valle San Lorenzo [28.096311,-16.664853]
 
-Hospital del Sur  = ___ , ___     entre Los Cristianos y V. S. Lorenzo · Arona
+✅ Hospital del Sur = 28.0687853, -16.7052128   · Arona   APLICADA
 ```
-> 🏥 **La más útil de las 28.** Es la única de la lista a la que la gente va por necesidad y
-> no por turismo, y hoy no aparece en el mapa. La comparte con la 480.
+> 🏥 Puesta, pero **no con la coordenada que llegó**. La que llegó, `28.086432, -16.618291`,
+> cae en San Miguel de Abona —a 350 m del HiperDino de San Miguel, a 1,2 km del casco— y está
+> a **8,75 km** del hospital. El `Hospital del Sur de Tenerife` ya estaba en nuestro mapa en
+> `28.0687853, -16.7052128`, y ese punto sí encaja en el tramo: al 29 % de Los Cristianos →
+> Valle San Lorenzo y a 710 m de la recta. Es la que se ha usado. La comparte con la 480.
 
 ### 421 · Valle San Lorenzo — IES Las Galletas **(hoy solo 2 paradas)**
 ```
@@ -178,11 +181,11 @@ Cruz de Tea       = ___ , ___     entre Granadilla y Vilaflor        · Granadil
 ```
 Arona [28.0989,-16.6808] → Los Cristianos [28.0514,-16.7143]
 
-La Camella        = ___ , ___     entre las dos                      · Arona
-Hospital del Sur  = ___ , ___     entre las dos                      · Arona
+La Camella          = ___ , ___                  entre las dos      · Arona
+✅ Hospital del Sur = 28.0687853, -16.7052128                       · Arona   APLICADA
 ```
-> Las dos son las mismas paradas que la 421 y la 418. Con mandarlas una vez basta: si la
-> coordenada es la misma, las líneas comparten nodo y pueden hacer transbordo.
+> El hospital ya comparte nodo con la 418, así que entre las dos se puede hacer transbordo.
+> La Camella es la misma parada que en la 421: con mandarla una vez basta.
 
 ### 482 · Vilaflor — La Escalona — Arona — Los Cristianos
 ```
@@ -228,10 +231,23 @@ Benijo            = ___ , ___     después de Almáciga                · Santa 
 
 | | |
 |---|---|
-| paradas | **28** |
+| paradas | **27** · el Hospital del Sur ya está |
 | líneas que mejoran | 22 |
 | líneas que hoy solo tienen 2 paradas | 11 — ahí es donde más cambia el trazado |
 | bloquea algo | **no** |
 
-Si tuvieras que mandar solo unas pocas, yo empezaría por **Hospital del Sur** (418 y 480) y
-por las de las líneas de 2 paradas: 138, 139, 915, 421, 463, 347, 373, 346, 417, 480 y 339.
+El Hospital del Sur ya está. De las 27 que quedan, yo seguiría por las de las líneas que hoy
+solo tienen dos paradas: 138, 139, 915, 421, 463, 347, 373, 346, 417 y 339.
+
+---
+
+## Una cuarta forma de salir mal, y esta es nueva
+
+El Hospital del Sur la estrenó: **la coordenada de otro sitio con el mismo tipo de nombre en
+otro municipio.** No es el tocayo exacto (como Las Flores) ni la coordenada de otra parada
+nuestra (como La Corujera): es un punto plausible, en tierra, en el sur, a 8,75 km del sitio.
+
+Lo que la pilló fue comparar contra **nuestros propios 760 lugares**: el punto caía a 350 m de
+un supermercado de San Miguel de Abona, y el `Hospital del Sur de Tenerife` ya estaba en el
+fichero, en otro sitio. Esa comprobación es la que hago siempre antes de aplicar, y es la
+razón de que en esta lista vaya escrito el tramo de cada parada.

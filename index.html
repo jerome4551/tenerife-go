@@ -18512,11 +18512,12 @@ const TITSA_LINES = [
   },
   {
     id:"bus-480", numero:"480", nombre:"Arona — Los Cristianos",
-    /* Faltan La Camella y el Hospital del Sur. */
+    /* Sigue faltando La Camella. */
     color:"#795548", tipo:"sur", frecuencia:"60-90 min", precio:"1,45 €", minutos:30,
     servicio:{ desde:"06:30", hasta:"20:50" },
     paradas:[
       { id:"480-ar", nombre:"Arona (pueblo)", lat:28.0989, lng:-16.6808, esTerminal:true , municipio:"Arona" },
+      { id:"480-hosp", nombre:"🏥 Hospital del Sur", lat:28.0687853, lng:-16.7052128, esTerminal:false, municipio:"Arona" },
       { id:"480-lc", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:true , municipio:"Arona" },
     ]
   },
@@ -18716,12 +18717,12 @@ const TITSA_LINES = [
   },
   {
     id:"bus-418", numero:"418", nombre:"Costa Adeje — Los Cristianos — Valle San Lorenzo",
-    /* Falta el Hospital del Sur. */
     color:"#BF360C", tipo:"sur", frecuencia:"30-45 min", precio:"1,45 €", minutos:45,
     servicio:{ desde:"06:00", hasta:"21:55" },
     paradas:[
       { id:"418-ca", nombre:"Costa Adeje · Estación", lat:28.0970, lng:-16.7440, esTerminal:true , municipio:"Adeje" },
       { id:"418-lc", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:false, municipio:"Arona" },
+      { id:"418-hosp", nombre:"🏥 Hospital del Sur", lat:28.0687853, lng:-16.7052128, esTerminal:false, municipio:"Arona" },
       { id:"418-vsl", nombre:"Valle San Lorenzo", lat:28.096311, lng:-16.664853, esTerminal:true , municipio:"Arona" },
     ]
   },
