@@ -215,13 +215,66 @@ razonamiento acompañante es demostrablemente falso en dos de los tres casos.
 La 124 tiene tres paradas —Santa Cruz, Candelaria, Güímar— y 35 minutos. No pasa por Radazul
 ni por Arafo, y ese es todo su sentido: es la directa por la TF-1.
 
-## Qué me haría cambiar de opinión
+## Se pidieron dos pruebas y llegaron las dos. Resultado: se archiva
 
-Para el Cruce de Radazul, cualquiera de estas dos:
+Pedí el código numérico o una referencia física. Llegaron ambas: código **7138 / 7139** y la
+gasolinera **Cepsa Radazul a 90 m**, en el **Km 9 / Salida 9** de la TF-1. Esto es lo que dan
+al cruzarlas.
 
-1. El **código numérico** de la parada. Con código lo cruzo contra las 24 que ya lo llevan.
-2. Un punto de referencia comprobable: qué hay a menos de 200 m de ese enlace —una
-   gasolinera, un centro comercial, una salida numerada de la TF-1—. Con eso lo sitúo.
+### El Km 9 · consistente, pero no separa nada
+
+En recta desde Santa Cruz: el punto **puesto** está a 8,3 km y el **propuesto** a 8,4 km. Por
+carretera el Km 9 encaja con los dos. No decide.
+
+### La Cepsa Radazul · no concluyente
+
+En el fichero hay 20 gasolineras, 5 de ellas Cepsa, y **ninguna es la de Radazul**. La Cepsa
+más cercana al punto propuesto está a **4,31 km** (La Laguna Sur, TF-2). Eso no prueba que no
+exista: 20 estaciones no son todas las de la isla. Queda sin resolver.
+
+### El código 7138/7139 · **no encaja**, y esta era la prueba buena
+
+Los 24 códigos que ya tenemos dibujan un patrón geográfico nítido:
+
+| serie | dónde caen las nuestras | latitud | longitud |
+|---|---|---|---|
+| **2xxx** | La Laguna / área metropolitana | 28,49 | −16,32 |
+| **4xxx** | costa norte | 28,37 – 28,42 | −16,85 a −16,54 |
+| **7xxx** | sur y oeste | 28,00 – 28,30 | −16,84 a −16,65 |
+| **8xxx** | Santiago del Teide | 28,26 | −16,82 |
+
+**Las 16 paradas 7xxx que tenemos están todas en el sur y el oeste.** El Cruce de Radazul
+está en `28,41 / −16,32`: noreste, área metropolitana. Se sale del envolvente 7xxx **por los
+dos ejes**.
+
+Y la numeración es localmente coherente en toda la muestra —códigos vecinos, paradas vecinas:
+
+```
+  243 m   7574 El Cercado        ↔  7575 Arguayo
+  445 m   7241 Cueva del Polvo   ↔  7243 San Francisco
+  589 m   7222 Puerto Santiago   ↔  7232 Playa de la Arena
+  695 m   7578 Valle de Arriba   ↔  7579 Santiago del Teide
+```
+
+**7138/7139 quedaría a once números de 7149/7150, que es El Camisón, en Arona — a 56 km.**
+En ningún otro sitio de la muestra dos códigos tan próximos están tan lejos. Por el patrón,
+una parada de Radazul debería llevar código **2xxx**, como La Laguna Intercambiador (2625).
+
+### Los límites de esta prueba
+
+24 códigos son una muestra pequeña y del 2xxx solo tenemos uno. Es una **indicación fuerte,
+no una demostración**. Si el código apareciera en una fuente oficial de TITSA, mandándolo se
+revisa.
+
+### Decisión
+
+**Se archiva.** El Cruce de Radazul se queda en `28.414532, -16.326211`, donde está desde que
+entró. Las razones, en orden:
+
+1. la mejora que ofrecía el punto nuevo (377 m) estaba **por debajo de lo que mis controles
+   resuelven**, y ya lo estaba antes de estas pruebas;
+2. de las dos pruebas pedidas, una no separa y la otra **sale en contra**;
+3. no se cambia un dato verificado y publicado sin algo que lo desmienta.
 
 ---
 
