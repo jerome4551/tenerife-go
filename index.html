@@ -18889,6 +18889,242 @@ const TITSA_LINES = [
       { id:"468-palmmar", nombre:"Palm-Mar",        lat:28.021132, lng:-16.702581, esTerminal:true,  municipio:"Arona" },
     ]
   },
+  /* LAS VEINTE ULTIMAS DEL LOTE DE CABECERAS
+     De las 41 coordenadas entran 40. Tres se sustituyen por las que ya
+     teniamos en el mapa, porque las que llegaron caian mal:
+
+       El Pris        llego a 2,8 km de mar; se usa Puerto El Pris.
+       Mesa del Mar   llego a 2,2 km de mar; se usa la del propio mapa.
+       La Corujera    llego con la coordenada exacta de Mayorazgo, a diez
+                      kilometros; se usa la del guachinche de La Corujera.
+
+     Palm-Mar se deja como estaba: en el lote volvia la version vieja, la que
+     caia a 1,2 km mar adentro, y la buena ya estaba aplicada.
+
+     Quedan fuera la 021 y la 023, que no es por coordenadas: de esas dos no
+     ha llegado nunca frecuencia, precio, horario ni tiempo. */
+  {
+    id:"bus-032", numero:"032", nombre:"Güímar — El Socorro — Las Eras — La Sombrera",
+    color:"#6D4C41", tipo:"sur", frecuencia:"4 salidas/día", precio:"2,20 €", minutos:45,
+    servicio:{ desde:"06:35", hasta:"18:50" },
+    paradas:[
+      { id:"032-guimar", nombre:"Güímar", lat:28.3186, lng:-16.4106, esTerminal:true , municipio:"Güímar" },
+      { id:"032-socorro", nombre:"El Socorro", lat:28.318405, lng:-16.391204, esTerminal:false, municipio:"Güímar" },
+      { id:"032-eras", nombre:"Las Eras", lat:28.184911, lng:-16.425841, esTerminal:false, municipio:"Fasnia" },
+      { id:"032-sombrera", nombre:"La Sombrera", lat:28.214852, lng:-16.418402, esTerminal:true , municipio:"Fasnia" },
+    ]
+  },
+  {
+    id:"bus-122", numero:"122", nombre:"Santa Cruz — Caletillas — Candelaria — Polígono de Güímar",
+    color:"#EF6C00", tipo:"sur", frecuencia:"30 min", precio:"2,65 €", minutos:45,
+    servicio:{ desde:"06:20", hasta:"00:05" },
+    paradas:[
+      { id:"122-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"122-calet", nombre:"Cruce Caletillas", lat:28.3697, lng:-16.3683, esTerminal:false, municipio:"Candelaria" },
+      { id:"122-cand", nombre:"Candelaria", lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
+      { id:"122-polig", nombre:"Polígono Industrial de Güímar", lat:28.306115, lng:-16.371204, esTerminal:true , municipio:"Güímar" },
+    ]
+  },
+  {
+    id:"bus-142", numero:"142", nombre:"Santa Cruz — Añaza — Santa María del Mar — Barranco Hondo",
+    color:"#F4511E", tipo:"sur", frecuencia:"30-45 min", precio:"1,45 €", minutos:25,
+    servicio:{ desde:"06:05", hasta:"21:20" },
+    paradas:[
+      { id:"142-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"142-anaza", nombre:"Añaza", lat:28.42345, lng:-16.30712, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"142-smar", nombre:"Santa María del Mar", lat:28.41624, lng:-16.31543, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"142-bhondo", nombre:"Cruce de Barranco Hondo", lat:28.411402, lng:-16.319541, esTerminal:true , municipio:"El Rosario" },
+    ]
+  },
+  {
+    id:"bus-310", numero:"310", nombre:"Parking CC San Jerónimo — La Laguna — Santa Cruz",
+    color:"#5D4037", tipo:"norte", frecuencia:"4 salidas/día", precio:"2,45 €", minutos:40,
+    servicio:{ desde:"06:50", hasta:"15:15" },
+    paradas:[
+      { id:"310-sjer", nombre:"Parking CC San Jerónimo", lat:28.441205, lng:-16.284211, esTerminal:true , municipio:"La Laguna" },
+      { id:"310-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"310-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-330", numero:"330", nombre:"Circunvalación Los Realejos — San Vicente — Las Llanadas",
+    /* Bucle: vuelve a Los Realejos. */
+    color:"#2E7D32", tipo:"norte", frecuencia:"60-90 min", precio:"1,45 €", minutos:50,
+    servicio:{ desde:"06:00", hasta:"21:05" },
+    paradas:[
+      { id:"330-real", nombre:"Los Realejos", lat:28.3852, lng:-16.5841, esTerminal:true , municipio:"Los Realejos" },
+      { id:"330-svic", nombre:"San Vicente", lat:28.391205, lng:-16.594182, esTerminal:false, municipio:"Los Realejos" },
+      { id:"330-llan", nombre:"Las Llanadas", lat:28.366405, lng:-16.591241, esTerminal:false, municipio:"Los Realejos" },
+      { id:"330-realv", nombre:"Los Realejos (Vuelta)", lat:28.3852, lng:-16.5841, esTerminal:true , municipio:"Los Realejos" },
+    ]
+  },
+  {
+    id:"bus-357", numero:"357", nombre:"Icod — Hospital del Norte",
+    color:"#388E3C", tipo:"norte", frecuencia:"30-40 min", precio:"1,45 €", minutos:15,
+    servicio:{ desde:"06:30", hasta:"21:45" },
+    paradas:[
+      { id:"357-icod", nombre:"Icod de los Vinos", lat:28.3722, lng:-16.7178, esTerminal:true , municipio:"Icod de los Vinos" },
+      { id:"357-hnorte", nombre:"🏥 Hospital del Norte", lat:28.371952, lng:-16.691204, esTerminal:true , municipio:"Icod de los Vinos" },
+    ]
+  },
+  {
+    id:"bus-358", numero:"358", nombre:"Icod — El Amparo — Barrio de Santa Bárbara",
+    /* 2,3 km en recta en 20 minutos, o sea 7 km/h. Es de las que salen
+       lentas en el control de velocidad y esta bien que salga: la
+       carretera sube del casco de Icod a El Amparo por la ladera y hace
+       mucha mas distancia de la que mide la recta. */
+    color:"#43A047", tipo:"norte", frecuencia:"60-90 min", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"06:45", hasta:"19:45" },
+    paradas:[
+      { id:"358-icod", nombre:"Icod de los Vinos", lat:28.3722, lng:-16.7178, esTerminal:true , municipio:"Icod de los Vinos" },
+      { id:"358-amparo", nombre:"El Amparo", lat:28.355204, lng:-16.719542, esTerminal:false, municipio:"Icod de los Vinos" },
+      { id:"358-sbarb", nombre:"Barrio de Santa Bárbara", lat:28.358412, lng:-16.721405, esTerminal:true , municipio:"Icod de los Vinos" },
+    ]
+  },
+  {
+    id:"bus-360", numero:"360", nombre:"Icod — La Montañeta — San José de los Llanos — Erjos",
+    color:"#558B2F", tipo:"norte", frecuencia:"5 salidas/día", precio:"2,10 €", minutos:45,
+    servicio:{ desde:"06:50", hasta:"18:40" },
+    paradas:[
+      { id:"360-icod", nombre:"Icod de los Vinos", lat:28.3722, lng:-16.7178, esTerminal:true , municipio:"Icod de los Vinos" },
+      { id:"360-montaneta", nombre:"La Montañeta", lat:28.349102, lng:-16.744185, esTerminal:false, municipio:"El Tanque" },
+      { id:"360-sjllanos", nombre:"San José de los Llanos", lat:28.324205, lng:-16.785211, esTerminal:false, municipio:"El Tanque" },
+      { id:"360-perjos", nombre:"Erjos", lat:28.309405, lng:-16.806112, esTerminal:true , municipio:"El Tanque" },
+    ]
+  },
+  {
+    id:"bus-362", numero:"362", nombre:"Icod — Playa de San Marcos",
+    /* Sale a 2,8 km/h y es el caso mas extremo de la tabla: del casco de
+       Icod a la playa hay 0,7 km en recta pero la carretera baja en
+       revueltas mas de dos kilometros. Los 15 minutos son los oficiales.
+       Aqui el planificador preferira andar, y hace bien. */
+    color:"#689F38", tipo:"norte", frecuencia:"45-60 min", precio:"1,45 €", minutos:15,
+    servicio:{ desde:"07:00", hasta:"20:30" },
+    paradas:[
+      { id:"362-icod", nombre:"Icod de los Vinos", lat:28.3722, lng:-16.7178, esTerminal:true , municipio:"Icod de los Vinos" },
+      { id:"362-smarcos", nombre:"Playa de San Marcos", lat:28.378512, lng:-16.716842, esTerminal:true , municipio:"Icod de los Vinos" },
+    ]
+  },
+  {
+    id:"bus-366", numero:"366", nombre:"Buenavista — El Palmar — Las Portelas",
+    color:"#1B5E20", tipo:"norte", frecuencia:"5 salidas/día", precio:"1,45 €", minutos:25,
+    servicio:{ desde:"06:40", hasta:"18:50" },
+    paradas:[
+      { id:"366-buena", nombre:"Buenavista del Norte · Terminal", lat:28.3718, lng:-16.8510, esTerminal:true , municipio:"Buenavista del Norte" },
+      { id:"366-palmar", nombre:"El Palmar", lat:28.351205, lng:-16.851241, esTerminal:false, municipio:"Buenavista del Norte" },
+      { id:"366-portelas", nombre:"Las Portelas", lat:28.341402, lng:-16.839511, esTerminal:true , municipio:"Buenavista del Norte" },
+    ]
+  },
+  {
+    id:"bus-369", numero:"369", nombre:"Buenavista — Punta de Teno",
+    /* Acceso regulado al espacio natural. La coordenada da 1,5 km de mar en
+       el control, pero ahi el control falla: el faro de Teno, que ya estaba
+       en el mapa, cae a 100 m de este punto. Es un cabo estrecho. */
+    color:"#00695C", tipo:"norte", frecuencia:"60 min", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"09:00", hasta:"19:40" },
+    paradas:[
+      { id:"369-buena", nombre:"Buenavista del Norte · Terminal", lat:28.3718, lng:-16.8510, esTerminal:true , municipio:"Buenavista del Norte" },
+      { id:"369-teno", nombre:"🌊 Punta de Teno", lat:28.341389, lng:-16.923889, esTerminal:true , municipio:"Buenavista del Norte" },
+    ]
+  },
+  {
+    id:"bus-380", numero:"380", nombre:"La Corujera — La Orotava — Tigaiga",
+    /* La coordenada de La Corujera que llego era la de Mayorazgo, a diez
+       kilometros. Se usa la del guachinche de La Corujera, que ya estaba en
+       el mapa. */
+    color:"#00838F", tipo:"norte", frecuencia:"30-45 min", precio:"1,45 €", minutos:40,
+    servicio:{ desde:"06:15", hasta:"21:20" },
+    paradas:[
+      { id:"380-coruj", nombre:"La Corujera", lat:28.4164, lng:-16.4983, esTerminal:true , municipio:"Santa Úrsula" },
+      { id:"380-orot", nombre:"La Orotava · Estación", lat:28.3926, lng:-16.5235, esTerminal:false, municipio:"La Orotava" },
+      { id:"380-tigaiga", nombre:"Tigaiga", lat:28.381402, lng:-16.601541, esTerminal:true , municipio:"Los Realejos" },
+    ]
+  },
+  {
+    id:"bus-392", numero:"392", nombre:"Icod — El Tanque — Ruigómez — Erjos",
+    color:"#0097A7", tipo:"norte", frecuencia:"60-90 min", precio:"1,75 €", minutos:35,
+    servicio:{ desde:"06:15", hasta:"20:25" },
+    paradas:[
+      { id:"392-icod", nombre:"Icod de los Vinos", lat:28.3722, lng:-16.7178, esTerminal:true , municipio:"Icod de los Vinos" },
+      { id:"392-tanque", nombre:"El Tanque", lat:28.3562, lng:-16.7792, esTerminal:false, municipio:"El Tanque" },
+      { id:"392-ruig", nombre:"Ruigómez", lat:28.318402, lng:-16.804105, esTerminal:false, municipio:"El Tanque" },
+      { id:"392-perjos", nombre:"Erjos", lat:28.309405, lng:-16.806112, esTerminal:true , municipio:"El Tanque" },
+    ]
+  },
+  {
+    id:"bus-424", numero:"424", nombre:"Los Cristianos — Torviscas Alta — CC El Duque",
+    color:"#FF7043", tipo:"sur", frecuencia:"30-40 min", precio:"1,45 €", minutos:35,
+    servicio:{ desde:"07:00", hasta:"21:30" },
+    paradas:[
+      { id:"424-lc", nombre:"Los Cristianos · Estación", lat:28.0514, lng:-16.7143, esTerminal:true , municipio:"Arona" },
+      { id:"424-torv", nombre:"Torviscas Alta", lat:28.084205, lng:-16.721402, esTerminal:false, municipio:"Adeje" },
+      { id:"424-duque", nombre:"CC El Duque", lat:28.091382, lng:-16.741245, esTerminal:true , municipio:"Adeje" },
+    ]
+  },
+  {
+    id:"bus-430", numero:"430", nombre:"Granadilla — Villa de Arico — Arico Viejo — Las Maretas",
+    color:"#8D6E63", tipo:"sur", frecuencia:"4 salidas/día", precio:"2,45 €", minutos:60,
+    servicio:{ desde:"06:45", hasta:"18:30" },
+    paradas:[
+      { id:"430-gran", nombre:"Granadilla de Abona", lat:28.1208, lng:-16.5775, esTerminal:true , municipio:"Granadilla de Abona" },
+      { id:"430-villarico", nombre:"Villa de Arico", lat:28.164851, lng:-16.491204, esTerminal:false, municipio:"Arico" },
+      { id:"430-aricov", nombre:"Arico Viejo", lat:28.188402, lng:-16.491244, esTerminal:false, municipio:"Arico" },
+      { id:"430-maretas", nombre:"Las Maretas", lat:28.136112, lng:-16.425841, esTerminal:true , municipio:"Arico" },
+    ]
+  },
+  {
+    id:"bus-490", numero:"490", nombre:"Guía de Isora — Tejina de Guía — Vera de Erques",
+    color:"#A1887F", tipo:"sur", frecuencia:"4 salidas/día", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"07:15", hasta:"16:30" },
+    paradas:[
+      { id:"490-guia", nombre:"Guía de Isora · Terminal (7494)", lat:28.2125, lng:-16.7783, esTerminal:true , municipio:"Guía de Isora" },
+      { id:"490-tejguia", nombre:"Tejina de Guía", lat:28.192305, lng:-16.764102, esTerminal:false, municipio:"Guía de Isora" },
+      { id:"490-erques", nombre:"Vera de Erques", lat:28.214251, lng:-16.744184, esTerminal:true , municipio:"Guía de Isora" },
+    ]
+  },
+  {
+    id:"bus-916", numero:"916", nombre:"Intercambiador — María Jiménez — Los Gavilanes",
+    color:"#0288D1", tipo:"municipal", frecuencia:"45-60 min", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"06:20", hasta:"21:00" },
+    paradas:[
+      { id:"916-scb", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"916-mjim", nombre:"María Jiménez", lat:28.484211, lng:-16.221405, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"916-gavil", nombre:"Los Gavilanes", lat:28.488451, lng:-16.223104, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-917", numero:"917", nombre:"Intercambiador — Valleseco — La Quebrada",
+    color:"#039BE5", tipo:"municipal", frecuencia:"6 salidas/día", precio:"1,45 €", minutos:25,
+    servicio:{ desde:"06:45", hasta:"19:50" },
+    paradas:[
+      { id:"917-scb", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"917-vallese", nombre:"Valleseco", lat:28.478512, lng:-16.231204, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"917-quebr", nombre:"La Quebrada", lat:28.491205, lng:-16.234184, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-921", numero:"921", nombre:"Circular centro · Avenida de Anaga — Plaza del Príncipe — Mercado",
+    /* Bucle cerrado: sale y vuelve al Intercambiador. */
+    color:"#03A9F4", tipo:"municipal", frecuencia:"15-20 min", precio:"1,45 €", minutos:25,
+    servicio:{ desde:"07:00", hasta:"20:30" },
+    paradas:[
+      { id:"921-scb", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"921-avanaga", nombre:"Avenida de Anaga", lat:28.469512, lng:-16.248405, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"921-ppcpe", nombre:"Plaza del Príncipe", lat:28.468205, lng:-16.251402, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"921-merc", nombre:"Mercado", lat:28.461952, lng:-16.252104, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"921-scv", nombre:"Intercambiador (Vuelta)", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
+  {
+    id:"bus-923", numero:"923", nombre:"Intercambiador — Ramblas — Moraditas de Taco",
+    color:"#29B6F6", tipo:"municipal", frecuencia:"40-50 min", precio:"1,45 €", minutos:30,
+    servicio:{ desde:"06:30", hasta:"21:10" },
+    paradas:[
+      { id:"923-scb", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"923-ram", nombre:"Ramblas", lat:28.468241, lng:-16.257522, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"923-morad", nombre:"Moraditas de Taco", lat:28.441952, lng:-16.311402, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+    ]
+  },
 ];
 
 // ── ESTADO ────────────────────────────────────────────────
