@@ -1,11 +1,13 @@
-# Bloque 2 — paradas intermedias · van 3 de 28
+# Bloque 2 — paradas intermedias · van 9 de 28
 
 La red está completa: **173 de 173 líneas**. Esto ya no bloquea nada. Lo que hace es que el
 planificador encuentre esas líneas también a quien vive **a mitad de recorrido**, y que el
 trazado del mapa sea el real y no una recta entre las dos cabeceras.
 
-**Aplicadas:** Hospital del Sur (418 y 480) · Cruce de Radazul (121) · Arafo (121).
-**Quedan 25**, marcadas abajo con `___`.
+**Aplicadas (9):** Hospital del Sur (418 y 480) · Cruce de Radazul y Arafo (121) ·
+Barranco Hondo (127) · Tabaiba Alta y Radazul Alto (138) · Radazul Bajo (139) ·
+Tornero y Gavias (203).
+**Quedan 19**, marcadas abajo con `___`.
 
 ---
 
@@ -76,36 +78,54 @@ Santa Cruz [28.4578,-16.2568] → Candelaria [28.3536,-16.3733] → Güímar [28
 
 Empalme de Güímar = ___ , ___     entre Candelaria y Güímar          · Güímar
 ```
+> ⚠️ Sigue pendiente. En el último lote llegaron aquí Cruce de Radazul y Arafo, que son las
+> de la 121 y ya estaban puestas. La 124 es **la directa por la TF-1**: si le metiera Arafo,
+> que se sale 2,2 km de la recta, volvería a ser la misma línea que la 121 y se perdería
+> justo lo que explica que una tarde 35 minutos y la otra 55.
 
 ### 127 · Taco — Barranco Grande — Candelaria — Güímar
 ```
 Taco [28.441405,-16.307521] → Barranco Grande [28.438511,-16.321482] → Candelaria [28.3536,-16.3733] → Güímar
 
-Barranco Hondo    = ___ , ___     entre Barranco Grande y Candelaria · El Rosario
+✅ Barranco Hondo = 28.393481, -16.349142   · El Rosario   APLICADA
 ```
+> La mejor del lote: cae a **20 m** de la recta Barranco Grande → Candelaria.
 
-### 138 · Santa Cruz — Tabaiba Alta — Radazul Alto — Tabaiba Baja **(hoy solo 2 paradas)**
+### 138 · Santa Cruz — Tabaiba Alta — Radazul Alto — Tabaiba Baja
 ```
 Santa Cruz [28.4578,-16.2568] → Tabaiba Baja [28.401411,-16.331205]
 
-Tabaiba Alta      = ___ , ___     entre las dos                      · El Rosario
-Radazul Alto      = ___ , ___     entre las dos                      · El Rosario
+✅ Tabaiba Alta = 28.411425, -16.335912   · El Rosario   APLICADA
+✅ Radazul Alto = 28.412154, -16.327854   · El Rosario   APLICADA
 ```
+> Radazul Alto queda a 309 m del Cruce de Radazul de la 121. Se dejan como dos paradas: el
+> cruce está en la vía y Radazul Alto en la urbanización, y a esa distancia nadie pierde el
+> enlace. Con las dos puestas, la 138 deja de dibujar lo mismo que la 139.
 
-### 139 · Santa Cruz — Radazul Bajo — Tabaiba Baja **(hoy solo 2 paradas)**
+### 139 · Santa Cruz — Radazul Bajo — Tabaiba Baja
 ```
 Santa Cruz [28.4578,-16.2568] → Tabaiba Baja [28.401411,-16.331205]
 
-Radazul Bajo      = ___ , ___     entre las dos                      · El Rosario
+✅ Radazul Bajo = 28.402431, -16.324205   · El Rosario   APLICADA
 ```
+> Cayó a **70 m** del Puerto Deportivo de Radazul, que es exactamente lo que significa
+> «Radazul Bajo».
 
 ### 203 · La Laguna — San Lázaro — San Benito — La Trinidad (bucle)
 ```
-La Laguna [28.4853,-16.3160] → San Lázaro [28.489211,-16.335912] → San Benito [28.49512,-16.30845] → La Trinidad [28.4858,-16.3133]
+La Laguna [28.4853,-16.3160] → San Lázaro [28.489211,-16.335912] → San Benito [28.48911,-16.32622] ← corregida → La Trinidad [28.4858,-16.3133]
 
-Gavias            = ___ , ___     en el bucle                        · La Laguna
-Tornero           = ___ , ___     en el bucle                        · La Laguna
+✅ Tornero = 28.488641, -16.329523   · La Laguna   APLICADA
+✅ Gavias  = 28.490514, -16.321852   · La Laguna   APLICADA
 ```
+> Puestas en ese orden, que es el que sale de las longitudes: San Lázaro → Tornero → San
+> Benito → Gavias → La Trinidad.
+>
+> **Y salió un fallo de los de verdad.** El `San Benito` de la 203 estaba a 1,86 km del
+> `San Benito` de la 206: dos coordenadas para la misma parada. Lo resolvió un lugar del
+> propio fichero — el Parque Canino San Benito cae a 270 m del de la 206 y a 1,99 km del de
+> la 203. Corregido el de la 203, que además **une el nodo**: las dos líneas ya pueden
+> transbordar ahí.
 
 ### 339 · 🦉 Puerto de la Cruz — Los Realejos (nocturna) **(hoy solo 2 paradas)**
 ```
@@ -241,14 +261,14 @@ Benijo            = ___ , ___     después de Almáciga                · Santa 
 
 | | |
 |---|---|
-| paradas | **25** · van 3 aplicadas |
+| paradas | **19** · van 9 aplicadas |
 | líneas que mejoran | 22 |
-| líneas que hoy solo tienen 2 paradas | 11 — ahí es donde más cambia el trazado |
+| líneas que hoy solo tienen 2 paradas | 8 — ahí es donde más cambia el trazado |
 | bloquea algo | **no** |
 
-Van 3 aplicadas (Hospital del Sur, Cruce de Radazul y Arafo). De las 25 que quedan, yo
-seguiría por las de las líneas que hoy solo tienen dos paradas: 138, 139, 915, 421, 463,
-347, 373, 346, 417 y 339.
+Van 9 aplicadas. De las 19 que quedan, yo seguiría por las de las líneas que hoy solo tienen
+dos paradas: 915, 421, 463, 347, 373, 346, 417 y 339. Y por el **Empalme de Güímar**, que es
+lo único que le falta a la 124.
 
 De las tres aplicadas, dos entraron tal cual y una hubo que corregirla. La que las separa es
 siempre la misma comprobación: **cruzar el punto contra nuestros propios 760 lugares.** Arafo

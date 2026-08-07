@@ -18407,13 +18407,14 @@ const TITSA_LINES = [
   },
   {
     id:"bus-127", numero:"127", nombre:"Taco — Barranco Grande — Candelaria — Güímar",
-    /* Falta Barranco Hondo. Arranca en el intercambiador de guaguas de Taco,
-       no en la parada del tranvia, que son dos sitios distintos. */
+    /* Arranca en el intercambiador de guaguas de Taco, no en la parada del
+       tranvia, que son dos sitios distintos. */
     color:"#8D6E63", tipo:"sur", frecuencia:"60-90 min", precio:"3,35 €", minutos:60,
     servicio:{ desde:"06:25", hasta:"21:10" },
     paradas:[
       { id:"127-taco", nombre:"Taco · Intercambiador", lat:28.441405, lng:-16.307521, esTerminal:true , municipio:"San Cristóbal de La Laguna" },
       { id:"127-bgrande", nombre:"Barranco Grande", lat:28.438511, lng:-16.321482, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"127-bhondo", nombre:"Barranco Hondo", lat:28.393481, lng:-16.349142, esTerminal:false, municipio:"El Rosario" },
       { id:"127-cand", nombre:"Candelaria", lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
       { id:"127-guimar", nombre:"Güímar", lat:28.3186, lng:-16.4106, esTerminal:true , municipio:"Güímar" },
     ]
@@ -18552,13 +18553,24 @@ const TITSA_LINES = [
      Plaza Reyes Catolicos (dos cada una). */
   {
     id:"bus-203", numero:"203", nombre:"La Laguna — San Lázaro — San Benito — La Trinidad (bucle)",
-    /* Faltan Tornero y Gavias. */
+    /* El San Benito de esta linea estaba en 28.49512,-16.30845, a 1,86 km
+       del San Benito de la 206. Uno de los dos sobraba, y lo resuelve un
+       lugar del propio fichero: el Parque Canino San Benito cae a 270 m
+       del de la 206 y a 1,99 km del de esta. Asi que el bueno era el de
+       la 206 y aqui se corrige. Ademas de arreglar el trazado, une el
+       nodo: la 203 y la 206 ya pueden transbordar en San Benito.
+
+       Gavias queda a 230 m de La Verdellada, que comparten la 201, la
+       206 y la 026. Son dos paradas distintas y a 230 m se anda en
+       cuatro minutos, asi que no se junta ningun nodo a la fuerza. */
     color:"#37474F", tipo:"municipal", frecuencia:"6 salidas/día", precio:"1,45 €", minutos:20,
     servicio:{ desde:"08:00", hasta:"19:55" },
     paradas:[
       { id:"203-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:true , municipio:"San Cristóbal de La Laguna" },
       { id:"203-slaz", nombre:"San Lázaro", lat:28.489211, lng:-16.335912, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"203-sben", nombre:"San Benito", lat:28.49512, lng:-16.30845, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"203-tornero", nombre:"Tornero", lat:28.488641, lng:-16.329523, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"203-sben", nombre:"San Benito", lat:28.48911, lng:-16.32622, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"203-gavias", nombre:"Gavias", lat:28.490514, lng:-16.321852, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"203-trin", nombre:"La Trinidad (Centro La Laguna)", lat:28.4858, lng:-16.3133, esTerminal:true , municipio:"San Cristóbal de La Laguna" },
     ]
   },
@@ -18876,22 +18888,30 @@ const TITSA_LINES = [
      0,88 en sitios que existen. */
   {
     id:"bus-138", numero:"138", nombre:"Santa Cruz — Tabaiba Alta — Radazul Alto — Tabaiba Baja",
-    /* Faltan Tabaiba Alta y Radazul Alto, las dos de en medio. Por eso
-       dibuja lo mismo que la 139, aunque son lineas distintas. */
+    /* Radazul Alto queda a 309 m del Cruce de Radazul de la 121. Se dejan
+       como dos paradas porque son dos sitios: el cruce esta en la via y
+       Radazul Alto en la urbanizacion. A esa distancia nadie pierde el
+       enlace, porque quien busque desde ahi encuentra las dos.
+
+       El orden es el del nombre de la linea y no el que saldria de mirar
+       la recta desde Santa Cruz. Cuesta 730 m mas de recorrido, pero el
+       orden de las paradas lo pone quien opera la linea. */
     color:"#0097A7", tipo:"sur", frecuencia:"30-45 min", precio:"1,75 €", minutos:30,
     servicio:{ desde:"06:30", hasta:"21:40" },
     paradas:[
       { id:"138-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"138-talta", nombre:"Tabaiba Alta", lat:28.411425, lng:-16.335912, esTerminal:false, municipio:"El Rosario" },
+      { id:"138-ralto", nombre:"Radazul Alto", lat:28.412154, lng:-16.327854, esTerminal:false, municipio:"El Rosario" },
       { id:"138-tab", nombre:"Tabaiba Baja", lat:28.401411, lng:-16.331205, esTerminal:true , municipio:"El Rosario" },
     ]
   },
   {
     id:"bus-139", numero:"139", nombre:"Santa Cruz — Radazul Bajo — Tabaiba Baja",
-    /* Falta Radazul Bajo. */
     color:"#00ACC1", tipo:"sur", frecuencia:"60 min", precio:"1,75 €", minutos:30,
     servicio:{ desde:"06:10", hasta:"21:10" },
     paradas:[
       { id:"139-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"139-rbajo", nombre:"Radazul Bajo", lat:28.402431, lng:-16.324205, esTerminal:false, municipio:"El Rosario" },
       { id:"139-tab", nombre:"Tabaiba Baja", lat:28.401411, lng:-16.331205, esTerminal:true , municipio:"El Rosario" },
     ]
   },
