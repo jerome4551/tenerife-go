@@ -17597,12 +17597,12 @@ const TITSA_LINES = [
      entera y no lleva tiempo oficial. */
   {
     id:"bus-915", numero:"915", nombre:"Intercambiador — Camino del Hierro — Tío Pino — Ofra",
-    /* La fuente da una "coordenada de regulacion" de Ofra en
-       28.458632,-16.294105, a mil metros de la Ofra que ya comparten la 905,
-       la 908 y la 971. No se aplica: o es la misma parada con otra medida, y
-       entonces partir el nodo deja a esas cuatro lineas sin transbordo entre
-       ellas, o es otra parada distinta y entonces necesita otro nombre.
-       Faltan tambien Camino del Hierro y Tio Pino, que son las de en medio. */
+    /* La Ofra de esta linea es la misma que la de la 905, la 908 y la 971:
+       las cuatro regulan en las darsenas del hospital. La coordenada que
+       llego aparte, a un kilometro, era el centro del barrio residencial de
+       arriba, no el intercambiador. Confirmado y unificado.
+
+       Faltan Camino del Hierro y Tio Pino, que son las de en medio. */
     color:"#0277BD", tipo:"municipal", frecuencia:"60 min", precio:"1,45 €", minutos:25,
     servicio:{ desde:"06:20", hasta:"21:20" },
     paradas:[
@@ -18851,10 +18851,9 @@ const TITSA_LINES = [
   },
   {
     id:"bus-381", numero:"381", nombre:"Plaza Reyes Católicos — Loro Parque — La Longuera",
-    /* La Longuera queda al borde de lo aceptable en el control de costa:
-       1,2 km de mar cuando los costeros reales del norte no pasan de 0,9.
-       Puede estar un kilometro corrida. Se acepta porque sin ella esta
-       linea no existe y el error, si lo hay, es de un kilometro. */
+    /* La Longuera se corrigio: la primera daba 1,12 km de mar y la buena da
+       0,84, dentro de lo que da el norte en sitios que existen. Queda a 655 m
+       de Loro Parque, que es lo que separa una parada de la otra. */
         /* Sale a 7,9 km/h. Es un circuito urbano del Puerto: 2,6 km en recta
        entre tres puntos que por la calle dan bastante mas vuelta. Cabeceras
        correctas, que es la condicion. */
@@ -18863,7 +18862,24 @@ const TITSA_LINES = [
     paradas:[
       { id:"381-prc", nombre:"Plaza Reyes Católicos", lat:28.415302, lng:-16.549211, esTerminal:true , municipio:"Puerto de la Cruz" },
       { id:"381-loro", nombre:"Loro Parque", lat:28.411648, lng:-16.564531, esTerminal:false, municipio:"Puerto de la Cruz" },
-      { id:"381-long", nombre:"La Longuera", lat:28.406981, lng:-16.574211, esTerminal:true , municipio:"Los Realejos" },
+      { id:"381-long", nombre:"La Longuera", lat:28.406852, lng:-16.568411, esTerminal:true , municipio:"Los Realejos" },
+    ]
+  },
+  {
+    id:"bus-468", numero:"468", nombre:"Guaza — El Fraile — Las Galletas — Guargacho — Palm-Mar",
+    /* Palm-Mar entra al tercer intento. Los dos primeros caian a 1,5 y 1,2 km
+       mar adentro por la longitud, que no cambiaba entre uno y otro. Este da
+       0,50 km, que para una urbanizacion en una franja estrecha bajo Montaña
+       Guaza es lo que una malla de un kilometro puede fallar. Si en el mapa
+       apareciera en el agua, le faltarian unos 300 m al este. */
+    color:"#EF5350", tipo:"sur", frecuencia:"60 min", precio:"1,45 €", minutos:45,
+    servicio:{ desde:"06:30", hasta:"20:45" },
+    paradas:[
+      { id:"468-guaza",   nombre:"Cruce de Guaza",  lat:28.0383, lng:-16.6850, esTerminal:true,  municipio:"Arona" },
+      { id:"468-fraile",  nombre:"El Fraile (7314)",lat:28.01255, lng:-16.68532, esTerminal:false, municipio:"Arona" },
+      { id:"468-galletas",nombre:"Las Galletas",    lat:28.0070, lng:-16.6660, esTerminal:false, municipio:"Arona" },
+      { id:"468-guargacho",nombre:"Guargacho",      lat:28.043651, lng:-16.671952, esTerminal:false, municipio:"Arona" },
+      { id:"468-palmmar", nombre:"Palm-Mar",        lat:28.021132, lng:-16.702581, esTerminal:true,  municipio:"Arona" },
     ]
   },
 ];
