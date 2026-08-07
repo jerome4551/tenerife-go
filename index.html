@@ -13836,8 +13836,14 @@ var SEA_WARN = {
   zht:'僅在海面平靜時下水，遵守旗幟與關閉警示。'
 };
 Object.keys(SEA_WARN).forEach(function (k) { if (SEA_TX[k]) SEA_TX[k].warn = SEA_WARN[k]; });
+/* La variable del idioma es currentLang. Aqui ponia `lang`, que no existe
+   en ninguna parte de la app, asi que el typeof daba 'undefined', se caia
+   al 'es' y TODA la seccion "El mar aqui" de la ficha de cada playa salia
+   en espanol pasara lo que pasara: las etiquetas, el estado, el texto de
+   carga, el de error y el aviso. Las ocho traducciones llevaban escritas
+   desde el principio; simplemente no habia forma de llegar a ellas. */
 function seaTx() {
-  var l = (typeof lang !== 'undefined' && lang) ? lang : 'es';
+  var l = (typeof currentLang !== 'undefined' && currentLang) ? currentLang : 'es';
   return SEA_TX[l] || SEA_TX.es;
 }
 function seaWaveState(t, h) {
@@ -13876,7 +13882,17 @@ function seaBuildHtml(marine, weather) {
   var wind  = (typeof wc.wind_speed_10m === 'number') ? wc.wind_speed_10m : null;
   var wdir  = (typeof wc.wind_direction_10m === 'number') ? wc.wind_direction_10m : null;
   var uv    = (typeof wc.uv_index === 'number') ? wc.uv_index : null;
-  var st = seaWaveState(t, waveH), uvl = seaUvLevel(t, uv), arrow = seaWindArrow(wdir);
+  var waveP  = (typeof mc.wave_period === 'number') ? mc.wave_period : null;
+  var swellH = (typeof mc.swell_wave_height === 'number') ? mc.swell_wave_height : null;
+  var swellP = (typeof mc.swell_wave_period === 'number') ? mc.swell_wave_period : null;
+  /* Se clasifica con el mismo criterio que el panel del mar. Si por lo
+     que sea el bloque del mar no se ha cargado, se cae al de antes en
+     vez de quedarse sin nada. */
+  var estado = (typeof window.tgoMarEstado === 'function')
+    ? window.tgoMarEstado({ waveH: waveH, waveP: waveP, swellH: swellH, swellP: swellP })
+    : null;
+  var st = estado ? { txt: estado.texto, col: estado.color } : seaWaveState(t, waveH);
+  var uvl = seaUvLevel(t, uv), arrow = seaWindArrow(wdir);
   function item(icon, label, value, color) {
     return '<div class="popup-sea-item"><span class="popup-sea-k">' + icon + ' ' + escapeHtml(label) + '</span>'
          + '<span class="popup-sea-v"' + (color ? ' style="color:' + color + '"' : '') + '>' + value + '</span></div>';
@@ -13886,6 +13902,20 @@ function seaBuildHtml(marine, weather) {
   html += item('🌡️', t.water, (temp  != null ? Math.round(temp) + '°C' : escapeHtml(t.nd)), null);
   html += item('💨', t.wind,  (wind  != null ? Math.round(wind) + ' km/h ' + arrow : escapeHtml(t.nd)), null);
   html += item('☀️', t.uv,    (uv    != null ? Math.round(uv) + ' · ' : '') + escapeHtml(uvl.txt), uvl.col);
+  /* Los dos avisos concretos van antes del generico: el de mar de fondo
+     y el de piscinas naturales. Son los mismos textos del panel del mar,
+     ya traducidos a los ocho idiomas. */
+  if (estado) {
+    if (estado.fondo && estado.avisoFondo) {
+      html += '<div class="popup-sea-warn">' + escapeHtml(estado.avisoFondo) + '</div>';
+    }
+    if (!estado.piscinasOk && estado.avisoPiscinas) {
+      html += '<div class="popup-sea-warn">' + escapeHtml(estado.avisoPiscinas) + '</div>';
+    }
+    if (estado.consejo) {
+      html += '<div class="popup-sea-warn">' + escapeHtml(estado.consejo) + '</div>';
+    }
+  }
   if (t.warn) html += '<div class="popup-sea-warn">⚠️ ' + escapeHtml(t.warn) + '</div>';
   return html;
 }
@@ -13895,8 +13925,13 @@ function seaLoadInto(det, place) {
   if (c && (Date.now() - c.ts) < SEA_TTL) { det.innerHTML = c.html; det.dataset.loaded = 'done'; return; }
   det.dataset.loaded = 'pending';
   det.innerHTML = '<div class="popup-sea-loading">' + escapeHtml(seaTx().loading) + '</div>';
+  /* Se piden tambien swell_wave_height y swell_wave_period. Sin esas dos
+     la ficha no puede ver el mar de fondo, que es el estado que mas
+     accidentes causa en el norte porque la ola se ve pequena y arrastra.
+     El wave_period ya se pedia y no se usaba para nada. */
   var mUrl = 'https://marine-api.open-meteo.com/v1/marine?latitude=' + place.lat + '&longitude=' + place.lng
-           + '&current=wave_height,wave_period,sea_surface_temperature&timezone=Atlantic%2FCanary';
+           + '&current=wave_height,wave_period,swell_wave_height,swell_wave_period,sea_surface_temperature'
+           + '&timezone=Atlantic%2FCanary';
   var wUrl = 'https://api.open-meteo.com/v1/forecast?latitude=' + place.lat + '&longitude=' + place.lng
            + '&current=wind_speed_10m,wind_direction_10m,uv_index&timezone=Atlantic%2FCanary';
   Promise.all([
@@ -26347,6 +26382,35 @@ function marPiscinasOk(d) {
 
 // Orden de gravedad, para comparar costas entre si.
 var MAR_ORDEN = { calma: 0, moderado: 1, fuerte: 2, peligroso: 3 };
+
+/* Un solo sitio donde se decide "como esta el mar aqui".
+
+   Lo pide tambien la ficha de cada playa. Antes la ficha clasificaba por
+   su cuenta y solo con la altura de la ola -menos de 0,5 calma, menos de
+   1,25 moderada...- asi que la misma mar salia con dos nombres distintos
+   en la misma app: 1,2 m con periodo de 12 s daba "moderada" en la ficha
+   y "fuerte" en el panel, y la que tenia razon era el panel, porque lo
+   que arrastra es la energia y no la altura.
+
+   Y sobre todo: la ficha no pedia swell, asi que no podia avisar del mar
+   de fondo, que es justo lo que no se ve venir.
+
+   Devuelve null si no hay altura de ola. Sin altura no se afirma nada,
+   igual que en el panel: callarse es correcto, decir "tranquilo" no. */
+window.tgoMarEstado = function (d) {
+  if (!d || typeof d.waveH !== 'number') return null;
+  var n = marNivel(d), L = marLang();
+  return {
+    nivel:         n,
+    texto:         MAR_NIVELES[n].nm[L] || MAR_NIVELES[n].nm.es,
+    consejo:       MAR_NIVELES[n].g[L]  || MAR_NIVELES[n].g.es,
+    color:         { calma:'#4ade80', moderado:'#fbbf24', fuerte:'#fb923c', peligroso:'#f87171' }[n],
+    fondo:         marFondoLargo(d),
+    avisoFondo:    marTx('swellLong'),
+    piscinasOk:    marPiscinasOk(d),
+    avisoPiscinas: marTx('poolsWarn')
+  };
+};
 
 
 // ---------------------------------------------------------------
