@@ -1,8 +1,11 @@
-# Bloque 2 — 28 paradas intermedias
+# Bloque 2 — paradas intermedias · van 3 de 28
 
 La red está completa: **173 de 173 líneas**. Esto ya no bloquea nada. Lo que hace es que el
 planificador encuentre esas líneas también a quien vive **a mitad de recorrido**, y que el
 trazado del mapa sea el real y no una recta entre las dos cabeceras.
+
+**Aplicadas:** Hospital del Sur (418 y 480) · Cruce de Radazul (121) · Arafo (121).
+**Quedan 25**, marcadas abajo con `___`.
 
 ---
 
@@ -27,14 +30,14 @@ los mandas otra vez no hago nada con ellos. Solo la coordenada.
 ### Si alguna no existe
 
 Dilo y la borro de la lista. **Es mejor que una parada esté ausente a que esté inventada.**
-No hace falta que estén las 28: manda las que tengas seguras y las demás se quedan como
+No hace falta que estén todas: manda las que tengas seguras y las demás se quedan como
 están, que hoy ya funcionan.
 
 ---
 
-## Las tres formas en que esto ha salido mal antes
+## Las cuatro formas en que esto ha salido mal antes
 
-Te las pongo porque las tres pasaron y las tres se pillaron midiendo, no leyendo:
+Te las pongo porque las cuatro pasaron y las cuatro se pillaron midiendo, no leyendo:
 
 1. **El tocayo de otro municipio.** `Las Flores` llegó a 19,2 km de Güímar: era la Las Flores
    de La Laguna. Hay decenas de nombres repetidos en la isla.
@@ -42,6 +45,9 @@ Te las pongo porque las tres pasaron y las tres se pillaron midiendo, no leyendo
    2,2 km.
 3. **La coordenada de otra parada.** `La Corujera` llegó con la coordenada **exacta** de
    Mayorazgo, a 10 km.
+4. **El punto plausible pero equivocado.** `Hospital del Sur` llegó en tierra, en el sur, en
+   la comarca correcta — y a 8,75 km del hospital, en San Miguel de Abona. Esta es la más
+   difícil de ver: solo sale cruzándola contra lo que ya tenemos.
 
 Por eso en cada línea de abajo te pongo **entre qué dos paradas tiene que caer, con sus
 coordenadas**. Si el punto que mandas se sale de ese tramo, sale en el control y te lo digo.
@@ -244,15 +250,7 @@ Van 3 aplicadas (Hospital del Sur, Cruce de Radazul y Arafo). De las 25 que qued
 seguiría por las de las líneas que hoy solo tienen dos paradas: 138, 139, 915, 421, 463,
 347, 373, 346, 417 y 339.
 
----
-
-## Una cuarta forma de salir mal, y esta es nueva
-
-El Hospital del Sur la estrenó: **la coordenada de otro sitio con el mismo tipo de nombre en
-otro municipio.** No es el tocayo exacto (como Las Flores) ni la coordenada de otra parada
-nuestra (como La Corujera): es un punto plausible, en tierra, en el sur, a 8,75 km del sitio.
-
-Lo que la pilló fue comparar contra **nuestros propios 760 lugares**: el punto caía a 350 m de
-un supermercado de San Miguel de Abona, y el `Hospital del Sur de Tenerife` ya estaba en el
-fichero, en otro sitio. Esa comprobación es la que hago siempre antes de aplicar, y es la
-razón de que en esta lista vaya escrito el tramo de cada parada.
+De las tres aplicadas, dos entraron tal cual y una hubo que corregirla. La que las separa es
+siempre la misma comprobación: **cruzar el punto contra nuestros propios 760 lugares.** Arafo
+cayó a 210 m de nuestro Arafo y entró sin discusión; el Hospital del Sur cayó a 350 m de un
+supermercado de San Miguel y a 8,75 km del hospital, y no entró.
