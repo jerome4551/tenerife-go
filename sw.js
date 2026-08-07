@@ -1,5 +1,10 @@
-// Tenerife Go SW v5 - endurecido + notificaciones - 2026-08-01
-const CACHE = 'tgo-v5-2026-08-01-push';
+// Tenerife Go SW v6 - endurecido + notificaciones - 2026-08-07
+/* Subir la version no es cosmetico: el manejador de 'activate' borra todo
+   cache cuyo nombre no sea este. Hace falta para tirar las respuestas del
+   tiempo que la v5 dejo guardadas para siempre. Si se quedara en v5, quien
+   ya tenga la app instalada seguiria viendo la prevision del dia que la
+   abrio por primera vez. */
+const CACHE = 'tgo-v6-2026-08-07-vivo';
 const CORE = [
   './', './index.html', './manifest.webmanifest',
   // Leaflet y MarkerCluster ya no vienen de un CDN: viven en ./vendor/.
@@ -59,8 +64,34 @@ self.addEventListener('fetch', e => {
   // Solo http/https: con chrome-extension:// y similares, cache.put falla.
   if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
 
-  if (url.hostname.includes('supabase.co') || url.hostname.includes('nominatim') || url.hostname.includes('openstreetmap') || url.hostname.includes('arcgisonline')) {
-    return; // no cachear mapas ni apis - siempre fresco
+  /* Lo que NO se cachea nunca.
+
+     A la lista de siempre -supabase, mapas y geocodificador- se le anaden
+     el tiempo y las rutas, que es de donde venia un fallo que no se veia.
+
+     Las URLs del tiempo no llevan fecha: el panel del sol pide siempre
+     exactamente
+       api.open-meteo.com/v1/forecast?latitude=<las 6 zonas>&current=...
+     byte a byte la misma cadena hoy, manana y dentro de un mes. Como este
+     manejador responde `cached || fetch(req)`, en cuanto esa respuesta
+     entraba una vez en el cache ya no se volvia a preguntar a la red jamas.
+     La app tiene su propio cache de 30 minutos y lo hace bien: cuando
+     caducaba, llamaba a fetch... y el service worker le devolvia la misma
+     prevision del primer dia. De ahi que saliera "la misma prevision
+     durante muchos dias".
+
+     Afecta a lo mismo en el estado del mar, el "donde me bano" y los
+     avisos de AEMET, y a las rutas de OSRM.
+
+     Aqui no se pone caducidad ni se cambia a red-primero: no hace falta.
+     Cada modulo ya guarda su ultima lectura buena en localStorage con 30
+     minutos de vida y tira de ella en el catch si no hay red. El cache del
+     service worker solo estorbaba. Lo que si se queda cacheado es
+     Wikipedia: eso es contenido, no un dato vivo, y ahi ayuda sin mentir. */
+  const EN_VIVO = ['open-meteo.com', 'aemet.es', 'project-osrm.org'];
+  if (url.hostname.includes('supabase.co') || url.hostname.includes('nominatim') || url.hostname.includes('openstreetmap') || url.hostname.includes('arcgisonline') ||
+      EN_VIVO.some(h => url.hostname === h || url.hostname.endsWith('.' + h))) {
+    return; // no cachear mapas, apis, tiempo ni rutas - siempre fresco
   }
 
   e.respondWith(
