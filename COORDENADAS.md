@@ -78,7 +78,7 @@ Estas sí se aplicaron, porque no rompen nada y caen donde deben. Pero quedan an
 
 # BLOQUE 2 — Lo que queda
 
-**19 paradas.** Ninguna bloquea nada: la red está al 100 % y las 173 líneas funcionan.
+**18 paradas.** Ninguna bloquea nada: la red está al 100 % y las 173 líneas funcionan.
 
 ## Las que puedo comprobar: 1
 
@@ -88,7 +88,7 @@ Benijo   = ___ , ___     → 948, después de Almáciga   · Santa Cruz (Anaga)
 Tenemos `Playa Benijo` en `28.5721, -16.1925` y el sendero `PR-TF 6.3 · Benijo — Cruz del
 Draguillo` en `28.5735, -16.1871`. Con eso la contrasto en un segundo.
 
-## Las que NO puedo comprobar: 18
+## Las que NO puedo comprobar: 17
 
 Para estas no hay **nada** en nuestros 760 lugares con que contrastarlas. Me quedan solo dos
 controles, y los dos son débiles aquí:
@@ -98,7 +98,6 @@ controles, y los dos son débiles aquí:
   despeinarse. Es exactamente lo que casi consigue el Hospital del Sur
 
 ```
-Empalme de Güímar    → 124        · Güímar
 Realejo Alto         → 339        · Los Realejos
 Camino de Chasna     → 346        · La Orotava
 Benijos              → 347        · La Orotava
@@ -159,11 +158,13 @@ Benijos = 4521 = 28.386412, -16.531205
 
 | | |
 |---|---|
-| coordenadas que llegaron mal y se pararon | **15** |
+| coordenadas rechazadas antes de aplicar | 6 al mar · 5 en otro sitio · 4 duplicadas o corridas |
+| lotes enteros parados | 2 (matriz del tranvía, longitudes corridas) |
+| correcciones propuestas y no aplicadas | 3 (Radazul, Arafo, Barranco Hondo) |
 | coordenadas malas que llegaron a la app | **0** |
 | líneas inventadas que se retiraron | 2 (949, 954) |
 | errores míos | 1 (retirar la 948, que sí existía) |
-| paradas que quedan | 19 — **ninguna bloquea nada** |
+| paradas que quedan | 18 — **ninguna bloquea nada** |
 | de esas, verificables | **1** |
 
 ---
@@ -221,3 +222,21 @@ Para el Cruce de Radazul, cualquiera de estas dos:
 1. El **código numérico** de la parada. Con código lo cruzo contra las 24 que ya lo llevan.
 2. Un punto de referencia comprobable: qué hay a menos de 200 m de ese enlace —una
    gasolinera, un centro comercial, una salida numerada de la TF-1—. Con eso lo sitúo.
+
+---
+
+## Y una que sí entró después: el Empalme de Güímar
+
+`28.324151, -16.374205`, la única que le faltaba a la 124. Entró **tal como llegó**, y es el
+mejor ejemplo de por qué una cifra sola no decide nada.
+
+Se sale **2,17 km** de la recta Candelaria → Güímar. Con el criterio de tramo a secas, mal.
+Pero la recta va en diagonal tierra adentro y la TF-1 baja pegada a la costa, así que un
+punto de autopista **tiene** que salirse. Lo que lo confirma es la dirección y el ancla:
+
+- cae **al este** de la recta, hacia el mar — que es donde va la TF-1
+- a **843 m** de la gasolinera `BP Güímar (TF-1)`, que ya estaba en el fichero
+- el Arafo de la 121 se sale 2,25 km de la **misma recta pero al oeste**, hacia la montaña
+
+Una línea a cada lado de la recta. Eso es exactamente lo que separa a la 121 de la 124, y
+ninguna cifra aislada lo habría dicho.

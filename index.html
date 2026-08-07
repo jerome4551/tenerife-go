@@ -18383,13 +18383,23 @@ const TITSA_LINES = [
   },
   {
     id:"bus-124", numero:"124", nombre:"Santa Cruz — Candelaria — Güímar (directo por la TF-1)",
-    /* Falta el Empalme de Güímar. Va directa por autopista y por eso hace en
-       35 minutos lo que la 120 hace en 50. */
+    /* Va directa por autopista y por eso hace en 35 minutos lo que la 120
+       hace en 50.
+
+       El Empalme se sale 2,17 km de la recta Candelaria-Guimar, que a
+       primera vista pinta mal y es justo al reves: la recta va en diagonal
+       tierra adentro y la TF-1 no, la TF-1 baja pegada a la costa. Lo que
+       confirma el sitio es que el Empalme cae al ESTE de esa recta, hacia
+       el mar, y a 843 m de la gasolinera BP Guimar (TF-1) que ya estaba en
+       el fichero. El Arafo de la 121 se sale 2,25 km de la misma recta
+       pero al OESTE, hacia la montana. Una a cada lado, que es exactamente
+       lo que separa a estas dos lineas. */
     color:"#D84315", tipo:"sur", frecuencia:"60 min", precio:"3,10 €", minutos:35,
     servicio:{ desde:"06:45", hasta:"21:05" },
     paradas:[
       { id:"124-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
       { id:"124-cand", nombre:"Candelaria", lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
+      { id:"124-empalme", nombre:"Empalme de Güímar", lat:28.324151, lng:-16.374205, esTerminal:false, municipio:"Güímar" },
       { id:"124-guimar", nombre:"Güímar", lat:28.3186, lng:-16.4106, esTerminal:true , municipio:"Güímar" },
     ]
   },

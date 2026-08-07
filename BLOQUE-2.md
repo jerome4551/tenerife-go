@@ -1,13 +1,13 @@
-# Bloque 2 — paradas intermedias · van 9 de 28
+# Bloque 2 — paradas intermedias · van 10 de 28
 
 La red está completa: **173 de 173 líneas**. Esto ya no bloquea nada. Lo que hace es que el
 planificador encuentre esas líneas también a quien vive **a mitad de recorrido**, y que el
 trazado del mapa sea el real y no una recta entre las dos cabeceras.
 
-**Aplicadas (9):** Hospital del Sur (418 y 480) · Cruce de Radazul y Arafo (121) ·
+**Aplicadas (10):** Hospital del Sur (418 y 480) · Cruce de Radazul y Arafo (121) ·
 Barranco Hondo (127) · Tabaiba Alta y Radazul Alto (138) · Radazul Bajo (139) ·
-Tornero y Gavias (203).
-**Quedan 19**, marcadas abajo con `___`.
+Tornero y Gavias (203) · Empalme de Güímar (124).
+**Quedan 18**, marcadas abajo con `___`.
 
 ---
 
@@ -76,12 +76,15 @@ Santa Cruz [28.4578,-16.2568] → Candelaria [28.3536,-16.3733] → Güímar [28
 ```
 Santa Cruz [28.4578,-16.2568] → Candelaria [28.3536,-16.3733] → Güímar [28.3186,-16.4106]
 
-Empalme de Güímar = ___ , ___     entre Candelaria y Güímar          · Güímar
+✅ Empalme de Güímar = 28.324151, -16.374205   · Güímar   APLICADA
 ```
-> ⚠️ Sigue pendiente. En el último lote llegaron aquí Cruce de Radazul y Arafo, que son las
-> de la 121 y ya estaban puestas. La 124 es **la directa por la TF-1**: si le metiera Arafo,
-> que se sale 2,2 km de la recta, volvería a ser la misma línea que la 121 y se perdería
-> justo lo que explica que una tarde 35 minutos y la otra 55.
+> Se sale **2,17 km** de la recta Candelaria → Güímar, que a primera vista pinta mal y es
+> justo al revés: la recta va en diagonal tierra adentro y la TF-1 baja pegada a la costa.
+> Lo confirma que cae **al este** de esa recta, hacia el mar, y a **843 m** de la gasolinera
+> `BP Güímar (TF-1)` que ya estaba en el fichero.
+>
+> El Arafo de la 121 se sale 2,25 km de la **misma recta pero al oeste**, hacia la montaña.
+> Una a cada lado: es exactamente lo que separa estas dos líneas.
 
 ### 127 · Taco — Barranco Grande — Candelaria — Güímar
 ```
@@ -261,14 +264,14 @@ Benijo            = ___ , ___     después de Almáciga                · Santa 
 
 | | |
 |---|---|
-| paradas | **19** · van 9 aplicadas |
+| paradas | **18** · van 10 aplicadas |
 | líneas que mejoran | 22 |
 | líneas que hoy solo tienen 2 paradas | 8 — ahí es donde más cambia el trazado |
 | bloquea algo | **no** |
 
-Van 9 aplicadas. De las 19 que quedan, yo seguiría por las de las líneas que hoy solo tienen
-dos paradas: 915, 421, 463, 347, 373, 346, 417 y 339. Y por el **Empalme de Güímar**, que es
-lo único que le falta a la 124.
+Van 10 aplicadas. De las 18 que quedan, **17 no las puedo comprobar** contra nada nuestro.
+La única con ancla es **Benijo**, que tiene Playa Benijo a 500 m. El detalle está en
+`COORDENADAS.md`.
 
 De las tres aplicadas, dos entraron tal cual y una hubo que corregirla. La que las separa es
 siempre la misma comprobación: **cruzar el punto contra nuestros propios 760 lugares.** Arafo
