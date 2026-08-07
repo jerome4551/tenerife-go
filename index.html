@@ -18275,6 +18275,41 @@ const TITSA_LINES = [
     ]
   },
   {
+    id:"bus-021", numero:"021", nombre:"Tacoronte — Santa Catalina — Mesa del Mar",
+    /* 2,6 km de recta en 20 minutos, o sea 8 km/h, y el control de
+       velocidad la marca. Esta bien que la marque y esta bien dejarla: de
+       Tacoronte casco al mar hay medio kilometro de desnivel y la
+       carretera baja en revueltas, asi que la recta no se parece al
+       recorrido. Es el mismo caso que la 362 en Icod.
+
+       Santa Catalina va en el nombre pero no como parada: de esa no ha
+       llegado coordenada. No es un olvido.
+
+       Los 1,45 € no son tarifa plana -eso solo lo son las series 200 y 900-
+       sino el minimo de la kilometrica, y con 2,6 km no hay tramo que se
+       pase de ahi. Por eso va la cifra sola y no "desde".
+
+       En verano refuerzan con salidas extra, pero sin horario concreto no
+       se puede escribir en la ficha. */
+    color:"#7CB342", tipo:"norte", frecuencia:"60 min", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"06:50", hasta:"21:10" },
+    paradas:[
+      { id:"021-tacor", nombre:"Tacoronte · Casco", lat:28.4808, lng:-16.4127, esTerminal:true , municipio:"Tacoronte" },
+      { id:"021-mesa", nombre:"Mesa del Mar", lat:28.5025, lng:-16.4234, esTerminal:true , municipio:"Tacoronte" },
+    ]
+  },
+  {
+    id:"bus-023", numero:"023", nombre:"Tacoronte — El Calvario — El Pris",
+    /* El Calvario va en el nombre y no como parada, igual que en la 011,
+       que tambien lo nombra: no hay coordenada suya. */
+    color:"#9CCC65", tipo:"norte", frecuencia:"90 min", precio:"1,45 €", minutos:20,
+    servicio:{ desde:"07:05", hasta:"20:30" },
+    paradas:[
+      { id:"023-tacor", nombre:"Tacoronte · Casco", lat:28.4808, lng:-16.4127, esTerminal:true , municipio:"Tacoronte" },
+      { id:"023-pris", nombre:"Puerto El Pris", lat:28.5093, lng:-16.4211, esTerminal:true , municipio:"Tacoronte" },
+    ]
+  },
+  {
     id:"bus-026", numero:"026", nombre:"Santa Cruz — Barrio La Salud — Finca España — La Verdellada — La Laguna",
     color:"#00838F", tipo:"norte", frecuencia:"20-30 min", precio:"1,45 €", minutos:55,
     servicio:{ desde:"06:00", hasta:"21:50" },
