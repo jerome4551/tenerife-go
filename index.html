@@ -21260,7 +21260,9 @@ window.addEventListener('hashchange', () => {
     try {
       if (window.caches && caches.keys) {
         caches.keys().then(safe(function(keys) {
-          var tfKeys = keys.filter(function(k) { return k.indexOf('tenerife-') === 0; });
+          // El cache se llama "tgo-...", no "tenerife-": con el prefijo
+          // viejo el contador salia siempre en cero aunque hubiera cache.
+          var tfKeys = keys.filter(function(k) { return k.indexOf('tgo-') === 0 || k.indexOf('tenerife-') === 0; });
           info.cacheCount = tfKeys.length;
           resolve(info);
         })).catch(function() { resolve(info); });
@@ -21350,7 +21352,10 @@ window.addEventListener('hashchange', () => {
         function fallback() {
           if (!window.caches || !caches.keys) { resolve(); return; }
           caches.keys().then(safe(function(keys) {
-            var tfKeys = keys.filter(function(k) { return k.indexOf('tenerife-') === 0; });
+            // Mismo fallo que en el contador: el prefijo bueno es "tgo-".
+            // Con "tenerife-" este plan B no borraba nada y el boton de
+            // limpiar cache decia que si.
+            var tfKeys = keys.filter(function(k) { return k.indexOf('tgo-') === 0 || k.indexOf('tenerife-') === 0; });
             Promise.all(tfKeys.map(function(k) { return caches.delete(k); }))
               .then(function() { resolve(); })
               .catch(function() { resolve(); });

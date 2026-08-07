@@ -111,6 +111,39 @@ self.addEventListener('fetch', e => {
   );
 });
 
+/* ── MENSAJES DESDE LA APP ─────────────────────────────────────────
+   index.html lleva tiempo mandando tres mensajes por postMessage y aqui
+   no habia nadie escuchando, asi que los tres caian al vacio:
+
+     SKIP_WAITING  lo manda el boton "hay una version nueva". Sin esto el
+                   service worker nuevo se quedaba esperando y la app solo
+                   se actualizaba por el recargar de emergencia de 1,5 s.
+     GET_VERSION   por eso la pantalla de informacion enseñaba "?".
+     CLEAR_CACHES  el boton de limpiar cache. Este es el peor de los tres:
+                   la app esperaba 2 segundos, no recibia respuesta, y se
+                   iba a un plan B que borra las caches cuyo nombre empieza
+                   por "tenerife-". La nuestra se llama "tgo-...". No
+                   coincidia ninguna. O sea que el boton decia que habia
+                   limpiado y no borraba absolutamente nada.
+
+   Se responde siempre por e.ports[0], que es el canal que abre la app. */
+self.addEventListener('message', e => {
+  const d = e.data || {};
+  const responder = msg => { try { if (e.ports && e.ports[0]) e.ports[0].postMessage(msg); } catch (_) {} };
+
+  if (d.type === 'SKIP_WAITING') { self.skipWaiting(); responder({ ok: true }); return; }
+  if (d.type === 'GET_VERSION')  { responder({ version: CACHE }); return; }
+  if (d.type === 'CLEAR_CACHES') {
+    e.waitUntil(
+      caches.keys()
+        .then(keys => Promise.all(keys.map(k => caches.delete(k))))
+        .then(() => responder({ ok: true }))
+        .catch(() => responder({ ok: false }))
+    );
+    return;
+  }
+});
+
 /* ── NOTIFICACIONES ────────────────────────────────────────────────
    Sin estos dos manejadores la cadena de la notificacion diaria se
    cortaba en el ultimo paso: la app suscribia el dispositivo, el
