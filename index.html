@@ -26439,8 +26439,34 @@ function marFetch(force, ligero) {
     .then(function (data) {
       clearTimeout(timer);
       var arr = Array.isArray(data) ? data : [data];
+      /* Una costa sin altura de ola se cae de la lista. No se pinta.
+
+         Antes entraban las siete pasara lo que pasara, y marNivel hace
+         `var h = d.waveH || 0`: un null se convertia en cero, el indice
+         de energia daba cero y la costa salia en pantalla como
+         TRANQUILO. O sea que justo donde no sabiamos nada, la app decia
+         que el mar estaba en calma. Y peor: "Costa mas tranquila ahora"
+         escoge el nivel mas bajo, asi que podia acabar recomendando
+         banarse precisamente en la costa de la que no habia lectura.
+
+         Es la misma regla que ya aplica el panel de microclimas con las
+         zonas sin temperatura. Aqui importa mas, porque alli un hueco
+         enseña un cero raro y aqui manda a alguien al agua.
+
+         El periodo si puede faltar: marEnergia ya asume 6 s. Lo que no
+         puede faltar es la altura, que es de lo que cuelga todo. */
       var out = [];
-      for (var i = 0; i < MAR_COSTAS.length; i++) out.push(marParse(arr[i], i));
+      for (var i = 0; i < MAR_COSTAS.length; i++) {
+        var d = marParse(arr[i], i);
+        if (typeof d.waveH !== 'number') continue;
+        out.push(d);
+      }
+      if (!out.length) {   // sin ninguna costa util es un fallo, no un mar en calma
+        marData = 'error';
+        marLoading = false;
+        if (ligero) marUpdateBtn(); else marRender();
+        return;
+      }
       marData = out;
       if (!ligero) marCacheWrite(out);  // la version ligera no trae las 24 h
       marLoading = false;
