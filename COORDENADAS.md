@@ -165,3 +165,59 @@ Benijos = 4521 = 28.386412, -16.531205
 | errores míos | 1 (retirar la 948, que sí existía) |
 | paradas que quedan | 19 — **ninguna bloquea nada** |
 | de esas, verificables | **1** |
+
+---
+
+# APÉNDICE — Una corrección propuesta que no se aplicó
+
+Llegó un lote para «corregir» tres nodos ya aplicados, presentado como los tres que están
+«bajo control de tramo en las líneas 124, 127, 138 y 139». No se aplicó ninguno. Queda
+escrito para no volver a discutirlo.
+
+## Lo que decían los números
+
+| nodo | se movía | desvío del tramo | lugar nuestro más cercano |
+|---|---|---|---|
+| Cruce de Radazul | 377 m | 1,463 → 1,100 km · **mejor** | 1,33 → 1,05 km · mejor |
+| Arafo | 65 m | 2,248 → 2,227 km · igual | 0,21 → **0,27 km · peor** |
+| Barranco Hondo | 139 m | 0,015 → **0,057 km · peor** | 1,99 → 1,86 km · igual |
+
+## Por qué no
+
+**Barranco Hondo.** El motivo declarado era «alinear linealmente la traza entre Barranco
+Grande y Candelaria». Medido: la que ya estaba cae a **15 m** de esa recta y la nueva a
+**57 m**. La razón del cambio es justo lo que el cambio empeora.
+
+**Arafo.** El motivo declarado era «impedir que el algoritmo meta el vehículo hasta el casco
+histórico municipal». Pero la 121 se llama *Santa Cruz — Candelaria — **Arafo** — Güímar* y
+tarda 55 minutos donde la 124 tarda 35 **precisamente porque sube a Arafo**. Sacar la parada
+del pueblo borraría lo que se arregló. Y de todas formas no la saca: se mueve 65 m y sigue a
+270 m del casco.
+
+**Cruce de Radazul.** Esta sí mejora dos medidas, y por eso merece una respuesta honesta: a
+esta escala **mis instrumentos no distinguen**. El desvío se mide contra la recta Santa Cruz →
+Candelaria, y la TF-1 no va por esa recta, va pegada a la costa; que un punto esté a 1,10 o a
+1,46 km de una línea que no es la carretera no dice casi nada. Y 1,05 frente a 1,33 km del
+puerto de Radazul es, en los dos casos, «un kilómetro cuesta arriba del muelle», que es como
+se ve un enlace de la TF-1 desde cualquiera de los dos puntos.
+
+Sin nada que los separe, no se cambia un dato ya verificado y publicado por otro cuyo
+razonamiento acompañante es demostrablemente falso en dos de los tres casos.
+
+## Y el encabezado tampoco cuadra
+
+- **Cruce de Radazul y Arafo no son de la 124**, son de la 121. Es la segunda vez que llegan
+  bajo el epígrafe de la 124.
+- **La 138 y la 139 no aparecen** en ninguno de los tres puntos, pese a estar en el título.
+- **Lo único que le falta a la 124 es el Empalme de Güímar**, que no venía.
+
+La 124 tiene tres paradas —Santa Cruz, Candelaria, Güímar— y 35 minutos. No pasa por Radazul
+ni por Arafo, y ese es todo su sentido: es la directa por la TF-1.
+
+## Qué me haría cambiar de opinión
+
+Para el Cruce de Radazul, cualquiera de estas dos:
+
+1. El **código numérico** de la parada. Con código lo cruzo contra las 24 que ya lo llevan.
+2. Un punto de referencia comprobable: qué hay a menos de 200 m de ese enlace —una
+   gasolinera, un centro comercial, una salida numerada de la TF-1—. Con eso lo sitúo.
