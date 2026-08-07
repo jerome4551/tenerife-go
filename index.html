@@ -18367,14 +18367,17 @@ const TITSA_LINES = [
   },
   {
     id:"bus-121", numero:"121", nombre:"Santa Cruz — Candelaria — Arafo — Güímar",
-    /* Faltan Cruce de Radazul y Arafo, sin coordenada. Son los dos que la
-       distinguen de la 124, asi que ahora las dos dibujan la misma linea
-       con tiempos distintos: 55 minutos esta y 35 la directa. */
+    /* Con Radazul y Arafo puestos, ya no dibuja la misma linea que la 124:
+       la 124 va directa por la TF-1 en 35 minutos y esta sube a Arafo, que
+       se sale 2,2 km de la recta Candelaria-Guimar, y tarda 55. Ese rodeo
+       es justo lo que las distingue. */
     color:"#F4511E", tipo:"sur", frecuencia:"60 min", precio:"3,45 €", minutos:55,
     servicio:{ desde:"06:00", hasta:"21:30" },
     paradas:[
       { id:"121-sc", nombre:"Santa Cruz · Intercambiador", lat:28.4578, lng:-16.2568, esTerminal:true , municipio:"Santa Cruz de Tenerife" },
+      { id:"121-radazul", nombre:"Cruce de Radazul", lat:28.414532, lng:-16.326211, esTerminal:false, municipio:"El Rosario" },
       { id:"121-cand", nombre:"Candelaria", lat:28.3536, lng:-16.3733, esTerminal:false, municipio:"Candelaria" },
+      { id:"121-arafo", nombre:"Arafo", lat:28.341852, lng:-16.417384, esTerminal:false, municipio:"Arafo" },
       { id:"121-guimar", nombre:"Güímar", lat:28.3186, lng:-16.4106, esTerminal:true , municipio:"Güímar" },
     ]
   },

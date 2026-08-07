@@ -56,9 +56,13 @@ Cada bloque enseña el recorrido tal como está modelado hoy, y `← FALTA` marc
 ```
 Santa Cruz [28.4578,-16.2568] → Candelaria [28.3536,-16.3733] → Güímar [28.3186,-16.4106]
 
-Cruce de Radazul  = ___ , ___     entre Santa Cruz y Candelaria      · El Rosario
-Arafo             = ___ , ___     entre Candelaria y Güímar          · Arafo
+✅ Cruce de Radazul = 28.414532, -16.326211   · El Rosario   APLICADA
+✅ Arafo            = 28.341852, -16.417384   · Arafo        APLICADA
 ```
+> Las dos entraron tal como llegaron. Arafo cayó a **210 m** de nuestro propio Arafo, que es
+> la mejor confirmación que se puede pedir. Con las dos puestas la 121 ya no dibuja la misma
+> línea que la 124: el rodeo por Arafo se sale 2,2 km de la recta Candelaria → Güímar, y eso
+> es justo lo que explica que una tarde 55 minutos y la otra 35.
 
 ### 124 · Santa Cruz — Candelaria — Güímar (directo por la TF-1)
 ```
@@ -231,13 +235,14 @@ Benijo            = ___ , ___     después de Almáciga                · Santa 
 
 | | |
 |---|---|
-| paradas | **27** · el Hospital del Sur ya está |
+| paradas | **25** · van 3 aplicadas |
 | líneas que mejoran | 22 |
 | líneas que hoy solo tienen 2 paradas | 11 — ahí es donde más cambia el trazado |
 | bloquea algo | **no** |
 
-El Hospital del Sur ya está. De las 27 que quedan, yo seguiría por las de las líneas que hoy
-solo tienen dos paradas: 138, 139, 915, 421, 463, 347, 373, 346, 417 y 339.
+Van 3 aplicadas (Hospital del Sur, Cruce de Radazul y Arafo). De las 25 que quedan, yo
+seguiría por las de las líneas que hoy solo tienen dos paradas: 138, 139, 915, 421, 463,
+347, 373, 346, 417 y 339.
 
 ---
 
