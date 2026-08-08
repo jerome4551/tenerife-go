@@ -14149,8 +14149,21 @@ function _updateMarkersImpl() {
       if (place.emergency24) badges.push(`<span class="popup-badge badge-emergency">${L.emergency24}</span>`);
       if (place.pharmacy24)  badges.push(`<span class="popup-badge badge-pharmacy">${L.pharmacy24}</span>`);
 
+      /* El visor de playas del Gobierno de Canarias acepta la playa en la
+         propia URL. Antes se mandaba a todo el mundo a la portada, que
+         abre el mapa de las siete islas con globos de "34 playas", "51
+         playas"... y a partir de ahi te buscabas la vida. Comprobado en
+         el movil: con lat, lng y zoom abre directamente encima de la
+         playa, y ahi si se ve su bandera -verde, amarilla, roja, uso
+         prohibido o sin informacion-, que es a lo que va uno.
+
+         El zoom 16 es el que enseña la playa entera con algo de
+         alrededor para situarse.
+
+         Las coordenadas salen de places[], son numeros nuestros y no
+         texto de nadie, pero se codifican igual por costumbre. */
       const flagLink = place.category === 'playa'
-        ? `<a href="https://webmap.infoplayascanarias.es/" target="_blank" rel="noopener noreferrer" class="popup-flag-link">${L.flagLink}</a>`
+        ? `<a href="${escapeAttr('https://webmap.infoplayascanarias.es/?lat=' + encodeURIComponent(place.lat) + '&lng=' + encodeURIComponent(place.lng) + '&zoom=16')}" target="_blank" rel="noopener noreferrer" class="popup-flag-link">${L.flagLink}</a>`
         : '';
 
       // Bloque de info para servicios sanitarios y veterinarios
