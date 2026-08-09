@@ -30715,7 +30715,61 @@ const PLAYAS_ORIENTACION = {
 
      Para reactivarla: quitar noBano cuando se levante la prohibicion y
      se actualice la descripcion del lugar. */
-  'playa-jardin':   { ori: 'NW', badWind: ['NW','W'], noBano: true }
+  'playa-jardin':   { ori: 'NW', badWind: ['NW','W'], noBano: true },
+
+  /* --- Las 28 deducidas --------------------------------------------
+     Hasta aqui la tabla tenia 6 playas y las otras 29 no salian NUNCA en
+     "donde me bano hoy". Estas 28 se anaden con la orientacion deducida
+     de nuestra propia geometria: se lanza un abanico de rayos desde la
+     playa y se mira a 4, 6 y 8 km cuales caen en agua; la direccion
+     resultante es hacia donde mira.
+
+     El metodo se valido contra las 6 escritas a mano y reproduce su
+     comportamiento en las 6, que es lo que importa: 'ori' solo alimenta
+     el bonus de alisio, que se aplica a las que miran al S, SW o W, y
+     ninguna de las 6 cambia de lado.
+
+     badWind es la banda de tres sectores alrededor de esa direccion, o
+     sea el viento que entra de cara. Se puede deducir porque NO es un
+     campo de seguridad: el filtro de arriba ya deja fuera 'fuerte' y
+     'peligroso' con el clasificador del panel del mar, y scorePlaya solo
+     ORDENA las que ya pasaron. Un badWind flojo cuesta comodidad -viento
+     y chapoteo-, no un bano peligroso.
+
+     Van marcadas con `deducida: true` para que se vea de un vistazo
+     cuales son de calculo y cuales de mano. Cualquiera de ellas se puede
+     corregir a mano y deja de estar deducida.
+
+     Benijo queda fuera a proposito: lleva warn:"mar" y su propia ficha
+     dice que es salvaje y agreste. No se recomienda para banarse. */
+  'abama':                   { ori: 'W', badWind: ['SW','W','NW'], deducida: true },
+  'alcala':                  { ori: 'W', badWind: ['SW','W','NW'], deducida: true },
+  'almaciga':                { ori: 'N', badWind: ['NW','N','NE'], deducida: true },
+  'bollullo':                { ori: 'NW', badWind: ['W','NW','N'], deducida: true },
+  'el-medano':               { ori: 'SE', badWind: ['E','SE','S'], deducida: true },
+  'fanabe':                  { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
+  'playa-americas':          { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
+  'playa-antequera':         { ori: 'SE', badWind: ['E','SE','S'], deducida: true },
+  'playa-barqueros-buenavista': { ori: 'N', badWind: ['NW','N','NE'], deducida: true },
+  'playa-callao':            { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
+  'playa-camison':           { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
+  'playa-diego-hernandez':   { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
+  'playa-guios':             { ori: 'W', badWind: ['SW','W','NW'], deducida: true },
+  'playa-igueste-san-andres': { ori: 'SE', badWind: ['E','SE','S'], deducida: true },
+  'playa-jaquita':           { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
+  'playa-la-caleta-adeje':   { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
+  'playa-las-gaviotas':      { ori: 'SE', badWind: ['E','SE','S'], deducida: true },
+  'playa-los-patos':         { ori: 'NW', badWind: ['W','NW','N'], deducida: true },
+  'playa-puertito':          { ori: 'E', badWind: ['NE','E','SE'], deducida: true },
+  'playa-puertito-adeje':    { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
+  'playa-puerto-santiago':   { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
+  'playa-rambla':            { ori: 'N', badWind: ['NW','N','NE'], deducida: true },
+  'playa-socorro':           { ori: 'N', badWind: ['NW','N','NE'], deducida: true },
+  'playa-torviscas':         { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
+  'roque-bodegas':           { ori: 'N', badWind: ['NW','N','NE'], deducida: true },
+  'san-juan':                { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
+  'san-marcos':              { ori: 'N', badWind: ['NW','N','NE'], deducida: true },
+  'tejita':                  { ori: 'S', badWind: ['SE','S','SW'], deducida: true },
 };
 
 function windDirToCardinal(deg){
