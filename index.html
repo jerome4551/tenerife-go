@@ -13824,14 +13824,14 @@ const SEA_CACHE = {};
 const SEA_TTL = 30 * 60 * 1000;   // 30 min
 const SEA_TIMEOUT = 8000;
 const SEA_TX = {
-  es:{loading:'Cargando el mar…',error:'Mar no disponible ahora',title:'El mar aquí',waves:'Olas',water:'Agua',wind:'Viento',uv:'UV',s_calm:'En calma',s_mod:'Moderado',s_strong:'Fuerte',s_vstrong:'Muy fuerte',uv_low:'bajo',uv_mod:'moderado',uv_high:'alto',uv_vhigh:'muy alto',uv_ext:'extremo',nd:'sin datos'},
-  en:{loading:'Loading the sea…',error:'Sea data unavailable',title:'The sea here',waves:'Waves',water:'Water',wind:'Wind',uv:'UV',s_calm:'Calm',s_mod:'Moderate',s_strong:'Rough',s_vstrong:'Very rough',uv_low:'low',uv_mod:'moderate',uv_high:'high',uv_vhigh:'very high',uv_ext:'extreme',nd:'no data'},
-  fr:{loading:'Chargement de la mer…',error:'Mer indisponible',title:'La mer ici',waves:'Vagues',water:'Eau',wind:'Vent',uv:'UV',s_calm:'Calme',s_mod:'Modérée',s_strong:'Agitée',s_vstrong:'Très agitée',uv_low:'bas',uv_mod:'modéré',uv_high:'élevé',uv_vhigh:'très élevé',uv_ext:'extrême',nd:'sans données'},
-  de:{loading:'Meer wird geladen…',error:'Meer nicht verfügbar',title:'Das Meer hier',waves:'Wellen',water:'Wasser',wind:'Wind',uv:'UV',s_calm:'Ruhig',s_mod:'Mäßig',s_strong:'Rau',s_vstrong:'Sehr rau',uv_low:'niedrig',uv_mod:'mäßig',uv_high:'hoch',uv_vhigh:'sehr hoch',uv_ext:'extrem',nd:'keine Daten'},
-  it:{loading:'Caricamento del mare…',error:'Mare non disponibile',title:'Il mare qui',waves:'Onde',water:'Acqua',wind:'Vento',uv:'UV',s_calm:'Calmo',s_mod:'Moderato',s_strong:'Mosso',s_vstrong:'Molto mosso',uv_low:'basso',uv_mod:'moderato',uv_high:'alto',uv_vhigh:'molto alto',uv_ext:'estremo',nd:'senza dati'},
-  nl:{loading:'Zee laden…',error:'Zee niet beschikbaar',title:'De zee hier',waves:'Golven',water:'Water',wind:'Wind',uv:'UV',s_calm:'Kalm',s_mod:'Matig',s_strong:'Ruw',s_vstrong:'Zeer ruw',uv_low:'laag',uv_mod:'matig',uv_high:'hoog',uv_vhigh:'zeer hoog',uv_ext:'extreem',nd:'geen data'},
-  zh:{loading:'正在加载海况…',error:'暂无海况数据',title:'这里的海',waves:'浪',water:'水温',wind:'风',uv:'紫外线',s_calm:'平静',s_mod:'中等',s_strong:'较大',s_vstrong:'很大',uv_low:'低',uv_mod:'中等',uv_high:'高',uv_vhigh:'很高',uv_ext:'极高',nd:'无数据'},
-  zht:{loading:'正在載入海況…',error:'暫無海況資料',title:'這裡的海',waves:'浪',water:'水溫',wind:'風',uv:'紫外線',s_calm:'平靜',s_mod:'中等',s_strong:'較大',s_vstrong:'很大',uv_low:'低',uv_mod:'中等',uv_high:'高',uv_vhigh:'很高',uv_ext:'極高',nd:'無資料'}
+  es:{loading:'Cargando el mar…',error:'Mar no disponible ahora',title:'El mar aquí',waves:'Olas',water:'Agua',wind:'Viento',uv:'UV',s_calm:'En calma',s_mod:'Moderado',s_strong:'Fuerte',s_vstrong:'Muy fuerte',uv_low:'bajo',uv_mod:'moderado',uv_high:'alto',uv_vhigh:'muy alto',uv_ext:'extremo',nd:'sin datos',tide:'Marea',t_high:'Pleamar',t_low:'Bajamar',t_rising:'subiendo',t_falling:'bajando',t_range:'recorrido'},
+  en:{loading:'Loading the sea…',error:'Sea data unavailable',title:'The sea here',waves:'Waves',water:'Water',wind:'Wind',uv:'UV',s_calm:'Calm',s_mod:'Moderate',s_strong:'Rough',s_vstrong:'Very rough',uv_low:'low',uv_mod:'moderate',uv_high:'high',uv_vhigh:'very high',uv_ext:'extreme',nd:'no data',tide:'Tide',t_high:'High',t_low:'Low',t_rising:'rising',t_falling:'falling',t_range:'range'},
+  fr:{loading:'Chargement de la mer…',error:'Mer indisponible',title:'La mer ici',waves:'Vagues',water:'Eau',wind:'Vent',uv:'UV',s_calm:'Calme',s_mod:'Modérée',s_strong:'Agitée',s_vstrong:'Très agitée',uv_low:'bas',uv_mod:'modéré',uv_high:'élevé',uv_vhigh:'très élevé',uv_ext:'extrême',nd:'sans données',tide:'Marée',t_high:'Pleine mer',t_low:'Basse mer',t_rising:'montante',t_falling:'descendante',t_range:'marnage'},
+  de:{loading:'Meer wird geladen…',error:'Meer nicht verfügbar',title:'Das Meer hier',waves:'Wellen',water:'Wasser',wind:'Wind',uv:'UV',s_calm:'Ruhig',s_mod:'Mäßig',s_strong:'Rau',s_vstrong:'Sehr rau',uv_low:'niedrig',uv_mod:'mäßig',uv_high:'hoch',uv_vhigh:'sehr hoch',uv_ext:'extrem',nd:'keine Daten',tide:'Gezeiten',t_high:'Hochwasser',t_low:'Niedrigwasser',t_rising:'auflaufend',t_falling:'ablaufend',t_range:'Hub'},
+  it:{loading:'Caricamento del mare…',error:'Mare non disponibile',title:'Il mare qui',waves:'Onde',water:'Acqua',wind:'Vento',uv:'UV',s_calm:'Calmo',s_mod:'Moderato',s_strong:'Mosso',s_vstrong:'Molto mosso',uv_low:'basso',uv_mod:'moderato',uv_high:'alto',uv_vhigh:'molto alto',uv_ext:'estremo',nd:'senza dati',tide:'Marea',t_high:'Alta marea',t_low:'Bassa marea',t_rising:'in crescita',t_falling:'in calo',t_range:'escursione'},
+  nl:{loading:'Zee laden…',error:'Zee niet beschikbaar',title:'De zee hier',waves:'Golven',water:'Water',wind:'Wind',uv:'UV',s_calm:'Kalm',s_mod:'Matig',s_strong:'Ruw',s_vstrong:'Zeer ruw',uv_low:'laag',uv_mod:'matig',uv_high:'hoog',uv_vhigh:'zeer hoog',uv_ext:'extreem',nd:'geen data',tide:'Getij',t_high:'Hoogwater',t_low:'Laagwater',t_rising:'opkomend',t_falling:'afgaand',t_range:'verval'},
+  zh:{loading:'正在加载海况…',error:'暂无海况数据',title:'这里的海',waves:'浪',water:'水温',wind:'风',uv:'紫外线',s_calm:'平静',s_mod:'中等',s_strong:'较大',s_vstrong:'很大',uv_low:'低',uv_mod:'中等',uv_high:'高',uv_vhigh:'很高',uv_ext:'极高',nd:'无数据',tide:'潮汐',t_high:'满潮',t_low:'干潮',t_rising:'涨潮',t_falling:'退潮',t_range:'潮差'},
+  zht:{loading:'正在載入海況…',error:'暫無海況資料',title:'這裡的海',waves:'浪',water:'水溫',wind:'風',uv:'紫外線',s_calm:'平靜',s_mod:'中等',s_strong:'較大',s_vstrong:'很大',uv_low:'低',uv_mod:'中等',uv_high:'高',uv_vhigh:'很高',uv_ext:'極高',nd:'無資料',tide:'潮汐',t_high:'滿潮',t_low:'乾潮',t_rising:'漲潮',t_falling:'退潮',t_range:'潮差'}
 };
 var SEA_WARN = {
   es:'Báñate solo con mar en calma y respeta banderas y cierres.',
@@ -13869,6 +13869,98 @@ function seaUvLevel(t, uv) {
   if (uv < 11) return { txt: t.uv_vhigh, col: '#f87171' };
   return { txt: t.uv_ext, col: '#c084fc' };
 }
+/* MAREAS
+   ======
+   Se calculan de la serie horaria de sea_level_height_msl buscando los
+   maximos y minimos locales.
+
+   Lo que se enseña y lo que NO, que es la parte importante:
+
+     SI  la hora de la proxima pleamar y de la proxima bajamar, y si el
+         agua sube o baja ahora. La hora es lo que el modelo acierta.
+     SI  el recorrido del dia, que es una RESTA entre pleamar y bajamar y
+         por tanto no depende de sobre que cero se mida.
+     NO  la altura en metros. Open-Meteo la da sobre el nivel medio del
+         mar global y no sobre el cero hidrografico de las cartas
+         nauticas, asi que un "1,4 m" aqui no es la profundidad que
+         encontrarias. Enseñarlo seria dar una cifra que parece medida y
+         no lo es.
+
+   El modelo trabaja a 8 km, asi que esto vale para "en bajamar la playa
+   se ensancha" y para saber cuando se pueden usar los charcos. Para
+   navegar, no: para eso esta el Instituto Hidrografico de la Marina.
+
+   La serie es horaria, o sea que un extremo cae siempre en punto y eso
+   son +-30 min de error. Se afina con una parabola por los tres puntos
+   de alrededor, que es lo estandar y deja el error en pocos minutos. */
+/* Ojo con la hora. Se pide la serie con timezone=Atlantic/Canary, asi que
+   los sellos vienen ya en hora canaria y SIN zona: "2026-08-09T11:00".
+   Date.parse() de una cadena asi la toma como hora local del navegador, y
+   luego formatearla a Atlantic/Canary vuelve a sumar el desfase: en
+   agosto salian todas las mareas una hora tarde.
+
+   Se convierten a epoch tratando la cadena como si fuera UTC y se
+   formatean con getUTC*. Nunca se cruza ninguna zona, asi que la hora que
+   sale es exactamente la que mando la API. */
+function seaMs(iso) {
+  var m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(String(iso));
+  return m ? Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]) : NaN;
+}
+
+function seaExtremos(horas, alturas) {
+  var out = [];
+  for (var i = 1; i < alturas.length - 1; i++) {
+    var a = alturas[i - 1], b = alturas[i], c = alturas[i + 1];
+    if (typeof a !== 'number' || typeof b !== 'number' || typeof c !== 'number') continue;
+    var esMax = (b > a && b >= c), esMin = (b < a && b <= c);
+    if (!esMax && !esMin) continue;
+    // vertice de la parabola que pasa por los tres puntos, en horas
+    var den = (a - 2 * b + c);
+    var off = den !== 0 ? (0.5 * (a - c) / den) : 0;
+    if (off < -1 || off > 1) off = 0;
+    var t = seaMs(horas[i]);
+    if (!Number.isFinite(t)) continue;
+    out.push({ t: t + off * 3600000, alto: esMax, h: b });
+  }
+  return out;
+}
+
+function seaMareas(marine) {
+  var hr = (marine && marine.hourly) || {};
+  var horas = hr.time || [], alturas = hr.sea_level_height_msl || [];
+  if (horas.length < 5 || alturas.length !== horas.length) return null;
+  var ext = seaExtremos(horas, alturas);
+  if (ext.length < 2) return null;
+  /* "Ahora" tiene que estar en el mismo marco que los extremos: hora
+     canaria tratada como UTC. Se arma con fechaCanaria y horaCanaria,
+     que ya se usan para los socorristas. Con Date.now() a secas la
+     comparacion cruzaba una zona y en agosto fallaba por una hora. */
+  var f = fechaCanaria();
+  var ahora = seaMs(f.iso + 'T00:00') + horaCanaria() * 60000;
+  if (!Number.isFinite(ahora)) ahora = Date.now();
+  var sigAlta = null, sigBaja = null;
+  for (var i = 0; i < ext.length; i++) {
+    if (ext[i].t <= ahora) continue;
+    if (ext[i].alto && !sigAlta) sigAlta = ext[i];
+    if (!ext[i].alto && !sigBaja) sigBaja = ext[i];
+  }
+  if (!sigAlta && !sigBaja) return null;
+  // El primero que llegue manda: si toca pleamar, el agua sube.
+  var prim = (sigAlta && sigBaja) ? (sigAlta.t < sigBaja.t ? sigAlta : sigBaja) : (sigAlta || sigBaja);
+  var altos = ext.filter(function (e) { return e.alto; }).map(function (e) { return e.h; });
+  var bajos = ext.filter(function (e) { return !e.alto; }).map(function (e) { return e.h; });
+  var rango = (altos.length && bajos.length) ? (Math.max.apply(null, altos) - Math.min.apply(null, bajos)) : null;
+  return { alta: sigAlta, baja: sigBaja, subiendo: !!prim.alto, rango: rango };
+}
+
+/* Se formatea con getUTC* a proposito: el epoch de arriba no es un
+   instante real, es hora canaria metida en el marco UTC. Pasarlo por
+   Intl con timeZone volveria a convertir lo que ya estaba convertido. */
+function seaHora(ms) {
+  var d = new Date(ms);
+  return String(d.getUTCHours()).padStart(2, '0') + ':' + String(d.getUTCMinutes()).padStart(2, '0');
+}
+
 function seaWindArrow(deg) {
   if (deg == null) return '';
   var arrows = ['↑','↗','→','↘','↓','↙','←','↖'];   // hacia donde sopla
@@ -13910,6 +14002,20 @@ function seaBuildHtml(marine, weather) {
   html += item('🌡️', t.water, (temp  != null ? Math.round(temp) + '°C' : escapeHtml(t.nd)), null);
   html += item('💨', t.wind,  (wind  != null ? Math.round(wind) + ' km/h ' + arrow : escapeHtml(t.nd)), null);
   html += item('☀️', t.uv,    (uv    != null ? Math.round(uv) + ' · ' : '') + escapeHtml(uvl.txt), uvl.col);
+  /* Marea: horas y sentido. La altura en metros no se enseña a
+     proposito -va sobre el nivel medio global, no sobre el cero de las
+     cartas- pero el recorrido si, porque es una resta. */
+  var mar = seaMareas(marine);
+  if (mar) {
+    var trozos = [];
+    if (mar.alta) trozos.push(escapeHtml(t.t_high) + ' ' + escapeHtml(seaHora(mar.alta.t)));
+    if (mar.baja) trozos.push(escapeHtml(t.t_low)  + ' ' + escapeHtml(seaHora(mar.baja.t)));
+    var pie = escapeHtml(mar.subiendo ? t.t_rising : t.t_falling);
+    if (mar.rango != null && isFinite(mar.rango)) {
+      pie += ' \u00b7 ' + escapeHtml(t.t_range) + ' ' + escapeHtml(mar.rango.toFixed(1)) + ' m';
+    }
+    html += item('\u{1F311}', t.tide, trozos.join(' \u00b7 ') + ' \u00b7 ' + pie, null);
+  }
   /* Los dos avisos concretos van antes del generico: el de mar de fondo
      y el de piscinas naturales. Son los mismos textos del panel del mar,
      ya traducidos a los ocho idiomas. */
@@ -13937,8 +14043,12 @@ function seaLoadInto(det, place) {
      la ficha no puede ver el mar de fondo, que es el estado que mas
      accidentes causa en el norte porque la ola se ve pequena y arrastra.
      El wave_period ya se pedia y no se usaba para nada. */
+  /* Se piden dos dias de sea_level_height_msl por hora. Dos y no uno
+     porque de noche la siguiente pleamar cae ya en el dia siguiente y
+     con un solo dia el ultimo tramo se quedaba sin "proxima". */
   var mUrl = 'https://marine-api.open-meteo.com/v1/marine?latitude=' + place.lat + '&longitude=' + place.lng
            + '&current=wave_height,wave_period,swell_wave_height,swell_wave_period,sea_surface_temperature'
+           + '&hourly=sea_level_height_msl&forecast_days=2'
            + '&timezone=Atlantic%2FCanary';
   var wUrl = 'https://api.open-meteo.com/v1/forecast?latitude=' + place.lat + '&longitude=' + place.lng
            + '&current=wind_speed_10m,wind_direction_10m,uv_index&timezone=Atlantic%2FCanary';
