@@ -169,9 +169,14 @@ self.addEventListener('push', e => {
     icon: './icon-192.png',
     badge: './icon-192.png',
     lang: d.lang || 'es',
-    // Una sola notificacion diaria: el tag hace que la nueva sustituya
-    // a la anterior en vez de amontonarse en la bandeja.
-    tag: 'tgo-diaria',
+    /* El tag hace que una notificacion nueva sustituya a la anterior en vez
+       de amontonarse. Por defecto sigue siendo 'tgo-diaria', que es lo que
+       se quiere para la frase de cada dia.
+
+       Pero ahora puede venir en el mensaje: un aviso puntual -el eclipse-
+       no debe borrar la frase del dia ni que la frase del dia siguiente lo
+       borre a el. Cada cosa con su tag. */
+    tag: (typeof d.tag === 'string' && d.tag) ? d.tag.slice(0, 40) : 'tgo-diaria',
     renotify: true,
     data: { url: d.url || './index.html' }
   };

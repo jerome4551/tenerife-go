@@ -1,0 +1,74 @@
+# =====================================================================
+#  TENERIFE GO  ·  Avisos del eclipse del 12 de agosto de 2026
+#  ---------------------------------------------------------------------
+#  Dos envios sueltos. Este fichero se puede borrar entero el dia 13:
+#  no lo usa nada mas.
+#
+#  Canarias va en UTC+1 en agosto, asi que las horas de cron son una
+#  hora menos que la hora local.
+#
+#    lunes 10, 15:00 canaria  -> 14:00 UTC   aviso con un dia de margen
+#    miercoles 12, 18:50 y 18:58 canaria -> 17:50 y 17:58 UTC
+#
+#  El del miercoles va dos veces a proposito. El cron de GitHub Actions
+#  se retrasa con frecuencia y aqui la hora importa: el eclipse empieza
+#  a las 18:58 y acaba a las 20:45. La tabla push_sends impide que salga
+#  dos veces, asi que el segundo intento solo actua si el primero no
+#  llego a ejecutarse.
+# =====================================================================
+name: Aviso del eclipse
+
+on:
+  schedule:
+    - cron: '0 14 10 8 *'    # lunes 10 de agosto, 15:00 en Canarias
+    - cron: '50 17 12 8 *'   # miercoles 12, 18:50 en Canarias
+    - cron: '58 17 12 8 *'   # miercoles 12, 18:58 en Canarias (reintento)
+  workflow_dispatch:
+    inputs:
+      momento:
+        description: 'Que aviso enviar'
+        required: true
+        default: 'aviso'
+        type: choice
+        options: [aviso, inicio]
+      forzar:
+        description: 'Saltarse la guarda anti-duplicado (envia aunque ya se hubiera enviado)'
+        required: false
+        default: false
+        type: boolean
+
+# Solo lectura del repo, igual que la notificacion diaria: este job corre
+# con las claves VAPID y la service_role en el entorno.
+permissions:
+  contents: read
+
+jobs:
+  enviar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repo
+        uses: actions/checkout@v4
+
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Version exacta, no el rango "@3": el job corre con secretos en el
+      # entorno y una release nueva entraria sola con acceso a ellos.
+      - name: Instalar web-push
+        run: npm install --no-audit --no-fund web-push@3.6.7
+
+      - name: Enviar el aviso
+        env:
+          SUPABASE_URL:         ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          VAPID_PUBLIC:         ${{ secrets.VAPID_PUBLIC }}
+          VAPID_PRIVATE:        ${{ secrets.VAPID_PRIVATE }}
+          VAPID_SUBJECT:        'mailto:tenerife.go.app@gmail.com'
+          APP_URL:              'https://jerome4551.github.io/tenerife-go/'
+          # El cron que disparo decide el mensaje. El de las 14:00 UTC es
+          # el del lunes; los dos de las 17:xx son los del miercoles.
+          MOMENTO: ${{ github.event_name == 'workflow_dispatch' && inputs.momento || (github.event.schedule == '0 14 10 8 *' && 'aviso' || 'inicio') }}
+          FORCE:   ${{ github.event_name == 'workflow_dispatch' && inputs.forzar == true && '1' || '0' }}
+        run: node enviar-eclipse.js
