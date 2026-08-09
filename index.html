@@ -15011,7 +15011,33 @@ function busTimeBetween(line, idxA, idxB) {
                      revisado:'2026-08-08' }
 
    dias en formato de getDay(): 0 domingo ... 6 sabado. */
-const SOCORRISTAS = {};
+const SOCORRISTAS = {
+  /* ARONA - 10:00 a 19:00 en verano, 10:00 a 18:00 el resto del año.
+     La ventana de verano, 15/06 a 15/09, sale de la ficha oficial del
+     visor, que es la que se vio en pantalla. El horario lo confirma un
+     socorrista en activo. */
+  'las-vistas':                { h1:'10:00', h2:'18:00', verano:{ desde:'06-15', hasta:'09-15', h1:'10:00', h2:'19:00' }, dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
+  'playa-camison':             { h1:'10:00', h2:'18:00', verano:{ desde:'06-15', hasta:'09-15', h1:'10:00', h2:'19:00' }, dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
+
+  /* ADEJE - 10:00 a 18:00 todo el año: verano e invierno coinciden, asi
+     que no lleva bloque de verano y no hace falta ninguna fecha. */
+  'el-duque':                  { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
+  'playa-americas':            { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
+  'fanabe':                    { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
+  'playa-callao':              { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
+  'playa-torviscas':           { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
+  'playa-la-caleta-adeje':     { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
+};
+
+/* LA LAGUNA queda anotado y sin usar: 10:00 a 20:00 en verano y 10:00 a
+   18:00 el resto. Hoy no tenemos ninguna playa en ese municipio -Bajamar
+   y Punta del Hidalgo estan en el fichero como piscinas naturales, no
+   como playa-, asi que el dato no tiene donde aplicarse. Queda escrito
+   para el dia que entre una.
+
+   EL RESTO DE MUNICIPIOS los lleva otra empresa y no hay dato firme, asi
+   que sus playas siguen con la etiqueta neutra y el enlace al visor. No
+   se rellenan a ojo. */
 const SOC_VIDA_DIAS = 100;          // un trimestre y un poco de margen
 
 // Fecha y hora en Canarias, que es lo unico que vale para decidir esto.
@@ -15037,17 +15063,40 @@ function socDiasEntre(isoA, isoB) {
   return Math.round((b - a) / 86400000);
 }
 
+/* Que horario toca hoy. El servicio no se enciende y se apaga por
+   temporada: funciona todo el año y lo que cambia son las horas. Por eso
+   `h1`/`h2` es el horario de siempre y `verano` es el bloque opcional que
+   lo sustituye dentro de su ventana.
+
+   La ventana va en MM-DD y no en fecha completa a proposito: asi no
+   caduca al cambiar de año. Lo que caduca es el dato entero, por
+   `revisado`, que es lo que corresponde a un servicio que se contrata por
+   trimestres. */
+function socHorasHoy(s, iso) {
+  if (!s) return null;
+  const md = iso.slice(5);                       // 'MM-DD'
+  const v = s.verano;
+  if (v && v.desde && v.hasta && v.h1 && v.h2) {
+    const dentro = (v.desde <= v.hasta)
+      ? (md >= v.desde && md <= v.hasta)
+      : (md >= v.desde || md <= v.hasta);        // por si alguna cruza el año
+    if (dentro) return { h1: v.h1, h2: v.h2 };
+  }
+  return (s.h1 && s.h2) ? { h1: s.h1, h2: s.h2 } : null;
+}
+
 /* Devuelve 'ahora', 'horario' o null. Nunca lanza: si algo del dato esta
    mal escrito se comporta como si no lo tuvieramos. */
 function estadoSocorristas(place) {
   const s = SOCORRISTAS[place && place.id];
-  if (!s || !s.desde || !s.hasta || !s.h1 || !s.h2 || !s.revisado) return null;
+  if (!s || !s.revisado) return null;
   const hoy = fechaCanaria();
-  if (hoy.iso < s.desde || hoy.iso > s.hasta) return null;      // fuera de temporada
   if (socDiasEntre(s.revisado, hoy.iso) > SOC_VIDA_DIAS) return null;  // dato de otro trimestre
+  const h = socHorasHoy(s, hoy.iso);
+  if (!h) return null;
   if (Array.isArray(s.dias) && s.dias.indexOf(hoy.dia) < 0) return 'horario';
   const min = t => { const m = /^(\d{1,2}):(\d{2})$/.exec(t); return m ? (+m[1]) * 60 + (+m[2]) : null; };
-  const a = min(s.h1), b = min(s.h2), ahora = horaCanaria();
+  const a = min(h.h1), b = min(h.h2), ahora = horaCanaria();
   if (a === null || b === null) return null;
   return (ahora >= a && ahora < b) ? 'ahora' : 'horario';
 }
@@ -15058,8 +15107,12 @@ function badgeSocorristas(place, L) {
   const est = estadoSocorristas(place);
   if (est === 'ahora')   return `<span class="popup-badge badge-lifeguard">${L.lifeguardNow}</span>`;
   if (est === 'horario') {
-    const s = SOCORRISTAS[place.id];
-    const txt = (L.lifeguardHours || '').replace('{h}', s.h1 + '-' + s.h2);
+    // Las horas que se enseñan son las de HOY, que en verano no son las
+    // mismas: leerlas de s.h1/s.h2 a pelo enseñaria el horario de invierno
+    // en pleno agosto.
+    const h = socHorasHoy(SOCORRISTAS[place.id], fechaCanaria().iso);
+    if (!h) return `<span class="popup-badge badge-lifeguard">${L.lifeguard}</span>`;
+    const txt = (L.lifeguardHours || '').replace('{h}', h.h1 + '-' + h.h2);
     return `<span class="popup-badge badge-nolifeguard">${escapeHtml(txt)}</span>`;
   }
   return `<span class="popup-badge badge-lifeguard">${L.lifeguard}</span>`;
