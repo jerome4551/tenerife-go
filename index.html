@@ -30981,7 +30981,19 @@ function scorePlaya(playa, windDeg, windSpeed){
   if (playa.badWind.includes(card)) score-=60;
   if (windSpeed>20 && playa.badWind.some(b=>card.includes(b[0]))) score-=20;
   if ((card==='NE' || card==='E') && (playa.ori==='S' || playa.ori==='SW' || playa.ori==='W')) score+=20;
-  return Math.max(0, Math.min(100, score));
+  /* El tope era 100 y con eso el bonus del alisio no servia para nada: la
+     base ya es 100, asi que 100+20 volvia a 100 y solo contaba cuando
+     antes habia habido penalizacion. Con todo el mar en calma empataban
+     todas a 100 y el desempate caia en el orden de la tabla, donde las 6
+     escritas a mano van delante y las 28 deducidas detras. O sea que las
+     28 casi nunca salian, que es justo lo contrario de para lo que se
+     anadieron.
+
+     Se sube el tope a 120 para que el bonus discrimine de verdad: con
+     alisio del NE o del E, las playas que miran al S, SW o W quedan por
+     delante, que es lo cierto -ahi el viento sale de tierra y el agua se
+     queda plana- y no un empate resuelto por el orden del objeto. */
+  return Math.max(0, Math.min(120, score));
 }
 
 /* Pide viento Y oleaje EN CADA PLAYA, en dos peticiones por lotes, igual
