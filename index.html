@@ -6544,6 +6544,7 @@ const LANGS = {
     satellite: 'Satélite',
     topo: 'Topo',
     lifeguard: '🛟 Servicio de socorristas',
+    lifeguardNow: '🛟 Socorrista ahora', lifeguardHours: '🛟 Socorristas {h}',
     noLifeguard: '⚠️ Sin vigilancia',
     blueFlag: '🏆 Bandera Azul 2026',
     flagLink: '🚩 Bandera y socorristas (oficial)',
@@ -6693,6 +6694,7 @@ const LANGS = {
     satellite: 'Satellite',
     topo: 'Topo',
     lifeguard: '🛟 Lifeguard service',
+    lifeguardNow: '🛟 Lifeguard on duty', lifeguardHours: '🛟 Lifeguard {h}',
     noLifeguard: '⚠️ No lifeguard',
     blueFlag: '🏆 Blue Flag 2026',
     flagLink: '🚩 Flag & lifeguard hours (official)',
@@ -6842,6 +6844,7 @@ const LANGS = {
     satellite: 'Satellite',
     topo: 'Topo',
     lifeguard: '🛟 Service de sauveteurs',
+    lifeguardNow: '🛟 Sauveteur en poste', lifeguardHours: '🛟 Sauveteurs {h}',
     noLifeguard: '⚠️ Sans surveillance',
     blueFlag: '🏆 Pavillon Bleu 2026',
     flagLink: '🚩 Drapeau et sauveteurs (officiel)',
@@ -6991,6 +6994,7 @@ const LANGS = {
     satellite: 'Satellit',
     topo: 'Topo',
     lifeguard: '🛟 Rettungsschwimmer-Dienst',
+    lifeguardNow: '🛟 Rettungsschwimmer im Dienst', lifeguardHours: '🛟 Rettungsschwimmer {h}',
     noLifeguard: '⚠️ Kein Rettungsschwimmer',
     blueFlag: '🏆 Blaue Flagge 2026',
     flagLink: '🚩 Flagge und Rettungsdienst (offiziell)',
@@ -7144,6 +7148,7 @@ const LANGS = {
     satellite: 'Satellite',
     topo: 'Topo',
     lifeguard: '🛟 Servizio di bagnini',
+    lifeguardNow: '🛟 Bagnino in servizio', lifeguardHours: '🛟 Bagnini {h}',
     noLifeguard: '⚠️ Non sorvegliata',
     blueFlag: '🏆 Bandiera Blu 2026',
     flagLink: '🚩 Bandiera e bagnini (ufficiale)',
@@ -7291,6 +7296,7 @@ const LANGS = {
     satellite: 'Satelliet',
     topo: 'Topo',
     lifeguard: '🛟 Strandwachtdienst',
+    lifeguardNow: '🛟 Strandwacht aanwezig', lifeguardHours: '🛟 Strandwacht {h}',
     noLifeguard: '⚠️ Onbewaakt',
     blueFlag: '🏆 Blauwe Vlag 2026',
     flagLink: '🚩 Vlag en strandwacht (officieel)',
@@ -7444,6 +7450,7 @@ const LANGS = {
     satellite: '卫星',
     topo: '地形',
     lifeguard: '🛟 救生员服务',
+    lifeguardNow: '🛟 救生员在岗', lifeguardHours: '🛟 救生员 {h}',
     noLifeguard: '⚠️ 无救生员',
     blueFlag: '🏆 2026 蓝旗海滩',
     flagLink: '🚩 旗帜与救生员时段（官方）',
@@ -7887,6 +7894,7 @@ const ZHT_OVERRIDES = {
     satellite: '衛星',
     topo: '地形',
     lifeguard: '🛟 救生員服務',
+    lifeguardNow: '🛟 救生員在崗', lifeguardHours: '🛟 救生員 {h}',
     noLifeguard: '⚠️ 無救生員',
     blueFlag: '🏆 2026 藍旗海灘',
     flagLink: '🚩 旗幟與救生員時段（官方）',
@@ -14143,8 +14151,8 @@ function _updateMarkersImpl() {
       const marker = window.L.marker([place.lat, place.lng], { icon });
 
       const badges = [];
-      if (place.lifeguard === true)  badges.push(`<span class="popup-badge badge-lifeguard">${L.lifeguard}</span>`);
-      else if (place.lifeguard === false) badges.push(`<span class="popup-badge badge-nolifeguard">${L.noLifeguard}</span>`);
+      const bSoc = badgeSocorristas(place, L);
+      if (bSoc) badges.push(bSoc);
       if (place.blueFlag) badges.push(`<span class="popup-badge badge-blueflag">${L.blueFlag}</span>`);
       if (place.emergency24) badges.push(`<span class="popup-badge badge-emergency">${L.emergency24}</span>`);
       if (place.pharmacy24)  badges.push(`<span class="popup-badge badge-pharmacy">${L.pharmacy24}</span>`);
@@ -14975,6 +14983,88 @@ function busTimeBetween(line, idxA, idxB) {
    salido o se le esconderian las que aun no. Si el navegador no soporta
    timeZone, se cae a la hora local, que para alguien que ya esta en la
    isla es la misma. */
+/* HORARIO DE SOCORRISTAS
+   ======================
+   El servicio no se contrata por años sino por TRIMESTRES, asi que un
+   horario guardado aqui caduca en tres meses, no en doce. Eso manda en
+   todo el diseño de abajo.
+
+   Por eso no se guarda solo la temporada: se guarda tambien `revisado`,
+   la fecha en que se leyo el dato del visor oficial. Con las dos:
+
+     · fuera de la temporada guardada      -> no se afirma nada
+     · dentro, pero el dato tiene mas de   -> no se afirma nada, porque
+       SOC_VIDA_DIAS                          pudo revisarse el trimestre
+     · dentro y el dato fresco             -> ya se puede mirar la hora
+
+   Cuando no se afirma, la playa vuelve exactamente a lo de siempre:
+   "Servicio de socorristas" mas el enlace al visor, que es donde esta el
+   horario de verdad. O sea que un dato viejo no empeora nada, solo deja
+   de ayudar. Caduca en alto y no en silencio, que es justo lo que le
+   faltaba al badge de antes.
+
+   La tabla empieza vacia a proposito: se rellena segun vayan llegando
+   horarios comprobados, uno a uno. Formato:
+
+     'las-vistas': { desde:'2026-06-15', hasta:'2026-09-15',
+                     h1:'10:00', h2:'19:00', dias:[0,1,2,3,4,5,6],
+                     revisado:'2026-08-08' }
+
+   dias en formato de getDay(): 0 domingo ... 6 sabado. */
+const SOCORRISTAS = {};
+const SOC_VIDA_DIAS = 100;          // un trimestre y un poco de margen
+
+// Fecha y hora en Canarias, que es lo unico que vale para decidir esto.
+function fechaCanaria() {
+  try {
+    const f = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Atlantic/Canary', year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'short'
+    });
+    const p = f.formatToParts(new Date());
+    const g = t => (p.find(x => x.type === t) || {}).value;
+    const iso = g('year') + '-' + g('month') + '-' + g('day');
+    const dia = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(g('weekday'));
+    if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) return { iso: iso, dia: dia < 0 ? new Date().getDay() : dia };
+  } catch (e) {}
+  const d = new Date();
+  const p2 = n => String(n).padStart(2, '0');
+  return { iso: d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate()), dia: d.getDay() };
+}
+
+function socDiasEntre(isoA, isoB) {
+  const a = Date.parse(isoA + 'T00:00:00Z'), b = Date.parse(isoB + 'T00:00:00Z');
+  if (!Number.isFinite(a) || !Number.isFinite(b)) return Infinity;
+  return Math.round((b - a) / 86400000);
+}
+
+/* Devuelve 'ahora', 'horario' o null. Nunca lanza: si algo del dato esta
+   mal escrito se comporta como si no lo tuvieramos. */
+function estadoSocorristas(place) {
+  const s = SOCORRISTAS[place && place.id];
+  if (!s || !s.desde || !s.hasta || !s.h1 || !s.h2 || !s.revisado) return null;
+  const hoy = fechaCanaria();
+  if (hoy.iso < s.desde || hoy.iso > s.hasta) return null;      // fuera de temporada
+  if (socDiasEntre(s.revisado, hoy.iso) > SOC_VIDA_DIAS) return null;  // dato de otro trimestre
+  if (Array.isArray(s.dias) && s.dias.indexOf(hoy.dia) < 0) return 'horario';
+  const min = t => { const m = /^(\d{1,2}):(\d{2})$/.exec(t); return m ? (+m[1]) * 60 + (+m[2]) : null; };
+  const a = min(s.h1), b = min(s.h2), ahora = horaCanaria();
+  if (a === null || b === null) return null;
+  return (ahora >= a && ahora < b) ? 'ahora' : 'horario';
+}
+
+function badgeSocorristas(place, L) {
+  if (place.lifeguard === false) return `<span class="popup-badge badge-nolifeguard">${L.noLifeguard}</span>`;
+  if (place.lifeguard !== true)  return '';
+  const est = estadoSocorristas(place);
+  if (est === 'ahora')   return `<span class="popup-badge badge-lifeguard">${L.lifeguardNow}</span>`;
+  if (est === 'horario') {
+    const s = SOCORRISTAS[place.id];
+    const txt = (L.lifeguardHours || '').replace('{h}', s.h1 + '-' + s.h2);
+    return `<span class="popup-badge badge-nolifeguard">${escapeHtml(txt)}</span>`;
+  }
+  return `<span class="popup-badge badge-lifeguard">${L.lifeguard}</span>`;
+}
+
 function horaCanaria() {
   try {
     const f = new Intl.DateTimeFormat('es-ES', {
