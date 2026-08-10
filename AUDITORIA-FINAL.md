@@ -104,10 +104,19 @@ enlace al visor oficial, que no miente.
 
 **A3. 17 paradas intermedias de guagua** (las que venían del grupo B). Son 18
 filas en la lista pero **17 paradas distintas**: *La Camella* sale dos veces,
-en la 418 y en la 480. No bloquean ninguna línea: solo hacen que el
-planificador encuentre esas líneas también a quien vive a mitad de recorrido,
-y que el trazado del mapa sea el real y no una recta entre cabeceras. La
-lista, con el tramo de cada una, está en `BLOQUE-2.md`.
+en la 418 y en la 480. La lista, con el tramo de cada una, está en
+`BLOQUE-2.md`.
+
+Esto **ya solo afecta al planificador**, no al mapa. Antes el trazado unía las
+paradas con una recta y afirmaba un recorrido que la guagua no hace; desde el
+trazado por tramos, todo salto de más de 6 km se dibuja discontinuo, que es
+decir «aquí hay conexión, pero este no es el camino». Son 133 de 517 tramos,
+en 85 líneas. Cuando alguna de estas 17 entre, su tramo pasará a continuo
+solo: la regla se mide en cada dibujado, no está escrita a mano en ningún
+sitio.
+
+Lo que sigue faltando sin ellas: quien vive a mitad de recorrido no encuentra
+esa línea al buscar.
 
 **A4. Orientación fina de playas.**
 De las 34 del panel de baño, **28 tienen la orientación deducida** por

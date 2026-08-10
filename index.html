@@ -19904,18 +19904,35 @@ function drawBusLine(lineId) {
   // El tranvía se dibuja con línea más gruesa para diferenciarse del bus
   const isTram = line.tipo === 'tranvia';
 
-  // 1. Polyline con las coordenadas de todas las paradas
+  // 1. Trazado por tramos. Un tramo entre dos paradas muy separadas NO es
+  //    el recorrido real (faltan paradas intermedias), asi que se dibuja
+  //    discontinuo en vez de afirmar una recta que el bus no hace.
   const latlngs = line.paradas.map(p => [p.lat, p.lng]);
-  const poly = L.polyline(latlngs, {
-    color: line.color,
-    weight: isTram ? 6 : 4,
-    opacity: isTram ? 0.9 : 0.82,
-    dashArray: null,
-    lineJoin: 'round',
-    lineCap: 'round',
-  });
-  poly._busLineId = lineId;
-  busLayerGroup.addLayer(poly);
+  const BUS_GAP_KM = 6;
+
+  const segKm = (a, b) => {
+    const R = 6371, r = Math.PI / 180;
+    const dLat = (b[0] - a[0]) * r, dLng = (b[1] - a[1]) * r;
+    const h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(a[0] * r) * Math.cos(b[0] * r) *
+              Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return 2 * R * Math.asin(Math.sqrt(h));
+  };
+
+  for (let i = 0; i < latlngs.length - 1; i++) {
+    const a = latlngs[i], b = latlngs[i + 1];
+    const aprox = segKm(a, b) > BUS_GAP_KM;
+    const seg = L.polyline([a, b], {
+      color: line.color,
+      weight: isTram ? 6 : 4,
+      opacity: isTram ? 0.9 : (aprox ? 0.55 : 0.82),
+      dashArray: aprox ? '10 8' : null,
+      lineJoin: 'round',
+      lineCap: 'round',
+    });
+    seg._busLineId = lineId;
+    busLayerGroup.addLayer(seg);
+  }
 
   // Borde blanco interno para el tranvía (efecto "doble carril")
   if (isTram) {
