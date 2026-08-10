@@ -95,12 +95,37 @@ Nombre = 15/06 a 15/09 · 10:00-19:00 · todos los días
 Sin ese dato **no pasa nada malo**: esas 13 siguen con la etiqueta neutra y el
 enlace al visor oficial, que no miente.
 
-**A2. Dos contradicciones sin resolver.**
-- **La Jaquita** — nosotros: `lifeguard:false`. Un lote decía que sí tiene y la
-  situaba en Granadilla; nuestra coordenada la pone en **Guía de Isora**.
-- **Valleseco, Leocadio Machado, El Chinchorro, Playa Grande (Los Abrigos)** —
-  aparecen en fuentes externas y **no están en la app**. Si existen y merecen
-  estar, hacen falta sus coordenadas.
+**A2 — corregido: La Jaquita no era una duda de municipio. RESUELTO.**
+Lo planteé mal aquí. No había que elegir entre dos municipios: la coordenada
+siempre fue buena y lo que estaba mal era **la ficha entera**. `playa-jaquita`
+llevaba la descripción de **La Tejita**, a 33,5 km, en los ocho idiomas —
+«junto a El Médano», «Montaña Roja», «kitesurfistas»—, más la categoría
+«Playa Kitesurf · El Médano», los tags de kitesurf y hasta el emoji de surfista.
+Una colisión de nombres Jaquita/Tejita.
+
+Lo que lo demuestra está dentro de la propia app: el POI hermano
+`piscinas-alcala-jaquita`, a **219 m**, ya decía «junto a la Playa La Jaquita
+(arena negra)» y «municipio de Guía de Isora». Reescrita con esos hechos, sin
+inventar nada.
+
+Y la contradicción de socorristas era real: la playa llevaba `lifeguard:false`,
+que **no calla, afirma** — pinta «⚠️ Sin socorrista» —, mientras los charcos de
+al lado dicen «socorrista en temporada alta». Mismo sitio, dos respuestas. Se
+quitó el campo: sin dato firme, el estado correcto es el neutro, igual que las
+13 playas de A1.
+
+- **Sigue abierto: Valleseco, Leocadio Machado, El Chinchorro, Playa Grande
+  (Los Abrigos)** — aparecen en fuentes externas y **no están en la app**. Si
+  existen y merecen estar, hacen falta sus coordenadas.
+
+**A2b. Ifonche decía Güímar y es Vilaflor.** Al barrer los 760 lugares buscando
+más fichas cruzadas apareció una: el despegue de parapente de Ifonche se
+situaba «entre Adeje y Güímar». Medido: Adeje **4,1 km**, Vilaflor **6,2 km**,
+Güímar **33,9 km**. Todo lo demás de esa ficha encajaba (Taucho 4,4 · Barranco
+del Infierno 3,1 · La Caleta 7,1), así que era una palabra. Corregida en los 8
+idiomas y en el tag. El barrido no encontró ninguna más: las otras 13
+candidatas nombran sitios lejanos con razón (rutas que los recorren,
+comparaciones, la Autoridad Portuaria).
 
 **A3. 17 paradas intermedias de guagua** (las que venían del grupo B). Son 18
 filas en la lista pero **17 paradas distintas**: *La Camella* sale dos veces,
