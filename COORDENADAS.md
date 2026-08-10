@@ -63,6 +63,19 @@ la razón no: esa tarifa plana solo existe en las series 200 y 900. Lo de Tacoro
 **mínimo de la kilométrica**. El número quedó igual; la explicación se corrigió, porque si se
 apunta como tarifa plana alguien la generaliza mañana a una línea larga y cobra de menos.
 
+## Y una que parecía mala y era buena
+
+**Punta de Teno.** El control de tierra la daba a **1,5 km de mar** — peor que
+varias de las rechazadas de arriba. Se aceptó igual, porque el `Faro de Teno`
+que ya estaba en el fichero cae a **100 m** de ese punto. Ahí el que se
+equivoca es el control: es un cabo estrecho y una malla de un kilómetro no lo
+ve.
+
+Está aquí a propósito. Todo lo de arriba es sobre no aplicar datos malos;
+esto es el aviso de lo contrario: rechazar por un solo control también es un
+error, y el que lo desmontó fue el mismo cruce contra nuestros propios lugares
+que descubre los malos.
+
 ## Dos que están en la app y no me convencen
 
 Estas sí se aplicaron, porque no rompen nada y caen donde deben. Pero quedan anotadas:
