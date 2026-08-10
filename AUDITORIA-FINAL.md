@@ -10,7 +10,7 @@ cada cifra sale de un script que se puede volver a lanzar.
 | control | resultado |
 |---|---|
 | Lugares del mapa | **760** · 0 vacíos · 0 duplicados · 43 parkings |
-| Guaguas · integridad | **177 líneas · 693 paradas · 0 fallos** |
+| Guaguas · integridad | **177 líneas · 694 paradas · 0 fallos** |
 | Guaguas · cobertura oficial | **173 de 173 · 100 %** |
 | Guaguas · campos vacíos | 0 sin precio · 0 sin tiempo · 0 sin ventana |
 | Panel de guaguas | 177 items · 0 errores |
@@ -102,7 +102,12 @@ enlace al visor oficial, que no miente.
   aparecen en fuentes externas y **no están en la app**. Si existen y merecen
   estar, hacen falta sus coordenadas.
 
-**A3. Orientación fina de playas.**
+**A3. 18 paradas intermedias de guagua** (las que venían del grupo B). No
+bloquean ninguna línea: solo hacen que el planificador encuentre esas líneas
+también a quien vive a mitad de recorrido. La lista, con el tramo de cada
+una, está en `BLOQUE-2.md`.
+
+**A4. Orientación fina de playas.**
 De las 34 del panel de baño, **28 tienen la orientación deducida** por
 geometría y 6 escritas a mano. La deducción reproduce el comportamiento de las
 6 conocidas, pero un surfista o un socorrista local afinaría el `badWind` de su
@@ -117,8 +122,19 @@ playa mejor que ningún modelo.
 
 Ninguno de los tres lo usa nada más. Mientras tanto se apagan solos.
 
-**B2. Las 19 paradas intermedias de guagua** que quedan en `BLOQUE-2.md`. Van
-11 aplicadas de 30. No bloquean nada: las 173 líneas funcionan.
+**B2 — corregido: esto NO lo puedo hacer yo.** Lo clasifiqué mal aquí y lo
+comprobé al ir a empezarlo. De las 19 paradas de `BLOQUE-2.md` medí cuántas
+tienen algo en nuestros 760 lugares con que fijarlas:
+
+```
+Benijo        ✔  el sendero PR-TF 6.3 sale de ahi   -> APLICADA
+Adeje casco   ✘  "positivo" falso: Golf Costa Adeje esta en la costa, a 5 km
+las otras 16  ✘  nada nuestro con ese nombre en su tramo
+```
+
+Así que era **1 de 19**, y esa ya está puesta. Las **18 restantes pasan al
+grupo A**: necesitan coordenada de fuera. Siguen sin bloquear nada — las 173
+líneas funcionan igual.
 
 ## C · Decidido que NO se hace
 
