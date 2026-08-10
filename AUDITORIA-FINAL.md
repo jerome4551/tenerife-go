@@ -102,10 +102,12 @@ enlace al visor oficial, que no miente.
   aparecen en fuentes externas y **no están en la app**. Si existen y merecen
   estar, hacen falta sus coordenadas.
 
-**A3. 18 paradas intermedias de guagua** (las que venían del grupo B). No
-bloquean ninguna línea: solo hacen que el planificador encuentre esas líneas
-también a quien vive a mitad de recorrido. La lista, con el tramo de cada
-una, está en `BLOQUE-2.md`.
+**A3. 17 paradas intermedias de guagua** (las que venían del grupo B). Son 18
+filas en la lista pero **17 paradas distintas**: *La Camella* sale dos veces,
+en la 418 y en la 480. No bloquean ninguna línea: solo hacen que el
+planificador encuentre esas líneas también a quien vive a mitad de recorrido,
+y que el trazado del mapa sea el real y no una recta entre cabeceras. La
+lista, con el tramo de cada una, está en `BLOQUE-2.md`.
 
 **A4. Orientación fina de playas.**
 De las 34 del panel de baño, **28 tienen la orientación deducida** por
@@ -129,11 +131,12 @@ tienen algo en nuestros 760 lugares con que fijarlas:
 ```
 Benijo        ✔  el sendero PR-TF 6.3 sale de ahi   -> APLICADA
 Adeje casco   ✘  "positivo" falso: Golf Costa Adeje esta en la costa, a 5 km
-las otras 16  ✘  nada nuestro con ese nombre en su tramo
+las otras 17  ✘  nada nuestro con ese nombre en su tramo
 ```
 
-Así que era **1 de 19**, y esa ya está puesta. Las **18 restantes pasan al
-grupo A**: necesitan coordenada de fuera. Siguen sin bloquear nada — las 173
+Así que era **1 de 19**, y esa ya está puesta. Las **18 filas restantes — 17
+paradas distintas, porque La Camella sale en la 418 y en la 480 — pasan al
+grupo A**: necesitan coordenada de fuera. Siguen sin bloquear nada: las 173
 líneas funcionan igual.
 
 ## C · Decidido que NO se hace
