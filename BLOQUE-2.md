@@ -4,9 +4,9 @@ La red está completa: **173 de 173 líneas**. Esto ya no bloquea nada. Lo que h
 planificador encuentre esas líneas también a quien vive **a mitad de recorrido**, y que el
 trazado del mapa sea el real y no una recta entre las dos cabeceras.
 
-**Aplicadas (10):** Hospital del Sur (418 y 480) · Cruce de Radazul y Arafo (121) ·
+**Aplicadas (12):** Hospital del Sur (418 y 480) · Cruce de Radazul y Arafo (121) ·
 Barranco Hondo (127) · Tabaiba Alta y Radazul Alto (138) · Radazul Bajo (139) ·
-Tornero y Gavias (203) · Empalme de Güímar (124).
+Tornero y Gavias (203) · Empalme de Güímar (124) · Benijo (948).
 **Quedan 17**, marcadas abajo con `___`. Ninguna se puede sacar de nuestros
 datos: las 17 necesitan coordenada de fuera.
 
