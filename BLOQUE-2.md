@@ -1,4 +1,4 @@
-# Bloque 2 — paradas intermedias · van 10 de 28
+# Bloque 2 — paradas intermedias · van 12 de 30
 
 La red está completa: **173 de 173 líneas**. Esto ya no bloquea nada. Lo que hace es que el
 planificador encuentre esas líneas también a quien vive **a mitad de recorrido**, y que el
@@ -7,7 +7,8 @@ trazado del mapa sea el real y no una recta entre las dos cabeceras.
 **Aplicadas (10):** Hospital del Sur (418 y 480) · Cruce de Radazul y Arafo (121) ·
 Barranco Hondo (127) · Tabaiba Alta y Radazul Alto (138) · Radazul Bajo (139) ·
 Tornero y Gavias (203) · Empalme de Güímar (124).
-**Quedan 18**, marcadas abajo con `___`.
+**Quedan 17**, marcadas abajo con `___`. Ninguna se puede sacar de nuestros
+datos: las 17 necesitan coordenada de fuera.
 
 ---
 
@@ -255,8 +256,12 @@ Tío Pino          = ___ , ___     entre las dos                      · Santa C
 ```
 Azanos [28.555231,-16.198942] → Taganana [28.55621,-16.21324] → Almáciga [28.57143,-16.20215]
 
-Benijo            = ___ , ___     después de Almáciga                · Santa Cruz
+✅ Benijo = 28.5735, -16.1871   · Santa Cruz   APLICADA
 ```
+> La única de las 18 que se podía sacar de nuestros propios datos: el inicio del
+> sendero `PR-TF 6.3 · Benijo — Cruz del Draguillo` ya estaba en el fichero. Se
+> prefiere a Playa Benijo, 550 m más abajo, porque un inicio de sendero está en
+> la carretera y ahí es donde para la guagua.
 
 ---
 
@@ -264,14 +269,14 @@ Benijo            = ___ , ___     después de Almáciga                · Santa 
 
 | | |
 |---|---|
-| paradas | **18** · van 10 aplicadas |
+| paradas | **17** · van 12 aplicadas |
 | líneas que mejoran | 22 |
 | líneas que hoy solo tienen 2 paradas | 8 — ahí es donde más cambia el trazado |
 | bloquea algo | **no** |
 
-Van 10 aplicadas. De las 18 que quedan, **17 no las puedo comprobar** contra nada nuestro.
-La única con ancla es **Benijo**, que tiene Playa Benijo a 500 m. El detalle está en
-`COORDENADAS.md`.
+Van 12 aplicadas. Benijo era la única de las 18 que tenía algo nuestro con que
+fijarla y ya está puesta, así que **las 17 que quedan necesitan todas coordenada
+de fuera**. Ninguna bloquea nada: las 173 líneas funcionan igual.
 
 De las tres aplicadas, dos entraron tal cual y una hubo que corregirla. La que las separa es
 siempre la misma comprobación: **cruzar el punto contra nuestros propios 760 lugares.** Arafo
