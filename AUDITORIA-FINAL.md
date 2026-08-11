@@ -156,6 +156,40 @@ playa no es un dato hasta que tiene coordenada y la coordenada cae donde debe.
 
 Total: 760 lugares -> **761**, y las playas siguen siendo 35.
 
+**A2d. Costa de La Laguna: 4 de 9 entran.** Un lote de nueve nombres de playas
+de San Cristóbal de La Laguna, con las coordenadas verificadas una a una
+después de que **las nueve del documento original estuvieran mal**, entre 404 m
+y 4,5 km de desviación.
+
+Entran cuatro: **San Juan (Bajamar)**, **El Arenisco**, **El Arenal (Bajamar)**
+y **Los Troches**. Ninguna en `PLAYAS_ORIENTACION` — comprobado: hay 39 fichas
+con `category:"playa"` y el panel de baño sigue con 34. Son POIs de mapa con
+`warn:"mar"`, no candidatas a recomendación de baño; cuatro de ellas son
+rompientes de bolos y Los Troches ni siquiera es apta.
+
+Quedan fuera cinco. **Jóver** ya estaba dos veces y nuestra coordenada era la
+buena —la del documento fallaba por 2 km—. **La Barranquera** no existe como
+playa: solo hay un camino con ese nombre. **El Apio** y **El Navío** no son
+verificables. Y **El Roquete** se descartó por criterio propio: 4 reseñas, y
+una dice que la escalera de acceso está en mal estado, así que ni su único
+rasgo distintivo está corroborado.
+
+Dos cosas que este lote deja como método:
+
+1. **La coordenada envenenada.** El documento situaba «Playa de San Juan» en
+   28,5562/−16,3456 y la describía con dique, servicios y socorrista. Ese punto
+   cae a **20 m medidos** de nuestro `pk-bajamar-piscinas`: había descrito el
+   aparcamiento de las piscinas de Bajamar y le había puesto el nombre de la
+   playa. Otra vez el patrón Jaquita/Tejita, y otra vez lo destapó cruzar
+   contra nuestros propios lugares.
+2. **`lifeguard: null` existe y no es lo mismo que `false`.** El Arenisco lo
+   lleva a propósito: las reseñas confirman aseos, duchas y vestuarios pero
+   ninguna menciona socorrista. `false` afirmaría que no lo hay. `null` no
+   afirma nada y `badgeSocorristas` no pinta badge, porque solo compara contra
+   `true` y contra `false`.
+
+Total: 761 -> **765**.
+
 **A2b. Ifonche decía Güímar y es Vilaflor.** Al barrer los 760 lugares buscando
 más fichas cruzadas apareció una: el despegue de parapente de Ifonche se
 situaba «entre Adeje y Güímar». Medido: Adeje **4,1 km**, Vilaflor **6,2 km**,
