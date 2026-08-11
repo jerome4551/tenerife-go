@@ -216,7 +216,7 @@ comparaciones, la Autoridad Portuaria).
 
 **A3. 17 paradas intermedias de guagua** (las que venían del grupo B). Son 18
 filas en la lista pero **17 paradas distintas**: *La Camella* sale dos veces,
-en la 418 y en la 480. La lista, con el tramo de cada una, está en
+en la 421 y en la 480. La lista, con el tramo de cada una, está en
 `BLOQUE-2.md`.
 
 Esto **ya solo afecta al planificador**, no al mapa. Antes el trazado unía las
@@ -270,7 +270,7 @@ las otras 17  ✘  nada nuestro con ese nombre en su tramo
 ```
 
 Así que era **1 de 19**, y esa ya está puesta. Las **18 filas restantes — 17
-paradas distintas, porque La Camella sale en la 418 y en la 480 — pasan al
+paradas distintas, porque La Camella sale en la 421 y en la 480 — pasan al
 grupo A**: necesitan coordenada de fuera. Siguen sin bloquear nada: las 173
 líneas funcionan igual.
 
