@@ -2414,6 +2414,33 @@ window.onunhandledrejection = function(e) {
   }
   .popup-flag-link:hover { background: rgba(212,175,55,0.2); text-decoration: none !important; }
 
+  /* Leyenda de banderas. Plegada ocupa una linea; el color de cada
+     cuadradito imita la bandera real para que se reconozca de un vistazo. */
+  .popup-ban { margin: 6px 0 2px; font-size: 11px; }
+  .popup-ban > summary {
+    cursor: pointer; list-style: none; padding: 5px 8px; border-radius: 8px;
+    color: #d4af37; background: rgba(212,175,55,0.10);
+    border: 1px solid rgba(212,175,55,0.28); font-weight: 600;
+  }
+  .popup-ban > summary::-webkit-details-marker { display: none; }
+  .popup-ban > summary::before { content: '\25B8 '; }
+  .popup-ban[open] > summary::before { content: '\25BE '; }
+  .popup-ban-fila { display: flex; gap: 7px; align-items: flex-start; margin: 6px 2px; line-height: 1.35; }
+  .popup-ban-tit { margin: 9px 2px 4px; font-weight: 600; color: #d4af37; }
+  .popup-ban-src { margin: 8px 2px 2px; opacity: 0.6; font-size: 10px; font-style: italic; }
+  .popup-ban .bn {
+    flex: 0 0 auto; width: 13px; height: 13px; margin-top: 1px;
+    border-radius: 2px; border: 1px solid rgba(255,255,255,0.35);
+  }
+  .bn-pur { background: #7b2d8b; }
+  .bn-rr  { background: linear-gradient(90deg,#d32f2f 45%,#fff 45%,#fff 55%,#d32f2f 55%); }
+  .bn-bi  { background: linear-gradient(180deg,#d32f2f 50%,#f5c518 50%); }
+  .bn-aj  { background: linear-gradient(45deg,#111 25%,#fff 25%,#fff 50%,#111 50%,#111 75%,#fff 75%); background-size: 7px 7px; }
+  .bn-pa  { background: #d32f2f; border-radius: 0; }
+  .bn-g1  { background: #7f8c8d; }
+  .bn-g2  { background: #e67e22; }
+  .bn-g3  { background: #c0392b; }
+
   /* ── BOTÓN ESTRELLA EN POPUP ─────────────────────────── */
   .dice-btn { font-size: 1.05rem; line-height: 1; }
   .dice-btn.spin { animation: diceSpin 0.55s cubic-bezier(0.3, 0.7, 0.3, 1); }
@@ -6568,6 +6595,17 @@ const LANGS = {
     noLifeguard: '⚠️ Sin vigilancia',
     blueFlag: '🏆 Bandera Azul 2026',
     flagLink: '🚩 Bandera y socorristas (oficial)',
+    banderasTitulo: '¿Qué significa cada bandera?',
+    banderasPurpura: 'Púrpura: fauna marina (medusas, carabela portuguesa). Se iza junto a la roja o la amarilla.',
+    banderasDosRojas: 'Dos rojas juntas: el peligro está entre ellas, no en toda la playa.',
+    banderasBicolor: 'Roja y amarilla (bicolor): zona segura vigilada. Ahí se puede bañar aunque el resto esté en roja.',
+    banderasAjedrez: 'Cuadros blancos y negros: sector deportivo náutico. No es zona de baño.',
+    banderasPanel: 'Panel rígido rojo: playa de uso prohibido de forma permanente. No es el estado de hoy.',
+    gradoTitulo: 'Grado de protección (aparece en el visor oficial)',
+    gradoBajo: 'Bajo: sin vigilancia garantizada, lo decide el Ayuntamiento. Solo cartel y aros salvavidas.',
+    gradoModerado: 'Moderado: jefatura de playa, socorrista por torre y embarcación de auxilio.',
+    gradoAlto: 'Alto: lo anterior más puesto de primeros auxilios.',
+    banderasFuente: 'Orden de 22/7/2022 (BOC 148), que modifica el Decreto 116/2018.',
     addFav: 'Añadir a favoritos',
     removeFav: 'Quitar de favoritos',
     favTitle: 'Mis favoritos',
@@ -6718,6 +6756,17 @@ const LANGS = {
     noLifeguard: '⚠️ No lifeguard',
     blueFlag: '🏆 Blue Flag 2026',
     flagLink: '🚩 Flag & lifeguard hours (official)',
+    banderasTitulo: 'What does each flag mean?',
+    banderasPurpura: 'Purple: marine life (jellyfish, Portuguese man o\' war). Flown alongside the red or yellow flag.',
+    banderasDosRojas: 'Two red flags together: the danger lies between them, not along the whole beach.',
+    banderasBicolor: 'Red and yellow (bicolour): supervised safe zone. You may swim there even if the rest is under a red flag.',
+    banderasAjedrez: 'Black and white chequered: watersports sector. Not a bathing area.',
+    banderasPanel: 'Rigid red panel: beach permanently closed to bathing. It is not today\'s sea state.',
+    gradoTitulo: 'Protection level (shown on the official viewer)',
+    gradoBajo: 'Low: no guaranteed lifeguard service, the town council decides. Only a sign and lifebuoys.',
+    gradoModerado: 'Moderate: beach supervisor, a lifeguard per tower and a rescue craft.',
+    gradoAlto: 'High: the above plus a first-aid post.',
+    banderasFuente: 'Order of 22/7/2022 (BOC 148), amending Decree 116/2018.',
     addFav: 'Add to favourites',
     removeFav: 'Remove from favourites',
     favTitle: 'My favourites',
@@ -6868,6 +6917,17 @@ const LANGS = {
     noLifeguard: '⚠️ Sans surveillance',
     blueFlag: '🏆 Pavillon Bleu 2026',
     flagLink: '🚩 Drapeau et sauveteurs (officiel)',
+    banderasTitulo: 'Que signifie chaque drapeau ?',
+    banderasPurpura: 'Violet : faune marine (méduses, physalie). Hissé avec le drapeau rouge ou jaune.',
+    banderasDosRojas: 'Deux drapeaux rouges ensemble : le danger se trouve entre eux, pas sur toute la plage.',
+    banderasBicolor: 'Rouge et jaune (bicolore) : zone sûre surveillée. On peut s\'y baigner même si le reste est en drapeau rouge.',
+    banderasAjedrez: 'Damier noir et blanc : secteur de sports nautiques. Ce n\'est pas une zone de baignade.',
+    banderasPanel: 'Panneau rigide rouge : plage interdite à la baignade de façon permanente. Ce n\'est pas l\'état du jour.',
+    gradoTitulo: 'Niveau de protection (indiqué sur le visualiseur officiel)',
+    gradoBajo: 'Bas : pas de surveillance garantie, c\'est la mairie qui décide. Seulement un panneau et des bouées.',
+    gradoModerado: 'Modéré : chef de plage, un sauveteur par tour et une embarcation de secours.',
+    gradoAlto: 'Élevé : ce qui précède plus un poste de premiers secours.',
+    banderasFuente: 'Arrêté du 22/7/2022 (BOC 148), modifiant le Décret 116/2018.',
     addFav: 'Ajouter aux favoris',
     removeFav: 'Retirer des favoris',
     favTitle: 'Mes favoris',
@@ -7018,6 +7078,17 @@ const LANGS = {
     noLifeguard: '⚠️ Kein Rettungsschwimmer',
     blueFlag: '🏆 Blaue Flagge 2026',
     flagLink: '🚩 Flagge und Rettungsdienst (offiziell)',
+    banderasTitulo: 'Was bedeutet welche Flagge?',
+    banderasPurpura: 'Violett: Meerestiere (Quallen, Portugiesische Galeere). Wird zusammen mit Rot oder Gelb gehisst.',
+    banderasDosRojas: 'Zwei rote Flaggen nebeneinander: Die Gefahr liegt zwischen ihnen, nicht am ganzen Strand.',
+    banderasBicolor: 'Rot-gelb (zweifarbig): überwachte sichere Zone. Dort darf gebadet werden, auch wenn sonst Rot weht.',
+    banderasAjedrez: 'Schwarz-weiß kariert: Wassersportbereich. Kein Badebereich.',
+    banderasPanel: 'Starre rote Tafel: Strand dauerhaft für das Baden gesperrt. Das ist nicht der heutige Seegang.',
+    gradoTitulo: 'Schutzgrad (im offiziellen Viewer angegeben)',
+    gradoBajo: 'Niedrig: keine garantierte Bewachung, die Gemeinde entscheidet. Nur Schild und Rettungsringe.',
+    gradoModerado: 'Mittel: Strandleitung, ein Rettungsschwimmer je Turm und ein Rettungsboot.',
+    gradoAlto: 'Hoch: das Vorgenannte plus eine Erste-Hilfe-Station.',
+    banderasFuente: 'Verordnung vom 22.7.2022 (BOC 148) zur Änderung des Dekrets 116/2018.',
     addFav: 'Zu Favoriten hinzufügen',
     removeFav: 'Aus Favoriten entfernen',
     favTitle: 'Meine Favoriten',
@@ -7172,6 +7243,17 @@ const LANGS = {
     noLifeguard: '⚠️ Non sorvegliata',
     blueFlag: '🏆 Bandiera Blu 2026',
     flagLink: '🚩 Bandiera e bagnini (ufficiale)',
+    banderasTitulo: 'Che cosa significa ogni bandiera?',
+    banderasPurpura: 'Viola: fauna marina (meduse, caravella portoghese). Si issa insieme alla rossa o alla gialla.',
+    banderasDosRojas: 'Due bandiere rosse vicine: il pericolo è fra le due, non su tutta la spiaggia.',
+    banderasBicolor: 'Rossa e gialla (bicolore): zona sicura sorvegliata. Lì si può fare il bagno anche se il resto è in bandiera rossa.',
+    banderasAjedrez: 'Scacchi bianchi e neri: settore sportivo nautico. Non è zona di balneazione.',
+    banderasPanel: 'Pannello rigido rosso: spiaggia interdetta alla balneazione in modo permanente. Non è lo stato del mare di oggi.',
+    gradoTitulo: 'Grado di protezione (compare nel visualizzatore ufficiale)',
+    gradoBajo: 'Basso: nessuna sorveglianza garantita, decide il Comune. Solo cartello e salvagenti.',
+    gradoModerado: 'Moderato: capo spiaggia, un bagnino per torretta e un\'imbarcazione di soccorso.',
+    gradoAlto: 'Alto: quanto sopra più un posto di primo soccorso.',
+    banderasFuente: 'Ordinanza del 22/7/2022 (BOC 148), che modifica il Decreto 116/2018.',
     addFav: 'Aggiungi ai preferiti',
     removeFav: 'Rimuovi dai preferiti',
     favTitle: 'I miei preferiti',
@@ -7320,6 +7402,17 @@ const LANGS = {
     noLifeguard: '⚠️ Onbewaakt',
     blueFlag: '🏆 Blauwe Vlag 2026',
     flagLink: '🚩 Vlag en strandwacht (officieel)',
+    banderasTitulo: 'Wat betekent elke vlag?',
+    banderasPurpura: 'Paars: zeedieren (kwallen, Portugees oorlogsschip). Wordt samen met de rode of gele vlag gehesen.',
+    banderasDosRojas: 'Twee rode vlaggen naast elkaar: het gevaar zit ertussen, niet op het hele strand.',
+    banderasBicolor: 'Rood-geel (tweekleurig): bewaakte veilige zone. Daar mag je zwemmen, ook als de rest rood is.',
+    banderasAjedrez: 'Zwart-wit geblokt: watersportsector. Geen zwemzone.',
+    banderasPanel: 'Rood bord van hard materiaal: strand permanent gesloten voor zwemmen. Dit is niet de zeegang van vandaag.',
+    gradoTitulo: 'Beschermingsgraad (staat in de officiële viewer)',
+    gradoBajo: 'Laag: geen gegarandeerde bewaking, de gemeente beslist. Alleen een bord en reddingsboeien.',
+    gradoModerado: 'Matig: strandhoofd, een strandwacht per toren en een reddingsboot.',
+    gradoAlto: 'Hoog: het bovenstaande plus een EHBO-post.',
+    banderasFuente: 'Besluit van 22-7-2022 (BOC 148), tot wijziging van Decreet 116/2018.',
     addFav: 'Toevoegen aan favorieten',
     removeFav: 'Verwijderen uit favorieten',
     favTitle: 'Mijn favorieten',
@@ -7474,6 +7567,17 @@ const LANGS = {
     noLifeguard: '⚠️ 无救生员',
     blueFlag: '🏆 2026 蓝旗海滩',
     flagLink: '🚩 旗帜与救生员时段（官方）',
+    banderasTitulo: '每种旗帜是什么意思？',
+    banderasPurpura: '紫旗：海洋生物（水母、僧帽水母）。会与红旗或黄旗一起升起。',
+    banderasDosRojas: '两面红旗并排：危险只在两旗之间，并非整片海滩。',
+    banderasBicolor: '红黄双色旗：有救生员看护的安全区。即使其他区域挂红旗，这里仍可下水。',
+    banderasAjedrez: '黑白格旗：水上运动区，不是游泳区。',
+    banderasPanel: '红色硬质告示牌：该海滩长期禁止下海，与当天海况无关。',
+    gradoTitulo: '防护等级（官方地图上会显示）',
+    gradoBajo: '低：不保证有人看护，由市政府决定，只有告示牌和救生圈。',
+    gradoModerado: '中：设海滩负责人、每座瞭望塔一名救生员，以及一艘救援船。',
+    gradoAlto: '高：在上述基础上增设急救站。',
+    banderasFuente: '2022年7月22日法令（BOC 148），修订第116/2018号法令。',
     addFav: '加入收藏',
     removeFav: '移除收藏',
     favTitle: '我的收藏',
@@ -7918,6 +8022,17 @@ const ZHT_OVERRIDES = {
     noLifeguard: '⚠️ 無救生員',
     blueFlag: '🏆 2026 藍旗海灘',
     flagLink: '🚩 旗幟與救生員時段（官方）',
+    banderasTitulo: '每種旗幟是什麼意思？',
+    banderasPurpura: '紫旗：海洋生物（水母、僧帽水母）。會與紅旗或黃旗一起升起。',
+    banderasDosRojas: '兩面紅旗並排：危險只在兩旗之間，並非整片海灘。',
+    banderasBicolor: '紅黃雙色旗：有救生員看護的安全區。即使其他區域掛紅旗，這裡仍可下水。',
+    banderasAjedrez: '黑白格旗：水上運動區，不是游泳區。',
+    banderasPanel: '紅色硬質告示牌：該海灘長期禁止下海，與當天海況無關。',
+    gradoTitulo: '防護等級（官方地圖上會顯示）',
+    gradoBajo: '低：不保證有人看護，由市政府決定，只有告示牌和救生圈。',
+    gradoModerado: '中：設海灘負責人、每座瞭望塔一名救生員，以及一艘救援船。',
+    gradoAlto: '高：在上述基礎上增設急救站。',
+    banderasFuente: '2022年7月22日法令（BOC 148），修訂第116/2018號法令。',
     addFav: '加入收藏',
     removeFav: '移除收藏',
     favTitle: '我的收藏',
@@ -14364,6 +14479,34 @@ function _updateMarkersImpl() {
         ? `<a href="${escapeAttr('https://webmap.infoplayascanarias.es/?lat=' + encodeURIComponent(place.lat) + '&lng=' + encodeURIComponent(place.lng) + '&zoom=16')}" target="_blank" rel="noopener noreferrer" class="popup-flag-link">${L.flagLink}</a>`
         : '';
 
+      /* Leyenda de banderas. Es dato ESTRUCTURAL, no perecedero: sale de la
+         Orden de 22/7/2022 (BOC 148) que modifica los anexos del Decreto
+         116/2018, en vigor. No afirma nada sobre el estado de ninguna playa
+         -eso sigue siendo el enlace al visor, que es dato vivo-, solo explica
+         que estas mirando cuando llegas y ves una bandera.
+
+         Van solo las cinco que esa Orden define, que son ademas las que nadie
+         entiende. Las generales -verde, amarilla, roja- viven en el articulo 9
+         del Decreto y ese texto no lo tengo, asi que no se inventan aqui.
+
+         Es <details>, nativo: no necesita JS, no se cierra el popup al
+         pulsarlo y ocupa una linea mientras este plegado. */
+      const flagLeyenda = place.category === 'playa'
+        ? `<details class="popup-ban">
+             <summary>${escapeHtml(L.banderasTitulo)}</summary>
+             <div class="popup-ban-fila"><i class="bn bn-pur"></i>${escapeHtml(L.banderasPurpura)}</div>
+             <div class="popup-ban-fila"><i class="bn bn-rr"></i>${escapeHtml(L.banderasDosRojas)}</div>
+             <div class="popup-ban-fila"><i class="bn bn-bi"></i>${escapeHtml(L.banderasBicolor)}</div>
+             <div class="popup-ban-fila"><i class="bn bn-aj"></i>${escapeHtml(L.banderasAjedrez)}</div>
+             <div class="popup-ban-fila"><i class="bn bn-pa"></i>${escapeHtml(L.banderasPanel)}</div>
+             <div class="popup-ban-tit">${escapeHtml(L.gradoTitulo)}</div>
+             <div class="popup-ban-fila"><i class="bn bn-g1"></i>${escapeHtml(L.gradoBajo)}</div>
+             <div class="popup-ban-fila"><i class="bn bn-g2"></i>${escapeHtml(L.gradoModerado)}</div>
+             <div class="popup-ban-fila"><i class="bn bn-g3"></i>${escapeHtml(L.gradoAlto)}</div>
+             <div class="popup-ban-src">${escapeHtml(L.banderasFuente)}</div>
+           </details>`
+        : '';
+
       // Bloque de info para servicios sanitarios y veterinarios
       // (teléfono, horario, dirección, 112). Se muestra para cualquier
       // lugar con datos clínicos disponibles (phone/hours/address), lo
@@ -14475,6 +14618,7 @@ function _updateMarkersImpl() {
           ${parkingInfo}
           <div class="popup-tags">${safeTags}</div>
           ${flagLink}
+          ${flagLeyenda}
           ${pharmacyLink}
           ${seaBlock}
           <div class="popup-actions">
