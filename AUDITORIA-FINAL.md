@@ -143,11 +143,25 @@ sitio.
 Lo que sigue faltando sin ellas: quien vive a mitad de recorrido no encuentra
 esa línea al buscar.
 
-**A4. Orientación fina de playas.**
-De las 34 del panel de baño, **28 tienen la orientación deducida** por
-geometría y 6 escritas a mano. La deducción reproduce el comportamiento de las
-6 conocidas, pero un surfista o un socorrista local afinaría el `badWind` de su
-playa mejor que ningún modelo.
+**A4 — hecho a medias: la puntuación ya es angular; lo que falta es el dato
+local.** De las 34 del panel de baño, **28 puntúan por ángulo** entre su `ori`
+y la dirección del viento, y 6 siguen escritas a mano.
+
+Antes se comparaba por la **primera letra** (`card.includes(b[0])`), así que
+`'SW'` colaba en `'S'` y en `'SE'`, y `NW`/`N`/`NE` colapsaban en `'N'`. Abama
+y Almáciga, con la misma banda de tres sectores, se penalizaban 6/8 y 3/8 según
+por qué letra empezaran. Ahora, 5/8 las dos.
+
+**Y esto cambia lo que hay que pedir.** Comprobado vaciando el campo: en una
+entrada con `deducida: true`, `badWind` **ya no lo lee nadie** — 0 de 8 vientos
+cambian. En una escrita a mano cambia 3 de 8. Así que afinar el `badWind` de
+una de las 28 no hace nada: para meter conocimiento local hay que **sacarla de
+la rama angular** quitándole `deducida` y entonces sí escribirle su `badWind`,
+como Playa Amarilla o Teresitas.
+
+Lo que sigue faltando, entonces, no es «afinar `badWind`» sino: qué playas
+merecen salirse del modelo porque un dique, un espigón o un saliente hacen algo
+que la geometría no ve.
 
 ## B · Sé lo que hay que hacer y puedo hacerlo yo
 
