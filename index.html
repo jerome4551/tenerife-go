@@ -31007,6 +31007,46 @@ function windDirToCardinal(deg){
 function scorePlaya(playa, windDeg, windSpeed){
   const card = windDirToCardinal(windDeg);
   let score=100;
+
+  /* Dos caminos a proposito.
+
+     Las 28 marcadas `deducida: true` puntuan POR ANGULO. Su badWind es la
+     banda de tres sectores alrededor de 'ori', asi que la geometria ya lo
+     dice todo y compararla como texto solo mete ruido. La linea vieja
+     hacia `card.includes(b[0])`, o sea comparaba por la PRIMERA LETRA:
+     'SW' colaba en 'S' y en 'SE', y 'NW'/'N'/'NE' colapsaban las tres en
+     'N'. Medido sobre la tabla: dos playas con la misma banda de tres
+     sectores recibian el -20 en 7 de 8 vientos (Abama) o en 3 de 8
+     (Almaciga) segun por que letra empezaran sus sectores. Artefacto de
+     cadenas, no geografia.
+
+     Las 6 escritas a mano NO pasan por el angulo: conservan la logica
+     anterior EXACTA, bug de la inicial incluido. No es descuido. Playa
+     Amarilla lleva badWind ['W'] elegido justo para que esa comparacion
+     por inicial reste 20 tambien con SW y NW, y Teresitas lleva [] para
+     anular el castigo porque el dique la protege del N/NE. Son overrides
+     de conocimiento local que el angulo no puede producir. Si algun dia
+     se toca esta rama, hay que reajustar esas dos a mano primero.
+
+     OJO: esto depende de que `deducida` LLEGUE hasta aqui. El objeto que
+     se puntua no es la entrada de PLAYAS_ORIENTACION: se copia campo a
+     campo dos veces, en renderBanoHoy y otra vez en fetchPlayasHoy. Si
+     alguien anade un criterio nuevo a la tabla y no lo propaga en esos
+     dos sitios, esta rama deja de ejecutarse en silencio y todo vuelve al
+     comportamiento viejo sin que falle nada. */
+
+  if (playa.deducida) {
+    const ORI_DEG = {N:0, NE:45, E:90, SE:135, S:180, SW:225, W:270, NW:315};
+    const od = ORI_DEG[playa.ori], cd = ORI_DEG[card];
+    if (od == null || cd == null) return 100;
+    /* diff: 0 = el viento entra de cara · 180 = terral, sale de tierra */
+    const diff = Math.abs(((cd - od + 540) % 360) - 180);
+    if (diff <= 45) score -= 60;
+    else if (diff <= 90 && windSpeed > 20) score -= 20;
+    if (diff >= 135) score += 20;
+    return Math.max(0, Math.min(120, score));
+  }
+
   if (playa.badWind.includes(card)) score-=60;
   if (windSpeed>20 && playa.badWind.some(b=>card.includes(b[0]))) score-=20;
   if ((card==='NE' || card==='E') && (playa.ori==='S' || playa.ori==='SW' || playa.ori==='W')) score+=20;
@@ -31076,8 +31116,14 @@ async function fetchPlayasHoy(ids){
       // Sin viento o sin altura de ola no se puede juzgar esa playa.
       if(typeof kmh!=='number' || !isFinite(kmh) || typeof deg!=='number' || !isFinite(deg)) continue;
       if(typeof h!=='number'   || !isFinite(h)) continue;
+      /* Este objeto es el que acaba puntuandose y pintandose, asi que todo
+         lo que necesiten scorePlaya o la tarjeta tiene que estar aqui.
+         Faltaban dos: `deducida`, sin la cual scorePlaya nunca tomaba la
+         rama angular, y `lifeguard`, sin la cual el aviso de "sin
+         socorrista" de la tarjeta no llegaba a salir jamas. */
       out.push({
         id: ids[i].id, name: ids[i].name, ori: ids[i].ori, badWind: ids[i].badWind,
+        deducida: ids[i].deducida, lifeguard: ids[i].lifeguard,
         windKmh: kmh, windDeg: deg,
         waveH: h, waveP: cm.wave_period,
         swellH: cm.swell_wave_height, swellP: cm.swell_wave_period
@@ -31126,8 +31172,10 @@ async function renderBanoHoy(){
     if(o.noBano) return null;   // prohibicion de bano: ni se pide su dato
     const pl = (typeof places!=='undefined') ? places.find(function(q){ return q.id===id; }) : null;
     if(!pl) return null;
+    // deducida decide como puntua scorePlaya. Si no se copia aqui, la rama
+    // angular no se ejecuta nunca y nada falla: solo puntua peor.
     return { id:id, name:pl.name, lat:pl.lat, lng:pl.lng, ori:o.ori, badWind:o.badWind,
-             lifeguard:pl.lifeguard };
+             deducida:o.deducida, lifeguard:pl.lifeguard };
   }).filter(Boolean);
 
   const datos = await fetchPlayasHoyCached(ids);
