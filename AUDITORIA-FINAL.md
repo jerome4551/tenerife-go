@@ -72,8 +72,8 @@ Lo que se comprobó que **hace lo correcto**, no solo que pinta:
 ## A · Necesita datos de fuera
 
 **A1. Horario de socorristas en 13 playas.**
-Hay 21 playas con servicio y **8 con horario real** (Arona y Adeje). Las otras
-13 las lleva otra empresa y no hay dato firme:
+Hay **24 fichas con servicio y 11 con horario real**: Arona ×2, Adeje ×6 y
+**La Laguna ×3**. Las otras 13 las lleva otra empresa y no hay dato firme:
 
 ```
 Santa Cruz      Teresitas · Benijo · Almáciga
@@ -94,6 +94,21 @@ Nombre = 15/06 a 15/09 · 10:00-19:00 · todos los días
 
 Sin ese dato **no pasa nada malo**: esas 13 siguen con la etiqueta neutra y el
 enlace al visor oficial, que no miente.
+
+**La Laguna entró, y no era ninguna playa.** El horario del municipio —10:00 a
+20:00 en verano, 10:00 a 18:00 el resto, ventana 15/06-15/09 como Arona— cubre
+las **piscinas naturales y áreas habilitadas** de Bajamar, Punta del Hidalgo y
+Jóver. Al cruzarlo contra la app salió que **ninguna de las 21 fichas vigiladas
+estaba en La Laguna**: el horario no tenía dónde ir. Las tres piscinas, que
+hasta ahora no afirmaban nada, son las que lo llevan.
+
+Las cuatro playas de esa misma costa —San Juan de Bajamar, El Arenal, Los
+Troches y El Arenisco— **no entran**, por mucho que compartan municipio. Son
+rompientes de bolos sin vigilancia y una ni siquiera es apta para el baño.
+Comprobado: no están en `SOCORRISTAS`, tres siguen avisando «sin vigilancia» y
+El Arenisco sigue sin badge.
+
+Esto no reduce los 13 que faltan: los suma aparte.
 
 **A2 — corregido: La Jaquita no era una duda de municipio. RESUELTO.**
 Lo planteé mal aquí. No había que elegir entre dos municipios: la coordenada
