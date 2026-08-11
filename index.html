@@ -2432,6 +2432,11 @@ window.onunhandledrejection = function(e) {
     flex: 0 0 auto; width: 13px; height: 13px; margin-top: 1px;
     border-radius: 2px; border: 1px solid rgba(255,255,255,0.35);
   }
+  .popup-ban-nota { margin: 6px 2px 2px; padding: 5px 7px; line-height: 1.35;
+    border-left: 2px solid rgba(212,175,55,0.5); background: rgba(212,175,55,0.07); border-radius: 0 6px 6px 0; }
+  .bn-ve  { background: #2e9e4f; }
+  .bn-am  { background: #f5c518; }
+  .bn-ro  { background: #d32f2f; }
   .bn-pur { background: #7b2d8b; }
   .bn-rr  { background: linear-gradient(90deg,#d32f2f 45%,#fff 45%,#fff 55%,#d32f2f 55%); }
   .bn-bi  { background: linear-gradient(180deg,#d32f2f 50%,#f5c518 50%); }
@@ -6596,6 +6601,12 @@ const LANGS = {
     blueFlag: '🏆 Bandera Azul 2026',
     flagLink: '🚩 Bandera y socorristas (oficial)',
     banderasTitulo: '¿Qué significa cada bandera?',
+    banderasGenTitulo: 'Las tres grandes dicen qué playa es, no cómo está el mar hoy',
+    banderasVerde: 'Verde: playa clasificada como libre.',
+    banderasAmarilla: 'Amarilla: playa clasificada como peligrosa.',
+    banderasRoja: 'Roja: playa de uso prohibido.',
+    banderasTemporal: 'Ojo: en las playas libres y peligrosas ese color sí puede cambiarse temporalmente según el mar, las corrientes o una contaminación. Entonces la roja significa prohibido bañarse ahora, y la amarilla, limitaciones.',
+    banderasCompTitulo: 'Banderas complementarias',
     banderasPurpura: 'Púrpura: fauna marina (medusas, carabela portuguesa). Se iza junto a la roja o la amarilla.',
     banderasDosRojas: 'Dos rojas juntas: el peligro está entre ellas, no en toda la playa.',
     banderasBicolor: 'Roja y amarilla (bicolor): zona segura vigilada. Ahí se puede bañar aunque el resto esté en roja.',
@@ -6605,7 +6616,7 @@ const LANGS = {
     gradoBajo: 'Bajo: sin vigilancia garantizada, lo decide el Ayuntamiento. Solo cartel y aros salvavidas.',
     gradoModerado: 'Moderado: jefatura de playa, socorrista por torre y embarcación de auxilio.',
     gradoAlto: 'Alto: lo anterior más puesto de primeros auxilios.',
-    banderasFuente: 'Orden de 22/7/2022 (BOC 148), que modifica el Decreto 116/2018.',
+    banderasFuente: 'Decreto 116/2018, art. 9 y Anexo III, con la Orden de 22/7/2022.',
     addFav: 'Añadir a favoritos',
     removeFav: 'Quitar de favoritos',
     favTitle: 'Mis favoritos',
@@ -6757,6 +6768,12 @@ const LANGS = {
     blueFlag: '🏆 Blue Flag 2026',
     flagLink: '🚩 Flag & lifeguard hours (official)',
     banderasTitulo: 'What does each flag mean?',
+    banderasGenTitulo: 'The three big ones say what kind of beach it is, not what the sea is like today',
+    banderasVerde: 'Green: beach classified as free.',
+    banderasAmarilla: 'Yellow: beach classified as dangerous.',
+    banderasRoja: 'Red: beach closed to bathing.',
+    banderasTemporal: 'Careful: on free and dangerous beaches that colour can be changed temporarily depending on the sea, the currents or contamination. Then red does mean no swimming right now, and yellow means restrictions.',
+    banderasCompTitulo: 'Complementary flags',
     banderasPurpura: 'Purple: marine life (jellyfish, Portuguese man o\' war). Flown alongside the red or yellow flag.',
     banderasDosRojas: 'Two red flags together: the danger lies between them, not along the whole beach.',
     banderasBicolor: 'Red and yellow (bicolour): supervised safe zone. You may swim there even if the rest is under a red flag.',
@@ -6766,7 +6783,7 @@ const LANGS = {
     gradoBajo: 'Low: no guaranteed lifeguard service, the town council decides. Only a sign and lifebuoys.',
     gradoModerado: 'Moderate: beach supervisor, a lifeguard per tower and a rescue craft.',
     gradoAlto: 'High: the above plus a first-aid post.',
-    banderasFuente: 'Order of 22/7/2022 (BOC 148), amending Decree 116/2018.',
+    banderasFuente: 'Decree 116/2018, art. 9 and Annex III, as amended on 22/7/2022.',
     addFav: 'Add to favourites',
     removeFav: 'Remove from favourites',
     favTitle: 'My favourites',
@@ -6918,6 +6935,12 @@ const LANGS = {
     blueFlag: '🏆 Pavillon Bleu 2026',
     flagLink: '🚩 Drapeau et sauveteurs (officiel)',
     banderasTitulo: 'Que signifie chaque drapeau ?',
+    banderasGenTitulo: 'Les trois grands disent quel type de plage c\'est, pas l\'état de la mer du jour',
+    banderasVerde: 'Vert : plage classée libre.',
+    banderasAmarilla: 'Jaune : plage classée dangereuse.',
+    banderasRoja: 'Rouge : plage interdite à la baignade.',
+    banderasTemporal: 'Attention : sur les plages libres et dangereuses, cette couleur peut être changée temporairement selon la mer, les courants ou une pollution. Le rouge signifie alors baignade interdite maintenant, et le jaune, des restrictions.',
+    banderasCompTitulo: 'Drapeaux complémentaires',
     banderasPurpura: 'Violet : faune marine (méduses, physalie). Hissé avec le drapeau rouge ou jaune.',
     banderasDosRojas: 'Deux drapeaux rouges ensemble : le danger se trouve entre eux, pas sur toute la plage.',
     banderasBicolor: 'Rouge et jaune (bicolore) : zone sûre surveillée. On peut s\'y baigner même si le reste est en drapeau rouge.',
@@ -6927,7 +6950,7 @@ const LANGS = {
     gradoBajo: 'Bas : pas de surveillance garantie, c\'est la mairie qui décide. Seulement un panneau et des bouées.',
     gradoModerado: 'Modéré : chef de plage, un sauveteur par tour et une embarcation de secours.',
     gradoAlto: 'Élevé : ce qui précède plus un poste de premiers secours.',
-    banderasFuente: 'Arrêté du 22/7/2022 (BOC 148), modifiant le Décret 116/2018.',
+    banderasFuente: 'Décret 116/2018, art. 9 et Annexe III, modifié le 22/7/2022.',
     addFav: 'Ajouter aux favoris',
     removeFav: 'Retirer des favoris',
     favTitle: 'Mes favoris',
@@ -7079,6 +7102,12 @@ const LANGS = {
     blueFlag: '🏆 Blaue Flagge 2026',
     flagLink: '🚩 Flagge und Rettungsdienst (offiziell)',
     banderasTitulo: 'Was bedeutet welche Flagge?',
+    banderasGenTitulo: 'Die drei großen sagen, was für ein Strand es ist, nicht wie das Meer heute steht',
+    banderasVerde: 'Grün: Strand als frei eingestuft.',
+    banderasAmarilla: 'Gelb: Strand als gefährlich eingestuft.',
+    banderasRoja: 'Rot: Strand mit Badeverbot.',
+    banderasTemporal: 'Achtung: An freien und gefährlichen Stränden kann diese Farbe je nach Seegang, Strömung oder Verschmutzung vorübergehend gewechselt werden. Dann bedeutet Rot tatsächlich jetzt kein Baden, und Gelb Einschränkungen.',
+    banderasCompTitulo: 'Ergänzende Flaggen',
     banderasPurpura: 'Violett: Meerestiere (Quallen, Portugiesische Galeere). Wird zusammen mit Rot oder Gelb gehisst.',
     banderasDosRojas: 'Zwei rote Flaggen nebeneinander: Die Gefahr liegt zwischen ihnen, nicht am ganzen Strand.',
     banderasBicolor: 'Rot-gelb (zweifarbig): überwachte sichere Zone. Dort darf gebadet werden, auch wenn sonst Rot weht.',
@@ -7088,7 +7117,7 @@ const LANGS = {
     gradoBajo: 'Niedrig: keine garantierte Bewachung, die Gemeinde entscheidet. Nur Schild und Rettungsringe.',
     gradoModerado: 'Mittel: Strandleitung, ein Rettungsschwimmer je Turm und ein Rettungsboot.',
     gradoAlto: 'Hoch: das Vorgenannte plus eine Erste-Hilfe-Station.',
-    banderasFuente: 'Verordnung vom 22.7.2022 (BOC 148) zur Änderung des Dekrets 116/2018.',
+    banderasFuente: 'Dekret 116/2018, Art. 9 und Anhang III, geändert am 22.7.2022.',
     addFav: 'Zu Favoriten hinzufügen',
     removeFav: 'Aus Favoriten entfernen',
     favTitle: 'Meine Favoriten',
@@ -7244,6 +7273,12 @@ const LANGS = {
     blueFlag: '🏆 Bandiera Blu 2026',
     flagLink: '🚩 Bandiera e bagnini (ufficiale)',
     banderasTitulo: 'Che cosa significa ogni bandiera?',
+    banderasGenTitulo: 'Le tre grandi dicono che tipo di spiaggia è, non com\'è il mare oggi',
+    banderasVerde: 'Verde: spiaggia classificata come libera.',
+    banderasAmarilla: 'Gialla: spiaggia classificata come pericolosa.',
+    banderasRoja: 'Rossa: spiaggia con divieto di balneazione.',
+    banderasTemporal: 'Attenzione: nelle spiagge libere e pericolose quel colore può essere cambiato temporaneamente in base al mare, alle correnti o a una contaminazione. Allora la rossa significa vietato fare il bagno adesso, e la gialla, limitazioni.',
+    banderasCompTitulo: 'Bandiere complementari',
     banderasPurpura: 'Viola: fauna marina (meduse, caravella portoghese). Si issa insieme alla rossa o alla gialla.',
     banderasDosRojas: 'Due bandiere rosse vicine: il pericolo è fra le due, non su tutta la spiaggia.',
     banderasBicolor: 'Rossa e gialla (bicolore): zona sicura sorvegliata. Lì si può fare il bagno anche se il resto è in bandiera rossa.',
@@ -7253,7 +7288,7 @@ const LANGS = {
     gradoBajo: 'Basso: nessuna sorveglianza garantita, decide il Comune. Solo cartello e salvagenti.',
     gradoModerado: 'Moderato: capo spiaggia, un bagnino per torretta e un\'imbarcazione di soccorso.',
     gradoAlto: 'Alto: quanto sopra più un posto di primo soccorso.',
-    banderasFuente: 'Ordinanza del 22/7/2022 (BOC 148), che modifica il Decreto 116/2018.',
+    banderasFuente: 'Decreto 116/2018, art. 9 e Allegato III, modificato il 22/7/2022.',
     addFav: 'Aggiungi ai preferiti',
     removeFav: 'Rimuovi dai preferiti',
     favTitle: 'I miei preferiti',
@@ -7403,6 +7438,12 @@ const LANGS = {
     blueFlag: '🏆 Blauwe Vlag 2026',
     flagLink: '🚩 Vlag en strandwacht (officieel)',
     banderasTitulo: 'Wat betekent elke vlag?',
+    banderasGenTitulo: 'De drie grote zeggen wat voor strand het is, niet hoe de zee vandaag is',
+    banderasVerde: 'Groen: strand geclassificeerd als vrij.',
+    banderasAmarilla: 'Geel: strand geclassificeerd als gevaarlijk.',
+    banderasRoja: 'Rood: strand waar zwemmen verboden is.',
+    banderasTemporal: 'Let op: op vrije en gevaarlijke stranden kan die kleur tijdelijk worden gewijzigd op basis van de zee, de stromingen of vervuiling. Dan betekent rood wel degelijk nu niet zwemmen, en geel beperkingen.',
+    banderasCompTitulo: 'Aanvullende vlaggen',
     banderasPurpura: 'Paars: zeedieren (kwallen, Portugees oorlogsschip). Wordt samen met de rode of gele vlag gehesen.',
     banderasDosRojas: 'Twee rode vlaggen naast elkaar: het gevaar zit ertussen, niet op het hele strand.',
     banderasBicolor: 'Rood-geel (tweekleurig): bewaakte veilige zone. Daar mag je zwemmen, ook als de rest rood is.',
@@ -7412,7 +7453,7 @@ const LANGS = {
     gradoBajo: 'Laag: geen gegarandeerde bewaking, de gemeente beslist. Alleen een bord en reddingsboeien.',
     gradoModerado: 'Matig: strandhoofd, een strandwacht per toren en een reddingsboot.',
     gradoAlto: 'Hoog: het bovenstaande plus een EHBO-post.',
-    banderasFuente: 'Besluit van 22-7-2022 (BOC 148), tot wijziging van Decreet 116/2018.',
+    banderasFuente: 'Decreet 116/2018, art. 9 en Bijlage III, gewijzigd op 22-7-2022.',
     addFav: 'Toevoegen aan favorieten',
     removeFav: 'Verwijderen uit favorieten',
     favTitle: 'Mijn favorieten',
@@ -7568,6 +7609,12 @@ const LANGS = {
     blueFlag: '🏆 2026 蓝旗海滩',
     flagLink: '🚩 旗帜与救生员时段（官方）',
     banderasTitulo: '每种旗帜是什么意思？',
+    banderasGenTitulo: '三面主旗说明这是哪一类海滩，而不是今天海况如何',
+    banderasVerde: '绿旗：该海滩被归类为「自由」海滩。',
+    banderasAmarilla: '黄旗：该海滩被归类为「危险」海滩。',
+    banderasRoja: '红旗：禁止下海的海滩。',
+    banderasTemporal: '注意：在「自由」和「危险」海滩上，这个颜色会依海况、洋流或污染情况临时更换。此时红旗确实表示当下禁止下水，黄旗表示有限制。',
+    banderasCompTitulo: '补充旗帜',
     banderasPurpura: '紫旗：海洋生物（水母、僧帽水母）。会与红旗或黄旗一起升起。',
     banderasDosRojas: '两面红旗并排：危险只在两旗之间，并非整片海滩。',
     banderasBicolor: '红黄双色旗：有救生员看护的安全区。即使其他区域挂红旗，这里仍可下水。',
@@ -7577,7 +7624,7 @@ const LANGS = {
     gradoBajo: '低：不保证有人看护，由市政府决定，只有告示牌和救生圈。',
     gradoModerado: '中：设海滩负责人、每座瞭望塔一名救生员，以及一艘救援船。',
     gradoAlto: '高：在上述基础上增设急救站。',
-    banderasFuente: '2022年7月22日法令（BOC 148），修订第116/2018号法令。',
+    banderasFuente: '第116/2018号法令第9条与附件三，经2022年7月22日修订。',
     addFav: '加入收藏',
     removeFav: '移除收藏',
     favTitle: '我的收藏',
@@ -8023,6 +8070,12 @@ const ZHT_OVERRIDES = {
     blueFlag: '🏆 2026 藍旗海灘',
     flagLink: '🚩 旗幟與救生員時段（官方）',
     banderasTitulo: '每種旗幟是什麼意思？',
+    banderasGenTitulo: '三面主旗說明這是哪一類海灘，而不是今天海況如何',
+    banderasVerde: '綠旗：該海灘被歸類為「自由」海灘。',
+    banderasAmarilla: '黃旗：該海灘被歸類為「危險」海灘。',
+    banderasRoja: '紅旗：禁止下海的海灘。',
+    banderasTemporal: '注意：在「自由」和「危險」海灘上，這個顏色會依海況、洋流或污染情況臨時更換。此時紅旗確實表示當下禁止下水，黃旗表示有限制。',
+    banderasCompTitulo: '補充旗幟',
     banderasPurpura: '紫旗：海洋生物（水母、僧帽水母）。會與紅旗或黃旗一起升起。',
     banderasDosRojas: '兩面紅旗並排：危險只在兩旗之間，並非整片海灘。',
     banderasBicolor: '紅黃雙色旗：有救生員看護的安全區。即使其他區域掛紅旗，這裡仍可下水。',
@@ -8032,7 +8085,7 @@ const ZHT_OVERRIDES = {
     gradoBajo: '低：不保證有人看護，由市政府決定，只有告示牌和救生圈。',
     gradoModerado: '中：設海灘負責人、每座瞭望塔一名救生員，以及一艘救援船。',
     gradoAlto: '高：在上述基礎上增設急救站。',
-    banderasFuente: '2022年7月22日法令（BOC 148），修訂第116/2018號法令。',
+    banderasFuente: '第116/2018號法令第9條與附件三，經2022年7月22日修訂。',
     addFav: '加入收藏',
     removeFav: '移除收藏',
     favTitle: '我的收藏',
@@ -14485,15 +14538,26 @@ function _updateMarkersImpl() {
          -eso sigue siendo el enlace al visor, que es dato vivo-, solo explica
          que estas mirando cuando llegas y ves una bandera.
 
-         Van solo las cinco que esa Orden define, que son ademas las que nadie
-         entiende. Las generales -verde, amarilla, roja- viven en el articulo 9
-         del Decreto y ese texto no lo tengo, asi que no se inventan aqui.
+         Van las tres generales del articulo 9 y las cinco complementarias del
+         Anexo III. Lo mas util de todo es lo primero, y es contraintuitivo:
+         las tres grandes identifican EL TIPO DE PLAYA con caracter PERMANENTE
+         -verde libre, amarilla peligrosa, roja uso prohibido-, no el estado
+         del mar de hoy. Solo en las libres y peligrosas puede sustituirse el
+         color temporalmente, y ahi si vale la lectura de "hoy no te bañes".
+         Sin ese matiz, una amarilla permanente se lee como "hoy hay algo de
+         riesgo" cuando significa que la playa esta clasificada peligrosa.
 
          Es <details>, nativo: no necesita JS, no se cierra el popup al
          pulsarlo y ocupa una linea mientras este plegado. */
       const flagLeyenda = place.category === 'playa'
         ? `<details class="popup-ban">
              <summary>${escapeHtml(L.banderasTitulo)}</summary>
+             <div class="popup-ban-tit">${escapeHtml(L.banderasGenTitulo)}</div>
+             <div class="popup-ban-fila"><i class="bn bn-ve"></i>${escapeHtml(L.banderasVerde)}</div>
+             <div class="popup-ban-fila"><i class="bn bn-am"></i>${escapeHtml(L.banderasAmarilla)}</div>
+             <div class="popup-ban-fila"><i class="bn bn-ro"></i>${escapeHtml(L.banderasRoja)}</div>
+             <div class="popup-ban-nota">${escapeHtml(L.banderasTemporal)}</div>
+             <div class="popup-ban-tit">${escapeHtml(L.banderasCompTitulo)}</div>
              <div class="popup-ban-fila"><i class="bn bn-pur"></i>${escapeHtml(L.banderasPurpura)}</div>
              <div class="popup-ban-fila"><i class="bn bn-rr"></i>${escapeHtml(L.banderasDosRojas)}</div>
              <div class="popup-ban-fila"><i class="bn bn-bi"></i>${escapeHtml(L.banderasBicolor)}</div>
