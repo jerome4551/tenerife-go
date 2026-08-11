@@ -201,3 +201,13 @@ la playa mira al NW, así que ese viento le entra de cara.
    Mejor contar estructuras.
 5. **`push_sends` con la fecha real apagaría la notificación diaria** de ese día.
    Por eso el eclipse usa fechas centinela de 1970.
+6. **Las frases que congelan un presente se pudren solas.** Playa Jardín decía
+   «el último cierre terminó en junio de 2025 y **hoy está abierta**» catorce
+   meses después. Un hecho fechado no caduca («inaugurado en 2010»); un estado
+   presente escrito a mano, sí. Para el estado del baño está el enlace al visor
+   oficial, que es dato vivo. Barridas las 760: ninguna otra playa congelaba su
+   estado de baño.
+7. **Un comentario que describe lo que el código ya no hace es peor que no
+   tenerlo.** El de `PLAYAS_ORIENTACION` seguía explicando por qué Playa Jardín
+   quedaba excluida mucho después de volver a entrar. Al tocar el código, tocar
+   el comentario.

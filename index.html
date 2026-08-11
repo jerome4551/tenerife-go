@@ -8462,7 +8462,7 @@ const places = [
     tags:["Familiar","Adeje","Servicios","Accesible"] },
 
   { id:"playa-jardin", category:"playa", name:"Playa Jardín", emoji:"🌸", color:"#6a1b9a", lat:28.4128, lng:-16.5585, lifeguard:true, blueFlag:false,
-    desc:{ es:"⚠️ Ha tenido cierres al baño por calidad del agua; el último terminó en junio de 2025 y hoy está abierta. Comprueba el estado antes de bañarte. Diseñada por César Manrique. Arena negra, jardines de flora autóctona, cascadas y vistas al Teide.", en:"⚠️ It has had bathing closures over water quality; the last one ended in June 2025 and it is open today. Check the current status before swimming. Designed by César Manrique. Black sand, native plant gardens, waterfalls and Teide views.", fr:"⚠️ Elle a connu des fermetures à la baignade pour la qualité de l’eau ; la dernière a pris fin en juin 2025 et elle est ouverte aujourd’hui. Vérifiez l’état avant de vous baigner. Conçue par César Manrique. Sable noir, jardins de flore indigène, cascades et vue sur le Teide.", de:"⚠️ Es gab Badeverbote wegen der Wasserqualität; das letzte endete im Juni 2025, heute ist der Strand offen. Aktuellen Stand vor dem Baden prüfen. Von César Manrique gestaltet. Schwarzer Sand, einheimische Pflanzengärten, Wasserfälle und Teide-Blick.", it:"⚠️ Ha avuto divieti di balneazione per la qualità dell’acqua; l’ultimo è terminato a giugno 2025 e oggi è aperta. Verifica lo stato prima di fare il bagno. Progettata da César Manrique. Sabbia nera, giardini di flora autoctona, cascate e viste sul Teide.", nl:"⚠️ Er zijn zwemverboden geweest vanwege de waterkwaliteit; het laatste eindigde in juni 2025 en vandaag is het strand open. Controleer de actuele status voor je gaat zwemmen. Ontworpen door César Manrique. Zwart zand, tuinen met inheemse flora, watervallen en uitzicht op de Teide.", zh:"⚠️ 曾因水质问题多次禁止下海，最近一次已于2025年6月解除，目前开放。下水前请先确认最新状态。 由塞萨尔·曼里克（César Manrique）设计。黑色沙滩、本土植物花园、瀑布以及泰德峰景致。", zht:"⚠️ 曾因水質問題多次禁止下海，最近一次已於2025年6月解除，目前開放。下水前請先確認最新狀態。 由塞薩爾·曼里克（César Manrique）設計。黑色沙灘、本土植物花園、瀑布以及泰德峰景致。" },
+    desc:{ es:"Diseñada por César Manrique. Arena negra, jardines de flora autóctona, cascadas y vistas al Teide.", en:"Designed by César Manrique. Black sand, native plant gardens, waterfalls and Teide views.", fr:"Conçue par César Manrique. Sable noir, jardins de flore indigène, cascades et vue sur le Teide.", de:"Von César Manrique gestaltet. Schwarzer Sand, einheimische Pflanzengärten, Wasserfälle und Teide-Blick.", it:"Progettata da César Manrique. Sabbia nera, giardini di flora autoctona, cascate e viste sul Teide.", nl:"Ontworpen door César Manrique. Zwart zand, tuinen met inheemse flora, watervallen en uitzicht op de Teide.", zh:"由塞萨尔·曼里克（César Manrique）设计。黑色沙滩、本土植物花园、瀑布以及泰德峰景致。", zht:"由塞薩爾·曼里克（César Manrique）設計。黑色沙灘、本土植物花園、瀑布以及泰德峰景致。" },
     cat:{ es:"Diseño Manrique · Puerto Cruz", en:"Manrique Design · Puerto Cruz", fr:"Design Manrique · Puerto Cruz", de:"Manrique-Design · Puerto Cruz", it:"Design di Manrique · Puerto Cruz", nl:"Ontwerp van Manrique · Puerto Cruz", zh:"曼里克设计 · 克鲁斯港", zht:"曼里克設計 · 克魯斯港" },
     tags:["Manrique","Norte","Arena Negra","Diseño"] },
 
@@ -30924,14 +30924,20 @@ const PLAYAS_ORIENTACION = {
      al S/SW/W, de modo que en esta playa no interviene. */
   'teresitas':      { ori: 'NE', badWind: [] },
 
-  /* Playa Jardin queda fuera mientras dure la prohibicion. Su ficha en
-     places[] dice: "Bano prohibido actualmente por contaminacion
-     recurrente de vertidos de aguas residuales". El mar puede estar
-     tranquilo y el viento a favor —y entonces esto la recomendaba— pero
-     el agua no es apta. Ningun dato de oleaje detecta eso.
+  /* Playa Jardin SI entra en "donde me bano hoy". Estuvo fuera mientras
+     su ficha declaraba prohibicion de bano, y el comentario que habia
+     aqui seguia describiendo aquello mucho despues de levantarse: decia
+     lo contrario de lo que hace el codigo, que es la peor clase de
+     comentario. Queda la historia por si vuelve a hacer falta.
 
-     Para reactivarla: quitar noBano cuando se levante la prohibicion y
-     se actualice la descripcion del lugar. */
+     El mecanismo sigue montado: si una playa pone noBano, el panel ni
+     pide su dato de mar (mas abajo, en el filtro). Hoy no lo usa ninguna.
+     Ningun dato de oleaje detecta agua no apta, asi que si algun dia
+     vuelve a cerrarse hay que ponerlo a mano y tocar LAS DOS fichas de
+     esta playa: 'playa-jardin' y 'surf-playa-jardin'.
+
+     El badWind mira al NW porque la playa mira al NW: ese viento le entra
+     de cara. */
   'playa-jardin':   { ori: 'NW', badWind: ['NW','W'] },
 
   /* --- Las 28 deducidas --------------------------------------------
