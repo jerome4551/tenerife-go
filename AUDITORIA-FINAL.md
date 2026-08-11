@@ -114,9 +114,34 @@ al lado dicen «socorrista en temporada alta». Mismo sitio, dos respuestas. Se
 quitó el campo: sin dato firme, el estado correcto es el neutro, igual que las
 13 playas de A1.
 
-- **Sigue abierto: Valleseco, Leocadio Machado, El Chinchorro, Playa Grande
-  (Los Abrigos)** — aparecen en fuentes externas y **no están en la app**. Si
-  existen y merecen estar, hacen falta sus coordenadas.
+**A2c. La lista de «cuatro playas que faltan» era mala, y era mía.** De las
+cuatro que apunté aquí, dos no debían estar:
+
+```
+El Chinchorro   ✘  no existe en Tenerife: la Playa del Chinchorro esta en
+                   Fuerteventura, La Oliva / Parque Holandes
+Playa Grande    ✘  sin rastro. Aparece en UN solo sitio de todo el repo:
+                   esta lista. Sin fuente. Y el "(Los Abrigos)" que le puse
+                   tambien era mio: situe Los Abrigos 5 km de donde esta
+                   -28,0281/-16,5924-, donde ya tenemos cuatro fichas
+Valleseco       ~  existe y esta bien situada, pero las resenas dicen que es
+                   roca y pantalanes junto a la Darsena Pesquera, no arena.
+                   Meterla como "playa" sin matizar engaña
+Leocadio M.     ~  el nombre designa en algunos registros la playa del
+                   pueblo, que YA esta: el pin del pueblo cae a 3 m de
+                   nuestro `el-medano`. El otro pin es el tramo sur hacia
+                   Montaña Roja, a 980 m, y ese si es un sitio distinto
+```
+
+La leccion no es que faltaran cuatro playas: es que **apunte una lista de
+nombres sin comprobar que existieran ni donde caian**, que es exactamente lo
+que este fichero lleva toda la sesion diciendo que no se hace. Un nombre de
+playa no es un dato hasta que tiene coordenada y la coordenada cae donde debe.
+
+Sobre Leocadio Machado hay ademas un aviso: una reseña la da cerrada el 7 de
+julio de 2026 por contaminacion fecal. Eso **no se escribe en la ficha** —es el
+mismo patron de Playa Jardin, y ya esta decidido en C1: hecho estructural en el
+texto y el estado del agua al visor oficial, que es dato vivo.
 
 **A2b. Ifonche decía Güímar y es Vilaflor.** Al barrer los 760 lugares buscando
 más fichas cruzadas apareció una: el despegue de parapente de Ifonche se
