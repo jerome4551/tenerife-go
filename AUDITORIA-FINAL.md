@@ -138,10 +138,23 @@ nombres sin comprobar que existieran ni donde caian**, que es exactamente lo
 que este fichero lleva toda la sesion diciendo que no se hace. Un nombre de
 playa no es un dato hasta que tiene coordenada y la coordenada cae donde debe.
 
-Sobre Leocadio Machado hay ademas un aviso: una reseña la da cerrada el 7 de
-julio de 2026 por contaminacion fecal. Eso **no se escribe en la ficha** —es el
-mismo patron de Playa Jardin, y ya esta decidido en C1: hecho estructural en el
-texto y el estado del agua al visor oficial, que es dato vivo.
+**Resuelto. Ninguna de las cuatro entra como playa.**
+
+- **El Chinchorro y Playa Grande: fuera.** No existen aqui.
+- **Leocadio Machado: no se añade.** El nombre designa en algunos registros la
+  playa del pueblo, que ya esta. Meter un segundo pin a 980 m con ese nombre
+  seria repetir la confusion Jaquita/Tejita que acabamos de arreglar. En su
+  lugar, la ficha de `el-medano` recoge el nombre oficial alternativo, en los
+  8 idiomas. Ademas se le atribuye un cierre por contaminacion fecal el 7 de
+  julio de 2026: eso **no se escribe en ninguna ficha**, por C1 —hecho
+  estructural en el texto y el estado del agua al visor oficial, que es vivo.
+- **Valleseco: añadida, pero NO como playa.** `bano-valleseco`, categoria
+  `piscinas`, que es el cajon de la app para bañarse donde no hay arena. Asi
+  no sale en "bañate hoy" ni en las busquedas de arena, y ademas hereda mareas
+  y estado del mar, que en roca importan mas que en playa. El texto dice en los
+  8 idiomas que **no es una playa de arena** y que se entra por plataformas.
+
+Total: 760 lugares -> **761**, y las playas siguen siendo 35.
 
 **A2b. Ifonche decía Güímar y es Vilaflor.** Al barrer los 760 lugares buscando
 más fichas cruzadas apareció una: el despegue de parapente de Ifonche se
