@@ -31144,10 +31144,10 @@ const PLAYAS_ORIENTACION = {
      Benijo queda fuera a proposito: lleva warn:"mar" y su propia ficha
      dice que es salvaje y agreste. No se recomienda para banarse. */
   'abama':                   { ori: 'W', badWind: ['SW','W','NW'], deducida: true },
-  'alcala':                  { ori: 'W', badWind: ['SW','W','NW'], deducida: true },
+  'alcala':                  { ori: 'W', badWind: ['SW','W','NW'] },   // muelle y charcos
   'almaciga':                { ori: 'N', badWind: ['NW','N','NE'], deducida: true },
   'bollullo':                { ori: 'NW', badWind: ['W','NW','N'], deducida: true },
-  'el-medano':               { ori: 'SE', badWind: ['E','SE','S'], deducida: true },
+  'el-medano':               { ori: 'SE', badWind: ['NE','E','SE','S'] },
   'fanabe':                  { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'playa-americas':          { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'playa-antequera':         { ori: 'SE', badWind: ['E','SE','S'], deducida: true },
@@ -31155,7 +31155,11 @@ const PLAYAS_ORIENTACION = {
   'playa-callao':            { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'playa-camison':           { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'playa-diego-hernandez':   { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
-  'playa-guios':             { ori: 'W', badWind: ['SW','W','NW'], deducida: true },
+  /* Guios pierde el NW de su banda: el acantilado de Los Gigantes esta
+     justo al norte y ese viento no le entra. La geometria se lo puso porque
+     mira al W y la banda son 45 grados a cada lado, pero ahi hay 600 m de
+     pared que el raster no ve. */
+  'playa-guios':             { ori: 'W', badWind: ['SW','W'] },
   'playa-igueste-san-andres': { ori: 'SE', badWind: ['E','SE','S'], deducida: true },
   'playa-jaquita':           { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'playa-la-caleta-adeje':   { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
@@ -31172,15 +31176,33 @@ const PLAYAS_ORIENTACION = {
      reabra el acceso Y se actualice la descripcion. */
   'playa-los-patos':         { noBano: true, ori: 'NW', badWind: ['W','NW','N'], deducida: true },
   'playa-puertito':          { ori: 'E', badWind: ['NE','E','SE'], deducida: true },
-  'playa-puertito-adeje':    { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
+  'playa-puertito-adeje':    { ori: 'SW', badWind: ['S','SW','W'] },   // cala tras la punta
   'playa-puerto-santiago':   { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'playa-rambla':            { ori: 'N', badWind: ['NW','N','NE'], deducida: true },
   'playa-socorro':           { ori: 'N', badWind: ['NW','N','NE'], deducida: true },
   'playa-torviscas':         { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'roque-bodegas':           { ori: 'N', badWind: ['NW','N','NE'], deducida: true },
-  'san-juan':                { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
+  'san-juan':                { ori: 'SW', badWind: ['S','SW','W'] },   // abrigada por el muelle
   'san-marcos':              { ori: 'N', badWind: ['NW','N','NE'], deducida: true },
-  'tejita':                  { ori: 'S', badWind: ['SE','S','SW'], deducida: true },
+  /* ── Las seis que salen del modelo angular ─────────────────────────
+     El abanico de rayos mira a 4, 6 y 8 km, asi que es ciego por
+     construccion a lo que abriga en el primer kilometro: diques, muelles y
+     salientes. Estas seis dependen justo de eso, en los dos sentidos.
+
+     La Tejita y El Medano son el caso contrario al de un dique: el
+     corredor entre Montaña Roja y Montaña Pelada acelera el alisio. La
+     geometria ve que miran al sur y les da el bonus de terral con el NE,
+     que es exactamente el viento que las llena de kites. La prueba esta en
+     el propio fichero: windsurf-la-tejita cae a 0 m de tejita -coordenada
+     identica- y windsurf-el-medano a 542 m de el-medano, y la ficha de El
+     Medano se describe como "capital europea del windsurf y kitesurf". Por
+     eso el NE entra en su badWind.
+
+     Las otras cuatro conservan su banda tal cual: la geometria acerto en
+     hacia donde miran, lo que no ve es el muelle o el saliente que las
+     protege. Salen del modelo para que ese conocimiento local se pueda
+     escribir y surta efecto, que estando `deducida` no ocurria. */
+  'tejita':                  { ori: 'S', badWind: ['NE','E','SE','S','SW'] },
 };
 
 function windDirToCardinal(deg){
@@ -31237,7 +31259,21 @@ function scorePlaya(playa, windDeg, windSpeed){
 
   if (playa.badWind.includes(card)) score-=60;
   if (windSpeed>20 && playa.badWind.some(b=>card.includes(b[0]))) score-=20;
-  if ((card==='NE' || card==='E') && (playa.ori==='S' || playa.ori==='SW' || playa.ori==='W')) score+=20;
+  /* El bonus de alisio premia el terral: viento que sale de tierra y deja el
+     agua plana. Por eso NO se puede dar cuando esa misma direccion esta en
+     badWind, que significa lo contrario -que entra de cara-. Una playa no
+     puede tener el viento saliendo y entrando a la vez.
+
+     Hacia falta para poder escribir a mano La Tejita y El Medano: miran al
+     sur, asi que cobraban +20 con el alisio del NE, que es justo el viento
+     que las convierte en spots de kitesurf. Sin esto, ponerles el NE en
+     badWind no servia de nada.
+
+     Comprobado antes de tocarlo: ninguna de las 6 que ya estaban escritas a
+     mano tiene NE ni E en su badWind, asi que para ellas esto no cambia
+     nada. */
+  if ((card==='NE' || card==='E') && (playa.ori==='S' || playa.ori==='SW' || playa.ori==='W')
+      && !playa.badWind.includes(card)) score+=20;
   /* El tope era 100 y con eso el bonus del alisio no servia para nada: la
      base ya es 100, asi que 100+20 volvia a 100 y solo contaba cuando
      antes habia habido penalizacion. Con todo el mar en calma empataban
