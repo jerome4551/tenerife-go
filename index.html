@@ -31160,7 +31160,17 @@ const PLAYAS_ORIENTACION = {
   'playa-jaquita':           { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'playa-la-caleta-adeje':   { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'playa-las-gaviotas':      { ori: 'SE', badWind: ['E','SE','S'], deducida: true },
-  'playa-los-patos':         { ori: 'NW', badWind: ['W','NW','N'], deducida: true },
+  /* Los Patos NO entra en "donde me bano hoy": su propia ficha dice
+     "Acceso oficialmente cerrado y vallado", y aun asi estaba puntuando 80
+     y compitiendo por salir recomendada. Es el caso de Playa Jardin al
+     reves: alli el panel excluia una playa abierta, aqui recomendaba una
+     cerrada. Ningun dato de oleaje detecta una valla.
+
+     Se usa noBano, el mecanismo que ya existia sin usar: el panel ni pide
+     su dato de mar. La ficha del lugar sigue en el mapa con su aviso, que
+     es donde tiene que estar. Para reactivarla: quitar noBano cuando se
+     reabra el acceso Y se actualice la descripcion. */
+  'playa-los-patos':         { noBano: true, ori: 'NW', badWind: ['W','NW','N'], deducida: true },
   'playa-puertito':          { ori: 'E', badWind: ['NE','E','SE'], deducida: true },
   'playa-puertito-adeje':    { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'playa-puerto-santiago':   { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
