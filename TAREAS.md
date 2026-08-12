@@ -1,16 +1,20 @@
 # Tareas abiertas
 
-Estado medido el **11 de agosto de 2026**, commit `6b5070a`.
+Estado medido el **12 de agosto de 2026, 20:40 UTC**, commit `167d864`.
 Todas las cifras salen de ejecutar la app en un navegador, no de recordarla.
 
 ```
-index.html   md5 6e0c5e10f0f575adc64004d10c773d59
-             3.391.233 bytes · 31.671 líneas
+index.html   md5 2e2fbd2c22f874cf363bb1ee03b6ba95
+             3.371.947 bytes
 ```
 
 **Comprueba ese md5 antes de analizar nada.** Ha pasado tres veces que se ha
-trabajado sobre una copia vieja y el diagnóstico salía bien pero las cifras del
-informe no cuadraban con el fichero real.
+trabajado sobre una copia vieja y el diagnóstico salía bien pero las cifras no
+cuadraban con el fichero real.
+
+Y **el enlace de GitHub no sirve** para pasárselo a otra sesión: `/raw/` y
+`raw.githubusercontent.com` bloquean el acceso automatizado. Hay que subir el
+fichero.
 
 ## Estado actual
 
@@ -20,31 +24,18 @@ informe no cuadraban con el fichero real.
 | Playas | 39 fichas · **34** en el panel de «báñate hoy» |
 | Guaguas | 177 líneas · 694 paradas |
 | Socorristas | 24 fichas con servicio · **11 con horario** |
-| Textos de interfaz | 157 claves × 8 idiomas · **0 sin traducir** |
-| Errores de consola | 0 |
+| Textos de interfaz | 148 claves × 8 idiomas · **0 sin traducir** |
+| Bloques de script | 31 · todos correctos · 0 errores de consola |
 
 ---
 
-## 1 · Con fecha: borrar el eclipse
+## 1 · Necesita dato de fuera
 
-**El 13 de agosto**, en cuanto pase el eclipse del día 12. Son tres cosas y no
-las usa nada más:
+### 1.1 · Horario de socorristas en 13 playas
 
-- en `index.html`, el bloque `ECLIPSE PARCIAL DE SOL` al final del fichero
-- el fichero `.github/workflows/eclipse.yml` entero
-- el fichero `enviar-eclipse.js`
-
-Mientras tanto se apagan solos: el bloque tiene `hasta:'2026-08-13'` y los
-crons ya han pasado. El aviso del lunes salió (3 suscripciones, 3 enviados).
-
----
-
-## 2 · Necesita dato de fuera
-
-### 2.1 · Horario de socorristas en 13 playas
-
-Hay 24 fichas con servicio y 11 con horario: Arona ×2, Adeje ×6, La Laguna ×3.
-Faltan estas trece:
+Hay 24 fichas con servicio y 11 con horario: Arona ×2, Adeje ×6, La Laguna ×3
+—estas últimas son las piscinas naturales de Bajamar, Punta del Hidalgo y
+Jóver, no playas—. Faltan estas trece:
 
 ```
 Las Teresitas · Benijo · Almáciga            (Santa Cruz)
@@ -63,16 +54,17 @@ El mecanismo está montado y probado. Cada playa entra en una línea:
 Las Teresitas = 15/06 a 15/09 · 10:00-19:00 · todos los días
 ```
 
-**Hay una vía oficial y única.** El artículo 19.3 del Decreto 116/2018 obliga a
-cada Ayuntamiento a comunicar al Gobierno de Canarias, en el primer trimestre
-de cada año y **playa por playa**, las temporadas de afluencia y los horarios
-del Servicio de Salvamento. Es decir: los trece existen, están recopilados y
-son oficiales. No hace falta preguntar a trece empresas.
+**Cuidado con la vía «oficial» que apunté antes.** Escribí que el artículo 19.3
+del Decreto 116/2018 obliga a los Ayuntamientos a comunicar esos horarios cada
+año, y que por tanto existían recopilados en un solo sitio. **Ese Decreto está
+anulado** (ver abajo), así que esa obligación no está vigente y esa vía no
+existe tal como la describí. El contacto útil es la Dirección Técnica del
+Encargo de Playas del Gobierno de Canarias, a través de GESPLAN.
 
 Sin ese dato no pasa nada malo: esas trece siguen con la etiqueta neutra y el
-enlace al visor oficial, que no miente.
+enlace al visor oficial.
 
-### 2.2 · 17 paradas intermedias de guagua
+### 1.2 · 17 paradas intermedias de guagua
 
 Están en `BLOQUE-2.md`, marcadas con `___`, cada una con el tramo en el que
 tiene que caer. Son 18 filas pero **17 paradas distintas**: *La Camella* sale
@@ -94,7 +86,7 @@ Las cuatro que más cambian, porque hoy se dibujan discontinuas:
 Formato: `Adeje casco = 28.xxxxxx, -16.xxxxxx`. Cada una se mide contra su
 tramo antes de aplicarla.
 
-### 2.3 · Qué playas sacar del modelo angular
+### 1.3 · Qué playas sacar del modelo angular
 
 De las 34 del panel de baño, 28 puntúan **por ángulo** entre su orientación y
 el viento, y 6 están escritas a mano.
@@ -109,15 +101,9 @@ Así que lo que hace falta no es «afinar badWind» sino: **qué playas merecen
 salirse del modelo** porque un dique, un espigón o un saliente hacen algo que
 la geometría no ve.
 
-### 2.4 · Las tres banderas generales, si aparece más norma
-
-La leyenda de banderas ya está completa con el Decreto 116/2018 (art. 9 y
-Anexo III) y la Orden de 22/7/2022. No falta nada, pero si algún día se
-modifica el artículo 9, hay que tocar las 17 claves × 8 idiomas.
-
 ---
 
-## 3 · Decidido que NO se hace
+## 2 · Decidido que NO se hace
 
 1. **Clasificación sanitaria como dato fijo en la ficha.** Playa Jardín estuvo
    catorce meses diciendo «baño prohibido» con la playa abierta. El estado del
@@ -126,38 +112,51 @@ modifica el artículo 9, hay que tocar las 17 claves × 8 idiomas.
    el nivel medio global, no sobre el cero hidrográfico.
 3. **Escuelas de surf con nombre.** Son negocios y no se puede comprobar que
    existan ni que operen ahí.
-4. **Aplicar nosotros la fórmula de riesgo del Anexo I** (afluencia ×
-   peligrosidad). Sería fabricar una clasificación oficial con números propios.
-5. **Frases que congelan un presente.** «Hoy está abierta», «recientemente
+4. **Frases que congelan un presente.** «Hoy está abierta», «recientemente
    renovado». Un hecho fechado no caduca; un estado presente escrito a mano, sí.
+5. **Números escritos a mano en la interfaz.** Si el dato no se ha contado, no
+   se enseña. Un 765 fijo en la portada miente en cuanto cambian los lugares.
 
 ---
 
-## 4 · Trampas, por si alguien vuelve a tocar esto
+## 3 · Trampas, por si alguien vuelve a tocar esto
 
-1. **`scorePlaya` no recibe la entrada de `PLAYAS_ORIENTACION`.** El objeto se
+1. **Una norma publicada no es una norma vigente.** El Decreto 116/2018, que
+   regulaba las banderas de playa, **fue anulado** por sentencia del Tribunal
+   Supremo de 27/9/2023, publicada en el BOC 82 del 25/4/2024. Seguía colgado
+   en las webs oficiales y en el visor de playas, y se usó como fuente para la
+   leyenda de banderas: el resultado decía que la bandera amarilla significaba
+   «playa clasificada peligrosa» cuando significa «báñate con precaución».
+   Antes de escribir en la app nada sacado de un boletín oficial, comprobar que
+   no esté anulado ni derogado.
+2. **`scorePlaya` no recibe la entrada de `PLAYAS_ORIENTACION`.** El objeto se
    copia campo a campo **dos veces** — en `renderBanoHoy` y otra vez en
    `fetchPlayasHoy`. Cualquier criterio nuevo hay que propagarlo en los dos
    sitios o la lógica que dependa de él **no se ejecuta nunca y nada falla**.
    Ya pasó con `deducida` y con `lifeguard`.
-2. **Playa Jardín tiene DOS fichas**: `playa-jardin` y `surf-playa-jardin`.
-3. **`lifeguard` tiene tres estados, no dos.** `false` **afirma** que no hay
+3. **Playa Jardín tiene DOS fichas**: `playa-jardin` y `surf-playa-jardin`.
+4. **`lifeguard` tiene tres estados, no dos.** `false` **afirma** que no hay
    socorrista y pinta un aviso; ausente o `null` no afirma nada y no pinta
    badge. Sin dato firme, el correcto es el neutro.
-4. **El caché de 30 min** del panel de baño hace que una prueba mienta si no se
+5. **El caché de 30 min** del panel de baño hace que una prueba mienta si no se
    limpia `tgo_bano_cache_v2` entre escenarios.
-5. **Open-Meteo devuelve la hora ya en zona canaria y sin sufijo.**
+6. **Open-Meteo devuelve la hora ya en zona canaria y sin sufijo.**
    `Date.parse` la toma como local y al reformatear se suma el desfase dos
    veces.
-6. **Contar cadenas en un fichero de 3 MB es mal método.** Varias
+7. **Contar cadenas en un fichero de 3 MB es mal método.** Varias
    comprobaciones fallaron por contar la palabra dentro del propio comentario
    que la explica, o por suponer el número en vez de medirlo.
-7. **Un comentario que describe lo que el código ya no hace es peor que no
+8. **Un comentario que describe lo que el código ya no hace es peor que no
    tenerlo.** Al tocar el código, tocar el comentario.
-8. **Un nombre de sitio no es un dato hasta que tiene coordenada y esa
-   coordenada cae donde debe.** De cuatro playas que se apuntaron como «faltan»
-   una era de Fuerteventura y otra no existía. El control que las descubre es
+9. **Un nombre de sitio no es un dato hasta que tiene coordenada y esa
+   coordenada cae donde debe.** De cuatro playas apuntadas como «faltan», una
+   era de Fuerteventura y otra no existía. El control que las descubre es
    cruzar contra nuestros propios 765 lugares.
-9. **El service worker sirve `index.html` network-first**, así que un cambio
-   llega en la siguiente apertura con datos. No hace falta tocar la versión del
-   caché por editar el HTML.
+10. **`index.html` suelto no es la app.** Desde el 31 de julio, Leaflet vive en
+    `vendor/` en vez de un CDN, así que el fichero solo no arranca el mapa. Para
+    verlo funcionando, la app publicada. Para dárselo a Claude, el fichero vale:
+    lo lee, no lo ejecuta.
+11. **No dejar arreglos de circunstancia.** Se metieron tres cambios en el
+    contador de la portada persiguiendo un «0 lugares» que resultó ser un visor
+    sin JavaScript. Se revirtieron. Un cambio que resuelve un caso que no
+    existe se queda puesto para siempre porque nadie se acuerda de quitarlo.
