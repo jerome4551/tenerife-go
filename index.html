@@ -22122,18 +22122,34 @@ window.addEventListener('hashchange', () => {
     if (!el) return;
     var total = 700;
     try { if (typeof places !== 'undefined' && places.length) total = places.length; } catch (e) {}
+
+    /* El numero tiene que aparecer PASE LO QUE PASE con la animacion.
+       El markup trae un 0 fijo y el valor real llegaba solo por
+       requestAnimationFrame, que el navegador CONGELA mientras la pestaña
+       esta en segundo plano. Quien abria la app en una pestaña de fondo
+       -o en algun navegador embebido- veia "0 lugares" y ahi se quedaba,
+       con los 765 cargados y bien. Parecia que la app no funcionaba.
+
+       setTimeout si corre con la pestaña oculta -lo ralentizan, pero no lo
+       paran-, asi que sirve de red. */
+    var puesto = false;
+    function fijar() { if (!puesto) { puesto = true; el.textContent = total; } }
+
     var reduce = false;
     try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
-    if (reduce) { el.textContent = total; return; }
+    if (reduce) { fijar(); return; }
+
     var t0 = null, DUR = 1400;
     function step(ts) {
+      if (puesto) return;
       if (t0 === null) t0 = ts;
       var k = Math.min(1, (ts - t0) / DUR);
       k = 1 - Math.pow(1 - k, 3);
       el.textContent = Math.round(total * k);
-      if (k < 1) requestAnimationFrame(step);
+      if (k < 1) requestAnimationFrame(step); else puesto = true;
     }
     requestAnimationFrame(step);
+    setTimeout(fijar, DUR + 900);
   }
 
   function call(name) {
