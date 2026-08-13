@@ -16397,7 +16397,7 @@ function renderDayTripCatalog() {
     item.innerHTML = `
       <span class="catalog-item-emoji">${place.emoji || '📍'}</span>
       <div class="catalog-item-body">
-        <div class="catalog-item-name">${place.name}</div>
+        <div class="catalog-item-name">${escapeHtml(place.name)}</div>
         <div class="catalog-item-cat">${catLine}</div>
       </div>
       <button class="catalog-item-add ${isAdded ? 'added' : ''}"
@@ -16457,7 +16457,7 @@ function renderMyRoute() {
     row.innerHTML = `
       <div class="myroute-item-num">${idx + 1}</div>
       <span class="myroute-item-emoji">${place.emoji || '📍'}</span>
-      <div class="myroute-item-name">${place.name}</div>
+      <div class="myroute-item-name">${escapeHtml(place.name)}</div>
       <div class="myroute-item-actions">
         <button class="myroute-item-btn" onclick="centerDayTripStop('${id}')" title="${L.daytripCenter}">📍</button>
         <button class="myroute-item-btn" onclick="openDayTripStop('${id}')" title="${L.daytripInfo}">ℹ️</button>
