@@ -1,10 +1,10 @@
 # Auditoría completa
 
-**12 de agosto de 2026**, commit `f5d35b5`.
+**14 de agosto de 2026**, commit `7087aae`.
 
 ```
-index.html   md5 a62af6719622b7b510417dfd6ff0b778
-             3.376.686 bytes
+index.html   md5 a036d0e1fc2918c1b3708dcdeedb6868
+             3.377.884 bytes
 ```
 
 Todo lo de abajo está medido ejecutando la app o barriendo el fichero, no
@@ -105,7 +105,7 @@ llevan `&` («Surf & Kite») y ahí ya salía HTML malformado. Corregido en
 | Lugares | **765** · 0 duplicados · 0 sin nombre |
 | Coordenadas | 0 sin coordenada · **0 fuera de Tenerife** |
 | Colores | 0 no hexadecimales |
-| Guaguas | **177 líneas · 694 paradas** · 0 paradas fuera de rango |
+| Guaguas | **177 líneas · 703 paradas** · 0 paradas fuera de rango |
 | Ids de línea duplicados | 0 |
 | Líneas con campo vacío | 0 |
 
@@ -122,7 +122,9 @@ llevan `&` («Surf & Kite») y ahí ya salía HTML malformado. Corregido en
 ## 6 · Sintaxis y ficheros
 
 ```
-index.html   31/31 bloques de script correctos · termina en </html>
+index.html   36 etiquetas <script>: 3 externas, 1 ld+json (JSON válido)
+             y 32 de JavaScript en línea, 32/32 correctas
+             termina en </html>
 sw.js        correcto
 enviar-notificacion.js   correcto
 notificacion-diaria.yml  correcto
@@ -160,6 +162,16 @@ Mientras tanto esas trece llevan la etiqueta neutra y el enlace al visor: no
 afirman nada que no se sepa.
 
 ## Necesita coordenadas
+
+**Aplicadas el 14 de agosto: 9 entradas, 8 paradas.** Las siete cerradas —Los
+Alisios (935 y 936), Altos del Sauzal (054), Los Menceyes (201), La Rúa y El Rayo
+(204), Cruz de los Álamos (271) y Santa Catalina (021)— y Las Carboneras (275),
+que venía con dos candidatas y se resolvió por el pueblo. Los Alisios cuenta dos
+veces porque sirve a dos líneas. De paso, el nombre oficial de la 054 es «Altos
+del Sauzal», no «Altos de El Sauzal».
+
+**Quedan 2 paradas con dos candidatas cada una.** Del lote de tres, solo llegó la
+de Las Carboneras. Las otras dos siguen sin enviar.
 
 **17 paradas intermedias de guagua.** En `BLOQUE-2.md`, marcadas con `___`, cada
 una con el tramo en el que tiene que caer. Son 18 filas pero 17 paradas: *La
@@ -231,3 +243,8 @@ equivocado.
 13. **Los ids de lugar son la barrera de los `onclick` inline.** Los 13
     manejadores inline con interpolación solo son seguros porque los 765 ids
     cumplen `[a-z0-9-]`. Si algún día un id lleva una comilla, ahí hay un XSS.
+14. **«Distancia al trazado» no sirve para validar una parada nueva.** El trazado
+    son rectas entre las paradas que ya hay, no la carretera. Dio por sospechosas
+    siete paradas correctas —Altos del Sauzal a 2.151 m, El Rayo a 1.735 m— y
+    habría elegido mal en Las Carboneras. Lo que decide es el nombre de la línea,
+    que dice a qué pueblos va, y lo que ya haya en nuestras propias fichas.
