@@ -17652,8 +17652,8 @@ const TITSA_LINES = [
     paradas:[
       { id:"054-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"054-sau", nombre:"El Sauzal · Centro", lat:28.4793, lng:-16.4345, esTerminal:false, municipio:"El Sauzal" },
-      { id:"054-altossauzal", nombre:"Altos del Sauzal", lat:28.4492, lng:-16.4291, esTerminal:false, municipio:"El Sauzal" },
       { id:"054-ravelo", nombre:"Ravelo", lat:28.46824, lng:-16.42521, esTerminal:true, municipio:"El Sauzal" },
+      { id:"054-altsau", nombre:"Altos del Sauzal", lat:28.4492, lng:-16.4291, esTerminal:false, municipio:"El Sauzal" },
     ]
   },
   {
@@ -17685,9 +17685,9 @@ const TITSA_LINES = [
       { id:"204-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"204-trin", nombre:"La Trinidad (Centro La Laguna)", lat:28.4858, lng:-16.3133, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"204-cristo", nombre:"Plaza del Cristo", lat:28.490154, lng:-16.313401, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"204-rua", nombre:"La Rúa", lat:28.4964, lng:-16.3091, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"204-bronco", nombre:"El Bronco", lat:28.494112, lng:-16.316821, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"204-larua", nombre:"La Rúa", lat:28.4964, lng:-16.3091, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"204-elrayo", nombre:"El Rayo", lat:28.5049, lng:-16.304, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"204-rayo", nombre:"El Rayo", lat:28.5049, lng:-16.3049, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"204-honorato", nombre:"Barrio de San Honorato", lat:28.481242, lng:-16.319736, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"204-vuelta", nombre:"La Laguna · Intercambiador (Vuelta)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
@@ -17797,6 +17797,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:00", hasta:"21:45" },
     paradas:[
       { id:"901-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
+      { id:"901-cuesta", nombre:"Cuesta Piedra", lat:28.4682, lng:-16.2793, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"901-salud", nombre:"Barrio La Salud", lat:28.47895, lng:-16.27012, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -18019,6 +18020,7 @@ const TITSA_LINES = [
     paradas:[
       { id:"947-sc", nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"947-sanand", nombre:"San Andrés", lat:28.50291, lng:-16.19195, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
+      { id:"947-bailadero", nombre:"El Bailadero", lat:28.5501, lng:-16.2051, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"947-chamorga", nombre:"Chamorga", lat:28.56112, lng:-16.15843, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
       { id:"947-panaga", nombre:"Punta de Anaga", lat:28.571402, lng:-16.162305, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
     ]
@@ -18120,7 +18122,9 @@ const TITSA_LINES = [
     servicio:{ desde:"06:20", hasta:"21:20" },
     paradas:[
       { id:"915-sc",   nombre:"Intercambiador (Santa Cruz)", lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"915-chierro", nombre:"Camino del Hierro", lat:28.4592, lng:-16.2776, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"915-ofra", nombre:"Ofra",                        lat:28.46122, lng:-16.28431, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
+      { id:"915-tiopino", nombre:"Tío Pino", lat:28.4602, lng:-16.2744, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
     ]
   },
   {
@@ -18129,7 +18133,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:30", hasta:"21:15" },
     paradas:[
       { id:"201-ll",     nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.3160, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
-      { id:"201-menceyes", nombre:"Los Menceyes", lat:28.4783, lng:-16.3112, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"201-menceyes", nombre:"Los Menceyes", lat:28.4787, lng:-16.3117, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"201-verd",   nombre:"La Verdellada",                      lat:28.490105, lng:-16.319542, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"201-piedra", nombre:"Cruz de Piedra",                    lat:28.4862, lng:-16.3162, esTerminal:true,  municipio:"San Cristóbal de La Laguna" },
     ]
@@ -18272,7 +18276,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:00", hasta:"21:30" },
     paradas:[
       { id:"271-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
-      { id:"271-cruzalamos", nombre:"Cruz de los Álamos", lat:28.5099, lng:-16.2998, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"271-alamos", nombre:"Cruz de los Álamos", lat:28.5099, lng:-16.2998, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"271-mercedes", nombre:"Las Mercedes", lat:28.51654, lng:-16.29912, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
     ]
   },
@@ -18294,7 +18298,7 @@ const TITSA_LINES = [
     paradas:[
       { id:"275-ll", nombre:"La Laguna · Intercambiador (2625)", lat:28.4853, lng:-16.316, esTerminal:true, municipio:"San Cristóbal de La Laguna" },
       { id:"275-canteras", nombre:"Las Canteras", lat:28.491322, lng:-16.326245, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
-      { id:"275-carboneras", nombre:"Las Carboneras", lat:28.5539, lng:-16.277, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"275-carbon", nombre:"Las Carboneras", lat:28.5539, lng:-16.277, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
       { id:"275-taborno", nombre:"Taborno", lat:28.54452, lng:-16.25431, esTerminal:true, municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -18593,6 +18597,7 @@ const TITSA_LINES = [
     paradas:[
       { id:"974-intercamb", nombre:"Intercambiador (Santa Cruz)",     lat:28.4578, lng:-16.2568, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
       { id:"974-taco",      nombre:"Taco · Intercambiador",                            lat:28.441405, lng:-16.307521, esTerminal:false, municipio:"San Cristóbal de La Laguna" },
+      { id:"974-anaza", nombre:"Añaza", lat:28.4228, lng:-16.297, esTerminal:false, municipio:"Santa Cruz de Tenerife" },
       { id:"974-tincer",    nombre:"Tíncer",                          lat:28.4710, lng:-16.2790, esTerminal:true,  municipio:"Santa Cruz de Tenerife" },
     ]
   },
@@ -18804,7 +18809,7 @@ const TITSA_LINES = [
     servicio:{ desde:"06:50", hasta:"21:10" },
     paradas:[
       { id:"021-tacor", nombre:"Tacoronte · Casco", lat:28.4808, lng:-16.4127, esTerminal:true , municipio:"Tacoronte" },
-      { id:"021-stacatalina", nombre:"Santa Catalina", lat:28.4831, lng:-16.4181, esTerminal:false, municipio:"Tacoronte" },
+      { id:"021-scatalina", nombre:"Santa Catalina", lat:28.483, lng:-16.418, esTerminal:false, municipio:"Tacoronte" },
       { id:"021-mesa", nombre:"Mesa del Mar", lat:28.5025, lng:-16.4234, esTerminal:true , municipio:"Tacoronte" },
     ]
   },
@@ -18816,6 +18821,7 @@ const TITSA_LINES = [
     servicio:{ desde:"07:05", hasta:"20:30" },
     paradas:[
       { id:"023-tacor", nombre:"Tacoronte · Casco", lat:28.4808, lng:-16.4127, esTerminal:true , municipio:"Tacoronte" },
+      { id:"023-calvario", nombre:"El Calvario", lat:28.4841, lng:-16.4134, esTerminal:false, municipio:"Tacoronte" },
       { id:"023-pris", nombre:"Puerto El Pris", lat:28.5093, lng:-16.4211, esTerminal:true , municipio:"Tacoronte" },
     ]
   },
@@ -19145,7 +19151,9 @@ const TITSA_LINES = [
     servicio:{ desde:"07:15", hasta:"18:30" },
     paradas:[
       { id:"347-orot", nombre:"La Orotava · Estación", lat:28.3926, lng:-16.5235, esTerminal:true , municipio:"La Orotava" },
+      { id:"347-benijos", nombre:"Benijos", lat:28.3622, lng:-16.5462, esTerminal:false, municipio:"La Orotava" },
       { id:"347-real", nombre:"Los Realejos", lat:28.3852, lng:-16.5841, esTerminal:true , municipio:"Los Realejos" },
+      { id:"347-paloblanco", nombre:"Carretera Palo Blanco", lat:28.3655, lng:-16.5756, esTerminal:false, municipio:"Los Realejos" },
     ]
   },
   {
