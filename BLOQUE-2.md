@@ -1,14 +1,17 @@
-# Bloque 2 — paradas intermedias · van 12 de 30
+# Bloque 2 — paradas intermedias · van 16 de 30
 
 La red está completa: **173 de 173 líneas**. Esto ya no bloquea nada. Lo que hace es que el
 planificador encuentre esas líneas también a quien vive **a mitad de recorrido**, y que el
 trazado del mapa sea el real y no una recta entre las dos cabeceras.
 
-**Aplicadas (12):** Hospital del Sur (418 y 480) · Cruce de Radazul y Arafo (121) ·
+**Aplicadas (16):** Hospital del Sur (418 y 480) · Cruce de Radazul y Arafo (121) ·
 Barranco Hondo (127) · Tabaiba Alta y Radazul Alto (138) · Radazul Bajo (139) ·
-Tornero y Gavias (203) · Empalme de Güímar (124) · Benijo (948).
-**Quedan 17**, marcadas abajo con `___`. Ninguna se puede sacar de nuestros
-datos: las 17 necesitan coordenada de fuera.
+Tornero y Gavias (203) · Empalme de Güímar (124) · Benijo (948) ·
+Benijos y Palo Blanco (347) · Camino del Hierro y Tío Pino (915), estas cuatro
+del GTFS oficial de TITSA del 13-ago-2026.
+**Quedan 13**, marcadas abajo con `___` —son 14 filas, porque *La Camella* sale
+en la 421 y en la 480—. Ninguna se puede sacar de nuestros datos: las 13
+necesitan coordenada de fuera.
 
 ---
 
@@ -149,8 +152,8 @@ Camino de Chasna  = ___ , ___     entre las dos                      · La Orota
 ```
 La Orotava [28.3926,-16.5235] → Los Realejos [28.3852,-16.5841]
 
-Benijos           = ___ , ___     entre las dos                      · La Orotava
-Palo Blanco       = ___ , ___     entre las dos                      · Los Realejos
+Benijos           = 28.3622 , -16.5462   entre las dos                · La Orotava   ✓ GTFS
+Palo Blanco       = 28.3655 , -16.5756   entre las dos                · Los Realejos ✓ GTFS
 ```
 
 ### 373 · Las Dehesas — La Orotava **(hoy solo 2 paradas)**
@@ -248,8 +251,8 @@ Suárez Guerra     = ___ , ___     entre Ramblas y Plaza Weyler       · Santa C
 ```
 Intercambiador [28.4578,-16.2568] → Ofra [28.46122,-16.28431]
 
-Camino del Hierro = ___ , ___     entre las dos                      · Santa Cruz
-Tío Pino          = ___ , ___     entre las dos                      · Santa Cruz
+Camino del Hierro = 28.4592 , -16.2776   entre las dos                · Santa Cruz   ✓ GTFS
+Tío Pino          = 28.4602 , -16.2744   entre las dos                · Santa Cruz   ✓ GTFS
 ```
 
 ### 948 · Azanos — Taganana — Playa de Almáciga (Anaga)

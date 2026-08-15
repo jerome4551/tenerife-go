@@ -1,10 +1,10 @@
 # Auditoría completa
 
-**14 de agosto de 2026**, commit `7087aae`.
+**15 de agosto de 2026**, commit `348a448`.
 
 ```
-index.html   md5 a036d0e1fc2918c1b3708dcdeedb6868
-             3.377.884 bytes
+index.html   md5 03370c228942a99241c2a1ef4fbe3aad
+             3.378.887 bytes
 ```
 
 Todo lo de abajo está medido ejecutando la app o barriendo el fichero, no
@@ -105,7 +105,7 @@ llevan `&` («Surf & Kite») y ahí ya salía HTML malformado. Corregido en
 | Lugares | **765** · 0 duplicados · 0 sin nombre |
 | Coordenadas | 0 sin coordenada · **0 fuera de Tenerife** |
 | Colores | 0 no hexadecimales |
-| Guaguas | **177 líneas · 703 paradas** · 0 paradas fuera de rango |
+| Guaguas | **177 líneas · 711 paradas** · 0 paradas fuera de rango |
 | Ids de línea duplicados | 0 |
 | Líneas con campo vacío | 0 |
 
@@ -170,12 +170,19 @@ que venía con dos candidatas y se resolvió por el pueblo. Los Alisios cuenta d
 veces porque sirve a dos líneas. De paso, el nombre oficial de la 054 es «Altos
 del Sauzal», no «Altos de El Sauzal».
 
+**Aplicadas el 15 de agosto: las 17 del GTFS oficial de TITSA** (`Google_transit.zip`,
+13-ago-2026). Nueve eran las de arriba, repuestas con la coordenada de la marquesina
+según `stops.txt`: El Rayo se movió 88 m, Los Menceyes 66 m y Santa Catalina 15 m.
+Ocho eran nuevas: Cuesta Piedra (901), Camino del Hierro y Tío Pino (915), El Calvario
+(023), Benijos y Carretera Palo Blanco (347), El Bailadero (947) y Añaza (974).
+
 **Quedan 2 paradas con dos candidatas cada una.** Del lote de tres, solo llegó la
 de Las Carboneras. Las otras dos siguen sin enviar.
 
-**17 paradas intermedias de guagua.** En `BLOQUE-2.md`, marcadas con `___`, cada
-una con el tramo en el que tiene que caer. Son 18 filas pero 17 paradas: *La
-Camella* sale en la 421 y en la 480.
+**13 paradas intermedias de guagua.** En `BLOQUE-2.md`, marcadas con `___`, cada
+una con el tramo en el que tiene que caer. Son 14 filas pero 13 paradas: *La
+Camella* sale en la 421 y en la 480. Las cuatro que el GTFS cerró —Benijos, Palo
+Blanco, Camino del Hierro y Tío Pino— ya están marcadas ahí como aplicadas.
 
 Ya solo afectan al buscador, no al mapa: desde el trazado por tramos, todo salto
 de más de 6 km se dibuja discontinuo. Las cuatro que más cambiarían:
@@ -202,6 +209,29 @@ alisio ahí sopla como en toda esa costa—, mata la ola. Y esta puntuación mid
 solo abrigo del viento. Donde se pierde de verdad es en el filtro del mar, que
 tampoco conoce el dique; subirle el score sería arreglar el síntoma en el sitio
 equivocado.
+
+**Siete desajustes entre el título de una línea y su recorrido en el GTFS.**
+Salieron al cotejar las 17 paradas y ninguno se ha tocado: son decisiones, no
+erratas.
+
+```
+911  el título dice «Cuesta Piedra», pero esa parada la sirven la 901, 904,
+     906, 919, 971 y 972 — la 911 no
+902  el título dice «Plaza del Príncipe»; la parada la sirven otras nueve
+920  la parada que da a Plaza de España se llama CABILDO en su recorrido
+206  el título dice «Plaza del Cristo»; la parada existe, la línea no la sirve
+054  lleva «El Sauzal · Centro» y la 204 lleva «La Trinidad» y «Plaza del
+     Cristo»: ninguna aparece en el recorrido oficial de su línea
+217/219  «El Cardonal» es topónimo del título, no parada: la 219 tiene 45
+     paradas y ninguna se llama así
+971  rotula «Barrio Salud» y las otras tres «Barrio de la Salud»: el buscador
+     lo parte en dos entradas
+```
+
+**El terminal de la 054.** `054-ravelo` lleva `esTerminal:true` y Altos del
+Sauzal va detrás, porque el recorrido oficial es La Laguna → Ravelo → Altos del
+Sauzal. Eso deja un terminal en mitad del array. Decidir si la marca pasa a
+Altos del Sauzal.
 
 ---
 
@@ -248,3 +278,13 @@ equivocado.
     siete paradas correctas —Altos del Sauzal a 2.151 m, El Rayo a 1.735 m— y
     habría elegido mal en Las Carboneras. Lo que decide es el nombre de la línea,
     que dice a qué pueblos va, y lo que ya haya en nuestras propias fichas.
+15. **El ancla de un `str_replace` no dice dónde va la parada, solo dónde cabe.**
+    En la 347 y la 915 —líneas de dos paradas— la única cadena única disponible
+    era el terminal del otro extremo, y ahí acabaron Palo Blanco y Tío Pino,
+    detrás del final del recorrido. Falla la prueba visual que el propio parche
+    escribía como criterio. Lo que manda es el título de la línea y el «entre
+    las dos» de `BLOQUE-2.md`.
+16. **Dos paradas con el mismo nombre y distinta coordenada.** El GTFS trae
+    marquesinas distintas con el mismo rótulo: «Añaza» de la 974 está a 992 m de
+    la que comparten otras siete líneas, y «El Bailadero» de la 947 a 341 m de la
+    de la 077. En el buscador salen como dos resultados idénticos.
