@@ -1,10 +1,10 @@
 # Auditoría completa
 
-**15 de agosto de 2026**, commit `348a448`.
+**15 de agosto de 2026**, commit `12c3d62`.
 
 ```
-index.html   md5 03370c228942a99241c2a1ef4fbe3aad
-             3.378.887 bytes
+index.html   md5 7fd20fdac7693e584e260e65ccd46a85
+             3.378.879 bytes
 ```
 
 Todo lo de abajo está medido ejecutando la app o barriendo el fichero, no
@@ -210,6 +210,31 @@ solo abrigo del viento. Donde se pierde de verdad es en el filtro del mar, que
 tampoco conoce el dique; subirle el score sería arreglar el síntoma en el sitio
 equivocado.
 
+**Coordenadas que no apuntan a ninguna marquesina.** Es lo que hay debajo de los
+rótulos repetidos, y lo grave es cómo salieron: por casualidad, al insertar una
+parada al lado. Corregidas «Añaza» (935 y 936) y «El Bailadero» (077). Siguen
+sobre el punto inventado 28,42345 / -16,30712 —a 992 m de la marquesina 1770 y a
+353 m de Los Alisios— estas cinco:
+
+```
+934-anaza · 941-anaza · 018-anaza · 934N-anaza · 142-anaza
+```
+
+Y quedan seis rótulos más con la coordenada partida, sin comprobar contra
+`stops.txt`. Ordenados por separación, que es lo que mide cuánto puede doler:
+
+```
+Las Mercedes           2.060 m   271, 274, 077  vs  270
+Torviscas Alta         1.754 m   473            vs  424
+El Sauzal · Centro     1.031 m   101, 011, 012  vs  054
+San Juan de la Rambla    471 m   325            vs  364
+Los Cristianos           240 m   343, 342       vs  711
+Ofra                       2 m   908, 915, 971  vs  905   (redondeo, inofensivo)
+```
+
+El de la 054 es doblemente sospechoso: además de la coordenada partida, «El
+Sauzal · Centro» no aparece en el recorrido oficial de esa línea.
+
 **Siete desajustes entre el título de una línea y su recorrido en el GTFS.**
 Salieron al cotejar las 17 paradas y ninguno se ha tocado: son decisiones, no
 erratas.
@@ -227,11 +252,6 @@ erratas.
 971  rotula «Barrio Salud» y las otras tres «Barrio de la Salud»: el buscador
      lo parte en dos entradas
 ```
-
-**El terminal de la 054.** `054-ravelo` lleva `esTerminal:true` y Altos del
-Sauzal va detrás, porque el recorrido oficial es La Laguna → Ravelo → Altos del
-Sauzal. Eso deja un terminal en mitad del array. Decidir si la marca pasa a
-Altos del Sauzal.
 
 ---
 
@@ -284,7 +304,12 @@ Altos del Sauzal.
     detrás del final del recorrido. Falla la prueba visual que el propio parche
     escribía como criterio. Lo que manda es el título de la línea y el «entre
     las dos» de `BLOQUE-2.md`.
-16. **Dos paradas con el mismo nombre y distinta coordenada.** El GTFS trae
-    marquesinas distintas con el mismo rótulo: «Añaza» de la 974 está a 992 m de
-    la que comparten otras siete líneas, y «El Bailadero» de la 947 a 341 m de la
-    de la 077. En el buscador salen como dos resultados idénticos.
+16. **Un rótulo repetido con dos coordenadas casi nunca es un problema de
+    rótulos.** Parecía que había que desambiguar «Añaza» y «El Bailadero». No:
+    la coordenada vieja no era ninguna marquesina, era un punto inventado. Se
+    corrige la vieja y el duplicado desaparece solo. Los dos se encontraron por
+    casualidad, al insertar una parada al lado.
+17. **La regla de colapso tiene que ser el `stop_id` del GTFS, no el rótulo.**
+    Y solo funciona si cada parada del fichero apunta a una marquesina real.
+    Hoy no es así: hay al menos cinco entradas de «Añaza» sobre un punto que no
+    existe.
