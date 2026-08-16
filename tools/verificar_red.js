@@ -55,14 +55,35 @@ console.log('Controles de la seccion 6\n');
 
 if (!LINES) { console.log('  FALLO  no encuentro TITSA_LINES'); process.exit(1); }
 
-// Las paradas, ya hidratadas o todavia en la forma de hoy.
+// Hidratar igual que la app: leyendo el fichero crudo, las lineas regeneradas
+// tienen claves, no objetos, y sin este paso los controles 5, 6 y 7 miden mal.
+let hidratadas = 0;
+if (CAT) for (const line of LINES) {
+  if (!Array.isArray(line.paradas) || typeof line.paradas[0] !== 'string') continue;
+  const term = new Set(line.terminales || []);
+  const usados = new Set();
+  line.paradas = line.paradas.map((ref, i) => {
+    const p = CAT[ref];
+    if (!p) return null;
+    let pid = line.id + '-' + ref;
+    if (usados.has(pid)) pid = pid + '-' + i;
+    usados.add(pid);
+    return { id: pid, stopId: ref, nombre: p.n, lat: p.la, lng: p.lo,
+             municipio: p.m, esTerminal: term.has(ref) };
+  }).filter(Boolean);
+  hidratadas++;
+}
 const sinHidratar = LINES.filter(l => Array.isArray(l.paradas) && typeof l.paradas[0] === 'string');
+if (hidratadas) console.log('  (hidratadas %d lineas para medir)\n', hidratadas);
 if (sinHidratar.length) {
-  console.log('  AVISO  %d lineas con paradas sin hidratar: %s\n',
+  console.log('  AVISO  %d lineas con claves sin resolver: %s\n',
     sinHidratar.length, sinHidratar.map(l => l.id).join(' '));
 }
 const todas = LINES.flatMap(l => (Array.isArray(l.paradas) ? l.paradas : []))
                    .filter(p => p && typeof p === 'object');
+const ids = {};
+todas.forEach(p => { ids[p.id] = (ids[p.id] || 0) + 1; });
+const dupId = Object.keys(ids).filter(k => ids[k] > 1);
 
 // 1 · bbox
 const fuera = [];
@@ -122,7 +143,7 @@ for (const l of LINES) {
   if (!Array.isArray(l.terminales)) continue;
   if (l.terminales.length !== 2) { malT.push(l.id + ': ' + l.terminales.length + ' terminales'); continue; }
   const claves = Array.isArray(l.paradas) && typeof l.paradas[0] === 'string'
-    ? l.paradas : (l.paradas || []).map(p => p.stopId);
+    ? l.paradas : (l.paradas || []).map(p => p.stopId).filter(Boolean);
   for (const t of l.terminales) if (!claves.includes(t)) malT.push(l.id + ': terminal ' + t + ' fuera de paradas');
 }
 const conT = LINES.filter(l => Array.isArray(l.terminales)).length;
@@ -131,8 +152,11 @@ ok('4 · terminales', malT.length === 0,
 
 // 5 · aeropuertos: los filtros devuelven lista no vacia
 const TFS = [28.0445, -16.5722], TFN = [28.4827, -16.3414];
-const porCoordTFS = LINES.filter(l => (l.paradas || []).some(p => p.lat === TFS[0] && p.lng === TFS[1]));
-const porCoordTFN = LINES.filter(l => (l.paradas || []).some(p => p.lat === TFN[0] && p.lng === TFN[1]));
+const TFS_IDS = ['7571', '8326'], TFN_IDS = ['4537'];
+const sirve = (l, ids, C) => (l.paradas || []).some(p =>
+  (p.stopId && ids.includes(p.stopId)) || (p.lat === C[0] && p.lng === C[1]));
+const porCoordTFS = LINES.filter(l => sirve(l, TFS_IDS, TFS));
+const porCoordTFN = LINES.filter(l => sirve(l, TFN_IDS, TFN));
 const cercaTFS = LINES.filter(l => (l.paradas || []).some(p => p.lat && metros([p.lat, p.lng], TFS) < 400));
 const cercaTFN = LINES.filter(l => (l.paradas || []).some(p => p.lat && metros([p.lat, p.lng], TFN) < 400));
 // El contraste con la proximidad es la senal de la seccion 4: si al reanclar
@@ -151,8 +175,11 @@ const orden = num => {
   return l.paradas.map(p => (typeof p === 'string' ? p : p.nombre)).join(' -> ');
 };
 const o347 = orden('347'), o054 = orden('054');
-const bien347 = /Orotava[^>]*->[^>]*Benijos[^>]*->[^>]*Palo Blanco[^>]*->[^>]*Realejos/.test(o347);
-const bien054 = /Ravelo[^>]*->[^>]*Altos del Sauzal/.test(o054);
+// El GTFS puede dar el recorrido en cualquier sentido: vale en los dos.
+const rev = t => t.split(' -> ').reverse().join(' -> ');
+const cumple = (t, re) => re.test(t) || re.test(rev(t));
+const bien347 = cumple(o347, /Orotava[\s\S]*Benijos[\s\S]*Palo Blanco[\s\S]*Realejo/);
+const bien054 = cumple(o054, /Ravelo[\s\S]*Altos del Sauzal/);
 ok('6 · la 347 sube por Benijos y Palo Blanco', bien347, o347);
 ok('6 · la 054 llega a Altos del Sauzal por Ravelo', bien054, o054);
 
@@ -166,9 +193,27 @@ const busca = q => {
   }
   return claves;
 };
-const anaza = busca('Anaza'), bail = busca('El Bailadero');
-ok('7 · «Anaza» da un resultado', anaza.size === 1, anaza.size + ' -> ' + [...anaza].join(' | '));
-ok('7 · «El Bailadero» da un resultado', bail.size === 1, bail.size + ' -> ' + [...bail].join(' | '));
+// El GTFS tiene paradas distintas cuyo nombre contiene el mismo toponimo
+// (tres con «Anaza», siete «El Calvario» por toda la isla): pedir UN resultado
+// es inalcanzable y no es lo que importa. Lo que no puede haber son dos
+// resultados en el mismo sitio, que era el sintoma original.
+const juntos = q => {
+  const v = [...busca(q)].map(k => k.split(',').map(Number));
+  const out = [];
+  for (let i = 0; i < v.length; i++) for (let j = i + 1; j < v.length; j++) {
+    const d = metros(v[i], v[j]);
+    if (d < 80) out.push(d.toFixed(0) + ' m');
+  }
+  return out;
+};
+['Anaza', 'Bailadero', 'Calvario'].forEach(q => {
+  const n = busca(q).size, j = juntos(q);
+  ok('7 · «' + q + '» sin dos resultados en el mismo sitio', j.length === 0,
+     n + ' resultado(s)' + (j.length ? ', pares a ' + j.join(', ') : ''));
+});
+
+ok('8 · ids de parada unicos', dupId.length === 0,
+   dupId.length ? dupId.slice(0, 4).join(' | ') : todas.length + ' paradas, 0 repetidos');
 
 // resumen
 console.log('\n  lineas %d · paradas %d%s',
