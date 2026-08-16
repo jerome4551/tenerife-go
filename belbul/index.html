@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>BELBUL — Tenerife Living</title>
+<meta name="description" content="Compra, venta y alquiler en Tenerife: propiedades, marco legal canario vigente y calculadora del coste real de compra. En español, inglés, francés y búlgaro."/>
+<meta name="theme-color" content="#00102A"/>
+<meta name="color-scheme" content="light"/>
+
+<link rel="manifest" href="manifest.webmanifest"/>
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png"/>
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png"/>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Belbul"/>
+<link rel="apple-touch-startup-image" href="splash-1125x2436.png" media="(device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3)"/>
+<link rel="apple-touch-startup-image" href="splash-1170x2532.png" media="(device-width:390px) and (device-height:844px) and (-webkit-device-pixel-ratio:3)"/>
+<link rel="apple-touch-startup-image" href="splash-1179x2556.png" media="(device-width:393px) and (device-height:852px) and (-webkit-device-pixel-ratio:3)"/>
+<link rel="apple-touch-startup-image" href="splash-1242x2688.png" media="(device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:3)"/>
+<link rel="apple-touch-startup-image" href="splash-1284x2778.png" media="(device-width:428px) and (device-height:926px) and (-webkit-device-pixel-ratio:3)"/>
+<link rel="apple-touch-startup-image" href="splash-1290x2796.png" media="(device-width:430px) and (device-height:932px) and (-webkit-device-pixel-ratio:3)"/>
+<link rel="apple-touch-startup-image" href="splash-1536x2048.png" media="(device-width:768px) and (device-height:1024px) and (-webkit-device-pixel-ratio:2)"/>
+<link rel="apple-touch-startup-image" href="splash-1668x2388.png" media="(device-width:834px) and (device-height:1194px) and (-webkit-device-pixel-ratio:2)"/>
+<link rel="apple-touch-startup-image" href="splash-2048x2732.png" media="(device-width:1024px) and (device-height:1366px) and (-webkit-device-pixel-ratio:2)"/>
+<link rel="apple-touch-startup-image" href="splash-750x1334.png" media="(device-width:375px) and (device-height:667px) and (-webkit-device-pixel-ratio:2)"/>
+<link rel="apple-touch-startup-image" href="splash-828x1792.png" media="(device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:2)"/>
+
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="BELBUL — Tenerife Living"/>
+<meta property="og:description" content="Compra, venta y alquiler en Tenerife con acompañamiento completo."/>
+<meta property="og:image" content="icon-512.png"/>
+<meta property="og:locale" content="es_ES"/>
+
+<style>
+/* Fuentes servidas desde el propio origen: con el CDN de Google la app
+   no arrancaba bien sin conexion y ademas filtraba una peticion a un
+   tercero en cada carga. Cinzel va subseteada a las letras de BELBUL,
+   que es lo unico que compone. */
+@font-face{font-family:'Jost';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/Jost-300-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/Jost-300-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/Jost-300-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/Jost-400-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/Jost-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/Jost-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Jost';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/Jost-500-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Jost';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/Jost-500-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Jost';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/Jost-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Jost';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/Jost-600-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Jost';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/Jost-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Jost';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/Jost-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/PlayfairDisplay-400i-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/PlayfairDisplay-400i-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/PlayfairDisplay-400i-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:500;font-display:swap;src:url(fonts/PlayfairDisplay-500i-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:500;font-display:swap;src:url(fonts/PlayfairDisplay-500i-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:500;font-display:swap;src:url(fonts/PlayfairDisplay-500i-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/PlayfairDisplay-600-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/PlayfairDisplay-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/PlayfairDisplay-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/PlayfairDisplay-700-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/PlayfairDisplay-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/PlayfairDisplay-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/Cinzel-600-belbul.woff2) format('woff2')}
+:root{
+--navy:#00102A;--navy2:#04173A;--navy3:#0A2350;
+--gold:#C9A45C;--gold-l:#E3C98F;--gold-d:#A88440;
+--cream:#F6F1E7;--cream2:#EFE8D9;--paper:#FFFFFF;
+--ink:#16263F;--grey:#6E7585;--err:#C0533F;
+--fd:'Playfair Display',Georgia,serif;--fw:'Cinzel',serif;--fb:'Jost',sans-serif;
+--r:16px;--sh:0 10px 30px rgba(10,23,48,.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+/* Sin esto, quien navega con teclado no ve donde esta: ningun boton
+   tenia indicador de foco. :focus-visible no molesta al que usa el dedo. */
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px}
+/* Con la hoja abierta el fondo seguia haciendo scroll por detras. */
+body.bloq{overflow:hidden}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+}
+body{background:#DDD6C7;font-family:var(--fb);color:var(--ink);font-weight:300;-webkit-font-smoothing:antialiased}
+.app{max-width:430px;margin:0 auto;min-height:100dvh;background:var(--cream);position:relative;display:flex;flex-direction:column;box-shadow:0 0 60px rgba(0,0,0,.25)}
+::-webkit-scrollbar{width:0;height:0}
+button{font-family:var(--fb)}
+
+header{position:sticky;top:0;z-index:50;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid rgba(201,164,92,.25)}
+.h-brand{display:flex;align-items:center;gap:10px}
+.h-mark{width:44px;height:44px;border-radius:9px;display:block;object-fit:cover}
+.cs-mark{width:62px;height:62px;border-radius:12px;margin:0 auto;display:block;object-fit:cover}
+.h-name{display:flex;flex-direction:column;line-height:1}
+.h-belbul{font-family:var(--fw);font-size:17px;letter-spacing:3px;color:var(--gold-l);font-weight:600}
+.h-sub{font-size:7.5px;letter-spacing:3.2px;color:var(--gold);margin-top:3px;text-transform:uppercase}
+.lang{position:relative}
+.lang-btn{display:flex;align-items:center;gap:7px;background:rgba(201,164,92,.1);border:1px solid rgba(201,164,92,.4);color:var(--gold-l);padding:7px 12px;border-radius:20px;font-size:12px;letter-spacing:1px;cursor:pointer;transition:.25s}
+.lang-btn:active{transform:scale(.96)}
+.lang-btn .ch{font-size:8px;transition:transform .25s}
+.lang.open .ch{transform:rotate(180deg)}
+.lang-menu{position:absolute;top:calc(100% + 8px);right:0;background:var(--navy2);border:1px solid rgba(201,164,92,.35);border-radius:12px;overflow:hidden;min-width:168px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:.25s;box-shadow:0 18px 44px rgba(0,0,0,.45);z-index:60}
+.lang.open .lang-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.lang-opt{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;color:#D8DCE6;padding:12px 16px;font-size:13px;cursor:pointer;text-align:left;border-bottom:1px solid rgba(255,255,255,.05)}
+.lang-opt:last-child{border-bottom:none}
+.lang-opt.on{color:var(--gold-l);background:rgba(201,164,92,.1)}
+.lang-opt .ck{margin-left:auto;opacity:0;color:var(--gold)}
+.lang-opt.on .ck{opacity:1}
+
+main{flex:1;overflow-x:hidden;padding-bottom:88px}
+.view{display:none}
+.view.on{display:block;animation:vIn .4s ease}
+@keyframes vIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.hero{background:#00102A;padding:30px 24px 40px;text-align:center;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:26px;background:var(--cream);border-radius:26px 26px 0 0}
+.hero-logo{width:100%;max-width:296px;margin:0 auto 4px;display:block;border-radius:10px}
+.hero-belbul{font-family:var(--fw);font-size:33px;letter-spacing:9px;color:var(--gold-l);font-weight:600;margin-top:4px}
+.hero-tl{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:7px}
+.hero-tl::before,.hero-tl::after{content:'';width:32px;height:1px;background:var(--gold)}
+.hero-tl span{font-size:9.5px;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+.hero-tag{font-family:var(--fd);font-style:italic;color:var(--gold-l);font-size:13.5px;margin-top:10px;opacity:.9}
+.hero-h1{font-family:var(--fd);font-size:26px;color:#F2EDDF;line-height:1.28;margin:14px 0 8px;font-weight:600}
+.hero-h1 em{font-style:italic;color:var(--gold-l)}
+.hero-p{color:#A9B2C5;font-size:13.5px;line-height:1.6;max-width:300px;margin:0 auto}
+.hero-search{display:flex;align-items:center;gap:10px;background:#FDFBF6;border-radius:30px;padding:14px 18px;margin:22px auto 4px;max-width:322px;box-shadow:0 14px 34px rgba(0,0,0,.3);cursor:pointer;border:none;width:100%;transition:.25s}
+.hero-search:active{transform:scale(.97)}
+.hero-search span{color:#8A8FA0;font-size:13.5px}
+
+.sec{padding:26px 20px 6px}
+.sec-eyebrow{display:flex;align-items:center;gap:10px;color:var(--gold-d);font-size:9.5px;letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:8px}
+.sec-eyebrow::before{content:'';width:26px;height:1px;background:var(--gold);flex-shrink:0}
+.sec-h{font-family:var(--fd);font-size:23px;font-weight:700;color:var(--ink);line-height:1.15}
+.sec-h em{font-style:italic;color:var(--gold-d)}
+.sec-p{color:var(--grey);font-size:13px;line-height:1.6;margin-top:6px}
+
+.langs-row{display:flex;gap:9px;padding:18px 20px 4px}
+.lang-pill{flex:1;background:var(--navy);border-radius:14px;padding:12px 4px;text-align:center;border:none;cursor:pointer;transition:.25s}
+.lang-pill:active{transform:scale(.94)}
+.lang-pill .f{font-size:21px;display:block}
+.lang-pill .n{font-size:8px;letter-spacing:1.2px;color:var(--gold-l);text-transform:uppercase;margin-top:5px;display:block}
+
+.vals{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 20px 0}
+.val{background:var(--paper);border-radius:var(--r);padding:18px 14px;text-align:center;box-shadow:var(--sh);border:1px solid rgba(201,164,92,.14)}
+.val .ic{width:38px;height:38px;margin:0 auto 8px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-d)}
+.val .t{font-family:var(--fd);font-size:14px;font-weight:700;color:var(--ink)}
+.val .d{font-size:11px;color:var(--grey);margin-top:4px;line-height:1.45}
+
+.svc-list{display:flex;flex-direction:column;gap:9px;padding:14px 20px 0}
+.svc{display:flex;align-items:center;gap:13px;background:var(--paper);border:1px solid rgba(201,164,92,.18);border-radius:14px;padding:14px 16px;cursor:pointer;transition:.22s;box-shadow:0 4px 14px rgba(10,23,48,.05);width:100%;text-align:left}
+.svc:active{transform:scale(.98);border-color:var(--gold)}
+.svc .ic{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--navy),var(--navy3));display:flex;align-items:center;justify-content:center;color:var(--gold-l);flex-shrink:0}
+.svc .tx{flex:1}
+.svc .t{font-size:14px;font-weight:500;color:var(--ink)}
+.svc .d{font-size:11px;color:var(--grey);margin-top:2px}
+.svc .ar{color:var(--gold-d);font-size:17px}
+
+.quote{text-align:center;padding:30px 28px 6px}
+.quote .script{font-family:var(--fd);font-style:italic;color:var(--gold-d);font-size:16px}
+.quote .big{font-family:var(--fd);font-size:20px;color:var(--ink);margin-top:8px;font-weight:600}
+.quote .hr{width:46px;height:1px;background:var(--gold);margin:14px auto 0}
+
+.disc{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 20px 0}
+.disc-card{position:relative;border-radius:var(--r);overflow:hidden;height:128px;cursor:pointer;border:none;text-align:left;transition:.25s}
+.disc-card:active{transform:scale(.97)}
+.d1{background:linear-gradient(160deg,#11304A,#0A4B5E 60%,#0A2A3A)}
+.d2{background:linear-gradient(160deg,#3A2E1E,#6E5023 60%,#2E2415)}
+.d3{background:linear-gradient(160deg,#27384F,#54391F 65%,#1C2638)}
+.d4{background:linear-gradient(160deg,#1B2C4A,#3F6080 60%,#13233F)}
+.disc-card::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,12,26,.78),transparent 65%)}
+.disc-card .in{position:absolute;left:13px;right:13px;bottom:11px;z-index:1}
+.disc-card .t{font-family:var(--fd);font-size:14.5px;color:#fff;font-weight:700}
+.disc-card .d{font-size:10.5px;color:#C9CFDC;margin-top:2px;line-height:1.35}
+.disc-card .em{position:absolute;top:12px;left:13px;font-size:20px}
+
+.cstrip{margin:28px 0 0;background:var(--navy);padding:26px 22px 30px;text-align:center}
+.cstrip .b{font-family:var(--fw);font-size:18px;letter-spacing:5px;color:var(--gold-l);margin-top:10px}
+.cstrip .s{font-size:8px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-top:3px}
+.cstrip .rows{display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.cstrip .row{display:flex;align-items:center;justify-content:center;gap:9px;color:#C2C9D8;font-size:13px}
+.cstrip .row svg{color:var(--gold);flex-shrink:0}
+.cstrip .her{font-size:10px;letter-spacing:2.5px;color:var(--gold);margin-top:18px;text-transform:uppercase}
+.cbtn{margin-top:16px;background:linear-gradient(135deg,var(--gold-l),var(--gold-d));border:none;color:#00102A;font-weight:600;font-size:12px;letter-spacing:1.6px;text-transform:uppercase;padding:13px 30px;border-radius:26px;cursor:pointer;transition:.25s}
+.cbtn:active{transform:scale(.96)}
+
+.chips{display:flex;gap:8px;padding:14px 20px 2px;overflow-x:auto}
+.chip{flex-shrink:0;background:var(--paper);border:1px solid rgba(201,164,92,.3);color:var(--grey);padding:8px 16px;border-radius:20px;font-size:11.5px;cursor:pointer;transition:.22s}
+.chip.on{background:var(--navy);color:var(--gold-l);border-color:#00102A}
+.props{display:flex;flex-direction:column;gap:14px;padding:14px 20px 8px}
+.prop{background:var(--paper);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);cursor:pointer;border:1px solid rgba(201,164,92,.12);transition:.25s;text-align:left;width:100%;padding:0;display:block}
+.prop:active{transform:scale(.985)}
+.prop-img{height:168px;position:relative;overflow:hidden}
+.pim{position:absolute;inset:0}
+.pg1{background:linear-gradient(155deg,#16324A,#2C5B6E 35%,#7A5A2E 78%,#3A2C16)}
+.pg2{background:linear-gradient(155deg,#1A2B4A,#3E5E80 45%,#1E3050)}
+.pg3{background:linear-gradient(155deg,#14352B,#2E6650 50%,#13283C)}
+.pg4{background:linear-gradient(155deg,#34281A,#6E5430 50%,#241A0E)}
+.pg5{background:linear-gradient(155deg,#1C3148,#456884 52%,#15263A)}
+.prop-img::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,13,28,.5),transparent 55%)}
+.pbadge{position:absolute;top:12px;left:12px;background:rgba(10,23,48,.82);color:var(--gold-l);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 11px;border-radius:14px;border:1px solid rgba(201,164,92,.45);z-index:2}
+.pfav{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;color:#B9802F;z-index:2;transition:.2s}
+.pfav:active{transform:scale(1.2)}
+.prop-body{padding:14px 16px 16px}
+.pzone{font-size:9.5px;letter-spacing:2.4px;color:var(--gold-d);text-transform:uppercase}
+.ptitle{font-family:var(--fd);font-size:16.5px;font-weight:700;color:var(--ink);margin-top:4px;line-height:1.3}
+.pspecs{display:flex;gap:14px;color:var(--grey);font-size:11.5px;margin-top:8px}
+.pprice-row{display:flex;align-items:center;justify-content:space-between;margin-top:11px;padding-top:11px;border-top:1px solid var(--cream2)}
+.pprice{font-family:var(--fd);font-size:19px;font-weight:700;color:#00102A}
+.pprice small{font-family:var(--fb);font-size:10.5px;color:var(--grey);font-weight:300}
+.pmore{font-size:19px;color:var(--gold-d)}
+
+.acc{background:var(--paper);border:1px solid rgba(201,164,92,.16);border-radius:14px;margin:0 20px 10px;overflow:hidden;box-shadow:0 4px 14px rgba(10,23,48,.05)}
+.acc-h{display:flex;align-items:center;gap:12px;width:100%;background:none;border:none;padding:15px 16px;cursor:pointer;text-align:left}
+.acc-h .num{font-family:var(--fd);font-size:21px;font-weight:700;color:rgba(201,164,92,.55);width:30px;flex-shrink:0}
+.acc-h .ico{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--navy),var(--navy3));display:flex;align-items:center;justify-content:center;color:var(--gold-l);flex-shrink:0}
+.acc-h .tt{flex:1}
+.acc-h .t{font-size:14px;font-weight:500;color:var(--ink)}
+.acc-h .s{font-size:10.5px;color:var(--gold-d);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+.acc-h .ch{color:var(--gold-d);transition:transform .3s;font-size:11px}
+.acc.open .acc-h .ch{transform:rotate(180deg)}
+.acc-b{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc.open .acc-b{max-height:1000px}
+.acc-in{padding:0 16px 16px;color:var(--grey);font-size:12.5px;line-height:1.65}
+.kv{display:flex;flex-direction:column;gap:8px}
+.kv .r{background:var(--cream);border-radius:10px;padding:9px 12px}
+.kv .k{font-size:9.5px;letter-spacing:1.6px;color:var(--gold-d);text-transform:uppercase;font-weight:500}
+.kv .v{font-size:12.5px;color:#3E4A60;margin-top:3px;line-height:1.5}
+
+.taxcard{margin:14px 20px 0;background:var(--navy);border-radius:var(--r);overflow:hidden;box-shadow:0 14px 34px rgba(10,23,48,.3)}
+.taxcard .hd{background:linear-gradient(135deg,var(--gold),var(--gold-d));padding:16px 18px}
+.taxcard .hd .t{font-family:var(--fd);font-size:17px;font-weight:700;color:#00102A}
+.taxcard .hd .s{font-size:10px;color:rgba(10,23,48,.7);margin-top:2px}
+.trow{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.06)}
+.trow:last-of-type{border-bottom:none}
+.trow .n{color:#C8CEDC;font-size:12px;flex:1;padding-right:10px}
+.trow .n small{display:block;color:#7C86A0;font-size:10px;margin-top:1px;line-height:1.4}
+.trow .p{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--gold-l);text-align:right;flex-shrink:0}
+.trow .w{display:block;font-family:var(--fb);font-size:8.5px;letter-spacing:1px;color:#7C86A0;text-transform:uppercase;margin-top:1px;font-weight:400}
+.taxnote{padding:13px 18px;background:rgba(201,164,92,.08);color:#A9B2C5;font-size:10.5px;line-height:1.6;border-top:1px solid rgba(201,164,92,.2)}
+
+.dline{display:flex;gap:11px;background:var(--paper);border-left:3px solid var(--gold);border-radius:10px;padding:12px 14px;margin:0 20px 9px;box-shadow:0 3px 10px rgba(10,23,48,.05)}
+.dline .d{font-family:var(--fd);font-weight:700;color:#00102A;font-size:13px;min-width:96px;line-height:1.35}
+.dline .x{color:var(--grey);font-size:11.5px;line-height:1.5}
+
+.ibox{margin:14px 20px 0;background:rgba(201,164,92,.1);border:1px solid rgba(201,164,92,.35);border-radius:13px;padding:14px 15px;font-size:12px;color:#5A4A28;line-height:1.6}
+.ibox b{color:#3E3010}
+
+.clist{display:flex;flex-direction:column;gap:8px;padding:12px 20px 0}
+.citem{display:flex;gap:11px;background:var(--paper);border-radius:11px;padding:11px 13px;border:1px solid rgba(201,164,92,.14)}
+.citem .dot{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold-d);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;font-weight:600;margin-top:1px}
+.citem .t{font-size:12.5px;color:var(--ink);font-weight:500}
+.citem .d{font-size:11px;color:var(--grey);margin-top:2px;line-height:1.5}
+
+.calc{margin:14px 20px 0;background:var(--paper);border-radius:var(--r);padding:20px 18px;box-shadow:var(--sh);border:1px solid rgba(201,164,92,.16)}
+.fl{display:block;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-d);font-weight:500;margin-bottom:7px}
+.fi,.fs{width:100%;background:var(--cream);border:1px solid rgba(201,164,92,.3);border-radius:11px;padding:13px 15px;font-family:var(--fb);font-size:15px;color:var(--ink);outline:none;transition:.25s}
+.fi:focus,.fs:focus{border-color:var(--gold);background:#fff}
+.fg{margin-bottom:15px}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.cbtn2{width:100%;background:linear-gradient(135deg,var(--navy),var(--navy3));border:1px solid var(--gold-d);color:var(--gold-l);font-size:12px;letter-spacing:1.8px;text-transform:uppercase;font-weight:600;padding:15px;border-radius:12px;cursor:pointer;transition:.25s}
+.cbtn2:active{transform:scale(.97)}
+.cerr{display:none;margin-top:12px;background:rgba(192,83,63,.08);border:1px solid rgba(192,83,63,.35);color:var(--err);border-radius:10px;padding:11px 14px;font-size:12.5px}
+.cres{display:none;margin:14px 20px 0;background:var(--navy);border-radius:var(--r);overflow:hidden;box-shadow:0 14px 34px rgba(10,23,48,.3)}
+.cres.show{display:block;animation:vIn .4s}
+.cres .top{padding:20px 20px 16px;border-bottom:1px solid rgba(201,164,92,.2);text-align:center}
+.cres .lbl{font-size:10px;letter-spacing:2.4px;text-transform:uppercase;color:#8B93A8}
+.cres .tot{font-family:var(--fd);font-size:37px;font-weight:700;color:var(--gold-l);margin-top:6px;line-height:1}
+.cres .pc{font-size:11.5px;color:#8B93A8;margin-top:6px}
+.crow{display:flex;justify-content:space-between;padding:11px 20px;border-bottom:1px solid rgba(255,255,255,.05);font-size:12.5px}
+.crow .l{color:#B9C0D0;padding-right:10px}
+.crow .v{color:#F0EAD8;font-weight:500;white-space:nowrap}
+.creq{display:none;background:rgba(201,164,92,.13);border:1px solid rgba(201,164,92,.4);border-radius:10px;padding:11px 13px;margin-top:14px;font-size:11.5px;line-height:1.55;color:var(--ink)}
+.cdisc{padding:13px 20px;color:#7C86A0;font-size:10px;line-height:1.6}
+
+.ovl{position:fixed;inset:0;background:rgba(6,12,26,.55);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:.3s;z-index:90}
+.ovl.show{opacity:1;visibility:visible}
+.sheet{position:fixed;left:50%;transform:translate(-50%,105%);bottom:0;width:100%;max-width:430px;background:var(--cream);border-radius:24px 24px 0 0;z-index:95;visibility:hidden;transition:transform .42s cubic-bezier(.32,.72,.25,1),visibility 0s linear .42s;max-height:88dvh;display:flex;flex-direction:column}
+.sheet.show{transform:translate(-50%,0);visibility:visible;transition:transform .42s cubic-bezier(.32,.72,.25,1),visibility 0s}
+.sh-grab{width:42px;height:4px;border-radius:3px;background:rgba(110,117,133,.4);margin:11px auto 2px;flex-shrink:0}
+.sh-close{position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--cream2);border:none;color:var(--grey);font-size:14px;cursor:pointer;z-index:2}
+.sh-body{overflow-y:auto;padding:10px 22px 34px}
+.sh-hero{height:168px;border-radius:16px;position:relative;overflow:hidden;margin-bottom:16px}
+.sh-eyebrow{font-size:9.5px;letter-spacing:2.6px;color:var(--gold-d);text-transform:uppercase;font-weight:500}
+.sh-title{font-family:var(--fd);font-size:21px;font-weight:700;color:var(--ink);margin-top:5px;line-height:1.25}
+.sh-price{font-family:var(--fd);font-size:24px;font-weight:700;color:#00102A;margin-top:8px}
+.sh-price small{font-family:var(--fb);font-size:11px;color:var(--grey);font-weight:300}
+.sh-specs{display:flex;gap:8px;margin-top:13px}
+.sh-spec{flex:1;background:var(--paper);border:1px solid rgba(201,164,92,.2);border-radius:11px;padding:10px 6px;text-align:center}
+.sh-spec .v{font-family:var(--fd);font-weight:700;color:#00102A;font-size:15px}
+.sh-spec .k{font-size:8.5px;letter-spacing:1.2px;color:var(--grey);text-transform:uppercase;margin-top:2px}
+.sh-p{color:var(--grey);font-size:13px;line-height:1.7;margin-top:8px}
+.sh-cta{width:100%;margin-top:18px;background:linear-gradient(135deg,var(--gold-l),var(--gold-d));border:none;color:#00102A;font-weight:600;font-size:12.5px;letter-spacing:1.6px;text-transform:uppercase;padding:15px;border-radius:13px;cursor:pointer;transition:.25s}
+.sh-cta:active{transform:scale(.97)}
+.sh-note{display:none;margin-top:12px;background:rgba(47,158,99,.1);border:1px solid rgba(47,158,99,.35);color:#1F6B43;border-radius:10px;padding:11px 14px;font-size:12px;line-height:1.5}
+.sh-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.sh-li{display:flex;gap:10px;background:var(--paper);border-radius:11px;padding:11px 13px;border:1px solid rgba(201,164,92,.15)}
+.sh-li .b{color:var(--gold-d);font-weight:600;flex-shrink:0}
+.sh-li .x{font-size:12.5px;color:#3E4A60;line-height:1.5}
+
+.tabbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--navy);display:flex;border-top:1px solid rgba(201,164,92,.3);z-index:80;padding-bottom:env(safe-area-inset-bottom)}
+.tab{flex:1;background:none;border:none;padding:10px 3px 11px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;color:#6E7890;transition:.25s;position:relative}
+.tab .l{font-size:8.5px;letter-spacing:.8px;text-transform:uppercase;font-weight:500}
+.tab.on{color:var(--gold-l)}
+.tab.on::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:26px;height:2.5px;background:var(--gold);border-radius:0 0 3px 3px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header>
+  <div class="h-brand">
+    <img class="h-mark" src="mark.jpg" width="132" height="132" alt="Belbul" decoding="async"/>
+    <div class="h-name"><span class="h-belbul">BELBUL</span><span class="h-sub">Tenerife Living</span></div>
+  </div>
+  <div class="lang" id="lang">
+    <button class="lang-btn" onclick="toggleLang(event)" aria-expanded="false" aria-haspopup="true" aria-label="Idioma"><span id="langFlag">🇪🇸</span><span id="langCode">ES</span><span class="ch">▼</span></button>
+    <div class="lang-menu">
+      <button class="lang-opt on" data-l="es" onclick="setLang('es')">🇪🇸 Español<span class="ck">✓</span></button>
+      <button class="lang-opt" data-l="en" onclick="setLang('en')">🇬🇧 English<span class="ck">✓</span></button>
+      <button class="lang-opt" data-l="fr" onclick="setLang('fr')">🇫🇷 Français<span class="ck">✓</span></button>
+      <button class="lang-opt" data-l="bg" onclick="setLang('bg')">🇧🇬 Български<span class="ck">✓</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="view on" id="v-inicio">
+  <div class="hero">
+    <img class="hero-logo" src="logo.jpg" width="640" height="585" alt="BELBUL — Tenerife Living · Find your life. Find Tenerife" fetchpriority="high" decoding="async"/>
+    <h1 class="hero-h1" data-i18n-html="hero_h1">Tu hogar, donde la vida <em>se siente bien.</em></h1>
+    <p class="hero-p" data-i18n="hero_p">Vive donde otros sueñan vacacionar. Compra, venta y alquiler en Tenerife con acompañamiento completo.</p>
+    <button class="hero-search" onclick="showTab('comprar')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A88440" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <span data-i18n="hero_search">¿Dónde te gustaría vivir?</span>
+    </button>
+  </div>
+
+  <div class="langs-row">
+    <button class="lang-pill" onclick="setLang('fr')"><span class="f">🇫🇷</span><span class="n">Français</span></button>
+    <button class="lang-pill" onclick="setLang('en')"><span class="f">🇬🇧</span><span class="n">English</span></button>
+    <button class="lang-pill" onclick="setLang('es')"><span class="f">🇪🇸</span><span class="n">Español</span></button>
+    <button class="lang-pill" onclick="setLang('bg')"><span class="f">🇧🇬</span><span class="n">Български</span></button>
+  </div>
+
+  <div class="sec">
+    <div class="sec-eyebrow" data-i18n="why_eye">Por qué Tenerife</div>
+    <h2 class="sec-h" data-i18n-html="why_h">La isla donde <em>todo encaja</em></h2>
+  </div>
+  <div class="vals">
+    <div class="val"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg></div><div class="t" data-i18n="v1_t">Clima perfecto</div><div class="d" data-i18n="v1_d">22° de media todo el año</div></div>
+    <div class="val"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 14q3-3 6 0t6 0 6 0M2 19q3-3 6 0t6 0 6 0M8 9l4-6 4 6"/></svg></div><div class="t" data-i18n="v2_t">Naturaleza única</div><div class="d" data-i18n="v2_d">Playas, montañas y el Teide</div></div>
+    <div class="val"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6.5 5.5 5.5 0 0 1 21.5 12C19 16.4 12 21 12 21z"/></svg></div><div class="t" data-i18n="v3_t">Calidad de vida</div><div class="d" data-i18n="v3_d">Seguridad, tranquilidad y bienestar</div></div>
+    <div class="val"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17l6-6 4 4 7-8M14 7h7v7"/></svg></div><div class="t" data-i18n="v4_t">Inversión segura</div><div class="d" data-i18n="v4_d">Mercado en crecimiento y fiscalidad ventajosa</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-eyebrow" data-i18n="svc_eye">Nuestros servicios</div>
+    <h2 class="sec-h" data-i18n-html="svc_h">Te acompañamos <em>en cada paso</em></h2>
+    <p class="sec-p" data-i18n="svc_p">Toca cada servicio para ver todo lo que incluye.</p>
+  </div>
+  <div class="svc-list">
+    <button class="svc" onclick="openSheet('s-asesoria')"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21q1-6 8-6t8 6"/></svg></div><div class="tx"><div class="t" data-i18n="sv1_t">Asesoramiento personalizado</div><div class="d" data-i18n="sv1_d">Búsqueda a medida, visitas y negociación</div></div><span class="ar">›</span></button>
+    <button class="svc" onclick="openSheet('s-gestion')"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3 8-8M21 12v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h11"/></svg></div><div class="tx"><div class="t" data-i18n="sv2_t">Gestión integral de compra</div><div class="d" data-i18n="sv2_d">De la nota simple al Registro</div></div><span class="ar">›</span></button>
+    <button class="svc" onclick="openSheet('s-legal')"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M5 7l7-4 7 4M3 13l2-6 2 6a3 3 0 0 1-4 0zM17 13l2-6 2 6a3 3 0 0 1-4 0z"/></svg></div><div class="tx"><div class="t" data-i18n="sv3_t">Asistencia legal y fiscal</div><div class="d" data-i18n="sv3_d">NIE, impuestos, modelos oficiales</div></div><span class="ar">›</span></button>
+    <button class="svc" onclick="openSheet('s-deco')"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21v-4l11-11 4 4L7 21H3zM14 6l4 4M12 21h9"/></svg></div><div class="tx"><div class="t" data-i18n="sv4_t">Decoración & Interiorismo</div><div class="d" data-i18n="sv4_d">Home staging y reformas</div></div><span class="ar">›</span></button>
+    <button class="svc" onclick="openSheet('s-vacacional')"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div><div class="tx"><div class="t" data-i18n="sv5_t">Alquiler vacacional</div><div class="d" data-i18n="sv5_d">Licencias, Registro Único y gestión</div></div><span class="ar">›</span></button>
+  </div>
+
+  <div class="quote">
+    <div class="script" data-i18n="q_script">Familial. Humain. International.</div>
+    <div class="big" data-i18n="q_big">Más que propiedades, creamos hogares.</div>
+    <div class="hr"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-eyebrow" data-i18n="disc_eye">Descubre</div>
+    <h2 class="sec-h" data-i18n-html="disc_h">Tenerife <em>te enamora</em></h2>
+  </div>
+  <div class="disc">
+    <button class="disc-card d1" onclick="openSheet('s-zonas')"><span class="em">📍</span><div class="in"><div class="t" data-i18n="dc1_t">Zonas exclusivas</div><div class="d" data-i18n="dc1_d">Los mejores lugares de la isla</div></div></button>
+    <button class="disc-card d2" onclick="showTab('comprar')"><span class="em">🏡</span><div class="in"><div class="t" data-i18n="dc2_t">Encuentra tu estilo</div><div class="d" data-i18n="dc2_d">Villas, apartamentos, fincas y más</div></div></button>
+    <button class="disc-card d3" onclick="openSheet('s-invierte')"><span class="em">💛</span><div class="in"><div class="t" data-i18n="dc3_t">Vive o invierte</div><div class="d" data-i18n="dc3_d">Tu hogar o tu mejor decisión financiera</div></div></button>
+    <button class="disc-card d4" onclick="openSheet('s-isla')"><span class="em">🌋</span><div class="in"><div class="t" data-i18n="dc4_t">La isla</div><div class="d" data-i18n="dc4_d">Descúbrelo, vívelo, quédate</div></div></button>
+  </div>
+
+  <div class="cstrip">
+    <img class="cs-mark" src="mark.jpg" width="132" height="132" alt="Belbul" decoding="async"/>
+    <div class="b">BELBUL</div>
+    <div class="s" data-i18n="brand_re">Real Estate · Tenerife</div>
+    <div class="rows">
+      <div class="row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>+34 600 123 456</div>
+      <div class="row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>hola@belbulrealestate.com</div>
+      <div class="row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="ct_loc">Tenerife, Islas Canarias</span></div>
+    </div>
+    <div class="her" data-i18n="ct_her">Bélgica — Bulgaria — España</div>
+    <button class="cbtn" onclick="openSheet('s-contact')" data-i18n="ct_btn">Contactar</button>
+  </div>
+</div>
+
+<div class="view" id="v-comprar">
+  <div class="sec">
+    <div class="sec-eyebrow" data-i18n="pr_eye">En venta y alquiler</div>
+    <h2 class="sec-h" data-i18n-html="pr_h">Propiedades <em>destacadas</em></h2>
+    <p class="sec-p" data-i18n="pr_p">Toca una propiedad para ver la ficha completa con su fiscalidad real.</p>
+  </div>
+  <div class="chips" id="chips">
+    <button class="chip on" data-f="all" data-i18n="f_all">Todas</button>
+    <button class="chip" data-f="venta" data-i18n="f_venta">Venta</button>
+    <button class="chip" data-f="nueva" data-i18n="f_nueva">Obra nueva</button>
+    <button class="chip" data-f="alquiler" data-i18n="f_alq">Alquiler</button>
+    <button class="chip" data-f="vacacional" data-i18n="f_vac">Vacacional</button>
+  </div>
+  <div class="props" id="props"></div>
+  <div class="ibox" data-i18n-html="pr_note"><b>Nota:</b> los precios no incluyen impuestos ni gastos. Usa la pestaña <b>Calcular</b> para conocer el coste total real según tu perfil.</div>
+</div>
+
+<div class="view" id="v-alquiler">
+  <div class="sec">
+    <div class="sec-eyebrow" data-i18n="al_eye">Marco legal vigente · LAU + Ley 6/2025</div>
+    <h2 class="sec-h" data-i18n-html="al_h">Tipos de <em>alquiler</em></h2>
+    <p class="sec-p" data-i18n="al_p">Tres modalidades, tres marcos legales distintos. Toca cada una.</p>
+  </div>
+
+  <div class="acc">
+    <button class="acc-h" onclick="toggleAcc(this)" aria-expanded="false"><div class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div><div class="tt"><div class="t" data-i18n="a1_t">Vivienda habitual</div><div class="s" data-i18n="a1_s">LAU · Ley 12/2023</div></div><span class="ch">▼</span></button>
+    <div class="acc-b"><div class="acc-in"><div class="kv">
+      <div class="r"><div class="k" data-i18n="k_dur">Duración mínima</div><div class="v" data-i18n="a1_dur">5 años (7 si el arrendador es persona jurídica). Prórrogas tácitas de 1 año.</div></div>
+      <div class="r"><div class="k" data-i18n="k_renta">Actualización de renta</div><div class="v" data-i18n="a1_renta">Índice IRAV del INE para contratos firmados desde el 25/05/2023. Febrero 2026: 2,16 %. Contratos anteriores: IPC.</div></div>
+      <div class="r"><div class="k" data-i18n="k_fianza">Fianza</div><div class="v" data-i18n="a1_fianza">1 mensualidad obligatoria (art. 36.1 LAU). Depósito en el Gobierno de Canarias en 1 mes. Garantías adicionales: máximo 2 mensualidades.</div></div>
+    </div></div></div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-h" onclick="toggleAcc(this)" aria-expanded="false"><div class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><div class="tt"><div class="t" data-i18n="a2_t">Alquiler de temporada</div><div class="s" data-i18n="a2_s">LAU · uso distinto de vivienda</div></div><span class="ch">▼</span></button>
+    <div class="acc-b"><div class="acc-in"><div class="kv">
+      <div class="r"><div class="k" data-i18n="k_dur">Duración</div><div class="v" data-i18n="a2_dur">Libremente pactada y justificada (trabajo, estudios, temporada). No sirve para eludir las protecciones de la vivienda habitual.</div></div>
+      <div class="r"><div class="k" data-i18n="k_renta">Renta</div><div class="v" data-i18n="a2_renta">Libremente pactada. El índice IRAV no se aplica.</div></div>
+      <div class="r"><div class="k" data-i18n="k_fianza">Fianza</div><div class="v" data-i18n="a2_fianza">2 mensualidades obligatorias para uso distinto de vivienda (art. 36.1 LAU).</div></div>
+    </div></div></div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-h" onclick="toggleAcc(this)" aria-expanded="false"><div class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c2 3 2 5 0 7-2-2-2-4 0-7zM5 21q0-6 7-7 7 1 7 7z"/></svg></div><div class="tt"><div class="t" data-i18n="a3_t">Alquiler vacacional</div><div class="s" data-i18n="a3_s">Ley 6/2025 Canarias</div></div><span class="ch">▼</span></button>
+    <div class="acc-b"><div class="acc-in"><div class="kv">
+      <div class="r"><div class="k" data-i18n="k_ley">Marco legal</div><div class="v" data-i18n="a3_ley">Ley 6/2025 de Canarias (BOC 12/12/2025) + Decreto 113/2015 supletorio. Los ayuntamientos tienen papel protagonista en la autorización urbanística.</div></div>
+      <div class="r"><div class="k" data-i18n="k_reg">Registro Único Nacional</div><div class="v" data-i18n="a3_reg">Obligatorio desde el 01/07/2025 (R.D. 1312/2024). El número debe figurar en todos los anuncios de plataformas.</div></div>
+      <div class="r"><div class="k" data-i18n="k_cons">Consolidación</div><div class="v" data-i18n="a3_cons">Viviendas con declaración responsable anterior al 13/12/2025: 5 años para consolidar el uso turístico de forma indefinida.</div></div>
+    </div></div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-eyebrow" data-i18n="vc_eye">Vacacional · documentación obligatoria</div>
+    <h2 class="sec-h" data-i18n-html="vc_h">Checklist <em>legal</em></h2>
+  </div>
+  <div class="clist">
+    <div class="citem"><div class="dot">1</div><div><div class="t" data-i18n="vc1_t">Declaración responsable</div><div class="d" data-i18n="vc1_d">Ante el Cabildo de Tenerife. Punto de partida de la actividad turística.</div></div></div>
+    <div class="citem"><div class="dot">2</div><div><div class="t" data-i18n="vc2_t">Autorización urbanística municipal</div><div class="d" data-i18n="vc2_d">El uso turístico debe estar permitido por el planeamiento del municipio (Ley 6/2025).</div></div></div>
+    <div class="citem"><div class="dot">3</div><div><div class="t" data-i18n="vc3_t">Número de Registro Único</div><div class="d" data-i18n="vc3_d">R.D. 1312/2024. Visible en todos los anuncios desde el 01/07/2025.</div></div></div>
+    <div class="citem"><div class="dot">4</div><div><div class="t" data-i18n="vc4_t">Cédula de habitabilidad + CEE</div><div class="d" data-i18n="vc4_d">Habitabilidad en vigor y Certificado de Eficiencia Energética para publicitar.</div></div></div>
+    <div class="citem"><div class="dot">5</div><div><div class="t" data-i18n="vc5_t">Comunidad de propietarios</div><div class="d" data-i18n="vc5_d">Los estatutos no deben prohibir el uso vacacional; la junta puede limitarlo por mayoría de 3/5.</div></div></div>
+    <div class="citem"><div class="dot">6</div><div><div class="t" data-i18n="vc6_t">Registro de viajeros</div><div class="d" data-i18n="vc6_d">Comunicación de huéspedes vía plataforma SES Hospedajes (R.D. 933/2021), en 24 h desde la entrada.</div></div></div>
+    <div class="citem"><div class="dot">7</div><div><div class="t" data-i18n="vc7_t">Hojas de reclamaciones + seguro RC</div><div class="d" data-i18n="vc7_d">Hojas oficiales de Canarias obligatorias. Seguro de responsabilidad civil muy recomendable.</div></div></div>
+  </div>
+  <div class="ibox" data-i18n-html="al_irav"><b>IRAV (INE):</b> índice que sustituye al IPC para actualizar rentas de contratos firmados desde el 25/05/2023. Últimos datos: 2,14 % (enero 2026) · 2,16 % (febrero 2026).</div>
+</div>
+
+<div class="view" id="v-legal">
+  <div class="sec">
+    <div class="sec-eyebrow" data-i18n="lg_eye">Verificado · junio 2026</div>
+    <h2 class="sec-h" data-i18n-html="lg_h">Proceso de <em>compraventa</em></h2>
+    <p class="sec-p" data-i18n="lg_p">Los 8 pasos oficiales, con plazos y documentos. Toca cada paso.</p>
+  </div>
+
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)" aria-expanded="false"><div class="num">01</div><div class="tt"><div class="t" data-i18n="l1_t">Nota Simple del Registro</div><div class="s" data-i18n="l1_s">1–2 días · ~10 €</div></div><span class="ch">▼</span></button><div class="acc-b"><div class="acc-in" data-i18n="l1_d">Verifica titularidad, cargas, servidumbres y descripción del inmueble. Se solicita en registradores.org. Imprescindible antes de entregar cualquier señal.</div></div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)" aria-expanded="false"><div class="num">02</div><div class="tt"><div class="t" data-i18n="l2_t">Contrato de arras</div><div class="s" data-i18n="l2_s">Inmediato · habitual 10 %</div></div><span class="ch">▼</span></button><div class="acc-b"><div class="acc-in" data-i18n="l2_d">Reserva del inmueble. Arras penitenciales (art. 1454 del Código Civil): si el vendedor desiste devuelve el doble; si desiste el comprador, pierde la señal. Debe fijar precio, plazo de escritura y consecuencias.</div></div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)" aria-expanded="false"><div class="num">03</div><div class="tt"><div class="t" data-i18n="l3_t">Due diligence legal</div><div class="s" data-i18n="l3_s">3–10 días</div></div><span class="ch">▼</span></button><div class="acc-b"><div class="acc-in" data-i18n="l3_d">Comprobación de situación urbanística (PGOU), deudas de IBI y comunidad, ITE en edificios de más de 30 años, suministros y cargas ocultas.</div></div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)" aria-expanded="false"><div class="num">04</div><div class="tt"><div class="t" data-i18n="l4_t">Hipoteca (si procede)</div><div class="s" data-i18n="l4_s">2–6 semanas</div></div><span class="ch">▼</span></button><div class="acc-b"><div class="acc-in" data-i18n="l4_d">Tasación homologada (250–600 €) + FEIN con 10 días de reflexión obligatoria (Ley 5/2019) + acta notarial previa gratuita. El AJD de la hipoteca lo paga el banco.</div></div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)" aria-expanded="false"><div class="num">05</div><div class="tt"><div class="t" data-i18n="l5_t">Firma en notaría</div><div class="s" data-i18n="l5_s">1 día</div></div><span class="ch">▼</span></button><div class="acc-b"><div class="acc-in" data-i18n="l5_d">Escritura pública de compraventa. El notario verifica identidad, cargas, medios de pago y documentación completa de ambas partes.</div></div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)" aria-expanded="false"><div class="num">06</div><div class="tt"><div class="t" data-i18n="l6_t">Liquidación de impuestos</div><div class="s" data-i18n="l6_s">⚠ máx. 30 días hábiles</div></div><span class="ch">▼</span></button><div class="acc-b"><div class="acc-in" data-i18n="l6_d">ITP (Modelo 600) para segunda mano o IGIC (Modelo 700) + AJD para obra nueva, en la Agencia Tributaria Canaria. Fuera de plazo: recargos del 5 al 20 % más intereses.</div></div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)" aria-expanded="false"><div class="num">07</div><div class="tt"><div class="t" data-i18n="l7_t">Inscripción en el Registro</div><div class="s" data-i18n="l7_s">15 días hábiles · 300–700 €</div></div><span class="ch">▼</span></button><div class="acc-b"><div class="acc-in" data-i18n="l7_d">Presentación de la escritura con el justificante de pago de impuestos. Sin inscripción no hay protección registral frente a terceros.</div></div></div>
+  <div class="acc"><button class="acc-h" onclick="toggleAcc(this)" aria-expanded="false"><div class="num">08</div><div class="tt"><div class="t" data-i18n="l8_t">Cambio de titularidades</div><div class="s" data-i18n="l8_s">1–2 semanas</div></div><span class="ch">▼</span></button><div class="acc-b"><div class="acc-in" data-i18n="l8_d">IBI en el Ayuntamiento, suministros (agua, luz, gas) y notificación a la comunidad de propietarios.</div></div></div>
+
+  <div class="taxcard">
+    <div class="hd"><div class="t" data-i18n="tx_t">Régimen Fiscal Canario</div><div class="s" data-i18n="tx_s">Ley 9/2025 · BOC 29/12/2025 · vigente 2026</div></div>
+    <div class="trow"><div class="n">IGIC<small data-i18n="tx1">Obra nueva · sustituye al IVA</small></div><div class="p" id="f-igic">7 %<span class="w" data-i18n="w_comp">Comprador</span></div></div>
+    <div class="trow"><div class="n">IGIC · VPO<small data-i18n="tx2">Protección Oficial · 1ª entrega del promotor</small></div><div class="p" id="f-igic-vpo">0 %<span class="w" data-i18n="w_comp">Comprador</span></div></div>
+    <div class="trow"><div class="n">ITP<small data-i18n="tx3">Segunda mano · tipo general</small></div><div class="p" id="f-itp">6,5 %<span class="w" data-i18n="w_comp">Comprador</span></div></div>
+    <div class="trow"><div class="n">ITP<small data-i18n="tx4">Vivienda habitual ≤ 200.000 €</small></div><div class="p" id="f-itp-hab">5 %<span class="w" data-i18n="w_comp">Comprador</span></div></div>
+    <div class="trow"><div class="n">ITP<small data-i18n="tx5">≤ 40 años · 1ª vivienda ≤ 200.000 € · renta ≤ 46.455 €</small></div><div class="p" id="f-itp-joven">4 %<span class="w" data-i18n="w_comp">Comprador</span></div></div>
+    <div class="trow"><div class="n">ITP<small data-i18n="tx6">Familia numerosa / discapacidad ≥ 65 % · con límites de renta</small></div><div class="p" id="f-itp-super">1 %<span class="w" data-i18n="w_comp">Comprador</span></div></div>
+    <div class="trow"><div class="n">AJD<small data-i18n="tx7">Actos Jurídicos Documentados · Canarias</small></div><div class="p" id="f-ajd">0,75 %<span class="w" data-i18n="w_comp">Comprador</span></div></div>
+    <div class="trow"><div class="n"><span data-i18n="tx8">Plusvalía municipal</span><small data-i18n="tx8s">IIVTNU · incremento del valor del suelo</small></div><div class="p">Var.<span class="w" data-i18n="w_vend">Vendedor</span></div></div>
+    <div class="trow"><div class="n"><span data-i18n="tx9">Retención no residentes</span><small>Modelo 211 · AEAT</small></div><div class="p">3 %<span class="w" data-i18n="w_ret">Retiene el comprador</span></div></div>
+    <div class="taxnote" data-i18n="tx_note">⚡ En Canarias NO se aplica el IVA: se aplica el IGIC, inferior al IVA peninsular del 10 %. Los beneficios de la Ley 9/2025 (jóvenes hasta 40 años, límite 200.000 €) rigen desde el 1/1/2026. Fuente: Agencia Tributaria Canaria.</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-eyebrow" data-i18n="dl_eye">Plazos críticos</div>
+    <h2 class="sec-h" data-i18n-html="dl_h">No los <em>dejes pasar</em></h2>
+  </div>
+  <div class="dline"><div class="d" data-i18n="dl1_d">30 días hábiles</div><div class="x" data-i18n="dl1_x">Liquidar ITP (Mod. 600) o IGIC (Mod. 700) desde la escritura — Agencia Tributaria Canaria.</div></div>
+  <div class="dline"><div class="d" data-i18n="dl2_d">30 días</div><div class="x" data-i18n="dl2_x">Modelo 211: ingreso de la retención del 3 % si el vendedor es no residente — AEAT.</div></div>
+  <div class="dline"><div class="d" data-i18n="dl3_d">1 mes</div><div class="x" data-i18n="dl3_x">Depósito de la fianza de alquiler en el Gobierno de Canarias.</div></div>
+  <div class="dline"><div class="d" data-i18n="dl4_d">24 horas</div><div class="x" data-i18n="dl4_x">Comunicación de viajeros de alquiler vacacional — SES Hospedajes (R.D. 933/2021).</div></div>
+</div>
+
+<div class="view" id="v-calc">
+  <div class="sec">
+    <div class="sec-eyebrow" data-i18n="cc_eye">Herramienta gratuita</div>
+    <h2 class="sec-h" data-i18n-html="cc_h">Calcula el <em>coste real</em></h2>
+    <p class="sec-p" data-i18n="cc_p">Impuestos, notaría, registro y gestoría según el régimen canario vigente y tu perfil.</p>
+  </div>
+  <div class="calc">
+    <div class="fg"><label class="fl" data-i18n="cc_price">Precio de compra (€)</label><input class="fi" id="c-precio" type="number" inputmode="numeric" min="1" max="100000000" placeholder="250000"/></div>
+    <div class="fr2">
+      <div class="fg"><label class="fl" data-i18n="cc_type">Tipo</label><select class="fs" id="c-tipo"><option value="segunda" data-i18n="cc_used">2ª mano → ITP</option><option value="nueva" data-i18n="cc_new">Obra nueva → IGIC</option></select></div>
+      <div class="fg"><label class="fl" data-i18n="cc_prof">Perfil</label><select class="fs" id="c-perfil">
+        <option value="general" data-i18n="cc_p1">General</option>
+        <option value="habitual" data-i18n="cc_p2">Vivienda habitual</option>
+        <option value="joven" data-i18n="cc_p3">Joven ≤ 40 años</option>
+        <option value="familia" data-i18n="cc_p4">Familia numerosa</option>
+        <option value="discapacidad" data-i18n="cc_p5">Discapacidad ≥ 65 %</option>
+        <option value="vpo">VPO</option>
+      </select></div>
+    </div>
+    <button class="cbtn2" onclick="calcular()" data-i18n="cc_btn">Calcular coste total</button>
+    <div class="cerr" id="c-err"></div>
+  </div>
+  <div class="cres" id="c-res">
+    <div class="top"><div class="lbl" data-i18n="cr_lbl">Total estimado de gastos</div><div class="tot" id="cr-tot">—</div><div class="pc" id="cr-pc"></div></div>
+    <div id="cr-rows"></div>
+    <div class="creq" id="cr-req"></div>
+    <div class="cdisc" data-i18n="cr_disc">⚠ Estimación orientativa (aranceles RD 1426/1989 para notaría y registro). Los impuestos se liquidan en la Agencia Tributaria Canaria en un máximo de 30 días hábiles desde la escritura. No sustituye el asesoramiento jurídico-fiscal profesional.</div>
+  </div>
+</div>
+
+</main>
+
+<nav class="tabbar">
+  <button class="tab on" id="t-inicio" onclick="showTab('inicio')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-8 9 8M5 9v11h5v-6h4v6h5V9"/></svg><span class="l" data-i18n="tb1">Inicio</span></button>
+  <button class="tab" id="t-comprar" onclick="showTab('comprar')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><span class="l" data-i18n="tb2">Comprar</span></button>
+  <button class="tab" id="t-alquiler" onclick="showTab('alquiler')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="15" r="4"/><path d="M10.8 12.2 20 3M15 8l3 3M18 5l2 2"/></svg><span class="l" data-i18n="tb3">Alquilar</span></button>
+  <button class="tab" id="t-legal" onclick="showTab('legal')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M5 7l7-4 7 4M3 13l2-6 2 6a3 3 0 0 1-4 0zM17 13l2-6 2 6a3 3 0 0 1-4 0z"/></svg><span class="l" data-i18n="tb4">Legal</span></button>
+  <button class="tab" id="t-calc" onclick="showTab('calc')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 6h6M9 11h.01M12.5 11h.01M16 11h.01M9 15h.01M12.5 15h.01M16 15h.01M9 19h7"/></svg><span class="l" data-i18n="tb5">Calcular</span></button>
+</nav>
+
+<div class="ovl" id="ovl" onclick="closeSheet()"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="sh-grab"></div>
+  <button class="sh-close" id="sh-cerrar" type="button" onclick="closeSheet()" aria-label="Cerrar">✕</button>
+  <div class="sh-body" id="sh-body"></div>
+</div>
+
+</div>
+<script>
+"use strict";
+var I18N={
+es:{
+brand_sub:"Tenerife Living",brand_tag:"Find your life · Find Tenerife",brand_re:"Real Estate · Tenerife",
+hero_h1:"Tu hogar, donde la vida <em>se siente bien.</em>",hero_p:"Vive donde otros sueñan vacacionar. Compra, venta y alquiler en Tenerife con acompañamiento completo.",hero_search:"¿Dónde te gustaría vivir?",
+why_eye:"Por qué Tenerife",why_h:"La isla donde <em>todo encaja</em>",
+v1_t:"Clima perfecto",v1_d:"22° de media todo el año",v2_t:"Naturaleza única",v2_d:"Playas, montañas y el Teide",v3_t:"Calidad de vida",v3_d:"Seguridad, tranquilidad y bienestar",v4_t:"Inversión segura",v4_d:"Mercado en crecimiento y fiscalidad ventajosa",
+svc_eye:"Nuestros servicios",svc_h:"Te acompañamos <em>en cada paso</em>",svc_p:"Toca cada servicio para ver todo lo que incluye.",
+sv1_t:"Asesoramiento personalizado",sv1_d:"Búsqueda a medida, visitas y negociación",sv2_t:"Gestión integral de compra",sv2_d:"De la nota simple al Registro",sv3_t:"Asistencia legal y fiscal",sv3_d:"NIE, impuestos, modelos oficiales",sv4_t:"Decoración & Interiorismo",sv4_d:"Home staging y reformas",sv5_t:"Alquiler vacacional",sv5_d:"Licencias, Registro Único y gestión",
+q_script:"Familial. Humain. International.",q_big:"Más que propiedades, creamos hogares.",
+disc_eye:"Descubre",disc_h:"Tenerife <em>te enamora</em>",
+dc1_t:"Zonas exclusivas",dc1_d:"Los mejores lugares de la isla",dc2_t:"Encuentra tu estilo",dc2_d:"Villas, apartamentos, fincas y más",dc3_t:"Vive o invierte",dc3_d:"Tu hogar o tu mejor decisión financiera",dc4_t:"La isla",dc4_d:"Descúbrelo, vívelo, quédate",
+ct_loc:"Tenerife, Islas Canarias",ct_her:"Bélgica — Bulgaria — España",ct_btn:"Contactar",
+pr_eye:"En venta y alquiler",pr_h:"Propiedades <em>destacadas</em>",pr_p:"Toca una propiedad para ver la ficha completa con su fiscalidad real.",
+f_all:"Todas",f_venta:"Venta",f_nueva:"Obra nueva",f_alq:"Alquiler",f_vac:"Vacacional",
+pr_note:"<b>Nota:</b> los precios no incluyen impuestos ni gastos. Usa la pestaña <b>Calcular</b> para conocer el coste total real según tu perfil.",
+al_eye:"Marco legal vigente · LAU + Ley 6/2025",al_h:"Tipos de <em>alquiler</em>",al_p:"Tres modalidades, tres marcos legales distintos. Toca cada una.",
+a1_t:"Vivienda habitual",a1_s:"LAU · Ley 12/2023",k_dur:"Duración mínima",a1_dur:"5 años (7 si el arrendador es persona jurídica). Prórrogas tácitas de 1 año.",k_renta:"Actualización de renta",a1_renta:"Índice IRAV del INE para contratos firmados desde el 25/05/2023. Último dato: 2,44 % (agosto 2026). Contratos anteriores: IPC.",k_fianza:"Fianza",a1_fianza:"1 mensualidad obligatoria (art. 36.1 LAU). Depósito en el Gobierno de Canarias en 1 mes. Garantías adicionales: máximo 2 mensualidades.",
+a2_t:"Alquiler de temporada",a2_s:"LAU · uso distinto de vivienda",a2_dur:"Libremente pactada y justificada (trabajo, estudios, temporada). No sirve para eludir las protecciones de la vivienda habitual.",a2_renta:"Libremente pactada. El índice IRAV no se aplica.",a2_fianza:"2 mensualidades obligatorias para uso distinto de vivienda (art. 36.1 LAU).",
+a3_t:"Alquiler vacacional",a3_s:"Ley 6/2025 Canarias",k_ley:"Marco legal",a3_ley:"Ley 6/2025 de Canarias (BOC 12/12/2025) + Decreto 113/2015 supletorio. Los ayuntamientos tienen papel protagonista en la autorización urbanística.",k_reg:"Registro Único Nacional",a3_reg:"Obligatorio desde el 01/07/2025 (R.D. 1312/2024). El número debe figurar en todos los anuncios de plataformas.",k_cons:"Consolidación",a3_cons:"Viviendas con declaración responsable anterior al 13/12/2025: 5 años para consolidar el uso turístico de forma indefinida.",
+vc_eye:"Vacacional · documentación obligatoria",vc_h:"Checklist <em>legal</em>",
+vc1_t:"Declaración responsable",vc1_d:"Ante el Cabildo de Tenerife. Punto de partida de la actividad turística.",vc2_t:"Autorización urbanística municipal",vc2_d:"El uso turístico debe estar permitido por el planeamiento del municipio (Ley 6/2025).",vc3_t:"Número de Registro Único",vc3_d:"R.D. 1312/2024. Visible en todos los anuncios desde el 01/07/2025.",vc4_t:"Cédula de habitabilidad + CEE",vc4_d:"Habitabilidad en vigor y Certificado de Eficiencia Energética para publicitar.",vc5_t:"Comunidad de propietarios",vc5_d:"Los estatutos no deben prohibir el uso vacacional; la junta puede limitarlo por mayoría de 3/5.",vc6_t:"Registro de viajeros",vc6_d:"Comunicación de huéspedes vía plataforma SES Hospedajes (R.D. 933/2021), en 24 h desde la entrada.",vc7_t:"Hojas de reclamaciones + seguro RC",vc7_d:"Hojas oficiales de Canarias obligatorias. Seguro de responsabilidad civil muy recomendable.",
+al_irav:"<b>IRAV (INE):</b> índice que sustituye al IPC para actualizar rentas de contratos firmados desde el 25/05/2023. Último dato publicado: 2,44 % (agosto 2026). El INE lo publica hacia el día 15 de cada mes.",
+lg_eye:"Verificado · agosto 2026",lg_h:"Proceso de <em>compraventa</em>",lg_p:"Los 8 pasos oficiales, con plazos y documentos. Toca cada paso.",
+l1_t:"Nota Simple del Registro",l1_s:"1–2 días · ~10 €",l1_d:"Verifica titularidad, cargas, servidumbres y descripción del inmueble. Se solicita en registradores.org. Imprescindible antes de entregar cualquier señal.",
+l2_t:"Contrato de arras",l2_s:"Inmediato · habitual 10 %",l2_d:"Reserva del inmueble. Arras penitenciales (art. 1454 del Código Civil): si el vendedor desiste devuelve el doble; si desiste el comprador, pierde la señal. Debe fijar precio, plazo de escritura y consecuencias.",
+l3_t:"Due diligence legal",l3_s:"3–10 días",l3_d:"Comprobación de situación urbanística (PGOU), deudas de IBI y comunidad, ITE en edificios de más de 30 años, suministros y cargas ocultas.",
+l4_t:"Hipoteca (si procede)",l4_s:"2–6 semanas",l4_d:"Tasación homologada (250–600 €) + FEIN con 10 días de reflexión obligatoria (Ley 5/2019) + acta notarial previa gratuita. El AJD de la hipoteca lo paga el banco.",
+l5_t:"Firma en notaría",l5_s:"1 día",l5_d:"Escritura pública de compraventa. El notario verifica identidad, cargas, medios de pago y documentación completa de ambas partes.",
+l6_t:"Liquidación de impuestos",l6_s:"⚠ máx. 30 días hábiles",l6_d:"ITP (Modelo 600) para segunda mano o IGIC (Modelo 700) + AJD para obra nueva, en la Agencia Tributaria Canaria. Fuera de plazo: recargos del 5 al 20 % más intereses.",
+l7_t:"Inscripción en el Registro",l7_s:"15 días hábiles · 300–1.400 €",l7_d:"Presentación de la escritura con el justificante de pago de impuestos. Sin inscripción no hay protección registral frente a terceros.",
+l8_t:"Cambio de titularidades",l8_s:"1–2 semanas",l8_d:"IBI en el Ayuntamiento, suministros (agua, luz, gas) y notificación a la comunidad de propietarios.",
+tx_t:"Régimen Fiscal Canario",tx_s:"Ley 9/2025 · BOC 29/12/2025 · vigente 2026",
+tx1:"Obra nueva · sustituye al IVA",tx2:"Protección Oficial · 1ª entrega del promotor",tx3:"Segunda mano · tipo general",tx4:"Vivienda habitual ≤ 200.000 €",tx5:"≤ 40 años · 1ª vivienda ≤ 200.000 € · renta ≤ 46.455 €",tx6:"Familia numerosa / discapacidad ≥ 65 % · con límites de renta",tx7:"Actos Jurídicos Documentados · Canarias",tx8:"Plusvalía municipal",tx8s:"IIVTNU · incremento del valor del suelo",tx9:"Retención no residentes",
+w_comp:"Comprador",w_vend:"Vendedor",w_bonif:"Bonificación",w_ret:"Retiene el comprador",
+tx_note:"⚡ En Canarias NO se aplica el IVA: se aplica el IGIC, inferior al IVA peninsular del 10 %. Los beneficios de la Ley 9/2025 (jóvenes hasta 40 años, límite 200.000 €) rigen desde el 1/1/2026. Fuente: Agencia Tributaria Canaria.",
+dl_eye:"Plazos críticos",dl_h:"No los <em>dejes pasar</em>",
+dl1_d:"30 días hábiles",dl1_x:"Liquidar ITP (Mod. 600) o IGIC (Mod. 700) desde la escritura — Agencia Tributaria Canaria.",dl2_d:"30 días",dl2_x:"Modelo 211: ingreso de la retención del 3 % si el vendedor es no residente — AEAT.",dl3_d:"1 mes",dl3_x:"Depósito de la fianza de alquiler en el Gobierno de Canarias.",dl4_d:"24 horas",dl4_x:"Comunicación de viajeros de alquiler vacacional — SES Hospedajes (R.D. 933/2021).",
+cc_eye:"Herramienta gratuita",cc_h:"Calcula el <em>coste real</em>",cc_p:"Impuestos, notaría, registro y gestoría según el régimen canario vigente y tu perfil.",
+cc_price:"Precio de compra (€)",cc_type:"Tipo",cc_used:"2ª mano → ITP",cc_new:"Obra nueva → IGIC",cc_prof:"Perfil",
+cc_p1:"General",cc_p2:"Vivienda habitual",cc_p3:"Joven ≤ 40 años",cc_p4:"Familia numerosa",cc_p5:"Discapacidad ≥ 65 %",
+cc_btn:"Calcular coste total",cr_lbl:"Total estimado de gastos",
+cr_disc:"⚠ Estimación orientativa (aranceles RD 1426/1989 notaría y RD 1427/1989 registro). Los tipos reducidos exigen requisitos de renta y de vivienda habitual que esta herramienta no comprueba. Los impuestos se liquidan en la Agencia Tributaria Canaria en un máximo de 30 días hábiles desde la escritura. No sustituye el asesoramiento jurídico-fiscal profesional.",
+cr_err:"Introduce un precio válido (entre 1 € y 100.000.000 €).",cr_pct:"≈ {p} % sobre el precio",cr_req:"Para aplicar este tipo reducido hay que cumplir los requisitos de renta y de vivienda habitual de la Ley 9/2025. Confírmalo con tu gestor antes de firmar.",cr_notaria:"Notaría (estimación)",cr_registro:"Registro de la Propiedad",cr_gestoria:"Gestoría / tramitación",
+tb1:"Inicio",tb2:"Comprar",tb3:"Alquilar",tb4:"Legal",tb5:"Calcular",
+per_month:"/mes",per_night:"/noche",sh_desc:"Descripción",sh_fisc:"Fiscalidad de esta operación",sh_cta:"Contactar agente",
+sh_demo:"✓ Versión demo: en la app publicada este botón abrirá el chat con tu agente Belbul (+34 600 123 456 · hola@belbulrealestate.com).",
+fav:"Guardar en favoritos",beds:"Dorm.",baths:"Baños",area:"Área"},
+en:{
+brand_sub:"Tenerife Living",brand_tag:"Find your life · Find Tenerife",brand_re:"Real Estate · Tenerife",
+hero_h1:"Your home, where life <em>feels right.</em>",hero_p:"Live where others dream of holidaying. Buying, selling and renting in Tenerife with full guidance.",hero_search:"Where would you like to live?",
+why_eye:"Why Tenerife",why_h:"The island where <em>everything fits</em>",
+v1_t:"Perfect climate",v1_d:"22° average all year round",v2_t:"Unique nature",v2_d:"Beaches, mountains and Mount Teide",v3_t:"Quality of life",v3_d:"Safety, calm and wellbeing",v4_t:"Safe investment",v4_d:"Growing market and favourable taxation",
+svc_eye:"Our services",svc_h:"With you <em>every step</em>",svc_p:"Tap each service to see everything it includes.",
+sv1_t:"Personalised advice",sv1_d:"Tailored search, viewings and negotiation",sv2_t:"Full purchase management",sv2_d:"From registry check to registration",sv3_t:"Legal & tax assistance",sv3_d:"NIE, taxes, official forms",sv4_t:"Décor & Interior design",sv4_d:"Home staging and renovations",sv5_t:"Holiday rentals",sv5_d:"Licences, Single Registry and management",
+q_script:"Familial. Humain. International.",q_big:"More than properties — we create homes.",
+disc_eye:"Discover",disc_h:"Tenerife <em>wins you over</em>",
+dc1_t:"Exclusive areas",dc1_d:"The island's finest locations",dc2_t:"Find your style",dc2_d:"Villas, apartments, fincas and more",dc3_t:"Live or invest",dc3_d:"Your home or your best financial decision",dc4_t:"The island",dc4_d:"Discover it, live it, stay",
+ct_loc:"Tenerife, Canary Islands",ct_her:"Belgium — Bulgaria — Spain",ct_btn:"Contact us",
+pr_eye:"For sale and rent",pr_h:"Featured <em>properties</em>",pr_p:"Tap a property to see the full sheet with its real taxation.",
+f_all:"All",f_venta:"Sale",f_nueva:"New build",f_alq:"Rent",f_vac:"Holiday",
+pr_note:"<b>Note:</b> prices exclude taxes and fees. Use the <b>Calc</b> tab to see the true total cost for your profile.",
+al_eye:"Current legal framework · LAU + Law 6/2025",al_h:"Types of <em>rental</em>",al_p:"Three models, three different legal frameworks. Tap each one.",
+a1_t:"Main residence",a1_s:"LAU · Law 12/2023",k_dur:"Minimum duration",a1_dur:"5 years (7 if the landlord is a company). Tacit 1-year extensions.",k_renta:"Rent updates",a1_renta:"INE's IRAV index for contracts signed since 25/05/2023. Latest figure: 2.44% (August 2026). Older contracts: CPI.",k_fianza:"Deposit",a1_fianza:"1 month's rent mandatory (art. 36.1 LAU). Lodged with the Canary Government within 1 month. Extra guarantees: max. 2 months.",
+a2_t:"Seasonal rental",a2_s:"LAU · non-residential use",a2_dur:"Freely agreed and justified (work, studies, season). Cannot be used to bypass main-residence protections.",a2_renta:"Freely agreed. The IRAV index does not apply.",a2_fianza:"2 months' rent mandatory for non-residential use (art. 36.1 LAU).",
+a3_t:"Holiday rental",a3_s:"Canary Law 6/2025",k_ley:"Legal framework",a3_ley:"Canary Law 6/2025 (BOC 12/12/2025) + supplementary Decree 113/2015. Town halls now lead planning authorisation.",k_reg:"National Single Registry",a3_reg:"Mandatory since 01/07/2025 (R.D. 1312/2024). The number must appear in every platform listing.",k_cons:"Consolidation",a3_cons:"Homes with a responsible declaration before 13/12/2025: 5 years to consolidate tourist use indefinitely.",
+vc_eye:"Holiday rental · mandatory documents",vc_h:"Legal <em>checklist</em>",
+vc1_t:"Responsible declaration",vc1_d:"Filed with the Tenerife Cabildo. The starting point of tourist activity.",vc2_t:"Municipal planning authorisation",vc2_d:"Tourist use must be allowed by the municipality's planning rules (Law 6/2025).",vc3_t:"Single Registry number",vc3_d:"R.D. 1312/2024. Visible in all listings since 01/07/2025.",vc4_t:"Habitability certificate + EPC",vc4_d:"Valid habitability certificate and Energy Performance Certificate to advertise.",vc5_t:"Community of owners",vc5_d:"Bylaws must not ban holiday use; the assembly can restrict it by a 3/5 majority.",vc6_t:"Guest registration",vc6_d:"Guest data reported via the SES Hospedajes platform (R.D. 933/2021), within 24h of arrival.",vc7_t:"Complaint forms + liability insurance",vc7_d:"Official Canary complaint forms mandatory. Liability insurance highly recommended.",
+al_irav:"<b>IRAV (INE):</b> the index replacing CPI for rent updates in contracts signed since 25/05/2023. Latest published figure: 2.44% (August 2026). The INE publishes it around the 15th of each month.",
+lg_eye:"Verified · August 2026",lg_h:"The <em>buying process</em>",lg_p:"The 8 official steps, with deadlines and documents. Tap each step.",
+l1_t:"Land Registry extract",l1_s:"1–2 days · ~€10",l1_d:"Verifies ownership, charges, easements and description. Requested at registradores.org. Essential before paying any deposit.",
+l2_t:"Deposit contract (arras)",l2_s:"Immediate · usually 10%",l2_d:"Property reservation. Penitential deposit (art. 1454 Civil Code): if the seller withdraws they return double; if the buyer withdraws they lose the deposit. Must set price, deadline and consequences.",
+l3_t:"Legal due diligence",l3_s:"3–10 days",l3_d:"Checks on planning status (PGOU), IBI and community debts, ITE for buildings over 30 years old, utilities and hidden charges.",
+l4_t:"Mortgage (if needed)",l4_s:"2–6 weeks",l4_d:"Approved valuation (€250–600) + FEIN with a mandatory 10-day reflection period (Law 5/2019) + free prior notarial deed. The bank pays the mortgage AJD.",
+l5_t:"Signing at the notary",l5_s:"1 day",l5_d:"Public deed of sale. The notary verifies identity, charges, payment means and complete documentation from both parties.",
+l6_t:"Tax settlement",l6_s:"⚠ max. 30 working days",l6_d:"ITP (Form 600) for resale or IGIC (Form 700) + AJD for new builds, at the Canary Tax Agency. Late filing: 5–20% surcharges plus interest.",
+l7_t:"Land Registry registration",l7_s:"15 working days · €300–1,400",l7_d:"Filing the deed with proof of tax payment. Without registration there is no protection against third parties.",
+l8_t:"Ownership transfers",l8_s:"1–2 weeks",l8_d:"IBI at the Town Hall, utilities (water, electricity, gas) and notifying the community of owners.",
+tx_t:"Canary Tax Regime",tx_s:"Law 9/2025 · BOC 29/12/2025 · in force 2026",
+tx1:"New builds · replaces VAT",tx2:"Social housing (VPO) · developer's 1st delivery",tx3:"Resale · general rate",tx4:"Main residence ≤ €200,000",tx5:"≤ 40 yrs · 1st home ≤ €200,000 · income ≤ €46,455",tx6:"Large family / disability ≥ 65% · income limits apply",tx7:"Stamp duty (AJD) · Canaries",tx8:"Municipal capital gains",tx8s:"IIVTNU · land value increase",tx9:"Non-resident withholding",
+w_comp:"Buyer",w_vend:"Seller",w_bonif:"Tax credit",w_ret:"Buyer withholds",
+tx_note:"⚡ VAT does NOT apply in the Canaries: IGIC applies instead, lower than mainland VAT (10%). Law 9/2025 benefits (under-40s, €200,000 cap) in force since 1/1/2026. Source: Canary Tax Agency.",
+dl_eye:"Critical deadlines",dl_h:"Don't <em>miss them</em>",
+dl1_d:"30 working days",dl1_x:"Settle ITP (Form 600) or IGIC (Form 700) from the deed — Canary Tax Agency.",dl2_d:"30 days",dl2_x:"Form 211: deposit of the 3% withholding if the seller is a non-resident — AEAT.",dl3_d:"1 month",dl3_x:"Lodging the rental deposit with the Canary Government.",dl4_d:"24 hours",dl4_x:"Reporting holiday-rental guests — SES Hospedajes (R.D. 933/2021).",
+cc_eye:"Free tool",cc_h:"Calculate the <em>real cost</em>",cc_p:"Taxes, notary, registry and agency fees under the current Canary regime and your profile.",
+cc_price:"Purchase price (€)",cc_type:"Type",cc_used:"Resale → ITP",cc_new:"New build → IGIC",cc_prof:"Profile",
+cc_p1:"General",cc_p2:"Main residence",cc_p3:"Under 40",cc_p4:"Large family",cc_p5:"Disability ≥ 65%",
+cc_btn:"Calculate total cost",cr_lbl:"Estimated total costs",
+cr_disc:"⚠ Indicative estimate (RD 1426/1989 notary and RD 1427/1989 registry tariffs). Reduced rates require income and main-residence conditions this tool does not check. Taxes are settled with the Canary Tax Agency within 30 working days of the deed. Not a substitute for professional legal-tax advice.",
+cr_err:"Enter a valid price (between €1 and €100,000,000).",cr_pct:"≈ {p}% of the price",cr_req:"This reduced rate only applies if the income and main-residence conditions of Law 9/2025 are met. Confirm with your adviser before signing.",cr_notaria:"Notary (estimate)",cr_registro:"Land Registry",cr_gestoria:"Agency / processing",
+tb1:"Home",tb2:"Buy",tb3:"Rent",tb4:"Legal",tb5:"Calc",
+per_month:"/month",per_night:"/night",sh_desc:"Description",sh_fisc:"Taxation of this transaction",sh_cta:"Contact agent",
+sh_demo:"✓ Demo version: in the published app this button will open a chat with your Belbul agent (+34 600 123 456 · hola@belbulrealestate.com).",
+fav:"Save to favourites",beds:"Beds",baths:"Baths",area:"Area"},
+fr:{
+brand_sub:"Tenerife Living",brand_tag:"Find your life · Find Tenerife",brand_re:"Immobilier · Tenerife",
+hero_h1:"Votre chez-vous, là où la vie <em>fait du bien.</em>",hero_p:"Vivez là où les autres rêvent de passer leurs vacances. Achat, vente et location à Tenerife avec un accompagnement complet.",hero_search:"Où aimeriez-vous vivre ?",
+why_eye:"Pourquoi Tenerife",why_h:"L'île où <em>tout s'accorde</em>",
+v1_t:"Climat parfait",v1_d:"22° de moyenne toute l'année",v2_t:"Nature unique",v2_d:"Plages, montagnes et le Teide",v3_t:"Qualité de vie",v3_d:"Sécurité, tranquillité et bien-être",v4_t:"Investissement sûr",v4_d:"Marché en croissance et fiscalité avantageuse",
+svc_eye:"Nos services",svc_h:"À vos côtés <em>à chaque étape</em>",svc_p:"Touchez chaque service pour voir ce qu'il comprend.",
+sv1_t:"Conseil personnalisé",sv1_d:"Recherche sur mesure, visites et négociation",sv2_t:"Gestion intégrale d'achat",sv2_d:"De la note simple au Registre",sv3_t:"Assistance juridique et fiscale",sv3_d:"NIE, impôts, formulaires officiels",sv4_t:"Décoration & Intérieur",sv4_d:"Home staging et rénovations",sv5_t:"Location de vacances",sv5_d:"Licences, Registre Unique et gestion",
+q_script:"Familial. Humain. International.",q_big:"Plus que des propriétés, nous créons des foyers.",
+disc_eye:"Découvrez",disc_h:"Tenerife <em>vous séduit</em>",
+dc1_t:"Zones exclusives",dc1_d:"Les meilleurs endroits de l'île",dc2_t:"Trouvez votre style",dc2_d:"Villas, appartements, fincas et plus",dc3_t:"Vivre ou investir",dc3_d:"Votre foyer ou votre meilleure décision financière",dc4_t:"L'île",dc4_d:"Découvrez-la, vivez-la, restez",
+ct_loc:"Tenerife, Îles Canaries",ct_her:"Belgique — Bulgarie — Espagne",ct_btn:"Nous contacter",
+pr_eye:"À vendre et à louer",pr_h:"Biens <em>en vedette</em>",pr_p:"Touchez un bien pour voir la fiche complète avec sa fiscalité réelle.",
+f_all:"Tous",f_venta:"Vente",f_nueva:"Neuf",f_alq:"Location",f_vac:"Vacances",
+pr_note:"<b>Note :</b> les prix n'incluent ni impôts ni frais. Utilisez l'onglet <b>Calculer</b> pour connaître le coût total réel selon votre profil.",
+al_eye:"Cadre légal en vigueur · LAU + Loi 6/2025",al_h:"Types de <em>location</em>",al_p:"Trois modalités, trois cadres légaux différents. Touchez chacune.",
+a1_t:"Résidence principale",a1_s:"LAU · Loi 12/2023",k_dur:"Durée minimale",a1_dur:"5 ans (7 si le bailleur est une société). Prorogations tacites d'1 an.",k_renta:"Révision du loyer",a1_renta:"Indice IRAV de l'INE pour les contrats signés depuis le 25/05/2023. Dernière donnée : 2,44 % (août 2026). Contrats antérieurs : IPC.",k_fianza:"Dépôt de garantie",a1_fianza:"1 mois de loyer obligatoire (art. 36.1 LAU). Déposé auprès du Gouvernement des Canaries sous 1 mois. Garanties supplémentaires : max. 2 mois.",
+a2_t:"Location saisonnière",a2_s:"LAU · usage non résidentiel",a2_dur:"Librement convenue et justifiée (travail, études, saison). Ne peut servir à contourner les protections de la résidence principale.",a2_renta:"Librement convenue. L'indice IRAV ne s'applique pas.",a2_fianza:"2 mois de loyer obligatoires pour usage non résidentiel (art. 36.1 LAU).",
+a3_t:"Location de vacances",a3_s:"Loi 6/2025 Canaries",k_ley:"Cadre légal",a3_ley:"Loi 6/2025 des Canaries (BOC 12/12/2025) + Décret 113/2015 supplétif. Les mairies jouent désormais le rôle principal dans l'autorisation urbanistique.",k_reg:"Registre Unique National",a3_reg:"Obligatoire depuis le 01/07/2025 (R.D. 1312/2024). Le numéro doit figurer dans toutes les annonces.",k_cons:"Consolidation",a3_cons:"Logements avec déclaration responsable antérieure au 13/12/2025 : 5 ans pour consolider l'usage touristique indéfiniment.",
+vc_eye:"Vacances · documents obligatoires",vc_h:"Checklist <em>légale</em>",
+vc1_t:"Déclaration responsable",vc1_d:"Auprès du Cabildo de Tenerife. Point de départ de l'activité touristique.",vc2_t:"Autorisation urbanistique municipale",vc2_d:"L'usage touristique doit être permis par le plan d'urbanisme de la commune (Loi 6/2025).",vc3_t:"Numéro de Registre Unique",vc3_d:"R.D. 1312/2024. Visible dans toutes les annonces depuis le 01/07/2025.",vc4_t:"Certificat d'habitabilité + DPE",vc4_d:"Habitabilité en vigueur et certificat énergétique pour publier l'annonce.",vc5_t:"Copropriété",vc5_d:"Les statuts ne doivent pas interdire l'usage de vacances ; l'assemblée peut le limiter à la majorité des 3/5.",vc6_t:"Registre des voyageurs",vc6_d:"Communication des hôtes via la plateforme SES Hospedajes (R.D. 933/2021), sous 24 h après l'arrivée.",vc7_t:"Feuilles de réclamation + assurance RC",vc7_d:"Feuilles officielles des Canaries obligatoires. Assurance responsabilité civile fortement recommandée.",
+al_irav:"<b>IRAV (INE) :</b> l'indice remplaçant l'IPC pour réviser les loyers des contrats signés depuis le 25/05/2023. Dernière donnée publiée : 2,44 % (août 2026). L'INE le publie vers le 15 de chaque mois.",
+lg_eye:"Vérifié · août 2026",lg_h:"Processus <em>d'achat</em>",lg_p:"Les 8 étapes officielles, avec délais et documents. Touchez chaque étape.",
+l1_t:"Note Simple du Registre",l1_s:"1–2 jours · ~10 €",l1_d:"Vérifie la propriété, les charges, servitudes et la description. Demandée sur registradores.org. Indispensable avant de verser un acompte.",
+l2_t:"Contrat d'arrhes",l2_s:"Immédiat · habituel 10 %",l2_d:"Réservation du bien. Arrhes pénitentielles (art. 1454 du Code civil) : si le vendeur se rétracte il rembourse le double ; si l'acheteur se rétracte, il perd les arrhes. Doit fixer prix, délais et conséquences.",
+l3_t:"Due diligence juridique",l3_s:"3–10 jours",l3_d:"Vérification urbanistique (PGOU), dettes IBI et copropriété, ITE pour bâtiments de plus de 30 ans, services et charges cachées.",
+l4_t:"Hypothèque (si besoin)",l4_s:"2–6 semaines",l4_d:"Expertise homologuée (250–600 €) + FEIN avec délai de réflexion obligatoire de 10 jours (Loi 5/2019) + acte notarial préalable gratuit. La banque paie l'AJD hypothécaire.",
+l5_t:"Signature chez le notaire",l5_s:"1 jour",l5_d:"Acte public de vente. Le notaire vérifie l'identité, les charges, les moyens de paiement et la documentation complète des deux parties.",
+l6_t:"Liquidation des impôts",l6_s:"⚠ max. 30 jours ouvrables",l6_d:"ITP (Form. 600) pour l'ancien ou IGIC (Form. 700) + AJD pour le neuf, à l'Agence Fiscale Canarienne. Hors délai : majorations de 5 à 20 % plus intérêts.",
+l7_t:"Inscription au Registre",l7_s:"15 jours ouvrables · 300–1 400 €",l7_d:"Dépôt de l'acte avec le justificatif de paiement des impôts. Sans inscription, pas de protection face aux tiers.",
+l8_t:"Changement de titulaires",l8_s:"1–2 semaines",l8_d:"IBI à la mairie, services (eau, électricité, gaz) et notification à la copropriété.",
+tx_t:"Régime Fiscal Canarien",tx_s:"Loi 9/2025 · BOC 29/12/2025 · en vigueur 2026",
+tx1:"Neuf · remplace la TVA",tx2:"Logement social (VPO) · 1re livraison du promoteur",tx3:"Ancien · taux général",tx4:"Résidence principale ≤ 200 000 €",tx5:"≤ 40 ans · 1er logement ≤ 200 000 € · revenus ≤ 46 455 €",tx6:"Famille nombreuse / handicap ≥ 65 % · sous conditions de revenus",tx7:"Droits de timbre (AJD) · Canaries",tx8:"Plus-value municipale",tx8s:"IIVTNU · hausse de la valeur du sol",tx9:"Retenue non-résidents",
+w_comp:"Acheteur",w_vend:"Vendeur",w_bonif:"Réduction",w_ret:"L'acheteur retient",
+tx_note:"⚡ La TVA ne s'applique PAS aux Canaries : c'est l'IGIC qui s'applique, inférieur à la TVA continentale (10 %). Les avantages de la Loi 9/2025 (moins de 40 ans, plafond 200 000 €) s'appliquent depuis le 1/1/2026. Source : Agence Fiscale Canarienne.",
+dl_eye:"Délais critiques",dl_h:"Ne les <em>laissez pas passer</em>",
+dl1_d:"30 jours ouvrables",dl1_x:"Liquider l'ITP (Form. 600) ou l'IGIC (Form. 700) depuis l'acte — Agence Fiscale Canarienne.",dl2_d:"30 jours",dl2_x:"Formulaire 211 : versement de la retenue de 3 % si le vendeur est non-résident — AEAT.",dl3_d:"1 mois",dl3_x:"Dépôt de la garantie locative auprès du Gouvernement des Canaries.",dl4_d:"24 heures",dl4_x:"Communication des voyageurs de location de vacances — SES Hospedajes (R.D. 933/2021).",
+cc_eye:"Outil gratuit",cc_h:"Calculez le <em>coût réel</em>",cc_p:"Impôts, notaire, registre et frais d'agence selon le régime canarien en vigueur et votre profil.",
+cc_price:"Prix d'achat (€)",cc_type:"Type",cc_used:"Ancien → ITP",cc_new:"Neuf → IGIC",cc_prof:"Profil",
+cc_p1:"Général",cc_p2:"Résidence principale",cc_p3:"Moins de 40 ans",cc_p4:"Famille nombreuse",cc_p5:"Handicap ≥ 65 %",
+cc_btn:"Calculer le coût total",cr_lbl:"Total estimé des frais",
+cr_disc:"⚠ Estimation indicative (tarifs RD 1426/1989 notaire et RD 1427/1989 registre). Les taux réduits sont soumis à des conditions de revenus et de résidence principale que cet outil ne vérifie pas. Les impôts se règlent auprès de l'Agence Fiscale Canarienne sous 30 jours ouvrables après l'acte. Ne remplace pas un conseil juridico-fiscal professionnel.",
+cr_err:"Saisissez un prix valide (entre 1 € et 100 000 000 €).",cr_pct:"≈ {p} % du prix",cr_req:"Ce taux réduit ne s’applique que si les conditions de revenus et de résidence principale de la Loi 9/2025 sont remplies. À confirmer avec votre conseiller avant la signature.",cr_notaria:"Notaire (estimation)",cr_registro:"Registre Foncier",cr_gestoria:"Agence / démarches",
+tb1:"Accueil",tb2:"Acheter",tb3:"Louer",tb4:"Juridique",tb5:"Calculer",
+per_month:"/mois",per_night:"/nuit",sh_desc:"Description",sh_fisc:"Fiscalité de cette opération",sh_cta:"Contacter l'agent",
+sh_demo:"✓ Version démo : dans l'app publiée, ce bouton ouvrira le chat avec votre agent Belbul (+34 600 123 456 · hola@belbulrealestate.com).",
+fav:"Ajouter aux favoris",beds:"Ch.",baths:"SdB",area:"Surface"},
+bg:{
+brand_sub:"Tenerife Living",brand_tag:"Find your life · Find Tenerife",brand_re:"Недвижими имоти · Тенерифе",
+hero_h1:"Вашият дом, където животът <em>е приятен.</em>",hero_p:"Живейте там, където другите мечтаят да почиват. Покупка, продажба и наем в Тенерифе с пълно съдействие.",hero_search:"Къде бихте искали да живеете?",
+why_eye:"Защо Тенерифе",why_h:"Островът, където <em>всичко си идва на мястото</em>",
+v1_t:"Перфектен климат",v1_d:"Средно 22° целогодишно",v2_t:"Уникална природа",v2_d:"Плажове, планини и вулканът Тейде",v3_t:"Качество на живот",v3_d:"Сигурност, спокойствие и благополучие",v4_t:"Сигурна инвестиция",v4_d:"Растящ пазар и изгодно данъчно облагане",
+svc_eye:"Нашите услуги",svc_h:"С вас <em>на всяка стъпка</em>",svc_p:"Докоснете всяка услуга, за да видите какво включва.",
+sv1_t:"Персонално консултиране",sv1_d:"Търсене по мярка, огледи и преговори",sv2_t:"Цялостно управление на покупката",sv2_d:"От справката в регистъра до вписването",sv3_t:"Правна и данъчна помощ",sv3_d:"NIE, данъци, официални формуляри",sv4_t:"Декорация и интериор",sv4_d:"Home staging и ремонти",sv5_t:"Ваканционен наем",sv5_d:"Лицензи, Единен регистър и управление",
+q_script:"Familial. Humain. International.",q_big:"Повече от имоти — създаваме домове.",
+disc_eye:"Открийте",disc_h:"Тенерифе <em>ще ви плени</em>",
+dc1_t:"Ексклузивни зони",dc1_d:"Най-добрите места на острова",dc2_t:"Открийте своя стил",dc2_d:"Вили, апартаменти, имения и още",dc3_t:"Живейте или инвестирайте",dc3_d:"Вашият дом или най-доброто финансово решение",dc4_t:"Островът",dc4_d:"Открийте го, изживейте го, останете",
+ct_loc:"Тенерифе, Канарски острови",ct_her:"Белгия — България — Испания",ct_btn:"Свържете се",
+pr_eye:"За продажба и наем",pr_h:"Избрани <em>имоти</em>",pr_p:"Докоснете имот, за да видите пълното досие с реалното данъчно облагане.",
+f_all:"Всички",f_venta:"Продажба",f_nueva:"Ново",f_alq:"Наем",f_vac:"Ваканционен",
+pr_note:"<b>Бележка:</b> цените не включват данъци и такси. Използвайте раздел <b>Калк.</b>, за да видите реалната обща цена според вашия профил.",
+al_eye:"Действаща правна рамка · LAU + Закон 6/2025",al_h:"Видове <em>наем</em>",al_p:"Три модела, три различни правни рамки. Докоснете всяка.",
+a1_t:"Основно жилище",a1_s:"LAU · Закон 12/2023",k_dur:"Минимален срок",a1_dur:"5 години (7, ако наемодателят е фирма). Мълчаливи удължавания по 1 година.",k_renta:"Актуализация на наема",a1_renta:"Индекс IRAV на INE за договори от 25/05/2023. Последен: 2,44 % (август 2026). По-стари договори: IPC.",k_fianza:"Депозит",a1_fianza:"1 месечен наем задължително (чл. 36.1 LAU). Депозира се в Правителството на Канарите до 1 месец. Доп. гаранции: макс. 2 месеца.",
+a2_t:"Сезонен наем",a2_s:"LAU · нежилищно ползване",a2_dur:"Свободно договорен и обоснован (работа, обучение, сезон). Не може да заобикаля защитите на основното жилище.",a2_renta:"Свободно договорен. Индексът IRAV не се прилага.",a2_fianza:"2 месечни наема задължително за нежилищно ползване (чл. 36.1 LAU).",
+a3_t:"Ваканционен наем",a3_s:"Закон 6/2025 Канари",k_ley:"Правна рамка",a3_ley:"Закон 6/2025 на Канарите (BOC 12/12/2025) + допълващ Декрет 113/2015. Общините вече имат водеща роля в устройственото разрешаване.",k_reg:"Национален Единен Регистър",a3_reg:"Задължителен от 01/07/2025 (R.D. 1312/2024). Номерът трябва да присъства във всички обяви.",k_cons:"Консолидация",a3_cons:"Жилища с отговорна декларация преди 13/12/2025: 5 години за безсрочно консолидиране на туристическото ползване.",
+vc_eye:"Ваканционен · задължителни документи",vc_h:"Правен <em>чеклист</em>",
+vc1_t:"Отговорна декларация",vc1_d:"Пред Кабилдото на Тенерифе. Отправна точка на туристическата дейност.",vc2_t:"Общинско устройствено разрешение",vc2_d:"Туристическото ползване трябва да е позволено от устройствения план на общината (Закон 6/2025).",vc3_t:"Номер от Единния Регистър",vc3_d:"R.D. 1312/2024. Видим във всички обяви от 01/07/2025.",vc4_t:"Удостоверение за обитаемост + енергиен сертификат",vc4_d:"Валидна обитаемост и енергиен сертификат за публикуване на обявата.",vc5_t:"Етажна собственост",vc5_d:"Уставът не трябва да забранява ваканционното ползване; събранието може да го ограничи с мнозинство 3/5.",vc6_t:"Регистрация на гости",vc6_d:"Подаване на данните на гостите чрез платформата SES Hospedajes (R.D. 933/2021), до 24 ч. от пристигането.",vc7_t:"Книга за оплаквания + застраховка ГО",vc7_d:"Официалните канарски формуляри са задължителни. Застраховка гражданска отговорност е силно препоръчителна.",
+al_irav:"<b>IRAV (INE):</b> индексът, заменящ IPC за актуализация на наемите по договори от 25/05/2023. Последен публикуван: 2,44 % (август 2026). INE го публикува около 15-о число всеки месец.",
+lg_eye:"Проверено · август 2026",lg_h:"Процес на <em>покупка</em>",lg_p:"8-те официални стъпки със срокове и документи. Докоснете всяка стъпка.",
+l1_t:"Справка от Имотния регистър",l1_s:"1–2 дни · ~10 €",l1_d:"Проверява собственост, тежести, сервитути и описание. Заявява се на registradores.org. Задължителна преди всякакво капаро.",
+l2_t:"Договор за капаро (arras)",l2_s:"Веднага · обикновено 10 %",l2_d:"Резервация на имота. Наказателно капаро (чл. 1454 ГК): ако продавачът се откаже, връща двойно; ако купувачът се откаже, губи капарото. Определя цена, срок и последици.",
+l3_t:"Правна проверка",l3_s:"3–10 дни",l3_d:"Проверка на устройствения статут (PGOU), задължения за IBI и етажна собственост, ITE за сгради над 30 години, комунални услуги и скрити тежести.",
+l4_t:"Ипотека (при нужда)",l4_s:"2–6 седмици",l4_d:"Лицензирана оценка (250–600 €) + FEIN със задължителен 10-дневен срок за размисъл (Закон 5/2019) + безплатен предварителен нотариален акт. Банката плаща AJD на ипотеката.",
+l5_t:"Подписване при нотариус",l5_s:"1 ден",l5_d:"Публичен акт за покупко-продажба. Нотариусът проверява самоличност, тежести, начини на плащане и пълната документация на двете страни.",
+l6_t:"Плащане на данъци",l6_s:"⚠ макс. 30 работни дни",l6_d:"ITP (Форм. 600) за втора употреба или IGIC (Форм. 700) + AJD за ново, в Канарската данъчна агенция. Извън срок: надбавки 5–20 % плюс лихви.",
+l7_t:"Вписване в Регистъра",l7_s:"15 работни дни · 300–1 400 €",l7_d:"Подаване на акта с доказателство за платени данъци. Без вписване няма защита срещу трети лица.",
+l8_t:"Смяна на титуляри",l8_s:"1–2 седмици",l8_d:"IBI в общината, комунални услуги (вода, ток, газ) и уведомяване на етажната собственост.",
+tx_t:"Канарски данъчен режим",tx_s:"Закон 9/2025 · BOC 29/12/2025 · в сила 2026",
+tx1:"Ново строителство · замества ДДС",tx2:"Социално жилище (VPO) · 1-во предаване от строителя",tx3:"Втора употреба · общ процент",tx4:"Основно жилище ≤ 200 000 €",tx5:"≤ 40 г. · 1-ви дом ≤ 200 000 € · доход ≤ 46 455 €",tx6:"Многодетно семейство / инвалидност ≥ 65 % · с лимити на дохода",tx7:"Гербов налог (AJD) · Канари",tx8:"Общински данък печалба",tx8s:"IIVTNU · ръст на стойността на земята",tx9:"Удръжка нерезиденти",
+w_comp:"Купувач",w_vend:"Продавач",w_bonif:"Отстъпка",w_ret:"Купувачът удържа",
+tx_note:"⚡ ДДС НЕ се прилага на Канарите: прилага се IGIC — по-нисък от континенталния ДДС (10 %). Облекченията по Закон 9/2025 (до 40 г., праг 200 000 €) са в сила от 1/1/2026. Източник: Канарска данъчна агенция.",
+dl_eye:"Критични срокове",dl_h:"Не ги <em>пропускайте</em>",
+dl1_d:"30 работни дни",dl1_x:"Плащане на ITP (Форм. 600) или IGIC (Форм. 700) от акта — Канарска данъчна агенция.",dl2_d:"30 дни",dl2_x:"Формуляр 211: внасяне на удръжката от 3 %, ако продавачът е нерезидент — AEAT.",dl3_d:"1 месец",dl3_x:"Депозиране на наемната гаранция в Правителството на Канарите.",dl4_d:"24 часа",dl4_x:"Подаване на данни за гостите при ваканционен наем — SES Hospedajes (R.D. 933/2021).",
+cc_eye:"Безплатен инструмент",cc_h:"Изчислете <em>реалната цена</em>",cc_p:"Данъци, нотариус, регистър и такси според действащия канарски режим и вашия профил.",
+cc_price:"Покупна цена (€)",cc_type:"Тип",cc_used:"Втора употреба → ITP",cc_new:"Ново → IGIC",cc_prof:"Профил",
+cc_p1:"Общ",cc_p2:"Основно жилище",cc_p3:"Под 40 г.",cc_p4:"Многодетно семейство",cc_p5:"Инвалидност ≥ 65 %",
+cc_btn:"Изчисли общата цена",cr_lbl:"Очаквани общи разходи",
+cr_disc:"⚠ Ориентировъчна оценка (тарифи RD 1426/1989 нотариус и RD 1427/1989 регистър). Намалените ставки изискват условия за доход и основно жилище, които този инструмент не проверява. Данъците се плащат в Канарската данъчна агенция до 30 работни дни от акта. Не замества професионална правно-данъчна консултация.",
+cr_err:"Въведете валидна цена (между 1 € и 100 000 000 €).",cr_pct:"≈ {p} % от цената",cr_req:"Тази намалена ставка важи само при изпълнени условия за доход и основно жилище по Закон 9/2025. Потвърдете с вашия консултант преди подписване.",cr_notaria:"Нотариус (оценка)",cr_registro:"Имотен регистър",cr_gestoria:"Агенция / обработка",
+tb1:"Начало",tb2:"Купи",tb3:"Наеми",tb4:"Правно",tb5:"Калк.",
+per_month:"/месец",per_night:"/нощувка",sh_desc:"Описание",sh_fisc:"Данъчно облагане на сделката",sh_cta:"Свържи се с агент",
+sh_demo:"✓ Демо версия: в публикуваното приложение този бутон ще отвори чат с вашия агент Belbul (+34 600 123 456 · hola@belbulrealestate.com).",
+fav:"Запази в любими",beds:"Спални",baths:"Бани",area:"Площ"}};
+
+var LMETA={es:{f:"\ud83c\uddea\ud83c\uddf8",c:"ES",loc:"es-ES"},
+            en:{f:"\ud83c\uddec\ud83c\udde7",c:"EN",loc:"en-GB"},
+            fr:{f:"\ud83c\uddeb\ud83c\uddf7",c:"FR",loc:"fr-FR"},
+            bg:{f:"\ud83c\udde7\ud83c\uddec",c:"BG",loc:"bg-BG"}};
+var LANG="es";
+function T(k){return (I18N[LANG]&&I18N[LANG][k])||I18N.es[k]||"";}
+function L(o){return (o&&o[LANG])||(o&&o.es)||"";}
+
+/* localStorage puede lanzar en modo privado o con las cookies bloqueadas:
+   la app tiene que seguir funcionando, solo que sin recordar nada. */
+function guardar(k,v){try{localStorage.setItem("belbul."+k,v);}catch(_){}}
+function leer(k){try{return localStorage.getItem("belbul."+k);}catch(_){return null;}}
+
+function fmtN(n){return n.toLocaleString(LMETA[LANG].loc);}
+function eur(n){return Math.round(n).toLocaleString(LMETA[LANG].loc)+" \u20ac";}
+
+function applyLang(l){
+  if(!I18N[l])return;
+  LANG=l;document.documentElement.lang=l;guardar("lang",l);
+  var a=document.querySelectorAll("[data-i18n]");
+  for(var i=0;i<a.length;i++){var v=I18N[l][a[i].dataset.i18n];if(v!==undefined)a[i].textContent=v;}
+  var b=document.querySelectorAll("[data-i18n-html]");
+  for(var j=0;j<b.length;j++){var w=I18N[l][b[j].dataset.i18nHtml];if(w!==undefined)b[j].innerHTML=w;}
+  document.getElementById("langFlag").textContent=LMETA[l].f;
+  document.getElementById("langCode").textContent=LMETA[l].c;
+  var o=document.querySelectorAll(".lang-opt");
+  for(var k=0;k<o.length;k++){o[k].classList.toggle("on",o[k].dataset.l===l);}
+  pintarTarifas();
+  renderProps();
+  /* La hoja abierta tambien tiene que cambiar de idioma: antes se quedaba
+     con el texto anterior hasta cerrarla y volver a abrirla. */
+  if(ABIERTO){ABIERTO.t==="p"?pintarProp(ABIERTO.k):pintarSheet(ABIERTO.k);}
+}
+function setLang(l){applyLang(l);cerrarMenuIdioma();}
+function toggleLang(e){
+  e.stopPropagation();
+  var m=document.getElementById("lang");
+  var ab=m.classList.toggle("open");
+  m.querySelector(".lang-btn").setAttribute("aria-expanded",ab?"true":"false");
+}
+function cerrarMenuIdioma(){
+  var m=document.getElementById("lang");
+  m.classList.remove("open");
+  m.querySelector(".lang-btn").setAttribute("aria-expanded","false");
+}
+document.addEventListener("click",cerrarMenuIdioma);
+
+var VIEWS=["inicio","comprar","alquiler","legal","calc"];
+function showTab(id){
+  if(VIEWS.indexOf(id)===-1)return;
+  for(var i=0;i<VIEWS.length;i++){
+    var on=VIEWS[i]===id;
+    document.getElementById("v-"+VIEWS[i]).classList.toggle("on",on);
+    var t=document.getElementById("t-"+VIEWS[i]);
+    t.classList.toggle("on",on);
+    // aria-current en vez de role=tab: no implementamos navegacion con
+    // flechas, asi que prometer un tablist completo seria mentir.
+    if(on)t.setAttribute("aria-current","page"); else t.removeAttribute("aria-current");
+  }
+  cerrarHoja(true);
+  window.scrollTo(0,0);
+}
+
+function toggleAcc(btn){
+  var acc=btn.parentNode;
+  var was=acc.classList.contains("open");
+  var sibs=acc.parentNode.children;
+  for(var i=0;i<sibs.length;i++){
+    if(sibs[i].classList&&sibs[i].classList.contains("acc")){
+      sibs[i].classList.remove("open");
+      var h=sibs[i].querySelector(".acc-h");
+      if(h)h.setAttribute("aria-expanded","false");
+    }
+  }
+  if(!was){acc.classList.add("open");btn.setAttribute("aria-expanded","true");}
+}
+
+var PROPS=[
+{id:1,tipo:"venta",g:"pg1",zone:"Costa Adeje",price:1850000,suf:"",beds:3,baths:3,m2:250,pool:true,
+ t:{es:"Villa de lujo con vistas al océano",en:"Luxury villa with ocean views",fr:"Villa de luxe avec vue sur l'océan",bg:"Луксозна вила с изглед към океана"},
+ d:{es:"Exclusiva villa moderna con impresionantes vistas al océano Atlántico. Diseñada para disfrutar del clima privilegiado de Tenerife durante todo el año. Piscina privada y orientación sur.",en:"Exclusive modern villa with breathtaking Atlantic views. Designed to enjoy Tenerife's privileged climate all year round. Private pool, south-facing.",fr:"Villa moderne exclusive avec une vue imprenable sur l'Atlantique. Conçue pour profiter du climat privilégié de Tenerife toute l'année. Piscine privée, orientation sud.",bg:"Ексклузивна модерна вила със спираща дъха гледка към Атлантика. Създадена за целогодишно ползване на привилегирования климат на Тенерифе. Частен басейн, южно изложение."},
+ fisc:{es:"2ª mano: ITP 6,5 % general (120.250 €) + notaría, registro y gestoría. Si el vendedor es no residente, el comprador retiene el 3 % (Modelo 211).",en:"Resale: ITP 6.5% general (€120,250) + notary, registry and agency fees. If the seller is a non-resident, the buyer withholds 3% (Form 211).",fr:"Ancien : ITP 6,5 % général (120 250 €) + notaire, registre et frais. Si le vendeur est non-résident, l'acheteur retient 3 % (Form. 211).",bg:"Втора употреба: ITP 6,5 % общ (120 250 €) + нотариус, регистър и такси. Ако продавачът е нерезидент, купувачът удържа 3 % (Форм. 211)."},
+ badge:{es:"Villa · Venta",en:"Villa · Sale",fr:"Villa · Vente",bg:"Вила · Продажба"}},
+{id:2,tipo:"nueva",g:"pg3",zone:"Guía de Isora",price:485000,suf:"",beds:3,baths:2,m2:130,pool:false,
+ t:{es:"Ático de obra nueva, terraza panorámica",en:"New-build penthouse, panoramic terrace",fr:"Attique neuf, terrasse panoramique",bg:"Нов пентхаус с панорамна тераса"},
+ d:{es:"Promoción de obra nueva en la costa oeste. Terraza de 40 m² con vistas a La Gomera. Entrega con garantía decenal y licencia de primera ocupación.",en:"New development on the west coast. 40 m² terrace overlooking La Gomera. Delivered with 10-year structural warranty and first-occupancy licence.",fr:"Programme neuf sur la côte ouest. Terrasse de 40 m² avec vue sur La Gomera. Livré avec garantie décennale et licence de première occupation.",bg:"Ново строителство на западния бряг. Тераса от 40 м² с изглед към Ла Гомера. Предава се с 10-годишна гаранция и лиценз за първо обитаване."},
+ fisc:{es:"Obra nueva: IGIC 7 % (33.950 €) + AJD 0,75 % (3.638 €) + notaría, registro y gestoría. Modelo 700 en 30 días hábiles.",en:"New build: IGIC 7% (€33,950) + AJD 0.75% (€3,638) + notary, registry and agency fees. Form 700 within 30 working days.",fr:"Neuf : IGIC 7 % (33 950 €) + AJD 0,75 % (3 638 €) + notaire, registre et frais. Formulaire 700 sous 30 jours ouvrables.",bg:"Ново: IGIC 7 % (33 950 €) + AJD 0,75 % (3 638 €) + нотариус, регистър и такси. Формуляр 700 до 30 работни дни."},
+ badge:{es:"Obra nueva",en:"New build",fr:"Neuf",bg:"Ново"}},
+{id:3,tipo:"venta",g:"pg4",zone:"Santa Cruz",price:195000,suf:"",beds:3,baths:2,m2:95,pool:false,
+ t:{es:"Piso reformado en el centro",en:"Renovated city-centre flat",fr:"Appartement rénové au centre",bg:"Ремонтиран апартамент в центъра"},
+ d:{es:"Reforma integral de 2024 en pleno centro de la capital. Al quedar por debajo de 200.000 € puede acogerse al tipo reducido del 4 % para menores de 40 años en primera vivienda habitual.",en:"Fully renovated in 2024 in the heart of the capital. Being under €200,000 it can qualify for the reduced 4% rate for under-40s buying their first main residence.",fr:"Rénovation intégrale 2024 en plein centre de la capitale. Sous 200 000 €, il peut bénéficier du taux réduit de 4 % pour les moins de 40 ans en première résidence principale.",bg:"Цялостен ремонт от 2024 в сърцето на столицата. Под 200 000 € може да ползва намалената ставка от 4 % за купувачи под 40 г. при първо основно жилище."},
+ fisc:{es:"2ª mano: ITP 6,5 % (12.675 €) — o 4 % (7.800 €) si tienes hasta 40 años, es tu 1ª vivienda habitual y tu renta no supera 46.455 € (Ley 9/2025).",en:"Resale: ITP 6.5% (€12,675) — or 4% (€7,800) if you are 40 or under, it is your first main residence and your income does not exceed €46,455 (Law 9/2025).",fr:"Ancien : ITP 6,5 % (12 675 €) — ou 4 % (7 800 €) si vous avez 40 ans ou moins, 1ère résidence principale et revenus ne dépassant pas 46 455 € (Loi 9/2025).",bg:"Втора употреба: ITP 6,5 % (12 675 €) — или 4 % (7 800 €), ако сте до 40 г., това е първото ви основно жилище и доходът ви не надвишава 46 455 € (Закон 9/2025)."},
+ badge:{es:"Piso · Venta",en:"Flat · Sale",fr:"Appart. · Vente",bg:"Апартамент"}},
+{id:4,tipo:"alquiler",g:"pg2",zone:"Los Cristianos",price:950,suf:"m",beds:2,baths:1,m2:75,pool:false,
+ t:{es:"Apartamento con vistas al mar",en:"Sea-view apartment",fr:"Appartement vue mer",bg:"Апартамент с морска гледка"},
+ d:{es:"Apartamento amueblado en primera línea. Contrato de vivienda habitual bajo la LAU: duración mínima de 5 años, fianza de 1 mes depositada en el Gobierno de Canarias y actualización anual por IRAV.",en:"Furnished front-line apartment. Main-residence LAU contract: 5-year minimum, 1-month deposit lodged with the Canary Government, annual IRAV updates.",fr:"Appartement meublé en première ligne. Contrat de résidence principale LAU : durée minimale 5 ans, garantie d'1 mois déposée auprès du Gouvernement des Canaries, révision annuelle par IRAV.",bg:"Обзаведен апартамент на първа линия. Договор за основно жилище по LAU: мин. 5 години, 1 месец депозит в Правителството на Канарите, годишна актуализация по IRAV."},
+ fisc:{es:"Alquiler habitual: fianza de 1 mes + garantías adicionales de máximo 2 meses (total máximo al inicio: 3 meses). Renta actualizable por IRAV (febrero 2026: 2,16 %).",en:"Main-residence rental: 1-month deposit + extra guarantees of max. 2 months (max. 3 months upfront in total). Rent updated by IRAV (Feb 2026: 2.16%).",fr:"Location principale : 1 mois de garantie + garanties supplémentaires de max. 2 mois (max. 3 mois au total à l'entrée). Loyer révisé par IRAV (févr. 2026 : 2,16 %).",bg:"Наем на основно жилище: 1 месец депозит + доп. гаранции макс. 2 месеца (общо макс. 3 месеца при влизане). Наемът се актуализира по IRAV (февр. 2026: 2,16 %)."},
+ badge:{es:"Alquiler",en:"Rent",fr:"Location",bg:"Наем"}},
+{id:5,tipo:"vacacional",g:"pg5",zone:"Puerto de la Cruz",price:95,suf:"n",beds:1,baths:1,m2:50,pool:true,
+ t:{es:"Studio vacacional · licencia activa",en:"Holiday studio · active licence",fr:"Studio de vacances · licence active",bg:"Ваканционно студио · активен лиценз"},
+ d:{es:"Studio en complejo con piscina, a 5 minutos de la playa. Cuenta con declaración responsable, número de Registro Único Nacional visible y alta en SES Hospedajes.",en:"Studio in a complex with pool, 5 minutes from the beach. Holds a responsible declaration, visible National Single Registry number and SES Hospedajes registration.",fr:"Studio dans un complexe avec piscine, à 5 minutes de la plage. Dispose d'une déclaration responsable, d'un numéro de Registre Unique visible et de l'inscription SES Hospedajes.",bg:"Студио в комплекс с басейн, на 5 минути от плажа. Има отговорна декларация, видим номер от Единния регистър и регистрация в SES Hospedajes."},
+ fisc:{es:"Vacacional legal: Ley 6/2025 de Canarias + Registro Único (R.D. 1312/2024) + comunicación de viajeros en 24 h vía SES Hospedajes (R.D. 933/2021).",en:"Legal holiday rental: Canary Law 6/2025 + Single Registry (R.D. 1312/2024) + 24h guest reporting via SES Hospedajes (R.D. 933/2021).",fr:"Location de vacances légale : Loi 6/2025 des Canaries + Registre Unique (R.D. 1312/2024) + déclaration des voyageurs sous 24 h via SES Hospedajes (R.D. 933/2021).",bg:"Легален ваканционен наем: Закон 6/2025 на Канарите + Единен регистър (R.D. 1312/2024) + подаване на гости до 24 ч. чрез SES Hospedajes (R.D. 933/2021)."},
+ badge:{es:"Vacacional",en:"Holiday",fr:"Vacances",bg:"Ваканционен"}}];
+
+var FILTER="all";
+var FAVS=(function(){try{return JSON.parse(leer("favs")||"{}");}catch(_){return {};}})();
+
+function renderProps(){
+  var box=document.getElementById("props");
+  box.textContent="";
+  for(var i=0;i<PROPS.length;i++){
+    var p=PROPS[i];
+    if(FILTER!=="all"&&p.tipo!==FILTER)continue;
+    var card=document.createElement("div");card.className="prop";
+    card.setAttribute("role","button");card.tabIndex=0;
+    card.setAttribute("aria-label",L(p.t)+" \u2014 "+p.zone);
+    (function(id){
+      card.addEventListener("click",function(){openProp(id);});
+      card.addEventListener("keydown",function(e){
+        if(e.key==="Enter"||e.key===" "||e.key==="Spacebar"){e.preventDefault();openProp(id);}
+      });
+    })(p.id);
+
+    var img=document.createElement("div");img.className="prop-img";
+    var bg=document.createElement("div");bg.className="pim "+p.g;img.appendChild(bg);
+    var bd=document.createElement("div");bd.className="pbadge";bd.textContent=L(p.badge);img.appendChild(bd);
+    var fv=document.createElement("button");fv.className="pfav";fv.type="button";
+    fv.textContent=FAVS[p.id]?"\u2665":"\u2661";
+    fv.setAttribute("aria-label",T("fav"));
+    fv.setAttribute("aria-pressed",FAVS[p.id]?"true":"false");
+    (function(id,btn){btn.addEventListener("click",function(e){
+      e.stopPropagation();
+      FAVS[id]=!FAVS[id];
+      btn.textContent=FAVS[id]?"\u2665":"\u2661";
+      btn.setAttribute("aria-pressed",FAVS[id]?"true":"false");
+      guardar("favs",JSON.stringify(FAVS));
+    });})(p.id,fv);
+    img.appendChild(fv);card.appendChild(img);
+
+    var body=document.createElement("div");body.className="prop-body";
+    var z=document.createElement("div");z.className="pzone";z.textContent=p.zone+" \u00b7 Tenerife";body.appendChild(z);
+    var t=document.createElement("div");t.className="ptitle";t.textContent=L(p.t);body.appendChild(t);
+    var sp=document.createElement("div");sp.className="pspecs";
+    var s1=document.createElement("span");s1.textContent="\ud83d\udecf "+p.beds;sp.appendChild(s1);
+    var s2=document.createElement("span");s2.textContent="\ud83d\udebf "+p.baths;sp.appendChild(s2);
+    var s3=document.createElement("span");s3.textContent="\ud83d\udcd0 "+p.m2+" m\u00b2";sp.appendChild(s3);
+    if(p.pool){var s4=document.createElement("span");s4.textContent="\ud83c\udfca";sp.appendChild(s4);}
+    body.appendChild(sp);
+    var pr=document.createElement("div");pr.className="pprice-row";
+    var pc=document.createElement("div");pc.className="pprice";pc.textContent="\u20ac "+fmtN(p.price);
+    var suf=p.suf==="m"?T("per_month"):(p.suf==="n"?T("per_night"):"");
+    if(suf){var sm=document.createElement("small");sm.textContent=" "+suf;pc.appendChild(sm);}
+    pr.appendChild(pc);
+    var mo=document.createElement("div");mo.className="pmore";mo.textContent="\u203a";pr.appendChild(mo);
+    body.appendChild(pr);card.appendChild(body);box.appendChild(card);
+  }
+}
+
+document.getElementById("chips").addEventListener("click",function(e){
+  var c=e.target.closest?e.target.closest(".chip"):null;
+  if(!c)return;
+  var all=document.querySelectorAll(".chip");
+  for(var i=0;i<all.length;i++)all[i].classList.remove("on");
+  c.classList.add("on");FILTER=c.dataset.f;renderProps();
+});
+
+var ABIERTO=null;   // {t:"p"|"s", k:id} para poder repintar al cambiar de idioma
+var FOCO=null;      // a quien se le devuelve el foco al cerrar
+
+function openProp(id){
+  if(!pintarProp(id))return;
+  ABIERTO={t:"p",k:id};
+  abrirHoja();
+}
+function pintarProp(id){
+  var p=null;
+  for(var i=0;i<PROPS.length;i++){if(PROPS[i].id===id){p=PROPS[i];break;}}
+  if(!p)return false;
+  var b=document.getElementById("sh-body");b.textContent="";
+  var hero=document.createElement("div");hero.className="sh-hero "+p.g;b.appendChild(hero);
+  var eb=document.createElement("div");eb.className="sh-eyebrow";eb.textContent=L(p.badge)+" \u00b7 "+p.zone;b.appendChild(eb);
+  var tt=document.createElement("h2");tt.className="sh-title";tt.id="sh-title";tt.textContent=L(p.t);b.appendChild(tt);
+  var pp=document.createElement("div");pp.className="sh-price";pp.textContent="\u20ac "+fmtN(p.price);
+  var suf=p.suf==="m"?T("per_month"):(p.suf==="n"?T("per_night"):"");
+  if(suf){var sm=document.createElement("small");sm.textContent=" "+suf;pp.appendChild(sm);}
+  b.appendChild(pp);
+  var sp=document.createElement("div");sp.className="sh-specs";
+  var data=[[p.beds,T("beds")],[p.baths,T("baths")],[p.m2+" m\u00b2",T("area")]];
+  for(var k=0;k<data.length;k++){
+    var box=document.createElement("div");box.className="sh-spec";
+    var v=document.createElement("div");v.className="v";v.textContent=data[k][0];
+    var kk=document.createElement("div");kk.className="k";kk.textContent=data[k][1];
+    box.appendChild(v);box.appendChild(kk);sp.appendChild(box);
+  }
+  b.appendChild(sp);
+  var h1=document.createElement("div");h1.className="sh-eyebrow";h1.style.marginTop="18px";h1.textContent=T("sh_desc");b.appendChild(h1);
+  var d=document.createElement("p");d.className="sh-p";d.textContent=L(p.d);b.appendChild(d);
+  var h2=document.createElement("div");h2.className="sh-eyebrow";h2.style.marginTop="18px";h2.textContent=T("sh_fisc");b.appendChild(h2);
+  var f=document.createElement("p");f.className="sh-p";f.textContent=L(p.fisc);b.appendChild(f);
+  b.appendChild(ctaDemo());
+  return true;
+}
+
+/* El boton de contacto y su aviso, que se repetian en las dos hojas. */
+function ctaDemo(){
+  var frag=document.createDocumentFragment();
+  var cta=document.createElement("button");cta.className="sh-cta";cta.type="button";cta.textContent=T("sh_cta");
+  var note=document.createElement("div");note.className="sh-note";note.setAttribute("role","status");
+  cta.addEventListener("click",function(){note.textContent=T("sh_demo");note.style.display="block";});
+  frag.appendChild(cta);frag.appendChild(note);
+  return frag;
+}
+
+var SHEETS={
+"s-asesoria":{ic:"🧭",t:{es:"Asesoramiento personalizado",en:"Personalised advice",fr:"Conseil personnalisé",bg:"Персонално консултиране"},
+ items:{es:["Definición de criterios: zona, presupuesto y estilo de vida","Selección de propiedades verificadas con nota simple incluida","Visitas presenciales o por videollamada","Negociación del precio y las condiciones con el vendedor","Acompañamiento en 4 idiomas durante todo el proceso"],
+ en:["Defining your criteria: area, budget and lifestyle","Selection of verified properties with registry extract included","In-person or video-call viewings","Negotiating price and terms with the seller","Support in 4 languages throughout the process"],
+ fr:["Définition des critères : zone, budget et style de vie","Sélection de biens vérifiés avec note simple incluse","Visites sur place ou en visioconférence","Négociation du prix et des conditions avec le vendeur","Accompagnement en 4 langues tout au long du processus"],
+ bg:["Определяне на критериите: зона, бюджет и начин на живот","Подбор на проверени имоти със справка от регистъра","Огледи на място или по видеовръзка","Преговори за цена и условия с продавача","Съдействие на 4 езика през целия процес"]}},
+"s-gestion":{ic:"📑",t:{es:"Gestión integral de compra",en:"Full purchase management",fr:"Gestion intégrale d'achat",bg:"Цялостно управление на покупката"},
+ items:{es:["Nota simple y verificación de cargas en el Registro","Redacción y revisión del contrato de arras (art. 1454 CC)","Coordinación con notaría y preparación de la escritura","Liquidación de ITP/IGIC y AJD dentro de los 30 días hábiles","Inscripción en el Registro de la Propiedad","Cambio de titularidad de IBI y suministros"],
+ en:["Registry extract and charges verification","Drafting and review of the deposit contract (art. 1454 CC)","Coordination with the notary and deed preparation","ITP/IGIC and AJD settlement within 30 working days","Land Registry registration","IBI and utilities ownership transfer"],
+ fr:["Note simple et vérification des charges au Registre","Rédaction et révision du contrat d'arrhes (art. 1454 CC)","Coordination avec le notaire et préparation de l'acte","Liquidation ITP/IGIC et AJD sous 30 jours ouvrables","Inscription au Registre Foncier","Changement de titulaire IBI et services"],
+ bg:["Справка от регистъра и проверка на тежести","Изготвяне и преглед на договора за капаро (чл. 1454 ГК)","Координация с нотариуса и подготовка на акта","Плащане на ITP/IGIC и AJD в рамките на 30 работни дни","Вписване в Имотния регистър","Смяна на титуляр за IBI и комунални услуги"]}},
+"s-legal":{ic:"⚖️",t:{es:"Asistencia legal y fiscal",en:"Legal & tax assistance",fr:"Assistance juridique et fiscale",bg:"Правна и данъчна помощ"},
+ items:{es:["Obtención del NIE para compradores extranjeros","Modelos 600 (ITP), 700 (IGIC) y 211 (retención del 3 %)","Optimización fiscal con los tipos reducidos de la Ley 9/2025","Plusvalía municipal e IRPF/IRNR del vendedor","Poderes notariales para gestionar la compra a distancia"],
+ en:["NIE procurement for foreign buyers","Forms 600 (ITP), 700 (IGIC) and 211 (3% withholding)","Tax optimisation using the reduced rates of Law 9/2025","Municipal capital gains and the seller's IRPF/IRNR","Notarial powers of attorney to buy remotely"],
+ fr:["Obtention du NIE pour acheteurs étrangers","Formulaires 600 (ITP), 700 (IGIC) et 211 (retenue de 3 %)","Optimisation fiscale avec les taux réduits de la Loi 9/2025","Plus-value municipale et IRPF/IRNR du vendeur","Procurations notariales pour acheter à distance"],
+ bg:["Издаване на NIE за чуждестранни купувачи","Формуляри 600 (ITP), 700 (IGIC) и 211 (удръжка 3 %)","Данъчна оптимизация с намалените ставки по Закон 9/2025","Общински данък печалба и IRPF/IRNR на продавача","Нотариални пълномощни за дистанционна покупка"]}},
+"s-deco":{ic:"🎨",t:{es:"Decoración & Interiorismo",en:"Décor & Interior design",fr:"Décoration & Intérieur",bg:"Декорация и интериор"},
+ items:{es:["Home staging para vender o alquilar más rápido","Proyectos de reforma con licencia de obras municipal","Amueblamiento llave en mano para alquiler vacacional","Red de profesionales locales de confianza"],
+ en:["Home staging to sell or rent faster","Renovation projects with municipal works licence","Turnkey furnishing for holiday rentals","Trusted network of local professionals"],
+ fr:["Home staging pour vendre ou louer plus vite","Projets de rénovation avec licence de travaux municipale","Ameublement clé en main pour la location de vacances","Réseau de professionnels locaux de confiance"],
+ bg:["Home staging за по-бърза продажба или отдаване","Проекти за ремонт с общинско разрешение за строеж","Обзавеждане до ключ за ваканционен наем","Доверена мрежа от местни професионалисти"]}},
+"s-vacacional":{ic:"🌴",t:{es:"Alquiler vacacional",en:"Holiday rentals",fr:"Location de vacances",bg:"Ваканционен наем"},
+ items:{es:["Declaración responsable ante el Cabildo (Ley 6/2025)","Verificación urbanística municipal del uso turístico","Alta en el Registro Único Nacional (R.D. 1312/2024)","Configuración de SES Hospedajes para el parte de viajeros","Gestión de anuncios en plataformas con el nº de registro","Optimización de ocupación y precios"],
+ en:["Responsible declaration with the Cabildo (Law 6/2025)","Municipal planning verification of tourist use","National Single Registry enrolment (R.D. 1312/2024)","SES Hospedajes setup for guest reporting","Platform listings management with the registry number","Occupancy and pricing optimisation"],
+ fr:["Déclaration responsable auprès du Cabildo (Loi 6/2025)","Vérification urbanistique municipale de l'usage touristique","Inscription au Registre Unique National (R.D. 1312/2024)","Configuration de SES Hospedajes pour les voyageurs","Gestion des annonces avec le n° de registre","Optimisation de l'occupation et des prix"],
+ bg:["Отговорна декларация пред Кабилдото (Закон 6/2025)","Общинска устройствена проверка на туристическото ползване","Вписване в Националния Единен Регистър (R.D. 1312/2024)","Настройка на SES Hospedajes за регистрация на гости","Управление на обявите с регистрационния номер","Оптимизация на заетост и цени"]}},
+"s-zonas":{ic:"📍",t:{es:"Zonas exclusivas de Tenerife",en:"Tenerife's exclusive areas",fr:"Zones exclusives de Tenerife",bg:"Ексклузивни зони на Тенерифе"},
+ items:{es:["Costa Adeje — lujo, golf y las mejores playas del sur","La Caleta — pueblo pesquero gourmet junto al océano","Abama / Guía de Isora — resorts y privacidad absoluta","Santa Cruz — vida urbana, cultura y servicios","Puerto de la Cruz — encanto del norte y clima suave","El Sauzal / Tacoronte — vinos, vistas y casas con terreno"],
+ en:["Costa Adeje — luxury, golf and the south's best beaches","La Caleta — gourmet fishing village by the ocean","Abama / Guía de Isora — resorts and total privacy","Santa Cruz — urban life, culture and services","Puerto de la Cruz — northern charm and mild climate","El Sauzal / Tacoronte — wines, views and homes with land"],
+ fr:["Costa Adeje — luxe, golf et les meilleures plages du sud","La Caleta — village de pêcheurs gourmet au bord de l'océan","Abama / Guía de Isora — resorts et intimité absolue","Santa Cruz — vie urbaine, culture et services","Puerto de la Cruz — charme du nord et climat doux","El Sauzal / Tacoronte — vins, vues et maisons avec terrain"],
+ bg:["Коста Адехе — лукс, голф и най-добрите плажове на юга","Ла Калета — гурме рибарско селище до океана","Абама / Гия де Исора — курорти и пълно уединение","Санта Крус — градски живот, култура и услуги","Пуерто де ла Крус — северен чар и мек климат","Ел Саусал / Такоронте — вина, гледки и къщи с двор"]}},
+"s-invierte":{ic:"💛",t:{es:"Vive o invierte",en:"Live or invest",fr:"Vivre ou investir",bg:"Живейте или инвестирайте"},
+ items:{es:["Fiscalidad ventajosa: IGIC del 7 % frente al IVA del 10 % peninsular","ITP reducido al 4 % para menores de 40 años (Ley 9/2025)","Demanda de alquiler sostenida todo el año: clima y turismo","Alquiler vacacional regulado con la Ley 6/2025: seguridad jurídica","Conectividad con dos aeropuertos internacionales"],
+ en:["Favourable taxation: 7% IGIC vs 10% mainland VAT","ITP reduced to 4% for under-40s (Law 9/2025)","Year-round rental demand: climate and tourism","Holiday rentals regulated by Law 6/2025: legal certainty","Connectivity with two international airports"],
+ fr:["Fiscalité avantageuse : IGIC de 7 % contre TVA de 10 % en péninsule","ITP réduit à 4 % pour les moins de 40 ans (Loi 9/2025)","Demande locative soutenue toute l'année : climat et tourisme","Location de vacances réglementée par la Loi 6/2025 : sécurité juridique","Connectivité avec deux aéroports internationaux"],
+ bg:["Изгодно облагане: IGIC 7 % срещу 10 % ДДС на континента","ITP намален до 4 % за купувачи под 40 г. (Закон 9/2025)","Постоянно търсене на наеми целогодишно: климат и туризъм","Ваканционният наем е регулиран със Закон 6/2025: правна сигурност","Свързаност с две международни летища"]}},
+"s-isla":{ic:"🌋",t:{es:"Tenerife te enamora",en:"Tenerife wins you over",fr:"Tenerife vous séduit",bg:"Тенерифе ще ви плени"},
+ items:{es:["El Teide: el pico más alto de España, 3.715 m, y cielo estrellado protegido","Casi la mitad del territorio insular es espacio natural protegido","Más de 350 km de costa con playas de arena negra y dorada","Gastronomía: guachinches, vinos volcánicos y producto local","Sanidad y educación de calidad, incluidos colegios internacionales","Comunidad internacional consolidada y acogedora"],
+ en:["Mount Teide: Spain's highest peak at 3,715 m, with protected starry skies","Almost half the island is protected natural space","Over 350 km of coastline with black and golden sand beaches","Gastronomy: guachinches, volcanic wines and local produce","Quality healthcare and education, including international schools","A well-established, welcoming international community"],
+ fr:["Le Teide : plus haut sommet d'Espagne, 3 715 m, et ciel étoilé protégé","Près de la moitié de l'île est un espace naturel protégé","Plus de 350 km de côtes aux plages de sable noir et doré","Gastronomie : guachinches, vins volcaniques et produits locaux","Santé et éducation de qualité, y compris écoles internationales","Une communauté internationale établie et accueillante"],
+ bg:["Тейде: най-високият връх на Испания, 3 715 м, със защитено звездно небе","Почти половината от острова е защитена природна зона","Над 350 км брегова линия с черни и златни плажове","Гастрономия: гуачинчес, вулканични вина и местни продукти","Качествено здравеопазване и образование, вкл. международни училища","Утвърдена и гостоприемна международна общност"]}},
+"s-contact":{ic:"💬",t:{es:"Contacta con Belbul",en:"Contact Belbul",fr:"Contactez Belbul",bg:"Свържете се с Belbul"},
+ items:{es:["📞 Teléfono / WhatsApp: +34 600 123 456","📧 Email: hola@belbulrealestate.com","📍 Tenerife, Islas Canarias, España","🕐 Lunes a viernes 9:00–18:00 · Sábado 9:00–14:00","🌍 Atención en español, inglés, francés y búlgaro","🤝 Tu confianza, nuestro compromiso"],
+ en:["📞 Phone / WhatsApp: +34 600 123 456","📧 Email: hola@belbulrealestate.com","📍 Tenerife, Canary Islands, Spain","🕐 Monday to Friday 9:00–18:00 · Saturday 9:00–14:00","🌍 Service in Spanish, English, French and Bulgarian","🤝 Your trust, our commitment"],
+ fr:["📞 Téléphone / WhatsApp : +34 600 123 456","📧 Email : hola@belbulrealestate.com","📍 Tenerife, Îles Canaries, Espagne","🕐 Du lundi au vendredi 9h00–18h00 · Samedi 9h00–14h00","🌍 Service en espagnol, anglais, français et bulgare","🤝 Votre confiance, notre engagement"],
+ bg:["📞 Телефон / WhatsApp: +34 600 123 456","📧 Имейл: hola@belbulrealestate.com","📍 Тенерифе, Канарски острови, Испания","🕐 Понеделник–петък 9:00–18:00 · Събота 9:00–14:00","🌍 Обслужване на испански, английски, френски и български","🤝 Вашето доверие, нашият ангажимент"]}}};
+
+function openSheet(key){
+  if(!pintarSheet(key))return;
+  ABIERTO={t:"s",k:key};
+  abrirHoja();
+}
+function pintarSheet(key){
+  var sh=SHEETS[key];if(!sh)return false;
+  var b=document.getElementById("sh-body");b.textContent="";
+  var eb=document.createElement("div");eb.className="sh-eyebrow";eb.textContent="Belbul \u00b7 Tenerife";b.appendChild(eb);
+  var tt=document.createElement("h2");tt.className="sh-title";tt.id="sh-title";tt.textContent=sh.ic+"  "+L(sh.t);b.appendChild(tt);
+  var list=document.createElement("ul");list.className="sh-list";
+  var items=L(sh.items);
+  for(var i=0;i<items.length;i++){
+    var li=document.createElement("li");li.className="sh-li";
+    var bb=document.createElement("span");bb.className="b";bb.setAttribute("aria-hidden","true");bb.textContent="\u203a";
+    var xx=document.createElement("span");xx.className="x";xx.textContent=items[i];
+    li.appendChild(bb);li.appendChild(xx);list.appendChild(li);
+  }
+  b.appendChild(list);
+  b.appendChild(ctaDemo());
+  return true;
+}
+
+function abrirHoja(){
+  FOCO=document.activeElement;
+  document.getElementById("ovl").classList.add("show");
+  var sh=document.getElementById("sheet");
+  sh.classList.add("show");
+  sh.setAttribute("aria-hidden","false");
+  sh.setAttribute("aria-labelledby","sh-title");
+  document.getElementById("sh-body").scrollTop=0;
+  document.body.classList.add("bloq");
+  /* Un frame de margen: en el mismo tick en que se anade .show el
+     navegador aun no ha recalculado el estilo, la hoja sigue en
+     visibility:hidden y focus() se ignora sin avisar. */
+  requestAnimationFrame(function(){
+    try{document.getElementById("sh-cerrar").focus();}catch(_){}
+  });
+  // Una entrada en el historial para que el boton atras cierre la hoja
+  // en vez de sacar al usuario de la aplicacion.
+  if(!(history.state&&history.state.hoja)){try{history.pushState({hoja:1},"");}catch(_){}}
+}
+
+/* closeSheet() es la que llaman los onclick del HTML; conHistorial=false
+   es la que usa popstate, para no volver a tocar el historial y entrar en
+   bucle. */
+function closeSheet(){cerrarHoja(true);}
+function cerrarHoja(conHistorial){
+  var sh=document.getElementById("sheet");
+  var estaba=sh.classList.contains("show");
+  document.getElementById("ovl").classList.remove("show");
+  sh.classList.remove("show");
+  sh.setAttribute("aria-hidden","true");
+  document.body.classList.remove("bloq");
+  ABIERTO=null;
+  if(estaba&&FOCO&&FOCO.focus){try{FOCO.focus();}catch(_){}}
+  FOCO=null;
+  if(estaba&&conHistorial&&history.state&&history.state.hoja){try{history.back();}catch(_){}}
+}
+
+document.addEventListener("keydown",function(e){
+  if(e.key!=="Escape")return;
+  if(document.getElementById("sheet").classList.contains("show")){closeSheet();return;}
+  cerrarMenuIdioma();
+});
+window.addEventListener("popstate",function(){
+  if(document.getElementById("sheet").classList.contains("show"))cerrarHoja(false);
+});
+
+var FISCAL={
+  /* Regimen canario vigente en 2026 (Ley 9/2025, BOC 256 de 29/12/2025).
+     Tocar SOLO aqui: la tabla de la pestana Legal se pinta desde estos
+     mismos valores, asi no vuelven a divergir. */
+  igic:{general:.07, vpo:0},        // VPO: tipo cero en la 1a entrega del promotor
+  ajd:.0075,
+  itp:{general:.065, habitual:.05, joven:.04, superreducido:.01, vpo:0},
+  limite:200000,                    // vivienda habitual y joven
+  gestoria:350
+};
+
+function pct(x){return (x*100).toLocaleString("es-ES",{maximumFractionDigits:2});}
+
+/* Los porcentajes que se ven en la tabla salen de FISCAL, no del HTML. */
+function pintarTarifas(){
+  var m={"f-igic":FISCAL.igic.general,"f-igic-vpo":FISCAL.igic.vpo,
+         "f-itp":FISCAL.itp.general,"f-itp-hab":FISCAL.itp.habitual,
+         "f-itp-joven":FISCAL.itp.joven,"f-itp-super":FISCAL.itp.superreducido,
+         "f-ajd":FISCAL.ajd};
+  for(var k in m){var el=document.getElementById(k);if(el)el.firstChild.nodeValue=pct(m[k])+" %";}
+}
+
+function calcular(){
+  var err=document.getElementById("c-err");err.style.display="none";
+  var res=document.getElementById("c-res");
+  var raw=document.getElementById("c-precio").value;
+  var p=Number(raw);
+  if(!raw||!isFinite(p)||p<1||p>100000000){
+    err.textContent="\u26a0 "+T("cr_err");err.style.display="block";
+    res.classList.remove("show");return;
+  }
+  var TIPOS=["segunda","nueva"];
+  var PERFILES=["general","habitual","joven","familia","discapacidad","vpo"];
+  var tipo=document.getElementById("c-tipo").value;
+  var perfil=document.getElementById("c-perfil").value;
+  if(TIPOS.indexOf(tipo)===-1||PERFILES.indexOf(perfil)===-1)return;
+
+  var imp=0,lbl="",ajd=0,reducido=false;
+  if(tipo==="nueva"){
+    var rn=(perfil==="vpo")?FISCAL.igic.vpo:FISCAL.igic.general;
+    reducido=(perfil==="vpo");
+    imp=p*rn;lbl="IGIC "+pct(rn)+" %";
+    ajd=p*FISCAL.ajd;
+  }else{
+    var r=FISCAL.itp.general;
+    if(perfil==="habitual"&&p<=FISCAL.limite){r=FISCAL.itp.habitual;reducido=true;}
+    else if(perfil==="joven"&&p<=FISCAL.limite){r=FISCAL.itp.joven;reducido=true;}
+    else if(perfil==="familia"||perfil==="discapacidad"){r=FISCAL.itp.superreducido;reducido=true;}
+    else if(perfil==="vpo"){r=FISCAL.itp.vpo;reducido=true;}
+    lbl="ITP "+pct(r)+" %";
+    imp=p*r;
+  }
+  var notaria=Math.round(Math.min(Math.max(600+p*0.0022,700),2600));
+  var registro=Math.round(Math.min(Math.max(300+p*0.0012,320),1400));
+  var gestoria=FISCAL.gestoria;
+  var total=imp+ajd+notaria+registro+gestoria;
+
+  document.getElementById("cr-tot").textContent=eur(total);
+  document.getElementById("cr-pc").textContent=T("cr_pct").replace("{p}",((total/p)*100).toFixed(1));
+  var rows=document.getElementById("cr-rows");rows.textContent="";
+  var data=[[lbl,imp]];
+  if(ajd>0)data.push(["AJD "+pct(FISCAL.ajd)+" %",ajd]);
+  data.push([T("cr_notaria"),notaria]);
+  data.push([T("cr_registro"),registro]);
+  data.push([T("cr_gestoria"),gestoria]);
+  for(var i=0;i<data.length;i++){
+    var row=document.createElement("div");row.className="crow";
+    var l=document.createElement("div");l.className="l";l.textContent=data[i][0];
+    var v=document.createElement("div");v.className="v";v.textContent=eur(data[i][1]);
+    row.appendChild(l);row.appendChild(v);rows.appendChild(row);
+  }
+  /* Un tipo reducido no se aplica por marcarlo en un desplegable: lleva
+     requisitos de renta y de vivienda habitual. Decirlo donde se ve. */
+  var av=document.getElementById("cr-req");
+  av.style.display=reducido?"block":"none";
+  if(reducido)av.textContent=T("cr_req");
+  res.classList.add("show");
+}
+
+/* Idioma: el guardado manda; si es la primera visita, el del navegador;
+   si tampoco encaja, espanol. */
+(function(){
+  var g=leer("lang");
+  if(!g){
+    var nav=(navigator.languages&&navigator.languages[0])||navigator.language||"";
+    nav=nav.toLowerCase().slice(0,2);
+    if(I18N[nav])g=nav;
+  }
+  applyLang(I18N[g]?g:"es");
+  /* Los accesos directos del manifiesto abren index.html#calc y #comprar:
+     sin esto llevarian siempre a Inicio. */
+  var h=(location.hash||"").replace("#","");
+  showTab(VIEWS.indexOf(h)!==-1?h:"inicio");
+})();
+
+/* El service worker es lo que da el arranque sin conexion. Solo en
+   https (o localhost); si falla, la app funciona igual, sin offline. */
+if("serviceWorker" in navigator){
+  window.addEventListener("load",function(){
+    navigator.serviceWorker.register("sw.js").catch(function(){});
+  });
+}
+</script>
+</body>
+</html>
