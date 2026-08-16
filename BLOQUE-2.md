@@ -1,4 +1,4 @@
-# Bloque 2 — paradas intermedias · van 16 de 30
+# Bloque 2 — paradas intermedias · van 16 filas de 30
 
 La red está completa: **173 de 173 líneas**. Esto ya no bloquea nada. Lo que hace es que el
 planificador encuentre esas líneas también a quien vive **a mitad de recorrido**, y que el
@@ -9,9 +9,13 @@ Barranco Hondo (127) · Tabaiba Alta y Radazul Alto (138) · Radazul Bajo (139) 
 Tornero y Gavias (203) · Empalme de Güímar (124) · Benijo (948) ·
 Benijos y Palo Blanco (347) · Camino del Hierro y Tío Pino (915), estas cuatro
 del GTFS oficial de TITSA del 13-ago-2026.
-**Quedan 13**, marcadas abajo con `___` —son 14 filas, porque *La Camella* sale
-en la 421 y en la 480—. Ninguna se puede sacar de nuestros datos: las 13
-necesitan coordenada de fuera.
+**Quedan 14 filas**, marcadas abajo con `___`, que son **13 paradas distintas**:
+*La Camella* sale en la 421 y en la 480. Ninguna se puede sacar de nuestros
+datos: las 13 necesitan coordenada de fuera.
+
+El «de 30» cuenta **filas**, no paradas: una parada que sirve a dos líneas ocupa
+dos. 16 aplicadas + 14 pendientes = 30 filas, que son 28 paradas distintas
+(Hospital del Sur y La Camella salen dos veces cada una).
 
 ---
 
