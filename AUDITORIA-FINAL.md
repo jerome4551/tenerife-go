@@ -160,6 +160,14 @@ Teatro Guimerá estaba bien, a 44 m. Comprobado después: tramos entre 387 y
 15,1 km publicados, y los dos transbordos —El Cardonal y Hospital
 Universitario— con coordenada idéntica en las dos líneas.
 
+Del mismo CSV entra el **panel en directo**: una URL por parada a
+`tranviaonline.metrotenerife.com`, que es el tablero oficial con la posición
+del próximo tranvía. Son 27 paradas y 25 URLs —los dos transbordos comparten
+la suya—. El popup lo pinta solo si el host termina en `.metrotenerife.com`:
+comprobado que rechaza `evil.com`, `javascript:` y el truco del sufijo
+`metrotenerife.com.evil.com`. La etiqueta está en los 8 idiomas
+(`busTranviaPanel`).
+
 Lo que el CSV **no** trae es la secuencia: el orden sale del `parada_id` y se
 ha validado por geometría y por longitud total, pero no es un dato de
 recorrido publicado. Metropolitano tiene su propio GTFS en el mismo portal, y
