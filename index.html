@@ -19274,6 +19274,11 @@ const TITSA_LINES = [
 
   // ═══════════ TRANVÍA (Metropolitano de Tenerife) ═══════════
   {
+    /* GTFS 2026-08 · SIN REGENERAR · TRANVIA
+       tranvia: no esta en este GTFS, se deja igual
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"tram-L1", numero:"L1", nombre:"Tranvía L1 — Intercambiador (Santa Cruz) ↔ La Trinidad (La Laguna)",
     /* El Intercambiador estaba a 24 m del Mercado de Nuestra Señora de
        Africa, que no es el Intercambiador. Lo delatan tres medidas: en
@@ -19344,6 +19349,11 @@ const TITSA_LINES = [
     ]
   },
   {
+    /* GTFS 2026-08 · SIN REGENERAR · TRANVIA
+       tranvia: no esta en este GTFS, se deja igual
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"tram-L2", numero:"L2", nombre:"Tranvía L2 — La Cuesta ↔ Tíncer",
     /* Todos los dias, tambien fin de semana. La L2 nunca es nocturna. */
     color:"#26C6DA", tipo:"tranvia", frecuencia:"10-20 min", precio:"1,35 €",
@@ -19378,8 +19388,11 @@ const TITSA_LINES = [
     terminales:["4009","2625"]
   },
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "✈️ Aeropuerto Norte (TFN)" (a 1.7 km). GTFS: "SANTA CRUZ PUERTO DE LA CRUZ POR LAS ARE"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 102 existe en el GTFS como "SANTA CRUZ PUERTO DE LA CRUZ POR LAS ARENAS": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-102", numero:"102", nombre:"Santa Cruz — Puerto de la Cruz (por Las Arenas)",
     color:"#0288D1", tipo:"norte", frecuencia:"~1 h", precio:"5,25 €", minutos:60,
     servicio:{ desde:"05:35", hasta:"23:40" },
@@ -19474,8 +19487,11 @@ const TITSA_LINES = [
      largo que no existe, pero no hay dato nuevo y no se inventa uno.
      Pendiente. */
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "Granadilla de Abona (Empal" (a 5.9 km). GTFS: "SANTA CRUZ COSTA ADEJE"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · RECORRIDO NO COINCIDE
+       el recorrido del GTFS no cubre "Granadilla de Abona (Empal" (a 5.9 km). GTFS: "SANTA CRUZ COSTA ADEJE"
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-110", numero:"110", nombre:"Santa Cruz — Costa Adeje (Express Autopista)",
     color:"#E53935", tipo:"sur", frecuencia:"30 min", precio:"9,05 €", minutos:55,
     /* De 23:16 a 05:19 no circula. Sin esta ventana el planificador la
@@ -19725,8 +19741,11 @@ const TITSA_LINES = [
      cosido: hasta ahora, para ir de Costa Adeje a El Medano habia que
      dar la vuelta por el aeropuerto. */
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "El Médano · Centro" (a 8.9 km). GTFS: "COSTA DEL SILENCIO LOS CRISTIANOS ESTACI"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · RECORRIDO NO COINCIDE
+       el recorrido del GTFS no cubre "El Médano · Centro" (a 8.9 km). GTFS: "COSTA DEL SILENCIO LOS CRISTIANOS ESTACI"
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-467", numero:"467", nombre:"Costa Adeje — Los Cristianos — Las Galletas — El Médano",
     color:"#00897B", tipo:"sur", frecuencia:"15-20 min", precio:"desde 1,45 €", minutos:70,
     servicio:{ desde:"05:00", hasta:"00:15" },
@@ -19863,8 +19882,11 @@ const TITSA_LINES = [
      ahi: 107, 325, 355, 390N, 461 y 462. Estaba partido en dos nodos a
      830 m, asi que la 107 y la 355 no podian transbordar con la 325. */
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "La Guancha" (a 2.2 km). GTFS: "PUERTO DE LA CRUZ ICOD LOS GIGANTES"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 325 existe en el GTFS como "PUERTO DE LA CRUZ ICOD LOS GIGANTES": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-325", numero:"325", nombre:"Puerto de la Cruz — Icod — Santiago del Teide — Los Gigantes",
     color:"#283593", tipo:"norte", frecuencia:"5 salidas/día", precio:"5,25-6 €", minutos:105,
     servicio:{ desde:"05:45", hasta:"20:45" },
@@ -19980,8 +20002,11 @@ const TITSA_LINES = [
      bus-015N, como la 101N o la 711N, y bus-015 queda para la diurna
      directa, que es la que conecta con Santa Cruz en 15 minutos. */
   {
-    /* GTFS 2026-08: el numero 15 lo comparten bus-015 y bus-015N: decidir a mano
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · NUMERO COMPARTIDO
+       el numero 15 lo comparten bus-015 y bus-015N: decidir a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-015", numero:"015", nombre:"Santa Cruz — La Laguna (Directa)",
     color:"#00695C", tipo:"norte", frecuencia:"10-15 min", precio:"1,45 €", minutos:15,
     servicio:{ desde:"05:00", hasta:"23:00" },
@@ -20090,8 +20115,11 @@ const TITSA_LINES = [
     terminales:["2625","1327"]
   },
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "Barrio La Salud" (a 4.6 km). GTFS: "INTERCAMBIADOR LAGUNA LOS BALDÍOS LLANO "
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 260 existe en el GTFS como "INTERCAMBIADOR LAGUNA LOS BALDÍOS LLANO DEL MORO": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-260", numero:"260", nombre:"La Laguna — Barrio de La Salud (por Finca España)",
     color:"#78909C", tipo:"municipal", frecuencia:"30 min", precio:"1,45 €", minutos:25,
     servicio:{ desde:"06:30", hasta:"20:45" },
@@ -20168,8 +20196,11 @@ const TITSA_LINES = [
     terminales:["9181","9200"]
   },
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "Finca España" (a 2.2 km). GTFS: "PLAZA WEYLER BARRIO LA SALUD CUESTA PIED"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 904 existe en el GTFS como "PLAZA WEYLER BARRIO LA SALUD CUESTA PIEDRA": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-904", numero:"904", nombre:"Intercambiador — Barrio de la Salud — Finca España",
     color:"#0097A7", tipo:"municipal", frecuencia:"15-20 min", precio:"1,45 €", minutos:30,
     servicio:{ desde:"06:20", hasta:"21:00" },
@@ -20201,8 +20232,11 @@ const TITSA_LINES = [
     terminales:["9284","9462"]
   },
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "San Andrés" (a 6.7 km). GTFS: "INTERCAMBIADOR  IFARA LOS CAMPITOS"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · RECORRIDO NO COINCIDE
+       el recorrido del GTFS no cubre "San Andrés" (a 6.7 km). GTFS: "INTERCAMBIADOR  IFARA LOS CAMPITOS"
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-912", numero:"912", nombre:"Intercambiador — San Andrés — Ifara",
     color:"#039BE5", tipo:"municipal", frecuencia:"15-20 min", precio:"1,45 €", minutos:30,
     servicio:{ desde:"06:45", hasta:"21:00" },
@@ -20228,8 +20262,11 @@ const TITSA_LINES = [
     terminales:["9181","9200"]
   },
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "La Cuesta" (a 3.0 km). GTFS: "INTERCAMBIADOR PLAZA DE ESPAÑA LA MARINA"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 920 existe en el GTFS como "INTERCAMBIADOR PLAZA DE ESPAÑA LA MARINA  RAMBLAS RE": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-920", numero:"920", nombre:"Intercambiador — Plaza de España — La Cuesta",
     color:"#1E88E5", tipo:"municipal", frecuencia:"15-20 min", precio:"1,45 €", minutos:35,
     servicio:{ desde:"06:00", hasta:"21:30" },
@@ -20247,8 +20284,11 @@ const TITSA_LINES = [
     terminales:["9181","2414"]
   },
   {
-    /* GTFS 2026-08: el numero 934 lo comparten bus-934 y bus-934N: decidir a mano
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · NUMERO COMPARTIDO
+       el numero 934 lo comparten bus-934 y bus-934N: decidir a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-934", numero:"934", nombre:"Intercambiador — Taco — Añaza — Santa María del Mar (circular SO)",
     color:"#5C6BC0", tipo:"municipal", frecuencia:"15-20 min", precio:"1,45 €", minutos:70,
     servicio:{ desde:"05:30", hasta:"22:30" },
@@ -20348,8 +20388,11 @@ const TITSA_LINES = [
     terminales:["9181","1496"]
   },
   {
-    /* GTFS 2026-08: sin equivalente en GTFS 2026-08
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · LINEA AUSENTE
+       sin equivalente en GTFS 2026-08
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-213", numero:"213", nombre:"La Laguna — El Cardonal — Las Chumberas",
     color:"#EF6C00", tipo:"municipal", frecuencia:"30 min", precio:"1,45 €", minutos:20,
     servicio:{ desde:"06:40", hasta:"21:00" },
@@ -20360,8 +20403,11 @@ const TITSA_LINES = [
     ]
   },
   {
-    /* GTFS 2026-08: sin equivalente en GTFS 2026-08
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · LINEA AUSENTE
+       sin equivalente en GTFS 2026-08
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-220", numero:"220", nombre:"La Laguna — Las Chumberas — Campus Guajara",
     color:"#F57C00", tipo:"municipal", frecuencia:"30 min", precio:"1,45 €", minutos:15,
     servicio:{ desde:"07:15", hasta:"19:45" },
@@ -20372,8 +20418,11 @@ const TITSA_LINES = [
     ]
   },
   {
-    /* GTFS 2026-08: sin equivalente en GTFS 2026-08
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · LINEA AUSENTE
+       sin equivalente en GTFS 2026-08
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-222", numero:"222", nombre:"La Laguna — Valle de Guerra — Tejina (por Las Canteras)",
     color:"#FB8C00", tipo:"municipal", frecuencia:"30 min", precio:"1,45 €", minutos:35,
     servicio:{ desde:"06:05", hasta:"21:10" },
@@ -20384,8 +20433,11 @@ const TITSA_LINES = [
     ]
   },
   {
-    /* GTFS 2026-08: el numero casa pero NO es la misma linea: GTFS dice "INTERCAMBIADOR SANTA CRUZ LA GALLEGA DIRECTO"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · LINEA DISTINTA
+       el numero casa pero NO es la misma linea: GTFS dice "INTERCAMBIADOR SANTA CRUZ LA GALLEGA DIRECTO"
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-231", numero:"231", nombre:"La Laguna — La Cuesta — Finca España",
     color:"#FF9800", tipo:"municipal", frecuencia:"30 min", precio:"1,45 €", minutos:45,
     servicio:{ desde:"06:10", hasta:"21:30" },
@@ -20397,8 +20449,11 @@ const TITSA_LINES = [
     ]
   },
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "La Cuesta" (a 2.7 km). GTFS: "INTERCAMBIADOR SANTA CRUZ EL CARDONAL LA"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 232 existe en el GTFS como "INTERCAMBIADOR SANTA CRUZ EL CARDONAL LA GALLEGA": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-232", numero:"232", nombre:"La Laguna — La Cuesta — Taco — El Cardonal",
     color:"#FFA726", tipo:"municipal", frecuencia:"30 min", precio:"1,45 €", minutos:30,
     servicio:{ desde:"05:40", hasta:"22:15" },
@@ -20487,8 +20542,11 @@ const TITSA_LINES = [
     terminales:["2830","2830"]
   },
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "El Ortigal" (a 3.2 km). GTFS: "INTERCAMBIADOR LAGUNA GUAMASA GARIMBA"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 253 existe en el GTFS como "INTERCAMBIADOR LAGUNA GUAMASA GARIMBA": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-253", numero:"253", nombre:"La Laguna — El Ortigal — Guamasa",
     color:"#D84315", tipo:"municipal", frecuencia:"30-60 min", precio:"1,45 €", minutos:30,
     servicio:{ desde:"06:30", hasta:"20:30" },
@@ -20680,8 +20738,11 @@ const TITSA_LINES = [
      Falta El Camison, que segun la fuente es donde deja de madrugada
      para Las Vistas y el Safari. No hay coordenada verificada. */
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "Cruce de Arico" (a 6.9 km). GTFS: "INTERCAMBIADOR AEROPUERTO SUR LOS CRISTI"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · RECORRIDO NO COINCIDE
+       el recorrido del GTFS no cubre "Cruce de Arico" (a 6.9 km). GTFS: "INTERCAMBIADOR AEROPUERTO SUR LOS CRISTI"
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-711N", numero:"711", nombre:"🦉 Santa Cruz — Aeropuerto Sur — Los Cristianos — Costa Adeje (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"30 min", precio:"9,35 €", minutos:76,
     servicio:{ desde:"22:00", hasta:"05:00" },
@@ -20727,8 +20788,11 @@ const TITSA_LINES = [
        El "015N" de aqui es id interno nuestro, no de TITSA. El numero
        comercial va en el nombre para que se pueda buscar por los dos: el
        buscador mira numero y nombre. */
-    /* GTFS 2026-08: el numero 15 lo comparten bus-015 y bus-015N: decidir a mano
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · NUMERO COMPARTIDO
+       el numero 15 lo comparten bus-015 y bus-015N: decidir a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-015N", numero:"015", nombre:"🦉 Santa Cruz — La Laguna (Nocturna · línea 714)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"1,45 €", minutos:25,
     servicio:{ desde:"23:15", hasta:"05:00" },
@@ -20763,8 +20827,11 @@ const TITSA_LINES = [
        madrugada no existe con este numero -el servicio nocturno al
        sureste es la 711 o las comarcales de la serie 700- y que la 137
        es diurna, de 06:00 a 21:30. Se aplica lo segundo. */
-    /* GTFS 2026-08: sin equivalente en GTFS 2026-08
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · LINEA AUSENTE
+       sin equivalente en GTFS 2026-08
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-137", numero:"137", nombre:"Santa Cruz — Güímar — Granadilla",
     color:"#C62828", tipo:"sur", frecuencia:"60 min", precio:"8,45 €", minutos:110,
     servicio:{ desde:"06:00", hasta:"21:30" },
@@ -20805,8 +20872,11 @@ const TITSA_LINES = [
      Aeropuerto Sur (Reina Sofia), Cruce San Miguel y Cruce de Guaza.
      Los cruces de Candelaria, Guimar y Arico se quedan con la 137. */
   {
-    /* GTFS 2026-08: el numero 934 lo comparten bus-934 y bus-934N: decidir a mano
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · NUMERO COMPARTIDO
+       el numero 934 lo comparten bus-934 y bus-934N: decidir a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-934N", numero:"934", nombre:"🦉 Circular Intercambiador — Taco — Santa María del Mar — Añaza (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"1,45 €", minutos:70,
     servicio:{ desde:"22:45", hasta:"05:25" },
@@ -20819,8 +20889,11 @@ const TITSA_LINES = [
     ]
   },
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "Barrio La Salud" (a 2.4 km). GTFS: "INTERCAMBIADOR  SAN ANDRÉS NOCTURNA"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 970 existe en el GTFS como "INTERCAMBIADOR  SAN ANDRÉS NOCTURNA": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-970", numero:"970", nombre:"🦉 Intercambiador — Barrio La Salud (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"Madrugada", precio:"1,45 €", minutos:20,
     servicio:{ desde:"23:50", hasta:"05:15" },
@@ -20851,8 +20924,11 @@ const TITSA_LINES = [
     terminales:["2418","2418"]
   },
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "Los Majuelos" (a 1.6 km). GTFS: "INTERCAMBIADOR TINCER LA GALLEGA NOCTURN"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 975 existe en el GTFS como "INTERCAMBIADOR TINCER LA GALLEGA NOCTURNA": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-975", numero:"975", nombre:"🦉 Intercambiador — El Sobradillo — Llano del Moro (Nocturna)",
     color:"#7c3aed", tipo:"nocturna", frecuencia:"23:30 · 01:30 · 03:05", precio:"1,45 €", minutos:50,
     servicio:{ desde:"23:50", hasta:"05:15" },
@@ -21031,8 +21107,11 @@ const TITSA_LINES = [
     terminales:["9181","2830"]
   },
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "Los Majuelos" (a 2.9 km). GTFS: "LA LAGUNA BARRANCO GRANDE POR GENETO"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 55 existe en el GTFS como "LA LAGUNA BARRANCO GRANDE POR GENETO": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-055", numero:"055", nombre:"La Laguna — El Sobradillo — Los Majuelos — Barranco Grande",
     /* El recorrido oficial pasa antes por Geneto, que no tiene coordenada. */
     color:"#546E7A", tipo:"municipal", frecuencia:"20-30 min", precio:"1,45 €", minutos:25,
@@ -21054,8 +21133,11 @@ const TITSA_LINES = [
 
      Con seis coordenadas mas entran las seis. */
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "La Guancha" (a 2.2 km). GTFS: "SANTA CRUZ ICOD DE LOS VINOS DIRECTA"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 106 existe en el GTFS como "SANTA CRUZ ICOD DE LOS VINOS DIRECTA": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-106", numero:"106", nombre:"Santa Cruz — Hospital Universitario — La Guancha — Icod (directo)",
     color:"#00695C", tipo:"norte", frecuencia:"60-90 min", precio:"7,05 €", minutos:70,
     servicio:{ desde:"07:00", hasta:"20:45" },
@@ -21086,8 +21168,11 @@ const TITSA_LINES = [
     terminales:["9181","2247"]
   },
   {
-    /* GTFS 2026-08: sin equivalente en GTFS 2026-08
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · LINEA AUSENTE
+       sin equivalente en GTFS 2026-08
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-124", numero:"124", nombre:"Santa Cruz — Candelaria — Güímar (directo por la TF-1)",
     /* Va directa por autopista y por eso hace en 35 minutos lo que la 120
        hace en 50.
@@ -21194,8 +21279,11 @@ const TITSA_LINES = [
     terminales:["7698","7140"]
   },
   {
-    /* GTFS 2026-08: sin equivalente en GTFS 2026-08
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · LINEA AUSENTE
+       sin equivalente en GTFS 2026-08
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-474", numero:"474", nombre:"Granadilla — Vilaflor — Arona",
     /* Falta Cruz de Tea. */
     color:"#6D4C41", tipo:"sur", frecuencia:"4 salidas/día", precio:"2,45 €", minutos:55,
@@ -21266,8 +21354,11 @@ const TITSA_LINES = [
     terminales:["2830","2086"]
   },
   {
-    /* GTFS 2026-08: sin equivalente en GTFS 2026-08
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · LINEA AUSENTE
+       sin equivalente en GTFS 2026-08
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-339", numero:"339", nombre:"🦉 Puerto de la Cruz — Los Realejos (nocturna del valle)",
     /* Falta Realejo Alto. Es la de madrugada del valle. */
     color:"#7c3aed", tipo:"nocturna", frecuencia:"60 min", precio:"1,45 €", minutos:20,
@@ -21334,8 +21425,11 @@ const TITSA_LINES = [
     terminales:["7279","7386"]
   },
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "Los Abrigos" (a 11.0 km). GTFS: "GRANADILLA SAN ISIDRO LOS ABRIGOS"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · RECORRIDO NO COINCIDE
+       el recorrido del GTFS no cubre "Los Abrigos" (a 11.0 km). GTFS: "GRANADILLA SAN ISIDRO LOS ABRIGOS"
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-412", numero:"412", nombre:"IES Granadilla — San Isidro — Los Abrigos (complemento escolar)",
     /* Mismo trazado que la 410 con otro horario. */
     color:"#FF8A65", tipo:"sur", frecuencia:"4 salidas/día", precio:"1,45 €", minutos:40,
@@ -21384,8 +21478,11 @@ const TITSA_LINES = [
     terminales:["7403","7142"]
   },
   {
-    /* GTFS 2026-08: sin equivalente en GTFS 2026-08
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · LINEA AUSENTE
+       sin equivalente en GTFS 2026-08
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-420", numero:"420", nombre:"Costa Adeje — Los Cristianos — Valle San Lorenzo (refuerzo de tarde)",
     /* Solo tardes de laborables. */
     color:"#F4511E", tipo:"sur", frecuencia:"60 min", precio:"1,45 €", minutos:40,
@@ -21407,8 +21504,11 @@ const TITSA_LINES = [
     terminales:["4973","4914"]
   },
   {
-    /* GTFS 2026-08: sin equivalente en GTFS 2026-08
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · LINEA AUSENTE
+       sin equivalente en GTFS 2026-08
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-131", numero:"131", nombre:"Santa Cruz — Caletillas — Candelaria — Igueste de Candelaria",
     color:"#EF6C00", tipo:"sur", frecuencia:"5 salidas/día", precio:"2,65 €", minutos:45,
     servicio:{ desde:"07:25", hasta:"18:50" },
@@ -21452,8 +21552,11 @@ const TITSA_LINES = [
      pueblos costeros de verdad no pasan de 0,8; y el par Loro Parque y La
      Longuera, que llego con una sola coordenada para dos sitios distintos. */
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "Mayorazgo" (a 1.6 km). GTFS: "LAS DEHESAS SAN ANTONIO LA PIEDAD LAS DE"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 372 existe en el GTFS como "LAS DEHESAS SAN ANTONIO LA PIEDAD LAS DEHESAS": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-372", numero:"372", nombre:"Las Dehesas — Mayorazgo — Barrio de San Antonio",
     /* Con Mayorazgo ya cuadra. Sin el daba 3,5 km/h, mas lento que andar. */
         /* Sale a 6,4 km/h: es un circuito local del valle, y por la calle da
@@ -21482,8 +21585,11 @@ const TITSA_LINES = [
     terminales:["8200","7430"]
   },
   {
-    /* GTFS 2026-08: sin equivalente en GTFS 2026-08
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · LINEA AUSENTE
+       sin equivalente en GTFS 2026-08
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-123", numero:"123", nombre:"Santa Cruz — Caletillas — Candelaria — Igueste — Araya",
     color:"#FB8C00", tipo:"sur", frecuencia:"6 salidas/día", precio:"2,65 €", minutos:50,
     servicio:{ desde:"07:00", hasta:"19:40" },
@@ -21602,8 +21708,11 @@ const TITSA_LINES = [
     terminales:["1139","9181"]
   },
   {
-    /* GTFS 2026-08: sin equivalente en GTFS 2026-08
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · LINEA AUSENTE
+       sin equivalente en GTFS 2026-08
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-310", numero:"310", nombre:"Parking CC San Jerónimo — La Laguna — Santa Cruz",
     color:"#5D4037", tipo:"norte", frecuencia:"4 salidas/día", precio:"2,45 €", minutos:40,
     servicio:{ desde:"06:50", hasta:"15:15" },
@@ -21629,8 +21738,11 @@ const TITSA_LINES = [
     terminales:["4358","4358"]
   },
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "El Amparo" (a 1.6 km). GTFS: "ICOD DE LOS VINOS SANTA BÁRBARA"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 358 existe en el GTFS como "ICOD DE LOS VINOS SANTA BÁRBARA": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-358", numero:"358", nombre:"Icod — El Amparo — Barrio de Santa Bárbara",
     /* 2,3 km en recta en 20 minutos, o sea 7 km/h. Es de las que salen
        lentas en el control de velocidad y esta bien que salga: la
@@ -21704,8 +21816,11 @@ const TITSA_LINES = [
     terminales:["8232","7140"]
   },
   {
-    /* GTFS 2026-08: el recorrido del GTFS no cubre "Las Maretas" (a 1.6 km). GTFS: "GRANADILLA  ARICO EL PORÍS COSTA DE ARIC"
-       Paradas sin regenerar. */
+    /* GTFS 2026-08 · SIN REGENERAR · SIN VALIDAR
+       el numero 430 existe en el GTFS como "GRANADILLA  ARICO EL PORÍS COSTA DE ARICO LAS MARETA": verificar a mano
+       Las paradas de abajo son las ORIGINALES del fichero, con coordenada
+       aproximada sin anclar a stops.txt. No se han reanclado porque el
+       recorrido oficial no respalda este itinerario. Decision manual. */
     id:"bus-430", numero:"430", nombre:"Granadilla — Villa de Arico — Arico Viejo — Las Maretas",
     color:"#8D6E63", tipo:"sur", frecuencia:"4 salidas/día", precio:"2,45 €", minutos:60,
     servicio:{ desde:"06:45", hasta:"18:30" },
