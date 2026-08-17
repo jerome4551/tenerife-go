@@ -152,6 +152,19 @@ San Marcos                                   (Icod)
 Mientras tanto esas trece llevan la etiqueta neutra y el enlace al visor: no
 afirman nada que no se sepa.
 
+**El tranvía ya no está pendiente.** Las 27 paradas de `L1` y `L2` se reanclaron
+al CSV oficial de Metropolitano de Tenerife (portal de datos abiertos del
+Cabildo, CC-BY). Corrigen un desvío medio de 1.949 m y máximo de 4.011 m; solo
+Teatro Guimerá estaba bien, a 44 m. Comprobado después: tramos entre 387 y
+864 m sin un solo salto fuera de rango, **15,05 km de sistema** frente a los
+15,1 km publicados, y los dos transbordos —El Cardonal y Hospital
+Universitario— con coordenada idéntica en las dos líneas.
+
+Lo que el CSV **no** trae es la secuencia: el orden sale del `parada_id` y se
+ha validado por geometría y por longitud total, pero no es un dato de
+recorrido publicado. Metropolitano tiene su propio GTFS en el mismo portal, y
+ese sí traería `stop_times.txt`.
+
 ## Las 37 líneas sin regenerar
 
 Cada una lleva su motivo en un comentario dentro de su propio bloque.
