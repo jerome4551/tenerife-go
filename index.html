@@ -19354,6 +19354,37 @@ const TITSA_LINES = [
       { id:"L1-cruzpiedra",nombre:"Cruz de Piedra",               lat:28.479628, lng:-16.312304, esTerminal:false, municipio:"San Cristóbal de La Laguna", panel:"https://tranviaonline.metrotenerife.com/#paneles/CPI" },
       { id:"L1-anchieta",  nombre:"Padre Anchieta",               lat:28.480847, lng:-16.316764, esTerminal:false, municipio:"San Cristóbal de La Laguna", panel:"https://tranviaonline.metrotenerife.com/#paneles/ANC" },
       { id:"L1-trinidad",  nombre:"La Trinidad (Centro La Laguna)",lat:28.485793, lng:-16.316432, esTerminal:true,  municipio:"San Cristóbal de La Laguna", panel:"https://tranviaonline.metrotenerife.com/#paneles/TRI" },
+    ],
+    /* Trazado real de la via. Fuente: «Lineas de tranvia en la isla de
+       Tenerife», Metropolitano de Tenerife S.A., portal de datos abiertos del
+       Cabildo, GeoJSON actualizado el 07-01-2026, licencia CC-BY.
+       Las paradas del CSV oficial son vertices exactos de esta polilinea: de
+       ahi sale el orden del array de paradas, no de una deduccion.
+       Se ha quitado UN vertice: -16.264367,28.468095, que esta a 4,9 m de
+       -16.264335,28.468129 y aparecia antes de La Paz ademas de despues. Ese
+       duplicado metia un zigzag de 728 m que no existe en la via.
+       Longitud por la via: 12,47 km (en recta entre paradas serian 11,73).
+       Va al final del objeto, no antes del id: varios lectores de este
+       fichero dan por hecho que id es el primer campo de la linea. */
+    via:[
+      [28.458939,-16.251050],[28.460501,-16.250073],[28.461185,-16.249311],
+      [28.462181,-16.249014],[28.462825,-16.249083],[28.464511,-16.248231],
+      [28.465357,-16.247845],[28.466283,-16.251637],[28.467319,-16.255768],
+      [28.467757,-16.260663],[28.468129,-16.264335],[28.467842,-16.264744],
+      [28.466020,-16.267007],[28.464354,-16.272032],[28.464143,-16.272775],
+      [28.463040,-16.273500],[28.462513,-16.277590],[28.462062,-16.277838],
+      [28.459625,-16.279076],[28.457349,-16.281186],[28.456640,-16.282086],
+      [28.456258,-16.283620],[28.453306,-16.285030],[28.449079,-16.286944],
+      [28.448320,-16.287207],[28.446849,-16.291232],[28.446514,-16.293143],
+      [28.446622,-16.295236],[28.446928,-16.295438],[28.449012,-16.296090],
+      [28.449500,-16.294954],[28.451674,-16.293743],[28.453480,-16.292935],
+      [28.456685,-16.292886],[28.457579,-16.292733],[28.458490,-16.292619],
+      [28.460715,-16.292802],[28.461264,-16.293332],[28.461387,-16.294693],
+      [28.463596,-16.296901],[28.468743,-16.302168],[28.471413,-16.304858],
+      [28.473384,-16.305439],[28.474550,-16.305771],[28.475454,-16.307994],
+      [28.476367,-16.309212],[28.477755,-16.310918],[28.479628,-16.312304],
+      [28.480395,-16.313031],[28.481062,-16.318123],[28.482235,-16.317839],
+      [28.485793,-16.316432]
     ]
   },
   {
@@ -19373,6 +19404,22 @@ const TITSA_LINES = [
       { id:"L2-cardonal", nombre:"El Cardonal (transbordo L1)", lat:28.451674, lng:-16.293743, esTerminal:false, municipio:"San Cristóbal de La Laguna", panel:"https://tranviaonline.metrotenerife.com/#paneles/CAR" },
       { id:"L2-sanjer",   nombre:"San Jerónimo",             lat:28.447870, lng:-16.298140, esTerminal:false, municipio:"San Cristóbal de La Laguna", panel:"https://tranviaonline.metrotenerife.com/#paneles/JER" },
       { id:"L2-tincer",   nombre:"Tíncer",                   lat:28.443760, lng:-16.304590, esTerminal:true,  municipio:"Santa Cruz de Tenerife", panel:"https://tranviaonline.metrotenerife.com/#paneles/TIN" },
+    ],
+    /* Trazado real de la via. Fuente: «Lineas de tranvia en la isla de
+       Tenerife», Metropolitano de Tenerife S.A., portal de datos abiertos del
+       Cabildo, GeoJSON actualizado el 07-01-2026, licencia CC-BY.
+       Las paradas del CSV oficial son vertices exactos de esta polilinea: de
+       ahi sale el orden del array de paradas, no de una deduccion.
+       Se usa tal cual, sin ninguna modificacion.
+       Longitud por la via: 3,42 km (en recta entre paradas serian 3,32).
+       Va al final del objeto, no antes del id: varios lectores de este
+       fichero dan por hecho que id es el primer campo de la linea. */
+    via:[
+      [28.467070,-16.286020],[28.462350,-16.291040],[28.460715,-16.292802],
+      [28.458490,-16.292619],[28.457579,-16.292733],[28.456685,-16.292886],
+      [28.453480,-16.292935],[28.451674,-16.293743],[28.449500,-16.294954],
+      [28.449012,-16.296090],[28.447870,-16.298140],[28.445674,-16.300059],
+      [28.443760,-16.304590]
     ]
   },
 
@@ -22305,7 +22352,12 @@ function drawBusLine(lineId) {
   // 1. Trazado por tramos. Un tramo entre dos paradas muy separadas NO es
   //    el recorrido real (faltan paradas intermedias), asi que se dibuja
   //    discontinuo en vez de afirmar una recta que el bus no hace.
-  const latlngs = line.paradas.map(p => [p.lat, p.lng]);
+  /* Si la linea trae el trazado real de la via, se dibuja por ahi. Si no, se
+     une parada con parada como hasta ahora. Los marcadores salen siempre de
+     line.paradas, no de la via. */
+  const latlngs = (Array.isArray(line.via) && line.via.length > 1)
+    ? line.via
+    : line.paradas.map(p => [p.lat, p.lng]);
   const BUS_GAP_KM = 6;
 
   const segKm = (a, b) => {
@@ -22362,6 +22414,9 @@ function drawBusLine(lineId) {
     });
 
     const marker = L.marker([stop.lat, stop.lng], { icon, zIndexOffset: stop.esTerminal ? 200 : 100 });
+    // Necesario para repintar el popup al cambiar de idioma: sin esto no hay
+    // forma de recuperar la parada a partir de la capa.
+    marker._stopRef = stop;
 
     // Calcular qué líneas pasan por esta parada (mismas coordenadas)
     const passingLines = stopLineMap[`${stop.lat.toFixed(4)},${stop.lng.toFixed(4)}`] || [];
@@ -22732,11 +22787,20 @@ window.addEventListener('hashchange', () => {
             if (layer.getLatLng && layer.getPopup) {
               const ll = layer.getLatLng();
               const key = ll.lat.toFixed(4) + ',' + ll.lng.toFixed(4);
-              if (stopLineMap.has(key)) {
-                const entry = stopLineMap.get(key);
+              /* Tres fallos que el try/catch de abajo se tragaba en silencio,
+                 asi que al cambiar de idioma con una parada abierta el popup
+                 se quedaba en el idioma anterior:
+                   · buildStopLineMap() devuelve un objeto plano, no un Map:
+                     .has() y .get() no existen.
+                   · su valor es el array de lineas, no {stop, lines}.
+                   · buildBusStopPopupHtml no existe; la funcion es
+                     buildBusStopPopup. */
+              const lineasParada = Object.prototype.hasOwnProperty.call(stopLineMap, key)
+                ? stopLineMap[key] : null;
+              if (lineasParada) {
                 const popup = layer.getPopup();
-                if (popup && popup.isOpen && popup.isOpen()) {
-                  layer.setPopupContent(buildBusStopPopupHtml(entry.stop, entry.lines));
+                if (popup && popup.isOpen && popup.isOpen() && layer._stopRef) {
+                  layer.setPopupContent(buildBusStopPopup(layer._stopRef, lineasParada));
                 }
               }
             }
