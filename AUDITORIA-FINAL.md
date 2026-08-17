@@ -1,10 +1,11 @@
 # Auditoría completa
 
-**16 de agosto de 2026**, tras reanclar la red de guaguas al GTFS oficial.
+**17 de agosto de 2026**, auditoría profunda de seguridad, codificación,
+idiomas y rendimiento.
 
 ```
-index.html   md5 c803068cccc15d49db15ba82aaa01be5
-             3.571.267 bytes
+index.html   md5 19b71eb595ee85ce5045a16709677208
+             3.587.026 bytes
 ```
 
 Todo lo de abajo está medido ejecutando la app o barriendo el fichero, no
@@ -279,3 +280,144 @@ con ese nombre en el GTFS:
 20. **El trip canónico no es el que más paradas tiene.** Un refuerzo escolar
     puede tener más que el recorrido completo: la 103 acabó sin llegar a Santa
     Cruz. Se elige por cobertura de lo que la línea declara.
+
+---
+
+# Auditoría profunda del 17 de agosto
+
+Cuatro frentes, buscando problemas nuevos en vez de repetir los controles que
+ya pasan.
+
+## Seguridad · un fallo encontrado: ninguno nuevo
+
+Se fue más allá del barrido de `eval(`. Lo revisado esta vez:
+
+| superficie | resultado |
+|---|---|
+| Interpolación en `href`, `src`, `action`, `srcdoc` | 6 sitios, **todos con `escapeAttr` o `encodeURIComponent`** |
+| `target="_blank"` sin `rel=noopener` | **0 de 9** |
+| `window.open(...)` | 2, las dos con `'noopener,noreferrer'` |
+| Asignaciones a `innerHTML` | 77; las que interpolan datos de admin pasan por `escapeAdmin` y `safeExternalUrl` |
+| Contaminación de prototipo | 0 `__proto__`, 0 `constructor[]`, 0 `{...JSON.parse()}` |
+| `Object.assign` sobre objeto ajeno | 6, todos sobre `LANGS` y `UI_TX`, con datos del propio fichero |
+| Framebusting anti-clickjacking | presente (línea 96) |
+
+**Cinco «hallazgos» resultaron ser artefactos de mi propia expresión regular**,
+que solo mira una línea: `safeDirUrl` es `escapeAttr(...)` en la línea anterior,
+`aE` es `escapeAdmin(ad.emoji)`, y el `window.open` de WhatsApp sí lleva
+`noopener` como tercer argumento. Se comprobaron uno a uno antes de darlos por
+buenos.
+
+**Regresión de XSS ampliada** con dos vectores nuevos sobre los de agosto —
+inyección por CSS en el campo `color` del panel admin, y el idioma guardado
+(`tg_lang`) envenenado:
+
+```
+PWNED  : false        <img src=x onerror=...>  en 7 campos de admin
+PWNED2 : false        https://x'-(payload)-'   como contacto
+PWNED3 : false        red;background:url(javascript:...)  como color
+elementos <img> inyectados : 0
+scripts inyectados         : 0
+tg_lang envenenado -> currentLang queda en 'es', válido
+favoritos: el payload se rechaza, 'las-vistas' se conserva
+```
+
+**Lo que sigue siendo estructural y no es un fallo nuevo:** `script-src` lleva
+`'unsafe-inline'`, inevitable con manejadores inline por toda la app, así que
+la CSP no frena un XSS reflejado y el escapado es la defensa principal.
+`img-src https:` permite cualquier imagen: es lo que hace falta para las fotos
+de Wikipedia. Y el manejador de mensajes del service worker **no comprueba el
+origen**: solo acepta `GET_VERSION`, `CLEAR_CACHES` y `SKIP_WAITING`, y a un
+service worker solo le puede escribir una página del mismo origen, pero
+conviene saberlo.
+
+## Codificación · limpia
+
+| control | resultado |
+|---|---|
+| Normalización Unicode | **NFC puro**: 0 caracteres combinantes sueltos |
+| Invisibles | 2 NBSP y 8 ZWJ, **los 8 dentro de emojis compuestos** |
+| Subrogados sueltos | **0** |
+| Emojis | 2.890, 250 distintos, todos bien formados |
+| Tabuladores | 0 · líneas con espacio final: 6 |
+
+Mezclar NFC y NFD es el fallo que no se ve —dos cadenas que parecen iguales no
+lo son, y el buscador falla— y aquí no lo hay.
+
+## Idiomas · un fallo real, encontrado y corregido
+
+Las 149 claves están en los 8 idiomas y **ninguna de las 69 que el código pide
+falta en ninguno**. Los marcadores de interpolación (`{n}`, `{time}`, `{pct}`)
+cuadran en las 8 versiones de todas las claves: **0 descuadres**.
+
+**El fallo estaba donde ninguna comprobación de claves ausentes podía verlo:**
+
+```js
+LANGS.zht = JSON.parse(JSON.stringify(LANGS.zh));   // copia del SIMPLIFICADO
+Object.assign(LANGS.zht, ZHT_OVERRIDES);            // y se sobrescribe lo traducido
+```
+
+El chino tradicional se construye copiando el simplificado. Una clave que no
+esté en `ZHT_OVERRIDES` **existe, no está vacía, y muestra simplificado a un
+lector de tradicional**. Por eso el control de «claves ausentes» daba 149/149.
+
+Comprobado con OpenCC, convirtiendo cada cadena y viendo si cambia. Eran
+**tres**, las tres del grupo de aparcamientos:
+
+```
+parkingUpdated   更新于 {time}   ->  更新於 {time}
+parkingBeach     海滩停车场      ->  海灘停車場
+parkingTeide     泰德停车场      ->  泰德停車場
+```
+
+Ojo con el método: OpenCC en `s2t` aplica **también preferencias de variante**.
+De 21 caracteres que proponía cambiar, **18 eran variantes válidas del
+tradicional** —里/裏, 台/臺, 岩/巖, 峰/峯, 群/羣…— y `特內里費` es la
+transliteración estándar de Taiwán. Los reales eran cuatro: 车, 场, 滩 y 于.
+Tras el arreglo, **0 caracteres simplificados** en `LANGS`, `UI_TX`, `SEA_TX` ni
+en las 1.530 cadenas `zht` de los lugares.
+
+Quedan 23 claves de `zht` idénticas a `zh`, y **no es un fallo**: son frases que
+se escriben igual en las dos variantes (清除, 容量, 街道, 加入收藏…).
+
+## Rendimiento · el problema no está donde parecía
+
+En el navegador, con 5.150 paradas en vez de 694, todo va sobrado:
+
+```
+buildStopLineMap()          5,0 ms   (2.191 entradas)
+getBusPlanIndex()           6,6 ms
+drawBusLine() la más grande 17,2 ms  (bus-054, 86 paradas)
+botón de aeropuerto sur    31,0 ms  (6 líneas de golpe)
+buscar «cementerio»         0,7 ms  (40 resultados de 5.150)
+findNearbyBusStops()        3,4 ms
+memoria                    17,6 MB
+DOM interactivo              581 ms
+```
+
+`buildStopLineMap()` se reconstruye **dentro de `drawBusLine()`**, o sea una vez
+por línea encendida. Con 694 paradas daba igual; con 5.150 son 5 ms cada vez, y
+31 ms al pulsar el botón de aeropuerto. Se puede memorizar, pero **no es un
+problema hoy**.
+
+**El problema real es el peso.** Lo que viaja por la red en cada carga en frío:
+
+```
+sin comprimir   3.502 kB
+gzip -9         1.082 kB      (31 % del original)
+```
+
+Y de dónde sale:
+
+```
+places            1.886 kB   53,8 %   765 lugares × descripción y categoría × 8 idiomas
+CSS                 239 kB    6,8 %
+TITSA_PARADAS       215 kB    6,2 %
+TITSA_LINES         190 kB    5,4 %
+LANGS                45 kB    1,3 %
+```
+
+**Más de la mitad del fichero son textos de `places` en ocho idiomas, de los que
+cada usuario solo leerá uno.** Servir solo el idioma activo ahorraría del orden
+de 900 kB sin comprimir, pero rompe el fichero único y el funcionamiento sin
+conexión: es una decisión de arquitectura, no un arreglo.
