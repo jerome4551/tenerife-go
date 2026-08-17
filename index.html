@@ -21185,6 +21185,8 @@ const TITSA_LINES = [
     terminales:["7140","7255"]
   },
   {
+    /* Falta Adeje casco: ese nombre no existe en el GTFS 2026-08.
+       Tejina de Guia ya entra con el recorrido oficial. */
     id:"bus-417", numero:"417", nombre:"Costa Adeje — Guía de Isora",
     color:"#BF360C", tipo:"sur", frecuencia:"60-90 min", precio:"2,45 €", minutos:50,
     servicio:{ desde:"06:10", hasta:"21:20" },
@@ -21213,6 +21215,8 @@ const TITSA_LINES = [
     terminales:["7625","7140"]
   },
   {
+    /* Falta Chayofa: el GTFS solo trae «Chayofa Sport», y el recorrido
+       oficial de esta linea pasa a 1,2 km de esa parada. */
     id:"bus-482", numero:"482", nombre:"Vilaflor — La Escalona — Arona — Los Cristianos",
     color:"#8D6E63", tipo:"sur", frecuencia:"4 salidas/día", precio:"3,10 €", minutos:50,
     servicio:{ desde:"07:15", hasta:"18:15" },
@@ -21350,6 +21354,8 @@ const TITSA_LINES = [
     terminales:["8362","7255"]
   },
   {
+    /* Falta Los Blanquitos: existe en el GTFS pero el recorrido oficial
+       pasa a 418 m sin parar. El Desierto ya entra. */
     id:"bus-463", numero:"463", nombre:"Chimiche — IES Granadilla",
     color:"#D84315", tipo:"sur", frecuencia:"3 salidas/día", precio:"1,45 €", minutos:30,
     servicio:{ desde:"06:55", hasta:"14:40" },
@@ -21414,6 +21420,7 @@ const TITSA_LINES = [
     ]
   },
   {
+    /* Falta Suarez Guerra: ese nombre no existe en el GTFS 2026-08. */
     id:"bus-905", numero:"905", nombre:"Muelle Norte — Ramblas — Plaza Weyler — Ofra",
     color:"#00838F", tipo:"municipal", frecuencia:"10-15 min", precio:"1,45 €", minutos:30,
     servicio:{ desde:"05:45", hasta:"22:30" },
@@ -22278,7 +22285,7 @@ function buildBusStopPopup(stop, lines) {
   return `
     <div class="bus-popup-inner">
       <div class="bus-popup-stop-name">${escapeHtml(stop.nombre)}</div>
-      <div class="bus-popup-municipio">📍 ${escapeHtml(stop.municipio)}</div>
+      ${stop.municipio ? `<div class="bus-popup-municipio">📍 ${escapeHtml(stop.municipio)}</div>` : ''}
       ${terminalBadge}
       <div class="bus-popup-lines-label">${linesLabel}</div>
       <div style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:4px">${linesBadges}</div>

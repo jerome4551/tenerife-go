@@ -1,4 +1,11 @@
-# Bloque 2 — paradas intermedias · van 16 filas de 30
+# Bloque 2 — paradas intermedias · cerrado por la reconstrucción del GTFS
+
+> **16-ago-2026.** Este bloque queda superado: la red se regeneró desde el GTFS
+> oficial y pasó de 694 a 5.150 paradas. De las 14 filas que quedaban aquí, la
+> regeneración resolvió 7. Lo que sigue faltando está en `AUDITORIA-FINAL.md`,
+> en «Decisiones abiertas»: son 6 filas, y ninguna se arregla con una
+> coordenada suelta —o el nombre no existe en el GTFS, o el recorrido oficial
+> no para ahí—. Lo de abajo se conserva como registro de cómo se llegó aquí.
 
 La red está completa: **173 de 173 líneas**. Esto ya no bloquea nada. Lo que hace es que el
 planificador encuentre esas líneas también a quien vive **a mitad de recorrido**, y que el
