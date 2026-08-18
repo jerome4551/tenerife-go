@@ -7551,12 +7551,12 @@ banderasTitulo: '每种旗帜是什么意思？',
     pharmacy24: '💊 24 小时药房',
     phoneLabel: '📞',
     hoursLabel: '🕐',
-    emergencyTel: '🆘 紧急电话:112',
-    pharmacyGuardLink: '💊 查看今日值班药房(官方)',
+    emergencyTel: '🆘 紧急电话：112',
+    pharmacyGuardLink: '💊 查看今日值班药房（官方）',
     shareBtn: '分享',
     shareTitle: '看看特内里费岛的这个地方',
     shareGmaps: '在 Google 地图中打开',
-    shareCopied: '链接已复制!',
+    shareCopied: '链接已复制！',
     shareError: '无法分享',
     gpsTitle: '我的位置',
     gpsSearching: '正在搜索位置…',
@@ -7590,8 +7590,8 @@ banderasTitulo: '每种旗帜是什么意思？',
     busTypeShuttle: '🟠 接驳',
     busTypeNight: '🦉 夜间',
     busTerminal: '🏁 总站 / 换乘',
-    busLinesPassing: '经过的线路:',
-    busLineSingle: '线路:',
+    busLinesPassing: '经过的线路：',
+    busLineSingle: '线路：',
     busTitsaLink: '🔗 在 titsa.com 查看时刻表',
     busTranviaPanel: '🚊 实时看板 · metrotenerife.com',
     busSearchPlaceholder: '搜索站点或线路...',
@@ -7602,7 +7602,7 @@ banderasTitulo: '每种旗帜是什么意思？',
     busQuickAirportS: '✈️ 启用南部机场线路',
     busQuickAirportN: '✈️ 启用北部机场线路',
     busShareTitle: '🚌 查看我的特内里费岛公交线路',
-    busShareCopied: '路线链接已复制!',
+    busShareCopied: '路线链接已复制！',
     busShareNothing: '请至少启用一条线路再分享',
     busShareError: '无法分享',
     nearbyStopsTitle: '🚏 附近车站',
@@ -7612,7 +7612,7 @@ banderasTitulo: '每种旗帜是什么意思？',
     nearbyStopsMin: '分钟',
     nearbyHowToBtn: '🚏 如何乘公交前往',
     directionsBtn: '🚗 驾车前往',
-    busAccessToggleLabel: '公交可达(500 米)',
+    busAccessToggleLabel: '公交可达（500 米）',
     categories: {
       parking:     '停车场',
       webcam:      '实时影像',
@@ -7904,10 +7904,10 @@ const AUTH_STRINGS = {
     authErrorNetwork:   '无网络连接。请联网后重试。',
     authSyncTitle:      '同步',
     authSyncOn:         '您的收藏已保存到云端',
-    authSyncOff:        '本地会话,未同步',
-    authMergePrompt:    '此设备上有收藏。要添加到您的账户吗?',
-    authMergeYes:       '是,合并',
-    authMergeNo:        '否,忽略',
+    authSyncOff:        '本地会话，未同步',
+    authMergePrompt:    '此设备上有收藏。要添加到您的账户吗？',
+    authMergeYes:       '是，合并',
+    authMergeNo:        '否，忽略',
     authClose:          '关闭'
   }
 };
@@ -22874,12 +22874,12 @@ function renderBusSearchResults(list) {
       row.className = 'bus-stop-result';
       row.onclick = () => goToBusStop(stop, lines);
       const linesBadges = lines.slice(0, 5).map(l =>
-        `<span class="bus-stop-result-line-badge" style="background:${l.color}40;color:${l.color}">${l.numero}</span>`
+        `<span class="bus-stop-result-line-badge" style="background:${escapeAttr(l.color)}40;color:${escapeAttr(l.color)}">${escapeHtml(l.numero)}</span>`
       ).join('');
       row.innerHTML = `
         <span class="bus-stop-result-icon">${stop.esTerminal ? '🏁' : '🚏'}</span>
         <div class="bus-stop-result-info">
-          <div class="bus-stop-result-name">${stop.nombre}</div>
+          <div class="bus-stop-result-name">${escapeHtml(stop.nombre)}</div>
           <div class="bus-stop-result-lines">${linesBadges}</div>
         </div>
       `;
@@ -23153,7 +23153,7 @@ function drawBusLine(lineId) {
     const icon = L.divIcon({
       className: '',
       html: `<div class="bus-stop-marker${stop.esTerminal ? ' terminal' : ''}${isTram ? ' tram' : ''}"
-               style="width:${size}px;height:${size}px;background:${line.color};font-size:${stop.esTerminal ? '8' : '7'}px">
+               style="width:${size}px;height:${size}px;background:${escapeAttr(line.color)};font-size:${stop.esTerminal ? '8' : '7'}px">
                ${stopIcon}
              </div>`,
       iconSize: [size, size],
@@ -23200,7 +23200,7 @@ function buildBusStopPopup(stop, lines) {
     : '';
 
   const linesBadges = lines.map(l =>
-    `<span class="bus-popup-line-badge" style="background:${l.color}">${l.numero}</span>`
+    `<span class="bus-popup-line-badge" style="background:${escapeAttr(l.color)}">${escapeHtml(l.numero)}</span>`
   ).join('');
 
   const linesLabel = lines.length > 1
@@ -23466,7 +23466,7 @@ function showNearbyStops(lat, lng, originName) {
       };
 
       const linesBadges = lines.slice(0, 4).map(l =>
-        `<span class="nearby-stop-line-pill" style="background:${l.color}">${l.numero}</span>`
+        `<span class="nearby-stop-line-pill" style="background:${escapeAttr(l.color)}">${escapeHtml(l.numero)}</span>`
       ).join('');
       const extra = lines.length > 4 ? `<span class="nearby-stop-line-pill" style="background:#444">+${lines.length-4}</span>` : '';
 
@@ -23476,7 +23476,7 @@ function showNearbyStops(lat, lng, originName) {
           <div class="nearby-stop-walk-time">${walkMinutes(dist)} ${L_.nearbyStopsMin || 'min'}</div>
         </div>
         <div class="nearby-stop-info">
-          <div class="nearby-stop-name">${stop.esTerminal ? '🏁 ' : ''}${stop.nombre}</div>
+          <div class="nearby-stop-name">${stop.esTerminal ? '🏁 ' : ''}${escapeHtml(stop.nombre)}</div>
           <div class="nearby-stop-lines">${linesBadges}${extra}</div>
         </div>
       `;
