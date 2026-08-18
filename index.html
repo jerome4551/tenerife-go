@@ -21064,6 +21064,22 @@ const TITSA_LINES = [
     terminales:["7454","8434"]
   },
   {
+    /* Linea nueva. Entra en servicio el lunes 17-ago-2026 junto con el cambio de
+       la 448, segun el aviso de TITSA "Nuevas lineas servicio urbano de Adeje".
+       Recorrido, orden de paradas y coordenadas: GTFS oficial del 13-ago-2026,
+       que ya la trae como route_short_name 449 "CIRCULAR EL CERCO TAUCHO
+       TIJOCO". Un solo patron de recorrido, 39 referencias a 29 paradas
+       distintas, circular de 28,4 km. Duracion y salidas: del aviso de TITSA.
+       NO lleva precio porque no aparece en ninguna de las dos fuentes: hay que
+       confirmarlo antes de ponerlo, y el panel ya se lo salta si falta. */
+    id:"bus-449", numero:"449", nombre:"Adeje (El Cerco) \u2014 Taucho \u2014 Tijoco Alto \u2014 Tijoco Bajo",
+    color:"#F57C00", tipo:"sur", frecuencia:"6 salidas \u00b7 solo laborables", minutos:105,
+    servicio:{ desde:"06:30", hasta:"20:20" },
+    nota:"Circular. Salidas desde Adeje (El Cerco): 6:30, 8:30, 11:30, 14:00, 16:00 y 19:00. Solo dias laborables.",
+    paradas:["7454","7455","7516","7463","7464","7465","8410","8411","8412","8413","8414","8413","8412","8411","8410","7466","7467","8419","8420","8423","8430","8421","8420","8419","7468","7469","8424","8425","8427","8428","8429","7467","7466","7465","8323","7506","7507","7453","7454"],
+    terminales:["7454","7454"]
+  },
+  {
     id:"bus-450", numero:"450", nombre:"Costa Adeje — Los Cristianos — San Isidro",
     color:"#FB8C00", tipo:"sur", frecuencia:"60 min", precio:"2,45 €", minutos:50,
     servicio:{ desde:"05:35", hasta:"21:55" },
@@ -22057,8 +22073,8 @@ function buildBusPanel() {
         <div class="bus-line-info">
           <div class="bus-line-name">${escapeHtml(line.nombre)}</div>
           <div class="bus-line-meta">
-            <span>🕐 ${escapeHtml(line.frecuencia)}</span>
-            <span>💶 ${escapeHtml(line.precio)}</span>
+            ${line.frecuencia ? `<span>🕐 ${escapeHtml(line.frecuencia)}</span>` : ''}
+            ${line.precio ? `<span>💶 ${escapeHtml(line.precio)}</span>` : ''}
           </div>
           ${line.nota ? `<div class="bus-line-nota">📅 ${escapeHtml(localized(line.nota))}</div>` : ''}
         </div>
@@ -22125,8 +22141,8 @@ function renderBusSearchResults(list) {
         <div class="bus-line-info">
           <div class="bus-line-name">${escapeHtml(line.nombre)}</div>
           <div class="bus-line-meta">
-            <span>🕐 ${escapeHtml(line.frecuencia)}</span>
-            <span>💶 ${escapeHtml(line.precio)}</span>
+            ${line.frecuencia ? `<span>🕐 ${escapeHtml(line.frecuencia)}</span>` : ''}
+            ${line.precio ? `<span>💶 ${escapeHtml(line.precio)}</span>` : ''}
           </div>
           ${line.nota ? `<div class="bus-line-nota">📅 ${escapeHtml(localized(line.nota))}</div>` : ''}
         </div>
