@@ -40,8 +40,10 @@ En `index.html`, el objeto `FISCAL`:
 var FISCAL={
   igic:{general:.07, vpo:0},
   ajd:.0075,
-  itp:{general:.065, habitual:.05, joven:.04, superreducido:.01, vpo:0},
+  itp:{general:.065, habitual:.05, superreducido:.01, vpo:0},
+  bonifJoven:.20,
   limite:200000,
+  renta:46455,
   gestoria:350
 };
 ```
@@ -56,27 +58,57 @@ existe en el régimen canario.
 textos que citan cifras concretas —las fichas de propiedad, la nota al pie
 de la tabla— siguen siendo texto y hay que repasarlos a mano.
 
+### Ojo: el 4 % de los jóvenes no es un tipo
+
+No existe un tipo del 4 %. Lo que hay es el tipo reducido del **5 %** de
+vivienda habitual más una **bonificación del 20 % en cuota**. Sale lo
+mismo, pero son dos beneficios con requisitos distintos, y la calculadora
+los desglosa por separado porque así es como aparece en la liquidación.
+
+La Ley 9/2025 amplió esa bonificación de menores de 35 a **hasta 40 años**,
+y el límite de renta de 24.000 a **46.455 €**.
+
+Por encima de los 200.000 € la app **no** aplica la bonificación. El texto
+de la ley no le pone tope de precio explícito, pero tampoco lo descarta;
+ante la duda se prefiere quedarse corto en la ventaja antes que prometer
+un ahorro que Hacienda luego no reconozca. Si se confirma que sí aplica,
+basta con quitar la condición `p<=FISCAL.limite` de la línea del `bonif`.
+
 ### Estado de los datos legales · agosto 2026
 
-Verificado contra la Ley 9/2025 (Presupuestos de Canarias 2026, BOC 256 de
-29/12/2025) y la Ley 6/2025 de Ordenación Sostenible del Uso Turístico de
-Viviendas (BOC 12/12/2025, en vigor el 13/12/2025).
+Verificado contra el contenido de la Ley 9/2025 (Presupuestos Generales de
+Canarias para 2026, de 23 de diciembre, BOC de 29/12/2025) y la Ley 6/2025
+de Ordenación Sostenible del Uso Turístico de Viviendas (BOC 12/12/2025,
+en vigor el 13/12/2025).
 
-Pendiente de confirmar con un gestor colegiado, porque las fuentes
-consultadas no coinciden:
+Tipos reducidos del ITP con efectos desde el 1/1/2026:
+
+| Supuesto | Tipo | Límites de renta |
+|---|---|---|
+| General | 6,5 % | — |
+| Vivienda habitual ≤ 200.000 € | 5 % | — |
+| Hasta 40 años, 1ª vivienda | 5 % − 20 % = 4 % | 46.455 € (+6.825 €/persona) |
+| Familia numerosa | 1 % | 46.455 € (+18.200 €/hijo adicional) |
+| Familia monoparental | 1 % | 46.455 € (+6.825 €/persona) |
+| Discapacidad ≥ 65 % | 1 % | 46.455 € (+6.825 €/persona) |
+| VPO, 1ª adquisición | 0 % | — |
+
+Pendiente de confirmar con un gestor colegiado:
 
 - **AJD de obra nueva.** La app aplica el 0,75 % general. Varias fuentes
   sostienen que las escrituras que documentan operaciones sujetas a IGIC
-  tributan al 1 %. Se ha dejado el 0,75 % por ser el dato que ya tenía la
-  app; si es 1 %, se cambia `FISCAL.ajd`.
+  tributan al 1 %. La Ley 9/2025 no tocó el AJD, así que la duda es sobre
+  el Decreto Legislativo 1/2009 y no se pudo resolver contra el texto
+  consolidado. Se deja el 0,75 %; si es 1 %, se cambia `FISCAL.ajd`.
 - **AJD reducido del 0,4 %** para vivienda habitual de jóvenes y familia
   numerosa: existe, pero las fuentes discrepan en el umbral de precio. No
-  está implementado.
+  está implementado, así que la calculadora sobreestima el AJD de la obra
+  nueva en esos perfiles.
 - **IGIC de VPO.** Tipo cero en la primera entrega del promotor. Hay un
   tipo reducido del 3 % en otros supuestos que la app no distingue.
-- **Requisitos de renta.** Los tipos reducidos y el superreducido del 1 %
-  exigen límites de renta y de vivienda habitual que la calculadora no
-  puede comprobar. Por eso el resultado muestra un aviso cuando aplica uno.
+- **Requisitos de renta.** La calculadora no los puede comprobar: pide un
+  precio y un perfil, no la declaración. Por eso el resultado muestra un
+  aviso con las cifras concretas cada vez que aplica un tipo reducido.
 
 El **IRAV** (`al_irav`, `a1_renta`) es un dato mensual: el INE lo publica
 hacia el día 15. Hay que repasarlo cada mes o dejará de ser cierto.

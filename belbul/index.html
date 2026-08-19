@@ -268,8 +268,9 @@ main{flex:1;overflow-x:hidden;padding-bottom:88px}
 .cres .pc{font-size:11.5px;color:#8B93A8;margin-top:6px}
 .crow{display:flex;justify-content:space-between;padding:11px 20px;border-bottom:1px solid rgba(255,255,255,.05);font-size:12.5px}
 .crow .l{color:#B9C0D0;padding-right:10px}
+.crow .v.neg{color:var(--gold-l)}
 .crow .v{color:#F0EAD8;font-weight:500;white-space:nowrap}
-.creq{display:none;background:rgba(201,164,92,.13);border:1px solid rgba(201,164,92,.4);border-radius:10px;padding:11px 13px;margin-top:14px;font-size:11.5px;line-height:1.55;color:var(--ink)}
+.creq{display:none;background:rgba(201,164,92,.12);border:1px solid rgba(201,164,92,.38);border-radius:10px;margin:14px 20px 0;padding:11px 13px;font-size:11.5px;line-height:1.55;color:var(--cream2)}
 .cdisc{padding:13px 20px;color:#7C86A0;font-size:10px;line-height:1.6}
 
 .ovl{position:fixed;inset:0;background:rgba(6,12,26,.55);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:.3s;z-index:90}
@@ -488,7 +489,7 @@ main{flex:1;overflow-x:hidden;padding-bottom:88px}
     <div class="trow"><div class="n">ITP<small data-i18n="tx3">Segunda mano · tipo general</small></div><div class="p" id="f-itp">6,5 %<span class="w" data-i18n="w_comp">Comprador</span></div></div>
     <div class="trow"><div class="n">ITP<small data-i18n="tx4">Vivienda habitual ≤ 200.000 €</small></div><div class="p" id="f-itp-hab">5 %<span class="w" data-i18n="w_comp">Comprador</span></div></div>
     <div class="trow"><div class="n">ITP<small data-i18n="tx5">≤ 40 años · 1ª vivienda ≤ 200.000 € · renta ≤ 46.455 €</small></div><div class="p" id="f-itp-joven">4 %<span class="w" data-i18n="w_comp">Comprador</span></div></div>
-    <div class="trow"><div class="n">ITP<small data-i18n="tx6">Familia numerosa / discapacidad ≥ 65 % · con límites de renta</small></div><div class="p" id="f-itp-super">1 %<span class="w" data-i18n="w_comp">Comprador</span></div></div>
+    <div class="trow"><div class="n">ITP<small data-i18n="tx6">Familia numerosa / monoparental / discapacidad ≥ 65 % · con límites de renta</small></div><div class="p" id="f-itp-super">1 %<span class="w" data-i18n="w_comp">Comprador</span></div></div>
     <div class="trow"><div class="n">AJD<small data-i18n="tx7">Actos Jurídicos Documentados · Canarias</small></div><div class="p" id="f-ajd">0,75 %<span class="w" data-i18n="w_comp">Comprador</span></div></div>
     <div class="trow"><div class="n"><span data-i18n="tx8">Plusvalía municipal</span><small data-i18n="tx8s">IIVTNU · incremento del valor del suelo</small></div><div class="p">Var.<span class="w" data-i18n="w_vend">Vendedor</span></div></div>
     <div class="trow"><div class="n"><span data-i18n="tx9">Retención no residentes</span><small>Modelo 211 · AEAT</small></div><div class="p">3 %<span class="w" data-i18n="w_ret">Retiene el comprador</span></div></div>
@@ -520,6 +521,7 @@ main{flex:1;overflow-x:hidden;padding-bottom:88px}
         <option value="habitual" data-i18n="cc_p2">Vivienda habitual</option>
         <option value="joven" data-i18n="cc_p3">Joven ≤ 40 años</option>
         <option value="familia" data-i18n="cc_p4">Familia numerosa</option>
+        <option value="monoparental" data-i18n="cc_p6">Familia monoparental</option>
         <option value="discapacidad" data-i18n="cc_p5">Discapacidad ≥ 65 %</option>
         <option value="vpo">VPO</option>
       </select></div>
@@ -587,17 +589,17 @@ l6_t:"Liquidación de impuestos",l6_s:"⚠ máx. 30 días hábiles",l6_d:"ITP (M
 l7_t:"Inscripción en el Registro",l7_s:"15 días hábiles · 300–1.400 €",l7_d:"Presentación de la escritura con el justificante de pago de impuestos. Sin inscripción no hay protección registral frente a terceros.",
 l8_t:"Cambio de titularidades",l8_s:"1–2 semanas",l8_d:"IBI en el Ayuntamiento, suministros (agua, luz, gas) y notificación a la comunidad de propietarios.",
 tx_t:"Régimen Fiscal Canario",tx_s:"Ley 9/2025 · BOC 29/12/2025 · vigente 2026",
-tx1:"Obra nueva · sustituye al IVA",tx2:"Protección Oficial · 1ª entrega del promotor",tx3:"Segunda mano · tipo general",tx4:"Vivienda habitual ≤ 200.000 €",tx5:"≤ 40 años · 1ª vivienda ≤ 200.000 € · renta ≤ 46.455 €",tx6:"Familia numerosa / discapacidad ≥ 65 % · con límites de renta",tx7:"Actos Jurídicos Documentados · Canarias",tx8:"Plusvalía municipal",tx8s:"IIVTNU · incremento del valor del suelo",tx9:"Retención no residentes",
+tx1:"Obra nueva · sustituye al IVA",tx2:"Protección Oficial · 1ª entrega del promotor",tx3:"Segunda mano · tipo general",tx4:"Vivienda habitual ≤ 200.000 €",tx5:"≤ 40 años · 1ª vivienda ≤ 200.000 € · renta ≤ 46.455 € · 5 % con bonificación del 20 %",tx6:"Familia numerosa / monoparental / discapacidad ≥ 65 % · con límites de renta",tx7:"Actos Jurídicos Documentados · Canarias",tx8:"Plusvalía municipal",tx8s:"IIVTNU · incremento del valor del suelo",tx9:"Retención no residentes",
 w_comp:"Comprador",w_vend:"Vendedor",w_bonif:"Bonificación",w_ret:"Retiene el comprador",
 tx_note:"⚡ En Canarias NO se aplica el IVA: se aplica el IGIC, inferior al IVA peninsular del 10 %. Los beneficios de la Ley 9/2025 (jóvenes hasta 40 años, límite 200.000 €) rigen desde el 1/1/2026. Fuente: Agencia Tributaria Canaria.",
 dl_eye:"Plazos críticos",dl_h:"No los <em>dejes pasar</em>",
 dl1_d:"30 días hábiles",dl1_x:"Liquidar ITP (Mod. 600) o IGIC (Mod. 700) desde la escritura — Agencia Tributaria Canaria.",dl2_d:"30 días",dl2_x:"Modelo 211: ingreso de la retención del 3 % si el vendedor es no residente — AEAT.",dl3_d:"1 mes",dl3_x:"Depósito de la fianza de alquiler en el Gobierno de Canarias.",dl4_d:"24 horas",dl4_x:"Comunicación de viajeros de alquiler vacacional — SES Hospedajes (R.D. 933/2021).",
 cc_eye:"Herramienta gratuita",cc_h:"Calcula el <em>coste real</em>",cc_p:"Impuestos, notaría, registro y gestoría según el régimen canario vigente y tu perfil.",
 cc_price:"Precio de compra (€)",cc_type:"Tipo",cc_used:"2ª mano → ITP",cc_new:"Obra nueva → IGIC",cc_prof:"Perfil",
-cc_p1:"General",cc_p2:"Vivienda habitual",cc_p3:"Joven ≤ 40 años",cc_p4:"Familia numerosa",cc_p5:"Discapacidad ≥ 65 %",
+cc_p1:"General",cc_p2:"Vivienda habitual",cc_p3:"Joven ≤ 40 años",cc_p4:"Familia numerosa",cc_p5:"Discapacidad ≥ 65 %",cc_p6:"Familia monoparental",
 cc_btn:"Calcular coste total",cr_lbl:"Total estimado de gastos",
 cr_disc:"⚠ Estimación orientativa (aranceles RD 1426/1989 notaría y RD 1427/1989 registro). Los tipos reducidos exigen requisitos de renta y de vivienda habitual que esta herramienta no comprueba. Los impuestos se liquidan en la Agencia Tributaria Canaria en un máximo de 30 días hábiles desde la escritura. No sustituye el asesoramiento jurídico-fiscal profesional.",
-cr_err:"Introduce un precio válido (entre 1 € y 100.000.000 €).",cr_pct:"≈ {p} % sobre el precio",cr_req:"Para aplicar este tipo reducido hay que cumplir los requisitos de renta y de vivienda habitual de la Ley 9/2025. Confírmalo con tu gestor antes de firmar.",cr_notaria:"Notaría (estimación)",cr_registro:"Registro de la Propiedad",cr_gestoria:"Gestoría / tramitación",
+cr_err:"Introduce un precio válido (entre 1 € y 100.000.000 €).",cr_pct:"≈ {p} % sobre el precio",cr_req:"Para aplicar este tipo reducido hay que cumplir los requisitos de vivienda habitual y de renta de la Ley 9/2025: 46.455 € de renta familiar, más 18.200 € por hijo adicional en familia numerosa y 6.825 € por persona con derecho a mínimo familiar en los demás casos. Confírmalo con tu gestor antes de firmar.",cr_bonif:"Bonificación jóvenes −{p} %",cr_notaria:"Notaría (estimación)",cr_registro:"Registro de la Propiedad",cr_gestoria:"Gestoría / tramitación",
 tb1:"Inicio",tb2:"Comprar",tb3:"Alquilar",tb4:"Legal",tb5:"Calcular",
 per_month:"/mes",per_night:"/noche",sh_desc:"Descripción",sh_fisc:"Fiscalidad de esta operación",sh_cta:"Contactar agente",
 sh_demo:"✓ Versión demo: en la app publicada este botón abrirá el chat con tu agente Belbul (+34 600 123 456 · hola@belbulrealestate.com).",
@@ -633,17 +635,17 @@ l6_t:"Tax settlement",l6_s:"⚠ max. 30 working days",l6_d:"ITP (Form 600) for r
 l7_t:"Land Registry registration",l7_s:"15 working days · €300–1,400",l7_d:"Filing the deed with proof of tax payment. Without registration there is no protection against third parties.",
 l8_t:"Ownership transfers",l8_s:"1–2 weeks",l8_d:"IBI at the Town Hall, utilities (water, electricity, gas) and notifying the community of owners.",
 tx_t:"Canary Tax Regime",tx_s:"Law 9/2025 · BOC 29/12/2025 · in force 2026",
-tx1:"New builds · replaces VAT",tx2:"Social housing (VPO) · developer's 1st delivery",tx3:"Resale · general rate",tx4:"Main residence ≤ €200,000",tx5:"≤ 40 yrs · 1st home ≤ €200,000 · income ≤ €46,455",tx6:"Large family / disability ≥ 65% · income limits apply",tx7:"Stamp duty (AJD) · Canaries",tx8:"Municipal capital gains",tx8s:"IIVTNU · land value increase",tx9:"Non-resident withholding",
+tx1:"New builds · replaces VAT",tx2:"Social housing (VPO) · developer's 1st delivery",tx3:"Resale · general rate",tx4:"Main residence ≤ €200,000",tx5:"≤ 40 yrs · 1st home ≤ €200,000 · income ≤ €46,455 · 5% with a 20% credit",tx6:"Large / single-parent family / disability ≥ 65% · income limits apply",tx7:"Stamp duty (AJD) · Canaries",tx8:"Municipal capital gains",tx8s:"IIVTNU · land value increase",tx9:"Non-resident withholding",
 w_comp:"Buyer",w_vend:"Seller",w_bonif:"Tax credit",w_ret:"Buyer withholds",
 tx_note:"⚡ VAT does NOT apply in the Canaries: IGIC applies instead, lower than mainland VAT (10%). Law 9/2025 benefits (under-40s, €200,000 cap) in force since 1/1/2026. Source: Canary Tax Agency.",
 dl_eye:"Critical deadlines",dl_h:"Don't <em>miss them</em>",
 dl1_d:"30 working days",dl1_x:"Settle ITP (Form 600) or IGIC (Form 700) from the deed — Canary Tax Agency.",dl2_d:"30 days",dl2_x:"Form 211: deposit of the 3% withholding if the seller is a non-resident — AEAT.",dl3_d:"1 month",dl3_x:"Lodging the rental deposit with the Canary Government.",dl4_d:"24 hours",dl4_x:"Reporting holiday-rental guests — SES Hospedajes (R.D. 933/2021).",
 cc_eye:"Free tool",cc_h:"Calculate the <em>real cost</em>",cc_p:"Taxes, notary, registry and agency fees under the current Canary regime and your profile.",
 cc_price:"Purchase price (€)",cc_type:"Type",cc_used:"Resale → ITP",cc_new:"New build → IGIC",cc_prof:"Profile",
-cc_p1:"General",cc_p2:"Main residence",cc_p3:"Under 40",cc_p4:"Large family",cc_p5:"Disability ≥ 65%",
+cc_p1:"General",cc_p2:"Main residence",cc_p3:"Under 40",cc_p4:"Large family",cc_p5:"Disability ≥ 65%",cc_p6:"Single-parent family",
 cc_btn:"Calculate total cost",cr_lbl:"Estimated total costs",
 cr_disc:"⚠ Indicative estimate (RD 1426/1989 notary and RD 1427/1989 registry tariffs). Reduced rates require income and main-residence conditions this tool does not check. Taxes are settled with the Canary Tax Agency within 30 working days of the deed. Not a substitute for professional legal-tax advice.",
-cr_err:"Enter a valid price (between €1 and €100,000,000).",cr_pct:"≈ {p}% of the price",cr_req:"This reduced rate only applies if the income and main-residence conditions of Law 9/2025 are met. Confirm with your adviser before signing.",cr_notaria:"Notary (estimate)",cr_registro:"Land Registry",cr_gestoria:"Agency / processing",
+cr_err:"Enter a valid price (between €1 and €100,000,000).",cr_pct:"≈ {p}% of the price",cr_req:"This reduced rate only applies if the main-residence and income conditions of Law 9/2025 are met: €46,455 family income, plus €18,200 per additional child for large families and €6,825 per dependant in the other cases. Confirm with your adviser before signing.",cr_bonif:"Under-40 tax credit −{p}%",cr_notaria:"Notary (estimate)",cr_registro:"Land Registry",cr_gestoria:"Agency / processing",
 tb1:"Home",tb2:"Buy",tb3:"Rent",tb4:"Legal",tb5:"Calc",
 per_month:"/month",per_night:"/night",sh_desc:"Description",sh_fisc:"Taxation of this transaction",sh_cta:"Contact agent",
 sh_demo:"✓ Demo version: in the published app this button will open a chat with your Belbul agent (+34 600 123 456 · hola@belbulrealestate.com).",
@@ -679,17 +681,17 @@ l6_t:"Liquidation des impôts",l6_s:"⚠ max. 30 jours ouvrables",l6_d:"ITP (For
 l7_t:"Inscription au Registre",l7_s:"15 jours ouvrables · 300–1 400 €",l7_d:"Dépôt de l'acte avec le justificatif de paiement des impôts. Sans inscription, pas de protection face aux tiers.",
 l8_t:"Changement de titulaires",l8_s:"1–2 semaines",l8_d:"IBI à la mairie, services (eau, électricité, gaz) et notification à la copropriété.",
 tx_t:"Régime Fiscal Canarien",tx_s:"Loi 9/2025 · BOC 29/12/2025 · en vigueur 2026",
-tx1:"Neuf · remplace la TVA",tx2:"Logement social (VPO) · 1re livraison du promoteur",tx3:"Ancien · taux général",tx4:"Résidence principale ≤ 200 000 €",tx5:"≤ 40 ans · 1er logement ≤ 200 000 € · revenus ≤ 46 455 €",tx6:"Famille nombreuse / handicap ≥ 65 % · sous conditions de revenus",tx7:"Droits de timbre (AJD) · Canaries",tx8:"Plus-value municipale",tx8s:"IIVTNU · hausse de la valeur du sol",tx9:"Retenue non-résidents",
+tx1:"Neuf · remplace la TVA",tx2:"Logement social (VPO) · 1re livraison du promoteur",tx3:"Ancien · taux général",tx4:"Résidence principale ≤ 200 000 €",tx5:"≤ 40 ans · 1er logement ≤ 200 000 € · revenus ≤ 46 455 € · 5 % avec réduction de 20 %",tx6:"Famille nombreuse / monoparentale / handicap ≥ 65 % · sous conditions de revenus",tx7:"Droits de timbre (AJD) · Canaries",tx8:"Plus-value municipale",tx8s:"IIVTNU · hausse de la valeur du sol",tx9:"Retenue non-résidents",
 w_comp:"Acheteur",w_vend:"Vendeur",w_bonif:"Réduction",w_ret:"L'acheteur retient",
 tx_note:"⚡ La TVA ne s'applique PAS aux Canaries : c'est l'IGIC qui s'applique, inférieur à la TVA continentale (10 %). Les avantages de la Loi 9/2025 (moins de 40 ans, plafond 200 000 €) s'appliquent depuis le 1/1/2026. Source : Agence Fiscale Canarienne.",
 dl_eye:"Délais critiques",dl_h:"Ne les <em>laissez pas passer</em>",
 dl1_d:"30 jours ouvrables",dl1_x:"Liquider l'ITP (Form. 600) ou l'IGIC (Form. 700) depuis l'acte — Agence Fiscale Canarienne.",dl2_d:"30 jours",dl2_x:"Formulaire 211 : versement de la retenue de 3 % si le vendeur est non-résident — AEAT.",dl3_d:"1 mois",dl3_x:"Dépôt de la garantie locative auprès du Gouvernement des Canaries.",dl4_d:"24 heures",dl4_x:"Communication des voyageurs de location de vacances — SES Hospedajes (R.D. 933/2021).",
 cc_eye:"Outil gratuit",cc_h:"Calculez le <em>coût réel</em>",cc_p:"Impôts, notaire, registre et frais d'agence selon le régime canarien en vigueur et votre profil.",
 cc_price:"Prix d'achat (€)",cc_type:"Type",cc_used:"Ancien → ITP",cc_new:"Neuf → IGIC",cc_prof:"Profil",
-cc_p1:"Général",cc_p2:"Résidence principale",cc_p3:"Moins de 40 ans",cc_p4:"Famille nombreuse",cc_p5:"Handicap ≥ 65 %",
+cc_p1:"Général",cc_p2:"Résidence principale",cc_p3:"Moins de 40 ans",cc_p4:"Famille nombreuse",cc_p5:"Handicap ≥ 65 %",cc_p6:"Famille monoparentale",
 cc_btn:"Calculer le coût total",cr_lbl:"Total estimé des frais",
 cr_disc:"⚠ Estimation indicative (tarifs RD 1426/1989 notaire et RD 1427/1989 registre). Les taux réduits sont soumis à des conditions de revenus et de résidence principale que cet outil ne vérifie pas. Les impôts se règlent auprès de l'Agence Fiscale Canarienne sous 30 jours ouvrables après l'acte. Ne remplace pas un conseil juridico-fiscal professionnel.",
-cr_err:"Saisissez un prix valide (entre 1 € et 100 000 000 €).",cr_pct:"≈ {p} % du prix",cr_req:"Ce taux réduit ne s’applique que si les conditions de revenus et de résidence principale de la Loi 9/2025 sont remplies. À confirmer avec votre conseiller avant la signature.",cr_notaria:"Notaire (estimation)",cr_registro:"Registre Foncier",cr_gestoria:"Agence / démarches",
+cr_err:"Saisissez un prix valide (entre 1 € et 100 000 000 €).",cr_pct:"≈ {p} % du prix",cr_req:"Ce taux réduit ne s’applique que si les conditions de résidence principale et de revenus de la Loi 9/2025 sont remplies : 46 455 € de revenu familial, plus 18 200 € par enfant supplémentaire pour les familles nombreuses et 6 825 € par personne à charge dans les autres cas. À confirmer avec votre conseiller avant la signature.",cr_bonif:"Réduction jeunes −{p} %",cr_notaria:"Notaire (estimation)",cr_registro:"Registre Foncier",cr_gestoria:"Agence / démarches",
 tb1:"Accueil",tb2:"Acheter",tb3:"Louer",tb4:"Juridique",tb5:"Calculer",
 per_month:"/mois",per_night:"/nuit",sh_desc:"Description",sh_fisc:"Fiscalité de cette opération",sh_cta:"Contacter l'agent",
 sh_demo:"✓ Version démo : dans l'app publiée, ce bouton ouvrira le chat avec votre agent Belbul (+34 600 123 456 · hola@belbulrealestate.com).",
@@ -725,17 +727,17 @@ l6_t:"Плащане на данъци",l6_s:"⚠ макс. 30 работни д
 l7_t:"Вписване в Регистъра",l7_s:"15 работни дни · 300–1 400 €",l7_d:"Подаване на акта с доказателство за платени данъци. Без вписване няма защита срещу трети лица.",
 l8_t:"Смяна на титуляри",l8_s:"1–2 седмици",l8_d:"IBI в общината, комунални услуги (вода, ток, газ) и уведомяване на етажната собственост.",
 tx_t:"Канарски данъчен режим",tx_s:"Закон 9/2025 · BOC 29/12/2025 · в сила 2026",
-tx1:"Ново строителство · замества ДДС",tx2:"Социално жилище (VPO) · 1-во предаване от строителя",tx3:"Втора употреба · общ процент",tx4:"Основно жилище ≤ 200 000 €",tx5:"≤ 40 г. · 1-ви дом ≤ 200 000 € · доход ≤ 46 455 €",tx6:"Многодетно семейство / инвалидност ≥ 65 % · с лимити на дохода",tx7:"Гербов налог (AJD) · Канари",tx8:"Общински данък печалба",tx8s:"IIVTNU · ръст на стойността на земята",tx9:"Удръжка нерезиденти",
+tx1:"Ново строителство · замества ДДС",tx2:"Социално жилище (VPO) · 1-во предаване от строителя",tx3:"Втора употреба · общ процент",tx4:"Основно жилище ≤ 200 000 €",tx5:"≤ 40 г. · 1-ви дом ≤ 200 000 € · доход ≤ 46 455 € · 5 % с отстъпка 20 %",tx6:"Многодетно / самотен родител / инвалидност ≥ 65 % · с лимити на дохода",tx7:"Гербов налог (AJD) · Канари",tx8:"Общински данък печалба",tx8s:"IIVTNU · ръст на стойността на земята",tx9:"Удръжка нерезиденти",
 w_comp:"Купувач",w_vend:"Продавач",w_bonif:"Отстъпка",w_ret:"Купувачът удържа",
 tx_note:"⚡ ДДС НЕ се прилага на Канарите: прилага се IGIC — по-нисък от континенталния ДДС (10 %). Облекченията по Закон 9/2025 (до 40 г., праг 200 000 €) са в сила от 1/1/2026. Източник: Канарска данъчна агенция.",
 dl_eye:"Критични срокове",dl_h:"Не ги <em>пропускайте</em>",
 dl1_d:"30 работни дни",dl1_x:"Плащане на ITP (Форм. 600) или IGIC (Форм. 700) от акта — Канарска данъчна агенция.",dl2_d:"30 дни",dl2_x:"Формуляр 211: внасяне на удръжката от 3 %, ако продавачът е нерезидент — AEAT.",dl3_d:"1 месец",dl3_x:"Депозиране на наемната гаранция в Правителството на Канарите.",dl4_d:"24 часа",dl4_x:"Подаване на данни за гостите при ваканционен наем — SES Hospedajes (R.D. 933/2021).",
 cc_eye:"Безплатен инструмент",cc_h:"Изчислете <em>реалната цена</em>",cc_p:"Данъци, нотариус, регистър и такси според действащия канарски режим и вашия профил.",
 cc_price:"Покупна цена (€)",cc_type:"Тип",cc_used:"Втора употреба → ITP",cc_new:"Ново → IGIC",cc_prof:"Профил",
-cc_p1:"Общ",cc_p2:"Основно жилище",cc_p3:"Под 40 г.",cc_p4:"Многодетно семейство",cc_p5:"Инвалидност ≥ 65 %",
+cc_p1:"Общ",cc_p2:"Основно жилище",cc_p3:"Под 40 г.",cc_p4:"Многодетно семейство",cc_p5:"Инвалидност ≥ 65 %",cc_p6:"Самотен родител",
 cc_btn:"Изчисли общата цена",cr_lbl:"Очаквани общи разходи",
 cr_disc:"⚠ Ориентировъчна оценка (тарифи RD 1426/1989 нотариус и RD 1427/1989 регистър). Намалените ставки изискват условия за доход и основно жилище, които този инструмент не проверява. Данъците се плащат в Канарската данъчна агенция до 30 работни дни от акта. Не замества професионална правно-данъчна консултация.",
-cr_err:"Въведете валидна цена (между 1 € и 100 000 000 €).",cr_pct:"≈ {p} % от цената",cr_req:"Тази намалена ставка важи само при изпълнени условия за доход и основно жилище по Закон 9/2025. Потвърдете с вашия консултант преди подписване.",cr_notaria:"Нотариус (оценка)",cr_registro:"Имотен регистър",cr_gestoria:"Агенция / обработка",
+cr_err:"Въведете валидна цена (между 1 € и 100 000 000 €).",cr_pct:"≈ {p} % от цената",cr_req:"Тази намалена ставка важи само при изпълнени условия за основно жилище и доход по Закон 9/2025: 46 455 € семеен доход, плюс 18 200 € за всяко следващо дете при многодетни семейства и 6 825 € на издържано лице в останалите случаи. Потвърдете с вашия консултант преди подписване.",cr_bonif:"Отстъпка за млади −{p} %",cr_notaria:"Нотариус (оценка)",cr_registro:"Имотен регистър",cr_gestoria:"Агенция / обработка",
 tb1:"Начало",tb2:"Купи",tb3:"Наеми",tb4:"Правно",tb5:"Калк.",
 per_month:"/месец",per_night:"/нощувка",sh_desc:"Описание",sh_fisc:"Данъчно облагане на сделката",sh_cta:"Свържи се с агент",
 sh_demo:"✓ Демо версия: в публикуваното приложение този бутон ще отвори чат с вашия агент Belbul (+34 600 123 456 · hola@belbulrealestate.com).",
@@ -1076,8 +1078,15 @@ var FISCAL={
      mismos valores, asi no vuelven a divergir. */
   igic:{general:.07, vpo:0},        // VPO: tipo cero en la 1a entrega del promotor
   ajd:.0075,
-  itp:{general:.065, habitual:.05, joven:.04, superreducido:.01, vpo:0},
+  itp:{general:.065, habitual:.05, superreducido:.01, vpo:0},
+  /* Lo de los jovenes no es un tipo propio del 4 %: es el tipo reducido
+     del 5 % de vivienda habitual mas una bonificacion del 20 % en cuota
+     (Ley 9/2025, que la amplio de 35 a 40 anos y la renta de 24.000 a
+     46.455 EUR). Sale el mismo 4 %, pero desglosado es como lo liquida
+     el gestor, y asi se ve de donde viene. */
+  bonifJoven:.20,
   limite:200000,                    // vivienda habitual y joven
+  renta:46455,                      // limite de renta de los tipos reducidos
   gestoria:350
 };
 
@@ -1087,7 +1096,11 @@ function pct(x){return (x*100).toLocaleString("es-ES",{maximumFractionDigits:2})
 function pintarTarifas(){
   var m={"f-igic":FISCAL.igic.general,"f-igic-vpo":FISCAL.igic.vpo,
          "f-itp":FISCAL.itp.general,"f-itp-hab":FISCAL.itp.habitual,
-         "f-itp-joven":FISCAL.itp.joven,"f-itp-super":FISCAL.itp.superreducido,
+         // el 4 % de los jovenes es un resultado, no un tipo: 5 % menos
+         // la bonificacion del 20 %. Se calcula para que no pueda
+         // desmentir a la calculadora.
+         "f-itp-joven":FISCAL.itp.habitual*(1-FISCAL.bonifJoven),
+         "f-itp-super":FISCAL.itp.superreducido,
          "f-ajd":FISCAL.ajd};
   for(var k in m){var el=document.getElementById(k);if(el)el.firstChild.nodeValue=pct(m[k])+" %";}
 }
@@ -1102,12 +1115,12 @@ function calcular(){
     res.classList.remove("show");return;
   }
   var TIPOS=["segunda","nueva"];
-  var PERFILES=["general","habitual","joven","familia","discapacidad","vpo"];
+  var PERFILES=["general","habitual","joven","familia","monoparental","discapacidad","vpo"];
   var tipo=document.getElementById("c-tipo").value;
   var perfil=document.getElementById("c-perfil").value;
   if(TIPOS.indexOf(tipo)===-1||PERFILES.indexOf(perfil)===-1)return;
 
-  var imp=0,lbl="",ajd=0,reducido=false;
+  var imp=0,lbl="",ajd=0,reducido=false,bonif=0;
   if(tipo==="nueva"){
     var rn=(perfil==="vpo")?FISCAL.igic.vpo:FISCAL.igic.general;
     reducido=(perfil==="vpo");
@@ -1115,22 +1128,31 @@ function calcular(){
     ajd=p*FISCAL.ajd;
   }else{
     var r=FISCAL.itp.general;
-    if(perfil==="habitual"&&p<=FISCAL.limite){r=FISCAL.itp.habitual;reducido=true;}
-    else if(perfil==="joven"&&p<=FISCAL.limite){r=FISCAL.itp.joven;reducido=true;}
-    else if(perfil==="familia"||perfil==="discapacidad"){r=FISCAL.itp.superreducido;reducido=true;}
-    else if(perfil==="vpo"){r=FISCAL.itp.vpo;reducido=true;}
+    if(perfil==="vpo"){r=FISCAL.itp.vpo;reducido=true;}
+    else if(perfil==="familia"||perfil==="discapacidad"||perfil==="monoparental"){
+      r=FISCAL.itp.superreducido;reducido=true;
+    }
+    else if((perfil==="habitual"||perfil==="joven")&&p<=FISCAL.limite){
+      r=FISCAL.itp.habitual;reducido=true;
+    }
     lbl="ITP "+pct(r)+" %";
     imp=p*r;
+    /* Por encima del limite no se aplica la bonificacion: el texto de la
+       Ley 9/2025 no le pone tope de precio, pero tampoco lo descarta, y
+       aqui mas vale quedarse corto en la ventaja que prometer un ahorro
+       que luego Hacienda no reconozca. */
+    if(perfil==="joven"&&p<=FISCAL.limite)bonif=imp*FISCAL.bonifJoven;
   }
   var notaria=Math.round(Math.min(Math.max(600+p*0.0022,700),2600));
   var registro=Math.round(Math.min(Math.max(300+p*0.0012,320),1400));
   var gestoria=FISCAL.gestoria;
-  var total=imp+ajd+notaria+registro+gestoria;
+  var total=imp-bonif+ajd+notaria+registro+gestoria;
 
   document.getElementById("cr-tot").textContent=eur(total);
   document.getElementById("cr-pc").textContent=T("cr_pct").replace("{p}",((total/p)*100).toFixed(1));
   var rows=document.getElementById("cr-rows");rows.textContent="";
   var data=[[lbl,imp]];
+  if(bonif>0)data.push([T("cr_bonif").replace("{p}",pct(FISCAL.bonifJoven)),-bonif]);
   if(ajd>0)data.push(["AJD "+pct(FISCAL.ajd)+" %",ajd]);
   data.push([T("cr_notaria"),notaria]);
   data.push([T("cr_registro"),registro]);
@@ -1138,7 +1160,10 @@ function calcular(){
   for(var i=0;i<data.length;i++){
     var row=document.createElement("div");row.className="crow";
     var l=document.createElement("div");l.className="l";l.textContent=data[i][0];
-    var v=document.createElement("div");v.className="v";v.textContent=eur(data[i][1]);
+    var v=document.createElement("div");v.className="v";
+    // el menos tipografico, no el guion del teclado
+    v.textContent=data[i][1]<0?"−"+eur(-data[i][1]):eur(data[i][1]);
+    if(data[i][1]<0)v.classList.add("neg");
     row.appendChild(l);row.appendChild(v);rows.appendChild(row);
   }
   /* Un tipo reducido no se aplica por marcarlo en un desplegable: lleva

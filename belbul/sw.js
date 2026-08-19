@@ -1,4 +1,4 @@
-/* BELBUL — Tenerife Living · service worker v1 · 2026-08-16
+/* BELBUL — Tenerife Living · service worker v2 · 2026-08-19
 
    Subir el numero de version no es cosmetico: el manejador de 'activate'
    borra toda cache cuyo nombre no sea este. Es la unica forma de que a
@@ -9,7 +9,7 @@
    impositivos- viaja dentro de index.html. Por eso aqui no hay lista de
    dominios "en vivo" que excluir; basta con no cachear nada de fuera. */
 
-const CACHE = 'belbul-v1-2026-08-16';
+const CACHE = 'belbul-v2-2026-08-19';
 
 /* El nucleo: lo imprescindible para que la app arranque sin conexion.
    Las fuentes solo se precachean en su version latina, que es la que usan
