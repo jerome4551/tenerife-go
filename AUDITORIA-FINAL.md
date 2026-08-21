@@ -1,11 +1,11 @@
 # Auditoría completa
 
-**18 de agosto de 2026**, auditoría profunda de seguridad, codificación,
+**21 de agosto de 2026**, auditoría profunda de seguridad, codificación,
 idiomas, datos y cobertura de guagua y tranvía.
 
 ```
-index.html   md5 79acf33029ced2f3bca44fd1fe338757
-             4.048.789 bytes  ·  1.238.801 comprimidos
+index.html   md5 fdebf5a29614893fd786d922a1095214
+             4.079.934 bytes  ·  1.248.466 comprimidos
 ```
 
 Todo lo de abajo está medido ejecutando la app o barriendo el fichero, no
@@ -92,12 +92,12 @@ favoritos : el payload se rechaza, 'las-vistas' se conserva
 | Lugares | **765** · 0 duplicados · 0 sin nombre · 0 sin coordenada |
 | Coordenadas de lugar | **0 fuera de Tenerife** · 0 colores no hexadecimales |
 | Ids de lugar | **765 cumplen `[a-z0-9-]`** |
-| Guaguas | **178 líneas · 5.189 paradas** |
+| Guaguas | **165 líneas · 5.774 paradas** |
 | Ids de parada duplicados | **0** (342 llevan sufijo por repetición en circulares) |
 | Paradas fuera de Tenerife | **0** |
 | Ids de línea duplicados · líneas sin color | 0 · 0 |
 | Catálogo | **2.514 marquesinas**, todas dentro del bbox, 0 referencias huérfanas |
-| Líneas regeneradas · marcadas | **141 · 35** (más 2 de tranvía) |
+| Líneas regeneradas del GTFS · tranvía | **163 · 2** · ninguna sin regenerar |
 
 ## 5 · Panel de baño
 
@@ -110,7 +110,7 @@ favoritos : el payload se rechaza, 'las-vistas' se conserva
 
 ## 6 · Rendimiento
 
-El índice del planificador pasa de 694 paradas a 5.189. Era el riesgo que más
+El índice del planificador pasa de 694 paradas a 5.774. Era el riesgo que más
 me preocupaba y **no se ha materializado**:
 
 ```
@@ -174,31 +174,20 @@ ha validado por geometría y por longitud total, pero no es un dato de
 recorrido publicado. Metropolitano tiene su propio GTFS en el mismo portal, y
 ese sí traería `stop_times.txt`.
 
-## Las 35 líneas sin regenerar
+## Las 35 líneas sin regenerar — cerrado el 21 de agosto
 
-Cada una lleva su motivo en un comentario dentro de su propio bloque. Contadas
-una a una el 18 de agosto: **las 35 llevan marca, ninguna se quedó sin ella**.
+Con el `stop_times.txt` completo (1.999.460 filas, los 71.306 viajes de
+`trips.txt`) se pudo comprobar una a una:
 
 ```
-LINEA AUSENTE           11   sin equivalente en el GTFS
-SIN VALIDAR             14   el número existe, hay que comprobarlo a mano
-RECORRIDO NO COINCIDE    5   el recorrido oficial no cubre alguna cabecera
-NUMERO COMPARTIDO        4   015 015N 934 934N
-LINEA DISTINTA           1   231
+22   estaban en el GTFS con recorrido oficial  →  regeneradas
+13   no existen como línea propia              →  borradas
 ```
 
-El tranvía (L1 y L2) tampoco está en el GTFS de TITSA, pero **no es de este
-grupo**: tiene sus 27 paradas y su trazado real, medido abajo.
-
-De las 19 de cobertura, **9 fallan por menos de 2,5 km**. Subir el umbral de
-1,5 a 2,5 km las recuperaría, pero se revisaron una a una y no se sostienen:
-solo la 056 tenía respaldo en el título oficial del GTFS, y esa **ya entra**
-—su recorrido incluye «Llano del Moro» con ese mismo nombre; la parada vieja
-estaba a 1.790 m y la salvó el emparejamiento por nombre—. El umbral se queda
-en 1,5 km.
-
-Las cuatro de número compartido necesitan decisión manual: la nocturna de la
-015 es en realidad la **714**.
+Las 13 borradas: **213, 220, 222, 137, 124, 474, 339, 420, 131, 123, 310**, que
+no aparecen en `routes.txt`, más **015N** y **934N**, que no son líneas: la 015
+circula ella misma de 05:20 a 01:40 y la nocturna de Taco–Añaza es la **974**,
+que la app ya tenía regenerada.
 
 ## Decisiones abiertas
 
@@ -655,4 +644,112 @@ poner un aviso visible en esas 35, o dejarlo.
 borrarlas                       3 ms
 las 178 de golpe               811 ms · 5.450 capas  (caso extremo, la UI no lo hace)
 carga completa                   0 errores de página
+```
+
+---
+
+# 21 de agosto · las 24 pendientes, con el `stop_times.txt` completo
+
+Llegó el fichero que faltaba: **1.999.460 filas, 71.306 viajes — el 100 % de
+`trips.txt`— y 3.906 `stop_id`, todos presentes en `stops.txt`**. Con él se
+reconstruyó el recorrido real de las 181 líneas del GTFS.
+
+**Descubrimiento previo, y es el que importaba:** el zip nunca estuvo
+incompleto. El GTFS trae 181 líneas y la app tenía 163 de ellas; **18 líneas
+oficiales no estaban en la app en absoluto**, la 112 (Santa Cruz–Los Cristianos,
+546 viajes) y la 114 (432 viajes) entre ellas. Eso queda para el paso 2.
+
+## 22 regeneradas
+
+La regla del patrón, documentada en el comentario de cada línea: **el que más
+paradas tiene; empate, el de más viajes**. Toda parada sale de `stops.txt` y
+**las 3.906 claves ya existían en el catálogo: cero paradas nuevas que inventar**.
+
+```
+                         paradas   puntos de vía   parada más lejos del trazado
+las 22                       736           3.028               70 m (la peor)
+```
+
+| línea | paradas | vía | corrección de título |
+|---|---|---|---|
+| 102 | 32 | 43,4 km | — |
+| 110 | 6 | 79,0 km | — |
+| 467 | 48 | 30,8 km | no sirve El Médano |
+| 325 | 91 | 64,1 km | — |
+| 015 | 11 | 8,9 km | — |
+| 260 | 22 | 8,6 km | no sirve Barrio de La Salud ni Finca España |
+| 904 | 15 | 3,7 km | no sirve Intercambiador, Barrio de la Salud ni Finca España |
+| 912 | 22 | 6,9 km | no sirve San Andrés |
+| 920 | 19 | 6,8 km | **no sirve Plaza de España** ni La Cuesta |
+| 934 | 47 | 22,3 km | — |
+| 231 | 27 | 11,4 km | no sirve La Cuesta ni Finca España |
+| 232 | 37 | 12,1 km | no sirve La Cuesta ni El Cardonal |
+| 253 | 24 | 10,6 km | no sirve El Ortigal |
+| 711N | 50 | 85,9 km | — |
+| 970 | 17 | 10,7 km | no sirve Barrio La Salud — la 970 va a **San Andrés** |
+| 975 | 41 | 13,0 km | no sirve Llano del Moro |
+| 055 | 55 | 17,0 km | no sirve Los Majuelos |
+| 106 | 15 | 56,1 km | no sirve La Guancha |
+| 412 | 28 | 13,2 km | no sirve Los Abrigos |
+| 372 | 35 | 10,5 km | no sirve Mayorazgo |
+| 358 | 15 | 3,6 km | no sirve El Amparo |
+| 430 | 79 | 60,9 km | no sirve Villa de Arico, Arico Viejo ni Las Maretas |
+
+**16 de los 22 títulos nombraban un sitio por el que la línea no pasa.** Cada
+topónimo se comprobó uno a uno contra la secuencia real antes de reescribirlo;
+el comprobador automático daba falsos positivos y no se usó para decidir.
+
+La **920** confirma la sospecha de agosto: el nombre oficial de TITSA dice
+`INTERCAMBIADOR PLAZA DE ESPAÑA LA MARINA RAMBLAS REYES CATÓLICOS TRES DE MAYO`,
+pero **ninguna de sus 19 paradas se llama Plaza de España**. El nombre oficial
+también puede estar caducado; manda la secuencia. Igual con la **412**, que se
+llama `GRANADILLA SAN ISIDRO LOS ABRIGOS` y no tiene ni una parada en Los
+Abrigos, en ninguno de sus tres recorridos.
+
+## 13 borradas
+
+Por decisión explícita: lo que no está en el zip, fuera.
+
+```
+no aparecen en routes.txt   11   213 220 222 137 124 474 339 420 131 123 310
+no son una línea             2   015N · 934N
+```
+
+La **015N** decía en su propio título «línea 714», y **la 714 no existe**. La
+015 circula ella misma **de 05:20 a 01:40, con 133 salidas nocturnas de sus
+2.982**: no hay servicio de noche que perder. La **934N** describe el recorrido
+de la **974** («INTERCAMBIADOR TACO AÑAZA SANTA MARIA DEL MAR NOCTURNA»), que la
+app ya tenía regenerada; regenerarla desde el número 934 la habría convertido en
+un clon de la diurna.
+
+## Qué cambia en la app
+
+| | antes | ahora |
+|---|---|---|
+| Líneas | 178 | **165** |
+| Paradas | 5.189 | **5.774** |
+| Regeneradas del GTFS | 141 | **163** (todas menos el tranvía) |
+| Sin `via`, dibujadas a rectas | 35 | **0** |
+| Números compartidos por dos líneas | 4 | **0** |
+| Líneas con marca de «sin verificar» | 35 | **0** |
+
+Ya no queda ninguna línea de guagua con lista de paradas escrita a mano: **las
+163 salen del GTFS y las 2 del tranvía tienen su trazado real**. Con eso se
+cierran de golpe `SIN VALIDAR`, `LINEA AUSENTE`, `NUMERO COMPARTIDO`,
+`RECORRIDO NO COINCIDE` y `LINEA DISTINTA`.
+
+Y se corrigió sola una mentira que nadie había visto: la **102** tenía
+«✈️ Aeropuerto Norte (TFN)» entre sus paradas y la 102 real no pasa por el
+aeropuerto. El filtro de aeropuerto norte baja de 6 líneas a 5, y las 5 son de
+verdad.
+
+## Comprobado después
+
+```
+los 10 controles de tools/verificar_red.js        pasan
+32 scripts en línea                                compilan
+carga en Chromium                                  0 errores de página
+los 8 idiomas                                      0 botones vacíos · 0 undefined
+paradas a más de 200 m de su trazado               4 de 5.774  (ninguna nueva)
+referencias huérfanas a las 13 borradas            0
 ```
