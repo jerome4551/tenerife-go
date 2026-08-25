@@ -22,7 +22,7 @@ index.html   md5 7233fe61df530a4564357c913c587eb3
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht |
-| Ficheros | 41 en el repo · Leaflet y MarkerCluster auto-alojados en `vendor/` |
+| Ficheros | 39 en el repo · Leaflet y MarkerCluster auto-alojados en `vendor/` |
 
 ## La red, línea por línea
 
@@ -210,9 +210,13 @@ decisión de arquitectura, no un arreglo.
   cruzar la coordenada con los **polígonos de término municipal** del IGN o
   IDECanarias — no es geocodificar por nombre, es mirar dentro de qué límite
   oficial cae un punto que ya tenemos.
-- **19 líneas sin precio**: las 18 añadidas en agosto y la 449. El GTFS no trae
-  `fare_attributes.txt` ni `fare_rules.txt`, así que la tarifa no se puede
-  medir. El globo ya no pinta el `💶` suelto cuando falta.
+- **105 líneas afirman un importe cerrado y cruzan más de un municipio.**
+  TITSA no cobra por línea, cobra por trayecto: la tarifa depende de las zonas
+  entre origen y destino, así que «el precio de la 111» no existe como dato —
+  existe el de La Laguna–Costa Adeje. Las 32 que van con `precioDesde` lo dicen
+  bien. Para las 105 lo correcto sería un rango (del suelo al importe de punta a
+  punta), no un número suelto; el importe que ya está es el de extremo a
+  extremo, así que se conservaría como tope. Falta decidirlo.
 
 ## Decisión pendiente
 
@@ -221,10 +225,16 @@ decisión de arquitectura, no un arreglo.
   son sitios distintos de verdad. La fila del buscador pinta el rótulo y las
   líneas pero **no el municipio**, que sí está en el catálogo para 2.441 de las
   2.514. Añadirlo a la fila las distingue sin inventar nada.
-- **210 marquesinas del catálogo no las usa ninguna línea.** Están porque el par
-  ida/vuelta las agrupa y su hermana es la que aparece. No estorban, pero
-  conviene saber por qué están.
-- **Alcalá y el empate de alisios** en el panel de baño.
+- **210 marquesinas del catálogo no las muestra ninguna línea, y las 210 las
+  visita algún viaje del GTFS**: 41.475 viajes al año paran donde la app no
+  enseña nada, y 19 de ellas superan los 500. La causa es estructural: cada
+  línea guarda **un** recorrido, el de más paradas, y una línea de TITSA tiene
+  varios; lo que solo hace otro patrón se cae. La 127 deja fuera 26 ella sola.
+  Se arregla sin tocar el dibujo —`via` lleva la geometría aparte— haciendo que
+  `paradas` sea la unión de los patrones, ordenada proyectando sobre `via`.
+- **22 de las 34 orientaciones de playa son `deducida`**, sacadas del abanico
+  de rayos, que mira a 4, 6 y 8 km y por eso es ciego a lo que abriga en el
+  primer kilómetro. Las 12 escritas a mano son las fiables.
 
 ## Cerrado
 
