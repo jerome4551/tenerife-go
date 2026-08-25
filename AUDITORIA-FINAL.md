@@ -4,8 +4,8 @@
 idiomas, datos y cobertura de guagua y tranvía.
 
 ```
-index.html   md5 fdebf5a29614893fd786d922a1095214
-             4.079.934 bytes  ·  1.248.466 comprimidos
+index.html   md5 b2f0ae1558546e95e155ed97dd297f06
+             4.170.127 bytes  ·  1.271.926 comprimidos
 ```
 
 Todo lo de abajo está medido ejecutando la app o barriendo el fichero, no
@@ -92,12 +92,12 @@ favoritos : el payload se rechaza, 'las-vistas' se conserva
 | Lugares | **765** · 0 duplicados · 0 sin nombre · 0 sin coordenada |
 | Coordenadas de lugar | **0 fuera de Tenerife** · 0 colores no hexadecimales |
 | Ids de lugar | **765 cumplen `[a-z0-9-]`** |
-| Guaguas | **165 líneas · 5.774 paradas** |
+| Guaguas | **183 líneas · 6.263 paradas** · las 181 del GTFS más 2 de tranvía |
 | Ids de parada duplicados | **0** (342 llevan sufijo por repetición en circulares) |
 | Paradas fuera de Tenerife | **0** |
 | Ids de línea duplicados · líneas sin color | 0 · 0 |
 | Catálogo | **2.514 marquesinas**, todas dentro del bbox, 0 referencias huérfanas |
-| Líneas regeneradas del GTFS · tranvía | **163 · 2** · ninguna sin regenerar |
+| Líneas regeneradas del GTFS · tranvía | **181 · 2** · ninguna sin regenerar |
 
 ## 5 · Panel de baño
 
@@ -110,7 +110,7 @@ favoritos : el payload se rechaza, 'las-vistas' se conserva
 
 ## 6 · Rendimiento
 
-El índice del planificador pasa de 694 paradas a 5.774. Era el riesgo que más
+El índice del planificador pasa de 694 paradas a 6.263. Era el riesgo que más
 me preocupaba y **no se ha materializado**:
 
 ```
@@ -753,3 +753,96 @@ los 8 idiomas                                      0 botones vacíos · 0 undefi
 paradas a más de 200 m de su trazado               4 de 5.774  (ninguna nueva)
 referencias huérfanas a las 13 borradas            0
 ```
+
+---
+
+# 21 de agosto · paso 2 · las 18 que la app nunca tuvo
+
+El GTFS trae **181 líneas** y la app tenía 163. Estas 18 no estaban, ni con su
+número ni bajo otro nombre — comprobado una a una contra `routes.txt`:
+
+| nº | oficial | paradas | frecuencia | tipo |
+|---|---|---|---|---|
+| 33 | Güímar — Fasnia — Las Eras | 38 | 50 min | sur |
+| 34 | El Tablado — Granadilla (por Fasnia y Arico) | 63 | 4 salidas/día | sur |
+| 36 | Güímar — Granadilla (por la TF-1 y Los Roques) | 64 | 3 salidas/día | sur |
+| 39 | Güímar — Granadilla (por la TF-1 y El Tablado) | 74 | 4 salidas/día | sur |
+| **112** | **Santa Cruz — Los Cristianos (Directa)** | 3 | **15 min** | sur |
+| 114 | Santa Cruz — Güímar — San Isidro — Aeropuerto Sur | 16 | 25 min | sur |
+| 128 | Santa Cruz — Arafo — Güímar | 36 | 65 min | sur |
+| 228 | Circular Intercambiador — La Cuesta — Los Campitos | 49 | 55 min | municipal |
+| 341 | Parador — Teleférico — El Portillo 🌋 | 7 | 6 salidas/día | teide |
+| 385 | Circular Puerto de la Cruz — El Durazno — Jardín Botánico | 21 | 45 min | municipal |
+| 452 | San Isidro — Costa Adeje — La Caleta | 33 | 40 min | sur |
+| 475 | Circular Granadilla — Cruz de Tea | 7 | 5 salidas/día | municipal |
+| 546 | Realejo Alto — San Agustín — Playa del Socorro | 14 | 30 min | municipal |
+| 605 | Lanzadera ULL · La Orotava — Campus de Guajara | 11 | 2 salidas/día | norte |
+| 606 | Lanzadera ULL · Icod — Campus de Guajara | 17 | 2 salidas/día | norte |
+| 608 | Lanzadera ULL · Los Realejos — Campus de Guajara | 11 | 2 salidas/día | norte |
+| 611 | Lanzadera ULL · Costa Adeje — Campus de Guajara | 12 | 4 salidas/día | sur |
+| 909 | Intercambiador — Barrio de la Alegría | 13 | 30 min | municipal |
+
+**489 paradas y 2.987 puntos de vía nuevos, y cero claves de catálogo que
+inventar**: las 3.906 paradas del GTFS ya estaban todas en `TITSA_PARADAS`.
+La peor parada queda a **51 m** de su propio trazado.
+
+## La frecuencia, medida en un día real
+
+El primer cálculo mezclaba calendarios y salía basura: la 475 daba «102 min»
+teniendo 25 viajes en 12 horas. **`stop_times.txt` acumula todos los días de
+servicio a la vez**, así que el hueco entre salidas no significa nada si no se
+fija un día.
+
+Rehecho con `calendar_dates.txt`, **el día más cargado de cada línea**, y ahí
+los números se sostienen: la 112 son 64 salidas un martes de 06:00 a 21:40, y
+la 475 son 5 salidas, que es lo que se escribe en vez de un intervalo falso.
+Con menos de 8 salidas se pone «N salidas/día»; con 8 o más, el intervalo
+mediano redondeado a 5 minutos.
+
+La **611** parecía un error con 188 minutos de viaje. No lo es: un viaje suyo
+sale de Estación Costa Adeje a las 06:35 y llega al Hospital Universitario a
+las 09:42, bajando por Los Cristianos, San Isidro, El Porís, Güímar y
+Candelaria. Es una lanzadera universitaria que recorre media isla.
+
+## Sin precio, a propósito
+
+**Estas 18 van sin `precio`.** El GTFS de TITSA no trae `fare_attributes.txt`
+ni `fare_rules.txt`, así que la tarifa no se puede medir — y no se inventa. El
+globo ya no pinta el `💶` suelto cuando el campo falta, así que no se ve un
+hueco. Son 19 líneas sin precio contando la 449.
+
+## Lo que cambia
+
+| | antes del paso 1 | ahora |
+|---|---|---|
+| Líneas | 178 | **183** |
+| Paradas | 5.189 | **6.263** |
+| Cobertura del GTFS | 163 de 181 | **181 de 181** |
+| Sin `via` | 35 | **0** |
+| Escritas a mano | 35 | **0** |
+
+**La app tiene ahora la red de TITSA entera**, más las dos del tranvía. De las
+2.514 marquesinas del catálogo, 2.304 tienen al menos una línea que pasa.
+
+## Comprobado después
+
+```
+los 10 controles                       pasan  (181 líneas hidratadas)
+32 scripts en línea                    compilan
+carga en Chromium                      0 errores de página
+los 8 idiomas                          0 botones vacíos · 0 undefined
+paradas a más de 200 m del trazado     4 de 6.263  (las 18 nuevas: ninguna)
+botón de aeropuerto sur                7 líneas · 169 capas · 128 ms
+```
+
+El aeropuerto sur pasa de 6 líneas a 7: la **114** termina en Aeropuerto
+Tenerife Sur y el filtro la reconoce sola, por `stop_id`.
+
+## Queda abierto
+
+**El grupo `municipal` se muestra con la etiqueta «🟠 Lanzaderas»** en los 8
+idiomas (`busTypeShuttle`, línea ~22413). Son 62 líneas urbanas y comarcales
+—la 910 de Santa Cruz a Las Teresitas, la 461 de El Cercado a Los Gigantes— y
+«lanzadera» no las describe. Ahora además hay cuatro lanzaderas de verdad, las
+de la ULL, repartidas entre `norte` y `sur` por geografía. Arreglarlo pide una
+clave nueva en los 8 idiomas; no se ha tocado.
