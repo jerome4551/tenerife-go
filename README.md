@@ -1,7 +1,8 @@
 # Tenerife Go
 
-Guía de Tenerife en forma de PWA: un mapa con 760 lugares verificados,
-traducida a 8 idiomas, que funciona sin conexión una vez cargada.
+Guía de Tenerife en forma de PWA: un mapa con 765 lugares verificados y la
+red entera de guaguas y tranvía, traducida a 8 idiomas, que funciona sin
+conexión una vez cargada.
 
 Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
@@ -11,7 +12,7 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
 | Fichero | Qué es |
 |---|---|
-| `index.html` | **La aplicación entera**: 27.780 líneas, 3 MB. HTML, CSS y JavaScript en un solo fichero, y dentro también los datos de los 760 lugares. |
+| `index.html` | **La aplicación entera**: 34.478 líneas, 4,2 MB (1,27 MB comprimidos). HTML, CSS y JavaScript en un solo fichero, y dentro los 765 lugares y las 183 líneas. |
 | `sw.js` | Service worker. Caché offline y notificaciones push. |
 | `manifest.webmanifest` | Manifiesto PWA: iconos, color de tema, `display: standalone`. |
 | `enviar-notificacion.js` | Script de Node que envía la notificación diaria. Corre en GitHub Actions, nunca en el navegador. |
@@ -19,6 +20,8 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 | `vendor/` | Leaflet 1.9.4 y Leaflet.markercluster 1.5.3, alojados aquí en vez de en un CDN. |
 | `supabase/*.sql` | Las tablas y sus políticas de seguridad, para poder recrear el proyecto. |
 | `.github/workflows/` | El cron de la notificación diaria. |
+| `tools/` | `verificar_red.js` (los 10 controles de la red), `extract_js.py` y `gtfs_red.py`. |
+| `AUDITORIA-FINAL.md` | Estado del proyecto, auditoría, lo que falta y las trampas conocidas. |
 
 Es un monolito a propósito, no un proyecto a medio modularizar. No hay
 build, ni dependencias que instalar, ni paso de compilación: se sirve
@@ -40,7 +43,7 @@ manifiesto necesitan un origen `http://`.
 
 ### Lugares
 
-Los 760 lugares viven en el array `places[]` dentro de `index.html`.
+Los 765 lugares viven en el array `places[]` dentro de `index.html`.
 Cada uno es un objeto así:
 
 ```js
@@ -85,64 +88,55 @@ Una categoría sin nombre en un idioma **no da error: el chip
 desaparece**. Ese silencio ya escondió los parkings una vez, y seis
 categorías en italiano otra. Merece la pena comprobarlo al añadir una.
 
-### Guaguas
+### Guaguas y tranvía
 
-`TITSA_LINES` tiene 36 líneas con 221 paradas. Ese número **no se
-escribe en ninguna parte**: el subtítulo del panel lleva `{n}` en los 8
-idiomas y el render lo sustituye por `TITSA_LINES.length`. Decía 17
-durante mucho tiempo.
+`TITSA_LINES` tiene **183 líneas y 6.263 paradas**: las 181 del GTFS oficial de
+TITSA más L1 y L2 del tranvía. Ese número **no se escribe en ninguna parte**: el
+subtítulo del panel lleva `{n}` en los 8 idiomas y el render lo sustituye por
+`TITSA_LINES.length`.
 
-Cada línea lleva `frecuencia` y `precio` como texto libre, y
-`parseFrequencyMinutes()` saca de ahí los minutos de espera para el
-planificador. `nota` es opcional y sí va traducida a los 8 idiomas: es
-donde caben los horarios de una línea de salidas fijas, que no se pueden
-resumir en una frecuencia.
+**Las paradas no se guardan en la línea.** `TITSA_PARADAS` es un catálogo de
+2.514 marquesinas físicas, con los `stop_id` del GTFS agrupados por par
+ida/vuelta en el campo `s`. Cada línea guarda `paradas` como lista de claves y
+`terminales` como par, y un IIFE justo debajo de `TITSA_LINES` los hidrata a
+objetos al arrancar. **Un script que lea el fichero sin hidratar no falla:
+devuelve `undefined`.** Hay un cargador que hidrata en `tools/verificar_red.js`.
 
-Reconoce tres formas, por este orden: horas (`~1 h`), rangos y valores en
-minutos (`30-60 min`, `30 min`) y expediciones al día (`3-5/día`,
-`1 servicio/día`, `L-V, pocas salidas/día`). Lo último no es una
-frecuencia sino un horario, así que reparte los viajes en una jornada de
-12 h; sin cifra asume 2, el mínimo que implica un servicio de mañana y
-tarde. Antes caía al valor por defecto y **una guagua que pasa una vez al
-día se ofrecía como si viniera cada media hora** —las dos del Teide lo
-hacían—. Si no reconoce nada usa 30 minutos.
+Cada línea lleva además `via`: el trazado real de la carretera, sacado de
+`shapes.txt` y simplificado con Douglas-Peucker a 12 m. Son 26.593 puntos entre
+las 183. Se dibuja como **una sola polilínea**; trocearla subía el botón de
+aeropuerto de 31 a 467 ms.
 
-Las nocturnas (`Madrugada`, `23:30 · 01:30 · 03:05`) siguen cayendo en
-ese valor por defecto. Es lo que queda por hacer aquí.
+`frecuencia` y `precio` son texto libre, y `parseFrequencyMinutes()` saca de ahí
+los minutos de espera para el planificador. Reconoce tres formas, por este
+orden: horas (`~1 h`), rangos y valores en minutos (`30-60 min`, `30 min`) y
+expediciones al día (`4 salidas/día`, `L-V, pocas salidas/día`). Lo último no es
+una frecuencia sino un horario, así que reparte los viajes en una jornada de
+12 h; sin cifra asume 2. Antes caía al valor por defecto y **una guagua que pasa
+una vez al día se ofrecía como si viniera cada media hora**. Si no reconoce nada
+usa 30 minutos. Las nocturnas (`Madrugada`) siguen cayendo en ese valor por
+defecto: es lo que queda por hacer aquí.
 
-Las paradas son una simplificación del recorrido, no la lista completa:
-varias líneas cubren todo su trayecto con tres o cuatro. En la 461 y la
-462 esa poda se lleva justo lo que les da sentido —los pueblos altos,
-Arguayo, Tamaimo, Chío—, porque de esos núcleos no hay coordenada
-verificada. Van marcadas en el código.
+**19 líneas van sin `precio`** —las 18 añadidas desde el GTFS y la 449— porque
+el GTFS no trae `fare_attributes.txt` y la tarifa no se inventa. El globo no
+pinta el `💶` suelto cuando el campo falta.
 
-El planificador agrupa las paradas por coordenada redondeada a cuatro
-decimales, así que **dos líneas solo hacen transbordo si comparten la
-coordenada exacta**. Por eso una parada que ya existe en otra línea se
-copia con la coordenada que ya tiene, aunque `places[]` dé otra: a 200 m
-ya son dos sitios distintos. Alcalá llegó a figurar con dos coordenadas
-separadas 3,7 km y el planificador la trataba como dos pueblos.
+El planificador agrupa las paradas por coordenada redondeada a cuatro decimales,
+así que **dos líneas solo hacen transbordo si comparten la coordenada exacta**.
+Como todas las paradas salen ahora del mismo catálogo, eso ya no depende de
+copiar coordenadas a mano. Alcalá llegó a figurar con dos coordenadas separadas
+3,7 km y el planificador la trataba como dos pueblos.
 
-Día y noche sí son nodos distintos a propósito: las búho paran en los
-cruces de la autopista (`Cruce Arico`) y las diurnas en el casco
-(`Arico`), a kilómetros de distancia. No se deben unificar.
+Día y noche sí son nodos distintos a propósito: las búho paran en los cruces de
+la autopista (`Cruce Arico`) y las diurnas en el casco (`Arico`), a kilómetros de
+distancia. No se deben unificar.
 
-Un mismo número puede salir dos veces, una de día y otra de noche: la
-101, la 711 y la 473 lo hacen. Lo que distingue las entradas es el `id`
-—`bus-711` frente a `bus-711N`—, que es lo que usan todas las búsquedas
-del código; `numero` solo se pinta.
+Lo que distingue dos entradas con el mismo número es el `id` —`bus-711` frente a
+`bus-711N`—, que es lo que usan todas las búsquedas del código; `numero` solo se
+pinta. Hoy no hay ningún número compartido por dos líneas.
 
-El planificador agrupa las paradas por coordenada redondeada a cuatro
-decimales, así que **dos líneas solo hacen transbordo si comparten la
-coordenada exacta**. Por eso las paradas repetidas se copian de
-`places[]` en vez de reescribirlas a mano: Alcalá figuraba con dos
-coordenadas distintas separadas 3,7 km y el planificador la trataba como
-dos sitios.
-
-Un mismo número puede salir dos veces, una de día y otra de noche: la
-101, la 711 y la 473 lo hacen. Lo que distingue las entradas es el `id`
-—`bus-711` frente a `bus-711N`—, que es lo que usan todas las búsquedas
-del código; `numero` solo se pinta.
+Las líneas se agrupan en el panel por `tipo`: `tranvia`, `norte`, `sur`,
+`aeropuerto`, `teide`, `municipal`, `nocturna` y `lanzadera`.
 
 ---
 
@@ -247,9 +241,6 @@ Conocido y sin resolver:
   `router.project-osrm.org`, que es un servidor de demostración público,
   y a `nominatim.openstreetmap.org`, cuya política de uso además pide un
   User-Agent identificable.
-- **No hay pantallas de bienvenida en iOS.** Había 11 etiquetas
-  apuntando a `splash-*.png` que nunca existieron; se retiraron. Para
-  recuperarlas hay que crear antes las imágenes.
 - **`leaflet.markercluster` desborda la pila** en `zoomToShowLayer` con
   ciertos marcadores. Es anterior a la revisión de seguridad y sigue
   ahí.
