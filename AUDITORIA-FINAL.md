@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 7233fe61df530a4564357c913c587eb3
-             4.170.684 bytes · 1.272.059 comprimidos · 34.478 líneas
+index.html   md5 5f5801369d552c36bc7c7bab3bf4bc43
+             4.173.360 bytes · 1.272.652 comprimidos · 34.478 líneas
 ```
 
 ---
@@ -205,11 +205,8 @@ decisión de arquitectura, no un arreglo.
 
 ## Se puede hacer, hace falta un dato
 
-- **73 paradas sin municipio.** No se puede sacar del GTFS: `stops.txt` solo
-  tiene `stop_id, stop_name, stop_lat, stop_lon, stop_url`. La vía limpia es
-  cruzar la coordenada con los **polígonos de término municipal** del IGN o
-  IDECanarias — no es geocodificar por nombre, es mirar dentro de qué límite
-  oficial cae un punto que ya tenemos.
+- ~~73 paradas sin municipio~~ **cerrado**: cruzadas con los límites
+  municipales del Cabildo. Las 2.514 tienen municipio y son los 31 de la isla.
 - **105 líneas afirman un importe cerrado y cruzan más de un municipio.**
   TITSA no cobra por línea, cobra por trayecto: la tarifa depende de las zonas
   entre origen y destino, así que «el precio de la 111» no existe como dato —
@@ -223,8 +220,8 @@ decisión de arquitectura, no un arreglo.
 - **351 rótulos repetidos, que son 863 paradas.** El GTFS llama «Cementerio» a
   nueve paradas repartidas en 47 km. Ninguno es par ida/vuelta a menos de 80 m:
   son sitios distintos de verdad. La fila del buscador pinta el rótulo y las
-  líneas pero **no el municipio**, que sí está en el catálogo para 2.441 de las
-  2.514. Añadirlo a la fila las distingue sin inventar nada.
+  líneas pero **no el municipio**, que ahora está en las 2.514. Añadirlo a la
+  fila las distingue sin inventar nada.
 - **210 marquesinas del catálogo no las muestra ninguna línea, y las 210 las
   visita algún viaje del GTFS**: 41.475 viajes al año paran donde la app no
   enseña nada, y 19 de ellas superan los 500. La causa es estructural: cada
@@ -308,6 +305,13 @@ decisión de arquitectura, no un arreglo.
     leyenda de banderas.
 22. **Un nombre de sitio no es un dato** hasta que tiene coordenada y esa
     coordenada cae donde debe. Si no está en `stops.txt`, no entra.
+23. **Que un parche verifique su método no verifica su resultado.** El cruce de
+    municipios traía tres comprobaciones correctas del shapefile —bbox, área,
+    31 municipios— y aun así asignaba **Tegueste al revés**: quería mover a La
+    Laguna 15 paradas que ya estaban bien, entre ellas la parada llamada
+    «Tegueste», y se dejaba otras 30. Se rehizo el cruce entero por separado.
+    El control que lo caza no es repetir el método: es que **cero paradas caigan
+    en dos polígonos** y que las 2.514 caigan en alguno.
 
 ---
 
