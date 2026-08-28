@@ -305,7 +305,17 @@ decisión de arquitectura, no un arreglo.
     leyenda de banderas.
 22. **Un nombre de sitio no es un dato** hasta que tiene coordenada y esa
     coordenada cae donde debe. Si no está en `stops.txt`, no entra.
-23. **Que un parche verifique su método no verifica su resultado.** El cruce de
+23. **La herramienta de auditoría vive en `tools/`, no en el scratchpad.** El
+    contenedor se reaprovisiona y se lleva el scratchpad entero; el repo es lo
+    único que sobrevive. Pasó una vez y hubo que reescribir todo el arnés.
+24. **Al reaprovisionar, el clon se sitúa en la rama designada, no en `main`.**
+    Parece que el trabajo se ha perdido y no es así: está en `origin/main`.
+    Se comprueba con `git log --oneline -3 origin/main` antes de tocar nada.
+25. **Un control que da un falso positivo acaba enseñando a ignorarlo.** El
+    barrido marcaba `window.open` sin `noopener` porque el regex cortaba en el
+    primer `)`, dentro de `encodeURIComponent(...)`. Se equilibran los
+    paréntesis: un aviso que siempre es mentira es peor que no tenerlo.
+26. **Que un parche verifique su método no verifica su resultado.** El cruce de
     municipios traía tres comprobaciones correctas del shapefile —bbox, área,
     31 municipios— y aun así asignaba **Tegueste al revés**: quería mover a La
     Laguna 15 paradas que ya estaban bien, entre ellas la parada llamada
@@ -318,9 +328,21 @@ decisión de arquitectura, no un arreglo.
 # 5 · Cómo se vuelve a medir
 
 ```bash
-node tools/verificar_red.js          # los 10 controles de la red
-python3 tools/extract_js.py && for f in chk/*.js; do node --check "$f"; done
+bash tools/auditar.sh                # todo: sintaxis, red, datos, seguridad, idiomas
 ```
+
+Y cada bloque por separado, si hace falta:
+
+| | |
+|---|---|
+| `tools/cargar.js` | cargador comun: devuelve la red **ya hidratada** |
+| `tools/verificar_red.js` | los 10 controles de la red |
+| `tools/auditar_datos.js` | catálogo, líneas, trazado y lugares |
+| `tools/auditar_seguridad.py` | barrido de inyección, CSP y codificación |
+| `tools/auditar_xss.js` | regresión con datos hostiles, en navegador |
+| `tools/auditar_web.js` | idiomas, arranque y rendimiento, en navegador |
+| `tools/extract_js.py` | extrae los `<script>` para `node --check` |
+| `tools/gtfs_red.py` | regenera la red desde un GTFS completo |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con
