@@ -63,6 +63,24 @@ crudo = [l for l in re.findall(r'.*\$\{(?:stop|line|l)\.(?:nombre|numero|municip
 print('  interpolaciones sin escapar  : %d' % len(crudo))
 for c in crudo[:5]: print('    ' + c.strip()[:110])
 
+print('\n=== textos visibles escritos a pelo ===')
+# La auditoria de idiomas solo mira las tablas: no ve un literal en español
+# metido en una plantilla. Este control es el que caza esos.
+ES = (r'(?:l\u00ednea|paradas?|l\u00edneas|sin resultados|cargando|buscar|guagua|'
+      r'aqu\u00ed|volver|cerrar|siguiente|ninguna|no hay|elegir|toca|pulsa)')
+fijos = []
+for m in re.finditer(r'\.(?:textContent|innerText|placeholder)\s*=\s*'
+                     r'(`[^`]{0,220}`|\'[^\']{0,220}\'|"[^"]{0,220}")', s):
+    lit = m.group(1)
+    if not re.search(ES, lit, re.I): continue
+    # el acceso al idioma puede ir ANTES del literal, como fallback
+    ctx = s[max(0, m.start() - 120):m.end()]
+    if re.search(r'L_\.|\bt\(\)|\btx\(|LANGS|\|\|', ctx): continue
+    fijos.append((s.count('\n', 0, m.start()) + 1, lit.replace('\n', ' ')[:88]))
+print('  literales en español sin pasar por el idioma: %d' % len(fijos))
+for ln, t in fijos[:10]:
+    print('    <--  linea %-6d %s' % (ln, t))
+
 print('\n=== service worker ===')
 print('  tipos de mensaje aceptados   : %s' % ', '.join(sorted(set(re.findall(r"d\.type === '(\w+)'", sw))) or ['-']))
 print('  clients.claim / skipWaiting  : %s / %s' % ('si' if 'clients.claim' in sw else 'no',

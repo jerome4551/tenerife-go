@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 5f5801369d552c36bc7c7bab3bf4bc43
-             4.173.360 bytes · 1.272.652 comprimidos · 34.478 líneas
+index.html   md5 a69645c8fbfe49d5bd4dbfdff2e84538
+             4.176.286 bytes · 1.273.286 comprimidos · 34.478 líneas
 ```
 
 ---
@@ -217,11 +217,10 @@ decisión de arquitectura, no un arreglo.
 
 ## Decisión pendiente
 
-- **351 rótulos repetidos, que son 863 paradas.** El GTFS llama «Cementerio» a
-  nueve paradas repartidas en 47 km. Ninguno es par ida/vuelta a menos de 80 m:
-  son sitios distintos de verdad. La fila del buscador pinta el rótulo y las
-  líneas pero **no el municipio**, que ahora está en las 2.514. Añadirlo a la
-  fila las distingue sin inventar nada.
+- ~~351 rótulos repetidos sin distinguir~~ **cerrado**: la fila del buscador
+  pinta el municipio. «Cementerio» daba cinco filas con texto idéntico y ahora
+  da cero. Los 351 rótulos siguen ahí —son sitios distintos de verdad— pero ya
+  se distinguen.
 - **210 marquesinas del catálogo no las muestra ninguna línea, y las 210 las
   visita algún viaje del GTFS**: 41.475 viajes al año paran donde la app no
   enseña nada, y 19 de ellas superan los 500. La causa es estructural: cada
@@ -311,11 +310,18 @@ decisión de arquitectura, no un arreglo.
 24. **Al reaprovisionar, el clon se sitúa en la rama designada, no en `main`.**
     Parece que el trabajo se ha perdido y no es así: está en `origin/main`.
     Se comprueba con `git log --oneline -3 origin/main` antes de tocar nada.
-25. **Un control que da un falso positivo acaba enseñando a ignorarlo.** El
+25. **La auditoría de idiomas solo ve las tablas.** Un literal en español
+    metido en una plantilla no lo caza ninguna comprobación de claves: las
+    cabeceras del buscador decían «17 paradas» en los ocho idiomas y tres
+    textos del planificador iban en español fijo. Lo vi en una captura, no en
+    el arnés. Ahora hay un control de literales visibles sin `L_`/`tx()`.
+26. **Un número en la interfaz tiene que ser el que se pinta.** La cabecera
+    contaba 17 coincidencias y la lista se recortaba a 15 sin decirlo.
+27. **Un control que da un falso positivo acaba enseñando a ignorarlo.** El
     barrido marcaba `window.open` sin `noopener` porque el regex cortaba en el
     primer `)`, dentro de `encodeURIComponent(...)`. Se equilibran los
     paréntesis: un aviso que siempre es mentira es peor que no tenerlo.
-26. **Que un parche verifique su método no verifica su resultado.** El cruce de
+28. **Que un parche verifique su método no verifica su resultado.** El cruce de
     municipios traía tres comprobaciones correctas del shapefile —bbox, área,
     31 municipios— y aun así asignaba **Tegueste al revés**: quería mover a La
     Laguna 15 paradas que ya estaban bien, entre ellas la parada llamada
@@ -338,7 +344,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/cargar.js` | cargador comun: devuelve la red **ya hidratada** |
 | `tools/verificar_red.js` | los 10 controles de la red |
 | `tools/auditar_datos.js` | catálogo, líneas, trazado y lugares |
-| `tools/auditar_seguridad.py` | barrido de inyección, CSP y codificación |
+| `tools/auditar_seguridad.py` | inyección, CSP, codificación y textos fijos sin traducir |
 | `tools/auditar_xss.js` | regresión con datos hostiles, en navegador |
 | `tools/auditar_web.js` | idiomas, arranque y rendimiento, en navegador |
 | `tools/extract_js.py` | extrae los `<script>` para `node --check` |

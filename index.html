@@ -3776,6 +3776,19 @@ window.onunhandledrejection = function(e) {
     gap: var(--space-1);
     flex-wrap: wrap;
   }
+  /* El municipio, para distinguir las 863 paradas con rotulo repetido: el
+     GTFS llama «Cementerio» a nueve de ellas, repartidas en 47 km. Va en la
+     misma fila que las insignias para no crecer de alto. */
+  .bus-stop-result-muni {
+    font-size: 0.58rem;
+    color: var(--muted);
+    opacity: 0.85;
+    max-width: 11rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .bus-stop-result-muni::after { content: '·'; margin-left: var(--space-1); opacity: 0.6; }
   .bus-stop-result-line-badge {
     background: rgba(255,255,255,0.06);
     padding: 0 4px;
@@ -6641,6 +6654,11 @@ banderasTitulo: '¿Qué significa cada bandera?',
     busTitsaLink: '🔗 Ver horarios en titsa.com',
     busTranviaPanel: '🚊 Panel en directo · metrotenerife.com',
     busSearchPlaceholder: 'Buscar parada o línea...',
+    busSearchLine: '📋 {n} línea',
+    busSearchLines: '📋 {n} líneas',
+    busSearchStop: '📍 {n} parada',
+    busSearchStops: '📍 {n} paradas',
+    busSearchStopsCap: '📍 {n} de {total} paradas',
     busNoResults: 'Sin resultados',
     busOfficialLink: '🔗 titsa.com · metrotenerife.com — horarios oficiales',
     busFreqLabel: 'Frecuencia',
@@ -6802,6 +6820,11 @@ banderasTitulo: 'What does each flag mean?',
     busTitsaLink: '🔗 View schedule on titsa.com',
     busTranviaPanel: '🚊 Live panel · metrotenerife.com',
     busSearchPlaceholder: 'Search stop or line...',
+    busSearchLine: '📋 {n} line',
+    busSearchLines: '📋 {n} lines',
+    busSearchStop: '📍 {n} stop',
+    busSearchStops: '📍 {n} stops',
+    busSearchStopsCap: '📍 {n} of {total} stops',
     busNoResults: 'No results',
     busOfficialLink: '🔗 titsa.com · metrotenerife.com — official schedules',
     busFreqLabel: 'Frequency',
@@ -6963,6 +6986,11 @@ banderasTitulo: 'Que signifie chaque drapeau ?',
     busTitsaLink: '🔗 Voir horaires sur titsa.com',
     busTranviaPanel: '🚊 Panneau en direct · metrotenerife.com',
     busSearchPlaceholder: 'Rechercher arrêt ou ligne...',
+    busSearchLine: '📋 {n} ligne',
+    busSearchLines: '📋 {n} lignes',
+    busSearchStop: '📍 {n} arrêt',
+    busSearchStops: '📍 {n} arrêts',
+    busSearchStopsCap: '📍 {n} sur {total} arrêts',
     busNoResults: 'Aucun résultat',
     busOfficialLink: '🔗 titsa.com · metrotenerife.com — horaires officiels',
     busFreqLabel: 'Fréquence',
@@ -7124,6 +7152,11 @@ banderasTitulo: 'Was bedeutet welche Flagge?',
     busTitsaLink: '🔗 Fahrplan auf titsa.com',
     busTranviaPanel: '🚊 Live-Anzeige · metrotenerife.com',
     busSearchPlaceholder: 'Haltestelle oder Linie suchen...',
+    busSearchLine: '📋 {n} Linie',
+    busSearchLines: '📋 {n} Linien',
+    busSearchStop: '📍 {n} Haltestelle',
+    busSearchStops: '📍 {n} Haltestellen',
+    busSearchStopsCap: '📍 {n} von {total} Haltestellen',
     busNoResults: 'Keine Ergebnisse',
     busOfficialLink: '🔗 titsa.com · metrotenerife.com — offizielle Fahrpläne',
     busFreqLabel: 'Frequenz',
@@ -7289,6 +7322,11 @@ banderasTitulo: 'Che cosa significa ogni bandiera?',
     busTitsaLink: '🔗 Vedi orari su titsa.com',
     busTranviaPanel: '🚊 Pannello in diretta · metrotenerife.com',
     busSearchPlaceholder: 'Cerca fermata o linea...',
+    busSearchLine: '📋 {n} linea',
+    busSearchLines: '📋 {n} linee',
+    busSearchStop: '📍 {n} fermata',
+    busSearchStops: '📍 {n} fermate',
+    busSearchStopsCap: '📍 {n} di {total} fermate',
     busNoResults: 'Nessun risultato',
     busOfficialLink: '🔗 titsa.com · metrotenerife.com — orari ufficiali',
     busFreqLabel: 'Frequenza',
@@ -7448,6 +7486,11 @@ banderasTitulo: 'Wat betekent elke vlag?',
     busTitsaLink: '🔗 Zie dienstregeling op titsa.com',
     busTranviaPanel: '🚊 Live paneel · metrotenerife.com',
     busSearchPlaceholder: 'Zoek halte of lijn...',
+    busSearchLine: '📋 {n} lijn',
+    busSearchLines: '📋 {n} lijnen',
+    busSearchStop: '📍 {n} halte',
+    busSearchStops: '📍 {n} haltes',
+    busSearchStopsCap: '📍 {n} van {total} haltes',
     busNoResults: 'Geen resultaten',
     busOfficialLink: '🔗 titsa.com · metrotenerife.com — officiële tijden',
     busFreqLabel: 'Frequentie',
@@ -7613,6 +7656,11 @@ banderasTitulo: '每种旗帜是什么意思？',
     busTitsaLink: '🔗 在 titsa.com 查看时刻表',
     busTranviaPanel: '🚊 实时看板 · metrotenerife.com',
     busSearchPlaceholder: '搜索站点或线路...',
+    busSearchLine: '📋 {n} 条线路',
+    busSearchLines: '📋 {n} 条线路',
+    busSearchStop: '📍 {n} 个站点',
+    busSearchStops: '📍 {n} 个站点',
+    busSearchStopsCap: '📍 {total} 个站点中的 {n} 个',
     busNoResults: '无结果',
     busOfficialLink: '🔗 titsa.com · metrotenerife.com — 官方时刻表',
     busFreqLabel: '频率',
@@ -8071,6 +8119,11 @@ banderasTitulo: '每種旗幟是什麼意思？',
     busTitsaLink: '🔗 在 titsa.com 查看時刻表',
     busTranviaPanel: '🚊 即時看板 · metrotenerife.com',
     busSearchPlaceholder: '搜尋站點或路線...',
+    busSearchLine: '📋 {n} 條路線',
+    busSearchLines: '📋 {n} 條路線',
+    busSearchStop: '📍 {n} 個站點',
+    busSearchStops: '📍 {n} 個站點',
+    busSearchStopsCap: '📍 {total} 個站點中的 {n} 個',
     busNoResults: '無結果',
     busOfficialLink: '🔗 titsa.com · metrotenerife.com — 官方時刻表',
     busFreqLabel: '頻率',
@@ -14893,12 +14946,12 @@ function clearStop(type, e) {
   if (e) e.stopPropagation();
   if (type === 'origin') {
     routeOrigin = null;
-    document.getElementById('stop-origin-name').textContent = 'Toca aquí para elegir…';
+    document.getElementById('stop-origin-name').textContent = tx('routePickHint') || 'Toca aquí para elegir…';
     document.getElementById('stop-origin-name').classList.add('placeholder');
     document.getElementById('stop-origin-clear').classList.remove('visible');
   } else {
     routeDest = null;
-    document.getElementById('stop-dest-name').textContent = 'Toca aquí para elegir…';
+    document.getElementById('stop-dest-name').textContent = tx('routePickHint') || 'Toca aquí para elegir…';
     document.getElementById('stop-dest-name').classList.add('placeholder');
     document.getElementById('stop-dest-clear').classList.remove('visible');
   }
@@ -15821,7 +15874,7 @@ function clearRoute() {
   routeDest   = null;
   ['origin','dest'].forEach(type => {
     const nameEl = document.getElementById('stop-' + type + '-name');
-    nameEl.textContent = 'Toca aquí para elegir…';
+    nameEl.textContent = tx('routePickHint') || 'Toca aquí para elegir…';
     nameEl.classList.add('placeholder');
     document.getElementById('stop-' + type + '-clear').classList.remove('visible');
   });
@@ -22753,7 +22806,9 @@ function renderBusSearchResults(list) {
   if (matchedLines.length > 0) {
     const header = document.createElement('div');
     header.className = 'bus-search-results-header';
-    header.textContent = `📋 ${matchedLines.length} línea${matchedLines.length>1?'s':''}`;
+    header.textContent = (matchedLines.length === 1
+      ? (L_.busSearchLine  || '📋 {n} línea')
+      : (L_.busSearchLines || '📋 {n} líneas')).replace('{n}', matchedLines.length);
     list.appendChild(header);
 
     matchedLines.forEach(line => {
@@ -22781,10 +22836,18 @@ function renderBusSearchResults(list) {
   if (matchedStops.length > 0) {
     const header = document.createElement('div');
     header.className = 'bus-search-results-header';
-    header.textContent = `📍 ${matchedStops.length} parada${matchedStops.length>1?'s':''}`;
+    /* La lista se recorta a 15: la cabecera lo dice, en vez de anunciar 17 y
+       pintar 15. */
+    const TOPE = 15;
+    const mostradas = Math.min(matchedStops.length, TOPE);
+    header.textContent = (matchedStops.length > TOPE
+      ? (L_.busSearchStopsCap || '📍 {n} de {total} paradas').replace('{total}', matchedStops.length)
+      : matchedStops.length === 1 ? (L_.busSearchStop  || '📍 {n} parada')
+                                  : (L_.busSearchStops || '📍 {n} paradas')
+      ).replace('{n}', mostradas);
     list.appendChild(header);
 
-    matchedStops.slice(0, 15).forEach(({stop, lines}) => {
+    matchedStops.slice(0, TOPE).forEach(({stop, lines}) => {
       const row = document.createElement('div');
       row.className = 'bus-stop-result';
       row.onclick = () => goToBusStop(stop, lines);
@@ -22795,7 +22858,8 @@ function renderBusSearchResults(list) {
         <span class="bus-stop-result-icon">${stop.esTerminal ? '🏁' : '🚏'}</span>
         <div class="bus-stop-result-info">
           <div class="bus-stop-result-name">${escapeHtml(stop.nombre)}</div>
-          <div class="bus-stop-result-lines">${linesBadges}</div>
+          <div class="bus-stop-result-lines">${stop.municipio
+            ? `<span class="bus-stop-result-muni">${escapeHtml(stop.municipio)}</span>` : ''}${linesBadges}</div>
         </div>
       `;
       list.appendChild(row);
