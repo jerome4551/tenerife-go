@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 b9df8dec7627d932e05cf9f8231ff6ad
-             4.235.010 bytes · 1.280.056 comprimidos · 34.478 líneas
+index.html   md5 839c0ac3c8fd027823e473c1a556affb
+             4.237.879 bytes · 1.280.335 comprimidos · 34.478 líneas
 ```
 
 ---
@@ -41,6 +41,33 @@ paradas visibles en el buscador   2.304 → 2.514
 referencias línea-parada          5.827 → 7.348
 paradas que ganan alguna línea      787   ·   que pierden: 0
 ```
+
+## El precio: TITSA cobra por kilómetro, no por línea
+
+No hay zonas: **hay tarifa kilométrica**, con un mínimo, y la web oficial pide
+línea, parada de origen y parada de destino para calcularla. La consecuencia es
+que **ninguna línea interurbana de más de dos paradas tiene un precio único**:
+tres paradas ya son tres precios.
+
+La clasificación no se deduce: la da el propio operador en `route_color` de
+`routes.txt`.
+
+```
+75AD1C  interurbana         125   tarifa kilométrica  → «desde 1,45 €» + enlace
+3F8FCF  urbana Santa Cruz    37   tarifa urbana plana → importe único
+4F1780  urbana La Laguna     14   tarifa urbana plana → importe único
+5C0A8A  lanzadera ULL         4   kilométrica
+E83642  la 449                1   kilométrica
+```
+
+**130 líneas dicen «desde» y 51 llevan importe plano.** El enlace de cada una va
+a su página oficial, donde está la calculadora por origen y destino; la URL sale
+del `route_url` del GTFS y se deriva del número, verificada contra las 181.
+
+Dos datos que están en la tarifa y no en el GTFS: los trayectos de más de 20 km
+llevan **10 % de descuento en el billete de ida y vuelta** —está en el panel de
+pago, en los 8 idiomas— y las líneas **342 y 348 al Teide están excluidas de la
+tarjeta ten+**, que va en su `nota`.
 
 ## La red, línea por línea
 
@@ -218,20 +245,18 @@ decisión de arquitectura, no un arreglo.
 
 - **13 horarios de socorrista**, esperando a la empresa. `lifeguard` tiene tres
   estados y `false` **afirma** que no hay socorrista: ausente no afirma nada.
-- **La secuencia del tranvía** sigue deducida de `parada_id`, no publicada. El
-  GTFS de Metropolitano lo cerraría. El trazado sí es real (L1 4 m, L2 0 m).
+- **Padre Anchieta**, la única parada de L1 que no es vértice de la polilínea
+  publicada por Metropolitano. El resto de la secuencia **no está deducida**: las
+  25 paradas del CSV oficial son vértices exactos del trazado, así que el orden
+  se lee de él, y la longitud lo confirma —15,05 km medidos frente a los 15,1
+  declarados—. Lo de Padre Anchieta no lo resuelve ningún fichero público: hay
+  que preguntárselo a Metropolitano.
 
 ## Se puede hacer, hace falta un dato
 
 - ~~73 paradas sin municipio~~ **cerrado**: cruzadas con los límites
   municipales del Cabildo. Las 2.514 tienen municipio y son los 31 de la isla.
-- **105 líneas afirman un importe cerrado y cruzan más de un municipio.**
-  TITSA no cobra por línea, cobra por trayecto: la tarifa depende de las zonas
-  entre origen y destino, así que «el precio de la 111» no existe como dato —
-  existe el de La Laguna–Costa Adeje. Las 32 que van con `precioDesde` lo dicen
-  bien. Para las 105 lo correcto sería un rango (del suelo al importe de punta a
-  punta), no un número suelto; el importe que ya está es el de extremo a
-  extremo, así que se conservaría como tope. Falta decidirlo.
+- ~~precios que afirman lo que TITSA no cobra~~ **cerrado**: ver abajo.
 
 ## Decisión pendiente
 
@@ -367,7 +392,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/cargar.js` | cargador comun: devuelve la red **ya hidratada** |
 | `tools/verificar_red.js` | los 10 controles de la red |
 | `tools/auditar_datos.js` | catálogo, líneas, trazado y lugares |
-| `tools/auditar_seguridad.py` | inyección, CSP, codificación y textos fijos sin traducir |
+| `tools/auditar_seguridad.py` | inyección, CSP, codificación, textos fijos y tipografía china |
 | `tools/auditar_xss.js` | regresión con datos hostiles, en navegador |
 | `tools/auditar_web.js` | idiomas, arranque y rendimiento, en navegador |
 | `tools/extract_js.py` | extrae los `<script>` para `node --check` |

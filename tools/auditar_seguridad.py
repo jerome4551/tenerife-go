@@ -81,6 +81,16 @@ print('  literales en español sin pasar por el idioma: %d' % len(fijos))
 for ln, t in fijos[:10]:
     print('    <--  linea %-6d %s' % (ln, t))
 
+print('\n=== tipografia china ===')
+# En chino no se deja espacio detras de los signos de ancho completo, ni se
+# usan los latinos pegados a un hanzi. Lo segundo lo mira auditar_web.js
+# sobre las tablas; esto barre el fuente entero, plantillas incluidas.
+esp = re.findall(r'[\u3002\uff0c\uff1b\uff1a\uff01\uff1f] [\u3400-\u9fff]', s)
+print('  espacio detras de un signo chino : %d' % len(esp))
+for e in sorted(set(esp))[:6]:
+    i = s.find(e)
+    print('    <--  ...%s...' % s[max(0,i-28):i+12].replace('\n', ' '))
+
 print('\n=== service worker ===')
 print('  tipos de mensaje aceptados   : %s' % ', '.join(sorted(set(re.findall(r"d\.type === '(\w+)'", sw))) or ['-']))
 print('  clients.claim / skipWaiting  : %s / %s' % ('si' if 'clients.claim' in sw else 'no',
