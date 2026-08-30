@@ -20,6 +20,23 @@ debe('municipios distintos', Object.keys(muni).length, Object.keys(muni).length 
 const coord = {}; cat.forEach(([k, p]) => { const q = p.la + ',' + p.lo; (coord[q] = coord[q] || []).push(k); });
 P('coordenada duplicada exacta', Object.values(coord).filter(a => a.length > 1).length + '  (viene de stops.txt)');
 
+/* El indice parada -> lineas. No se puede deducir de las secuencias: cada
+   linea guarda un recorrido y TITSA publica varios patrones por linea. */
+const conL = cat.filter(([, p]) => Array.isArray(p.l) && p.l.length);
+debe('con indice de lineas (campo l)', conL.length, conL.length === cat.length);
+const numsApp = new Set(LINES.map(l => String(l.numero)));
+const huerfanas = cat.flatMap(([k, p]) => (p.l || []).filter(n => !numsApp.has(n)).map(n => k + '→' + n));
+debe('numeros del indice sin linea en la app', huerfanas.length, huerfanas.length === 0);
+huerfanas.slice(0, 5).forEach(x => console.log('      ' + x));
+const refs = cat.reduce((a, [, p]) => a + ((p.l || []).length), 0);
+P('referencias linea-parada del indice', refs);
+/* el indice nunca puede decir MENOS que las secuencias: seria perder servicio */
+const seq = {};
+LINES.forEach(l => (l.paradas || []).forEach(s => { if (s.stopId) (seq[s.stopId] = seq[s.stopId] || new Set()).add(String(l.numero)); }));
+let pierden = 0;
+for (const k in seq) { const t = new Set((CAT[k] || {}).l || []); for (const n of seq[k]) if (!t.has(n)) pierden++; }
+debe('lineas que la secuencia ve y el indice no', pierden, pierden === 0);
+
 console.log('\n=== lineas ===');
 debe('lineas', LINES.length, LINES.length === 183);
 const ids = LINES.map(l => l.id);

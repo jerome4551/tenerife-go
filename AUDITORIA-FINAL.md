@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 a69645c8fbfe49d5bd4dbfdff2e84538
-             4.176.286 bytes · 1.273.286 comprimidos · 34.478 líneas
+index.html   md5 b9df8dec7627d932e05cf9f8231ff6ad
+             4.235.010 bytes · 1.280.056 comprimidos · 34.478 líneas
 ```
 
 ---
@@ -23,6 +23,24 @@ index.html   md5 a69645c8fbfe49d5bd4dbfdff2e84538
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht |
 | Ficheros | 39 en el repo · Leaflet y MarkerCluster auto-alojados en `vendor/` |
+
+## Qué lineas paran en cada marquesina
+
+`TITSA_PARADAS[clave].l` es la lista de líneas que sirven esa parada, sacada de
+**todos** los patrones del GTFS. Es lo que leen el buscador y el globo del mapa.
+
+**No se puede deducir de las secuencias**: cada línea guarda un recorrido y
+TITSA publica 861 patrones para 181 líneas, así que lo que solo hace una
+variante desaparece. Y la unión de los patrones **no se puede escribir en
+`paradas`**: si un patrón hace A-B-C y otro A-D-C, el conjunto {A,B,C,D} no
+tiene un orden, y `paradas` es un trayecto que usa el planificador. Escribirla
+ahí inventaría un recorrido que ninguna guagua hace.
+
+```
+paradas visibles en el buscador   2.304 → 2.514
+referencias línea-parada          5.827 → 7.348
+paradas que ganan alguna línea      787   ·   que pierden: 0
+```
 
 ## La red, línea por línea
 
@@ -221,13 +239,11 @@ decisión de arquitectura, no un arreglo.
   pinta el municipio. «Cementerio» daba cinco filas con texto idéntico y ahora
   da cero. Los 351 rótulos siguen ahí —son sitios distintos de verdad— pero ya
   se distinguen.
-- **210 marquesinas del catálogo no las muestra ninguna línea, y las 210 las
-  visita algún viaje del GTFS**: 41.475 viajes al año paran donde la app no
-  enseña nada, y 19 de ellas superan los 500. La causa es estructural: cada
-  línea guarda **un** recorrido, el de más paradas, y una línea de TITSA tiene
-  varios; lo que solo hace otro patrón se cae. La 127 deja fuera 26 ella sola.
-  Se arregla sin tocar el dibujo —`via` lleva la geometría aparte— haciendo que
-  `paradas` sea la unión de los patrones, ordenada proyectando sobre `via`.
+- ~~210 marquesinas invisibles~~ **cerrado**, y resultó ser mayor: el catálogo
+  lleva ahora un índice `parada → líneas` sacado de cruzar los **861 patrones**
+  del GTFS. **787 paradas ganan servicio** —las 210 que no salían y 577 que sí
+  salían con la lista de líneas incompleta— y las referencias pasan de 5.827 a
+  **7.348**. Ninguna pierde nada.
 - **22 de las 34 orientaciones de playa son `deducida`**, sacadas del abanico
   de rayos, que mira a 4, 6 y 8 km y por eso es ciego a lo que abriga en el
   primer kilómetro. Las 12 escritas a mano son las fiables.
@@ -304,24 +320,31 @@ decisión de arquitectura, no un arreglo.
     leyenda de banderas.
 22. **Un nombre de sitio no es un dato** hasta que tiene coordenada y esa
     coordenada cae donde debe. Si no está en `stops.txt`, no entra.
-23. **La herramienta de auditoría vive en `tools/`, no en el scratchpad.** El
+23. **Ordenar paradas proyectándolas sobre `via` no funciona.** Probado contra
+    las 183 líneas cuyo orden ya se conoce: solo 84 lo recuperan. **86 de 183
+    pasan dos o más veces por la misma parada** y 28 son circulares; una parada
+    repetida tiene una posición sobre la vía y dos sitios en la secuencia.
+24. **La unión de patrones no es un camino.** Si un patrón hace A-B-C y otro
+    A-D-C, {A,B,C,D} no tiene orden. La pregunta «qué líneas paran aquí» es un
+    índice, no una secuencia, y se resuelve aparte.
+25. **La herramienta de auditoría vive en `tools/`, no en el scratchpad.** El
     contenedor se reaprovisiona y se lleva el scratchpad entero; el repo es lo
     único que sobrevive. Pasó una vez y hubo que reescribir todo el arnés.
-24. **Al reaprovisionar, el clon se sitúa en la rama designada, no en `main`.**
+26. **Al reaprovisionar, el clon se sitúa en la rama designada, no en `main`.**
     Parece que el trabajo se ha perdido y no es así: está en `origin/main`.
     Se comprueba con `git log --oneline -3 origin/main` antes de tocar nada.
-25. **La auditoría de idiomas solo ve las tablas.** Un literal en español
+27. **La auditoría de idiomas solo ve las tablas.** Un literal en español
     metido en una plantilla no lo caza ninguna comprobación de claves: las
     cabeceras del buscador decían «17 paradas» en los ocho idiomas y tres
     textos del planificador iban en español fijo. Lo vi en una captura, no en
     el arnés. Ahora hay un control de literales visibles sin `L_`/`tx()`.
-26. **Un número en la interfaz tiene que ser el que se pinta.** La cabecera
+28. **Un número en la interfaz tiene que ser el que se pinta.** La cabecera
     contaba 17 coincidencias y la lista se recortaba a 15 sin decirlo.
-27. **Un control que da un falso positivo acaba enseñando a ignorarlo.** El
+29. **Un control que da un falso positivo acaba enseñando a ignorarlo.** El
     barrido marcaba `window.open` sin `noopener` porque el regex cortaba en el
     primer `)`, dentro de `encodeURIComponent(...)`. Se equilibran los
     paréntesis: un aviso que siempre es mentira es peor que no tenerlo.
-28. **Que un parche verifique su método no verifica su resultado.** El cruce de
+30. **Que un parche verifique su método no verifica su resultado.** El cruce de
     municipios traía tres comprobaciones correctas del shapefile —bbox, área,
     31 municipios— y aun así asignaba **Tegueste al revés**: quería mover a La
     Laguna 15 paradas que ya estaban bien, entre ellas la parada llamada
