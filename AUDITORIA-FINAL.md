@@ -42,6 +42,27 @@ referencias línea-parada          5.827 → 7.348
 paradas que ganan alguna línea      787   ·   que pierden: 0
 ```
 
+## El tranvía, cerrado
+
+La secuencia **no está deducida**: las paradas del CSV de Metropolitano son
+vértices de la polilínea que publica la propia empresa, así que el orden se lee
+del trazado.
+
+```
+L1   21 paradas · 20 son vértice exacto (< 0,5 m) · 12,47 km  (oficial 12,5)
+L2    6 paradas ·  6 son vértice exacto           ·  3,42 km  (oficial 3,6)
+```
+
+**Padre Anchieta** es la única que no es vértice, y no hay nada que preguntar:
+cae **entre los vértices 48 y 49, en un tramo recto de 503 m** por la avenida de
+la Trinidad. En un tramo así de largo y recto la polilínea no necesita punto
+intermedio, y la parada queda en medio. Está a **4,0 m del eje de la vía**, que
+es la separación del andén — el mismo orden que el resto de la red, donde el
+peor caso de las guaguas son 61 m y no se discute.
+
+Los 135 m que llegué a escribir eran la distancia **al vértice**, que es la
+medida equivocada. Ver la trampa 2.
+
 ## El precio: TITSA cobra por kilómetro, no por línea
 
 No hay zonas: **hay tarifa kilométrica**, con un mínimo, y la web oficial pide
@@ -245,12 +266,7 @@ decisión de arquitectura, no un arreglo.
 
 - **13 horarios de socorrista**, esperando a la empresa. `lifeguard` tiene tres
   estados y `false` **afirma** que no hay socorrista: ausente no afirma nada.
-- **Padre Anchieta**, la única parada de L1 que no es vértice de la polilínea
-  publicada por Metropolitano. El resto de la secuencia **no está deducida**: las
-  25 paradas del CSV oficial son vértices exactos del trazado, así que el orden
-  se lee de él, y la longitud lo confirma —15,05 km medidos frente a los 15,1
-  declarados—. Lo de Padre Anchieta no lo resuelve ningún fichero público: hay
-  que preguntárselo a Metropolitano.
+- ~~la secuencia del tranvía~~ **cerrado, ver abajo**.
 
 ## Se puede hacer, hace falta un dato
 
@@ -290,9 +306,16 @@ decisión de arquitectura, no un arreglo.
    claves y solo se convierte en objetos al hidratar. Un script que mida `p.lat`
    sin hidratar **no falla: devuelve `undefined` y da cifras falsas**. Pasó tres
    veces, una dando «0 de 14» donde eran 7. Usa un cargador que hidrate siempre.
-2. **Medir al vértice no es medir al trazado.** Con Douglas-Peucker los vértices
-   quedan lejos en las rectas, así que la distancia al vértice más cercano infla
-   muchísimo: dio «paradas a 1,5 km de su línea» donde al **segmento** eran 0 m.
+2. **La distancia de un punto a una polilínea es siempre al SEGMENTO, nunca al
+   vértice.** Y el error no es uniforme: **infla tanto más cuanto más recto y
+   largo es el tramo**, que es justo donde el trazado es más fiel. Este mismo
+   fallo ha producido **tres falsos bloqueantes**: las cuatro guaguas del primer
+   bloque, las «paradas a 1,5 km de su línea» que al segmento eran 0 m, y Padre
+   Anchieta —135 m al vértice, 4,0 m a la vía, en un tramo recto de 503 m—, que
+   llegué a dejar escrito como «no lo resuelve ningún fichero público» sin
+   volver a medirlo con el criterio ya corregido.
+   La medida correcta tiene nombre propio en `tools/cargar.js`,
+   **`distanciaAVia(punto, via)`**, para no volver a escribir el bucle a mano.
 3. **El trip canónico no es siempre el que más paradas tiene.** Un refuerzo
    escolar puede tener más que el recorrido completo: la 103 acabó sin llegar a
    Santa Cruz. Si se elige por número de paradas, hay que comprobar después que

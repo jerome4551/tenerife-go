@@ -2,7 +2,7 @@
 /* Auditoria de datos: catalogo, lineas, paradas, trazado y lugares.
  * Solo lee.   node tools/auditar_datos.js   */
 'use strict';
-const { LINES, CAT, PLACES, km, mSeg, norm } = require('./cargar');
+const { LINES, CAT, PLACES, km, distanciaAVia, norm } = require('./cargar');
 const P = (t, v) => console.log('  ' + String(t).padEnd(46, '.') + ' ' + v);
 let fallos = 0;
 const debe = (t, v, ok) => { P(t, v); if (!ok) fallos++; };
@@ -71,8 +71,7 @@ const lejos = [];
 LINES.forEach(l => {
   if (!Array.isArray(l.via) || l.via.length < 2) return;
   l.paradas.forEach(p => {
-    let m = Infinity;
-    for (let i = 1; i < l.via.length; i++) { const d = mSeg([p.lat, p.lng], l.via[i-1], l.via[i]); if (d < m) m = d; }
+    const m = distanciaAVia([p.lat, p.lng], l.via);   // al SEGMENTO, nunca al vertice
     if (m > 200) lejos.push([l.numero, p.nombre, Math.round(m)]);
   });
 });
@@ -85,6 +84,18 @@ LINES.forEach(l => { const v = Array.isArray(l.via) && l.via.length > 1;
     if (d > 8 && !v) saltoSinVia++;
   } });
 debe('saltos > 8 km dibujados como recta', saltoSinVia, saltoSinVia === 0);
+
+/* El tranvia va aparte: sus paradas salen del CSV de Metropolitano y 20 de las
+   21 de L1 son vertice exacto de la polilinea publicada. */
+console.log('\n=== tranvia ===');
+LINES.filter(l => l.tipo === 'tranvia').forEach(l => {
+  const ds = l.paradas.map(p => distanciaAVia([p.lat, p.lng], l.via));
+  const vert = l.paradas.filter(p => l.via.some(v => km(v, [p.lat, p.lng]) * 1000 < 0.5)).length;
+  const largo = l.via.reduce((a, _, i) => i ? a + km(l.via[i-1], l.via[i]) : 0, 0);
+  P(l.id + ': paradas · vertice exacto', l.paradas.length + ' · ' + vert);
+  P(l.id + ': km del trazado', largo.toFixed(2));
+  debe(l.id + ': parada mas lejos de la via (m)', Math.max(...ds).toFixed(1), Math.max(...ds) < 10);
+});
 
 console.log('\n=== lugares ===');
 debe('lugares', PLACES.length, PLACES.length === 765);

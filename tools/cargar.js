@@ -62,7 +62,23 @@ const mSeg = (p, a, b) => {
   const t = L === 0 ? 0 : Math.max(0, Math.min(1, (vx * wx + vy * wy) / L));
   return Math.hypot(px - (ax + vx * t), py - (ay + vy * t));
 };
+/* LA medida de «cuanto se aparta una parada de su linea». Existe con nombre
+   propio para que nadie vuelva a escribir a mano el bucle sobre los vertices:
+   `Math.min(...via.map(v => km(v, P)))` da un numero MUCHO mayor y ha
+   producido tres falsos bloqueantes. Cuanto mas recto y largo es el tramo,
+   mas infla —y es justo donde el error real es menor—: Padre Anchieta salia a
+   135 m al vertice y esta a 4 m de la via, en un tramo recto de 503 m. */
+const distanciaAVia = (p, via) => {
+  if (!Array.isArray(via) || via.length < 2) return Infinity;
+  let m = Infinity;
+  for (let i = 1; i < via.length; i++) {
+    const d = mSeg(p, via[i - 1], via[i]);
+    if (d < m) m = d;
+  }
+  return m;                                   // metros
+};
+
 const norm = s => (s || '').normalize('NFD').replace(/\p{M}/gu, '').toLowerCase()
   .replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
 
-module.exports = { src, RAIZ, LINES, CAT, PLACES, km, mSeg, norm };
+module.exports = { src, RAIZ, LINES, CAT, PLACES, km, mSeg, distanciaAVia, norm };
