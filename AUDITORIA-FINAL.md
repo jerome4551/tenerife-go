@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 ee864c264cff713929dbfe6ec001e3b4
-             4.238.828 bytes · 1.280.630 comprimidos · 34.478 líneas
+index.html   md5 b055efba98cf857478fb958717a72d7d
+             4.241.973 bytes · 1.281.419 comprimidos · 34.478 líneas
 ```
 
 ---
@@ -285,6 +285,9 @@ decisión de arquitectura, no un arreglo.
   del GTFS. **787 paradas ganan servicio** —las 210 que no salían y 577 que sí
   salían con la lista de líneas incompleta— y las referencias pasan de 5.827 a
   **7.348**. Ninguna pierde nada.
+- **Troya, Los Cristianos y Porís no están en `PLAYAS_ORIENTACION`**, así que
+  reciben panel de mar pero no puntúan en «¿dónde me baño hoy?». Añadirlas pide
+  su orientación, que no se inventa.
 - **22 de las 34 orientaciones de playa son `deducida`**, sacadas del abanico
   de rayos, que mira a 4, 6 y 8 km y por eso es ciego a lo que abriga en el
   primer kilómetro. Las 12 escritas a mano son las fiables.
