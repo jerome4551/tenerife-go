@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 839c0ac3c8fd027823e473c1a556affb
-             4.237.879 bytes · 1.280.335 comprimidos · 34.478 líneas
+index.html   md5 ee864c264cff713929dbfe6ec001e3b4
+             4.238.828 bytes · 1.280.630 comprimidos · 34.478 líneas
 ```
 
 ---
