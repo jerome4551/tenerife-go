@@ -287,7 +287,12 @@ decisión de arquitectura, no un arreglo.
   **7.348**. Ninguna pierde nada.
 - **Troya, Los Cristianos y Porís no están en `PLAYAS_ORIENTACION`**, así que
   reciben panel de mar pero no puntúan en «¿dónde me baño hoy?». Añadirlas pide
-  su orientación, que no se inventa.
+  su orientación, que no se inventa. **Se intentó deducirla de la geometría de
+  costa y el control lo tumbó**: `tools/orientacion.py` reproduce 10 de las 22
+  orientaciones que ya existen, así que no se acepta ninguna nueva. El fallo es
+  de la costa, no del método —GSHHG a resolución «full» es lo mejor que pasa el
+  proxy y se come las calas—. Sigue pendiente, y lo desbloquea un dato: el
+  shapefile municipal del Cabildo o cualquier costa con fidelidad ≤ 50 m.
 - **22 de las 34 orientaciones de playa son `deducida`**, sacadas del abanico
   de rayos, que mira a 4, 6 y 8 km y por eso es ciego a lo que abriga en el
   primer kilómetro. Las 12 escritas a mano son las fiables.
@@ -420,6 +425,16 @@ decisión de arquitectura, no un arreglo.
     Almáciga»; el nuevo, a 31 m de esta última. Y la geometría `via` prueba que
     un punto cae en tierra: la calzada está en tierra, y los cuatro nuevos
     quedan a 24, 338, 211 y 47 m de una carretera real.
+33. **Una tolerancia de un rumbo entero no es un control.** Con 8 rumbos,
+    aceptar «separación ≤ 45°» deja pasar un método corrido un puesto entero,
+    que es justo el error a cazar. `tools/orientacion.py` informa por separado
+    el acierto exacto: 10 de 22, frente a 16 de 22 con la tolerancia ancha.
+34. **La resolución de la costa manda sobre el algoritmo.** El corte es limpio:
+    todas las orientaciones que el método acierta están a ≤ 210 m del polígono
+    de GSHHG y todas las que falla, a ≥ 247 m. Cinco playas están 250–541 m
+    tierra adentro del polígono, así que las dos normales caen en tierra y no
+    hay lado de mar; Las Américas cae **fuera**, en lo que GSHHG cree mar.
+    Afinar el radio no lo arregla: de 100 a 800 m el techo es 13 de 22.
 
 ---
 
@@ -441,6 +456,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_web.js` | idiomas, arranque y rendimiento, en navegador |
 | `tools/extract_js.py` | extrae los `<script>` para `node --check` |
 | `tools/gtfs_red.py` | regenera la red desde un GTFS completo |
+| `tools/orientacion.py` | deduce orientación de playa desde la costa · **suspendido por su propio control** |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con
