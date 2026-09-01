@@ -300,6 +300,11 @@ decisión de arquitectura, no un arreglo.
   «Suárez Guerra» y «Adeje casco» **no existen con ese nombre en `stops.txt`**.
 - **Las 14 filas de `BLOQUE-2.md`**: resueltas por la reconstrucción.
 - **`stop_code` / `stop_desc`**: confirmados ausentes del GTFS de TITSA.
+- **Las 4 playas descolocadas más de 300 m**: Almáciga (1.090 m), Benijo
+  (829 m), La Rambla de Castro (2.152 m) y Puerto Santiago (420 m), más los
+  3 satélites que las acompañan. Anaga estaba corrida un puesto al oeste: el pin
+  de Benijo era exactamente el de Almáciga. El orden oeste→este vuelve a ser
+  Roque de las Bodegas → Almáciga → Benijo, con 1.278 m y 829 m entre vecinas.
 
 ---
 
@@ -402,6 +407,19 @@ decisión de arquitectura, no un arreglo.
     «Tegueste», y se dejaba otras 30. Se rehizo el cruce entero por separado.
     El control que lo caza no es repetir el método: es que **cero paradas caigan
     en dos polígonos** y que las 2.514 caigan en alguno.
+31. **Una ficha de playa no viaja sola: arrastra sus satélites.** El convenio
+    del fichero es que la webcam, la ficha de surf y la de accesibilidad
+    comparten la coordenada exacta de su playa —hay **114 pares** así—. Mover
+    solo la playa deja el satélite en el sitio viejo: al corregir Benijo, su
+    webcam y su pico de surf se habrían quedado clavados **encima de Almáciga**,
+    dos chinchetas con «Benijo» escrito sobre la playa de al lado. Antes de
+    mover un `lat`/`lng` se listan los POI a menos de 80 m.
+32. **La coordenada se contrasta con un dato ajeno, no con el mapa de memoria.**
+    Las paradas de TITSA sirven de testigo independiente: el pin viejo de
+    Almáciga estaba a 78 m de la marquesina «Las Bajas» y a 1.118 m de «Playa de
+    Almáciga»; el nuevo, a 31 m de esta última. Y la geometría `via` prueba que
+    un punto cae en tierra: la calzada está en tierra, y los cuatro nuevos
+    quedan a 24, 338, 211 y 47 m de una carretera real.
 
 ---
 
