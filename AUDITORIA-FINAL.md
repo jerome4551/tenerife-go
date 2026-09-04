@@ -340,6 +340,12 @@ cualquier hosting estático, lo guarda el service worker como un recurso más y
 funciona sin conexión desde el primer arranque. Con rangos dependería de que
 el servidor haga *byte serving*, que desde aquí no se puede comprobar.
 
+**La prueba que cuenta.** `tools/auditar_mapa.js` termina haciendo lo que le
+pasó al usuario: abrir la app con cobertura, cortar la red de verdad
+(`setOffline`, no un evento simulado) y volver a abrirla. Sale la app entera,
+la capa se pone sola en la isla, el `.pmtiles` se lee del caché y **se pintan
+12 teselas** con los 765 lugares encima. Sin una sola excepción.
+
 **Cuándo entra.** Con conexión no cambia nada: se arranca en Calles y el
 fichero **ni se descarga**. La capa entra sola en dos casos —arrancar sin red,
 o seis fallos seguidos de teselas, que ya no es un hueco suelto— y se va sola

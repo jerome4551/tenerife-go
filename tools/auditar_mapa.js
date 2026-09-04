@@ -277,6 +277,67 @@ function ok(cond, txt, detalle) {
     }
   }
 
+  /* ── LA PRUEBA DE VERDAD ──
+
+     Todo lo anterior mide piezas. Esto mide lo que le pasa a una persona:
+     abre la app con cobertura, se queda sin red y vuelve a abrirla. Es
+     exactamente lo que fallo —"quise usar la app offline y no apareció el
+     mapa"— y es lo unico que de verdad hay que garantizar.
+
+     Con setOffline el navegador corta de verdad: no es un evento simulado. */
+  console.log('\n════════ mapa sin conexion · la prueba de verdad ════════\n');
+  {
+    const browser4 = await chromium.launch({
+      executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+      args: ['--no-proxy-server', '--no-sandbox']
+    });
+    try {
+      const ctx = await browser4.newContext({ viewport: { width: 420, height: 760 } });
+      const page = await ctx.newPage();
+      const errores = [];
+      page.on('pageerror', e => errores.push(e.message));
+
+      await page.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'load' });
+      await page.waitForFunction(() => navigator.serviceWorker && navigator.serviceWorker.controller,
+                                 { timeout: 25000 }).catch(() => {});
+      await page.waitForTimeout(7000);   // que termine de precargar
+
+      const guardado = await page.evaluate(async () => {
+        const ks = await caches.keys(); const todo = [];
+        for (const k of ks) { const c = await caches.open(k); (await c.keys()).forEach(r => todo.push(r.url.replace(location.origin, ''))); }
+        return todo;
+      });
+      for (const f of ['/index.html', '/vendor/leaflet.js', '/vendor/pmtiles.js',
+                       '/vendor/protomaps-leaflet.js', '/mapa/tenerife-base.pmtiles']) {
+        ok(guardado.some(u => u === f || u === f.replace('/index.html', '/')),
+           'queda guardado antes de perder la red: ' + f);
+      }
+
+      await ctx.setOffline(true);
+      await page.reload({ waitUntil: 'load' }).catch(() => {});
+      await page.waitForTimeout(7000);
+
+      const r = await page.evaluate(() => ({
+        online: navigator.onLine,
+        hayMapa: typeof map !== 'undefined' && !!map,
+        capa: typeof currentLayer !== 'undefined' ? currentLayer : null,
+        islaLista: typeof layers !== 'undefined' && !!layers.isla,
+        lienzos: document.querySelectorAll('#map canvas').length,
+        lugares: typeof places !== 'undefined' ? places.length : 0
+      }));
+
+      ok(r.online === false, 'el navegador esta sin red de verdad', String(r.online));
+      ok(r.hayMapa, 'la app arranca entera sin red');
+      ok(r.capa === 'isla', 'y se pone sola en el mapa de la isla', String(r.capa));
+      ok(r.islaLista, 'el .pmtiles se ha leido del cache, no de la red');
+      ok(r.lienzos > 0, 'HAY MAPA PINTADO: ' + r.lienzos + ' teselas dibujadas', r.lienzos);
+      ok(r.lugares === 765, 'y los 765 lugares siguen encima', r.lugares);
+      ok(errores.length === 0, 'sin una sola excepcion en todo el recorrido', errores.slice(0, 3).join(' | '));
+    } finally {
+      await browser4.close();
+    }
+  }
+
   console.log('\n  ' + (fallos ? fallos + ' MAL de ' + hechos : hechos + ' controles, todos en verde') + '\n');
   process.exit(fallos ? 1 : 0);
 })();
