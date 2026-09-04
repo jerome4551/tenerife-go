@@ -26,6 +26,8 @@ echo; echo "════════ regresion XSS ════════"
 node tools/auditar_xss.js "$PUERTO" || fallos=$((fallos+1))
 echo; echo "════════ service worker · mapa sin conexion ════════"
 node tools/auditar_sw.js "$PUERTO" || fallos=$((fallos+1))
+echo; echo "════════ mapa sin conexion ════════"
+node tools/auditar_mapa.js "$PUERTO" || fallos=$((fallos+1))
 echo; echo "════════ idiomas, arranque y rendimiento ════════"
 node tools/auditar_web.js "$PUERTO" || fallos=$((fallos+1))
 echo

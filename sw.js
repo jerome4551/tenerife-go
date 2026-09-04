@@ -26,7 +26,10 @@ const CORE = [
   // Al ser del propio origen se precachean aqui, asi el mapa tambien
   // arranca sin conexion.
   './vendor/leaflet.js', './vendor/leaflet.css',
-  './vendor/leaflet.markercluster.js', './vendor/MarkerCluster.css'
+  './vendor/leaflet.markercluster.js', './vendor/MarkerCluster.css',
+  // El motor del mapa vectorial. Va aqui desde el primer momento para que
+  // cuando haga falta ya este: sin conexion no se puede ir a buscarlo.
+  './vendor/pmtiles.js', './vendor/protomaps-leaflet.js'
 ];
 
 self.addEventListener('install', e => {
