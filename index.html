@@ -24972,7 +24972,11 @@ window.addEventListener('hashchange', () => {
       try {
         if (!window.caches || !caches.keys) { resolve(); return; }
         caches.keys().then(safe(function(keys) {
-          var tileKeys = keys.filter(function(k) { return k.indexOf('tenerife-tiles-') === 0; });
+          /* El cache del mapa se llama 'tgo-teselas-...'. Con el prefijo viejo
+             'tenerife-tiles-' este filtro no encontraba nada nunca: el boton
+             decia "Cache del mapa vaciada" y no borraba absolutamente nada,
+             el mismo fallo que ya se corrigio en CLEAR_CACHES. */
+          var tileKeys = keys.filter(function(k) { return k.indexOf('tgo-teselas') === 0; });
           Promise.all(tileKeys.map(function(k) { return caches.delete(k); }))
             .then(function() { resolve(); })
             .catch(function() { resolve(); });

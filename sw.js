@@ -4,7 +4,22 @@
    tiempo que la v5 dejo guardadas para siempre. Si se quedara en v5, quien
    ya tenga la app instalada seguiria viendo la prevision del dia que la
    abrio por primera vez. */
-const CACHE = 'tgo-v6-2026-08-07-vivo';
+const CACHE = 'tgo-v7-2026-09-01-teselas';
+
+/* El cache del mapa va aparte y a proposito.
+
+   Aparte del CACHE de la app porque el manejador de 'activate' borra todo
+   cache cuyo nombre no sea el suyo: si las teselas vivieran ahi, cada
+   actualizacion de la app dejaria al usuario otra vez sin mapa offline.
+   Aqui sobreviven a las subidas de version; solo se van con el boton de
+   vaciar del panel de informacion.
+
+   El tope es por numero de teselas, no por bytes: una respuesta opaca no
+   deja leer su tamano. La isla entera de z8 a z13 son 600 teselas contadas
+   sobre la caja de navegacion del mapa, asi que 1.200 deja sitio de sobra
+   para todo eso y para lo que se haya mirado de cerca. */
+const TESELAS = 'tgo-teselas-v1';
+const TESELAS_TOPE = 1200;
 const CORE = [
   './', './index.html', './manifest.webmanifest',
   // Leaflet y MarkerCluster ya no vienen de un CDN: viven en ./vendor/.
@@ -26,7 +41,12 @@ self.addEventListener('install', e => {
 });
 
 self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(()=>self.clients.claim()));
+  e.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(k => k !== CACHE && k !== TESELAS).map(k => caches.delete(k))))
+      .then(() => recortarTeselas())
+      .then(() => self.clients.claim())
+  );
 });
 
 /* Que se puede guardar en el cache.
@@ -51,6 +71,40 @@ function guardar(req, res) {
   caches.open(CACHE).then(c => c.put(req, copia)).catch(() => {});
 }
 
+/* Una tesela del mapa, y solo eso.
+
+   El patron de OSM tiene que dejar fuera a nominatim.openstreetmap.org, que
+   es un geocodificador y no se cachea. Por eso se compara el dominio entero
+   y no con includes('openstreetmap'), que cogia a los dos. */
+function esTesela(url) {
+  return /(^|\.)tile\.openstreetmap\.org$/.test(url.hostname)
+      || url.hostname === 'server.arcgisonline.com';
+}
+
+/* El recorte no puede correr en cada tesela: keys() recorre el cache entero
+   y al mover el mapa entran teselas a docenas. Corre cada 50 y ademas en
+   cada 'activate'. El service worker puede morirse entre medias y reiniciar
+   la cuenta, asi que el tope es un techo aproximado, no exacto: lo que
+   importa es que exista y que 'activate' lo aplique siempre. */
+let _desdeRecorte = 0;
+function recortarTeselas() {
+  return caches.open(TESELAS)
+    .then(c => c.keys().then(ks => {
+      if (ks.length <= TESELAS_TOPE) return;
+      // keys() devuelve en orden de insercion: se van las mas viejas.
+      return Promise.all(ks.slice(0, ks.length - TESELAS_TOPE).map(k => c.delete(k)));
+    }))
+    .catch(() => {});
+}
+
+function guardarTesela(req, res) {
+  const copia = res.clone();
+  return caches.open(TESELAS)
+    .then(c => c.put(req, copia))
+    .then(() => { if (++_desdeRecorte >= 50) { _desdeRecorte = 0; return recortarTeselas(); } })
+    .catch(() => {});
+}
+
 self.addEventListener('fetch', e => {
   const req = e.request;
 
@@ -63,6 +117,40 @@ self.addEventListener('fetch', e => {
 
   // Solo http/https: con chrome-extension:// y similares, cache.put falla.
   if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
+
+  /* El mapa: red primero, cache de respaldo.
+
+     Estaba en la lista de "no cachear nunca" junto a las APIs del tiempo,
+     con el argumento de "siempre fresco". Pero una tesela no es un dato
+     vivo: es contenido, igual que la Wikipedia, que esa lista ya deja pasar.
+     Era el motivo de que la app se abriera sin mapa en un avion —el resto
+     respondia y lo unico que importa, no— y de que "Mapa interactivo
+     offline" fuera mentira.
+
+     Se pide siempre a la red primero, asi que con conexion se comporta
+     exactamente igual que antes. La politica de teselas de OSM pide
+     respetar sus cabeceras de caducidad y de eso ya se encarga el cache
+     HTTP del navegador, que es por donde pasa este fetch. Sin conexion sale
+     lo que el usuario ya haya mirado. Y una tesela mala que se colara nunca
+     se queda pegada: en linea se vuelve a pedir siempre.
+
+     Se guarda tambien la respuesta opaca (type 'opaque', status 0). Las
+     capas de index.html no piden CORS y no se les toca: cambiar crossOrigin
+     arriesga romper el mapa en linea, que hoy funciona, y no hay forma de
+     comprobar desde aqui que los dos servidores manden las cabeceras. Una
+     opaca no se puede mirar por dentro, pero para servirsela a un <img>
+     vale igual. */
+  if (esTesela(url)) {
+    e.respondWith(
+      fetch(req).then(res => {
+        if (res && (res.type === 'opaque' || guardable(res))) e.waitUntil(guardarTesela(req, res));
+        return res;
+      }).catch(() => caches.open(TESELAS)
+        .then(c => c.match(req))
+        .then(r => r || Response.error()))
+    );
+    return;
+  }
 
   /* Lo que NO se cachea nunca.
 
@@ -89,9 +177,9 @@ self.addEventListener('fetch', e => {
      service worker solo estorbaba. Lo que si se queda cacheado es
      Wikipedia: eso es contenido, no un dato vivo, y ahi ayuda sin mentir. */
   const EN_VIVO = ['open-meteo.com', 'aemet.es', 'project-osrm.org'];
-  if (url.hostname.includes('supabase.co') || url.hostname.includes('nominatim') || url.hostname.includes('openstreetmap') || url.hostname.includes('arcgisonline') ||
+  if (url.hostname.includes('supabase.co') || url.hostname.includes('nominatim') ||
       EN_VIVO.some(h => url.hostname === h || url.hostname.endsWith('.' + h))) {
-    return; // no cachear mapas, apis, tiempo ni rutas - siempre fresco
+    return; // no cachear apis, tiempo ni rutas - siempre fresco
   }
 
   e.respondWith(

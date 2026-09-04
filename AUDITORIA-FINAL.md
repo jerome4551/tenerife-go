@@ -305,6 +305,11 @@ decisión de arquitectura, no un arreglo.
   «Suárez Guerra» y «Adeje casco» **no existen con ese nombre en `stops.txt`**.
 - **Las 14 filas de `BLOQUE-2.md`**: resueltas por la reconstrucción.
 - **`stop_code` / `stop_desc`**: confirmados ausentes del GTFS de TITSA.
+- **El mapa sin conexión**: el service worker ya guarda las teselas que el
+  usuario ha mirado, en un caché propio que sobrevive a las actualizaciones,
+  con tope de 1.200 (la isla entera de z8 a z13 son **600 teselas contadas**
+  sobre la caja de navegación del mapa). Red primero y caché de respaldo, así
+  que con conexión se comporta exactamente igual que antes.
 - **Las 4 playas descolocadas más de 300 m**: Almáciga (1.090 m), Benijo
   (829 m), La Rambla de Castro (2.152 m) y Puerto Santiago (420 m), más los
   3 satélites que las acompañan. Anaga estaba corrida un puesto al oeste: el pin
@@ -435,6 +440,28 @@ decisión de arquitectura, no un arreglo.
     tierra adentro del polígono, así que las dos normales caen en tierra y no
     hay lado de mar; Las Américas cae **fuera**, en lo que GSHHG cree mar.
     Afinar el radio no lo arregla: de 100 a 800 m el techo es 13 de 22.
+35. **Lo que la app promete offline hay que probarlo offline.** `sw.js` tenía
+    las teselas del mapa en la lista de «no cachear nunca», junto a las APIs
+    del tiempo, con el argumento de «siempre fresco». Una tesela no es un dato
+    vivo: es contenido, como la Wikipedia, que esa misma lista ya dejaba pasar.
+    Resultado: en un avión la app arrancaba entera —fichas, buscador, líneas—
+    y **el mapa salía en blanco**, que es lo único que no se puede sustituir.
+    Ninguna auditoría lo vio porque todas se pasan con red.
+36. **Un botón que no encuentra su caché miente sin fallar.** «Vaciar caché del
+    mapa» filtraba por el prefijo `tenerife-tiles-`, que no ha existido nunca:
+    decía «Caché del mapa vaciada» y no borraba nada. Es el mismo fallo que ya
+    se había corregido en `CLEAR_CACHES` y que se quedó a medias.
+37. **El caché del mapa tiene que sobrevivir a las actualizaciones.** El
+    manejador de `activate` borra todo caché cuyo nombre no sea el suyo; si las
+    teselas vivieran ahí, cada versión nueva dejaría al usuario sin mapa
+    offline justo cuando actualiza. Por eso van en `tgo-teselas-v1`, aparte, y
+    `activate` lo respeta expresamente.
+38. **Una respuesta opaca no es `ok`.** Las capas no piden CORS, así que lo que
+    llega al service worker es `type:'opaque'`, `status:0`, `ok:false`. El
+    `guardable()` de siempre la rechaza, así que aunque se quitara la
+    exclusión no se habría guardado ni una tesela. Hay que aceptarla aparte —y
+    `Cache.put()` sí la admite, comprobado en Chromium con un segundo puerto,
+    que ya cuenta como otro origen.
 
 ---
 
@@ -457,6 +484,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/extract_js.py` | extrae los `<script>` para `node --check` |
 | `tools/gtfs_red.py` | regenera la red desde un GTFS completo |
 | `tools/orientacion.py` | deduce orientación de playa desde la costa · **suspendido por su propio control** |
+| `tools/auditar_sw.js` | el service worker en un ámbito falso: mapa sin conexión, tope y actualizaciones |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con
