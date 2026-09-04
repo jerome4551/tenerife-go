@@ -316,6 +316,36 @@ decisión de arquitectura, no un arreglo.
   con tope de 1.200 (la isla entera de z8 a z13 son **600 teselas contadas**
   sobre la caja de navegación del mapa). Red primero y caché de respaldo, así
   que con conexión se comporta exactamente igual que antes.
+
+## El mapa sin conexión, en bloques
+
+Guardar las teselas que el usuario ya ha mirado arregla el caso del avión,
+pero no el de alguien que instala la app y se va al monte. Para eso el mapa
+tiene que **venir dentro**.
+
+| bloque | qué | estado |
+|---|---|---|
+| 1 | el motor: `pmtiles` 4.5.0 y `protomaps-leaflet` 5.1.0 en `vendor/`, precargados | hecho |
+| 2 | `mapa/tenerife-base.pmtiles`, generado con datos que ya estaban aquí | hecho |
+| 3 | la capa vectorial en Leaflet, que entra sola cuando no hay conexión | pendiente |
+| 4 | descarga opcional de un `.pmtiles` de OSM para el detalle fino | pendiente |
+
+**Por qué `protomaps-leaflet` y no MapLibre.** MapLibre obliga a rehacer el
+mapa entero y con él los 765 marcadores, los clusters y las 183 polilíneas.
+Esto es una capa más de Leaflet 1.9.4, la que ya usa la app.
+
+**Sin peticiones por rango.** El fichero pesa 1,1 MB y se pide entero de una
+vez, con una fuente propia de cuatro líneas sobre un `Blob`. Así vale en
+cualquier hosting estático, lo guarda el service worker como un recurso más y
+funciona sin conexión desde el primer arranque. Con rangos dependería de que
+el servidor haga *byte serving*, que desde aquí no se puede comprobar.
+
+**Qué lleva y qué no.** Costa (GSHHG), red viaria (los `via` de las 183 líneas,
+trazado real del GTFS) y 54 núcleos con su nombre. **No lleva senderos ni
+curvas de nivel**: no están en ningún dato que tengamos. Y la costa de GSHHG
+tiene 250–500 m de error en las calas —lo midió el control de orientación—,
+así que sirve para saber dónde está el mar, no para saber si pisas la arena.
+Para el detalle fino está el bloque 4, que es opcional.
 - **Las 4 playas descolocadas más de 300 m**: Almáciga (1.090 m), Benijo
   (829 m), La Rambla de Castro (2.152 m) y Puerto Santiago (420 m), más los
   3 satélites que las acompañan. Anaga estaba corrida un puesto al oeste: el pin
@@ -468,6 +498,16 @@ decisión de arquitectura, no un arreglo.
     exclusión no se habría guardado ni una tesela. Hay que aceptarla aparte —y
     `Cache.put()` sí la admite, comprobado en Chromium con un segundo puerto,
     que ya cuenta como otro origen.
+42. **Un fichero binario generado tiene que salir igual cada vez.**
+    `mapa/tenerife-base.pmtiles` daba 4 bytes distintos entre dos
+    generaciones seguidas, y eso son 1,1 MB de diff binario en el repositorio
+    cada vez que se regenere sin que haya cambiado un dato. Es la hora que
+    gzip mete dentro de cada bloque, y dos de ellos —el directorio raíz y los
+    metadatos— los comprime la propia librería PMTiles, donde no se puede
+    pasar `mtime`. Se fuerza para todo el proceso. **No era el
+    `PYTHONHASHSEED`**: se probó con la semilla fija y salían los mismos 4
+    bytes. El control lo mira **sobre el fichero**, no sobre el generador:
+    222 bloques gzip, ninguno con hora.
 39. **Un control estrecho enseña que no hay nada que buscar.** El de literales
     en español solo miraba `.textContent`/`.innerText`/`.placeholder` y una
     lista de sustantivos. Los 25 textos del módulo PWA iban por `innerHTML`,
@@ -508,6 +548,8 @@ Y cada bloque por separado, si hace falta:
 | `tools/gtfs_red.py` | regenera la red desde un GTFS completo |
 | `tools/orientacion.py` | deduce orientación de playa desde la costa · **suspendido por su propio control** |
 | `tools/auditar_sw.js` | el service worker en un ámbito falso: mapa sin conexión, tope y actualizaciones |
+| `tools/auditar_mapa.js` | el mapa sin conexión, bloque a bloque |
+| `tools/mapa_base.py` | genera `mapa/tenerife-base.pmtiles` desde los datos del propio repositorio |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con

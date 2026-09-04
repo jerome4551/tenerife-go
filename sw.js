@@ -29,7 +29,12 @@ const CORE = [
   './vendor/leaflet.markercluster.js', './vendor/MarkerCluster.css',
   // El motor del mapa vectorial. Va aqui desde el primer momento para que
   // cuando haga falta ya este: sin conexion no se puede ir a buscarlo.
-  './vendor/pmtiles.js', './vendor/protomaps-leaflet.js'
+  './vendor/pmtiles.js', './vendor/protomaps-leaflet.js',
+  /* El mapa base de la isla: 1,1 MB de costa, red viaria y nucleos, hecho
+     con datos que ya estaban en el repositorio. Va en el precache a
+     proposito, no en una descarga aparte: quien se pierde en el monte no
+     tuvo antes la precaucion de pulsar "descargar mapa". */
+  './mapa/tenerife-base.pmtiles'
 ];
 
 self.addEventListener('install', e => {
