@@ -8257,6 +8257,26 @@ Object.assign(UI_TX, {"busCaminataLarga": {"es": "Caminata larga hasta la parada
 Object.assign(UI_TX, {"busYaSalio": {"es": "La guagua {n} al Teide sale una vez al día y ya ha salido hoy ({h}). Mañana vuelve a haber.", "en": "The {n} bus to Teide runs once a day and has already left today ({h}). There is another one tomorrow.", "fr": "Le bus {n} vers le Teide part une fois par jour et est déjà parti aujourd'hui ({h}). Il y en a un autre demain.", "de": "Der Bus {n} zum Teide fährt einmal am Tag und ist heute schon weg ({h}). Morgen fährt wieder einer.", "it": "L'autobus {n} per il Teide parte una volta al giorno ed è già partito oggi ({h}). Domani ce n'è un altro.", "nl": "Bus {n} naar de Teide rijdt één keer per dag en is vandaag al vertrokken ({h}). Morgen gaat er weer een.", "zh": "前往泰德峰的{n}路每天只发一班，今天的已经开走了（{h}）。明天还有一班。", "zht": "前往泰德峰的{n}路每天只發一班，今天的已經開走了（{h}）。明天還有一班。"}, "busSinConexion": {"es": "No hay líneas que conecten estos dos puntos.", "en": "No bus lines connect these two points.", "fr": "Aucune ligne ne relie ces deux points.", "de": "Keine Linie verbindet diese beiden Punkte.", "it": "Nessuna linea collega questi due punti.", "nl": "Geen enkele lijn verbindt deze twee punten.", "zh": "没有线路连接这两个地点。", "zht": "沒有路線連接這兩個地點。"}});
 Object.assign(UI_TX, {"busNoDisponible": {"es": "Sin conexión", "en": "No connection", "fr": "Pas de liaison", "de": "Keine Verbindung", "it": "Nessun collegamento", "nl": "Geen verbinding", "zh": "无直达", "zht": "無直達"}, "busSinRuta": {"es": "No se encontró una ruta en guagua para este trayecto.", "en": "No bus route found for this journey.", "fr": "Aucun itinéraire en bus trouvé pour ce trajet.", "de": "Für diese Strecke wurde keine Busverbindung gefunden.", "it": "Nessun percorso in autobus trovato per questo tragitto.", "nl": "Geen busroute gevonden voor dit traject.", "zh": "没有找到这段行程的公交路线。", "zht": "沒有找到這段行程的公車路線。"}});
 
+/* Textos que estaban fijos en espanol dentro de plantillas, alert() y
+   confirm(), donde la auditoria de claves no llega: no eran claves que
+   faltaran, eran literales. Los caza tools/auditar_seguridad.py, que ahora
+   mira tambien los dialogos y los atributos, no solo textContent.
+   El panel de administracion queda fuera a proposito: va solo en espanol. */
+Object.assign(UI_TX, {
+  busErrorCalculo:  { es:'No se pudo calcular el trayecto en bus.', en:'The bus journey could not be calculated.', fr:'Impossible de calculer le trajet en bus.', de:'Die Busverbindung konnte nicht berechnet werden.', it:'Non \u00e8 stato possibile calcolare il tragitto in autobus.', nl:'De busreis kon niet worden berekend.', zh:'\u65e0\u6cd5\u8ba1\u7b97\u8fd9\u6bb5\u516c\u4ea4\u884c\u7a0b\u3002', zht:'\u7121\u6cd5\u8a08\u7b97\u9019\u6bb5\u516c\u8eca\u884c\u7a0b\u3002' },
+  emailNoValido:    { es:'El email no es válido', en:'That email address is not valid', fr:'Cette adresse e-mail n’est pas valide', de:'Diese E-Mail-Adresse ist ungültig', it:'L’indirizzo email non è valido', nl:'Dit e-mailadres is niet geldig', zh:'邮箱地址无效', zht:'電子郵件地址無效' },
+  reservasPronto:   { es:'🚀 Las reservas estarán disponibles muy pronto. ¡Gracias por tu interés!', en:'🚀 Bookings will be available very soon. Thanks for your interest!', fr:'🚀 Les réservations seront disponibles très bientôt. Merci de ton intérêt !', de:'🚀 Buchungen sind schon bald möglich. Danke für dein Interesse!', it:'🚀 Le prenotazioni saranno disponibili molto presto. Grazie per l’interesse!', nl:'🚀 Reserveren kan binnenkort. Bedankt voor je interesse!', zh:'🚀 预订功能很快就会上线。感谢你的关注！', zht:'🚀 預訂功能很快就會上線。感謝你的關注！' },
+  eligeFecha:       { es:'Por favor selecciona una fecha', en:'Please choose a date', fr:'Choisis une date, s’il te plaît', de:'Bitte wähle ein Datum', it:'Scegli una data, per favore', nl:'Kies alsjeblieft een datum', zh:'请选择一个日期', zht:'請選擇一個日期' },
+  anadidoCesta:     { es:'✅ Añadido a tu cesta. Inicia sesión para pagar.', en:'✅ Added to your basket. Sign in to pay.', fr:'✅ Ajouté à ton panier. Connecte-toi pour payer.', de:'✅ Zum Warenkorb hinzugefügt. Melde dich an, um zu bezahlen.', it:'✅ Aggiunto al carrello. Accedi per pagare.', nl:'✅ Toegevoegd aan je mandje. Log in om te betalen.', zh:'✅ 已加入购物车。登录后即可付款。', zht:'✅ 已加入購物車。登入後即可付款。' },
+  pagoProximamente: { es:'🚀 Sistema de pago próximamente. Tu reserva ha sido guardada.', en:'🚀 Payment is coming soon. Your booking has been saved.', fr:'🚀 Le paiement arrive bientôt. Ta réservation a été enregistrée.', de:'🚀 Die Bezahlung kommt bald. Deine Buchung wurde gespeichert.', it:'🚀 Il pagamento arriverà presto. La tua prenotazione è stata salvata.', nl:'🚀 Betalen kan binnenkort. Je reservering is opgeslagen.', zh:'🚀 支付功能即将上线。你的预订已保存。', zht:'🚀 支付功能即將上線。你的預訂已儲存。' },
+  noSePudoActivar:  { es:'No se pudo activar: ', en:'Could not enable: ', fr:'Impossible d’activer : ', de:'Konnte nicht aktiviert werden: ', it:'Non è stato possibile attivare: ', nl:'Kon niet worden ingeschakeld: ', zh:'无法开启：', zht:'無法開啟：' },
+  sinMasOpciones:   { es:'😅 Sin más opciones', en:'😅 No more options', fr:'😅 Aucune autre option', de:'😅 Keine weiteren Optionen', it:'😅 Nessun’altra opzione', nl:'😅 Geen opties meer', zh:'😅 没有更多选项', zht:'😅 沒有更多選項' },
+  copiadoPapeles:   { es:'¡Copiado al portapapeles! 📋', en:'Copied to clipboard! 📋', fr:'Copié dans le presse-papiers ! 📋', de:'In die Zwischenablage kopiert! 📋', it:'Copiato negli appunti! 📋', nl:'Gekopieerd naar het klembord! 📋', zh:'已复制到剪贴板！📋', zht:'已複製到剪貼簿！📋' },
+  gpsNoSoportado:   { es:'Tu navegador no soporta GPS. Elige el origen manualmente en la calculadora.', en:'Your browser does not support GPS. Choose the starting point manually in the calculator.', fr:'Ton navigateur ne prend pas en charge le GPS. Choisis le point de départ manuellement dans le calculateur.', de:'Dein Browser unterstützt kein GPS. Wähle den Startpunkt manuell im Rechner.', it:'Il tuo browser non supporta il GPS. Scegli il punto di partenza manualmente nel calcolatore.', nl:'Je browser ondersteunt geen gps. Kies het startpunt handmatig in de calculator.', zh:'你的浏览器不支持 GPS。请在计算器里手动选择起点。', zht:'你的瀏覽器不支援 GPS。請在計算機裡手動選擇起點。' },
+  comoLlegarNav:    { es:'🧭 Cómo llegar', en:'🧭 How to get there', fr:'🧭 Y aller', de:'🧭 Route anzeigen', it:'🧭 Come arrivare', nl:'🧭 Route', zh:'🧭 怎么去', zht:'🧭 怎麼去' },
+  localizando:      { es:'⏳ Localizando…', en:'⏳ Locating…', fr:'⏳ Localisation…', de:'⏳ Standort wird gesucht…', it:'⏳ Localizzazione…', nl:'⏳ Locatie zoeken…', zh:'⏳ 定位中…', zht:'⏳ 定位中…' }
+});
+
 // Si el idioma guardado o el del navegador no esta soportado, al espanol.
 if (!LANGS[currentLang]) currentLang = (currentLang === 'zht' && LANGS.zh) ? 'zh' : 'es';
 
@@ -15773,7 +15793,7 @@ function showBusError() {
   if (!card) return;
   card.classList.add('unavailable');
   summary.textContent = '—';
-  detail.textContent = 'No se pudo calcular el trayecto en bus.';
+  detail.textContent = tx('busErrorCalculo') || 'No se pudo calcular el trayecto en bus.';
 }
 
 function resetBusPlanUI() {
@@ -24622,6 +24642,91 @@ window.addEventListener('hashchange', () => {
     };
   }
 
+  /* Los textos del modulo PWA, en los 8 idiomas.
+
+     Estaban todos fijos en espanol: el banner de instalar, el aviso de
+     version nueva, el panel de informacion entero y sus cuatro dialogos.
+     Un aleman con la app en aleman se encontraba "Borrar TODA la cache".
+     Ninguna comprobacion de claves lo cazaba, porque no eran claves: eran
+     literales dentro de plantillas.
+
+     La forma es la de UI_TX -clave -> idioma-, que es la que la auditoria
+     de idiomas sabe leer y recorrer. Caracteres reales, no escapes \uXXXX,
+     como en el resto del fichero: con escapes el control de tipografia
+     china no ve lo que hay dentro. */
+  var PWA_TX = {
+    instalarApp:   { es:'Instalar aplicación', en:'Install app', fr:'Installer l\u2019application', de:'App installieren', it:'Installa l\u2019app', nl:'App installeren', zh:'安装应用', zht:'安裝應用' },
+    instalarNombre:{ es:'Instalar Tenerife', en:'Install Tenerife', fr:'Installer Tenerife', de:'Tenerife installieren', it:'Installa Tenerife', nl:'Tenerife installeren', zh:'安装 Tenerife', zht:'安裝 Tenerife' },
+    accesoRapido:  { es:'Acceso rápido y funciona sin conexión', en:'Quick access, works offline', fr:'Accès rapide, fonctionne hors ligne', de:'Schneller Zugriff, auch offline', it:'Accesso rapido, funziona offline', nl:'Snelle toegang, werkt offline', zh:'打开更快，离线也能用', zht:'開啟更快，離線也能用' },
+    instalar:      { es:'Instalar', en:'Install', fr:'Installer', de:'Installieren', it:'Installa', nl:'Installeren', zh:'安装', zht:'安裝' },
+    cerrar:        { es:'Cerrar', en:'Close', fr:'Fermer', de:'Schließen', it:'Chiudi', nl:'Sluiten', zh:'关闭', zht:'關閉' },
+    versionNueva:  { es:'Nueva versión disponible', en:'New version available', fr:'Nouvelle version disponible', de:'Neue Version verfügbar', it:'Nuova versione disponibile', nl:'Nieuwe versie beschikbaar', zh:'有新版本可用', zht:'有新版本可用' },
+    recargar:      { es:'Recargar', en:'Reload', fr:'Recharger', de:'Neu laden', it:'Ricarica', nl:'Herladen', zh:'重新载入', zht:'重新載入' },
+    tituloInfo:    { es:'App Tenerife', en:'Tenerife app', fr:'Application Tenerife', de:'Tenerife-App', it:'App Tenerife', nl:'Tenerife-app', zh:'Tenerife 应用', zht:'Tenerife 應用' },
+    version:       { es:'Versión', en:'Version', fr:'Version', de:'Version', it:'Versione', nl:'Versie', zh:'版本', zht:'版本' },
+    cargando:      { es:'cargando…', en:'loading…', fr:'chargement…', de:'lädt…', it:'caricamento…', nl:'laden…', zh:'加载中…', zht:'載入中…' },
+    modo:          { es:'Modo', en:'Mode', fr:'Mode', de:'Modus', it:'Modalità', nl:'Modus', zh:'模式', zht:'模式' },
+    appInstalada:  { es:'App instalada', en:'Installed app', fr:'Application installée', de:'Installierte App', it:'App installata', nl:'Geïnstalleerde app', zh:'已安装的应用', zht:'已安裝的應用' },
+    navegador:     { es:'Navegador', en:'Browser', fr:'Navigateur', de:'Browser', it:'Browser', nl:'Browser', zh:'浏览器', zht:'瀏覽器' },
+    cacheUsada:    { es:'Caché usada', en:'Cache used', fr:'Cache utilisé', de:'Belegter Cache', it:'Cache usata', nl:'Gebruikte cache', zh:'已用缓存', zht:'已用快取' },
+    cachesActivas: { es:'Cachés activas', en:'Active caches', fr:'Caches actifs', de:'Aktive Caches', it:'Cache attive', nl:'Actieve caches', zh:'活动缓存', zht:'使用中的快取' },
+    conexion:      { es:'Conexión', en:'Connection', fr:'Connexion', de:'Verbindung', it:'Connessione', nl:'Verbinding', zh:'网络连接', zht:'網路連線' },
+    enLinea:       { es:'En línea', en:'Online', fr:'En ligne', de:'Online', it:'Online', nl:'Online', zh:'在线', zht:'在線' },
+    sinConexion:   { es:'Sin conexión', en:'Offline', fr:'Hors ligne', de:'Offline', it:'Offline', nl:'Offline', zh:'离线', zht:'離線' },
+    vaciarMapa:    { es:'Vaciar caché del mapa', en:'Clear map cache', fr:'Vider le cache de la carte', de:'Kartenspeicher leeren', it:'Svuota la cache della mappa', nl:'Kaartcache legen', zh:'清除地图缓存', zht:'清除地圖快取' },
+    borrarTodo:    { es:'Borrar TODA la caché', en:'Delete ALL cache', fr:'Effacer TOUT le cache', de:'GESAMTEN Cache löschen', it:'Cancella TUTTA la cache', nl:'ALLE cache wissen', zh:'删除全部缓存', zht:'刪除全部快取' },
+    confirmarMapa: { es:'¿Vaciar solo la caché del mapa? Las zonas del mapa se descargarán otra vez al verlas con conexión.', en:'Clear only the map cache? Map areas will download again when you view them with a connection.', fr:'Vider seulement le cache de la carte ? Les zones de la carte seront téléchargées à nouveau quand tu les regarderas avec une connexion.', de:'Nur den Kartenspeicher leeren? Die Kartenbereiche werden erneut geladen, sobald du sie mit Verbindung ansiehst.', it:'Svuotare solo la cache della mappa? Le zone della mappa si scaricheranno di nuovo quando le guarderai con connessione.', nl:'Alleen de kaartcache legen? Kaartgebieden worden opnieuw gedownload zodra je ze met verbinding bekijkt.', zh:'只清除地图缓存吗？下次联网查看时会重新下载这些地图区域。', zht:'只清除地圖快取嗎？下次連線查看時會重新下載這些地圖區域。' },
+    mapaVaciado:   { es:'Caché del mapa vaciada.', en:'Map cache cleared.', fr:'Cache de la carte vidé.', de:'Kartenspeicher geleert.', it:'Cache della mappa svuotata.', nl:'Kaartcache geleegd.', zh:'地图缓存已清除。', zht:'地圖快取已清除。' },
+    confirmarTodo: { es:'¿Borrar TODA la caché? La app deberá descargarse de nuevo con conexión. Tus favoritos se conservan.', en:'Delete ALL cache? The app will have to download again with a connection. Your favourites are kept.', fr:'Effacer TOUT le cache ? L\u2019application devra se télécharger à nouveau avec une connexion. Tes favoris sont conservés.', de:'GESAMTEN Cache löschen? Die App muss mit Verbindung neu geladen werden. Deine Favoriten bleiben erhalten.', it:'Cancellare TUTTA la cache? L\u2019app dovrà scaricarsi di nuovo con connessione. I tuoi preferiti restano.', nl:'ALLE cache wissen? De app moet opnieuw worden gedownload met een verbinding. Je favorieten blijven bewaard.', zh:'删除全部缓存吗？应用需要联网重新下载。你的收藏会保留。', zht:'刪除全部快取嗎？應用需要連線重新下載。你的收藏會保留。' },
+    cacheBorrada:  { es:'Caché borrada. La app se recargará.', en:'Cache deleted. The app will reload.', fr:'Cache effacé. L\u2019application va se recharger.', de:'Cache gelöscht. Die App wird neu geladen.', it:'Cache cancellata. L\u2019app si ricaricherà.', nl:'Cache gewist. De app wordt opnieuw geladen.', zh:'缓存已删除。应用将重新载入。', zht:'快取已刪除。應用將重新載入。' },
+    infoApp:       { es:'Información de la app', en:'App information', fr:'Informations sur l\u2019application', de:'App-Informationen', it:'Informazioni sull\u2019app', nl:'App-informatie', zh:'应用信息', zht:'應用資訊' }
+  };
+
+  /* El idioma se lee en cada llamada, no se guarda: el usuario puede
+     cambiarlo con el panel ya abierto. Si currentLang todavia no existe
+     -este modulo puede arrancar antes-, cae a espanol. */
+  function ptx(clave) {
+    var f = PWA_TX[clave];
+    if (!f) return '';
+    var l = 'es';
+    try { if (typeof currentLang !== 'undefined' && f[currentLang]) l = currentLang; } catch (_) {}
+    return f[l] || f.es;
+  }
+
+  /* Los textos son nuestros, pero igual pasan por aqui antes de entrar en un
+     innerHTML: asi la regla vale para todo el fichero sin excepciones que
+     luego haya que recordar. */
+  function esc(t) {
+    return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function fila(etiqueta, valorHtml) {
+    return '<div class="pwa-modal-row"><span>' + esc(etiqueta) + '</span><span>' + valorHtml + '</span></div>';
+  }
+
+  /* El banner y el aviso de version se crean una vez y se reutilizan, asi
+     que el texto se pinta aparte y se vuelve a pintar cada vez que se
+     muestran: si no, se quedaban en el idioma que hubiera al crearlos.
+     Se construye con nodos y textContent, no con innerHTML, para dejar el
+     DOM exactamente igual que antes -un <b> y un nodo de texto suelto-, que
+     es de lo que depende el CSS del banner. */
+  function textoBanner(el) {
+    el.setAttribute('aria-label', ptx('instalarApp'));
+    var caja = el.querySelector('.pwa-ib-text');
+    var b = document.createElement('b');
+    b.textContent = ptx('instalarNombre');
+    caja.textContent = '';
+    caja.appendChild(b);
+    caja.appendChild(document.createTextNode(ptx('accesoRapido')));
+    el.querySelector('.pwa-ib-install').textContent = ptx('instalar');
+    el.querySelector('.pwa-ib-close').setAttribute('aria-label', ptx('cerrar'));
+  }
+  function textoToast(el) {
+    el.querySelector('.pwa-toast-text').textContent = ptx('versionNueva');
+    el.querySelector('.pwa-toast-reload').textContent = ptx('recargar');
+    el.querySelector('.pwa-toast-close').setAttribute('aria-label', ptx('cerrar'));
+  }
+
   // ───────────────────────────────────────────────────────────────────
   // Estado interno (no contamina window)
   // ───────────────────────────────────────────────────────────────────
@@ -24681,15 +24786,12 @@ window.addEventListener('hashchange', () => {
     var el = document.createElement('div');
     el.className = 'pwa-install-banner';
     el.setAttribute('role', 'dialog');
-    el.setAttribute('aria-label', 'Instalar aplicación');
     el.innerHTML =
       '<img src="' + LOGO_URI + '" class="pwa-ib-icon" alt=""/>' +
-      '<div class="pwa-ib-text">' +
-        '<b>Instalar Tenerife</b>' +
-        'Acceso rápido y funciona sin conexión' +
-      '</div>' +
-      '<button type="button" class="pwa-ib-install">Instalar</button>' +
-      '<button type="button" class="pwa-ib-close" aria-label="Cerrar">×</button>';
+      '<div class="pwa-ib-text"></div>' +
+      '<button type="button" class="pwa-ib-install"></button>' +
+      '<button type="button" class="pwa-ib-close">×</button>';
+    textoBanner(el);
 
     // Listeners directos (más seguros que onclick inline)
     el.querySelector('.pwa-ib-install').addEventListener('click', safe(function() {
@@ -24725,6 +24827,7 @@ window.addEventListener('hashchange', () => {
     if (isStandalone()) return;  // Ya instalada
     if (getInstallDismissed()) return;  // Usuario ya la rechazó
     var el = createInstallBanner();
+    textoBanner(el);   // el elemento se reutiliza: puede venir de otro idioma
     requestAnimationFrame(function() { el.classList.add('show'); });
   }
 
@@ -24735,7 +24838,7 @@ window.addEventListener('hashchange', () => {
   function showInstallInstructions() {
     // Textos por idioma. Chino en escapes \uXXXX para evitar problemas de codificacion.
     var TX = {
-      es:{t:'Instalar la app',ios:'En <b>Safari</b>, toca el boton <b>Compartir</b> (cuadrado con flecha) y elige <b>Anadir a pantalla de inicio</b>.',and:'En <b>Chrome</b>, abre el menu <b>\u22EE</b> y elige <b>Instalar aplicacion</b>.',pc:'En el navegador, busca el icono de <b>instalar</b> en la barra de direcciones, o abre el menu y elige <b>Instalar</b>.',ok:'Entendido'},
+      es:{t:'Instalar la app',ios:'En <b>Safari</b>, toca el botón <b>Compartir</b> (cuadrado con flecha) y elige <b>Añadir a pantalla de inicio</b>.',and:'En <b>Chrome</b>, abre el menú <b>\u22EE</b> y elige <b>Instalar aplicación</b>.',pc:'En el navegador, busca el icono de <b>instalar</b> en la barra de direcciones, o abre el menú y elige <b>Instalar</b>.',ok:'Entendido'},
       en:{t:'Install the app',ios:'In <b>Safari</b>, tap the <b>Share</b> button (square with arrow) and choose <b>Add to Home Screen</b>.',and:'In <b>Chrome</b>, open the <b>\u22EE</b> menu and choose <b>Install app</b>.',pc:'In your browser, look for the <b>install</b> icon in the address bar, or open the menu and choose <b>Install</b>.',ok:'Got it'},
       fr:{t:'Installer l\u2019app',ios:'Dans <b>Safari</b>, touche le bouton <b>Partager</b> (carre avec fleche) et choisis <b>Sur l\u2019ecran d\u2019accueil</b>.',and:'Dans <b>Chrome</b>, ouvre le menu <b>\u22EE</b> et choisis <b>Installer l\u2019application</b>.',pc:'Dans le navigateur, cherche l\u2019icone <b>installer</b> dans la barre d\u2019adresse, ou ouvre le menu et choisis <b>Installer</b>.',ok:'Compris'},
       de:{t:'App installieren',ios:'Tippe in <b>Safari</b> auf <b>Teilen</b> (Quadrat mit Pfeil) und waehle <b>Zum Home-Bildschirm</b>.',and:'Oeffne in <b>Chrome</b> das Menue <b>\u22EE</b> und waehle <b>App installieren</b>.',pc:'Suche im Browser das <b>Installieren</b>-Symbol in der Adresszeile oder oeffne das Menue und waehle <b>Installieren</b>.',ok:'Verstanden'},
@@ -24796,9 +24899,10 @@ window.addEventListener('hashchange', () => {
     el.setAttribute('role', 'status');
     el.innerHTML =
       '<span class="pwa-toast-icon">↻</span>' +
-      '<span class="pwa-toast-text">Nueva versión disponible</span>' +
-      '<button type="button" class="pwa-toast-reload">Recargar</button>' +
-      '<button type="button" class="pwa-toast-close" aria-label="Cerrar">×</button>';
+      '<span class="pwa-toast-text"></span>' +
+      '<button type="button" class="pwa-toast-reload"></button>' +
+      '<button type="button" class="pwa-toast-close">×</button>';
+    textoToast(el);
 
     el.querySelector('.pwa-toast-reload').addEventListener('click', safe(function() {
       el.classList.remove('show');
@@ -24830,6 +24934,7 @@ window.addEventListener('hashchange', () => {
 
   function showUpdateToast() {
     var el = createUpdateToast();
+    textoToast(el);    // idem
     requestAnimationFrame(function() { el.classList.add('show'); });
   }
 
@@ -24920,17 +25025,17 @@ window.addEventListener('hashchange', () => {
     var bd = ensureModalBackdrop();
     var modal = bd.querySelector('.pwa-modal');
     modal.innerHTML =
-      '<h3>App Tenerife</h3>' +
-      '<div class="pwa-modal-row"><span>Versión</span><span id="pwa-modal-version">cargando…</span></div>' +
-      '<div class="pwa-modal-row"><span>Modo</span><span>' + (isStandalone() ? 'App instalada' : 'Navegador') + '</span></div>' +
-      '<div class="pwa-modal-row"><span>Caché usada</span><span id="pwa-modal-cache">cargando…</span></div>' +
-      '<div class="pwa-modal-row"><span>Cachés activas</span><span id="pwa-modal-count">cargando…</span></div>' +
-      '<div class="pwa-modal-row"><span>Conexión</span><span>' + (navigator.onLine ? 'En línea' : 'Sin conexión') + '</span></div>' +
+      '<h3>' + esc(ptx('tituloInfo')) + '</h3>' +
+      fila(ptx('version'),       '<span id="pwa-modal-version">' + esc(ptx('cargando')) + '</span>') +
+      fila(ptx('modo'),          esc(ptx(isStandalone() ? 'appInstalada' : 'navegador'))) +
+      fila(ptx('cacheUsada'),    '<span id="pwa-modal-cache">' + esc(ptx('cargando')) + '</span>') +
+      fila(ptx('cachesActivas'), '<span id="pwa-modal-count">' + esc(ptx('cargando')) + '</span>') +
+      fila(ptx('conexion'),      esc(ptx(navigator.onLine ? 'enLinea' : 'sinConexion'))) +
       '<div class="pwa-modal-actions">' +
-        '<button type="button" class="pwa-btn-clear">Vaciar caché del mapa</button>' +
-        '<button type="button" class="pwa-btn-danger pwa-btn-clear-all">Borrar TODA la caché</button>' +
+        '<button type="button" class="pwa-btn-clear">' + esc(ptx('vaciarMapa')) + '</button>' +
+        '<button type="button" class="pwa-btn-danger pwa-btn-clear-all">' + esc(ptx('borrarTodo')) + '</button>' +
       '</div>' +
-      '<button type="button" class="pwa-modal-close">Cerrar</button>';
+      '<button type="button" class="pwa-modal-close">' + esc(ptx('cerrar')) + '</button>';
     bd.classList.add('show');
 
     // Cargar info
@@ -24950,18 +25055,18 @@ window.addEventListener('hashchange', () => {
 
     // Vaciar caché de tiles (suave)
     modal.querySelector('.pwa-btn-clear').addEventListener('click', safe(function() {
-      if (!confirm('¿Vaciar solo la caché del mapa? Las zonas del mapa se descargarán otra vez al verlas con conexión.')) return;
+      if (!confirm(ptx('confirmarMapa'))) return;
       clearTilesOnly().then(safe(function() {
-        alert('Caché del mapa vaciada.');
+        alert(ptx('mapaVaciado'));
         bd.classList.remove('show');
       }));
     }));
 
     // Borrar TODO (drástico)
     modal.querySelector('.pwa-btn-clear-all').addEventListener('click', safe(function() {
-      if (!confirm('¿Borrar TODA la caché? La app deberá descargarse de nuevo con conexión. Tus favoritos se conservan.')) return;
+      if (!confirm(ptx('confirmarTodo'))) return;
       clearAllCaches().then(safe(function() {
-        alert('Caché borrada. La app se recargará.');
+        alert(ptx('cacheBorrada'));
         window.location.reload();
       }));
     }));
@@ -25023,8 +25128,8 @@ window.addEventListener('hashchange', () => {
     var el = document.createElement('button');
     el.className = 'pwa-fab';
     el.setAttribute('type', 'button');
-    el.setAttribute('aria-label', 'Información de la app');
-    el.title = 'Información de la app';
+    el.setAttribute('aria-label', ptx('infoApp'));
+    el.title = ptx('infoApp');
     el.innerHTML = 'ⓘ';
     el.addEventListener('click', safe(showPwaInfoModal));
     document.body.appendChild(el);
@@ -25969,7 +26074,7 @@ function submitBusinessRegistration() {
     return;
   }
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    alert('El email no es válido');
+    alert(tx('emailNoValido'));
     return;
   }
 
@@ -26001,7 +26106,7 @@ function submitBusinessRegistration() {
 }
 
 function showBookingSoon() {
-  alert('🚀 Las reservas estarán disponibles muy pronto. ¡Gracias por tu interés!');
+  alert(tx('reservasPronto'));
 }
 
 // Cerrar tienda al pulsar Inicio
@@ -26401,7 +26506,7 @@ function handleBookingCTA() {
   const dateVal = document.getElementById('booking-date')?.value;
 
   if (!dateVal) {
-    alert('Por favor selecciona una fecha');
+    alert(tx('eligeFecha'));
     return;
   }
 
@@ -26415,11 +26520,11 @@ function handleBookingCTA() {
         icon: currentExcursion.icon
       });
       closeBookingPanel();
-      alert('✅ Añadido a tu cesta. Inicia sesión para pagar.');
+      alert(tx('anadidoCesta'));
     }
   } else {
     // Con sesión: próximamente Stripe
-    alert('🚀 Sistema de pago próximamente. Tu reserva ha sido guardada.');
+    alert(tx('pagoProximamente'));
   }
 }
 
@@ -30490,7 +30595,7 @@ async function pushSuscribir() {
     return true;
   } catch (e) {
     pushToast(pushTx('error'), false);
-    try { var _e = document.getElementById('auth-push-msg'); if (_e) _e.textContent = 'No se pudo activar: ' + (e && e.message ? e.message : 'error'); } catch (_) {}
+    try { var _e = document.getElementById('auth-push-msg'); if (_e) _e.textContent = tx('noSePudoActivar') + (e && e.message ? e.message : 'error'); } catch (_) {}
     return false;
   }
 }
@@ -32680,7 +32785,7 @@ function dpSwapOne(idx) {
     // Animar el botón para indicar que no hay más
     const btn = document.querySelector(`#dp-stop-${idx} .dp-swap-btn`);
     if (btn) {
-      btn.textContent = '😅 Sin más opciones';
+      btn.textContent = tx('sinMasOpciones');
       setTimeout(() => { btn.textContent = '🔄 Otro lugar'; }, 1800);
     }
     return;
@@ -32735,7 +32840,7 @@ function dpShare() {
   if (navigator.share) {
     navigator.share({ title: 'Mi día en Tenerife', text }).catch(() => {});
   } else {
-    navigator.clipboard.writeText(text).then(() => alert('¡Copiado al portapapeles! 📋'));
+    navigator.clipboard.writeText(text).then(() => alert(tx('copiadoPapeles')));
   }
 }
 
@@ -33043,7 +33148,7 @@ function dpiRenderResult(stops) {
           <div class="dp-stop-desc">${desc}</div>
           <div class="dp-stop-actions">
             <span class="dp-stop-tag" onclick="dpFlyToPlace('${escapeAttr(place.id)}')">📍 Ver mapa</span>
-            <span class="dp-nav-btn" onclick="dpiNavigateTo(dpCurrentStops[${i}])">🧭 Cómo llegar</span>
+            <span class="dp-nav-btn" onclick="dpiNavigateTo(dpCurrentStops[${i}])">${escapeHtml(tx('comoLlegarNav'))}</span>
             <span class="dp-swap-btn" onclick="dpiSwapOne(${i})">🔄 Otro</span>
             <span class="dp-remove-btn" onclick="dpiRemove(${i})">✕</span>
           </div>
@@ -33103,8 +33208,8 @@ function dpiNavigateTo(placeData) {
     document.getElementById('stop-dest-clear').classList.add('visible');
 
     // 2. Setear origen con posición del usuario
-    routeOrigin = { id: 'gps', name: 'Mi posición', lat: originLat, lng: originLng, emoji: '📍' };
-    document.getElementById('stop-origin-name').textContent = '📍 Mi posición';
+    routeOrigin = { id: 'gps', name: t().gpsTitle, lat: originLat, lng: originLng, emoji: '📍' };
+    document.getElementById('stop-origin-name').textContent = '📍 ' + t().gpsTitle;
     document.getElementById('stop-origin-name').classList.remove('placeholder');
     document.getElementById('stop-origin-clear').classList.add('visible');
 
@@ -33125,7 +33230,7 @@ function dpiNavigateTo(placeData) {
 
   // Pedir GPS
   if (!navigator.geolocation) {
-    alert('Tu navegador no soporta GPS. Elige el origen manualmente en la calculadora.');
+    alert(tx('gpsNoSoportado'));
     if (!routePanelOpen) toggleRoutePanel();
     switchRouteTab('ab');
     return;
@@ -33133,15 +33238,15 @@ function dpiNavigateTo(placeData) {
 
   // Feedback visual
   const btn = event && event.target;
-  if (btn) { btn.textContent = '⏳ Localizando…'; btn.style.pointerEvents = 'none'; }
+  if (btn) { btn.textContent = tx('localizando'); btn.style.pointerEvents = 'none'; }
 
   navigator.geolocation.getCurrentPosition(
     (pos) => {
-      if (btn) { btn.textContent = '🧭 Cómo llegar'; btn.style.pointerEvents = ''; }
+      if (btn) { btn.textContent = tx('comoLlegarNav'); btn.style.pointerEvents = ''; }
       doNav(pos.coords.latitude, pos.coords.longitude);
     },
     () => {
-      if (btn) { btn.textContent = '🧭 Cómo llegar'; btn.style.pointerEvents = ''; }
+      if (btn) { btn.textContent = tx('comoLlegarNav'); btn.style.pointerEvents = ''; }
       // Sin GPS: abrir calculadora con destino ya seteado, origen pendiente
       routeDest = { id: place.id, name: place.name, lat: place.lat, lng: place.lng, emoji: place.emoji || '📍' };
       document.getElementById('stop-dest-name').textContent = (place.emoji||'📍') + ' ' + place.name;

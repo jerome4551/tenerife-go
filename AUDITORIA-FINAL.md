@@ -147,12 +147,18 @@ emojis: 2.894, 250 distintos
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
 
-## Idiomas · 30 tablas, 359 filas
+## Idiomas · 31 tablas, 404 filas
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
-alcanzarlas por nombre desde el ámbito global, y las 22 que viven dentro de una
+alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
 función hay que sacarlas del fuente. Un barrido que solo recorra `window`
-encuentra 2 de 30.
+encuentra 2 de 31.
+
+El módulo PWA —banner de instalar, aviso de versión nueva y el panel de la ⓘ
+entero— **iba fijo en español en los ocho idiomas**: 25 textos. Ya está en
+`PWA_TX`, con la misma forma que `UI_TX`, así que la auditoría de idiomas lo
+recorre sola. Y con el control ampliado salieron 12 más sueltos por la app
+(tienda, GPS, portapapeles, «Cómo llegar»), también traducidos.
 
 | control | resultado |
 |---|---|
@@ -462,6 +468,23 @@ decisión de arquitectura, no un arreglo.
     exclusión no se habría guardado ni una tesela. Hay que aceptarla aparte —y
     `Cache.put()` sí la admite, comprobado en Chromium con un segundo puerto,
     que ya cuenta como otro origen.
+39. **Un control estrecho enseña que no hay nada que buscar.** El de literales
+    en español solo miraba `.textContent`/`.innerText`/`.placeholder` y una
+    lista de sustantivos. Los 25 textos del módulo PWA iban por `innerHTML`,
+    `confirm()` y `alert()`, así que pasaba en verde con el panel entero en
+    español. Ahora mira también los diálogos y los atributos, y decide si un
+    texto es español por acentos o por dos palabras funcionales: `'⏳
+    Localizando…'` no tiene ninguna palabra de ninguna lista.
+40. **Y ahora tumba la auditoría.** Un aviso que solo se imprime acaba
+    ignorándose, y esto es exactamente lo que se cuela sin que nadie lo mire.
+    El panel de administración queda fuera a propósito —va solo en español— y
+    se localiza por sus marcas, no por número de línea, que se mueve solo.
+41. **Un elemento que se crea una vez se queda en el idioma de entonces.** El
+    banner de instalar y el aviso de versión nueva se cachean en una variable
+    y se reutilizan. El texto se pinta aparte y se vuelve a pintar cada vez que
+    se muestran; y se construye con nodos y `textContent`, no con `innerHTML`,
+    para dejar el DOM igual que antes —un `<b>` y un nodo de texto suelto—, que
+    es de lo que depende el CSS del banner.
 
 ---
 

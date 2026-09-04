@@ -66,20 +66,51 @@ for c in crudo[:5]: print('    ' + c.strip()[:110])
 print('\n=== textos visibles escritos a pelo ===')
 # La auditoria de idiomas solo mira las tablas: no ve un literal en español
 # metido en una plantilla. Este control es el que caza esos.
-ES = (r'(?:l\u00ednea|paradas?|l\u00edneas|sin resultados|cargando|buscar|guagua|'
-      r'aqu\u00ed|volver|cerrar|siguiente|ninguna|no hay|elegir|toca|pulsa)')
+#
+# La primera version solo miraba .textContent/.innerText/.placeholder y una
+# lista corta de palabras. Se le escaparon los 25 textos del modulo PWA, que
+# iban por innerHTML, confirm() y alert(): el panel de informacion entero
+# salia en español en los ocho idiomas. Ahora mira tambien los dialogos y los
+# atributos, y decide si un texto es español por acentos o por dos palabras
+# funcionales, en vez de por una lista de sustantivos que siempre se queda
+# corta -'⏳ Localizando…' no tiene ninguna-.
+CTX = (r'(?:\.(?:textContent|innerText|placeholder|title|ariaLabel)\s*=\s*'
+       r'|(?:confirm|alert|prompt)\s*\(\s*'
+       r"|setAttribute\s*\(\s*'(?:aria-label|title|placeholder|alt)'\s*,\s*)")
+PAL = (r'\b(?:el|la|los|las|un|una|de|del|que|no|se|su|tu|con|para|por|en|y|o|es|'
+       r'est[aá]|hay|más|sin|al|lo|te|ya|muy|pero|como|cuando|donde|desde|hasta|'
+       r'sobre|entre|todo|toda|esta|este|esa|ese)\b')
+
+def es_espanol(t):
+    if re.search(r'[áéíóúñ¿¡ÁÉÍÓÚÑ]', t):
+        return True
+    return len(re.findall(PAL, t, re.I)) >= 2
+
+# El panel de administracion va SOLO en español, por decision de producto.
+# Se localiza por sus marcas y no por numero de linea, que se mueve solo.
+try:
+    adm_ini = s.index('PANEL DE ADMINISTRACIÓN')
+    adm_fin = s.index('<!-- \u2550', s.index('SISTEMA DE ADMINISTRACIÓN'))
+except ValueError:
+    adm_ini = adm_fin = -1
+
 fijos = []
-for m in re.finditer(r'\.(?:textContent|innerText|placeholder)\s*=\s*'
-                     r'(`[^`]{0,220}`|\'[^\']{0,220}\'|"[^"]{0,220}")', s):
+for m in re.finditer(CTX + r'(`[^`]{0,300}`|\'[^\']{0,300}\'|"[^"]{0,300}")', s):
     lit = m.group(1)
-    if not re.search(ES, lit, re.I): continue
+    if not es_espanol(lit[1:-1]): continue
+    if adm_ini <= m.start() <= adm_fin: continue
     # el acceso al idioma puede ir ANTES del literal, como fallback
-    ctx = s[max(0, m.start() - 120):m.end()]
-    if re.search(r'L_\.|\bt\(\)|\btx\(|LANGS|\|\|', ctx): continue
+    ctx = s[max(0, m.start() - 140):m.end()]
+    if re.search(r'L_\.|\bt\(\)|\btx\(|\bptx\(|LANGS|\|\|', ctx): continue
+    # una fila de tabla de idiomas (es:'...') no es un literal suelto
+    if re.search(r"\b(?:es|en|fr|de|it|nl|zh|zht)\s*:\s*$", s[:m.end() - len(lit)]): continue
     fijos.append((s.count('\n', 0, m.start()) + 1, lit.replace('\n', ' ')[:88]))
 print('  literales en español sin pasar por el idioma: %d' % len(fijos))
-for ln, t in fijos[:10]:
+for ln, t in fijos[:12]:
     print('    <--  linea %-6d %s' % (ln, t))
+# Este control SI tumba la auditoria. Un aviso que solo se imprime acaba
+# ignorandose, y esto es justo lo que se cuela sin que nadie lo vea.
+CON_FALLO = bool(fijos)
 
 print('\n=== tipografia china ===')
 # En chino no se deja espacio detras de los signos de ancho completo, ni se
@@ -107,3 +138,7 @@ else:
         print('    %s%s' % (d[:92], aviso))
     for falta in ('frame-ancestors', 'form-action', 'base-uri', 'object-src'):
         print('    %-16s %s' % (falta, 'presente' if falta in m.group(1) else 'AUSENTE'))
+
+
+import sys
+sys.exit(1 if CON_FALLO else 0)
