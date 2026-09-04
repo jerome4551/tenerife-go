@@ -327,7 +327,7 @@ tiene que **venir dentro**.
 |---|---|---|
 | 1 | el motor: `pmtiles` 4.5.0 y `protomaps-leaflet` 5.1.0 en `vendor/`, precargados | hecho |
 | 2 | `mapa/tenerife-base.pmtiles`, generado con datos que ya estaban aquí | hecho |
-| 3 | la capa vectorial en Leaflet, que entra sola cuando no hay conexión | pendiente |
+| 3 | la capa vectorial en Leaflet, que entra sola cuando no hay conexión | hecho |
 | 4 | descarga opcional de un `.pmtiles` de OSM para el detalle fino | pendiente |
 
 **Por qué `protomaps-leaflet` y no MapLibre.** MapLibre obliga a rehacer el
@@ -339,6 +339,13 @@ vez, con una fuente propia de cuatro líneas sobre un `Blob`. Así vale en
 cualquier hosting estático, lo guarda el service worker como un recurso más y
 funciona sin conexión desde el primer arranque. Con rangos dependería de que
 el servidor haga *byte serving*, que desde aquí no se puede comprobar.
+
+**Cuándo entra.** Con conexión no cambia nada: se arranca en Calles y el
+fichero **ni se descarga**. La capa entra sola en dos casos —arrancar sin red,
+o seis fallos seguidos de teselas, que ya no es un hueco suelto— y se va sola
+cuando vuelve la red. Con dos reglas para no pelearse con el usuario: **si
+elige capa a mano, no se le cambia nunca más**, y se recuerda cuál tenía para
+devolvérsela.
 
 **Qué lleva y qué no.** Costa (GSHHG), red viaria (los `via` de las 183 líneas,
 trazado real del GTFS) y 54 núcleos con su nombre. **No lleva senderos ni
@@ -508,6 +515,20 @@ Para el detalle fino está el bloque 4, que es opcional.
     `PYTHONHASHSEED`**: se probó con la semilla fija y salían los mismos 4
     bytes. El control lo mira **sobre el fichero**, no sobre el generador:
     222 bloques gzip, ninguno con hora.
+43. **La lista de capas estaba escrita cuatro veces.** En `setLang`, en
+    `setStyleFromMenu`, en `cycleMapLayer` y en el HTML. Así es exactamente
+    como se añade una quinta y se olvida una. Ahora vive en `LAYER_IDS` y las
+    etiquetas salen de `etiquetasCapas()`.
+44. **`let` no se hoistea: tiene zona muerta temporal.** El arranque sin red
+    llamaba a `irAIslaSinRed()` desde antes de la línea que declara
+    `_capaElegidaAMano`, así que habría reventado justo en el único caso que
+    importa. Las dos llamadas de arranque van después de las declaraciones.
+45. **Una prueba puede medir el contenedor en vez del código.** El control de
+    «al volver la red, vuelve la capa que había» fallaba: volvía a Calles, las
+    teselas de OSM no se alcanzan desde aquí, fallaban seis veces y el propio
+    automatismo devolvía a la isla. Correcto, pero no era lo que se quería
+    medir. Se le da a la capa una URL local que sí responde, y así el único
+    camino vivo es el que se prueba.
 39. **Un control estrecho enseña que no hay nada que buscar.** El de literales
     en español solo miraba `.textContent`/`.innerText`/`.placeholder` y una
     lista de sustantivos. Los 25 textos del módulo PWA iban por `innerHTML`,

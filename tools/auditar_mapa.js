@@ -176,6 +176,107 @@ function ok(cond, txt, detalle) {
     }
   }
 
+  /* ── BLOQUE 3 · la capa dentro de la app ──
+
+     Lo delicado: que entre sola cuando no hay red, que no se pelee con el
+     usuario y que con conexion no cambie nada de lo de antes. */
+  console.log('\n════════ mapa sin conexion · bloque 3, la capa en la app ════════\n');
+  {
+    const browser3 = await chromium.launch({
+      executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+      args: ['--no-proxy-server', '--no-sandbox']
+    });
+    try {
+      const page = await browser3.newPage({ viewport: { width: 420, height: 760 } });
+      const errores = [];
+      page.on('pageerror', e => errores.push(e.message));
+      await page.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'load' });
+      await page.waitForTimeout(2500);
+
+      const base = await page.evaluate(() => ({
+        motor: typeof pmtiles !== 'undefined' && typeof protomapsL !== 'undefined',
+        opcion: getComputedStyle(document.getElementById('lopt-isla')).display,
+        capa: currentLayer,
+        ids: LAYER_IDS,
+        // sin tocar nada, la capa NO se ha descargado: son 1,1 MB que quien
+        // tiene cobertura no necesita
+        descargada: !!layers.isla
+      }));
+      ok(base.motor, 'el motor vectorial carga dentro de la app');
+      ok(base.opcion === 'flex', 'la opcion «Isla offline» aparece en el menu de capas', base.opcion);
+      ok(base.capa === 'streets', 'con red se arranca en Calles, igual que siempre', base.capa);
+      ok(!base.descargada, 'el fichero NO se descarga al arrancar: solo cuando hace falta');
+      ok(JSON.stringify(base.ids) === JSON.stringify(['streets', 'satellite', 'topo', 'isla']),
+         'la lista de capas vive en un solo sitio', base.ids.join(','));
+
+      // Las etiquetas, en los 8. La capa nueva no puede quedarse en español.
+      const et = await page.evaluate(() => {
+        const out = {};
+        for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht']) { setLang(l); out[l] = t().isla; }
+        setLang('es');
+        return out;
+      });
+      const vacios = Object.keys(et).filter(l => !et[l] || !et[l].trim());
+      ok(vacios.length === 0, 'la capa tiene nombre en los 8 idiomas', vacios.join(','));
+      ok(new Set(Object.values(et)).size >= 6, 'y no es el mismo texto repetido en todos',
+         JSON.stringify(et));
+
+      // Elegir la isla a mano: se descarga, se pinta y queda elegida.
+      const aMano = await page.evaluate(async () => {
+        setStyleFromMenu('isla');
+        await new Promise(r => setTimeout(r, 3000));
+        return { capa: currentLayer, descargada: !!layers.isla, aMano: _capaElegidaAMano,
+                 etiqueta: document.getElementById('layers-active-label').textContent,
+                 marca: getComputedStyle(document.getElementById('lcheck-isla')).display };
+      });
+      ok(aMano.capa === 'isla' && aMano.descargada, 'al elegirla, se descarga y se pone', JSON.stringify(aMano));
+      ok(aMano.marca !== 'none', 'y el menu la marca con su ✓', aMano.marca);
+      ok(aMano.aMano === true, 'elegir a mano deja constancia: ya no se le cambia sola');
+
+      /* Elegida a mano, quedarse sin red NO debe moverla. Es la regla que
+         evita que la app se pelee con el usuario. */
+      const trasCaerse = await page.evaluate(async () => {
+        window.dispatchEvent(new Event('offline'));
+        await new Promise(r => setTimeout(r, 300));
+        const a = currentLayer;
+        // y volver a haber red tampoco la saca de donde el usuario la puso
+        window.dispatchEvent(new Event('online'));
+        await new Promise(r => setTimeout(r, 300));
+        return { sinRed: a, conRed: currentLayer };
+      });
+      ok(trasCaerse.sinRed === 'isla' && trasCaerse.conRed === 'isla',
+         'si el usuario eligio capa, ni caerse la red ni volver se la cambian', JSON.stringify(trasCaerse));
+
+      /* Y ahora al reves: sin haber elegido nada, caerse la red lleva a la
+         isla, y volver la red devuelve la capa que habia. */
+      const solo = await page.evaluate(async (puerto) => {
+        /* Se le da a la capa de calles una URL local que SI responde. Desde
+           este contenedor las teselas de OSM no se alcanzan, asi que al
+           volver la red fallarian seis veces y el propio automatismo
+           devolveria a la isla: se estaria midiendo la falta de red del
+           contenedor, no la logica. Con una imagen local que existe, el
+           unico camino que queda vivo es el que se quiere probar. */
+        layers.streets.setUrl('http://127.0.0.1:' + puerto + '/vendor/images/marker-icon.png');
+        _capaElegidaAMano = false;
+        setStyle('streets');
+        await new Promise(r => setTimeout(r, 400));
+        window.dispatchEvent(new Event('offline'));
+        await new Promise(r => setTimeout(r, 600));
+        const sinRed = currentLayer;
+        window.dispatchEvent(new Event('online'));
+        await new Promise(r => setTimeout(r, 900));
+        return { sinRed, conRed: currentLayer, recuerdo: _capaAntesDeCaerse };
+      }, PUERTO);
+      ok(solo.sinRed === 'isla', 'sin red y sin eleccion del usuario, entra sola la isla', JSON.stringify(solo));
+      ok(solo.conRed === 'streets', 'y al volver la red, vuelve la capa que habia', JSON.stringify(solo));
+      ok(solo.recuerdo === null, 'y se olvida el recuerdo, para no devolverla dos veces', String(solo.recuerdo));
+
+      ok(errores.length === 0, 'todo lo anterior, sin una sola excepcion', errores.join(' | '));
+    } finally {
+      await browser3.close();
+    }
+  }
+
   console.log('\n  ' + (fallos ? fallos + ' MAL de ' + hechos : hechos + ' controles, todos en verde') + '\n');
   process.exit(fallos ? 1 : 0);
 })();

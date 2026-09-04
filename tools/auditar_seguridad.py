@@ -74,8 +74,11 @@ print('\n=== textos visibles escritos a pelo ===')
 # atributos, y decide si un texto es español por acentos o por dos palabras
 # funcionales, en vez de por una lista de sustantivos que siempre se queda
 # corta -'⏳ Localizando…' no tiene ninguna-.
+# showLayerMsg y showLayerToast pintan en pantalla igual que un alert. Se
+# suman a la lista porque los cuatro avisos de cambio de capa estaban fijos en
+# español y ningun control los veia.
 CTX = (r'(?:\.(?:textContent|innerText|placeholder|title|ariaLabel)\s*=\s*'
-       r'|(?:confirm|alert|prompt)\s*\(\s*'
+       r'|(?:confirm|alert|prompt|showLayerMsg|showLayerToast)\s*\(\s*'
        r"|setAttribute\s*\(\s*'(?:aria-label|title|placeholder|alt)'\s*,\s*)")
 PAL = (r'\b(?:el|la|los|las|un|una|de|del|que|no|se|su|tu|con|para|por|en|y|o|es|'
        r'est[aá]|hay|más|sin|al|lo|te|ya|muy|pero|como|cuando|donde|desde|hasta|'

@@ -264,6 +264,17 @@ window.onunhandledrejection = function(e) {
 <link rel="stylesheet" href="./vendor/MarkerCluster.css"/>
 <script src="./vendor/leaflet.markercluster.js"
   onerror="console.warn('[INIT] MarkerCluster no cargó — clusters desactivados')"></script>
+
+<!-- El motor del mapa vectorial: la capa «Isla offline», que es la unica que
+     funciona sin red en una zona que el usuario no haya mirado antes.
+     Los dos ficheros estan en el precache del service worker, asi que aqui
+     salen del cache y no de la red. Si fallaran, la app sigue igual: la
+     opcion no aparece en el menu y no se cambia solo a ella. Mismo trato que
+     MarkerCluster: se degrada, no se rompe. -->
+<script src="./vendor/pmtiles.js"
+  onerror="console.warn('[INIT] pmtiles no cargó — sin mapa offline')"></script>
+<script src="./vendor/protomaps-leaflet.js"
+  onerror="console.warn('[INIT] protomaps-leaflet no cargó — sin mapa offline')"></script>
 <!-- Supabase SDK (auth + base de datos)
      Version EXACTA + integrity (SRI). Antes ponia "@2", que es un rango:
      jsDelivr servia la ultima 2.x publicada, asi que cualquier release
@@ -6090,6 +6101,14 @@ window.onunhandledrejection = function(e) {
           <span class="layers-opt-name" id="btn-topo">Topo</span>
           <span class="layers-opt-check" id="lcheck-topo" style="display:none">✓</span>
         </div>
+        <!-- La isla sin red. Nace oculta y solo aparece si el motor vectorial
+             y el mapa base estan de verdad disponibles: mas vale no ofrecer
+             una capa que no se puede pintar. -->
+        <div class="layers-option" id="lopt-isla" style="display:none" onclick="setStyleFromMenu('isla')">
+          <span class="layers-opt-icon">📴</span>
+          <span class="layers-opt-name" id="btn-isla">Isla offline</span>
+          <span class="layers-opt-check" id="lcheck-isla" style="display:none">✓</span>
+        </div>
       </div>
     </div>
     <!-- Botón gasolineras retirado del topbar: la categoría 'gasolinera' sigue en Servicios -->
@@ -6589,6 +6608,7 @@ const LANGS = {
     streets: 'Calles',
     satellite: 'Satélite',
     topo: 'Topo',
+    isla: 'Isla offline',
     lifeguard: '🛟 Servicio de socorristas',
     lifeguardNow: '🛟 Socorrista ahora', lifeguardHours: '🛟 Socorristas {h}',
     noLifeguard: '⚠️ Sin vigilancia',
@@ -6759,6 +6779,7 @@ banderasTitulo: '¿Qué significa cada bandera?',
     streets: 'Streets',
     satellite: 'Satellite',
     topo: 'Topo',
+    isla: 'Island offline',
     lifeguard: '🛟 Lifeguard service',
     lifeguardNow: '🛟 Lifeguard on duty', lifeguardHours: '🛟 Lifeguard {h}',
     noLifeguard: '⚠️ No lifeguard',
@@ -6929,6 +6950,7 @@ banderasTitulo: 'What does each flag mean?',
     streets: 'Rues',
     satellite: 'Satellite',
     topo: 'Topo',
+    isla: 'Île hors ligne',
     lifeguard: '🛟 Service de sauveteurs',
     lifeguardNow: '🛟 Sauveteur en poste', lifeguardHours: '🛟 Sauveteurs {h}',
     noLifeguard: '⚠️ Sans surveillance',
@@ -7099,6 +7121,7 @@ banderasTitulo: 'Que signifie chaque drapeau ?',
     streets: 'Straßen',
     satellite: 'Satellit',
     topo: 'Topo',
+    isla: 'Insel offline',
     lifeguard: '🛟 Rettungsschwimmer-Dienst',
     lifeguardNow: '🛟 Rettungsschwimmer im Dienst', lifeguardHours: '🛟 Rettungsschwimmer {h}',
     noLifeguard: '⚠️ Kein Rettungsschwimmer',
@@ -7273,6 +7296,7 @@ banderasTitulo: 'Was bedeutet welche Flagge?',
     streets: 'Strade',
     satellite: 'Satellite',
     topo: 'Topo',
+    isla: 'Isola offline',
     lifeguard: '🛟 Servizio di bagnini',
     lifeguardNow: '🛟 Bagnino in servizio', lifeguardHours: '🛟 Bagnini {h}',
     noLifeguard: '⚠️ Non sorvegliata',
@@ -7441,6 +7465,7 @@ banderasTitulo: 'Che cosa significa ogni bandiera?',
     streets: 'Straten',
     satellite: 'Satelliet',
     topo: 'Topo',
+    isla: 'Eiland offline',
     lifeguard: '🛟 Strandwachtdienst',
     lifeguardNow: '🛟 Strandwacht aanwezig', lifeguardHours: '🛟 Strandwacht {h}',
     noLifeguard: '⚠️ Onbewaakt',
@@ -7615,6 +7640,7 @@ banderasTitulo: 'Wat betekent elke vlag?',
     streets: '街道',
     satellite: '卫星',
     topo: '地形',
+    isla: '离线海岛图',
     lifeguard: '🛟 救生员服务',
     lifeguardNow: '🛟 救生员在岗', lifeguardHours: '🛟 救生员 {h}',
     noLifeguard: '⚠️ 无救生员',
@@ -8082,6 +8108,7 @@ const ZHT_OVERRIDES = {
     streets: '街道',
     satellite: '衛星',
     topo: '地形',
+    isla: '離線海島圖',
     lifeguard: '🛟 救生員服務',
     lifeguardNow: '🛟 救生員在崗', lifeguardHours: '🛟 救生員 {h}',
     noLifeguard: '⚠️ 無救生員',
@@ -8274,6 +8301,13 @@ Object.assign(UI_TX, {
   copiadoPapeles:   { es:'¡Copiado al portapapeles! 📋', en:'Copied to clipboard! 📋', fr:'Copié dans le presse-papiers ! 📋', de:'In die Zwischenablage kopiert! 📋', it:'Copiato negli appunti! 📋', nl:'Gekopieerd naar het klembord! 📋', zh:'已复制到剪贴板！📋', zht:'已複製到剪貼簿！📋' },
   gpsNoSoportado:   { es:'Tu navegador no soporta GPS. Elige el origen manualmente en la calculadora.', en:'Your browser does not support GPS. Choose the starting point manually in the calculator.', fr:'Ton navigateur ne prend pas en charge le GPS. Choisis le point de départ manuellement dans le calculateur.', de:'Dein Browser unterstützt kein GPS. Wähle den Startpunkt manuell im Rechner.', it:'Il tuo browser non supporta il GPS. Scegli il punto di partenza manualmente nel calcolatore.', nl:'Je browser ondersteunt geen gps. Kies het startpunt handmatig in de calculator.', zh:'你的浏览器不支持 GPS。请在计算器里手动选择起点。', zht:'你的瀏覽器不支援 GPS。請在計算機裡手動選擇起點。' },
   comoLlegarNav:    { es:'🧭 Cómo llegar', en:'🧭 How to get there', fr:'🧭 Y aller', de:'🧭 Route anzeigen', it:'🧭 Come arrivare', nl:'🧭 Route', zh:'🧭 怎么去', zht:'🧭 怎麼去' },
+  capaNoDisponible: { es:'Capa no disponible', en:'Layer not available', fr:'Couche indisponible', de:'Ebene nicht verfügbar', it:'Livello non disponibile', nl:'Laag niet beschikbaar', zh:'该图层不可用', zht:'該圖層不可用' },
+  mapaNoListo:      { es:'El mapa aún no está listo', en:'The map is not ready yet', fr:'La carte n’est pas encore prête', de:'Die Karte ist noch nicht bereit', it:'La mappa non è ancora pronta', nl:'De kaart is nog niet klaar', zh:'地图还没准备好', zht:'地圖還沒準備好' },
+  capaSinImagenes:  { es:'No se pueden cargar las imágenes de esta capa', en:'This layer’s images cannot be loaded', fr:'Impossible de charger les images de cette couche', de:'Die Bilder dieser Ebene lassen sich nicht laden', it:'Non si riescono a caricare le immagini di questo livello', nl:'De beelden van deze laag kunnen niet worden geladen', zh:'这个图层的图像加载不出来', zht:'這個圖層的圖像載入不了' },
+  capaError:        { es:'Error al cambiar de capa', en:'Error switching layer', fr:'Erreur en changeant de couche', de:'Fehler beim Wechseln der Ebene', it:'Errore nel cambiare livello', nl:'Fout bij het wisselen van laag', zh:'切换图层出错', zht:'切換圖層出錯' },
+  capaIslaFallo:    { es:'No se pudo abrir el mapa de la isla', en:'The island map could not be opened', fr:'Impossible d’ouvrir la carte de l’île', de:'Die Inselkarte konnte nicht geöffnet werden', it:'Non è stato possibile aprire la mappa dell’isola', nl:'De eilandkaart kon niet worden geopend', zh:'打不开海岛地图', zht:'打不開海島地圖' },
+  capaIslaCargando: { es:'Abriendo el mapa de la isla…', en:'Opening the island map…', fr:'Ouverture de la carte de l’île…', de:'Inselkarte wird geöffnet…', it:'Apertura della mappa dell’isola…', nl:'Eilandkaart wordt geopend…', zh:'正在打开海岛地图…', zht:'正在開啟海島地圖…' },
+  capaSinRed:       { es:'Sin red: se pasa al mapa de la isla', en:'No connection: switching to the island map', fr:'Pas de réseau : passage à la carte de l’île', de:'Keine Verbindung: Wechsel zur Inselkarte', it:'Nessuna rete: si passa alla mappa dell’isola', nl:'Geen verbinding: overschakelen naar de eilandkaart', zh:'没有网络：切换到海岛地图', zht:'沒有網路：切換到海島地圖' },
   localizando:      { es:'⏳ Localizando…', en:'⏳ Locating…', fr:'⏳ Localisation…', de:'⏳ Standort wird gesucht…', it:'⏳ Localizzazione…', nl:'⏳ Locatie zoeken…', zh:'⏳ 定位中…', zht:'⏳ 定位中…' }
 });
 
@@ -8421,8 +8455,10 @@ function setLang(lang) {
   document.getElementById('btn-streets').textContent  = L.streets;
   document.getElementById('btn-satellite').textContent = L.satellite;
   document.getElementById('btn-topo').textContent     = L.topo;
+  const btnIsla = document.getElementById('btn-isla');
+  if (btnIsla) btnIsla.textContent = L.isla;
   // Actualizar label activo en botón capas
-  const layerLabels = { streets: L.streets, satellite: L.satellite, topo: L.topo };
+  const layerLabels = { streets: L.streets, satellite: L.satellite, topo: L.topo, isla: L.isla };
   document.getElementById('layers-active-label').textContent = layerLabels[currentLayer] || L.streets;
 
   // Filtros
@@ -13156,6 +13192,72 @@ const layers = {
 layers.streets.addTo(map);
 let currentLayer = 'streets';
 
+/* ── LA CAPA DE LA ISLA, LA QUE FUNCIONA SIN RED ──────────────────────
+   mapa/tenerife-base.pmtiles viaja dentro de la app: 1,1 MB de costa, red
+   viaria y nucleos, precargado por el service worker. Nadie tiene que
+   acordarse de descargar nada antes de subir al monte.
+
+   Se construye la primera vez que hace falta y no al arrancar: son 1,1 MB
+   que quien tiene cobertura no va a necesitar. Y se pide ENTERO, sin
+   peticiones por rango: pesa poco, lo sirve el service worker como
+   cualquier otro recurso y asi no depende de que el hosting haga byte
+   serving, que es algo que no se puede dar por hecho. */
+const ISLA_URL = 'mapa/tenerife-base.pmtiles';
+let _islaPendiente = null;
+
+function islaPosible() {
+  return typeof pmtiles !== 'undefined' && typeof protomapsL !== 'undefined';
+}
+
+function islaCapa() {
+  if (layers.isla) return Promise.resolve(layers.isla);
+  if (_islaPendiente) return _islaPendiente;
+  if (!islaPosible()) return Promise.reject(new Error('motor vectorial no cargado'));
+  const P = protomapsL;
+  _islaPendiente = fetch(ISLA_URL)
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.blob(); })
+    .then(blob => {
+      const fuente = {
+        getKey: () => ISLA_URL,
+        getBytes: (o, n) => blob.slice(o, o + n).arrayBuffer().then(data => ({ data }))
+      };
+      layers.isla = P.leafletLayer({
+        url: new pmtiles.PMTiles(fuente),
+        maxDataZoom: 13,               // de z14 para arriba reescala el propio motor
+        backgroundColor: '#a8c8e0',
+        attribution: 'GSHHG · GTFS TITSA',
+        paintRules: [
+          { dataLayer: 'tierra',    symbolizer: new P.PolygonSymbolizer({ fill: '#eef1e6' }) },
+          { dataLayer: 'carretera', symbolizer: new P.LineSymbolizer({ color: '#c2a86a', width: 1.4 }) }
+        ],
+        labelRules: [
+          { dataLayer: 'sitio', symbolizer: new P.CenteredTextSymbolizer({
+              labelProps: ['nombre'], fill: '#33404f',
+              font: '600 12px system-ui, sans-serif', stroke: '#ffffff', width: 2 }) }
+        ]
+      });
+      return layers.isla;
+    })
+    .catch(e => { _islaPendiente = null; throw e; });
+  return _islaPendiente;
+}
+
+/* La lista de capas vive en UN sitio. Estaba repetida en cuatro -setLang,
+   setStyleFromMenu, cycleMapLayer y el HTML-, que es exactamente como se
+   anade una quinta y se olvida una. */
+const LAYER_IDS = ['streets', 'satellite', 'topo', 'isla'];
+function etiquetasCapas() {
+  const L = t();
+  return { streets: L.streets, satellite: L.satellite, topo: L.topo, isla: L.isla };
+}
+
+/* La opcion solo se ensena si el motor esta de verdad cargado: mas vale no
+   ofrecer una capa que luego no se puede pintar. */
+function pintarOpcionIsla() {
+  const opt = document.getElementById('lopt-isla');
+  if (opt) opt.style.display = islaPosible() ? 'flex' : 'none';
+}
+
 // ── CLUSTER GROUP (Leaflet.markercluster) ─────────────────
 // Agrupa marcadores cercanos en círculos numerados dorados.
 // Se expanden al hacer zoom o al hacer clic.
@@ -13195,8 +13297,17 @@ function setStyle(style) {
      se comprueba y, si algo va mal, se dice en pantalla: en un movil no
      hay consola donde mirar. */
   try {
-    if (!layers[style]) { showLayerMsg('Capa no disponible: ' + style); return; }
-    if (typeof map === 'undefined' || !map) { showLayerMsg('El mapa aun no esta listo'); return; }
+    if (typeof map === 'undefined' || !map) { showLayerMsg(tx('mapaNoListo')); return; }
+
+    /* La isla no existe hasta que se descarga su fichero, asi que la primera
+       vez se pide y se vuelve a entrar aqui cuando ya esta. */
+    if (style === 'isla' && !layers.isla) {
+      showLayerMsg(tx('capaIslaCargando'));
+      islaCapa().then(function () { setStyle('isla'); })
+                .catch(function () { showLayerMsg(tx('capaIslaFallo')); });
+      return;
+    }
+    if (!layers[style]) { showLayerMsg(tx('capaNoDisponible') + ': ' + style); return; }
 
     var anterior = layers[currentLayer];
     if (anterior && map.hasLayer(anterior)) map.removeLayer(anterior);
@@ -13207,15 +13318,57 @@ function setStyle(style) {
 
     // Si las teselas no llegan, avisar en vez de dejar el mapa vacio
     var fallos = 0;
-    nueva.off('tileerror');
-    nueva.on('tileerror', function () {
+    if (nueva.off) nueva.off('tileerror');
+    if (nueva.on) nueva.on('tileerror', function () {
       fallos++;
-      if (fallos === 6) showLayerMsg('No se pueden cargar las imagenes de esta capa');
+      /* A las seis seguidas ya no es un hueco suelto: o no hay red o el
+         servidor de teselas no responde. Antes esto solo enseñaba un aviso
+         y dejaba el mapa en blanco; ahora se pasa a la isla, que siempre
+         esta. Solo si el usuario no ha elegido capa a mano. */
+      if (fallos === 6) {
+        if (style !== 'isla' && islaPosible() && !_capaElegidaAMano) irAIslaSinRed();
+        else showLayerMsg(tx('capaSinImagenes'));
+      }
     });
   } catch (err) {
-    showLayerMsg('Error al cambiar de capa: ' + (err && err.message ? err.message : err));
+    showLayerMsg(tx('capaError') + ': ' + (err && err.message ? err.message : err));
   }
 }
+
+/* ── EL CAMBIO AUTOMATICO CUANDO SE CAE LA RED ────────────────────────
+   Sin conexion, OSM y Esri dejan el mapa en blanco salvo en las zonas que
+   el usuario ya haya mirado. La isla siempre esta.
+
+   Dos reglas para no pelearse con el usuario: si elige capa a mano, no se
+   le cambia nunca mas; y se recuerda cual tenia para devolversela cuando
+   vuelva la red. */
+let _capaElegidaAMano = false;
+let _capaAntesDeCaerse = null;
+
+function irAIslaSinRed() {
+  if (_capaElegidaAMano || currentLayer === 'isla' || !islaPosible()) return;
+  _capaAntesDeCaerse = currentLayer;
+  setStyle('isla');
+  try { showLayerToast(tx('capaSinRed')); } catch (e) {}
+}
+function volverDeIsla() {
+  if (_capaElegidaAMano || currentLayer !== 'isla' || !_capaAntesDeCaerse) return;
+  const vuelve = _capaAntesDeCaerse;
+  _capaAntesDeCaerse = null;
+  setStyle(vuelve);
+}
+window.addEventListener('offline', function () { irAIslaSinRed(); });
+window.addEventListener('online', function () { volverDeIsla(); });
+
+/* Estas dos van AQUI y no arriba, junto a pintarOpcionIsla(), porque
+   _capaElegidaAMano se declara con `let` unas lineas mas arriba: llamarlas
+   antes entraria en su zona muerta temporal y reventaria justo en el unico
+   caso que importa, arrancar sin red.
+
+   Y al arrancar sin red no se intentan las teselas de OSM para esperar a que
+   fallen seis veces: se va derecho a la isla. */
+pintarOpcionIsla();
+if (islaPosible() && navigator.onLine === false) irAIslaSinRed();
 
 // Aviso breve en pantalla (sin consola, que en movil no se ve)
 function showLayerMsg(txt) {
@@ -15962,15 +16115,15 @@ function toggleLayersDropdown(e) {
    cambiaba de capa ni saltaba ningun error. Como son solo tres capas,
    rotar con cada toque es mas simple y mas rapido en movil, y usa
    addEventListener, el mismo patron de los botones que si funcionan. */
-var LAYER_CYCLE = ['streets', 'satellite', 'topo'];
-
 function cycleMapLayer() {
-  var i = LAYER_CYCLE.indexOf(currentLayer);
-  var next = LAYER_CYCLE[(i + 1) % LAYER_CYCLE.length];
+  // La isla solo entra en la rueda si su motor esta cargado.
+  var ciclo = LAYER_IDS.filter(function (id) { return id !== 'isla' || islaPosible(); });
+  var i = ciclo.indexOf(currentLayer);
+  var next = ciclo[(i + 1) % ciclo.length];
+  _capaElegidaAMano = true;      // tocar el boton tambien es elegir
   setStyle(next);
 
-  var labels = { streets: t().streets, satellite: t().satellite, topo: t().topo };
-  var nombre = labels[next] || next;
+  var nombre = etiquetasCapas()[next] || next;
 
   var lb = document.getElementById('layers-active-label');
   if (lb) lb.textContent = nombre;
@@ -16011,20 +16164,21 @@ if (document.readyState !== 'loading') { initLayersCycle(); }
 else { document.addEventListener('DOMContentLoaded', initLayersCycle); }
 
 function setStyleFromMenu(style) {
-  // Cambiar capa del mapa
+  // El usuario ha elegido: a partir de aqui no se le cambia la capa sola.
+  _capaElegidaAMano = true;
   try {
     setStyle(style);
   } catch (err) {
-    showLayerMsg('Fallo al aplicar la capa: ' + (err && err.message ? err.message : err));
+    showLayerMsg(tx('capaError') + ': ' + (err && err.message ? err.message : err));
     return;
   }
 
   // Actualizar label activo en el botón
-  const labels = { streets: t().streets, satellite: t().satellite, topo: t().topo };
+  const labels = etiquetasCapas();
   document.getElementById('layers-active-label').textContent = labels[style] || style;
 
   // Actualizar checks del dropdown
-  ['streets','satellite','topo'].forEach(s => {
+  LAYER_IDS.forEach(s => {
     const opt = document.getElementById('lopt-' + s);
     const chk = document.getElementById('lcheck-' + s);
     if (opt) opt.classList.toggle('active', s === style);
