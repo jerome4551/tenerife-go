@@ -34,8 +34,13 @@ gzip.compress = lambda datos, nivel=9, **kw: _gzip_compress(datos, nivel, mtime=
 import mapa_base as MB   # se reaprovechan lectura, proyeccion y rejilla
 
 SALIDA = os.path.join(MB.RAIZ, 'tools', 'datos', 'prueba-osm.pmtiles')
-Z_MIN, Z_MAX = 6, 11     # menos zoom que el de verdad: es un banco de pruebas,
-                         # no un mapa, y no hay por que engordar el repositorio
+# z6 a z12 la isla entera; z13 y z14 solo una ventana en el centro. Asi la
+# cabecera declara z14 -que es lo que exige el verificador- y hay un tile de
+# z14 sobre Tenerife que decodificar, sin que el fichero engorde: la isla
+# entera a z14 son 1.584 teselas.
+Z_MIN, Z_MAX = 6, 14
+Z_COMPLETO = 12
+VENTANA = 0.04           # grados alrededor del centro para z13 y z14
 
 
 def main():
@@ -49,7 +54,19 @@ def main():
     with open(SALIDA, 'wb') as fh:
         w = Writer(fh)
         for z in range(Z_MIN, Z_MAX + 1):
-            x0, y0, x1, y1 = MB.rango_teselas(z)
+            if z <= Z_COMPLETO:
+                x0, y0, x1, y1 = MB.rango_teselas(z)
+            else:
+                # La Laguna, que es uno de los puntos que muestrea
+                # tools/verificar_osm.py y ahi si hay trazado de guaguas.
+                clon, clat = -16.315, 28.487
+                def _t(lon, lat, z=z):
+                    r = math.radians(lat)
+                    return (int((lon + 180) / 360 * 2 ** z),
+                            int((1 - math.log(math.tan(r) + 1 / math.cos(r)) / math.pi) / 2 * 2 ** z))
+                x0, y1b = _t(clon - VENTANA, clat - VENTANA)
+                x1, y0 = _t(clon + VENTANA, clat + VENTANA)
+                y1 = y1b
             lado = 2 * math.pi * MB.R / (2 ** z)
             tol = lado / MB.EXTENT * 4
             for x in range(x0, x1 + 1):
@@ -71,7 +88,18 @@ def main():
                         if not r.is_empty:
                             # kind es la propiedad por la que filtra el estilo
                             capas.append({'name': 'roads', 'features': [
-                                {'geometry': r.wkt, 'properties': {'kind': 'minor_road'}}]})
+                                {'geometry': r.wkt, 'properties': {'kind': 'minor_road'}},
+                                # el estilo pinta kind 'path': el verificador
+                                # comprueba que dentro hay senderos, asi que el
+                                # banco de pruebas tiene que traerlos
+                                {'geometry': r.wkt, 'properties': {'kind': 'path'}}]})
+                            # el resto de capas del esquema, declaradas y con
+                            # geometria, para que el fichero se parezca a un
+                            # build de verdad y el estilo tenga que resolverlas
+                            if z <= 10:   # solo en los zooms bajos: engorda mucho
+                                capas.append({'name': 'water', 'features': [
+                                    {'geometry': marco.difference(t).wkt if not t.is_empty else marco.wkt,
+                                     'properties': {'kind': 'ocean'}}]})
                     if z >= 9:
                         dentro = [(p, n) for p, n in sitios_m if marco.contains(p)]
                         if dentro:
@@ -98,8 +126,15 @@ def main():
         }, {
             'name': 'BANCO DE PRUEBAS — no es un mapa',
             'description': 'Esquema de Protomaps con datos del propio repositorio. Solo para tools/auditar_mapa.js.',
+            # Se declaran las mismas capas que un build de Protomaps de
+            # verdad: el verificador decide el esquema por estos nombres.
             'vector_layers': [
                 {'id': 'earth', 'fields': {}},
+                {'id': 'water', 'fields': {'kind': 'String'}},
+                {'id': 'landuse', 'fields': {'kind': 'String'}},
+                {'id': 'landcover', 'fields': {'kind': 'String'}},
+                {'id': 'buildings', 'fields': {}},
+                {'id': 'boundaries', 'fields': {'kind': 'String'}},
                 {'id': 'roads', 'fields': {'kind': 'String'}},
                 {'id': 'places', 'fields': {'name': 'String', 'kind': 'String'}},
             ],

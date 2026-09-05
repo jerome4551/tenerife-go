@@ -190,6 +190,11 @@ function ok(cond, txt, detalle) {
       const page = await browser3.newPage({ viewport: { width: 420, height: 760 } });
       const errores = [];
       page.on('pageerror', e => errores.push(e.message));
+      const peticiones = [];
+      page.on('request', r => {
+        const h = r.headers();
+        peticiones.push({ url: r.url().replace('http://127.0.0.1:' + PUERTO, ''), rango: h['range'] || null });
+      });
       await page.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'load' });
       await page.waitForTimeout(2500);
 
@@ -270,6 +275,32 @@ function ok(cond, txt, detalle) {
       ok(solo.sinRed === 'isla', 'sin red y sin eleccion del usuario, entra sola la isla', JSON.stringify(solo));
       ok(solo.conRed === 'streets', 'y al volver la red, vuelve la capa que habia', JSON.stringify(solo));
       ok(solo.recuerdo === null, 'y se olvida el recuerdo, para no devolverla dos veces', String(solo.recuerdo));
+
+      /* ── NI UNA PETICION POR RANGO ──
+
+         PMTiles normalmente lee el archivo a trozos con cabeceras Range, y
+         eso obliga a que el hosting haga byte serving. Si no lo hace, el
+         mapa sale en blanco SIN dar error: es el mismo fallo silencioso de
+         siempre.
+
+         Aqui no se depende de eso: el fichero se pide entero y las lecturas
+         por rango las resuelve blob.slice() en memoria del navegador. Pero
+         eso hay que probarlo, no leerlo: basta con que alguien pase una URL
+         en vez de un PMTiles para que vuelva la dependencia sin que nada
+         falle en local. */
+      const conRango = peticiones.filter(p => p.rango);
+      ok(conRango.length === 0, 'ni una sola peticion con cabecera Range',
+         conRango.slice(0, 3).map(p => p.url + ' [' + p.rango + ']').join(' | '));
+      const alPmtiles = peticiones.filter(p => /\.pmtiles/.test(p.url));
+      ok(alPmtiles.length > 0 && alPmtiles.every(p => !p.rango),
+         'el .pmtiles se pide entero, de una vez (' + alPmtiles.length + ' peticion/es)',
+         JSON.stringify(alPmtiles.slice(0, 3)));
+      const fuente = await page.evaluate(() => {
+        // y que nadie haya vuelto a pasar una URL suelta, que es lo que
+        // enchufaria el FetchSource de pmtiles y con el las peticiones Range
+        return String(construirIsla).indexOf("url: new pmtiles.PMTiles") > 0;
+      });
+      ok(fuente, 'la capa se construye siempre sobre un PMTiles propio, nunca sobre una URL');
 
       ok(errores.length === 0, 'todo lo anterior, sin una sola excepcion', errores.join(' | '));
     } finally {
@@ -426,16 +457,37 @@ function ok(cond, txt, detalle) {
       ok(bajado.detallada === true, 'y la capa offline pasa a usar el detalle', String(bajado.detallada));
 
       // que de verdad se pinta con el estilo de Protomaps
+      /* No basta con contar lienzos: si el esquema del fichero y el del
+         estilo no son de la misma generacion, los lienzos existen y estan
+         VACIOS. Es el fallo silencioso del bloque 4, asi que se miden los
+         pixeles que no son el color de fondo que declara el propio estilo. */
       const pintado = await page.evaluate(async () => {
         try { document.querySelector('.pwa-modal-close').click(); } catch (e) {}
         setStyleFromMenu('isla');
         await new Promise(r => setTimeout(r, 3000));
-        map.setView([28.47, -16.28], 11);
-        await new Promise(r => setTimeout(r, 2500));
-        return { capa: currentLayer, lienzos: document.querySelectorAll('#map canvas').length };
+        map.setView([28.487, -16.315], 13);
+        await new Promise(r => setTimeout(r, 3000));
+        const cs = document.querySelectorAll('#map canvas');
+        const hex = (layers.isla.backgroundColor || '#cccccc').replace('#', '');
+        const fondo = [parseInt(hex.slice(0,2),16), parseInt(hex.slice(2,4),16), parseInt(hex.slice(4,6),16)];
+        let total = 0, pintados = 0;
+        for (const c of cs) {
+          const g = c.getContext('2d');
+          if (!g || !c.width) continue;
+          const d = g.getImageData(0, 0, c.width, c.height).data;
+          for (let i = 0; i < d.length; i += 4) {
+            total++;
+            if (Math.abs(d[i]-fondo[0]) + Math.abs(d[i+1]-fondo[1]) + Math.abs(d[i+2]-fondo[2]) > 12) pintados++;
+          }
+        }
+        return { capa: currentLayer, lienzos: cs.length,
+                 pct: total ? +(pintados * 100 / total).toFixed(2) : 0 };
       });
       ok(pintado.capa === 'isla' && pintado.lienzos > 0,
-         'HAY MAPA DETALLADO PINTADO: ' + pintado.lienzos + ' teselas', JSON.stringify(pintado));
+         'la capa detallada se pone y crea lienzos (' + pintado.lienzos + ')', JSON.stringify(pintado));
+      ok(pintado.pct >= 0.5,
+         'Y NO ESTA EN BLANCO: ' + pintado.pct + ' % de pixeles pintados con el estilo de la app',
+         JSON.stringify(pintado) + ' — si sale ~0, el esquema del fichero y el del estilo no se entienden');
 
       // ── cambiar de idioma rehace la capa, que rotula en el idioma fijado ──
       const idioma = await page.evaluate(async () => {

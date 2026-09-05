@@ -29,7 +29,7 @@ Mientras no esté, no se ve nada de eso y la app usa el mapa base.
 | esquema | **Protomaps basemap** (`earth`, `water`, `roads`, `places`…). Con otro esquema el fichero es válido y **el mapa sale en blanco**, sin ningún error. |
 | caja | `-16.98,27.90,-16.08,28.65` — la caja de navegación de la app |
 | zoom máximo | 14 como mínimo. z15 si cabe. |
-| tamaño | **por debajo de 100 MB**: GitHub rechaza el push por encima. Por encima de 80 MB, bajar un nivel de zoom. |
+| tamaño | **25 MB** si se sube arrastrando en la web de GitHub; hasta **100 MB** solo por `git push` desde línea de comandos. Por encima de 100 MB, GitHub rechaza el push: baja un nivel de zoom. |
 
 ### Cómo
 
@@ -45,5 +45,38 @@ planeta:
 
     python3 tools/verificar_osm.py ruta/al/tenerife-osm.pmtiles
 
-Comprueba el esquema, la caja, el zoom, el tamaño y que dentro haya senderos.
+Siete pasos. Los seis primeros miran el fichero: formato, **esquema**, caja,
+zoom, tamaño, y que dentro haya senderos de verdad —muestreando La Laguna,
+Anaga, Teide, Adeje y La Orotava, no el centro de la caja, que en Tenerife cae
+en mitad de la caldera—.
+
+El séptimo mira **el par**: monta la capa con el `vendor/protomaps-leaflet.js`
+que corre en el móvil y cuenta los píxeles que no son fondo.
+
+    node tools/verificar_estilo.js ruta/al/fichero.pmtiles     # suelto
+
+Esto es lo que resuelve el problema de las generaciones. Los *builds* y el
+paquete de estilos avanzan por su cuenta, y si no se entienden el mapa sale en
+blanco **sin dar ningún error**. Comparar números de versión no sirve: no
+siempre están y no dicen lo que importa. Medir sí. Un fichero de OpenMapTiles
+da 9 lienzos y **0,00 % pintado**; uno bueno, 99,99 %.
+
 Si pasa, se copia aquí como `tenerife-osm.pmtiles` y se sube.
+
+### Sobre las peticiones por rango
+
+PMTiles normalmente lee el archivo a trozos con cabeceras `Range`, y eso
+obliga a que el *hosting* haga *byte serving*. Si no lo hace: mapa en blanco,
+sin error.
+
+**Tenerife Go no depende de eso**, a propósito. La capa se construye con
+`new pmtiles.PMTiles(fuenteBlob(...))` sobre el fichero entero ya descargado,
+nunca con una URL, así que las lecturas por rango las resuelve `blob.slice()`
+dentro del navegador. Hay un control permanente en `tools/auditar_mapa.js` que
+graba **todas** las peticiones mientras se carga la capa y falla si alguna
+lleva `Range` — para que nadie reintroduzca la dependencia pasando una URL
+suelta, que en local funcionaría igual.
+
+Si algún día el fichero se sirviera desde otro sitio:
+
+    python3 tools/verificar_osm.py https://…/x.pmtiles --solo-cabeceras
