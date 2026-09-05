@@ -338,6 +338,138 @@ function ok(cond, txt, detalle) {
     }
   }
 
+  /* ── BLOQUE 4 · el mapa detallado de OSM, opcional ──
+
+     El fichero de verdad lo genera el usuario y no cabe aqui. Para poder
+     probar la maquinaria entera -mirar si esta, descargarlo con barra,
+     guardarlo, releerlo del cache, estilarlo con el flavor de Protomaps,
+     rehacer la capa y borrarlo- se pone un banco de pruebas con el mismo
+     esquema, generado por tools/mapa_prueba_osm.py, y se quita al terminar. */
+  console.log('\n════════ mapa sin conexion · bloque 4, el detalle de OSM ════════\n');
+  {
+    const FIXTURE = path.join(RAIZ, 'tools/datos/prueba-osm.pmtiles');
+    const DESTINO = path.join(RAIZ, 'mapa/tenerife-osm.pmtiles');
+    const NOMBRE_FIXTURE = 'BANCO DE PRUEBAS';
+
+    /* Red de seguridad: si una ejecucion anterior murio a medias, el banco de
+       pruebas se pudo quedar puesto haciendose pasar por el mapa de verdad. */
+    if (fs.existsSync(DESTINO)) {
+      const cabeza = fs.readFileSync(DESTINO).toString('latin1');
+      ok(!cabeza.includes(NOMBRE_FIXTURE),
+         'mapa/tenerife-osm.pmtiles no es un banco de pruebas olvidado',
+         'lleva la marca ' + NOMBRE_FIXTURE + ': borralo');
+    }
+    const habiaAntes = fs.existsSync(DESTINO);
+    ok(fs.existsSync(FIXTURE), 'existe el banco de pruebas tools/datos/prueba-osm.pmtiles');
+
+    const browser5 = await chromium.launch({
+      executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+      args: ['--no-proxy-server', '--no-sandbox']
+    });
+    try {
+      const page = await browser5.newPage({ viewport: { width: 420, height: 760 } });
+      const errores = [];
+      page.on('pageerror', e => errores.push(e.message));
+
+      // ── sin el fichero: no se ofrece nada y se usa el mapa base ──
+      if (!habiaAntes) {
+        await page.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'load' });
+        await page.waitForTimeout(2500);
+        const sin = await page.evaluate(async () => {
+          const enServidor = await detalleEnServidor();
+          document.querySelector('.pwa-fab').click();
+          await new Promise(r => setTimeout(r, 600));
+          const caja = document.getElementById('pwa-detalle');
+          await islaCapa();
+          return { enServidor, panel: caja ? caja.innerHTML.trim() : null,
+                   detallada: !!layers.isla._tgoDetallada };
+        });
+        ok(sin.enServidor === null, 'si el fichero no esta, detalleEnServidor devuelve null', JSON.stringify(sin.enServidor));
+        ok(sin.panel === '', 'y el panel no ensena nada del mapa detallado', sin.panel);
+        ok(sin.detallada === false, 'la capa offline usa el mapa base', String(sin.detallada));
+      }
+
+      // ── con el fichero puesto ──
+      fs.copyFileSync(FIXTURE, DESTINO);
+      const tam = fs.statSync(DESTINO).size;
+
+      await page.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'load' });
+      await page.waitForTimeout(2500);
+
+      const conFichero = await page.evaluate(async () => {
+        const enServidor = await detalleEnServidor();
+        document.querySelector('.pwa-fab').click();
+        await new Promise(r => setTimeout(r, 800));
+        const btn = document.querySelector('.pwa-btn-detalle');
+        return { bytes: enServidor && enServidor.bytes, boton: btn ? btn.textContent : null };
+      });
+      ok(conFichero.bytes === tam, 'el HEAD devuelve el tamano real, sin gastar datos',
+         conFichero.bytes + ' vs ' + tam);
+      ok(/\d+ MB|\d+ Mo/.test(conFichero.boton || ''), 'el boton dice cuanto ocupa antes de descargar', conFichero.boton);
+
+      // ── descargarlo, con barra ──
+      const bajado = await page.evaluate(async () => {
+        const pasos = [];
+        await descargarDetalle(p => pasos.push(p));
+        const guardado = await detalleGuardado();
+        const ks = await caches.keys();
+        olvidarIslaCapa();
+        await islaCapa();
+        return { pasos: pasos.length, ultimo: pasos[pasos.length - 1],
+                 bytes: guardado ? guardado.size : 0,
+                 cache: ks.includes('tgo-mapa-osm-v1'),
+                 detallada: !!layers.isla._tgoDetallada };
+      });
+      ok(bajado.bytes === tam, 'se guarda entero y se relee del cache', bajado.bytes + ' vs ' + tam);
+      ok(bajado.cache, 'en su propio cache, tgo-mapa-osm-v1');
+      ok(bajado.pasos > 0 && bajado.ultimo > 0, 'la descarga informa del avance', JSON.stringify(bajado));
+      ok(bajado.detallada === true, 'y la capa offline pasa a usar el detalle', String(bajado.detallada));
+
+      // que de verdad se pinta con el estilo de Protomaps
+      const pintado = await page.evaluate(async () => {
+        try { document.querySelector('.pwa-modal-close').click(); } catch (e) {}
+        setStyleFromMenu('isla');
+        await new Promise(r => setTimeout(r, 3000));
+        map.setView([28.47, -16.28], 11);
+        await new Promise(r => setTimeout(r, 2500));
+        return { capa: currentLayer, lienzos: document.querySelectorAll('#map canvas').length };
+      });
+      ok(pintado.capa === 'isla' && pintado.lienzos > 0,
+         'HAY MAPA DETALLADO PINTADO: ' + pintado.lienzos + ' teselas', JSON.stringify(pintado));
+
+      // ── cambiar de idioma rehace la capa, que rotula en el idioma fijado ──
+      const idioma = await page.evaluate(async () => {
+        const antes = layers.isla;
+        setLang('de');
+        await new Promise(r => setTimeout(r, 1500));
+        const rehecha = layers.isla !== antes;
+        setLang('es');
+        await new Promise(r => setTimeout(r, 1500));
+        return { rehecha };
+      });
+      ok(idioma.rehecha, 'cambiar de idioma rehace la capa detallada, que rotula en el suyo');
+
+      // ── borrarlo ──
+      const borrado = await page.evaluate(async () => {
+        await borrarDetalle();
+        olvidarIslaCapa();
+        await islaCapa();
+        const ks = await caches.keys();
+        return { cache: ks.includes('tgo-mapa-osm-v1'), detallada: !!layers.isla._tgoDetallada };
+      });
+      ok(!borrado.cache, 'al borrarlo, el cache desaparece');
+      ok(borrado.detallada === false, 'y la capa offline vuelve al mapa base');
+
+      ok(errores.length === 0, 'todo el recorrido, sin una sola excepcion', errores.slice(0, 3).join(' | '));
+    } finally {
+      await browser5.close();
+      // El banco de pruebas NO se queda. Si se quedara, se estaria sirviendo
+      // un mapa falso como si fuera el bueno.
+      if (!habiaAntes) { try { fs.unlinkSync(DESTINO); } catch (e) {} }
+    }
+    ok(habiaAntes || !fs.existsSync(DESTINO), 'el banco de pruebas se retira al terminar');
+  }
+
   console.log('\n  ' + (fallos ? fallos + ' MAL de ' + hechos : hechos + ' controles, todos en verde') + '\n');
   process.exit(fallos ? 1 : 0);
 })();

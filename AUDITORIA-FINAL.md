@@ -328,7 +328,7 @@ tiene que **venir dentro**.
 | 1 | el motor: `pmtiles` 4.5.0 y `protomaps-leaflet` 5.1.0 en `vendor/`, precargados | hecho |
 | 2 | `mapa/tenerife-base.pmtiles`, generado con datos que ya estaban aquí | hecho |
 | 3 | la capa vectorial en Leaflet, que entra sola cuando no hay conexión | hecho |
-| 4 | descarga opcional de un `.pmtiles` de OSM para el detalle fino | pendiente |
+| 4 | descarga opcional de un `.pmtiles` de OSM para el detalle fino | hecho · **falta el fichero** |
 
 **Por qué `protomaps-leaflet` y no MapLibre.** MapLibre obliga a rehacer el
 mapa entero y con él los 765 marcadores, los clusters y las 183 polilíneas.
@@ -352,6 +352,16 @@ o seis fallos seguidos de teselas, que ya no es un hueco suelto— y se va sola
 cuando vuelve la red. Con dos reglas para no pelearse con el usuario: **si
 elige capa a mano, no se le cambia nunca más**, y se recuerda cuál tenía para
 devolvérsela.
+
+**El detalle de OSM (bloque 4).** La maquinaria está entera y probada:
+mirar si el fichero existe (`HEAD`, sin gastar datos), descargarlo con barra
+de progreso, guardarlo en su propio caché, releerlo, estilarlo con el *flavor*
+`light` de Protomaps —que **sí pinta senderos**, `kind: path`— y borrarlo. Se
+enciende **solo** el día que aparezca `mapa/tenerife-osm.pmtiles` en el
+repositorio: mientras no esté, la sección ni se ve y la app usa el mapa base.
+
+Ese fichero lo tiene que generar una persona: desde este contenedor el proxy
+no deja salir a Geofabrik, Overpass ni Protomaps. Cómo, en «Fuera del repo».
 
 **Qué lleva y qué no.** Costa (GSHHG), red viaria (los `via` de las 183 líneas,
 trazado real del GTFS) y 54 núcleos con su nombre. **No lleva senderos ni
@@ -535,6 +545,15 @@ Para el detalle fino está el bloque 4, que es opcional.
     automatismo devolvía a la isla. Correcto, pero no era lo que se quería
     medir. Se le da a la capa una URL local que sí responde, y así el único
     camino vivo es el que se prueba.
+46. **`caches.open()` crea el caché con solo mirarlo.** Preguntar si había
+    mapa detallado dejaba un caché vacío en cada arranque, que se contaba en
+    «Cachés activas» y reaparecía justo después de borrarlo. Primero
+    `caches.has()`, y solo entonces `open()`.
+47. **Un banco de pruebas que se queda puesto es un mapa falso servido como
+    bueno.** El bloque 4 se prueba copiando `tools/datos/prueba-osm.pmtiles`
+    a `mapa/tenerife-osm.pmtiles`. Se retira en un `finally`, y además la
+    auditoría empieza comprobando que lo que hay ahí no lleva la marca
+    `BANCO DE PRUEBAS` de una ejecución anterior que muriera a medias.
 39. **Un control estrecho enseña que no hay nada que buscar.** El de literales
     en español solo miraba `.textContent`/`.innerText`/`.placeholder` y una
     lista de sustantivos. Los 25 textos del módulo PWA iban por `innerHTML`,
@@ -577,6 +596,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_sw.js` | el service worker en un ámbito falso: mapa sin conexión, tope y actualizaciones |
 | `tools/auditar_mapa.js` | el mapa sin conexión, bloque a bloque |
 | `tools/mapa_base.py` | genera `mapa/tenerife-base.pmtiles` desde los datos del propio repositorio |
+| `tools/mapa_prueba_osm.py` | banco de pruebas con el esquema de Protomaps, para poder probar el bloque 4 |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con

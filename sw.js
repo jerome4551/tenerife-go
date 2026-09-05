@@ -20,6 +20,12 @@ const CACHE = 'tgo-v7-2026-09-01-teselas';
    para todo eso y para lo que se haya mirado de cerca. */
 const TESELAS = 'tgo-teselas-v1';
 const TESELAS_TOPE = 1200;
+
+/* El mapa detallado de OSM, si el usuario lo ha descargado. Lo gestiona
+   entero la app; aqui solo hace falta saber que este cache NO se borra al
+   actualizar. Son decenas de megas y volver a pedirlos porque ha salido una
+   version nueva de la app seria una tomadura de pelo. */
+const MAPA_OSM = 'tgo-mapa-osm-v1';
 const CORE = [
   './', './index.html', './manifest.webmanifest',
   // Leaflet y MarkerCluster ya no vienen de un CDN: viven en ./vendor/.
@@ -51,7 +57,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE && k !== TESELAS).map(k => caches.delete(k))))
+      .then(keys => Promise.all(keys.filter(k => k !== CACHE && k !== TESELAS && k !== MAPA_OSM).map(k => caches.delete(k))))
       .then(() => recortarTeselas())
       .then(() => self.clients.claim())
   );
@@ -148,6 +154,11 @@ self.addEventListener('fetch', e => {
      comprobar desde aqui que los dos servidores manden las cabeceras. Una
      opaca no se puede mirar por dentro, pero para servirsela a un <img>
      vale igual. */
+  /* El mapa detallado no pasa por aqui. Lo descarga la app y lo guarda en su
+     cache; si ademas lo cachease este manejador, el movil acabaria con dos
+     copias de decenas de megas. */
+  if (url.pathname.endsWith('/mapa/tenerife-osm.pmtiles')) return;
+
   if (esTesela(url)) {
     e.respondWith(
       fetch(req).then(res => {

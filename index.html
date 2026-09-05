@@ -8308,6 +8308,16 @@ Object.assign(UI_TX, {
   capaIslaFallo:    { es:'No se pudo abrir el mapa de la isla', en:'The island map could not be opened', fr:'Impossible d’ouvrir la carte de l’île', de:'Die Inselkarte konnte nicht geöffnet werden', it:'Non è stato possibile aprire la mappa dell’isola', nl:'De eilandkaart kon niet worden geopend', zh:'打不开海岛地图', zht:'打不開海島地圖' },
   capaIslaCargando: { es:'Abriendo el mapa de la isla…', en:'Opening the island map…', fr:'Ouverture de la carte de l’île…', de:'Inselkarte wird geöffnet…', it:'Apertura della mappa dell’isola…', nl:'Eilandkaart wordt geopend…', zh:'正在打开海岛地图…', zht:'正在開啟海島地圖…' },
   capaSinRed:       { es:'Sin red: se pasa al mapa de la isla', en:'No connection: switching to the island map', fr:'Pas de réseau : passage à la carte de l’île', de:'Keine Verbindung: Wechsel zur Inselkarte', it:'Nessuna rete: si passa alla mappa dell’isola', nl:'Geen verbinding: overschakelen naar de eilandkaart', zh:'没有网络：切换到海岛地图', zht:'沒有網路：切換到海島地圖' },
+  mapaDetalle:      { es:'Mapa detallado', en:'Detailed map', fr:'Carte détaillée', de:'Detailkarte', it:'Mappa dettagliata', nl:'Gedetailleerde kaart', zh:'详细地图', zht:'詳細地圖' },
+  mapaDetalleNo:    { es:'sin descargar', en:'not downloaded', fr:'non téléchargée', de:'nicht geladen', it:'non scaricata', nl:'niet gedownload', zh:'未下载', zht:'未下載' },
+  mapaDetalleSi:    { es:'descargada · {mb} MB', en:'downloaded · {mb} MB', fr:'téléchargée · {mb} Mo', de:'geladen · {mb} MB', it:'scaricata · {mb} MB', nl:'gedownload · {mb} MB', zh:'已下载 · {mb} MB', zht:'已下載 · {mb} MB' },
+  mapaDescargar:    { es:'Descargar detalle ({mb} MB)', en:'Download detail ({mb} MB)', fr:'Télécharger le détail ({mb} Mo)', de:'Detail laden ({mb} MB)', it:'Scarica il dettaglio ({mb} MB)', nl:'Detail downloaden ({mb} MB)', zh:'下载详细地图（{mb} MB）', zht:'下載詳細地圖（{mb} MB）' },
+  mapaDescargando:  { es:'Descargando… {pct}%', en:'Downloading… {pct}%', fr:'Téléchargement… {pct}%', de:'Wird geladen… {pct}%', it:'Scaricamento… {pct}%', nl:'Downloaden… {pct}%', zh:'下载中… {pct}%', zht:'下載中… {pct}%' },
+  mapaBorrarDetalle:{ es:'Borrar el detalle', en:'Delete the detail', fr:'Effacer le détail', de:'Detail löschen', it:'Cancella il dettaglio', nl:'Detail wissen', zh:'删除详细地图', zht:'刪除詳細地圖' },
+  mapaDetalleListo: { es:'Mapa detallado listo. Ya funciona sin conexión.', en:'Detailed map ready. It now works offline.', fr:'Carte détaillée prête. Elle fonctionne désormais hors ligne.', de:'Detailkarte bereit. Sie funktioniert jetzt offline.', it:'Mappa dettagliata pronta. Ora funziona offline.', nl:'Gedetailleerde kaart klaar. Werkt nu offline.', zh:'详细地图已就绪，现在离线也能用。', zht:'詳細地圖已就緒，現在離線也能用。' },
+  mapaDetalleFallo: { es:'No se pudo descargar el mapa detallado.', en:'The detailed map could not be downloaded.', fr:'Impossible de télécharger la carte détaillée.', de:'Die Detailkarte konnte nicht geladen werden.', it:'Non è stato possibile scaricare la mappa dettagliata.', nl:'De gedetailleerde kaart kon niet worden gedownload.', zh:'详细地图下载失败。', zht:'詳細地圖下載失敗。' },
+  mapaDetalleFuera: { es:'Mapa detallado borrado.', en:'Detailed map deleted.', fr:'Carte détaillée effacée.', de:'Detailkarte gelöscht.', it:'Mappa dettagliata cancellata.', nl:'Gedetailleerde kaart gewist.', zh:'详细地图已删除。', zht:'詳細地圖已刪除。' },
+  mapaDetalleAviso: { es:'Se descarga una sola vez y se queda en el móvil. Mejor con wifi.', en:'Downloaded once and kept on your phone. Best on Wi-Fi.', fr:'Téléchargée une seule fois et conservée sur le téléphone. De préférence en Wi-Fi.', de:'Wird einmal geladen und bleibt auf dem Telefon. Am besten per WLAN.', it:'Si scarica una sola volta e resta sul telefono. Meglio con il Wi-Fi.', nl:'Wordt één keer gedownload en blijft op je telefoon. Het best via wifi.', zh:'只下载一次，保存在手机里。建议用 Wi-Fi。', zht:'只下載一次，保存在手機裡。建議用 Wi-Fi。' },
   localizando:      { es:'⏳ Localizando…', en:'⏳ Locating…', fr:'⏳ Localisation…', de:'⏳ Standort wird gesucht…', it:'⏳ Localizzazione…', nl:'⏳ Locatie zoeken…', zh:'⏳ 定位中…', zht:'⏳ 定位中…' }
 });
 
@@ -8460,6 +8470,15 @@ function setLang(lang) {
   // Actualizar label activo en botón capas
   const layerLabels = { streets: L.streets, satellite: L.satellite, topo: L.topo, isla: L.isla };
   document.getElementById('layers-active-label').textContent = layerLabels[currentLayer] || L.streets;
+
+  /* El mapa detallado rotula en el idioma que se le fija al construirlo, asi
+     que si el usuario cambia de idioma hay que rehacer la capa. Solo cuando
+     esta puesto el detallado: el mapa base rotula con nombres propios, que
+     son los mismos en los ocho. */
+  try {
+    if (typeof layers !== 'undefined' && layers.isla && layers.isla._tgoDetallada
+        && typeof olvidarIslaCapa === 'function') olvidarIslaCapa();
+  } catch (e) {}
 
   // Filtros
   document.getElementById('cat-header-label').textContent = L.filterLabel;
@@ -13205,41 +13224,161 @@ let currentLayer = 'streets';
 const ISLA_URL = 'mapa/tenerife-base.pmtiles';
 let _islaPendiente = null;
 
+/* ── EL MAPA DETALLADO, OPCIONAL ──────────────────────────────────────
+   Un .pmtiles de OpenStreetMap con el esquema de Protomaps: senderos,
+   edificios, usos del suelo. Lo que el mapa base no puede llevar porque no
+   esta en ningun dato nuestro.
+
+   No va en el precache: pesa decenas de megas y no se le puede meter a todo
+   el mundo en la instalacion. Se descarga a mano, una vez, y se queda en un
+   cache propio que sobrevive a las actualizaciones de la app.
+
+   Si el fichero no esta en el servidor, nada de esto se ensena: la app
+   funciona igual con el mapa base. Asi que el dia que aparezca en
+   mapa/tenerife-osm.pmtiles se enciende solo, sin tocar una linea. */
+const DETALLE_URL = 'mapa/tenerife-osm.pmtiles';
+const DETALLE_CACHE = 'tgo-mapa-osm-v1';
+
+function detalleGuardado() {
+  if (!window.caches) return Promise.resolve(null);
+  /* has() antes que open(): caches.open() CREA el cache si no existe, asi que
+     el simple hecho de mirar si hay mapa detallado dejaba un cache vacio en
+     cada arranque, contandose en "Caches activas" y reapareciendo justo
+     despues de borrarlo. */
+  return caches.has(DETALLE_CACHE).then(function (hay) {
+    if (!hay) return null;
+    return caches.open(DETALLE_CACHE)
+      .then(function (c) { return c.match(DETALLE_URL); })
+      .then(function (r) { return r ? r.blob() : null; });
+  }).catch(function () { return null; });
+}
+
+/* Cuanto ocupa en el servidor, para poder decir el tamano ANTES de
+   descargar. Un HEAD basta y no gasta datos. Si da 404 -que es lo que pasa
+   mientras el fichero no exista- se devuelve null y la seccion no aparece. */
+function detalleEnServidor() {
+  return fetch(DETALLE_URL, { method: 'HEAD' })
+    .then(function (r) {
+      if (!r.ok) return null;
+      const n = Number(r.headers.get('content-length'));
+      return { bytes: isFinite(n) && n > 0 ? n : 0 };
+    })
+    .catch(function () { return null; });
+}
+
+function descargarDetalle(alProgreso) {
+  return fetch(DETALLE_URL).then(function (res) {
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const total = Number(res.headers.get('content-length')) || 0;
+    const guardar = function (cuerpo, cab) {
+      return caches.open(DETALLE_CACHE).then(function (c) {
+        return c.put(DETALLE_URL, new Response(cuerpo, { headers: cab }));
+      });
+    };
+    /* Con tee() el cuerpo va a la vez al cache y al contador, asi que el
+       fichero no pasa entero por memoria: en un movil, acumular 60 MB en
+       trozos y luego hacer un Blob son 120 MB de pico. Si el navegador no
+       tuviera tee, se cae al camino simple y solo se pierde la barra. */
+    if (res.body && res.body.tee && total) {
+      const dos = res.body.tee();
+      const puesto = guardar(dos[0], res.headers);
+      const lector = dos[1].getReader();
+      let leido = 0;
+      const tirar = function () {
+        return lector.read().then(function (t) {
+          if (t.done) return puesto;
+          leido += t.value.length;
+          if (alProgreso) alProgreso(Math.min(99, Math.round(leido * 100 / total)));
+          return tirar();
+        });
+      };
+      return tirar();
+    }
+    return res.blob().then(function (b) { return guardar(b, res.headers); });
+  });
+}
+
+function borrarDetalle() {
+  if (!window.caches) return Promise.resolve();
+  return caches.delete(DETALLE_CACHE).catch(function () {});
+}
+
 function islaPosible() {
   return typeof pmtiles !== 'undefined' && typeof protomapsL !== 'undefined';
+}
+
+/* Una fuente de PMTiles sobre un Blob. Cuatro lineas y quita de encima toda
+   la dependencia del byte serving: el fichero se tiene entero y las lecturas
+   por rango las resuelve blob.slice(), que no lo carga en memoria porque el
+   Blob esta respaldado en disco. */
+function fuenteBlob(blob, clave) {
+  return {
+    getKey: function () { return clave; },
+    getBytes: function (o, n) { return blob.slice(o, o + n).arrayBuffer().then(function (data) { return { data: data }; }); }
+  };
+}
+
+function construirIsla(blob, clave, detallado) {
+  const P = protomapsL;
+  if (detallado) {
+    /* El .pmtiles de OSM viene con el esquema de Protomaps -earth, water,
+       roads, places...-, asi que se estila con su propio flavor, que ademas
+       ya pinta los senderos (kind 'path'). El idioma se fija al construir:
+       si el usuario lo cambia, setLang tira la capa y se rehace. */
+    return P.leafletLayer({
+      url: new pmtiles.PMTiles(fuenteBlob(blob, clave)),
+      flavor: 'light',
+      lang: (currentLang === 'zht' ? 'zh' : (currentLang || 'es'))
+    });
+  }
+  return P.leafletLayer({
+    url: new pmtiles.PMTiles(fuenteBlob(blob, clave)),
+    maxDataZoom: 13,               // de z14 para arriba reescala el propio motor
+    backgroundColor: '#a8c8e0',
+    attribution: 'GSHHG · GTFS TITSA',
+    paintRules: [
+      { dataLayer: 'tierra',    symbolizer: new P.PolygonSymbolizer({ fill: '#eef1e6' }) },
+      { dataLayer: 'carretera', symbolizer: new P.LineSymbolizer({ color: '#c2a86a', width: 1.4 }) }
+    ],
+    labelRules: [
+      { dataLayer: 'sitio', symbolizer: new P.CenteredTextSymbolizer({
+          labelProps: ['nombre'], fill: '#33404f',
+          font: '600 12px system-ui, sans-serif', stroke: '#ffffff', width: 2 }) }
+    ]
+  });
 }
 
 function islaCapa() {
   if (layers.isla) return Promise.resolve(layers.isla);
   if (_islaPendiente) return _islaPendiente;
   if (!islaPosible()) return Promise.reject(new Error('motor vectorial no cargado'));
-  const P = protomapsL;
-  _islaPendiente = fetch(ISLA_URL)
-    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.blob(); })
-    .then(blob => {
-      const fuente = {
-        getKey: () => ISLA_URL,
-        getBytes: (o, n) => blob.slice(o, o + n).arrayBuffer().then(data => ({ data }))
-      };
-      layers.isla = P.leafletLayer({
-        url: new pmtiles.PMTiles(fuente),
-        maxDataZoom: 13,               // de z14 para arriba reescala el propio motor
-        backgroundColor: '#a8c8e0',
-        attribution: 'GSHHG · GTFS TITSA',
-        paintRules: [
-          { dataLayer: 'tierra',    symbolizer: new P.PolygonSymbolizer({ fill: '#eef1e6' }) },
-          { dataLayer: 'carretera', symbolizer: new P.LineSymbolizer({ color: '#c2a86a', width: 1.4 }) }
-        ],
-        labelRules: [
-          { dataLayer: 'sitio', symbolizer: new P.CenteredTextSymbolizer({
-              labelProps: ['nombre'], fill: '#33404f',
-              font: '600 12px system-ui, sans-serif', stroke: '#ffffff', width: 2 }) }
-        ]
-      });
+  // Si hay detalle descargado manda el detalle; si no, el mapa base que
+  // viaja dentro de la app.
+  _islaPendiente = detalleGuardado()
+    .then(function (blob) {
+      if (blob) return { blob: blob, clave: DETALLE_URL, detallado: true };
+      return fetch(ISLA_URL)
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.blob(); })
+        .then(function (b) { return { blob: b, clave: ISLA_URL, detallado: false }; });
+    })
+    .then(function (x) {
+      layers.isla = construirIsla(x.blob, x.clave, x.detallado);
+      layers.isla._tgoDetallada = x.detallado;
       return layers.isla;
     })
-    .catch(e => { _islaPendiente = null; throw e; });
+    .catch(function (e) { _islaPendiente = null; throw e; });
   return _islaPendiente;
+}
+
+/* Tirar la capa para que se rehaga: al descargar el detalle, al borrarlo y al
+   cambiar de idioma con el detalle puesto. Si estaba en pantalla, se vuelve a
+   poner sola. */
+function olvidarIslaCapa() {
+  const estaba = (currentLayer === 'isla');
+  if (layers.isla && map && map.hasLayer(layers.isla)) map.removeLayer(layers.isla);
+  layers.isla = null;
+  _islaPendiente = null;
+  if (estaba) setStyle('isla');
 }
 
 /* La lista de capas vive en UN sitio. Estaba repetida en cuatro -setLang,
@@ -25185,12 +25324,18 @@ window.addEventListener('hashchange', () => {
       fila(ptx('cacheUsada'),    '<span id="pwa-modal-cache">' + esc(ptx('cargando')) + '</span>') +
       fila(ptx('cachesActivas'), '<span id="pwa-modal-count">' + esc(ptx('cargando')) + '</span>') +
       fila(ptx('conexion'),      esc(ptx(navigator.onLine ? 'enLinea' : 'sinConexion'))) +
+      /* El mapa detallado: la fila nace vacia y solo se rellena si el fichero
+         existe de verdad en el servidor. Mientras no exista, aqui no aparece
+         nada y la app funciona con el mapa base. */
+      '<div id="pwa-detalle"></div>' +
       '<div class="pwa-modal-actions">' +
         '<button type="button" class="pwa-btn-clear">' + esc(ptx('vaciarMapa')) + '</button>' +
         '<button type="button" class="pwa-btn-danger pwa-btn-clear-all">' + esc(ptx('borrarTodo')) + '</button>' +
       '</div>' +
       '<button type="button" class="pwa-modal-close">' + esc(ptx('cerrar')) + '</button>';
     bd.classList.add('show');
+
+    pintarDetalle(modal);
 
     // Cargar info
     getCacheInfo().then(safe(function(info) {
@@ -25224,6 +25369,55 @@ window.addEventListener('hashchange', () => {
         window.location.reload();
       }));
     }));
+  }
+
+  /* ── EL MAPA DETALLADO EN EL PANEL ────────────────────────────────
+     Tres estados: no esta en el servidor (no se ensena nada), esta pero sin
+     descargar (boton con su tamano) y descargado (tamano y boton de borrar).
+     Los textos son de UI_TX, como todo lo demas. */
+  function mb(bytes) { return (bytes / 1048576).toFixed(0); }
+
+  function pintarDetalle(modal) {
+    var caja = modal.querySelector('#pwa-detalle');
+    if (!caja || typeof detalleEnServidor !== 'function') return;
+    Promise.all([detalleEnServidor(), detalleGuardado()]).then(safe(function (r) {
+      var enServidor = r[0], guardado = r[1];
+      if (!enServidor) { caja.innerHTML = ''; return; }   // todavia no existe
+      var etiqueta = guardado
+        ? tx('mapaDetalleSi', { mb: mb(guardado.size) })
+        : tx('mapaDetalleNo');
+      caja.innerHTML =
+        fila(tx('mapaDetalle'), esc(etiqueta)) +
+        '<div class="pwa-modal-actions"><button type="button" class="pwa-btn-detalle"></button></div>' +
+        '<div style="font-size:0.7rem;color:rgba(240,236,228,0.55);line-height:1.35;margin:-0.2rem 0 0.4rem">' +
+          esc(tx('mapaDetalleAviso')) + '</div>';
+      var btn = caja.querySelector('.pwa-btn-detalle');
+      btn.textContent = guardado ? tx('mapaBorrarDetalle')
+                                 : tx('mapaDescargar', { mb: mb(enServidor.bytes) });
+      btn.addEventListener('click', safe(function () {
+        if (guardado) {
+          borrarDetalle().then(safe(function () {
+            if (typeof olvidarIslaCapa === 'function') olvidarIslaCapa();
+            alert(tx('mapaDetalleFuera'));
+            pintarDetalle(modal);
+          }));
+          return;
+        }
+        btn.disabled = true;
+        btn.textContent = tx('mapaDescargando', { pct: 0 });
+        descargarDetalle(function (pct) { btn.textContent = tx('mapaDescargando', { pct: pct }); })
+          .then(safe(function () {
+            if (typeof olvidarIslaCapa === 'function') olvidarIslaCapa();
+            alert(tx('mapaDetalleListo'));
+            pintarDetalle(modal);
+          }))
+          .catch(safe(function () {
+            btn.disabled = false;
+            alert(tx('mapaDetalleFallo'));
+            pintarDetalle(modal);
+          }));
+      }));
+    })).catch(function () {});
   }
 
   function clearTilesOnly() {
