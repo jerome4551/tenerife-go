@@ -392,7 +392,10 @@ function ok(cond, txt, detalle) {
       ok(r.capa === 'isla', 'y se pone sola en el mapa de la isla', String(r.capa));
       ok(r.islaLista, 'el .pmtiles se ha leido del cache, no de la red');
       ok(r.lienzos > 0, 'HAY MAPA PINTADO: ' + r.lienzos + ' teselas dibujadas', r.lienzos);
-      ok(r.lugares === 765, 'y los 765 lugares siguen encima', r.lugares);
+      // El numero sale del propio fichero, no escrito a mano: con 765 clavado
+      // esto se puso rojo al entrar 40 playas nuevas, que es ruido, no fallo.
+      const { PLACES } = require('./cargar');
+      ok(r.lugares === PLACES.length, 'y los ' + PLACES.length + ' lugares siguen encima', r.lugares);
       ok(errores.length === 0, 'sin una sola excepcion en todo el recorrido', errores.slice(0, 3).join(' | '));
     } finally {
       await browser4.close();

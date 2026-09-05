@@ -98,7 +98,7 @@ LINES.filter(l => l.tipo === 'tranvia').forEach(l => {
 });
 
 console.log('\n=== lugares ===');
-debe('lugares', PLACES.length, PLACES.length === 765);
+debe('lugares', PLACES.length, PLACES.length === 805);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);
@@ -106,6 +106,30 @@ debe('fuera de la caja de Tenerife',
      PLACES.filter(p => p.lat < 27.95 || p.lat > 28.62 || p.lng < -16.98 || p.lng > -16.05).length, true);
 const urls = []; PLACES.forEach(p => Object.values(p).forEach(v => { if (typeof v === 'string' && /^https?:/.test(v)) urls.push(v); }));
 debe('urls sin cifrar', urls.filter(u => u.startsWith('http://')).length + ' de ' + urls.length, !urls.some(u => u.startsWith('http://')));
+
+/* La calidad del agua y su ano no se pueden separar: el texto de la insignia
+   dice "censo oficial {a}", asi que una ficha con calidad y sin ano pintaria
+   el marcador crudo. */
+const conAgua = PLACES.filter(p => p.aguaCalidad);
+debe('con calidad de agua', conAgua.length, conAgua.length > 0);
+debe('con calidad pero sin ano', conAgua.filter(p => !p.aguaCalidadAnio).length,
+     conAgua.every(p => p.aguaCalidadAnio));
+/* El codigo indexa por minusculas; el censo las publica capitalizadas, y una
+   "Excelente" no casa con nada y no pinta insignia, sin dar ningun error. */
+const VALORES = ['excelente', 'buena', 'suficiente'];
+debe('valores de calidad fuera de los tres', conAgua.filter(p => !VALORES.includes(p.aguaCalidad)).length,
+     conAgua.every(p => VALORES.includes(p.aguaCalidad)));
+/* lifeguard null es "no se sabe" y badgeSocorristas no pinta nada. Que sea
+   deliberado y no un descuido se comprueba: solo se acepta true, false o null. */
+debe('lifeguard con un valor que no es true/false/null',
+     PLACES.filter(p => 'lifeguard' in p && p.lifeguard !== true && p.lifeguard !== false && p.lifeguard !== null).length,
+     PLACES.every(p => !('lifeguard' in p) || p.lifeguard === true || p.lifeguard === false || p.lifeguard === null));
+/* El alias solo sirve si el buscador lo lee. Son tres filtros distintos. */
+const fs_ = require('fs');
+const html = fs_.readFileSync(require('path').join(__dirname, '..', 'index.html'), 'utf8');
+const leenAlias = (html.match(/\.alias && [a-z]+\.alias\.toLowerCase\(\)\.includes\(searchQuery\)/g) || []).length;
+debe('filtros del buscador que leen alias', leenAlias, leenAlias >= 3);
+debe('lugares con alias', PLACES.filter(p => p.alias).length, PLACES.filter(p => p.alias).length > 0);
 
 console.log('\n=== rotulos repetidos ===');
 const por = {}; Object.entries(CAT).forEach(([k, p]) => (por[norm(p.n)] = por[norm(p.n)] || []).push(k));

@@ -18,7 +18,7 @@ index.html   md5 b055efba98cf857478fb958717a72d7d
 
 | | |
 |---|---|
-| Lugares | **765**, con descripción y categoría en 8 idiomas |
+| Lugares | **805**, con descripción y categoría en 8 idiomas |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht |
@@ -232,8 +232,10 @@ no la secundaria**.
 | Paradas o lugares fuera de Tenerife | **0** |
 | Parada repetida consecutiva en una línea | **0** |
 | `via` con punto mal formado | **0** de 26.593 |
-| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **765** |
-| Ids de lugar que cumplen `[a-z0-9-]` | **765** |
+| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **805** |
+| Ids de lugar que cumplen `[a-z0-9-]` | **805** |
+| Con calidad de agua, y su año | **46** · 46 |
+| Con alias de búsqueda, que los 3 filtros leen | **58** |
 | URLs de lugar sin cifrar | **0** de 16 |
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
@@ -331,7 +333,7 @@ tiene que **venir dentro**.
 | 4 | descarga opcional de un `.pmtiles` de OSM para el detalle fino | hecho · **falta el fichero** |
 
 **Por qué `protomaps-leaflet` y no MapLibre.** MapLibre obliga a rehacer el
-mapa entero y con él los 765 marcadores, los clusters y las 183 polilíneas.
+mapa entero y con él los 805 marcadores, los clusters y las 183 polilíneas.
 Esto es una capa más de Leaflet 1.9.4, la que ya usa la app.
 
 **Sin peticiones por rango.** El fichero pesa 1,1 MB y se pide entero de una
@@ -344,7 +346,7 @@ el servidor haga *byte serving*, que desde aquí no se puede comprobar.
 pasó al usuario: abrir la app con cobertura, cortar la red de verdad
 (`setOffline`, no un evento simulado) y volver a abrirla. Sale la app entera,
 la capa se pone sola en la isla, el `.pmtiles` se lee del caché y **se pintan
-12 teselas** con los 765 lugares encima. Sin una sola excepción.
+12 teselas** con los 805 lugares encima. Sin una sola excepción.
 
 **Cuándo entra.** Con conexión no cambia nada: se arranca en Calles y el
 fichero **ni se descarga**. La capa entra sola en dos casos —arrancar sin red,
@@ -429,7 +431,7 @@ Para el detalle fino está el bloque 4, que es opcional.
     limpia `tgo_bano_cache_v2` entre escenarios.
 15. **Playa Jardín tiene DOS fichas**: `playa-jardin` y `surf-playa-jardin`.
 16. **Los ids de lugar son la barrera de los `onclick` inline.** Los manejadores
-    inline solo son seguros porque los 765 ids cumplen `[a-z0-9-]`.
+    inline solo son seguros porque los 805 ids cumplen `[a-z0-9-]`.
 17. **`index.html` suelto no es la app.** Leaflet vive en `vendor/`.
 18. **Contar cadenas en un fichero de 4 MB es mal método.** Varias
     comprobaciones fallaron por contar la palabra dentro del comentario que la
@@ -568,7 +570,25 @@ Para el detalle fino está el bloque 4, que es opcional.
 50. **El centro de la caja de Tenerife es la caldera del Teide.** Muestrear
     ahí para comprobar que hay senderos da un bloqueante falso. Se miran cinco
     puntos y basta con que uno los traiga.
-51. **`Range` no hace falta aquí, pero eso hay que probarlo.** PMTiles suele
+51. **Una mayúscula que no da error.** El censo publica la calidad del agua
+    como «Excelente»; el código la indexa por `excelente`. Tal cual, la
+    insignia **no sale y no falla nada**. Se normaliza al importar y hay un
+    control que rechaza cualquier valor fuera de los tres.
+52. **Una guarda que mira solo el trozo emparejado no es una guarda.** Al
+    añadir `aguaCalidadAnio` a las fichas que no lo tenían, la comprobación
+    de «¿ya lo lleva?» miraba `m.group(0)`, que era solo `aguaCalidad:"…"` y
+    nunca contiene el año: 15 fichas se llevaron el campo dos veces. JS lo
+    tolera —gana el último—, así que no falló nada. Se vio contando
+    apariciones (61) contra fichas (46).
+53. **`lifeguard: null` es «no se sabe», y eso hay que dejarlo dicho.**
+    `badgeSocorristas` solo pinta con `true` o con `false`, así que `null` no
+    afirma nada. Es deliberado: una reseña que menciona socorristas no es
+    fuente. El control acepta solo esos tres valores, para que nadie lo
+    convierta en `false` por parecer más limpio.
+54. **Un número escrito a mano en un control se pone rojo solo.** «y los 765
+    lugares siguen encima» se puso en rojo al entrar 40 playas. El número
+    sale ahora del propio fichero.
+55. **`Range` no hace falta aquí, pero eso hay que probarlo.** PMTiles suele
     leer por rangos, y sin *byte serving* el mapa sale en blanco sin error. La
     app construye la capa sobre un `Blob` y nunca sobre una URL, así que no
     depende de ello —pero basta con que alguien pase una URL para que la

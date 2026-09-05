@@ -82,6 +82,23 @@ Cuidado con una confusión que cuesta cara: **5.1.0 es la versión de la
 librería `protomaps-leaflet`, no la del esquema.** No se usa el paquete
 `@protomaps/basemaps` para nada, así que no hay nada que fijar a la serie 4.
 
+### Lo que cuesta el fichero entero
+
+La capa se monta sobre un `Blob`, así que el fichero **se descarga completo
+antes de pintar nada**. Eso no es gratis y conviene tenerlo delante:
+
+- Es **una sola vez**, explícita, con barra de progreso y sobre wifi si el
+  usuario quiere. Después sale del caché y no se vuelve a pedir.
+- El `Blob` que devuelve la Cache Storage está **respaldado en disco**:
+  `blob.slice()` lee solo el trozo pedido, así que la memoria no crece con el
+  tamaño del fichero. No es lo mismo que tenerlo en un `ArrayBuffer`.
+- A cambio, no depende de que el *hosting* haga *byte serving*, que es un
+  fallo silencioso menos.
+
+Si algún día el fichero se va por encima de lo razonable, la salida es
+alojarlo fuera y volver a rangos de verdad — y entonces sí hace falta la
+comprobación de la sección siguiente. Por eso está escrita.
+
 ### Sobre las peticiones por rango
 
 PMTiles normalmente lee el archivo a trozos con cabeceras `Range`, y eso
