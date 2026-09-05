@@ -554,6 +554,26 @@ Para el detalle fino está el bloque 4, que es opcional.
     a `mapa/tenerife-osm.pmtiles`. Se retira en un `finally`, y además la
     auditoría empieza comprobando que lo que hay ahí no lleva la marca
     `BANCO DE PRUEBAS` de una ejecución anterior que muriera a medias.
+48. **Contar lienzos no es ver el mapa.** Si el esquema del `.pmtiles` y el
+    del estilo no son de la misma generación, los lienzos se crean y salen
+    **vacíos**: mapa en blanco sin un solo error. Comparar números de versión
+    no sirve —no siempre están y no dicen lo que importa—. Se mide: se cuentan
+    los píxeles que no son el color de fondo que declara el propio estilo. Un
+    fichero de OpenMapTiles da 9 lienzos y **0,00 %**; uno bueno, 99,99 %.
+49. **Un `except` amplio convierte un fallo de programación en un aviso.** En
+    `verificar_osm.py`, la sección que lee tiles envolvía también sus
+    conclusiones: un `TypeError` al escribirlas salió como AVISO y el script
+    terminó en verde. Pasó de verdad mientras se editaba. El `try` cubre ahora
+    solo la lectura.
+50. **El centro de la caja de Tenerife es la caldera del Teide.** Muestrear
+    ahí para comprobar que hay senderos da un bloqueante falso. Se miran cinco
+    puntos y basta con que uno los traiga.
+51. **`Range` no hace falta aquí, pero eso hay que probarlo.** PMTiles suele
+    leer por rangos, y sin *byte serving* el mapa sale en blanco sin error. La
+    app construye la capa sobre un `Blob` y nunca sobre una URL, así que no
+    depende de ello —pero basta con que alguien pase una URL para que la
+    dependencia vuelva sin que nada falle en local. El control graba **todas**
+    las peticiones mientras se carga la capa y falla si alguna lleva `Range`.
 39. **Un control estrecho enseña que no hay nada que buscar.** El de literales
     en español solo miraba `.textContent`/`.innerText`/`.placeholder` y una
     lista de sustantivos. Los 25 textos del módulo PWA iban por `innerHTML`,
@@ -597,6 +617,8 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_mapa.js` | el mapa sin conexión, bloque a bloque |
 | `tools/mapa_base.py` | genera `mapa/tenerife-base.pmtiles` desde los datos del propio repositorio |
 | `tools/mapa_prueba_osm.py` | banco de pruebas con el esquema de Protomaps, para poder probar el bloque 4 |
+| `tools/verificar_osm.py` | revisa un `.pmtiles` de OSM antes de subirlo · 7 pasos |
+| `tools/verificar_estilo.js` | mide si ese fichero **se ve** con el estilo que lleva la app |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con
