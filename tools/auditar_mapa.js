@@ -74,6 +74,36 @@ function ok(cond, txt, detalle) {
        r.pmtiles && r.pmtiles.join(','));
     for (const k of ['leafletLayer', 'PmtilesSource', 'paintRules', 'labelRules'])
       ok(!!r.pl && r.pl.includes(k), 'protomapsL expone ' + k);
+
+    /* Que capas pide de verdad el estilo, y por que propiedad filtra.
+       tools/verificar_osm.py lleva esa lista escrita para poder decidir sin
+       navegador si un .pmtiles se va a ver; aqui se comprueba que sigue
+       coincidiendo con lo que el bundle pide. Si se actualiza vendor/ y
+       cambia, esto lo canta en vez de dejar el verificador mintiendo. */
+    const estilo = await page.evaluate(() => {
+      const c = protomapsL.leafletLayer({ flavor: 'light', url: 'x' });
+      const reglas = c.paintRules.concat(c.labelRules);
+      const capas = [...new Set(reglas.map(r => r.dataLayer))].sort();
+      const rasgo = props => ({ props, geomType: 2, geom: [], numVertices: 0, bbox: {} });
+      const pasan = props => reglas.filter(r => r.dataLayer === 'roads' &&
+        (!r.filter || (() => { try { return r.filter(14, rasgo(props)); } catch (e) { return false; } })())).length;
+      return { capas, conKind: pasan({ kind: 'path' }), conPmapKind: pasan({ 'pmap:kind': 'path' }) };
+    });
+    const enPy = fs.readFileSync(path.join(RAIZ, 'tools/verificar_osm.py'), 'utf8')
+      .match(/CAPAS_DEL_ESTILO = \{([^}]*)\}/);
+    const lista = enPy ? enPy[1].match(/'([a-z]+)'/g).map(x => x.replace(/'/g, '')).sort() : [];
+    ok(JSON.stringify(lista) === JSON.stringify(estilo.capas),
+       'la lista de capas de verificar_osm.py es la que pide el bundle',
+       JSON.stringify(lista) + ' vs ' + JSON.stringify(estilo.capas));
+
+    /* La generacion del esquema, medida y no supuesta. El estilo de v4 filtra
+       por `kind`; el de v3 filtraba por `pmap:kind`. El numero de version del
+       paquete -protomaps-leaflet 5.1.0- es el de la LIBRERIA, no el del
+       esquema, y confundirlos lleva a bajar de version algo que ya esta
+       bien. */
+    ok(estilo.conKind > 0 && estilo.conPmapKind === 0,
+       'el estilo filtra por `kind`: es esquema v4, el mismo de los builds diarios',
+       'kind=' + estilo.conKind + ' pmap:kind=' + estilo.conPmapKind);
     ok(errores.length === 0, 'cargan sin un solo error de pagina', errores.join(' | '));
     ok(fuera.length === 0, 'no piden nada fuera del propio origen', fuera.join(' | '));
   } finally {

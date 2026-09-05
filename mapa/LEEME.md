@@ -43,7 +43,14 @@ planeta:
 
 ### Antes de subirlo
 
-    python3 tools/verificar_osm.py ruta/al/tenerife-osm.pmtiles
+    python3 tools/verificar_osm.py ruta/al/tenerife-osm.pmtiles index.html
+
+El segundo argumento es opcional y comprueba lo primero de todo: que la app
+que va a consumir el fichero **tenga lector**. El navegador no lee PMTiles por
+su cuenta; sin `protomaps-leaflet` (o `pmtiles` + MapLibre) cargado, dejar el
+`.pmtiles` en el repositorio no hace absolutamente nada. También imprime el
+md5 del `index.html`, que es lo que hay que mirar antes de dar por buena
+cualquier lista de parches anclados.
 
 Siete pasos. Los seis primeros miran el fichero: formato, **esquema**, caja,
 zoom, tamaño, y que dentro haya senderos de verdad —muestreando La Laguna,
@@ -62,6 +69,18 @@ siempre están y no dicen lo que importa. Medir sí. Un fichero de OpenMapTiles
 da 9 lienzos y **0,00 % pintado**; uno bueno, 99,99 %.
 
 Si pasa, se copia aquí como `tenerife-osm.pmtiles` y se sube.
+
+### Sobre la generación del esquema
+
+Los *builds* diarios son **basemap v4**. Y el estilo que lleva la app también:
+`vendor/protomaps-leaflet.js` filtra por `kind`, `kind_detail` y `min_zoom`, y
+**no tiene ni una** aparición de `pmap:kind` ni `pmap:min_zoom`, que eran los
+nombres de la generación anterior. Medido, no supuesto, y hay un control en
+`tools/auditar_mapa.js` que lo vuelve a medir en cada auditoría.
+
+Cuidado con una confusión que cuesta cara: **5.1.0 es la versión de la
+librería `protomaps-leaflet`, no la del esquema.** No se usa el paquete
+`@protomaps/basemaps` para nada, así que no hay nada que fijar a la serie 4.
 
 ### Sobre las peticiones por rango
 

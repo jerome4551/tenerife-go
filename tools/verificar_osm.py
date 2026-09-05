@@ -4,7 +4,7 @@ verificar_osm.py — comprueba un .pmtiles antes de subirlo a Tenerife Go.
 
 Sin dependencias: lector de cabecera y de directorios PMTiles v3 en stdlib.
 
-    python3 tools/verificar_osm.py mapa/tenerife-osm.pmtiles
+    python3 tools/verificar_osm.py mapa/tenerife-osm.pmtiles [index.html]
     python3 tools/verificar_osm.py https://…/x.pmtiles --solo-cabeceras
 
 Comprueba, en este orden:
@@ -55,6 +55,14 @@ BBOX_APP = (-16.98, 27.90, -16.08, 28.65)   # W, S, E, N
 ZOOM_MIN_EXIGIDO = 14
 LIMITE_NAVEGADOR = 25 * 1024 * 1024         # subida por el navegador de GitHub
 LIMITE_CLI       = 100 * 1024 * 1024        # push por linea de comandos
+
+# Las capas que pide de verdad el estilo que lleva la app. NO es una lista de
+# memoria: sale de preguntarle a vendor/protomaps-leaflet.js que dataLayer
+# nombran sus reglas, y tools/auditar_mapa.js comprueba en cada auditoria que
+# esta constante sigue coincidiendo con lo que el bundle pide. Si algun dia se
+# actualiza el vendor y cambia, la auditoria lo canta.
+CAPAS_DEL_ESTILO = {'boundaries','buildings','earth','landcover','landuse',
+                    'places','roads','water'}
 
 CAPAS_PROTOMAPS = {'earth','water','landuse','natural','physical_line',
                    'buildings','boundaries','places','roads','transit',
@@ -180,6 +188,27 @@ def comprobar_rangos(url):
     sys.exit(1 if fallos else 0)
 
 
+def comprobar_lector(ruta_html):
+    """Un .pmtiles perfecto no se ve si la app que lo consume no trae lector.
+    El navegador no lee PMTiles solo: hace falta protomaps-leaflet, o pmtiles
+    mas MapLibre."""
+    print('\n0. ¿LA APP TIENE LECTOR?')
+    try:
+        h = open(ruta_html, encoding='utf-8').read()
+    except Exception as ex:
+        avisa(f'no se pudo leer {ruta_html}: {ex}')
+        return
+    import hashlib
+    print(f'         {ruta_html} · md5 {hashlib.md5(h.encode("utf-8")).hexdigest()}')
+    tiene_pm = 'pmtiles' in h.lower()
+    tiene_est = 'protomaps' in h.lower() or 'maplibre' in h.lower()
+    (ok if tiene_pm else mal)('index.html carga un lector de PMTiles')
+    (ok if tiene_est else mal)('index.html carga un motor que sepa dibujarlo')
+    if not (tiene_pm and tiene_est):
+        print('         Sin eso, dejar el .pmtiles en el repositorio no hace nada:')
+        print('         el navegador no lee PMTiles por su cuenta.')
+
+
 def main():
     if len(sys.argv) < 2:
         print(__doc__); sys.exit(1)
@@ -188,9 +217,15 @@ def main():
         comprobar_rangos(ruta)
     if not os.path.exists(ruta):
         print(f'  FALLA  No existe: {ruta}'); sys.exit(1)
+    html = None
+    for a in sys.argv[2:]:
+        if not a.startswith('-') and os.path.exists(a):
+            html = a
 
     tam = os.path.getsize(ruta)
     print(f'\nFichero: {ruta}\n')
+    if html:
+        comprobar_lector(html)
     f = open(ruta, 'rb')
     h = leer_cabecera(f)
 
@@ -309,7 +344,22 @@ def main():
         ('senderos en: ' + ', '.join(con_sendas)) if con_sendas else
         'ningun tile de los mirados contiene senderos. Comprueba el zoom y que el build los incluya.')
 
-    # 7 ── ¿se VE con el estilo que lleva la app?
+    # 7a ── cuanto de lo que pide el estilo trae el fichero
+    print('\n7. ¿SE VE CON EL ESTILO DE LA APP?')
+    if capas:
+        tiene = capas & CAPAS_DEL_ESTILO
+        pct = len(tiene) * 100 // len(CAPAS_DEL_ESTILO)
+        print(f'         el estilo pide {len(CAPAS_DEL_ESTILO)} capas; el fichero trae {len(tiene)} ({pct} %)')
+        if tiene != CAPAS_DEL_ESTILO:
+            print('         faltan: ' + ', '.join(sorted(CAPAS_DEL_ESTILO - capas)))
+        if pct < 70:
+            mal(f'compatibilidad de capas {pct} %: el mapa saldra vacio o casi')
+        elif pct < 100:
+            avisa(f'compatibilidad de capas {pct} %: se vera, pero incompleto')
+        else:
+            ok('el fichero trae las 8 capas que pide el estilo')
+
+    # 7b ── ¿se VE de verdad?
     #
     # Los pasos 1 a 6 miran el fichero. Este mira el PAR: se monta la capa
     # con el vendor/protomaps-leaflet.js que corre en el movil del usuario y
@@ -317,7 +367,6 @@ def main():
     # sirve -no siempre estan, y no dicen lo que importa-; esto sí: si sale
     # cero, ese fichero con este estilo da un mapa en blanco, sean de la
     # generacion que sean.
-    print('\n7. ¿SE VE CON EL ESTILO DE LA APP?')
     import subprocess
     aqui = os.path.dirname(os.path.abspath(__file__))
     try:
