@@ -453,8 +453,14 @@ function ok(cond, txt, detalle) {
         ok(sin.detallada === false, 'la capa offline usa el mapa base', String(sin.detallada));
       }
 
-      // ── con el fichero puesto ──
-      fs.copyFileSync(FIXTURE, DESTINO);
+      /* ── con el fichero puesto ──
+         Si el mapa de OSM de verdad ya esta en el repositorio, se prueba
+         CONTRA EL, no contra el banco de pruebas. Copiar el banco encima lo
+         machacaria, y como habiaAntes es cierto tampoco se borraria al
+         terminar: el repositorio se quedaria con un mapa falso de 1,5 MB en
+         lugar del bueno. */
+      if (!habiaAntes) fs.copyFileSync(FIXTURE, DESTINO);
+      else console.log('  --  hay un ' + MAPA + ' de verdad: se prueba contra el, no contra el banco');
       const tam = fs.statSync(DESTINO).size;
 
       await page.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'load' });

@@ -357,6 +357,14 @@ cuando vuelve la red. Con dos reglas para no pelearse con el usuario: **si
 elige capa a mano, no se le cambia nunca más**, y se recuerda cuál tenía para
 devolvérsela.
 
+**Medido con el fichero de verdad en la mano** (build 20260905, z0–z14):
+**11,4 MB**, compatibilidad **100 %**, y senderos —`path`, `footway`, `track`,
+`steps`— en los cinco puntos que muestrea el verificador, Teide y Anaga
+incluidos. Se dibuja al 99,7–99,9 % de píxeles pintados. Y los metadatos del
+build dicen `version: 4.15.2`: **basemap v4**, la misma generación por la que
+filtra nuestro estilo. La duda de v4 contra 5.x queda cerrada con el dato
+delante, no con un razonamiento.
+
 **El detalle de OSM (bloque 4).** La maquinaria está entera y probada:
 mirar si el fichero existe (`HEAD`, sin gastar datos), descargarlo con barra
 de progreso, guardarlo en su propio caché, releerlo, estilarlo con el *flavor*
