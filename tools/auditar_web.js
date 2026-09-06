@@ -199,6 +199,36 @@ function revisar(tablas, o) {
   r.hanzi.slice(0, 5).forEach(x => console.log('      ' + x));
   console.log('\n=== los 8 renderizados ===');
   idi.forEach(([l, v]) => console.log('  %s  vacios %d · undefined %d · {marcador} %d', l.padEnd(4), v.vacios, v.undef, v.llaves));
+  /* ── los avisos de seguridad se VEN ──
+     `warn` no pintaba nada en ninguna playa: el banner se suprimia si el POI
+     tenia panel de mar -que lo tiene toda la costa- y el panel ensena un
+     texto generico, plegado y dependiente de la API marina. 50 avisos
+     invisibles. Se comprueba abriendo dos fichas: una con aviso y otra sin
+     el. */
+  const avisos = await page.evaluate(async () => {
+    const conW = places.find(p => p.warn === 'mar' && p.category === 'playa');
+    const sinW = places.find(p => !p.warn && p.category === 'playa');
+    const abrir = async id => {
+      const q = places.find(x => x.id === id);
+      map.setView([q.lat, q.lng], 16);
+      await new Promise(r => setTimeout(r, 700));
+      selectPlaceFromSuggestion(id);
+      await new Promise(r => setTimeout(r, 1600));
+      const pop = document.querySelector('.leaflet-popup .popup-inner');
+      const b = pop && pop.querySelector('.popup-warn');
+      return { texto: b ? b.textContent.trim() : '', panel: pop ? !!pop.querySelector('.popup-sea-wrap') : false };
+    };
+    const a = await abrir(conW.id), b = await abrir(sinW.id);
+    return { conId: conW.id, con: a, sinId: sinW.id, sin: b };
+  });
+  const okCon = avisos.con.texto.length > 20 && avisos.con.panel;
+  const okSin = avisos.sin.texto === '';
+  console.log('\n=== avisos de seguridad ===');
+  console.log('  ' + (okCon ? 'OK ' : 'MAL') + ' una playa con warn ensena el banner aunque tenga panel de mar   (' +
+              avisos.conId + ': ' + (avisos.con.texto.slice(0, 46) || '(vacio)') + ')');
+  console.log('  ' + (okSin ? 'OK ' : 'MAL') + ' una playa sin warn no lo ensena   (' + avisos.sinId + ')');
+  if (!okCon || !okSin) docMal = 1;
+
   console.log('\n=== rendimiento ===');
   console.log('  aeropuerto sur: %d lineas · %d capas · %d ms', perf.lineas, perf.capas, perf.ms);
   console.log('\npageerrors: ' + errs.length);

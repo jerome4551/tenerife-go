@@ -236,6 +236,8 @@ no la secundaria**.
 | Ids de lugar que cumplen `[a-z0-9-]` | **805** |
 | Con calidad de agua, y su año | **46** · 46 |
 | Con alias de búsqueda, que los 3 filtros leen | **58** |
+| Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
+| De esos, `warn:"mar"` | **50** |
 | URLs de lugar sin cifrar | **0** de 16 |
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
@@ -606,6 +608,21 @@ Para el detalle fino está el bloque 4, que es opcional.
     filas» se quedó atrás dos veces en una tarde. Ahora `auditar_web.js`
     coteja ese par contra `AUDITORIA-FINAL.md` y tumba la auditoría si no
     coinciden: saltó en el acto al añadir dos claves.
+58. **Cincuenta avisos de seguridad que no se veían.** `warn:"mar"` no
+    pintaba nada en ninguna playa: el banner se suprimía si el POI tenía
+    panel de mar, «porque el aviso ya se muestra dentro del desplegable». No
+    era cierto. El panel lo lleva **todo** POI costero, tenga aviso o no, así
+    que no distingue nada; lo que enseña es un texto **genérico por idioma**,
+    no el de esa ficha —el que dice «Mar con oleaje y corrientes»—; va
+    plegado; y su contenido depende de la API marina, así que **sin conexión
+    no sale nada**. Justo lo contrario de lo que un aviso de seguridad tiene
+    que hacer. Ahora el banner se pinta siempre, y el genérico del panel se
+    calla cuando la ficha trae el suyo. Hay control en navegador: se abren
+    dos fichas, una con aviso y otra sin él.
+59. **Un comentario puede ser la causa del fallo, no solo su síntoma.** Ese
+    `return` llevaba al lado una explicación que sonaba razonable y que era
+    falsa, y por eso nadie la miró. La trampa 19 decía que un comentario
+    obsoleto es peor que ninguno; este además justificaba el error.
 39. **Un control estrecho enseña que no hay nada que buscar.** El de literales
     en español solo miraba `.textContent`/`.innerText`/`.placeholder` y una
     lista de sustantivos. Los 25 textos del módulo PWA iban por `innerHTML`,

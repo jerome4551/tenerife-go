@@ -131,6 +131,19 @@ const leenAlias = (html.match(/\.alias && [a-z]+\.alias\.toLowerCase\(\)\.includ
 debe('filtros del buscador que leen alias', leenAlias, leenAlias >= 3);
 debe('lugares con alias', PLACES.filter(p => p.alias).length, PLACES.filter(p => p.alias).length > 0);
 
+/* Un warn cuyo valor no este en WARN_I18N no pinta banner y no da error: el
+   aviso de seguridad desaparece en silencio. Se comprueba contra la tabla del
+   propio fichero. */
+const clavesWarn = (html.match(/WARN_I18N\s*=\s*\{[\s\S]*?\n  \};/) || [''])[0];
+const CONOCIDOS = [...new Set([...clavesWarn.matchAll(/^\s{4}(\w+):\s*\{/gm)].map(m => m[1]))];
+const conWarn = PLACES.filter(p => p.warn);
+debe('lugares con aviso (warn)', conWarn.length, conWarn.length > 0);
+debe('avisos cuyo valor no existe en WARN_I18N',
+     conWarn.filter(p => !CONOCIDOS.includes(p.warn)).length,
+     CONOCIDOS.length > 0 && conWarn.every(p => CONOCIDOS.includes(p.warn)));
+const porTipo = {}; conWarn.forEach(p => porTipo[p.warn] = (porTipo[p.warn] || 0) + 1);
+P('avisos por tipo', Object.entries(porTipo).sort((a, b) => b[1] - a[1]).map(x => x[0] + ' ' + x[1]).join(' · '));
+
 /* Cifras exactas escritas a mano en el fichero. El schema.org que leen los
    buscadores decia "702 puntos de interes" con 805 dentro, y dos comentarios
    hablaban de los 702 marcadores. Un "mas de 700" no cuenta: eso sigue
