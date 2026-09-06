@@ -23,7 +23,19 @@ const fs = require('fs');
 const http = require('http');
 const path = require('path');
 const RAIZ = path.dirname(__dirname);
-const { chromium } = require('/opt/node22/lib/node_modules/playwright');
+/* Playwright y Chromium se buscan en dos sitios: las rutas de este contenedor
+   y la instalacion normal. Asi el mismo fichero vale aqui y en el runner de
+   GitHub Actions, que es donde se genera el mapa de verdad porque tiene la
+   salida a red que aqui falta. */
+const AQUI = '/opt/node22/lib/node_modules/playwright';
+const CHROME_AQUI = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
+let chromium;
+try { chromium = require(AQUI).chromium; }
+catch (e) { chromium = require('playwright').chromium; }
+const lanzar = {
+  args: ['--no-proxy-server', '--no-sandbox', '--disable-dev-shm-usage']
+};
+if (fs.existsSync(CHROME_AQUI)) lanzar.executablePath = CHROME_AQUI;
 
 const PUNTOS = [
   { n: 'La Laguna', lat: 28.487, lng: -16.315, z: 14 },
@@ -66,10 +78,7 @@ const MINIMO = 0.5;   // % de pixeles pintados por debajo del cual es un mapa en
   await new Promise(r => srv.listen(0, '127.0.0.1', r));
   const puerto = srv.address().port;
 
-  const browser = await chromium.launch({
-    executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
-    args: ['--no-proxy-server', '--no-sandbox']
-  });
+  const browser = await chromium.launch(lanzar);
   let fallos = 0;
   try {
     const page = await browser.newPage({ viewport: { width: 500, height: 400 } });

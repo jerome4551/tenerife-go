@@ -285,12 +285,16 @@ def main():
     mb = tam / 1024 / 1024
     print(f'         {tam:,} bytes = {mb:.1f} MB')
     if tam <= LIMITE_NAVEGADOR:
-        ok(f'cabe por el navegador de GitHub (limite 25 MB)')
+        ok('cabe incluso arrastrando en la web de GitHub (25 MB)')
+    elif tam <= 50 * 1024 * 1024:
+        ok(f'{mb:.1f} MB: sube por linea de comandos o por el workflow. '
+           'Arrastrando en la web NO entra: ahi el tope son 25 MB.')
     elif tam <= LIMITE_CLI:
-        mal(f'{mb:.1f} MB: NO se puede subir arrastrando en la web de GitHub '
-            '(limite 25 MB). Solo por git desde linea de comandos, o alojarlo fuera.')
+        avisa(f'{mb:.1f} MB: git avisa por encima de 50 MB pero el push pasa. '
+              'Y son 50 MB que la app se descarga enteros antes de pintar: '
+              'con mala cobertura, plantearse un zoom menos.')
     else:
-        mal(f'{mb:.1f} MB: GitHub rechaza el push (limite 100 MB). Baja un zoom.')
+        mal(f'{mb:.1f} MB: GitHub rechaza el push (tope 100 MB). Baja un nivel de zoom.')
 
     # 6 ── tiles de verdad, con senderos
     #
@@ -346,18 +350,30 @@ def main():
 
     # 7a ── cuanto de lo que pide el estilo trae el fichero
     print('\n7. ¿SE VE CON EL ESTILO DE LA APP?')
+    # Sin estas cinco no hay mapa, por muy alto que salga el porcentaje.
+    ESENCIALES = {'earth', 'water', 'roads', 'landuse', 'places'}
     if capas:
         tiene = capas & CAPAS_DEL_ESTILO
         pct = len(tiene) * 100 // len(CAPAS_DEL_ESTILO)
-        print(f'         el estilo pide {len(CAPAS_DEL_ESTILO)} capas; el fichero trae {len(tiene)} ({pct} %)')
+        # La referencia son las capas que pide EL ESTILO DE ESTA APP -las 8 que
+        # nombran las reglas de vendor/protomaps-leaflet.js-, no el juego
+        # canonico entero de Protomaps. Con el canonico (13) un fichero
+        # perfecto para nosotros saldria al 62 % y pareceria roto.
+        print(f'         referencia: las {len(CAPAS_DEL_ESTILO)} capas que pide vendor/protomaps-leaflet.js')
+        print(f'         el fichero trae {len(tiene)}')
         if tiene != CAPAS_DEL_ESTILO:
             print('         faltan: ' + ', '.join(sorted(CAPAS_DEL_ESTILO - capas)))
-        if pct < 70:
-            mal(f'compatibilidad de capas {pct} %: el mapa saldra vacio o casi')
+        print(f'         COMPATIBILIDAD: {pct}%')
+        sin_esencial = sorted(ESENCIALES - capas)
+        if sin_esencial:
+            mal('faltan capas esenciales (' + ', '.join(sin_esencial) +
+                '): el mapa no se va a ver, sea cual sea el porcentaje.')
+        elif pct < 70:
+            mal(f'compatibilidad {pct} %: demasiado bajo. Build y estilo de generaciones distintas.')
         elif pct < 100:
-            avisa(f'compatibilidad de capas {pct} %: se vera, pero incompleto')
+            avisa(f'compatibilidad {pct} %: se vera, pero incompleto.')
         else:
-            ok('el fichero trae las 8 capas que pide el estilo')
+            ok(f'{pct} %: el fichero trae las {len(CAPAS_DEL_ESTILO)} capas que pide el estilo')
 
     # 7b ── ¿se VE de verdad?
     #

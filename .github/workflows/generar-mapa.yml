@@ -1,0 +1,202 @@
+name: Generar mapa offline (PMTiles)
+
+# Se lanza a mano: repositorio -> Actions -> "Generar mapa offline" -> Run workflow.
+#
+# POR QUE UN WORKFLOW Y NO UN SCRIPT LOCAL
+#   Extraer Tenerife exige leer por rangos HTTP el planeta de Protomaps, que
+#   pasa de 100 GB. El runner tiene esa salida a red; el contenedor donde se
+#   desarrolla, no. Y como el commit lo hace git, el tope de 25 MB de subir
+#   arrastrando en la web tampoco aplica.
+on:
+  workflow_dispatch:
+    inputs:
+      maxzoom:
+        description: 'Zoom maximo (14 por defecto; 15 da mas detalle de sendero)'
+        required: false
+        default: '14'
+      fecha_build:
+        description: 'Build AAAAMMDD. Vacio = busca el mas reciente que responda'
+        required: false
+        default: ''
+      solo_probar:
+        description: 'true = genera y verifica pero NO hace commit'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Traer el repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar el binario pmtiles
+        run: |
+          set -euo pipefail
+          # No se adivina el nombre del asset. Un primer borrador lo construia
+          # a mano -go-pmtiles_VER_Linux_x86_64.tar.gz- y estaba mal en dos
+          # sitios: el separador es guion, no guion bajo, y hay assets .zip.
+          # Se le pregunta a la API que existe y se coge el de Linux x86_64
+          # venga como venga.
+          curl -sSL -H "Authorization: Bearer ${{ github.token }}" \
+            https://api.github.com/repos/protomaps/go-pmtiles/releases/latest > rel.json
+          echo "Version: $(jq -r .tag_name rel.json)"
+          echo "Assets publicados:"
+          jq -r '.assets[].name' rel.json | sed 's/^/  /'
+          URL=$(jq -r '[.assets[]
+                 | select(.name | test("(?i)linux"))
+                 | select(.name | test("(?i)(x86_64|amd64)"))
+                 | select(.name | test("(?i)\\.(tar\\.gz|zip)$"))]
+                 | first | .browser_download_url // empty' rel.json)
+          if [ -z "$URL" ]; then
+            echo "::error::Ningun asset de Linux x86_64 en la ultima release. Mira la lista de arriba."
+            exit 1
+          fi
+          echo "Descargando: $URL"
+          curl -sSL -o paquete "$URL"
+          case "$URL" in
+            *.zip)    unzip -o -j paquete ;;
+            *.tar.gz) tar xzf paquete ;;
+          esac
+          BIN=$(find . -maxdepth 3 -type f -name 'pmtiles' | head -1)
+          if [ -z "$BIN" ]; then
+            echo "::error::No aparece el ejecutable pmtiles dentro del paquete."
+            find . -maxdepth 3 -type f | head -20
+            exit 1
+          fi
+          mv "$BIN" ./pmtiles
+          chmod +x ./pmtiles
+          ./pmtiles version 2>/dev/null || ./pmtiles --help | head -3
+
+      - name: Buscar un build diario que responda
+        id: build
+        run: |
+          set -euo pipefail
+          FECHA="${{ github.event.inputs.fecha_build }}"
+          if [ -n "$FECHA" ]; then
+            echo "Fecha forzada: $FECHA"
+            echo "fecha=$FECHA" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          # Los builds tardan en publicarse: se empieza por ayer y se retrocede.
+          for i in $(seq 1 12); do
+            F=$(date -u -d "-${i} day" +%Y%m%d)
+            echo "Probando $F ..."
+            if ./pmtiles show "https://build.protomaps.com/${F}.pmtiles" > /dev/null 2>&1; then
+              echo "Sirve: $F"
+              echo "fecha=$F" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+          done
+          # Si ninguno responde, el patron de URL puede haber cambiado. Antes
+          # de rendirse se deja en el log lo que publique la pagina de builds,
+          # que es lo que hace falta para arreglarlo.
+          echo "::warning::Ningun build de los ultimos 12 dias responde. Lo que publica la pagina:"
+          curl -sSL --max-time 30 https://maps.protomaps.com/builds 2>/dev/null \
+            | grep -oE '[0-9]{8}\.pmtiles' | sort -u | tail -20 || echo "  (no se pudo leer la pagina)"
+          echo "::error::Sin build utilizable. Mira las fechas de arriba y relanza con fecha_build."
+          exit 1
+
+      - name: Leer los metadatos del build
+        run: |
+          set -euo pipefail
+          ./pmtiles show "https://build.protomaps.com/${{ steps.build.outputs.fecha }}.pmtiles" \
+            | tee metadatos.txt | head -40
+
+      - name: Extraer Tenerife
+        run: |
+          set -euo pipefail
+          ./pmtiles extract \
+            "https://build.protomaps.com/${{ steps.build.outputs.fecha }}.pmtiles" \
+            tenerife-osm.pmtiles \
+            --bbox=-16.98,27.90,-16.08,28.65 \
+            --maxzoom=${{ github.event.inputs.maxzoom }}
+          ls -l tenerife-osm.pmtiles
+
+      - name: Comprobar el tamano
+        id: tam
+        run: |
+          set -euo pipefail
+          B=$(stat -c%s tenerife-osm.pmtiles)
+          MB=$(awk "BEGIN{printf \"%.1f\", $B/1048576}")
+          echo "bytes=$B" >> $GITHUB_OUTPUT
+          echo "mb=$MB"   >> $GITHUB_OUTPUT
+          echo "Tamano: $MB MB"
+          if [ "$B" -gt 104857600 ]; then
+            echo "::error::$MB MB pasa del tope de 100 MB de GitHub. Relanza con maxzoom mas bajo."
+            exit 1
+          fi
+          if [ "$B" -gt 52428800 ]; then
+            echo "::warning::$MB MB. Pasa, pero la app se lo descarga entero antes de pintar."
+          fi
+
+      - name: Preparar el navegador para la prueba de estilo
+        run: |
+          set -euo pipefail
+          # Sin esto, el paso 7 solo compara nombres de capa. Con esto ademas
+          # DIBUJA el fichero con el mismo protomaps-leaflet que corre en el
+          # movil y cuenta los pixeles: es lo unico que distingue de verdad un
+          # mapa que se ve de uno en blanco.
+          npm install --no-save playwright@1.49.1
+          npx playwright install --with-deps chromium
+
+      - name: Verificar (los 7 pasos)
+        id: verif
+        run: |
+          set -euo pipefail
+          if [ ! -f tools/verificar_osm.py ]; then
+            echo "::error::Falta tools/verificar_osm.py en el repositorio."
+            exit 1
+          fi
+          python3 tools/verificar_osm.py tenerife-osm.pmtiles index.html | tee verificacion.txt
+          PCT=$(grep -o 'COMPATIBILIDAD: [0-9]*%' verificacion.txt | tail -1 | grep -o '[0-9]*%' || echo 'n/d')
+          echo "pct=$PCT" >> $GITHUB_OUTPUT
+
+      - name: Resumen legible en el movil
+        if: always()
+        run: |
+          {
+            echo "## Mapa offline de Tenerife"
+            echo ""
+            echo "| | |"
+            echo "|---|---|"
+            echo "| Build | ${{ steps.build.outputs.fecha }} |"
+            echo "| Zoom maximo | ${{ github.event.inputs.maxzoom }} |"
+            echo "| **Tamano** | **${{ steps.tam.outputs.mb }} MB** |"
+            echo "| **Compatibilidad (paso 7)** | **${{ steps.verif.outputs.pct }}** |"
+            echo ""
+            echo '```'
+            cat verificacion.txt 2>/dev/null || echo "(la verificacion no llego a ejecutarse)"
+            echo '```'
+          } >> $GITHUB_STEP_SUMMARY
+
+      - name: Subir el fichero como artefacto
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tenerife-osm-pmtiles
+          path: tenerife-osm.pmtiles
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Commit a mapa/tenerife-osm.pmtiles
+        if: github.event.inputs.solo_probar != 'true'
+        run: |
+          set -euo pipefail
+          mkdir -p mapa
+          mv tenerife-osm.pmtiles mapa/tenerife-osm.pmtiles
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mapa/tenerife-osm.pmtiles
+          if git diff --cached --quiet; then
+            echo "El fichero es identico al que ya estaba. No hay nada que commitear."
+            exit 0
+          fi
+          git commit -m "mapa: base OSM de Tenerife (build ${{ steps.build.outputs.fecha }}, z0-${{ github.event.inputs.maxzoom }}, ${{ steps.tam.outputs.mb }} MB)"
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
