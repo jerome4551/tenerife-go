@@ -460,7 +460,8 @@ function ok(cond, txt, detalle) {
          terminar: el repositorio se quedaria con un mapa falso de 1,5 MB en
          lugar del bueno. */
       if (!habiaAntes) fs.copyFileSync(FIXTURE, DESTINO);
-      else console.log('  --  hay un ' + MAPA + ' de verdad: se prueba contra el, no contra el banco');
+      else console.log('  --  hay un ' + path.relative(RAIZ, DESTINO) + ' de verdad (' +
+                       (fs.statSync(DESTINO).size / 1e6).toFixed(1) + ' MB): se prueba contra el, no contra el banco');
       const tam = fs.statSync(DESTINO).size;
 
       await page.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'load' });

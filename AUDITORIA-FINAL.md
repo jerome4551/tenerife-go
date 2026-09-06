@@ -332,7 +332,7 @@ tiene que **venir dentro**.
 | 1 | el motor: `pmtiles` 4.5.0 y `protomaps-leaflet` 5.1.0 en `vendor/`, precargados | hecho |
 | 2 | `mapa/tenerife-base.pmtiles`, generado con datos que ya estaban aquí | hecho |
 | 3 | la capa vectorial en Leaflet, que entra sola cuando no hay conexión | hecho |
-| 4 | descarga opcional de un `.pmtiles` de OSM para el detalle fino | hecho · el fichero lo genera `.github/workflows/generar-mapa.yml` |
+| 4 | descarga opcional de un `.pmtiles` de OSM para el detalle fino | **hecho, con el fichero dentro**: 11,4 MB, build 20260905, z0–z14 |
 
 **Por qué `protomaps-leaflet` y no MapLibre.** MapLibre obliga a rehacer el
 mapa entero y con él los 805 marcadores, los clusters y las 183 polilíneas.
