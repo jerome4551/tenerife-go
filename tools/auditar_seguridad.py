@@ -108,6 +108,20 @@ for m in re.finditer(CTX + r'(`[^`]{0,300}`|\'[^\']{0,300}\'|"[^"]{0,300}")', s)
     # una fila de tabla de idiomas (es:'...') no es un literal suelto
     if re.search(r"\b(?:es|en|fr|de|it|nl|zh|zht)\s*:\s*$", s[:m.end() - len(lit)]): continue
     fijos.append((s.count('\n', 0, m.start()) + 1, lit.replace('\n', ' ')[:88]))
+# Plurales construidos a mano dentro de una plantilla. Es la forma que mas se
+# escapa: `${n} lugar${n !== 1 ? 'es' : ''}` no tiene acentos ni dos palabras
+# funcionales, asi que ninguna de las dos reglas de arriba lo ve, y sale en
+# español en los ocho idiomas. Habia tres en el buscador de lugares.
+SUSTANTIVOS = (r'lugar|resultado|l[ií]nea|parada|d[ií]a|hora|plaza|mesa|punto|'
+               r'sitio|playa|opci[oó]n|coincidencia|elemento|foto')
+for m in re.finditer(r'[^\n]*\$\{[^}]*\}\s*(?:' + SUSTANTIVOS + r')[a-z]*[^\n]{0,60}', s):
+    t = m.group(0).strip()
+    if re.match(r'^(?:es|en|fr|de|it|nl|zh|zht)\s*:', t):
+        continue
+    if re.search(r'\bL\.\w+|\btx\(|\bplural\(', t):
+        continue
+    fijos.append((s.count('\n', 0, m.start()) + 1, t[:88]))
+
 print('  literales en español sin pasar por el idioma: %d' % len(fijos))
 for ln, t in fijos[:12]:
     print('    <--  linea %-6d %s' % (ln, t))

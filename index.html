@@ -8308,6 +8308,11 @@ Object.assign(UI_TX, {
   capaIslaFallo:    { es:'No se pudo abrir el mapa de la isla', en:'The island map could not be opened', fr:'Impossible d’ouvrir la carte de l’île', de:'Die Inselkarte konnte nicht geöffnet werden', it:'Non è stato possibile aprire la mappa dell’isola', nl:'De eilandkaart kon niet worden geopend', zh:'打不开海岛地图', zht:'打不開海島地圖' },
   capaIslaCargando: { es:'Abriendo el mapa de la isla…', en:'Opening the island map…', fr:'Ouverture de la carte de l’île…', de:'Inselkarte wird geöffnet…', it:'Apertura della mappa dell’isola…', nl:'Eilandkaart wordt geopend…', zh:'正在打开海岛地图…', zht:'正在開啟海島地圖…' },
   capaSinRed:       { es:'Sin red: se pasa al mapa de la isla', en:'No connection: switching to the island map', fr:'Pas de réseau : passage à la carte de l’île', de:'Keine Verbindung: Wechsel zur Inselkarte', it:'Nessuna rete: si passa alla mappa dell’isola', nl:'Geen verbinding: overschakelen naar de eilandkaart', zh:'没有网络：切换到海岛地图', zht:'沒有網路：切換到海島地圖' },
+  /* Sin {n} a proposito: el numero se antepone en el codigo. Asi el chino
+     queda "805 个地点" y el espanol distingue singular de plural, que es lo
+     que separa el "|". */
+  contadorLugares:  { es:'lugar|lugares', en:'place|places', fr:'lieu|lieux', de:'Ort|Orte', it:'luogo|luoghi', nl:'plek|plekken', zh:'个地点', zht:'個地點' },
+  contadorResultados:{ es:'resultado|resultados', en:'result|results', fr:'résultat|résultats', de:'Ergebnis|Ergebnisse', it:'risultato|risultati', nl:'resultaat|resultaten', zh:'条结果', zht:'條結果' },
   mapaDetalle:      { es:'Mapa detallado', en:'Detailed map', fr:'Carte détaillée', de:'Detailkarte', it:'Mappa dettagliata', nl:'Gedetailleerde kaart', zh:'详细地图', zht:'詳細地圖' },
   mapaDetalleNo:    { es:'sin descargar', en:'not downloaded', fr:'non téléchargée', de:'nicht geladen', it:'non scaricata', nl:'niet gedownload', zh:'未下载', zht:'未下載' },
   mapaDetalleSi:    { es:'descargada · {mb} MB', en:'downloaded · {mb} MB', fr:'téléchargée · {mb} Mo', de:'geladen · {mb} MB', it:'scaricata · {mb} MB', nl:'gedownload · {mb} MB', zh:'已下载 · {mb} MB', zht:'已下載 · {mb} MB' },
@@ -8350,6 +8355,13 @@ function localized(field) {
    idioma; las tarjetas de la tienda se crean despues (llegan del
    servidor 1,5 s tras arrancar), asi que tienen que nacer ya traducidas.
    Admite {n} para el numero: tx('shopMaxPeople', {n: 10}). */
+/* Numero + sustantivo, con singular y plural separados por "|". Los idiomas
+   que no distinguen -chino- ponen una sola forma y sirve para los dos. */
+function plural(clave, n) {
+  const formas = String(tx(clave) || '').split('|');
+  return n + ' ' + (formas.length > 1 ? formas[n === 1 ? 0 : 1] : formas[0]);
+}
+
 function tx(clave, vars) {
   if (typeof UI_TX === 'undefined') return '';
   var e = UI_TX[clave];
@@ -14147,9 +14159,9 @@ function _buildCatSheet() {
       return matchesCat && matchesFav;
     }).length;
     if (selectedCategories.size > 0) {
-      countEl.innerHTML = `<span>${visible}</span> de ${places.length} lugares`;
+      countEl.innerHTML = `<span>${visible}</span> ${L.of} ${plural('contadorLugares', places.length)}`;
     } else {
-      countEl.innerHTML = `<span>${places.length}</span> lugares`;
+      countEl.innerHTML = `<span>${places.length}</span> ${(tx('contadorLugares') || '').split('|').pop()}`;
     }
   }
 
@@ -14404,7 +14416,7 @@ function updateSearchSuggestions() {
   // Contador de resultados bajo la barra
   if (countEl) {
     if (filtered.length > 0) {
-      countEl.textContent = `${filtered.length} lugar${filtered.length !== 1 ? 'es' : ''}`;
+      countEl.textContent = plural('contadorLugares', filtered.length);
       countEl.classList.add('visible');
     } else {
       countEl.textContent = '';
@@ -14426,7 +14438,7 @@ function updateSearchSuggestions() {
     const shown = filtered.slice(0, MAX_SHOW);
     const extra = filtered.length - MAX_SHOW;
     suggestions.innerHTML =
-      `<div class="suggestions-header">${filtered.length} resultado${filtered.length !== 1 ? 's' : ''}</div>` +
+      `<div class="suggestions-header">${escapeHtml(plural('contadorResultados', filtered.length))}</div>` +
       shown.map(p => {
         const catLabel = (p.cat && (p.cat[currentLang] || p.cat.es)) || '';
         const nameHL = highlight(p.name, searchQuery);

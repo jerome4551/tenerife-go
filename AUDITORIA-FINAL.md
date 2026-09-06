@@ -147,7 +147,7 @@ emojis: 2.894, 250 distintos
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
 
-## Idiomas · 31 tablas, 422 filas
+## Idiomas · 31 tablas, 424 filas
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
@@ -594,6 +594,18 @@ Para el detalle fino está el bloque 4, que es opcional.
     depende de ello —pero basta con que alguien pase una URL para que la
     dependencia vuelva sin que nada falle en local. El control graba **todas**
     las peticiones mientras se carga la capa y falla si alguna lleva `Range`.
+56. **Un plural construido a mano dentro de una plantilla se escapa de todo.**
+    `` `${n} lugar${n !== 1 ? 'es' : ''}` `` no tiene acentos ni dos palabras
+    funcionales, así que ninguna de las dos reglas del control lo veía, y no
+    es una clave que falte: es un literal. Había **tres** en el buscador de
+    lugares —el contador de la barra, el de la hoja de categorías y la
+    cabecera de sugerencias—, en español para los ocho idiomas. Hay un
+    control específico para esa forma, y las claves nuevas separan singular y
+    plural con `|`, que el chino resuelve con una sola forma.
+57. **Una cifra en un documento caduca sin que nada avise.** «31 tablas, 404
+    filas» se quedó atrás dos veces en una tarde. Ahora `auditar_web.js`
+    coteja ese par contra `AUDITORIA-FINAL.md` y tumba la auditoría si no
+    coinciden: saltó en el acto al añadir dos claves.
 39. **Un control estrecho enseña que no hay nada que buscar.** El de literales
     en español solo miraba `.textContent`/`.innerText`/`.placeholder` y una
     lista de sustantivos. Los 25 textos del módulo PWA iban por `innerHTML`,
