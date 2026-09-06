@@ -177,6 +177,17 @@ function revisar(tablas, o) {
   console.log('arranque: ' + JSON.stringify(r.arranque));
   console.log('\n=== idiomas ===');
   console.log('  tablas alcanzadas / filas con es : %d / %d', r.tablas, r.filas);
+  /* Ese par de numeros esta escrito tambien en AUDITORIA-FINAL.md, donde
+     caduca sin que nada avise: decia 404 filas con 422 dentro. Se coteja. */
+  let docMal = 0;
+  try {
+    const doc = fs.readFileSync(path.join(RAIZ, 'AUDITORIA-FINAL.md'), 'utf8');
+    const d = doc.match(/## Idiomas · (\d+) tablas, (\d+) filas/);
+    const bien = d && Number(d[1]) === r.tablas && Number(d[2]) === r.filas;
+    console.log('  ' + (bien ? 'OK ' : 'MAL') + ' AUDITORIA-FINAL.md dice lo mismo' +
+                (bien ? '' : '   -> dice ' + (d ? d[1] + ' / ' + d[2] : '(no lo encuentra)')));
+    if (!bien) docMal = 1;
+  } catch (e) { console.log('  --  no se pudo leer AUDITORIA-FINAL.md'); }
   console.log('  claves que el codigo pide y faltan: %d %s', n(r.pedidas), r.pedidas.slice(0,4).join(' '));
   console.log('  filas a las que les falta un idioma: %d', n(r.incompletas));
   r.incompletas.slice(0, 6).forEach(x => console.log('      ' + x));
@@ -193,5 +204,5 @@ function revisar(tablas, o) {
   console.log('\npageerrors: ' + errs.length);
   errs.slice(0, 5).forEach(e => console.log('   ' + e));
   await b.close();
-  process.exit(errs.length ? 1 : 0);
+  process.exit((errs.length || docMal) ? 1 : 0);
 })();

@@ -8,7 +8,7 @@
   All rights reserved.
 
   Esta aplicacion y todo su contenido son obra original del autor:
-  el codigo fuente, los textos y descripciones de los 702 lugares,
+  el codigo fuente, los textos y descripciones de los lugares,
   las traducciones a 8 idiomas, la base de conocimiento del asistente,
   el diseno, la identidad visual y la marca "Tenerife Go".
 
@@ -153,7 +153,7 @@ window.onunhandledrejection = function(e) {
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
       "author": { "@type": "Person", "name": "Jérôme B" },
       "image": "https://jerome4551.github.io/tenerife-go/og-image.jpg",
-      "featureList": "Mapa interactivo offline, 702 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
+      "featureList": "Mapa interactivo offline, 805 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
     },
     {
       "@type": "TouristDestination",
@@ -8258,7 +8258,7 @@ try {
 } catch (e) {}
 
 /* El idioma se resuelve AQUI, antes de construir marcadores y listas.
-   Antes se restauraba despues, llamando a setLang, que rehace los 702
+   Antes se restauraba despues, llamando a setLang, que rehace todos los
    marcadores y el clustering: la app arrancaba haciendo el trabajo dos
    veces y se notaba. */
 let currentLang = (function () {
@@ -17211,8 +17211,8 @@ openPlaceFromHash();
    construyo directamente en ese idioma. Aqui solo faltan los textos de
    elementos que viven mas abajo en el documento (barra inferior, pestanas
    de la tienda, planificador) y que no existian aun. Es una pasada de
-   textos, no un re-render: antes se llamaba a setLang y eso rehacia los
-   702 marcadores en cada arranque. */
+   textos, no un re-render: antes se llamaba a setLang y eso rehacia todos
+   los marcadores en cada arranque. */
 (function applyLateTexts() {
   function apply() {
     try {
@@ -29338,7 +29338,10 @@ function chatBuildIndex(){
 }
 function chatById(id){return chatIdMap?chatIdMap[id]:null;}
 
-// ── Búsqueda difusa por nombre (935 lugares) ──────────────────────
+/* Busqueda difusa por nombre. El indice se construye de places[], asi que
+   tiene exactamente tantas entradas como lugares haya: aqui ponia 935, que
+   no era el numero de entonces ni el de ahora. Una cifra en un comentario
+   caduca sola; mejor no ponerla. */
 function chatFindByName(paddedFull,sToks,allowRev){
   var paddedS=' '+sToks.join(' ')+' ';
   var res=[];

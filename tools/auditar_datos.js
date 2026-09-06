@@ -131,6 +131,17 @@ const leenAlias = (html.match(/\.alias && [a-z]+\.alias\.toLowerCase\(\)\.includ
 debe('filtros del buscador que leen alias', leenAlias, leenAlias >= 3);
 debe('lugares con alias', PLACES.filter(p => p.alias).length, PLACES.filter(p => p.alias).length > 0);
 
+/* Cifras exactas escritas a mano en el fichero. El schema.org que leen los
+   buscadores decia "702 puntos de interes" con 805 dentro, y dos comentarios
+   hablaban de los 702 marcadores. Un "mas de 700" no cuenta: eso sigue
+   siendo cierto y no se toca. */
+const exactas = [...html.matchAll(/(?<!de )(?<!\+)(\d{3,4})\s*(?:puntos de inter[eé]s|marcadores|lugares(?! verificados))/g)]
+  .map(m => ({ n: Number(m[1]), txt: m[0].trim() }))
+  .filter(x => !/^m[aá]s de/i.test(x.txt));
+const mienten = exactas.filter(x => x.n !== PLACES.length);
+debe('cifras exactas de lugares que no son ' + PLACES.length, mienten.length, mienten.length === 0);
+mienten.slice(0, 5).forEach(x => console.log('      <--  ' + x.txt));
+
 console.log('\n=== rotulos repetidos ===');
 const por = {}; Object.entries(CAT).forEach(([k, p]) => (por[norm(p.n)] = por[norm(p.n)] || []).push(k));
 const dup = Object.entries(por).filter(([, a]) => a.length > 1);
