@@ -69,7 +69,10 @@ jobs:
             find . -maxdepth 3 -type f | head -20
             exit 1
           fi
-          mv "$BIN" ./pmtiles
+          # El .tar.gz extrae el binario en el directorio actual, asi que find
+          # devuelve ./pmtiles y "mv ./pmtiles ./pmtiles" falla. Solo se mueve
+          # si viene de una subcarpeta, que es como lo trae el .zip.
+          if [ "$BIN" != "./pmtiles" ]; then mv "$BIN" ./pmtiles; fi
           chmod +x ./pmtiles
           ./pmtiles version 2>/dev/null || ./pmtiles --help | head -3
 
