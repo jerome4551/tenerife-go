@@ -31,12 +31,34 @@ Mientras no esté, no se ve nada de eso y la app usa el mapa base.
 | zoom máximo | 14 como mínimo. z15 si cabe. |
 | tamaño | **25 MB** si se sube arrastrando en la web de GitHub; hasta **100 MB** solo por `git push` desde línea de comandos. Por encima de 100 MB, GitHub rechaza el push: baja un nivel de zoom. |
 
-### Cómo
+### Cómo · con el workflow, que es lo que hay que usar
 
-En la página de *builds* de Protomaps se dibuja la caja y se descarga el
-extracto. También se puede con la herramienta de línea de comandos
-`go-pmtiles`, que saca el trozo del build diario por rangos sin bajarse el
-planeta:
+`.github/workflows/generar-mapa.yml`. En el repositorio: pestaña **Actions** →
+**Generar mapa offline (PMTiles)** → **Run workflow**. Desde el móvil, en
+Safari, vale igual.
+
+| campo | |
+|---|---|
+| `maxzoom` | `14` por defecto; `15` da más detalle de sendero |
+| `fecha_build` | vacío = busca el build más reciente que responda, hasta 12 días atrás |
+| `solo_probar` | `true` = genera y verifica pero **no** hace commit |
+
+El runner tiene la salida a red que hace falta para leer por rangos un fichero
+de más de 100 GB, y como el commit lo hace `git`, el tope de 25 MB de subir
+arrastrando tampoco aplica. Tarda unos minutos y al terminar deja un resumen
+con el **tamaño** y la **compatibilidad del paso 7**.
+
+Tres cosas que no deja pasar: si el fichero supera 100 MB falla y no
+commitea; si el verificador falla, tampoco —un mapa en blanco no entra en el
+repositorio—; y si el fichero es idéntico al que ya estaba, no crea un commit
+vacío.
+
+**Cuidado con el nombre del binario.** Los assets de `go-pmtiles` no siguen un
+patrón: en la misma release, `go-pmtiles-1.31.2_Darwin_arm64.zip` va con guion
+y `go-pmtiles_1.31.2_Linux_x86_64.tar.gz` con guion bajo. El workflow no
+adivina: le pregunta a la API qué existe y coge el de Linux x86_64.
+
+### Cómo · a mano, si algún día hace falta
 
     pmtiles extract <url-del-build-diario> tenerife-osm.pmtiles \
       --bbox=-16.98,27.90,-16.08,28.65 --maxzoom=14
