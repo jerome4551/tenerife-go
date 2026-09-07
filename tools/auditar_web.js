@@ -36,7 +36,14 @@ function objetoEn(i) {
 }
 function tablasDelFuente() {
   const IDI = ['es','en','fr','de','it','nl','zh','zht'];
-  const esFila = x => x && typeof x === 'object' && !Array.isArray(x) && typeof x.es === 'string' && typeof x.en === 'string';
+  /* Pedia `es` Y `en` para dar una entrada por fila. El resultado era que una
+     fila a la que le faltaba precisamente el ingles no la veia NADIE: en
+     wikiTitleOverrides hay cuatro con solo `es` -teresitas, el-duque, benijo
+     y playa-americas- y el control contaba 15 filas incompletas donde hay 19.
+     Era mas ciego cuanto peor estaba el dato. Basta con `es`, que es lo que
+     marca una fila de idiomas; de que el objeto sea una tabla y no otra cosa
+     se encarga el umbral del 60 % de mas abajo. */
+  const esFila = x => x && typeof x === 'object' && !Array.isArray(x) && typeof x.es === 'string';
   const out = {};
   for (const nom of NOMBRES) {
     const re = new RegExp('(?:const|let|var)\\s+' + nom.replace(/\$/g, '\\$') + '\\s*=\\s*\\{', 'g');
@@ -101,7 +108,7 @@ function revisar(tablas, o) {
       catalogo: typeof TITSA_PARADAS !== 'undefined' ? Object.keys(TITSA_PARADAS).length : -1,
       paradas: typeof TITSA_LINES !== 'undefined' ? TITSA_LINES.reduce((a,l)=>a+(l.paradas||[]).length,0) : -1,
       hidratado: typeof TITSA_LINES !== 'undefined' && TITSA_LINES.every(l => typeof (l.paradas||[])[0] !== 'string') };
-    const esFila = x => x && typeof x === 'object' && !Array.isArray(x) && typeof x.es === 'string' && typeof x.en === 'string';
+    const esFila = x => x && typeof x === 'object' && !Array.isArray(x) && typeof x.es === 'string';
     const tablas = {};
     for (const g of window.__N__) {
       let v; try { v = eval(g); } catch (e) { continue; }
@@ -228,6 +235,55 @@ function revisar(tablas, o) {
               avisos.conId + ': ' + (avisos.con.texto.slice(0, 46) || '(vacio)') + ')');
   console.log('  ' + (okSin ? 'OK ' : 'MAL') + ' una playa sin warn no lo ensena   (' + avisos.sinId + ')');
   if (!okCon || !okSin) docMal = 1;
+
+  /* ── lo que se pinta al vuelo, en el idioma de quien mira ──
+     Estos tres salian fijos en castellano para los ocho idiomas y ningun
+     control los veia, porque iban por innerHTML o eran una palabra suelta
+     sin acento. El rotulo del boton de comprar era el peor: tx('shopBuy')
+     lo pintaba traducido, y addSouvenirToCart lo devolvia a "Comprar"
+     1,5 s despues de hacer clic, para siempre.
+     Y el nombre del souvenir se sacaba del titulo quitando la palabra
+     "PROXIMAMENTE" -que applyUiTx traduce-, asi que en ingles el producto
+     entraba en la cesta como "Camiseta Tenerife Go COMING SOON" con un id
+     distinto por idioma: el mismo articulo abria una linea nueva en cada
+     uno en vez de sumar unidades. */
+  const vivo = await page.evaluate(async () => {
+    const IDI = ['es','en','fr','de','it','nl','zh','zht'], out = { claves: [], cesta: [], boton: [] };
+    for (const l of ['es','en','zht']) {
+      setLang(l);
+      const btn = document.querySelector('.excursion-card .souvenir-buy-btn');
+      const rot = btn.textContent.trim();
+      const antes = getCart().length;
+      addSouvenirToCart(btn);
+      const c = getCart();
+      out.cesta.push({ l, nombre: c[c.length - 1].name, id: c[c.length - 1].id, nuevos: c.length - antes });
+      out.boton.push({ l, rot });
+      await new Promise(r => setTimeout(r, 1700));
+      out.boton[out.boton.length - 1].tras = btn.textContent.trim();
+    }
+    for (const k of ['photoLoading','routeCalculating','routeBusSearch','gpsNoSupport',
+                     'authNotConfigured','camposObligatorios','shopAdded'])
+      out.claves.push({ k, faltan: IDI.filter(l => !(UI_TX[k] && (UI_TX[k][l] || '').trim())) });
+    /* con typeof: si la funcion no existe todavia, este control tiene que
+       decir MAL, no reventar el proceso y llevarse por delante los otros
+       tres resultados de este bloque. */
+    out.wiki = IDI.map(l => (typeof wikiDominio === 'function' ? wikiDominio(l) : '(sin funcion)'));
+    return out;
+  });
+  console.log('\n=== lo que se pinta al vuelo ===');
+  const sinClave = vivo.claves.filter(c => c.faltan.length);
+  console.log('  ' + (sinClave.length ? 'MAL' : 'OK ') + ' las 7 claves de espera y de tienda, en los 8 idiomas');
+  sinClave.forEach(c => console.log('      ' + c.k + ' → falta ' + c.faltan.join(',')));
+  const botMal = vivo.boton.filter(b => b.tras !== b.rot);
+  console.log('  ' + (botMal.length ? 'MAL' : 'OK ') + ' el boton de comprar vuelve a su rotulo traducido   (' +
+              vivo.boton.map(b => b.l + ': ' + b.rot + '→' + b.tras).join(' · ') + ')');
+  const ETIQ = /PR[OÓ]XIMAMENTE|COMING SOON|BINNENKORT|DEMN[AÄ]CHST|PROSSIMAMENTE|BIENT[OÔ]T|即將|即将/i;
+  const cesMal = vivo.cesta.filter(c => ETIQ.test(c.nombre) || c.id !== vivo.cesta[0].id);
+  console.log('  ' + (cesMal.length ? 'MAL' : 'OK ') + ' el souvenir entra en la cesta con el mismo nombre e id en los 3   (' +
+              vivo.cesta.map(c => c.l + ': "' + c.nombre + '"').join(' · ') + ')');
+  const wikiMal = vivo.wiki[7] !== 'zh';
+  console.log('  ' + (wikiMal ? 'MAL' : 'OK ') + ' zht pide zh.wikipedia.org, que existe   (' + vivo.wiki.join(' ') + ')');
+  if (sinClave.length || botMal.length || cesMal.length || wikiMal) docMal = 1;
 
   console.log('\n=== rendimiento ===');
   console.log('  aeropuerto sur: %d lineas · %d capas · %d ms', perf.lineas, perf.capas, perf.ms);

@@ -58,10 +58,27 @@ for atr in ('href', 'src', 'action', 'formaction', 'srcdoc', 'style'):
             print('    %-6s %-8s %s' % ('' if seguro else '<--', atr, k))
 
 print('\n=== bloque de guaguas: nada sin escapar ===')
-crudo = [l for l in re.findall(r'.*\$\{(?:stop|line|l)\.(?:nombre|numero|municipio|color)[^\n]*', s)
-         if 'escapeHtml' not in l and 'escapeAttr' not in l]
+# El escapado puede estar en la LINEA SIGUIENTE, cuando la plantilla parte el
+# ternario. Cortando en \n, `${stop.municipio` salia como interpolacion sin
+# escapar y el escapeHtml estaba justo debajo: un aviso que siempre es mentira
+# ensena a ignorar el control entero. Se mira la interpolacion completa,
+# emparejando las llaves.
+def interp_completa(txt, i):
+    d = 0
+    for k in range(i, min(len(txt), i + 400)):
+        if txt[k] == '{': d += 1
+        elif txt[k] == '}':
+            d -= 1
+            if d == 0: return txt[i:k + 1]
+    return txt[i:i + 400]
+
+crudo = []
+for m in re.finditer(r'\$\{(?:stop|line|l)\.(?:nombre|numero|municipio|color)', s):
+    t = interp_completa(s, m.start() + 1)
+    if 'escapeHtml' not in t and 'escapeAttr' not in t:
+        crudo.append(t.replace('\n', ' ')[:110])
 print('  interpolaciones sin escapar  : %d' % len(crudo))
-for c in crudo[:5]: print('    ' + c.strip()[:110])
+for c in crudo[:5]: print('    ' + c.strip())
 
 print('\n=== textos visibles escritos a pelo ===')
 # La auditoria de idiomas solo mira las tablas: no ve un literal en español
@@ -77,12 +94,29 @@ print('\n=== textos visibles escritos a pelo ===')
 # showLayerMsg y showLayerToast pintan en pantalla igual que un alert. Se
 # suman a la lista porque los cuatro avisos de cambio de capa estaban fijos en
 # español y ningun control los veia.
-CTX = (r'(?:\.(?:textContent|innerText|placeholder|title|ariaLabel)\s*=\s*'
-       r'|(?:confirm|alert|prompt|showLayerMsg|showLayerToast)\s*\(\s*'
+# innerHTML se anadio despues: por ahi salian el "Sin foto en Wikipedia" rojo
+# de 270 fichas y los dos rotulos del panel de rutas, los tres fijos en
+# castellano para los ocho idiomas. Un texto pintado por innerHTML se lee
+# igual que uno pintado por textContent.
+CTX = (r'(?:\.(?:textContent|innerText|innerHTML|placeholder|title|ariaLabel)\s*=\s*'
+       r'|(?:confirm|alert|prompt|showLayerMsg|showLayerToast|showGpsToast)\s*\(\s*'
+       r"|insertAdjacentHTML\s*\(\s*'[a-zA-Z]+'\s*,\s*"
        r"|setAttribute\s*\(\s*'(?:aria-label|title|placeholder|alt)'\s*,\s*)")
 PAL = (r'\b(?:el|la|los|las|un|una|de|del|que|no|se|su|tu|con|para|por|en|y|o|es|'
        r'est[aá]|hay|más|sin|al|lo|te|ya|muy|pero|como|cuando|donde|desde|hasta|'
        r'sobre|entre|todo|toda|esta|este|esa|ese)\b')
+
+def ini_sentencia(txt, pos):
+    """Principio de la sentencia que contiene `pos`.
+
+    La version anterior miraba 140 caracteres hacia atras a pelo, y con eso
+    un `L_.clave || 'respaldo'` de DOS LINEAS MAS ARRIBA hacia que el control
+    se callara ante un literal que no tenia nada que ver. Asi se le escaparon
+    "Buscando paradas y lineas..." y los dos "Servicio no configurado
+    todavia.": ninguno pasaba por el idioma, los tres salian en castellano en
+    los ocho, y el control los daba por buenos."""
+    return max(txt.rfind(';', 0, pos), txt.rfind('{', 0, pos),
+               txt.rfind('}', 0, pos), txt.rfind('\n', 0, pos)) + 1
 
 def es_espanol(t):
     if re.search(r'[áéíóúñ¿¡ÁÉÍÓÚÑ]', t):
@@ -103,8 +137,8 @@ for m in re.finditer(CTX + r'(`[^`]{0,300}`|\'[^\']{0,300}\'|"[^"]{0,300}")', s)
     if not es_espanol(lit[1:-1]): continue
     if adm_ini <= m.start() <= adm_fin: continue
     # el acceso al idioma puede ir ANTES del literal, como fallback
-    ctx = s[max(0, m.start() - 140):m.end()]
-    if re.search(r'L_\.|\bt\(\)|\btx\(|\bptx\(|LANGS|\|\|', ctx): continue
+    ctx = s[ini_sentencia(s, m.start()):m.end()]
+    if re.search(r'L_\.|\bL\(\)\.|\bt\(\)|\btx\(|\bptx\(|LANGS|\|\|', ctx): continue
     # una fila de tabla de idiomas (es:'...') no es un literal suelto
     if re.search(r"\b(?:es|en|fr|de|it|nl|zh|zht)\s*:\s*$", s[:m.end() - len(lit)]): continue
     fijos.append((s.count('\n', 0, m.start()) + 1, lit.replace('\n', ' ')[:88]))
@@ -121,6 +155,45 @@ for m in re.finditer(r'[^\n]*\$\{[^}]*\}\s*(?:' + SUSTANTIVOS + r')[a-z]*[^\n]{0
     if re.search(r'\bL\.\w+|\btx\(|\bplural\(', t):
         continue
     fijos.append((s.count('\n', 0, m.start()) + 1, t[:88]))
+
+# Tercera regla. Las dos de arriba no ven una palabra suelta: "Calculando…"
+# no lleva acento ni dos palabras funcionales, y era el rotulo del boton de
+# calcular ruta en los ocho idiomas. La lista es corta a proposito -solo
+# verbos y sustantivos de interfaz- y solo se aplica donde se pinta.
+INTERFAZ = (r'\b(?:cargando|buscando|guardando|enviando|calculando|descargando|'
+            r'localizando|generando|comprobando|abriendo|cerrando|borrando|'
+            r'copiado|guardado|enviado|reintentar|cancelar|aceptar)\b')
+for m in re.finditer(CTX + r'(`[^`]{0,200}`|\'[^\'\n]{0,200}\'|"[^"\n]{0,200}")', s):
+    lit = m.group(1)
+    cuerpo = re.sub(r'<[^>]*>', ' ', lit[1:-1])
+    cuerpo = re.sub(r'\$\{[^}]*\}', ' ', cuerpo)          # lo interpolado ya se mira aparte
+    if not re.search(INTERFAZ, cuerpo, re.I): continue
+    if adm_ini <= m.start() <= adm_fin: continue
+    ctx = s[ini_sentencia(s, m.start()):m.end()]
+    if re.search(r'L_\.|\bL\(\)\.|\bt\(\)|\btx\(|\bptx\(|LANGS|\|\|', ctx): continue
+    if re.search(r"\b(?:es|en|fr|de|it|nl|zh|zht)\s*:\s*$", s[:m.end() - len(lit)]): continue
+    par = (s.count('\n', 0, m.start()) + 1, lit.replace('\n', ' ')[:88])
+    if par not in fijos: fijos.append(par)
+
+# Cuarta regla: avisadores cuyo texto NO es el primer argumento
+# -showMessage(elemento, tipo, texto)-. Con una expresion regular sola no
+# vale: se para en el primer literal de la llamada, que es 'error', lo
+# descarta por no ser español y se salta el que de verdad se lee. Aqui se
+# miran TODOS los literales de la llamada.
+AVISADORES = r'\b(?:showMessage|showToast|showBusToast|showShareToast|pushToast)\s*\('
+for m in re.finditer(AVISADORES, s):
+    fin_llamada = s.find(';', m.end())
+    salto = s.find('\n', m.end())
+    if fin_llamada < 0 or (0 <= salto < fin_llamada): fin_llamada = salto
+    if fin_llamada < 0: continue
+    llamada = s[m.end():fin_llamada]
+    if re.search(r'L_\.|\bL\(\)\.|\bt\(\)|\btx\(|\bptx\(|LANGS', llamada): continue
+    for lm in re.finditer(r'(`[^`]{0,300}`|\'[^\'\n]{0,300}\'|"[^"\n]{0,300}")', llamada):
+        cuerpo = lm.group(1)[1:-1]
+        if not es_espanol(cuerpo): continue
+        if adm_ini <= m.start() <= adm_fin: continue
+        par = (s.count('\n', 0, m.start()) + 1, lm.group(1)[:88])
+        if par not in fijos: fijos.append(par)
 
 print('  literales en español sin pasar por el idioma: %d' % len(fijos))
 for ln, t in fijos[:12]:

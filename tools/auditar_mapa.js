@@ -552,6 +552,37 @@ function ok(cond, txt, detalle) {
       ok(!borrado.cache, 'al borrarlo, el cache desaparece');
       ok(borrado.detallada === false, 'y la capa offline vuelve al mapa base');
 
+      /* ── EL ZOOM, DE PUNTA A PUNTA ──
+         protomaps-leaflet asume `maxDataZoom||15` si no se le dice. Con un
+         fichero de z14 eso dejaba el mapa EN BLANCO de z16 para arriba:
+         reescalaba desde un nivel que no existe. Y z16-z18 es justo donde se
+         pone quien quiere ver por donde va. Ahora sale de la cabecera del
+         propio fichero. */
+      const zooms = await page.evaluate(async () => {
+        const filas = [];
+        for (let z = 6; z <= 18; z++) {
+          map.setView([28.535, -16.245], z);
+          await new Promise(r => setTimeout(r, 600));
+          const cs = document.querySelectorAll('#map canvas');
+          const hex = ((layers.isla && layers.isla.backgroundColor) || '#cccccc').replace('#', '');
+          const f = [parseInt(hex.slice(0,2),16), parseInt(hex.slice(2,4),16), parseInt(hex.slice(4,6),16)];
+          let total = 0, pintados = 0;
+          for (const cv of cs) {
+            const g = cv.getContext('2d'); if (!g || !cv.width) continue;
+            const d = g.getImageData(0, 0, cv.width, cv.height).data;
+            for (let i = 0; i < d.length; i += 4) { total++;
+              if (Math.abs(d[i]-f[0]) + Math.abs(d[i+1]-f[1]) + Math.abs(d[i+2]-f[2]) > 12) pintados++; }
+          }
+          filas.push({ z, pct: total ? +(pintados * 100 / total).toFixed(1) : 0 });
+        }
+        return { filas, zMax: layers.isla._tgoZMax };
+      });
+      const enBlanco = zooms.filas.filter(f => f.pct === 0).map(f => 'z' + f.z);
+      ok(zooms.zMax > 0, 'la capa toma su maxDataZoom de la cabecera del fichero', zooms.zMax);
+      ok(enBlanco.length === 0,
+         'ningun zoom de z6 a z18 se queda en blanco (zMax del fichero: ' + zooms.zMax + ')',
+         'en blanco: ' + enBlanco.join(', '));
+
       ok(errores.length === 0, 'todo el recorrido, sin una sola excepcion', errores.slice(0, 3).join(' | '));
     } finally {
       await browser5.close();

@@ -131,6 +131,13 @@ const leenAlias = (html.match(/\.alias && [a-z]+\.alias\.toLowerCase\(\)\.includ
 debe('filtros del buscador que leen alias', leenAlias, leenAlias >= 3);
 debe('lugares con alias', PLACES.filter(p => p.alias).length, PLACES.filter(p => p.alias).length > 0);
 
+/* Los colores entran en un atributo style sin escapar, asi que solo son
+   seguros mientras TODOS sean un #rrggbb. Hoy lo son los 805; que siga
+   siendolo no puede depender de la suerte. */
+const colorMalo = PLACES.filter(p => !/^#[0-9a-fA-F]{6}$/.test(String(p.color || '')));
+debe('colores que no son #rrggbb (van a un style sin escapar)', colorMalo.length, colorMalo.length === 0);
+colorMalo.slice(0, 5).forEach(p => console.log('      <--  ' + p.id + ' : ' + p.color));
+
 /* Un warn cuyo valor no este en WARN_I18N no pinta banner y no da error: el
    aviso de seguridad desaparece en silencio. Se comprueba contra la tabla del
    propio fichero. */

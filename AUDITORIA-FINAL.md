@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 b055efba98cf857478fb958717a72d7d
-             4.241.973 bytes · 1.281.419 comprimidos · 34.478 líneas
+index.html   md5 d3a4378e73f4c3355716a7d3929e3c8e
+             4.372.630 bytes · 1.328.925 comprimidos · 35.415 líneas
 ```
 
 ---
@@ -147,7 +147,7 @@ emojis: 2.894, 250 distintos
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
 
-## Idiomas · 31 tablas, 424 filas
+## Idiomas · 31 tablas, 435 filas
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
@@ -159,6 +159,56 @@ entero— **iba fijo en español en los ocho idiomas**: 25 textos. Ya está en
 `PWA_TX`, con la misma forma que `UI_TX`, así que la auditoría de idiomas lo
 recorre sola. Y con el control ampliado salieron 12 más sueltos por la app
 (tienda, GPS, portapapeles, «Cómo llegar»), también traducidos.
+
+**Y en septiembre salieron 10 más**, que el control seguía sin ver por tres
+agujeros distintos, no por uno:
+
+| se escapaba porque | ejemplo | dónde salía |
+|---|---|---|
+| iba por `innerHTML`, y el control solo miraba `textContent` | «Sin foto en Wikipedia», en rojo | 270 fichas, casi siempre |
+| es una palabra suelta: ni acento ni dos palabras funcionales | `⏳ Calculando…` | botón de calcular ruta |
+| el `\|\|` de un respaldo **dos líneas más arriba** lo daba por traducido | «Servicio no configurado todavía.» | entrar y registrarse |
+
+El tercero era el peor: el control miraba 140 caracteres hacia atrás a pelo,
+así que un `L().authErrorEmail || 'Email inválido'` de otra sentencia lo
+callaba. Ahora el contexto **se corta en la sentencia**.
+
+Dos no eran solo de idioma. `addSouvenirToCart` sacaba el nombre del souvenir
+quitando del título la palabra «PRÓXIMAMENTE» —que `applyUiTx` traduce—, así
+que en inglés el producto entraba en la cesta como *Camiseta Tenerife Go
+COMING SOON*, **con un id distinto en cada idioma**: el mismo artículo abría
+una línea nueva por idioma en vez de sumar unidades. Medido, no deducido:
+
+```
+antes   es camiseta-tenerife-go · en camiseta-tenerife-go-coming-soon · zht camiseta-tenerife-go-即將推出
+ahora   los tres  camiseta-tenerife-go
+```
+
+Y el botón volvía al literal `'Comprar'` 1,5 s después del clic, pisando el
+rótulo que había puesto `tx('shopBuy')`: `Buy → ✓ Added → Comprar`.
+
+**El propio control tenía un punto ciego, y era el peor posible.** Para dar
+una entrada por fila pedía que tuviera `es` **y** `en`. Consecuencia: una fila
+a la que le faltaba precisamente el inglés no la veía nadie. En
+`wikiTitleOverrides` hay cuatro así —`teresitas`, `el-duque`, `benijo` y
+`playa-americas`— y el control decía **15 filas incompletas donde hay 19**.
+Era más ciego cuanto peor estaba el dato. Ahora basta con `es`; de que el
+objeto sea una tabla y no otra cosa se encarga el umbral del 60 %.
+
+Las 19 filas incompletas están **todas** en `wikiTitleOverrides`, y no son un
+fallo: si falta el título en un idioma se pide el de `es` a la Wikipedia de
+ese idioma, no está, y se cae a `es.wikipedia.org`, que sí lo tiene. Es lo
+mismo que ya pasa con los otros 786 lugares, que no tienen override ninguno.
+El techo es de calidad, no de corrección: rellenarlas pide comprobar contra
+Wikipedia qué artículo existe en cada idioma, y **un título inventado no se
+nota** —da la misma foto en castellano que da ahora—, así que no se rellenan
+a ojo.
+
+**Wikipedia no tiene dominio `zht`.** El chino tradicional y el simplificado
+comparten `zh.wikipedia.org`. Quien leía en tradicional pedía
+`zht.wikipedia.org`, que no resuelve, perdía el intento en su idioma y
+acababa siempre en la Wikipedia en castellano. Era el único de los ocho al
+que le pasaba.
 
 | control | resultado |
 |---|---|
@@ -262,6 +312,20 @@ sostiene esto: trocear subía el botón de aeropuerto de 31 a 467 ms y dejaba 98
 capas con solo 6 líneas. El troceo se conserva únicamente para el caso sin
 `via`, que hoy no se da en ninguna línea.
 
+**Los arreglos de septiembre no cuestan.** El mismo guion, el mismo servidor,
+cinco arranques cada uno, contra los dos ficheros seguidos:
+
+```
+                      antes            ahora
+arranque mediana      664 ms           678 ms      (643-684  /  658-710)
+montón de JavaScript  19,2 MB          19,2 MB
+8 cambios de idioma   124 ms           137 ms
+```
+
+Los 14 ms de diferencia caen **dentro del margen de las propias tiradas**, que
+se solapan. Lo que se añadió son 7 filas de traducción; lo que se quitó, tres
+plantillas de HTML de depuración.
+
 **El peso es el problema real, y no es el GTFS.** De los 1,27 MB comprimidos,
 más de la mitad son los textos de `places` en ocho idiomas, de los que cada
 usuario lee uno. Servir solo el idioma activo ahorraría del orden de 900 kB sin
@@ -295,6 +359,23 @@ decisión de arquitectura, no un arreglo.
   del GTFS. **787 paradas ganan servicio** —las 210 que no salían y 577 que sí
   salían con la lista de líneas incompleta— y las referencias pasan de 5.827 a
   **7.348**. Ninguna pierde nada.
+- **El detalle OSM: z14 o z15.** Hoy va **z14, 11,43 MB**, y pinta el 99,77 %
+  de los píxeles con el estilo de la app en todos los zooms de z6 a z18. z15
+  serían **24,5 MB** —también al 100 %— y la app descarga el fichero **entero**
+  a un Blob antes de pintar, así que el coste es de datos y de espera, no de
+  calidad. Con z14 se lee el nombre de las calles; z15 añade portales y
+  detalle de edificio. **Se queda en z14 salvo que digas lo contrario.**
+- **Las 7 tarjetas de la tienda van solo en castellano**, en los ocho idiomas:
+  los 7 títulos de producto y las 10 descripciones están escritos a pelo en el
+  HTML. Los nombres son de marca y pueden quedarse; las descripciones
+  —«Camiseta 100 % algodón con diseño exclusivo…»— son texto comercial, y eso
+  lo escribes tú, no se traduce a ojo. Los productos ponen «PRÓXIMAMENTE» y no
+  existen todavía, así que también vale dejarlo hasta que existan. Lo que ya
+  **no** depende de esa decisión: el rótulo del botón, el aviso de añadido y
+  el nombre con el que entran en la cesta, que ya van en los ocho.
+- **Los 19 títulos de Wikipedia por idioma.** Ver arriba: hoy caen a la
+  Wikipedia en castellano, que es lo mismo que hacen los otros 786 lugares.
+  Rellenarlos pide comprobar artículo por artículo qué existe en cada idioma.
 - **Troya, Los Cristianos y Porís no están en `PLAYAS_ORIENTACION`**, así que
   reciben panel de mar pero no puntúan en «¿dónde me baño hoy?». Añadirlas pide
   su orientación, que no se inventa. **Se intentó deducirla de la geometría de
@@ -648,6 +729,34 @@ Para el detalle fino está el bloque 4, que es opcional.
     se muestran; y se construye con nodos y `textContent`, no con `innerHTML`,
     para dejar el DOM igual que antes —un `<b>` y un nodo de texto suelto—, que
     es de lo que depende el CSS del banner.
+
+42. **`innerHTML` pinta texto igual que `textContent`.** El control de
+    literales en español no lo miraba, y por ahí salían el «Sin foto en
+    Wikipedia» de 270 fichas y los dos rótulos de espera del panel de rutas.
+    Ahora `CTX` cubre `innerHTML`, `insertAdjacentHTML` y los avisadores.
+43. **Un contexto medido en caracteres cruza sentencias.** Mirar 140
+    caracteres hacia atrás para ver si hay un `||` de respaldo hacía que un
+    literal quedara excusado por el respaldo de **otra** sentencia. El
+    contexto se corta ahora en el `;`, la llave o el salto de línea.
+44. **Un `showMessage(elemento, tipo, texto)` no se caza nombrando la
+    función.** La expresión regular se para en el primer literal de la
+    llamada —`'error'`—, lo descarta por no ser español y no mira el
+    siguiente, que es el que se lee. Hay que recorrer **todos** los literales
+    de la llamada.
+45. **Quitar una palabra traducida buscándola en español solo funciona en
+    español.** `titulo.replace('PRÓXIMAMENTE','')` no quitaba nada en los
+    otros siete, y el texto de la etiqueta se colaba en el nombre y en el id
+    del producto. Se quita **el nodo**, no la palabra.
+46. **Un control que revienta no es un control.** El bloque nuevo llamaba a
+    `wikiDominio()` a pelo: contra el código viejo lanzaba `ReferenceError`,
+    tumbaba el proceso y se llevaba por delante los otros tres resultados del
+    mismo bloque. Con `typeof` delante, dice MAL y los otros tres se leen.
+47. **Un mensaje de depuración enseñado a todo el mundo deja de ser de
+    depuración.** El «Sin foto en Wikipedia» rojo llevaba un comentario que
+    decía «(para debug)», y el CSS ya traía `.popup-photo.hidden` desde el
+    principio para ese caso. Lo mismo con el `Error: ${err.message}` crudo:
+    ni está traducido ni le dice nada a quien está en la playa. Va a la
+    consola, que es donde se depura.
 
 ---
 

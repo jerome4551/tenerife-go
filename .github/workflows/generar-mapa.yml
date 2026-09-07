@@ -23,13 +23,17 @@ on:
         required: false
         default: 'false'
 
-permissions:
-  contents: write
+# Sin permisos por defecto. Cada job pide lo justo, y el que genera NO puede
+# escribir: descarga y ejecuta un binario de terceros, y no tiene por que
+# correr al lado de un token capaz de hacer push.
+permissions: {}
 
 jobs:
   generar:
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    permissions:
+      contents: read          # solo leer el repositorio
 
     steps:
       - name: Traer el repositorio
@@ -187,10 +191,31 @@ jobs:
           if-no-files-found: warn
           retention-days: 7
 
+    outputs:
+      fecha: ${{ steps.build.outputs.fecha }}
+      mb: ${{ steps.tam.outputs.mb }}
+
+  # Job aparte, y esta es la razon: aqui NO se ejecuta nada de terceros. Se
+  # baja el artefacto que dejo el anterior y se commitea. Asi el binario de
+  # go-pmtiles nunca corre en el mismo job que el token con permiso de push.
+  commit:
+    needs: generar
+    if: github.event.inputs.solo_probar != 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: tenerife-osm-pmtiles
       - name: Commit a mapa/tenerife-osm.pmtiles
-        if: github.event.inputs.solo_probar != 'true'
         run: |
           set -euo pipefail
+          if [ ! -s tenerife-osm.pmtiles ]; then
+            echo "::error::El artefacto no trae el fichero."
+            exit 1
+          fi
           mkdir -p mapa
           mv tenerife-osm.pmtiles mapa/tenerife-osm.pmtiles
           git config user.name  "github-actions[bot]"
@@ -200,6 +225,6 @@ jobs:
             echo "El fichero es identico al que ya estaba. No hay nada que commitear."
             exit 0
           fi
-          git commit -m "mapa: base OSM de Tenerife (build ${{ steps.build.outputs.fecha }}, z0-${{ github.event.inputs.maxzoom }}, ${{ steps.tam.outputs.mb }} MB)"
+          git commit -m "mapa: base OSM de Tenerife (build ${{ needs.generar.outputs.fecha }}, z0-${{ github.event.inputs.maxzoom }}, ${{ needs.generar.outputs.mb }} MB)"
           git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
