@@ -336,6 +336,22 @@ decisión de arquitectura, no un arreglo.
 
 # 3 · Lo que falta
 
+## Un error de dato abierto · la auditoría está en rojo por él
+
+`charco-infierno-arafo` está a **10,2 km del mar**. Los otros 99 puntos de baño
+están por debajo de 614 m, así que no es un pin impreciso: son dos grupos
+separados y de eso sí se puede afirmar cuál está mal. Su propia ficha dice
+«piscina natural en la **costa** de Arafo… acceso a pie desde el **litoral**»,
+con etiquetas `Costa` y `Atlántico`. Hoy recibe panel de mar —olas, marea,
+temperatura— calculado en un punto del monte.
+
+**No se ha escrito una coordenada nueva porque no hay fuente para ella.** Lo
+arregla una coordenada real o quitar el punto; decide quien tenga el dato.
+
+Se coló porque `auditar_ubicacion.py` medía contra la capa `water` de OSM, que
+incluye balsas y embalses, y tenía una a 279 m. Ya mide **también** contra el
+anillo de costa de GSHHG, que es solo mar, y con umbral de 2 km.
+
 ## Bloqueado por terceros
 
 - **13 horarios de socorrista**, esperando a la empresa. `lifeguard` tiene tres
@@ -390,7 +406,33 @@ decisión de arquitectura, no un arreglo.
   título inventado no se notaría: daría la misma foto en castellano que da
   ahora. Rellenarlos de verdad pide comprobar artículo por artículo qué existe
   en cada idioma.
-- ~~Las playas sin orientación~~ **cerrado: se quedan sin ella.** Contado hoy:
+- **Las playas sin orientación · reabierto y con el diagnóstico corregido.**
+  La lista de las 66, para rellenar a mano, está en `PLAYAS-SIN-ORIENTACION.md`
+  y se regenera con `node tools/faltan_orientacion.js --md`.
+
+  **Lo que decía antes —«falta una costa con fidelidad ≤ 50 m»— era falso.**
+  Esa costa lleva en el repositorio desde septiembre: la capa `water` del
+  `mapa/tenerife-osm.pmtiles`. Se probó, y `tools/orientacion_osm.py` guarda el
+  resultado:
+
+  ```
+  GSHHG, abanico de rayos (1er intento)   10 / 22 exactas
+  OSM, media circular del agua             6 / 12
+  OSM, normal a la linea de costa          5 / 12
+  ```
+
+  Los tres rondan el 45-50 %. Y el barrido de radios lo aclara: la media
+  circular da **6/12 mirando a 200-500 m y 1/12 mirando a 50 m**. Si el fallo
+  fuera de fidelidad, acercarse tendría que mejorarlo; lo empeora. `ori` no es
+  «por dónde hay mar»: es hacia dónde da el frente de la playa. Y `badWind` no
+  es geométrico en absoluto —Las Vistas no lleva `NE` por el relieve y la
+  Montaña de Guaza—. **Es conocimiento del sitio, y por eso no se deduce.**
+
+  Dos discrepancias coherentes entre los dos métodos de OSM, para que alguien
+  que conozca el sitio las mire: `teresitas` (a mano `NE`, geometría `SE` ~155°)
+  y `playa-amarilla` (a mano `SW`, geometría `SE` ~141°). Sin tocar.
+
+- **Cómo está hoy.** Contado:
   de los **100 puntos de baño** (73 playas + 27 charcos), **34 tienen
   orientación y 66 no**. De las 34, **22 son `deducida`** —del abanico de
   rayos, que mira a 4, 6 y 8 km y por eso es ciego a lo que abriga en el primer
@@ -403,17 +445,13 @@ decisión de arquitectura, no un arreglo.
   y nunca aparece en «¿dónde me baño hoy?». Degrada bien, y esa es la razón
   por la que se puede dejar así.
 
-  Rellenarlas seguiría necesitando el dato que no hay. **Se intentó deducirlas
-  de la geometría de costa y el control lo tumbó**: `tools/orientacion.py`
-  reproduce 10 de las 22 orientaciones ya existentes, así que no se acepta
-  ninguna nueva. El fallo es de la costa, no del método —GSHHG a resolución
-  «full» es lo mejor que pasa el proxy y se come las calas—. Si algún día
-  aparece el shapefile municipal del Cabildo o cualquier costa con fidelidad
-  ≤ 50 m, el camino está hecho y el control está escrito; hasta entonces no es
-  una tarea pendiente, es una decisión tomada.
-
   Troya, Los Cristianos y Porís entran aquí: son las tres de `ff0f7191`, tienen
   panel de mar y no puntúan.
+
+  **Se rellenan a mano, punto por punto.** No es una tarea bloqueada por un
+  dato que no llega: es una tarea que pide conocer el sitio, y la lista está
+  preparada para que se pueda hacer poco a poco. Cada fila que entre aparece
+  en «¿dónde me baño hoy?» sin tocar nada más.
 
 ## Cómo llegaron las playas a 73
 

@@ -17,6 +17,19 @@ DOS COSAS QUE HAY QUE MEDIR BIEN, Y QUE AL PRINCIPIO ESTABAN MAL
      unos 2,4 km: una playa junto al borde tiene el mar en la tesela de al
      lado y parecia estar a un kilometro de cualquier agua.
 
+SEGUNDA MEDIDA: CONTRA EL MAR, NO CONTRA "AGUA"
+  La capa `water` de OSM incluye agua interior -balsas, embalses, estanques-,
+  asi que "esta a 279 m de agua" no quiere decir "esta junto al mar". Con solo
+  esa medida, charco-infierno-arafo pasaba: tenia una balsa a 279 m y estaba a
+  10,2 km del Atlantico, con una ficha que dice "piscina natural en la COSTA
+  de Arafo" y etiquetas Costa y Atlantico.
+  Por eso se mide ademas contra el anillo de costa de GSHHG, que es solo mar.
+  Es tosca -250-500 m de error en las calas- y para esto da igual: aqui no se
+  buscan metros, se busca que un punto de baño no este en el monte. Y ahi el
+  reparto no es continuo, son dos grupos: 99 puntos por debajo de 614 m y uno
+  a 10.187 m. Cuando hay dos grupos separados si se puede afirmar cual esta
+  mal.
+
 POR QUE EL UMBRAL ES TAN ALTO
   La distribucion real es continua -mediana 86 m, cuartil 3 167 m, maximo
   573 m-: no hay dos grupos separados, asi que no hay forma de decir "de aqui
@@ -122,11 +135,45 @@ def main():
     if v:
         print('  distancia al borde del agua: mediana %.0f m · cuartil 3 %.0f m · maximo %.0f m (%s)'
               % (v[len(v) // 2], v[3 * len(v) // 4], v[-1], ds[-1][1]))
+    # ── contra la costa de verdad ──
+    import json
+    UMBRAL_MAR = 2000.0     # metros: un punto de baño no esta a 2 km del mar
+    costa = json.load(open(os.path.join(RAIZ, 'tools', 'datos', 'costa_tenerife.json')))
+    anillo = costa['anillo']
+    # El orden de los vertices se decide por el SIGNO, no por la magnitud:
+    # en Tenerife la latitud es 27-29 y la longitud -16 a -17, y las dos pasan
+    # de 20, asi que un umbral de magnitud se equivoca -y se equivoco-.
+    lat_primero = anillo[0][0] > 0 and anillo[0][1] < 0
+    lat0 = 28.3
+    def xy(la, lo):
+        return (math.radians(lo) * R * math.cos(math.radians(lat0)), math.radians(la) * R)
+    aro = [xy(q[0], q[1]) if lat_primero else xy(q[1], q[0]) for q in anillo]
+    def a_la_costa(la, lo):
+        p = xy(la, lo)
+        mejor = float('inf')
+        for i in range(len(aro)):
+            ax, ay = aro[i]; bx, by = aro[(i + 1) % len(aro)]
+            dx, dy = bx - ax, by - ay
+            if dx == 0 and dy == 0:
+                d = math.hypot(p[0] - ax, p[1] - ay)
+            else:
+                t = max(0.0, min(1.0, ((p[0]-ax)*dx + (p[1]-ay)*dy) / (dx*dx + dy*dy)))
+                d = math.hypot(p[0] - (ax + t*dx), p[1] - (ay + t*dy))
+            if d < mejor: mejor = d
+        return mejor
+    mar = sorted(((a_la_costa(la, lo), pid) for pid, _c, la, lo in costeros), reverse=True)
+    tierra = [(d, pid) for d, pid in mar if d > UMBRAL_MAR]
+    print('  distancia al MAR (costa GSHHG): mediana %.0f m · maximo %.0f m (%s)'
+          % (sorted(d for d, _ in mar)[len(mar)//2], mar[0][0], mar[0][1]))
+    print('  tierra adentro (a mas de %d m del mar): %d' % (UMBRAL_MAR, len(tierra)))
+    for d, pid in tierra:
+        print('      <--  %s  a %.1f km del mar' % (pid, d / 1000.0))
+
     lejos = [(d, pid) for d, pid in ds if d > UMBRAL]
     print('  a mas de %d m del agua (error grosero): %d' % (UMBRAL, len(lejos)))
     for d, pid in lejos:
         print('      <--  %-30s %.0f m' % (pid, d))
-    return 1 if lejos else 0
+    return 1 if (lejos or tierra) else 0
 
 
 if __name__ == '__main__':
