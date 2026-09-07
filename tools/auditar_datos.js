@@ -5,7 +5,10 @@
 const { LINES, CAT, PLACES, km, distanciaAVia, norm } = require('./cargar');
 const P = (t, v) => console.log('  ' + String(t).padEnd(46, '.') + ' ' + v);
 let fallos = 0;
-const debe = (t, v, ok) => { P(t, v); if (!ok) fallos++; };
+/* Antes solo sumaba al contador: el informe decia "1 control fuera de lo
+   esperado" y no habia forma de saber cual, porque una linea que falla se
+   imprimia igual que una que pasa. Ahora la falla se marca donde ocurre. */
+const debe = (t, v, ok) => { P(t, v); if (!ok) { fallos++; console.log('      <--  MAL: este es el que falla'); } };
 
 console.log('=== catalogo ===');
 const cat = Object.entries(CAT);
@@ -98,7 +101,11 @@ LINES.filter(l => l.tipo === 'tranvia').forEach(l => {
 });
 
 console.log('\n=== lugares ===');
-debe('lugares', PLACES.length, PLACES.length === 805);
+/* El numero va fijo a proposito: si un dia se pierden fichas por un mal
+   pegado, esto lo dice. Solo se mueve cuando la baja o el alta es
+   deliberada. 805 -> 804 el 7 de septiembre, al quitar
+   charco-infierno-arafo, que estaba a 10 km del mar y no existe. */
+debe('lugares', PLACES.length, PLACES.length === 804);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

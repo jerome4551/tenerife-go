@@ -1,11 +1,11 @@
-# Las 66 zonas de baño sin orientación
+# Las 65 zonas de baño sin orientación
 
 Generado, no escrito a mano: `node tools/faltan_orientacion.js --md`. En cuanto
 entre una orientación nueva la lista se acorta sola.
 
-De los **100 puntos de baño** de la app (73 playas + 27 charcos), **34 tienen
-orientación** en `PLAYAS_ORIENTACION` y **66 no**. Estos son los 66: 39 playas
-y 27 charcos.
+De los **99 puntos de baño** de la app (73 playas + 26 charcos), **34 tienen
+orientación** en `PLAYAS_ORIENTACION` y **65 no**. Estos son los 65: 39 playas
+y 26 charcos.
 
 ## Qué hay que rellenar
 
@@ -31,21 +31,12 @@ No hace falta que las rellenes todas de una vez. Cada fila que llegue entra en
 | **agua** | `aguaCalidad` del censo oficial 2025, con su año |
 | **socorr.** | `si` / `no` / `?`. La interrogación es *no se sabe*, y no afirma nada |
 
-## Un error de dato, antes de empezar
+## Uno menos que ayer
 
-`charco-infierno-arafo` está a **10,2 km del mar**. Los otros 99 puntos de baño
-están todos por debajo de 614 m, así que no es un pin impreciso: son dos grupos
-separados. Y su propia ficha dice «piscina natural en la **costa** de Arafo…
-acceso a pie desde el **litoral**», con etiquetas `Costa` y `Atlántico`.
-
-Hoy recibe panel de mar —olas, marea, temperatura del agua— calculado en un
-punto del monte. **No le pongas orientación: primero hay que arreglar dónde
-está, o quitarla.** No he escrito una coordenada nueva porque no la tengo de
-ninguna fuente.
-
-Esto lo dejó pasar mi auditoría de ubicación: medía contra la capa `water` de
-OSM, que incluye balsas y embalses, y tenía una a 279 m. Ya mide también contra
-la costa, y con eso la auditoría se pone en rojo hasta que se resuelva.
+Esta lista tenía 66. `charco-infierno-arafo` estaba a 10,2 km del mar, y al
+buscarlo **no existe**: no hay ningún «Charco del Infierno» en Arafo. El
+Barranco del Infierno es de Adeje, es un barranco de senderismo, y ya está en
+la app aparte. Se ha quitado el punto — no se corrige lo que no existe.
 
 ## Por qué no te las puedo rellenar yo
 
@@ -129,31 +120,31 @@ python3 tools/orientacion_osm.py --todas    # y qué propondría para las 66
 | 36 | **Charco del Viento**<br><code>charco-viento</code> | charco | La Guancha | `28.4007, -16.674` | 187 m | — | ? | ⚠️ mar | ☐ | ☐ |
 | 37 | **Charco Verde (Los Realejos)**<br><code>charco-verde-realejos</code> | charco | La Guancha | `28.3963, -16.659` | 362 m | — | ? | ⚠️ mar | ☐ | ☐ |
 | 38 | **Playa del Caletón · El Sauzal**<br><code>playa-caleton-sauzal</code> | playa | La Matanza de Acentejo | `28.4583, -16.464` | 42 m | — | ? | ⚠️ mar | ☐ | ☐ |
-| 39 | **Charco del Infierno (Arafo)**<br><code>charco-infierno-arafo</code> | charco | La Orotava ⚠️ | `28.329, -16.47` | **10.2 km** ⛔ | — | ? | ⚠️ mar | ☐ | ☐ |
-| 40 | **Playa El Rincón**<br><code>playa-rincon</code> | playa | La Orotava | `28.4172, -16.5232` | 65 m | — | ? | ⚠️ mar | ☐ | ☐ |
-| 41 | **Charco del Faro de Buenavista (El Rayo)**<br><code>charco-faro-buenavista</code> | charco | Los Silos ⚠️ | `28.3922, -16.8324` | 129 m | — | ? | ⚠️ mar | ☐ | ☐ |
-| 42 | **Charco Don Gabino**<br><code>charco-don-gabino</code> | charco | Los Silos ⚠️ | `28.3828, -16.8173` | 295 m | — | ? | ⚠️ mar | ☐ | ☐ |
-| 43 | **Charco Los Chochos (Los Silos)**<br><code>charco-chochos</code> | charco | Los Silos ⚠️ | `28.3812, -16.8146` | 276 m | — | ? | ⚠️ mar | ☐ | ☐ |
-| 44 | **Playa de Agua Dulce**<br><code>playa-agua-dulce</code> | playa | Los Silos | `28.3762, -16.8087` | 272 m | — | ? | ⚠️ mar | ☐ | ☐ |
-| 45 | **Piscina Natural El Muelle (Pto. Cruz)**<br><code>piscinas-muelle</code> | charco | Puerto de la Cruz | `28.416, -16.5513` | 129 m | — | ? | ⚠️ mar | ☐ | ☐ |
-| 46 | **Playa de Martiánez**<br><code>playa-martianez</code> | playa | Puerto de la Cruz | `28.4176, -16.5413` | 113 m | excelente 2025 | ? | ⚠️ mar | ☐ | ☐ |
-| 47 | **Playa de San Telmo**<br><code>playa-san-telmo</code> | playa | Puerto de la Cruz | `28.4174, -16.5467` | 147 m | excelente 2025 | ? | — | ☐ | ☐ |
-| 48 | **Playa del Castillo (Puerto de la Cruz)**<br><code>playa-castillo-pcruz</code> | playa | Puerto de la Cruz | `28.413, -16.5591` | 129 m | — | ? | ⚠️ mar | ☐ | ☐ |
-| 49 | **Charco de La Laja (Bajamar)**<br><code>charco-laja-bajamar</code> | charco | San Cristóbal de La Laguna | `28.5498, -16.3562` | 210 m | — | ? | ⚠️ mar | ☐ | ☐ |
-| 50 | **Piscina Natural Jóver (Tejina)**<br><code>piscina-jover-tejina</code> | charco | San Cristóbal de La Laguna | `28.5472, -16.3705` | 99 m | excelente 2025 | si | ⚠️ mar | ☐ | ☐ |
-| 51 | **Piscina Natural Punta del Hidalgo (Norte)**<br><code>piscina-hidalgo-norte</code> | charco | San Cristóbal de La Laguna | `28.5706, -16.3335` | 341 m | — | ? | ⚠️ mar | ☐ | ☐ |
-| 52 | **Piscinas Naturales de Bajamar**<br><code>piscinas-bajamar</code> | charco | San Cristóbal de La Laguna | `28.5564, -16.3445` | 279 m | excelente 2025 | si | ⚠️ mar | ☐ | ☐ |
-| 53 | **Piscinas Punta del Hidalgo**<br><code>punta-hidalgo</code> | charco | San Cristóbal de La Laguna | `28.5663, -16.332` | 262 m | excelente 2025 | si | ⚠️ mar | ☐ | ☐ |
-| 54 | **Playa de los Troches**<br><code>playa-los-troches</code> | playa | San Cristóbal de La Laguna | `28.57123, -16.3118898` | 12 m | — | no | ⚠️ mar | ☐ | ☐ |
-| 55 | **Playa de San Juan (Bajamar)**<br><code>playa-san-juan-bajamar</code> | playa | San Cristóbal de La Laguna | `28.5562903, -16.3414677` | 100 m | excelente 2025 | no | ⚠️ mar | ☐ | ☐ |
-| 56 | **Playa del Arenal (Bajamar)**<br><code>playa-arenal-bajamar</code> | playa | San Cristóbal de La Laguna | `28.5564871, -16.3358937` | 120 m | — | no | ⚠️ mar | ☐ | ☐ |
-| 57 | **Playa del Arenisco**<br><code>playa-arenisco</code> | playa | San Cristóbal de La Laguna | `28.5665557, -16.3317236` | 223 m | excelente 2025 | ? | ⚠️ mar | ☐ | ☐ |
-| 58 | **Playa de Las Aguas**<br><code>playa-las-aguas</code> | playa | San Juan de la Rambla | `28.3944, -16.6385` | 328 m | — | ? | — | ☐ | ☐ |
-| 59 | **Playa de Los Roques**<br><code>playa-roques-rambla</code> | playa | San Juan de la Rambla | `28.3956, -16.6489` | 88 m | — | ? | ⚠️ mar | ☐ | ☐ |
-| 60 | **Charco de Archile**<br><code>charco-archile</code> | charco | San Miguel de Abona | `28.0193, -16.6204` | 341 m | — | ? | ⚠️ mar | ☐ | ☐ |
-| 61 | **Playa Benijo**<br><code>benijo</code> | playa | Santa Cruz de Tenerife | `28.5759, -16.1852` | 179 m | — | si | ⚠️ mar | ☐ | ☐ |
-| 62 | **Zona de Baño de Valleseco (Santa Cruz)**<br><code>bano-valleseco</code> | charco | Santa Cruz de Tenerife | `28.4863321, -16.235747` | 492 m | excelente 2025 | ? | ⚠️ mar | ☐ | ☐ |
-| 63 | **Zona de Baño El Bloque (Valleseco)**<br><code>bano-valleseco-bloque</code> | playa | Santa Cruz de Tenerife | `28.487, -16.2333` | 401 m | excelente 2025 | ? | — | ☐ | ☐ |
-| 64 | **Piscina Natural de Los Gigantes**<br><code>piscina-gigantes</code> | charco | Santiago del Teide | `28.2417, -16.8433` | 214 m | — | ? | ⚠️ mar | ☐ | ☐ |
-| 65 | **Charco El Pris**<br><code>el-pris</code> | charco | Tacoronte | `28.5096, -16.4214` | 182 m | excelente 2025 | ? | ⚠️ mar | ☐ | ☐ |
-| 66 | **Mesa del Mar**<br><code>mesa-mar</code> | charco | Tacoronte | `28.5038, -16.4245` | 345 m | excelente 2025 | ? | ⚠️ mar | ☐ | ☐ |
+| 39 | **Playa El Rincón**<br><code>playa-rincon</code> | playa | La Orotava | `28.4172, -16.5232` | 65 m | — | ? | ⚠️ mar | ☐ | ☐ |
+| 40 | **Charco del Faro de Buenavista (El Rayo)**<br><code>charco-faro-buenavista</code> | charco | Los Silos ⚠️ | `28.3922, -16.8324` | 129 m | — | ? | ⚠️ mar | ☐ | ☐ |
+| 41 | **Charco Don Gabino**<br><code>charco-don-gabino</code> | charco | Los Silos ⚠️ | `28.3828, -16.8173` | 295 m | — | ? | ⚠️ mar | ☐ | ☐ |
+| 42 | **Charco Los Chochos (Los Silos)**<br><code>charco-chochos</code> | charco | Los Silos ⚠️ | `28.3812, -16.8146` | 276 m | — | ? | ⚠️ mar | ☐ | ☐ |
+| 43 | **Playa de Agua Dulce**<br><code>playa-agua-dulce</code> | playa | Los Silos | `28.3762, -16.8087` | 272 m | — | ? | ⚠️ mar | ☐ | ☐ |
+| 44 | **Piscina Natural El Muelle (Pto. Cruz)**<br><code>piscinas-muelle</code> | charco | Puerto de la Cruz | `28.416, -16.5513` | 129 m | — | ? | ⚠️ mar | ☐ | ☐ |
+| 45 | **Playa de Martiánez**<br><code>playa-martianez</code> | playa | Puerto de la Cruz | `28.4176, -16.5413` | 113 m | excelente 2025 | ? | ⚠️ mar | ☐ | ☐ |
+| 46 | **Playa de San Telmo**<br><code>playa-san-telmo</code> | playa | Puerto de la Cruz | `28.4174, -16.5467` | 147 m | excelente 2025 | ? | — | ☐ | ☐ |
+| 47 | **Playa del Castillo (Puerto de la Cruz)**<br><code>playa-castillo-pcruz</code> | playa | Puerto de la Cruz | `28.413, -16.5591` | 129 m | — | ? | ⚠️ mar | ☐ | ☐ |
+| 48 | **Charco de La Laja (Bajamar)**<br><code>charco-laja-bajamar</code> | charco | San Cristóbal de La Laguna | `28.5498, -16.3562` | 210 m | — | ? | ⚠️ mar | ☐ | ☐ |
+| 49 | **Piscina Natural Jóver (Tejina)**<br><code>piscina-jover-tejina</code> | charco | San Cristóbal de La Laguna | `28.5472, -16.3705` | 99 m | excelente 2025 | si | ⚠️ mar | ☐ | ☐ |
+| 50 | **Piscina Natural Punta del Hidalgo (Norte)**<br><code>piscina-hidalgo-norte</code> | charco | San Cristóbal de La Laguna | `28.5706, -16.3335` | 341 m | — | ? | ⚠️ mar | ☐ | ☐ |
+| 51 | **Piscinas Naturales de Bajamar**<br><code>piscinas-bajamar</code> | charco | San Cristóbal de La Laguna | `28.5564, -16.3445` | 279 m | excelente 2025 | si | ⚠️ mar | ☐ | ☐ |
+| 52 | **Piscinas Punta del Hidalgo**<br><code>punta-hidalgo</code> | charco | San Cristóbal de La Laguna | `28.5663, -16.332` | 262 m | excelente 2025 | si | ⚠️ mar | ☐ | ☐ |
+| 53 | **Playa de los Troches**<br><code>playa-los-troches</code> | playa | San Cristóbal de La Laguna | `28.57123, -16.3118898` | 12 m | — | no | ⚠️ mar | ☐ | ☐ |
+| 54 | **Playa de San Juan (Bajamar)**<br><code>playa-san-juan-bajamar</code> | playa | San Cristóbal de La Laguna | `28.5562903, -16.3414677` | 100 m | excelente 2025 | no | ⚠️ mar | ☐ | ☐ |
+| 55 | **Playa del Arenal (Bajamar)**<br><code>playa-arenal-bajamar</code> | playa | San Cristóbal de La Laguna | `28.5564871, -16.3358937` | 120 m | — | no | ⚠️ mar | ☐ | ☐ |
+| 56 | **Playa del Arenisco**<br><code>playa-arenisco</code> | playa | San Cristóbal de La Laguna | `28.5665557, -16.3317236` | 223 m | excelente 2025 | ? | ⚠️ mar | ☐ | ☐ |
+| 57 | **Playa de Las Aguas**<br><code>playa-las-aguas</code> | playa | San Juan de la Rambla | `28.3944, -16.6385` | 328 m | — | ? | — | ☐ | ☐ |
+| 58 | **Playa de Los Roques**<br><code>playa-roques-rambla</code> | playa | San Juan de la Rambla | `28.3956, -16.6489` | 88 m | — | ? | ⚠️ mar | ☐ | ☐ |
+| 59 | **Charco de Archile**<br><code>charco-archile</code> | charco | San Miguel de Abona | `28.0193, -16.6204` | 341 m | — | ? | ⚠️ mar | ☐ | ☐ |
+| 60 | **Playa Benijo**<br><code>benijo</code> | playa | Santa Cruz de Tenerife | `28.5759, -16.1852` | 179 m | — | si | ⚠️ mar | ☐ | ☐ |
+| 61 | **Zona de Baño de Valleseco (Santa Cruz)**<br><code>bano-valleseco</code> | charco | Santa Cruz de Tenerife | `28.4863321, -16.235747` | 492 m | excelente 2025 | ? | ⚠️ mar | ☐ | ☐ |
+| 62 | **Zona de Baño El Bloque (Valleseco)**<br><code>bano-valleseco-bloque</code> | playa | Santa Cruz de Tenerife | `28.487, -16.2333` | 401 m | excelente 2025 | ? | — | ☐ | ☐ |
+| 63 | **Piscina Natural de Los Gigantes**<br><code>piscina-gigantes</code> | charco | Santiago del Teide | `28.2417, -16.8433` | 214 m | — | ? | ⚠️ mar | ☐ | ☐ |
+| 64 | **Charco El Pris**<br><code>el-pris</code> | charco | Tacoronte | `28.5096, -16.4214` | 182 m | excelente 2025 | ? | ⚠️ mar | ☐ | ☐ |
+| 65 | **Mesa del Mar**<br><code>mesa-mar</code> | charco | Tacoronte | `28.5038, -16.4245` | 345 m | excelente 2025 | ? | ⚠️ mar | ☐ | ☐ |
+

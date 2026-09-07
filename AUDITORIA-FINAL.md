@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 d3a4378e73f4c3355716a7d3929e3c8e
-             4.372.630 bytes · 1.328.925 comprimidos · 35.415 líneas
+index.html   md5 657204a2e2c46b09dc57b7b82420b077
+             4.369.263 bytes · 1.327.970 comprimidos · 35.411 líneas
 ```
 
 ---
@@ -18,7 +18,7 @@ index.html   md5 d3a4378e73f4c3355716a7d3929e3c8e
 
 | | |
 |---|---|
-| Lugares | **805**, con descripción y categoría en 8 idiomas |
+| Lugares | **804**, con descripción y categoría en 8 idiomas |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht |
@@ -282,11 +282,11 @@ no la secundaria**.
 | Paradas o lugares fuera de Tenerife | **0** |
 | Parada repetida consecutiva en una línea | **0** |
 | `via` con punto mal formado | **0** de 26.593 |
-| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **805** |
-| Ids de lugar que cumplen `[a-z0-9-]` | **805** |
+| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **804** |
+| Ids de lugar que cumplen `[a-z0-9-]` | **804** |
 | Con calidad de agua, y su año | **46** · 46 |
 | Con alias de búsqueda, que los 3 filtros leen | **58** |
-| Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
+| Con aviso `warn`, y su tipo existe en `WARN_I18N` | **115** · 0 huérfanos |
 | De esos, `warn:"mar"` | **50** |
 | URLs de lugar sin cifrar | **0** de 16 |
 
@@ -336,21 +336,33 @@ decisión de arquitectura, no un arreglo.
 
 # 3 · Lo que falta
 
-## Un error de dato abierto · la auditoría está en rojo por él
+## Un charco que no existía · resuelto quitándolo
 
-`charco-infierno-arafo` está a **10,2 km del mar**. Los otros 99 puntos de baño
-están por debajo de 614 m, así que no es un pin impreciso: son dos grupos
-separados y de eso sí se puede afirmar cuál está mal. Su propia ficha dice
-«piscina natural en la **costa** de Arafo… acceso a pie desde el **litoral**»,
-con etiquetas `Costa` y `Atlántico`. Hoy recibe panel de mar —olas, marea,
-temperatura— calculado en un punto del monte.
+`charco-infierno-arafo` medía **10,2 km al mar**, contra menos de 614 m los
+otros 99 puntos de baño: dos grupos separados, y de eso sí se puede afirmar
+cuál está mal. Lo cazó el control nuevo de `auditar_ubicacion.py`, que mide
+contra el anillo de costa de GSHHG —solo mar— además de contra la capa `water`
+de OSM, que incluye balsas y embalses y tenía una a 279 m.
 
-**No se ha escrito una coordenada nueva porque no hay fuente para ella.** Lo
-arregla una coordenada real o quitar el punto; decide quien tenga el dato.
+**Y al buscarlo, no existe.** Ni en Google Places ni en la web abierta hay un
+«Charco del Infierno» en Arafo. Los dos que llevan ese nombre son el de
+Almogía (Málaga), que es un río de otra provincia, y el **Barranco** del
+Infierno de Adeje, que es un barranco de senderismo en la otra punta de la
+isla —y ese sí está en la app, como `sendero-barranco-infierno`, categoría
+`senderismo`, en Adeje—.
 
-Se coló porque `auditar_ubicacion.py` medía contra la capa `water` de OSM, que
-incluye balsas y embalses, y tenía una a 279 m. Ya mide **también** contra el
-anillo de costa de GSHHG, que es solo mar, y con umbral de 2 km.
+Así que no era una coordenada mal escrita: era un punto inventado, con
+descripción y etiquetas verosímiles («piscina natural en la costa de Arafo»,
+`Costa`, `Atlántico`). **Se ha quitado.** No se corrige lo que no existe.
+
+```
+lugares  805 → 804    charcos 27 → 26    warn 116 → 115    warn:"mar" 50 → 49
+```
+
+Entró en `4f491e8`, con el lote de las zonas de baño. Los otros 39 de ese lote
+pasan la medida contra la costa, pero **pasar la medida de sitio no demuestra
+que el sitio exista**: eso solo se comprueba contra una fuente, y esa
+comprobación no la hace ninguna herramienta del repositorio.
 
 ## Bloqueado por terceros
 
@@ -433,8 +445,8 @@ anillo de costa de GSHHG, que es solo mar, y con umbral de 2 km.
   y `playa-amarilla` (a mano `SW`, geometría `SE` ~141°). Sin tocar.
 
 - **Cómo está hoy.** Contado:
-  de los **100 puntos de baño** (73 playas + 27 charcos), **34 tienen
-  orientación y 66 no**. De las 34, **22 son `deducida`** —del abanico de
+  de los **99 puntos de baño** (73 playas + 26 charcos), **34 tienen
+  orientación y 65 no**. De las 34, **22 son `deducida`** —del abanico de
   rayos, que mira a 4, 6 y 8 km y por eso es ciego a lo que abriga en el primer
   kilómetro— y **12 están escritas a mano**, que son las fiables. Una lleva
   `noBano`, así que candidatas reales hay 33.
@@ -463,6 +475,7 @@ no que se añadieran.
 c337d4bc   39 playa · 18 piscinas · 765 lugares
 ff0f7191   42        · 18         · 765          +3, sin lugares nuevos
 3a6e7356   73        · 27         · 805          +31 playas +9 charcos = 40
+hoy        73        · 26         · 804          -1: charco-infierno-arafo, que no existe
 ```
 
 Las tres de `ff0f7191` son `acc-playa-troya`, `acc-playa-los-cristianos` y
@@ -500,7 +513,7 @@ tiene que **venir dentro**.
 | 4 | descarga opcional de un `.pmtiles` de OSM para el detalle fino | **hecho, con el fichero dentro**: 11,4 MB, build 20260905, z0–z14 |
 
 **Por qué `protomaps-leaflet` y no MapLibre.** MapLibre obliga a rehacer el
-mapa entero y con él los 805 marcadores, los clusters y las 183 polilíneas.
+mapa entero y con él los 804 marcadores, los clusters y las 183 polilíneas.
 Esto es una capa más de Leaflet 1.9.4, la que ya usa la app.
 
 **Sin peticiones por rango.** El fichero pesa 1,1 MB y se pide entero de una
@@ -513,7 +526,7 @@ el servidor haga *byte serving*, que desde aquí no se puede comprobar.
 pasó al usuario: abrir la app con cobertura, cortar la red de verdad
 (`setOffline`, no un evento simulado) y volver a abrirla. Sale la app entera,
 la capa se pone sola en la isla, el `.pmtiles` se lee del caché y **se pintan
-12 teselas** con los 805 lugares encima. Sin una sola excepción.
+12 teselas** con los 804 lugares encima. Sin una sola excepción.
 
 **Cuándo entra.** Con conexión no cambia nada: se arranca en Calles y el
 fichero **ni se descarga**. La capa entra sola en dos casos —arrancar sin red,
@@ -606,7 +619,7 @@ Para el detalle fino está el bloque 4, que es opcional.
     limpia `tgo_bano_cache_v2` entre escenarios.
 15. **Playa Jardín tiene DOS fichas**: `playa-jardin` y `surf-playa-jardin`.
 16. **Los ids de lugar son la barrera de los `onclick` inline.** Los manejadores
-    inline solo son seguros porque los 805 ids cumplen `[a-z0-9-]`.
+    inline solo son seguros porque los 804 ids cumplen `[a-z0-9-]`.
 17. **`index.html` suelto no es la app.** Leaflet vive en `vendor/`.
 18. **Contar cadenas en un fichero de 4 MB es mal método.** Varias
     comprobaciones fallaron por contar la palabra dentro del comentario que la

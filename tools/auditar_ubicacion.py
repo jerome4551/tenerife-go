@@ -21,8 +21,10 @@ SEGUNDA MEDIDA: CONTRA EL MAR, NO CONTRA "AGUA"
   La capa `water` de OSM incluye agua interior -balsas, embalses, estanques-,
   asi que "esta a 279 m de agua" no quiere decir "esta junto al mar". Con solo
   esa medida, charco-infierno-arafo pasaba: tenia una balsa a 279 m y estaba a
-  10,2 km del Atlantico, con una ficha que dice "piscina natural en la COSTA
-  de Arafo" y etiquetas Costa y Atlantico.
+  10,2 km del Atlantico, con una ficha que decia "piscina natural en la COSTA
+  de Arafo" y etiquetas Costa y Atlantico. Al buscarlo resulto que el sitio no
+  existe -no hay ningun "Charco del Infierno" en Arafo- y se quito. Este
+  control es lo que lo saco a la luz, asi que se queda.
   Por eso se mide ademas contra el anillo de costa de GSHHG, que es solo mar.
   Es tosca -250-500 m de error en las calas- y para esto da igual: aqui no se
   buscan metros, se busca que un punto de baño no este en el monte. Y ahi el
