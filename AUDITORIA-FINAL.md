@@ -385,9 +385,11 @@ decisión de arquitectura, no un arreglo.
 
   Lo que ya **no** depende de esa decisión: el rótulo del botón, el aviso de
   añadido y el nombre con el que entran en la cesta, que ya van en los ocho.
-- **Los 19 títulos de Wikipedia por idioma.** Ver arriba: hoy caen a la
-  Wikipedia en castellano, que es lo mismo que hacen los otros 786 lugares.
-  Rellenarlos pide comprobar artículo por artículo qué existe en cada idioma.
+- ~~Los 19 títulos de Wikipedia por idioma~~ **cerrado: se quedan.** Caen a
+  `es.wikipedia.org`, que es lo mismo que hacen los otros 786 lugares, y un
+  título inventado no se notaría: daría la misma foto en castellano que da
+  ahora. Rellenarlos de verdad pide comprobar artículo por artículo qué existe
+  en cada idioma.
 - **Troya, Los Cristianos y Porís no están en `PLAYAS_ORIENTACION`**, así que
   reciben panel de mar pero no puntúan en «¿dónde me baño hoy?». Añadirlas pide
   su orientación, que no se inventa. **Se intentó deducirla de la geometría de
@@ -399,6 +401,25 @@ decisión de arquitectura, no un arreglo.
 - **22 de las 34 orientaciones de playa son `deducida`**, sacadas del abanico
   de rayos, que mira a 4, 6 y 8 km y por eso es ciego a lo que abriga en el
   primer kilómetro. Las 12 escritas a mano son las fiables.
+
+## Cómo llegaron las playas a 73
+
+Reconstruido del historial, porque la cuenta «39 + 31 = 70» se queda corta y
+la diferencia no es un error: son tres fichas que **cambiaron de categoría**,
+no que se añadieran.
+
+```
+c337d4bc   39 playa · 18 piscinas · 765 lugares
+ff0f7191   42        · 18         · 765          +3, sin lugares nuevos
+3a6e7356   73        · 27         · 805          +31 playas +9 charcos = 40
+```
+
+Las tres de `ff0f7191` son `acc-playa-troya`, `acc-playa-los-cristianos` y
+`acc-playa-poris` —el propio asunto del commit las llama «las tres playas que
+no puntuaban»—, y son **las mismas tres** que siguen fuera de
+`PLAYAS_ORIENTACION` en la lista de decisiones. Pasaron a categoría `playa`
+para recibir panel de mar; puntuar en «¿dónde me baño hoy?» necesita su
+orientación, que sigue bloqueada.
 
 ## Cerrado
 
