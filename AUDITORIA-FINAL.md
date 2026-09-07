@@ -390,17 +390,30 @@ decisión de arquitectura, no un arreglo.
   título inventado no se notaría: daría la misma foto en castellano que da
   ahora. Rellenarlos de verdad pide comprobar artículo por artículo qué existe
   en cada idioma.
-- **Troya, Los Cristianos y Porís no están en `PLAYAS_ORIENTACION`**, así que
-  reciben panel de mar pero no puntúan en «¿dónde me baño hoy?». Añadirlas pide
-  su orientación, que no se inventa. **Se intentó deducirla de la geometría de
-  costa y el control lo tumbó**: `tools/orientacion.py` reproduce 10 de las 22
-  orientaciones que ya existen, así que no se acepta ninguna nueva. El fallo es
-  de la costa, no del método —GSHHG a resolución «full» es lo mejor que pasa el
-  proxy y se come las calas—. Sigue pendiente, y lo desbloquea un dato: el
-  shapefile municipal del Cabildo o cualquier costa con fidelidad ≤ 50 m.
-- **22 de las 34 orientaciones de playa son `deducida`**, sacadas del abanico
-  de rayos, que mira a 4, 6 y 8 km y por eso es ciego a lo que abriga en el
-  primer kilómetro. Las 12 escritas a mano son las fiables.
+- ~~Las playas sin orientación~~ **cerrado: se quedan sin ella.** Contado hoy:
+  de los **100 puntos de baño** (73 playas + 27 charcos), **34 tienen
+  orientación y 66 no**. De las 34, **22 son `deducida`** —del abanico de
+  rayos, que mira a 4, 6 y 8 km y por eso es ciego a lo que abriga en el primer
+  kilómetro— y **12 están escritas a mano**, que son las fiables. Una lleva
+  `noBano`, así que candidatas reales hay 33.
+
+  **Las 66 no dan una respuesta mala, dan menos respuestas.** El recomendador
+  recorre `Object.keys(PLAYAS_ORIENTACION)`, así que una playa sin fila
+  sencillamente no es candidata: sigue teniendo ficha, panel de mar y avisos,
+  y nunca aparece en «¿dónde me baño hoy?». Degrada bien, y esa es la razón
+  por la que se puede dejar así.
+
+  Rellenarlas seguiría necesitando el dato que no hay. **Se intentó deducirlas
+  de la geometría de costa y el control lo tumbó**: `tools/orientacion.py`
+  reproduce 10 de las 22 orientaciones ya existentes, así que no se acepta
+  ninguna nueva. El fallo es de la costa, no del método —GSHHG a resolución
+  «full» es lo mejor que pasa el proxy y se come las calas—. Si algún día
+  aparece el shapefile municipal del Cabildo o cualquier costa con fidelidad
+  ≤ 50 m, el camino está hecho y el control está escrito; hasta entonces no es
+  una tarea pendiente, es una decisión tomada.
+
+  Troya, Los Cristianos y Porís entran aquí: son las tres de `ff0f7191`, tienen
+  panel de mar y no puntúan.
 
 ## Cómo llegaron las playas a 73
 
