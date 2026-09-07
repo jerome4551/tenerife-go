@@ -364,15 +364,27 @@ decisión de arquitectura, no un arreglo.
   serían **24,5 MB** —también al 100 %— y la app descarga el fichero **entero**
   a un Blob antes de pintar, así que el coste es de datos y de espera, no de
   calidad. Con z14 se lee el nombre de las calles; z15 añade portales y
-  detalle de edificio. **Se queda en z14 salvo que digas lo contrario.**
+  detalle de edificio. **Decidido: z14.** La carga es bloqueante —con el Blob no
+  hay mapa hasta que baja el fichero entero— y en Anaga y Teno, donde la app más
+  falta hace, la cobertura es mala y 13 MB más se notan. Y es reversible en
+  veinte minutos: `maxzoom` a 15 en el workflow. El disparador para subirlo es
+  **la carga medida en 5G y en una barra**, no el 99,77 %, que es un detector de
+  mapa en blanco —píxeles distintos del color de fondo declarado— y no una
+  medida de detalle: un fichero de z15 daría prácticamente el mismo número.
 - **Las 7 tarjetas de la tienda van solo en castellano**, en los ocho idiomas:
-  los 7 títulos de producto y las 10 descripciones están escritos a pelo en el
-  HTML. Los nombres son de marca y pueden quedarse; las descripciones
-  —«Camiseta 100 % algodón con diseño exclusivo…»— son texto comercial, y eso
-  lo escribes tú, no se traduce a ojo. Los productos ponen «PRÓXIMAMENTE» y no
-  existen todavía, así que también vale dejarlo hasta que existan. Lo que ya
-  **no** depende de esa decisión: el rótulo del botón, el aviso de añadido y
-  el nombre con el que entran en la cesta, que ya van en los ocho.
+  **7 títulos y 7 descripciones** escritos a pelo en el HTML. (Los otros tres
+  `.excursion-desc` del fichero son huecos de plantilla —`${sD}`, `${eD}`,
+  `${aT}`— que se rellenan con lo que el administrador escribe en el panel,
+  así que no son texto que se pueda traducir aquí: son dato del servidor. Llegué
+  a decir «10 descripciones» contando esos tres, y no lo son.)
+
+  Traducirlas **no es inventar**: el texto está escrito y pasarlo a los otros
+  siete idiomas es traducción normal. Lo que sí decide el producto es si merece
+  la pena ahora, porque los siete llevan «PRÓXIMAMENTE» y no existen todavía.
+  **Decidido: se quedan como están hasta que los productos existan.**
+
+  Lo que ya **no** depende de esa decisión: el rótulo del botón, el aviso de
+  añadido y el nombre con el que entran en la cesta, que ya van en los ocho.
 - **Los 19 títulos de Wikipedia por idioma.** Ver arriba: hoy caen a la
   Wikipedia en castellano, que es lo mismo que hacen los otros 786 lugares.
   Rellenarlos pide comprobar artículo por artículo qué existe en cada idioma.
