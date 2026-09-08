@@ -285,6 +285,35 @@ function revisar(tablas, o) {
   console.log('  ' + (wikiMal ? 'MAL' : 'OK ') + ' zht pide zh.wikipedia.org, que existe   (' + vivo.wiki.join(' ') + ')');
   if (sinClave.length || botMal.length || cesMal.length || wikiMal) docMal = 1;
 
+  /* ── la rama angular de scorePlaya tiene que EJECUTARSE ──
+     El propio comentario del codigo lo avisa: el objeto que se puntua no es
+     la fila de PLAYAS_ORIENTACION, se copia campo a campo en dos sitios. Si
+     `deducida` no llega, la rama angular no corre, no falla nada y las 87
+     vuelven a puntuar por texto. Con 87 de 99 filas dependiendo de ella,
+     esto tiene que estar vigilado y no leido. */
+  const ori = await page.evaluate(() => {
+    const ids = Object.keys(PLAYAS_ORIENTACION);
+    const banio = places.filter(p => p.category === 'playa' || p.category === 'piscinas');
+    const ded = { ori: 'S', badWind: [], deducida: true };
+    const man = { ori: 'S', badWind: ['S'], deducida: false };
+    return {
+      filas: ids.length, banio: banio.length,
+      sinOri: banio.filter(p => !PLAYAS_ORIENTACION[p.id]).length,
+      huerfanas: ids.filter(i => !places.some(p => p.id === i)).length,
+      cara: scorePlaya(ded, 180, 25),      // viento de cara: la angular resta 60
+      terral: scorePlaya(ded, 0, 25),      // terral: la angular suma 20
+      mano: scorePlaya(man, 180, 25)
+    };
+  });
+  console.log('\n=== orientaciones de playa ===');
+  const okCob = ori.sinOri === 0 && ori.huerfanas === 0;
+  const okAng = ori.cara === 40 && ori.terral === 120;
+  console.log('  ' + (okCob ? 'OK ' : 'MAL') + ' las ' + ori.banio + ' zonas de bano tienen ori, y ninguna fila cuelga  (' +
+              ori.filas + ' filas · ' + ori.sinOri + ' sin ori · ' + ori.huerfanas + ' huerfanas)');
+  console.log('  ' + (okAng ? 'OK ' : 'MAL') + ' la rama angular se ejecuta de verdad  (de cara ' + ori.cara +
+              ' · terral ' + ori.terral + ' · a mano ' + ori.mano + ')');
+  if (!okCob || !okAng) docMal = 1;
+
   console.log('\n=== rendimiento ===');
   console.log('  aeropuerto sur: %d lineas · %d capas · %d ms', perf.lineas, perf.capas, perf.ms);
   console.log('\npageerrors: ' + errs.length);

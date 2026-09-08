@@ -35084,6 +35084,109 @@ const PLAYAS_ORIENTACION = {
      protege. Salen del modelo para que ese conocimiento local se pueda
      escribir y surta efecto, que estando `deducida` no ocurria. */
   'tejita':                  { ori: 'S', badWind: ['NE','E','SE','S','SW'] },
+
+  /* ── Las 65 zonas de baño que faltaban · septiembre 2026 ──────────────
+     PROCEDENCIA, que no es la misma en las tres tandas y por eso se escribe:
+
+       11  respaldo publicado, comprobado abriendo la fuente una por una
+            (surf-forecast, corroborado por Spots Guru, Mondo.surf,
+            daSurfEngine, puresurfcamps, Surfnerd). Van marcadas · abajo.
+        1  piscina-hidalgo-norte: heredada de punta-hidalgo por estar a
+            490 m del mismo tramo. Eso es deduccion por vecindad, NO
+            verificacion, y va marcada aparte.
+       53  deduccion de un modelo de lenguaje, auditada por coherencia con
+            las vecinas y contrastada aqui contra la geometria.
+
+     LAS 65 VAN CON `deducida: true` PORQUE ES LO QUE SON, incluidas las 11
+     con fuente: el dato publicado es el rumbo del oleaje, no el rumbo de la
+     playa, y la conversion tiene la misma tolerancia que el resto.
+
+     CONTRASTE INDEPENDIENTE, medido antes de aplicarlas: el metodo del agua
+     coincide con las 65 en 64, y con las 53 sin fuente en las 53. El de la
+     arena coincide en 33 de las 38 que se atreve a contestar. No hay ni una
+     en la que discrepen LOS DOS a la vez.
+
+     PRECISION REAL: +-45 grados. La verificacion contra el parte de surf
+     caza errores de 90 -asi se corrigio playa-grande-abades, que venia con
+     SE y la fuente da NE- pero no distingue N de NW: la ficha de Benijo da
+     offshore SE (-> NW) y mar de fondo ideal N (-> N) a la vez.
+
+     badWind vacio en las 65. No es una concesion: la rama de `deducida`
+     de scorePlaya NO LEE badWind, puntua por el angulo de `ori`. Para una
+     entrada deducida ese campo es peso muerto.
+
+     TRES PARA MIRAR SI ALGUIEN CONOCE EL SITIO:
+       playa-grande-abades  el spot de la fuente se llama «Poris de Abona
+                            (Playa Grande)» y nuestro POI dice «(Abades)»:
+                            pueden ser dos playas distintas.
+       benijo               la fuente da N y NW a la vez.
+       piscina-gigantes     ONO cae entre W y NW; las dos valen.  */
+
+  'acc-playa-los-cristianos':    { ori: 'SW', badWind: [], deducida: true },
+  'acc-playa-poris':             { ori: 'NE', badWind: [], deducida: true },   // fuente publicada
+  'acc-playa-troya':             { ori: 'SW', badWind: [], deducida: true },   // fuente publicada
+  'bano-valleseco':              { ori: 'SE', badWind: [], deducida: true },
+  'bano-valleseco-bloque':       { ori: 'SE', badWind: [], deducida: true },
+  'benijo':                      { ori: 'N', badWind: [], deducida: true },   // fuente publicada
+  'charco-abrigos':              { ori: 'S', badWind: [], deducida: true },
+  'charco-archile':              { ori: 'S', badWind: [], deducida: true },
+  'charco-chochos':              { ori: 'N', badWind: [], deducida: true },
+  'charco-diablo':               { ori: 'NW', badWind: [], deducida: true },
+  'charco-don-gabino':           { ori: 'N', badWind: [], deducida: true },
+  'charco-faro-buenavista':      { ori: 'N', badWind: [], deducida: true },
+  'charco-golete':               { ori: 'E', badWind: [], deducida: true },
+  'charco-gomero':               { ori: 'N', badWind: [], deducida: true },
+  'charco-laja':                 { ori: 'N', badWind: [], deducida: true },
+  'charco-laja-bajamar':         { ori: 'NW', badWind: [], deducida: true },
+  'charco-roque':                { ori: 'NW', badWind: [], deducida: true },
+  'charco-verde-realejos':       { ori: 'N', badWind: [], deducida: true },
+  'charco-viento':               { ori: 'N', badWind: [], deducida: true },
+  'el-pris':                     { ori: 'NW', badWind: [], deducida: true },
+  'mesa-mar':                    { ori: 'NW', badWind: [], deducida: true },
+  'piscina-gigantes':            { ori: 'NW', badWind: [], deducida: true },   // fuente publicada
+  'piscina-guimar':              { ori: 'E', badWind: [], deducida: true },
+  'piscina-hidalgo-norte':       { ori: 'NW', badWind: [], deducida: true },   // heredada por vecindad, sin fuente propia
+  'piscina-jover-tejina':        { ori: 'NW', badWind: [], deducida: true },
+  'piscinas-alcala-jaquita':     { ori: 'W', badWind: [], deducida: true },
+  'piscinas-bajamar':            { ori: 'NW', badWind: [], deducida: true },
+  'piscinas-garachico':          { ori: 'N', badWind: [], deducida: true },
+  'piscinas-muelle':             { ori: 'N', badWind: [], deducida: true },
+  'piscinas-poris':              { ori: 'NE', badWind: [], deducida: true },   // fuente publicada
+  'playa-abriguitos':            { ori: 'SE', badWind: [], deducida: true },
+  'playa-agua-dulce':            { ori: 'N', badWind: [], deducida: true },
+  'playa-arenal-bajamar':        { ori: 'NW', badWind: [], deducida: true },
+  'playa-arenisco':              { ori: 'NW', badWind: [], deducida: true },
+  'playa-beril':                 { ori: 'W', badWind: [], deducida: true },
+  'playa-bobo':                  { ori: 'W', badWind: [], deducida: true },   // fuente publicada
+  'playa-cabezo-medano':         { ori: 'SE', badWind: [], deducida: true },   // fuente publicada
+  'playa-caleton-sauzal':        { ori: 'NW', badWind: [], deducida: true },
+  'playa-candelaria':            { ori: 'E', badWind: [], deducida: true },
+  'playa-castillo-pcruz':        { ori: 'N', badWind: [], deducida: true },
+  'playa-charcada':              { ori: 'E', badWind: [], deducida: true },
+  'playa-chimisay':              { ori: 'E', badWind: [], deducida: true },
+  'playa-enramada':              { ori: 'W', badWind: [], deducida: true },
+  'playa-galletas':              { ori: 'S', badWind: [], deducida: true },   // fuente publicada
+  'playa-grande-abades':         { ori: 'NE', badWind: [], deducida: true },   // fuente publicada
+  'playa-guincho':               { ori: 'N', badWind: [], deducida: true },
+  'playa-jaca':                  { ori: 'SE', badWind: [], deducida: true },
+  'playa-jaquita-medano':        { ori: 'SE', badWind: [], deducida: true },   // fuente publicada
+  'playa-las-aguas':             { ori: 'N', badWind: [], deducida: true },
+  'playa-los-troches':           { ori: 'NW', badWind: [], deducida: true },
+  'playa-martianez':             { ori: 'N', badWind: [], deducida: true },
+  'playa-muelle-garachico':      { ori: 'N', badWind: [], deducida: true },
+  'playa-nea':                   { ori: 'SE', badWind: [], deducida: true },
+  'playa-pinta':                 { ori: 'SW', badWind: [], deducida: true },
+  'playa-punta-fraile':          { ori: 'NW', badWind: [], deducida: true },
+  'playa-punta-larga':           { ori: 'E', badWind: [], deducida: true },
+  'playa-radazul':               { ori: 'SE', badWind: [], deducida: true },
+  'playa-rincon':                { ori: 'N', badWind: [], deducida: true },
+  'playa-rojas':                 { ori: 'NW', badWind: [], deducida: true },
+  'playa-roques-rambla':         { ori: 'N', badWind: [], deducida: true },
+  'playa-san-juan-bajamar':      { ori: 'NW', badWind: [], deducida: true },
+  'playa-san-telmo':             { ori: 'N', badWind: [], deducida: true },
+  'playa-socorro-guimar':        { ori: 'SE', badWind: [], deducida: true },
+  'playa-tabaiba':               { ori: 'SE', badWind: [], deducida: true },
+  'punta-hidalgo':               { ori: 'NW', badWind: [], deducida: true },   // fuente publicada
 };
 
 function windDirToCardinal(deg){
@@ -35101,7 +35204,7 @@ function scorePlaya(playa, windDeg, windSpeed){
 
   /* Dos caminos a proposito.
 
-     Las 28 marcadas `deducida: true` puntuan POR ANGULO. Su badWind es la
+     Las marcadas `deducida: true` puntuan POR ANGULO. Su badWind es la
      banda de tres sectores alrededor de 'ori', asi que la geometria ya lo
      dice todo y compararla como texto solo mete ruido. La linea vieja
      hacia `card.includes(b[0])`, o sea comparaba por la PRIMERA LETRA:

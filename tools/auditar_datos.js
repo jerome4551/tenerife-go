@@ -169,6 +169,33 @@ const mienten = exactas.filter(x => x.n !== PLACES.length);
 debe('cifras exactas de lugares que no son ' + PLACES.length, mienten.length, mienten.length === 0);
 mienten.slice(0, 5).forEach(x => console.log('      <--  ' + x.txt));
 
+/* ── orientaciones de playa ──
+   Desde septiembre las 99 zonas de bano tienen `ori`. Lo que se vigila aqui
+   no es la cifra, es que la tabla y places[] no se separen: una fila que
+   apunte a un POI que ya no existe no da error, simplemente deja de salir. */
+console.log('\n=== orientaciones de playa ===');
+{
+  const src = require('fs').readFileSync('index.html', 'utf8');
+  let b = src.slice(src.indexOf('const PLAYAS_ORIENTACION'));
+  b = b.slice(0, b.indexOf('\n};'));
+  const filas = [...b.matchAll(/'([a-z0-9-]+)':\s*\{([^}]*)\}/g)];
+  const RUMBOS = ['N','NE','E','SE','S','SW','W','NW'];
+  const banio = PLACES.filter(p => p.category === 'playa' || p.category === 'piscinas');
+  const claves = filas.map(m => m[1]);
+  const sinOri = banio.filter(p => !claves.includes(p.id)).map(p => p.id);
+  const huerf  = claves.filter(id => !PLACES.some(p => p.id === id));
+  const malOri = filas.filter(m => { const o = /ori:\s*'([A-Z]+)'/.exec(m[2]); return !o || !RUMBOS.includes(o[1]); }).map(m => m[1]);
+  P('filas en PLAYAS_ORIENTACION', filas.length);
+  P('  de ellas, deducida:true', filas.filter(m => /deducida/.test(m[2])).length);
+  P('  escritas a mano', filas.filter(m => !/deducida/.test(m[2])).length);
+  debe('claves duplicadas', claves.length - new Set(claves).size, claves.length === new Set(claves).size);
+  debe('zonas de bano sin orientacion', sinOri.length, sinOri.length === 0);
+  sinOri.slice(0, 6).forEach(i => console.log('      <--  ' + i));
+  debe('filas que apuntan a un POI inexistente', huerf.length, huerf.length === 0);
+  huerf.slice(0, 6).forEach(i => console.log('      <--  ' + i));
+  debe('ori fuera de los 8 rumbos', malOri.length, malOri.length === 0);
+}
+
 console.log('\n=== rotulos repetidos ===');
 const por = {}; Object.entries(CAT).forEach(([k, p]) => (por[norm(p.n)] = por[norm(p.n)] || []).push(k));
 const dup = Object.entries(por).filter(([, a]) => a.length > 1);

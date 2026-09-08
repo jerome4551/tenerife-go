@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 657204a2e2c46b09dc57b7b82420b077
-             4.369.263 bytes · 1.327.970 comprimidos · 35.411 líneas
+index.html   md5 d56b9f8cfce1a25c6f0d5cd11d838d7d
+             4.376.630 bytes · 1.329.663 comprimidos · 35.514 líneas
 ```
 
 ---
@@ -418,44 +418,63 @@ comprobación no la hace ninguna herramienta del repositorio.
   título inventado no se notaría: daría la misma foto en castellano que da
   ahora. Rellenarlos de verdad pide comprobar artículo por artículo qué existe
   en cada idioma.
-- **Las playas sin orientación · reabierto y con el diagnóstico corregido.**
-  La lista de las 66, para rellenar a mano, está en `PLAYAS-SIN-ORIENTACION.md`
-  y se regenera con `node tools/faltan_orientacion.js --md`.
-
-  **Lo que decía antes —«falta una costa con fidelidad ≤ 50 m»— era falso.**
-  Esa costa lleva en el repositorio desde septiembre: la capa `water` del
-  `mapa/tenerife-osm.pmtiles`. Se probó, y `tools/orientacion_osm.py` guarda el
-  resultado:
+- ~~Las playas sin orientación~~ **cerrado: las 99 zonas de baño la tienen.**
+  Las 65 que faltaban entraron en septiembre. Procedencia, que no es la misma
+  en las tres tandas y por eso se escribe en el propio código:
 
   ```
-  GSHHG, abanico de rayos (1er intento)   10 / 22 exactas
-  OSM, media circular del agua             6 / 12
-  OSM, normal a la linea de costa          5 / 12
+  11  respaldo publicado, comprobado abriendo la fuente una por una
+   1  piscina-hidalgo-norte, heredada de punta-hidalgo por vecindad (490 m)
+  53  deduccion de un modelo de lenguaje, auditada y contrastada aqui
   ```
 
-  Los tres rondan el 45-50 %. Y el barrido de radios lo aclara: la media
-  circular da **6/12 mirando a 200-500 m y 1/12 mirando a 50 m**. Si el fallo
-  fuera de fidelidad, acercarse tendría que mejorarlo; lo empeora. `ori` no es
-  «por dónde hay mar»: es hacia dónde da el frente de la playa. Y `badWind` no
-  es geométrico en absoluto —Las Vistas no lleva `NE` por el relieve y la
-  Montaña de Guaza—. **Es conocimiento del sitio, y por eso no se deduce.**
+  **Las 65 van con `deducida: true`, incluidas las 11 con fuente**: el dato
+  publicado es el rumbo del oleaje, no el de la playa, y la conversión
+  arrastra la misma tolerancia de ±45° que el resto.
 
-  Dos discrepancias coherentes entre los dos métodos de OSM, para que alguien
-  que conozca el sitio las mire: `teresitas` (a mano `NE`, geometría `SE` ~155°)
-  y `playa-amarilla` (a mano `SW`, geometría `SE` ~141°). Sin tocar.
+  **Contraste independiente, medido antes de aplicarlas.** El método del agua
+  coincide con las 65 en 64, y con las 53 sin fuente en las 53. El de la arena
+  coincide en 33 de las 38 que se atreve a contestar. **No hay ni una en la
+  que discrepen los dos a la vez.**
+
+  **Y una corrección que cambia el veredicto anterior.** Aquí se dijo que el
+  método del agua sacaba «6 de 12» y no valía. Ese 6 era con **rumbo exacto**;
+  el umbral que se fijó después —≥ 10 de 12 **dentro de 45°**— es otra medida.
+  Con la misma vara para los dos:
+
+  ```
+  metodo del AGUA    10 de 12 dentro de 45 grados   APRUEBA   (azar 4,5 · p = 0,0016)
+  metodo de la ARENA  7 de 12                        no aprueba
+  ```
+
+  Y falla exactamente en las dos que estaban anunciadas: `playa-amarilla` y
+  `teresitas`, las dos a 90°. Es el caso que se escribió de antemano —«si
+  falla solo en esas dos, aprueba, y además apunta a que las escritas a mano
+  son las equivocadas»—. Los tres métodos geométricos dicen `SE` para
+  Teresitas y lo escrito a mano dice `NE`.
+
+- **`badWind` vacío en las 65, y no es una concesión.** La rama de `deducida`
+  de `scorePlaya` **no lee `badWind`**: puntúa por el ángulo de `ori`. Para
+  una entrada deducida ese campo es peso muerto. El control nuevo comprueba
+  que esa rama **se ejecuta**, porque el objeto que se puntúa se copia campo a
+  campo en dos sitios y si `deducida` no llega, las 87 vuelven a puntuar por
+  texto sin que falle nada.
+
+- **Tres para mirar si alguien conoce el sitio:** `playa-grande-abades` (el
+  spot de la fuente se llama «Porís de Abona (Playa Grande)» y nuestro POI
+  dice «(Abades)»: pueden ser dos playas distintas), `benijo` (la fuente da N
+  y NW a la vez) y `piscina-gigantes` (ONO cae entre W y NW).
 
 - **Cómo está hoy.** Contado:
-  de los **99 puntos de baño** (73 playas + 26 charcos), **34 tienen
-  orientación y 65 no**. De las 34, **22 son `deducida`** —del abanico de
+  los **99 puntos de baño** (73 playas + 26 charcos) tienen orientación: **87
+  `deducida` y 12 escritas a mano**. De las 34, **22 son `deducida`** —del abanico de
   rayos, que mira a 4, 6 y 8 km y por eso es ciego a lo que abriga en el primer
   kilómetro— y **12 están escritas a mano**, que son las fiables. Una lleva
   `noBano`, así que candidatas reales hay 33.
 
-  **Las 66 no dan una respuesta mala, dan menos respuestas.** El recomendador
-  recorre `Object.keys(PLAYAS_ORIENTACION)`, así que una playa sin fila
-  sencillamente no es candidata: sigue teniendo ficha, panel de mar y avisos,
-  y nunca aparece en «¿dónde me baño hoy?». Degrada bien, y esa es la razón
-  por la que se puede dejar así.
+  El recomendador recorre `Object.keys(PLAYAS_ORIENTACION)`, así que antes una
+  playa sin fila no era candidata. Ahora lo son las 98 (99 menos
+  `playa-los-patos`, que lleva `noBano`).
 
   Troya, Los Cristianos y Porís entran aquí: son las tres de `ff0f7191`, tienen
   panel de mar y no puntúan.
