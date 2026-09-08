@@ -370,6 +370,42 @@ comprobación no la hace ninguna herramienta del repositorio.
   estados y `false` **afirma** que no hay socorrista: ausente no afirma nada.
 - ~~la secuencia del tranvía~~ **cerrado, ver abajo**.
 
+### La orientación de playa no es un campo publicado
+
+Comprobado abriendo cada fuente, no supuesto. Esto cierra la pregunta «¿habrá
+por ahí una base de datos con esto?», que si no se vuelve a hacer cada pocos
+meses:
+
+| fuente | veredicto |
+|---|---|
+| **surf-forecast.com** | **sirve, con techo.** 26 spots en Tenerife, ~12 coinciden con puntos de baño nuestros. De ahí salen las 11 filas verificadas. Las playas abrigadas —las que la gente usa para bañarse— no son spots y no tienen ficha |
+| **AEMET, predicción de playas** | no. Cubre todas las playas oficiales, pero el viento va **solo en intensidad, sin rumbo**. Comprobado en la ficha de San Marcos (código 3802201) |
+| **MITECO, Guía de Playas** | no. Base completa del Estado, ~3.000 playas, nueve secciones por ficha, y la orientación no es ninguna |
+| **Catálogo del Decreto 116/2018** | no para esto. Clasifica libre / peligrosa / prohibida y asigna grado de protección; no es un catálogo de características físicas |
+| **los 27 charcos** | ninguna fuente los cubre. No son playas censadas ni rompientes |
+
+**Dónde sí vive el dato: los Planes de Seguridad y Salvamento (PSS)**, uno por
+playa o zona de baño, firmados por técnico habilitado e inscritos en el
+Registro Autonómico de la Dirección General de Seguridad y Emergencias. Su
+capítulo 1 describe emplazamiento y análisis de riesgo, que es exactamente
+donde están la orientación, los vientos dominantes y las corrientes. No son
+datos abiertos: se accede por sede electrónica y están pensados para técnicos
+de entidades locales.
+
+**Y es el mismo canal que los 13 horarios de socorrista.** Un PSS trae las dos
+cosas, así que una sola petición cierra los dos bloqueos que quedan.
+
+> **Antes de escribir esa petición, comprobar en qué se apoya.** El origen de
+> la obligación que se cita es el Decreto 116/2018, y **ese decreto está
+> anulado**: Tribunal Supremo 27/9/2023, publicado en el BOC 82 del 25/4/2024.
+> Es la trampa 21 de este mismo documento, y ya obligó a retirar el decreto
+> como fuente de la leyenda de banderas. Los PSS redactados mientras estuvo en
+> vigor siguen existiendo como documentos y el registro puede seguir
+> guardándolos, pero **«el decreto obliga», en presente, no se sostiene sin
+> verificarlo**: hay que mirar si hay norma sucesora o si la obligación decayó.
+> Pedir el PSS de una playa concreta funciona igual; invocar el decreto como
+> fundamento, no.
+
 ## Se puede hacer, hace falta un dato
 
 - ~~73 paradas sin municipio~~ **cerrado**: cruzadas con los límites
@@ -651,7 +687,12 @@ Para el detalle fino está el bloque 4, que es opcional.
     JavaScript. Se revirtieron.
 21. **Una norma publicada no es una norma vigente.** El Decreto 116/2018 fue
     anulado (TS 27/9/2023, BOC 82, 25/4/2024) y se usó como fuente para la
-    leyenda de banderas.
+    leyenda de banderas. **Y vuelve a aparecer**: en septiembre de 2026, como
+    fundamento de que existan los Planes de Seguridad y Salvamento, que es
+    donde vive la orientación de playa y donde están los horarios de
+    socorrista. Los planes existen; la obligación citada en presente, no
+    consta. Una norma anulada no deja de citarse sola: hay que ir a mirarlo
+    cada vez que reaparece.
 22. **Un nombre de sitio no es un dato** hasta que tiene coordenada y esa
     coordenada cae donde debe. Si no está en `stops.txt`, no entra.
 23. **Ordenar paradas proyectándolas sobre `via` no funciona.** Probado contra
