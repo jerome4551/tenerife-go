@@ -366,8 +366,19 @@ comprobación no la hace ninguna herramienta del repositorio.
 
 ## Bloqueado por terceros
 
-- **13 horarios de socorrista**, esperando a la empresa. `lifeguard` tiene tres
-  estados y `false` **afirma** que no hay socorrista: ausente no afirma nada.
+- **El socorrismo, contado hoy** —el «13» que decía antes esta línea no tiene
+  lista detrás en ningún sitio del repositorio, y las fichas no guardan
+  horarios, solo un booleano—:
+
+  ```
+  99 zonas de baño   ·   24 con socorrista   ·   14 sin él   ·   61 sin dato
+  ```
+
+  `lifeguard` tiene tres estados y `false` **afirma** que no hay socorrista:
+  ausente no afirma nada, y por eso los 61 se quedan callados. Lo que falta no
+  son 13 horarios: son **61 estados desconocidos** y **el horario de los 24
+  que sí lo tienen**, que hoy no cabe en ninguna ficha porque el campo no
+  existe.
 - ~~la secuencia del tranvía~~ **cerrado, ver abajo**.
 
 ### La orientación de playa no es un campo publicado
@@ -395,16 +406,23 @@ de entidades locales.
 **Y es el mismo canal que los 13 horarios de socorrista.** Un PSS trae las dos
 cosas, así que una sola petición cierra los dos bloqueos que quedan.
 
-> **Antes de escribir esa petición, comprobar en qué se apoya.** El origen de
-> la obligación que se cita es el Decreto 116/2018, y **ese decreto está
-> anulado**: Tribunal Supremo 27/9/2023, publicado en el BOC 82 del 25/4/2024.
-> Es la trampa 21 de este mismo documento, y ya obligó a retirar el decreto
-> como fuente de la leyenda de banderas. Los PSS redactados mientras estuvo en
-> vigor siguen existiendo como documentos y el registro puede seguir
-> guardándolos, pero **«el decreto obliga», en presente, no se sostiene sin
-> verificarlo**: hay que mirar si hay norma sucesora o si la obligación decayó.
-> Pedir el PSS de una playa concreta funciona igual; invocar el decreto como
-> fundamento, no.
+**El decreto que sostenía todo eso está anulado**, y conviene tener claro qué
+cae y qué no:
+
+| | |
+|---|---|
+| **cae** | el deber de redactar y actualizar los PSS · el Catálogo · la comunicación anual de horarios de socorrismo, que es el artículo que citaba nuestra carta anterior |
+| **no cae** | los **126 planes** que llegaron a elaborarse y registrarse, de los 365 que hacían falta sobre 750 zonas de baño de Canarias. Son documentos que existen y siguen en el registro |
+
+Y hay una vía que **sobrevive a la anulación**: la solicitud de acceso a la
+información pública, por la ley estatal de transparencia y la de reutilización.
+No se apoya en el decreto tumbado, no hay que motivarla y obliga a contestar en
+plazo. Es la forma correcta de reintentarlo, y la carta anterior no falló por
+falta de ganas: **citaba un artículo que ya no existe**.
+
+El borrador está en `SOLICITUD-TRANSPARENCIA.md`, con los datos que hay que
+rellenar y las citas legales marcadas para verificar antes de enviar — que es
+exactamente el error que acabamos de cazar.
 
 ## Se puede hacer, hace falta un dato
 
