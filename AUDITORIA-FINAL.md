@@ -458,18 +458,39 @@ el portal Infoplayas Canarias como origen.
   del GTFS. **787 paradas ganan servicio** —las 210 que no salían y 577 que sí
   salían con la lista de líneas incompleta— y las referencias pasan de 5.827 a
   **7.348**. Ninguna pierde nada.
-- **El detalle OSM: z14 o z15.** Hoy va **z14, 11,43 MB**, y pinta el 99,77 %
-  de los píxeles con el estilo de la app en todos los zooms de z6 a z18. z15
-  serían **24,5 MB** —también al 100 %— y la app descarga el fichero **entero**
-  a un Blob antes de pintar, así que el coste es de datos y de espera, no de
-  calidad. Con z14 se lee el nombre de las calles; z15 añade portales y
-  detalle de edificio. **Decidido: z14.** La carga es bloqueante —con el Blob no
-  hay mapa hasta que baja el fichero entero— y en Anaga y Teno, donde la app más
-  falta hace, la cobertura es mala y 13 MB más se notan. Y es reversible en
-  veinte minutos: `maxzoom` a 15 en el workflow. El disparador para subirlo es
-  **la carga medida en 5G y en una barra**, no el 99,77 %, que es un detector de
-  mapa en blanco —píxeles distintos del color de fondo declarado— y no una
-  medida de detalle: un fichero de z15 daría prácticamente el mismo número.
+- ~~El detalle OSM: z14 o z15~~ **cerrado: z14, y no provisionalmente.**
+  El disparador que quedaba —«medir la carga en 5G y en una barra»— ya está
+  medido, y sin subir a Anaga con el móvil: Chromium estrangula la red de
+  verdad por CDP. `node tools/carga_mapa.js` lo repite.
+
+  ```
+  red               Mbps    z14 real   z15 (regla 3)   montaje
+  5G bueno           100       1,3 s           2,7 s      5 ms
+  5G normal           50       2,1 s           4,6 s      3 ms
+  4G bueno            20       5,0 s          10,7 s      3 ms
+  4G flojo             5      19,2 s          41,2 s      3 ms
+  una barra            2      48,0 s         102,8 s      3 ms
+  muy mala señal     0,5     191,8 s         410,4 s      3 ms
+  ```
+
+  **El montaje son 3 ms.** Leer la cabecera y construir el lector sobre el Blob
+  no cuesta nada: la espera **es transferencia y solo transferencia**. Por eso
+  el tamaño manda de forma tan directa.
+
+  **En una barra, z14 ya hace esperar 48 segundos. z15 pasaría de minuto y
+  medio.** Y ese es justo el sitio donde el mapa sin conexión existe: en Anaga
+  y en Teno, donde no hay cobertura. Doblarlo para ganar portales y huellas de
+  edificio no se sostiene.
+
+  **La cifra de 24,5 MB para z15 nunca se midió** —era un número recordado, y
+  la columna de z15 es regla de tres sobre él—. Pero no hace falta medirla para
+  decidir: aunque z15 fuese solo 1,5×, en una barra serían 72 segundos. La
+  conclusión no depende del factor exacto.
+
+  Lo que sí reabriría esto no es el tamaño: es **cambiar la arquitectura**. Si
+  algún día la app dejara de bajar el fichero entero a un Blob y pidiera rangos,
+  el coste dejaría de ser proporcional al tamaño y la pregunta sería otra.
+
 - **Las 7 tarjetas de la tienda van solo en castellano**, en los ocho idiomas:
   **7 títulos y 7 descripciones** escritos a pelo en el HTML. (Los otros tres
   `.excursion-desc` del fichero son huecos de plantilla —`${sD}`, `${eD}`,
