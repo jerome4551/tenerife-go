@@ -10,11 +10,22 @@ name: Notificacion diaria Tenerife Go
 on:
   schedule:
     # NO usar el minuto :00 (es el mas saturado y el que GitHub mas retrasa/salta).
-    # Varios intentos en la manana; push_sends evita que se envie mas de una vez.
-    - cron: '7 8 * * *'    # 08:07 UTC
-    - cron: '37 8 * * *'   # 08:37 UTC
-    - cron: '7 9 * * *'    # 09:07 UTC
-    - cron: '37 9 * * *'   # 09:37 UTC
+    #
+    # LOS CRON ESTAN ADELANTADOS A PROPOSITO. GitHub no lanza a su hora:
+    # medido sobre las ejecuciones del 29 de agosto al 8 de septiembre de 2026,
+    # sale entre 4 y 6 HORAS tarde, todos los dias. Con los cron a las 08:07
+    # UTC las ejecuciones caian a las 13-15h de Canarias y el guion las
+    # rechazaba por estar fuera de su ventana: verde y sin enviar, once dias.
+    #
+    # Estos cinco, con 5 h de retraso, aterrizan entre las 11 y las 15 de
+    # Canarias, dentro de la ventana. Y si algun dia GitHub va puntual,
+    # aterrizan entre las 6 y las 10, tambien dentro salvo el primero.
+    # push_sends evita que se envie mas de una vez pase lo que pase.
+    - cron: '7 4 * * *'    # 04:07 UTC
+    - cron: '7 5 * * *'    # 05:07 UTC
+    - cron: '37 5 * * *'   # 05:37 UTC
+    - cron: '7 6 * * *'    # 06:07 UTC
+    - cron: '7 7 * * *'    # 07:07 UTC
   workflow_dispatch:
 
 # El GITHUB_TOKEN de este job solo necesita leer el repo. Sin este bloque
@@ -50,6 +61,9 @@ jobs:
           VAPID_PUBLIC:         ${{ secrets.VAPID_PUBLIC }}
           VAPID_PRIVATE:        ${{ secrets.VAPID_PRIVATE }}
           VAPID_SUBJECT:        'mailto:tenerife.go.app@gmail.com'
+          # Ventana ancha a proposito: absorbe el retraso de GitHub. Lo que
+          # impide enviar dos veces es push_sends, no esto.
+          TARGET_HOURS:         '7,8,9,10,11,12,13,14,15,16'
           APP_URL:              'https://jerome4551.github.io/tenerife-go/'
           FORCE:                ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
         run: node enviar-notificacion.js

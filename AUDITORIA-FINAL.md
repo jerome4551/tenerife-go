@@ -689,6 +689,56 @@ Para el detalle fino está el bloque 4, que es opcional.
 
 ---
 
+## La notificación diaria estuvo once días sin salir, en verde
+
+Reportado el 8 de septiembre: «hace más de una semana que no recibo
+notificaciones». Diagnosticado abriendo las ejecuciones reales, no el código.
+
+**GitHub no lanza los cron a su hora.** Medido sobre las ejecuciones del 29 de
+agosto al 8 de septiembre: salen entre **4 y 6 horas tarde**, todos los días.
+
+```
+cron puesto      08:07 · 08:37 · 09:07 · 09:37 UTC
+salio de verdad  12:49 · 13:02 · 13:32 · 13:47 UTC   (8 de septiembre)
+                 14:11 · 14:25 · 15:01 · 15:09 UTC   (7 de septiembre)
+```
+
+Y el guion tenía su propia ventana, `TARGET_HOURS='9,10'` en hora de Canarias.
+Las ejecuciones caían a las 13-16h, así que la ventana las rechazaba **todas**:
+
+```
+Hora Canarias: 2026-09-08 14h
+No es hora de enviar (permitidas: 9, 10). Salgo.
+```
+
+**El paso duraba 0 segundos y el job terminaba en «success».** Once días.
+
+Tres arreglos, y el tercero es el que importa:
+
+1. **Los cron se adelantan** a 04:07-07:07 UTC. Con 5 h de retraso aterrizan
+   entre las 11 y las 15 de Canarias; si algún día GitHub va puntual,
+   aterrizan entre las 6 y las 10.
+2. **La ventana se ensancha** a 7-16h. No era ella la que impedía enviar dos
+   veces —eso lo hace `push_sends`, que tiene el día como clave única y
+   devuelve 409 al segundo intento—, así que puede ser ancha sin riesgo.
+3. **Interruptor de hombre muerto.** El guion consulta cuándo fue el último
+   envío y, si hace más de 2 días, escribe `::error::` y sale con 1: la
+   ejecución se pone **roja** y GitHub avisa por correo. Un fallo que deja el
+   job en verde no lo ve nadie, y este llevaba once días demostrándolo.
+
+La comprobación va **antes** de la ventana horaria a propósito: puesta
+después, una ejecución fuera de hora saldría por su `return` y nunca llegaría
+a mirar nada. Y el aviso de racha va justo después de marcar el día, no en el
+resumen final, porque allí se lo saltaba el `return` de «nadie suscrito».
+
+Probado en los cinco casos con el reloj congelado y la base simulada
+(`node tools/simular_notificacion.js`): la ejecución real de ayer con la
+ventana vieja sale roja y con el diagnóstico; con la nueva, envía; fuera de
+ventana y con retraso, roja; fuera de ventana y al día, verde y callada; e
+instalación nueva sin ningún envío previo, verde —no hay falsa alarma—.
+
+---
+
 # 4 · Trampas, por si alguien vuelve a tocar esto
 
 1. **Leer `TITSA_LINES` en crudo no da paradas.** `paradas` es una lista de

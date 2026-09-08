@@ -27,7 +27,21 @@ const VAPID_PUBLIC         = process.env.VAPID_PUBLIC || '';
 const VAPID_PRIVATE        = process.env.VAPID_PRIVATE || '';
 const VAPID_SUBJECT        = process.env.VAPID_SUBJECT || 'mailto:tenerife.go.app@gmail.com';
 const APP_URL              = process.env.APP_URL || 'https://jerome4551.github.io/tenerife-go/';
-const TARGET_HOURS         = (process.env.TARGET_HOURS || '9,10').split(',').map(s => parseInt(s, 10));
+/* La ventana era '9,10' y eso la rompio. GitHub no lanza los cron a su hora:
+   medido sobre las ejecuciones reales del 29 de agosto al 8 de septiembre,
+   sale entre 4 y 6 HORAS tarde, siempre. Con los cron a las 08:07-09:37 UTC
+   las ejecuciones caian a las 12:49-15:09 UTC -13:49 a 16:09 en Canarias- y
+   esta comprobacion las rechazaba todas. El workflow terminaba en verde sin
+   enviar nada, once dias seguidos.
+   La ventana NO es lo que impide enviar dos veces: eso lo hace push_sends,
+   que tiene el dia como clave unica y devuelve 409 al segundo intento. La
+   ventana solo esta para no despertar a nadie de madrugada, asi que puede
+   ser ancha sin ningun riesgo. */
+const TARGET_HOURS         = (process.env.TARGET_HOURS || '7,8,9,10,11,12,13,14,15')
+                               .split(',').map(s => parseInt(s, 10));
+/* Dias sin enviar a partir de los cuales la ejecucion se pone en ROJO. Un
+   fallo que deja el job en verde no lo ve nadie: este lleva once dias. */
+const AVISO_DIAS           = parseInt(process.env.AVISO_DIAS || '2', 10);
 const FORCE                = process.env.FORCE === '1';
 
 function fail(msg) { console.error('✗ ' + msg); process.exit(1); }
@@ -64,12 +78,41 @@ const sbHeaders = {
   'Content-Type': 'application/json'
 };
 
+/* Cuantos dias hace del ultimo envio. Devuelve null si nunca se envio -no es
+   un fallo: puede ser una instalacion nueva- y null tambien si la consulta
+   falla, porque no se va a tumbar el envio del dia por no poder mirar esto. */
+async function diasSinEnviar(hoy) {
+  try {
+    const r = await fetch(SUPABASE_URL +
+      '/rest/v1/push_sends?select=sent_date&order=sent_date.desc&limit=1', { headers: sbHeaders });
+    if (!r.ok) return null;
+    const filas = await r.json();
+    if (!filas.length || !filas[0].sent_date) return null;
+    const ult = Date.parse(filas[0].sent_date + 'T00:00:00Z');
+    const ahora = Date.parse(hoy + 'T00:00:00Z');
+    if (!isFinite(ult) || !isFinite(ahora)) return null;
+    return { dias: Math.round((ahora - ult) / 86400000), ultimo: filas[0].sent_date };
+  } catch (e) { return null; }
+}
+
 async function main() {
   const now = canaryParts();
   console.log(`Hora Canarias: ${now.date} ${String(now.hour).padStart(2, '0')}h`);
 
+  /* Se mira ANTES de la ventana horaria a proposito: si se mirara despues, una
+     ejecucion fuera de hora saldria por el `return` de abajo y nunca llegaria
+     a comprobar nada. Justo lo que dejo pasar once dias en silencio. */
+  const retraso = await diasSinEnviar(now.date);
+  if (retraso) console.log(`Ultimo envio: ${retraso.ultimo} (hace ${retraso.dias} dia(s))`);
+
   if (!FORCE && TARGET_HOURS.indexOf(now.hour) === -1) {
     console.log(`No es hora de enviar (permitidas: ${TARGET_HOURS.join(', ')}). Salgo.`);
+    if (retraso && retraso.dias > AVISO_DIAS) {
+      console.log(`::error::La notificacion lleva ${retraso.dias} dias sin salir ` +
+        `(ultimo: ${retraso.ultimo}). Esta ejecucion cayo a las ${now.hour}h de Canarias, ` +
+        `fuera de la ventana ${TARGET_HOURS[0]}-${TARGET_HOURS[TARGET_HOURS.length - 1]}h.`);
+      process.exitCode = 1;
+    }
     return;
   }
 
@@ -82,6 +125,16 @@ async function main() {
     });
     if (r.status === 409) { console.log('Ya se envio hoy. Salgo.'); return; }
     if (!r.ok) fail(`No pude marcar el envio del dia (HTTP ${r.status}). ${await r.text()}`);
+  }
+
+  /* El aviso de racha va AQUI y no en el resumen final. Puesto al final no
+     salia cuando no hay suscripciones, porque ese caso tiene su propio
+     `return` mas abajo: un informe que se salta por un return anticipado es
+     justo la forma de este fallo. Aqui ya se sabe que hoy sale, y no queda
+     ningun camino que se lo salte. */
+  if (retraso && retraso.dias > AVISO_DIAS) {
+    console.log(`::warning::Hoy si sale, pero antes hubo ${retraso.dias} dias sin ` +
+      `enviar (ultimo: ${retraso.ultimo}).`);
   }
 
   // --- Cargar frases ---
@@ -139,6 +192,7 @@ async function main() {
   }
 
   console.log(`\nResumen -> enviados: ${enviados} | fallidos: ${fallidos} | caducados limpiados: ${limpiados}`);
+
 }
 
 main().catch(e => fail(e && e.message ? e.message : String(e)));
