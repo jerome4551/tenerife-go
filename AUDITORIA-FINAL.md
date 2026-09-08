@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 61a740afe215fc0ffc540f6e755c8dc6
-             4.377.561 bytes · 1.329.882 comprimidos · 35.514 líneas
+index.html   md5 7f4176bcd67a0ada61324925449db50b
+             4.389.856 bytes · 1.334.503 comprimidos · 35.543 líneas
 ```
 
 ---
@@ -147,7 +147,7 @@ emojis: 2.894, 250 distintos
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
 
-## Idiomas · 31 tablas, 435 filas
+## Idiomas · 31 tablas, 455 filas
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
@@ -491,20 +491,31 @@ el portal Infoplayas Canarias como origen.
   algún día la app dejara de bajar el fichero entero a un Blob y pidiera rangos,
   el coste dejaría de ser proporcional al tamaño y la pregunta sería otra.
 
-- **Las 7 tarjetas de la tienda van solo en castellano**, en los ocho idiomas:
-  **7 títulos y 7 descripciones** escritos a pelo en el HTML. (Los otros tres
-  `.excursion-desc` del fichero son huecos de plantilla —`${sD}`, `${eD}`,
-  `${aT}`— que se rellenan con lo que el administrador escribe en el panel,
-  así que no son texto que se pueda traducir aquí: son dato del servidor. Llegué
-  a decir «10 descripciones» contando esos tres, y no lo son.)
+- ~~Las 7 tarjetas de la tienda~~ **cerrado: van en los ocho idiomas.**
+  Eran **31 cadenas**, no las 7 descripciones que dije: 7 títulos, 7
+  descripciones y 17 detalles. Descontando los nombres propios —Santa Cruz,
+  Los Cristianos, Anaga— y `shopMaxPeople`, que ya existía, salen **20 claves
+  nuevas × 8 = 160 celdas**, y las filas de traducción pasan de 435 a **455**.
 
-  Traducirlas **no es inventar**: el texto está escrito y pasarlo a los otros
-  siete idiomas es traducción normal. Lo que sí decide el producto es si merece
-  la pena ahora, porque los siete llevan «PRÓXIMAMENTE» y no existen todavía.
-  **Decidido: se quedan como están hasta que los productos existan.**
+  El mecanismo es nuevo y hacía falta: `applyUiTx` sabía repintar una cadena
+  compartida —`each('.badge-soon', …)`— pero aquí cada tarjeta tiene texto
+  propio. Ahora cada nodo lleva su clave en `data-tx`, y el número en
+  `data-tx-n` cuando la cadena tiene `{n}`. Son 28 nodos. El nombre del
+  producto va en un `span` propio dentro del título, porque el título lleva
+  dentro la etiqueta PROXIMAMENTE y pisarlo entero se la llevaría por delante.
 
-  Lo que ya **no** depende de esa decisión: el rótulo del botón, el aviso de
-  añadido y el nombre con el que entran en la cesta, que ya van en los ocho.
+  **Y al traducir los nombres volvió a entrar el mismo fallo de la cesta, por
+  otra puerta.** El id del artículo salía del nombre, así que con el nombre
+  traducido pasaba a haber un id por idioma —`camiseta-tenerife-go` en
+  castellano, `tenerife-go-t-shirt` en inglés— y el mismo producto abría una
+  línea nueva en cada uno. Es la segunda vez: la primera fue la etiqueta
+  PROXIMAMENTE colándose en el nombre. **Lo cazó el control que se escribió
+  entonces.** Ahora el id sale de `data-souvenir-id`, que no se traduce nunca.
+
+  La cesta además guardaba el nombre del momento, así que quien añadía en
+  castellano y cambiaba de idioma se la encontraba a medias. Guarda la clave y
+  pinta en el idioma de quien mira.
+
 - ~~Los 19 títulos de Wikipedia por idioma~~ **cerrado: se quedan.** Caen a
   `es.wikipedia.org`, que es lo mismo que hacen los otros 786 lugares, y un
   título inventado no se notaría: daría la misma foto en castellano que da

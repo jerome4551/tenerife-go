@@ -256,7 +256,10 @@ function revisar(tablas, o) {
       const antes = getCart().length;
       addSouvenirToCart(btn);
       const c = getCart();
-      out.cesta.push({ l, nombre: c[c.length - 1].name, id: c[c.length - 1].id, nuevos: c.length - antes });
+      const ult = c[c.length - 1];
+      out.cesta.push({ l, nombre: ult.name, id: ult.id, nuevos: c.length - antes,
+                       lineas: c.length, qty: ult.qty,
+                       pinta: (ult.txKey && tx(ult.txKey)) || ult.name });
       out.boton.push({ l, rot });
       await new Promise(r => setTimeout(r, 1700));
       out.boton[out.boton.length - 1].tras = btn.textContent.trim();
@@ -279,8 +282,22 @@ function revisar(tablas, o) {
               vivo.boton.map(b => b.l + ': ' + b.rot + '→' + b.tras).join(' · ') + ')');
   const ETIQ = /PR[OÓ]XIMAMENTE|COMING SOON|BINNENKORT|DEMN[AÄ]CHST|PROSSIMAMENTE|BIENT[OÔ]T|即將|即将/i;
   const cesMal = vivo.cesta.filter(c => ETIQ.test(c.nombre) || c.id !== vivo.cesta[0].id);
-  console.log('  ' + (cesMal.length ? 'MAL' : 'OK ') + ' el souvenir entra en la cesta con el mismo nombre e id en los 3   (' +
-              vivo.cesta.map(c => c.l + ': "' + c.nombre + '"').join(' · ') + ')');
+  /* Anadir el mismo articulo en tres idiomas tiene que dejar UNA linea con
+     tres unidades. Si el id volviera a salir del nombre traducido, saldrian
+     tres lineas de una unidad: es el fallo que ya ha entrado dos veces, la
+     primera por la etiqueta PROXIMAMENTE y la segunda al traducir los
+     titulos. */
+  const fundeMal = vivo.cesta[2].lineas !== vivo.cesta[0].lineas || vivo.cesta[2].qty !== 3;
+  /* Y la cesta tiene que pintarse en el idioma de quien mira, no en el de
+     quien hizo clic: por eso se guarda la clave y no la etiqueta. */
+  const pintaMal = vivo.cesta[1].pinta === vivo.cesta[0].pinta;
+  console.log('  ' + (cesMal.length ? 'MAL' : 'OK ') + ' el souvenir entra con el mismo id en los 3   (' +
+              vivo.cesta.map(c => c.l + ': ' + c.id).join(' · ') + ')');
+  console.log('  ' + (fundeMal ? 'MAL' : 'OK ') + ' anadirlo en tres idiomas suma unidades, no abre lineas   (' +
+              vivo.cesta[2].lineas + ' linea(s) · ' + vivo.cesta[2].qty + ' unidades)');
+  console.log('  ' + (pintaMal ? 'MAL' : 'OK ') + ' la cesta se pinta en el idioma de quien mira   (' +
+              vivo.cesta.map(c => c.l + ': "' + c.pinta + '"').join(' · ') + ')');
+  if (fundeMal || pintaMal) docMal = 1;
   const wikiMal = vivo.wiki[7] !== 'zh';
   console.log('  ' + (wikiMal ? 'MAL' : 'OK ') + ' zht pide zh.wikipedia.org, que existe   (' + vivo.wiki.join(' ') + ')');
   if (sinClave.length || botMal.length || cesMal.length || wikiMal) docMal = 1;
@@ -313,6 +330,47 @@ function revisar(tablas, o) {
   console.log('  ' + (okAng ? 'OK ' : 'MAL') + ' la rama angular se ejecuta de verdad  (de cara ' + ori.cara +
               ' · terral ' + ori.terral + ' · a mano ' + ori.mano + ')');
   if (!okCob || !okAng) docMal = 1;
+
+  /* ── las tarjetas de la tienda ──
+     Eran HTML fijo en castellano para los ocho idiomas: 7 titulos, 7
+     descripciones y 14 detalles. Ahora cada nodo lleva su clave en data-tx.
+     Lo que se vigila no es que existan las claves -eso ya lo mira el control
+     de datos- sino que el texto CAMBIE al cambiar de idioma: si alguien anade
+     una tarjeta sin data-tx, o con una clave que no existe, no falla nada y
+     esa tarjeta se queda en castellano para siempre. */
+  const tienda = await page.evaluate(() => {
+    const leer = () => [...document.querySelectorAll('[data-tx]')].map(e => e.textContent.trim());
+    setLang('es'); const es = leer();
+    setLang('en'); const en = leer();
+    setLang('zht'); const zht = leer();
+    setLang('es');
+    const sinClave = [...document.querySelectorAll('[data-tx]')]
+      .filter(e => !UI_TX[e.dataset.tx]).map(e => e.dataset.tx);
+    // nodos de tarjeta estatica que se quedaron sin marcar
+    const huerfanos = [...document.querySelectorAll('.excursion-card .excursion-desc')]
+      .filter(e => !e.dataset.tx && !/^\s*$/.test(e.textContent)).length;
+    return { n: es.length, sinClave,  huerfanos,
+             vacios: en.filter(t => !t).length,
+             igualEn: es.filter((t, i) => t === en[i]).length,
+             igualZht: es.filter((t, i) => t === zht[i]).length };
+  });
+  console.log('\n=== tarjetas de la tienda ===');
+  const okT = tienda.sinClave.length === 0 && tienda.huerfanos === 0 && tienda.vacios === 0;
+  /* Coincidir con el castellano no es de por si un fallo -"Pack Tenerife Go"
+     es igual en frances-, pero que coincidan MUCHOS si: querria decir que el
+     repintado no se esta ejecutando. */
+  /* `tienda.n > 0` no sobra: sin el, un fichero SIN NINGUN data-tx daba
+     "iguales 0 de 0" y el control aprobaba sin haber mirado nada. Es el
+     aprobado vacio de siempre, y aqui se dio de verdad al probarlo contra el
+     codigo anterior. Las 7 tarjetas dan 28 nodos; menos de 20 es que algo se
+     ha perdido por el camino. */
+  const okCambia = tienda.n >= 20 && tienda.igualEn <= 4 && tienda.igualZht <= 2;
+  console.log('  ' + (okT ? 'OK ' : 'MAL') + ' los ' + tienda.n + ' nodos con data-tx tienen clave y no quedan huerfanos  (' +
+              'sin clave ' + tienda.sinClave.length + ' · huerfanos ' + tienda.huerfanos + ' · vacios en ' + tienda.vacios + ')');
+  tienda.sinClave.slice(0, 5).forEach(k => console.log('      <--  ' + k));
+  console.log('  ' + (okCambia ? 'OK ' : 'MAL') + ' el texto cambia de verdad al cambiar de idioma  (' +
+              'iguales al es: en ' + tienda.igualEn + ' · zht ' + tienda.igualZht + ' de ' + tienda.n + ')');
+  if (!okT || !okCambia) docMal = 1;
 
   console.log('\n=== rendimiento ===');
   console.log('  aeropuerto sur: %d lineas · %d capas · %d ms', perf.lineas, perf.capas, perf.ms);
