@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 d56b9f8cfce1a25c6f0d5cd11d838d7d
-             4.376.630 bytes · 1.329.663 comprimidos · 35.514 líneas
+index.html   md5 61a740afe215fc0ffc540f6e755c8dc6
+             4.377.561 bytes · 1.329.882 comprimidos · 35.514 líneas
 ```
 
 ---
@@ -366,19 +366,29 @@ comprobación no la hace ninguna herramienta del repositorio.
 
 ## Bloqueado por terceros
 
-- **El socorrismo, contado hoy** —el «13» que decía antes esta línea no tiene
-  lista detrás en ningún sitio del repositorio, y las fichas no guardan
-  horarios, solo un booleano—:
+- ~~horarios de socorrista~~ **resuelto hasta donde se puede.** La tabla
+  oficial está congelada en septiembre de 2023, y ya se sabe **por qué**: la
+  comunicación anual que la alimentaba dejó de ser obligatoria al anularse el
+  decreto. **No van a llegar datos de 2024, 2025 ni 2026** mientras no se
+  apruebe el nuevo modelo. Confirmado por la Subdirección de Protección Civil
+  y Emergencias, agosto de 2026.
+
+  Lo que hace la app ya es lo correcto y no hay que cambiarlo: etiqueta neutra
+  —«🚩 Bandera y socorristas (oficial)»— y enlace al visor oficial **centrado
+  en la playa**, sin horarios grabados. Un horario del 23 escrito en la ficha
+  sería peor que no ponerlo.
+
+  Lo que sí queda contado, para que no vuelva a aparecer un número sin lista
+  detrás —el «13» que decía esta línea no tenía ninguna—:
 
   ```
   99 zonas de baño   ·   24 con socorrista   ·   14 sin él   ·   61 sin dato
   ```
 
   `lifeguard` tiene tres estados y `false` **afirma** que no hay socorrista:
-  ausente no afirma nada, y por eso los 61 se quedan callados. Lo que falta no
-  son 13 horarios: son **61 estados desconocidos** y **el horario de los 24
-  que sí lo tienen**, que hoy no cabe en ninguna ficha porque el campo no
-  existe.
+  ausente no afirma nada, y por eso los 61 se quedan callados. Y el horario,
+  si algún día llega, **no cabe en ninguna ficha: el campo no existe.**
+
 - ~~la secuencia del tranvía~~ **cerrado, ver abajo**.
 
 ### La orientación de playa no es un campo publicado
@@ -412,17 +422,24 @@ cae y qué no:
 | | |
 |---|---|
 | **cae** | el deber de redactar y actualizar los PSS · el Catálogo · la comunicación anual de horarios de socorrismo, que es el artículo que citaba nuestra carta anterior |
-| **no cae** | los **126 planes** que llegaron a elaborarse y registrarse, de los 365 que hacían falta sobre 750 zonas de baño de Canarias. Son documentos que existen y siguen en el registro |
+| **no cae** | los **126 planes** que llegaron a elaborarse y registrarse, de los 365 que hacían falta sobre 750 zonas de baño de Canarias. Son documentos que existen |
 
-Y hay una vía que **sobrevive a la anulación**: la solicitud de acceso a la
-información pública, por la ley estatal de transparencia y la de reutilización.
-No se apoya en el decreto tumbado, no hay que motivarla y obliga a contestar en
-plazo. Es la forma correcta de reintentarlo, y la carta anterior no falló por
-falta de ganas: **citaba un artículo que ya no existe**.
+**Y el canal ya no se adivina: lo dio la propia administración.** La
+Subdirección de Protección Civil y Emergencias indicó que las peticiones de
+datos de playas van por el **portal web de GESPLAN**, a la atención de la
+**Directora Técnica del Encargo de Playas** — que es además quien tiene los
+servicios ArcGIS `cat_playas_zbm`, donde estarían la orientación y el
+socorrismo. Una vía nominal señalada por quien lleva el dato vale más que un
+procedimiento formal dirigido a quien no lo lleva.
 
-El borrador está en `SOLICITUD-TRANSPARENCIA.md`, con los datos que hay que
-rellenar y las citas legales marcadas para verificar antes de enviar — que es
-exactamente el error que acabamos de cazar.
+El borrador está en `SOLICITUD-GESPLAN.md`. No cita ningún artículo: por ese
+canal no hace falta fundamento legal, y no citar nada es la única forma segura
+de no volver a citar algo derogado.
+
+**La atribución ya está puesta.** La administración pide indicar fuente **y
+origen**, siendo el origen el portal de donde salen los datos. `banderasFuente`
+nombra ahora las dos cosas en los ocho idiomas: la Subdirección como fuente y
+el portal Infoplayas Canarias como origen.
 
 ## Se puede hacer, hace falta un dato
 
