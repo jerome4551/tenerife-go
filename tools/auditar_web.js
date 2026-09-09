@@ -331,7 +331,10 @@ function revisar(tablas, o) {
               ' · terral ' + ori.terral + ' · a mano ' + ori.mano + ')');
   if (!okCob || !okAng) docMal = 1;
 
-  /* ── las tarjetas de la tienda ──
+  /* ── los textos que se repintan por data-tx ──
+     Empezo con las 7 tarjetas de la tienda y ahora lleva tambien el boton de
+     activar notificaciones. Cualquier nodo que se marque entra solo.
+
      Eran HTML fijo en castellano para los ocho idiomas: 7 titulos, 7
      descripciones y 14 detalles. Ahora cada nodo lleva su clave en data-tx.
      Lo que se vigila no es que existan las claves -eso ya lo mira el control
@@ -354,7 +357,7 @@ function revisar(tablas, o) {
              igualEn: es.filter((t, i) => t === en[i]).length,
              igualZht: es.filter((t, i) => t === zht[i]).length };
   });
-  console.log('\n=== tarjetas de la tienda ===');
+  console.log('\n=== textos marcados con data-tx ===');
   const okT = tienda.sinClave.length === 0 && tienda.huerfanos === 0 && tienda.vacios === 0;
   /* Coincidir con el castellano no es de por si un fallo -"Pack Tenerife Go"
      es igual en frances-, pero que coincidan MUCHOS si: querria decir que el

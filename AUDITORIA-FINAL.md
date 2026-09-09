@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 7f4176bcd67a0ada61324925449db50b
-             4.389.856 bytes · 1.334.503 comprimidos · 35.543 líneas
+index.html   md5 9f97b39b93c2b30d02bcd3ba06628730
+             4.393.279 bytes · 1.336.036 comprimidos · 35.567 líneas
 ```
 
 ---
@@ -147,7 +147,7 @@ emojis: 2.894, 250 distintos
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
 
-## Idiomas · 31 tablas, 455 filas
+## Idiomas · 31 tablas, 460 filas
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
@@ -688,6 +688,51 @@ Para el detalle fino está el bloque 4, que es opcional.
   Roque de las Bodegas → Almáciga → Benijo, con 1.278 m y 829 m entre vecinas.
 
 ---
+
+## Por qué uno la recibe y otro no
+
+El 9 de septiembre, con el arreglo ya puesto, el envío salió limpio:
+
+```
+Resumen -> enviados: 4 | fallidos: 0 | caducados limpiados: 0
+```
+
+**Cero fallos y cero caducadas: el servidor no es el problema.** Lo que dice
+ese resumen es otra cosa — que en toda la app hay **4 suscripciones**. Quien no
+la recibe es, casi seguro, quien no llegó a darse de alta.
+
+Y ahí había un fallo de verdad. `pushInit()` **no ofrece nada** salvo que se
+cumplan cuatro condiciones: navegador con push, **app instalada en la pantalla
+de inicio**, no haber preguntado ya, y **tres visitas**. Es una decisión de
+producto razonable. El problema es la otra puerta: el botón «Activar
+notificaciones» de la cuenta **está siempre visible**, y no lo tapaba nadie.
+
+En iPhone, Safari **no expone `Notification` hasta que la app está en la
+pantalla de inicio**. Así que quien lo pulsara desde el navegador entraba en
+`pushSuscribir`, reventaba en la primera línea y recibía:
+
+> No se pudo activar. Inténtalo más tarde.
+
+**Esperar no arregla nada**, y el mensaje mandaba justo a eso. La instrucción
+que lo desbloquea —añadir la app a la pantalla de inicio— no aparecía por
+ningún lado.
+
+Ahora el botón se desactiva y dice el motivo, en los ocho idiomas:
+
+```
+navegador con push          boton activo, sin mensaje
+iPhone en Safari suelto     desactivado + «añade la app a la pantalla de inicio»
+navegador sin push          desactivado + «este navegador no admite notificaciones»
+```
+
+Se distingue **sin husmear el user-agent**: `standalone` en `navigator` solo lo
+trae Safari de iOS. Probado en el navegador con las tres situaciones montadas
+antes de que cargue la página.
+
+De paso, tres textos que iban fijos en castellano para los ocho idiomas: el
+rótulo del botón, «Activando…» y «Notificaciones activadas ✓». Los tres se le
+escaparon al control de literales porque no llevan acento ni dos palabras
+funcionales — la misma rendija de siempre.
 
 ## La notificación diaria estuvo once días sin salir, en verde
 
