@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 fb84dfdb55658f894701e6d4d743534b
-             4.418.490 bytes · 1.347.145 comprimidos · 35.848 líneas
+index.html   md5 4cbd6a2ade9e29c81fad4390578f0ea5
+             4.418.493 bytes · 1.347.146 comprimidos · 35.848 líneas
 ```
 
 ---
@@ -774,6 +774,53 @@ accesibilidad, no decoración.
 
 **Sin arreglar todavía**, y no se mezcla con el búlgaro: son dos trabajos
 distintos y juntarlos es cómo se cuelan los fallos.
+
+## Auditoría antes del bloque 3
+
+**Nada perdido en ningún idioma.** Comparado contra el estado anterior al
+búlgaro, tabla por tabla e idioma por idioma:
+
+```
+LANGS          es en fr de it nl zh   128 -> 128 claves, ninguna perdida ni cambiada
+AUTH_STRINGS   es en fr de it nl zh    33 ->  33
+UI_TX          los ocho               116 -> 116      ·   bg: 0 -> 116
+```
+
+Importaba comprobarlo: `Object.assign` no fusiona en profundidad y una fila mal
+escrita se habría llevado los ocho idiomas por delante sin dar error.
+
+**Las 276 cadenas búlgaras, una a una:**
+
+```
+idénticas al castellano       2   los emoji sueltos 📞 y 🕐 · correcto
+sin una letra cirílica        1   el ejemplo de correo · corregido a vashiat@email.com
+{marcadores} descuadrados     0
+emoji que no coinciden        0
+espacios dobles · vacías      0 · 0
+```
+
+### Y el bloque 3 es más grande de lo que decía
+
+Forzando la app a búlgaro, de 82 cadenas visibles: **28 en cirílico, 44 en
+inglés** —el respaldo funcionando— **y 10 todavía en castellano**. Dos de esas
+diez son correctas: la firma «By Jérôme B» y un toast que se rellena al
+mostrarse. Las otras ocho no están en las 29 tablas del bloque 3: son **texto
+escrito en el HTML**.
+
+| lo que falta | tamaño |
+|---|---|
+| las 29 tablas | **183 filas** |
+| la política de privacidad | **225 palabras**, y es texto legal |
+| `title` / `aria-label` / `placeholder` | **27 atributos** |
+| el banner de publicidad y un título del panel de reservas | 2 cadenas |
+
+El banner de «Sin conexión» **sí** está cubierto: tiene su propia tabla de 8
+idiomas y entra con las 183. Menos mal, porque es el mensaje de la función por
+la que existe esta app.
+
+La política de privacidad es lo que más peso tiene y no es decoración: es el
+texto que dice qué se hace con los datos de la gente, y hoy solo lo entiende
+quien lea castellano.
 
 ## El búlgaro · bloque 1 de 3, la maquinaria
 
