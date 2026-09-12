@@ -396,10 +396,24 @@ function revisar(tablas, o) {
      verdad importa: que al pedir un idioma se marque ESE. */
   const sel = await page.evaluate(() => {
     const codigo = el => (/setLang\('([a-z]+)'\)/.exec(el.getAttribute('onclick') || '') || [])[1];
-    const orden = [...document.querySelectorAll('.lang-option')].map(codigo);
+    const todas = [...document.querySelectorAll('.lang-option')];
+    const dd = document.getElementById('lang-dropdown');
+    /* Ninguna opcion puede vivir FUERA del desplegable. Al anadir el bulgaro
+       se inserto detras del cierre de `.lang-dropdown` en vez de dentro, y se
+       quedo flotando en la cabecera, saliendose de la pantalla. El HTML era
+       valido y nada fallaba: solo se veia mirando el movil. */
+    const fuera = todas.filter(e => !dd.contains(e)).map(codigo);
+    /* Y un idioma sin terminar no puede estar ni visible ni alcanzable: ni en
+       el menu, ni por localStorage, ni por el idioma del telefono. */
+    const incompletos = (typeof IDIOMAS_INCOMPLETOS !== 'undefined') ? IDIOMAS_INCOMPLETOS : [];
+    const visiblesIncompletos = todas.filter(e => incompletos.indexOf(codigo(e)) !== -1 &&
+                                                  getComputedStyle(e).display !== 'none').map(codigo);
+    const pegan = [];
+    incompletos.forEach(l => { setLang(l); if (currentLang === l) pegan.push(l); });
+    const orden = todas.map(codigo);
     const mal = [];
     for (const l of orden) {
-      if (!l) continue;
+      if (!l || incompletos.indexOf(l) !== -1) continue;
       setLang(l);
       const act = [...document.querySelectorAll('.lang-option')].filter(e => e.classList.contains('active')).map(codigo);
       const tick = [...document.querySelectorAll('.lang-option-check')].filter(e => e.style.display !== 'none').map(e => e.id);
@@ -407,13 +421,21 @@ function revisar(tablas, o) {
         mal.push(l + ' -> marcado ' + (act.join(',') || 'ninguno') + ' / tick ' + (tick.join(',') || 'ninguno'));
     }
     setLang('es');
-    return { orden, mal, n: orden.filter(Boolean).length };
+    return { orden, mal, n: orden.filter(Boolean).length, fuera, visiblesIncompletos, pegan, incompletos };
   });
   console.log('\n=== selector de idioma ===');
   const okSel = sel.mal.length === 0 && sel.n >= 9;
-  console.log('  ' + (okSel ? 'OK ' : 'MAL') + ' las ' + sel.n + ' opciones marcan la suya   (' + sel.orden.join(' ') + ')');
+  console.log('  ' + (okSel ? 'OK ' : 'MAL') + ' cada opcion terminada marca la suya   (' + sel.orden.join(' ') + ')');
   sel.mal.forEach(m => console.log('      <--  ' + m));
-  if (!okSel) docMal = 1;
+  const okFuera = sel.fuera.length === 0;
+  console.log('  ' + (okFuera ? 'OK ' : 'MAL') + ' ninguna opcion vive fuera del desplegable' +
+              (okFuera ? '' : '   <--  ' + sel.fuera.join(',')));
+  const okInc = sel.visiblesIncompletos.length === 0 && sel.pegan.length === 0;
+  console.log('  ' + (okInc ? 'OK ' : 'MAL') + ' los idiomas sin terminar no se ven ni se pegan   (' +
+              (sel.incompletos.join(',') || 'ninguno') + ')');
+  if (sel.visiblesIncompletos.length) console.log('      <--  visibles: ' + sel.visiblesIncompletos.join(','));
+  if (sel.pegan.length) console.log('      <--  se quedan puestos: ' + sel.pegan.join(','));
+  if (!okSel || !okFuera || !okInc) docMal = 1;
 
   console.log('\n=== rendimiento ===');
   console.log('  aeropuerto sur: %d lineas · %d capas · %d ms', perf.lineas, perf.capas, perf.ms);

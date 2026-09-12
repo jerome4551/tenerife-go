@@ -6190,17 +6190,15 @@ window.onunhandledrejection = function(e) {
           <span class="lang-option-name">繁體中文</span>
           <span class="lang-option-check" id="check-zht" style="display:none">✓</span>
         </div>
-      </div>
-        <!-- OCULTO HASTA QUE ESTE COMPLETO. El bulgaro existe y funciona, pero
-             le faltan 332 de las 460 filas, y lo que falta cae a ingles. Ofrecer
-             un idioma a medias es peor que no ofrecerlo: se quita del selector y
-             se vuelve a poner en el bloque 3. El control de idiomas lo sigue
-             exigiendo, asi que esto no lo esconde del arnes. -->
-        <div class="lang-option" data-incompleto="bg" style="display:none" onclick="setLang('bg')">
+        <!-- OCULTO HASTA QUE ESTE COMPLETO. Va AQUI DENTRO, no detras del
+             cierre del desplegable: puesto fuera se quedaba flotando en la
+             cabecera y se salia de la pantalla. -->
+        <div class="lang-option" data-incompleto="bg" onclick="setLang('bg')">
           <span class="lang-option-flag">🇧🇬</span>
           <span class="lang-option-name">Български</span>
           <span class="lang-option-check" id="check-bg" style="display:none">✓</span>
         </div>
+      </div>
     </div>
   </div>
 </div>
@@ -8444,16 +8442,29 @@ try {
   Object.assign(LANGS.zht, ZHT_OVERRIDES);
 } catch (e) {}
 
+/* Idiomas que EXISTEN pero aun no estan terminados. Una sola lista manda:
+   esconde su opcion en los dos selectores, hace que setLang los rechace y
+   evita que se arranque en ellos.
+   Lo tercero es lo que mas exposicion tenia y lo que menos se ve: el idioma
+   de arranque sale de localStorage o, si no hay nada, de navigator.language.
+   O sea que un movil configurado en bulgaro entraba SOLO en el idioma a
+   medias, sin que nadie hubiera elegido nada. Esconder la opcion del menu no
+   tocaba ese camino.
+   Cuando el bulgaro este completo se vacia esta lista y se acabo. */
+const IDIOMAS_INCOMPLETOS = ['bg'];
+
 /* El idioma se resuelve AQUI, antes de construir marcadores y listas.
    Antes se restauraba despues, llamando a setLang, que rehace todos los
    marcadores y el clustering: la app arrancaba haciendo el trabajo dos
    veces y se notaba. */
 let currentLang = (function () {
+  var vale = function (l) { return l && IDIOMAS_INCOMPLETOS.indexOf(l) === -1; };
   try {
     var g = localStorage.getItem('tg_lang');
+    if (g && !vale(g)) { try { localStorage.removeItem('tg_lang'); } catch (e2) {} g = null; }
     if (g) return g;
     var n = (navigator.language || 'es').slice(0, 2).toLowerCase();
-    return n;
+    return vale(n) ? n : 'en';
   } catch (e) { return 'es'; }
 })();
 
@@ -8653,6 +8664,12 @@ function applyUiTx() {
 }
 
 function setLang(lang) {
+  if (IDIOMAS_INCOMPLETOS.indexOf(lang) !== -1) {
+    var guardado = null;
+    try { guardado = localStorage.getItem('tg_lang'); } catch (e) {}
+    if (guardado === lang) { try { localStorage.removeItem('tg_lang'); } catch (e) {} }
+    lang = 'en';
+  }
   if (!LANGS[lang]) lang = (lang === 'zht') ? 'zh' : 'es';
   currentLang = lang;
   // Recordar la eleccion: antes se perdia al recargar y el turista
@@ -26011,7 +26028,7 @@ window.addEventListener('hashchange', () => {
       <button type="button" class="v19-w-lang" data-lang="nl" onclick="setLang('nl')">NL</button>
       <button type="button" class="v19-w-lang" data-lang="zh" onclick="setLang('zh')">中文</button>
       <button type="button" class="v19-w-lang" data-lang="zht" onclick="setLang('zht')">繁體</button>
-      <button type="button" class="v19-w-lang" data-lang="bg" data-incompleto="bg" style="display:none" onclick="setLang('bg')">BG</button>
+      <button type="button" class="v19-w-lang" data-lang="bg" data-incompleto="bg" onclick="setLang('bg')">BG</button>
     </div>
     <button type="button" class="v19-w-btn" id="v19-welcome-start">Comenzar</button>
   </div>
@@ -31598,6 +31615,21 @@ function pushEngancharBoton() {
     pushSuscribir();
   });
 }
+/* Esconde en los dos selectores lo que IDIOMAS_INCOMPLETOS marque. Va por la
+   lista y no por un style escrito a mano, para que terminar un idioma sea
+   quitar una linea y no buscar estilos por el HTML. */
+(function ocultarIdiomasIncompletos() {
+  function aplicar() {
+    IDIOMAS_INCOMPLETOS.forEach(function (l) {
+      document.querySelectorAll('[data-incompleto="' + l + '"]').forEach(function (el) {
+        el.style.display = 'none';
+      });
+    });
+  }
+  if (document.readyState !== 'loading') aplicar();
+  else document.addEventListener('DOMContentLoaded', aplicar);
+})();
+
 if (document.readyState !== 'loading') { pushInit(); pushEngancharBoton(); }
 else { document.addEventListener('DOMContentLoaded', function () { pushInit(); pushEngancharBoton(); }); }
 

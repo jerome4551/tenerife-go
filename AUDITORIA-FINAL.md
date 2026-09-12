@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 a9d434c481c84c3df1443601c114e43d
-             4.405.517 bytes · 1.340.530 comprimidos · 35.770 líneas
+index.html   md5 cf6974376d18772d314e8abf9fc0afcc
+             4.406.945 bytes · 1.341.213 comprimidos · 35.802 líneas
 ```
 
 ---
@@ -688,6 +688,47 @@ Para el detalle fino está el bloque 4, que es opcional.
   Roque de las Bodegas → Almáciga → Benijo, con 1.278 m y 829 m entre vecinas.
 
 ---
+
+## El botón búlgaro fuera del menú, y algo peor detrás
+
+Reportado con dos capturas: la opción «🇧🇬 Българ…» flotando en la cabecera,
+saliéndose de la pantalla, y el botón de idioma marcando la bandera búlgara.
+
+**La opción se insertó fuera del desplegable.** Al añadirla busqué el cierre
+del bloque de `zht` contando dos `</div>`: el primero cerraba la opción y el
+segundo cerraba **`.lang-dropdown`**, así que el bloque quedó detrás del menú,
+como elemento suelto de la cabecera. HTML válido, cero errores, y solo se ve
+mirando el móvil.
+
+**Y detrás había algo con más alcance.** Esconder la opción con `display:none`
+no toca los dos caminos por los que se entra en un idioma:
+
+```
+localStorage 'tg_lang'      quien ya lo habia elegido seguia dentro
+navigator.language          UN MOVIL EN BULGARO ARRANCABA SOLO EN EL
+```
+
+Lo segundo es lo grave: no hacía falta haber elegido nada. Cualquiera con el
+teléfono en búlgaro entraba en la versión a medias.
+
+Ahora manda **una sola lista**, `IDIOMAS_INCOMPLETOS`, declarada antes de que
+se resuelva el idioma de arranque, y hace tres cosas: esconde la opción en los
+dos selectores, hace que `setLang` la rechace, y evita arrancar en ella —
+borrando además la preferencia guardada, para desatascar a quien ya la tenía.
+Terminar el búlgaro será vaciar esa lista, no ir quitando estilos por el HTML.
+
+Comprobado en los cuatro arranques:
+
+```
+móvil en español                     -> es
+MÓVIL EN BÚLGARO, sin elegir nada    -> en
+alguien con bg ya guardado           -> es, y se le borra la preferencia
+móvil en alemán                      -> de, sin tocarlo
+```
+
+Tres controles nuevos: que cada opción terminada marque la suya, que **ninguna
+opción viva fuera del desplegable**, y que los idiomas sin terminar no se vean
+ni se queden puestos.
 
 ## Lo que encontró verificar el bloque 1 antes de seguir
 
