@@ -147,7 +147,7 @@ emojis: 2.894, 250 distintos
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
 
-## Idiomas · 31 tablas, 460 filas
+## Idiomas · 31 tablas, 460 filas (y 1.875 filas en todo el fuente)
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
@@ -1251,6 +1251,95 @@ instalación nueva sin ningún envío previo, verde —no hay falsa alarma—.
     principio para ese caso. Lo mismo con el `Error: ${err.message}` crudo:
     ni está traducido ni le dice nada a quien está en la playa. Va a la
     consola, que es donde se depura.
+48. **Una mezcla en tiempo de ejecución esconde la verdad a las
+    herramientas.** Las 116 filas búlgaras de `UI_TX` iban en un
+    `Object.assign` detrás de la tabla: el navegador las veía y los cuatro
+    controles que leen el fuente, no. Da igual que funcione: lo que no se
+    puede medir no se puede defender.
+49. **Un inventario que busca `const NOMBRE = {` solo encuentra tablas con
+    nombre.** El glosario canario, las tarjetas del planificador y los seis
+    logros viven dentro de listas, y con 47 filas en español el informe decía
+    «completo». Ahora se recorre el fichero entero buscando la forma, no el
+    nombre.
+50. **`typeof === 'string'` no es «tiene idioma».** Cinco filas valen una
+    lista, no una cadena: salían como hueco estuvieran puestas o no. Un
+    control que da el mismo resultado en los dos casos no está midiendo nada.
+51. **La misma clave puede tener dos formas según el idioma.** Las respuestas
+    rápidas del chat son texto suelto en `es` y `en`, y pares
+    `['visible','consulta']` en los otros seis. Copiar la forma de `es` deja
+    los botones mudos sin dar error. La forma se comprueba contra `zht`.
+52. **`UI_TX` no es un objeto, son once.** Se declara con
+    `Object.assign({...},{...},{...})` y recibe diez `Object.assign` más.
+    Escribir en el primero deja las otras diez partes sin idioma, en silencio.
+
+## El búlgaro · bloque 3, y lo que había debajo
+
+Las 173 filas que faltaban entraron **en el fuente**, fila por fila, detrás de
+`zht`. No con un `Object.assign` detrás de la tabla, que era lo que había hecho
+en el bloque 2 con las 116 de `UI_TX`: eso funciona en el navegador, pero
+`inventario_idiomas.js`, `barrido_idiomas.js` y `auditar_seguridad.py` leen el
+fichero, y veían 116 filas sin búlgaro sin poder distinguirlas de un hueco de
+verdad. **Un control que no puede ver la verdad es peor que el hueco**: da
+verde sobre lo que no ha mirado. Las 116 están ahora también dentro de su fila
+y la mezcla en ejecución ya no existe.
+
+El trabajo no lo hace la mano: `node tools/meter_idioma.js bg plan.json`.
+
+### Lo que encontró el barrido, y no era poco
+
+`inventario_idiomas.js` busca `const NOMBRE = {`, así que **solo ve tablas con
+nombre**. No veía las filas metidas dentro de listas. Con el búlgaro «completo»
+según ese informe, seguían en español:
+
+| dónde | filas | qué es |
+|---|---|---|
+| `GL_DATA` | 14 | el glosario canario entero (guagua, chacho, gofio…) |
+| `DP_CARDS` | 14 | las tarjetas de categoría del planificador |
+| `DP_TIME` + `DP_TRANSPORT` | 8 | cuánto tiempo tienes, cómo te mueves |
+| `VIS_BADGES` + `SUMMIT` | 6 | los nombres de los seis logros |
+| notas de línea TITSA | 5 | horarios del 348, el 342, el 111, el 473 |
+
+`tools/barrido_idiomas.js` ya no busca tablas: recorre el fichero de una pasada
+y recoge **todo objeto que tenga los ocho idiomas base como claves directas**,
+tenga nombre o no. Son 1.875 filas: 218 de interfaz y 1.657 de `places[]`.
+
+### Lo que el inventario daba por bueno sin mirarlo
+
+La prueba de «tiene idioma» era `typeof === 'string'`. Hay filas cuyo valor es
+una lista —`I18N.steps`, `CHAT_STR.qrHome`, `HM_T.items`, `DP_STEP_TITLE`, el
+cartel de sin conexión—: salían como hueco estuvieran o no, y **no había forma
+de distinguir un caso del otro**. Ahora vale cualquier valor cuya *forma*
+coincida con la de alguno de los idiomas base, y la forma distinta se cuenta
+aparte.
+
+Eso importaba de verdad en un sitio: las respuestas rápidas del chat son
+`['texto visible', 'consulta en castellano']` en todos los idiomas menos `es` y
+`en`. Una fila búlgara con la forma de `es` habría dejado los seis botones
+mudos — se pintan, se tocan y el asistente no entiende nada. La comprobación de
+forma se hace contra `zht`, no contra `es`.
+
+### La cifra de idiomas se mueve sola
+
+«Toda la app en 8 idiomas» y «con fichas en 8 idiomas» están escritas **en cada
+idioma**: 19 literales. El día que el búlgaro deje de estar a medias pasan a ser
+nueve y nadie se va a acordar. `auditar_datos.js` saca los terminados de
+`SUPPORTED_LANGS` menos `IDIOMAS_INCOMPLETOS` —los dos están en el fuente— y
+compara. Se mira **solo dentro de literales de texto**: un comentario que diga
+«7 idiomas» puede ser cierto porque habla de otro momento.
+
+### Lo que queda en español en los nueve idiomas
+
+`tools/auditar_sin_traducir.js` pinta la página en español, apunta cada nodo,
+pide el búlgaro y vuelve a mirar. El búlgaro se escribe en cirílico, así que lo
+traducido cambia de alfabeto; lo que sigue igual es **o un nombre propio o un
+hueco**, y los nombres propios salen de `places[]`, `TITSA_LINES` y el catálogo
+de paradas, no de una lista a mano.
+
+Quedan **244 textos distintos** que no cambian. Ni son un descuido del búlgaro
+ni se arreglan traduciendo: salen igual en los nueve idiomas, en inglés
+incluido, desde antes.
+
+---
 
 ---
 
@@ -1279,6 +1368,10 @@ Y cada bloque por separado, si hace falta:
 | `tools/mapa_prueba_osm.py` | banco de pruebas con el esquema de Protomaps, para poder probar el bloque 4 |
 | `tools/verificar_osm.py` | revisa un `.pmtiles` de OSM antes de subirlo · 7 pasos |
 | `tools/verificar_estilo.js` | mide si ese fichero **se ve** con el estilo que lleva la app |
+| `tools/inventario_idiomas.js` | las tablas de idioma con nombre y qué le falta a un idioma |
+| `tools/barrido_idiomas.js` | **todas** las filas de idioma del fuente, tengan nombre o no |
+| `tools/meter_idioma.js` | mete un idioma dentro de cada fila, detrás de `zht` |
+| `tools/auditar_sin_traducir.js` | el texto que no cambia al pasar de español a búlgaro |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con

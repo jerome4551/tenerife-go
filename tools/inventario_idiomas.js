@@ -56,22 +56,60 @@ for (const nom of NOMBRES) {
     const t = {};
     if (IDI_BASE.every(l => v[l] && typeof v[l] === 'object' && !Array.isArray(v[l]))) {
       const cl = new Set(); IDI_BASE.forEach(l => Object.keys(v[l]).forEach(k => cl.add(k)));
-      cl.forEach(k => { const fila = {}; IDI.forEach(l => { if (v[l] && typeof v[l][k] === 'string') fila[l] = v[l][k]; }); t[k] = fila; });
-    } else { const fila = {}; IDI.forEach(l => { if (typeof v[l] === 'string') fila[l] = v[l]; }); t['(fila unica)'] = fila; }
+      /* se copia CUALQUIER valor, no solo cadenas: hay filas que son listas
+         (I18N.steps, CHAT_STR.qrHome, HM_T.items, DP_STEP_TITLE, texts) y al
+         filtrar por typeof 'string' desaparecian de la tabla, asi que ningun
+         idioma podia estar ni bien ni mal en ellas. */
+      cl.forEach(k => { const fila = {}; IDI.forEach(l => { if (v[l] && v[l][k] !== undefined) fila[l] = v[l][k]; }); t[k] = fila; });
+    } else { const fila = {}; IDI.forEach(l => { if (v[l] !== undefined) fila[l] = v[l]; }); t['(fila unica)'] = fila; }
     tablas.push({ nom, forma: 'por idioma', filas: t });
   }
 }
 
-let total = 0, falta = 0;
+/* UN HUECO NO ES SOLO UNA CADENA QUE FALTA.
+   La prueba era typeof === 'string', y hay filas cuyo valor es una lista
+   (I18N.steps, CHAT_STR.qrHome, HM_T.items, DP_STEP_TITLE, texts): con esa
+   prueba salian como huecos aunque estuvieran, y —lo grave— habrian salido
+   como huecos tambien si de verdad faltaran, sin que se pudiera distinguir.
+   Ahora vale cualquier valor cuya FORMA coincida con la de alguno de los
+   idiomas base, y la forma distinta se cuenta aparte. */
+function forma(v) {
+  if (v === null || v === undefined) return 'nada';
+  if (Array.isArray(v)) return '[' + v.map(forma).join(',') + ']';
+  if (typeof v === 'object') return '{' + Object.keys(v).sort().map(k => k + ':' + forma(v[k])).join(',') + '}';
+  return typeof v;
+}
+function vacio(v) {
+  if (typeof v === 'string') return !v.trim();
+  if (Array.isArray(v)) return !v.length || v.some(vacio);
+  if (v && typeof v === 'object') return !Object.keys(v).length || Object.keys(v).some(k => vacio(v[k]));
+  return v === null || v === undefined;
+}
+function estado(fila, idi) {
+  const v = fila[idi];
+  if (v === undefined || vacio(v)) return 'falta';
+  const buenas = IDI_BASE.filter(l => fila[l] !== undefined).map(l => forma(fila[l]));
+  if (!buenas.length) return 'bien';
+  return buenas.indexOf(forma(v)) === -1 ? 'forma' : 'bien';
+}
+
+let total = 0, falta = 0, torcidas = 0;
 tablas.sort((a, b) => Object.keys(b.filas).length - Object.keys(a.filas).length);
 for (const t of tablas) {
   const n = Object.keys(t.filas).length; total += n;
-  let sin = 0;
-  if (OBJETIVO) sin = Object.values(t.filas).filter(f => typeof f[OBJETIVO] !== 'string' || !f[OBJETIVO].trim()).length;
-  falta += sin;
-  console.log('  ' + t.nom.padEnd(24) + t.forma.padEnd(12) + String(n).padStart(4) + ' filas' +
-              (OBJETIVO ? (sin ? '   le faltan ' + sin + ' en ' + OBJETIVO : '   completo en ' + OBJETIVO) : ''));
+  let sin = 0, mal = 0;
+  if (OBJETIVO) for (const f of Object.values(t.filas)) {
+    const e = estado(f, OBJETIVO);
+    if (e === 'falta') sin++; else if (e === 'forma') mal++;
+  }
+  falta += sin; torcidas += mal;
+  let cola = '';
+  if (OBJETIVO) cola = sin || mal
+    ? '   ' + [sin ? 'le faltan ' + sin : '', mal ? mal + ' con forma distinta' : ''].filter(Boolean).join(' y ') + ' en ' + OBJETIVO
+    : '   completo en ' + OBJETIVO;
+  console.log('  ' + t.nom.padEnd(24) + t.forma.padEnd(12) + String(n).padStart(4) + ' filas' + cola);
 }
 console.log('  ' + '-'.repeat(56));
 console.log('  ' + tablas.length + ' tablas · ' + total + ' filas' +
-            (OBJETIVO ? ' · sin ' + OBJETIVO + ': ' + falta : ''));
+            (OBJETIVO ? ' · sin ' + OBJETIVO + ': ' + falta +
+              (torcidas ? ' · con forma distinta: ' + torcidas : '') : ''));

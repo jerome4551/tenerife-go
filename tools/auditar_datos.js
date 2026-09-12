@@ -169,6 +169,34 @@ const mienten = exactas.filter(x => x.n !== PLACES.length);
 debe('cifras exactas de lugares que no son ' + PLACES.length, mienten.length, mienten.length === 0);
 mienten.slice(0, 5).forEach(x => console.log('      <--  ' + x.txt));
 
+/* La misma regla para el numero de idiomas, que ademas se mueve solo.
+   "Toda la app en 8 idiomas" y "con fichas en 8 idiomas" estan escritos en
+   cada idioma; el dia que un idioma a medias deje de estarlo pasan a ser
+   nueve y nadie va a acordarse de esas dieciocho frases. Terminados =
+   SUPPORTED_LANGS menos IDIOMAS_INCOMPLETOS, que estan los dos en el fuente,
+   asi que el control lo sabe sin que se lo cuenten. */
+const sop = (html.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1]
+  .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
+const incompl = (html.match(/IDIOMAS_INCOMPLETOS\s*=\s*\[([^\]]*)\]/) || [, ''])[1]
+  .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
+const terminados = sop.filter(l => !incompl.includes(l)).length;
+debe('idiomas declarados', sop.length + ' · a medias ' + incompl.length + ' · terminados ' + terminados,
+     sop.length > 0 && terminados > 0);
+/* la cifra va pegada a la palabra "idioma/lengua" en los nueve idiomas.
+   Se mira SOLO dentro de literales de texto: un comentario que diga "7
+   idiomas" puede ser cierto (habla de otro momento) y haria fallar para
+   siempre a un control que no puede distinguirlo. Lo que no puede mentir
+   es lo que lee el usuario. */
+const PAL = /(\d{1,2})\s*(?:idiomas|languages|langues|Sprachen|lingue|talen|езика|\\u79cd\\u8bed\\u8a00|\\u7a2e\\u8a9e\\u8a00|种语言|種語言)/g;
+const LITERAL = /'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"|`(?:[^`\\]|\\.)*`/g;
+const cifras = [];
+for (const lit of html.match(LITERAL) || [])
+  for (const m of lit.matchAll(PAL)) cifras.push({ n: Number(m[1]), txt: m[0].trim() });
+const malIdi = cifras.filter(x => x.n !== terminados);
+debe('cifras de idiomas en la interfaz que no son ' + terminados,
+     malIdi.length + ' de ' + cifras.length, malIdi.length === 0);
+[...new Set(malIdi.map(x => x.txt))].slice(0, 6).forEach(t => console.log('      <--  ' + t));
+
 /* ── orientaciones de playa ──
    Desde septiembre las 99 zonas de bano tienen `ori`. Lo que se vigila aqui
    no es la cifra, es que la tabla y places[] no se separen: una fila que
