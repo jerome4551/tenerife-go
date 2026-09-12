@@ -8,6 +8,14 @@
  * alcanzarlas por nombre desde el ambito global. Un barrido de window solo
  * encuentra 2 de las 30. */
 'use strict';
+/* DOS LISTAS, Y NO ES REDUNDANCIA.
+   IDI_BASE es la que IDENTIFICA una tabla de idiomas; IDI es la que tiene que
+   estar COMPLETA. Al anadir el bulgaro se metio en la unica lista que habia, y
+   como la deteccion de las tablas "por idioma" exige que esten todos, ninguna
+   de esas 20 tablas se reconocio: el informe paso de 31 tablas y 460 filas a
+   11 y 199, y con el 261 filas dejaron de vigilarse. Un idioma nuevo no puede
+   cegar al control que comprueba los idiomas. */
+const IDI_BASE = ['es','en','fr','de','it','nl','zh','zht'];
 const path = require('path');
 const fs = require('fs');
 const RAIZ = path.dirname(__dirname);
@@ -35,7 +43,7 @@ function objetoEn(i) {
   return null;
 }
 function tablasDelFuente() {
-  const IDI = ['es','en','fr','de','it','nl','zh','zht'];
+  const IDI = ['es','en','fr','de','it','nl','zh','zht','bg'];
   /* Pedia `es` Y `en` para dar una entrada por fila. El resultado era que una
      fila a la que le faltaba precisamente el ingles no la veia NADIE: en
      wikiTitleOverrides hay cuatro con solo `es` -teresitas, el-duque, benijo
@@ -55,11 +63,11 @@ function tablasDelFuente() {
     const ks = Object.keys(v); if (!ks.length) continue;
     const filas = ks.filter(k => esFila(v[k]));
     if (filas.length && filas.length >= ks.length * 0.6) { const t = {}; filas.forEach(k => t[k] = v[k]); out[nom] = t; continue; }
-    if (IDI.every(l => v[l] !== undefined)) {
+    if (IDI_BASE.every(l => v[l] !== undefined)) {
       const t = {};
-      if (IDI.every(l => v[l] && typeof v[l] === 'object' && !Array.isArray(v[l]))) {
-        const cl = new Set(); IDI.forEach(l => Object.keys(v[l]).forEach(k => cl.add(k)));
-        cl.forEach(k => { const f = {}; IDI.forEach(l => { if (typeof v[l][k] === 'string') f[l] = v[l][k]; }); t[k] = f; });
+      if (IDI_BASE.every(l => v[l] && typeof v[l] === 'object' && !Array.isArray(v[l]))) {
+        const cl = new Set(); IDI_BASE.forEach(l => Object.keys(v[l]).forEach(k => cl.add(k)));
+        cl.forEach(k => { const f = {}; IDI.forEach(l => { if (v[l] && typeof v[l][k] === 'string') f[l] = v[l][k]; }); t[k] = f; });
       } else { const f = {}; IDI.forEach(l => { if (typeof v[l] === 'string') f[l] = v[l]; }); t['(fila unica)'] = f; }
       out[nom] = t;
     }
@@ -67,7 +75,7 @@ function tablasDelFuente() {
   return out;
 }
 function revisar(tablas, o) {
-  const IDI = ['es','en','fr','de','it','nl','zh','zht'];
+  const IDI = ['es','en','fr','de','it','nl','zh','zht','bg'];
   for (const [nom, t] of Object.entries(tablas)) for (const [k, f] of Object.entries(t)) {
     if (typeof f.es !== 'string') continue;
     o.filas++;
@@ -99,7 +107,11 @@ function revisar(tablas, o) {
   await page.evaluate(n => { window.__N__ = n; }, NOMBRES);
 
   const r = await page.evaluate(u => {
-    const IDI = ['es','en','fr','de','it','nl','zh','zht'];
+    const IDI = ['es','en','fr','de','it','nl','zh','zht','bg'];
+    /* Esta copia corre DENTRO del navegador, asi que necesita su propia
+       IDI_BASE: la del proceso de Node no llega aqui. Misma razon que arriba,
+       detectar con la base y exigir con la lista completa. */
+    const IDI_BASE = ['es','en','fr','de','it','nl','zh','zht'];
     const o = { arranque: {}, tablas: 0, filas: 0, incompletas: [], vacias: [], interp: [],
                 html: [], hanzi: [], pedidas: [], dobles: [], alcanzadas: [] };
     o.arranque = { mapa: !!document.getElementById('map'),
@@ -116,9 +128,9 @@ function revisar(tablas, o) {
       const ks = Object.keys(v); if (!ks.length) continue;
       const filas = ks.filter(k => esFila(v[k]));
       if (filas.length && filas.length >= ks.length * 0.6) { const t = {}; filas.forEach(k => t[k] = v[k]); tablas[g] = t; continue; }
-      if (IDI.every(l => v[l] && typeof v[l] === 'object' && !Array.isArray(v[l]))) {
-        const t = {}, cl = new Set(); IDI.forEach(l => Object.keys(v[l]).forEach(k => cl.add(k)));
-        cl.forEach(k => { const f = {}; IDI.forEach(l => { if (typeof v[l][k] === 'string') f[l] = v[l][k]; }); t[k] = f; });
+      if (IDI_BASE.every(l => v[l] && typeof v[l] === 'object' && !Array.isArray(v[l]))) {
+        const t = {}, cl = new Set(); IDI_BASE.forEach(l => Object.keys(v[l]).forEach(k => cl.add(k)));
+        cl.forEach(k => { const f = {}; IDI.forEach(l => { if (v[l] && typeof v[l][k] === 'string') f[l] = v[l][k]; }); t[k] = f; });
         tablas[g] = t;
       }
     }
@@ -160,7 +172,7 @@ function revisar(tablas, o) {
   revisar(soloFuente, r);
 
   const idi = [];
-  for (const l of ['es','en','fr','de','it','nl','zh','zht']) {
+  for (const l of ['es','en','fr','de','it','nl','zh','zht','bg']) {
     idi.push([l, await page.evaluate(async lang => {
       if (typeof setLang === 'function') setLang(lang);
       await new Promise(r => setTimeout(r, 250));
@@ -248,7 +260,7 @@ function revisar(tablas, o) {
      distinto por idioma: el mismo articulo abria una linea nueva en cada
      uno en vez de sumar unidades. */
   const vivo = await page.evaluate(async () => {
-    const IDI = ['es','en','fr','de','it','nl','zh','zht'], out = { claves: [], cesta: [], boton: [] };
+    const IDI = ['es','en','fr','de','it','nl','zh','zht','bg'], out = { claves: [], cesta: [], boton: [] };
     for (const l of ['es','en','zht']) {
       setLang(l);
       const btn = document.querySelector('.excursion-card .souvenir-buy-btn');
@@ -374,6 +386,34 @@ function revisar(tablas, o) {
   console.log('  ' + (okCambia ? 'OK ' : 'MAL') + ' el texto cambia de verdad al cambiar de idioma  (' +
               'iguales al es: en ' + tienda.igualEn + ' · zht ' + tienda.igualZht + ' de ' + tienda.n + ')');
   if (!okT || !okCambia) docMal = 1;
+
+  /* ── el selector de idioma ──
+     setLang marca la opcion activa POR INDICE:
+       querySelectorAll('.lang-option').forEach((el,i) =>
+         el.classList.toggle('active', SUPPORTED_LANGS[i] === lang))
+     Si alguien reordena el HTML o anade una opcion en medio, el tick aparece
+     en el idioma equivocado y no falla nada. Asi que se comprueba lo que de
+     verdad importa: que al pedir un idioma se marque ESE. */
+  const sel = await page.evaluate(() => {
+    const codigo = el => (/setLang\('([a-z]+)'\)/.exec(el.getAttribute('onclick') || '') || [])[1];
+    const orden = [...document.querySelectorAll('.lang-option')].map(codigo);
+    const mal = [];
+    for (const l of orden) {
+      if (!l) continue;
+      setLang(l);
+      const act = [...document.querySelectorAll('.lang-option')].filter(e => e.classList.contains('active')).map(codigo);
+      const tick = [...document.querySelectorAll('.lang-option-check')].filter(e => e.style.display !== 'none').map(e => e.id);
+      if (act.length !== 1 || act[0] !== l || tick.length !== 1 || tick[0] !== 'check-' + l)
+        mal.push(l + ' -> marcado ' + (act.join(',') || 'ninguno') + ' / tick ' + (tick.join(',') || 'ninguno'));
+    }
+    setLang('es');
+    return { orden, mal, n: orden.filter(Boolean).length };
+  });
+  console.log('\n=== selector de idioma ===');
+  const okSel = sel.mal.length === 0 && sel.n >= 9;
+  console.log('  ' + (okSel ? 'OK ' : 'MAL') + ' las ' + sel.n + ' opciones marcan la suya   (' + sel.orden.join(' ') + ')');
+  sel.mal.forEach(m => console.log('      <--  ' + m));
+  if (!okSel) docMal = 1;
 
   console.log('\n=== rendimiento ===');
   console.log('  aeropuerto sur: %d lineas · %d capas · %d ms', perf.lineas, perf.capas, perf.ms);

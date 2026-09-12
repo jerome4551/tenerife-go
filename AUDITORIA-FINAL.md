@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 9f97b39b93c2b30d02bcd3ba06628730
-             4.393.279 bytes · 1.336.036 comprimidos · 35.567 líneas
+index.html   md5 57aafa6d2b555c3171cb5a7f457c6c09
+             4.404.585 bytes · 1.340.024 comprimidos · 35.760 líneas
 ```
 
 ---
@@ -688,6 +688,42 @@ Para el detalle fino está el bloque 4, que es opcional.
   Roque de las Bodegas → Almáciga → Benijo, con 1.278 m y 829 m entre vecinas.
 
 ---
+
+## El búlgaro · bloque 1 de 3, la maquinaria
+
+**La auditoría de idiomas está roja a propósito** y lo seguirá estando hasta el
+bloque 3: el idioma ya existe, y lo que falta son las cadenas. Rojo aquí
+significa «queda trabajo», no «hay un fallo».
+
+```
+bloque 1  maquinaria + LANGS.bg              128 filas   HECHO
+bloque 2  AUTH_STRINGS + UI_TX               149 filas
+bloque 3  las otras 29 tablas                183 filas
+                                             ─────
+                                             460 filas de interfaz
+después   places[]: 1.741 cadenas, 1.566 distintas, 219.800 caracteres
+```
+
+Lo que cuesta, **medido quitando el neerlandés entero y comprimiendo**, no
+estimado: **231 kB sin comprimir, 80 kB comprimido, un +6,5 %**.
+
+**Y añadir un idioma cegó al control que vigila los idiomas.** Hay dos listas
+donde parecía haber una: la que **identifica** una tabla de idiomas y la que
+tiene que estar **completa**. Al meter `bg` en la única que había, las tablas
+«por idioma» dejaron de reconocerse —la detección exige que estén todos— y el
+informe pasó de 31 tablas y 460 filas a **11 y 199**: 261 filas dejaron de
+vigilarse. Ahora son `IDI_BASE` para detectar e `IDI` para exigir, y hay dos
+copias de esa distinción porque una corre en Node y otra dentro del navegador.
+
+**Dos sitios que no eran obvios.** El botón BG de la pantalla de bienvenida
+funcionaba, pero el selector que se usa a diario es otro control —el
+desplegable `.lang-option`— y ese no se había tocado. Y su resaltado va **por
+índice**: `SUPPORTED_LANGS[i]` contra el orden del HTML, así que reordenar las
+opciones pone el tick en el idioma equivocado sin que falle nada. Hay control
+nuevo: pide cada uno de los nueve idiomas y comprueba que se marque ese.
+
+Y un comentario que enumeraba «(es, en, fr, de, it, nl, zh)» cuando ya había
+nueve: una lista repetida a mano envejece sola, así que se retiró.
 
 ## Por qué uno la recibe y otro no
 

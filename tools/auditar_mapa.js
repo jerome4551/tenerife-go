@@ -247,7 +247,7 @@ function ok(cond, txt, detalle) {
       // Las etiquetas, en los 8. La capa nueva no puede quedarse en español.
       const et = await page.evaluate(() => {
         const out = {};
-        for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht']) { setLang(l); out[l] = t().isla; }
+        for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg']) { setLang(l); out[l] = t().isla; }
         setLang('es');
         return out;
       });

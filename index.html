@@ -148,7 +148,7 @@ window.onunhandledrejection = function(e) {
       "applicationCategory": "TravelApplication",
       "operatingSystem": "Web, Android, iOS",
       "browserRequirements": "Requires JavaScript",
-      "inLanguage": ["es", "en", "fr", "de", "it", "nl", "zh", "zh-Hant"],
+      "inLanguage": ["es", "en", "fr", "de", "it", "nl", "zh", "zh-Hant", "bg"],
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
       "author": { "@type": "Person", "name": "Jérôme B" },
@@ -6191,6 +6191,11 @@ window.onunhandledrejection = function(e) {
           <span class="lang-option-check" id="check-zht" style="display:none">✓</span>
         </div>
       </div>
+        <div class="lang-option" onclick="setLang('bg')">
+          <span class="lang-option-flag">🇧🇬</span>
+          <span class="lang-option-name">Български</span>
+          <span class="lang-option-check" id="check-bg" style="display:none">✓</span>
+        </div>
     </div>
   </div>
 </div>
@@ -7782,7 +7787,184 @@ banderasTitulo: '每种旗帜是什么意思？',
       camping:     '露营地'
     }
   }
-};
+,
+  /* --- Bulgaro. Anadido en septiembre de 2026. Alfabeto cirilico: no
+     comparte nada con los otros ocho, asi que cualquier respaldo que
+     caiga a `en` o `es` se ve a simple vista, que es lo comodo de
+     revisarlo. --- */
+  bg: {
+    "flag": "🇧🇬",
+    "code": "BG",
+    "banoHoyTitle": "Днес се къпете тук:",
+    "banoHoySub": "Вятър и море в момента · бурните брегове отпадат",
+    "banoHoyNinguna": "Днес няма плаж за препоръчване: морето е бурно по всички брегове.",
+    "banoHoySinSocorrista": "Без спасител",
+    "parkingTitle": "Паркинг и места",
+    "parkingFree": "{free} свободни от {total}",
+    "parkingFull": "Пълен",
+    "parkingNearby": "Паркинг наблизо",
+    "parkingRealTime": "В реално време",
+    "parkingOccupancy": "Заетост {pct}%",
+    "parkingAlmostFull": "Почти пълен",
+    "parkingAvailable": "Има свободни места",
+    "parkingUpdated": "Обновено в {time}",
+    "parkingBeach": "Паркинг на плажа",
+    "parkingTeide": "Паркинг Тейде",
+    "parkingCapacity": "Капацитет",
+    "searchPlaceholder": "Търсене на място...",
+    "noResults": "Не са намерени места",
+    "filterLabel": "Филтър",
+    "showAll": "Покажи всички",
+    "clearBtn": "Изчисти",
+    "showing": "Показани",
+    "of": "от",
+    "places": "места",
+    "streets": "Улици",
+    "satellite": "Сателит",
+    "topo": "Топо",
+    "isla": "Островът офлайн",
+    "lifeguard": "🛟 Спасителна служба",
+    "lifeguardNow": "🛟 Спасител в момента",
+    "lifeguardHours": "🛟 Спасители {h}",
+    "noLifeguard": "⚠️ Без наблюдение",
+    "blueFlag": "🏆 Син флаг 2026",
+    "aguaExcelente": "💧 Отлична вода",
+    "aguaBuena": "💧 Добра вода",
+    "aguaSuficiente": "⚠️ Задоволителна вода",
+    "aguaFuente": "Официален регистър на зоните за къпане {a}",
+    "flagLink": "🚩 Флаг и спасители (официално)",
+    "banderasTitulo": "Какво означава всеки флаг?",
+    "banderasVerde": "Зелен: безопасно къпане.",
+    "banderasAmarilla": "Жълт: къпане с повишено внимание.",
+    "banderasRoja": "Червен: къпането е забранено.",
+    "banderasNegra": "Черен: къпането е забранено поради замърсяване или риск за здравето.",
+    "banderasNaranja": "Оранжев: плаж без спасителна служба.",
+    "banderasMorada": "Лилав или бял с медуза: присъствие на морски организми.",
+    "banderasFuente": "Флагове, които се използват днес на плажовете на Канарските острови. Указ 116/2018 беше отменен с решение на Върховния съд (BOC 82, 25.4.2024) и нова уредба е в подготовка. Източник: Subdirección de Protección Civil y Emergencias на правителството на Канарските острови · портал Infoplayas Canarias.",
+    "addFav": "Добави в любими",
+    "removeFav": "Премахни от любими",
+    "favTitle": "Моите любими",
+    "favEmpty": "Още нямате любими. Докоснете ⭐ на кое да е място, за да го запазите тук.",
+    "favCount": "любими",
+    "showFavs": "Само любими",
+    "emergency24": "🚨 Спешна помощ 24 ч",
+    "pharmacy24": "💊 Аптека 24 ч",
+    "phoneLabel": "📞",
+    "hoursLabel": "🕐",
+    "emergencyTel": "🆘 Спешни случаи: 112",
+    "pharmacyGuardLink": "💊 Дежурна аптека днес (официално)",
+    "shareBtn": "Сподели",
+    "shareTitle": "Виж това място в Тенерифе",
+    "shareGmaps": "Отвори в Google Maps",
+    "shareCopied": "Връзката е копирана!",
+    "shareError": "Неуспешно споделяне",
+    "gpsTitle": "Моето местоположение",
+    "gpsSearching": "Търсене на позицията ви…",
+    "gpsFound": "Позицията е намерена",
+    "gpsError": "Местоположението не можа да се определи",
+    "gpsDenied": "Достъпът до местоположението е отказан",
+    "gpsOutside": "Изглежда, че не сте в Тенерифе",
+    "gpsUseAsOrigin": "Използвай като начало на маршрут",
+    "gpsAccuracy": "Точност",
+    "daytripTitle": "Маршрут за деня",
+    "daytripZoneNorth": "Север",
+    "daytripZoneSouth": "Юг",
+    "daytripZoneCenter": "Планината",
+    "daytripMyRoute": "Моят маршрут",
+    "daytripMyRouteEmpty": "Още не сте добавили спирки. Изберете отдолу тези, които искате да посетите.",
+    "daytripCatalogPrompt": "Изберете зона горе, за да видите предложения",
+    "daytripCatalogTitle": "Предложения",
+    "daytripAdd": "Добави към маршрута",
+    "daytripAdded": "Вече е в маршрута",
+    "daytripRemove": "Премахни",
+    "daytripCenter": "Центрирай на картата",
+    "daytripInfo": "Виж информация",
+    "busTitle": "Обществен транспорт",
+    "busSubtitle": "TITSA · Трамвай · {n} линии",
+    "busClearAll": "Премахни всички",
+    "busTypeTram": "🚊 Трамвай",
+    "busTypeNorth": "🔵 Север",
+    "busTypeSouth": "🔴 Юг",
+    "busTypeAirport": "✈️ Летище",
+    "busTypeTeide": "🌋 Тейде",
+    "busTypeShuttle": "🟠 Совалки",
+    "busTypeLocal": "🏙️ Общински и градски",
+    "busTypeNight": "🦉 Нощни",
+    "busTerminal": "🏁 Терминал / Транспортен възел",
+    "busLinesPassing": "Линии, които спират тук:",
+    "busLineSingle": "Линия:",
+    "busTitsaLink": "🔗 Виж разписанията в titsa.com",
+    "busTranviaPanel": "🚊 Табло на живо · metrotenerife.com",
+    "busSearchPlaceholder": "Търсене на спирка или линия...",
+    "busSearchLine": "📋 {n} линия",
+    "busSearchLines": "📋 {n} линии",
+    "busSearchStop": "📍 {n} спирка",
+    "busSearchStops": "📍 {n} спирки",
+    "busSearchStopsCap": "📍 {n} от {total} спирки",
+    "busNoResults": "Няма резултати",
+    "busOfficialLink": "🔗 titsa.com · metrotenerife.com — официални разписания",
+    "busFreqLabel": "Честота",
+    "busPriceLabel": "Цена",
+    "busPriceFrom": "от {p}",
+    "busQuickAirportS": "✈️ Включи линиите за Южното летище",
+    "busQuickAirportN": "✈️ Включи линиите за Северното летище",
+    "busShareTitle": "🚌 Виж моите автобусни линии в Тенерифе",
+    "busShareCopied": "Връзката към маршрута е копирана!",
+    "busShareNothing": "Включете поне една линия, за да споделите",
+    "busShareError": "Неуспешно споделяне",
+    "nearbyStopsTitle": "🚏 Спирки наблизо",
+    "nearbyStopsFrom": "Пеша от {place}",
+    "nearbyStopsFromGps": "Пеша от вашето местоположение",
+    "nearbyStopsNone": "Няма спирки на по-малко от 1,5 км",
+    "nearbyStopsMin": "мин",
+    "nearbyHowToBtn": "🚏 Как да стигна с автобус",
+    "directionsBtn": "🚗 Как да стигна с кола",
+    "busAccessToggleLabel": "Достъпно с автобус (500 м)",
+    "categories": {
+      "parking": "Паркинги",
+      "webcam": "Уебкамери",
+      "ayuda": "Помощ и подкрепа",
+      "naturaleza": "Природа",
+      "senderismo": "Преходи",
+      "playa": "Плажове",
+      "nudista": "Нудистки плажове",
+      "piscinas": "Естествени басейни",
+      "montana": "Планина",
+      "cultura": "Култура",
+      "museo": "Музеи",
+      "gastronomia": "Кухня",
+      "familia": "Семейство",
+      "animales": "Животни",
+      "ciudad": "Градове",
+      "municipio": "Общини",
+      "farmacia": "Аптеки",
+      "hospital": "Болници",
+      "csalud": "Здравни центрове",
+      "veterinario": "Ветеринари 24 ч",
+      "gasolinera": "Бензиностанции",
+      "faros": "Фарове",
+      "petfriendly": "Friendly Zone 🐾",
+      "accesible": "Достъпно ♿",
+      "puerto_comercial": "Търговски пристанища",
+      "puerto_ocio": "Пристанища и марини",
+      "deporte_publico": "Спорт на открито",
+      "ciclismo": "Колоездене",
+      "parapente": "Парапланеризъм",
+      "golf": "Голф",
+      "escalada": "Катерене",
+      "windsurf": "Уиндсърф и кайтсърф",
+      "kayak": "Каяк и SUP",
+      "buceo": "Гмуркане и шнорхел",
+      "pesca": "Спортен риболов",
+      "barbacoa": "Барбекю и пикник",
+      "mirador": "Панорамни места",
+      "mercadillo": "Пазари",
+      "surf": "Сърф и водни спортове",
+      "supermercado": "Супермаркети",
+      "oficina_turismo": "Туристически офиси",
+      "camping": "Къмпинги"
+}
+  }};
 
 // ══════════════════════════════════════════════════════════
 //  TRADUCCIONES AUTH (fusionadas en LANGS para mantenerlas
@@ -8475,9 +8657,12 @@ function setLang(lang) {
 
   // Lista canónica de idiomas soportados. Se usa para iterar
   // sobre los checks del dropdown y para marcar la opción activa.
-  // El orden DEBE coincidir con el orden en que aparecen las
-  // opciones en el HTML (es, en, fr, de, it, nl, zh).
-  const SUPPORTED_LANGS = ['es','en','fr','de','it','nl','zh','zht'];
+  // El orden DEBE coincidir con el orden en que aparecen las opciones en el
+  // HTML. Se enumeraban aqui, y la lista se quedo en (es, en, fr, de, it, nl,
+  // zh) cuando ya habia nueve: una lista repetida a mano envejece sola. El
+  // orden real es el de SUPPORTED_LANGS, que es la linea de abajo, y el
+  // control de idiomas comprueba que el HTML lo siga.
+  const SUPPORTED_LANGS = ['es','en','fr','de','it','nl','zh','zht','bg'];
 
   // Checks del dropdown
   SUPPORTED_LANGS.forEach(l => {
@@ -25816,6 +26001,7 @@ window.addEventListener('hashchange', () => {
       <button type="button" class="v19-w-lang" data-lang="nl" onclick="setLang('nl')">NL</button>
       <button type="button" class="v19-w-lang" data-lang="zh" onclick="setLang('zh')">中文</button>
       <button type="button" class="v19-w-lang" data-lang="zht" onclick="setLang('zht')">繁體</button>
+      <button type="button" class="v19-w-lang" data-lang="bg" onclick="setLang('bg')">BG</button>
     </div>
     <button type="button" class="v19-w-btn" id="v19-welcome-start">Comenzar</button>
   </div>
@@ -29868,6 +30054,10 @@ function chatFmt(tpl,vars){
 function chatTrim(s,n){s=String(s||'');return s.length>n?s.slice(0,n-1)+'…':s;}
 function chatKmTxt(km){
   var v=km<10?km.toFixed(1):String(Math.round(km));
+  /* Coma decimal en todos menos ingles y chino. El bulgaro usa coma, asi que
+     entra por la regla general y esta bien; se deja escrito para que no
+     parezca casualidad. Si algun dia entra japones o coreano, que usan punto,
+     hay que sumarlos a esta lista o daran la coma en silencio. */
   if(currentLang!=='en'&&currentLang!=='zh'&&currentLang!=='zht')v=v.replace('.',',');
   return v+' km';
 }
@@ -34405,7 +34595,10 @@ function closePrivacyPanel() {
 
   var TTS_LOCALE = {
     es: 'es-ES', en: 'en-GB', fr: 'fr-FR', de: 'de-DE',
-    it: 'it-IT', nl: 'nl-NL', zh: 'zh-CN', zht: 'zh-TW'
+    it: 'it-IT', nl: 'nl-NL', zh: 'zh-CN', zht: 'zh-TW',
+    /* Sin fila aqui, ttsIdioma() devuelve 'es' y la audioguia leeria el
+       texto bulgaro con voz castellana. No falla: suena mal, que es peor. */
+    bg: 'bg-BG'
   };
   var TTS_I18N = {
     play: { es: 'Escuchar', en: 'Listen', fr: '\u00c9couter', de: 'Anh\u00f6ren', it: 'Ascolta', nl: 'Luisteren', zh: '\u6717\u8bfb', zht: '\u6717\u8b80' },
