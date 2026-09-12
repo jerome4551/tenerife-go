@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 57aafa6d2b555c3171cb5a7f457c6c09
-             4.404.585 bytes · 1.340.024 comprimidos · 35.760 líneas
+index.html   md5 a9d434c481c84c3df1443601c114e43d
+             4.405.517 bytes · 1.340.530 comprimidos · 35.770 líneas
 ```
 
 ---
@@ -688,6 +688,51 @@ Para el detalle fino está el bloque 4, que es opcional.
   Roque de las Bodegas → Almáciga → Benijo, con 1.278 m y 829 m entre vecinas.
 
 ---
+
+## Lo que encontró verificar el bloque 1 antes de seguir
+
+**El bloque 1 se publicó, y estuvo mal publicarlo así.** Medido en el
+navegador: quien elegía búlgaro veía **2 cadenas en cirílico de 82 visibles**.
+El resto no caía a inglés, caía a **castellano**, porque `tx()` hacía
+`e[currentLang] || e.es` mientras `localized()` ya hacía `en → es`. Dos cadenas
+de respaldo distintas para el mismo problema.
+
+Dos arreglos:
+
+- **El respaldo va a inglés antes que a castellano**, en las siete funciones
+  que lo hacían: `tx`, el `g()` de `applyUiTx`, `marTx`, `pushTx` y los tres
+  sitios donde el buscador lee `p.cat`. No es cosa del búlgaro: **le pasaba a
+  cualquier idioma al que le faltara una fila**.
+- **El búlgaro se retira de los dos selectores** hasta que esté completo, con
+  `data-incompleto` y sin borrar nada. Ofrecer un idioma a medias es peor que
+  no ofrecerlo. El control lo sigue exigiendo, así que esconderlo no lo
+  esconde del arnés.
+
+### Y una superficie que ningún control ha mirado nunca
+
+El control de literales solo mira **JavaScript**. El texto escrito directamente
+en el HTML no lo ha revisado nadie. Medido poniendo la app en chino y contando
+lo que sigue con acentos castellanos, fuera de `<script>`, `<style>` y del
+panel de administración:
+
+```
+151 nodos de texto   ·  de ellos 70 son nombres de línea de TITSA
+ 27 atributos        ·  title / aria-label / placeholder
+```
+
+Los 70 nombres de línea **son correctos**: son nombres propios y la regla del
+proyecto dice no tocar `nombre`. De los 81 restantes, buena parte son el valor
+inicial de elementos que se rellenan al abrirse —los tres `*-toast-msg`, por
+ejemplo— y no llegan a verse.
+
+**Los 27 atributos sí son un fallo claro**: `title="Mi ubicación"`,
+`aria-label="Volver atrás"`, `title="Categorías"`, `placeholder="Buscar parada
+o línea..."`… Nadie los actualiza nunca, así que los globos de ayuda y lo que
+lee un lector de pantalla están **en castellano en los nueve idiomas**. Es
+accesibilidad, no decoración.
+
+**Sin arreglar todavía**, y no se mezcla con el búlgaro: son dos trabajos
+distintos y juntarlos es cómo se cuelan los fallos.
 
 ## El búlgaro · bloque 1 de 3, la maquinaria
 

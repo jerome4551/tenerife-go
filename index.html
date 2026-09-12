@@ -6191,7 +6191,12 @@ window.onunhandledrejection = function(e) {
           <span class="lang-option-check" id="check-zht" style="display:none">✓</span>
         </div>
       </div>
-        <div class="lang-option" onclick="setLang('bg')">
+        <!-- OCULTO HASTA QUE ESTE COMPLETO. El bulgaro existe y funciona, pero
+             le faltan 332 de las 460 filas, y lo que falta cae a ingles. Ofrecer
+             un idioma a medias es peor que no ofrecerlo: se quita del selector y
+             se vuelve a poner en el bloque 3. El control de idiomas lo sigue
+             exigiendo, asi que esto no lo esconde del arnes. -->
+        <div class="lang-option" data-incompleto="bg" style="display:none" onclick="setLang('bg')">
           <span class="lang-option-flag">🇧🇬</span>
           <span class="lang-option-name">Български</span>
           <span class="lang-option-check" id="check-bg" style="display:none">✓</span>
@@ -8553,7 +8558,12 @@ function tx(clave, vars) {
   if (typeof UI_TX === 'undefined') return '';
   var e = UI_TX[clave];
   if (!e) return '';
-  var s = e[currentLang || 'es'] || e.es || '';
+/* El respaldo va a INGLES antes que a castellano. Iba directo al castellano,
+   y con el bulgaro a medias eso se vio de golpe: quien elegia bulgaro recibia
+   2 cadenas en cirilico de 82 visibles y el resto EN CASTELLANO. No es un
+   problema del bulgaro -le pasa a cualquier idioma al que le falte una fila-,
+   y localized() ya hacia en -> es para las fichas de lugar. Ahora coinciden. */
+  var s = e[currentLang || 'es'] || e.en || e.es || '';
   if (vars) for (var k in vars) s = s.split('{' + k + '}').join(vars[k]);
   return s;
 }
@@ -8561,7 +8571,7 @@ function tx(clave, vars) {
 function applyUiTx() {
   if (typeof UI_TX === 'undefined') return;
   var lang = currentLang || 'es';
-  var g = function(k){ var e = UI_TX[k]; return e ? (e[lang] || e.es) : ''; };
+  var g = function(k){ var e = UI_TX[k]; return e ? (e[lang] || e.en || e.es) : ''; };
   var set = function(id, txt){ var el = document.getElementById(id); if (el && txt) el.textContent = txt; };
   var ph  = function(id, txt){ var el = document.getElementById(id); if (el && txt) el.placeholder = txt; };
   var lbl = function(id, txt){ var el = document.getElementById(id); if (el && txt) el.setAttribute('aria-label', txt); };
@@ -14557,7 +14567,7 @@ searchInput.addEventListener('keydown', (e) => {
   const filtered = places.filter(p =>
     p.name.toLowerCase().includes(searchQuery) ||
     (p.alias && p.alias.toLowerCase().includes(searchQuery)) ||
-    (p.cat && (p.cat[currentLang] || p.cat.es || '').toLowerCase().includes(searchQuery))
+    (p.cat && (p.cat[currentLang] || p.cat.en || p.cat.es || '').toLowerCase().includes(searchQuery))
   );
   if (filtered.length === 0) return;
 
@@ -14625,7 +14635,7 @@ function updateSearchSuggestions() {
   const filtered = places.filter(p =>
     p.name.toLowerCase().includes(searchQuery) ||
     (p.alias && p.alias.toLowerCase().includes(searchQuery)) ||
-    (p.cat[currentLang] || p.cat.es).toLowerCase().includes(searchQuery)
+    (p.cat[currentLang] || p.cat.en || p.cat.es).toLowerCase().includes(searchQuery)
   );
 
   // Contador de resultados bajo la barra
@@ -14655,7 +14665,7 @@ function updateSearchSuggestions() {
     suggestions.innerHTML =
       `<div class="suggestions-header">${escapeHtml(plural('contadorResultados', filtered.length))}</div>` +
       shown.map(p => {
-        const catLabel = (p.cat && (p.cat[currentLang] || p.cat.es)) || '';
+        const catLabel = (p.cat && (p.cat[currentLang] || p.cat.en || p.cat.es)) || '';
         const nameHL = highlight(p.name, searchQuery);
         return `<div class="suggestion" onclick="selectPlaceFromSuggestion('${p.id}')">
           <span class="suggestion-emoji">${p.emoji}</span>
@@ -26001,7 +26011,7 @@ window.addEventListener('hashchange', () => {
       <button type="button" class="v19-w-lang" data-lang="nl" onclick="setLang('nl')">NL</button>
       <button type="button" class="v19-w-lang" data-lang="zh" onclick="setLang('zh')">中文</button>
       <button type="button" class="v19-w-lang" data-lang="zht" onclick="setLang('zht')">繁體</button>
-      <button type="button" class="v19-w-lang" data-lang="bg" onclick="setLang('bg')">BG</button>
+      <button type="button" class="v19-w-lang" data-lang="bg" data-incompleto="bg" style="display:none" onclick="setLang('bg')">BG</button>
     </div>
     <button type="button" class="v19-w-btn" id="v19-welcome-start">Comenzar</button>
   </div>
@@ -31006,7 +31016,7 @@ function marLang() {
 }
 function marTx(key) {
   var e = MAR_T[key];
-  return e ? (e[marLang()] || e.es) : '';
+  return e ? (e[marLang()] || e.en || e.es) : '';
 }
 
 function marCacheRead() {
@@ -31359,7 +31369,7 @@ var PUSH_VISITS_KEY = 'tgo_visits';
 function pushTx(k) {
   var l = (typeof currentLang !== 'undefined' && currentLang) ? currentLang : 'es';
   var e = PUSH_TX[k];
-  return e ? (e[l] || e.es) : '';
+  return e ? (e[l] || e.en || e.es) : '';
 }
 
 // Esta instalada en la pantalla de inicio?
