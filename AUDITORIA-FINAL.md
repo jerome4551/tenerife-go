@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 cf6974376d18772d314e8abf9fc0afcc
-             4.406.945 bytes · 1.341.213 comprimidos · 35.802 líneas
+index.html   md5 fb84dfdb55658f894701e6d4d743534b
+             4.418.490 bytes · 1.347.145 comprimidos · 35.848 líneas
 ```
 
 ---
@@ -777,13 +777,19 @@ distintos y juntarlos es cómo se cuelan los fallos.
 
 ## El búlgaro · bloque 1 de 3, la maquinaria
 
-**La auditoría de idiomas está roja a propósito** y lo seguirá estando hasta el
-bloque 3: el idioma ya existe, y lo que falta son las cadenas. Rojo aquí
-significa «queda trabajo», no «hay un fallo».
+**Corrección: la auditoría NO se pone roja por esto, y yo escribí que sí.** Las
+filas incompletas se imprimen pero no tumban nada —igual que las 19 de
+`wikiTitleOverrides`, que están incompletas a propósito—. Lo que estaba en rojo
+aquel día era otro control: la cifra de filas del documento, que se había
+quedado atrás.
+
+Así que lo que impide que un idioma a medias llegue a nadie **no es la
+auditoría**: es `IDIOMAS_INCOMPLETOS` y los tres controles del selector. El
+recuento de filas que faltan sale de `node tools/inventario_idiomas.js bg`.
 
 ```
 bloque 1  maquinaria + LANGS.bg              128 filas   HECHO
-bloque 2  AUTH_STRINGS + UI_TX               149 filas
+bloque 2  AUTH_STRINGS + UI_TX               149 filas   HECHO
 bloque 3  las otras 29 tablas                183 filas
                                              ─────
                                              460 filas de interfaz

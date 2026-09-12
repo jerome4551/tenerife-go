@@ -8219,6 +8219,42 @@ const AUTH_STRINGS = {
     authMergeNo:        '否，忽略',
     authClose:          '关闭'
   }
+,
+  bg: {
+    "authBtnGuest": "Профил",
+    "authBtnUser": "Моят профил",
+    "authModalTitle": "Вашият профил",
+    "authTabLogin": "Вход",
+    "authTabSignup": "Регистрация",
+    "authTabGuest": "Продължи като гост",
+    "authEmailLabel": "Имейл",
+    "authEmailPlaceholder": "vash@email.com",
+    "authPasswordLabel": "Парола",
+    "authPasswordPlaceholder": "Минимум 6 знака",
+    "authLoginBtn": "Влез",
+    "authSignupBtn": "Регистрирай ме",
+    "authGuestBtn": "Продължи без профил",
+    "authGuestHint": "Може да ползвате приложението и така. Любимите ви ще се запазят само на това устройство.",
+    "authLoading": "Зарежда…",
+    "authLogoutBtn": "Изход",
+    "authLoggedAs": "Влезли сте като",
+    "authSignupSuccess": "Изпратихме ви имейл, за да потвърдите профила си. Проверете го и ще можете да влезете.",
+    "authLoginSuccess": "Добре дошли отново",
+    "authErrorInvalid": "Грешен имейл или парола",
+    "authErrorNotConfirmed": "Потвърдете имейла си, преди да влезете. Проверете пощата си.",
+    "authErrorWeak": "Паролата трябва да е поне 6 знака",
+    "authErrorEmail": "Невалиден имейл",
+    "authErrorExists": "Вече има профил с този имейл",
+    "authErrorGeneric": "Нещо се обърка. Опитайте отново.",
+    "authErrorNetwork": "Няма връзка. Опитайте отново, когато имате интернет.",
+    "authSyncTitle": "Синхронизация",
+    "authSyncOn": "Любимите ви се запазват в облака",
+    "authSyncOff": "Локална сесия, без синхронизация",
+    "authMergePrompt": "Имате любими, запазени на това устройство. Да ги добавим ли към профила ви?",
+    "authMergeYes": "Да, обедини ги",
+    "authMergeNo": "Не, изтрий ги",
+    "authClose": "Затвори"
+}
 };
 // Fusión: añade las claves de AUTH_STRINGS a cada idioma de LANGS
 Object.keys(AUTH_STRINGS).forEach(lang => {
@@ -8564,6 +8600,16 @@ function plural(clave, n) {
   const formas = String(tx(clave) || '').split('|');
   return n + ' ' + (formas.length > 1 ? formas[n === 1 ? 0 : 1] : formas[0]);
 }
+
+/* VA AQUI, detras del ULTIMO Object.assign(UI_TX,...), no detras del
+   primero. Puesto antes, las 31 claves que se declaran mas abajo todavia
+   no existian y la mezcla se las saltaba en silencio: UI_TX[k] era
+   undefined y el `if` lo dejaba pasar sin quejarse. */
+/* Bulgaro, bloque 2: las 116 filas de UI_TX. Se mezcla clave a clave
+   porque Object.assign NO fusiona en profundidad: pasarle {clave:{bg}}
+   sustituiria la fila entera y se llevaria por delante los otros ocho
+   idiomas. Es un fallo que no da error: la fila queda con bg y nada mas. */
+(function (bg) { for (var k in bg) { if (UI_TX[k]) UI_TX[k].bg = bg[k]; } })({"parkingSpaces": "{n} места", "parkingFreeOfCharge": "Безплатно", "parkingApprox": "прибл.", "parkingMaxDay": "макс. {n} €/ден", "parkingPriceDate": "цена от {f}", "parkingHere": "Тук може да се паркира", "shopContact": "Свържи се", "shopPartner": "Партньорски бизнес", "shopMaxPeople": "Макс. {n} души", "cartEmpty": "Кошницата ви е празна.", "cartEmptyHint": "Разгледайте екскурзии и сувенири.", "cartLoginMsg": "Влезте, за да видите и запазите кошницата си", "cartLoginBtn": "Вход", "adRecommend": "Препоръката на Jérôme", "shopTitle": "Магазин", "shopExc": "Екскурзии", "shopSouv": "Сувенири", "shopBiz": "Бизнеси", "shopAd": "Рекламирайте се", "shopSoon": "СКОРО", "shopBook": "Резервирай", "shopBuy": "Купи", "shopPerson": "/ човек", "shopUnit": "/ брой", "shopPack": "/ комплект", "shopBizEmpty": "Първите партньорски бизнеси ще се появят тук.", "shopBizCta": "Имате бизнес в Тенерифе? Рекламирайте се!", "navHome": "Начало", "navFav": "Любими", "navRoutes": "Маршрути", "navShop": "Магазин", "navChat": "Асистент", "navAccount": "Профил", "tabPlanner": "Организирай деня си", "routeOrigin": "Начало", "routeDest": "Край", "routePickHint": "Докоснете тук, за да изберете…", "routeAddrPh": "Или въведете адрес…", "routeHint": "Изберете на картата, въведете адрес или използвайте GPS", "routeByCar": "С кола", "routeByBus": "С автобус", "routeCarDetail": "Маршрут по път", "routeBusCalc": "Изчисляване на автобусни варианти…", "routeBackPlace": "Обратно към мястото", "routeMin": "мин", "busPago": "Може да платите, като допрете банкова карта, телефон или часовник до четеца на шофьора. С картата Ten+ билетът е по-евтин. При пътувания над 20 км билетът за отиване и връщане е с 10 % отстъпка.", "busCaminataLarga": "Дълго пеша до спирката (около {km} км по улиците).", "busAltTransbordo": "Вариант с прекачване: {l1}+{l2}, ~{min} мин.", "busAltDirecta": "Директен вариант: {l}, ~{min} мин.", "busYaSalio": "Автобус {n} за Тейде тръгва веднъж дневно и днешният вече е заминал ({h}). Утре пак има.", "busSinConexion": "Няма линии, които свързват тези две точки.", "busNoDisponible": "Няма връзка", "busSinRuta": "Не е намерен автобусен маршрут за това пътуване.", "photoLoading": "Зарежда", "routeCalculating": "Изчислява…", "routeBusSearch": "Търсене на спирки и линии…", "gpsNoSupport": "GPS не е достъпен в този браузър", "authNotConfigured": "Услугата още не е настроена.", "camposObligatorios": "Моля, попълнете всички задължителни полета (*)", "shopAdded": "Добавено", "shopExcTeide": "Тейде на изгрев", "shopExcTeideD": "Изкачете най-високия вулкан в Испания и посрещнете изгрева от върха. Включва транспорт, водач и закуска.", "shopExcBallenas": "Наблюдение на китове", "shopExcBallenasD": "Наблюдавайте китове и делфини в естествената им среда край южния бряг на Тенерифе. Отплаване от Лос Кристианос.", "shopExcAnaga": "Анага, девствена гора", "shopExcAnagaD": "Воден преход през лавровата гора на Анага, обявена за биосферен резерват. Зеленият бял дроб на Тенерифе.", "shopSouvCamiseta": "Тениска Tenerife Go", "shopSouvCamisetaD": "Тениска от 100% памук с ексклузивен дизайн на Тенерифе. Размери S, M, L, XL, в черно и бяло.", "shopSouvGorra": "Шапка Tenerife Go", "shopSouvGorraD": "Шапка с бродирано лого на Tenerife Go. Регулируем размер. Идеална за канарското слънце.", "shopSouvPack": "Комплект Tenerife Go", "shopSouvPackD": "Тениска + шапка + ексклузивен магнит за хладилник. Перфектният подарък, за да отнесете парченце от Тенерифе.", "shopSouvIman": "Магнит Тенерифе", "shopSouvImanD": "Ръчно изработен магнит с илюстрация на Тейде. Произведен в Тенерифе. Перфектният сувенир.", "shopHours": "{n} часа", "shopShipping": "Доставка до цяла Испания", "shopColors": "{n} цвята", "shopColorBlackBeige": "Черно / Бежово", "shopDesignsVarious": "Различни дизайни", "shopSave": "Спестявате {n}€", "pushBtnActivar": "Включи известията", "pushActivando": "Включва се…", "pushActivadas": "Известията са включени ✓", "pushHazInstalar": "За да получавате известия, първо добавете приложението към началния екран: докоснете Сподели, после «Добави към начален екран». След това се върнете тук.", "pushNoNavegador": "Този браузър не поддържа известия.", "busErrorCalculo": "Маршрутът с автобус не можа да се изчисли.", "emailNoValido": "Имейлът не е валиден", "reservasPronto": "🚀 Резервациите ще бъдат достъпни съвсем скоро. Благодарим за интереса!", "eligeFecha": "Моля, изберете дата", "anadidoCesta": "✅ Добавено в кошницата. Влезте, за да платите.", "pagoProximamente": "🚀 Плащането идва скоро. Резервацията ви е запазена.", "noSePudoActivar": "Не можа да се включи: ", "sinMasOpciones": "😅 Няма други варианти", "copiadoPapeles": "Копирано в клипборда! 📋", "gpsNoSoportado": "Браузърът ви не поддържа GPS. Изберете началната точка ръчно в калкулатора.", "comoLlegarNav": "🧭 Как да стигна", "capaNoDisponible": "Слоят не е достъпен", "mapaNoListo": "Картата още не е готова", "capaSinImagenes": "Изображенията на този слой не могат да се заредят", "capaError": "Грешка при смяна на слоя", "capaIslaFallo": "Картата на острова не можа да се отвори", "capaIslaCargando": "Отваря се картата на острова…", "capaSinRed": "Няма мрежа: минава се към картата на острова", "contadorLugares": "място|места", "contadorResultados": "резултат|резултати", "mapaDetalle": "Подробна карта", "mapaDetalleNo": "не е свалена", "mapaDetalleSi": "свалена · {mb} MB", "mapaDescargar": "Свали подробната карта ({mb} MB)", "mapaDescargando": "Сваля се… {pct}%", "mapaBorrarDetalle": "Изтрий подробната карта", "mapaDetalleListo": "Подробната карта е готова. Вече работи и без връзка.", "mapaDetalleFallo": "Подробната карта не можа да се свали.", "mapaDetalleFuera": "Подробната карта е изтрита.", "mapaDetalleAviso": "Сваля се само веднъж и остава на телефона. По-добре с wi-fi.", "localizando": "⏳ Определяне на позицията…"});
 
 function tx(clave, vars) {
   if (typeof UI_TX === 'undefined') return '';
