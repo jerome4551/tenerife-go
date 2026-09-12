@@ -1268,7 +1268,13 @@ instalación nueva sin ningún envío previo, verde —no hay falsa alarma—.
     rápidas del chat son texto suelto en `es` y `en`, y pares
     `['visible','consulta']` en los otros seis. Copiar la forma de `es` deja
     los botones mudos sin dar error. La forma se comprueba contra `zht`.
-52. **`UI_TX` no es un objeto, son once.** Se declara con
+52. **Un texto traducido no sirve si nadie repinta.** El modal de cuenta, el
+    aviso de cookies, «Cómo moverse», el glosario, los botones GPX y
+    microclimas tenían sus nueve idiomas y se quedaban en el de arranque:
+    pintan una vez y sus funciones no se alcanzan desde `setLang`. Una lista
+    de llamadas al final de `setLang` no vale, porque crece de una en una y
+    el módulo siguiente se queda fuera. Ahora cada uno se apunta a `TG_IDIOMA`.
+53. **`UI_TX` no es un objeto, son once.** Se declara con
     `Object.assign({...},{...},{...})` y recibe diez `Object.assign` más.
     Escribir en el primero deja las otras diez partes sin idioma, en silencio.
 
@@ -1335,9 +1341,37 @@ traducido cambia de alfabeto; lo que sigue igual es **o un nombre propio o un
 hueco**, y los nombres propios salen de `places[]`, `TITSA_LINES` y el catálogo
 de paradas, no de una lista a mano.
 
-Quedan **244 textos distintos** que no cambian. Ni son un descuido del búlgaro
-ni se arreglan traduciendo: salen igual en los nueve idiomas, en inglés
-incluido, desde antes.
+Quedaban **244 textos distintos** que no cambiaban, y la mitad no era falta de
+traducción sino que nadie avisaba de que el idioma había cambiado.
+
+### Seis paneles se quedaban en el idioma de arranque
+
+Medido con el navegador en alemán y con el navegador en inglés, pidiendo
+después otro idioma:
+
+| panel | con el navegador en español | con el navegador en inglés |
+|---|---|---|
+| aviso de cookies | «Usamos cookies…» | «We use cookies…» |
+| modal de cuenta entero (15 textos) | «Tu cuenta», «Entrar»… | «Your account», «Log in»… |
+| «Cómo moverse» | «Cómo moverse» | «Getting around» |
+| glosario canario | «Habla como un canario» | «Speak like a Canarian» |
+| botón GPX del día | «Descargar ruta del día» | «Download day route» |
+| microclimas y fiestas | siempre en español | siempre en español |
+
+Ninguno cambiaba al elegir otro idioma. **No faltaban traducciones**: cada uno
+vive dentro de su propia función, pinta su texto una vez al arrancar y sus
+funciones no se alcanzan desde `setLang`.
+
+El final de `setLang` tenía una lista de llamadas escrita a mano que había ido
+creciendo de una en una según se descubrían. Una lista así envejece sola: el
+módulo siguiente se queda fuera y nadie lo nota. Ahora hay un registro,
+`TG_IDIOMA`, cada módulo se apunta al definirse y `setLang` los llama a todos.
+Un módulo que reviente no se lleva por delante a los demás.
+
+Quedan **260 textos distintos** que siguen sin cambiar. Esos sí son texto fijo
+en castellano, y salen igual en los nueve idiomas desde antes del búlgaro: 45
+son frecuencias de línea («🕐 L-V, 3 salidas/día»), 51 la política de
+privacidad y el resto rótulos, `aria-label` y `title` repartidos por la app.
 
 ---
 

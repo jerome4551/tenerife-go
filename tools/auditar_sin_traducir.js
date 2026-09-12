@@ -77,11 +77,17 @@ const LISTA = process.argv.indexOf('--lista') !== -1;
     try { Object.values(TITSA_PARADAS).forEach(q => meter(q.n)); } catch (e) {}
     return [...s];
   });
+  /* "📍 Tegueste" es el mismo nombre propio que "Tegueste": el icono de
+     delante no lo convierte en texto por traducir. Se quita lo que no sea
+     letra al principio y al final antes de comparar. */
+  const pelar = t => t.replace(/^[^\p{L}\p{N}]+/u, '').replace(/[^\p{L}\p{N})\]]+$/u, '').trim();
+  const propiosPelados = new Set(propios.map(pelar));
   const esPropio = t => {
-    if (propios.includes(t)) return true;
+    const p0 = pelar(t);
+    if (propios.includes(t) || propiosPelados.has(p0)) return true;
     /* "Playa de Benijo · Anaga" y demas compuestos: si cada trozo es propio */
-    const trozos = t.split(/\s*[·—–|>→,]\s*/).filter(x => x.length > 1);
-    return trozos.length > 1 && trozos.every(x => propios.includes(x));
+    const trozos = t.split(/\s*[·—–|>→,]\s*/).map(pelar).filter(x => x.length > 1);
+    return trozos.length > 1 && trozos.every(x => propiosPelados.has(x));
   };
 
   const antes = new Map(a.map(x => [x.k, x]));

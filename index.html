@@ -8489,6 +8489,37 @@ try {
    Cuando el bulgaro este completo se vacia esta lista y se acabo. */
 const IDIOMAS_INCOMPLETOS = ['bg'];
 
+/* REGISTRO DE REPINTADO POR IDIOMA.
+   Medido, no supuesto: con el navegador en aleman y pidiendo espanol, el
+   aviso de cookies, el modal de cuenta, "Como moverse", el glosario canario,
+   los botones GPX y microclimas seguian en aleman. Cada uno de esos modulos
+   vive dentro de su propia funcion, pinta su texto UNA vez al arrancar y sus
+   funciones no se alcanzan desde setLang: no es que falten traducciones, es
+   que nadie les dice que el idioma ha cambiado.
+   El final de setLang tenia una lista de llamadas escrita a mano que crecia
+   de una en una segun se descubrian; una lista asi envejece sola y el modulo
+   siguiente se queda fuera sin que nadie lo note. Aqui cada modulo se apunta
+   al definirse y setLang los llama a todos.
+   Quien pinte texto y no se apunte sale en tools/auditar_sin_traducir.js,
+   que compara la pagina en espanol con la misma pagina en bulgaro. */
+var TG_IDIOMA = (function () {
+  var fns = [];
+  return {
+    registrar: function (nombre, fn) {
+      if (typeof fn === 'function') fns.push({ nombre: nombre, fn: fn });
+    },
+    /* un modulo que reviente no puede llevarse por delante a los demas */
+    repintar: function () {
+      for (var i = 0; i < fns.length; i++) {
+        try { fns[i].fn(); } catch (e) {
+          try { console.warn('repintado de idioma:', fns[i].nombre, e); } catch (_) {}
+        }
+      }
+    },
+    lista: function () { return fns.map(function (x) { return x.nombre; }); }
+  };
+})();
+
 /* El idioma se resuelve AQUI, antes de construir marcadores y listas.
    Antes se restauraba despues, llamando a setLang, que rehace todos los
    marcadores y el clustering: la app arrancaba haciendo el trabajo dos
@@ -8799,6 +8830,11 @@ function setLang(lang) {
 
   // Ruta del día — refrescar textos
   refreshDayTripTexts();
+
+  /* Los modulos que pintan su propio texto. Antes iban uno a uno unas
+     lineas mas arriba y el que no estuviera en esa lista se quedaba en el
+     idioma de arranque. */
+  TG_IDIOMA.repintar();
 
   // Cerrar dropdown
   document.getElementById('lang-dropdown').classList.remove('open');
@@ -24898,6 +24934,9 @@ window.addEventListener('hashchange', () => {
       btn.setAttribute('aria-label', btn.title);
     }
   }
+  /* applyTranslations solo corria al abrir el modal: quien arrancaba en un
+     idioma y cambiaba a otro seguia viendo el primero en toda la cuenta. */
+  try { TG_IDIOMA.registrar('modal de cuenta', applyTranslations); } catch (e) {}
 
   function showTab(tab) {
     const els = getModalEls();
@@ -31955,6 +31994,8 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
     mcRenderSunset();
   }
 
+  try { TG_IDIOMA.registrar('microclimas', mcApplyLang); } catch (e) {}
+
   function mcToggle() {
     var p = document.getElementById('mc-panel');
     var wx = document.getElementById('wx-panel');
@@ -32446,6 +32487,15 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
 
   if (document.readyState !== 'loading') { gpxInit(); }
   else { document.addEventListener('DOMContentLoaded', gpxInit); }
+  /* Los dos botones se crean una vez y se quedaban con el rotulo de
+     entonces; gpxInit no vuelve a tocarlos porque comprueba si ya existen. */
+  try {
+    TG_IDIOMA.registrar('botones GPX', function () {
+      var t = GPX_T[gpxLang()];
+      var a = document.getElementById('gpx-route-btn'); if (a) a.textContent = t.btn;
+      var b = document.getElementById('gpx-day-btn');   if (b) b.textContent = t.btnDay;
+    });
+  } catch (e) {}
 })();
 </script>
 
@@ -32880,6 +32930,10 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
     });
   }
 
+  /* fiRender se corta solo si el idioma no ha cambiado, asi que basta con
+     llamarla: si cambio, rehace titulo, pie y las 20 fiestas. */
+  try { TG_IDIOMA.registrar('fiestas y tradiciones', fiRender); } catch (e) {}
+
   function fiToggle() {
     var p = document.getElementById('fi-panel');
     if (!p) return;
@@ -33080,6 +33134,17 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
     if (lbl) lbl.textContent = HM_T[hmLang()].label;
   }
 
+  /* La tarjeta se construye al abrirla y se queda construida: hay que
+     rehacerla, no solo cambiar el rotulo del boton. */
+  try {
+    TG_IDIOMA.registrar('como moverse', function () {
+      var lbl = document.getElementById('hm-toggle-label');
+      if (lbl) lbl.textContent = HM_T[hmLang()].label;
+      var card = document.getElementById('hm-card');
+      if (card && card.style.display !== 'none') hmRender();
+    });
+  } catch (e) {}
+
   if (document.readyState !== 'loading') { hmInit(); }
   else { document.addEventListener('DOMContentLoaded', hmInit); }
 })();
@@ -33217,6 +33282,16 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
 
   if (document.readyState !== 'loading') { glInit(); }
   else { document.addEventListener('DOMContentLoaded', glInit); }
+  /* El glosario canario: 14 terminos con su definicion. El rotulo del boton
+     solo se refrescaba al abrir el panel de fiestas. */
+  try {
+    TG_IDIOMA.registrar('glosario canario', function () {
+      var b = document.getElementById('gl-toggle');
+      if (b) b.textContent = GL_T[glLang()];
+      var l = document.getElementById('gl-list');
+      if (l && l.style.display === 'block') glRender();
+    });
+  } catch (e) {}
 })();
 </script>
 
@@ -34680,6 +34755,17 @@ function closePrivacyPanel() {
 
   // Check inicial (si ya se abre offline)
   if (!navigator.onLine) showOffline();
+  /* El cartel nace en castellano dentro del HTML y solo se traduce cuando de
+     verdad se cae la red. Se deja puesto en el idioma activo desde el primer
+     momento: asi lo que se lee en el fuente y lo que veria el usuario son lo
+     mismo, y el control de textos sin traducir no tiene que adivinarlo. */
+  try {
+    TG_IDIOMA.registrar('cartel de sin conexion', function () {
+      if (!bannerText) return;
+      if (banner && !banner.classList.contains('show')) bannerText.textContent = getOfflineText()[0];
+    });
+    if (bannerText) bannerText.textContent = getOfflineText()[0];
+  } catch (e) {}
 })();
 </script>
 
@@ -35236,6 +35322,18 @@ function closePrivacyPanel() {
     document.getElementById('consent-reject').onclick = function(){ done('denied'); };
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', show); else show();
+  /* Si el aviso sigue en pantalla, cambia con el idioma. Si ya se acepto o
+     rechazo esta oculto y no hay nada que repintar. */
+  try {
+    TG_IDIOMA.registrar('aviso de cookies', function () {
+      var b = document.getElementById('consent-banner');
+      if (!b || b.hidden) return;
+      var t = tt();
+      document.getElementById('consent-text').textContent = t.msg;
+      document.getElementById('consent-accept').textContent = t.ok;
+      document.getElementById('consent-reject').textContent = t.no;
+    });
+  } catch (e) {}
 })();
 </script>
 <script>
