@@ -1434,6 +1434,19 @@ control vuelve a significar algo.
 | service worker | 21 controles |
 | idiomas | 1.971 filas · 0 incompletas en los ocho base |
 
+### La maquinaria de los bloques 1 y 2, comprobada en el navegador
+
+| pieza | resultado |
+|---|---|
+| `LANGS` | 161 filas · los nueve idiomas sin un solo hueco |
+| `UI_TX` | 116 filas · los nueve idiomas sin un solo hueco |
+| pedir un idioma a medias | `bg` → `en`, no → `es` |
+| Wikipedia por idioma | `zht` pide `zh.wikipedia.org`, que existe |
+| `schema.org` | declara `bg` |
+| selector | 9 opciones · 0 fuera del desplegable · 8 visibles |
+| repintado por idioma | 8 módulos registrados |
+| errores de página | 0 |
+
 Los dos únicos invisibles del fichero son **dos espacios duros en francés**
 («Un tour rapide ?», «C'est parti !»), que es la tipografía correcta, y ocho
 `ZWJ` de emoji compuestos.
