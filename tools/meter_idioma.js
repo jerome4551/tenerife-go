@@ -10,10 +10,18 @@
  *
  *     node tools/meter_idioma.js bg plan.json [--probar]
  *
- * El plan tiene dos partes y las dos son opcionales:
+ * El plan tiene tres partes y las tres son opcionales:
  *   tablas:  { NOMBRE: { forma: "por idioma"|"por clave", valores: {...} } }
  *   sueltas: { "<numero de linea>": valor }      filas que no viven en una
  *            tabla con nombre (GL_DATA, DP_CARDS, VIS_BADGES, notas de linea)
+ *   porEs:   { "<texto en castellano>": { it: "...", nl: "..." } }
+ *            localiza la fila por lo que dice en castellano y mete VARIOS
+ *            idiomas de una vez. Es la forma de rellenar huecos repartidos
+ *            por places[]: 107 horarios repiten 52 textos, asi que se
+ *            escribe cada texto una vez y se aplica donde salga.
+ *
+ * Cada idioma entra detras del que le toca en el orden es,en,fr,de,it,nl,
+ * zh,zht,bg, no al final: asi la fila se lee igual que las demas.
  */
 'use strict';
 const fs = require('fs');
@@ -207,6 +215,60 @@ if (plan.sueltas && Object.keys(plan.sueltas).length) {
     cortes.push(corte(ref, plan.sueltas[L]));
   }
 }
+/* ── filas localizadas por su texto en castellano ──────────────────── */
+if (plan.porEs && Object.keys(plan.porEs).length) {
+  const ORDEN = ['es','en','fr','de','it','nl','zh','zht','bg'];
+  const pila = [], objetos = [];
+  for (let k = 0; k < src.length; k++) {
+    const c = src[k];
+    if (c === '"' || c === "'" || c === '`') { const q = c; for (k++; k < src.length; k++) { if (src[k] === '\\') { k++; continue; } if (src[k] === q) break; } continue; }
+    if (c === '/' && src[k+1] === '/') { k = src.indexOf('\n', k); if (k < 0) break; continue; }
+    if (c === '/' && src[k+1] === '*') { k = src.indexOf('*/', k) + 1; continue; }
+    if (c === '{') pila.push(k);
+    else if (c === '}') { const a = pila.pop(); if (a !== undefined) objetos.push({ ini: a, fin: k + 1 }); }
+  }
+  objetos.sort((a, b) => (a.fin - a.ini) - (b.fin - b.ini));
+  const dentro = [];
+  const puestas = {};
+  for (const o of objetos) {
+    if (o.fin - o.ini > 200000) continue;
+    const t = src.slice(o.ini, o.fin);
+    if (!/(?:^|[{,\s])(?:es|"es"|'es')\s*:/.test(t)) continue;
+    let v; try { v = eval('(' + t + ')'); } catch (e) { continue; }
+    if (typeof v.es !== 'string') continue;
+    if (dentro.some(f => o.ini > f.ini && o.fin < f.fin)) continue;
+    dentro.push(o);
+    const quiere = plan.porEs[v.es];
+    if (!quiere) continue;
+    let es;
+    try { es = entradas(src, o.ini); } catch (e) { aviso.push('no se puede leer la fila de la linea ' + (src.slice(0, o.ini).split('\n').length)); continue; }
+    const hay = {}; es.forEach(e => { if (ORDEN.indexOf(e.clave) !== -1) hay[e.clave] = e; });
+    /* cada idioma que falta va detras del ultimo que SI esta y le precede en
+       el orden canonico; los que caen en el mismo sitio salen juntos y en
+       orden, porque si no quedarian del reves */
+    const grupos = {};
+    for (const l of ORDEN) {
+      if (hay[l] || quiere[l] === undefined) continue;
+      let ant = null;
+      for (let i = ORDEN.indexOf(l) - 1; i >= 0; i--) if (hay[ORDEN[i]]) { ant = hay[ORDEN[i]]; break; }
+      if (!ant) { aviso.push('la fila "' + v.es.slice(0, 30) + '" no tiene ningun idioma antes de ' + l); continue; }
+      (grupos[ant.valFin] = grupos[ant.valFin] || { ref: ant, ls: [] }).ls.push(l);
+      puestas[v.es] = (puestas[v.es] || 0) + 1;
+    }
+    for (const pos of Object.keys(grupos)) {
+      const g = grupos[pos];
+      const st = estilo(src, g.ref);
+      let texto = '';
+      for (const l of g.ls) {
+        const clave = st.entrecomillada ? cadena(l, st.q) : l;
+        texto += (st.propiaLinea ? ',\n' + st.sangria : ', ') + clave + ':' + (st.espacio ? ' ' : '') + serie(quiere[l], st.q, st.entrecomillada);
+      }
+      cortes.push({ pos: g.ref.valFin, texto: texto });
+    }
+  }
+  for (const k of Object.keys(plan.porEs)) if (!puestas[k]) aviso.push('no se encontro ninguna fila que diga: ' + k.slice(0, 50));
+}
+
 if (aviso.length) { console.log('PROBLEMAS:'); aviso.forEach(a => console.log('   ' + a)); process.exit(1); }
 cortes.sort((a, b) => b.pos - a.pos);
 for (const c of cortes) src = src.slice(0, c.pos) + c.texto + src.slice(c.pos);

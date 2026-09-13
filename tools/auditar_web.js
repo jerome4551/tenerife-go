@@ -208,8 +208,23 @@ function revisar(tablas, o) {
     if (!bien) docMal = 1;
   } catch (e) { console.log('  --  no se pudo leer AUDITORIA-FINAL.md'); }
   console.log('  claves que el codigo pide y faltan: %d %s', n(r.pedidas), r.pedidas.slice(0,4).join(' '));
-  console.log('  filas a las que les falta un idioma: %d', n(r.incompletas));
-  r.incompletas.slice(0, 6).forEach(x => console.log('      ' + x));
+  /* Las excepciones se declaran en el fuente con un comentario
+     "SIN-TRADUCIR: <tabla>", no en una lista dentro de esta herramienta.
+     wikiTitleOverrides son titulos EXACTOS de articulo de Wikipedia: uno
+     inventado no devuelve el articulo, devuelve nada. Separarlas es lo que
+     hace que la cifra de al lado vuelva a significar algo. */
+  let exentas = [];
+  try {
+    const html = require('fs').readFileSync(require('path').join(__dirname, '..', 'index.html'), 'utf8');
+    exentas = [...html.matchAll(/SIN-TRADUCIR:\s*([A-Za-z_$][\w$]*)/g)].map(m => m[1]);
+  } catch (e) {}
+  const esExenta = x => exentas.some(t => String(x).indexOf(t + '.') === 0);
+  const huecos = r.incompletas.filter(x => !esExenta(x));
+  const fuera  = r.incompletas.filter(esExenta);
+  console.log('  filas a las que les falta un idioma: %d', n(huecos));
+  huecos.slice(0, 6).forEach(x => console.log('      ' + x));
+  if (fuera.length)
+    console.log('  exentas por declaracion en el fuente: %d   (%s)', fuera.length, [...new Set(exentas)].join(', '));
   console.log('  cadenas vacias                   : %d', n(r.vacias));
   console.log('  {marcadores} descuadrados        : %d', n(r.interp));
   console.log('  etiquetas HTML descuadradas      : %d', n(r.html));

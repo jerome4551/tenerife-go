@@ -1274,7 +1274,17 @@ instalación nueva sin ningún envío previo, verde —no hay falsa alarma—.
     pintan una vez y sus funciones no se alcanzan desde `setLang`. Una lista
     de llamadas al final de `setLang` no vale, porque crece de una en una y
     el módulo siguiente se queda fuera. Ahora cada uno se apunta a `TG_IDIOMA`.
-53. **`UI_TX` no es un objeto, son once.** Se declara con
+53. **Buscar por el último idioma no encuentra al que le falta el último
+    idioma.** El barrido localizaba las filas por la clave `zht`. Una fila sin
+    `zht` no tiene `zht`: no salía ni completa ni incompleta. Con eso, 84
+    horarios daban verde teniendo el chino sin traducir. Se busca por `es`,
+    que es el original y lo tienen todas.
+54. **Una excepción que vive en la cabeza no es una excepción, es un control
+    roto.** Las 15 filas de `wikiTitleOverrides` no se traducen a propósito, y
+    el informe salía rojo cada vez hasta que uno se acostumbra a ignorarlo. La
+    excepción se declara ahora en el fuente, al lado de la tabla, y la
+    herramienta la lee.
+55. **`UI_TX` no es un objeto, son once.** Se declara con
     `Object.assign({...},{...},{...})` y recibe diez `Object.assign` más.
     Escribir en el primero deja las otras diez partes sin idioma, en silencio.
 
@@ -1372,6 +1382,67 @@ Quedan **260 textos distintos** que siguen sin cambiar. Esos sí son texto fijo
 en castellano, y salen igual en los nueve idiomas desde antes del búlgaro: 45
 son frecuencias de línea («🕐 L-V, 3 salidas/día»), 51 la política de
 privacidad y el resto rótulos, `aria-label` y `title` repartidos por la app.
+
+---
+
+## La auditoría completa de septiembre, y los 84 horarios que nadie veía
+
+El barrido buscaba las filas de idioma **por la clave `zht`**, por ser la
+última de las ocho. Parecía cómodo y dejaba fuera justo lo que hay que
+encontrar: *una fila a la que le falta `zht` no tiene `zht`*, así que no
+aparecía ni como completa ni como hueco. Ahora se busca por `es`, que lo tiene
+toda fila de idioma porque el castellano es el original.
+
+Con eso salieron **99 filas incompletas en los ocho idiomas base**, ninguna del
+búlgaro:
+
+| campo | filas | qué les faltaba |
+|---|---|---|
+| `hours` de lugar | 51 | chino simplificado y tradicional |
+| `hours` de lugar | 33 | italiano, neerlandés y los dos chinos |
+| `wikiTitleOverrides` | 15 | a propósito |
+
+Son **107 lugares con horario y 52 textos distintos**, porque se repiten
+(«Urgencias 24h · 365 días» sale en 11 hospitales). Un turista chino leía
+`L-V 9:00–17:00` en 84 fichas. Traducidos los 52 textos, los 107 lugares están
+completos en los nueve idiomas.
+
+`tools/meter_idioma.js` aprendió a localizar una fila **por lo que dice en
+castellano** y a meter varios idiomas de una vez, cada uno en su sitio del
+orden `es,en,fr,de,it,nl,zh,zht,bg`. Es lo que hará falta para `places[]`.
+
+### Una excepción declarada se lee en el fuente, no en la herramienta
+
+`wikiTitleOverrides` no son textos: son los títulos **exactos** de artículos que
+ya existen en cada Wikipedia. Un título inventado no devuelve el artículo,
+devuelve nada. Esa excepción estaba antes en la cabeza de quien leía el
+informe, y el control salía rojo cada vez hasta acostumbrarse a ignorarlo.
+Ahora se declara al lado de la tabla con un comentario `SIN-TRADUCIR:
+<nombre>` y las herramientas lo leen: quien lee el código ve por qué, y el
+control vuelve a significar algo.
+
+### Lo que sí está en verde
+
+| bloque | resultado |
+|---|---|
+| sintaxis | 32 scripts en línea, `sw.js` y `enviar-notificacion.js`, 0 fallos |
+| red TITSA | 8 controles · 183 líneas · 6.263 paradas · 2.514 del catálogo |
+| datos | 804 lugares · 99 orientaciones · 0 fuera de la caja de Tenerife |
+| codificación | NFC puro · 0 mojibake · 0 U+FFFD · 0 CRLF · 0 tabuladores |
+| inyección | 0 `eval` · 0 `new Function` · 0 `document.write` · 0 `_blank` sin `noopener` |
+| mapa sin conexión | 76 controles · 99,77 % de píxeles pintados · 12 teselas sin red |
+| service worker | 21 controles |
+| idiomas | 1.971 filas · 0 incompletas en los ocho base |
+
+Los dos únicos invisibles del fichero son **dos espacios duros en francés**
+(«Un tour rapide ?», «C'est parti !»), que es la tipografía correcta, y ocho
+`ZWJ` de emoji compuestos.
+
+`frame-ancestors` sigue AUSENTE de la CSP y **no es un descuido**: la
+especificación prohíbe expresamente ponerlo en un `<meta>` y GitHub Pages no
+deja mandar cabeceras. El anti-clickjacking lo hace un script que va antes que
+nada. El día que haya un Cloudflare o un Netlify delante, hay que emitirla de
+verdad ahí.
 
 ---
 
