@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 4cbd6a2ade9e29c81fad4390578f0ea5
-             4.418.493 bytes · 1.347.146 comprimidos · 35.848 líneas
+index.html   md5 609db828010a19f59b83371c04c57f33
+             4.947.867 bytes · 1.528.158 comprimidos · 36.392 líneas
 ```
 
 ---
@@ -18,10 +18,10 @@ index.html   md5 4cbd6a2ade9e29c81fad4390578f0ea5
 
 | | |
 |---|---|
-| Lugares | **804**, con descripción y categoría en 8 idiomas |
+| Lugares | **804**, con descripción y categoría en 9 idiomas |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
-| Idiomas | es · en · fr · de · it · nl · zh · zht |
+| Idiomas | es · en · fr · de · it · nl · zh · zht · **bg** — los nueve terminados |
 | Ficheros | 39 en el repo · Leaflet y MarkerCluster auto-alojados en `vendor/` |
 
 ## Qué lineas paran en cada marquesina
@@ -1605,6 +1605,125 @@ Cazó tres erratas mías antes de que entraran: `Каняда с` partido en dos
 palabras, `Ла Granja` con los dos alfabetos mezclados y `извајани` con la `ј`
 serbia en vez de la `я` búlgara.
 
+### Latín pegado al cirílico dentro de la misma palabra
+
+El revisor aprendió una comprobación más, y siguió mordiendo: la `c`, la `o`,
+la `a`, la `e` y la `p` **se ven igual en los dos alfabetos**, así que al
+teclear se cuelan y a ojo son invisibles. `Лас Дееcас` llevaba una `c` latina.
+No se nota leyendo, pero es otra cadena: el buscador no la encuentra y el
+lector de pantalla cambia de idioma a mitad de palabra.
+
+Paró seis en el resto de las tandas: `Лас Дееcас`, `мontverde`, `риба вieja`,
+`Ла Монтанieта`, `коregidor` y `Емeterio`. Y una de cifra: `Стопроцентово`
+había escrito en letra el `100%` del original.
+
+## La errata muda al transliterar un nombre propio
+
+Transliterar se hace a mano y la errata **no se ve**: `Гранадиля` y `Гранадия`
+suenan casi igual. Pero son dos cadenas distintas, el buscador no las encuentra
+juntas y, como cada una vive en una ficha diferente, **nunca se ven una al lado
+de la otra**.
+
+`tools/auditar_cirilico.py` busca variantes raras muy parecidas a una
+frecuente. Encontró tres: una mía de la tanda, cuatro `Фаняабе` y dos
+`Гранадиля` mal escritas de tandas anteriores, y `Лас Галетас` donde el resto
+del fichero pone `Лас Гайетас`.
+
+Dos decisiones costaron más que el control:
+
+**Qué es nombre propio.** En búlgaro la mayúscula no dice nada, porque toda
+frase abre con una. Lo que sí vale: un nombre propio **no se escribe nunca en
+minúscula**. El primer intento filtraba por posición —saltar la palabra que
+abre frase— y con eso 17 de las 24 `Гранадиля` no se miraban siquiera. Una
+errata aparece **una sola vez**: si justo esa vez abre frase, el control se
+queda ciego. Ese filtro está fuera.
+
+**Qué diferencia es errata.** El búlgaro declina por el final y el castellano
+hace el plural igual (`Америка`/`Америкас`, `Уебкамера`/`Уебкамери`), así que
+una diferencia que esté **solo en la última letra** no se mira. La errata de
+transliteración cae en medio de la palabra.
+
+Tres parecidas que sí son distintas quedan declaradas con `CIRILICO-OK` junto a
+`IDIOMAS_INCOMPLETOS`: `Америка` (el continente), `Каняда` (el singular de
+`Ла Каняда дел Капричо`) y `Кармел` (la Virgen del Carmen en búlgaro es del
+monte Carmelo; el sitio de Anaga es `Крус дел Кармен`).
+
+Probado inyectando las tres erratas reales: las caza y vuelve a verde. **La
+primera versión no cazaba dos de las tres**, y el motivo era que mi propio
+comentario en el fuente escribía las formas malas como ejemplo, así que el
+control se perdonaba a sí mismo. Ahora se quitan los comentarios antes de
+mirar, y el comentario ya no escribe formas malas.
+
+## El bloque 4b, cerrado
+
+| | |
+|---|---|
+| `desc` | 804 de 804 |
+| `cat` | 804 de 804 |
+| `hours` | 107 de 107 |
+| `parking.aviso` | 25 textos — **no estaban en la cuenta** |
+
+Los 25 avisos de aparcamiento vivían en `parking.aviso`, no en `desc`, así que
+no salían en ninguna cuenta de descripciones. Los encontró el barrido, no yo.
+
+El barrido cierra en **2.160 de 2.160** filas: 419 de interfaz, 1.741 en
+`places[]`, cero huecos. Solo quedan las 15 exentas por declaración
+(`wikiTitleOverrides`, títulos exactos de artículo de Wikipedia).
+
+De paso, una errata del **castellano** que apareció al traducir la playa de
+Martiánez: *«El baño es exposto»* por *expuesto*.
+
+## El arranque hablaba castellano en los ocho idiomas
+
+Al mirar la app ya arrancada en búlgaro, el botón de capas del mapa decía
+**«Calles»**. No era del búlgaro: pasaba en los ocho idiomas que no son el
+castellano.
+
+Los textos de interfaz tienen **dos caminos** y solo uno estaba cuidado:
+
+- **`setLang`**, cuando el usuario toca el selector. Ese estaba bien.
+- **el arranque**, cuando la app se construye ya en el idioma del móvil —a
+  propósito, porque `setLang` rehace todos los marcadores y arrancar hacía el
+  trabajo dos veces—. Ese solo llamaba a `applyUiTx()`, que repasa los nodos
+  con `data-tx`. Todo lo que `setLang` escribe **a mano leyendo `LANGS`** se
+  quedaba con el castellano del marcado.
+
+Eran ocho nodos: los cuatro rótulos de capa del mapa más el activo, el
+*placeholder* del buscador, el título de los microclimas, el de las fiestas y
+su nota de fechas móviles. Tampoco se fijaba el `lang` del documento, así que
+un lector de pantalla leía búlgaro con reglas de castellano.
+
+**No se ve probando a mano**: en cuanto tocas el selector se arregla y no vuelve
+a pasar en esa sesión. Lo sufría justo quien nunca lo toca.
+
+El arreglo no parchea nodo a nodo. Los dos bloques de texto salen de `setLang` a
+`pintarRotulosIdioma()` y `repintarModulosIdioma()`, y los llaman los dos
+caminos. Van separadas porque en medio hay trabajo caro —`rebuildCategoryList`,
+`updateMarkers`— que el arranque no debe repetir, y así el orden de `setLang` no
+se mueve ni un paso.
+
+`tools/auditar_arranque.js` carga la página **dos veces por idioma** —arrancando
+en él, y arrancando en castellano y cambiando— y compara las dos fotos. No
+necesita saber qué textos son: `setLang` es la referencia. Los idiomas los lee
+del fuente, así que el día que entre uno nuevo lo mira sin que nadie toque la
+herramienta.
+
+Probado quitando el arreglo: **45 textos distintos**. Y comprobado además en
+valores absolutos, no solo en que las dos fotos coincidan, porque dos caminos
+igual de rotos también coinciden.
+
+## El búlgaro, dentro
+
+`IDIOMAS_INCOMPLETOS` queda vacía y las dos marcas `data-incompleto="bg"` salen
+del marcado: decían lo contrario de lo que pasa ahora. Las **19 cifras** de la
+interfaz pasan de 8 a 9 idiomas, y con ellas los comentarios que cuentan
+cuántos hay hoy; los que narran un fallo pasado se quedan como estaban, que
+eran ciertos entonces.
+
+La audioguía ya lo tenía resuelto: `TTS_LOCALE` lleva `bg: 'bg-BG'` y
+`hasVoiceFor()` esconde el botón cuando el aparato no tiene voz para el idioma,
+en vez de leer cirílico con voz castellana.
+
 ---
 
 ---
@@ -1639,6 +1758,8 @@ Y cada bloque por separado, si hace falta:
 | `tools/meter_idioma.js` | mete un idioma dentro de cada fila, detrás de `zht` |
 | `tools/auditar_sin_traducir.js` | el texto que no cambia al pasar de español a búlgaro |
 | `tools/revisar_traduccion.py` | revisa una tanda traducida antes de meterla: avisos, cifras, horarios y alfabeto |
+| `tools/auditar_cirilico.py` | la errata muda al transliterar: una variante rara muy parecida a una frecuente |
+| `tools/auditar_arranque.js` | el texto que se queda en el idioma de **arranque**, comparando contra `setLang` |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con
