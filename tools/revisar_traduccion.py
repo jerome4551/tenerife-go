@@ -59,6 +59,13 @@ for e, b in t.items():
     n = len(ES.findall(' ' + sinDir))
     if n >= 2:
         mal.append('parece castellano dentro del bulgaro (%d): %s' % (n, sinDir[:70]))
+    # LATIN PEGADO A CIRILICO DENTRO DE LA MISMA PALABRA. Se cuela al
+    # teclear -la c, la o, la a, la e y la p se ven igual en los dos
+    # alfabetos- y a ojo es invisible: "Лас Дееcас" lleva una c latina.
+    # Rompe la busqueda y el lector de pantalla.
+    mezcla = re.findall(r'[\u0400-\u04FF]+[A-Za-z]|[A-Za-z]+[\u0400-\u04FF]', b)
+    if mezcla:
+        mal.append('latin pegado a cirilico %s: %s' % (sorted(set(mezcla)), b[:60]))
     # letras cirilicas que NO existen en bulgaro: se cuelan del ruso, del
     # serbio o del ucraniano y pasan desapercibidas porque "parecen" bien
     fuera = set(re.findall(r'[ёыэіїєјљњћџѐўґЁЫЭІЇЄЈЉЊЋЏЎҐ]', b))
