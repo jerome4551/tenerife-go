@@ -147,7 +147,7 @@ emojis: 2.894, 250 distintos
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
 
-## Idiomas · 32 tablas, 650 filas (y 2.161 filas en todo el fuente)
+## Idiomas · 32 tablas, 649 filas (y 2.160 filas en todo el fuente)
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
@@ -1525,6 +1525,14 @@ control que da verde sobre lo que no ha mirado.
    contaba como política de privacidad**, porque el panel también tiene spans
    sin clase. Al arreglarlo aparecieron diez textos más que llevaban ahí desde
    siempre. Ahora la zona se decide con el elemento en la mano.
+
+### El eslogan se queda en castellano, y no es un descuido
+
+«Somos parte de ti» lo traduje sin mirar, y hay que deshacerlo: en la pantalla
+de bienvenida ese eslogan **está grabado dentro del arte de la marca**, una
+imagen, no texto. Traducirlo en la barra superior hacía que el logotipo y la
+barra dijeran cosas distintas en la misma pantalla. El módulo de bienvenida ya
+lo tenía decidido y escrito desde antes; la decisión estaba, yo no la vi.
 
 ### Lo que no se traduce se declara donde está
 
