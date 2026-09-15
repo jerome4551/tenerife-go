@@ -9,7 +9,7 @@
 
   Esta aplicacion y todo su contenido son obra original del autor:
   el codigo fuente, los textos y descripciones de los lugares,
-  las traducciones a 8 idiomas, la base de conocimiento del asistente,
+  las traducciones a 9 idiomas, la base de conocimiento del asistente,
   el diseno, la identidad visual y la marca "Tenerife Go".
 
   Protegido por el Real Decreto Legislativo 1/1996 (Ley de Propiedad
@@ -144,7 +144,7 @@ window.onunhandledrejection = function(e) {
       "name": "Tenerife Go",
       "alternateName": "Tenerife GO — Mapa Interactivo de Tenerife",
       "url": "https://jerome4551.github.io/tenerife-go/",
-      "description": "Guía turística gratuita de Tenerife con mapa interactivo: más de 700 lugares verificados, playas, senderos, miradores, gastronomía canaria, guachinches, transporte TITSA, rutas, planificador de día y alertas meteorológicas. Disponible en 8 idiomas. Somos parte de ti.",
+      "description": "Guía turística gratuita de Tenerife con mapa interactivo: más de 700 lugares verificados, playas, senderos, miradores, gastronomía canaria, guachinches, transporte TITSA, rutas, planificador de día y alertas meteorológicas. Disponible en 9 idiomas. Somos parte de ti.",
       "applicationCategory": "TravelApplication",
       "operatingSystem": "Web, Android, iOS",
       "browserRequirements": "Requires JavaScript",
@@ -4594,7 +4594,7 @@ window.onunhandledrejection = function(e) {
   /* 3) PANTALLA DE BIENVENIDA v2 — 100% código (sin imagen JPEG)
         Emblema SVG dibujado a trazo (Teide + sol + olas), wordmark con
         shimmer dorado, partículas flotantes y botón real "Comenzar"
-        traducido a los 8 idiomas. Offline-first, 0 requests, ~190KB menos. */
+        traducido a los 9 idiomas. Offline-first, 0 requests, ~190KB menos. */
   .v19-welcome {
     position: fixed;
     inset: 0;
@@ -6198,7 +6198,7 @@ window.onunhandledrejection = function(e) {
         <!-- OCULTO HASTA QUE ESTE COMPLETO. Va AQUI DENTRO, no detras del
              cierre del desplegable: puesto fuera se quedaba flotando en la
              cabecera y se salia de la pantalla. -->
-        <div class="lang-option" data-incompleto="bg" onclick="setLang('bg')">
+        <div class="lang-option" onclick="setLang('bg')">
           <span class="lang-option-flag">🇧🇬</span>
           <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Български</span>
           <span class="lang-option-check" id="check-bg" style="display:none">✓</span>
@@ -8493,7 +8493,7 @@ try {
    medias, sin que nadie hubiera elegido nada. Esconder la opcion del menu no
    tocaba ese camino.
    Cuando el bulgaro este completo se vacia esta lista y se acabo. */
-const IDIOMAS_INCOMPLETOS = ['bg'];
+const IDIOMAS_INCOMPLETOS = [];
 
 /* Nombres propios en cirilico que se parecen a otro pero NO son el mismo.
    tools/auditar_cirilico.py caza la errata muda al transliterar: la que se
@@ -8992,20 +8992,35 @@ function applyUiTx() {
   try { if (typeof renderCartContent    === 'function') renderCartContent(); } catch (_) {}
 }
 
-function setLang(lang) {
-  if (IDIOMAS_INCOMPLETOS.indexOf(lang) !== -1) {
-    var guardado = null;
-    try { guardado = localStorage.getItem('tg_lang'); } catch (e) {}
-    if (guardado === lang) { try { localStorage.removeItem('tg_lang'); } catch (e) {} }
-    lang = 'en';
-  }
-  if (!LANGS[lang]) lang = (lang === 'zht') ? 'zh' : 'es';
-  currentLang = lang;
-  // Recordar la eleccion: antes se perdia al recargar y el turista
-  // volvia a encontrarse la app en espanol.
-  try { localStorage.setItem('tg_lang', lang); } catch (e) {}
-  try { document.documentElement.lang = (lang === 'zht') ? 'zh-Hant' : (lang === 'zh') ? 'zh-Hans' : lang; } catch(e){}
+/* LOS TEXTOS DE INTERFAZ TIENEN DOS CAMINOS, NO UNO.
+   Uno es setLang, cuando el usuario toca el selector. El otro es el
+   ARRANQUE: el idioma se resuelve al principio del fichero y la app se
+   construye ya en el, sin pasar por setLang -a proposito, porque setLang
+   rehace todos los marcadores y arrancar hacia el trabajo dos veces-.
+
+   El arranque se conformaba con applyUiTx(), que solo repasa los nodos con
+   data-tx. Todo lo que se escribe a mano leyendo LANGS se quedaba con el
+   castellano que trae el marcado: el rotulo de la capa del mapa, el
+   placeholder del buscador, el titulo de los microclimas, el de las fiestas
+   y su nota de fechas moviles. Ocho nodos, en los ocho idiomas que no son
+   el castellano.
+
+   No se ve probando a mano: en cuanto tocas el selector se arregla y ya no
+   vuelve a pasar en esa sesion. Lo sufria justo quien nunca lo toca, que es
+   quien entra con el movil ya en su idioma.
+
+   Por eso los dos bloques de texto salen de setLang a estas dos funciones y
+   los llaman los dos caminos. Van separadas y no juntas porque en setLang
+   hay trabajo caro en medio -rebuildCategoryList, updateMarkers- que el
+   arranque no debe repetir, y el orden de lo que va antes y despues de ese
+   trabajo se respeta tal cual estaba.
+   El control que lo vigila es tools/auditar_arranque.js: carga la pagina
+   arrancando en cada idioma y arrancando en castellano y cambiando, y
+   compara las dos. Lo que salga distinto es texto que el arranque no pinta,
+   sin necesidad de saber de antemano cuales son. */
+function pintarRotulosIdioma() {
   const L = t();
+  const lang = currentLang;
 
   // Botón principal
   document.getElementById('lang-flag').textContent = L.flag;
@@ -9040,7 +9055,46 @@ function setLang(lang) {
   if (btnIsla) btnIsla.textContent = L.isla;
   // Actualizar label activo en botón capas
   const layerLabels = { streets: L.streets, satellite: L.satellite, topo: L.topo, isla: L.isla };
-  document.getElementById('layers-active-label').textContent = layerLabels[currentLayer] || L.streets;
+  document.getElementById('layers-active-label').textContent =
+    layerLabels[typeof currentLayer !== 'undefined' ? currentLayer : 'streets'] || L.streets;
+}
+
+function repintarModulosIdioma() {
+  // Barra inferior, pestanas y calculador A->B
+  applyUiTx();
+  // Estado del mar: se repinta en el idioma nuevo
+  if (typeof marRender === 'function' && typeof marData !== 'undefined' && marData) marRender();
+  // "Banate aqui hoy": igual. Sin esto se quedaba en el idioma con el
+  // que se pinto y solo cambiaba al cerrar y reabrir el panel del mar.
+  // Usa la cache de viento (30 min), asi que no dispara red.
+  if (typeof renderBanoHoy === 'function') renderBanoHoy();
+  // El panel de guaguas tambien: las etiquetas de grupo y la nota de
+  // la 325 son traducidas y se quedaban en el idioma anterior.
+  if (typeof buildBusPanel === 'function') buildBusPanel();
+
+  // Ruta del día — refrescar textos
+  if (typeof refreshDayTripTexts === 'function') refreshDayTripTexts();
+
+  /* Los modulos que pintan su propio texto. Antes iban uno a uno unas
+     lineas mas arriba y el que no estuviera en esa lista se quedaba en el
+     idioma de arranque. */
+  TG_IDIOMA.repintar();
+}
+
+function setLang(lang) {
+  if (IDIOMAS_INCOMPLETOS.indexOf(lang) !== -1) {
+    var guardado = null;
+    try { guardado = localStorage.getItem('tg_lang'); } catch (e) {}
+    if (guardado === lang) { try { localStorage.removeItem('tg_lang'); } catch (e) {} }
+    lang = 'en';
+  }
+  if (!LANGS[lang]) lang = (lang === 'zht') ? 'zh' : 'es';
+  currentLang = lang;
+  // Recordar la eleccion: antes se perdia al recargar y el turista
+  // volvia a encontrarse la app en espanol.
+  try { localStorage.setItem('tg_lang', lang); } catch (e) {}
+  try { document.documentElement.lang = (lang === 'zht') ? 'zh-Hant' : (lang === 'zh') ? 'zh-Hans' : lang; } catch(e){}
+  pintarRotulosIdioma();
 
   /* El mapa detallado rotula en el idioma que se le fija al construirlo, asi
      que si el usuario cambia de idioma hay que rehacer la capa. Solo cuando
@@ -9065,25 +9119,7 @@ function setLang(lang) {
   updateMarkers();
   updateFilterStatus();
 
-  // Barra inferior, pestanas y calculador A->B
-  applyUiTx();
-  // Estado del mar: se repinta en el idioma nuevo
-  if (typeof marRender === 'function' && typeof marData !== 'undefined' && marData) marRender();
-  // "Banate aqui hoy": igual. Sin esto se quedaba en el idioma con el
-  // que se pinto y solo cambiaba al cerrar y reabrir el panel del mar.
-  // Usa la cache de viento (30 min), asi que no dispara red.
-  if (typeof renderBanoHoy === 'function') renderBanoHoy();
-  // El panel de guaguas tambien: las etiquetas de grupo y la nota de
-  // la 325 son traducidas y se quedaban en el idioma anterior.
-  if (typeof buildBusPanel === 'function') buildBusPanel();
-
-  // Ruta del día — refrescar textos
-  refreshDayTripTexts();
-
-  /* Los modulos que pintan su propio texto. Antes iban uno a uno unas
-     lineas mas arriba y el que no estuviera en esa lista se quedaba en el
-     idioma de arranque. */
-  TG_IDIOMA.repintar();
+  repintarModulosIdioma();
 
   // Cerrar dropdown
   document.getElementById('lang-dropdown').classList.remove('open');
@@ -15453,7 +15489,7 @@ function seaBuildHtml(marine, weather, place) {
   }
   /* Los dos avisos concretos van antes del generico: el de mar de fondo
      y el de piscinas naturales. Son los mismos textos del panel del mar,
-     ya traducidos a los ocho idiomas. */
+     ya traducidos a los nueve idiomas. */
   if (estado) {
     if (estado.fondo && estado.avisoFondo) {
       html += '<div class="popup-sea-warn">' + escapeHtml(estado.avisoFondo) + '</div>';
@@ -17866,14 +17902,20 @@ openPlaceFromHash();
 (function applyLateTexts() {
   function apply() {
     try {
-      if (typeof applyUiTx === 'function') applyUiTx();
+      /* Las mismas dos funciones que llama setLang, y por el mismo orden.
+         Antes aqui solo se llamaba a applyUiTx() y a mano la bandera y el
+         codigo del idioma; todo lo demas que setLang escribe leyendo LANGS
+         se quedaba en castellano para quien arrancaba en otro idioma.
+         Lo caro de setLang -rebuildCategoryList, updateMarkers- NO se
+         repite: la app ya se construyo en el idioma bueno. */
+      if (typeof pintarRotulosIdioma === 'function') pintarRotulosIdioma();
       if (typeof dpiRenderCards === 'function') dpiRenderCards();
       if (typeof dpRenderZoneCards === 'function') dpRenderZoneCards();
-      var flag = document.getElementById('lang-flag');
-      var code = document.getElementById('lang-code');
-      var L = LANGS[currentLang];
-      if (flag && L && L.flag) flag.textContent = L.flag;
-      if (code && L && L.code) code.textContent = L.code;
+      if (typeof repintarModulosIdioma === 'function') repintarModulosIdioma();
+      try {
+        document.documentElement.lang = (currentLang === 'zht') ? 'zh-Hant'
+                                      : (currentLang === 'zh')  ? 'zh-Hans' : currentLang;
+      } catch (e2) {}
     } catch (e) {}
   }
   if (document.readyState === 'loading') {
@@ -21249,7 +21291,7 @@ const TITSA_LINES = [
      laborables en cada sentido. Por eso la frecuencia dice "5
      salidas/dia" -que parseFrequencyMinutes convierte en 72 minutos de
      espera- y los horarios de verdad van en el campo nota, traducido a
-     los ocho idiomas, que es lo unico que ve el usuario. Los 80-90 min
+     los nueve idiomas, que es lo unico que ve el usuario. Los 80-90 min
      que habia antes eran el hueco mas corto entre dos salidas, no el
      normal: los reales van de 80 a 330 minutos.
 
@@ -24438,7 +24480,7 @@ function buildStopLineMap() {
 /* TITSA no cobra por linea sino por trayecto: la tarifa sale de las zonas
    entre origen y destino, asi que «el precio de la 111» no existe como dato.
    Cuando la linea cruza zona, `precioDesde` marca que el importe es el suelo
-   y no la tarifa del viaje, y el prefijo se traduce en los 8 idiomas. */
+   y no la tarifa del viaje, y el prefijo se traduce en los 9 idiomas. */
 /* FRECUENCIA DE LINEA, TRADUCIDA SIN TOCAR EL DATO.
    `frecuencia` es un campo de TITSA_LINES y se queda como esta: la clave
    de esta tabla es su valor en castellano y el valor son los otros ocho
@@ -25877,7 +25919,7 @@ window.addEventListener('hashchange', () => {
     };
   }
 
-  /* Los textos del modulo PWA, en los 8 idiomas.
+  /* Los textos del modulo PWA, en los 9 idiomas.
 
      Estaban todos fijos en espanol: el banner de instalar, el aviso de
      version nueva, el panel de informacion entero y sus cuatro dialogos.
@@ -26481,7 +26523,7 @@ window.addEventListener('hashchange', () => {
       <button type="button" class="v19-w-lang" data-lang="nl" onclick="setLang('nl')" data-sin-traducir="codigo de idioma">NL</button>
       <button type="button" class="v19-w-lang" data-lang="zh" onclick="setLang('zh')" data-sin-traducir="codigo de idioma">中文</button>
       <button type="button" class="v19-w-lang" data-lang="zht" onclick="setLang('zht')" data-sin-traducir="codigo de idioma">繁體</button>
-      <button type="button" class="v19-w-lang" data-lang="bg" data-incompleto="bg" onclick="setLang('bg')" data-sin-traducir="codigo de idioma">BG</button>
+      <button type="button" class="v19-w-lang" data-lang="bg" onclick="setLang('bg')" data-sin-traducir="codigo de idioma">BG</button>
     </div>
     <button type="button" class="v19-w-btn" id="v19-welcome-start">Comenzar</button>
   </div>
@@ -26524,7 +26566,7 @@ window.addEventListener('hashchange', () => {
   'use strict';
   var SEEN_KEY = 'tenerife.welcome.seen';
 
-  // Traducciones del botón "Comenzar" (8 idiomas). La tagline
+  // Traducciones del botón "Comenzar" (9 idiomas). La tagline
   // "Somos parte de ti" se mantiene en ES como identidad de marca.
   var WELCOME_I18N = { es: "Comenzar", en: "Start", fr: "Commencer", de: "Starten", it: "Inizia", nl: "Beginnen", zh: "\u5f00\u59cb\u63a2\u7d22", zht: "\u958b\u59cb\u63a2\u7d22", bg: "Започни" };
   function updateWelcomeTexts() {
@@ -26717,7 +26759,7 @@ window.addEventListener('hashchange', () => {
      Se ofrece UNA sola vez (localStorage 'tenerife.tour.seen'): al
      cerrar la bienvenida aparece un mini-diálogo "¿Tour rápido?" con
      [Ver el tour] / [Ahora no]. Si acepta: 6 pasos con foco (spotlight)
-     sobre la UI real. En 8 idiomas. Relanzable: window.v19StartTour().
+     sobre la UI real. En 9 idiomas. Relanzable: window.v19StartTour().
      ════════════════════════════════ -->
 <style>
 /* ══ ANIMACIONES v3 — micro-interacciones (CSS puro) ═══════════ */
@@ -26896,15 +26938,15 @@ window.addEventListener('hashchange', () => {
   function markSeen() { try { localStorage.setItem(KEY, '1'); } catch (e) {} }
 
   var I18N = {
-    es: {pt:"¿Un tour rápido?",pb:"Te enseñamos lo esencial de Tenerife Go en 30 segundos.",yes:"Ver el tour",no:"Ahora no",skip:"Saltar",next:"Siguiente",done:"¡A explorar!",back:"Atr\u00e1s",steps:[["Busca cualquier lugar","M\u00e1s de 700 lugares verificados: playas, senderos, guachinches, miradores y mucho m\u00e1s."],["Filtra por categor\u00edas","Activa solo lo que te interesa hoy: naturaleza, gastronom\u00eda, cultura, deporte\u2026"],["\u00bfSin plan? Tira el dado","Te lleva a un lugar al azar. Con filtros puestos, la sorpresa es a tu gusto."],["Elige tu mapa","Toca para cambiar entre calles, sat\u00e9lite y relieve. Ideal para senderos."],["Microclimas","Aqu\u00ed llueve en un pueblo y hace sol en el siguiente. Mira el tiempo real por zonas."],["El mar hoy","Estado del mar en 7 costas. Antes de ba\u00f1arte o ir a una piscina natural, m\u00edralo."],["Fiestas y tradiciones","Romer\u00edas, carnavales y fiestas patronales con sus fechas. La cultura de la isla."],["Guaguas","Paradas cercanas y l\u00edneas TITSA para moverte sin coche."],["En tu idioma","Toda la app en 8 idiomas. C\u00e1mbialo aqu\u00ed cuando quieras."],["Tu barra de viaje","Favoritos, rutas, tienda, asistente y tu cuenta, siempre a mano."],["Logros","Marca lugares como visitados y desbloquea trofeos mientras descubres la isla."],["Toca los marcadores","Cada punto tiene fotos, descripci\u00f3n, el tiempo all\u00ed y c\u00f3mo llegar. \u00a1La isla es tuya!"]]},
-    en: {pt:"A quick tour?",pb:"Let us show you the essentials of Tenerife Go in 30 seconds.",yes:"Take the tour",no:"Not now",skip:"Skip",next:"Next",done:"Start exploring!",back:"Back",steps:[["Search any place","Over 700 verified places: beaches, trails, guachinches, viewpoints and much more."],["Filter by category","Show only what you fancy today: nature, food, culture, sports\u2026"],["No plan? Roll the dice","It takes you to a random place. With filters on, the surprise is your kind of surprise."],["Pick your map","Tap to switch between streets, satellite and terrain. Great for hiking."],["Microclimates","It can rain in one village and be sunny in the next. Live weather by area."],["The sea today","Sea conditions on 7 coasts. Check it before swimming or visiting a natural pool."],["Fiestas & traditions","Romer\u00edas, carnivals and patron saint festivities with their dates."],["Buses","Nearby stops and TITSA lines so you can get around without a car."],["In your language","The whole app in 8 languages. Change it here anytime."],["Your travel bar","Favourites, routes, shop, assistant and your account, always at hand."],["Achievements","Mark places as visited and unlock trophies as you explore the island."],["Tap the markers","Every point has photos, details, local weather and directions. The island is yours!"]]},
-    fr: {pt:"Un tour rapide ?",pb:"Découvrez l'essentiel de Tenerife Go en 30 secondes.",yes:"Voir le tour",no:"Plus tard",skip:"Passer",next:"Suivant",done:"C'est parti !",back:"Retour",steps:[["Cherchez un lieu","Plus de 700 lieux v\u00e9rifi\u00e9s : plages, sentiers, guachinches, miradors et bien plus."],["Filtrez par cat\u00e9gorie","Affichez seulement ce qui vous tente : nature, gastronomie, culture, sport\u2026"],["Sans plan ? Lancez le d\u00e9","Il vous emm\u00e8ne au hasard. Avec des filtres, la surprise reste \u00e0 votre go\u00fbt."],["Choisissez votre carte","Touchez pour passer de rues \u00e0 satellite ou relief. Parfait pour les randos."],["Microclimats","Il pleut dans un village et il fait soleil dans le suivant. M\u00e9t\u00e9o en direct par zone."],["La mer aujourd\u2019hui","\u00c9tat de la mer sur 7 c\u00f4tes. \u00c0 consulter avant de vous baigner."],["F\u00eates et traditions","Romer\u00edas, carnavals et f\u00eates patronales avec leurs dates."],["Bus","Arr\u00eats proches et lignes TITSA pour circuler sans voiture."],["Dans votre langue","Toute l\u2019app en 8 langues. Changez-la ici \u00e0 tout moment."],["Votre barre de voyage","Favoris, itin\u00e9raires, boutique, assistant et votre compte, toujours \u00e0 port\u00e9e."],["Troph\u00e9es","Marquez les lieux visit\u00e9s et d\u00e9bloquez des troph\u00e9es en explorant l\u2019\u00eele."],["Touchez les marqueurs","Chaque point a photos, infos, m\u00e9t\u00e9o locale et itin\u00e9raire. L\u2019\u00eele est \u00e0 vous !"]]},
-    de: {pt:"Eine kurze Tour?",pb:"Wir zeigen dir Tenerife Go in 30 Sekunden.",yes:"Tour starten",no:"Später",skip:"Überspringen",next:"Weiter",done:"Los geht's!",back:"Zur\u00fcck",steps:[["Orte suchen","\u00dcber 700 gepr\u00fcfte Orte: Str\u00e4nde, Wanderwege, Guachinches, Aussichtspunkte und mehr."],["Nach Kategorien filtern","Zeig nur, was dich heute interessiert: Natur, Gastronomie, Kultur, Sport\u2026"],["Kein Plan? W\u00fcrfle","Bringt dich zu einem zuf\u00e4lligen Ort. Mit Filtern bleibt die \u00dcberraschung nach deinem Geschmack."],["Karte w\u00e4hlen","Tippen wechselt zwischen Stra\u00dfen, Satellit und Gel\u00e4nde. Ideal zum Wandern."],["Mikroklimas","Im einen Dorf regnet es, im n\u00e4chsten scheint die Sonne. Wetter je Gebiet, live."],["Das Meer heute","Seegang an 7 K\u00fcsten. Vor dem Baden oder einem Naturbecken unbedingt ansehen."],["Feste & Traditionen","Romer\u00edas, Karneval und Patronatsfeste mit ihren Terminen."],["Busse","Haltestellen in der N\u00e4he und TITSA-Linien, um ohne Auto unterwegs zu sein."],["Deine Sprache","Die ganze App in 8 Sprachen. Hier jederzeit wechseln."],["Deine Reiseleiste","Favoriten, Routen, Shop, Assistent und dein Konto \u2013 immer griffbereit."],["Erfolge","Markiere besuchte Orte und schalte Troph\u00e4en frei, w\u00e4hrend du die Insel entdeckst."],["Tippe auf die Marker","Jeder Punkt bietet Fotos, Infos, Wetter vor Ort und Anfahrt. Die Insel geh\u00f6rt dir!"]]},
-    it: {pt:"Un tour veloce?",pb:"Ti mostriamo Tenerife Go in 30 secondi.",yes:"Fai il tour",no:"Non ora",skip:"Salta",next:"Avanti",done:"Si parte!",back:"Indietro",steps:[["Cerca un luogo","Oltre 700 luoghi verificati: spiagge, sentieri, guachinches, miradores e molto altro."],["Filtra per categoria","Mostra solo ci\u00f2 che ti va oggi: natura, gastronomia, cultura, sport\u2026"],["Senza piani? Tira il dado","Ti porta in un luogo a caso. Con i filtri attivi, la sorpresa resta nei tuoi gusti."],["Scegli la mappa","Tocca per passare da strade a satellite o rilievo. Perfetto per il trekking."],["Microclimi","Piove in un paese e c\u2019\u00e8 sole in quello accanto. Meteo in tempo reale per zone."],["Il mare oggi","Stato del mare su 7 coste. Da controllare prima di fare il bagno."],["Feste e tradizioni","Romer\u00edas, carnevali e feste patronali con le loro date."],["Autobus","Fermate vicine e linee TITSA per muoverti senza auto."],["Nella tua lingua","Tutta l\u2019app in 8 lingue. Cambiala qui quando vuoi."],["La tua barra di viaggio","Preferiti, percorsi, negozio, assistente e il tuo account, sempre a portata."],["Obiettivi","Segna i luoghi visitati e sblocca trofei mentre scopri l\u2019isola."],["Tocca i marcatori","Ogni punto ha foto, dettagli, meteo locale e indicazioni. L\u2019isola \u00e8 tua!"]]},
-    nl: {pt:"Een snelle tour?",pb:"We laten je Tenerife Go zien in 30 seconden.",yes:"Start de tour",no:"Niet nu",skip:"Overslaan",next:"Volgende",done:"Op pad!",back:"Terug",steps:[["Zoek een plek","Meer dan 700 geverifieerde plekken: stranden, paden, guachinches, uitzichtpunten en meer."],["Filter op categorie","Toon alleen waar je vandaag zin in hebt: natuur, eten, cultuur, sport\u2026"],["Geen plan? Gooi de dobbelsteen","Brengt je naar een willekeurige plek. Met filters blijft de verrassing naar jouw smaak."],["Kies je kaart","Tik om te wisselen tussen straten, satelliet en reli\u00ebf. Ideaal voor wandelingen."],["Microklimaten","In het ene dorp regent het, in het volgende schijnt de zon. Live weer per gebied."],["De zee vandaag","Zeegang op 7 kusten. Bekijk het voor je gaat zwemmen of naar een natuurlijk bad gaat."],["Feesten & tradities","Romer\u00edas, carnavals en patroonsfeesten met hun data."],["Bussen","Haltes in de buurt en TITSA-lijnen om zonder auto rond te reizen."],["In jouw taal","De hele app in 8 talen. Wijzig het hier wanneer je wilt."],["Je reisbalk","Favorieten, routes, winkel, assistent en je account, altijd bij de hand."],["Prestaties","Markeer bezochte plekken en ontgrendel trofee\u00ebn terwijl je het eiland ontdekt."],["Tik op de markers","Elk punt heeft foto\u2019s, details, lokaal weer en de route. Het eiland is van jou!"]]},
-    zh: {pt:"快速导览？",pb:"30秒了解应用的核心功能。",yes:"开始导览",no:"暂时不用",skip:"跳过",next:"下一步",done:"开始探索！",back:"\u4e0a\u4e00\u6b65",steps:[["\u641c\u7d22\u4efb\u4f55\u5730\u70b9","700 \u591a\u4e2a\u7ecf\u6838\u5b9e\u7684\u5730\u70b9\uff1a\u6d77\u6ee9\u3001\u6b65\u9053\u3001\u4e61\u6751\u9152\u9986\u3001\u89c2\u666f\u53f0\u7b49\u7b49\u3002"],["\u6309\u7c7b\u522b\u7b5b\u9009","\u53ea\u663e\u793a\u4f60\u4eca\u5929\u60f3\u770b\u7684\uff1a\u81ea\u7136\u3001\u7f8e\u98df\u3001\u6587\u5316\u3001\u8fd0\u52a8\u2026\u2026"],["\u6ca1\u4e3b\u610f\uff1f\u63b7\u9ab0\u5b50","\u968f\u673a\u5e26\u4f60\u53bb\u4e00\u4e2a\u5730\u65b9\u3002\u5f00\u7740\u7b5b\u9009\u65f6\uff0c\u60ca\u559c\u4e5f\u5408\u4f60\u53e3\u5473\u3002"],["\u9009\u62e9\u5730\u56fe","\u70b9\u51fb\u53ef\u5728\u8857\u9053\u3001\u536b\u661f\u4e0e\u5730\u5f62\u4e4b\u95f4\u5207\u6362\uff0c\u5f92\u6b65\u65f6\u7279\u522b\u597d\u7528\u3002"],["\u5fae\u6c14\u5019","\u8fd9\u4e2a\u6751\u5728\u4e0b\u96e8\uff0c\u9694\u58c1\u6751\u5374\u662f\u6674\u5929\u3002\u53ef\u67e5\u770b\u5404\u533a\u57df\u7684\u5b9e\u65f6\u5929\u6c14\u3002"],["\u4eca\u65e5\u6d77\u51b5","7 \u6bb5\u6d77\u5cb8\u7684\u6d77\u51b5\u3002\u4e0b\u6c34\u6216\u524d\u5f80\u5929\u7136\u6cf3\u6c60\u524d\u8bf7\u5148\u67e5\u770b\u3002"],["\u8282\u5e86\u4e0e\u4f20\u7edf","\u671d\u5723\u6e38\u884c\u3001\u72c2\u6b22\u8282\u4e0e\u4e3b\u4fdd\u8282\u5e86\u53ca\u5176\u65e5\u671f\u3002"],["\u516c\u4ea4","\u9644\u8fd1\u7ad9\u70b9\u4e0e TITSA \u8def\u7ebf\uff0c\u6ca1\u6709\u8f66\u4e5f\u80fd\u5230\u5904\u8d70\u3002"],["\u4f60\u7684\u8bed\u8a00","\u6574\u4e2a\u5e94\u7528\u652f\u6301 8 \u79cd\u8bed\u8a00\uff0c\u968f\u65f6\u5728\u6b64\u5207\u6362\u3002"],["\u4f60\u7684\u65c5\u884c\u680f","\u6536\u85cf\u3001\u8def\u7ebf\u3001\u5546\u5e97\u3001\u52a9\u624b\u4e0e\u8d26\u6237\uff0c\u968f\u65f6\u53ef\u7528\u3002"],["\u6210\u5c31","\u628a\u53bb\u8fc7\u7684\u5730\u65b9\u6807\u8bb0\u4e3a\u5df2\u8bbf\u95ee\uff0c\u8fb9\u63a2\u7d22\u8fb9\u89e3\u9501\u5956\u676f\u3002"],["\u70b9\u6309\u5730\u56fe\u6807\u8bb0","\u6bcf\u4e2a\u5730\u70b9\u90fd\u6709\u7167\u7247\u3001\u4ecb\u7ecd\u3001\u5f53\u5730\u5929\u6c14\u4e0e\u8def\u7ebf\u3002\u6574\u5ea7\u5c9b\u5c7f\u4efb\u4f60\u63a2\u7d22\uff01"]]},
-    zht: {pt:"快速導覽？",pb:"30秒了解應用程式的核心功能。",yes:"開始導覽",no:"暫時不用",skip:"跳過",next:"下一步",done:"開始探索！",back:"\u4e0a\u4e00\u6b65",steps:[["\u641c\u5c0b\u4efb\u4f55\u5730\u9ede","700 \u591a\u500b\u7d93\u6838\u5be6\u7684\u5730\u9ede\uff1a\u6d77\u7058\u3001\u6b65\u9053\u3001\u9109\u6751\u9152\u9928\u3001\u89c0\u666f\u53f0\u7b49\u7b49\u3002"],["\u4f9d\u985e\u5225\u7be9\u9078","\u53ea\u986f\u793a\u4f60\u4eca\u5929\u60f3\u770b\u7684\uff1a\u81ea\u7136\u3001\u7f8e\u98df\u3001\u6587\u5316\u3001\u904b\u52d5\u2026\u2026"],["\u6c92\u4e3b\u610f\uff1f\u64f2\u9ab0\u5b50","\u96a8\u6a5f\u5e36\u4f60\u53bb\u4e00\u500b\u5730\u65b9\u3002\u958b\u8457\u7be9\u9078\u6642\uff0c\u9a5a\u559c\u4e5f\u5408\u4f60\u53e3\u5473\u3002"],["\u9078\u64c7\u5730\u5716","\u9ede\u64ca\u53ef\u5728\u8857\u9053\u3001\u885b\u661f\u8207\u5730\u5f62\u4e4b\u9593\u5207\u63db\uff0c\u5065\u884c\u6642\u7279\u5225\u597d\u7528\u3002"],["\u5fae\u6c23\u5019","\u9019\u500b\u6751\u5728\u4e0b\u96e8\uff0c\u9694\u58c1\u6751\u537b\u662f\u6674\u5929\u3002\u53ef\u67e5\u770b\u5404\u5340\u57df\u7684\u5373\u6642\u5929\u6c23\u3002"],["\u4eca\u65e5\u6d77\u6cc1","7 \u6bb5\u6d77\u5cb8\u7684\u6d77\u6cc1\u3002\u4e0b\u6c34\u6216\u524d\u5f80\u5929\u7136\u6cf3\u6c60\u524d\u8acb\u5148\u67e5\u770b\u3002"],["\u7bc0\u6176\u8207\u50b3\u7d71","\u671d\u8056\u904a\u884c\u3001\u5609\u5e74\u83ef\u8207\u4e3b\u4fdd\u7bc0\u6176\u53ca\u5176\u65e5\u671f\u3002"],["\u516c\u8eca","\u9644\u8fd1\u7ad9\u9ede\u8207 TITSA \u8def\u7dda\uff0c\u6c92\u6709\u8eca\u4e5f\u80fd\u5230\u8655\u8d70\u3002"],["\u4f60\u7684\u8a9e\u8a00","\u6574\u500b\u61c9\u7528\u652f\u63f4 8 \u7a2e\u8a9e\u8a00\uff0c\u96a8\u6642\u5728\u6b64\u5207\u63db\u3002"],["\u4f60\u7684\u65c5\u884c\u5217","\u6536\u85cf\u3001\u8def\u7dda\u3001\u5546\u5e97\u3001\u52a9\u624b\u8207\u5e33\u6236\uff0c\u96a8\u6642\u53ef\u7528\u3002"],["\u6210\u5c31","\u628a\u53bb\u904e\u7684\u5730\u65b9\u6a19\u8a18\u70ba\u5df2\u9020\u8a2a\uff0c\u908a\u63a2\u7d22\u908a\u89e3\u9396\u734e\u76c3\u3002"],["\u9ede\u6309\u5730\u5716\u6a19\u8a18","\u6bcf\u500b\u5730\u9ede\u90fd\u6709\u7167\u7247\u3001\u4ecb\u7d39\u3001\u7576\u5730\u5929\u6c23\u8207\u8def\u7dda\u3002\u6574\u5ea7\u5cf6\u5dbc\u4efb\u4f60\u63a2\u7d22\uff01"]]},
-    bg: {pt:"Бърза обиколка?",pb:"Ще ви покажем основното в Tenerife Go за 30 секунди.",yes:"Виж обиколката",no:"Не сега",skip:"Пропусни",next:"Напред",done:"Да разглеждаме!",back:"Назад",steps:[["Търсете всяко място","Над 700 проверени места: плажове, пътеки, гуачинчес, панорамни площадки и още много."],["Филтрирайте по категории","Показвайте само това, което ви интересува днес: природа, кухня, култура, спорт…"],["Без план? Хвърлете зара","Отвежда ви на случайно място. С включени филтри изненадата е по вашия вкус."],["Изберете своята карта","Докоснете, за да превключите между улици, сателит и релеф. Идеално за пътеки."],["Микроклимат","В едно село вали, а в съседното грее слънце. Вижте времето на живо по зони."],["Морето днес","Състояние на морето по 7 бряга. Преди да влезете във водата или да отидете на естествен басейн, го проверете."],["Празници и традиции","Ромерии, карнавали и патронни празници с техните дати. Културата на острова."],["Автобуси","Близки спирки и линии на TITSA, за да се движите без кола."],["На вашия език","Цялото приложение на 8 езика. Сменете го оттук по всяко време."],["Вашата лента за пътуване","Любими, маршрути, магазин, асистент и профилът ви — винаги под ръка."],["Постижения","Отбелязвайте местата като посетени и отключвайте трофеи, докато откривате острова."],["Докоснете маркерите","Всяка точка има снимки, описание, времето там и как да стигнете. Островът е ваш!"]]}
+    es: {pt:"¿Un tour rápido?",pb:"Te enseñamos lo esencial de Tenerife Go en 30 segundos.",yes:"Ver el tour",no:"Ahora no",skip:"Saltar",next:"Siguiente",done:"¡A explorar!",back:"Atr\u00e1s",steps:[["Busca cualquier lugar","M\u00e1s de 700 lugares verificados: playas, senderos, guachinches, miradores y mucho m\u00e1s."],["Filtra por categor\u00edas","Activa solo lo que te interesa hoy: naturaleza, gastronom\u00eda, cultura, deporte\u2026"],["\u00bfSin plan? Tira el dado","Te lleva a un lugar al azar. Con filtros puestos, la sorpresa es a tu gusto."],["Elige tu mapa","Toca para cambiar entre calles, sat\u00e9lite y relieve. Ideal para senderos."],["Microclimas","Aqu\u00ed llueve en un pueblo y hace sol en el siguiente. Mira el tiempo real por zonas."],["El mar hoy","Estado del mar en 7 costas. Antes de ba\u00f1arte o ir a una piscina natural, m\u00edralo."],["Fiestas y tradiciones","Romer\u00edas, carnavales y fiestas patronales con sus fechas. La cultura de la isla."],["Guaguas","Paradas cercanas y l\u00edneas TITSA para moverte sin coche."],["En tu idioma","Toda la app en 9 idiomas. C\u00e1mbialo aqu\u00ed cuando quieras."],["Tu barra de viaje","Favoritos, rutas, tienda, asistente y tu cuenta, siempre a mano."],["Logros","Marca lugares como visitados y desbloquea trofeos mientras descubres la isla."],["Toca los marcadores","Cada punto tiene fotos, descripci\u00f3n, el tiempo all\u00ed y c\u00f3mo llegar. \u00a1La isla es tuya!"]]},
+    en: {pt:"A quick tour?",pb:"Let us show you the essentials of Tenerife Go in 30 seconds.",yes:"Take the tour",no:"Not now",skip:"Skip",next:"Next",done:"Start exploring!",back:"Back",steps:[["Search any place","Over 700 verified places: beaches, trails, guachinches, viewpoints and much more."],["Filter by category","Show only what you fancy today: nature, food, culture, sports\u2026"],["No plan? Roll the dice","It takes you to a random place. With filters on, the surprise is your kind of surprise."],["Pick your map","Tap to switch between streets, satellite and terrain. Great for hiking."],["Microclimates","It can rain in one village and be sunny in the next. Live weather by area."],["The sea today","Sea conditions on 7 coasts. Check it before swimming or visiting a natural pool."],["Fiestas & traditions","Romer\u00edas, carnivals and patron saint festivities with their dates."],["Buses","Nearby stops and TITSA lines so you can get around without a car."],["In your language","The whole app in 9 languages. Change it here anytime."],["Your travel bar","Favourites, routes, shop, assistant and your account, always at hand."],["Achievements","Mark places as visited and unlock trophies as you explore the island."],["Tap the markers","Every point has photos, details, local weather and directions. The island is yours!"]]},
+    fr: {pt:"Un tour rapide ?",pb:"Découvrez l'essentiel de Tenerife Go en 30 secondes.",yes:"Voir le tour",no:"Plus tard",skip:"Passer",next:"Suivant",done:"C'est parti !",back:"Retour",steps:[["Cherchez un lieu","Plus de 700 lieux v\u00e9rifi\u00e9s : plages, sentiers, guachinches, miradors et bien plus."],["Filtrez par cat\u00e9gorie","Affichez seulement ce qui vous tente : nature, gastronomie, culture, sport\u2026"],["Sans plan ? Lancez le d\u00e9","Il vous emm\u00e8ne au hasard. Avec des filtres, la surprise reste \u00e0 votre go\u00fbt."],["Choisissez votre carte","Touchez pour passer de rues \u00e0 satellite ou relief. Parfait pour les randos."],["Microclimats","Il pleut dans un village et il fait soleil dans le suivant. M\u00e9t\u00e9o en direct par zone."],["La mer aujourd\u2019hui","\u00c9tat de la mer sur 7 c\u00f4tes. \u00c0 consulter avant de vous baigner."],["F\u00eates et traditions","Romer\u00edas, carnavals et f\u00eates patronales avec leurs dates."],["Bus","Arr\u00eats proches et lignes TITSA pour circuler sans voiture."],["Dans votre langue","Toute l\u2019app en 9 langues. Changez-la ici \u00e0 tout moment."],["Votre barre de voyage","Favoris, itin\u00e9raires, boutique, assistant et votre compte, toujours \u00e0 port\u00e9e."],["Troph\u00e9es","Marquez les lieux visit\u00e9s et d\u00e9bloquez des troph\u00e9es en explorant l\u2019\u00eele."],["Touchez les marqueurs","Chaque point a photos, infos, m\u00e9t\u00e9o locale et itin\u00e9raire. L\u2019\u00eele est \u00e0 vous !"]]},
+    de: {pt:"Eine kurze Tour?",pb:"Wir zeigen dir Tenerife Go in 30 Sekunden.",yes:"Tour starten",no:"Später",skip:"Überspringen",next:"Weiter",done:"Los geht's!",back:"Zur\u00fcck",steps:[["Orte suchen","\u00dcber 700 gepr\u00fcfte Orte: Str\u00e4nde, Wanderwege, Guachinches, Aussichtspunkte und mehr."],["Nach Kategorien filtern","Zeig nur, was dich heute interessiert: Natur, Gastronomie, Kultur, Sport\u2026"],["Kein Plan? W\u00fcrfle","Bringt dich zu einem zuf\u00e4lligen Ort. Mit Filtern bleibt die \u00dcberraschung nach deinem Geschmack."],["Karte w\u00e4hlen","Tippen wechselt zwischen Stra\u00dfen, Satellit und Gel\u00e4nde. Ideal zum Wandern."],["Mikroklimas","Im einen Dorf regnet es, im n\u00e4chsten scheint die Sonne. Wetter je Gebiet, live."],["Das Meer heute","Seegang an 7 K\u00fcsten. Vor dem Baden oder einem Naturbecken unbedingt ansehen."],["Feste & Traditionen","Romer\u00edas, Karneval und Patronatsfeste mit ihren Terminen."],["Busse","Haltestellen in der N\u00e4he und TITSA-Linien, um ohne Auto unterwegs zu sein."],["Deine Sprache","Die ganze App in 9 Sprachen. Hier jederzeit wechseln."],["Deine Reiseleiste","Favoriten, Routen, Shop, Assistent und dein Konto \u2013 immer griffbereit."],["Erfolge","Markiere besuchte Orte und schalte Troph\u00e4en frei, w\u00e4hrend du die Insel entdeckst."],["Tippe auf die Marker","Jeder Punkt bietet Fotos, Infos, Wetter vor Ort und Anfahrt. Die Insel geh\u00f6rt dir!"]]},
+    it: {pt:"Un tour veloce?",pb:"Ti mostriamo Tenerife Go in 30 secondi.",yes:"Fai il tour",no:"Non ora",skip:"Salta",next:"Avanti",done:"Si parte!",back:"Indietro",steps:[["Cerca un luogo","Oltre 700 luoghi verificati: spiagge, sentieri, guachinches, miradores e molto altro."],["Filtra per categoria","Mostra solo ci\u00f2 che ti va oggi: natura, gastronomia, cultura, sport\u2026"],["Senza piani? Tira il dado","Ti porta in un luogo a caso. Con i filtri attivi, la sorpresa resta nei tuoi gusti."],["Scegli la mappa","Tocca per passare da strade a satellite o rilievo. Perfetto per il trekking."],["Microclimi","Piove in un paese e c\u2019\u00e8 sole in quello accanto. Meteo in tempo reale per zone."],["Il mare oggi","Stato del mare su 7 coste. Da controllare prima di fare il bagno."],["Feste e tradizioni","Romer\u00edas, carnevali e feste patronali con le loro date."],["Autobus","Fermate vicine e linee TITSA per muoverti senza auto."],["Nella tua lingua","Tutta l\u2019app in 9 lingue. Cambiala qui quando vuoi."],["La tua barra di viaggio","Preferiti, percorsi, negozio, assistente e il tuo account, sempre a portata."],["Obiettivi","Segna i luoghi visitati e sblocca trofei mentre scopri l\u2019isola."],["Tocca i marcatori","Ogni punto ha foto, dettagli, meteo locale e indicazioni. L\u2019isola \u00e8 tua!"]]},
+    nl: {pt:"Een snelle tour?",pb:"We laten je Tenerife Go zien in 30 seconden.",yes:"Start de tour",no:"Niet nu",skip:"Overslaan",next:"Volgende",done:"Op pad!",back:"Terug",steps:[["Zoek een plek","Meer dan 700 geverifieerde plekken: stranden, paden, guachinches, uitzichtpunten en meer."],["Filter op categorie","Toon alleen waar je vandaag zin in hebt: natuur, eten, cultuur, sport\u2026"],["Geen plan? Gooi de dobbelsteen","Brengt je naar een willekeurige plek. Met filters blijft de verrassing naar jouw smaak."],["Kies je kaart","Tik om te wisselen tussen straten, satelliet en reli\u00ebf. Ideaal voor wandelingen."],["Microklimaten","In het ene dorp regent het, in het volgende schijnt de zon. Live weer per gebied."],["De zee vandaag","Zeegang op 7 kusten. Bekijk het voor je gaat zwemmen of naar een natuurlijk bad gaat."],["Feesten & tradities","Romer\u00edas, carnavals en patroonsfeesten met hun data."],["Bussen","Haltes in de buurt en TITSA-lijnen om zonder auto rond te reizen."],["In jouw taal","De hele app in 9 talen. Wijzig het hier wanneer je wilt."],["Je reisbalk","Favorieten, routes, winkel, assistent en je account, altijd bij de hand."],["Prestaties","Markeer bezochte plekken en ontgrendel trofee\u00ebn terwijl je het eiland ontdekt."],["Tik op de markers","Elk punt heeft foto\u2019s, details, lokaal weer en de route. Het eiland is van jou!"]]},
+    zh: {pt:"快速导览？",pb:"30秒了解应用的核心功能。",yes:"开始导览",no:"暂时不用",skip:"跳过",next:"下一步",done:"开始探索！",back:"\u4e0a\u4e00\u6b65",steps:[["\u641c\u7d22\u4efb\u4f55\u5730\u70b9","700 \u591a\u4e2a\u7ecf\u6838\u5b9e\u7684\u5730\u70b9\uff1a\u6d77\u6ee9\u3001\u6b65\u9053\u3001\u4e61\u6751\u9152\u9986\u3001\u89c2\u666f\u53f0\u7b49\u7b49\u3002"],["\u6309\u7c7b\u522b\u7b5b\u9009","\u53ea\u663e\u793a\u4f60\u4eca\u5929\u60f3\u770b\u7684\uff1a\u81ea\u7136\u3001\u7f8e\u98df\u3001\u6587\u5316\u3001\u8fd0\u52a8\u2026\u2026"],["\u6ca1\u4e3b\u610f\uff1f\u63b7\u9ab0\u5b50","\u968f\u673a\u5e26\u4f60\u53bb\u4e00\u4e2a\u5730\u65b9\u3002\u5f00\u7740\u7b5b\u9009\u65f6\uff0c\u60ca\u559c\u4e5f\u5408\u4f60\u53e3\u5473\u3002"],["\u9009\u62e9\u5730\u56fe","\u70b9\u51fb\u53ef\u5728\u8857\u9053\u3001\u536b\u661f\u4e0e\u5730\u5f62\u4e4b\u95f4\u5207\u6362\uff0c\u5f92\u6b65\u65f6\u7279\u522b\u597d\u7528\u3002"],["\u5fae\u6c14\u5019","\u8fd9\u4e2a\u6751\u5728\u4e0b\u96e8\uff0c\u9694\u58c1\u6751\u5374\u662f\u6674\u5929\u3002\u53ef\u67e5\u770b\u5404\u533a\u57df\u7684\u5b9e\u65f6\u5929\u6c14\u3002"],["\u4eca\u65e5\u6d77\u51b5","7 \u6bb5\u6d77\u5cb8\u7684\u6d77\u51b5\u3002\u4e0b\u6c34\u6216\u524d\u5f80\u5929\u7136\u6cf3\u6c60\u524d\u8bf7\u5148\u67e5\u770b\u3002"],["\u8282\u5e86\u4e0e\u4f20\u7edf","\u671d\u5723\u6e38\u884c\u3001\u72c2\u6b22\u8282\u4e0e\u4e3b\u4fdd\u8282\u5e86\u53ca\u5176\u65e5\u671f\u3002"],["\u516c\u4ea4","\u9644\u8fd1\u7ad9\u70b9\u4e0e TITSA \u8def\u7ebf\uff0c\u6ca1\u6709\u8f66\u4e5f\u80fd\u5230\u5904\u8d70\u3002"],["\u4f60\u7684\u8bed\u8a00","\u6574\u4e2a\u5e94\u7528\u652f\u6301 9 \u79cd\u8bed\u8a00\uff0c\u968f\u65f6\u5728\u6b64\u5207\u6362\u3002"],["\u4f60\u7684\u65c5\u884c\u680f","\u6536\u85cf\u3001\u8def\u7ebf\u3001\u5546\u5e97\u3001\u52a9\u624b\u4e0e\u8d26\u6237\uff0c\u968f\u65f6\u53ef\u7528\u3002"],["\u6210\u5c31","\u628a\u53bb\u8fc7\u7684\u5730\u65b9\u6807\u8bb0\u4e3a\u5df2\u8bbf\u95ee\uff0c\u8fb9\u63a2\u7d22\u8fb9\u89e3\u9501\u5956\u676f\u3002"],["\u70b9\u6309\u5730\u56fe\u6807\u8bb0","\u6bcf\u4e2a\u5730\u70b9\u90fd\u6709\u7167\u7247\u3001\u4ecb\u7ecd\u3001\u5f53\u5730\u5929\u6c14\u4e0e\u8def\u7ebf\u3002\u6574\u5ea7\u5c9b\u5c7f\u4efb\u4f60\u63a2\u7d22\uff01"]]},
+    zht: {pt:"快速導覽？",pb:"30秒了解應用程式的核心功能。",yes:"開始導覽",no:"暫時不用",skip:"跳過",next:"下一步",done:"開始探索！",back:"\u4e0a\u4e00\u6b65",steps:[["\u641c\u5c0b\u4efb\u4f55\u5730\u9ede","700 \u591a\u500b\u7d93\u6838\u5be6\u7684\u5730\u9ede\uff1a\u6d77\u7058\u3001\u6b65\u9053\u3001\u9109\u6751\u9152\u9928\u3001\u89c0\u666f\u53f0\u7b49\u7b49\u3002"],["\u4f9d\u985e\u5225\u7be9\u9078","\u53ea\u986f\u793a\u4f60\u4eca\u5929\u60f3\u770b\u7684\uff1a\u81ea\u7136\u3001\u7f8e\u98df\u3001\u6587\u5316\u3001\u904b\u52d5\u2026\u2026"],["\u6c92\u4e3b\u610f\uff1f\u64f2\u9ab0\u5b50","\u96a8\u6a5f\u5e36\u4f60\u53bb\u4e00\u500b\u5730\u65b9\u3002\u958b\u8457\u7be9\u9078\u6642\uff0c\u9a5a\u559c\u4e5f\u5408\u4f60\u53e3\u5473\u3002"],["\u9078\u64c7\u5730\u5716","\u9ede\u64ca\u53ef\u5728\u8857\u9053\u3001\u885b\u661f\u8207\u5730\u5f62\u4e4b\u9593\u5207\u63db\uff0c\u5065\u884c\u6642\u7279\u5225\u597d\u7528\u3002"],["\u5fae\u6c23\u5019","\u9019\u500b\u6751\u5728\u4e0b\u96e8\uff0c\u9694\u58c1\u6751\u537b\u662f\u6674\u5929\u3002\u53ef\u67e5\u770b\u5404\u5340\u57df\u7684\u5373\u6642\u5929\u6c23\u3002"],["\u4eca\u65e5\u6d77\u6cc1","7 \u6bb5\u6d77\u5cb8\u7684\u6d77\u6cc1\u3002\u4e0b\u6c34\u6216\u524d\u5f80\u5929\u7136\u6cf3\u6c60\u524d\u8acb\u5148\u67e5\u770b\u3002"],["\u7bc0\u6176\u8207\u50b3\u7d71","\u671d\u8056\u904a\u884c\u3001\u5609\u5e74\u83ef\u8207\u4e3b\u4fdd\u7bc0\u6176\u53ca\u5176\u65e5\u671f\u3002"],["\u516c\u8eca","\u9644\u8fd1\u7ad9\u9ede\u8207 TITSA \u8def\u7dda\uff0c\u6c92\u6709\u8eca\u4e5f\u80fd\u5230\u8655\u8d70\u3002"],["\u4f60\u7684\u8a9e\u8a00","\u6574\u500b\u61c9\u7528\u652f\u63f4 9 \u7a2e\u8a9e\u8a00\uff0c\u96a8\u6642\u5728\u6b64\u5207\u63db\u3002"],["\u4f60\u7684\u65c5\u884c\u5217","\u6536\u85cf\u3001\u8def\u7dda\u3001\u5546\u5e97\u3001\u52a9\u624b\u8207\u5e33\u6236\uff0c\u96a8\u6642\u53ef\u7528\u3002"],["\u6210\u5c31","\u628a\u53bb\u904e\u7684\u5730\u65b9\u6a19\u8a18\u70ba\u5df2\u9020\u8a2a\uff0c\u908a\u63a2\u7d22\u908a\u89e3\u9396\u734e\u76c3\u3002"],["\u9ede\u6309\u5730\u5716\u6a19\u8a18","\u6bcf\u500b\u5730\u9ede\u90fd\u6709\u7167\u7247\u3001\u4ecb\u7d39\u3001\u7576\u5730\u5929\u6c23\u8207\u8def\u7dda\u3002\u6574\u5ea7\u5cf6\u5dbc\u4efb\u4f60\u63a2\u7d22\uff01"]]},
+    bg: {pt:"Бърза обиколка?",pb:"Ще ви покажем основното в Tenerife Go за 30 секунди.",yes:"Виж обиколката",no:"Не сега",skip:"Пропусни",next:"Напред",done:"Да разглеждаме!",back:"Назад",steps:[["Търсете всяко място","Над 700 проверени места: плажове, пътеки, гуачинчес, панорамни площадки и още много."],["Филтрирайте по категории","Показвайте само това, което ви интересува днес: природа, кухня, култура, спорт…"],["Без план? Хвърлете зара","Отвежда ви на случайно място. С включени филтри изненадата е по вашия вкус."],["Изберете своята карта","Докоснете, за да превключите между улици, сателит и релеф. Идеално за пътеки."],["Микроклимат","В едно село вали, а в съседното грее слънце. Вижте времето на живо по зони."],["Морето днес","Състояние на морето по 7 бряга. Преди да влезете във водата или да отидете на естествен басейн, го проверете."],["Празници и традиции","Ромерии, карнавали и патронни празници с техните дати. Културата на острова."],["Автобуси","Близки спирки и линии на TITSA, за да се движите без кола."],["На вашия език","Цялото приложение на 9 езика. Сменете го оттук по всяко време."],["Вашата лента за пътуване","Любими, маршрути, магазин, асистент и профилът ви — винаги под ръка."],["Постижения","Отбелязвайте местата като посетени и отключвайте трофеи, докато откривате острова."],["Докоснете маркерите","Всяка точка има снимки, описание, времето там и как да стигнете. Островът е ваш!"]]}
   };
 
   function LT() {
@@ -27955,7 +27997,7 @@ function addSouvenirToCart(btn) {
 
 // ── LEYENDA DEL MAPA v2 ───────────────────────────────────────────
 // Cerrada por defecto: solo se abre con la píldora "Leyenda".
-// Textos en los 8 idiomas (se actualizan al cambiar el idioma).
+// Textos en los 9 idiomas (se actualizan al cambiar el idioma).
 
 function openMapLegend() {
   const legend = document.getElementById('map-legend');
@@ -30297,7 +30339,7 @@ es:{
   welcome:'¡Bienvenido a Tenerife GO! 🌴\n\nSoy tu asistente y conozco los {N} lugares del mapa. Pregúntame «¿dónde está…?», pide «playas en el norte» o «qué hacer cerca de mí».',
   greet:'¡Hola! 👋 Pregúntame por cualquiera de los {N} lugares del mapa, por categorías («miradores en el sur») o «qué hacer cerca de mí».',
   thanks:'¡De nada! 🌴 Aquí estoy para lo que necesites. Y si quieres hablar con Jerome directamente, tienes el botón abajo.',
-  countAns:'Ahora mismo tienes {N} lugares verificados en el mapa 🗺️ — playas, senderos, miradores, guachinches, piscinas naturales y mucho más, con fichas en 8 idiomas.',
+  countAns:'Ahora mismo tienes {N} lugares verificados en el mapa 🗺️ — playas, senderos, miradores, guachinches, piscinas naturales y mucho más, con fichas en 9 idiomas.',
   catIntro:'🔎 {label}{zone}: hay {n} en la app. Los más destacados:',
   catAlso:'📍 Además, en el mapa tienes {n} lugares de esta categoría. Aquí van algunos:',
   catNone:'No encontré lugares de {label}{zone} 😕 Prueba con otra zona.',
@@ -30326,7 +30368,7 @@ en:{
   welcome:'Welcome to Tenerife GO! 🌴\n\nI am your assistant and I know all {N} places on the map. Ask me «where is…?», try «beaches in the north» or «what to do near me».',
   greet:'Hi! 👋 Ask me about any of the {N} places on the map, by category («viewpoints in the south») or «what to do near me».',
   thanks:'You are welcome! 🌴 I am here whenever you need me. And if you want to talk to Jerome directly, the button is below.',
-  countAns:'Right now the map has {N} verified places 🗺️ — beaches, trails, viewpoints, guachinches, natural pools and much more, in 8 languages.',
+  countAns:'Right now the map has {N} verified places 🗺️ — beaches, trails, viewpoints, guachinches, natural pools and much more, in 9 languages.',
   catIntro:'🔎 {label}{zone}: {n} in the app. Top picks:',
   catAlso:'📍 The map also has {n} places in this category. Here are a few:',
   catNone:'I found no {label}{zone} 😕 Try another area.',
@@ -30355,7 +30397,7 @@ fr:{
   welcome:'Bienvenue sur Tenerife GO ! \ud83c\udf34\n\nJe suis ton assistant et je connais les {N} lieux de la carte. Demande-moi \u00ab o\u00f9 est\u2026 ? \u00bb, \u00ab plages dans le nord \u00bb ou \u00ab que faire pr\u00e8s de moi \u00bb.',
   greet:'Salut ! \ud83d\udc4b Demande-moi n\u2019importe lequel des {N} lieux de la carte, par cat\u00e9gorie (\u00ab belv\u00e9d\u00e8res dans le sud \u00bb) ou \u00ab que faire pr\u00e8s de moi \u00bb.',
   thanks:'Avec plaisir ! \ud83c\udf34 Je suis l\u00e0 quand tu veux. Et pour parler \u00e0 Jerome directement, le bouton est juste en dessous.',
-  countAns:'La carte compte {N} lieux v\u00e9rifi\u00e9s \ud83d\uddfa\ufe0f \u2014 plages, sentiers, belv\u00e9d\u00e8res, guachinches, piscines naturelles et bien plus, en 8 langues.',
+  countAns:'La carte compte {N} lieux v\u00e9rifi\u00e9s \ud83d\uddfa\ufe0f \u2014 plages, sentiers, belv\u00e9d\u00e8res, guachinches, piscines naturelles et bien plus, en 9 langues.',
   catIntro:'\ud83d\udd0e {label}{zone} : {n} dans l\u2019app. Les incontournables :',
   catAlso:'\ud83d\udccd La carte a aussi {n} lieux de cette cat\u00e9gorie. En voici quelques-uns :',
   catNone:'Aucun r\u00e9sultat pour {label}{zone} \ud83d\ude15 Essaie une autre zone.',
@@ -30384,7 +30426,7 @@ de:{
   welcome:'Willkommen bei Tenerife GO! \ud83c\udf34\n\nIch bin dein Assistent und kenne alle {N} Orte der Karte. Frag mich \u00abwo ist \u2026?\u00bb, \u00abStr\u00e4nde im Norden\u00bb oder \u00abwas kann ich in der N\u00e4he machen\u00bb.',
   greet:'Hallo! \ud83d\udc4b Frag mich nach jedem der {N} Orte der Karte, nach Kategorien (\u00abAussichtspunkte im S\u00fcden\u00bb) oder \u00abwas kann ich in der N\u00e4he machen\u00bb.',
   thanks:'Gern geschehen! \ud83c\udf34 Ich bin da, wann immer du mich brauchst. F\u00fcr direkten Kontakt zu Jerome: der Button unten.',
-  countAns:'Die Karte hat gerade {N} verifizierte Orte \ud83d\uddfa\ufe0f \u2014 Str\u00e4nde, Wanderwege, Aussichtspunkte, Guachinches, Naturpools und mehr, in 8 Sprachen.',
+  countAns:'Die Karte hat gerade {N} verifizierte Orte \ud83d\uddfa\ufe0f \u2014 Str\u00e4nde, Wanderwege, Aussichtspunkte, Guachinches, Naturpools und mehr, in 9 Sprachen.',
   catIntro:'\ud83d\udd0e {label}{zone}: {n} in der App. Highlights:',
   catAlso:'\ud83d\udccd Die Karte hat au\u00dferdem {n} Orte dieser Kategorie. Eine Auswahl:',
   catNone:'Keine Treffer f\u00fcr {label}{zone} \ud83d\ude15 Versuch eine andere Gegend.',
@@ -30413,7 +30455,7 @@ it:{
   welcome:'Benvenuto su Tenerife GO! \ud83c\udf34\n\nSono il tuo assistente e conosco i {N} luoghi della mappa. Chiedimi \u00abdov\u2019\u00e8\u2026?\u00bb, \u00abspiagge nel nord\u00bb o \u00abcosa fare vicino a me\u00bb.',
   greet:'Ciao! \ud83d\udc4b Chiedimi qualsiasi dei {N} luoghi della mappa, per categoria (\u00abbelvedere nel sud\u00bb) o \u00abcosa fare vicino a me\u00bb.',
   thanks:'Di niente! \ud83c\udf34 Sono qui quando vuoi. E per parlare direttamente con Jerome, il pulsante \u00e8 qui sotto.',
-  countAns:'La mappa ha {N} luoghi verificati \ud83d\uddfa\ufe0f \u2014 spiagge, sentieri, belvedere, guachinches, piscine naturali e molto altro, in 8 lingue.',
+  countAns:'La mappa ha {N} luoghi verificati \ud83d\uddfa\ufe0f \u2014 spiagge, sentieri, belvedere, guachinches, piscine naturali e molto altro, in 9 lingue.',
   catIntro:'\ud83d\udd0e {label}{zone}: {n} nell\u2019app. I migliori:',
   catAlso:'\ud83d\udccd Sulla mappa ci sono altri {n} luoghi di questa categoria. Eccone alcuni:',
   catNone:'Nessun risultato per {label}{zone} \ud83d\ude15 Prova un\u2019altra zona.',
@@ -30442,7 +30484,7 @@ nl:{
   welcome:'Welkom bij Tenerife GO! \ud83c\udf34\n\nIk ben je assistent en ken alle {N} plekken op de kaart. Vraag me \u00abwaar is\u2026?\u00bb, \u00abstranden in het noorden\u00bb of \u00abwat te doen bij mij in de buurt\u00bb.',
   greet:'Hoi! \ud83d\udc4b Vraag naar elk van de {N} plekken op de kaart, per categorie (\u00abuitzichtpunten in het zuiden\u00bb) of \u00abwat te doen in de buurt\u00bb.',
   thanks:'Graag gedaan! \ud83c\udf34 Ik ben er wanneer je me nodig hebt. Direct met Jerome praten? De knop staat hieronder.',
-  countAns:'De kaart telt nu {N} geverifieerde plekken \ud83d\uddfa\ufe0f \u2014 stranden, wandelpaden, uitzichtpunten, guachinches, natuurlijke zwembaden en meer, in 8 talen.',
+  countAns:'De kaart telt nu {N} geverifieerde plekken \ud83d\uddfa\ufe0f \u2014 stranden, wandelpaden, uitzichtpunten, guachinches, natuurlijke zwembaden en meer, in 9 talen.',
   catIntro:'\ud83d\udd0e {label}{zone}: {n} in de app. De toppers:',
   catAlso:'\ud83d\udccd De kaart heeft nog {n} plekken in deze categorie. Een paar:',
   catNone:'Niets gevonden voor {label}{zone} \ud83d\ude15 Probeer een ander gebied.',
@@ -30471,7 +30513,7 @@ zh:{
   welcome:'\u6b22\u8fce\u6765\u5230 Tenerife GO\uff01\ud83c\udf34\n\n\u6211\u662f\u4f60\u7684\u52a9\u624b\uff0c\u719f\u6089\u5730\u56fe\u4e0a\u5168\u90e8 {N} \u4e2a\u5730\u70b9\u3002\u53ef\u4ee5\u95ee\u6211\u300c\u2026\u2026\u5728\u54ea\u91cc\uff1f\u300d\u3001\u300c\u5317\u90e8\u7684\u6d77\u6ee9\u300d\u6216\u300c\u9644\u8fd1\u6709\u4ec0\u4e48\u53ef\u73a9\u7684\u300d\u3002',
   greet:'\u4f60\u597d\uff01\ud83d\udc4b \u5730\u56fe\u4e0a\u7684 {N} \u4e2a\u5730\u70b9\u90fd\u53ef\u4ee5\u95ee\u6211\uff0c\u4e5f\u53ef\u4ee5\u6309\u7c7b\u522b\uff08\u300c\u5357\u90e8\u7684\u89c2\u666f\u53f0\u300d\uff09\u6216\u95ee\u300c\u9644\u8fd1\u6709\u4ec0\u4e48\u53ef\u73a9\u7684\u300d\u3002',
   thanks:'\u4e0d\u5ba2\u6c14\uff01\ud83c\udf34 \u968f\u65f6\u627e\u6211\u3002\u60f3\u76f4\u63a5\u8054\u7cfb Jerome\uff0c\u4e0b\u9762\u6709\u6309\u94ae\u3002',
-  countAns:'\u5730\u56fe\u4e0a\u73b0\u6709 {N} \u4e2a\u7ecf\u8fc7\u6838\u5b9e\u7684\u5730\u70b9 \ud83d\uddfa\ufe0f \u2014 \u6d77\u6ee9\u3001\u6b65\u9053\u3001\u89c2\u666f\u53f0\u3001Guachinche \u5c0f\u9986\u3001\u5929\u7136\u6cf3\u6c60\u7b49\uff0c\u652f\u6301 8 \u79cd\u8bed\u8a00\u3002',
+  countAns:'\u5730\u56fe\u4e0a\u73b0\u6709 {N} \u4e2a\u7ecf\u8fc7\u6838\u5b9e\u7684\u5730\u70b9 \ud83d\uddfa\ufe0f \u2014 \u6d77\u6ee9\u3001\u6b65\u9053\u3001\u89c2\u666f\u53f0\u3001Guachinche \u5c0f\u9986\u3001\u5929\u7136\u6cf3\u6c60\u7b49\uff0c\u652f\u6301 9 \u79cd\u8bed\u8a00\u3002',
   catIntro:'\ud83d\udd0e {label}{zone}\uff1a\u5e94\u7528\u5185\u5171 {n} \u4e2a\u3002\u7cbe\u9009\uff1a',
   catAlso:'\ud83d\udccd \u5730\u56fe\u4e0a\u8fd8\u6709 {n} \u4e2a\u6b64\u7c7b\u5730\u70b9\uff0c\u4f8b\u5982\uff1a',
   catNone:'\u6ca1\u6709\u627e\u5230{label}{zone}\ud83d\ude15 \u6362\u4e2a\u533a\u57df\u8bd5\u8bd5\u3002',
@@ -30500,7 +30542,7 @@ zht:{
   welcome:'\u6b61\u8fce\u4f86\u5230 Tenerife GO\uff01\ud83c\udf34\n\n\u6211\u662f\u4f60\u7684\u52a9\u624b\uff0c\u719f\u6089\u5730\u5716\u4e0a\u5168\u90e8 {N} \u500b\u5730\u9ede\u3002\u53ef\u4ee5\u554f\u6211\u300c\u2026\u2026\u5728\u54ea\u88e1\uff1f\u300d\u3001\u300c\u5317\u90e8\u7684\u6d77\u7058\u300d\u6216\u300c\u9644\u8fd1\u6709\u4ec0\u9ebc\u597d\u73a9\u7684\u300d\u3002',
   greet:'\u4f60\u597d\uff01\ud83d\udc4b \u5730\u5716\u4e0a\u7684 {N} \u500b\u5730\u9ede\u90fd\u53ef\u4ee5\u554f\u6211\uff0c\u4e5f\u53ef\u4ee5\u6309\u985e\u5225\uff08\u300c\u5357\u90e8\u7684\u89c0\u666f\u53f0\u300d\uff09\u6216\u554f\u300c\u9644\u8fd1\u6709\u4ec0\u9ebc\u597d\u73a9\u7684\u300d\u3002',
   thanks:'\u4e0d\u5ba2\u6c23\uff01\ud83c\udf34 \u96a8\u6642\u627e\u6211\u3002\u60f3\u76f4\u63a5\u806f\u7e6b Jerome\uff0c\u4e0b\u9762\u6709\u6309\u9215\u3002',
-  countAns:'\u5730\u5716\u4e0a\u73fe\u6709 {N} \u500b\u7d93\u904e\u6838\u5be6\u7684\u5730\u9ede \ud83d\uddfa\ufe0f \u2014 \u6d77\u7058\u3001\u6b65\u9053\u3001\u89c0\u666f\u53f0\u3001Guachinche \u5c0f\u9928\u3001\u5929\u7136\u6cf3\u6c60\u7b49\uff0c\u652f\u63f4 8 \u7a2e\u8a9e\u8a00\u3002',
+  countAns:'\u5730\u5716\u4e0a\u73fe\u6709 {N} \u500b\u7d93\u904e\u6838\u5be6\u7684\u5730\u9ede \ud83d\uddfa\ufe0f \u2014 \u6d77\u7058\u3001\u6b65\u9053\u3001\u89c0\u666f\u53f0\u3001Guachinche \u5c0f\u9928\u3001\u5929\u7136\u6cf3\u6c60\u7b49\uff0c\u652f\u63f4 9 \u7a2e\u8a9e\u8a00\u3002',
   catIntro:'\ud83d\udd0e {label}{zone}\uff1a\u61c9\u7528\u5167\u5171 {n} \u500b\u3002\u7cbe\u9078\uff1a',
   catAlso:'\ud83d\udccd \u5730\u5716\u4e0a\u9084\u6709 {n} \u500b\u6b64\u985e\u5730\u9ede\uff0c\u4f8b\u5982\uff1a',
   catNone:'\u6c92\u6709\u627e\u5230{label}{zone}\ud83d\ude15 \u63db\u500b\u5340\u57df\u8a66\u8a66\u3002',
@@ -30524,7 +30566,7 @@ zht:{
   qrAfterPoi:[['\u9644\u8fd1\u6709\u4ec0\u9ebc','que hay cerca'],['\u9644\u8fd1\u7684\u6d77\u7058','playas cercanas'],['\u9644\u8fd1\u7684\u6b65\u9053','senderos cercanos']],
   qrThanks:[['\u518d\u554f\u4e00\u500b','otra pregunta'],['\u6700\u4f73\u6d77\u7058','mejores playas']]
 },
-bg:{senderName:'Асистент',welcome:'Добре дошли в Tenerife GO! 🌴\n\nАз съм вашият асистент и познавам {N}-те места на картата. Питайте ме «къде е…?», поискайте «плажове на север» или «какво да правя близо до мен».',greet:'Здравейте! 👋 Питайте ме за което и да е от {N}-те места на картата, по категории («панорамни места на юг») или «какво да правя близо до мен».',thanks:'Няма защо! 🌴 Тук съм за каквото ви трябва. А ако искате да говорите директно с Jerome, бутонът е долу.',countAns:'В момента имате {N} проверени места на картата 🗺️ — плажове, пътеки, панорамни места, гуачинчес, естествени басейни и още много, с описания на 8 езика.',catIntro:'🔎 {label}{zone}: има {n} в приложението. Най-забележителните:',catAlso:'📍 Освен това на картата има {n} места от тази категория. Ето някои:',catNone:'Не намерих места от {label}{zone} 😕 Опитайте с друга зона.',whatIntro:'✨ Идеи{zone}. Докоснете която и да е, за да я видите на картата:',whatLbl:'Какво да правя',ambIntro:'Намерих няколко места, които съвпадат. Някое от тези ли имате предвид?',askZone:'Разбира се! Коя зона ви интересува?',geoFail:'Не успях да взема местоположението ви 📵 Кажете ми зона (север, юг, изток, запад) или населено място и продължавам оттам.',viewMap:'📍 Виж на картата',viewAll:'🗺️ Виж всички на картата',errGeneric:'Опа, нещо се обърка при мен 🙈 Опитайте пак с други думи.',fallback:'Още нямам точен отговор за това 🤔\n\nМога да ви помогна с:\n• «Къде е + име?» — познавам {N}-те места на картата\n• «плажове / пътеки / панорамни места на юг»\n• «какво да правя близо до Гарачико»\n\nА за лични въпроси Jerome е на един допир 👇',contactTitle:'Говори с Jérôme',contactSub:'Нужна ви е лична помощ? Пишете му директно.',nearYou:'близо до вас',nearOf:'близо до {a}',zone:{norte:'на север',sur:'на юг',este:'на изток',oeste:'на запад',centro:'в центъра на острова',metro:'в Санта Крус – Ла Лагуна'},qrHome:[['Най-добрите плажове','mejores playas'],['Пътеки','senderos'],['Къде е Masca?','donde esta masca'],['Какво да правя наблизо','que hacer cerca de mi']],qrZones:[['На север','en el norte'],['На юг','en el sur'],['Близо до мен','cerca de mi']],qrZonesFull:[['На север','en el norte'],['На юг','en el sur'],['На изток','en el este'],['На запад','en el oeste'],['Близо до мен','cerca de mi']],qrAfterPoi:[['Какво има наблизо','que hay cerca'],['Плажове наблизо','playas cercanas'],['Пътеки наблизо','senderos cercanos']],qrThanks:[['Друг въпрос','otra pregunta'],['Най-добрите плажове','mejores playas']]}
+bg:{senderName:'Асистент',welcome:'Добре дошли в Tenerife GO! 🌴\n\nАз съм вашият асистент и познавам {N}-те места на картата. Питайте ме «къде е…?», поискайте «плажове на север» или «какво да правя близо до мен».',greet:'Здравейте! 👋 Питайте ме за което и да е от {N}-те места на картата, по категории («панорамни места на юг») или «какво да правя близо до мен».',thanks:'Няма защо! 🌴 Тук съм за каквото ви трябва. А ако искате да говорите директно с Jerome, бутонът е долу.',countAns:'В момента имате {N} проверени места на картата 🗺️ — плажове, пътеки, панорамни места, гуачинчес, естествени басейни и още много, с описания на 9 езика.',catIntro:'🔎 {label}{zone}: има {n} в приложението. Най-забележителните:',catAlso:'📍 Освен това на картата има {n} места от тази категория. Ето някои:',catNone:'Не намерих места от {label}{zone} 😕 Опитайте с друга зона.',whatIntro:'✨ Идеи{zone}. Докоснете която и да е, за да я видите на картата:',whatLbl:'Какво да правя',ambIntro:'Намерих няколко места, които съвпадат. Някое от тези ли имате предвид?',askZone:'Разбира се! Коя зона ви интересува?',geoFail:'Не успях да взема местоположението ви 📵 Кажете ми зона (север, юг, изток, запад) или населено място и продължавам оттам.',viewMap:'📍 Виж на картата',viewAll:'🗺️ Виж всички на картата',errGeneric:'Опа, нещо се обърка при мен 🙈 Опитайте пак с други думи.',fallback:'Още нямам точен отговор за това 🤔\n\nМога да ви помогна с:\n• «Къде е + име?» — познавам {N}-те места на картата\n• «плажове / пътеки / панорамни места на юг»\n• «какво да правя близо до Гарачико»\n\nА за лични въпроси Jerome е на един допир 👇',contactTitle:'Говори с Jérôme',contactSub:'Нужна ви е лична помощ? Пишете му директно.',nearYou:'близо до вас',nearOf:'близо до {a}',zone:{norte:'на север',sur:'на юг',este:'на изток',oeste:'на запад',centro:'в центъра на острова',metro:'в Санта Крус – Ла Лагуна'},qrHome:[['Най-добрите плажове','mejores playas'],['Пътеки','senderos'],['Къде е Masca?','donde esta masca'],['Какво да правя наблизо','que hacer cerca de mi']],qrZones:[['На север','en el norte'],['На юг','en el sur'],['Близо до мен','cerca de mi']],qrZonesFull:[['На север','en el norte'],['На юг','en el sur'],['На изток','en el este'],['На запад','en el oeste'],['Близо до мен','cerca de mi']],qrAfterPoi:[['Какво има наблизо','que hay cerca'],['Плажове наблизо','playas cercanas'],['Пътеки наблизо','senderos cercanos']],qrThanks:[['Друг въпрос','otra pregunta'],['Най-добрите плажове','mejores playas']]}
 };
 function chatT(k){
   var d=(CHAT_STR[currentLang]||CHAT_STR.en);
@@ -33973,7 +34015,7 @@ const DP_ZONES = {};
 DP_CARDS.forEach(function(c){ DP_ZONES[c.id] = c.cats.slice(); });
 
 /* Tiempo, transporte y textos de interfaz de los dos planificadores,
-   en los 8 idiomas. Igual que DP_CARDS: una sola fuente de verdad,
+   en los 9 idiomas. Igual que DP_CARDS: una sola fuente de verdad,
    las tarjetas se generan por JS y se regeneran al cambiar idioma. */
 const DP_TIMES = [
   {id:"morning",icon:"\ud83c\udf05",tx:{"es":["Ma\u00f1ana","2\u20133 h \u00b7 2 paradas"],"en":["Morning","2\u20133 h \u00b7 2 stops"],"fr":["Matin","2\u20133 h \u00b7 2 \u00e9tapes"],"de":["Vormittag","2\u20133 Std. \u00b7 2 Stopps"],"it":["Mattina","2\u20133 h \u00b7 2 tappe"],"nl":["Ochtend","2\u20133 u \u00b7 2 stops"],"zh":["\u4e0a\u5348","2\u20133 \u5c0f\u65f6 \u00b7 2 \u7ad9"],"zht":["\u4e0a\u5348","2\u20133 \u5c0f\u6642 \u00b7 2 \u7ad9"], "bg":["Сутрин","2–3 ч · 2 спирки"]}},

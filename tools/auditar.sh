@@ -36,6 +36,8 @@ echo; echo "════════ filas de idioma en todo el fuente ═══
 node tools/barrido_idiomas.js bg || fallos=$((fallos+1))
 echo; echo "════════ erratas al transliterar al cirilico ════════"
 python3 tools/auditar_cirilico.py || fallos=$((fallos+1))
+echo; echo "════════ texto que se queda en el idioma de arranque ════════"
+node tools/auditar_arranque.js "$PUERTO" || fallos=$((fallos+1))
 echo; echo "════════ texto que no cambia al cambiar de idioma ════════"
 node tools/auditar_sin_traducir.js "$PUERTO" || fallos=$((fallos+1))
 echo
