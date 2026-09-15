@@ -37,8 +37,10 @@ OK = set(re.findall(r'CIRILICO-OK:\s*(\S+)', src))
 # para eso las escriben. Si no se quitan, el control se caza a si mismo.
 sinCom = re.sub(r'/\*[\s\S]*?\*/', ' ', src)
 
-MAYUS = re.compile(r'[А-Я][а-я]{4,}')
-MINUS = re.compile(r'(?<![А-я])([а-я]{5,})')
+# Cuatro letras. Con cinco se quedaban fuera nombres como "Исла" o "Тено",
+# y ahi caben erratas igual. Bajarlo no mete ruido: una sola palabra mas.
+MAYUS = re.compile(r'[А-Я][а-я]{3,}')
+MINUS = re.compile(r'(?<![А-я])([а-я]{4,})')
 
 comunes = set(MINUS.findall(sinCom))
 cuenta = collections.Counter(p for p in MAYUS.findall(sinCom)
