@@ -1551,6 +1551,48 @@ fallo, y el límite es cero.
 
 ---
 
+## El búlgaro dentro de `places[]`
+
+`places[]` tiene 1.741 filas de idioma repartidas en tres campos: `desc` (804),
+`cat` (804) y `hours` (107, ya hechas). Es el bloque más grande del proyecto:
+**193.371 caracteres** solo en las descripciones.
+
+**Las 804 categorías están.** 686 textos distintos, en seis tandas. Los
+topónimos se transliteran al cirílico, como ya se hizo en el chat y en las
+notas de línea; las marcas y los códigos se quedan en latín: HiperDino, Lidl,
+Mercadona, PADI, PR-TF, GR-131, TF-1, BC-5, D.O., SCS, BIC.
+
+`tools/meter_idioma.js` aprendió a **filtrar por campo**. Sin eso, un texto que
+sirva de categoría y de descripción se escribiría en el sitio equivocado sin
+dar ningún error.
+
+### Revisar no es leerlo otra vez
+
+Releer 686 traducciones propias no encuentra nada: se lee lo que se quiso
+escribir. `tools/revisar_traduccion.py` mira lo que se puede **perder sin que
+nadie lo note**, que es lo que de verdad hace daño en la playa:
+
+| qué busca | por qué importa |
+|---|---|
+| un ⚠️ que desaparece | el aviso de peligro deja de estar |
+| una cifra que cambia | 300 plazas pasan a ser 30 |
+| un horario distinto | el turista llega y está cerrado |
+| una traducción sin cirílico | se quedó sin traducir |
+| castellano dentro del búlgaro | media frase sin traducir |
+| letras de otro alfabeto | se cuela una `ј` serbia o una `і` ucraniana |
+| una traducción mucho más corta | se ha comido una frase |
+
+Probado contra los cuatro fallos metidos a mano: los caza los cuatro. Lo que
+**sí** se queda en castellano a propósito y el control respeta: la dirección
+postal detrás del 📍 —hay que poder leerla en la calle y teclearla en el GPS—
+y los nombres propios.
+
+Cazó tres erratas mías antes de que entraran: `Каняда с` partido en dos
+palabras, `Ла Granja` con los dos alfabetos mezclados y `извајани` con la `ј`
+serbia en vez de la `я` búlgara.
+
+---
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -1582,6 +1624,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/barrido_idiomas.js` | **todas** las filas de idioma del fuente, tengan nombre o no |
 | `tools/meter_idioma.js` | mete un idioma dentro de cada fila, detrás de `zht` |
 | `tools/auditar_sin_traducir.js` | el texto que no cambia al pasar de español a búlgaro |
+| `tools/revisar_traduccion.py` | revisa una tanda traducida antes de meterla: avisos, cifras, horarios y alfabeto |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con
