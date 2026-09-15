@@ -54,7 +54,8 @@ for e, b in t.items():
     # calle y teclearla en el GPS tal cual. Se quita antes de buscar
     # castellano, igual que los nombres propios con "de" dentro.
     sinDir = re.sub(r'📍[^·]*', ' ', b)
-    sinDir = re.sub(r'(?:[A-ZÁÉÍÓÚÑ][\w.\-\u00c0-\u024f]*\s+)*(?:de|del|la|los|las)\s+[A-ZÁÉÍÓÚÑ][\w.\-\u00c0-\u024f]*', ' ', sinDir)
+    # nombre propio o marca: "Valle de La Orotava", "La Solana", "El Esquilon"
+    sinDir = re.sub(r'(?:[A-ZÁÉÍÓÚÑ][\w.\-\u00c0-\u024f]*\s+)*(?:[Dd]e|[Dd]el|[Ll]a|[Ll]os|[Ll]as|[Ee]l)\s+[A-ZÁÉÍÓÚÑ][\w.\-\u00c0-\u024f]*', ' ', sinDir)
     n = len(ES.findall(' ' + sinDir))
     if n >= 2:
         mal.append('parece castellano dentro del bulgaro (%d): %s' % (n, sinDir[:70]))
