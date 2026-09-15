@@ -228,6 +228,7 @@ function revisar(tablas, o) {
   console.log('  cadenas vacias                   : %d', n(r.vacias));
   console.log('  {marcadores} descuadrados        : %d', n(r.interp));
   console.log('  etiquetas HTML descuadradas      : %d', n(r.html));
+  r.html.slice(0, 10).forEach(x => console.log('      ' + x));
   console.log('  espacios dobles reales           : %d', n(r.dobles));
   console.log('  signos latinos pegados a un hanzi: %d', n(r.hanzi));
   r.hanzi.slice(0, 5).forEach(x => console.log('      ' + x));

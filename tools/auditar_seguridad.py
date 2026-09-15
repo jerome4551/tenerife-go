@@ -202,6 +202,27 @@ for ln, t in fijos[:12]:
 # ignorandose, y esto es justo lo que se cuela sin que nadie lo vea.
 CON_FALLO = bool(fijos)
 
+print('\n=== marcas data-tx fuera de sitio ===')
+# El marcado masivo de data-tx busca un texto y le pega el atributo al
+# elemento que lo contiene. Si ese texto vive dentro de una CADENA de
+# JavaScript -y hay HTML dentro de cadenas, como el panel de instalar la
+# app- el atributo se cuela EN EL DATO en vez de en el marcado: la frase ya
+# esta traducida entera por idioma y encima lleva una marca pidiendo que se
+# traduzca un trozo. Paso de verdad en TX.ios y lo destapo de rebote el
+# control de etiquetas HTML descuadradas. Aqui se caza directo.
+_en_script = []
+for _m in re.finditer(r'<script\b[^>]*>([\s\S]*?)</script>', s, re.I):
+    _cuerpo = _m.group(1)
+    _base = _m.start(1)
+    for _x in re.finditer(r'data-tx(?:-aria|-title|-ph)?=', _cuerpo):
+        _ln = s[:_base + _x.start()].count('\n') + 1
+        _en_script.append((_ln, s[_base + _x.start() - 60:_base + _x.start() + 40].replace('\n', ' ')))
+print('  data-tx dentro de un <script>            : %d' % len(_en_script))
+for _ln, _t in _en_script[:6]:
+    print('    <--  linea %-6d %s' % (_ln, _t))
+if _en_script:
+    CON_FALLO = True
+
 print('\n=== tipografia china ===')
 # En chino no se deja espacio detras de los signos de ancho completo, ni se
 # usan los latinos pegados a un hanzi. Lo segundo lo mira auditar_web.js

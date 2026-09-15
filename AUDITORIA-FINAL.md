@@ -1534,6 +1534,20 @@ imagen, no texto. Traducirlo en la barra superior hacía que el logotipo y la
 barra dijeran cosas distintas en la misma pantalla. El módulo de bienvenida ya
 lo tenía decidido y escrito desde antes; la decisión estaba, yo no la vi.
 
+### Un `data-tx` se coló dentro de una cadena de JavaScript
+
+El marcado masivo busca un texto y le pega el atributo al elemento que lo
+contiene. Si ese texto vive dentro de una **cadena de JavaScript** —y hay HTML
+dentro de cadenas, como el panel de instalar la app— el atributo entra **en el
+dato**, no en el marcado: la frase ya está traducida entera por idioma y encima
+lleva una marca pidiendo que se traduzca un trozo.
+
+Pasó una vez, en `TX.ios`, y lo destapó de rebote el control que compara las
+etiquetas HTML de cada traducción con las del castellano: el castellano tenía
+un `<b>` de más y los otros ocho idiomas no. Ahora `auditar_seguridad.py` lo
+caza directo, y tumba la auditoría: ningún `data-tx` puede vivir dentro de un
+`<script>`.
+
 ### Lo que no se traduce se declara donde está
 
 Hay texto que no cambia y no es un fallo: la marca, la firma del autor, los
