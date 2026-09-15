@@ -238,6 +238,16 @@ if (plan.porEs && Object.keys(plan.porEs).length) {
     if (typeof v.es !== 'string') continue;
     if (dentro.some(f => o.ini > f.ini && o.fin < f.fin)) continue;
     dentro.push(o);
+    /* Si el plan dice de que campo es, solo se toca ese. Dos campos distintos
+       pueden decir lo mismo en castellano -"Volcanico" vale de categoria y de
+       descripcion corta- y escribir en el que no toca no da ningun error. */
+    if (plan.campo) {
+      let j = o.ini - 1; while (j > 0 && /\s/.test(src[j])) j--;
+      if (src[j] !== ':') continue;
+      j--; while (j > 0 && /\s/.test(src[j])) j--;
+      let b0 = j; while (b0 > 0 && /[\w$'"-]/.test(src[b0])) b0--;
+      if (src.slice(b0 + 1, j + 1).replace(/['"]/g, '') !== plan.campo) continue;
+    }
     const quiere = plan.porEs[v.es];
     if (!quiere) continue;
     let es;
