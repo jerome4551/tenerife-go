@@ -147,7 +147,7 @@ emojis: 2.894, 250 distintos
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
 
-## Idiomas · 31 tablas, 460 filas (y 1.875 filas en todo el fuente)
+## Idiomas · 32 tablas, 650 filas (y 2.161 filas en todo el fuente)
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
@@ -1284,7 +1284,22 @@ instalación nueva sin ningún envío previo, verde —no hay falsa alarma—.
     el informe salía rojo cada vez hasta que uno se acostumbra a ignorarlo. La
     excepción se declara ahora en el fuente, al lado de la tabla, y la
     herramienta la lee.
-55. **`UI_TX` no es un objeto, son once.** Se declara con
+55. **Una clave que es un contador global se desalinea sola.** El control
+    comparaba la página en dos idiomas apuntando cada nodo con un número
+    correlativo. Al cambiar de idioma un panel se rehace, el número se
+    desplaza, las dos fotos dejan de casar y los nodos se saltan **en
+    silencio**: la política de privacidad entera desapareció del informe sin
+    que nadie la tocara. La clave tiene que ser una posición estable, y el
+    informe tiene que decir cuántos nodos se quedaron sin pareja.
+56. **Clasificar por el nombre de la etiqueta mete todo en el mismo saco.** La
+    zona de cada nodo se decidía comparando su id, o su clase, o su etiqueta,
+    contra una lista. Todo `<span>` sin clase acababa contado como política de
+    privacidad. Se decide con el elemento en la mano, con `contains`.
+57. **Un margen de tolerancia tapa justo lo que se busca.** El control de
+    `data-tx` admitía hasta cuatro nodos iguales al castellano porque no sabía
+    distinguir «Total» —que se escribe igual— de un nodo muerto. Mirando la
+    tabla sí se distingue, y entonces el límite puede ser cero.
+58. **`UI_TX` no es un objeto, son once.** Se declara con
     `Object.assign({...},{...},{...})` y recibe diez `Object.assign` más.
     Escribir en el primero deja las otras diez partes sin idioma, en silencio.
 
@@ -1456,6 +1471,75 @@ especificación prohíbe expresamente ponerlo en un `<meta>` y GitHub Pages no
 deja mandar cabeceras. El anti-clickjacking lo hace un script que va antes que
 nada. El día que haya un Cloudflare o un Netlify delante, hay que emitirla de
 verdad ahí.
+
+---
+
+## Los 260 textos fijos en castellano, resueltos
+
+Eran los que salían igual en los nueve idiomas desde antes del búlgaro. Ya no
+queda ninguno: `tools/auditar_sin_traducir.js` da **0 en la interfaz y 0 en la
+política de privacidad**.
+
+| qué era | cuántos | cómo se resolvió |
+|---|---|---|
+| frecuencias de línea | 48 textos | tabla aparte, aplicada al pintar |
+| nombres y lugares de fiesta | 20 | dentro del dato, como los demás |
+| rótulos, `title`, `aria-label`, `placeholder` | 140 | `data-tx*` + `UI_TX` |
+| rótulos de categoría | 34 | les faltaban `labelZht` y `labelBg` a las 34 |
+| política de privacidad | 32 | `data-tx` + `UI_TX` |
+| aviso de tienda y formulario de negocio | 11 | `data-tx` + `UI_TX` |
+
+**El campo `frecuencia` no se ha tocado.** La clave de `FREQ_I18N` es su valor
+en castellano y el valor son los otros ocho idiomas, así que el dato sigue
+exactamente igual y el turista chino deja de leer «30 min» y «4 salidas/día»
+en castellano en las 179 tarjetas de línea.
+
+El mecanismo `data-tx` solo sabía repintar el texto de un elemento. Ahora
+también `title`, `aria-label` y `placeholder`, con las mismas claves y el
+mismo barrido: un ciego en alemán oía «Cerrar paradas cercanas».
+
+### Tres cosas que estaban mal y no se veían
+
+**Las fechas de las fiestas salían en castellano en dos idiomas.** `FI_LOCALE`
+no tenía `zht` ni `bg` y el respaldo era `'es-ES'`: en chino tradicional y en
+búlgaro se leía «14 sept 2027».
+
+**Los once rótulos de grupo de categorías, igual.** `getCatGroupLabel` no
+conocía `labelZht` ni `labelBg` y caía a `labelEs`. Ninguna de las 34 entradas
+los tenía, y seis no tenían tampoco italiano, neerlandés ni chino.
+
+**Y el control mentía dos veces.** Las dos son la misma clase de fallo: un
+control que da verde sobre lo que no ha mirado.
+
+1. *La clave de cada nodo era un contador global.* Bastaba con que el cambio de
+   idioma añadiera o quitara un nodo —`fiRender` rehace las 18 fiestas— para
+   que todo lo de después se desplazara un número. Las dos fotos dejaban de
+   casar, el nodo anterior no se encontraba y se saltaba en silencio: la
+   política de privacidad entera **desapareció del informe** de una ejecución a
+   la siguiente sin que nadie la tocara. Ahora la clave es el camino del
+   elemento más la posición del nodo dentro de su propio padre, y el informe
+   dice cuántos nodos se han quedado sin pareja.
+2. *La zona se decidía por el nombre del elemento.* Se comparaba el id —o la
+   clase, o el nombre de la etiqueta si no había ninguna de las dos— contra una
+   lista sacada del panel. Con eso, **todo `<span>` suelto de la aplicación
+   contaba como política de privacidad**, porque el panel también tiene spans
+   sin clase. Al arreglarlo aparecieron diez textos más que llevaban ahí desde
+   siempre. Ahora la zona se decide con el elemento en la mano.
+
+### Lo que no se traduce se declara donde está
+
+Hay texto que no cambia y no es un fallo: la marca, la firma del autor, los
+créditos de OpenStreetMap, Leaflet, Open-Meteo y AEMET, los nueve idiomas
+escritos cada uno en su propia lengua, los códigos de dos letras, las siglas
+(GPS, GPX), las unidades y el panel de administrador. Son **39 sitios**, y la
+razón va escrita al lado de cada uno con `data-sin-traducir="<motivo>"`. Si esa
+lista viviera dentro de la herramienta envejecería sin que nadie la viera.
+
+El control de `data-tx` también dejó de admitir margen. Antes toleraba hasta
+cuatro nodos iguales al castellano porque no sabía distinguir una coincidencia
+legítima —«Total» se escribe igual en inglés— de un nodo que no se repinta.
+Ahora mira la tabla: si dice cosas distintas y en pantalla sale lo mismo, es un
+fallo, y el límite es cero.
 
 ---
 

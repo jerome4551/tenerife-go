@@ -38,24 +38,50 @@ const LISTA = process.argv.indexOf('--lista') !== -1;
       }
       return partes.join('/');
     };
+    /* EXCEPCIONES DECLARADAS DONDE ESTA EL TEXTO, NO EN ESTA HERRAMIENTA.
+       Hay texto que no cambia y no es un fallo: la marca, el nombre del autor,
+       los creditos de OpenStreetMap, Leaflet o AEMET, los idiomas escritos en
+       su propia lengua, las siglas y las unidades. Si esa lista viviera aqui
+       envejeceria sin que nadie la viera; va en el marcado, con
+       data-sin-traducir="<motivo>", al lado de lo que explica. */
+    const exento = el => !!(el.closest && el.closest('[data-sin-traducir]'));
+    /* LA ZONA SE DECIDE CON EL ELEMENTO EN LA MANO, NO POR SU NOMBRE.
+       Se comparaba el id -o la clase, o el nombre de la etiqueta si no habia
+       ninguna de las dos- contra una lista sacada del panel. Con eso, TODO
+       <span> suelto de la pagina caia en "politica de privacidad", porque el
+       panel tambien tiene spans sin clase. El numero de cada zona no valia. */
+    const _admin = document.querySelector('#admin-panel, #adminPanel, [id*="admin" i]');
+    const _priv  = document.querySelector('#privacy-panel, #privacyPanel, [id*="privacy" i]');
+    const zonaDe = el => (_admin && _admin.contains(el)) ? 'admin'
+                       : (_priv && _priv.contains(el)) ? 'privacidad' : 'interfaz';
     const out = [];
     const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-    let n, i = 0;
+    let n;
+    /* LA CLAVE NO PUEDE SER UN CONTADOR GLOBAL.
+       Lo era, y bastaba con que el cambio de idioma anadiera o quitara un
+       nodo -fiRender rehace las 18 fiestas- para que todo lo de despues se
+       desplazara un numero. Entonces las dos fotos no casan, el control no
+       encuentra el nodo anterior, se lo salta y da verde sin haberlo mirado:
+       el panel de privacidad entero desaparecio del informe de un dia para
+       otro sin que nadie lo tocara. Ahora la clave es el camino del elemento
+       mas la posicion del nodo DENTRO de su propio padre. */
     while ((n = w.nextNode())) {
       const el = n.parentElement;
       if (!el || FUERA.has(el.tagName)) continue;
       const t = (n.textContent || '').replace(/\s+/g, ' ').trim();
       if (t.length < 2) continue;
-      out.push({ k: camino(el) + '#' + (i++), t, id: el.id || el.className || el.tagName });
+      if (exento(el)) continue;
+      const j = [].indexOf.call(el.childNodes, n);
+      out.push({ k: camino(el) + '#' + j, t, z: zonaDe(el), id: el.id || el.className || el.tagName });
     }
     for (const el of document.querySelectorAll('*')) {
-      if (FUERA.has(el.tagName)) continue;
+      if (FUERA.has(el.tagName) || exento(el)) continue;
       for (const a of ['title', 'aria-label', 'placeholder', 'alt']) {
         const v = el.getAttribute(a);
         if (!v) continue;
         const t = v.replace(/\s+/g, ' ').trim();
         if (t.length < 2) continue;
-        out.push({ k: camino(el) + '@' + a, t, id: el.id || el.className || el.tagName, atr: a });
+        out.push({ k: camino(el) + '@' + a, t, z: zonaDe(el), id: el.id || el.className || el.tagName, atr: a });
       }
     }
     return out;
@@ -75,6 +101,9 @@ const LISTA = process.argv.indexOf('--lista') !== -1;
     try { places.forEach(pl => { meter(pl.nombre); meter(pl.municipio); }); } catch (e) {}
     try { TITSA_LINES.forEach(l => { meter(l.nombre); meter(String(l.numero)); }); } catch (e) {}
     try { Object.values(TITSA_PARADAS).forEach(q => meter(q.n)); } catch (e) {}
+    /* Los municipios donde se celebra cada fiesta tambien son nombres propios,
+       y salen de los datos igual que los demas. */
+    try { document.querySelectorAll('.fi-place').forEach(e => meter(e.textContent)); } catch (e) {}
     return [...s];
   });
   /* "📍 Tegueste" es el mismo nombre propio que "Tegueste": el icono de
@@ -92,25 +121,18 @@ const LISTA = process.argv.indexOf('--lista') !== -1;
 
   const antes = new Map(a.map(x => [x.k, x]));
   const quietos = [];
+  let sinPareja = 0;
   for (const x of c) {
     const y = antes.get(x.k);
-    if (!y || y.t !== x.t) continue;            // cambio: esta traducido
+    if (!y) { sinPareja++; continue; }           // no estaba en la primera foto
+    if (y.t !== x.t) continue;                   // cambio: esta traducido
     if (/[Ѐ-ӿ]/.test(x.t)) continue;  // ya es cirilico
     if (esPropio(x.t)) continue;                // nombre propio
     if (!/[A-Za-zÀ-ÿ]{2,}/.test(x.t)) continue; // cifras, simbolos, emoji
     quietos.push(x);
   }
-  const admin = await p.evaluate(() => {
-    const e = document.querySelector('#admin-panel, #adminPanel, [id*="admin" i]');
-    return e ? [...e.querySelectorAll('*')].map(x => x.id || x.className || x.tagName) : [];
-  });
-  const privId = await p.evaluate(() => {
-    const e = document.querySelector('#privacy-panel, #privacyPanel, [id*="privacy" i]');
-    return e ? [...e.querySelectorAll('*')].map(x => x.id || x.className || x.tagName) : [];
-  });
-  const zona = x => admin.includes(x.id) ? 'admin' : privId.includes(x.id) ? 'privacidad' : 'interfaz';
   const grupo = { interfaz: [], privacidad: [], admin: [] };
-  quietos.forEach(x => grupo[zona(x)].push(x));
+  quietos.forEach(x => grupo[x.z || 'interfaz'].push(x));
 
   const P = (t, v) => console.log('  ' + String(t).padEnd(46, '.') + ' ' + v);
   console.log('=== texto que no cambia de es a bg y no es nombre propio ===');
@@ -119,7 +141,13 @@ const LISTA = process.argv.indexOf('--lista') !== -1;
   P('en la interfaz', grupo.interfaz.length);
   P('en la politica de privacidad (aparte)', grupo.privacidad.length);
   P('en el panel de administrador (no cuenta)', grupo.admin.length);
+  const nExentos = await p.evaluate(() => document.querySelectorAll('[data-sin-traducir]').length);
+  P('exentos declarados en el marcado', nExentos);
   P('errores de pagina', errs.length);
+  /* Un nodo sin pareja es un nodo que NO se ha podido comparar. Unos pocos
+     son normales -paneles que se rehacen al cambiar de idioma-, pero muchos
+     querrian decir que las dos fotos no casan y que el informe no vale. */
+  P('nodos sin pareja entre las dos fotos', sinPareja + (sinPareja > c.length * 0.1 ? '   <--  MAL: demasiados, el informe no es de fiar' : ''));
   if (LISTA) for (const z of ['interfaz', 'privacidad'])
     grupo[z].forEach(x => console.log('   ' + z.padEnd(11) + (x.atr || 'texto').padEnd(11) + String(x.id).slice(0, 24).padEnd(26) + x.t.slice(0, 58)));
   if (grupo.interfaz.length) console.log('      <--  MAL: eso sale igual en los nueve idiomas');

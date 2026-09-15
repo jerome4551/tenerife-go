@@ -379,10 +379,21 @@ function revisar(tablas, o) {
     // nodos de tarjeta estatica que se quedaron sin marcar
     const huerfanos = [...document.querySelectorAll('.excursion-card .excursion-desc')]
       .filter(e => !e.dataset.tx && !/^\s*$/.test(e.textContent)).length;
+    /* Un nodo que sale igual en castellano y en ingles NO es un fallo si la
+       tabla dice lo mismo en los dos: "Total" se escribe igual, y "Friendly
+       Zone" o el nombre de la tienda son marca. Lo que hay que cazar es el
+       nodo que NO SE REPINTA, y ese se distingue porque la tabla dice cosas
+       distintas y en pantalla sale la misma. */
+    const claves = [...document.querySelectorAll('[data-tx]')].map(e => e.dataset.tx);
+    const debeCambiar = (i, l) => {
+      const f = UI_TX[claves[i]];
+      return !!(f && typeof f[l] === 'string' && typeof f.es === 'string' && f[l] !== f.es);
+    };
     return { n: es.length, sinClave,  huerfanos,
              vacios: en.filter(t => !t).length,
-             igualEn: es.filter((t, i) => t === en[i]).length,
-             igualZht: es.filter((t, i) => t === zht[i]).length };
+             igualEn: es.filter((t, i) => t === en[i] && debeCambiar(i, 'en')).length,
+             igualZht: es.filter((t, i) => t === zht[i] && debeCambiar(i, 'zht')).length,
+             coincidenPorTabla: es.filter((t, i) => t === en[i] && !debeCambiar(i, 'en')).length };
   });
   console.log('\n=== textos marcados con data-tx ===');
   const okT = tienda.sinClave.length === 0 && tienda.huerfanos === 0 && tienda.vacios === 0;
@@ -394,12 +405,16 @@ function revisar(tablas, o) {
      aprobado vacio de siempre, y aqui se dio de verdad al probarlo contra el
      codigo anterior. Las 7 tarjetas dan 28 nodos; menos de 20 es que algo se
      ha perdido por el camino. */
-  const okCambia = tienda.n >= 20 && tienda.igualEn <= 4 && tienda.igualZht <= 2;
+  /* Ya no se admite ningun nodo sin repintar: el margen de antes existia
+     porque la comprobacion no sabia distinguir una coincidencia de la tabla
+     de un nodo muerto. Ahora si lo sabe, asi que el limite es cero. */
+  const okCambia = tienda.n >= 20 && tienda.igualEn === 0 && tienda.igualZht === 0;
   console.log('  ' + (okT ? 'OK ' : 'MAL') + ' los ' + tienda.n + ' nodos con data-tx tienen clave y no quedan huerfanos  (' +
               'sin clave ' + tienda.sinClave.length + ' · huerfanos ' + tienda.huerfanos + ' · vacios en ' + tienda.vacios + ')');
   tienda.sinClave.slice(0, 5).forEach(k => console.log('      <--  ' + k));
   console.log('  ' + (okCambia ? 'OK ' : 'MAL') + ' el texto cambia de verdad al cambiar de idioma  (' +
-              'iguales al es: en ' + tienda.igualEn + ' · zht ' + tienda.igualZht + ' de ' + tienda.n + ')');
+              'sin repintar: en ' + tienda.igualEn + ' · zht ' + tienda.igualZht + ' de ' + tienda.n +
+              ' · coinciden porque la tabla lo dice: ' + tienda.coincidenPorTabla + ')');
   if (!okT || !okCambia) docMal = 1;
 
   /* ── el selector de idioma ──
