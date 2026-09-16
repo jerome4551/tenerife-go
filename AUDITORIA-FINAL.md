@@ -8,8 +8,9 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 609db828010a19f59b83371c04c57f33
-             4.947.867 bytes · 1.528.158 comprimidos · 36.392 líneas
+index.html   md5 75cb9dfa6e1bbc919bbc30a06d1c6a77
+             3.024.409 bytes · 877.329 comprimidos · 36.601 líneas
+idiomas/     8 ficheros · 2.136.576 bytes · entre 69 y 94 kB comprimidos
 ```
 
 ---
@@ -22,7 +23,8 @@ index.html   md5 609db828010a19f59b83371c04c57f33
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · **bg** — los nueve terminados |
-| Ficheros | 39 en el repo · Leaflet y MarkerCluster auto-alojados en `vendor/` |
+| Ficheros | **86** versionados (34 en `tools/`, 24 en la raíz, 12 en `vendor/`, 8 en `idiomas/`, 3 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
+| Descarga | **856 kB** en castellano · **951 kB** en el peor caso (búlgaro). Antes, 1.492 kB para todos |
 
 ## Qué lineas paran en cada marquesina
 
@@ -1712,6 +1714,115 @@ Probado quitando el arreglo: **45 textos distintos**. Y comprobado además en
 valores absolutos, no solo en que las dos fotos coincidan, porque dos caminos
 igual de rotos también coinciden.
 
+## Los idiomas de los lugares salen del fichero
+
+`places[]` guardaba **1.741 filas de idioma** en cuatro campos —`desc`, `cat`,
+`hours` y `parking.aviso`—: **1.862 kB de los 2.020** que pesan los nueve
+idiomas, el 92 %. Ahora en `index.html` se queda el castellano y los otros ocho
+viven en `idiomas/<lang>.json`, que se piden solo cuando hacen falta.
+
+Medido comprimido, que es lo que viaja:
+
+| | gzip |
+|---|---|
+| antes, todo junto, para todo el mundo | 1.492 kB |
+| quien va en castellano | **856 kB** |
+| el peor caso, búlgaro (856 + 94) | **951 kB** |
+
+**Solo `places[]`.** Los otros 158 kB —`LANGS`, `UI_TX` y las tablas pequeñas—
+se quedan dentro a propósito: esos se ven en el primer pintado y no pueden
+parpadear. Una descripción de lugar no se ve hasta que alguien abre un globo.
+Sacarlos daría un 8 % más a cambio de que la barra de abajo saliera en
+castellano un instante.
+
+### Por qué además se guarda en el aparato
+
+Un `fetch` **no puede** acabar antes de que siga analizándose el documento: su
+`.then` es siempre una tarea posterior. Medido, el fichero llega a los 760 ms y
+para entonces el mapa ya tiene marcadores, así que habría parpadeo en **cada**
+visita.
+
+`localStorage` sí se lee de forma síncrona. La primera vez se baja por red —y
+ahí la pantalla de bienvenida está delante— y se guarda; de la segunda en
+adelante los textos entran antes de que exista un solo marcador. Comprobado:
+visita 1 entra por `repintando`, visitas 2 y 3 por `antesDeMontar`.
+
+Se guarda **un** idioma, no nueve: cada fichero ocupa entre 240 y 420 kB y
+`localStorage` tiene unos 5 MB para todo el origen, donde viven también los
+favoritos del usuario y los ajustes de la app. Llenarlo de traducciones dejaría
+sin sitio a lo que de verdad importa.
+
+Las dos formas de hacerlo síncrono están descartadas a propósito:
+`document.write` tiene un control en contra en `auditar_seguridad.py`, y un
+`XMLHttpRequest` síncrono congela la página el tiempo que tarde la red.
+
+Si falla, los textos de lugar salen en castellano —contenido legible, no un
+hueco— y se reintenta solo cuando vuelve la conexión.
+
+### Lo que casi sale mal, dos veces
+
+**`typeof places` lanza.** `places` es un `const` declarado más abajo en el
+mismo `<script>`: antes de su línea está en zona muerta temporal y `typeof`
+**no** devuelve `'undefined'`, lanza `ReferenceError`. Con eso, la segunda
+visita —la primera que trae datos de `localStorage`— reventaba el bloque
+entero: sin `places`, sin mapa y sin nada.
+
+**Dos controles dieron verde sobre lo que ya no miraban.** Al mudar los textos,
+`barrido_idiomas.js` pasó de mirar 2.160 filas a mirar 419, y
+`auditar_cirilico.py` de 1.136 nombres propios a 353. Los dos dijeron que todo
+estaba bien. No lo estaba: lo que faltaba había salido de su vista. Un control
+que aprueba lo que ya no mira **da permiso para seguir**, que es el peor
+resultado posible. Los dos leen ahora los ficheros y cantan si falta alguno.
+
+### Lo que hace que mover 13.928 textos sea seguro
+
+`tools/partir_idiomas.js` no escribe nada hasta volver a montar `places[]`
+desde el fuente recortado más los ocho ficheros y compararlo campo a campo con
+el original: **15.669 campos, 0 distintos**. Lleva además un seguro contra la
+segunda pasada, que escribiría ocho ficheros vacíos encima de los buenos.
+
+`tools/auditar_idiomas_fuera.js` es el control permanente: que el castellano
+siga dentro, que los ocho ficheros tengan esas mismas 1.741 filas, que no
+hablen de lugares ni campos que no existen, y que el navegador las pegue de
+verdad y en la segunda visita **antes** de montar el mapa. Probado metiendo las
+cinco faltas posibles —lugar que falta, campo que falta, id inventado, campo
+inventado y texto vacío—: las caza todas.
+
+`meter_idioma.js` ya no escribe dentro de `places[]`: habría dos copias del
+mismo texto y ganaría una u otra según el orden.
+
+El service worker sirve `idiomas/*.json` **con red primero**, como el armazón,
+porque son la misma cosa: con `cached || fetch` una versión nueva de la app
+jamás vería las traducciones nuevas. No se sube la versión del caché: obligaría
+a todos a volver a bajarse el mapa base de 1,1 MB sin ninguna necesidad.
+
+### Un rótulo que estaba en dos tablas
+
+Lo encontró el control del arranque, y no tiene que ver con la partición:
+«mostrar todos» vivía en `LANGS.showAll` **y** en `UI_TX.catMostrarTodos`, y en
+neerlandés no decían lo mismo — *«Alle tonen»* y *«Alles tonen»*—. Cuál se veía
+dependía del orden en que corrieran los escritores.
+
+Los dos botones ya llevaban `data-tx`, así que sobraban las tres escrituras
+desde `LANGS`. Se quitan, y la clave `showAll`, que se queda sin ningún lector,
+sale de las nueve tablas: una clave muerta es justo lo que alguien vuelve a
+enchufar más adelante.
+
+Y el control de `data-tx` dentro de un `<script>` ya no mira los comentarios.
+Saltaba con el comentario que explica por qué un elemento lleva `data-tx`; un
+control así se acaba esquivando escribiendo peores comentarios. Comprobado que
+sigue cazando el fallo de verdad, el `data-tx` dentro de una cadena.
+
+### Lo que no se ha podido comprobar desde aquí
+
+Que GitHub Pages sirva `idiomas/*.json`. El proxy de este entorno responde 403
+a `github.io`, así que la comprobación es local: servidor propio, service worker
+real, tres visitas seguidas y una sin red ninguna. Pages publica directo desde
+`main` y no hay flujo de despliegue que filtre carpetas, pero **queda por ver en
+el sitio publicado**.
+
+---
+
 ## El búlgaro, dentro
 
 `IDIOMAS_INCOMPLETOS` queda vacía y las dos marcas `data-incompleto="bg"` salen
@@ -1760,6 +1871,8 @@ Y cada bloque por separado, si hace falta:
 | `tools/revisar_traduccion.py` | revisa una tanda traducida antes de meterla: avisos, cifras, horarios y alfabeto |
 | `tools/auditar_cirilico.py` | la errata muda al transliterar: una variante rara muy parecida a una frecuente |
 | `tools/auditar_arranque.js` | el texto que se queda en el idioma de **arranque**, comparando contra `setLang` |
+| `tools/partir_idiomas.js` | la mudanza de los ocho idiomas de `places[]` a `idiomas/*.json` |
+| `tools/auditar_idiomas_fuera.js` | que lo mudado esté entero y el navegador lo pegue antes de montar el mapa |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con
