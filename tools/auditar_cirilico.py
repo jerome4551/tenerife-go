@@ -26,9 +26,10 @@ Dos decisiones que importan:
 
 Excepciones declaradas en el fuente:  CIRILICO-OK: <palabra>  <motivo>
 """
-import io, re, sys, collections
+import io, os, re, sys, collections
 
 RUTA = 'index.html'
+BG = os.path.join('idiomas', 'bg.json')
 src = io.open(RUTA, encoding='utf-8').read()
 
 OK = set(re.findall(r'CIRILICO-OK:\s*(\S+)', src))
@@ -36,6 +37,17 @@ OK = set(re.findall(r'CIRILICO-OK:\s*(\S+)', src))
 # Los comentarios del fuente estan en castellano, pero explican las erratas y
 # para eso las escriben. Si no se quitan, el control se caza a si mismo.
 sinCom = re.sub(r'/\*[\s\S]*?\*/', ' ', src)
+
+# EL BULGARO DE LOS LUGARES YA NO ESTA EN index.html.
+# Vive en idiomas/bg.json desde que se partieron los idiomas. Sin esta linea
+# el control pasaba de mirar 1.136 nombres propios a mirar 353 -el 69% menos-
+# y seguia diciendo que todo estaba bien. Si el fichero no esta, se dice; no
+# se aprueba en silencio lo que no se ha podido leer.
+if os.path.exists(BG):
+    sinCom += ' ' + io.open(BG, encoding='utf-8').read()
+else:
+    print('FALTA ' + BG + ': el bulgaro de los lugares no se ha mirado')
+    sys.exit(1)
 
 # Cuatro letras. Con cinco se quedaban fuera nombres como "Исла" o "Тено",
 # y ahi caben erratas igual. Bajarlo no mete ruido: una sola palabra mas.

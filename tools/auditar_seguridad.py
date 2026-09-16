@@ -210,9 +210,23 @@ print('\n=== marcas data-tx fuera de sitio ===')
 # esta traducida entera por idioma y encima lleva una marca pidiendo que se
 # traduzca un trozo. Paso de verdad en TX.ios y lo destapo de rebote el
 # control de etiquetas HTML descuadradas. Aqui se caza directo.
+# LOS COMENTARIOS NO CUENTAN, Y ES IMPORTANTE QUE NO CUENTEN.
+# Lo que hace dano es un data-tx dentro de una CADENA: ahi acaba en el dato
+# y sale impreso. Dentro de un comentario no llega a ninguna parte, y es
+# justo donde hay que poder escribirlo para explicar por que un elemento lo
+# lleva. Un control que salta con los comentarios se acaba esquivando
+# escribiendo peores comentarios, que es peor que no tenerlo.
+# Se tapan con espacios en vez de borrarlos para que los numeros de linea
+# del resto del informe sigan siendo los de verdad.
+def _sin_comentarios(t):
+    def _tapar(m):
+        return re.sub(r'[^\n]', ' ', m.group(0))
+    t = re.sub(r'/\*[\s\S]*?\*/', _tapar, t)
+    return re.sub(r'(?m)^[ \t]*//[^\n]*', _tapar, t)
+
 _en_script = []
 for _m in re.finditer(r'<script\b[^>]*>([\s\S]*?)</script>', s, re.I):
-    _cuerpo = _m.group(1)
+    _cuerpo = _sin_comentarios(_m.group(1))
     _base = _m.start(1)
     for _x in re.finditer(r'data-tx(?:-aria|-title|-ph)?=', _cuerpo):
         _ln = s[:_base + _x.start()].count('\n') + 1

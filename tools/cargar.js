@@ -47,6 +47,33 @@ for (const line of LINES) {
 const sinHidratar = LINES.filter(l => typeof (l.paradas || [])[0] === 'string');
 if (sinHidratar.length) throw new Error('quedan claves sin resolver: ' + sinHidratar.map(l => l.id));
 
+/* ── LOS OCHO IDIOMAS DE places[] VIVEN FUERA ────────────────────────────
+   index.html guarda el castellano; los otros ocho estan en idiomas/*.json y
+   la app se los pega al arrancar. Aqui se hace lo mismo, y por el mismo
+   motivo por el que existe este cargador: una herramienta que lea el fuente
+   en crudo ve filas de idioma a medias y cualquier recuento sale mal SIN DAR
+   ERROR. Un fichero que falte no se inventa: se deja constancia y el control
+   que mire idiomas lo cantara. */
+const IDIOMAS_FUERA = ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg'];
+const idiomasQueFaltan = [];
+{
+  const porId = new Map(PLACES.map(p => [p.id, p]));
+  for (const lang of IDIOMAS_FUERA) {
+    const f = path.join(RAIZ, 'idiomas', lang + '.json');
+    if (!fs.existsSync(f)) { idiomasQueFaltan.push(lang); continue; }
+    const datos = JSON.parse(fs.readFileSync(f, 'utf8'));
+    for (const id in datos) {
+      const p = porId.get(id);
+      if (!p) continue;
+      const t = datos[id];
+      if (t.desc  && p.desc)  p.desc[lang]  = t.desc;
+      if (t.cat   && p.cat)   p.cat[lang]   = t.cat;
+      if (t.hours && p.hours) p.hours[lang] = t.hours;
+      if (t.aviso && p.parking && p.parking.aviso) p.parking.aviso[lang] = t.aviso;
+    }
+  }
+}
+
 const km = (a, b) => {
   const R = 6371, r = Math.PI / 180;
   const dLa = (b[0] - a[0]) * r, dLo = (b[1] - a[1]) * r;
@@ -81,4 +108,5 @@ const distanciaAVia = (p, via) => {
 const norm = s => (s || '').normalize('NFD').replace(/\p{M}/gu, '').toLowerCase()
   .replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
 
-module.exports = { src, RAIZ, LINES, CAT, PLACES, km, mSeg, distanciaAVia, norm };
+module.exports = { src, RAIZ, LINES, CAT, PLACES, km, mSeg, distanciaAVia, norm,
+                   IDIOMAS_FUERA, idiomasQueFaltan };

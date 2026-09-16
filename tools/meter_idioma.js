@@ -218,6 +218,31 @@ if (plan.sueltas && Object.keys(plan.sueltas).length) {
 /* ── filas localizadas por su texto en castellano ──────────────────── */
 if (plan.porEs && Object.keys(plan.porEs).length) {
   const ORDEN = ['es','en','fr','de','it','nl','zh','zht','bg'];
+  /* ── DENTRO DE places[] YA NO SE ESCRIBE ─────────────────────────────
+     Los ocho idiomas de places[] se mudaron a idiomas/*.json; en el fuente
+     solo queda el castellano. Si esta herramienta escribiera ahi un `bg:`
+     habria dos copias del mismo texto, una dentro y otra fuera, y en cuanto
+     una cambiara nadie sabria cual manda: la del fichero pisa a la del
+     fuente al arrancar, asi que la de dentro seria invisible... salvo sin
+     conexion, donde saldria justo la vieja. Un empate asi no se ve leyendo.
+     Para corregir un texto de lugar se edita idiomas/<idioma>.json, que es
+     una linea por lugar y se lee mejor que este fuente. */
+  const [PLACES_INI, PLACES_FIN] = (function () {
+    const i = src.indexOf('const places = [');
+    if (i < 0) return [-1, -1];
+    const o = src.indexOf('[', i);
+    let d = 0, q = null;
+    for (let k = o; k < src.length; k++) {
+      const c = src[k], pv = src[k - 1];
+      if (q) { if (c === q && pv !== '\\') q = null; continue; }
+      if (c === '"' || c === "'" || c === '`') { q = c; continue; }
+      if (c === '[') d++; else if (c === ']') { d--; if (d === 0) return [o, k + 1]; }
+    }
+    return [-1, -1];
+  })();
+  const enPlaces = pos => PLACES_INI >= 0 && pos > PLACES_INI && pos < PLACES_FIN;
+  let bloqueados = 0;
+  const enPlacesTxt = new Set();
   const pila = [], objetos = [];
   for (let k = 0; k < src.length; k++) {
     const c = src[k];
@@ -248,6 +273,7 @@ if (plan.porEs && Object.keys(plan.porEs).length) {
       let b0 = j; while (b0 > 0 && /[\w$'"-]/.test(src[b0])) b0--;
       if (src.slice(b0 + 1, j + 1).replace(/['"]/g, '') !== plan.campo) continue;
     }
+    if (enPlaces(o.ini)) { if (plan.porEs[v.es]) { bloqueados++; enPlacesTxt.add(v.es); } continue; }
     const quiere = plan.porEs[v.es];
     if (!quiere) continue;
     let es;
@@ -276,7 +302,13 @@ if (plan.porEs && Object.keys(plan.porEs).length) {
       cortes.push({ pos: g.ref.valFin, texto: texto });
     }
   }
-  for (const k of Object.keys(plan.porEs)) if (!puestas[k]) aviso.push('no se encontro ninguna fila que diga: ' + k.slice(0, 50));
+  for (const k of Object.keys(plan.porEs)) if (!puestas[k] && !enPlacesTxt.has(k)) aviso.push('no se encontro ninguna fila que diga: ' + k.slice(0, 50));
+  /* Que no salga como "no se encontro": se encontro, y a proposito no se
+     toco. Decirlo mal manda a buscar un texto que si esta. */
+  if (bloqueados) {
+    aviso.push(bloqueados + ' fila(s) estan dentro de places[] y NO se tocan: ' +
+      'sus idiomas viven en idiomas/<idioma>.json. Se edita alli.');
+  }
 }
 
 if (aviso.length) { console.log('PROBLEMAS:'); aviso.forEach(a => console.log('   ' + a)); process.exit(1); }

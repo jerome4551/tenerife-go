@@ -203,8 +203,17 @@ self.addEventListener('fetch', e => {
 
   e.respondWith(
     caches.match(req).then(cached => {
+      /* Los idiomas de los lugares van con index.html, no por su cuenta.
+         idiomas/<lang>.json lleva las descripciones de los 804 lugares en ese
+         idioma; index.html solo trae el castellano. Si este manejador los
+         sirviera con `cached || fetch` -lo de por defecto-, una version nueva
+         de la app jamas veria las traducciones nuevas: el primer fichero que
+         entrase en el cache se quedaria ahi para siempre, que es exactamente
+         el fallo que ya tuvo la prevision del tiempo. Red primero y cache de
+         respaldo, igual que el armazon, porque son la misma cosa. */
       // Network first for index.html to get updates fast
-      if (req.url.endsWith('index.html') || req.url.endsWith('/')) {
+      if (req.url.endsWith('index.html') || req.url.endsWith('/') ||
+          /\/idiomas\/[a-z]{2,3}\.json$/.test(url.pathname)) {
         return fetch(req).then(res => {
           if (guardableShell(res)) guardar(req, res);
           return res;

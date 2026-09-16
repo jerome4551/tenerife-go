@@ -147,7 +147,7 @@ emojis: 2.894, 250 distintos
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
 
-## Idiomas · 32 tablas, 649 filas (y 2.160 filas en todo el fuente)
+## Idiomas · 32 tablas, 648 filas (y 2.160 filas, dentro y fuera del fuente)
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una

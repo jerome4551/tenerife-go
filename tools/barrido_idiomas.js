@@ -130,9 +130,36 @@ if (cojas.length) {
 }
 for (const z of ['interfaz', 'places[]'])
   P(z, por[z].n + (OBJ ? '   sin ' + OBJ + ': ' + por[z].sin : ''));
+
+/* ── LO QUE YA NO ESTA EN ESTE FICHERO ────────────────────────────────────
+   Los ocho idiomas de places[] viven en idiomas/*.json. Esta herramienta
+   barre index.html, asi que al mudarlos paso de mirar 2.160 filas a mirar
+   419 Y DIO VERDE: no porque estuviera bien, sino porque lo que faltaba
+   habia salido de su vista. Un control que aprueba lo que ya no mira da
+   permiso para seguir, que es el peor resultado posible.
+   Asi que la cuenta se completa aqui, leyendo los ficheros, y si no estan
+   se dice en voz alta en vez de callar. El detalle -que falta y donde- lo
+   mira tools/auditar_idiomas_fuera.js. */
+let fuera = 0, sinFichero = [];
+{
+  const dir = path.join(__dirname, '..', 'idiomas');
+  const IDI_FUERA = IDI_BASE.filter(l => l !== 'es').concat(['bg']);
+  for (const l of [...new Set(IDI_FUERA)]) {
+    const f = path.join(dir, l + '.json');
+    if (!fs.existsSync(f)) { sinFichero.push(l); continue; }
+    try {
+      const d = JSON.parse(fs.readFileSync(f, 'utf8'));
+      if (l === (OBJ || 'en')) for (const id in d) fuera += Object.keys(d[id]).length;
+    } catch (e) { sinFichero.push(l + '(ilegible)'); }
+  }
+  P('filas de places[] que viven en idiomas/*.json', fuera);
+  if (sinFichero.length) P('FICHEROS DE IDIOMA QUE FALTAN', sinFichero.join(' '));
+  P('total mirado, dentro y fuera', filas.length + fuera);
+}
+
 if (OBJ) {
   const sin = por['interfaz'].sin + por['places[]'].sin;
-  P('completas en ' + OBJ, filas.length - sin);
+  P('completas en ' + OBJ, filas.length - sin + fuera);
   if (LISTA) huecos.forEach(h => console.log('   ' + h.z.padEnd(9) + ' linea ' + String(h.l).padStart(6) + '  ' + h.es));
-  process.exitCode = (por['interfaz'].sin || cojas.length) ? 1 : 0;
+  process.exitCode = (por['interfaz'].sin || cojas.length || sinFichero.length) ? 1 : 0;
 }

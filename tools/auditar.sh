@@ -34,6 +34,8 @@ echo; echo "════════ idiomas, arranque y rendimiento ═══�
 node tools/auditar_web.js "$PUERTO" || fallos=$((fallos+1))
 echo; echo "════════ filas de idioma en todo el fuente ════════"
 node tools/barrido_idiomas.js bg || fallos=$((fallos+1))
+echo; echo "════════ los idiomas que viven fuera de index.html ════════"
+node tools/auditar_idiomas_fuera.js "$PUERTO" || fallos=$((fallos+1))
 echo; echo "════════ erratas al transliterar al cirilico ════════"
 python3 tools/auditar_cirilico.py || fallos=$((fallos+1))
 echo; echo "════════ texto que se queda en el idioma de arranque ════════"
