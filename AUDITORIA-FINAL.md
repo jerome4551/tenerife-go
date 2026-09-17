@@ -8,9 +8,10 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 75cb9dfa6e1bbc919bbc30a06d1c6a77
-             3.024.409 bytes · 877.329 comprimidos · 36.601 líneas
-idiomas/     8 ficheros · 2.136.576 bytes · entre 69 y 94 kB comprimidos
+index.html   md5 aa846917f0b7eceabf62c50567516a0f
+             3.024.586 bytes · 869.940 comprimidos · 36.604 líneas
+idiomas/     8 ficheros · 2.246.677 bytes · entre 75 y 93 kB comprimidos
+             + glosario-cat/ · 7 ficheros con los trozos de etiqueta a mano
 ```
 
 ---
@@ -23,7 +24,7 @@ idiomas/     8 ficheros · 2.136.576 bytes · entre 69 y 94 kB comprimidos
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · **bg** — los nueve terminados |
-| Ficheros | **86** versionados (34 en `tools/`, 24 en la raíz, 12 en `vendor/`, 8 en `idiomas/`, 3 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
+| Ficheros | **97** versionados (38 en `tools/`, 24 en la raíz, 15 en `idiomas/`, 12 en `vendor/`, 3 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
 | Descarga | **856 kB** en castellano · **951 kB** en el peor caso (búlgaro). Antes, 1.492 kB para todos |
 
 ## Qué lineas paran en cada marquesina
@@ -1839,6 +1840,169 @@ en vez de leer cirílico con voz castellana.
 
 ---
 
+## Una a una las nueve, y lo que salió debajo
+
+El encargo era mirar cada idioma entero, uno por uno. Empezaron saliendo **371
+hallazgos** repartidos por los ocho idiomas traducidos; acabaron en **cero**.
+No porque se bajara el listón: el control encontró de todo, y casi la mitad de
+lo que encontró no se veía de ninguna otra manera.
+
+### Lo que faltaba en los textos
+
+Las **91 descripciones francesas** que decían menos que el castellano, en diez
+tandas, cierran el recuento: las nueve lenguas están a `0 de 771`. Lo que se
+devolvió no era adorno —el horario de Proyecto Hombre, la iglesia anglicana de
+1890 del parque Taoro, la calle y la web de Párkinson Tenerife, el 24h de
+atención a mujeres de Adeje, la restauración de 2020 de la Casa de Anchieta, la
+dirección del Teléfono de la Esperanza, El Médano y el horario del Lidl de
+Granadilla, el «no es necesario denunciar» de CAVIS en chino y en inglés.
+
+### Las 439 etiquetas de categoría
+
+La etiqueta `cat` es la lista que sale debajo de cada ficha: `Golf · 9 Hoyos ·
+Arona · Principiantes · Familias`. **Al traducir se cayeron trozos por el
+camino** en 439 fichas de siete idiomas. El francés se había quedado en `Golf ·
+9 Trous · Arona · Débutants`, sin el «Familias»; el italiano en `Golf · 18
+Buche · Par 72`, sin el municipio y sin el «Lujo».
+
+El búlgaro no perdió ni una. Eso es lo que cierra la duda: **no es una
+fatalidad de traducir, es que se cayeron**.
+
+`tools/completar_cat.js` las devuelve **sin inventarse nada**. El glosario sale
+del propio catálogo: de las fichas donde el número de trozos sí cuadra se lee
+la pareja castellano→idioma, posición a posición. Lo que no aparece en ninguna
+ficha cuadrada —«Apoyo», «Familias», «PADI»— va en un suplemento a mano,
+`idiomas/glosario-cat/<lang>.json`, **que cede si choca con el catálogo**: lo
+que ya está traducido y en uso pesa más que lo que se escriba en el suplemento.
+
+Y conserva lo escrito: solo mete los huecos. Rehacer la etiqueta entera con el
+glosario parecía más limpio y era peor —el neerlandés dice «Laurierbos», que es
+su palabra, y el glosario la habría cambiado por el latín «Laurisilva»—.
+
+El control nuevo **TROZOS** cuenta los trozos de `cat` y de `hours`. El de
+longitud, que era lo que había, cantaba 38 de los 439.
+
+### Las averías del propio control
+
+Esto es lo que más costó y lo que más valía. Un control que da verde sobre lo
+que no ha mirado es peor que no tenerlo.
+
+**El `\b` de JavaScript es del alfabeto inglés.** Apareció tres veces:
+
+1. En la regla de «`s.` + número romano», la «é» de `dénivelés. Départ` no es
+   letra para `\b`, así que había frontera de palabra justo antes de la `s`
+   final; la regla se comía ese `s.` y con `/i` encima leía la `D` de `Départ`
+   como 500. **Salían un 500 y un 501 que no estaban escritos en ninguna
+   parte**, y el control comparaba un texto que se había inventado él mismo.
+2. Detrás de la «ч» búlgara y del 时 chino nunca hay frontera, así que esas dos
+   lenguas **no tenían ni un horario que se leyera**: `от 9 до 22 ч` era, para
+   el control, un texto sin horas.
+3. Lo mismo en el desarme de «millones».
+
+Ahora, en las tres, `(?<!\p{L})` y `(?![\p{L}\p{N}])` con la bandera `u`.
+
+**La regla de rangos arrancaba dentro de otra cifra.** En `9h15-14h` leía
+`15-14h` y apuntaba una apertura a las tres de la tarde; en `8h30-21h` leía
+`0-21h` y abría a medianoche. Ninguna de las dos estaba escrita.
+
+**El reloj a la francesa.** El francés escribe `10h00` y `8h30-21h`; sin
+leerlo, cada horario salía dos veces, como hora que falta y como cifra que
+sobra: 48 avisos de un tirón. Se lee **en los dos lados de la comparación y
+solo cuando el idioma comparado es el francés**. Eso es lo que lo hace
+honrado: `1h40` es una duración y la regla la lee mal, pero la lee mal **igual
+en el castellano y en el francés**, los dos salen idénticos y no nace ningún
+hallazgo. Un error simétrico se anula; el intento anterior era asimétrico y por
+eso mentía.
+
+**En `cat` no se leen horas.** Las seis etiquetas del catálogo con pinta de
+horario —`PR-TF 8 · Anaga (Exigente · 14 km · 5-6h)`— son las seis la duración
+de un sendero. Comprobado sobre las 771: ninguna lleva hora de apertura.
+
+**El «uur» neerlandés fuera de las marcas de rango**, por lo mismo que la
+palabra «horas» nunca estuvo: en neerlandés es la hora del reloj *y* la hora de
+duración, así que `5-6 uur` de un sendero se leía como de cinco a seis de la
+mañana. Nueve senderos cantados en los que el neerlandés decía exactamente lo
+mismo que el castellano.
+
+### Lo que el chino escribe distinto y no está mal
+
+- **Los números, en chino.** `约五百米` es «unos 500 m» y `四十多公里` es «más de
+  40 km». Se coge cada número **que ya está en el castellano**, se escribe como
+  lo escribiría el chino, y si esa forma aparece se pasa a cifras. Al revés
+  —convertir cualquier secuencia de 一二三十百— inventaría números donde no los
+  hay: `一起` es «juntos», `十分` es «muy», `第一` es «primero». Y solo la
+  primera aparición: `百佳` son las 100 mejores pero `百年` es centenario.
+- **Los meses, con número.** `12月` es diciembre y `4-6月` es de abril a junio.
+  Se quita el `N月` del chino **solo si el castellano nombra ese mes**.
+- **El descuento, al revés.** En chino un descuento se dice por lo que se paga:
+  `9折` es pagar el 90%, o sea un 10% de descuento, y `5折` es la mitad.
+- **El 点 es la marca de la hora**, como el «Uhr» alemán.
+
+### Dos cifras que el castellano escribía distinto del resto
+
+Y eso no era cosa del control, era del texto:
+
+- `Fuego solo hasta 20h` → `hasta las 20:00`, como el resto de horarios del
+  catálogo. Se alinearon las nueve lenguas.
+- `Ctra. Gral. Las Cañadas km 9,200` → `km 9,2`, que es lo que son. Leído como
+  estaba parecía el kilómetro nueve mil doscientos.
+
+### Descuidos de traducción que aparecieron al mirar las etiquetas
+
+El alemán ponía **«Kalistheniks»**, que no existe en alemán, y «Minimarket» en
+vez de «Minimarkt». El francés, **«Real Club Nautique»**, medio en castellano y
+medio en francés, y «Minimarket» en vez de «Supérette». El búlgaro,
+**«Минголф»** sin la и. El chino mezclaba `MTB阿纳加` donde el resto del chino
+dice 山地车. Y la Calle Flor de Pascua era `花街` —«calle de las flores»—, que
+en chino además suena a barrio de alterne; ahora `一品红街`.
+
+Ninguno de esos cuatro se habría visto con una lista común de «palabras que se
+escriben igual»: **`IGUAL_OK` se declara por idioma a propósito**. «Farmacia»
+vale en italiano y no vale en alemán.
+
+### El resultado, y la prueba de que el control sigue vivo
+
+```
+              antes   ahora
+  en            39      0
+  fr            39      0
+  de            54      0
+  it           108      0
+  nl            54      0
+  zh            50      0
+  zht           50      0
+  bg            27      0
+```
+
+Probado rompiendo a propósito una ficha de cada tipo en alemán: **las cinco
+categorías cantan** —cifra quitada, horario cambiado, trozo de `cat` perdido,
+trozo de `hours` perdido, descripción recortada— y la etiqueta declarada `Zoo ·
+Puerto de la Cruz` **no** canta, que es lo que se le pide.
+
+### Dos reglas que se probaron y no se quedaron
+
+Anotadas en el fuente con sus números, para que nadie las reintente a ciegas:
+
+- Leer `Nh` en todos los idiomas, no solo en francés: `nl 54→89`, `zh 50→85`,
+  `bg 27→62`, `it 108→117`, `de 54→58`.
+- Leer el «hasta 20h» del castellano por la preposición que lleva delante:
+  arreglaba 4 y rompía 8, porque el idioma de enfrente muchas veces escribe
+  «fino alle 20» sin marca ninguna.
+
+Y una tercera, en `faltan_textos.js`: **el corte no se toca**. Al vaciar la
+lista del chino quedaron once descripciones completas por debajo del umbral, y
+diez eran aparcamientos: el castellano de las fichas `pk-*` usa registro
+administrativo —«línea de estacionamiento público en superficie y batería»— y
+el chino lo dice entero con muchos menos caracteres. Medido: la mediana de los
+`pk-*` en chino es 0,26 y la del resto 0,32, mientras que por longitud del
+texto la mediana no se mueve. Lo que desplaza la proporción es el **registro**,
+no el tamaño. Subir el corte taparía también las que sí están cortadas, y una
+excepción para `pk-*` sería peor: dejaría de mirar justo donde ya se sabe que
+la proporción engaña. Once fichas que leer no son un problema; un cribado que
+no canta, sí.
+
+---
+
 # 5 · Cómo se vuelve a medir
 
 ```bash
@@ -1873,6 +2037,10 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_arranque.js` | el texto que se queda en el idioma de **arranque**, comparando contra `setLang` |
 | `tools/partir_idiomas.js` | la mudanza de los ocho idiomas de `places[]` a `idiomas/*.json` |
 | `tools/auditar_idiomas_fuera.js` | que lo mudado esté entero y el navegador lo pegue antes de montar el mapa |
+| `tools/auditar_idioma.js` | un idioma entero contra el castellano: cifras, horarios, teléfonos, trozos de etiqueta, alfabeto |
+| `tools/faltan_textos.js` | **cribado**, no veredicto: descripciones más cortas de lo esperado contra la mediana de ese idioma |
+| `tools/meter_descripcion.py` | mete descripciones rehechas comprobando que el texto es **de ese lugar** |
+| `tools/completar_cat.js` | devuelve a las etiquetas `cat` los trozos que perdieron, con el glosario del propio catálogo |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con
