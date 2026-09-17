@@ -10,7 +10,7 @@
    se noto por mirarlo a mano. Ahora se exige que las cifras del castellano
    esten en la traduccion, que es lo que comparten dos textos del mismo
    lugar y no comparten dos textos de sitios distintos."""
-import io, json, re, sys, os, subprocess
+import io, json, re, sys, os, subprocess, unicodedata
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 lang, fich = sys.argv[1], sys.argv[2]
 
@@ -62,7 +62,13 @@ for pid, txt in nuevos.items():
         # "Teneriffas" donde el castellano pone "Tenerife", y el control
         # cantaba una traduccion correcta. Cinco letras bastan para
         # distinguir y siguen sin colar un texto de otro sitio.
-        if propios and not any(n[:5] in txt for n in propios):
+        # Y SIN TILDES. El aleman escribe "Atlantiks" donde el castellano
+        # pone "Atlantico": cinco letras coinciden, pero la tilde de la a no,
+        # y el control cantaba una traduccion correcta.
+        def pelar(x):
+            return unicodedata.normalize('NFD', x).encode('ascii', 'ignore').decode().lower()
+        txtPelado = pelar(txt)
+        if propios and not any(pelar(n)[:5] in txtPelado for n in propios):
             mal.append('%s: la traduccion no nombra ninguno de %s. El castellano dice: %s'
                        % (pid, sorted(propios)[:6], esp[:80]))
 if mal:
