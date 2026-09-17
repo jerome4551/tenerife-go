@@ -81,6 +81,9 @@ const enMinutos = (h, m, mer) => {
   h = Number(h); m = Number(m || 0);
   if (mer === 'pm' && h < 12) h += 12;
   if (mer === 'am' && h === 12) h = 0;
+  /* Las 24:00 y las 00:00 son la misma hora escrita de dos maneras: el
+     castellano cierra "9:00-00:00h" y el chino "9:00至24:00". */
+  if (h === 24 && m === 0) h = 0;
   return h * 60 + m;
 };
 function sacarHoras(txt, esCampoHoras) {
@@ -110,6 +113,16 @@ function sacarHoras(txt, esCampoHoras) {
         el segundo se perdia la mitad del horario. Si no hay ninguna de las
         cuatro NO es un horario y se deja quieto: "10-15 min", "4-5
         personas" y "de 10 a 15 minutos" no son horas de apertura.
+        NADA DE \b AL FINAL. El \b de JavaScript es del alfabeto ingles: la
+        "r" de "Uhr" le vale, pero la "ч" del bulgaro y el 时 del chino no
+        son letra para el, asi que detras de ellas NUNCA hay frontera y esas
+        dos lenguas no tenian horario que valiera. "от 9 до 22 ч" se leia
+        como si no hubiera ninguna hora. Ahora (?![\p{L}\p{N}]) con la u.
+        Y "до" es el "a" del bulgaro, que tambien faltaba.
+        Los dos puntos van dentro del no-quiero: en "13:00-17:00及19:00" el
+        chino pega una letra detras, la regla daba marcha atras y se comia
+        "13:00-17" dejando suelto un ":00" que luego contaba como el numero
+        00.
         OJO: el rango no puede arrancar en los MINUTOS de otra hora. En
         "Sam 9h15-14h" arrancaba en el "15" y apuntaba una apertura a las
         tres de la tarde que nadie habia escrito; de ahi el (?<![\dh:]),
@@ -119,7 +132,7 @@ function sacarHoras(txt, esCampoHoras) {
         sendero, no la hora a la que abre, y meterla dio catorce falsas
         alarmas seguidas. */
   t = t.replace(
-    /(?<![\dh:])(\d{1,2})(?::(\d{2}))?\s*(h|Uhr|uur|ч|時|时)?\s*(?:[-–—]|\ba\b|\bto\b|\bbis\b|\btot\b)\s*(\d{1,2})(?::(\d{2}))?\s*(h|Uhr|uur|u|ч|時|时)?\b/gi,
+    /(?<![\dh:])(\d{1,2})(?::(\d{2}))?\s*(h|Uhr|uur|ч|時|时)?\s*(?:[-–—]|\ba\b|\bto\b|\bbis\b|\btot\b|до)\s*(\d{1,2})(?::(\d{2}))?\s*(h|Uhr|uur|u|ч|時|时)?(?![\p{L}\p{N}:])/giu,
     (m, h1, m1, u1, h2, m2, u2) => {
       if (!m1 && !m2 && !u1 && !u2) return m;               // "10-15 min" no es un horario
       if (Number(h1) > 23 || Number(h2) > 23) return m;     // "24h" no es una hora
@@ -158,6 +171,17 @@ function sacarHoras(txt, esCampoHoras) {
     t = t.replace(/(?<![\d:])(\d{1,2})h(\d{2})?(?![\d:])/g, (m, h, mm) => {
       if (Number(h) > 23) return m;
       mete(h, mm, null);
+      return ' ';
+    });
+  }
+
+  /* 2c. LA HORA A LA CHINA: "9点", "22点前". El 点 es la marca de la hora,
+        igual que el "Uhr" aleman, y sin leerlo el "de 9 a 22h" del
+        castellano salia como horario perdido. */
+  if (LANG === 'zh' || LANG === 'zht') {
+    t = t.replace(/(?<![\d:])(\d{1,2})\s*[点點時时]/g, (m, h) => {
+      if (Number(h) > 24) return m;
+      mete(h, null, null);
       return ' ';
     });
   }
@@ -254,8 +278,13 @@ function sinRomanos(txt) {
        -I=1, D=500, C=100- antes de comparar nada. Una regla que cambia el
        texto que va a mirar es lo peor que puede tener un control. La forma
        francesa "XVIIe" va en su propia alternativa, con la e de marca. */
-    .replace(/(?<!\p{L})([IVXLCDM]{2,7})\.?\s*(?:century|C\.|Jahrhundert|Jhd\.?|siècle|s\.|secolo|sec\.|eeuw|век|世纪|世紀)/gu,
-      (m, r) => { const n = romanoANumero(r); return n ? ' ' + n + ' ' : m; })
+    .replace(/(?<!\p{L})([IVXLCDM]{2,7})(?:\s*[-–—]\s*([IVXLCDM]{2,7}))?\.?\s*(?:century|C\.|Jahrhundert|Jhd\.?|siècle|s\.|secolo|sec\.|eeuw|век|世纪|世紀)/gu,
+      (m, r, r2) => {
+        const n = romanoANumero(r);
+        if (!n) return m;
+        const n2 = r2 ? romanoANumero(r2) : 0;
+        return ' ' + n + ' ' + (n2 ? n2 + ' ' : '');
+      })
     .replace(/(?<!\p{L})([IVXLCDM]{2,7})(?:e|er|ème)(?!\p{L})/gu,
       (m, r) => { const n = romanoANumero(r); return n ? ' ' + n + ' ' : m; });
 }
@@ -361,6 +390,96 @@ function trozoLegitimo(seg, lang) {
   if (LUGARES.has(seg) || LUGARES_EXTRA.indexOf(seg) !== -1) return true;
   if ((IGUAL_UI[lang] || []).indexOf(seg) !== -1) return true;
   return (IGUAL_OK[lang] || []).indexOf(seg) !== -1;
+}
+
+/* ── los numeros escritos en chino ──────────────────────────────────────────
+   El chino escribe "约五百米" donde el castellano pone "unos 500 m", y
+   "四十多公里" donde pone "más de 40 km". Son traducciones correctas y
+   naturales -mas naturales que poner la cifra-, pero el control las leia
+   como numeros que faltaban: treinta avisos falsos.
+
+   NO SE CONVIERTE EL CHINO A CIFRAS A LA BRAVA. Convertir cualquier
+   secuencia de 一二三十百... inventaria numeros donde no los hay: 一起 es
+   "juntos", 十分 es "muy", 第一 es "primero". Lo que se hace es al reves y
+   solo va en un sentido: se coge cada numero QUE YA ESTA EN EL CASTELLANO,
+   se escribe como lo escribiria el chino, y si esa forma aparece en la
+   traduccion se pasa a cifras para poder compararla. Asi no puede nacer
+   ningun numero que no estuviera antes en el original. */
+const CHINO_DIG = ['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+const CHINO_DIG_T = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+function chinoDe(n) {
+  const formas = new Set();
+  const cifra = String(n);
+  /* 1. la lectura normal: 500 -> 五百, 40 -> 四十, 15 -> 十五, 1.300 -> 一千三百 */
+  const unidades = [[100000000, '亿'], [10000, '万'], [1000, '千'], [100, '百'], [10, '十']];
+  function leer(x) {
+    if (x === 0) return '';
+    for (const [v, u] of unidades) {
+      if (x >= v) {
+        const alto = Math.floor(x / v), bajo = x % v;
+        const cab = (v === 10 && alto === 1) ? '' : leer(alto);   // 15 es 十五, no 一十五
+        return cab + u + (bajo === 0 ? '' : (bajo < v / 10 ? '〇' : '') + leer(bajo));
+      }
+    }
+    return CHINO_DIG[x];
+  }
+  const normal = leer(Number(n));
+  if (normal) {
+    formas.add(normal);
+    formas.add(normal.replace(/〇/g, '零'));
+    if (/^一[十百千万]/.test(normal)) formas.add(normal.slice(1));   // 100 tambien es 百
+  }
+  /* 2. la lectura cifra a cifra, que es como se dicen los años: 2018 -> 二〇一八 */
+  if (cifra.length === 4) {                      // 二〇一八 es como se dice un año
+    formas.add([...cifra].map(c => CHINO_DIG[Number(c)]).join(''));
+    formas.add([...cifra].map(c => CHINO_DIG_T[Number(c)]).join(''));
+  }
+  return [...formas];
+}
+/* El castellano escribe "50 millones" con la palabra y el chino "5000万"
+   con la cifra entera. sinMiriadas ya desarma el 万; esto desarma el
+   "millones" del otro lado para que los dos digan lo mismo. */
+function sinMillones(txt) {
+  return String(txt).replace(/(\d+(?:[.,]\d+)?)\s*(?:millones|millón|million|millions|Millionen|milioni|milione|miljoen|milioane|милиона|милион)(?![\p{L}])/giu,
+    (m, n) => ' ' + Math.round(Number(String(n).replace(',', '.')) * 1e6) + ' ');
+}
+
+function conCifrasChinas(es, tr) {
+  let t = String(tr);
+  /* Los numeros salen del castellano YA SIN LAS HORAS ni los telefonos: si
+     no, las cifras de un horario -"13:00-17:00"- se buscaban tambien en
+     chino y metian por la puerta de atras un "01" o un "06" que nadie
+     habia escrito. Y sin ceros a la izquierda, que no son un numero. */
+  const numeros = String(es).replace(/[.,](?=\d{3}\b)/g, '').match(/\d+/g) || [];
+  for (const n of [...new Set(numeros)].sort((a, b) => b.length - a.length)) {
+    if (n.length < 2 || n[0] === '0') continue;
+    for (const forma of chinoDe(n)) {
+      /* "十" suelto NO vale: tambien es "muy" (十分) y "cruz" (十字). 百, 千
+         y 万 sueltos si, que no significan otra cosa, y el chino los usa
+         mucho: "不足百人" es "menos de 100 habitantes" y "百佳" es "entre
+         las 100 mejores". */
+      if (forma.length < 2 && forma !== '百' && forma !== '千' && forma !== '万') continue;
+      if (t.includes(forma)) { t = t.split(forma).join(' ' + n + ' '); break; }
+    }
+  }
+  return t;
+}
+
+/* El chino escribe los meses con numero -"12月" es diciembre, "4-6月" es de
+   abril a junio- y el castellano con su nombre. Eso metia un 10, un 11 o un
+   12 de mas en catorce fichas. Se quita el "N月" del chino SOLO si el
+   castellano nombra ese mes: si el chino se inventara un mes que el
+   castellano no dice, sigue cantando. */
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
+               'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+function sinMesesChinos(es, tr) {
+  const bajo = String(es).toLowerCase();
+  let t = String(tr);
+  MESES.forEach((nombre, k) => {
+    if (!bajo.includes(nombre)) return;
+    t = t.replace(new RegExp('(?<![\\d])' + (k + 1) + '\\s*月', 'g'), ' ');
+  });
+  return t;
 }
 
 const hallazgos = [];
@@ -475,11 +594,20 @@ function mirar(es, tr, donde, campo) {
   /* el orden importa: primero las horas, luego el telefono, y las cifras
      sobre lo que queda. Si no, un "13:00" cuenta ademas como el numero 13. */
   const esH = campo === 'hours';
-  const [ha, esSinH] = sacarHoras(es, esH), [hb, trSinH] = sacarHoras(tr, esH);
+  /* En `cat` NO se leen horas. Las seis etiquetas del catalogo con pinta de
+     horario -"PR-TF 8 · Anaga (Exigente · 14 km · 5-6h)"- son las seis
+     duraciones de un sendero, y ninguna es la hora a la que abre nada; leer
+     "5-6h" como de cinco a seis de la manana cantaba seis horarios perdidos
+     en chino, en un texto que estaba bien. Comprobado sobre las 771
+     etiquetas: ninguna lleva horario de apertura. */
+  const sinHoras = campo === 'cat';
+  const [ha, esSinH] = sinHoras ? [[], es] : sacarHoras(es, esH);
+  const [hb, trSinH] = sinHoras ? [[], tr] : sacarHoras(tr, esH);
   if (ha.join() !== hb.join()) apunta('HORAS', donde, reloj(ha) + ' vs ' + reloj(hb) + ' :: ' + es.slice(0, 45));
-  const [ta, esSinT] = sacarTelefonos(esSinH), [tb, trSinT] = sacarTelefonos(trSinH);
+  const trChino = (LANG === 'zh' || LANG === 'zht') ? sinMesesChinos(es, conCifrasChinas(esSinH, trSinH)) : trSinH;
+  const [ta, esSinT] = sacarTelefonos(esSinH), [tb, trSinT] = sacarTelefonos(trChino);
   if (ta.join() !== tb.join()) apunta('TELEFONO', donde, ta + ' vs ' + tb + ' :: ' + es.slice(0, 45));
-  const a = cifras(esSinT), b = cifras(trSinT);
+  const a = cifras(sinMillones(esSinT)), b = cifras(sinMillones(trSinT));
   if (a.join() !== b.join()) apunta('CIFRAS', donde, a + ' vs ' + b + ' :: ' + es.slice(0, 45));
   const ma = marcas(es), mb = marcas(tr);
   if (ma.join() !== mb.join()) apunta('MARCADOR', donde, ma + ' vs ' + mb + ' :: ' + es.slice(0, 45));
