@@ -128,11 +128,17 @@ function sacarHoras(txt, esCampoHoras) {
         tres de la tarde que nadie habia escrito; de ahi el (?<![\dh:]),
         que ademas impide arrancar dentro de una cifra: sin el, en
         "8h30-21h" arrancaba en el "0" del 30 y abria a medianoche.
+        Y EL "uur" NEERLANDES TAMPOCO CUENTA, por lo mismo: en neerlandes
+        "uur" es la hora del reloj Y la hora de duracion, asi que "5-6 uur"
+        son cinco o seis horas de sendero, no de cinco a seis de la manana.
+        Estaba en la lista y cantaba nueve senderos seguidos en los que el
+        neerlandes decia exactamente lo mismo que el castellano. Quitandolo,
+        nl pasa de 15 hallazgos a 9 y ningun otro idioma se mueve.
         OJO TAMBIEN: la palabra "horas" NO cuenta. "5-6 horas" es lo que dura un
         sendero, no la hora a la que abre, y meterla dio catorce falsas
         alarmas seguidas. */
   t = t.replace(
-    /(?<![\dh:])(\d{1,2})(?::(\d{2}))?\s*(h|Uhr|uur|ч|時|时)?\s*(?:[-–—]|\ba\b|\bto\b|\bbis\b|\btot\b|до)\s*(\d{1,2})(?::(\d{2}))?\s*(h|Uhr|uur|u|ч|時|时)?(?![\p{L}\p{N}:])/giu,
+    /(?<![\dh:])(\d{1,2})(?::(\d{2}))?\s*(h|Uhr|ч|時|时)?\s*(?:[-–—]|\ba\b|\bto\b|\bbis\b|\btot\b|\balle\b|\bhasta\b|до)\s*(\d{1,2})(?::(\d{2}))?\s*(h|Uhr|u|ч|時|时)?(?![\p{L}\p{N}:])/giu,
     (m, h1, m1, u1, h2, m2, u2) => {
       if (!m1 && !m2 && !u1 && !u2) return m;               // "10-15 min" no es un horario
       if (Number(h1) > 23 || Number(h2) > 23) return m;     // "24h" no es una hora
@@ -377,7 +383,9 @@ const IGUAL_UI = {
    El ultimo trozo de cada `cat` en castellano es siempre el municipio o el
    barrio, asi que esa es la lista, y sale sola y al dia. */
 const LUGARES = new Set();
-const MEDIDA = /^[~<>]?\s*\d[\d.,]*\s*(?:m|km|h|min|m²|hab\.?|€|%)?\)?$/i;
+/* Tambien las duraciones, que son medidas: "5-6h", "1h 40min", "4,5-5h".
+   El italiano las escribe igual que el castellano porque son cifras. */
+const MEDIDA = /^[~<>]?\s*\d[\d.,]*\s*(?:m|km|h|min|m²|hab\.?|€|%)?(?:\s*[-–—]\s*\d[\d.,]*\s*(?:m|km|h|min)?)?(?:\s*\d+\s*min)?\)?$/i;
 const CODIGO = /^(?:[A-Z]{1,3}[-\s]?TF[-\s]?[\d.]+|[A-Z]{2,8}|GR-\d+|\d+(?:[.,]\d+)?\s*(?:km|m|h|min))$/;
 
 /* El parentesis tambien parte: "Anaga (Medio · 4 km · 2,5h)" son cuatro
@@ -444,6 +452,22 @@ function sinMillones(txt) {
     (m, n) => ' ' + Math.round(Number(String(n).replace(',', '.')) * 1e6) + ' ');
 }
 
+/* EL DESCUENTO A LA CHINA. En chino un descuento se dice por lo que se
+   paga, no por lo que se quita: "9折" es pagar el 90%, o sea un 10% de
+   descuento, y "5折" es la mitad. El castellano dice "10 % de descuento" y
+   "50% de descuento", asi que sin esto salian tres avisos por tres textos
+   que estaban perfectamente escritos. El 折 no significa otra cosa cuando
+   lleva la cifra pegada delante. */
+function sinDescuentoChino(txt) {
+  return String(txt).replace(/(?<![\d.,])(\d{1,2}(?:[.,]\d)?)\s*折/g, (m, n) => {
+    const x = Number(String(n).replace(',', '.'));
+    /* "9折" es pagar 9 decimos; "95折" es pagar 95 centesimos; "9,5折" lo
+       mismo escrito con coma. Lo que se paga, en tanto por ciento: */
+    const paga = (x < 10) ? x * 10 : x;
+    return ' ' + Math.round(100 - paga) + ' ';
+  });
+}
+
 function conCifrasChinas(es, tr) {
   let t = String(tr);
   /* Los numeros salen del castellano YA SIN LAS HORAS ni los telefonos: si
@@ -459,7 +483,13 @@ function conCifrasChinas(es, tr) {
          mucho: "不足百人" es "menos de 100 habitantes" y "百佳" es "entre
          las 100 mejores". */
       if (forma.length < 2 && forma !== '百' && forma !== '千' && forma !== '万') continue;
-      if (t.includes(forma)) { t = t.split(forma).join(' ' + n + ' '); break; }
+      if (t.includes(forma)) {
+        /* SOLO LA PRIMERA. "百佳" son las 100 mejores y "百年葡萄园" son
+           viñedos centenarios: la misma silaba, y el castellano solo dice
+           un numero. Cambiandolas todas aparecia un 100 de mas. */
+        t = t.replace(forma, ' ' + n + ' ');
+        break;
+      }
     }
   }
   return t;
@@ -472,11 +502,30 @@ function conCifrasChinas(es, tr) {
    castellano no dice, sigue cantando. */
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
                'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+/* El castellano tambien abrevia: "abril-junio y oct-nov". Van solo las
+   abreviaturas que no son otra palabra. "mar" NO esta, que es el mar, y
+   marzo entero se reconoce igual; "may" tampoco hace falta, que mayo ya es
+   corto. */
+const MESES_CORTOS = ['ene', 'feb', null, 'abr', null, 'jun', 'jul',
+                      'ago', 'sept?', 'oct', 'nov', 'dic'];
+function nombraMes(bajo, k) {
+  if (bajo.includes(MESES[k])) return true;
+  const c = MESES_CORTOS[k];
+  return c ? new RegExp('(?<![a-záéíóúñ])' + c + '(?![a-záéíóúñ])').test(bajo) : false;
+}
 function sinMesesChinos(es, tr) {
   const bajo = String(es).toLowerCase();
   let t = String(tr);
+  /* Primero los rangos: "4-6月" es de abril a junio y "10-11月" de octubre
+     a noviembre. Si se quitara solo el mes pegado al 月 quedaria suelto el
+     primer numero del rango. */
+  t = t.replace(/(?<![\d])(\d{1,2})\s*[-–—]\s*(\d{1,2})\s*月/g, (m, a, b) => {
+    const na = Number(a), nb = Number(b);
+    if (na < 1 || na > 12 || nb < 1 || nb > 12) return m;
+    return (nombraMes(bajo, na - 1) && nombraMes(bajo, nb - 1)) ? ' ' : m;
+  });
   MESES.forEach((nombre, k) => {
-    if (!bajo.includes(nombre)) return;
+    if (!nombraMes(bajo, k)) return;
     t = t.replace(new RegExp('(?<![\\d])' + (k + 1) + '\\s*月', 'g'), ' ');
   });
   return t;
@@ -604,7 +653,7 @@ function mirar(es, tr, donde, campo) {
   const [ha, esSinH] = sinHoras ? [[], es] : sacarHoras(es, esH);
   const [hb, trSinH] = sinHoras ? [[], tr] : sacarHoras(tr, esH);
   if (ha.join() !== hb.join()) apunta('HORAS', donde, reloj(ha) + ' vs ' + reloj(hb) + ' :: ' + es.slice(0, 45));
-  const trChino = (LANG === 'zh' || LANG === 'zht') ? sinMesesChinos(es, conCifrasChinas(esSinH, trSinH)) : trSinH;
+  const trChino = (LANG === 'zh' || LANG === 'zht') ? sinMesesChinos(es, conCifrasChinas(esSinH, sinDescuentoChino(trSinH))) : trSinH;
   const [ta, esSinT] = sacarTelefonos(esSinH), [tb, trSinT] = sacarTelefonos(trChino);
   if (ta.join() !== tb.join()) apunta('TELEFONO', donde, ta + ' vs ' + tb + ' :: ' + es.slice(0, 45));
   const a = cifras(sinMillones(esSinT)), b = cifras(sinMillones(trSinT));
@@ -628,12 +677,24 @@ function mirar(es, tr, donde, campo) {
        el "Familias" del final- y el control de longitud solo canto 38.
        El bulgaro no perdio ninguno, asi que no es una fatalidad de la
        traduccion: es que se cayeron. */
-    if (campo === 'cat') {
+    /* Vale igual para `hours`, que tambien es una lista con "·":
+       "L-V 07:00-21:00 · Consultar festivos". El frances y el aleman se
+       habian quedado sin el "Consultar festivos" y el control de longitud
+       los cantaba de milagro, por los pelos. */
+    if (campo === 'cat' || campo === 'hours') {
       const ta = es.split('·').length, tb = tr.split('·').length;
-      if (ta !== tb) apunta('TROZOS-CAT', donde, ta + ' vs ' + tb + ' :: ' + es + '   ->   ' + tr);
+      if (ta !== tb) apunta('TROZOS-' + campo.toUpperCase(), donde, ta + ' vs ' + tb + ' :: ' + es + '   ->   ' + tr);
     }
+    /* MUY-CORTA solo en textos con cuerpo. En un rotulo de tres palabras la
+       proporcion no dice nada: "Palomitas de maiz" son 18 caracteres y
+       "Popcorn" 8, y no falta ni una palabra; "Picoteo, aperitivo para
+       acompañar el vino" son 42 y el chino lo dice entero en cinco. Todos
+       los avisos que quedaban por aqui eran de ese tipo, salvo dos que eran
+       de verdad y que ahora coge el control de trozos, que es el que sabe
+       mirar una lista. Para el texto largo esta faltan_textos.js, que
+       compara contra la mediana de cada idioma. */
     const min = MINIMO[LANG] || 0.45;
-    if (tr.length < es.length * min) apunta('MUY-CORTA', donde, tr.length + ' vs ' + es.length + ' :: ' + es.slice(0, 40));
+    if (es.length >= 60 && tr.length < es.length * min) apunta('MUY-CORTA', donde, tr.length + ' vs ' + es.length + ' :: ' + es.slice(0, 40));
   }
 }
 
