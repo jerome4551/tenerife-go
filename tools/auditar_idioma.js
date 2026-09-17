@@ -106,7 +106,7 @@ function sacarHoras(txt, esCampoHoras) {
         sendero, no la hora a la que abre, y meterla dio catorce falsas
         alarmas seguidas. */
   t = t.replace(
-    /(\d{1,2})(?::(\d{2}))?\s*(?:h|Uhr|uur|ч|時|时)?\s*(?:[-–—]|\ba\b|\bto\b|\bbis\b|\btot\b)\s*(\d{1,2})(?::(\d{2}))?\s*(?:h|Uhr|uur|ч|時|时)\b/gi,
+    /(\d{1,2})(?::(\d{2}))?\s*(?:h|Uhr|uur|ч|時|时)?\s*(?:[-–—]|\ba\b|\bto\b|\bbis\b|\btot\b)\s*(\d{1,2})(?::(\d{2}))?\s*(?:h|Uhr|uur|u|ч|時|时)\b/gi,
     (m, h1, m1, h2, m2) => {
       if (Number(h1) > 23 || Number(h2) > 23) return m;     // "24h" no es una hora
       mete(h1, m1, null); mete(h2, m2, null);
@@ -153,14 +153,34 @@ function sinRomanos(txt) {
   return String(txt)
     .replace(/\b(?:siglos?|ss?\.)\s*([IVXLCDM]{1,7})\b/gi,
       (m, r) => { const n = romanoANumero(r.toUpperCase()); return n ? ' ' + n + ' ' : m; })
-    .replace(/\b([IVXLCDM]{2,7})(?:\.|\b)\s*(?:century|Jahrhundert|siècle|secolo|eeuw|век)/gi,
-      (m, r) => { const n = romanoANumero(r.toUpperCase()); return n ? ' ' + n + ' ' : m; });
+    /* Y la forma abreviada, que es la que usa cada idioma en un rotulo
+       corto: "XVIIe" en frances, "XVII sec." en italiano, "17. Jhd." en
+       aleman. Sin esto, "Castillo · S. XVII" parecia perder el 17. */
+    /* El sufijo es OBLIGATORIO. Se probo dejarlo opcional para coger
+       "XVIIe" y salio caro: sin sufijo la regla convierte CUALQUIER palabra
+       que se lea como numero romano, y "PADI 5★ IDC" pasaba a "PADI 5★ 601"
+       -I=1, D=500, C=100- antes de comparar nada. Una regla que cambia el
+       texto que va a mirar es lo peor que puede tener un control. La forma
+       francesa "XVIIe" va en su propia alternativa, con la e de marca. */
+    .replace(/\b([IVXLCDM]{2,7})\.?\s*(?:century|C\.|Jahrhundert|Jhd\.?|siècle|s\.|secolo|sec\.|eeuw|век|世纪|世紀)/g,
+      (m, r) => { const n = romanoANumero(r); return n ? ' ' + n + ' ' : m; })
+    .replace(/\b([IVXLCDM]{2,7})(?:e|er|ème)\b/g,
+      (m, r) => { const n = romanoANumero(r); return n ? ' ' + n + ' ' : m; });
 }
 const reloj = ms => ms.map(m => String(Math.floor(m / 60)).padStart(2, '0') + ':' +
                                 String(m % 60).padStart(2, '0')).join(' ');
+/* El chino no escribe 210.000: escribe 21万, que son 21 decenas de millar.
+   Y 3,5万 son 35.000. Sin esto, cada cifra grande en chino parecia perdida. */
+function sinMiriadas(t) {
+  return String(t).replace(/(\d+(?:[.,]\d+)?)\s*[万萬]/g, (m, n) =>
+    ' ' + Math.round(parseFloat(String(n).replace(',', '.')) * 10000) + ' ');
+}
 const cifras = s => {
-  s = sinRomanos(String(s));
-  s = s.replace(/(?<=\d)[\s  ](?=\d{3}\b)/g, '');
+  s = sinMiriadas(sinRomanos(String(s)));
+  /* El separador de millares cambia con el idioma: 1.024 en castellano,
+     1,024 en ingles y 1 024 -con espacio- en frances y bulgaro. Se quitan
+     los tres, o "1 024" se leia como el numero 024 y no casaba con nada. */
+  s = s.replace(/(?<=\d)[\s  ](?=\d{3}(?!\d))/g, '');
   s = s.replace(/[.,]/g, '');
   return (s.match(/\d{2,}/g) || []).sort();
 };
