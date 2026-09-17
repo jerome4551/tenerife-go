@@ -103,6 +103,13 @@ function sacarHoras(txt, esCampoHoras) {
         "7-16h", "7h-22h", "de 9 a 22h", "7-16 Uhr", "7-16 uur".
         El sufijo puede estar en los dos numeros o solo en el segundo, y el
         separador puede ser un guion o la palabra "a"/"to"/"bis"/"tot".
+        MARCA HACE FALTA, PERO VALE CUALQUIERA DE LAS CUATRO: la h de
+        cualquiera de los dos numeros o los minutos de cualquiera de los
+        dos. El castellano escribe "L-V 7-15:30" y el aleman "11:30-16",
+        cada uno con la marca en un sitio distinto, y pidiendola siempre en
+        el segundo se perdia la mitad del horario. Si no hay ninguna de las
+        cuatro NO es un horario y se deja quieto: "10-15 min", "4-5
+        personas" y "de 10 a 15 minutos" no son horas de apertura.
         OJO: el rango no puede arrancar en los MINUTOS de otra hora. En
         "Sam 9h15-14h" arrancaba en el "15" y apuntaba una apertura a las
         tres de la tarde que nadie habia escrito; de ahi el (?<![\dh:]),
@@ -112,8 +119,9 @@ function sacarHoras(txt, esCampoHoras) {
         sendero, no la hora a la que abre, y meterla dio catorce falsas
         alarmas seguidas. */
   t = t.replace(
-    /(?<![\dh:])(\d{1,2})(?::(\d{2}))?\s*(?:h|Uhr|uur|ч|時|时)?\s*(?:[-–—]|\ba\b|\bto\b|\bbis\b|\btot\b)\s*(\d{1,2})(?::(\d{2}))?\s*(?:h|Uhr|uur|u|ч|時|时)\b/gi,
-    (m, h1, m1, h2, m2) => {
+    /(?<![\dh:])(\d{1,2})(?::(\d{2}))?\s*(h|Uhr|uur|ч|時|时)?\s*(?:[-–—]|\ba\b|\bto\b|\bbis\b|\btot\b)\s*(\d{1,2})(?::(\d{2}))?\s*(h|Uhr|uur|u|ч|時|时)?\b/gi,
+    (m, h1, m1, u1, h2, m2, u2) => {
+      if (!m1 && !m2 && !u1 && !u2) return m;               // "10-15 min" no es un horario
       if (Number(h1) > 23 || Number(h2) > 23) return m;     // "24h" no es una hora
       mete(h1, m1, null); mete(h2, m2, null);
       return ' ';
@@ -170,6 +178,34 @@ function sacarHoras(txt, esCampoHoras) {
         return ' ';
       });
   }
+
+  /* 3c. LA HORA SUELTA CON SU PALABRA: "17 Uhr", "20 uur", "17 ч".
+        El aleman escribe "9-14 Uhr (Fr bis 17 Uhr)" y ese 17 se quedaba sin
+        leer, mientras que el "hasta 17:00" del castellano si se leia.
+        SOLO "Uhr". Se probo tambien con "uur" y con "ч" y hubo que
+        quitarlos, porque en neerlandes y en bulgaro esa misma palabra es la
+        hora del reloj Y la hora de duracion: "2 uur" son las dos o son dos
+        horas, y con la regla puesta el neerlandes pasaba de 54 hallazgos a
+        93. El aleman no tiene ese problema porque la duracion es "Stunde" y
+        la hora es "Uhr", dos palabras distintas. Y nunca con la "h" pelada:
+        "3h" es lo que dura un sendero.
+        (En frances la regla 2b ya lee "20h", y lo hace en los dos lados de
+        la comparacion a la vez, que es lo que la hace valida alli.)
+
+        DOS PRUEBAS MAS QUE NO SE QUEDARON, medidas hoy y anotadas para que
+        nadie las vuelva a intentar a ciegas:
+          leer "Nh" en TODOS los idiomas, no solo en frances:
+            nl 54->89, zh 50->85, bg 27->62, it 108->117, de 54->58.
+          leer el "hasta 20h" del castellano por la preposicion que lleva
+          delante: arreglaba 4 y rompia 8 -it 108->110, nl 54->56,
+            zh 50->52, bg 27->29- porque el idioma de enfrente muchas veces
+            escribe "fino alle 20" sin marca ninguna. */
+  t = t.replace(/(?<![\d:])(\d{1,2})(?::(\d{2}))?\s*Uhr\b/g,
+    (m, h, mm) => {
+      if (Number(h) > 23) return m;
+      mete(h, mm, null);
+      return ' ';
+    });
 
   /* 4. Y EL RELOJ DE 24 H CON DOS PUNTOS: "13:00" */
   t = t.replace(/(\d{1,2}):(\d{2})/g, (m, h, mm) => { mete(h, mm, null); return ' '; });
@@ -248,6 +284,85 @@ const etiquetas = s => {
 };
 const igual = (a, b) => String(a).replace(/\s+/g, ' ').trim() === String(b).replace(/\s+/g, ' ').trim();
 
+/* ── cuando salir igual que el castellano NO es un fallo ────────────────────
+   Las etiquetas `cat` son del tipo "Guachinche · La Orotava". Salen iguales
+   por tres motivos legitimos y uno ilegitimo, y el control solo sirve si
+   distingue los cuatro:
+     el nombre del sitio        La Orotava, Santa Cruz, Tegueste
+     la medida o el codigo      8,4 km · 1.400 m · PR-TF 6.1 · WSWCF
+     la palabra que de verdad   el italiano dice "Farmacia" y "Museo" igual
+       se escribe igual         que el castellano; el aleman dice "Zoo"
+     el descuido                el aleman ponia "Kalistheniks", que no
+                                existe, y "Minimarket" en vez de "Minimarkt"
+   Los tres primeros se declaran; lo que no esta declarado se canta. Asi el
+   dia que alguien deje una etiqueta sin traducir, se ve.
+
+   IGUAL_OK se declara POR IDIOMA a proposito. "Farmacia" vale en italiano y
+   no vale en aleman, y una lista comun habria tapado justo el descuido que
+   se acaba de encontrar. */
+const IGUAL_OK = {
+  en: ['Guachinche', 'Golf', 'Minigolf', 'Surf', 'Kayak', 'Fitness', 'Running',
+       'Marina', 'Street Workout', 'Skatepark', 'Skate', 'Windsurf', 'Karting',
+       'Zoo', 'MTB', 'Caldera', 'Boulevard', 'Modernista'],
+  fr: ['Guachinche', 'Golf', 'Minigolf', 'Surf', 'Kayak', 'Fitness', 'Running',
+       'Marina', 'Street Workout', 'Skatepark', 'Skate', 'Windsurf', 'Kitesurf',
+       'Karting', 'Zoo', 'Parapente', 'Camping', 'Boulevard', 'Modernista',
+       'Resort de Golf', 'Real Club Náutico'],
+  de: ['Guachinche', 'Golf', 'Minigolf', 'Fitness', 'Running', 'Marina',
+       'Street Workout', 'Skatepark', 'Skate', 'Windsurf', 'Karting', 'Zoo',
+       'MTB', 'Caldera', 'Boulevard', 'Modernista', 'Real Club Náutico'],
+  it: ['Guachinche', 'Golf', 'Minigolf', 'Surf', 'Kayak', 'Fitness', 'Running',
+       'Marina', 'Street Workout', 'Skatepark', 'Skate', 'Windsurf', 'Kitesurf',
+       'Karting', 'Zoo', 'MTB', 'Caldera', 'Boulevard', 'Modernista',
+       'Real Club Náutico', 'Minimarket 24h',
+       /* el italiano escribe estas igual que el castellano, no es un olvido */
+       'Farmacia', 'Farmacia 24h', 'Museo', 'Museo del Vino', 'Faro',
+       'Faro Moderno', 'Teatro', 'Piscina', 'Patrimonio', 'Patrimonio UNESCO',
+       'Convento', 'Santuario', 'Ambulatorio', 'Turismo', 'Cala', 'Centro',
+       'Calistenia', 'Calistenia Kenguru Pro', 'D.O.', 'Noroeste', 'Medio'],
+  nl: ['Guachinche', 'Golf', 'Minigolf', 'Kayak', 'Fitness', 'Marina',
+       'Street Workout', 'Skatepark', 'Windsurf', 'Caldera', 'Camping',
+       'Modernista', 'Real Club Náutico', 'D.O.'],
+  zh: [], zht: [], bg: []
+};
+
+/* Barrios y sitios que solo salen en medio de la etiqueta y por eso no los
+   pilla la cosecha automatica, que mira el ultimo trozo. Son nombres
+   propios: se escriben igual en cualquier idioma de alfabeto latino. */
+const LUGARES_EXTRA = ['La Granja', 'La Manzanilla', 'Barmanía', 'Chimisay',
+                       'Anaga', 'Teno', 'Vilaflor'];
+
+/* Rotulos de la interfaz que este idioma deja igual a proposito. El frances
+   traduce "Friendly Zone" y el ingles no puede; el ingles dice "Bundle"
+   donde el italiano dice "Pack". Por eso, otra vez, por idioma. */
+const IGUAL_UI = {
+  en: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop'],
+  fr: ['Pack Tenerife Go'],
+  de: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop'],
+  it: ['Friendly Zone 🐾', 'Pack Tenerife Go'],
+  nl: ['Friendly Zone 🐾'],
+  zh: [], zht: [], bg: []
+};
+
+/* Los nombres de sitio no se declaran a mano: se sacan del propio catalogo.
+   El ultimo trozo de cada `cat` en castellano es siempre el municipio o el
+   barrio, asi que esa es la lista, y sale sola y al dia. */
+const LUGARES = new Set();
+const MEDIDA = /^[~<>]?\s*\d[\d.,]*\s*(?:m|km|h|min|m²|hab\.?|€|%)?\)?$/i;
+const CODIGO = /^(?:[A-Z]{1,3}[-\s]?TF[-\s]?[\d.]+|[A-Z]{2,8}|GR-\d+|\d+(?:[.,]\d+)?\s*(?:km|m|h|min))$/;
+
+/* El parentesis tambien parte: "Anaga (Medio · 4 km · 2,5h)" son cuatro
+   cosas, no dos, y partiendo solo por el punto volado quedaba el pegote
+   "Anaga (Medio", que no es ni un sitio ni una palabra. */
+function trozos(t) { return String(t).split(/[·()]/).map(x => x.trim()).filter(Boolean); }
+function trozoLegitimo(seg, lang) {
+  if (!seg) return true;
+  if (MEDIDA.test(seg) || CODIGO.test(seg)) return true;
+  if (LUGARES.has(seg) || LUGARES_EXTRA.indexOf(seg) !== -1) return true;
+  if ((IGUAL_UI[lang] || []).indexOf(seg) !== -1) return true;
+  return (IGUAL_OK[lang] || []).indexOf(seg) !== -1;
+}
+
 const hallazgos = [];
 const apunta = (tipo, donde, txt) => hallazgos.push({ tipo, donde, txt });
 
@@ -268,6 +383,16 @@ function span(decl, abre) {
 const [PI, PF] = span('const places = [', '[');
 const PLACES = eval('(' + src.slice(PI, PF) + ')');
 const CAMPOS = ['desc', 'cat', 'hours', 'aviso'];
+
+/* La lista de nombres de sitio, sacada del catalogo y no escrita a mano: el
+   ultimo trozo de cada `cat` es el municipio o el barrio. Se le suman los
+   trozos que aparecen de ultimos en una ficha y de intermedios en otra
+   -"La Granja" es barrio de Santa Cruz y sale en las dos posiciones-. */
+for (const p of PLACES) {
+  if (!p.cat || typeof p.cat.es !== 'string') continue;
+  const t = p.cat.es.split('·').map(x => x.trim()).filter(Boolean);
+  if (t.length > 1) LUGARES.add(t[t.length - 1]);
+}
 const trozo = (p, campo) => campo === 'aviso' ? (p.parking && p.parking.aviso) : p[campo];
 
 let fuera = {};
@@ -363,7 +488,22 @@ function mirar(es, tr, donde, campo) {
     const esc = ESCRITURA[LANG];
     if (esc.debe && !esc.debe.test(tr)) apunta('SIN-SU-ALFABETO', donde, tr.slice(0, 50));
     if (esc.prohibe && esc.prohibe.test(tr)) apunta('ALFABETO-AJENO', donde, tr.slice(0, 50));
-    if (igual(es, tr) && es.replace(/[^A-Za-zÀ-ÿ]/g, '').length >= 12) apunta('IGUAL-AL-CASTELLANO', donde, es.slice(0, 55));
+    if (igual(es, tr) && es.replace(/[^A-Za-zÀ-ÿ]/g, '').length >= 12
+        && !trozos(es).every(t => trozoLegitimo(t, LANG))) {
+      const sueltos = trozos(es).filter(t => !trozoLegitimo(t, LANG));
+      apunta('IGUAL-AL-CASTELLANO', donde, es.slice(0, 55) + '   [sin declarar: ' + sueltos.join(' | ') + ']');
+    }
+    /* La etiqueta `cat` es una lista separada por "·", y los trozos tienen
+       que ser los mismos. Contarlos pilla lo que la longitud no pillaba:
+       439 etiquetas repartidas por siete idiomas habian perdido trozos por
+       el camino -"Golf · 9 Trous · Arona · Debutants" se habia quedado sin
+       el "Familias" del final- y el control de longitud solo canto 38.
+       El bulgaro no perdio ninguno, asi que no es una fatalidad de la
+       traduccion: es que se cayeron. */
+    if (campo === 'cat') {
+      const ta = es.split('·').length, tb = tr.split('·').length;
+      if (ta !== tb) apunta('TROZOS-CAT', donde, ta + ' vs ' + tb + ' :: ' + es + '   ->   ' + tr);
+    }
     const min = MINIMO[LANG] || 0.45;
     if (tr.length < es.length * min) apunta('MUY-CORTA', donde, tr.length + ' vs ' + es.length + ' :: ' + es.slice(0, 40));
   }
