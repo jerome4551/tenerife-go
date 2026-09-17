@@ -38,7 +38,10 @@ echo; echo "════════ los idiomas que viven fuera de index.html �
 node tools/auditar_idiomas_fuera.js "$PUERTO" || fallos=$((fallos+1))
 echo; echo "════════ cada idioma, uno por uno ════════"
 for L in es en fr de it nl zh zht bg; do node tools/auditar_idioma.js $L | head -4; done
-echo; echo "════════ erratas al transliterar al cirilico ════════"
+echo; echo "════════ etiquetas del globo ════════"
+node tools/auditar_etiquetas.js || fallos=$((fallos+1))
+
+echo "════════ erratas al transliterar al cirilico ════════"
 python3 tools/auditar_cirilico.py || fallos=$((fallos+1))
 echo; echo "════════ texto que se queda en el idioma de arranque ════════"
 node tools/auditar_arranque.js "$PUERTO" || fallos=$((fallos+1))

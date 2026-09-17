@@ -205,6 +205,7 @@ self.addEventListener('fetch', e => {
     caches.match(req).then(cached => {
       /* Los idiomas de los lugares van con index.html, no por su cuenta.
          idiomas/<lang>.json lleva las descripciones de los 804 lugares en ese
+         idioma, y idiomas/etiquetas/<lang>.json los chips del globo, en ese
          idioma; index.html solo trae el castellano. Si este manejador los
          sirviera con `cached || fetch` -lo de por defecto-, una version nueva
          de la app jamas veria las traducciones nuevas: el primer fichero que
@@ -213,7 +214,7 @@ self.addEventListener('fetch', e => {
          respaldo, igual que el armazon, porque son la misma cosa. */
       // Network first for index.html to get updates fast
       if (req.url.endsWith('index.html') || req.url.endsWith('/') ||
-          /\/idiomas\/[a-z]{2,3}\.json$/.test(url.pathname)) {
+          /\/idiomas\/(etiquetas\/)?[a-z]{2,3}\.json$/.test(url.pathname)) {
         return fetch(req).then(res => {
           if (guardableShell(res)) guardar(req, res);
           return res;

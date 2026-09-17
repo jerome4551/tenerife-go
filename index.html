@@ -8747,7 +8747,46 @@ const TG_LUGARES_I18N = (function () {
     fallados: function () { return fallados.slice(); }
   };
 })();
+/* ── LAS ETIQUETAS DEL GLOBO ─────────────────────────────────────────────
+   Los `tags` de cada ficha salen como chips debajo del nombre y vivian solo
+   en castellano: en bulgaro el globo decia "Уебкамера на живо" y justo
+   debajo "Webcam · En directo · Teide". 593 etiquetas distintas, en las 804
+   fichas, y ningun control las miraba porque no son un objeto {es:...}: son
+   texto suelto dentro de un array.
+
+   Las que se traducen viven en idiomas/etiquetas/<lang>.json, una por
+   idioma y de unos 13 kB. Las que no -nombres de sitio, marcas, cifras-
+   NO estan en el fichero y caen solas al castellano, que es lo correcto:
+   "La Ranilla" se escribe igual en aleman.
+
+   Si el fichero no ha llegado todavia, la etiqueta sale en castellano
+   exactamente como salia antes, y cuando llega se repintan los marcadores.
+   Nunca se queda a medias ni revienta. */
+const TG_ETIQUETAS = (function () {
+  'use strict';
+  let tabla = null, pedido = null;
+  function bajar(lang) {
+    if (!lang || lang === 'es') { tabla = null; return Promise.resolve(); }
+    if (pedido === lang) return Promise.resolve();
+    pedido = lang;
+    return fetch('idiomas/etiquetas/' + lang + '.json', { cache: 'force-cache' })
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if (pedido !== lang) return;          // llego tarde, ya cambiaron de idioma
+        tabla = d || null;
+        try { if (typeof updateMarkers === 'function') updateMarkers(); } catch (e) {}
+      })
+      .catch(() => { if (pedido === lang) tabla = null; });
+  }
+  return {
+    arrancar: bajar,
+    cambiarA: bajar,
+    de: function (t) { return (tabla && tabla[t]) || t; }
+  };
+})();
+
 TG_LUGARES_I18N.arrancar(currentLang);
+TG_ETIQUETAS.arrancar(currentLang);
 
 /* Textos de interfaz que faltaban: barra inferior, pestanas de Rutas
    y calculador A->B. Se aplican en setLang (ver applyUiTx). */
@@ -9291,6 +9330,7 @@ function setLang(lang) {
      repintan solos. Mientras, esos textos salen en castellano, que es lo
      que localized() hace siempre con un idioma que falta. */
   try { TG_LUGARES_I18N.cambiarA(lang); } catch (e) {}
+  try { TG_ETIQUETAS.cambiarA(lang); } catch (e) {}
   // Recordar la eleccion: antes se perdia al recargar y el turista
   // volvia a encontrarse la app en espanol.
   try { localStorage.setItem('tg_lang', lang); } catch (e) {}
@@ -16126,7 +16166,7 @@ function _updateMarkersImpl() {
       const seaBlock = COAST_CATS.includes(place.category)
         ? `<div class="popup-sea-wrap" data-place-id="${safeId}"><button type="button" class="popup-sea-toggle">🌊 ${escapeHtml(seaTx().title)}</button><div class="popup-sea-details" hidden></div></div>`
         : '';
-      const safeTags     = place.tags.map(tag => `<span class="popup-tag">${escapeHtml(tag)}</span>`).join('');
+      const safeTags     = place.tags.map(tag => `<span class="popup-tag">${escapeHtml(TG_ETIQUETAS.de(tag))}</span>`).join('');
 
       const popup = window.L.popup({ maxWidth: 260, closeButton: true, autoPan: true, autoPanPadding: [20, 70], keepInView: true }).setContent(`
         <div class="popup-inner" data-place-id="${safeId}">

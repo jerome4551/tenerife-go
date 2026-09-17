@@ -8,10 +8,11 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 f9e3efc57021d4f9a8439034f3e42fc8
-             3.030.900 bytes · 871.960 comprimidos · 36.614 líneas
+index.html   md5 8c9123ccbd1abbf6317e78be076bb09b
+             3.079.425 bytes · 884.957 comprimidos · 36.656 líneas
 idiomas/     8 ficheros · 2.246.677 bytes · entre 75 y 93 kB comprimidos
              + glosario-cat/ · 7 ficheros con los trozos de etiqueta a mano
+             + etiquetas/    · 8 ficheros con los chips del globo (~15 kB cada uno)
 ```
 
 ---
@@ -150,7 +151,7 @@ emojis: 2.894, 250 distintos
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
 
-## Idiomas · 32 tablas, 648 filas (y 2.160 filas, dentro y fuera del fuente)
+## Idiomas · 32 tablas, 753 filas (y 2.322 filas, dentro y fuera del fuente)
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
@@ -2093,6 +2094,79 @@ marcado.
 
 ---
 
+## El panel de administrador y los chips del globo
+
+Quedaban dos bloques en castellano. Los dos se veían.
+
+### El panel de administrador
+
+Iba en castellano **por decisión**, declarada en el marcado. Ahora entra en el
+mismo mecanismo que el resto —`data-tx`, `data-tx-ph`, `data-tx-title`,
+`data-tx-aria` y `tx()` para lo que se genera desde JavaScript—, sin maquinaria
+nueva: **104 claves**, 62 de marcado y 42 de avisos. De 64 nodos sin traducir a
+**0**.
+
+Al mirarlo aparecieron tres cosas que no se buscaban:
+
+- `29,99€/mes` estaba dentro de una exención que decía «cifra con la moneda».
+  La cifra no se traduce; **el «/mes» sí**. Ahora son dos piezas.
+- Tres listas vacías y los botones **Visible / Oculto / Borrar** se generaban
+  desde plantillas y tampoco se traducían.
+- El panel decía «Business name \*» en castellano porque el navegador de
+  pruebas estaba en inglés — falsa alarma, comprobada y descartada.
+
+### Las etiquetas del globo
+
+Cada ficha lleva `tags`, y salen como chips debajo del nombre. Vivían **solo en
+castellano**: en búlgaro el globo decía «Уебкамера на живо» y justo debajo
+«Webcam · En directo · Teide».
+
+Ningún control las miraba, y el motivo es interesante: **no son un objeto
+`{es:…}`**, son texto suelto dentro de un array. Todos los controles de idioma
+buscaban pares clave-valor.
+
+```
+etiquetas distintas ....................... 1.173
+  reconocidas solas como nombre de sitio .. 251
+  declaradas sin traducir, con motivo ..... 243
+  traducidas a los ocho idiomas ........... 679   (5.432 textos)
+```
+
+Las traducidas viven en `idiomas/etiquetas/<lang>.json`, ~15 kB por idioma, que
+baja con el que el usuario elige. Si el fichero no ha llegado, la etiqueta sale
+en castellano igual que antes y se repinta al llegar: nunca a medias.
+
+Las 243 declaradas van con su motivo en
+`idiomas/etiquetas-sin-traducir.json`, en seis grupos —nombre de sitio, de
+edificio, marca o persona, código de carretera o sendero, cifra o medida—.
+
+### Lo que enseñó el control al escribirlo
+
+**Primera versión: «todas sus palabras salen en algún nombre de ficha» valía
+como nombre propio.** Demasiado ancho. «Casa del Vino» hacía que **Vino** pasara
+por nombre propio, y con el «Museo» de Museo Etnográfico, la «Farmacia» de
+Farmacia Anaga y la «Webcam» de Webcam Teide igual: **243 etiquetas corrientes
+se colaban como si fueran sitios** y el control las daba por buenas sin haberlas
+mirado. Ahora solo cuenta como sitio lo que el catálogo nombra como zona.
+
+**Segunda: guardar solo lo que cambia.** Si el italiano decía «Cala» como el
+castellano, se omitía la fila. Entonces el hueco tenía dos lecturas —«se escribe
+igual» y «se me olvidó»— y eso un control no se lo puede permitir. Ahora se
+guarda todo: **falta = falta**.
+
+**Tercera, probada y quitada:** detectar el olvido comparando idiomas —«si el
+alemán la tradujo y el italiano no, el italiano se la olvidó»—. Sale mal por el
+italiano, que comparte con el castellano media lengua: *faro*, *costa*, *vino*,
+*cresta*, *alto*, *remoto* y *religioso* son italiano correcto y los cantaba
+todos, junto con «Bus» en tres idiomas, «Zoo» en tres, «Marina» en cuatro y
+«Lava» en dos. **Veintinueve avisos y ni uno bueno.**
+
+Lo que sí es exacto y se queda: en chino y búlgaro, que no usan alfabeto latino,
+dejar el castellano es **siempre** un olvido salvo un código como `4x4` o `BMX`.
+Probado rompiendo una etiqueta a propósito en búlgaro y en alemán.
+
+---
+
 # 5 · Cómo se vuelve a medir
 
 ```bash
@@ -2127,6 +2201,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_arranque.js` | el texto que se queda en el idioma de **arranque**, comparando contra `setLang` |
 | `tools/partir_idiomas.js` | la mudanza de los ocho idiomas de `places[]` a `idiomas/*.json` |
 | `tools/auditar_idiomas_fuera.js` | que lo mudado esté entero y el navegador lo pegue antes de montar el mapa |
+| `tools/auditar_etiquetas.js` | los chips del globo: traducidos, declarados con motivo, o reconocidos como nombre de sitio |
 | `tools/auditar_idioma.js` | un idioma entero contra el castellano: cifras, horarios, teléfonos, trozos de etiqueta, alfabeto |
 | `tools/faltan_textos.js` | **cribado**, no veredicto: descripciones más cortas de lo esperado contra la mediana de ese idioma |
 | `tools/meter_descripcion.py` | mete descripciones rehechas comprobando que el texto es **de ese lugar** |
