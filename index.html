@@ -35410,6 +35410,9 @@ function closePrivacyPanel() {
 
   var synth = window.speechSynthesis;
 
+  /* SIN-TRADUCIR: TTS_LOCALE — esto no son textos, son los codigos de
+     idioma que espera speechSynthesis. "bg-BG" no se traduce: se escribe
+     asi o no hay voz. */
   var TTS_LOCALE = {
     es: 'es-ES', en: 'en-GB', fr: 'fr-FR', de: 'de-DE',
     it: 'it-IT', nl: 'nl-NL', zh: 'zh-CN', zht: 'zh-TW',
