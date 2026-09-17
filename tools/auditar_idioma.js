@@ -531,6 +531,8 @@ function sinMesesChinos(es, tr) {
   return t;
 }
 
+const ENLACE = /[\w.+-]+@[\w-]+\.[\w.]+|(?:https?:\/\/)?(?:[\w-]+\.)+(?:com|es|org|net|eu|io|info|dev)\b(?:\/[\w/.=&?%+-]*)?/gi;
+
 const hallazgos = [];
 const apunta = (tipo, donde, txt) => hallazgos.push({ tipo, donde, txt });
 
@@ -681,6 +683,14 @@ function mirar(es, tr, donde, campo) {
        "L-V 07:00-21:00 · Consultar festivos". El frances y el aleman se
        habian quedado sin el "Consultar festivos" y el control de longitud
        los cantaba de milagro, por los pelos. */
+    /* Un correo o una web no se traducen: o estan igual, o no estan. Y
+       cuando no estan, el cribado de longitud puede no enterarse: el ingles
+       de acc-adissur se habia dejado el correo de la asociacion y seguia
+       teniendo largo de sobra para pasar. Doce fichas del castellano llevan
+       correo o web. */
+    for (const enlace of new Set(es.match(ENLACE) || [])) {
+      if (!tr.includes(enlace)) apunta('ENLACE', donde, 'falta ' + enlace + ' :: ' + es.slice(0, 40));
+    }
     if (campo === 'cat' || campo === 'hours') {
       const ta = es.split('·').length, tb = tr.split('·').length;
       if (ta !== tb) apunta('TROZOS-' + campo.toUpperCase(), donde, ta + ' vs ' + tb + ' :: ' + es + '   ->   ' + tr);

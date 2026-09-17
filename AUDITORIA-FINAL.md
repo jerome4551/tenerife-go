@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 aa846917f0b7eceabf62c50567516a0f
-             3.024.586 bytes · 869.940 comprimidos · 36.604 líneas
+index.html   md5 f9e3efc57021d4f9a8439034f3e42fc8
+             3.030.900 bytes · 871.960 comprimidos · 36.614 líneas
 idiomas/     8 ficheros · 2.246.677 bytes · entre 75 y 93 kB comprimidos
              + glosario-cat/ · 7 ficheros con los trozos de etiqueta a mano
 ```
@@ -2003,6 +2003,96 @@ no canta, sí.
 
 ---
 
+## El barrido de idiomas estaba ciego a medio fichero
+
+Al preguntar «¿está todo traducido?» la respuesta correcta resultó ser **no**,
+y el motivo era el control, no la traducción.
+
+`barrido_idiomas.js` recorría `index.html` con una pila de llaves, saltando lo
+que hubiera entre comillas. Parece suficiente y no lo es. En
+
+```js
+.replace(/"/g, '&quot;')
+```
+
+la comilla que va **dentro de la expresión regular** abría una cadena que no se
+cerraba hasta la siguiente comilla, 7.849 caracteres más allá. Con las
+plantillas de acento invertido pasaba lo mismo y peor: **un solo salto se comió
+97.094 caracteres**, de la línea 29.907 a la 31.021.
+
+Consecuencia: el barrido contaba **419 filas** de interfaz y daba `sin bg: 0`.
+Las filas eran **515** y a **93** les faltaba el búlgaro. Verde sobre lo que no
+había mirado, que es el peor resultado que puede dar un control, y van tres
+veces en este proyecto.
+
+### Ahora se analiza el JavaScript de verdad
+
+Con `acorn` —que ya venía con eslint— en vez de contar llaves. Se recorre el
+AST de cada `<script>` y se recoge todo objeto literal con una clave `es` de
+texto. Si acorn no estuviera, la herramienta **revienta**: volver a contar
+llaves a ojo no es una alternativa aceptable. Los `<script>` que no son
+JavaScript —el `ld+json` de la cabecera— se cuentan y se dicen, no se ignoran
+en silencio.
+
+### Lo que estaba sin traducir
+
+| | filas | faltaban |
+|---|---|---|
+| `CHAT_CATS` · categorías del asistente | 39 | fr de it nl zh zht bg |
+| `MAR_COSTAS` · nombres de costa | 7 | bg |
+| `MAR_NIVELES` · estado del mar y su consejo | 8 | bg |
+| `MC_ZONES` · zonas del selector | 6 | zht bg |
+| `FIESTAS` · descripción | 18 | bg |
+
+**318 textos.** Los de `MAR_NIVELES` son avisos de seguridad: «No te metas al
+agua ni te acerques a la orilla rocosa» salía en castellano a un búlgaro.
+
+### Las categorías del chat no se traducen: se leen
+
+`CHAT_CATS` guardaba su propia copia del nombre en castellano e inglés, y el
+chat hacía `currentLang==='es' ? c.es : c.en`. Un alemán, un chino o un búlgaro
+veían el nombre **en inglés** incrustado en una frase que por lo demás iba en su
+idioma.
+
+La solución no fue añadir siete idiomas a cada fila —eso son 273 textos
+duplicados que nadie iba a mantener— sino **leer el nombre de donde ya estaba**:
+`LANGS[idioma].categories`, la misma tabla que nombra las categorías del menú
+del mapa, completa en los nueve desde siempre. Las 38 copias sobrantes se
+borran; lo que queda en `CHAT_CATS` es la clave y el vocabulario de búsqueda,
+que no son texto de interfaz.
+
+Al hacerlo salió un fallo que nadie había visto: **la categoría `pueblo` no
+existe**. Las fichas usan `municipio`, así que el chat detectaba «pueblos»,
+respondía y no encontraba ni un sitio. Ahora la clave es `municipio`, y con
+ella el nombre traducido aparece solo.
+
+### Y un control nuevo: ENLACE
+
+Un correo o una web no se traducen: o están igual, o no están. El cribado de
+longitud puede no enterarse —el inglés de `acc-adissur` se había dejado el
+correo de la asociación y seguía teniendo largo de sobra para pasar—. Doce
+fichas del castellano llevan correo o web; el control comprueba que estén en
+las ocho traducciones. Nada más nacer encontró cuatro huecos: el correo de
+ADISSUR en inglés, `parkinsontenerife.org` en inglés, los dos dominios de
+alquiler de bicis en inglés y `tenerifeon.es` en alemán.
+
+### Estado
+
+```
+filas de idioma en todo el proyecto ....... 2.217
+  interfaz, dentro de index.html .......... 476
+  fichas, en idiomas/*.json ............... 1.741
+completas en los nueve idiomas ............ 2.217
+exentas por declaración en el fuente ...... 18   (wikiTitleOverrides, TTS_LOCALE)
+```
+
+Las 18 exentas son los títulos exactos de artículo de Wikipedia y los códigos
+de voz: un título inventado no devuelve el artículo, y `bg-BG` no se traduce.
+El panel de administrador sigue en castellano por decisión, declarado en el
+marcado.
+
+---
+
 # 5 · Cómo se vuelve a medir
 
 ```bash
@@ -2029,7 +2119,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/verificar_osm.py` | revisa un `.pmtiles` de OSM antes de subirlo · 7 pasos |
 | `tools/verificar_estilo.js` | mide si ese fichero **se ve** con el estilo que lleva la app |
 | `tools/inventario_idiomas.js` | las tablas de idioma con nombre y qué le falta a un idioma |
-| `tools/barrido_idiomas.js` | **todas** las filas de idioma del fuente, tengan nombre o no |
+| `tools/barrido_idiomas.js` | **todas** las filas de idioma del fuente, analizando el JavaScript con acorn en vez de contar llaves |
 | `tools/meter_idioma.js` | mete un idioma dentro de cada fila, detrás de `zht` |
 | `tools/auditar_sin_traducir.js` | el texto que no cambia al pasar de español a búlgaro |
 | `tools/revisar_traduccion.py` | revisa una tanda traducida antes de meterla: avisos, cifras, horarios y alfabeto |

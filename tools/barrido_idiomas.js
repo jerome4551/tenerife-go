@@ -30,25 +30,94 @@ const IDI = IDI_BASE.concat(['bg']);
 const OBJ = process.argv[2] && process.argv[2][0] !== '-' ? process.argv[2] : null;
 const LISTA = process.argv.indexOf('--lista') !== -1;
 
-/* Una pasada hacia delante con pila de llaves. Hacia atras no vale: para
-   saber si una comilla abre o cierra hay que venir desde el principio. */
-const pila = [];        // {ini, claves:Set}
-const objetos = [];     // {ini, fin}
-for (let k = 0; k < src.length; k++) {
-  const c = src[k];
-  if (c === '"' || c === "'" || c === '`') {
-    const q = c;
-    for (k++; k < src.length; k++) { if (src[k] === '\\') { k++; continue; } if (src[k] === q) break; }
+/* SE ANALIZA EL JAVASCRIPT DE VERDAD, no se cuentan llaves.
+   Antes esto era una pasada hacia delante con una pila de llaves, saltando
+   lo que hubiera entre comillas. Parecia suficiente y no lo era: en
+   `.replace(/"/g, '&quot;')` la comilla que va DENTRO de la expresion
+   regular abria una cadena que no se cerraba hasta la siguiente comilla,
+   7.849 caracteres mas alla. Con las plantillas de acento invertido pasaba
+   lo mismo y peor: un salto se comio 97.094 caracteres de un tirón.
+   Resultado: el barrido no veia MAR_COSTAS, MAR_NIVELES, MC_ZONES ni las
+   descripciones de las fiestas, y daba "sin bg: 0" sobre 419 filas cuando
+   las filas eran 515 y a 93 les faltaba el bulgaro. Verde sobre lo que no
+   habia mirado, que es el peor resultado que puede dar un control.
+   acorn viene con eslint, que ya esta instalado; si no estuviera, esto
+   tiene que REVENTAR, no seguir a ojo. */
+let acorn;
+try { acorn = require('/opt/node22/lib/node_modules/eslint/node_modules/acorn'); }
+catch (e) {
+  console.error('no se encuentra acorn. Sin analizador no se puede barrer este');
+  console.error('fichero: contar llaves a mano ya dio verde sobre lo que no miraba.');
+  process.exit(2);
+}
+
+const linea = i => src.slice(0, i).split('\n').length;
+
+/* cada <script> propio del fichero; los de type que no sea JavaScript
+   -el ld+json de la cabecera- no se analizan, y se dice cuantos son. */
+const bloques = [];
+{
+  const re = /<script\b([^>]*)>/gi;
+  let m, otros = 0;
+  while ((m = re.exec(src))) {
+    const attrs = m[1];
+    const ini = m.index + m[0].length;
+    const fin = src.indexOf('</script>', ini);
+    if (fin < 0) continue;
+    re.lastIndex = fin;
+    if (/\bsrc\s*=/i.test(attrs)) continue;
+    const tipo = (attrs.match(/type\s*=\s*["']([^"']+)["']/i) || [])[1];
+    if (tipo && !/^(text|application)\/(java|ecma)script$|^module$/i.test(tipo)) { otros++; continue; }
+    bloques.push({ ini, fin });
+  }
+  if (otros) console.log('  (' + otros + ' bloque(s) <script> que no son JavaScript, no se analizan)');
+}
+
+/* las filas: todo objeto literal con una clave `es` de texto */
+const crudas = [];
+for (const b of bloques) {
+  const code = src.slice(b.ini, b.fin);
+  let ast;
+  try { ast = acorn.parse(code, { ecmaVersion: 'latest', sourceType: 'script' }); }
+  catch (e) {
+    console.error('NO SE PUDO ANALIZAR el <script> de la linea ' + linea(b.ini) + ': ' + e.message);
+    process.exitCode = 1;
     continue;
   }
-  if (c === '/' && src[k+1] === '/') { k = src.indexOf('\n', k); if (k < 0) break; continue; }
-  if (c === '/' && src[k+1] === '*') { k = src.indexOf('*/', k) + 1; continue; }
-  if (c === '{') { pila.push(k); continue; }
-  if (c === '}') { const a = pila.pop(); if (a !== undefined) objetos.push({ ini: a, fin: k + 1 }); continue; }
+  (function anda(n) {
+    if (!n || typeof n !== 'object') return;
+    if (Array.isArray(n)) { n.forEach(anda); return; }
+    if (n.type === 'ObjectExpression') {
+      const claves = new Map();
+      for (const p of n.properties) {
+        if (p.type !== 'Property' || p.computed) continue;
+        const k = p.key.type === 'Identifier' ? p.key.name
+                : (p.key.type === 'Literal' ? String(p.key.value) : null);
+        if (k) claves.set(k, p.value);
+      }
+      const v = claves.get('es');
+      if (v) {
+        const texto = v.type === 'Literal' && typeof v.value === 'string' ? v.value
+                    : (v.type === 'TemplateLiteral' && !v.expressions.length ? v.quasis[0].value.cooked : null);
+        /* con un solo idioma no es una fila de idioma: es un objeto que
+           casualmente tiene una clave `es`. Con dos ya hay traduccion que
+           vigilar. Y si el valor de `es` es un objeto, esto es una TABLA
+           entera "por idioma" -LANGS, UI_TX-, de la que se ocupa
+           inventario_idiomas.js, que sabe mirar clave a clave. */
+        if (texto !== null) {
+          const val = {};
+          for (const l of IDI) if (claves.has(l)) {
+            const x = claves.get(l);
+            val[l] = x.type === 'Literal' ? x.value
+                   : (x.type === 'TemplateLiteral' && !x.expressions.length ? x.quasis[0].value.cooked : '');
+          }
+          if (Object.keys(val).length >= 2) crudas.push({ ini: b.ini + n.start, fin: b.ini + n.end, v: val });
+        }
+      }
+    }
+    for (const k of Object.keys(n)) if (k !== 'type' && k !== 'start' && k !== 'end') anda(n[k]);
+  })(ast);
 }
-/* de dentro afuera: la fila de idioma es el objeto MAS PEQUENO que los tiene */
-objetos.sort((a, b) => (a.fin - a.ini) - (b.fin - b.ini));
-const linea = i => src.slice(0, i).split('\n').length;
 
 /* EXCEPCIONES DECLARADAS EN EL PROPIO FUENTE.
    Hay una tabla que NO se traduce y no es un descuido: los titulos exactos de
@@ -62,34 +131,18 @@ for (const m of src.matchAll(/SIN-TRADUCIR:\s*([A-Za-z_$][\w$]*)/g)) {
   const re = new RegExp('(?:const|let|var)\\s+' + m[1].replace(/\$/g, '\\$') + '\\s*=\\s*\\{', 'g');
   let d;
   while ((d = re.exec(src))) {
-    const ini = re.lastIndex - 1;
-    const o = objetos.find(x => x.ini === ini);
-    if (o) exentas.push({ nom: m[1], ini: o.ini, fin: o.fin });
+    const abre = re.lastIndex - 1;
+    /* hasta donde llega esa tabla: la fila mas lejana que empiece dentro */
+    const dentro = crudas.filter(c => c.ini > abre).sort((a, b) => a.ini - b.ini);
+    if (!dentro.length) continue;
+    let fin = abre;
+    for (const c of dentro) { if (c.ini - fin > 4000) break; fin = c.fin; }
+    exentas.push({ nom: m[1], ini: abre, fin });
   }
 }
 const esExenta = o => exentas.some(e => o.ini >= e.ini && o.fin <= e.fin);
-const filas = [];
-const dentroDeOtra = [];
-for (const o of objetos) {
-  if (o.fin - o.ini > 200000) continue;
-  const t = src.slice(o.ini, o.fin);
-  if (!/(?:^|[{,\s])(?:es|"es"|'es')\s*:/.test(t)) continue;
-  let v; try { v = eval('(' + t + ')'); } catch (e) { continue; }
-  if (v.es === undefined || typeof v.es === 'function') continue;
-  /* Si el valor de `es` es un objeto de claves, esto no es una fila: es una
-     TABLA entera "por idioma" (LANGS, UI_TX, AUTH_STRINGS...). De esas se
-     ocupa inventario_idiomas.js, que sabe mirar clave a clave. Contarlas
-     aqui ademas hacia cantar lobo: AUTH_STRINGS no tiene zht a proposito,
-     porque LANGS.zht se clona de zh y luego se le aplican ZHT_OVERRIDES. */
-  if (v.es && typeof v.es === 'object' && !Array.isArray(v.es)) continue;
-  /* con un solo idioma no es una fila de idioma: es un objeto que casualmente
-     tiene una clave `es`. Con dos ya hay traduccion que vigilar. */
-  if (IDI.filter(l => v[l] !== undefined).length < 2) continue;
-  if (dentroDeOtra.some(f => o.ini > f.ini && o.fin < f.fin)) continue;  // ya contada por fuera
-  filas.push({ ini: o.ini, fin: o.fin, v, l: linea(o.ini) });
-  dentroDeOtra.push(o);
-}
-filas.sort((a, b) => a.ini - b.ini);
+const filas = crudas.map(c => ({ ini: c.ini, fin: c.fin, v: c.v, l: linea(c.ini) }))
+                    .sort((a, b) => a.ini - b.ini);
 
 /* de que parte del fichero es cada fila: places[] es el grueso y se mide aparte */
 const iniPlaces = src.search(/(?:const|let|var)\s+places\s*=\s*\[/);
