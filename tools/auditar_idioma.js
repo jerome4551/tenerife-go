@@ -88,6 +88,7 @@ function sacarHoras(txt, esCampoHoras) {
   let t = String(txt);
   const mete = (h, m, mer) => { out.push(enMinutos(h, m, mer)); };
 
+
   /* 1. RANGO CON MERIDIANO AL FINAL, que es como escribe el ingles:
         "1-4pm", "7:30-11pm", "9am-10pm". El primero hereda del segundo. */
   t = t.replace(/(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm)?\s*[-–—]\s*(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm)\b/gi,
@@ -102,22 +103,56 @@ function sacarHoras(txt, esCampoHoras) {
         "7-16h", "7h-22h", "de 9 a 22h", "7-16 Uhr", "7-16 uur".
         El sufijo puede estar en los dos numeros o solo en el segundo, y el
         separador puede ser un guion o la palabra "a"/"to"/"bis"/"tot".
-        OJO: la palabra "horas" NO cuenta. "5-6 horas" es lo que dura un
+        OJO: el rango no puede arrancar en los MINUTOS de otra hora. En
+        "Sam 9h15-14h" arrancaba en el "15" y apuntaba una apertura a las
+        tres de la tarde que nadie habia escrito; de ahi el (?<![\dh:]),
+        que ademas impide arrancar dentro de una cifra: sin el, en
+        "8h30-21h" arrancaba en el "0" del 30 y abria a medianoche.
+        OJO TAMBIEN: la palabra "horas" NO cuenta. "5-6 horas" es lo que dura un
         sendero, no la hora a la que abre, y meterla dio catorce falsas
         alarmas seguidas. */
   t = t.replace(
-    /(\d{1,2})(?::(\d{2}))?\s*(?:h|Uhr|uur|ч|時|时)?\s*(?:[-–—]|\ba\b|\bto\b|\bbis\b|\btot\b)\s*(\d{1,2})(?::(\d{2}))?\s*(?:h|Uhr|uur|u|ч|時|时)\b/gi,
+    /(?<![\dh:])(\d{1,2})(?::(\d{2}))?\s*(?:h|Uhr|uur|ч|時|时)?\s*(?:[-–—]|\ba\b|\bto\b|\bbis\b|\btot\b)\s*(\d{1,2})(?::(\d{2}))?\s*(?:h|Uhr|uur|u|ч|時|时)\b/gi,
     (m, h1, m1, h2, m2) => {
       if (Number(h1) > 23 || Number(h2) > 23) return m;     // "24h" no es una hora
       mete(h1, m1, null); mete(h2, m2, null);
       return ' ';
     });
 
-  /* NO se intenta leer "10h00" ni "1h40". Se probo, y sale peor: en frances
-     "10h00" son las diez de la manana pero "1h40" es lo que dura una ruta en
-     bici, y en castellano pasa igual. La regla arreglaba 20 casos en frances
-     y estropeaba 30 repartidos por aleman, neerlandes, chino y bulgaro. Un
-     control que para arreglar una cosa rompe otra no se queda. */
+
+  /* 2b. EL RELOJ A LA FRANCESA: "10h00", "5 h 00". En frances esa es LA
+        forma de escribir la hora, y el castellano la escribe "10:00". Sin
+        esta regla cada horario del frances salia dos veces: como hora que
+        falta y como cifra que sobra.
+
+        Antes se probo a leer "XhYY" en TODOS los idiomas y hubo que quitarlo:
+        el problema es que "1h40" no es una hora, es lo que dura una ruta en
+        bici, y el castellano tambien lo escribe asi. Leyendolo en todas
+        partes, el castellano perdia ese "1h40" y el aleman -que escribe
+        "1 Std. 40"- no lo perdia, asi que la comparacion cantaba. Arreglaba
+        20 casos en frances y rompia 30 en aleman, neerlandes, chino y
+        bulgaro.
+
+        Lo que hace honesta a esta version es que se aplica A LOS DOS LADOS
+        de la comparacion y SOLO cuando el idioma comparado es el frances.
+        "1h40" se sigue leyendo mal -como la 1:40- pero se lee igual de mal
+        en el castellano y en el frances, los dos tokens salen identicos y
+        no nace ningun hallazgo. Un error simetrico se anula; el de antes
+        era asimetrico y por eso mentia.
+
+        Los minutos son optativos -"Lun-Ven 8h-19h30" lleva las dos formas
+        en la misma linea- y la "h" tiene que ir PEGADA a la cifra. Eso
+        ultimo no es cosmetico: en este corpus las 41 apariciones de "N h"
+        con espacio son todas "N heures", o sea duraciones de sendero, y
+        ninguna es una hora del reloj.
+ */
+  if (LANG === 'fr') {
+    t = t.replace(/(?<![\d:])(\d{1,2})h(\d{2})?(?![\d:])/g, (m, h, mm) => {
+      if (Number(h) > 23) return m;
+      mete(h, mm, null);
+      return ' ';
+    });
+  }
 
   /* 3. SUELTAS CON MERIDIANO: "1pm", "11:30am" */
   t = t.replace(/(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm)\b/gi,
@@ -150,9 +185,30 @@ function sacarTelefonos(txt) {
   return [out.sort(), t];
 }
 function sinRomanos(txt) {
+  /* NI \b NI /i EN ESTAS REGLAS, y las dos cosas por el mismo motivo.
+     El \b de JavaScript es de alfabeto ingles: para el, la "e" con tilde no
+     es letra, asi que "denivel|es. Departa" tiene frontera de palabra justo
+     antes de la "s" final y "ss?\." se comia ese "s." como si fuera
+     "siglo". Con /i encima, el numero romano podia ser minuscula. Las dos
+     cosas juntas convertian "denivels. Depart" en " 500 epart" y el control
+     comparaba un texto que se habia inventado el mismo: un 500 en Roques de
+     Garcia y un 501 en el mirador de La Ruleta que no estaban en ningun
+     sitio. Es exactamente el desastre contra el que avisa el comentario de
+     abajo, pero entrando por la puerta de atras.
+     Por eso ahora: (?<!\p{L}) delante -ninguna letra, con tilde o sin ella-,
+     (?!\p{L}) detras, y el numero romano SIEMPRE en mayuscula. */
   return String(txt)
-    .replace(/\b(?:siglos?|ss?\.)\s*([IVXLCDM]{1,7})\b/gi,
-      (m, r) => { const n = romanoANumero(r.toUpperCase()); return n ? ' ' + n + ' ' : m; })
+    /* "siglo XVI-XVII" es un rango y lleva DOS numeros. El frances lo
+       escribe "XVIe-XVIIe siecle", con marca en los dos, asi que leyendo
+       solo el primero en castellano la comparacion cantaba un 17 de mas
+       que si estaba en los dos textos. */
+    .replace(/(?<!\p{L})(?:[Ss]iglos?|[Ss]s?\.)\s*([IVXLCDM]{1,7})(?:\s*[-–—]\s*([IVXLCDM]{1,7}))?(?!\p{L})/gu,
+      (m, r, r2) => {
+        const n = romanoANumero(r);
+        if (!n) return m;
+        const n2 = r2 ? romanoANumero(r2) : 0;
+        return ' ' + n + ' ' + (n2 ? n2 + ' ' : '');
+      })
     /* Y la forma abreviada, que es la que usa cada idioma en un rotulo
        corto: "XVIIe" en frances, "XVII sec." en italiano, "17. Jhd." en
        aleman. Sin esto, "Castillo · S. XVII" parecia perder el 17. */
@@ -162,9 +218,9 @@ function sinRomanos(txt) {
        -I=1, D=500, C=100- antes de comparar nada. Una regla que cambia el
        texto que va a mirar es lo peor que puede tener un control. La forma
        francesa "XVIIe" va en su propia alternativa, con la e de marca. */
-    .replace(/\b([IVXLCDM]{2,7})\.?\s*(?:century|C\.|Jahrhundert|Jhd\.?|siècle|s\.|secolo|sec\.|eeuw|век|世纪|世紀)/g,
+    .replace(/(?<!\p{L})([IVXLCDM]{2,7})\.?\s*(?:century|C\.|Jahrhundert|Jhd\.?|siècle|s\.|secolo|sec\.|eeuw|век|世纪|世紀)/gu,
       (m, r) => { const n = romanoANumero(r); return n ? ' ' + n + ' ' : m; })
-    .replace(/\b([IVXLCDM]{2,7})(?:e|er|ème)\b/g,
+    .replace(/(?<!\p{L})([IVXLCDM]{2,7})(?:e|er|ème)(?!\p{L})/gu,
       (m, r) => { const n = romanoANumero(r); return n ? ' ' + n + ' ' : m; });
 }
 const reloj = ms => ms.map(m => String(Math.floor(m / 60)).padStart(2, '0') + ':' +

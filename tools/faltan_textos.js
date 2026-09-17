@@ -13,8 +13,23 @@
  * mentira. Lo que si aguanta es la PROPORCION DE LONGITUD contra la mediana
  * DE ESE IDIOMA: el chino dice lo mismo en un tercio de caracteres y el
  * neerlandes en uno y uno, asi que cada idioma se compara consigo mismo y no
- * con una cifra inventada. Por debajo del 70% de su propia mediana, falta
- * texto.
+ * con una cifra inventada. Por debajo del 70% de su propia mediana, hay que
+ * IR A LEER ESE TEXTO.
+ *
+ * ES UN CRIBADO, NO UN VEREDICTO, y el numero que imprime no dice "faltan
+ * N": dice "hay N para leer". La diferencia importa. Al vaciar la lista del
+ * chino quedaron once que estaban completos, y diez eran aparcamientos: el
+ * castellano de las fichas pk-* usa registro administrativo -"linea de
+ * estacionamiento publico en superficie y bateria"- y el chino lo dice
+ * entero con muchos menos caracteres. Medido: la mediana de los pk-* en
+ * chino es 0.26 y la del resto 0.32, mientras que por longitud del texto la
+ * mediana no se mueve (0.31 / 0.31 / 0.33 / 0.32 por tramos). O sea que lo
+ * que desplaza la proporcion es el REGISTRO, no el tamaño.
+ *
+ * Y NO SE TOCA EL CORTE POR ESO. Subirlo taparia tambien las que si estan
+ * cortadas, y meter una excepcion para pk-* seria peor todavia: dejaria de
+ * mirar precisamente donde ya se sabe que la proporcion engaña. Once fichas
+ * que leer no son un problema; un cribado que no canta si lo es.
  *
  *     node tools/faltan_textos.js de           cuantas y cuales
  *     node tools/faltan_textos.js de 12        las 12 peores, enteras
@@ -39,7 +54,23 @@ for (let k = o; k < src.length; k++) {
   if (c === '[') d++; else if (c === ']') { d--; if (d === 0) { fin = k + 1; break; } }
 }
 const PLACES = eval('(' + src.slice(o, fin) + ')');
-const D = JSON.parse(fs.readFileSync(path.join(RAIZ, 'idiomas', LANG + '.json'), 'utf8'));
+
+// El castellano es la vara de medir: vive dentro de index.html y no tiene
+// fichero en idiomas/. Pedirlo reventaba con una traza de node, que es la
+// peor respuesta posible -parece una averia y no lo es-. Y un idioma que no
+// existe TIENE que fallar: si un barrido lo pide por una errata, callarse
+// seria dar por revisado lo que no se ha mirado.
+const RUTA = path.join(RAIZ, 'idiomas', LANG + '.json');
+if (LANG === 'es') {
+  console.log('=== es ===');
+  console.log('    el castellano es el original contra el que se mide; no se mide a si mismo.');
+  process.exit(0);
+}
+if (!LANG || !fs.existsSync(RUTA)) {
+  console.error('no hay idiomas/' + LANG + '.json. Idiomas: en fr de it nl zh zht bg (es va dentro de index.html).');
+  process.exit(1);
+}
+const D = JSON.parse(fs.readFileSync(RUTA, 'utf8'));
 
 const filas = [];
 for (const p of PLACES) {
@@ -55,7 +86,7 @@ const malas = filas.filter(f => f.r < corte);
 
 if (SOLO_IDS) { console.log(malas.map(f => f.id).join('\n')); process.exit(0); }
 console.log('=== ' + LANG + ' · mediana ' + mediana.toFixed(2) + ' · corte ' + corte.toFixed(2) + ' ===');
-console.log('    descripciones con texto de menos: ' + malas.length + ' de ' + filas.length);
+console.log('    descripciones mas cortas de lo esperado, para leer: ' + malas.length + ' de ' + filas.length);
 if (!N) {
   malas.slice(0, 30).forEach(f => console.log('  ' + f.r.toFixed(2) + '  ' + f.id));
   if (malas.length > 30) console.log('  ... y ' + (malas.length - 30) + ' mas');

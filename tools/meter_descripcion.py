@@ -53,7 +53,14 @@ for pid, txt in nuevos.items():
     # idiomas de alfabeto latino se escriben igual; en chino y bulgaro van
     # transliterados y esta comprobacion no se puede hacer.
     if lang in ('en', 'fr', 'de', 'it', 'nl'):
-        propios = set(re.findall(r'\b[A-ZÁÉÍÓÚÑ][a-záéíóúñü]{3,}', esp))
+        # SOLO las mayusculas que NO abren frase. Una palabra en mayuscula
+        # detras de un punto no dice nada: "Area recreativa...", "Fogones
+        # gratuitos...", "Pinar canario..." son nombres comunes, y exigir que
+        # la traduccion los repita hacia fallar textos correctos -el frances
+        # escribe "Espace", "Barbecues" y "Pinede"-. Es el mismo error que ya
+        # aparecio en auditar_cirilico.py con el bulgaro.
+        propios = set(re.findall(r'(?<![.!?:;]\s)(?<!^)\b[A-ZÁÉÍÓÚÑ][a-záéíóúñü]{3,}',
+                                 esp, re.MULTILINE))
         propios -= {'Playa','Puerto','Parque','Centro','Punta','Calle','Avenida',
                     'Mercado','Museo','Campo','Zona','Ruta','Barranco','Piscina',
                     'Ideal','Acceso','Horario','Tiene','Para','Desde','Muy','Una',
