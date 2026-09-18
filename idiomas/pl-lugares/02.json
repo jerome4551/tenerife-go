@@ -1,0 +1,402 @@
+{
+ "montana-amarilla": {
+  "desc": "Stożek wulkaniczny o złocisto-siarkowej barwie, absolutnie wyjątkowy na Teneryfie. Położony na Costa del Silencio, jego żółte ściany kontrastują z intensywnym błękitem Atlantyku w spektakularny sposób. Rezerwat morski z wodami pełnymi kolorowych ryb. Zachód słońca z jego szczytu ma przejmujące piękno. Wstęp wolny, wejście zaledwie 20 minut.",
+  "cat": "Wulkan · Costa del Silencio"
+ },
+ "montana-guaza": {
+  "desc": "Wielki strażnik południa Teneryfy, 427 m. Specjalny Rezerwat Przyrody górujący nad Los Cristianos i Las Américas. Trasa pętlą na 2 godziny przez półpustynny krajobraz tabaib i wilczomleczy. Na szczycie panorama 360°, od Teide po La Gomerę, El Hierro i La Palmę w pogodne dni. Naturalny punkt widokowy, którego turyści się nie spodziewają.",
+  "cat": "Wulkan · Rezerwat przyrody Południe"
+ },
+ "montana-colorada": {
+  "desc": "Stożek wulkaniczny o dramatycznej, intensywnej czerwieni, widoczny z autostrady południowej. Jeden z najbardziej fotogenicznych na wschodnim wybrzeżu Teneryfy. Rzadko odwiedzana strefa, która zachowała autentyczny, dziki charakter. Kontrast wulkanicznej czerwieni z zielenią plantacji bananów i błękitem oceanu jest jak z pocztówki. Krótkie podejście z niezwykłą nagrodą dla oka.",
+  "cat": "Wulkan · Wschodnie wybrzeże"
+ },
+ "llano-ucanca": {
+  "desc": "Najbardziej przejmująca równina Parku Narodowego Teide. Morze czarnego wulkanicznego piasku otoczone górami, z Teide w tle. O wschodzie słońca wypełnia się niemożliwymi pomarańczami i fioletami. Cisza jest tu absolutna, niemal święta. Ten sam krajobraz, który zachwycił Humboldta i pierwszych europejskich odkrywców. Dojazd samochodem, bez wysiłku.",
+  "cat": "Równina · Park Narodowy Teide"
+ },
+ "caldeira-canadas": {
+  "desc": "Najstarsza i najbardziej monumentalna kaldera wulkaniczna Teneryfy, 17 km średnicy. Sekretne serce Parku Narodowego. Powstała miliony lat temu przez zapadnięcie dawnego stratowulkanu. Tu rodzą się legendy guanczów o Echeyde. Jej pionowe ściany o wysokości 600 m zamykają wyjątkowy ekosystem, w którym rosną tylko rośliny przystosowane do wysokich gór. Jeden z najbardziej imponujących krajobrazów całej Makaronezji.",
+  "cat": "Kaldera · Park narodowy"
+ },
+ "mirador-ruleta-canadas": {
+  "desc": "Najbardziej sekretny i spektakularny punkt widokowy Cañadas del Teide. Bezpośredni widok na Pico Viejo i południowo-zachodnie zbocze Teide, najbardziej surowe i najrzadziej fotografowane. Idealny do kontemplowania ogromu wulkanu bez tłumów. O zachodzie słońca złote światło barwi lawy magicznym czerwono-pomarańczowym odcieniem. Parking przy drodze TF-21.",
+  "cat": "Punkt widokowy · Las Cañadas"
+ },
+ "montana-taco": {
+  "desc": "Mały stożek wulkaniczny w sercu gminy La Laguna. Nieoczekiwane zielone płuco pośród miasta. Jego zbocza pokrywa roślinność monteverde, a z góry rozciągają się zaskakujące widoki na lotnisko, La Lagunę i północno-wschodnie wybrzeże. Prosty szlak na 45 minut, idealny na spokojną wypadową z miasta.",
+  "cat": "Wulkan · La Laguna"
+ },
+ "pico-teide-cumbre": {
+  "desc": "Szczyt Pico del Teide (3715 m) to najwyższy punkt Hiszpanii, najwyższy na jakiejkolwiek wyspie Atlantyku i trzeci najwyższy wulkan świata liczony od dna oceanu. Na szczyt wchodzi się pieszo z La Rambleta (górna stacja kolejki, 3555 m) szlakiem Telesforo Bravo: 45 min podejścia, łatwo, ale wymagająco z powodu wysokości. Bezpłatne pozwolenie obowiązkowe — rezerwacja na stronie Parku Narodowego Teide z wielomiesięcznym wyprzedzeniem (bardzo ograniczona liczba miejsc). Na szczycie: fumarole siarkowe, widok na siedem Wysp Kanaryjskich w pogodne dni i niepowtarzalne uczucie stania na dachu Hiszpanii. Temperatura może spaść poniżej 0°C. Zabierz ciepłe ubranie.",
+  "cat": "Szczyt · 3715 m · Hiszpania · Teide · Pozwolenie"
+ },
+ "piscinas-garachico": {
+  "desc": "Baseny w lawie powstałe po erupcji wulkanu Trevejo w 1706 roku. Bezpłatne i spektakularne.",
+  "cat": "Baseny w lawie · Bezpłatne"
+ },
+ "piscinas-bajamar": {
+  "desc": "Dwa duże naturalne baseny na północy. Chłodna woda i łagodne falowanie. Autentyczna lokalna atmosfera.",
+  "cat": "Naturalne baseny · Północ"
+ },
+ "piscinas-poris": {
+  "desc": "Małe naturalne baseny na południowym wschodzie. Bardzo spokojna rybacka wioseczka.",
+  "cat": "Baseny · Południowy wschód"
+ },
+ "piscinas-muelle": {
+  "desc": "Naturalny basen w Puerto de la Cruz przy porcie. Osłonięta woda i bezpłatny wstęp.",
+  "cat": "Basen · Puerto de la Cruz"
+ },
+ "charco-chochos": {
+  "desc": "Jeden z najwyżej ocenianych naturalnych basenów północy Teneryfy, w gminie Los Silos. Półnaturalny, ulepszony przez mieszkańców o schody i miejsca na ręczniki. Dojście pieszo z Puertito de Los Silos nadmorskim szlakiem La Síbora (5 min). Krystaliczna woda, niskie ryzyko, można korzystać przy odpływie i przypływie. Idealny dla rodzin. Spokojne otoczenie, mało turystów. Zabierz buty do wody. Bezpłatny parking przy porcie.",
+  "cat": "Naturalny basen · Los Silos · Północ · Bezpłatny"
+ },
+ "charco-faro-buenavista": {
+  "desc": "Naturalny basen przy latarni morskiej Buenavista del Norte, na północno-zachodnim krańcu Teneryfy. Nazywany też Charco El Rayo z powodu osobliwego kształtu — niektórzy wierzą, że wyżłobił go piorun, choć najprawdopodobniej to erozja wulkaniczna. Duże rozlewisko krystalicznej wody z imponującym widokiem na Park Wiejski Teno i wybrzeże. Dojście nadmorskim szlakiem z Puertito de Los Silos (30 min) albo z Buenavista. Uwaga: przy wejściu dużo luźnych kamieni. Tylko przy spokojnym morzu.",
+  "cat": "Naturalny basen · Buenavista del Norte · Północny zachód"
+ },
+ "piscina-jover-tejina": {
+  "desc": "Naturalny basen na wybrzeżu Tejiny (gmina La Laguna), 20 km od Santa Cruz. Spokojne, rodzinne miejsce z widokiem na latarnię Punta del Hidalgo, Bajamar i Mesa de Tejina. Utworzony przez potoki lawy wulkanicznej. Prostokątny basen o długości ~33 m. Schody do wejścia do morza, naturalny prysznic ze słodką wodą sprowadzoną z góry, placyk i solarium. Dostępny dla osób z ograniczoną mobilnością. W pobliżu publiczny parking i Klub Żeglarski Tejina. Dojazd drogą TF-154 z TF-5, zjazd 11.",
+  "cat": "Naturalny basen · Tejina · La Laguna · Dostępny"
+ },
+ "piscinas-alcala-jaquita": {
+  "desc": "Naturalne baseny Alcalá, znane jako Charcos de La Jaquita, to jeden z najbardziej kompletnych zespołów kąpielowych południa Teneryfy, w gminie Guía de Isora. Naturalne skały wulkaniczne tworzą długi basen osłonięty od fal przy plaży La Jaquita (czarny piasek). Promenada o długości 2 km, pełne zaplecze: przebieralnie, prysznice, toalety, bar na plaży, strefa dla dzieci, boisko do koszykówki i siatkówki, ratownik w sezonie wysokim. Schody do wejścia do wody i barierki. Bezpłatny parking przy hotelu Gran Meliá Isora. Krystaliczna woda, temperatura 19-24°C. Dla całej rodziny.",
+  "cat": "Naturalny basen · Alcalá · Guía de Isora · Zachód · Rodziny"
+ },
+ "bano-valleseco": {
+  "desc": "Strefa kąpielowa na skale i pomostach przy Avenida de Anaga, obok basenu rybackiego Santa Cruz. To nie plaża z piaskiem: do wody wchodzi się z platform i po schodach na skale. Korzystają z niej głównie mieszkańcy miasta. Sprawdź stan morza i pływ przed zejściem.",
+  "cat": "Kąpiel na skale · Santa Cruz · To nie plaża z piaskiem"
+ },
+ "playa-san-juan-bajamar": {
+  "desc": "Plaża z kamieni i otoczaków w Bajamar, nie z miękkiego piasku. Schodzi się pieszo po stromych schodach z górnego poziomu. Silne falowanie, bardzo uczęszczana przez surferów. Bez zaplecza i bez ratowników. Uwaga na pływ: przy przypływie zostaje bardzo mało miejsca.",
+  "cat": "Plaża otoczakowa · Bajamar · Surfing"
+ },
+ "playa-arenisco": {
+  "desc": "Mała plaża ze skały i czarnego piasku w Punta del Hidalgo, tuż przy naturalnych basenach. Potoki lawy dochodzą do morza i tworzą rozlewiska. Obok jest promenada z restauracjami, a w okolicy toalety, przebieralnie i prysznice. Miejsce spotkań lokalnych rodzin w weekendy.",
+  "cat": "Plaża i rozlewiska · Punta del Hidalgo"
+ },
+ "playa-arenal-bajamar": {
+  "desc": "Czarny piasek wciśnięty pod klifem, w Bajamar. Dochodzi się szlakiem przy opuszczonym hotelu Neptuno, po schodach bez konserwacji, a przed samym piaskiem czeka odcinek otoczaków. Spot surfingowy: jest prąd boczny, a fale łamią się nierówno blisko brzegu. Bez zaplecza i bez ratowników.",
+  "cat": "Czarny piasek pod klifem · Bajamar"
+ },
+ "playa-los-troches": {
+  "desc": "W całości z otoczaków i dużych kamieni, na wschód od Punta del Hidalgo. Nie nadaje się do kąpieli: pod wodą są skały, a falowanie jest silne. Dojście nie jest oczywiste i trzeba iść po kamieniach. Blisko końca szlaku z Chinamady. Bez żadnego zaplecza.",
+  "cat": "Plaża otoczakowa · Punta del Hidalgo · Nie nadaje się do kąpieli"
+ },
+ "auditorio": {
+  "desc": "Arcydzieło Santiago Calatravy. Symbol Teneryfy. Koncerty muzyki klasycznej i opera.",
+  "cat": "Architektura ikoniczna"
+ },
+ "piramides-guimar": {
+  "desc": "Tajemnicze schodkowe piramidy odkryte przez Thora Heyerdahla. Muzeum etnograficzne.",
+  "cat": "Archeologia"
+ },
+ "iglesia-concepcion": {
+  "desc": "Najstarszy kościół Santa Cruz, ufundowany w 1502 roku przez konkwistadorów. Przechowuje oryginalny Krzyż Konkwisty. Pięciokondygnacyjna wieża uznana za Dobro Kultury. Kamień węgielny położył sam Alonso Fernández de Lugo.",
+  "cat": "Kościół · Santa Cruz · Historyczny"
+ },
+ "castillo-negro": {
+  "desc": "Czarny zamek z XVII wieku. Bronił portu Santa Cruz. Dziś centrum kultury.",
+  "cat": "Zamek · XVII w."
+ },
+ "museo-naturaleza": {
+  "desc": "Kolekcja mumii guanczów. Geologia wulkaniczna i przyroda Wysp Kanaryjskich.",
+  "cat": "Muzeum przyrodnicze"
+ },
+ "casa-balcones": {
+  "desc": "Szlachecka rezydencja z XVII wieku w La Orotava. Typowe kanaryjskie balkony z rzeźbionego drewna, wewnętrzny dziedziniec z kwiatami i lokalne rękodzieło. Jeden z najczęściej fotografowanych zabytków Teneryfy.",
+  "cat": "Dziedzictwo · La Orotava"
+ },
+ "cueva-viento": {
+  "desc": "Najdłuższy tunel wulkaniczny Europy, ponad 18 km. Uformowany 27 000 lat temu przez lawę Teide. Ograniczona liczba wizyt z przewodnikiem. Rezerwacja niezbędna.",
+  "cat": "Tunel wulkaniczny · Icod"
+ },
+ "tea-tenerife": {
+  "desc": "Centrum sztuki współczesnej w Santa Cruz, projekt Herzog & de Meuron. Wystawy czasowe, biblioteka, archiwum fotograficzne i warsztaty twórcze.",
+  "cat": "Sztuka współczesna · Santa Cruz"
+ },
+ "castillo-san-felipe": {
+  "desc": "Twierdza z XVII wieku broniąca Puerto de la Cruz przed piratami. Odrestaurowana i przystosowana na przestrzeń kulturalną z widokiem na Atlantyk.",
+  "cat": "Zamek · Puerto de la Cruz"
+ },
+ "iglesia-orotava": {
+  "desc": "Barokowy klejnot La Orotavy. Dwie wieże dzwonnicze i błękitna kopuła widoczne z całej doliny. Wnętrze ze złoconymi retabulami z XVIII wieku.",
+  "cat": "Kościół barokowy · La Orotava"
+ },
+ "palacio-carta": {
+  "desc": "Neoklasycystyczny pałac z XVIII wieku w centrum Santa Cruz, dziś siedziba banku Bankinter. Imponująca fasada i dziedziniec, który można zwiedzać. Jeden z najlepszych przykładów kanaryjskiej architektury świeckiej.",
+  "cat": "Pałac · Santa Cruz"
+ },
+ "museo-bellas-artes": {
+  "desc": "Stała kolekcja kanaryjskiego malarstwa i rzeźby od XVI wieku po dziś. Dzieła artystów takich jak Nicolás Alfaro czy Gaspar de Quevedo. Wstęp bezpłatny.",
+  "cat": "Muzeum · Santa Cruz"
+ },
+ "catedral-laguna": {
+  "desc": "Katedra Matki Bożej Ocalenia, siedziba biskupstwa Teneryfy od 1819 roku. Neoklasycystyczna fasada i neogotyckie wnętrze, ze wspaniałym barokowym retabulum poświęconym Matce Bożej Ocalenia. Obecny kościół ukończono w 1915 roku w miejscu parafii z XVI wieku. Wchodzi w skład zespołu wpisanego na listę światowego dziedzictwa.",
+  "cat": "Katedra · La Laguna"
+ },
+ "casa-lercaro": {
+  "desc": "Genueńska rezydencja z XVI wieku, siedziba Muzeum Historii i Antropologii Teneryfy. Zbudowana przez kupiecką rodzinę Lercaro, zachowała renesansowy dziedziniec, skrzypiące drewniane podłogi i rzeźbione galerie. Legenda głosi, że duch Cataliny Lercaro, która odebrała sobie życie w dniu ślubu, wciąż przemierza sale. Powozy z XVIII wieku w osobnej sali.",
+  "cat": "Muzeum · La Laguna"
+ },
+ "museo-ciencia-cosmos": {
+  "desc": "Interaktywne muzeum nauki i astronomii prowadzone przez Cabildo i Instytut Astrofizyki Wysp Kanaryjskich (IAC). Ponad 100 interaktywnych modułów, planetarium z kopułą 6,5 m i możliwość dotknięcia prawdziwego meteorytu. Znakomite dla rodzin. Tramwaj: linia 1, przystanek Museo de la Ciencia.",
+  "cat": "Muzeum · La Laguna"
+ },
+ "museo-militar-almeyda": {
+  "desc": "Mieści się w Forcie Almeyda (XIX wiek), między wąwozem Almeida a morzem. Przechowuje armatę „El Tigre”, która urwała ramię Nelsonowi podczas ataku na Santa Cruz w 1797 roku. Kolekcje mundurów, broni, historycznych map i przedmiotów guanczów używanych w obronie wyspy. Ośrodek badań kartograficznych.",
+  "cat": "Muzeum wojskowe · Santa Cruz"
+ },
+ "castillo-san-cristobal": {
+  "desc": "Ruiny pierwszego zamku Teneryfy (1575), głównej obrony zatoki Santa Cruz, ukryte pod Plaza de España. W 1797 roku stąd odparto atak admirała Nelsona. Bezpłatne centrum interpretacji z resztkami murów, wystawą o armacie „El Tigre” i historią obrony wyspy. Górny plac przeprojektowali Herzog & de Meuron.",
+  "cat": "Zamek · Santa Cruz"
+ },
+ "convento-san-francisco-garachico": {
+  "desc": "Dawny klasztor franciszkański z XVI wieku (1524), ocalały z erupcji z 1706 roku, która zniszczyła Garachico. Dziś dom kultury z biblioteką, archiwum gminnym i wystawami. Dwa krużganki z drewna tea, otwarte galerie, kamienne schody ze stropem mudéjar. Kościół zachował jednonawowy układ w krzyżu łacińskim. Wstęp symboliczny.",
+  "cat": "Klasztor · Garachico"
+ },
+ "iglesia-san-francisco-orotava": {
+  "desc": "Klasztorny kościół franciszkanów, w którym czci się Matkę Bożą Miłosierdzia, przywiezioną z Sewilli w XVII wieku. Słynny z cudu oliwy z 1632 roku, potwierdzonego przez Kościół: lampa oświetlająca wizerunek zapaliła się sama i zaczęła wydzielać oliwę, rozdaną pięciu tysiącom ludzi. Cudowną oliwę rozdaje się do dziś każdego 5 sierpnia. Kanaryjska architektura barokowa.",
+  "cat": "Kościół · La Orotava"
+ },
+ "mirador-humboldt": {
+  "desc": "⚠️ Budynek i kawiarnia punktu widokowego pozostają zamknięte z powodu problemów z licencjami; z zewnętrznego parkingu nadal można robić słynne zdjęcia Doliny La Orotava. Historyczny punkt widokowy na 320 m n.p.m. przy drodze TF-21 między Santa Úrsula a La Orotavą. Nazwany na cześć Alexandra von Humboldta, który w 1799 roku ukląkł przed pięknem Doliny La Orotava. Panoramiczne widoki na dolinę, Puerto de la Cruz, Los Realejos, wulkany El Fraile i Las Arenas oraz Teide w tle. Otwarty w 2010 roku. Kawiarnia, parking, strefa odpoczynku. Dostępny.",
+  "cat": "Punkt widokowy · La Orotava"
+ },
+ "mercado-lagunero": {
+  "desc": "Najbardziej autentyczny targ Teneryfy. Owoce tropikalne, ser, mojo, gofio i papas arrugadas.",
+  "cat": "Targ lokalny"
+ },
+ "mercado-africano": {
+  "desc": "Wielki targ Santa Cruz. Świeża ryba prosto z hali rybnej, owoce tropikalne i kwiaty.",
+  "cat": "Targ · Santa Cruz"
+ },
+ "bodega-monje": {
+  "desc": "Stuletnia winiarnia w El Sauzal. Wina z apelacji D.O. Tacoronte-Acentejo, z degustacjami i restauracją.",
+  "cat": "Winiarnia stuletnia · D.O."
+ },
+ "guachinche-talegazo": {
+  "desc": "Jeden z najczęściej polecanych guachinches w La Orotava (4,3★ przy ponad 2700 opiniach). Mięso z rusztu, które gość sam przygotowuje na własnej płycie, escaldón z gofio uznawany za jeden z najlepszych na północy i wino z własnych zbiorów. Rodzinnie, rustykalnie, tanio. 📍 Cmo. del Sauce 22, La Orotava · 🕐 Codziennie 13:00-19:00 · ☎ 643 20 81 01. Rezerwacja zalecana.",
+  "cat": "Guachinche · La Orotava"
+ },
+ "guachinche-casa-pedro": {
+  "desc": "Uznawany za jeden z najwyżej ocenianych guachinches Teneryfy (4,7★ przy ponad 3200 opiniach). Domowa kuchnia kanaryjska, wyróżniające się własne białe wino, przytulna atmosfera i uważni właściciele. Kozie mięso należy do najlepszych podawanych na wyspie. 📍 C. La Longuera 10, Los Realejos · 🕐 Pt-So 13:00-17:00 i 19:00-22:00 · Pn 13:00-17:00 · ☎ 664 78 66 11. Rezerwacja niezbędna.",
+  "cat": "Guachinche · Los Realejos"
+ },
+ "guachinche-ramon": {
+  "desc": "Guachinche z wyjątkową oceną (4,8★ przy ponad 1700 opiniach). Ukryty klejnot w La Orotava, całkowicie autentyczny: wygląda jak garaż, ale jedzenie jest znakomite. Ser wędzony z najlepszych na wyspie, łagodne domowe wino czerwone, rodzinna obsługa. 📍 Cmo. Los Gómez, La Orotava · 🕐 Pn-Czw 11:00-19:00, zamknięte pt-nd · ☎ 686 98 46 02. Przyjdź wcześnie.",
+  "cat": "Guachinche · La Orotava"
+ },
+ "guachinche-cubano": {
+  "desc": "Jeden z najsłynniejszych i najstarszych guachinches w La Orotava (4,1★ przy ponad 3500 opiniach). Zachowuje klasyczną tradycję w wystroju i kuchni. Pozycje obowiązkowe: ropavieja, carne fiesta, ser z płyty, papas arrugadas z mojo i własne wino. 📍 Lugar Maestre Juan, La Orotava · 🕐 Śr-Nd (godziny zmienne) · ☎ 673 66 02 68. Zwykle się zapełnia, warto rezerwować.",
+  "cat": "Guachinche · La Orotava"
+ },
+ "guachinche-romance": {
+  "desc": "Bardzo polecany guachinche w La Orotava (4,2★ przy ponad 2400 opiniach) z ogrodem i palmami. Specjalności: stek z rusztu, chorizo flambirowane przy stole, domowe krokiety z szynką, smażone grzyby. Własne wino i widoki na północ. 📍 Ctra. Gral. Las Cañadas km 9,2, Barroso · 🕐 Śr-Nd (rano i wieczorem) · ☎ 676 86 96 29.",
+  "cat": "Guachinche · La Orotava"
+ },
+ "guachinche-ramal": {
+  "desc": "Guachinche z kuchnią na ruszcie opalanym drewnem w La Orotava (4,1★ przy ponad 1400 opiniach). Wyróżniają się kozie mięso, żeberka wieprzowe z rusztu, huevos al estampido i domowe desery (flan). Bardzo dobrze oceniane własne wino. 📍 Ctra. Gral. El Ramal, TF-211 nr 17 · 🕐 Śr-Nd · ☎ 922 32 13 13.",
+  "cat": "Guachinche · La Orotava"
+ },
+ "guachinche-ana-eva": {
+  "desc": "Guachinche z najwyższej półki w La Matanza de Acentejo (4,6★ przy ponad 8500 opiniach). Nagradzany wśród najlepszych na Teneryfie. Wyborne kozie mięso, kurczak z rusztu, pieczarki z almogrote, escaldón z gofio. Obsługa szybka i bardzo uważna. 📍 C. Obispo Pérez Cáceres 25, La Matanza · 🕐 Pn-Pt 13:00-17:00, zamknięte w weekendy · ☎ 648 93 21 71. Rezerwacja niezbędna.",
+  "cat": "Guachinche · La Matanza"
+ },
+ "guachinche-bodega-sursula": {
+  "desc": "Guachinche z bardzo wysoką oceną w Santa Úrsula (4,7★ przy ponad 370 opiniach). Znakomity ser z pieca, czarna świnia iberyjska z papryczkami z Padrón, papas arrugadas, krokiety ze szpinakiem, domowe mojo. Odwiedzany przez miejscowych, bardzo dobre ceny. 📍 Ctra. Provincial 28, Santa Úrsula · 🕐 Czw-So 13:00-16:00 i 19:30-23:00, Nd-Pn w południe, zamknięte wt-śr · ☎ 660 59 99 93.",
+  "cat": "Guachinche · Santa Úrsula"
+ },
+ "guachinche-guayero": {
+  "desc": "Autentyczny guachinche w Tegueste (4,5★ przy ponad 620 opiniach). Tradycyjna kuchnia kanaryjska, dużo mięsa (świnie hodowane przez właściciela), wyróżniające się ziemniaki z mojo. Bardzo przytulna lokalna atmosfera, rzadko spotyka się turystów. 📍 C. Los Pobres 60, Tegueste · 🕐 Śr-So 12:00-23:00, Nd 12:00-18:00, zamknięte pn-wt · ☎ 822 61 44 32. Para: ~40€ z winem.",
+  "cat": "Guachinche · Tegueste"
+ },
+ "guachinche-cordero": {
+  "desc": "Najbardziej znany guachinche południa, pośród plantacji bananów (4,2★ przy ponad 17 500 opiniach). Stoliki wewnątrz plantacji bananowej (tylko w weekendy). Mięso z rusztu, duszone kozie mięso, własne wino. Na koniec częstują bananami. 📍 TF-652 nr 8, El Monte O Guargacho (Arona) · 🕐 Codziennie 13:00-23:00 · ☎ 922 73 41 71. Rezerwacja bardzo zalecana.",
+  "cat": "Guachinche · Arona"
+ },
+ "guachinche-el-primero": {
+  "desc": "Bardzo znany guachinche-bodegón blisko Puerto de la Cruz (4,5★ przy ponad 3500 opiniach). Wyróżniają się garbanzada, churros z ryby, krokiety z kurczaka i domowe wino czerwone. Zwykle jest kolejka, ale posuwa się szybko. 📍 C. Malpais 10, Santa Úrsula · 🕐 Pn-Nd 12:15-16:45, w piątki także 19:30-22:15 · ☎ 650 61 02 85. Polecany przez miejscowych.",
+  "cat": "Guachinche · Santa Úrsula"
+ },
+ "guachinche-casa-lito": {
+  "desc": "Guachinche z panoramicznym tarasem nad Atlantykiem (4,1★ przy ponad 3500 opiniach). Mięsa z pieca opalanego drewnem: stek, secreto ibérico, pieczony kurczak i churrasco. Escaldón z gofio oraz ser z miodem z pikantną nutą. 📍 C. Tijarafe 35, Santa Úrsula · 🕐 Pn-Wt i Czw 13:00-17:00, Pt-So 13:00-22:00, Nd 13:00-17:00, zamknięte w środy · ☎ 630 59 00 07.",
+  "cat": "Guachinche · Santa Úrsula"
+ },
+ "guachinche-corujera": {
+  "desc": "Wiejski guachinche 15 min od Puerto de la Cruz (4,1★ przy ponad 320 opiniach). Obfita domowa kuchnia: żeberka z ziemniakami i kukurydzą, łagodne wino czerwone. Obsługa szybka i uważna. 📍 Ctra. Antigua Corujera 4, Santa Úrsula · 🕐 Pn-Śr i Pt-So 13:00-22:30, Nd 13:00-17:30, zamknięte w czwartki · ☎ 922 92 84 65.",
+  "cat": "Guachinche · Santa Úrsula"
+ },
+ "guachinche-el-patio": {
+  "desc": "Klasyk Tacoronte, gminy o najdłuższej tradycji guachinches (4,3★ przy ponad 1700 opiniach). Znakomite krokiety z kurczaka, ser z płyty, kaszanka, dorsz i świeżo pieczony chleb z sosami mojo. 📍 Ctra. Gral. del Norte 191, El Cantillo · 🕐 Pn-Wt i Czw 13:00-16:30, Pt-So 13:00-22:30, Nd 13:00-16:30, zamknięte w środy · ☎ 600 78 02 27. Znakomity stosunek jakości do ceny.",
+  "cat": "Guachinche · Tacoronte"
+ },
+ "guachinche-basilio": {
+  "desc": "Nowoczesny guachinche z widokiem na morze (4,4★ przy ponad 2700 opiniach). Słynny z mięsa z rusztu, smażonego sera koziego, ropa vieja i wina czerwonego. Bardzo przyjemny taras. 📍 C. Obispo Pérez Cáceres 75, La Matanza · 🕐 Pn i Nd 13:00-17:00, Wt-So 13:00-23:00 · ☎ 629 02 84 38.",
+  "cat": "Guachinche · La Matanza"
+ },
+ "guachinche-parralito": {
+  "desc": "Autentyczny guachinche pod winoroślą (4,4★ przy ponad 310 opiniach). Kuchnia tradycyjna: huevos al estampido (submarino), carne fiesta, domowy quesillo na deser. Otwarte tylko czw-nd w południe. 📍 C. San Cristóbal 66, La Matanza · 🕐 Czw-Nd 11:30-16:00, zamknięte pn-śr · ☎ 822 09 18 24. Przyjdź wcześnie.",
+  "cat": "Guachinche · La Matanza"
+ },
+ "guachinche-casa-yayi": {
+  "desc": "Mały i bardzo autentyczny guachinche w La Matanza. Ropa vieja, solona ryba z cebulą, soczewica, kasztany i dobre wino. Duże porcje w minimalnych cenach (~10€ od osoby). 📍 C. San José 10, La Matanza de Acentejo. Prawdziwa domowa kuchnia, rodzinna obsługa. Zalecana gotówka.",
+  "cat": "Guachinche · La Matanza"
+ },
+ "bodega-insulares": {
+  "desc": "Największa winiarnia apelacji D.O. Tacoronte-Acentejo. Zwiedzanie z przewodnikiem i degustacją, zrzesza wielu winiarzy. Produkuje znane wina Viña Norte i Brumas de Ayosa. 📍 Vereda del Medio 48, Tacoronte · 🕐 Pn-Pt 7:00-15:00, zamknięte w weekendy · ☎ 922 57 06 17. Rezerwacja wizyty.",
+  "cat": "Winiarnia · D.O. Tacoronte-Acentejo"
+ },
+ "bodega-el-lomo": {
+  "desc": "Rodzinna winiarnia z wyjątkową oceną (4,8★ przy 145 opiniach). Zwiedzanie z przewodnikiem i degustacją 3 win (białe, różowe, czerwone) oraz przekąskami w różnych zakątkach posiadłości. Wytwarzają też wermut i ocet. Znakomity widok. 📍 C. El Lomo 18, Tegueste · 🕐 Pn-Pt 9:30-14:30, zamknięte w weekendy · ☎ 922 54 52 54. Rezerwacja.",
+  "cat": "Winiarnia · D.O. Tacoronte-Acentejo"
+ },
+ "bodega-linaje-pago": {
+  "desc": "Winiarnia z enoturystyką wysokiej klasy (4,7★ przy 82 opiniach). Zwiedzanie winnic i winiarni plus degustacja 5 win z deską serów i kanaryjskich wędlin (15€ od osoby). Widoki na morze i Teide. 📍 C. Herrera 85, El Sauzal · 🕐 Pn-Pt 9:00-14:00 (w piątki do 17:00), So 13:00-17:00, zamknięte w niedziele · ☎ 640 37 95 64.",
+  "cat": "Winiarnia · D.O. Tacoronte-Acentejo"
+ },
+ "bodega-tajinaste": {
+  "desc": "Winiarnia wzorcowa dla apelacji D.O. Valle de La Orotava (4,5★ przy 123 opiniach). Cztery pokolenia rodziny wytwarzające nagradzane wina. Zwiedzanie 2h z degustacją 6 win, wędlinami i serami. 📍 Ctra. TF-212 La Perdoma 4C, La Orotava · 🕐 Wt-Pt 10:00-18:00, So 10:00-14:00, zamknięte pn i nd · ☎ 622 95 81 57. Rezerwacja.",
+  "cat": "Winiarnia · D.O. Valle de La Orotava"
+ },
+ "bodega-suertes-marques": {
+  "desc": "Uznana na świecie, w setce najlepszych winiarni według Wine & Spirits. Wina z odmian Listán Blanco i Listán Negro ze stuletnich winnic. Zwiedzanie tylko po wcześniejszym umówieniu. 📍 La Perdoma, La Orotava · ☎ 922 50 13 00. Sztandarowe etykiety: Trenzado, La Solana, El Esquilón, Vidonia.",
+  "cat": "Winiarnia · D.O. Valle de La Orotava"
+ },
+ "bodega-vinatigo": {
+  "desc": "Wyjątkowa winiarnia wyspecjalizowana w odmianach rodzimych i niemal wymarłych (4,8★ przy 194 opiniach). Pionierka w odtwarzaniu rzadkich szczepów jak Vijariego, Marmajuelo, Listán Gacho. Zwiedzanie z degustacją 6 win. 📍 Trav. Juandana s/n, La Guancha · 🕐 Pn-Pt 8:00-16:00, zamknięte w weekendy · ☎ 922 82 87 68. Rezerwacja niezbędna.",
+  "cat": "Winiarnia · D.O. Ycoden-Daute-Isora"
+ },
+ "bodega-cumbres-abona": {
+  "desc": "Spółdzielnia apelacji D.O. Abona, najwyżej położonej w Hiszpanii (1000-1700 m) (4,5★ przy 149 opiniach). Jedyny producent oliwy z oliwek na Teneryfie, oprócz win. Degustacja + zwiedzanie + sklep. 📍 Camino del Viso s/n, Teguedite (Vilaflor) · 🕐 Pn-Pt 7:00-15:00, So 8:00-13:00, zamknięte w niedziele · ☎ 922 76 86 04. Wizyty po umówieniu.",
+  "cat": "Winiarnia · D.O. Abona"
+ },
+ "gofio-escaldado": {
+  "desc": "Wzorzec tradycyjnej kuchni kanaryjskiej w Santa Cruz. Papas arrugadas, gofio, mojo i świeże ryby.",
+  "cat": "Kuchnia kanaryjska"
+ },
+ "restaurante-drago": {
+  "desc": "Dawny kanaryjski dom z XVIII wieku przy Tysiącletnim Smoczym Drzewie, dziś restauracja i sklep. Kuchnia kanaryjska, lokalne sery i wina oraz taras-ogród wśród bugenwilli z widokiem na drzewo.",
+  "cat": "Kuchnia kanaryjska · Icod"
+ },
+ "lago-martianez": {
+  "desc": "Kompleks basenów morskich zaprojektowany przez Césara Manrique. Ikoniczna architektura i palmy.",
+  "cat": "Baseny Manrique"
+ },
+ "karting": {
+  "desc": "Karting dla dorosłych i dzieci, minigolf i atrakcje w Costa Adeje. Zabawa gwarantowana.",
+  "cat": "Karting · Costa Adeje"
+ },
+ "whale-watching": {
+  "desc": "Najlepsza obserwacja wielorybów i delfinów na Atlantyku. Ponad 300 grindwali mieszkających tu przez cały rok.",
+  "cat": "Walenie · Adeje"
+ },
+ "teide-teleforico": {
+  "desc": "Wywozi na 3555 m w 8 minut. Rezerwacja niezbędna. Widok na cały archipelag.",
+  "cat": "Kolejka linowa · Park narodowy"
+ },
+ "loro-parque": {
+  "desc": "Najlepsze zoo Europy według TripAdvisora przez kilka lat z rzędu. Orki, uchatki, pingwiny, goryle, szympansy, tygrysy, rekiny (tunel 17 m) i największa kolekcja papug na świecie. Ponad 50 milionów odwiedzających od 1972 roku. Punkt obowiązkowy.",
+  "cat": "Zoo · Puerto de la Cruz"
+ },
+ "aqualand-sur": {
+  "desc": "Największy park wodny Wysp Kanaryjskich. Zjeżdżalnie z adrenaliną, strefa dla dzieci i sztuczne fale. Zabawa zapewniona dla całej rodziny.",
+  "cat": "Park wodny · Adeje"
+ },
+ "monkey-park": {
+  "desc": "Małe zoo-schronisko założone w 1991 roku w Aronie, wyspecjalizowane w hodowli i ochronie zagrożonych naczelnych. Lemury katta, sajmiri, gibony, żółwie, legwany, krokodyle, wielkie koty i egzotyczne ptaki. Zwierzęta można karmić karmą z parku.",
+  "cat": "Park naczelnych · Południe"
+ },
+ "forestal-park": {
+  "desc": "Największy park przygody i tyrolek na Wyspach Kanaryjskich, na wysokości 1380 m w chronionym borze Las Lagunetas (El Rosario), u bram Parku Narodowego Teide. Ponad 90 zabaw na wysokości zawieszonych między stuletnimi sosnami kanaryjskimi: mosty wiszące, siatki, liany, ścianka wspinaczkowa i najdłuższa tyrolka na Wyspach Kanaryjskich, ponad 230 m. Trasy oznaczone kolorami według trudności (od 5 lat). System bezpieczeństwa z ciągłą linią życia. Bezpłatny parking. Bez zasięgu telefonii — prawdziwy odpoczynek.",
+  "cat": "Park przygody · Las Lagunetas"
+ },
+ "parque-cesar-manrique": {
+  "desc": "Pośmiertne dzieło Césara Manrique otwarte w 1995 roku, przy Auditorio de Tenerife i Palmetum. Kompleks o powierzchni 22 000 m² z 3 basenami słonowodnymi (główny 6500 m²), brodzikiem z wodospadami, wysepkami z wulkanicznej skały, palmami, restauracjami i solarium. Zaprojektowany z naturalnych elementów typowych dla stylu Manrique. Otwarty przez cały rok. Od września do czerwca 10-18, w lipcu i sierpniu 10-19. Autobusy 110, 102, 103. Tramwaj: przystanek Intercambiador.",
+  "cat": "Kompleks basenów · Santa Cruz"
+ },
+ "palmetum": {
+  "desc": "Ogród botaniczny o powierzchni 12 hektarów poświęcony palmom świata: ~600 gatunków ułożonych według stref geograficznych (Madagaskar, Karaiby, Nowa Kaledonia, Azja, Ameryka…). Zbudowany na dawnym wysypisku, otwarty w 2014 roku. System wodospadów, strumieni i stawów, tropikalna szklarnia „Octógono” i punkty widokowe na Anagę i ocean. Dostępny dla wózków inwalidzkich, z windą. Idealny dla rodzin: szerokie ścieżki, kawiarnia, gatunki ptaków.",
+  "cat": "Ogród botaniczny · Santa Cruz"
+ },
+ "parque-garcia-sanabria": {
+  "desc": "Największy park miejski w centrum Santa Cruz (67 230 m²), otwarty w 1926 roku i uznany za Dobro Kultury. Zegar kwiatowy, fontanny, rzeźby na wolnym powietrzu, gatunki tropikalne i subtropikalne, duża strefa dla dzieci. Kawiarnie, kioski. Idealny na odpoczynek po zwiedzaniu centrum. Wstęp wolny przez cały dzień.",
+  "cat": "Park miejski · Santa Cruz"
+ },
+ "parque-la-granja": {
+  "desc": "Jeden z największych parków miejskich Santa Cruz (zbudowany w latach 1969-1976), między alejami Benito Pérez Armas, Bélgica i Madrid. Palmy królewskie, zarośla trzcinowe, duże trawniki, strefa dla dzieci odnowiona w 2023 roku z dostępnymi urządzeniami, stoły piknikowe, pomnik Félixa Rodrígueza de la Fuente, amfiteatr, kawiarnia. Na jego terenie mieści się Państwowa Biblioteka Publiczna (Casa de la Cultura) i Espacio La Granja (teatr). Wstęp wolny.",
+  "cat": "Park miejski · Santa Cruz"
+ },
+ "park-la-gesta": {
+  "desc": "Największy plac zabaw na Wyspach Kanaryjskich (2500 m²), otwarty w 2022 roku przy Plaza de España w Santa Cruz. Tematyka historyczna Gesta del 25 de Julio: statki, łodzie wiosłowe, huśtawki, zjeżdżalnie, siatki do wspinania, drążki, hamaki, tyrolka 15 m, a nawet teleskop. Ponad 25 inkluzywnych zabaw. Pomieści 480 dzieci. Wstęp całkowicie bezpłatny. Gumowa nawierzchnia dla większego bezpieczeństwa.",
+  "cat": "Bezpłatny plac zabaw · Santa Cruz · Największy na Wyspach Kanaryjskich"
+ },
+ "park-la-vega": {
+  "desc": "Najbardziej kompletny park La Laguny (22 000 m²): strefa dla dzieci ze zjeżdżalniami i huśtawkami, ścianka wspinaczkowa, skatepark, boiska do koszykówki, tenis stołowy, tor BMX, staw z liliami wodnymi, żabami i żółwiami, mostki i ścieżki wśród drzew. Bezpłatny i otwarty przez cały rok. Idealny dla rodzin z dziećmi w każdym wieku.",
+  "cat": "Bezpłatny park miejski · La Laguna · 22 000 m²"
+ },
+ "park-taoro": {
+  "desc": "Spektakularny park na szczycie góry Taoro, w Puerto de la Cruz, ze 100 000 m² ogrodów, podświetlanymi wodospadami, alejkami, punktami widokowymi (Mirador Dulce María Loynaz), tropikalnymi palmami i dzikimi papugami. Strefa dla dzieci z huśtawkami, zjeżdżalniami i domkami do wspinania w cieniu palm. Kawiarnia z widokiem na Teide. Dawny Gran Hotel Taoro i kościół anglikański (1890). Bezpłatny i otwarty stale.",
+  "cat": "Bezpłatny park · Puerto de la Cruz · 100 000 m²"
+ },
+ "park-montillo": {
+  "desc": "Jeden z najlepszych parków rodzinnych północy Teneryfy, w La Matanza de Acentejo. 57 000 m² zieleni z centralnym jeziorem, strumykami i mostkami do zdjęć. Zaplecze: plac zabaw ze zjeżdżalniami i huśtawkami, skatepark, tor BMX, tor sprawnościowy, amfiteatr, wiaty i stoły piknikowe, kawiarnia, wybieg dla psów, centrum interpretacji z 410 endemicznymi roślinami i drzewami (palmy, smocze drzewa, sosny kanaryjskie). Dostępny dla wózków inwalidzkich i dziecięcych. Bezpłatny parking. Godziny: 7-22 codziennie. Autobusy 101, 102 i 30 z Santa Cruz i La Laguny. 4,6/5 gwiazdki przy ponad 4200 ocenach w Google.",
+  "cat": "Park przyrody · La Matanza de Acentejo · 57 000 m² · Bezpłatny"
+ },
+ "minigolf-vivo-americas": {
+  "desc": "Najlepszy minigolf Teneryfy według TripAdvisora. Tematyka piracka, dwie trasy po 18 dołków (czerwona — łatwiejsza, i żółta — bardziej wymagająca). Podwójny bilet pozwala zagrać obie trasy w różne dni w ciągu kolejnych 7 dni. Wodospady, jaskinie, pomysłowe przeszkody i widok na Atlantyk. Bar z napojami i przekąskami, stoły bilardowe i automaty. Otwarte codziennie do północy. Av. Rafael Puig Lluvina 7, Playa de las Américas. Rezerwacja online z 5% zniżki na vivotreasureislandminigolf.com.",
+  "cat": "Minigolf · 2 trasy po 18 dołków · Las Américas · Piraci"
+ },
+ "minigolf-kapital-adeje": {
+  "desc": "Minigolf nad samym morzem w Puerto Colón (Av. de Colón, Costa Adeje), ze spektakularnym widokiem na Atlantyk i niepowtarzalnymi zachodami słońca. Dwie trasy: 12 dołków i nowa, pomysłowa i wymagająca trasa 18 dołków. Jest specjalna cena za obie. Właścicielka jest szczególnie miła. Nagroda dla zwycięzcy każdej partii. Bar z zimną Doradą i napojami w rozsądnej cenie. Godziny: 10:30-18:00, zamknięte w soboty. Dojście pieszo z Costa Adeje i Playa de la Pinta.",
+  "cat": "Minigolf · Puerto Colón · Costa Adeje · Widok na morze"
+ },
+ "minigolf-wakanda-adeje": {
+  "desc": "Prosty, ręcznie wykonany minigolf w Costa Adeje (Calle Roma, strefa Torviscas–Fañabé), prowadzony przez miłego właściciela. Spokojna i tania rozrywka dla rodziny, z widokiem na morze w pobliżu. Skromny obiekt: niektóre dołki mogą wymagać napraw, ale na chwilę zabawy w zupełności wystarcza. Przystępne ceny. Dobra opcja dla dzieci.",
+  "cat": "Minigolf · Costa Adeje · Rodzina"
+ },
+ "aa-sin-fronteras-adeje": {
+  "desc": "Grupa Anonimowych Alkoholików w Adeje (Grupo Sin Fronteras). Spotkania w poniedziałki i czwartki od 19:00 do 20:30 w salach parafialnych kościoła Los Olivos. Bezpłatne, anonimowe i poufne wsparcie w rzucaniu alkoholu. Jeśli masz problem z piciem, nie wahaj się zadzwonić: 629 456 879 (24h).",
+  "cat": "Anonimowi Alkoholicy · Adeje · Wsparcie"
+ },
+ "aa-granadilla-san-isidro": {
+  "desc": "Grupa Anonimowych Alkoholików w San Isidro (Granadilla de Abona). Spotkania w poniedziałki, środy i piątki od 19:00 do 20:30 w podziemiach kościoła San Isidro Labrador; w ostatni poniedziałek miesiąca spotkanie otwarte. Bezpłatne i anonimowe wsparcie w rzucaniu alkoholu. Tel. 629 456 879 (24h).",
+  "cat": "Anonimowi Alkoholicy · Granadilla · Wsparcie"
+ },
+ "aa-harbour-los-cristianos": {
+  "desc": "Grupa Anonimowych Alkoholików w Los Cristianos (Arona), Harbour Group. Spotkania w poniedziałki, środy i soboty od 17:45 do 18:45, przy Avenida Juan Carlos I. Bezpłatne, anonimowe i poufne wsparcie w rzucaniu alkoholu. Tel. 613 815 462 / 629 456 879 (24h).",
+  "cat": "Anonimowi Alkoholicy · Los Cristianos · Wsparcie"
+ },
+ "aa-serenidad-realejos": {
+  "desc": "Grupa Anonimowych Alkoholików Serenidad w Los Realejos. Spotkania we wtorki i czwartki od 19:30 do 21:00, przy ulicy Chile 4. Bezpłatne, anonimowe i poufne wsparcie w rzucaniu alkoholu. Tel. 629 456 879 (24h).",
+  "cat": "Anonimowi Alkoholicy · Los Realejos · Wsparcie"
+ },
+ "proyecto-hombre-santacruz": {
+  "desc": "Proyecto Hombre Canarias, ośrodek referencyjny na Teneryfie w leczeniu i profilaktyce uzależnień (alkohol, narkotyki i inne zachowania). Profesjonalna i bezpłatna pomoc osobom i rodzinom. W Santa Cruz, ulica Pedro Doblado Claverie 34. Od poniedziałku do czwartku 8:00-20:00, w piątki 8:00-15:00. Tel. 922 66 10 20.",
+  "cat": "Leczenie uzależnień · Santa Cruz · Wsparcie"
+ },
+ "telefono-esperanza-tenerife": {
+  "desc": "Telefon Nadziei na Teneryfie: bezpłatna i poufna linia wsparcia emocjonalnego, czynna całą dobę, dla osób w kryzysie, samotności lub udręce. Pomoc telefoniczna, a także osobista w Santa Cruz (Av. Ángel Guimerá 35). Tel. 922 33 40 50.",
+  "cat": "Wsparcie emocjonalne · 24h · Santa Cruz"
+ },
+ "san-miguel-santacruz": {
+  "desc": "Stowarzyszenie Współpracy Młodzieżowej San Miguel, organizacja pomagająca w uzależnieniach i wsparciu socjalnym na Teneryfie. Towarzyszenie osobom z problemem alkoholowym lub narkotykowym oraz ich rodzinom. Siedziba w Santa Cruz, ulica Sargento Provisional 41. Tel. 922 65 12 51.",
+  "cat": "Pomoc w uzależnieniach · Santa Cruz · Wsparcie"
+ },
+ "san-miguel-laguna": {
+  "desc": "Stowarzyszenie Współpracy Młodzieżowej San Miguel, siedziba w La Lagunie. Pomoc w uzależnieniach i wsparcie socjalne dla osób z problemem alkoholowym lub narkotykowym oraz ich rodzin. Avenida Trinidad 57. Tel. 922 25 58 47.",
+  "cat": "Pomoc w uzależnieniach · La Laguna · Wsparcie"
+ },
+ "na-grupo2006-santacruz": {
+  "desc": "Grupa Anonimowych Narkomanów w Santa Cruz (Grupo 2006). Spotkania we wtorki i czwartki od 19:30 do 21:00, przy ulicy Buenaventura Bonnet 2. Bezpłatne i anonimowe wsparcie w rzucaniu narkotyków. Tel. 605 15 18 03.",
+  "cat": "Anonimowi Narkomani · Santa Cruz · Wsparcie"
+ },
+ "cad-icod": {
+  "desc": "Ośrodek Pomocy Uzależnionym (CAD) w Icod de los Vinos. Publiczna i bezpłatna pomoc osobom z problemem alkoholowym lub narkotykowym oraz ich rodzinom. Ulica General García Escámez 19, San Marcos. Tel. 922 81 09 62.",
+  "cat": "Pomoc uzależnionym · Icod · Publiczna"
+ },
+ "parkinson-tf-sede-laguna": {
+  "desc": "Párkinson Tenerife — główna siedziba Stowarzyszenia Rodzin i Chorych na Parkinsona Teneryfy. Kompleksowa opieka nad osobami z parkinsonem i ich rodzinami: informacja, psychologia, fizjoterapia, logopedia, praca socjalna, opieka domowa i grupy wsparcia. Ulica San Francisco de Paula 118, Los Baldíos (La Laguna). Tel. 922 62 53 90. parkinsontenerife.org.",
+  "cat": "Parkinson · Główna siedziba · La Laguna"
+ }
+}

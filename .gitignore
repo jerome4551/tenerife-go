@@ -1,2 +1,5 @@
 chk/
 __pycache__/
+
+# volcado de trabajo de tools/lugares_idioma.js: sale de index.html
+idiomas/es-lugares*.json

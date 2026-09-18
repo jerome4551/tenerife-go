@@ -1,0 +1,404 @@
+{
+ "teide": {
+  "desc": "Dach Hiszpanii, 3715 m. Obiekt światowego dziedzictwa. Kolejka linowa wwozi cię niemal na sam szczyt.",
+  "cat": "Park narodowy · UNESCO"
+ },
+ "anaga": {
+  "desc": "Tysiącletni las wawrzynowy. Filmowe krajobrazy i szlaki nad klifami.",
+  "cat": "Rezerwat biosfery · UNESCO"
+ },
+ "icod": {
+  "desc": "Najstarsze drzewo Wysp Kanaryjskich, ponad 800 lat. Miasteczko Icod i tradycyjne winiarnie.",
+  "cat": "Drzewo stuletnie"
+ },
+ "montana-roja": {
+  "desc": "Czerwonawy stożek wulkaniczny i Specjalny Rezerwat Przyrody obok El Médano. Łatwe wejście w 45 minut z panoramą całego południa i La Gomery. Bardzo fotogeniczna o zachodzie słońca.",
+  "cat": "Rezerwat przyrody · El Médano"
+ },
+ "acantilados-gigantes": {
+  "desc": "Najbardziej imponujące klify Hiszpanii, do 600 m wysokości. Najbardziej widowiskowo wyglądają od strony morza, z łodzi. Siedlisko delfinów i grindwali przez cały rok.",
+  "cat": "Klify · Zachód"
+ },
+ "bosque-esperanza": {
+  "desc": "Bór sosnowy i las wawrzynowy na grzbiecie Cumbre Dorsal. Mistyczna mgła, szlaki wśród sosny kanaryjskiej i punkt widokowy La Jardina. Miejsce obserwacji ptaków endemicznych.",
+  "cat": "Bór sosnowy · Cumbre Dorsal"
+ },
+ "riscos-chio": {
+  "desc": "Pole czarnych law z erupcji wulkanu Chío w 1798 roku. Szlak wśród potoków lawy i krajobraz z innej planety. Widok na Teide z punktu widokowego Chío.",
+  "cat": "Lawy wulkaniczne · Guía de Isora"
+ },
+ "mirador-pino-galdo": {
+  "desc": "Sekretny punkt widokowy w Anadze z widokiem na Ocean Atlantycki i masyw. Otoczony lasem wawrzynowym. Bardzo spokojny i bez tłumów.",
+  "cat": "Punkt widokowy · Anaga"
+ },
+ "mirador-la-ruleta": {
+  "desc": "Panoramiczny punkt widokowy w Parku Narodowym Teide, przy TF-21. Spektakularne widoki na Teide i Las Cañadas. Łatwy dojazd samochodem. Szczególnie magiczny o wschodzie słońca.",
+  "cat": "Punkt widokowy · Park narodowy"
+ },
+ "teresitas": {
+  "desc": "Najładniejsza plaża miejska na Teneryfie. Złoty piasek z Sahary, palmy i spokojna woda. Ratownicy Czerwonego Krzyża przez cały rok.",
+  "cat": "Plaża ikoniczna",
+  "aviso": "Dojazd drogą TF-11 z Santa Cruz. Autobus 910 co 10-15 min w godzinach szczytu: pierwszy około 5:00, ostatni około 23:00."
+ },
+ "el-duque": {
+  "desc": "Ekskluzywna plaża z drobnym, jasnym piaskiem w Costa Adeje, 390 m długości i turkusowa woda. Hotele 5*, wyborne restauracje i słomiane parasole. Błękitna Flaga. ⚠️ Otwarta na Atlantyk i bez falochronów: falowanie jest silniejsze po południu, a dno szybko opada tuż przy wejściu. Ratownicy od 10:00 do 18:00. Parkowanie na ulicy jest bardzo trudne: lepiej skorzystać z podziemnych parkingów The Corner Adeje albo Plaza del Duque, mniej niż 3 min pieszo. Autobusy 467, 471 i 473, przystanek El Duque.",
+  "cat": "Plaża luksusowa · Costa Adeje"
+ },
+ "benijo": {
+  "desc": "Czarny piasek wulkaniczny ze skałami roques. Dzika i surowa, idealna do zdjęć. Ratownicy tylko latem.",
+  "cat": "Plaża dzika · Anaga"
+ },
+ "el-medano": {
+  "desc": "Europejska stolica windsurfingu i kitesurfingu. Długa plaża ze stałym wiatrem i Montaña Roja. W niektórych oficjalnych rejestrach występuje też jako Playa de Leocadio Machado.",
+  "cat": "Plaża windsurfingowa · Granadilla"
+ },
+ "bollullo": {
+  "desc": "⚠️ Pieszy szlak dojściowy bywa okresowo zamykany z powodu ryzyka obrywów skalnych na klifach: warto sprawdzić jego stan przed zejściem. Czarny piasek między zielonymi klifami. Dojście szlakiem. Silne falowanie niemal cały rok: zachowaj szczególną ostrożność przy kąpieli.",
+  "cat": "Plaża ukryta · Północ"
+ },
+ "playa-los-patos": {
+  "desc": "⚠️ Dostęp oficjalnie zamknięty i ogrodzony: stare schody są nieprzejezdne, a ścieżki na klifie strome i niebezpieczne; kto schodzi, robi to na własną odpowiedzialność. Wielka dzika plaża z czarnym piaskiem, około 700 m, pod klifami El Rincón w La Orotava, sąsiadka El Bollullo. Klasyczna plaża naturystyczna północy: bez udogodnień, silne falowanie i prądy. Bez własnego parkingu.",
+  "cat": "Plaża naturystyczna · La Orotava"
+ },
+ "las-vistas": {
+  "desc": "Duża plaża rodzinna z promenadą nadmorską. Spokojna woda, idealna dla dzieci. Ratownicy Czerwonego Krzyża przez cały rok. Błękitna Flaga 2026.",
+  "cat": "Plaża rodzinna · Los Cristianos"
+ },
+ "playa-americas": {
+  "desc": "Epicentrum turystyki południa. Złoty piasek, ciepła woda i gwarna atmosfera. Stały nadzór ratowników.",
+  "cat": "Plaża turystyczna · Arona"
+ },
+ "san-juan": {
+  "desc": "Spokojna i autentyczna plaża rybackiej wioski. Świeża ryba w restauracjach. Błękitna Flaga 2026.",
+  "cat": "Wioska rybacka · Guía de Isora"
+ },
+ "alcala": {
+  "desc": "Mała zatoczka z czarnym piaskiem i bardzo przejrzystą wodą. Autentyczna wioska rybacka. Bez tłumów i bez ratowników.",
+  "cat": "Zatoczka lokalna · Guía de Isora"
+ },
+ "abama": {
+  "desc": "Jedna z najbardziej ekskluzywnych plaż. Złoty piasek i krystaliczna woda przy hotelu Abama.",
+  "cat": "Plaża ekskluzywna · Południe"
+ },
+ "arena": {
+  "desc": "Plaża z drobnym czarnym piaskiem w centrum Puerto de Santiago, 140 m długości i około 40 szerokości. Błękitna Flaga od dziesięcioleci. Jedna z najmniej wietrznych i najcieplejszych stref wyspy, osłonięta od pasatu. ⚠️ Ale jest otwarta na pełne morze: występują prądy i falowanie od umiarkowanego do silnego, ze znacznym cofaniem. Kąp się ostrożnie i zawsze stosuj się do flagi ratownika. Stanowiska ratownicze, prysznice, myjki do stóp, toalety i wypożyczalnia leżaków. Rampy i drewniane pomosty dla wózków inwalidzkich i dziecięcych. Widoki na La Gomerę i Klify Los Gigantes. Przystanek autobusowy La Arena (7232) przy samej plaży. Linia 477 bezpośrednio z Costa Adeje rusza około 5:30, a ostatni powrót z Los Gigantes odjeżdża około 20:40.",
+  "cat": "Czarny piasek · Puerto Santiago"
+ },
+ "playa-socorro": {
+  "desc": "Ulubiona plaża surferów północy. Mocne fale, czarny piasek i lokalna atmosfera. Błękitna Flaga 2026.",
+  "cat": "Plaża surfingowa · Los Realejos"
+ },
+ "tejita": {
+  "desc": "⚠️ Psy zakazane gminną uchwałą, pod karą grzywny. Największa naturalna plaża Teneryfy, przy Montaña Roja. Złoty piasek i strefa naturystyczna.",
+  "cat": "Plaża dziewicza · Montaña Roja"
+ },
+ "fanabe": {
+  "desc": "Plaża rodzinna w Costa Adeje z pełnym zapleczem. Dostęp przystosowany dla niemowląt.",
+  "cat": "Plaża rodzinna · Adeje"
+ },
+ "playa-jardin": {
+  "desc": "Zaprojektowana przez Césara Manrique. Czarny piasek, ogrody rodzimej roślinności, wodospady i widok na Teide.",
+  "cat": "Projekt Manrique · Puerto Cruz"
+ },
+ "san-marcos": {
+  "desc": "⚠️ Historyczna plaża Icod, która straciła dużą część czarnego piasku przez sztormy i prądy po budowie falochronu: dziś przeważają otoczaki. Naturalna zatoczka chroniona klifami w Icod. Czarny piasek, spokojna woda. Błękitna Flaga 2026.",
+  "cat": "Zatoczka chroniona · Icod"
+ },
+ "almaciga": {
+  "desc": "Dzika plaża w Taganana z czarnym piaskiem i żwirem. Intensywne falowanie. Ratownicy tylko latem.",
+  "cat": "Plaża dzika · Anaga"
+ },
+ "charco-viento": {
+  "desc": "Bardzo charakterystyczne naturalne baseny wulkaniczne północy, w La Guancha. Krystaliczna woda i dziki krajobraz.",
+  "cat": "Naturalne baseny · La Guancha"
+ },
+ "punta-hidalgo": {
+  "desc": "Naturalne baseny na północnym wschodzie wyspy. Urwisty krajobraz wulkaniczny, gdzie Atlantyk tworzy osłonięte rozlewiska.",
+  "cat": "Naturalne baseny · Północny wschód"
+ },
+ "charco-abrigos": {
+  "desc": "Spokojny naturalny basen na Costa del Silencio. Bardzo przejrzysta woda. Obok restauracje ze świeżą rybą.",
+  "cat": "Naturalne baseny · Południe"
+ },
+ "el-pris": {
+  "desc": "Sekret północy w rybackiej wiosce El Pris (Tacoronte). Krystaliczna woda w całkowicie lokalnej atmosferze.",
+  "cat": "Naturalne baseny · Tacoronte"
+ },
+ "mesa-mar": {
+  "desc": "Naturalne baseny Tacoronte z krystaliczną, chłodniejszą wodą. Wulkaniczne otoczenie przy samej wiosce.",
+  "cat": "Naturalne baseny · Tacoronte"
+ },
+ "charco-laja": {
+  "desc": "Naturalne baseny w czarnej skale wulkanicznej w San Juan de la Rambla. Bardzo popularne wśród mieszkańców północy. Czysta i głęboka woda, idealna do skoków ze skał. Latem świąteczna atmosfera.",
+  "cat": "Naturalne baseny · San Juan Rambla"
+ },
+ "charco-diablo": {
+  "desc": "Spektakularne naturalne baseny wulkaniczne w Buenavista del Norte. Dojście szlakiem wzdłuż klifu. Bardzo błękitna woda i całkowicie dzikie otoczenie. Tylko przy spokojnym morzu.",
+  "cat": "Naturalne baseny · Buenavista"
+ },
+ "charco-verde-realejos": {
+  "desc": "Naturalny basen wśród skał w Los Realejos. Woda przybiera zielonkawy odcień od glonów i dna. Łatwe i bezpłatne dojście. Bardzo popularny wśród miejscowych rodzin.",
+  "cat": "Naturalny basen · Los Realejos"
+ },
+ "masca": {
+  "desc": "Wioska ukryta w górach. Wąwóz kończy się spektakularną dziewiczą plażą.",
+  "cat": "Wioska i wąwóz",
+  "aviso": "Ograniczona liczba miejsc wzdłuż drogi, ze ścisłym ograniczeniem: maksymalnie 2 godziny między 08:00 a 14:00, pod groźbą mandatu."
+ },
+ "observatorio": {
+  "desc": "Najlepsze obserwatorium słoneczne na świecie. Wizyty dzienne i astroturystyka nocna. Starlight.",
+  "cat": "Astronomia"
+ },
+ "roques-garcia": {
+  "desc": "Najczęściej odwiedzana trasa Parku Narodowego Teide. Pętla 3,5 km, 2 godziny, łatwa z kilkoma podbiegami. Start przy Paradorze. Okrąża spektakularne Roques de García (słynny „Roque Cinchado” widniał na dawnych banknotach 1000 peset). Widoki na Teide, kalderę i punkt widokowy na Llano de Ucanca. Autobusy 348/342. Duży bezpłatny parking.",
+  "cat": "Wulkaniczny"
+ },
+ "montana-blanca": {
+  "desc": "Oficjalny punkt startowy pieszego wejścia na Pico del Teide (3715 m). Szlak 10 (TF-6) od 2350 m. Bezpłatne, obowiązkowe pozwolenie na ostatnie 200 m. Całe wejście trwa od 5 do 7 godzin. Przeżycie imponujące i wymagające.",
+  "cat": "Szlaki piesze · Szczyt Teide"
+ },
+ "ruta-pico-viejo": {
+  "desc": "Bliźniaczy krater Teide, 3135 m. Trasa pętlą po krawędzi krateru z niepowtarzalnymi widokami. Mniej uczęszczana niż Teide. Nie wymaga specjalnego pozwolenia. Jedna z najlepszych tras Parku Narodowego.",
+  "cat": "Krater · Park narodowy"
+ },
+ "cumbre-dorsal": {
+  "desc": "Kręgosłup Teneryfy na ponad 1000 m. Droga TF-24 wśród lasów sosny kanaryjskiej z mistyczną mgłą. Punkt widokowy La Jardina z widokiem na Teide i na oba wybrzeża.",
+  "cat": "Trasa panoramiczna · Wnętrze wyspy"
+ },
+ "sendero-la-orotava": {
+  "desc": "Historyczny trakt królewski łączący La Orotava z Teide. 18 km ciągłego podejścia wśród borów sosnowych i cañadas. Ta sama droga, którą guanczowie szli na święty szczyt. Wymaga dobrej kondycji.",
+  "cat": "Szlak historyczny · Północ–Teide"
+ },
+ "ruta-anaga-taganana": {
+  "desc": "Najbardziej spektakularny szlak Anagi, łączący Tagananę z Almácigą po graniach. Las wawrzynowy, widoki na Atlantyk i filmowe wioski. Umiarkowany, 3 godziny w obie strony.",
+  "cat": "Szlaki piesze · Anaga"
+ },
+ "ruta-masca-playa": {
+  "desc": "⚠️ Wejście regulowane przez Cabildo: obowiązkowa wcześniejsza rezerwacja na oficjalnej stronie i atestowane buty górskie. Przystań jest zamknięta dla ruchu rekreacyjnego, więc szlakiem trzeba zejść i wrócić. Najsłynniejsza i najbardziej spektakularna trasa piesza Teneryfy. 3 godziny zejścia wąwozem do dziewiczej plaży Masca. Odbiór łodzią wliczony na koniec. Rezerwacja obowiązkowa. Tylko w zorganizowanej grupie.",
+  "cat": "Wąwóz · Masca"
+ },
+ "sendero-sentidos": {
+  "desc": "Najpopularniejsza i najbardziej dostępna trasa Anagi. Trzy krótkie pętle (340 m, 540 m, 1,3 km) startujące z Centrum dla Zwiedzających Cruz del Carmen. Szlak 1 jest dostępny dla wózków inwalidzkich i dziecięcych. Las wawrzynowy z tablicami sensorycznymi (dotknąć, powąchać, popatrzeć). Dla każdego wieku. Bezpłatny parking. Autobusy 76, 77, 273, 275 (przystanek Cruz del Carmen 2232).",
+  "cat": "Szlak rodzinny · Anaga (Łatwy · 10-40 min)"
+ },
+ "sendero-pijaral": {
+  "desc": "⚠️ OBOWIĄZKOWE BEZPŁATNE POZWOLENIE na centralreservas.tenerife.es (45 osób dziennie). Trasa pętlą 6,7 km przez Ścisły Rezerwat Przyrody El Pijaral, w samym sercu Anagi. Reliktowy las wawrzynowy z trzeciorzędu, paprocie píjaras do 3 m. Punkt widokowy Cabezo del Tejo z widokiem na Tagananę. Trudność średnia, 3 godziny. Start na parkingu La Ensillada (TF-123).",
+  "cat": "Szlak · Anaga (Średni · 3h · Pozwolenie)"
+ },
+ "sendero-afur-taganana": {
+  "desc": "⚠️ KOMUNIKAT OFICJALNY: PR-TF 8 może być zamknięty z powodu prac konserwacyjnych. Sprawdź tenerifeon.es/incidencias przed wyjściem. · Wymagająca trasa pętlą 14 km, 5-6 godzin. Startuje z wioski Afur (mniej niż 100 mieszkańców), przecina Barranco del Tamadiste aż do wybrzeża, wspina się w stronę Taganany i wraca przez monteverde. Łączy wąwozy, las wawrzynowy, nadmorskie klify i malownicze wioski. Dla doświadczonych piechurów. Zabierz wodę i jedzenie.",
+  "cat": "PR-TF 8 · Anaga (Wymagający · 14 km · 5-6h)"
+ },
+ "sendero-guajara": {
+  "desc": "Najwyższy szczyt Las Cañadas (2718 m) nie licząc Teide. 11 km w obie strony, 5 godzin. Start przy Paradorze Las Cañadas. Szlak 5 do przełęczy Degollada de Guajara, potem wymagające końcowe podejście ze spektakularnym widokiem na Teide i całą kalderę. Bez pozwolenia. Zabierz dużo wody (nie ma źródeł), ochronę przeciwsłoneczną i kurtkę (na szczycie zimno).",
+  "cat": "Szczyt · Cañadas (Trudny · 11 km · 5h)"
+ },
+ "sendero-pico-viejo": {
+  "desc": "Jedna z najbardziej wymagających tras na Teide. 20 km w obie strony, 7-8 godzin. Start na parkingu El Sanatorio. Podchodzi do krateru Pico Viejo (3135 m), z księżycowymi krajobrazami czarnych i czerwonych law. Bez kolejki, wszystko pieszo. Tylko dla doświadczonych piechurów w dobrej formie. Najlepiej od kwietnia do czerwca. Zabierz dużo wody, jedzenie, ciepłe ubranie i wyruszaj bardzo wcześnie.",
+  "cat": "Krater · Teide (Bardzo trudny · 20 km · 7-8h)"
+ },
+ "sendero-teno-baracan": {
+  "desc": "Przepiękna trasa pętlą po Parku Wiejskim Teno. ~10 km, 4 godziny. Startuje z wioski Teno Alto (przysiółki kozich hodowców, rzemieślnicze serowarnie) i wchodzi na Pico Baracán (1002 m) ze spektakularnym widokiem na Teide oraz na La Gomerę, La Palmę i El Hierro w pogodne dni. Przecina zarośla fayal-brezal i wyjątkowy wysokogórski las wawrzynowy. Trudność średnia. Bar i sklep w Teno Alto, żeby nabrać sił.",
+  "cat": "Trasa pętlą · Teno (Średni · 10 km · 4h)"
+ },
+ "sendero-chinyero": {
+  "desc": "Łatwa i wyjątkowa trasa pętlą wokół wulkanu Chinyero, ostatniej erupcji na Teneryfie (1909). 6 km, 2-3 godziny, prawie bez przewyższeń. Start na parkingu Arenas Negras (Santiago del Teide). Prowadzi obok wciąż widocznych potoków czarnej lawy, borów sosnowych i widoków na Teide. Dobra dla rodzin. Miejscami cień. Idealna przez cały rok poza dniami silnego wiatru.",
+  "cat": "Wulkan · Santiago Teide (Łatwy · 6 km · 2-3h)"
+ },
+ "prtf-1-mercedes-cruz-carmen": {
+  "desc": "Historyczne podejście z wioski Las Mercedes (La Laguna) do centrum dla zwiedzających Cruz del Carmen, starym traktem królewskim wśród lasu wawrzynowego. 4 km w jedną stronę, 2,5 godziny, przewyższenie +500 m. Trudność średnia z powodu stałego podejścia. Łączy się z siecią szlaków Anagi. Autobusy TITSA do Las Mercedes.",
+  "cat": "PR-TF 1 · Anaga (Średni · 4 km · 2,5h)"
+ },
+ "prtf-2-taborno-pico-ingles": {
+  "desc": "Spektakularna trasa graniowa między Taborno a punktem widokowym Pico del Inglés (992 m), ze zejściem do Valle Seco. 11 km, 5 godzin, wymagające przewyższenia. Wyjątkowe widoki na masyw Anagi oraz na północne i południowe wybrzeże w pogodne dni. Dla piechurów z doświadczeniem. Połączenie z PR-TF 2.1 (odgałęzienie Frontón).",
+  "cat": "PR-TF 2 · Anaga (Trudny · 11 km · 5h)"
+ },
+ "prtf-4-bailadero-taganana": {
+  "desc": "Zejście z El Bailadero (grzbiet Anagi) do Taganany, nadmorskiej wioski z XV wieku. 5 km, 2 godziny, strome zejście. Przecina las wawrzynowy i kończy się widokiem na Roques de Anaga. Można wrócić autobusem z Taganany. Historyczny szlak, którym rybacy chodzili na targi na grzbiecie.",
+  "cat": "PR-TF 4 · Anaga (Średni · 5 km · 2h)"
+ },
+ "prtf-5-chamorga-igueste": {
+  "desc": "Szlak na wschodnim krańcu Anagi, w jednej z najdzikszych stref Teneryfy. 9 km, 4 godziny. Startuje z odizolowanego przysiółka Chamorga (jedna z najodleglejszych wiosek wyspy) i schodzi do Igueste de San Andrés północnym wybrzeżem Anagi. Dzikie kozy, palmowe gaje, klify. Dla doświadczonych piechurów.",
+  "cat": "PR-TF 5 · Anaga (Trudny · 9 km · 4h)"
+ },
+ "prtf-6-3-benijo-draguillo": {
+  "desc": "Jedna z najwyżej ocenianych tras Teneryfy (4,7★ przy ponad 2000 opinii). 8,4 km, 2,5-3 godziny. Startuje z legendarnej plaży Benijo i wspina się starymi wiejskimi drogami do przysiółka El Draguillo. Spektakularne widoki na Roques de Anaga, dzikie wybrzeże i lasy wawrzynowe. Trudność średnio-wysoka z powodu przewyższeń.",
+  "cat": "PR-TF 6.3 · Anaga (Średni · 8,4 km · 3h)"
+ },
+ "prtf-10-cruz-carmen-chinamada": {
+  "desc": "⚠️ Odcinek Chinamada-Punta del Hidalgo w remoncie (pn-pt 7-15:30). Klasyczny szlak z Cruz del Carmen do jaskiniowego przysiółka Chinamada (zamieszkane domy w skale), jednej z etnograficznych pereł Anagi. 8,5 km w jedną stronę, 3,5 godziny. Przecina głęboki las wawrzynowy i spektakularne punkty widokowe. Można iść dalej do Punta del Hidalgo (wariant PR-TF 11). Autobusy 76, 77, 273 do Cruz del Carmen.",
+  "cat": "PR-TF 10 · Anaga (Średni · 8,5 km · 3,5h)"
+ },
+ "sendero-bosque-enigmas": {
+  "desc": "Bardzo popularna pętla w Anadze, ~5 km, 2 godziny, łatwa. Startuje z punktu widokowego Zapata albo z Cruz del Carmen i przecina „magiczne” lasy wawrzynowe ze stuletnimi drzewami, mgłą i mchami. Dobra dla rodzin ze starszymi dziećmi. Wygodny dojazd drogą TF-12. Zabierz kurtkę — Anaga jest wilgotna i chłodna nawet latem.",
+  "cat": "Szlak · Anaga (Łatwy · 5 km · 2h)"
+ },
+ "sendero-roque-bodegas": {
+  "desc": "Krótki i łatwy nadmorski spacer między wioskami Almáciga i Roque de las Bodegas, na końcu drogi TF-134 na północnym wybrzeżu Anagi. ~2 km w obie strony, 1 godzina. Widoki na ikoniczną skałę Roque de las Bodegas i na dzikie plaże. Restauracje ze świeżą rybą po obu stronach. Idealny do połączenia z wizytą na plaży Benijo.",
+  "cat": "Spacer nadmorski · Anaga (Bardzo łatwy · 2 km · 1h)"
+ },
+ "prtf-6-chamorga-roque-bermejo": {
+  "desc": "Charakterystyczna trasa pętlą na północno-wschodnim krańcu Anagi. 13,5 km, 5-6 godzin. Startuje z ostatniej wioski dostępnej samochodem (Chamorga, asfalt od 1975) i schodzi do odległego Roque Bermejo (niemal opuszczony przysiółek rybacki), idzie dalej przez El Draguillo i wraca. Łączy wybrzeże, wąwozy, gaj palmowy i las wawrzynowy. Dojazd autobusem linii 947 z Santa Cruz (w wybrane dni). ⚠️ Śliskie odcinki blisko klifów.",
+  "cat": "PR-TF 6 · Anaga (Średni · 13,5 km · 5-6h)"
+ },
+ "prtf-6-1-chamorga-faro-anaga": {
+  "desc": "Wariant szlaku do latarni morskiej Anaga (1864, najstarsza na wyspie). 3,2 km w jedną stronę, 1 godz. 40 min. Start w Chamordze przy barze Casa Álvaro. Podchodzi przez Casas de Tafada szlakiem z 7 punktami QR do samodzielnego zwiedzania. Widoki na Roque Pilón i otwarty Atlantyk. Można połączyć z PR-TF 6 w pętlę. Dla początkujących piechurów.",
+  "cat": "PR-TF 6.1 · Anaga (Średni · 3,2 km · 1h 40min)"
+ },
+ "prtf-9-afur-carboneras": {
+  "desc": "Krótki i ładny szlak między dwiema wioskami liczącymi mniej niż 100 mieszkańców, w sercu Anagi. 4 km w jedną stronę, 1 godz. 30 min, trudność umiarkowana. Przecina Barranco de Las Carboneras, monteverde i las wawrzynowy. W Las Carboneras zachowały się jaskiniowe domy. Naturalne połączenie z PR-TF 8 (Afur-Taganana) i PR-TF 10.1.",
+  "cat": "PR-TF 9 · Anaga (Średni · 4 km · 1h 30min)"
+ },
+ "prtf-11-cruz-carmen-batan": {
+  "desc": "Wielka przeprawa z północy na południe Anagi, alternatywa dla PR-TF 10. 14 km w jedną stronę, 5-6 godzin. Z Cruz del Carmen schodzi do przysiółka El Batán (zamieszkane jaskinie) i dalej do wybrzeża w Punta del Hidalgo. Spektakularne widoki na Roque de Dos Hermanos. Trudność wysoka z powodu przewyższeń. Powrót autobusem z Punta del Hidalgo. Posiłek w Las Bodegas de El Batán.",
+  "cat": "PR-TF 11 · Anaga (Trudny · 14 km · 5-6h)"
+ },
+ "sendero-samara": {
+  "desc": "Łatwa trasa pętlą ze spektakularnymi księżycowymi krajobrazami. 5 km, 2 godziny. Start na parkingu punktu widokowego Samara (TF-38). Okrąża Montaña de Samara, stożek wulkaniczny z czerwonawych i czarnych piasków. Widoki na Teide, Pico Viejo i potoki lawy z ostatniej erupcji Teide (1798). Bez cienia: zabierz wodę i ochronę przeciwsłoneczną. Idealna o zachodzie słońca.",
+  "cat": "Szlak · Teide (Łatwy · 5 km · 2h)"
+ },
+ "gr131-tramo1-esperanza-caldera": {
+  "desc": "Pierwszy odcinek szlaku dalekobieżnego GR-131, który przecina całą wyspę. 14 km, 5 godzin. Rusza z wioski La Esperanza (grzbiet, 850 m) i biegnie chronionym borem sosnowym do strefy rekreacyjnej La Caldera (Aguamansa). Lasy sosny kanaryjskiej, charakterystyczna mistyczna mgła. Szlak atestowany, biało-czerwony. Trudność średnia. Etapy jednodniowe. Dojazd autobusem do La Esperanza.",
+  "cat": "GR-131 odcinek 1 · Cumbre Dorsal (Średni · 14 km · 5h)"
+ },
+ "gr131-tramo5-vilaflor-arona": {
+  "desc": "Ostatni etap GR-131 na Teneryfie, dojście na turystyczne południe. 12 km, 4 godziny, praktycznie samo zejście. Rusza z Vilaflor (1400 m) do centrum Arony (610 m). Sosna kanaryjska na początku, dalej niski busz tabaib i wilczomleczy. Widoki na La Gomerę. Zamknięcie wyspiarskiej trasy, która zaczęła się w La Esperanza. Powrót autobusem 482/417 z Arony.",
+  "cat": "GR-131 odcinek 5 · Południe (Średni · 12 km · 4h)"
+ },
+ "sendero-barranco-infierno": {
+  "desc": "⚠️ REZERWACJA OBOWIĄZKOWA na barrancodelinfierno.es (300 osób dziennie, 11€). Najczęściej odwiedzana trasa południa. 6,5 km w obie strony, 3,5 godziny. Wejście w centrum Adeje. Prowadzi „Gardzielą Piekieł” do najwyższego wodospadu Teneryfy (80 m). Kask obowiązkowy (zapewniony). Nie dla dzieci poniżej 5 lat. Jaskinie guanczów wzdłuż trasy. Zamknięta w dni deszczowe lub wietrzne. Zabierz wodę i buty trekkingowe.",
+  "cat": "Wąwóz · Adeje (Średni · 6,5 km · 3,5h · Rezerwacja)"
+ },
+ "sendero-prtf-72-paisaje-lunar": {
+  "desc": "Szlak do ikonicznego Księżycowego Krajobrazu, wyjątkowych formacji z białego pumeksu wyrzeźbionych przez erozję. 13,4 km pętlą, 4 godziny, przewyższenie +600 m. Start w Vilaflor. Przecina bór sosny kanaryjskiej i koryto wąwozu aż do spektakularnego krajobrazu. ⚠️ ZAMKNIĘCIA SEZONOWE z powodu akcji kontroli muflonów (kwiecień-czerwiec i październik-listopad, 7-16h). Sprawdź tenerifeon.es przed wyjazdem. Obowiązkowy punkt.",
+  "cat": "PR-TF 72 · Vilaflor (Średni · 13,4 km · 4h)"
+ },
+ "sendero-roque-conde": {
+  "desc": "Ikoniczna wulkaniczna góra stołowa południa, symbol Arony (1001 m). 7,5 km pętlą z Vento de Arona, 3 godziny, przewyższenie +410 m. Spektakularne widoki na ocean i turystyczne miejscowości. Płaski wierzchołek, na którym mieszkali guanczowie z menceyatu Abona (stanowiska archeologiczne). Ostatnie podejście bardzo strome, z linami. Suchy szlak — zabierz dużo wody. Najlepiej zimą, z powodu słońca.",
+  "cat": "Szczyt · Arona (Trudny · 7,5 km · 3h)"
+ },
+ "sendero-prtf-51-punta-teno": {
+  "desc": "Historyczny szlak do najbardziej odległej latarni wyspy. 11 km w jedną stronę, 4 godziny. Przechodzi przez tunel Teno (zalecana latarka) i schodzi drogą Camino del Risco w stronę Punta de Teno. ⚠️ Od 1 stycznia 2025: wjazd do Punta de Teno regulowany 10-19h (tylko autobusem). Szlak pozostaje otwarty, ale w tych godzinach nie można dojechać samochodem. Widoki na La Gomerę i La Palmę.",
+  "cat": "PR-TF 51 · Teno (Średni · 11 km · 4h)"
+ },
+ "sendero-prtf-58-camino-risco": {
+  "desc": "Dawna droga latarników z zawrotnym zejściem po klifach Teno. 10,5 km, 4,5-5 godzin, przewyższenie -684 m. Start na placu Los Bailaderos (Teno Alto) i zejście zygzakiem do Buenavista. Dawniej jedyny dostęp do Punta de Teno. Można połączyć z PR-TF 51 w pełną trasę. Dla piechurów z doświadczeniem. Zejście wymagające dla kolan. Powrót autobusem z Buenavista.",
+  "cat": "PR-TF 58 · Teno (Trudny · 10,5 km · 4,5-5h)"
+ },
+ "pr-tf-3-chinamada": {
+  "desc": "Szlak prowadzący do przysiółka Chinamada w Parku Wiejskim Anaga, jednego z najbardziej osobliwych zamieszkanych osiedli Wysp Kanaryjskich: około 30 domów wykutych w skale, zamieszkanych do dziś. Najczęstsze dojście to Punta del Hidalgo (PR-TF 10, odcinek Chinamada) albo Las Carboneras. Chinamada ma małą kaplicę, hodowlę rodzimych owiec pediguey i spektakularne widoki na wąwozy Anagi. Punkt widokowy Aguaide (400 m od przysiółka) to punkt obowiązkowy. Trudność: średnio-wysoka. Tylko dla piechurów z doświadczeniem. Zabierz wodę.",
+  "cat": "Szlaki piesze · Chinamada · Domy w skale · Anaga"
+ },
+ "gr131-tramo2-portillo-guajara": {
+  "desc": "Odcinek 2 szlaku GR-131 Anaga-Chasna. Z Centrum dla Zwiedzających El Portillo (TF-21 km 32, 2030 m) biegnie dawnym Traktem Królewskim Chasna przez Las Siete Cañadas do przełęczy Degollada de Guajara (2715 m). Długość ~14 km. Trudność wysoka. Strefa chroniona Parku Narodowego Teide: nie wolno biwakować ani schodzić ze szlaku.",
+  "cat": "GR-131 · Odcinek 2 · Siete Cañadas · Teide · Wysoka"
+ },
+ "gr131-tramo3-guajara-vilaflor": {
+  "desc": "Odcinek 3 szlaku GR-131. Z przełęczy Degollada de Guajara (2715 m) schodzi przez Księżycowy Krajobraz i bory Vilaflor do samej wioski (1400 m). Zejście 1300 m na ~12 km. Szlak przechodzi przy początku PR-TF 72 (Księżycowy Krajobraz). Vilaflor to najwyżej położona zamieszkana miejscowość Teneryfy. Trudność wysoka.",
+  "cat": "GR-131 · Odcinek 3 · Guajara → Vilaflor · Wysoka"
+ },
+ "pr-tf-52-monte-agua": {
+  "desc": "PR-TF-52 Monte del Agua to jeden z najbardziej spektakularnych i najmniej uczęszczanych szlaków lasu wawrzynowego na Teneryfie, w Parku Wiejskim Teno. Zaczyna się w przysiółku Erjos (gmina Los Silos) i biegnie przez gęsty las wawrzynowy Monte del Agua do Las Portelas, z możliwością kontynuacji do El Palmar. Długość: 10,5 km. Trudność: niska (łagodne nachylenie niemal na całej trasie). Maksymalna wysokość: ~1100 m. Pierwotny las wawrzynowy z gołębiem turkusowym (endemitem) i gołębiem kanaryjskim, follao, viñátigo, lipą, ostrokrzewem i wielkimi wrzoścami. Spektakularny punkt widokowy w Mesita del Hurto nad lasem. Widoki na Teide z wyższych partii. Bardzo mały ruch w porównaniu ze szlakami Anagi.",
+  "cat": "PR-TF-52 · Las wawrzynowy · Monte del Agua · Teno · Niska"
+ },
+ "golf-abama": {
+  "desc": "Jedno z najlepszych pól golfowych Europy według Golf Digest Editors Choice Award (pięć razy z rzędu). 18 dołków, par 72, 6271 m, projekt Dave'a Thomasa. Położone w Ritz-Carlton Abama Resort (Guía de Isora), z 23 jeziorami, wodospadami i 25 000 palm. Widoki na Atlantyk i La Gomerę. Meleksy z GPS w cenie. Nielimitowany driving range, putting green, akademia golfa. Handicap maks.: 28H/36M. Godziny: 7:30-19:30. Green fee w sezonie wysokim ~145€. Punkt odniesienia europejskiego golfa.",
+  "cat": "Golf · 18 dołków · Par 72 · Guía de Isora · Luksus"
+ },
+ "golf-buenavista": {
+  "desc": "Pole golfowe zaprojektowane przez Severiana Ballesterosa, na północno-zachodnim krańcu Teneryfy. 18 dołków, par 72, 6150 m. Spektakularne naturalne otoczenie przy oceanie i Parku Przyrody Teno. Kilka dołków biegnie po krawędzi klifu, z wrażeniem uderzania prosto w morze. Jeziora przy dołkach 9 i 18. Akademia golfa. Zintegrowany hotel Meliá Hacienda del Conde 5*. Green fee w sezonie wysokim: 90-140€. Tel.: 922 129 034.",
+  "cat": "Golf · 18 dołków · Par 72 · Buenavista · Seve Ballesteros"
+ },
+ "golf-amarilla": {
+  "desc": "Pole golfowe zaprojektowane przez Donalda Steela, przy Marina San Miguel. 18 dołków, par 72. Słynne z dołka 5, gdzie trzeba uderzyć nad oceanem, żeby dosięgnąć greenu — jeden z najbardziej ikonicznych dołków w Hiszpanii. Fairwaye biegnące wzdłuż wulkanicznego wybrzeża. Widoki na Teide i Atlantyk. Akademia golfa, driving range, putting green, pro-shop. Południe Teneryfy.",
+  "cat": "Golf · 18 dołków · Par 72 · San Miguel · Wybrzeże wulkaniczne"
+ },
+ "golf-del-sur": {
+  "desc": "Historyczne pole golfowe południa Teneryfy, zaprojektowane przez José Gancedo i rozbudowywane przez lata. 27 dołków (trzy pętle po 9: Norte, Sur i Links). Par 72 dla 18 dołków. Gospodarz Tenerife Open w ramach European Tour. Wyjątkowe wulkaniczne otoczenie z widokiem na Teide i Atlantyk. Kompleks z apartamentami i hotelami. Akademia golfa. Południe wyspy, blisko lotniska Reina Sofía.",
+  "cat": "Golf · 27 dołków · San Miguel de Abona · European Tour"
+ },
+ "golf-costa-adeje": {
+  "desc": "Pole golfowe w Adeje, otwarte w 1998 roku. 27 dołków (trzy pętle po 9: Mar, Lago i Montana). Par 72 dla 18 dołków. Miejsce finału światowego BMW Golf Cup International (1999). Projekt Pepe Gancedo. Widoki na Teide, La Gomerę i Atlantyk. Akademia golfa, driving range. Położone przy osiedlu Fañabé, bardzo dostępne z Costa Adeje i Las Américas.",
+  "cat": "Golf · 27 dołków · Adeje · Costa Adeje"
+ },
+ "golf-las-americas": {
+  "desc": "Pole golfowe o 18 dołkach, par 72, przy Playa de las Américas. Projekt Folco Nardiego. Widoki na ocean i La Gomerę. Uprzywilejowane położenie w sercu turystycznej strefy południa. Wypożyczalnia kijów, meleksy, akademia golfa. Jedno z najłatwiej dostępnych pól południa wyspy dla turystów.",
+  "cat": "Golf · 18 dołków · Par 72 · Las Américas · Południe"
+ },
+ "rcg-tenerife": {
+  "desc": "Najstarsze pole golfowe Teneryfy i jedno z najbardziej historycznych w Hiszpanii, założone w 1932 roku (z poprzednikami od 1896). 18 dołków, par 71, 5740 m. Położone w San Lázaro (La Laguna), otoczone rodzimym drzewostanem. Klasyczne pole, w którym każdy dołek ma własną nazwę. Składki członkowskie i green fee dla gości. Wcześniejsza rezerwacja niezbędna.",
+  "cat": "Golf · Real Club · 18 dołków · Par 71 · La Laguna · 1932"
+ },
+ "golf-los-palos": {
+  "desc": "Pole pitch and putt oraz krótkie pole o 9 dołkach w Aronie (południe Teneryfy), Ctra. Guaza-Las Galletas km 7. Idealne dla początkujących, rodzin i graczy chcących poćwiczyć krótką grę. Pełna strefa treningowa: chipping green, bunkier i putting green. Taras z widokiem na pole. Spokojna, rodzinna atmosfera. Bez ograniczeń wieku i minimalnego handicapu. Bardzo dostępne z Los Cristianos i Las Américas.",
+  "cat": "Golf · 9 dołków · Arona · Początkujący · Rodziny"
+ },
+ "golf-los-lagos": {
+  "desc": "Pole golfowe o 9 dołkach, par 33, 2223 m, w Costa Adeje. Otoczone pięcioma przeszkodami wodnymi ze strumieniami i spektakularnym wodospadem. Połączenie dołków łatwych i bardziej technicznych, bronionych przez bunkry i jeziora. Uprzywilejowane naturalne otoczenie na południu Teneryfy. Odpowiednie dla wszystkich poziomów.",
+  "cat": "Golf · 9 dołków · Par 33 · Costa Adeje · Południe"
+ },
+ "mirador-pico-ingles": {
+  "desc": "Najbardziej imponujący punkt widokowy Anagi, na 992 m. Widok 360° na całą wyspę, północ i ocean. Często ponad chmurami. Dojazd samochodem drogą TF-12.",
+  "cat": "Punkt widokowy 360° · Anaga"
+ },
+ "candelaria": {
+  "desc": "Sanktuarium patronki Wysp Kanaryjskich. Dziewięć posągów menceyów (królów guanczów) na placu.",
+  "cat": "Patronka Wysp Kanaryjskich"
+ },
+ "tacoronte": {
+  "desc": "Najstarsza apelacja pochodzenia na Wyspach Kanaryjskich. Winiarnie, wyjątkowe wina czerwone i białe.",
+  "cat": "D.O."
+ },
+ "siam-park": {
+  "desc": "Najlepszy park wodny świata. Gigantyczne fale, Wieża Smoka, biała plaża.",
+  "cat": "Park wodny"
+ },
+ "jungle-park": {
+  "desc": "Park zoologiczny o powierzchni 7,5 ha z ponad 500 zwierzętami: białe tygrysy, lwy, jaguary, lamparty, orangutany, gibony, szympansy, lemury i pingwiny. Spektakularne pokazy wolnych lotów orłów i ptaków drapieżnych. W Aronie.",
+  "cat": "Park zoologiczny · Południe"
+ },
+ "nucleo-los-cristianos": {
+  "desc": "Serce południa. Plaże, życie nocne, restauracje. 365 dni słońca.",
+  "cat": "Strefa południowa"
+ },
+ "corona-forestal": {
+  "desc": "Największy park przyrody Wysp Kanaryjskich. Sosny kanaryjskie, szlaki i niepowtarzalne widoki na Teide.",
+  "cat": "Park przyrody"
+ },
+ "paisaje-lunar": {
+  "desc": "Los Escurriales: delikatne kolumny i baszty z białego pumeksu wyrzeźbione przez erozję nad borem Vilaflor, przy historycznym Camino de Chasna. Zakątek przywodzący na myśl powierzchnię Księżyca, jedyny taki na Teneryfie. Bez dojazdu samochodem: tylko pieszo szlakiem PR-TF 72 (pętla 13,4 km z Vilaflor). Strefa chroniona: ogląda się z punktów widokowych, bez wchodzenia na formacje. Nasłoneczniony stok bez cienia: zabierz wodę i ochronę przeciwsłoneczną.",
+  "cat": "Formacja wulkaniczna"
+ },
+ "malpais-guimar": {
+  "desc": "Chroniony Obszar Przyrodniczy na wschodnim wybrzeżu Teneryfy. Pole potoków lawy sprzed 1000-2000 lat, które dochodzą do morza, tworząc wyjątkowe wybrzeże z czarnej skały. Siedlisko jaszczurki kanaryjskiej tizón i wielu endemicznych roślin. Blisko Piramid Güímar. Wstęp wolny lokalnymi szlakami.",
+  "cat": "Obszar przyrodniczy · Güímar · Wulkaniczny · Wschodnie wybrzeże"
+ },
+ "jardin-botanico-puerto-cruz": {
+  "desc": "Najstarszy ogród botaniczny Wysp Kanaryjskich i drugi najstarszy w Hiszpanii, założony w 1788 roku na rozkaz króla Karola III. Położony w Puerto de la Cruz (Calle Retama 2), mieści ponad 5000 gatunków tropikalnych i subtropikalnych oraz stuletnie drzewa o wysokości ponad 40 m. Dobro Kultury od 1994 roku. Godziny: 09:00–18:00 (zamknięte 1 stycznia, w Wielki Piątek i 25 grudnia). Wstęp: 3€. Dostępny pieszo z centrum Puerto de la Cruz.",
+  "cat": "Ogród botaniczny · Puerto de la Cruz · 1788 · 3€"
+ },
+ "lajiales-fasnia": {
+  "desc": "Pole law wulkanicznych na wschodnim wybrzeżu Teneryfy, w gminie Fasnia. Chroniony Obszar Przyrodniczy o dużej wartości geologicznej i krajobrazowej. Rozległe historyczne potoki lawy dochodzące do morza tworzą bardzo osobliwe czarne wybrzeże z małymi zatoczkami i naturalnymi rozlewiskami. Siedlisko jaszczurki kanaryjskiej tizón i fauny morskiej. Wstęp wolny od strony wybrzeża Fasnii. Imponujący temat na fotografię krajobrazu wulkanicznego.",
+  "cat": "Obszar przyrodniczy · Fasnia · Wulkaniczny · Wschód"
+ },
+ "mirador-teide": {
+  "desc": "Najbardziej imponujący punkt widokowy Parku Narodowego, na 2356 m przy stacji kolejki linowej. Widok 360° na krater, Las Cañadas i całą wyspę. Punkt startowy kolejki i tras na szczyt.",
+  "cat": "Punkt widokowy · Stacja kolejki"
+ },
+ "mirador-punta-homem": {
+  "desc": "Centrum dla zwiedzających Anagi. Spektakularny punkt widokowy na morze i las wawrzynowy.",
+  "cat": "Punkt widokowy · Anaga"
+ },
+ "mirador-maska": {
+  "desc": "Imponujące widoki na wąwóz i na wioskę Masca wciśniętą między góry.",
+  "cat": "Punkt widokowy · Teno"
+ },
+ "mirador-teresitas": {
+  "desc": "⚠️ Oficjalna konstrukcja punktu widokowego jest zamknięta ze względów bezpieczeństwa (zły stan); pobocza dawnej drogi do Igueste nadal służą do słynnego zdjęcia plaży. Panoramiczne widoki na plażę ze złotym piaskiem. Kontrast plaży z dzielnicą San Andrés jest wyjątkowy.",
+  "cat": "Punkt widokowy · Santa Cruz"
+ },
+ "montana-pelada": {
+  "desc": "Specjalny Rezerwat Przyrody przy El Médano i Montaña Roja. Kopalna wydma ze zlityfikowanego piasku, powstała tysiące lat temu. Wejście nagradza niepowtarzalnymi widokami na cieśninę La Bocayna i La Gomerę na horyzoncie. Kruchy ekosystem endemicznych roślin kanaryjskich. Krótkie i umiarkowane podejście, idealne o wschodzie słońca.",
+  "cat": "Wulkan · Rezerwat przyrody"
+ }
+}
