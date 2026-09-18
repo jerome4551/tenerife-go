@@ -1,0 +1,403 @@
+{
+ "vet-masvet-chafiras": {
+  "desc": "Nowoczesny szpital weterynaryjny w Las Chafiras (południe Teneryfy) z opieką całodobową, oddzielnymi strefami dla psów i kotów oraz kocią poczekalnią z feromonami. Konsultacje specjalistyczne, pogotowie i profilaktyka. Młody i bardzo dobrze oceniany zespół.",
+  "cat": "Szpital weterynaryjny 24h · Las Chafiras",
+  "hours": "Szpital weterynaryjny 24h · 365 dni"
+ },
+ "playa-cabezo": {
+  "desc": "Oficjalna plaża dla psów w Güímar, pionierska na Teneryfie. Ciemny piasek wulkaniczny, wydzielona strefa dla psów o długości około 200 m ze spokojną wodą dzięki naturalnym ostrogom. Otwarta 365 dni bez ograniczeń godzinowych. Ma parking, prysznice i toalety w pobliżu.",
+  "cat": "Plaża pet friendly · Güímar"
+ },
+ "playa-confital": {
+  "desc": "Plaża przyjazna psom w Granadilla de Abona, znana także jako Playa del Horno. Ciemny piasek wulkaniczny i półmiejskie naturalne otoczenie. Wstęp ze zwierzętami dozwolony przez cały rok bez ograniczeń godzinowych. Kąpiel dla czworonogów dozwolona.",
+  "cat": "Plaża pet friendly · Granadilla de Abona"
+ },
+ "playa-puertito-guimar": {
+  "desc": "Miejska plaża w Puertito de Güímar z wydzieloną strefą dla psów. Piasek wulkaniczny, bardzo spokojna woda, idealna dla psów. Bardzo dostępna, także dla osób z ograniczoną mobilnością. Jedna z najwygodniejszych i najspokojniejszych na wyjście ze zwierzakiem.",
+  "cat": "Plaża pet friendly · Güímar"
+ },
+ "playa-callao-arona": {
+  "desc": "Plaża z piaskiem wulkanicznym w Aronie ze strefą przystosowaną dla psów. Naturalne otoczenie bez tłoku, idealne dla zwierząt lubiących przyrodę i kąpiel. Spokojna i z łatwym dojściem.",
+  "cat": "Plaża pet friendly · Arona"
+ },
+ "parque-garcia-sanabria-pet": {
+  "desc": "Największy park miejski Teneryfy w Santa Cruz. Wydzielona strefa dla psów, bujne ogrody, rzeźby i fontanny. Idealny na spacery ze zwierzakiem w mieście. W strefach ogólnych psy muszą być na smyczy.",
+  "cat": "Park pet friendly · Santa Cruz"
+ },
+ "parque-anaga-petfriendly": {
+  "desc": "⚠️ Z psem można chodzić tylko po oficjalnych szlakach i zawsze na smyczy: to chroniony obszar przyrodniczy z wrażliwą endemiczną fauną; naruszenia są karane. Park Wiejski Anaga pozwala na wstęp psów na smyczy na swoje szlaki. Tysiącletni las wawrzynowy, Rezerwat Biosfery. Imponujące krajobrazy wąwozów i klifów. Niepowtarzalne przeżycie dla miłośników przyrody i ich zwierząt.",
+  "cat": "Park przyrody pet friendly · Anaga"
+ },
+ "playa-las-bajas": {
+  "desc": "Plaża z wydzieloną strefą dla psów w Aronie. Ciemny piasek wulkaniczny i łatwe dojście. Spokojne otoczenie bez tłoku, idealne dla psów lubiących kąpiel. Dobra opcja na południu wyspy.",
+  "cat": "Plaża pet friendly · Arona"
+ },
+ "parque-la-granja-sct": {
+  "desc": "Wybieg dla psów w centrum Santa Cruz de Tenerife, ogrodzony stalą nierdzewną, z osobnymi częściami dla psów dużych i małych. Ma poidełka, strefy zabaw i specjalne wejścia dla zwierząt. Jeden z najbardziej kompletnych na wyspie.",
+  "cat": "Wybieg dla psów · Santa Cruz"
+ },
+ "parque-el-montillo": {
+  "desc": "Nowoczesny wybieg dla psów w La Matanza, na północy Teneryfy, otwarty w 2019 roku. Psi tor sprawnościowy z agility, slalomem, tunelem, drabinką i rampą. Jeden z najlepiej wyposażonych na wyspie do ćwiczeń ze zwierzakiem.",
+  "cat": "Wybieg dla psów · La Matanza"
+ },
+ "parque-tabaiba-baja": {
+  "desc": "Wybieg dla psów w dzielnicy Tabaiba Baja w Santa Cruz. Przestrzeń pet friendly z torem sprawnościowym dla psów. Idealna, żeby zwierzęta pobiegały i pobyły razem w bezpiecznym, ogrodzonym otoczeniu.",
+  "cat": "Wybieg dla psów · Santa Cruz"
+ },
+ "acc-playa-las-vistas": {
+  "desc": "Najbardziej dostępna plaża Teneryfy, w Los Cristianos. Rampy, drewniane pomosty aż do brzegu, przystosowane strefy cienia, wózki plażowe, podnośnik transferowy i asysta przy kąpieli. Przystosowane toalety i prysznice. Kąpiel z asystą zwykle od 11:00 do 14:00 i od 15:00 do 18:00.",
+  "cat": "Plaża dostępna · Arona"
+ },
+ "acc-playa-los-cristianos": {
+  "desc": "Plaża miejska z zarezerwowanym parkingiem, wjazdem po rampie, pomostami, przystosowanymi prysznicami i toaletami, strefą odpoczynku i asystą przy kąpieli. Los Cristianos to jeden z najlepiej przystosowanych kierunków w Europie.",
+  "cat": "Plaża dostępna · Arona"
+ },
+ "acc-playa-troya": {
+  "desc": "W Las Américas. Zarezerwowany parking, rampy, pomosty, wózki i kule do wody, przystosowane prysznice i toalety, strefa odpoczynku oraz asysta przy kąpieli.",
+  "cat": "Plaża dostępna · Adeje"
+ },
+ "acc-playa-torviscas": {
+  "desc": "Costa Adeje. Zarezerwowany parking, rampa, pomosty, wózki i kule do wody, przystosowane prysznice i toalety, strefa odpoczynku i asysta przy kąpieli.",
+  "cat": "Plaża dostępna · Adeje"
+ },
+ "acc-playa-fanabe": {
+  "desc": "Costa Adeje. Wjazd po rampie, pomosty, wózki i kule do wody, przystosowane prysznice i toalety, strefa odpoczynku oraz asysta przy kąpieli.",
+  "cat": "Plaża dostępna · Adeje"
+ },
+ "acc-playa-duque": {
+  "desc": "Costa Adeje. Zarezerwowany parking, rampa, pomosty, wózki i kule do wody, przystosowane prysznice i toalety, strefa odpoczynku i asysta przy kąpieli.",
+  "cat": "Plaża dostępna · Adeje"
+ },
+ "acc-playa-teresitas": {
+  "desc": "Wielka złota plaża Santa Cruz ma przystosowane dojścia i usługę kąpieli z asystą Czerwonego Krzyża, z wózkami plażowymi, w sezonie letnim.",
+  "cat": "Plaża dostępna · Santa Cruz"
+ },
+ "acc-playa-poris": {
+  "desc": "W Porís de Abona (Arico). Zarezerwowany parking, rampa, pomosty, wózki i kule do wody, przystosowane prysznice i toalety, strefa odpoczynku i asysta przy kąpieli. Spokojna i bez tłoku.",
+  "cat": "Plaża dostępna · Arico"
+ },
+ "acc-sendero-sentidos": {
+  "desc": "W Cruz del Carmen (Anaga). Jego pierwszy odcinek jest przystosowany dla wózków inwalidzkich i osób z ograniczoną mobilnością: sensoryczny spacer po lesie wawrzynowym wpisanym na listę światowego dziedzictwa. Dostępne centrum dla zwiedzających.",
+  "cat": "Szlak przystosowany · Anaga"
+ },
+ "acc-adissur": {
+  "desc": "Stowarzyszenie wspierające osoby z niepełnosprawnością i ich rodziny, w Tejina de Isora (Guía de Isora). Rozrywka i czas wolny bez barier, sobotnie wycieczki, sport przystosowany, logopedia, opieka wytchnieniowa i wsparcie rodzin. Tel.: 699 00 55 26 · trabajosocialtenerife@adissur.com",
+  "cat": "Stowarzyszenie · Guía de Isora"
+ },
+ "acc-loro-parque": {
+  "desc": "Słynny park w Puerto de la Cruz jest w pełni dostępny: rampy na całym terenie, przystosowane toalety i przeszkolony personel. Jedna z najwygodniejszych wizyt na wyspie na wózku inwalidzkim.",
+  "cat": "Park dostępny · Puerto de la Cruz"
+ },
+ "acc-siam-park": {
+  "desc": "Park wodny z realnym zobowiązaniem do włączania: opaski Fast Pass dla osób z autyzmem albo zespołem Downa, 50% zniżki przy niepełnosprawności od 60%, i wstęp bezpłatny przy niepełnosprawności całkowitej. Przystosowane obiekty.",
+  "cat": "Park wodny dostępny · Adeje"
+ },
+ "acc-teide-portillo": {
+  "desc": "Park Narodowy Teide na wózku inwalidzkim: Centrum dla Zwiedzających El Portillo jest w pełni dostępne (rampy, przystosowane toalety, interaktywne wystawy), z przystosowanymi punktami widokowymi i krótkimi dostępnymi szlakami po wulkanicznym krajobrazie. Kolejka linowa ma przystosowane zaplecze u podstawy; sprawdź warunki przed wjazdem.",
+  "cat": "Przyroda dostępna · Teide"
+ },
+ "acc-paseo-cristianos": {
+  "desc": "Kilometry płaskiej promenady bez barier łączące Los Cristianos, Las Américas i Costa Adeje. Idealne na wózek inwalidzki albo przy ograniczonej mobilności: tarasy, widoki na La Gomerę i dojście do kilku przystosowanych plaż po drodze.",
+  "cat": "Promenada dostępna · Arona-Adeje"
+ },
+ "acc-piscina-jover": {
+  "desc": "Naturalny basen dostępny dla osób z ograniczoną mobilnością na wybrzeżu Tejiny (La Laguna). Rampa i przystosowane schody wejściowe do morza, płaski placyk i solarium, naturalny prysznic ze słodką wodą. Spokojne i rodzinne miejsce. Widoki na latarnię Punta del Hidalgo i Bajamar. Publiczny parking w pobliżu.",
+  "cat": "Basen dostępny ♿ · Tejina · Północ"
+ },
+ "acc-paseo-garachico": {
+  "desc": "Dostępna nadmorska promenada w Garachico przy naturalnych basenach El Caletón i starym mieście. Gładka nawierzchnia, bez schodów i z przystosowanymi rampami. Widoki na Roque de Garachico. Ławki co 50 m. Baseny El Caletón mają również przystosowane schody.",
+  "cat": "Promenada dostępna ♿ · Garachico · Północ"
+ },
+ "parque-cuchillitos-tristan": {
+  "desc": "Wydzielona strefa dla psów w parku Cuchillitos de Tristán, dzielnica Ofra-Costa Sur w Santa Cruz. Ogrodzona przestrzeń ze żwirem, gdzie psy mogą bezpiecznie biegać bez smyczy. Część sieci 15 wybiegów dla psów w gminie.",
+  "cat": "Wybieg dla psów · Santa Cruz"
+ },
+ "parque-don-quijote-sct": {
+  "desc": "Strefa dla psów w parku Don Quijote, dzielnica Salud-La Salle w Santa Cruz. Wydzielony teren o nawierzchni ze żwiru albo piasku do wybiegania zwierząt. Dobre położenie w dzielnicy mieszkalnej z dużą ilością cienia.",
+  "cat": "Wybieg dla psów · Santa Cruz"
+ },
+ "parque-las-mantecas-laguna": {
+  "desc": "Nowy wybieg dla psów w Las Mantecas w La Lagunie, o powierzchni 900 m². Ogrodzona strefa z płotem typu Herkules o wysokości 1,5 m, dwiema śluzami wejściowymi, drewnianymi ławkami i koszami. W cieniu wielkich figowców.",
+  "cat": "Wybieg dla psów · La Laguna"
+ },
+ "teide-petfriendly": {
+  "desc": "⚠️ Z psem można chodzić tylko po oficjalnych szlakach i zawsze na smyczy: to chroniony obszar przyrodniczy z wrażliwą endemiczną fauną; naruszenia są karane. Park Narodowy Teide pozwala na psy na smyczy w strefach wolnego dostępu i na drogach parku. Nie są dozwolone na chronionych szlakach ani w kolejce linowej. Koniecznie zabierz wodę dla zwierzaka ze względu na wysokość i upał.",
+  "cat": "Park narodowy pet friendly · Teide"
+ },
+ "parque-canino-ana-bautista": {
+  "desc": "Wybieg dla psów w dzielnicy Centro-Ifara w Santa Cruz, przy hali Ana Bautista. Wydzielona strefa do wybiegania psów. Część sieci 15 wybiegów dla psów w Santa Cruz.",
+  "cat": "Wybieg dla psów · Santa Cruz"
+ },
+ "parque-canino-el-medano": {
+  "desc": "Wydzielona strefa dla psów w El Médano, Granadilla de Abona. Ogrodzona przestrzeń, w której psy mogą biegać bez smyczy. Blisko plaż pet friendly La Tejita i El Confital.",
+  "cat": "Wybieg dla psów · El Médano"
+ },
+ "parque-canino-callao-salvaje": {
+  "desc": "Strefa dla psów w Callao Salvaje, Adeje. Wydzielony teren idealny dla mieszkańców i turystów ze zwierzętami w strefie południowo-zachodniej.",
+  "cat": "Wybieg dla psów · Adeje"
+ },
+ "parque-canino-playa-san-juan": {
+  "desc": "Wybieg dla psów w Playa San Juan, Guía de Isora, w rejonie Fonsalía. Południowy zachód Teneryfy z widokiem na morze i La Gomerę. Otwarty w grudniu 2018 roku.",
+  "cat": "Wybieg dla psów · Guía de Isora"
+ },
+ "parque-canino-taoro": {
+  "desc": "Wybieg dla psów przy słynnym parku Taoro w Puerto de la Cruz. Zielone i uprzywilejowane otoczenie na północy Teneryfy. Idealny na spacery z psami wśród ogrodów z widokiem na Atlantyk.",
+  "cat": "Wybieg dla psów · Puerto de la Cruz"
+ },
+ "paseo-maritimo-costa-adeje": {
+  "desc": "Promenada Costa Adeje od La Caleta do Puerto Colón pozwala na psy na smyczy. Biegnie wzdłuż plaż La Enramada, El Duque, Fañabé i La Pinta. Idealna na długie spacery o wschodzie albo zachodzie słońca.",
+  "cat": "Promenada pet friendly · Costa Adeje"
+ },
+ "parque-canino-puntalarga": {
+  "desc": "Wydzielona strefa dla psów w Puntalarga, Candelaria. Teren, na którym psy mogą pobiegać bez smyczy i pobyć razem, na wschodnim wybrzeżu Teneryfy.",
+  "cat": "Wybieg dla psów · Candelaria"
+ },
+ "parque-canino-san-benito": {
+  "desc": "Strefa dla psów w dzielnicy San Benito w La Lagunie. Wydzielony teren w jednej z historycznych dzielnic miasta wpisanego na listę światowego dziedzictwa UNESCO.",
+  "cat": "Wybieg dla psów · La Laguna"
+ },
+ "parque-canino-laguna-via-ronda": {
+  "desc": "Ogrodzony wybieg dla psów przy Vía de Ronda w San Cristóbal de La Laguna, jeden z najczęściej używanych w gminie. Duża przestrzeń ze strefą piasku i żwiru, poidełka. Dostępny z centrum La Laguny.",
+  "cat": "Wybieg dla psów · La Laguna · Vía Ronda"
+ },
+ "mir-tajao": {
+  "desc": "Punkt widokowy przy małej wiosce rybackiej Tajao, z widokiem na morze i wulkaniczne południowe wybrzeże. Spektakularne zachody słońca.",
+  "cat": "Punkt widokowy · Południowe wybrzeże"
+ },
+ "mir-guia-isora": {
+  "desc": "Punkt widokowy w starym mieście Guía de Isora z panoramą na morze oraz widokiem na La Gomerę i La Palmę w pogodne dni.",
+  "cat": "Punkt widokowy · Zachód · Guía de Isora"
+ },
+ "mir-garachico": {
+  "desc": "Punkt widokowy nad historycznym miasteczkiem Garachico, z widokiem na naturalne baseny El Caletón i ocean.",
+  "cat": "Punkt widokowy · Północ · Garachico"
+ },
+ "mir-baracan": {
+  "desc": "Punkt widokowy w masywie Teno z widokiem na klify Los Gigantes od góry. Dojazd drogą górską.",
+  "cat": "Punkt widokowy · Teno · Klify"
+ },
+ "mir-bailadero": {
+  "desc": "Jeden z najbardziej spektakularnych punktów widokowych Anagi, w najwyższym miejscu masywu. Widoki na północ i na Atlantyk.",
+  "cat": "Punkt widokowy · Anaga · Grzbiet"
+ },
+ "mir-ermita-palmar": {
+  "desc": "Mały punkt widokowy przy kaplicy El Palmar, z widokiem na rolniczą dolinę Teno i nadmorskie klify północnego zachodu.",
+  "cat": "Punkt widokowy · Teno · El Palmar"
+ },
+ "mir-rambla-castro": {
+  "desc": "Punkt widokowy nad północnym wybrzeżem między Puerto de la Cruz a Icod. Klify i chroniony obszar o wielkim pięknie naturalnym.",
+  "cat": "Punkt widokowy · Północne wybrzeże"
+ },
+ "mercadillo-tegueste": {
+  "desc": "Tradycyjny niedzielny targ na placu w Tegueste. Owoce, lokalne warzywa, rękodzieło. Niedziele rano.",
+  "cat": "Targ · Niedziele · Północ"
+ },
+ "mercadillo-tacoronte": {
+  "desc": "Cotygodniowy targ w Tacoronte, winiarskiej strefie północy. Soboty rano. Lokalne wina, sery, owoce i kanaryjskie rękodzieło.",
+  "cat": "Targ · Soboty · Tacoronte"
+ },
+ "mercadillo-los-realejos": {
+  "desc": "Targ lokalnych producentów w Los Realejos. W weekendy. Kwiaty, rośliny, miód, rzemieślniczy ser i produkty ekologiczne.",
+  "cat": "Targ · Weekend · Los Realejos"
+ },
+ "mercadillo-puerto-cruz": {
+  "desc": "Targ rolniczy w Puerto de la Cruz. Wtorki i soboty. Ziemniaki, banany, pomidory, miód i rośliny prosto z pola.",
+  "cat": "Targ · Wt/So · Puerto Cruz"
+ },
+ "mercadillo-san-isidro": {
+  "desc": "Tradycyjny targ w San Isidro (Granadilla de Abona). Niedziele rano. Popularny wśród miejscowych z południa.",
+  "cat": "Targ · Niedziele · Południe"
+ },
+ "mercadillo-orotava": {
+  "desc": "Targ rękodzieła w starym mieście La Orotava. Środy i soboty. Ceramika, kanaryjskie hafty, miód i produkty lokalne.",
+  "cat": "Targ · Śr/So · La Orotava"
+ },
+ "mercadillo-los-abrigos": {
+  "desc": "Targ przy porcie rybackim Los Abrigos. Niedziele. Lokalne rękodzieło, świeża ryba i autentyczna marynarska atmosfera.",
+  "cat": "Targ · Niedziele · Los Abrigos"
+ },
+ "mercadillo-icod": {
+  "desc": "Cotygodniowy targ w Icod, przy Tysiącletnim Smoczym Drzewie. Piątki rano. Owoce, lokalne wina i rękodzieło północnego zachodu.",
+  "cat": "Targ · Piątki · Icod"
+ },
+ "surf-medano": {
+  "desc": "Stolica windsurfingu i kitesurfingu na Teneryfie. Stały pasat z północnego wschodu. Gospodarz mistrzostw świata PWA. Idealna dla wszystkich poziomów.",
+  "cat": "Windsurfing · Kitesurfing · Mistrzostwa świata"
+ },
+ "surf-playa-socorro": {
+  "desc": "Najlepsza fala longboardowa północy Teneryfy. Długie i stabilne fale. Szkoły surfingu w sezonie. Czarny piasek wulkaniczny.",
+  "cat": "Surfing · Longboard · Północ"
+ },
+ "surf-benijo": {
+  "desc": "Fala wysokiego poziomu w Benijo, w masywie Anagi. Tylko dla doświadczonych surferów, ze względu na prądy i siłę. Nieporównywalny dziki krajobraz.",
+  "cat": "Surfing zaawansowany · Anaga · Ostrożnie"
+ },
+ "surf-playa-jardin": {
+  "desc": "Pik jest w części plaży przy zamku San Felipe: zmienne piki na dnie z wulkanicznego piasku i skały, przejazdy od 50 do 150 m. Działa najlepiej przy przypływie do średniego stanu wody. ⚠️ Przy dużym morzu prąd robi się niebezpieczny. Wulkaniczna plaża Puerto de la Cruz zaprojektowana przez Césara Manrique. Fale dla początkujących i średniozaawansowanych. Szkoły surfingu. Czarny piasek.",
+  "cat": "Surfing · Początkujący · Puerto Cruz"
+ },
+ "surf-callao-salvaje": {
+  "desc": "Spot surfingowy na zachodnim wybrzeżu ze stabilnymi falami zimowymi. Poziom średniozaawansowany do zaawansowanego. Mniej zatłoczony niż turystyczne południe.",
+  "cat": "Surfing · Zima · Zachodnie wybrzeże"
+ },
+ "mir-don-martin": {
+  "desc": "Najsłynniejszy punkt widokowy Anagi, na 1024 m nad doliną Tahodio. Widoki 360° na masyw i Atlantyk. Dojazd drogą TF-12.",
+  "cat": "Punkt widokowy · Anaga · 1024 m"
+ },
+ "mir-chipeque": {
+  "desc": "Punkt widokowy przy drodze na Teide TF-21, ze spektakularnym widokiem na Dolinę La Orotava i Ocean Atlantycki. Bardzo często fotografowany. Dojazd samochodem.",
+  "cat": "Punkt widokowy · TF-21 · Dolina Orotava"
+ },
+ "mir-la-jardina": {
+  "desc": "Leśny punkt widokowy w La Esperanza, przy drodze w stronę Las Cañadas. Panoramiczne widoki na Santa Cruz, morze i północny wschód wyspy. Miejsce piknikowe.",
+  "cat": "Punkt widokowy · La Esperanza · Leśny"
+ },
+ "mir-pico-flores-anaga": {
+  "desc": "Punkt widokowy na szczycie masywu Anagi, z jednoczesnym widokiem na północ (otwarty ocean) i na południe (Santa Cruz). Punkt przejściowy między Tagananą a Chamorgą.",
+  "cat": "Punkt widokowy · Anaga · Szczyt"
+ },
+ "mir-cruz-hilda": {
+  "desc": "Punkt widokowy przy drodze z Santiago del Teide do Tamaimo, z bezpośrednim widokiem na Teide, zachodnie wybrzeże i wyspy. Stały postój wycieczek z południa.",
+  "cat": "Punkt widokowy · Santiago del Teide · Zachód"
+ },
+ "mir-la-corona-guimar": {
+  "desc": "Punkt widokowy nad Doliną Güímar z widokiem na piramidy i wschodnie wybrzeże. Dojście z centrum Güímar. Strefa o historycznej tradycji guanczów.",
+  "cat": "Punkt widokowy · Güímar · Dolina"
+ },
+ "mir-archipenque": {
+  "desc": "Najbardziej imponujący punkt widokowy na klify Los Gigantes. Położony przy drodze TF-454 nad Puerto de Santiago. Bezpośrednie widoki na klify o wysokości 300-800 m, Punta de Teno, La Palmę i La Gomerę w pogodne dni. Mała kawiarnia i sklep z pamiątkami. Bezpłatny parking. Spektakularny zachód słońca.",
+  "cat": "Punkt widokowy · Los Gigantes · Klify"
+ },
+ "mir-punta-hidalgo": {
+  "desc": "Nadmorski punkt widokowy na najbardziej wysuniętym na północ krańcu Teneryfy, w gminie La Laguna. Spektakularne widoki na latarnię o niepowtarzalnym projekcie (1994), Roque de los Dos Hermanos i dzikie wybrzeże Anagi. Idealny na zachód słońca i atlantyckie zmierzchy. Naturalne baseny w skale u stóp. Dojazd samochodem drogą TF-13 albo autobusem z La Laguny.",
+  "cat": "Punkt widokowy · Punta del Hidalgo · Północ"
+ },
+ "mir-aguaide": {
+  "desc": "Spektakularny punkt widokowy w Parku Wiejskim Anaga, dostępny z przysiółka Chinamada (10 min pieszo). Zawrotne widoki na Atlantyk i na Punta del Hidalgo. Krawędź jest odgrodzona z powodu szczelin w skale, które mogą się osunąć — podziwiaj z bezpiecznej strefy. Uwaga: tylko dla doświadczonych piechurów. Dojście z Punta del Hidalgo to około 5 km pieszo.",
+  "cat": "Punkt widokowy · Anaga · Tylko pieszo · Dla doświadczonych"
+ },
+ "mir-chivisaya": {
+  "desc": "Punkt widokowy na zboczach Güímar z widokiem na Dolinę Güímar, Malpaís de Güímar (chroniony obszar przyrodniczy z potokami lawy) i wschodnie wybrzeże Teneryfy. Otoczony lasem faji i wrzośców. Dojazd lokalną drogą z Güímar. Spokojny i mało znany.",
+  "cat": "Punkt widokowy · Güímar · Dolina · Wschód"
+ },
+ "mir-los-campitos": {
+  "desc": "Miejski punkt widokowy w dzielnicy Los Campitos (Santa Cruz de Tenerife) z najlepszym widokiem na stolicę: Auditorio de Tenerife, Nabrzeże Północne, Wieże Santa Cruz, Palmetum i grzbiety Anagi. Idealny o zmierzchu i nocą do fotografii miejskiej. Dojazd samochodem albo pieszo przez dzielnicę.",
+  "cat": "Punkt widokowy miejski · Santa Cruz · Auditorio"
+ },
+ "mir-lomo-molino": {
+  "desc": "Panoramiczny punkt widokowy na północy Teneryfy z widokiem na Roque de Garachico (wulkaniczną wysepkę), Isla Baja, wybrzeże Buenavista i majestatyczny Teide w tle. Otoczony winnicami i tarasami plantacji bananów. Jeden z najbardziej fotogenicznych punktów północnego zachodu. Dojazd lokalną drogą.",
+  "cat": "Punkt widokowy · Północny zachód · Garachico · Teide"
+ },
+ "mir-narices-teide": {
+  "desc": "Jeden z najbardziej imponujących punktów widokowych Parku Narodowego Teide, przy drodze TF-38 (strefa Los Escanillos, Guía de Isora). Bezpośredni widok na Pico Viejo (3135 m) i na 5 km² potoków czarnej lawy z ostatniej wielkiej erupcji z 1798 roku, która otworzyła „paszcze ognia” znane jako Nosy Teide (2661 m). W pogodne dni widać La Gomerę, La Palmę i El Hierro. Bezpłatny parking. Idealny o wschodzie i zachodzie słońca, zwłaszcza jesienią i zimą. 8,4 km od kolejki linowej na Teide.",
+  "cat": "Punkt widokowy · Nosy Teide · 2661 m · TF-38"
+ },
+ "mir-cardon-guia-isora": {
+  "desc": "Punkt widokowy w gminie Guía de Isora z panoramą na południe Teneryfy: wybrzeże między Playa San Juan a Playa de La Arena, La Gomera na horyzoncie i klify zachodniego wybrzeża. Otoczenie wilczomleczy kanaryjskich (Euphorbia canariensis) — najbardziej charakterystycznego endemicznego kaktusa Wysp Kanaryjskich. Spokojna atmosfera i mały ruch. Dojazd lokalną drogą z Guía de Isora.",
+  "cat": "Punkt widokowy · Guía de Isora · Południe · Wilczomlecze"
+ },
+ "mir-rambleta-teide": {
+  "desc": "La Rambleta to górna stacja kolejki linowej na Teide, na 3555 metrach n.p.m. — najwyżej położony punkt widokowy Hiszpanii dostępny bez wędrówki. Widoki 360° na Park Narodowy: Teide górujący ponad chmurami, Pico Viejo, Las Cañadas, kaldera, a w pogodne dni siedem Wysp Kanaryjskich naraz. Dojazd kolejką (~14€ w obie strony) ze stacji dolnej na 2356 m. Stąd prowadzi szlak Telesforo Bravo na szczyt Teide (45 min, pozwolenie obowiązkowe). Średnia temperatura: 5-10°C latem, poniżej zera zimą. Zawsze zabieraj ciepłe ubranie. Kolejki w sezonie wysokim bywają długie — kup bilet online.",
+  "cat": "Punkt widokowy · Teide · 3555 m · Kolejka · 360°"
+ },
+ "surf-las-americas": {
+  "desc": "Strefa szkół surfingu naprzeciw Veril w Playa de las Américas. Poziom początkujący i średniozaawansowany. Kontrolowane wody, certyfikowani instruktorzy. Najbardziej dostępna opcja na południu.",
+  "cat": "Surfing · Szkoły · Las Américas"
+ },
+ "surf-bollullo": {
+  "desc": "Wulkaniczna plaża o trudnym dojściu (zejście pieszo 15 min) blisko Puerto de la Cruz. Fale dobrej jakości dla poziomu średniozaawansowanego. Czarny piasek i dziewicze otoczenie.",
+  "cat": "Surfing · Średniozaawansowany · Północ"
+ },
+ "surf-punta-hidalgo": {
+  "desc": "Północny kraniec Teneryfy. Mocne fale zimą. Tylko dla zaawansowanych surferów, ze względu na siłę morza i skaliste dno. Spektakularny krajobraz.",
+  "cat": "Surfing zaawansowany · Punta Hidalgo · Północ"
+ },
+ "surf-almaciga": {
+  "desc": "Playa Almáciga w Parku Wiejskim Anaga to jeden z najlepszych spotów surfingowych północy Teneryfy dla poziomu średniozaawansowanego i zaawansowanego. Beach break z falami w lewo i w prawo. Działa przez cały rok przy morzu z północy i północnego wschodu. Warunki optymalne: morze z północnego zachodu plus wiatr z południa. Dno z piasku i skały. Mało uczęszczana ze względu na odległy dojazd (droga przez Anagę). Spektakularny krajobraz klifów i lasu wawrzynowego.",
+  "cat": "Surfing średniozaawansowany-zaawansowany · Anaga · Północ"
+ },
+ "windsurf-el-medano": {
+  "desc": "El Médano, na południowo-wschodnim wybrzeżu Teneryfy (Granadilla de Abona), to światowa mekka windsurfingu i kitesurfingu. Stałe pasaty z północnego wschodu (15-30 węzłów, niemal codziennie przez cały rok) czynią z niej jedną z najlepszych wietrznych plaż Europy. Playa El Cabezo jest gospodarzem PWA Grand Slam World Cup Tenerife, mistrzostw świata w windsurfingu — rozgrywanych każdego lata z udziałem ponad 160 zawodników z ponad 20 krajów (konkurencje Wave i Slalom X). Wind Center Playa Surf (oficjalny sponsor PWA) oferuje wypożyczenie sprzętu do windsurfingu, kitesurfingu, wingfoilu i SUP w pierwszej linii. Zajęcia dla wszystkich poziomów. El Médano to również stolica kitesurfingu wyspy, z idealnymi warunkami na Playa La Tejita i w El Cabezo. 18 000 turystów sportowych rocznie.",
+  "cat": "Windsurfing · Kitesurfing · El Médano · PWA World Cup · Światowa mekka"
+ },
+ "windsurf-la-tejita": {
+  "desc": "Playa de La Tejita, na południe od El Médano, to par excellence strefa kitesurfingu południowego wschodu Teneryfy. Plaża z ciemnym piaskiem o długości 1,5 km przy Montaña Roja (Specjalny Rezerwat Przyrody). Stałe pasaty i mniej przeszkód niż w El Cabezo. Płytka woda przy brzegu — idealna do nauki kitesurfingu. Strefa oznakowana dla kąpiących się i kitesurferów. Z La Tejity działa kilka centrów kitesurfingu z zajęciami i wypożyczeniem sprzętu. Wstęp wolny — bezpłatny parking. Montaña Roja w tle daje niepowtarzalny krajobraz.",
+  "cat": "Kitesurfing · La Tejita · El Médano · Południe · Nauka"
+ },
+ "windsurf-el-poris": {
+  "desc": "El Porís de Abona, na południowo-wschodnim wybrzeżu Teneryfy (gmina Arico), to spot kitesurfingowy dla zaawansowanych i ekspertów. Wiatr NNE (północno-północno-wschodni) silny i porywisty — idealny na freestyle i wysokie skoki. Nie ma tu stałego zaplecza szkół — zaleca się przyjazd z własnym sprzętem i doświadczeniem. Warunki są zmienne i bardziej techniczne niż w El Médano. Mały port i okoliczne wulkaniczne rozlewiska czynią to miejsce bardzo atrakcyjnym wizualnie. 20 minut od El Médano drogą TF-1.",
+  "cat": "Kitesurfing · El Porís · Zaawansowany · Arico · Południowy wschód"
+ },
+ "mercadillo-santa-cruz": {
+  "desc": "Rastro w Santa Cruz, wielki niedzielny targ stolicy od 1979 roku, z ponad 400 stoiskami rzeczy używanych, antyków, ubrań i rękodzieła. Od marca 2025 odbywa się przy Avenida Marítima (parking obok Avenida de la Constitución, blisko Auditorio), po opuszczeniu historycznego miejsca przy Targu Afrykańskim. Niedziele rano, do wczesnego popołudnia.",
+  "cat": "Targ · Niedziele · Santa Cruz"
+ },
+ "mercadillo-la-laguna": {
+  "desc": "Plenerowy targ rękodzieła i produktów lokalnych przy Targu Gminnym w La Lagunie. Soboty rano. Miasto wpisane na listę UNESCO.",
+  "cat": "Targ · Soboty · La Laguna"
+ },
+ "mercadillo-candelaria": {
+  "desc": "Targ kanaryjskiego rękodzieła naprzeciw Bazyliki w Candelarii. W weekendy. Produkty lokalne, tkaniny i rękodzieło guanczów przy symbolu Teneryfy.",
+  "cat": "Targ · Weekend · Candelaria"
+ },
+ "mercadillo-medano": {
+  "desc": "Targ rzeczy używanych i rękodzieła w El Médano. Niedziele rano na placu miejscowości. Swobodna atmosfera społeczności surferów i miejscowych.",
+  "cat": "Targ · Niedziele · El Médano"
+ },
+ "mercadillo-guimar": {
+  "desc": "Cotygodniowy targ w Güímar. Czwartki rano na głównym placu. Lokalne owoce i warzywa, rośliny, kwiaty i produkty rolne ze wschodu Teneryfy.",
+  "cat": "Targ · Czwartki · Güímar"
+ },
+ "mercadillo-los-cristianos": {
+  "desc": "Popularny targ w Los Cristianos. Niedziele rano przy porcie. Rzeczy używane, rękodzieło, ubrania i pamiątki. Bardzo gwarny w sezonie wysokim.",
+  "cat": "Targ · Niedziele · Los Cristianos"
+ },
+ "mercadillo-las-americas": {
+  "desc": "Targ turystyczny w Playa de las Américas. Środy i soboty. Kanaryjskie rękodzieło, biżuteria, ubrania i produkty lokalne w turystycznej strefie południa.",
+  "cat": "Targ · Śr/So · Las Américas"
+ },
+ "mercadillo-costa-adeje": {
+  "desc": "Targ na promenadzie Costa Adeje. Czwartki i niedziele. Rękodzieło, aloes, produkty kanaryjskie i biżuteria. Swobodna atmosfera nad morzem.",
+  "cat": "Targ · Czw/Nd · Costa Adeje"
+ },
+ "mercadillo-arona": {
+  "desc": "Cotygodniowy targ w miejscowości Arona. Soboty rano na placu. Owoce, warzywa i produkty lokalne z gminy. Bardzo lokalna atmosfera, bez turystów.",
+  "cat": "Targ · Soboty · Arona"
+ },
+ "mercadillo-granadilla-sur": {
+  "desc": "Tradycyjny targ w starym mieście Granadilli. Wtorki rano. Produkty rolne południa: ziemniaki, pomidory, kukurydza i lokalne rękodzieło.",
+  "cat": "Targ · Wtorki · Granadilla"
+ },
+ "mercadillo-buenavista": {
+  "desc": "Cotygodniowy targ w Buenavista del Norte, gminie na północno-zachodnim krańcu Teneryfy. Lokalne produkty sezonowe: owoce, warzywa, strączki, rzemieślnicze sery i kanaryjskie rękodzieło. Bardzo lokalna i autentyczna atmosfera. Idealny, żeby poznać najbardziej odległą północ wyspy.",
+  "cat": "Targ · Buenavista del Norte · Północny zachód"
+ },
+ "mercadillo-garachico": {
+  "desc": "Targ w historycznej gminie Garachico, uważanej za jedną z najpiękniejszych miejscowości Wysp Kanaryjskich. Produkty rolne i lokalne rękodzieło przy strefie zabytkowej. Garachico znane jest z naturalnych basenów El Caletón, klasztoru św. Franciszka i brukowanych uliczek. Targ daje kolejny powód, żeby odwiedzić to urokliwe miasteczko północy.",
+  "cat": "Targ · Garachico · Północ · Historyczny"
+ },
+ "mercadillo-san-miguel-abona": {
+  "desc": "Targ rolniczy w San Miguel de Abona (Av. Modesto Hernández González 42). Świeże produkty sezonowe, sery, miód, chleb i lokalne rękodzieło z południa Teneryfy. Bardzo lokalna i rodzinna atmosfera. Godziny: środy, soboty i niedziele od 8:00 do 14:00.",
+  "cat": "Targ rolniczy · San Miguel de Abona · Południe"
+ },
+ "mercadillo-arico-pueblo": {
+  "desc": "Targ rolniczy w Arico, gminie na wschodzie Teneryfy. Świeże produkty z lokalnych pól, sezonowe owoce i warzywa, rzemieślnicze sery i miód. Spokojna i autentyczna atmosfera. Godziny: soboty od 7:00 do 13:00. Niedziele od 7:00 do 13:00 w El Porís de Abona (Avenida Villa de Arico).",
+  "cat": "Targ rolniczy · Arico · Wschód"
+ },
+ "mercadillo-los-silos": {
+  "desc": "Targ rolniczy w Los Silos (Plaza Nuestra Sra. de la Luz 9), gminie na północnym zachodzie Teneryfy. Świeże produkty, lokalne rękodzieło i wina z rejonu Ycoden-Daute-Isora. Bardzo lokalna i autentyczna atmosfera. Godziny: niedziele od 8:00 do 14:00.",
+  "cat": "Targ rolniczy · Los Silos · Północny zachód"
+ },
+ "mercadillo-la-victoria": {
+  "desc": "Targ w La Victoria de Acentejo, gminie na północy Teneryfy w regionie Acentejo. Lokalne produkty rolne, wina z apelacji DO Tacoronte-Acentejo, sery i rękodzieło. Spokojna wiejska atmosfera.",
+  "cat": "Targ · La Victoria de Acentejo · Północ"
+ },
+ "guachinche-vilaflor": {
+  "desc": "Tradycyjny guachinche w Vilaflor, najwyżej położonej wiosce Hiszpanii (1400 m). Domowa kuchnia, miejscowe wino, obfite porcje i znakomite sosy mojo. Bardzo popularny wśród piechurów z GR-131.",
+  "cat": "Guachinche · Vilaflor · 1400 m"
+ },
+ "rest-tipico-el-jable": {
+  "desc": "Prosta smażalnia owoców morza przy porcie Las Galletas, zawsze pełna miejscowych. Bardzo świeże ryby i owoce morza z dnia: smażona ośmiornica, kalmary, sardynki i papas arrugadas. Uczciwe ceny.",
+  "cat": "Smażalnia · Południe · Port"
+ }
+}
