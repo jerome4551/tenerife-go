@@ -1,0 +1,6 @@
+{"where":["où est","où se trouve","où sont","comment aller à","comment se rendre à","emmène-moi à","montre-moi"],
+ "what":["que faire","quoi faire","que voir","quoi visiter","à voir"],
+ "near":["près de moi","autour de moi","à proximité","près d'ici"],
+ "nearTok":["près","proximité","autour","proches","proche"],
+ "count":["combien de lieux","combien d'endroits"],
+ "cats":{"playa":["baignade","se baigner","sable"],"senderismo":["balade","marche","randonner"],"gastronomia":["manger","où manger","vin"],"piscinas":["piscine naturelle","bassin naturel"]}}

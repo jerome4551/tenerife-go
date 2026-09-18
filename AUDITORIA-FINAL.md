@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 f21281f100ac5fcc374d55e61c480c8b
-             3.131.903 bytes · 908.723 comprimidos · 37.020 líneas
+index.html   md5 925e839d927a0f907dadb473160ac6e8
+             3.166.371 bytes · 924.717 comprimidos · 37.106 líneas
 idiomas/     8 ficheros · 2.246.677 bytes · entre 75 y 93 kB comprimidos
              + glosario-cat/ · 7 ficheros con los trozos de etiqueta a mano
              + etiquetas/    · 8 ficheros con los chips del globo (~15 kB cada uno)
@@ -154,6 +154,113 @@ emojis: 2.894, 250 distintos
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
 
+## La política de privacidad · lo que decía y lo que la app hace
+
+Decía dos cosas que no eran ciertas, en los diez idiomas:
+
+- «No realizamos perfilado, **publicidad** ni cesión de datos a terceros.»
+- «No usamos cookies de rastreo **ni de terceros. No hay publicidad**.»
+
+Y la app carga **Google Analytics 4** (`G-5Q3G5RW067`) desde
+`googletagmanager.com`, y tiene un **módulo de anuncios** con plan de promoción
+mensual. Ninguna de las dos cosas aparecía en «Datos que recogemos».
+
+Comprobado en el navegador antes de escribir una palabra:
+
+```
+rechazar → 0 peticiones a Google, nunca. tgo_consent = denied
+aceptar  → carga gtag/js. analytics_storage: granted
+           ad_storage · ad_user_data · ad_personalization: denied siempre
+```
+
+O sea que el consentimiento **sí** está bien hecho: GA no se carga hasta que se
+acepta y las señales publicitarias quedan denegadas. Lo que estaba mal era el
+texto, que negaba lo que sí pasa y no nombraba a nadie.
+
+La política nueva tiene diez apartados y **54 claves en los diez idiomas, 540
+textos**. Lo que se añade: qué recibe Google y cuándo; que la promoción de
+negocios existe y que **no usa datos del usuario**; la suscripción de
+notificaciones, que se guarda en Supabase y no se mencionaba; y una lista de
+los nueve terceros a los que llegan datos, con qué recibe cada uno —el mapa
+revela qué zona miras, OSRM recibe origen y destino, Nominatim lo que escribes
+al buscar una dirección—.
+
+El texto vive en `idiomas/privacidad/<lang>.json` y lo vuelca
+`tools/generar_privacidad.py`. Editarlo suelto dentro de 37.000 líneas de HTML
+es como se quedó diciendo que no había publicidad. Los números de apartado van
+**fuera** del texto traducido: renumerar no puede obligar a retocar diez
+traducciones.
+
+El aviso de cookies decía «estadísticas anónimas». No lo son: Google Analytics
+recibe la IP y pone sus propias cookies, así que son seudónimas. Pedir el
+consentimiento contando otra cosa es pedirlo mal. Ahora nombra el servicio.
+
+**Dos cosas que no son de redacción y no he tocado:**
+
+1. La política prometía borrar la cuenta «desde Ajustes → Cuenta → Eliminar
+   cuenta». **Esa opción no existe**: las únicas apariciones de esa frase en
+   todo el fuente son la propia política. El texto nuevo dice la verdad —se
+   borra escribiendo—, que es válido, pero el botón sigue sin estar.
+2. El formulario «Anúnciate» contesta «✅ ¡Solicitud recibida! Te contactaremos
+   en menos de 48 horas» y **solo escribe en el `localStorage` del propio
+   visitante** (`// Por ahora guardamos en localStorage hasta tener Supabase
+   listo`). No lo recibe nadie. Un dueño de negocio deja su correo creyendo que
+   se ha apuntado.
+
+## El punto ciego · una segunda forma de fila de idioma
+
+`barrido_idiomas.js` busca objetos con `es`, `en`, `fr` como claves directas.
+Las 23 categorías del mapa y los 11 grupos del panel de filtros no se escriben
+así: usan `{labelEs:…, labelEn:…, labelZht:…}`, con el idioma en el **sufijo**.
+**34 filas que ninguna herramienta de idioma miraba nunca.** Estaban completas
+en los nueve idiomas por casualidad —nadie las tocaba— y el idioma décimo las
+dejó al descubierto: `poner_idioma.js` les metió un `pl: "?"` literal que
+habría salido en el menú del mapa.
+
+Arreglado en los dos sentidos: las 34 tienen su `labelPl`, y el barrido
+aprende la forma con sufijo —cualquier base, no solo `label`—, así que si
+mañana alguien escribe `tituloEs`/`tituloEn` lo ve el primer día. El total de
+filas pasa de 581 a 615 sin que se haya añadido ni una: son las que no se
+estaban mirando.
+
+## El asistente no entendía «dónde está» fuera del castellano
+
+Mismo fallo que las categorías, un piso más abajo. `CHAT_WHERE`, `CHAT_WHAT`,
+`CHAT_NEAR` y `CHAT_COUNT_Q` están en castellano y en inglés y en nada más:
+
+```
+antes                              después
+[de] Wo ist Masca      → kb        → poi
+[fr] Où est Masca      → kb        → poi
+[bg] Къде е Маска      → fallback  → poi
+[pl] Gdzie jest Masca  → —         → poi
+[bg] колко места има   → fallback  → count
+```
+
+El vocabulario de cada idioma viaja en `faq/<lang>.json`, que ese idioma ya se
+descarga. Las listas de dentro **no se tocan** y se siguen mirando con la
+comparación de siempre: lo que funcionaba en castellano y en inglés se comporta
+igual aunque el fichero no llegue nunca.
+
+**Y una regla mía que estaba mal y salió aquí.** La «frase descolocada» pedía
+dos palabras cualesquiera de tres letras o más. En castellano colaba porque
+`CHAT_STOP` tiene las vacías del castellano y del inglés; en alemán y en
+búlgaro no hay nada que filtre las de relleno, así que:
+
+- «Was kann man hier machen» casaba con «kann man zu fuss hochgehen» por
+  *kann* y *man*, y contestaba cómo se sube al Teide a pie.
+- «какво да видя наблизо» casaba con «какво да видя за няколко дни» por dos
+  palabras, y contestaba el plan de tres días.
+
+Ahora tienen que estar **todas** las palabras de la clave de tres letras o
+más. Cuesta un caso —una forma flexionada polaca que comparte dos de tres
+palabras— y ese caso está escrito en `tools/probar_faq.js` con el motivo, para
+que nadie afloje la regla creyendo que arregla algo. Se prefiere una respuesta
+de menos a una respuesta equivocada.
+
+Contra las 52 preguntas de la batería en castellano e inglés: **0 cambian de
+entrada**. Contra 34 preguntas en los diez idiomas: 34 correctas.
+
 ## El polaco · la interfaz entera, los lugares todavía no
 
 Los bloques del asistente vienen redactados en polaco y la prueba de
@@ -275,7 +382,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 32 tablas, 753 filas (y 2.322 filas, dentro y fuera del fuente)
+## Idiomas · 32 tablas, 774 filas (y 2.377 filas, dentro y fuera del fuente)
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una

@@ -88,7 +88,15 @@ const CASOS = [
   ['it', 'permesso per la vetta',      'autorizzazione'],
   ['en', 'do i need a permit for the peak', 'authorisation'],
   ['es', 'permiso teide',              'autorización'],
-  ['pl', 'gdzie rezerwuję pozwolenie', 'Tenerife ON'],
+  /* La forma flexionada NO se busca a proposito. «gdzie rezerwuję pozwolenie»
+     comparte dos palabras con la clave «gdzie zarezerwowac pozwolenie» pero no
+     las tres, y la regla de la frase descolocada exige todas. Aflojarla a dos
+     cualesquiera se probo: contestaba en aleman como se sube al Teide a pie a
+     quien preguntaba «Was kann man hier machen», y en bulgaro el plan de tres
+     dias a quien preguntaba «какво да видя наблизо». Se prefiere una respuesta
+     de menos a una respuesta equivocada, asi que aqui se prueba lo que un
+     polaco escribiria de verdad, que es la clave tal cual. */
+  ['pl', 'rezerwacja teide',            'Tenerife ON'],
   ['zh', 'guagua是什么意思',            'guagua'],
   ['bg', 'колко е висок тейде',        '3715'],
 ];

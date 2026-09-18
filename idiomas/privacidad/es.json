@@ -1,0 +1,66 @@
+{
+"ppEnlace":"Privacidad · RGPD",
+"ppCerrar":"✕ Cerrar",
+"ppTitulo":"🔒 Política de Privacidad",
+"ppActualizado":"— Última actualización: septiembre de 2026",
+
+"ppRespTitulo":"Responsable del tratamiento",
+"ppRespDir":"· Tenerife, Islas Canarias, España.",
+
+"ppDatosTitulo":"Qué datos se tratan",
+"ppDatosGeo":"Geolocalización:",
+"ppDatosGeoTxt":"solo cuando la activas. No se guarda en ningún servidor. Si pides una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas para calcularla.",
+"ppDatosCuenta":"Cuenta (opcional):",
+"ppDatosCuentaTxt":"correo electrónico y contraseña. Los gestiona",
+"ppDatosRls":", que guarda la contraseña cifrada; nosotros no la vemos.",
+"ppDatosFav":"Favoritos:",
+"ppDatosFavTxt":"los identificadores de los lugares que guardas. Con cuenta se sincronizan; sin cuenta se quedan en tu dispositivo.",
+"ppDatosPref":"Preferencias y uso:",
+"ppDatosPrefTxt":"idioma, filtros, líneas de guagua activas, caché del tiempo y del estado del mar, si ya viste el tour, un contador de visitas y tu respuesta al aviso de cookies. Todo esto se guarda en tu dispositivo y no se envía a ningún sitio.",
+"ppDatosPush":"Notificaciones (opcional):",
+"ppDatosPushTxt":"si las activas, la suscripción que crea tu navegador —una dirección de envío y dos claves— se guarda para poder mandarte el aviso. Al desactivarlas en el navegador, deja de usarse.",
+"ppDatosStats":"Estadísticas de uso:",
+"ppDatosStatsTxt":"solo si las aceptas. Ver el apartado siguiente.",
+
+"ppStatsTitulo":"Estadísticas y cookies",
+"ppStatsAntes":"La app usa Google Analytics 4, y no se carga hasta que aceptas el aviso de cookies: hasta entonces no sale nada hacia Google desde la app.",
+"ppStatsSi":"Si aceptas, Google Analytics instala sus propias cookies y recibe datos de navegación —pantallas vistas, idioma, país aproximado, tipo de dispositivo— y tu dirección IP.",
+"ppStatsConsent":"Está configurado con Consent Mode v2 y las señales publicitarias quedan denegadas siempre, así que esos datos no se usan para personalizar anuncios. Si rechazas, no se carga nada.",
+"ppStatsGuarda":"Tu respuesta se guarda 180 días en tu dispositivo; después se vuelve a preguntar. Para cambiarla antes, borra los datos del sitio en tu navegador.",
+
+"ppPubTitulo":"Publicidad y contenidos promocionados",
+"ppPubQue":"El mapa muestra negocios que pagan un plan de promoción mensual. Van marcados como recomendación y no alteran el resto del contenido.",
+"ppPubNoDatos":"Esa promoción no usa tus datos: se enseñan a todo el mundo por igual, sin segmentación, sin perfilado y sin cookies publicitarias. En la app no hay ninguna red publicitaria de terceros en funcionamiento.",
+
+"ppTercTitulo":"Terceros que reciben datos",
+"ppTercIntro":"Para funcionar, la app pide datos a servicios externos. Todos reciben tu dirección IP y, además:",
+"ppTercSupabase":"cuenta, favoritos y suscripción de notificaciones.",
+"ppTercMapas":"las teselas del mapa, o sea qué zona estás mirando.",
+"ppTercOsrm":"origen y destino cuando calculas una ruta en coche.",
+"ppTercNominatim":"el texto que escribes al buscar una dirección.",
+"ppTercMeteo":"las coordenadas del lugar o de la zona cuya previsión consultas.",
+"ppTercAemet":"avisos meteorológicos de la isla; no se le manda nada tuyo.",
+"ppTercWiki":"el título del artículo del lugar que abres.",
+"ppTercCdn":"tipografías y librerías.",
+"ppTercGa":"solo si aceptas el aviso de cookies.",
+"ppTercNoVenta":"Ninguno de estos datos se vende ni se cede con fines comerciales.",
+
+"ppBaseTitulo":"Finalidad y base legal",
+"ppBaseLi1a":"Prestar el servicio de guía turística interactiva (",
+"ppBaseInteres":"interés legítimo",
+"ppBaseContrato":"ejecución de contrato",
+"ppBaseLi2":"Geolocalización, notificaciones y estadísticas: consentimiento, que puedes retirar cuando quieras.",
+
+"ppConsTitulo":"Conservación",
+"ppConsCuenta":"Los datos de la cuenta se conservan mientras la cuenta exista. Para borrarla, escríbenos y se elimina junto con tus favoritos.",
+"ppConsDispositivo":"Lo guardado en tu dispositivo desaparece al borrar los datos del sitio o desinstalar la app.",
+
+"ppDerTitulo":"Derechos",
+"ppDerTxt":"Tienes derecho de acceso, rectificación, supresión, portabilidad, limitación y oposición. Ejércelos escribiendo a",
+"ppDerReclamar":". También puedes reclamar ante la",
+
+"ppSegTitulo":"Seguridad",
+"ppSegTxt":"Toda la comunicación va por HTTPS. Supabase guarda las contraseñas cifradas y el acceso a las tablas está limitado por RLS; no tenemos acceso a tu contraseña.",
+
+"ppContTitulo":"Contacto"
+}

@@ -114,6 +114,34 @@ for (const b of bloques) {
           if (Object.keys(val).length >= 2) crudas.push({ ini: b.ini + n.start, fin: b.ini + n.end, v: val });
         }
       }
+
+      /* SEGUNDA FORMA DE FILA: el idioma en el SUFIJO de la clave.
+         Las 23 categorias del mapa y los 11 grupos del panel de filtros no
+         escriben {es:…, en:…} sino {labelEs:…, labelEn:…, labelZht:…}. Este
+         barrido buscaba `es` como clave directa, asi que esas 34 filas no las
+         veia ninguna herramienta de idioma: estaban completas por casualidad
+         -nadie las tocaba- y el idioma decimo las dejo al descubierto, con un
+         `pl: "?"` literal que habria salido en el menu del mapa.
+         Se reconoce cualquier base, no solo `label`: si manana alguien
+         escribe tituloEs/tituloEn, esto lo ve el primer dia. */
+      {
+        const fam = new Map();
+        for (const [k, valor] of claves) {
+          const m = /^(.+?)(Zht|Es|En|Fr|De|It|Nl|Zh|Bg|Pl)$/.exec(k);
+          if (!m) continue;
+          const base = m[1], suf = m[2].toLowerCase();
+          if (IDI.indexOf(suf) < 0) continue;
+          if (!fam.has(base)) fam.set(base, {});
+          const x = valor;
+          fam.get(base)[suf] = x.type === 'Literal' ? x.value
+                             : (x.type === 'TemplateLiteral' && !x.expressions.length ? x.quasis[0].value.cooked : '');
+        }
+        for (const [base, val] of fam) {
+          if (val.es === undefined || Object.keys(val).length < 2) continue;
+          if (typeof val.es !== 'string') continue;
+          crudas.push({ ini: b.ini + n.start, fin: b.ini + n.end, v: val, sufijo: base });
+        }
+      }
     }
     for (const k of Object.keys(n)) if (k !== 'type' && k !== 'start' && k !== 'end') anda(n[k]);
   })(ast);

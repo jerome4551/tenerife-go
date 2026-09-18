@@ -2,8 +2,11 @@
 # -*- coding: utf-8 -*-
 """Convierte los bloques de la base de conocimiento en un fichero por idioma.
 
-Entrada : faq/fuente/*.json     los bloques tal y como se redactaron
-          faq/fuente/bg/*.json  el suplemento en bulgaro, por id
+Entrada : faq/fuente/*.json             los bloques tal y como se redactaron
+          faq/fuente/bg/*.json          el suplemento en bulgaro, por id
+          faq/fuente/intenciones/*.json el vocabulario de intencion de cada
+                                        idioma: «donde esta», «que hacer»,
+                                        «cerca de mi», «cuantos lugares»
 
 Salida  : faq/<idioma>.json  lo que descarga el movil, solo su idioma
           faq/indice.json    cat/volatil/bloque; solo lo leen los controles
@@ -91,9 +94,32 @@ def main():
                   'k': [k.strip().lower() for k in e['keys'][L]],
                   'l': e['label'][L], 'a': e['a'][L],
                   'f': e.get('follow', [])} for e in entradas]
+        salida = {'v': 1, 'lang': L, 'e': filas}
+
+        # vocabulario de intencion y sinonimos de categoria de ese idioma.
+        # El castellano y el ingles no lo llevan: los suyos estan dentro de
+        # index.html desde siempre y duplicarlos seria mantener dos listas.
+        inte = os.path.join(FUENTE, 'intenciones', L + '.json')
+        if L in ('es', 'en'):
+            if os.path.exists(inte):
+                print(f'{L}: el vocabulario de intencion del castellano y el ingles vive en index.html'); return 1
+        elif not os.path.exists(inte):
+            print(f'falta faq/fuente/intenciones/{L}.json'); return 1
+        else:
+            d = json.load(open(inte, encoding='utf-8'))
+            sobran = set(d) - {'where', 'what', 'near', 'nearTok', 'count', 'cats'}
+            if sobran:
+                print(f'{L}: claves que no existen en el vocabulario: {sorted(sobran)}'); return 1
+            for campo in ('where', 'what', 'near', 'nearTok', 'count'):
+                if not d.get(campo):
+                    print(f'{L}: el vocabulario no trae «{campo}»'); return 1
+            salida['i'] = {k: d[k] for k in ('where', 'what', 'near', 'nearTok', 'count')}
+            if d.get('cats'):
+                salida['c'] = d['cats']
+
         ruta = os.path.join(DESTINO, L + '.json')
         with open(ruta, 'w', encoding='utf-8') as fh:
-            json.dump({'v': 1, 'lang': L, 'e': filas}, fh, ensure_ascii=False, separators=(',', ':'))
+            json.dump(salida, fh, ensure_ascii=False, separators=(',', ':'))
         print(f'  faq/{L}.json  {len(filas)} entradas  {os.path.getsize(ruta)//1024} kB')
 
     with open(os.path.join(DESTINO, 'indice.json'), 'w', encoding='utf-8') as fh:

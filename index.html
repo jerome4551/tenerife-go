@@ -8982,7 +8982,7 @@ const TG_ETIQUETAS = (function () {
    siempre. Nunca se queda mudo. */
 const TG_FAQ = (function () {
   'use strict';
-  let pool = [], cats = {}, pedido = null;
+  let pool = [], cats = {}, inte = {}, pedido = null;
 
   /* Le da a cada entrada la forma de las de CHAT_KB para que el buscador no
      tenga que distinguirlas, y resuelve los follow, que en el fichero son
@@ -9018,13 +9018,15 @@ const TG_FAQ = (function () {
         if (pedido !== lang) return;        // llego tarde, ya cambiaron de idioma
         pool = armar(d);
         cats = (d && d.c) || {};
+        inte = (d && d.i) || {};
       })
-      .catch(function () { if (pedido === lang) { pool = []; cats = {}; } });
+      .catch(function () { if (pedido === lang) { pool = []; cats = {}; inte = {}; } });
   }
   return {
     arrancar: bajar, cambiarA: bajar,
     entradas: function () { return pool; },
-    categorias: function () { return cats; }
+    categorias: function () { return cats; },
+    intencion: function (k) { return inte[k] || []; }
   };
 })();
 
@@ -9246,7 +9248,6 @@ Object.assign(UI_TX, {
   "nearbySub": {"es":"A pie desde tu ubicación","en":"On foot from your location","fr":"À pied depuis votre position","de":"Zu Fuß von deinem Standort","it":"A piedi dalla tua posizione","nl":"Te voet vanaf je locatie","zh":"从你的位置步行","zht":"從你的位置步行","bg":"Пеша от вашето местоположение", pl: "Pieszo od twojej lokalizacji"},
   "nearbyTitulo": {"es":"🚏 Paradas cerca","en":"🚏 Stops nearby","fr":"🚏 Arrêts à proximité","de":"🚏 Haltestellen in der Nähe","it":"🚏 Fermate vicine","nl":"🚏 Haltes in de buurt","zh":"🚏 附近站点","zht":"🚏 附近站點","bg":"🚏 Спирки наблизо", pl: "🚏 Przystanki w pobliżu"},
   "pickOrigen": {"es":"Toca un lugar en el mapa para el origen","en":"Tap a place on the map to set the origin","fr":"Touchez un lieu sur la carte pour le départ","de":"Tippe einen Ort auf der Karte als Start an","it":"Tocca un luogo sulla mappa come partenza","nl":"Tik op een plek op de kaart als vertrekpunt","zh":"点击地图上的地点设为起点","zht":"點擊地圖上的地點設為起點","bg":"Докоснете място на картата за начална точка", pl: "Dotknij miejsca na mapie, żeby wskazać początek"},
-  "ppEnlace": {"es":"Privacidad · RGPD","en":"Privacy · GDPR","fr":"Confidentialité · RGPD","de":"Datenschutz · DSGVO","it":"Privacy · GDPR","nl":"Privacy · AVG","zh":"隐私 · GDPR","zht":"隱私 · GDPR","bg":"Поверителност · GDPR", pl: "Prywatność · RODO"},
   "regExito": {"es":"✅ ¡Solicitud recibida! Te contactaremos en menos de 48 horas.","en":"✅ Request received! We will contact you within 48 hours.","fr":"✅ Demande reçue ! Nous vous contacterons sous 48 heures.","de":"✅ Anfrage erhalten! Wir melden uns innerhalb von 48 Stunden.","it":"✅ Richiesta ricevuta! Ti contatteremo entro 48 ore.","nl":"✅ Aanvraag ontvangen! We nemen binnen 48 uur contact op.","zh":"✅ 已收到申请！我们会在 48 小时内与您联系。","zht":"✅ 已收到申請！我們會在 48 小時內與您聯絡。","bg":"✅ Заявката е получена! Ще се свържем с вас до 48 часа.", pl: "✅ Zgłoszenie przyjęte! Skontaktujemy się w ciągu 48 godzin."},
   "routeCalcular": {"es":"Calcular ruta","en":"Calculate route","fr":"Calculer l'itinéraire","de":"Route berechnen","it":"Calcola il percorso","nl":"Route berekenen","zh":"计算路线","zht":"計算路線","bg":"Изчисли маршрута", pl: "Wyznacz trasę"},
   "routeEditarBtn": {"es":"✏️ Editar ruta","en":"✏️ Edit route","fr":"✏️ Modifier l'itinéraire","de":"✏️ Route bearbeiten","it":"✏️ Modifica il percorso","nl":"✏️ Route bewerken","zh":"✏️ 编辑路线","zht":"✏️ 編輯路線","bg":"✏️ Редактирай маршрута", pl: "✏️ Edytuj trasę"},
@@ -9292,39 +9293,66 @@ Object.assign(UI_TX, {
 /* La politica de privacidad, en los nueve idiomas. Estaba entera en
    castellano: un aleman o un chino leian el aviso legal en un idioma que no
    entienden, que es justo lo que un aviso legal no puede permitirse. */
+/* La politica de privacidad, en los diez idiomas.
+   El texto vive en idiomas/privacidad/<lang>.json y lo vuelca aqui
+   tools/generar_privacidad.py. Es texto legal y tiene que decir lo que
+   la app hace de verdad: editarlo suelto dentro de 37.000 lineas de HTML
+   era como se quedo diciendo que no habia publicidad ni terceros. */
 Object.assign(UI_TX, {
-  "ppCerrar": {"es":"✕ Cerrar","en":"✕ Close","fr":"✕ Fermer","de":"✕ Schließen","it":"✕ Chiudi","nl":"✕ Sluiten","zh":"✕ 关闭","zht":"✕ 關閉","bg":"✕ Затвори", pl: "✕ Zamknij"},
-  "ppTitulo": {"es":"🔒 Política de Privacidad","en":"🔒 Privacy Policy","fr":"🔒 Politique de confidentialité","de":"🔒 Datenschutzerklärung","it":"🔒 Informativa sulla privacy","nl":"🔒 Privacybeleid","zh":"🔒 隐私政策","zht":"🔒 隱私政策","bg":"🔒 Политика за поверителност", pl: "🔒 Polityka prywatności"},
-  "ppActualizado": {"es":"— Última actualización: junio 2025","en":"— Last updated: June 2025","fr":"— Dernière mise à jour : juin 2025","de":"— Zuletzt aktualisiert: Juni 2025","it":"— Ultimo aggiornamento: giugno 2025","nl":"— Laatst bijgewerkt: juni 2025","zh":"— 最后更新：2025 年 6 月","zht":"— 最後更新：2025 年 6 月","bg":"— Последна актуализация: юни 2025 г.", pl: "— Ostatnia aktualizacja: czerwiec 2025"},
-  "pp1Titulo": {"es":"1. Responsable del tratamiento","en":"1. Data controller","fr":"1. Responsable du traitement","de":"1. Verantwortlicher","it":"1. Titolare del trattamento","nl":"1. Verwerkingsverantwoordelijke","zh":"1. 数据控制者","zht":"1. 資料控管者","bg":"1. Администратор на данните", pl: "1. Administrator danych"},
-  "pp1Dir": {"es":"· Tenerife, Islas Canarias, España.","en":"· Tenerife, Canary Islands, Spain.","fr":"· Tenerife, Îles Canaries, Espagne.","de":"· Teneriffa, Kanarische Inseln, Spanien.","it":"· Tenerife, Isole Canarie, Spagna.","nl":"· Tenerife, Canarische Eilanden, Spanje.","zh":"· 西班牙加那利群岛特内里费。","zht":"· 西班牙加那利群島特內里費。","bg":"· Тенерифе, Канарски острови, Испания.", pl: "· Teneryfa, Wyspy Kanaryjskie, Hiszpania."},
-  "pp2Titulo": {"es":"2. Datos que recogemos","en":"2. Data we collect","fr":"2. Données que nous collectons","de":"2. Welche Daten wir erheben","it":"2. Dati che raccogliamo","nl":"2. Gegevens die we verzamelen","zh":"2. 我们收集的数据","zht":"2. 我們收集的資料","bg":"2. Данни, които събираме", pl: "2. Jakie dane zbieramy"},
-  "pp2Geo": {"es":"Geolocalización:","en":"Geolocation:","fr":"Géolocalisation :","de":"Standort:","it":"Geolocalizzazione:","nl":"Locatie:","zh":"定位：","zht":"定位：","bg":"Местоположение:", pl: "Geolokalizacja:"},
-  "pp2GeoTxt": {"es":"solo cuando el usuario la activa, para mostrar paradas cercanas y calcular rutas. No se almacena en servidor.","en":"only when you turn it on, to show nearby stops and calculate routes. It is never stored on a server.","fr":"uniquement lorsque vous l'activez, pour afficher les arrêts proches et calculer des itinéraires. Rien n'est stocké sur un serveur.","de":"nur wenn du ihn aktivierst, um nahe Haltestellen zu zeigen und Routen zu berechnen. Nichts wird auf einem Server gespeichert.","it":"solo quando lo attivi, per mostrare le fermate vicine e calcolare i percorsi. Non viene salvato su server.","nl":"alleen als je het aanzet, om haltes in de buurt te tonen en routes te berekenen. Niets wordt op een server opgeslagen.","zh":"仅在你开启时使用，用于显示附近站点和计算路线。不会存储在服务器上。","zht":"僅在你開啟時使用，用於顯示附近站點與計算路線。不會儲存在伺服器上。","bg":"само когато го включите, за да покажем близките спирки и да изчислим маршрути. Не се съхранява на сървър.", pl: "tylko wtedy, gdy użytkownik ją włączy, żeby pokazać przystanki w pobliżu i wyznaczyć trasy. Nie jest przechowywana na serwerze."},
-  "pp2Cuenta": {"es":"Cuenta (opcional):","en":"Account (optional):","fr":"Compte (facultatif) :","de":"Konto (optional):","it":"Account (facoltativo):","nl":"Account (optioneel):","zh":"账户（可选）：","zht":"帳戶（選填）：","bg":"Профил (по избор):", pl: "Konto (opcjonalne):"},
-  "pp2CuentaTxt": {"es":"correo electrónico y contraseña cifrada, para guardar favoritos. Gestionados por","en":"email address and encrypted password, to save your favourites. Managed by","fr":"adresse e-mail et mot de passe chiffré, pour enregistrer vos favoris. Gérés par","de":"E-Mail-Adresse und verschlüsseltes Passwort, um Favoriten zu speichern. Verwaltet von","it":"indirizzo email e password cifrata, per salvare i preferiti. Gestiti da","nl":"e-mailadres en versleuteld wachtwoord, om favorieten op te slaan. Beheerd door","zh":"电子邮箱与加密密码，用于保存收藏。由","zht":"電子信箱與加密密碼，用於儲存收藏。由","bg":"имейл адрес и криптирана парола, за да запазвате любими. Управлявани от", pl: "adres e-mail i zaszyfrowane hasło, żeby zapisywać ulubione. Obsługiwane przez"},
-  "pp2Rls": {"es":"con RLS.","en":"with RLS.","fr":"avec RLS.","de":"mit RLS.","it":"con RLS.","nl":"met RLS.","zh":"管理，并启用 RLS。","zht":"管理，並啟用 RLS。","bg":"с RLS.", pl: "z RLS."},
-  "pp2Fav": {"es":"Favoritos:","en":"Favourites:","fr":"Favoris :","de":"Favoriten:","it":"Preferiti:","nl":"Favorieten:","zh":"收藏：","zht":"收藏：","bg":"Любими:", pl: "Ulubione:"},
-  "pp2FavTxt": {"es":"IDs de lugares guardados, asociados a tu cuenta.","en":"IDs of saved places, linked to your account.","fr":"identifiants des lieux enregistrés, liés à votre compte.","de":"IDs gespeicherter Orte, deinem Konto zugeordnet.","it":"ID dei luoghi salvati, collegati al tuo account.","nl":"ID's van opgeslagen plekken, gekoppeld aan je account.","zh":"已保存地点的编号，与你的账户关联。","zht":"已儲存地點的編號，與你的帳戶關聯。","bg":"идентификатори на запазените места, свързани с профила ви.", pl: "identyfikatory zapisanych miejsc, powiązane z twoim kontem."},
-  "pp2Pref": {"es":"Preferencias:","en":"Preferences:","fr":"Préférences :","de":"Einstellungen:","it":"Preferenze:","nl":"Voorkeuren:","zh":"偏好设置：","zht":"偏好設定：","bg":"Предпочитания:", pl: "Preferencje:"},
-  "pp2PrefTxt": {"es":"idioma y filtros activos, guardados localmente en tu dispositivo (localStorage).","en":"language and active filters, stored locally on your device (localStorage).","fr":"langue et filtres actifs, stockés localement sur votre appareil (localStorage).","de":"Sprache und aktive Filter, lokal auf deinem Gerät gespeichert (localStorage).","it":"lingua e filtri attivi, salvati localmente sul tuo dispositivo (localStorage).","nl":"taal en actieve filters, lokaal opgeslagen op je apparaat (localStorage).","zh":"语言与已启用的筛选，保存在你的设备本地（localStorage）。","zht":"語言與已啟用的篩選，儲存在你的裝置本機（localStorage）。","bg":"език и активни филтри, запазени локално на устройството ви (localStorage).", pl: "język i włączone filtry, zapisywane lokalnie na twoim urządzeniu (localStorage)."},
-  "pp3Titulo": {"es":"3. Finalidad y base legal","en":"3. Purpose and legal basis","fr":"3. Finalité et base légale","de":"3. Zweck und Rechtsgrundlage","it":"3. Finalità e base giuridica","nl":"3. Doel en rechtsgrond","zh":"3. 目的与法律依据","zht":"3. 目的與法律依據","bg":"3. Цел и правно основание", pl: "3. Cel i podstawa prawna"},
-  "pp3Li1a": {"es":"Prestar el servicio de guía turística interactiva (","en":"To provide the interactive travel guide service (","fr":"Fournir le service de guide touristique interactif (","de":"Bereitstellung des interaktiven Reiseführers (","it":"Fornire il servizio di guida turistica interattiva (","nl":"Het leveren van de interactieve reisgids (","zh":"提供互动旅游指南服务（","zht":"提供互動旅遊指南服務（","bg":"Предоставяне на услугата интерактивен туристически гид („", pl: "Świadczenie usługi interaktywnego przewodnika turystycznego ("},
-  "pp3Interes": {"es":"interés legítimo","en":"legitimate interest","fr":"intérêt légitime","de":"berechtigtes Interesse","it":"interesse legittimo","nl":"gerechtvaardigd belang","zh":"正当利益","zht":"正當利益","bg":"легитимен интерес", pl: "uzasadniony interes"},
-  "pp3Contrato": {"es":"ejecución de contrato","en":"performance of a contract","fr":"exécution du contrat","de":"Vertragserfüllung","it":"esecuzione del contratto","nl":"uitvoering van een overeenkomst","zh":"合同履行","zht":"合約履行","bg":"изпълнение на договор", pl: "wykonanie umowy"},
-  "pp3Li2": {"es":"Geolocalización: consentimiento explícito del usuario en cada sesión.","en":"Geolocation: explicit consent from the user in each session.","fr":"Géolocalisation : consentement explicite de l'utilisateur à chaque session.","de":"Standort: ausdrückliche Einwilligung in jeder Sitzung.","it":"Geolocalizzazione: consenso esplicito dell'utente in ogni sessione.","nl":"Locatie: uitdrukkelijke toestemming van de gebruiker per sessie.","zh":"定位：每次会话均需用户明确同意。","zht":"定位：每次工作階段均需使用者明確同意。","bg":"Местоположение: изрично съгласие на потребителя при всяка сесия.", pl: "Geolokalizacja: wyraźna zgoda użytkownika w każdej sesji."},
-  "pp3Li3": {"es":"No realizamos perfilado, publicidad ni cesión de datos a terceros.","en":"We do no profiling, no advertising and no sharing of data with third parties.","fr":"Nous ne faisons ni profilage, ni publicité, ni transfert de données à des tiers.","de":"Wir betreiben kein Profiling, keine Werbung und geben keine Daten an Dritte weiter.","it":"Non facciamo profilazione, pubblicità né cessione di dati a terzi.","nl":"Wij doen niet aan profilering, reclame of het delen van gegevens met derden.","zh":"我们不做用户画像、不投放广告，也不向第三方转让数据。","zht":"我們不做使用者剖析、不投放廣告，也不向第三方轉讓資料。","bg":"Не извършваме профилиране, реклама или предоставяне на данни на трети страни.", pl: "Nie prowadzimy profilowania, reklamy ani nie przekazujemy danych osobom trzecim."},
-  "pp4Titulo": {"es":"4. Conservación","en":"4. Retention","fr":"4. Conservation","de":"4. Speicherdauer","it":"4. Conservazione","nl":"4. Bewaartermijn","zh":"4. 数据保留","zht":"4. 資料保留","bg":"4. Съхранение", pl: "4. Przechowywanie"},
-  "pp4Txt": {"es":"Los datos de cuenta se conservan mientras la cuenta esté activa. Puedes eliminarla en cualquier momento desde Ajustes → Cuenta → Eliminar cuenta.","en":"Account data is kept while the account is active. You can delete it at any time from Settings → Account → Delete account.","fr":"Les données de compte sont conservées tant que le compte est actif. Vous pouvez le supprimer à tout moment depuis Réglages → Compte → Supprimer le compte.","de":"Kontodaten werden gespeichert, solange das Konto aktiv ist. Du kannst es jederzeit löschen unter Einstellungen → Konto → Konto löschen.","it":"I dati dell'account vengono conservati finché l'account è attivo. Puoi eliminarlo quando vuoi da Impostazioni → Account → Elimina account.","nl":"Accountgegevens worden bewaard zolang het account actief is. Je kunt het op elk moment verwijderen via Instellingen → Account → Account verwijderen.","zh":"账户数据在账户有效期间保留。你可随时在“设置 → 账户 → 删除账户”中删除。","zht":"帳戶資料在帳戶有效期間保留。你可隨時在「設定 → 帳戶 → 刪除帳戶」中刪除。","bg":"Данните на профила се пазят, докато профилът е активен. Можете да го изтриете по всяко време от Настройки → Профил → Изтриване на профила.", pl: "Dane konta są przechowywane tak długo, jak konto jest aktywne. Możesz je usunąć w dowolnej chwili w Ustawienia → Konto → Usuń konto."},
-  "pp5Titulo": {"es":"5. Derechos","en":"5. Your rights","fr":"5. Vos droits","de":"5. Deine Rechte","it":"5. I tuoi diritti","nl":"5. Je rechten","zh":"5. 你的权利","zht":"5. 你的權利","bg":"5. Вашите права", pl: "5. Prawa"},
-  "pp5Txt": {"es":"Tienes derecho de acceso, rectificación, supresión, portabilidad, limitación y oposición. Ejércelos escribiendo a","en":"You have the right of access, rectification, erasure, portability, restriction and objection. Exercise them by writing to","fr":"Vous disposez des droits d'accès, de rectification, d'effacement, de portabilité, de limitation et d'opposition. Exercez-les en écrivant à","de":"Du hast das Recht auf Auskunft, Berichtigung, Löschung, Übertragbarkeit, Einschränkung und Widerspruch. Wende dich dazu an","it":"Hai diritto di accesso, rettifica, cancellazione, portabilità, limitazione e opposizione. Esercitali scrivendo a","nl":"Je hebt recht op inzage, rectificatie, wissing, overdraagbaarheid, beperking en bezwaar. Oefen ze uit door te schrijven naar","zh":"你享有访问、更正、删除、可携带、限制处理与反对的权利。行使方式：来信至","zht":"你享有存取、更正、刪除、可攜、限制處理與反對的權利。行使方式：來信至","bg":"Имате право на достъп, коригиране, изтриване, преносимост, ограничаване и възражение. Упражнете ги, като пишете на", pl: "Masz prawo dostępu, sprostowania, usunięcia, przenoszenia, ograniczenia i sprzeciwu. Skorzystasz z nich, pisząc na"},
-  "pp5Reclamar": {"es":". También puedes reclamar ante la","en":". You may also lodge a complaint with the Spanish data protection authority,","fr":". Vous pouvez également déposer une réclamation auprès de l'autorité espagnole de protection des données,","de":". Du kannst dich auch bei der spanischen Datenschutzbehörde beschweren,","it":". Puoi anche presentare reclamo all'autorità spagnola per la protezione dei dati,","nl":". Je kunt ook een klacht indienen bij de Spaanse toezichthouder,","zh":"。你也可以向西班牙数据保护局","zht":"。你也可以向西班牙資料保護局","bg":". Можете също да подадете жалба до испанския орган за защита на данните,", pl: ". Możesz też złożyć skargę do"},
-  "pp6Titulo": {"es":"6. Cookies y almacenamiento local","en":"6. Cookies and local storage","fr":"6. Cookies et stockage local","de":"6. Cookies und lokaler Speicher","it":"6. Cookie e archiviazione locale","nl":"6. Cookies en lokale opslag","zh":"6. Cookie 与本地存储","zht":"6. Cookie 與本機儲存","bg":"6. Бисквитки и локално съхранение", pl: "6. Pliki cookie i pamięć lokalna"},
-  "pp6Usamos": {"es":"Usamos","en":"We use","fr":"Nous utilisons","de":"Wir nutzen","it":"Usiamo","nl":"We gebruiken","zh":"我们使用","zht":"我們使用","bg":"Използваме", pl: "Używamy"},
-  "pp6Txt": {"es":"para guardar preferencias de idioma y filtros. No usamos cookies de rastreo ni de terceros. No hay publicidad.","en":"to store language and filter preferences. We use no tracking or third-party cookies. There is no advertising.","fr":"pour enregistrer vos préférences de langue et de filtres. Aucun cookie de suivi ni tiers. Aucune publicité.","de":"um Sprach- und Filtereinstellungen zu speichern. Keine Tracking- oder Drittanbieter-Cookies. Keine Werbung.","it":"per salvare le preferenze di lingua e filtri. Nessun cookie di tracciamento né di terze parti. Nessuna pubblicità.","nl":"om taal- en filtervoorkeuren op te slaan. Geen tracking- of externe cookies. Geen reclame.","zh":"来保存语言与筛选偏好。我们不使用追踪或第三方 Cookie，也没有广告。","zht":"來儲存語言與篩選偏好。我們不使用追蹤或第三方 Cookie，也沒有廣告。","bg":"за да запазим предпочитанията за език и филтри. Не използваме проследяващи или чужди бисквитки. Няма реклама.", pl: "do zapisywania preferencji języka i filtrów. Nie używamy śledzących ani zewnętrznych plików cookie. Nie ma reklam."},
-  "pp7Titulo": {"es":"7. Seguridad","en":"7. Security","fr":"7. Sécurité","de":"7. Sicherheit","it":"7. Sicurezza","nl":"7. Beveiliging","zh":"7. 安全","zht":"7. 安全","bg":"7. Сигурност", pl: "7. Bezpieczeństwo"},
-  "pp7Txt": {"es":"Las contraseñas se almacenan cifradas (bcrypt) en Supabase. La comunicación es HTTPS. No tenemos acceso a tu contraseña.","en":"Passwords are stored encrypted (bcrypt) in Supabase. All traffic uses HTTPS. We have no access to your password.","fr":"Les mots de passe sont stockés chiffrés (bcrypt) dans Supabase. Les échanges se font en HTTPS. Nous n'avons pas accès à votre mot de passe.","de":"Passwörter werden verschlüsselt (bcrypt) in Supabase gespeichert. Die Übertragung erfolgt per HTTPS. Wir haben keinen Zugriff auf dein Passwort.","it":"Le password sono salvate cifrate (bcrypt) su Supabase. La comunicazione avviene in HTTPS. Non abbiamo accesso alla tua password.","nl":"Wachtwoorden worden versleuteld (bcrypt) opgeslagen in Supabase. Verkeer gaat via HTTPS. Wij hebben geen toegang tot je wachtwoord.","zh":"密码以加密方式（bcrypt）存储在 Supabase。通信使用 HTTPS。我们无法获取你的密码。","zht":"密碼以加密方式（bcrypt）儲存在 Supabase。通訊使用 HTTPS。我們無法取得你的密碼。","bg":"Паролите се съхраняват криптирани (bcrypt) в Supabase. Комуникацията е по HTTPS. Нямаме достъп до паролата ви.", pl: "Hasła są przechowywane w postaci zaszyfrowanej (bcrypt) w Supabase. Komunikacja odbywa się przez HTTPS. Nie mamy dostępu do twojego hasła."},
-  "pp8Titulo": {"es":"8. Contacto","en":"8. Contact","fr":"8. Contact","de":"8. Kontakt","it":"8. Contatti","nl":"8. Contact","zh":"8. 联系方式","zht":"8. 聯絡方式","bg":"8. Контакт", pl: "8. Kontakt"}
+  "ppEnlace": {"es":"Privacidad · RGPD", "en":"Privacy · GDPR", "fr":"Confidentialité · RGPD", "de":"Datenschutz · DSGVO", "it":"Privacy · GDPR", "nl":"Privacy · AVG", "zh":"隐私 · GDPR", "zht":"隱私 · GDPR", "bg":"Поверителност · GDPR", "pl":"Prywatność · RODO"},
+  "ppCerrar": {"es":"✕ Cerrar", "en":"✕ Close", "fr":"✕ Fermer", "de":"✕ Schließen", "it":"✕ Chiudi", "nl":"✕ Sluiten", "zh":"✕ 关闭", "zht":"✕ 關閉", "bg":"✕ Затвори", "pl":"✕ Zamknij"},
+  "ppTitulo": {"es":"🔒 Política de Privacidad", "en":"🔒 Privacy Policy", "fr":"🔒 Politique de confidentialité", "de":"🔒 Datenschutzerklärung", "it":"🔒 Informativa sulla privacy", "nl":"🔒 Privacybeleid", "zh":"🔒 隐私政策", "zht":"🔒 隱私政策", "bg":"🔒 Политика за поверителност", "pl":"🔒 Polityka prywatności"},
+  "ppActualizado": {"es":"— Última actualización: septiembre de 2026", "en":"— Last updated: September 2026", "fr":"— Dernière mise à jour : septembre 2026", "de":"— Letzte Aktualisierung: September 2026", "it":"— Ultimo aggiornamento: settembre 2026", "nl":"— Laatst bijgewerkt: september 2026", "zh":"— 最后更新：2026 年 9 月", "zht":"— 最後更新：2026 年 9 月", "bg":"— Последна актуализация: септември 2026 г.", "pl":"— Ostatnia aktualizacja: wrzesień 2026"},
+  "ppRespTitulo": {"es":"Responsable del tratamiento", "en":"Data controller", "fr":"Responsable du traitement", "de":"Verantwortlicher", "it":"Titolare del trattamento", "nl":"Verwerkingsverantwoordelijke", "zh":"数据控制者", "zht":"資料控管者", "bg":"Администратор на данните", "pl":"Administrator danych"},
+  "ppRespDir": {"es":"· Tenerife, Islas Canarias, España.", "en":"· Tenerife, Canary Islands, Spain.", "fr":"· Tenerife, Îles Canaries, Espagne.", "de":"· Teneriffa, Kanarische Inseln, Spanien.", "it":"· Tenerife, Isole Canarie, Spagna.", "nl":"· Tenerife, Canarische Eilanden, Spanje.", "zh":"· 西班牙加那利群岛特内里费。", "zht":"· 西班牙加那利群島特內里費。", "bg":"· Тенерифе, Канарски острови, Испания.", "pl":"· Teneryfa, Wyspy Kanaryjskie, Hiszpania."},
+  "ppDatosTitulo": {"es":"Qué datos se tratan", "en":"What data is processed", "fr":"Quelles données sont traitées", "de":"Welche Daten verarbeitet werden", "it":"Quali dati vengono trattati", "nl":"Welke gegevens worden verwerkt", "zh":"处理哪些数据", "zht":"處理哪些資料", "bg":"Какви данни се обработват", "pl":"Jakie dane są przetwarzane"},
+  "ppDatosGeo": {"es":"Geolocalización:", "en":"Location:", "fr":"Géolocalisation :", "de":"Standort:", "it":"Geolocalizzazione:", "nl":"Locatie:", "zh":"定位：", "zht":"定位：", "bg":"Местоположение:", "pl":"Lokalizacja:"},
+  "ppDatosGeoTxt": {"es":"solo cuando la activas. No se guarda en ningún servidor. Si pides una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas para calcularla.", "en":"only when you turn it on. It is not stored on any server. If you ask for a driving route, the start and end coordinates are sent to the routing service to work it out.", "fr":"uniquement quand vous l’activez. Elle n’est enregistrée sur aucun serveur. Si vous demandez un itinéraire en voiture, les coordonnées de départ et d’arrivée sont envoyées au service de calcul d’itinéraires.", "de":"nur wenn du ihn einschaltest. Er wird auf keinem Server gespeichert. Wenn du eine Autoroute anforderst, gehen Start- und Zielkoordinaten an den Routendienst, der sie berechnet.", "it":"solo quando la attivi. Non viene salvata su nessun server. Se chiedi un percorso in auto, le coordinate di partenza e arrivo vengono inviate al servizio di calcolo percorsi.", "nl":"alleen als je die aanzet. Ze wordt op geen enkele server bewaard. Vraag je een autoroute, dan gaan de start- en eindcoördinaten naar de routedienst die hem berekent.", "zh":"仅在你开启时使用。不会保存在任何服务器上。如果你请求驾车路线，起点和终点坐标会发给路线服务来计算。", "zht":"僅在你開啟時使用。不會儲存在任何伺服器上。若你要求開車路線，起點與終點座標會送往路線服務進行計算。", "bg":"само когато го включите. Не се запазва на никакъв сървър. Ако поискате маршрут с кола, координатите на началото и целта се изпращат на услугата за маршрути, за да го изчисли.", "pl":"tylko wtedy, gdy ją włączysz. Nie jest zapisywana na żadnym serwerze. Jeśli poprosisz o trasę samochodem, współrzędne początku i celu trafiają do usługi wyznaczania tras, żeby ją obliczyć."},
+  "ppDatosCuenta": {"es":"Cuenta (opcional):", "en":"Account (optional):", "fr":"Compte (facultatif) :", "de":"Konto (optional):", "it":"Account (facoltativo):", "nl":"Account (optioneel):", "zh":"账户（可选）：", "zht":"帳戶（選用）：", "bg":"Профил (по желание):", "pl":"Konto (opcjonalnie):"},
+  "ppDatosCuentaTxt": {"es":"correo electrónico y contraseña. Los gestiona", "en":"email address and password. They are handled by", "fr":"adresse e-mail et mot de passe. Ils sont gérés par", "de":"E-Mail-Adresse und Passwort. Verwaltet werden sie von", "it":"indirizzo e-mail e password. Sono gestiti da", "nl":"e-mailadres en wachtwoord. Ze worden beheerd door", "zh":"电子邮箱和密码。由", "zht":"電子郵件與密碼。由", "bg":"имейл адрес и парола. Управляват се от", "pl":"adres e-mail i hasło. Obsługuje je"},
+  "ppDatosRls": {"es":", que guarda la contraseña cifrada; nosotros no la vemos.", "en":", which stores the password encrypted; we never see it.", "fr":", qui conserve le mot de passe chiffré ; nous ne le voyons jamais.", "de":", das das Passwort verschlüsselt speichert; wir sehen es nie.", "it":", che conserva la password cifrata; noi non la vediamo mai.", "nl":", dat het wachtwoord versleuteld bewaart; wij zien het nooit.", "zh":"管理，密码以加密方式存储；我们从不查看。", "zht":"管理，密碼以加密方式儲存；我們從不查看。", "bg":", който пази паролата криптирана; ние никога не я виждаме.", "pl":", które przechowuje hasło zaszyfrowane; my go nigdy nie widzimy."},
+  "ppDatosFav": {"es":"Favoritos:", "en":"Favourites:", "fr":"Favoris :", "de":"Favoriten:", "it":"Preferiti:", "nl":"Favorieten:", "zh":"收藏：", "zht":"收藏：", "bg":"Любими:", "pl":"Ulubione:"},
+  "ppDatosFavTxt": {"es":"los identificadores de los lugares que guardas. Con cuenta se sincronizan; sin cuenta se quedan en tu dispositivo.", "en":"the identifiers of the places you save. With an account they sync; without one they stay on your device.", "fr":"les identifiants des lieux que vous enregistrez. Avec un compte ils se synchronisent ; sans compte ils restent sur votre appareil.", "de":"die Kennungen der Orte, die du speicherst. Mit Konto werden sie synchronisiert, ohne Konto bleiben sie auf deinem Gerät.", "it":"gli identificativi dei luoghi che salvi. Con un account si sincronizzano; senza, restano sul tuo dispositivo.", "nl":"de identificatoren van de plekken die je opslaat. Met een account synchroniseren ze; zonder blijven ze op je toestel.", "zh":"你保存的地点标识。登录后会同步；未登录则只留在你的设备上。", "zht":"你儲存地點的識別碼。登入後會同步；未登入則只留在你的裝置上。", "bg":"идентификаторите на местата, които запазвате. С профил се синхронизират; без профил остават на устройството ви.", "pl":"identyfikatory miejsc, które zapisujesz. Z kontem się synchronizują; bez konta zostają na twoim urządzeniu."},
+  "ppDatosPref": {"es":"Preferencias y uso:", "en":"Preferences and usage:", "fr":"Préférences et usage :", "de":"Einstellungen und Nutzung:", "it":"Preferenze e utilizzo:", "nl":"Voorkeuren en gebruik:", "zh":"偏好与使用：", "zht":"偏好與使用：", "bg":"Предпочитания и употреба:", "pl":"Preferencje i użytkowanie:"},
+  "ppDatosPrefTxt": {"es":"idioma, filtros, líneas de guagua activas, caché del tiempo y del estado del mar, si ya viste el tour, un contador de visitas y tu respuesta al aviso de cookies. Todo esto se guarda en tu dispositivo y no se envía a ningún sitio.", "en":"language, filters, active bus lines, cached weather and sea conditions, whether you have seen the tour, a visit counter and your answer to the cookie notice. All of this stays on your device and is not sent anywhere.", "fr":"langue, filtres, lignes de bus actives, cache de la météo et de l’état de la mer, si vous avez déjà vu le tour, un compteur de visites et votre réponse à l’avis sur les cookies. Tout cela reste sur votre appareil et n’est envoyé nulle part.", "de":"Sprache, Filter, aktive Buslinien, zwischengespeichertes Wetter und Seegang, ob du die Tour schon gesehen hast, ein Besuchszähler und deine Antwort auf den Cookie-Hinweis. Das alles bleibt auf deinem Gerät und wird nirgendwohin gesendet.", "it":"lingua, filtri, linee di autobus attive, cache del meteo e dello stato del mare, se hai già visto il tour, un contatore di visite e la tua risposta all’avviso sui cookie. Tutto questo resta sul tuo dispositivo e non viene inviato da nessuna parte.", "nl":"taal, filters, actieve buslijnen, gecachet weer en zeegang, of je de tour al zag, een bezoekteller en je antwoord op de cookiemelding. Dit alles blijft op je toestel en gaat nergens heen.", "zh":"语言、筛选条件、已开启的公交线路、天气与海况缓存、是否看过导览、访问计数，以及你对 Cookie 提示的回答。这些全部保存在你的设备上，不会发送到任何地方。", "zht":"語言、篩選條件、已開啟的公車路線、天氣與海況快取、是否看過導覽、造訪次數，以及你對 Cookie 提示的回答。這些全部保存在你的裝置上，不會傳送到任何地方。", "bg":"език, филтри, включени автобусни линии, кеш на времето и на състоянието на морето, дали вече сте видели обиколката, брояч на посещенията и отговорът ви на съобщението за бисквитките. Всичко това остава на устройството ви и не се изпраща никъде.", "pl":"język, filtry, włączone linie autobusowe, zapisana pogoda i stan morza, to, czy widziałeś już przewodnik, licznik wizyt oraz twoja odpowiedź na komunikat o ciasteczkach. Wszystko to zostaje na twoim urządzeniu i nigdzie nie jest wysyłane."},
+  "ppDatosPush": {"es":"Notificaciones (opcional):", "en":"Notifications (optional):", "fr":"Notifications (facultatif) :", "de":"Benachrichtigungen (optional):", "it":"Notifiche (facoltative):", "nl":"Meldingen (optioneel):", "zh":"通知（可选）：", "zht":"通知（選用）：", "bg":"Известия (по желание):", "pl":"Powiadomienia (opcjonalnie):"},
+  "ppDatosPushTxt": {"es":"si las activas, la suscripción que crea tu navegador —una dirección de envío y dos claves— se guarda para poder mandarte el aviso. Al desactivarlas en el navegador, deja de usarse.", "en":"if you turn them on, the subscription your browser creates — a delivery address and two keys — is stored so the alert can reach you. Turning them off in the browser stops it being used.", "fr":"si vous les activez, l’abonnement créé par votre navigateur — une adresse d’envoi et deux clés — est conservé pour pouvoir vous envoyer l’alerte. En les désactivant dans le navigateur, il cesse d’être utilisé.", "de":"wenn du sie einschaltest, wird das vom Browser erzeugte Abo — eine Zustelladresse und zwei Schlüssel — gespeichert, damit die Meldung dich erreichen kann. Schaltest du sie im Browser ab, wird es nicht mehr verwendet.", "it":"se le attivi, l’iscrizione creata dal browser — un indirizzo di recapito e due chiavi — viene conservata per poterti mandare l’avviso. Disattivandole nel browser smette di essere usata.", "nl":"zet je ze aan, dan wordt het abonnement dat je browser aanmaakt — een afleveradres en twee sleutels — bewaard om je de melding te kunnen sturen. Zet je ze uit in de browser, dan wordt het niet meer gebruikt.", "zh":"若你开启，浏览器生成的订阅——一个推送地址和两把密钥——会被保存，以便把提醒送到你手上。在浏览器中关闭后即不再使用。", "zht":"若你開啟，瀏覽器產生的訂閱——一個推送位址與兩把金鑰——會被保存，以便把提醒送到你手上。在瀏覽器中關閉後即不再使用。", "bg":"ако ги включите, абонаментът, който браузърът създава — адрес за доставка и два ключа — се запазва, за да може известието да стигне до вас. Изключите ли ги в браузъра, той повече не се използва.", "pl":"jeśli je włączysz, subskrypcja utworzona przez przeglądarkę — adres doręczenia i dwa klucze — zostaje zapisana, żeby powiadomienie mogło do ciebie dotrzeć. Po wyłączeniu ich w przeglądarce przestaje być używana."},
+  "ppDatosStats": {"es":"Estadísticas de uso:", "en":"Usage statistics:", "fr":"Statistiques d’usage :", "de":"Nutzungsstatistik:", "it":"Statistiche d’uso:", "nl":"Gebruiksstatistieken:", "zh":"使用统计：", "zht":"使用統計：", "bg":"Статистика за употребата:", "pl":"Statystyki użycia:"},
+  "ppDatosStatsTxt": {"es":"solo si las aceptas. Ver el apartado siguiente.", "en":"only if you accept them. See the next section.", "fr":"uniquement si vous les acceptez. Voir la section suivante.", "de":"nur wenn du zustimmst. Siehe den nächsten Abschnitt.", "it":"solo se le accetti. Vedi la sezione seguente.", "nl":"alleen als je ze accepteert. Zie het volgende onderdeel.", "zh":"仅在你同意时。见下一节。", "zht":"僅在你同意時。見下一節。", "bg":"само ако я приемете. Вижте следващия раздел.", "pl":"tylko jeśli je zaakceptujesz. Zobacz następną sekcję."},
+  "ppStatsTitulo": {"es":"Estadísticas y cookies", "en":"Statistics and cookies", "fr":"Statistiques et cookies", "de":"Statistik und Cookies", "it":"Statistiche e cookie", "nl":"Statistieken en cookies", "zh":"统计与 Cookie", "zht":"統計與 Cookie", "bg":"Статистика и бисквитки", "pl":"Statystyki i ciasteczka"},
+  "ppStatsAntes": {"es":"La app usa Google Analytics 4, y no se carga hasta que aceptas el aviso de cookies: hasta entonces no sale nada hacia Google desde la app.", "en":"The app uses Google Analytics 4, and it is not loaded until you accept the cookie notice: until then nothing leaves the app towards Google.", "fr":"L’app utilise Google Analytics 4, et il n’est pas chargé tant que vous n’avez pas accepté l’avis sur les cookies : d’ici là, rien ne part de l’app vers Google.", "de":"Die App nutzt Google Analytics 4, und es wird erst geladen, wenn du dem Cookie-Hinweis zustimmst: bis dahin geht aus der App nichts an Google.", "it":"L’app usa Google Analytics 4, e non viene caricato finché non accetti l’avviso sui cookie: fino ad allora dall’app non parte nulla verso Google.", "nl":"De app gebruikt Google Analytics 4, en dat wordt pas geladen als je de cookiemelding accepteert: tot dan gaat er vanuit de app niets naar Google.", "zh":"本应用使用 Google Analytics 4，在你接受 Cookie 提示之前不会加载：在此之前，应用不会向 Google 发送任何内容。", "zht":"本應用程式使用 Google Analytics 4，在你接受 Cookie 提示之前不會載入：在此之前，應用程式不會向 Google 傳送任何內容。", "bg":"Приложението използва Google Analytics 4 и той не се зарежда, докато не приемете съобщението за бисквитките: дотогава от приложението не тръгва нищо към Google.", "pl":"Aplikacja korzysta z Google Analytics 4 i nie ładuje go, dopóki nie zaakceptujesz komunikatu o ciasteczkach: do tego momentu z aplikacji nie wychodzi nic do Google."},
+  "ppStatsSi": {"es":"Si aceptas, Google Analytics instala sus propias cookies y recibe datos de navegación —pantallas vistas, idioma, país aproximado, tipo de dispositivo— y tu dirección IP.", "en":"If you accept, Google Analytics sets its own cookies and receives browsing data — screens viewed, language, approximate country, device type — and your IP address.", "fr":"Si vous acceptez, Google Analytics dépose ses propres cookies et reçoit des données de navigation — écrans vus, langue, pays approximatif, type d’appareil — ainsi que votre adresse IP.", "de":"Wenn du zustimmst, setzt Google Analytics eigene Cookies und erhält Nutzungsdaten — aufgerufene Ansichten, Sprache, ungefähres Land, Gerätetyp — sowie deine IP-Adresse.", "it":"Se accetti, Google Analytics installa i propri cookie e riceve dati di navigazione — schermate viste, lingua, paese approssimativo, tipo di dispositivo — e il tuo indirizzo IP.", "nl":"Accepteer je, dan plaatst Google Analytics eigen cookies en ontvangt het navigatiegegevens — bekeken schermen, taal, globaal land, type toestel — en je IP-adres.", "zh":"若你接受，Google Analytics 会写入自己的 Cookie，并接收浏览数据——浏览的页面、语言、大致国家、设备类型——以及你的 IP 地址。", "zht":"若你接受，Google Analytics 會寫入自己的 Cookie，並接收瀏覽資料——瀏覽的畫面、語言、大致國家、裝置類型——以及你的 IP 位址。", "bg":"Ако приемете, Google Analytics поставя собствени бисквитки и получава данни за разглеждането — видени екрани, език, приблизителна държава, вид устройство — както и вашия IP адрес.", "pl":"Jeśli zaakceptujesz, Google Analytics zakłada własne ciasteczka i otrzymuje dane o przeglądaniu — wyświetlone ekrany, język, przybliżony kraj, typ urządzenia — oraz twój adres IP."},
+  "ppStatsConsent": {"es":"Está configurado con Consent Mode v2 y las señales publicitarias quedan denegadas siempre, así que esos datos no se usan para personalizar anuncios. Si rechazas, no se carga nada.", "en":"It runs with Consent Mode v2 and the advertising signals stay denied at all times, so that data is not used to personalise ads. If you decline, nothing is loaded.", "fr":"Il fonctionne en Consent Mode v2 et les signaux publicitaires restent refusés en permanence : ces données ne servent donc pas à personnaliser des publicités. Si vous refusez, rien n’est chargé.", "de":"Es läuft mit Consent Mode v2, und die Werbesignale bleiben durchgehend abgelehnt; diese Daten werden also nicht zur Personalisierung von Werbung verwendet. Lehnst du ab, wird nichts geladen.", "it":"Funziona con Consent Mode v2 e i segnali pubblicitari restano sempre negati, quindi quei dati non servono a personalizzare annunci. Se rifiuti, non viene caricato nulla.", "nl":"Het draait met Consent Mode v2 en de advertentiesignalen blijven altijd geweigerd, dus die gegevens worden niet gebruikt om advertenties te personaliseren. Weiger je, dan wordt er niets geladen.", "zh":"它以 Consent Mode v2 运行，广告相关信号始终保持拒绝，因此这些数据不会用于个性化广告。若你拒绝，则不加载任何内容。", "zht":"它以 Consent Mode v2 運作，廣告相關訊號始終保持拒絕，因此這些資料不會用於個人化廣告。若你拒絕，則不載入任何內容。", "bg":"Работи с Consent Mode v2 и рекламните сигнали остават отказани през цялото време, така че тези данни не се използват за персонализиране на реклами. Ако откажете, не се зарежда нищо.", "pl":"Działa w trybie Consent Mode v2, a sygnały reklamowe pozostają stale odrzucone, więc te dane nie służą do personalizowania reklam. Jeśli odmówisz, nic się nie ładuje."},
+  "ppStatsGuarda": {"es":"Tu respuesta se guarda 180 días en tu dispositivo; después se vuelve a preguntar. Para cambiarla antes, borra los datos del sitio en tu navegador.", "en":"Your answer is kept on your device for 180 days; after that you are asked again. To change it sooner, clear the site data in your browser.", "fr":"Votre réponse est conservée 180 jours sur votre appareil ; ensuite la question revient. Pour la changer avant, effacez les données du site dans votre navigateur.", "de":"Deine Antwort bleibt 180 Tage auf deinem Gerät; danach wird erneut gefragt. Willst du sie früher ändern, lösche die Websitedaten im Browser.", "it":"La tua risposta resta 180 giorni sul dispositivo; poi la domanda torna. Per cambiarla prima, cancella i dati del sito dal browser.", "nl":"Je antwoord blijft 180 dagen op je toestel; daarna wordt het opnieuw gevraagd. Wil je het eerder wijzigen, wis dan de sitegegevens in je browser.", "zh":"你的选择在设备上保存 180 天，之后会再次询问。想提前更改，请在浏览器中清除本站数据。", "zht":"你的選擇在裝置上保存 180 天，之後會再次詢問。想提前更改，請在瀏覽器中清除本站資料。", "bg":"Отговорът ви се пази 180 дни на устройството; след това въпросът се задава отново. За да го промените по-рано, изтрийте данните на сайта в браузъра си.", "pl":"Twoja odpowiedź zostaje na urządzeniu przez 180 dni; potem pytanie wraca. Żeby zmienić ją wcześniej, wyczyść dane witryny w przeglądarce."},
+  "ppPubTitulo": {"es":"Publicidad y contenidos promocionados", "en":"Advertising and promoted content", "fr":"Publicité et contenus sponsorisés", "de":"Werbung und beworbene Inhalte", "it":"Pubblicità e contenuti promozionati", "nl":"Reclame en gepromote inhoud", "zh":"广告与推广内容", "zht":"廣告與推廣內容", "bg":"Реклама и промотирано съдържание", "pl":"Reklama i treści promowane"},
+  "ppPubQue": {"es":"El mapa muestra negocios que pagan un plan de promoción mensual. Van marcados como recomendación y no alteran el resto del contenido.", "en":"The map shows businesses that pay a monthly promotion plan. They are marked as a recommendation and do not alter the rest of the content.", "fr":"La carte affiche des commerces qui paient un forfait de promotion mensuel. Ils sont signalés comme recommandation et ne modifient pas le reste du contenu.", "de":"Auf der Karte erscheinen Betriebe, die einen monatlichen Werbeplan zahlen. Sie sind als Empfehlung gekennzeichnet und verändern die übrigen Inhalte nicht.", "it":"Sulla mappa compaiono attività che pagano un piano di promozione mensile. Sono segnalate come consiglio e non alterano il resto dei contenuti.", "nl":"Op de kaart staan bedrijven die een maandelijks promotieplan betalen. Ze zijn gemarkeerd als aanbeveling en veranderen de rest van de inhoud niet.", "zh":"地图上会显示付费按月推广的商家。它们标记为推荐，不会改变其余内容。", "zht":"地圖上會顯示付費按月推廣的商家。它們標示為推薦，不會改變其餘內容。", "bg":"На картата се показват заведения и фирми, които плащат месечен промоционален план. Отбелязани са като препоръка и не променят останалото съдържание.", "pl":"Na mapie pojawiają się firmy, które płacą za miesięczny plan promocyjny. Są oznaczone jako polecenie i nie zmieniają reszty treści."},
+  "ppPubNoDatos": {"es":"Esa promoción no usa tus datos: se enseñan a todo el mundo por igual, sin segmentación, sin perfilado y sin cookies publicitarias. En la app no hay ninguna red publicitaria de terceros en funcionamiento.", "en":"That promotion does not use your data: everyone is shown the same ones, with no targeting, no profiling and no advertising cookies. There is no third-party ad network running in the app.", "fr":"Cette promotion n’utilise pas vos données : ils sont montrés à tout le monde de la même façon, sans ciblage, sans profilage et sans cookies publicitaires. Aucune régie publicitaire tierce ne fonctionne dans l’app.", "de":"Diese Werbung nutzt deine Daten nicht: allen wird dasselbe gezeigt, ohne Targeting, ohne Profiling und ohne Werbecookies. In der App läuft kein Werbenetzwerk Dritter.", "it":"Quella promozione non usa i tuoi dati: vengono mostrate a tutti allo stesso modo, senza targeting, senza profilazione e senza cookie pubblicitari. Nell’app non è attiva nessuna rete pubblicitaria di terzi.", "nl":"Die promotie gebruikt jouw gegevens niet: iedereen krijgt dezelfde te zien, zonder targeting, zonder profilering en zonder advertentiecookies. Er draait geen advertentienetwerk van derden in de app.", "zh":"这类推广不使用你的数据：所有人看到的都一样，没有定向、没有画像、没有广告 Cookie。应用中没有运行任何第三方广告网络。", "zht":"這類推廣不使用你的資料：所有人看到的都一樣，沒有鎖定、沒有剖析、沒有廣告 Cookie。應用程式中沒有運行任何第三方廣告聯播網。", "bg":"Тази промоция не използва вашите данни: показват се на всички еднакво, без таргетиране, без профилиране и без рекламни бисквитки. В приложението не работи никаква рекламна мрежа на трета страна.", "pl":"Ta promocja nie korzysta z twoich danych: wszystkim pokazywane są te same, bez targetowania, bez profilowania i bez ciasteczek reklamowych. W aplikacji nie działa żadna zewnętrzna sieć reklamowa."},
+  "ppTercTitulo": {"es":"Terceros que reciben datos", "en":"Third parties that receive data", "fr":"Tiers qui reçoivent des données", "de":"Dritte, die Daten erhalten", "it":"Terzi che ricevono dati", "nl":"Derden die gegevens ontvangen", "zh":"接收数据的第三方", "zht":"接收資料的第三方", "bg":"Трети страни, които получават данни", "pl":"Podmioty trzecie, które otrzymują dane"},
+  "ppTercIntro": {"es":"Para funcionar, la app pide datos a servicios externos. Todos reciben tu dirección IP y, además:", "en":"To work, the app requests data from outside services. They all receive your IP address and, in addition:", "fr":"Pour fonctionner, l’app interroge des services externes. Tous reçoivent votre adresse IP et, en plus :", "de":"Damit sie funktioniert, fragt die App externe Dienste ab. Alle erhalten deine IP-Adresse und außerdem:", "it":"Per funzionare, l’app interroga servizi esterni. Tutti ricevono il tuo indirizzo IP e inoltre:", "nl":"Om te werken vraagt de app gegevens op bij externe diensten. Ze ontvangen allemaal je IP-adres en daarnaast:", "zh":"为了正常运行，应用会向外部服务请求数据。它们都会收到你的 IP 地址，此外还有：", "zht":"為了正常運作，應用程式會向外部服務請求資料。它們都會收到你的 IP 位址，此外還有：", "bg":"За да работи, приложението заявява данни от външни услуги. Всички получават вашия IP адрес и освен това:", "pl":"Żeby działać, aplikacja pobiera dane z usług zewnętrznych. Wszystkie otrzymują twój adres IP, a ponadto:"},
+  "ppTercSupabase": {"es":"cuenta, favoritos y suscripción de notificaciones.", "en":"account, favourites and notification subscription.", "fr":"compte, favoris et abonnement aux notifications.", "de":"Konto, Favoriten und Benachrichtigungs-Abo.", "it":"account, preferiti e iscrizione alle notifiche.", "nl":"account, favorieten en meldingsabonnement.", "zh":"账户、收藏和通知订阅。", "zht":"帳戶、收藏與通知訂閱。", "bg":"профил, любими и абонамент за известия.", "pl":"konto, ulubione i subskrypcję powiadomień."},
+  "ppTercMapas": {"es":"las teselas del mapa, o sea qué zona estás mirando.", "en":"the map tiles, which is to say which area you are looking at.", "fr":"les tuiles de la carte, c’est-à-dire la zone que vous regardez.", "de":"die Kartenkacheln, also welchen Bereich du gerade ansiehst.", "it":"i tasselli della mappa, cioè quale zona stai guardando.", "nl":"de kaarttegels, oftewel welk gebied je bekijkt.", "zh":"地图瓦片，也就是你正在查看的区域。", "zht":"地圖圖磚，也就是你正在檢視的區域。", "bg":"плочките на картата, тоест кой район гледате.", "pl":"kafelki mapy, czyli to, jaki obszar oglądasz."},
+  "ppTercOsrm": {"es":"origen y destino cuando calculas una ruta en coche.", "en":"start and end points when you calculate a driving route.", "fr":"départ et arrivée quand vous calculez un itinéraire en voiture.", "de":"Start und Ziel, wenn du eine Autoroute berechnest.", "it":"partenza e arrivo quando calcoli un percorso in auto.", "nl":"start en bestemming wanneer je een autoroute berekent.", "zh":"计算驾车路线时的起点和终点。", "zht":"計算開車路線時的起點與終點。", "bg":"начало и край, когато изчислявате маршрут с кола.", "pl":"początek i cel, kiedy wyznaczasz trasę samochodem."},
+  "ppTercNominatim": {"es":"el texto que escribes al buscar una dirección.", "en":"the text you type when searching for an address.", "fr":"le texte que vous saisissez en cherchant une adresse.", "de":"den Text, den du bei der Adresssuche eingibst.", "it":"il testo che scrivi cercando un indirizzo.", "nl":"de tekst die je typt bij het zoeken van een adres.", "zh":"你搜索地址时输入的文字。", "zht":"你搜尋地址時輸入的文字。", "bg":"текста, който пишете при търсене на адрес.", "pl":"tekst, który wpisujesz, szukając adresu."},
+  "ppTercMeteo": {"es":"las coordenadas del lugar o de la zona cuya previsión consultas.", "en":"the coordinates of the place or area whose forecast you are checking.", "fr":"les coordonnées du lieu ou de la zone dont vous consultez les prévisions.", "de":"die Koordinaten des Ortes oder Gebiets, dessen Vorhersage du abrufst.", "it":"le coordinate del luogo o della zona di cui consulti le previsioni.", "nl":"de coördinaten van de plek of het gebied waarvan je de verwachting opvraagt.", "zh":"你查询预报的地点或区域的坐标。", "zht":"你查詢預報的地點或區域的座標。", "bg":"координатите на мястото или зоната, чиято прогноза проверявате.", "pl":"współrzędne miejsca albo strefy, której prognozę sprawdzasz."},
+  "ppTercAemet": {"es":"avisos meteorológicos de la isla; no se le manda nada tuyo.", "en":"weather warnings for the island; nothing of yours is sent to it.", "fr":"les alertes météo de l’île ; rien de vous ne lui est envoyé.", "de":"Wetterwarnungen für die Insel; von dir wird nichts übermittelt.", "it":"gli avvisi meteo dell’isola; non gli viene inviato nulla di tuo.", "nl":"weerwaarschuwingen voor het eiland; er gaat niets van jou naartoe.", "zh":"岛上的气象预警；不会向其发送任何属于你的信息。", "zht":"島上的氣象警報；不會向其傳送任何屬於你的資訊。", "bg":"метеорологичните предупреждения за острова; нищо ваше не се изпраща натам.", "pl":"ostrzeżenia pogodowe dla wyspy; nic twojego tam nie trafia."},
+  "ppTercWiki": {"es":"el título del artículo del lugar que abres.", "en":"the article title of the place you open.", "fr":"le titre de l’article du lieu que vous ouvrez.", "de":"den Artikeltitel des Ortes, den du öffnest.", "it":"il titolo dell’articolo del luogo che apri.", "nl":"de artikeltitel van de plek die je opent.", "zh":"你打开的地点对应的条目标题。", "zht":"你開啟的地點對應的條目標題。", "bg":"заглавието на статията за мястото, което отваряте.", "pl":"tytuł artykułu o miejscu, które otwierasz."},
+  "ppTercCdn": {"es":"tipografías y librerías.", "en":"fonts and libraries.", "fr":"polices et bibliothèques.", "de":"Schriften und Bibliotheken.", "it":"caratteri e librerie.", "nl":"lettertypen en bibliotheken.", "zh":"字体与程序库。", "zht":"字型與程式庫。", "bg":"шрифтове и библиотеки.", "pl":"kroje pisma i biblioteki."},
+  "ppTercGa": {"es":"solo si aceptas el aviso de cookies.", "en":"only if you accept the cookie notice.", "fr":"uniquement si vous acceptez l’avis sur les cookies.", "de":"nur wenn du dem Cookie-Hinweis zustimmst.", "it":"solo se accetti l’avviso sui cookie.", "nl":"alleen als je de cookiemelding accepteert.", "zh":"仅在你接受 Cookie 提示时。", "zht":"僅在你接受 Cookie 提示時。", "bg":"само ако приемете съобщението за бисквитките.", "pl":"tylko jeśli zaakceptujesz komunikat o ciasteczkach."},
+  "ppTercNoVenta": {"es":"Ninguno de estos datos se vende ni se cede con fines comerciales.", "en":"None of this data is sold or passed on for commercial purposes.", "fr":"Aucune de ces données n’est vendue ni cédée à des fins commerciales.", "de":"Nichts davon wird verkauft oder zu kommerziellen Zwecken weitergegeben.", "it":"Nessuno di questi dati viene venduto né ceduto a fini commerciali.", "nl":"Niets hiervan wordt verkocht of voor commerciële doeleinden doorgegeven.", "zh":"这些数据都不会出售，也不会为商业目的转让。", "zht":"這些資料都不會出售，也不會為商業目的轉讓。", "bg":"Нищо от тези данни не се продава и не се предоставя с търговска цел.", "pl":"Żadne z tych danych nie są sprzedawane ani przekazywane w celach handlowych."},
+  "ppBaseTitulo": {"es":"Finalidad y base legal", "en":"Purpose and legal basis", "fr":"Finalité et base légale", "de":"Zweck und Rechtsgrundlage", "it":"Finalità e base giuridica", "nl":"Doel en rechtsgrond", "zh":"目的与法律依据", "zht":"目的與法律依據", "bg":"Цел и правно основание", "pl":"Cel i podstawa prawna"},
+  "ppBaseLi1a": {"es":"Prestar el servicio de guía turística interactiva (", "en":"Providing the interactive tourist guide service (", "fr":"Fournir le service de guide touristique interactif (", "de":"Bereitstellung des interaktiven Reiseführers (", "it":"Fornire il servizio di guida turistica interattiva (", "nl":"Het leveren van de interactieve toeristische gids (", "zh":"提供互动旅游指南服务（", "zht":"提供互動旅遊指南服務（", "bg":"Предоставяне на услугата интерактивен туристически пътеводител (", "pl":"Świadczenie usługi interaktywnego przewodnika turystycznego ("},
+  "ppBaseInteres": {"es":"interés legítimo", "en":"legitimate interest", "fr":"intérêt légitime", "de":"berechtigtes Interesse", "it":"interesse legittimo", "nl":"gerechtvaardigd belang", "zh":"合法利益", "zht":"正當利益", "bg":"законен интерес", "pl":"uzasadniony interes"},
+  "ppBaseContrato": {"es":"ejecución de contrato", "en":"performance of a contract", "fr":"exécution d’un contrat", "de":"Vertragserfüllung", "it":"esecuzione di un contratto", "nl":"uitvoering van een overeenkomst", "zh":"履行合同", "zht":"履行契約", "bg":"изпълнение на договор", "pl":"wykonanie umowy"},
+  "ppBaseLi2": {"es":"Geolocalización, notificaciones y estadísticas: consentimiento, que puedes retirar cuando quieras.", "en":"Location, notifications and statistics: consent, which you can withdraw at any time.", "fr":"Géolocalisation, notifications et statistiques : consentement, que vous pouvez retirer à tout moment.", "de":"Standort, Benachrichtigungen und Statistik: Einwilligung, die du jederzeit widerrufen kannst.", "it":"Geolocalizzazione, notifiche e statistiche: consenso, che puoi revocare quando vuoi.", "nl":"Locatie, meldingen en statistieken: toestemming, die je altijd kunt intrekken.", "zh":"定位、通知与统计：基于同意，你可以随时撤回。", "zht":"定位、通知與統計：基於同意，你可以隨時撤回。", "bg":"Местоположение, известия и статистика: съгласие, което можете да оттеглите по всяко време.", "pl":"Lokalizacja, powiadomienia i statystyki: zgoda, którą możesz wycofać w dowolnej chwili."},
+  "ppConsTitulo": {"es":"Conservación", "en":"Retention", "fr":"Conservation", "de":"Speicherdauer", "it":"Conservazione", "nl":"Bewaartermijn", "zh":"保存期限", "zht":"保存期限", "bg":"Съхранение", "pl":"Przechowywanie"},
+  "ppConsCuenta": {"es":"Los datos de la cuenta se conservan mientras la cuenta exista. Para borrarla, escríbenos y se elimina junto con tus favoritos.", "en":"Account data is kept for as long as the account exists. To delete it, write to us and it is removed along with your favourites.", "fr":"Les données du compte sont conservées tant que le compte existe. Pour le supprimer, écrivez-nous : il est effacé avec vos favoris.", "de":"Kontodaten bleiben gespeichert, solange das Konto besteht. Zum Löschen schreib uns; es wird zusammen mit deinen Favoriten entfernt.", "it":"I dati dell’account restano finché l’account esiste. Per cancellarlo scrivici: viene eliminato insieme ai tuoi preferiti.", "nl":"Accountgegevens blijven bewaard zolang het account bestaat. Wil je het verwijderen, schrijf ons dan: het wordt samen met je favorieten gewist.", "zh":"账户数据在账户存在期间保留。要删除账户请写信给我们，届时会连同你的收藏一并删除。", "zht":"帳戶資料在帳戶存在期間保留。要刪除帳戶請寫信給我們，屆時會連同你的收藏一併刪除。", "bg":"Данните на профила се пазят, докато профилът съществува. За да го изтриете, пишете ни и той се премахва заедно с любимите ви.", "pl":"Dane konta są przechowywane, dopóki konto istnieje. Żeby je usunąć, napisz do nas — zostanie skasowane razem z twoimi ulubionymi."},
+  "ppConsDispositivo": {"es":"Lo guardado en tu dispositivo desaparece al borrar los datos del sitio o desinstalar la app.", "en":"Anything stored on your device disappears when you clear the site data or uninstall the app.", "fr":"Ce qui est stocké sur votre appareil disparaît en effaçant les données du site ou en désinstallant l’app.", "de":"Was auf deinem Gerät liegt, verschwindet, wenn du die Websitedaten löschst oder die App deinstallierst.", "it":"Quello che è salvato sul tuo dispositivo sparisce cancellando i dati del sito o disinstallando l’app.", "nl":"Wat op je toestel staat verdwijnt als je de sitegegevens wist of de app verwijdert.", "zh":"保存在你设备上的内容，会在清除本站数据或卸载应用时消失。", "zht":"保存在你裝置上的內容，會在清除本站資料或解除安裝應用程式時消失。", "bg":"Запазеното на устройството ви изчезва, когато изтриете данните на сайта или деинсталирате приложението.", "pl":"To, co zapisane na twoim urządzeniu, znika po wyczyszczeniu danych witryny albo odinstalowaniu aplikacji."},
+  "ppDerTitulo": {"es":"Derechos", "en":"Your rights", "fr":"Vos droits", "de":"Deine Rechte", "it":"I tuoi diritti", "nl":"Je rechten", "zh":"你的权利", "zht":"你的權利", "bg":"Вашите права", "pl":"Twoje prawa"},
+  "ppDerTxt": {"es":"Tienes derecho de acceso, rectificación, supresión, portabilidad, limitación y oposición. Ejércelos escribiendo a", "en":"You have the right of access, rectification, erasure, portability, restriction and objection. Exercise them by writing to", "fr":"Vous disposez des droits d’accès, de rectification, d’effacement, de portabilité, de limitation et d’opposition. Exercez-les en écrivant à", "de":"Du hast das Recht auf Auskunft, Berichtigung, Löschung, Datenübertragbarkeit, Einschränkung und Widerspruch. Wende dich dafür an", "it":"Hai diritto di accesso, rettifica, cancellazione, portabilità, limitazione e opposizione. Esercitali scrivendo a", "nl":"Je hebt recht op inzage, rectificatie, wissing, overdraagbaarheid, beperking en bezwaar. Oefen ze uit door te schrijven naar", "zh":"你享有访问、更正、删除、可携、限制处理和反对的权利。行使方式是写信到", "zht":"你享有查閱、更正、刪除、可攜、限制處理與反對的權利。行使方式是寫信到", "bg":"Имате право на достъп, коригиране, изтриване, преносимост, ограничаване и възражение. Упражнявате ги, като пишете на", "pl":"Masz prawo dostępu, sprostowania, usunięcia, przenoszenia, ograniczenia i sprzeciwu. Skorzystasz z nich, pisząc na"},
+  "ppDerReclamar": {"es":". También puedes reclamar ante la", "en":". You may also lodge a complaint with the", "fr":". Vous pouvez aussi déposer une réclamation auprès de l’", "de":". Du kannst dich außerdem bei der", "it":". Puoi anche presentare reclamo all’", "nl":". Je kunt ook een klacht indienen bij de", "zh":"。你也可以向", "zht":"。你也可以向", "bg":". Може също да подадете жалба до", "pl":". Możesz też złożyć skargę do"},
+  "ppSegTitulo": {"es":"Seguridad", "en":"Security", "fr":"Sécurité", "de":"Sicherheit", "it":"Sicurezza", "nl":"Beveiliging", "zh":"安全", "zht":"安全", "bg":"Сигурност", "pl":"Bezpieczeństwo"},
+  "ppSegTxt": {"es":"Toda la comunicación va por HTTPS. Supabase guarda las contraseñas cifradas y el acceso a las tablas está limitado por RLS; no tenemos acceso a tu contraseña.", "en":"All communication goes over HTTPS. Supabase stores passwords encrypted and table access is restricted by RLS; we have no access to your password.", "fr":"Toute la communication passe par HTTPS. Supabase conserve les mots de passe chiffrés et l’accès aux tables est limité par RLS ; nous n’avons pas accès à votre mot de passe.", "de":"Die gesamte Kommunikation läuft über HTTPS. Supabase speichert Passwörter verschlüsselt und der Tabellenzugriff ist durch RLS beschränkt; wir haben keinen Zugriff auf dein Passwort.", "it":"Tutta la comunicazione passa da HTTPS. Supabase conserva le password cifrate e l’accesso alle tabelle è limitato da RLS; non abbiamo accesso alla tua password.", "nl":"Alle communicatie loopt via HTTPS. Supabase bewaart wachtwoorden versleuteld en toegang tot de tabellen is beperkt met RLS; wij hebben geen toegang tot je wachtwoord.", "zh":"所有通信均走 HTTPS。Supabase 以加密方式保存密码，表的访问受 RLS 限制；我们无法获取你的密码。", "zht":"所有通訊皆走 HTTPS。Supabase 以加密方式保存密碼，資料表的存取受 RLS 限制；我們無法取得你的密碼。", "bg":"Цялата комуникация минава през HTTPS. Supabase пази паролите криптирани, а достъпът до таблиците е ограничен с RLS; ние нямаме достъп до паролата ви.", "pl":"Cała komunikacja odbywa się przez HTTPS. Supabase przechowuje hasła zaszyfrowane, a dostęp do tabel jest ograniczony przez RLS; nie mamy dostępu do twojego hasła."},
+  "ppContTitulo": {"es":"Contacto", "en":"Contact", "fr":"Contact", "de":"Kontakt", "it":"Contatti", "nl":"Contact", "zh":"联系方式", "zht":"聯絡方式", "bg":"Контакт", "pl":"Kontakt"}
 });
 
 /* El aviso de "tienda muy pronto" y las siete categorias del formulario de
@@ -9675,7 +9703,7 @@ const categoriesBase = {
   piscinas:    { icon: '💧' },
   montana:     { icon: '🏔️' },
   cultura:     { icon: '🏛️' },
-  museo:        { icon: '🏺', labelEs: 'Museos', labelEn: 'Museums', labelFr: 'Musées', labelDe: 'Museen', labelIt: 'Musei', labelNl: 'Musea', labelZh: '博物馆', labelZht: '博物館', labelBg: 'Музеи' },
+  museo:        { icon: '🏺', labelEs: 'Museos', labelEn: 'Museums', labelFr: 'Musées', labelDe: 'Museen', labelIt: 'Musei', labelNl: 'Musea', labelZh: '博物馆', labelZht: '博物館', labelBg: 'Музеи', labelPl: 'Muzea' },
   gastronomia: { icon: '🍷' },
   familia:     { icon: '🎢' },
   animales:    { icon: '🦒' },
@@ -9684,29 +9712,29 @@ const categoriesBase = {
   farmacia:    { icon: '💊' },
   hospital:    { icon: '🏥' },
   csalud:      { icon: '⚕️' },
-  veterinario: { icon: '🐾', labelEs: 'Veterinarios 24h', labelEn: 'Vets 24h', labelFr: 'Vétérinaires 24h', labelDe: 'Tierärzte 24h', labelIt: 'Veterinari 24h', labelNl: 'Dierenartsen 24u', labelZh: '24小时兽医', labelZht: '24小時獸醫', labelBg: 'Ветеринари 24 ч' },
-  gasolinera:  { icon: '⛽', labelEs: 'Gasolineras', labelEn: 'Petrol Stations', labelFr: 'Stations-service', labelDe: 'Tankstellen', labelIt: 'Stazioni di servizio', labelNl: 'Tankstations', labelZh: '加油站', labelZht: '加油站', labelBg: 'Бензиностанции' },
+  veterinario: { icon: '🐾', labelEs: 'Veterinarios 24h', labelEn: 'Vets 24h', labelFr: 'Vétérinaires 24h', labelDe: 'Tierärzte 24h', labelIt: 'Veterinari 24h', labelNl: 'Dierenartsen 24u', labelZh: '24小时兽医', labelZht: '24小時獸醫', labelBg: 'Ветеринари 24 ч', labelPl: 'Weterynarze 24 h' },
+  gasolinera:  { icon: '⛽', labelEs: 'Gasolineras', labelEn: 'Petrol Stations', labelFr: 'Stations-service', labelDe: 'Tankstellen', labelIt: 'Stazioni di servizio', labelNl: 'Tankstations', labelZh: '加油站', labelZht: '加油站', labelBg: 'Бензиностанции', labelPl: 'Stacje paliw' },
   faros:       { icon: '🔦' },
-  petfriendly:      { icon: '🐾', labelEs: 'Friendly Zone', labelEn: 'Friendly Zone', labelFr: 'Zone Friendly', labelDe: 'Friendly Zone', labelIt: 'Friendly Zone', labelNl: 'Friendly Zone', labelZh: '宠物友好区', labelZht: '寵物友善區', labelBg: 'Зона за любимци' },
-  accesible:        { icon: '♿', labelEs: 'Accesible', labelEn: 'Accessible', labelFr: 'Accessible', labelDe: 'Barrierefrei', labelIt: 'Accessibile', labelNl: 'Toegankelijk', labelZh: '无障碍', labelZht: '無障礙', labelBg: 'Достъпно' },
-  puerto_comercial: { icon: '🚢', labelEs: 'Puertos Comerciales', labelEn: 'Commercial Ports', labelFr: 'Ports Commerciaux', labelDe: 'Handelshäfen', labelIt: 'Porti commerciali', labelNl: 'Handelshavens', labelZh: '商业港口', labelZht: '商業港口', labelBg: 'Търговски пристанища' },
-  puerto_ocio:      { icon: '⛵', labelEs: 'Puertos & Marinas', labelEn: 'Marinas & Ports', labelFr: 'Marinas & Ports', labelDe: 'Marinas & Häfen', labelIt: 'Porti e marine', labelNl: 'Havens & jachthavens', labelZh: '港口与码头', labelZht: '港口與碼頭', labelBg: 'Пристанища и марини' },
-  deporte_publico:  { icon: '🏋️', labelEs: 'Deporte Público', labelEn: 'Public Sport', labelFr: 'Sport Public', labelDe: 'Sport im Freien', labelIt: 'Sport pubblico', labelNl: 'Openbare sport', labelZh: '公共运动设施', labelZht: '公共運動設施', labelBg: 'Обществен спорт' },
-  ciclismo:         { icon: '🚴', labelEs: 'Ciclismo', labelEn: 'Cycling', labelFr: 'Cyclisme', labelDe: 'Radfahren', labelIt: 'Ciclismo', labelNl: 'Fietsen', labelZh: '骑行', labelZht: '騎行', labelBg: 'Колоездене' },
-  parapente:        { icon: '🪂', labelEs: 'Parapente', labelEn: 'Paragliding', labelFr: 'Parapente', labelDe: 'Paragliding', labelIt: 'Parapendio', labelNl: 'Paragliding', labelZh: '滑翔伞', labelZht: '滑翔傘', labelBg: 'Парапланеризъм' },
-  golf:             { icon: '⛳', labelEs: 'Golf', labelEn: 'Golf', labelFr: 'Golf', labelDe: 'Golf', labelIt: 'Golf', labelNl: 'Golf', labelZh: '高尔夫', labelZht: '高爾夫', labelBg: 'Голф' },
-  escalada:         { icon: '🧗', labelEs: 'Escalada', labelEn: 'Climbing', labelFr: 'Escalade', labelDe: 'Klettern', labelIt: 'Arrampicata', labelNl: 'Klimmen', labelZh: '攀岩', labelZht: '攀岩', labelBg: 'Катерене' },
-  windsurf:         { icon: '🏄', labelEs: 'Windsurf & Kitesurf', labelEn: 'Windsurf & Kitesurf', labelFr: 'Windsurf & Kitesurf', labelDe: 'Windsurf & Kitesurf', labelIt: 'Windsurf & Kitesurf', labelNl: 'Windsurf & Kitesurf', labelZh: '风帆与风筝冲浪', labelZht: '風帆與風箏衝浪', labelBg: 'Уиндсърф и кайтсърф' },
-  kayak:            { icon: '🛶', labelEs: 'Kayak & SUP', labelEn: 'Kayak & SUP', labelFr: 'Kayak & SUP', labelDe: 'Kajak & SUP', labelIt: 'Kayak & SUP', labelNl: 'Kayak & SUP', labelZh: '皮划艇与桨板', labelZht: '皮划艇與槳板', labelBg: 'Каяк и падълборд' },
-  buceo:            { icon: '🤿', labelEs: 'Buceo & Snorkel', labelEn: 'Diving & Snorkel', labelFr: 'Plongée & Snorkel', labelDe: 'Tauchen & Schnorcheln', labelIt: 'Immersione & Snorkel', labelNl: 'Duiken & Snorkelen', labelZh: '潜水与浮潜', labelZht: '潛水與浮潛', labelBg: 'Гмуркане и шнорхел' },
-  pesca:            { icon: '🎣', labelEs: 'Pesca Deportiva', labelEn: 'Sport Fishing', labelFr: 'Pêche Sportive', labelDe: 'Sportfischen', labelIt: 'Pesca Sportiva', labelNl: 'Sportvisserij', labelZh: '运动钓鱼', labelZht: '運動釣魚', labelBg: 'Спортен риболов' },
-  barbacoa:         { icon: '🪵', labelEs: 'Barbacoa & Picnic', labelEn: 'BBQ & Picnic', labelFr: 'Barbecue & Pique-nique', labelDe: 'Grill & Picknick', labelIt: 'Barbecue & Picnic', labelNl: 'BBQ & Picknick', labelZh: '烧烤与野餐', labelZht: '燒烤與野餐', labelBg: 'Барбекю и пикник' },
-  mirador:          { icon: '🔭', labelEs: 'Miradores', labelEn: 'Viewpoints', labelFr: 'Belvédères', labelDe: 'Aussichtspunkte', labelIt: 'Belvederi', labelNl: 'Uitkijkpunten', labelZh: '观景台', labelZht: '觀景台', labelBg: 'Панорамни места' },
-  mercadillo:       { icon: '🛍️', labelEs: 'Mercadillos', labelEn: 'Local Markets', labelFr: 'Marchés Locaux', labelDe: 'Wochenmärkte', labelIt: 'Mercatini', labelNl: 'Markten', labelZh: '集市', labelZht: '市集', labelBg: 'Пазари' },
-  surf:             { icon: '🏄', labelEs: 'Surf & Agua', labelEn: 'Surf & Water', labelFr: 'Surf & Eau', labelDe: 'Surf & Wasser', labelIt: 'Surf & Acqua', labelNl: 'Surf & Water', labelZh: '冲浪与水上运动', labelZht: '衝浪與水上運動', labelBg: 'Сърф и водни спортове' },
-  supermercado:     { icon: '🛒', labelEs: 'Supermercados', labelEn: 'Supermarkets', labelFr: 'Supermarchés', labelDe: 'Supermärkte', labelIt: 'Supermercati', labelNl: 'Supermarkten', labelZh: '超市', labelZht: '超市', labelBg: 'Супермаркети' },
-  oficina_turismo:  { icon: 'ℹ️', labelEs: 'Oficinas de Turismo', labelEn: 'Tourism Offices', labelFr: 'Offices de Tourisme', labelDe: 'Touristinformationen', labelIt: 'Uffici Turistici', labelNl: 'VVV-kantoren', labelZh: '旅游信息中心', labelZht: '旅遊資訊中心', labelBg: 'Туристически центрове' },
-  camping:          { icon: '🏕️', labelEs: 'Campings', labelEn: 'Campsites', labelFr: 'Campings', labelDe: 'Campingplätze', labelIt: 'Campeggi', labelNl: 'Campings', labelZh: '露营地', labelZht: '露營地', labelBg: 'Къмпинги' }
+  petfriendly:      { icon: '🐾', labelEs: 'Friendly Zone', labelEn: 'Friendly Zone', labelFr: 'Zone Friendly', labelDe: 'Friendly Zone', labelIt: 'Friendly Zone', labelNl: 'Friendly Zone', labelZh: '宠物友好区', labelZht: '寵物友善區', labelBg: 'Зона за любимци', labelPl: 'Friendly Zone' },
+  accesible:        { icon: '♿', labelEs: 'Accesible', labelEn: 'Accessible', labelFr: 'Accessible', labelDe: 'Barrierefrei', labelIt: 'Accessibile', labelNl: 'Toegankelijk', labelZh: '无障碍', labelZht: '無障礙', labelBg: 'Достъпно', labelPl: 'Dostępne' },
+  puerto_comercial: { icon: '🚢', labelEs: 'Puertos Comerciales', labelEn: 'Commercial Ports', labelFr: 'Ports Commerciaux', labelDe: 'Handelshäfen', labelIt: 'Porti commerciali', labelNl: 'Handelshavens', labelZh: '商业港口', labelZht: '商業港口', labelBg: 'Търговски пристанища', labelPl: 'Porty handlowe' },
+  puerto_ocio:      { icon: '⛵', labelEs: 'Puertos & Marinas', labelEn: 'Marinas & Ports', labelFr: 'Marinas & Ports', labelDe: 'Marinas & Häfen', labelIt: 'Porti e marine', labelNl: 'Havens & jachthavens', labelZh: '港口与码头', labelZht: '港口與碼頭', labelBg: 'Пристанища и марини', labelPl: 'Porty i mariny' },
+  deporte_publico:  { icon: '🏋️', labelEs: 'Deporte Público', labelEn: 'Public Sport', labelFr: 'Sport Public', labelDe: 'Sport im Freien', labelIt: 'Sport pubblico', labelNl: 'Openbare sport', labelZh: '公共运动设施', labelZht: '公共運動設施', labelBg: 'Обществен спорт', labelPl: 'Sport publiczny' },
+  ciclismo:         { icon: '🚴', labelEs: 'Ciclismo', labelEn: 'Cycling', labelFr: 'Cyclisme', labelDe: 'Radfahren', labelIt: 'Ciclismo', labelNl: 'Fietsen', labelZh: '骑行', labelZht: '騎行', labelBg: 'Колоездене', labelPl: 'Kolarstwo' },
+  parapente:        { icon: '🪂', labelEs: 'Parapente', labelEn: 'Paragliding', labelFr: 'Parapente', labelDe: 'Paragliding', labelIt: 'Parapendio', labelNl: 'Paragliding', labelZh: '滑翔伞', labelZht: '滑翔傘', labelBg: 'Парапланеризъм', labelPl: 'Paralotniarstwo' },
+  golf:             { icon: '⛳', labelEs: 'Golf', labelEn: 'Golf', labelFr: 'Golf', labelDe: 'Golf', labelIt: 'Golf', labelNl: 'Golf', labelZh: '高尔夫', labelZht: '高爾夫', labelBg: 'Голф', labelPl: 'Golf' },
+  escalada:         { icon: '🧗', labelEs: 'Escalada', labelEn: 'Climbing', labelFr: 'Escalade', labelDe: 'Klettern', labelIt: 'Arrampicata', labelNl: 'Klimmen', labelZh: '攀岩', labelZht: '攀岩', labelBg: 'Катерене', labelPl: 'Wspinaczka' },
+  windsurf:         { icon: '🏄', labelEs: 'Windsurf & Kitesurf', labelEn: 'Windsurf & Kitesurf', labelFr: 'Windsurf & Kitesurf', labelDe: 'Windsurf & Kitesurf', labelIt: 'Windsurf & Kitesurf', labelNl: 'Windsurf & Kitesurf', labelZh: '风帆与风筝冲浪', labelZht: '風帆與風箏衝浪', labelBg: 'Уиндсърф и кайтсърф', labelPl: 'Windsurfing i kitesurfing' },
+  kayak:            { icon: '🛶', labelEs: 'Kayak & SUP', labelEn: 'Kayak & SUP', labelFr: 'Kayak & SUP', labelDe: 'Kajak & SUP', labelIt: 'Kayak & SUP', labelNl: 'Kayak & SUP', labelZh: '皮划艇与桨板', labelZht: '皮划艇與槳板', labelBg: 'Каяк и падълборд', labelPl: 'Kajak i SUP' },
+  buceo:            { icon: '🤿', labelEs: 'Buceo & Snorkel', labelEn: 'Diving & Snorkel', labelFr: 'Plongée & Snorkel', labelDe: 'Tauchen & Schnorcheln', labelIt: 'Immersione & Snorkel', labelNl: 'Duiken & Snorkelen', labelZh: '潜水与浮潜', labelZht: '潛水與浮潛', labelBg: 'Гмуркане и шнорхел', labelPl: 'Nurkowanie i snorkeling' },
+  pesca:            { icon: '🎣', labelEs: 'Pesca Deportiva', labelEn: 'Sport Fishing', labelFr: 'Pêche Sportive', labelDe: 'Sportfischen', labelIt: 'Pesca Sportiva', labelNl: 'Sportvisserij', labelZh: '运动钓鱼', labelZht: '運動釣魚', labelBg: 'Спортен риболов', labelPl: 'Wędkarstwo sportowe' },
+  barbacoa:         { icon: '🪵', labelEs: 'Barbacoa & Picnic', labelEn: 'BBQ & Picnic', labelFr: 'Barbecue & Pique-nique', labelDe: 'Grill & Picknick', labelIt: 'Barbecue & Picnic', labelNl: 'BBQ & Picknick', labelZh: '烧烤与野餐', labelZht: '燒烤與野餐', labelBg: 'Барбекю и пикник', labelPl: 'Grill i piknik' },
+  mirador:          { icon: '🔭', labelEs: 'Miradores', labelEn: 'Viewpoints', labelFr: 'Belvédères', labelDe: 'Aussichtspunkte', labelIt: 'Belvederi', labelNl: 'Uitkijkpunten', labelZh: '观景台', labelZht: '觀景台', labelBg: 'Панорамни места', labelPl: 'Punkty widokowe' },
+  mercadillo:       { icon: '🛍️', labelEs: 'Mercadillos', labelEn: 'Local Markets', labelFr: 'Marchés Locaux', labelDe: 'Wochenmärkte', labelIt: 'Mercatini', labelNl: 'Markten', labelZh: '集市', labelZht: '市集', labelBg: 'Пазари', labelPl: 'Targi lokalne' },
+  surf:             { icon: '🏄', labelEs: 'Surf & Agua', labelEn: 'Surf & Water', labelFr: 'Surf & Eau', labelDe: 'Surf & Wasser', labelIt: 'Surf & Acqua', labelNl: 'Surf & Water', labelZh: '冲浪与水上运动', labelZht: '衝浪與水上運動', labelBg: 'Сърф и водни спортове', labelPl: 'Surfing i sporty wodne' },
+  supermercado:     { icon: '🛒', labelEs: 'Supermercados', labelEn: 'Supermarkets', labelFr: 'Supermarchés', labelDe: 'Supermärkte', labelIt: 'Supermercati', labelNl: 'Supermarkten', labelZh: '超市', labelZht: '超市', labelBg: 'Супермаркети', labelPl: 'Supermarkety' },
+  oficina_turismo:  { icon: 'ℹ️', labelEs: 'Oficinas de Turismo', labelEn: 'Tourism Offices', labelFr: 'Offices de Tourisme', labelDe: 'Touristinformationen', labelIt: 'Uffici Turistici', labelNl: 'VVV-kantoren', labelZh: '旅游信息中心', labelZht: '旅遊資訊中心', labelBg: 'Туристически центрове', labelPl: 'Biura informacji turystycznej' },
+  camping:          { icon: '🏕️', labelEs: 'Campings', labelEn: 'Campsites', labelFr: 'Campings', labelDe: 'Campingplätze', labelIt: 'Campeggi', labelNl: 'Campings', labelZh: '露营地', labelZht: '露營地', labelBg: 'Къмпинги', labelPl: 'Kempingi' }
 };
 
 // ══════════════════════════════════════════════════════════
@@ -14914,7 +14942,7 @@ const CAT_GROUPS = [
     labelDe: 'Natur & Strände',
     labelIt: 'Natura & Spiagge',
     labelNl: 'Natuur & Stranden',
-    labelZh: '自然与海滩', labelZht: '自然與海灘', labelBg: 'Природа и плажове',
+    labelZh: '自然与海滩', labelZht: '自然與海灘', labelBg: 'Природа и плажове', labelPl: 'Przyroda i plaże',
     cats: ['naturaleza', 'playa', 'nudista', 'piscinas', 'montana', 'senderismo', 'faros']
   },
   {
@@ -14926,7 +14954,7 @@ const CAT_GROUPS = [
     labelDe: 'Kultur & Freizeit',
     labelIt: 'Cultura & Svago',
     labelNl: 'Cultuur & Vrije tijd',
-    labelZh: '文化与休闲', labelZht: '文化與休閒', labelBg: 'Култура и свободно време',
+    labelZh: '文化与休闲', labelZht: '文化與休閒', labelBg: 'Култура и свободно време', labelPl: 'Kultura i rozrywka',
     cats: ['cultura', 'museo', 'gastronomia', 'familia', 'animales', 'barbacoa']
   },
   {
@@ -14938,7 +14966,7 @@ const CAT_GROUPS = [
     labelDe: 'Städte & Ortschaften',
     labelIt: 'Città & Comuni',
     labelNl: 'Steden & Gemeenten',
-    labelZh: '城市与市镇', labelZht: '城市與市鎮', labelBg: 'Градове и общини',
+    labelZh: '城市与市镇', labelZht: '城市與市鎮', labelBg: 'Градове и общини', labelPl: 'Miasta i gminy',
     cats: ['ciudad', 'municipio']
   },
   {
@@ -14950,7 +14978,7 @@ const CAT_GROUPS = [
     labelDe: 'Dienstleistungen',
     labelIt: 'Servizi',
     labelNl: 'Diensten',
-    labelZh: '服务', labelZht: '服務', labelBg: 'Услуги',
+    labelZh: '服务', labelZht: '服務', labelBg: 'Услуги', labelPl: 'Usługi',
     cats: ['farmacia', 'hospital', 'csalud', 'gasolinera', 'ayuda']
   },
   {
@@ -14962,7 +14990,7 @@ const CAT_GROUPS = [
     labelDe: 'Häfen & Marina',
     labelIt: 'Porti & Marina',
     labelNl: 'Havens & Marina',
-    labelZh: '港口与码头', labelZht: '港口與碼頭', labelBg: 'Пристанища и марини',
+    labelZh: '港口与码头', labelZht: '港口與碼頭', labelBg: 'Пристанища и марини', labelPl: 'Porty i mariny',
     cats: ['puerto_comercial', 'puerto_ocio']
   },
   {
@@ -14974,7 +15002,7 @@ const CAT_GROUPS = [
     labelDe: 'Haustierfreundlich',
     labelIt: 'Pet Friendly',
     labelNl: 'Huisdieren Welkom',
-    labelZh: '宠物友好', labelZht: '寵物友善', labelBg: 'Подходящо за любимци',
+    labelZh: '宠物友好', labelZht: '寵物友善', labelBg: 'Подходящо за любимци', labelPl: 'Pets Friendly',
     cats: ['petfriendly', 'veterinario']
   },
   {
@@ -14986,7 +15014,7 @@ const CAT_GROUPS = [
     labelDe: 'Barrierefrei',
     labelIt: 'Accessibile',
     labelNl: 'Toegankelijk',
-    labelZh: '无障碍', labelZht: '無障礙', labelBg: 'Достъпно',
+    labelZh: '无障碍', labelZht: '無障礙', labelBg: 'Достъпно', labelPl: 'Dostępne',
     cats: ['accesible']
   },
   {
@@ -14998,7 +15026,7 @@ const CAT_GROUPS = [
     labelDe: 'Sport',
     labelIt: 'Sport',
     labelNl: 'Sport',
-    labelZh: '运动', labelZht: '運動', labelBg: 'Спорт',
+    labelZh: '运动', labelZht: '運動', labelBg: 'Спорт', labelPl: 'Sport',
     cats: ['deporte_publico', 'ciclismo', 'parapente', 'surf', 'windsurf', 'golf', 'escalada', 'kayak', 'buceo', 'pesca']
   },
   {
@@ -15010,7 +15038,7 @@ const CAT_GROUPS = [
     labelDe: 'Aussichtspunkte',
     labelIt: 'Belvederi',
     labelNl: 'Uitkijkpunten',
-    labelZh: '观景台', labelZht: '觀景台', labelBg: 'Панорамни места',
+    labelZh: '观景台', labelZht: '觀景台', labelBg: 'Панорамни места', labelPl: 'Punkty widokowe',
     cats: ['mirador']
   },
   {
@@ -15022,7 +15050,7 @@ const CAT_GROUPS = [
     labelDe: 'Märkte',
     labelIt: 'Mercatini',
     labelNl: 'Markten',
-    labelZh: '集市', labelZht: '市集', labelBg: 'Пазари',
+    labelZh: '集市', labelZht: '市集', labelBg: 'Пазари', labelPl: 'Targi lokalne',
     cats: ['mercadillo']
   },
   {
@@ -15034,7 +15062,7 @@ const CAT_GROUPS = [
     labelDe: 'Praktisches',
     labelIt: 'Pratico',
     labelNl: 'Praktisch',
-    labelZh: '实用', labelZht: '實用', labelBg: 'Полезно',
+    labelZh: '实用', labelZht: '實用', labelBg: 'Полезно', labelPl: 'Praktyczne',
     cats: ['parking', 'supermercado', 'oficina_turismo', 'camping', 'webcam']
   }
 ];
@@ -15048,7 +15076,7 @@ function getCatGroupLabel(group) {
   const labels = {
     es: group.labelEs, en: group.labelEn, fr: group.labelFr,
     de: group.labelDe, it: group.labelIt, nl: group.labelNl,
-    zh: group.labelZh, zht: group.labelZht, bg: group.labelBg, pl: "?"
+    zh: group.labelZh, zht: group.labelZht, bg: group.labelBg, pl: group.labelPl
   };
   return labels[currentLang] || (currentLang === 'zht' ? group.labelZh : '') || group.labelEn || group.labelEs;
 }
@@ -30773,12 +30801,6 @@ function chatDetectCats(padded,tokset,qnc){
   }
   return {keys:keys,label:labels.join(' + '),used:used};
 }
-/* Dos fuentes: las entradas del idioma del usuario, que llegan en
-   faq/<lang>.json, y las de CHAT_KB, que siguen estando solo en castellano.
-   Se miran primero las traducidas y se le exige a CHAT_KB que gane, no que
-   empate: donde las dos saben la respuesta, la buena es la que esta en el
-   idioma de quien pregunta. Si el fichero no ha llegado, la primera lista
-   viene vacia y esto se comporta exactamente como antes. */
 /* Cuanto vale que esta clave aparezca en la pregunta; 0 es que no aparece.
    Hay tres maneras de aparecer porque hay tres maneras de escribir:
 
@@ -30789,15 +30811,23 @@ function chatDetectCats(padded,tokset,qnc){
 
    - La frase tal cual, en ese orden. Vale lo que mide.
 
-   - La frase descolocada. Un aleman escribe «Genehmigung fur den Teide» y
-     la clave es «teide genehmigung»: las dos palabras estan, el orden no.
+   - La frase descolocada. Un aleman escribe «Genehmigung fur den Gipfel» y
+     la clave es «gipfel genehmigung»: las dos palabras estan, el orden no.
      Antes eso no puntuaba nada y la pregunta se iba a la entrada castellana
-     de CHAT_KB, que puntuaba 2 por el token «teide» suelto. Hacen falta dos
-     palabras de tres letras o mas: con una sola cualquier coincidencia
-     tonta valdria, y por debajo de tres letras no queda casi nada que
-     signifique algo. De las vacias no hay que preocuparse, porque tokset se
-     construye sin las de CHAT_STOP y «de», «the» o «van» no llegan hasta
-     aqui. Vale menos que la frase entera, que sigue siendo la senal buena. */
+     de CHAT_KB, que puntuaba 2 por el token «teide» suelto.
+
+     Tienen que estar TODAS las palabras de la clave de tres letras o mas, y
+     ser al menos dos. La primera version pedia solo dos cualesquiera y eso
+     daba respuestas seguras y equivocadas en cuanto el idioma no era el
+     castellano: «Was kann man hier machen» casaba con la clave «kann man zu
+     fuss hochgehen» por «kann» y «man», y contestaba como se sube al Teide a
+     pie; «какво да видя наблизо» casaba con «какво да видя за няколко дни»
+     por dos palabras y contestaba el plan de tres dias. CHAT_STOP solo tiene
+     vacias del castellano y del ingles, asi que en aleman o en bulgaro las
+     palabras de relleno cuentan como si dijeran algo. Exigirlas todas corta
+     eso de raiz, y lo que se pierde es una respuesta de menos, no una
+     respuesta equivocada. Vale menos que la frase entera, que sigue siendo
+     la senal buena. */
 function chatCoincide(kn,padded,tokset,qnc){
   if(!kn)return 0;
   if(CHAT_CJK.test(kn)){
@@ -30808,9 +30838,30 @@ function chatCoincide(kn,padded,tokset,qnc){
   }
   if(kn.indexOf(' ')<0)return tokset[kn]?2:0;
   if(padded.indexOf(' '+kn+' ')>=0)return 3+kn.split(' ').length;
-  var pal=kn.split(' '),sueltas=0;
-  for(var i=0;i<pal.length;i++)if(pal[i].length>2&&tokset[pal[i]])sueltas++;
-  return sueltas>=2?sueltas:0;
+  var pal=kn.split(' '),largas=0,sueltas=0;
+  for(var i=0;i<pal.length;i++){
+    if(pal[i].length<=2)continue;
+    largas++;
+    if(tokset[pal[i]])sueltas++;
+  }
+  return (largas>=2&&sueltas===largas)?sueltas:0;
+}
+/* Las listas de intencion -CHAT_WHERE, CHAT_WHAT, CHAT_NEAR, CHAT_COUNT_Q-
+   estan en castellano y en ingles y en nada mas. Un aleman que escribia «Wo
+   ist Masca» no disparaba la intencion «donde esta» y no se le ensenaba el
+   lugar; un chino que escribia «马斯卡在哪里» y un bulgaro que escribia «Къде е
+   Маска» se iban directamente al mensaje de «no tengo respuesta». Mismo fallo
+   que tenian las categorias y misma solucion: el vocabulario de cada idioma
+   viaja en faq/<lang>.json, que es el fichero que ese idioma ya se descarga.
+
+   Las listas de dentro NO se tocan y se siguen mirando con la comparacion de
+   siempre: lo que ya funcionaba en castellano y en ingles se comporta igual
+   aunque el fichero no llegue nunca. Esto solo anade. */
+function chatAlguna(lista,padded,tokset,qnc){
+  for(var i=0;i<lista.length;i++){
+    if(chatCoincide(chatNorm(lista[i]),padded,tokset,qnc))return true;
+  }
+  return false;
 }
 /* Dos fuentes: las entradas del idioma del usuario, que llegan en
    faq/<lang>.json, y las de CHAT_KB, que siguen estando solo en castellano.
@@ -30848,7 +30899,9 @@ function chatResolve(question,pos){
 
   if(/(^| )(hola|buenas|hello|hi|hey|bonjour|hallo|ciao|hoi|saludos)( |$)/.test(padded)&&toks.length<=2)return {kind:'greet'};
   if(/(^| )(gracias|thanks|thank|merci|danke|grazie|bedankt|genial|perfecto)( |$)/.test(padded)&&toks.length<=3)return {kind:'thanks'};
+  var qnc=chatSinEsp(qn);
   for(var c0=0;c0<CHAT_COUNT_Q.length;c0++){if(padded.indexOf(' '+CHAT_COUNT_Q[c0]+' ')>=0)return {kind:'count'};}
+  if(chatAlguna(TG_FAQ.intencion('count'),padded,tokset,qnc))return {kind:'count'};
 
   chatBuildIndex();
 
@@ -30857,8 +30910,12 @@ function chatResolve(question,pos){
   for(w=0;w<CHAT_WHAT.length;w++){if(padded.indexOf(' '+CHAT_WHAT[w]+' ')>=0){whatHit=true;break;}}
   for(w=0;w<CHAT_NEAR.length;w++){if(padded.indexOf(' '+CHAT_NEAR[w]+' ')>=0){nearHit=true;break;}}
   if(!nearHit){for(w=0;w<toks.length;w++){if(CHAT_NEAR_TOK[toks[w]]){nearHit=true;break;}}}
+  if(!whereHit)whereHit=chatAlguna(TG_FAQ.intencion('where'),padded,tokset,qnc);
+  if(!whatHit) whatHit =chatAlguna(TG_FAQ.intencion('what'), padded,tokset,qnc);
+  if(!nearHit) nearHit =chatAlguna(TG_FAQ.intencion('near'), padded,tokset,qnc)
+                      ||chatAlguna(TG_FAQ.intencion('nearTok'),padded,tokset,qnc);
 
-  var cats=chatDetectCats(padded,tokset,chatSinEsp(qn));
+  var cats=chatDetectCats(padded,tokset,qnc);
   var zone=null;
   for(var z1=0;z1<toks.length;z1++){var zk=CHAT_ZONE_W[toks[z1]];if(zk&&!(z1>0&&(toks[z1-1]==='aeropuerto'||toks[z1-1]==='airport'))){zone=zk;break;}}
 
@@ -35696,39 +35753,63 @@ function closePrivacyPanel() {
   <div class="pp-sheet">
     <button class="pp-close" onclick="closePrivacyPanel()" data-tx-aria="ariaCerrar" aria-label="Cerrar" data-tx="ppCerrar">✕ Cerrar</button>
     <h2 data-tx="ppTitulo">🔒 Política de Privacidad</h2>
-    <p><strong data-sin-traducir="marca">Tenerife Go</strong> <span data-tx="ppActualizado">— Última actualización: junio 2025</span></p>
+    <p><strong data-sin-traducir="marca">Tenerife Go</strong> <span data-tx="ppActualizado">— Última actualización: septiembre de 2026</span></p>
 
-    <h3 data-tx="pp1Titulo">1. Responsable del tratamiento</h3>
-    <p><span data-sin-traducir="nombre del responsable">Jérôme Bourgeois ·</span> <a href="mailto:tenerife.go.app@gmail.com" data-sin-traducir="direccion de correo">tenerife.go.app@gmail.com</a> <span data-tx="pp1Dir">· Tenerife, Islas Canarias, España.</span></p>
+    <h3><span data-sin-traducir="numero de apartado">1.</span> <span data-tx="ppRespTitulo">Responsable del tratamiento</span></h3>
+    <p><span data-sin-traducir="nombre del responsable">Jérôme Bourgeois ·</span> <a href="mailto:tenerife.go.app@gmail.com" data-sin-traducir="direccion de correo">tenerife.go.app@gmail.com</a> <span data-tx="ppRespDir">· Tenerife, Islas Canarias, España.</span></p>
 
-    <h3 data-tx="pp2Titulo">2. Datos que recogemos</h3>
+    <h3><span data-sin-traducir="numero de apartado">2.</span> <span data-tx="ppDatosTitulo">Qué datos se tratan</span></h3>
     <ul>
-      <li><strong data-tx="pp2Geo">Geolocalización:</strong> <span data-tx="pp2GeoTxt">solo cuando el usuario la activa, para mostrar paradas cercanas y calcular rutas. No se almacena en servidor.</span></li>
-      <li><strong data-tx="pp2Cuenta">Cuenta (opcional):</strong> <span data-tx="pp2CuentaTxt">correo electrónico y contraseña cifrada, para guardar favoritos. Gestionados por</span> <a href="https://supabase.com/privacy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Supabase</a> <span data-tx="pp2Rls">con RLS.</span></li>
-      <li><strong data-tx="pp2Fav">Favoritos:</strong> <span data-tx="pp2FavTxt">IDs de lugares guardados, asociados a tu cuenta.</span></li>
-      <li><strong data-tx="pp2Pref">Preferencias:</strong> <span data-tx="pp2PrefTxt">idioma y filtros activos, guardados localmente en tu dispositivo (localStorage).</span></li>
+      <li><strong data-tx="ppDatosGeo">Geolocalización:</strong> <span data-tx="ppDatosGeoTxt">solo cuando la activas. No se guarda en ningún servidor. Si pides una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas para calcularla.</span></li>
+      <li><strong data-tx="ppDatosCuenta">Cuenta (opcional):</strong> <span data-tx="ppDatosCuentaTxt">correo electrónico y contraseña. Los gestiona</span> <a href="https://supabase.com/privacy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Supabase</a><span data-tx="ppDatosRls">, que guarda la contraseña cifrada; nosotros no la vemos.</span></li>
+      <li><strong data-tx="ppDatosFav">Favoritos:</strong> <span data-tx="ppDatosFavTxt">los identificadores de los lugares que guardas. Con cuenta se sincronizan; sin cuenta se quedan en tu dispositivo.</span></li>
+      <li><strong data-tx="ppDatosPref">Preferencias y uso:</strong> <span data-tx="ppDatosPrefTxt">idioma, filtros, líneas de guagua activas, caché del tiempo y del estado del mar, si ya viste el tour, un contador de visitas y tu respuesta al aviso de cookies. Todo esto se guarda en tu dispositivo y no se envía a ningún sitio.</span></li>
+      <li><strong data-tx="ppDatosPush">Notificaciones (opcional):</strong> <span data-tx="ppDatosPushTxt">si las activas, la suscripción que crea tu navegador —una dirección de envío y dos claves— se guarda para poder mandarte el aviso. Al desactivarlas en el navegador, deja de usarse.</span></li>
+      <li><strong data-tx="ppDatosStats">Estadísticas de uso:</strong> <span data-tx="ppDatosStatsTxt">solo si las aceptas. Ver el apartado siguiente.</span></li>
     </ul>
 
-    <h3 data-tx="pp3Titulo">3. Finalidad y base legal</h3>
+    <h3><span data-sin-traducir="numero de apartado">3.</span> <span data-tx="ppStatsTitulo">Estadísticas y cookies</span></h3>
+    <p data-tx="ppStatsAntes">La app usa Google Analytics 4, y no se carga hasta que aceptas el aviso de cookies: hasta entonces no sale nada hacia Google desde la app.</p>
+    <p data-tx="ppStatsSi">Si aceptas, Google Analytics instala sus propias cookies y recibe datos de navegación —pantallas vistas, idioma, país aproximado, tipo de dispositivo— y tu dirección IP.</p>
+    <p data-tx="ppStatsConsent">Está configurado con Consent Mode v2 y las señales publicitarias quedan denegadas siempre, así que esos datos no se usan para personalizar anuncios. Si rechazas, no se carga nada.</p>
+    <p data-tx="ppStatsGuarda">Tu respuesta se guarda 180 días en tu dispositivo; después se vuelve a preguntar. Para cambiarla antes, borra los datos del sitio en tu navegador.</p>
+
+    <h3><span data-sin-traducir="numero de apartado">4.</span> <span data-tx="ppPubTitulo">Publicidad y contenidos promocionados</span></h3>
+    <p data-tx="ppPubQue">El mapa muestra negocios que pagan un plan de promoción mensual. Van marcados como recomendación y no alteran el resto del contenido.</p>
+    <p data-tx="ppPubNoDatos">Esa promoción no usa tus datos: se enseñan a todo el mundo por igual, sin segmentación, sin perfilado y sin cookies publicitarias. En la app no hay ninguna red publicitaria de terceros en funcionamiento.</p>
+
+    <h3><span data-sin-traducir="numero de apartado">5.</span> <span data-tx="ppTercTitulo">Terceros que reciben datos</span></h3>
+    <p data-tx="ppTercIntro">Para funcionar, la app pide datos a servicios externos. Todos reciben tu dirección IP y, además:</p>
     <ul>
-      <li><span data-tx="pp3Li1a">Prestar el servicio de guía turística interactiva (</span><em data-tx="pp3Interes">interés legítimo</em> / <em data-tx="pp3Contrato">ejecución de contrato</em>).</li>
-      <li data-tx="pp3Li2">Geolocalización: consentimiento explícito del usuario en cada sesión.</li>
-      <li data-tx="pp3Li3">No realizamos perfilado, publicidad ni cesión de datos a terceros.</li>
+      <li><a href="https://supabase.com/privacy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Supabase</a> — <span data-tx="ppTercSupabase">cuenta, favoritos y suscripción de notificaciones.</span></li>
+      <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">OpenStreetMap · ArcGIS</a> — <span data-tx="ppTercMapas">las teselas del mapa, o sea qué zona estás mirando.</span></li>
+      <li><a href="https://project-osrm.org/" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">OSRM</a> — <span data-tx="ppTercOsrm">origen y destino cuando calculas una ruta en coche.</span></li>
+      <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Nominatim</a> — <span data-tx="ppTercNominatim">el texto que escribes al buscar una dirección.</span></li>
+      <li><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Open-Meteo</a> — <span data-tx="ppTercMeteo">las coordenadas del lugar o de la zona cuya previsión consultas.</span></li>
+      <li><a href="https://www.aemet.es/es/nota_legal" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">AEMET</a> — <span data-tx="ppTercAemet">avisos meteorológicos de la isla; no se le manda nada tuyo.</span></li>
+      <li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Wikipedia · Wikimedia</a> — <span data-tx="ppTercWiki">el título del artículo del lugar que abres.</span></li>
+      <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Google Fonts · jsDelivr</a> — <span data-tx="ppTercCdn">tipografías y librerías.</span></li>
+      <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Google Analytics</a> — <span data-tx="ppTercGa">solo si aceptas el aviso de cookies.</span></li>
+    </ul>
+    <p data-tx="ppTercNoVenta">Ninguno de estos datos se vende ni se cede con fines comerciales.</p>
+
+    <h3><span data-sin-traducir="numero de apartado">6.</span> <span data-tx="ppBaseTitulo">Finalidad y base legal</span></h3>
+    <ul>
+      <li><span data-tx="ppBaseLi1a">Prestar el servicio de guía turística interactiva (</span><em data-tx="ppBaseInteres">interés legítimo</em> / <em data-tx="ppBaseContrato">ejecución de contrato</em>).</li>
+      <li data-tx="ppBaseLi2">Geolocalización, notificaciones y estadísticas: consentimiento, que puedes retirar cuando quieras.</li>
     </ul>
 
-    <h3 data-tx="pp4Titulo">4. Conservación</h3>
-    <p data-tx="pp4Txt">Los datos de cuenta se conservan mientras la cuenta esté activa. Puedes eliminarla en cualquier momento desde Ajustes → Cuenta → Eliminar cuenta.</p>
+    <h3><span data-sin-traducir="numero de apartado">7.</span> <span data-tx="ppConsTitulo">Conservación</span></h3>
+    <p data-tx="ppConsCuenta">Los datos de la cuenta se conservan mientras la cuenta exista. Para borrarla, escríbenos y se elimina junto con tus favoritos.</p>
+    <p data-tx="ppConsDispositivo">Lo guardado en tu dispositivo desaparece al borrar los datos del sitio o desinstalar la app.</p>
 
-    <h3 data-tx="pp5Titulo">5. Derechos</h3>
-    <p><span data-tx="pp5Txt">Tienes derecho de acceso, rectificación, supresión, portabilidad, limitación y oposición. Ejércelos escribiendo a</span> <a href="mailto:tenerife.go.app@gmail.com" data-sin-traducir="direccion de correo">tenerife.go.app@gmail.com</a><span data-tx="pp5Reclamar">. También puedes reclamar ante la</span> <a href="https://www.aepd.es" target="_blank" rel="noopener" data-sin-traducir="nombre oficial del organismo">AEPD</a>.</p>
+    <h3><span data-sin-traducir="numero de apartado">8.</span> <span data-tx="ppDerTitulo">Derechos</span></h3>
+    <p><span data-tx="ppDerTxt">Tienes derecho de acceso, rectificación, supresión, portabilidad, limitación y oposición. Ejércelos escribiendo a</span> <a href="mailto:tenerife.go.app@gmail.com" data-sin-traducir="direccion de correo">tenerife.go.app@gmail.com</a><span data-tx="ppDerReclamar">. También puedes reclamar ante la</span> <a href="https://www.aepd.es" target="_blank" rel="noopener" data-sin-traducir="nombre oficial del organismo">AEPD</a>.</p>
 
-    <h3 data-tx="pp6Titulo">6. Cookies y almacenamiento local</h3>
-    <p><span data-tx="pp6Usamos">Usamos</span> <em data-sin-traducir="termino tecnico del navegador">localStorage</em> <span data-tx="pp6Txt">para guardar preferencias de idioma y filtros. No usamos cookies de rastreo ni de terceros. No hay publicidad.</span></p>
+    <h3><span data-sin-traducir="numero de apartado">9.</span> <span data-tx="ppSegTitulo">Seguridad</span></h3>
+    <p data-tx="ppSegTxt">Toda la comunicación va por HTTPS. Supabase guarda las contraseñas cifradas y el acceso a las tablas está limitado por RLS; no tenemos acceso a tu contraseña.</p>
 
-    <h3 data-tx="pp7Titulo">7. Seguridad</h3>
-    <p data-tx="pp7Txt">Las contraseñas se almacenan cifradas (bcrypt) en Supabase. La comunicación es HTTPS. No tenemos acceso a tu contraseña.</p>
-
-    <h3 data-tx="pp8Titulo">8. Contacto</h3>
+    <h3><span data-sin-traducir="numero de apartado">10.</span> <span data-tx="ppContTitulo">Contacto</span></h3>
     <p><a href="mailto:tenerife.go.app@gmail.com" data-sin-traducir="direccion de correo">tenerife.go.app@gmail.com</a></p>
   </div>
 </div>
@@ -36341,16 +36422,21 @@ function closePrivacyPanel() {
 <script>
 (function(){
   var KEY = 'tgo_consent', TTL = 180*24*3600*1000;
+  /* Decia «estadisticas anonimas». No lo son: Google Analytics recibe la IP
+     y pone sus propias cookies, asi que son seudonimas, y llamarlas anonimas
+     era pedir el consentimiento contando otra cosa. Se nombra el servicio y
+     se dice que no se carga si no se acepta, que es lo que de verdad pasa. */
   var T = {
-    es:{msg:'Usamos cookies para estadísticas anónimas y mejorar la app.',ok:'Aceptar',no:'Rechazar'},
-    en:{msg:'We use cookies for anonymous stats to improve the app.',ok:'Accept',no:'Decline'},
-    fr:{msg:'Nous utilisons des cookies pour des statistiques anonymes.',ok:'Accepter',no:'Refuser'},
-    de:{msg:'Wir nutzen Cookies für anonyme Statistiken.',ok:'Akzeptieren',no:'Ablehnen'},
-    it:{msg:'Usiamo i cookie per statistiche anonime.',ok:'Accetta',no:'Rifiuta'},
-    nl:{msg:'We gebruiken cookies voor anonieme statistieken.',ok:'Accepteren',no:'Weigeren'},
-    zh:{msg:'我们使用 Cookie 进行匿名统计，以改进本应用。',ok:'接受',no:'拒绝'},
-    zht:{msg:'我們使用 Cookie 進行匿名統計，以改善本應用程式。',ok:'接受',no:'拒絕'},
-    bg:{msg:'Използваме бисквитки за анонимна статистика и за подобряване на приложението.',ok:'Приемам',no:'Отказвам'}, pl: {"msg":"Używamy ciasteczek do anonimowych statystyk i ulepszania aplikacji.","ok":"Akceptuję","no":"Odrzucam"}
+    es:{msg:'Usamos Google Analytics para estadísticas de uso. Solo se carga si lo aceptas.',ok:'Aceptar',no:'Rechazar'},
+    en:{msg:'We use Google Analytics for usage statistics. It only loads if you accept.',ok:'Accept',no:'Decline'},
+    fr:{msg:'Nous utilisons Google Analytics pour des statistiques d’usage. Il ne se charge que si vous acceptez.',ok:'Accepter',no:'Refuser'},
+    de:{msg:'Wir nutzen Google Analytics für Nutzungsstatistiken. Es wird nur geladen, wenn du zustimmst.',ok:'Akzeptieren',no:'Ablehnen'},
+    it:{msg:'Usiamo Google Analytics per statistiche d’uso. Si carica solo se accetti.',ok:'Accetta',no:'Rifiuta'},
+    nl:{msg:'We gebruiken Google Analytics voor gebruiksstatistieken. Het laadt alleen als je accepteert.',ok:'Accepteren',no:'Weigeren'},
+    zh:{msg:'我们使用 Google Analytics 进行使用统计，只有在你接受后才会加载。',ok:'接受',no:'拒绝'},
+    zht:{msg:'我們使用 Google Analytics 進行使用統計，只有在你接受後才會載入。',ok:'接受',no:'拒絕'},
+    bg:{msg:'Използваме Google Analytics за статистика на употребата. Зарежда се само ако приемете.',ok:'Приемам',no:'Отказвам'},
+    pl:{msg:'Używamy Google Analytics do statystyk użycia. Ładuje się tylko wtedy, gdy zaakceptujesz.',ok:'Akceptuję',no:'Odrzucam'}
   };
   function tt(){ var l = (typeof currentLang !== 'undefined' && currentLang) || 'es'; return T[l] || T.es; }
   var saved = null;
