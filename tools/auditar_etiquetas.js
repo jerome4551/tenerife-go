@@ -23,10 +23,21 @@
 const fs = require('fs');
 const path = require('path');
 const RAIZ = path.join(__dirname, '..');
-const IDI = ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg'];
 const LISTA = process.argv.indexOf('--lista') !== -1;
 
 const src = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+
+/* Los idiomas salen del fuente, no de una lista escrita aqui. Esta lista
+   decia ['en','fr','de','it','nl','zh','zht','bg'] y el dia que entro un
+   idioma nuevo el control siguio dando verde sin haberlo mirado, que es
+   exactamente lo que este fichero existe para impedir. Se leen los de
+   SUPPORTED_LANGS -el castellano no, que es el original contra el que se
+   mide- incluidos los que todavia estan a medias: un idioma a medias no se
+   ofrece, pero sus etiquetas se vigilan igual mientras se escriben. */
+const IDI = ((src.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1])
+  .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, ''))
+  .filter(l => l && l !== 'es');
+if (!IDI.length) { console.error('no se encuentra SUPPORTED_LANGS en index.html'); process.exit(2); }
 const i = src.indexOf('const places = ['), o = src.indexOf('[', i);
 let d = 0, q = null, fin = 0;
 for (let k = o; k < src.length; k++) {
@@ -91,7 +102,7 @@ for (const [t] of cuenta) {
 }
 P('reconocidas solas como nombre de sitio', sitio);
 P('declaradas sin traducir, con motivo', decl);
-P('traducidas en los ocho idiomas', trad);
+P('traducidas en los ' + IDI.length + ' idiomas', trad);
 P('SIN TRADUCIR Y SIN DECLARAR', huecos.length);
 P('traducidas a medias', acortos.length);
 if (LISTA || huecos.length || acortos.length) {

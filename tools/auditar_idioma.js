@@ -26,7 +26,18 @@ const path = require('path');
 const RAIZ = path.join(__dirname, '..');
 const LANG = (process.argv[2] || '').toLowerCase();
 const LISTA = process.argv.indexOf('--lista') !== -1;
-const IDI = ['es','en','fr','de','it','nl','zh','zht','bg'];
+
+/* Los idiomas salen del fuente, no de una lista escrita aqui: una lista
+   repetida a mano envejece sola y el dia que entra un idioma nuevo el control
+   sigue dando verde sin haberlo mirado. */
+function idiomasDelFuente(src, conCastellano) {
+  const l = ((src.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1])
+    .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
+  if (!l.length) { console.error('no se encuentra SUPPORTED_LANGS en index.html'); process.exit(2); }
+  return conCastellano ? l : l.filter(x => x !== 'es');
+}
+const IDI = idiomasDelFuente(
+  fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8'), true);
 if (IDI.indexOf(LANG) === -1) {
   console.log('uso: node tools/auditar_idioma.js <' + IDI.join('|') + '> [--lista]');
   process.exit(2);

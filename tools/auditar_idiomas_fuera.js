@@ -21,13 +21,33 @@ const fs = require('fs');
 const path = require('path');
 const RAIZ = path.join(__dirname, '..');
 const PUERTO = process.argv[2] && process.argv[2][0] !== '-' ? process.argv[2] : '8777';
-const IDI = ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg'];
+
+/* Los idiomas salen del fuente, no de una lista escrita aqui: una lista
+   repetida a mano envejece sola y el dia que entra un idioma nuevo el control
+   sigue dando verde sin haberlo mirado. */
+function idiomasDelFuente(src, conCastellano) {
+  const l = ((src.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1])
+    .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
+  if (!l.length) { console.error('no se encuentra SUPPORTED_LANGS en index.html'); process.exit(2); }
+  return conCastellano ? l : l.filter(x => x !== 'es');
+}
+const _src0 = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+const IDI = idiomasDelFuente(_src0, false);
+/* Un idioma que esta en IDIOMAS_INCOMPLETOS se esta escribiendo: no se
+   ofrece en el menu y setLang lo rechaza, asi que lo que le falte no es un
+   fallo de la app, es trabajo pendiente. Se mira igual y se dice que le
+   falta -para eso esta el control- pero no tumba la auditoria. Lo que si
+   seria un fallo es que se ofreciera estando a medias, y de eso se ocupa
+   auditar_datos.js. */
+const A_MEDIAS = ((_src0.match(/IDIOMAS_INCOMPLETOS\s*=\s*\[([^\]]*)\]/) || [, ''])[1])
+  .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
 const CAMPOS = ['desc', 'cat', 'hours', 'aviso'];
 
-let fallos = 0;
-const debe = (txt, val, ok) => {
-  console.log('  ' + (ok ? 'OK ' : 'MAL') + ' ' + txt.padEnd(52) + val);
-  if (!ok) fallos++;
+let fallos = 0, pendientes = 0;
+const debe = (txt, val, ok, aMedias) => {
+  const marca = ok ? 'OK ' : (aMedias ? '·· ' : 'MAL');
+  console.log('  ' + marca + ' ' + txt.padEnd(52) + val);
+  if (!ok) { if (aMedias) pendientes++; else fallos++; }
 };
 
 /* ── 1. lo que index.html conserva ───────────────────────────────────────
@@ -74,8 +94,12 @@ console.log('\n=== idiomas/*.json ===');
 const esperado = new Set(huecos.map(h => h.id + '|' + h.campo));
 const ids = new Set(dentro.map(p => p.id));
 for (const l of IDI) {
+  const medias = A_MEDIAS.indexOf(l) !== -1;
   const f = path.join(RAIZ, 'idiomas', l + '.json');
-  if (!fs.existsSync(f)) { debe(l + ': el fichero existe', 'NO', false); continue; }
+  if (!fs.existsSync(f)) {
+    debe(l + ': el fichero existe', medias ? 'todavia no (idioma a medias)' : 'NO', false, medias);
+    continue;
+  }
   let datos;
   try { datos = JSON.parse(fs.readFileSync(f, 'utf8')); }
   catch (e) { debe(l + ': JSON valido', String(e.message).slice(0, 30), false); continue; }
@@ -161,6 +185,8 @@ for (const l of IDI) {
   }
   await b.close();
   console.log('');
+  if (pendientes) console.log('   ' + pendientes + ' pendiente(s) de un idioma declarado a medias: '
+                              + A_MEDIAS.join(' ') + ' (no cuenta como fallo)');
   console.log(fallos ? '*** ' + fallos + ' control(es) con fallo ***' : 'los controles pasan');
   process.exit(fallos ? 1 : 0);
 })();
