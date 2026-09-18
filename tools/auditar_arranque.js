@@ -66,14 +66,20 @@ const FOTO = () => {
 
   /* Los idiomas salen del fuente, no de una lista aqui: el dia que entre uno
      nuevo este control lo mira sin que nadie se acuerde de tocarlo.
-     SUPPORTED_LANGS vive dentro de setLang, asi que no se puede preguntar al
-     navegador; se lee del fichero, que es de donde lo leen los demas. */
+     Se lee del fichero, que es de donde lo leen los demas controles.
+
+     Los de IDIOMAS_INCOMPLETOS se quedan fuera a proposito: setLang los
+     rechaza y devuelve ingles, asi que pintarlos aqui solo mediria que el
+     rechazo funciona, y de eso ya se encarga el control de datos. */
   const html = require('fs').readFileSync(
     require('path').join(__dirname, '..', 'index.html'), 'utf8');
-  const IDIOMAS = (html.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1]
-    .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, ''))
-    .filter(l => l && l !== 'es');
+  const lista = re => (html.match(re) || [, ''])[1]
+    .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
+  const SOP = lista(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/);
+  const MEDIAS = lista(/IDIOMAS_INCOMPLETOS\s*=\s*\[([^\]]*)\]/);
+  const IDIOMAS = SOP.filter(l => l !== 'es' && !MEDIAS.includes(l));
   if (!IDIOMAS.length) { console.log('no se encontro SUPPORTED_LANGS'); process.exit(1); }
+  if (MEDIAS.length) console.log('  (a medias, no se miran: ' + MEDIAS.join(' ') + ')');
 
   async function pinta(lang, arrancando) {
     const ctx = await b.newContext({ viewport: { width: 390, height: 844 } });

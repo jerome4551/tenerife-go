@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 e82a2e98124b969305da2be9b2c3590c
-             3.088.803 bytes · 888.635 comprimidos · 36.821 líneas
+index.html   md5 f21281f100ac5fcc374d55e61c480c8b
+             3.131.903 bytes · 908.723 comprimidos · 37.020 líneas
 idiomas/     8 ficheros · 2.246.677 bytes · entre 75 y 93 kB comprimidos
              + glosario-cat/ · 7 ficheros con los trozos de etiqueta a mano
              + etiquetas/    · 8 ficheros con los chips del globo (~15 kB cada uno)
@@ -153,6 +153,55 @@ emojis: 2.894, 250 distintos
 
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
+
+## El polaco · la interfaz entera, los lugares todavía no
+
+Los bloques del asistente vienen redactados en polaco y la prueba de
+aceptación pedía «guaguas en polaco», pero la app no tenía ese idioma: no
+estaba en `LANGS`, ni en `idiomas/`, ni en el menú. Añadirlo son **3.475
+textos**, contados:
+
+```
+LANGS.pl                          168   hecho
+resto de la interfaz              814   hecho   (614 filas en 45 tablas)
+idiomas/pl.json                 1.741   pendiente  (los textos de los lugares)
+idiomas/etiquetas/pl.json         685   pendiente
+idiomas/glosario-cat/pl.json       67   pendiente
+```
+
+Los 982 de interfaz están puestos y el barrido da **0 filas sin `pl`**. Lo que
+falta son los textos de los lugares, que viven fuera de `index.html`.
+
+**Mientras falten, el polaco no se ofrece.** Va en `IDIOMAS_INCOMPLETOS`, que
+es el mecanismo que ya existía para el búlgaro y que hace tres cosas a la vez:
+esconde su opción del menú por `data-incompleto`, hace que `setLang('pl')` lo
+rechace y devuelva inglés, y evita que un móvil configurado en polaco arranque
+solo en un idioma a medias. Comprobado en el navegador: el menú enseña nueve,
+`setLang('pl')` deja `currentLang` en `en` y los checks siguen emparejados por
+posición.
+
+Y una cifra que el idioma nuevo puso al descubierto: **«toda la app en 9
+idiomas» estaba escrita a mano en los diez idiomas**, en el tour y en la
+respuesta del asistente, más la ficha JSON-LD. Veinte sitios que había que
+acordarse de tocar. Ahora los textos llevan `{L}` y el número sale de
+`nIdiomasListos()`, que es `SUPPORTED_LANGS` menos `IDIOMAS_INCOMPLETOS`: hoy
+nueve, y diez el día que el polaco se termine, sin tocar una línea. La única
+que sigue escrita es la de JSON-LD, que es estática, y el control de datos la
+compara contra ese mismo cálculo.
+
+`tools/poner_idioma.js` es lo que mete un idioma en las 614 filas: las
+localiza con acorn —no a mano, están repartidas por 37.000 líneas y muchas sin
+nombre de tabla al que agarrarse— y escribe de atrás hacia delante para que
+los desplazamientos no se muevan bajo los pies. Si el número de textos no
+cuadra con el número de filas no escribe nada: más vale no tocar el fichero
+que dejarlo con los textos corridos una posición. La traducción vive en
+`idiomas/pl-fuente/`, revisable aparte del HTML.
+
+`wikiTitleOverrides` se queda sin polaco a propósito, como ya se queda sin
+italiano y sin chino: son títulos EXACTOS de artículos que existen en cada
+Wikipedia, y uno inventado no devuelve el artículo, devuelve nada. Desde aquí
+no se pueden comprobar —el proxy responde 403 a `wikipedia.org`— así que no se
+escriben.
 
 ## El asistente · 69 respuestas en 10 idiomas, y por qué no bastaba traducirlas
 
