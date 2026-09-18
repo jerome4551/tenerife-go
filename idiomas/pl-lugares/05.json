@@ -1,0 +1,407 @@
+{
+ "ar-la-tahona": {
+  "desc": "Strefa rekreacyjna w San Juan de la Rambla, w Parku Przyrody Corona Forestal. 38 stołów. Bezpłatne paleniska, toalety i parking. Bór sosny kanaryjskiej.",
+  "cat": "Bezpłatny grill · San Juan de la Rambla · 38 stołów"
+ },
+ "ar-arenas-negras": {
+  "desc": "Spektakularna strefa rekreacyjna w Garachico na czarnym wulkanicznym podłożu — osadach z ostatniej erupcji wulkanu Trevejo (1706). Kontrast między stuletnimi sosnami a ciemnym żwirem wulkanicznym jest niepowtarzalny. 400 miejsc. Bezpłatne paleniska, toalety, parking oraz trasy piesze i rowerowe. Dojazd drogą leśną.",
+  "cat": "Bezpłatny grill · Garachico · 400 miejsc"
+ },
+ "ar-san-jose-llanos": {
+  "desc": "Strefa rekreacyjna w El Tanque, w Parku Wiejskim Teno. 38 stołów. Bezpłatne paleniska, toalety i parking. Bór sosnowy z widokiem na masyw Teno. Bardzo spokojna strefa na północnym zachodzie.",
+  "cat": "Bezpłatny grill · El Tanque · Park Wiejski Teno"
+ },
+ "ar-el-lagar": {
+  "desc": "Strefa rekreacyjna w Icod de los Vinos, w górnej części gminy, w Corona Forestal. 24 stoły. Bezpłatne paleniska, toalety i parking. Bór sosnowy blisko historycznych winnic Icod.",
+  "cat": "Bezpłatny grill · Icod de los Vinos · 24 stoły"
+ },
+ "ar-las-hayas": {
+  "desc": "Strefa rekreacyjna w górnej części Icod de los Vinos, w Corona Forestal. 20 stołów. Bezpłatne paleniska. Może być zamknięta — sprawdź tenerifeon.es przed wyjazdem.",
+  "cat": "Bezpłatny grill · Icod de los Vinos · 20 stołów"
+ },
+ "ar-chio": {
+  "desc": "Jedna z największych na Teneryfie, 650 miejsc, w Guía de Isora pod wulkanicznymi borami Chío. Bezpłatne paleniska, stoły, toalety i parking. Spektakularny krajobraz wulkaniczny z widokiem na morze i La Gomerę.",
+  "cat": "Bezpłatny grill · Guía de Isora · 650 miejsc"
+ },
+ "ar-los-frailes": {
+  "desc": "Strefa rekreacyjna w Arafo na 900 m, u wylotu Doliny Güímar. 38 stołów. Bezpłatne paleniska, toalety i parking. Bór sosnowy po stronie południowo-wschodniej. Bardzo spokojna i dobrze utrzymana.",
+  "cat": "Bezpłatny grill · Arafo · 900 m · 38 stołów"
+ },
+ "ar-las-lajas": {
+  "desc": "Strefa rekreacyjna w Vilaflor (1400 m), najwyżej położonej wiosce Hiszpanii, w Parku Przyrody Corona Forestal. 42 stoły. Bezpłatne paleniska, toalety i parking. Przepiękny stuletni bór sosnowy. Idealna baza pod Teide.",
+  "cat": "Bezpłatny grill · Vilaflor · 1400 m · 42 stoły"
+ },
+ "ar-los-pedregales": {
+  "desc": "Strefa rekreacyjna w Buenavista del Norte, w Parku Wiejskim Teno. 20 stołów. Bezpłatne paleniska, toalety i parking. Północny zachód wyspy z widokiem na Atlantyk.",
+  "cat": "Bezpłatny grill · Buenavista del Norte · Park Teno"
+ },
+ "ar-llano-viejos": {
+  "desc": "Strefa rekreacyjna w La Lagunie, w Parku Wiejskim Anaga. 15 stołów. Bezpłatne paleniska, toalety i parking. Stuletni las wawrzynowy. Bardzo ceniona przez mieszkańców La Laguny.",
+  "cat": "Bezpłatny grill · La Laguna · Park Anaga"
+ },
+ "ar-la-quebrada": {
+  "desc": "Strefa rekreacyjna w Tegueste, w Parku Wiejskim Anaga. 18 stołów. Bezpłatne paleniska, toalety i parking. Las wawrzynowy i bór sosnowy w górach Anagi. Bardzo spokojna.",
+  "cat": "Bezpłatny grill · Tegueste · Park Anaga"
+ },
+ "ar-hoya-abade": {
+  "desc": "Strefa rekreacyjna w La Victoria de Acentejo, w Corona Forestal. 25 stołów. Bezpłatne paleniska, toalety i parking. Bór sosnowy na średnich wysokościach północy.",
+  "cat": "Bezpłatny grill · La Victoria de Acentejo"
+ },
+ "ar-el-contador": {
+  "desc": "Strefa rekreacyjna w Arico, w Corona Forestal, po stronie południowo-wschodniej. 30 stołów. Bezpłatne paleniska, toalety i parking. Może być zamknięta — sprawdź tenerifeon.es przed wyjazdem.",
+  "cat": "Bezpłatny grill · Arico · Południowy wschód"
+ },
+ "ar-los-brezos": {
+  "desc": "Strefa rekreacyjna w Candelarii, w Parku Wiejskim Anaga. 20 stołów. Bezpłatne paleniska, toalety i parking. Las wawrzynowy i wrzosiec kanaryjski po wschodniej stronie Anagi.",
+  "cat": "Bezpłatny grill · Candelaria · Park Anaga"
+ },
+ "pp-taucho": {
+  "desc": "Najpopularniejsze miejsce startu paralotni na Teneryfie, na 760 m n.p.m. w gminie Adeje. Idealne na loty tandemowe dla początkujących: stabilny pasat, dobre kominy termiczne i spektakularne widoki na Barranco del Infierno i wybrzeże Costa Adeje. Zwykle lądowanie na równinie Taucho-Armeñime albo na plaży La Caleta. Optymalny sezon: od września do maja. Loty tandemowe z certyfikowanym pilotem dostępne przez cały rok. Cena orientacyjna: 90-130€ od osoby.",
+  "cat": "Paralotniarstwo · Start południe · 760 m · Tandem dla każdego"
+ },
+ "pp-ifonche": {
+  "desc": "Start na 1100 m n.p.m. w strefie między Adeje a Vilaflor. Wyżej i bardziej technicznie niż Taucho. Loty nad „Palcami”, Montaña El Conde i Barranco del Infierno z imponującym widokiem na wybrzeże Adeje. Odpowiedni dla poziomu średniozaawansowanego i dłuższych lotów. Lądowanie na Playa de la Enramada (La Caleta). Lokalne firmy oferują stąd loty tandemowe.",
+  "cat": "Paralotniarstwo · Start południe · 1100 m · Poziom średniozaawansowany"
+ },
+ "pp-izana": {
+  "desc": "Najbardziej spektakularny start paralotniowy na Teneryfie: 2200 m n.p.m. w Parku Narodowym Teide, między 33 a 34 kilometrem drogi TF-24. Jeden z lotów dwuosobowych o największym przewyższeniu w Europie — lądowanie na poziomie morza w Puerto de la Cruz albo na wschodnim wybrzeżu. Widoki na Teide, kalderę oraz doliny La Orotava i Güímar. Tylko dla pilotów z licencją albo loty tandemowe ze szkołami specjalistycznymi. Warunki bardzo zmienne: zawsze zasięgnij informacji przed lotem.",
+  "cat": "Paralotniarstwo · Szczyt Teide · 2200 m · Tylko eksperci lub specjalistyczny tandem"
+ },
+ "pp-la-corona": {
+  "desc": "Start paralotniowy na północy Teneryfy, na 765 m n.p.m. w Los Realejos. Używany, gdy wiatr wieje z północy albo ze wschodu. Widoki na Dolinę La Orotava, Puerto de la Cruz i północny Atlantyk. Lądowanie na Finca Los Quintos albo na Playa del Socorro. Najlepszy sezon: jesień, wiosna i lato. Typowy pasat północy. Poziom: początkujący-średniozaawansowany wcześnie rano i późnym popołudniem, średniozaawansowany-zaawansowany w południe.",
+  "cat": "Paralotniarstwo · Start północ · 765 m · Los Realejos"
+ },
+ "pp-el-tanque": {
+  "desc": "Start paralotniowy w El Tanque (Tierra del Trigo), na północnym zachodzie Teneryfy, na około 600 m n.p.m. Start niedawno odnowiony, z poprawkami bezpieczeństwa. Bardzo ceniony przez miejscowych pilotów. Widoki na masyw Teno, Atlantyk i La Palmę w pogodne dni. Typowy wiatr zachodni.",
+  "cat": "Paralotniarstwo · Start północny zachód · ~600 m · El Tanque"
+ },
+ "pp-guimar": {
+  "desc": "Strefa lotów paralotniowych na wschodnim zboczu Teneryfy, w gminie Güímar. Wysokość około 700 m. Używana, gdy wiatry wieją ze wschodu, południa albo z północnego zachodu. Sezon: od jesieni do wiosny, a często również latem. Widoki na Dolinę Güímar i Ocean Atlantycki. Lata się też z Fasnii i z Wulkanu Fasnia. Zwyczajowa strefa dla pilotów poziomu średniozaawansowanego.",
+  "cat": "Paralotniarstwo · Start wschód · ~700 m · Güímar"
+ },
+ "faro-teno": {
+  "desc": "Najbardziej ikoniczna latarnia Teneryfy, na północno-zachodnim krańcu. Zbudowana w 1897 roku, wznosi się nad imponującymi klifami Teno na 70 m nad morzem. Dojazd spektakularną i wąską drogą TF-445 — zarezerwowaną dla mieszkańców i transportu publicznego — która wije się między górami. Od latarni epickie widoki na La Gomerę i Los Gigantes. Chroniony ekosystem morski z delfinami i żółwiami.",
+  "cat": "Latarnia historyczna · Buenavista del Norte"
+ },
+ "faro-anaga": {
+  "desc": "Położona na Punta de Anaga, północno-wschodnim krańcu Teneryfy. Zbudowana w 1863 roku, jest jedną z najstarszych latarni Wysp Kanaryjskich. Otoczona lasem wawrzynowym i pionowymi klifami Parku Wiejskiego Anaga. Dostęp tylko pieszo szlakiem z Chamorgi (około 45 min). Widoki na morze La Caleta, La Rambla i dzikie wybrzeże Anagi.",
+  "cat": "Latarnia · Punta Anaga"
+ },
+ "faro-rasca": {
+  "desc": "Latarnia na południowo-zachodnim krańcu, w Specjalnym Rezerwacie Przyrody Montaña Roja. Zbudowana w 1972 roku. Strefa o szczególnym znaczeniu morskim: to jedno z najlepszych miejsc na Teneryfie do obserwacji waleni (grindwale, delfiny). Suchy, wulkaniczny krajobraz o wielkiej urodzie. Dojście pieszo z El Médano albo z Playa Diego Hernández.",
+  "cat": "Latarnia · Rezerwat Montaña Roja"
+ },
+ "faro-abona": {
+  "desc": "Najwyżej położona latarnia Wysp Kanaryjskich, 193 m n.p.m. Zbudowana w 1895 roku na południowym wschodzie wyspy, w gminie Arico. Biała wieża o wysokości 28 m, widoczna z dużych odległości. Otoczona czarnym malpaís wulkanicznym i widokiem na otwarte morze. Strefa łowiectwa podwodnego i surfingu. Wstęp wolny drogą gruntową z TF-1.",
+  "cat": "Latarnia · Arico · Południowy wschód"
+ },
+ "faro-punta-hidalgo": {
+  "desc": "Latarnia o awangardowym projekcie na północno-wschodnim krańcu Teneryfy, przy Punta del Hidalgo (La Laguna). Zbudowana w 1992 roku i czynna od 1994, jest najwyższa na wyspie, 50 metrów, i jedną z najwyższych na Wyspach Kanaryjskich. Bardzo osobliwy kanciasty projekt: nieregularne białe kolumny o rosnącej wysokości na trójkątnej podstawie. Otoczona szklarniami, na końcu szlaku. Widoki na Roque de Dentro, Roque de Fuera i masyw Anagi. Przy naturalnych basenach miejscowości.",
+  "cat": "Latarnia nowoczesna · Punta del Hidalgo"
+ },
+ "ciudad-santa-cruz": {
+  "desc": "Stolica Teneryfy i prowincji. Tętniące życiem miasto ze słynnym karnawałem (2. na świecie), Auditorio Calatravy, parkiem García Sanabria i gwarną ulicą Castillo. Najbardziej ruchliwy port wycieczkowy Wysp Kanaryjskich.",
+  "cat": "Stolica Teneryfy · 210 000 mieszkańców"
+ },
+ "ciudad-laguna": {
+  "desc": "Miasto wpisane na listę światowego dziedzictwa UNESCO. Pierwsze planowane miasto Atlantyku, wzorzec dla kolonialnych miast Ameryki. Uniwersytet, studencka atmosfera, katedra, historyczne ulice i najlepsze tapas na wyspie.",
+  "cat": "Dziedzictwo UNESCO · La Laguna"
+ },
+ "ciudad-puerto-cruz": {
+  "desc": "Turystyczne miasto północy par excellence. Playa Jardín Manrique, Loro Parque, Lago Martiánez, kolonialne ulice i najlepsza oferta kulturalna północy. Znakomity mikroklimat przez cały rok.",
+  "cat": "Miasto turystyczne · Północ"
+ },
+ "ciudad-orotava": {
+  "desc": "Kolonialne miasteczko o najbardziej autentycznej architekturze kanaryjskiej. Słynne z kwiatowych dywanów na Boże Ciało. Casa de los Balcones, ogrody ratusza i panoramiczne widoki na Dolinę La Orotava z Teide w tle.",
+  "cat": "Miasteczko kolonialne · La Orotava"
+ },
+ "ciudad-adeje": {
+  "desc": "Gmina obejmująca Costa Adeje i turystyczne południe. Miasteczko Adeje ma urocze stare miasto z kościołem św. Urszuli i Barranco del Infierno. Najczęściej odwiedzana gmina Teneryfy.",
+  "cat": "Gmina · Południe Teneryfy"
+ },
+ "ciudad-arona": {
+  "desc": "Gmina obejmująca Los Cristianos i Las Américas. Miasteczko Arona na średnich wysokościach zachowuje wiejski charakter. Siam Park, Jungle Park i najlepsze plaże południa czynią z tej gminy najbardziej turystyczną.",
+  "cat": "Gmina · Los Cristianos · Las Américas"
+ },
+ "ciudad-garachico": {
+  "desc": "Najpiękniejsze miasteczko Teneryfy. Dawna stolica handlowa zniszczona przez wulkan w 1706 roku. Naturalne baseny El Caletón, zamek San Miguel, klasztor św. Franciszka i kościół w stylu mudéjar. Niepowtarzalna atmosfera.",
+  "cat": "Miasteczko historyczne · Północny zachód"
+ },
+ "ciudad-icod": {
+  "desc": "Słynne z Tysiącletniego Smoczego Drzewa i winiarni czerwonego wina. Dobrze zachowana architektura kolonialna, Motyle Świata i Cueva del Viento 5 minut dalej. Najlepsze rzemieślnicze wino czerwone Teneryfy.",
+  "cat": "Miasto Smoczego Drzewa · Północny zachód"
+ },
+ "ciudad-candelaria": {
+  "desc": "Najważniejsze miejsce pielgrzymkowe Wysp Kanaryjskich. Bazylika Matki Bożej z Candelarii, patronki archipelagu, przyjmuje tysiące pielgrzymów 15 sierpnia. Posągi menceyów guanczów na promenadzie to punkt obowiązkowy.",
+  "cat": "Sanktuarium · Wschód Teneryfy"
+ },
+ "ciudad-guimar": {
+  "desc": "Znane z Piramid Güímar, tajemniczych budowli badanych przez Thora Heyerdahla. Żyzna dolina na południowo-wschodnim zboczu Teide. Lokalne rzemiosło i produkty rolne wysokiej jakości.",
+  "cat": "Dolina południowego wschodu · Güímar"
+ },
+ "ciudad-granadilla": {
+  "desc": "Gmina na południowym wschodzie z bardzo dobrze zachowanym starym miastem Granadilla Villa. El Médano i Playa La Tejita leżą na jej terenie. Port Los Abrigos ze znakomitymi restauracjami rybnymi i owoców morza.",
+  "cat": "Gmina · Południowy wschód"
+ },
+ "nucleo-costa-adeje": {
+  "desc": "Strefa turystyki luksusowej na Teneryfie. Hotele pięciogwiazdkowe, Playa del Duque, Playa Fañabé, ośrodki spa i najlepsza gastronomia. Siam Park jest właśnie tutaj. Spokojna i elegancka w porównaniu z Las Américas.",
+  "cat": "Strefa luksusowa · Adeje"
+ },
+ "nucleo-los-gigantes": {
+  "desc": "Miejscowość wciśnięta pod najbardziej imponujące klify Hiszpanii (do 600 m). Port z rejsami na obserwację wielorybów i delfinów. Playa La Arena z czarnym piaskiem. Bardzo spokojna i lokalna atmosfera.",
+  "cat": "Port · Zachód Teneryfy"
+ },
+ "nucleo-puerto-santiago": {
+  "desc": "Spokojna wioska rybacka u stóp Los Gigantes. Bardzo lokalna atmosfera, restauracje ze świeżą rybą i punkt wypłynięcia rejsów pod klify. Plaża z czarnym piaskiem i czystą wodą.",
+  "cat": "Wioska rybacka · Zachód"
+ },
+ "nucleo-callao-salvaje": {
+  "desc": "Spokojne osiedle mieszkaniowe między Adeje a Los Gigantes. Dostęp do mało zatłoczonych plaż, jak Playa de la Jaquita. Spokojna strefa z zapleczem dla mieszkańców. Dobra baza wypadowa do zwiedzania zachodniego wybrzeża.",
+  "cat": "Osiedle mieszkaniowe · Zachód"
+ },
+ "nucleo-san-andres": {
+  "desc": "Mała wioska rybacka przy Playa Las Teresitas, najlepszej miejskiej plaży Teneryfy. Znakomite restauracje z rybami i owocami morza na promenadzie. Atmosfera w 100% lokalna, zaledwie 10 minut od Santa Cruz.",
+  "cat": "Wioska rybacka · Santa Cruz"
+ },
+ "nucleo-guia-isora": {
+  "desc": "Spokojna gmina na zachodnim wybrzeżu, między Adeje a Los Gigantes. Plaże Alcalá i San Juan ze świeżą rybą. Hotel Abama (5 gwiazdek GL). Suchy i autentyczny krajobraz, bez tłoku. Punkt wyjścia na szlak do Maski.",
+  "cat": "Gmina · Zachodnie wybrzeże"
+ },
+ "nucleo-la-caleta": {
+  "desc": "Mała wioska rybacka w Costa Adeje słynna z restauracji wysokiej kuchni. Szefowie kuchni uznani na świecie. Spokojna i autentyczna plaża o dwa kroki od strefy pięciogwiazdkowych hoteli. Najlepiej strzeżony sekret południa.",
+  "cat": "Gastronomia · Costa Adeje"
+ },
+ "ciudad-tacoronte": {
+  "desc": "Stolica czerwonego wina Teneryfy. Apelacja pochodzenia Tacoronte-Acentejo, najstarsza na Wyspach Kanaryjskich. Kościół św. Katarzyny, kolonialne stare miasto i najlepsze guachinches wyspy na średnich wysokościach.",
+  "cat": "Wino i tradycja · Północ"
+ },
+ "ciudad-tegueste": {
+  "desc": "Wiejska i winiarska gmina między La Laguną a Anagą. Zachowuje autentyczne kanaryjskie tradycje. Święta św. Marka w kwietniu z tańcami i baile mago. Wyjątkowe wysokogórskie wina białe. Bez wybrzeża, ale z nienaruszonym wiejskim urokiem.",
+  "cat": "Wioska wiejska · Północ"
+ },
+ "ciudad-realejos": {
+  "desc": "Gmina północy słynna z najbardziej widowiskowych świąt patronalnych Wysp Kanaryjskich: fajerwerki 3 maja. Kolebka kanaryjskiej pirotechniki. Rambla de Castro, zielone krajobrazy i widoki na Teide.",
+  "cat": "Gmina · Północ"
+ },
+ "ciudad-sauzal": {
+  "desc": "Miejscowość z jednym z najpiękniejszych punktów widokowych na ocean. Casa del Vino de Canarias, muzeum i restauracja z najlepszym wyborem win na wyspie. Zadbane stare miasto i idealny kolonialny plac.",
+  "cat": "Wioska wina · Północ"
+ },
+ "ciudad-matanza": {
+  "desc": "Historyczne miejsce, gdzie guanczowie pokonali konkwistadorów w 1494 roku. Region winiarski z tradycyjnymi guachinches, papas arrugadas, serem wędzonym i miejscowym winem czerwonym. Spektakularne widoki na ocean.",
+  "cat": "Wioska winiarska · Północ"
+ },
+ "ciudad-victoria": {
+  "desc": "Miejscowość, w której konkwistadorzy wzięli odwet w 1495 roku. Dziś spokojny region winnic, sadów i rodzinnych guachinches. Bór sosny kanaryjskiej na średnich wysokościach. Skarbnica lokalnych tradycji.",
+  "cat": "Wioska historyczna · Północ"
+ },
+ "ciudad-santa-ursula": {
+  "desc": "Gmina z jednym z najsłynniejszych punktów widokowych: Mirador de Humboldt, skąd Alexander von Humboldt podziwiał Dolinę La Orotava. Restauracje ze spektakularnym widokiem i najlepsze pieczone mięso na wyspie.",
+  "cat": "Punkt widokowy i mięso · Północ"
+ },
+ "ciudad-san-juan-rambla": {
+  "desc": "Mała nadmorska miejscowość północy z kolonialnym starym miastem i naturalnymi basenami. Charco de la Laja, jeden z najczęściej fotografowanych naturalnych basenów Teneryfy. Banany, wino i całkowity spokój.",
+  "cat": "Wioska nadmorska · Północ"
+ },
+ "ciudad-guancha": {
+  "desc": "Wiejska gmina między Teide a morzem. Plantacje bananów na wybrzeżu, winnice i sady na średnich wysokościach, bory sosnowe aż po park narodowy. Szlacheckie domy, całkowicie lokalna atmosfera i autentyczne rodzinne guachinches.",
+  "cat": "Wioska wiejska · Północ"
+ },
+ "ciudad-silos": {
+  "desc": "Zielona i wilgotna miejscowość Isla Baja. Plantacje bananów, las wawrzynowy i góry. Słynny Międzynarodowy Festiwal Opowieści w grudniu. Urokliwy kolonialny plac, barokowy kościół i wiele domów z kanaryjskimi balkonami.",
+  "cat": "Wioska · Isla Baja"
+ },
+ "ciudad-buenavista": {
+  "desc": "Gmina na północno-zachodnim krańcu, brama do Parku Wiejskiego Teno. Projektowane pole golfowe, latarnia Teno, plaża Las Arenas i najbardziej dziewicze, zielone krajobrazy Teneryfy. Dojście do Maski od północy.",
+  "cat": "Gmina · Isla Baja · Teno"
+ },
+ "ciudad-tanque": {
+  "desc": "Mała gmina na średnich wysokościach między Garachico a Santiago del Teide. Bory sosnowe, winnice i wyjątkowy punkt widokowy na klify Los Gigantes i Isla Baja. Region nagradzanego rzemieślniczego sera koziego.",
+  "cat": "Wioska na średnich wysokościach · Północ"
+ },
+ "ciudad-santiago-teide": {
+  "desc": "Gmina obejmująca Maskę, Tamaimo, Puerto Santiago i Los Gigantes. Spokojna górska miejscowość na 925 m n.p.m., idealny punkt wyjścia na szlaki. Wulkan Chinyero, ostatnia erupcja w 1909 roku. Dużo turystyki wiejskiej.",
+  "cat": "Wioska górska · Zachód"
+ },
+ "ciudad-vilaflor": {
+  "desc": "Najwyżej położona wioska Hiszpanii, 1400 m. Krystalicznie czyste powietrze, stuletnie bory sosnowe i wyjątkowe wysokogórskie wina. Południowa brama Parku Narodowego Teide. Słynie z kasztanów, migdałowców i najlepszych sosen kanaryjskich.",
+  "cat": "Najwyżej położona wioska Hiszpanii · Południe"
+ },
+ "ciudad-san-miguel": {
+  "desc": "Gmina na południu z urokliwym starym miastem i turystyczną strefą nadmorską (Golf del Sur, Amarilla Golf, Costa del Silencio). Autentyczna mieszanka tradycyjnej kanaryjskiej wioski i turystycznych osiedli z polami golfowymi.",
+  "cat": "Gmina · Południe"
+ },
+ "ciudad-arico": {
+  "desc": "Gmina na południowym wschodzie, największa powierzchniowo na Teneryfie. Suchy krajobraz, wulkaniczne malpaís i dziewicza plaża Los Abrigos. Latarnia Punta de Abona, najwyższa na Wyspach Kanaryjskich. Rezerwat nieba, idealny na astronomię.",
+  "cat": "Gmina · Południowy wschód"
+ },
+ "ciudad-fasnia": {
+  "desc": "Mała gmina na południowym wschodzie z czarnym wulkanicznym krajobrazem. Wulkan Fasnia (ostatnia erupcja w 1705 roku) wyznacza charakter strefy. Skaliste plaże, jak Los Roques, i ciepła woda przez cały rok. Bardzo lokalnie, bez masowej turystyki.",
+  "cat": "Wioska wulkaniczna · Południowy wschód"
+ },
+ "ciudad-arafo": {
+  "desc": "Miejscowość w Dolinie Güímar znana jako „Miasteczko Muzyki” dzięki stuletniej tradycji muzycznej. Orkiestry dęte, charangi i zespoły folklorystyczne. Kwitnące migdałowce w lutym, nagradzany rzemieślniczy miód i białe wino ze średnich wysokości.",
+  "cat": "Miasteczko Muzyki · Południowy wschód"
+ },
+ "ciudad-rosario": {
+  "desc": "Gmina na średnich wysokościach między Santa Cruz a La Laguną. Las La Esperanza z borami sosnowymi i lasem wawrzynowym. Punkt widokowy Las Raíces, gdzie Franco przygotowywał powstanie z 1936 roku. Świeże powietrze, mistyczna mgła i szlaki.",
+  "cat": "Gmina · Cumbre Dorsal"
+ },
+ "nucleo-bajamar": {
+  "desc": "Nadmorska miejscowość północy słynna z ogromnych naturalnych basenów z wodą morską (zbudowanych w latach 60.). Spokojna i bardzo lokalna atmosfera. Dawna strefa letniskowa mieszkańców La Laguny. Znakomite restauracje rybne na promenadzie.",
+  "cat": "Wioska nadmorska · La Laguna"
+ },
+ "nucleo-punta-hidalgo": {
+  "desc": "Ostatnia miejscowość dostępna samochodem na północnym wybrzeżu Anagi. Ikoniczna latarnia, naturalne baseny z falami, skały roques wyrastające z morza i początek szlaku do Chinamady. Punkt obowiązkowy, żeby odkryć najbardziej autentyczną Anagę.",
+  "cat": "Wioska Anagi · La Laguna"
+ },
+ "nucleo-taganana": {
+  "desc": "Miejscowość w zielonym sercu Anagi, dostępna krętą drogą wśród lasu wawrzynowego. Tradycyjne domy zawieszone na zboczu, tarasowe winnice i dwie pobliskie plaże: Almáciga i Benijo. Dziedzictwo Biosfery UNESCO.",
+  "cat": "Wioska · Anaga UNESCO"
+ },
+ "nucleo-igueste-san-andres": {
+  "desc": "Wioska Anagi na końcu głębokiej doliny, blisko Las Teresitas. Atmosfera w 100% lokalna, czas stanął w miejscu, tarasy z plantacjami bananów i palmami. Punkt wyjścia na spektakularne szlaki do ukrytych plaż, jak Antequera.",
+  "cat": "Wioska odosobniona · Anaga"
+ },
+ "nucleo-tejina": {
+  "desc": "Wiejska, rolnicza miejscowość na północy La Laguny. Słynna ze Święta Serc Tejiny (wrzesień, światowe dziedzictwo UNESCO), spektakularnej tradycji ludowej jedynej w swoim rodzaju. Zielone niziny i plantacje bananów.",
+  "cat": "Wioska wiejska · La Laguna"
+ },
+ "nucleo-valle-guerra": {
+  "desc": "Wiejska miejscowość między Tegueste a Tacoronte. Niziny, plantacje bananów, winnice i Dom-Muzeum Wieśniaka. Atmosfera całkowicie rolnicza, bez obecności turystów. Wyborne lokalne warzywa i najlepsze awokado na Teneryfie.",
+  "cat": "Wioska wiejska · La Laguna"
+ },
+ "nucleo-mesa-mar": {
+  "desc": "Małe nadmorskie osiedle Tacoronte z dużymi naturalnymi basenami wykutymi w wulkanicznej skale. Bardzo spokojna i lokalna atmosfera mieszkalna. Baseny są letnim schronieniem mieszkańców La Laguny. Bez zaplecza turystycznego.",
+  "cat": "Osiedle nadmorskie · Tacoronte"
+ },
+ "nucleo-realejo-bajo": {
+  "desc": "Stare miasto Los Realejos z najstarszym kościołem Teneryfy (św. Jakuba Apostoła, 1496). Tradycyjna kanaryjska atmosfera, plac ze stuletnimi drzewami i szlacheckie domy z XVII wieku. Dziedzictwo historyczno-artystyczne.",
+  "cat": "Stare miasto · Los Realejos"
+ },
+ "nucleo-puerto-cruz-old": {
+  "desc": "Historyczna dzielnica rybacka Puerto de la Cruz. Kolorowe domy, tradycyjne kanaryjskie restauracje, alternatywne życie nocne i najlepsza strefa na tapas z ryb. Bohemska i artystyczna atmosfera, bez turystycznego tłoku.",
+  "cat": "Dzielnica rybacka · Puerto Cruz"
+ },
+ "nucleo-las-galletas": {
+  "desc": "Wioska rybacka na południu, wchłonięta przez Costa del Silencio. Bardzo popularny targ we wtorki i soboty. Mały port jachtowy, restauracje ze świeżą rybą w dobrej cenie. Mieszana atmosfera mieszkalna: miejscowi i obcokrajowcy.",
+  "cat": "Wioska rybacka · Arona"
+ },
+ "nucleo-costa-silencio": {
+  "desc": "Spokojne osiedle na skrajnym południu. Bez turystycznego tłoku mimo strategicznego położenia. Mieszkalne, z europejskimi emerytami i miejscowymi. Łatwy dojazd na lotnisko i do Los Cristianos. Popularne miejsce łowiectwa podwodnego.",
+  "cat": "Osiedle · Arona"
+ },
+ "nucleo-golf-del-sur": {
+  "desc": "Turystyczne osiedle zbudowane wokół pola golfowego o 27 dołkach. Playa Amarilla z wyjątkowymi wulkanicznymi odcieniami. Apartamenty, kompleksy hotelowe i restauracje międzynarodowe. Bardzo brytyjskie w stylu życia.",
+  "cat": "Resort golfowy · San Miguel"
+ },
+ "nucleo-amarilla-golf": {
+  "desc": "Osiedle z polem golfowym o 18 dołkach zaprojektowanym przez Donalda Steela, nad samym morzem. Marina z klubem żeglarskim. Spokojny resort mieszkalny i wakacyjny, bez dyskotek i hałasu. Widoki na La Gomerę.",
+  "cat": "Resort golfowy · San Miguel"
+ },
+ "nucleo-playa-san-juan": {
+  "desc": "Autentyczna wioska rybacka na zachodnim wybrzeżu. Bardzo popularny targ w środy. Mała plaża z czarnym piaskiem i spokojną wodą. Restauracje ze świeżą rybą w lokalnych cenach. Atmosfera w 100% kanaryjska, bez masowej turystyki.",
+  "cat": "Wioska rybacka · Guía de Isora"
+ },
+ "nucleo-playa-paraiso": {
+  "desc": "Małe centrum turystyczne między Costa Adeje a Los Gigantes. Hard Rock Hotel, kompleksy wakacyjne i restauracje. Naturalna zatoczka osłonięta klifami, z krystaliczną wodą. Dojście szlakiem do Playa Diego Hernández.",
+  "cat": "Centrum turystyczne · Adeje"
+ },
+ "nucleo-el-rosario": {
+  "desc": "Gmina obszaru metropolitalnego Santa Cruz. Spokojna strefa mieszkalna z dobrym połączeniem ze stolicą. Wyróżnia się dzielnica Radazul ze swoim portem jachtowym.",
+  "cat": "Gmina · Obszar metropolitalny"
+ },
+ "nucleo-el-tanque": {
+  "desc": "Mała gmina w masywie Teno z widokiem na morze i tradycyjnymi winnicami. Spokojna miejscowość z dobrze zachowaną wiejską architekturą kanaryjską i autentyczną kuchnią.",
+  "cat": "Gmina · Masyw Teno"
+ },
+ "nucleo-fasnia": {
+  "desc": "Nadmorska gmina na południowym wschodzie z wyjątkowymi naturalnymi basenami wulkanicznymi. Plaża Fasnia i jej rozlewiska to mało znane perełki. Spokojna miejscowość z silną tradycją rybacką.",
+  "cat": "Gmina · Południowy wschód"
+ },
+ "nucleo-la-guancha": {
+  "desc": "Gmina północy w Dolinie Icod z wielkimi połaciami plantacji bananów. Autentyczna kanaryjska miejscowość z dala od masowej turystyki. Wyróżniające się święta ludowe i lokalna kuchnia.",
+  "cat": "Gmina · Dolina Icod"
+ },
+ "nucleo-la-matanza": {
+  "desc": "Winiarska gmina na północnym zboczu z winami DO Ycoden-Daute-Isora. Spektakularne krajobrazy tarasowych winnic. Nazwa przypomina bitwę guanczów z konkwistadorami z 1494 roku.",
+  "cat": "Gmina · Winiarska północ"
+ },
+ "nucleo-la-victoria": {
+  "desc": "Historyczna gmina, w której guanczowie zostali ostatecznie pokonani przez konkwistadorów w 1495 roku. Dziś znana z win i północnego szlaku wina. Spokojna miejscowość o wyrazistym charakterze.",
+  "cat": "Gmina · Historyczna północ"
+ },
+ "nucleo-san-juan-rambla": {
+  "desc": "Jedna z najpiękniejszych miejscowości Teneryfy, z doskonale zachowaną kastylijską architekturą kolonialną. Kościół św. Jana Chrzciciela z XVI wieku to klejnot kanaryjskiego baroku. Wybrzeże z naturalnymi basenami.",
+  "cat": "Gmina · Północ · Historyczna"
+ },
+ "nucleo-santa-ursula": {
+  "desc": "Gmina na zboczach Teide ze znakomitym widokiem na morze. Słynie z awokado i kwiatów tropikalnych. Mirador de Humboldt oferuje niezwykłą panoramę Doliny La Orotava.",
+  "cat": "Gmina · Dolina La Orotava"
+ },
+ "nucleo-tegueste": {
+  "desc": "Mała wiejska gmina na północnym wschodzie z tradycją winiarską. Jej owocowe białe wina są nagradzane w konkursach międzynarodowych. Autentyczna wiejska atmosfera zaledwie 15 min od La Laguny.",
+  "cat": "Gmina · Winiarski północny wschód"
+ },
+ "nucleo-vilaflor": {
+  "desc": "Najwyżej położona wioska Hiszpanii, 1400 m n.p.m. Chłodny klimat przez cały rok, stuletnie sosny i najlepszy punkt, żeby oglądać morze chmur od dołu. Słynne wody mineralne. Stąd prowadzi trasa na Teide.",
+  "cat": "Gmina · Najwyżej położona wioska Hiszpanii"
+ },
+ "nucleo-torviscas": {
+  "desc": "Osiedle wchłonięte przez Costa Adeje. Playa Torviscas Bajo z piaskiem i pełnym zapleczem. Bardzo aktywna strefa handlowa z centrami handlowymi i restauracjami wszystkich narodowości. Tętniące życie o każdej porze.",
+  "cat": "Costa Adeje · Południe"
+ },
+ "faro-puerto-cruz": {
+  "desc": "Najczęściej odwiedzana latarnia Teneryfy, bo stoi w samym turystycznym centrum Puerto de la Cruz, na zachód od portu rybackiego. Zbudowana w 1995 roku i czynna od 1996. Nowoczesny czworokątny projekt w kolorze czarnym, z wewnętrzną cylindryczną wieżą w czerwono-białe pasy. 27 metrów wysokości, światło na 31 m nad morzem, zasięg 16 mil morskich. Dostępna samochodem, z parkingiem obok, choć wnętrze jest zamknięte dla publiczności.",
+  "cat": "Latarnia nowoczesna · Puerto de la Cruz"
+ },
+ "faro-abona-viejo": {
+  "desc": "Pierwotna latarnia Punta de Abona, zbudowana w 1902 roku, która działała do zastąpienia jej obecną latarnią w 1978 roku. Biała wieża w klasycznym stylu kanaryjskim wciąż stoi jako element historyczny przy nowoczesnej latarni. Jeden z najbardziej samotnych i pięknych zakątków południowo-wschodniego wybrzeża. Dojazd drogą gruntową z drogi na Abades — zalecany samochód o wysokim zawieszeniu.",
+  "cat": "Latarnia historyczna · Punta de Abona"
+ },
+ "faro-santa-cruz-puerto": {
+  "desc": "Latarnia u wejścia do portu Santa Cruz de Tenerife, największego portu wysp. Biała cylindryczna wieża z czerwonym pasem na falochronie. Prowadzi wielkie wycieczkowce i statki towarowe wchodzące do portu. Zwykle nieodwiedzana, ale bardzo często fotografowana z Parque Marítimo i Auditorio. Widoki na Teide z nabrzeża.",
+  "cat": "Latarnia portowa · Santa Cruz de Tenerife"
+ },
+ "faro-los-cristianos": {
+  "desc": "Mała latarnia w porcie Los Cristianos, skąd odpływają promy na La Gomerę i La Palmę. Zwarta biała wieża na końcu falochronu. Punkt fotograficzny z widokiem na zatokę Los Cristianos i na horyzont, gdzie w pogodne dni rysuje się La Gomera. Promenada dostępna i bardzo uczęszczana.",
+  "cat": "Latarnia portowa · Los Cristianos"
+ },
+ "faro-garachico": {
+  "desc": "Mała historyczna latarnia w dawnym porcie Garachico, najpiękniejszego miasteczka północy Teneryfy. Port został częściowo zniszczony przez erupcję z 1706 roku, która pogrzebała miasto pod lawą. Obecna latarnia wyznacza wejście do naturalnych basenów wulkanicznych, które uczyniły z tej strefy jedno z najbardziej osobliwych miejsc wyspy.",
+  "cat": "Latarnia historyczna · Garachico"
+ },
+ "camel-park": {
+  "desc": "Pierwszy ośrodek hodowli wielbłądów na Teneryfie, otwarty w 1988 roku. Kanaryjska posiadłość między Chayofą a La Camella z 20-minutowymi przejażdżkami na wielbłądach po wulkanicznych ścieżkach. Gospodarstwo z osłami, kozami, papugami i innymi uratowanymi zwierzętami. 10 min od Los Cristianos.",
+  "cat": "Gospodarstwo wielbłądów · Arona"
+ },
+ "mariposario-drago": {
+  "desc": "Pierwszy ośrodek w Hiszpanii poświęcony wyłącznie motylom, otwarty w 1997 roku. Tropikalna szklarnia, w której swobodnie latają ponad 800 egzotycznych motyli z Malezji, Kostaryki, Australii i Papui. Od gatunków 2-centymetrowych po olbrzymy 30-centymetrowe. Widoczne laboratorium z hodowlą gąsienic i poczwarek. Przy Tysiącletnim Smoczym Drzewie w Icod.",
+  "cat": "Motylarnia · Icod de los Vinos"
+ },
+ "vet-medivet-sanantonio": {
+  "desc": "Szpital weterynaryjny grupy Medivet, opieka całodobowa przez 365 dni. Chirurgia małoinwazyjna, dermatologia, kardiologia, endoskopia, onkologia. Ośrodek referencyjny w obszarze metropolitalnym Santa Cruz.",
+  "cat": "Szpital weterynaryjny 24h · Santa Cruz",
+  "hours": "Szpital weterynaryjny 24h · 365 dni"
+ },
+ "vet-cruz-piedra": {
+  "desc": "Referencyjny szpital weterynaryjny w La Lagunie z całodobowym pogotowiem, salą operacyjną, stałą hospitalizacją z obsadą, własnym laboratorium i usługą dojazdową. Opieka nad małymi zwierzętami i egzotycznymi.",
+  "cat": "Szpital weterynaryjny 24h · La Laguna",
+  "hours": "Pogotowie 24h · Stała hospitalizacja z obsadą"
+ },
+ "vet-hosvetnorte": {
+  "desc": "Pierwszy szpital weterynaryjny Teneryfy, założony w 1988 roku. Opieka całodobowa w La Orotava, blisko centrum handlowego Alcampo La Villa. Kompleksowa obsługa, psi salon i sklep. Dostęp przystosowany.",
+  "cat": "Szpital weterynaryjny 24h · La Orotava",
+  "hours": "Pogotowie 24h · Pierwszy szpital weterynaryjny Teneryfy (1988)"
+ },
+ "vet-patas-colas": {
+  "desc": "Referencyjny całodobowy szpital weterynaryjny na południu Teneryfy. Założony w 2007 roku jako klinika, szpital 24h od 2014. Specjaliści od małych zwierząt i egzotycznych. Kardiologia, onkologia, chirurgia i finansowanie leczenia.",
+  "cat": "Szpital weterynaryjny 24h · El Médano",
+  "hours": "Pogotowie 24h · 365 dni"
+ },
+ "vet-hospital-santa-cruz": {
+  "desc": "Szpital weterynaryjny w Santa Cruz z pogotowiem i hospitalizacją czynnymi całą dobę. Sala operacyjna, USG, okulistyka i własne laboratorium. Ośrodek współpracujący z ubezpieczycielami.",
+  "cat": "Szpital weterynaryjny 24h · Santa Cruz",
+  "hours": "Pogotowie 24h · Hospitalizacja 24h"
+ }
+}
