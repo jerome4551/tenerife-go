@@ -1,0 +1,438 @@
+{
+ "rest-tipico-mirador-abona": {
+  "desc": "Przytulna kawiarnia-restauracja nad samym morzem w Poris de Abona, obok plaży i latarni Punta de Abona. Świeże tapas, ryby i lokalne produkty z najlepszym widokiem na zatokę.",
+  "cat": "Kawiarnia-Restauracja · Poris de Abona · Morze"
+ },
+ "guachinche-san-juan-rambla": {
+  "desc": "Guachinche na obrzeżach San Juan de la Rambla z widokiem na morze. Wino z północy wyspy, mięso w sosie, papas arrugadas i mojo kolendrowe. Rodzinna atmosfera.",
+  "cat": "Guachinche · San Juan de la Rambla"
+ },
+ "guachinche-los-silos": {
+  "desc": "Rodzinny guachinche na wzgórzach Los Silos, w skrajnie północno-zachodniej części wyspy. Domowa i bardzo dopracowana kuchnia kanaryjska: carne fiesta, escaldón, almogrote. Uznawany za jeden z najlepszych na wyspie. Otwarte od czwartku do niedzieli.",
+  "cat": "Guachinche · Los Silos · Północny zachód"
+ },
+ "casa-del-vino-sauzal": {
+  "desc": "Muzeum Wina Teneryfy w wiejskim domu z XVII wieku w El Sauzal. Obejmuje wszystkie apelacje pochodzenia wyspy: Tacoronte-Acentejo, Valle de La Orotava, Ycoden-Daute-Isora, Abona i Valle de Güímar. Degustacja win i lokalnych serów w obniżonej cenie. Restauracja z widokiem na Teide. Latem koncerty muzyki klasycznej na dziedzińcu (lipiec-sierpień, co drugi wtorek o 20:30). Obok Casa de la Miel (Dom Miodu). Dojazd: dobrze oznakowany ze zjazdu El Sauzal z autostrady TF-5. Autobusy 101 i 104 z Puerto de la Cruz i Santa Cruz.",
+  "cat": "Muzeum Wina · El Sauzal · Północ · Enoturystyka"
+ },
+ "bodega-frontos-granadilla": {
+  "desc": "⚠️ Winiarnia niedostępna dla zwiedzających: restauracja i zwiedzanie zostały zamknięte; obiekt przyjmuje wyłącznie okazjonalne imprezy prywatne. Bodega Frontos w Los Blanquitos (Granadilla de Abona) to coś więcej niż winiarnia: park tematyczny poświęcony winu w sercu apelacji DO Abona. Ponad 540.000 m² posiadłości na południowych wzgórzach, na wysokości 600 m. Produkcja ekologiczna nagradzana na arenie międzynarodowej. Zwiedzanie z przewodnikiem po winiarni i winnicy, degustacje, restauracja z kuchnią kanaryjską i Casa Tasca na imprezy. Kompleks obejmuje architekturę wykutą w wulkanicznym tufie. Rodzina Luengo od 1949 roku. Zwiedzanie po wcześniejszym umówieniu.",
+  "cat": "Winiarnia · DO Abona · Granadilla · Enoturystyka"
+ },
+ "bodega-cueva-rey-icod": {
+  "desc": "Jedna z najbardziej charakterystycznych winiarni apelacji DO Ycoden-Daute-Isora, w Icod de los Vinos (Camino Cueva del Rey 1). Bodegas Insulares Tenerife to największa spółdzielnia na wyspie, zrzeszająca ponad 1.000 winiarzy. Zwiedzanie z przewodnikiem po tradycyjnej, częściowo podziemnej winiarni, degustacja win Listán Blanco, Listán Negro i odzyskanych lokalnych odmian, w połączeniu z kanaryjskimi serami i wędlinami. Sklep z winami i produktami lokalnymi. Grupy po wcześniejszym umówieniu.",
+  "cat": "Winiarnia · DO Ycoden · Icod de los Vinos · Enoturystyka"
+ },
+ "zona-mariscos-los-abrigos": {
+  "desc": "Los Abrigos, mała wioska rybacka na południu Teneryfy (Granadilla de Abona), skupia najbardziej znaną na całej wyspie strefę restauracji z owocami morza i świeżą rybą. Szereg lokali naprzeciwko portu: langusta, ślimaki morskie, pąkle, kanaryjski sancocho, ryba vieja w soli, ośmiornica, kalmary i granik. Niektóre działają od ponad 40 lat. Ulubione wśród mieszkańców: El Jablito, El Roque. Ceny przystępniejsze niż w strefach turystycznych. Atmosfera w 100% lokalna. W weekend zarezerwuj stolik.",
+  "cat": "Owoce morza · Los Abrigos · Południe · Autentyczne"
+ },
+ "super-mercadona-sct": {
+  "desc": "Mercadona w Santa Cruz de Tenerife. Jeden z najtańszych supermarketów na wyspie. Szeroki wybór produktów kanaryjskich. Dostępny parking.",
+  "cat": "Supermarket · Mercadona · Santa Cruz"
+ },
+ "super-hiperdino-sct": {
+  "desc": "HiperDino w Santa Cruz. Wiodąca sieć kanaryjska, konkurencyjne ceny i duży wybór lokalnych produktów z wysp. Świeże kanaryjskie owoce i warzywa.",
+  "cat": "Supermarket · HiperDino · Santa Cruz"
+ },
+ "super-mercadona-laguna": {
+  "desc": "Mercadona w La Laguna, mieście wpisanym na listę UNESCO. Dobre ceny, szeroki wybór. Idealne dla mieszkańców i turystów nocujących na północy.",
+  "cat": "Supermarket · Mercadona · La Laguna"
+ },
+ "super-hiperdino-laguna": {
+  "desc": "HiperDino w La Laguna. Pierwszorzędne produkty kanaryjskie, lokalne mięso, warzywniak z towarem z wyspy. Bardzo popularny wśród mieszkańców północy.",
+  "cat": "Supermarket · HiperDino · La Laguna"
+ },
+ "super-mercadona-pcruz": {
+  "desc": "Mercadona w Puerto de la Cruz. Przystępne ceny dla turystów i mieszkańców północy. Blisko strefy hotelowej. Parking.",
+  "cat": "Supermarket · Mercadona · Puerto Cruz"
+ },
+ "super-hiperdino-pcruz": {
+  "desc": "HiperDino w Puerto de la Cruz. Supermarket pierwszego wyboru dla mieszkańców północy. Lokalne produkty sezonowe i kanaryjskie świeże towary.",
+  "cat": "Supermarket · HiperDino · Puerto Cruz"
+ },
+ "super-mercadona-adeje": {
+  "desc": "Mercadona w Adeje, jeden z najczęściej odwiedzanych supermarketów na południu ze względu na cenę i rozmiar. Bardzo dobrze zaopatrzony dla turystów na dłuższym pobycie.",
+  "cat": "Supermarket · Mercadona · Adeje"
+ },
+ "super-hiperdino-adeje": {
+  "desc": "HiperDino w Costa Adeje. Świeże produkty kanaryjskie, mięso, wędliny i rzemieślnicza piekarnia. Idealny dla turystów mieszkających w Adeje i Fañabé.",
+  "cat": "Supermarket · HiperDino · Costa Adeje"
+ },
+ "super-mercadona-arona": {
+  "desc": "Mercadona w Los Cristianos. Jeden z najbardziej obleganych supermarketów turystycznego południa. Ceny odniesienia. Parking.",
+  "cat": "Supermarket · Mercadona · Los Cristianos"
+ },
+ "super-hiperdino-arona": {
+  "desc": "HiperDino w Los Cristianos. Sezonowe produkty kanaryjskie, lokalne sery, wina z wyspy i świeże owoce. Bardzo konkurencyjne ceny.",
+  "cat": "Supermarket · HiperDino · Los Cristianos"
+ },
+ "super-mercadona-orotava": {
+  "desc": "Mercadona w La Orotava. Dobrze położony dla całej Doliny La Orotava. Przystępne ceny dla mieszkańców i turystów z północy.",
+  "cat": "Supermarket · Mercadona · La Orotava"
+ },
+ "super-hiperdino-icod": {
+  "desc": "HiperDino w Icod de los Vinos. Punkt odniesienia dla gmin północnego zachodu. Lokalne produkty z regionu winiarskiego Ycoden-Daute-Isora.",
+  "cat": "Supermarket · HiperDino · Icod"
+ },
+ "super-hiperdino-guimar": {
+  "desc": "HiperDino w Güímar. Supermarket pierwszego wyboru dla wschodniej części wyspy. Lokalne świeże i sezonowe produkty z doliny Güímar.",
+  "cat": "Supermarket · HiperDino · Güímar"
+ },
+ "super-hiperdino-granadilla": {
+  "desc": "HiperDino w Granadilla de Abona. Punkt odniesienia dla południowego interioru. Strefa przejazdowa między turystycznym południem a lotniskiem Tenerife Sur.",
+  "cat": "Supermarket · HiperDino · Granadilla"
+ },
+ "minimarket-24h-sct": {
+  "desc": "Sklep osiedlowy otwarty 24 godziny w centrum Santa Cruz. Produkty podstawowe, napoje, przekąski i artykuły pierwszej potrzeby. Idealny na nocne awarie.",
+  "cat": "Sklep 24h · Santa Cruz"
+ },
+ "minimarket-24h-laguna": {
+  "desc": "Sklep 24 godziny w La Laguna, blisko dzielnicy uniwersyteckiej. Napoje, przekąski, produkty podstawowe i higieniczne. Bardzo popularny wśród studentów.",
+  "cat": "Sklep 24h · La Laguna"
+ },
+ "minimarket-24h-pcruz": {
+  "desc": "Sklep otwarty 24 godziny w centrum Puerto de la Cruz. Napoje, przekąski i produkty podstawowe. Niezbędny dla turystów w strefie północnej.",
+  "cat": "Sklep 24h · Puerto Cruz"
+ },
+ "minimarket-24h-las-americas": {
+  "desc": "Sklep 24 godziny w Playa de las Américas. Napoje, przekąski, krem z filtrem i artykuły plażowe. Bardzo oblegany latem i w weekendy.",
+  "cat": "Sklep 24h · Las Américas"
+ },
+ "minimarket-24h-adeje": {
+  "desc": "Sklep 24 godziny w Costa Adeje. Zimne napoje, przekąski i artykuły codziennego użytku dla turystów z ekskluzywnej strefy południowej.",
+  "cat": "Sklep 24h · Costa Adeje"
+ },
+ "turismo-sct": {
+  "desc": "Oficjalne biuro informacji turystycznej Santa Cruz de Tenerife. Mapy, broszury, informacje o wydarzeniach. Obsługa po hiszpańsku i angielsku. Przy Plaza de España.",
+  "cat": "Informacja turystyczna · Santa Cruz",
+  "hours": "Pn-Pt 9:00–18:00 · Sob 10:00–14:00"
+ },
+ "turismo-cv-portillo": {
+  "desc": "Główne centrum informacyjne Parku Narodowego Teide, na skrzyżowaniu El Portillo (~2.000 m). Wystawy o wulkanie, geologii i florze, ogród botaniczny oraz punkt startowy szlaków. Wstęp wolny.",
+  "cat": "Centrum informacyjne · P.N. Teide",
+  "hours": "Codziennie 9:00–16:00"
+ },
+ "turismo-cv-telesforo": {
+  "desc": "Centrum informacyjne Parku Narodowego Teide w centrum La Orotava. Multimedialne muzeum na trzech piętrach o Teide, wulkanach i historii wyspy. Wstęp wolny.",
+  "cat": "Centrum informacyjne · P.N. Teide · La Orotava",
+  "hours": "Codziennie 9:00–16:00"
+ },
+ "turismo-cv-canada-blanca": {
+  "desc": "Centrum informacyjne Parku Narodowego Teide, obok Paradoru (~2.100 m). Wystawa o wulkanie i parku, sala kinowa, sklep oraz kawiarnia z tarasem i widokiem na Teide. Wstęp wolny.",
+  "cat": "Centrum informacyjne · P.N. Teide",
+  "hours": "Codziennie 9:00–16:00"
+ },
+ "turismo-cv-pedregales": {
+  "desc": "Centrum informacyjne Parku Wiejskiego Teno, w Los Pedregales (Buenavista del Norte). Informacje i mapy sieci szlaków parku, z indywidualną obsługą.",
+  "cat": "Centrum informacyjne · P. Wiejski Teno",
+  "hours": "Codziennie 9:00–17:00"
+ },
+ "turismo-cv-cruz-carmen": {
+  "desc": "Centrum informacyjne Parku Wiejskiego Anaga, w Cruz del Carmen (Las Mercedes). Wystawa o lasach wawrzynowych i kulturze Anagi, informacje o szlakach i mapy. Obok punktu widokowego i początku kilku tras.",
+  "cat": "Centrum informacyjne · P. Wiejski Anaga",
+  "hours": "Codziennie 9:30–16:00"
+ },
+ "turismo-cv-masca": {
+  "desc": "Centrum informacyjne szlaku Wąwozu Masca (Santiago del Teide). Zarządza dostępem i zezwoleniami na szlak wąwozu, udziela informacji i ma taras widokowy. Rezerwacja obowiązkowa, aby zejść wąwozem.",
+  "cat": "Centrum informacyjne · Wąwóz Masca",
+  "hours": "Codziennie 9:00–17:00"
+ },
+ "turismo-laguna": {
+  "desc": "Biuro informacji turystycznej La Laguna UNESCO. Trasy po starówce, informacje kulturalne. Wielojęzyczna obsługa.",
+  "cat": "Informacja turystyczna · La Laguna · UNESCO",
+  "hours": "Pn-Pt 9:00–17:00"
+ },
+ "turismo-pcruz": {
+  "desc": "Biuro informacji turystycznej Puerto de la Cruz. Informacje o plażach, wycieczkach na Teide i atrakcjach północy. Obsługa w kilku językach.",
+  "cat": "Informacja turystyczna · Puerto Cruz",
+  "hours": "Pn-Pt 9:00–18:00 · Sob 10:00–14:00"
+ },
+ "turismo-adeje": {
+  "desc": "Biuro informacji turystycznej Adeje. Informacje dla turystów z południa: Costa Adeje, Playa del Duque. Wycieczki, transport i atrakcje.",
+  "cat": "Informacja turystyczna · Adeje · Południe",
+  "hours": "Pn-Pt 9:00–18:00 · Sob 10:00–14:00"
+ },
+ "turismo-los-cristianos": {
+  "desc": "Biuro informacji turystycznej Los Cristianos, przy porcie promowym. Informacje o promach na inne wyspy i o atrakcjach turystycznego południa.",
+  "cat": "Informacja turystyczna · Los Cristianos · Prom",
+  "hours": "Pn-Pt 9:00–17:00 · Sob 10:00–14:00"
+ },
+ "turismo-candelaria": {
+  "desc": "Biuro informacji turystycznej obok Bazyliki w Candelarii. Informacje o patronce Wysp Kanaryjskich, Piramidach z Güímar i wschodzie Teneryfy.",
+  "cat": "Informacja turystyczna · Candelaria",
+  "hours": "Pn-Pt 9:00–16:00"
+ },
+ "turismo-icod": {
+  "desc": "Biuro informacji turystycznej Icod obok Tysiącletniego Smoczego Drzewa. Informacje o najstarszym drzewie Teneryfy, Jaskini Wiatru i północnym zachodzie.",
+  "cat": "Informacja turystyczna · Icod · Drago",
+  "hours": "Pn-Pt 9:00–16:00 · Sob 10:00–13:00"
+ },
+ "turismo-garachico": {
+  "desc": "Biuro informacji turystycznej Garachico. Informacje o basenach Caletón, klasztorze i historii najpiękniejszego miasteczka północy.",
+  "cat": "Informacja turystyczna · Garachico",
+  "hours": "Pn-Pt 9:00–15:00 · Sob 10:00–13:00"
+ },
+ "camping-nauta": {
+  "desc": "Jedyny prywatny kemping otwarty przez cały rok na Teneryfie. Przy plaży San Marcos w Icod. Miejsca pod namioty, bungalowy i kampery. Basen i restauracja.",
+  "cat": "Kemping · Prywatny · Północny zachód",
+  "hours": "Otwarte przez cały rok"
+ },
+ "camping-madre-agua": {
+  "desc": "Oficjalne pole biwakowe Cabildo Teneryfy w Granadilla de Abona, w Parku Przyrody Corona Forestal. Odludne i spokojne miejsce w południowym borze sosnowym. Dla obozów grupowych (szkoły, stowarzyszenia) po uzyskaniu wcześniejszej zgody (wniosek przez Tenerife ON).",
+  "cat": "Pole biwakowe · Granadilla de Abona · Cabildo",
+  "hours": "Rezerwacja grupowa · Tenerife ON"
+ },
+ "camping-barranco-arena": {
+  "desc": "Oficjalne pole biwakowe Cabildo Teneryfy w La Guancha, w Parku Przyrody Corona Forestal. Dzieli infrastrukturę ze szkołą przyrody Aula en la Naturaleza, blisko El Lagar. Dla obozów grupowych (szkoły, stowarzyszenia) po uzyskaniu wcześniejszej zgody (wniosek przez Tenerife ON).",
+  "cat": "Pole biwakowe · La Guancha · Cabildo",
+  "hours": "Rezerwacja grupowa · Tenerife ON"
+ },
+ "camping-la-caldera": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w La Orotava. Leży w Parku Przyrody Corona Forestal. Punkt startowy kilku leśnych szlaków. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · La Orotava · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-ramon-caminero": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w La Orotava. Leży w Parku Przyrody Corona Forestal. Z widokiem na morze chmur. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · La Orotava · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-las-lajas": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w Vilaflor. Leży w Parku Przyrody Corona Forestal. Wysoko w górach, tuż przy Parku Narodowym Teide; siedlisko zięby modrej. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · Vilaflor · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-arenas-negras": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w Garachico. Leży w Parku Przyrody Corona Forestal. Kontrast czarnego wulkanicznego piasku, sosen i morza w tle. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · Garachico · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-san-jose-llanos": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w El Tanque. Leży w Parku Przyrody Corona Forestal. Z placem zabaw i restauracją w pobliżu. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · El Tanque · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-las-hayas": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w Icod de los Vinos. Leży w Parku Przyrody Corona Forestal. Dojazd drogą gruntową: lepiej samochodem 4x4. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · Icod de los Vinos · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-las-calderetas": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w El Sauzal. Leży w Parku Przyrody Corona Forestal. Z oznakowanymi szlakami i placem zabaw. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · El Sauzal · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-la-tahona": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w San Juan de la Rambla. Leży w Parku Przyrody Corona Forestal. Dojazd wąską i stromą drogą. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · San Juan de la Rambla · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-el-contador": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w Arico. Leży w Parku Przyrody Corona Forestal. Dojazd drogą gruntową: lepiej samochodem 4x4. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · Arico · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-los-pedregales": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w Buenavista del Norte. Leży w Parku Wiejskim Teno. Wśród palm masywu Teno; tylko namioty, bez kamperów. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · Buenavista del Norte · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-fuente-pedro": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w San Juan de la Rambla. Leży w Parku Przyrody Corona Forestal. Dojazd drogą gruntową: lepiej samochodem 4x4. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · San Juan de la Rambla · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-fuente-llano": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w Arico. Leży w Parku Przyrody Corona Forestal. Doskonałe niebo do obserwacji gwiazd; dojazd samochodem 4x4. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · Arico · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-chio": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w Guía de Isora. Leży w Parku Przyrody Corona Forestal. W borze sosnowym Chío, blisko wjazdu na Teide i z placem zabaw. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · Guía de Isora · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-el-lagar": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w Icod de los Vinos. Leży w Parku Przyrody Corona Forestal. Z widokiem na Teide i leśnymi szlakami. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · Icod de los Vinos · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "camping-las-raices": {
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w La Esperanza. Leży w Parku Przyrody Corona Forestal. Punkt startowy kilku leśnych szlaków. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "cat": "Pole namiotowe · La Esperanza · Cabildo",
+  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+ },
+ "museo-carnaval-sct": {
+  "desc": "Muzeum poświęcone karnawałowi w Santa Cruz, uznanemu za wydarzenie o Międzynarodowym Znaczeniu Turystycznym. Historia, stroje i fotografie drugiego najsłynniejszego karnawału świata, po tym w Rio.",
+  "cat": "Muzeum · Karnawał · Santa Cruz"
+ },
+ "casa-carta-valle-guerra": {
+  "desc": "Pańska rezydencja z XVII wieku zamieniona w Muzeum Etnografii i Antropologii Teneryfy. Unikatowa kanaryjska architektura kolonialna. Kolekcje życia wiejskiego, strojów i historycznych narzędzi.",
+  "cat": "Muzeum Etnografii · Valle de Guerra"
+ },
+ "iglesia-concepcion-laguna": {
+  "desc": "Najstarszy kościół na Wyspach Kanaryjskich (1511). Pięciokondygnacyjna wieża w stylu mudéjar, symbol La Laguna. Przechowuje Krzyż Konkwisty przywieziony przez Alonso Fernándeza de Lugo. Wpisany na listę światowego dziedzictwa wraz z miastem.",
+  "cat": "Kościół · La Laguna · UNESCO"
+ },
+ "palacio-nava-laguna": {
+  "desc": "Barokowy pałac z XVIII wieku, jeden z najbardziej reprezentatywnych przykładów kanaryjskiej architektury świeckiej. Siedziba różnych instytucji kultury. Fasada z typowo kanaryjskim drewnianym balkonem ciągnącym się przez całą szerokość. Położony w historycznym centrum La Laguna wpisanym na listę UNESCO.",
+  "cat": "Pałac · La Laguna · UNESCO"
+ },
+ "iglesia-san-agustin-laguna": {
+  "desc": "Augustiański klasztor i kościół z XVI wieku. Dziś siedziba Wyższego Konserwatorium Muzycznego Wysp Kanaryjskich. Nawa ma piękny strop w stylu mudéjar. Część zespołu zabytkowego La Laguna wpisanego na listę światowego dziedzictwa.",
+  "cat": "Kościół · Klasztor · La Laguna"
+ },
+ "iglesia-san-marcos-icod": {
+  "desc": "Kościół parafialny z XVI wieku obok słynnego Tysiącletniego Smoczego Drzewa. Wyróżniają się barokowe ołtarze i chrzcielnica z kamienia wulkanicznego. Wieża jest punktem orientacyjnym gminy. Bardzo fotogeniczny ze Smoczym Drzewem w tle.",
+  "cat": "Kościół · Icod de los Vinos"
+ },
+ "iglesia-san-juan-orotava": {
+  "desc": "Barokowy kościół z XVIII wieku w historycznym sercu La Orotava. Jeden z najpiękniejszych na Wyspach Kanaryjskich, z klasycystyczną fasadą z kamienia wulkanicznego. Wnętrze ze złoconymi ołtarzami i otoczoną wielką czcią figurą Matki Bożej Niepokalanego Poczęcia. La Orotava to jedno z najpiękniejszych historycznych miast Teneryfy.",
+  "cat": "Kościół · La Orotava · Barok"
+ },
+ "palacio-episcopal-laguna": {
+  "desc": "Siedziba biskupstwa Teneryfy w historycznym centrum La Laguna wpisanym na listę UNESCO. Budynek z XVIII wieku z piękną barokową kamienną fasadą i typowymi kanaryjskimi drewnianymi balkonami. Stojąc naprzeciwko katedry, tworzy część najważniejszego zespołu zabytkowego wysp.",
+  "cat": "Pałac · La Laguna · UNESCO"
+ },
+ "teatro-guimera": {
+  "desc": "Najstarszy i najważniejszy teatr Wysp Kanaryjskich, otwarty w 1851 roku. Architektura klasycystyczna, widownia na 900 osób. Siedziba Orkiestry Symfonicznej Teneryfy i baletu Víctora Ullate. Uznany za dobro kultury. Wstęp do holu bezpłatny.",
+  "cat": "Teatr · Santa Cruz · Zabytkowy"
+ },
+ "teatro-leal-laguna": {
+  "desc": "Zabytkowy teatr secesyjny z 1915 roku na starówce La Laguna. Secesyjna fasada, jedyna taka na Wyspach Kanaryjskich, z płaskorzeźbami i oryginalnym liternictwem. Odrestaurowany i czynny. Przez cały rok zróżnicowany program teatralny, taneczny i muzyczny.",
+  "cat": "Teatr · La Laguna · Secesja"
+ },
+ "parroquia-san-pedro-daute": {
+  "desc": "Kościół parafialny z XVI wieku w Garachico, jeden z najstarszych na północy. Przetrwał erupcję wulkanu z 1706 roku, która pogrzebała miasto. Wnętrze z barokowymi ołtarzami. Przy najbardziej spektakularnym wulkanicznym wybrzeżu północy.",
+  "cat": "Kościół · Garachico · Zabytkowy"
+ },
+ "super-mercadona-tacoronte": {
+  "desc": "Mercadona w Tacoronte, w regionie winiarskim. Ceny odniesienia dla mieszkańców Tacoronte, El Sauzal i La Matanza. Dobrze zaopatrzony.",
+  "cat": "Supermarket · Mercadona · Tacoronte"
+ },
+ "super-hiperdino-tacoronte": {
+  "desc": "HiperDino w Tacoronte. Produkty kanaryjskie z regionu winiarskiego. Punkt odniesienia dla El Sauzal, La Matanza i La Victoria de Acentejo.",
+  "cat": "Supermarket · HiperDino · Tacoronte"
+ },
+ "super-hiperdino-candelaria": {
+  "desc": "HiperDino w Candelarii. Punkt odniesienia dla środkowego wschodu Teneryfy. Przy strefie handlowej Candelarii.",
+  "cat": "Supermarket · HiperDino · Candelaria"
+ },
+ "super-hiperdino-sauzal": {
+  "desc": "HiperDino w El Sauzal. Obsługuje także La Matanza i La Victoria de Acentejo. Produkty apelacji DO Tacoronte-Acentejo.",
+  "cat": "Supermarket · HiperDino · El Sauzal"
+ },
+ "super-hiperdino-san-juan-rambla": {
+  "desc": "HiperDino w San Juan de la Rambla. Punkt odniesienia dla północno-zachodniego korytarza nadmorskiego: La Guancha i okolice.",
+  "cat": "Supermarket · HiperDino · San Juan Rambla"
+ },
+ "super-hiperdino-santiago-teide": {
+  "desc": "HiperDino w Santiago del Teide. Jedyny duży supermarket w gminie. Obsługuje także El Tanque, Los Silos i Buenavista del Norte.",
+  "cat": "Supermarket · HiperDino · Santiago del Teide"
+ },
+ "super-hiperdino-arona-pueblo": {
+  "desc": "HiperDino w miasteczku Arona. Punkt odniesienia dla mieszkańców wnętrza gminy, z dala od turystycznego wybrzeża.",
+  "cat": "Supermarket · HiperDino · Arona Pueblo"
+ },
+ "super-hiperdino-san-miguel": {
+  "desc": "HiperDino w San Miguel de Abona. Punkt odniesienia dla południowego interioru między Aroną a Granadillą. Korzystają z niego również Arico i Fasnia.",
+  "cat": "Supermarket · HiperDino · San Miguel"
+ },
+ "super-hiperdino-buenavista": {
+  "desc": "HiperDino w Buenavista del Norte, najdalej na północny zachód wysuniętej gminie. Obsługuje także Los Silos. Najbardziej na północ położony supermarket na wyspie.",
+  "cat": "Supermarket · HiperDino · Buenavista"
+ },
+ "minimarket-24h-arona": {
+  "desc": "Sklep 24 godziny w strefie miasteczka Arona. Produkty podstawowe, napoje i przekąski dla mieszkańców wnętrza gminy.",
+  "cat": "Sklep 24h · Arona"
+ },
+ "mercadona-el-medano": {
+  "desc": "Supermarket Mercadona w El Médano (Av. José Miguel Galván Bello), na południu Teneryfy. Główny punkt zakupów dla mieszkańców i turystów z El Médano, La Tejita, Los Abrigos i Golf del Sur. Duży bezpłatny parking. Świeże produkty, piekarnia, ryby. Zwykłe godziny: od poniedziałku do soboty 09:00-21:30.",
+  "cat": "Supermarket · El Médano · Południe"
+ },
+ "hiperdino-los-realejos": {
+  "desc": "Supermarket HiperDino w Los Realejos, gminie na północy Teneryfy między Puerto de la Cruz a Icod de los Vinos. Punkt zakupów dla mieszkańców gminy i odwiedzających północne wybrzeże.",
+  "cat": "Supermarket · Los Realejos · Północ"
+ },
+ "lidl-santa-cruz": {
+  "desc": "Supermarket Lidl w Santa Cruz de Tenerife. Niemiecka sieć dyskontowa z dużym wyborem, markami własnymi i konkurencyjnymi cenami. Piekarnia, owoce i warzywa, cotygodniowe oferty bazarowe. Bezpłatny parking.",
+  "cat": "Supermarket · Lidl · Santa Cruz"
+ },
+ "mercadona-candelaria": {
+  "desc": "Mercadona w Candelarii, gminie na wschodzie Teneryfy. Punkt odniesienia dla mieszkańców Candelarii i Igueste. Duży parking, świeże produkty, ryby i piekarnia.",
+  "cat": "Supermarket · Mercadona · Candelaria · Wschód"
+ },
+ "lidl-la-laguna": {
+  "desc": "Supermarket Lidl w La Cuesta-Taco (San Cristóbal de La Laguna). Ctra. General La Cuesta-Taco km 1,1. Piekarnia, owoce i warzywa, cotygodniowe oferty bazarowe oraz dobre produkty marki własnej w konkurencyjnej cenie. Bezpłatny parking. Pn-Sob 9:00-21:30.",
+  "cat": "Supermarket · Lidl · La Laguna"
+ },
+ "lidl-puerto-cruz": {
+  "desc": "Supermarket Lidl w Puerto de la Cruz, przy Carretera General Icod-Santa Cruz. Piekarnia, owoce i warzywa, cotygodniowe oferty bazarowe oraz produkty marki własnej w konkurencyjnej cenie. Bezpłatny parking. Pn-Sob 9:00-21:30.",
+  "cat": "Supermarket · Lidl · Puerto de la Cruz · Północ"
+ },
+ "lidl-granadilla": {
+  "desc": "Supermarket Lidl w Granadilla de Abona, Avenida de la Democracia. Blisko lotniska południowego i El Médano. Piekarnia, owoce i warzywa, cotygodniowe oferty bazarowe. Bezpłatny parking. Pn-Sob 9:00-21:30.",
+  "cat": "Supermarket · Lidl · Granadilla · Południe"
+ },
+ "mercadona-granadilla": {
+  "desc": "Mercadona w miasteczku Granadilla de Abona, na południu Teneryfy. Punkt odniesienia dla mieszkańców gminy. Duży parking, świeże produkty, ryby i piekarnia. Zwykłe godziny: Pn-Sob 9:00-21:30.",
+  "cat": "Supermarket · Mercadona · Granadilla · Południe"
+ },
+ "hiperdino-arona-montaneta": {
+  "desc": "HiperDino w La Montañeta, Arona. Punkt zakupów dla mieszkańców gminy Arona poza strefami turystycznymi. Szeroki wybór produktów kanaryjskich.",
+  "cat": "Supermarket · HiperDino · Arona · Południe"
+ },
+ "turismo-guimar": {
+  "desc": "Biuro informacji turystycznej Güímar. Informacje o Piramidach z Güímar, wąwozie i szlakach pieszych wschodu wyspy.",
+  "cat": "Informacja turystyczna · Güímar",
+  "hours": "Pn-Pt 9:00–15:00"
+ },
+ "turismo-orotava": {
+  "desc": "Biuro informacji turystycznej na starówce La Orotava. Informacje o domach kolonialnych, ogrodach i dywanach kwiatowych na Boże Ciało.",
+  "cat": "Informacja turystyczna · La Orotava",
+  "hours": "Pn-Pt 9:00–17:00 · Sob 10:00–14:00"
+ },
+ "turismo-arona": {
+  "desc": "Biuro informacji turystycznej gminy Arona w Las Galletas. Informacje o La Tejita, Montaña Roja, Los Abrigos i plażach południa.",
+  "cat": "Informacja turystyczna · Arona · Las Galletas",
+  "hours": "Pn-Pt 9:00–16:00"
+ },
+ "turismo-santiago-teide": {
+  "desc": "Biuro informacji turystycznej Santiago del Teide. Informacje o Los Gigantes, Masce i Punta de Teno. Punkt startowy spektakularnych tras.",
+  "cat": "Informacja turystyczna · Santiago del Teide",
+  "hours": "Pn-Pt 9:00–15:00"
+ },
+ "turismo-buenavista": {
+  "desc": "Punkt informacji turystycznej Buenavista del Norte. Informacje o masywie Teno, Punta de Teno, szlakach pieszych północnego zachodu, El Palmar i punktach widokowych okolicy.",
+  "cat": "Turystyka · Buenavista del Norte · Teno"
+ },
+ "turismo-medano": {
+  "desc": "Punkt informacji turystycznej w El Médano (Granadilla de Abona). Strefa znana z windsurfingu i kitesurfingu na najwyższym poziomie, plaży La Tejita, Montaña Roja i wulkanicznego wybrzeża południa.",
+  "cat": "Turystyka · El Médano · Granadilla · Windsurfing"
+ },
+ "turismo-tacoronte": {
+  "desc": "Punkt informacji turystycznej Tacoronte. Najstarsza winiarska apelacja pochodzenia na Wyspach Kanaryjskich — Tacoronte-Acentejo. Informacje o winiarniach, guachinches, świętach gminy (San Marcos), kaplicach i trasach po północy Teneryfy.",
+  "cat": "Turystyka · Tacoronte · DO Wina · Północ"
+ },
+ "castillo-paso-alto": {
+  "desc": "Twierdza z XVII wieku na promenadzie nadmorskiej w Santa Cruz, zbudowana do obrony miasta przed atakami piratów i flot. Była jednym z punktów obrony podczas słynnego ataku admirała Nelsona w 1797 roku. Dziś siedziba Wojskowego Muzeum Historycznego Wysp Kanaryjskich. Widok na port i zatokę.",
+  "cat": "Zamek · Santa Cruz · Muzeum Wojskowe · Zabytkowy"
+ },
+ "ermita-san-telmo": {
+  "desc": "Mała kaplica z XVIII wieku w Puerto de la Cruz, poświęcona patronowi marynarzy. Położona nad samym morzem w dzielnicy La Ranilla, jest jedną z najstarszych i najbardziej malowniczych kaplic miasta. Plac przed nią ma widok wprost na Atlantyk i wulkaniczne skały — to jeden z najbardziej fotogenicznych zakątków północy.",
+  "cat": "Kaplica · Puerto de la Cruz · Marynarze · Fotogeniczna"
+ },
+ "plaza-adelantado-laguna": {
+  "desc": "Historyczne serce San Cristóbal de La Laguna (miasta wpisanego na listę światowego dziedzictwa UNESCO). Plac otoczony najbardziej charakterystycznymi budynkami starówki: ratuszem, klasztorem Santa Catalina, kościołem Concepción i Casa del Corregidor. Pośrodku francuska marmurowa fontanna (1870). Pierwsze płyty położono w 1798 roku, zieleń urządzono w 1843. Scena najważniejszych wydarzeń kulturalnych miasta. Bardzo lokalna i żywa atmosfera.",
+  "cat": "Plac zabytkowy · La Laguna · Dziedzictwo UNESCO"
+ },
+ "casa-salazar-laguna": {
+  "desc": "Barokowy pałac z XVII wieku przy Calle San Agustín 28 w La Laguna. Zbudowany w 1664 roku przez hrabiego Salazar. Wybitny przykład baroku kanaryjskiego z elementami manierystycznymi i klasycystycznymi. Fasada uznawana za najlepiej zachowaną na Wyspach Kanaryjskich, z dwoma herbami rodu Salazar i rzygaczami o zwierzęcych kształtach. Dobro Kultury od 1983 roku. Po pożarze w 2006 roku ocalała jedynie fasada, a budynek został następnie odrestaurowany. Obecna siedziba biskupstwa diecezji nivarieńskiej.",
+  "cat": "Pałac barokowy · La Laguna · Zabytek · Biskupstwo"
+ },
+ "casa-capitanes-generales": {
+  "desc": "Charakterystyczny budynek z XVIII wieku przy Plaza de la Candelaria w Santa Cruz, wzniesiony w latach 1741-1750. Przez ponad sto lat był siedzibą kapitanów generalnych archipelagu kanaryjskiego. Barokowa fasada z podcieniami na parterze. Dobro Kultury. Obecnie siedziba ratusza Santa Cruz de Tenerife. Jeden z najlepszych przykładów kanaryjskiej architektury świeckiej XVIII wieku.",
+  "cat": "Dom Kapitanów · Santa Cruz · Barok · Zabytek · Ratusz"
+ }
+}
