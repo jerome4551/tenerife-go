@@ -1,0 +1,468 @@
+{
+ "parkinson-tf-realejos": {
+  "desc": "Párkinson Tenerife — Jednostka Opieki Kompleksowej w Los Realejos. Terapie i specjalistyczne wsparcie dla osób z parkinsonem i ich rodzin na północy Teneryfy (psychologia, fizjoterapia, logopedia, grupy wsparcia). Ulica San Isidro b/n, Los Realejos. Tel. 922 62 53 90.",
+  "cat": "Parkinson · Los Realejos · Wsparcie"
+ },
+ "parkinson-tf-silos": {
+  "desc": "Párkinson Tenerife — Jednostka Opieki Kompleksowej w Los Silos. Wsparcie i terapie dla osób z parkinsonem i ich rodzin na Isla Baja (północny zachód Teneryfy). Plaza de San Bernardo, Los Silos. Tel. 922 62 53 90.",
+  "cat": "Parkinson · Los Silos · Wsparcie"
+ },
+ "parkinson-tf-granadilla": {
+  "desc": "Párkinson Tenerife — Jednostka Opieki Kompleksowej w Granadilla de Abona. Wsparcie i terapie dla osób z parkinsonem i ich rodzin na południu Teneryfy (psychologia, fizjoterapia, logopedia, grupy wsparcia). Ulica Aguilillas b/n, Granadilla de Abona. Tel. 922 62 53 90.",
+  "cat": "Parkinson · Granadilla · Wsparcie"
+ },
+ "violencia-sexual-24h-tenerife": {
+  "desc": "Całodobowe Centrum Kryzysowe Teneryfy dla ofiar przemocy seksualnej (Kanaryjski Instytut Równości, prowadzone przez Fundación Ideo). Usługa bezpłatna, poufna i dostępna całą dobę, każdego dnia, dla kobiet powyżej 16 roku życia, które doświadczyły przemocy seksualnej — niedawnej lub dawnej — oraz dla osób z ich otoczenia. Pomoc psychologiczna, prawna i socjalna. Zgłoszenie na policję nie jest warunkiem. Telefon 647 759 126; w nagłych wypadkach dzwoń pod 112; informacja pod 012. Więcej na caeviolenciasexual.com. Ze względów bezpieczeństwa adres centrum podaje się poufnie przy kontakcie; ten punkt wskazuje Kanaryjski Instytut Równości.",
+  "cat": "Przemoc seksualna · Pomoc 24h · Teneryfa"
+ },
+ "cavis-violencia-sexual-tenerife": {
+  "desc": "CAVIS — Służba Kompleksowej Pomocy Ofiarom Przemocy Seksualnej na Teneryfie (Cabildo de Tenerife / Kanaryjski Instytut Równości). Specjalistyczna pomoc na miejscu, bezpłatna i poufna: wsparcie psychologiczne, prawne i socjalne dla kobiet, które doświadczyły przemocy seksualnej, oraz dla ich otoczenia. Zgłoszenie na policję nie jest warunkiem. W Santa Cruz, ulica Franco de Medina 41 (budynek HICAN IV). W nagłych wypadkach całodobowo dzwoń pod 647 759 126 albo 112; całodobowa pomoc dla kobiet: 016.",
+  "cat": "Przemoc seksualna · Pomoc · Santa Cruz"
+ },
+ "siam-mujeres-santacruz": {
+  "desc": "SIAM — Służba Kompleksowej Pomocy Kobietom Cabildo de Tenerife. Informacja oraz wsparcie psychologiczne, prawne i socjalne dla kobiet doświadczających przemocy ze względu na płeć, bezpłatnie i poufnie. Wizyty po wcześniejszym umówieniu w Palacete de Coviella, ulica Francisco de Aguiar y Aguiar 8, Santa Cruz. W nagłych wypadkach 112; całodobowa pomoc dla kobiet: 016.",
+  "cat": "Pomoc kobietom · Santa Cruz"
+ },
+ "mujer-adeje": {
+  "desc": "Punkt pomocy kobietom doświadczającym przemocy ze względu na płeć w gminie Adeje (Służby Społeczne i Równość). Informacja oraz wsparcie psychologiczne, prawne i socjalne, bezpłatnie i poufnie. Przy urzędzie gminy, Callejón de los Frailes, Adeje. Tel. 922 75 62 38. W nagłych wypadkach 112; całodobowa pomoc dla kobiet: 016.",
+  "cat": "Pomoc kobietom · Adeje"
+ },
+ "mujer-san-miguel": {
+  "desc": "Punkt pomocy kobietom doświadczającym przemocy ze względu na płeć w gminie San Miguel de Abona (Służby Społeczne i Równość). Informacja oraz wsparcie psychologiczne, prawne i socjalne, bezpłatnie i poufnie. Przy urzędzie gminy, droga do Los Abrigos 30. W nagłych wypadkach 112; całodobowa pomoc dla kobiet: 016.",
+  "cat": "Pomoc kobietom · San Miguel"
+ },
+ "minigolf-oasis-cristianos": {
+  "desc": "Minigolf w Los Cristianos, najtańszy na południu Teneryfy (~4€ dorosły, ~3€ dziecko). Bardzo rodzinny i swobodny. Idealny na szybką partię. Spokojna atmosfera bez tłoku. Zalecana gotówka. Blisko promenady Los Cristianos.",
+  "cat": "Minigolf · Los Cristianos · Południe · Tanio"
+ },
+ "minigolf-parque-santiago": {
+  "desc": "Najbardziej osobliwy minigolf w Las Américas, w sercu kompleksu Parque Santiago (Av. Litoral b/n). Trzy pola: dwa po 18 dołków i jedno 9-dołkowe, zdobione ręcznie kolorowymi mozaikami ceramicznymi. Egzotyczny ogród z 580 gatunkami roślin, 60 odmianami kaktusów (niektóre mają ponad 80 lat) i wijącym się wzdłuż trasy strumykiem. Otwarte do północy. Nielimitowany czas gry. Sprzęt w cenie. Bar i napoje przy wejściu. ~7€ dorosły, ~6€ dziecko. Gotówka.",
+  "cat": "Minigolf · Las Américas · 3 pola · Ogród kaktusów · Do północy"
+ },
+ "minigolf-la-pinta-adeje": {
+  "desc": "Minigolf o 18 dołkach w Costa Adeje, przy plaży La Pinta (C/ Roma 4). Z widokiem na morze. Cena: ~12€ dorośli i ~8€ dzieci (w cenie kije, piłki i karta). Bar i snack bar przy polu. Godziny: mniej więcej 12-22 (bywa różnie). To najbardziej wymagający z minigolfów Costa Adeje.",
+  "cat": "Minigolf 18 dołków · La Pinta · Costa Adeje · Widok na morze"
+ },
+ "minigolf-precise-resort": {
+  "desc": "Pole minigolfa o 18 dołkach w subtropikalnych ogrodach Precise Resort w Puerto de la Cruz. Spektakularne widoki na Ocean Atlantycki i Pico del Teide. Ogrodowe otoczenie wyjątkowe na północy Teneryfy. Dostępne także dla osób spoza hotelu. Godziny: 9:00-00:00. Jedyny publiczny minigolf na północy Teneryfy.",
+  "cat": "Minigolf 18 dołków · Puerto de la Cruz · Północ · Widok na Teide"
+ },
+ "nucleo-el-sauzal": {
+  "desc": "Naturalny punkt widokowy nad Atlantykiem. Własne wina, guachinches i Parque de la Iglesia.",
+  "cat": "Wioska · Północ"
+ },
+ "nucleo-buenavista": {
+  "desc": "Najdalej na północny zachód wysunięta miejscowość. Golf, plantacje bananów i widoki na La Gomerę. Bardzo autentyczna i spokojna.",
+  "cat": "Wioska · Skrajny północny zachód"
+ },
+ "nucleo-arico": {
+  "desc": "Miejscowość na pustyni południowego wschodu. Paralotniarstwo, szlaki piesze i autentyczna lokalna kuchnia.",
+  "cat": "Wioska · Południowy wschód"
+ },
+ "nucleo-santiago-teide": {
+  "desc": "Spokojna miejscowość w sercu masywu Teno. Punkt wyjścia na trasę do Maski i do wąwozów zachodu. Dobrze zachowana tradycyjna architektura kanaryjska.",
+  "cat": "Wioska · Teno"
+ },
+ "nucleo-los-silos": {
+  "desc": "Jedna z najbardziej autentycznych i malowniczych miejscowości północy. Urocze porty rybacki, festiwal teatru ulicznego i plaże z czarnym piaskiem bez turystów.",
+  "cat": "Wioska · Północny zachód"
+ },
+ "nucleo-arafo": {
+  "desc": "Miejscowość na południowym wschodzie z tradycją rzemieślniczą i bardzo żywymi świętami ludowymi. Słynie ze świąt Matki Bożej z Góry Karmel i z rzemieślniczego wyrobu lokalnych produktów.",
+  "cat": "Wioska · Południowy wschód"
+ },
+ "nucleo-granadilla": {
+  "desc": "Stolica południowego wschodu z dobrze zachowanym starym miastem. Dzielnica Charco del Pino z architekturą kolonialną. Port jachtowy Los Abrigos i pobliskie plaże wulkaniczne.",
+  "cat": "Stolica południowego wschodu"
+ },
+ "playa-camison": {
+  "desc": "Spokojna plaża między Las Américas a Los Cristianos. Drobny piasek i spokojna woda. Bardzo rodzinna.",
+  "cat": "Plaża rodzinna · Południe"
+ },
+ "playa-callao": {
+  "desc": "Plaża z ciemnym piaskiem, mało zatłoczona. Spokojna, lokalna atmosfera. Ładne zachody słońca.",
+  "cat": "Plaża · Adeje"
+ },
+ "playa-puertito": {
+  "desc": "Główna plaża Puertito de Güímar: czarny piasek i otoczaki w zatoczce łagodzącej falowanie, z promenadą i parkingiem. Lokalna, rodzinna atmosfera, klub żeglarski i restauracje przysiółka o krok stąd; horyzont zamyka rezerwat przyrody Malpaís de Güímar. Do wejścia do wody zalecane buty do wody.",
+  "cat": "Zatoczka · Żółwie morskie"
+ },
+ "playa-puertito-adeje": {
+  "desc": "Mała zatoczka z ciemnym piaskiem i otoczakami w rybackim przysiółku Adeje, znana z żółwi, które odpoczywały w jej zatoce; dziś spotkania są okazjonalne i nie wolno ich dotykać ani karmić. Dobry snorkeling, dużo ryb. Bar na plaży przy samym piasku i nadmorski szlak z La Caleta. Bardzo ograniczony parking i budowa dużego kompleksu hotelowego w okolicy.",
+  "cat": "Zatoczka · Adeje"
+ },
+ "roque-bodegas": {
+  "desc": "Dzika plaża z czarnym piaskiem i żwirem w Anadze, bardzo blisko Benijo. Imponujące skały roques wyrastające z morza i mocno łamiące się fale. Bez zaplecza i bez ratowników: czysta natura.",
+  "cat": "Plaża dzika · Anaga"
+ },
+ "playa-torviscas": {
+  "desc": "Złota plaża stanowiąca całość z Fañabé w Costa Adeje. Idealna dla rodzin z małymi dziećmi, spokojna woda i pełne zaplecze. Gwarna atmosfera z promenadą.",
+  "cat": "Plaża rodzinna · Costa Adeje"
+ },
+ "playa-puerto-santiago": {
+  "desc": "Plaża z czarnym piaskiem wulkanicznym u stóp Los Gigantes. Autentyczna wioska rybacka z lokalnymi restauracjami. Punkt wypłynięcia rejsów pod klify.",
+  "cat": "Czarna plaża · Los Gigantes"
+ },
+ "playa-diego-hernandez": {
+  "desc": "Dziewicza zatoczka ukryta między klifami w Adeje. Dojście szlakiem w 45 minut albo kajakiem. Złoty piasek otoczony pionowymi skalnymi ścianami. Jedna z najpiękniejszych i najbardziej sekretnych na Teneryfie. Z zakorzenioną tradycją naturystyczną i bohemską atmosferą.",
+  "cat": "Zatoczka dziewicza · Adeje"
+ },
+ "playa-jaquita": {
+  "desc": "Plaża z czarnym piaskiem w Alcalá, na zachodnim wybrzeżu, w gminie Guía de Isora. Przylega do Naturalnych Basenów Alcalá, Charcos de La Jaquita, a łączy je promenada. Bezpłatny parking przy hotelu Gran Meliá Isora.",
+  "cat": "Plaża z czarnym piaskiem · Alcalá · Guía de Isora"
+ },
+ "playa-rambla": {
+  "desc": "Ukryta plaża z naturalnymi palmami i zielonym wąwozem w Los Realejos. Dostępna tylko pieszo, szlakiem na 20 minut wśród plantacji bananów. Całkowicie dziewicza i bez turystów.",
+  "cat": "Plaża ukryta · Los Realejos"
+ },
+ "playa-amarilla": {
+  "desc": "Plaża ze skały wulkanicznej w odcieniach żółci i pomarańczy u stóp Montaña Amarilla, na skraju Costa del Silencio. Góra jest Pomnikiem Przyrody, a jej cypel osłania zatokę: woda bywa bardzo spokojna i przejrzysta, a wulkaniczne dno czyni z niej jedno z najlepszych miejsc na snorkeling na południu. ⚠️ To nie jest piasek: to otoczaki i platformy z wulkanicznej skały, a do wody wchodzi się po drabinkach zamocowanych w skale. Nie ma ratownika. Strefa jest wystawiona na pasat z N-NE i na porywy z zachodu, choć wiatr na lądzie zwykle nie narusza zatoki. Bezpłatne parkowanie na białej linii przy ulicach Aquiles i Poseidón; nie ma ani oficjalnego parkingu, ani strefy płatnej. Przystanek autobusowy Minerva (7306) około 700 m dalej, 8 minut szlakiem: linie 470 (Los Cristianos — El Médano) co 30-40 min i 415 (lotnisko południowe) co godzinę.",
+  "cat": "Plaża wulkaniczna · Pomnik przyrody · Costa del Silencio",
+  "aviso": "Bezpłatna biała linia na ulicach osiedlowych, Aquiles i Poseidón. Nie ma oficjalnego parkingu przy Pomniku Przyrody ani strefy płatnej; 5-10 minut piechotą zwykle znajdzie się miejsce."
+ },
+ "playa-las-gaviotas": {
+  "desc": "⚠️ Psy zakazane gminną uchwałą, pod karą grzywny. Najbardziej uczęszczana plaża naturystyczna północy, przy Teresitas. Czarny piasek wulkaniczny i bardzo spokojna, tolerancyjna atmosfera. Bez zaplecza, ale z parkingiem w pobliżu.",
+  "cat": "Plaża naturystyczna · Santa Cruz"
+ },
+ "hosp-candelaria": {
+  "desc": "Publiczny szpital referencyjny dla południa Teneryfy. Izba przyjęć ogólna i pediatryczna 24h.",
+  "cat": "Szpital publiczny · Santa Cruz",
+  "hours": "Izba przyjęć 24h · 365 dni"
+ },
+ "hosp-huc": {
+  "desc": "Publiczny szpital referencyjny dla północy Teneryfy. Uniwersytecki, wszystkie specjalności.",
+  "cat": "Szpital publiczny · La Laguna",
+  "hours": "Izba przyjęć 24h · 365 dni"
+ },
+ "hosp-sur": {
+  "desc": "Szpital publiczny południa. Izba przyjęć 24h i specjalności medyczne dla regionu.",
+  "cat": "Szpital publiczny · Arona",
+  "hours": "Izba przyjęć 24h · 365 dni"
+ },
+ "hosp-norte": {
+  "desc": "Szpital publiczny obsługujący region północno-zachodni. Izba przyjęć ogólna 24h.",
+  "cat": "Szpital publiczny · Icod",
+  "hours": "Izba przyjęć 24h · 365 dni"
+ },
+ "hosp-hospiten-sur": {
+  "desc": "Prywatny szpital referencyjny na turystycznym południu. Akceptuje ubezpieczenia międzynarodowe.",
+  "cat": "Szpital prywatny · Las Américas",
+  "hours": "Izba przyjęć 24h · 365 dni"
+ },
+ "hosp-quiron-sc": {
+  "desc": "Szpital prywatny w Santa Cruz. Izba przyjęć 24h, wszystkie specjalności.",
+  "cat": "Szpital prywatny · Santa Cruz",
+  "hours": "Izba przyjęć 24h · 365 dni"
+ },
+ "hosp-quiron-adeje": {
+  "desc": "Szpital prywatny w Costa Adeje. Obsługa turystów, języki obce i międzynarodowi ubezpieczyciele.",
+  "cat": "Szpital prywatny · Costa Adeje",
+  "hours": "Izba przyjęć 24h · 365 dni"
+ },
+ "hosp-bellevue": {
+  "desc": "Szpital prywatny w Puerto de la Cruz. Wyspecjalizowany w obsłudze turystów północy.",
+  "cat": "Szpital prywatny · Puerto de la Cruz",
+  "hours": "Izba przyjęć 24h · 365 dni"
+ },
+ "hosp-sjd": {
+  "desc": "Szpital kontraktowy dla ubezpieczycieli, wypadków i pacjentów prywatnych. Izba przyjęć dla dorosłych 24h.",
+  "cat": "Szpital kontraktowy · Santa Cruz",
+  "hours": "Izba przyjęć 24h · dorośli"
+ },
+ "hosp-parque": {
+  "desc": "Szpital prywatny w centrum Santa Cruz. Izba przyjęć 24h dla dorosłych i dzieci.",
+  "cat": "Szpital prywatny · Santa Cruz",
+  "hours": "Izba przyjęć 24h · 365 dni"
+ },
+ "hosp-vithas-sct": {
+  "desc": "Szpital prywatny w Santa Cruz ze stałą izbą przyjęć 24h od listopada 2025. Szeroki wachlarz specjalności: kardiologia, neurologia, onkologia, ginekologia, ortopedia i inne. OIOM 24h. Wzorzec prywatnej opieki zdrowotnej na Wyspach Kanaryjskich.",
+  "cat": "Szpital prywatny · Izba przyjęć 24h · Santa Cruz",
+  "hours": "Izba przyjęć 24h · 365 dni (od listopada 2025)"
+ },
+ "hosp-hospiten-rambla": {
+  "desc": "Prywatny szpital Hospiten przy La Rambla w Santa Cruz. Izba przyjęć 24h, położnictwo, pediatria, chirurgia i wszystkie specjalności. Ośrodek referencyjny dla turystów z północy wyspy.",
+  "cat": "Szpital prywatny · Izba przyjęć 24h · Santa Cruz",
+  "hours": "Izba przyjęć 24h · 365 dni"
+ },
+ "hosp-uro-tenerife": {
+  "desc": "Klinika wyspecjalizowana w urologii w Santa Cruz. Wzorzec na wyspie w schorzeniach urologicznych.",
+  "cat": "Klinika specjalistyczna · Urologia · Santa Cruz",
+  "hours": "Pn-Pt 9:00–14:00 i 16:00–20:00"
+ },
+ "hosp-ceu-laguna": {
+  "desc": "Poradnia specjalistyczna SCS w La Lagunie. Konsultacje specjalistów, diagnostyka, rehabilitacja i oddział dzienny. Powiązana z HUC. Obejmuje La Lagunę i gminy północy.",
+  "cat": "Poradnia specjalistyczna · La Laguna",
+  "hours": "Pn-Pt 8:00–21:00 · Bez nocnej izby przyjęć"
+ },
+ "cs-adeje": {
+  "desc": "Podstawowa opieka zdrowotna gminy Adeje. Po godzinach w nagłych wypadkach należy jechać do szpitala.",
+  "cat": "Ośrodek zdrowia · SCS",
+  "hours": "Pn-Pt 8:00–20:00 · W weekendy zamknięte"
+ },
+ "cs-cristianos": {
+  "desc": "Podstawowa opieka zdrowotna w Los Cristianos. Po godzinach nagłe wypadki w szpitalu.",
+  "cat": "Ośrodek zdrowia · SCS",
+  "hours": "Pn-Pt 8:00–19:30"
+ },
+ "cs-pcruz": {
+  "desc": "Poradnia specjalistyczna dla Doliny La Orotava. Badania, radiologia i konsultacje.",
+  "cat": "Specjalności · SCS",
+  "hours": "Pn-Pt 8:00–15:00"
+ },
+ "cs-orotava": {
+  "desc": "Ośrodek zdrowia z izbą przyjęć 24h. Obsługuje całą gminę La Orotava.",
+  "cat": "Ośrodek zdrowia 24h · SCS",
+  "hours": "Izba przyjęć 24h na miejscu"
+ },
+ "cs-icod": {
+  "desc": "Podstawowa opieka zdrowotna w Icod. Na nagłe wypadki 24h Szpital Północny jest bardzo blisko.",
+  "cat": "Ośrodek zdrowia · SCS",
+  "hours": "Pn-Pt 8:00–20:00"
+ },
+ "cs-candelaria": {
+  "desc": "Podstawowa opieka zdrowotna gminy Candelaria.",
+  "cat": "Ośrodek zdrowia · SCS",
+  "hours": "Pn-Pt 8:00–20:00"
+ },
+ "cs-granadilla": {
+  "desc": "Ośrodek z izbą przyjęć 24h dla Granadilli i regionu południowo-wschodniego.",
+  "cat": "Ośrodek zdrowia 24h · SCS",
+  "hours": "Izba przyjęć 24h na miejscu"
+ },
+ "cs-guimar": {
+  "desc": "Ośrodek z izbą przyjęć 24h dla Güímar i okolicznych gmin.",
+  "cat": "Ośrodek zdrowia 24h · SCS",
+  "hours": "Izba przyjęć 24h na miejscu"
+ },
+ "cs-sanisidro": {
+  "desc": "Podstawowa opieka zdrowotna w San Isidro. Dyżur w weekendy.",
+  "cat": "Ośrodek zdrowia · SCS",
+  "hours": "Pn-Pt 8:00–19:00 · So-Nd 24h"
+ },
+ "cs-realejos": {
+  "desc": "Podstawowa opieka zdrowotna gminy Los Realejos.",
+  "cat": "Ośrodek zdrowia · SCS",
+  "hours": "Pn-Pt 8:00–20:00"
+ },
+ "cs-tacoronte": {
+  "desc": "Ośrodek z izbą przyjęć 24h dla Tacoronte i regionu Acentejo.",
+  "cat": "Ośrodek zdrowia 24h · SCS",
+  "hours": "Izba przyjęć 24h na miejscu"
+ },
+ "cs-medano": {
+  "desc": "Lokalny punkt lekarski w El Médano. Dyżur w soboty.",
+  "cat": "Punkt lekarski · SCS",
+  "hours": "Pn-Pt 8:00–20:00 · So 24h"
+ },
+ "cs-ofra": {
+  "desc": "Miejski ośrodek zdrowia w Santa Cruz, dzielnica Ofra-Delicias.",
+  "cat": "Ośrodek zdrowia · SCS",
+  "hours": "Pn-Pt 8:00–19:30"
+ },
+ "cs-geneto": {
+  "desc": "Podstawowa opieka zdrowotna w La Lagunie, dzielnica Geneto.",
+  "cat": "Ośrodek zdrowia · SCS",
+  "hours": "Pn-Pt 8:00–20:00"
+ },
+ "cs-arona": {
+  "desc": "Ośrodek Podstawowej Opieki Zdrowotnej SCS w Aronie, na południu Teneryfy. Obsługuje Los Cristianos, Las Galletas i Costa del Silencio.",
+  "cat": "Ośrodek zdrowia · Arona · Południe",
+  "hours": "Pn-Pt 8:00–20:00"
+ },
+ "cs-santiago-teide": {
+  "desc": "Ośrodek Podstawowej Opieki Zdrowotnej SCS w Santiago del Teide, na zachodzie Teneryfy. Obsługuje Los Gigantes, Puerto de Santiago i Playa de La Arena.",
+  "cat": "Ośrodek zdrowia · Santiago del Teide · Zachód",
+  "hours": "Pn-Pt 8:00–20:00"
+ },
+ "cs-buenavista-norte": {
+  "desc": "Punkt lekarski SCS w Buenavista del Norte, na północnym zachodzie Teneryfy. Podstawowa opieka zdrowotna dla mieszkańców najbardziej wysuniętej na zachód gminy wyspy. Po specjalności i pomoc w nagłych wypadkach szpitalem referencyjnym jest Szpital Północny (Icod de los Vinos).",
+  "cat": "Punkt lekarski · Buenavista del Norte · Północny zachód",
+  "hours": "Pn-Pt 8:00–20:00"
+ },
+ "cs-garachico": {
+  "desc": "Przychodnia SCS w Garachico, przy drodze dojazdowej do gminy od strony Icod. Podstawowa opieka zdrowotna dla mieszkańców Garachico i strefy północnej. Szpital referencyjny: Szpital Północny Teneryfy (Icod de los Vinos).",
+  "cat": "Przychodnia · Garachico · Północ",
+  "hours": "Pn-Pt 8:00–20:00"
+ },
+ "farm-salamanca": {
+  "desc": "Duża apteka otwarta całą dobę w Santa Cruz. Szeroki wybór produktów i parking w pobliżu.",
+  "cat": "Apteka 24h · Santa Cruz",
+  "hours": "Otwarta 24h · 365 dni"
+ },
+ "farm-anchieta": {
+  "desc": "Apteka z wydłużonymi godzinami w La Lagunie, przy Padre Anchieta. Dyżur nocny.",
+  "cat": "Apteka dyżurna · La Laguna",
+  "hours": "Pn-Nd 8:00–22:00"
+ },
+ "farm-blesa": {
+  "desc": "Bardzo uczęszczana apteka w samym Los Cristianos. Dobra obsługa i konkurencyjne ceny.",
+  "cat": "Apteka · Los Cristianos",
+  "hours": "Pn-Pt 8:30–20:30 · So 9:00–20:00"
+ },
+ "farm-orotava": {
+  "desc": "Apteka otwarta 365 dni w roku przy ośrodku zdrowia Las Dehesas.",
+  "cat": "Apteka · La Orotava",
+  "hours": "Codziennie 9:00–21:00"
+ },
+ "farm-anaga": {
+  "desc": "Klasyczna apteka przy Avenida Anaga, naprzeciw portu. Profesjonalna obsługa.",
+  "cat": "Apteka · Santa Cruz",
+  "hours": "Pn-Pt 8:30–21:00 · So-Nd 9:00–14:00"
+ },
+ "farm-galletas": {
+  "desc": "Apteka w Las Galletas, na południu gminy Arona. Autentyczna nadmorska miejscowość.",
+  "cat": "Apteka · Las Galletas",
+  "hours": "Pn-Pt 8:00–20:00 · So 8:00–14:00"
+ },
+ "farm-pharmadeje": {
+  "desc": "Apteka turystyczna w Costa Adeje. Angielski, niemiecki i francuski. Rotacyjny dyżur nocny.",
+  "cat": "Apteka · Costa Adeje",
+  "hours": "Pn-Pt 9:00–21:00 · So 9:15–14:00"
+ },
+ "farm-hernandez-sct": {
+  "desc": "Apteka z całodobowym stałym dyżurem w Santa Cruz de Tenerife. Jedna z niewielu aptek pracujących bez przerwy w stolicy. Niezbędna przy nocnych nagłych wypadkach.",
+  "cat": "Apteka 24h · Santa Cruz",
+  "hours": "24h · Codziennie · Dyżur stały"
+ },
+ "farm-islas-canarias-sct": {
+  "desc": "Apteka przy Av. Islas Canarias w Santa Cruz. Rotacyjny dyżur nocny. Długie godziny w dni powszednie. Dobrze położona w strefie centralnej.",
+  "cat": "Apteka · Centrum Santa Cruz",
+  "hours": "Pn-Pt 8:30–20:00 · So-Nd 9:00–14:00"
+ },
+ "farm-pozo-pcruz": {
+  "desc": "Apteka z długimi godzinami w Puerto de la Cruz. Otwarta codziennie przez cały rok od 9 do 22, także w święta. Jedna z najbardziej dostępnych dla turystów na północy wyspy.",
+  "cat": "Apteka · Puerto de la Cruz",
+  "hours": "Codziennie 09:00–22:00"
+ },
+ "farm-bethencourt-pcruz": {
+  "desc": "Apteka z wydłużonymi godzinami w Puerto de la Cruz. Otwarta 365 dni w roku od 8:30 do 22. Rotacyjny dyżur nocny. Dobrze położona w strefie turystycznej.",
+  "cat": "Apteka · Puerto de la Cruz",
+  "hours": "Codziennie 08:30–22:00"
+ },
+ "farm-americas-arona": {
+  "desc": "Apteka w Los Cristianos, w turystycznej strefie południa. Długie godziny i obsługa w kilku językach. Rotacyjny dyżur z innymi aptekami w okolicy.",
+  "cat": "Apteka · Los Cristianos · Południe",
+  "hours": "Pn-Pt 9:00–21:00 · So 9:00–15:00 · Dyżur rotacyjny"
+ },
+ "farm-adeje-austria": {
+  "desc": "Apteka w Adeje, w centrum. Długie godziny w dni powszednie. Dyżur rotacyjny z innymi aptekami strefy Adeje i Costa Adeje.",
+  "cat": "Apteka · Adeje",
+  "hours": "Pn-Pt 9:00–21:00 · So 9:00–14:00 · Dyżur rotacyjny"
+ },
+ "gas-tf1-granadilla": {
+  "desc": "Stacja Repsol przy TF-1 w Granadilli. Sklep i myjnia samochodowa. Łatwy zjazd z autostrady.",
+  "cat": "Stacja paliw · TF-1 Południe",
+  "hours": "24h · Codziennie"
+ },
+ "gas-tf1-guaza": {
+  "desc": "Stacja BP w Guaza, zjazd na Aronę. Dobry przystanek przed Los Cristianos i Las Américas.",
+  "cat": "Stacja paliw · TF-1 Południe",
+  "hours": "24h · Codziennie"
+ },
+ "gas-tf1-guaza2": {
+  "desc": "Stacja Cepsa na zjeździe do Los Cristianos z TF-1. Bardzo uczęszczana, zawsze otwarta.",
+  "cat": "Stacja paliw · TF-1 Południe",
+  "hours": "24h · Codziennie"
+ },
+ "gas-tf1-adeje": {
+  "desc": "Repsol przy Costa Adeje. Turystyczna strefa o dużym natężeniu ruchu. Rozległa strefa obsługi ze sklepem.",
+  "cat": "Stacja paliw · TF-1 Południe",
+  "hours": "24h · Codziennie"
+ },
+ "gas-tf1-candelaria": {
+  "desc": "Stacja Cepsa na zjeździe do Candelarii. Strategiczny punkt między północą a południem. Pełna obsługa.",
+  "cat": "Stacja paliw · TF-1 Wschód",
+  "hours": "06:00–23:00 · Codziennie"
+ },
+ "gas-tf1-guimar": {
+  "desc": "BP na zjeździe do Güímar. Blisko Piramid Güímar. Dobre zaplecze.",
+  "cat": "Stacja paliw · TF-1 Wschód",
+  "hours": "07:00–22:00 · Codziennie"
+ },
+ "gas-tf5-lalaguna": {
+  "desc": "Repsol na zjeździe do La Laguny z TF-5. Jedna z najbardziej ruchliwych na północy. Myjnia automatyczna.",
+  "cat": "Stacja paliw · TF-5 Północ",
+  "hours": "24h · Codziennie"
+ },
+ "gas-tf5-tacoronte": {
+  "desc": "Cepsa przy zjeździe do Tacoronte. Strefa winiarni i guachinches. Kawa i sklep na miejscu.",
+  "cat": "Stacja paliw · TF-5 Północ",
+  "hours": "06:00–23:00 · Codziennie"
+ },
+ "gas-tf5-ptocz": {
+  "desc": "BP u wjazdu do Puerto de la Cruz od strony autostrady. Bardzo praktyczna dla turystów. Duża i jasna.",
+  "cat": "Stacja paliw · TF-5 Północ",
+  "hours": "24h · Codziennie"
+ },
+ "gas-tf5-icod": {
+  "desc": "Repsol w Icod, bardzo blisko Tysiącletniego Smoczego Drzewa. Punkt tankowania na północnym zachodzie wyspy.",
+  "cat": "Stacja paliw · TF-5 Północny zachód",
+  "hours": "07:00–22:00 · Codziennie"
+ },
+ "gas-tf2-lalaguna": {
+  "desc": "Cepsa przy TF-2, zjazd La Laguna w stronę południa. Kluczowy punkt między lotniskiem a stolicą.",
+  "cat": "Stacja paliw · TF-2 Centrum",
+  "hours": "24h · Codziennie"
+ },
+ "gas-tf2-aeropuerto": {
+  "desc": "BP przy lotnisku Reina Sofía (TFS). Niezbędna, żeby oddać samochód z wypożyczalni z pełnym bakiem.",
+  "cat": "Stacja paliw · Lotnisko południowe",
+  "hours": "24h · Codziennie"
+ },
+ "gas-tf1-abades": {
+  "desc": "Stacja przy TF-1 km 44, strefa Abades/Arico. Ważny przystanek na autostradzie południowej, na odcinku wschodnim. Jedna z nielicznych stacji między lotniskiem a Güímar.",
+  "cat": "Stacja paliw · TF-1 · Arico",
+  "hours": "Pn-Pt 06:00-22:00 · So 07:00-22:00 · Nd 08:00-21:00"
+ },
+ "gas-tf82-los-gigantes": {
+  "desc": "DISA na zjeździe do Los Gigantes, TF-82/Puerto Santiago km 1,5. Strefa zachodnia. Niezbędna przed dalszą jazdą na północ zachodnim wybrzeżem albo podjazdem do Santiago del Teide. Strefa górska z niewieloma alternatywami.",
+  "cat": "Stacja paliw · TF-82 · Los Gigantes",
+  "hours": "Codziennie 07:00-22:00"
+ },
+ "gas-tf21-aguamansa": {
+  "desc": "⚠️ OSTATNIA stacja paliw przed Parkiem Narodowym Teide, jadąc drogą TF-21 z La Orotava (Aguamansa). W Parku Narodowym NIE MA stacji paliw. Trzeba koniecznie zatankować tutaj przed wjazdem na Teide.",
+  "cat": "⚠️ Ostatnia stacja paliw · Podjazd na Teide",
+  "hours": "Pn-So 07:00-21:00 · Święta sprawdzić"
+ },
+ "gas-tf5-el-bohio": {
+  "desc": "DISA przy TF-5 km 25, La Matanza de Acentejo. Autostrada północna, dobrze położona między La Laguną a Puerto de la Cruz. Dobry punkt postoju.",
+  "cat": "Stacja paliw · TF-5 · La Matanza",
+  "hours": "Pn-Pt 06:15-22:15 · So 06:45-22:15 · Nd 07:15-22:15"
+ },
+ "gas-tf5-el-sauzal": {
+  "desc": "Repsol przy TF-5 km 22,5, El Sauzal. Północ między La Laguną a Tacoronte. Jedna z najłatwiej dostępnych stacji z autostrady północnej.",
+  "cat": "Stacja paliw · TF-5 · El Sauzal",
+  "hours": "Codziennie 06:00-23:00"
+ },
+ "gas-tf51-vilaflor": {
+  "desc": "Stacja przy TF-51 Arona-Vilaflor km 4. Wnętrze południa. Ważna dla tych, którzy jadą do Vilaflor (najwyżej położona wieś Hiszpanii) albo wjeżdżają do Parku Narodowego od południa. Ostatnia stacja przed strefą wysokogórską.",
+  "cat": "⚠️ Stacja paliw · Wnętrze południa · Vilaflor",
+  "hours": "Pn-Pt 07:00-21:00 · Święta sprawdzić"
+ },
+ "gas-tf82-guia-isora": {
+  "desc": "Shell przy TF-82, Guía de Isora km 120. Południowy zachód Teneryfy. Ważny przystanek między Adeje a Los Gigantes przed najbardziej odludnym odcinkiem zachodniego wybrzeża.",
+  "cat": "Stacja paliw · TF-82 · Guía de Isora",
+  "hours": "Codziennie 07:00-22:00"
+ },
+ "gas-tf5-los-realejos": {
+  "desc": "DISA przy TF-5 km 46, Los Realejos. Północ między Puerto de la Cruz a Icod de los Vinos. Przydatna dla jadących dalej do Garachico albo na północny zachód wyspy.",
+  "cat": "Stacja paliw · TF-5 · Los Realejos",
+  "hours": "Pn-Pt 06:15-22:15 · So-Nd 07:00-22:00"
+ },
+ "puerto-santa-cruz": {
+  "desc": "⚠️ Port handlowy o ograniczonym dostępie. Największy port Wysp Kanaryjskich i jeden z najważniejszych na Atlantyku. Nabrzeża kontenerowe, wycieczkowce i ładunki ogólne. Wielkie transatlantyki cumują właśnie tutaj — imponujące widowisko z Parque Marítimo. Dostęp tylko dla pracowników i pasażerów rejsów z dokumentami. Zewnętrzna promenada nadmorska JEST publiczna.",
+  "cat": "⚠️ Port handlowy · Tylko obserwacja"
+ },
+ "puerto-los-cristianos": {
+  "desc": "Port mieszany: handlowy (promy) i rybacki. Stąd odpływają promy Fred Olsen i Naviera Armas na La Gomerę, La Palmę i El Hierro. Strefa zaokrętowania z kontrolowanym dostępem dla pasażerów z biletem. Strefa restauracji i zewnętrzna promenada SĄ publiczne i bardzo gwarne. Punkt wypłynięcia rejsów na południe.",
+  "cat": "Port promowy · Los Cristianos"
+ },
+ "puerto-colon-adeje": {
+  "desc": "Najbardziej turystyczny port jachtowy Teneryfy. Ponad 300 miejsc cumowniczych w samym Costa Adeje. Punkt wypłynięcia wszystkich morskich wycieczek południa: obserwacja wielorybów, katamarany, łodzie podwodne dla turystów, skutery wodne, wędkarstwo sportowe. Restauracje, sklepy i bardzo gwarna atmosfera przez cały dzień. W pełni dostępny publicznie.",
+  "cat": "Port jachtowy · Costa Adeje"
+ },
+ "marina-santa-cruz": {
+  "desc": "Nowoczesna marina w Santa Cruz przy Parque Marítimo César Manrique. Miejsca cumownicze dla jednostek rekreacyjnych z pełnym zapleczem. Promenada z barami i restauracjami z widokiem na ocean. Bardzo blisko Auditorio de Tenerife. Promenada i strefa restauracji są w pełni publiczne.",
+  "cat": "Marina · Santa Cruz"
+ }
+}
