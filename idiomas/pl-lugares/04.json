@@ -1,0 +1,402 @@
+{
+ "puerto-gigantes": {
+  "desc": "Jeden z najbardziej spektakularnych portów jachtowych Wysp Kanaryjskich, wciśnięty u stóp klifów Los Gigantes (600 m). Punkt wypłynięcia wycieczek na obserwację waleni, nurkowanie i snorkeling. Restauracje z niepowtarzalnym widokiem na klify. Latem bardzo uczęszczany. W pełni dostępny publicznie.",
+  "cat": "Port jachtowy · Los Gigantes"
+ },
+ "puerto-radazul": {
+  "desc": "Spokojny port jachtowy na osiedlu Radazul, na wschodnim wybrzeżu Teneryfy. Lokalna, rodzinna atmosfera, mniej turystyczna niż te na południu. Dobre zaplecze żeglarskie dla jednostek rekreacyjnych. Klub żeglarski z restauracją i tarasem z widokiem na morze. Idealny na spokojny obiad nad Atlantykiem.",
+  "cat": "Port jachtowy · El Rosario"
+ },
+ "marina-sur-galletas": {
+  "desc": "Port jachtowy otwarty w 2009 roku w Las Galletas, miejscowości o wielkiej tradycji rybackiej na południu. Spokojna i dobrze wyposażona marina z wieloma usługami żeglarskimi. Restauracje z autentyczną marynarską atmosferą. Strefa wędkarstwa sportowego i wycieczek morskich. Bardziej autentyczna i mniej zatłoczona niż Puerto Colón.",
+  "cat": "Marina · Las Galletas · Południe"
+ },
+ "puerto-guimar": {
+  "desc": "Nadmorskie i kąpielowe centrum Puertito de Güímar, na wschodnim wybrzeżu, z małym klubem żeglarskim. Obok oficjalna plaża dla psów. Solarium i strefa kąpielowa przy wejściu do portu. Autentyczna lokalna atmosfera, zupełnie inna niż masowa turystyka południa. Spokojna woda osłonięta falochronami.",
+  "cat": "Port jachtowy · Güímar"
+ },
+ "puerto-garachico": {
+  "desc": "Historyczny port w Garachico, najpiękniejszym miasteczku północy. Był największym portem Teneryfy, dopóki erupcja z 1706 roku nie pogrzebała go pod lawą. Obecny port jest mały i malowniczy, otoczony słynnymi naturalnymi basenami wulkanicznymi El Caletón. Wyjątkowa historyczna atmosfera. Nie dla dużych jednostek.",
+  "cat": "Port historyczny · Garachico"
+ },
+ "puerto-candelaria": {
+  "desc": "Port jachtowy La Galera w Candelarii, gminie patronki Wysp Kanaryjskich. Zaplecze żeglarskie przy Bazylice Matki Bożej z Candelarii. Spokojna, lokalna atmosfera. Dobry przystanek na wschodnim wybrzeżu między Santa Cruz a Güímar.",
+  "cat": "Port jachtowy · Candelaria"
+ },
+ "puerto-pcruz-nautico": {
+  "desc": "Historyczny klub żeglarski w Puerto de la Cruz z zapleczem sportowym i żeglarskim. Tradycyjne nabrzeże rybackie z autentyczną marynarską atmosferą. Strefa restauracji ze świeżą rybą. Port rybacki Puerto de la Cruz jest jednym z najbardziej malowniczych na północy wyspy.",
+  "cat": "Port rybacki i żeglarski · Puerto de la Cruz"
+ },
+ "puerto-playa-san-juan": {
+  "desc": "Port rybacki i jachtowy w Playa San Juan, jednej z najspokojniejszych miejscowości południowego zachodu. Bardzo autentyczny, z tradycyjnymi łodziami rybackimi. Restauracje z rybą prosto z morza. Widoki na La Gomerę w pogodne dni. Z dala od masowej turystyki — autentyczny kanaryjski zakątek.",
+  "cat": "Port rybacki · Playa San Juan"
+ },
+ "puerto-amarilla-marina": {
+  "desc": "Nowoczesny port jachtowy 10 min od lotniska Tenerife Sur. 350 miejsc cumowniczych przy polu golfowym Amarilla Golf — dołek 12 wychodzi nad morze, tworząc niepowtarzalny obraz z Teide w tle. Wycieczki turystyczną łodzią podwodną, nurkowanie i snorkeling. Restauracje z widokiem na ocean.",
+  "cat": "Marina · San Miguel de Abona"
+ },
+ "puerto-rcnt-santa-cruz": {
+  "desc": "Najważniejszy klub żeglarski Teneryfy, założony w 1902 roku. Ponad 4500 członków. Pełne zaplecze sportowe: żeglarstwo, tenis, pływanie. Miejsca cumownicze dla jednostek rekreacyjnych. Elegancka i towarzyska atmosfera. Wzorzec sportów wodnych na Wyspach Kanaryjskich. Wejście na teren portu JEST publiczne, do restauracji i na wydarzenia.",
+  "cat": "Królewski klub żeglarski · Santa Cruz"
+ },
+ "puerto-marina-tenerife-sc": {
+  "desc": "Port jachtowy w basenie rybackim Santa Cruz, zarządzany przez Zarząd Portu. Zaplecze żeglarskie z miejscami cumowniczymi dla jednostek rekreacyjnych. Autentyczna marynarska atmosfera przy Puerto Chico. Dobry wybór dla jednostek odwiedzających stolicę.",
+  "cat": "Marina sportowa · Santa Cruz"
+ },
+ "puertito-alcala": {
+  "desc": "Mały i autentyczny porcik rybacki w Alcalá, w gminie Guía de Isora. Łodzie rybołówstwa tradycyjnego i spokojna atmosfera nadmorskiej wioski. Restauracje ze świeżą rybą nad samym morzem. Z dala od masowej turystyki, miejsce kultowe dla szukających prawdziwej Teneryfy. Idealny o zachodzie słońca.",
+  "cat": "Porcik rybacki · Alcalá"
+ },
+ "puertito-los-abrigos": {
+  "desc": "Port rybołówstwa tradycyjnego w Los Abrigos, jednej z najbardziej prawdziwych miejscowości południa. Hala rybna otwarta w 2013 roku. Restauracje na promenadzie podają rybę prosto z morza — jedno z najlepszych miejsc na Teneryfie na świeżą rybę. Marynarska atmosfera bez turystycznych ozdobników.",
+  "cat": "Port rybacki · Los Abrigos"
+ },
+ "puertito-tajao": {
+  "desc": "Mały porcik rybacki w San Miguel de Tajao, na południowo-wschodnim wybrzeżu. Aktywne bractwo rybackie. Autentyczna nadmorska wioska z tradycyjnymi łodziami. Strefa nurkowania i snorkelingu. Restauracje z widokiem na morze i znakomitą rybą dnia. Stosunkowo nieznany turystom — ukryty skarb południowego wschodu.",
+  "cat": "Porcik rybacki · Tajao"
+ },
+ "puertito-poris-abona": {
+  "desc": "Mała przystań w Porís de Abona, na południowo-wschodnim wybrzeżu. Flota rybołówstwa tradycyjnego z niewielkimi łodziami. Obok plaże El Porís i El Bonito. Atmosfera autentycznej kanaryjskiej wioski z dala od turystyki. Dobry punkt wyjścia na piesze trasy po południowo-wschodnim wybrzeżu.",
+  "cat": "Przystań · Porís de Abona"
+ },
+ "puertito-san-marcos": {
+  "desc": "Mały port rybacki i turystyczny w San Marcos, nadmorskiej dzielnicy Icod de los Vinos. Plaża z ciemnym piaskiem wulkanicznym, bardzo popularna wśród rodzin. Restauracje ze świeżą rybą przy falochronie. Autentyczna lokalna atmosfera z widokiem na ocean od północy. Zaledwie 10 min od Tysiącletniego Smoczego Drzewa.",
+  "cat": "Porcik · San Marcos · Północ"
+ },
+ "puertito-el-medano": {
+  "desc": "⚠️ Nie ma portu jachtowego: łodzie i szkoły windsurfingu kotwiczą w otwartej zatoce przed plażą. Otwarta zatoka El Médano, stolicy windsurfingu i kitesurfingu na Teneryfie. Gospodarz zawodów międzynarodowych. Promenada El Médano jest jedną z najbardziej gwarnych na południu. Młoda i aktywna atmosfera, zupełnie inna niż turystyka południa.",
+  "cat": "Port jachtowy · El Médano"
+ },
+ "puertito-la-caleta": {
+  "desc": "⚠️ Nie ma ani portu, ani nabrzeża: to nadmorska strefa kąpielowa i restauracyjna wioski La Caleta. Mała wioska rybacka w La Caleta, między Costa Adeje a Playa San Juan. Autentyczna i spokojna, kilka kilometrów od strefy turystycznej. Restauracje z rybą prosto z hali rybnej. Początek promenady Costa Adeje. Tradycyjne łodzie i lokalna atmosfera kontrastująca z masową turystyką okolicy.",
+  "cat": "Porcik rybacki · La Caleta · Adeje"
+ },
+ "puertito-san-andres-norte": {
+  "desc": "⚠️ Nie ma odrębnego portu: to nadmorski front wioski. Najbliższe nabrzeże to basen rybacki Santa Cruz. Nadmorski front rybackiej wioski San Andrés, przy słynnej plaży Las Teresitas. Aktywne bractwo rybackie. Autentyczna marynarska atmosfera 8 km od Santa Cruz. Restauracje z rybami i owocami morza nad samym morzem. Do połączenia z wizytą na Las Teresitas. Historyczna strefa na północy Santa Cruz.",
+  "cat": "Port rybacki · San Andrés"
+ },
+ "puerto-chico-sct": {
+  "desc": "Mały port jachtowy obok Marina Tenerife w basenie rybackim Santa Cruz. Zaplecze żeglarskie zarządzane przez Zarząd Portu. Dobre widoki na port Santa Cruz i na Teide w pogodne dni. Spokojna i autentyczna marynarska atmosfera.",
+  "cat": "Port jachtowy · Santa Cruz"
+ },
+ "puerto-mesa-del-mar": {
+  "desc": "⚠️ Nie ma ani portu, ani nabrzeża: to nadmorska strefa mieszkalna z naturalnymi basenami i plażą. Nadmorskie osiedle Mesa del Mar, Tacoronte, na północy Teneryfy. Małe i rodzinne, przy naturalnych basenach wulkanicznych Mesa del Mar. Autentyczna lokalna atmosfera. Dobre widoki na północny Atlantyk. Strefa wędkarstwa rekreacyjnego. Stosunkowo spokojne i poza głównymi szlakami turystycznymi.",
+  "cat": "Port jachtowy · Mesa del Mar · Tacoronte"
+ },
+ "puerto-el-pris": {
+  "desc": "Mały port rybacki w El Pris, Tacoronte. Strefa bardzo ceniona przez miejscowych do kąpieli w naturalnych basenach i do wędkowania. Atmosfera nadmorskiej wioski północy bez masowej turystyki. Dobre widoki na Mesa del Mar. Strefa nurkowania i snorkelingu w spokojnych wodach.",
+  "cat": "Porcik rybacki · El Pris · Tacoronte"
+ },
+ "puerto-granadilla-comercial": {
+  "desc": "⚠️ Port handlowy całkowicie niedostępny dla publiczności. Nowo zbudowany port przemysłowy w Granadilla de Abona, na południu Teneryfy. Nabrzeża ładunków masowych, kontenerów i towarów specjalnych. Bez dostępu publicznego — przemysłowa strefa portowa. Pod zarządem Zarządu Portu Santa Cruz de Tenerife.",
+  "cat": "⚠️ Port przemysłowy · Dostęp ograniczony · Południe"
+ },
+ "puertito-fasnia": {
+  "desc": "⚠️ Bez infrastruktury portowej: to mała skalista zatoczka z minimalnym naturalnym schronieniem i wyciągniętymi na brzeg łodziami. Mały porcik rybacki w Fasnii, gminie na południowo-wschodnim wybrzeżu. Łodzie rybołówstwa tradycyjnego w spokojnej zatoczce. Atmosfera autentycznej kanaryjskiej wioski z dala od masowej turystyki. Pobliskie naturalne baseny wulkaniczne są odwiedzane przez miejscowych. Strefa o dużym pięknie naturalnym i małym ruchu.",
+  "cat": "Porcik rybacki · Fasnia"
+ },
+ "puertito-la-jaca": {
+  "desc": "Mała przystań w La Jaca, przysiółku San Miguel de Abona, na południowo-wschodnim wybrzeżu. Strefa tradycyjnego rybołówstwa. Obok plaża La Jaca. Samotne i naturalne otoczenie, bardzo cenione przez szukających zakątków bez turystyki. Dobry punkt obserwacji dziewiczego południowo-wschodniego wybrzeża.",
+  "cat": "Przystań · La Jaca · Południowy wschód"
+ },
+ "puertito-los-silos": {
+  "desc": "⚠️ Nie ma tu ani portu, ani nabrzeża: to kamienista zatoczka z promenadą przy szkielecie wieloryba. Jednostki operują z Garachico. Nadmorski zakątek Los Silos, na północnym zachodzie Teneryfy. Spokojna nadmorska miejscowość przy Parku Wiejskim Teno. Tradycyjne łodzie rybackie. Marynarski plac z restauracjami ze świeżą rybą. Strefa snorkelingu w krystalicznej wodzie. Jedna z najspokojniejszych i najbardziej autentycznych miejscowości północnego zachodu.",
+  "cat": "Port rybacki · Los Silos · Północny zachód"
+ },
+ "buceo-los-gigantes": {
+  "desc": "Los Gigantes to jedno z najlepszych miejsc do nurkowania na Teneryfie, z najwyższymi klifami Europy (600 m) jako podwodnym tłem. Los Gigantes Diving Centre, przy pomoście 6 w marinie, od dziesięcioleci prowadzi nurkowania PADI z przewodnikiem w najlepsze miejsca: jaskinia La Corona, rafy wulkaniczne, żółwie zielone i płaszczki. Średnia widoczność 20-30 m. Temperatura wody 18-24°C przez cały rok. Kursy Open Water od zera. Także snorkeling i nurkowania próbne. Codzienne wypłynięcia łodzią. Otwarte pn-so 9:30-16:00.",
+  "cat": "Nurkowanie i snorkeling · Los Gigantes · PADI · Klify"
+ },
+ "buceo-los-cristianos": {
+  "desc": "W Los Cristianos działa kilka centrów nurkowych PADI na promenadzie, przy porcie. Najbardziej uznane to Club de Buceo Rincón de Arona (między plażami Las Vistas i Los Cristianos), z własną łodzią na 12 nurków. Nurkowania prowadzą w miejsca takie jak Pequeño Puerto, rafa Abades, La Caleta i wrak El Condesito. Żółwie zielone, manty, ławice ryb tropikalnych. Średnia widoczność 20-25 m. Temperatura 18-24°C. Kursy PADI, nurkowania próbne, snorkeling. Wypłynięcia rano i po południu. Rezerwacje przez WhatsApp.",
+  "cat": "Nurkowanie i snorkeling · Los Cristianos · Południe · PADI"
+ },
+ "buceo-puerto-colon": {
+  "desc": "Puerto Colón w Costa Adeje to najważniejszy węzeł sportów wodnych południa Teneryfy. Scuba Point (PADI 5 Star IDC, C/ Puerto Colón 130) to jedno z najbardziej uznanych centrów nurkowych wyspy, działające od 1999 roku. Oferuje nurkowania z przewodnikiem w La Caleta, Los Morteros (rezerwat przyrody), El Puertito de Adeje (żółwie na wolności), jaskinie i rafy wulkaniczne. Także snorkeling z łodzi, kursy Open Water, Advanced i Rescue. Szkoła divemasterów. Codzienne wypłynięcia o 9:30 i 14:00. Jedyna łódź nurkowa na Teneryfie z toaletą na pokładzie.",
+  "cat": "Nurkowanie i snorkeling · Puerto Colón · PADI 5★ IDC · Costa Adeje"
+ },
+ "buceo-puerto-cruz": {
+  "desc": "Centrum Nurkowe Atlantik (PADI 5 Star Gold Palm IDC) działa od 1994 roku w Puerto de la Cruz, na północy Teneryfy. Łodzią nurkową Gitano dowożą do najlepszych podwodnych miejsc północy: La Catedral (wulkaniczny łuk na 30 m, granikowate, mureny, ryby papuzie), El Garachico Tunnel (charakterystyczny tunel wulkaniczny na 13 m), Rapadura, Cueva de la Matanza, Baja Realejos i Chimenea. Średnia widoczność 20-25 m. Temperatura 18-22°C. Wyjątkowe wulkaniczne dno: ściany, jaskinie, bazaltowe łuki. Kursy PADI od Open Water po instruktora. Nurkowania próbne od 10 lat. Także wycieczki snorkelingowe. Czynne zaangażowanie w ochronę morza.",
+  "cat": "Nurkowanie i snorkeling · Puerto de la Cruz · Północ · PADI 5★"
+ },
+ "buceo-las-galletas": {
+  "desc": "Las Galletas na południu Teneryfy to jeden z najaktywniejszych węzłów nurkowych wyspy. Strefa Punta Rasca i El Faro oferuje skaliste dno wulkaniczne do 50 metrów głębokości z niezwykłą różnorodnością morską: płaszczki, granikowate, kielce, barakudy, rzadziutka żabnica (doskonale zakamuflowana), rozdymka, koralowce czarne oraz liczne łuki i jaskinie. Dla wszystkich poziomów. Doświadczeni nurkowie mogą zejść do -50 m na skalistych krawędziach. El Bufadero blisko Los Cristianos (10 m dna) to łatwe nurkowanie dla każdego poziomu, z żółwiami i orleniami. Centrum referencyjne: Dive Tenerife Las Galletas.",
+  "cat": "Nurkowanie i snorkeling · Las Galletas · Południe · Punta Rasca · El Faro"
+ },
+ "buceo-tabaiba": {
+  "desc": "Tabaiba Baja, na północny wschód od Santa Cruz, mieści najbardziej dostępne nurkowanie wrakowe na Teneryfie. El Peñón to stary holownik o długości 35 metrów, zatopiony celowo w 2006 roku, żeby stworzyć sztuczną rafę na piaszczystym dnie na 10-18 metrach. Łatwe wejście z brzegu. Można eksplorować wnętrze: maszynownię, kabinę dziobową. Na zewnątrz: gęste ławice barakud, sargusów, ostroboków, sardynek, ryb trębaczy, ryb papuzich. Także płaszczki i duże seriole w otwartej wodzie wokół wraku. Poziom: średniozaawansowany. Nurkowanie z brzegu, łódź niepotrzebna.",
+  "cat": "Nurkowanie · Wrak El Peñón · Tabaiba · Santa Cruz · Średniozaawansowany"
+ },
+ "kayak-los-gigantes": {
+  "desc": "Kajak pod najwyższymi klifami Europy to najbardziej ikoniczne przeżycie wodne na Teneryfie. Z portu Los Gigantes wiosłuje się wzdłuż wulkanicznych ścian sięgających 600 metrów, opadających pionowo do morza. Standardowa trasa prowadzi do Barranco Seco, z postojem na kąpiel w zatoczkach niedostępnych od lądu. W sprzyjającym sezonie widuje się butlonosy, grindwale szare i żółwie. Firma referencyjna: Teno Activo. Wypłynięcia codziennie przez cały rok. Doświadczenie niepotrzebne — podstawowa odprawa w porcie przed wypłynięciem. Czas trwania: ~2 godziny. Kajaki jedno- i dwuosobowe.",
+  "cat": "Kajak · Los Gigantes · Klify 600 m · Cała wyspa"
+ },
+ "kayak-la-caleta": {
+  "desc": "La Caleta de Adeje to najpopularniejszy punkt startowy kajaków na południu Teneryfy. Z tej małej rybackiej wioski dopływa się kajakiem do trzech zatoczek całkowicie ukrytych i niedostępnych od lądu: Playa de Los Morteros (rafa skalna, 20 min), Playa Hernández (biały piasek, snorkeling) i El Puertito de Adeje (1h — „Zatoka Żółwi”, gdzie kilka żółwi zielonych żyje na wolności). Firma referencyjna: Surf Life Tenerife (w niektórych wycieczkach wizyta w hodowli ryb). Bardzo spokojna woda, idealna dla początkujących i rodzin. Kajaki jedno- i dwuosobowe.",
+  "cat": "Kajak · La Caleta · Ukryte zatoczki · Żółwie · Południe"
+ },
+ "kayak-los-cristianos": {
+  "desc": "Los Cristianos to jeden z najlepszych punktów kajakowych południa dla początkujących. Z portu organizuje się wycieczki kajak + snorkeling trwające około 2,5 godziny, do jaskini Cueva del Palmar i Rezerwatu Morskiego Playa Las Vistas. Często widuje się żółwie morskie. Firma referencyjna: Kayak Academy Tenerife (codzienne wypłynięcia). Można też zobaczyć delfiny. Osłonięte wody. Dostępne kajaki jedno- i dwuosobowe. Idealne dla rodziny.",
+  "cat": "Kajak · Los Cristianos · Południe · Żółwie · Początkujący"
+ },
+ "kayak-radazul": {
+  "desc": "Radazul, mała marina na południe od Santa Cruz, to najbardziej znany węzeł kajaków przezroczystych na północnym wschodzie Teneryfy. Kajaki ze szklanym dnem pozwalają oglądać wulkaniczne dno morskie podczas wiosłowania. Czarne i spokojne wody z wulkanicznego piasku o dużej bioróżnorodności: ryby tropikalne, ośmiornice, płaszczki, rozgwiazdy. Bardzo popularne wśród miejscowych. Łatwy dojazd z Santa Cruz (15 min). Firma referencyjna: Radazul Paddle & Kayak. Idealne dla wszystkich poziomów. Także SUP (Stand Up Paddleboard).",
+  "cat": "Kajak przezroczysty · Radazul · Santa Cruz · SUP"
+ },
+ "kayak-punta-teno": {
+  "desc": "Punta de Teno, na północno-zachodnim krańcu Teneryfy i w Parku Wiejskim Teno, oferuje najdzikszą i najmniej zbadaną trasę kajakową wyspy. Krystaliczna woda, spektakularne formacje wulkaniczne, absolutna cisza i bezpośrednie widoki na La Gomerę oraz na klify Los Gigantes w oddali. Bez tłumów. Punkt startowy w samej Punta de Teno (dojazd tylko autobusem wahadłowym TF-369 z Buenavista albo rowerem — wjazd samochodem ograniczony). Trasa zaawansowana ze względu na zmienne warunki północnego Atlantyku. Tylko przy dobrej pogodzie i z doświadczonym przewodnikiem.",
+  "cat": "Kajak · Punta de Teno · Park Wiejski Teno · Zaawansowany"
+ },
+ "escal-arico": {
+  "desc": "Masyw Arico to najważniejsza strefa wspinaczkowa Teneryfy i jeden z międzynarodowych punktów odniesienia w boulderingu w Europie. Barranco de Arico Nuevo skupia ponad 240 głazów bulderowych z bazaltu wulkanicznego wypolerowanego przez wodę, w otwartym kanionie. Idealny od października do kwietnia (pochmurno lub chłodno). Poza boulderingiem jest wspinaczka sportowa (kilka sektorów: El Río, Las Vegas, El Patio) z drogami od 4 do 8c. Czerwony przewodnik Erika Vaquero (2022) opisuje ponad 1300 dróg w 17 sektorach całej wyspy. Tenerife Climbing House (C/La Asomadita 8, Arico) to hostel i szkoła referencyjna dla wspinaczy z zagranicy. Dojście: z Arico Nuevo zejść ulicą Las Cuevas w stronę wąwozu.",
+  "cat": "Wspinaczka · Arico · Bouldering · Sportowa · Międzynarodowa"
+ },
+ "escal-guaria": {
+  "desc": "Guaría, w gminie Guía de Isora, to jeden z najpopularniejszych sektorów wspinaczki sportowej na południu Teneryfy. Ściana z bazaltu wulkanicznego z drogami o trudności średnio-wysokiej (5c-8a). Suchy i słoneczny klimat niemal przez cały rok — idealny, gdy w Arico jest bardzo gorąco. Wymaga zezwolenia na wejście (można je uzyskać przez kod QR na miejscu). Widoki na Atlantyk i La Gomerę z wyższych dróg. Dojazd samochodem z drogi TF-82.",
+  "cat": "Wspinaczka · Guaría · Guía de Isora · Południe · Sportowa"
+ },
+ "escal-canada-capricho": {
+  "desc": "Cañada del Capricho w Parku Narodowym Teide (2000 m n.p.m.) to wysokogórski raj wspinaczkowy Teneryfy. Skały, ściany i wieże z kanciastego bazaltu wulkanicznego w wyjątkowym wysokogórskim otoczeniu. Drogi od 6a wzwyż, z realną ekspozycją. Roque Cinchado i pobliskie formacje oferują wspinaczkę wielowyciągową z widokiem na Teide i Las Cañadas. Chłodna temperatura przez cały rok — idealna latem, gdy na południu jest bardzo gorąco. Dojazd drogą TF-21. Niektóre sektory wymagają zezwolenia Parku Narodowego.",
+  "cat": "Wspinaczka · Teide · Wysokie góry · Sportowa · Park narodowy"
+ },
+ "escal-anaga": {
+  "desc": "Park Wiejski Anaga skupia najdłuższe drogi wspinaczki tradycyjnej i wielowyciągowej na Teneryfie, około 100 dróg. Roque Negro i Roque de Las Ánimas to najbardziej charakterystyczne formacje. Wspinaczka w skale wulkanicznej wypolerowanej przez wodę, ze spektakularnym widokiem na Ocean Atlantycki i lasy wawrzynowe. Tylko dla wspinaczy z doświadczeniem w drogach tradycyjnych i wielowyciągowych. Drogi wymagają umiejętności zakładania własnej asekuracji. Dzikie i mało uczęszczane otoczenie. Trudny dojazd drogami leśnymi.",
+  "cat": "Wspinaczka · Anaga · Tradycyjna · Długie drogi · Północ"
+ },
+ "pesca-deportiva-puerto-colon": {
+  "desc": "Puerto Colón to główny węzeł wędkarstwa sportowego na południu Teneryfy. Czartery wypływają codziennie z jego nabrzeży w poszukiwaniu wielkich gatunków pelagicznych Atlantyku: marlin błękitny (do 500 kg), marlin biały, tuńczyk błękitnopłetwy, bonito, wahoo, włócznik i koryfena. Cały połów odbywa się metodą złów i wypuść. Cieśnina La Gomery skupia największe zagęszczenie marlina błękitnego na wodach europejskich. Optymalny sezon: maj-listopad. Jednostki 25-35 stóp z certyfikowanymi kapitanami. Sprzęt w cenie. Zalecana wcześniejsza rezerwacja.",
+  "cat": "Wędkarstwo sportowe · Puerto Colón · Marlin · Tuńczyk · Południe"
+ },
+ "pesca-deportiva-los-cristianos": {
+  "desc": "Port Los Cristianos to drugi węzeł wędkarstwa sportowego na południu Teneryfy, z kilkoma czynnymi czarterami polującymi na marlina błękitnego, tuńczyka żółtopłetwego, wahoo i barakudę. Rzadsze wypłynięcia niż z Puerto Colón, ale spokojniej i bardziej autentycznie. Są też czartery przybrzeżnego wędkarstwa tradycyjnego: sargus, vieja (kanaryjska ryba papuzia), ośmiornica i koryfena. Średnia cena: 50-80€ od osoby przy wyjściach zbiorowych. Dostępne też łodzie prywatne. Sezon: cały rok przy brzegu; maj-listopad na gatunki pelagiczne.",
+  "cat": "Wędkarstwo sportowe · Los Cristianos · Południe · Marlin · Tradycyjne"
+ },
+ "pesca-los-gigantes": {
+  "desc": "Port Los Gigantes ma długą tradycję morskiego wędkarstwa sportowego. Czarter Nashira Uno działa z tego portu od ponad 30 lat i jest zwycięzcą obu jedynych rozegranych tu mistrzostw. Codziennie wypływają na trolling między klifami Los Gigantes a cieśniną La Gomery. Odmiany: trolling pełnomorski (marlin błękitny, marlin biały, opastun, tuńczyk żółtopłetwy, koryfena, wahoo, peto, makrela) i połów denny (kielce, granikowate, wrakoń). Dostępne także przybrzeżne wędkarstwo tradycyjne. Godziny: 09:30 (4h lub 7h) i 13:30 (3h). Czarter prywatny albo zbiorowy.",
+  "cat": "Wędkarstwo sportowe · Los Gigantes · Marlin · Ponad 30 lat · Zachód"
+ },
+ "pesca-los-abrigos": {
+  "desc": "Los Abrigos to autentyczna i spokojna wioska rybacka na południu Teneryfy (gmina Granadilla de Abona), znana z restauracji ze świeżymi owocami morza. Mały port przyjmuje łodzie rybołówstwa tradycyjnego i kilka czarterów przybrzeżnego wędkarstwa sportowego: sargus, kielec, vieja (kanaryjska ryba papuzia), granik, barakuda, chopa. Także trolling na małe gatunki pelagiczne (bonito, listao, makrela, koryfena). Atmosfera w 100% lokalna. Bez turystycznego tłoku. Bractwo rybackie jest jednym z najaktywniejszych na południu.",
+  "cat": "Wędkarstwo sportowe · Los Abrigos · Południe · Tradycyjne · Owoce morza"
+ },
+ "deporte-garcia-sanabria": {
+  "desc": "Największy park miejski w centrum Santa Cruz (67 230 m²) ma plenerową strefę fitness z gminnymi urządzeniami do kalisteniki, strefę dla biegaczy i dużo miejsca na uprawianie sportu. Całkowicie bezpłatnie. Wstęp wolny przez cały dzień. Bardzo używany przez mieszkańców do porannego biegania i codziennych ćwiczeń.",
+  "cat": "Fitness · Park · Santa Cruz"
+ },
+ "deporte-parque-granja": {
+  "desc": "Duży park miejski w Santa Cruz z dobrze wytyczoną trasą biegową wśród palm i zieleni. Strefa kalisteniki z drążkami i poręczami zamontowanymi przez urząd gminy. Amfiteatr i otwarte przestrzenie do ćwiczeń grupowych. Wstęp wolny i bezpłatny. Bardzo uczęszczany przez miejscowych sportowców o świcie i o zmierzchu.",
+  "cat": "Bieganie · Kalistenika · Santa Cruz"
+ },
+ "deporte-rambla-sc": {
+  "desc": "Najbardziej charakterystyczna aleja Santa Cruz do biegania: 2,5 km zadrzewionego bulwaru z wydzielonym pasem dla biegaczy, rowerzystów i pieszych. Wzdłuż niej rzeźby i ogrody. Bezpłatna i dostępna przez cały dzień. Jedna z najprzyjemniejszych miejskich tras na Wyspach Kanaryjskich do ćwiczeń na wolnym powietrzu, nawet latem, dzięki cieniowi drzew.",
+  "cat": "Bieganie · Bulwar · Santa Cruz"
+ },
+ "deporte-medano-playa": {
+  "desc": "Plaża El Médano oferuje bezpłatne obiekty sportowe wyjątkowe na Teneryfie: boiska do siatkówki plażowej, strefę piłki plażowej, kosze do koszykówki i miejsce do kalisteniki przy promenadzie. Stolica windsurfingu i kitesurfingu na Teneryfie. Promenada jest jedną z najbardziej gwarnych na południu, z młodą i sportową atmosferą. Wszystko na wolnym powietrzu i bezpłatnie.",
+  "cat": "Sport plażowy · El Médano · Południe"
+ },
+ "deporte-costa-adeje-paseo": {
+  "desc": "Promenada Costa Adeje ma plenerowe strefy kalisteniki i fitnessu między Playa del Duque a Playa Fañabé. Drążki do podciągania, poręcze, niskie drążki i zewnętrzne maszyny siłowe zamontowane przez urząd gminy Adeje. Bezpłatnie i całodobowo. Widok na morze podczas ćwiczeń. Bardzo używane zarówno przez turystów, jak i mieszkańców.",
+  "cat": "Fitness · Kalistenika · Costa Adeje"
+ },
+ "deporte-los-cristianos-paseo": {
+  "desc": "Promenada Los Cristianos ma plenerową strefę kalisteniki z drążkami do podciągania, poręczami i sprzętem do street workoutu zamontowanym przy plaży. Bezpośredni widok na morze i port. Całkowicie bezpłatnie. Dostępne całą dobę. Bardzo uczęszczana wcześnie rano i o zmierzchu. Otoczenie plaży czyni z niej jedną z siłowni plenerowych o najlepszej atmosferze na Teneryfie.",
+  "cat": "Street workout · Los Cristianos"
+ },
+ "deporte-puerto-cruz-piscina": {
+  "desc": "Puerto de la Cruz ma plenerową strefę biegania i fitnessu wzdłuż nadmorskiej promenady przy basenach Lago Martiánez. Bezpłatna przestrzeń do ćwiczeń na zewnątrz z widokiem na Atlantyk. Nadmorska promenada Puerto de la Cruz jest jedną z najpiękniejszych na północy do uprawiania sportu o wschodzie słońca. Drążki do kalisteniki w obrębie nadmorskiego parku.",
+  "cat": "Bieganie · Kalistenika · Puerto de la Cruz"
+ },
+ "deporte-orotava-parque": {
+  "desc": "La Orotava ma bezpłatne plenerowe strefy sportowe w kilku punktach gminy: boiska do futsalu i koszykówki w parku Ranilla, drążki do kalisteniki w parku gminnym i miejsce do swobodnego treningu. Wstęp bezpłatny. Gmina inwestuje w publiczne obiekty sportowe dla mieszkańców i odwiedzających.",
+  "cat": "Sport publiczny · La Orotava"
+ },
+ "deporte-san-isidro-zona": {
+  "desc": "San Isidro (Granadilla de Abona) ma bezpłatną publiczną strefę sportową z plenerowymi boiskami do futsalu i strefą kalisteniki w parku gminnym. Bardzo używana przez mieszkańców. Spokojna i autentyczna część południa, z dala od masowej turystyki. Rodzinna, sąsiedzka atmosfera. Wstęp wolny przez cały dzień.",
+  "cat": "Sport publiczny · San Isidro · Południe"
+ },
+ "deporte-laguna-parque-avenidas": {
+  "desc": "Gmina La Laguna, wpisana na listę światowego dziedzictwa, ma plenerową strefę fitnessu i kalisteniki w parku Las Avenidas i w pobliskich terenach. Bezpłatne obiekty gminne z drążkami, zewnętrznymi maszynami do ćwiczeń i miejscem na trening funkcjonalny. Bardzo używane przez studentów ULL. Wstęp wolny przez cały dzień.",
+  "cat": "Fitness · Kalistenika · La Laguna"
+ },
+ "deporte-candelaria-paseo": {
+  "desc": "Promenada Candelarii ma plenerową strefę kalisteniki i pas do biegania nad samym morzem, z widokiem na Bazylikę Matki Bożej z Candelarii. Drążki zamontowane przez urząd gminy. Całkowicie bezpłatnie. Otoczenie jest spektakularne: czarny piasek wulkaniczny, posągi guanczów i Atlantyk. Idealne na sesję sportu z historią i krajobrazem.",
+  "cat": "Bieganie · Kalistenika · Candelaria"
+ },
+ "deporte-palm-mar-fitness": {
+  "desc": "Palm-Mar, mała nadmorska miejscowość na południu, ma gminną plenerową strefę fitnessu oraz ogólnodostępne korty do padla i tenisa. Spokojne i bardzo lokalne otoczenie. Jedna z nielicznych stref południa, gdzie można trenować za darmo z widokiem na morze, poza szlakami turystycznymi. Idealna dla sportowców szukających spokoju.",
+  "cat": "Fitness · Padel · Palm-Mar · Południe"
+ },
+ "deporte-guia-isora-skate": {
+  "desc": "Guía de Isora ma bezpłatny gminny skatepark i boisko wielofunkcyjne (futsal, koszykówka) w obiektach sportowych gminy. Wstęp wolny na boiska zewnętrzne. Spokojna lokalna atmosfera. Perełka dla deskorolkowców i sportowców na południowym zachodzie wyspy, w mało turystycznej strefie z dobrze utrzymanymi obiektami gminnymi.",
+  "cat": "Deskorolka · Wielofunkcyjne · Guía de Isora"
+ },
+ "deporte-arona-multideporte": {
+  "desc": "Cabildo de Tenerife zamontowało w Aronie trzy ogólnodostępne i bezpłatne boiska wielofunkcyjne (Wyspiarski Plan Infrastruktury Sportowej 2025): przy polu golfowym Las Américas, w El Fraile i na osiedlu La Estrella (Las Rosas). Boiska 30×15 m z atestem do koszykówki, siatkówki, piłki ręcznej i futsalu. Bez wcześniejszej rezerwacji. Zarządzanie gminne przez urząd Arony.",
+  "cat": "Wielofunkcyjne · Arona · Plan Cabildo 2025"
+ },
+ "deporte-realejos-street-workout": {
+  "desc": "Park kalisteniki i street workoutu w parku Juan Marrero, w dzielnicy La Montaña (Los Realejos). Z atestem Światowej Federacji Street Workoutu i Kalisteniki (WSWCF). Sfinansowany w 80% przez Cabildo de Tenerife i w 20% przez urząd gminy. Całkowicie bezpłatny i na wolnym powietrzu. Los Realejos ma też parki w El Nazareno i w parku Juan Carlos I (przy szkołach średnich i targu gminnym). Otwarte całą dobę.",
+  "cat": "Street workout · WSWCF · Los Realejos"
+ },
+ "deporte-sc-tenerife-barmania": {
+  "desc": "Park kalisteniki „Barmanía Park” w Santa Cruz de Tenerife, jeden z najwyżej ocenianych w stolicy (4,4/5 przy ponad 48 opiniach). Przestronny i zielony, z naturalnym cieniem. Drążki do podciągania, poręcze i sprzęt do street workoutu. Fontanna w pobliżu. Miejsce spotkań na trening grupowy. Poziom średniozaawansowany. Bezpłatny i na wolnym powietrzu. Bardzo uczęszczany przez lokalną społeczność kalisteniki na Teneryfie.",
+  "cat": "Kalistenika · Barmanía · Santa Cruz"
+ },
+ "deporte-sc-chimisay": {
+  "desc": "Park kalisteniki w dzielnicy Chimisay w Santa Cruz (C/ Eladio Afonso y González 4, 38010). Drążki do podciągania w dobrym stanie, z fontanną w pobliżu. Dzielnicowa atmosfera, bardzo uczęszczany przez mieszkańców. Wstęp bezpłatny. Poziom średniozaawansowany. Parki kalisteniki w Santa Cruz mają gumową nawierzchnię amortyzującą upadki i są otwarte przez cały dzień.",
+  "cat": "Kalistenika · Chimisay · Santa Cruz"
+ },
+ "deporte-sc-plaza-espana": {
+  "desc": "Park kalisteniki przy tunelu Plaza de España w centrum Santa Cruz (ocena 4,7/5). Przestronne miejsce w centralnej strefie miejskiej, z cieniem. Drążki w dobrym stanie, choć trochę zużyte. Stałe miejsce spotkań grup street workoutu. Bardzo dobrze położony, z dojazdem z każdego punktu stolicy. Bezpłatny i otwarty przez cały dzień.",
+  "cat": "Kalistenika · Centrum · Santa Cruz"
+ },
+ "deporte-skatepark-granja-sc": {
+  "desc": "Skatepark o powierzchni 2500 m² w parku La Granja w Santa Cruz, zaprojektowany przez architekta i skatera Daniela Yábara. Projekt wykorzystuje różnorodność krajobrazu Teneryfy: strefy o organicznych kształtach z betonu w odcieniach brązu i ochry, z bazaltowymi skałami jako naturalnymi przeszkodami. Centralna mini rampa, kilka quarterów, rampy, część street ze stopniami, drążkami i hubbami różnej wysokości, skrzynie i drążki na płaskim. Wstęp bezpłatny w obrębie parku.",
+  "cat": "Skatepark · La Granja · Santa Cruz"
+ },
+ "deporte-skatepark-laguna-copernico": {
+  "desc": "Nowoczesny skatepark w dzielnicy La Manzanilla w La Lagunie (C/ Copérnico, kod 38208). Otwarty ponad 20 lat temu, niedawno odnowiony i zmodernizowany: poprawiono skrzydła i krawędzie materiałami przeznaczonymi do deskorolki, zbudowano dwa stopnie i dodatkową rampę, dodano centralną piramidę i odnowiono całe malowanie. Ma ławkę i rurki, biodra, rollin i inne przeszkody. Bezpłatny.",
+  "cat": "Skatepark · La Manzanilla · La Laguna"
+ },
+ "deporte-pista-multideporte-cabildo-realejos": {
+  "desc": "Ogólnodostępne boisko wielofunkcyjne zamontowane w Los Realejos w ramach Wyspiarskiego Planu Infrastruktury Sportowej Cabildo de Tenerife (jedno z 25 na całej wyspie). Boisko 30×15 m z atestem do koszykówki, siatkówki, piłki ręcznej, futsalu i badmintona. Bez wcześniejszej rezerwacji, do swobodnego użytku dla osób w każdym wieku. Zarządzanie gminne. Gmina Los Realejos jest wśród tych, które jako pierwsze dostały te obiekty w programie „Tenerife Saludable”.",
+  "cat": "Wielofunkcyjne · Los Realejos · Plan Cabildo"
+ },
+ "deporte-pista-multideporte-icod": {
+  "desc": "Ogólnodostępne boisko wielofunkcyjne przekazane urzędowi gminy Icod de los Vinos przez Cabildo de Tenerife w 2024 roku, w ramach Wyspiarskiego Planu Infrastruktury Sportowej. Boisko z atestem 30×15 m do koszykówki, siatkówki, piłki ręcznej, futsalu i tenisa. Wstęp wolny, bez rezerwacji, dla osób w każdym wieku. Położone w strefie mieszkalnej, idealne do codziennego sportu w gminie Tysiącletniego Smoczego Drzewa.",
+  "cat": "Wielofunkcyjne · Icod de los Vinos"
+ },
+ "deporte-pista-multideporte-tacoronte": {
+  "desc": "Ogólnodostępne boisko wielofunkcyjne w Tacoronte, zamontowane przez Cabildo de Tenerife w 2024 roku w ramach Wyspiarskiego Planu Infrastruktury Sportowej („Tenerife Saludable”). Z atestem do koszykówki, siatkówki, piłki ręcznej, futsalu i badmintona. Do swobodnego użytku bez rezerwacji, dla każdego wieku. Tacoronte to winiarska gmina północy, znana z win DO Tacoronte-Acentejo. To boisko dołącza do obiektów sportowych gminy.",
+  "cat": "Wielofunkcyjne · Tacoronte · Północ"
+ },
+ "deporte-valle-san-lorenzo-kenguru": {
+  "desc": "Park kalisteniki Kenguru Pro w Valle San Lorenzo, gmina Arona (kod 38626), oceniony na 4,6/5 przez ponad 34 użytkowników. Dobrze wyposażony do treningu na wolnym powietrzu, ze swobodną atmosferą i cieniem. Poidełko w pobliżu. Poziom średniozaawansowany. Stałe miejsce spotkań społeczności street workoutu z południa wyspy. Bezpłatny i otwarty przez cały dzień.",
+  "cat": "Kalistenika Kenguru Pro · Valle San Lorenzo"
+ },
+ "bici-bc1-inicio": {
+  "desc": "Punkt startowy oficjalnej trasy rowerowej BC-1 Cabildo, najdłuższej na Teneryfie (84,8 km). Zaczyna się w La Esperanza i przecina północ ze wschodu na zachód przez monteverde, bory sosnowe i masyw Teno. Oznakowana na pomarańczowo. Wskaźnik IBP: 120 (wysoki). Tylko dla rowerzystów w dobrej formie i z doświadczeniem. Kask obowiązkowy.",
+  "cat": "MTB oficjalna BC-1 · La Esperanza · Cabildo"
+ },
+ "bici-bc2-inicio": {
+  "desc": "Oficjalna trasa rowerowa BC-2 Cabildo: najbardziej przystępna w sieci. Krótka, umiarkowane przewyższenia, oznakowana na pomarańczowo w Corona Forestal. Idealna dla początkujących i rodzin. Sosny kanaryjskie i widoki na Teide. Kask zalecany.",
+  "cat": "MTB oficjalna BC-2 · Początkujący · Cabildo"
+ },
+ "bici-bc5-vilaflor": {
+  "desc": "Oficjalna trasa BC-5 w borach Vilaflor, w obrębie Corona Forestal. 15,7 km z przewyższeniem 430 m — poziom umiarkowany. Vilaflor to jedna z najwyżej położonych wiosek Hiszpanii (1400 m). Bór sosny kanaryjskiej z widokiem na południe. Czas: ~1h40. Oznakowana na pomarańczowo.",
+  "cat": "MTB oficjalna BC-5 · Vilaflor · Umiarkowana"
+ },
+ "bici-teide-subida": {
+  "desc": "Jeden z najbardziej spektakularnych podjazdów rowerowych Europy. TF-21 z La Orotava (350 m) na Teide (2100 m): 50 km i ponad 1700 m przewyższenia. Dobrze utrzymany asfalt. Krajobraz zmienia się z lasu wawrzynowego w bór sosnowy i księżycowy wulkan. Bardzo popularny wśród zawodowców i amatorów. Najlepiej o wschodzie słońca, żeby uniknąć upału i ruchu. Tylko dla rowerzystów w znakomitej formie.",
+  "cat": "Kolarstwo szosowe · Teide · Poziom wysoki"
+ },
+ "bici-anaga-cruz-carmen": {
+  "desc": "Najwyżej oceniana trasa MTB na Teneryfie (4,4★ w AllTrails, 70 opinii). Techniczne ścieżki w monteverde Parku Wiejskiego Anaga — światowe dziedzictwo UNESCO. Krajobraz wiecznego lasu, mgły i wąwozów. Poziom wymagający. Dojazd z Cruz del Carmen drogą TF-12. Tylko rowery górskie. Kask obowiązkowy.",
+  "cat": "MTB Anaga · Cruz del Carmen · ★ Czołówka Teneryfy"
+ },
+ "bici-chinyero-ruta": {
+  "desc": "Wyjątkowa trasa MTB przez Rezerwat Przyrody Chinyero w Corona Forestal. Drogi wśród sosen po szarym wulkanicznym podłożu — doznanie wizualne niepowtarzalne w świecie. Blisko Teide. Poziom umiarkowany do wysokiego. Dojazd z Santiago del Teide. Nieodpowiednia przy deszczu (śliskie podłoże). Pobierz mapę przed wyjazdem.",
+  "cat": "MTB wulkaniczna · Chinyero · Północny zachód"
+ },
+ "bici-alquiler-sur": {
+  "desc": "Największe skupisko wypożyczalni rowerów na Teneryfie: szosowe, MTB i elektryczne. Wiele oferuje przewodnika, mapy i naprawy. Sprawdź Bike Experience Tenerife (bikeexperiencetenerife.com) i Cycling in Tenerife (cyclingintenerife.com). W sezonie wysokim rezerwuj z wyprzedzeniem.",
+  "cat": "Wypożyczalnia rowerów · Las Américas · Południe"
+ },
+ "bici-alquiler-norte": {
+  "desc": "Kilka punktów wypożyczania i serwisu rowerów na północy. Idealny punkt wyjścia na podjazd na Teide (TF-21), trasy Anagi i Corona Forestal. Nadmorska promenada również nadaje się na spokojną jazdę. Dostępne warsztaty naprawcze.",
+  "cat": "Wypożyczalnia rowerów · Puerto de la Cruz · Północ"
+ },
+ "bici-agua-la-esperanza": {
+  "desc": "Kluczowy punkt dla rowerzystów na północy. Źródła wody pitnej, stoły piknikowe i toalety w samym borze na 1000 m. Częsty start albo postój na BC-1 i na podjeździe na Teide. Bezpłatny parking. Dojazd drogą TF-24. Chłodna temperatura — zabierz ciepłe ubranie.",
+  "cat": "Woda i odpoczynek · Rowerzyści · 1000 m"
+ },
+ "bici-agua-vilaflor": {
+  "desc": "Vilaflor (1400 m), jedna z najwyżej położonych wiosek Hiszpanii, to obowiązkowy postój dla rowerzystów jadących z południa na Teide. Źródła wody, bary i parking. Początek trasy BC-5. Chłodny klimat i czyste powietrze.",
+  "cat": "Woda i odpoczynek · Vilaflor · BC-5 · 1400 m"
+ },
+ "bici-ruta-medano-teide": {
+  "desc": "Jedna z najbardziej kompletnych tras szosowych Teneryfy: rusza z El Médano (poziom morza) i wspina się przez Arafo na Teide, zbierając ponad 4400 m przewyższenia. Radykalnie różne krajobrazy: suche wybrzeże, średnie wysokości, bór sosnowy i wulkan. Tylko dla rowerzystów w znakomitej formie. TF-28 i TF-21. Najlepiej zimą albo wiosną.",
+  "cat": "Szosa elitarna · El Médano → Teide"
+ },
+ "bici-paseo-sur": {
+  "desc": "Promenada łącząca Los Cristianos z Las Américas i Costa Adeje: jeden z niewielu nadmorskich odcinków Teneryfy nadających się na spokojną jazdę rowerem. Płaska i asfaltowa nawierzchnia. Idealna na rower elektryczny, miejski albo spacerowy. ~5 km ciągiem. Zalecana rano, przed napływem pieszych. Zawsze ustępuj pierwszeństwa.",
+  "cat": "Turystyka rowerowa nadmorska · Południe · Łatwa · 5 km"
+ },
+ "bici-ruta-norte-garachico": {
+  "desc": "Szosowa trasa pętlą o długości 54 km, która rusza z Garachico (TF-421) i wraca drogą TF-42. Stromy i górzysty teren północy Teneryfy: historyczne miasteczka, winnice, morze na horyzoncie. Odpowiednia tylko dla rowerzystów w dobrej formie. Szacowany czas: 3 godziny. Najlepiej jesienią i zimą.",
+  "cat": "Szosa · Północ · Trudność wysoka · 54 km"
+ },
+ "bici-ruta-norte-buenavista": {
+  "desc": "75 km szosą przez północ Teneryfy z krańca na kraniec: Buenavista del Norte (TF-42) do Punta del Hidalgo (TF-13). Zróżnicowany teren z niewieloma ekstremalnymi podjazdami, krajobrazy bujnej, zielonej i nadmorskiej północy. Szacowany czas: 3h 25 min. Jedna z najczęściej polecanych tras dla rowerzystów o poziomie średnio-wysokim.",
+  "cat": "Szosa · Północ · Trudność średnia · 75 km"
+ },
+ "bici-circular-santa-cruz": {
+  "desc": "Trasa pętlą o długości 52 km, bardzo popularna wśród rowerzystów ze stolicy. Rusza z Plaza de España (TF-11), okrąża obszar metropolitalny odcinkami nadmorskimi i na średnich wysokościach, i wraca do punktu startu. Szacowany czas: 2h 35 min. Dobry stan asfaltu i oznakowania. Idealna dla miejscowych rowerzystów i turystów nocujących w Santa Cruz.",
+  "cat": "Szosa · Santa Cruz · Trudność średnia · 52 km"
+ },
+ "bici-alquiler-medano-bikepoint": {
+  "desc": "Specjaliści nr 1 w wypożyczaniu rowerów szosowych, MTB, gravelowych i elektrycznych na południu Teneryfy. Oferują trasy do pobrania na Stravie. Opcja zakupu: 100% kosztu wypożyczenia odliczane od ceny. Av. José Miguel Galván Bello 28, El Médano. Zamknięte w niedziele.",
+  "cat": "Wypożyczalnia rowerów · El Médano · Południe"
+ },
+ "bici-alquiler-triciclos-sc": {
+  "desc": "Wypożyczalnia rowerów z wyższej półki na północy Teneryfy: szosowe, MTB, gravelowe i miejskie. Sklep w Santa Cruz (północ). Godziny: pn-pt, zamykają o 13:00 i otwierają ponownie o 16:30. Zamknięte w soboty i niedziele. Zwroty weekendowe w poniedziałki o 10:00.",
+  "cat": "Wypożyczalnia rowerów · Santa Cruz · Północ"
+ },
+ "bici-alquiler-triciclos-sursula": {
+  "desc": "Drugi sklep Triciclos Canarias na północy Teneryfy, w Santa Úrsula. Rowery szosowe, MTB, gravelowe i miejskie z wyższej półki. Godziny: pn-pt. Zamknięte w soboty i niedziele. Dobra baza dla rowerzystów nocujących w Puerto de la Cruz albo La Orotava.",
+  "cat": "Wypożyczalnia rowerów · Santa Úrsula · Północ"
+ },
+ "bici-mtb-teno-erjos": {
+  "desc": "Trasa MTB w masywie Teno, jedna z najbardziej spektakularnych na wyspie. Rusza z małej wioski Erjos, podążając charakterystycznymi zakrętami i kontrzakrętami zachodniego Teno. Ciemne sylwetki Czarnych Gór na wschodzie. Gęste lasy i techniczne ścieżki. Tylko dla ekspertów MTB.",
+  "cat": "MTB dla ekspertów · Masyw Teno · Północny zachód"
+ },
+ "bici-mtb-arico-volcan": {
+  "desc": "Trasa MTB z Arico w stronę Charco del Pino, przecinająca pierścień leśny blisko wielkich kraterów. Spektakularny krajobraz wulkaniczny z widokiem na zbocza Teide. Jedna z najbardziej emocjonujących tras wyspy, żeby poczuć dziką, wulkaniczną stronę Teneryfy.",
+  "cat": "MTB · Arico · Krajobraz wulkaniczny · Południe"
+ },
+ "bici-puerto-bailadero": {
+  "desc": "Jedna z najbardziej znanych i najpiękniejszych przełęczy górskich Teneryfy. Podjazd 11 km z San Andrés (poziom morza) na 677 m drogami TF-12 i TF-123. Przewyższenie: 660 m. Średnie nachylenie: stałe 6%. Serpentyny ze spektakularnym widokiem na masyw Anagi i na wioskę Taganana. Roślinność zmienia się dramatycznie: ze strefy nadmorskiej w las wawrzynowy. Uwaga: na całym podjeździe nie ma punktów z wodą — zabierz dość. Szczyt przy punkcie widokowym El Bailadero.",
+  "cat": "Przełęcz górska · Anaga · 11 km · 660 m ↑"
+ },
+ "bici-puerto-pico-ingles": {
+  "desc": "Rowerowy podjazd na Pico del Inglés (990 m), jeden z najwyższych szczytów gminy Santa Cruz de Tenerife, w masywie Anagi. Start z San Andrés drogą TF-12, dalej TF-114 do punktu widokowego. Wąska i kręta droga wśród tysięcy drzew i niemal bez ruchu. Ze szczytu: widok 360° — Santa Cruz, Teide, Gran Canaria i La Palma w pogodne dni. Współrzędne zweryfikowane w OpenStreetMap i Wikipedii.",
+  "cat": "Przełęcz górska · Anaga · 990 m n.p.m. · TF-114"
+ },
+ "bici-evento-vuelta-teide": {
+  "desc": "Punkt startowy Vuelta al Teide, najważniejszej maratonu rowerowego GranFondo kategorii UCI na Teneryfie. Rozgrywany corocznie wiosną (kwiecień-maj). Trzy dystanse: GranFondo 182 km z 4600 m przewyższenia, MedioFondo 86 km z 1700 m, FondoCorto 64 km z 1300 m. Start i wydawanie numerów w rejonie Lago Martiánez, Puerto de la Cruz. Oficjalna strona: vteide.com",
+  "cat": "Impreza kolarska · GranFondo UCI · Puerto de la Cruz"
+ },
+ "ar-la-caldera": {
+  "desc": "Jedna z najbardziej kompletnych na Teneryfie, w górnej części La Orotava (1200 m), w dawnym kraterze wulkanicznym. Sosna kanaryjska i monteverde. Bezpłatne paleniska, stoły, bar-restauracja, plac zabaw, toalety, strefa biwakowa (za wcześniejszym zezwoleniem). Dojazd: TF-21 km 16,2 albo autobus 345/346. Węgiel lub drewno: we własnym zakresie. Przenośne grille: zabronione. Ogień latem tylko do 20:00.",
+  "cat": "Bezpłatny grill · La Orotava · 1200 m"
+ },
+ "ar-fuente-fria": {
+  "desc": "Strefa rekreacyjna Cabildo w lasach El Sauzal, w Parku Przyrody Corona Forestal. Paleniska, stoły, woda i toalety. Dobry punkt wyjścia na szlaki. Rezerwacja dla grup w Tenerife ON.",
+  "cat": "Bezpłatny grill · El Sauzal · Cabildo"
+ },
+ "ar-las-lagunetas": {
+  "desc": "Strefa rekreacyjna na około 1200 m na stoku Pinolere (Santa Úrsula), w Chronionym Krajobrazie Las Lagunetas. Zarośla fayal-brezal z sosną kanaryjską i widokiem na Dolinę La Orotava. Paleniska, stoły, woda, toalety i plac zabaw. Dojazd drogą gruntową (lepiej 4x4) albo pieszo. Rezerwacja dla grup w Tenerife ON.",
+  "cat": "Bezpłatny grill · Santa Úrsula · 1200 m"
+ },
+ "ar-ramon-caminero": {
+  "desc": "Strefa rekreacyjna na ponad 1500 m po północnej stronie, ze spektakularnym widokiem na morze chmur. Bór sosny kanaryjskiej. Bezpłatne paleniska, stoły, toalety i parking. Dojazd drogą TF-21. Węgiel lub drewno: we własnym zakresie.",
+  "cat": "Bezpłatny grill · La Orotava · 1500 m"
+ },
+ "ar-chanajiga": {
+  "desc": "Popularna strefa rekreacyjna w Los Realejos, w Parku Przyrody Corona Forestal. 400 miejsc. Bezpłatne paleniska, stoły, toalety, parking i plac zabaw. Punkt startowy szlaków i tras rowerowych.",
+  "cat": "Bezpłatny grill · Los Realejos · 400 miejsc"
+ },
+ "ar-las-raices": {
+  "desc": "Największa strefa rekreacyjna Teneryfy, z 56 stołami, w El Rosario, w lasach La Esperanza. Słynna z tego, że była miejscem historycznego Paktu z Las Raíces (1936). Stuletni bór sosnowy. Bezpłatne paleniska, toalety i parking.",
+  "cat": "Bezpłatny grill · El Rosario · 56 stołów · Największa"
+ },
+ "ar-lomo-la-jara": {
+  "desc": "Strefa rekreacyjna w Tacoronte, w Chronionym Krajobrazie Las Lagunetas. 31 stołów. Bezpłatne paleniska, toalety i parking. Bór sosnowy i monteverde.",
+  "cat": "Bezpłatny grill · Tacoronte · 31 stołów"
+ },
+ "ar-las-calderetas": {
+  "desc": "Strefa rekreacyjna w El Sauzal, w Chronionym Krajobrazie Las Lagunetas. 31 stołów. Bezpłatne paleniska, toalety i parking. Bór sosnowy z widokiem na północ wyspy.",
+  "cat": "Bezpłatny grill · El Sauzal · 31 stołów"
+ }
+}
