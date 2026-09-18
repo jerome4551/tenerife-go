@@ -1,0 +1,425 @@
+{
+ "casa-anchieta-laguna": {
+  "desc": "Dom rodzinny błogosławionego José de Anchieta (1534–1597), jednego z najważniejszych misjonarzy w historii Brazylii i Ameryki Południowej, zwanego „Apostołem Brazylii”. Budynek z XVI–XVII wieku na starówce La Laguna (UNESCO). Dobro Kultury od 1986 roku. W 2020 roku rozpoczęto renowację, która ma zamienić go w muzeum przybliżające życie i dzieło Anchiety; otwarcie planowane wkrótce.",
+  "cat": "Dom rodzinny · La Laguna · Zabytek · Anchieta"
+ },
+ "sala-westerdahl": {
+  "desc": "Sala Eduardo Westerdahl to najważniejsza przestrzeń muzealna sztuki współczesnej na północy Teneryfy, w Puerto de la Cruz. Upamiętnia Eduarda Westerdahla (1902-1983), krytyka sztuki, pisarza i animatora kultury, który wprowadził surrealizm i awangardy na Wyspy Kanaryjskie i korespondował z artystami takimi jak Dalí, Braque czy Miró. Mieści kolekcje stałe i wystawy czasowe sztuki współczesnej.",
+  "cat": "Sztuka współczesna · Westerdahl · Puerto de la Cruz"
+ },
+ "museo-etnografico-granadilla": {
+  "desc": "Muzeum Etnograficzne Granadilla de Abona w Casa de la Aduana, zabytkowym budynku w centrum. Gromadzi historię i tradycje gminy: narzędzia rolnicze, sprzęty domowe, stroje regionalne, lokalne rękodzieło i dawne prace polowe. Pokazuje codzienne życie południa wyspy sprzed ery turystyki. Wstęp bezpłatny lub bardzo tani.",
+  "cat": "Muzeum Etnograficzne · Granadilla de Abona · Południe · Bezpłatne"
+ },
+ "playa-guios": {
+  "desc": "Plaża z czarnego piasku i wulkanicznych otoczaków u stóp imponujących Klifów Los Gigantes. Jedna z najbardziej dramatycznych i fotogenicznych na Teneryfie. Krystaliczna woda do snorkelingu. Bez ratownika. Dojście z portu Los Gigantes (5 min pieszo) albo kajakiem. Bar w pobliżu.",
+  "cat": "Plaża · Los Gigantes · Czarny piasek"
+ },
+ "playa-antequera": {
+  "desc": "Jedna z najbardziej odludnych i dziewiczych plaż Teneryfy. Dostępna wyłącznie pieszo wąwozem Antequera (~2 h z Taganany) albo łodzią z San Andrés. Czarny wulkaniczny piasek między zielonymi klifami Anagi. Bez żadnej infrastruktury. Krystaliczna woda. Koniecznie zabierz wodę, jedzenie i buty trekkingowe.",
+  "cat": "Dzika plaża · Anaga · Tylko pieszo lub łodzią"
+ },
+ "playa-barqueros-buenavista": {
+  "desc": "Plaża z czarnego wulkanicznego piasku w Buenavista del Norte, 16 min pieszo z centrum miasteczka. Mała i zaciszna, z całkowicie lokalną atmosferą i bez tłumów. Otoczona klifami i palmami. Bez infrastruktury. Woda bywa wzburzona — pływaj ostrożnie. Autentyczny zakątek północno-zachodniej Teneryfy.",
+  "cat": "Plaża · Buenavista del Norte · Czarny piasek · Lokalna"
+ },
+ "playa-la-caleta-adeje": {
+  "desc": "Mała plaża z ciemnego piasku w La Caleta, Adeje. Autentyczna wioska rybacka pośrodku turystycznego południa. Atmosfera w 100% lokalna: tarasy rybaków, łodzie w porcie, restauracje z najświeższymi owocami morza. 10 min samochodem z Costa Adeje. Dużo bardziej autentyczna niż sąsiednie plaże turystyczne. Ratownik w szczycie sezonu.",
+  "cat": "Plaża · La Caleta · Adeje · Autentyczna"
+ },
+ "playa-igueste-san-andres": {
+  "desc": "Mała plaża z otoczaków i czarnego piasku w wiosce Igueste de San Andrés, w Parku Wiejskim Anaga. Spokojny i bardzo lokalny zakątek, z dala od masowej turystyki. Dojazd drogą TF-127 z San Andrés. Woda czysta, ale występują prądy — pływaj ostrożnie. Dobry punkt startowy tras po Anadze.",
+  "cat": "Plaża · Igueste de San Andrés · Anaga"
+ },
+ "wc-teide-parque": {
+  "desc": "Oficjalne kamery Parku Narodowego na żywo, z widokami ze stacji kolejki linowej.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-teide-hoy": {
+  "desc": "Kamery i stan kolejki linowej w czasie rzeczywistym: pogoda, szlaki i dostęp na Teide dzisiaj.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-los-cristianos": {
+  "desc": "Plaża i zatoka Los Cristianos na żywo.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-las-vistas": {
+  "desc": "Wielka plaża ze złotym piaskiem Las Vistas na żywo.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-troya": {
+  "desc": "Plaża Troya i atmosfera Las Américas na żywo.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-duque": {
+  "desc": "Elegancka Playa del Duque w Costa Adeje na żywo.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-medano": {
+  "desc": "Wiatr, fale i latawce: El Médano na żywo, mekka windsurfingu.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-gigantes": {
+  "desc": "Port i klify Los Gigantes na żywo.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-san-juan": {
+  "desc": "Playa San Juan w Guía de Isora na żywo.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-martianez": {
+  "desc": "Lago Martiánez i wybrzeże Puerto de la Cruz na żywo.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-garachico": {
+  "desc": "Naturalne baseny El Caletón w Garachico na żywo.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-punta-hidalgo": {
+  "desc": "Naturalny basen w Punta del Hidalgo, z Bajamar i Teide w tle.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-teresitas": {
+  "desc": "Złota plaża Las Teresitas i San Andrés na żywo.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-benijo": {
+  "desc": "Skały i wzburzone morze Benijo w Anadze na żywo.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-orotava": {
+  "desc": "Plac Ratuszowy w La Orotava na żywo.",
+  "cat": "Kamera na żywo"
+ },
+ "wc-plaza-espana": {
+  "desc": "Plaza de España w Santa Cruz na żywo.",
+  "cat": "Kamera na żywo"
+ },
+ "pk-plaza-espana": {
+  "desc": "Strzeżony wielopoziomowy parking podziemny w samym centrum, obok Plaza de España i siedziby Cabildo. Wjazd bezpośrednio z tunelu Avenida Marítima.",
+  "cat": "Parking płatny",
+  "aviso": "Miejsca postojowe dla klientów godzinowych są wąskie."
+ },
+ "pk-ramon-cajal": {
+  "desc": "Czteropoziomowy parking kryty z automatyczną obsługą, przy Plaza de la Concordia. Przy wjeździe ekrany pokazują liczbę wolnych miejsc.",
+  "cat": "Parking płatny"
+ },
+ "pk-intercambiador-sc": {
+  "desc": "Parking podziemny centralnego dworca autobusowego i tramwajowego, zarządzany przez TITSA. Wjazdy z autostrady TF-1 i Avenida Tres de Mayo.",
+  "cat": "Parking płatny",
+  "aviso": "Bezpłatnie do 4 h, jeśli skasujesz kartą ten+ przejazd w obie strony autobusem lub tramwajem."
+ },
+ "pk-palmetum": {
+  "desc": "Duży bezpłatny plac zewnętrzny nad morzem, wspólny dla Parku Morskiego César Manrique i Palmetum. Wjazd z ronda przy Avenida de la Constitución.",
+  "cat": "Parking bezpłatny",
+  "aviso": "Zwykle kręcą się tu tzw. gorrillas, prosząc o napiwek: to nie jest oficjalna usługa i nie ma obowiązku płacić."
+ },
+ "pk-quinteras-laguna": {
+  "desc": "Ogrodzony miejski parking naziemny, o krok od starówki La Laguna. Zarządzany przez miejską spółkę MUVISA.",
+  "cat": "Parking miejski"
+ },
+ "pk-clubo-la-pinta": {
+  "desc": "Prywatny podziemny parking godzinowy przy plaży La Pinta i głównym wejściu do Puerto Colón.",
+  "cat": "Parking płatny",
+  "aviso": "Rezerwując z wyprzedzeniem, można dostać bilet całodniowy za około 15 €."
+ },
+ "pk-oasis-americas": {
+  "desc": "Parking podziemny centrum handlowego Oasis, pod handlową osią Avenida de las Américas.",
+  "cat": "Parking płatny"
+ },
+ "pk-puerto-cristianos": {
+  "desc": "Ogrodzony i zautomatyzowany parking naziemny Zarządu Portu, dokładnie naprzeciwko terminalu promowego.",
+  "cat": "Parking płatny",
+  "aviso": "Pomyślany przede wszystkim dla tych, którzy płyną promem na inną wyspę i zostawiają tu samochód."
+ },
+ "pk-tfn-p1": {
+  "desc": "Ogólnodostępny parking publiczny P1 należący do AENA, kryty wielopoziomowy budynek dokładnie naprzeciwko terminalu lotniska Tenerife Norte.",
+  "cat": "Parking lotniskowy",
+  "aviso": "Rezerwacja z wyprzedzeniem na stronie AENA wychodzi znacznie taniej niż płacenie przy szlabanie."
+ },
+ "pk-muelle-puerto-cruz": {
+  "desc": "Ogromny publiczny utwardzony plac w pierwszej linii brzegowej. Wjazd z Avenida Blas Pérez González lub Calle Mequinez.",
+  "cat": "Parking bezpłatny",
+  "aviso": "Zwykle kręcą się tu tzw. gorrillas, prosząc o napiwek: to nie jest oficjalna usługa i nie ma obowiązku płacić."
+ },
+ "pk-plaza-europa-pc": {
+  "desc": "Parking podziemny w samym centrum zabytkowym, obok ratusza i Plaza del Charco. Wjazd od Calle Santo Domingo.",
+  "cat": "Parking płatny"
+ },
+ "pk-martianez-pc": {
+  "desc": "Przestronny i dobrze oświetlony parking podziemny pod centrum handlowym Martiánez. Wjazd od Avenida Aguilar y Quesada.",
+  "cat": "Parking płatny",
+  "aviso": "Kasując paragon w tutejszej Mercadonie dostaje się zniżki i darmowe godziny. To najlepszy zadaszony wybór, gdy wybrzeże jest zapełnione."
+ },
+ "pk-casco-botanico-pc": {
+  "desc": "Publiczny parking naziemny z szerokimi miejscami, w górnej części miasta obok Ogrodu Botanicznego (Carretera de las Dehesas).",
+  "cat": "Parking bezpłatny"
+ },
+ "pk-parque-taoro-pc": {
+  "desc": "Publiczny parking naziemny w zielonym otoczeniu, obok zabytkowego Parku Taoro. Wjazd od Camino de la Sortija.",
+  "cat": "Parking bezpłatny"
+ },
+ "pk-san-agustin-orotava": {
+  "desc": "Mały prywatny parking podziemny na 137 miejsc w centrum miasta, kilka metrów od Plaza del Quinto Centenario i Casa de los Balcones.",
+  "cat": "Parking płatny",
+  "aviso": "Wjazd od Calle Cantos Canarios jest wąski."
+ },
+ "pk-la-torrita-orotava": {
+  "desc": "Duży publiczny plac przygotowany przez urząd miasta, naziemny i otwarty całą dobę. Wjazd od Avenida la Torrita.",
+  "cat": "Parking bezpłatny",
+  "aviso": "Leży wyżej: trzeba zejść kilka minut w dół do starówki, a potem wrócić pod górę."
+ },
+ "pk-orotava-centro": {
+  "desc": "Prywatny parking kryty na starówce La Orotava. Wjazd bezpośrednio od Calle Inocencio García.",
+  "cat": "Parking płatny",
+  "aviso": "Wewnętrzne przejazdy i miejsca są wąskie."
+ },
+ "pk-los-realejos": {
+  "desc": "Duża miejska strefa parkowania naziemnego, asfaltowa, płaska i oznakowana. Wjazd od Calle San Agustín.",
+  "cat": "Parking bezpłatny",
+  "aviso": "Oszczędza krążenia w poszukiwaniu miejsca po otwartym centrum handlowym."
+ },
+ "pk-tacoronte-estacion": {
+  "desc": "Publiczny zewnętrzny parking godzinowy przy głównym placu, punkt wyjścia do starówki i na Targ Rolniczy. Wjazd od Calle Sebastián Machado.",
+  "cat": "Parking bezpłatny"
+ },
+ "pk-drago-icod": {
+  "desc": "Sześciopoziomowy kryty budynek parkingowy z wyjściem dla pieszych wprost obok kas Tysiącletniego Smoczego Drzewa. Wjazd od Avenida de Canarias.",
+  "cat": "Parking płatny"
+ },
+ "pk-alvarez-icod": {
+  "desc": "Prywatny garaż podziemny w centrum miasteczka, tuż przy budynkach urzędu miasta. Wjazd od Calle Emeterio Gutiérrez Albelo.",
+  "cat": "Parking płatny"
+ },
+ "pk-magalona-icod": {
+  "desc": "Przestronny parking podziemny z windą prosto na górę, pod centrum handlowym La Magalona. Wjazd od zjazdu z autostrady.",
+  "cat": "Parking płatny",
+  "aviso": "Bezpłatny dla klientów robiących zakupy w lokalach centrum handlowego."
+ },
+ "pk-campo-futbol-garachico": {
+  "desc": "Ogromny publiczny plac naziemny równoległy do morza, obok boiska piłkarskiego. Pięć minut pieszo od starówki. Wjazd od Avenida Adolfo Suárez.",
+  "cat": "Parking bezpłatny"
+ },
+ "pk-garachico-casco": {
+  "desc": "Mały publiczny plac na wolnym powietrzu przy ratuszu, przy Calle Esteban de Ponte.",
+  "cat": "Parking bezpłatny",
+  "aviso": "W weekendy zapełnia się szybko."
+ },
+ "pk-los-silos": {
+  "desc": "Publiczna strefa naziemna wyznaczona białymi liniami, kilka metrów od placu kościelnego. Wjazd od Calle de la Estrella.",
+  "cat": "Parking bezpłatny"
+ },
+ "pk-buenavista-casco": {
+  "desc": "Publiczny parking naziemny pomyślany, by odciążyć chronioną starówkę. Wjazd od Calle Los Claveles.",
+  "cat": "Parking bezpłatny",
+  "aviso": "Używany jako miejsce postoju przed wsiadaniem do autobusu jadącego na Punta de Teno."
+ },
+ "pk-cruz-carmen-anaga": {
+  "desc": "Oficjalny parking zewnętrzny w środku lasu wawrzynowego, obok centrum informacyjnego. Dojazd drogą grzbietową Anagi (TF-12).",
+  "cat": "Parking bezpłatny",
+  "aviso": "Zapełnia się przed 10:00. Przyjeżdżając później, przygotuj się na krążenie albo parkowanie daleko."
+ },
+ "pk-tegueste": {
+  "desc": "Miejski plac naziemny zarządzany przez gminę, obsługujący targowisko i starówkę. Wjazd od Calle Preste Juan, obok Plaza de San Marcos.",
+  "cat": "Parking bezpłatny"
+ },
+ "pk-bajamar-piscinas": {
+  "desc": "Miejsca postojowe prostopadłe i równoległe rozrzucone po ulicach nadbrzeża, schodząc Avenida Gran Poder aż do promenady.",
+  "cat": "Parking bezpłatny",
+  "aviso": "Bardzo oblegany latem: w południe trudno znaleźć miejsce blisko basenów."
+ },
+ "pk-juan-carlos-cristianos": {
+  "desc": "Duży publiczny plac naziemny przy dworcu autobusowym, główna opcja, by zostawić samochód bez opłaty i nie wjeżdżać do strefy pieszej. Wjazd od Avenida Juan Carlos I.",
+  "cat": "Parking bezpłatny"
+ },
+ "pk-medano-publico": {
+  "desc": "Duży miejski plac naziemny z utwardzonej ziemi, przy głównym wjeździe do miasteczka od Avenida José Miguel Galván Bello.",
+  "cat": "Parking bezpłatny",
+  "aviso": "Rano zapełnia się bardzo szybko: surferzy i plażowicze przyjeżdżają wcześnie."
+ },
+ "pk-san-miguel-golf": {
+  "desc": "Asfaltowy parking zewnętrzny z wyznaczonymi miejscami, dla dojazdu do nadmorskich osiedli i pól golfowych. Wjazd od Paseo J. M. Galván Bello.",
+  "cat": "Parking bezpłatny"
+ },
+ "pk-plaza-duque-adeje": {
+  "desc": "Prywatny parking podziemny z szerokimi miejscami pod centrum handlowym Plaza del Duque. Wjazd rampą od Calle Londres.",
+  "cat": "Parking płatny",
+  "aviso": "Zwykle daje pierwszą godzinę gratis przy zakupach w tutejszym supermarkecie lub sklepach."
+ },
+ "pk-los-gigantes": {
+  "desc": "Prywatny podziemny parking godzinowy bardzo blisko mariny. Wjazd w dół od Calle Flor de Pascua.",
+  "cat": "Parking płatny",
+  "aviso": "Na stromych uliczkach klifu prawie nie ma miejsc: ten parking oszczędza mnóstwo czasu."
+ },
+ "pk-playa-arena-santiago": {
+  "desc": "Publiczne miejsca naziemne wyznaczone równolegle do Avenida Marítima, kilka metrów od zejścia na plażę z czarnym piaskiem.",
+  "cat": "Parking bezpłatny",
+  "aviso": "Białe linie: bezpłatnie. Avenida Marítima, Calle Ana María i Calle El Lajial. Latem i w weekendy zapełnia się: najlepiej przed 10:00. Gdy brak miejsc, parkingi płatne w Balcón de Los Gigantes lub El Mirador, 1,50-2,50 €/h."
+ },
+ "pk-guia-isora": {
+  "desc": "Otwarty plac miejski z tyłu kościoła parafialnego, dobra baza przed zwiedzaniem starówki lub wyjściem na szlak. Wjazd od Calle de San Sebastián.",
+  "cat": "Parking bezpłatny"
+ },
+ "pk-plaza-patrona-candelaria": {
+  "desc": "Duży asfaltowy plac w samej pierwszej linii brzegowej, tuż obok Bazyliki w Candelarii. Wjazd na końcu Calle de la Arena.",
+  "cat": "Parking bezpłatny",
+  "aviso": "Bardzo oblegany w weekendy i podczas świąt religijnych."
+ },
+ "pk-candelaria-centro": {
+  "desc": "Prywatny strzeżony parking podziemny przy handlowej osi gminy. Wjazd od Calle de los Príncipes.",
+  "cat": "Parking płatny",
+  "aviso": "Alternatywa, gdy pada albo nadbrzeże jest zapełnione z powodu świąt."
+ },
+ "pk-guimar": {
+  "desc": "Asfaltowa strefa przygotowana przez urząd miasta, by odciążyć starówkę, bardzo blisko ratusza i głównego placu. Dojazd od Avenida Obispo Pérez Cáceres.",
+  "cat": "Parking bezpłatny"
+ },
+ "pk-poris-abona": {
+  "desc": "Rząd publicznych miejsc naziemnych, równoległych i prostopadłych, naprzeciwko morza i kąpielisk osady rybackiej. Dojazd zjazdem z autostrady przez Calle Real.",
+  "cat": "Parking bezpłatny"
+ },
+ "bano-valleseco-bloque": {
+  "desc": "Betonowy solarium przylegający do Valleseco, ze schodami do wody i prysznicem. To jedno z kąpielisk położonych najbliżej centrum Santa Cruz. Brak podjazdu dla osób z niepełnosprawnością.",
+  "cat": "Kąpielisko · Santa Cruz"
+ },
+ "charco-archile": {
+  "desc": "Ujście suchego wąwozu tworzące lagunę odciętą od morza, o turkusowej i bardzo spokojnej wodzie. Schodzi się ścieżką i schodami. Dno jest kamieniste: potrzebne są buty do wody.",
+  "cat": "Naturalne rozlewisko · San Miguel"
+ },
+ "charco-don-gabino": {
+  "desc": "Naturalny basen przy Puertito de Los Silos, mniej oblegany niż główne rozlewiska. Wejście i wyjście są niewygodne, a przy silnym przypływie robi się trudno. Warto mieć buty do wody.",
+  "cat": "Basen naturalny · Los Silos"
+ },
+ "charco-golete": {
+  "desc": "Małe rozlewisko w La Caleta de Candelaria, dokładnie pod autostradą. Zwykle jest puste i ma bezpłatny parking, ale uliczki w dół są bardzo strome. Nie ma pryszniców ani żadnej infrastruktury. Tylko przy bezwietrznej i spokojnej wodzie.",
+  "cat": "Basen naturalny · Candelaria"
+ },
+ "charco-gomero": {
+  "desc": "Naturalne rozlewiska w skale na zachód od Garachico, nieprzystosowane i nieoznakowane. Turyści prawie tu nie docierają. Jak przy pozostałych rozlewiskach gminy, nie wolno wchodzić przy wzburzonym morzu.",
+  "cat": "Naturalne rozlewiska · Garachico"
+ },
+ "charco-laja-bajamar": {
+  "desc": "Rozlewisko w klifie Bajamar, inne niż Charco de La Laja w San Juan de la Rambla, oddalone o ponad 40 km. Dojście jest bardzo trudne, nie ma ratowników ani drogi ewakuacji rannych, a w ostatnich latach dochodziło tu do utonięć. Morze mocno uderza o skałę.",
+  "cat": "Rozlewisko · La Laguna"
+ },
+ "charco-roque": {
+  "desc": "Mało znane naturalne rozlewisko na wybrzeżu Buenavista del Norte. Jest małe: gdy zbierze się więcej osób, brakuje miejsca. Bez jakiejkolwiek infrastruktury.",
+  "cat": "Naturalne rozlewisko · Buenavista"
+ },
+ "piscina-gigantes": {
+  "desc": "Rozlewisko z wodą morską u stóp Los Gigantes, osłonięte betonowym murem. To niebezpieczne miejsce: skała na krawędzi jest bardzo śliska, a fale porywały kąpiących się na otwarte morze, z ofiarami śmiertelnymi w ostatnich latach. Nie siadaj ani nie chodź po krawędzi muru. Przed wyjściem zawsze sprawdź stan morza i komunikaty urzędu miasta.",
+  "cat": "Basen naturalny · Santiago del Teide"
+ },
+ "piscina-guimar": {
+  "desc": "Basen naturalny na wybrzeżu Güímar. Często ma mało wody albo jest zupełnie suchy, i nie ma żadnej infrastruktury. Warto sprawdzić stan przed wyjazdem; rozlewiska na północy są zwykle w lepszym stanie.",
+  "cat": "Naturalne rozlewisko · Güímar"
+ },
+ "piscina-hidalgo-norte": {
+  "desc": "Drugie rozlewisko w Punta del Hidalgo, około 500 m na północ od głównego. Ma część płytką i głębszą, ze schodami metalowymi i kamiennymi. Dobry snorkeling i widok na Teide. Skała jest ostra: buty do wody.",
+  "cat": "Naturalne rozlewisko · Punta del Hidalgo"
+ },
+ "playa-abriguitos": {
+  "desc": "Osłonięta zatoczka przy Abades, z jasnym piaskiem i łagodnym wejściem bez kamieni. Woda bardzo przejrzysta, ryby tuż przy brzegu: to jedno z miejsc do snorkelingu na południowym wschodzie.",
+  "cat": "Plaża snorkelingowa · Arico"
+ },
+ "playa-agua-dulce": {
+  "desc": "Plaża z otoczaków na wybrzeżu Los Silos, z górą za plecami i morzem przed sobą. Strefa wietrzna i z dużą falą. Dojazd od południa prowadzi bardzo ciasnymi i stromymi zakrętami.",
+  "cat": "Plaża z otoczaków · Los Silos"
+ },
+ "playa-beril": {
+  "desc": "Plaża z czarnym piaskiem długości około 500 m, spokojniejsza niż sąsiednie i z dobrym wejściem do wody. Dno jest skaliste i pełne ryb, więc sprawdza się do snorkelingu i do dłuższego pływania. Leżaki płatne, brak publicznych toalet.",
+  "cat": "Plaża snorkelingowa · Adeje"
+ },
+ "playa-bobo": {
+  "desc": "Mała i osłonięta plaża w Costa Adeje. Prawie bez fal i z otoczakami: woda przypomina naturalny basen. Bardzo chętnie wybierana przez rodziny z małymi dziećmi.",
+  "cat": "Plaża rodzinna · Adeje"
+ },
+ "playa-cabezo-medano": {
+  "desc": "Otwarta plaża na wschód od El Médano, jeden z czołowych punktów windsurfingu i kitesurfingu na wyspie dzięki stałemu wiatrowi. Kąpiel jest odsłonięta w dni ze wzburzonym morzem.",
+  "cat": "Plaża wietrzna · Granadilla"
+ },
+ "playa-caleton-sauzal": {
+  "desc": "Dawna osada rybacka z domami w grotach i małym pomostem. Bez infrastruktury poza sezonowym barem. Zjeżdża się wąską, krętą drogą bez barierek, a do wody wchodzi po skale. Przy wzburzonym morzu trzeba być dobrym pływakiem.",
+  "cat": "Osada i kąpielisko · El Sauzal"
+ },
+ "playa-candelaria": {
+  "desc": "Plaża z wulkanicznego piasku i otoczaków obok Bazyliki w Candelarii. Jedyna w gminie bez ostróg, więc przyjmuje falę wprost i kurczy się przy przypływie.",
+  "cat": "Plaża miejska · Candelaria"
+ },
+ "playa-castillo-pcruz": {
+  "desc": "Plaża z czarnym piaskiem zaprojektowana w 1990 roku przez Césara Manrique obok María Jiménez, z zieloną promenadą, kawiarniami i strefą dla dzieci. Ma prysznice, toalety i leżaki. Dno jest z dużych otoczaków, a fala silna: zalecane buty do wody.",
+  "cat": "Plaża z czarnym piaskiem · Puerto de la Cruz"
+ },
+ "playa-charcada": {
+  "desc": "Plaża w Puertito de Güímar, przy pomoście rybackim. Czysta woda i spokojna atmosfera, restauracje i strefa dla dzieci. Po drugiej stronie miasteczka jest jeszcze jedna, mniejsza plaża.",
+  "cat": "Plaża · Güímar"
+ },
+ "playa-chimisay": {
+  "desc": "Niezagospodarowana plaża w El Socorro de Güímar, obok strefy przemysłowej. Pod wodą są skały i płytko przy brzegu; dobry odcinek do wejścia jest osłonięty, praktycznie bez fal. Duży parking i restauracja u podnóża.",
+  "cat": "Plaża · Güímar"
+ },
+ "playa-enramada": {
+  "desc": "Plaża z czarnego wulkanicznego piasku przy La Caleta. Strefy skaliste przy wejściu do wody. To miejsce lądowania paralotni schodzących z góry.",
+  "cat": "Plaża z czarnym piaskiem · Adeje"
+ },
+ "playa-galletas": {
+  "desc": "Plaża z otoczaków przy porcie Las Galletas. Lokalna, mało turystyczna atmosfera, restauracje i plac zabaw przy promenadzie. Na prawo od pomostu jest odcinek z piaskiem.",
+  "cat": "Plaża · Arona"
+ },
+ "playa-grande-abades": {
+  "desc": "Plaża z jasnym piaskiem i łagodnym wejściem, mało znana turystom i odwiedzana głównie przez lokalne rodziny. Zwykle wieje i są małe fale, czasem przyjeżdżają szkoły surfingu. Parking na kilkanaście samochodów, bez toalet.",
+  "cat": "Plaża rodzinna · Arico"
+ },
+ "playa-guincho": {
+  "desc": "Drobny czarny piasek z dużymi kamieniami i wysokimi falami: korzystają z niej surferzy. Dojście myli wiele osób, bo wygląda, jakby prowadziło przez plantację bananów. Pewny sposób to zjechać drogą przy nowoczesnym kościele, zaparkować tam i iść ścieżką. Parking bardzo mały.",
+  "cat": "Plaża surfingowa · Garachico"
+ },
+ "playa-jaca": {
+  "desc": "Mała i bardzo spokojna plaża, z kilkoma rozlewiskami między skałami i stalowymi schodami do wody. Strefa wietrzna i mało turystyczna, z wędkarzami. Dobre miejsce na wschód słońca.",
+  "cat": "Plaża i rozlewiska · Arico"
+ },
+ "playa-jaquita-medano": {
+  "desc": "Zespół zatoczek i rozlewisk naprzeciwko Montaña Roja, blisko El Médano. Skaliste dno, śliskie wejście i nierówna fala przybojowa. Strefa bardzo wietrzna, wykorzystywana do surfingu.",
+  "cat": "Plaża i zatoczki · Granadilla"
+ },
+ "playa-las-aguas": {
+  "desc": "Odnowiona plaża u stóp klifu, z grubych otoczaków, nie z piasku: chodzenie sprawia trudność. Dobra kąpiel latem, lokalna atmosfera, dwie restauracje obok i niewiele miejsc parkingowych.",
+  "cat": "Plaża z otoczaków · San Juan de la Rambla"
+ },
+ "playa-martianez": {
+  "desc": "Plaża z czarnym piaskiem i dużymi otoczakami w Puerto de la Cruz, ze stałą falą z północy. Bardzo popularna wśród surferów. Kąpiel jest odsłonięta: trzeba przestrzegać flag.",
+  "cat": "Plaża surfingowa · Puerto de la Cruz"
+ },
+ "playa-muelle-garachico": {
+  "desc": "Plaża z czarnym piaskiem przy starym pomoście w Garachico, na potoku lawy z ostatniej erupcji. Kamienne schody schodzą do wody z murku. Parking i plac zabaw obok.",
+  "cat": "Plaża z czarnym piaskiem · Garachico"
+ },
+ "playa-nea": {
+  "desc": "Plaża długości około 300 m w Radazul, z grubego ciemnego piasku z otoczakami. Ostroga chroni ją przed falą, więc wejście jest łagodne i bez skał. Ma prysznic, plac zabaw i parking.",
+  "cat": "Plaża rodzinna · El Rosario"
+ },
+ "playa-pinta": {
+  "desc": "Mała zatoczka z drobnym piaskiem przy Puerto Colón. Woda czysta i spokojna, ryby kilka metrów od brzegu. Otoczona restauracjami i sklepami.",
+  "cat": "Plaża · Adeje"
+ },
+ "playa-punta-fraile": {
+  "desc": "Cypel z czarnej skały bez piasku, na skrajnym północnym zachodzie. Otwarte i wzburzone morze, mało nadaje się do kąpieli czy snorkelingu. Spokojne miejsce, by posiedzieć i obejrzeć zachód słońca.",
+  "cat": "Wybrzeże skaliste · Buenavista"
+ },
+ "playa-punta-larga": {
+  "desc": "Mała plaża z czarnych otoczaków z drewnianymi pomostami do leżenia. Osłonięta od fal i bardzo przejrzysta: na południu są skały, gdzie uprawia się snorkeling. Odwiedzana głównie przez mieszkańców.",
+  "cat": "Plaża · Candelaria"
+ },
+ "playa-radazul": {
+  "desc": "Jedno z najlepszych miejsc do snorkelingu w obszarze metropolitalnym. Dwa boczne wejścia osłonięte od fal i centralne schody prowadzące wprost na głęboką wodę. Parking na ulicy. Nie ma toalet, a prysznice zwykle są zepsute.",
+  "cat": "Plaża snorkelingowa · El Rosario"
+ },
+ "playa-rincon": {
+  "desc": "Odosobniona zatoczka o wymiarach około 400 na 15 m, z otoczaków, żwiru i czarnego piasku. Dociera się drogą gruntową, a dalej pieszo. Nie ma żadnej infrastruktury, a warunki morskie nie sprzyjają kąpieli.",
+  "cat": "Plaża odosobniona · La Orotava"
+ },
+ "playa-rojas": {
+  "desc": "Skaliste wybrzeże z platformą z lawowego piasku i schodami schodzącymi do rozlewisk. Jest prysznic. Fala jest silna: nadaje się do kąpieli w rozlewiskach, nie do pływania w głąb morza. Zjazd samochodem jest bardzo wąski i stromy.",
+  "cat": "Plaża i rozlewiska · El Sauzal"
+ }
+}
