@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 a4ec97c5bf921a8ca87456b2d1cdc71f
-             3.179.037 bytes · 929.162 comprimidos · 37.273 líneas
+index.html   md5 917eccab7f7ea71409e5574e41c8ea88
+             3.187.228 bytes · 932.016 comprimidos · 37.300 líneas
 idiomas/     9 ficheros de lugares · 2.525.852 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
@@ -32,7 +32,7 @@ faq/         10 ficheros · 69 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **236** versionados (88 en `idiomas/`, 52 en `tools/`, 34 en `vendor/` —con las 21 fuentes—, 29 en `faq/`, 24 en la raíz, 4 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
-| Descarga | **942 kB** en castellano · **1.048 kB** en el peor caso (búlgaro) · 1.035 kB en polaco. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **945 kB** en castellano · **1.051 kB** en el peor caso (búlgaro) · 1.038 kB en polaco. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -609,6 +609,53 @@ porque **quince herramientas leen y ESCRIBEN `const places = [` con cirugía
 fina**, y moverlo sin moverlas es como el proyecto ya aprendió con los
 idiomas: el control deja de mirar y da verde.
 
+## «Organiza tu día» devolvía el itinerario en castellano
+
+La app en búlgaro, el itinerario en castellano: el título, la descripción de
+cada parada, los rótulos de tránsito y dos de los tres botones.
+
+La causa es una línea que se repetía en los **dos** renderizadores del
+planificador:
+
+```js
+place.desc.es || place.desc.en      // el castellano PRIMERO
+```
+
+`localized()` es lo que usa el resto de la app y respeta el idioma; aquí se
+pedía el castellano a mano. Y alrededor, todo escrito a pelo: los ocho tipos
+de día («✨ Lo mejor de hoy»), los cuatro modos de moverse («En bici ~20
+min»), la lista rotatoria `DP_TRANSIT`, «📍 Ver mapa», «🔄 Otro», «Pausa
+comida» y los `title=` de los dos botones.
+
+**24 filas nuevas × 10 idiomas = 240 textos**, en `DP_UI`, que ya existía y
+ya llevaba los diez. `DP_TRANSIT` pasa a llevar **clave en vez de texto**:
+escrito a pelo volvería a envejecer solo.
+
+**Y un fallo de escapado que iba de regalo.** La descripción se cortaba
+**después** de escaparla:
+
+```js
+escapeHtml(texto).slice(0, 100) + '…'
+```
+
+Un corte a los 100 caracteres puede caer **dentro** de un `&quot;` y dejar
+`&qu` en pantalla. Ahora se corta el texto crudo y se escapa después, que es
+el orden que no parte nada. Y la elipsis solo se pone si de verdad se cortó.
+
+**El control** genera un itinerario **de verdad** en los dos renderizadores,
+pide búlgaro —que cambia de alfabeto— y mira lo que queda en pantalla; lo que
+siga en alfabeto latino, o es nombre propio o no está traducido. Además mete
+una descripción trampa con comillas justo en el punto de corte, para que el
+orden escapar/cortar no se pueda volver a invertir:
+
+```
+=== el itinerario de «organiza tu dia» ===
+  OK  titulo, descripcion, botones y transito salen en el idioma de quien mira
+```
+
+Probado devolviendo las averías: canta el título y las dos descripciones,
+una por cada renderizador.
+
 ## El asistente · 69 respuestas en 10 idiomas, y por qué no bastaba traducirlas
 
 `CHAT_KB` tiene 79 entradas y todas están escritas en castellano y en nada
@@ -681,7 +728,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 788 filas (y 2.391 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 812 filas (y 2.415 filas, dentro y fuera del fuente)
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una

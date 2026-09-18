@@ -728,6 +728,64 @@ function revisar(tablas, o) {
   console.log('  ' + (okF ? 'OK ' : 'MAL') + ' las fuentes del proyecto cargan   (' + cab.fuentes + ' cargadas)');
   if (!okBlq || !okHoja || !okG || !okF) docMal = 1;
 
+  /* ── EL ITINERARIO DE «ORGANIZA TU DIA» ──
+     Salia entero en castellano aunque la app estuviera en bulgaro: la
+     descripcion se pedia como `place.desc.es || place.desc.en` -el
+     castellano PRIMERO- y el titulo, los rotulos de transito y los botones
+     estaban escritos a pelo en el render.
+     Se genera de verdad y se mira lo que queda en pantalla. El bulgaro
+     cambia de alfabeto, asi que lo que siga en latino, o es nombre propio
+     o no esta traducido. */
+  const itin = await page.evaluate(async () => {
+    const esperar = ms => new Promise(r => setTimeout(r, ms));
+    const LATIN = t => !/[\u0400-\u04ff]/.test(String(t || '')
+      .replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}\d\s~·:.,()\/\u2192\u2026\u2715-]/gu, ''));
+    const o = { mal: [] };
+    setLang('bg'); await esperar(900);
+    // los dos renders: el de «Organiza tu dia» y el de «Ruta del dia»
+    dpiTime = '4h'; dpiZone = 'mix'; dpiSelectedZones = ['mix']; dpiTransport = 'bici';
+    dpiGenerate(); await esperar(1600);
+    const mira = (donde, titId, listId) => {
+      const t = document.getElementById(titId);
+      const c = document.getElementById(listId);
+      const s1 = c && c.querySelector('.dp-stop');
+      if (!s1) { o.mal.push(donde + ': no se genero ninguna parada'); return; }
+      if (LATIN(t.textContent)) o.mal.push(donde + ' titulo: ' + t.textContent.slice(0, 34));
+      const d = s1.querySelector('.dp-stop-desc').textContent;
+      if (LATIN(d)) o.mal.push(donde + ' descripcion: ' + d.slice(0, 40));
+      [...s1.querySelectorAll('.dp-stop-actions span')].forEach(x => {
+        if (x.textContent.trim() && x.textContent.trim() !== '\u2715' && LATIN(x.textContent))
+          o.mal.push(donde + ' boton: ' + x.textContent.trim());
+      });
+      const sep = c.querySelector('.dp-sep-text');
+      if (sep && LATIN(sep.textContent)) o.mal.push(donde + ' transito: ' + sep.textContent.trim());
+    };
+    mira('organiza tu dia', 'dpi-result-title', 'dpi-itinerary');
+    dpZone = 'mix';
+    renderItinerary(places.filter(x => x.desc && x.name).slice(0, 4));
+    await esperar(400);
+    mira('ruta del dia', 'dp-result-title', 'dp-itinerary');
+    /* Y el corte: se hacia DESPUES de escapar, asi que un corte a los 100
+       caracteres podia caer dentro de un «&quot;» y dejar «&qu» a la vista. */
+    const trampa = { id: 'x', name: 'x', emoji: '\u2600',
+      desc: { es: '"' + 'a'.repeat(96) + '" y & mas', bg: '"' + '\u0431'.repeat(96) + '" \u0438 & \u043e\u0449\u0435' },
+      category: 'mirador' };
+    renderItinerary([trampa, trampa]);
+    await esperar(300);
+    const rec = document.querySelector('#dp-itinerary .dp-stop-desc');
+    if (rec && /&(?:[a-z]{1,6}|#\d{1,5});?$/i.test(rec.textContent.replace(/\u2026$/, '')))
+      o.mal.push('el corte parte una entidad HTML: ' + rec.textContent.slice(-14));
+    if (rec && /&(amp|quot|lt|gt|#39);/.test(rec.textContent))
+      o.mal.push('se escapa dos veces: ' + rec.textContent.slice(0, 30));
+    setLang('es');
+    return o;
+  }).catch(e => ({ mal: ['(no se pudo generar: ' + String(e).slice(0, 90) + ')'] }));
+  console.log('\n=== el itinerario de «organiza tu dia» ===');
+  const okIt = itin.mal.length === 0;
+  console.log('  ' + (okIt ? 'OK ' : 'MAL') + ' titulo, descripcion, botones y transito salen en el idioma de quien mira');
+  itin.mal.forEach(m => console.log('      <--  ' + m));
+  if (!okIt) docMal = 1;
+
   console.log('\n=== rendimiento ===');
   console.log('  aeropuerto sur: %d lineas · %d capas · %d ms', perf.lineas, perf.capas, perf.ms);
   console.log('\npageerrors: ' + errs.length);
