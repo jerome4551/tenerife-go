@@ -510,6 +510,115 @@ function revisar(tablas, o) {
   if (sel.pegan.length) console.log('      <--  se quedan puestos: ' + sel.pegan.join(','));
   if (!okSel || !okBien || !okFuera || !okInc) docMal = 1;
 
+  /* ── el saludo del asistente ──
+     Se pintaba atado a `chatHistory.length===0`, y chatHistory solo guarda lo
+     que se habla: el saludo del bot no entra ahi. La condicion era cierta
+     siempre, asi que cada apertura apilaba otro saludo, y ademas se quedaba
+     congelado en el idioma en que se pinto: un usuario polaco abria el
+     asistente y leia el saludo en castellano.
+     No lo cazaba nadie porque el panel se pinta al abrirlo, y los controles
+     que comparan idiomas miran la pagina tal cual esta. Asi que se abre. */
+  const saludo = await page.evaluate(async () => {
+    const leer = () => [...document.querySelectorAll('#chat-messages .chat-bubble')]
+      .filter(e => (e.innerText || '').trim()).map(e => (e.innerText || '').trim());
+    const esperar = ms => new Promise(r => setTimeout(r, ms));
+    const o = { repes: 0, malIdioma: [], tras: [] };
+    setLang('es'); await esperar(400);
+    openChatPanel(); await esperar(1400);
+    closeChatPanel(); openChatPanel(); await esperar(1400);
+    closeChatPanel(); openChatPanel(); await esperar(1400);
+    o.repes = leer().length;                      // tres aperturas, un saludo
+    for (const l of SUPPORTED_LANGS) {
+      setLang(l); await esperar(1300);
+      const b = leer();
+      const esperado = (chatT('welcome') || '').split('\n')[0].trim();
+      const remite = '\u{1F334} ' + chatT('senderName');
+      if (b.length !== 1 || b[0].indexOf(esperado) < 0 || b[0].indexOf(remite) < 0)
+        o.malIdioma.push(l + ' -> ' + (b.length) + ' burbuja(s): ' + (b[0] || '').slice(0, 40));
+    }
+    /* Y con conversacion por medio NO se toca: reescribir lo que alguien ya
+       leyo en otro idioma seria cambiarle el historial por detras. */
+    setLang('es'); await esperar(900);
+    processUserMessage('playas'); await esperar(2400);
+    const antes = leer().length;
+    setLang('bg'); await esperar(1400);
+    o.tras = [antes, leer().length];
+    setLang('es'); closeChatPanel();
+    return o;
+  }).catch(e => ({ err: String(e).slice(0, 120), repes: -1, malIdioma: ['(no se pudo abrir)'], tras: [] }));
+  console.log('\n=== el saludo del asistente ===');
+  const okRepe = saludo.repes === 1;
+  console.log('  ' + (okRepe ? 'OK ' : 'MAL') + ' tres aperturas dejan UN saludo, no tres   (' + saludo.repes + ')');
+  const okIdi = saludo.malIdioma.length === 0;
+  console.log('  ' + (okIdi ? 'OK ' : 'MAL') + ' el saludo y su remite siguen al idioma en los ' +
+              (saludo.malIdioma.length ? '' : '') + 'diez');
+  saludo.malIdioma.forEach(m => console.log('      <--  ' + m));
+  const okHist = saludo.tras.length === 2 && saludo.tras[0] === saludo.tras[1] && saludo.tras[0] > 1;
+  console.log('  ' + (okHist ? 'OK ' : 'MAL') + ' con conversacion por medio no se reescribe   (' +
+              saludo.tras.join(' -> ') + ')');
+  if (saludo.err) console.log('      <--  ' + saludo.err);
+  if (!okRepe || !okIdi || !okHist) docMal = 1;
+
+  /* ── EL TEXTO QUE SE VUELVE CASTELLANO AL USAR LA APP ──
+     Todos los controles de idioma de este proyecto FOTOGRAFIAN la pagina
+     quieta. Por eso daban verde sobre cinco rotulos que estan bien al
+     arrancar y se reescriben en castellano en cuanto alguien toca:
+       · el chip «Solo este» de las categorias, que se crea al vuelo
+       · «+N mas - sigue escribiendo» del buscador
+       · la pista 🅰️/🅱️ de la ruta, que el marcado pinta traducida con
+         data-tx y activatePick() machacaba con un literal
+       · el boton de la reserva, «Pagar»/«Anadir a la cesta»
+       · el boton del planificador cuando eliges mas de una actividad,
+         que dpApplyUiTexts() deja traducido y dpiSelectZone machacaba
+     Asi que este control TOCA. Se pide bulgaro, que cambia de alfabeto: si
+     despues de usar la app queda algo en alfabeto latino donde deberia
+     haber cirilico, es que alguien lo reescribio. */
+  const tocado = await page.evaluate(async () => {
+    const esperar = ms => new Promise(r => setTimeout(r, ms));
+    const LATIN = /^[^\u0400-\u04ff]*$/;      // ni una letra cirilica
+    const o = [];
+    const mira = (que, txt) => {
+      const t = String(txt || '').replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}\d\s\u2192\u2026+\-/·()]/gu, '');
+      if (t && LATIN.test(t)) o.push(que + ': ' + String(txt).slice(0, 44));
+    };
+    setLang('bg'); await esperar(1000);
+
+    toggleCategorySheet(); await esperar(700);
+    const solo = document.querySelector('.cat-chip-solo');
+    mira('chip «solo este»', solo && solo.textContent);
+    toggleCategorySheet(); await esperar(300);
+
+    const inp = document.getElementById('search-input');
+    if (inp) { inp.value = 'pla'; inp.dispatchEvent(new Event('input', { bubbles: true })); }
+    await esperar(700);
+    const sug = document.querySelector('.no-results');
+    if (sug && /\+?\d/.test(sug.textContent)) mira('buscador «+N mas»', sug.textContent);
+    if (inp) { inp.value = ''; inp.dispatchEvent(new Event('input', { bubbles: true })); }
+
+    activatePick('origin'); await esperar(250);
+    mira('pista de ruta A', (document.getElementById('route-pick-hint') || {}).textContent);
+    activatePick('dest'); await esperar(250);
+    mira('pista de ruta B', (document.getElementById('route-pick-hint') || {}).textContent);
+
+    try { updateBookingCTA(); } catch (e) {}
+    mira('boton de reserva', (document.getElementById('booking-cta-btn') || {}).textContent);
+
+    const cards = [...document.querySelectorAll('#dpi-zone-grid .dp-zone-card')];
+    if (cards.length >= 2) {
+      cards[0].click(); await esperar(200);
+      mira('planificador, una', (document.getElementById('dpi-confirm-btn') || {}).textContent);
+      cards[1].click(); await esperar(200);
+      mira('planificador, varias', (document.getElementById('dpi-confirm-btn') || {}).textContent);
+      cards[0].click(); cards[1].click();
+    } else o.push('(no encuentro las tarjetas del planificador)');
+    setLang('es');
+    return o;
+  }).catch(e => ['(no se pudo recorrer: ' + String(e).slice(0, 80) + ')']);
+  console.log('\n=== texto que se vuelve castellano al USAR la app ===');
+  console.log('  ' + (tocado.length ? 'MAL' : 'OK ') + ' seis rotulos que se reescriben al tocar siguen en su idioma');
+  tocado.forEach(t => console.log('      <--  ' + t));
+  if (tocado.length) docMal = 1;
+
   console.log('\n=== rendimiento ===');
   console.log('  aeropuerto sur: %d lineas · %d capas · %d ms', perf.lineas, perf.capas, perf.ms);
   console.log('\npageerrors: ' + errs.length);

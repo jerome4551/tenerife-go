@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 fa232d1a31a1b333491a5c63fa0afc70
-             3.166.424 bytes · 924.714 comprimidos · 37.107 líneas
+index.html   md5 9e01c9f5f13a5bf42ee91f73c603ff9d
+             3.172.252 bytes · 926.617 comprimidos · 37.161 líneas
 idiomas/     9 ficheros de lugares · 2.525.852 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
@@ -32,7 +32,7 @@ faq/         10 ficheros · 69 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **210** versionados (88 en `idiomas/`, 49 en `tools/`, 29 en `faq/`, 24 en la raíz, 12 en `vendor/`, 3 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
-| Descarga | **937 kB** en castellano · **1.043 kB** en el peor caso (búlgaro) · 1.031 kB en polaco. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **939 kB** en castellano · **1.045 kB** en el peor caso (búlgaro) · 1.033 kB en polaco. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -371,6 +371,81 @@ También aprendieron a contar dos rótulos que estaban escritos: «los 8
 renderizados» cuando ya eran diez, y «las 7 claves … en los 8 idiomas». Un
 rótulo con el número a mano envejece igual que una lista.
 
+## Auditoría del búlgaro y el polaco · lo que ningún control miraba
+
+El usuario abrió la app y vio el polaco en el menú **pero no en la pantalla de
+bienvenida**. Tenía razón, y el fallo no era el botón que faltaba: era que
+**todos los controles de idioma de este proyecto fotografían la página
+quieta**. Lo que se pinta al abrir algo, o lo que se reescribe al tocar, no
+lo ve ninguno.
+
+Salió esto, todo comprobado en el navegador a 390×844 y en los dos idiomas:
+
+**1 · Dos listas de idiomas en el marcado, no una.** El desplegable de la barra
+(`.lang-option`) y los chips de la bienvenida (`.v19-w-lang`). El control
+miraba el desplegable. Ahora compara **las dos** contra `SUPPORTED_LANGS`: el
+desplegable por orden —`setLang` marca por índice— y los chips por
+`data-lang`. Y el `n >= 9` que tenía era un número escrito: con nueve
+opciones y diez idiomas daba OK.
+
+**2 · El saludo del asistente, apilado y congelado.** Iba atado a
+`chatHistory.length===0`, y `chatHistory` solo guarda lo que se habla: el
+saludo del bot no entra. La condición era cierta **siempre**, así que cada
+apertura del panel añadía otro saludo —al tercer toque había tres— y se
+quedaba en el idioma en que se pintó la primera vez. Un usuario polaco abría
+el asistente y leía **el saludo en castellano con la cabecera en polaco al
+lado**. Ahora la burbuja se marca y se recuerda su idioma: si nadie ha
+hablado se repinta, y si hay conversación **no se toca**, porque reescribir
+lo que alguien ya leyó en otro idioma es cambiarle el historial por detrás.
+
+**3 · Cinco rótulos que se vuelven castellanos al usar la app.** Están bien al
+arrancar —por eso daban verde— y se reescriben en cuanto alguien toca:
+
+| rótulo | quién lo machacaba |
+|---|---|
+| el chip «Solo este» de las categorías | se crea al vuelo con un literal dentro del `innerHTML` |
+| «+N más — sigue escribiendo» del buscador | igual, al pintar las sugerencias |
+| la pista 🅰️/🅱️ de la ruta | el marcado la pinta traducida con `data-tx` y `activatePick()` la machacaba |
+| «Pagar» / «Añadir a la cesta» de la reserva | `updateBookingCTA()` |
+| el botón del planificador con varias actividades | `dpApplyUiTexts()` lo deja traducido y `dpiSelectZone` lo machacaba |
+
+Las siete filas nuevas están en los diez idiomas. Las dos últimas son el
+mismo patrón y el más traicionero: **empieza traducido y se vuelve castellano
+al usarlo**, que es exactamente lo que una foto de la página quieta no puede
+ver.
+
+**4 · La respuesta del asistente sobre cambiar idioma decía tres cosas falsas**:
+«elige entre 8» nombrando ocho, «los 700+ lugares» con 804 dentro, y «este
+asistente responde en español e inglés por ahora» cuando responde en los
+diez. El control de cifras no la cazaba porque el 8 no iba pegado a la
+palabra «idiomas». Las respuestas de `CHAT_KB` pasan ahora por `chatFmt`,
+igual que `countAns`, así que esa lleva `{L}` y `{N}`: en el navegador dice
+10 y 804.
+
+**Los controles nuevos.** Dos, y los dos **tocan** en vez de mirar:
+
+```
+=== el saludo del asistente ===
+  OK  tres aperturas dejan UN saludo, no tres   (1)
+  OK  el saludo y su remite siguen al idioma en los diez
+  OK  con conversacion por medio no se reescribe   (3 -> 3)
+
+=== texto que se vuelve castellano al USAR la app ===
+  OK  seis rotulos que se reescriben al tocar siguen en su idioma
+```
+
+El segundo pide **búlgaro**, que cambia de alfabeto: si después de usar la app
+queda alfabeto latino donde debería haber cirílico, alguien lo reescribió. Los
+dos se probaron devolviendo las averías: el del saludo canta «tres aperturas
+→ 3» y el de tocar lista los cinco rótulos uno a uno.
+
+**Lo que sí estaba bien**, y conviene decirlo: 0 errores de página en los dos
+idiomas, 0 textos vacíos, 0 `undefined`, 0 `{marcador}` sin sustituir, 0
+recortes con puntos suspensivos, y las 1.741 fichas y las 685 etiquetas
+completas en ambos. El único desbordamiento horizontal que aparece —el botón
+de idioma de la barra, 5 px fuera a 390 px de ancho— **sale igual en
+castellano**, así que no es del idioma y se deja anotado aquí sin tocarlo.
+
 ## El asistente · 69 respuestas en 10 idiomas, y por qué no bastaba traducirlas
 
 `CHAT_KB` tiene 79 entradas y todas están escritas en castellano y en nada
@@ -443,7 +518,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 32 tablas, 774 filas (y 2.377 filas, dentro y fuera del fuente)
+## Idiomas · 32 tablas, 781 filas (y 2.384 filas, dentro y fuera del fuente)
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
