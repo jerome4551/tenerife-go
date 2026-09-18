@@ -8,11 +8,14 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 8c9123ccbd1abbf6317e78be076bb09b
-             3.079.425 bytes · 884.957 comprimidos · 36.656 líneas
+index.html   md5 e82a2e98124b969305da2be9b2c3590c
+             3.088.803 bytes · 888.635 comprimidos · 36.821 líneas
 idiomas/     8 ficheros · 2.246.677 bytes · entre 75 y 93 kB comprimidos
              + glosario-cat/ · 7 ficheros con los trozos de etiqueta a mano
              + etiquetas/    · 8 ficheros con los chips del globo (~15 kB cada uno)
+faq/         10 ficheros · 69 respuestas del asistente en cada idioma
+             entre 12,5 y 15,2 kB comprimidos; el móvil baja solo el suyo
+             + fuente/ · los bloques tal y como llegaron, y el bulgaro aparte
 ```
 
 ---
@@ -150,6 +153,78 @@ emojis: 2.894, 250 distintos
 
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
+
+## El asistente · 69 respuestas en 10 idiomas, y por qué no bastaba traducirlas
+
+`CHAT_KB` tiene 79 entradas y todas están escritas en castellano y en nada
+más. A un alemán que preguntaba por el permiso del Teide se le contestaba en
+castellano, y no había forma de notarlo desde fuera: la respuesta llegaba
+igual, solo que en otro idioma. Las 69 entradas nuevas vienen redactadas en
+los diez, cada una con sus propias claves de búsqueda, y viven en
+`faq/<idioma>.json` porque el móvil solo necesita el suyo: 13 kB
+comprimidos en vez de los 130 de las diez juntas.
+
+Al enchufarlas salieron tres cosas que no eran de los datos sino del motor, y
+las tres dejaban al usuario sin respuesta sin que nada pareciera roto:
+
+**`chatNorm` borraba el cirílico y el chino enteros.** El filtro era
+`[^a-z0-9\s]`, así que `chatNorm('плажове')` y `chatNorm('海滩')` devolvían la
+cadena vacía. El asistente no podía entender una sola palabra en búlgaro ni en
+chino por muy bien escritas que estuvieran las respuestas. Ahora conserva
+cualquier letra o cifra, del alfabeto que sea. NFD separa la tilde de la letra
+y el `replace` siguiente se la lleva —eso es lo que hace que «wejście»
+encuentre «wejscie»—, pero **NFD no descompone las letras con trazo**: la ł
+polaca, la ø danesa y la ß alemana no son letra más acento, son otro carácter,
+y hay que doblarlas a mano o el polaco se queda sin media lengua.
+
+**Una clave de varias palabras exigía el orden exacto.** Un alemán escribe
+«Genehmigung für den Teide» y la clave es «teide genehmigung»: las dos
+palabras están, el orden no. Eso no puntuaba nada y la pregunta se iba a la
+entrada castellana de `CHAT_KB`, que puntuaba 2 por el token «teide» suelto.
+Ahora la frase descolocada puntúa, menos que la frase entera, y hacen falta
+dos palabras de tres letras o más. Las vacías no llegan: `tokset` se
+construye sin las de `CHAT_STOP`.
+
+**El vocabulario de las categorías estaba en castellano y en inglés.** Quien
+escribía «海滩» o «плажове» no encontraba las playas, y no era que la respuesta
+no estuviera traducida: es que no había respuesta. El nombre de cada categoría
+ya estaba escrito en los ocho idiomas dentro de `LANGS.categories`, que es lo
+que sale en el menú del mapa; ahora la búsqueda lo consulta. Una sola fuente,
+ningún vocabulario nuevo que mantener, y el día que alguien corrija un rótulo
+la búsqueda se corrige con él.
+
+Y una cuarta que solo se vio porque el control la buscó: **119 botones de
+seguimiento de 621 no llevaban a ninguna parte.** Los botones mandan su propio
+texto a `processUserMessage`, así que un rótulo que no case con las claves de
+la entrada a la que apunta es un botón que se pulsa y contesta otra cosa. El
+rótulo se añade ahora a las claves de su propia entrada, al cargar y no en el
+JSON, porque es un dato que ya está escrito y duplicarlo sería mantener dos.
+
+`tools/auditar_faq.js` no se conforma con que el JSON esté bien formado: coge
+cada entrada, le hace su propia pregunta al buscador de verdad —el de
+`index.html`, no una copia— y comprueba que le contesta ella. 621 de 621. Una
+respuesta perfectamente traducida a la que no se llega nunca no sirve de nada,
+y eso no se ve leyendo el fichero.
+
+Dos desempates decididos a mano, y escritos aquí para que no se deshagan solos:
+«help», «hilfe», «aiuto» y «pomoc» se las queda emergencias, no la ayuda de la
+app —quien escribe eso puede estar pidiendo ayuda de verdad, y el manual está
+a un toque en la barra de abajo; al revés no—; e «insolación» y «golpe de
+calor» se las queda la entrada de salud, no la del sol, que habla de crema y
+de índice UV. Contra una batería de 52 preguntas en castellano e inglés, esas
+dos son las únicas dos que cambian de entrada: el resto va donde iba.
+
+La entrada del Teide de `CHAT_KB` decía que el permiso de la cima era gratuito
+y que se reservaba en `reservasparquesnacionales.es`. **Las dos cosas dejaron
+de ser ciertas.** Queda ahí la versión corta y correcta —Tenerife ON, tarifa
+en la franja del teleférico, plazas los lunes a las 07:00— porque es la que
+sale si el fichero del idioma no ha llegado; el detalle está en las quince
+entradas del bloque del Teide.
+
+**Lo que falta:** el polaco. Los bloques vienen redactados en él y
+`faq/pl.json` existe, pero la app no tiene polaco: no está en `LANGS`, ni en
+`idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
+enseñarlas.
 
 ## Idiomas · 32 tablas, 753 filas (y 2.322 filas, dentro y fuera del fuente)
 

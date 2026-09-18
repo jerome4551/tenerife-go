@@ -1,0 +1,431 @@
+{
+ "v": 1,
+ "idiomas": [
+  "es",
+  "en",
+  "de",
+  "fr",
+  "it",
+  "nl",
+  "pl",
+  "zh",
+  "zht",
+  "bg"
+ ],
+ "entradas": {
+  "tei-01": {
+   "cat": "teide",
+   "volatil": true,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-02": {
+   "cat": "teide",
+   "volatil": true,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-03": {
+   "cat": "teide",
+   "volatil": true,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-04": {
+   "cat": "teide",
+   "volatil": false,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-05": {
+   "cat": "teide",
+   "volatil": true,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-06": {
+   "cat": "teide",
+   "volatil": true,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-07": {
+   "cat": "teide",
+   "volatil": false,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-08": {
+   "cat": "teide",
+   "volatil": false,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-09": {
+   "cat": "teide",
+   "volatil": false,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-10": {
+   "cat": "teide",
+   "volatil": false,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-11": {
+   "cat": "teide",
+   "volatil": true,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-12": {
+   "cat": "teide",
+   "volatil": true,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-13": {
+   "cat": "teide",
+   "volatil": false,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-14": {
+   "cat": "teide",
+   "volatil": false,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "tei-15": {
+   "cat": "teide",
+   "volatil": false,
+   "bloque": "B1 · Teide y Parque Nacional",
+   "version": "1.0"
+  },
+  "mov-01": {
+   "cat": "movilidad",
+   "volatil": true,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-02": {
+   "cat": "movilidad",
+   "volatil": true,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-03": {
+   "cat": "movilidad",
+   "volatil": true,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-04": {
+   "cat": "movilidad",
+   "volatil": true,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-05": {
+   "cat": "movilidad",
+   "volatil": false,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-06": {
+   "cat": "movilidad",
+   "volatil": false,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-07": {
+   "cat": "movilidad",
+   "volatil": true,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-08": {
+   "cat": "movilidad",
+   "volatil": false,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-09": {
+   "cat": "movilidad",
+   "volatil": true,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-10": {
+   "cat": "movilidad",
+   "volatil": false,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-11": {
+   "cat": "movilidad",
+   "volatil": true,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-12": {
+   "cat": "movilidad",
+   "volatil": true,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-13": {
+   "cat": "movilidad",
+   "volatil": true,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-14": {
+   "cat": "movilidad",
+   "volatil": false,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-15": {
+   "cat": "movilidad",
+   "volatil": false,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-16": {
+   "cat": "movilidad",
+   "volatil": false,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-17": {
+   "cat": "movilidad",
+   "volatil": false,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-18": {
+   "cat": "movilidad",
+   "volatil": true,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "mov-19": {
+   "cat": "movilidad",
+   "volatil": true,
+   "bloque": "C1 · Llegar y moverse",
+   "version": "1.0"
+  },
+  "cul-01": {
+   "cat": "cultura",
+   "volatil": false,
+   "bloque": "D3 · Pueblos, cultura y fiestas",
+   "version": "1.0"
+  },
+  "cul-02": {
+   "cat": "cultura",
+   "volatil": false,
+   "bloque": "D3 · Pueblos, cultura y fiestas",
+   "version": "1.0"
+  },
+  "cul-03": {
+   "cat": "cultura",
+   "volatil": false,
+   "bloque": "D3 · Pueblos, cultura y fiestas",
+   "version": "1.0"
+  },
+  "cul-04": {
+   "cat": "cultura",
+   "volatil": false,
+   "bloque": "D3 · Pueblos, cultura y fiestas",
+   "version": "1.0"
+  },
+  "cul-05": {
+   "cat": "cultura",
+   "volatil": false,
+   "bloque": "D3 · Pueblos, cultura y fiestas",
+   "version": "1.0"
+  },
+  "cul-06": {
+   "cat": "cultura",
+   "volatil": true,
+   "bloque": "D3 · Pueblos, cultura y fiestas",
+   "version": "1.0"
+  },
+  "cul-07": {
+   "cat": "cultura",
+   "volatil": true,
+   "bloque": "D3 · Pueblos, cultura y fiestas",
+   "version": "1.0"
+  },
+  "cul-08": {
+   "cat": "cultura",
+   "volatil": false,
+   "bloque": "D3 · Pueblos, cultura y fiestas",
+   "version": "1.0"
+  },
+  "cul-09": {
+   "cat": "cultura",
+   "volatil": false,
+   "bloque": "D3 · Pueblos, cultura y fiestas",
+   "version": "1.0"
+  },
+  "cul-10": {
+   "cat": "cultura",
+   "volatil": true,
+   "bloque": "D3 · Pueblos, cultura y fiestas",
+   "version": "1.0"
+  },
+  "cul-11": {
+   "cat": "cultura",
+   "volatil": true,
+   "bloque": "D3 · Pueblos, cultura y fiestas",
+   "version": "1.0"
+  },
+  "exc-01": {
+   "cat": "excursiones",
+   "volatil": true,
+   "bloque": "E2 · Excursiones y actividades",
+   "version": "1.0"
+  },
+  "exc-02": {
+   "cat": "excursiones",
+   "volatil": false,
+   "bloque": "E2 · Excursiones y actividades",
+   "version": "1.0"
+  },
+  "exc-03": {
+   "cat": "excursiones",
+   "volatil": false,
+   "bloque": "E2 · Excursiones y actividades",
+   "version": "1.0"
+  },
+  "exc-04": {
+   "cat": "excursiones",
+   "volatil": true,
+   "bloque": "E2 · Excursiones y actividades",
+   "version": "1.0"
+  },
+  "exc-05": {
+   "cat": "excursiones",
+   "volatil": false,
+   "bloque": "E2 · Excursiones y actividades",
+   "version": "1.0"
+  },
+  "exc-06": {
+   "cat": "excursiones",
+   "volatil": false,
+   "bloque": "E2 · Excursiones y actividades",
+   "version": "1.0"
+  },
+  "exc-07": {
+   "cat": "excursiones",
+   "volatil": false,
+   "bloque": "E2 · Excursiones y actividades",
+   "version": "1.0"
+  },
+  "exc-08": {
+   "cat": "excursiones",
+   "volatil": false,
+   "bloque": "E2 · Excursiones y actividades",
+   "version": "1.0"
+  },
+  "exc-09": {
+   "cat": "excursiones",
+   "volatil": true,
+   "bloque": "E2 · Excursiones y actividades",
+   "version": "1.0"
+  },
+  "exc-10": {
+   "cat": "excursiones",
+   "volatil": false,
+   "bloque": "E2 · Excursiones y actividades",
+   "version": "1.0"
+  },
+  "exc-11": {
+   "cat": "excursiones",
+   "volatil": true,
+   "bloque": "E2 · Excursiones y actividades",
+   "version": "1.0"
+  },
+  "pra-01": {
+   "cat": "practico",
+   "volatil": false,
+   "bloque": "F1 · Prácticos del viaje",
+   "version": "1.0"
+  },
+  "pra-02": {
+   "cat": "practico",
+   "volatil": false,
+   "bloque": "F1 · Prácticos del viaje",
+   "version": "1.0"
+  },
+  "pra-03": {
+   "cat": "practico",
+   "volatil": false,
+   "bloque": "F1 · Prácticos del viaje",
+   "version": "1.0"
+  },
+  "pra-04": {
+   "cat": "practico",
+   "volatil": true,
+   "bloque": "F1 · Prácticos del viaje",
+   "version": "1.0"
+  },
+  "pra-05": {
+   "cat": "practico",
+   "volatil": false,
+   "bloque": "F1 · Prácticos del viaje",
+   "version": "1.0"
+  },
+  "pra-06": {
+   "cat": "practico",
+   "volatil": false,
+   "bloque": "F1 · Prácticos del viaje",
+   "version": "1.0"
+  },
+  "pra-07": {
+   "cat": "practico",
+   "volatil": false,
+   "bloque": "F1 · Prácticos del viaje",
+   "version": "1.0"
+  },
+  "pra-08": {
+   "cat": "practico",
+   "volatil": false,
+   "bloque": "F1 · Prácticos del viaje",
+   "version": "1.0"
+  },
+  "pra-09": {
+   "cat": "practico",
+   "volatil": false,
+   "bloque": "F1 · Prácticos del viaje",
+   "version": "1.0"
+  },
+  "pra-10": {
+   "cat": "practico",
+   "volatil": false,
+   "bloque": "F1 · Prácticos del viaje",
+   "version": "1.0"
+  },
+  "pra-11": {
+   "cat": "practico",
+   "volatil": true,
+   "bloque": "F1 · Prácticos del viaje",
+   "version": "1.0"
+  },
+  "pra-12": {
+   "cat": "practico",
+   "volatil": true,
+   "bloque": "F1 · Prácticos del viaje",
+   "version": "1.0"
+  },
+  "pra-13": {
+   "cat": "practico",
+   "volatil": true,
+   "bloque": "F1 · Prácticos del viaje",
+   "version": "1.0"
+  }
+ }
+}

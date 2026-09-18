@@ -1,0 +1,1833 @@
+{
+  "meta": {
+    "bloque": "C1 · Llegar y moverse",
+    "version": "1.0",
+    "fecha": "2026-09-13",
+    "idiomas": [
+      "es",
+      "en",
+      "de",
+      "fr",
+      "it",
+      "nl",
+      "pl",
+      "zh",
+      "zht"
+    ],
+    "entradas": 19,
+    "politica_datos": "Ninguna respuesta lleva tarifas, horarios de salida ni frecuencias. Los numeros de linea si aparecen porque salen del feed GTFS oficial que ya usa la app, pero siempre con la instruccion de confirmar el horario del dia en titsa.com.",
+    "fuente_verificada": "caminobarrancodemasca.com y Ayuntamiento de Buenavista del Norte (consultados 13/09/2026) para mov-13: traslado obligatorio en la linea 355 desde Santiago del Teide desde diciembre de 2025, prohibido el acceso al inicio en vehiculo privado, aparcamiento en el cementerio de Santiago del Teide."
+  },
+  "entradas": [
+    {
+      "id": "mov-01",
+      "cat": "movilidad",
+      "prio": 1,
+      "volatil": true,
+      "label": {
+        "es": "¿Cómo salgo del aeropuerto Sur?",
+        "en": "Getting out of the South airport?",
+        "de": "Vom Südflughafen weiterkommen?",
+        "fr": "Sortir de l’aéroport Sud ?",
+        "it": "Come esco dall’aeroporto Sud?",
+        "nl": "Weg van de zuidelijke luchthaven?",
+        "pl": "Jak wyjechać z lotniska Sur?",
+        "zh": "怎么离开南部机场？",
+        "zht": "怎麼離開南部機場？"
+      },
+      "keys": {
+        "es": [
+          "aeropuerto sur",
+          "tfs",
+          "reina sofia",
+          "del aeropuerto al hotel",
+          "llegar del aeropuerto",
+          "traslado aeropuerto"
+        ],
+        "en": [
+          "south airport",
+          "tfs",
+          "reina sofia",
+          "airport to hotel",
+          "from the airport",
+          "airport transfer"
+        ],
+        "de": [
+          "flughafen sud",
+          "tfs",
+          "reina sofia",
+          "vom flughafen zum hotel",
+          "flughafentransfer"
+        ],
+        "fr": [
+          "aeroport sud",
+          "tfs",
+          "reina sofia",
+          "de l aeroport a l hotel",
+          "transfert aeroport"
+        ],
+        "it": [
+          "aeroporto sud",
+          "tfs",
+          "reina sofia",
+          "dall aeroporto all hotel",
+          "trasferimento aeroporto"
+        ],
+        "nl": [
+          "luchthaven zuid",
+          "tfs",
+          "reina sofia",
+          "van het vliegveld naar het hotel",
+          "transfer luchthaven"
+        ],
+        "pl": [
+          "lotnisko poludniowe",
+          "tfs",
+          "reina sofia",
+          "z lotniska do hotelu",
+          "transfer z lotniska"
+        ],
+        "zh": [
+          "南机场",
+          "tfs",
+          "机场到酒店",
+          "从机场出发",
+          "机场接送"
+        ],
+        "zht": [
+          "南機場",
+          "tfs",
+          "機場到飯店",
+          "從機場出發",
+          "機場接送"
+        ]
+      },
+      "a": {
+        "es": "✈️ Del Aeropuerto Tenerife Sur (TFS) salen guaguas directas: la 10 a Santa Cruz, la 40 exprés a Los Cristianos y Costa Adeje, y la 343 hacia Puerto de la Cruz y el Aeropuerto Norte. También hay taxis en la puerta y traslados privados. Se paga al conductor en efectivo o con tarjeta bancaria; mira el horario del día en titsa.com.",
+        "en": "✈️ From Tenerife South airport (TFS) there are direct buses: the 10 to Santa Cruz, the 40 express to Los Cristianos and Costa Adeje, and the 343 towards Puerto de la Cruz and the North airport. There are taxis at the door and private transfers too. You pay the driver in cash or by bank card; check the day’s timetable on titsa.com.",
+        "de": "✈️ Vom Flughafen Teneriffa Süd (TFS) fahren Direktbusse: die 10 nach Santa Cruz, die 40 als Express nach Los Cristianos und Costa Adeje und die 343 Richtung Puerto de la Cruz und Nordflughafen. Taxis stehen vor der Tür, private Transfers gibt es auch. Bezahlt wird beim Fahrer bar oder mit Bankkarte; den Fahrplan des Tages findest du auf titsa.com.",
+        "fr": "✈️ De l’aéroport Tenerife Sud (TFS) partent des bus directs : le 10 vers Santa Cruz, le 40 express vers Los Cristianos et Costa Adeje, et le 343 vers Puerto de la Cruz et l’aéroport Nord. Il y a aussi des taxis à la sortie et des transferts privés. On paie au conducteur en espèces ou par carte ; consulte l’horaire du jour sur titsa.com.",
+        "it": "✈️ Dall’aeroporto Tenerife Sud (TFS) partono autobus diretti: il 10 per Santa Cruz, il 40 espresso per Los Cristianos e Costa Adeje, e il 343 verso Puerto de la Cruz e l’aeroporto Nord. Ci sono anche taxi all’uscita e transfer privati. Si paga al conducente in contanti o con carta; controlla l’orario del giorno su titsa.com.",
+        "nl": "✈️ Vanaf de luchthaven Tenerife Zuid (TFS) rijden directe bussen: de 10 naar Santa Cruz, de 40 als sneldienst naar Los Cristianos en Costa Adeje, en de 343 richting Puerto de la Cruz en de noordelijke luchthaven. Er staan ook taxi’s voor de deur en er zijn privétransfers. Je betaalt de chauffeur contant of met bankpas; check de dienstregeling van die dag op titsa.com.",
+        "pl": "✈️ Z lotniska Teneryfa Południe (TFS) odjeżdżają bezpośrednie autobusy: 10 do Santa Cruz, 40 ekspresowy do Los Cristianos i Costa Adeje oraz 343 w stronę Puerto de la Cruz i lotniska północnego. Przed wyjściem stoją też taksówki, są prywatne transfery. Płacisz kierowcy gotówką lub kartą; rozkład na dany dzień sprawdź na titsa.com.",
+        "zh": "✈️ 从特内里费南机场（TFS）有直达公交：10 路到 Santa Cruz，40 路快线到 Los Cristianos 和 Costa Adeje，343 路开往 Puerto de la Cruz 和北机场。门口也有出租车和私人接送。上车用现金或银行卡付给司机；当天班次请查 titsa.com。",
+        "zht": "✈️ 從特內里費南機場（TFS）有直達公車：10 路到 Santa Cruz，40 路快線到 Los Cristianos 和 Costa Adeje，343 路開往 Puerto de la Cruz 和北機場。門口也有計程車和私人接送。上車用現金或銀行卡付給司機；當天班次請查 titsa.com。"
+      },
+      "follow": [
+        "mov-03",
+        "mov-05",
+        "mov-10"
+      ]
+    },
+    {
+      "id": "mov-02",
+      "cat": "movilidad",
+      "prio": 1,
+      "volatil": true,
+      "label": {
+        "es": "¿Y desde el aeropuerto Norte?",
+        "en": "And from the North airport?",
+        "de": "Und vom Nordflughafen?",
+        "fr": "Et depuis l’aéroport Nord ?",
+        "it": "E dall’aeroporto Nord?",
+        "nl": "En vanaf de noordelijke luchthaven?",
+        "pl": "A z lotniska północnego?",
+        "zh": "北部机场怎么走？",
+        "zht": "北部機場怎麼走？"
+      },
+      "keys": {
+        "es": [
+          "aeropuerto norte",
+          "tfn",
+          "los rodeos",
+          "aeropuerto de la laguna"
+        ],
+        "en": [
+          "north airport",
+          "tfn",
+          "los rodeos",
+          "la laguna airport"
+        ],
+        "de": [
+          "flughafen nord",
+          "tfn",
+          "los rodeos"
+        ],
+        "fr": [
+          "aeroport nord",
+          "tfn",
+          "los rodeos"
+        ],
+        "it": [
+          "aeroporto nord",
+          "tfn",
+          "los rodeos"
+        ],
+        "nl": [
+          "luchthaven noord",
+          "tfn",
+          "los rodeos"
+        ],
+        "pl": [
+          "lotnisko polnocne",
+          "tfn",
+          "los rodeos"
+        ],
+        "zh": [
+          "北机场",
+          "tfn",
+          "los rodeos"
+        ],
+        "zht": [
+          "北機場",
+          "tfn",
+          "los rodeos"
+        ]
+      },
+      "a": {
+        "es": "✈️ El Aeropuerto Tenerife Norte (TFN, Los Rodeos) queda a diez minutos de La Laguna. Salen aeroexprés a Santa Cruz y La Laguna, las líneas 20 y 30, y la 343 baja al sur y a Puerto de la Cruz. El tranvía no entra en la terminal, pero enlaza La Laguna con Santa Cruz cada pocos minutos.",
+        "en": "✈️ Tenerife North airport (TFN, Los Rodeos) is ten minutes from La Laguna. Airport express buses run to Santa Cruz and La Laguna, lines 20 and 30, and the 343 heads south and to Puerto de la Cruz. The tram does not enter the terminal, but it links La Laguna with Santa Cruz every few minutes.",
+        "de": "✈️ Der Flughafen Teneriffa Nord (TFN, Los Rodeos) liegt zehn Minuten von La Laguna. Flughafenexpresse fahren nach Santa Cruz und La Laguna, die Linien 20 und 30, und die 343 in den Süden und nach Puerto de la Cruz. Die Straßenbahn hält nicht am Terminal, verbindet aber La Laguna und Santa Cruz im Minutentakt.",
+        "fr": "✈️ L’aéroport Tenerife Nord (TFN, Los Rodeos) est à dix minutes de La Laguna. Des aéro-express vont à Santa Cruz et La Laguna, lignes 20 et 30, et le 343 descend vers le sud et Puerto de la Cruz. Le tram n’entre pas dans le terminal, mais il relie La Laguna à Santa Cruz toutes les quelques minutes.",
+        "it": "✈️ L’aeroporto Tenerife Nord (TFN, Los Rodeos) è a dieci minuti da La Laguna. Ci sono aeroexpress per Santa Cruz e La Laguna, le linee 20 e 30, e il 343 scende a sud e a Puerto de la Cruz. Il tram non entra nel terminal, ma collega La Laguna con Santa Cruz ogni pochi minuti.",
+        "nl": "✈️ De luchthaven Tenerife Noord (TFN, Los Rodeos) ligt tien minuten van La Laguna. Er rijden airport-expressen naar Santa Cruz en La Laguna, lijnen 20 en 30, en de 343 gaat naar het zuiden en naar Puerto de la Cruz. De tram komt niet in de terminal, maar verbindt La Laguna om de paar minuten met Santa Cruz.",
+        "pl": "✈️ Lotnisko Teneryfa Północ (TFN, Los Rodeos) jest dziesięć minut od La Laguna. Kursują ekspresy lotniskowe do Santa Cruz i La Laguna, linie 20 i 30, a 343 jedzie na południe i do Puerto de la Cruz. Tramwaj nie wjeżdża do terminalu, ale co kilka minut łączy La Laguna z Santa Cruz.",
+        "zh": "✈️ 特内里费北机场（TFN，Los Rodeos）距 La Laguna 十分钟。有机场快线 20 路和 30 路开往 Santa Cruz 与 La Laguna，343 路南下并前往 Puerto de la Cruz。电车不进航站楼，但每隔几分钟连接 La Laguna 与 Santa Cruz。",
+        "zht": "✈️ 特內里費北機場（TFN，Los Rodeos）距 La Laguna 十分鐘。有機場快線 20 路和 30 路開往 Santa Cruz 與 La Laguna，343 路南下並前往 Puerto de la Cruz。電車不進航廈，但每隔幾分鐘連接 La Laguna 與 Santa Cruz。"
+      },
+      "follow": [
+        "mov-09",
+        "mov-03",
+        "mov-01"
+      ]
+    },
+    {
+      "id": "mov-03",
+      "cat": "movilidad",
+      "prio": 1,
+      "volatil": true,
+      "label": {
+        "es": "¿Cómo funcionan las guaguas?",
+        "en": "How do the buses work?",
+        "de": "Wie funktionieren die Busse?",
+        "fr": "Comment marchent les bus ?",
+        "it": "Come funzionano gli autobus?",
+        "nl": "Hoe werken de bussen?",
+        "pl": "Jak działają autobusy?",
+        "zh": "公交怎么坐？",
+        "zht": "公車怎麼搭？"
+      },
+      "keys": {
+        "es": [
+          "guagua",
+          "guaguas",
+          "autobus",
+          "titsa",
+          "transporte publico",
+          "como pago el bus",
+          "billete guagua"
+        ],
+        "en": [
+          "bus",
+          "buses",
+          "titsa",
+          "public transport",
+          "how do i pay the bus",
+          "bus ticket"
+        ],
+        "de": [
+          "bus",
+          "busse",
+          "titsa",
+          "offentlicher verkehr",
+          "wie bezahle ich im bus",
+          "busticket"
+        ],
+        "fr": [
+          "bus",
+          "guagua",
+          "titsa",
+          "transport public",
+          "comment payer le bus",
+          "ticket de bus"
+        ],
+        "it": [
+          "autobus",
+          "guagua",
+          "titsa",
+          "trasporto pubblico",
+          "come pago il bus",
+          "biglietto autobus"
+        ],
+        "nl": [
+          "bus",
+          "bussen",
+          "titsa",
+          "openbaar vervoer",
+          "hoe betaal ik in de bus",
+          "buskaartje"
+        ],
+        "pl": [
+          "autobus",
+          "autobusy",
+          "titsa",
+          "transport publiczny",
+          "jak zaplacic w autobusie",
+          "bilet autobusowy"
+        ],
+        "zh": [
+          "公交",
+          "巴士",
+          "titsa",
+          "公共交通",
+          "怎么买票",
+          "车票"
+        ],
+        "zht": [
+          "公車",
+          "巴士",
+          "titsa",
+          "大眾運輸",
+          "怎麼買票",
+          "車票"
+        ]
+      },
+      "a": {
+        "es": "🚌 Las guaguas son de TITSA y llegan a casi toda la isla. Puedes pagar en efectivo al conductor, con billetes pequeños, con tarjeta bancaria contactless en muchas líneas, o con la tarjeta ten+, que sale bastante más barata en los trayectos interurbanos. Yo te digo qué línea te sirve y dónde está la parada; el horario exacto del día, en titsa.com.",
+        "en": "🚌 The buses are run by TITSA and reach almost the whole island. You can pay the driver in cash with small notes, tap a contactless bank card on many routes, or use the ten+ card, which is noticeably cheaper on intercity journeys. I can tell you which line serves you and where the stop is; for the exact times of the day, titsa.com.",
+        "de": "🚌 Die Busse betreibt TITSA und sie erreichen fast die ganze Insel. Du kannst beim Fahrer bar zahlen, mit kleinen Scheinen, auf vielen Linien kontaktlos mit Bankkarte, oder mit der ten+-Karte, die auf Überlandfahrten deutlich günstiger ist. Ich sage dir, welche Linie passt und wo die Haltestelle liegt; die genauen Zeiten stehen auf titsa.com.",
+        "fr": "🚌 Les bus sont ceux de TITSA et desservent presque toute l’île. Tu peux payer au conducteur en espèces avec de petites coupures, en sans contact avec une carte bancaire sur beaucoup de lignes, ou avec la carte ten+, nettement moins chère sur les trajets interurbains. Je te dis quelle ligne te sert et où est l’arrêt ; les horaires exacts sont sur titsa.com.",
+        "it": "🚌 Gli autobus sono di TITSA e arrivano quasi ovunque sull’isola. Puoi pagare in contanti al conducente con banconote piccole, con carta contactless su molte linee, o con la tessera ten+, parecchio più economica sui percorsi interurbani. Io ti dico quale linea ti serve e dov’è la fermata; gli orari esatti su titsa.com.",
+        "nl": "🚌 De bussen zijn van TITSA en komen bijna overal op het eiland. Je kunt contant bij de chauffeur betalen met kleine biljetten, op veel lijnen contactloos met je bankpas, of met de ten+-kaart, die op intercityritten flink goedkoper is. Ik zeg je welke lijn je nodig hebt en waar de halte is; de exacte tijden staan op titsa.com.",
+        "pl": "🚌 Autobusy należą do TITSA i docierają niemal na całą wyspę. Możesz zapłacić kierowcy gotówką drobnymi banknotami, na wielu liniach kartą zbliżeniową albo kartą ten+, która na trasach międzymiastowych wychodzi wyraźnie taniej. Powiem ci, która linia pasuje i gdzie jest przystanek; dokładne godziny na titsa.com.",
+        "zh": "🚌 公交由 TITSA 运营，几乎覆盖全岛。可以用小面额现金付给司机，许多线路支持银行卡非接触支付，也可以用 ten+ 卡，跨市路线便宜不少。我能告诉你该坐哪条线、站牌在哪；具体发车时间请查 titsa.com。",
+        "zht": "🚌 公車由 TITSA 營運，幾乎覆蓋全島。可以用小面額現金付給司機，許多路線支援銀行卡感應支付，也可以用 ten+ 卡，跨市路線便宜不少。我能告訴你該搭哪條線、站牌在哪；具體發車時間請查 titsa.com。"
+      },
+      "follow": [
+        "mov-04",
+        "mov-05",
+        "mov-12"
+      ]
+    },
+    {
+      "id": "mov-04",
+      "cat": "movilidad",
+      "prio": 2,
+      "volatil": true,
+      "label": {
+        "es": "¿Me compensa la tarjeta ten+?",
+        "en": "Is the ten+ card worth it?",
+        "de": "Lohnt sich die ten+-Karte?",
+        "fr": "La carte ten+ vaut le coup ?",
+        "it": "Conviene la tessera ten+?",
+        "nl": "Is de ten+-kaart de moeite?",
+        "pl": "Czy karta ten+ się opłaca?",
+        "zh": "ten+ 卡值得办吗？",
+        "zht": "ten+ 卡值得辦嗎？"
+      },
+      "keys": {
+        "es": [
+          "ten mas",
+          "tarjeta de transporte",
+          "bono",
+          "bono guagua",
+          "abono",
+          "recargar tarjeta"
+        ],
+        "en": [
+          "ten plus",
+          "transport card",
+          "travel card",
+          "bus pass",
+          "top up card"
+        ],
+        "de": [
+          "ten plus",
+          "verkehrskarte",
+          "fahrkarte aufladen",
+          "buskarte"
+        ],
+        "fr": [
+          "ten plus",
+          "carte de transport",
+          "abonnement bus",
+          "recharger la carte"
+        ],
+        "it": [
+          "ten plus",
+          "tessera di trasporto",
+          "abbonamento bus",
+          "ricaricare la tessera"
+        ],
+        "nl": [
+          "ten plus",
+          "vervoerskaart",
+          "buspas",
+          "kaart opladen"
+        ],
+        "pl": [
+          "ten plus",
+          "karta transportowa",
+          "bilet okresowy",
+          "doladowanie karty"
+        ],
+        "zh": [
+          "ten+ 卡",
+          "交通卡",
+          "公交卡",
+          "充值"
+        ],
+        "zht": [
+          "ten+ 卡",
+          "交通卡",
+          "公車卡",
+          "儲值"
+        ]
+      },
+      "a": {
+        "es": "💳 La ten+ es la tarjeta de transporte de la isla: se compra y se recarga en estaciones, quioscos y máquinas, y existe también en versión móvil. Compensa en cuanto hagas unos cuantos trayectos interurbanos, porque el descuento frente al billete suelto es grande. Se valida al subir y, en los trayectos largos, también al bajar.",
+        "en": "💳 The ten+ is the island’s transport card: you buy and top it up at stations, kiosks and machines, and there is a mobile version too. It pays off as soon as you make a few intercity journeys, because the discount against single tickets is large. You tap on boarding and, on long routes, when getting off as well.",
+        "de": "💳 Die ten+ ist die Verkehrskarte der Insel: Kauf und Aufladung an Stationen, Kiosken und Automaten, es gibt sie auch fürs Handy. Sie lohnt sich, sobald du ein paar Überlandfahrten machst, denn der Rabatt gegenüber Einzelfahrscheinen ist groß. Beim Einsteigen entwerten und auf langen Strecken auch beim Aussteigen.",
+        "fr": "💳 La ten+ est la carte de transport de l’île : on l’achète et la recharge en gare, en kiosque et aux distributeurs, et il en existe une version mobile. Elle devient rentable dès quelques trajets interurbains, car la remise face au ticket à l’unité est importante. On valide en montant et, sur les longs trajets, aussi en descendant.",
+        "it": "💳 La ten+ è la tessera di trasporto dell’isola: si compra e si ricarica in stazioni, chioschi e distributori, ed esiste anche in versione mobile. Conviene già dopo qualche viaggio interurbano, perché lo sconto rispetto al biglietto singolo è notevole. Si valida salendo e, sui percorsi lunghi, anche scendendo.",
+        "nl": "💳 De ten+ is de vervoerskaart van het eiland: je koopt en laadt hem op bij stations, kiosken en automaten, en er is ook een mobiele versie. Hij loont zodra je een paar intercityritten maakt, want de korting ten opzichte van losse kaartjes is groot. Je checkt in bij het instappen en op lange ritten ook bij het uitstappen.",
+        "pl": "💳 Ten+ to wyspiarska karta transportowa: kupisz ją i doładujesz na dworcach, w kioskach i automatach, jest też wersja w telefonie. Opłaca się już po kilku przejazdach międzymiastowych, bo zniżka wobec biletów jednorazowych jest spora. Kasujesz przy wejściu, a na długich trasach także przy wyjściu.",
+        "zh": "💳 ten+ 是全岛通用的交通卡：可在车站、报刊亭和自助机购买充值，也有手机版。只要跑几趟跨市线路就回本，因为比单程票便宜很多。上车刷一次，长途线路下车时还要再刷一次。",
+        "zht": "💳 ten+ 是全島通用的交通卡：可在車站、書報攤和自助機購買儲值，也有手機版。只要跑幾趟跨市路線就回本，因為比單程票便宜很多。上車刷一次，長途路線下車時還要再刷一次。"
+      },
+      "follow": [
+        "mov-03",
+        "mov-09",
+        "mov-12"
+      ]
+    },
+    {
+      "id": "mov-05",
+      "cat": "movilidad",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿Necesito coche de alquiler?",
+        "en": "Do I need a rental car?",
+        "de": "Brauche ich einen Mietwagen?",
+        "fr": "Faut-il louer une voiture ?",
+        "it": "Serve l’auto a noleggio?",
+        "nl": "Heb ik een huurauto nodig?",
+        "pl": "Czy potrzebuję auta?",
+        "zh": "需要租车吗？",
+        "zht": "需要租車嗎？"
+      },
+      "keys": {
+        "es": [
+          "alquilar coche",
+          "coche de alquiler",
+          "necesito coche",
+          "rent a car",
+          "sin coche",
+          "merece la pena alquilar"
+        ],
+        "en": [
+          "rent a car",
+          "rental car",
+          "do i need a car",
+          "without a car",
+          "is it worth renting"
+        ],
+        "de": [
+          "mietwagen",
+          "auto mieten",
+          "brauche ich ein auto",
+          "ohne auto"
+        ],
+        "fr": [
+          "louer une voiture",
+          "voiture de location",
+          "ai je besoin d une voiture",
+          "sans voiture"
+        ],
+        "it": [
+          "noleggiare auto",
+          "auto a noleggio",
+          "serve la macchina",
+          "senza auto"
+        ],
+        "nl": [
+          "auto huren",
+          "huurauto",
+          "heb ik een auto nodig",
+          "zonder auto"
+        ],
+        "pl": [
+          "wynajac samochod",
+          "auto z wypozyczalni",
+          "czy potrzebuje auta",
+          "bez samochodu"
+        ],
+        "zh": [
+          "租车",
+          "需要车吗",
+          "没有车",
+          "值得租车吗"
+        ],
+        "zht": [
+          "租車",
+          "需要車嗎",
+          "沒有車",
+          "值得租車嗎"
+        ]
+      },
+      "a": {
+        "es": "🚗 Si te vas a mover por la costa y las ciudades, la guagua cumple de sobra. Si quieres Anaga, Teno, los pueblos del interior o un mirador al amanecer, alquila: hay sitios donde el transporte público llega poco y a horas incómodas. Mucha gente combina: guagua la mayoría de días y coche dos o tres.",
+        "en": "🚗 If you are going to stay around the coast and the towns, the bus covers it easily. If you want Anaga, Teno, the inland villages or a viewpoint at sunrise, rent one: there are places public transport barely reaches, and at awkward times. Plenty of people mix it: bus most days, car for two or three.",
+        "de": "🚗 Wenn du dich an der Küste und in den Städten bewegst, reicht der Bus locker. Willst du nach Anaga, Teno, in die Bergdörfer oder bei Sonnenaufgang an einen Aussichtspunkt, dann miete: dorthin fährt der öffentliche Verkehr kaum und zu unpraktischen Zeiten. Viele kombinieren: meistens Bus, an zwei, drei Tagen Auto.",
+        "fr": "🚗 Si tu restes sur la côte et dans les villes, le bus suffit largement. Si tu veux Anaga, Teno, les villages de l’intérieur ou un point de vue au lever du jour, loue : il y a des endroits où les transports passent peu et à des heures peu pratiques. Beaucoup combinent : bus la plupart des jours, voiture deux ou trois.",
+        "it": "🚗 Se ti muovi lungo la costa e nelle città, l’autobus basta e avanza. Se vuoi Anaga, Teno, i paesi dell’interno o un punto panoramico all’alba, noleggia: ci sono posti dove i mezzi pubblici arrivano poco e a orari scomodi. In tanti combinano: autobus quasi sempre, auto due o tre giorni.",
+        "nl": "🚗 Blijf je aan de kust en in de steden, dan volstaat de bus ruimschoots. Wil je naar Anaga, Teno, de dorpen in het binnenland of bij zonsopgang naar een uitzichtpunt, huur er dan een: daar komt het openbaar vervoer nauwelijks, en op lastige tijden. Veel mensen combineren: meestal de bus, twee of drie dagen een auto.",
+        "pl": "🚗 Jeśli poruszasz się po wybrzeżu i miastach, autobus w zupełności wystarczy. Jeśli chcesz Anagę, Teno, wioski w głębi wyspy albo punkt widokowy o wschodzie, wynajmij: są miejsca, gdzie komunikacja dojeżdża rzadko i o niewygodnych porach. Wielu łączy oba warianty: autobus przez większość dni, auto na dwa, trzy.",
+        "zh": "🚗 如果你只在海岸和城镇之间活动，公交完全够用。若想去 Anaga、Teno、内陆村镇，或在日出时到某个观景台，那就租车：有些地方公共交通班次少、时间也不合适。很多人两者混用：大部分日子坐公交，两三天租车。",
+        "zht": "🚗 如果你只在海岸和城鎮之間活動，公車完全夠用。若想去 Anaga、Teno、內陸村鎮，或在日出時到某個觀景台，那就租車：有些地方大眾運輸班次少、時間也不合適。很多人兩者混用：大部分日子搭公車，兩三天租車。"
+      },
+      "follow": [
+        "mov-06",
+        "mov-18",
+        "mov-07"
+      ]
+    },
+    {
+      "id": "mov-06",
+      "cat": "movilidad",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Se conduce bien en la isla?",
+        "en": "What is driving like here?",
+        "de": "Wie fährt es sich hier?",
+        "fr": "La conduite, c’est comment ?",
+        "it": "Si guida bene sull’isola?",
+        "nl": "Hoe is het rijden hier?",
+        "pl": "Jak się tu jeździ?",
+        "zh": "岛上开车好开吗？",
+        "zht": "島上開車好開嗎？"
+      },
+      "keys": {
+        "es": [
+          "conducir",
+          "carreteras",
+          "curvas",
+          "autopista",
+          "es dificil conducir",
+          "carretera de montana"
+        ],
+        "en": [
+          "driving",
+          "roads",
+          "bends",
+          "motorway",
+          "is it hard to drive",
+          "mountain road"
+        ],
+        "de": [
+          "fahren",
+          "strassen",
+          "kurven",
+          "autobahn",
+          "ist fahren schwierig",
+          "bergstrasse"
+        ],
+        "fr": [
+          "conduire",
+          "routes",
+          "virages",
+          "autoroute",
+          "est ce difficile de conduire",
+          "route de montagne"
+        ],
+        "it": [
+          "guidare",
+          "strade",
+          "curve",
+          "autostrada",
+          "e difficile guidare",
+          "strada di montagna"
+        ],
+        "nl": [
+          "rijden",
+          "wegen",
+          "bochten",
+          "snelweg",
+          "is rijden moeilijk",
+          "bergweg"
+        ],
+        "pl": [
+          "jazda",
+          "drogi",
+          "zakrety",
+          "autostrada",
+          "czy trudno sie jezdzi",
+          "droga gorska"
+        ],
+        "zh": [
+          "开车",
+          "路况",
+          "弯道",
+          "高速",
+          "山路好开吗"
+        ],
+        "zht": [
+          "開車",
+          "路況",
+          "彎道",
+          "高速",
+          "山路好開嗎"
+        ]
+      },
+      "a": {
+        "es": "🛣️ Se conduce bien, pero la isla es vertical: autopistas rápidas en la costa, la TF-1 en el sur y la TF-5 en el norte, y carreteras de montaña llenas de curvas donde 40 km pueden ser una hora larga. Usa marchas cortas en las bajadas, ojo con los ciclistas y con la niebla del norte, y no te fíes del tiempo que te dé el navegador.",
+        "en": "🛣️ Driving is fine, but the island is vertical: fast motorways on the coast, the TF-1 in the south and the TF-5 in the north, and mountain roads full of bends where 40 km can take well over an hour. Use low gears downhill, watch for cyclists and northern fog, and do not trust the time your sat nav gives you.",
+        "de": "🛣️ Fahren geht gut, aber die Insel ist vertikal: schnelle Autobahnen an der Küste, die TF-1 im Süden und die TF-5 im Norden, und Bergstraßen voller Kurven, auf denen 40 km gut über eine Stunde dauern. Bergab niedrige Gänge, Vorsicht vor Radfahrern und dem Nebel im Norden, und trau der Zeit im Navi nicht.",
+        "fr": "🛣️ On conduit bien, mais l’île est verticale : autoroutes rapides sur la côte, la TF-1 au sud et la TF-5 au nord, et des routes de montagne pleines de virages où 40 km peuvent prendre plus d’une heure. Rétrograde dans les descentes, attention aux cyclistes et au brouillard du nord, et ne te fie pas au temps annoncé par le GPS.",
+        "it": "🛣️ Si guida bene, ma l’isola è verticale: autostrade veloci sulla costa, la TF-1 a sud e la TF-5 a nord, e strade di montagna piene di curve dove 40 km possono diventare un’ora abbondante. Marce basse in discesa, occhio ai ciclisti e alla nebbia del nord, e non fidarti del tempo che ti dà il navigatore.",
+        "nl": "🛣️ Rijden gaat prima, maar het eiland staat rechtop: snelle autowegen langs de kust, de TF-1 in het zuiden en de TF-5 in het noorden, en bergwegen vol bochten waar 40 km ruim een uur kan kosten. Lage versnellingen bergaf, let op fietsers en de mist in het noorden, en vertrouw de tijd van je navigatie niet.",
+        "pl": "🛣️ Jeździ się dobrze, ale wyspa jest pionowa: szybkie autostrady wzdłuż wybrzeża, TF-1 na południu i TF-5 na północy, oraz górskie drogi pełne zakrętów, gdzie 40 km potrafi zająć ponad godzinę. Na zjazdach niskie biegi, uważaj na rowerzystów i mgłę na północy, i nie ufaj czasowi z nawigacji.",
+        "zh": "🛣️ 开车没什么问题，但这座岛是立体的：沿海有快速高速，南部 TF-1、北部 TF-5，而山路弯道极多，40 公里可能要开一个多小时。下坡用低挡，注意自行车和北部的浓雾，也别相信导航给出的时间。",
+        "zht": "🛣️ 開車沒什麼問題，但這座島是立體的：沿海有快速高速，南部 TF-1、北部 TF-5，而山路彎道極多，40 公里可能要開一個多小時。下坡用低檔，注意自行車和北部的濃霧，也別相信導航給出的時間。"
+      },
+      "follow": [
+        "mov-08",
+        "mov-07",
+        "mov-17"
+      ]
+    },
+    {
+      "id": "mov-07",
+      "cat": "movilidad",
+      "prio": 2,
+      "volatil": true,
+      "label": {
+        "es": "¿Dónde aparco?",
+        "en": "Where do I park?",
+        "de": "Wo parke ich?",
+        "fr": "Où se garer ?",
+        "it": "Dove parcheggio?",
+        "nl": "Waar parkeer ik?",
+        "pl": "Gdzie zaparkować?",
+        "zh": "在哪里停车？",
+        "zht": "在哪裡停車？"
+      },
+      "keys": {
+        "es": [
+          "aparcar",
+          "aparcamiento",
+          "parking",
+          "estacionar",
+          "zona azul",
+          "grua"
+        ],
+        "en": [
+          "parking",
+          "park the car",
+          "blue zone",
+          "paid parking",
+          "tow truck"
+        ],
+        "de": [
+          "parken",
+          "parkplatz",
+          "blaue zone",
+          "parkgebuhr",
+          "abschleppen"
+        ],
+        "fr": [
+          "se garer",
+          "stationnement",
+          "parking",
+          "zone bleue",
+          "fourriere"
+        ],
+        "it": [
+          "parcheggiare",
+          "parcheggio",
+          "zona blu",
+          "sosta a pagamento",
+          "carro attrezzi"
+        ],
+        "nl": [
+          "parkeren",
+          "parkeerplaats",
+          "blauwe zone",
+          "betaald parkeren",
+          "wegsleep"
+        ],
+        "pl": [
+          "parkowanie",
+          "parking",
+          "strefa platnego parkowania",
+          "odholowanie"
+        ],
+        "zh": [
+          "停车",
+          "停车场",
+          "蓝区",
+          "收费停车",
+          "拖车"
+        ],
+        "zht": [
+          "停車",
+          "停車場",
+          "藍區",
+          "收費停車",
+          "拖吊"
+        ]
+      },
+      "a": {
+        "es": "🅿️ En las ciudades hay zona azul de pago entre semana y aparcamientos públicos en el centro. En los pueblos y miradores famosos, llega antes de las diez o ve al atardecer: a media mañana no queda hueco. Nunca aparques en línea amarilla ni en las curvas de los miradores, que la grúa va rápido.",
+        "en": "🅿️ In the cities there is paid blue-zone parking on weekdays and public car parks in the centre. In the well-known villages and viewpoints, arrive before ten or go at sunset: by mid-morning there is nothing left. Never park on a yellow line or on the bends by the viewpoints, the tow truck is quick.",
+        "de": "🅿️ In den Städten gibt es werktags die gebührenpflichtige blaue Zone und öffentliche Parkhäuser im Zentrum. In den bekannten Dörfern und an Aussichtspunkten komm vor zehn oder gegen Sonnenuntergang: am späten Vormittag ist nichts mehr frei. Park nie auf gelber Linie oder in den Kurven an den Aussichtspunkten, der Abschleppwagen ist schnell.",
+        "fr": "🅿️ En ville, zone bleue payante en semaine et parkings publics au centre. Dans les villages et aux points de vue connus, arrive avant dix heures ou va au coucher du soleil : en milieu de matinée il n’y a plus rien. Ne te gare jamais sur une ligne jaune ni dans les virages des miradors, la fourrière est rapide.",
+        "it": "🅿️ In città c’è la zona blu a pagamento nei giorni feriali e parcheggi pubblici in centro. Nei paesi e nei punti panoramici famosi arriva prima delle dieci o vai al tramonto: a metà mattina non resta un posto. Non parcheggiare mai sulla linea gialla né nelle curve dei miradores, il carro attrezzi è veloce.",
+        "nl": "🅿️ In de steden is er doordeweeks betaalde blauwe zone en zijn er openbare parkeergarages in het centrum. In de bekende dorpen en bij uitzichtpunten: kom voor tienen of ga bij zonsondergang, halverwege de ochtend is er niets meer vrij. Parkeer nooit op een gele streep of in de bochten bij de uitzichtpunten, de sleepwagen is er snel bij.",
+        "pl": "🅿️ W miastach w dni robocze obowiązuje płatna strefa niebieska, a w centrum są parkingi publiczne. W znanych wioskach i przy punktach widokowych przyjeżdżaj przed dziesiątą albo o zachodzie: w połowie przedpołudnia nie ma już miejsc. Nigdy nie parkuj na żółtej linii ani na zakrętach przy punktach widokowych, laweta działa szybko.",
+        "zh": "🅿️ 城市里工作日有收费蓝区，市中心也有公共停车场。热门村镇和观景台请在十点前到，或傍晚再去：上午过半就没位置了。绝对不要停在黄线上或观景台的弯道边，拖车来得很快。",
+        "zht": "🅿️ 城市裡平日有收費藍區，市中心也有公共停車場。熱門村鎮和觀景台請在十點前到，或傍晚再去：上午過半就沒位置了。絕對不要停在黃線上或觀景台的彎道邊，拖吊來得很快。"
+      },
+      "follow": [
+        "mov-06",
+        "mov-08",
+        "mov-05"
+      ]
+    },
+    {
+      "id": "mov-08",
+      "cat": "movilidad",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Cuánto se tarda de un sitio a otro?",
+        "en": "How long between places?",
+        "de": "Wie lange von A nach B?",
+        "fr": "Combien de temps entre deux points ?",
+        "it": "Quanto ci vuole da un posto all’altro?",
+        "nl": "Hoelang van A naar B?",
+        "pl": "Ile trwa przejazd?",
+        "zh": "两地之间要多久？",
+        "zht": "兩地之間要多久？"
+      },
+      "keys": {
+        "es": [
+          "cuanto se tarda",
+          "distancia",
+          "cuanto hay de",
+          "tiempo de viaje",
+          "cuanto se tarda al teide"
+        ],
+        "en": [
+          "how long does it take",
+          "distance",
+          "how far is",
+          "travel time",
+          "how long to teide"
+        ],
+        "de": [
+          "wie lange dauert",
+          "entfernung",
+          "wie weit ist",
+          "fahrzeit",
+          "wie lange zum teide"
+        ],
+        "fr": [
+          "combien de temps",
+          "distance",
+          "c est loin",
+          "temps de trajet",
+          "combien jusqu au teide"
+        ],
+        "it": [
+          "quanto ci vuole",
+          "distanza",
+          "quanto dista",
+          "tempo di viaggio",
+          "quanto per il teide"
+        ],
+        "nl": [
+          "hoelang duurt",
+          "afstand",
+          "hoe ver is",
+          "reistijd",
+          "hoelang naar de teide"
+        ],
+        "pl": [
+          "ile sie jedzie",
+          "odleglosc",
+          "jak daleko",
+          "czas podrozy",
+          "ile do teide"
+        ],
+        "zh": [
+          "要开多久",
+          "距离",
+          "有多远",
+          "车程",
+          "到泰德要多久"
+        ],
+        "zht": [
+          "要開多久",
+          "距離",
+          "有多遠",
+          "車程",
+          "到泰德要多久"
+        ]
+      },
+      "a": {
+        "es": "⏱️ De orientación, en coche: Costa Adeje a Santa Cruz, una hora larga por autopista; Costa Adeje al Teide, hora y media; Santa Cruz a Puerto de la Cruz, unos 45 minutos; Santa Cruz al fondo de Anaga, hora y media aunque en el mapa parezca al lado. Toca «Cómo llegar» en cualquier ficha y te calculo la ruta real desde donde estés.",
+        "en": "⏱️ Rough guide, by car: Costa Adeje to Santa Cruz, a good hour on the motorway; Costa Adeje to the Teide, an hour and a half; Santa Cruz to Puerto de la Cruz, about 45 minutes; Santa Cruz to deep Anaga, an hour and a half even though it looks next door on the map. Tap «How to get there» on any card and I will work out the real route from where you are.",
+        "de": "⏱️ Als Orientierung, mit dem Auto: Costa Adeje nach Santa Cruz, gut eine Stunde über die Autobahn; Costa Adeje zum Teide, anderthalb Stunden; Santa Cruz nach Puerto de la Cruz, rund 45 Minuten; Santa Cruz ins tiefe Anaga, anderthalb Stunden, auch wenn es auf der Karte nebenan aussieht. Tipp auf einer Ortskarte «Anfahrt» und ich rechne die echte Route ab deinem Standort.",
+        "fr": "⏱️ À titre indicatif, en voiture : Costa Adeje à Santa Cruz, une bonne heure par l’autoroute ; Costa Adeje au Teide, une heure et demie ; Santa Cruz à Puerto de la Cruz, environ 45 minutes ; Santa Cruz au fond d’Anaga, une heure et demie même si ça paraît à côté sur la carte. Touche «Comment y aller» sur une fiche et je calcule l’itinéraire réel depuis ta position.",
+        "it": "⏱️ Come riferimento, in auto: Costa Adeje a Santa Cruz, un’ora abbondante in autostrada; Costa Adeje al Teide, un’ora e mezza; Santa Cruz a Puerto de la Cruz, circa 45 minuti; Santa Cruz nel cuore di Anaga, un’ora e mezza anche se sulla mappa sembra vicino. Tocca «Come arrivare» in una scheda e ti calcolo il percorso reale da dove sei.",
+        "nl": "⏱️ Ter oriëntatie, met de auto: Costa Adeje naar Santa Cruz, een uur en wat over de snelweg; Costa Adeje naar de Teide, anderhalf uur; Santa Cruz naar Puerto de la Cruz, zo’n 45 minuten; Santa Cruz naar diep in Anaga, anderhalf uur ook al lijkt het op de kaart naast de deur. Tik op «Hoe kom ik er» bij een plek en ik reken de echte route uit vanaf waar je bent.",
+        "pl": "⏱️ Orientacyjnie, samochodem: Costa Adeje do Santa Cruz, dobra godzina autostradą; Costa Adeje pod Teide, półtorej godziny; Santa Cruz do Puerto de la Cruz, jakieś 45 minut; Santa Cruz w głąb Anagi, półtorej godziny, choć na mapie wygląda to tuż obok. Dotknij «Jak dojechać» na dowolnej karcie, a policzę realną trasę z miejsca, w którym jesteś.",
+        "zh": "⏱️ 大致参考，自驾：Costa Adeje 到 Santa Cruz 走高速一个多小时；Costa Adeje 到泰德约一个半小时；Santa Cruz 到 Puerto de la Cruz 约 45 分钟；Santa Cruz 深入 Anaga 要一个半小时，尽管地图上看着很近。在任意地点详情点«怎么去»，我会按你当前位置算出真实路线。",
+        "zht": "⏱️ 大致參考，自駕：Costa Adeje 到 Santa Cruz 走高速一個多小時；Costa Adeje 到泰德約一個半小時；Santa Cruz 到 Puerto de la Cruz 約 45 分鐘；Santa Cruz 深入 Anaga 要一個半小時，儘管地圖上看著很近。在任一地點詳情點«怎麼去»，我會按你當前位置算出真實路線。"
+      },
+      "follow": [
+        "mov-06",
+        "mov-16",
+        "mov-05"
+      ]
+    },
+    {
+      "id": "mov-09",
+      "cat": "movilidad",
+      "prio": 2,
+      "volatil": true,
+      "label": {
+        "es": "¿Cómo funciona el tranvía?",
+        "en": "How does the tram work?",
+        "de": "Wie funktioniert die Straßenbahn?",
+        "fr": "Comment marche le tram ?",
+        "it": "Come funziona il tram?",
+        "nl": "Hoe werkt de tram?",
+        "pl": "Jak działa tramwaj?",
+        "zh": "电车怎么坐？",
+        "zht": "電車怎麼搭？"
+      },
+      "keys": {
+        "es": [
+          "tranvia",
+          "metropolitano",
+          "santa cruz la laguna",
+          "linea 1 tranvia"
+        ],
+        "en": [
+          "tram",
+          "tramway",
+          "santa cruz la laguna",
+          "tram line 1"
+        ],
+        "de": [
+          "strassenbahn",
+          "tram",
+          "santa cruz la laguna"
+        ],
+        "fr": [
+          "tram",
+          "tramway",
+          "santa cruz la laguna"
+        ],
+        "it": [
+          "tram",
+          "tranvia",
+          "santa cruz la laguna"
+        ],
+        "nl": [
+          "tram",
+          "trambaan",
+          "santa cruz la laguna"
+        ],
+        "pl": [
+          "tramwaj",
+          "linia tramwajowa",
+          "santa cruz la laguna"
+        ],
+        "zh": [
+          "电车",
+          "有轨电车",
+          "santa cruz la laguna"
+        ],
+        "zht": [
+          "電車",
+          "輕軌",
+          "santa cruz la laguna"
+        ]
+      },
+      "a": {
+        "es": "🚋 El tranvía une Santa Cruz con La Laguna, la línea 1, y tiene un segundo trazado hacia La Cuesta y Tíncer, la línea 2. Es la forma más cómoda de moverse entre las dos ciudades y te ahorra el atasco de la TF-5. Se paga con ten+ o con billete en la máquina del andén, antes de subir.",
+        "en": "🚋 The tram links Santa Cruz with La Laguna, line 1, and has a second route towards La Cuesta and Tíncer, line 2. It is the easiest way to move between the two cities and saves you the TF-5 jam. You pay with a ten+ card or a ticket from the platform machine, before boarding.",
+        "de": "🚋 Die Straßenbahn verbindet Santa Cruz mit La Laguna, Linie 1, und hat eine zweite Strecke nach La Cuesta und Tíncer, Linie 2. Sie ist die bequemste Art, zwischen beiden Städten zu pendeln, und erspart dir den Stau auf der TF-5. Bezahlt wird mit ten+ oder mit einem Ticket vom Automaten am Bahnsteig, vor dem Einsteigen.",
+        "fr": "🚋 Le tram relie Santa Cruz à La Laguna, ligne 1, et possède un second tracé vers La Cuesta et Tíncer, ligne 2. C’est le moyen le plus confortable entre les deux villes et ça évite les bouchons de la TF-5. On paie avec la ten+ ou un ticket à la machine du quai, avant de monter.",
+        "it": "🚋 Il tram unisce Santa Cruz e La Laguna, linea 1, e ha un secondo tracciato verso La Cuesta e Tíncer, linea 2. È il modo più comodo per muoversi tra le due città ed evita la coda della TF-5. Si paga con la ten+ o con il biglietto della macchinetta in banchina, prima di salire.",
+        "nl": "🚋 De tram verbindt Santa Cruz met La Laguna, lijn 1, en heeft een tweede traject richting La Cuesta en Tíncer, lijn 2. Het is de prettigste manier om tussen beide steden te reizen en je ontloopt de file op de TF-5. Je betaalt met de ten+-kaart of met een kaartje uit de automaat op het perron, vóór het instappen.",
+        "pl": "🚋 Tramwaj łączy Santa Cruz z La Laguna, linia 1, a druga trasa prowadzi w stronę La Cuesta i Tíncer, linia 2. To najwygodniejszy sposób poruszania się między oboma miastami i omija korki na TF-5. Płacisz kartą ten+ albo biletem z automatu na peronie, przed wejściem.",
+        "zh": "🚋 电车 1 号线连接 Santa Cruz 与 La Laguna，2 号线通往 La Cuesta 和 Tíncer。在两座城市之间往返，这是最舒服的方式，还能避开 TF-5 的堵车。用 ten+ 卡或在月台售票机买票，上车前先付款。",
+        "zht": "🚋 電車 1 號線連接 Santa Cruz 與 La Laguna，2 號線通往 La Cuesta 和 Tíncer。在兩座城市之間往返，這是最舒服的方式，還能避開 TF-5 的塞車。用 ten+ 卡或在月台售票機買票，上車前先付款。"
+      },
+      "follow": [
+        "mov-04",
+        "mov-02",
+        "mov-14"
+      ]
+    },
+    {
+      "id": "mov-10",
+      "cat": "movilidad",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Hay taxis? ¿Y Uber?",
+        "en": "Taxis? Is there Uber?",
+        "de": "Taxis? Gibt es Uber?",
+        "fr": "Des taxis ? Et Uber ?",
+        "it": "Ci sono taxi? E Uber?",
+        "nl": "Taxi’s? Is er Uber?",
+        "pl": "Są taksówki? A Uber?",
+        "zh": "有出租车吗？有 Uber 吗？",
+        "zht": "有計程車嗎？有 Uber 嗎？"
+      },
+      "keys": {
+        "es": [
+          "taxi",
+          "taxis",
+          "uber",
+          "cabify",
+          "bolt",
+          "vtc",
+          "pedir un coche"
+        ],
+        "en": [
+          "taxi",
+          "taxis",
+          "uber",
+          "cabify",
+          "bolt",
+          "ride hailing"
+        ],
+        "de": [
+          "taxi",
+          "taxis",
+          "uber",
+          "bolt",
+          "fahrdienst"
+        ],
+        "fr": [
+          "taxi",
+          "taxis",
+          "uber",
+          "bolt",
+          "vtc"
+        ],
+        "it": [
+          "taxi",
+          "uber",
+          "bolt",
+          "ncc"
+        ],
+        "nl": [
+          "taxi",
+          "taxis",
+          "uber",
+          "bolt"
+        ],
+        "pl": [
+          "taksowka",
+          "taksowki",
+          "uber",
+          "bolt",
+          "przewoz osob"
+        ],
+        "zh": [
+          "出租车",
+          "打车",
+          "uber",
+          "网约车"
+        ],
+        "zht": [
+          "計程車",
+          "叫車",
+          "uber",
+          "網約車"
+        ]
+      },
+      "a": {
+        "es": "🚕 Los taxis son blancos, con taxímetro y suplementos de aeropuerto y nocturnos; se cogen en parada, por teléfono o desde el hotel, y en zonas turísticas hay paradas por todas partes. Las apps tipo VTC funcionan solo en algunas zonas y con poca flota, así que no cuentes con ellas como plan A. Para una excursión, pide precio cerrado antes de subir.",
+        "en": "🚕 Taxis are white, metered, with airport and night surcharges; you take them at a rank, by phone or through your hotel, and in tourist areas there are ranks everywhere. Ride-hailing apps only work in some areas and with a small fleet, so do not count on them as plan A. For an excursion, agree a fixed price before getting in.",
+        "de": "🚕 Taxis sind weiß, mit Taxameter und Zuschlägen für Flughafen und Nachtfahrten; du bekommst sie am Stand, telefonisch oder über das Hotel, und in den Touristenorten gibt es überall Stände. Fahrdienst-Apps funktionieren nur in manchen Gegenden und mit wenigen Wagen, verlass dich also nicht darauf. Für einen Ausflug vorher einen Festpreis vereinbaren.",
+        "fr": "🚕 Les taxis sont blancs, avec compteur et suppléments aéroport et de nuit ; on les prend à la station, par téléphone ou via l’hôtel, et dans les zones touristiques il y a des stations partout. Les applis de VTC ne marchent que dans certaines zones et avec peu de voitures, ne compte pas dessus en plan A. Pour une excursion, fixe le prix avant de monter.",
+        "it": "🚕 I taxi sono bianchi, con tassametro e supplementi per aeroporto e orario notturno; si prendono al posteggio, per telefono o tramite l’hotel, e nelle zone turistiche i posteggi sono ovunque. Le app di NCC funzionano solo in alcune zone e con pochi mezzi, quindi non contarci come piano A. Per un’escursione, concorda il prezzo prima di salire.",
+        "nl": "🚕 Taxi’s zijn wit, met meter en toeslagen voor luchthaven en nacht; je pakt ze bij een standplaats, per telefoon of via je hotel, en in toeristische gebieden zijn er overal standplaatsen. Ride-hailing-apps werken maar in enkele zones en met weinig auto’s, reken er dus niet als plan A op. Spreek voor een excursie vooraf een vaste prijs af.",
+        "pl": "🚕 Taksówki są białe, z taksometrem i dopłatami lotniskowymi oraz nocnymi; łapiesz je na postoju, przez telefon albo przez hotel, a w strefach turystycznych postoje są wszędzie. Aplikacje przewozowe działają tylko w części wyspy i mają małą flotę, więc nie traktuj ich jako planu A. Na wycieczkę ustal stałą cenę przed wsiadaniem.",
+        "zh": "🚕 出租车是白色的，打表计费，机场和夜间有附加费；可在候车点、电话叫车或请酒店代叫，旅游区到处都有候车点。网约车类应用只在部分区域运营、车辆很少，别把它当作首选方案。包车出游前，先谈好固定价格。",
+        "zht": "🚕 計程車是白色的，跳表計費，機場和夜間有附加費；可在排班點、電話叫車或請飯店代叫，旅遊區到處都有排班點。網約車類應用只在部分區域營運、車輛很少，別把它當作首選方案。包車出遊前，先談好固定價格。"
+      },
+      "follow": [
+        "mov-01",
+        "mov-15",
+        "mov-03"
+      ]
+    },
+    {
+      "id": "mov-11",
+      "cat": "movilidad",
+      "prio": 2,
+      "volatil": true,
+      "label": {
+        "es": "¿Cómo voy a otra isla?",
+        "en": "How do I reach another island?",
+        "de": "Wie komme ich auf eine andere Insel?",
+        "fr": "Comment aller sur une autre île ?",
+        "it": "Come vado su un’altra isola?",
+        "nl": "Hoe kom ik op een ander eiland?",
+        "pl": "Jak dostać się na inną wyspę?",
+        "zh": "怎么去其他岛？",
+        "zht": "怎麼去其他島？"
+      },
+      "keys": {
+        "es": [
+          "ferry",
+          "ferri",
+          "barco a la gomera",
+          "la palma",
+          "el hierro",
+          "gran canaria",
+          "naviera"
+        ],
+        "en": [
+          "ferry",
+          "boat to la gomera",
+          "la palma",
+          "el hierro",
+          "gran canaria",
+          "shipping line"
+        ],
+        "de": [
+          "fahre",
+          "schiff nach la gomera",
+          "la palma",
+          "el hierro",
+          "gran canaria"
+        ],
+        "fr": [
+          "ferry",
+          "bateau pour la gomera",
+          "la palma",
+          "el hierro",
+          "gran canaria"
+        ],
+        "it": [
+          "traghetto",
+          "nave per la gomera",
+          "la palma",
+          "el hierro",
+          "gran canaria"
+        ],
+        "nl": [
+          "veerboot",
+          "boot naar la gomera",
+          "la palma",
+          "el hierro",
+          "gran canaria"
+        ],
+        "pl": [
+          "prom",
+          "statek na la gomera",
+          "la palma",
+          "el hierro",
+          "gran canaria"
+        ],
+        "zh": [
+          "渡轮",
+          "去 la gomera",
+          "la palma",
+          "el hierro",
+          "gran canaria"
+        ],
+        "zht": [
+          "渡輪",
+          "去 la gomera",
+          "la palma",
+          "el hierro",
+          "gran canaria"
+        ]
+      },
+      "a": {
+        "es": "⛴️ Desde Los Cristianos salen los ferris a La Gomera, que en el rápido queda en menos de una hora, y también a La Palma y El Hierro. A Gran Canaria se va desde Santa Cruz. Reserva online, y con más antelación todavía si embarcas el coche. Con mar movido se cancelan travesías, así que confirma antes de salir de casa.",
+        "en": "⛴️ Ferries to La Gomera leave from Los Cristianos, under an hour on the fast service, and there are sailings to La Palma and El Hierro too. For Gran Canaria you sail from Santa Cruz. Book online, and further ahead still if you are taking the car. Rough seas cancel crossings, so confirm before you set off.",
+        "de": "⛴️ Von Los Cristianos fahren die Fähren nach La Gomera, mit dem Schnellschiff in weniger als einer Stunde, außerdem nach La Palma und El Hierro. Nach Gran Canaria geht es ab Santa Cruz. Buche online, und bei Mitnahme des Autos noch früher. Bei rauer See fallen Überfahrten aus, also vor der Abfahrt bestätigen.",
+        "fr": "⛴️ Les ferries pour La Gomera partent de Los Cristianos, moins d’une heure avec le rapide, et il y a aussi La Palma et El Hierro. Pour Gran Canaria, on embarque à Santa Cruz. Réserve en ligne, encore plus à l’avance si tu embarques la voiture. Par mer agitée, des traversées sont annulées : confirme avant de partir.",
+        "it": "⛴️ Da Los Cristianos partono i traghetti per La Gomera, meno di un’ora con il veloce, e anche per La Palma ed El Hierro. Per Gran Canaria si parte da Santa Cruz. Prenota online, e con ancora più anticipo se imbarchi l’auto. Con mare mosso le traversate si annullano, quindi conferma prima di uscire di casa.",
+        "nl": "⛴️ Vanuit Los Cristianos varen de veerboten naar La Gomera, met de snelle dienst in minder dan een uur, en ook naar La Palma en El Hierro. Naar Gran Canaria vertrek je vanuit Santa Cruz. Boek online, en nog eerder als je de auto meeneemt. Bij ruwe zee vervallen overtochten, dus bevestig voor je vertrekt.",
+        "pl": "⛴️ Promy na La Gomera odpływają z Los Cristianos, szybkim w niecałą godzinę, są też rejsy na La Palma i El Hierro. Na Gran Canarię płynie się z Santa Cruz. Rezerwuj online, a z autem jeszcze wcześniej. Przy wzburzonym morzu rejsy się odwołuje, więc potwierdź przed wyjazdem.",
+        "zh": "⛴️ 前往 La Gomera 的渡轮从 Los Cristianos 出发，快船不到一小时，也有开往 La Palma 和 El Hierro 的班次。去 Gran Canaria 则从 Santa Cruz 出发。请提前网上订票，带车的话要订得更早。海况不佳时会停航，出发前务必确认。",
+        "zht": "⛴️ 前往 La Gomera 的渡輪從 Los Cristianos 出發，快船不到一小時，也有開往 La Palma 和 El Hierro 的班次。去 Gran Canaria 則從 Santa Cruz 出發。請提前網上訂票，帶車的話要訂得更早。海況不佳時會停航，出發前務必確認。"
+      },
+      "follow": [
+        "mov-05",
+        "mov-16",
+        "mov-03"
+      ]
+    },
+    {
+      "id": "mov-12",
+      "cat": "movilidad",
+      "prio": 1,
+      "volatil": true,
+      "label": {
+        "es": "¿Puedo ir al Teide sin coche?",
+        "en": "Can I reach the Teide without a car?",
+        "de": "Zum Teide ohne Auto?",
+        "fr": "Aller au Teide sans voiture ?",
+        "it": "Posso andare al Teide senza auto?",
+        "nl": "Naar de Teide zonder auto?",
+        "pl": "Dojadę na Teide bez auta?",
+        "zh": "没车能去泰德吗？",
+        "zht": "沒車能去泰德嗎？"
+      },
+      "keys": {
+        "es": [
+          "teide en guagua",
+          "bus al teide",
+          "teide sin coche",
+          "342",
+          "348",
+          "341"
+        ],
+        "en": [
+          "bus to teide",
+          "teide without a car",
+          "342",
+          "348",
+          "341"
+        ],
+        "de": [
+          "bus zum teide",
+          "teide ohne auto",
+          "342",
+          "348",
+          "341"
+        ],
+        "fr": [
+          "bus pour le teide",
+          "teide sans voiture",
+          "342",
+          "348",
+          "341"
+        ],
+        "it": [
+          "bus per il teide",
+          "teide senza auto",
+          "342",
+          "348",
+          "341"
+        ],
+        "nl": [
+          "bus naar de teide",
+          "teide zonder auto",
+          "342",
+          "348",
+          "341"
+        ],
+        "pl": [
+          "autobus na teide",
+          "teide bez auta",
+          "342",
+          "348",
+          "341"
+        ],
+        "zh": [
+          "坐公交去泰德",
+          "没有车去泰德",
+          "342",
+          "348",
+          "341"
+        ],
+        "zht": [
+          "搭公車去泰德",
+          "沒有車去泰德",
+          "342",
+          "348",
+          "341"
+        ]
+      },
+      "a": {
+        "es": "🚌🌋 Sí. Dos líneas turísticas suben al Parque Nacional: la 342 desde Costa Adeje y la 348 desde Puerto de la Cruz, con una salida por la mañana y regreso por la tarde. Dentro del parque, la 341 enlaza Portillo, Montaña Blanca, el teleférico y el Parador. En estas líneas no valen todos los bonos, y vas atado al único regreso: confirma el horario del día en titsa.com.",
+        "en": "🚌🌋 Yes. Two tourist routes climb to the National Park: the 342 from Costa Adeje and the 348 from Puerto de la Cruz, with one morning departure and an afternoon return. Inside the park the 341 links Portillo, Montaña Blanca, the cable car and the Parador. Not every travel pass is valid on these routes, and you are tied to the single return: check the day’s timetable on titsa.com.",
+        "de": "🚌🌋 Ja. Zwei touristische Linien fahren in den Nationalpark: die 342 ab Costa Adeje und die 348 ab Puerto de la Cruz, mit einer Abfahrt am Morgen und Rückfahrt am Nachmittag. Im Park verbindet die 341 Portillo, Montaña Blanca, die Seilbahn und den Parador. Auf diesen Linien gelten nicht alle Fahrkarten, und du hängst an der einen Rückfahrt: prüf den Fahrplan des Tages auf titsa.com.",
+        "fr": "🚌🌋 Oui. Deux lignes touristiques montent au Parc National : la 342 depuis Costa Adeje et la 348 depuis Puerto de la Cruz, avec un départ le matin et un retour l’après-midi. Dans le parc, la 341 relie Portillo, Montaña Blanca, le téléphérique et le Parador. Tous les abonnements ne sont pas valables sur ces lignes, et tu dépends de l’unique retour : vérifie l’horaire du jour sur titsa.com.",
+        "it": "🚌🌋 Sì. Due linee turistiche salgono al Parco Nazionale: la 342 da Costa Adeje e la 348 da Puerto de la Cruz, con una partenza al mattino e il ritorno nel pomeriggio. Dentro il parco la 341 collega Portillo, Montaña Blanca, la funivia e il Parador. Su queste linee non valgono tutti gli abbonamenti, e dipendi dall’unico ritorno: controlla l’orario del giorno su titsa.com.",
+        "nl": "🚌🌋 Ja. Twee toeristische lijnen rijden het Nationaal Park in: de 342 vanaf Costa Adeje en de 348 vanaf Puerto de la Cruz, met één vertrek in de ochtend en terug in de middag. In het park verbindt de 341 Portillo, Montaña Blanca, de kabelbaan en de Parador. Niet elk vervoerbewijs geldt op deze lijnen, en je zit vast aan die ene terugrit: check de dienstregeling van de dag op titsa.com.",
+        "pl": "🚌🌋 Tak. Do Parku Narodowego wjeżdżają dwie linie turystyczne: 342 z Costa Adeje i 348 z Puerto de la Cruz, z jednym porannym odjazdem i popołudniowym powrotem. Wewnątrz parku linia 341 łączy Portillo, Montaña Blanca, kolejkę i Parador. Na tych liniach nie działają wszystkie bilety okresowe, a jesteś zależny od jedynego powrotu: sprawdź rozkład na dany dzień na titsa.com.",
+        "zh": "🚌🌋 可以。两条旅游线路开进国家公园：342 路从 Costa Adeje 出发，348 路从 Puerto de la Cruz 出发，早上一班去、下午一班回。园区内 341 路连接 Portillo、Montaña Blanca、缆车站和 Parador。这些线路并非所有通票都适用，而且你只能赶那一班回程：当天时刻请查 titsa.com。",
+        "zht": "🚌🌋 可以。兩條旅遊路線開進國家公園：342 路從 Costa Adeje 出發，348 路從 Puerto de la Cruz 出發，早上一班去、下午一班回。園區內 341 路連接 Portillo、Montaña Blanca、纜車站和 Parador。這些路線並非所有通票都適用，而且你只能趕那一班回程：當天時刻請查 titsa.com。"
+      },
+      "follow": [
+        "mov-03",
+        "mov-13",
+        "mov-04"
+      ]
+    },
+    {
+      "id": "mov-13",
+      "cat": "movilidad",
+      "prio": 2,
+      "volatil": true,
+      "label": {
+        "es": "¿Cómo llego a Masca?",
+        "en": "How do I get to Masca?",
+        "de": "Wie komme ich nach Masca?",
+        "fr": "Comment aller à Masca ?",
+        "it": "Come arrivo a Masca?",
+        "nl": "Hoe kom ik in Masca?",
+        "pl": "Jak dojechać do Masca?",
+        "zh": "怎么去 Masca？",
+        "zht": "怎麼去 Masca？"
+      },
+      "keys": {
+        "es": [
+          "llegar a masca",
+          "masca en guagua",
+          "aparcar en masca",
+          "355",
+          "caserio de masca"
+        ],
+        "en": [
+          "get to masca",
+          "masca by bus",
+          "parking in masca",
+          "355",
+          "masca village"
+        ],
+        "de": [
+          "nach masca",
+          "masca mit dem bus",
+          "parken in masca",
+          "355"
+        ],
+        "fr": [
+          "aller a masca",
+          "masca en bus",
+          "se garer a masca",
+          "355"
+        ],
+        "it": [
+          "arrivare a masca",
+          "masca in autobus",
+          "parcheggio a masca",
+          "355"
+        ],
+        "nl": [
+          "naar masca",
+          "masca met de bus",
+          "parkeren in masca",
+          "355"
+        ],
+        "pl": [
+          "dojazd do masca",
+          "masca autobusem",
+          "parking w masca",
+          "355"
+        ],
+        "zh": [
+          "去 masca",
+          "坐公交到 masca",
+          "masca 停车",
+          "355"
+        ],
+        "zht": [
+          "去 masca",
+          "搭公車到 masca",
+          "masca 停車",
+          "355"
+        ]
+      },
+      "a": {
+        "es": "🚌 Para ver el caserío, la línea 355 sube desde Santiago del Teide y desde Buenavista del Norte; arriba hay poquísimo aparcamiento, así que la guagua es la mejor idea de todas formas. Para bajar el barranco es obligatoria: solo se accede con el traslado en la 355 desde Santiago del Teide, dejando el coche en el aparcamiento del cementerio, y en vehículo privado no te dejan empezar.",
+        "en": "🚌 To see the village, route 355 climbs up from Santiago del Teide and from Buenavista del Norte; parking up there is minimal, so the bus is the better idea anyway. For the gorge descent it is compulsory: you can only get in via the 355 transfer from Santiago del Teide, leaving the car at the cemetery car park, and arriving by private vehicle means you are not allowed to start.",
+        "de": "🚌 Für das Dorf fährt die Linie 355 von Santiago del Teide und von Buenavista del Norte hinauf; oben gibt es kaum Parkplätze, der Bus ist also ohnehin die bessere Idee. Für den Abstieg durch die Schlucht ist er Pflicht: Zugang nur mit dem Transfer der 355 ab Santiago del Teide, das Auto bleibt am Friedhofsparkplatz, und wer privat anreist, darf nicht starten.",
+        "fr": "🚌 Pour voir le hameau, la ligne 355 monte depuis Santiago del Teide et Buenavista del Norte ; là-haut il n’y a presque pas de stationnement, le bus est donc de toute façon la meilleure idée. Pour la descente du barranco il est obligatoire : on n’y accède qu’avec le transfert de la 355 depuis Santiago del Teide, en laissant la voiture au parking du cimetière ; en véhicule privé, on ne te laisse pas partir.",
+        "it": "🚌 Per vedere il paesino, la linea 355 sale da Santiago del Teide e da Buenavista del Norte; lassù il parcheggio è pochissimo, quindi l’autobus è comunque l’idea migliore. Per scendere il barranco è obbligatorio: si accede solo con il trasferimento della 355 da Santiago del Teide, lasciando l’auto al parcheggio del cimitero, e con il veicolo privato non ti lasciano partire.",
+        "nl": "🚌 Voor het dorp rijdt lijn 355 omhoog vanuit Santiago del Teide en Buenavista del Norte; boven is nauwelijks parkeerruimte, dus de bus is sowieso het beste idee. Voor de afdaling door de kloof is hij verplicht: je komt er alleen in met de transfer van de 355 vanuit Santiago del Teide, met de auto op de parkeerplaats bij de begraafplaats, en met eigen vervoer mag je niet starten.",
+        "pl": "🚌 Żeby zobaczyć wioskę, linia 355 wjeżdża z Santiago del Teide i z Buenavista del Norte; na górze parkingu jest jak na lekarstwo, więc autobus i tak jest lepszym pomysłem. Do zejścia wąwozem jest obowiązkowy: wejście tylko z transferem linią 355 z Santiago del Teide, auto zostawiasz na parkingu przy cmentarzu, a przyjazd prywatnym pojazdem oznacza brak zgody na start.",
+        "zh": "🚌 想看村子，355 路从 Santiago del Teide 和 Buenavista del Norte 开上去；山上几乎没有停车位，所以坐公交本来就更划算。要下峡谷则是强制规定：只能搭 355 路从 Santiago del Teide 接驳进入，车停在墓园停车场，自驾前往不准出发。",
+        "zht": "🚌 想看村子，355 路從 Santiago del Teide 和 Buenavista del Norte 開上去；山上幾乎沒有停車位，所以搭公車本來就更划算。要下峽谷則是強制規定：只能搭 355 路從 Santiago del Teide 接駁進入，車停在墓園停車場，自駕前往不准出發。"
+      },
+      "follow": [
+        "mov-07",
+        "mov-03",
+        "mov-12"
+      ]
+    },
+    {
+      "id": "mov-14",
+      "cat": "movilidad",
+      "prio": 3,
+      "volatil": false,
+      "label": {
+        "es": "¿Hay tren o metro?",
+        "en": "Is there a train or metro?",
+        "de": "Gibt es Zug oder Metro?",
+        "fr": "Y a-t-il un train ou un métro ?",
+        "it": "C’è treno o metro?",
+        "nl": "Is er een trein of metro?",
+        "pl": "Czy jest pociąg albo metro?",
+        "zh": "有火车或地铁吗？",
+        "zht": "有火車或地鐵嗎？"
+      },
+      "keys": {
+        "es": [
+          "tren",
+          "metro",
+          "ferrocarril",
+          "hay tren en tenerife"
+        ],
+        "en": [
+          "train",
+          "metro",
+          "railway",
+          "is there a train in tenerife"
+        ],
+        "de": [
+          "zug",
+          "metro",
+          "eisenbahn",
+          "gibt es einen zug"
+        ],
+        "fr": [
+          "train",
+          "metro",
+          "chemin de fer",
+          "y a t il un train"
+        ],
+        "it": [
+          "treno",
+          "metro",
+          "ferrovia",
+          "c e il treno a tenerife"
+        ],
+        "nl": [
+          "trein",
+          "metro",
+          "spoorweg",
+          "is er een trein"
+        ],
+        "pl": [
+          "pociag",
+          "metro",
+          "kolej",
+          "czy jest pociag"
+        ],
+        "zh": [
+          "火车",
+          "地铁",
+          "铁路",
+          "有火车吗"
+        ],
+        "zht": [
+          "火車",
+          "地鐵",
+          "鐵路",
+          "有火車嗎"
+        ]
+      },
+      "a": {
+        "es": "🚆 No hay tren en Tenerife. Lo más parecido es el tranvía entre Santa Cruz y La Laguna. Para el resto de la isla, la red de guaguas es la columna vertebral, y para las zonas rurales y los horarios raros, el coche.",
+        "en": "🚆 There is no train on Tenerife. The closest thing is the tram between Santa Cruz and La Laguna. For the rest of the island the bus network is the backbone, and for rural areas and odd hours, a car.",
+        "de": "🚆 Auf Teneriffa gibt es keinen Zug. Am nächsten kommt die Straßenbahn zwischen Santa Cruz und La Laguna. Für den Rest der Insel ist das Busnetz das Rückgrat, und für ländliche Gegenden und ungewöhnliche Zeiten das Auto.",
+        "fr": "🚆 Il n’y a pas de train à Tenerife. Ce qui s’en rapproche le plus est le tram entre Santa Cruz et La Laguna. Pour le reste de l’île, le réseau de bus est la colonne vertébrale, et pour les zones rurales et les horaires atypiques, la voiture.",
+        "it": "🚆 A Tenerife non c’è il treno. La cosa più simile è il tram tra Santa Cruz e La Laguna. Per il resto dell’isola la rete di autobus è la spina dorsale, e per le zone rurali e gli orari strani, l’auto.",
+        "nl": "🚆 Er is geen trein op Tenerife. Het dichtst in de buurt komt de tram tussen Santa Cruz en La Laguna. Voor de rest van het eiland is het busnet de ruggengraat, en voor het platteland en vreemde uren de auto.",
+        "pl": "🚆 Na Teneryfie nie ma pociągu. Najbliżej jest tramwaj między Santa Cruz a La Laguna. Na resztę wyspy kręgosłupem jest sieć autobusowa, a na tereny wiejskie i nietypowe godziny – samochód.",
+        "zh": "🚆 特内里费没有火车。最接近的是 Santa Cruz 与 La Laguna 之间的电车。岛上其他地方靠公交网络支撑，乡村地区和非常规时段则要靠汽车。",
+        "zht": "🚆 特內里費沒有火車。最接近的是 Santa Cruz 與 La Laguna 之間的電車。島上其他地方靠公車網絡支撐，鄉村地區和非常規時段則要靠汽車。"
+      },
+      "follow": [
+        "mov-09",
+        "mov-03",
+        "mov-05"
+      ]
+    },
+    {
+      "id": "mov-15",
+      "cat": "movilidad",
+      "prio": 3,
+      "volatil": false,
+      "label": {
+        "es": "¿Puedo alquilar bici o moto?",
+        "en": "Can I rent a bike or scooter?",
+        "de": "Fahrrad oder Roller mieten?",
+        "fr": "Louer un vélo ou un scooter ?",
+        "it": "Posso noleggiare bici o scooter?",
+        "nl": "Fiets of scooter huren?",
+        "pl": "Mogę wypożyczyć rower lub skuter?",
+        "zh": "可以租自行车或摩托车吗？",
+        "zht": "可以租自行車或機車嗎？"
+      },
+      "keys": {
+        "es": [
+          "alquilar bici",
+          "bicicleta",
+          "moto",
+          "scooter",
+          "e bike",
+          "ciclismo"
+        ],
+        "en": [
+          "rent a bike",
+          "bicycle",
+          "motorbike",
+          "scooter",
+          "e bike",
+          "cycling"
+        ],
+        "de": [
+          "fahrrad mieten",
+          "fahrrad",
+          "motorrad",
+          "roller",
+          "e bike",
+          "radfahren"
+        ],
+        "fr": [
+          "louer un velo",
+          "velo",
+          "moto",
+          "scooter",
+          "velo electrique",
+          "cyclisme"
+        ],
+        "it": [
+          "noleggiare bici",
+          "bicicletta",
+          "moto",
+          "scooter",
+          "e bike",
+          "ciclismo"
+        ],
+        "nl": [
+          "fiets huren",
+          "fiets",
+          "motor",
+          "scooter",
+          "e bike",
+          "wielrennen"
+        ],
+        "pl": [
+          "wypozyczyc rower",
+          "rower",
+          "motocykl",
+          "skuter",
+          "rower elektryczny",
+          "kolarstwo"
+        ],
+        "zh": [
+          "租自行车",
+          "单车",
+          "摩托车",
+          "电动车",
+          "骑行"
+        ],
+        "zht": [
+          "租自行車",
+          "單車",
+          "機車",
+          "電動車",
+          "騎行"
+        ]
+      },
+      "a": {
+        "es": "🚲 Sí, hay alquiler de bicicleta, bici eléctrica y moto en las zonas turísticas y en los puertos. La isla es un destino serio de ciclismo de carretera, con subidas largas hacia el Teide; para moverte por el pueblo, la eléctrica compensa por las cuestas. Casco obligatorio en moto, y en bici fuera de ciudad también.",
+        "en": "🚲 Yes, you can rent bikes, e-bikes and scooters in the resort areas and at the harbours. The island is a serious road-cycling destination, with long climbs towards the Teide; for getting around town, the electric one earns its keep on the hills. Helmets are compulsory on a scooter, and on a bike outside built-up areas too.",
+        "de": "🚲 Ja, in den Urlaubsorten und an den Häfen gibt es Fahrräder, E-Bikes und Roller zu mieten. Die Insel ist ein ernstzunehmendes Rennradziel mit langen Anstiegen Richtung Teide; im Ort lohnt sich das E-Bike wegen der Steigungen. Helmpflicht auf dem Roller, und auf dem Rad außerorts ebenso.",
+        "fr": "🚲 Oui, on loue vélos, vélos électriques et scooters dans les zones touristiques et dans les ports. L’île est une vraie destination de vélo de route, avec de longues montées vers le Teide ; en ville, l’électrique se rentabilise vite avec les pentes. Casque obligatoire en scooter, et à vélo hors agglomération aussi.",
+        "it": "🚲 Sì, si noleggiano bici, e-bike e scooter nelle zone turistiche e nei porti. L’isola è una destinazione seria per il ciclismo su strada, con salite lunghe verso il Teide; in paese l’elettrica si ripaga subito per via delle pendenze. Casco obbligatorio in scooter, e in bici fuori città pure.",
+        "nl": "🚲 Ja, je kunt fietsen, e-bikes en scooters huren in de toeristische zones en bij de havens. Het eiland is een serieuze wielerbestemming met lange klims richting de Teide; in het dorp verdient de elektrische zich terug door de hellingen. Helm verplicht op een scooter, en op de fiets buiten de bebouwde kom ook.",
+        "pl": "🚲 Tak, w strefach turystycznych i w portach wypożyczysz rower, rower elektryczny i skuter. Wyspa to poważny kierunek kolarstwa szosowego z długimi podjazdami w stronę Teide; po miejscowości elektryk zwraca się przez podjazdy. Kask obowiązkowy na skuterze, a na rowerze poza terenem zabudowanym również.",
+        "zh": "🚲 可以，旅游区和港口都能租到自行车、电动自行车和摩托车。这座岛是正经的公路骑行目的地，通往泰德的爬坡很长；在镇上代步的话，电动车在坡道上很划算。骑摩托必须戴头盔，市区以外骑自行车同样要戴。",
+        "zht": "🚲 可以，旅遊區和港口都能租到自行車、電動自行車和機車。這座島是正經的公路騎行目的地，通往泰德的爬坡很長；在鎮上代步的話，電動車在坡道上很划算。騎機車必須戴安全帽，市區以外騎自行車同樣要戴。"
+      },
+      "follow": [
+        "mov-06",
+        "mov-05",
+        "mov-07"
+      ]
+    },
+    {
+      "id": "mov-16",
+      "cat": "movilidad",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Se ve la isla en un día?",
+        "en": "Can I see the island in a day?",
+        "de": "Die Insel an einem Tag?",
+        "fr": "Voir l’île en une journée ?",
+        "it": "Si vede l’isola in un giorno?",
+        "nl": "Het eiland in één dag?",
+        "pl": "Czy zwiedzę wyspę w dzień?",
+        "zh": "一天能逛完全岛吗？",
+        "zht": "一天能逛完全島嗎？"
+      },
+      "keys": {
+        "es": [
+          "la isla en un dia",
+          "vuelta a la isla",
+          "recorrer tenerife en un dia",
+          "ruta de un dia"
+        ],
+        "en": [
+          "island in one day",
+          "tour the island",
+          "see tenerife in a day",
+          "one day route"
+        ],
+        "de": [
+          "insel an einem tag",
+          "inselrundfahrt",
+          "teneriffa an einem tag",
+          "tagestour"
+        ],
+        "fr": [
+          "l ile en un jour",
+          "tour de l ile",
+          "tenerife en une journee",
+          "itineraire d un jour"
+        ],
+        "it": [
+          "isola in un giorno",
+          "giro dell isola",
+          "tenerife in un giorno",
+          "itinerario di un giorno"
+        ],
+        "nl": [
+          "eiland in een dag",
+          "rondje eiland",
+          "tenerife in een dag",
+          "dagroute"
+        ],
+        "pl": [
+          "wyspa w jeden dzien",
+          "objazd wyspy",
+          "teneryfa w dzien",
+          "trasa jednodniowa"
+        ],
+        "zh": [
+          "一天环岛",
+          "一天看完",
+          "一日路线"
+        ],
+        "zht": [
+          "一天環島",
+          "一天看完",
+          "一日路線"
+        ]
+      },
+      "a": {
+        "es": "🗺️ Conducir la vuelta se puede, pero acabas viendo los miradores por la ventanilla. Con un día, elige un eje: Teide y Vilaflor, o Anaga y La Laguna, o la costa norte de Garachico a Icod. Usa el planificador de la app para encadenar paradas sin pasarte de horas ni de curvas.",
+        "en": "🗺️ You can drive right round, but you end up seeing the viewpoints through the window. With one day, pick one axis: the Teide and Vilaflor, or Anaga and La Laguna, or the north coast from Garachico to Icod. Use the app’s planner to chain stops without overdoing the hours or the hairpins.",
+        "de": "🗺️ Einmal rundherum fahren geht, aber dann siehst du die Aussichtspunkte nur durchs Fenster. Für einen Tag such dir eine Achse: Teide und Vilaflor, oder Anaga und La Laguna, oder die Nordküste von Garachico nach Icod. Nutz den Planer der App, um Stopps zu verketten, ohne dich an Stunden und Kurven zu übernehmen.",
+        "fr": "🗺️ Faire le tour en voiture, c’est possible, mais tu finis par voir les points de vue par la vitre. Pour une journée, choisis un axe : le Teide et Vilaflor, ou Anaga et La Laguna, ou la côte nord de Garachico à Icod. Utilise le planificateur de l’appli pour enchaîner les étapes sans exploser le temps ni les virages.",
+        "it": "🗺️ Il giro in auto si può fare, ma finisci per vedere i punti panoramici dal finestrino. Con un giorno scegli un asse: Teide e Vilaflor, oppure Anaga e La Laguna, oppure la costa nord da Garachico a Icod. Usa il pianificatore dell’app per unire le tappe senza esagerare con ore e tornanti.",
+        "nl": "🗺️ Rondrijden kan, maar dan zie je de uitzichtpunten vooral door het raam. Kies met één dag één as: de Teide en Vilaflor, of Anaga en La Laguna, of de noordkust van Garachico naar Icod. Gebruik de planner in de app om stops aan elkaar te knopen zonder je te verslikken in uren en haarspeldbochten.",
+        "pl": "🗺️ Objechać wyspę się da, ale skończy się oglądaniem punktów widokowych przez szybę. Mając dzień, wybierz jedną oś: Teide i Vilaflor, albo Anaga i La Laguna, albo północne wybrzeże od Garachico do Icod. Skorzystaj z planera w aplikacji, żeby połączyć przystanki bez przesady z godzinami i serpentynami.",
+        "zh": "🗺️ 环岛开一圈是可以，但结果多半是隔着车窗看观景台。只有一天的话，选一条主轴：泰德加 Vilaflor，或 Anaga 加 La Laguna，或从 Garachico 到 Icod 的北海岸。用应用里的行程规划器串联站点，别把时间和盘山弯排得太满。",
+        "zht": "🗺️ 環島開一圈是可以，但結果多半是隔著車窗看觀景台。只有一天的話，選一條主軸：泰德加 Vilaflor，或 Anaga 加 La Laguna，或從 Garachico 到 Icod 的北海岸。用應用裡的行程規劃器串聯站點，別把時間和盤山彎排得太滿。"
+      },
+      "follow": [
+        "mov-08",
+        "mov-11",
+        "mov-06"
+      ]
+    },
+    {
+      "id": "mov-17",
+      "cat": "movilidad",
+      "prio": 3,
+      "volatil": false,
+      "label": {
+        "es": "¿Hay peajes?",
+        "en": "Are there tolls?",
+        "de": "Gibt es Maut?",
+        "fr": "Y a-t-il des péages ?",
+        "it": "Ci sono pedaggi?",
+        "nl": "Zijn er tolwegen?",
+        "pl": "Czy są opłaty za drogi?",
+        "zh": "有过路费吗？",
+        "zht": "有過路費嗎？"
+      },
+      "keys": {
+        "es": [
+          "peaje",
+          "peajes",
+          "autopista de pago",
+          "tf 1",
+          "tf 5",
+          "atasco"
+        ],
+        "en": [
+          "toll",
+          "tolls",
+          "paid motorway",
+          "tf 1",
+          "tf 5",
+          "traffic jam"
+        ],
+        "de": [
+          "maut",
+          "mautgebuhr",
+          "gebuhrenpflichtige autobahn",
+          "tf 1",
+          "tf 5",
+          "stau"
+        ],
+        "fr": [
+          "peage",
+          "peages",
+          "autoroute payante",
+          "tf 1",
+          "tf 5",
+          "embouteillage"
+        ],
+        "it": [
+          "pedaggio",
+          "pedaggi",
+          "autostrada a pagamento",
+          "tf 1",
+          "tf 5",
+          "ingorgo"
+        ],
+        "nl": [
+          "tol",
+          "tolweg",
+          "betaalde snelweg",
+          "tf 1",
+          "tf 5",
+          "file"
+        ],
+        "pl": [
+          "oplata drogowa",
+          "platna autostrada",
+          "tf 1",
+          "tf 5",
+          "korek"
+        ],
+        "zh": [
+          "过路费",
+          "收费高速",
+          "tf 1",
+          "tf 5",
+          "堵车"
+        ],
+        "zht": [
+          "過路費",
+          "收費高速",
+          "tf 1",
+          "tf 5",
+          "塞車"
+        ]
+      },
+      "a": {
+        "es": "🛣️ No hay peajes: las dos autopistas, la TF-1 en el sur y la TF-5 en el norte, son gratuitas. Lo que sí cuesta es aparcar en los centros urbanos. Y en temporada alta la TF-1 se colapsa a la altura del sur a media tarde, así que calcula margen si vas al aeropuerto.",
+        "en": "🛣️ No tolls: both motorways, the TF-1 in the south and the TF-5 in the north, are free. What does cost money is parking in town centres. And in high season the TF-1 clogs up around the south in the late afternoon, so leave a margin if you are heading to the airport.",
+        "de": "🛣️ Keine Maut: Beide Autobahnen, die TF-1 im Süden und die TF-5 im Norden, sind kostenlos. Geld kostet dagegen das Parken in den Stadtzentren. Und in der Hochsaison staut sich die TF-1 im Süden am späten Nachmittag, plan also Puffer ein, wenn du zum Flughafen musst.",
+        "fr": "🛣️ Pas de péages : les deux autoroutes, la TF-1 au sud et la TF-5 au nord, sont gratuites. Ce qui coûte, c’est le stationnement dans les centres-villes. Et en haute saison la TF-1 sature au niveau du sud en fin d’après-midi : prends de la marge si tu vas à l’aéroport.",
+        "it": "🛣️ Nessun pedaggio: entrambe le autostrade, la TF-1 a sud e la TF-5 a nord, sono gratuite. Quello che costa è parcheggiare nei centri urbani. E in alta stagione la TF-1 si intasa all’altezza del sud nel tardo pomeriggio, quindi lascia margine se vai in aeroporto.",
+        "nl": "🛣️ Geen tol: beide autowegen, de TF-1 in het zuiden en de TF-5 in het noorden, zijn gratis. Wat wél geld kost is parkeren in de stadscentra. En in het hoogseizoen loopt de TF-1 rond het zuiden aan het eind van de middag vast, dus neem marge als je naar het vliegveld moet.",
+        "pl": "🛣️ Opłat nie ma: obie autostrady, TF-1 na południu i TF-5 na północy, są bezpłatne. Płaci się natomiast za parkowanie w centrach miast. A w szczycie sezonu TF-1 na wysokości południa zapycha się późnym popołudniem, więc jadąc na lotnisko zostaw zapas czasu.",
+        "zh": "🛣️ 没有过路费：南部的 TF-1 和北部的 TF-5 两条高速都免费。真正要花钱的是市中心停车。另外旺季时 TF-1 在南部路段的傍晚会严重拥堵，去机场请多留时间。",
+        "zht": "🛣️ 沒有過路費：南部的 TF-1 和北部的 TF-5 兩條高速都免費。真正要花錢的是市中心停車。另外旺季時 TF-1 在南部路段的傍晚會嚴重壅塞，去機場請多留時間。"
+      },
+      "follow": [
+        "mov-07",
+        "mov-06",
+        "mov-01"
+      ]
+    },
+    {
+      "id": "mov-18",
+      "cat": "movilidad",
+      "prio": 3,
+      "volatil": true,
+      "label": {
+        "es": "¿Vale mi carné de conducir?",
+        "en": "Is my driving licence valid?",
+        "de": "Gilt mein Führerschein?",
+        "fr": "Mon permis est-il valable ?",
+        "it": "Vale la mia patente?",
+        "nl": "Is mijn rijbewijs geldig?",
+        "pl": "Czy moje prawo jazdy jest ważne?",
+        "zh": "我的驾照能用吗？",
+        "zht": "我的駕照能用嗎？"
+      },
+      "keys": {
+        "es": [
+          "carne de conducir",
+          "permiso de conducir",
+          "carnet internacional",
+          "licencia de conducir"
+        ],
+        "en": [
+          "driving licence",
+          "drivers license",
+          "international permit",
+          "idp"
+        ],
+        "de": [
+          "fuhrerschein",
+          "internationaler fuhrerschein",
+          "fahrerlaubnis"
+        ],
+        "fr": [
+          "permis de conduire",
+          "permis international",
+          "licence de conduite"
+        ],
+        "it": [
+          "patente",
+          "patente internazionale",
+          "licenza di guida"
+        ],
+        "nl": [
+          "rijbewijs",
+          "internationaal rijbewijs"
+        ],
+        "pl": [
+          "prawo jazdy",
+          "miedzynarodowe prawo jazdy"
+        ],
+        "zh": [
+          "驾照",
+          "国际驾照",
+          "驾驶执照"
+        ],
+        "zht": [
+          "駕照",
+          "國際駕照",
+          "駕駛執照"
+        ]
+      },
+      "a": {
+        "es": "🪪 Con carné de la Unión Europea conduces sin ningún trámite. Si tu permiso es de fuera de la UE, lo normal es que la empresa de alquiler te pida el permiso internacional junto con el tuyo, pero cada compañía aplica su criterio: confírmalo con ellos antes de volar, no al llegar al mostrador.",
+        "en": "🪪 With an EU licence you drive with no paperwork at all. If yours is from outside the EU, rental companies usually ask for an international permit alongside it, but each company sets its own rule: confirm with them before you fly, not at the desk on arrival.",
+        "de": "🪪 Mit einem EU-Führerschein fährst du ohne jede Formalität. Stammt deiner von außerhalb der EU, verlangen Mietwagenfirmen meist zusätzlich den internationalen Führerschein, aber jede Firma legt das anders aus: kläre es vor dem Flug, nicht erst am Schalter.",
+        "fr": "🪪 Avec un permis de l’Union européenne, tu conduis sans aucune démarche. Si le tien vient de hors UE, les loueurs demandent généralement le permis international en plus, mais chaque société a sa règle : confirme avec eux avant de partir, pas au comptoir à l’arrivée.",
+        "it": "🪪 Con la patente dell’Unione Europea guidi senza alcuna pratica. Se la tua è extra UE, di norma il noleggio chiede anche la patente internazionale, ma ogni compagnia applica il suo criterio: confermalo con loro prima di partire, non al banco all’arrivo.",
+        "nl": "🪪 Met een EU-rijbewijs rijd je zonder enige formaliteit. Komt het jouwe van buiten de EU, dan vragen verhuurders er meestal een internationaal rijbewijs bij, maar elk bedrijf hanteert zijn eigen regel: bevestig het vóór je vlucht, niet bij de balie.",
+        "pl": "🪪 Z prawem jazdy z Unii Europejskiej jeździsz bez żadnych formalności. Jeśli twoje jest spoza UE, wypożyczalnie zwykle proszą dodatkowo o międzynarodowe prawo jazdy, ale każda firma ma swoje zasady: potwierdź to przed wylotem, a nie przy ladzie po przylocie.",
+        "zh": "🪪 持欧盟驾照可以直接开车，无需任何手续。如果你的驾照来自欧盟以外，租车公司通常会要求同时出示国际驾照，但各家规定不同：请在出发前先与租车公司确认，别等到柜台才问。",
+        "zht": "🪪 持歐盟駕照可以直接開車，無需任何手續。如果你的駕照來自歐盟以外，租車公司通常會要求同時出示國際駕照，但各家規定不同：請在出發前先與租車公司確認，別等到櫃台才問。"
+      },
+      "follow": [
+        "mov-05",
+        "mov-06",
+        "mov-19"
+      ]
+    },
+    {
+      "id": "mov-19",
+      "cat": "movilidad",
+      "prio": 3,
+      "volatil": true,
+      "label": {
+        "es": "¿Dónde reposto?",
+        "en": "Where do I get fuel?",
+        "de": "Wo tanke ich?",
+        "fr": "Où faire le plein ?",
+        "it": "Dove faccio benzina?",
+        "nl": "Waar tank ik?",
+        "pl": "Gdzie zatankować?",
+        "zh": "在哪里加油？",
+        "zht": "在哪裡加油？"
+      },
+      "keys": {
+        "es": [
+          "gasolinera",
+          "gasolineras",
+          "repostar",
+          "gasolina",
+          "diesel",
+          "combustible"
+        ],
+        "en": [
+          "petrol station",
+          "gas station",
+          "refuel",
+          "petrol",
+          "diesel",
+          "fuel"
+        ],
+        "de": [
+          "tankstelle",
+          "tanken",
+          "benzin",
+          "diesel",
+          "kraftstoff"
+        ],
+        "fr": [
+          "station service",
+          "faire le plein",
+          "essence",
+          "diesel",
+          "carburant"
+        ],
+        "it": [
+          "distributore",
+          "benzinaio",
+          "fare benzina",
+          "gasolio",
+          "carburante"
+        ],
+        "nl": [
+          "tankstation",
+          "tanken",
+          "benzine",
+          "diesel",
+          "brandstof"
+        ],
+        "pl": [
+          "stacja benzynowa",
+          "zatankowac",
+          "benzyna",
+          "diesel",
+          "paliwo"
+        ],
+        "zh": [
+          "加油站",
+          "加油",
+          "汽油",
+          "柴油",
+          "燃料"
+        ],
+        "zht": [
+          "加油站",
+          "加油",
+          "汽油",
+          "柴油",
+          "燃料"
+        ]
+      },
+      "a": {
+        "es": "⛽ El combustible es bastante más barato que en la península porque Canarias tiene fiscalidad propia. Hay gasolineras por toda la costa y en las medianías, pero dentro del Parque Nacional y en el interior de Anaga no hay ninguna: sube con el depósito hecho. Las tienes todas en el mapa por categoría.",
+        "en": "⛽ Fuel is noticeably cheaper than on the mainland because the Canaries have their own tax regime. There are petrol stations all along the coast and in the midlands, but none inside the National Park or deep in Anaga: go up with a full tank. They are all on the map under their own category.",
+        "de": "⛽ Kraftstoff ist deutlich billiger als auf dem Festland, weil die Kanaren ein eigenes Steuersystem haben. Tankstellen gibt es entlang der ganzen Küste und in den mittleren Lagen, aber keine im Nationalpark oder tief in Anaga: fahr mit vollem Tank hoch. Auf der Karte findest du sie in einer eigenen Kategorie.",
+        "fr": "⛽ Le carburant est nettement moins cher que sur la péninsule, les Canaries ayant leur propre fiscalité. Il y a des stations tout le long de la côte et dans les medianías, mais aucune dans le Parc National ni au fond d’Anaga : monte avec le plein. Elles sont toutes sur la carte, dans leur catégorie.",
+        "it": "⛽ Il carburante costa parecchio meno che nella penisola perché le Canarie hanno una fiscalità propria. Ci sono distributori lungo tutta la costa e nelle medianías, ma dentro il Parco Nazionale e nel cuore di Anaga nessuno: sali con il pieno. Li trovi tutti sulla mappa nella loro categoria.",
+        "nl": "⛽ Brandstof is flink goedkoper dan op het vasteland, want de Canarische Eilanden hebben een eigen belastingstelsel. Er zijn tankstations langs de hele kust en in de medianías, maar geen enkel in het Nationaal Park of diep in Anaga: rijd met een volle tank omhoog. Ze staan allemaal op de kaart in hun eigen categorie.",
+        "pl": "⛽ Paliwo jest sporo tańsze niż na kontynencie, bo Wyspy Kanaryjskie mają własny system podatkowy. Stacje są wzdłuż całego wybrzeża i w środkowych partiach wyspy, ale w Parku Narodowym i w głębi Anagi nie ma żadnej: jedź w górę z pełnym bakiem. Wszystkie znajdziesz na mapie w osobnej kategorii.",
+        "zh": "⛽ 由于加那利有自己的税制，燃油比西班牙本土便宜不少。沿海和中部地带到处都有加油站，但国家公园内部和 Anaga 深处一家也没有：上山前先加满油。地图上有专门的加油站分类。",
+        "zht": "⛽ 由於加那利有自己的稅制，燃油比西班牙本土便宜不少。沿海和中部地帶到處都有加油站，但國家公園內部和 Anaga 深處一家也沒有：上山前先加滿油。地圖上有專門的加油站分類。"
+      },
+      "follow": [
+        "mov-05",
+        "mov-06",
+        "mov-12"
+      ]
+    }
+  ]
+}

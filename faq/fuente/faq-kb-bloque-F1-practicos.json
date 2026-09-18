@@ -1,0 +1,1253 @@
+{
+  "meta": {
+    "bloque": "F1 · Prácticos del viaje",
+    "version": "1.0",
+    "fecha": "2026-09-13",
+    "idiomas": [
+      "es",
+      "en",
+      "de",
+      "fr",
+      "it",
+      "nl",
+      "pl",
+      "zh",
+      "zht"
+    ],
+    "entradas": 13,
+    "politica_datos": "pra-04, pra-11, pra-12 y pra-13 van volatiles: requisitos de entrada, horarios comerciales, devolucion de IGIC y nivel de precios cambian y no se escriben como cifra ni como norma cerrada."
+  },
+  "entradas": [
+    {
+      "id": "pra-01",
+      "cat": "practico",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué moneda se usa?",
+        "en": "What currency is used?",
+        "de": "Welche Währung gilt hier?",
+        "fr": "Quelle monnaie utilise-t-on ?",
+        "it": "Che moneta si usa?",
+        "nl": "Welke munt wordt gebruikt?",
+        "pl": "Jaka jest waluta?",
+        "zh": "这里用什么货币？",
+        "zht": "這裡用什麼貨幣？"
+      },
+      "keys": {
+        "es": [
+          "moneda",
+          "euro",
+          "pagar con tarjeta",
+          "efectivo",
+          "cajero",
+          "sacar dinero"
+        ],
+        "en": [
+          "currency",
+          "euro",
+          "pay by card",
+          "cash",
+          "atm",
+          "withdraw money"
+        ],
+        "de": [
+          "wahrung",
+          "euro",
+          "mit karte zahlen",
+          "bargeld",
+          "geldautomat"
+        ],
+        "fr": [
+          "monnaie",
+          "euro",
+          "payer par carte",
+          "especes",
+          "distributeur",
+          "retirer de l argent"
+        ],
+        "it": [
+          "moneta",
+          "euro",
+          "pagare con carta",
+          "contanti",
+          "bancomat"
+        ],
+        "nl": [
+          "munt",
+          "euro",
+          "met kaart betalen",
+          "contant",
+          "geldautomaat"
+        ],
+        "pl": [
+          "waluta",
+          "euro",
+          "platnosc karta",
+          "gotowka",
+          "bankomat"
+        ],
+        "zh": [
+          "货币",
+          "欧元",
+          "刷卡",
+          "现金",
+          "取款机"
+        ],
+        "zht": [
+          "貨幣",
+          "歐元",
+          "刷卡",
+          "現金",
+          "提款機"
+        ]
+      },
+      "a": {
+        "es": "💶 El euro. Se paga con tarjeta prácticamente en todas partes, incluso importes pequeños. Lleva algo de efectivo igualmente para guachinches, mercadillos, aparcamientos de pueblo y algún taxi. Los cajeros son fáciles de encontrar, pero ojo con las comisiones de los que están en zonas turísticas.",
+        "en": "💶 The euro. You can pay by card almost everywhere, even for small amounts. Still carry some cash for guachinches, street markets, village car parks and the odd taxi. Cash machines are easy to find, but watch the fees on the ones in tourist areas.",
+        "de": "💶 Der Euro. Mit Karte zahlst du praktisch überall, auch kleine Beträge. Nimm trotzdem etwas Bargeld mit für Guachinches, Märkte, Dorfparkplätze und das eine oder andere Taxi. Geldautomaten findest du leicht, aber achte auf die Gebühren derer in Touristengegenden.",
+        "fr": "💶 L’euro. On paie par carte quasiment partout, même de petits montants. Garde quand même du liquide pour les guachinches, les marchés, les parkings de village et certains taxis. Les distributeurs sont faciles à trouver, mais attention aux frais de ceux situés en zone touristique.",
+        "it": "💶 L’euro. Si paga con carta praticamente ovunque, anche per importi piccoli. Porta comunque un po’ di contanti per guachinches, mercatini, parcheggi di paese e qualche taxi. I bancomat si trovano facilmente, ma occhio alle commissioni di quelli nelle zone turistiche.",
+        "nl": "💶 De euro. Je kunt vrijwel overal met kaart betalen, ook kleine bedragen. Neem toch wat contant geld mee voor guachinches, markten, dorpsparkeerplaatsen en sommige taxi’s. Geldautomaten zijn makkelijk te vinden, maar let op de kosten van die in toeristische zones.",
+        "pl": "💶 Euro. Kartą zapłacisz praktycznie wszędzie, nawet drobne kwoty. Mimo to weź trochę gotówki na guachinches, targi, parkingi w miasteczkach i niektóre taksówki. Bankomaty łatwo znaleźć, ale uważaj na prowizje tych w strefach turystycznych.",
+        "zh": "💶 欧元。几乎所有地方都能刷卡，小额也可以。不过还是带些现金，用于 guachinche、市集、村里的停车场和部分出租车。取款机很好找，但旅游区那些的手续费要留意。",
+        "zht": "💶 歐元。幾乎所有地方都能刷卡，小額也可以。不過還是帶些現金，用於 guachinche、市集、村裡的停車場和部分計程車。提款機很好找，但旅遊區那些的手續費要留意。"
+      },
+      "follow": [
+        "pra-12",
+        "pra-13",
+        "pra-11"
+      ]
+    },
+    {
+      "id": "pra-02",
+      "cat": "practico",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿Se puede beber el agua del grifo?",
+        "en": "Can I drink the tap water?",
+        "de": "Kann man Leitungswasser trinken?",
+        "fr": "Peut-on boire l’eau du robinet ?",
+        "it": "Si può bere l’acqua del rubinetto?",
+        "nl": "Kan ik het kraanwater drinken?",
+        "pl": "Czy można pić wodę z kranu?",
+        "zh": "自来水能喝吗？",
+        "zht": "自來水能喝嗎？"
+      },
+      "keys": {
+        "es": [
+          "agua del grifo",
+          "beber agua",
+          "agua potable",
+          "agua embotellada"
+        ],
+        "en": [
+          "tap water",
+          "drinking water",
+          "is the water safe",
+          "bottled water"
+        ],
+        "de": [
+          "leitungswasser",
+          "trinkwasser",
+          "wasser trinkbar",
+          "flaschenwasser"
+        ],
+        "fr": [
+          "eau du robinet",
+          "eau potable",
+          "boire l eau",
+          "eau en bouteille"
+        ],
+        "it": [
+          "acqua del rubinetto",
+          "acqua potabile",
+          "bere l acqua",
+          "acqua in bottiglia"
+        ],
+        "nl": [
+          "kraanwater",
+          "drinkwater",
+          "water drinkbaar",
+          "flessenwater"
+        ],
+        "pl": [
+          "woda z kranu",
+          "woda pitna",
+          "czy woda jest zdatna",
+          "woda butelkowana"
+        ],
+        "zh": [
+          "自来水",
+          "饮用水",
+          "水能喝吗",
+          "瓶装水"
+        ],
+        "zht": [
+          "自來水",
+          "飲用水",
+          "水能喝嗎",
+          "瓶裝水"
+        ]
+      },
+      "a": {
+        "es": "🚰 Es potable y está controlada, pero al ser en buena parte desalada o muy mineralizada, el sabor no convence y casi todo el mundo, locales incluidos, bebe embotellada. Para cocinar y lavarte va perfecta. En rutas, rellena solo en fuentes señalizadas como potables.",
+        "en": "🚰 It is drinkable and monitored, but since much of it is desalinated or heavily mineralised, the taste puts people off and almost everyone, locals included, drinks bottled. For cooking and washing it is perfectly fine. On hikes, only refill at springs marked as drinkable.",
+        "de": "🚰 Es ist trinkbar und wird kontrolliert, aber da es großteils entsalzt oder stark mineralisiert ist, überzeugt der Geschmack nicht, und fast alle, Einheimische eingeschlossen, trinken Flaschenwasser. Zum Kochen und Waschen ist es bestens. Unterwegs füll nur an Quellen auf, die als trinkbar ausgeschildert sind.",
+        "fr": "🚰 Elle est potable et contrôlée, mais comme elle est en grande partie dessalée ou très minéralisée, le goût ne convainc pas et presque tout le monde, les locaux compris, boit de l’eau en bouteille. Pour cuisiner et se laver, parfaite. En randonnée, ne remplis qu’aux fontaines signalées comme potables.",
+        "it": "🚰 È potabile e controllata, ma essendo in buona parte desalinizzata o molto mineralizzata il sapore non convince e quasi tutti, residenti compresi, bevono in bottiglia. Per cucinare e lavarsi va benissimo. In escursione riempi solo alle fonti segnalate come potabili.",
+        "nl": "🚰 Het is drinkbaar en wordt gecontroleerd, maar omdat het grotendeels ontzilt of sterk gemineraliseerd is, valt de smaak tegen en drinkt bijna iedereen, inclusief de eilanders, uit flessen. Voor koken en wassen is het prima. Onderweg alleen bijvullen bij bronnen die als drinkbaar zijn aangeduid.",
+        "pl": "🚰 Jest zdatna do picia i kontrolowana, ale ponieważ w dużej części pochodzi z odsalania lub jest mocno zmineralizowana, smak nie przekonuje i niemal wszyscy, łącznie z mieszkańcami, piją butelkowaną. Do gotowania i mycia jest idealna. Na szlaku uzupełniaj tylko w źródłach oznaczonych jako zdatne.",
+        "zh": "🚰 可以喝，水质受监控，但由于很大一部分来自海水淡化或矿化度很高，口感不讨喜，几乎所有人（包括本地人）都喝瓶装水。做饭和洗漱完全没问题。徒步途中，只在标示可饮用的泉眼补水。",
+        "zht": "🚰 可以喝，水質受監控，但由於很大一部分來自海水淡化或礦化度很高，口感不討喜，幾乎所有人（包括本地人）都喝瓶裝水。做飯和盥洗完全沒問題。徒步途中，只在標示可飲用的泉眼補水。"
+      },
+      "follow": [
+        "pra-09",
+        "pra-01",
+        "pra-13"
+      ]
+    },
+    {
+      "id": "pra-03",
+      "cat": "practico",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué enchufes hay?",
+        "en": "What plugs are used?",
+        "de": "Welche Stecker gibt es?",
+        "fr": "Quelles prises électriques ?",
+        "it": "Che prese elettriche ci sono?",
+        "nl": "Welke stopcontacten zijn er?",
+        "pl": "Jakie są gniazdka?",
+        "zh": "这里用什么插座？",
+        "zht": "這裡用什麼插座？"
+      },
+      "keys": {
+        "es": [
+          "enchufe",
+          "enchufes",
+          "adaptador",
+          "voltaje",
+          "corriente electrica",
+          "cargar el movil"
+        ],
+        "en": [
+          "plug",
+          "sockets",
+          "adapter",
+          "voltage",
+          "power",
+          "charge my phone"
+        ],
+        "de": [
+          "stecker",
+          "steckdose",
+          "adapter",
+          "spannung",
+          "strom",
+          "handy laden"
+        ],
+        "fr": [
+          "prise",
+          "prises",
+          "adaptateur",
+          "voltage",
+          "courant",
+          "charger le telephone"
+        ],
+        "it": [
+          "presa",
+          "prese",
+          "adattatore",
+          "voltaggio",
+          "corrente",
+          "caricare il telefono"
+        ],
+        "nl": [
+          "stekker",
+          "stopcontact",
+          "adapter",
+          "voltage",
+          "stroom",
+          "telefoon opladen"
+        ],
+        "pl": [
+          "gniazdko",
+          "wtyczka",
+          "adapter",
+          "napiecie",
+          "prad",
+          "ladowanie telefonu"
+        ],
+        "zh": [
+          "插座",
+          "插头",
+          "转换头",
+          "电压",
+          "充电"
+        ],
+        "zht": [
+          "插座",
+          "插頭",
+          "轉接頭",
+          "電壓",
+          "充電"
+        ]
+      },
+      "a": {
+        "es": "🔌 Los europeos de dos clavijas redondas, tipos C y F, a 230 voltios y 50 hercios. Si vienes del Reino Unido, de Irlanda o de fuera de Europa, trae adaptador: en el aeropuerto y en los súper se venden, pero más caros. Los cargadores modernos aguantan el voltaje sin transformador.",
+        "en": "🔌 The European two-round-pin ones, types C and F, at 230 volts and 50 hertz. Coming from the UK, Ireland or outside Europe, bring an adapter: you can buy one at the airport or in supermarkets, but it costs more. Modern chargers handle the voltage without a transformer.",
+        "de": "🔌 Die europäischen mit zwei runden Stiften, Typ C und F, bei 230 Volt und 50 Hertz. Kommst du aus Großbritannien, Irland oder von außerhalb Europas, bring einen Adapter mit: am Flughafen und im Supermarkt gibt es welche, nur teurer. Moderne Ladegeräte kommen ohne Transformator klar.",
+        "fr": "🔌 Les prises européennes à deux broches rondes, types C et F, en 230 volts et 50 hertz. Si tu viens du Royaume-Uni, d’Irlande ou hors d’Europe, prends un adaptateur : on en trouve à l’aéroport et en supermarché, mais plus cher. Les chargeurs modernes supportent le voltage sans transformateur.",
+        "it": "🔌 Quelle europee a due spinotti tondi, tipi C ed F, a 230 volt e 50 hertz. Se arrivi dal Regno Unito, dall’Irlanda o da fuori Europa, porta un adattatore: in aeroporto e al supermercato si trovano, ma costano di più. I caricatori moderni reggono il voltaggio senza trasformatore.",
+        "nl": "🔌 De Europese met twee ronde pennen, type C en F, op 230 volt en 50 hertz. Kom je uit het VK, Ierland of buiten Europa, neem dan een adapter mee: op het vliegveld en in supermarkten zijn ze te koop, maar duurder. Moderne opladers kunnen het voltage aan zonder transformator.",
+        "pl": "🔌 Europejskie z dwoma okrągłymi bolcami, typy C i F, 230 woltów i 50 herców. Jeśli przyjeżdżasz z Wielkiej Brytanii, Irlandii lub spoza Europy, zabierz adapter: na lotnisku i w supermarketach są, ale drożej. Nowoczesne ładowarki poradzą sobie z napięciem bez transformatora.",
+        "zh": "🔌 欧洲的两圆脚插座，C 型和 F 型，230 伏、50 赫兹。如果你来自英国、爱尔兰或欧洲以外，请自带转换头：机场和超市也有卖，但更贵。现代充电器能直接适应这个电压，不需要变压器。",
+        "zht": "🔌 歐洲的兩圓腳插座，C 型和 F 型，230 伏、50 赫茲。如果你來自英國、愛爾蘭或歐洲以外，請自帶轉接頭：機場和超市也有賣，但更貴。現代充電器能直接適應這個電壓，不需要變壓器。"
+      },
+      "follow": [
+        "pra-08",
+        "pra-09",
+        "pra-05"
+      ]
+    },
+    {
+      "id": "pra-04",
+      "cat": "practico",
+      "prio": 1,
+      "volatil": true,
+      "label": {
+        "es": "¿Qué documentación necesito?",
+        "en": "What documents do I need?",
+        "de": "Welche Dokumente brauche ich?",
+        "fr": "Quels documents faut-il ?",
+        "it": "Che documenti servono?",
+        "nl": "Welke documenten heb ik nodig?",
+        "pl": "Jakie dokumenty są potrzebne?",
+        "zh": "需要什么证件？",
+        "zht": "需要什麼證件？"
+      },
+      "keys": {
+        "es": [
+          "documentacion",
+          "pasaporte",
+          "dni",
+          "visado",
+          "entrar en canarias",
+          "aduana"
+        ],
+        "en": [
+          "documents",
+          "passport",
+          "id card",
+          "visa",
+          "entry requirements",
+          "customs"
+        ],
+        "de": [
+          "dokumente",
+          "reisepass",
+          "personalausweis",
+          "visum",
+          "einreise"
+        ],
+        "fr": [
+          "documents",
+          "passeport",
+          "carte d identite",
+          "visa",
+          "conditions d entree"
+        ],
+        "it": [
+          "documenti",
+          "passaporto",
+          "carta d identita",
+          "visto",
+          "ingresso"
+        ],
+        "nl": [
+          "documenten",
+          "paspoort",
+          "identiteitskaart",
+          "visum",
+          "toegangseisen"
+        ],
+        "pl": [
+          "dokumenty",
+          "paszport",
+          "dowod osobisty",
+          "wiza",
+          "wjazd"
+        ],
+        "zh": [
+          "证件",
+          "护照",
+          "身份证",
+          "签证",
+          "入境要求"
+        ],
+        "zht": [
+          "證件",
+          "護照",
+          "身分證",
+          "簽證",
+          "入境要求"
+        ]
+      },
+      "a": {
+        "es": "🛂 Canarias es España y territorio Schengen: si vienes de la Unión Europea basta con el documento de identidad o el pasaporte, y no hay control fronterizo. Desde fuera, pasaporte y, según tu nacionalidad, visado o autorización previa. Los requisitos cambian, así que confírmalos con el consulado español antes de volar.",
+        "en": "🛂 The Canaries are Spain and Schengen territory: coming from the European Union, an ID card or passport is enough and there is no border check. From outside, a passport and, depending on your nationality, a visa or prior authorisation. Requirements change, so confirm them with a Spanish consulate before you fly.",
+        "de": "🛂 Die Kanaren sind Spanien und Schengen-Gebiet: Aus der Europäischen Union reicht Personalausweis oder Reisepass, eine Grenzkontrolle gibt es nicht. Von außerhalb brauchst du einen Reisepass und je nach Staatsangehörigkeit ein Visum oder eine vorherige Genehmigung. Die Bedingungen ändern sich, kläre sie vor dem Flug beim spanischen Konsulat.",
+        "fr": "🛂 Les Canaries, c’est l’Espagne et l’espace Schengen : depuis l’Union européenne, la carte d’identité ou le passeport suffit et il n’y a pas de contrôle frontalier. De l’extérieur, passeport et, selon ta nationalité, visa ou autorisation préalable. Les exigences changent : confirme-les auprès du consulat espagnol avant de partir.",
+        "it": "🛂 Le Canarie sono Spagna e territorio Schengen: dall’Unione Europea basta la carta d’identità o il passaporto, e non c’è controllo di frontiera. Da fuori, passaporto e, a seconda della nazionalità, visto o autorizzazione preventiva. I requisiti cambiano, quindi confermali al consolato spagnolo prima di partire.",
+        "nl": "🛂 De Canarische Eilanden zijn Spanje en Schengengebied: kom je uit de Europese Unie, dan volstaat een identiteitskaart of paspoort en is er geen grenscontrole. Van buiten: paspoort en, afhankelijk van je nationaliteit, een visum of voorafgaande toestemming. Eisen veranderen, dus bevestig ze bij een Spaans consulaat voor je vliegt.",
+        "pl": "🛂 Wyspy Kanaryjskie to Hiszpania i strefa Schengen: przyjeżdżając z Unii Europejskiej wystarczy dowód osobisty albo paszport, kontroli granicznej nie ma. Spoza UE: paszport oraz, zależnie od obywatelstwa, wiza lub wcześniejsza zgoda. Wymogi się zmieniają, więc potwierdź je w konsulacie Hiszpanii przed wylotem.",
+        "zh": "🛂 加那利属于西班牙，也属于申根区：从欧盟出发，带身份证或护照即可，没有边检。从欧盟以外入境需要护照，并依国籍可能需要签证或事先授权。相关要求会变动，出发前请向西班牙领事馆确认。",
+        "zht": "🛂 加那利屬於西班牙，也屬於申根區：從歐盟出發，帶身分證或護照即可，沒有邊檢。從歐盟以外入境需要護照，並依國籍可能需要簽證或事先授權。相關要求會變動，出發前請向西班牙領事館確認。"
+      },
+      "follow": [
+        "pra-05",
+        "pra-09",
+        "pra-10"
+      ]
+    },
+    {
+      "id": "pra-05",
+      "cat": "practico",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué hora es aquí?",
+        "en": "What time zone is this?",
+        "de": "Welche Zeitzone gilt hier?",
+        "fr": "Quel fuseau horaire ici ?",
+        "it": "Che fuso orario c’è qui?",
+        "nl": "Welke tijdzone is dit?",
+        "pl": "Jaka jest tu strefa czasowa?",
+        "zh": "这里是什么时区？",
+        "zht": "這裡是什麼時區？"
+      },
+      "keys": {
+        "es": [
+          "que hora es",
+          "huso horario",
+          "diferencia horaria",
+          "cambio de hora",
+          "hora canaria"
+        ],
+        "en": [
+          "time zone",
+          "what time is it",
+          "time difference",
+          "clock change",
+          "canary time"
+        ],
+        "de": [
+          "zeitzone",
+          "wie spat ist es",
+          "zeitverschiebung",
+          "zeitumstellung"
+        ],
+        "fr": [
+          "fuseau horaire",
+          "quelle heure est il",
+          "decalage horaire",
+          "changement d heure"
+        ],
+        "it": [
+          "fuso orario",
+          "che ore sono",
+          "differenza di orario",
+          "cambio dell ora"
+        ],
+        "nl": [
+          "tijdzone",
+          "hoe laat is het",
+          "tijdverschil",
+          "klok verzetten"
+        ],
+        "pl": [
+          "strefa czasowa",
+          "ktora godzina",
+          "roznica czasu",
+          "zmiana czasu"
+        ],
+        "zh": [
+          "时区",
+          "现在几点",
+          "时差",
+          "夏令时"
+        ],
+        "zht": [
+          "時區",
+          "現在幾點",
+          "時差",
+          "夏令時"
+        ]
+      },
+      "a": {
+        "es": "🕐 Canarias va una hora por detrás de la península y de Europa central, y coincide con el Reino Unido y Portugal. El cambio de hora se hace a la vez que en el resto de la Unión Europea. Es el detalle que más despista al llegar: si has volado desde Madrid, atrasa el reloj.",
+        "en": "🕐 The Canaries run one hour behind mainland Spain and central Europe, and match the UK and Portugal. The clock change happens at the same time as in the rest of the European Union. It is the detail that catches people out on arrival: if you flew from Madrid, put your watch back.",
+        "de": "🕐 Die Kanaren liegen eine Stunde hinter dem spanischen Festland und Mitteleuropa und gehen gleich mit Großbritannien und Portugal. Die Zeitumstellung erfolgt zeitgleich mit dem Rest der Europäischen Union. Das ist das Detail, das bei der Ankunft am meisten verwirrt: aus Madrid kommend, stell die Uhr zurück.",
+        "fr": "🕐 Les Canaries ont une heure de moins que la péninsule et l’Europe centrale, et sont à l’heure du Royaume-Uni et du Portugal. Le changement d’heure se fait en même temps que dans le reste de l’Union européenne. C’est le détail qui piège le plus à l’arrivée : si tu viens de Madrid, recule ta montre.",
+        "it": "🕐 Le Canarie stanno un’ora indietro rispetto alla penisola e all’Europa centrale, e coincidono con Regno Unito e Portogallo. Il cambio dell’ora avviene insieme al resto dell’Unione Europea. È il dettaglio che spiazza di più all’arrivo: se arrivi da Madrid, sposta indietro l’orologio.",
+        "nl": "🕐 De Canarische Eilanden lopen een uur achter op het vasteland en op Midden-Europa, en gelijk met het VK en Portugal. De klok verzetten gebeurt tegelijk met de rest van de Europese Unie. Dit is het detail dat bij aankomst het meest verrast: kom je uit Madrid, zet je horloge terug.",
+        "pl": "🕐 Wyspy Kanaryjskie są godzinę do tyłu względem kontynentalnej Hiszpanii i Europy Środkowej, a zgadzają się z Wielką Brytanią i Portugalią. Zmiana czasu odbywa się razem z resztą Unii Europejskiej. To szczegół, który po przylocie myli najbardziej: lecąc z Madrytu, cofnij zegarek.",
+        "zh": "🕐 加那利比西班牙本土和中欧慢一小时，与英国、葡萄牙同时区。夏令时调整与欧盟其他地区同步。这是刚落地时最容易搞错的细节：如果你从马德里飞来，记得把表调慢一小时。",
+        "zht": "🕐 加那利比西班牙本土和中歐慢一小時，與英國、葡萄牙同時區。夏令時調整與歐盟其他地區同步。這是剛落地時最容易搞錯的細節：如果你從馬德里飛來，記得把錶調慢一小時。"
+      },
+      "follow": [
+        "pra-11",
+        "pra-04",
+        "pra-06"
+      ]
+    },
+    {
+      "id": "pra-06",
+      "cat": "practico",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿Me apaño sin hablar español?",
+        "en": "Can I manage without Spanish?",
+        "de": "Komme ich ohne Spanisch zurecht?",
+        "fr": "Puis-je m’en sortir sans espagnol ?",
+        "it": "Me la cavo senza spagnolo?",
+        "nl": "Red ik me zonder Spaans?",
+        "pl": "Poradzę sobie bez hiszpańskiego?",
+        "zh": "不会西班牙语能应付吗？",
+        "zht": "不會西班牙語能應付嗎？"
+      },
+      "keys": {
+        "es": [
+          "se habla ingles",
+          "hablan ingles",
+          "sin hablar espanol",
+          "barrera del idioma",
+          "me entienden"
+        ],
+        "en": [
+          "do they speak english",
+          "without spanish",
+          "language barrier",
+          "will i be understood"
+        ],
+        "de": [
+          "spricht man englisch",
+          "ohne spanisch",
+          "sprachbarriere",
+          "verstandigung"
+        ],
+        "fr": [
+          "parle t on anglais",
+          "sans parler espagnol",
+          "barriere de la langue"
+        ],
+        "it": [
+          "si parla inglese",
+          "senza spagnolo",
+          "barriera linguistica"
+        ],
+        "nl": [
+          "spreken ze engels",
+          "zonder spaans",
+          "taalbarriere"
+        ],
+        "pl": [
+          "czy mowia po angielsku",
+          "bez hiszpanskiego",
+          "bariera jezykowa"
+        ],
+        "zh": [
+          "会说英语吗",
+          "不会西班牙语",
+          "语言障碍"
+        ],
+        "zht": [
+          "會說英語嗎",
+          "不會西班牙語",
+          "語言障礙"
+        ]
+      },
+      "a": {
+        "es": "🗣️ Sin problema. El idioma es el español, pero en las zonas turísticas el inglés está muy extendido y en el norte también se oye bastante alemán. En los pueblos del interior la cosa baja, aunque con gestos y buena cara se resuelve todo. Aquí la gente ayuda sin que se lo pidas.",
+        "en": "🗣️ No problem. The language is Spanish, but English is widespread in the resort areas and you will hear plenty of German in the north too. Inland it thins out, though gestures and a friendly face solve everything. People here help before you even ask.",
+        "de": "🗣️ Kein Problem. Die Sprache ist Spanisch, aber in den Urlaubsorten ist Englisch weit verbreitet, und im Norden hört man auch reichlich Deutsch. Im Landesinneren wird es dünner, mit Gesten und freundlichem Gesicht klärt sich aber alles. Hier helfen die Leute, bevor du fragst.",
+        "fr": "🗣️ Aucun souci. La langue est l’espagnol, mais l’anglais est très répandu dans les zones touristiques et on entend aussi pas mal d’allemand au nord. À l’intérieur, ça se raréfie, mais avec des gestes et le sourire tout se règle. Ici, les gens aident avant même qu’on demande.",
+        "it": "🗣️ Nessun problema. La lingua è lo spagnolo, ma nelle zone turistiche l’inglese è diffusissimo e al nord si sente parecchio tedesco. Nell’entroterra cala, però con i gesti e un sorriso si risolve tutto. Qui la gente aiuta prima ancora che tu chieda.",
+        "nl": "🗣️ Geen probleem. De taal is Spaans, maar in de toeristische zones is Engels wijdverbreid en in het noorden hoor je ook veel Duits. In het binnenland wordt het minder, al los je met gebaren en een vriendelijk gezicht alles op. Hier helpen mensen nog voor je het vraagt.",
+        "pl": "🗣️ Bez problemu. Językiem jest hiszpański, ale w strefach turystycznych angielski jest bardzo rozpowszechniony, a na północy słychać też sporo niemieckiego. W głębi wyspy bywa gorzej, choć na gesty i uśmiech wszystko się układa. Ludzie tutaj pomagają, zanim zdążysz poprosić.",
+        "zh": "🗣️ 没问题。官方语言是西班牙语，但旅游区英语很普及，北部也常能听到德语。进到内陆会少一些，不过靠手势和笑容都能解决。这里的人往往不等你开口就来帮忙。",
+        "zht": "🗣️ 沒問題。官方語言是西班牙語，但旅遊區英語很普及，北部也常能聽到德語。進到內陸會少一些，不過靠手勢和笑容都能解決。這裡的人往往不等你開口就來幫忙。"
+      },
+      "follow": [
+        "pra-07",
+        "pra-05",
+        "pra-04"
+      ]
+    },
+    {
+      "id": "pra-07",
+      "cat": "practico",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué palabras canarias debo saber?",
+        "en": "Any Canarian words to know?",
+        "de": "Welche kanarischen Wörter helfen?",
+        "fr": "Quels mots canariens connaître ?",
+        "it": "Quali parole canarie sapere?",
+        "nl": "Welke Canarische woorden helpen?",
+        "pl": "Jakie kanaryjskie słowa warto znać?",
+        "zh": "该学哪些加那利用语？",
+        "zht": "該學哪些加那利用語？"
+      },
+      "keys": {
+        "es": [
+          "palabras canarias",
+          "vocabulario canario",
+          "como se dice aqui",
+          "guagua significa",
+          "cotufas"
+        ],
+        "en": [
+          "canarian words",
+          "local slang",
+          "what does guagua mean",
+          "local vocabulary"
+        ],
+        "de": [
+          "kanarische worter",
+          "lokaler slang",
+          "was heisst guagua"
+        ],
+        "fr": [
+          "mots canariens",
+          "argot local",
+          "que veut dire guagua"
+        ],
+        "it": [
+          "parole canarie",
+          "gergo locale",
+          "cosa significa guagua"
+        ],
+        "nl": [
+          "canarische woorden",
+          "lokaal jargon",
+          "wat betekent guagua"
+        ],
+        "pl": [
+          "kanaryjskie slowa",
+          "lokalny slang",
+          "co znaczy guagua"
+        ],
+        "zh": [
+          "加那利用语",
+          "当地俚语",
+          "guagua 是什么意思"
+        ],
+        "zht": [
+          "加那利用語",
+          "當地俚語",
+          "guagua 是什麼意思"
+        ]
+      },
+      "a": {
+        "es": "🗨️ Las que más te van a sonar: guagua es el autobús, papas son las patatas, cotufas son las palomitas, el millo es el maíz, un fisco es un poquito y guachinche ya lo sabes. Verás que aquí se usa «ustedes» donde en la península dirían «vosotros», y que nadie pronuncia la ese final.",
+        "en": "🗨️ The ones you will hear most: guagua is the bus, papas are potatoes, cotufas are popcorn, millo is sweetcorn, un fisco means a tiny bit, and you already know guachinche. You will also notice people use «ustedes» where mainland Spain says «vosotros», and nobody pronounces the final s.",
+        "de": "🗨️ Die, die dir am meisten begegnen: guagua ist der Bus, papas sind Kartoffeln, cotufas ist Popcorn, millo heißt Mais, un fisco bedeutet ein kleines bisschen, und guachinche kennst du schon. Außerdem sagt man hier «ustedes», wo das Festland «vosotros» sagt, und das End-s spricht niemand aus.",
+        "fr": "🗨️ Celles que tu entendras le plus : guagua c’est le bus, papas les pommes de terre, cotufas le pop-corn, millo le maïs, un fisco un tout petit peu, et guachinche tu connais déjà. Tu remarqueras aussi qu’on dit «ustedes» là où la péninsule dit «vosotros», et que personne ne prononce le s final.",
+        "it": "🗨️ Quelle che sentirai di più: guagua è l’autobus, papas sono le patate, cotufas sono i popcorn, millo è il mais, un fisco vuol dire un pochino, e guachinche lo sai già. Noterai anche che qui si usa «ustedes» dove nella penisola dicono «vosotros», e che nessuno pronuncia la esse finale.",
+        "nl": "🗨️ Die je het vaakst hoort: guagua is de bus, papas zijn aardappels, cotufas is popcorn, millo is mais, un fisco betekent een heel klein beetje, en guachinche ken je al. Je merkt ook dat men hier «ustedes» zegt waar het vasteland «vosotros» zegt, en dat niemand de slot-s uitspreekt.",
+        "pl": "🗨️ Te, które usłyszysz najczęściej: guagua to autobus, papas to ziemniaki, cotufas to popcorn, millo to kukurydza, un fisco znaczy odrobinę, a guachinche już znasz. Zauważysz też, że mówi się tu «ustedes» tam, gdzie na kontynencie powiedzą «vosotros», i że nikt nie wymawia końcowego s.",
+        "zh": "🗨️ 你最常听到的几个：guagua 是公交车，papas 是土豆，cotufas 是爆米花，millo 是玉米，un fisco 表示一点点，guachinche 你已经知道了。你还会发现这里用「ustedes」，而本土说「vosotros」，而且没人会把词尾的 s 念出来。",
+        "zht": "🗨️ 你最常聽到的幾個：guagua 是公車，papas 是馬鈴薯，cotufas 是爆米花，millo 是玉米，un fisco 表示一點點，guachinche 你已經知道了。你還會發現這裡用「ustedes」，而本土說「vosotros」，而且沒人會把詞尾的 s 唸出來。"
+      },
+      "follow": [
+        "pra-06",
+        "pra-01",
+        "pra-11"
+      ]
+    },
+    {
+      "id": "pra-08",
+      "cat": "practico",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Hay wifi? ¿Me compensa una eSIM?",
+        "en": "Is there wifi? Do I need an eSIM?",
+        "de": "Gibt es WLAN? Lohnt eine eSIM?",
+        "fr": "Y a-t-il du wifi ? Une eSIM ?",
+        "it": "C’è wifi? Conviene una eSIM?",
+        "nl": "Is er wifi? Is een eSIM nuttig?",
+        "pl": "Czy jest wifi? Warto eSIM?",
+        "zh": "有 wifi 吗？要办 eSIM 吗？",
+        "zht": "有 wifi 嗎？要辦 eSIM 嗎？"
+      },
+      "keys": {
+        "es": [
+          "wifi",
+          "internet",
+          "cobertura movil",
+          "esim",
+          "tarjeta sim",
+          "datos moviles"
+        ],
+        "en": [
+          "wifi",
+          "internet",
+          "mobile coverage",
+          "esim",
+          "sim card",
+          "mobile data"
+        ],
+        "de": [
+          "wlan",
+          "internet",
+          "mobilfunk abdeckung",
+          "esim",
+          "sim karte",
+          "mobile daten"
+        ],
+        "fr": [
+          "wifi",
+          "internet",
+          "couverture mobile",
+          "esim",
+          "carte sim",
+          "donnees mobiles"
+        ],
+        "it": [
+          "wifi",
+          "internet",
+          "copertura mobile",
+          "esim",
+          "scheda sim",
+          "dati mobili"
+        ],
+        "nl": [
+          "wifi",
+          "internet",
+          "mobiel bereik",
+          "esim",
+          "simkaart",
+          "mobiele data"
+        ],
+        "pl": [
+          "wifi",
+          "internet",
+          "zasieg komorkowy",
+          "esim",
+          "karta sim",
+          "dane mobilne"
+        ],
+        "zh": [
+          "wifi",
+          "上网",
+          "手机信号",
+          "esim",
+          "电话卡",
+          "流量"
+        ],
+        "zht": [
+          "wifi",
+          "上網",
+          "手機訊號",
+          "esim",
+          "電話卡",
+          "流量"
+        ]
+      },
+      "a": {
+        "es": "📶 Wifi hay en alojamientos, bares y muchos espacios públicos. La cobertura móvil es buena en toda la costa y en las ciudades, y nula en el fondo de los barrancos y en partes de Anaga y Teno. Si vienes de la Unión Europea usas tus datos sin recargo; si no, una eSIM local compensa.",
+        "en": "📶 Wifi is available in accommodation, bars and many public spaces. Mobile coverage is good all along the coast and in the towns, and non-existent at the bottom of the ravines and in parts of Anaga and Teno. From the European Union you use your own data at no extra cost; otherwise a local eSIM is worth it.",
+        "de": "📶 WLAN gibt es in Unterkünften, Bars und vielen öffentlichen Bereichen. Der Mobilfunk ist an der ganzen Küste und in den Städten gut und auf dem Grund der Schluchten sowie in Teilen von Anaga und Teno gar nicht vorhanden. Aus der Europäischen Union nutzt du dein Datenvolumen ohne Aufpreis, sonst lohnt eine lokale eSIM.",
+        "fr": "📶 Il y a du wifi dans les hébergements, les bars et beaucoup d’espaces publics. La couverture mobile est bonne sur toute la côte et en ville, et nulle au fond des barrancos et dans certaines parties d’Anaga et de Teno. Depuis l’Union européenne, tu utilises tes données sans surcoût ; sinon, une eSIM locale vaut le coup.",
+        "it": "📶 Il wifi c’è in alloggi, bar e molti spazi pubblici. La copertura mobile è buona su tutta la costa e nelle città, e nulla in fondo ai barrancos e in parti di Anaga e Teno. Dall’Unione Europea usi i tuoi dati senza sovrapprezzo; altrimenti una eSIM locale conviene.",
+        "nl": "📶 Wifi is er in accommodaties, bars en veel openbare ruimtes. Het mobiele bereik is goed langs de hele kust en in de steden, en nul op de bodem van de ravijnen en in delen van Anaga en Teno. Vanuit de Europese Unie gebruik je je eigen data zonder toeslag; anders loont een lokale eSIM.",
+        "pl": "📶 Wifi jest w obiektach noclegowych, barach i wielu miejscach publicznych. Zasięg komórkowy jest dobry wzdłuż całego wybrzeża i w miastach, a żaden na dnie wąwozów oraz w częściach Anagi i Teno. Z Unii Europejskiej korzystasz z własnych danych bez dopłat; w innym wypadku lokalny eSIM się opłaca.",
+        "zh": "📶 住宿、酒吧和很多公共场所都有 wifi。沿海和城镇的手机信号很好，但峡谷底部以及 Anaga、Teno 的部分地区完全没有信号。来自欧盟的用户可直接用自己的流量、不额外收费；否则办一张本地 eSIM 比较划算。",
+        "zht": "📶 住宿、酒吧和很多公共場所都有 wifi。沿海和城鎮的手機訊號很好，但峽谷底部以及 Anaga、Teno 的部分地區完全沒有訊號。來自歐盟的使用者可直接用自己的流量、不額外收費；否則辦一張本地 eSIM 比較划算。"
+      },
+      "follow": [
+        "pra-03",
+        "pra-09",
+        "pra-05"
+      ]
+    },
+    {
+      "id": "pra-09",
+      "cat": "practico",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué meto en la maleta?",
+        "en": "What should I pack?",
+        "de": "Was packe ich ein?",
+        "fr": "Que mettre dans la valise ?",
+        "it": "Cosa metto in valigia?",
+        "nl": "Wat neem ik mee in mijn koffer?",
+        "pl": "Co spakować do walizki?",
+        "zh": "行李该带什么？",
+        "zht": "行李該帶什麼？"
+      },
+      "keys": {
+        "es": [
+          "que meto en la maleta",
+          "que llevar de ropa",
+          "equipaje",
+          "maleta",
+          "que ropa traer"
+        ],
+        "en": [
+          "what to pack",
+          "packing list",
+          "luggage",
+          "suitcase",
+          "what clothes to bring"
+        ],
+        "de": [
+          "was einpacken",
+          "packliste",
+          "gepack",
+          "koffer",
+          "welche kleidung mitnehmen"
+        ],
+        "fr": [
+          "quoi mettre dans la valise",
+          "liste de bagage",
+          "bagages",
+          "quels vetements emporter"
+        ],
+        "it": [
+          "cosa mettere in valigia",
+          "lista bagaglio",
+          "bagagli",
+          "che vestiti portare"
+        ],
+        "nl": [
+          "wat inpakken",
+          "paklijst",
+          "bagage",
+          "koffer",
+          "welke kleding meenemen"
+        ],
+        "pl": [
+          "co spakowac",
+          "lista rzeczy",
+          "bagaz",
+          "walizka",
+          "jakie ubrania zabrac"
+        ],
+        "zh": [
+          "行李清单",
+          "带什么衣服",
+          "打包",
+          "行李箱"
+        ],
+        "zht": [
+          "行李清單",
+          "帶什麼衣服",
+          "打包",
+          "行李箱"
+        ]
+      },
+      "a": {
+        "es": "🧳 Ropa de verano para la costa, calzado cómodo que agarre, bañador y protección solar alta. Añade una chaqueta fina para las noches y algo de abrigo de verdad si vas a subir al Teide, aunque vengas en agosto. Si piensas caminar, calzado de montaña; las chanclas no valen en los senderos.",
+        "en": "🧳 Summer clothes for the coast, comfortable shoes with grip, swimwear and high-factor sun cream. Add a light jacket for the evenings and something properly warm if you are going up the Teide, even in August. If you plan to walk, bring mountain footwear; flip-flops are no use on the trails.",
+        "de": "🧳 Sommerkleidung für die Küste, bequeme Schuhe mit Grip, Badesachen und hoher Sonnenschutz. Dazu eine dünne Jacke für abends und etwas richtig Warmes, wenn du auf den Teide willst, auch im August. Planst du zu wandern, nimm Bergschuhe mit; Flipflops taugen auf den Wegen nichts.",
+        "fr": "🧳 Des vêtements d’été pour la côte, des chaussures confortables qui accrochent, un maillot et une crème solaire à indice élevé. Ajoute une veste légère pour le soir et quelque chose de vraiment chaud si tu montes au Teide, même en août. Si tu comptes marcher, des chaussures de montagne ; les tongs ne servent à rien sur les sentiers.",
+        "it": "🧳 Vestiti estivi per la costa, scarpe comode che facciano presa, costume e protezione solare alta. Aggiungi una giacca leggera per la sera e qualcosa di davvero caldo se sali al Teide, anche ad agosto. Se pensi di camminare, scarpe da montagna; le infradito sui sentieri non servono.",
+        "nl": "🧳 Zomerkleding voor de kust, comfortabele schoenen met grip, zwemkleding en zonnebrand met hoge factor. Doe er een dun jasje bij voor de avonden en iets echt warms als je de Teide op gaat, ook in augustus. Wil je wandelen, neem dan bergschoenen mee; slippers zijn nutteloos op de paden.",
+        "pl": "🧳 Letnie ubrania na wybrzeże, wygodne buty z przyczepną podeszwą, strój kąpielowy i krem z wysokim filtrem. Dorzuć cienką kurtkę na wieczory i coś naprawdę ciepłego, jeśli wybierasz się na Teide, nawet w sierpniu. Jeśli planujesz chodzić, weź buty górskie; klapki na szlakach się nie sprawdzą.",
+        "zh": "🧳 海岸穿夏装，带一双抓地的舒适鞋、泳衣和高倍防晒。再加一件薄外套应付夜晚；若要上泰德峰，即使八月也要带真正保暖的衣物。打算走步道的话请带登山鞋，人字拖在步道上完全不行。",
+        "zht": "🧳 海岸穿夏裝，帶一雙抓地的舒適鞋、泳衣和高倍防曬。再加一件薄外套應付夜晚；若要上泰德峰，即使八月也要帶真正保暖的衣物。打算走步道的話請帶登山鞋，人字拖在步道上完全不行。"
+      },
+      "follow": [
+        "pra-10",
+        "pra-03",
+        "pra-02"
+      ]
+    },
+    {
+      "id": "pra-10",
+      "cat": "practico",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿Cuántos días necesito?",
+        "en": "How many days do I need?",
+        "de": "Wie viele Tage brauche ich?",
+        "fr": "Combien de jours faut-il ?",
+        "it": "Quanti giorni servono?",
+        "nl": "Hoeveel dagen heb ik nodig?",
+        "pl": "Ile dni potrzebuję?",
+        "zh": "需要待几天？",
+        "zht": "需要待幾天？"
+      },
+      "keys": {
+        "es": [
+          "cuantos dias necesito",
+          "cuanto tiempo quedarse",
+          "duracion del viaje",
+          "es suficiente una semana"
+        ],
+        "en": [
+          "how many days do i need",
+          "how long to stay",
+          "trip length",
+          "is a week enough"
+        ],
+        "de": [
+          "wie viele tage brauche ich",
+          "wie lange bleiben",
+          "reisedauer",
+          "reicht eine woche"
+        ],
+        "fr": [
+          "combien de jours faut il",
+          "combien de temps rester",
+          "duree du sejour",
+          "une semaine suffit"
+        ],
+        "it": [
+          "quanti giorni servono",
+          "quanto restare",
+          "durata del viaggio",
+          "basta una settimana"
+        ],
+        "nl": [
+          "hoeveel dagen heb ik nodig",
+          "hoelang blijven",
+          "reisduur",
+          "is een week genoeg"
+        ],
+        "pl": [
+          "ile dni potrzeba",
+          "jak dlugo zostac",
+          "dlugosc pobytu",
+          "czy tydzien wystarczy"
+        ],
+        "zh": [
+          "需要几天",
+          "待多久",
+          "行程长度",
+          "一周够吗"
+        ],
+        "zht": [
+          "需要幾天",
+          "待多久",
+          "行程長度",
+          "一週夠嗎"
+        ]
+      },
+      "a": {
+        "es": "📆 Una semana es lo ideal y te deja ver la isla sin correr. Con cinco días sales bien parado si no pierdes tiempo cruzando de punta a punta. Con tres vas justo: elige dos zonas y olvídate del resto. Menos de eso es una escala, no un viaje.",
+        "en": "📆 A week is ideal and lets you see the island without rushing. Five days works well if you avoid wasting time crossing from end to end. With three you are tight: pick two areas and forget the rest. Less than that is a stopover, not a trip.",
+        "de": "📆 Eine Woche ist ideal und lässt dich die Insel ohne Hetze sehen. Fünf Tage funktionieren gut, wenn du nicht ständig von einem Ende zum anderen fährst. Mit drei wird es knapp: such dir zwei Gegenden aus und vergiss den Rest. Weniger ist ein Zwischenstopp, keine Reise.",
+        "fr": "📆 Une semaine est l’idéal et permet de voir l’île sans courir. Cinq jours passent bien si tu évites de traverser sans cesse d’un bout à l’autre. Avec trois, c’est juste : choisis deux zones et oublie le reste. Moins que ça, c’est une escale, pas un voyage.",
+        "it": "📆 Una settimana è l’ideale e ti permette di vedere l’isola senza corse. Con cinque giorni te la cavi bene se non perdi tempo attraversando da un capo all’altro. Con tre sei al limite: scegli due zone e lascia perdere il resto. Meno di così è uno scalo, non un viaggio.",
+        "nl": "📆 Een week is ideaal en laat je het eiland zien zonder te jachten. Vijf dagen werkt prima als je niet steeds van het ene naar het andere uiteinde rijdt. Met drie zit je krap: kies twee gebieden en vergeet de rest. Minder dan dat is een tussenstop, geen reis.",
+        "pl": "📆 Tydzień jest idealny i pozwala zobaczyć wyspę bez biegania. Pięć dni wystarczy, jeśli nie tracisz czasu na przejazdy z końca na koniec. Przy trzech jest ciasno: wybierz dwie strefy i odpuść resztę. Mniej to przystanek, a nie podróż.",
+        "zh": "📆 一周最理想，能从容把岛看一遍。五天也不错，前提是别把时间耗在从一头开到另一头。三天就很紧：挑两个区域，其余的放弃。再少就只是中转，不算旅行了。",
+        "zht": "📆 一週最理想，能從容把島看一遍。五天也不錯，前提是別把時間耗在從一頭開到另一頭。三天就很緊：挑兩個區域，其餘的放棄。再少就只是中轉，不算旅行了。"
+      },
+      "follow": [
+        "pra-09",
+        "pra-13",
+        "pra-04"
+      ]
+    },
+    {
+      "id": "pra-11",
+      "cat": "practico",
+      "prio": 2,
+      "volatil": true,
+      "label": {
+        "es": "¿Qué horario tienen las tiendas?",
+        "en": "What are the shop hours?",
+        "de": "Wann haben die Läden offen?",
+        "fr": "Quels horaires pour les magasins ?",
+        "it": "Che orari fanno i negozi?",
+        "nl": "Wat zijn de winkeltijden?",
+        "pl": "Jakie są godziny sklepów?",
+        "zh": "商店的营业时间？",
+        "zht": "商店的營業時間？"
+      },
+      "keys": {
+        "es": [
+          "horario tiendas",
+          "abren los domingos",
+          "cuando abren",
+          "siesta comercio",
+          "supermercado horario"
+        ],
+        "en": [
+          "shop hours",
+          "open on sundays",
+          "opening times",
+          "supermarket hours"
+        ],
+        "de": [
+          "ladenoffnungszeiten",
+          "sonntags geoffnet",
+          "wann offnen",
+          "supermarkt offnungszeiten"
+        ],
+        "fr": [
+          "horaires des magasins",
+          "ouvert le dimanche",
+          "heures d ouverture",
+          "horaires supermarche"
+        ],
+        "it": [
+          "orari dei negozi",
+          "aperto la domenica",
+          "orari di apertura",
+          "orari supermercato"
+        ],
+        "nl": [
+          "winkeltijden",
+          "zondag open",
+          "openingstijden",
+          "supermarkt tijden"
+        ],
+        "pl": [
+          "godziny sklepow",
+          "otwarte w niedziele",
+          "godziny otwarcia",
+          "supermarket godziny"
+        ],
+        "zh": [
+          "商店时间",
+          "周日营业吗",
+          "营业时间",
+          "超市时间"
+        ],
+        "zht": [
+          "商店時間",
+          "週日營業嗎",
+          "營業時間",
+          "超市時間"
+        ]
+      },
+      "a": {
+        "es": "🕙 El comercio pequeño suele abrir por la mañana, cerrar a mediodía y volver por la tarde; los centros comerciales y las grandes superficies siguen horario continuo. Muchas tiendas cierran el domingo, salvo en las zonas turísticas. Los horarios cambian por temporada y por municipio, así que confírmalo antes de cruzar la isla.",
+        "en": "🕙 Small shops usually open in the morning, close at midday and reopen in the afternoon; shopping centres and large stores stay open all day. Many shops close on Sundays, except in the resort areas. Hours vary by season and by municipality, so check before you drive across the island.",
+        "de": "🕙 Kleine Läden öffnen meist vormittags, schließen mittags und machen nachmittags wieder auf; Einkaufszentren und große Märkte haben durchgehend geöffnet. Viele Geschäfte schließen sonntags, außer in den Urlaubsorten. Die Zeiten wechseln je nach Saison und Gemeinde, prüf das, bevor du quer über die Insel fährst.",
+        "fr": "🕙 Les petits commerces ouvrent en général le matin, ferment à midi et rouvrent l’après-midi ; les centres commerciaux et les grandes surfaces font journée continue. Beaucoup de boutiques ferment le dimanche, sauf en zone touristique. Les horaires changent selon la saison et la commune : vérifie avant de traverser l’île.",
+        "it": "🕙 I negozi piccoli di solito aprono la mattina, chiudono a mezzogiorno e riaprono nel pomeriggio; centri commerciali e grandi superfici fanno orario continuato. Molti negozi chiudono la domenica, tranne nelle zone turistiche. Gli orari cambiano per stagione e per comune, quindi controlla prima di attraversare l’isola.",
+        "nl": "🕙 Kleine winkels openen meestal ’s ochtends, sluiten rond het middaguur en gaan ’s middags weer open; winkelcentra en grote zaken zijn doorlopend open. Veel winkels zijn zondag dicht, behalve in de toeristische zones. Tijden verschillen per seizoen en gemeente, dus check het voor je het eiland oversteekt.",
+        "pl": "🕙 Małe sklepy zwykle otwierają rano, zamykają w południe i wracają po południu; centra handlowe i duże sklepy pracują bez przerwy. Wiele sklepów jest zamkniętych w niedziele, poza strefami turystycznymi. Godziny zmieniają się sezonowo i zależnie od gminy, więc sprawdź przed przejazdem przez wyspę.",
+        "zh": "🕙 小店通常上午营业、中午休息、下午再开；购物中心和大型卖场则全天不打烊。除旅游区外，很多店周日关门。营业时间随季节和市镇不同，横穿全岛去之前先确认。",
+        "zht": "🕙 小店通常上午營業、中午休息、下午再開；購物中心和大型賣場則全天不打烊。除旅遊區外，很多店週日關門。營業時間隨季節和市鎮不同，橫穿全島去之前先確認。"
+      },
+      "follow": [
+        "pra-12",
+        "pra-01",
+        "pra-05"
+      ]
+    },
+    {
+      "id": "pra-12",
+      "cat": "practico",
+      "prio": 3,
+      "volatil": true,
+      "label": {
+        "es": "¿Qué es el IGIC?",
+        "en": "What is the IGIC?",
+        "de": "Was ist die IGIC?",
+        "fr": "C’est quoi l’IGIC ?",
+        "it": "Cos’è l’IGIC?",
+        "nl": "Wat is de IGIC?",
+        "pl": "Czym jest IGIC?",
+        "zh": "IGIC 是什么？",
+        "zht": "IGIC 是什麼？"
+      },
+      "keys": {
+        "es": [
+          "igic",
+          "impuesto",
+          "iva en canarias",
+          "tax free",
+          "devolucion de impuestos",
+          "comprar barato"
+        ],
+        "en": [
+          "igic",
+          "tax",
+          "vat in the canaries",
+          "tax free",
+          "tax refund",
+          "cheaper shopping"
+        ],
+        "de": [
+          "igic",
+          "steuer",
+          "mehrwertsteuer kanaren",
+          "tax free",
+          "steuerruckerstattung"
+        ],
+        "fr": [
+          "igic",
+          "taxe",
+          "tva aux canaries",
+          "detaxe",
+          "remboursement de taxe"
+        ],
+        "it": [
+          "igic",
+          "tassa",
+          "iva alle canarie",
+          "tax free",
+          "rimborso tasse"
+        ],
+        "nl": [
+          "igic",
+          "belasting",
+          "btw op de canarische eilanden",
+          "tax free",
+          "belastingteruggave"
+        ],
+        "pl": [
+          "igic",
+          "podatek",
+          "vat na wyspach kanaryjskich",
+          "tax free",
+          "zwrot podatku"
+        ],
+        "zh": [
+          "igic",
+          "税",
+          "加那利增值税",
+          "退税",
+          "免税购物"
+        ],
+        "zht": [
+          "igic",
+          "稅",
+          "加那利增值稅",
+          "退稅",
+          "免稅購物"
+        ]
+      },
+      "a": {
+        "es": "🧾 Es el impuesto indirecto propio de Canarias, que sustituye al IVA y es bastante más bajo. Por eso la electrónica, el perfume, el tabaco y el alcohol salen más baratos que en el continente. Las condiciones de devolución para viajeros cambian, así que pregunta en la tienda al pagar y guarda la factura.",
+        "en": "🧾 It is the Canaries’ own indirect tax, replacing VAT and noticeably lower. That is why electronics, perfume, tobacco and spirits come out cheaper than on the mainland. Refund conditions for travellers change, so ask in the shop as you pay and keep the receipt.",
+        "de": "🧾 Es ist die eigene indirekte Steuer der Kanaren, die die Mehrwertsteuer ersetzt und deutlich niedriger liegt. Deshalb sind Elektronik, Parfüm, Tabak und Spirituosen günstiger als auf dem Festland. Die Erstattungsbedingungen für Reisende ändern sich, frag also beim Bezahlen im Laden und heb den Beleg auf.",
+        "fr": "🧾 C’est l’impôt indirect propre aux Canaries, qui remplace la TVA et reste nettement plus bas. D’où l’électronique, le parfum, le tabac et l’alcool moins chers que sur le continent. Les conditions de remboursement pour les voyageurs changent : demande en boutique au moment de payer et garde la facture.",
+        "it": "🧾 È l’imposta indiretta propria delle Canarie, che sostituisce l’IVA ed è parecchio più bassa. Per questo elettronica, profumi, tabacco e alcolici costano meno che sul continente. Le condizioni di rimborso per i viaggiatori cambiano, quindi chiedi in negozio al momento di pagare e conserva lo scontrino.",
+        "nl": "🧾 Het is de eigen indirecte belasting van de Canarische Eilanden, die de btw vervangt en flink lager ligt. Daarom zijn elektronica, parfum, tabak en sterkedrank er goedkoper dan op het vasteland. De teruggaveregels voor reizigers veranderen, dus vraag het in de winkel bij het afrekenen en bewaar de bon.",
+        "pl": "🧾 To własny podatek pośredni Wysp Kanaryjskich, który zastępuje VAT i jest wyraźnie niższy. Dlatego elektronika, perfumy, tytoń i alkohol wychodzą taniej niż na kontynencie. Zasady zwrotu dla podróżnych się zmieniają, więc zapytaj w sklepie przy płaceniu i zachowaj paragon.",
+        "zh": "🧾 这是加那利自有的间接税，取代增值税，税率明显更低。因此电子产品、香水、烟和烈酒都比本土便宜。旅客退税的条件会变动，付款时请在店里问清楚，并保留发票。",
+        "zht": "🧾 這是加那利自有的間接稅，取代增值稅，稅率明顯更低。因此電子產品、香水、菸和烈酒都比本土便宜。旅客退稅的條件會變動，付款時請在店裡問清楚，並保留發票。"
+      },
+      "follow": [
+        "pra-13",
+        "pra-01",
+        "pra-11"
+      ]
+    },
+    {
+      "id": "pra-13",
+      "cat": "practico",
+      "prio": 2,
+      "volatil": true,
+      "label": {
+        "es": "¿Es caro Tenerife?",
+        "en": "Is Tenerife expensive?",
+        "de": "Ist Teneriffa teuer?",
+        "fr": "Tenerife, c’est cher ?",
+        "it": "Tenerife è cara?",
+        "nl": "Is Tenerife duur?",
+        "pl": "Czy Teneryfa jest droga?",
+        "zh": "特内里费物价高吗？",
+        "zht": "特內里費物價高嗎？"
+      },
+      "keys": {
+        "es": [
+          "es caro tenerife",
+          "nivel de precios",
+          "presupuesto",
+          "viajar barato",
+          "cuanto dinero llevar"
+        ],
+        "en": [
+          "is tenerife expensive",
+          "price level",
+          "budget",
+          "travel cheap",
+          "how much money"
+        ],
+        "de": [
+          "ist teneriffa teuer",
+          "preisniveau",
+          "budget",
+          "gunstig reisen",
+          "wie viel geld"
+        ],
+        "fr": [
+          "tenerife est elle chere",
+          "niveau des prix",
+          "budget",
+          "voyager pas cher",
+          "combien d argent"
+        ],
+        "it": [
+          "tenerife e cara",
+          "livello dei prezzi",
+          "budget",
+          "viaggiare economico",
+          "quanti soldi"
+        ],
+        "nl": [
+          "is tenerife duur",
+          "prijsniveau",
+          "budget",
+          "goedkoop reizen",
+          "hoeveel geld"
+        ],
+        "pl": [
+          "czy teneryfa jest droga",
+          "poziom cen",
+          "budzet",
+          "tanie podrozowanie",
+          "ile pieniedzy"
+        ],
+        "zh": [
+          "特内里费贵吗",
+          "物价水平",
+          "预算",
+          "省钱旅行",
+          "要带多少钱"
+        ],
+        "zht": [
+          "特內里費貴嗎",
+          "物價水平",
+          "預算",
+          "省錢旅行",
+          "要帶多少錢"
+        ]
+      },
+      "a": {
+        "es": "💰 Menos caro que la mayoría de destinos europeos de sol, en buena parte porque el IGIC es más bajo que el IVA. Lo que dispara el gasto es la zona: el paseo marítimo turístico y los parques temáticos. Fuera de eso, comer, moverse en guagua y la playa son baratos, y el paisaje no cuesta nada.",
+        "en": "💰 Cheaper than most European sun destinations, largely because the IGIC is lower than mainland VAT. What pushes the spend up is the area: the tourist seafront and the theme parks. Away from those, eating, getting around by bus and the beach are inexpensive, and the landscape costs nothing.",
+        "de": "💰 Günstiger als die meisten europäischen Sonnenziele, vor allem weil die IGIC niedriger ist als die Mehrwertsteuer. Was die Kosten hochtreibt, ist die Gegend: die touristische Strandpromenade und die Freizeitparks. Abseits davon sind Essen, Busfahren und Strand billig, und die Landschaft kostet gar nichts.",
+        "fr": "💰 Moins cher que la plupart des destinations soleil en Europe, en grande partie parce que l’IGIC est plus bas que la TVA. Ce qui fait grimper la note, c’est la zone : le front de mer touristique et les parcs à thème. En dehors, manger, se déplacer en bus et la plage restent bon marché, et le paysage ne coûte rien.",
+        "it": "💰 Meno cara della maggior parte delle mete di sole europee, in gran parte perché l’IGIC è più basso dell’IVA. A far salire la spesa è la zona: il lungomare turistico e i parchi a tema. Fuori da lì, mangiare, muoversi in autobus e la spiaggia costano poco, e il paesaggio non costa nulla.",
+        "nl": "💰 Goedkoper dan de meeste Europese zonbestemmingen, vooral omdat de IGIC lager is dan de btw. Wat de uitgaven opdrijft is de zone: de toeristische boulevard en de pretparken. Daarbuiten zijn eten, met de bus reizen en het strand goedkoop, en het landschap kost niets.",
+        "pl": "💰 Taniej niż w większości europejskich kierunków słonecznych, głównie dlatego, że IGIC jest niższy niż VAT. Wydatki podbija strefa: turystyczna promenada i parki rozrywki. Poza nimi jedzenie, przejazdy autobusem i plaża są tanie, a krajobraz nie kosztuje nic.",
+        "zh": "💰 比多数欧洲阳光度假地便宜，很大原因是 IGIC 税率低于本土增值税。真正推高开销的是地段：旅游海滨步道和主题乐园。离开这些地方，吃饭、坐公交和去海滩都很便宜，而风景不要钱。",
+        "zht": "💰 比多數歐洲陽光度假地便宜，很大原因是 IGIC 稅率低於本土增值稅。真正推高開銷的是地段：旅遊海濱步道和主題樂園。離開這些地方，吃飯、搭公車和去海灘都很便宜，而風景不要錢。"
+      },
+      "follow": [
+        "pra-12",
+        "pra-10",
+        "pra-01"
+      ]
+    }
+  ]
+}

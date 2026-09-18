@@ -8785,8 +8785,68 @@ const TG_ETIQUETAS = (function () {
   };
 })();
 
+/* Base de conocimiento del asistente, un fichero por idioma.
+
+   Las entradas de CHAT_KB estan escritas en castellano y en nada mas: a un
+   aleman que preguntaba por el permiso del Teide se le contestaba en
+   castellano y no habia nada que lo delatara, porque la respuesta llegaba
+   igual. Estas 69 vienen redactadas en los diez idiomas, cada una con sus
+   propias claves de busqueda, y viven fuera del HTML porque el movil solo
+   necesita el idioma que esta usando: 32 kB en vez de los 300 de las diez.
+
+   Si el fichero no ha llegado, el asistente contesta con CHAT_KB como
+   siempre. Nunca se queda mudo. */
+const TG_FAQ = (function () {
+  'use strict';
+  let pool = [], cats = {}, pedido = null;
+
+  /* Le da a cada entrada la forma de las de CHAT_KB para que el buscador no
+     tenga que distinguirlas, y resuelve los follow, que en el fichero son
+     ids, al rotulo de ese idioma. Las ordena por prioridad: cuando dos
+     entradas empatan gana la de arriba, y arriba queremos las de prio 1.
+
+     El rotulo se anade a las claves de su propia entrada. No es un adorno:
+     los botones de seguimiento mandan su texto tal cual a processUserMessage,
+     asi que un rotulo que no case con las claves de la entrada a la que
+     apunta es un boton que no lleva a ninguna parte. Eran 119 de 621, y
+     desde fuera no se notaba nada raro: el boton estaba, se pulsaba, y el
+     asistente contestaba otra cosa. Aqui, y no en el JSON, porque es un dato
+     que ya esta escrito y duplicarlo seria empezar a mantener dos. */
+  function armar(d) {
+    if (!d || !d.e || !d.e.length) return [];
+    const rotulo = {};
+    for (const e of d.e) rotulo[e.id] = e.l;
+    return d.e.slice().sort(function (a, b) { return a.p - b.p; }).map(function (e) {
+      return {
+        keys: e.k.concat([e.l]),
+        answer: e.a,
+        follow: (e.f || []).map(function (id) { return rotulo[id]; }).filter(Boolean)
+      };
+    });
+  }
+  function bajar(lang) {
+    if (!lang) return Promise.resolve();
+    if (pedido === lang) return Promise.resolve();
+    pedido = lang;
+    return fetch('faq/' + lang + '.json', { cache: 'force-cache' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (pedido !== lang) return;        // llego tarde, ya cambiaron de idioma
+        pool = armar(d);
+        cats = (d && d.c) || {};
+      })
+      .catch(function () { if (pedido === lang) { pool = []; cats = {}; } });
+  }
+  return {
+    arrancar: bajar, cambiarA: bajar,
+    entradas: function () { return pool; },
+    categorias: function () { return cats; }
+  };
+})();
+
 TG_LUGARES_I18N.arrancar(currentLang);
 TG_ETIQUETAS.arrancar(currentLang);
+TG_FAQ.arrancar(currentLang);
 
 /* Textos de interfaz que faltaban: barra inferior, pestanas de Rutas
    y calculador A->B. Se aplican en setLang (ver applyUiTx). */
@@ -9331,6 +9391,7 @@ function setLang(lang) {
      que localized() hace siempre con un idioma que falta. */
   try { TG_LUGARES_I18N.cambiarA(lang); } catch (e) {}
   try { TG_ETIQUETAS.cambiarA(lang); } catch (e) {}
+  try { TG_FAQ.cambiarA(lang); } catch (e) {}
   // Recordar la eleccion: antes se perdia al recargar y el turista
   // volvia a encontrarse la app en espanol.
   try { localStorage.setItem('tg_lang', lang); } catch (e) {}
@@ -29966,9 +30027,31 @@ const CHAT_CONTACT_MSG = '¡Hola Jérôme! Tengo una pregunta sobre Tenerife GO 
 /*CHAT_CORE_START*/
 // ── Normalización y utilidades ────────────────────────────────────
 var CHAT_STOP={de:1,la:1,el:1,los:1,las:1,del:1,en:1,al:1,un:1,una:1,unos:1,unas:1,y:1,o:1,u:1,que:1,se:1,es:1,por:1,para:1,con:1,sin:1,mi:1,tu:1,su:1,me:1,te:1,lo:1,le:1,the:1,of:1,in:1,on:1,at:1,to:1,an:1,and:1,or:1,is:1,are:1,da:1,di:1,il:1,der:1,die:1,das:1,het:1,van:1,au:1,aux:1};
+/* [^a-z0-9] borraba el cirilico y el chino enteros: chatNorm('плажове') y
+   chatNorm('海滩') devolvian la cadena vacia, asi que el asistente no podia
+   entender una sola palabra en bulgaro ni en chino por mucho que las
+   respuestas estuvieran escritas. Se conserva cualquier letra o cifra, del
+   alfabeto que sea, y se sigue quitando la puntuacion.
+
+   NFD separa la tilde de la letra y el replace siguiente se la lleva, que es
+   lo que hace que 'wejscie' encuentre 'wejscie'. Lo que NFD no descompone
+   son las letras con trazo: la l polaca, la o danesa, la d croata y la ss
+   alemana no son letra mas acento, son otro caracter, y esas hay que
+   doblarlas a mano o el polaco se queda sin la mitad de sus palabras. */
+var CHAT_TRAZO={'\u0142':'l','\u00f8':'o','\u0111':'d','\u00df':'ss','\u00e6':'ae','\u0153':'oe','\u00fe':'th','\u0131':'i'};
 function chatNorm(s){
-  return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
+  return String(s||'').toLowerCase()
+    .replace(/[\u0142\u00f8\u0111\u00df\u00e6\u0153\u00fe\u0131]/g,function(c){return CHAT_TRAZO[c];})
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^\p{L}\p{N}\s]/gu,' ').replace(/\s+/g,' ').trim();
 }
+/* El chino y el japones no separan las palabras con espacios: una pregunta
+   entera es un solo token y una clave no es ni token ni frase entre
+   espacios. Esas se buscan dentro de la pregunta, y por los dos lados sin
+   espacios, porque nadie escribe igual 'guagua 是什么意思' que
+   'guagua是什么意思' y las dos quieren decir lo mismo. */
+var CHAT_CJK=/[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/;
+function chatSinEsp(s){return String(s||'').split(' ').join('');}
 function chatTokens(qn){
   var out=[],arr=qn.split(' ');
   for(var i=0;i<arr.length;i++){var t=arr[i];if(t.length>1&&!CHAT_STOP[t])out.push(t);}
@@ -30092,9 +30175,15 @@ const CHAT_KB = [
     follow:['Bus al Teide','Alquiler de coche','Miradores'] },
 
   // ═══ TEIDE Y SENDEROS REGULADOS ═══
+  /* Esta entrada decia que el permiso de la cima era gratuito y que se
+     reservaba en reservasparquesnacionales.es. Las dos cosas dejaron de ser
+     ciertas: se reserva en Tenerife ON y en la franja del teleferico se
+     paga. Queda aqui la version corta y correcta, que es la que sale si
+     faq/<lang>.json no ha llegado; el detalle esta en las quince entradas
+     del bloque del Teide. */
   { keys:['teide','pico del teide','cima','volcan','subir al teide','permiso teide','telesforo bravo'],
-    answer:'🌋 El Teide (3.715 m) es el pico más alto de España. Claves:\n• Con el teleférico subes a 3.555 m sin ningún permiso\n• Para el tramo final a la CIMA (sendero 10, Telesforo Bravo) hace falta permiso GRATUITO: se reserva en reservasparquesnacionales.es y vuela con meses de antelación (aforo ~200 personas/día)\n• Sin permiso también puedes ir con tour guiado que lo incluya, o subir a pie de noche y estar en la cima antes de las 9:00 con reserva del refugio de Altavista cuando está operativo\n• Arriba hace frío y hay la mitad de oxígeno: abrígate y ve despacio\n• En guagua: líneas 342 (desde el sur) y 348 (desde el norte).',
-    follow:['Teleférico del Teide','Bus al Teide','Ver las estrellas'] },
+    answer:'🌋 El Teide (3.715 m) es el pico más alto de España. Claves:\n• Con el teleférico subes a 3.555 m (La Rambleta) sin ningún permiso\n• Para el tramo final a la CIMA (sendero PNT 10, Telesforo Bravo) hace falta autorización previa: se reserva en Tenerife ON (tenerifeon.es), registro gratuito. Las plazas se abren cada lunes a las 07:00 hora canaria para los 56 días siguientes, una reserva por persona cada 15 días\n• En la franja del teleférico (9:00–17:00) hay tarifa; residentes en Tenerife y menores no pagan. Fuera de esa franja no hay tarifa, pero la reserva sigue siendo obligatoria\n• El billete del teleférico NO incluye el permiso: son dos gestiones distintas\n• Arriba hace frío y hay la mitad de oxígeno: abrígate y ve despacio\n• En guagua: líneas 342 (desde el sur) y 348 (desde el norte).',
+    follow:['Dónde reservo el permiso','Bus al Teide','Ver las estrellas'] },
 
   { keys:['teleferico','el teleferico','al teleferico','del teleferico','cable car','telesferico'],
     answer:'🚡 Teleférico del Teide: sube de 2.356 a 3.555 m en 8 minutos.\n• Horario general 9:00–17:00 (amplía en verano); cierra si hay viento fuerte\n• Precio no residente: 23,50€ por trayecto (~45-47€ ida y vuelta); residentes canarios mucho menos; niños mitad\n• Compra online en volcanoteide.com para elegir hora y evitar cola\n• Arriba, sin permiso, puedes hacer los senderos 11 (mirador de La Fortaleza) y 12 (mirador de Pico Viejo), ~30-60 min cada uno. La cima requiere permiso aparte.',
@@ -30125,7 +30214,11 @@ const CHAT_KB = [
     follow:['Senderos','Barranco del Infierno','Anaga'] },
 
   // ═══ SEGURIDAD Y SALUD ═══
-  { keys:['emergencia','emergencias','112','socorro','rescate','urgente'],
+  /* «help», «hilfe», «aiuto» y «pomoc» estaban en la entrada de ayuda de la
+     app, que explica los botones. Quien escribe eso puede estar pidiendo
+     ayuda de verdad, asi que las hereda emergencias. Si solo queria el
+     manual, lo tiene a un toque en la barra de abajo; al reves no. */
+  { keys:['emergencia','emergencias','112','socorro','rescate','urgente','help','hilfe','aiuto','pomoc','hulp'],
     answer:'🚨 Para CUALQUIER emergencia en Tenerife llama al 112 (gratuito, atienden en varios idiomas). Si estás en el monte o la costa, abre tu ubicación en el mapa de la app y dales las coordenadas exactas: acelera mucho el rescate. Para urgencias médicas no graves también puedes acudir al centro de salud más cercano (los tienes en el mapa).',
     follow:['Hospitales','Farmacias','Seguridad en el mar'] },
 
@@ -30141,7 +30234,7 @@ const CHAT_KB = [
     answer:'⚠️ Reglas de oro en el monte:\n• Agua de sobra (2 L por persona), gorra y capa extra: el tiempo cambia rápido con la altitud\n• Di a alguien tu ruta y hora prevista de vuelta\n• No abandones el sendero marcado: los barrancos engañan\n• Mira la previsión y evita barrancos con lluvia (crecidas)\n• Muchas fichas del mapa llevan avisos ⚠️ específicos del lugar: léelos antes de salir\n• Ante un problema: 112 + coordenadas de la app.',
     follow:['Senderos fáciles','Emergencias 112','El tiempo'] },
 
-  { keys:['sol','quemadura','protector solar','uv','insolacion'],
+  { keys:['sol','quemadura','protector solar','uv','indice uv','crema solar'],
     answer:'☀️ El índice UV en Canarias es alto TODO el año, incluso nublado («panza de burro» también quema). SPF 50, gorra y gafas; repite crema tras cada baño. En el Teide el sol pega el doble: a 3.500 m te quemas en minutos. Bebe agua a menudo: la brisa disimula el calor.',
     follow:['El tiempo','Playas','Teide'] },
 
@@ -30149,8 +30242,11 @@ const CHAT_KB = [
     answer:'💊 Las farmacias se reconocen por la cruz verde; horario típico 9-13:30 y 17-20:30, y siempre hay una de guardia 24 h por zona (el cartel de cada farmacia indica cuál toca). En el mapa tienes la categoría Farmacias 💊 para localizar la más cercana. Con receta electrónica de otra región de España te dispensan sin problema; con recetas de fuera de España, pregunta: muchos medicamentos comunes se venden con equivalente local.',
     follow:['Hospitales','Emergencias 112','Centros de salud'] },
 
-  { keys:['medico','sanidad','tarjeta sanitaria','seguro','hospital','hospitales','urgencias'],
-    answer:'🏥 Salud para visitantes:\n• Ciudadanos UE: la Tarjeta Sanitaria Europea (TSE) cubre urgencias en la sanidad pública\n• Resto: conviene seguro de viaje con cobertura médica\n• Hospitales públicos de referencia: HUC (La Laguna), La Candelaria (Santa Cruz) y Hospital del Sur (Arona); además hay clínicas privadas en las zonas turísticas\n• Urgencia grave: 112 directamente.',
+  /* «insolacion» y «golpe de calor» estaban en la entrada del sol, que habla
+     de crema y de indice UV. Quien los escribe suele tener a alguien mal
+     delante y necesita que hacer, no consejos de proteccion. */
+  { keys:['medico','sanidad','tarjeta sanitaria','seguro','hospital','hospitales','urgencias','insolacion','golpe de calor','deshidratacion','primeros auxilios'],
+    answer:'🏥 Salud para visitantes:\n• Ciudadanos UE: la Tarjeta Sanitaria Europea (TSE) cubre urgencias en la sanidad pública\n• Resto: conviene seguro de viaje con cobertura médica\n• Hospitales públicos de referencia: HUC (La Laguna), La Candelaria (Santa Cruz) y Hospital del Sur (Arona); además hay clínicas privadas en las zonas turísticas\n• Insolación o golpe de calor: a la sombra, fresco, agua a sorbos y aflojar la ropa. Si hay vómitos, confusión o desmayo, 112 sin esperar\n• Urgencia grave: 112 directamente.',
     follow:['Farmacias','Emergencias 112','Centros de salud'] },
 
   // ═══ CLIMA ═══
@@ -30282,7 +30378,7 @@ const CHAT_KB = [
     follow:['Modo offline de la app','Senderos','Emergencias 112'] },
 
   // ═══ AYUDA DE LA APP ═══
-  { keys:['ayuda','como funciona','manual','instrucciones','tutorial','que sabes hacer','help','guia de la app'],
+  { keys:['ayuda','como funciona','manual','instrucciones','tutorial','que sabes hacer','guia de la app'],
     answer:'ℹ️ Tenerife GO en 30 segundos:\n• Mapa con 700+ lugares: toca un pin y verás su ficha completa\n• Arriba: buscador 🔍, filtros por categoría, dado 🎲 «Sorpréndeme» e idioma 🌐\n• Abajo: Favoritos ❤️, Rutas 🧭, Tienda 🛍️, este Asistente 💬 y tu Cuenta 👤\n• En cada ficha: clima actual, audio 🔊, compartir, favorito y «Cómo llegar en bus» 🚏\nPregúntame por cualquier función y te la explico al detalle.',
     follow:['Cómo guardar favoritos','Modo sin conexión','Planificador de día'] },
 
@@ -30438,7 +30534,23 @@ function chatNombreCat(k){
   var t = (LANGS[currentLang] && LANGS[currentLang].categories) || {};
   return t[k] || (LANGS.es.categories && LANGS.es.categories[k]) || k;
 }
-function chatDetectCats(padded,tokset){
+/* El vocabulario de CHAT_CATS esta en castellano y en ingles y en nada mas,
+   asi que un chino que escribia «海滩» o un bulgaro que escribia «плажове»
+   no encontraban las playas: la categoria no se detectaba, y no era que la
+   respuesta no estuviera traducida, es que no habia respuesta.
+
+   El nombre de cada categoria ya esta escrito en los ocho idiomas dentro de
+   LANGS.categories, que es lo que sale en el menu del mapa y lo que devuelve
+   chatNombreCat. Se busca tambien por ahi: una sola fuente, sin vocabulario
+   nuevo que mantener, y el dia que alguien corrija un rotulo la busqueda se
+   corrige con el. Los sinonimos que el rotulo no cubre («沙滩», «nadar»)
+   van en faq/<lang>.json, que es el fichero del idioma que ya se descarga. */
+function chatCatVocab(k){
+  var t=(LANGS[currentLang]&&LANGS[currentLang].categories)||{};
+  var v=t[k]?[t[k]]:[],extra=TG_FAQ.categorias()[k];
+  return extra?v.concat(extra):v;
+}
+function chatDetectCats(padded,tokset,qnc){
   var keys=[],labels=[],used={};
   for(var i=0;i<CHAT_CATS.length;i++){
     var c=CHAT_CATS[i],hit=false;
@@ -30448,21 +30560,74 @@ function chatDetectCats(padded,tokset){
         if(padded.indexOf(' '+w+' ')>=0){hit=true;var pt=w.split(' ');for(var k=0;k<pt.length;k++)used[pt[k]]=1;}
       }else if(tokset[w]){hit=true;used[w]=1;}
     }
+    if(!hit){
+      var voc=chatCatVocab(c.k);
+      for(var v=0;v<voc.length;v++){
+        var vn=chatNorm(voc[v]);
+        if(!vn||!chatCoincide(vn,padded,tokset,qnc||''))continue;
+        hit=true;
+        var vp=vn.split(' ');
+        for(var vq=0;vq<vp.length;vq++)used[vp[vq]]=1;
+      }
+    }
     if(hit&&keys.indexOf(c.k)<0&&keys.length<2){keys.push(c.k);labels.push(chatNombreCat(c.k));}
   }
   return {keys:keys,label:labels.join(' + '),used:used};
 }
-function chatMatchKB(padded,tokset){
-  var best=null,bs=0;
-  for(var i=0;i<CHAT_KB.length;i++){
-    var item=CHAT_KB[i],sc=0;
-    for(var j=0;j<item.keys.length;j++){
-      var kn=chatNorm(item.keys[j]);
-      if(!kn)continue;
-      if(kn.indexOf(' ')>=0){if(padded.indexOf(' '+kn+' ')>=0)sc+=3+kn.split(' ').length;}
-      else if(tokset[kn])sc+=2;
+/* Dos fuentes: las entradas del idioma del usuario, que llegan en
+   faq/<lang>.json, y las de CHAT_KB, que siguen estando solo en castellano.
+   Se miran primero las traducidas y se le exige a CHAT_KB que gane, no que
+   empate: donde las dos saben la respuesta, la buena es la que esta en el
+   idioma de quien pregunta. Si el fichero no ha llegado, la primera lista
+   viene vacia y esto se comporta exactamente como antes. */
+/* Cuanto vale que esta clave aparezca en la pregunta; 0 es que no aparece.
+   Hay tres maneras de aparecer porque hay tres maneras de escribir:
+
+   - El chino y el japones no separan palabras. La clave no es un token ni
+     una frase entre espacios: se busca dentro, y por los dos lados sin
+     espacios, porque nadie escribe igual 'guagua 是什么意思' que
+     'guagua是什么意思'.
+
+   - La frase tal cual, en ese orden. Vale lo que mide.
+
+   - La frase descolocada. Un aleman escribe «Genehmigung fur den Teide» y
+     la clave es «teide genehmigung»: las dos palabras estan, el orden no.
+     Antes eso no puntuaba nada y la pregunta se iba a la entrada castellana
+     de CHAT_KB, que puntuaba 2 por el token «teide» suelto. Hacen falta dos
+     palabras de tres letras o mas: con una sola cualquier coincidencia
+     tonta valdria, y por debajo de tres letras no queda casi nada que
+     signifique algo. De las vacias no hay que preocuparse, porque tokset se
+     construye sin las de CHAT_STOP y «de», «the» o «van» no llegan hasta
+     aqui. Vale menos que la frase entera, que sigue siendo la senal buena. */
+function chatCoincide(kn,padded,tokset,qnc){
+  if(!kn)return 0;
+  if(CHAT_CJK.test(kn)){
+    var kc=chatSinEsp(kn);
+    // se topa en 5 para que una clave china larga no le gane siempre a una
+    // frase latina de cuatro palabras, que puntua 7
+    return (kc&&qnc.indexOf(kc)>=0)?3+Math.min(5,Math.ceil(kc.length/2)):0;
+  }
+  if(kn.indexOf(' ')<0)return tokset[kn]?2:0;
+  if(padded.indexOf(' '+kn+' ')>=0)return 3+kn.split(' ').length;
+  var pal=kn.split(' '),sueltas=0;
+  for(var i=0;i<pal.length;i++)if(pal[i].length>2&&tokset[pal[i]])sueltas++;
+  return sueltas>=2?sueltas:0;
+}
+/* Dos fuentes: las entradas del idioma del usuario, que llegan en
+   faq/<lang>.json, y las de CHAT_KB, que siguen estando solo en castellano.
+   Se miran primero las traducidas y se le exige a CHAT_KB que gane, no que
+   empate: donde las dos saben la respuesta, la buena es la que esta en el
+   idioma de quien pregunta. Si el fichero no ha llegado, la primera lista
+   viene vacia y esto se comporta exactamente como antes. */
+function chatMatchKB(padded,tokset,qn){
+  var fuentes=[TG_FAQ.entradas(),CHAT_KB],best=null,bs=0,qnc=chatSinEsp(qn||'');
+  for(var f=0;f<fuentes.length;f++){
+    var lista=fuentes[f];
+    for(var i=0;i<lista.length;i++){
+      var item=lista[i],sc=0;
+      for(var j=0;j<item.keys.length;j++)sc+=chatCoincide(chatNorm(item.keys[j]),padded,tokset,qnc);
+      if(sc>bs){bs=sc;best=item;}
     }
-    if(sc>bs){bs=sc;best=item;}
   }
   return bs>=2?{item:best,sc:bs}:null;
 }
@@ -30494,11 +30659,11 @@ function chatResolve(question,pos){
   for(w=0;w<CHAT_NEAR.length;w++){if(padded.indexOf(' '+CHAT_NEAR[w]+' ')>=0){nearHit=true;break;}}
   if(!nearHit){for(w=0;w<toks.length;w++){if(CHAT_NEAR_TOK[toks[w]]){nearHit=true;break;}}}
 
-  var cats=chatDetectCats(padded,tokset);
+  var cats=chatDetectCats(padded,tokset,chatSinEsp(qn));
   var zone=null;
   for(var z1=0;z1<toks.length;z1++){var zk=CHAT_ZONE_W[toks[z1]];if(zk&&!(z1>0&&(toks[z1-1]==='aeropuerto'||toks[z1-1]==='airport'))){zone=zk;break;}}
 
-  var kbr=chatMatchKB(padded,tokset);
+  var kbr=chatMatchKB(padded,tokset,qn);
   var askInfo=false;
   for(var ai=0;ai<toks.length;ai++){if(CHAT_ASKINFO[toks[ai]]){askInfo=true;break;}}
 

@@ -40,6 +40,10 @@ echo; echo "════════ cada idioma, uno por uno ══════
 for L in es en fr de it nl zh zht bg; do node tools/auditar_idioma.js $L | head -4; done
 echo; echo "════════ etiquetas del globo ════════"
 node tools/auditar_etiquetas.js || fallos=$((fallos+1))
+echo; echo "════════ base de conocimiento del asistente ════════"
+node tools/auditar_faq.js || fallos=$((fallos+1))
+echo; echo "════════ preguntas de prueba al asistente ════════"
+node tools/probar_faq.js | tail -3 || fallos=$((fallos+1))
 
 echo "════════ erratas al transliterar al cirilico ════════"
 python3 tools/auditar_cirilico.py || fallos=$((fallos+1))

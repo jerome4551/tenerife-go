@@ -1,0 +1,1051 @@
+{
+  "meta": {
+    "bloque": "D3 · Pueblos, cultura y fiestas",
+    "version": "1.0",
+    "fecha": "2026-09-13",
+    "idiomas": [
+      "es",
+      "en",
+      "de",
+      "fr",
+      "it",
+      "nl",
+      "pl",
+      "zh",
+      "zht"
+    ],
+    "entradas": 11,
+    "politica_datos": "Fechas de Carnaval, agenda de fiestas, horarios de museos y dias de mercadillo van marcados volatil:true y sin fecha concreta: cambian cada ano y por municipio."
+  },
+  "entradas": [
+    {
+      "id": "cul-01",
+      "cat": "cultura",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué pueblos bonitos hay?",
+        "en": "Which villages are worth it?",
+        "de": "Welche schönen Dörfer gibt es?",
+        "fr": "Quels beaux villages voir ?",
+        "it": "Quali paesi belli ci sono?",
+        "nl": "Welke mooie dorpen zijn er?",
+        "pl": "Które miasteczka warto zobaczyć?",
+        "zh": "有哪些漂亮的村镇？",
+        "zht": "有哪些漂亮的村鎮？"
+      },
+      "keys": {
+        "es": [
+          "pueblos bonitos",
+          "que pueblos ver",
+          "pueblo con encanto",
+          "casco historico",
+          "vilaflor",
+          "candelaria"
+        ],
+        "en": [
+          "prettiest villages",
+          "which towns to see",
+          "charming village",
+          "old town",
+          "vilaflor",
+          "candelaria"
+        ],
+        "de": [
+          "schone dorfer",
+          "welche orte ansehen",
+          "altstadt",
+          "vilaflor",
+          "candelaria"
+        ],
+        "fr": [
+          "beaux villages",
+          "quels villages voir",
+          "village de charme",
+          "centre historique",
+          "candelaria"
+        ],
+        "it": [
+          "paesi belli",
+          "quali paesi vedere",
+          "borgo caratteristico",
+          "centro storico",
+          "candelaria"
+        ],
+        "nl": [
+          "mooie dorpen",
+          "welke dorpen bezoeken",
+          "historisch centrum",
+          "candelaria"
+        ],
+        "pl": [
+          "ladne miasteczka",
+          "ktore miejscowosci zobaczyc",
+          "stare miasto",
+          "candelaria"
+        ],
+        "zh": [
+          "漂亮村镇",
+          "该看哪些小镇",
+          "古城区",
+          "candelaria"
+        ],
+        "zht": [
+          "漂亮村鎮",
+          "該看哪些小鎮",
+          "古城區",
+          "candelaria"
+        ]
+      },
+      "a": {
+        "es": "🏘️ Los que no fallan: La Orotava por sus casonas y balcones de tea, Garachico por el mar y la lava, La Laguna por el casco histórico, Masca y Taganana por el paisaje, Vilaflor por la altura y Candelaria por la basílica frente al Atlántico. Dime tu zona y te los ordeno por distancia.",
+        "en": "🏘️ The ones that never disappoint: La Orotava for its mansions and carved balconies, Garachico for the sea and the lava, La Laguna for the old town, Masca and Taganana for the landscape, Vilaflor for the altitude and Candelaria for the basilica facing the Atlantic. Tell me your area and I will sort them by distance.",
+        "de": "🏘️ Die, die nie enttäuschen: La Orotava mit seinen Herrenhäusern und geschnitzten Balkonen, Garachico wegen Meer und Lava, La Laguna wegen der Altstadt, Masca und Taganana wegen der Landschaft, Vilaflor wegen der Höhe und Candelaria wegen der Basilika am Atlantik. Sag mir deine Gegend, ich sortiere nach Entfernung.",
+        "fr": "🏘️ Ceux qui ne déçoivent jamais : La Orotava pour ses demeures et ses balcons sculptés, Garachico pour la mer et la lave, La Laguna pour le centre historique, Masca et Taganana pour le paysage, Vilaflor pour l’altitude et Candelaria pour la basilique face à l’Atlantique. Dis-moi ta zone et je te les classe par distance.",
+        "it": "🏘️ Quelli che non deludono mai: La Orotava per le case signorili e i balconi intagliati, Garachico per il mare e la lava, La Laguna per il centro storico, Masca e Taganana per il paesaggio, Vilaflor per la quota e Candelaria per la basilica davanti all’Atlantico. Dimmi la tua zona e te li ordino per distanza.",
+        "nl": "🏘️ De zekerheidjes: La Orotava om zijn herenhuizen en gesneden balkons, Garachico om de zee en de lava, La Laguna om het historische centrum, Masca en Taganana om het landschap, Vilaflor om de hoogte en Candelaria om de basiliek aan de Atlantische Oceaan. Zeg me je gebied, dan sorteer ik op afstand.",
+        "pl": "🏘️ Te, które nigdy nie zawodzą: La Orotava z dworkami i rzeźbionymi balkonami, Garachico z morzem i lawą, La Laguna ze starym miastem, Masca i Taganana za krajobraz, Vilaflor za wysokość i Candelaria za bazylikę zwróconą ku Atlantykowi. Powiedz, gdzie jesteś, a uszereguję je według odległości.",
+        "zh": "🏘️ 几乎不会踩雷的：La Orotava 的老宅与木雕阳台、Garachico 的海与熔岩、La Laguna 的历史城区、Masca 和 Taganana 的风景、Vilaflor 的高海拔，以及面朝大西洋的 Candelaria 大教堂。告诉我你在哪一区，我按距离排序。",
+        "zht": "🏘️ 幾乎不會踩雷的：La Orotava 的老宅與木雕陽台、Garachico 的海與熔岩、La Laguna 的歷史城區、Masca 和 Taganana 的風景、Vilaflor 的高海拔，以及面朝大西洋的 Candelaria 大教堂。告訴我你在哪一區，我按距離排序。"
+      },
+      "follow": [
+        "cul-02",
+        "cul-03",
+        "cul-04"
+      ]
+    },
+    {
+      "id": "cul-02",
+      "cat": "cultura",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué ver en La Laguna?",
+        "en": "What to see in La Laguna?",
+        "de": "Was sieht man in La Laguna?",
+        "fr": "Que voir à La Laguna ?",
+        "it": "Cosa vedere a La Laguna?",
+        "nl": "Wat te zien in La Laguna?",
+        "pl": "Co zobaczyć w La Laguna?",
+        "zh": "La Laguna 有什么看的？",
+        "zht": "La Laguna 有什麼看的？"
+      },
+      "keys": {
+        "es": [
+          "la laguna",
+          "san cristobal de la laguna",
+          "patrimonio de la humanidad",
+          "casco de la laguna"
+        ],
+        "en": [
+          "la laguna",
+          "san cristobal de la laguna",
+          "world heritage",
+          "old town la laguna"
+        ],
+        "de": [
+          "la laguna",
+          "san cristobal de la laguna",
+          "weltkulturerbe"
+        ],
+        "fr": [
+          "la laguna",
+          "san cristobal de la laguna",
+          "patrimoine mondial"
+        ],
+        "it": [
+          "la laguna",
+          "san cristobal de la laguna",
+          "patrimonio dell umanita"
+        ],
+        "nl": [
+          "la laguna",
+          "san cristobal de la laguna",
+          "werelderfgoed"
+        ],
+        "pl": [
+          "la laguna",
+          "san cristobal de la laguna",
+          "dziedzictwo ludzkosci"
+        ],
+        "zh": [
+          "la laguna",
+          "世界遗产",
+          "拉拉古纳"
+        ],
+        "zht": [
+          "la laguna",
+          "世界遺產",
+          "拉拉古納"
+        ]
+      },
+      "a": {
+        "es": "🏛️ Es Patrimonio de la Humanidad: la primera ciudad colonial sin murallas, con un trazado que luego se copió en América. Piérdete a pie entre casonas con patio, sube a la torre de la Concepción y tapea por la calle Herradores y el mercado. Desde Santa Cruz llegas en tranvía en veinte minutos.",
+        "en": "🏛️ It is a World Heritage site: the first unwalled colonial city, with a layout later copied across the Americas. Wander on foot among mansions with inner courtyards, climb the Concepción tower and eat tapas along Calle Herradores and the market. From Santa Cruz the tram gets you there in twenty minutes.",
+        "de": "🏛️ Weltkulturerbe: die erste Kolonialstadt ohne Mauern, deren Grundriss später in Amerika kopiert wurde. Lauf ziellos zwischen Herrenhäusern mit Innenhöfen, steig auf den Turm der Concepción und iss Tapas in der Calle Herradores und am Markt. Von Santa Cruz bringt dich die Straßenbahn in zwanzig Minuten hin.",
+        "fr": "🏛️ C’est un site du Patrimoine mondial : la première ville coloniale sans remparts, dont le tracé a ensuite été copié en Amérique. Perds-toi à pied entre les demeures à patio, monte à la tour de la Concepción et fais les tapas rue Herradores et au marché. Depuis Santa Cruz, le tram t’y amène en vingt minutes.",
+        "it": "🏛️ È Patrimonio dell’Umanità: la prima città coloniale senza mura, con un impianto poi copiato nelle Americhe. Perditi a piedi tra case signorili con patio, sali sulla torre della Concepción e fai tapas lungo calle Herradores e al mercato. Da Santa Cruz ci arrivi in tram in venti minuti.",
+        "nl": "🏛️ Het is werelderfgoed: de eerste koloniale stad zonder muren, met een stratenplan dat later in Amerika werd gekopieerd. Dwaal te voet tussen herenhuizen met binnenplaatsen, klim de Concepción-toren op en eet tapas in de Calle Herradores en op de markt. Vanuit Santa Cruz ben je er met de tram in twintig minuten.",
+        "pl": "🏛️ To obiekt Światowego Dziedzictwa: pierwsze kolonialne miasto bez murów, którego układ skopiowano potem w Ameryce. Pobłądź pieszo wśród dworków z dziedzińcami, wejdź na wieżę Concepción i zjedz tapas przy calle Herradores oraz na targu. Z Santa Cruz dojedziesz tramwajem w dwadzieścia minut.",
+        "zh": "🏛️ 这里是世界遗产：第一座没有城墙的殖民城市，其棋盘布局后来被搬到美洲。在带内院的老宅之间随意走走，登上 Concepción 钟楼，再到 Herradores 街和市场吃小食。从 Santa Cruz 搭电车二十分钟就到。",
+        "zht": "🏛️ 這裡是世界遺產：第一座沒有城牆的殖民城市，其棋盤布局後來被搬到美洲。在帶內院的老宅之間隨意走走，登上 Concepción 鐘樓，再到 Herradores 街和市場吃小食。從 Santa Cruz 搭電車二十分鐘就到。"
+      },
+      "follow": [
+        "cul-05",
+        "cul-10",
+        "cul-01"
+      ]
+    },
+    {
+      "id": "cul-03",
+      "cat": "cultura",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué ver en La Orotava?",
+        "en": "What to see in La Orotava?",
+        "de": "Was sieht man in La Orotava?",
+        "fr": "Que voir à La Orotava ?",
+        "it": "Cosa vedere a La Orotava?",
+        "nl": "Wat te zien in La Orotava?",
+        "pl": "Co zobaczyć w La Orotava?",
+        "zh": "La Orotava 有什么看的？",
+        "zht": "La Orotava 有什麼看的？"
+      },
+      "keys": {
+        "es": [
+          "la orotava",
+          "casa de los balcones",
+          "corpus",
+          "alfombras de arena",
+          "mirador humboldt"
+        ],
+        "en": [
+          "la orotava",
+          "house of balconies",
+          "corpus christi",
+          "sand carpets",
+          "humboldt viewpoint"
+        ],
+        "de": [
+          "la orotava",
+          "haus der balkone",
+          "fronleichnam",
+          "sandteppiche"
+        ],
+        "fr": [
+          "la orotava",
+          "maison des balcons",
+          "fete dieu",
+          "tapis de sable"
+        ],
+        "it": [
+          "la orotava",
+          "casa dei balconi",
+          "corpus domini",
+          "tappeti di sabbia"
+        ],
+        "nl": [
+          "la orotava",
+          "huis van de balkons",
+          "sacramentsdag",
+          "zandtapijten"
+        ],
+        "pl": [
+          "la orotava",
+          "dom balkonow",
+          "boze cialo",
+          "piaskowe dywany"
+        ],
+        "zh": [
+          "la orotava",
+          "阳台之家",
+          "圣体节",
+          "沙毯"
+        ],
+        "zht": [
+          "la orotava",
+          "陽台之家",
+          "聖體節",
+          "沙毯"
+        ]
+      },
+      "a": {
+        "es": "🌺 El pueblo de las casonas con balcones de tea y los patios llenos de flores. No te pierdas la Casa de los Balcones, la iglesia de la Concepción y las vistas del valle desde el mirador Humboldt. En Corpus Christi las calles se alfombran con flores y arena del Teide, y merece el viaje.",
+        "en": "🌺 The town of grand houses with pine-wood balconies and courtyards full of flowers. Do not miss the Casa de los Balcones, the Concepción church and the valley view from the Humboldt lookout. At Corpus Christi the streets are carpeted with flowers and sand from the Teide, and it is worth the trip.",
+        "de": "🌺 Der Ort der Herrenhäuser mit Balkonen aus Kiefernholz und blumenvollen Innenhöfen. Versäum nicht die Casa de los Balcones, die Concepción-Kirche und den Blick ins Tal vom Mirador Humboldt. Zu Fronleichnam werden die Straßen mit Blumen und Sand vom Teide ausgelegt, das lohnt die Fahrt.",
+        "fr": "🌺 Le village des demeures aux balcons en bois de pin et des patios remplis de fleurs. Ne manque pas la Casa de los Balcones, l’église de la Concepción et la vue sur la vallée depuis le mirador Humboldt. À la Fête-Dieu, les rues se couvrent de tapis de fleurs et de sable du Teide : ça vaut le déplacement.",
+        "it": "🌺 Il paese delle case signorili con balconi in legno di pino e patii pieni di fiori. Da non perdere la Casa de los Balcones, la chiesa della Concepción e la vista sulla valle dal mirador Humboldt. Per il Corpus Domini le strade si ricoprono di tappeti di fiori e sabbia del Teide, e vale il viaggio.",
+        "nl": "🌺 Het dorp van de herenhuizen met balkons van grenenhout en binnenplaatsen vol bloemen. Mis de Casa de los Balcones niet, de Concepción-kerk en het uitzicht over de vallei vanaf de Humboldt-mirador. Met Sacramentsdag worden de straten bedekt met bloemen en zand van de Teide, en dat is de rit waard.",
+        "pl": "🌺 Miasteczko dworków z balkonami z sosnowego drewna i dziedzińców pełnych kwiatów. Nie omijaj Casa de los Balcones, kościoła Concepción i widoku na dolinę z punktu Humboldta. W Boże Ciało ulice pokrywają dywany z kwiatów i piasku z Teide, i naprawdę warto po to przyjechać.",
+        "zh": "🌺 这是一座满是松木阳台老宅与花团锦簇内院的小镇。别错过 Casa de los Balcones、Concepción 教堂，以及从 Humboldt 观景台俯瞰的谷地。圣体节时街道会用鲜花和泰德峰的火山沙铺成地毯，值得专程一趟。",
+        "zht": "🌺 這是一座滿是松木陽台老宅與花團錦簇內院的小鎮。別錯過 Casa de los Balcones、Concepción 教堂，以及從 Humboldt 觀景台俯瞰的谷地。聖體節時街道會用鮮花和泰德峰的火山沙鋪成地毯，值得專程一趟。"
+      },
+      "follow": [
+        "cul-07",
+        "cul-01",
+        "cul-04"
+      ]
+    },
+    {
+      "id": "cul-04",
+      "cat": "cultura",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué ver en Garachico?",
+        "en": "What to see in Garachico?",
+        "de": "Was sieht man in Garachico?",
+        "fr": "Que voir à Garachico ?",
+        "it": "Cosa vedere a Garachico?",
+        "nl": "Wat te zien in Garachico?",
+        "pl": "Co zobaczyć w Garachico?",
+        "zh": "Garachico 有什么看的？",
+        "zht": "Garachico 有什麼看的？"
+      },
+      "keys": {
+        "es": [
+          "garachico",
+          "caleton",
+          "volcan 1706",
+          "castillo san miguel",
+          "piscinas garachico"
+        ],
+        "en": [
+          "garachico",
+          "caleton",
+          "1706 eruption",
+          "san miguel castle",
+          "garachico pools"
+        ],
+        "de": [
+          "garachico",
+          "caleton",
+          "ausbruch 1706",
+          "burg san miguel"
+        ],
+        "fr": [
+          "garachico",
+          "caleton",
+          "eruption de 1706",
+          "chateau san miguel"
+        ],
+        "it": [
+          "garachico",
+          "caleton",
+          "eruzione del 1706",
+          "castello san miguel"
+        ],
+        "nl": [
+          "garachico",
+          "caleton",
+          "uitbarsting 1706",
+          "kasteel san miguel"
+        ],
+        "pl": [
+          "garachico",
+          "caleton",
+          "erupcja 1706",
+          "zamek san miguel"
+        ],
+        "zh": [
+          "garachico",
+          "caleton",
+          "1706 火山喷发",
+          "圣米格尔城堡"
+        ],
+        "zht": [
+          "garachico",
+          "caleton",
+          "1706 火山噴發",
+          "聖米格爾城堡"
+        ]
+      },
+      "a": {
+        "es": "⚓ Fue el gran puerto de la isla hasta que la erupción de 1706 lo sepultó a medias; de aquella lava salieron las piscinas naturales de El Caletón. Hoy es un pueblo tranquilo con castillo de San Miguel, plazas con drago y buen baño cuando el mar acompaña. Medio día perfecto, mejor entre semana.",
+        "en": "⚓ It was the island’s great port until the 1706 eruption half buried it; out of that lava came the natural pools of El Caletón. Today it is a quiet town with the San Miguel castle, squares with a dragon tree and good swimming when the sea allows. A perfect half day, better on a weekday.",
+        "de": "⚓ Es war der große Hafen der Insel, bis der Ausbruch von 1706 ihn halb begrub; aus dieser Lava entstanden die Naturbecken von El Caletón. Heute ist es ein ruhiger Ort mit der Burg San Miguel, Plätzen mit Drachenbaum und gutem Badewasser, wenn das Meer mitspielt. Ein perfekter halber Tag, besser unter der Woche.",
+        "fr": "⚓ C’était le grand port de l’île jusqu’à ce que l’éruption de 1706 l’ensevelisse à moitié ; de cette lave sont nées les piscines naturelles d’El Caletón. Aujourd’hui, c’est un village tranquille avec le château San Miguel, des places à dragonnier et une belle baignade quand la mer le permet. Une demi-journée parfaite, plutôt en semaine.",
+        "it": "⚓ Era il grande porto dell’isola finché l’eruzione del 1706 non lo seppellì a metà; da quella lava sono nate le piscine naturali di El Caletón. Oggi è un paese tranquillo con il castello di San Miguel, piazze con il drago e un bel bagno quando il mare lo consente. Mezza giornata perfetta, meglio infrasettimanale.",
+        "nl": "⚓ Het was de grote haven van het eiland tot de uitbarsting van 1706 hem half bedolf; uit die lava ontstonden de natuurzwembaden van El Caletón. Vandaag is het een rustig dorp met het San Miguel-kasteel, pleintjes met een drakenboom en fijn zwemwater als de zee meewerkt. Een perfecte halve dag, het liefst doordeweeks.",
+        "pl": "⚓ Był wielkim portem wyspy, dopóki erupcja z 1706 roku nie zasypała go do połowy; z tej lawy powstały naturalne baseny El Caletón. Dziś to spokojne miasteczko z zamkiem San Miguel, placykami ze smoczym drzewem i dobrą kąpielą, gdy morze na to pozwala. Idealne pół dnia, najlepiej w tygodniu.",
+        "zh": "⚓ 它曾是全岛最重要的港口，直到 1706 年的火山喷发把它半埋掉；那片熔岩后来形成了 El Caletón 天然泳池。如今这里是个安静的小镇，有圣米格尔城堡、种着龙血树的广场，海况允许时非常适合下水。安排半天刚好，最好挑平日。",
+        "zht": "⚓ 它曾是全島最重要的港口，直到 1706 年的火山噴發把它半埋掉；那片熔岩後來形成了 El Caletón 天然泳池。如今這裡是個安靜的小鎮，有聖米格爾城堡、種著龍血樹的廣場，海況允許時非常適合下水。安排半天剛好，最好挑平日。"
+      },
+      "follow": [
+        "cul-01",
+        "cul-03",
+        "cul-05"
+      ]
+    },
+    {
+      "id": "cul-05",
+      "cat": "cultura",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué ver en Santa Cruz?",
+        "en": "What to see in Santa Cruz?",
+        "de": "Was sieht man in Santa Cruz?",
+        "fr": "Que voir à Santa Cruz ?",
+        "it": "Cosa vedere a Santa Cruz?",
+        "nl": "Wat te zien in Santa Cruz?",
+        "pl": "Co zobaczyć w Santa Cruz?",
+        "zh": "Santa Cruz 有什么看的？",
+        "zht": "Santa Cruz 有什麼看的？"
+      },
+      "keys": {
+        "es": [
+          "santa cruz",
+          "capital",
+          "auditorio",
+          "plaza de espana",
+          "palmetum",
+          "mercado africa"
+        ],
+        "en": [
+          "santa cruz",
+          "capital",
+          "auditorium",
+          "plaza de espana",
+          "palmetum",
+          "africa market"
+        ],
+        "de": [
+          "santa cruz",
+          "hauptstadt",
+          "auditorio",
+          "plaza de espana",
+          "palmetum"
+        ],
+        "fr": [
+          "santa cruz",
+          "capitale",
+          "auditorium",
+          "plaza de espana",
+          "palmetum"
+        ],
+        "it": [
+          "santa cruz",
+          "capitale",
+          "auditorio",
+          "plaza de espana",
+          "palmetum"
+        ],
+        "nl": [
+          "santa cruz",
+          "hoofdstad",
+          "auditorio",
+          "plaza de espana",
+          "palmetum"
+        ],
+        "pl": [
+          "santa cruz",
+          "stolica",
+          "auditorio",
+          "plaza de espana",
+          "palmetum"
+        ],
+        "zh": [
+          "santa cruz",
+          "首府",
+          "音乐厅",
+          "西班牙广场",
+          "棕榈园"
+        ],
+        "zht": [
+          "santa cruz",
+          "首府",
+          "音樂廳",
+          "西班牙廣場",
+          "棕櫚園"
+        ]
+      },
+      "a": {
+        "es": "🏙️ La capital es mucho más viva de lo que espera el turista: el Auditorio de Calatrava, la plaza de España, el mercado de Nuestra Señora de África, el TEA, el Palmetum levantado sobre un antiguo vertedero y la playa de Las Teresitas a diez minutos. Y las mejores tiendas de la isla.",
+        "en": "🏙️ The capital is far livelier than visitors expect: Calatrava’s Auditorio, the Plaza de España, the Nuestra Señora de África market, the TEA art centre, the Palmetum built on a former landfill, and Las Teresitas beach ten minutes away. Plus the best shopping on the island.",
+        "de": "🏙️ Die Hauptstadt ist viel lebendiger, als Besucher erwarten: das Auditorio von Calatrava, die Plaza de España, der Markt Nuestra Señora de África, das Kunstzentrum TEA, das Palmetum auf einer früheren Mülldeponie und der Strand Las Teresitas zehn Minuten entfernt. Dazu die besten Läden der Insel.",
+        "fr": "🏙️ La capitale est bien plus vivante que ne l’imaginent les visiteurs : l’Auditorio de Calatrava, la plaza de España, le marché Nuestra Señora de África, le centre d’art TEA, le Palmetum bâti sur une ancienne décharge et la plage de Las Teresitas à dix minutes. Et les meilleures boutiques de l’île.",
+        "it": "🏙️ La capitale è molto più viva di quanto si aspetti il turista: l’Auditorio di Calatrava, la plaza de España, il mercato di Nuestra Señora de África, il centro d’arte TEA, il Palmetum costruito su un’ex discarica e la spiaggia di Las Teresitas a dieci minuti. E i migliori negozi dell’isola.",
+        "nl": "🏙️ De hoofdstad is veel levendiger dan bezoekers verwachten: het Auditorio van Calatrava, de Plaza de España, de markt Nuestra Señora de África, kunstcentrum TEA, het Palmetum op een voormalige vuilstort en het strand Las Teresitas op tien minuten. En de beste winkels van het eiland.",
+        "pl": "🏙️ Stolica jest znacznie żywsza, niż spodziewa się turysta: Auditorio Calatravy, plaza de España, targ Nuestra Señora de África, centrum sztuki TEA, Palmetum zbudowane na dawnym wysypisku i plaża Las Teresitas dziesięć minut dalej. Do tego najlepsze sklepy na wyspie.",
+        "zh": "🏙️ 这座首府比游客想象的热闹得多：Calatrava 设计的音乐厅、西班牙广场、Nuestra Señora de África 市场、TEA 当代艺术中心、建在旧垃圾场上的棕榈园，以及十分钟车程的 Las Teresitas 海滩。购物也是全岛最好的。",
+        "zht": "🏙️ 這座首府比遊客想像的熱鬧得多：Calatrava 設計的音樂廳、西班牙廣場、Nuestra Señora de África 市場、TEA 當代藝術中心、建在舊垃圾場上的棕櫚園，以及十分鐘車程的 Las Teresitas 海灘。購物也是全島最好的。"
+      },
+      "follow": [
+        "cul-10",
+        "cul-11",
+        "cul-02"
+      ]
+    },
+    {
+      "id": "cul-06",
+      "cat": "cultura",
+      "prio": 1,
+      "volatil": true,
+      "label": {
+        "es": "¿Cuándo es el Carnaval?",
+        "en": "When is the Carnival?",
+        "de": "Wann ist Karneval?",
+        "fr": "C’est quand le Carnaval ?",
+        "it": "Quando è il Carnevale?",
+        "nl": "Wanneer is het carnaval?",
+        "pl": "Kiedy jest karnawał?",
+        "zh": "狂欢节是什么时候？",
+        "zht": "嘉年華是什麼時候？"
+      },
+      "keys": {
+        "es": [
+          "carnaval",
+          "carnavales",
+          "murgas",
+          "comparsas",
+          "entierro de la sardina",
+          "reina del carnaval"
+        ],
+        "en": [
+          "carnival",
+          "carnaval",
+          "parade",
+          "burial of the sardine",
+          "carnival queen"
+        ],
+        "de": [
+          "karneval",
+          "fasching",
+          "umzug",
+          "sardinenbegrabnis"
+        ],
+        "fr": [
+          "carnaval",
+          "defile",
+          "enterrement de la sardine",
+          "reine du carnaval"
+        ],
+        "it": [
+          "carnevale",
+          "sfilata",
+          "funerale della sardina",
+          "regina del carnevale"
+        ],
+        "nl": [
+          "carnaval",
+          "optocht",
+          "begrafenis van de sardine"
+        ],
+        "pl": [
+          "karnawal",
+          "parada",
+          "pogrzeb sardynki",
+          "krolowa karnawalu"
+        ],
+        "zh": [
+          "狂欢节",
+          "嘉年华",
+          "游行",
+          "沙丁鱼葬礼"
+        ],
+        "zht": [
+          "狂歡節",
+          "嘉年華",
+          "遊行",
+          "沙丁魚葬禮"
+        ]
+      },
+      "a": {
+        "es": "🎭 El de Santa Cruz es de los mayores del mundo: gala de elección de la Reina, murgas, comparsas y noches enteras de baile en la calle. Cae en febrero o marzo según la Cuaresma, así que confirma la fecha del año. Termina con el Entierro de la Sardina, y Puerto de la Cruz tiene su propia versión. Si coincides, disfrázate: va todo el mundo.",
+        "en": "🎭 The one in Santa Cruz is among the biggest in the world: the Queen’s gala, murga choirs, comparsas and whole nights of dancing in the street. It falls in February or March depending on Lent, so check the dates for the year. It ends with the Burial of the Sardine, and Puerto de la Cruz has its own version. If you are here, wear a costume: everyone does.",
+        "de": "🎭 Der von Santa Cruz gehört zu den größten der Welt: Gala zur Wahl der Königin, Murgas, Comparsas und ganze Nächte Tanz auf der Straße. Er fällt je nach Fastenzeit in den Februar oder März, prüf also die Daten des Jahres. Er endet mit dem Sardinenbegräbnis, und Puerto de la Cruz hat seine eigene Version. Wenn du da bist: verkleide dich, alle tun es.",
+        "fr": "🎭 Celui de Santa Cruz est parmi les plus grands du monde : gala d’élection de la Reine, murgas, comparsas et nuits entières de danse dans la rue. Il tombe en février ou mars selon le Carême : vérifie les dates de l’année. Il se termine par l’Enterrement de la Sardine, et Puerto de la Cruz a sa propre version. Si tu y es, déguise-toi : tout le monde le fait.",
+        "it": "🎭 Quello di Santa Cruz è tra i più grandi al mondo: gala di elezione della Regina, murgas, comparsas e notti intere di ballo in strada. Cade a febbraio o marzo a seconda della Quaresima, quindi controlla le date dell’anno. Finisce con il Funerale della Sardina, e Puerto de la Cruz ha la sua versione. Se capiti, travestiti: lo fanno tutti.",
+        "nl": "🎭 Dat van Santa Cruz hoort bij de grootste ter wereld: de gala-verkiezing van de Koningin, murgas, comparsas en hele nachten dansen op straat. Het valt in februari of maart, afhankelijk van de vastentijd, dus check de data van dat jaar. Het eindigt met de Begrafenis van de Sardine, en Puerto de la Cruz heeft zijn eigen versie. Ben je er: verkleed je, iedereen doet het.",
+        "pl": "🎭 Ten w Santa Cruz należy do największych na świecie: gala wyboru Królowej, murgas, comparsas i całe noce tańca na ulicy. Wypada w lutym albo marcu, zależnie od Wielkiego Postu, więc sprawdź daty na dany rok. Kończy się Pogrzebem Sardynki, a Puerto de la Cruz ma własną wersję. Jeśli trafisz, przebierz się: robią to wszyscy.",
+        "zh": "🎭 Santa Cruz 的狂欢节是世界上规模最大的之一：选后晚会、murga 合唱团、comparsa 舞队，还有整夜的街头舞会。日期随四旬期落在二月或三月，请查当年的确切时间。活动以「沙丁鱼葬礼」收尾，Puerto de la Cruz 也有自己的版本。碰上了就穿装扮：这里人人都穿。",
+        "zht": "🎭 Santa Cruz 的嘉年華是世界上規模最大的之一：選后晚會、murga 合唱團、comparsa 舞隊，還有整夜的街頭舞會。日期隨四旬期落在二月或三月，請查當年的確切時間。活動以「沙丁魚葬禮」收尾，Puerto de la Cruz 也有自己的版本。碰上了就穿裝扮：這裡人人都穿。"
+      },
+      "follow": [
+        "cul-07",
+        "cul-08",
+        "cul-05"
+      ]
+    },
+    {
+      "id": "cul-07",
+      "cat": "cultura",
+      "prio": 2,
+      "volatil": true,
+      "label": {
+        "es": "¿Qué fiestas hay este mes?",
+        "en": "Any festivals this month?",
+        "de": "Welche Feste gibt es diesen Monat?",
+        "fr": "Quelles fêtes ce mois-ci ?",
+        "it": "Che feste ci sono questo mese?",
+        "nl": "Welke feesten zijn er deze maand?",
+        "pl": "Jakie święta są w tym miesiącu?",
+        "zh": "这个月有什么节庆？",
+        "zht": "這個月有什麼節慶？"
+      },
+      "keys": {
+        "es": [
+          "fiestas",
+          "fiesta patronal",
+          "agenda",
+          "eventos",
+          "san andres",
+          "candelaria agosto"
+        ],
+        "en": [
+          "festivals",
+          "local festival",
+          "events",
+          "what is on",
+          "san andres"
+        ],
+        "de": [
+          "feste",
+          "dorffest",
+          "veranstaltungen",
+          "was ist los",
+          "san andres"
+        ],
+        "fr": [
+          "fetes",
+          "fete patronale",
+          "evenements",
+          "que se passe t il",
+          "san andres"
+        ],
+        "it": [
+          "feste",
+          "festa patronale",
+          "eventi",
+          "cosa succede",
+          "san andres"
+        ],
+        "nl": [
+          "feesten",
+          "dorpsfeest",
+          "evenementen",
+          "wat is er te doen"
+        ],
+        "pl": [
+          "swieta",
+          "fiesta",
+          "wydarzenia",
+          "co sie dzieje",
+          "san andres"
+        ],
+        "zh": [
+          "节庆",
+          "当地节日",
+          "活动",
+          "有什么活动"
+        ],
+        "zht": [
+          "節慶",
+          "當地節日",
+          "活動",
+          "有什麼活動"
+        ]
+      },
+      "a": {
+        "es": "🎉 Cada pueblo tiene su patrón y su romería, así que casi siempre hay algo. Las grandes del año son el Carnaval, el Corpus de La Orotava, la Virgen de Candelaria en agosto y San Andrés a finales de noviembre, cuando se estrena el vino nuevo. Mira la agenda del mes en la app, que cambia cada año.",
+        "en": "🎉 Every town has its patron saint and its romería, so there is nearly always something on. The big ones are Carnival, the Corpus Christi in La Orotava, the Virgin of Candelaria in August and San Andrés in late November, when the new wine is opened. Check the month’s listings in the app, they change every year.",
+        "de": "🎉 Jeder Ort hat seinen Schutzpatron und seine Romería, es ist also fast immer etwas los. Die großen sind der Karneval, Fronleichnam in La Orotava, die Virgen de Candelaria im August und San Andrés Ende November, wenn der neue Wein angestochen wird. Schau in den Monatskalender der App, er ändert sich jedes Jahr.",
+        "fr": "🎉 Chaque village a son saint patron et sa romería, il y a donc presque toujours quelque chose. Les grandes dates sont le Carnaval, la Fête-Dieu de La Orotava, la Virgen de Candelaria en août et la San Andrés fin novembre, quand on ouvre le vin nouveau. Regarde l’agenda du mois dans l’appli, ça change chaque année.",
+        "it": "🎉 Ogni paese ha il suo patrono e la sua romería, quindi c’è quasi sempre qualcosa. Le grandi sono il Carnevale, il Corpus di La Orotava, la Virgen de Candelaria ad agosto e San Andrés a fine novembre, quando si stappa il vino nuovo. Guarda l’agenda del mese nell’app, cambia ogni anno.",
+        "nl": "🎉 Elk dorp heeft zijn patroonheilige en zijn romería, dus er is bijna altijd iets. De grote zijn carnaval, Sacramentsdag in La Orotava, de Virgen de Candelaria in augustus en San Andrés eind november, als de nieuwe wijn wordt aangesneden. Bekijk de agenda van de maand in de app, die verandert elk jaar.",
+        "pl": "🎉 Każda miejscowość ma swojego patrona i swoją romerię, więc prawie zawsze coś się dzieje. Te największe to karnawał, Boże Ciało w La Orotava, Virgen de Candelaria w sierpniu i San Andrés pod koniec listopada, gdy otwiera się młode wino. Sprawdź kalendarz miesiąca w aplikacji, zmienia się co roku.",
+        "zh": "🎉 每个村镇都有自己的主保圣人和 romería 朝圣游行，所以几乎总有活动。全年最大的是狂欢节、La Orotava 的圣体节、八月的 Candelaria 圣母节，以及十一月底开新酒的 San Andrés。月度活动表请在应用里查看，每年都会变。",
+        "zht": "🎉 每個村鎮都有自己的主保聖人和 romería 朝聖遊行，所以幾乎總有活動。全年最大的是嘉年華、La Orotava 的聖體節、八月的 Candelaria 聖母節，以及十一月底開新酒的 San Andrés。月度活動表請在應用裡查看，每年都會變。"
+      },
+      "follow": [
+        "cul-08",
+        "cul-06",
+        "cul-11"
+      ]
+    },
+    {
+      "id": "cul-08",
+      "cat": "cultura",
+      "prio": 3,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué es una romería?",
+        "en": "What is a romería?",
+        "de": "Was ist eine Romería?",
+        "fr": "C’est quoi une romería ?",
+        "it": "Cos’è una romería?",
+        "nl": "Wat is een romería?",
+        "pl": "Czym jest romería?",
+        "zh": "romería 是什么？",
+        "zht": "romería 是什麼？"
+      },
+      "keys": {
+        "es": [
+          "romeria",
+          "carretas",
+          "bueyes",
+          "traje tipico",
+          "parranda",
+          "fiesta tradicional"
+        ],
+        "en": [
+          "romeria",
+          "ox carts",
+          "traditional dress",
+          "folk party",
+          "pilgrimage festival"
+        ],
+        "de": [
+          "romeria",
+          "ochsenkarren",
+          "tracht",
+          "volksfest"
+        ],
+        "fr": [
+          "romeria",
+          "chars a boeufs",
+          "costume traditionnel",
+          "fete traditionnelle"
+        ],
+        "it": [
+          "romeria",
+          "carri con buoi",
+          "costume tipico",
+          "festa tradizionale"
+        ],
+        "nl": [
+          "romeria",
+          "ossenkarren",
+          "klederdracht",
+          "volksfeest"
+        ],
+        "pl": [
+          "romeria",
+          "wozy zaprzezone w woly",
+          "stroj ludowy",
+          "tradycyjna fiesta"
+        ],
+        "zh": [
+          "romería",
+          "牛车",
+          "传统服饰",
+          "民俗节庆"
+        ],
+        "zht": [
+          "romería",
+          "牛車",
+          "傳統服飾",
+          "民俗節慶"
+        ]
+      },
+      "a": {
+        "es": "🐂 Es la fiesta de un pueblo en honor a su patrón: carretas tiradas por bueyes, traje típico, parrandas tocando y vecinos repartiendo vino, papas y carne a quien pase. No hay que pagar nada ni ir invitado. Se entra, se saluda y se acepta lo que te ofrezcan, que es media fiesta.",
+        "en": "🐂 It is a town’s festival in honour of its patron saint: ox-drawn carts, traditional dress, folk bands playing and neighbours handing out wine, potatoes and meat to whoever walks past. You do not pay and you do not need an invitation. You walk in, say hello and accept what you are offered, which is half the fun.",
+        "de": "🐂 Das ist das Fest eines Ortes zu Ehren seines Schutzpatrons: von Ochsen gezogene Karren, Tracht, Musikgruppen und Nachbarn, die Wein, Kartoffeln und Fleisch an alle Vorbeikommenden verteilen. Man zahlt nichts und braucht keine Einladung. Man geht hin, grüßt und nimmt an, was angeboten wird, das ist der halbe Spaß.",
+        "fr": "🐂 C’est la fête d’un village en l’honneur de son saint patron : chars tirés par des bœufs, costume traditionnel, groupes de musique et voisins qui distribuent vin, pommes de terre et viande à qui passe. On ne paie rien et on n’a pas besoin d’invitation. On entre, on salue et on accepte ce qu’on t’offre, c’est la moitié de la fête.",
+        "it": "🐂 È la festa di un paese in onore del suo patrono: carri trainati da buoi, costume tradizionale, gruppi che suonano e vicini che distribuiscono vino, patate e carne a chi passa. Non si paga nulla e non serve invito. Si entra, si saluta e si accetta quello che ti offrono, che è metà della festa.",
+        "nl": "🐂 Het is het feest van een dorp ter ere van zijn patroonheilige: ossenkarren, klederdracht, volksbandjes en buurtbewoners die wijn, aardappels en vlees uitdelen aan iedereen die langsloopt. Je betaalt niets en hebt geen uitnodiging nodig. Je loopt binnen, groet en neemt aan wat je aangeboden wordt, dat is het halve feest.",
+        "pl": "🐂 To święto miejscowości ku czci jej patrona: wozy ciągnięte przez woły, stroje ludowe, grające kapele i sąsiedzi rozdający wino, ziemniaki i mięso każdemu, kto przechodzi. Nic się nie płaci i nie trzeba zaproszenia. Wchodzisz, witasz się i przyjmujesz to, co ci podają, a to połowa zabawy.",
+        "zh": "🐂 那是村镇为主保圣人举办的节庆：牛拉的花车、传统服饰、民俗乐队演奏，居民把酒、土豆和肉分给路过的每一个人。不用付钱，也不需要邀请。走进去、打个招呼、接受别人递来的东西，这本身就是节庆的一半。",
+        "zht": "🐂 那是村鎮為主保聖人舉辦的節慶：牛拉的花車、傳統服飾、民俗樂隊演奏，居民把酒、馬鈴薯和肉分給路過的每一個人。不用付錢，也不需要邀請。走進去、打個招呼、接受別人遞來的東西，這本身就是節慶的一半。"
+      },
+      "follow": [
+        "cul-07",
+        "cul-06",
+        "cul-09"
+      ]
+    },
+    {
+      "id": "cul-09",
+      "cat": "cultura",
+      "prio": 3,
+      "volatil": false,
+      "label": {
+        "es": "¿Quiénes eran los guanches?",
+        "en": "Who were the Guanches?",
+        "de": "Wer waren die Guanchen?",
+        "fr": "Qui étaient les Guanches ?",
+        "it": "Chi erano i guanci?",
+        "nl": "Wie waren de Guanches?",
+        "pl": "Kim byli Guanczowie?",
+        "zh": "关切人是谁？",
+        "zht": "關切人是誰？"
+      },
+      "keys": {
+        "es": [
+          "guanches",
+          "aborigenes",
+          "momias",
+          "antes de la conquista",
+          "bereber",
+          "menceyes"
+        ],
+        "en": [
+          "guanches",
+          "aboriginal people",
+          "mummies",
+          "before the conquest",
+          "berber"
+        ],
+        "de": [
+          "guanchen",
+          "ureinwohner",
+          "mumien",
+          "vor der eroberung",
+          "berber"
+        ],
+        "fr": [
+          "guanches",
+          "aborigenes",
+          "momies",
+          "avant la conquete",
+          "berbere"
+        ],
+        "it": [
+          "guanci",
+          "aborigeni",
+          "mummie",
+          "prima della conquista",
+          "berbero"
+        ],
+        "nl": [
+          "guanches",
+          "oorspronkelijke bewoners",
+          "mummies",
+          "voor de verovering",
+          "berber"
+        ],
+        "pl": [
+          "guanczowie",
+          "rdzenni mieszkancy",
+          "mumie",
+          "przed podbojem",
+          "berberowie"
+        ],
+        "zh": [
+          "关切人",
+          "原住民",
+          "木乃伊",
+          "征服之前",
+          "柏柏尔"
+        ],
+        "zht": [
+          "關切人",
+          "原住民",
+          "木乃伊",
+          "征服之前",
+          "柏柏爾"
+        ]
+      },
+      "a": {
+        "es": "🗿 Eran los habitantes de la isla antes de la conquista castellana: pastores de origen bereber que vivían en cuevas, se organizaban en menceyatos y momificaban a sus muertos. Tenerife fue la última isla en caer, en 1496. Para verlo de cerca, el Museo de la Naturaleza y Arqueología de Santa Cruz guarda las momias.",
+        "en": "🗿 They were the island’s inhabitants before the Castilian conquest: shepherds of Berber origin who lived in caves, organised themselves into menceyatos and mummified their dead. Tenerife was the last island to fall, in 1496. To see it up close, the Museum of Nature and Archaeology in Santa Cruz keeps the mummies.",
+        "de": "🗿 Sie waren die Bewohner der Insel vor der kastilischen Eroberung: Hirten berberischer Herkunft, die in Höhlen lebten, sich in Menceyatos gliederten und ihre Toten mumifizierten. Teneriffa fiel als letzte Insel, 1496. Aus der Nähe zu sehen im Museum für Natur und Archäologie in Santa Cruz, wo die Mumien liegen.",
+        "fr": "🗿 C’étaient les habitants de l’île avant la conquête castillane : des bergers d’origine berbère qui vivaient dans des grottes, s’organisaient en menceyatos et momifiaient leurs morts. Tenerife fut la dernière île à tomber, en 1496. Pour voir tout ça de près, le Musée de la Nature et de l’Archéologie de Santa Cruz conserve les momies.",
+        "it": "🗿 Erano gli abitanti dell’isola prima della conquista castigliana: pastori di origine berbera che vivevano in grotte, si organizzavano in menceyatos e mummificavano i loro morti. Tenerife fu l’ultima isola a cadere, nel 1496. Per vederlo da vicino, il Museo della Natura e Archeologia di Santa Cruz custodisce le mummie.",
+        "nl": "🗿 Zij waren de bewoners van het eiland vóór de Castiliaanse verovering: herders van Berberse afkomst die in grotten woonden, zich organiseerden in menceyatos en hun doden mummificeerden. Tenerife viel als laatste eiland, in 1496. Van dichtbij te zien in het Museum voor Natuur en Archeologie in Santa Cruz, waar de mummies liggen.",
+        "pl": "🗿 To mieszkańcy wyspy sprzed kastylijskiego podboju: pasterze pochodzenia berberyjskiego, którzy mieszkali w jaskiniach, organizowali się w menceyatos i mumifikowali zmarłych. Teneryfa padła jako ostatnia wyspa, w 1496 roku. Z bliska obejrzysz to w Muzeum Przyrody i Archeologii w Santa Cruz, gdzie są mumie.",
+        "zh": "🗿 他们是卡斯蒂利亚征服之前的岛上居民：柏柏尔血统的牧民，住在洞穴里，以 menceyato 为单位组织社会，并将死者制成木乃伊。特内里费是最后陷落的岛屿，时间是 1496 年。想近距离了解，可以去 Santa Cruz 的自然与考古博物馆看木乃伊。",
+        "zht": "🗿 他們是卡斯提亞征服之前的島上居民：柏柏爾血統的牧民，住在洞穴裡，以 menceyato 為單位組織社會，並將死者製成木乃伊。特內里費是最後淪陷的島嶼，時間是 1496 年。想近距離了解，可以去 Santa Cruz 的自然與考古博物館看木乃伊。"
+      },
+      "follow": [
+        "cul-10",
+        "cul-08",
+        "cul-05"
+      ]
+    },
+    {
+      "id": "cul-10",
+      "cat": "cultura",
+      "prio": 3,
+      "volatil": true,
+      "label": {
+        "es": "¿Qué museos merecen la pena?",
+        "en": "Which museums are worth it?",
+        "de": "Welche Museen lohnen sich?",
+        "fr": "Quels musées valent le coup ?",
+        "it": "Quali musei valgono la pena?",
+        "nl": "Welke musea zijn de moeite?",
+        "pl": "Które muzea warto odwiedzić?",
+        "zh": "哪些博物馆值得去？",
+        "zht": "哪些博物館值得去？"
+      },
+      "keys": {
+        "es": [
+          "museo",
+          "museos",
+          "tea",
+          "museo de la naturaleza",
+          "casa del vino",
+          "que museo visitar"
+        ],
+        "en": [
+          "museum",
+          "museums",
+          "tea art centre",
+          "museum of nature",
+          "house of wine"
+        ],
+        "de": [
+          "museum",
+          "museen",
+          "tea",
+          "naturmuseum",
+          "haus des weines"
+        ],
+        "fr": [
+          "musee",
+          "musees",
+          "tea",
+          "musee de la nature",
+          "maison du vin"
+        ],
+        "it": [
+          "museo",
+          "musei",
+          "tea",
+          "museo della natura",
+          "casa del vino"
+        ],
+        "nl": [
+          "museum",
+          "musea",
+          "tea",
+          "natuurmuseum",
+          "wijnhuis museum"
+        ],
+        "pl": [
+          "muzeum",
+          "muzea",
+          "tea",
+          "muzeum przyrody",
+          "dom wina"
+        ],
+        "zh": [
+          "博物馆",
+          "美术馆",
+          "tea",
+          "自然博物馆",
+          "酒博物馆"
+        ],
+        "zht": [
+          "博物館",
+          "美術館",
+          "tea",
+          "自然博物館",
+          "酒博物館"
+        ]
+      },
+      "a": {
+        "es": "🖼️ Los imprescindibles: el Museo de la Naturaleza y Arqueología por las momias guanches, el TEA para arte contemporáneo, la Casa del Vino en El Sauzal y el Museo de Historia en La Laguna. Los horarios y los días de entrada gratuita cambian a menudo, así que confírmalos antes de plantarte allí.",
+        "en": "🖼️ The essentials: the Museum of Nature and Archaeology for the Guanche mummies, the TEA for contemporary art, the Casa del Vino in El Sauzal and the History Museum in La Laguna. Opening hours and free-entry days change often, so confirm them before turning up.",
+        "de": "🖼️ Die wichtigsten: das Museum für Natur und Archäologie wegen der Guanchen-Mumien, das TEA für zeitgenössische Kunst, die Casa del Vino in El Sauzal und das Geschichtsmuseum in La Laguna. Öffnungszeiten und freie Eintrittstage ändern sich häufig, prüf sie also, bevor du hinfährst.",
+        "fr": "🖼️ Les incontournables : le Musée de la Nature et de l’Archéologie pour les momies guanches, le TEA pour l’art contemporain, la Casa del Vino à El Sauzal et le Musée d’Histoire à La Laguna. Les horaires et les jours d’entrée gratuite changent souvent : vérifie-les avant de t’y rendre.",
+        "it": "🖼️ Gli imprescindibili: il Museo della Natura e Archeologia per le mummie guance, il TEA per l’arte contemporanea, la Casa del Vino a El Sauzal e il Museo di Storia a La Laguna. Orari e giorni a ingresso gratuito cambiano spesso, quindi verificali prima di presentarti lì.",
+        "nl": "🖼️ De onmisbare: het Museum voor Natuur en Archeologie om de Guanche-mummies, het TEA voor hedendaagse kunst, de Casa del Vino in El Sauzal en het Historisch Museum in La Laguna. Openingstijden en dagen met gratis toegang wisselen vaak, dus check ze voor je er staat.",
+        "pl": "🖼️ Te najważniejsze: Muzeum Przyrody i Archeologii dla mumii Guanczów, TEA dla sztuki współczesnej, Casa del Vino w El Sauzal i Muzeum Historii w La Laguna. Godziny otwarcia i dni bezpłatnego wstępu często się zmieniają, więc sprawdź je, zanim tam staniesz.",
+        "zh": "🖼️ 最该看的几家：自然与考古博物馆（关切人木乃伊）、TEA 当代艺术中心、El Sauzal 的酒之家，以及 La Laguna 的历史博物馆。开放时间和免费入场日经常调整，出发前先确认。",
+        "zht": "🖼️ 最該看的幾家：自然與考古博物館（關切人木乃伊）、TEA 當代藝術中心、El Sauzal 的酒之家，以及 La Laguna 的歷史博物館。開放時間和免費入場日經常調整，出發前先確認。"
+      },
+      "follow": [
+        "cul-09",
+        "cul-05",
+        "cul-02"
+      ]
+    },
+    {
+      "id": "cul-11",
+      "cat": "cultura",
+      "prio": 2,
+      "volatil": true,
+      "label": {
+        "es": "¿Dónde hay mercadillos?",
+        "en": "Where are the local markets?",
+        "de": "Wo gibt es Märkte?",
+        "fr": "Où sont les marchés ?",
+        "it": "Dove ci sono i mercatini?",
+        "nl": "Waar zijn de markten?",
+        "pl": "Gdzie są targi?",
+        "zh": "哪里有集市？",
+        "zht": "哪裡有市集？"
+      },
+      "keys": {
+        "es": [
+          "mercadillo",
+          "mercadillos",
+          "mercado",
+          "mercado del agricultor",
+          "rastro",
+          "productos locales"
+        ],
+        "en": [
+          "market",
+          "farmers market",
+          "flea market",
+          "local produce",
+          "street market"
+        ],
+        "de": [
+          "markt",
+          "bauernmarkt",
+          "flohmarkt",
+          "regionale produkte"
+        ],
+        "fr": [
+          "marche",
+          "marche fermier",
+          "brocante",
+          "produits locaux"
+        ],
+        "it": [
+          "mercato",
+          "mercato contadino",
+          "mercatino",
+          "prodotti locali"
+        ],
+        "nl": [
+          "markt",
+          "boerenmarkt",
+          "vlooienmarkt",
+          "streekproducten"
+        ],
+        "pl": [
+          "targ",
+          "targ rolniczy",
+          "pchli targ",
+          "lokalne produkty"
+        ],
+        "zh": [
+          "集市",
+          "农夫市集",
+          "跳蚤市场",
+          "本地物产"
+        ],
+        "zht": [
+          "市集",
+          "農夫市集",
+          "跳蚤市場",
+          "本地物產"
+        ]
+      },
+      "a": {
+        "es": "🧺 Los mercados del agricultor son la mejor parada del fin de semana: Tacoronte, La Laguna, Güímar o el de Nuestra Señora de África en Santa Cruz, que abre a diario. Los días y las horas cambian según el municipio, así que confírmalo antes de salir. Ve temprano y lleva efectivo.",
+        "en": "🧺 The farmers’ markets are the best weekend stop: Tacoronte, La Laguna, Güímar or the Nuestra Señora de África market in Santa Cruz, which opens daily. Days and hours vary by municipality, so confirm before setting off. Go early and take cash.",
+        "de": "🧺 Die Bauernmärkte sind der beste Halt am Wochenende: Tacoronte, La Laguna, Güímar oder der Markt Nuestra Señora de África in Santa Cruz, der täglich öffnet. Tage und Zeiten wechseln je nach Gemeinde, prüf sie also vor der Abfahrt. Geh früh hin und nimm Bargeld mit.",
+        "fr": "🧺 Les marchés de producteurs sont la meilleure halte du week-end : Tacoronte, La Laguna, Güímar ou celui de Nuestra Señora de África à Santa Cruz, ouvert tous les jours. Les jours et horaires varient selon la commune : vérifie avant de partir. Vas-y tôt et prends du liquide.",
+        "it": "🧺 I mercati contadini sono la tappa migliore del fine settimana: Tacoronte, La Laguna, Güímar o quello di Nuestra Señora de África a Santa Cruz, aperto tutti i giorni. Giorni e orari cambiano da comune a comune, quindi verifica prima di uscire. Vai presto e porta contanti.",
+        "nl": "🧺 De boerenmarkten zijn de beste stop in het weekend: Tacoronte, La Laguna, Güímar of die van Nuestra Señora de África in Santa Cruz, die dagelijks open is. Dagen en tijden verschillen per gemeente, dus check het voor je vertrekt. Ga vroeg en neem contant geld mee.",
+        "pl": "🧺 Targi rolnicze to najlepszy weekendowy przystanek: Tacoronte, La Laguna, Güímar albo targ Nuestra Señora de África w Santa Cruz, otwarty codziennie. Dni i godziny różnią się w zależności od gminy, więc sprawdź przed wyjściem. Idź wcześnie i weź gotówkę.",
+        "zh": "🧺 农夫市集是周末最值得去的一站：Tacoronte、La Laguna、Güímar，或是 Santa Cruz 每天开门的 Nuestra Señora de África 市场。营业日和时间因市镇而异，出门前先确认。早点去，并带上现金。",
+        "zht": "🧺 農夫市集是週末最值得去的一站：Tacoronte、La Laguna、Güímar，或是 Santa Cruz 每天開門的 Nuestra Señora de África 市場。營業日和時間因市鎮而異，出門前先確認。早點去，並帶上現金。"
+      },
+      "follow": [
+        "cul-05",
+        "cul-07",
+        "cul-01"
+      ]
+    }
+  ]
+}

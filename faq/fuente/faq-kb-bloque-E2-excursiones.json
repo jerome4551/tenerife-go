@@ -1,0 +1,1020 @@
+{
+  "meta": {
+    "bloque": "E2 · Excursiones y actividades",
+    "version": "1.0",
+    "fecha": "2026-09-13",
+    "idiomas": [
+      "es",
+      "en",
+      "de",
+      "fr",
+      "it",
+      "nl",
+      "pl",
+      "zh",
+      "zht"
+    ],
+    "entradas": 11,
+    "nota_diseno": "Claves escritas evitando a proposito las que ya usan mov-05 (sin coche) y mov-11 (la gomera, ferry): exc-11 usa «excursiones sin coche» y exc-04 usa «la gomera en un dia»."
+  },
+  "entradas": [
+    {
+      "id": "exc-01",
+      "cat": "excursiones",
+      "prio": 1,
+      "volatil": true,
+      "label": {
+        "es": "¿Dónde veo ballenas?",
+        "en": "Where can I see whales?",
+        "de": "Wo sehe ich Wale?",
+        "fr": "Où voir des baleines ?",
+        "it": "Dove vedo le balene?",
+        "nl": "Waar zie ik walvissen?",
+        "pl": "Gdzie zobaczę wieloryby?",
+        "zh": "哪里能看到鲸鱼？",
+        "zht": "哪裡能看到鯨魚？"
+      },
+      "keys": {
+        "es": [
+          "ballenas",
+          "delfines",
+          "cetaceos",
+          "calderones",
+          "avistamiento",
+          "barco ballenas"
+        ],
+        "en": [
+          "whales",
+          "dolphins",
+          "cetaceans",
+          "pilot whales",
+          "whale watching"
+        ],
+        "de": [
+          "wale",
+          "delfine",
+          "waltiere",
+          "grindwale",
+          "walbeobachtung"
+        ],
+        "fr": [
+          "baleines",
+          "dauphins",
+          "cetaces",
+          "globicephales",
+          "observation des baleines"
+        ],
+        "it": [
+          "balene",
+          "delfini",
+          "cetacei",
+          "globicefali",
+          "avvistamento cetacei"
+        ],
+        "nl": [
+          "walvissen",
+          "dolfijnen",
+          "walvisachtigen",
+          "griend",
+          "walvissen spotten"
+        ],
+        "pl": [
+          "wieloryby",
+          "delfiny",
+          "walenie",
+          "grindwale",
+          "obserwacja wielorybow"
+        ],
+        "zh": [
+          "鲸鱼",
+          "海豚",
+          "鲸豚",
+          "领航鲸",
+          "观鲸"
+        ],
+        "zht": [
+          "鯨魚",
+          "海豚",
+          "鯨豚",
+          "領航鯨",
+          "觀鯨"
+        ]
+      },
+      "a": {
+        "es": "🐬 Hay calderones tropicales y delfines mulares todo el año en la franja marina entre Teno y Rasca, una de las mejores del mundo para verlos. Salen barcos de Los Cristianos, Puerto Colón y Los Gigantes. Elige empresa con el distintivo Barco Azul, que certifica observación respetuosa, y no te metas al agua con ellos.",
+        "en": "🐬 There are resident pilot whales and bottlenose dolphins all year in the sea strip between Teno and Rasca, one of the best places in the world to see them. Boats leave from Los Cristianos, Puerto Colón and Los Gigantes. Pick an operator with the Barco Azul mark, which certifies respectful watching, and do not get in the water with them.",
+        "de": "🐬 Zwischen Teno und Rasca leben ganzjährig Grindwale und Große Tümmler, einer der besten Orte weltweit, um sie zu sehen. Boote fahren ab Los Cristianos, Puerto Colón und Los Gigantes. Wähle einen Anbieter mit dem Siegel Barco Azul, das respektvolle Beobachtung bescheinigt, und geh nicht mit ihnen ins Wasser.",
+        "fr": "🐬 Il y a des globicéphales et des grands dauphins toute l’année dans la bande marine entre Teno et Rasca, l’un des meilleurs endroits au monde pour les voir. Des bateaux partent de Los Cristianos, Puerto Colón et Los Gigantes. Choisis un opérateur avec le label Barco Azul, qui certifie une observation respectueuse, et ne te mets pas à l’eau avec eux.",
+        "it": "🐬 Ci sono globicefali e tursiopi tutto l’anno nella fascia marina tra Teno e Rasca, uno dei posti migliori al mondo per vederli. Le barche partono da Los Cristianos, Puerto Colón e Los Gigantes. Scegli un operatore con il marchio Barco Azul, che certifica l’osservazione rispettosa, e non entrare in acqua con loro.",
+        "nl": "🐬 Er leven het hele jaar griend en tuimelaars in de zeestrook tussen Teno en Rasca, een van de beste plekken ter wereld om ze te zien. Boten vertrekken uit Los Cristianos, Puerto Colón en Los Gigantes. Kies een aanbieder met het keurmerk Barco Azul, dat respectvol kijken certificeert, en ga niet bij ze in het water.",
+        "pl": "🐬 Przez cały rok w pasie morskim między Teno a Rasca żyją grindwale i butlonosy, to jedno z najlepszych miejsc na świecie, by je zobaczyć. Łodzie wypływają z Los Cristianos, Puerto Colón i Los Gigantes. Wybierz operatora ze znakiem Barco Azul, który poświadcza obserwację z szacunkiem, i nie wchodź z nimi do wody.",
+        "zh": "🐬 Teno 与 Rasca 之间的海域全年都有短肢领航鲸和宽吻海豚，是世界上最好的观鲸地点之一。船班从 Los Cristianos、Puerto Colón 和 Los Gigantes 出发。请选择有 Barco Azul 标章的公司，那代表符合友善观察规范；不要下水与它们同游。",
+        "zht": "🐬 Teno 與 Rasca 之間的海域全年都有短肢領航鯨和瓶鼻海豚，是世界上最好的觀鯨地點之一。船班從 Los Cristianos、Puerto Colón 和 Los Gigantes 出發。請選擇有 Barco Azul 標章的公司，那代表符合友善觀察規範；不要下水與牠們同遊。"
+      },
+      "follow": [
+        "exc-05",
+        "exc-07",
+        "exc-02"
+      ]
+    },
+    {
+      "id": "exc-02",
+      "cat": "excursiones",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué hago si tengo un día?",
+        "en": "What if I only have one day?",
+        "de": "Was mache ich an einem Tag?",
+        "fr": "Que faire en une journée ?",
+        "it": "Cosa faccio in un giorno?",
+        "nl": "Wat doe ik in één dag?",
+        "pl": "Co robić, mając jeden dzień?",
+        "zh": "只有一天怎么安排？",
+        "zht": "只有一天怎麼安排？"
+      },
+      "keys": {
+        "es": [
+          "un dia",
+          "solo tengo un dia",
+          "que hago hoy",
+          "plan de hoy",
+          "una jornada"
+        ],
+        "en": [
+          "one day",
+          "only have one day",
+          "what to do today",
+          "day plan"
+        ],
+        "de": [
+          "ein tag",
+          "nur einen tag",
+          "was mache ich heute",
+          "tagesplan"
+        ],
+        "fr": [
+          "une journee",
+          "je n ai qu un jour",
+          "que faire aujourd hui",
+          "programme du jour"
+        ],
+        "it": [
+          "un giorno",
+          "ho solo un giorno",
+          "cosa faccio oggi",
+          "programma del giorno"
+        ],
+        "nl": [
+          "een dag",
+          "maar een dag",
+          "wat doe ik vandaag",
+          "dagplan"
+        ],
+        "pl": [
+          "jeden dzien",
+          "mam tylko dzien",
+          "co robic dzisiaj",
+          "plan dnia"
+        ],
+        "zh": [
+          "只有一天",
+          "今天做什么",
+          "一日安排"
+        ],
+        "zht": [
+          "只有一天",
+          "今天做什麼",
+          "一日安排"
+        ]
+      },
+      "a": {
+        "es": "🗓️ Yo subiría al Teide temprano por Vilaflor, comería en la zona de La Orotava y bajaría a Garachico o a Puerto de la Cruz al atardecer. Sale un día redondo y ves tres islas distintas en una: la cumbre volcánica, el valle verde y la costa norte. Puedo encadenarte las paradas en el planificador.",
+        "en": "🗓️ I would drive up to the Teide early via Vilaflor, have lunch around La Orotava and drop down to Garachico or Puerto de la Cruz at sunset. It makes a complete day and you get three different islands in one: the volcanic summit, the green valley and the north coast. I can chain the stops in the planner for you.",
+        "de": "🗓️ Ich würde früh über Vilaflor zum Teide fahren, in der Gegend von La Orotava essen und zum Sonnenuntergang nach Garachico oder Puerto de la Cruz hinunter. Das ergibt einen runden Tag, und du siehst drei Inseln in einer: den Vulkangipfel, das grüne Tal und die Nordküste. Ich kann dir die Stopps im Planer verketten.",
+        "fr": "🗓️ Je monterais au Teide tôt par Vilaflor, je déjeunerais du côté de La Orotava et je descendrais à Garachico ou Puerto de la Cruz au coucher du soleil. Ça fait une journée complète et tu vois trois îles en une : le sommet volcanique, la vallée verte et la côte nord. Je peux enchaîner les étapes dans le planificateur.",
+        "it": "🗓️ Io salirei al Teide presto passando da Vilaflor, pranzerei dalle parti di La Orotava e scenderei a Garachico o Puerto de la Cruz al tramonto. Viene fuori una giornata completa e vedi tre isole in una: la cima vulcanica, la valle verde e la costa nord. Posso unirti le tappe nel pianificatore.",
+        "nl": "🗓️ Ik zou vroeg via Vilaflor naar de Teide rijden, rond La Orotava lunchen en bij zonsondergang afzakken naar Garachico of Puerto de la Cruz. Dat wordt een complete dag en je ziet drie eilanden in één: de vulkaantop, de groene vallei en de noordkust. Ik kan de stops voor je aan elkaar knopen in de planner.",
+        "pl": "🗓️ Wjechałbym wcześnie na Teide przez Vilaflor, zjadł obiad w okolicy La Orotava i zjechał do Garachico albo Puerto de la Cruz na zachód słońca. Wychodzi pełny dzień i widzisz trzy wyspy w jednej: wulkaniczny szczyt, zieloną dolinę i północne wybrzeże. Mogę połączyć te przystanki w planerze.",
+        "zh": "🗓️ 我会一早经 Vilaflor 上泰德，中午在 La Orotava 一带吃饭，傍晚下到 Garachico 或 Puerto de la Cruz。这样一天很完整，等于把三座岛看进一天里：火山之巅、翠绿谷地和北部海岸。我可以在行程规划器里帮你把这些站点串好。",
+        "zht": "🗓️ 我會一早經 Vilaflor 上泰德，中午在 La Orotava 一帶吃飯，傍晚下到 Garachico 或 Puerto de la Cruz。這樣一天很完整，等於把三座島看進一天裡：火山之巔、翠綠谷地和北部海岸。我可以在行程規劃器裡幫你把這些站點串好。"
+      },
+      "follow": [
+        "exc-03",
+        "exc-10",
+        "exc-11"
+      ]
+    },
+    {
+      "id": "exc-03",
+      "cat": "excursiones",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿Y si tengo 3, 5 o 7 días?",
+        "en": "What about 3, 5 or 7 days?",
+        "de": "Und bei 3, 5 oder 7 Tagen?",
+        "fr": "Et avec 3, 5 ou 7 jours ?",
+        "it": "E con 3, 5 o 7 giorni?",
+        "nl": "En met 3, 5 of 7 dagen?",
+        "pl": "A jeśli mam 3, 5 lub 7 dni?",
+        "zh": "三天、五天或七天呢？",
+        "zht": "三天、五天或七天呢？"
+      },
+      "keys": {
+        "es": [
+          "itinerario",
+          "tres dias",
+          "cinco dias",
+          "una semana",
+          "que ver en varios dias"
+        ],
+        "en": [
+          "itinerary",
+          "three days",
+          "five days",
+          "one week",
+          "multi day plan"
+        ],
+        "de": [
+          "reiseroute",
+          "drei tage",
+          "funf tage",
+          "eine woche",
+          "mehrtagesplan"
+        ],
+        "fr": [
+          "itineraire",
+          "trois jours",
+          "cinq jours",
+          "une semaine",
+          "plan sur plusieurs jours"
+        ],
+        "it": [
+          "itinerario",
+          "tre giorni",
+          "cinque giorni",
+          "una settimana",
+          "piano di piu giorni"
+        ],
+        "nl": [
+          "reisschema",
+          "drie dagen",
+          "vijf dagen",
+          "een week",
+          "meerdaagse route"
+        ],
+        "pl": [
+          "plan podrozy",
+          "trzy dni",
+          "piec dni",
+          "tydzien",
+          "plan na kilka dni"
+        ],
+        "zh": [
+          "行程规划",
+          "三天",
+          "五天",
+          "一周",
+          "多日安排"
+        ],
+        "zht": [
+          "行程規劃",
+          "三天",
+          "五天",
+          "一週",
+          "多日安排"
+        ]
+      },
+      "a": {
+        "es": "🗺️ Con tres días: Teide, Anaga y un día de costa sur. Con cinco, añade Teno con Masca y Garachico, y un día de playas del norte. Con siete, mete La Gomera en ferry y una jornada sin plan en La Laguna o Santa Cruz. Guarda los sitios en favoritos y te los ordeno por distancia para no cruzar la isla dos veces.",
+        "en": "🗺️ With three days: the Teide, Anaga and a day on the south coast. With five, add Teno with Masca and Garachico, plus a day on the northern beaches. With seven, fit in La Gomera by ferry and one unplanned day in La Laguna or Santa Cruz. Save the places to favourites and I will sort them by distance so you do not cross the island twice.",
+        "de": "🗺️ Mit drei Tagen: Teide, Anaga und ein Tag an der Südküste. Mit fünf kommen Teno mit Masca und Garachico dazu, plus ein Tag an den Nordstränden. Mit sieben nimm La Gomera per Fähre und einen Tag ohne Plan in La Laguna oder Santa Cruz. Speicher die Orte in den Favoriten, dann sortiere ich sie nach Entfernung, damit du die Insel nicht zweimal querst.",
+        "fr": "🗺️ Avec trois jours : le Teide, Anaga et une journée sur la côte sud. Avec cinq, ajoute Teno avec Masca et Garachico, plus une journée sur les plages du nord. Avec sept, cale La Gomera en ferry et une journée sans programme à La Laguna ou Santa Cruz. Mets les lieux en favoris et je te les classe par distance pour ne pas traverser l’île deux fois.",
+        "it": "🗺️ Con tre giorni: Teide, Anaga e una giornata sulla costa sud. Con cinque aggiungi Teno con Masca e Garachico, più un giorno sulle spiagge del nord. Con sette infila La Gomera in traghetto e una giornata senza programma a La Laguna o Santa Cruz. Salva i posti nei preferiti e te li ordino per distanza, così non attraversi l’isola due volte.",
+        "nl": "🗺️ Met drie dagen: de Teide, Anaga en een dag aan de zuidkust. Met vijf komen Teno met Masca en Garachico erbij, plus een dag aan de noordelijke stranden. Met zeven pas La Gomera met de veerboot erin en een dag zonder plan in La Laguna of Santa Cruz. Zet de plekken in favorieten, dan sorteer ik ze op afstand zodat je het eiland niet twee keer oversteekt.",
+        "pl": "🗺️ Przy trzech dniach: Teide, Anaga i dzień na południowym wybrzeżu. Przy pięciu dołóż Teno z Masca i Garachico oraz dzień na plażach północy. Przy siedmiu wciśnij La Gomerę promem i jeden dzień bez planu w La Laguna albo Santa Cruz. Zapisz miejsca w ulubionych, a uszereguję je według odległości, żebyś nie przejeżdżał wyspy dwa razy.",
+        "zh": "🗺️ 三天：泰德、Anaga，再加一天南岸。五天：加上 Teno（含 Masca）和 Garachico，以及一天北部海滩。七天：安排搭渡轮去 La Gomera，再留一天不做计划，泡在 La Laguna 或 Santa Cruz。把地点加入收藏，我按距离排好，免得你来回横穿全岛两趟。",
+        "zht": "🗺️ 三天：泰德、Anaga，再加一天南岸。五天：加上 Teno（含 Masca）和 Garachico，以及一天北部海灘。七天：安排搭渡輪去 La Gomera，再留一天不做計畫，泡在 La Laguna 或 Santa Cruz。把地點加入收藏，我按距離排好，免得你來回橫穿全島兩趟。"
+      },
+      "follow": [
+        "exc-02",
+        "exc-04",
+        "exc-11"
+      ]
+    },
+    {
+      "id": "exc-04",
+      "cat": "excursiones",
+      "prio": 2,
+      "volatil": true,
+      "label": {
+        "es": "¿Merece ir a La Gomera un día?",
+        "en": "Is La Gomera worth a day trip?",
+        "de": "Lohnt La Gomera als Tagestour?",
+        "fr": "La Gomera en une journée ?",
+        "it": "Vale La Gomera in giornata?",
+        "nl": "La Gomera als dagtrip?",
+        "pl": "Czy warto na dzień na La Gomerę?",
+        "zh": "值得一日游 La Gomera 吗？",
+        "zht": "值得一日遊 La Gomera 嗎？"
+      },
+      "keys": {
+        "es": [
+          "la gomera en un dia",
+          "excursion a la gomera",
+          "garajonay",
+          "san sebastian de la gomera"
+        ],
+        "en": [
+          "la gomera day trip",
+          "trip to la gomera",
+          "garajonay",
+          "san sebastian de la gomera"
+        ],
+        "de": [
+          "la gomera tagesausflug",
+          "ausflug nach la gomera",
+          "garajonay"
+        ],
+        "fr": [
+          "la gomera en une journee",
+          "excursion a la gomera",
+          "garajonay"
+        ],
+        "it": [
+          "la gomera in giornata",
+          "escursione a la gomera",
+          "garajonay"
+        ],
+        "nl": [
+          "la gomera dagtrip",
+          "uitstapje naar la gomera",
+          "garajonay"
+        ],
+        "pl": [
+          "la gomera na jeden dzien",
+          "wycieczka na la gomere",
+          "garajonay"
+        ],
+        "zh": [
+          "la gomera 一日游",
+          "garajonay"
+        ],
+        "zht": [
+          "la gomera 一日遊",
+          "garajonay"
+        ]
+      },
+      "a": {
+        "es": "⛴️ Merece la pena si madrugas: en menos de una hora estás en San Sebastián y da tiempo a subir al Parque Nacional de Garajonay, comer en un pueblo del norte y volver por la tarde. Reserva ida y vuelta el mismo día y cuenta con que con mar movido se cancela: si eso te deja tirado, mejor dormir allí una noche.",
+        "en": "⛴️ Worth it if you get up early: in under an hour you are in San Sebastián, with time to go up to the Garajonay National Park, eat in a village in the north and come back in the afternoon. Book the return for the same day and bear in mind that rough seas cancel crossings: if being stranded would ruin things, sleep over instead.",
+        "de": "⛴️ Lohnt sich, wenn du früh aufstehst: In weniger als einer Stunde bist du in San Sebastián, und es reicht für den Nationalpark Garajonay, ein Essen in einem Dorf im Norden und die Rückfahrt am Nachmittag. Buch Hin- und Rückfahrt am selben Tag und rechne damit, dass bei rauer See gestrichen wird: wäre das ein Problem, übernachte lieber dort.",
+        "fr": "⛴️ Ça vaut le coup si tu te lèves tôt : en moins d’une heure tu es à San Sebastián, avec le temps de monter au Parc National de Garajonay, manger dans un village du nord et rentrer l’après-midi. Réserve l’aller-retour le même jour et sache que par mer agitée c’est annulé : si rester bloqué te pose problème, dors plutôt sur place.",
+        "it": "⛴️ Vale la pena se ti alzi presto: in meno di un’ora sei a San Sebastián, e c’è tempo per salire al Parco Nazionale di Garajonay, mangiare in un paese del nord e tornare nel pomeriggio. Prenota andata e ritorno in giornata e considera che col mare mosso si annulla: se restare bloccato è un problema, dormici una notte.",
+        "nl": "⛴️ De moeite waard als je vroeg opstaat: in minder dan een uur ben je in San Sebastián, met tijd voor het Nationaal Park Garajonay, eten in een dorp in het noorden en terug in de middag. Boek heen en terug op dezelfde dag en hou er rekening mee dat het bij ruwe zee vervalt: als stranden een probleem is, slaap er dan liever één nacht.",
+        "pl": "⛴️ Warto, jeśli wstaniesz wcześnie: w niecałą godzinę jesteś w San Sebastián, starczy czasu na Park Narodowy Garajonay, obiad w wiosce na północy i powrót po południu. Zarezerwuj powrót na ten sam dzień i licz się z odwołaniem przy wzburzonym morzu: jeśli utknięcie byłoby problemem, przenocuj na miejscu.",
+        "zh": "⛴️ 只要早起就很值得：不到一小时就能抵达 San Sebastián，足够上 Garajonay 国家公园、在北部村子吃顿饭，下午再回来。往返请订同一天，并注意海况不佳时会停航：如果被困会打乱行程，不如在岛上住一晚。",
+        "zht": "⛴️ 只要早起就很值得：不到一小時就能抵達 San Sebastián，足夠上 Garajonay 國家公園、在北部村子吃頓飯，下午再回來。往返請訂同一天，並注意海況不佳時會停航：如果被困會打亂行程，不如在島上住一晚。"
+      },
+      "follow": [
+        "exc-03",
+        "exc-02",
+        "exc-11"
+      ]
+    },
+    {
+      "id": "exc-05",
+      "cat": "excursiones",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Dónde buceo o hago snorkel?",
+        "en": "Where can I dive or snorkel?",
+        "de": "Wo kann ich tauchen oder schnorcheln?",
+        "fr": "Où plonger ou faire du snorkeling ?",
+        "it": "Dove faccio immersioni o snorkeling?",
+        "nl": "Waar kan ik duiken of snorkelen?",
+        "pl": "Gdzie nurkować lub snorkelować?",
+        "zh": "哪里能潜水或浮潜？",
+        "zht": "哪裡能潛水或浮潛？"
+      },
+      "keys": {
+        "es": [
+          "buceo",
+          "bucear",
+          "snorkel",
+          "inmersion",
+          "centro de buceo",
+          "tortugas"
+        ],
+        "en": [
+          "diving",
+          "scuba",
+          "snorkelling",
+          "dive centre",
+          "turtles"
+        ],
+        "de": [
+          "tauchen",
+          "schnorcheln",
+          "tauchbasis",
+          "schildkroten"
+        ],
+        "fr": [
+          "plongee",
+          "snorkeling",
+          "centre de plongee",
+          "tortues"
+        ],
+        "it": [
+          "immersioni",
+          "snorkeling",
+          "diving center",
+          "tartarughe"
+        ],
+        "nl": [
+          "duiken",
+          "snorkelen",
+          "duikcentrum",
+          "schildpadden"
+        ],
+        "pl": [
+          "nurkowanie",
+          "snorkeling",
+          "centrum nurkowe",
+          "zolwie"
+        ],
+        "zh": [
+          "潜水",
+          "浮潜",
+          "潜水中心",
+          "海龟"
+        ],
+        "zht": [
+          "潛水",
+          "浮潛",
+          "潛水中心",
+          "海龜"
+        ]
+      },
+      "a": {
+        "es": "🤿 El sur concentra los centros de buceo, con agua templada todo el año y buena visibilidad: la zona de Las Galletas, Los Cristianos y Radazul. Para snorkel sin botella, las piscinas naturales con marea baja y las calas resguardadas del sur. En el norte el mar manda mucho más de lo que parece desde la orilla.",
+        "en": "🤿 The dive centres cluster in the south, with mild water all year and good visibility: around Las Galletas, Los Cristianos and Radazul. For snorkelling without tanks, the natural pools at low tide and the sheltered coves of the south. In the north the sea calls the shots far more than it looks from the shore.",
+        "de": "🤿 Die Tauchbasen konzentrieren sich im Süden, mit mildem Wasser das ganze Jahr und guter Sicht: rund um Las Galletas, Los Cristianos und Radazul. Zum Schnorcheln ohne Flasche eignen sich die Naturbecken bei Ebbe und die geschützten Buchten im Süden. Im Norden bestimmt das Meer weit mehr, als es vom Ufer aussieht.",
+        "fr": "🤿 Les centres de plongée se concentrent au sud, avec une eau douce toute l’année et une bonne visibilité : autour de Las Galletas, Los Cristianos et Radazul. Pour le snorkeling sans bouteille, les piscines naturelles à marée basse et les criques abritées du sud. Au nord, la mer décide bien plus que ce qu’on croit depuis le bord.",
+        "it": "🤿 I diving center si concentrano a sud, con acqua mite tutto l’anno e buona visibilità: zona di Las Galletas, Los Cristianos e Radazul. Per lo snorkeling senza bombole, le piscine naturali con bassa marea e le cale riparate del sud. A nord il mare comanda molto più di quanto sembri dalla riva.",
+        "nl": "🤿 De duikcentra zitten vooral in het zuiden, met mild water het hele jaar en goed zicht: rond Las Galletas, Los Cristianos en Radazul. Voor snorkelen zonder fles zijn de natuurzwembaden bij laag water en de beschutte baaien in het zuiden het beste. In het noorden bepaalt de zee veel meer dan het vanaf het strand lijkt.",
+        "pl": "🤿 Centra nurkowe skupiają się na południu, z łagodną wodą przez cały rok i dobrą widocznością: okolice Las Galletas, Los Cristianos i Radazul. Do snorkelingu bez butli najlepsze są naturalne baseny przy odpływie i osłonięte zatoczki południa. Na północy morze rządzi o wiele bardziej, niż wygląda to z brzegu.",
+        "zh": "🤿 潜店集中在南部，水温全年温和、能见度好：Las Galletas、Los Cristianos 和 Radazul 一带。不背气瓶的浮潜，选退潮时的天然泳池和南部避风的小海湾。北岸的海比从岸上看起来强势得多。",
+        "zht": "🤿 潛店集中在南部，水溫全年溫和、能見度好：Las Galletas、Los Cristianos 和 Radazul 一帶。不背氣瓶的浮潛，選退潮時的天然泳池和南部避風的小海灣。北岸的海比從岸上看起來強勢得多。"
+      },
+      "follow": [
+        "exc-07",
+        "exc-01",
+        "exc-06"
+      ]
+    },
+    {
+      "id": "exc-06",
+      "cat": "excursiones",
+      "prio": 3,
+      "volatil": false,
+      "label": {
+        "es": "¿Dónde hago parapente?",
+        "en": "Where can I paraglide?",
+        "de": "Wo kann ich Gleitschirm fliegen?",
+        "fr": "Où faire du parapente ?",
+        "it": "Dove faccio parapendio?",
+        "nl": "Waar kan ik paragliden?",
+        "pl": "Gdzie polecę na paralotni?",
+        "zh": "哪里可以滑翔伞？",
+        "zht": "哪裡可以滑翔傘？"
+      },
+      "keys": {
+        "es": [
+          "parapente",
+          "volar en parapente",
+          "biplaza",
+          "despegue"
+        ],
+        "en": [
+          "paragliding",
+          "paraglide",
+          "tandem flight",
+          "take off site"
+        ],
+        "de": [
+          "gleitschirm",
+          "paragliding",
+          "tandemflug",
+          "startplatz"
+        ],
+        "fr": [
+          "parapente",
+          "vol en parapente",
+          "biplace",
+          "decollage"
+        ],
+        "it": [
+          "parapendio",
+          "volo in parapendio",
+          "biposto",
+          "decollo"
+        ],
+        "nl": [
+          "paragliden",
+          "schermvliegen",
+          "tandemvlucht",
+          "startplek"
+        ],
+        "pl": [
+          "paralotnia",
+          "lot paralotnia",
+          "lot tandemowy",
+          "start"
+        ],
+        "zh": [
+          "滑翔伞",
+          "双人飞行",
+          "起飞点"
+        ],
+        "zht": [
+          "滑翔傘",
+          "雙人飛行",
+          "起飛點"
+        ]
+      },
+      "a": {
+        "es": "🪂 La isla es muy buena para volar, con despegues clásicos sobre el valle de La Orotava y en la zona de Adeje. Se vuela en biplaza con piloto, así que no hace falta experiencia. El vuelo depende del viento del día: reserva con margen y cuenta con que te puedan cambiar la hora o la zona de despegue.",
+        "en": "🪂 The island is excellent for flying, with classic launch sites above the Orotava valley and around Adeje. You fly tandem with a pilot, so no experience is needed. The flight depends on the day’s wind: book with some slack and expect them to move your time or your launch site.",
+        "de": "🪂 Die Insel eignet sich hervorragend zum Fliegen, mit klassischen Startplätzen über dem Orotava-Tal und rund um Adeje. Geflogen wird im Tandem mit Pilot, Erfahrung braucht es also nicht. Der Flug hängt vom Wind des Tages ab: buche mit Puffer und rechne damit, dass Uhrzeit oder Startplatz verlegt werden.",
+        "fr": "🪂 L’île est excellente pour voler, avec des décollages classiques au-dessus de la vallée de La Orotava et du côté d’Adeje. On vole en biplace avec un pilote, aucune expérience requise. Le vol dépend du vent du jour : réserve avec de la marge et attends-toi à un changement d’horaire ou de site.",
+        "it": "🪂 L’isola è ottima per volare, con decolli classici sopra la valle di La Orotava e nella zona di Adeje. Si vola in biposto con il pilota, quindi non serve esperienza. Il volo dipende dal vento del giorno: prenota con margine e metti in conto che ti spostino orario o punto di decollo.",
+        "nl": "🪂 Het eiland is uitstekend om te vliegen, met klassieke startplekken boven de Orotava-vallei en rond Adeje. Je vliegt tandem met een piloot, dus ervaring is niet nodig. De vlucht hangt af van de wind die dag: boek met speling en reken erop dat tijd of startplek verschuift.",
+        "pl": "🪂 Wyspa świetnie nadaje się do latania, z klasycznymi startowiskami nad doliną La Orotava i w rejonie Adeje. Lata się w tandemie z pilotem, więc doświadczenie nie jest potrzebne. Lot zależy od wiatru danego dnia: rezerwuj z zapasem i licz się ze zmianą godziny lub miejsca startu.",
+        "zh": "🪂 这座岛非常适合飞行，经典起飞点在 La Orotava 谷地上方和 Adeje 一带。采用双人带飞，不需要经验。飞不飞得成取决于当天的风：预约时留出余裕，并接受时间或起飞点可能临时调整。",
+        "zht": "🪂 這座島非常適合飛行，經典起飛點在 La Orotava 谷地上方和 Adeje 一帶。採用雙人帶飛，不需要經驗。飛不飛得成取決於當天的風：預約時留出餘裕，並接受時間或起飛點可能臨時調整。"
+      },
+      "follow": [
+        "exc-05",
+        "exc-07",
+        "exc-09"
+      ]
+    },
+    {
+      "id": "exc-07",
+      "cat": "excursiones",
+      "prio": 3,
+      "volatil": false,
+      "label": {
+        "es": "¿Dónde hago kayak o paddle?",
+        "en": "Where can I kayak or paddleboard?",
+        "de": "Wo kann ich Kajak oder SUP fahren?",
+        "fr": "Où faire du kayak ou du paddle ?",
+        "it": "Dove faccio kayak o paddle?",
+        "nl": "Waar kan ik kajakken of suppen?",
+        "pl": "Gdzie popływać kajakiem lub na SUP?",
+        "zh": "哪里能划皮划艇或立式桨板？",
+        "zht": "哪裡能划獨木舟或立槳？"
+      },
+      "keys": {
+        "es": [
+          "kayak",
+          "paddle surf",
+          "piragua",
+          "remo",
+          "sup"
+        ],
+        "en": [
+          "kayak",
+          "paddleboard",
+          "sup",
+          "canoe"
+        ],
+        "de": [
+          "kajak",
+          "stand up paddling",
+          "sup",
+          "kanu"
+        ],
+        "fr": [
+          "kayak",
+          "paddle",
+          "sup",
+          "canoe"
+        ],
+        "it": [
+          "kayak",
+          "paddle surf",
+          "sup",
+          "canoa"
+        ],
+        "nl": [
+          "kajak",
+          "suppen",
+          "sup",
+          "kano"
+        ],
+        "pl": [
+          "kajak",
+          "sup",
+          "deska sup",
+          "kanu"
+        ],
+        "zh": [
+          "皮划艇",
+          "立式桨板",
+          "sup",
+          "独木舟"
+        ],
+        "zht": [
+          "獨木舟",
+          "立槳",
+          "sup",
+          "皮艇"
+        ]
+      },
+      "a": {
+        "es": "🛶 En el sur, que tiene el mar más calmado: Los Cristianos, Playa Paraíso, Los Gigantes y la costa de Adeje, donde es fácil cruzarte con tortugas. Alquilas por horas o vas con guía, que además te lleva a las cuevas de la costa. En el norte, solo con mar plano y sabiendo lo que haces.",
+        "en": "🛶 In the south, where the sea is calmest: Los Cristianos, Playa Paraíso, Los Gigantes and the Adeje coast, where you can easily run into turtles. You rent by the hour or go with a guide, who will also take you into the coastal caves. In the north, only with a flat sea and only if you know what you are doing.",
+        "de": "🛶 Im Süden, wo das Meer am ruhigsten ist: Los Cristianos, Playa Paraíso, Los Gigantes und die Küste von Adeje, wo dir leicht Schildkröten begegnen. Du mietest stundenweise oder gehst mit Guide, der dich auch in die Küstenhöhlen bringt. Im Norden nur bei glattem Meer und nur mit Erfahrung.",
+        "fr": "🛶 Au sud, là où la mer est la plus calme : Los Cristianos, Playa Paraíso, Los Gigantes et la côte d’Adeje, où l’on croise facilement des tortues. Tu loues à l’heure ou tu pars avec un guide, qui t’emmène aussi dans les grottes du littoral. Au nord, seulement par mer plate et en sachant ce que tu fais.",
+        "it": "🛶 A sud, dove il mare è più calmo: Los Cristianos, Playa Paraíso, Los Gigantes e la costa di Adeje, dove è facile incrociare le tartarughe. Noleggi a ore o vai con una guida, che ti porta anche nelle grotte costiere. A nord solo con mare piatto e sapendo quello che fai.",
+        "nl": "🛶 In het zuiden, waar de zee het rustigst is: Los Cristianos, Playa Paraíso, Los Gigantes en de kust van Adeje, waar je makkelijk schildpadden tegenkomt. Je huurt per uur of gaat met een gids, die je ook de kustgrotten in neemt. In het noorden alleen bij vlakke zee en als je weet wat je doet.",
+        "pl": "🛶 Na południu, gdzie morze jest najspokojniejsze: Los Cristianos, Playa Paraíso, Los Gigantes i wybrzeże Adeje, gdzie łatwo spotkać żółwie. Wypożyczasz na godziny albo płyniesz z przewodnikiem, który zabierze cię też do nadmorskich jaskiń. Na północy tylko przy gładkim morzu i z doświadczeniem.",
+        "zh": "🛶 去南部，海面最平静：Los Cristianos、Playa Paraíso、Los Gigantes 和 Adeje 沿岸，很容易遇到海龟。可以按小时租，也可以跟教练出海，还能划进海蚀洞。北岸只有在海面完全平静、且你清楚自己在做什么时才考虑。",
+        "zht": "🛶 去南部，海面最平靜：Los Cristianos、Playa Paraíso、Los Gigantes 和 Adeje 沿岸，很容易遇到海龜。可以按小時租，也可以跟教練出海，還能划進海蝕洞。北岸只有在海面完全平靜、且你清楚自己在做什麼時才考慮。"
+      },
+      "follow": [
+        "exc-05",
+        "exc-01",
+        "exc-06"
+      ]
+    },
+    {
+      "id": "exc-08",
+      "cat": "excursiones",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Hay vida nocturna?",
+        "en": "Is there any nightlife?",
+        "de": "Gibt es Nachtleben?",
+        "fr": "Y a-t-il de la vie nocturne ?",
+        "it": "C’è vita notturna?",
+        "nl": "Is er nachtleven?",
+        "pl": "Czy jest życie nocne?",
+        "zh": "夜生活怎么样？",
+        "zht": "夜生活怎麼樣？"
+      },
+      "keys": {
+        "es": [
+          "vida nocturna",
+          "salir de fiesta",
+          "discoteca",
+          "copas",
+          "bares de noche",
+          "marcha"
+        ],
+        "en": [
+          "nightlife",
+          "going out",
+          "clubs",
+          "bars at night",
+          "party"
+        ],
+        "de": [
+          "nachtleben",
+          "ausgehen",
+          "clubs",
+          "bars am abend",
+          "feiern"
+        ],
+        "fr": [
+          "vie nocturne",
+          "sortir le soir",
+          "boites",
+          "bars de nuit",
+          "faire la fete"
+        ],
+        "it": [
+          "vita notturna",
+          "uscire la sera",
+          "discoteche",
+          "locali notturni",
+          "festa"
+        ],
+        "nl": [
+          "nachtleven",
+          "uitgaan",
+          "clubs",
+          "bars s avonds",
+          "stappen"
+        ],
+        "pl": [
+          "zycie nocne",
+          "wyjscie wieczorem",
+          "kluby",
+          "bary nocne",
+          "impreza"
+        ],
+        "zh": [
+          "夜生活",
+          "晚上出去",
+          "夜店",
+          "酒吧",
+          "派对"
+        ],
+        "zht": [
+          "夜生活",
+          "晚上出去",
+          "夜店",
+          "酒吧",
+          "派對"
+        ]
+      },
+      "a": {
+        "es": "🌙 Depende de lo que busques. Las Américas y Costa Adeje concentran el ocio nocturno turístico, con discotecas y bares hasta tarde. Santa Cruz y La Laguna tienen el ambiente local, con la zona de copas del centro y terrazas llenas. Aquí se sale tarde: los fines de semana la cosa arranca a partir de medianoche.",
+        "en": "🌙 Depends what you are after. Las Américas and Costa Adeje hold the tourist nightlife, with clubs and bars running late. Santa Cruz and La Laguna have the local scene, with the bar district downtown and terraces full of people. People go out late here: at weekends things get going from midnight onwards.",
+        "de": "🌙 Kommt darauf an, was du suchst. Las Américas und Costa Adeje bündeln das touristische Nachtleben, mit Clubs und Bars bis spät. Santa Cruz und La Laguna haben die lokale Szene, mit dem Kneipenviertel im Zentrum und vollen Terrassen. Man geht hier spät aus: am Wochenende geht es ab Mitternacht los.",
+        "fr": "🌙 Ça dépend de ce que tu cherches. Las Américas et Costa Adeje concentrent la nuit touristique, avec boîtes et bars jusqu’à tard. Santa Cruz et La Laguna ont l’ambiance locale, avec le quartier des bars au centre et des terrasses pleines. Ici on sort tard : le week-end, ça démarre à partir de minuit.",
+        "it": "🌙 Dipende da cosa cerchi. Las Américas e Costa Adeje concentrano la notte turistica, con discoteche e bar fino a tardi. Santa Cruz e La Laguna hanno l’ambiente locale, con la zona dei locali in centro e i dehors pieni. Qui si esce tardi: nel fine settimana si parte da mezzanotte in poi.",
+        "nl": "🌙 Hangt ervan af wat je zoekt. Las Américas en Costa Adeje hebben het toeristische nachtleven, met clubs en bars tot laat. Santa Cruz en La Laguna hebben de lokale sfeer, met de kroegenbuurt in het centrum en volle terrassen. Men gaat hier laat uit: in het weekend begint het pas na middernacht.",
+        "pl": "🌙 Zależy, czego szukasz. Las Américas i Costa Adeje skupiają turystyczne życie nocne, z klubami i barami do późna. Santa Cruz i La Laguna mają klimat lokalny, z dzielnicą barów w centrum i pełnymi ogródkami. Wychodzi się tu późno: w weekendy rozkręca się po północy.",
+        "zh": "🌙 看你想要什么。Las Américas 和 Costa Adeje 是游客夜生活的集中地，夜店和酒吧营业到很晚。Santa Cruz 和 La Laguna 则是本地氛围，市中心有酒吧街，露天座位坐满了人。这里出门很晚：周末通常午夜之后才热闹起来。",
+        "zht": "🌙 看你想要什麼。Las Américas 和 Costa Adeje 是遊客夜生活的集中地，夜店和酒吧營業到很晚。Santa Cruz 和 La Laguna 則是本地氛圍，市中心有酒吧街，露天座位坐滿了人。這裡出門很晚：週末通常午夜之後才熱鬧起來。"
+      },
+      "follow": [
+        "exc-10",
+        "exc-02",
+        "exc-09"
+      ]
+    },
+    {
+      "id": "exc-09",
+      "cat": "excursiones",
+      "prio": 3,
+      "volatil": true,
+      "label": {
+        "es": "¿Dónde hay campos de golf?",
+        "en": "Where are the golf courses?",
+        "de": "Wo gibt es Golfplätze?",
+        "fr": "Où sont les golfs ?",
+        "it": "Dove ci sono campi da golf?",
+        "nl": "Waar zijn de golfbanen?",
+        "pl": "Gdzie są pola golfowe?",
+        "zh": "哪里有高尔夫球场？",
+        "zht": "哪裡有高爾夫球場？"
+      },
+      "keys": {
+        "es": [
+          "golf",
+          "campo de golf",
+          "jugar al golf",
+          "green fee"
+        ],
+        "en": [
+          "golf",
+          "golf course",
+          "play golf",
+          "green fee"
+        ],
+        "de": [
+          "golf",
+          "golfplatz",
+          "golf spielen",
+          "greenfee"
+        ],
+        "fr": [
+          "golf",
+          "parcours de golf",
+          "jouer au golf",
+          "green fee"
+        ],
+        "it": [
+          "golf",
+          "campo da golf",
+          "giocare a golf",
+          "green fee"
+        ],
+        "nl": [
+          "golf",
+          "golfbaan",
+          "golfen",
+          "greenfee"
+        ],
+        "pl": [
+          "golf",
+          "pole golfowe",
+          "gra w golfa",
+          "green fee"
+        ],
+        "zh": [
+          "高尔夫",
+          "球场",
+          "打高尔夫"
+        ],
+        "zht": [
+          "高爾夫",
+          "球場",
+          "打高爾夫"
+        ]
+      },
+      "a": {
+        "es": "⛳ Hay una docena de campos, casi todos en el sur y algunos en el norte con vistas al Teide y al mar. Se juega todo el año, que es justo la gracia de venir aquí en invierno. En los meses de más calor conviene salida temprano. Los tienes en el mapa por categoría, con su ficha y cómo llegar.",
+        "en": "⛳ There are about a dozen courses, most in the south and a few in the north with views of the Teide and the sea. You can play all year, which is exactly why people come in winter. In the hotter months, book an early tee time. They are on the map under their own category, with directions.",
+        "de": "⛳ Es gibt rund ein Dutzend Plätze, die meisten im Süden und einige im Norden mit Blick auf Teide und Meer. Gespielt wird das ganze Jahr, genau deshalb kommen viele im Winter. In den heißen Monaten empfiehlt sich eine frühe Startzeit. Auf der Karte findest du sie in einer eigenen Kategorie, mit Anfahrt.",
+        "fr": "⛳ Il y a une douzaine de parcours, surtout au sud et quelques-uns au nord avec vue sur le Teide et la mer. On joue toute l’année, c’est justement l’intérêt de venir en hiver. Aux mois les plus chauds, prends un départ tôt. Ils sont sur la carte dans leur catégorie, avec l’itinéraire.",
+        "it": "⛳ Ci sono una dozzina di campi, quasi tutti a sud e alcuni a nord con vista sul Teide e sul mare. Si gioca tutto l’anno, che è proprio il motivo per venire d’inverno. Nei mesi più caldi meglio una partenza presto. Li trovi sulla mappa nella loro categoria, con le indicazioni.",
+        "nl": "⛳ Er zijn een stuk of twaalf banen, de meeste in het zuiden en enkele in het noorden met uitzicht op de Teide en de zee. Je kunt het hele jaar spelen, precies daarom komen mensen in de winter. In de warmste maanden neem je een vroege starttijd. Ze staan op de kaart in hun eigen categorie, met route.",
+        "pl": "⛳ Jest kilkanaście pól, w większości na południu, kilka na północy z widokiem na Teide i morze. Gra się przez cały rok, i właśnie po to przyjeżdża się tu zimą. W najgorętszych miesiącach lepiej wziąć wczesny start. Znajdziesz je na mapie w osobnej kategorii, z dojazdem.",
+        "zh": "⛳ 全岛约有十几座球场，多数在南部，北部有几座能看到泰德峰和大海。全年都能打球，这正是冬天来这里的理由。最热的月份建议订早场。地图上有专门分类，附带前往路线。",
+        "zht": "⛳ 全島約有十幾座球場，多數在南部，北部有幾座能看到泰德峰和大海。全年都能打球，這正是冬天來這裡的理由。最熱的月份建議訂早場。地圖上有專門分類，附帶前往路線。"
+      },
+      "follow": [
+        "exc-06",
+        "exc-08",
+        "exc-05"
+      ]
+    },
+    {
+      "id": "exc-10",
+      "cat": "excursiones",
+      "prio": 3,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué hago un domingo?",
+        "en": "What is there to do on a Sunday?",
+        "de": "Was mache ich am Sonntag?",
+        "fr": "Que faire un dimanche ?",
+        "it": "Cosa faccio di domenica?",
+        "nl": "Wat doe ik op zondag?",
+        "pl": "Co robić w niedzielę?",
+        "zh": "周日做什么？",
+        "zht": "週日做什麼？"
+      },
+      "keys": {
+        "es": [
+          "domingo",
+          "que hacer el domingo",
+          "fin de semana",
+          "domingo cerrado"
+        ],
+        "en": [
+          "sunday",
+          "what to do on sunday",
+          "weekend",
+          "closed on sunday"
+        ],
+        "de": [
+          "sonntag",
+          "was am sonntag machen",
+          "wochenende",
+          "sonntags geschlossen"
+        ],
+        "fr": [
+          "dimanche",
+          "que faire le dimanche",
+          "week end",
+          "ferme le dimanche"
+        ],
+        "it": [
+          "domenica",
+          "cosa fare di domenica",
+          "fine settimana",
+          "chiuso la domenica"
+        ],
+        "nl": [
+          "zondag",
+          "wat doen op zondag",
+          "weekend",
+          "zondag gesloten"
+        ],
+        "pl": [
+          "niedziela",
+          "co robic w niedziele",
+          "weekend",
+          "zamkniete w niedziele"
+        ],
+        "zh": [
+          "周日",
+          "星期天做什么",
+          "周末",
+          "周日关门"
+        ],
+        "zht": [
+          "週日",
+          "星期天做什麼",
+          "週末",
+          "週日關門"
+        ]
+      },
+      "a": {
+        "es": "☀️ El domingo la isla se va al campo: áreas recreativas con barbacoa, guachinches llenos, romería si toca y mercados de agricultor por la mañana. Muchas tiendas cierran, pero restaurantes, playas y senderos están en su mejor momento. Es el mejor día para ver la isla en modo local, y el peor para ir de compras.",
+        "en": "☀️ On Sunday the island heads for the countryside: recreation areas with barbecues, packed guachinches, a romería if one falls that weekend and farmers markets in the morning. Many shops close, but restaurants, beaches and trails are at their best. It is the best day to see the island in local mode, and the worst for shopping.",
+        "de": "☀️ Sonntags zieht die Insel aufs Land: Erholungsgebiete mit Grill, volle Guachinches, eine Romería, wenn gerade eine ansteht, und morgens Bauernmärkte. Viele Läden schließen, aber Restaurants, Strände und Wege laufen auf Hochtouren. Der beste Tag, die Insel im Alltagsmodus zu sehen, und der schlechteste zum Einkaufen.",
+        "fr": "☀️ Le dimanche, l’île part à la campagne : aires récréatives avec barbecue, guachinches pleins, une romería si elle tombe ce week-end et marchés de producteurs le matin. Beaucoup de boutiques ferment, mais restaurants, plages et sentiers sont au mieux. C’est le meilleur jour pour voir l’île en mode local, et le pire pour faire les magasins.",
+        "it": "☀️ La domenica l’isola va in campagna: aree ricreative con barbecue, guachinches pieni, una romería se capita quel fine settimana e mercati contadini la mattina. Molti negozi chiudono, ma ristoranti, spiagge e sentieri sono al massimo. È il giorno migliore per vedere l’isola in modalità locale, e il peggiore per fare acquisti.",
+        "nl": "☀️ Op zondag trekt het eiland het veld in: recreatiegebieden met barbecue, volle guachinches, een romería als die net dat weekend valt en boerenmarkten in de ochtend. Veel winkels sluiten, maar restaurants, stranden en paden draaien op hun best. De beste dag om het eiland in lokale modus te zien, en de slechtste om te winkelen.",
+        "pl": "☀️ W niedzielę wyspa rusza na wieś: tereny rekreacyjne z grillem, zapełnione guachinches, romería jeśli akurat wypada, i targi rolnicze rano. Wiele sklepów jest zamkniętych, ale restauracje, plaże i szlaki działają pełną parą. To najlepszy dzień, by zobaczyć wyspę po miejscowemu, i najgorszy na zakupy.",
+        "zh": "☀️ 周日整座岛都往郊外跑：带烧烤的休憩区、坐满人的 guachinche、碰上就有的 romería 游行，还有上午的农夫市集。很多商店关门，但餐厅、海滩和步道正是最好的状态。这是以本地人视角看这座岛的最佳日子，也是购物最糟的日子。",
+        "zht": "☀️ 週日整座島都往郊外跑：帶烤肉的休憩區、坐滿人的 guachinche、碰上就有的 romería 遊行，還有上午的農夫市集。很多商店關門，但餐廳、海灘和步道正是最好的狀態。這是以本地人視角看這座島的最佳日子，也是購物最糟的日子。"
+      },
+      "follow": [
+        "exc-08",
+        "exc-02",
+        "exc-11"
+      ]
+    },
+    {
+      "id": "exc-11",
+      "cat": "excursiones",
+      "prio": 2,
+      "volatil": true,
+      "label": {
+        "es": "¿Hay excursiones sin coche?",
+        "en": "Any trips without a car?",
+        "de": "Ausflüge ohne Auto?",
+        "fr": "Des excursions sans voiture ?",
+        "it": "Escursioni senza auto?",
+        "nl": "Uitstapjes zonder auto?",
+        "pl": "Wycieczki bez samochodu?",
+        "zh": "没有车能参加行程吗？",
+        "zht": "沒有車能參加行程嗎？"
+      },
+      "keys": {
+        "es": [
+          "excursiones sin coche",
+          "excursion organizada",
+          "tour guiado",
+          "recogida en el hotel"
+        ],
+        "en": [
+          "trips without a car",
+          "organised excursion",
+          "guided tour",
+          "hotel pick up"
+        ],
+        "de": [
+          "ausfluge ohne auto",
+          "organisierte tour",
+          "gefuhrte tour",
+          "abholung am hotel"
+        ],
+        "fr": [
+          "excursions sans voiture",
+          "excursion organisee",
+          "visite guidee",
+          "prise en charge a l hotel"
+        ],
+        "it": [
+          "escursioni senza auto",
+          "escursione organizzata",
+          "tour guidato",
+          "ritiro in hotel"
+        ],
+        "nl": [
+          "uitjes zonder auto",
+          "georganiseerde excursie",
+          "rondleiding",
+          "ophalen bij hotel"
+        ],
+        "pl": [
+          "wycieczki bez samochodu",
+          "wycieczka zorganizowana",
+          "tour z przewodnikiem",
+          "odbior z hotelu"
+        ],
+        "zh": [
+          "没有车的行程",
+          "跟团行程",
+          "导览团",
+          "酒店接送"
+        ],
+        "zht": [
+          "沒有車的行程",
+          "跟團行程",
+          "導覽團",
+          "飯店接送"
+        ]
+      },
+      "a": {
+        "es": "🚌 Se puede perfectamente. Las guaguas llegan al Teide, a Masca, a Anaga y a casi todos los pueblos, y desde el sur hay excursiones organizadas que te recogen en el hotel. Lo que cambia es el ritmo: vas atado al horario de vuelta, así que mira el último regreso antes de salir y no lo apures.",
+        "en": "🚌 Perfectly possible. Buses reach the Teide, Masca, Anaga and nearly every village, and from the south there are organised excursions that pick you up at your hotel. What changes is the rhythm: you are tied to the return timetable, so check the last departure before you set off and do not cut it fine.",
+        "de": "🚌 Geht problemlos. Busse fahren zum Teide, nach Masca, nach Anaga und in fast jedes Dorf, und vom Süden aus gibt es organisierte Ausflüge mit Abholung am Hotel. Anders ist nur der Rhythmus: Du hängst am Rückfahrplan, prüf also vorher die letzte Verbindung und reiz sie nicht aus.",
+        "fr": "🚌 Tout à fait possible. Les bus vont au Teide, à Masca, à Anaga et dans presque tous les villages, et depuis le sud il y a des excursions organisées avec prise en charge à l’hôtel. Ce qui change, c’est le rythme : tu dépends de l’horaire de retour, alors regarde le dernier départ avant de partir et ne joue pas la montre.",
+        "it": "🚌 Si può benissimo. Gli autobus arrivano al Teide, a Masca, ad Anaga e in quasi tutti i paesi, e dal sud ci sono escursioni organizzate che ti prendono in hotel. Cambia solo il ritmo: dipendi dall’orario di ritorno, quindi guarda l’ultima corsa prima di uscire e non tirarla per le lunghe.",
+        "nl": "🚌 Kan prima. Bussen rijden naar de Teide, naar Masca, naar Anaga en naar bijna elk dorp, en vanuit het zuiden zijn er georganiseerde excursies die je bij je hotel ophalen. Wat verandert is het ritme: je zit vast aan de terugrit, dus check de laatste vertrektijd voor je gaat en reken je niet rijk.",
+        "pl": "🚌 Jak najbardziej. Autobusy docierają na Teide, do Masca, do Anagi i do prawie każdej miejscowości, a z południa kursują wycieczki zorganizowane z odbiorem z hotelu. Zmienia się tylko rytm: jesteś zależny od rozkładu powrotu, więc sprawdź ostatni kurs przed wyjściem i nie ryzykuj na styk.",
+        "zh": "🚌 完全可以。公交能到泰德、Masca、Anaga 以及几乎所有村镇；南部还有到酒店接人的跟团行程。差别只在节奏：你受回程班次牵制，出发前先查最后一班，别掐得太紧。",
+        "zht": "🚌 完全可以。公車能到泰德、Masca、Anaga 以及幾乎所有村鎮；南部還有到飯店接人的跟團行程。差別只在節奏：你受回程班次牽制，出發前先查最後一班，別掐得太緊。"
+      },
+      "follow": [
+        "exc-02",
+        "exc-03",
+        "exc-04"
+      ]
+    }
+  ]
+}

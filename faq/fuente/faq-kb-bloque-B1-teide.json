@@ -1,0 +1,1518 @@
+{
+  "meta": {
+    "bloque": "B1 · Teide y Parque Nacional",
+    "version": "1.0",
+    "fecha": "2026-09-13",
+    "idiomas": [
+      "es",
+      "en",
+      "de",
+      "fr",
+      "it",
+      "nl",
+      "pl",
+      "zh",
+      "zht"
+    ],
+    "entradas": 15,
+    "fuente_verificada": "tenerifeon.es/itinerarios/sendero/pnt-10-telesforo-bravo (consultada 13/09/2026): autorizacion previa obligatoria, reserva en Tenerife ON, plazas cada lunes 07:00 hora canaria para 56 dias, una reserva por persona cada 15 dias, tarifa solo en la franja 09:00-17:00 (residentes en Tenerife y menores 0 EUR), equipamiento obligatorio, crampones y piolet con hielo o nieve, prohibido menores de 3 anos y menores de 16 sin adulto, sancion por acceder sin reserva.",
+    "sustituye": "Entrada 'teide' del CHAT_KB actual (L27294+), que envia a reservasparquesnacionales.es y dice que el permiso es gratuito. Ambas cosas dejaron de ser ciertas."
+  },
+  "entradas": [
+    {
+      "id": "tei-01",
+      "cat": "teide",
+      "prio": 1,
+      "volatil": true,
+      "label": {
+        "es": "¿Necesito permiso para el pico?",
+        "en": "Do I need a permit for the peak?",
+        "de": "Genehmigung für den Gipfel?",
+        "fr": "Faut-il un permis pour le sommet ?",
+        "it": "Serve un permesso per la vetta?",
+        "nl": "Heb ik een vergunning nodig voor de top?",
+        "pl": "Czy potrzebuję pozwolenia na szczyt?",
+        "zh": "登顶需要许可吗？",
+        "zht": "登頂需要許可嗎？"
+      },
+      "keys": {
+        "es": [
+          "permiso teide",
+          "permiso pico",
+          "autorizacion teide",
+          "telesforo bravo",
+          "subir a la cima",
+          "pnt 10",
+          "hace falta permiso"
+        ],
+        "en": [
+          "teide permit",
+          "peak permit",
+          "permission teide",
+          "telesforo bravo",
+          "climb to the summit",
+          "pnt 10",
+          "do i need a permit"
+        ],
+        "de": [
+          "teide genehmigung",
+          "gipfel genehmigung",
+          "erlaubnis teide",
+          "telesforo bravo",
+          "auf den gipfel",
+          "pnt 10"
+        ],
+        "fr": [
+          "permis teide",
+          "autorisation teide",
+          "permis sommet",
+          "telesforo bravo",
+          "monter au sommet",
+          "pnt 10"
+        ],
+        "it": [
+          "permesso teide",
+          "autorizzazione teide",
+          "permesso vetta",
+          "telesforo bravo",
+          "salire in cima",
+          "pnt 10"
+        ],
+        "nl": [
+          "teide vergunning",
+          "toestemming teide",
+          "vergunning top",
+          "telesforo bravo",
+          "naar de top",
+          "pnt 10"
+        ],
+        "pl": [
+          "pozwolenie teide",
+          "zezwolenie teide",
+          "pozwolenie na szczyt",
+          "telesforo bravo",
+          "wejscie na szczyt",
+          "pnt 10"
+        ],
+        "zh": [
+          "泰德峰许可",
+          "登顶许可",
+          "telesforo bravo",
+          "需要许可吗",
+          "pnt 10"
+        ],
+        "zht": [
+          "泰德峰許可",
+          "登頂許可",
+          "telesforo bravo",
+          "需要許可嗎",
+          "pnt 10"
+        ]
+      },
+      "a": {
+        "es": "🌋 Sí. El último tramo, de La Rambleta al cráter (sendero PNT 10 Telesforo Bravo), solo se puede hacer con autorización previa, y subir sin ella puede acabar en sanción. El permiso vale únicamente para ese tramo, ese día y esa franja horaria. Los senderos PNT 07 y PNT 09 también piden su propia autorización.",
+        "en": "🌋 Yes. The final stretch, from La Rambleta to the crater (trail PNT 10 Telesforo Bravo), can only be walked with a prior authorisation, and going up without one can end in a fine. The permit is valid only for that stretch, that day and that time slot. Trails PNT 07 and PNT 09 need their own authorisation too.",
+        "de": "🌋 Ja. Das letzte Stück von La Rambleta zum Krater (Weg PNT 10 Telesforo Bravo) darf man nur mit vorheriger Genehmigung gehen, und ohne sie droht ein Bußgeld. Die Genehmigung gilt nur für diesen Abschnitt, diesen Tag und dieses Zeitfenster. Die Wege PNT 07 und PNT 09 brauchen ebenfalls eine eigene Genehmigung.",
+        "fr": "🌋 Oui. Le dernier tronçon, de La Rambleta au cratère (sentier PNT 10 Telesforo Bravo), ne se fait qu’avec une autorisation préalable, et monter sans elle peut finir en amende. Le permis ne vaut que pour ce tronçon, ce jour-là et ce créneau horaire. Les sentiers PNT 07 et PNT 09 exigent aussi leur propre autorisation.",
+        "it": "🌋 Sì. L’ultimo tratto, da La Rambleta al cratere (sentiero PNT 10 Telesforo Bravo), si percorre solo con autorizzazione preventiva, e salire senza può finire in sanzione. Il permesso vale solo per quel tratto, quel giorno e quella fascia oraria. Anche i sentieri PNT 07 e PNT 09 richiedono la propria autorizzazione.",
+        "nl": "🌋 Ja. Het laatste stuk, van La Rambleta naar de krater (pad PNT 10 Telesforo Bravo), mag alleen met voorafgaande toestemming, en zonder kun je een boete krijgen. De vergunning geldt uitsluitend voor dat stuk, die dag en dat tijdvak. Ook de paden PNT 07 en PNT 09 vragen een eigen toestemming.",
+        "pl": "🌋 Tak. Ostatni odcinek, z La Rambleta do krateru (szlak PNT 10 Telesforo Bravo), można przejść wyłącznie z wcześniejszym pozwoleniem, a wejście bez niego grozi karą. Pozwolenie obowiązuje tylko dla tego odcinka, tego dnia i tego przedziału godzin. Szlaki PNT 07 i PNT 09 też wymagają własnego zezwolenia.",
+        "zh": "🌋 需要。最后一段从 La Rambleta 到火山口（PNT 10 Telesforo Bravo 步道）必须事先取得许可，无证上山可能被罚款。许可只对该路段、该日期和该时段有效。PNT 07 和 PNT 09 步道也各自需要许可。",
+        "zht": "🌋 需要。最後一段從 La Rambleta 到火山口（PNT 10 Telesforo Bravo 步道）必須事先取得許可，無證上山可能被罰款。許可只對該路段、該日期和該時段有效。PNT 07 和 PNT 09 步道也各自需要許可。"
+      },
+      "follow": [
+        "tei-02",
+        "tei-03",
+        "tei-04"
+      ]
+    },
+    {
+      "id": "tei-02",
+      "cat": "teide",
+      "prio": 1,
+      "volatil": true,
+      "label": {
+        "es": "¿Dónde reservo el permiso?",
+        "en": "Where do I book the permit?",
+        "de": "Wo buche ich die Genehmigung?",
+        "fr": "Où réserver le permis ?",
+        "it": "Dove prenoto il permesso?",
+        "nl": "Waar boek ik de vergunning?",
+        "pl": "Gdzie zarezerwować pozwolenie?",
+        "zh": "去哪里预约许可？",
+        "zht": "去哪裡預約許可？"
+      },
+      "keys": {
+        "es": [
+          "donde reservo el permiso",
+          "reservar teide",
+          "tenerife on",
+          "con cuanta antelacion",
+          "no hay plazas",
+          "cuando se abren las plazas"
+        ],
+        "en": [
+          "where to book the permit",
+          "book teide",
+          "tenerife on",
+          "how far in advance",
+          "no places left",
+          "when do slots open"
+        ],
+        "de": [
+          "genehmigung buchen",
+          "teide reservieren",
+          "tenerife on",
+          "wie lange im voraus",
+          "keine platze",
+          "wann freigeschaltet"
+        ],
+        "fr": [
+          "reserver le permis",
+          "reserver teide",
+          "tenerife on",
+          "combien de temps a l avance",
+          "plus de places",
+          "quand ouvrent les places"
+        ],
+        "it": [
+          "prenotare il permesso",
+          "prenotare teide",
+          "tenerife on",
+          "con quanto anticipo",
+          "posti esauriti",
+          "quando aprono i posti"
+        ],
+        "nl": [
+          "vergunning boeken",
+          "teide reserveren",
+          "tenerife on",
+          "hoelang van tevoren",
+          "geen plekken",
+          "wanneer komen plekken vrij"
+        ],
+        "pl": [
+          "gdzie zarezerwowac pozwolenie",
+          "rezerwacja teide",
+          "tenerife on",
+          "z jakim wyprzedzeniem",
+          "brak miejsc",
+          "kiedy ruszaja zapisy"
+        ],
+        "zh": [
+          "哪里预约许可",
+          "预约泰德峰",
+          "tenerife on",
+          "要提前多久",
+          "没有名额",
+          "什么时候放号"
+        ],
+        "zht": [
+          "哪裡預約許可",
+          "預約泰德峰",
+          "tenerife on",
+          "要提前多久",
+          "沒有名額",
+          "什麼時候放號"
+        ]
+      },
+      "a": {
+        "es": "📅 En Tenerife ON (tenerifeon.es), la plataforma oficial del Cabildo. Hay que registrarse antes, es gratis. Las plazas se abren cada lunes a las 07:00 hora canaria para los 56 días siguientes, y solo se admite una reserva por persona cada 15 días. Vuelan: entra el lunes a primera hora.",
+        "en": "📅 On Tenerife ON (tenerifeon.es), the Cabildo’s official platform. You have to register first, it is free. Slots open every Monday at 07:00 Canary time for the following 56 days, and only one booking per person every 15 days is allowed. They go fast: be there first thing on Monday.",
+        "de": "📅 Auf Tenerife ON (tenerifeon.es), der offiziellen Plattform des Cabildo. Vorher muss man sich registrieren, das ist kostenlos. Die Plätze werden jeden Montag um 07:00 Uhr kanarischer Zeit für die folgenden 56 Tage freigeschaltet, und pro Person ist nur eine Buchung alle 15 Tage erlaubt. Sie sind schnell weg: sei am Montag früh dran.",
+        "fr": "📅 Sur Tenerife ON (tenerifeon.es), la plateforme officielle du Cabildo. Il faut s’inscrire avant, c’est gratuit. Les places s’ouvrent chaque lundi à 07:00 heure canarienne pour les 56 jours suivants, et une seule réservation par personne tous les 15 jours est permise. Elles partent vite : connecte-toi lundi à la première heure.",
+        "it": "📅 Su Tenerife ON (tenerifeon.es), la piattaforma ufficiale del Cabildo. Bisogna registrarsi prima, è gratis. I posti si aprono ogni lunedì alle 07:00 ora canaria per i 56 giorni successivi, ed è ammessa una sola prenotazione a persona ogni 15 giorni. Volano via: collegati lunedì di prima mattina.",
+        "nl": "📅 Op Tenerife ON (tenerifeon.es), het officiële platform van het Cabildo. Je moet je eerst registreren, dat is gratis. De plekken komen elke maandag om 07:00 Canarische tijd vrij voor de volgende 56 dagen, en er is maar één boeking per persoon per 15 dagen toegestaan. Ze zijn zo weg: wees er maandag vroeg bij.",
+        "pl": "📅 Na Tenerife ON (tenerifeon.es), oficjalnej platformie Cabildo. Trzeba się wcześniej zarejestrować, to darmowe. Miejsca otwierają się w każdy poniedziałek o 07:00 czasu kanaryjskiego na kolejne 56 dni, a dozwolona jest tylko jedna rezerwacja na osobę co 15 dni. Znikają błyskawicznie: wejdź w poniedziałek z samego rana.",
+        "zh": "📅 在 Tenerife ON（tenerifeon.es），岛政府的官方平台。需要先免费注册。名额每周一加那利时间 07:00 放出，覆盖此后 56 天，且每人每 15 天只能预约一次。名额很抢手：周一一早就上线。",
+        "zht": "📅 在 Tenerife ON（tenerifeon.es），島政府的官方平台。需要先免費註冊。名額每週一加那利時間 07:00 放出，涵蓋此後 56 天，且每人每 15 天只能預約一次。名額很搶手：週一一早就上線。"
+      },
+      "follow": [
+        "tei-03",
+        "tei-01",
+        "tei-09"
+      ]
+    },
+    {
+      "id": "tei-03",
+      "cat": "teide",
+      "prio": 1,
+      "volatil": true,
+      "label": {
+        "es": "¿El permiso es gratis?",
+        "en": "Is the permit free?",
+        "de": "Ist die Genehmigung kostenlos?",
+        "fr": "Le permis est gratuit ?",
+        "it": "Il permesso è gratuito?",
+        "nl": "Is de vergunning gratis?",
+        "pl": "Czy pozwolenie jest darmowe?",
+        "zh": "许可免费吗？",
+        "zht": "許可免費嗎？"
+      },
+      "keys": {
+        "es": [
+          "permiso gratis",
+          "cuanto cuesta el permiso",
+          "tasa teide",
+          "ecotasa",
+          "precio autorizacion",
+          "hay que pagar el permiso"
+        ],
+        "en": [
+          "permit free",
+          "how much is the permit",
+          "teide fee",
+          "eco tax",
+          "permit price",
+          "do i pay for the permit"
+        ],
+        "de": [
+          "genehmigung kostenlos",
+          "was kostet die genehmigung",
+          "teide gebuhr",
+          "okosteuer",
+          "preis genehmigung"
+        ],
+        "fr": [
+          "permis gratuit",
+          "prix du permis",
+          "taxe teide",
+          "ecotaxe",
+          "faut il payer le permis"
+        ],
+        "it": [
+          "permesso gratis",
+          "quanto costa il permesso",
+          "tassa teide",
+          "ecotassa",
+          "prezzo autorizzazione"
+        ],
+        "nl": [
+          "vergunning gratis",
+          "wat kost de vergunning",
+          "teide heffing",
+          "ecotaks",
+          "prijs vergunning"
+        ],
+        "pl": [
+          "pozwolenie darmowe",
+          "ile kosztuje pozwolenie",
+          "oplata teide",
+          "ekopodatek",
+          "cena zezwolenia"
+        ],
+        "zh": [
+          "许可免费",
+          "许可多少钱",
+          "泰德峰费用",
+          "生态税",
+          "要付费吗"
+        ],
+        "zht": [
+          "許可免費",
+          "許可多少錢",
+          "泰德峰費用",
+          "生態稅",
+          "要付費嗎"
+        ]
+      },
+      "a": {
+        "es": "💶 Depende de la franja horaria. En las horas que coinciden con el teleférico (9:00 a 17:00) hay tarifa: los residentes en Tenerife y los menores no pagan, y el resto sí, con un importe distinto para residentes en Canarias y para el resto de visitantes. Fuera de esa franja no hay tarifa, pero la reserva sigue siendo obligatoria. El importe exacto te lo muestra Tenerife ON al reservar.",
+        "en": "💶 It depends on the time slot. In the hours that match the cable car (9:00 to 17:00) there is a fee: residents in Tenerife and minors pay nothing, everyone else does, with one amount for residents elsewhere in the Canaries and another for the rest of visitors. Outside those hours there is no fee, but the booking is still compulsory. Tenerife ON shows you the exact amount as you book.",
+        "de": "💶 Kommt auf das Zeitfenster an. In den Stunden, die mit der Seilbahn zusammenfallen (9:00 bis 17:00), fällt eine Gebühr an: Einwohner Teneriffas und Minderjährige zahlen nichts, alle anderen schon, mit einem Betrag für Einwohner der übrigen Kanaren und einem für die restlichen Besucher. Außerhalb dieses Fensters gibt es keine Gebühr, die Buchung bleibt aber Pflicht. Den genauen Betrag zeigt dir Tenerife ON beim Buchen.",
+        "fr": "💶 Ça dépend du créneau. Aux heures qui coïncident avec le téléphérique (9:00 à 17:00) il y a un tarif : les résidents de Tenerife et les mineurs ne paient pas, les autres si, avec un montant pour les résidents du reste des Canaries et un autre pour les visiteurs. En dehors de ce créneau il n’y a pas de tarif, mais la réservation reste obligatoire. Tenerife ON t’affiche le montant exact au moment de réserver.",
+        "it": "💶 Dipende dalla fascia oraria. Nelle ore che coincidono con la funivia (9:00 alle 17:00) c’è una tariffa: i residenti a Tenerife e i minori non pagano, gli altri sì, con un importo per i residenti nel resto delle Canarie e un altro per il resto dei visitatori. Fuori da quella fascia non c’è tariffa, ma la prenotazione resta obbligatoria. L’importo esatto te lo mostra Tenerife ON al momento di prenotare.",
+        "nl": "💶 Dat hangt van het tijdvak af. In de uren die samenvallen met de kabelbaan (9:00 tot 17:00) geldt een tarief: inwoners van Tenerife en minderjarigen betalen niets, de rest wel, met een bedrag voor inwoners van de overige Canarische Eilanden en een ander voor de overige bezoekers. Buiten dat tijdvak is er geen tarief, maar de reservering blijft verplicht. Tenerife ON toont het exacte bedrag bij het boeken.",
+        "pl": "💶 To zależy od przedziału godzin. W godzinach pokrywających się z kolejką (9:00 do 17:00) obowiązuje opłata: mieszkańcy Teneryfy i osoby niepełnoletnie nie płacą, pozostali tak, przy czym inna kwota dotyczy mieszkańców reszty Wysp Kanaryjskich, a inna pozostałych odwiedzających. Poza tymi godzinami opłaty nie ma, ale rezerwacja nadal jest obowiązkowa. Dokładną kwotę pokaże ci Tenerife ON przy rezerwacji.",
+        "zh": "💶 取决于时段。与缆车运营重叠的时段（9:00 至 17:00）需要付费：特内里费本岛居民和未成年人免费，其他人要付，加那利其他岛居民与一般访客的金额不同。该时段之外不收费，但仍必须预约。确切金额会在 Tenerife ON 预约时显示。",
+        "zht": "💶 取決於時段。與纜車營運重疊的時段（9:00 至 17:00）需要付費：特內里費本島居民和未成年人免費，其他人要付，加那利其他島居民與一般訪客的金額不同。該時段之外不收費，但仍必須預約。確切金額會在 Tenerife ON 預約時顯示。"
+      },
+      "follow": [
+        "tei-02",
+        "tei-04",
+        "tei-08"
+      ]
+    },
+    {
+      "id": "tei-04",
+      "cat": "teide",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿El teleférico llega al pico?",
+        "en": "Does the cable car reach the peak?",
+        "de": "Fährt die Seilbahn zum Gipfel?",
+        "fr": "Le téléphérique monte au sommet ?",
+        "it": "La funivia arriva in vetta?",
+        "nl": "Gaat de kabelbaan tot de top?",
+        "pl": "Czy kolejka dowozi na szczyt?",
+        "zh": "缆车能到峰顶吗？",
+        "zht": "纜車能到峰頂嗎？"
+      },
+      "keys": {
+        "es": [
+          "el teleferico llega al pico",
+          "teleferico incluye permiso",
+          "con el teleferico hasta arriba",
+          "la rambleta",
+          "hasta donde sube el teleferico"
+        ],
+        "en": [
+          "does the cable car reach the peak",
+          "cable car includes permit",
+          "cable car to the top",
+          "la rambleta",
+          "how high does the cable car go"
+        ],
+        "de": [
+          "seilbahn bis zum gipfel",
+          "seilbahn genehmigung inklusive",
+          "la rambleta",
+          "wie hoch fahrt die seilbahn"
+        ],
+        "fr": [
+          "telepherique jusqu au sommet",
+          "telepherique permis inclus",
+          "la rambleta",
+          "jusqu ou monte le telepherique"
+        ],
+        "it": [
+          "funivia fino alla vetta",
+          "funivia permesso incluso",
+          "la rambleta",
+          "fin dove arriva la funivia"
+        ],
+        "nl": [
+          "kabelbaan tot de top",
+          "kabelbaan vergunning inbegrepen",
+          "la rambleta",
+          "hoe hoog gaat de kabelbaan"
+        ],
+        "pl": [
+          "kolejka na szczyt",
+          "czy bilet zawiera pozwolenie",
+          "la rambleta",
+          "dokad dojezdza kolejka"
+        ],
+        "zh": [
+          "缆车到峰顶",
+          "缆车含许可吗",
+          "la rambleta",
+          "缆车能到多高"
+        ],
+        "zht": [
+          "纜車到峰頂",
+          "纜車含許可嗎",
+          "la rambleta",
+          "纜車能到多高"
+        ]
+      },
+      "a": {
+        "es": "❌ No, y es la confusión más cara del Teide. El billete te deja en La Rambleta, a unos 3.555 m; para seguir hasta el cráter necesitas el permiso del PNT 10, que se tramita aparte y no va incluido. Son dos gestiones independientes: de hecho, tu permiso vale para su franja aunque ese día el teleférico no funcione.",
+        "en": "❌ No, and this is the costliest misunderstanding on the Teide. The ticket leaves you at La Rambleta, around 3,555 m; to carry on to the crater you need the PNT 10 permit, booked separately and not included. They are two independent things: in fact your permit is valid for its slot even if the cable car is not running that day.",
+        "de": "❌ Nein, und das ist das teuerste Missverständnis am Teide. Das Ticket bringt dich nach La Rambleta, rund 3.555 m; um weiter zum Krater zu gehen, brauchst du die Genehmigung PNT 10, die separat gebucht wird und nicht enthalten ist. Zwei getrennte Dinge: Deine Genehmigung gilt für ihr Zeitfenster, selbst wenn die Seilbahn an dem Tag stillsteht.",
+        "fr": "❌ Non, et c’est le malentendu le plus coûteux du Teide. Le billet te laisse à La Rambleta, vers 3.555 m ; pour continuer jusqu’au cratère il faut le permis PNT 10, réservé à part et non inclus. Ce sont deux démarches indépendantes : ton permis vaut pour son créneau même si le téléphérique ne fonctionne pas ce jour-là.",
+        "it": "❌ No, ed è l’equivoco più caro del Teide. Il biglietto ti lascia a La Rambleta, circa 3.555 m; per proseguire fino al cratere serve il permesso PNT 10, che si prenota a parte e non è incluso. Sono due pratiche indipendenti: il tuo permesso vale per la sua fascia anche se quel giorno la funivia non funziona.",
+        "nl": "❌ Nee, en dit is het duurste misverstand op de Teide. Het ticket brengt je naar La Rambleta, zo’n 3.555 m; om door te lopen naar de krater heb je de PNT 10-vergunning nodig, die je apart boekt en die er niet bij zit. Het zijn twee losse dingen: je vergunning geldt voor haar tijdvak, ook als de kabelbaan die dag stilstaat.",
+        "pl": "❌ Nie, i to najdroższe nieporozumienie na Teide. Bilet zawozi cię na La Rambleta, około 3.555 m; żeby iść dalej do krateru, potrzebujesz pozwolenia PNT 10, rezerwowanego osobno i niewliczonego w cenę. To dwie niezależne sprawy: twoje pozwolenie obowiązuje w swoim przedziale nawet wtedy, gdy kolejka tego dnia nie jeździ.",
+        "zh": "❌ 不能，这是泰德峰最花钱的误会。缆车只把你送到约 3,555 米的 La Rambleta；要继续走到火山口，必须另外申请 PNT 10 许可，票价并不包含。两者互相独立：即使当天缆车停运，你的许可在其时段内依然有效。",
+        "zht": "❌ 不能，這是泰德峰最花錢的誤會。纜車只把你送到約 3,555 公尺的 La Rambleta；要繼續走到火山口，必須另外申請 PNT 10 許可，票價並不包含。兩者互相獨立：即使當天纜車停駛，你的許可在其時段內依然有效。"
+      },
+      "follow": [
+        "tei-05",
+        "tei-01",
+        "tei-03"
+      ]
+    },
+    {
+      "id": "tei-05",
+      "cat": "teide",
+      "prio": 1,
+      "volatil": true,
+      "label": {
+        "es": "¿Cómo va el teleférico?",
+        "en": "How does the cable car work?",
+        "de": "Wie funktioniert die Seilbahn?",
+        "fr": "Comment marche le téléphérique ?",
+        "it": "Come funziona la funivia?",
+        "nl": "Hoe werkt de kabelbaan?",
+        "pl": "Jak działa kolejka?",
+        "zh": "缆车怎么坐？",
+        "zht": "纜車怎麼搭？"
+      },
+      "keys": {
+        "es": [
+          "teleferico",
+          "telesferico",
+          "cable car",
+          "comprar billete teleferico",
+          "horario teleferico",
+          "cierra por viento"
+        ],
+        "en": [
+          "cable car",
+          "cableway",
+          "buy cable car ticket",
+          "cable car hours",
+          "closed due to wind"
+        ],
+        "de": [
+          "seilbahn",
+          "gondel",
+          "seilbahn ticket kaufen",
+          "seilbahn offnungszeiten",
+          "wegen wind geschlossen"
+        ],
+        "fr": [
+          "telepherique",
+          "billet telepherique",
+          "horaires telepherique",
+          "ferme a cause du vent"
+        ],
+        "it": [
+          "funivia",
+          "biglietto funivia",
+          "orari funivia",
+          "chiusa per vento"
+        ],
+        "nl": [
+          "kabelbaan",
+          "kaartje kabelbaan",
+          "openingstijden kabelbaan",
+          "dicht door wind"
+        ],
+        "pl": [
+          "kolejka linowa",
+          "bilet na kolejke",
+          "godziny kolejki",
+          "zamkniete przez wiatr"
+        ],
+        "zh": [
+          "缆车",
+          "缆车票",
+          "缆车时间",
+          "大风停运"
+        ],
+        "zht": [
+          "纜車",
+          "纜車票",
+          "纜車時間",
+          "大風停駛"
+        ]
+      },
+      "a": {
+        "es": "🚡 Sube desde unos 2.356 m hasta La Rambleta, sobre 3.555 m, en unos ocho minutos. Conviene comprarlo con antelación porque se agota, y cierra sin previo aviso cuando hay viento fuerte o hielo. Mira el estado del día en volcanoteide.com antes de subir la carretera: te ahorras el viaje en balde.",
+        "en": "🚡 It climbs from around 2,356 m to La Rambleta, about 3,555 m, in some eight minutes. Worth buying ahead because it sells out, and it closes with no warning in strong wind or ice. Check the day’s status on volcanoteide.com before driving up: it saves you a wasted trip.",
+        "de": "🚡 Sie fährt von rund 2.356 m auf La Rambleta, etwa 3.555 m, in gut acht Minuten. Kauf lieber im Voraus, sie ist oft ausverkauft, und bei starkem Wind oder Eis schließt sie ohne Vorwarnung. Prüf den Tagesstatus auf volcanoteide.com, bevor du hochfährst: das spart die umsonst gefahrene Strecke.",
+        "fr": "🚡 Il monte d’environ 2.356 m à La Rambleta, vers 3.555 m, en huit minutes. Achète à l’avance car il affiche complet, et il ferme sans prévenir en cas de vent fort ou de glace. Vérifie l’état du jour sur volcanoteide.com avant de monter la route : ça évite le déplacement pour rien.",
+        "it": "🚡 Sale da circa 2.356 m a La Rambleta, sui 3.555 m, in otto minuti. Conviene comprarlo in anticipo perché va esaurito, e chiude senza preavviso con vento forte o ghiaccio. Controlla lo stato del giorno su volcanoteide.com prima di salire con l’auto: eviti il viaggio a vuoto.",
+        "nl": "🚡 Hij klimt van zo’n 2.356 m naar La Rambleta, rond 3.555 m, in een minuut of acht. Koop vooraf, want hij raakt uitverkocht, en hij sluit zonder waarschuwing bij harde wind of ijs. Check de status van die dag op volcanoteide.com voordat je omhoog rijdt: dat scheelt een rit voor niets.",
+        "pl": "🚡 Wjeżdża z około 2.356 m na La Rambleta, mniej więcej 3.555 m, w jakieś osiem minut. Lepiej kupić z wyprzedzeniem, bo bilety się kończą, a przy silnym wietrze lub oblodzeniu kolejka zamyka się bez uprzedzenia. Sprawdź stan na dany dzień na volcanoteide.com, zanim pojedziesz w górę: oszczędzisz sobie kursu na darmo.",
+        "zh": "🚡 从约 2,356 米升到约 3,555 米的 La Rambleta，约八分钟。建议提前购票，因为经常售罄；遇到大风或结冰会不预告停运。上山前先在 volcanoteide.com 查看当天状态，免得白跑一趟。",
+        "zht": "🚡 從約 2,356 公尺升到約 3,555 公尺的 La Rambleta，約八分鐘。建議提前購票，因為經常售完；遇到強風或結冰會不預告停駛。上山前先在 volcanoteide.com 查看當天狀態，免得白跑一趟。"
+      },
+      "follow": [
+        "tei-04",
+        "tei-09",
+        "tei-11"
+      ]
+    },
+    {
+      "id": "tei-06",
+      "cat": "teide",
+      "prio": 1,
+      "volatil": true,
+      "label": {
+        "es": "¿Se puede subir andando?",
+        "en": "Can I walk up?",
+        "de": "Kann man zu Fuß hoch?",
+        "fr": "Peut-on monter à pied ?",
+        "it": "Si può salire a piedi?",
+        "nl": "Kun je omhoog lopen?",
+        "pl": "Czy można wejść pieszo?",
+        "zh": "可以徒步上去吗？",
+        "zht": "可以徒步上去嗎？"
+      },
+      "keys": {
+        "es": [
+          "subir andando",
+          "subir a pie",
+          "montana blanca",
+          "pnt 07",
+          "pnt 09",
+          "narices del teide",
+          "roques de garcia"
+        ],
+        "en": [
+          "walk up",
+          "hike up",
+          "montana blanca",
+          "pnt 07",
+          "pnt 09",
+          "narices del teide",
+          "roques de garcia"
+        ],
+        "de": [
+          "zu fuss hoch",
+          "aufstieg zu fuss",
+          "montana blanca",
+          "pnt 07",
+          "pnt 09",
+          "narices del teide",
+          "roques de garcia"
+        ],
+        "fr": [
+          "monter a pied",
+          "randonnee montee",
+          "montana blanca",
+          "pnt 07",
+          "pnt 09",
+          "narices del teide",
+          "roques de garcia"
+        ],
+        "it": [
+          "salire a piedi",
+          "salita a piedi",
+          "montana blanca",
+          "pnt 07",
+          "pnt 09",
+          "narices del teide",
+          "roques de garcia"
+        ],
+        "nl": [
+          "te voet omhoog",
+          "lopend naar boven",
+          "montana blanca",
+          "pnt 07",
+          "pnt 09",
+          "narices del teide",
+          "roques de garcia"
+        ],
+        "pl": [
+          "wejsc pieszo",
+          "podejscie pieszo",
+          "montana blanca",
+          "pnt 07",
+          "pnt 09",
+          "narices del teide",
+          "roques de garcia"
+        ],
+        "zh": [
+          "徒步上山",
+          "走上去",
+          "montana blanca",
+          "pnt 07",
+          "pnt 09",
+          "roques de garcia"
+        ],
+        "zht": [
+          "徒步上山",
+          "走上去",
+          "montana blanca",
+          "pnt 07",
+          "pnt 09",
+          "roques de garcia"
+        ]
+      },
+      "a": {
+        "es": "🥾 Sí. A La Rambleta se llega a pie por Montaña Blanca (PNT 07), por Pico Viejo y Las Narices del Teide (PNT 09) o desde Los Roques de García; los senderos del estratovolcán también exigen autorización previa. Y desde allí, el tramo final al cráter sigue necesitando el permiso del PNT 10. Aquí no se improvisa: todo se reserva antes.",
+        "en": "🥾 Yes. You can reach La Rambleta on foot via Montaña Blanca (PNT 07), via Pico Viejo and Las Narices del Teide (PNT 09) or from Los Roques de García; the stratovolcano trails also require prior authorisation. And from there, the final stretch to the crater still needs the PNT 10 permit. Nothing is improvised here: it is all booked in advance.",
+        "de": "🥾 Ja. Zu Fuß erreichst du La Rambleta über Montaña Blanca (PNT 07), über Pico Viejo und Las Narices del Teide (PNT 09) oder von Los Roques de García aus; die Wege am Stratovulkan verlangen ebenfalls eine vorherige Genehmigung. Und von dort braucht das letzte Stück zum Krater weiterhin die PNT-10-Genehmigung. Hier wird nichts improvisiert: alles wird vorher gebucht.",
+        "fr": "🥾 Oui. On atteint La Rambleta à pied par Montaña Blanca (PNT 07), par Pico Viejo et Las Narices del Teide (PNT 09) ou depuis Los Roques de García ; les sentiers du stratovolcan exigent aussi une autorisation préalable. Et de là, le tronçon final vers le cratère demande toujours le permis PNT 10. Rien ne s’improvise ici : tout se réserve avant.",
+        "it": "🥾 Sì. A La Rambleta si arriva a piedi da Montaña Blanca (PNT 07), da Pico Viejo e Las Narices del Teide (PNT 09) o da Los Roques de García; anche i sentieri dello stratovulcano richiedono autorizzazione preventiva. E da lì, il tratto finale al cratere continua a richiedere il permesso PNT 10. Qui non si improvvisa: si prenota tutto prima.",
+        "nl": "🥾 Ja. La Rambleta bereik je te voet via Montaña Blanca (PNT 07), via Pico Viejo en Las Narices del Teide (PNT 09) of vanaf Los Roques de García; ook de paden op de stratovulkaan vragen voorafgaande toestemming. En vanaf daar heb je voor het laatste stuk naar de krater nog steeds de PNT 10-vergunning nodig. Hier improviseer je niets: alles wordt vooraf geboekt.",
+        "pl": "🥾 Tak. Na La Rambleta wejdziesz pieszo przez Montaña Blanca (PNT 07), przez Pico Viejo i Las Narices del Teide (PNT 09) albo z Los Roques de García; szlaki stratowulkanu również wymagają wcześniejszego zezwolenia. A stamtąd ostatni odcinek do krateru nadal wymaga pozwolenia PNT 10. Tu się nie improwizuje: wszystko rezerwuje się wcześniej.",
+        "zh": "🥾 可以。徒步到 La Rambleta 可走 Montaña Blanca（PNT 07）、Pico Viejo 与 Las Narices del Teide（PNT 09），或从 Los Roques de García 出发；这些层状火山步道同样需要事先许可。到了那里，最后一段到火山口仍需 PNT 10 许可。这里不能临时起意：全部要提前预约。",
+        "zht": "🥾 可以。徒步到 La Rambleta 可走 Montaña Blanca（PNT 07）、Pico Viejo 與 Las Narices del Teide（PNT 09），或從 Los Roques de García 出發；這些層狀火山步道同樣需要事先許可。到了那裡，最後一段到火山口仍需 PNT 10 許可。這裡不能臨時起意：全部要提前預約。"
+      },
+      "follow": [
+        "tei-07",
+        "tei-09",
+        "tei-01"
+      ]
+    },
+    {
+      "id": "tei-07",
+      "cat": "teide",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Cuánto se tarda y qué dificultad?",
+        "en": "How long and how hard?",
+        "de": "Wie lange und wie schwer?",
+        "fr": "Combien de temps et quelle difficulté ?",
+        "it": "Quanto dura e quanto è difficile?",
+        "nl": "Hoe lang en hoe zwaar?",
+        "pl": "Ile trwa i jak trudne?",
+        "zh": "要走多久？难不难？",
+        "zht": "要走多久？難不難？"
+      },
+      "keys": {
+        "es": [
+          "cuanto se tarda en subir al pico",
+          "dificultad",
+          "es duro",
+          "desnivel",
+          "cuanto dura el sendero",
+          "en forma"
+        ],
+        "en": [
+          "how long to the summit",
+          "difficulty",
+          "is it hard",
+          "elevation gain",
+          "how long is the trail",
+          "fitness"
+        ],
+        "de": [
+          "wie lange zum gipfel",
+          "schwierigkeit",
+          "ist es anstrengend",
+          "hohenmeter",
+          "wie lang ist der weg"
+        ],
+        "fr": [
+          "combien de temps jusqu au sommet",
+          "difficulte",
+          "c est dur",
+          "denivele",
+          "longueur du sentier"
+        ],
+        "it": [
+          "quanto ci vuole per la vetta",
+          "difficolta",
+          "e faticoso",
+          "dislivello",
+          "lunghezza sentiero"
+        ],
+        "nl": [
+          "hoe lang duurt",
+          "moeilijkheid",
+          "is het zwaar",
+          "hoogteverschil",
+          "lengte van het pad"
+        ],
+        "pl": [
+          "ile to trwa",
+          "trudnosc",
+          "czy ciezko",
+          "przewyzszenie",
+          "dlugosc szlaku"
+        ],
+        "zh": [
+          "要多久",
+          "难度",
+          "累不累",
+          "爬升",
+          "步道多长"
+        ],
+        "zht": [
+          "要多久",
+          "難度",
+          "累不累",
+          "爬升",
+          "步道多長"
+        ]
+      },
+      "a": {
+        "es": "⏱️ El tramo final son apenas 0,66 km, pero se va cerca de una hora: empieza a unos 3.542 m, acaba en 3.714 m y tiene pendientes de hasta el 60 %. La dificultad oficial es media, aunque a esa altura el cuerpo rinde la mitad. No es apto si tienes problemas de corazón, respiratorios o de movilidad.",
+        "en": "⏱️ The final stretch is barely 0.66 km, but it takes close to an hour: it starts around 3,542 m, ends at 3,714 m and has slopes of up to 60 %. Officially it is medium difficulty, although at that altitude your body delivers half of what it normally does. Not suitable if you have heart, breathing or mobility problems.",
+        "de": "⏱️ Das letzte Stück ist knapp 0,66 km lang, dauert aber fast eine Stunde: Start bei rund 3.542 m, Ziel auf 3.714 m, Steigungen bis 60 %. Offiziell mittelschwer, auch wenn der Körper in dieser Höhe nur halb so viel leistet. Nicht geeignet bei Herz-, Atemwegs- oder Bewegungsproblemen.",
+        "fr": "⏱️ Le tronçon final fait à peine 0,66 km, mais il prend près d’une heure : il démarre vers 3.542 m, finit à 3.714 m et grimpe jusqu’à 60 % de pente. Difficulté officielle moyenne, même si à cette altitude le corps donne moitié moins. À éviter en cas de problèmes cardiaques, respiratoires ou de mobilité.",
+        "it": "⏱️ Il tratto finale è appena 0,66 km, ma ci vuole quasi un’ora: parte sui 3.542 m, finisce a 3.714 m e ha pendenze fino al 60 %. Difficoltà ufficiale media, anche se a quella quota il corpo rende la metà. Non adatto a chi ha problemi cardiaci, respiratori o di mobilità.",
+        "nl": "⏱️ Het laatste stuk is amper 0,66 km, maar kost bijna een uur: het begint rond 3.542 m, eindigt op 3.714 m en heeft hellingen tot 60 %. Officieel middelzwaar, al levert je lichaam op die hoogte de helft. Niet geschikt bij hart-, adem- of mobiliteitsproblemen.",
+        "pl": "⏱️ Ostatni odcinek to ledwie 0,66 km, ale zajmuje blisko godzinę: zaczyna się około 3.542 m, kończy na 3.714 m i ma nachylenia do 60 %. Oficjalnie trudność średnia, choć na tej wysokości organizm daje połowę tego co zwykle. Nieodpowiedni przy problemach z sercem, oddychaniem lub poruszaniem się.",
+        "zh": "⏱️ 最后一段只有 0.66 公里，却要走近一个小时：起点约 3,542 米，终点 3,714 米，坡度最高达 60%。官方评为中等难度，但在这个海拔身体只剩一半力气。有心脏、呼吸或行动问题的人不适合。",
+        "zht": "⏱️ 最後一段只有 0.66 公里，卻要走近一個小時：起點約 3,542 公尺，終點 3,714 公尺，坡度最高達 60%。官方評為中等難度，但在這個海拔身體只剩一半力氣。有心臟、呼吸或行動問題的人不適合。"
+      },
+      "follow": [
+        "tei-10",
+        "tei-15",
+        "tei-14"
+      ]
+    },
+    {
+      "id": "tei-08",
+      "cat": "teide",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿Se paga entrada al parque?",
+        "en": "Is there a park entrance fee?",
+        "de": "Kostet der Park Eintritt?",
+        "fr": "Le parc est payant ?",
+        "it": "Si paga l’ingresso al parco?",
+        "nl": "Kost het park entree?",
+        "pl": "Czy wstęp do parku jest płatny?",
+        "zh": "国家公园要门票吗？",
+        "zht": "國家公園要門票嗎？"
+      },
+      "keys": {
+        "es": [
+          "entrada al parque",
+          "pagar entrada parque nacional",
+          "es gratis el parque",
+          "acceso al parque"
+        ],
+        "en": [
+          "park entrance fee",
+          "pay to enter national park",
+          "is the park free",
+          "park access"
+        ],
+        "de": [
+          "eintritt nationalpark",
+          "park bezahlen",
+          "ist der park kostenlos",
+          "zugang park"
+        ],
+        "fr": [
+          "entree du parc",
+          "payer le parc national",
+          "le parc est gratuit",
+          "acces au parc"
+        ],
+        "it": [
+          "ingresso al parco",
+          "pagare parco nazionale",
+          "il parco e gratis",
+          "accesso al parco"
+        ],
+        "nl": [
+          "entree park",
+          "betalen nationaal park",
+          "is het park gratis",
+          "toegang park"
+        ],
+        "pl": [
+          "wstep do parku",
+          "oplata za park narodowy",
+          "czy park jest darmowy",
+          "dostep do parku"
+        ],
+        "zh": [
+          "公园门票",
+          "国家公园收费吗",
+          "公园免费吗",
+          "进入公园"
+        ],
+        "zht": [
+          "公園門票",
+          "國家公園收費嗎",
+          "公園免費嗎",
+          "進入公園"
+        ]
+      },
+      "a": {
+        "es": "🎟️ No. El parque es abierto: puedes recorrer la carretera, parar en los miradores y caminar por la mayoría de senderos sin pagar nada. Lo que se reserva, y en algunas franjas se paga, son los senderos del estratovolcán: PNT 10, PNT 07 y PNT 09. Y ojo, está prohibido fumar en los espacios abiertos del parque.",
+        "en": "🎟️ No. The park is open: you can drive the road, stop at the viewpoints and walk most trails without paying anything. What has to be booked, and in some slots paid for, are the stratovolcano trails: PNT 10, PNT 07 and PNT 09. And note that smoking is banned in the park’s open spaces.",
+        "de": "🎟️ Nein. Der Park ist offen: Du kannst die Straße fahren, an den Aussichtspunkten halten und die meisten Wege gehen, ohne zu zahlen. Gebucht und in manchen Zeitfenstern bezahlt werden nur die Wege am Stratovulkan: PNT 10, PNT 07 und PNT 09. Und Achtung: Rauchen ist in den offenen Bereichen des Parks verboten.",
+        "fr": "🎟️ Non. Le parc est ouvert : tu peux parcourir la route, t’arrêter aux points de vue et marcher sur la plupart des sentiers sans rien payer. Ce qui se réserve, et se paie sur certains créneaux, ce sont les sentiers du stratovolcan : PNT 10, PNT 07 et PNT 09. Et attention, il est interdit de fumer dans les espaces ouverts du parc.",
+        "it": "🎟️ No. Il parco è aperto: puoi percorrere la strada, fermarti ai punti panoramici e camminare sulla maggior parte dei sentieri senza pagare nulla. Ciò che si prenota, e in alcune fasce si paga, sono i sentieri dello stratovulcano: PNT 10, PNT 07 e PNT 09. E attenzione, è vietato fumare negli spazi aperti del parco.",
+        "nl": "🎟️ Nee. Het park is open: je kunt de weg rijden, bij de uitzichtpunten stoppen en de meeste paden lopen zonder te betalen. Wat je moet boeken, en in sommige tijdvakken betalen, zijn de paden op de stratovulkaan: PNT 10, PNT 07 en PNT 09. En let op: roken is verboden in de open ruimtes van het park.",
+        "pl": "🎟️ Nie. Park jest otwarty: możesz przejechać drogę, zatrzymywać się w punktach widokowych i chodzić po większości szlaków bez opłat. Rezerwuje się, a w niektórych przedziałach opłaca, szlaki stratowulkanu: PNT 10, PNT 07 i PNT 09. I uwaga: w otwartych przestrzeniach parku obowiązuje zakaz palenia.",
+        "zh": "🎟️ 不用。公园是开放的：开车走公路、在观景台停留、走大多数步道都不收费。需要预约、在部分时段还要付费的，是层状火山的步道：PNT 10、PNT 07 和 PNT 09。另外请注意，公园的开放区域禁止吸烟。",
+        "zht": "🎟️ 不用。公園是開放的：開車走公路、在觀景台停留、走大多數步道都不收費。需要預約、在部分時段還要付費的，是層狀火山的步道：PNT 10、PNT 07 和 PNT 09。另外請注意，公園的開放區域禁止吸菸。"
+      },
+      "follow": [
+        "tei-03",
+        "tei-13",
+        "tei-06"
+      ]
+    },
+    {
+      "id": "tei-09",
+      "cat": "teide",
+      "prio": 1,
+      "volatil": false,
+      "label": {
+        "es": "¿Qué ropa llevo? ¿Hace frío?",
+        "en": "What should I wear? Is it cold?",
+        "de": "Was anziehen? Ist es kalt?",
+        "fr": "Quels vêtements ? Il fait froid ?",
+        "it": "Cosa mi metto? Fa freddo?",
+        "nl": "Wat trek ik aan? Is het koud?",
+        "pl": "Co ubrać? Czy jest zimno?",
+        "zh": "要穿什么？山上冷吗？",
+        "zht": "要穿什麼？山上冷嗎？"
+      },
+      "keys": {
+        "es": [
+          "que ropa llevo",
+          "hace frio arriba",
+          "abrigo",
+          "equipamiento obligatorio",
+          "calzado",
+          "que llevar al teide"
+        ],
+        "en": [
+          "what to wear",
+          "is it cold up there",
+          "warm clothes",
+          "mandatory equipment",
+          "footwear",
+          "what to bring to teide"
+        ],
+        "de": [
+          "was anziehen",
+          "ist es kalt oben",
+          "warme kleidung",
+          "pflichtausrustung",
+          "schuhe",
+          "was mitnehmen teide"
+        ],
+        "fr": [
+          "quoi porter",
+          "il fait froid la haut",
+          "vetements chauds",
+          "equipement obligatoire",
+          "chaussures",
+          "quoi emporter teide"
+        ],
+        "it": [
+          "cosa indossare",
+          "fa freddo lassu",
+          "vestiti caldi",
+          "attrezzatura obbligatoria",
+          "scarpe",
+          "cosa portare al teide"
+        ],
+        "nl": [
+          "wat aantrekken",
+          "is het koud boven",
+          "warme kleding",
+          "verplichte uitrusting",
+          "schoenen",
+          "wat meenemen teide"
+        ],
+        "pl": [
+          "co ubrac",
+          "czy na gorze zimno",
+          "cieple ubranie",
+          "obowiazkowy sprzet",
+          "buty",
+          "co zabrac na teide"
+        ],
+        "zh": [
+          "穿什么",
+          "上面冷吗",
+          "保暖",
+          "强制装备",
+          "鞋子",
+          "带什么上泰德"
+        ],
+        "zht": [
+          "穿什麼",
+          "上面冷嗎",
+          "保暖",
+          "強制裝備",
+          "鞋子",
+          "帶什麼上泰德"
+        ]
+      },
+      "a": {
+        "es": "🧥 Arriba hace muchísimo más frío que en la costa, y el sendero al pico tiene equipamiento obligatorio: calzado de montaña adecuado, pantalón largo (puesto o en la mochila) y forro polar o ropa de abrigo. Sin eso, el personal de control te impide subir. Añade gorro, gafas de sol, protección solar, agua y algo de comer.",
+        "en": "🧥 It is far colder up there than on the coast, and the peak trail has mandatory kit: proper mountain footwear, long trousers (worn or in your pack) and a fleece or warm layer. Without it, the control staff will not let you up. Add a hat, sunglasses, sunscreen, water and something to eat.",
+        "de": "🧥 Oben ist es sehr viel kälter als an der Küste, und für den Gipfelweg gilt Pflichtausrüstung: geeignete Bergschuhe, lange Hose (angezogen oder im Rucksack) und Fleece oder warme Kleidung. Ohne das lässt dich das Kontrollpersonal nicht hinauf. Dazu Mütze, Sonnenbrille, Sonnenschutz, Wasser und etwas zu essen.",
+        "fr": "🧥 Il fait bien plus froid là-haut que sur la côte, et le sentier du sommet impose un équipement obligatoire : chaussures de montagne adaptées, pantalon long (porté ou dans le sac) et polaire ou vêtement chaud. Sans ça, le personnel de contrôle t’interdit de monter. Ajoute bonnet, lunettes de soleil, crème solaire, eau et de quoi manger.",
+        "it": "🧥 Lassù fa molto più freddo che sulla costa, e il sentiero della vetta prevede attrezzatura obbligatoria: scarpe da montagna adeguate, pantaloni lunghi (indossati o nello zaino) e pile o indumento caldo. Senza, il personale di controllo non ti fa salire. Aggiungi berretto, occhiali da sole, protezione solare, acqua e qualcosa da mangiare.",
+        "nl": "🧥 Boven is het veel kouder dan aan de kust, en voor het toppad geldt verplichte uitrusting: goede bergschoenen, een lange broek (aan of in je rugzak) en een fleece of warme laag. Zonder dat laat het controlepersoneel je niet omhoog. Neem ook muts, zonnebril, zonnebrand, water en iets te eten mee.",
+        "pl": "🧥 Na górze jest znacznie zimniej niż na wybrzeżu, a na szlaku szczytowym obowiązuje wymagany sprzęt: odpowiednie buty górskie, długie spodnie (na sobie lub w plecaku) i polar albo ciepła warstwa. Bez tego obsługa kontrolna nie wpuści cię wyżej. Dorzuć czapkę, okulary przeciwsłoneczne, krem z filtrem, wodę i coś do jedzenia.",
+        "zh": "🧥 山上比海边冷得多，而且登顶步道有强制装备要求：合适的登山鞋、长裤（穿着或放在背包里）、抓绒或保暖衣物。没有这些，检查人员不会放行。另外带上帽子、太阳镜、防晒、饮水和食物。",
+        "zht": "🧥 山上比海邊冷得多，而且登頂步道有強制裝備要求：合適的登山鞋、長褲（穿著或放在背包裡）、刷毛或保暖衣物。沒有這些，檢查人員不會放行。另外帶上帽子、太陽眼鏡、防曬、飲水和食物。"
+      },
+      "follow": [
+        "tei-11",
+        "tei-10",
+        "tei-07"
+      ]
+    },
+    {
+      "id": "tei-10",
+      "cat": "teide",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Afecta el mal de altura?",
+        "en": "Does altitude sickness hit?",
+        "de": "Macht die Höhe zu schaffen?",
+        "fr": "Le mal d’altitude, ça arrive ?",
+        "it": "Si soffre il mal di montagna?",
+        "nl": "Krijg je hoogteziekte?",
+        "pl": "Czy dokucza choroba wysokościowa?",
+        "zh": "会有高原反应吗？",
+        "zht": "會有高山反應嗎？"
+      },
+      "keys": {
+        "es": [
+          "mal de altura",
+          "altitud",
+          "me mareo",
+          "falta de oxigeno",
+          "dolor de cabeza altura",
+          "soroche"
+        ],
+        "en": [
+          "altitude sickness",
+          "altitude",
+          "dizzy",
+          "lack of oxygen",
+          "headache altitude"
+        ],
+        "de": [
+          "hohenkrankheit",
+          "hohe",
+          "schwindel",
+          "sauerstoffmangel",
+          "kopfschmerzen hohe"
+        ],
+        "fr": [
+          "mal d altitude",
+          "altitude",
+          "vertiges",
+          "manque d oxygene",
+          "mal de tete altitude"
+        ],
+        "it": [
+          "mal di montagna",
+          "altitudine",
+          "capogiri",
+          "mancanza di ossigeno",
+          "mal di testa quota"
+        ],
+        "nl": [
+          "hoogteziekte",
+          "hoogte",
+          "duizelig",
+          "zuurstofgebrek",
+          "hoofdpijn hoogte"
+        ],
+        "pl": [
+          "choroba wysokosciowa",
+          "wysokosc",
+          "zawroty glowy",
+          "brak tlenu",
+          "bol glowy na wysokosci"
+        ],
+        "zh": [
+          "高原反应",
+          "海拔",
+          "头晕",
+          "缺氧",
+          "高海拔头痛"
+        ],
+        "zht": [
+          "高山反應",
+          "海拔",
+          "頭暈",
+          "缺氧",
+          "高海拔頭痛"
+        ]
+      },
+      "a": {
+        "es": "🫁 Puede. A 3.700 m hay cerca de la mitad de oxígeno que al nivel del mar, y son normales la fatiga, el dolor de cabeza y el mareo, sobre todo si subes en teleférico y te pones a caminar al momento. Sube despacio, para a menudo, bebe agua y no vayas en ayunas ni con resaca. Si te encuentras mal de verdad, baja.",
+        "en": "🫁 It can. At 3,700 m there is close to half the oxygen you get at sea level, and fatigue, headache and dizziness are normal, especially if you take the cable car and start walking right away. Go slowly, stop often, drink water and do not arrive on an empty stomach or hungover. If you really feel bad, go down.",
+        "de": "🫁 Kann sein. Auf 3.700 m gibt es knapp halb so viel Sauerstoff wie auf Meereshöhe, und Müdigkeit, Kopfschmerzen und Schwindel sind normal, vor allem wenn du mit der Seilbahn hochfährst und sofort losläufst. Geh langsam, mach oft Pause, trink Wasser und komm weder nüchtern noch verkatert. Geht es dir wirklich schlecht, steig ab.",
+        "fr": "🫁 Ça peut. À 3.700 m il y a près de deux fois moins d’oxygène qu’au niveau de la mer, et la fatigue, le mal de tête et les vertiges sont normaux, surtout si tu montes en téléphérique et marches aussitôt. Monte lentement, arrête-toi souvent, bois de l’eau et n’y va ni à jeun ni avec la gueule de bois. Si tu te sens vraiment mal, redescends.",
+        "it": "🫁 Può succedere. A 3.700 m c’è quasi metà dell’ossigeno che hai al livello del mare, e stanchezza, mal di testa e capogiri sono normali, soprattutto se sali in funivia e ti metti subito a camminare. Sali piano, fermati spesso, bevi acqua e non andarci a digiuno né con i postumi. Se stai davvero male, scendi.",
+        "nl": "🫁 Dat kan. Op 3.700 m is er bijna de helft minder zuurstof dan op zeeniveau, en vermoeidheid, hoofdpijn en duizeligheid zijn normaal, zeker als je met de kabelbaan omhoog gaat en meteen begint te lopen. Loop langzaam, stop vaak, drink water en ga er niet nuchter of met een kater heen. Voel je je echt slecht, ga dan naar beneden.",
+        "pl": "🫁 Może. Na 3.700 m tlenu jest blisko połowę mniej niż na poziomie morza, a zmęczenie, ból głowy i zawroty to normalka, zwłaszcza jeśli wjedziesz kolejką i od razu ruszysz. Idź wolno, często się zatrzymuj, pij wodę i nie wybieraj się na czczo ani na kacu. Jeśli czujesz się naprawdę źle, schodź.",
+        "zh": "🫁 有可能。3,700 米处的氧气约为海平面的一半，疲倦、头痛和头晕都很常见，尤其是坐缆车上来马上就走的时候。放慢速度、多休息、多喝水，别空腹或宿醉上山。如果真的很难受，就下山。",
+        "zht": "🫁 有可能。3,700 公尺處的氧氣約為海平面的一半，疲倦、頭痛和頭暈都很常見，尤其是搭纜車上來馬上就走的時候。放慢速度、多休息、多喝水，別空腹或宿醉上山。如果真的很難受，就下山。"
+      },
+      "follow": [
+        "tei-09",
+        "tei-07",
+        "tei-14"
+      ]
+    },
+    {
+      "id": "tei-11",
+      "cat": "teide",
+      "prio": 2,
+      "volatil": true,
+      "label": {
+        "es": "¿Hay nieve? ¿Cierran la carretera?",
+        "en": "Snow? Do roads close?",
+        "de": "Schnee? Sperren sie die Straße?",
+        "fr": "De la neige ? Routes fermées ?",
+        "it": "C’è neve? Chiudono la strada?",
+        "nl": "Sneeuw? Gaat de weg dicht?",
+        "pl": "Czy jest śnieg? Zamykają drogę?",
+        "zh": "有雪吗？会封路吗？",
+        "zht": "有雪嗎？會封路嗎？"
+      },
+      "keys": {
+        "es": [
+          "nieve",
+          "nevada",
+          "hielo",
+          "cierran la carretera",
+          "carretera cortada",
+          "crampones",
+          "invierno teide"
+        ],
+        "en": [
+          "snow",
+          "ice",
+          "road closed",
+          "roads shut",
+          "crampons",
+          "teide in winter"
+        ],
+        "de": [
+          "schnee",
+          "eis",
+          "strasse gesperrt",
+          "steigeisen",
+          "teide im winter"
+        ],
+        "fr": [
+          "neige",
+          "glace",
+          "route fermee",
+          "crampons",
+          "teide en hiver"
+        ],
+        "it": [
+          "neve",
+          "ghiaccio",
+          "strada chiusa",
+          "ramponi",
+          "teide in inverno"
+        ],
+        "nl": [
+          "sneeuw",
+          "ijs",
+          "weg afgesloten",
+          "stijgijzers",
+          "teide in de winter"
+        ],
+        "pl": [
+          "snieg",
+          "lod",
+          "droga zamknieta",
+          "raki",
+          "teide zima"
+        ],
+        "zh": [
+          "下雪",
+          "结冰",
+          "封路",
+          "冰爪",
+          "冬天泰德"
+        ],
+        "zht": [
+          "下雪",
+          "結冰",
+          "封路",
+          "冰爪",
+          "冬天泰德"
+        ]
+      },
+      "a": {
+        "es": "❄️ En invierno puede nevar, y el Cabildo corta las carreteras del parque cuando hay hielo: mira el estado de las vías antes de salir. Si hay nieve o hielo en el sendero al pico, la reserva exige además crampones y piolet y declarar experiencia en alta montaña. Consulta también la predicción de Alta Montaña de AEMET, que no es la del pueblo de abajo.",
+        "en": "❄️ It can snow in winter, and the Cabildo closes the park roads when there is ice: check road status before setting off. If there is snow or ice on the peak trail, the booking also demands crampons and an ice axe plus a declaration of high-mountain experience. Check the AEMET high-mountain forecast too, which is not the one for the village below.",
+        "de": "❄️ Im Winter kann es schneien, und der Cabildo sperrt die Parkstraßen bei Eis: Prüf den Straßenzustand, bevor du losfährst. Liegt Schnee oder Eis auf dem Gipfelweg, verlangt die Buchung zusätzlich Steigeisen und Eispickel sowie eine Erklärung über Hochgebirgserfahrung. Schau auch die Hochgebirgsvorhersage von AEMET an, nicht die für den Ort unten.",
+        "fr": "❄️ Il peut neiger en hiver, et le Cabildo ferme les routes du parc en cas de verglas : vérifie l’état des routes avant de partir. S’il y a de la neige ou de la glace sur le sentier du sommet, la réservation exige en plus crampons et piolet ainsi qu’une déclaration d’expérience en haute montagne. Consulte aussi la prévision Haute Montagne d’AEMET, différente de celle du village en bas.",
+        "it": "❄️ D’inverno può nevicare, e il Cabildo chiude le strade del parco quando c’è ghiaccio: controlla lo stato delle strade prima di partire. Se c’è neve o ghiaccio sul sentiero della vetta, la prenotazione richiede anche ramponi e piccozza e una dichiarazione di esperienza in alta montagna. Guarda anche la previsione di Alta Montagna di AEMET, diversa da quella del paese in basso.",
+        "nl": "❄️ In de winter kan het sneeuwen, en het Cabildo sluit de parkwegen bij ijzel: check de wegsituatie voor je vertrekt. Ligt er sneeuw of ijs op het toppad, dan eist de reservering ook stijgijzers en een ijsbijl plus een verklaring van hooggebergte-ervaring. Kijk ook naar de hooggebergteverwachting van AEMET, niet die van het dorp beneden.",
+        "pl": "❄️ Zimą może padać śnieg, a Cabildo zamyka drogi w parku przy gołoledzi: sprawdź stan dróg przed wyjazdem. Jeśli na szlaku szczytowym jest śnieg lub lód, rezerwacja wymaga dodatkowo raków i czekana oraz oświadczenia o doświadczeniu wysokogórskim. Sprawdź też prognozę wysokogórską AEMET, inną niż ta dla miejscowości w dole.",
+        "zh": "❄️ 冬天可能下雪，结冰时岛政府会封闭园区公路：出发前先查路况。如果登顶步道有雪或结冰，预约还会要求携带冰爪和冰镐，并声明具备高山经验。另外要看 AEMET 的高山预报，它和山下城镇的预报不一样。",
+        "zht": "❄️ 冬天可能下雪，結冰時島政府會封閉園區公路：出發前先查路況。如果登頂步道有雪或結冰，預約還會要求攜帶冰爪和冰斧，並聲明具備高山經驗。另外要看 AEMET 的高山預報，它和山下城鎮的預報不一樣。"
+      },
+      "follow": [
+        "tei-09",
+        "tei-05",
+        "tei-01"
+      ]
+    },
+    {
+      "id": "tei-12",
+      "cat": "teide",
+      "prio": 3,
+      "volatil": true,
+      "label": {
+        "es": "¿Se duerme en el refugio?",
+        "en": "Can I sleep in the refuge?",
+        "de": "Kann man in der Hütte schlafen?",
+        "fr": "Peut-on dormir au refuge ?",
+        "it": "Si dorme nel rifugio?",
+        "nl": "Kun je in de berghut slapen?",
+        "pl": "Czy można spać w schronisku?",
+        "zh": "可以住山屋吗？",
+        "zht": "可以住山屋嗎？"
+      },
+      "keys": {
+        "es": [
+          "refugio",
+          "altavista",
+          "dormir arriba",
+          "amanecer en el teide",
+          "pasar la noche"
+        ],
+        "en": [
+          "refuge",
+          "altavista",
+          "sleep up there",
+          "sunrise on teide",
+          "overnight in the refuge"
+        ],
+        "de": [
+          "hutte",
+          "altavista",
+          "oben schlafen",
+          "sonnenaufgang teide",
+          "in der hutte ubernachten"
+        ],
+        "fr": [
+          "refuge",
+          "altavista",
+          "dormir en haut",
+          "lever de soleil teide",
+          "passer la nuit au refuge"
+        ],
+        "it": [
+          "rifugio",
+          "altavista",
+          "dormire in quota",
+          "alba sul teide",
+          "pernottare al rifugio"
+        ],
+        "nl": [
+          "berghut",
+          "altavista",
+          "boven slapen",
+          "zonsopgang teide",
+          "overnachten in de berghut"
+        ],
+        "pl": [
+          "schronisko",
+          "altavista",
+          "spac na gorze",
+          "wschod slonca teide",
+          "nocleg w schronisku"
+        ],
+        "zh": [
+          "山屋",
+          "altavista",
+          "在山上过夜",
+          "泰德日出",
+          "住一晚"
+        ],
+        "zht": [
+          "山屋",
+          "altavista",
+          "在山上過夜",
+          "泰德日出",
+          "住一晚"
+        ]
+      },
+      "a": {
+        "es": "🏔️ El refugio de Altavista, sobre los 3.260 m, es la opción clásica para dormir arriba y hacer cima temprano. Su apertura, sus precios y la forma de reservar cambian según la temporada, así que confírmalo en su web antes de montar el plan. Dormir por libre dentro del parque no está permitido.",
+        "en": "🏔️ The Altavista refuge, at around 3,260 m, is the classic way to sleep up high and reach the summit early. Its opening, prices and booking method change with the season, so confirm on its website before building your plan around it. Sleeping rough inside the park is not allowed.",
+        "de": "🏔️ Die Altavista-Hütte auf rund 3.260 m ist die klassische Art, oben zu schlafen und früh am Gipfel zu sein. Öffnung, Preise und Buchungsweg wechseln je nach Saison, prüf das also auf ihrer Website, bevor du darauf baust. Wildes Übernachten im Park ist nicht erlaubt.",
+        "fr": "🏔️ Le refuge d’Altavista, vers 3.260 m, est la façon classique de dormir en altitude et d’être au sommet tôt. Ouverture, tarifs et mode de réservation changent selon la saison : confirme sur son site avant de bâtir ton plan dessus. Dormir en liberté dans le parc n’est pas autorisé.",
+        "it": "🏔️ Il rifugio Altavista, sui 3.260 m, è il modo classico per dormire in quota e arrivare in vetta presto. Apertura, prezzi e modalità di prenotazione cambiano con la stagione, quindi verifica sul suo sito prima di costruirci sopra il piano. Dormire liberamente dentro il parco non è permesso.",
+        "nl": "🏔️ De berghut Altavista, rond 3.260 m, is de klassieke manier om hoog te slapen en vroeg op de top te staan. Openstelling, prijzen en boekingswijze wisselen per seizoen, dus bevestig het op hun website voor je je plan erop bouwt. Vrij overnachten in het park mag niet.",
+        "pl": "🏔️ Schronisko Altavista, około 3.260 m, to klasyczny sposób na nocleg wysoko i wczesne wejście na szczyt. Otwarcie, ceny i sposób rezerwacji zmieniają się w zależności od sezonu, więc potwierdź na ich stronie, zanim oprzesz na tym plan. Nocowanie na dziko w parku jest zabronione.",
+        "zh": "🏔️ 位于约 3,260 米的 Altavista 山屋，是在高处过夜、清早登顶的经典做法。开放时间、价格和预订方式随季节变动，做计划前请先到官网确认。在园区内自行露宿是不允许的。",
+        "zht": "🏔️ 位於約 3,260 公尺的 Altavista 山屋，是在高處過夜、清早登頂的經典做法。開放時間、價格和預訂方式隨季節變動，做計畫前請先到官網確認。在園區內自行露宿是不允許的。"
+      },
+      "follow": [
+        "tei-13",
+        "tei-06",
+        "tei-02"
+      ]
+    },
+    {
+      "id": "tei-13",
+      "cat": "teide",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Dónde veo las estrellas?",
+        "en": "Where do I see the stars?",
+        "de": "Wo sehe ich die Sterne?",
+        "fr": "Où voir les étoiles ?",
+        "it": "Dove vedo le stelle?",
+        "nl": "Waar zie ik de sterren?",
+        "pl": "Gdzie zobaczę gwiazdy?",
+        "zh": "在哪里看星星？",
+        "zht": "在哪裡看星星？"
+      },
+      "keys": {
+        "es": [
+          "estrellas",
+          "observar estrellas",
+          "via lactea",
+          "astroturismo",
+          "observatorio",
+          "cielo nocturno",
+          "de noche en el teide"
+        ],
+        "en": [
+          "stars",
+          "stargazing",
+          "milky way",
+          "astro tourism",
+          "observatory",
+          "night sky",
+          "teide at night"
+        ],
+        "de": [
+          "sterne",
+          "sterne beobachten",
+          "milchstrasse",
+          "observatorium",
+          "nachthimmel",
+          "teide bei nacht"
+        ],
+        "fr": [
+          "etoiles",
+          "observer les etoiles",
+          "voie lactee",
+          "observatoire",
+          "ciel nocturne",
+          "teide la nuit"
+        ],
+        "it": [
+          "stelle",
+          "osservare le stelle",
+          "via lattea",
+          "osservatorio",
+          "cielo notturno",
+          "teide di notte"
+        ],
+        "nl": [
+          "sterren",
+          "sterrenkijken",
+          "melkweg",
+          "observatorium",
+          "nachthemel",
+          "teide s nachts"
+        ],
+        "pl": [
+          "gwiazdy",
+          "obserwacja gwiazd",
+          "droga mleczna",
+          "obserwatorium",
+          "nocne niebo",
+          "teide noca"
+        ],
+        "zh": [
+          "星星",
+          "观星",
+          "银河",
+          "天文台",
+          "夜空",
+          "夜晚的泰德"
+        ],
+        "zht": [
+          "星星",
+          "觀星",
+          "銀河",
+          "天文台",
+          "夜空",
+          "夜晚的泰德"
+        ]
+      },
+      "a": {
+        "es": "✨ Las Cañadas tiene uno de los mejores cielos de Europa. Para mirar estrellas por tu cuenta no hace falta permiso: aparcas en un mirador del parque, te abrigas de verdad y esperas a que se apaguen las luces del valle. Las observaciones guiadas y la visita al Observatorio del Teide sí se reservan aparte.",
+        "en": "✨ Las Cañadas has one of the best skies in Europe. To watch the stars on your own you need no permit: park at a viewpoint in the park, wrap up properly and wait for the valley lights to fade. Guided stargazing and visits to the Teide Observatory are booked separately.",
+        "de": "✨ Las Cañadas hat einen der besten Himmel Europas. Zum Sterneschauen auf eigene Faust brauchst du keine Genehmigung: an einem Aussichtspunkt im Park parken, dich richtig warm anziehen und warten, bis die Lichter im Tal verschwinden. Geführte Beobachtungen und der Besuch des Teide-Observatoriums werden separat gebucht.",
+        "fr": "✨ Las Cañadas offre l’un des meilleurs ciels d’Europe. Pour observer les étoiles par toi-même, aucun permis : tu te gares à un point de vue du parc, tu te couvres vraiment et tu attends que les lumières de la vallée s’éteignent. Les observations guidées et la visite de l’Observatoire du Teide se réservent à part.",
+        "it": "✨ Las Cañadas ha uno dei cieli migliori d’Europa. Per guardare le stelle per conto tuo non serve permesso: parcheggi in un punto panoramico del parco, ti copri sul serio e aspetti che si spengano le luci della valle. Le osservazioni guidate e la visita all’Osservatorio del Teide si prenotano a parte.",
+        "nl": "✨ Las Cañadas heeft een van de mooiste luchten van Europa. Om zelf sterren te kijken heb je geen vergunning nodig: parkeer bij een uitzichtpunt in het park, kleed je echt warm aan en wacht tot de lichten in het dal doven. Begeleide sessies en een bezoek aan het Teide-observatorium boek je apart.",
+        "pl": "✨ Las Cañadas ma jedno z najlepszych nieb w Europie. Do samodzielnego oglądania gwiazd nie trzeba pozwolenia: parkujesz w punkcie widokowym w parku, ubierasz się naprawdę ciepło i czekasz, aż zgasną światła w dolinie. Obserwacje z przewodnikiem i wizytę w Obserwatorium Teide rezerwuje się osobno.",
+        "zh": "✨ Las Cañadas 拥有欧洲最好的星空之一。自己看星星不需要许可：在园区的观景台停车，穿得够暖，等谷地的灯光暗下去。有导览的观星活动和泰德天文台参观则需要另外预约。",
+        "zht": "✨ Las Cañadas 擁有歐洲最好的星空之一。自己看星星不需要許可：在園區的觀景台停車，穿得夠暖，等谷地的燈光暗下去。有導覽的觀星活動和泰德天文台參觀則需要另外預約。"
+      },
+      "follow": [
+        "tei-08",
+        "tei-09",
+        "tei-12"
+      ]
+    },
+    {
+      "id": "tei-14",
+      "cat": "teide",
+      "prio": 2,
+      "volatil": false,
+      "label": {
+        "es": "¿Puedo ir con niños?",
+        "en": "Can I go with kids?",
+        "de": "Kann ich mit Kindern hin?",
+        "fr": "On peut y aller avec des enfants ?",
+        "it": "Posso andarci con bambini?",
+        "nl": "Kan ik met kinderen?",
+        "pl": "Czy mogę iść z dziećmi?",
+        "zh": "可以带小孩去吗？",
+        "zht": "可以帶小孩去嗎？"
+      },
+      "keys": {
+        "es": [
+          "teide con ninos",
+          "ninos al teide",
+          "edad minima",
+          "bebes",
+          "familia teide"
+        ],
+        "en": [
+          "teide with kids",
+          "children teide",
+          "minimum age",
+          "babies",
+          "family teide"
+        ],
+        "de": [
+          "teide mit kindern",
+          "kinder teide",
+          "mindestalter",
+          "babys",
+          "familie teide"
+        ],
+        "fr": [
+          "teide avec enfants",
+          "enfants teide",
+          "age minimum",
+          "bebes",
+          "famille teide"
+        ],
+        "it": [
+          "teide con bambini",
+          "bambini teide",
+          "eta minima",
+          "neonati",
+          "famiglia teide"
+        ],
+        "nl": [
+          "teide met kinderen",
+          "kinderen teide",
+          "minimumleeftijd",
+          "baby",
+          "gezin teide"
+        ],
+        "pl": [
+          "teide z dziecmi",
+          "dzieci teide",
+          "minimalny wiek",
+          "niemowleta",
+          "rodzina teide"
+        ],
+        "zh": [
+          "带孩子去泰德",
+          "儿童",
+          "最低年龄",
+          "婴儿",
+          "亲子泰德"
+        ],
+        "zht": [
+          "帶孩子去泰德",
+          "兒童",
+          "最低年齡",
+          "嬰兒",
+          "親子泰德"
+        ]
+      },
+      "a": {
+        "es": "👨‍👩‍👧 Al parque y al teleférico sí, contando con el frío y la altura. Al sendero del pico no del todo: está prohibido el acceso a menores de 3 años, y los menores de 16 tienen que ir siempre acompañados por un adulto. Para ellos suelen funcionar mejor los miradores de La Rambleta y el paseo de Los Roques de García.",
+        "en": "👨‍👩‍👧 To the park and the cable car, yes, allowing for the cold and the altitude. To the peak trail, not entirely: under-3s are not allowed, and under-16s must always be accompanied by an adult. For them the La Rambleta viewpoints and the Los Roques de García walk usually work better.",
+        "de": "👨‍👩‍👧 In den Park und auf die Seilbahn ja, wenn du Kälte und Höhe einrechnest. Auf den Gipfelweg nur bedingt: Kinder unter 3 Jahren dürfen nicht, und unter 16 müssen immer von einem Erwachsenen begleitet werden. Für sie sind die Aussichtspunkte an La Rambleta und der Rundweg von Los Roques de García meist besser.",
+        "fr": "👨‍👩‍👧 Au parc et au téléphérique oui, en tenant compte du froid et de l’altitude. Au sentier du sommet, pas complètement : l’accès est interdit aux moins de 3 ans, et les moins de 16 ans doivent toujours être accompagnés d’un adulte. Pour eux, les points de vue de La Rambleta et la balade des Roques de García marchent mieux.",
+        "it": "👨‍👩‍👧 Al parco e alla funivia sì, mettendo in conto freddo e quota. Al sentiero della vetta non del tutto: è vietato l’accesso ai minori di 3 anni, e i minori di 16 devono essere sempre accompagnati da un adulto. Per loro funzionano meglio i punti panoramici di La Rambleta e la passeggiata dei Roques de García.",
+        "nl": "👨‍👩‍👧 Naar het park en de kabelbaan wel, rekening houdend met kou en hoogte. Naar het toppad niet helemaal: kinderen onder de 3 mogen niet, en onder de 16 moeten altijd door een volwassene begeleid worden. Voor hen werken de uitzichtpunten van La Rambleta en de wandeling bij Los Roques de García meestal beter.",
+        "pl": "👨‍👩‍👧 Do parku i na kolejkę tak, licząc się z zimnem i wysokością. Na szlak szczytowy nie do końca: dzieci poniżej 3 lat nie mogą wejść, a osoby poniżej 16 lat muszą być zawsze z dorosłym. Dla nich lepiej sprawdzą się punkty widokowe La Rambleta i spacer po Los Roques de García.",
+        "zh": "👨‍👩‍👧 去公园和坐缆车可以，但要考虑寒冷和海拔。登顶步道则有限制：禁止 3 岁以下儿童进入，16 岁以下必须由成人陪同。对孩子来说，La Rambleta 的观景台和 Los Roques de García 的步道通常更合适。",
+        "zht": "👨‍👩‍👧 去公園和搭纜車可以，但要考慮寒冷和海拔。登頂步道則有限制：禁止 3 歲以下兒童進入，16 歲以下必須由成人陪同。對孩子來說，La Rambleta 的觀景台和 Los Roques de García 的步道通常更合適。"
+      },
+      "follow": [
+        "tei-10",
+        "tei-05",
+        "tei-09"
+      ]
+    },
+    {
+      "id": "tei-15",
+      "cat": "teide",
+      "prio": 3,
+      "volatil": false,
+      "label": {
+        "es": "¿Cuánto mide el Teide?",
+        "en": "How high is the Teide?",
+        "de": "Wie hoch ist der Teide?",
+        "fr": "Quelle est la hauteur du Teide ?",
+        "it": "Quanto è alto il Teide?",
+        "nl": "Hoe hoog is de Teide?",
+        "pl": "Jak wysoki jest Teide?",
+        "zh": "泰德峰有多高？",
+        "zht": "泰德峰有多高？"
+      },
+      "keys": {
+        "es": [
+          "cuanto mide el teide",
+          "altura del teide",
+          "metros teide",
+          "pico mas alto de espana"
+        ],
+        "en": [
+          "how high is teide",
+          "teide height",
+          "teide metres",
+          "highest peak in spain"
+        ],
+        "de": [
+          "wie hoch ist der teide",
+          "hohe des teide",
+          "hochster berg spaniens"
+        ],
+        "fr": [
+          "hauteur du teide",
+          "altitude du teide",
+          "plus haut sommet d espagne"
+        ],
+        "it": [
+          "altezza del teide",
+          "quanto e alto il teide",
+          "vetta piu alta di spagna"
+        ],
+        "nl": [
+          "hoogte van de teide",
+          "hoe hoog is de teide",
+          "hoogste top van spanje"
+        ],
+        "pl": [
+          "wysokosc teide",
+          "jak wysoki teide",
+          "najwyzszy szczyt hiszpanii"
+        ],
+        "zh": [
+          "泰德峰多高",
+          "泰德海拔",
+          "西班牙最高峰"
+        ],
+        "zht": [
+          "泰德峰多高",
+          "泰德海拔",
+          "西班牙最高峰"
+        ]
+      },
+      "a": {
+        "es": "📏 3.715 m: el punto más alto de España y el pico más alto del Atlántico. Medido desde el fondo del océano supera los 7.000 m, lo que lo coloca entre los volcanes más altos del mundo contando desde su base.",
+        "en": "📏 3,715 m: the highest point in Spain and the highest peak in the Atlantic. Measured from the ocean floor it goes beyond 7,000 m, which puts it among the tallest volcanoes in the world counting from its base.",
+        "de": "📏 3.715 m: der höchste Punkt Spaniens und der höchste Gipfel im Atlantik. Vom Meeresboden aus gemessen sind es über 7.000 m, womit er zu den höchsten Vulkanen der Welt zählt, wenn man ab der Basis rechnet.",
+        "fr": "📏 3.715 m : le point le plus haut d’Espagne et le plus haut sommet de l’Atlantique. Mesuré depuis le fond de l’océan, il dépasse 7.000 m, ce qui le place parmi les volcans les plus hauts du monde en comptant depuis sa base.",
+        "it": "📏 3.715 m: il punto più alto della Spagna e la vetta più alta dell’Atlantico. Misurato dal fondo dell’oceano supera i 7.000 m, il che lo colloca tra i vulcani più alti del mondo contando dalla base.",
+        "nl": "📏 3.715 m: het hoogste punt van Spanje en de hoogste top van de Atlantische Oceaan. Gemeten vanaf de oceaanbodem is het meer dan 7.000 m, waarmee hij bij de hoogste vulkanen ter wereld hoort als je vanaf de basis telt.",
+        "pl": "📏 3.715 m: najwyższy punkt Hiszpanii i najwyższy szczyt Atlantyku. Mierzony od dna oceanu przekracza 7.000 m, co stawia go wśród najwyższych wulkanów świata licząc od podstawy.",
+        "zh": "📏 3,715 米：西班牙最高点，也是大西洋最高峰。若从洋底算起超过 7,000 米，以底部起算它是世界上最高的火山之一。",
+        "zht": "📏 3,715 公尺：西班牙最高點，也是大西洋最高峰。若從洋底算起超過 7,000 公尺，以底部起算它是世界上最高的火山之一。"
+      },
+      "follow": [
+        "tei-04",
+        "tei-13",
+        "tei-08"
+      ]
+    }
+  ]
+}
