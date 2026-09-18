@@ -619,6 +619,65 @@ function revisar(tablas, o) {
   tocado.forEach(t => console.log('      <--  ' + t));
   if (tocado.length) docMal = 1;
 
+  /* ── LO QUE ESCRIBE EL ADMINISTRADOR ──
+     El nombre y la descripcion de un anuncio, una excursion o un souvenir
+     los escribe el administrador una vez y en castellano. Antes se
+     pintaban tal cual en los diez idiomas. Ahora la traduccion viaja en
+     la columna `i18n` de la fila.
+     No hay Supabase aqui, asi que se inyectan filas como las que devuelve
+     el servidor: una traducida, una sin traducir -tiene que caer al
+     castellano, no quedarse en blanco- y una que intenta colar HTML, para
+     que el camino nuevo no se salte el escapado. */
+  const tiendaI18n = await page.evaluate(async () => {
+    const esperar = ms => new Promise(r => setTimeout(r, ms));
+    exPublicCache = [
+      { id: 'a', emoji: '🔥', name: 'Barbacoa entre amigos', desc: 'Coge tu movil y escribe a tu gente',
+        duration: '4 horas', location: 'Tenerife', diff: 'Alta', price: 0, maxp: 0, visible: true,
+        i18n: { bg: { name: 'Барбекю между приятели', desc: 'Вземи телефона си.' } } },
+      { id: 'b', emoji: '🌋', name: 'Sin traducir', desc: 'Esta no tiene i18n',
+        duration: '90 min', location: 'Anaga', diff: 'Media', price: 1, maxp: 0, visible: true, i18n: {} },
+      { id: 'c', emoji: '💀', name: '<img src=x onerror=alert(1)>', desc: '"><script>alert(2)</script>',
+        duration: '2 días', location: 'X', diff: 'Fácil', price: 1, maxp: 0, visible: true,
+        i18n: { bg: { name: '<svg onload=alert(3)>' } } }
+    ];
+    const leer = () => {
+      const c = document.getElementById('shop-tab-content-excursions');
+      return [...c.querySelectorAll('[data-admin="1"]')].map(x => ({
+        t: x.querySelector('.excursion-title').textContent,
+        d: x.querySelector('.excursion-desc').textContent,
+        m: [...x.querySelectorAll('.excursion-meta span')].map(s => s.textContent.trim()).join(' ')
+      }));
+    };
+    const o = { mal: [] };
+    setLang('bg'); renderShopExcursions(); await esperar(300);
+    let f = leer();
+    if (!/Барбекю/.test(f[0].t)) o.mal.push('la traducida no sale en bulgaro: ' + f[0].t);
+    if (f[1].t !== 'Sin traducir') o.mal.push('la no traducida no cae al castellano: ' + f[1].t);
+    if (!/часа/.test(f[0].m)) o.mal.push('«4 horas» no se traduce: ' + f[0].m);
+    if (!/мин/.test(f[1].m)) o.mal.push('«90 min» no se traduce: ' + f[1].m);
+    if (!/дни/.test(f[2].m)) o.mal.push('«2 días» no se traduce: ' + f[2].m);
+    if (!/Висока/.test(f[0].m)) o.mal.push('la dificultad no se traduce: ' + f[0].m);
+    if (!/Tenerife/.test(f[0].m)) o.mal.push('el sitio deberia quedarse como esta: ' + f[0].m);
+    setLang('pl'); renderShopExcursions(); await esperar(300);
+    f = leer();
+    if (!/Grill|Barbacoa/.test(f[0].t)) o.mal.push('sin polaco deberia caer al castellano: ' + f[0].t);
+    if (!/Wysoka/.test(f[0].m)) o.mal.push('la dificultad no se traduce al polaco: ' + f[0].m);
+    const c = document.getElementById('shop-tab-content-excursions');
+    o.img = c.querySelectorAll('img').length;
+    o.svg = c.querySelectorAll('svg').length;
+    o.scr = c.querySelectorAll('script').length;
+    exPublicCache = []; renderShopExcursions(); setLang('es');
+    return o;
+  }).catch(e => ({ mal: ['(no se pudo probar: ' + String(e).slice(0, 90) + ')'], img: 0, svg: 0, scr: 0 }));
+  console.log('\n=== la tienda, en el idioma de quien mira ===');
+  const okTI = tiendaI18n.mal.length === 0;
+  console.log('  ' + (okTI ? 'OK ' : 'MAL') + ' traduce lo traducido, cae al castellano lo que no, y la duracion y la dificultad salen solas');
+  tiendaI18n.mal.forEach(m => console.log('      <--  ' + m));
+  const okXI = !tiendaI18n.img && !tiendaI18n.svg && !tiendaI18n.scr;
+  console.log('  ' + (okXI ? 'OK ' : 'MAL') + ' el camino nuevo no se salta el escapado   (img ' +
+              tiendaI18n.img + ' · svg ' + tiendaI18n.svg + ' · script ' + tiendaI18n.scr + ')');
+  if (!okTI || !okXI) docMal = 1;
+
   console.log('\n=== rendimiento ===');
   console.log('  aeropuerto sur: %d lineas · %d capas · %d ms', perf.lineas, perf.capas, perf.ms);
   console.log('\npageerrors: ' + errs.length);

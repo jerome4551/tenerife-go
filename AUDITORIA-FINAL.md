@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 9e01c9f5f13a5bf42ee91f73c603ff9d
-             3.172.252 bytes · 926.617 comprimidos · 37.161 líneas
+index.html   md5 76cf3cb1fb2b9424a45b451e99e2543e
+             3.178.475 bytes · 929.119 comprimidos · 37.262 líneas
 idiomas/     9 ficheros de lugares · 2.525.852 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
@@ -32,7 +32,7 @@ faq/         10 ficheros · 69 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **210** versionados (88 en `idiomas/`, 49 en `tools/`, 29 en `faq/`, 24 en la raíz, 12 en `vendor/`, 3 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
-| Descarga | **939 kB** en castellano · **1.045 kB** en el peor caso (búlgaro) · 1.033 kB en polaco. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **942 kB** en castellano · **1.048 kB** en el peor caso (búlgaro) · 1.036 kB en polaco. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -446,6 +446,85 @@ completas en ambos. El único desbordamiento horizontal que aparece —el botón
 de idioma de la barra, 5 px fuera a 390 px de ancho— **sale igual en
 castellano**, así que no es del idioma y se deja anotado aquí sin tocarlo.
 
+## Lo que escribe el administrador, en el idioma de quien mira
+
+Un anuncio, una excursión o un souvenir los escribe el administrador **una
+vez y en castellano**, desde el panel. Se pintaban tal cual en los diez
+idiomas: la app entera en cirílico y la tarjeta en castellano.
+
+Y no se arregla pidiéndole que lo escriba diez veces. Hace falta un sitio
+donde guardar la traducción y un camino para meterla.
+
+**Dónde vive.** Una columna `i18n jsonb` en `anuncios`, `souvenirs` y
+`excursiones` (`supabase/tienda-i18n.sql`), con la forma
+`{"bg": {"name": "…", "desc": "…"}, …}`. Con diez columnas por campo la
+tabla crecería a cada idioma nuevo; así entra el once sin migrar nada. Y
+sobre todo **la traducción viaja con la fila**: no hay una segunda petición
+que pueda fallar, ni un fichero aparte que se desincronice, ni nada que
+pedir cuando el móvil está sin cobertura. El castellano **no se duplica**
+ahí: es el original y vive donde siempre, así que se corrige en un sitio.
+
+Las policies no se tocan: son por FILA, no por columna, y la columna nueva
+hereda su regla. Quien puede leer la fila lee su traducción y solo el
+administrador la escribe. La facturación sigue en `anuncios_privado`, sin
+lectura pública.
+
+**Lo que se traduce solo, sin traductor ninguno.** No todo el texto es
+prosa libre:
+
+| campo | qué se hace | por qué |
+|---|---|---|
+| `diff` | tabla de tres valores en los diez idiomas | el formulario solo deja elegir Fácil / Media / Alta: no hay nada que mantener |
+| `duration` | se lee la cifra y la unidad y se pinta con las claves de siempre | «4 horas» → «4 часа» → «4 godz.», «90 min», «2 días» |
+| `location` | **no se traduce** | es un nombre propio; traducir «Anaga» sería inventarse un topónimo |
+| `name`, `desc`, `tagline`, `info` | por `i18n` | prosa libre: no hay regla que la traduzca |
+
+Lo que no encaje en el patrón de duración se devuelve **tal cual**. Más vale
+enseñar lo que el administrador escribió que adivinar.
+
+**El respaldo nunca deja un hueco**: idioma → inglés → castellano, el mismo
+de `tx()`. Una fila sin traducir sale en castellano, que es lo que había,
+no en blanco.
+
+**Y el panel lo dice en voz alta.** Cada fila de la lista del administrador
+lleva ahora su estado —«🌐 Sin traducir: en fr de…» en ámbar, o «🌐
+Traducido a los 10» en verde— en vez de que se descubra abriendo la app en
+búlgaro. La lista del panel sigue enseñando **el original**: ahí el
+administrador tiene que ver lo que él escribió, no una traducción que luego
+no sabría corregir. El globo del mapa sí traduce, que lo lee el turista.
+
+**El puente.** `tools/tienda_i18n.js`:
+
+```
+node tools/tienda_i18n.js sacar > pendiente.json     # lo que falta, con el castellano al lado
+node tools/tienda_i18n.js meter pendiente.json       # lo sube
+```
+
+`meter` **funde, no reemplaza**: subir un idioma no puede borrar los otros
+nueve. Y un hueco vacío no se sube: pisaría lo que hubiera con una cadena
+vacía y la app caería al castellano creyendo que no hay traducción. Las
+credenciales salen del entorno, nunca del fichero.
+
+**Lo que esta herramienta NO hace es traducir sola**, y es a propósito:
+traducir automáticamente significa mandar el texto del administrador a un
+servicio de terceros, y eso cuesta dinero y sale de su servidor. Es una
+decisión suya, no de una herramienta.
+
+**El control.** No hay Supabase en la auditoría, así que se inyectan filas
+como las que devuelve el servidor —una traducida, una sin traducir y una
+que intenta colar HTML— y se comprueban las tres cosas a la vez:
+
+```
+=== la tienda, en el idioma de quien mira ===
+  OK  traduce lo traducido, cae al castellano lo que no, y la duracion y
+      la dificultad salen solas
+  OK  el camino nuevo no se salta el escapado   (img 0 · svg 0 · script 0)
+```
+
+Esa segunda línea importa tanto como la primera: el camino nuevo pasa por
+`innerHTML` igual que el viejo, y un texto que llega de la base de datos en
+otro idioma sigue siendo texto que alguien escribió.
+
 ## El asistente · 69 respuestas en 10 idiomas, y por qué no bastaba traducirlas
 
 `CHAT_KB` tiene 79 entradas y todas están escritas en castellano y en nada
@@ -518,7 +597,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 32 tablas, 781 filas (y 2.384 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 788 filas (y 2.391 filas, dentro y fuera del fuente)
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
