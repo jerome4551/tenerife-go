@@ -24,6 +24,14 @@ const CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
 
 const src = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+/* IDI sale de SUPPORTED_LANGS del fuente, no de una lista a mano: escrita
+   aqui se queda vieja el dia que entre un idioma y el control da verde sobre
+   lo que no ha mirado. IDI_BASE, en cambio, NO se toca (ver arriba).
+   La copia que corre dentro del navegador lee SUPPORTED_LANGS directamente,
+   que alli se alcanza por su nombre. */
+const IDI = ((src.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1])
+  .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
+if (!IDI.length) { console.error('no encuentro SUPPORTED_LANGS en index.html'); process.exit(1); }
 const NOMBRES = [...new Set([...src.matchAll(/^\s*(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*(?:\{|Object\.assign)/gm)].map(m => m[1]))];
 const USADAS = [...new Set([...src.matchAll(/\bL_\.(\w+)/g), ...src.matchAll(/\bt\(\)\.(\w+)/g), ...src.matchAll(/\bL\(\)\.(\w+)/g)].map(m => m[1]))];
 
@@ -43,7 +51,6 @@ function objetoEn(i) {
   return null;
 }
 function tablasDelFuente() {
-  const IDI = ['es','en','fr','de','it','nl','zh','zht','bg'];
   /* Pedia `es` Y `en` para dar una entrada por fila. El resultado era que una
      fila a la que le faltaba precisamente el ingles no la veia NADIE: en
      wikiTitleOverrides hay cuatro con solo `es` -teresitas, el-duque, benijo
@@ -75,7 +82,6 @@ function tablasDelFuente() {
   return out;
 }
 function revisar(tablas, o) {
-  const IDI = ['es','en','fr','de','it','nl','zh','zht','bg'];
   for (const [nom, t] of Object.entries(tablas)) for (const [k, f] of Object.entries(t)) {
     if (typeof f.es !== 'string') continue;
     o.filas++;
@@ -107,10 +113,12 @@ function revisar(tablas, o) {
   await page.evaluate(n => { window.__N__ = n; }, NOMBRES);
 
   const r = await page.evaluate(u => {
-    const IDI = ['es','en','fr','de','it','nl','zh','zht','bg'];
     /* Esta copia corre DENTRO del navegador, asi que necesita su propia
        IDI_BASE: la del proceso de Node no llega aqui. Misma razon que arriba,
-       detectar con la base y exigir con la lista completa. */
+       detectar con la base y exigir con la lista completa. IDI si se puede
+       leer del propio fuente: SUPPORTED_LANGS es un const del modulo y aqui
+       se alcanza por su nombre -no esta en window-. */
+    const IDI = (typeof SUPPORTED_LANGS !== 'undefined') ? SUPPORTED_LANGS.slice() : [];
     const IDI_BASE = ['es','en','fr','de','it','nl','zh','zht'];
     const o = { arranque: {}, tablas: 0, filas: 0, incompletas: [], vacias: [], interp: [],
                 html: [], hanzi: [], pedidas: [], dobles: [], alcanzadas: [] };
@@ -172,7 +180,7 @@ function revisar(tablas, o) {
   revisar(soloFuente, r);
 
   const idi = [];
-  for (const l of ['es','en','fr','de','it','nl','zh','zht','bg']) {
+  for (const l of IDI) {
     idi.push([l, await page.evaluate(async lang => {
       if (typeof setLang === 'function') setLang(lang);
       await new Promise(r => setTimeout(r, 250));
@@ -230,9 +238,10 @@ function revisar(tablas, o) {
   console.log('  etiquetas HTML descuadradas      : %d', n(r.html));
   r.html.slice(0, 10).forEach(x => console.log('      ' + x));
   console.log('  espacios dobles reales           : %d', n(r.dobles));
+  r.dobles.slice(0, 5).forEach(x => console.log('      ' + x));
   console.log('  signos latinos pegados a un hanzi: %d', n(r.hanzi));
   r.hanzi.slice(0, 5).forEach(x => console.log('      ' + x));
-  console.log('\n=== los 8 renderizados ===');
+  console.log('\n=== los %d renderizados ===', idi.length);
   idi.forEach(([l, v]) => console.log('  %s  vacios %d · undefined %d · {marcador} %d', l.padEnd(4), v.vacios, v.undef, v.llaves));
   /* ── los avisos de seguridad se VEN ──
      `warn` no pintaba nada en ninguna playa: el banner se suprimia si el POI
@@ -276,7 +285,8 @@ function revisar(tablas, o) {
      distinto por idioma: el mismo articulo abria una linea nueva en cada
      uno en vez de sumar unidades. */
   const vivo = await page.evaluate(async () => {
-    const IDI = ['es','en','fr','de','it','nl','zh','zht','bg'], out = { claves: [], cesta: [], boton: [] };
+    const IDI = (typeof SUPPORTED_LANGS !== 'undefined') ? SUPPORTED_LANGS.slice() : [];
+    const out = { claves: [], cesta: [], boton: [] };
     for (const l of ['es','en','zht']) {
       setLang(l);
       const btn = document.querySelector('.excursion-card .souvenir-buy-btn');
@@ -303,7 +313,8 @@ function revisar(tablas, o) {
   });
   console.log('\n=== lo que se pinta al vuelo ===');
   const sinClave = vivo.claves.filter(c => c.faltan.length);
-  console.log('  ' + (sinClave.length ? 'MAL' : 'OK ') + ' las 7 claves de espera y de tienda, en los 8 idiomas');
+  console.log('  ' + (sinClave.length ? 'MAL' : 'OK ') +
+    ' las ' + vivo.claves.length + ' claves de espera y de tienda, en los ' + IDI.length + ' idiomas');
   sinClave.forEach(c => console.log('      ' + c.k + ' → falta ' + c.faltan.join(',')));
   const botMal = vivo.boton.filter(b => b.tras !== b.rot);
   console.log('  ' + (botMal.length ? 'MAL' : 'OK ') + ' el boton de comprar vuelve a su rotulo traducido   (' +

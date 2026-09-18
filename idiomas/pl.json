@@ -714,7 +714,7 @@
   "cat": "Park przygody · Las Lagunetas"
  },
  "parque-cesar-manrique": {
-  "desc": "Pośmiertne dzieło Césara Manrique otwarte w 1995 roku, przy Auditorio de Tenerife i Palmetum. Kompleks o powierzchni 22 000 m² z 3 basenami słonowodnymi (główny 6500 m²), brodzikiem z wodospadami, wysepkami z wulkanicznej skały, palmami, restauracjami i solarium. Zaprojektowany z naturalnych elementów typowych dla stylu Manrique. Otwarty przez cały rok. Od września do czerwca 10-18, w lipcu i sierpniu 10-19. Autobusy 110, 102, 103. Tramwaj: przystanek Intercambiador.",
+  "desc": "Pośmiertne dzieło Césara Manrique otwarte w 1995 roku, przy Auditorio de Tenerife i Palmetum. Kompleks o powierzchni 22 000 m² z 3 basenami słonowodnymi (główny 6500 m²), brodzikiem z wodospadami, wysepkami z wulkanicznej skały, palmami, restauracjami i solarium. Zaprojektowany z naturalnych elementów typowych dla stylu Manrique. Otwarty przez cały rok. Od września do czerwca 10:00-18:00, w lipcu i sierpniu 10:00-19:00. Autobusy 110, 102, 103. Tramwaj: przystanek Intercambiador.",
   "cat": "Kompleks basenów · Santa Cruz"
  },
  "palmetum": {
@@ -742,7 +742,7 @@
   "cat": "Bezpłatny park · Puerto de la Cruz · 100 000 m²"
  },
  "park-montillo": {
-  "desc": "Jeden z najlepszych parków rodzinnych północy Teneryfy, w La Matanza de Acentejo. 57 000 m² zieleni z centralnym jeziorem, strumykami i mostkami do zdjęć. Zaplecze: plac zabaw ze zjeżdżalniami i huśtawkami, skatepark, tor BMX, tor sprawnościowy, amfiteatr, wiaty i stoły piknikowe, kawiarnia, wybieg dla psów, centrum interpretacji z 410 endemicznymi roślinami i drzewami (palmy, smocze drzewa, sosny kanaryjskie). Dostępny dla wózków inwalidzkich i dziecięcych. Bezpłatny parking. Godziny: 7-22 codziennie. Autobusy 101, 102 i 30 z Santa Cruz i La Laguny. 4,6/5 gwiazdki przy ponad 4200 ocenach w Google.",
+  "desc": "Jeden z najlepszych parków rodzinnych północy Teneryfy, w La Matanza de Acentejo. 57 000 m² zieleni z centralnym jeziorem, strumykami i mostkami do zdjęć. Zaplecze: plac zabaw ze zjeżdżalniami i huśtawkami, skatepark, tor BMX, tor sprawnościowy, amfiteatr, wiaty i stoły piknikowe, kawiarnia, wybieg dla psów, centrum interpretacji z 410 endemicznymi roślinami i drzewami (palmy, smocze drzewa, sosny kanaryjskie). Dostępny dla wózków inwalidzkich i dziecięcych. Bezpłatny parking. Godziny: 7:00-22:00 codziennie. Autobusy 101, 102 i 30 z Santa Cruz i La Laguny. 4,6/5 gwiazdki przy ponad 4200 ocenach w Google.",
   "cat": "Park przyrody · La Matanza de Acentejo · 57 000 m² · Bezpłatny"
  },
  "minigolf-vivo-americas": {
@@ -842,7 +842,7 @@
   "cat": "Minigolf · Las Américas · 3 pola · Ogród kaktusów · Do północy"
  },
  "minigolf-la-pinta-adeje": {
-  "desc": "Minigolf o 18 dołkach w Costa Adeje, przy plaży La Pinta (C/ Roma 4). Z widokiem na morze. Cena: ~12€ dorośli i ~8€ dzieci (w cenie kije, piłki i karta). Bar i snack bar przy polu. Godziny: mniej więcej 12-22 (bywa różnie). To najbardziej wymagający z minigolfów Costa Adeje.",
+  "desc": "Minigolf o 18 dołkach w Costa Adeje, przy plaży La Pinta (C/ Roma 4). Z widokiem na morze. Cena: ~12€ dorośli i ~8€ dzieci (w cenie kije, piłki i karta). Bar i snack bar przy polu. Godziny: mniej więcej 12:00-22:00 (bywa różnie). To najbardziej wymagający z minigolfów Costa Adeje.",
   "cat": "Minigolf 18 dołków · La Pinta · Costa Adeje · Widok na morze"
  },
  "minigolf-precise-resort": {
@@ -1132,12 +1132,12 @@
   "hours": "Pn-Pt 8:30–20:00 · So-Nd 9:00–14:00"
  },
  "farm-pozo-pcruz": {
-  "desc": "Apteka z długimi godzinami w Puerto de la Cruz. Otwarta codziennie przez cały rok od 9 do 22, także w święta. Jedna z najbardziej dostępnych dla turystów na północy wyspy.",
+  "desc": "Apteka z długimi godzinami w Puerto de la Cruz. Otwarta codziennie przez cały rok od 9:00 do 22:00, także w święta. Jedna z najbardziej dostępnych dla turystów na północy wyspy.",
   "cat": "Apteka · Puerto de la Cruz",
   "hours": "Codziennie 09:00–22:00"
  },
  "farm-bethencourt-pcruz": {
-  "desc": "Apteka z wydłużonymi godzinami w Puerto de la Cruz. Otwarta 365 dni w roku od 8:30 do 22. Rotacyjny dyżur nocny. Dobrze położona w strefie turystycznej.",
+  "desc": "Apteka z wydłużonymi godzinami w Puerto de la Cruz. Otwarta 365 dni w roku od 8:30 do 22:00. Rotacyjny dyżur nocny. Dobrze położona w strefie turystycznej.",
   "cat": "Apteka · Puerto de la Cruz",
   "hours": "Codziennie 08:30–22:00"
  },

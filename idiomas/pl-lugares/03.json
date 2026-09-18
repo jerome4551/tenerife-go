@@ -40,7 +40,7 @@
   "cat": "Minigolf · Las Américas · 3 pola · Ogród kaktusów · Do północy"
  },
  "minigolf-la-pinta-adeje": {
-  "desc": "Minigolf o 18 dołkach w Costa Adeje, przy plaży La Pinta (C/ Roma 4). Z widokiem na morze. Cena: ~12€ dorośli i ~8€ dzieci (w cenie kije, piłki i karta). Bar i snack bar przy polu. Godziny: mniej więcej 12-22 (bywa różnie). To najbardziej wymagający z minigolfów Costa Adeje.",
+  "desc": "Minigolf o 18 dołkach w Costa Adeje, przy plaży La Pinta (C/ Roma 4). Z widokiem na morze. Cena: ~12€ dorośli i ~8€ dzieci (w cenie kije, piłki i karta). Bar i snack bar przy polu. Godziny: mniej więcej 12:00-22:00 (bywa różnie). To najbardziej wymagający z minigolfów Costa Adeje.",
   "cat": "Minigolf 18 dołków · La Pinta · Costa Adeje · Widok na morze"
  },
  "minigolf-precise-resort": {
@@ -330,12 +330,12 @@
   "hours": "Pn-Pt 8:30–20:00 · So-Nd 9:00–14:00"
  },
  "farm-pozo-pcruz": {
-  "desc": "Apteka z długimi godzinami w Puerto de la Cruz. Otwarta codziennie przez cały rok od 9 do 22, także w święta. Jedna z najbardziej dostępnych dla turystów na północy wyspy.",
+  "desc": "Apteka z długimi godzinami w Puerto de la Cruz. Otwarta codziennie przez cały rok od 9:00 do 22:00, także w święta. Jedna z najbardziej dostępnych dla turystów na północy wyspy.",
   "cat": "Apteka · Puerto de la Cruz",
   "hours": "Codziennie 09:00–22:00"
  },
  "farm-bethencourt-pcruz": {
-  "desc": "Apteka z wydłużonymi godzinami w Puerto de la Cruz. Otwarta 365 dni w roku od 8:30 do 22. Rotacyjny dyżur nocny. Dobrze położona w strefie turystycznej.",
+  "desc": "Apteka z wydłużonymi godzinami w Puerto de la Cruz. Otwarta 365 dni w roku od 8:30 do 22:00. Rotacyjny dyżur nocny. Dobrze położona w strefie turystycznej.",
   "cat": "Apteka · Puerto de la Cruz",
   "hours": "Codziennie 08:30–22:00"
  },

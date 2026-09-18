@@ -55,12 +55,20 @@ const ESCRITURA = {
   nl:  { debe: null,            prohibe: /[Ѐ-ӿ一-鿿]/ },
   zh:  { debe: /[一-鿿]/, prohibe: /[Ѐ-ӿ]/ },
   zht: { debe: /[一-鿿]/, prohibe: /[Ѐ-ӿ]/ },
-  bg:  { debe: /[Ѐ-ӿ]/, prohibe: null }
+  bg:  { debe: /[Ѐ-ӿ]/, prohibe: null },
+  pl:  { debe: null,            prohibe: /[Ѐ-ӿ一-鿿]/ }
 };
+/* Sin fila, la lectura daba un TypeError, y dentro de `| head -4` en
+   tools/auditar.sh el idioma nuevo se quedaba sin control sin que se viera.
+   Un idioma que entra y no tiene fila aqui tiene que pararlo en seco. */
+if (!ESCRITURA[LANG]) {
+  console.error('auditar_idioma: ' + LANG + ' no tiene fila en ESCRITURA. Anadela.');
+  process.exit(2);
+}
 /* Cuanto puede encoger una traduccion respecto al castellano antes de que
    sea sospechosa. El chino escribe lo mismo en la mitad de caracteres, asi
    que un unico numero para los ocho daria falsas alarmas a mansalva. */
-const MINIMO = { en: 0.5, fr: 0.55, de: 0.5, it: 0.55, nl: 0.5, zh: 0.18, zht: 0.18, bg: 0.45 };
+const MINIMO = { en: 0.5, fr: 0.55, de: 0.5, it: 0.55, nl: 0.5, zh: 0.18, zht: 0.18, bg: 0.45, pl: 0.45 };
 
 /* ── NORMALIZAR ANTES DE COMPARAR ────────────────────────────────────────
    Comparar las cifras en crudo no vale, y no por poco: en ingles dio 73
@@ -288,14 +296,16 @@ function sinRomanos(txt) {
       })
     /* Y la forma abreviada, que es la que usa cada idioma en un rotulo
        corto: "XVIIe" en frances, "XVII sec." en italiano, "17. Jhd." en
-       aleman. Sin esto, "Castillo · S. XVII" parecia perder el 17. */
+       aleman. Sin esto, "Castillo · S. XVII" parecia perder el 17.
+       El polaco deja el numero en romano -"z XVII wieku", "XVII w."- y sin
+       su marca los 48 siglos del catalogo salian como cifra que falta. */
     /* El sufijo es OBLIGATORIO. Se probo dejarlo opcional para coger
        "XVIIe" y salio caro: sin sufijo la regla convierte CUALQUIER palabra
        que se lea como numero romano, y "PADI 5★ IDC" pasaba a "PADI 5★ 601"
        -I=1, D=500, C=100- antes de comparar nada. Una regla que cambia el
        texto que va a mirar es lo peor que puede tener un control. La forma
        francesa "XVIIe" va en su propia alternativa, con la e de marca. */
-    .replace(/(?<!\p{L})([IVXLCDM]{2,7})(?:\s*[-–—]\s*([IVXLCDM]{2,7}))?\.?\s*(?:century|C\.|Jahrhundert|Jhd\.?|siècle|s\.|secolo|sec\.|eeuw|век|世纪|世紀)/gu,
+    .replace(/(?<!\p{L})([IVXLCDM]{2,7})(?:\s*[-–—]\s*([IVXLCDM]{2,7}))?\.?\s*(?:century|C\.|Jahrhundert|Jhd\.?|siècle|s\.|secolo|sec\.|eeuw|wieku|wiek|w\.|век|世纪|世紀)/gu,
       (m, r, r2) => {
         const n = romanoANumero(r);
         if (!n) return m;
@@ -369,7 +379,10 @@ const IGUAL_OK = {
   nl: ['Guachinche', 'Golf', 'Minigolf', 'Kayak', 'Fitness', 'Marina',
        'Street Workout', 'Skatepark', 'Windsurf', 'Caldera', 'Camping',
        'Modernista', 'Real Club Náutico', 'D.O.'],
-  zh: [], zht: [], bg: []
+  zh: [], zht: [], bg: [],
+  /* el polaco escribe estas igual: son la palabra polaca -karting, zoo,
+     marina, skatepark- o no tienen ninguna, como guachinche */
+  pl: ['Guachinche', 'Karting', 'Zoo', 'Marina', 'Skatepark']
 };
 
 /* Barrios y sitios que solo salen en medio de la etiqueta y por eso no los
@@ -387,7 +400,8 @@ const IGUAL_UI = {
   de: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop'],
   it: ['Friendly Zone 🐾', 'Pack Tenerife Go'],
   nl: ['Friendly Zone 🐾'],
-  zh: [], zht: [], bg: []
+  zh: [], zht: [], bg: [],
+  pl: ['Pets Friendly', 'Friendly Zone 🐾', '🏪 Tenerife Go Shop']
 };
 
 /* Los nombres de sitio no se declaran a mano: se sacan del propio catalogo.
@@ -459,8 +473,21 @@ function chinoDe(n) {
    con la cifra entera. sinMiriadas ya desarma el 万; esto desarma el
    "millones" del otro lado para que los dos digan lo mismo. */
 function sinMillones(txt) {
-  return String(txt).replace(/(\d+(?:[.,]\d+)?)\s*(?:millones|millón|million|millions|Millionen|milioni|milione|miljoen|milioane|милиона|милион)(?![\p{L}])/giu,
+  return String(txt).replace(/(\d+(?:[.,]\d+)?)\s*(?:millones|millón|million|millions|Millionen|milioni|milione|miljoen|milioane|milionów|miliony|miliona|milion|милиона|милион)(?![\p{L}])/giu,
     (m, n) => ' ' + Math.round(Number(String(n).replace(',', '.')) * 1e6) + ' ');
+}
+
+/* LAS VEINTICUATRO HORAS DICHAS CON PALABRAS.
+   Aleman y bulgaro escriben "24h" y "24 ч": la cifra esta y se compara
+   sola. El polaco no la escribe: dice "całodobowy", "całą dobę", que es
+   exactamente lo mismo y no ha perdido nada. Sin esto salian 17 avisos
+   seguidos sobre textos bien escritos, y la unica forma de callarlos
+   habria sido empeorar el polaco para que le cuadre a la herramienta.
+   Se convierte en la cifra por los dos lados, no se borra: si el polaco
+   dijera "całodobowy" donde el castellano no dice 24 horas, eso es una
+   promesa que el original no hace y tiene que seguir cantando. */
+function sinDobaPolaca(txt) {
+  return String(txt).replace(/ca\u0142odobow\p{L}*|ca\u0142\u0105 dob\u0119|ca\u0142ej doby|ca\u0142\u0105 dob\u0105/giu, ' 24 ');
 }
 
 /* EL DESCUENTO A LA CHINA. En chino un descuento se dice por lo que se
@@ -669,7 +696,8 @@ function mirar(es, tr, donde, campo) {
   const trChino = (LANG === 'zh' || LANG === 'zht') ? sinMesesChinos(es, conCifrasChinas(esSinH, sinDescuentoChino(trSinH))) : trSinH;
   const [ta, esSinT] = sacarTelefonos(esSinH), [tb, trSinT] = sacarTelefonos(trChino);
   if (ta.join() !== tb.join()) apunta('TELEFONO', donde, ta + ' vs ' + tb + ' :: ' + es.slice(0, 45));
-  const a = cifras(sinMillones(esSinT)), b = cifras(sinMillones(trSinT));
+  const trDoba = LANG === 'pl' ? sinDobaPolaca(trSinT) : trSinT;
+  const a = cifras(sinMillones(esSinT)), b = cifras(sinMillones(trDoba));
   if (a.join() !== b.join()) apunta('CIFRAS', donde, a + ' vs ' + b + ' :: ' + es.slice(0, 45));
   const ma = marcas(es), mb = marcas(tr);
   if (ma.join() !== mb.join()) apunta('MARCADOR', donde, ma + ' vs ' + mb + ' :: ' + es.slice(0, 45));

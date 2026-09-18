@@ -20,7 +20,12 @@ const fs = require('fs');
 const path = require('path');
 const src = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
 const OBJETIVO = process.argv[2] || null;
-const IDI = ['es','en','fr','de','it','nl','zh','zht','bg'];
+/* IDI sale de SUPPORTED_LANGS del fuente, no de una lista a mano: escrita
+   aqui se queda vieja el dia que entre un idioma y el control da verde
+   sobre lo que no ha mirado. IDI_BASE, en cambio, NO se toca (ver arriba). */
+const IDI = ((src.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1])
+  .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
+if (!IDI.length) { console.error('no encuentro SUPPORTED_LANGS en index.html'); process.exit(1); }
 
 const NOMBRES = [...new Set([...src.matchAll(/^\s*(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*(?:\{|Object\.assign)/gm)].map(m => m[1]))];
 

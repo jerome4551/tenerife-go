@@ -244,15 +244,18 @@ function ok(cond, txt, detalle) {
       ok(JSON.stringify(base.ids) === JSON.stringify(['streets', 'satellite', 'topo', 'isla']),
          'la lista de capas vive en un solo sitio', base.ids.join(','));
 
-      // Las etiquetas, en los 8. La capa nueva no puede quedarse en español.
+      /* Las etiquetas, en todos. La capa nueva no puede quedarse en español.
+         La lista sale de SUPPORTED_LANGS, que aqui dentro se alcanza por su
+         nombre: escrita a mano se quedaba en nueve y el idioma decimo no lo
+         miraba nadie. */
       const et = await page.evaluate(() => {
         const out = {};
-        for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg']) { setLang(l); out[l] = t().isla; }
+        for (const l of SUPPORTED_LANGS) { setLang(l); out[l] = t().isla; }
         setLang('es');
         return out;
       });
       const vacios = Object.keys(et).filter(l => !et[l] || !et[l].trim());
-      ok(vacios.length === 0, 'la capa tiene nombre en los 8 idiomas', vacios.join(','));
+      ok(vacios.length === 0, 'la capa tiene nombre en los ' + Object.keys(et).length + ' idiomas', vacios.join(','));
       ok(new Set(Object.values(et)).size >= 6, 'y no es el mismo texto repetido en todos',
          JSON.stringify(et));
 

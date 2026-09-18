@@ -1,6 +1,6 @@
 # Estado del proyecto y auditoría
 
-**25 de agosto de 2026.** Documento único: dónde está la app, qué se ha
+**18 de septiembre de 2026.** Documento único: dónde está la app, qué se ha
 comprobado y qué falta. Sustituye al registro por fechas que había antes, y a
 `BLOQUE-2.md` y `COORDENADAS.md`, cuyas listas están cerradas.
 
@@ -8,13 +8,16 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 925e839d927a0f907dadb473160ac6e8
-             3.166.371 bytes · 924.717 comprimidos · 37.106 líneas
-idiomas/     8 ficheros · 2.246.677 bytes · entre 75 y 93 kB comprimidos
-             + glosario-cat/ · 7 ficheros con los trozos de etiqueta a mano
-             + etiquetas/    · 8 ficheros con los chips del globo (~15 kB cada uno)
+index.html   md5 fa232d1a31a1b333491a5c63fa0afc70
+             3.166.424 bytes · 924.714 comprimidos · 37.107 líneas
+idiomas/     9 ficheros de lugares · 2.525.852 bytes · 76 a 95 kB comprimidos
+             + etiquetas/    · 9 ficheros con los chips del globo
+             + privacidad/   · 10 ficheros con la política, 54 claves cada uno
+             + glosario-cat/ · 7, y no hacen falta los diez: no se cargan en la
+               app, los lee tools/completar_cat.js al construir
+             + pl-lugares/ y pl-fuente/ · el polaco por bloques, revisable
 faq/         10 ficheros · 69 respuestas del asistente en cada idioma
-             entre 12,5 y 15,2 kB comprimidos; el móvil baja solo el suyo
+             el móvil baja solo el suyo
              + fuente/ · los bloques tal y como llegaron, y el bulgaro aparte
 ```
 
@@ -24,12 +27,12 @@ faq/         10 ficheros · 69 respuestas del asistente en cada idioma
 
 | | |
 |---|---|
-| Lugares | **804**, con descripción y categoría en 9 idiomas |
+| Lugares | **804**, con descripción y categoría en 10 idiomas |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
-| Idiomas | es · en · fr · de · it · nl · zh · zht · **bg** — los nueve terminados |
-| Ficheros | **97** versionados (38 en `tools/`, 24 en la raíz, 15 en `idiomas/`, 12 en `vendor/`, 3 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
-| Descarga | **856 kB** en castellano · **951 kB** en el peor caso (búlgaro). Antes, 1.492 kB para todos |
+| Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
+| Ficheros | **210** versionados (88 en `idiomas/`, 49 en `tools/`, 29 en `faq/`, 24 en la raíz, 12 en `vendor/`, 3 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
+| Descarga | **937 kB** en castellano · **1.043 kB** en el peor caso (búlgaro) · 1.031 kB en polaco. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -261,40 +264,43 @@ de menos a una respuesta equivocada.
 Contra las 52 preguntas de la batería en castellano e inglés: **0 cambian de
 entrada**. Contra 34 preguntas en los diez idiomas: 34 correctas.
 
-## El polaco · la interfaz entera, los lugares todavía no
+## El polaco · terminado, el idioma número diez
 
-Los bloques del asistente vienen redactados en polaco y la prueba de
+Los bloques del asistente venían redactados en polaco y la prueba de
 aceptación pedía «guaguas en polaco», pero la app no tenía ese idioma: no
-estaba en `LANGS`, ni en `idiomas/`, ni en el menú. Añadirlo son **3.475
-textos**, contados:
+estaba en `LANGS`, ni en `idiomas/`, ni en el menú. Añadirlo eran **3.408
+textos**, contados, y están todos:
 
 ```
 LANGS.pl                          168   hecho
 resto de la interfaz              814   hecho   (614 filas en 45 tablas)
-idiomas/pl.json                 1.741   pendiente  (los textos de los lugares)
-idiomas/etiquetas/pl.json         685   pendiente
-idiomas/glosario-cat/pl.json       67   pendiente
+idiomas/pl.json                 1.741   hecho   (804 lugares, en 9 bloques)
+idiomas/etiquetas/pl.json         685   hecho
+idiomas/glosario-cat/pl.json       --   no hace falta: no se carga en la app,
+                                        es una entrada de completar_cat.js en
+                                        tiempo de construcción, y el búlgaro
+                                        tampoco lo lleva
 ```
 
-Los 982 de interfaz están puestos y el barrido da **0 filas sin `pl`**. Lo que
-falta son los textos de los lugares, que viven fuera de `index.html`.
+`idiomas/pl.json` sale con **804 lugares y 1.741 textos**, la misma cuenta
+exacta que `bg.json` y `zht.json`. `tools/lugares_idioma.js montar pl` no
+escribe si un id o un campo no cuadra con `index.html`, así que la paridad no
+es una impresión: es la condición para que el fichero exista.
 
-**Mientras falten, el polaco no se ofrece.** Va en `IDIOMAS_INCOMPLETOS`, que
-es el mecanismo que ya existía para el búlgaro y que hace tres cosas a la vez:
-esconde su opción del menú por `data-incompleto`, hace que `setLang('pl')` lo
-rechace y devuelva inglés, y evita que un móvil configurado en polaco arranque
-solo en un idioma a medias. Comprobado en el navegador: el menú enseña nueve,
-`setLang('pl')` deja `currentLang` en `en` y los checks siguen emparejados por
-posición.
+**Y ya se ofrece.** `IDIOMAS_INCOMPLETOS` queda vacía —no borrada: el día que
+entre el idioma once vuelve a hacer falta, y de contarla sale el número que el
+usuario lee—, y con ella se fue la marca `data-incompleto="pl"` del menú, que
+ya no escondía nada. El selector enseña los diez y cada uno marca el suyo.
 
 Y una cifra que el idioma nuevo puso al descubierto: **«toda la app en 9
 idiomas» estaba escrita a mano en los diez idiomas**, en el tour y en la
 respuesta del asistente, más la ficha JSON-LD. Veinte sitios que había que
 acordarse de tocar. Ahora los textos llevan `{L}` y el número sale de
-`nIdiomasListos()`, que es `SUPPORTED_LANGS` menos `IDIOMAS_INCOMPLETOS`: hoy
-nueve, y diez el día que el polaco se termine, sin tocar una línea. La única
-que sigue escrita es la de JSON-LD, que es estática, y el control de datos la
-compara contra ese mismo cálculo.
+`nIdiomasListos()`, que es `SUPPORTED_LANGS` menos `IDIOMAS_INCOMPLETOS`. Al
+terminar el polaco los veinte pasaron de nueve a diez solos, sin tocar una
+línea. La única que sigue escrita es la de JSON-LD, que es estática: decía
+nueve y el control de datos la cantó —`cifras de idiomas en la interfaz que no
+son 10: 1 de 1`— en el mismo momento en que la lista se vació.
 
 `tools/poner_idioma.js` es lo que mete un idioma en las 614 filas: las
 localiza con acorn —no a mano, están repartidas por 37.000 líneas y muchas sin
@@ -309,6 +315,61 @@ italiano y sin chino: son títulos EXACTOS de artículos que existen en cada
 Wikipedia, y uno inventado no devuelve el artículo, devuelve nada. Desde aquí
 no se pueden comprobar —el proxy responde 403 a `wikipedia.org`— así que no se
 escriben.
+
+## Terminar el polaco destapó cuatro controles que no podían ponerse rojos
+
+Antes de ofrecer el idioma había que pasarlo por los controles, y ahí salió lo
+de verdad: **los controles no lo miraban**. No porque fallaran, sino porque la
+lista de idiomas estaba escrita a mano dentro de cada uno y se había quedado en
+nueve. Un control que da verde sobre lo que no ha mirado es peor que no
+tenerlo, porque da permiso para seguir.
+
+**Las listas a mano.** Nueve sitios repetían `['es','en',…,'bg']`:
+`barrido_idiomas.js`, `inventario_idiomas.js`, cinco veces en `auditar_web.js`,
+`auditar_mapa.js` y el bucle de `auditar.sh`. Todas salen ahora de
+`SUPPORTED_LANGS` leída del fuente —dentro del navegador se alcanza por su
+nombre, que no está en `window`— y si no la encuentran paran en vez de seguir
+con una lista vacía. `IDI_BASE` **no** se toca: esa es la huella que
+IDENTIFICA una tabla de idiomas, y meterle un idioma nuevo es justo lo que
+cegó el control cuando entró el búlgaro.
+
+El efecto se ve en una cifra: `barrido_idiomas.js pl` decía «total mirado 636»
+donde con `bg` decía 2.377. La lista de ficheros externos también estaba a
+mano y se quedaba en `bg`, así que `idiomas/pl.json` no lo abría nadie y los
+1.741 textos se contaban como cero **sin decir una palabra**. Ahora sale de la
+misma lista, y quitando el fichero el control lo canta: `FICHEROS DE IDIOMA QUE
+FALTAN: pl`.
+
+**Las tuberías de `auditar.sh`.** `node tools/probar_faq.js | tail -3` devuelve
+el estado de `tail`, no el de la herramienta: esa batería de 28 preguntas no
+podía suspender la auditoría. Lo mismo `verificar_red.js | grep …`. Y
+`node --check sw.js && echo ok` se comía el fallo en el `&&`. Los tres se
+probaron inyectando la avería: con `probar_faq.js` devolviendo 1, con `sw.js`
+roto y con `verificar_red.js` en rojo, la auditoría daba **VERDE**. Ahora da
+rojo en los tres casos. El bucle por idioma no llevaba cuenta ninguna, además
+de tragarse un `TypeError`.
+
+**Y lo que apareció cuando por fin miraron.** `auditar_idioma.js pl` sacó 85
+hallazgos. Ninguno era un error de traducción: eran diez idiomas de reglas y
+uno nuevo que no encajaba en ellas.
+
+| | qué pasaba | qué se hizo |
+|---|---|---|
+| 53 CIFRAS | el polaco deja el siglo en romano —«z XVII wieku»— y la regla de siglos conocía `century`, `Jahrhundert`, `siècle`, `secolo`, `eeuw`, `век`… pero no `wiek` | se añade la marca polaca. El sufijo sigue siendo OBLIGATORIO: sin él la regla convertiría «PADI 5★ IDC» en 601 |
+| 17 CIFRAS | «24 horas» en polaco es `całodobowy`, `całą dobę`: no lleva cifra. Alemán y búlgaro escriben «24h» y «24 ч» y por eso pasaban | se convierte la palabra **en la cifra**, no se borra: si el polaco promete 24 horas donde el castellano no las promete, sigue cantando |
+| 1 CIFRA | «50 millones» → «50 milionów» | al expansor de millones le faltaban las formas polacas |
+| 5 HORAS | el castellano escribe «10-18h» y yo había escrito «10-18»: sin marca no es un horario, y así tiene que ser —«10-15 min» no es una apertura— | se corrige **el polaco**, no la regla: «10:00-18:00» es igual de natural y además más claro para quien lo lee |
+| 27 IGUAL | *guachinche*, *karting*, *zoo*, *marina*, *skatepark* se escriben igual en polaco | se declaran, como ya las declaran el inglés, el italiano y el neerlandés |
+| 1 espacio | `admPhLat` traía un espacio doble **del castellano**, y el polaco lo copió | se quita en los dos. El control no mira el castellano —es la referencia—, así que la copia delató al original |
+
+Después: **los diez idiomas a 0 hallazgos**. Y para que no sea un cero de los
+que no miran, se le metieron cuatro averías de verdad al polaco —un siglo
+cambiado, media hora corrida, diez millones de más y una promesa de 24 horas
+que el castellano no hace— y las cantó las cuatro.
+
+También aprendieron a contar dos rótulos que estaban escritos: «los 8
+renderizados» cuando ya eran diez, y «las 7 claves … en los 8 idiomas». Un
+rótulo con el número a mano envejece igual que una lista.
 
 ## El asistente · 69 respuestas en 10 idiomas, y por qué no bastaba traducirlas
 

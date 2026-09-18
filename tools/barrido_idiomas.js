@@ -26,7 +26,12 @@ const fs = require('fs');
 const path = require('path');
 const src = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
 const IDI_BASE = ['es','en','fr','de','it','nl','zh','zht'];
-const IDI = IDI_BASE.concat(['bg']);
+/* IDI sale de SUPPORTED_LANGS del fuente, no de una lista a mano: escrita
+   aqui se queda vieja el dia que entre un idioma y el control da verde
+   sobre lo que no ha mirado. IDI_BASE, en cambio, NO se toca (ver arriba). */
+const IDI = ((src.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1])
+  .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
+if (!IDI.length) { console.error('no encuentro SUPPORTED_LANGS en index.html'); process.exit(1); }
 const OBJ = process.argv[2] && process.argv[2][0] !== '-' ? process.argv[2] : null;
 const LISTA = process.argv.indexOf('--lista') !== -1;
 
@@ -224,7 +229,11 @@ for (const z of ['interfaz', 'places[]'])
 let fuera = 0, sinFichero = [];
 {
   const dir = path.join(__dirname, '..', 'idiomas');
-  const IDI_FUERA = IDI_BASE.filter(l => l !== 'es').concat(['bg']);
+  /* Sale de IDI, no de IDI_BASE mas una lista a mano: escrito a mano se
+     quedaba en bg, y preguntando por el polaco esta cuenta daba 0 sin
+     decir nada -el total bajaba de 2.377 a 636 y parecia normal-. El
+     castellano se queda fuera porque vive dentro de index.html. */
+  const IDI_FUERA = IDI.filter(l => l !== 'es');
   for (const l of [...new Set(IDI_FUERA)]) {
     const f = path.join(dir, l + '.json');
     if (!fs.existsSync(f)) { sinFichero.push(l); continue; }
