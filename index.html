@@ -27059,6 +27059,7 @@ window.addEventListener('hashchange', () => {
       <button type="button" class="v19-w-lang" data-lang="zh" onclick="setLang('zh')" data-sin-traducir="codigo de idioma">中文</button>
       <button type="button" class="v19-w-lang" data-lang="zht" onclick="setLang('zht')" data-sin-traducir="codigo de idioma">繁體</button>
       <button type="button" class="v19-w-lang" data-lang="bg" onclick="setLang('bg')" data-sin-traducir="codigo de idioma">BG</button>
+      <button type="button" class="v19-w-lang" data-lang="pl" onclick="setLang('pl')" data-sin-traducir="codigo de idioma">PL</button>
     </div>
     <button type="button" class="v19-w-btn" id="v19-welcome-start">Comenzar</button>
   </div>
@@ -30635,7 +30636,7 @@ const CHAT_KB = [
     follow:['Modo sin conexión','Cambiar idioma','Cómo funciona la app'] },
 
   { keys:['idioma','idiomas','cambiar idioma','language','english','francais','deutsch','italiano','nederlands','chino'],
-    answer:'🌐 Toca el botón de idioma (el último de la barra superior) y elige entre 8: español, English, français, Deutsch, italiano, Nederlands, 中文 y 繁體中文. Se traduce TODO: las fichas de los 700+ lugares, la interfaz y el audio 🔊. Este asistente responde en español e inglés por ahora.',
+    answer:'🌐 Toca el botón de idioma (el último de la barra superior) y elige entre {L}: español, English, français, Deutsch, italiano, Nederlands, 中文, 繁體中文, български y polski. También están en la pantalla de bienvenida. Se traduce TODO: las fichas de los {N} lugares, la interfaz y el audio 🔊. Y yo te respondo en el idioma que tengas puesto.',
     follow:['Audioguía','Cómo funciona la app','Buscar lugares'] },
 
   { keys:['buscar','busco','buscador','busqueda','lupa','encontrar lugar'],
@@ -31413,7 +31414,12 @@ function chatBuildReply(r){
       out.follow=chatT('qrHome');
       break;
     case 'kb':
-      out.answer=r.item.answer;out.follow=r.item.follow||chatT('qrHome');if(r.item.showContact)out.showContact=true;break;
+      /* Por chatFmt, igual que countAns: una respuesta de la base puede
+         llevar {N} lugares y {L} idiomas y que salgan CONTADOS. La de
+         cambiar idioma decia "elige entre 8" y nombraba ocho cuando ya
+         habia diez; escrita a mano volveria a envejecer sola. */
+      out.answer=chatFmt(r.item.answer,{N:N,L:nIdiomasListos()});
+      out.follow=r.item.follow||chatT('qrHome');if(r.item.showContact)out.showContact=true;break;
     case 'askZone':
       out.answer=chatT('askZone');out.follow=chatT('qrZonesFull');out.pending={type:'what'};break;
     case 'geoFail':case 'needGeo':

@@ -462,12 +462,43 @@ function revisar(tablas, o) {
       if (act.length !== 1 || act[0] !== l || tick.length !== 1 || tick[0] !== 'check-' + l)
         mal.push(l + ' -> marcado ' + (act.join(',') || 'ninguno') + ' / tick ' + (tick.join(',') || 'ninguno'));
     }
+    /* ── EL OTRO SELECTOR ──
+       Hay DOS listas de idiomas en el marcado, no una: el desplegable de la
+       barra y los chips de la pantalla de bienvenida (.v19-w-lang), que es
+       la primera que ve nadie. Este control solo miraba el desplegable, asi
+       que al entrar el polaco la bienvenida se quedo en nueve y en verde.
+       Lo cazo el usuario, no la auditoria. Ahora se comparan LAS DOS contra
+       SUPPORTED_LANGS, que es la unica lista que manda.
+       El desplegable ademas por ORDEN, porque setLang marca por indice; los
+       chips por data-lang, que es como los marca updateWelcomeTexts. */
+    const chips = [...document.querySelectorAll('.v19-w-lang')];
+    const bienvenida = chips.map(e => e.getAttribute('data-lang'));
+    const malChip = [];
+    for (const l of SUPPORTED_LANGS) {
+      if (incompletos.indexOf(l) !== -1) continue;
+      setLang(l);
+      const on = chips.filter(e => e.classList.contains('on')).map(e => e.getAttribute('data-lang'));
+      if (on.length !== 1 || on[0] !== l) malChip.push(l + ' -> ' + (on.join(',') || 'ninguno'));
+    }
     setLang('es');
-    return { orden, mal, n: orden.filter(Boolean).length, fuera, visiblesIncompletos, pegan, incompletos };
+    return { orden, mal, n: orden.filter(Boolean).length, fuera, visiblesIncompletos, pegan, incompletos,
+             soportados: SUPPORTED_LANGS.slice(), bienvenida, malChip };
   });
   console.log('\n=== selector de idioma ===');
-  const okSel = sel.mal.length === 0 && sel.n >= 9;
+  /* n >= 9 era un numero escrito: con nueve opciones y diez idiomas daba OK.
+     Ahora se le exige que sean LOS de SUPPORTED_LANGS, en su orden. */
+  const okOrden = sel.orden.join(',') === sel.soportados.join(',');
+  const okSel = sel.mal.length === 0 && okOrden;
   console.log('  ' + (okSel ? 'OK ' : 'MAL') + ' cada opcion terminada marca la suya   (' + sel.orden.join(' ') + ')');
+  if (!okOrden) console.log('      <--  el desplegable dice [' + sel.orden.join(' ') +
+                            '] y SUPPORTED_LANGS [' + sel.soportados.join(' ') + ']');
+  const okBien = sel.bienvenida.join(',') === sel.soportados.join(',') && sel.malChip.length === 0;
+  console.log('  ' + (okBien ? 'OK ' : 'MAL') + ' la pantalla de bienvenida ensena los mismos   (' +
+              sel.bienvenida.join(' ') + ')');
+  if (sel.bienvenida.join(',') !== sel.soportados.join(','))
+    console.log('      <--  falta(n) ' + (sel.soportados.filter(l => sel.bienvenida.indexOf(l) === -1).join(',') || '-') +
+                ' / sobra(n) ' + (sel.bienvenida.filter(l => sel.soportados.indexOf(l) === -1).join(',') || '-'));
+  sel.malChip.forEach(m => console.log('      <--  chip ' + m));
   sel.mal.forEach(m => console.log('      <--  ' + m));
   const okFuera = sel.fuera.length === 0;
   console.log('  ' + (okFuera ? 'OK ' : 'MAL') + ' ninguna opcion vive fuera del desplegable' +
@@ -477,7 +508,7 @@ function revisar(tablas, o) {
               (sel.incompletos.join(',') || 'ninguno') + ')');
   if (sel.visiblesIncompletos.length) console.log('      <--  visibles: ' + sel.visiblesIncompletos.join(','));
   if (sel.pegan.length) console.log('      <--  se quedan puestos: ' + sel.pegan.join(','));
-  if (!okSel || !okFuera || !okInc) docMal = 1;
+  if (!okSel || !okBien || !okFuera || !okInc) docMal = 1;
 
   console.log('\n=== rendimiento ===');
   console.log('  aeropuerto sur: %d lineas · %d capas · %d ms', perf.lineas, perf.capas, perf.ms);
