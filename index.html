@@ -116,7 +116,7 @@ window.onunhandledrejection = function(e) {
 </script>
 
 <title>Tenerife Go — Mapa Interactivo</title>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://nominatim.openstreetmap.org https://router.project-osrm.org https://www.aemet.es https://opendata.aemet.es https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://nominatim.openstreetmap.org https://router.project-osrm.org https://www.aemet.es https://opendata.aemet.es https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
 <!-- Google tag (gtag.js) — GA4 · Consent Mode v2 (básico) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -286,11 +286,22 @@ window.onunhandledrejection = function(e) {
      reproducible. Al subir de version hay que recalcular el hash:
        npm pack @supabase/supabase-js@X.Y.Z
        tar xzf ... && openssl dgst -sha384 -binary package/dist/umd/supabase.js | openssl base64 -A -->
+<!-- defer: sin el, esta etiqueta PARA el parseo del HTML hasta que jsDelivr
+     conteste. En un movil son DNS + TLS + 120 kB antes de que el navegador
+     siga leyendo el documento. Con defer se descarga en paralelo y se
+     ejecuta al terminar de parsear, todavia ANTES de DOMContentLoaded, que
+     es cuando initSupabase() lo busca: nada llega tarde. -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0/dist/umd/supabase.js"
+  defer
   integrity="sha384-faMlYZUtkJj+Sh6Bmu/L0GzPcraRWN6CW+9RH3GUrK/Z0WS9tgaNNt0tHiLxsbdb"
   crossorigin="anonymous"
   onerror="console.warn('[INIT] Supabase no cargó — modo invitado')"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Las fuentes viven AQUI, no en fonts.googleapis.com. Aquel enlace
+     bloqueaba el primer pintado -DNS + TLS + la hoja + los woff2 desde un
+     tercer dominio-, no funcionaba sin cobertura en una app offline-first,
+     y era una peticion a Google desde el navegador del turista en cada
+     carga. Se regeneran con tools/bajar_fuentes.sh. -->
+<link href="vendor/fuentes.css" rel="stylesheet">
 
 <style>
   :root {

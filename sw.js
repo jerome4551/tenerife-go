@@ -40,7 +40,35 @@ const CORE = [
      con datos que ya estaban en el repositorio. Va en el precache a
      proposito, no en una descarga aparte: quien se pierde en el monte no
      tuvo antes la precaucion de pulsar "descargar mapa". */
-  './mapa/tenerife-base.pmtiles'
+  './mapa/tenerife-base.pmtiles',
+  /* Las fuentes. Antes venian de fonts.googleapis.com, asi que sin
+     cobertura la app se veia con la tipografia del sistema: una app
+     offline-first que perdia su cara al quedarse sin datos.
+     Van solo los rangos que usan los diez idiomas -latin, latin-ext y
+     cirilico para el bulgaro-. El vietnamita y el cyrillic-ext estan en
+     vendor/fuentes/ por si hicieran falta, pero no se precachean: serian
+     kilobytes que nadie pide. */
+  /* Las fuentes. Antes venian de fonts.googleapis.com, asi que sin
+     cobertura la app se veia con la tipografia del sistema: una app
+     offline-first que perdia su cara al quedarse sin datos.
+     Van LATIN y LATIN-EXT, que son las que necesitan los nueve idiomas de
+     alfabeto latino -el polaco usa latin-ext: a, c, e, l, n, s, z con
+     signo-. El CIRILICO del bulgaro y el vietnamita NO se precachean: son
+     63 kB que la mayoria no pide nunca, y el manejador de abajo los guarda
+     solo la primera vez que alguien los usa. */
+  './vendor/fuentes.css',
+  './vendor/fuentes/cormorantgaramond-400-latin-ext.woff2',
+  './vendor/fuentes/cormorantgaramond-400-latin.woff2',
+  './vendor/fuentes/cormorantgaramond-600-latin-ext.woff2',
+  './vendor/fuentes/cormorantgaramond-600-latin.woff2',
+  './vendor/fuentes/cormorantgaramond-700-latin-ext.woff2',
+  './vendor/fuentes/cormorantgaramond-700-latin.woff2',
+  './vendor/fuentes/dmsans-300-latin-ext.woff2',
+  './vendor/fuentes/dmsans-300-latin.woff2',
+  './vendor/fuentes/dmsans-400-latin-ext.woff2',
+  './vendor/fuentes/dmsans-400-latin.woff2',
+  './vendor/fuentes/dmsans-500-latin-ext.woff2',
+  './vendor/fuentes/dmsans-500-latin.woff2'
 ];
 
 self.addEventListener('install', e => {

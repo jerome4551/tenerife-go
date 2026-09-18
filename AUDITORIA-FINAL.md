@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 76cf3cb1fb2b9424a45b451e99e2543e
-             3.178.475 bytes · 929.119 comprimidos · 37.262 líneas
+index.html   md5 a4ec97c5bf921a8ca87456b2d1cdc71f
+             3.179.037 bytes · 929.162 comprimidos · 37.273 líneas
 idiomas/     9 ficheros de lugares · 2.525.852 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
@@ -31,8 +31,8 @@ faq/         10 ficheros · 69 respuestas del asistente en cada idioma
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
-| Ficheros | **210** versionados (88 en `idiomas/`, 49 en `tools/`, 29 en `faq/`, 24 en la raíz, 12 en `vendor/`, 3 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
-| Descarga | **942 kB** en castellano · **1.048 kB** en el peor caso (búlgaro) · 1.036 kB en polaco. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Ficheros | **236** versionados (88 en `idiomas/`, 52 en `tools/`, 34 en `vendor/` —con las 21 fuentes—, 29 en `faq/`, 24 en la raíz, 4 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
+| Descarga | **942 kB** en castellano · **1.048 kB** en el peor caso (búlgaro) · 1.035 kB en polaco. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -524,6 +524,90 @@ que intenta colar HTML— y se comprueban las tres cosas a la vez:
 Esa segunda línea importa tanto como la primera: el camino nuevo pasa por
 `innerHTML` igual que el viejo, y un texto que llega de la base de datos en
 otro idioma sigue siendo texto que alguien escribió.
+
+## «La app es muy lenta» · el arranque esperaba a Google
+
+Lo primero fue medir, no adivinar. Con CPU de móvil (4× más lenta):
+
+| qué se toca | tarda |
+|---|---|
+| abrir la tienda, una ficha, el asistente, categorías | **0-3 ms** |
+| pintar los 804 marcadores | 1 ms |
+| filtrar, el dado, mover y hacer zoom en el mapa | 0-70 ms |
+| cambiar de idioma | 57-60 ms |
+
+O sea que **la app no es lenta usándola**: es lenta **arrancando**. Y el
+perfil de CPU lo dijo: 2.331 ms en `(program)` —parsear y compilar— y
+**20 peticiones a servidores de fuera antes de terminar de cargar**.
+
+De esas veinte, dos estaban en el `<head>` y **frenaban la app antes de
+pintar nada**:
+
+1. **`<script src="cdn.jsdelivr.net/…supabase.js">` sin `defer`.** Un script
+   así PARA el parseo del HTML hasta que jsDelivr contesta: en un móvil son
+   DNS + TLS + 120 kB antes de que el navegador siga leyendo el documento. Y
+   nadie lo necesita durante el parseo: `initSupabase()` corre en
+   `DOMContentLoaded`, y un `defer` se ejecuta **antes** de eso. Una palabra.
+
+2. **`<link>` a `fonts.googleapis.com`.** Una hoja de estilo de otro dominio
+   bloquea el primer pintado, y detrás vienen los `woff2` desde un tercer
+   dominio. Además **la app es offline-first y las fuentes no lo eran**: sin
+   cobertura el turista veía la app con la tipografía del sistema. Y era una
+   petición a Google desde su navegador en cada carga.
+
+Las fuentes viven ahora en `vendor/fuentes/`, las trae
+`tools/bajar_fuentes.sh` y el service worker precachea **latin y latin-ext**
+—las que necesitan los nueve idiomas de alfabeto latino; el polaco usa
+latin-ext—. El cirílico del búlgaro y el vietnamita se quedan fuera del
+precache a propósito: son 63 kB que la mayoría no pide nunca y el manejador
+normal los guarda la primera vez que alguien los usa.
+
+**La CSP se estrecha de paso**: fuera `fonts.googleapis.com` de `style-src` y
+`fonts.gstatic.com` de `font-src`. Un tercero menos al que dejar entrar.
+
+**Medido, mediana de varias cargas:**
+
+| | antes | ahora |
+|---|---|---|
+| primer pintado, CPU normal | 836 ms | **324 ms** |
+| primer pintado, CPU móvil | 788 ms | **516 ms** |
+| primer pintado, CPU móvil + 5G | 948 ms | **544 ms** |
+
+Y sin conexión la app conserva su tipografía, que antes perdía.
+
+**Lo que NO se tocó, y por qué.** Los cuatro `<script>` de `./vendor/`
+—Leaflet, MarkerCluster, PMTiles, Protomaps— también bloquean, y se quedan:
+`map = L.map(…)` corre en el nivel superior de un script en línea, o sea
+**durante** el parseo, así que Leaflet tiene que estar ya. Aplazarlos pide
+mover la creación del mapa a una función, que es otra faena con otro riesgo.
+Son del propio origen y el service worker los precachea, así que desde la
+segunda visita salen del caché. El control los **lista aparte** en vez de
+callarlos: una exención escrita no es un silencio.
+
+**El control**, que mira el `<head>` y cuenta lo que el navegador pidió de
+verdad —eso no se ve en la página ya cargada—:
+
+```
+=== el arranque no espera a nadie de fuera ===
+  OK  ningun script DE FUERA para el parseo del HTML
+      (del propio origen y precacheados, si bloquean: leaflet.js …)
+  OK  ninguna hoja de estilo viene de otro dominio
+  OK  cero peticiones de fuentes a Google   (0)
+  OK  las fuentes del proyecto cargan   (11 cargadas)
+```
+
+Probado devolviendo las dos averías: canta las cuatro líneas.
+
+**Lo que queda pendiente y está medido.** `index.html` son 929 kB
+comprimidos y de ahí salen ~700 ms de compilar JavaScript. Dentro hay
+1,5 MB de **datos** —`TITSA_LINES` 783 kB, `places[]` 496 kB,
+`TITSA_PARADAS` 277 kB— que el motor parsea como código. Pasarlos a
+`<script type="application/json">` y leerlos con `JSON.parse` —que el
+parser de JS ni mira— da, medido en un experimento: DCL 2.188 → 1.938 ms,
+compilar 711 → 620 ms, y 40 kB menos comprimidos. No se ha hecho todavía
+porque **quince herramientas leen y ESCRIBEN `const places = [` con cirugía
+fina**, y moverlo sin moverlas es como el proyecto ya aprendió con los
+idiomas: el control deja de mirar y da verde.
 
 ## El asistente · 69 respuestas en 10 idiomas, y por qué no bastaba traducirlas
 

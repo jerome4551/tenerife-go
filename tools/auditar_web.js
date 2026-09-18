@@ -106,6 +106,11 @@ function revisar(tablas, o) {
   const b = await chromium.launch({ executablePath: CHROME, args: ['--no-proxy-server', '--no-sandbox'] });
   const ctx = await b.newContext({ serviceWorkers: 'block', viewport: { width: 1200, height: 900 } });
   const page = await ctx.newPage();
+  /* Lo que el navegador pide de verdad. Hace falta para comprobar que el
+     arranque no sale a buscar fuentes a Google: eso no se ve mirando la
+     pagina ya cargada. */
+  const urlsPedidas = [];
+  page.on('request', r => urlsPedidas.push(r.url()));
   const errs = [];
   page.on('pageerror', e => errs.push(e.message));
   await page.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'load', timeout: 60000 });
@@ -677,6 +682,51 @@ function revisar(tablas, o) {
   console.log('  ' + (okXI ? 'OK ' : 'MAL') + ' el camino nuevo no se salta el escapado   (img ' +
               tiendaI18n.img + ' · svg ' + tiendaI18n.svg + ' · script ' + tiendaI18n.scr + ')');
   if (!okTI || !okXI) docMal = 1;
+
+  /* ── EL ARRANQUE NO ESPERA A NADIE DE FUERA ──
+     Dos etiquetas del <head> frenaban la app antes de pintar nada:
+       · el <script> de Supabase sin `defer`, que PARA el parseo del HTML
+         hasta que jsDelivr contesta
+       · el <link> a fonts.googleapis.com, que bloquea el primer pintado y
+         ademas dejaba la app sin su tipografia al quedarse sin cobertura
+     Medido: el primer pintado paso de 836 a 324 ms con CPU normal y de 948
+     a 544 ms con CPU de movil en 5G.
+     Esto no se ve mirando la pagina ya cargada, asi que se mira el <head>
+     y se cuenta lo que el navegador pidio de verdad. */
+  const cab = await page.evaluate(() => {
+    const sc = [...document.querySelectorAll('head script[src]')];
+    const ln = [...document.querySelectorAll('head link[rel="stylesheet"]')];
+    return {
+      /* Se exige solo a los de OTRO dominio. Los de ./vendor/ tambien
+         bloquean, y a proposito: `map = L.map(...)` corre en el nivel
+         superior de un <script> en linea, o sea DURANTE el parseo, asi que
+         Leaflet tiene que estar ya. Aplazarlos pide mover la creacion del
+         mapa a una funcion, que es otra faena. Ademas son del propio
+         origen y el service worker los precachea: a partir de la segunda
+         visita salen del cache. Se listan aparte para que la exencion
+         este escrita y no sea un silencio. */
+      bloqueantes: sc.filter(e => !e.defer && !e.async && !e.src.startsWith(location.origin))
+                     .map(e => e.src.slice(0, 60)),
+      propios: sc.filter(e => !e.defer && !e.async && e.src.startsWith(location.origin))
+                 .map(e => e.src.split('/').pop()),
+      hojasDeFuera: ln.filter(e => !e.href.startsWith(location.origin)).map(e => e.href.slice(0, 60)),
+      fuentes: [...document.fonts].filter(f => f.status === 'loaded').length
+    };
+  });
+  const aGoogle = urlsPedidas.filter(u => /fonts\.(googleapis|gstatic)\.com/.test(u));
+  console.log('\n=== el arranque no espera a nadie de fuera ===');
+  const okBlq = cab.bloqueantes.length === 0;
+  console.log('  ' + (okBlq ? 'OK ' : 'MAL') + ' ningun script DE FUERA para el parseo del HTML' +
+              (okBlq ? '' : '   <--  ' + cab.bloqueantes.join(' ')));
+  console.log('      (del propio origen y precacheados, si bloquean: ' + cab.propios.join(' ') + ')');
+  const okHoja = cab.hojasDeFuera.length === 0;
+  console.log('  ' + (okHoja ? 'OK ' : 'MAL') + ' ninguna hoja de estilo viene de otro dominio' +
+              (okHoja ? '' : '   <--  ' + cab.hojasDeFuera.join(' ')));
+  const okG = aGoogle.length === 0;
+  console.log('  ' + (okG ? 'OK ' : 'MAL') + ' cero peticiones de fuentes a Google   (' + aGoogle.length + ')');
+  const okF = cab.fuentes >= 4;
+  console.log('  ' + (okF ? 'OK ' : 'MAL') + ' las fuentes del proyecto cargan   (' + cab.fuentes + ' cargadas)');
+  if (!okBlq || !okHoja || !okG || !okF) docMal = 1;
 
   console.log('\n=== rendimiento ===');
   console.log('  aeropuerto sur: %d lineas · %d capas · %d ms', perf.lineas, perf.capas, perf.ms);
