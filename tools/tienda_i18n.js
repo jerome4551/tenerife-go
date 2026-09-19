@@ -61,10 +61,20 @@ function entorno() {
 
 async function pedir(ruta, opciones) {
   const { url, key } = entorno();
-  const r = await fetch(url + '/rest/v1/' + ruta, Object.assign({
-    headers: { apikey: key, Authorization: 'Bearer ' + key,
-               'Content-Type': 'application/json', Prefer: 'return=minimal' }
-  }, opciones || {}));
+  let r;
+  try {
+    r = await fetch(url + '/rest/v1/' + ruta, Object.assign({
+      headers: { apikey: key, Authorization: 'Bearer ' + key,
+                 'Content-Type': 'application/json', Prefer: 'return=minimal' }
+    }, opciones || {}));
+  } catch (e) {
+    /* Sin esto, un servidor caido o un SUPABASE_URL mal escrito escupian la
+       traza de undici. El que ejecuta esto quiere saber QUE pasa, no donde
+       se rompio node. */
+    console.error('no se pudo hablar con ' + url + ': ' + (e && e.message ? e.message : e));
+    console.error('  -> comprueba SUPABASE_URL y que haya conexion.');
+    process.exit(1);
+  }
   if (!r.ok) {
     const cuerpo = await r.text();
     console.error('Supabase respondio ' + r.status + ': ' + cuerpo.slice(0, 300));

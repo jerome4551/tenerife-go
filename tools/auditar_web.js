@@ -786,6 +786,104 @@ function revisar(tablas, o) {
   itin.mal.forEach(m => console.log('      <--  ' + m));
   if (!okIt) docMal = 1;
 
+  /* ── EL PLURAL ──
+     La regla era `n === 1 ? singular : plural` para los diez idiomas, y
+     ademas cuatro filas no llevaban ni singular: el castellano decia
+     «Max. 1 personas» y «1 dias». El polaco tiene TRES formas y con dos
+     no acierta nunca.
+     Se comprueban los casos que separan una regla buena de una mala:
+     el 1, el 2, el 5 y las trampas polacas -12, que va con el genitivo
+     aunque acabe en 2, y 22 y 804, que no-. */
+  const plu = await page.evaluate(async () => {
+    const esperar = ms => new Promise(r => setTimeout(r, ms));
+    const o = { mal: [] };
+    const casos = [
+      ['es', 'contadorLugares', 1, '1 lugar'], ['es', 'contadorLugares', 5, '5 lugares'],
+      ['en', 'contadorLugares', 1, '1 place'],
+      ['bg', 'contadorLugares', 1, '1 \u043c\u044f\u0441\u0442\u043e'], ['bg', 'contadorLugares', 5, '5 \u043c\u0435\u0441\u0442\u0430'],
+      ['pl', 'contadorLugares', 1, '1 miejsce'],
+      ['pl', 'contadorLugares', 2, '2 miejsca'],
+      ['pl', 'contadorLugares', 5, '5 miejsc'],
+      ['pl', 'contadorLugares', 12, '12 miejsc'],
+      ['pl', 'contadorLugares', 22, '22 miejsca'],
+      ['pl', 'contadorLugares', 804, '804 miejsca'],
+      ['pl', 'contadorResultados', 5, '5 wynik\u00f3w']
+    ];
+    for (const [l, k, n, esperado] of casos) {
+      setLang(l); await esperar(90);
+      const dio = plural(k, n);
+      if (dio !== esperado) o.mal.push(l + ' ' + k + ' n=' + n + ': «' + dio + '» y deberia «' + esperado + '»');
+    }
+    /* Y las filas con la frase entera, que van por tx() y no por plural() */
+    const frases = [
+      ['es', 'shopMaxPeople', 1, 'M\u00e1x. 1 persona'],
+      ['en', 'shopDays', 1, '1 day'],
+      ['pl', 'shopMaxPeople', 1, 'Maks. 1 osoba'],
+      ['pl', 'shopMaxPeople', 2, 'Maks. 2 osoby'],
+      ['pl', 'shopMaxPeople', 5, 'Maks. 5 os\u00f3b'],
+      ['zh', 'shopMaxPeople', 1, '\u6700\u591a 1 \u4eba']
+    ];
+    for (const [l, k, n, esperado] of frases) {
+      setLang(l); await esperar(90);
+      const dio = tx(k, { n: n });
+      if (dio !== esperado) o.mal.push(l + ' ' + k + ' n=' + n + ': «' + dio + '» y deberia «' + esperado + '»');
+    }
+    setLang('es');
+    return o;
+  }).catch(e => ({ mal: ['(no se pudo probar: ' + String(e).slice(0, 90) + ')'] }));
+  console.log('\n=== el plural, idioma por idioma ===');
+  const okPl = plu.mal.length === 0;
+  console.log('  ' + (okPl ? 'OK ' : 'MAL') + ' 18 casos, incluidas las tres formas del polaco y sus trampas (12, 22, 804)');
+  plu.mal.forEach(m => console.log('      <--  ' + m));
+  if (!okPl) docMal = 1;
+
+  /* ── ACCESIBILIDAD: lo minimo, que nunca se habia mirado ──
+     No es una auditoria WCAG entera: son las dos cosas que dejan a alguien
+     fuera del todo. Un pulsable sin nombre accesible no existe para un
+     lector de pantalla, y un campo sin etiqueta se anuncia como «selector
+     de fecha» a secas. El tamano de las zonas tocables se MIDE y se
+     informa, pero no falla: cambiarlo es tocar el diseno. */
+  const acc = await page.evaluate(() => {
+    const vis = el => { const r = el.getBoundingClientRect();
+      return r.width > 0 && r.height > 0 && getComputedStyle(el).visibility !== 'hidden'; };
+    const nombre = el => (el.getAttribute('aria-label') || el.getAttribute('title') ||
+      (el.innerText || '').trim() || el.getAttribute('alt') || '').trim();
+    const o = { sinNombre: [], sinEtiqueta: [], imgSinAlt: 0, pequenos: 0, pequenosNoEnlace: [] };
+    for (const el of document.querySelectorAll('button, a[href], [role="button"], [onclick]')) {
+      if (!vis(el)) continue;
+      if (!nombre(el)) o.sinNombre.push(((el.id || el.className || el.tagName) + '').slice(0, 44));
+      const r = el.getBoundingClientRect();
+      if (r.width < 24 || r.height < 24) {
+        o.pequenos++;
+        /* Un enlace dentro de una frase esta exento en WCAG 2.2; los
+           botones sueltos no, y esos son los que se listan. */
+        if (el.tagName !== 'A') o.pequenosNoEnlace.push(((el.id || el.className) + '').slice(0, 30) +
+          ' ' + Math.round(r.width) + 'x' + Math.round(r.height));
+      }
+    }
+    for (const el of document.querySelectorAll('img')) if (vis(el) && !el.hasAttribute('alt')) o.imgSinAlt++;
+    for (const el of document.querySelectorAll('input, select, textarea')) {
+      if (!vis(el)) continue;
+      const tiene = el.getAttribute('aria-label') || el.getAttribute('placeholder') ||
+        (el.id && document.querySelector('label[for="' + CSS.escape(el.id) + '"]')) || el.closest('label');
+      if (!tiene) o.sinEtiqueta.push((el.id || el.name || el.type || 'input').slice(0, 34));
+    }
+    return o;
+  });
+  console.log('\n=== accesibilidad, lo minimo ===');
+  const okN = acc.sinNombre.length === 0;
+  console.log('  ' + (okN ? 'OK ' : 'MAL') + ' todo lo que se pulsa tiene nombre accesible   (' + acc.sinNombre.length + ' sin el)');
+  [...new Set(acc.sinNombre)].slice(0, 6).forEach(x => console.log('      <--  ' + x));
+  const okE = acc.sinEtiqueta.length === 0;
+  console.log('  ' + (okE ? 'OK ' : 'MAL') + ' todo campo de formulario tiene etiqueta   (' + acc.sinEtiqueta.length + ' sin ella)');
+  [...new Set(acc.sinEtiqueta)].slice(0, 6).forEach(x => console.log('      <--  ' + x));
+  const okI = acc.imgSinAlt === 0;
+  console.log('  ' + (okI ? 'OK ' : 'MAL') + ' toda imagen visible declara alt   (' + acc.imgSinAlt + ' sin el)');
+  console.log('  --  zonas tocables menores de 24x24: ' + acc.pequenos +
+              ' (' + acc.pequenosNoEnlace.length + ' no son enlaces de texto) — se informa, no falla');
+  [...new Set(acc.pequenosNoEnlace)].slice(0, 6).forEach(x => console.log('          ' + x));
+  if (!okN || !okE || !okI) docMal = 1;
+
   console.log('\n=== rendimiento ===');
   console.log('  aeropuerto sur: %d lineas · %d capas · %d ms', perf.lineas, perf.capas, perf.ms);
   console.log('\npageerrors: ' + errs.length);

@@ -332,7 +332,25 @@ const cifras = s => {
   s = s.replace(/[.,]/g, '');
   return (s.match(/\d{2,}/g) || []).sort();
 };
-const marcas = s => (String(s).match(/\{[a-z]+\}/gi) || []).sort();
+/* Los marcadores, POR FORMA DE PLURAL.
+   Contarlos en toda la cadena valia mientras una fila era una frase. Desde
+   que llevan formas separadas por «|» ya no: el castellano escribe
+   «{n} color|{n} colores» -dos {n}- y el frances «{n} coloris» -uno-, y el
+   polaco tres. El numero de FORMAS es cosa del idioma; lo que tiene que
+   cuadrar es que CADA forma lleve los mismos marcadores.
+   Asi que se parte por «|», se comprueba que todas las formas de la misma
+   cadena coinciden entre si -si una se deja el {n}, ahi hay un hueco de
+   verdad- y se devuelve la de la primera para comparar con el castellano.
+   Una cadena sin «|» pasa por aqui igual que antes. */
+const marcasDe = s => (String(s).match(/\{[a-z]+\}/gi) || []).sort().join(',');
+const marcas = s => {
+  const formas = String(s).split('|');
+  const primera = marcasDe(formas[0]);
+  for (let i = 1; i < formas.length; i++) {
+    if (marcasDe(formas[i]) !== primera) return 'FORMAS-DESCUADRADAS:' + formas.map(marcasDe).join(' / ');
+  }
+  return primera;
+};
 const etiquetas = s => {
   const o = (String(s).match(/<([a-z]+)(?:\s[^>]*)?>/gi) || []).map(x => x.replace(/[<>/]|\s.*/g, '').toLowerCase());
   const c = (String(s).match(/<\/([a-z]+)>/gi) || []).map(x => x.replace(/[<>/]/g, '').toLowerCase());
@@ -700,7 +718,7 @@ function mirar(es, tr, donde, campo) {
   const a = cifras(sinMillones(esSinT)), b = cifras(sinMillones(trDoba));
   if (a.join() !== b.join()) apunta('CIFRAS', donde, a + ' vs ' + b + ' :: ' + es.slice(0, 45));
   const ma = marcas(es), mb = marcas(tr);
-  if (ma.join() !== mb.join()) apunta('MARCADOR', donde, ma + ' vs ' + mb + ' :: ' + es.slice(0, 45));
+  if (ma !== mb) apunta('MARCADOR', donde, ma + ' vs ' + mb + ' :: ' + es.slice(0, 45));
   if (etiquetas(es) !== etiquetas(tr)) apunta('ETIQUETAS', donde, etiquetas(es) + ' vs ' + etiquetas(tr));
   if (LANG !== 'es') {
     const esc = ESCRITURA[LANG];

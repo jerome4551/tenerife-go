@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 917eccab7f7ea71409e5574e41c8ea88
-             3.187.228 bytes · 932.016 comprimidos · 37.300 líneas
+index.html   md5 9132766944b51d4f730f8a0de8a578cc
+             3.190.128 bytes · 933.250 comprimidos · 37.341 líneas
 idiomas/     9 ficheros de lugares · 2.525.852 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
@@ -31,8 +31,8 @@ faq/         10 ficheros · 69 respuestas del asistente en cada idioma
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
-| Ficheros | **236** versionados (88 en `idiomas/`, 52 en `tools/`, 34 en `vendor/` —con las 21 fuentes—, 29 en `faq/`, 24 en la raíz, 4 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
-| Descarga | **945 kB** en castellano · **1.051 kB** en el peor caso (búlgaro) · 1.038 kB en polaco. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Ficheros | **235** versionados (88 en `idiomas/`, 51 en `tools/`, 34 en `vendor/` —con las 21 fuentes—, 29 en `faq/`, 24 en la raíz, 4 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
+| Descarga | **946 kB** en castellano · **1.052 kB** en el peor caso (búlgaro) · 1.040 kB en polaco. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -656,6 +656,168 @@ orden escapar/cortar no se pueda volver a invertir:
 Probado devolviendo las averías: canta el título y las dos descripciones,
 una por cada renderizador.
 
+## Un control retirado: `cifras_idioma.py`
+
+Dos controles miraban lo mismo y no se ponían de acuerdo. `auditar_idioma.js`
+daba **0 hallazgos en los diez idiomas**; `cifras_idioma.py` daba 24 en
+inglés, 23 en francés, 23 en alemán y 16 en chino.
+
+Se miraron **una a una**. Ni una sola era real:
+
+| idioma | qué cantaba | por qué no es un error |
+|---|---|---|
+| en · fr · de | `922` vs `34922` | el castellano escribe «922 57 48 06» y los demás le añaden el prefijo **+34** |
+| zh · zht | `27000` vs `27`, `100000` vs nada | el chino escribe las miriadas con 万: 2,7万 son 27.000 |
+
+`auditar_idioma.js` ya sabía las dos cosas —tiene `sacarTelefonos()` y
+`sinMiriadas()`— y además mira **todas** las cifras, no solo las de tres
+dígitos, más las horas, los marcadores, las etiquetas HTML y el alfabeto.
+
+`cifras_idioma.py` nació para el polaco, antes de que `auditar_idioma.js`
+supiera polaco. Ahora lo sabe, así que el otro sobra: **hace estrictamente
+menos y grita cinco veces de cada cinco**. Un control que llora lobo se
+ignora, y el día que cante algo de verdad nadie lo mirará.
+
+Antes de retirarlo se comprobó el reemplazo: se metieron dos erratas de
+verdad en el búlgaro —un año 1988 → 1998 y una cifra 540 → 560— y
+`auditar_idioma.js` cantó las dos:
+
+```
+  CIFRAS                  2
+     sendero-sentidos.desc  … 340,540,76,77 vs … 340,560,76,77
+     camel-park.desc        10,1988,20 vs 10,1998,20
+```
+
+Queda escrito aquí para que nadie vuelva a construirlo.
+
+## El plural estaba mal en los diez idiomas
+
+`plural()` tenía una sola regla para todos: `n === 1 ? singular : plural`. Y
+cuatro filas más ni siquiera llevaban forma singular. Lo que salía en
+pantalla:
+
+| | antes | ahora |
+|---|---|---|
+| es | «Máx. **1 personas**» · «**1 días**» | Máx. 1 persona · 1 día |
+| en | «Max. **1 people**» · «**1 days**» | Max. 1 person · 1 day |
+| bg | «Макс. **1 души**» · «**1 дни**» | Макс. 1 човек · 1 ден |
+| pl | «**5 miejsca**» · «**5 wyniki**» · «Maks. **1 osób**» | 5 miejsc · 5 wyników · Maks. 1 osoba |
+
+El polaco es el caso que rompe la regla de dos formas: tiene **tres**.
+
+```
+1 miejsce   ·   2-4 miejsca   ·   5+ miejsc
+```
+
+Y no es «números pequeños y grandes»: la regla de CLDR mira la **decena**.
+804 acaba en 4 → *miejsca*. 12 acaba en 2 **pero** está en la decena del 11
+al 14 → *miejsc*. 22 acaba en 2 y no está → *miejsca*. Esos tres casos son
+los que separan una regla escrita a ojo de una buena, y son los que prueba
+el control.
+
+**Cómo quedó.** `PLURAL_FORMA` tiene la regla de cada idioma —el polaco la
+suya, el chino «siempre una», el resto por el camino de siempre— y la usan
+**`plural()` y `tx()`**, que antes no sabía nada de plurales. Una fila con
+`|` lleva alternativas **enteras** («Máx. {n} persona|Máx. {n} personas»),
+no solo el sustantivo, porque así vale para cualquier forma de frase. Si un
+idioma escribe **menos** formas de las que su regla pide —el neerlandés
+«{n} uur» y el polaco «{n} godz.» son invariables— se coge la última que
+haya: degradar a lo que ya había, nunca a un hueco.
+
+**Y obligó a corregir un control.** `auditar_idioma.js` compara los
+`{marcadores}` de cada texto, y contándolos en toda la cadena empezó a
+cantar cinco idiomas: el castellano escribe dos `{n}` —uno por forma— y el
+francés uno. El número de formas es cosa del idioma; lo que tiene que
+cuadrar es que **cada forma** lleve los mismos marcadores. Ahora se parte
+por `|` y se comprueba forma a forma, así que sigue cazando lo de verdad:
+una forma polaca a la que le falte el `{n}` sale como
+`FORMAS-DESCUADRADAS`, comprobado.
+
+## Un control retirado: `cifras_idioma.py`
+
+Dos controles miraban lo mismo y no se ponían de acuerdo. `auditar_idioma.js`
+daba **0 hallazgos en los diez idiomas**; `cifras_idioma.py` daba 24 en
+inglés, 23 en francés, 23 en alemán y 16 en chino.
+
+Se miraron una a una. **Ni una era real:**
+
+| idioma | qué cantaba | por qué no es un error |
+|---|---|---|
+| en · fr · de | `922` vs `34922` | el castellano escribe «922 57 48 06» y los demás le añaden el prefijo **+34** |
+| zh · zht | `27000` vs `27`, `100000` vs nada | el chino escribe las miriadas con 万: 2,7万 son 27.000 |
+
+`auditar_idioma.js` ya sabía las dos cosas —tiene `sacarTelefonos()` y
+`sinMiriadas()`— y además mira **todas** las cifras, no solo las de tres
+dígitos, más las horas, los marcadores, las etiquetas y el alfabeto.
+
+`cifras_idioma.py` nació para el polaco, antes de que `auditar_idioma.js`
+supiera polaco. Ahora lo sabe: el otro **hace estrictamente menos y grita
+cinco de cada cinco veces**. Un control que llora lobo se ignora, y el día
+que cante algo de verdad nadie lo mirará.
+
+Antes de retirarlo se comprobó el reemplazo: dos erratas de verdad en el
+búlgaro —año 1988 → 1998 y cifra 540 → 560— y `auditar_idioma.js` cantó
+las dos. Queda escrito aquí para que nadie vuelva a construirlo.
+
+## Lo que se ejercitó por primera vez
+
+**`tools/tienda_i18n.js`**, que se escribió sin poder probarlo contra un
+Supabase de verdad. Se montó uno de mentira que habla PostgREST y se pasó
+el circuito entero:
+
+| se probó | resultado |
+|---|---|
+| `sacar` lista lo que falta | 3 filas de 4; salta la que ya está completa |
+| `meter` **funde**, no reemplaza | subí búlgaro y polaco y el `en.name` que ya había **siguió ahí** |
+| un hueco vacío no pisa lo que hay | `en.name: ""` **no** borró el «BBQ» del servidor |
+| una fila sin nada escrito | se salta, no se sube |
+| idioma que no está en `SUPPORTED_LANGS` | para y lo dice |
+| campo que esa tabla no tiene | para y lo dice |
+| tabla inventada | para y lo dice |
+| sin credenciales | para y dice cómo ponerlas |
+| la clave en la salida | **0 apariciones** |
+
+Y salió un fallo: **con el servidor caído escupía la traza de `undici`** en
+vez de decir qué pasaba. Corregido: ahora dice el servidor y sugiere mirar
+`SUPABASE_URL`.
+
+**La app sin el SQL ejecutado.** Se prometió que aguanta y no se había
+comprobado. Se le pasaron filas tal cual las devuelve un Supabase **sin la
+columna `i18n`**, y otra sin la propiedad siquiera: **0 errores de página**,
+el texto libre cae al castellano —como antes— y la duración y la dificultad
+**ya traducen igualmente**.
+
+## Accesibilidad: lo mínimo, que nunca se había mirado
+
+No es una auditoría WCAG entera. Son las cosas que dejan a alguien fuera
+del todo:
+
+```
+  OK  todo lo que se pulsa tiene nombre accesible   (0 sin el)
+  OK  todo campo de formulario tiene etiqueta       (0 sin ella)
+  OK  toda imagen visible declara alt               (0 sin el)
+  --  zonas tocables menores de 24x24: 21 (6 no son enlaces) — se informa, no falla
+```
+
+Se encontró **un campo sin nombre**: el `<input type="date">` de la reserva.
+Un lector de pantalla decía «selector de fecha» y quien no ve la pantalla
+no sabía de qué fecha. Corregido, con su `aria-label` en los diez idiomas.
+
+Las **zonas tocables pequeñas se informan y no fallan**, a propósito: 15 de
+las 21 son enlaces dentro de una frase, que WCAG 2.2 exime. Las otras seis
+—`map-legend-close` 17×15, `multifilter-toast-close` 16×14,
+`booking-people-btn` 24×19, `cart-item-remove` 23×29— sí están por debajo
+del mínimo, pero agrandarlas es tocar el diseño y esa no es una decisión de
+una auditoría. **Queda anotado.**
+
+## Lo que se miró y estaba bien
+
+La letra china: las fuentes del proyecto son latinas y cirílicas, y el chino
+cae a la del sistema. Es lo correcto —una CJK son megas— y se comprobó que
+hay glifos, no cuadros vacíos. El búlgaro tiene su cirílico en los títulos
+(Cormorant Garamond lo trae); el cuerpo (DM Sans) cae al sistema porque
+**esa familia no existe en cirílico**, ni aquí ni cuando venía de Google.
+
 ## El asistente · 69 respuestas en 10 idiomas, y por qué no bastaba traducirlas
 
 `CHAT_KB` tiene 79 entradas y todas están escritas en castellano y en nada
@@ -728,7 +890,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 812 filas (y 2.415 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 813 filas (y 2.416 filas, dentro y fuera del fuente)
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
