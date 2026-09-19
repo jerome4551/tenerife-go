@@ -32,9 +32,16 @@ SEGUNDA MEDIDA: CONTRA EL MAR, NO CONTRA "AGUA"
   a 10.187 m. Cuando hay dos grupos separados si se puede afirmar cual esta
   mal.
 
+LAS CIFRAS DE ABAJO CAMBIARON EN SEPTIEMBRE, Y NO PORQUE SE MOVIERA NADA
+  Este control media con el eje y sin voltear, o sea CONTRA UNA COSTA EN
+  ESPEJO, y daba mediana 86 m y maximo 573 m. Al corregirlo pasaron a 22 m y
+  202 m: las playas estan mucho mas cerca del agua de lo que decia, que es
+  justo lo que uno espera de una playa. El umbral se deja igual de alto: lo
+  que busca no es precision, es que un punto de bano no este en el monte.
+
 POR QUE EL UMBRAL ES TAN ALTO
-  La distribucion real es continua -mediana 86 m, cuartil 3 167 m, maximo
-  573 m-: no hay dos grupos separados, asi que no hay forma de decir "de aqui
+  La distribucion real es continua -mediana 22 m, cuartil 3 36 m, maximo
+  202 m-: no hay dos grupos separados, asi que no hay forma de decir "de aqui
   para alla estan mal". Los mayores se explican solos: el pin de una playa
   larga va en el centro o en el acceso, y el poligono de agua a z14 esta
   generalizado. Los cinco peores se contrastaron uno a uno contra las paradas
@@ -123,7 +130,14 @@ def main():
                 lonB, latB = esquina(x0 + dx + 1, y0 + dy + 1)
                 for ft in t['water']['features']:
                     for an in anillos(ft['geometry'].get('coordinates')):
-                        pts = [plano(latA + (cy / EXT) * (latB - latA),
+                        # EL EJE Y VIENE VOLTEADO: mapbox_vector_tile.decode()
+                        # devuelve la y con el origen abajo, no arriba como el
+                        # MVT crudo. Aqui estaba sin voltear, o sea que este
+                        # control llevaba midiendo contra una costa EN ESPEJO.
+                        # Se comprobo sobre los 804 lugares: sin voltear, 139
+                        # caian fuera de tierra -entre ellos el Hospital del
+                        # Norte, que esta en Icod-; volteando, 22.
+                        pts = [plano(latA + ((EXT - cy) / EXT) * (latB - latA),
                                      lonA + (cx / EXT) * (lonB - lonA), (la, lo)) for cx, cy in an]
                         for i in range(1, len(pts)):
                             d = d_seg(pts[i - 1], pts[i])

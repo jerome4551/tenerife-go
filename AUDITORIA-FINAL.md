@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 9132766944b51d4f730f8a0de8a578cc
-             3.190.128 bytes · 933.250 comprimidos · 37.341 líneas
+index.html   md5 9de1d8ca1bbcae43b98390590411b7f5
+             3.190.140 bytes · 933.270 comprimidos · 37.341 líneas
 idiomas/     9 ficheros de lugares · 2.525.852 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
@@ -817,6 +817,77 @@ cae a la del sistema. Es lo correcto —una CJK son megas— y se comprobó que
 hay glifos, no cuadros vacíos. El búlgaro tiene su cirílico en los títulos
 (Cormorant Garamond lo trae); el cuerpo (DM Sans) cae al sistema porque
 **esa familia no existe en cirílico**, ni aquí ni cuando venía de Google.
+
+## Lugares en el mar · y el control que llevaba midiendo en espejo
+
+El usuario abrió el mapa y vio pines en el agua: un Lidl, un parking, una
+ermita, un faro. Tenía razón, y el hueco era claro: **`auditar_ubicacion.py`
+solo mira las 99 playas y charcos, y solo comprueba que no estén LEJOS del
+agua**. Lo contrario —un supermercado metido en el mar— no lo miraba nadie.
+
+**El detector nuevo.** `tools/auditar_en_el_mar.py` comprueba, contra la capa
+`earth` del OSM que ya lleva el proyecto, que cada lugar de tierra esté
+**dentro** de tierra. No geocodifica ni pregunta a nadie: la respuesta sale
+de un dato que ya estaba en el repositorio.
+
+Y mide **cuánto**, no solo sí o no: el polígono a z14 está generalizado, así
+que un punto a tres metros de la orilla puede caer del lado equivocado por el
+propio dibujo. A 2 km es un error de dato; a 3 m es el dibujo.
+
+**Dos trampas que costaron encontrar.**
+
+1. **El eje Y viene volteado.** `mapbox_vector_tile.decode()` devuelve la `y`
+   con el origen abajo, no arriba como el MVT crudo. No se adivinó: se
+   probaron **las dos convenciones sobre los 804 lugares**. Sin voltear, 139
+   caían fuera de tierra —entre ellos el Hospital del Norte, que está en
+   Icod—; volteando, 22. Cuando una da 139 y la otra 22, no hay duda.
+
+2. **Los agujeros cuentan.** El océano viene como un polígono con la tierra
+   recortada dentro. Aplanando todos los anillos por igual, caer en un
+   agujero —o sea, estar en tierra— contaba como estar en el agua.
+
+**Y aquí está lo gordo: `auditar_ubicacion.py` tenía el mismo fallo del eje.**
+Llevaba midiendo **contra una costa en espejo** y dando verde. Al corregirlo:
+
+| | antes (en espejo) | ahora |
+|---|---|---|
+| mediana de playa al agua | 82 m | **22 m** |
+| cuartil 3 | 159 m | **36 m** |
+| máximo | 573 m | **202 m** |
+
+Las playas están mucho más cerca del agua de lo que decía, que es justo lo
+que uno espera de una playa. El control daba verde midiendo otra cosa.
+
+**Lo corregido, con su fuente escrita.** Solo donde OpenStreetMap tiene el
+sitio **con el mismo nombre y un tipo compatible**:
+
+| lugar | de | a | evidencia |
+|---|---|---|---|
+| `golf-del-sur` | 28.0170, −16.5770 | 28.03749, −16.60762 | OSM `golf_course` «Golf del Sur» |
+| `lidl-santa-cruz` | 28.4500, −16.2600 | 28.45818, −16.25843 | OSM `supermarket` «Lidl», el más cercano al centro |
+| `nucleo-los-gigantes` | 28.2475, −16.8422 | 28.24564, −16.84014 | OSM `neighbourhood` «Los Gigantes» |
+| `wc-gigantes` | 28.2475, −16.8422 | 28.24564, −16.84014 | ídem |
+| `nucleo-san-andres` | 28.50291, −16.19195 | 28.50550, −16.19250 | OSM `locality` «San Andrés» |
+| `nucleo-costa-adeje` | 28.0910, −16.7450 | 28.08698, −16.73580 | OSM `neighbourhood` «Costa Adeje» |
+
+**Lo que NO se ha tocado, y por qué.** Cuatro siguen mal y **la auditoría se
+queda en rojo por ellos**, que es lo honesto: están mal y no deben dar verde.
+OSM no tiene el dato y aquí no se inventan coordenadas:
+
+| lugar | está a | lo que dice OSM |
+|---|---|---|
+| `montana-colorada` «Montaña Colorada (Fasnia)» | 2.220 m mar adentro | hay **cinco** «Montaña Colorada» en la isla y **ninguna cerca de Fasnia**; la más próxima está a 4,5 km y se llama Montaña de Fasnia |
+| `windsurf-el-poris` | 1.003 m | la playa más cercana está a 1,5 km; no sé cuál de las tres es el spot |
+| `faro-santa-cruz-puerto` | 444 m | **cero faros** en toda la capa de POIs de OSM |
+| `pk-poris-abona` | 82 m | **ningún parking** de OSM a menos de 1,5 km |
+
+El caso de la Montaña Colorada huele al mismo que el `charco-infierno-arafo`
+que ya se quitó: un sitio que puede no existir donde la app dice.
+
+**Los ocho puertos y marinas se listan aparte, no se callan.** Un puerto está
+en el agua por definición, así que se miden igual y se informan en su propio
+apartado: que la exención esté escrita y no sea un silencio. Un **faro** sí
+cuenta como fallo: se construye en tierra o sobre un dique.
 
 ## El asistente · 69 respuestas en 10 idiomas, y por qué no bastaba traducirlas
 

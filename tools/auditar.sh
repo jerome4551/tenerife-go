@@ -34,6 +34,8 @@ echo; echo "════════ service worker · mapa sin conexion ══�
 node tools/auditar_sw.js "$PUERTO" || fallos=$((fallos+1))
 echo; echo "════════ ubicacion ════════"
 python3 tools/auditar_ubicacion.py || fallos=$((fallos+1))
+echo; echo "════════ lugares en el mar ════════"
+python3 tools/auditar_en_el_mar.py || fallos=$((fallos+1))
 echo; echo "════════ mapa sin conexion ════════"
 node tools/auditar_mapa.js "$PUERTO" || fallos=$((fallos+1))
 echo; echo "════════ idiomas, arranque y rendimiento ════════"
