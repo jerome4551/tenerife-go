@@ -8,7 +8,7 @@ norte. Las tres zonas ofrecen **exactamente lo que listan**.
         antes          ahora
 norte   80 de 91  ->   77 de 77
 sur     63 de 67  ->   64 de 64
-cumbre  20 de 21  ->   17 de 17
+cumbre  20 de 21  ->   21 de 21
 ```
 
 **Ninguno de los 16 ids existió jamás como ficha**: `git log -S` sobre todo el
@@ -147,53 +147,59 @@ leen como un duplicado en el catálogo:
 | norte | «Mesa del Mar» | `mesa-mar` (piscinas) · `nucleo-mesa-mar` (municipio) |
 | sur | «Playa San Juan» | `san-juan` (playa) · `nucleo-playa-san-juan` (municipio) |
 
-**Sitios ofrecidos en más de una zona** — este es el que cazó a los dos faros
-del sur, y después a cuatro más. Quedan **4**, y los cuatro se sostienen:
+**Sitios ofrecidos en más de una zona** — de aquí salieron los dos faros del
+sur que estaban en el norte, y Masca, que estaba en el norte y en el sur.
+Quedan **8**, y las ocho son a propósito:
 
 ```
-ciudad-rosario          north + cumbre    su propia ficha dice «Cumbre Dorsal»
-riscos-chio             south + cumbre    lavas del Chio de 1798, con vistas al Teide
-ciudad-santiago-teide   south + cumbre    925 m, puerta oeste del parque
+masca                   south + cumbre  ┐
+mirador-maska           south + cumbre  │ el circuito MASCA-TEIDE,
+ruta-masca-playa        south + cumbre  │ que es una excursion
+acantilados-gigantes    south + cumbre  │ de un dia de verdad
+riscos-chio             south + cumbre  │
+ciudad-santiago-teide   south + cumbre  ┘
 ciudad-vilaflor         south + cumbre    1.400 m, puerta sur del parque
+ciudad-rosario          north + cumbre    su ficha dice «Cumbre Dorsal»
 ```
 
-### Lo que salió de esa lista y ya está arreglado
+### Masca, resuelta
 
-**`masca` estaba en norte y sur.** No era cuestión de elegir: en la costa
-oeste las listas tienen una costura clara, y Masca cae por debajo de ella.
+**Estaba en norte y sur, y el norte era el error.** No había que elegir: en la
+costa oeste las listas tienen una costura clara y Masca cae por debajo.
 
 ```
-lat      ficha                    zona     su propia cat
-28.374   montana-taco             norte    Volcán · La Laguna
-28.3718  ciudad-buenavista        norte    Isla Baja · Teno
-28.371   charco-diablo            norte    Piscinas · Buenavista
-28.3655  ciudad-silos             norte    Pueblo · Isla Baja
-28.3421  faro-teno                norte    Buenavista del Norte
+lat      ficha                    zona           su propia cat
+28.374   montana-taco             norte          Volcán · La Laguna
+28.3718  ciudad-buenavista        norte          Isla Baja · Teno
+28.371   charco-diablo            norte          Piscinas · Buenavista
+28.3655  ciudad-silos             norte          Pueblo · Isla Baja
+28.3421  faro-teno                norte          Buenavista del Norte
 ───────────────────── la costura ─────────────────────
-28.306   mirador-maska            sur      Mirador · Teno
-28.3054  masca                    ← estaba en las dos
-28.2974  ciudad-santiago-teide    sur      Pueblo de Montaña · Oeste
-28.2947  ruta-masca-playa         sur      Barranco · Masca
-28.2744  acantilados-gigantes     sur      Acantilados · Oeste
-28.2456  nucleo-los-gigantes      sur      Puerto · Oeste
+28.306   mirador-maska            sur + cumbre   Mirador · Teno
+28.3054  masca                    ← estaba en norte y sur
+28.2974  ciudad-santiago-teide    sur + cumbre   Pueblo de Montaña · Oeste
+28.2947  ruta-masca-playa         sur + cumbre   Barranco · Masca
+28.2744  acantilados-gigantes     sur + cumbre   Acantilados · Oeste
+28.2456  nucleo-los-gigantes      sur            Puerto · Oeste
 ```
 
 Su mirador está a **70 m**, su barranco y su propio municipio están en el sur.
 Masca era la única ficha del sitio que además estaba en el norte. **Fuera del
-norte.**
+norte** — y ahora también en cumbre, con el circuito.
 
-**Y tres no eran «Cumbre».** La zona Cumbre es el Parque Nacional y sus
-puertas; estas tres son costa y macizo de Teno, y ya estaban en el sur:
+### Y aquí me equivoqué: la zona Cumbre no es solo el parque
 
-| ficha | lo que dice su propia ficha |
-|---|---|
-| `acantilados-gigantes` | «acantilados de hasta **600 m**, la forma más espectacular de verlos es **desde el mar en barco**» |
-| `mirador-maska` | «Mirador · **Teno**» |
-| `ruta-masca-playa` | «Barranco · Masca», el que **baja hasta la playa** |
+Quité `acantilados-gigantes`, `mirador-maska` y `ruta-masca-playa` de la zona
+Cumbre razonando que un acantilado que se ve desde un barco no es cumbre.
+Estaba mirando la geografía y no la excursión: **el circuito Masca–Teide
+existe**, es una salida de un día real, y esas tres son su tramo de bajada.
+Devueltas.
 
-Las tres siguen en el sur, que es donde caen. La cumbre pasa de 20 a 17.
+Y de paso entró **`masca`**, que nunca había estado: la lista ofrecía el
+mirador del pueblo y su barranco, pero no el pueblo. La cumbre pasa de 17 a
+**21**, con el racimo en el orden en que se recorre —pueblo, mirador,
+barranco, acantilados—.
 
-**Si la zona Cumbre estaba pensada como el circuito «Teide + Masca en un
-día»** —que es una excursión real, bajando por la TF-38— dímelo y las vuelvo
-a poner. No lo he encontrado escrito en ninguna ficha: ninguna de las tres
-menciona el Teide ni la carretera del parque.
+**El porqué está escrito dentro del control**, en `auditar_datos.js`, para que
+no vuelva a pasar: las seis fichas del circuito aparecen ahí nombradas, con la
+nota de que ya se quitaron una vez por no saberlo y hubo que devolverlas.

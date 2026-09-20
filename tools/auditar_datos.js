@@ -263,10 +263,21 @@ console.log('\n=== catalogo del planificador ===');
   P('el mismo nombre dos veces en una zona', repes.length);
   repes.forEach(r => console.log('      ·  ' + r));
 
-  /* Un sitio ofrecido en dos zonas puede ser de frontera de verdad -Masca,
-     Los Gigantes, Chio- o estar donde no le toca: asi aparecieron faro-rasca
-     y faro-abona, faros de Arona y Arico, en la lista del NORTE. No falla,
-     porque la frontera existe; se lista para poder mirarlo. */
+  /* Un sitio ofrecido en dos zonas puede estar donde no le toca -asi
+     aparecieron faro-rasca y faro-abona, faros de Arona y Arico, en la lista
+     del NORTE- o estar en las dos A PROPOSITO. No falla, porque lo segundo
+     es lo normal aqui:
+
+       · el circuito MASCA-TEIDE es una excursion de un dia de verdad, y por
+         eso masca, mirador-maska, ruta-masca-playa, acantilados-gigantes,
+         riscos-chio y ciudad-santiago-teide estan en sur Y en cumbre. NO
+         son un error: ya se quitaron una vez por no saberlo y hubo que
+         devolverlas.
+       · ciudad-vilaflor (1.400 m) es la puerta sur del parque.
+       · ciudad-rosario lleva «Cumbre Dorsal» en su propia ficha.
+
+     Lo que si es un error es un sitio en una zona del otro lado de la isla,
+     como los dos faros. Por eso se lista, no se suspende. */
   const donde = new Map();
   for (const b of src.matchAll(/(\w+):\s*\{\s*\n\s*emoji:[^\n]*\n\s*suggestionIds:\s*\[([\s\S]*?)\]/g))
     for (const m of b[2].matchAll(/'([a-z0-9-]+)'/g))

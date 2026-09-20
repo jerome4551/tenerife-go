@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 22366671db82fd33aced9f5f9bfb9cdd
-             3.189.141 bytes · 933.014 comprimidos · 37.331 líneas
+index.html   md5 4af260336ee35a72cff84babe0fda16d
+             3.189.217 bytes · 933.009 comprimidos · 37.332 líneas
 idiomas/     9 ficheros de lugares · 2.521.780 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
