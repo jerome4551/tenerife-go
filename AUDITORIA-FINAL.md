@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 d045c49e5e76880b30870bac4e9f52cb
-             3.189.239 bytes · 933.019 comprimidos · 37.331 líneas
+index.html   md5 95afeed87ef99474cdfbaa30e7c5bc3f
+             3.189.211 bytes · 933.022 comprimidos · 37.331 líneas
 idiomas/     9 ficheros de lugares · 2.521.780 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
@@ -989,12 +989,29 @@ estaban como `ciudad-sauzal` y `ciudad-silos`, sin el artículo.
 ficha de localidad con ese nombre en toda la app, que la zona no ofrecía de
 ninguna otra forma.
 
-**Cinco quedan pendientes de una decisión**, y están fuera de la lista para que
-no mienta: `santiago-teide` y `buenavista` (dos fichas con el mismo nombre cada
-una, `nucleo-` y `ciudad-`), `guachinche` (hay veinte, ninguno con ese id),
-`fajana` (no existe nada parecido en la app) y `farola-mar-santa-cruz` —que
-vuelve sola el día que el parche «auditoria-mar-8» cree la ficha de la Farola
-del Mar—. Están en `PLANIFICADOR-PENDIENTE.md`.
+**Cinco se han resuelto quitándolas**, decididas una a una:
+
+| id | por qué fuera |
+|---|---|
+| `santiago-teide` | Santiago del Teide no es zona norte, y `ciudad-santiago-teide` ya sale en sur y centro |
+| `buenavista` (centro) | Buenavista del Norte ya está en el norte; el centro ya tiene Masca con `mirador-maska` y `ruta-masca-playa` |
+| `guachinche` | elegir uno de los veinte sería a dedo, y los guachinches abren por temporadas: dato perecedero que no se fija en una sugerencia. Siguen accesibles por su categoría |
+| `fajana` | es la Playa de la Fajana (Los Realejos). Existe, pero no tiene ficha y no hay fuente oficial con coordenada. Queda de candidata a alta |
+| `farola-mar-santa-cruz` | ver abajo |
+
+**Y aquí me equivoqué.** Escribí que `farola-mar-santa-cruz` «vuelve sola» con
+el parche «auditoria-mar-8». No es cierto: **el parche no crea ese id**,
+conserva `faro-santa-cruz-puerto` y solo le cambia el `name`, los textos y la
+coordenada. La regla correcta es: si esa ficha sale APLICADA, la referencia se
+sustituye por `faro-santa-cruz-puerto`; si queda PENDIENTE, no se pone nada,
+porque sugerirla sería mandar a alguien a un pin 444 m mar adentro. Hoy
+`faro-santa-cruz-puerto` no está en ninguna lista, que es lo correcto.
+
+**Dos faros del sur estaban en la lista del norte.** `faro-rasca` está en
+28.0012, −16.6943 (Punta de la Rasca, Arona) y `faro-abona` en 28.148, −16.4272
+(Arico), y los dos aparecían en las **dos** listas. Fuera del norte.
+
+El detalle de todo está en `PLANIFICADOR-PENDIENTE.md`.
 
 **El guardia que casi no se pone.** El primer arreglo cambiaba `el-sauzal` por
 `nucleo-el-sauzal`, que existe. Al mirar el diff se vio que la lista ya llevaba
@@ -1008,8 +1025,38 @@ llamarse igual— pero en una lista de sugerencias se leen como un duplicado.
 
 **El control está puesto**, en `auditar_datos.js`, junto al que ya hacía lo
 mismo con `PLAYAS_ORIENTACION`: *«filas que apuntan a un POI inexistente»*. Y
-se ha probado en el navegador, zona por zona: 80, 64 y 20 fichas pintadas,
+se ha probado en el navegador, zona por zona: **78, 64 y 20 fichas pintadas**,
 ningún nombre vacío, 0 errores de página.
+
+Lleva además dos líneas de inventario que no suspenden. Una son los rótulos
+repetidos. La otra, los sitios ofrecidos en más de una zona: quedan 8 y casi
+todos son frontera de verdad —Masca, Los Gigantes, Chío—, pero **es la lista
+donde asomaban los dos faros del sur**.
+
+## Los 17 pares de cabecera municipal duplicada
+
+De los empates del planificador salió algo mayor: **17 cabeceras municipales
+tienen dos fichas**, una `ciudad-*` y otra `nucleo-*`, con **la misma
+coordenada exacta**. Eso son dos pins apilados en el mapa y dos resultados en
+la búsqueda para el mismo pueblo.
+
+Dieciséis se ven por el nombre, que es idéntico —Arafo, Arico, Buenavista del
+Norte, El Rosario, El Sauzal, El Tanque, Fasnia, Granadilla, La Guancha, La
+Matanza, La Victoria, Los Silos, San Juan de la Rambla, Santa Úrsula, Santiago
+del Teide y Tegueste—. **El decimoséptimo no**: `ciudad-vilaflor` se llama
+«Vilaflor de Chasna» y `nucleo-vilaflor` «Vilaflor», y sólo aparece midiendo la
+distancia, que es **0 m**.
+
+El criterio que los ordena es el del propietario del proyecto: `ciudad-*` para
+las cabeceras municipales, `nucleo-*` sólo para núcleos que no lo son. Se
+cumple en los **30** `ciudad-*` y en **25** de los 41 `nucleo-*`. Dos
+excepciones más: **Guía de Isora es cabecera y sólo existe como
+`nucleo-guia-isora`** —por eso hay 30 `ciudad-*` y no 31—, y
+`nucleo-puerto-cruz-old` lleva un sufijo `-old` y está a 69 m de
+`ciudad-puerto-cruz`.
+
+**Los 17 `nucleo-*` duplicados tienen cero referencias** en todo `index.html`,
+así que la limpieza es sólo borrar, sin reapuntar nada. Va en tanda aparte.
 
 ## La línea de costa vive en un solo sitio
 

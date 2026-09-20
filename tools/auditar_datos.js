@@ -262,6 +262,18 @@ console.log('\n=== catalogo del planificador ===');
   }
   P('el mismo nombre dos veces en una zona', repes.length);
   repes.forEach(r => console.log('      ·  ' + r));
+
+  /* Un sitio ofrecido en dos zonas puede ser de frontera de verdad -Masca,
+     Los Gigantes, Chio- o estar donde no le toca: asi aparecieron faro-rasca
+     y faro-abona, faros de Arona y Arico, en la lista del NORTE. No falla,
+     porque la frontera existe; se lista para poder mirarlo. */
+  const donde = new Map();
+  for (const b of src.matchAll(/(\w+):\s*\{\s*\n\s*emoji:[^\n]*\n\s*suggestionIds:\s*\[([\s\S]*?)\]/g))
+    for (const m of b[2].matchAll(/'([a-z0-9-]+)'/g))
+      donde.set(m[1], (donde.get(m[1]) || []).concat(b[1]));
+  const multi = [...donde].filter(([, z]) => z.length > 1);
+  P('ofrecidos en mas de una zona', multi.length);
+  multi.forEach(([i, z]) => console.log('      ·  ' + i + '  ' + z.join(' + ')));
 }
 
 console.log('\n=== rotulos repetidos ===');

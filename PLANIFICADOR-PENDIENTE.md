@@ -1,154 +1,166 @@
-# Planificador de día · lo que queda pendiente
+# Planificador de día · decidido y pendiente
 
 **20 de septiembre de 2026.** Las 16 referencias rotas de `suggestionIds` están
-arregladas: las tres zonas ofrecen ahora **exactamente lo que listan**.
+resueltas con tus decisiones, más dos faros del sur que estaban en la lista del
+norte. Las tres zonas ofrecen **exactamente lo que listan**.
 
 ```
         antes          ahora
-norte   80 de 91  ->   80 de 80
+norte   80 de 91  ->   78 de 78
 sur     63 de 67  ->   64 de 64
 centro  20 de 21  ->   20 de 20
 ```
 
-Probado en el navegador abriendo el planificador zona por zona: 80, 64 y 20
-fichas pintadas, ningún nombre vacío, 0 errores de página. El control de
-`auditar_datos.js` está en verde.
-
-**Lo que hay que saber antes de nada:** ninguno de los 16 ids existió jamás
-como ficha. Lo dice el historial completo de `index.html`: `git log -S` no
-encuentra ni uno solo. No fue un renombrado que dejó cabos sueltos — se
-escribieron mal el día que se creó la lista, probablemente de memoria en vez
-de copiando. Así que **no se ha perdido nada que funcionara**: esas entradas
-llevaban rotas desde el principio.
+**Ninguno de los 16 ids existió jamás como ficha**: `git log -S` sobre todo el
+historial de `index.html` no encuentra ni uno. Se escribieron mal el día que se
+creó la lista. No había nada que restaurar.
 
 ---
 
-## A · Quitadas sin perder nada (10)
+## 1 · Cerrado con tu decisión
 
-La misma zona ya ofrecía ese sitio con otro id. Quitar el id roto no cambia
-una sola línea de lo que ve el usuario.
-
-| id roto | zona | lo que ya se ofrecía en la misma lista |
+| id | zona | qué se ha hecho |
 |---|---|---|
-| `taganana` | norte | `nucleo-taganana` «Taganana» |
-| `san-andres` | norte | `nucleo-san-andres` «San Andrés» |
-| `buenavista` | norte | `ciudad-buenavista` «Buenavista del Norte» |
-| `el-sauzal` | norte | `ciudad-sauzal` «El Sauzal» |
-| `los-silos` | norte | `ciudad-silos` «Los Silos» |
-| `piscinas-bajamar-norte` | norte | `piscinas-bajamar` «Piscinas Naturales de Bajamar» |
-| `faro-buenavista` | norte | `faro-teno` «Faro de Teno» |
-| `arico` | sur | `ciudad-arico` «Arico» |
-| `arafo` | sur | `ciudad-arafo` «Arafo» |
-| `granadilla` | sur | `ciudad-granadilla` «Granadilla de Abona» |
+| `santiago-teide` | norte | **quitado, sin sustituto** |
+| `buenavista` | centro | **quitado, sin sustituto** |
+| `guachinche` | norte | **quitado** |
+| `fajana` | norte | **quitado**, y anotado abajo como candidata a alta |
+| `farola-mar-santa-cruz` | norte | **quitado**, con la regla que diste escrita abajo |
+| `faro-rasca` | norte | **quitado del norte**, sigue en el sur |
+| `faro-abona` | norte | **quitado del norte**, sigue en el sur |
 
-Dos merecen una nota, porque no se ven por el id:
+Y de la tanda anterior, ya aplicadas: diez quitadas sin perder nada (la zona ya
+ofrecía el sitio con otro id) y una cambiada, `los-cristianos` →
+`nucleo-los-cristianos`.
 
-- **`faro-buenavista` = `faro-teno`.** No lo he deducido por el nombre: la
-  propia ficha de `faro-teno` lleva `cat: "Faro Histórico · Buenavista del
-  Norte"`. Es el mismo faro, el de Punta de Teno, y ya estaba en la lista.
-- **`el-sauzal` y `los-silos` casi cuelan.** Mi primer arreglo los cambió por
-  `nucleo-el-sauzal` y `nucleo-los-silos`, que existen. Al mirar el resultado
-  vi que la lista del norte ya llevaba `ciudad-sauzal` y `ciudad-silos` —sin el
-  «el» y sin el «los», por eso no cuadraban por patrón de id— y el catálogo
-  habría mostrado **el mismo pueblo dos veces**. Rehecho, y el guardia que lo
-  detectó está ahora dentro del script: compara por **nombre**, no por id.
+**Tu regla del patrón, comprobada.** Dijiste que las listas usan `ciudad-*`
+para las cabeceras municipales y `nucleo-*` solo para núcleos que no lo son.
+Se cumple: los **30** `ciudad-*` son cabeceras, y de los **41** `nucleo-*`,
+**25** son núcleos que no son cabecera (Bajamar, Los Cristianos, Taganana, San
+Andrés, La Caleta, Las Galletas…). Los otros 16 son el duplicado del que
+hablas. Con dos excepciones que salen abajo.
 
-## B · Arreglada con el único destino posible (1)
+**Los dos faros, confirmado por la coordenada:** `faro-rasca` está en
+28.0012, −16.6943 (Punta de la Rasca, Arona) y `faro-abona` en
+28.148, −16.4272 (Arico). Los dos estaban en las **dos** listas.
 
-| id roto | zona | ahora | por qué no es adivinar |
-|---|---|---|---|
-| `los-cristianos` | sur | **`nucleo-los-cristianos`** «Los Cristianos» | es la única ficha de localidad con ese nombre en toda la app, la zona no la ofrecía ya de ninguna otra forma, y sus hermanos del mismo patrón (`taganana`, `san-andres`, `arico`…) apuntan todos al núcleo o a la ciudad |
+## 2 · `farola-mar-santa-cruz` · la regla, corregida
 
-## C · Pendientes: necesito que elijas (5)
+Tenías razón y yo lo dije mal: **el parche «auditoria-mar-8» no crea ese id**.
+Conserva `faro-santa-cruz-puerto` y solo le cambia el `name`, los textos y la
+coordenada. Así que la referencia no vuelve sola. Lo que hay que hacer cuando
+se resuelva esa ficha:
 
-Estas cinco **sí cambian lo que se ofrece**. Están quitadas para que la lista
-no mienta, pero dime qué va en cada una y la pongo.
+- **Si sale APLICADA** → poner **`faro-santa-cruz-puerto`** en la lista norte,
+  en el sitio donde estaba la rota.
+- **Si queda PENDIENTE** → no poner nada, que es lo que hay ahora. Sugerir la
+  ficha vieja sería mandar a alguien a un pin que está **444 m mar adentro**.
 
-### 1 · `santiago-teide` (zona norte)
+Hoy `faro-santa-cruz-puerto` **no está en ninguna de las tres listas**, que es
+lo correcto mientras siga pendiente.
 
-Hay **dos fichas y las dos se llaman igual**:
+## 3 · Candidata a alta: Playa de la Fajana (Los Realejos)
 
-| id | categoría | nombre |
+Quitada de la lista y anotada aquí. Lo que hay:
+
+- **Existe**, pero **no tiene ficha** en la app. Buscado «fajana» en los 803
+  ids, los 803 nombres, los alias y las descripciones: cero resultados.
+- **No entra hasta tener coordenada de fuente oficial** — Censo de aguas de
+  baño, Ayuntamiento de Los Realejos o Turismo de Tenerife. Aquí no se
+  inventan.
+- **Que no se confunda con La Fajana de Barlovento**, que es un complejo de
+  tres piscinas naturales en el noreste de **La Palma**. Otro sitio y otra
+  isla.
+
+## 4 · A revisar en otra tanda, sin tocar: `charco-verde-realejos`
+
+No se ha tocado, como dijiste. Lo que se ve desde aquí:
+
+- Su coordenada es **28.3963, −16.659**, y su `cat` dice «Piscina Natural ·
+  Los Realejos».
+- Ese punto cae **a poco más de 1 km al oeste del casco de San Juan de la
+  Rambla**, o sea en otro municipio.
+- El control de costa lo mide a **297 m de la orilla**, tierra adentro, que
+  para una piscina natural ya es raro de por sí.
+
+## 5 · La tanda de los duplicados, ya inventariada
+
+Confirmado y con una corrección al alza: **son 17 pares, no 16**.
+
+Los 16 que dices, con **nombre idéntico y coordenada idéntica (0 m)**:
+
+| cabecera | se queda | se borra |
 |---|---|---|
-| `nucleo-santiago-teide` | `municipio` | Santiago del Teide |
-| `ciudad-santiago-teide` | `ciudad` | Santiago del Teide |
+| Arafo | `ciudad-arafo` | `nucleo-arafo` |
+| Arico | `ciudad-arico` | `nucleo-arico` |
+| Buenavista del Norte | `ciudad-buenavista` | `nucleo-buenavista` |
+| El Rosario | `ciudad-rosario` | `nucleo-el-rosario` |
+| El Sauzal | `ciudad-sauzal` | `nucleo-el-sauzal` |
+| El Tanque | `ciudad-tanque` | `nucleo-el-tanque` |
+| Fasnia | `ciudad-fasnia` | `nucleo-fasnia` |
+| Granadilla de Abona | `ciudad-granadilla` | `nucleo-granadilla` |
+| La Guancha | `ciudad-guancha` | `nucleo-la-guancha` |
+| La Matanza de Acentejo | `ciudad-matanza` | `nucleo-la-matanza` |
+| La Victoria de Acentejo | `ciudad-victoria` | `nucleo-la-victoria` |
+| Los Silos | `ciudad-silos` | `nucleo-los-silos` |
+| San Juan de la Rambla | `ciudad-san-juan-rambla` | `nucleo-san-juan-rambla` |
+| Santa Úrsula | `ciudad-santa-ursula` | `nucleo-santa-ursula` |
+| Santiago del Teide | `ciudad-santiago-teide` | `nucleo-santiago-teide` |
+| Tegueste | `ciudad-tegueste` | `nucleo-tegueste` |
 
-No hay forma de saber cuál querías, y el patrón no ayuda: en las mismas listas
-unos pueblos entran como `nucleo-` y otros como `ciudad-`. Dato que puede
-decidirlo: **`ciudad-santiago-teide` ya está en las zonas sur y centro.**
+**Y el decimoséptimo, que no salía por nombre: Vilaflor.**
+`ciudad-vilaflor` se llama «Vilaflor de Chasna» (el nombre del municipio) y
+`nucleo-vilaflor` se llama «Vilaflor» (el del pueblo). **Misma coordenada
+exacta**, 28.1589, −16.637, y las dos descripciones dicen lo mismo: «el pueblo
+más alto de España a 1.400 m». Buscando por nombre no aparecía; buscando por
+distancia, sí.
 
-### 2 · `buenavista` (zona **centro**)
+**Buena noticia para la tanda: no hay nada que reapuntar.** Dijiste de
+reapuntar a `ciudad-*` las referencias que tuvieran los `nucleo-*`
+duplicados. He mirado uno por uno: **los 17 tienen cero referencias** en todo
+`index.html`. Así que la tanda es solo borrar: la ficha y sus textos en los
+nueve `idiomas/*.json`. Sin efectos colaterales.
 
-Mismo empate: `nucleo-buenavista` y `ciudad-buenavista`, las dos «Buenavista
-del Norte». Pero aquí hay una pregunta antes que esa: **¿pinta algo Buenavista
-del Norte en la zona del Teide?** El norte ya la ofrece como
-`ciudad-buenavista`. Si estaba en el centro por Masca y Teno Alto —que sí son
-de ese municipio— tiene sentido; si fue un copia y pega, se queda fuera y ya
-está.
+### Dos cosas más para esa misma tanda
 
-### 3 · `guachinche` (zona norte)
+**Guía de Isora no tiene `ciudad-*`.** Es cabecera municipal y está solo como
+`nucleo-guia-isora` (28.2111, −16.7788), con 1 referencia en la lista sur. Por
+eso hay **30** `ciudad-*` y no 31: es el municipio que falta. Es la otra cara
+del mismo desorden y rompe tu regla. Decide si se renombra o se acepta.
 
-No existe ninguna ficha con ese id. Hay **20 guachinches** y había que elegir
-uno (o varios). Estos son:
-
-| `guachinche-talegazo` | Guachinche El Talegazo |
-| `guachinche-casa-pedro` | Casa Pedro (Los Realejos) |
-| `guachinche-ramon` | Guachinche Ramón |
-| `guachinche-cubano` | Guachinche El Cubano |
-| `guachinche-romance` | Guachinche Romance |
-| `guachinche-ramal` | Guachinche El Ramal |
-| `guachinche-ana-eva` | La Huerta de Ana y Eva |
-| `guachinche-bodega-sursula` | Guachinche La Bodega (Santa Úrsula) |
-| `guachinche-guayero` | Guachinche El Guayero (Tegueste) |
-| `guachinche-cordero` | Guachinche El Cordero (Sur) |
-| `guachinche-el-primero` | Bodegón El Primero (Santa Úrsula) |
-| `guachinche-casa-lito` | Guachinche Casa Lito (Santa Úrsula) |
-| `guachinche-corujera` | Guachinche La Corujera (Santa Úrsula) |
-| `guachinche-el-patio` | Guachinche El Patio (Tacoronte) |
-| `guachinche-basilio` | Guachinche Basilio (La Matanza) |
-| `guachinche-parralito` | Guachinche El Parralito (La Matanza) |
-| `guachinche-casa-yayi` | Guachinche Casa Yayi (La Matanza) |
-| `guachinche-vilaflor` | Guachinche Vi La Flor de Chasna (Vilaflor) |
-| `guachinche-san-juan-rambla` | Guachinche San Juan de la Rambla |
-| `guachinche-los-silos` | Guachinche El Origen del Trigo (Los Silos) |
-
-Mi sospecha es que se quiso meter «un guachinche» como categoría y se escribió
-como si fuera un sitio. Si quieres que la zona norte ofrezca guachinches, dime
-cuáles y los pongo; si prefieres que el planificador ofrezca la **categoría**
-entera, eso es otra cosa y hay que tocar código, no la lista.
-
-### 4 · `fajana` (zona norte)
-
-**No hay nada en la app que se llame así**, ni parecido: he buscado «fajana»
-en los 803 nombres y en los 803 ids y no sale. Las que hay cerca en el mismo
-tramo de la lista son charcos del norte (`charco-laja`, `charco-viento`,
-`charco-verde-realejos`). Dime qué era y, si no está en la app, si quieres que
-lo demos de alta — con su fuente, como siempre.
-
-### 5 · `farola-mar-santa-cruz` (zona norte)
-
-Esta se arregla sola. Alguien quiso ofrecer **la Farola del Mar** en el
-planificador antes de que existiera la ficha, y es exactamente la ficha que el
-parche «auditoria-mar-8» quiere crear a partir de
-`faro-santa-cruz-puerto`. Sigue pendiente por la coordenada (cae en tierra
-pero a 1,4 m de la costa, y el parche exige 3 m). **Cuando llegue esa
-coordenada, la entrada vuelve al norte con el id que tenga la ficha.**
+**`nucleo-puerto-cruz-old`.** El sufijo `-old` canta. Se llama «La Ranilla
+(Puerto Cruz)» y está a **69 m** de `ciudad-puerto-cruz`. El nombre es
+distinto y La Ranilla es un barrio de verdad, así que puede ser legítimo,
+pero conviene mirarlo con los demás.
 
 ---
 
-## Y de propina: dos nombres repetidos que ya estaban
+## 6 · Dos controles nuevos, los dos inventario
 
-No es un fallo y no suspende nada, pero el catálogo muestra dos veces el mismo
-rótulo y no hay manera de saber cuál es cuál:
+Ninguno suspende. Salen impresos cada vez para que no sean un silencio.
+
+**Rótulos repetidos dentro de una zona** — dos fichas con el mismo nombre se
+leen como un duplicado en el catálogo:
 
 | zona | rótulo | las dos fichas |
 |---|---|---|
 | norte | «Mesa del Mar» | `mesa-mar` (piscinas) · `nucleo-mesa-mar` (municipio) |
 | sur | «Playa San Juan» | `san-juan` (playa) · `nucleo-playa-san-juan` (municipio) |
 
-Puede ser correcto —una playa y un pueblo pueden llamarse igual— pero en una
-lista de sugerencias se leen como un duplicado. Si quieres, se distinguen
-poniéndole al núcleo el rótulo del municipio. Dímelo y lo hago.
+**Sitios ofrecidos en más de una zona** — este es el que habría cazado a los
+dos faros. Quedan **8**, y casi todos son frontera de verdad:
 
-El control lo lista cada vez, en `auditar_datos.js`, para que no se pierda de
-vista.
+```
+ciudad-rosario          north + center
+masca                   north + south
+ruta-masca-playa        south + center
+mirador-maska           south + center
+acantilados-gigantes    south + center
+riscos-chio             south + center
+ciudad-santiago-teide   south + center
+ciudad-vilaflor         south + center
+```
+
+Masca, Los Gigantes y Chío se alcanzan desde las dos, así que no es un fallo.
+`masca` en norte y sur es el más discutible: Masca está en Santiago del Teide,
+al oeste. Dime si lo quieres solo en una.
