@@ -1,6 +1,6 @@
 # Estado del proyecto y auditoría
 
-**18 de septiembre de 2026.** Documento único: dónde está la app, qué se ha
+**20 de septiembre de 2026.** Documento único: dónde está la app, qué se ha
 comprobado y qué falta. Sustituye al registro por fechas que había antes, y a
 `BLOQUE-2.md` y `COORDENADAS.md`, cuyas listas están cerradas.
 
@@ -8,9 +8,9 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 9de1d8ca1bbcae43b98390590411b7f5
-             3.190.140 bytes · 933.270 comprimidos · 37.341 líneas
-idiomas/     9 ficheros de lugares · 2.525.852 bytes · 76 a 95 kB comprimidos
+index.html   md5 e4a3db98cde867eea280ec301c811e83
+             3.189.486 bytes · 933.111 comprimidos · 37.336 líneas
+idiomas/     9 ficheros de lugares · 2.521.780 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
              + glosario-cat/ · 7, y no hacen falta los diez: no se cargan en la
@@ -27,7 +27,7 @@ faq/         10 ficheros · 69 respuestas del asistente en cada idioma
 
 | | |
 |---|---|
-| Lugares | **804**, con descripción y categoría en 10 idiomas |
+| Lugares | **803**, con descripción y categoría en 10 idiomas |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
@@ -274,7 +274,7 @@ textos**, contados, y están todos:
 ```
 LANGS.pl                          168   hecho
 resto de la interfaz              814   hecho   (614 filas en 45 tablas)
-idiomas/pl.json                 1.741   hecho   (804 lugares, en 9 bloques)
+idiomas/pl.json                 1.739   hecho   (803 lugares, en 9 bloques)
 idiomas/etiquetas/pl.json         685   hecho
 idiomas/glosario-cat/pl.json       --   no hace falta: no se carga en la app,
                                         es una entrada de completar_cat.js en
@@ -282,7 +282,7 @@ idiomas/glosario-cat/pl.json       --   no hace falta: no se carga en la app,
                                         tampoco lo lleva
 ```
 
-`idiomas/pl.json` sale con **804 lugares y 1.741 textos**, la misma cuenta
+`idiomas/pl.json` sale con **803 lugares y 1.739 textos**, la misma cuenta
 exacta que `bg.json` y `zht.json`. `tools/lugares_idioma.js montar pl` no
 escribe si un id o un campo no cuadra con `index.html`, así que la paridad no
 es una impresión: es la condición para que el fichero exista.
@@ -415,12 +415,12 @@ al usarlo**, que es exactamente lo que una foto de la página quieta no puede
 ver.
 
 **4 · La respuesta del asistente sobre cambiar idioma decía tres cosas falsas**:
-«elige entre 8» nombrando ocho, «los 700+ lugares» con 804 dentro, y «este
+«elige entre 8» nombrando ocho, «los 700+ lugares» con 803 dentro, y «este
 asistente responde en español e inglés por ahora» cuando responde en los
 diez. El control de cifras no la cazaba porque el 8 no iba pegado a la
 palabra «idiomas». Las respuestas de `CHAT_KB` pasan ahora por `chatFmt`,
 igual que `countAns`, así que esa lleva `{L}` y `{N}`: en el navegador dice
-10 y 804.
+10 y 803.
 
 **Los controles nuevos.** Dos, y los dos **tocan** en vez de mirar:
 
@@ -532,7 +532,7 @@ Lo primero fue medir, no adivinar. Con CPU de móvil (4× más lenta):
 | qué se toca | tarda |
 |---|---|
 | abrir la tienda, una ficha, el asistente, categorías | **0-3 ms** |
-| pintar los 804 marcadores | 1 ms |
+| pintar todos los marcadores | 1 ms |
 | filtrar, el dado, mover y hacer zoom en el mapa | 0-70 ms |
 | cambiar de idioma | 57-60 ms |
 
@@ -710,7 +710,7 @@ El polaco es el caso que rompe la regla de dos formas: tiene **tres**.
 ```
 
 Y no es «números pequeños y grandes»: la regla de CLDR mira la **decena**.
-804 acaba en 4 → *miejsca*. 12 acaba en 2 **pero** está en la decena del 11
+803 acaba en 3 → *miejsca*. 12 acaba en 2 **pero** está en la decena del 11
 al 14 → *miejsc*. 22 acaba en 2 y no está → *miejsca*. Esos tres casos son
 los que separan una regla escrita a ojo de una buena, y son los que prueba
 el control.
@@ -870,19 +870,147 @@ sitio **con el mismo nombre y un tipo compatible**:
 | `nucleo-san-andres` | 28.50291, −16.19195 | 28.50550, −16.19250 | OSM `locality` «San Andrés» |
 | `nucleo-costa-adeje` | 28.0910, −16.7450 | 28.08698, −16.73580 | OSM `neighbourhood` «Costa Adeje» |
 
-**Lo que NO se ha tocado, y por qué.** Cuatro siguen mal y **la auditoría se
-queda en rojo por ellos**, que es lo honesto: están mal y no deben dar verde.
-OSM no tiene el dato y aquí no se inventan coordenadas:
+**Lo que NO se ha tocado, y por qué.** Cuatro seguían mal y **la auditoría se
+quedaba en rojo por ellos**, que es lo honesto: estaban mal y no debían dar
+verde. OSM no tenía el dato y aquí no se inventan coordenadas:
 
-| lugar | está a | lo que dice OSM |
+| lugar | estaba a | lo que decía OSM |
 |---|---|---|
 | `montana-colorada` «Montaña Colorada (Fasnia)» | 2.220 m mar adentro | hay **cinco** «Montaña Colorada» en la isla y **ninguna cerca de Fasnia**; la más próxima está a 4,5 km y se llama Montaña de Fasnia |
-| `windsurf-el-poris` | 1.003 m | la playa más cercana está a 1,5 km; no sé cuál de las tres es el spot |
+| `windsurf-el-poris` | 1.003 m | la playa más cercana está a 1,5 km; no sabía cuál de las tres es el spot |
 | `faro-santa-cruz-puerto` | 444 m | **cero faros** en toda la capa de POIs de OSM |
 | `pk-poris-abona` | 82 m | **ningún parking** de OSM a menos de 1,5 km |
 
-El caso de la Montaña Colorada huele al mismo que el `charco-infierno-arafo`
-que ya se quitó: un sitio que puede no existir donde la app dice.
+De esas cuatro, el parche **auditoria-mar-8** resolvió las dos primeras. Va
+abajo, con lo que quedó fuera y por qué.
+
+## El parche «auditoria-mar-8» · 2 aplicadas de 8, y las 6 que no
+
+El parche traía 1 baja y 7 coordenadas, cada una con su fuente, sus límites y
+una regla explícita: *«Cero improvisación. Si te falta un insumo —la costa de
+la auditoría, el shapefile municipal del Cabildo o la red—, las fichas que lo
+necesitan quedan PENDIENTE.»* El bloque JSON llegó íntegro (sha256
+`bcecdadd…b321b`, el que el parche pedía) y las 8 pasaron la pre-comprobación
+de que nada había cambiado desde la auditoría.
+
+**Aplicadas.**
+
+| ficha | qué se hizo | cómo |
+|---|---|---|
+| `montana-colorada` | **baja**: la ficha, su id en `suggestionIds` de `south`, y sus textos en los nueve `idiomas/*.json` | ninguna fuente la sitúa en Fasnia; el Monumento Natural del mismo nombre es otro sitio, en Granadilla y Vilaflor, de hasta 1.524 m |
+| `windsurf-el-poris` | 28.1540, −16.4160 → **28.152765, −16.432303** | coordenada oficial de Playa Grande (Turismo de Tenerife); cayó a 8 m en el agua, así que corrió su `si_falla`: empujada 8 m a tierra sobre el **segmento** de costa, 16 m de desplazamiento (el límite eran 40) |
+
+La parada TITSA «Montaña Colorada» de Granadilla de Abona **no se ha tocado**:
+el parche avisaba de que es otra cosa, y lo es.
+
+**Las seis pendientes, y el insumo que falta.** Las seis pasan por
+**Overpass**, bloqueado desde aquí por la política de salida (`403` en los dos
+endpoints del parche). El detalle está en `COORDENADAS-PENDIENTES.md`.
+
+| ficha | se mete | por qué sigue pendiente |
+|---|---|---|
+| `faro-santa-cruz-puerto` | 444 m | la coordenada de la Farola del Mar cae en tierra pero **a 1,4 m** de la costa, y el parche exige **3 m o más**; al no pasar, manda su `si_falla`, que es Overpass |
+| `pk-poris-abona` | 82 m | `calle_mas_cercana` → Overpass |
+| `lidl-puerto-cruz` | 46 m | `osm_lidl` → Overpass **y** el shapefile municipal del Cabildo |
+| `pk-bajamar-piscinas` | 28 m | `calle_mas_cercana` → Overpass (el ancla sí cuadra: `piscinas-bajamar` está exactamente donde el parche esperaba) |
+| `whale-watching` | 23 m | el empuje a tierra sí sale sin red —daría 28.077710, −16.736308, 33 m de los 60 permitidos— pero su `comprobacion_marina` es **obligatoria** y es Overpass |
+| `ermita-san-telmo` | 19 m | `osm_elemento` → Overpass |
+
+El faro merece una nota, porque es el caso que más fácil habría sido dar por
+bueno: **cae en tierra**. Si el test hubiera sido «¿está en tierra?» habría
+pasado. El parche pedía «en tierra **y a 3 m o más** de la costa», y a 1,4 m
+eso es el dibujo generalizado del polígono, no una posición comprobada. Es
+justo el margen que separa medir de aparentar que se mide.
+
+**El formato del parche ha quedado atrás.** Pedía los textos con los ocho
+idiomas dentro de `index.html`. Hoy `index.html` lleva **solo el castellano**
+y los otros nueve viven en `idiomas/<idioma>.json`, que lo pisarían al cargar;
+y la app tiene **diez** idiomas, así que al parche le faltan **búlgaro y
+polaco**. Aplicado tal cual, un búlgaro seguiría leyendo la descripción de un
+faro que ya no existe. Cuando lleguen las coordenadas, el castellano irá a
+`index.html`, los ocho del parche a sus ficheros, y el búlgaro y el polaco se
+traducen aquí, como el resto del corpus.
+
+## Coordenadas provisionales · el inventario que no suspende
+
+`tools/auditar_redondeo.py` lista dos cosas y **no falla nunca**:
+
+- **13 de 803** fichas tienen lat **y** lng con 3 decimales o menos. Eso no es
+  una coordenada tomada de una fuente: es un marcador puesto a ojo, y tres
+  decimales son ~110 m de lado. Así fue como un Lidl acabó en el mar. (El
+  parche esperaba «al menos 60, entre ellas 9 supermercados y 3 gasolineras»,
+  cifras de la copia antigua: hoy queda **1 supermercado y ninguna
+  gasolinera**.)
+- **8 de 111** fichas de playa, piscinas, surf o windsurf están en tierra a
+  más de 150 m de la costa. `piscinas-poris`, que el parche señalaba como
+  sospechosa, está a **46 m**: no lo es.
+
+No falla porque ninguna de las dos listas es un error por sí sola —un mirador
+con la coordenada redondeada está bien donde está—. Quien falla cuando la
+imprecisión tiene consecuencias es `auditar_en_el_mar.py`. Esto es el
+inventario de lo que hay que ir puliendo, impreso entero para que no sea un
+silencio.
+
+## El planificador de día ofrece 15 sitios que no existen
+
+Al quitar `montana-colorada` había que sacar su id de `suggestionIds` de la
+zona `south`, y al comprobar que no quedaba ninguna referencia suelta
+aparecieron **16 más que ya estaban rotas**. El código las traga sin decir
+nada:
+
+```js
+zone.suggestionIds.forEach(id => {
+  const place = places.find(p => p.id === id);
+  if (!place) return;          // <-- aqui se pierde, sin error
+```
+
+De **179 referencias, 16 apuntan a fichas que no existen** —15 ids distintos,
+porque `buenavista` está en dos listas—: el norte ofrece 80 de 91, el sur 63
+de 67 y el centro 20 de 21. No es un fallo visible —no hay hueco ni error en
+pantalla—, simplemente hay sitios que el usuario nunca ve ofrecidos.
+
+| id que no existe | ¿hay sustituto **ya en la misma lista**? |
+|---|---|
+| `taganana` | sí, `nucleo-taganana` |
+| `san-andres` | sí, `nucleo-san-andres` |
+| `buenavista` (en `north`) | sí, `ciudad-buenavista` |
+| `arico` | sí, `ciudad-arico` |
+| `arafo` | sí, `ciudad-arafo` |
+| `granadilla` | sí, `ciudad-granadilla` |
+| `el-sauzal` | no, aunque existe `nucleo-el-sauzal` |
+| `los-silos` | no, aunque existe `nucleo-los-silos` |
+| `santiago-teide` | no, aunque existen `nucleo-` y `ciudad-santiago-teide` |
+| `los-cristianos` | no, aunque existe `nucleo-los-cristianos` |
+| `buenavista` (en `center`) | no |
+| `guachinche` | no; hay 20 guachinches, ninguno con ese id |
+| `faro-buenavista` | no; lo más parecido es `charco-faro-buenavista`, que es un charco |
+| `fajana` | **no existe nada parecido** |
+| `piscinas-bajamar-norte` | **no existe nada parecido** (sí `piscinas-bajamar`) |
+| `farola-mar-santa-cruz` | **no existe nada parecido** |
+
+Las seis primeras filas son sobras: su sustituto ya está en la misma lista,
+así que quitarlas no cambia nada. Las otras diez **sí cambian lo que se ofrece**, y
+elegir sustituto sería adivinar: `buenavista` ¿es el núcleo o la ciudad?
+`guachinche` ¿cuál de los veinte? Por eso **no se ha tocado ninguna**: hace
+falta que lo decidas tú, como las coordenadas.
+
+`farola-mar-santa-cruz` tiene su gracia: alguien quiso ofrecer la Farola del
+Mar en el planificador antes de que existiera la ficha, y es exactamente la
+ficha que el parche «auditoria-mar-8» quiere crear.
+
+**El control está puesto**, en `auditar_datos.js`, junto al que ya hacía lo
+mismo con `PLAYAS_ORIENTACION`: *«filas que apuntan a un POI inexistente»*. Es
+el mismo fallo silencioso y ahora se mira igual. La auditoría queda **en rojo
+por estas 16**, que es lo honesto.
+
+## La línea de costa vive en un solo sitio
+
+La geometría de tierra/mar estaba copiada en tres ficheros, y **una de las
+copias se quedó con el eje Y sin voltear durante semanas**, midiendo contra
+una costa en espejo y dando verde. Ahora está en `tools/costa.py` y la
+importan `auditar_en_el_mar.py`, `auditar_redondeo.py` y
+`fijar_coordenada.py`. Un error en la costa vuelve a ser un error en un sitio.
+
 
 **Los ocho puertos y marinas se listan aparte, no se callan.** Un puerto está
 en el agua por definición, así que se miden igual y se informan en su propio
@@ -1092,16 +1220,17 @@ no la secundaria**.
 |---|---|
 | Ids de línea repetidos · números compartidos | **0 · 0** |
 | Ids de parada repetidos | **0** de 6.263 |
-| Referencias huérfanas al catálogo | **0** |
+| Referencias huérfanas al catálogo (paradas) | **0** |
+| Referencias huérfanas en `suggestionIds` (planificador de día) | **16** de 179 · 15 ids distintos |
 | Paradas o lugares fuera de Tenerife | **0** |
 | Parada repetida consecutiva en una línea | **0** |
 | `via` con punto mal formado | **0** de 26.593 |
-| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **804** |
-| Ids de lugar que cumplen `[a-z0-9-]` | **804** |
+| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **803** |
+| Ids de lugar que cumplen `[a-z0-9-]` | **803** |
 | Con calidad de agua, y su año | **46** · 46 |
 | Con alias de búsqueda, que los 3 filtros leen | **58** |
 | Con aviso `warn`, y su tipo existe en `WARN_I18N` | **115** · 0 huérfanos |
-| De esos, `warn:"mar"` | **50** |
+| De esos, `warn:"mar"` | **49** |
 | URLs de lugar sin cifrar | **0** de 16 |
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
@@ -1411,7 +1540,8 @@ no que se añadieran.
 c337d4bc   39 playa · 18 piscinas · 765 lugares
 ff0f7191   42        · 18         · 765          +3, sin lugares nuevos
 3a6e7356   73        · 27         · 805          +31 playas +9 charcos = 40
-hoy        73        · 26         · 804          -1: charco-infierno-arafo, que no existe
+hoy        73        · 26         · 803          -1: charco-infierno-arafo, que no existe
+                                                 -1: montana-colorada (parche auditoria-mar-8)
 ```
 
 Las tres de `ff0f7191` son `acc-playa-troya`, `acc-playa-los-cristianos` y
@@ -1449,7 +1579,7 @@ tiene que **venir dentro**.
 | 4 | descarga opcional de un `.pmtiles` de OSM para el detalle fino | **hecho, con el fichero dentro**: 11,4 MB, build 20260905, z0–z14 |
 
 **Por qué `protomaps-leaflet` y no MapLibre.** MapLibre obliga a rehacer el
-mapa entero y con él los 804 marcadores, los clusters y las 183 polilíneas.
+mapa entero y con él los 803 marcadores, los clusters y las 183 polilíneas.
 Esto es una capa más de Leaflet 1.9.4, la que ya usa la app.
 
 **Sin peticiones por rango.** El fichero pesa 1,1 MB y se pide entero de una
@@ -1462,7 +1592,7 @@ el servidor haga *byte serving*, que desde aquí no se puede comprobar.
 pasó al usuario: abrir la app con cobertura, cortar la red de verdad
 (`setOffline`, no un evento simulado) y volver a abrirla. Sale la app entera,
 la capa se pone sola en la isla, el `.pmtiles` se lee del caché y **se pintan
-12 teselas** con los 804 lugares encima. Sin una sola excepción.
+12 teselas** con los 803 lugares encima. Sin una sola excepción.
 
 **Cuándo entra.** Con conexión no cambia nada: se arranca en Calles y el
 fichero **ni se descarga**. La capa entra sola en dos casos —arrancar sin red,
@@ -1825,7 +1955,7 @@ instalación nueva sin ningún envío previo, verde —no hay falsa alarma—.
     limpia `tgo_bano_cache_v2` entre escenarios.
 15. **Playa Jardín tiene DOS fichas**: `playa-jardin` y `surf-playa-jardin`.
 16. **Los ids de lugar son la barrera de los `onclick` inline.** Los manejadores
-    inline solo son seguros porque los 804 ids cumplen `[a-z0-9-]`.
+    inline solo son seguros porque los 803 ids cumplen `[a-z0-9-]`.
 17. **`index.html` suelto no es la app.** Leaflet vive en `vendor/`.
 18. **Contar cadenas en un fichero de 4 MB es mal método.** Varias
     comprobaciones fallaron por contar la palabra dentro del comentario que la
@@ -2256,7 +2386,7 @@ control vuelve a significar algo.
 |---|---|
 | sintaxis | 32 scripts en línea, `sw.js` y `enviar-notificacion.js`, 0 fallos |
 | red TITSA | 8 controles · 183 líneas · 6.263 paradas · 2.514 del catálogo |
-| datos | 804 lugares · 99 orientaciones · 0 fuera de la caja de Tenerife |
+| datos | 803 lugares · 99 orientaciones · 0 fuera de la caja de Tenerife |
 | codificación | NFC puro · 0 mojibake · 0 U+FFFD · 0 CRLF · 0 tabuladores |
 | inyección | 0 `eval` · 0 `new Function` · 0 `document.write` · 0 `_blank` sin `noopener` |
 | mapa sin conexión | 76 controles · 99,77 % de píxeles pintados · 12 teselas sin red |
@@ -2381,11 +2511,11 @@ fallo, y el límite es cero.
 
 ## El búlgaro dentro de `places[]`
 
-`places[]` tiene 1.741 filas de idioma repartidas en tres campos: `desc` (804),
-`cat` (804) y `hours` (107, ya hechas). Es el bloque más grande del proyecto:
-**193.371 caracteres** solo en las descripciones.
+`places[]` tiene 1.739 filas de idioma repartidas en cuatro campos: `desc`
+(803), `cat` (803), `hours` (107) y `parking.aviso` (26). Es el bloque más
+grande del proyecto: **193.167 caracteres** solo en las descripciones.
 
-**Las 804 categorías están.** 686 textos distintos, en seis tandas. Los
+**Las 803 categorías están.** 685 textos distintos, en seis tandas. Los
 topónimos se transliteran al cirílico, como ya se hizo en el chat y en las
 notas de línea; las marcas y los códigos se quedan en latín: HiperDino, Lidl,
 Mercadona, PADI, PR-TF, GR-131, TF-1, BC-5, D.O., SCS, BIC.
@@ -2472,8 +2602,8 @@ mirar, y el comentario ya no escribe formas malas.
 
 | | |
 |---|---|
-| `desc` | 804 de 804 |
-| `cat` | 804 de 804 |
+| `desc` | 803 de 803 |
+| `cat` | 803 de 803 |
 | `hours` | 107 de 107 |
 | `parking.aviso` | 25 textos — **no estaban en la cuenta** |
 

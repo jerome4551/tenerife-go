@@ -1,7 +1,7 @@
 # Coordenadas que faltan
 
-Ocho lugares tienen el pin en el agua. Para cada uno hace falta la
-coordenada de verdad: **aquí no se inventan**.
+Del parche **auditoria-mar-8** quedan **seis** lugares con el pin en el agua.
+Para cada uno hace falta la coordenada de verdad: **aquí no se inventan**.
 
 Cómo mandarlas: cualquier formato vale, pero lo más cómodo es una línea por
 sitio con `id lat lng`. Se aplican con
@@ -19,61 +19,100 @@ aparecen los dos números → el primero es `lat`, el segundo `lng`.
 
 ---
 
-## Las cuatro que rompen la auditoría
+## Por qué siguen pendientes
 
-### 1 · `montana-colorada` — Montaña Colorada (Fasnia)
-- **Ahora**: `28.2215, -16.3869` → **2.220 m mar adentro**
-- **La ficha dice**: «Cono volcánico de un rojo intenso, visible desde la
-  autopista del sur. Uno de los más fotogénicos de la costa este.»
-- **El problema**: OpenStreetMap tiene **cinco** montañas llamadas «Montaña
-  Colorada» en Tenerife y **ninguna cerca de Fasnia**. La más próxima a ese
-  punto es **Montaña de Fasnia**, a 4,5 km, que es otro cerro con otro
-  nombre.
-- **Lo que necesito**: la coordenada del cono. Y antes de eso, **confirmar
-  que existe y se llama así**: puede ser el mismo caso que el
-  `charco-infierno-arafo`, que resultó no existir y se quitó.
+El parche traía la receta para calcular las seis, pero las seis pasan por
+**Overpass**, el servicio de consultas de OpenStreetMap, y desde aquí está
+**bloqueado por la política de salida** (`403` en los dos endpoints del
+parche). El parche lo previó: *«Si te falta un insumo —la costa de la
+auditoría, el shapefile municipal del Cabildo o la red—, las fichas que lo
+necesitan quedan PENDIENTE.»* Así que no se ha improvisado ninguna.
 
-### 2 · `windsurf-el-poris` — El Porís de Abona, kitesurf avanzado
-- **Ahora**: `28.1540, -16.4160` → **1.003 m mar adentro**
-- **La ficha dice**: «spot de kitesurf para avanzados, viento NNE fuerte,
-  municipio de Arico»
-- **El problema**: hay tres playas candidatas cerca —Playa Grande, Playa el
-  Porís y Playa Cardones— y no sé en cuál se hace.
-- **Lo que necesito**: la coordenada de la playa desde la que se entra al
-  agua. (Si el pin debe ir en el agua porque es un spot de mar, dímelo y lo
-  declaro como los puertos.)
+Hay dos maneras de desatascarlas:
 
-### 3 · `faro-santa-cruz-puerto` — Faro del Puerto de Santa Cruz
-- **Ahora**: `28.4789, -16.2289` → **444 m mar adentro**
-- **La ficha dice**: «Torre cilíndrica blanca con franja roja **situada en
-  el dique de abrigo**, en la bocana del puerto»
-- **El problema**: la capa de puntos de OpenStreetMap del proyecto tiene
-  **cero faros** en toda la isla.
-- **Lo que necesito**: la coordenada de la punta del dique donde está la
-  torre.
-
-### 4 · `pk-poris-abona` — Aparcamiento Porís de Abona
-- **Ahora**: `28.1631, -16.4308` → **82 m mar adentro**
-- **La ficha dice**: «estacionamiento en superficie y batería **frente al
-  mar**, acceso desde la bajada de la autopista por la Calle Real»
-- **El problema**: OpenStreetMap no tiene **ningún** aparcamiento a menos de
-  1,5 km de ahí.
-- **Lo que necesito**: un punto en la Calle Real, del lado de tierra.
+1. **La coordenada a mano**, como hasta ahora: tú la miras y me la pasas.
+2. **El volcado de Overpass**: si ejecutas las consultas del parche desde tu
+   máquina y me pasas el JSON, el cálculo sale entero de él, sin red.
 
 ---
 
-## Las cuatro que están justo en la orilla
+## Las seis
 
-Estas se salen por poco. Puede ser el dibujo generalizado de la costa, o
-puede ser que estén mal de verdad: **en tus capturas la ermita se veía en el
-agua**, así que al menos esa lo está.
+### 1 · `faro-santa-cruz-puerto` — Faro del Puerto de Santa Cruz
+- **Ahora**: `28.4789, -16.2289` → **444 m mar adentro**
+- **El parche propone**: convertirla en la **Farola del Mar** (el faro
+  histórico del Muelle de Enlace) en `28.46935, -16.24581`, con texto nuevo.
+- **Por qué no se ha aplicado**: esa coordenada **cae en tierra pero a 1,4 m
+  de la costa**, y el propio parche exige **3 m o más** (`margen_tierra_m`).
+  Al no pasar el test manda su `si_falla`, que es una consulta a Overpass.
+- **Lo que necesito**: o el volcado de Overpass, o un punto de la Farola a
+  más de 3 m del borde. *(Ojo: la Farola es un sitio real y bien
+  documentado; lo que falla es el margen, no la fuente.)*
+- **Además**: el texto del parche viene en **8 idiomas** y la app tiene
+  **10**. Ver «El formato del parche» más abajo.
 
-| id | ahora | se sale | qué dice la ficha |
-|---|---|---|---|
-| `lidl-puerto-cruz` | `28.4200, -16.5450` | 46 m | «en la Carretera General Icod-Santa Cruz». Hay **dos** Lidl a 2,2 km del centro y no sé cuál es |
-| `pk-bajamar-piscinas` | `28.5562, -16.3458` | 28 m | «bajando por la Avenida Gran Poder hasta el paseo marítimo» |
-| `whale-watching` | `28.0780, -16.7364` | 23 m | sale de Puerto Colón; si el pin va en el muelle, dime dónde |
-| `ermita-san-telmo` | `28.4176, -16.5472` | 19 m | «junto al mar en el barrio de La Ranilla»; el Paseo de San Telmo está 70 m al este |
+### 2 · `pk-poris-abona` — Aparcamiento Porís de Abona
+- **Ahora**: `28.1631, -16.4308` → **82 m mar adentro**
+- **El parche propone**: la vía rodada más cercana al ancla
+  `28.164247, -16.431573` (ficha oficial de Playa El Porís), a 80 m como
+  mucho.
+- **Necesita**: Overpass (`highway` alrededor de 150 m).
+
+### 3 · `lidl-puerto-cruz` — Lidl Puerto de la Cruz
+- **Ahora**: `28.4200, -16.5450` → **46 m mar adentro**
+- **El parche propone**: el Lidl de la Carretera Icod-Santa Cruz, elegido
+  entre los candidatos de OSM.
+- **Necesita**: Overpass **y** el **shapefile municipal del Cabildo**, que
+  tampoco tengo. Dos insumos, ninguno de los dos aquí.
+
+### 4 · `pk-bajamar-piscinas` — Aparcamiento Piscinas Naturales de Bajamar
+- **Ahora**: `28.5562, -16.3458` → **28 m mar adentro**
+- **El parche propone**: la vía rodada más cercana a las piscinas.
+- **El ancla sí cuadra**: `piscinas-bajamar` está en `28.5564, -16.3445`,
+  que es **exactamente** lo que el parche esperaba (tolerancia 30 m).
+- **Necesita**: Overpass.
+
+### 5 · `whale-watching` — Whale Watching (Puerto Colón)
+- **Ahora**: `28.0780, -16.7364` → **23 m mar adentro**
+- **El parche propone**: empujarlo a tierra 10 m. Ese cálculo **sí sale sin
+  red**: daría `28.077710, -16.736308`, que se mueve 33 m (el límite son 60)
+  y cae en tierra.
+- **Por qué no se ha aplicado**: el parche le pone además una
+  `comprobacion_marina` **obligatoria** —que el punto quede dentro de la
+  marina «Colón» de OSM o a 50 m— y eso es Overpass. Sin esa comprobación la
+  ficha queda PENDIENTE por su propia regla.
+
+### 6 · `ermita-san-telmo` — Ermita de San Telmo
+- **Ahora**: `28.4176, -16.5472` → **19 m mar adentro**
+- **El parche propone**: el edificio de la ermita en OSM, contrastado con la
+  dirección oficial (calle San Telmo 5), con texto nuevo que quita lo de «el
+  barrio de La Ranilla».
+- **Necesita**: Overpass.
+
+---
+
+## El formato del parche, para la próxima
+
+El parche pide los textos así:
+
+```
+desc:{ es:"…", en:"…", fr:"…", de:"…", it:"…", nl:"…", zh:"…", zht:"…" },
+```
+
+Eso era el formato **antiguo**. Hoy:
+
+- `index.html` lleva **solo el castellano** en `desc` y `cat`; los otros
+  nueve idiomas viven en `idiomas/<idioma>.json`. Meter los ocho en
+  `index.html` no rompería nada, pero **no se vería**: el fichero de idioma
+  los pisa al cargar.
+- La app tiene **diez** idiomas. Al parche le faltan **búlgaro y polaco**.
+  Si se aplicara tal cual, un búlgaro seguiría leyendo la descripción vieja
+  del faro que ya no existe.
+
+Cuando llegue la coordenada del faro o de la ermita, el castellano va a
+`index.html`, los ocho del parche a sus `idiomas/*.json`, y **el búlgaro y
+el polaco los traduzco yo** a partir del castellano, como el resto del
+corpus.
 
 ---
 
@@ -98,8 +137,14 @@ cuenta como fallo.
 
 ## Ya corregidas, por si quieres revisarlas
 
-Estas seis se movieron con el dato de OpenStreetMap, que tiene el sitio con
-el mismo nombre y el tipo compatible:
+Del parche **auditoria-mar-8**:
+
+| id | de | a | cómo |
+|---|---|---|---|
+| ~~`montana-colorada`~~ | 28.2215, −16.3869 | **dada de baja** | no hay fuente que la sitúe en Fasnia |
+| `windsurf-el-poris` | 28.1540, −16.4160 | **28.152765, −16.432303** | Playa Grande (Turismo de Tenerife) + 8 m a tierra |
+
+De la tanda anterior, con el dato de OpenStreetMap:
 
 | id | de | a |
 |---|---|---|

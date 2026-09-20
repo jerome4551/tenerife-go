@@ -793,7 +793,7 @@ function revisar(tablas, o) {
      no acierta nunca.
      Se comprueban los casos que separan una regla buena de una mala:
      el 1, el 2, el 5 y las trampas polacas -12, que va con el genitivo
-     aunque acabe en 2, y 22 y 804, que no-. */
+     aunque acabe en 2, y 22 y 803, que no-. */
   const plu = await page.evaluate(async () => {
     const esperar = ms => new Promise(r => setTimeout(r, ms));
     const o = { mal: [] };
@@ -806,7 +806,7 @@ function revisar(tablas, o) {
       ['pl', 'contadorLugares', 5, '5 miejsc'],
       ['pl', 'contadorLugares', 12, '12 miejsc'],
       ['pl', 'contadorLugares', 22, '22 miejsca'],
-      ['pl', 'contadorLugares', 804, '804 miejsca'],
+      ['pl', 'contadorLugares', 803, '803 miejsca'],
       ['pl', 'contadorResultados', 5, '5 wynik\u00f3w']
     ];
     for (const [l, k, n, esperado] of casos) {

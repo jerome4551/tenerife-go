@@ -153,7 +153,7 @@ window.onunhandledrejection = function(e) {
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
       "author": { "@type": "Person", "name": "Jérôme B" },
       "image": "https://jerome4551.github.io/tenerife-go/og-image.jpg",
-      "featureList": "Mapa interactivo offline, 804 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
+      "featureList": "Mapa interactivo offline, 803 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
     },
     {
       "@type": "TouristDestination",
@@ -8676,7 +8676,7 @@ try {
    medias, sin que nadie hubiera elegido nada. Esconder la opcion del menu no
    tocaba ese camino.
    Cuando un idioma este completo se le quita de esta lista y se acabo.
-   El polaco ya salio: tiene la interfaz y los 804 lugares de
+   El polaco ya salio: tiene la interfaz y los 803 lugares de
    idiomas/pl.json. La lista se queda vacia, que no es lo mismo que
    sobrar: el dia que entre el idioma numero once vuelve a hacer falta,
    y el numero que el usuario lee sale de contarla. */
@@ -9090,7 +9090,7 @@ Object.assign(UI_TX, {
   capaIslaCargando: { es:'Abriendo el mapa de la isla…', en:'Opening the island map…', fr:'Ouverture de la carte de l’île…', de:'Inselkarte wird geöffnet…', it:'Apertura della mappa dell’isola…', nl:'Eilandkaart wordt geopend…', zh:'正在打开海岛地图…', zht:'正在開啟海島地圖…', bg:'Отваря се картата на острова…', pl: "Otwieram mapę wyspy…" },
   capaSinRed:       { es:'Sin red: se pasa al mapa de la isla', en:'No connection: switching to the island map', fr:'Pas de réseau : passage à la carte de l’île', de:'Keine Verbindung: Wechsel zur Inselkarte', it:'Nessuna rete: si passa alla mappa dell’isola', nl:'Geen verbinding: overschakelen naar de eilandkaart', zh:'没有网络：切换到海岛地图', zht:'沒有網路：切換到海島地圖', bg:'Няма мрежа: минава се към картата на острова', pl: "Brak sieci: przełączam na mapę wyspy" },
   /* Sin {n} a proposito: el numero se antepone en el codigo. Asi el chino
-     queda "804 个地点" y el espanol distingue singular de plural, que es lo
+     queda "803 个地点" y el espanol distingue singular de plural, que es lo
      que separa el "|". */
   contadorLugares:  { es:'lugar|lugares', en:'place|places', fr:'lieu|lieux', de:'Ort|Orte', it:'luogo|luoghi', nl:'plek|plekken', zh:'个地点', zht:'個地點', bg:'място|места', pl: "miejsce|miejsca|miejsc" },
   contadorResultados:{ es:'resultado|resultados', en:'result|results', fr:'résultat|résultats', de:'Ergebnis|Ergebnisse', it:'risultato|risultati', nl:'resultaat|resultaten', zh:'条结果', zht:'條結果', bg:'резултат|резултати', pl: "wynik|wyniki|wyników" },
@@ -9397,7 +9397,7 @@ Object.assign(UI_TX, {
        ingles, el aleman y el bulgaro: esas filas no llevaban ni singular
      · el POLACO tiene TRES formas y con dos nunca acierta:
           1 miejsce · 2-4 miejsca · 5+ miejsc
-       asi que «804 lugares» salia «804 miejsca», que es la de 2 a 4, y
+       asi que «803 lugares» salia «803 miejsca», que es la de 2 a 4, y
        «5 wyniki» en vez de «5 wynikow».
    La regla polaca es la de CLDR: singular el 1; la forma corta cuando
    acaba en 2, 3 o 4 salvo en la decena del 11 al 14; genitivo plural el
@@ -10356,11 +10356,6 @@ const places = [
     desc:{ es:"El gran guardián del sur de Tenerife con 427 m. Reserva Natural Especial que domina Los Cristianos y Las Américas. Sendero circular de 2 horas por un paisaje semiárido de tabaibal y cardonal. En la cima, panorama de 360° que abarca desde el Teide hasta La Gomera, El Hierro y La Palma en días claros. Un mirador natural que los turistas no esperan encontrar." },
     cat:{ es:"Volcán · Reserva Natural Sur" },
     tags:["Senderismo","360°","Reserva","Cardonal","Tabaibal","Los Cristianos"] },
-
-  { id:"montana-colorada", category:"montana", name:"Montaña Colorada (Fasnia)", emoji:"🌋", color:"#d84315", lat:28.2215, lng:-16.3869,
-    desc:{ es:"Cono volcánico de un rojo intenso dramático, visible desde la autopista del sur. Uno de los más fotogénicos de la costa este de Tenerife. Zona escasamente visitada que conserva un sabor auténtico y salvaje. El contraste del rojo volcánico con el verde del bananal y el azul del océano es de postal. Ascenso corto con recompensa visual extraordinaria." },
-    cat:{ es:"Volcán · Costa Este" },
-    tags:["Volcánico","Fotogénico","Rojo","Auténtico","Fasnia","Secreto"] },
 
   { id:"llano-ucanca", category:"montana", name:"Llano de Ucanca", emoji:"🌅", color:"#546e7a", lat:28.2113, lng:-16.6351,
     desc:{ es:"La llanura más sobrecogedora del Parque Nacional del Teide. Un mar de arena volcánica negra rodeado de montañas y el Teide al fondo. Al amanecer se llena de colores naranjas y morados imposibles. El silencio aquí es absoluto, casi sagrado. El mismo paisaje que maravilló a Humboldt y a los primeros exploradores europeos. Acceso en coche, sin esfuerzo." },
@@ -13080,7 +13075,7 @@ const places = [
     cat:{ es:"Kitesurf · La Tejita · El Médano · Sur · Aprendizaje" },
     tags:["Kitesurf","Windsurf","La Tejita","El Médano","Sur","Granadilla","Montaña Roja","Alisios","Aprendizaje","Playa","Señalizada"] },
 
-  { id:"windsurf-el-poris", warn:"mar", category:"windsurf", name:"🪁 El Porís de Abona — Kitesurf Avanzado", emoji:"🪁", color:"#01579b", lat:28.1540, lng:-16.4160,
+  { id:"windsurf-el-poris", warn:"mar", category:"windsurf", name:"🪁 El Porís de Abona — Kitesurf Avanzado", emoji:"🪁", color:"#01579b", lat:28.152765, lng:-16.432303,
     desc:{ es:"El Porís de Abona, en la costa sureste de Tenerife (municipio de Arico), es un spot de kitesurf para kitesurfistas avanzados y expertos. Viento NNE (nornoreste) fuerte y gustoso — ideal para freestyle y saltos de altura. No tiene infraestructura de escuelas permanente — se recomienda venir con equipo propio y experiencia. Las condiciones son variables y más técnicas que en El Médano. El pequeño puerto y los charcos volcánicos del entorno lo hacen visualmente muy atractivo. A 20 minutos de El Médano por la TF-1." },
     cat:{ es:"Kitesurf · El Porís · Avanzado · Arico · Sureste" },
     tags:["Kitesurf","El Porís","Arico","Sureste","Avanzado","NNE","Freestyle","Saltos","Sin Escuela","Puerto","Volcánico"] },
@@ -18266,7 +18261,7 @@ const DAY_TRIP_ZONES = {
       'san-juan', 'alcala', 'arena', 'playa-callao', 'playa-puertito',
       'masca', 'ruta-masca-playa', 'mirador-maska', 'candelaria', 'piramides-guimar',
       'castillo-negro', 'arico', 'sendero-barranco-infierno', 'montana-roja', 'montana-pelada',
-      'montana-amarilla', 'montana-guaza', 'montana-colorada', 'acantilados-gigantes', 'riscos-chio',
+      'montana-amarilla', 'montana-guaza', 'acantilados-gigantes', 'riscos-chio',
       'ciudad-guimar', 'ciudad-adeje', 'arafo', 'granadilla', 'playa-torviscas',
       'playa-puerto-santiago', 'playa-diego-hernandez', 'playa-jaquita', 'playa-amarilla',
       'faro-rasca', 'faro-abona', 'ciudad-arona', 'ciudad-candelaria', 'ciudad-granadilla',

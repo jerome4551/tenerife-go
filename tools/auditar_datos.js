@@ -104,8 +104,10 @@ console.log('\n=== lugares ===');
 /* El numero va fijo a proposito: si un dia se pierden fichas por un mal
    pegado, esto lo dice. Solo se mueve cuando la baja o el alta es
    deliberada. 805 -> 804 el 7 de septiembre, al quitar
-   charco-infierno-arafo, que estaba a 10 km del mar y no existe. */
-debe('lugares', PLACES.length, PLACES.length === 804);
+   charco-infierno-arafo, que estaba a 10 km del mar y no existe; 804 ->
+   803 el 20 de septiembre, al dar de baja montana-colorada, que ninguna
+   fuente situa en Fasnia (parche auditoria-mar-8). */
+debe('lugares', PLACES.length, PLACES.length === 803);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);
@@ -222,6 +224,27 @@ console.log('\n=== orientaciones de playa ===');
   debe('filas que apuntan a un POI inexistente', huerf.length, huerf.length === 0);
   huerf.slice(0, 6).forEach(i => console.log('      <--  ' + i));
   debe('ori fuera de los 8 rumbos', malOri.length, malOri.length === 0);
+}
+
+/* ── el catalogo del planificador de dia ──
+   Mismo fallo silencioso que las orientaciones: `zone.suggestionIds.forEach`
+   hace `if (!place) return;`, asi que un id que ya no existe no da error, la
+   ficha simplemente deja de ofrecerse y nadie se entera. Al dar de baja
+   montana-colorada se vio que ya habia 16 asi. */
+console.log('\n=== catalogo del planificador ===');
+{
+  const src = require('fs').readFileSync('index.html', 'utf8');
+  const refs = [];
+  for (const b of src.matchAll(/suggestionIds:\s*\[([\s\S]*?)\]/g))
+    for (const m of b[1].matchAll(/'([a-z0-9-]+)'/g)) refs.push(m[1]);
+  const vivos = new Set(PLACES.map(p => p.id));
+  const rotas = refs.filter(id => !vivos.has(id));
+  const huerf = [...new Set(rotas)];
+  P('referencias en suggestionIds', refs.length);
+  debe('que apuntan a un POI inexistente',
+       rotas.length + ' referencias, ' + huerf.length + ' ids distintos',
+       rotas.length === 0);
+  huerf.forEach(i => console.log('      <--  ' + i));
 }
 
 console.log('\n=== rotulos repetidos ===');
