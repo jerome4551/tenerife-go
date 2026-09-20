@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 e4a3db98cde867eea280ec301c811e83
-             3.189.486 bytes · 933.111 comprimidos · 37.336 líneas
+index.html   md5 d045c49e5e76880b30870bac4e9f52cb
+             3.189.239 bytes · 933.019 comprimidos · 37.331 líneas
 idiomas/     9 ficheros de lugares · 2.521.780 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
@@ -951,7 +951,7 @@ imprecisión tiene consecuencias es `auditar_en_el_mar.py`. Esto es el
 inventario de lo que hay que ir puliendo, impreso entero para que no sea un
 silencio.
 
-## El planificador de día ofrece 15 sitios que no existen
+## El planificador de día ofrecía 16 sitios que no existen
 
 Al quitar `montana-colorada` había que sacar su id de `suggestionIds` de la
 zona `south`, y al comprobar que no quedaba ninguna referencia suelta
@@ -964,44 +964,52 @@ zone.suggestionIds.forEach(id => {
   if (!place) return;          // <-- aqui se pierde, sin error
 ```
 
-De **179 referencias, 16 apuntan a fichas que no existen** —15 ids distintos,
-porque `buenavista` está en dos listas—: el norte ofrece 80 de 91, el sur 63
-de 67 y el centro 20 de 21. No es un fallo visible —no hay hueco ni error en
-pantalla—, simplemente hay sitios que el usuario nunca ve ofrecidos.
+No hay hueco ni error en pantalla: simplemente hay sitios que el usuario nunca
+ve ofrecidos. El norte daba 80 de 91, el sur 63 de 67 y el centro 20 de 21.
 
-| id que no existe | ¿hay sustituto **ya en la misma lista**? |
-|---|---|
-| `taganana` | sí, `nucleo-taganana` |
-| `san-andres` | sí, `nucleo-san-andres` |
-| `buenavista` (en `north`) | sí, `ciudad-buenavista` |
-| `arico` | sí, `ciudad-arico` |
-| `arafo` | sí, `ciudad-arafo` |
-| `granadilla` | sí, `ciudad-granadilla` |
-| `el-sauzal` | no, aunque existe `nucleo-el-sauzal` |
-| `los-silos` | no, aunque existe `nucleo-los-silos` |
-| `santiago-teide` | no, aunque existen `nucleo-` y `ciudad-santiago-teide` |
-| `los-cristianos` | no, aunque existe `nucleo-los-cristianos` |
-| `buenavista` (en `center`) | no |
-| `guachinche` | no; hay 20 guachinches, ninguno con ese id |
-| `faro-buenavista` | no; lo más parecido es `charco-faro-buenavista`, que es un charco |
-| `fajana` | **no existe nada parecido** |
-| `piscinas-bajamar-norte` | **no existe nada parecido** (sí `piscinas-bajamar`) |
-| `farola-mar-santa-cruz` | **no existe nada parecido** |
+**Ninguno de los 16 ids existió jamás como ficha.** `git log -S` sobre el
+historial completo de `index.html` no encuentra ni uno solo. No fue un
+renombrado que dejó cabos sueltos: se escribieron mal el día que se creó la
+lista. Eso cambia el arreglo — no había nada que restaurar.
 
-Las seis primeras filas son sobras: su sustituto ya está en la misma lista,
-así que quitarlas no cambia nada. Las otras diez **sí cambian lo que se ofrece**, y
-elegir sustituto sería adivinar: `buenavista` ¿es el núcleo o la ciudad?
-`guachinche` ¿cuál de los veinte? Por eso **no se ha tocado ninguna**: hace
-falta que lo decidas tú, como las coordenadas.
+```
+        antes          ahora
+norte   80 de 91  ->   80 de 80
+sur     63 de 67  ->   64 de 64
+centro  20 de 21  ->   20 de 20
+```
 
-`farola-mar-santa-cruz` tiene su gracia: alguien quiso ofrecer la Farola del
-Mar en el planificador antes de que existiera la ficha, y es exactamente la
-ficha que el parche «auditoria-mar-8» quiere crear.
+**Diez se han quitado sin perder nada**: la misma zona ya ofrecía ese sitio con
+otro id (`taganana`→`nucleo-taganana`, `arico`→`ciudad-arico`, y así). Dos no se
+veían por el id: `faro-buenavista` es `faro-teno`, cuya propia ficha lleva
+`cat: "Faro Histórico · Buenavista del Norte"`; y `el-sauzal`/`los-silos` ya
+estaban como `ciudad-sauzal` y `ciudad-silos`, sin el artículo.
+
+**Una se ha cambiado**: `los-cristianos` → `nucleo-los-cristianos`, la única
+ficha de localidad con ese nombre en toda la app, que la zona no ofrecía de
+ninguna otra forma.
+
+**Cinco quedan pendientes de una decisión**, y están fuera de la lista para que
+no mienta: `santiago-teide` y `buenavista` (dos fichas con el mismo nombre cada
+una, `nucleo-` y `ciudad-`), `guachinche` (hay veinte, ninguno con ese id),
+`fajana` (no existe nada parecido en la app) y `farola-mar-santa-cruz` —que
+vuelve sola el día que el parche «auditoria-mar-8» cree la ficha de la Farola
+del Mar—. Están en `PLANIFICADOR-PENDIENTE.md`.
+
+**El guardia que casi no se pone.** El primer arreglo cambiaba `el-sauzal` por
+`nucleo-el-sauzal`, que existe. Al mirar el diff se vio que la lista ya llevaba
+`ciudad-sauzal`: el catálogo habría mostrado **el mismo pueblo dos veces**. Por
+id no se veía —`el-sauzal` contra `ciudad-sauzal` no casan por patrón—, por
+nombre sí. El script de arreglo compara ahora por nombre normalizado, y el
+control lista los rótulos repetidos que ya había: «Mesa del Mar» (`mesa-mar` y
+`nucleo-mesa-mar`) en el norte y «Playa San Juan» (`san-juan` y
+`nucleo-playa-san-juan`) en el sur. No suspende —una playa y un pueblo pueden
+llamarse igual— pero en una lista de sugerencias se leen como un duplicado.
 
 **El control está puesto**, en `auditar_datos.js`, junto al que ya hacía lo
-mismo con `PLAYAS_ORIENTACION`: *«filas que apuntan a un POI inexistente»*. Es
-el mismo fallo silencioso y ahora se mira igual. La auditoría queda **en rojo
-por estas 16**, que es lo honesto.
+mismo con `PLAYAS_ORIENTACION`: *«filas que apuntan a un POI inexistente»*. Y
+se ha probado en el navegador, zona por zona: 80, 64 y 20 fichas pintadas,
+ningún nombre vacío, 0 errores de página.
 
 ## La línea de costa vive en un solo sitio
 
@@ -1221,7 +1229,7 @@ no la secundaria**.
 | Ids de línea repetidos · números compartidos | **0 · 0** |
 | Ids de parada repetidos | **0** de 6.263 |
 | Referencias huérfanas al catálogo (paradas) | **0** |
-| Referencias huérfanas en `suggestionIds` (planificador de día) | **16** de 179 · 15 ids distintos |
+| Referencias huérfanas en `suggestionIds` (planificador de día) | **0** de 164 |
 | Paradas o lugares fuera de Tenerife | **0** |
 | Parada repetida consecutiva en una línea | **0** |
 | `via` con punto mal formado | **0** de 26.593 |

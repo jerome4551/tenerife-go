@@ -245,6 +245,23 @@ console.log('\n=== catalogo del planificador ===');
        rotas.length + ' referencias, ' + huerf.length + ' ids distintos',
        rotas.length === 0);
   huerf.forEach(i => console.log('      <--  ' + i));
+
+  /* Dos fichas con el mismo nombre en la misma zona salen como dos lineas
+     identicas en el catalogo y no hay forma de saber cual es cual. No falla
+     -una playa y un nucleo pueden llamarse igual de verdad- pero se lista:
+     casi cuela meter `nucleo-el-sauzal` donde ya estaba `ciudad-sauzal`. */
+  const nom = new Map(PLACES.map(p => [p.id, norm(p.name)]));
+  const repes = [];
+  for (const b of src.matchAll(/(\w+):\s*\{\s*\n\s*emoji:[^\n]*\n\s*suggestionIds:\s*\[([\s\S]*?)\]/g)) {
+    const por = new Map();
+    for (const m of b[2].matchAll(/'([a-z0-9-]+)'/g)) {
+      const n2 = nom.get(m[1]); if (!n2) continue;
+      por.set(n2, (por.get(n2) || []).concat(m[1]));
+    }
+    for (const [, a] of por) if (a.length > 1) repes.push(b[1] + ': ' + a.join(' = '));
+  }
+  P('el mismo nombre dos veces en una zona', repes.length);
+  repes.forEach(r => console.log('      ·  ' + r));
 }
 
 console.log('\n=== rotulos repetidos ===');
