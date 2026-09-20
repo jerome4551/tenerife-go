@@ -8,9 +8,9 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 4af260336ee35a72cff84babe0fda16d
-             3.189.217 bytes · 933.009 comprimidos · 37.332 líneas
-idiomas/     9 ficheros de lugares · 2.521.780 bytes · 76 a 95 kB comprimidos
+index.html   md5 5c5152f431717a95ba85acf3a994b5fa
+             3.182.757 bytes · 931.590 comprimidos · 37.258 líneas
+idiomas/     9 ficheros de lugares · 2.483.942 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
              + glosario-cat/ · 7, y no hacen falta los diez: no se cargan en la
@@ -27,7 +27,7 @@ faq/         10 ficheros · 69 respuestas del asistente en cada idioma
 
 | | |
 |---|---|
-| Lugares | **803**, con descripción y categoría en 10 idiomas |
+| Lugares | **786**, con descripción y categoría en 10 idiomas |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
@@ -274,7 +274,7 @@ textos**, contados, y están todos:
 ```
 LANGS.pl                          168   hecho
 resto de la interfaz              814   hecho   (614 filas en 45 tablas)
-idiomas/pl.json                 1.739   hecho   (803 lugares, en 9 bloques)
+idiomas/pl.json                 1.705   hecho   (786 lugares, en 9 bloques)
 idiomas/etiquetas/pl.json         685   hecho
 idiomas/glosario-cat/pl.json       --   no hace falta: no se carga en la app,
                                         es una entrada de completar_cat.js en
@@ -282,7 +282,7 @@ idiomas/glosario-cat/pl.json       --   no hace falta: no se carga en la app,
                                         tampoco lo lleva
 ```
 
-`idiomas/pl.json` sale con **803 lugares y 1.739 textos**, la misma cuenta
+`idiomas/pl.json` sale con **786 lugares y 1.705 textos**, la misma cuenta
 exacta que `bg.json` y `zht.json`. `tools/lugares_idioma.js montar pl` no
 escribe si un id o un campo no cuadra con `index.html`, así que la paridad no
 es una impresión: es la condición para que el fichero exista.
@@ -415,12 +415,12 @@ al usarlo**, que es exactamente lo que una foto de la página quieta no puede
 ver.
 
 **4 · La respuesta del asistente sobre cambiar idioma decía tres cosas falsas**:
-«elige entre 8» nombrando ocho, «los 700+ lugares» con 803 dentro, y «este
+«elige entre 8» nombrando ocho, «los 700+ lugares» con 786 dentro, y «este
 asistente responde en español e inglés por ahora» cuando responde en los
 diez. El control de cifras no la cazaba porque el 8 no iba pegado a la
 palabra «idiomas». Las respuestas de `CHAT_KB` pasan ahora por `chatFmt`,
 igual que `countAns`, así que esa lleva `{L}` y `{N}`: en el navegador dice
-10 y 803.
+10 y 786.
 
 **Los controles nuevos.** Dos, y los dos **tocan** en vez de mirar:
 
@@ -709,11 +709,12 @@ El polaco es el caso que rompe la regla de dos formas: tiene **tres**.
 1 miejsce   ·   2-4 miejsca   ·   5+ miejsc
 ```
 
-Y no es «números pequeños y grandes»: la regla de CLDR mira la **decena**.
-803 acaba en 3 → *miejsca*. 12 acaba en 2 **pero** está en la decena del 11
-al 14 → *miejsc*. 22 acaba en 2 y no está → *miejsca*. Esos tres casos son
-los que separan una regla escrita a ojo de una buena, y son los que prueba
-el control.
+Y no es «números pequeños y grandes»: la regla de CLDR mira la **decena**. 12
+y 112 acaban en 2 **pero** están en la decena del 11 al 14 → *miejsc*. 22 acaba
+en 2 y no está → *miejsca*. Esos son los casos que separan una regla escrita a
+ojo de una buena, y son los que prueba el control. Ninguno sale del número de
+lugares: un caso de prueba atado al corpus caduca cada vez que entra o sale una
+ficha.
 
 **Cómo quedó.** `PLURAL_FORMA` tiene la regla de cada idioma —el polaco la
 suya, el chino «siempre una», el resto por el camino de siempre— y la usan
@@ -935,7 +936,7 @@ traducen aquí, como el resto del corpus.
 
 `tools/auditar_redondeo.py` lista dos cosas y **no falla nunca**:
 
-- **13 de 803** fichas tienen lat **y** lng con 3 decimales o menos. Eso no es
+- **13 de 786** fichas tienen lat **y** lng con 3 decimales o menos. Eso no es
   una coordenada tomada de una fuente: es un marcador puesto a ojo, y tres
   decimales son ~110 m de lado. Así fue como un Lidl acabó en el mar. (El
   parche esperaba «al menos 60, entre ellas 9 supermercados y 3 gasolineras»,
@@ -1052,30 +1053,96 @@ dice «Cumbre Dorsal»), `riscos-chio` (las lavas del Chío de 1798, con vistas 
 Teide) y las dos puertas del parque, `ciudad-santiago-teide` a 925 m y
 `ciudad-vilaflor` a 1.400 m.
 
-## Los 17 pares de cabecera municipal duplicada
+## Las 17 cabeceras municipales que salían dos veces
 
 De los empates del planificador salió algo mayor: **17 cabeceras municipales
-tienen dos fichas**, una `ciudad-*` y otra `nucleo-*`, con **la misma
-coordenada exacta**. Eso son dos pins apilados en el mapa y dos resultados en
+tenían dos fichas**, una `ciudad-*` y otra `nucleo-*`, con **la misma
+coordenada exacta**. Eso eran dos pins apilados en el mapa y dos resultados en
 la búsqueda para el mismo pueblo.
 
-Dieciséis se ven por el nombre, que es idéntico —Arafo, Arico, Buenavista del
-Norte, El Rosario, El Sauzal, El Tanque, Fasnia, Granadilla, La Guancha, La
+Dieciséis se veían por el nombre, que era idéntico —Arafo, Arico, Buenavista
+del Norte, El Rosario, El Sauzal, El Tanque, Fasnia, Granadilla, La Guancha, La
 Matanza, La Victoria, Los Silos, San Juan de la Rambla, Santa Úrsula, Santiago
 del Teide y Tegueste—. **El decimoséptimo no**: `ciudad-vilaflor` se llama
-«Vilaflor de Chasna» y `nucleo-vilaflor` «Vilaflor», y sólo aparece midiendo la
-distancia, que es **0 m**.
+«Vilaflor de Chasna» y `nucleo-vilaflor` «Vilaflor», y sólo apareció midiendo
+la distancia, que era **0 m**.
 
-El criterio que los ordena es el del propietario del proyecto: `ciudad-*` para
-las cabeceras municipales, `nucleo-*` sólo para núcleos que no lo son. Se
-cumple en los **30** `ciudad-*` y en **25** de los 41 `nucleo-*`. Dos
-excepciones más: **Guía de Isora es cabecera y sólo existe como
-`nucleo-guia-isora`** —por eso hay 30 `ciudad-*` y no 31—, y
+El criterio que los ordena: `ciudad-*` para las cabeceras municipales,
+`nucleo-*` sólo para núcleos que no lo son. Se cumple en los **30** `ciudad-*`
+y en **23** de los `nucleo-*` que quedan.
+
+**Se han borrado los 17 `nucleo-*`**, y no era sólo deduplicar: la tanda
+`nucleo-*` era una generación anterior y más pobre —texto más corto en 16 de
+los 17, menos etiquetas— **y con errores**. Tres que se van con ella:
+
+| ficha borrada | lo que decía | lo que dice la que se queda |
+|---|---|---|
+| `nucleo-la-victoria` | «donde los guanches derrotaron **definitivamente** a los conquistadores en 1495» | «donde **los conquistadores se vengaron** en 1495» |
+| `nucleo-la-matanza` | vinos «**DO Ycoden-Daute-Isora**» | comarca vinícola de guachinches (La Matanza es DO Tacoronte-Acentejo; Ycoden-Daute-Isora es la de Icod) |
+| `nucleo-los-silos` | «festival de **teatro callejero**» | «Festival del **Cuento** Internacional en diciembre» |
+
+El de La Victoria se contradecía con la propia app: `ciudad-matanza` dice que
+los guanches ganaron en 1494 y `ciudad-victoria` que los conquistadores se
+desquitaron en 1495, que es la pareja coherente y la histórica. La ficha
+borrada decía lo contrario del mismo año.
+
+**Lo que sí se pierde**, y queda anotado por si se quiere recuperar en la
+ficha que se queda: Radazul y su puerto deportivo (`nucleo-el-rosario`), el
+barrio de Charco del Pino (`nucleo-granadilla`), las fiestas del Carmen
+(`nucleo-arafo`), el parapente (`nucleo-arico`), los aguacates y flores
+tropicales (`nucleo-santa-ursula`), la iglesia de San Juan Bautista del XVI
+(`nucleo-san-juan-rambla`), el mar de nubes y las aguas minerales
+(`nucleo-vilaflor`) y los 15 min a La Laguna (`nucleo-tegueste`).
+
+**Las referencias.** Los 17 no estaban en ninguna lista de `suggestionIds` ni
+en ninguna tabla. Sólo aparecían en **dos comentarios** que documentan de dónde
+salió la coordenada de una parada de TITSA; como el par estaba a 0 m, se
+reapuntaron al gemelo y el comentario sigue siendo cierto.
+
+**El fallo que casi cuela, otra vez.** El primer borrado se llevó **18**
+fichas, no 17: el script buscaba el final de cada objeto con la línea en blanco
+que lo separa del siguiente, y `nucleo-torviscas` va **pegada** a
+`nucleo-vilaflor` sin línea entre las dos. Se vio porque `places[]` quedó en
+785 y los nueve `idiomas/*.json` en 786. Ahora el final del objeto es lo que
+llegue primero —la línea en blanco o el principio de la ficha siguiente— y el
+script se niega a escribir si el número de fichas que desaparecen no es
+exactamente el que se pidió.
+
+Quedan dos cosas para más adelante: **Guía de Isora es cabecera y sólo existe
+como `nucleo-guia-isora`** —por eso hay 30 `ciudad-*` y no 31—, y
 `nucleo-puerto-cruz-old` lleva un sufijo `-old` y está a 69 m de
 `ciudad-puerto-cruz`.
 
-**Los 17 `nucleo-*` duplicados tienen cero referencias** en todo `index.html`,
-así que la limpieza es sólo borrar, sin reapuntar nada. Va en tanda aparte.
+## Y un control que empezó a cantar por haber borrado
+
+Al borrar las 17 fichas, `auditar_cirilico.py` se puso en rojo con una
+variante nueva: **«Пино» (1) se parece a «Пико» (7)**. No era una errata de
+transliteración: «Пино» es *pino*, el árbol, en «Пино през горския пръстен», y
+«Пико» es Pico Viejo y Pico del Inglés. Dos palabras castellanas distintas que
+se diferencian en una letra.
+
+Lo interesante es **por qué apareció ahora**. El control caza la variante rara
+que se parece a una frecuente, y «Пино» tenía dos apariciones: la segunda era
+«Чарко дел Пино» —el barrio de Charco del Pino— dentro de `nucleo-granadilla`,
+una de las fichas duplicadas. Al borrarla, «Пино» bajó a una sola aparición y
+cruzó el umbral de «rara».
+
+Declarada con su motivo en el bloque `CIRILICO-OK` del fuente, que es donde
+viven las excepciones de ese control. De paso, ese bloque decía «Estas tres son
+legítimas» y listaba **cuatro**: ahora no dice ningún número, porque la lista
+ya se cuenta sola y un número al lado caduca en cuanto entra otra.
+
+## La búsqueda no ignora las tildes
+
+Salió comprobando lo anterior: «santa ursula» sin tilde no encuentra nada.
+`updateSearchSuggestions` hace `p.name.toLowerCase().includes(query)` sin
+plegar acentos, así que **226 de las 786 fichas son invisibles si escribes sin
+tilde** —El Médano, Playa de las Américas, Chío, Fañabé, Roques de García,
+Güímar—. Sólo 7 se salvan porque tienen un alias sin tildes.
+
+No es un detalle: la app está en diez idiomas y la mitad de quien la usa teclea
+en un móvil extranjero sin tildes. **No se ha tocado**, porque cambia el
+comportamiento de la búsqueda y merece su propia tanda.
 
 ## La línea de costa vive en un solo sitio
 
@@ -1299,8 +1366,8 @@ no la secundaria**.
 | Paradas o lugares fuera de Tenerife | **0** |
 | Parada repetida consecutiva en una línea | **0** |
 | `via` con punto mal formado | **0** de 26.593 |
-| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **803** |
-| Ids de lugar que cumplen `[a-z0-9-]` | **803** |
+| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **786** |
+| Ids de lugar que cumplen `[a-z0-9-]` | **786** |
 | Con calidad de agua, y su año | **46** · 46 |
 | Con alias de búsqueda, que los 3 filtros leen | **58** |
 | Con aviso `warn`, y su tipo existe en `WARN_I18N` | **115** · 0 huérfanos |
@@ -1614,7 +1681,7 @@ no que se añadieran.
 c337d4bc   39 playa · 18 piscinas · 765 lugares
 ff0f7191   42        · 18         · 765          +3, sin lugares nuevos
 3a6e7356   73        · 27         · 805          +31 playas +9 charcos = 40
-hoy        73        · 26         · 803          -1: charco-infierno-arafo, que no existe
+hoy        73        · 26         · 786          -1: charco-infierno-arafo, que no existe
                                                  -1: montana-colorada (parche auditoria-mar-8)
 ```
 
@@ -1653,7 +1720,7 @@ tiene que **venir dentro**.
 | 4 | descarga opcional de un `.pmtiles` de OSM para el detalle fino | **hecho, con el fichero dentro**: 11,4 MB, build 20260905, z0–z14 |
 
 **Por qué `protomaps-leaflet` y no MapLibre.** MapLibre obliga a rehacer el
-mapa entero y con él los 803 marcadores, los clusters y las 183 polilíneas.
+mapa entero y con él los 786 marcadores, los clusters y las 183 polilíneas.
 Esto es una capa más de Leaflet 1.9.4, la que ya usa la app.
 
 **Sin peticiones por rango.** El fichero pesa 1,1 MB y se pide entero de una
@@ -1666,7 +1733,7 @@ el servidor haga *byte serving*, que desde aquí no se puede comprobar.
 pasó al usuario: abrir la app con cobertura, cortar la red de verdad
 (`setOffline`, no un evento simulado) y volver a abrirla. Sale la app entera,
 la capa se pone sola en la isla, el `.pmtiles` se lee del caché y **se pintan
-12 teselas** con los 803 lugares encima. Sin una sola excepción.
+12 teselas** con los 786 lugares encima. Sin una sola excepción.
 
 **Cuándo entra.** Con conexión no cambia nada: se arranca en Calles y el
 fichero **ni se descarga**. La capa entra sola en dos casos —arrancar sin red,
@@ -2029,7 +2096,7 @@ instalación nueva sin ningún envío previo, verde —no hay falsa alarma—.
     limpia `tgo_bano_cache_v2` entre escenarios.
 15. **Playa Jardín tiene DOS fichas**: `playa-jardin` y `surf-playa-jardin`.
 16. **Los ids de lugar son la barrera de los `onclick` inline.** Los manejadores
-    inline solo son seguros porque los 803 ids cumplen `[a-z0-9-]`.
+    inline solo son seguros porque los 786 ids cumplen `[a-z0-9-]`.
 17. **`index.html` suelto no es la app.** Leaflet vive en `vendor/`.
 18. **Contar cadenas en un fichero de 4 MB es mal método.** Varias
     comprobaciones fallaron por contar la palabra dentro del comentario que la
@@ -2460,7 +2527,7 @@ control vuelve a significar algo.
 |---|---|
 | sintaxis | 32 scripts en línea, `sw.js` y `enviar-notificacion.js`, 0 fallos |
 | red TITSA | 8 controles · 183 líneas · 6.263 paradas · 2.514 del catálogo |
-| datos | 803 lugares · 99 orientaciones · 0 fuera de la caja de Tenerife |
+| datos | 786 lugares · 99 orientaciones · 0 fuera de la caja de Tenerife |
 | codificación | NFC puro · 0 mojibake · 0 U+FFFD · 0 CRLF · 0 tabuladores |
 | inyección | 0 `eval` · 0 `new Function` · 0 `document.write` · 0 `_blank` sin `noopener` |
 | mapa sin conexión | 76 controles · 99,77 % de píxeles pintados · 12 teselas sin red |
@@ -2585,11 +2652,11 @@ fallo, y el límite es cero.
 
 ## El búlgaro dentro de `places[]`
 
-`places[]` tiene 1.739 filas de idioma repartidas en cuatro campos: `desc`
-(803), `cat` (803), `hours` (107) y `parking.aviso` (26). Es el bloque más
-grande del proyecto: **193.167 caracteres** solo en las descripciones.
+`places[]` tiene 1.705 filas de idioma repartidas en cuatro campos: `desc`
+(786), `cat` (786), `hours` (107) y `parking.aviso` (26). Es el bloque más
+grande del proyecto: **190.388 caracteres** solo en las descripciones.
 
-**Las 803 categorías están.** 685 textos distintos, en seis tandas. Los
+**Las 786 categorías están.** 670 textos distintos, en seis tandas. Los
 topónimos se transliteran al cirílico, como ya se hizo en el chat y en las
 notas de línea; las marcas y los códigos se quedan en latín: HiperDino, Lidl,
 Mercadona, PADI, PR-TF, GR-131, TF-1, BC-5, D.O., SCS, BIC.
@@ -2676,8 +2743,8 @@ mirar, y el comentario ya no escribe formas malas.
 
 | | |
 |---|---|
-| `desc` | 803 de 803 |
-| `cat` | 803 de 803 |
+| `desc` | 786 de 786 |
+| `cat` | 786 de 786 |
 | `hours` | 107 de 107 |
 | `parking.aviso` | 25 textos — **no estaban en la cuenta** |
 

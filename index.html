@@ -153,7 +153,7 @@ window.onunhandledrejection = function(e) {
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
       "author": { "@type": "Person", "name": "Jérôme B" },
       "image": "https://jerome4551.github.io/tenerife-go/og-image.jpg",
-      "featureList": "Mapa interactivo offline, 803 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
+      "featureList": "Mapa interactivo offline, 786 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
     },
     {
       "@type": "TouristDestination",
@@ -8676,7 +8676,7 @@ try {
    medias, sin que nadie hubiera elegido nada. Esconder la opcion del menu no
    tocaba ese camino.
    Cuando un idioma este completo se le quita de esta lista y se acabo.
-   El polaco ya salio: tiene la interfaz y los 803 lugares de
+   El polaco ya salio: tiene la interfaz y los 786 lugares de
    idiomas/pl.json. La lista se queda vacia, que no es lo mismo que
    sobrar: el dia que entre el idioma numero once vuelve a hacer falta,
    y el numero que el usuario lee sale de contarla. */
@@ -8687,14 +8687,23 @@ const IDIOMAS_INCOMPLETOS = [];
    lee igual, no se ve y el buscador no encuentra. Aqui NO se escriben las
    formas malas de ejemplo, porque entonces estarian en el fuente y el
    control tendria que empezar por perdonarse a si mismo.
-   Estas tres son legitimas y se declaran para que no las cante:
+   Las de abajo son legitimas y se declaran para que no las cante. No se
+   escribe cuantas son: la lista ya se cuenta sola, y un numero al lado
+   caduca en cuanto entra otra.
    CIRILICO-OK: Америка     el continente, no "Лас Америкас" (Las Americas)
    CIRILICO-OK: Каняда      "Ла Каняда дел Капричо", en singular, no "Канядас"
    CIRILICO-OK: Техо        "Кабесо дел Техо", en Anaga; no es el macizo
                             de Teno, que es "Тено"
    CIRILICO-OK: Кармел      la Virgen del Carmen es "Дева Мария от Кармел"
                             en bulgaro (el monte Carmelo); el sitio de Anaga
-                            es "Крус дел Кармен", que se translitera tal cual */
+                            es "Крус дел Кармен", que se translitera tal cual
+   CIRILICO-OK: Пино        es "pino", el arbol, en "Пино през горския
+                            пръстен"; "Пико" es Pico Viejo y Pico del Ingles.
+                            Dos palabras distintas que se diferencian en una
+                            letra. Aparecia dos veces hasta que se borro la
+                            ficha duplicada nucleo-granadilla, que llevaba
+                            "Чарко дел Пино"; al quedarse en una, el control
+                            la vio rara y la canto */
 
 /* REGISTRO DE REPINTADO POR IDIOMA.
    Medido, no supuesto: con el navegador en aleman y pidiendo espanol, el
@@ -9090,7 +9099,7 @@ Object.assign(UI_TX, {
   capaIslaCargando: { es:'Abriendo el mapa de la isla…', en:'Opening the island map…', fr:'Ouverture de la carte de l’île…', de:'Inselkarte wird geöffnet…', it:'Apertura della mappa dell’isola…', nl:'Eilandkaart wordt geopend…', zh:'正在打开海岛地图…', zht:'正在開啟海島地圖…', bg:'Отваря се картата на острова…', pl: "Otwieram mapę wyspy…" },
   capaSinRed:       { es:'Sin red: se pasa al mapa de la isla', en:'No connection: switching to the island map', fr:'Pas de réseau : passage à la carte de l’île', de:'Keine Verbindung: Wechsel zur Inselkarte', it:'Nessuna rete: si passa alla mappa dell’isola', nl:'Geen verbinding: overschakelen naar de eilandkaart', zh:'没有网络：切换到海岛地图', zht:'沒有網路：切換到海島地圖', bg:'Няма мрежа: минава се към картата на острова', pl: "Brak sieci: przełączam na mapę wyspy" },
   /* Sin {n} a proposito: el numero se antepone en el codigo. Asi el chino
-     queda "803 个地点" y el espanol distingue singular de plural, que es lo
+     queda "786 个地点" y el espanol distingue singular de plural, que es lo
      que separa el "|". */
   contadorLugares:  { es:'lugar|lugares', en:'place|places', fr:'lieu|lieux', de:'Ort|Orte', it:'luogo|luoghi', nl:'plek|plekken', zh:'个地点', zht:'個地點', bg:'място|места', pl: "miejsce|miejsca|miejsc" },
   contadorResultados:{ es:'resultado|resultados', en:'result|results', fr:'résultat|résultats', de:'Ergebnis|Ergebnisse', it:'risultato|risultati', nl:'resultaat|resultaten', zh:'条结果', zht:'條結果', bg:'резултат|резултати', pl: "wynik|wyniki|wyników" },
@@ -9397,7 +9406,8 @@ Object.assign(UI_TX, {
        ingles, el aleman y el bulgaro: esas filas no llevaban ni singular
      · el POLACO tiene TRES formas y con dos nunca acierta:
           1 miejsce · 2-4 miejsca · 5+ miejsc
-       asi que «803 lugares» salia «803 miejsca», que es la de 2 a 4, y
+       asi que un contador de 112 salia «112 miejsca», la forma de 2 a 4,
+       cuando 112 cae en la decena del 11 al 14 y pide «miejsc»; y
        «5 wyniki» en vez de «5 wynikow».
    La regla polaca es la de CLDR: singular el 1; la forma corta cuando
    acaba en 2, 3 o 4 salvo en la decena del 11 al 14; genitivo plural el
@@ -10959,41 +10969,6 @@ const places = [
   // ══════════════════════════════════════════════════════════
   //  PUEBLOS — NUEVOS
   // ══════════════════════════════════════════════════════════
-  { id:"nucleo-el-sauzal", category:"municipio", name:"El Sauzal", emoji:"🌄", color:"#00695c", lat:28.4793, lng:-16.4345,
-    desc:{ es:"Mirador natural sobre el Atlántico. Vinos propios, guachinches y el Parque de la Iglesia." },
-    cat:{ es:"Pueblo · Norte" },
-    tags:["Vino","Mirador","Norte","Guachinches"] },
-
-
-  { id:"nucleo-buenavista", category:"municipio", name:"Buenavista del Norte", emoji:"🌅", color:"#2e7d32", lat:28.3718, lng:-16.851,
-    desc:{ es:"El pueblo más al noroeste. Golf, plataneras y vistas a La Gomera. Muy auténtico y tranquilo." },
-    cat:{ es:"Pueblo · Extremo Noroeste" },
-    tags:["Noroeste","Golf","Plataneras","La Gomera"] },
-
-  { id:"nucleo-arico", category:"municipio", name:"Arico", emoji:"🏜️", color:"#6d4c41", lat:28.1657, lng:-16.5009,
-    desc:{ es:"Pueblo en el desierto del sureste. Parapente, senderismo y gastronomía local auténtica." },
-    cat:{ es:"Pueblo · Sureste" },
-    tags:["Parapente","Desierto","Senderismo","Sureste"] },
-
-  { id:"nucleo-santiago-teide", category:"municipio", name:"Santiago del Teide", emoji:"🌾", color:"#8d6e63", lat:28.2974, lng:-16.8155,
-    desc:{ es:"Pueblo tranquilo en el corazón del macizo de Teno. Punto de partida para la ruta de Masca y los barrancos del oeste. Arquitectura canaria tradicional bien conservada." },
-    cat:{ es:"Pueblo · Teno" },
-    tags:["Masca","Teno","Tranquilo","Tradición","Oeste"] },
-
-  { id:"nucleo-los-silos", category:"municipio", name:"Los Silos", emoji:"🌊", color:"#00695c", lat:28.3655, lng:-16.8169,
-    desc:{ es:"Uno de los pueblos más auténticos y pintorescos del norte. Puerto pesquero encantador, festival de teatro callejero y playas de arena negra sin turistas." },
-    cat:{ es:"Pueblo · Noroeste" },
-    tags:["Auténtico","Pesquero","Pinturesco","Teatro","Noroeste"] },
-
-  { id:"nucleo-arafo", category:"municipio", name:"Arafo", emoji:"🌺", color:"#7b1fa2", lat:28.3402, lng:-16.4184,
-    desc:{ es:"Pueblo del sureste con tradición artesanal y fiestas populares muy vivas. Famoso por sus fiestas del Carmen y la elaboración artesanal de productos locales." },
-    cat:{ es:"Pueblo · Sureste" },
-    tags:["Artesanía","Fiestas","Tradición","Sureste"] },
-
-  { id:"nucleo-granadilla", category:"municipio", name:"Granadilla de Abona", emoji:"🌤️", color:"#1565c0", lat:28.1218, lng:-16.5775,
-    desc:{ es:"Capital del sureste con casco histórico bien conservado. Barrio de Charco del Pino con arquitectura colonial. Puerto deportivo de Los Abrigos y playas volcánicas cercanas." },
-    cat:{ es:"Capital Sureste" },
-    tags:["Colonial","Histórico","Puerto","Sureste"] },
 
   // ══════════════════════════════════════════════════════════
   //  PLAYAS — NUEVAS
@@ -12512,55 +12487,6 @@ const places = [
     tags:["Turismo","Cala","Adeje","Hotel","Senderismo","Sur"] },
 
 
-  { id:"nucleo-el-rosario", category:"municipio", name:"El Rosario", emoji:"🏘️", color:"#5d4037", lat:28.451, lng:-16.3672,
-    desc:{ es:"Municipio del área metropolitana de Santa Cruz. Zona residencial tranquila con buenas conexiones a la capital. Destaca el barrio de Radazul con su puerto deportivo." },
-    cat:{ es:"Municipio · Área Metropolitana" },
-    tags:["Municipio","Residencial","Puerto","Santa Cruz"] },
-
-  { id:"nucleo-el-tanque", category:"municipio", name:"El Tanque", emoji:"🌿", color:"#388e3c", lat:28.3562, lng:-16.7792,
-    desc:{ es:"Pequeño municipio en el macizo de Teno con vistas al mar y viñedos tradicionales. Pueblo tranquilo con arquitectura rural canaria bien conservada y gastronomía auténtica." },
-    cat:{ es:"Municipio · Macizo de Teno" },
-    tags:["Municipio","Rural","Viñedos","Teno","Norte"] },
-
-  { id:"nucleo-fasnia", category:"municipio", name:"Fasnia", emoji:"🌊", color:"#0277bd", lat:28.2366, lng:-16.4409,
-    desc:{ es:"Municipio costero del sur-este con piscinas naturales volcánicas únicas. La Playa de Fasnia y sus charcos son joyas poco conocidas. Pueblo tranquilo con fuerte tradición pesquera." },
-    cat:{ es:"Municipio · Sureste" },
-    tags:["Municipio","Piscinas","Pesca","Sureste","Tranquilo"] },
-
-  { id:"nucleo-la-guancha", category:"municipio", name:"La Guancha", emoji:"🍌", color:"#f57f17", lat:28.3729, lng:-16.6534,
-    desc:{ es:"Municipio norte en el Valle de Icod con grandes extensiones de plataneras. Pueblo canario auténtico alejado del turismo masivo. Fiestas populares y gastronomía local destacadas." },
-    cat:{ es:"Municipio · Valle de Icod" },
-    tags:["Municipio","Plataneras","Auténtico","Norte","Rural"] },
-
-  { id:"nucleo-la-matanza", category:"municipio", name:"La Matanza de Acentejo", emoji:"🍇", color:"#6a1b9a", lat:28.4481, lng:-16.458,
-    desc:{ es:"Municipio vinícola en la ladera norte con vinos DO Ycoden-Daute-Isora. Paisajes de viñedos escalonados espectaculares. El nombre recuerda una batalla entre guanches y conquistadores en 1494." },
-    cat:{ es:"Municipio · Norte Vinícola" },
-    tags:["Municipio","Vinos","Viñedos","Historia","Norte"] },
-
-  { id:"nucleo-la-victoria", category:"municipio", name:"La Victoria de Acentejo", emoji:"🏆", color:"#c62828", lat:28.434, lng:-16.4709,
-    desc:{ es:"Municipio histórico donde los guanches derrotaron definitivamente a los conquistadores en 1495. Hoy es conocido por sus vinos y la ruta del vino del norte. Pueblo tranquilo con mucho carácter." },
-    cat:{ es:"Municipio · Norte Histórico" },
-    tags:["Municipio","Historia","Guanches","Vinos","Norte"] },
-
-  { id:"nucleo-san-juan-rambla", category:"municipio", name:"San Juan de la Rambla", emoji:"⛪", color:"#37474f", lat:28.3935, lng:-16.6492,
-    desc:{ es:"Uno de los pueblos más bonitos de Tenerife con arquitectura colonial castellana perfectamente conservada. La iglesia de San Juan Bautista del siglo XVI es joya del barroco canario. Costa con piscinas naturales." },
-    cat:{ es:"Municipio · Norte · Histórico" },
-    tags:["Municipio","Arquitectura","Colonial","Norte","Piscinas"] },
-
-  { id:"nucleo-santa-ursula", category:"municipio", name:"Santa Úrsula", emoji:"🌺", color:"#00695c", lat:28.4252, lng:-16.4915,
-    desc:{ es:"Municipio en las faldas del Teide con excelentes vistas al mar. Famoso por sus aguacates y flores tropicales. El Mirador de Humboldt ofrece una panorámica extraordinaria del Valle de La Orotava." },
-    cat:{ es:"Municipio · Valle de La Orotava" },
-    tags:["Municipio","Mirador","Aguacate","Orotava","Norte"] },
-
-  { id:"nucleo-tegueste", category:"municipio", name:"Tegueste", emoji:"🌾", color:"#558b2f", lat:28.5228, lng:-16.3379,
-    desc:{ es:"Pequeño municipio rural del nordeste con tradición vitivinícola. Sus vinos blancos afrutados son premiados en concursos internacionales. Ambiente rural auténtico a solo 15 min de La Laguna." },
-    cat:{ es:"Municipio · Nordeste Vinícola" },
-    tags:["Municipio","Vinos","Rural","Nordeste","Auténtico"] },
-
-  { id:"nucleo-vilaflor", category:"municipio", name:"Vilaflor", emoji:"🌸", color:"#ad1457", lat:28.1589, lng:-16.637,
-    desc:{ es:"El pueblo más alto de España a 1.400 m de altitud. Clima fresco todo el año, pinos centenarios y el mejor punto para ver el mar de nubes desde abajo. Aguas minerales famosas. Ruta al Teide desde aquí." },
-    cat:{ es:"Municipio · Pueblo más Alto España" },
-    tags:["Municipio","Altitud","Pinos","Mar de Nubes","Teide","Sur"] },
   { id:"nucleo-torviscas", category:"municipio", name:"Torviscas", emoji:"🌴", color:"#00897b", lat:28.0840, lng:-16.7300,
     desc:{ es:"Núcleo integrado en Costa Adeje. Playa Torviscas Bajo con arena y servicios completos. Zona comercial muy activa con centros comerciales y restaurantes de todas las nacionalidades. Vida vibrante a cualquier hora." },
     cat:{ es:"Costa Adeje · Sur" },
@@ -21882,7 +21808,7 @@ const TITSA_LINES = [
      Las horas se escriben "18:35" y nunca "18:35h". Con la hache,
      parseFrequencyMinutes ve "35 h" y devuelve media jornada de espera.
 
-     Aparece San Juan de la Rambla, del lugar nucleo-san-juan-rambla, y
+     Aparece San Juan de la Rambla, del lugar ciudad-san-juan-rambla, y
      desaparece El Botanico. El Botanico salia en la primera version del
      recorrido pero no en la detallada, y ademas esta al este de la
      estacion mientras la linea tira al oeste: metia 2,6 km de ida y
@@ -21903,7 +21829,7 @@ const TITSA_LINES = [
      places[], porque no tenian parada en ninguna linea.
 
      Santiago del Teide pasa de 28,2980/-16,8070 a la coordenada del lugar
-     nucleo-santiago-teide, 28,2974/-16,8155, en las seis lineas que paran
+     ciudad-santiago-teide, 28,2974/-16,8155, en las seis lineas que paran
      ahi: 107, 325, 355, 390N, 461 y 462. Estaba partido en dos nodos a
      830 m, asi que la 107 y la 355 no podian transbordar con la 325. */
     {

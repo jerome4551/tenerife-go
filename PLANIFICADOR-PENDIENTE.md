@@ -83,57 +83,107 @@ No se ha tocado, como dijiste. Lo que se ve desde aquí:
 - El control de costa lo mide a **297 m de la orilla**, tierra adentro, que
   para una piscina natural ya es raro de por sí.
 
-## 5 · La tanda de los duplicados, ya inventariada
+## 5 · La tanda de los duplicados · HECHA
 
-Confirmado y con una corrección al alza: **son 17 pares, no 16**.
+Confirmado y con una corrección al alza: **eran 17 pares, no 16**. El
+decimoséptimo no salía por nombre —`ciudad-vilaflor` se llama «Vilaflor de
+Chasna» y `nucleo-vilaflor` «Vilaflor»— sino midiendo la distancia, que era
+**0 m**.
 
-Los 16 que dices, con **nombre idéntico y coordenada idéntica (0 m)**:
+**Borrados los 17 `nucleo-*`.** Se queda el `ciudad-*`, que es la versión
+buena: texto más largo en 16 de los 17 y más etiquetas.
 
-| cabecera | se queda | se borra |
+| cabecera | se queda | borrado |
 |---|---|---|
-| Arafo | `ciudad-arafo` | `nucleo-arafo` |
-| Arico | `ciudad-arico` | `nucleo-arico` |
-| Buenavista del Norte | `ciudad-buenavista` | `nucleo-buenavista` |
-| El Rosario | `ciudad-rosario` | `nucleo-el-rosario` |
-| El Sauzal | `ciudad-sauzal` | `nucleo-el-sauzal` |
-| El Tanque | `ciudad-tanque` | `nucleo-el-tanque` |
-| Fasnia | `ciudad-fasnia` | `nucleo-fasnia` |
-| Granadilla de Abona | `ciudad-granadilla` | `nucleo-granadilla` |
-| La Guancha | `ciudad-guancha` | `nucleo-la-guancha` |
-| La Matanza de Acentejo | `ciudad-matanza` | `nucleo-la-matanza` |
-| La Victoria de Acentejo | `ciudad-victoria` | `nucleo-la-victoria` |
-| Los Silos | `ciudad-silos` | `nucleo-los-silos` |
-| San Juan de la Rambla | `ciudad-san-juan-rambla` | `nucleo-san-juan-rambla` |
-| Santa Úrsula | `ciudad-santa-ursula` | `nucleo-santa-ursula` |
-| Santiago del Teide | `ciudad-santiago-teide` | `nucleo-santiago-teide` |
-| Tegueste | `ciudad-tegueste` | `nucleo-tegueste` |
+| Arafo | `ciudad-arafo` | ~~`nucleo-arafo`~~ |
+| Arico | `ciudad-arico` | ~~`nucleo-arico`~~ |
+| Buenavista del Norte | `ciudad-buenavista` | ~~`nucleo-buenavista`~~ |
+| El Rosario | `ciudad-rosario` | ~~`nucleo-el-rosario`~~ |
+| El Sauzal | `ciudad-sauzal` | ~~`nucleo-el-sauzal`~~ |
+| El Tanque | `ciudad-tanque` | ~~`nucleo-el-tanque`~~ |
+| Fasnia | `ciudad-fasnia` | ~~`nucleo-fasnia`~~ |
+| Granadilla de Abona | `ciudad-granadilla` | ~~`nucleo-granadilla`~~ |
+| La Guancha | `ciudad-guancha` | ~~`nucleo-la-guancha`~~ |
+| La Matanza de Acentejo | `ciudad-matanza` | ~~`nucleo-la-matanza`~~ |
+| La Victoria de Acentejo | `ciudad-victoria` | ~~`nucleo-la-victoria`~~ |
+| Los Silos | `ciudad-silos` | ~~`nucleo-los-silos`~~ |
+| San Juan de la Rambla | `ciudad-san-juan-rambla` | ~~`nucleo-san-juan-rambla`~~ |
+| Santa Úrsula | `ciudad-santa-ursula` | ~~`nucleo-santa-ursula`~~ |
+| Santiago del Teide | `ciudad-santiago-teide` | ~~`nucleo-santiago-teide`~~ |
+| Tegueste | `ciudad-tegueste` | ~~`nucleo-tegueste`~~ |
+| Vilaflor | `ciudad-vilaflor` | ~~`nucleo-vilaflor`~~ |
 
-**Y el decimoséptimo, que no salía por nombre: Vilaflor.**
-`ciudad-vilaflor` se llama «Vilaflor de Chasna» (el nombre del municipio) y
-`nucleo-vilaflor` se llama «Vilaflor» (el del pueblo). **Misma coordenada
-exacta**, 28.1589, −16.637, y las dos descripciones dicen lo mismo: «el pueblo
-más alto de España a 1.400 m». Buscando por nombre no aparecía; buscando por
-distancia, sí.
+**786 lugares**, los nueve `idiomas/*.json` a 786, paridad exacta, 0 ids
+huérfanos. Probado en el navegador: los 17 pueblos salen **una sola vez** y
+los 17 se siguen encontrando buscándolos.
 
-**Buena noticia para la tanda: no hay nada que reapuntar.** Dijiste de
-reapuntar a `ciudad-*` las referencias que tuvieran los `nucleo-*`
-duplicados. He mirado uno por uno: **los 17 tienen cero referencias** en todo
-`index.html`. Así que la tanda es solo borrar: la ficha y sus textos en los
-nueve `idiomas/*.json`. Sin efectos colaterales.
+### No era sólo deduplicar: la tanda borrada tenía errores
 
-### Dos cosas más para esa misma tanda
+| ficha borrada | decía | dice la que se queda |
+|---|---|---|
+| `nucleo-la-victoria` | «los guanches derrotaron **definitivamente** a los conquistadores en 1495» | «donde **los conquistadores se vengaron** en 1495» |
+| `nucleo-la-matanza` | vinos «**DO Ycoden-Daute-Isora**» | comarca de guachinches (La Matanza es DO Tacoronte-Acentejo) |
+| `nucleo-los-silos` | «festival de **teatro callejero**» | «Festival del **Cuento** Internacional en diciembre» |
 
-**Guía de Isora no tiene `ciudad-*`.** Es cabecera municipal y está solo como
-`nucleo-guia-isora` (28.2111, −16.7788), con 1 referencia en la lista sur. Por
-eso hay **30** `ciudad-*` y no 31: es el municipio que falta. Es la otra cara
-del mismo desorden y rompe tu regla. Decide si se renombra o se acepta.
+El de La Victoria se contradecía con la propia app: `ciudad-matanza` dice que
+los guanches ganaron en 1494 y `ciudad-victoria` que los conquistadores se
+desquitaron en 1495 —que es la pareja coherente, y la histórica—. La ficha
+borrada decía lo contrario del mismo año.
 
-**`nucleo-puerto-cruz-old`.** El sufijo `-old` canta. Se llama «La Ranilla
-(Puerto Cruz)» y está a **69 m** de `ciudad-puerto-cruz`. El nombre es
-distinto y La Ranilla es un barrio de verdad, así que puede ser legítimo,
-pero conviene mirarlo con los demás.
+### Lo que sí se ha perdido, por si lo quieres recuperar
 
----
+Datos que estaban sólo en la ficha borrada. Si quieres alguno, dímelo y lo
+añado al texto de la que se queda, en los diez idiomas:
+
+| dato | estaba en |
+|---|---|
+| Radazul y su puerto deportivo | `nucleo-el-rosario` |
+| el barrio de Charco del Pino | `nucleo-granadilla` |
+| las fiestas del Carmen | `nucleo-arafo` |
+| el parapente | `nucleo-arico` |
+| los aguacates y las flores tropicales | `nucleo-santa-ursula` |
+| la iglesia de San Juan Bautista, del XVI | `nucleo-san-juan-rambla` |
+| el mar de nubes y las aguas minerales | `nucleo-vilaflor` |
+| a 15 min de La Laguna | `nucleo-tegueste` |
+
+### Las referencias: ninguna, salvo dos comentarios
+
+No estaban en ningún `suggestionIds` ni en ninguna tabla. Sólo aparecían en
+**dos comentarios** que documentan de dónde salió la coordenada de una parada
+de TITSA. Como el par estaba a 0 m, se reapuntaron al gemelo y el comentario
+sigue siendo cierto.
+
+### El fallo que casi cuela
+
+El primer borrado se llevó **18** fichas, no 17. El script buscaba el final de
+cada objeto con la línea en blanco que lo separa del siguiente, y
+`nucleo-torviscas` va **pegada** a `nucleo-vilaflor` sin línea entre las dos.
+Se vio porque `places[]` quedó en 785 y los nueve `idiomas/*.json` en 786.
+Ahora el final del objeto es lo que llegue primero —la línea en blanco o el
+principio de la ficha siguiente— y **el script se niega a escribir si el número
+de fichas que desaparecen no es exactamente el que se pidió**.
+
+### Queda de esa misma familia
+
+- **Guía de Isora es cabecera y sólo existe como `nucleo-guia-isora`.** Por eso
+  hay 30 `ciudad-*` y no 31. Rompe tu regla por el otro lado.
+- **`nucleo-puerto-cruz-old`**, con sufijo `-old`, a 69 m de
+  `ciudad-puerto-cruz`. Se llama «La Ranilla (Puerto Cruz)», que es un barrio
+  real, pero el sufijo canta.
+
+## 5b · La búsqueda no ignora las tildes
+
+Salió comprobando lo anterior: **«santa ursula» sin tilde no encuentra nada**.
+`updateSearchSuggestions` hace `p.name.toLowerCase().includes(query)` sin
+plegar acentos.
+
+**226 de las 786 fichas son invisibles si escribes sin tilde**: El Médano,
+Playa de las Américas, Chío, Fañabé, Roques de García, Güímar… Sólo 7 se
+salvan porque tienen un alias sin tildes.
+
+La app está en diez idiomas y buena parte de quien la usa teclea en un móvil
+extranjero, sin tildes. **No lo he tocado** —cambia el comportamiento de la
+búsqueda y merece su propia tanda— pero es de las cosas más gordas que quedan.
 
 ## 6 · Dos controles nuevos, los dos inventario
 

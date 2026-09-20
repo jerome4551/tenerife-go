@@ -106,8 +106,10 @@ console.log('\n=== lugares ===');
    deliberada. 805 -> 804 el 7 de septiembre, al quitar
    charco-infierno-arafo, que estaba a 10 km del mar y no existe; 804 ->
    803 el 20 de septiembre, al dar de baja montana-colorada, que ninguna
-   fuente situa en Fasnia (parche auditoria-mar-8). */
-debe('lugares', PLACES.length, PLACES.length === 803);
+   fuente situa en Fasnia (parche auditoria-mar-8); 803 -> 786 el mismo dia,
+   al borrar las 17 fichas nucleo-* que duplicaban una cabecera municipal
+   con la misma coordenada exacta. */
+debe('lugares', PLACES.length, PLACES.length === 786);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);
