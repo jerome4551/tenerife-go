@@ -8,8 +8,8 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 95afeed87ef99474cdfbaa30e7c5bc3f
-             3.189.211 bytes · 933.022 comprimidos · 37.331 líneas
+index.html   md5 22366671db82fd33aced9f5f9bfb9cdd
+             3.189.141 bytes · 933.014 comprimidos · 37.331 líneas
 idiomas/     9 ficheros de lugares · 2.521.780 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
@@ -1025,13 +1025,32 @@ llamarse igual— pero en una lista de sugerencias se leen como un duplicado.
 
 **El control está puesto**, en `auditar_datos.js`, junto al que ya hacía lo
 mismo con `PLAYAS_ORIENTACION`: *«filas que apuntan a un POI inexistente»*. Y
-se ha probado en el navegador, zona por zona: **78, 64 y 20 fichas pintadas**,
+se ha probado en el navegador, zona por zona: **77, 64 y 17 fichas pintadas**,
 ningún nombre vacío, 0 errores de página.
 
 Lleva además dos líneas de inventario que no suspenden. Una son los rótulos
-repetidos. La otra, los sitios ofrecidos en más de una zona: quedan 8 y casi
-todos son frontera de verdad —Masca, Los Gigantes, Chío—, pero **es la lista
-donde asomaban los dos faros del sur**.
+repetidos. La otra, **los sitios ofrecidos en más de una zona**, y esa ha
+resultado ser la más productiva: de ahí salieron los dos faros del sur que
+estaban en el norte, y después seis más.
+
+**`masca` estaba en norte y sur.** No había que elegir: en la costa oeste las
+listas tienen una costura entre el Faro de Teno (28.3421, norte) y Masca
+(28.3054), y todo lo de debajo es sur. Su mirador está a **70 m**, su barranco
+y su propio municipio (`ciudad-santiago-teide`) ya estaban en el sur. Masca era
+la única ficha del sitio en las dos listas. Fuera del norte.
+
+**Y tres no eran «Cumbre».** La zona Cumbre es el Parque Nacional y sus
+puertas: Teide, Roques de García, Llano de Ucanca, el Observatorio, Vilaflor a
+1.400 m. Estaban ahí `acantilados-gigantes` —cuya propia ficha dice
+«acantilados de hasta 600 m, la forma más espectacular de verlos es **desde el
+mar en barco**»—, `mirador-maska` («Mirador · Teno») y `ruta-masca-playa`, el
+barranco que baja hasta la playa. Las tres seguían además en el sur, que es
+donde caen. La cumbre pasa de 20 a 17.
+
+Quedan **4** en dos zonas y las cuatro se sostienen: `ciudad-rosario` (su ficha
+dice «Cumbre Dorsal»), `riscos-chio` (las lavas del Chío de 1798, con vistas al
+Teide) y las dos puertas del parque, `ciudad-santiago-teide` a 925 m y
+`ciudad-vilaflor` a 1.400 m.
 
 ## Los 17 pares de cabecera municipal duplicada
 
