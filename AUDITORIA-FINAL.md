@@ -1177,6 +1177,65 @@ No es una manía tipográfica. Un dato de acceso —media hora andando— es de 
 que deciden si alguien se mete en un sendero con niños, y tiene que estar igual
 de claro en los diez. Escritos como cifra.
 
+## Por qué cada auditoría sacaba una lista nueva
+
+El dueño del proyecto lo dijo con razón: cada revisión aparecía con algo que
+la anterior no había visto. La causa no era mala suerte.
+
+**Los controles miraban la FORMA del dato y no el dato.** Comprobaban cuántos
+decimales tiene una coordenada, si cae en tierra, si está dentro de la caja de
+Tenerife, si el id cumple `[a-z0-9-]`. Todo eso lo pasa un punto que está a un
+municipio de distancia del sitio que describe. `charco-verde-realejos` cumplía
+las cuatro y estaba en La Guancha diciendo Los Realejos.
+
+Y encima el de los decimales **contaba caracteres**, así que «28.3720» le
+parecían cuatro decimales cuando son tres y un cero de adorno: se dejaba 42 de
+55.
+
+Lo que faltaba era **cruzar cada ficha con el resto del repositorio**, que es
+donde está la única verdad comprobable sin salir a la red. De ahí sale
+`tools/auditar_municipio.js` y el informe completo de
+`tools/informe_lugares.js`, que barre los 787 y **separa tres cosas que nunca
+hay que mezclar**: lo comprobado y correcto, lo comprobado y mal, y lo que no
+se puede comprobar desde aquí, con su motivo. Esa tercera columna es la que
+faltaba, y es la que hacía que cada semana apareciera una lista nueva.
+
+## El municipio que dice la ficha contra donde cae el punto
+
+Las 2.514 paradas de TITSA traen municipio. Cruzándolas con lo que cada ficha
+declara —en un tramo del `cat` o en el paréntesis del nombre— sobre los 787:
+
+```
+que declaran municipio ......... 520
+  comprobados .................. 473
+  sin paradas suficientes ......  45
+no declaran ninguno ............ 267
+
+se contradicen a si mismas ......  2
+el municipio no cuadra, en firme    8
+en el borde, se avisa ...........  5
+```
+
+**Dos se contradicen solas**, y para esas no hace falta ni mirar el mapa:
+`casa-capitanes-generales` tiene el nombre en La Laguna y el `cat` en Santa
+Cruz —está en la Plaza del Adelantado, La Laguna—, y `rcg-tenerife` dice
+Tacoronte en el nombre y La Laguna en el `cat`.
+
+**Las ocho firmes** tienen todas las paradas de alrededor del mismo municipio
+y la más cercana pegada: `parque-tabaiba-baja` a **11 m** de la parada
+«Tabaiba», `kayak-radazul` a 56 m de «Colón», `mercadillo-la-victoria` a
+**35 m** de «La Matanza» diciendo La Victoria. Ésa última además está a **15 m
+de `ciudad-matanza`**, así que lo que está mal no es su texto: es su
+coordenada.
+
+**Las cinco del borde no suspenden.** Un mirador en un puerto de montaña o un
+sendero que cruza dos términos caen en el borde por definición, y un control
+que cante en cada borde se ignora a la semana. Se listan igual: callarlas sería
+el fallo contrario.
+
+**No se ha tocado ninguna de las quince.** Cuál es el municipio bueno de un
+mirador en un límite municipal no se decide desde aquí.
+
 ## El control de coordenadas a ojo se dejaba 42
 
 `auditar_redondeo.py` decía **13**. Son **55**.
