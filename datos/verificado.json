@@ -14,33 +14,166 @@
   "tenerla, porque calla el control y no deja rastro de por que.",
   "",
   "Lo que NO esta aqui no es que este mal: es que nadie lo ha comprobado",
-  "todavia. Son cosas distintas y el informe las separa."
+  "Lo que NO esta aqui no es que este mal: es que nadie lo ha comprobado",
+  "todavia. Son cosas distintas y el informe las separa.",
+  "",
+  "COMO SE EMPAREJO LO DE listasplayascharcos.md: ese fichero lista las playas",
+  "por NOMBRE y coordenada, no por id, asi que el emparejamiento se hizo por",
+  "COORDENADA EXACTA. Eso significa que una ficha que comparte punto con una",
+  "playa verificada -su webcam, su ficha de accesibilidad, el spot de surf que",
+  "esta en esa misma arena- hereda la verificacion DEL PUNTO. Lo verificado es",
+  "que ese punto es el de esa playa; que la ficha deba estar ahi es otra cosa y",
+  "no se afirma."
  ],
  "coordenada": {
+  "abama": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-piscina-jover": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-duque": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-fanabe": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-las-vistas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-los-cristianos": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-poris": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-teresitas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-torviscas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-troya": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "alcala": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
   "almaciga": {
    "fecha": "2026-09-01",
    "commit": "36660dc",
    "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "bano-valleseco-bloque": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
   },
   "benijo": {
    "fecha": "2026-09-01",
    "commit": "36660dc",
    "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
   },
+  "bollullo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "charco-abrigos": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "charco-archile": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "charco-chochos": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "charco-diablo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "charco-don-gabino": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "charco-faro-buenavista": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "charco-golete": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "charco-gomero": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "charco-laja": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "charco-laja-bajamar": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "charco-roque": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
   "charco-verde-guancha": {
    "fecha": "2026-09-21",
    "commit": "3935808",
    "fuente": "El Dia + duenno del proyecto: 28°24'00\"N 16°39'32\"W. Municipio contrastado con las paradas de TITSA (4 de las 6 mas cercanas son de La Guancha, la mas proxima «Santa Catalina»)"
+  },
+  "charco-viento": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "el-duque": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "el-medano": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "el-pris": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "fanabe": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
   "golf-del-sur": {
    "fecha": "2026-09-19",
    "commit": "2ef7c67",
    "fuente": "OpenStreetMap, golf_course «Golf del Sur»"
   },
+  "las-vistas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
   "lidl-santa-cruz": {
    "fecha": "2026-09-19",
    "commit": "2ef7c67",
    "fuente": "OpenStreetMap, supermarket «Lidl», el mas cercano al centro"
+  },
+  "mesa-mar": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
   "nucleo-costa-adeje": {
    "fecha": "2026-09-19",
@@ -52,25 +185,301 @@
    "commit": "2ef7c67",
    "fuente": "OpenStreetMap, neighbourhood «Los Gigantes»"
   },
+  "nucleo-playa-san-juan": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
   "nucleo-san-andres": {
    "fecha": "2026-09-19",
    "commit": "2ef7c67",
    "fuente": "OpenStreetMap, locality «San Andres»"
+  },
+  "piscina-gigantes": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "piscina-guimar": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "piscina-hidalgo-norte": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "piscina-jover-tejina": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "piscinas-alcala-jaquita": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "piscinas-bajamar": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "piscinas-garachico": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "piscinas-muelle": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "piscinas-poris": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-abriguitos": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-agua-dulce": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-americas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-antequera": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-barqueros-buenavista": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-beril": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-bobo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-cabezo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-cabezo-medano": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-caleton-sauzal": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-callao": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-callao-arona": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-camison": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-candelaria": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-castillo-pcruz": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-charcada": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-chimisay": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-confital": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-diego-hernandez": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-enramada": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
   },
   "playa-fajana-realejos": {
    "fecha": "2026-09-21",
    "commit": "3935808",
    "fuente": "Ficha de la playa con UTM 28N X 344.464,66 Y 3.142.340,56 y DMS 28°23'53.6\"N 16°35'15.6\"W. Coincide al septimo decimal con la que ya traia la ficha"
   },
+  "playa-galletas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-grande-abades": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-guincho": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-guios": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-igueste-san-andres": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-jaca": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-jaquita": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-jaquita-medano": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-jardin": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-la-caleta-adeje": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-las-aguas": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-las-bajas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-las-gaviotas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-los-patos": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-martianez": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-muelle-garachico": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-nea": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-pinta": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-puertito": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-puertito-adeje": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-puertito-guimar": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
   "playa-puerto-santiago": {
    "fecha": "2026-09-01",
    "commit": "36660dc",
    "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
   },
+  "playa-punta-fraile": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-punta-larga": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-radazul": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
   "playa-rambla": {
    "fecha": "2026-09-01",
    "commit": "36660dc",
    "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "playa-rincon": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-rojas": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-roques-rambla": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-san-telmo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-socorro": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-socorro-guimar": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-tabaiba": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-torviscas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "puerto-guimar": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "punta-hidalgo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "roque-bodegas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "ruta-anaga-taganana": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "san-juan": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "san-marcos": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "sendero-roque-bodegas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
   "surf-almaciga": {
    "fecha": "2026-09-01",
@@ -82,20 +491,76 @@
    "commit": "36660dc",
    "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
   },
+  "surf-bollullo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "surf-callao-salvaje": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "surf-playa-socorro": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "tejita": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "teresitas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
   "wc-benijo": {
    "fecha": "2026-09-01",
    "commit": "36660dc",
    "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "wc-duque": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "wc-garachico": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
   "wc-gigantes": {
    "fecha": "2026-09-19",
    "commit": "2ef7c67",
    "fuente": "OpenStreetMap, neighbourhood «Los Gigantes» (misma que nucleo-los-gigantes)"
   },
+  "wc-las-vistas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "wc-medano": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "wc-punta-hidalgo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "wc-san-juan": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "wc-teresitas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "wc-troya": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
   "windsurf-el-poris": {
    "fecha": "2026-09-20",
    "commit": "d51d37f",
    "fuente": "Turismo de Tenerife, ficha Playa Grande (Arico), DMS y UTM 28N; empujada 8 m a tierra sobre el segmento de costa"
+  },
+  "windsurf-la-tejita": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   }
  }
 }

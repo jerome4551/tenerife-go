@@ -1189,6 +1189,41 @@ Ahora hay un registro: **`datos/verificado.json`**, una entrada por id con la
 fecha y **de dónde sale**. Sin fuente no se apunta: una marca de «verificado»
 sin fuente calla el control y no deja rastro de por qué.
 
+**Arranca con 130, y no salen de la nada.** Salen de los ficheros de fuente
+que ya se habían entregado meses atrás y se aplicaron sin dejar constancia:
+
+| de dónde | qué traía |
+|---|---|
+| `playastenerife.json` | 40 altas y 4 correcciones de coordenada, **cada una con su campo `fuente`**: Censo Nacional de Zonas de Aguas de Baño 2025 del Servicio Canario de la Salud, Bandera Azul 2026 y Google Places |
+| `listasplayascharcos.md` | las tablas de playas y charcos con su coordenada, bajo la línea «**ninguna coordenada estimada**» |
+| `parche2coordenadas.md` | las 4 de Anaga y Rambla de Castro que estaban corridas, con la comprobación cruzada contra `mir-rambla-castro` |
+| el historial de git | las 14 corregidas a propósito, con el commit que dice por qué |
+
+Y no se han dado por buenas sin más: **de las 119 que traían coordenada se
+comprobó que la de hoy siga siendo la de la fuente.** Ninguna había cambiado
+después y ninguna había desaparecido.
+
+**Una precisión, para no decir más de lo que es.** `listasplayascharcos.md`
+lista por nombre, no por id, así que el emparejamiento fue por **coordenada
+exacta**. Una ficha que comparte punto con una playa verificada —su webcam, su
+ficha de accesibilidad, el spot de surf de esa misma arena— hereda la
+verificación **del punto**. Lo verificado es que ese punto es el de esa playa;
+que la ficha deba estar ahí es otra cosa y no se afirma.
+
+## Las orientaciones de playa son deducidas, no verificadas
+
+Sale de mirar los mismos ficheros. De las **100** filas de
+`PLAYAS_ORIENTACION`, **88 son deducidas**, y lo dice el fichero que las trajo,
+`orientaciones65.json`: *«las 65 las produjo un modelo de lenguaje (Gemini). 11
+tienen respaldo publicado que verifiqué abriendo la fuente, 1 se hereda por
+vecindad de una verificada, y 53 son deducción auditada por coherencia con las
+vecinas»*. Por eso van con `deducida:true`, que es lo honesto.
+
+`ori` alimenta el cálculo de si una playa está resguardada del viento de hoy:
+**no es un dato decorativo**. Las 12 escritas a mano sí están comprobadas; de
+las otras 88, once tienen respaldo y el fichero no dice cuáles, así que desde
+aquí no se pueden separar.
+
 Y no hay que acordarse de escribirlo. **`tools/fijar_coordenada.py` apunta el
 registro él solo** cuando aplica una coordenada, tomando como fuente lo que
 vaya detrás de la `#` en el fichero de entrada; si no se le da fuente, escribe
