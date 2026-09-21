@@ -8,9 +8,9 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 6e62936809da32410c02e0ea56feb903
-             3.185.353 bytes · 932.560 comprimidos · 37.290 líneas
-idiomas/     9 ficheros de lugares · 2.485.795 bytes · 76 a 95 kB comprimidos
+index.html   md5 22244b3cdbb92c98b22bfe369b5aef7a
+             3.185.352 bytes · 932.564 comprimidos · 37.290 líneas
+idiomas/     9 ficheros de lugares · 2.485.833 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
              + glosario-cat/ · 7, y no hacen falta los diez: no se cargan en la
@@ -1108,10 +1108,10 @@ llegue primero —la línea en blanco o el principio de la ficha siguiente— y 
 script se niega a escribir si el número de fichas que desaparecen no es
 exactamente el que se pidió.
 
-Quedan dos cosas para más adelante: **Guía de Isora es cabecera y sólo existe
-como `nucleo-guia-isora`** —por eso hay 30 `ciudad-*` y no 31—, y
-`nucleo-puerto-cruz-old` lleva un sufijo `-old` y está a 69 m de
-`ciudad-puerto-cruz`.
+De las dos cosas que quedaban de esa familia, una ya está hecha:
+`nucleo-puerto-cruz-old` **no duplicaba nada** y es hoy `nucleo-la-ranilla`
+(más abajo). Sigue pendiente **Guía de Isora, que es cabecera municipal y sólo
+existe como `nucleo-guia-isora`** —por eso hay 30 `ciudad-*` y no 31—.
 
 ## Y un control que empezó a cantar por haber borrado
 
@@ -1180,10 +1180,37 @@ señalizar, y cuyos últimos metros sobre roca volcánica son empinados y
 resbaladizos. Reescrito en los diez idiomas con el acceso real y el aviso de
 que el charco sólo renueva el agua con oleaje fuerte.
 
-**El id sigue siendo `charco-verde-realejos`, que ahora miente.** No se
-renombra porque **los ids viajan en los favoritos**, guardados en
-`localStorage` y sincronizados: cambiarlo borraría el sitio de los favoritos de
-quien lo tenga guardado. Un id feo es más barato que eso.
+**Y se ha renombrado a `charco-verde-guancha`.** El id viejo decía
+«realejos» de un sitio que está en otro municipio, y eso es información
+incorrecta, no una fealdad. **Cuesta algo y se sabe**: los ids viajan en los
+favoritos guardados, en `localStorage` y sincronizados, así que quien lo
+tuviera guardado lo pierde. Decisión tomada sabiéndolo.
+
+El renombrado tocó **tres sitios** en `index.html` —la ficha, la lista del
+planificador y `PLAYAS_ORIENTACION`—, los nueve `idiomas/*.json` y un bloque
+del polaco. El script se negaba a escribir si no encontraba exactamente esos
+tres, que es lo que impide un renombrado a medias: un id a medio cambiar deja
+el sitio sin texto traducido y sin orientación, y ninguna de las dos cosas da
+error.
+
+## `nucleo-puerto-cruz-old` era La Ranilla
+
+No duplicaba nada. Es **La Ranilla**, el barrio pesquero de Puerto de la Cruz,
+con contenido propio —casas de colores, tapas de pescado, ambiente bohemio— y
+está a 69 m del centro porque es el barrio de al lado. El sufijo `-old` era un
+resto. Renombrada a **`nucleo-la-ranilla`**.
+
+De paso se le arreglaron los textos, que es donde estaba lo de verdad:
+
+- El nombre y la categoría decían «Puerto Cruz», abreviado. Ahora dicen
+  **«Puerto de la Cruz»**, el nombre entero, en los diez idiomas —el búlgaro y
+  los dos chinos ya lo escribían completo; eran los seis de alfabeto latino los
+  que lo cortaban—.
+- **El francés y el alemán se dejaban «sin masificación turística»**, la última
+  frase, que sí estaba en los otros ocho. Añadida.
+- El neerlandés llevaba un compuesto forzado, «Bohemienachtige»; corregido.
+- Y el francés de la categoría decía «Quartier Pêcheur», que no es francés:
+  **«Quartier de Pêcheurs»**.
 
 ## Alta: Playa de La Fajana (Los Realejos)
 

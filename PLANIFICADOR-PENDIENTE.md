@@ -209,10 +209,11 @@ Lo de «acceso fácil, popular entre familias» era lo más grave: mandaba famil
 a un descenso por roca volcánica. Reescrito en los diez idiomas con el acceso
 real y el aviso de que el charco sólo renueva el agua con oleaje fuerte.
 
-**El id sigue siendo `charco-verde-realejos`, que ahora miente**, y no lo
-renombro: **los ids viajan en los favoritos** guardados (`localStorage` y
-sincronizados). Cambiarlo borraría el sitio de los favoritos de quien lo tenga.
-Si lo prefieres renombrado aun así, dímelo y lo hago sabiendo lo que cuesta.
+**Renombrado a `charco-verde-guancha`**, como pediste. Tocó tres sitios en
+`index.html` —la ficha, la lista del planificador y `PLAYAS_ORIENTACION`—, los
+nueve `idiomas/*.json` y un bloque del polaco; el script se negaba a escribir
+si no encontraba exactamente esos tres, que es lo que evita un renombrado a
+medias. **Quien lo tuviera en favoritos lo pierde**, que es lo que aceptaste.
 
 ## 7 · Playa de La Fajana · DADA DE ALTA
 
@@ -260,29 +261,63 @@ dan `000`—, así que verifiqué **contra el propio dato de la app**.
 los otros cinco eran afirmaciones que nadie podía respaldar. Si tienes fuente
 para alguno, me la pasas y entra.
 
-## 9 · Guía de Isora y Puerto de la Cruz
+## 9 · Puerto de la Cruz · HECHO
 
-**Puerto de la Cruz no es un problema.** `nucleo-puerto-cruz-old` **no duplica
-nada**: es **La Ranilla**, el barrio pesquero, con su propio contenido —casas
-de colores, tapas de pescado, ambiente bohemio— a 69 m del centro porque es el
-barrio de al lado. Lo único feo es el id, y renombrarlo rompería favoritos
-igual que el del Charco Verde. **Nada que hacer.**
+`nucleo-puerto-cruz-old` **no duplicaba nada**: es **La Ranilla**, el barrio
+pesquero, con contenido propio —casas de colores, tapas de pescado, ambiente
+bohemio— a 69 m del centro porque es el barrio de al lado. El `-old` era un
+resto. Renombrada a **`nucleo-la-ranilla`**.
 
-*(De paso: el parche «auditoria-mar-8» quiere quitar de `ermita-san-telmo` la
-frase que la sitúa «en el barrio de La Ranilla», porque está en el Paseo de San
-Telmo. Los dos sitios existen, lo que estaba mal era la ermita.)*
+Y al mirarla de cerca aparecieron tres cosas de verdad en los textos:
 
-**Guía de Isora sí, y lo que necesito es una decisión de una palabra.** Es
-cabecera municipal y está como `nucleo-guia-isora` con `category:"municipio"`,
-cuando las otras 30 cabeceras llevan `category:"ciudad"`. Por eso hay 30
-`ciudad-*` y no 31.
+| | antes | ahora |
+|---|---|---|
+| nombre y categoría | «Puerto **Cruz**», abreviado | **«Puerto de la Cruz»**, entero, en los diez |
+| francés y alemán | se dejaban la última frase, «sin masificación turística», que sí estaba en los otros ocho | añadida |
+| neerlandés | «Bohemienachtige», compuesto forzado | «Bohemien-achtige» |
+| francés, categoría | «Quartier **Pêcheur**» | **«Quartier de Pêcheurs»** |
 
-- **Lo barato y sin riesgo**: cambiarle `category` de `"municipio"` a
-  `"ciudad"`. Una palabra, el id no se toca, los favoritos no se rompen, y
-  queda clasificada como las otras 30.
-- **Lo caro**: además reescribir su texto al estilo más rico de las `ciudad-*`.
-  Eso son diez idiomas y necesitaría de dónde sacar lo nuevo — el texto que
-  tiene ahora es correcto, sólo más corto.
+El búlgaro y los dos chinos ya escribían «Puerto de la Cruz» entero: eran los
+seis de alfabeto latino los que lo cortaban.
 
-Dime si con lo primero vale.
+## 10 · Los diez idiomas, revisados
 
+De las cinco fichas que he tocado en esta tanda —`charco-verde-guancha`,
+`playa-fajana-realejos`, `nucleo-la-ranilla`, `ciudad-rosario` y
+`ciudad-tegueste`— se han comprobado, en los diez idiomas y en `desc` y `cat`:
+
+- que no estén vacías
+- que cada idioma use **su** alfabeto: ni ideogramas fuera del chino, ni
+  cirílico fuera del búlgaro, y que el chino y el búlgaro **sí** lo lleven
+- espacios dobles y espacios al borde
+- que ninguna traducción sea sospechosamente corta respecto al castellano
+- que todas acaben en punto
+- que el texto esté en NFC
+- que las categorías lleven el separador « · »
+
+**Sin un solo fallo.** Y `auditar_idioma.js`, que es el control gordo, da
+**0 hallazgos en los diez**.
+
+*(Así se cazó, en la tanda anterior, un carácter chino que se me había colado
+dentro del búlgaro de la Fajana: «който пада直 върху пясъка».)*
+
+## 11 · Lo único que sigue pendiente
+
+**Guía de Isora.** Es cabecera municipal y lleva `category:"municipio"` cuando
+las otras 30 llevan `"ciudad"`. Por eso hay 30 `ciudad-*` y no 31.
+
+- **Lo barato y sin riesgo**: cambiarle `category` a `"ciudad"`. Una palabra,
+  el id no se toca, los favoritos no se rompen.
+- **Lo caro**: además reescribir su texto al estilo más rico de las
+  `ciudad-*`, que son diez idiomas y necesitaría de dónde sacar lo nuevo. El
+  que tiene ahora es correcto, sólo más corto.
+
+Y de antes, sin tocar:
+
+- **La orientación de la Playa de La Fajana.** Puse `N`, deducida de
+  `playa-rambla` a 614 m. Si sabes hacia dónde mira de verdad, dímelo.
+- **El aviso de mar de la Fajana.** Sin `warn:"mar"`, porque eso lo decides tú
+  y su vecina tampoco lo lleva.
+- **Las 13 coordenadas redondeadas** y las 8 costeras tierra adentro, que
+  `auditar_redondeo.py` lista cada vez.
+- **Las 6 coordenadas del parche «auditoria-mar-8»**, que necesitan Overpass.
