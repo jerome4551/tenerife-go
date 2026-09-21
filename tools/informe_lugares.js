@@ -44,6 +44,50 @@ for (const p of PLACES) {
   const n = Math.min(sig(lit[p.id][0]), sig(lit[p.id][1]));
   dist[n] = (dist[n] || 0) + 1;
 }
+/* ── 0 · lo verificado, separado de lo que no ───────────────────────────── */
+const VER = (() => { try {
+  return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'verificado.json'), 'utf8')).coordenada || {};
+} catch (e) { return {}; } })();
+const nVer = PLACES.filter(p => VER[p.id]).length;
+w('## 0 · Lo verificado, separado de lo que no');
+w('');
+w('Esto es lo primero porque es lo que faltaba. Antes se comprobaba un sitio y');
+w('la comprobación no se guardaba en ninguna parte: se quedaba en los mensajes');
+w('y en los commits. El siguiente control volvía a sacarlo en la lista, y');
+w('parecía que todo fallaba siempre.');
+w('');
+w('| | fichas |');
+w('|---|---|');
+w('| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **' + nVer + '** |');
+w('| Coordenada nunca comprobada por nadie | **' + (PLACES.length - nVer) + '** |');
+w('');
+w('**Lo que no está verificado no es que esté mal: es que nadie lo ha mirado');
+w('todavía.** Son dos cosas distintas y este informe no las mezcla.');
+w('');
+w('De dónde viene cada una:');
+w('');
+w('| id | fecha | de dónde sale |');
+w('|---|---|---|');
+for (const p of PLACES.filter(p => VER[p.id]).sort((a, b) => a.id < b.id ? -1 : 1))
+  w('| `' + p.id + '` | ' + VER[p.id].fecha + ' | ' + VER[p.id].fuente.replace(/\|/g, '') + ' |');
+w('');
+w('**Estas no se vuelven a pedir.** `auditar_redondeo.py` las deja en paz aunque');
+w('estén escritas con pocos decimales: la precisión de una fuente es la que es.');
+w('');
+w('Y no hace falta acordarse de apuntarlas: `tools/fijar_coordenada.py` escribe');
+w('el apunte solo cuando aplica una coordenada, con la fuente que se le pase');
+w('detrás de la `#`. Si no se le da fuente, avisa de que no la apunta.');
+w('');
+w('### Lo que SÍ tiene fuente oficial dentro de la propia ficha');
+w('');
+w('| dato | fichas |');
+w('|---|---|');
+w('| Calidad del agua del censo de zonas de baño, con su año | **' + PLACES.filter(p => p.aguaCalidad && p.aguaCalidadAnio).length + '** |');
+w('| Bandera Azul declarada | **' + PLACES.filter(p => p.blueFlag === true).length + '** |');
+w('| Socorrista declarado (sí o no, no «se desconoce») | **' + PLACES.filter(p => p.lifeguard === true || p.lifeguard === false).length + '** |');
+w('| Orientación de playa escrita a mano (las otras 88 son deducidas) | **12** |');
+w('');
+
 w('## 1 · Con cuánta precisión está escrita cada coordenada');
 w('');
 w('Decimales **significativos** —los ceros de la derecha no cuentan— del eje');

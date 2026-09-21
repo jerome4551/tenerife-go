@@ -4,6 +4,58 @@
 Barre los 787, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
+## 0 · Lo verificado, separado de lo que no
+
+Esto es lo primero porque es lo que faltaba. Antes se comprobaba un sitio y
+la comprobación no se guardaba en ninguna parte: se quedaba en los mensajes
+y en los commits. El siguiente control volvía a sacarlo en la lista, y
+parecía que todo fallaba siempre.
+
+| | fichas |
+|---|---|
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **16** |
+| Coordenada nunca comprobada por nadie | **771** |
+
+**Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
+todavía.** Son dos cosas distintas y este informe no las mezcla.
+
+De dónde viene cada una:
+
+| id | fecha | de dónde sale |
+|---|---|---|
+| `almaciga` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
+| `benijo` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
+| `charco-verde-guancha` | 2026-09-21 | El Dia + duenno del proyecto: 28°24'00"N 16°39'32"W. Municipio contrastado con las paradas de TITSA (4 de las 6 mas cercanas son de La Guancha, la mas proxima «Santa Catalina») |
+| `golf-del-sur` | 2026-09-19 | OpenStreetMap, golf_course «Golf del Sur» |
+| `lidl-santa-cruz` | 2026-09-19 | OpenStreetMap, supermarket «Lidl», el mas cercano al centro |
+| `nucleo-costa-adeje` | 2026-09-19 | OpenStreetMap, neighbourhood «Costa Adeje» |
+| `nucleo-los-gigantes` | 2026-09-19 | OpenStreetMap, neighbourhood «Los Gigantes» |
+| `nucleo-san-andres` | 2026-09-19 | OpenStreetMap, locality «San Andres» |
+| `playa-fajana-realejos` | 2026-09-21 | Ficha de la playa con UTM 28N X 344.464,66 Y 3.142.340,56 y DMS 28°23'53.6"N 16°35'15.6"W. Coincide al septimo decimal con la que ya traia la ficha |
+| `playa-puerto-santiago` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
+| `playa-rambla` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
+| `surf-almaciga` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
+| `surf-benijo` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
+| `wc-benijo` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
+| `wc-gigantes` | 2026-09-19 | OpenStreetMap, neighbourhood «Los Gigantes» (misma que nucleo-los-gigantes) |
+| `windsurf-el-poris` | 2026-09-20 | Turismo de Tenerife, ficha Playa Grande (Arico), DMS y UTM 28N; empujada 8 m a tierra sobre el segmento de costa |
+
+**Estas no se vuelven a pedir.** `auditar_redondeo.py` las deja en paz aunque
+estén escritas con pocos decimales: la precisión de una fuente es la que es.
+
+Y no hace falta acordarse de apuntarlas: `tools/fijar_coordenada.py` escribe
+el apunte solo cuando aplica una coordenada, con la fuente que se le pase
+detrás de la `#`. Si no se le da fuente, avisa de que no la apunta.
+
+### Lo que SÍ tiene fuente oficial dentro de la propia ficha
+
+| dato | fichas |
+|---|---|
+| Calidad del agua del censo de zonas de baño, con su año | **46** |
+| Bandera Azul declarada | **11** |
+| Socorrista declarado (sí o no, no «se desconoce») | **39** |
+| Orientación de playa escrita a mano (las otras 88 son deducidas) | **12** |
+
 ## 1 · Con cuánta precisión está escrita cada coordenada
 
 Decimales **significativos** —los ceros de la derecha no cuentan— del eje
@@ -22,13 +74,12 @@ menos preciso de cada ficha. Es la cuenta entera de los 787, no un umbral:
 
 Dos cifras, y las dos importan:
 
-- **177 fichas tienen al menos un eje con 3 decimales o menos.** De esas,
-  unas 79 saldrían así por puro azar —el cuarto decimal es un cero una vez de
-  cada diez—, así que ese número no señala fichas concretas.
-- **55 tienen los DOS ejes con 3 decimales o menos.** Que los dos caigan a la
-  vez por casualidad es una entre un millón: ahí no hay azar que valga, son
-  marcadores puestos a ojo. **Ésta es la lista sobre la que se puede actuar**,
-  y va entera abajo.
+- **177 fichas tienen al menos un eje con 3 decimales o menos.** De esas, unas
+  79 saldrían así por puro azar —el cuarto decimal es un cero una vez de cada
+  diez—, así que ese número no señala fichas concretas.
+- **55 tienen los DOS ejes con 3 decimales o menos**: eso no es una
+coordenada sacada de una fuente, es un marcador puesto a ojo. Que los dos
+caigan a la vez por casualidad es una entre un millón.
 
 ### Las 20 peores: algún eje con 2 decimales o menos (~1,1 km)
 

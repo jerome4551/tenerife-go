@@ -8,6 +8,9 @@ fijar_coordenada.py — cambia la coordenada de un lugar, comprobandola antes.
     nuevas.txt: una por linea,   id  lat  lng  # de donde sale
     Las lineas vacias y las que empiezan por # se saltan.
 
+    El texto detras de la # es la FUENTE y se guarda. Sin el, la coordenada
+    se escribe pero no se apunta como verificada, y el aviso lo dice.
+
 POR QUE EXISTE
   Una coordenada mala no da error: se dibuja igual y el pin sale en el mar.
   Asi llegaron un Lidl, un parking y una ermita al agua sin que nadie se
@@ -21,6 +24,13 @@ POR QUE EXISTE
 
   Si algo de eso falla NO ESCRIBE NADA. Mas vale dejar el punto donde
   estaba que moverlo a otro sitio equivocado sin que se note.
+
+  Y APUNTA LA VERIFICACION en datos/verificado.json, con la fecha y la
+  fuente. Eso es la mitad del trabajo: antes se verificaba y no se guardaba
+  en ninguna parte, asi que el siguiente control volvia a sacar en la lista
+  un sitio ya comprobado, y parecia que todo fallaba siempre. Si hay que
+  acordarse de apuntarlo a mano, no se apunta. Sin fuente no se escribe: una
+  marca de «verificado» sin fuente calla el control y no deja rastro.
 
   Las categorias que estan en el agua a proposito -puertos, marinas,
   charcos- se avisan pero no se bloquean: un embarcadero SI esta sobre el
@@ -49,13 +59,15 @@ def main():
         if len(args) < 2:
             print('falta el fichero'); return 2
         for linea in io.open(args[1], encoding='utf-8'):
-            linea = linea.split('#')[0].strip()
-            if not linea:
+            if not linea.strip() or linea.lstrip().startswith('#'):
                 continue
-            p = linea.split()
+            # lo de detras de la # es la FUENTE y se guarda: tirarla era
+            # perder justo el dato por el que existe el registro
+            datos, _, fuente = linea.partition('#')
+            p = datos.split()
             if len(p) < 3:
-                print('linea que no entiendo: ' + linea); return 2
-            cambios.append((p[0], float(p[1]), float(p[2]), ''))
+                print('linea que no entiendo: ' + linea.strip()); return 2
+            cambios.append((p[0], float(p[1]), float(p[2]), fuente.strip()))
     elif len(args) >= 3:
         cambios.append((args[0], float(args[1]), float(args[2]), args[3] if len(args) > 3 else ''))
     else:
@@ -98,6 +110,24 @@ def main():
             print('       fuente: %s' % fuente)
     io.open(HTML, 'w', encoding='utf-8').write(s)
     print('  escritas %d coordenada(s) en index.html' % len(plan))
+
+    # y el apunte de que estan verificadas, que es lo que evita volver a pedirlas
+    import datetime, json
+    reg = os.path.join(RAIZ, 'datos', 'verificado.json')
+    doc = json.load(io.open(reg, encoding='utf-8')) if os.path.exists(reg) else {'coordenada': {}}
+    doc.setdefault('coordenada', {})
+    hoy = datetime.date.today().isoformat()
+    apuntadas, sinFuente = 0, []
+    for pid, i, m, tro, vla, vlo, la, lo, d, cat, tierra, fuente in plan:
+        if not fuente.strip():
+            sinFuente.append(pid); continue
+        doc['coordenada'][pid] = {'fecha': hoy, 'fuente': fuente.strip()}
+        apuntadas += 1
+    doc['coordenada'] = dict(sorted(doc['coordenada'].items()))
+    io.open(reg, 'w', encoding='utf-8').write(json.dumps(doc, ensure_ascii=False, indent=1) + '\n')
+    print('  apuntadas %d como verificadas en datos/verificado.json' % apuntadas)
+    for pid in sinFuente:
+        print('  --   %s se ha escrito pero NO se apunta: no dijiste de donde sale' % pid)
     return 0
 
 

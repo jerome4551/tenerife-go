@@ -23,6 +23,8 @@ POR QUE NO FALLA NUNCA
   si el punto cae en el agua. Esto es el inventario de lo que habria
   que ir puliendo, y se imprime entero para que no sea un silencio.
 """
+import io
+import json
 import os
 import re
 import sys
@@ -32,6 +34,18 @@ import costa
 
 COSTERAS = {'playa', 'piscinas', 'surf', 'windsurf'}
 LEJOS = 150.0
+VERIF = os.path.join(costa.RAIZ, 'datos', 'verificado.json')
+
+
+def verificadas():
+    """Los ids cuya coordenada YA se comprobo, con su fuente apuntada.
+
+    No se vuelven a listar. La precision de una fuente es la que es: si el
+    dato oficial da tres decimales, tres decimales son. Volver a sacarlas
+    cada semana es lo que hacia que la lista pareciera no acabarse nunca."""
+    if not os.path.exists(VERIF):
+        return {}
+    return json.load(io.open(VERIF, encoding='utf-8')).get('coordenada', {})
 
 
 def decimales(x):
@@ -57,11 +71,19 @@ def main():
         print('  MAL  no he podido leer places[] del fuente')
         return 1
 
-    red = [s for s in sitios if decimales(s[3]) <= 3 and decimales(s[4]) <= 3]
-    print('  coordenadas redondeadas (lat y lng con 3 decimales o menos): %d de %d'
+    ok = verificadas()
+    todas = [s for s in sitios if decimales(s[3]) <= 3 and decimales(s[4]) <= 3]
+    red = [s for s in todas if s[0] not in ok]
+    yaOk = [s for s in todas if s[0] in ok]
+    print('  coordenadas verificadas, con su fuente apuntada........: %d' % len(ok))
+    print('  a ojo Y SIN VERIFICAR (lat y lng con 3 decimales o menos): %d de %d'
           % (len(red), len(sitios)))
     for pid, cat, nom, la, lo in sorted(red, key=lambda s: (s[1], s[0])):
         print('      %-34s %-17s %9s,%9s  %s' % (pid, cat, la, lo, nom[:34]))
+    if yaOk:
+        print('  a ojo pero YA VERIFICADAS, no se vuelven a pedir.......: %d' % len(yaOk))
+        for pid, cat, nom, la, lo in sorted(yaOk, key=lambda s: s[0]):
+            print('      %-34s %9s,%9s  <- %s' % (pid, la, lo, ok[pid]['fuente'][:52]))
 
     analiza = costa.abrir()
     if analiza is None:

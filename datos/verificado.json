@@ -1,0 +1,101 @@
+{
+ "_": [
+  "Registro de lo VERIFICADO. Existe porque se verificaba y no se guardaba:",
+  "el trabajo quedaba en los mensajes y en los commits, y el siguiente control",
+  "volvia a sacar en la lista un sitio que ya se habia comprobado. Asi salia",
+  "una lista nueva cada semana y parecia que todo fallaba.",
+  "",
+  "Lo que hay aqui NO se vuelve a pedir. Los controles lo leen y lo dejan en",
+  "paz: auditar_redondeo.py no lista una coordenada verificada aunque este",
+  "escrita con pocos decimales, porque la precision de una fuente es la que es.",
+  "",
+  "COMO SE AÑADE: una entrada por id, con la fecha y DE DONDE SALE. Sin",
+  "fuente no se apunta: una marca de «verificado» sin fuente es peor que no",
+  "tenerla, porque calla el control y no deja rastro de por que.",
+  "",
+  "Lo que NO esta aqui no es que este mal: es que nadie lo ha comprobado",
+  "todavia. Son cosas distintas y el informe las separa."
+ ],
+ "coordenada": {
+  "almaciga": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "benijo": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "charco-verde-guancha": {
+   "fecha": "2026-09-21",
+   "commit": "3935808",
+   "fuente": "El Dia + duenno del proyecto: 28°24'00\"N 16°39'32\"W. Municipio contrastado con las paradas de TITSA (4 de las 6 mas cercanas son de La Guancha, la mas proxima «Santa Catalina»)"
+  },
+  "golf-del-sur": {
+   "fecha": "2026-09-19",
+   "commit": "2ef7c67",
+   "fuente": "OpenStreetMap, golf_course «Golf del Sur»"
+  },
+  "lidl-santa-cruz": {
+   "fecha": "2026-09-19",
+   "commit": "2ef7c67",
+   "fuente": "OpenStreetMap, supermarket «Lidl», el mas cercano al centro"
+  },
+  "nucleo-costa-adeje": {
+   "fecha": "2026-09-19",
+   "commit": "2ef7c67",
+   "fuente": "OpenStreetMap, neighbourhood «Costa Adeje»"
+  },
+  "nucleo-los-gigantes": {
+   "fecha": "2026-09-19",
+   "commit": "2ef7c67",
+   "fuente": "OpenStreetMap, neighbourhood «Los Gigantes»"
+  },
+  "nucleo-san-andres": {
+   "fecha": "2026-09-19",
+   "commit": "2ef7c67",
+   "fuente": "OpenStreetMap, locality «San Andres»"
+  },
+  "playa-fajana-realejos": {
+   "fecha": "2026-09-21",
+   "commit": "3935808",
+   "fuente": "Ficha de la playa con UTM 28N X 344.464,66 Y 3.142.340,56 y DMS 28°23'53.6\"N 16°35'15.6\"W. Coincide al septimo decimal con la que ya traia la ficha"
+  },
+  "playa-puerto-santiago": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "playa-rambla": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "surf-almaciga": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "surf-benijo": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "wc-benijo": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "wc-gigantes": {
+   "fecha": "2026-09-19",
+   "commit": "2ef7c67",
+   "fuente": "OpenStreetMap, neighbourhood «Los Gigantes» (misma que nucleo-los-gigantes)"
+  },
+  "windsurf-el-poris": {
+   "fecha": "2026-09-20",
+   "commit": "d51d37f",
+   "fuente": "Turismo de Tenerife, ficha Playa Grande (Arico), DMS y UTM 28N; empujada 8 m a tierra sobre el segmento de costa"
+  }
+ }
+}

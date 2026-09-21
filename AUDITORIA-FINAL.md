@@ -1177,6 +1177,50 @@ No es una manía tipográfica. Un dato de acceso —media hora andando— es de 
 que deciden si alguien se mete en un sendero con niños, y tiene que estar igual
 de claro en los diez. Escritos como cifra.
 
+## Lo verificado no se guardaba en ninguna parte
+
+Ésta es la causa de fondo, y es un fallo de diseño. **Se comprobaba un sitio y
+la comprobación se quedaba en los mensajes y en el commit.** Nada en el dato
+decía «esto ya está mirado», así que el siguiente control volvía a sacarlo en
+la lista. Trabajo de meses que había que volver a hacer, y la sensación —
+justa— de que todo falla siempre.
+
+Ahora hay un registro: **`datos/verificado.json`**, una entrada por id con la
+fecha y **de dónde sale**. Sin fuente no se apunta: una marca de «verificado»
+sin fuente calla el control y no deja rastro de por qué.
+
+Y no hay que acordarse de escribirlo. **`tools/fijar_coordenada.py` apunta el
+registro él solo** cuando aplica una coordenada, tomando como fuente lo que
+vaya detrás de la `#` en el fichero de entrada; si no se le da fuente, escribe
+la coordenada pero avisa de que no la apunta. Si hay que acordarse a mano, no
+se apunta: eso ya se probó.
+
+`auditar_redondeo.py` lee el registro y **deja en paz lo verificado** aunque
+esté escrito con pocos decimales: la precisión de una fuente es la que es.
+
+## El estado real de las coordenadas, sacado del historial
+
+Recorriendo los 106 commits que tocan `index.html` y comparando las
+coordenadas de cada uno con el anterior, sale el mapa exacto de lo que se ha
+tocado nunca:
+
+```
+entraron en el PRIMER commit y nadie ha tocado su coordenada ..... 725
+dadas de alta despues ............................................  48
+con la coordenada corregida a proposito, con su motivo ...........  14
+```
+
+**El 92 % de las coordenadas viene de la importación inicial y no las ha
+mirado nadie.** No es que el trabajo de estos meses haya fallado: es que ese
+trabajo fue otro —los diez idiomas con sus 1.705 filas cada uno, la red de
+TITSA regenerada del GTFS, el mapa sin conexión, las 690 respuestas del
+asistente— y todo eso **está comprobado y en verde**. Las coordenadas nunca
+formaron parte de él.
+
+Decirlo así es la diferencia entre «mucho está fallando» y «esto de aquí está
+hecho, esto otro no se ha empezado». Son la misma realidad y no significan lo
+mismo.
+
 ## Por qué cada auditoría sacaba una lista nueva
 
 El dueño del proyecto lo dijo con razón: cada revisión aparecía con algo que
