@@ -6,7 +6,7 @@ auditar_redondeo.py — inventario, no puerta: coordenadas provisionales.
     python3 tools/auditar_redondeo.py
 
 QUE MIRA
-  1. Fichas cuya lat Y lng tienen 3 decimales o menos. Eso no es una
+  1. Fichas cuya lat Y lng tienen 3 decimales SIGNIFICATIVOS o menos. Eso no es una
      coordenada tomada de una fuente: es un marcador puesto a ojo. Tres
      decimales son ~110 m de lado, y asi fue como un Lidl acabo en el
      mar. Que dos coordenadas de verdad caigan las dos en 3 decimales
@@ -35,7 +35,16 @@ LEJOS = 150.0
 
 
 def decimales(x):
-    return len(x.split('.')[1]) if '.' in x else 0
+    """Decimales SIGNIFICATIVOS: los ceros de la derecha no cuentan.
+
+    Aqui se escapaban 41. Un marcador puesto a ojo se escribe «28.372» y
+    luego alguien lo deja en «28.3720» para que case con el formato de las
+    demas, y contando caracteres eso parecen cuatro decimales. Es el mismo
+    punto con un cero de adorno: sigue siendo una cuadricula de 110 m.
+    Contando solo los significativos, la cuenta pasa de 13 a 54."""
+    if '.' not in x:
+        return 0
+    return len(x.split('.')[1].rstrip('0'))
 
 
 def main():

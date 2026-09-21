@@ -301,23 +301,73 @@ De las cinco fichas que he tocado en esta tanda —`charco-verde-guancha`,
 *(Así se cazó, en la tanda anterior, un carácter chino que se me había colado
 dentro del búlgaro de la Fajana: «който пада直 върху пясъка».)*
 
-## 11 · Lo único que sigue pendiente
+## 11 · Guía de Isora · HECHO
 
-**Guía de Isora.** Es cabecera municipal y lleva `category:"municipio"` cuando
-las otras 30 llevan `"ciudad"`. Por eso hay 30 `ciudad-*` y no 31.
+`category` de `"municipio"` a `"ciudad"`. Una palabra, el id intacto, los
+favoritos intactos. **31 cabeceras municipales, 31 `ciudad`** — ya no falta
+ninguna.
 
-- **Lo barato y sin riesgo**: cambiarle `category` a `"ciudad"`. Una palabra,
-  el id no se toca, los favoritos no se rompen.
-- **Lo caro**: además reescribir su texto al estilo más rico de las
-  `ciudad-*`, que son diez idiomas y necesitaría de dónde sacar lo nuevo. El
-  que tiene ahora es correcto, sólo más corto.
+## 12 · La Playa La Fajana, escrita entera
 
-Y de antes, sin tocar:
+Con lo que mandaste. La coordenada que traía la ficha —28.398211, −16.587652—
+**coincide con la tuya al séptimo decimal**, así que queda confirmada por dos
+vías.
 
-- **La orientación de la Playa de La Fajana.** Puse `N`, deducida de
-  `playa-rambla` a 614 m. Si sabes hacia dónde mira de verdad, dímelo.
-- **El aviso de mar de la Fajana.** Sin `warn:"mar"`, porque eso lo decides tú
-  y su vecina tampoco lo lleva.
-- **Las 13 coordenadas redondeadas** y las 8 costeras tierra adentro, que
-  `auditar_redondeo.py` lista cada vez.
-- **Las 6 coordenadas del parche «auditoria-mar-8»**, que necesitan Overpass.
+Lo que entra nuevo y **cambia la ficha de fondo**:
+
+| | |
+|---|---|
+| tamaño | 130 m de largo por 20 de ancho |
+| acceso | unos **30 minutos a pie** por sendero, con tramos de escaleras y un último trecho sobre piedras junto al mar |
+| quién no debería ir | **no es recomendable con niños ni con personas mayores** |
+| servicios | **ninguno**: ni socorrista, ni hamacas, ni sombrillas, ni chiringuito. Hay que llevarse agua, comida y calzado de agarre |
+| el mar | el del norte va **más revuelto y con más corriente** que el del sur: bañarse sólo si está en calma y sin adentrarse |
+
+Por eso la ficha lleva ahora dos cosas que antes no tenía:
+
+- **`lifeguard: false`** — antes no lo decía, porque no se sabía. Tu fuente lo
+  dice, así que la app pinta el aviso naranja «Sin socorrista».
+- **`warn:"mar"`** — sé que ese campo lo decides tú, y lo he puesto porque tu
+  propio texto describe exactamente ese peligro: corrientes, mar del norte,
+  «sólo meterse si está en calma». Si prefieres quitarlo, es una palabra.
+
+También pasa a llamarse **«Playa La Fajana (Los Realejos)»**, como en tu
+fuente, y gana las etiquetas «Sin Servicios» y «Sendero».
+
+Los diez idiomas revisados otra vez. Y esta vez **saltó un control**: el
+francés, el italiano y el neerlandés escribían el «30» de los minutos **en
+letra** —«une trentaine», «una trentina», «een halfuur»—, así que la cifra
+desaparecía. `auditar_idioma.js` compara los números de cada traducción con
+los del castellano y los cazó: 130 y 20 estaban, el 30 no. Escritos como
+cifra. **Los diez a cero hallazgos.**
+
+## 13 · Las coordenadas a ojo: no eran 13, son 55
+
+Al sacar la lista que pediste se vio que **mi control se dejaba 42**.
+
+Contaba los decimales **escritos**, y una coordenada puesta a ojo se escribe
+«28.372» y luego alguien la deja en **«28.3720»** para que case con el formato
+de las demás. Contando caracteres parecen cuatro decimales y pasaba el filtro.
+Es el mismo punto con un cero de adorno, y sigue siendo una cuadrícula de
+110 m. Ya cuenta decimales **significativos**.
+
+**20 de las 55 tienen sólo dos decimales**, o sea una cuadrícula de **1,1 km**.
+Entre ellas `mir-rambleta-teide` —el mirador del Teide a 3.555 m—, `anaga`,
+`caldeira-canadas`, `corona-forestal`, los tres de Los Gigantes y
+`lidl-puerto-cruz`, que además es una de las seis del parche del mar.
+
+La lista entera va aparte, en **`COORDENADAS-A-OJO.md`**: agrupada por
+categoría, con qué es cada sitio, la coordenada tal y como está escrita hoy y
+el municipio de la parada de TITSA más cercana para situarla.
+
+## 14 · Lo que sigue pendiente
+
+- **Las 55 coordenadas a ojo.** La lista, en `COORDENADAS-A-OJO.md`.
+- **Las 6 del parche «auditoria-mar-8»**, que necesitan Overpass: el faro de
+  Santa Cruz, los dos parkings, el Lidl de Puerto de la Cruz, el whale
+  watching y la ermita de San Telmo.
+- **La orientación de la Playa La Fajana.** Está en `N`, deducida de
+  `playa-rambla` a 614 m. Tu fuente no la dice. Si la sabes, dímelo.
+- **Las 7 costeras tierra adentro** que `auditar_redondeo.py` lista cada vez:
+  `charco-diablo` a 522 m de la orilla, `surf-las-americas` a 456,
+  `surf-medano` a 386, y cuatro más.

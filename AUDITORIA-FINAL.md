@@ -8,9 +8,9 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 22244b3cdbb92c98b22bfe369b5aef7a
-             3.185.352 bytes · 932.564 comprimidos · 37.290 líneas
-idiomas/     9 ficheros de lugares · 2.485.833 bytes · 76 a 95 kB comprimidos
+index.html   md5 9a1eb23ca66c2749cdb91886b33acfbe
+             3.185.808 bytes · 932.792 comprimidos · 37.290 líneas
+idiomas/     9 ficheros de lugares · 2.489.750 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
              + glosario-cat/ · 7, y no hacen falta los diez: no se cargan en la
@@ -936,7 +936,8 @@ traducen aquí, como el resto del corpus.
 
 `tools/auditar_redondeo.py` lista dos cosas y **no falla nunca**:
 
-- **13 de 787** fichas tienen lat **y** lng con 3 decimales o menos. Eso no es
+- **55 de 787** fichas tienen lat **y** lng con 3 decimales significativos o
+  menos. Eso no es
   una coordenada tomada de una fuente: es un marcador puesto a ojo, y tres
   decimales son ~110 m de lado. Así fue como un Lidl acabó en el mar. (El
   parche esperaba «al menos 60, entre ellas 9 supermercados y 3 gasolineras»,
@@ -1162,6 +1163,49 @@ control que no reconoce el código que vigila no está vigilando nada. Se le
 actualizó el patrón y se le añadió un hermano que comprueba que **no quede
 ninguna comparación sin plegar**, porque plegar sólo un lado cambiaría un fallo
 por el contrario.
+
+## Un número escrito en letra desaparece
+
+Al escribir la Playa La Fajana en los diez idiomas, `auditar_idioma.js` puso
+en rojo el francés, el italiano y el neerlandés. El motivo: el castellano dice
+«unos **30** minutos a pie» y esos tres lo decían en letra —«une trentaine»,
+«una trentina», «een halfuur»—, así que **la cifra desaparecía**. El control
+compara los números de cada traducción con los del castellano: encontraba el
+130 y el 20 de las dimensiones, y el 30 no.
+
+No es una manía tipográfica. Un dato de acceso —media hora andando— es de los
+que deciden si alguien se mete en un sendero con niños, y tiene que estar igual
+de claro en los diez. Escritos como cifra.
+
+## El control de coordenadas a ojo se dejaba 42
+
+`auditar_redondeo.py` decía **13**. Son **55**.
+
+Contaba los decimales **escritos**, y una coordenada puesta a ojo se escribe
+«28.372» y luego alguien la deja en **«28.3720»** para que case con el formato
+de las demás. Contando caracteres eso parecen cuatro decimales y el control la
+dejaba pasar; es el mismo punto con un cero de adorno, y sigue siendo una
+cuadrícula de 110 m. Ahora cuenta decimales **significativos**, quitando los
+ceros de la derecha.
+
+De las 55, **20 tienen sólo dos decimales**, que es una cuadrícula de
+**1,1 km**: `anaga`, `caldeira-canadas`, `corona-forestal`, `mir-rambleta-teide`
+—el mirador del Teide a 3.555 m—, los tres de Los Gigantes, `lidl-puerto-cruz`
+—que es una de las seis del parche del mar—, `mercadona-el-medano`…
+
+La lista entera, con qué es cada una y en qué municipio cae, está en
+`COORDENADAS-A-OJO.md`.
+
+Y el aviso que se lleva: **un control que mira la forma del dato y no su
+contenido se equivoca en silencio**. Éste llevaba dos días dando 13 y nadie lo
+hubiera mirado dos veces si no llega a pedirse la lista.
+
+## Guía de Isora ya es una `ciudad`
+
+Era la excepción que quedaba: cabecera municipal con `category:"municipio"`
+cuando las otras 30 llevan `"ciudad"`. Por eso había 30 `ciudad-*` y no 31.
+Cambiada la categoría —una palabra—, el id no se toca y los favoritos no se
+rompen. **31 cabeceras, 31 `ciudad`.**
 
 ## Charco Verde estaba en el municipio equivocado
 
@@ -1475,8 +1519,8 @@ no la secundaria**.
 | Ids de lugar que cumplen `[a-z0-9-]` | **786** |
 | Con calidad de agua, y su año | **46** · 46 |
 | Con alias de búsqueda, que los 3 filtros leen | **58** |
-| Con aviso `warn`, y su tipo existe en `WARN_I18N` | **115** · 0 huérfanos |
-| De esos, `warn:"mar"` | **49** |
+| Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
+| De esos, `warn:"mar"` | **50** |
 | URLs de lugar sin cifrar | **0** de 16 |
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
