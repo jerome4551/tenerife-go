@@ -108,8 +108,9 @@ console.log('\n=== lugares ===');
    803 el 20 de septiembre, al dar de baja montana-colorada, que ninguna
    fuente situa en Fasnia (parche auditoria-mar-8); 803 -> 786 el mismo dia,
    al borrar las 17 fichas nucleo-* que duplicaban una cabecera municipal
-   con la misma coordenada exacta. */
-debe('lugares', PLACES.length, PLACES.length === 786);
+   con la misma coordenada exacta; 786 -> 787 el 21 de septiembre, con el
+   alta de playa-fajana-realejos. */
+debe('lugares', PLACES.length, PLACES.length === 787);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);
@@ -135,11 +136,23 @@ debe('valores de calidad fuera de los tres', conAgua.filter(p => !VALORES.includ
 debe('lifeguard con un valor que no es true/false/null',
      PLACES.filter(p => 'lifeguard' in p && p.lifeguard !== true && p.lifeguard !== false && p.lifeguard !== null).length,
      PLACES.every(p => !('lifeguard' in p) || p.lifeguard === true || p.lifeguard === false || p.lifeguard === null));
-/* El alias solo sirve si el buscador lo lee. Son tres filtros distintos. */
+/* El alias solo sirve si el buscador lo lee. Son tres filtros distintos.
+   El patron mira sinTildes(), que es como se comparan desde que la busqueda
+   pliega los acentos. Cuando se cambio la forma de la comparacion este
+   control se quedo a 0 y canto, que es lo que tenia que hacer: un control
+   que no reconoce el codigo que vigila no esta vigilando nada. */
 const fs_ = require('fs');
 const html = fs_.readFileSync(require('path').join(__dirname, '..', 'index.html'), 'utf8');
-const leenAlias = (html.match(/\.alias && [a-z]+\.alias\.toLowerCase\(\)\.includes\(searchQuery\)/g) || []).length;
+const leenAlias = (html.match(/\.alias && sinTildes\([a-z]+\.alias\)\.includes\(searchQuery\)/g) || []).length;
 debe('filtros del buscador que leen alias', leenAlias, leenAlias >= 3);
+
+/* Y que la busqueda pliegue los acentos en los DOS lados. Si se pliega solo
+   lo tecleado, escribir CON tilde deja de encontrar: seria cambiar un fallo
+   por el contrario. */
+const pliegaEntrada = /searchQuery = sinTildes\(e\.target\.value\)/.test(html);
+const sinPlegar = (html.match(/\.toLowerCase\(\)\.includes\(searchQuery\)/g) || []).length;
+debe('la busqueda pliega lo que se teclea', pliegaEntrada ? 'si' : 'NO', pliegaEntrada);
+debe('comparaciones que aun no pliegan el texto', sinPlegar, sinPlegar === 0);
 debe('lugares con alias', PLACES.filter(p => p.alias).length, PLACES.filter(p => p.alias).length > 0);
 
 /* Los colores entran en un atributo style sin escapar, asi que solo son

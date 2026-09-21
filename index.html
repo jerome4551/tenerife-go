@@ -153,7 +153,7 @@ window.onunhandledrejection = function(e) {
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
       "author": { "@type": "Person", "name": "Jérôme B" },
       "image": "https://jerome4551.github.io/tenerife-go/og-image.jpg",
-      "featureList": "Mapa interactivo offline, 786 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
+      "featureList": "Mapa interactivo offline, 787 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
     },
     {
       "@type": "TouristDestination",
@@ -8676,7 +8676,7 @@ try {
    medias, sin que nadie hubiera elegido nada. Esconder la opcion del menu no
    tocaba ese camino.
    Cuando un idioma este completo se le quita de esta lista y se acabo.
-   El polaco ya salio: tiene la interfaz y los 786 lugares de
+   El polaco ya salio: tiene la interfaz y los 787 lugares de
    idiomas/pl.json. La lista se queda vacia, que no es lo mismo que
    sobrar: el dia que entre el idioma numero once vuelve a hacer falta,
    y el numero que el usuario lee sale de contarla. */
@@ -9099,7 +9099,7 @@ Object.assign(UI_TX, {
   capaIslaCargando: { es:'Abriendo el mapa de la isla…', en:'Opening the island map…', fr:'Ouverture de la carte de l’île…', de:'Inselkarte wird geöffnet…', it:'Apertura della mappa dell’isola…', nl:'Eilandkaart wordt geopend…', zh:'正在打开海岛地图…', zht:'正在開啟海島地圖…', bg:'Отваря се картата на острова…', pl: "Otwieram mapę wyspy…" },
   capaSinRed:       { es:'Sin red: se pasa al mapa de la isla', en:'No connection: switching to the island map', fr:'Pas de réseau : passage à la carte de l’île', de:'Keine Verbindung: Wechsel zur Inselkarte', it:'Nessuna rete: si passa alla mappa dell’isola', nl:'Geen verbinding: overschakelen naar de eilandkaart', zh:'没有网络：切换到海岛地图', zht:'沒有網路：切換到海島地圖', bg:'Няма мрежа: минава се към картата на острова', pl: "Brak sieci: przełączam na mapę wyspy" },
   /* Sin {n} a proposito: el numero se antepone en el codigo. Asi el chino
-     queda "786 个地点" y el espanol distingue singular de plural, que es lo
+     queda "787 个地点" y el espanol distingue singular de plural, que es lo
      que separa el "|". */
   contadorLugares:  { es:'lugar|lugares', en:'place|places', fr:'lieu|lieux', de:'Ort|Orte', it:'luogo|luoghi', nl:'plek|plekken', zh:'个地点', zht:'個地點', bg:'място|места', pl: "miejsce|miejsca|miejsc" },
   contadorResultados:{ es:'resultado|resultados', en:'result|results', fr:'résultat|résultats', de:'Ergebnis|Ergebnisse', it:'risultato|risultati', nl:'resultaat|resultaten', zh:'条结果', zht:'條結果', bg:'резултат|резултати', pl: "wynik|wyniki|wyników" },
@@ -9982,10 +9982,10 @@ const places = [
 
 
 
-  { id:"charco-verde-realejos", warn:"mar", category:"piscinas", name:"Charco Verde (Los Realejos)", emoji:"💧", color:"#2e7d32", lat:28.3963, lng:-16.659,
-    desc:{ es:"Piscina natural entre rocas en Los Realejos. El agua toma un tono verdoso por las algas y el fondo. Acceso fácil y gratuito. Muy popular entre familias locales." },
-    cat:{ es:"Piscina Natural · Los Realejos" },
-    tags:["Norte","Local","Gratuito","Familiar","Realejos"] },
+  { id:"charco-verde-realejos", warn:"mar", category:"piscinas", name:"Charco Verde (La Guancha)", emoji:"💧", color:"#2e7d32", lat:28.400000, lng:-16.658890,
+    desc:{ es:"Piscina natural en la costa de La Guancha, en la zona de Punta de Marrero, junto a otros dos charcos igual de espectaculares: el de La Arena y el del Viento. Paisaje volcánico entre fincas de plátanos, con el Teide al fondo, un acantilado pronunciado y el océano. No hay carretera directa: se aparca junto a las plataneras del barrio costero de Santa Catalina y se baja a pie por un sendero sin señalizar. El charco está elevado sobre el mar y solo renueva el agua con oleaje fuerte. No bajes con el mar del norte revuelto ni sin calzado de agarre: los últimos metros sobre la roca volcánica son empinados y resbaladizos." },
+    cat:{ es:"Piscina Natural · La Guancha" },
+    tags:["Volcánico","Sendero","Plataneras","Acantilado","La Guancha","Punta de Marrero","Norte"] },
 
 
   { id:"masca", warn:"carretera", category:"montana", cats:["parking"], parking:{ plazas:null, gratis:true, precioHora:null, precioDia:null, precioFecha:null, aviso:{ es:"Plazas limitadas en cordón, con restricción estricta: máximo 2 horas entre las 08:00 y las 14:00, bajo riesgo de sanción." } }, name:"Masca", emoji:"🏔️", color:"#8e44ad", lat:28.3054, lng:-16.8399,
@@ -11022,6 +11022,11 @@ const places = [
     desc:{ es:"Playa escondida con palmeras naturales y barranco verde en Los Realejos. Sólo accesible a pie por un sendero de 20 minutos entre plataneras. Completamente virgen y sin turistas." },
     cat:{ es:"Playa Oculta · Los Realejos" },
     tags:["Oculta","Virgen","Palmeras","Senderismo","Norte"] },
+
+  { id:"playa-fajana-realejos", category:"playa", name:"Playa de La Fajana (Los Realejos)", emoji:"🌊", color:"#37474f", lat:28.398211, lng:-16.587652,
+    desc:{ es:"Playa salvaje de arena negra en el norte de la isla, dentro del Paisaje Protegido de la Rambla de Castro. Es célebre por la cascada que cae directamente sobre la arena." },
+    cat:{ es:"Playa de Arena Negra · Los Realejos" },
+    tags:["Cascada","Salvaje","Arena Negra","Rambla Castro","Norte"] },
 
   { id:"playa-amarilla", category:"playa", cats:["parking"], name:"Playa Amarilla", emoji:"🟡", color:"#f9a825", lat:28.009306, lng:-16.638444, lifeguard:false, blueFlag:false,
     parking:{ plazas:null, gratis:true, precioHora:null, precioDia:null, precioFecha:null, aviso:{ es:"Línea blanca gratuita en las calles residenciales, Aquiles y Poseidón. No hay parking oficial junto al Monumento Natural ni zona azul; a 5-10 minutos andando suele haber sitio." } },
@@ -12318,7 +12323,7 @@ const places = [
     tags:["Vino","DO","Guachinches","Norte","Colonial","Acentejo"] },
 
   { id:"ciudad-tegueste", category:"ciudad", name:"Tegueste", emoji:"🌾", color:"#558b2f", lat:28.5228, lng:-16.3379,
-    desc:{ es:"Municipio rural y vinícola entre La Laguna y Anaga. Conserva tradiciones canarias auténticas. Fiestas de San Marcos en abril con danzas y baile mago. Únicos vinos blancos de altitud. Sin costa pero con encanto rural intacto." },
+    desc:{ es:"Municipio rural y vinícola entre La Laguna y Anaga. Conserva tradiciones canarias auténticas. Fiestas de San Marcos en abril con danzas y baile mago. Únicos vinos blancos de altitud. Sin costa pero con encanto rural intacto. Bien conectado con La Laguna en guagua." },
     cat:{ es:"Pueblo Rural · Norte" },
     tags:["Rural","Vino","Tradición","San Marcos","Sin Costa","Norte"] },
 
@@ -12403,7 +12408,7 @@ const places = [
     tags:["Música","Sureste","Almendros","Miel","Vino","Tradición"] },
 
   { id:"ciudad-rosario", category:"ciudad", name:"El Rosario", emoji:"🌲", color:"#33691e", lat:28.451, lng:-16.3672,
-    desc:{ es:"Municipio de medianías entre Santa Cruz y La Laguna. Bosque de La Esperanza con pinares y laurisilva. Mirador de Las Raíces, donde Franco preparó el alzamiento de 1936. Aire fresco, niebla mística y senderos." },
+    desc:{ es:"Municipio de medianías entre Santa Cruz y La Laguna. Bosque de La Esperanza con pinares y laurisilva. Mirador de Las Raíces, donde Franco preparó el alzamiento de 1936. Aire fresco, niebla mística y senderos. En la costa está Radazul, con puerto deportivo y playa." },
     cat:{ es:"Municipio · Cumbre Dorsal" },
     tags:["Bosque","Pinos","Senderismo","Histórico","Niebla","Mirador"] },
 
@@ -14242,6 +14247,24 @@ TG_LUGARES_I18N.aplicarPendientes();
 let activeMarkers = [];
 let markerMap = {};
 let selectedCategories = new Set(); // Multi-select
+/* Buscar sin tildes Y con tildes.
+   «santa ursula» no encontraba nada: la comparacion era includes() a secas y
+   226 de las 786 fichas llevan tilde o eñe en el nombre -El Medano, Playa de
+   las Americas, Chio, Fañabe, Roques de Garcia, Güimar-. Quien teclea en un
+   movil extranjero, o quien simplemente no pone tildes, no las veia.
+
+   Se pliegan los dos lados, lo tecleado y el texto, asi que sirven las dos
+   formas y ninguna deja de funcionar.
+
+   Se quitan SOLO los diacriticos latinos [\u0300-\u036f], no todo \p{M}:
+   \p{M} se lleva tambien el selector de variacion de los emoji (U+FE0F) y
+   eso CAMBIA EL LARGO de la cadena, que es justo lo que resaltar() necesita
+   que no cambie para saber donde poner el <mark>. Con este rango, las 10.798
+   cadenas del fichero miden lo mismo antes y despues. */
+function sinTildes(s) {
+  return String(s == null ? '' : s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
 let searchQuery = '';
 let searchLocked = false; // true cuando el usuario pulsa Enter → solo muestra resultados + zoom
 let searchLockedIds = new Set(); // IDs de los lugares a mostrar cuando searchLocked=true
@@ -15481,7 +15504,7 @@ function closeSearch() {
 }
 
 searchInput.addEventListener('input', (e) => {
-  searchQuery = e.target.value.toLowerCase();
+  searchQuery = sinTildes(e.target.value);
   searchLocked = false; // el usuario sigue escribiendo → desbloquear
   searchLockedIds = new Set();
   document.getElementById('search-clear').classList.toggle('visible', searchQuery.length > 0);
@@ -15495,9 +15518,9 @@ searchInput.addEventListener('keydown', (e) => {
   if (searchQuery.length < 2) return;
 
   const filtered = places.filter(p =>
-    p.name.toLowerCase().includes(searchQuery) ||
-    (p.alias && p.alias.toLowerCase().includes(searchQuery)) ||
-    (p.cat && (p.cat[currentLang] || p.cat.en || p.cat.es || '').toLowerCase().includes(searchQuery))
+    sinTildes(p.name).includes(searchQuery) ||
+    (p.alias && sinTildes(p.alias).includes(searchQuery)) ||
+    (p.cat && sinTildes(p.cat[currentLang] || p.cat.en || p.cat.es || '').includes(searchQuery))
   );
   if (filtered.length === 0) return;
 
@@ -15563,9 +15586,9 @@ function updateSearchSuggestions() {
   }
   const L = t();
   const filtered = places.filter(p =>
-    p.name.toLowerCase().includes(searchQuery) ||
-    (p.alias && p.alias.toLowerCase().includes(searchQuery)) ||
-    (p.cat[currentLang] || p.cat.en || p.cat.es).toLowerCase().includes(searchQuery)
+    sinTildes(p.name).includes(searchQuery) ||
+    (p.alias && sinTildes(p.alias).includes(searchQuery)) ||
+    sinTildes(p.cat[currentLang] || p.cat.en || p.cat.es).includes(searchQuery)
   );
 
   // Contador de resultados bajo la barra
@@ -15579,9 +15602,12 @@ function updateSearchSuggestions() {
     }
   }
 
+  /* Busca sobre el texto plegado y corta sobre el ORIGINAL, para que el
+     <mark> caiga encima de la palabra con su tilde puesta. Vale porque
+     sinTildes() no cambia el largo: los indices son los mismos. */
   function highlight(text, query) {
     if (!query) return text;
-    const idx = text.toLowerCase().indexOf(query.toLowerCase());
+    const idx = sinTildes(text).indexOf(sinTildes(query));
     if (idx === -1) return text;
     return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + query.length) + '</mark>' + text.slice(idx + query.length);
   }
@@ -16238,9 +16264,9 @@ function _updateMarkersImpl() {
     const matchesSearch = searchLocked
       ? searchLockedIds.has(place.id)
       : (!searchQuery ||
-          place.name.toLowerCase().includes(searchQuery) ||
-          (place.alias && place.alias.toLowerCase().includes(searchQuery)) ||
-          localized(place.cat).toLowerCase().includes(searchQuery));
+          sinTildes(place.name).includes(searchQuery) ||
+          (place.alias && sinTildes(place.alias).includes(searchQuery)) ||
+          sinTildes(localized(place.cat)).includes(searchQuery));
     const matchesFav = !showOnlyFavorites || isFav;
     // Filtro bus: si está activo y no hay líneas dibujadas → mostrar aviso, no ocultar todo
     const matchesBusAccess = !showOnlyBusAccessible ||
@@ -24548,18 +24574,18 @@ function buildBusPanel() {
 // ── RESULTADOS DE BÚSQUEDA ────────────────────────────────
 function renderBusSearchResults(list) {
   const L_ = t();
-  const q = busSearchQuery.toLowerCase();
+  const q = sinTildes(busSearchQuery);
 
   // 1. Buscar líneas por número o nombre
   const matchedLines = TITSA_LINES.filter(line =>
-    line.numero.toLowerCase().includes(q) ||
-    line.nombre.toLowerCase().includes(q)
+    sinTildes(line.numero).includes(q) ||
+    sinTildes(line.nombre).includes(q)
   );
 
   // 2. Buscar paradas unicas por nombre o municipio, sobre el catalogo entero
   const stopsByKey = {};
   busTodasLasParadas().forEach(({ stop, lines }) => {
-    if (!(stop.nombre.toLowerCase().includes(q) || (stop.municipio||'').toLowerCase().includes(q))) return;
+    if (!(sinTildes(stop.nombre).includes(q) || sinTildes(stop.municipio || '').includes(q))) return;
     const key = `${stop.lat.toFixed(4)},${stop.lng.toFixed(4)}`;
     if (!stopsByKey[key]) stopsByKey[key] = { stop, lines: [] };
     lines.forEach(l => { if (!stopsByKey[key].lines.find(x => x.id === l.id)) stopsByKey[key].lines.push(l); });
@@ -36804,6 +36830,12 @@ const PLAYAS_ORIENTACION = {
   'playa-puertito-adeje':    { ori: 'SW', badWind: ['S','SW','W'] },   // cala tras la punta
   'playa-puerto-santiago':   { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'playa-rambla':            { ori: 'N', badWind: ['NW','N','NE'], deducida: true },
+  /* Deducida como la de playa-rambla, a 614 m en el mismo tramo de la
+     Rambla de Castro: toda esa costa mira al N y sus siete vecinas mas
+     cercanas estan igual. Medida en el punto exacto NO vale -la costa
+     se curva ahi y la dispersion salia de 154 grados-, por eso va
+     marcada como deducida, igual que las demas. */
+  'playa-fajana-realejos': { ori:'N', badWind:['NW','N','NE'], deducida:true },
   'playa-socorro':           { ori: 'N', badWind: ['NW','N','NE'], deducida: true },
   'playa-torviscas':         { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'roque-bodegas':           { ori: 'N', badWind: ['NW','N','NE'], deducida: true },

@@ -171,85 +171,118 @@ de fichas que desaparecen no es exactamente el que se pidió**.
   `ciudad-puerto-cruz`. Se llama «La Ranilla (Puerto Cruz)», que es un barrio
   real, pero el sufijo canta.
 
-## 5b · La búsqueda no ignora las tildes
+## 5b · Las tildes · HECHO
 
-Salió comprobando lo anterior: **«santa ursula» sin tilde no encuentra nada**.
-`updateSearchSuggestions` hace `p.name.toLowerCase().includes(query)` sin
-plegar acentos.
+Ahora **sirven las dos formas**. Se pliegan los acentos en los dos lados, lo
+tecleado y el texto, en los tres filtros de lugares, en el buscador de líneas
+y en el de paradas. Quien escribe «el medano» encuentra, y quien escribe «El
+Médano» también.
 
-**226 de las 786 fichas son invisibles si escribes sin tilde**: El Médano,
-Playa de las Américas, Chío, Fañabé, Roques de García, Güímar… Sólo 7 se
-salvan porque tienen un alias sin tildes.
+Probado en el navegador, 14 casos, con y sin tilde: El Médano, Santa Úrsula,
+Américas, Güímar, Fañabé, García, Chío. Los 14 bien, y el `<mark>` amarillo
+cae encima de la palabra con su tilde puesta.
 
-La app está en diez idiomas y buena parte de quien la usa teclea en un móvil
-extranjero, sin tildes. **No lo he tocado** —cambia el comportamiento de la
-búsqueda y merece su propia tanda— pero es de las cosas más gordas que quedan.
+**Lo que casi rompe el resaltado.** El idioma habitual para quitar acentos es
+`normalize('NFD').replace(/\p{M}/gu,'')`, y `\p{M}` se lleva también el
+selector de variación de los emoji (U+FE0F), que **cambia el largo** de la
+cadena. El resaltado busca sobre el texto plegado y corta sobre el original,
+así que necesita que los índices coincidan. Con `\p{M}`, 38 cadenas cambiaban
+de largo —«Teléfono de la Esperanza (24h) ☎️», los avisos con ⚠️—. Acotado a
+los diacríticos latinos, las **10.798 cadenas del fichero miden lo mismo**.
 
-## 6 · Dos controles nuevos, los dos inventario
+## 6 · Charco Verde · HECHO, y estaba peor de lo que parecía
 
-Ninguno suspende. Salen impresos cada vez para que no sean un silencio.
+Con tus datos:
 
-**Rótulos repetidos dentro de una zona** — dos fichas con el mismo nombre se
-leen como un duplicado en el catálogo:
-
-| zona | rótulo | las dos fichas |
+| | antes | ahora |
 |---|---|---|
-| norte | «Mesa del Mar» | `mesa-mar` (piscinas) · `nucleo-mesa-mar` (municipio) |
-| sur | «Playa San Juan» | `san-juan` (playa) · `nucleo-playa-san-juan` (municipio) |
+| municipio | Los Realejos | **La Guancha** |
+| coordenada | 28.3963, −16.659 (297 m tierra adentro) | **28.400000, −16.658890** (43 m de la costa) |
+| acceso | «acceso fácil y gratuito, muy popular entre familias» | sin carretera, sendero sin señalizar, últimos metros empinados y resbaladizos |
 
-**Sitios ofrecidos en más de una zona** — de aquí salieron los dos faros del
-sur que estaban en el norte, y Masca, que estaba en el norte y en el sur.
-Quedan **8**, y las ocho son a propósito:
+**El municipio lo verifiqué sin creerte a ciegas**: las paradas de TITSA traen
+municipio, y de las seis más cercanas al punto **cuatro son de La Guancha**. La
+más próxima se llama **«Santa Catalina»**, que es justo el barrio costero desde
+donde dices que se aparca.
 
-```
-masca                   south + cumbre  ┐
-mirador-maska           south + cumbre  │ el circuito MASCA-TEIDE,
-ruta-masca-playa        south + cumbre  │ que es una excursion
-acantilados-gigantes    south + cumbre  │ de un dia de verdad
-riscos-chio             south + cumbre  │
-ciudad-santiago-teide   south + cumbre  ┘
-ciudad-vilaflor         south + cumbre    1.400 m, puerta sur del parque
-ciudad-rosario          north + cumbre    su ficha dice «Cumbre Dorsal»
-```
+Lo de «acceso fácil, popular entre familias» era lo más grave: mandaba familias
+a un descenso por roca volcánica. Reescrito en los diez idiomas con el acceso
+real y el aviso de que el charco sólo renueva el agua con oleaje fuerte.
 
-### Masca, resuelta
+**El id sigue siendo `charco-verde-realejos`, que ahora miente**, y no lo
+renombro: **los ids viajan en los favoritos** guardados (`localStorage` y
+sincronizados). Cambiarlo borraría el sitio de los favoritos de quien lo tenga.
+Si lo prefieres renombrado aun así, dímelo y lo hago sabiendo lo que cuesta.
 
-**Estaba en norte y sur, y el norte era el error.** No había que elegir: en la
-costa oeste las listas tienen una costura clara y Masca cae por debajo.
+## 7 · Playa de La Fajana · DADA DE ALTA
 
-```
-lat      ficha                    zona           su propia cat
-28.374   montana-taco             norte          Volcán · La Laguna
-28.3718  ciudad-buenavista        norte          Isla Baja · Teno
-28.371   charco-diablo            norte          Piscinas · Buenavista
-28.3655  ciudad-silos             norte          Pueblo · Isla Baja
-28.3421  faro-teno                norte          Buenavista del Norte
-───────────────────── la costura ─────────────────────
-28.306   mirador-maska            sur + cumbre   Mirador · Teno
-28.3054  masca                    ← estaba en norte y sur
-28.2974  ciudad-santiago-teide    sur + cumbre   Pueblo de Montaña · Oeste
-28.2947  ruta-masca-playa         sur + cumbre   Barranco · Masca
-28.2744  acantilados-gigantes     sur + cumbre   Acantilados · Oeste
-28.2456  nucleo-los-gigantes      sur            Puerto · Oeste
-```
+`playa-fajana-realejos`, 28.398211, −16.587652. Verificado: **en tierra, a 4 m
+de la costa**, y las **seis** paradas de TITSA más cercanas son de Los Realejos.
+Texto en los diez idiomas con lo que diste: playa salvaje de arena negra dentro
+del Paisaje Protegido de la Rambla de Castro, célebre por la cascada que cae
+directamente sobre la arena.
 
-Su mirador está a **70 m**, su barranco y su propio municipio están en el sur.
-Masca era la única ficha del sitio que además estaba en el norte. **Fuera del
-norte** — y ahora también en cumbre, con el circuito.
+**Dos cosas que decides tú:**
 
-### Y aquí me equivoqué: la zona Cumbre no es solo el parque
+1. **La orientación.** Puse `ori:'N'`, la de `playa-rambla`, a 614 m en el
+   mismo tramo, marcada `deducida` igual que ella. Medirla en el punto exacto
+   **no vale**: la costa se curva ahí y salió una dispersión de 154°. `ori`
+   alimenta el cálculo de si la playa está resguardada del viento de hoy, así
+   que si sabes hacia dónde mira de verdad, dímelo.
+2. **El aviso de mar.** No le he puesto `warn:"mar"`, porque eso lo decides tú
+   y porque su vecina `playa-rambla` tampoco lo lleva. Una playa salvaje del
+   norte con cascada quizá lo merezca: tú dirás.
 
-Quité `acantilados-gigantes`, `mirador-maska` y `ruta-masca-playa` de la zona
-Cumbre razonando que un acantilado que se ve desde un barco no es cumbre.
-Estaba mirando la geografía y no la excursión: **el circuito Masca–Teide
-existe**, es una salida de un día real, y esas tres son su tramo de bajada.
-Devueltas.
+**Y una advertencia sobre la captura que mandaste.** Esa es **la de La Palma**,
+no la de Tenerife. La pantalla dice «Piscina» y la foto son piscinas
+rectangulares construidas; lo que tú describes en Los Realejos es una playa
+salvaje de arena negra con una cascada. Son sitios distintos, y es justo la
+confusión de la que me avisaste tú: La Fajana de Barlovento. **He usado las
+coordenadas de tu texto, no las de la captura.**
 
-Y de paso entró **`masca`**, que nunca había estado: la lista ofrecía el
-mirador del pueblo y su barranco, pero no el pueblo. La cumbre pasa de 17 a
-**21**, con el racimo en el orden en que se recorre —pueblo, mirador,
-barranco, acantilados—.
+## 8 · Los ocho datos borrados, verificados uno a uno
 
-**El porqué está escrito dentro del control**, en `auditar_datos.js`, para que
-no vuelva a pasar: las seis fichas del circuito aparecen ahí nombradas, con la
-nota de que ya se quitaron una vez por no saberlo y hubo que devolverlas.
+Sin red a ninguna fuente —Wikipedia, eldia.es, tenerife.es y webtenerife.com
+dan `000`—, así que verifiqué **contra el propio dato de la app**.
+
+| dato | veredicto |
+|---|---|
+| Radazul y su puerto deportivo | **SÍ** · la app tiene cuatro fichas de Radazul, entre ellas `puerto-radazul` «Puerto Deportivo Radazul». **Añadido a `ciudad-rosario`** |
+| a 15 min de La Laguna (Tegueste) | **SÍ en lo esencial** · **12 líneas** de TITSA unen Tegueste con La Laguna, a 4,4 km. El «15 min» exacto no se puede verificar, así que **añadí el hecho y no el número**: «bien conectado con La Laguna en guagua» |
+| parapente en Arico | **NO** · la app tiene **seis** despegues de parapente —Taucho, Ifonche, Izaña, La Corona, El Tanque, Güímar— y **ninguno en Arico**. El dato borrado contradecía al propio inventario de la app |
+| Charco del Pino con arquitectura colonial | **NO** · no hay ficha de Charco del Pino, y lo de la arquitectura no se puede verificar desde aquí |
+| fiestas del Carmen en Arafo | **NO** · no sale en ninguna ficha, y la Virgen del Carmen es patrona de marineros mientras que Arafo no tiene costa |
+| aguacates de Santa Úrsula | **NO** · el único sitio de la app que habla de aguacates es `nucleo-valle-guerra`, otro municipio |
+| iglesia de San Juan Bautista del XVI | **NO** · la app tiene la de La Orotava y el Castillo de San Juan Bautista, no ésta |
+| mar de nubes y aguas de Vilaflor | **NO** · «mar de nubes» sólo sale en dos fichas de La Orotava |
+
+**Dos de ocho.** De los seis que caen, **uno estaba activamente equivocado** y
+los otros cinco eran afirmaciones que nadie podía respaldar. Si tienes fuente
+para alguno, me la pasas y entra.
+
+## 9 · Guía de Isora y Puerto de la Cruz
+
+**Puerto de la Cruz no es un problema.** `nucleo-puerto-cruz-old` **no duplica
+nada**: es **La Ranilla**, el barrio pesquero, con su propio contenido —casas
+de colores, tapas de pescado, ambiente bohemio— a 69 m del centro porque es el
+barrio de al lado. Lo único feo es el id, y renombrarlo rompería favoritos
+igual que el del Charco Verde. **Nada que hacer.**
+
+*(De paso: el parche «auditoria-mar-8» quiere quitar de `ermita-san-telmo` la
+frase que la sitúa «en el barrio de La Ranilla», porque está en el Paseo de San
+Telmo. Los dos sitios existen, lo que estaba mal era la ermita.)*
+
+**Guía de Isora sí, y lo que necesito es una decisión de una palabra.** Es
+cabecera municipal y está como `nucleo-guia-isora` con `category:"municipio"`,
+cuando las otras 30 cabeceras llevan `category:"ciudad"`. Por eso hay 30
+`ciudad-*` y no 31.
+
+- **Lo barato y sin riesgo**: cambiarle `category` de `"municipio"` a
+  `"ciudad"`. Una palabra, el id no se toca, los favoritos no se rompen, y
+  queda clasificada como las otras 30.
+- **Lo caro**: además reescribir su texto al estilo más rico de las `ciudad-*`.
+  Eso son diez idiomas y necesitaría de dónde sacar lo nuevo — el texto que
+  tiene ahora es correcto, sólo más corto.
+
+Dime si con lo primero vale.
+

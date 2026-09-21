@@ -8,9 +8,9 @@ Todas las cifras salen de ejecutar la app o barrer el fichero. Ninguna está
 recordada. Se vuelven a sacar con lo que hay en `tools/`.
 
 ```
-index.html   md5 5c5152f431717a95ba85acf3a994b5fa
-             3.182.757 bytes · 931.590 comprimidos · 37.258 líneas
-idiomas/     9 ficheros de lugares · 2.483.942 bytes · 76 a 95 kB comprimidos
+index.html   md5 6e62936809da32410c02e0ea56feb903
+             3.185.353 bytes · 932.560 comprimidos · 37.290 líneas
+idiomas/     9 ficheros de lugares · 2.485.795 bytes · 76 a 95 kB comprimidos
              + etiquetas/    · 9 ficheros con los chips del globo
              + privacidad/   · 10 ficheros con la política, 54 claves cada uno
              + glosario-cat/ · 7, y no hacen falta los diez: no se cargan en la
@@ -27,7 +27,7 @@ faq/         10 ficheros · 69 respuestas del asistente en cada idioma
 
 | | |
 |---|---|
-| Lugares | **786**, con descripción y categoría en 10 idiomas |
+| Lugares | **787**, con descripción y categoría en 10 idiomas |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
@@ -936,7 +936,7 @@ traducen aquí, como el resto del corpus.
 
 `tools/auditar_redondeo.py` lista dos cosas y **no falla nunca**:
 
-- **13 de 786** fichas tienen lat **y** lng con 3 decimales o menos. Eso no es
+- **13 de 787** fichas tienen lat **y** lng con 3 decimales o menos. Eso no es
   una coordenada tomada de una fuente: es un marcador puesto a ojo, y tres
   decimales son ~110 m de lado. Así fue como un Lidl acabó en el mar. (El
   parche esperaba «al menos 60, entre ellas 9 supermercados y 3 gasolineras»,
@@ -1132,17 +1132,95 @@ viven las excepciones de ese control. De paso, ese bloque decía «Estas tres so
 legítimas» y listaba **cuatro**: ahora no dice ningún número, porque la lista
 ya se cuenta sola y un número al lado caduca en cuanto entra otra.
 
-## La búsqueda no ignora las tildes
+## La búsqueda ya no depende de las tildes
 
-Salió comprobando lo anterior: «santa ursula» sin tilde no encuentra nada.
-`updateSearchSuggestions` hace `p.name.toLowerCase().includes(query)` sin
-plegar acentos, así que **226 de las 786 fichas son invisibles si escribes sin
-tilde** —El Médano, Playa de las Américas, Chío, Fañabé, Roques de García,
-Güímar—. Sólo 7 se salvan porque tienen un alias sin tildes.
+«santa ursula» sin tilde no encontraba nada. `updateSearchSuggestions` hacía
+`p.name.toLowerCase().includes(query)` sin plegar acentos, y **227 de las 787
+fichas llevan tilde o eñe en el nombre**: El Médano, Playa de las Américas,
+Chío, Fañabé, Roques de García, Güímar. Sólo 7 se salvaban por tener un alias
+sin tildes.
 
-No es un detalle: la app está en diez idiomas y la mitad de quien la usa teclea
-en un móvil extranjero sin tildes. **No se ha tocado**, porque cambia el
-comportamiento de la búsqueda y merece su propia tanda.
+Se pliegan **los dos lados**, lo tecleado y el texto, en los tres filtros de
+lugares, en el buscador de líneas y en el de paradas. Así valen las dos formas
+y ninguna deja de funcionar: quien escribe sin tildes encuentra, y quien las
+escribe también.
+
+**El detalle que casi rompe el resaltado.** El idioma de plegar acentos es
+`normalize('NFD').replace(/\p{M}/gu, '')` — y `\p{M}` se lleva también el
+**selector de variación de los emoji** (U+FE0F), que **cambia el largo** de la
+cadena. `highlight()` busca sobre el texto plegado y corta sobre el original,
+así que necesita que los índices coincidan. Con `\p{M}`, 38 cadenas del
+fichero cambiaban de largo —«Teléfono de la Esperanza (24h) ☎️», los avisos con
+⚠️—. Acotado a `[\u0300-\u036f]`, los diacríticos latinos, **las 10.798
+cadenas del fichero miden lo mismo antes y después**.
+
+**Y un control se quedó ciego, y cantó.** `auditar_datos.js` contaba «filtros
+del buscador que leen alias» buscando el patrón viejo
+`p.alias.toLowerCase().includes(searchQuery)`. Al cambiar la forma de la
+comparación pasó de 3 a 0 y suspendió — que es lo que tenía que hacer: un
+control que no reconoce el código que vigila no está vigilando nada. Se le
+actualizó el patrón y se le añadió un hermano que comprueba que **no quede
+ninguna comparación sin plegar**, porque plegar sólo un lado cambiaría un fallo
+por el contrario.
+
+## Charco Verde estaba en el municipio equivocado
+
+La ficha decía «Piscina Natural · Los Realejos» y el charco está en **La
+Guancha**, en la zona de Punta de Marrero. No hizo falta creer a nadie: las
+paradas de TITSA traen municipio, y de las seis más cercanas al punto **cuatro
+son de La Guancha** —la más próxima se llama «Santa Catalina», que es justo el
+barrio costero desde donde se baja—.
+
+La coordenada también estaba mal: 28.3963, −16.659 caía **297 m tierra
+adentro**. La buena, 28.400000, −16.658890, queda a **43 m de la costa**.
+
+Y el texto decía **«acceso fácil y gratuito, muy popular entre familias»** de
+un sitio al que no llega carretera, al que se baja por un sendero sin
+señalizar, y cuyos últimos metros sobre roca volcánica son empinados y
+resbaladizos. Reescrito en los diez idiomas con el acceso real y el aviso de
+que el charco sólo renueva el agua con oleaje fuerte.
+
+**El id sigue siendo `charco-verde-realejos`, que ahora miente.** No se
+renombra porque **los ids viajan en los favoritos**, guardados en
+`localStorage` y sincronizados: cambiarlo borraría el sitio de los favoritos de
+quien lo tenga guardado. Un id feo es más barato que eso.
+
+## Alta: Playa de La Fajana (Los Realejos)
+
+Playa salvaje de arena negra dentro del Paisaje Protegido de la Rambla de
+Castro, célebre por la cascada que cae directamente sobre la arena.
+28.398211, −16.587652: **en tierra, a 4 m de la costa**, y las **seis** paradas
+de TITSA más cercanas son de Los Realejos.
+
+**La orientación no se pudo medir en el punto.** `ori` alimenta el cálculo de
+si una playa está resguardada del viento de hoy, así que un rumbo inventado le
+dice a alguien que está protegida cuando le entra de cara. Midiendo la
+dirección tierra-mar en cinco puntos a lo largo de la costa salió una
+**dispersión de 154°** —dos de los cinco caen en agua: la costa se curva ahí—.
+Se usa la de `playa-rambla`, a **614 m** en el mismo tramo, que es `N`, como
+las siete vecinas más cercanas. Marcada `deducida:true`, igual que ellas.
+
+## Los ocho datos de las fichas borradas, verificados uno a uno
+
+Al borrar las 17 duplicadas se perdían ocho datos que sólo estaban en la ficha
+borrada. Ninguna fuente externa era alcanzable —Wikipedia, eldia.es,
+tenerife.es y webtenerife.com dan `000`—, así que se verificó **contra el
+propio dato de la app**. Sobreviven dos:
+
+| dato | veredicto |
+|---|---|
+| Radazul y su puerto deportivo | **SÍ**: la app tiene cuatro fichas de Radazul, entre ellas `puerto-radazul` «Puerto Deportivo Radazul». Añadido a `ciudad-rosario` |
+| a 15 min de La Laguna (Tegueste) | **SÍ** en lo esencial: **12 líneas** de TITSA unen Tegueste con La Laguna, a 4,4 km. El «15 min» exacto no se puede verificar, así que se añade el hecho, no el número: «bien conectado con La Laguna en guagua» |
+| parapente en Arico | **NO**: la app tiene **seis** despegues de parapente —Taucho, Ifonche, Izaña, La Corona, El Tanque y Güímar— y **ninguno en Arico**. El dato borrado contradecía al propio inventario |
+| Charco del Pino con arquitectura colonial | **NO**: no hay ficha de Charco del Pino y lo de la arquitectura no se puede verificar |
+| fiestas del Carmen en Arafo | **NO**: no aparece en ninguna ficha, y la Virgen del Carmen es patrona de marineros mientras que Arafo no tiene costa |
+| aguacates de Santa Úrsula | **NO**: el único sitio de la app que habla de aguacates es `nucleo-valle-guerra`, otro municipio |
+| iglesia de San Juan Bautista del XVI | **NO**: la app tiene la de La Orotava y el Castillo de San Juan Bautista, no ésta |
+| mar de nubes y aguas de Vilaflor | **NO**: «mar de nubes» sólo sale en dos fichas de La Orotava |
+
+**Dos de ocho.** De los seis que caen, uno estaba **activamente equivocado** y
+los otros cinco eran afirmaciones que nadie podía respaldar. Perderlos fue
+ganar.
 
 ## La línea de costa vive en un solo sitio
 
