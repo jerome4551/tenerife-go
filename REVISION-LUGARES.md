@@ -4,6 +4,73 @@
 Barre los 787, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
+## 0 · El estado de cada área, de un vistazo
+
+Lo primero, porque es lo que evita repetir trabajo. **Un área en «cerrado»
+no se vuelve a pedir.** Cerrado no quiere decir perfecto: quiere decir que
+la verificación se hizo, que se agotó lo que se podía comprobar y que el
+techo está escrito. Un área cerrada con un dato deducido **está cerrada**:
+el «deducida» es el resultado honesto, no una tarea pendiente.
+
+| área | estado | qué hay |
+|---|---|---|
+| `orientacion_playa` | **cerrado** | verificadas abriendo la fuente 11 · heredadas por vecindad 1 · deduccion auditada 53 · escritas a mano antes 12 · total en la tabl |
+| `calidad_del_agua` | **cerrado** | 46 fichas con aguaCalidad y su ano. El ano va en el dato para que se vea cuando caduca. |
+| `bandera_azul` | **cerrado** | 11 fichas con blueFlag:true, cifra exacta comprobada contra la lista. |
+| `red_titsa` | **cerrado** | 183 lineas, 6.263 referencias de parada sobre 2.514 marquesinas, trazados regenerados del GTFS. La parada mas lejos de su trazado, |
+| `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
+| `asistente` | **cerrado** | 69 respuestas x 10 idiomas = 690, y se llega a las 690 desde el buscador del asistente. |
+| `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
+| `coordenadas` | abierto | 130 verificadas con fuente (ver la seccion `coordenada`). 657 entraron en la importacion inicial y no las ha mirado nadie. |
+| `municipio_de_cada_ficha` | abierto | 520 declaran municipio, 473 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno. |
+| `lugares_en_el_mar` | abierto | 781 de 787 caen en tierra contra la capa earth de OSM. |
+
+**Lo único que queda por hacer está en las 3 áreas abiertas:**
+
+- **`coordenadas`** — 55 estan escritas con 3 decimales significativos o menos en los dos ejes, o sea puestas a ojo. Lista en REVISION-LUGARES.md.
+- **`municipio_de_cada_ficha`** — 2 fichas se contradicen a si mismas y 8 tienen el municipio fuera de sitio en firme. 5 mas en el borde, que se avisan y no suspenden.
+- **`lugares_en_el_mar`** — 6 en el agua, las del parche auditoria-mar-8. Necesitan Overpass, que esta bloqueado en el entorno de trabajo.
+
+### Las 7 cerradas, con su techo escrito
+
+**`orientacion_playa`** · 2026-09-08
+- qué se hizo: Se buscaron fuentes publicadas para la orientacion de las 65 zonas de bano que no la tenian, y se auditaron una por una las que produjo un modelo de lenguaje.
+- **el techo**: La orientacion de playa NO es un campo publicado en ninguna base de datos oficial espanola ni canaria. No es una suposicion: se comprobo abriendo cada fuente.
+- fuentes que se abrieron y no sirven:
+  - **surf-forecast.com** — SIRVE pero solo cubre rompientes: 26 spots en Tenerife, ~12 coinciden con puntos de bano. De ahi salen las 11 verificadas. Las playas abrigadas, que son las que la gente usa para banarse, no son spots de surf y no tienen ficha.
+  - **AEMET prediccion de playas** — NO SIRVE. Sus campos son cielo, viento SOLO EN INTENSIDAD (sin rumbo), mar de fondo, temperatura, agua, UV y mareas. Comprobado abriendo la ficha de San Marcos (3802201).
+  - **MITECO Guia de Playas** — NO SIRVE. Base completa del Estado, ~3.000 playas, nueve secciones y la orientacion no es ninguna.
+  - **Catalogo Decreto 116/2018 (Canarias)** — El decreto fue ANULADO por el Tribunal Supremo. Todo lo que se apoyara en el ha perdido su base legal.
+- método automático: PROBADO Y RECHAZADO. tools/orientacion_playa.py deduce ori del poligono de arena de OSM. Reproduce 7 de las 12 escritas a mano y el umbral, fijado antes de mirar, era 10. Segun ORDENorientaciones.md: «si sale que no, se para y la respuesta queda cerrada para siempre».
+- auditoría: Las 4 filas que el modelo dijo tener respaldo en surf-forecast se abrieron una por una: las 4 dicen lo que decia. Se cazo un error real de 90 grados (playa-grande-abades, SE -> NE) y una contradiccion en el badWind de Poris, por la que badWind va vacio en las 65.
+- resultado: verificadas abriendo la fuente 11 · heredadas por vecindad 1 · deduccion auditada 53 · escritas a mano antes 12 · total en la tabla 100
+- precisión: El dato es fiable a +-45 grados, no mas. La verificacion con surf-forecast caza errores de 90 grados pero no distingue N de NW.
+- lo único que quedó abierto de esta área:
+  - playa-grande-abades: corregida de SE a NE, pero puede ser una playa distinta de la de Poris
+  - benijo: la fuente da N y NW a la vez
+  - piscina-gigantes: el modelo dijo W y luego NW; las dos caen dentro del +-45 de la fuente
+
+**`calidad_del_agua`** · 2026-09-05
+- fuente: Censo Nacional de Zonas de Aguas de Bano 2025, Servicio Canario de la Salud. 49 zonas en Tenerife.
+- resultado: 46 fichas con aguaCalidad y su ano. El ano va en el dato para que se vea cuando caduca.
+
+**`bandera_azul`** · 2026-08-31
+- fuente: Galardones Bandera Azul 2026, Gobierno de Canarias. 11 en Tenerife.
+- resultado: 11 fichas con blueFlag:true, cifra exacta comprobada contra la lista.
+
+**`red_titsa`** · 2026-08-21
+- fuente: GTFS oficial de TITSA (routes.txt, trips.txt, stop_times.txt) y CSV oficial de Metropolitano de Tenerife para el tranvia.
+- resultado: 183 lineas, 6.263 referencias de parada sobre 2.514 marquesinas, trazados regenerados del GTFS. La parada mas lejos de su trazado, a menos de 200 m.
+
+**`idiomas`** · 2026-09-21
+- resultado: Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin traducir ni declarar. 0 textos que se queden en el idioma de arranque.
+
+**`asistente`** · 2026-09-18
+- resultado: 69 respuestas x 10 idiomas = 690, y se llega a las 690 desde el buscador del asistente.
+
+**`mapa_sin_conexion`** · 2026-09-12
+- resultado: 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red.
+
 ## 0 · Lo verificado, separado de lo que no
 
 Esto es lo primero porque es lo que faltaba. Antes se comprobaba un sitio y

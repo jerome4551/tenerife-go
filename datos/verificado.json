@@ -1,29 +1,24 @@
 {
  "_": [
-  "Registro de lo VERIFICADO. Existe porque se verificaba y no se guardaba:",
-  "el trabajo quedaba en los mensajes y en los commits, y el siguiente control",
-  "volvia a sacar en la lista un sitio que ya se habia comprobado. Asi salia",
-  "una lista nueva cada semana y parecia que todo fallaba.",
+  "Registro de lo VERIFICADO, por AREAS y por ficha.",
   "",
-  "Lo que hay aqui NO se vuelve a pedir. Los controles lo leen y lo dejan en",
-  "paz: auditar_redondeo.py no lista una coordenada verificada aunque este",
-  "escrita con pocos decimales, porque la precision de una fuente es la que es.",
+  "Existe porque se verificaba y no se guardaba: el trabajo quedaba en los",
+  "mensajes y en los commits, y el siguiente control lo volvia a pedir. Asi",
+  "salia una lista nueva cada semana y parecia que todo fallaba siempre.",
   "",
-  "COMO SE AÑADE: una entrada por id, con la fecha y DE DONDE SALE. Sin",
-  "fuente no se apunta: una marca de «verificado» sin fuente es peor que no",
-  "tenerla, porque calla el control y no deja rastro de por que.",
+  "LAS AREAS EN «cerrado» NO SE VUELVEN A PEDIR. Cerrado no quiere decir",
+  "perfecto: quiere decir que la verificacion se hizo, que se agoto lo que se",
+  "podia comprobar, y que el techo esta escrito. Un area cerrada con un dato",
+  "deducido esta CERRADA: el «deducida» es el resultado honesto, no una tarea.",
   "",
-  "Lo que NO esta aqui no es que este mal: es que nadie lo ha comprobado",
-  "Lo que NO esta aqui no es que este mal: es que nadie lo ha comprobado",
-  "todavia. Son cosas distintas y el informe las separa.",
+  "COMO SE AÑADE una coordenada: una entrada en `coordenada` con la fecha y DE",
+  "DONDE SALE. Sin fuente no se apunta. tools/fijar_coordenada.py lo escribe",
+  "solo con lo que vaya detras de la # del fichero de entrada.",
   "",
-  "COMO SE EMPAREJO LO DE listasplayascharcos.md: ese fichero lista las playas",
-  "por NOMBRE y coordenada, no por id, asi que el emparejamiento se hizo por",
-  "COORDENADA EXACTA. Eso significa que una ficha que comparte punto con una",
-  "playa verificada -su webcam, su ficha de accesibilidad, el spot de surf que",
-  "esta en esa misma arena- hereda la verificacion DEL PUNTO. Lo verificado es",
-  "que ese punto es el de esa playa; que la ficha deba estar ahi es otra cosa y",
-  "no se afirma."
+  "COMO SE EMPAREJO lo de listasplayascharcos.md: ese fichero lista por NOMBRE",
+  "y coordenada, no por id, asi que se emparejo por COORDENADA EXACTA. Una",
+  "ficha que comparte punto con una playa verificada hereda la verificacion DEL",
+  "PUNTO. Que la ficha deba estar ahi es otra cosa y no se afirma."
  ],
  "coordenada": {
   "abama": {
@@ -561,6 +556,86 @@
   "windsurf-la-tejita": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  }
+ },
+ "areas": {
+  "orientacion_playa": {
+   "estado": "cerrado",
+   "fecha": "2026-09-08",
+   "que_se_hizo": "Se buscaron fuentes publicadas para la orientacion de las 65 zonas de bano que no la tenian, y se auditaron una por una las que produjo un modelo de lenguaje.",
+   "techo": "La orientacion de playa NO es un campo publicado en ninguna base de datos oficial espanola ni canaria. No es una suposicion: se comprobo abriendo cada fuente.",
+   "fuentes_agotadas": {
+    "surf-forecast.com": "SIRVE pero solo cubre rompientes: 26 spots en Tenerife, ~12 coinciden con puntos de bano. De ahi salen las 11 verificadas. Las playas abrigadas, que son las que la gente usa para banarse, no son spots de surf y no tienen ficha.",
+    "AEMET prediccion de playas": "NO SIRVE. Sus campos son cielo, viento SOLO EN INTENSIDAD (sin rumbo), mar de fondo, temperatura, agua, UV y mareas. Comprobado abriendo la ficha de San Marcos (3802201).",
+    "MITECO Guia de Playas": "NO SIRVE. Base completa del Estado, ~3.000 playas, nueve secciones y la orientacion no es ninguna.",
+    "Catalogo Decreto 116/2018 (Canarias)": "El decreto fue ANULADO por el Tribunal Supremo. Todo lo que se apoyara en el ha perdido su base legal."
+   },
+   "resultado": {
+    "verificadas_abriendo_la_fuente": 11,
+    "heredadas_por_vecindad": 1,
+    "deduccion_auditada": 53,
+    "escritas_a_mano_antes": 12,
+    "total_en_la_tabla": 100
+   },
+   "auditoria": "Las 4 filas que el modelo dijo tener respaldo en surf-forecast se abrieron una por una: las 4 dicen lo que decia. Se cazo un error real de 90 grados (playa-grande-abades, SE -> NE) y una contradiccion en el badWind de Poris, por la que badWind va vacio en las 65.",
+   "precision": "El dato es fiable a +-45 grados, no mas. La verificacion con surf-forecast caza errores de 90 grados pero no distingue N de NW.",
+   "metodo_automatico": "PROBADO Y RECHAZADO. tools/orientacion_playa.py deduce ori del poligono de arena de OSM. Reproduce 7 de las 12 escritas a mano y el umbral, fijado antes de mirar, era 10. Segun ORDENorientaciones.md: «si sale que no, se para y la respuesta queda cerrada para siempre».",
+   "abierto": [
+    "playa-grande-abades: corregida de SE a NE, pero puede ser una playa distinta de la de Poris",
+    "benijo: la fuente da N y NW a la vez",
+    "piscina-gigantes: el modelo dijo W y luego NW; las dos caen dentro del +-45 de la fuente"
+   ]
+  },
+  "calidad_del_agua": {
+   "estado": "cerrado",
+   "fecha": "2026-09-05",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025, Servicio Canario de la Salud. 49 zonas en Tenerife.",
+   "resultado": "46 fichas con aguaCalidad y su ano. El ano va en el dato para que se vea cuando caduca."
+  },
+  "bandera_azul": {
+   "estado": "cerrado",
+   "fecha": "2026-08-31",
+   "fuente": "Galardones Bandera Azul 2026, Gobierno de Canarias. 11 en Tenerife.",
+   "resultado": "11 fichas con blueFlag:true, cifra exacta comprobada contra la lista."
+  },
+  "red_titsa": {
+   "estado": "cerrado",
+   "fecha": "2026-08-21",
+   "fuente": "GTFS oficial de TITSA (routes.txt, trips.txt, stop_times.txt) y CSV oficial de Metropolitano de Tenerife para el tranvia.",
+   "resultado": "183 lineas, 6.263 referencias de parada sobre 2.514 marquesinas, trazados regenerados del GTFS. La parada mas lejos de su trazado, a menos de 200 m."
+  },
+  "idiomas": {
+   "estado": "cerrado",
+   "fecha": "2026-09-21",
+   "resultado": "Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin traducir ni declarar. 0 textos que se queden en el idioma de arranque."
+  },
+  "asistente": {
+   "estado": "cerrado",
+   "fecha": "2026-09-18",
+   "resultado": "69 respuestas x 10 idiomas = 690, y se llega a las 690 desde el buscador del asistente."
+  },
+  "mapa_sin_conexion": {
+   "estado": "cerrado",
+   "fecha": "2026-09-12",
+   "resultado": "76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red."
+  },
+  "coordenadas": {
+   "estado": "abierto",
+   "resultado": "130 verificadas con fuente (ver la seccion `coordenada`). 657 entraron en la importacion inicial y no las ha mirado nadie.",
+   "abierto": "55 estan escritas con 3 decimales significativos o menos en los dos ejes, o sea puestas a ojo. Lista en REVISION-LUGARES.md."
+  },
+  "municipio_de_cada_ficha": {
+   "estado": "abierto",
+   "fecha": "2026-09-21",
+   "que_se_hizo": "Cruce de lo que cada ficha declara con el municipio de las paradas de TITSA de alrededor, sobre los 787.",
+   "resultado": "520 declaran municipio, 473 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno.",
+   "abierto": "2 fichas se contradicen a si mismas y 8 tienen el municipio fuera de sitio en firme. 5 mas en el borde, que se avisan y no suspenden."
+  },
+  "lugares_en_el_mar": {
+   "estado": "abierto",
+   "fecha": "2026-09-20",
+   "resultado": "781 de 787 caen en tierra contra la capa earth de OSM.",
+   "abierto": "6 en el agua, las del parche auditoria-mar-8. Necesitan Overpass, que esta bloqueado en el entorno de trabajo."
   }
  }
 }

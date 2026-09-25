@@ -1210,19 +1210,57 @@ ficha de accesibilidad, el spot de surf de esa misma arena— hereda la
 verificación **del punto**. Lo verificado es que ese punto es el de esa playa;
 que la ficha deba estar ahí es otra cosa y no se afirma.
 
-## Las orientaciones de playa son deducidas, no verificadas
+## Las orientaciones de playa están CERRADAS, y yo las reabrí
 
-Sale de mirar los mismos ficheros. De las **100** filas de
-`PLAYAS_ORIENTACION`, **88 son deducidas**, y lo dice el fichero que las trajo,
-`orientaciones65.json`: *«las 65 las produjo un modelo de lenguaje (Gemini). 11
-tienen respaldo publicado que verifiqué abriendo la fuente, 1 se hereda por
-vecindad de una verificada, y 53 son deducción auditada por coherencia con las
-vecinas»*. Por eso van con `deducida:true`, que es lo honesto.
+Aquí me equivoqué, y es el mismo error de fondo: presenté como pendiente un
+trabajo que estaba hecho.
 
-`ori` alimenta el cálculo de si una playa está resguardada del viento de hoy:
-**no es un dato decorativo**. Las 12 escritas a mano sí están comprobadas; de
-las otras 88, once tienen respaldo y el fichero no dice cuáles, así que desde
-aquí no se pueden separar.
+**La verificación se hizo, y se hizo a fondo.** Se abrieron una por una las
+fuentes que podrían publicar la orientación de una playa, y ninguna la publica:
+
+| fuente | qué pasó al abrirla |
+|---|---|
+| **surf-forecast.com** | sirve, pero sólo cubre rompientes: 26 spots en Tenerife, ~12 coinciden con puntos de baño. De ahí salen las 11 verificadas. Las playas abrigadas, que son las que la gente usa para bañarse, no son spots de surf y no tienen ficha |
+| **AEMET, predicción de playas** | no sirve: sus campos son cielo, viento **sólo en intensidad, sin rumbo**, mar de fondo, temperatura, agua, UV y mareas. Comprobado abriendo la ficha de San Marcos (3802201) |
+| **MITECO, Guía de Playas** | no sirve: la base completa del Estado, ~3.000 playas, nueve secciones, y la orientación no es ninguna |
+| **Catálogo del Decreto 116/2018** | el decreto está **anulado por el Tribunal Supremo**; lo que se apoye en él ha perdido su base legal |
+
+Y el trabajo del modelo se auditó: las 4 filas que decía tener respaldo se
+abrieron una por una —las 4 decían lo que decía—, **se cazó un error real de
+90°** (`playa-grande-abades`, SE → NE) y una contradicción en el `badWind` de
+Porís, por la que `badWind` va vacío en las 65.
+
+**Y el método automático se probó y se rechazó.** `tools/orientacion_playa.py`
+deduce `ori` del polígono de arena de OSM y reproduce **7 de las 12** escritas
+a mano, cuando el umbral, fijado antes de mirar, era 10. Lo que decía la orden
+de trabajo: *«está diseñado para poder salir que NO, y si sale que no, se para
+y **la respuesta queda cerrada para siempre**»*.
+
+Así que `deducida:true` **es el resultado**, no una tarea. El techo es que el
+dato es fiable a ±45° y no más, y está escrito. De esa área sólo quedaron
+abiertas tres filas concretas: `playa-grande-abades`, `benijo` y
+`piscina-gigantes`.
+
+## El registro pasa a cubrir ÁREAS, no sólo coordenadas
+
+Ése era el agujero. `datos/verificado.json` guardaba coordenada por coordenada,
+así que un área entera —las orientaciones— no tenía dónde constar como hecha, y
+volvía a salir. Ahora el registro lleva una sección `areas` con el estado de
+cada una, **su techo escrito** y lo que quedó abierto:
+
+```
+cerrado   orientacion_playa · calidad_del_agua · bandera_azul · red_titsa
+          idiomas · asistente · mapa_sin_conexion
+abierto   coordenadas · municipio_de_cada_ficha · lugares_en_el_mar
+```
+
+**Un área en «cerrado» no se vuelve a pedir.** Cerrado no quiere decir
+perfecto: quiere decir que la verificación se hizo, que se agotó lo que se
+podía comprobar y que el techo está escrito. Un área cerrada con un dato
+deducido está cerrada.
+
+`REVISION-LUGARES.md` abre con esa tabla, para que lo primero que se lea sea
+qué está hecho y no qué falla.
 
 Y no hay que acordarse de escribirlo. **`tools/fijar_coordenada.py` apunta el
 registro él solo** cuando aplica una coordenada, tomando como fuente lo que

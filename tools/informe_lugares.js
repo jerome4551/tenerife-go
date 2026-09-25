@@ -45,9 +45,66 @@ for (const p of PLACES) {
   dist[n] = (dist[n] || 0) + 1;
 }
 /* ── 0 · lo verificado, separado de lo que no ───────────────────────────── */
-const VER = (() => { try {
-  return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'verificado.json'), 'utf8')).coordenada || {};
+const REG = (() => { try {
+  return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'verificado.json'), 'utf8'));
 } catch (e) { return {}; } })();
+const VER = REG.coordenada || {};
+const AREAS = REG.areas || {};
+
+w('## 0 · El estado de cada área, de un vistazo');
+w('');
+w('Lo primero, porque es lo que evita repetir trabajo. **Un área en «cerrado»');
+w('no se vuelve a pedir.** Cerrado no quiere decir perfecto: quiere decir que');
+w('la verificación se hizo, que se agotó lo que se podía comprobar y que el');
+w('techo está escrito. Un área cerrada con un dato deducido **está cerrada**:');
+w('el «deducida» es el resultado honesto, no una tarea pendiente.');
+w('');
+w('| área | estado | qué hay |');
+w('|---|---|---|');
+for (const [k, a] of Object.entries(AREAS)) {
+  const marca = a.estado === 'cerrado' ? '**cerrado**' : 'abierto';
+  /* `resultado` es texto en unas areas y un objeto de cifras en otras */
+  const r = a.resultado;
+  const txt = typeof r === 'string' ? r
+            : (r ? Object.entries(r).map(([x, y]) => x.replace(/_/g, ' ') + ' ' + y).join(' · ')
+                 : (a.techo || ''));
+  const q = String(txt).replace(/\|/g, '').slice(0, 130);
+  w('| `' + k + '` | ' + marca + ' | ' + q + ' |');
+}
+w('');
+const abiertas = Object.entries(AREAS).filter(([, a]) => a.estado !== 'cerrado');
+w('**Lo único que queda por hacer está en las ' + abiertas.length + ' áreas abiertas:**');
+w('');
+for (const [k, a] of abiertas) {
+  const ab = Array.isArray(a.abierto) ? a.abierto.join('; ') : (a.abierto || '');
+  w('- **`' + k + '`** — ' + ab);
+}
+w('');
+const cerradas = Object.entries(AREAS).filter(([, a]) => a.estado === 'cerrado');
+w('### Las ' + cerradas.length + ' cerradas, con su techo escrito');
+w('');
+for (const [k, a] of cerradas) {
+  w('**`' + k + '`** · ' + (a.fecha || ''));
+  if (a.fuente) w('- fuente: ' + a.fuente);
+  if (a.que_se_hizo) w('- qué se hizo: ' + a.que_se_hizo);
+  if (a.techo) w('- **el techo**: ' + a.techo);
+  if (a.fuentes_agotadas) {
+    w('- fuentes que se abrieron y no sirven:');
+    for (const [f, por] of Object.entries(a.fuentes_agotadas)) w('  - **' + f + '** — ' + por);
+  }
+  if (a.metodo_automatico) w('- método automático: ' + a.metodo_automatico);
+  if (a.auditoria) w('- auditoría: ' + a.auditoria);
+  if (a.resultado && typeof a.resultado === 'string') w('- resultado: ' + a.resultado);
+  if (a.resultado && typeof a.resultado === 'object')
+    w('- resultado: ' + Object.entries(a.resultado).map(([x, y]) => x.replace(/_/g, ' ') + ' ' + y).join(' · '));
+  if (a.precision) w('- precisión: ' + a.precision);
+  if (Array.isArray(a.abierto) && a.abierto.length) {
+    w('- lo único que quedó abierto de esta área:');
+    for (const x of a.abierto) w('  - ' + x);
+  }
+  w('');
+}
+
 const nVer = PLACES.filter(p => VER[p.id]).length;
 w('## 0 · Lo verificado, separado de lo que no');
 w('');
