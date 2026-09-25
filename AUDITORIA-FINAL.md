@@ -1329,29 +1329,80 @@ que declaran municipio ......... 520
 no declaran ninguno ............ 267
 
 se contradicen a si mismas ......  2
-el municipio no cuadra, en firme    8
+el municipio no cuadra, en firme    4
 en el borde, se avisa ...........  5
+cerradas contra las rayas .......  4
 ```
 
-**Dos se contradicen solas**, y para esas no hace falta ni mirar el mapa:
-`casa-capitanes-generales` tiene el nombre en La Laguna y el `cat` en Santa
-Cruz —está en la Plaza del Adelantado, La Laguna—, y `rcg-tenerife` dice
-Tacoronte en el nombre y La Laguna en el `cat`.
+### Las cuatro cerradas, y con qué
 
-**Las ocho firmes** tienen todas las paradas de alrededor del mismo municipio
-y la más cercana pegada: `parque-tabaiba-baja` a **11 m** de la parada
-«Tabaiba», `kayak-radazul` a 56 m de «Colón», `mercadillo-la-victoria` a
-**35 m** de «La Matanza» diciendo La Victoria. Ésa última además está a **15 m
-de `ciudad-matanza`**, así que lo que está mal no es su texto: es su
-coordenada.
+`buceo-tabaiba`, `parque-tabaiba-baja` y `kayak-radazul` decían **Santa Cruz**
+y son de **El Rosario**; `mir-cruz-hilda` decía **Santiago del Teide** y es de
+**Buenavista del Norte**. Las cuatro venían con la respuesta del dueño y un
+parche (`municipios-bloque1-A`), que exigía una cosa razonable: **la prueba
+tiene que ser el polígono, no la parada de al lado**, porque una parada a 67 m
+puede caer al otro lado de una raya.
+
+**El polígono municipal del Cabildo no está en el repositorio.** Se buscó: no
+hay ningún fichero de límites, y el municipio de las paradas tampoco sale de un
+polígono —`gtfs_red.py` se lo copia del índice de TITSA más cercano, a menos de
+3 km—. Bajarlo tampoco se puede: Overpass, Nominatim, IDECanarias y los
+portales de datos abiertos dan `000` desde aquí.
+
+Lo que sí hay es el mapa OSM del propio repositorio, con las **rayas
+municipales** (`boundaries`, `admin_level` 8). No son polígonos —son líneas
+sueltas, recortadas por tesela— así que no se puede preguntar «dentro de quién
+cae». Pero sí lo único que hacía falta, que es justo el riesgo señalado:
+**¿hay una raya entre el punto y las paradas que lo rodean?** Eso es
+`tools/municipio_raya.py`:
+
+| id | paradas de apoyo | raya más cercana | hueco del dato | rayas en medio |
+|---|---|---|---|---|
+| `buceo-tabaiba` | 8 hasta 561 m, todas El Rosario | 909 m | 911 m | 0 |
+| `parque-tabaiba-baja` | 8 hasta 510 m, todas El Rosario | 987 m | 994 m | 0 |
+| `kayak-radazul` | 8 hasta 433 m, todas El Rosario | 1.618 m | 1.618 m | 0 |
+| `mir-cruz-hilda` | 8 hasta 1.780 m, todas Buenavista | 2.166 m | 2.224 m | 0 |
+
+**Calibrado, no dado por bueno.** De las 849 parejas de paradas vecinas de
+municipio distinto a menos de 1,5 km, **805 (94,8 %)** tienen de verdad una
+raya en medio: el dato pierde 1 de cada 19 cruces. Por eso una ficha solo se
+cierra si **ni una raya ni un hueco** caen dentro del círculo que abarca las
+paradas de apoyo. Probado al revés sobre las cinco del borde: el control canta
+(7, 5 y 8 rayas en medio; en las otras dos, la raya a 172 m y a 1.294 m, dentro
+del círculo) y se niega a concluir. Queda apuntado en `datos/verificado.json`,
+sección `municipio_por_raya`.
+
+### El alias que estaba mal
+
+Al corregir el mirador, el control lo marcó como contradicción: leía «(Masca)»
+como *Santiago del Teide*. **Su tabla de alias tenía «Masca» en el municipio
+equivocado.** Las **tres** paradas del catálogo que llevan «Masca» en el nombre
+son de **Buenavista del Norte**. Corregido.
+
+### Lo que sigue abierto: seis
+
+**Dos se contradicen solas.** `casa-capitanes-generales` tiene el nombre y el
+punto en La Laguna (Plaza del Adelantado, a 116 m de su parada) y la
+descripción habla del Ayuntamiento de Santa Cruz, en la Plaza de la Candelaria:
+son dos edificios, y cuál de los dos quiere la ficha no se decide desde aquí.
+`rcg-tenerife` dice Tacoronte en el nombre y La Laguna en el `cat`, y está en
+el límite de los dos.
+
+**Cuatro no cuadran en firme.** `mercadillo-la-victoria` está a **35 m** de la
+parada «La Matanza» diciendo La Victoria —y a 15 m de `ciudad-matanza`—, así
+que lo que está mal no es su texto: es su coordenada. Igual `ar-la-quebrada`,
+que cae entre calles de un barrio de La Laguna diciendo Tegueste, y
+`cavis-violencia-sexual-tenerife`, que da una dirección de Santa Cruz con el
+punto en La Laguna. `guachinche-cordero` dice Arona y Guargacho está partido
+entre San Miguel de Abona y Arona.
 
 **Las cinco del borde no suspenden.** Un mirador en un puerto de montaña o un
 sendero que cruza dos términos caen en el borde por definición, y un control
 que cante en cada borde se ignora a la semana. Se listan igual: callarlas sería
 el fallo contrario.
 
-**No se ha tocado ninguna de las quince.** Cuál es el municipio bueno de un
-mirador en un límite municipal no se decide desde aquí.
+La lista de las seis, con lo que hace falta para cada una, está en
+`MUNICIPIOS-PENDIENTE.md`.
 
 ## El control de coordenadas a ojo se dejaba 42
 

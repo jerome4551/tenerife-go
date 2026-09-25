@@ -51,7 +51,11 @@ const norm = s => (s || '').normalize('NFD').replace(/\p{M}/gu, '').toLowerCase(
 const ALIAS = {
   'Adeje': ['Costa Adeje'],
   'Arona': ['Los Cristianos', 'Las Americas', 'Las Américas', 'Playa de las Américas', 'Valle San Lorenzo'],
-  'Buenavista del Norte': ['Buenavista', 'Teno'],
+  /* Masca es de Buenavista del Norte, no de Santiago del Teide: las TRES
+     paradas del catalogo que llevan «Masca» en el nombre son de Buenavista.
+     Estuvo en la lista de Santiago del Teide y por eso el mirador Cruz de
+     Hilda, ya corregido a Buenavista, volvia a salir como contradiccion. */
+  'Buenavista del Norte': ['Buenavista', 'Teno', 'Masca'],
   'Granadilla de Abona': ['Granadilla', 'El Medano', 'El Médano', 'Los Abrigos'],
   'Guía de Isora': ['Guia de Isora', 'Playa San Juan', 'Alcala', 'Alcalá'],
   'Icod de los Vinos': ['Icod'],
@@ -64,7 +68,7 @@ const ALIAS = {
      como error una iglesia de La Laguna y otra de Santa Cruz. */
   'San Miguel de Abona': ['Golf del Sur', 'Amarilla Golf'],
   'Santa Cruz de Tenerife': ['Santa Cruz', 'San Andres', 'San Andrés', 'Taganana', 'Igueste'],
-  'Santiago del Teide': ['Los Gigantes', 'Puerto Santiago', 'Masca', 'Tamaimo'],
+  'Santiago del Teide': ['Los Gigantes', 'Puerto Santiago', 'Tamaimo'],
   'Vilaflor': ['Vilaflor de Chasna'],
 };
 

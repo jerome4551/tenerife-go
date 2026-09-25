@@ -40,6 +40,8 @@ python3 tools/auditar_en_el_mar.py || fallos=$((fallos+1))
 # Inventario, no puerta: lista lo impreciso, no lo suspende.
 echo; echo "════════ coordenadas provisionales (informativo) ════════"
 python3 tools/auditar_redondeo.py
+echo; echo "════════ el municipio, contra las rayas municipales del mapa ════════"
+python3 tools/municipio_raya.py || fallos=$((fallos+1))
 echo; echo "════════ el municipio que dice cada ficha ════════"
 node tools/auditar_municipio.js || fallos=$((fallos+1))
 echo; echo "════════ lo que se sale de la pantalla, y el popup ════════"

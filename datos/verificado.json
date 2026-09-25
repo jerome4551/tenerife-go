@@ -629,13 +629,49 @@
    "fecha": "2026-09-21",
    "que_se_hizo": "Cruce de lo que cada ficha declara con el municipio de las paradas de TITSA de alrededor, sobre los 787.",
    "resultado": "520 declaran municipio, 473 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno.",
-   "abierto": "2 fichas se contradicen a si mismas y 8 tienen el municipio fuera de sitio en firme. 5 mas en el borde, que se avisan y no suspenden."
+   "abierto": [
+    "ar-la-quebrada: el punto cae en un barrio de La Laguna y la ficha dice Tegueste; falta la coordenada del area recreativa",
+    "mercadillo-la-victoria: el punto cae a 35 m de la parada «La Matanza»; falta la coordenada del mercadillo",
+    "cavis-violencia-sexual-tenerife: la ficha da Santa Cruz, c/ Franco de Medina 41, y el punto cae en La Laguna",
+    "rcg-tenerife: el nombre dice Tacoronte y el texto dice La Laguna; esta en el limite",
+    "casa-capitanes-generales: nombre y punto en La Laguna, descripcion del Ayuntamiento de Santa Cruz",
+    "guachinche-cordero: Guargacho esta partido entre San Miguel de Abona y Arona"
+   ],
+   "cerrado_por_raya": [
+    "buceo-tabaiba",
+    "parque-tabaiba-baja",
+    "kayak-radazul",
+    "mir-cruz-hilda"
+   ]
   },
   "lugares_en_el_mar": {
    "estado": "abierto",
    "fecha": "2026-09-20",
    "resultado": "781 de 787 caen en tierra contra la capa earth de OSM.",
    "abierto": "6 en el agua, las del parche auditoria-mar-8. Necesitan Overpass, que esta bloqueado en el entorno de trabajo."
+  }
+ },
+ "municipio_por_raya": {
+  "_": "Fichas cuyo municipio se cerro midiendo si hay una raya municipal entre el punto y las paradas que lo rodean, con tools/municipio_raya.py. NO es un point-in-polygon contra el shapefile del Cabildo: ese fichero no esta en el repositorio y no se puede bajar desde aqui. Lo que se usa son las rayas municipales (admin_level 8) del mapa OSM que el repositorio ya lleva. El metodo esta calibrado: de 849 parejas de paradas vecinas de municipio distinto a menos de 1,5 km, 805 (94,8%) tienen de verdad una raya en medio, asi que una ficha solo se cierra si la raya y el hueco de datos mas cercanos quedan a mas de 1,5 veces la distancia de las paradas en que se apoya. Si algun dia entra el poligono oficial, esto se rehace con el.",
+  "buceo-tabaiba": {
+   "fecha": "2026-09-25",
+   "municipio": "El Rosario",
+   "fuente": "Parche municipios-bloque1-A (sha256 594fa5ed...). tools/municipio_raya.py: 8 paradas de apoyo hasta 561 m, todas de El Rosario, la mas cercana «Tabaiba» a 177 m; raya municipal mas cercana a 909 m y hueco del dato a 911 m, los dos fuera del circulo; 0 rayas entre el punto y las 8 paradas."
+  },
+  "parque-tabaiba-baja": {
+   "fecha": "2026-09-25",
+   "municipio": "El Rosario",
+   "fuente": "Parche municipios-bloque1-A. tools/municipio_raya.py: 8 paradas de apoyo hasta 510 m, todas de El Rosario, la mas cercana «Tabaiba» a 11 m; raya a 987 m y hueco a 994 m; 0 rayas en medio."
+  },
+  "kayak-radazul": {
+   "fecha": "2026-09-25",
+   "municipio": "El Rosario",
+   "fuente": "Parche municipios-bloque1-A. tools/municipio_raya.py: 8 paradas de apoyo hasta 433 m, todas de El Rosario, la mas cercana «Colon» a 56 m; las 5 paradas que llevan «Radazul» son de El Rosario; raya a 1.618 m y hueco a 1.618 m; 0 rayas en medio."
+  },
+  "mir-cruz-hilda": {
+   "fecha": "2026-09-25",
+   "municipio": "Buenavista del Norte",
+   "fuente": "Parche municipios-bloque1-A. tools/municipio_raya.py: 8 paradas de apoyo hasta 1.780 m, todas de Buenavista del Norte, la mas cercana «Cruz de Hilda» a 67 m; raya a 2.166 m y hueco a 2.224 m; 0 rayas en medio. Texto nuevo del parche, de la ficha de Turismo de Tenerife. De paso se corrigio tools/auditar_municipio.js, que tenia «Masca» como alias de Santiago del Teide: las 3 paradas del catalogo con «Masca» en el nombre son de Buenavista del Norte."
   }
  }
 }
