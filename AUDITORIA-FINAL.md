@@ -1329,9 +1329,9 @@ que declaran municipio ......... 520
 no declaran ninguno ............ 267
 
 se contradicen a si mismas ......  2
-el municipio no cuadra, en firme    4
+el municipio no cuadra, en firme    1
 en el borde, se avisa ...........  5
-cerradas contra las rayas .......  4
+cerradas contra las rayas .......  7
 ```
 
 ### Las cuatro cerradas, y con qué
@@ -1379,29 +1379,56 @@ como *Santiago del Teide*. **Su tabla de alias tenía «Masca» en el municipio
 equivocado.** Las **tres** paradas del catálogo que llevan «Masca» en el nombre
 son de **Buenavista del Norte**. Corregido.
 
-### Lo que sigue abierto: seis
+### Las tres del segundo parche
+
+`ar-la-quebrada` se movio **4.068 m** a la coordenada que publica Tenerife ON
+(Cabildo): el punto viejo caia entre calles de un barrio de La Laguna. De las
+14 paradas mas cercanas **solo una** no tiene raya en medio, «Cruce el
+Moquinal» (Tegueste) a 380 m, que es el mismo cruce que nombra la ficha
+oficial; las 13 de La Laguna estan al otro lado de una raya.
+
+`mercadillo-la-victoria` se movio **2.109 m**. No hay coordenada publicada, asi
+que el metodo es **DERIVADO** y queda escrito como tal: punto medio entre la
+«Casa de la Castaña» y el «Terrero Municipal de Lucha y Deportes», separados
+78 m, que es como el Ayuntamiento situa el mercadillo. Los tres pasos del
+parche pedian Overpass, que esta cerrado desde aqui, y se resolvieron contra el
+OSM del propio repositorio con `tools/osm_cerca.py`: paso 1 exactamente 1
+elemento, paso 2 ningun `amenity=marketplace` a 250 m -y 15 en toda la isla,
+asi que el extracto no los filtra: OSM no tiene ese mercadillo-, paso 3
+exactamente 1. El punto nuevo da La Victoria de Acentejo.
+
+`cavis-violencia-sexual-tenerife` **no se movio, y ese era el fallo mio**: la
+tenia como «el punto miente». Segun el Instituto Canario de Igualdad, calle
+Franco de Medina 41 esta en La Cuesta, San Cristobal de La Laguna, asi que el
+punto era coherente y lo que mentia era el texto. Mover el pin a Santa Cruz
+habria mandado a las victimas al sitio equivocado. Texto nuevo en los diez
+idiomas con las tres sedes y los seis telefonos oficiales. El pin no se pudo
+geocodificar -CartoCiudad y OSM dan 000 desde aqui-, asi que se aplico la
+ultima rama de la regla: el municipio del punto actual es La Laguna (14
+paradas, ninguna con raya en medio, la primera a 72 m) y el pin se queda,
+apuntado como PORTAL NO VERIFICADO.
+
+### Lo que sigue abierto: tres
 
 **Dos se contradicen solas.** `casa-capitanes-generales` tiene el nombre y el
 punto en La Laguna (Plaza del Adelantado, a 116 m de su parada) y la
 descripción habla del Ayuntamiento de Santa Cruz, en la Plaza de la Candelaria:
 son dos edificios, y cuál de los dos quiere la ficha no se decide desde aquí.
-`rcg-tenerife` dice Tacoronte en el nombre y La Laguna en el `cat`, y está en
-el límite de los dos.
+`rcg-tenerife` dice Tacoronte en el nombre y La Laguna en el `cat`: su punto
+cae en **Tacoronte** -5 paradas sin raya en medio, todas de Tacoronte, y 9
+cortadas por una raya-, asi que el que acierta es el nombre.
 
-**Cuatro no cuadran en firme.** `mercadillo-la-victoria` está a **35 m** de la
-parada «La Matanza» diciendo La Victoria —y a 15 m de `ciudad-matanza`—, así
-que lo que está mal no es su texto: es su coordenada. Igual `ar-la-quebrada`,
-que cae entre calles de un barrio de La Laguna diciendo Tegueste, y
-`cavis-violencia-sexual-tenerife`, que da una dirección de Santa Cruz con el
-punto en La Laguna. `guachinche-cordero` dice Arona y Guargacho está partido
-entre San Miguel de Abona y Arona.
+**Una no cuadra en firme.** `guachinche-cordero` dice Arona y su punto esta
+dentro de San Miguel de Abona: 13 de las 14 paradas mas cercanas sin raya en
+medio, todas de San Miguel, y la raya a 988 m. Falta solo confirmar que el pin
+esta en el guachinche.
 
 **Las cinco del borde no suspenden.** Un mirador en un puerto de montaña o un
 sendero que cruza dos términos caen en el borde por definición, y un control
 que cante en cada borde se ignora a la semana. Se listan igual: callarlas sería
 el fallo contrario.
 
-La lista de las seis, con lo que hace falta para cada una, está en
+La lista de las tres, con lo que hace falta para cada una, está en
 `MUNICIPIOS-PENDIENTE.md`.
 
 ## El control de coordenadas a ojo se dejaba 42

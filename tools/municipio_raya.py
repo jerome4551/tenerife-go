@@ -5,6 +5,7 @@ municipio_raya.py — a que municipio cae un punto, sin inventar nada.
 
     python3 tools/municipio_raya.py                 # las fichas ya cerradas asi
     python3 tools/municipio_raya.py ID [ID ...]     # las que se le pidan
+    python3 tools/municipio_raya.py --punto 28.5,-16.3  # una coordenada suelta
     python3 tools/municipio_raya.py --calibrar      # cuanto se puede fiar uno
 
 POR QUE NO ES UN POINT-IN-POLYGON
@@ -34,9 +35,9 @@ LO QUE NO PUEDE DECIR, Y LO DICE
     · se mide tambien la distancia al HUECO mas cercano, y
     · con --calibrar se cuenta, sobre las 2.514 paradas, cuantas parejas
       vecinas de municipio distinto tienen de verdad una raya en medio.
-  Una ficha solo se da por buena si NINGUNA raya y NINGUN hueco caen dentro
-  del circulo que abarca las paradas en las que se apoya: fuera de ese circulo
-  ya no pueden meterse entre el punto y ellas.
+  Una ficha solo se da por buena si las paradas SIN raya en medio dicen todas
+  el mismo municipio Y el hueco mas cercano queda mas lejos que la primera de
+  ellas: mas cerca, un hueco podria estar tapando una raya.
 """
 import io, json, math, os, re, subprocess, sys
 
@@ -44,7 +45,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MAPA = os.path.join(RAIZ, 'mapa', 'tenerife-osm.pmtiles')
 Z, EXT = 14, 4096
 CAJA = (-16.98, 27.90, -16.08, 28.65)          # oeste, sur, este, norte
-CUANTAS = 8                                     # paradas de apoyo
+CUANTAS = 14                                    # paradas que se miran
 
 
 def tesela(lat, lng, z=Z):
@@ -126,6 +127,12 @@ def lugares():
 def main():
     args = [a for a in sys.argv[1:]]
     calibrar = '--calibrar' in args
+    sueltos = []
+    while '--punto' in args:
+        i = args.index('--punto')
+        la, lo = args[i + 1].split(',')
+        sueltos.append((float(la), float(lo)))
+        del args[i:i + 2]
     ids = [a for a in args if not a.startswith('--')]
 
     if not os.path.exists(MAPA):
@@ -166,20 +173,23 @@ def main():
               % (bien, 100.0 * bien / max(total, 1)))
         print('  o sea: el dato de rayas pierde 1 de cada %d cruces. Por eso una'
               % max(1, round(total / max(total - bien, 1))))
-        print('  ficha solo se cierra si ni una raya ni un hueco caen dentro del')
-        print('  circulo que abarca las paradas en que se apoya.')
+        print('  ficha solo se cierra si las paradas sin raya en medio coinciden')
+        print('  y ningun hueco queda mas cerca que la primera de ellas.')
         return 0
 
     REG = os.path.join(RAIZ, 'datos', 'verificado.json')
     reg = json.load(io.open(REG, encoding='utf-8')) if os.path.exists(REG) else {}
     porRaya = (reg.get('municipio_por_raya') or {})
-    if not ids:
+    if not ids and not sueltos:
         ids = sorted(k for k in porRaya if not k.startswith('_'))
         if not ids:
             print('  ninguna ficha cerrada por este metodo todavia')
             return 0
 
     LUG = lugares()
+    for k, (la, lo) in enumerate(sueltos):
+        LUG['punto-%d' % (k + 1)] = {'id': 'punto-%d' % (k + 1), 'lat': la, 'lng': lo}
+        ids.append('punto-%d' % (k + 1))
     fallos = 0
     for id in ids:
         p = LUG.get(id)
@@ -190,22 +200,31 @@ def main():
         lejos = metros(p['lat'], p['lng'], cerca[-1]['la'], cerca[-1]['lo'])
         d_raya = P.distance(red) * K
         d_hueco = min((P.distance(h) * K for h in huecos), default=9e9)
-        cruces = [s for s in cerca
-                  if LineString([(p['lng'], p['lat']), (s['lo'], s['la'])]).intersects(red)]
-        munis = sorted({s['m'] for s in cerca})
+        # LA PRUEBA: a las paradas a las que se llega SIN cruzar una raya se
+        # esta en el mismo municipio. Las que tienen una raya en medio no
+        # dicen nada, y al lado de un limite son la mayoria: por eso no vale
+        # exigir que coincidan las catorce, sino que coincidan LAS LIBRES.
+        libres, cortadas = [], []
+        for s in cerca:
+            (cortadas if LineString([(p['lng'], p['lat']), (s['lo'], s['la'])])
+             .intersects(red) else libres).append(s)
+        munis = sorted({s['m'] for s in libres})
+        cerca_libre = (metros(p['lat'], p['lng'], libres[0]['la'], libres[0]['lo'])
+                       if libres else float('inf'))
         esperado = porRaya.get(id, {}).get('municipio')
-        # La prueba es que no haya raya EN MEDIO. Lo que se exige ademas es
-        # que ni una raya ni un hueco del dato caigan dentro del circulo que
-        # abarca las paradas de apoyo: fuera de ese circulo ya no pueden
-        # meterse entre el punto y ellas.
-        bien = (not cruces and len(munis) == 1
-                and d_raya > lejos and d_hueco > lejos
+        # Un hueco mas cerca que la primera parada libre podria estar tapando
+        # una raya justo en medio, y entonces «libre» no probaria nada.
+        bien = (len(libres) >= 1 and len(munis) == 1 and d_hueco > cerca_libre
                 and (esperado is None or munis[0] == esperado))
-        print('  %s %-24s %s' % ('OK  ' if bien else 'FALLO', id, munis[0] if len(munis) == 1 else '/'.join(munis)))
-        print('        %d paradas de apoyo hasta %d m · raya mas cercana %d m · hueco %d m · rayas en medio %d'
-              % (len(cerca), round(lejos), round(d_raya), round(d_hueco), len(cruces)))
+        print('  %s %-24s %s' % ('OK  ' if bien else 'FALLO', id,
+                                 '/'.join(munis) if munis else '(ninguna parada libre)'))
+        print('        %d paradas miradas · %d sin raya en medio (la primera a %d m) · %d cortadas por una raya'
+              % (len(cerca), len(libres), round(cerca_libre) if libres else -1, len(cortadas)))
+        print('        raya mas cercana %d m · hueco del dato %d m'
+              % (round(d_raya), round(d_hueco)))
         if esperado and (len(munis) != 1 or munis[0] != esperado):
-            print('        el registro dice «%s» y las paradas dicen «%s»' % (esperado, '/'.join(munis)))
+            print('        el registro dice «%s» y las paradas libres dicen «%s»'
+                  % (esperado, '/'.join(munis) or 'ninguna'))
         if not bien:
             fallos += 1
     print('  %s' % ('OK' if not fallos else '%d ficha(s) sin respaldo' % fallos))

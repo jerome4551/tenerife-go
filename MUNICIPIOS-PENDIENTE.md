@@ -13,16 +13,18 @@ comprobar*, no como buenas). De esas 473, **10 no cuadraban en firme**.
 | grupo | qué pasa | cuántas | estado |
 |---|---|---|---|
 | A | el punto está bien, **lo que miente es el texto** | 4 | ✅ **APLICADO** (parche `municipios-bloque1-A`) |
-| B | el municipio está bien, **lo que miente es el punto** | 3 | ⏳ falta la **coordenada buena** |
+| B | el punto o el texto, según la ficha | 3 | ✅ **APLICADO** (parche `municipios-bloque1-B`) |
 | C | la ficha **se contradice a sí misma** | 3 | ⏳ falta decidir **cuál de los dos** |
 
-**Quedan 6.** Son las de los grupos B y C.
+**Quedan 3**, las del grupo C. El control de municipio baja de **10 a 3**.
 
 ---
 
 ## Cómo mandarme las respuestas
 
-Del grupo B, una línea por sitio con `id lat lng`. Se aplican con
+Del grupo C basta con decirme cuál de los dos sitios es.
+
+Si algún día mandas coordenadas, una línea por sitio con `id lat lng`. Se aplican con
 
 ```
 python3 tools/fijar_coordenada.py --fichero nuevas.txt
@@ -126,88 +128,135 @@ Teide. Las **tres** paradas del catálogo que llevan «Masca» en el nombre son 
 
 ---
 
-## Grupo B · El municipio está bien y el punto miente (3)
+## Grupo B · HECHO (3)
 
-Aquí el texto es correcto y **la coordenada está caída en otro pueblo**. Lo que
-necesito es el punto de verdad. **No lo deduzco yo**: eso sería inventar.
+Parche `municipios-bloque1-B`, hash `cf3094e6…` comprobado antes de tocar nada.
 
-Con la herramienta nueva ya no es «parece que está fuera»: los dos primeros
-están **dentro del otro municipio con margen**, no en la raya.
-`mercadillo-la-victoria` tiene 8 paradas de La Matanza a su alrededor y la raya
-más cercana a 1.089 m; `ar-la-quebrada`, 8 de La Laguna y la raya a 847 m. Son
-puntos desplazados, no casos de borde.
+| id | antes | después | se mueve | método |
+|---|---|---|---|---|
+| `ar-la-quebrada` | `28.501, -16.323` | `28.532070, -16.300711` | **4.068 m** | fija (Tenerife ON, Cabildo) |
+| `mercadillo-la-victoria` | `28.448, -16.4579` | `28.433028, -16.471258` | **2.109 m** | **derivado** |
+| `cavis-violencia-sexual-tenerife` | `28.4708, -16.2885` | *no se mueve* | 0 m | portal **no verificado** |
 
-### B1 · `mercadillo-la-victoria` — Mercadillo de La Victoria de Acentejo
-- **Ahora**: `28.448, -16.4579`.
-- **Qué pasa**: a **35 m** tiene la parada **«La Matanza»**, de **La Matanza de
-  Acentejo**, y las 8 paradas de alrededor son todas de La Matanza. El punto
-  está en el pueblo de al lado. La parada de La Victoria de Acentejo más
-  cercana («La Pólvora») queda a **1,53 km al suroeste**.
-- **Necesito**: dónde se pone el mercadillo de La Victoria.
+### La CAVIS la tenías tú bien y yo mal
 
-### B2 · `ar-la-quebrada` — Área Recreativa La Quebrada
-- **Ahora**: `28.501, -16.323` — coordenada **a ojo**, con 3 decimales.
-- **Qué pasa**: a **89 m** tiene la parada **«Manuel de Falla»**, y las
-  siguientes son «Joaquín Turina», «Enrique Granados», «Chopin»: **calles de
-  un barrio de La Laguna**, no un área recreativa de monte. La parada de
-  Tegueste más cercana («Pedro Álvarez») está a **1,81 km al norte**.
-- **Necesito**: el punto del área recreativa. (Hay una parada «La Quebrada»
-  en el catálogo, pero es de **Santa Cruz** y está a **8,3 km al este**: no es
-  esta, y por eso no la uso.)
+La puse en el grupo B —«el municipio está bien y miente el punto»— y era al
+revés: la dirección de calle Franco de Medina 41 está en **La Cuesta, San
+Cristóbal de La Laguna**, así que el punto era coherente y lo que mentía era el
+texto. **Mover el pin a Santa Cruz habría mandado a las víctimas al sitio
+equivocado.** Corregido: texto nuevo en los diez idiomas, con las tres sedes y
+los seis teléfonos oficiales, y el pin donde estaba.
 
-### B3 · `cavis-violencia-sexual-tenerife` — CAVIS, Violencia Sexual
-- **Ahora**: `28.4708, -16.2885`.
-- **Qué pasa**: la ficha da la dirección **«Santa Cruz, calle Franco de Medina
-  41»**, pero el punto cae con las 8 paradas de alrededor en **La Laguna**
-  (la más cercana, «Breña Alta», a 72 m).
-- **Por qué este me corre más que los otros dos**: es un teléfono y una puerta
-  de **atención a víctimas**. Que el mapa lleve a otro sitio no es una errata.
-- **Necesito**: la coordenada de Franco de Medina 41. Si la dirección también
-  ha cambiado, la dirección nueva.
+El pin no se ha podido geocodificar: la regla pedía CartoCiudad (IGN) o OSM y
+desde aquí los dos dan `000`. Se aplicó la última rama de tu propia regla —el
+pin se queda si el municipio del punto actual es La Laguna—, y lo es: de las 14
+paradas más cercanas **ninguna** tiene una raya municipal en medio y la primera
+está a 72 m. Queda apuntado como **portal no verificado**: el municipio está
+probado, el número 41 de la calle no.
+
+### El mercadillo: los tres pasos, resueltos sin Overpass
+
+Overpass está cerrado desde aquí, pero **el dato de OSM que pedías ya está en
+el repositorio**. Los tres pasos se resolvieron contra él con
+`tools/osm_cerca.py`, que es nuevo:
+
+| paso | qué pedía | qué salió |
+|---|---|---|
+| 1 | «Casa de la Castaña», exactamente 1 | **1**: museo en `28.432695, -16.471387` |
+| 2 | `amenity=marketplace` a 250 m | **0** — y **15** en toda la isla, así que el extracto no los está filtrando: OSM no tiene el mercadillo |
+| 3 | `terrero\|lucha` a 400 m, exactamente 1 | **1**: Terrero Municipal de Lucha y Deportes, `28.433360, -16.471129`, a **78 m** de C (≤ 250) |
+
+Punto medio de los dos: `28.433028, -16.471258`. **Método derivado**, apuntado
+como tal en `datos/verificado.json`: si aparece la coordenada publicada, se
+cambia.
+
+Y el punto nuevo da **La Victoria de Acentejo**: 6 paradas sin raya en medio,
+todas de La Victoria, y las 8 de La Matanza y Santa Úrsula cortadas por una
+raya. El viejo estaba a 15 m de `ciudad-matanza`, como decías: era la
+coordenada del casco de La Matanza copiada.
+
+### La Quebrada
+
+La coordenada del Cabildo da **Tegueste**, como pedías. De las 14 paradas más
+cercanas **solo una** no tiene raya municipal en medio: «Cruce el Moquinal»
+(Tegueste) a 380 m — el mismo cruce que nombra la ficha oficial. Las 13 de La
+Laguna están todas al otro lado de una raya. Quitado «Muy tranquila» en los
+diez idiomas.
+
+> ⚠️ **Una cosa que dejo sin tocar y que hay que decidir:** la ficha conserva
+> la etiqueta **«Tranquila»**. El parche no lista `tags` para esta ficha y no
+> me invento lo que no pides, pero contradice lo que acabamos de quitar. ¿La
+> borro?
+
+### Lo que el parche no traía, y dos cosas que traía mal
+
+**Venía en 8 idiomas y la app tiene 10.** Escritos el búlgaro y el polaco de
+los textos nuevos de la CAVIS —con los seis teléfonos, el 112 y el 016,
+comprobado uno a uno— y del recorte de La Quebrada.
+
+Y al pasar la auditoría saltaron **siete idiomas en rojo**, los dos por culpa
+del texto del parche:
+
+1. **El `cat` de la CAVIS venía con dos trozos y el castellano tiene tres.**
+   «Violences Sexuelles · La Laguna» frente a «Violencia Sexual · Atención · La
+   Laguna». La app parte el `cat` por el punto volado y enseña los trozos, así
+   que a seis idiomas les faltaba uno. Recuperado el del medio, que la ficha ya
+   tenía: *Accueil · Beratung · Assistenza · Hulp · 服务 · 服務*.
+2. **El «24» de «Las 24 horas» no cuadraba en cinco idiomas.** En francés e
+   italiano salía dos veces («24 h/24», «24 ore su 24») y en alemán, búlgaro y
+   polaco ninguna («Rund um die Uhr», «Денонощно», «Całodobowo»). El control
+   exige las mismas cifras que el castellano, y tiene razón: una cifra que está
+   en una lengua y no en otra es información perdida. Reescritas las cinco para
+   que el 24 salga una vez y siga sonando natural.
+
+Después de las dos correcciones, los diez idiomas dan **0 hallazgos**.
 
 ---
 
-## Grupo C · La ficha se contradice a sí misma (3)
+## Grupo C · Las 3 que quedan
 
-Aquí **no es cuestión de coordenada**: la ficha dice dos cosas distintas en el
-nombre y en el texto, así que una de las dos está mal sí o sí. Necesito que
-elijas.
+Aquí **no es cuestión de coordenada**: la ficha dice dos cosas distintas, así
+que una de las dos está mal sí o sí.
 
-### C1 · `casa-capitanes-generales` — es la más gorda de las tres
+Con la herramienta de las rayas ya sé **en qué municipio cae el punto de cada
+una**, y eso reduce mucho lo que te toca a ti: en dos de las tres solo hace
+falta que me confirmes que **el pin está en el sitio**, y el resto lo arreglo.
+
+### C1 · `casa-capitanes-generales` — la única que es de verdad una decisión
 - **El nombre** dice «Casa de los Capitanes Generales **(La Laguna)**» y el
-  punto (`28.4876, -16.3148`) cae a **116 m de la parada «Plaza del
-  Adelantado»**, en La Laguna.
+  punto (`28.4876, -16.3148`) cae **firmemente en La Laguna**: de las 14
+  paradas más cercanas, **ninguna** tiene raya en medio, la primera a 116 m
+  («Plaza del Adelantado»), y la raya más cercana está a **2.310 m**.
 - **La descripción** habla de otro edificio: «Plaza de la **Candelaria** de
   Santa Cruz», «sede del **Ayuntamiento de Santa Cruz de Tenerife**». Y el
   `cat` y las etiquetas dicen Santa Cruz.
-- O sea: **nombre y punto apuntan a un edificio y el texto describe otro**.
-- **Necesito que me digas cuál de los dos quieres**, y el otro lo damos de alta
-  aparte si te interesa:
+- O sea: **nombre y punto apuntan a un edificio y el texto describe otro.**
+- **Necesito que elijas**, y el otro lo damos de alta aparte si te interesa:
   - **(a)** el de **La Laguna**, Plaza del Adelantado → hay que **reescribir la
     descripción entera** en los diez idiomas.
   - **(b)** el de **Santa Cruz**, Plaza de la Candelaria → hay que **cambiar el
     nombre y la coordenada**.
 
-### C2 · `rcg-tenerife` — Real Club de Golf de Tenerife
-- **El nombre** dice «(Tacoronte)». **La descripción, el `cat` y las etiquetas**
-  dicen «San Lázaro (**La Laguna**)».
-- **El punto** (`28.4872, -16.3793`) tiene las tres paradas más cercanas en
-  **Tacoronte** («El Rodeo» a 263 m, «El Boquerón» a 579 m, «El Trazo» a
-  724 m) y las de La Laguna ya a **más de 950 m**.
-- Está **en el límite de los dos municipios**, así que aquí las paradas no
-  mandan solas.
-- **Necesito**: si el club es de **Tacoronte** o de **La Laguna**. Luego lo
-  dejo dicho igual en los cuatro sitios de la ficha.
+### C2 · `rcg-tenerife` — el punto está en Tacoronte
+- El nombre dice «(Tacoronte)»; la descripción, el `cat` y las etiquetas dicen
+  «San Lázaro (**La Laguna**)».
+- **El punto está en Tacoronte**: 5 paradas sin raya en medio, todas de
+  Tacoronte (la primera a 262 m), y 9 cortadas por una raya. La raya está a
+  551 m. **El que acierta es el nombre**; el texto es el que miente.
+- **Solo necesito que me confirmes que el pin está en el club.** Si sí, cambio
+  `cat`, descripción y etiquetas a Tacoronte en los diez idiomas y esta se
+  cierra.
 
-### C3 · `guachinche-cordero` — Guachinche El Cordero
-- **La ficha** dice «Arona» en el `cat` y en la dirección: «TF-652 nº 8, El
-  Monte o **Guargacho (Arona)**».
-- **El punto** (`28.0454, -16.6292`) tiene las 8 paradas de alrededor en **San
-  Miguel de Abona**, la más cercana «Catú» a 116 m.
-- **Por qué no lo decido yo**: **Guargacho está partido**. En el catálogo hay
-  dos paradas «Guargacho» de **San Miguel de Abona** y una «Guargacho Bajo» de
-  **Arona**. El guachinche puede caer a un lado o al otro de esa raya.
-- **Necesito**: si El Cordero es de **Arona** o de **San Miguel de Abona**.
+### C3 · `guachinche-cordero` — el punto está en San Miguel de Abona
+- La ficha dice «Arona» en el `cat` y en la dirección: «TF-652 nº 8, El Monte o
+  **Guargacho (Arona)**».
+- Dije que Guargacho estaba partido y que por eso no lo decidía. **Con las
+  rayas ya no hay duda sobre el punto**: 13 de las 14 paradas más cercanas no
+  tienen raya en medio y **todas son de San Miguel de Abona** (la primera a
+  116 m); la raya está a **988 m**. El pin no está en la raya, está dentro.
+- **Solo necesito que me confirmes que el pin está en el guachinche.** Si sí,
+  cambio Arona → San Miguel de Abona y esta se cierra. Si el guachinche está
+  en otro sitio, mándame dónde.
 
 ---
 

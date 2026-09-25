@@ -556,6 +556,14 @@
   "windsurf-la-tejita": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "ar-la-quebrada": {
+   "fecha": "2026-09-25",
+   "fuente": "Parche municipios-bloque1-B (sha256 cf3094e6...). Tenerife ON (Cabildo de Tenerife), ficha oficial del area recreativa: enlace de acceso 28.532069688519, -16.300710533935. Acceso por el Camino de El Batan (TF-143), km 0,4, Cruce El Moquinal. Se mueve 4.068 m desde el punto viejo, que caia en un barrio de La Laguna."
+  },
+  "mercadillo-la-victoria": {
+   "fecha": "2026-09-25",
+   "fuente": "Parche municipios-bloque1-B, metodo DERIVADO (no hay coordenada publicada). Punto medio entre «Casa de la Castana» (museo, OSM, 28.432695,-16.471387) y «Terrero Municipal de Lucha y Deportes» (OSM, 28.433360,-16.471129), separados 78 m, que es como el Ayuntamiento situa el mercadillo. Los tres pasos del parche se resolvieron con el OSM del propio repositorio (tools/osm_cerca.py) porque Overpass esta cerrado desde aqui: paso 1 exactamente 1 elemento, paso 2 ningun amenity=marketplace a 250 m (y 15 en toda la isla, asi que el extracto no los filtra), paso 3 exactamente 1. Se mueve 2.109 m. DERIVADO, no medido: si aparece la coordenada publicada, se cambia."
   }
  },
  "areas": {
@@ -672,6 +680,21 @@
    "fecha": "2026-09-25",
    "municipio": "Buenavista del Norte",
    "fuente": "Parche municipios-bloque1-A. tools/municipio_raya.py: 8 paradas de apoyo hasta 1.780 m, todas de Buenavista del Norte, la mas cercana «Cruz de Hilda» a 67 m; raya a 2.166 m y hueco a 2.224 m; 0 rayas en medio. Texto nuevo del parche, de la ficha de Turismo de Tenerife. De paso se corrigio tools/auditar_municipio.js, que tenia «Masca» como alias de Santiago del Teide: las 3 paradas del catalogo con «Masca» en el nombre son de Buenavista del Norte."
+  },
+  "ar-la-quebrada": {
+   "fecha": "2026-09-25",
+   "municipio": "Tegueste",
+   "fuente": "tools/municipio_raya.py sobre la coordenada nueva: de las 14 paradas mas cercanas solo una no tiene raya municipal en medio, «Cruce el Moquinal» (Tegueste) a 380 m -el mismo cruce que nombra la ficha del Cabildo-, y las 13 de La Laguna estan todas al otro lado de una raya."
+  },
+  "mercadillo-la-victoria": {
+   "fecha": "2026-09-25",
+   "municipio": "La Victoria de Acentejo",
+   "fuente": "tools/municipio_raya.py sobre el punto derivado: 6 paradas sin raya en medio, todas de La Victoria de Acentejo (la primera a 232 m), y las 8 de La Matanza y Santa Ursula cortadas por una raya."
+  },
+  "cavis-violencia-sexual-tenerife": {
+   "fecha": "2026-09-25",
+   "municipio": "San Cristóbal de La Laguna",
+   "fuente": "Parche municipios-bloque1-B: segun el Instituto Canario de Igualdad, calle Franco de Medina 41 esta en La Cuesta, San Cristobal de La Laguna (38320). El pin NO se movio. PORTAL NO VERIFICADO: la regla del parche pedia geocodificar la direccion con CartoCiudad (IGN) o con OSM, y desde aqui los dos estan cerrados por la politica de salida (000). Se aplico la ultima rama de la regla: tools/municipio_raya.py sobre el pin actual da San Cristobal de La Laguna -14 paradas, ninguna con raya en medio, la primera a 72 m-, asi que el pin se queda."
   }
  }
 }
