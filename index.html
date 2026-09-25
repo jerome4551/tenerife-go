@@ -2807,6 +2807,12 @@ window.onunhandledrejection = function(e) {
   }
   .route-tab {
     flex: 1;
+    /* Sin min-width:0 un elemento flex no encoge por debajo de su contenido,
+       y con white-space:nowrap el contenido no se parte: en bulgaro
+       «Организирай деня си» empujaba la tercera pestaña fuera de la pantalla.
+       Con las dos cosas la etiqueta se parte en dos lineas y la fila crece
+       de alto en vez de desbordarse. */
+    min-width: 0;
     padding: 0.4rem 0.5rem;
     border-radius: 10px;
     border: 1px solid var(--border);
@@ -2821,7 +2827,9 @@ window.onunhandledrejection = function(e) {
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-    white-space: nowrap;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.15;
     letter-spacing: 0.02em;
   }
   .route-tab:hover { border-color: rgba(74,222,128,0.35); color: #86efac; }
@@ -4580,6 +4588,34 @@ window.onunhandledrejection = function(e) {
   .topbar-brand span {
     display: block !important;
   }
+
+  /* MEDIDO: no cabía «perfectamente». En una pantalla de 360 px el wordmark
+     ocupa 89 px, el grupo de botones necesita 229 y solo quedan 220, asi que
+     el ultimo boton -el del idioma- se salia 5 px por la derecha. En los diez
+     idiomas, porque no es cosa del texto sino del ancho de los botones.
+
+     No se vuelve a esconder el wordmark: la decision de que se vea es del
+     dueño. Lo que se hace es que CEDA EL PRIMERO. La marca se recorta con
+     puntos suspensivos cuando no cabe, y los botones no se van de la
+     pantalla nunca. Cuando hay sitio se ve entera, que es lo que se queria.
+
+     La causa de fondo era `flex-shrink: 0` en .topbar-brand: con eso el
+     navegador no tiene de donde sacar los 9 px que faltan y empuja. */
+  .topbar-brand {
+    flex-shrink: 1 !important;
+    min-width: 0 !important;
+  }
+  .topbar-brand-text {
+    min-width: 0;
+    overflow: hidden;
+  }
+  .topbar-brand h1,
+  .topbar-brand span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .topbar-logo { flex-shrink: 0; }
   /* En móvil, ajustamos tamaños para que sea elegante y ergonómico */
   @media (max-width: 500px) {
     .topbar-brand h1 {
@@ -6735,6 +6771,7 @@ banderasTitulo: '¿Qué significa cada bandera?',
     nearbyStopsNone: 'No hay paradas a menos de 1,5 km',
     nearbyStopsMin: 'min',
     nearbyHowToBtn: '🚏 Cómo llegar en bus',
+    popupVerFicha: 'Ver descripción completa',
     directionsBtn: '🚗 Cómo llegar en coche',
     busAccessToggleLabel: 'Accesible en bus (500 m)',
     categories: {
@@ -6905,6 +6942,7 @@ banderasTitulo: 'What does each flag mean?',
     nearbyStopsNone: 'No stops within 1.5 km',
     nearbyStopsMin: 'min',
     nearbyHowToBtn: '🚏 How to get there by bus',
+    popupVerFicha: 'See full description',
     directionsBtn: '🚗 Get there by car',
     busAccessToggleLabel: 'Bus accessible (500 m)',
     categories: {
@@ -7075,6 +7113,7 @@ banderasTitulo: 'Que signifie chaque drapeau ?',
     nearbyStopsNone: 'Aucun arrêt à moins de 1,5 km',
     nearbyStopsMin: 'min',
     nearbyHowToBtn: '🚏 Comment y aller en bus',
+    popupVerFicha: 'Voir la description complète',
     directionsBtn: '🚗 Y aller en voiture',
     busAccessToggleLabel: 'Accessible en bus (500 m)',
     categories: {
@@ -7245,6 +7284,7 @@ banderasTitulo: 'Was bedeutet welche Flagge?',
     nearbyStopsNone: 'Keine Haltestellen innerhalb 1,5 km',
     nearbyStopsMin: 'Min.',
     nearbyHowToBtn: '🚏 Mit dem Bus dorthin',
+    popupVerFicha: 'Vollständige Beschreibung ansehen',
     directionsBtn: '🚗 Mit dem Auto hinfahren',
     busAccessToggleLabel: 'Per Bus erreichbar (500 m)',
     categories: {
@@ -7419,6 +7459,7 @@ banderasTitulo: 'Che cosa significa ogni bandiera?',
     nearbyStopsNone: 'Nessuna fermata entro 1,5 km',
     nearbyStopsMin: 'min',
     nearbyHowToBtn: '🚏 Come arrivare in bus',
+    popupVerFicha: 'Vedi la descrizione completa',
     directionsBtn: '🚗 Arrivare in auto',
     busAccessToggleLabel: 'Raggiungibile in bus (500 m)',
     categories: {
@@ -7587,6 +7628,7 @@ banderasTitulo: 'Wat betekent elke vlag?',
     nearbyStopsNone: 'Geen haltes binnen 1,5 km',
     nearbyStopsMin: 'min',
     nearbyHowToBtn: '🚏 Hoe te komen met de bus',
+    popupVerFicha: 'Volledige beschrijving bekijken',
     directionsBtn: '🚗 Ernaartoe met de auto',
     busAccessToggleLabel: 'Bereikbaar met bus (500 m)',
     categories: {
@@ -7761,6 +7803,7 @@ banderasTitulo: '每种旗帜是什么意思？',
     nearbyStopsNone: '1.5 公里内无车站',
     nearbyStopsMin: '分钟',
     nearbyHowToBtn: '🚏 如何乘公交前往',
+    popupVerFicha: '查看完整介绍',
     directionsBtn: '🚗 驾车前往',
     busAccessToggleLabel: '公交可达（500 米）',
     categories: {
@@ -7938,6 +7981,7 @@ banderasTitulo: '每种旗帜是什么意思？',
     "nearbyStopsNone": "Няма спирки на по-малко от 1,5 км",
     "nearbyStopsMin": "мин",
     "nearbyHowToBtn": "🚏 Как да стигна с автобус",
+    "popupVerFicha": "Виж пълното описание",
     "directionsBtn": "🚗 Как да стигна с кола",
     "busAccessToggleLabel": "Достъпно с автобус (500 м)",
     "categories": {
@@ -8110,6 +8154,7 @@ banderasTitulo: '每种旗帜是什么意思？',
     "nearbyStopsNone": "Brak przystanków w promieniu 1,5 km",
     "nearbyStopsMin": "min",
     "nearbyHowToBtn": "🚏 Jak dojechać autobusem",
+    "popupVerFicha": "Zobacz pełny opis",
     "directionsBtn": "🚗 Jak dojechać samochodem",
     "busAccessToggleLabel": "Dostępne autobusem (500 m)",
     "categories": {
@@ -8613,6 +8658,7 @@ banderasTitulo: '每種旗幟是什麼意思？',
     nearbyStopsNone: '1.5 公里內無車站',
     nearbyStopsMin: '分鐘',
     nearbyHowToBtn: '🚏 如何搭公車前往',
+    popupVerFicha: '查看完整介紹',
     directionsBtn: '🚗 開車前往',
     busAccessToggleLabel: '公車可達（500 公尺）',
     categories: {
@@ -16442,6 +16488,11 @@ function _updateMarkersImpl() {
       const safeShareTtl = escapeAttr(L.shareBtn);
       const safeShareLbl = escapeHtml(L.shareBtn);
       const safeHowToLbl = escapeHtml(L.nearbyHowToBtn || '🚏 Cómo llegar en bus');
+      /* Estaba escrito a pelo en castellano dentro de la plantilla del popup,
+         asi que salia en español en los otros nueve idiomas. No lo cazo el
+         control de idioma porque compara el DOM de la pagina quieta y esto
+         solo existe cuando tocas un pin del mapa. */
+      const safeVerFicha = escapeHtml(L.popupVerFicha || 'Ver descripción completa');
       const safeDirLbl   = escapeHtml(L.directionsBtn || '🚗 Cómo llegar en coche');
       const _dirCoord = place.lat + ',' + place.lng;
       const _dirIOS = /iPhone|iPad|iPod/.test(navigator.userAgent || '') ||
@@ -16490,7 +16541,7 @@ function _updateMarkersImpl() {
           <a class="popup-howto-btn popup-car-btn" href="${safeDirUrl}" target="_blank" rel="noopener noreferrer">
             ${safeDirLbl}
           </a>
-          <div class="popup-tap-hint" data-action="detail" data-place-id="${safeId}">👆 Ver descripción completa</div>
+          <div class="popup-tap-hint" data-action="detail" data-place-id="${safeId}">👆 ${safeVerFicha}</div>
         </div>
       `);
       marker.bindPopup(popup);

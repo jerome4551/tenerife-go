@@ -42,6 +42,8 @@ echo; echo "════════ coordenadas provisionales (informativo) ═
 python3 tools/auditar_redondeo.py
 echo; echo "════════ el municipio que dice cada ficha ════════"
 node tools/auditar_municipio.js || fallos=$((fallos+1))
+echo; echo "════════ lo que se sale de la pantalla, y el popup ════════"
+node tools/auditar_desborde.js "$PUERTO" || fallos=$((fallos+1))
 echo; echo "════════ mapa sin conexion ════════"
 node tools/auditar_mapa.js "$PUERTO" || fallos=$((fallos+1))
 echo; echo "════════ idiomas, arranque y rendimiento ════════"
@@ -62,6 +64,8 @@ for L in $IDIOMAS; do
   printf '%s\n' "$salida" | head -4
   [ "$rc" = 0 ] || { echo "  FALLO en $L"; fallos=$((fallos+1)); }
 done
+echo; echo "════════ la frase diaria, en los diez idiomas ════════"
+node tools/auditar_frases.js || fallos=$((fallos+1))
 echo; echo "════════ etiquetas del globo ════════"
 node tools/auditar_etiquetas.js || fallos=$((fallos+1))
 echo; echo "════════ base de conocimiento del asistente ════════"

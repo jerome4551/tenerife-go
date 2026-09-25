@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "_nota": "365 frases (una por dia del ano). 8 idiomas completos: es, en, fr, de, it, nl, zh, zht. El envio elige por dia del ano; no se repite en el ano y rota sola. Para anadir mas frases, agrega objetos con los 8 idiomas.",
+  "_nota": "365 frases (una por dia del ano). Los 10 idiomas de SUPPORTED_LANGS completos: es, en, fr, de, it, nl, zh, zht, bg, pl. El envio elige por dia del ano; no se repite en el ano y rota sola. Para anadir mas frases, agrega objetos con los 10 idiomas: si falta uno, enviar-notificacion.js manda la castellana a quien tenga ese idioma. Lo comprueba tools/auditar_frases.js.",
   "titulo": {
     "es": "Buenos días ☀️",
     "en": "Good morning ☀️",
@@ -9,7 +9,9 @@
     "it": "Buongiorno ☀️",
     "nl": "Goedemorgen ☀️",
     "zh": "早安 ☀️",
-    "zht": "早安 ☀️"
+    "zht": "早安 ☀️",
+    "bg": "Добро утро ☀️",
+    "pl": "Dzień dobry ☀️"
   },
   "frases": [
     {
@@ -20,7 +22,9 @@
       "it": "Oggi fai solo un passo. Basta questo.",
       "nl": "Zet vandaag gewoon één stap. Dat is genoeg.",
       "zh": "今天只要迈出一步就够了。",
-      "zht": "今天只要邁出一步就夠了。"
+      "zht": "今天只要邁出一步就夠了。",
+      "bg": "Днес трябва да направиш само една крачка. Това стига.",
+      "pl": "Dziś wystarczy zrobić jeden krok. To wystarczy."
     },
     {
       "es": "Respira. Este momento es tuyo y no hay prisa.",
@@ -30,7 +34,9 @@
       "it": "Respira. Questo momento è tuo, senza fretta.",
       "nl": "Adem. Dit moment is van jou, zonder haast.",
       "zh": "深呼吸。这一刻属于你，不必着急。",
-      "zht": "深呼吸。這一刻屬於你，不必著急。"
+      "zht": "深呼吸。這一刻屬於你，不必著急。",
+      "bg": "Дишай. Този миг е твой и няма закъде да бързаш.",
+      "pl": "Oddychaj. Ta chwila jest twoja i nie ma pośpiechu."
     },
     {
       "es": "El mar sigue ahí, paciente. Ve a saludarlo cuando puedas.",
@@ -40,7 +46,9 @@
       "it": "Il mare è ancora lì, paziente. Vai a salutarlo quando puoi.",
       "nl": "De zee is er nog, geduldig. Ga haar groeten als je kunt.",
       "zh": "大海一直都在，很有耐心。有空就去和它打个招呼。",
-      "zht": "大海一直都在，很有耐心。有空就去和它打個招呼。"
+      "zht": "大海一直都在，很有耐心。有空就去和它打個招呼。",
+      "bg": "Морето още е там, търпеливо. Иди да го поздравиш, когато можеш.",
+      "pl": "Morze wciąż tam jest, cierpliwe. Idź się z nim przywitać, kiedy będziesz mógł."
     },
     {
       "es": "Sé amable contigo: lo estás haciendo mejor de lo que crees.",
@@ -50,7 +58,9 @@
       "it": "Sii gentile con te: stai facendo meglio di quanto credi.",
       "nl": "Wees lief voor jezelf: je doet het beter dan je denkt.",
       "zh": "对自己温柔一点：你做得比你以为的好。",
-      "zht": "對自己溫柔一點：你做得比你以為的好。"
+      "zht": "對自己溫柔一點：你做得比你以為的好。",
+      "bg": "Бъди мил със себе си: справяш се по-добре, отколкото си мислиш.",
+      "pl": "Bądź dla siebie dobry: radzisz sobie lepiej, niż ci się wydaje."
     },
     {
       "es": "Un paseo corto también cuenta como cuidarse.",
@@ -60,7 +70,9 @@
       "it": "Una breve passeggiata è già prendersi cura di sé.",
       "nl": "Een korte wandeling is ook voor jezelf zorgen.",
       "zh": "散一小会儿步，也是在照顾自己。",
-      "zht": "散一小會兒步，也是在照顧自己。"
+      "zht": "散一小會兒步，也是在照顧自己。",
+      "bg": "И кратката разходка се брои за грижа към себе си.",
+      "pl": "Krótki spacer też liczy się jako dbanie o siebie."
     },
     {
       "es": "No hace falta que hoy sea perfecto. Basta con que sea tuyo.",
@@ -70,7 +82,9 @@
       "it": "Oggi non deve essere perfetto. Basta che sia tuo.",
       "nl": "Vandaag hoeft niet perfect te zijn. Dat het van jou is, is genoeg.",
       "zh": "今天不必完美。只要属于你，就够了。",
-      "zht": "今天不必完美。只要屬於你，就夠了。"
+      "zht": "今天不必完美。只要屬於你，就夠了。",
+      "bg": "Днес не е нужно да е съвършен. Стига да е твой.",
+      "pl": "Dziś nie musi być idealnie. Wystarczy, że będzie twoje."
     },
     {
       "es": "Mira el cielo un momento. Sigue siendo enorme y gratis.",
@@ -80,7 +94,9 @@
       "it": "Guarda il cielo un momento. Sempre immenso e gratis.",
       "nl": "Kijk even naar de lucht. Nog steeds enorm en gratis.",
       "zh": "抬头看看天空。它依旧辽阔，而且免费。",
-      "zht": "抬頭看看天空。它依舊遼闊，而且免費。"
+      "zht": "抬頭看看天空。它依舊遼闊，而且免費。",
+      "bg": "Погледни небето за миг. Още е огромно и безплатно.",
+      "pl": "Spójrz przez chwilę w niebo. Wciąż jest ogromne i za darmo."
     },
     {
       "es": "Los días difíciles también pasan. Hoy, ve despacio.",
@@ -90,7 +106,9 @@
       "it": "Anche i giorni difficili passano. Oggi, vai piano.",
       "nl": "Moeilijke dagen gaan ook voorbij. Vandaag: doe rustig aan.",
       "zh": "难熬的日子也会过去。今天，慢慢来。",
-      "zht": "難熬的日子也會過去。今天，慢慢來。"
+      "zht": "難熬的日子也會過去。今天，慢慢來。",
+      "bg": "И трудните дни минават. Днес върви бавно.",
+      "pl": "Trudne dni też mijają. Dziś idź powoli."
     },
     {
       "es": "Bebe agua, estírate, mira lejos. Tu cuerpo te lo agradece.",
@@ -100,7 +118,9 @@
       "it": "Bevi acqua, allungati, guarda lontano. Il corpo ti ringrazia.",
       "nl": "Drink water, rek je uit, kijk ver. Je lichaam dankt je.",
       "zh": "喝点水，伸伸懒腰，望向远方。身体会感谢你。",
-      "zht": "喝點水，伸伸懶腰，望向遠方。身體會感謝你。"
+      "zht": "喝點水，伸伸懶腰，望向遠方。身體會感謝你。",
+      "bg": "Пий вода, разтегни се, погледни надалеч. Тялото ти ще ти благодари.",
+      "pl": "Pij wodę, rozciągnij się, popatrz w dal. Ciało ci podziękuje."
     },
     {
       "es": "Descubrir algo nuevo empieza con salir por la puerta.",
@@ -110,7 +130,9 @@
       "it": "Scoprire qualcosa di nuovo comincia uscendo dalla porta.",
       "nl": "Iets nieuws ontdekken begint bij de voordeur.",
       "zh": "发现新事物，从走出家门开始。",
-      "zht": "發現新事物，從走出家門開始。"
+      "zht": "發現新事物，從走出家門開始。",
+      "bg": "Да откриеш нещо ново започва с излизане през вратата.",
+      "pl": "Odkrywanie czegoś nowego zaczyna się od wyjścia za drzwi."
     },
     {
       "es": "Lo pequeño cuenta: una sonrisa, un café, un rato al sol.",
@@ -120,7 +142,9 @@
       "it": "Le piccole cose contano: un sorriso, un caffè, un po' di sole.",
       "nl": "Kleine dingen tellen: een glimlach, een koffie, wat zon.",
       "zh": "小事也算数：一个微笑、一杯咖啡、一点阳光。",
-      "zht": "小事也算數：一個微笑、一杯咖啡、一點陽光。"
+      "zht": "小事也算數：一個微笑、一杯咖啡、一點陽光。",
+      "bg": "Малкото се брои: усмивка, кафе, миг на слънце.",
+      "pl": "Małe rzeczy się liczą: uśmiech, kawa, chwila w słońcu."
     },
     {
       "es": "Hoy permítete descansar sin sentirte culpable.",
@@ -130,7 +154,9 @@
       "it": "Oggi concediti di riposare senza sentirti in colpa.",
       "nl": "Gun jezelf vandaag rust, zonder schuldgevoel.",
       "zh": "今天允许自己休息，不必内疚。",
-      "zht": "今天允許自己休息，不必內疚。"
+      "zht": "今天允許自己休息，不必內疚。",
+      "bg": "Днес си позволи да починеш без чувство за вина.",
+      "pl": "Dziś pozwól sobie odpocząć bez poczucia winy."
     },
     {
       "es": "La isla huele a mar. Sal a llenarte los pulmones.",
@@ -140,7 +166,9 @@
       "it": "L'isola sa di mare. Vai a riempirti i polmoni.",
       "nl": "Het eiland ruikt naar zee. Vul je longen.",
       "zh": "岛上有海的味道。去让肺装满它吧。",
-      "zht": "島上有海的味道。去讓肺裝滿它吧。"
+      "zht": "島上有海的味道。去讓肺裝滿它吧。",
+      "bg": "Островът мирише на море. Излез да напълниш дробовете си.",
+      "pl": "Wyspa pachnie morzem. Wyjdź napełnić płuca."
     },
     {
       "es": "Un buen día no es un día sin problemas, es uno bien vivido.",
@@ -150,7 +178,9 @@
       "it": "Un buon giorno non è senza problemi, ma ben vissuto.",
       "nl": "Een goede dag is niet zonder problemen, maar goed geleefd.",
       "zh": "好日子不是没有烦恼，而是好好度过的一天。",
-      "zht": "好日子不是沒有煩惱，而是好好度過的一天。"
+      "zht": "好日子不是沒有煩惱，而是好好度過的一天。",
+      "bg": "Добрият ден не е ден без проблеми, а добре изживян ден.",
+      "pl": "Dobry dzień to nie dzień bez problemów, tylko dzień dobrze przeżyty."
     },
     {
       "es": "Camina sin rumbo diez minutos. A veces ahí aparece lo mejor.",
@@ -160,7 +190,9 @@
       "it": "Cammina dieci minuti senza meta. Spesso lì spunta il meglio.",
       "nl": "Loop tien minuten zonder doel. Daar duikt vaak het beste op.",
       "zh": "无目的地走十分钟。最好的常常出现在那里。",
-      "zht": "無目的地走十分鐘。最好的常常出現在那裡。"
+      "zht": "無目的地走十分鐘。最好的常常出現在那裡。",
+      "bg": "Повърви без посока десет минути. Понякога точно там се появява най-доброто.",
+      "pl": "Przejdź się bez celu przez dziesięć minut. Czasem właśnie tam pojawia się to, co najlepsze."
     },
     {
       "es": "Date las gracias por seguir adelante.",
@@ -170,7 +202,9 @@
       "it": "Ringrazia te stesso per andare avanti.",
       "nl": "Bedank jezelf dat je doorgaat.",
       "zh": "谢谢自己一直在坚持。",
-      "zht": "謝謝自己一直在堅持。"
+      "zht": "謝謝自己一直在堅持。",
+      "bg": "Благодари си, че продължаваш напред.",
+      "pl": "Podziękuj sobie, że idziesz dalej."
     },
     {
       "es": "El Teide lleva millones de años ahí. Tú puedes con hoy.",
@@ -180,7 +214,9 @@
       "it": "Il Teide è lì da milioni di anni. Oggi ce la fai.",
       "nl": "De Teide staat er al miljoenen jaren. Vandaag red je het.",
       "zh": "泰德峰在那里已有百万年。今天你也扛得住。",
-      "zht": "泰德峰在那裡已有百萬年。今天你也扛得住。"
+      "zht": "泰德峰在那裡已有百萬年。今天你也扛得住。",
+      "bg": "Тейде е там от милиони години. Ти ще се справиш с днешния ден.",
+      "pl": "Teide stoi tam od milionów lat. Ty dasz radę z dzisiejszym dniem."
     },
     {
       "es": "Suelta lo que no depende de ti. Pesa menos así.",
@@ -190,7 +226,9 @@
       "it": "Lascia ciò che non dipende da te. Pesa di meno così.",
       "nl": "Laat los wat niet van jou afhangt. Zo weegt het minder.",
       "zh": "放下不由你决定的事。这样会轻一些。",
-      "zht": "放下不由你決定的事。這樣會輕一些。"
+      "zht": "放下不由你決定的事。這樣會輕一些。",
+      "bg": "Пусни онова, което не зависи от теб. Така тежи по-малко.",
+      "pl": "Odpuść to, co od ciebie nie zależy. Tak waży mniej."
     },
     {
       "es": "Hoy busca una vista nueva. Merece la pena el rodeo.",
@@ -200,7 +238,9 @@
       "it": "Cerca oggi una vista nuova. La deviazione vale la pena.",
       "nl": "Zoek vandaag een nieuw uitzicht. De omweg is het waard.",
       "zh": "今天找一处新风景。绕点路也值得。",
-      "zht": "今天找一處新風景。繞點路也值得。"
+      "zht": "今天找一處新風景。繞點路也值得。",
+      "bg": "Днес потърси нова гледка. Заслужава си отклонението.",
+      "pl": "Dziś poszukaj nowego widoku. Warto nadłożyć drogi."
     },
     {
       "es": "Tu ritmo está bien. No tienes que ir al ritmo de nadie.",
@@ -210,7 +250,9 @@
       "it": "Il tuo ritmo va bene. Non devi seguire quello di nessuno.",
       "nl": "Jouw tempo is goed. Je hoeft niemands tempo te volgen.",
       "zh": "你的节奏很好。不必追赶任何人。",
-      "zht": "你的節奏很好。不必追趕任何人。"
+      "zht": "你的節奏很好。不必追趕任何人。",
+      "bg": "Твоят ритъм е добър. Не си длъжен да вървиш по ничий друг.",
+      "pl": "Twoje tempo jest dobre. Nie musisz iść w niczyim innym."
     },
     {
       "es": "Escucha el mar aunque sea un minuto. Ordena la cabeza.",
@@ -220,7 +262,9 @@
       "it": "Ascolta il mare un minuto. Mette ordine in testa.",
       "nl": "Luister een minuut naar de zee. Het ordent je hoofd.",
       "zh": "听一分钟海浪。它会帮你理清思绪。",
-      "zht": "聽一分鐘海浪。它會幫你理清思緒。"
+      "zht": "聽一分鐘海浪。它會幫你理清思緒。",
+      "bg": "Послушай морето поне минута. Подрежда мислите.",
+      "pl": "Posłuchaj morza choćby przez minutę. Porządkuje myśli."
     },
     {
       "es": "Hazte hoy una pregunta amable: ¿qué necesito de verdad?",
@@ -230,7 +274,9 @@
       "it": "Fatti una domanda gentile: di cosa ho davvero bisogno?",
       "nl": "Stel jezelf een zachte vraag: wat heb ik echt nodig?",
       "zh": "今天问自己一个温柔的问题：我真正需要什么？",
-      "zht": "今天問自己一個溫柔的問題：我真正需要什麼？"
+      "zht": "今天問自己一個溫柔的問題：我真正需要什麼？",
+      "bg": "Задай си днес един мил въпрос: от какво наистина имам нужда?",
+      "pl": "Zadaj sobie dziś życzliwe pytanie: czego naprawdę potrzebuję?"
     },
     {
       "es": "Moverse un poco cambia el día más de lo que parece.",
@@ -240,7 +286,9 @@
       "it": "Muoverti un po' cambia la giornata più di quanto sembri.",
       "nl": "Een beetje bewegen verandert de dag meer dan je denkt.",
       "zh": "稍微动一动，对一天的改变比你想的大。",
-      "zht": "稍微動一動，對一天的改變比你想的大。"
+      "zht": "稍微動一動，對一天的改變比你想的大。",
+      "bg": "Малко движение променя деня повече, отколкото изглежда.",
+      "pl": "Trochę ruchu zmienia dzień bardziej, niż się wydaje."
     },
     {
       "es": "No todo se arregla hoy, y no pasa nada.",
@@ -250,7 +298,9 @@
       "it": "Non tutto si risolve oggi, e va bene così.",
       "nl": "Niet alles komt vandaag goed, en dat is oké.",
       "zh": "不是所有事今天都能解决，没关系。",
-      "zht": "不是所有事今天都能解決，沒關係。"
+      "zht": "不是所有事今天都能解決，沒關係。",
+      "bg": "Не всичко се оправя днес, и няма нищо страшно.",
+      "pl": "Nie wszystko da się naprawić dzisiaj i nic się nie stanie."
     },
     {
       "es": "Sal a que te dé el aire. El resto puede esperar un rato.",
@@ -260,7 +310,9 @@
       "it": "Vai a prendere aria. Il resto può aspettare un po'.",
       "nl": "Ga een frisse neus halen. De rest kan even wachten.",
       "zh": "出去透透气。其余的可以稍等。",
-      "zht": "出去透透氣。其餘的可以稍等。"
+      "zht": "出去透透氣。其餘的可以稍等。",
+      "bg": "Излез на въздух. Останалото може да почака малко.",
+      "pl": "Wyjdź na powietrze. Reszta może chwilę poczekać."
     },
     {
       "es": "Celebra lo que sí hiciste, aunque parezca poco.",
@@ -270,7 +322,9 @@
       "it": "Festeggia ciò che hai fatto, anche se sembra poco.",
       "nl": "Vier wat je wél deed, ook al lijkt het weinig.",
       "zh": "为你已经做到的庆祝，哪怕看起来很小。",
-      "zht": "為你已經做到的慶祝，哪怕看起來很小。"
+      "zht": "為你已經做到的慶祝，哪怕看起來很小。",
+      "bg": "Отпразнувай това, което направи, дори да ти се струва малко.",
+      "pl": "Doceń to, co zrobiłeś, nawet jeśli wydaje się niewiele."
     },
     {
       "es": "Un sendero nuevo, una calma vieja. Elige caminar.",
@@ -280,7 +334,9 @@
       "it": "Un sentiero nuovo, una vecchia calma. Scegli di camminare.",
       "nl": "Een nieuw pad, een oude rust. Kies om te lopen.",
       "zh": "一条新路，一份旧日的平静。选择去走走。",
-      "zht": "一條新路，一份舊日的平靜。選擇去走走。"
+      "zht": "一條新路，一份舊日的平靜。選擇去走走。",
+      "bg": "Нова пътека, старо спокойствие. Избери да вървиш.",
+      "pl": "Nowa ścieżka, stary spokój. Wybierz iść."
     },
     {
       "es": "Hoy trátate como tratarías a un buen amigo.",
@@ -290,7 +346,9 @@
       "it": "Oggi trattati come tratteresti un buon amico.",
       "nl": "Behandel jezelf vandaag als een goede vriend.",
       "zh": "今天像对待好朋友那样对待自己。",
-      "zht": "今天像對待好朋友那樣對待自己。"
+      "zht": "今天像對待好朋友那樣對待自己。",
+      "bg": "Днес се отнеси със себе си както с добър приятел.",
+      "pl": "Dziś potraktuj siebie tak, jak potraktowałbyś dobrego przyjaciela."
     },
     {
       "es": "El sol de aquí es un lujo diario. Aprovéchalo cinco minutos.",
@@ -300,7 +358,9 @@
       "it": "Il sole qui è un lusso quotidiano. Godine cinque minuti.",
       "nl": "De zon hier is dagelijkse luxe. Geniet er vijf minuten van.",
       "zh": "这里的阳光是每天的奢侈。享受它五分钟。",
-      "zht": "這裡的陽光是每天的奢侈。享受它五分鐘。"
+      "zht": "這裡的陽光是每天的奢侈。享受它五分鐘。",
+      "bg": "Слънцето тук е ежедневен лукс. Използвай пет минути от него.",
+      "pl": "Tutejsze słońce to codzienny luksus. Skorzystaj z pięciu minut."
     },
     {
       "es": "Parar también es avanzar. Descansa sin culpa.",
@@ -310,7 +370,9 @@
       "it": "Fermarsi è anche avanzare. Riposa senza colpa.",
       "nl": "Stoppen is ook vooruitgaan. Rust zonder schuld.",
       "zh": "停下也是前进。安心休息，不必愧疚。",
-      "zht": "停下也是前進。安心休息，不必愧疚。"
+      "zht": "停下也是前進。安心休息，不必愧疚。",
+      "bg": "Да спреш също е напредък. Почивай без вина.",
+      "pl": "Zatrzymanie się też jest posuwaniem naprzód. Odpoczywaj bez winy."
     },
     {
       "es": "Prueba algo distinto hoy: otra calle, otro café, otra playa.",
@@ -320,7 +382,9 @@
       "it": "Prova qualcosa di diverso: un'altra strada, un caffè, una spiaggia.",
       "nl": "Probeer iets anders: een andere straat, een café, een strand.",
       "zh": "今天试点不同的：换条街、换家咖啡馆、换片海滩。",
-      "zht": "今天試點不同的：換條街、換家咖啡館、換片海灘。"
+      "zht": "今天試點不同的：換條街、換家咖啡館、換片海灘。",
+      "bg": "Опитай нещо различно днес: друга улица, друго кафе, друг плаж.",
+      "pl": "Spróbuj dziś czegoś innego: innej ulicy, innej kawy, innej plaży."
     },
     {
       "es": "Estás justo donde tienes que estar para dar el siguiente paso.",
@@ -330,7 +394,9 @@
       "it": "Sei proprio dove serve per fare il passo successivo.",
       "nl": "Je bent precies waar je moet zijn voor de volgende stap.",
       "zh": "你正站在迈出下一步的最佳位置。",
-      "zht": "你正站在邁出下一步的最佳位置。"
+      "zht": "你正站在邁出下一步的最佳位置。",
+      "bg": "Точно там, където трябва да си, за да направиш следващата крачка.",
+      "pl": "Jesteś dokładnie tam, gdzie trzeba, by zrobić następny krok."
     },
     {
       "es": "Respira hondo tres veces. Ya estás mejor que hace un minuto.",
@@ -340,7 +406,9 @@
       "it": "Respira a fondo tre volte. Già meglio di un minuto fa.",
       "nl": "Adem drie keer diep. Al beter dan een minuut geleden.",
       "zh": "深呼吸三次。已经比一分钟前更好了。",
-      "zht": "深呼吸三次。已經比一分鐘前更好了。"
+      "zht": "深呼吸三次。已經比一分鐘前更好了。",
+      "bg": "Поеми дълбоко въздух три пъти. Вече си по-добре отпреди минута.",
+      "pl": "Odetchnij głęboko trzy razy. Już jest ci lepiej niż minutę temu."
     },
     {
       "es": "La naturaleza no juzga. Ve a estar entre ella un rato.",
@@ -350,7 +418,9 @@
       "it": "La natura non giudica. Passaci un po' di tempo dentro.",
       "nl": "De natuur oordeelt niet. Breng er wat tijd in door.",
       "zh": "大自然不评判。去在它之中待一会儿。",
-      "zht": "大自然不評判。去在它之中待一會兒。"
+      "zht": "大自然不評判。去在它之中待一會兒。",
+      "bg": "Природата не съди. Иди да побъдеш сред нея.",
+      "pl": "Natura nie ocenia. Idź pobyć wśród niej."
     },
     {
       "es": "Hoy haz una cosa que te ilusione, aunque sea pequeña.",
@@ -360,7 +430,9 @@
       "it": "Fai oggi una cosa che ti entusiasma, anche piccola.",
       "nl": "Doe vandaag iets wat je vreugde geeft, hoe klein ook.",
       "zh": "今天做一件让你开心的小事。",
-      "zht": "今天做一件讓你開心的小事。"
+      "zht": "今天做一件讓你開心的小事。",
+      "bg": "Днес направи нещо, което те радва, макар и малко.",
+      "pl": "Zrób dziś coś, co cię cieszy, choćby drobnego."
     },
     {
       "es": "Mereces descanso, no solo cuando lo terminas todo.",
@@ -370,7 +442,9 @@
       "it": "Meriti riposo, non solo quando finisci tutto.",
       "nl": "Je verdient rust, niet pas als alles af is.",
       "zh": "你值得休息，不必等到全部做完。",
-      "zht": "你值得休息，不必等到全部做完。"
+      "zht": "你值得休息，不必等到全部做完。",
+      "bg": "Заслужаваш почивка, не само когато си свършил всичко.",
+      "pl": "Zasługujesz na odpoczynek, nie tylko wtedy, gdy wszystko skończysz."
     },
     {
       "es": "Un atardecer te espera. Gánate el momento saliendo.",
@@ -380,7 +454,9 @@
       "it": "Un tramonto ti aspetta. Meritatelo uscendo.",
       "nl": "Een zonsondergang wacht op je. Verdien hem door eropuit te gaan.",
       "zh": "一场日落在等你。用出门去赢得它。",
-      "zht": "一場日落在等你。用出門去贏得它。"
+      "zht": "一場日落在等你。用出門去贏得它。",
+      "bg": "Един залез те чака. Заслужи си мига, като излезеш.",
+      "pl": "Czeka na ciebie zachód słońca. Zasłuż na tę chwilę, wychodząc."
     },
     {
       "es": "Sé paciente contigo: crecer lleva su tiempo.",
@@ -390,7 +466,9 @@
       "it": "Sii paziente con te: crescere richiede tempo.",
       "nl": "Wees geduldig met jezelf: groeien kost tijd.",
       "zh": "对自己有耐心：成长需要时间。",
-      "zht": "對自己有耐心：成長需要時間。"
+      "zht": "對自己有耐心：成長需要時間。",
+      "bg": "Бъди търпелив със себе си: растежът иска време.",
+      "pl": "Bądź wobec siebie cierpliwy: wzrastanie wymaga czasu."
     },
     {
       "es": "Mueve el cuerpo a tu manera. No hay forma incorrecta.",
@@ -400,7 +478,9 @@
       "it": "Muovi il corpo a modo tuo. Non c'è un modo sbagliato.",
       "nl": "Beweeg je lichaam op jouw manier. Er is geen foute manier.",
       "zh": "用你的方式动一动身体。没有错误的方式。",
-      "zht": "用你的方式動一動身體。沒有錯誤的方式。"
+      "zht": "用你的方式動一動身體。沒有錯誤的方式。",
+      "bg": "Движи тялото си по своя начин. Няма грешен начин.",
+      "pl": "Ruszaj ciałem po swojemu. Nie ma złego sposobu."
     },
     {
       "es": "Lo bonito de hoy quizá aún no ha pasado. Quédate a verlo.",
@@ -410,7 +490,9 @@
       "it": "Il bello di oggi forse non è ancora arrivato. Restaci.",
       "nl": "Het mooiste van vandaag komt misschien nog. Blijf ervoor.",
       "zh": "今天最美的也许还没发生。留下来看看。",
-      "zht": "今天最美的也許還沒發生。留下來看看。"
+      "zht": "今天最美的也許還沒發生。留下來看看。",
+      "bg": "Хубавото от днес може би още не се е случило. Остани да го видиш.",
+      "pl": "To, co dziś piękne, może jeszcze się nie wydarzyło. Zostań i zobacz."
     },
     {
       "es": "Deja el móvil un rato y mira lo que tienes delante.",
@@ -420,7 +502,9 @@
       "it": "Metti giù il telefono e guarda ciò che hai davanti.",
       "nl": "Leg de telefoon even weg en kijk naar wat voor je is.",
       "zh": "放下手机一会儿，看看眼前。",
-      "zht": "放下手機一會兒，看看眼前。"
+      "zht": "放下手機一會兒，看看眼前。",
+      "bg": "Остави телефона за малко и виж какво имаш пред себе си.",
+      "pl": "Odłóż na chwilę telefon i zobacz, co masz przed sobą."
     },
     {
       "es": "Si hoy pesa, pide ayuda. No estás solo en esto.",
@@ -430,7 +514,9 @@
       "it": "Se oggi pesa, chiedi aiuto. Non sei solo in questo.",
       "nl": "Als vandaag zwaar weegt, vraag hulp. Je staat er niet alleen voor.",
       "zh": "如果今天很沉，就寻求帮助。你并不孤单。",
-      "zht": "如果今天很沉，就尋求幫助。你並不孤單。"
+      "zht": "如果今天很沉，就尋求幫助。你並不孤單。",
+      "bg": "Ако днес тежи, поискай помощ. Не си сам в това.",
+      "pl": "Jeśli dziś jest ciężko, poproś o pomoc. Nie jesteś w tym sam."
     },
     {
       "es": "Un rincón nuevo de la isla te está esperando.",
@@ -440,7 +526,9 @@
       "it": "Un angolo nuovo dell'isola ti aspetta.",
       "nl": "Een nieuw hoekje van het eiland wacht op je.",
       "zh": "岛上有个新角落在等你。",
-      "zht": "島上有個新角落在等你。"
+      "zht": "島上有個新角落在等你。",
+      "bg": "Ново кътче от острова те чака.",
+      "pl": "Czeka na ciebie nowy zakątek wyspy."
     },
     {
       "es": "Hoy basta con estar. No tienes que rendir en todo.",
@@ -450,7 +538,9 @@
       "it": "Oggi basta esserci. Non devi riuscire in tutto.",
       "nl": "Vandaag is er zijn genoeg. Je hoeft niet in alles te slagen.",
       "zh": "今天只是存在着，就够了。不必样样出色。",
-      "zht": "今天只是存在著，就夠了。不必樣樣出色。"
+      "zht": "今天只是存在著，就夠了。不必樣樣出色。",
+      "bg": "Днес стига просто да си тук. Не си длъжен да се справяш с всичко.",
+      "pl": "Dziś wystarczy być. Nie musisz się we wszystkim sprawdzać."
     },
     {
       "es": "El aire fresco es medicina gratis. Sal a por tu dosis.",
@@ -460,7 +550,9 @@
       "it": "L'aria fresca è medicina gratis. Vai a prendere la tua dose.",
       "nl": "Frisse lucht is gratis medicijn. Ga je dosis halen.",
       "zh": "新鲜空气是免费的良药。去取你的那份。",
-      "zht": "新鮮空氣是免費的良藥。去取你的那份。"
+      "zht": "新鮮空氣是免費的良藥。去取你的那份。",
+      "bg": "Свежият въздух е безплатно лекарство. Излез за своята доза.",
+      "pl": "Świeże powietrze to darmowe lekarstwo. Wyjdź po swoją dawkę."
     },
     {
       "es": "Tus pequeños avances suman más de lo que ves.",
@@ -470,7 +562,9 @@
       "it": "I tuoi piccoli passi contano più di quanto vedi.",
       "nl": "Je kleine stappen tellen meer dan je ziet.",
       "zh": "你那些小小的进步，比你看到的更重要。",
-      "zht": "你那些小小的進步，比你看到的更重要。"
+      "zht": "你那些小小的進步，比你看到的更重要。",
+      "bg": "Малките ти крачки се събират повече, отколкото виждаш.",
+      "pl": "Twoje małe postępy sumują się bardziej, niż widzisz."
     },
     {
       "es": "Camina hacia el mar. Casi siempre es buena idea.",
@@ -480,7 +574,9 @@
       "it": "Cammina verso il mare. Quasi sempre una buona idea.",
       "nl": "Loop richting de zee. Bijna altijd een goed idee.",
       "zh": "朝海走去。几乎总是个好主意。",
-      "zht": "朝海走去。幾乎總是個好主意。"
+      "zht": "朝海走去。幾乎總是個好主意。",
+      "bg": "Върви към морето. Почти винаги е добра идея.",
+      "pl": "Idź w stronę morza. Prawie zawsze to dobry pomysł."
     },
     {
       "es": "Cuídate hoy como si importaras, porque importas.",
@@ -490,7 +586,9 @@
       "it": "Prenditi cura di te come se contassi, perché conti.",
       "nl": "Zorg voor jezelf alsof je ertoe doet, want dat doe je.",
       "zh": "今天照顾好自己，就当你很重要，因为你确实很重要。",
-      "zht": "今天照顧好自己，就當你很重要，因為你確實很重要。"
+      "zht": "今天照顧好自己，就當你很重要，因為你確實很重要。",
+      "bg": "Грижи се за себе си днес, все едно имаш значение, защото имаш.",
+      "pl": "Zadbaj dziś o siebie tak, jakbyś był ważny, bo jesteś."
     },
     {
       "es": "Hoy elige curiosidad en vez de prisa.",
@@ -500,7 +598,9 @@
       "it": "Oggi scegli la curiosità invece della fretta.",
       "nl": "Kies vandaag nieuwsgierigheid boven haast.",
       "zh": "今天选择好奇，而不是匆忙。",
-      "zht": "今天選擇好奇，而不是匆忙。"
+      "zht": "今天選擇好奇，而不是匆忙。",
+      "bg": "Днес избери любопитство вместо бързане.",
+      "pl": "Dziś wybierz ciekawość zamiast pośpiechu."
     },
     {
       "es": "Un día gris también tiene su belleza. Búscala.",
@@ -510,7 +610,9 @@
       "it": "Anche un giorno grigio ha la sua bellezza. Cercala.",
       "nl": "Ook een grijze dag heeft zijn schoonheid. Zoek die.",
       "zh": "灰蒙蒙的一天也有它的美。去找找看。",
-      "zht": "灰濛濛的一天也有它的美。去找找看。"
+      "zht": "灰濛濛的一天也有它的美。去找找看。",
+      "bg": "И сивият ден има своя красота. Потърси я.",
+      "pl": "Szary dzień też ma swoje piękno. Poszukaj go."
     },
     {
       "es": "Respira con el mar de fondo y deja que baje el ruido.",
@@ -520,7 +622,9 @@
       "it": "Respira col mare sullo sfondo e lascia calare il rumore.",
       "nl": "Adem met de zee op de achtergrond en laat het lawaai zakken.",
       "zh": "以海为背景呼吸，让喧嚣沉下去。",
-      "zht": "以海為背景呼吸，讓喧囂沉下去。"
+      "zht": "以海為背景呼吸，讓喧囂沉下去。",
+      "bg": "Дишай с морето на заден план и остави шумът да утихне.",
+      "pl": "Oddychaj z szumem morza w tle i pozwól hałasowi opaść."
     },
     {
       "es": "No tienes que poder con todo hoy. Solo con lo de hoy.",
@@ -530,7 +634,9 @@
       "it": "Non devi reggere tutto oggi. Solo oggi.",
       "nl": "Je hoeft vandaag niet alles te dragen. Alleen vandaag.",
       "zh": "你今天不必扛下一切。只扛今天就好。",
-      "zht": "你今天不必扛下一切。只扛今天就好。"
+      "zht": "你今天不必扛下一切。只扛今天就好。",
+      "bg": "Не си длъжен да можеш всичко днес. Само днешното.",
+      "pl": "Nie musisz dziś ze wszystkim dać rady. Tylko z tym, co dziś."
     },
     {
       "es": "Sal a caminar y deja que las ideas se ordenen solas.",
@@ -540,7 +646,9 @@
       "it": "Vai a camminare e lascia che i pensieri si mettano a posto.",
       "nl": "Ga wandelen en laat je gedachten zich vanzelf ordenen.",
       "zh": "去走走，让思绪自己安顿下来。",
-      "zht": "去走走，讓思緒自己安頓下來。"
+      "zht": "去走走，讓思緒自己安頓下來。",
+      "bg": "Излез да повървиш и остави мислите сами да се подредят.",
+      "pl": "Wyjdź na spacer i pozwól myślom same się poukładać."
     },
     {
       "es": "Lo que agradeces crece. Nombra tres cosas buenas de hoy.",
@@ -550,7 +658,9 @@
       "it": "Ciò che ringrazi cresce. Nomina tre cose belle di oggi.",
       "nl": "Wat je dankt, groeit. Noem drie goede dingen van vandaag.",
       "zh": "你感恩的会生长。说出今天三件好事。",
-      "zht": "你感恩的會生長。說出今天三件好事。"
+      "zht": "你感恩的會生長。說出今天三件好事。",
+      "bg": "Това, за което благодариш, расте. Назови три хубави неща от днес.",
+      "pl": "To, za co dziękujesz, rośnie. Wymień trzy dobre rzeczy z dziś."
     },
     {
       "es": "La montaña se sube paso a paso. Tu día también.",
@@ -560,7 +670,9 @@
       "it": "Una montagna si sale passo dopo passo. Anche la tua giornata.",
       "nl": "Een berg beklim je stap voor stap. Jouw dag ook.",
       "zh": "山是一步步爬上去的，你的一天也是。",
-      "zht": "山是一步步爬上去的，你的一天也是。"
+      "zht": "山是一步步爬上去的，你的一天也是。",
+      "bg": "Планината се изкачва крачка по крачка. И твоят ден.",
+      "pl": "Na górę wchodzi się krok po kroku. Twój dzień też."
     },
     {
       "es": "Sé suave contigo en los días flojos. Ya volverá la fuerza.",
@@ -570,7 +682,9 @@
       "it": "Sii dolce nei giorni fiacchi. La forza tornerà.",
       "nl": "Wees zacht op zwakke dagen. De kracht komt terug.",
       "zh": "在无力的日子里，对自己温柔些。力气会回来的。",
-      "zht": "在無力的日子裡，對自己溫柔些。力氣會回來的。"
+      "zht": "在無力的日子裡，對自己溫柔些。力氣會回來的。",
+      "bg": "Бъди нежен със себе си в слабите дни. Силата ще се върне.",
+      "pl": "Bądź dla siebie łagodny w słabsze dni. Siła wróci."
     },
     {
       "es": "Hoy descubre un mirador que no conocías.",
@@ -580,7 +694,9 @@
       "it": "Scopri oggi un punto panoramico che non conoscevi.",
       "nl": "Ontdek vandaag een uitkijkpunt dat je niet kende.",
       "zh": "今天去发现一处你没见过的观景点。",
-      "zht": "今天去發現一處你沒見過的觀景點。"
+      "zht": "今天去發現一處你沒見過的觀景點。",
+      "bg": "Днес открий изглед, който не познаваш.",
+      "pl": "Odkryj dziś punkt widokowy, którego nie znałeś."
     },
     {
       "es": "Estar presente es un regalo que te haces a ti.",
@@ -590,7 +706,9 @@
       "it": "Essere presente è un regalo che fai a te.",
       "nl": "Aanwezig zijn is een geschenk aan jezelf.",
       "zh": "活在当下，是你送给自己的礼物。",
-      "zht": "活在當下，是你送給自己的禮物。"
+      "zht": "活在當下，是你送給自己的禮物。",
+      "bg": "Да си тук и сега е подарък, който правиш на себе си.",
+      "pl": "Bycie tu i teraz to prezent, który robisz sobie."
     },
     {
       "es": "Muévete un poco al sol. El cuerpo y el ánimo lo notan.",
@@ -600,7 +718,9 @@
       "it": "Muoviti un po' al sole. Corpo e umore lo sentono.",
       "nl": "Beweeg wat in de zon. Lichaam en humeur merken het.",
       "zh": "在阳光下动一动。身体和心情都会察觉。",
-      "zht": "在陽光下動一動。身體和心情都會察覺。"
+      "zht": "在陽光下動一動。身體和心情都會察覺。",
+      "bg": "Раздвижи се малко на слънце. Тялото и духът го усещат.",
+      "pl": "Poruszaj się chwilę w słońcu. Ciało i nastrój to czują."
     },
     {
       "es": "No compares tu camino con el de nadie. Es solo tuyo.",
@@ -610,7 +730,9 @@
       "it": "Non paragonare il tuo cammino a nessuno. È solo tuo.",
       "nl": "Vergelijk je weg met niemand. Hij is alleen van jou.",
       "zh": "别拿你的路和任何人比。它只属于你。",
-      "zht": "別拿你的路和任何人比。它只屬於你。"
+      "zht": "別拿你的路和任何人比。它只屬於你。",
+      "bg": "Не сравнявай пътя си с ничий друг. Той е само твой.",
+      "pl": "Nie porównuj swojej drogi z niczyją. Jest tylko twoja."
     },
     {
       "es": "El mar te calma sin pedir nada a cambio. Ve a verlo.",
@@ -620,7 +742,9 @@
       "it": "Il mare ti calma senza chiedere nulla. Vai a vederlo.",
       "nl": "De zee kalmeert je zonder iets te vragen. Ga haar zien.",
       "zh": "大海抚慰你，不求回报。去看看它。",
-      "zht": "大海撫慰你，不求回報。去看看它。"
+      "zht": "大海撫慰你，不求回報。去看看它。",
+      "bg": "Морето те успокоява, без да иска нищо в замяна. Иди да го видиш.",
+      "pl": "Morze cię uspokaja, nic nie żądając w zamian. Idź je zobaczyć."
     },
     {
       "es": "Hoy permítete ir despacio. La vida no es una carrera.",
@@ -630,7 +754,9 @@
       "it": "Vai piano oggi. La vita non è una corsa.",
       "nl": "Doe vandaag rustig aan. Het leven is geen race.",
       "zh": "今天慢慢来。生活不是赛跑。",
-      "zht": "今天慢慢來。生活不是賽跑。"
+      "zht": "今天慢慢來。生活不是賽跑。",
+      "bg": "Днес си позволи да вървиш бавно. Животът не е състезание.",
+      "pl": "Dziś pozwól sobie iść powoli. Życie to nie wyścig."
     },
     {
       "es": "Un paso hacia fuera es un paso hacia ti.",
@@ -640,7 +766,9 @@
       "it": "Un passo verso fuori è un passo verso te.",
       "nl": "Een stap naar buiten is een stap naar jezelf.",
       "zh": "向外的一步，就是向自己的一步。",
-      "zht": "向外的一步，就是向自己的一步。"
+      "zht": "向外的一步，就是向自己的一步。",
+      "bg": "Крачка навън е крачка към себе си.",
+      "pl": "Krok na zewnątrz to krok ku sobie."
     },
     {
       "es": "Da las gracias a tu cuerpo por lo que hace cada día.",
@@ -650,7 +778,9 @@
       "it": "Ringrazia il tuo corpo per ciò che fa ogni giorno.",
       "nl": "Bedank je lichaam voor wat het elke dag doet.",
       "zh": "谢谢身体每天为你做的一切。",
-      "zht": "謝謝身體每天為你做的一切。"
+      "zht": "謝謝身體每天為你做的一切。",
+      "bg": "Благодари на тялото си за това, което прави всеки ден.",
+      "pl": "Podziękuj swojemu ciału za to, co robi każdego dnia."
     },
     {
       "es": "Explora sin plan. Los mejores días no se programan.",
@@ -660,7 +790,9 @@
       "it": "Esplora senza piano. I giorni migliori non si programmano.",
       "nl": "Verken zonder plan. De beste dagen plan je niet.",
       "zh": "无计划地探索。最好的日子都不是排出来的。",
-      "zht": "無計畫地探索。最好的日子都不是排出來的。"
+      "zht": "無計畫地探索。最好的日子都不是排出來的。",
+      "bg": "Изследвай без план. Най-хубавите дни не се планират.",
+      "pl": "Odkrywaj bez planu. Najlepszych dni się nie planuje."
     },
     {
       "es": "Si hoy solo puedes respirar y seguir, es suficiente.",
@@ -670,7 +802,9 @@
       "it": "Se oggi puoi solo respirare e continuare, basta.",
       "nl": "Als je vandaag alleen kunt ademen en doorgaan, is dat genoeg.",
       "zh": "如果今天你只能呼吸和坚持，那也够了。",
-      "zht": "如果今天你只能呼吸和堅持，那也夠了。"
+      "zht": "如果今天你只能呼吸和堅持，那也夠了。",
+      "bg": "Ако днес можеш само да дишаш и да продължаваш, това стига.",
+      "pl": "Jeśli dziś możesz tylko oddychać i iść dalej, to wystarczy."
     },
     {
       "es": "La isla es grande. Hoy conquista un trocito con calma.",
@@ -680,7 +814,9 @@
       "it": "L'isola è grande. Oggi conquistane un pezzetto, con calma.",
       "nl": "Het eiland is groot. Verover er vandaag rustig een stukje van.",
       "zh": "岛很大。今天从容地征服一小块。",
-      "zht": "島很大。今天從容地征服一小塊。"
+      "zht": "島很大。今天從容地征服一小塊。",
+      "bg": "Островът е голям. Днес превземи спокойно едно парченце.",
+      "pl": "Wyspa jest duża. Dziś zdobądź spokojnie jej kawałek."
     },
     {
       "es": "Descansar es productivo. Tu mente también necesita pausa.",
@@ -690,7 +826,9 @@
       "it": "Riposare è produttivo. Anche la mente ha bisogno di pausa.",
       "nl": "Rusten is productief. Ook je hoofd heeft pauze nodig.",
       "zh": "休息是有产出的。你的头脑也需要暂停。",
-      "zht": "休息是有產出的。你的頭腦也需要暫停。"
+      "zht": "休息是有產出的。你的頭腦也需要暫停。",
+      "bg": "Почивката е продуктивна. И умът ти има нужда от пауза.",
+      "pl": "Odpoczynek jest produktywny. Twój umysł też potrzebuje przerwy."
     },
     {
       "es": "Sal a buscar el verde. A los ojos y a la cabeza les gusta.",
@@ -700,7 +838,9 @@
       "it": "Vai a cercare il verde. Occhi e testa lo amano.",
       "nl": "Ga het groen zoeken. Ogen en hoofd houden ervan.",
       "zh": "去找一点绿。眼睛和头脑都喜欢。",
-      "zht": "去找一點綠。眼睛和頭腦都喜歡。"
+      "zht": "去找一點綠。眼睛和頭腦都喜歡。",
+      "bg": "Излез да потърсиш зеленото. Очите и главата го обичат.",
+      "pl": "Wyjdź poszukać zieleni. Oczy i głowa to lubią."
     },
     {
       "es": "Hoy sé amable, empezando por ti.",
@@ -710,7 +850,9 @@
       "it": "Oggi sii gentile, cominciando da te.",
       "nl": "Wees vandaag vriendelijk, te beginnen bij jezelf.",
       "zh": "今天善良一点，从对自己开始。",
-      "zht": "今天善良一點，從對自己開始。"
+      "zht": "今天善良一點，從對自己開始。",
+      "bg": "Днес бъди мил, като започнеш от себе си.",
+      "pl": "Bądź dziś dobry, zaczynając od siebie."
     },
     {
       "es": "El sol saliendo es un recordatorio: otra oportunidad.",
@@ -720,7 +862,9 @@
       "it": "Il sole che sorge ricorda: un'altra occasione.",
       "nl": "De opkomende zon herinnert: nog een kans.",
       "zh": "升起的太阳在提醒：又是一次机会。",
-      "zht": "升起的太陽在提醒：又是一次機會。"
+      "zht": "升起的太陽在提醒：又是一次機會。",
+      "bg": "Изгревът е напомняне: още една възможност.",
+      "pl": "Wschód słońca to przypomnienie: kolejna szansa."
     },
     {
       "es": "Camina, mira, respira. No hace falta más para un buen rato.",
@@ -730,7 +874,9 @@
       "it": "Cammina, guarda, respira. Basta questo per un bel momento.",
       "nl": "Loop, kijk, adem. Meer heeft een fijn moment niet nodig.",
       "zh": "走走、看看、呼吸。美好的片刻不需要更多。",
-      "zht": "走走、看看、呼吸。美好的片刻不需要更多。"
+      "zht": "走走、看看、呼吸。美好的片刻不需要更多。",
+      "bg": "Върви, гледай, дишай. Не трябва повече за един хубав миг.",
+      "pl": "Idź, patrz, oddychaj. Nie trzeba więcej na dobrą chwilę."
     },
     {
       "es": "Lo difícil de hoy te hace más fuerte, aunque no lo veas.",
@@ -740,7 +886,9 @@
       "it": "La fatica di oggi ti rende più forte, anche se non la vedi.",
       "nl": "De zwaarte van vandaag maakt je sterker, ook al zie je het niet.",
       "zh": "今天的艰难在让你更强，哪怕你看不见。",
-      "zht": "今天的艱難在讓你更強，哪怕你看不見。"
+      "zht": "今天的艱難在讓你更強，哪怕你看不見。",
+      "bg": "Трудното днес те прави по-силен, дори да не го виждаш.",
+      "pl": "To, co dziś trudne, czyni cię silniejszym, nawet jeśli tego nie widzisz."
     },
     {
       "es": "Ve a un sitio con vistas y quédate un momento en silencio.",
@@ -750,7 +898,9 @@
       "it": "Vai in un posto con vista e resta un attimo in silenzio.",
       "nl": "Ga naar een plek met uitzicht en blijf even stil.",
       "zh": "去一个有风景的地方，静静待一会儿。",
-      "zht": "去一個有風景的地方，靜靜待一會兒。"
+      "zht": "去一個有風景的地方，靜靜待一會兒。",
+      "bg": "Иди на място с изглед и постой малко в тишина.",
+      "pl": "Idź w miejsce z widokiem i postój chwilę w ciszy."
     },
     {
       "es": "Tu valor no depende de lo mucho que produzcas.",
@@ -760,7 +910,9 @@
       "it": "Il tuo valore non dipende da quanto produci.",
       "nl": "Je waarde hangt niet af van hoeveel je presteert.",
       "zh": "你的价值，不取决于你产出了多少。",
-      "zht": "你的價值，不取決於你產出了多少。"
+      "zht": "你的價值，不取決於你產出了多少。",
+      "bg": "Стойността ти не зависи от това колко произвеждаш.",
+      "pl": "Twoja wartość nie zależy od tego, ile produkujesz."
     },
     {
       "es": "Un poco de movimiento espanta muchos nubarrones.",
@@ -770,7 +922,9 @@
       "it": "Un po' di movimento scaccia molte nuvole.",
       "nl": "Een beetje beweging verjaagt veel wolken.",
       "zh": "一点点运动，能赶走许多阴云。",
-      "zht": "一點點運動，能趕走許多陰雲。"
+      "zht": "一點點運動，能趕走許多陰雲。",
+      "bg": "Малко движение прогонва много облаци.",
+      "pl": "Odrobina ruchu rozgania wiele chmur."
     },
     {
       "es": "Hoy prueba a decir que sí a algo que te apetezca.",
@@ -780,7 +934,9 @@
       "it": "Oggi prova a dire sì a qualcosa che ti va.",
       "nl": "Zeg vandaag eens ja tegen iets waar je zin in hebt.",
       "zh": "今天试着对喜欢的事说声好。",
-      "zht": "今天試著對喜歡的事說聲好。"
+      "zht": "今天試著對喜歡的事說聲好。",
+      "bg": "Днес опитай да кажеш „да“ на нещо, което ти се иска.",
+      "pl": "Spróbuj dziś powiedzieć „tak” czemuś, na co masz ochotę."
     },
     {
       "es": "El mar cambia cada día y aun así siempre es el mar. Como tú.",
@@ -790,7 +946,9 @@
       "it": "Il mare cambia ogni giorno e resta il mare. Come te.",
       "nl": "De zee verandert elke dag en blijft de zee. Zoals jij.",
       "zh": "大海每天在变，却始终是海。就像你。",
-      "zht": "大海每天在變，卻始終是海。就像你。"
+      "zht": "大海每天在變，卻始終是海。就像你。",
+      "bg": "Морето се променя всеки ден и пак си остава морето. Като теб.",
+      "pl": "Morze zmienia się każdego dnia, a i tak wciąż jest morzem. Jak ty."
     },
     {
       "es": "Perdónate los tropiezos. Forman parte de caminar.",
@@ -800,7 +958,9 @@
       "it": "Perdonati gli inciampi. Fanno parte del camminare.",
       "nl": "Vergeef jezelf je struikelingen. Ze horen bij het lopen.",
       "zh": "原谅自己的绊倒。那是走路的一部分。",
-      "zht": "原諒自己的絆倒。那是走路的一部分。"
+      "zht": "原諒自己的絆倒。那是走路的一部分。",
+      "bg": "Прости си спъванията. Те са част от вървенето.",
+      "pl": "Wybacz sobie potknięcia. Są częścią chodzenia."
     },
     {
       "es": "Sal a que el viento te despeje. Funciona más que una pantalla.",
@@ -810,7 +970,9 @@
       "it": "Vai a farti schiarire dal vento. Meglio di uno schermo.",
       "nl": "Laat de wind je hoofd verhelderen. Beter dan een scherm.",
       "zh": "去让风把你吹清醒。比任何屏幕都管用。",
-      "zht": "去讓風把你吹清醒。比任何螢幕都管用。"
+      "zht": "去讓風把你吹清醒。比任何螢幕都管用。",
+      "bg": "Излез вятърът да те проветри. Действа повече от екран.",
+      "pl": "Wyjdź, niech wiatr cię przewietrzy. Działa lepiej niż ekran."
     },
     {
       "es": "Hoy cuida una cosa pequeña: tu descanso, tu agua, tu paso.",
@@ -820,7 +982,9 @@
       "it": "Oggi cura una piccola cosa: il riposo, l'acqua, il passo.",
       "nl": "Verzorg vandaag iets kleins: je rust, je water, je tempo.",
       "zh": "今天照顾一件小事：你的休息、你的水、你的步伐。",
-      "zht": "今天照顧一件小事：你的休息、你的水、你的步伐。"
+      "zht": "今天照顧一件小事：你的休息、你的水、你的步伐。",
+      "bg": "Днес се погрижи за едно малко нещо: съня, водата, крачката си.",
+      "pl": "Zadbaj dziś o jedną małą rzecz: o sen, o wodę, o swój krok."
     },
     {
       "es": "La belleza está cerca. Solo hay que mirar despacio.",
@@ -830,7 +994,9 @@
       "it": "La bellezza è vicina. Basta guardare piano.",
       "nl": "Schoonheid is dichtbij. Je hoeft alleen langzaam te kijken.",
       "zh": "美就在近处。只要慢慢看。",
-      "zht": "美就在近處。只要慢慢看。"
+      "zht": "美就在近處。只要慢慢看。",
+      "bg": "Красотата е наблизо. Само трябва да гледаш бавно.",
+      "pl": "Piękno jest blisko. Trzeba tylko patrzeć powoli."
     },
     {
       "es": "No tienes que sentirte bien todo el rato. Solo seguir.",
@@ -840,7 +1006,9 @@
       "it": "Non devi sentirti bene sempre. Solo continuare.",
       "nl": "Je hoeft je niet altijd goed te voelen. Alleen doorgaan.",
       "zh": "你不必时时都感觉良好。坚持下去就好。",
-      "zht": "你不必時時都感覺良好。堅持下去就好。"
+      "zht": "你不必時時都感覺良好。堅持下去就好。",
+      "bg": "Не си длъжен да се чувстваш добре през цялото време. Само да продължиш.",
+      "pl": "Nie musisz czuć się dobrze przez cały czas. Wystarczy iść dalej."
     },
     {
       "es": "Un sendero, una playa, un pueblo: elige uno y ve.",
@@ -850,7 +1018,9 @@
       "it": "Un sentiero, una spiaggia, un paese: scegline uno e vai.",
       "nl": "Een pad, een strand, een dorp: kies er een en ga.",
       "zh": "一条小径、一片海滩、一个村庄：选一个，去。",
-      "zht": "一條小徑、一片海灘、一個村莊：選一個，去。"
+      "zht": "一條小徑、一片海灘、一個村莊：選一個，去。",
+      "bg": "Пътека, плаж, село: избери едно и иди.",
+      "pl": "Ścieżka, plaża, wioska: wybierz jedno i idź."
     },
     {
       "es": "Respira. Estás vivo, y eso ya es mucho.",
@@ -860,7 +1030,9 @@
       "it": "Respira. Sei vivo, ed è già tanto.",
       "nl": "Adem. Je leeft, en dat is al veel.",
       "zh": "呼吸。你还活着，这已经很多了。",
-      "zht": "呼吸。你還活著，這已經很多了。"
+      "zht": "呼吸。你還活著，這已經很多了。",
+      "bg": "Дишай. Жив си, и това вече е много.",
+      "pl": "Oddychaj. Żyjesz, a to już dużo."
     },
     {
       "es": "Hoy hazte un plan que te ilusione, aunque sea sencillo.",
@@ -870,7 +1042,9 @@
       "it": "Fatti un piano che ti entusiasma, anche semplice.",
       "nl": "Maak een plan dat je vreugde geeft, ook een simpel.",
       "zh": "给自己定一个让你期待的计划，简单也行。",
-      "zht": "給自己定一個讓你期待的計畫，簡單也行。"
+      "zht": "給自己定一個讓你期待的計畫，簡單也行。",
+      "bg": "Днес си направи план, който те радва, макар и прост.",
+      "pl": "Zrób dziś plan, który cię ucieszy, choćby prosty."
     },
     {
       "es": "El Teide te mira desde lejos. Devuélvele la mirada.",
@@ -880,7 +1054,9 @@
       "it": "Il Teide ti guarda da lontano. Ricambia lo sguardo.",
       "nl": "De Teide kijkt naar je van ver. Kijk terug.",
       "zh": "泰德峰在远处望着你。回望它一眼。",
-      "zht": "泰德峰在遠處望著你。回望它一眼。"
+      "zht": "泰德峰在遠處望著你。回望它一眼。",
+      "bg": "Тейде те гледа отдалеч. Върни му погледа.",
+      "pl": "Teide patrzy na ciebie z daleka. Odwzajemnij spojrzenie."
     },
     {
       "es": "Ir a tu ritmo no es ir lento, es ir sostenible.",
@@ -890,7 +1066,9 @@
       "it": "Andare al tuo ritmo non è lento, è sostenibile.",
       "nl": "In jouw tempo gaan is niet traag, maar houdbaar.",
       "zh": "按自己的节奏走，不是慢，而是能长久。",
-      "zht": "按自己的節奏走，不是慢，而是能長久。"
+      "zht": "按自己的節奏走，不是慢，而是能長久。",
+      "bg": "Да вървиш със своя ритъм не е бавно, а устойчиво.",
+      "pl": "Iść w swoim tempie to nie iść wolno, to iść tak, by starczyło."
     },
     {
       "es": "Sal a caminar sin destino. Deja que te sorprenda el camino.",
@@ -900,7 +1078,9 @@
       "it": "Vai a camminare senza meta. Lascia che la strada ti sorprenda.",
       "nl": "Ga wandelen zonder bestemming. Laat het pad je verrassen.",
       "zh": "无目的地去走走。让路来给你惊喜。",
-      "zht": "無目的地去走走。讓路來給你驚喜。"
+      "zht": "無目的地去走走。讓路來給你驚喜。",
+      "bg": "Излез да повървиш без посока. Остави пътят да те изненада.",
+      "pl": "Wyjdź na spacer bez celu. Pozwól, żeby droga cię zaskoczyła."
     },
     {
       "es": "Sé paciente. Las cosas buenas tardan lo que tardan.",
@@ -910,7 +1090,9 @@
       "it": "Sii paziente. Le cose belle richiedono il loro tempo.",
       "nl": "Wees geduldig. Goede dingen duren zo lang als nodig.",
       "zh": "有耐心。好事需要它需要的时间。",
-      "zht": "有耐心。好事需要它需要的時間。"
+      "zht": "有耐心。好事需要它需要的時間。",
+      "bg": "Бъди търпелив. Хубавите неща отнемат толкова, колкото отнемат.",
+      "pl": "Bądź cierpliwy. Dobre rzeczy trwają tyle, ile trwają."
     },
     {
       "es": "El aire de mar limpia por dentro. Ve a respirarlo.",
@@ -920,7 +1102,9 @@
       "it": "L'aria di mare pulisce dentro. Vai a respirarla.",
       "nl": "Zeelucht maakt van binnen schoon. Ga haar inademen.",
       "zh": "海风由内而外地清洗。去呼吸它。",
-      "zht": "海風由內而外地清洗。去呼吸它。"
+      "zht": "海風由內而外地清洗。去呼吸它。",
+      "bg": "Морският въздух чисти отвътре. Иди да го подишаш.",
+      "pl": "Morskie powietrze oczyszcza od środka. Idź nim odetchnąć."
     },
     {
       "es": "Hoy suelta la exigencia. Hazlo lo mejor que puedas y ya.",
@@ -930,7 +1114,9 @@
       "it": "Lascia la pretesa oggi. Fai del tuo meglio, e basta.",
       "nl": "Laat de eis vandaag los. Doe je best, en dat is het.",
       "zh": "今天放下苛求。尽力就好。",
-      "zht": "今天放下苛求。盡力就好。"
+      "zht": "今天放下苛求。盡力就好。",
+      "bg": "Днес пусни изискванията. Направи каквото можеш и толкова.",
+      "pl": "Dziś odpuść wymagania. Zrób, co możesz, i tyle."
     },
     {
       "es": "Una vista bonita reordena el día. Búscala.",
@@ -940,7 +1126,9 @@
       "it": "Una bella vista rimette in ordine la giornata. Cercala.",
       "nl": "Een mooi uitzicht ordent de dag. Zoek het.",
       "zh": "一处好风景会理顺一天。去找它。",
-      "zht": "一處好風景會理順一天。去找它。"
+      "zht": "一處好風景會理順一天。去找它。",
+      "bg": "Хубавата гледка подрежда деня. Потърси я.",
+      "pl": "Ładny widok porządkuje dzień. Poszukaj go."
     },
     {
       "es": "Cuídate hoy con la ternura con la que cuidas a los demás.",
@@ -950,7 +1138,9 @@
       "it": "Prenditi cura di te con la tenerezza che dai agli altri.",
       "nl": "Zorg voor jezelf met de tederheid die je anderen geeft.",
       "zh": "用你给别人的温柔，来照顾自己。",
-      "zht": "用你給別人的溫柔，來照顧自己。"
+      "zht": "用你給別人的溫柔，來照顧自己。",
+      "bg": "Грижи се днес за себе си с нежността, с която се грижиш за другите.",
+      "pl": "Zadbaj dziś o siebie z czułością, z jaką dbasz o innych."
     },
     {
       "es": "Muévete un rato. No por deber, por gusto.",
@@ -960,7 +1150,9 @@
       "it": "Muoviti un po'. Non per dovere, per piacere.",
       "nl": "Beweeg wat. Niet uit plicht, uit plezier.",
       "zh": "动一动。不是出于义务，而是出于喜欢。",
-      "zht": "動一動。不是出於義務，而是出於喜歡。"
+      "zht": "動一動。不是出於義務，而是出於喜歡。",
+      "bg": "Раздвижи се малко. Не по задължение, а за удоволствие.",
+      "pl": "Poruszaj się chwilę. Nie z obowiązku, dla przyjemności."
     },
     {
       "es": "Hoy mira el horizonte. Hay mundo más allá de lo urgente.",
@@ -970,7 +1162,9 @@
       "it": "Guarda l'orizzonte oggi. C'è un mondo oltre l'urgente.",
       "nl": "Kijk vandaag naar de horizon. Er is een wereld voorbij het dringende.",
       "zh": "今天看看地平线。在紧急之外，还有一个世界。",
-      "zht": "今天看看地平線。在緊急之外，還有一個世界。"
+      "zht": "今天看看地平線。在緊急之外，還有一個世界。",
+      "bg": "Днес погледни хоризонта. Има свят отвъд спешното.",
+      "pl": "Dziś popatrz na horyzont. Jest świat poza tym, co pilne."
     },
     {
       "es": "Tus días valen aunque no pasen grandes cosas.",
@@ -980,7 +1174,9 @@
       "it": "I tuoi giorni contano anche senza grandi cose.",
       "nl": "Je dagen tellen, ook zonder grote dingen.",
       "zh": "就算没有大事发生，你的日子也算数。",
-      "zht": "就算沒有大事發生，你的日子也算數。"
+      "zht": "就算沒有大事發生，你的日子也算數。",
+      "bg": "Дните ти имат стойност, дори да не се случва нищо голямо.",
+      "pl": "Twoje dni mają wartość, nawet jeśli nie dzieje się nic wielkiego."
     },
     {
       "es": "Sal, aunque sea a la esquina. El aire ya cambia algo.",
@@ -990,7 +1186,9 @@
       "it": "Esci, anche solo all'angolo. L'aria già cambia qualcosa.",
       "nl": "Ga naar buiten, al is het naar de hoek. De lucht verandert al iets.",
       "zh": "出去走走，哪怕只到街角。空气已经改变了些什么。",
-      "zht": "出去走走，哪怕只到街角。空氣已經改變了些什麼。"
+      "zht": "出去走走，哪怕只到街角。空氣已經改變了些什麼。",
+      "bg": "Излез, макар и до ъгъла. Въздухът вече променя нещо.",
+      "pl": "Wyjdź, choćby na róg ulicy. Powietrze już coś zmienia."
     },
     {
       "es": "Da un paso pequeño hacia algo que te importe.",
@@ -1000,7 +1198,9 @@
       "it": "Fai un piccolo passo verso ciò che ti sta a cuore.",
       "nl": "Zet een kleine stap naar iets wat je dierbaar is.",
       "zh": "朝你在乎的事迈出一小步。",
-      "zht": "朝你在乎的事邁出一小步。"
+      "zht": "朝你在乎的事邁出一小步。",
+      "bg": "Направи малка крачка към нещо, което ти е важно.",
+      "pl": "Zrób mały krok w stronę czegoś, co jest dla ciebie ważne."
     },
     {
       "es": "La calma también se entrena. Empieza respirando.",
@@ -1010,7 +1210,9 @@
       "it": "Anche la calma si allena. Comincia col respiro.",
       "nl": "Ook rust oefen je. Begin met ademen.",
       "zh": "平静也需要练习。从呼吸开始。",
-      "zht": "平靜也需要練習。從呼吸開始。"
+      "zht": "平靜也需要練習。從呼吸開始。",
+      "bg": "И спокойствието се тренира. Започни с дишане.",
+      "pl": "Spokoju też się ćwiczy. Zacznij od oddechu."
     },
     {
       "es": "El mar no tiene prisa y siempre llega. Tú también llegarás.",
@@ -1020,7 +1222,9 @@
       "it": "Il mare non ha fretta e arriva sempre. Anche tu.",
       "nl": "De zee heeft geen haast en komt altijd aan. Jij ook.",
       "zh": "大海不急，却总会抵达。你也一样。",
-      "zht": "大海不急，卻總會抵達。你也一樣。"
+      "zht": "大海不急，卻總會抵達。你也一樣。",
+      "bg": "Морето не бърза и винаги стига. И ти ще стигнеш.",
+      "pl": "Morze się nie spieszy i zawsze dociera. Ty też dotrzesz."
     },
     {
       "es": "Hoy elige una cosa que te haga bien y hazla.",
@@ -1030,7 +1234,9 @@
       "it": "Scegli una cosa che ti fa bene, e falla.",
       "nl": "Kies iets wat je goeddoet, en doe het.",
       "zh": "选一件对你有益的事，去做。",
-      "zht": "選一件對你有益的事，去做。"
+      "zht": "選一件對你有益的事，去做。",
+      "bg": "Днес избери едно нещо, което ти е добро, и го направи.",
+      "pl": "Wybierz dziś jedną rzecz, która ci służy, i zrób ją."
     },
     {
       "es": "Camina despacio: la isla se disfruta sin correr.",
@@ -1040,7 +1246,9 @@
       "it": "Cammina piano: l'isola si gode senza correre.",
       "nl": "Loop rustig: het eiland geniet je zonder rennen.",
       "zh": "慢慢走：这座岛，不奔跑才品得出味道。",
-      "zht": "慢慢走：這座島，不奔跑才品得出味道。"
+      "zht": "慢慢走：這座島，不奔跑才品得出味道。",
+      "bg": "Върви бавно: островът се усеща без тичане.",
+      "pl": "Idź powoli: wyspy nie smakuje się w biegu."
     },
     {
       "es": "No estás atrás. Estás en tu momento.",
@@ -1050,7 +1258,9 @@
       "it": "Non sei indietro. Sei nel tuo momento.",
       "nl": "Je bent niet achter. Je bent in jouw moment.",
       "zh": "你没有落后。你正处在属于你的时刻。",
-      "zht": "你沒有落後。你正處在屬於你的時刻。"
+      "zht": "你沒有落後。你正處在屬於你的時刻。",
+      "bg": "Не изоставаш. В своя момент си.",
+      "pl": "Nie jesteś w tyle. Jesteś w swoim czasie."
     },
     {
       "es": "Respira hondo y suelta lo de ayer.",
@@ -1060,7 +1270,9 @@
       "it": "Respira a fondo e lascia andare ieri.",
       "nl": "Adem diep en laat gisteren los.",
       "zh": "深呼吸，放下昨天。",
-      "zht": "深呼吸，放下昨天。"
+      "zht": "深呼吸，放下昨天。",
+      "bg": "Поеми дълбоко въздух и пусни вчерашното.",
+      "pl": "Odetchnij głęboko i odpuść to, co wczorajsze."
     },
     {
       "es": "Ve a ver el atardecer aunque sea desde la ventana.",
@@ -1070,7 +1282,9 @@
       "it": "Vai a vedere il tramonto, anche dalla finestra.",
       "nl": "Ga de zonsondergang zien, al is het vanuit het raam.",
       "zh": "去看日落，哪怕只从窗口。",
-      "zht": "去看日落，哪怕只從窗口。"
+      "zht": "去看日落，哪怕只從窗口。",
+      "bg": "Иди да видиш залеза, дори през прозореца.",
+      "pl": "Idź zobaczyć zachód słońca, choćby przez okno."
     },
     {
       "es": "Sé amable con tu mente hoy. Ella también se cansa.",
@@ -1080,7 +1294,9 @@
       "it": "Sii dolce con la tua mente. Anche lei si stanca.",
       "nl": "Wees zacht voor je hoofd. Ook dat wordt moe.",
       "zh": "今天温柔对待你的头脑。它也会累。",
-      "zht": "今天溫柔對待你的頭腦。它也會累。"
+      "zht": "今天溫柔對待你的頭腦。它也會累。",
+      "bg": "Бъди мил с ума си днес. И той се уморява.",
+      "pl": "Bądź dziś dobry dla swojego umysłu. On też się męczy."
     },
     {
       "es": "Un rincón verde te espera. Regálate ese paseo.",
@@ -1090,7 +1306,9 @@
       "it": "Un angolo verde ti aspetta. Regalati quella passeggiata.",
       "nl": "Een groen hoekje wacht. Gun jezelf die wandeling.",
       "zh": "一个绿色的角落在等你。把那次散步送给自己。",
-      "zht": "一個綠色的角落在等你。把那次散步送給自己。"
+      "zht": "一個綠色的角落在等你。把那次散步送給自己。",
+      "bg": "Зелено кътче те чака. Подари си тази разходка.",
+      "pl": "Czeka na ciebie zielony zakątek. Podaruj sobie ten spacer."
     },
     {
       "es": "Hoy basta con intentarlo. El resultado ya vendrá.",
@@ -1100,7 +1318,9 @@
       "it": "Oggi basta provarci. Il risultato arriverà.",
       "nl": "Vandaag is proberen genoeg. Het resultaat komt.",
       "zh": "今天试一试，就够了。结果会来的。",
-      "zht": "今天試一試，就夠了。結果會來的。"
+      "zht": "今天試一試，就夠了。結果會來的。",
+      "bg": "Днес стига да опиташ. Резултатът ще дойде.",
+      "pl": "Dziś wystarczy spróbować. Wynik przyjdzie sam."
     },
     {
       "es": "El sol calienta gratis. Deja que te toque un rato.",
@@ -1110,7 +1330,9 @@
       "it": "Il sole scalda gratis. Lascia che ti tocchi un momento.",
       "nl": "De zon warmt gratis. Laat haar je even raken.",
       "zh": "阳光免费地温暖着。让它照你一会儿。",
-      "zht": "陽光免費地溫暖著。讓它照你一會兒。"
+      "zht": "陽光免費地溫暖著。讓它照你一會兒。",
+      "bg": "Слънцето грее безплатно. Остави го да те докосне малко.",
+      "pl": "Słońce grzeje za darmo. Pozwól mu się chwilę dotknąć."
     },
     {
       "es": "Descansa cuando lo necesites, no solo cuando lo merezcas.",
@@ -1120,7 +1342,9 @@
       "it": "Riposa quando ne hai bisogno, non solo quando lo meriti.",
       "nl": "Rust wanneer je het nodig hebt, niet pas als je het verdient.",
       "zh": "需要时就休息，不必等到觉得值得。",
-      "zht": "需要時就休息，不必等到覺得值得。"
+      "zht": "需要時就休息，不必等到覺得值得。",
+      "bg": "Почивай, когато имаш нужда, не само когато си го заслужил.",
+      "pl": "Odpoczywaj, kiedy potrzebujesz, nie tylko kiedy zasłużysz."
     },
     {
       "es": "Explora un poco hoy. La curiosidad cura el aburrimiento.",
@@ -1130,7 +1354,9 @@
       "it": "Esplora un po' oggi. La curiosità cura la noia.",
       "nl": "Verken vandaag wat. Nieuwsgierigheid geneest verveling.",
       "zh": "今天探索一点。好奇能治无聊。",
-      "zht": "今天探索一點。好奇能治無聊。"
+      "zht": "今天探索一點。好奇能治無聊。",
+      "bg": "Поразгледай малко днес. Любопитството лекува скуката.",
+      "pl": "Poeksploruj dziś trochę. Ciekawość leczy nudę."
     },
     {
       "es": "Lo pequeño bien hecho también es un logro.",
@@ -1140,7 +1366,9 @@
       "it": "Una piccola cosa fatta bene è anche un traguardo.",
       "nl": "Iets kleins goed gedaan is ook een prestatie.",
       "zh": "一件小事做得好，也是一种成就。",
-      "zht": "一件小事做得好，也是一種成就。"
+      "zht": "一件小事做得好，也是一種成就。",
+      "bg": "И малкото, направено добре, е постижение.",
+      "pl": "Małe, zrobione dobrze, też jest osiągnięciem."
     },
     {
       "es": "Sal a caminar y verás cómo pesa menos la cabeza.",
@@ -1150,7 +1378,9 @@
       "it": "Vai a camminare e vedi come la testa si alleggerisce.",
       "nl": "Ga wandelen en zie hoe je hoofd lichter wordt.",
       "zh": "去走走，你会发现头脑轻了许多。",
-      "zht": "去走走，你會發現頭腦輕了許多。"
+      "zht": "去走走，你會發現頭腦輕了許多。",
+      "bg": "Излез да повървиш и ще видиш как главата олеква.",
+      "pl": "Wyjdź na spacer, a zobaczysz, że w głowie lżej."
     },
     {
       "es": "Hoy trátate con paciencia. Mañana lo agradecerás.",
@@ -1160,7 +1390,9 @@
       "it": "Sii paziente con te oggi. Domani ne sarai contento.",
       "nl": "Wees vandaag geduldig met jezelf. Morgen ben je blij.",
       "zh": "今天对自己耐心些。明天你会庆幸。",
-      "zht": "今天對自己耐心些。明天你會慶幸。"
+      "zht": "今天對自己耐心些。明天你會慶幸。",
+      "bg": "Днес се отнеси със себе си търпеливо. Утре ще си благодарен.",
+      "pl": "Potraktuj się dziś cierpliwie. Jutro będziesz wdzięczny."
     },
     {
       "es": "Mira el mar y respira a su ritmo. Baja las pulsaciones.",
@@ -1170,7 +1402,9 @@
       "it": "Guarda il mare e respira al suo ritmo. Il battito rallenta.",
       "nl": "Kijk naar de zee en adem op haar tempo. De hartslag zakt.",
       "zh": "看着海，按它的节奏呼吸。心跳会慢下来。",
-      "zht": "看著海，按它的節奏呼吸。心跳會慢下來。"
+      "zht": "看著海，按它的節奏呼吸。心跳會慢下來。",
+      "bg": "Гледай морето и дишай в неговия ритъм. Пулсът се успокоява.",
+      "pl": "Patrz na morze i oddychaj w jego rytmie. Puls zwalnia."
     },
     {
       "es": "No tienes que tenerlo todo claro hoy. Da igual.",
@@ -1180,7 +1414,9 @@
       "it": "Non devi avere tutto chiaro oggi. Va bene.",
       "nl": "Je hoeft vandaag niet alles helder te hebben. Het is oké.",
       "zh": "今天不必样样都想清楚。没关系。",
-      "zht": "今天不必樣樣都想清楚。沒關係。"
+      "zht": "今天不必樣樣都想清楚。沒關係。",
+      "bg": "Не е нужно всичко да ти е ясно днес. Няма значение.",
+      "pl": "Nie musisz mieć dziś wszystkiego jasnego. Nie szkodzi."
     },
     {
       "es": "Un paseo con vistas vale más que mil pantallas.",
@@ -1190,7 +1426,9 @@
       "it": "Una passeggiata con vista vale mille schermi.",
       "nl": "Een wandeling met uitzicht wint van duizend schermen.",
       "zh": "一段有风景的散步，胜过一千块屏幕。",
-      "zht": "一段有風景的散步，勝過一千塊螢幕。"
+      "zht": "一段有風景的散步，勝過一千塊螢幕。",
+      "bg": "Разходка с гледка струва повече от хиляда екрана.",
+      "pl": "Spacer z widokiem wart jest więcej niż tysiąc ekranów."
     },
     {
       "es": "Cuida tu descanso como cuidas tus planes.",
@@ -1200,7 +1438,9 @@
       "it": "Cura il tuo riposo come curi i tuoi piani.",
       "nl": "Verzorg je rust zoals je je plannen verzorgt.",
       "zh": "像照顾你的计划一样，照顾你的休息。",
-      "zht": "像照顧你的計畫一樣，照顧你的休息。"
+      "zht": "像照顧你的計畫一樣，照顧你的休息。",
+      "bg": "Пази съня си, както пазиш плановете си.",
+      "pl": "Dbaj o sen tak, jak dbasz o swoje plany."
     },
     {
       "es": "Hoy haz algo por ti, sin pedir permiso.",
@@ -1210,7 +1450,9 @@
       "it": "Oggi fai qualcosa per te, senza chiedere permesso.",
       "nl": "Doe vandaag iets voor jezelf, zonder om toestemming te vragen.",
       "zh": "今天为自己做点什么，不必征求许可。",
-      "zht": "今天為自己做點什麼，不必徵求許可。"
+      "zht": "今天為自己做點什麼，不必徵求許可。",
+      "bg": "Днес направи нещо за себе си, без да искаш разрешение.",
+      "pl": "Zrób dziś coś dla siebie, nie pytając o pozwolenie."
     },
     {
       "es": "La naturaleza siempre tiene sitio para ti. Ve a buscarlo.",
@@ -1220,7 +1462,9 @@
       "it": "La natura ha sempre posto per te. Vai a trovarlo.",
       "nl": "De natuur heeft altijd plek voor je. Ga die vinden.",
       "zh": "大自然总有你的位置。去找到它。",
-      "zht": "大自然總有你的位置。去找到它。"
+      "zht": "大自然總有你的位置。去找到它。",
+      "bg": "Природата винаги има място за теб. Иди да го намериш.",
+      "pl": "Natura zawsze ma dla ciebie miejsce. Idź je znaleźć."
     },
     {
       "es": "Sé constante y suave. Así llegan los cambios.",
@@ -1230,7 +1474,9 @@
       "it": "Sii costante e dolce. Così arriva il cambiamento.",
       "nl": "Wees standvastig en zacht. Zo komt verandering.",
       "zh": "温柔而坚持。改变就是这样来的。",
-      "zht": "溫柔而堅持。改變就是這樣來的。"
+      "zht": "溫柔而堅持。改變就是這樣來的。",
+      "bg": "Бъди постоянен и мек. Така идват промените.",
+      "pl": "Bądź wytrwały i łagodny. Tak przychodzą zmiany."
     },
     {
       "es": "El aire fresco despeja lo que la prisa enreda.",
@@ -1240,7 +1486,9 @@
       "it": "L'aria fresca schiarisce ciò che la fretta ingarbuglia.",
       "nl": "Frisse lucht verheldert wat de haast in de war maakt.",
       "zh": "新鲜空气会理清匆忙打乱的一切。",
-      "zht": "新鮮空氣會理清匆忙打亂的一切。"
+      "zht": "新鮮空氣會理清匆忙打亂的一切。",
+      "bg": "Свежият въздух разплита това, което бързането оплита.",
+      "pl": "Świeże powietrze rozplątuje to, co pośpiech splątał."
     },
     {
       "es": "Hoy celebra seguir de pie. Ya es motivo.",
@@ -1250,7 +1498,9 @@
       "it": "Oggi festeggia il fatto di essere in piedi. È già un motivo.",
       "nl": "Vier vandaag dat je overeind staat. Dat is al een reden.",
       "zh": "今天为自己还站着而庆祝。这已是理由。",
-      "zht": "今天為自己還站著而慶祝。這已是理由。"
+      "zht": "今天為自己還站著而慶祝。這已是理由。",
+      "bg": "Днес отпразнувай, че си на крака. Това вече е повод.",
+      "pl": "Świętuj dziś to, że stoisz na nogach. To już powód."
     },
     {
       "es": "Camina hacia la luz, literalmente. Busca un sitio soleado.",
@@ -1260,7 +1510,9 @@
       "it": "Cammina verso la luce, davvero. Cerca un posto al sole.",
       "nl": "Loop naar het licht, echt. Zoek een zonnig plekje.",
       "zh": "朝光走去，真的。找一处有阳光的地方。",
-      "zht": "朝光走去，真的。找一處有陽光的地方。"
+      "zht": "朝光走去，真的。找一處有陽光的地方。",
+      "bg": "Върви към светлината, буквално. Потърси слънчево място.",
+      "pl": "Idź w stronę światła, dosłownie. Poszukaj słonecznego miejsca."
     },
     {
       "es": "No te exijas más de lo que hoy puedes dar.",
@@ -1270,7 +1522,9 @@
       "it": "Non pretendere più di quanto oggi puoi dare.",
       "nl": "Eis niet meer dan je vandaag kunt geven.",
       "zh": "别要求超过你今天能给的。",
-      "zht": "別要求超過你今天能給的。"
+      "zht": "別要求超過你今天能給的。",
+      "bg": "Не искай от себе си повече, отколкото можеш да дадеш днес.",
+      "pl": "Nie wymagaj od siebie więcej, niż możesz dziś dać."
     },
     {
       "es": "Un sendero nuevo, una cabeza más ligera.",
@@ -1280,7 +1534,9 @@
       "it": "Un sentiero nuovo, una testa più leggera.",
       "nl": "Een nieuw pad, een lichter hoofd.",
       "zh": "一条新路，一颗更轻的头脑。",
-      "zht": "一條新路，一顆更輕的頭腦。"
+      "zht": "一條新路，一顆更輕的頭腦。",
+      "bg": "Нова пътека, по-лека глава.",
+      "pl": "Nowa ścieżka, lżejsza głowa."
     },
     {
       "es": "Respira y recuerda: esto también es parte del camino.",
@@ -1290,7 +1546,9 @@
       "it": "Respira e ricorda: anche questo fa parte del cammino.",
       "nl": "Adem en onthoud: ook dit hoort bij de weg.",
       "zh": "呼吸，记得：这也是路的一部分。",
-      "zht": "呼吸，記得：這也是路的一部分。"
+      "zht": "呼吸，記得：這也是路的一部分。",
+      "bg": "Дишай и помни: и това е част от пътя.",
+      "pl": "Oddychaj i pamiętaj: to też jest częścią drogi."
     },
     {
       "es": "Sal a que te dé el sol y verás cómo cambia el ánimo.",
@@ -1300,7 +1558,9 @@
       "it": "Lascia che il sole ti raggiunga e vedi l'umore cambiare.",
       "nl": "Laat de zon je bereiken en zie het humeur omslaan.",
       "zh": "让阳光照到你，看看心情怎样转变。",
-      "zht": "讓陽光照到你，看看心情怎樣轉變。"
+      "zht": "讓陽光照到你，看看心情怎樣轉變。",
+      "bg": "Излез на слънце и ще видиш как се променя настроението.",
+      "pl": "Wyjdź na słońce, a zobaczysz, jak zmienia się nastrój."
     },
     {
       "es": "Hoy hazte una pregunta amable y escúchate la respuesta.",
@@ -1310,7 +1570,9 @@
       "it": "Fatti una domanda gentile e ascolta la risposta.",
       "nl": "Stel jezelf een zachte vraag en luister naar het antwoord.",
       "zh": "问自己一个温柔的问题，听听答案。",
-      "zht": "問自己一個溫柔的問題，聽聽答案。"
+      "zht": "問自己一個溫柔的問題，聽聽答案。",
+      "bg": "Задай си днес мил въпрос и се изслушай.",
+      "pl": "Zadaj sobie dziś życzliwe pytanie i wysłuchaj odpowiedzi."
     },
     {
       "es": "El mar te recuerda que todo fluye. Deja que fluya.",
@@ -1320,7 +1582,9 @@
       "it": "Il mare ricorda che tutto scorre. Lascia scorrere.",
       "nl": "De zee herinnert dat alles stroomt. Laat het stromen.",
       "zh": "大海提醒你，一切都在流动。让它流吧。",
-      "zht": "大海提醒你，一切都在流動。讓它流吧。"
+      "zht": "大海提醒你，一切都在流動。讓它流吧。",
+      "bg": "Морето ти напомня, че всичко тече. Остави го да тече.",
+      "pl": "Morze przypomina, że wszystko płynie. Pozwól płynąć."
     },
     {
       "es": "Muévete a tu aire. Tu cuerpo sabe lo que necesita.",
@@ -1330,7 +1594,9 @@
       "it": "Muoviti libero. Il tuo corpo sa di cosa ha bisogno.",
       "nl": "Beweeg vrij. Je lichaam weet wat het nodig heeft.",
       "zh": "自由地动。你的身体知道它需要什么。",
-      "zht": "自由地動。你的身體知道它需要什麼。"
+      "zht": "自由地動。你的身體知道它需要什麼。",
+      "bg": "Движи се както ти е удобно. Тялото ти знае от какво има нужда.",
+      "pl": "Ruszaj się po swojemu. Ciało wie, czego potrzebuje."
     },
     {
       "es": "Lo importante no es ir rápido, sino no dejar de caminar.",
@@ -1340,7 +1606,9 @@
       "it": "Non conta andare veloce, ma non fermarsi.",
       "nl": "Het gaat niet om snel gaan, maar om niet stoppen.",
       "zh": "重要的不是快，而是不停下。",
-      "zht": "重要的不是快，而是不停下。"
+      "zht": "重要的不是快，而是不停下。",
+      "bg": "Важното не е да бързаш, а да не спираш да вървиш.",
+      "pl": "Ważne nie jest iść szybko, tylko nie przestawać iść."
     },
     {
       "es": "Hoy date un respiro de verdad, sin culpa.",
@@ -1350,7 +1618,9 @@
       "it": "Concediti oggi una pausa vera, senza colpa.",
       "nl": "Gun jezelf vandaag een echte pauze, zonder schuld.",
       "zh": "今天给自己一个真正的暂停，不必内疚。",
-      "zht": "今天給自己一個真正的暫停，不必內疚。"
+      "zht": "今天給自己一個真正的暫停，不必內疚。",
+      "bg": "Днес си дай истинска глътка въздух, без вина.",
+      "pl": "Daj sobie dziś prawdziwy oddech, bez poczucia winy."
     },
     {
       "es": "Ve a un mirador y respira hondo tres veces.",
@@ -1360,7 +1630,9 @@
       "it": "Vai a un punto panoramico e respira a fondo tre volte.",
       "nl": "Ga naar een uitkijkpunt en adem drie keer diep.",
       "zh": "去一处观景点，深呼吸三次。",
-      "zht": "去一處觀景點，深呼吸三次。"
+      "zht": "去一處觀景點，深呼吸三次。",
+      "bg": "Иди на изглед и поеми дълбоко въздух три пъти.",
+      "pl": "Idź na punkt widokowy i odetchnij głęboko trzy razy."
     },
     {
       "es": "Eres suficiente tal y como estás hoy.",
@@ -1370,7 +1642,9 @@
       "it": "Sei abbastanza così come sei oggi.",
       "nl": "Je bent genoeg, precies zoals je vandaag bent.",
       "zh": "你现在这样，就已经足够。",
-      "zht": "你現在這樣，就已經足夠。"
+      "zht": "你現在這樣，就已經足夠。",
+      "bg": "Достатъчен си такъв, какъвто си днес.",
+      "pl": "Jesteś wystarczający taki, jaki jesteś dzisiaj."
     },
     {
       "es": "Un paseo corto puede salvar un día largo.",
@@ -1380,7 +1654,9 @@
       "it": "Una breve passeggiata può salvare una lunga giornata.",
       "nl": "Een korte wandeling kan een lange dag redden.",
       "zh": "一小段散步，能救回漫长的一天。",
-      "zht": "一小段散步，能救回漫長的一天。"
+      "zht": "一小段散步，能救回漫長的一天。",
+      "bg": "Кратка разходка може да спаси дълъг ден.",
+      "pl": "Krótki spacer może uratować długi dzień."
     },
     {
       "es": "Sé curioso hoy: prueba, mira, pregunta.",
@@ -1390,7 +1666,9 @@
       "it": "Sii curioso oggi: prova, guarda, chiedi.",
       "nl": "Wees vandaag nieuwsgierig: probeer, kijk, vraag.",
       "zh": "今天保持好奇：试试、看看、问问。",
-      "zht": "今天保持好奇：試試、看看、問問。"
+      "zht": "今天保持好奇：試試、看看、問問。",
+      "bg": "Бъди любопитен днес: опитай, гледай, питай.",
+      "pl": "Bądź dziś ciekawy: spróbuj, popatrz, zapytaj."
     },
     {
       "es": "El sol de la isla es un lujo. No lo dejes pasar entero.",
@@ -1400,7 +1678,9 @@
       "it": "Il sole dell'isola è un lusso. Non lasciarlo passare.",
       "nl": "De eilandzon is een luxe. Laat haar niet voorbijgaan.",
       "zh": "岛上的阳光是奢侈。别让它整个溜走。",
-      "zht": "島上的陽光是奢侈。別讓它整個溜走。"
+      "zht": "島上的陽光是奢侈。別讓它整個溜走。",
+      "bg": "Слънцето на острова е лукс. Не го изпускай цял.",
+      "pl": "Wyspiarskie słońce to luksus. Nie przegap go w całości."
     },
     {
       "es": "Descansar la mente también es avanzar.",
@@ -1410,7 +1690,9 @@
       "it": "Riposare la mente è anche avanzare.",
       "nl": "Je hoofd laten rusten is ook vooruitgaan.",
       "zh": "让头脑休息，也是前进。",
-      "zht": "讓頭腦休息，也是前進。"
+      "zht": "讓頭腦休息，也是前進。",
+      "bg": "Да починеш с ума си също е напредък.",
+      "pl": "Odpoczynek umysłu też jest posuwaniem się naprzód."
     },
     {
       "es": "Camina hacia el mar y deja que el ruido se quede atrás.",
@@ -1420,7 +1702,9 @@
       "it": "Cammina verso il mare e lascia il rumore indietro.",
       "nl": "Loop richting de zee en laat het lawaai achter.",
       "zh": "朝海走去，把喧嚣留在身后。",
-      "zht": "朝海走去，把喧囂留在身後。"
+      "zht": "朝海走去，把喧囂留在身後。",
+      "bg": "Върви към морето и остави шума зад себе си.",
+      "pl": "Idź w stronę morza i zostaw hałas za sobą."
     },
     {
       "es": "Hoy sé tu propio aliado, no tu juez.",
@@ -1430,7 +1714,9 @@
       "it": "Oggi sii tuo alleato, non tuo giudice.",
       "nl": "Wees vandaag je bondgenoot, niet je rechter.",
       "zh": "今天做自己的盟友，而不是审判者。",
-      "zht": "今天做自己的盟友，而不是審判者。"
+      "zht": "今天做自己的盟友，而不是審判者。",
+      "bg": "Днес бъди свой съюзник, не свой съдия.",
+      "pl": "Bądź dziś swoim sojusznikiem, nie sędzią."
     },
     {
       "es": "Un rincón nuevo te espera. Sal a encontrarlo.",
@@ -1440,7 +1726,9 @@
       "it": "Un angolo nuovo ti aspetta. Vai a trovarlo.",
       "nl": "Een nieuw hoekje wacht. Ga het vinden.",
       "zh": "一个新角落在等你。去找到它。",
-      "zht": "一個新角落在等你。去找到它。"
+      "zht": "一個新角落在等你。去找到它。",
+      "bg": "Ново кътче те чака. Излез да го намериш.",
+      "pl": "Czeka na ciebie nowy zakątek. Wyjdź go znaleźć."
     },
     {
       "es": "No hace falta hacerlo todo. Hace falta hacerte bien.",
@@ -1450,7 +1738,9 @@
       "it": "Non devi fare tutto. Devi stare bene.",
       "nl": "Je hoeft niet alles te doen. Het moet goed met je gaan.",
       "zh": "你不必做完一切。你要好好的。",
-      "zht": "你不必做完一切。你要好好的。"
+      "zht": "你不必做完一切。你要好好的。",
+      "bg": "Не е нужно да правиш всичко. Нужно е да си направиш добро.",
+      "pl": "Nie trzeba robić wszystkiego. Trzeba zrobić sobie dobrze."
     },
     {
       "es": "Respira. La calma empieza en el próximo aliento.",
@@ -1460,7 +1750,9 @@
       "it": "Respira. La calma comincia col prossimo respiro.",
       "nl": "Adem. Kalmte begint bij de volgende ademhaling.",
       "zh": "呼吸。平静从下一次呼吸开始。",
-      "zht": "呼吸。平靜從下一次呼吸開始。"
+      "zht": "呼吸。平靜從下一次呼吸開始。",
+      "bg": "Дишай. Спокойствието започва със следващия дъх.",
+      "pl": "Oddychaj. Spokój zaczyna się przy następnym oddechu."
     },
     {
       "es": "Ve a estar entre árboles un rato. Es más sano de lo que parece.",
@@ -1470,7 +1762,9 @@
       "it": "Stai un po' tra gli alberi. Più sano di quanto sembri.",
       "nl": "Wees even tussen de bomen. Gezonder dan het lijkt.",
       "zh": "去树林间待一会儿。比看起来更健康。",
-      "zht": "去樹林間待一會兒。比看起來更健康。"
+      "zht": "去樹林間待一會兒。比看起來更健康。",
+      "bg": "Иди да постоиш сред дърветата. По-здравословно е, отколкото изглежда.",
+      "pl": "Idź pobyć wśród drzew. To zdrowsze, niż się wydaje."
     },
     {
       "es": "Hoy suma una pequeña alegría a tu día.",
@@ -1480,7 +1774,9 @@
       "it": "Aggiungi oggi una piccola gioia alla tua giornata.",
       "nl": "Voeg vandaag een kleine vreugde toe aan je dag.",
       "zh": "今天给你的一天添一点小小的欢喜。",
-      "zht": "今天給你的一天添一點小小的歡喜。"
+      "zht": "今天給你的一天添一點小小的歡喜。",
+      "bg": "Днес добави малка радост към деня си.",
+      "pl": "Dodaj dziś do swojego dnia małą radość."
     },
     {
       "es": "El horizonte siempre está ahí, recordándote que hay más.",
@@ -1490,7 +1786,9 @@
       "it": "L'orizzonte è sempre lì a ricordarti che c'è di più.",
       "nl": "De horizon is er altijd en herinnert: er is meer.",
       "zh": "地平线一直都在，提醒你：还有更多。",
-      "zht": "地平線一直都在，提醒你：還有更多。"
+      "zht": "地平線一直都在，提醒你：還有更多。",
+      "bg": "Хоризонтът винаги е там и ти напомня, че има повече.",
+      "pl": "Horyzont zawsze tam jest i przypomina, że jest coś więcej."
     },
     {
       "es": "Muévete un poco: el ánimo se contagia del cuerpo.",
@@ -1500,7 +1798,9 @@
       "it": "Muoviti un po': l'umore si prende dal corpo.",
       "nl": "Beweeg wat: het humeur vangt op van het lichaam.",
       "zh": "动一动：心情会随身体一起变好。",
-      "zht": "動一動：心情會隨身體一起變好。"
+      "zht": "動一動：心情會隨身體一起變好。",
+      "bg": "Раздвижи се малко: настроението се хваща от тялото.",
+      "pl": "Poruszaj się chwilę: nastrój zaraża się od ciała."
     },
     {
       "es": "Sé paciente contigo. Estás aprendiendo, siempre.",
@@ -1510,7 +1810,9 @@
       "it": "Sii paziente con te. Stai imparando, sempre.",
       "nl": "Wees geduldig met jezelf. Je leert, altijd.",
       "zh": "对自己有耐心。你一直在学习。",
-      "zht": "對自己有耐心。你一直在學習。"
+      "zht": "對自己有耐心。你一直在學習。",
+      "bg": "Бъди търпелив със себе си. Учиш се, винаги.",
+      "pl": "Bądź wobec siebie cierpliwy. Wciąż się uczysz."
     },
     {
       "es": "El mar limpia la mirada. Ve a mirarlo un momento.",
@@ -1520,7 +1822,9 @@
       "it": "Il mare pulisce lo sguardo. Vai a guardarlo un attimo.",
       "nl": "De zee maakt de blik schoon. Ga er even naar kijken.",
       "zh": "大海会擦亮目光。去看它一眼。",
-      "zht": "大海會擦亮目光。去看它一眼。"
+      "zht": "大海會擦亮目光。去看它一眼。",
+      "bg": "Морето избистря погледа. Иди да го погледаш за миг.",
+      "pl": "Morze oczyszcza spojrzenie. Idź na nie chwilę popatrzeć."
     },
     {
       "es": "Hoy elige descansar bien antes que rendir mucho.",
@@ -1530,7 +1834,9 @@
       "it": "Oggi scegli riposare bene invece di fare molto.",
       "nl": "Kies vandaag goed rusten boven veel doen.",
       "zh": "今天选择好好休息，而不是做很多。",
-      "zht": "今天選擇好好休息，而不是做很多。"
+      "zht": "今天選擇好好休息，而不是做很多。",
+      "bg": "Днес избери да починеш добре, вместо да свършиш много.",
+      "pl": "Wybierz dziś dobry odpoczynek zamiast dużej wydajności."
     },
     {
       "es": "Un paseo al sol vale como pequeña terapia.",
@@ -1540,7 +1846,9 @@
       "it": "Una passeggiata al sole vale una piccola terapia.",
       "nl": "Een wandeling in de zon werkt als kleine therapie.",
       "zh": "一段阳光下的散步，胜似一次小小的疗愈。",
-      "zht": "一段陽光下的散步，勝似一次小小的療癒。"
+      "zht": "一段陽光下的散步，勝似一次小小的療癒。",
+      "bg": "Разходка на слънце струва колкото малка терапия.",
+      "pl": "Spacer w słońcu wart jest małej terapii."
     },
     {
       "es": "No estás roto por tener un mal día.",
@@ -1550,7 +1858,9 @@
       "it": "Non sei rotto per un brutto giorno.",
       "nl": "Je bent niet kapot omdat je een slechte dag hebt.",
       "zh": "有个坏日子，并不代表你坏掉了。",
-      "zht": "有個壞日子，並不代表你壞掉了。"
+      "zht": "有個壞日子，並不代表你壞掉了。",
+      "bg": "Не си счупен само защото имаш лош ден.",
+      "pl": "Nie jesteś zepsuty dlatego, że masz zły dzień."
     },
     {
       "es": "Respira hondo: ya has superado muchos días antes.",
@@ -1560,7 +1870,9 @@
       "it": "Respira a fondo: hai superato tanti giorni prima.",
       "nl": "Adem diep: je hebt al veel dagen doorstaan.",
       "zh": "深呼吸：你以前熬过了许多天。",
-      "zht": "深呼吸：你以前熬過了許多天。"
+      "zht": "深呼吸：你以前熬過了許多天。",
+      "bg": "Поеми дълбоко въздух: вече си преживял много дни преди този.",
+      "pl": "Odetchnij głęboko: przetrwałeś już wiele dni wcześniej."
     },
     {
       "es": "Sal a caminar y deja que el paisaje te ordene.",
@@ -1570,7 +1882,9 @@
       "it": "Vai a camminare e lascia che il paesaggio ti metta ordine.",
       "nl": "Ga wandelen en laat het landschap je ordenen.",
       "zh": "去走走，让风景替你理顺。",
-      "zht": "去走走，讓風景替你理順。"
+      "zht": "去走走，讓風景替你理順。",
+      "bg": "Излез да повървиш и остави пейзажът да те подреди.",
+      "pl": "Wyjdź na spacer i pozwól krajobrazowi cię poukładać."
     },
     {
       "es": "Cuídate en lo pequeño y lo grande vendrá solo.",
@@ -1580,7 +1894,9 @@
       "it": "Cura il piccolo e il grande seguirà.",
       "nl": "Verzorg het kleine en het grote volgt.",
       "zh": "照顾好小的，大的会随之而来。",
-      "zht": "照顧好小的，大的會隨之而來。"
+      "zht": "照顧好小的，大的會隨之而來。",
+      "bg": "Грижи се за малкото и голямото ще дойде само.",
+      "pl": "Dbaj o małe, a wielkie przyjdzie samo."
     },
     {
       "es": "La isla tiene un rincón para tu calma. Búscalo.",
@@ -1590,7 +1906,9 @@
       "it": "L'isola ha un angolo per la tua calma. Cercalo.",
       "nl": "Het eiland heeft een hoekje voor jouw rust. Zoek het.",
       "zh": "岛上有个角落属于你的平静。去找它。",
-      "zht": "島上有個角落屬於你的平靜。去找它。"
+      "zht": "島上有個角落屬於你的平靜。去找它。",
+      "bg": "Островът има кътче за твоето спокойствие. Потърси го.",
+      "pl": "Wyspa ma zakątek dla twojego spokoju. Poszukaj go."
     },
     {
       "es": "Hoy basta con estar presente. Nada más.",
@@ -1600,7 +1918,9 @@
       "it": "Oggi basta essere presente. Niente di più.",
       "nl": "Vandaag is aanwezig zijn genoeg. Niets meer.",
       "zh": "今天，在场就够了。仅此而已。",
-      "zht": "今天，在場就夠了。僅此而已。"
+      "zht": "今天，在場就夠了。僅此而已。",
+      "bg": "Днес стига да си тук. Нищо повече.",
+      "pl": "Dziś wystarczy być obecnym. Nic więcej."
     },
     {
       "es": "El sol sale para todos, también para ti hoy.",
@@ -1610,7 +1930,9 @@
       "it": "Il sole sorge per tutti, anche per te oggi.",
       "nl": "De zon komt op voor iedereen, vandaag ook voor jou.",
       "zh": "太阳为所有人升起，今天也为你。",
-      "zht": "太陽為所有人升起，今天也為你。"
+      "zht": "太陽為所有人升起，今天也為你。",
+      "bg": "Слънцето изгрява за всички, и за теб днес.",
+      "pl": "Słońce wschodzi dla wszystkich, dziś także dla ciebie."
     },
     {
       "es": "Descansa sin pedir permiso. Lo necesitas y punto.",
@@ -1620,7 +1942,9 @@
       "it": "Riposa senza permesso. Ne hai bisogno, punto.",
       "nl": "Rust zonder toestemming. Je hebt het nodig, punt.",
       "zh": "休息，不必许可。你需要它，就这样。",
-      "zht": "休息，不必許可。你需要它，就這樣。"
+      "zht": "休息，不必許可。你需要它，就這樣。",
+      "bg": "Почивай, без да искаш разрешение. Имаш нужда, и толкова.",
+      "pl": "Odpoczywaj bez pytania o zgodę. Potrzebujesz i już."
     },
     {
       "es": "Explora con calma. Lo bonito no se ve corriendo.",
@@ -1630,7 +1954,9 @@
       "it": "Esplora con calma. Il bello non si vede correndo.",
       "nl": "Verken rustig. Het mooie zie je niet al rennend.",
       "zh": "从容地探索。美，奔跑时看不见。",
-      "zht": "從容地探索。美，奔跑時看不見。"
+      "zht": "從容地探索。美，奔跑時看不見。",
+      "bg": "Разглеждай спокойно. Хубавото не се вижда в движение.",
+      "pl": "Zwiedzaj spokojnie. Piękna nie widać w biegu."
     },
     {
       "es": "Un pequeño paso hoy es un gran cambio con el tiempo.",
@@ -1640,7 +1966,9 @@
       "it": "Un piccolo passo oggi è un grande cambiamento nel tempo.",
       "nl": "Een kleine stap vandaag is met de tijd een grote verandering.",
       "zh": "今天的一小步，随时间会是大改变。",
-      "zht": "今天的一小步，隨時間會是大改變。"
+      "zht": "今天的一小步，隨時間會是大改變。",
+      "bg": "Малка крачка днес е голяма промяна с времето.",
+      "pl": "Mały krok dziś to wielka zmiana z czasem."
     },
     {
       "es": "Sal a que el viento se lleve lo que sobra en la cabeza.",
@@ -1650,7 +1978,9 @@
       "it": "Lascia che il vento porti via ciò che trabocca in testa.",
       "nl": "Laat de wind wegvoeren wat je hoofd overloopt.",
       "zh": "让风带走头脑里溢出来的东西。",
-      "zht": "讓風帶走頭腦裡溢出來的東西。"
+      "zht": "讓風帶走頭腦裡溢出來的東西。",
+      "bg": "Излез вятърът да отнесе излишното от главата ти.",
+      "pl": "Wyjdź, niech wiatr zabierze to, co zbędne w głowie."
     },
     {
       "es": "Hoy sé amable con tus límites. Están para cuidarte.",
@@ -1660,7 +1990,9 @@
       "it": "Oggi sii dolce coi tuoi limiti. Ti proteggono.",
       "nl": "Wees vandaag zacht voor je grenzen. Ze beschermen je.",
       "zh": "今天温柔对待你的界限。它们在保护你。",
-      "zht": "今天溫柔對待你的界限。它們在保護你。"
+      "zht": "今天溫柔對待你的界限。它們在保護你。",
+      "bg": "Днес бъди мил с границите си. Те са, за да те пазят.",
+      "pl": "Bądź dziś dobry dla swoich granic. Są po to, by cię chronić."
     },
     {
       "es": "Mira el mar y respira. Se te ordena algo por dentro.",
@@ -1670,7 +2002,9 @@
       "it": "Guarda il mare e respira. Qualcosa si mette a posto dentro.",
       "nl": "Kijk naar de zee en adem. Iets valt van binnen op zijn plek.",
       "zh": "看着海，呼吸。内心有什么归了位。",
-      "zht": "看著海，呼吸。內心有什麼歸了位。"
+      "zht": "看著海，呼吸。內心有什麼歸了位。",
+      "bg": "Гледай морето и дишай. Вътре в теб нещо се подрежда.",
+      "pl": "Patrz na morze i oddychaj. Coś się w środku układa."
     },
     {
       "es": "No tienes que ser el más rápido. Solo el que no se rinde.",
@@ -1680,7 +2014,9 @@
       "it": "Non devi essere il più veloce. Solo chi non molla.",
       "nl": "Je hoeft niet de snelste te zijn. Alleen wie niet opgeeft.",
       "zh": "你不必最快。只要不放弃就好。",
-      "zht": "你不必最快。只要不放棄就好。"
+      "zht": "你不必最快。只要不放棄就好。",
+      "bg": "Не е нужно да си най-бързият. Само този, който не се отказва.",
+      "pl": "Nie musisz być najszybszy. Tylko tym, który się nie poddaje."
     },
     {
       "es": "Un paseo con vistas cura más que muchas prisas.",
@@ -1690,7 +2026,9 @@
       "it": "Una passeggiata con vista cura più di tanta fretta.",
       "nl": "Een wandeling met uitzicht geneest meer dan veel haast.",
       "zh": "一段有风景的散步，比许多匆忙更疗愈。",
-      "zht": "一段有風景的散步，比許多匆忙更療癒。"
+      "zht": "一段有風景的散步，比許多匆忙更療癒。",
+      "bg": "Разходка с гледка лекува повече от много бързане.",
+      "pl": "Spacer z widokiem leczy bardziej niż wiele pośpiechu."
     },
     {
       "es": "Cuida tu sueño como cuidas tus proyectos.",
@@ -1700,7 +2038,9 @@
       "it": "Cura il tuo sonno come curi i tuoi progetti.",
       "nl": "Verzorg je slaap zoals je je projecten verzorgt.",
       "zh": "像照顾你的项目一样，照顾你的睡眠。",
-      "zht": "像照顧你的計畫一樣，照顧你的睡眠。"
+      "zht": "像照顧你的計畫一樣，照顧你的睡眠。",
+      "bg": "Пази съня си, както пазиш проектите си.",
+      "pl": "Dbaj o sen tak, jak dbasz o swoje projekty."
     },
     {
       "es": "Hoy regálate un momento solo para ti.",
@@ -1710,7 +2050,9 @@
       "it": "Regalati oggi un momento solo per te.",
       "nl": "Gun jezelf vandaag een moment alleen voor jou.",
       "zh": "今天给自己一个只属于你的片刻。",
-      "zht": "今天給自己一個只屬於你的片刻。"
+      "zht": "今天給自己一個只屬於你的片刻。",
+      "bg": "Днес си подари миг само за себе си.",
+      "pl": "Podaruj sobie dziś chwilę tylko dla siebie."
     },
     {
       "es": "La naturaleza te acepta como estás. Ve a sentirlo.",
@@ -1720,7 +2062,9 @@
       "it": "La natura ti accetta come sei. Vai a sentirlo.",
       "nl": "De natuur neemt je zoals je bent. Ga het voelen.",
       "zh": "大自然接纳你本来的样子。去感受它。",
-      "zht": "大自然接納你本來的樣子。去感受它。"
+      "zht": "大自然接納你本來的樣子。去感受它。",
+      "bg": "Природата те приема такъв, какъвто си в момента. Иди да го усетиш.",
+      "pl": "Natura akceptuje cię takim, jaki teraz jesteś. Idź to poczuć."
     },
     {
       "es": "Sé constante y amable. Así se construye lo bueno.",
@@ -1730,7 +2074,9 @@
       "it": "Sii costante e gentile. Così si costruisce il buono.",
       "nl": "Wees standvastig en vriendelijk. Zo bouw je het goede.",
       "zh": "坚持而友善。美好就是这样建起来的。",
-      "zht": "堅持而友善。美好就是這樣建起來的。"
+      "zht": "堅持而友善。美好就是這樣建起來的。",
+      "bg": "Бъди постоянен и мил. Така се гради хубавото.",
+      "pl": "Bądź wytrwały i życzliwy. Tak buduje się to, co dobre."
     },
     {
       "es": "El aire fresco reinicia la cabeza. Sal a por él.",
@@ -1740,7 +2086,9 @@
       "it": "L'aria fresca riavvia la testa. Vai a prenderne.",
       "nl": "Frisse lucht herstart je hoofd. Ga wat halen.",
       "zh": "新鲜空气会给头脑重启。去取一点。",
-      "zht": "新鮮空氣會給頭腦重啟。去取一點。"
+      "zht": "新鮮空氣會給頭腦重啟。去取一點。",
+      "bg": "Свежият въздух рестартира главата. Излез за него.",
+      "pl": "Świeże powietrze resetuje głowę. Wyjdź po nie."
     },
     {
       "es": "Hoy celebra lo que sí conseguiste, por pequeño que sea.",
@@ -1750,7 +2098,9 @@
       "it": "Festeggia ciò che hai raggiunto, per quanto piccolo.",
       "nl": "Vier wat je bereikte, hoe klein ook.",
       "zh": "为你达成的庆祝，无论多小。",
-      "zht": "為你達成的慶祝，無論多小。"
+      "zht": "為你達成的慶祝，無論多小。",
+      "bg": "Днес отпразнувай това, което постигна, колкото и малко да е.",
+      "pl": "Świętuj dziś to, co ci się udało, choćby najmniejsze."
     },
     {
       "es": "Camina hacia un sitio bonito y quédate un rato.",
@@ -1760,7 +2110,9 @@
       "it": "Cammina verso un bel posto e resta un po'.",
       "nl": "Loop naar een mooie plek en blijf even.",
       "zh": "走向一个好地方，待上一会儿。",
-      "zht": "走向一個好地方，待上一會兒。"
+      "zht": "走向一個好地方，待上一會兒。",
+      "bg": "Върви към хубаво място и постой там.",
+      "pl": "Idź w ładne miejsce i zostań tam chwilę."
     },
     {
       "es": "No te midas por tus peores días.",
@@ -1770,7 +2122,9 @@
       "it": "Non misurarti coi tuoi giorni peggiori.",
       "nl": "Meet jezelf niet aan je slechtste dagen.",
       "zh": "别用你最糟的日子来衡量自己。",
-      "zht": "別用你最糟的日子來衡量自己。"
+      "zht": "別用你最糟的日子來衡量自己。",
+      "bg": "Не се меря по най-лошите си дни.",
+      "pl": "Nie mierz się swoimi najgorszymi dniami."
     },
     {
       "es": "Un sendero nuevo despeja un ánimo cansado.",
@@ -1780,7 +2134,9 @@
       "it": "Un sentiero nuovo schiarisce un umore stanco.",
       "nl": "Een nieuw pad verheldert een moe humeur.",
       "zh": "一条新路会理清疲惫的心情。",
-      "zht": "一條新路會理清疲憊的心情。"
+      "zht": "一條新路會理清疲憊的心情。",
+      "bg": "Нова пътека разведрява уморен дух.",
+      "pl": "Nowa ścieżka rozjaśnia zmęczonego ducha."
     },
     {
       "es": "Respira y recuerda: no hace falta correr para llegar.",
@@ -1790,7 +2146,9 @@
       "it": "Respira e ricorda: non serve correre per arrivare.",
       "nl": "Adem en onthoud: je hoeft niet te rennen om aan te komen.",
       "zh": "呼吸，记得：不必奔跑也能抵达。",
-      "zht": "呼吸，記得：不必奔跑也能抵達。"
+      "zht": "呼吸，記得：不必奔跑也能抵達。",
+      "bg": "Дишай и помни: не е нужно да тичаш, за да стигнеш.",
+      "pl": "Oddychaj i pamiętaj: nie trzeba biec, żeby dojść."
     },
     {
       "es": "Sal a que te dé el sol. Es medicina barata y buena.",
@@ -1800,7 +2158,9 @@
       "it": "Lascia che il sole ti raggiunga. Medicina semplice e buona.",
       "nl": "Laat de zon je bereiken. Goedkoop, goed medicijn.",
       "zh": "让阳光照到你。便宜又好的良药。",
-      "zht": "讓陽光照到你。便宜又好的良藥。"
+      "zht": "讓陽光照到你。便宜又好的良藥。",
+      "bg": "Излез на слънце. Евтино и добро лекарство е.",
+      "pl": "Wyjdź na słońce. To tanie i dobre lekarstwo."
     },
     {
       "es": "Hoy escúchate: ¿qué te haría bien ahora mismo?",
@@ -1810,7 +2170,9 @@
       "it": "Ascoltati: cosa mi farebbe bene adesso?",
       "nl": "Luister naar jezelf: wat zou me nu goeddoen?",
       "zh": "听听自己：此刻什么对我最好？",
-      "zht": "聽聽自己：此刻什麼對我最好？"
+      "zht": "聽聽自己：此刻什麼對我最好？",
+      "bg": "Днес се изслушай: какво би ти се отразило добре точно сега?",
+      "pl": "Wsłuchaj się dziś w siebie: co dobrze by ci teraz zrobiło?"
     },
     {
       "es": "El mar sigue su ritmo sin prisa. Aprende de él hoy.",
@@ -1820,7 +2182,9 @@
       "it": "Il mare tiene il suo ritmo calmo. Impara da lui oggi.",
       "nl": "De zee houdt haar rustige tempo. Leer vandaag van haar.",
       "zh": "大海保持它平静的节奏。今天向它学。",
-      "zht": "大海保持它平靜的節奏。今天向它學。"
+      "zht": "大海保持它平靜的節奏。今天向它學。",
+      "bg": "Морето върви по свой ритъм, без да бърза. Учи се от него днес.",
+      "pl": "Morze płynie swoim rytmem, bez pośpiechu. Ucz się od niego dziś."
     },
     {
       "es": "Muévete un poco por gusto, no por obligación.",
@@ -1830,7 +2194,9 @@
       "it": "Muoviti per piacere, non per obbligo.",
       "nl": "Beweeg uit plezier, niet uit plicht.",
       "zh": "出于喜欢而动，而不是义务。",
-      "zht": "出於喜歡而動，而不是義務。"
+      "zht": "出於喜歡而動，而不是義務。",
+      "bg": "Раздвижи се малко за удоволствие, не по задължение.",
+      "pl": "Poruszaj się trochę dla przyjemności, nie z obowiązku."
     },
     {
       "es": "Lo importante es el paso de hoy, no la meta lejana.",
@@ -1840,7 +2206,9 @@
       "it": "Conta il passo di oggi, non la meta lontana.",
       "nl": "Wat telt is de stap van vandaag, niet het verre doel.",
       "zh": "重要的是今天这一步，不是遥远的目标。",
-      "zht": "重要的是今天這一步，不是遙遠的目標。"
+      "zht": "重要的是今天這一步，不是遙遠的目標。",
+      "bg": "Важна е днешната крачка, не далечната цел.",
+      "pl": "Ważny jest dzisiejszy krok, nie odległy cel."
     },
     {
       "es": "Hoy date el permiso de ir despacio.",
@@ -1850,7 +2218,9 @@
       "it": "Oggi concediti il permesso di andare piano.",
       "nl": "Gun jezelf vandaag de toestemming om rustig te gaan.",
       "zh": "今天允许自己慢慢来。",
-      "zht": "今天允許自己慢慢來。"
+      "zht": "今天允許自己慢慢來。",
+      "bg": "Днес си дай разрешение да вървиш бавно.",
+      "pl": "Daj sobie dziś pozwolenie, żeby iść powoli."
     },
     {
       "es": "Ve a un mirador, respira, y deja que baje todo.",
@@ -1860,7 +2230,9 @@
       "it": "Vai a un punto panoramico, respira, e lascia calare tutto.",
       "nl": "Ga naar een uitkijkpunt, adem, en laat alles zakken.",
       "zh": "去一处观景点，呼吸，让一切沉下来。",
-      "zht": "去一處觀景點，呼吸，讓一切沉下來。"
+      "zht": "去一處觀景點，呼吸，讓一切沉下來。",
+      "bg": "Иди на изглед, дишай, и остави всичко да се уталожи.",
+      "pl": "Idź na punkt widokowy, oddychaj i pozwól wszystkiemu opaść."
     },
     {
       "es": "Estás haciendo suficiente. De verdad.",
@@ -1870,7 +2242,9 @@
       "it": "Stai facendo abbastanza. Davvero.",
       "nl": "Je doet genoeg. Echt.",
       "zh": "你做得已经够多了。真的。",
-      "zht": "你做得已經夠多了。真的。"
+      "zht": "你做得已經夠多了。真的。",
+      "bg": "Правиш достатъчно. Наистина.",
+      "pl": "Robisz wystarczająco dużo. Naprawdę."
     },
     {
       "es": "Un paseo corto puede cambiarte el día entero.",
@@ -1880,7 +2254,9 @@
       "it": "Una breve passeggiata può cambiarti l'intera giornata.",
       "nl": "Een korte wandeling kan je hele dag veranderen.",
       "zh": "一小段散步，能改变你整整一天。",
-      "zht": "一小段散步，能改變你整整一天。"
+      "zht": "一小段散步，能改變你整整一天。",
+      "bg": "Кратка разходка може да ти обърне целия ден.",
+      "pl": "Krótki spacer może odmienić ci cały dzień."
     },
     {
       "es": "Prueba algo nuevo hoy: un camino, un sabor, una idea.",
@@ -1890,7 +2266,9 @@
       "it": "Prova qualcosa di nuovo: un sentiero, un sapore, un'idea.",
       "nl": "Probeer iets nieuws: een pad, een smaak, een idee.",
       "zh": "今天试点新的：一条路、一种味道、一个念头。",
-      "zht": "今天試點新的：一條路、一種味道、一個念頭。"
+      "zht": "今天試點新的：一條路、一種味道、一個念頭。",
+      "bg": "Опитай нещо ново днес: път, вкус, идея.",
+      "pl": "Spróbuj dziś czegoś nowego: drogi, smaku, pomysłu."
     },
     {
       "es": "El sol de aquí es un regalo. Acéptalo unos minutos.",
@@ -1900,7 +2278,9 @@
       "it": "Il sole qui è un dono. Accettane qualche minuto.",
       "nl": "De zon hier is een geschenk. Neem er een paar minuten van.",
       "zh": "这里的阳光是礼物。收下它几分钟。",
-      "zht": "這裡的陽光是禮物。收下它幾分鐘。"
+      "zht": "這裡的陽光是禮物。收下它幾分鐘。",
+      "bg": "Слънцето тук е подарък. Приеми го за няколко минути.",
+      "pl": "Tutejsze słońce to prezent. Przyjmij je na kilka minut."
     },
     {
       "es": "Parar a tiempo también es cuidarse.",
@@ -1910,7 +2290,9 @@
       "it": "Fermarsi in tempo è anche prendersi cura di sé.",
       "nl": "Op tijd stoppen is ook voor jezelf zorgen.",
       "zh": "及时停下，也是照顾自己。",
-      "zht": "及時停下，也是照顧自己。"
+      "zht": "及時停下，也是照顧自己。",
+      "bg": "Да спреш навреме също е грижа за себе си.",
+      "pl": "Zatrzymać się w porę to też dbanie o siebie."
     },
     {
       "es": "Camina hacia el mar. Casi nunca te arrepientes.",
@@ -1920,7 +2302,9 @@
       "it": "Cammina verso il mare. Te ne penti raramente.",
       "nl": "Loop richting de zee. Je hebt er zelden spijt van.",
       "zh": "朝海走去。你很少会后悔。",
-      "zht": "朝海走去。你很少會後悔。"
+      "zht": "朝海走去。你很少會後悔。",
+      "bg": "Върви към морето. Почти никога не съжаляваш.",
+      "pl": "Idź w stronę morza. Prawie nigdy tego nie żałujesz."
     },
     {
       "es": "Hoy sé tu propio refugio.",
@@ -1930,7 +2314,9 @@
       "it": "Oggi sii il tuo rifugio.",
       "nl": "Wees vandaag je eigen toevluchtsoord.",
       "zh": "今天做你自己的避风港。",
-      "zht": "今天做你自己的避風港。"
+      "zht": "今天做你自己的避風港。",
+      "bg": "Днес бъди свое убежище.",
+      "pl": "Bądź dziś swoim schronieniem."
     },
     {
       "es": "Un rincón por descubrir te espera. Sal a por él.",
@@ -1940,7 +2326,9 @@
       "it": "Un angolo da scoprire ti aspetta. Vacci.",
       "nl": "Een hoekje om te ontdekken wacht. Ga ernaartoe.",
       "zh": "一个待发现的角落在等你。去吧。",
-      "zht": "一個待發現的角落在等你。去吧。"
+      "zht": "一個待發現的角落在等你。去吧。",
+      "bg": "Кътче за откриване те чака. Излез за него.",
+      "pl": "Czeka na ciebie zakątek do odkrycia. Wyjdź po niego."
     },
     {
       "es": "No hace falta poder con todo. Solo con este momento.",
@@ -1950,7 +2338,9 @@
       "it": "Non devi reggere tutto. Solo questo momento.",
       "nl": "Je hoeft niet alles te dragen. Alleen dit moment.",
       "zh": "你不必扛下一切。只这一刻就好。",
-      "zht": "你不必扛下一切。只這一刻就好。"
+      "zht": "你不必扛下一切。只這一刻就好。",
+      "bg": "Не е нужно да можеш всичко. Само този момент.",
+      "pl": "Nie trzeba dawać rady wszystkiemu. Tylko tej chwili."
     },
     {
       "es": "Respira. La calma cabe en un solo aliento.",
@@ -1960,7 +2350,9 @@
       "it": "Respira. La calma sta in un solo respiro.",
       "nl": "Adem. Kalmte past in één ademhaling.",
       "zh": "呼吸。平静容得下一次呼吸。",
-      "zht": "呼吸。平靜容得下一次呼吸。"
+      "zht": "呼吸。平靜容得下一次呼吸。",
+      "bg": "Дишай. Спокойствието се побира в един дъх.",
+      "pl": "Oddychaj. Spokój mieści się w jednym oddechu."
     },
     {
       "es": "Ve a estar en la naturaleza. Ella no te pide nada.",
@@ -1970,7 +2362,9 @@
       "it": "Stai nella natura. Non ti chiede nulla.",
       "nl": "Wees in de natuur. Ze vraagt niets van je.",
       "zh": "待在大自然里。它对你别无所求。",
-      "zht": "待在大自然裡。它對你別無所求。"
+      "zht": "待在大自然裡。它對你別無所求。",
+      "bg": "Иди да побъдеш сред природата. Тя не ти иска нищо.",
+      "pl": "Idź pobyć w naturze. Ona niczego od ciebie nie chce."
     },
     {
       "es": "Hoy añade una cosa buena, aunque sea diminuta.",
@@ -1980,7 +2374,9 @@
       "it": "Aggiungi oggi una cosa buona, per quanto minuscola.",
       "nl": "Voeg vandaag iets goeds toe, hoe klein ook.",
       "zh": "今天添一件好事，再小也好。",
-      "zht": "今天添一件好事，再小也好。"
+      "zht": "今天添一件好事，再小也好。",
+      "bg": "Днес добави едно хубаво нещо, макар и мъничко.",
+      "pl": "Dodaj dziś jedną dobrą rzecz, choćby malutką."
     },
     {
       "es": "El horizonte te recuerda que siempre hay un más allá.",
@@ -1990,7 +2386,9 @@
       "it": "L'orizzonte ricorda che c'è sempre un oltre.",
       "nl": "De horizon herinnert dat er altijd een verder is.",
       "zh": "地平线提醒你：总有一个更远处。",
-      "zht": "地平線提醒你：總有一個更遠處。"
+      "zht": "地平線提醒你：總有一個更遠處。",
+      "bg": "Хоризонтът ти напомня, че винаги има отвъд.",
+      "pl": "Horyzont przypomina ci, że zawsze jest coś dalej."
     },
     {
       "es": "Muévete un rato y verás cómo se aligera el ánimo.",
@@ -2000,7 +2398,9 @@
       "it": "Muoviti un po' e vedi l'umore alleggerirsi.",
       "nl": "Beweeg wat en zie het humeur lichter worden.",
       "zh": "动一会儿，看看心情如何变轻。",
-      "zht": "動一會兒，看看心情如何變輕。"
+      "zht": "動一會兒，看看心情如何變輕。",
+      "bg": "Раздвижи се малко и ще видиш как духът олеква.",
+      "pl": "Poruszaj się chwilę, a zobaczysz, jak lżej na duchu."
     },
     {
       "es": "Ten paciencia contigo. Vas bien.",
@@ -2010,7 +2410,9 @@
       "it": "Sii paziente con te. Vai bene.",
       "nl": "Wees geduldig met jezelf. Het gaat goed.",
       "zh": "对自己有耐心。你做得挺好。",
-      "zht": "對自己有耐心。你做得挺好。"
+      "zht": "對自己有耐心。你做得挺好。",
+      "bg": "Имай търпение със себе си. Вървиш добре.",
+      "pl": "Miej do siebie cierpliwość. Idziesz dobrze."
     },
     {
       "es": "El mar te espera, tranquilo. Ve a saludarlo hoy.",
@@ -2020,7 +2422,9 @@
       "it": "Il mare ti aspetta, calmo. Vai a salutarlo oggi.",
       "nl": "De zee wacht op je, rustig. Ga haar vandaag groeten.",
       "zh": "大海静静等你。今天去和它打声招呼。",
-      "zht": "大海靜靜等你。今天去和它打聲招呼。"
+      "zht": "大海靜靜等你。今天去和它打聲招呼。",
+      "bg": "Морето те чака, спокойно. Иди да го поздравиш днес.",
+      "pl": "Morze czeka na ciebie, spokojne. Idź je dziś pozdrowić."
     },
     {
       "es": "Descansa hoy sin sentir que pierdes el tiempo.",
@@ -2030,7 +2434,9 @@
       "it": "Riposa oggi senza sentirti perdere tempo.",
       "nl": "Rust vandaag zonder het gevoel dat je tijd verliest.",
       "zh": "今天休息，别觉得是在浪费时间。",
-      "zht": "今天休息，別覺得是在浪費時間。"
+      "zht": "今天休息，別覺得是在浪費時間。",
+      "bg": "Почини си днес, без да чувстваш, че губиш време.",
+      "pl": "Odpocznij dziś bez poczucia, że tracisz czas."
     },
     {
       "es": "Un paseo al sol es más útil que mil vueltas en la cabeza.",
@@ -2040,7 +2446,9 @@
       "it": "Una passeggiata al sole vale più di mille giri in testa.",
       "nl": "Een wandeling in de zon wint van duizend rondjes in je hoofd.",
       "zh": "一段阳光下的散步，胜过脑中千百次打转。",
-      "zht": "一段陽光下的散步，勝過腦中千百次打轉。"
+      "zht": "一段陽光下的散步，勝過腦中千百次打轉。",
+      "bg": "Разходка на слънце е по-полезна от хиляда мисли в кръг.",
+      "pl": "Spacer w słońcu jest pożyteczniejszy niż tysiąc myśli w kółko."
     },
     {
       "es": "Un mal día no borra todo lo bueno que eres.",
@@ -2050,7 +2458,9 @@
       "it": "Un brutto giorno non cancella tutto il bene che sei.",
       "nl": "Een slechte dag wist niet al het goede dat je bent.",
       "zh": "一个坏日子，抹不去你身上所有的好。",
-      "zht": "一個壞日子，抹不去你身上所有的好。"
+      "zht": "一個壞日子，抹不去你身上所有的好。",
+      "bg": "Един лош ден не изтрива всичко хубаво в теб.",
+      "pl": "Zły dzień nie wymazuje całego dobra, którym jesteś."
     },
     {
       "es": "Respira hondo. Ya estás dando lo que puedes.",
@@ -2060,7 +2470,9 @@
       "it": "Respira a fondo. Stai già dando ciò che puoi.",
       "nl": "Adem diep. Je geeft al wat je kunt.",
       "zh": "深呼吸。你已经在付出你所能付出的。",
-      "zht": "深呼吸。你已經在付出你所能付出的。"
+      "zht": "深呼吸。你已經在付出你所能付出的。",
+      "bg": "Поеми дълбоко въздух. Вече даваш каквото можеш.",
+      "pl": "Odetchnij głęboko. Już dajesz tyle, ile możesz."
     },
     {
       "es": "Sal a caminar y deja que el camino te calme.",
@@ -2070,7 +2482,9 @@
       "it": "Vai a camminare e lascia che la strada ti calmi.",
       "nl": "Ga wandelen en laat de weg je kalmeren.",
       "zh": "去走走，让路来让你平静。",
-      "zht": "去走走，讓路來讓你平靜。"
+      "zht": "去走走，讓路來讓你平靜。",
+      "bg": "Излез да повървиш и остави пътя да те успокои.",
+      "pl": "Wyjdź na spacer i pozwól drodze cię uspokoić."
     },
     {
       "es": "Cuídate en lo pequeño hoy. Ahí empieza todo.",
@@ -2080,7 +2494,9 @@
       "it": "Cura il piccolo oggi. Tutto comincia lì.",
       "nl": "Verzorg vandaag het kleine. Daar begint alles.",
       "zh": "今天照顾好小事。一切从那里开始。",
-      "zht": "今天照顧好小事。一切從那裡開始。"
+      "zht": "今天照顧好小事。一切從那裡開始。",
+      "bg": "Грижи се днес за малките неща. Там започва всичко.",
+      "pl": "Zadbaj dziś o drobiazgi. Tam wszystko się zaczyna."
     },
     {
       "es": "La isla guarda un rincón para tu paz. Búscalo con calma.",
@@ -2090,7 +2506,9 @@
       "it": "L'isola custodisce un angolo per la tua pace. Cercalo con calma.",
       "nl": "Het eiland bewaart een hoekje voor jouw vrede. Zoek het rustig.",
       "zh": "岛为你的安宁藏着一个角落。慢慢去找。",
-      "zht": "島為你的安寧藏著一個角落。慢慢去找。"
+      "zht": "島為你的安寧藏著一個角落。慢慢去找。",
+      "bg": "Островът пази кътче за твоя мир. Потърси го спокойно.",
+      "pl": "Wyspa chowa zakątek dla twojego spokoju. Poszukaj go bez pośpiechu."
     },
     {
       "es": "Hoy basta con respirar y seguir. Es suficiente.",
@@ -2100,7 +2518,9 @@
       "it": "Oggi basta respirare e continuare.",
       "nl": "Vandaag is ademen en doorgaan genoeg.",
       "zh": "今天，呼吸并坚持，就够了。",
-      "zht": "今天，呼吸並堅持，就夠了。"
+      "zht": "今天，呼吸並堅持，就夠了。",
+      "bg": "Днес стига да дишаш и да продължаваш. Достатъчно е.",
+      "pl": "Dziś wystarczy oddychać i iść dalej. To wystarczy."
     },
     {
       "es": "El sol sale otra vez, y con él, otra oportunidad.",
@@ -2110,7 +2530,9 @@
       "it": "Il sole sorge di nuovo, e con lui un'altra occasione.",
       "nl": "De zon komt weer op, en met haar een nieuwe kans.",
       "zh": "太阳再次升起，随之而来又一次机会。",
-      "zht": "太陽再次升起，隨之而來又一次機會。"
+      "zht": "太陽再次升起，隨之而來又一次機會。",
+      "bg": "Слънцето изгрява отново, а с него и нова възможност.",
+      "pl": "Słońce wschodzi znowu, a z nim kolejna szansa."
     },
     {
       "es": "Descansar es parte del plan, no una falta.",
@@ -2120,7 +2542,9 @@
       "it": "Riposare fa parte del piano, non è una colpa.",
       "nl": "Rusten hoort bij het plan, is geen fout.",
       "zh": "休息是计划的一部分，不是过错。",
-      "zht": "休息是計畫的一部分，不是過錯。"
+      "zht": "休息是計畫的一部分，不是過錯。",
+      "bg": "Почивката е част от плана, не пропуск.",
+      "pl": "Odpoczynek jest częścią planu, nie uchybieniem."
     },
     {
       "es": "Explora despacio. La belleza pide tiempo.",
@@ -2130,7 +2554,9 @@
       "it": "Esplora piano. La bellezza chiede tempo.",
       "nl": "Verken langzaam. Schoonheid vraagt tijd.",
       "zh": "慢慢探索。美需要时间。",
-      "zht": "慢慢探索。美需要時間。"
+      "zht": "慢慢探索。美需要時間。",
+      "bg": "Разглеждай бавно. Красотата иска време.",
+      "pl": "Zwiedzaj powoli. Piękno wymaga czasu."
     },
     {
       "es": "Un paso hoy, otro mañana. Así se llega lejos.",
@@ -2140,7 +2566,9 @@
       "it": "Un passo oggi, un altro domani. Così si va lontano.",
       "nl": "Een stap vandaag, een morgen. Zo kom je ver.",
       "zh": "今天一步，明天一步。这样就能走远。",
-      "zht": "今天一步，明天一步。這樣就能走遠。"
+      "zht": "今天一步，明天一步。這樣就能走遠。",
+      "bg": "Крачка днес, друга утре. Така се стига далеч.",
+      "pl": "Krok dziś, kolejny jutro. Tak dochodzi się daleko."
     },
     {
       "es": "Sal a que el aire te despeje lo enredado.",
@@ -2150,7 +2578,9 @@
       "it": "Lascia che l'aria schiarisca ciò che è ingarbugliato.",
       "nl": "Laat de lucht verhelderen wat in de war is.",
       "zh": "让空气理清纠缠的一切。",
-      "zht": "讓空氣理清糾纏的一切。"
+      "zht": "讓空氣理清糾纏的一切。",
+      "bg": "Излез въздухът да разплете обърканото.",
+      "pl": "Wyjdź, niech powietrze rozplącze to, co splątane."
     },
     {
       "es": "Hoy respeta tus límites. Son sabiduría, no debilidad.",
@@ -2160,7 +2590,9 @@
       "it": "Oggi onora i tuoi limiti. È saggezza, non debolezza.",
       "nl": "Eer vandaag je grenzen. Dat is wijsheid, geen zwakte.",
       "zh": "今天尊重你的界限。那是智慧，不是软弱。",
-      "zht": "今天尊重你的界限。那是智慧，不是軟弱。"
+      "zht": "今天尊重你的界限。那是智慧，不是軟弱。",
+      "bg": "Днес уважавай границите си. Те са мъдрост, не слабост.",
+      "pl": "Szanuj dziś swoje granice. To mądrość, nie słabość."
     },
     {
       "es": "Mira el mar y respira despacio. Todo se ordena.",
@@ -2170,7 +2602,9 @@
       "it": "Guarda il mare e respira piano. Tutto si mette a posto.",
       "nl": "Kijk naar de zee en adem langzaam. Alles valt op zijn plek.",
       "zh": "看着海，慢慢呼吸。一切都会归位。",
-      "zht": "看著海，慢慢呼吸。一切都會歸位。"
+      "zht": "看著海，慢慢呼吸。一切都會歸位。",
+      "bg": "Гледай морето и дишай бавно. Всичко се подрежда.",
+      "pl": "Patrz na morze i oddychaj powoli. Wszystko się układa."
     },
     {
       "es": "No tienes que ganar. Solo seguir caminando.",
@@ -2180,7 +2614,9 @@
       "it": "Non devi vincere. Solo continuare a camminare.",
       "nl": "Je hoeft niet te winnen. Alleen doorlopen.",
       "zh": "你不必赢。只要继续走。",
-      "zht": "你不必贏。只要繼續走。"
+      "zht": "你不必贏。只要繼續走。",
+      "bg": "Не е нужно да печелиш. Само да продължиш да вървиш.",
+      "pl": "Nie musisz wygrywać. Wystarczy iść dalej."
     },
     {
       "es": "Un paseo con vistas pesa menos que un día encerrado.",
@@ -2190,7 +2626,9 @@
       "it": "Una passeggiata con vista pesa meno di un giorno chiuso in casa.",
       "nl": "Een wandeling met uitzicht weegt minder dan een dag binnen.",
       "zh": "一段有风景的散步，比闷在屋里的一天轻。",
-      "zht": "一段有風景的散步，比悶在屋裡的一天輕。"
+      "zht": "一段有風景的散步，比悶在屋裡的一天輕。",
+      "bg": "Разходка с гледка тежи по-малко от ден на затворено.",
+      "pl": "Spacer z widokiem waży mniej niż dzień w czterech ścianach."
     },
     {
       "es": "Cuida tu descanso: es la base de todo lo demás.",
@@ -2200,7 +2638,9 @@
       "it": "Cura il tuo riposo: è la base di tutto il resto.",
       "nl": "Verzorg je rust: het is de basis van al het andere.",
       "zh": "照顾好你的休息：它是其余一切的根基。",
-      "zht": "照顧好你的休息：它是其餘一切的根基。"
+      "zht": "照顧好你的休息：它是其餘一切的根基。",
+      "bg": "Пази съня си: той е основата на всичко останало.",
+      "pl": "Dbaj o sen: to podstawa całej reszty."
     },
     {
       "es": "Hoy regálate diez minutos que sean solo tuyos.",
@@ -2210,7 +2650,9 @@
       "it": "Regalati oggi dieci minuti solo tuoi.",
       "nl": "Gun jezelf vandaag tien minuten die alleen van jou zijn.",
       "zh": "今天给自己十分钟，只属于你。",
-      "zht": "今天給自己十分鐘，只屬於你。"
+      "zht": "今天給自己十分鐘，只屬於你。",
+      "bg": "Днес си подари десет минути, които са само твои.",
+      "pl": "Podaruj sobie dziś dziesięć minut tylko dla siebie."
     },
     {
       "es": "La naturaleza te recibe sin condiciones. Ve a sentirlo.",
@@ -2220,7 +2662,9 @@
       "it": "La natura ti accoglie senza condizioni. Vai a sentirlo.",
       "nl": "De natuur ontvangt je zonder voorwaarden. Ga het voelen.",
       "zh": "大自然无条件地接纳你。去感受它。",
-      "zht": "大自然無條件地接納你。去感受它。"
+      "zht": "大自然無條件地接納你。去感受它。",
+      "bg": "Природата те приема без условия. Иди да го усетиш.",
+      "pl": "Natura przyjmuje cię bez warunków. Idź to poczuć."
     },
     {
       "es": "Sé suave y constante. Los cambios buenos son así.",
@@ -2230,7 +2674,9 @@
       "it": "Sii dolce e costante. I buoni cambiamenti sono così.",
       "nl": "Wees zacht en standvastig. Goede veranderingen zijn zo.",
       "zh": "温柔而坚持。好的改变都是这样。",
-      "zht": "溫柔而堅持。好的改變都是這樣。"
+      "zht": "溫柔而堅持。好的改變都是這樣。",
+      "bg": "Бъди мек и постоянен. Добрите промени са такива.",
+      "pl": "Bądź łagodny i wytrwały. Dobre zmiany tak wyglądają."
     },
     {
       "es": "El aire fresco reordena lo que la prisa desordena.",
@@ -2240,7 +2686,9 @@
       "it": "L'aria fresca riordina ciò che la fretta scompiglia.",
       "nl": "Frisse lucht ordent wat de haast door de war gooit.",
       "zh": "新鲜空气会重新理顺被匆忙打乱的一切。",
-      "zht": "新鮮空氣會重新理順被匆忙打亂的一切。"
+      "zht": "新鮮空氣會重新理順被匆忙打亂的一切。",
+      "bg": "Свежият въздух подрежда това, което бързането разбърква.",
+      "pl": "Świeże powietrze porządkuje to, co pośpiech rozrzuca."
     },
     {
       "es": "Hoy reconoce lo que hiciste bien, aunque parezca poco.",
@@ -2250,7 +2698,9 @@
       "it": "Riconosci ciò che hai fatto bene, per quanto sembri poco.",
       "nl": "Erken wat je goed deed, hoe klein het ook lijkt.",
       "zh": "承认你做得好的地方，哪怕看起来很小。",
-      "zht": "承認你做得好的地方，哪怕看起來很小。"
+      "zht": "承認你做得好的地方，哪怕看起來很小。",
+      "bg": "Днес признай какво си направил добре, дори да изглежда малко.",
+      "pl": "Zauważ dziś, co zrobiłeś dobrze, choćby wydawało się drobne."
     },
     {
       "es": "Camina hacia algo bello y quédate a disfrutarlo.",
@@ -2260,7 +2710,9 @@
       "it": "Cammina verso qualcosa di bello e resta a goderlo.",
       "nl": "Loop naar iets moois en blijf ervan genieten.",
       "zh": "走向美好的事物，留下来好好享受。",
-      "zht": "走向美好的事物，留下來好好享受。"
+      "zht": "走向美好的事物，留下來好好享受。",
+      "bg": "Върви към нещо красиво и остани да му се насладиш.",
+      "pl": "Idź w stronę czegoś pięknego i zostań, by się nim nacieszyć."
     },
     {
       "es": "No te juzgues por un día flojo.",
@@ -2270,7 +2722,9 @@
       "it": "Non giudicarti per un giorno fiacco.",
       "nl": "Oordeel niet over jezelf om een zwakke dag.",
       "zh": "别因为一个无力的日子而评判自己。",
-      "zht": "別因為一個無力的日子而評判自己。"
+      "zht": "別因為一個無力的日子而評判自己。",
+      "bg": "Не се съди за един слаб ден.",
+      "pl": "Nie oceniaj się po słabym dniu."
     },
     {
       "es": "Un sendero nuevo alivia una cabeza cansada.",
@@ -2280,7 +2734,9 @@
       "it": "Un sentiero nuovo allevia una testa stanca.",
       "nl": "Een nieuw pad verlicht een moe hoofd.",
       "zh": "一条新路，能缓解一颗疲惫的头脑。",
-      "zht": "一條新路，能緩解一顆疲憊的頭腦。"
+      "zht": "一條新路，能緩解一顆疲憊的頭腦。",
+      "bg": "Нова пътека облекчава уморена глава.",
+      "pl": "Nowa ścieżka ulży zmęczonej głowie."
     },
     {
       "es": "Respira. No corras: llegarás igual, y mejor.",
@@ -2290,7 +2746,9 @@
       "it": "Respira. Non correre: arriverai lo stesso, e meglio.",
       "nl": "Adem. Ren niet: je komt toch aan, en beter.",
       "zh": "呼吸。别奔跑：你照样会到，而且更好。",
-      "zht": "呼吸。別奔跑：你照樣會到，而且更好。"
+      "zht": "呼吸。別奔跑：你照樣會到，而且更好。",
+      "bg": "Дишай. Не тичай: пак ще стигнеш, и то по-добре.",
+      "pl": "Oddychaj. Nie biegnij: dojdziesz tak samo, i lepiej."
     },
     {
       "es": "Sal a que te dé el sol. Cambia el día por dentro.",
@@ -2300,7 +2758,9 @@
       "it": "Lascia che il sole ti raggiunga. Cambia il giorno da dentro.",
       "nl": "Laat de zon je bereiken. Ze verandert de dag van binnen.",
       "zh": "让阳光照到你。它从内里改变这一天。",
-      "zht": "讓陽光照到你。它從內裡改變這一天。"
+      "zht": "讓陽光照到你。它從內裡改變這一天。",
+      "bg": "Излез на слънце. Променя деня отвътре.",
+      "pl": "Wyjdź na słońce. Zmienia dzień od środka."
     },
     {
       "es": "Hoy pregúntate qué necesitas, y hazte caso.",
@@ -2310,7 +2770,9 @@
       "it": "Chiediti cosa ti serve, e ascolta.",
       "nl": "Vraag jezelf wat je nodig hebt, en luister.",
       "zh": "问问自己今天需要什么，然后倾听。",
-      "zht": "問問自己今天需要什麼，然後傾聽。"
+      "zht": "問問自己今天需要什麼，然後傾聽。",
+      "bg": "Днес се запитай от какво имаш нужда и си послушай.",
+      "pl": "Zapytaj się dziś, czego potrzebujesz, i posłuchaj siebie."
     },
     {
       "es": "El mar fluye sin resistirse. Prueba a fluir tú también.",
@@ -2320,7 +2782,9 @@
       "it": "Il mare scorre senza resistere. Prova a scorrere anche tu.",
       "nl": "De zee stroomt zonder weerstand. Probeer ook te stromen.",
       "zh": "大海不抵抗地流动。也试着流动吧。",
-      "zht": "大海不抵抗地流動。也試著流動吧。"
+      "zht": "大海不抵抗地流動。也試著流動吧。",
+      "bg": "Морето тече, без да се съпротивлява. Опитай и ти да потечеш.",
+      "pl": "Morze płynie, nie stawiając oporu. Spróbuj i ty popłynąć."
     },
     {
       "es": "Muévete a tu manera, sin exigencias.",
@@ -2330,7 +2794,9 @@
       "it": "Muoviti a modo tuo, senza pretese.",
       "nl": "Beweeg op jouw manier, zonder eisen.",
       "zh": "用你的方式动，不必勉强。",
-      "zht": "用你的方式動，不必勉強。"
+      "zht": "用你的方式動，不必勉強。",
+      "bg": "Движи се по своя начин, без изисквания.",
+      "pl": "Ruszaj się po swojemu, bez wymagań."
     },
     {
       "es": "Cuenta el paso de hoy, no la distancia que falta.",
@@ -2340,7 +2806,9 @@
       "it": "Conta il passo di oggi, non la distanza che resta.",
       "nl": "Tel de stap van vandaag, niet de afstand die rest.",
       "zh": "数一数今天这一步，别数剩下的距离。",
-      "zht": "數一數今天這一步，別數剩下的距離。"
+      "zht": "數一數今天這一步，別數剩下的距離。",
+      "bg": "Брой днешната крачка, не разстоянието, което остава.",
+      "pl": "Licz dzisiejszy krok, nie dystans, który został."
     },
     {
       "es": "Permítete hoy la lentitud. Es un derecho, no un lujo.",
@@ -2350,7 +2818,9 @@
       "it": "Concediti la lentezza oggi. È un diritto, non un lusso.",
       "nl": "Gun jezelf traagheid vandaag. Een recht, geen luxe.",
       "zh": "今天允许自己慢下来。这是权利，不是奢侈。",
-      "zht": "今天允許自己慢下來。這是權利，不是奢侈。"
+      "zht": "今天允許自己慢下來。這是權利，不是奢侈。",
+      "bg": "Позволи си днес бавността. Това е право, не лукс.",
+      "pl": "Pozwól sobie dziś na powolność. To prawo, nie luksus."
     },
     {
       "es": "Ve a un mirador y respira hondo. Ordena el día.",
@@ -2360,7 +2830,9 @@
       "it": "Vai a un punto panoramico e respira a fondo. Ordina il giorno.",
       "nl": "Ga naar een uitkijkpunt en adem diep. Orden de dag.",
       "zh": "去一处观景点，深呼吸。理一理这一天。",
-      "zht": "去一處觀景點，深呼吸。理一理這一天。"
+      "zht": "去一處觀景點，深呼吸。理一理這一天。",
+      "bg": "Иди на изглед и поеми дълбоко въздух. Подрежда деня.",
+      "pl": "Idź na punkt widokowy i odetchnij głęboko. Porządkuje dzień."
     },
     {
       "es": "Tal como estás hoy, ya vales.",
@@ -2370,7 +2842,9 @@
       "it": "Così come sei oggi, vali già.",
       "nl": "Zoals je vandaag bent, ben je al waardevol.",
       "zh": "你今天这样，就已经有价值。",
-      "zht": "你今天這樣，就已經有價值。"
+      "zht": "你今天這樣，就已經有價值。",
+      "bg": "Такъв, какъвто си днес, вече струваш.",
+      "pl": "Taki, jaki jesteś dzisiaj, już masz wartość."
     },
     {
       "es": "Un paseo corto puede rescatar una tarde entera.",
@@ -2380,7 +2854,9 @@
       "it": "Una breve passeggiata può salvare un intero pomeriggio.",
       "nl": "Een korte wandeling kan een hele middag redden.",
       "zh": "一小段散步，能救回一整个下午。",
-      "zht": "一小段散步，能救回一整個下午。"
+      "zht": "一小段散步，能救回一整個下午。",
+      "bg": "Кратка разходка може да спаси цял следобед.",
+      "pl": "Krótki spacer może uratować całe popołudnie."
     },
     {
       "es": "Haz hoy algo distinto. Sorpréndete un poco.",
@@ -2390,7 +2866,9 @@
       "it": "Fai oggi qualcosa di diverso. Sorprenditi un po'.",
       "nl": "Doe vandaag iets anders. Verras jezelf wat.",
       "zh": "今天做点不一样的。给自己一点惊喜。",
-      "zht": "今天做點不一樣的。給自己一點驚喜。"
+      "zht": "今天做點不一樣的。給自己一點驚喜。",
+      "bg": "Направи днес нещо различно. Изненадай се малко.",
+      "pl": "Zrób dziś coś innego. Zaskocz się trochę."
     },
     {
       "es": "El sol de la isla es un regalo diario. Recoge tu parte.",
@@ -2400,7 +2878,9 @@
       "it": "Il sole dell'isola è un dono quotidiano. Prendi la tua parte.",
       "nl": "De eilandzon is een dagelijks geschenk. Neem je deel.",
       "zh": "岛上的阳光是每天的礼物。领取你的那份。",
-      "zht": "島上的陽光是每天的禮物。領取你的那份。"
+      "zht": "島上的陽光是每天的禮物。領取你的那份。",
+      "bg": "Островното слънце е ежедневен подарък. Вземи си своя дял.",
+      "pl": "Wyspiarskie słońce to codzienny prezent. Odbierz swoją część."
     },
     {
       "es": "Saber descansar es una forma de fuerza.",
@@ -2410,7 +2890,9 @@
       "it": "Saper riposare è una forma di forza.",
       "nl": "Kunnen rusten is een vorm van kracht.",
       "zh": "懂得休息，是一种力量。",
-      "zht": "懂得休息，是一種力量。"
+      "zht": "懂得休息，是一種力量。",
+      "bg": "Да умееш да почиваш е форма на сила.",
+      "pl": "Umieć odpoczywać to forma siły."
     },
     {
       "es": "Camina hacia el mar y deja el ruido en la orilla de atrás.",
@@ -2420,7 +2902,9 @@
       "it": "Cammina verso il mare e lascia il rumore sulla riva.",
       "nl": "Loop richting de zee en laat het lawaai op de kust achter.",
       "zh": "朝海走去，把喧嚣留在岸边。",
-      "zht": "朝海走去，把喧囂留在岸邊。"
+      "zht": "朝海走去，把喧囂留在岸邊。",
+      "bg": "Върви към морето и остави шума на брега зад себе си.",
+      "pl": "Idź w stronę morza i zostaw hałas na brzegu za sobą."
     },
     {
       "es": "Hoy sé para ti el amigo que necesitas.",
@@ -2430,7 +2914,9 @@
       "it": "Oggi sii per te l'amico di cui hai bisogno.",
       "nl": "Wees vandaag voor jezelf de vriend die je nodig hebt.",
       "zh": "今天做你自己需要的那位朋友。",
-      "zht": "今天做你自己需要的那位朋友。"
+      "zht": "今天做你自己需要的那位朋友。",
+      "bg": "Днес бъди за себе си приятелят, от когото имаш нужда.",
+      "pl": "Bądź dziś dla siebie przyjacielem, którego potrzebujesz."
     },
     {
       "es": "Un rincón por descubrir te llama. Ve hacia él.",
@@ -2440,7 +2926,9 @@
       "it": "Un angolo da scoprire ti chiama. Vai verso di lui.",
       "nl": "Een hoekje om te ontdekken roept. Ga ernaartoe.",
       "zh": "一个待发现的角落在召唤你。朝它走去。",
-      "zht": "一個待發現的角落在召喚你。朝它走去。"
+      "zht": "一個待發現的角落在召喚你。朝它走去。",
+      "bg": "Кътче за откриване те вика. Иди към него.",
+      "pl": "Woła cię zakątek do odkrycia. Idź w jego stronę."
     },
     {
       "es": "No con todo a la vez. Paso a paso, con calma.",
@@ -2450,7 +2938,9 @@
       "it": "Non tutto insieme. Passo dopo passo, con calma.",
       "nl": "Niet alles tegelijk. Stap voor stap, rustig.",
       "zh": "别一下子全来。一步一步，慢慢来。",
-      "zht": "別一下子全來。一步一步，慢慢來。"
+      "zht": "別一下子全來。一步一步，慢慢來。",
+      "bg": "Не всичко наведнъж. Стъпка по стъпка, спокойно.",
+      "pl": "Nie wszystko naraz. Krok po kroku, spokojnie."
     },
     {
       "es": "Respira. La calma vive en el próximo aliento.",
@@ -2460,7 +2950,9 @@
       "it": "Respira. La calma vive nel prossimo respiro.",
       "nl": "Adem. Kalmte leeft in de volgende ademhaling.",
       "zh": "呼吸。平静活在下一次呼吸里。",
-      "zht": "呼吸。平靜活在下一次呼吸裡。"
+      "zht": "呼吸。平靜活在下一次呼吸裡。",
+      "bg": "Дишай. Спокойствието живее в следващия дъх.",
+      "pl": "Oddychaj. Spokój mieszka w następnym oddechu."
     },
     {
       "es": "Sal a la naturaleza un rato. Es medicina silenciosa.",
@@ -2470,7 +2962,9 @@
       "it": "Vai nella natura un po'. È medicina silenziosa.",
       "nl": "Ga even de natuur in. Stil medicijn.",
       "zh": "去大自然里待一会儿。那是安静的良药。",
-      "zht": "去大自然裡待一會兒。那是安靜的良藥。"
+      "zht": "去大自然裡待一會兒。那是安靜的良藥。",
+      "bg": "Излез малко сред природата. Тя е тиха медицина.",
+      "pl": "Wyjdź na chwilę na łono natury. To cicha medycyna."
     },
     {
       "es": "Añade hoy una alegría pequeña a lo cotidiano.",
@@ -2480,7 +2974,9 @@
       "it": "Aggiungi oggi una piccola gioia al quotidiano.",
       "nl": "Voeg vandaag een kleine vreugde toe aan het gewone.",
       "zh": "今天给平常的日子添一点小欢喜。",
-      "zht": "今天給平常的日子添一點小歡喜。"
+      "zht": "今天給平常的日子添一點小歡喜。",
+      "bg": "Добави днес малка радост към делника.",
+      "pl": "Dodaj dziś małą radość do codzienności."
     },
     {
       "es": "El horizonte te recuerda que hay mucho por vivir.",
@@ -2490,7 +2986,9 @@
       "it": "L'orizzonte ricorda che c'è tanto da vivere.",
       "nl": "De horizon herinnert dat er veel te leven is.",
       "zh": "地平线提醒你：还有很多值得去经历。",
-      "zht": "地平線提醒你：還有很多值得去經歷。"
+      "zht": "地平線提醒你：還有很多值得去經歷。",
+      "bg": "Хоризонтът ти напомня, че има още много за живеене.",
+      "pl": "Horyzont przypomina, że jest jeszcze wiele do przeżycia."
     },
     {
       "es": "Muévete un poco y siente cómo se despeja el ánimo.",
@@ -2500,7 +2998,9 @@
       "it": "Muoviti un po' e senti l'umore schiarirsi.",
       "nl": "Beweeg wat en voel het humeur opklaren.",
       "zh": "动一动，感受心情变得清朗。",
-      "zht": "動一動，感受心情變得清朗。"
+      "zht": "動一動，感受心情變得清朗。",
+      "bg": "Раздвижи се малко и усети как духът се прояснява.",
+      "pl": "Poruszaj się trochę i poczuj, jak rozjaśnia się nastrój."
     },
     {
       "es": "Ten paciencia. Nada bueno se apura.",
@@ -2510,7 +3010,9 @@
       "it": "Sii paziente. Niente di buono si affretta.",
       "nl": "Wees geduldig. Niets goeds laat zich haasten.",
       "zh": "有耐心。好事都急不来。",
-      "zht": "有耐心。好事都急不來。"
+      "zht": "有耐心。好事都急不來。",
+      "bg": "Имай търпение. Нищо хубаво не се прибързва.",
+      "pl": "Miej cierpliwość. Nic dobrego się nie pospiesza."
     },
     {
       "es": "El mar te espera sin reloj. Ve cuando puedas.",
@@ -2520,7 +3022,9 @@
       "it": "Il mare ti aspetta senza orologio. Vacci quando puoi.",
       "nl": "De zee wacht op je zonder klok. Ga wanneer je kunt.",
       "zh": "大海不看钟地等你。有空就去。",
-      "zht": "大海不看鐘地等你。有空就去。"
+      "zht": "大海不看鐘地等你。有空就去。",
+      "bg": "Морето те чака без часовник. Иди, когато можеш.",
+      "pl": "Morze czeka bez zegarka. Idź, kiedy możesz."
     },
     {
       "es": "Descansa hoy, y hazlo de verdad.",
@@ -2530,7 +3034,9 @@
       "it": "Riposa oggi, e sul serio.",
       "nl": "Rust vandaag, en echt.",
       "zh": "今天好好休息，认真地休息。",
-      "zht": "今天好好休息，認真地休息。"
+      "zht": "今天好好休息，認真地休息。",
+      "bg": "Почини си днес, и то истински.",
+      "pl": "Odpocznij dziś, i to naprawdę."
     },
     {
       "es": "Un rato al sol despeja lo que la mente enreda.",
@@ -2540,7 +3046,9 @@
       "it": "Un momento al sole schiarisce ciò che la mente ingarbuglia.",
       "nl": "Een moment in de zon verheldert wat je hoofd in de war maakt.",
       "zh": "阳光下的片刻，会理清头脑里的纠结。",
-      "zht": "陽光下的片刻，會理清頭腦裡的糾結。"
+      "zht": "陽光下的片刻，會理清頭腦裡的糾結。",
+      "bg": "Малко време на слънце избистря това, което умът заплита.",
+      "pl": "Chwila w słońcu rozjaśnia to, co umysł plącze."
     },
     {
       "es": "Un día gris no apaga tu luz.",
@@ -2550,7 +3058,9 @@
       "it": "Un giorno grigio non spegne la tua luce.",
       "nl": "Een grijze dag dooft je licht niet.",
       "zh": "灰蒙蒙的一天，熄不灭你的光。",
-      "zht": "灰濛濛的一天，熄不滅你的光。"
+      "zht": "灰濛濛的一天，熄不滅你的光。",
+      "bg": "Един сив ден не гаси твоята светлина.",
+      "pl": "Szary dzień nie gasi twojego światła."
     },
     {
       "es": "Respira hondo: has llegado hasta aquí, y eso es mucho.",
@@ -2560,7 +3070,9 @@
       "it": "Respira a fondo: sei arrivato fin qui, ed è tanto.",
       "nl": "Adem diep: je bent tot hier gekomen, en dat is veel.",
       "zh": "深呼吸：你走到了这里，这很了不起。",
-      "zht": "深呼吸：你走到了這裡，這很了不起。"
+      "zht": "深呼吸：你走到了這裡，這很了不起。",
+      "bg": "Поеми дълбоко въздух: стигнал си дотук, а това е много.",
+      "pl": "Odetchnij głęboko: doszedłeś aż tutaj, a to dużo."
     },
     {
       "es": "Sal a caminar y deja que el aire ordene tus ideas.",
@@ -2570,7 +3082,9 @@
       "it": "Vai a camminare e lascia che l'aria ordini i pensieri.",
       "nl": "Ga wandelen en laat de lucht je gedachten ordenen.",
       "zh": "去走走，让空气理顺你的思绪。",
-      "zht": "去走走，讓空氣理順你的思緒。"
+      "zht": "去走走，讓空氣理順你的思緒。",
+      "bg": "Излез да повървиш и остави въздухът да подреди мислите ти.",
+      "pl": "Wyjdź na spacer i pozwól powietrzu uporządkować twoje myśli."
     },
     {
       "es": "Cuídate hoy, empezando por lo más simple.",
@@ -2580,7 +3094,9 @@
       "it": "Prenditi cura di te oggi, cominciando dalla cosa più semplice.",
       "nl": "Zorg vandaag voor jezelf, te beginnen bij het simpelste.",
       "zh": "今天照顾自己，从最简单的开始。",
-      "zht": "今天照顧自己，從最簡單的開始。"
+      "zht": "今天照顧自己，從最簡單的開始。",
+      "bg": "Грижи се за себе си днес, като започнеш от най-простото.",
+      "pl": "Zadbaj dziś o siebie, zaczynając od najprostszego."
     },
     {
       "es": "La isla guarda un rincón para tu calma. Ve a por él.",
@@ -2590,7 +3106,9 @@
       "it": "L'isola custodisce un angolo per la tua calma. Vacci.",
       "nl": "Het eiland bewaart een hoekje voor jouw rust. Ga ernaartoe.",
       "zh": "岛为你的平静藏着一个角落。去吧。",
-      "zht": "島為你的平靜藏著一個角落。去吧。"
+      "zht": "島為你的平靜藏著一個角落。去吧。",
+      "bg": "Островът пази кътче за твоето спокойствие. Иди да го вземеш.",
+      "pl": "Wyspa ma zakątek dla twojego spokoju. Idź po niego."
     },
     {
       "es": "Basta con estar hoy. No tienes que rendir en todo.",
@@ -2600,7 +3118,9 @@
       "it": "Esserci oggi basta. Non devi riuscire in tutto.",
       "nl": "Er vandaag zijn is genoeg. Je hoeft niet in alles te slagen.",
       "zh": "今天在场，就够了。不必样样出色。",
-      "zht": "今天在場，就夠了。不必樣樣出色。"
+      "zht": "今天在場，就夠了。不必樣樣出色。",
+      "bg": "Стига да си тук днес. Не си длъжен да се справяш с всичко.",
+      "pl": "Wystarczy dziś być. Nie musisz się sprawdzać we wszystkim."
     },
     {
       "es": "El sol sale otra vez. Otra página en blanco.",
@@ -2610,7 +3130,9 @@
       "it": "Il sole sorge di nuovo. Un'altra pagina bianca.",
       "nl": "De zon komt weer op. Een nieuwe blanco bladzijde.",
       "zh": "太阳再次升起。又一张空白的纸。",
-      "zht": "太陽再次升起。又一張空白的紙。"
+      "zht": "太陽再次升起。又一張空白的紙。",
+      "bg": "Слънцето изгрява отново. Още една бяла страница.",
+      "pl": "Słońce wschodzi znowu. Kolejna czysta strona."
     },
     {
       "es": "Descansar es cuidar la máquina, no pararla.",
@@ -2620,7 +3142,9 @@
       "it": "Riposare è curare la macchina, non fermarla.",
       "nl": "Rusten is de machine verzorgen, niet stoppen.",
       "zh": "休息是保养这台机器，而不是停下它。",
-      "zht": "休息是保養這台機器，而不是停下它。"
+      "zht": "休息是保養這台機器，而不是停下它。",
+      "bg": "Почивката е грижа за машината, не спиране.",
+      "pl": "Odpoczynek to dbanie o maszynę, nie jej zatrzymanie."
     },
     {
       "es": "Explora con calma: la prisa se pierde lo mejor.",
@@ -2630,7 +3154,9 @@
       "it": "Esplora con calma: la fretta perde il meglio.",
       "nl": "Verken rustig: de haast mist het beste.",
       "zh": "从容地探索：匆忙会错过最好的。",
-      "zht": "從容地探索：匆忙會錯過最好的。"
+      "zht": "從容地探索：匆忙會錯過最好的。",
+      "bg": "Разглеждай спокойно: бързането изпуска най-хубавото.",
+      "pl": "Zwiedzaj spokojnie: pośpiech gubi to, co najlepsze."
     },
     {
       "es": "Un paso pequeño hoy, un gran camino con el tiempo.",
@@ -2640,7 +3166,9 @@
       "it": "Un piccolo passo oggi, un grande cammino nel tempo.",
       "nl": "Een kleine stap vandaag, een grote weg met de tijd.",
       "zh": "今天的一小步，随时间会是一条长路。",
-      "zht": "今天的一小步，隨時間會是一條長路。"
+      "zht": "今天的一小步，隨時間會是一條長路。",
+      "bg": "Малка крачка днес, дълъг път с времето.",
+      "pl": "Mały krok dziś, wielka droga z czasem."
     },
     {
       "es": "Sal a que el viento se lleve el ruido de dentro.",
@@ -2650,7 +3178,9 @@
       "it": "Lascia che il vento porti via il rumore di dentro.",
       "nl": "Laat de wind het lawaai van binnen wegvoeren.",
       "zh": "让风带走内心的喧嚣。",
-      "zht": "讓風帶走內心的喧囂。"
+      "zht": "讓風帶走內心的喧囂。",
+      "bg": "Излез вятърът да отнесе вътрешния шум.",
+      "pl": "Wyjdź, niech wiatr zabierze wewnętrzny hałas."
     },
     {
       "es": "Hoy respeta tu cansancio. También te habla.",
@@ -2660,7 +3190,9 @@
       "it": "Oggi rispetta la tua stanchezza. Parla anche lei.",
       "nl": "Respecteer vandaag je vermoeidheid. Ze spreekt ook.",
       "zh": "今天尊重你的疲惫。它也在说话。",
-      "zht": "今天尊重你的疲憊。它也在說話。"
+      "zht": "今天尊重你的疲憊。它也在說話。",
+      "bg": "Днес уважи умората си. И тя ти говори.",
+      "pl": "Uszanuj dziś swoje zmęczenie. Ono też do ciebie mówi."
     },
     {
       "es": "Mira el mar y respira. Se calma algo en el pecho.",
@@ -2670,7 +3202,9 @@
       "it": "Guarda il mare e respira. Qualcosa nel petto si calma.",
       "nl": "Kijk naar de zee en adem. Iets in de borst kalmeert.",
       "zh": "看着海，呼吸。胸口里有什么平静下来。",
-      "zht": "看著海，呼吸。胸口裡有什麼平靜下來。"
+      "zht": "看著海，呼吸。胸口裡有什麼平靜下來。",
+      "bg": "Гледай морето и дишай. Нещо в гърдите се успокоява.",
+      "pl": "Patrz na morze i oddychaj. Coś w piersi się uspokaja."
     },
     {
       "es": "No hace falta ganar a nadie. Solo caminar tu tramo.",
@@ -2680,7 +3214,9 @@
       "it": "Non serve battere nessuno. Solo camminare il tuo tratto.",
       "nl": "Je hoeft niemand te verslaan. Alleen je stuk lopen.",
       "zh": "你不必赢过谁。走你自己的一段就好。",
-      "zht": "你不必贏過誰。走你自己的一段就好。"
+      "zht": "你不必贏過誰。走你自己的一段就好。",
+      "bg": "Не е нужно да побеждаваш никого. Само да извървиш своята отсечка.",
+      "pl": "Nie trzeba nikogo pokonywać. Wystarczy przejść swój odcinek."
     },
     {
       "es": "Un paseo con vistas alivia más que una hora de pantalla.",
@@ -2690,7 +3226,9 @@
       "it": "Una passeggiata con vista allevia più di un'ora di schermo.",
       "nl": "Een wandeling met uitzicht verlicht meer dan een uur scherm.",
       "zh": "一段有风景的散步，比一小时屏幕更疗愈。",
-      "zht": "一段有風景的散步，比一小時螢幕更療癒。"
+      "zht": "一段有風景的散步，比一小時螢幕更療癒。",
+      "bg": "Разходка с гледка облекчава повече от час пред екран.",
+      "pl": "Spacer z widokiem pomaga bardziej niż godzina przed ekranem."
     },
     {
       "es": "Cuida tu descanso: sostiene todo lo demás.",
@@ -2700,7 +3238,9 @@
       "it": "Cura il tuo riposo: sostiene tutto il resto.",
       "nl": "Verzorg je rust: het draagt al het andere.",
       "zh": "照顾好你的休息：它撑起其余的一切。",
-      "zht": "照顧好你的休息：它撐起其餘的一切。"
+      "zht": "照顧好你的休息：它撐起其餘的一切。",
+      "bg": "Пази съня си: той крепи всичко останало.",
+      "pl": "Dbaj o sen: podtrzymuje całą resztę."
     },
     {
       "es": "Regálate hoy un momento sin pantallas ni prisas.",
@@ -2710,7 +3250,9 @@
       "it": "Regalati oggi un momento senza schermi né fretta.",
       "nl": "Gun jezelf vandaag een moment zonder schermen of haast.",
       "zh": "今天给自己一个没有屏幕、没有匆忙的片刻。",
-      "zht": "今天給自己一個沒有螢幕、沒有匆忙的片刻。"
+      "zht": "今天給自己一個沒有螢幕、沒有匆忙的片刻。",
+      "bg": "Подари си днес миг без екрани и без бързане.",
+      "pl": "Podaruj sobie dziś chwilę bez ekranów i pośpiechu."
     },
     {
       "es": "La naturaleza te recibe tal cual eres. Ve a sentirlo.",
@@ -2720,7 +3262,9 @@
       "it": "La natura ti accoglie così come sei. Vai a sentirlo.",
       "nl": "De natuur ontvangt je zoals je bent. Ga het voelen.",
       "zh": "大自然照你本来的样子迎接你。去感受它。",
-      "zht": "大自然照你本來的樣子迎接你。去感受它。"
+      "zht": "大自然照你本來的樣子迎接你。去感受它。",
+      "bg": "Природата те приема какъвто си. Иди да го усетиш.",
+      "pl": "Natura przyjmuje cię takim, jaki jesteś. Idź to poczuć."
     },
     {
       "es": "Sé amable y constante contigo. Es el mejor plan.",
@@ -2730,7 +3274,9 @@
       "it": "Sii gentile e costante con te. È il piano migliore.",
       "nl": "Wees vriendelijk en standvastig voor jezelf. Het beste plan.",
       "zh": "对自己友善而坚持。这是最好的计划。",
-      "zht": "對自己友善而堅持。這是最好的計畫。"
+      "zht": "對自己友善而堅持。這是最好的計畫。",
+      "bg": "Бъди мил и постоянен със себе си. Това е най-добрият план.",
+      "pl": "Bądź dla siebie życzliwy i wytrwały. To najlepszy plan."
     },
     {
       "es": "El aire fresco reinicia lo que se atasca. Sal a por él.",
@@ -2740,7 +3286,9 @@
       "it": "L'aria fresca riavvia ciò che si blocca. Vai a prenderne.",
       "nl": "Frisse lucht herstart wat vastloopt. Ga wat halen.",
       "zh": "新鲜空气会重启卡住的一切。去取一点。",
-      "zht": "新鮮空氣會重啟卡住的一切。去取一點。"
+      "zht": "新鮮空氣會重啟卡住的一切。去取一點。",
+      "bg": "Свежият въздух рестартира заседналото. Излез за него.",
+      "pl": "Świeże powietrze resetuje to, co się zacięło. Wyjdź po nie."
     },
     {
       "es": "Hoy nota un pequeño logro y date las gracias.",
@@ -2750,7 +3298,9 @@
       "it": "Nota oggi una piccola vittoria e ringraziati.",
       "nl": "Merk vandaag een kleine overwinning op en bedank jezelf.",
       "zh": "今天留意一个小小的胜利，然后谢谢自己。",
-      "zht": "今天留意一個小小的勝利，然後謝謝自己。"
+      "zht": "今天留意一個小小的勝利，然後謝謝自己。",
+      "bg": "Днес забележи едно малко постижение и си благодари.",
+      "pl": "Zauważ dziś mały sukces i podziękuj sobie."
     },
     {
       "es": "Camina hacia algo bonito y quédate ahí un rato.",
@@ -2760,7 +3310,9 @@
       "it": "Cammina verso qualcosa di bello e restaci un po'.",
       "nl": "Loop naar iets moois en blijf er even.",
       "zh": "走向美好的事物，在那里停留一会儿。",
-      "zht": "走向美好的事物，在那裡停留一會兒。"
+      "zht": "走向美好的事物，在那裡停留一會兒。",
+      "bg": "Върви към нещо хубаво и остани там малко.",
+      "pl": "Idź w stronę czegoś ładnego i zostań tam chwilę."
     },
     {
       "es": "No te definas por un día difícil.",
@@ -2770,7 +3322,9 @@
       "it": "Non definirti per un giorno difficile.",
       "nl": "Definieer jezelf niet door een moeilijke dag.",
       "zh": "别用一个艰难的日子来定义自己。",
-      "zht": "別用一個艱難的日子來定義自己。"
+      "zht": "別用一個艱難的日子來定義自己。",
+      "bg": "Не се определяй по един труден ден.",
+      "pl": "Nie definiuj się przez trudny dzień."
     },
     {
       "es": "Un sendero nuevo airea una cabeza cargada.",
@@ -2780,7 +3334,9 @@
       "it": "Un sentiero nuovo arieggia una testa carica.",
       "nl": "Een nieuw pad lucht een vol hoofd op.",
       "zh": "一条新路，会给满载的头脑透透气。",
-      "zht": "一條新路，會給滿載的頭腦透透氣。"
+      "zht": "一條新路，會給滿載的頭腦透透氣。",
+      "bg": "Нова пътека проветрява претоварена глава.",
+      "pl": "Nowa ścieżka wietrzy przeciążoną głowę."
     },
     {
       "es": "Respira. Sin prisa se llega, y se disfruta más.",
@@ -2790,7 +3346,9 @@
       "it": "Respira. Si arriva meglio senza fretta che con l'ansia.",
       "nl": "Adem. Je komt beter aan zonder haast dan met zorg.",
       "zh": "呼吸。不慌不忙比焦虑更能抵达。",
-      "zht": "呼吸。不慌不忙比焦慮更能抵達。"
+      "zht": "呼吸。不慌不忙比焦慮更能抵達。",
+      "bg": "Дишай. Без бързане се стига, и то с повече удоволствие.",
+      "pl": "Oddychaj. Bez pośpiechu też się dochodzi, i z większą przyjemnością."
     },
     {
       "es": "Sal a que te dé el sol. Cambia el ánimo por dentro.",
@@ -2800,7 +3358,9 @@
       "it": "Lascia che il sole ti raggiunga. Cambia l'umore da dentro.",
       "nl": "Laat de zon je bereiken. Ze verandert het humeur van binnen.",
       "zh": "让阳光照到你。它从内里改变心情。",
-      "zht": "讓陽光照到你。它從內裡改變心情。"
+      "zht": "讓陽光照到你。它從內裡改變心情。",
+      "bg": "Излез на слънце. Променя настроението отвътре.",
+      "pl": "Wyjdź na słońce. Zmienia nastrój od środka."
     },
     {
       "es": "Hoy pregúntate con cariño qué necesitas de verdad.",
@@ -2810,7 +3370,9 @@
       "it": "Chiediti con dolcezza di cosa hai davvero bisogno.",
       "nl": "Vraag jezelf zacht wat je echt nodig hebt.",
       "zh": "温柔地问自己，你真正需要什么。",
-      "zht": "溫柔地問自己，你真正需要什麼。"
+      "zht": "溫柔地問自己，你真正需要什麼。",
+      "bg": "Днес се запитай с обич от какво наистина имаш нужда.",
+      "pl": "Zapytaj się dziś czule, czego naprawdę potrzebujesz."
     },
     {
       "es": "El mar fluye sin forzar. Prueba a soltarte tú también.",
@@ -2820,7 +3382,9 @@
       "it": "Il mare scorre senza forzare. Prova a lasciarti andare anche tu.",
       "nl": "De zee stroomt zonder forceren. Probeer ook los te laten.",
       "zh": "大海不勉强地流动。也试着放松放手吧。",
-      "zht": "大海不勉強地流動。也試著放鬆放手吧。"
+      "zht": "大海不勉強地流動。也試著放鬆放手吧。",
+      "bg": "Морето тече без насила. Опитай и ти да се отпуснеш.",
+      "pl": "Morze płynie bez wysiłku. Spróbuj i ty odpuścić."
     },
     {
       "es": "Muévete a tu ritmo y a tu manera. Vale igual.",
@@ -2830,7 +3394,9 @@
       "it": "Muoviti al tuo ritmo, a modo tuo. Conta uguale.",
       "nl": "Beweeg op je tempo, op jouw manier. Telt evenveel.",
       "zh": "按你的节奏、你的方式动。一样算数。",
-      "zht": "按你的節奏、你的方式動。一樣算數。"
+      "zht": "按你的節奏、你的方式動。一樣算數。",
+      "bg": "Движи се със свой ритъм и по свой начин. Струва същото.",
+      "pl": "Ruszaj się we własnym rytmie i po swojemu. Liczy się tak samo."
     },
     {
       "es": "Cuenta el paso de hoy. Lo demás ya llegará.",
@@ -2840,7 +3406,9 @@
       "it": "Conta il passo di oggi. Il resto arriverà.",
       "nl": "Tel de stap van vandaag. De rest komt wel.",
       "zh": "数一数今天这一步。其余的会来的。",
-      "zht": "數一數今天這一步。其餘的會來的。"
+      "zht": "數一數今天這一步。其餘的會來的。",
+      "bg": "Брой днешната крачка. Останалото ще дойде.",
+      "pl": "Licz dzisiejszy krok. Reszta przyjdzie."
     },
     {
       "es": "Date hoy permiso para ir despacio y sin culpa.",
@@ -2850,7 +3418,9 @@
       "it": "Concediti il permesso di andare piano, senza colpa.",
       "nl": "Gun jezelf de toestemming om rustig en zonder schuld te gaan.",
       "zh": "允许自己慢慢来，不必内疚。",
-      "zht": "允許自己慢慢來，不必內疚。"
+      "zht": "允許自己慢慢來，不必內疚。",
+      "bg": "Дай си днес разрешение да вървиш бавно и без вина.",
+      "pl": "Daj sobie dziś prawo iść powoli i bez poczucia winy."
     },
     {
       "es": "Ve a un mirador, respira hondo, y deja bajar el día.",
@@ -2860,7 +3430,9 @@
       "it": "Vai a un punto panoramico, respira a fondo, e lascia calare il giorno.",
       "nl": "Ga naar een uitkijkpunt, adem diep, en laat de dag zakken.",
       "zh": "去一处观景点，深呼吸，让这一天沉下来。",
-      "zht": "去一處觀景點，深呼吸，讓這一天沉下來。"
+      "zht": "去一處觀景點，深呼吸，讓這一天沉下來。",
+      "bg": "Иди на изглед, поеми дълбоко въздух и остави деня да се уталожи.",
+      "pl": "Idź na punkt widokowy, odetchnij głęboko i pozwól dniowi opaść."
     },
     {
       "es": "Estás bien así, hoy, tal como estás.",
@@ -2870,7 +3442,9 @@
       "it": "Stai bene così, oggi, come sei.",
       "nl": "Je bent goed zo, vandaag, zoals je bent.",
       "zh": "你今天这样，很好，就是你本来的样子。",
-      "zht": "你今天這樣，很好，就是你本來的樣子。"
+      "zht": "你今天這樣，很好，就是你本來的樣子。",
+      "bg": "Добре си така, днес, точно какъвто си.",
+      "pl": "Jest z tobą dobrze tak, dzisiaj, dokładnie tak, jak jesteś."
     },
     {
       "es": "Un paseo corto puede darle la vuelta a todo.",
@@ -2880,7 +3454,9 @@
       "it": "Una breve passeggiata può ribaltare tutto.",
       "nl": "Een korte wandeling kan alles omkeren.",
       "zh": "一小段散步，能把一切翻转过来。",
-      "zht": "一小段散步，能把一切翻轉過來。"
+      "zht": "一小段散步，能把一切翻轉過來。",
+      "bg": "Кратка разходка може да обърне всичко.",
+      "pl": "Krótki spacer może wszystko odwrócić."
     },
     {
       "es": "Prueba algo nuevo hoy. La rutina agradece el cambio.",
@@ -2890,7 +3466,9 @@
       "it": "Prova qualcosa di nuovo oggi. La routine gradisce il cambio.",
       "nl": "Probeer vandaag iets nieuws. Routine verwelkomt verandering.",
       "zh": "今天试点新的。日常也乐见改变。",
-      "zht": "今天試點新的。日常也樂見改變。"
+      "zht": "今天試點新的。日常也樂見改變。",
+      "bg": "Опитай нещо ново днес. Рутината се радва на промяна.",
+      "pl": "Spróbuj dziś czegoś nowego. Rutyna lubi zmianę."
     },
     {
       "es": "El sol de la isla es un lujo. Sal a recoger tu parte.",
@@ -2900,7 +3478,9 @@
       "it": "Il sole dell'isola è un lusso. Vai a prendere la tua parte.",
       "nl": "De eilandzon is een luxe. Ga je deel halen.",
       "zh": "岛上的阳光是奢侈。去领取你的那份。",
-      "zht": "島上的陽光是奢侈。去領取你的那份。"
+      "zht": "島上的陽光是奢侈。去領取你的那份。",
+      "bg": "Островното слънце е лукс. Излез да си вземеш дела.",
+      "pl": "Wyspiarskie słońce to luksus. Wyjdź po swoją część."
     },
     {
       "es": "Parar a tiempo es una forma de quererse.",
@@ -2910,7 +3490,9 @@
       "it": "Fermarsi in tempo è un modo di volersi bene.",
       "nl": "Op tijd stoppen is een manier van van jezelf houden.",
       "zh": "及时停下，是一种爱自己的方式。",
-      "zht": "及時停下，是一種愛自己的方式。"
+      "zht": "及時停下，是一種愛自己的方式。",
+      "bg": "Да спреш навреме е форма на обич към себе си.",
+      "pl": "Zatrzymać się w porę to forma miłości do siebie."
     },
     {
       "es": "Camina hacia el mar y suelta lo que sobra al andar.",
@@ -2920,7 +3502,9 @@
       "it": "Cammina verso il mare e lascia per strada ciò che è di troppo.",
       "nl": "Loop richting de zee en laat onderweg los wat te veel is.",
       "zh": "朝海走去，把多余的一路放下。",
-      "zht": "朝海走去，把多餘的一路放下。"
+      "zht": "朝海走去，把多餘的一路放下。",
+      "bg": "Върви към морето и пускай излишното, докато вървиш.",
+      "pl": "Idź w stronę morza i po drodze puszczaj to, co zbędne."
     },
     {
       "es": "Hoy sé tu propio refugio y tu propia calma.",
@@ -2930,7 +3514,9 @@
       "it": "Oggi sii il tuo rifugio e la tua calma.",
       "nl": "Wees vandaag je toevluchtsoord en je rust.",
       "zh": "今天做你自己的避风港与安宁。",
-      "zht": "今天做你自己的避風港與安寧。"
+      "zht": "今天做你自己的避風港與安寧。",
+      "bg": "Днес бъди свое убежище и свое спокойствие.",
+      "pl": "Bądź dziś swoim schronieniem i swoim spokojem."
     },
     {
       "es": "Un rincón nuevo te espera. Regálate ese descubrimiento.",
@@ -2940,7 +3526,9 @@
       "it": "Un angolo nuovo ti aspetta. Regalati quella scoperta.",
       "nl": "Een nieuw hoekje wacht. Gun jezelf die ontdekking.",
       "zh": "一个新角落在等你。把那次发现送给自己。",
-      "zht": "一個新角落在等你。把那次發現送給自己。"
+      "zht": "一個新角落在等你。把那次發現送給自己。",
+      "bg": "Ново кътче те чака. Подари си това откритие.",
+      "pl": "Czeka na ciebie nowy zakątek. Podaruj sobie to odkrycie."
     },
     {
       "es": "No con todo. Con lo de hoy, y con calma, basta.",
@@ -2950,7 +3538,9 @@
       "it": "Non tutto. Il pezzetto di oggi, con calma, basta.",
       "nl": "Niet alles. Het stukje van vandaag, rustig, is genoeg.",
       "zh": "不必全部。今天这一小块，慢慢来，就够了。",
-      "zht": "不必全部。今天這一小塊，慢慢來，就夠了。"
+      "zht": "不必全部。今天這一小塊，慢慢來，就夠了。",
+      "bg": "Не всичко. Днешното, и то спокойно, е достатъчно.",
+      "pl": "Nie wszystko. To, co na dziś, i to spokojnie, wystarczy."
     },
     {
       "es": "Respira. La paz empieza en el aliento que viene ahora.",
@@ -2960,7 +3550,9 @@
       "it": "Respira. La pace comincia col respiro che viene ora.",
       "nl": "Adem. Vrede begint bij de ademhaling die nu komt.",
       "zh": "呼吸。安宁从此刻这一次呼吸开始。",
-      "zht": "呼吸。安寧從此刻這一次呼吸開始。"
+      "zht": "呼吸。安寧從此刻這一次呼吸開始。",
+      "bg": "Дишай. Мирът започва с дъха, който идва сега.",
+      "pl": "Oddychaj. Pokój zaczyna się w oddechu, który przychodzi teraz."
     },
     {
       "es": "Sal a la naturaleza. No pide nada y lo da todo.",
@@ -2970,7 +3562,9 @@
       "it": "Vai nella natura. Non chiede nulla e dà tutto.",
       "nl": "Ga de natuur in. Ze vraagt niets en geeft alles.",
       "zh": "走进大自然。它别无所求，却给予一切。",
-      "zht": "走進大自然。它別無所求，卻給予一切。"
+      "zht": "走進大自然。它別無所求，卻給予一切。",
+      "bg": "Излез сред природата. Тя не иска нищо и дава всичко.",
+      "pl": "Wyjdź na łono natury. Nic nie żąda, a daje wszystko."
     },
     {
       "es": "Suma hoy una pequeña luz a tu día.",
@@ -2980,7 +3574,9 @@
       "it": "Aggiungi oggi una piccola luce alla tua giornata.",
       "nl": "Voeg vandaag een klein licht toe aan je dag.",
       "zh": "今天给你的一天添一点小小的光。",
-      "zht": "今天給你的一天添一點小小的光。"
+      "zht": "今天給你的一天添一點小小的光。",
+      "bg": "Добави днес малка светлина към деня си.",
+      "pl": "Dodaj dziś małe światło do swojego dnia."
     },
     {
       "es": "El horizonte te recuerda: hay mundo, hay tiempo, hay ti.",
@@ -2990,7 +3586,9 @@
       "it": "L'orizzonte ricorda: c'è il mondo, il tempo, e te.",
       "nl": "De horizon herinnert: er is wereld, tijd, en jij.",
       "zh": "地平线提醒你：有世界，有时间，还有你。",
-      "zht": "地平線提醒你：有世界，有時間，還有你。"
+      "zht": "地平線提醒你：有世界，有時間，還有你。",
+      "bg": "Хоризонтът ти напомня: има свят, има време, има те теб.",
+      "pl": "Horyzont przypomina ci: jest świat, jest czas, jesteś ty."
     },
     {
       "es": "Muévete un rato y siente cómo se aligera todo.",
@@ -3000,7 +3598,9 @@
       "it": "Muoviti un po' e senti tutto alleggerirsi.",
       "nl": "Beweeg wat en voel alles lichter worden.",
       "zh": "动一会儿，感受一切变轻。",
-      "zht": "動一會兒，感受一切變輕。"
+      "zht": "動一會兒，感受一切變輕。",
+      "bg": "Раздвижи се малко и усети как всичко олеква.",
+      "pl": "Poruszaj się chwilę i poczuj, jak wszystko lżeje."
     },
     {
       "es": "Ten paciencia. Vas a tu paso, y tu paso está bien.",
@@ -3010,7 +3610,9 @@
       "it": "Sii paziente. Vai al tuo passo, e il tuo passo va bene.",
       "nl": "Wees geduldig. Je gaat op je tempo, en je tempo is goed.",
       "zh": "有耐心。你按自己的步伐走，而你的步伐很好。",
-      "zht": "有耐心。你按自己的步伐走，而你的步伐很好。"
+      "zht": "有耐心。你按自己的步伐走，而你的步伐很好。",
+      "bg": "Имай търпение. Вървиш със своя стъпка, и тя е добра.",
+      "pl": "Miej cierpliwość. Idziesz swoim krokiem, a twój krok jest dobry."
     },
     {
       "es": "El mar sigue llegando a la orilla. Tú también estás llegando.",
@@ -3020,7 +3622,9 @@
       "it": "Il mare raggiunge sempre la riva. Anche tu stai arrivando.",
       "nl": "De zee bereikt altijd de kust. Ook jij komt aan.",
       "zh": "大海总会抵达岸边。你也在抵达。",
-      "zht": "大海總會抵達岸邊。你也在抵達。"
+      "zht": "大海總會抵達岸邊。你也在抵達。",
+      "bg": "Морето продължава да стига до брега. И ти стигаш.",
+      "pl": "Morze wciąż dociera do brzegu. Ty też docierasz."
     },
     {
       "es": "Descansa hoy sin dar explicaciones.",
@@ -3030,7 +3634,9 @@
       "it": "Riposa oggi senza spiegazioni.",
       "nl": "Rust vandaag zonder uitleg.",
       "zh": "今天休息，不必解释。",
-      "zht": "今天休息，不必解釋。"
+      "zht": "今天休息，不必解釋。",
+      "bg": "Почини си днес, без да даваш обяснения.",
+      "pl": "Odpocznij dziś bez tłumaczenia się."
     },
     {
       "es": "Un rato al sol es un pequeño respiro para la mente.",
@@ -3040,7 +3646,9 @@
       "it": "Un momento al sole è una piccola pausa per la mente.",
       "nl": "Een moment in de zon is een kleine adempauze voor het hoofd.",
       "zh": "阳光下的片刻，是头脑的一次小小喘息。",
-      "zht": "陽光下的片刻，是頭腦的一次小小喘息。"
+      "zht": "陽光下的片刻，是頭腦的一次小小喘息。",
+      "bg": "Малко време на слънце е малка глътка въздух за ума.",
+      "pl": "Chwila w słońcu to mały oddech dla umysłu."
     },
     {
       "es": "Un mal día es solo eso: un día.",
@@ -3050,7 +3658,9 @@
       "it": "Un brutto giorno è solo questo: un giorno.",
       "nl": "Een slechte dag is maar dat: een dag.",
       "zh": "一个坏日子，只是这样：一天而已。",
-      "zht": "一個壞日子，只是這樣：一天而已。"
+      "zht": "一個壞日子，只是這樣：一天而已。",
+      "bg": "Един лош ден е само това: един ден.",
+      "pl": "Zły dzień to tylko tyle: jeden dzień."
     },
     {
       "es": "Respira hondo. Lo haces mejor de lo que sientes.",
@@ -3060,7 +3670,9 @@
       "it": "Respira a fondo. Lo fai meglio di quanto senti.",
       "nl": "Adem diep. Je doet het beter dan je voelt.",
       "zh": "深呼吸。你做得比你感觉到的好。",
-      "zht": "深呼吸。你做得比你感覺到的好。"
+      "zht": "深呼吸。你做得比你感覺到的好。",
+      "bg": "Поеми дълбоко въздух. Справяш се по-добре, отколкото усещаш.",
+      "pl": "Odetchnij głęboko. Radzisz sobie lepiej, niż czujesz."
     },
     {
       "es": "Sal a caminar y deja que el paisaje te acompañe.",
@@ -3070,7 +3682,9 @@
       "it": "Vai a camminare e lascia che il paesaggio ti accompagni.",
       "nl": "Ga wandelen en laat het landschap je gezelschap houden.",
       "zh": "去走走，让风景陪着你。",
-      "zht": "去走走，讓風景陪著你。"
+      "zht": "去走走，讓風景陪著你。",
+      "bg": "Излез да повървиш и остави пейзажът да те придружи.",
+      "pl": "Wyjdź na spacer i pozwól krajobrazowi ci towarzyszyć."
     },
     {
       "es": "Cuídate hoy en lo pequeño; es donde vive lo grande.",
@@ -3080,7 +3694,9 @@
       "it": "Cura il piccolo oggi; è lì che vive il grande.",
       "nl": "Verzorg vandaag het kleine; daar leeft het grote.",
       "zh": "今天照顾好小事；大的就活在那里。",
-      "zht": "今天照顧好小事；大的就活在那裡。"
+      "zht": "今天照顧好小事；大的就活在那裡。",
+      "bg": "Грижи се днес за малкото; там живее голямото.",
+      "pl": "Zadbaj dziś o małe; tam mieszka wielkie."
     },
     {
       "es": "La isla tiene un rincón para tu paz. Búscalo con calma.",
@@ -3090,7 +3706,9 @@
       "it": "L'isola ha un angolo per la tua pace. Cercalo con calma.",
       "nl": "Het eiland heeft een hoekje voor jouw vrede. Zoek het rustig.",
       "zh": "岛为你的平静藏着一个角落。慢慢去找。",
-      "zht": "島為你的平靜藏著一個角落。慢慢去找。"
+      "zht": "島為你的平靜藏著一個角落。慢慢去找。",
+      "bg": "Островът има кътче за твоя мир. Потърси го спокойно.",
+      "pl": "Wyspa ma zakątek dla twojego spokoju. Poszukaj go bez pośpiechu."
     },
     {
       "es": "Basta con estar presente hoy. Eso ya es mucho.",
@@ -3100,7 +3718,9 @@
       "it": "Essere presente oggi basta. È già tanto.",
       "nl": "Aanwezig zijn is vandaag genoeg. Dat is al veel.",
       "zh": "今天活在当下，就够了。这已经很多。",
-      "zht": "今天活在當下，就夠了。這已經很多。"
+      "zht": "今天活在當下，就夠了。這已經很多。",
+      "bg": "Стига да си присъстващ днес. Това вече е много.",
+      "pl": "Wystarczy dziś być obecnym. To już dużo."
     },
     {
       "es": "El sol vuelve a salir, y tienes un día por delante.",
@@ -3110,7 +3730,9 @@
       "it": "Il sole sorge di nuovo, e hai un giorno davanti.",
       "nl": "De zon komt weer op, en je hebt een dag voor je.",
       "zh": "太阳再次升起，你面前是崭新的一天。",
-      "zht": "太陽再次升起，你面前是嶄新的一天。"
+      "zht": "太陽再次升起，你面前是嶄新的一天。",
+      "bg": "Слънцето изгрява отново и имаш цял ден пред себе си.",
+      "pl": "Słońce znów wschodzi, a przed tobą cały dzień."
     },
     {
       "es": "Descansar también es avanzar hacia ti.",
@@ -3120,7 +3742,9 @@
       "it": "Riposare è anche avanzare verso te.",
       "nl": "Rusten is ook naar jezelf toe bewegen.",
       "zh": "休息，也是朝自己靠近。",
-      "zht": "休息，也是朝自己靠近。"
+      "zht": "休息，也是朝自己靠近。",
+      "bg": "Почивката също е крачка към самия теб.",
+      "pl": "Odpoczynek to też krok w stronę siebie."
     },
     {
       "es": "Explora con calma y deja que la isla te sorprenda.",
@@ -3130,7 +3754,9 @@
       "it": "Esplora con calma e lascia che l'isola ti sorprenda.",
       "nl": "Verken rustig en laat het eiland je verrassen.",
       "zh": "从容地探索，让这座岛给你惊喜。",
-      "zht": "從容地探索，讓這座島給你驚喜。"
+      "zht": "從容地探索，讓這座島給你驚喜。",
+      "bg": "Разглеждай спокойно и остави острова да те изненада.",
+      "pl": "Zwiedzaj spokojnie i pozwól wyspie cię zaskoczyć."
     },
     {
       "es": "Un pequeño paso hoy te acerca a lo que quieres.",
@@ -3140,7 +3766,9 @@
       "it": "Un piccolo passo oggi ti avvicina a ciò che vuoi.",
       "nl": "Een kleine stap vandaag brengt je dichter bij wat je wilt.",
       "zh": "今天的一小步，让你更接近你想要的。",
-      "zht": "今天的一小步，讓你更接近你想要的。"
+      "zht": "今天的一小步，讓你更接近你想要的。",
+      "bg": "Малка крачка днес те приближава до това, което искаш.",
+      "pl": "Mały krok dziś przybliża cię do tego, czego chcesz."
     },
     {
       "es": "Sal a que el aire limpie lo que la prisa ensucia.",
@@ -3150,7 +3778,9 @@
       "it": "Lascia che l'aria pulisca ciò che la fretta sporca.",
       "nl": "Laat de lucht schoonmaken wat de haast vuil maakt.",
       "zh": "让空气洗净被匆忙弄脏的一切。",
-      "zht": "讓空氣洗淨被匆忙弄髒的一切。"
+      "zht": "讓空氣洗淨被匆忙弄髒的一切。",
+      "bg": "Излез въздухът да изчисти това, което бързането зацапва.",
+      "pl": "Wyjdź, niech powietrze oczyści to, co pośpiech zabrudził."
     },
     {
       "es": "Sé constante contigo, con cariño. Ahí está la clave.",
@@ -3160,7 +3790,9 @@
       "it": "Sii costante con te, con tenerezza. È lì la chiave.",
       "nl": "Wees standvastig met jezelf, met tederheid. Daar zit de sleutel.",
       "zh": "温柔地对自己坚持。关键就在这里。",
-      "zht": "溫柔地對自己堅持。關鍵就在這裡。"
+      "zht": "溫柔地對自己堅持。關鍵就在這裡。",
+      "bg": "Бъди постоянен със себе си, с обич. Там е ключът.",
+      "pl": "Bądź wobec siebie wytrwały i czuły. W tym tkwi klucz."
     },
     {
       "es": "Hoy mira algo bonito sin prisa. Solo mirar ya cura.",
@@ -3170,7 +3802,9 @@
       "it": "Guarda oggi qualcosa di bello senza fretta. Guardare già cura.",
       "nl": "Kijk vandaag zonder haast naar iets moois. Kijken geneest al.",
       "zh": "今天不慌不忙地看点美好。光是看，就已疗愈。",
-      "zht": "今天不慌不忙地看點美好。光是看，就已療癒。"
+      "zht": "今天不慌不忙地看點美好。光是看，就已療癒。",
+      "bg": "Днес погледай нещо красиво без бързане. Само гледането вече лекува.",
+      "pl": "Popatrz dziś na coś pięknego bez pośpiechu. Samo patrzenie już leczy."
     },
     {
       "es": "El mar te enseña a soltar. Deja marchar lo de hoy.",
@@ -3180,7 +3814,9 @@
       "it": "Il mare ti insegna a lasciare andare. Lascia andare oggi.",
       "nl": "De zee leert je loslaten. Laat vandaag los.",
       "zh": "大海教你放手。今天，放它走吧。",
-      "zht": "大海教你放手。今天，放它走吧。"
+      "zht": "大海教你放手。今天，放它走吧。",
+      "bg": "Морето те учи да пускаш. Остави днешното да си иде.",
+      "pl": "Morze uczy puszczać. Pozwól odejść temu, co dzisiejsze."
     },
     {
       "es": "Un paso, una respiración, una sonrisa. Empieza por ahí.",
@@ -3190,7 +3826,9 @@
       "it": "Un passo, un respiro, un sorriso. Comincia da lì.",
       "nl": "Een stap, een ademhaling, een glimlach. Begin daar.",
       "zh": "一步、一次呼吸、一个微笑。从这里开始。",
-      "zht": "一步、一次呼吸、一個微笑。從這裡開始。"
+      "zht": "一步、一次呼吸、一個微笑。從這裡開始。",
+      "bg": "Крачка, дъх, усмивка. Започни оттам.",
+      "pl": "Krok, oddech, uśmiech. Zacznij od tego."
     },
     {
       "es": "No tienes que llegar el primero. Solo llegar entero.",
@@ -3200,7 +3838,9 @@
       "it": "Non devi arrivare primo. Solo arrivare intero.",
       "nl": "Je hoeft niet als eerste aan te komen. Alleen heel aankomen.",
       "zh": "你不必第一个到。完整地抵达就好。",
-      "zht": "你不必第一個到。完整地抵達就好。"
+      "zht": "你不必第一個到。完整地抵達就好。",
+      "bg": "Не е нужно да стигнеш пръв. Само да стигнеш цял.",
+      "pl": "Nie musisz dojść pierwszy. Wystarczy dojść w całości."
     },
     {
       "es": "Regálate hoy silencio un momento. La cabeza lo agradece.",
@@ -3210,7 +3850,9 @@
       "it": "Regalati oggi un momento di silenzio. La testa ringrazia.",
       "nl": "Gun jezelf vandaag een moment stilte. Je hoofd dankt het.",
       "zh": "今天给自己片刻的安静。头脑会感谢你。",
-      "zht": "今天給自己片刻的安靜。頭腦會感謝你。"
+      "zht": "今天給自己片刻的安靜。頭腦會感謝你。",
+      "bg": "Подари си днес миг тишина. Главата ще ти благодари.",
+      "pl": "Podaruj sobie dziś chwilę ciszy. Głowa będzie wdzięczna."
     },
     {
       "es": "Camina hacia el sol y deja atrás las nubes de dentro.",
@@ -3220,7 +3862,9 @@
       "it": "Cammina verso il sole e lascia indietro le nuvole di dentro.",
       "nl": "Loop naar de zon en laat de innerlijke wolken achter.",
       "zh": "朝阳光走去，把内心的乌云留在身后。",
-      "zht": "朝陽光走去，把內心的烏雲留在身後。"
+      "zht": "朝陽光走去，把內心的烏雲留在身後。",
+      "bg": "Върви към слънцето и остави зад себе си вътрешните облаци.",
+      "pl": "Idź w stronę słońca i zostaw za sobą wewnętrzne chmury."
     },
     {
       "es": "Hoy hazte caso. Nadie te conoce mejor que tú.",
@@ -3230,7 +3874,9 @@
       "it": "Oggi fidati di te. Nessuno ti conosce meglio.",
       "nl": "Vertrouw vandaag op jezelf. Niemand kent je beter.",
       "zh": "今天相信自己。没有谁比你更了解你。",
-      "zht": "今天相信自己。沒有誰比你更了解你。"
+      "zht": "今天相信自己。沒有誰比你更了解你。",
+      "bg": "Днес се послушай. Никой не те познава по-добре от теб.",
+      "pl": "Posłuchaj dziś siebie. Nikt cię nie zna lepiej niż ty."
     },
     {
       "es": "Un rincón de la isla te espera con calma. Ve a por él.",
@@ -3240,7 +3886,9 @@
       "it": "Un angolo dell'isola ti aspetta, calmo. Vacci.",
       "nl": "Een hoekje van het eiland wacht, rustig. Ga ernaartoe.",
       "zh": "岛上有个安静的角落在等你。去吧。",
-      "zht": "島上有個安靜的角落在等你。去吧。"
+      "zht": "島上有個安靜的角落在等你。去吧。",
+      "bg": "Кътче от острова те чака спокойно. Иди за него.",
+      "pl": "Zakątek wyspy czeka na ciebie spokojnie. Idź po niego."
     },
     {
       "es": "Sé paciente: los buenos días también vuelven.",
@@ -3250,7 +3898,9 @@
       "it": "Sii paziente: anche i giorni buoni tornano.",
       "nl": "Wees geduldig: ook de goede dagen komen terug.",
       "zh": "有耐心：好日子也会回来。",
-      "zht": "有耐心：好日子也會回來。"
+      "zht": "有耐心：好日子也會回來。",
+      "bg": "Бъди търпелив: хубавите дни също се връщат.",
+      "pl": "Bądź cierpliwy: dobre dni też wracają."
     },
     {
       "es": "El aire de mar reordena lo que la vida enreda.",
@@ -3260,7 +3910,9 @@
       "it": "L'aria di mare riordina ciò che la vita ingarbuglia.",
       "nl": "Zeelucht ordent wat het leven in de war maakt.",
       "zh": "海风会理顺生活弄乱的一切。",
-      "zht": "海風會理順生活弄亂的一切。"
+      "zht": "海風會理順生活弄亂的一切。",
+      "bg": "Морският въздух подрежда това, което животът заплита.",
+      "pl": "Morskie powietrze porządkuje to, co życie plącze."
     },
     {
       "es": "Hoy trátate con dulzura. Te lo has ganado.",
@@ -3270,7 +3922,9 @@
       "it": "Oggi trattati con dolcezza. Te lo sei meritato.",
       "nl": "Behandel jezelf vandaag zacht. Je hebt het verdiend.",
       "zh": "今天温柔待自己。这是你应得的。",
-      "zht": "今天溫柔待自己。這是你應得的。"
+      "zht": "今天溫柔待自己。這是你應得的。",
+      "bg": "Днес се отнеси със себе си нежно. Заслужил си го.",
+      "pl": "Potraktuj się dziś łagodnie. Zasłużyłeś na to."
     },
     {
       "es": "Muévete un rato, respira hondo, y mira el horizonte.",
@@ -3280,7 +3934,9 @@
       "it": "Muoviti un po', respira a fondo, e guarda l'orizzonte.",
       "nl": "Beweeg wat, adem diep, en kijk naar de horizon.",
       "zh": "动一动，深呼吸，然后望向地平线。",
-      "zht": "動一動，深呼吸，然後望向地平線。"
+      "zht": "動一動，深呼吸，然後望向地平線。",
+      "bg": "Раздвижи се малко, поеми дълбоко въздух и погледни хоризонта.",
+      "pl": "Poruszaj się chwilę, odetchnij głęboko i popatrz na horyzont."
     },
     {
       "es": "Lo pequeño de hoy sostiene lo grande de mañana.",
@@ -3290,7 +3946,9 @@
       "it": "Il piccolo di oggi sostiene il grande di domani.",
       "nl": "Het kleine van vandaag draagt het grote van morgen.",
       "zh": "今天的小，撑起明天的大。",
-      "zht": "今天的小，撐起明天的大。"
+      "zht": "今天的小，撐起明天的大。",
+      "bg": "Малкото от днес крепи голямото на утре.",
+      "pl": "To, co małe dzisiaj, podtrzymuje to, co wielkie jutro."
     },
     {
       "es": "Descansa sin remordimiento. Es parte de crecer.",
@@ -3300,7 +3958,9 @@
       "it": "Riposa senza rimorso. Fa parte del crescere.",
       "nl": "Rust zonder wroeging. Het hoort bij het groeien.",
       "zh": "休息，不必自责。那是成长的一部分。",
-      "zht": "休息，不必自責。那是成長的一部分。"
+      "zht": "休息，不必自責。那是成長的一部分。",
+      "bg": "Почивай без угризения. Това е част от растежа.",
+      "pl": "Odpoczywaj bez wyrzutów. To część wzrastania."
     },
     {
       "es": "Sal a caminar y deja que se calme el ruido de dentro.",
@@ -3310,7 +3970,9 @@
       "it": "Vai a camminare e lascia calmare il rumore di dentro.",
       "nl": "Ga wandelen en laat het lawaai van binnen kalmeren.",
       "zh": "去走走，让内心的喧嚣平静下来。",
-      "zht": "去走走，讓內心的喧囂平靜下來。"
+      "zht": "去走走，讓內心的喧囂平靜下來。",
+      "bg": "Излез да повървиш и остави вътрешният шум да утихне.",
+      "pl": "Wyjdź na spacer i pozwól ucichnąć wewnętrznemu hałasowi."
     },
     {
       "es": "Estás justo a tiempo. No vas tarde a tu vida.",
@@ -3320,7 +3982,9 @@
       "it": "Sei giusto in tempo. Non sei in ritardo sulla tua vita.",
       "nl": "Je bent precies op tijd. Je bent niet te laat voor je leven.",
       "zh": "你正好赶上。你并没有迟到于自己的人生。",
-      "zht": "你正好趕上。你並沒有遲到於自己的人生。"
+      "zht": "你正好趕上。你並沒有遲到於自己的人生。",
+      "bg": "Точно навреме си. Не закъсняваш за живота си.",
+      "pl": "Jesteś dokładnie na czas. Nie spóźniasz się do swojego życia."
     },
     {
       "es": "Un paseo con el mar de fondo cura casi cualquier prisa.",
@@ -3330,7 +3994,9 @@
       "it": "Una passeggiata col mare alle spalle cura quasi ogni fretta.",
       "nl": "Een wandeling met de zee in de rug geneest bijna elke haast.",
       "zh": "一段海在身后的散步，几乎能治愈一切匆忙。",
-      "zht": "一段海在身後的散步，幾乎能治癒一切匆忙。"
+      "zht": "一段海在身後的散步，幾乎能治癒一切匆忙。",
+      "bg": "Разходка с морето отзад лекува почти всяко бързане.",
+      "pl": "Spacer z morzem w tle leczy prawie każdy pośpiech."
     },
     {
       "es": "Hoy cuida tu paz como lo más valioso que tienes.",
@@ -3340,7 +4006,9 @@
       "it": "Oggi custodisci la tua pace come la cosa più preziosa che hai.",
       "nl": "Bewaak vandaag je vrede als je kostbaarste bezit.",
       "zh": "今天守护你的平静，当作你最珍贵的东西。",
-      "zht": "今天守護你的平靜，當作你最珍貴的東西。"
+      "zht": "今天守護你的平靜，當作你最珍貴的東西。",
+      "bg": "Днес пази мира си като най-ценното, което имаш.",
+      "pl": "Dbaj dziś o swój spokój jak o najcenniejsze, co masz."
     },
     {
       "es": "Ve a ver el cielo un momento. Sigue siendo inmenso.",
@@ -3350,7 +4018,9 @@
       "it": "Vai a guardare il cielo un momento. Sempre immenso.",
       "nl": "Ga even naar de lucht kijken. Nog steeds onmetelijk.",
       "zh": "去看看天空。它依旧无边无际。",
-      "zht": "去看看天空。它依舊無邊無際。"
+      "zht": "去看看天空。它依舊無邊無際。",
+      "bg": "Иди да погледаш небето за миг. То още е необятно.",
+      "pl": "Popatrz chwilę na niebo. Wciąż jest ogromne."
     },
     {
       "es": "No hace falta que hoy brilles. Basta con que sigas.",
@@ -3360,7 +4030,9 @@
       "it": "Non devi brillare oggi. Solo continuare.",
       "nl": "Je hoeft vandaag niet te schitteren. Alleen door te gaan.",
       "zh": "你今天不必发光。只要继续就好。",
-      "zht": "你今天不必發光。只要繼續就好。"
+      "zht": "你今天不必發光。只要繼續就好。",
+      "bg": "Не е нужно днес да блестиш. Стига да продължиш.",
+      "pl": "Nie musisz dziś błyszczeć. Wystarczy, że idziesz dalej."
     },
     {
       "es": "Respira. Ya estás haciendo bastante por hoy.",
@@ -3370,7 +4042,9 @@
       "it": "Respira. Stai già facendo abbastanza per oggi.",
       "nl": "Adem. Je doet vandaag al genoeg.",
       "zh": "呼吸。今天你已经做得够多了。",
-      "zht": "呼吸。今天你已經做得夠多了。"
+      "zht": "呼吸。今天你已經做得夠多了。",
+      "bg": "Дишай. Вече правиш достатъчно за днес.",
+      "pl": "Oddychaj. Robisz już dziś wystarczająco dużo."
     },
     {
       "es": "Camina hacia el mar y respira su calma un rato.",
@@ -3380,7 +4054,9 @@
       "it": "Cammina verso il mare e respira la sua calma un po'.",
       "nl": "Loop richting de zee en adem even haar kalmte.",
       "zh": "朝海走去，短短地呼吸它的宁静。",
-      "zht": "朝海走去，短短地呼吸它的寧靜。"
+      "zht": "朝海走去，短短地呼吸它的寧靜。",
+      "bg": "Върви към морето и подиши спокойствието му малко.",
+      "pl": "Idź w stronę morza i pooddychaj chwilę jego spokojem."
     },
     {
       "es": "Hoy escucha tu cuerpo. Casi siempre tiene razón.",
@@ -3390,7 +4066,9 @@
       "it": "Ascolta il tuo corpo oggi. Ha quasi sempre ragione.",
       "nl": "Luister vandaag naar je lichaam. Het heeft meestal gelijk.",
       "zh": "今天倾听你的身体。它几乎总是对的。",
-      "zht": "今天傾聽你的身體。它幾乎總是對的。"
+      "zht": "今天傾聽你的身體。它幾乎總是對的。",
+      "bg": "Днес слушай тялото си. То почти винаги е право.",
+      "pl": "Posłuchaj dziś swojego ciała. Prawie zawsze ma rację."
     },
     {
       "es": "Un rincón nuevo, una alegría pequeña. Sal a buscarla.",
@@ -3400,7 +4078,9 @@
       "it": "Un angolo nuovo, una piccola gioia. Vai a cercarla.",
       "nl": "Een nieuw hoekje, een kleine vreugde. Ga het zoeken.",
       "zh": "一个新角落，一点小欢喜。去找找看。",
-      "zht": "一個新角落，一點小歡喜。去找找看。"
+      "zht": "一個新角落，一點小歡喜。去找找看。",
+      "bg": "Ново кътче, малка радост. Излез да я потърсиш.",
+      "pl": "Nowy zakątek, mała radość. Wyjdź jej poszukać."
     },
     {
       "es": "Sé amable contigo en lo difícil. Ahí más que nunca.",
@@ -3410,7 +4090,9 @@
       "it": "Sii dolce con te nel difficile. Lì più che mai.",
       "nl": "Wees zacht voor jezelf in het moeilijke. Daar meer dan ooit.",
       "zh": "在艰难里对自己温柔。此刻更要如此。",
-      "zht": "在艱難裡對自己溫柔。此刻更要如此。"
+      "zht": "在艱難裡對自己溫柔。此刻更要如此。",
+      "bg": "Бъди мил със себе си в трудното. Тогава най-много.",
+      "pl": "Bądź dla siebie życzliwy w trudnym. Wtedy najbardziej."
     },
     {
       "es": "El sol sale para acompañarte también hoy.",
@@ -3420,7 +4102,9 @@
       "it": "Il sole sorge per accompagnarti anche oggi.",
       "nl": "De zon komt op om je vandaag ook gezelschap te houden.",
       "zh": "太阳升起，今天也来陪着你。",
-      "zht": "太陽升起，今天也來陪著你。"
+      "zht": "太陽升起，今天也來陪著你。",
+      "bg": "Слънцето изгрява, за да те придружи и днес.",
+      "pl": "Słońce wschodzi, by i dziś ci towarzyszyć."
     },
     {
       "es": "Descansa hoy. Mañana también habrá camino.",
@@ -3430,7 +4114,9 @@
       "it": "Riposa oggi. Anche domani ci sarà un cammino.",
       "nl": "Rust vandaag. Ook morgen is er een weg.",
       "zh": "今天休息。明天也会有路。",
-      "zht": "今天休息。明天也會有路。"
+      "zht": "今天休息。明天也會有路。",
+      "bg": "Почини си днес. И утре ще има път.",
+      "pl": "Odpocznij dziś. Jutro też będzie droga."
     },
     {
       "es": "Explora sin prisa: lo mejor no se ve corriendo.",
@@ -3440,7 +4126,9 @@
       "it": "Esplora senza fretta: il meglio non si vede correndo.",
       "nl": "Verken zonder haast: het beste zie je niet al rennend.",
       "zh": "不慌不忙地探索：最好的，奔跑时看不见。",
-      "zht": "不慌不忙地探索：最好的，奔跑時看不見。"
+      "zht": "不慌不忙地探索：最好的，奔跑時看不見。",
+      "bg": "Разглеждай без бързане: най-хубавото не се вижда в движение.",
+      "pl": "Zwiedzaj bez pośpiechu: najlepszego nie widać w biegu."
     },
     {
       "es": "Un paso hacia fuera despeja mil vueltas de dentro.",
@@ -3450,7 +4138,9 @@
       "it": "Un passo verso fuori schiarisce mille giri di dentro.",
       "nl": "Een stap naar buiten verheldert duizend rondjes van binnen.",
       "zh": "向外的一步，理清内心千百次打转。",
-      "zht": "向外的一步，理清內心千百次打轉。"
+      "zht": "向外的一步，理清內心千百次打轉。",
+      "bg": "Една крачка навън избистря хиляда обиколки навътре.",
+      "pl": "Jeden krok na zewnątrz rozjaśnia tysiąc kółek w środku."
     },
     {
       "es": "Sal a que el viento te ordene lo que la mente enreda.",
@@ -3460,7 +4150,9 @@
       "it": "Lascia che il vento ordini ciò che la mente ingarbuglia.",
       "nl": "Laat de wind ordenen wat je hoofd in de war maakt.",
       "zh": "让风理顺头脑里纠缠的一切。",
-      "zht": "讓風理順頭腦裡糾纏的一切。"
+      "zht": "讓風理順頭腦裡糾纏的一切。",
+      "bg": "Излез вятърът да ти подреди това, което умът заплита.",
+      "pl": "Wyjdź, niech wiatr uporządkuje to, co umysł plącze."
     },
     {
       "es": "Hoy honra tu ritmo. Es el correcto para ti.",
@@ -3470,7 +4162,9 @@
       "it": "Oggi onora il tuo ritmo. È quello giusto per te.",
       "nl": "Eer vandaag je tempo. Het is het juiste voor jou.",
       "zh": "今天尊重你的节奏。它对你正合适。",
-      "zht": "今天尊重你的節奏。它對你正合適。"
+      "zht": "今天尊重你的節奏。它對你正合適。",
+      "bg": "Днес почети своя ритъм. Той е правилният за теб.",
+      "pl": "Uszanuj dziś swój rytm. Jest właściwy dla ciebie."
     },
     {
       "es": "Mira el mar y respira. Se aligera algo por dentro.",
@@ -3480,7 +4174,9 @@
       "it": "Guarda il mare e respira. Qualcosa si alleggerisce dentro.",
       "nl": "Kijk naar de zee en adem. Iets wordt van binnen lichter.",
       "zh": "看着海，呼吸。内心有什么变轻了。",
-      "zht": "看著海，呼吸。內心有什麼變輕了。"
+      "zht": "看著海，呼吸。內心有什麼變輕了。",
+      "bg": "Гледай морето и дишай. Нещо вътре олеква.",
+      "pl": "Patrz na morze i oddychaj. Coś w środku lżeje."
     },
     {
       "es": "No compites con nadie. Caminas tu propio tramo.",
@@ -3490,7 +4186,9 @@
       "it": "Non competi con nessuno. Cammini il tuo tratto.",
       "nl": "Je concurreert met niemand. Je loopt je eigen stuk.",
       "zh": "你不与任何人竞争。你走你自己的一段。",
-      "zht": "你不與任何人競爭。你走你自己的一段。"
+      "zht": "你不與任何人競爭。你走你自己的一段。",
+      "bg": "Не се състезаваш с никого. Вървиш по своята отсечка.",
+      "pl": "Z nikim nie konkurujesz. Idziesz swoim odcinkiem."
     },
     {
       "es": "Un paseo con vistas te devuelve al presente.",
@@ -3500,7 +4198,9 @@
       "it": "Una passeggiata con vista ti riporta al presente.",
       "nl": "Een wandeling met uitzicht brengt je terug naar het nu.",
       "zh": "一段有风景的散步，把你带回当下。",
-      "zht": "一段有風景的散步，把你帶回當下。"
+      "zht": "一段有風景的散步，把你帶回當下。",
+      "bg": "Разходка с гледка те връща в настоящето.",
+      "pl": "Spacer z widokiem przywraca cię do teraźniejszości."
     },
     {
       "es": "Cuida tu descanso hoy como cuidas lo que amas.",
@@ -3510,7 +4210,9 @@
       "it": "Cura oggi il tuo riposo come curi ciò che ami.",
       "nl": "Verzorg vandaag je rust zoals je zorgt voor wat je liefhebt.",
       "zh": "今天像珍惜所爱那样，照顾你的休息。",
-      "zht": "今天像珍惜所愛那樣，照顧你的休息。"
+      "zht": "今天像珍惜所愛那樣，照顧你的休息。",
+      "bg": "Пази съня си днес, както пазиш това, което обичаш.",
+      "pl": "Dbaj dziś o sen tak, jak dbasz o to, co kochasz."
     },
     {
       "es": "Regálate un rato tranquilo, sin culpa, solo para ti.",
@@ -3520,7 +4222,9 @@
       "it": "Regalati un momento tranquillo, senza colpa, solo per te.",
       "nl": "Gun jezelf een rustig moment, zonder schuld, alleen voor jou.",
       "zh": "给自己一段安静的时光，不必内疚，只属于你。",
-      "zht": "給自己一段安靜的時光，不必內疚，只屬於你。"
+      "zht": "給自己一段安靜的時光，不必內疚，只屬於你。",
+      "bg": "Подари си спокоен миг, без вина, само за теб.",
+      "pl": "Podaruj sobie spokojną chwilę, bez winy, tylko dla siebie."
     },
     {
       "es": "La naturaleza te acepta entero. Ve a estar en ella.",
@@ -3530,7 +4234,9 @@
       "it": "La natura ti accetta intero. Vai a starci dentro.",
       "nl": "De natuur aanvaardt je helemaal. Ga erin zijn.",
       "zh": "大自然完整地接纳你。去置身其中。",
-      "zht": "大自然完整地接納你。去置身其中。"
+      "zht": "大自然完整地接納你。去置身其中。",
+      "bg": "Природата те приема целия. Иди да побъдеш в нея.",
+      "pl": "Natura przyjmuje cię w całości. Idź w niej pobyć."
     },
     {
       "es": "Sé suave, sé constante, y sigue. Así se llega.",
@@ -3540,7 +4246,9 @@
       "it": "Sii dolce, sii costante, e continua. Così si arriva.",
       "nl": "Wees zacht, wees standvastig, en ga door. Zo kom je aan.",
       "zh": "温柔、坚持，然后继续。这样就能抵达。",
-      "zht": "溫柔、堅持，然後繼續。這樣就能抵達。"
+      "zht": "溫柔、堅持，然後繼續。這樣就能抵達。",
+      "bg": "Бъди мек, бъди постоянен и продължавай. Така се стига.",
+      "pl": "Bądź łagodny, bądź wytrwały i idź dalej. Tak się dochodzi."
     },
     {
       "es": "El aire fresco te reinicia por dentro. Sal a por él.",
@@ -3550,7 +4258,9 @@
       "it": "L'aria fresca ti riavvia da dentro. Vai a prenderne.",
       "nl": "Frisse lucht herstart je van binnen. Ga wat halen.",
       "zh": "新鲜空气从内里给你重启。去取一点。",
-      "zht": "新鮮空氣從內裡給你重啟。去取一點。"
+      "zht": "新鮮空氣從內裡給你重啟。去取一點。",
+      "bg": "Свежият въздух те рестартира отвътре. Излез за него.",
+      "pl": "Świeże powietrze resetuje cię od środka. Wyjdź po nie."
     },
     {
       "es": "Hoy nota lo bueno, aunque sea pequeño, y agradécelo.",
@@ -3560,7 +4270,9 @@
       "it": "Nota oggi il buono, per quanto piccolo, e sii grato.",
       "nl": "Merk vandaag het goede op, hoe klein ook, en wees dankbaar.",
       "zh": "今天留意好的，无论多小，心怀感激。",
-      "zht": "今天留意好的，無論多小，心懷感激。"
+      "zht": "今天留意好的，無論多小，心懷感激。",
+      "bg": "Днес забележи хубавото, макар и малко, и му благодари.",
+      "pl": "Zauważ dziś to, co dobre, choćby drobne, i bądź za to wdzięczny."
     },
     {
       "es": "Camina hacia algo bello y quédate a mirarlo un rato.",
@@ -3570,7 +4282,9 @@
       "it": "Cammina verso qualcosa di bello e resta a guardarlo un po'.",
       "nl": "Loop naar iets moois en blijf er even naar kijken.",
       "zh": "走向美好的事物，停下来看它一会儿。",
-      "zht": "走向美好的事物，停下來看它一會兒。"
+      "zht": "走向美好的事物，停下來看它一會兒。",
+      "bg": "Върви към нещо красиво и остани да го гледаш малко.",
+      "pl": "Idź w stronę czegoś pięknego i zostań, by chwilę popatrzeć."
     },
     {
       "es": "No te midas por el día más duro. No es tu medida.",
@@ -3580,7 +4294,9 @@
       "it": "Non misurarti col giorno più duro. Non è la tua misura.",
       "nl": "Meet jezelf niet aan de zwaarste dag. Dat is je maat niet.",
       "zh": "别用最难的日子衡量自己。那不是你的尺度。",
-      "zht": "別用最難的日子衡量自己。那不是你的尺度。"
+      "zht": "別用最難的日子衡量自己。那不是你的尺度。",
+      "bg": "Не се меря по най-тежкия ден. Той не е твоята мярка.",
+      "pl": "Nie mierz się najtrudniejszym dniem. To nie twoja miara."
     },
     {
       "es": "Un sendero nuevo alivia el peso de la rutina.",
@@ -3590,7 +4306,9 @@
       "it": "Un sentiero nuovo allevia il peso della routine.",
       "nl": "Een nieuw pad verlicht het gewicht van de routine.",
       "zh": "一条新路，会减轻日常的重量。",
-      "zht": "一條新路，會減輕日常的重量。"
+      "zht": "一條新路，會減輕日常的重量。",
+      "bg": "Нова пътека облекчава тежестта на рутината.",
+      "pl": "Nowa ścieżka zdejmuje ciężar rutyny."
     },
     {
       "es": "Respira. Se llega mejor sin prisa que con agobio.",
@@ -3600,7 +4318,9 @@
       "it": "Respira. Si arriva meglio senza fretta che con la tensione.",
       "nl": "Adem. Je komt beter aan zonder haast dan met spanning.",
       "zh": "呼吸。不慌不忙比紧绷更能抵达。",
-      "zht": "呼吸。不慌不忙比緊繃更能抵達。"
+      "zht": "呼吸。不慌不忙比緊繃更能抵達。",
+      "bg": "Дишай. По-добре се стига без бързане, отколкото с напрежение.",
+      "pl": "Oddychaj. Lepiej dochodzi się bez pośpiechu niż w napięciu."
     },
     {
       "es": "Sal a que el sol te toque. Es de lo más sencillo y sano.",
@@ -3610,7 +4330,9 @@
       "it": "Lascia che il sole ti tocchi. È semplice e sano.",
       "nl": "Laat de zon je raken. Simpel en gezond.",
       "zh": "让阳光碰碰你。简单又健康。",
-      "zht": "讓陽光碰碰你。簡單又健康。"
+      "zht": "讓陽光碰碰你。簡單又健康。",
+      "bg": "Излез слънцето да те докосне. Това е най-простото и здравословно нещо.",
+      "pl": "Wyjdź, niech dotknie cię słońce. To najprostsze i najzdrowsze."
     },
     {
       "es": "Hoy pregúntate qué te haría bien, y dátelo.",
@@ -3620,7 +4342,9 @@
       "it": "Chiediti cosa ti farebbe bene, e dattelo.",
       "nl": "Vraag jezelf wat je zou goeddoen, en geef het jezelf.",
       "zh": "问问自己什么对你有益，然后把它给自己。",
-      "zht": "問問自己什麼對你有益，然後把它給自己。"
+      "zht": "問問自己什麼對你有益，然後把它給自己。",
+      "bg": "Днес се запитай какво би ти се отразило добре, и си го дай.",
+      "pl": "Zapytaj się dziś, co by ci dobrze zrobiło, i daj to sobie."
     },
     {
       "es": "El mar no se apura y siempre llega. Ten su paciencia.",
@@ -3630,7 +4354,9 @@
       "it": "Il mare non si affretta e arriva sempre. Abbi la sua pazienza.",
       "nl": "De zee haast zich niet en komt altijd aan. Heb haar geduld.",
       "zh": "大海不急，却总会抵达。学它的耐心。",
-      "zht": "大海不急，卻總會抵達。學它的耐心。"
+      "zht": "大海不急，卻總會抵達。學它的耐心。",
+      "bg": "Морето не бърза и винаги стига. Имай неговото търпение.",
+      "pl": "Morze się nie spieszy i zawsze dociera. Miej jego cierpliwość."
     },
     {
       "es": "Muévete a tu aire. Cada cuerpo tiene su camino.",
@@ -3640,7 +4366,9 @@
       "it": "Muoviti libero. Ogni corpo ha il suo cammino.",
       "nl": "Beweeg vrij. Elk lichaam heeft zijn eigen weg.",
       "zh": "自由地动。每具身体都有自己的路。",
-      "zht": "自由地動。每具身體都有自己的路。"
+      "zht": "自由地動。每具身體都有自己的路。",
+      "bg": "Движи се както ти е добре. Всяко тяло има свой път.",
+      "pl": "Ruszaj się po swojemu. Każde ciało ma swoją drogę."
     },
     {
       "es": "Vale el paso de hoy. La meta ya se acercará sola.",
@@ -3650,7 +4378,9 @@
       "it": "Il passo di oggi conta. La meta si avvicinerà da sola.",
       "nl": "De stap van vandaag telt. Het doel komt vanzelf dichterbij.",
       "zh": "今天这一步算数。目标会自己靠近。",
-      "zht": "今天這一步算數。目標會自己靠近。"
+      "zht": "今天這一步算數。目標會自己靠近。",
+      "bg": "Струва си днешната крачка. Целта ще се приближи сама.",
+      "pl": "Dzisiejszy krok się liczy. Cel sam się przybliży."
     },
     {
       "es": "Gracias por llegar hasta aquí. Cuídate, y mañana seguimos. 🌙",
@@ -3660,7 +4390,9 @@
       "it": "Grazie per essere arrivato fin qui. Abbi cura di te, e domani continuiamo. 🌙",
       "nl": "Dank je dat je tot hier bent gekomen. Zorg goed voor jezelf, en morgen gaan we verder. 🌙",
       "zh": "谢谢你走到了这里。好好照顾自己，明天我们继续。🌙",
-      "zht": "謝謝你走到了這裡。好好照顧自己，明天我們繼續。🌙"
+      "zht": "謝謝你走到了這裡。好好照顧自己，明天我們繼續。🌙",
+      "bg": "Благодаря ти, че стигна дотук. Пази се, а утре продължаваме. 🌙",
+      "pl": "Dziękuję, że dotarłeś aż tutaj. Dbaj o siebie, a jutro idziemy dalej. 🌙"
     }
   ]
 }
