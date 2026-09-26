@@ -76,7 +76,6 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 - resultado: 520 declaran municipio, 475 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno. 0 contradicciones y 0 municipios fuera de sitio en firme.
 - lo único que quedó abierto de esta área:
   - 5 fichas en el borde municipal: se avisan y no suspenden, porque en un limite las paradas se mezclan y un control que cante en cada borde se acaba ignorando. Son mir-la-corona-guimar, mir-lomo-molino, montana-taco, playa-caleton-sauzal y pr-tf-52-monte-agua.
-  - ar-la-quebrada conserva la etiqueta «Tranquila», que contradice el «Muy tranquila» que se quito del texto. El parche B no listaba tags para esa ficha y no se toco.
 
 ## 0 · Lo verificado, separado de lo que no
 

@@ -334,19 +334,21 @@ fallo: con la fuente desfasada canta el campo y el bloque donde está.
 
 ---
 
-## Las dos cosas que quedan
+## Lo que queda de este bloque
 
-1. ⚠️ **`ar-la-quebrada` conserva la etiqueta «Tranquila».** Contradice el «Muy
-   tranquila» que quitamos del texto en los diez idiomas. El parche B no
-   listaba `tags` para esa ficha y no toco lo que no pides. **¿La borro?**
-2. **Las 5 fichas en el borde municipal** siguen avisadas, y no suspenden: en
-   un límite las paradas se mezclan y un control que canta en cada borde se
-   acaba ignorando. Son `mir-la-corona-guimar`, `mir-lomo-molino`,
-   `montana-taco`, `playa-caleton-sauzal` y `pr-tf-52-monte-agua`. Con la
-   herramienta afinada, dos de ellas ya tienen respuesta —`montana-taco` da
-   Buenavista del Norte y dice La Laguna; `playa-caleton-sauzal` da La Matanza
-   y dice El Sauzal— y las otras tres no se pueden cerrar desde aquí. Si
-   quieres, son la tanda siguiente.
+Nada que dependa de ti. La etiqueta «Tranquila» de `ar-la-quebrada` ya está
+borrada: contradecía el «Muy tranquila» que el parche B quitó del texto en los
+diez idiomas. Las otras **10 fichas** que usan esa etiqueta la conservan, así
+que la fila del glosario sigue en uso.
+
+Sigue abierto, como aviso y sin suspender, lo de siempre: **las 5 fichas en el
+borde municipal**. En un límite las paradas se mezclan y un control que canta
+en cada borde se acaba ignorando. Son `mir-la-corona-guimar`,
+`mir-lomo-molino`, `montana-taco`, `playa-caleton-sauzal` y
+`pr-tf-52-monte-agua`. Con la herramienta afinada, dos ya tienen respuesta
+—`montana-taco` da Buenavista del Norte diciendo La Laguna, y
+`playa-caleton-sauzal` da La Matanza diciendo El Sauzal— y las otras tres no se
+pueden cerrar desde aquí. Si quieres, son la tanda siguiente.
 
 ---
 
