@@ -88,7 +88,11 @@ for (const [k, a] of Object.entries(AREAS)) {
 }
 w('');
 const abiertas = Object.entries(AREAS).filter(([, a]) => a.estado !== 'cerrado');
-w('**Lo único que queda por hacer está en las ' + abiertas.length + ' áreas abiertas:**');
+/* Una sola area abierta decia «en las 1 areas abiertas». Un informe que no
+   sabe contar hasta uno no invita a fiarse del resto de sus cifras. */
+w(abiertas.length === 1
+  ? '**Lo único que queda por hacer está en el área abierta que queda:**'
+  : '**Lo único que queda por hacer está en las ' + abiertas.length + ' áreas abiertas:**');
 w('');
 for (const [k, a] of abiertas) {
   const ab = Array.isArray(a.abierto) ? a.abierto.join('; ') : (a.abierto || '');
@@ -96,7 +100,9 @@ for (const [k, a] of abiertas) {
 }
 w('');
 const cerradas = Object.entries(AREAS).filter(([, a]) => a.estado === 'cerrado');
-w('### Las ' + cerradas.length + ' cerradas, con su techo escrito');
+w(cerradas.length === 1
+  ? '### La cerrada, con su techo escrito'
+  : '### Las ' + cerradas.length + ' cerradas, con su techo escrito');
 w('');
 for (const [k, a] of cerradas) {
   w('**`' + k + '`** · ' + (a.fecha || ''));

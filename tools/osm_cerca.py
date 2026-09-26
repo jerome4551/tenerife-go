@@ -38,12 +38,26 @@ LA REGLA DE LOS APARCAMIENTOS, SIN RED (--aparcamiento)
   con nombre es publica con seguridad. Las sin nombre se imprimen igual, pero
   marcadas, para que se vea lo que se esta descartando.
 
-LO QUE NO ES
+LO QUE NO ES, Y ESTO IMPORTA
   No es Overpass. El pmtiles es un extracto a z14: lleva el nombre y el tipo,
   no todas las etiquetas, y un elemento que OSM tenga pero el extracto no
-  lleve aqui no sale. Por eso imprime CUANTOS hay de ese tipo en toda la isla:
-  si son cuatro, el extracto esta filtrado y no se puede concluir «no existe»;
-  si son quince repartidos, el filtro no se lo esta comiendo.
+  lleve aqui NO SALE.
+
+  QUE ALGO NO ESTE AQUI NO QUIERE DECIR QUE NO ESTE EN OSM. Paso con la
+  Farola del Mar: esta herramienta dio 0 faros en toda la isla y 0 nombres con
+  «faro» o «farola», y la Farola esta en OSM -way 193798986, enlazada desde
+  Wikidata-. Lo mismo con la Ermita de San Telmo. Un 0 aqui es «el extracto no
+  lo trae», nunca «no existe»: hay que decirlo asi al informar.
+
+  Por eso imprime CUANTOS hay de ese tipo en toda la isla: si son cuatro, el
+  extracto esta filtrado y no se puede concluir nada; si son quince
+  repartidos, el filtro no se los esta comiendo -pero sigue sin probar que un
+  elemento concreto no exista-.
+
+  Y ojo con los POIs que en OSM son una VIA o un POLIGONO: aqui llegan como un
+  punto de rotulo. La distancia a ese punto no es la distancia al sitio. El
+  «Paseo de San Telmo» esta a 218 m de su rotulo y la zona peatonal que es ese
+  mismo paseo, a 31 m.
 
   Un mismo elemento aparece en varias teselas: se agrupa por nombre y
   coordenada redondeada antes de contar, que si no «exactamente uno» sale dos.

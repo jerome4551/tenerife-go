@@ -579,11 +579,15 @@
   },
   "faro-santa-cruz-puerto": {
    "fecha": "2026-09-26",
-   "fuente": "Parche auditoria-mar-8: coordenada publicada de la Farola del Mar (28.46935,-16.24581; Wikipedia, contrastada con una foto geolocalizada en Commons a 21 m), empujada 5 m tierra adentro por decision del dueño, con maximo de 15. Queda a 6,4 m del borde y cumple el margen de 3 m del propio parche. Wikipedia y Commons ya difieren 21 m entre si, asi que 5 m cae dentro de la incertidumbre del dato."
+   "fuente": "Wikidata Q5966669 (La Farola del Mar): 28.469439,-16.245831 = 28°28′09.98″N 16°14′44.99″O. La misma ficha da el elemento de OSM: way 193798986. Esa coordenada cae en el AGUA contra la capa earth a z14 -7,6 m del borde-, asi que se aplico la regla del dueño: empujar hasta 5 m tierra adentro sin moverse mas de 15. Dentro de esos 15 m el mejor margen alcanzable es 4,78 m, y se alcanza justo en el tope: 15,00 m de empuje. El resultado esta en tierra con 4,78 m de margen, a 15 m de la coordenada de Wikidata y a 4,7 m del pin anterior (que salia de la lista de Wikipedia). Las tres referencias -Wikidata, Wikipedia y la foto de Commons- difieren hasta 30 m entre si, asi que el empuje cae dentro de la incertidumbre del propio dato. CUANDO HAYA OVERPASS: leer el way 193798986 y usar su geometria."
   },
   "puerto-colon-adeje": {
    "fecha": "2026-09-26",
    "fuente": "OSM del repositorio: el punto de la marina «Puerto Colon». El pin viejo estaba 384 m mas alla, en mar abierto, no en la darsena."
+  },
+  "ermita-san-telmo": {
+   "fecha": "2026-09-26",
+   "fuente": "Wikidata Q2220075 (Ermita de San Telmo): 28.417550,-16.545617 = 28°25′03.18″N 16°32′44.22″O. En tierra, a 18,0 m del borde, asi que se usa tal cual sin empujar. Se mueve 155 m al este del pin viejo, que estaba 18,6 m mar adentro. CONTROL DE SENSATEZ: pasa la primera condicion -a 90 m de la «Playa de San Telmo» del extracto, limite 150- y NO se pudo evaluar la segunda como estaba escrita: el «Paseo de San Telmo» no esta en el extracto como via, sino como UN PUNTO de rotulo, y a ese punto hay 218 m. Un paseo maritimo reducido a un punto no dice a que distancia esta su recorrido. Lo que si hay al lado del punto: una zona peatonal a 31 m y la «Avenida Cristobal Colon» a 98 m, que son ese mismo paseo."
   }
  },
  "areas": {
@@ -675,14 +679,15 @@
    "techo": "El poligono municipal del Cabildo NO esta en el repositorio y no se puede bajar desde aqui (Overpass, Nominatim, IDECanarias y los portales de datos abiertos dan 000). La prueba que se usa son las rayas municipales admin_level 8 del mapa OSM del propio repositorio, con tools/municipio_raya.py, calibrado: de 849 parejas de paradas vecinas de municipio distinto a menos de 1,5 km, 805 (94,8%) tienen de verdad una raya en medio."
   },
   "lugares_en_el_mar": {
-   "estado": "abierto",
+   "estado": "cerrado",
    "fecha": "2026-09-26",
-   "resultado": "Los que caen fuera de tierra los cuenta tools/auditar_en_el_mar.py; aqui no se escribe la cifra, que se queda vieja. De los 6 que habia, 4 se movieron con fuente y 1 quedo exento con su motivo escrito.",
+   "resultado": "0 fichas fuera de tierra que no sean puertos, marinas o charcos.",
    "abierto": [
-    "ermita-san-telmo: 18,6 m mar adentro. La ermita no esta en el extracto; si estan la Playa de San Telmo a 65 m y el Paseo de San Telmo a 70 m, pero las dos iglesias mas cercanas no son ella. Empujarla al borde la pondria en el paseo, no en el edificio.",
-    "puertito-poris-abona: 241 m. Exento por categoria, pero un embarcadero pequeño no tiene una darsena de 241 m. En 600 m no hay ningun muelle, marina ni puerto en el extracto, y en toda la isla lleva 17 muelles y 10 puertos, asi que no los filtra: ahi no hay ninguno."
+    "puertito-poris-abona: 241 m mar adentro. Exento por categoria, pero un embarcadero pequeño no tiene una darsena de 241 m. En 600 m no hay ningun muelle, marina ni puerto en el extracto. Hace falta Overpass o la coordenada publicada.",
+    "faro-santa-cruz-puerto: cuando haya Overpass, leer el way 193798986 de OSM y usar su geometria en vez del empuje de 15 m."
    ],
-   "techo": "Overpass esta cerrado desde aqui (000 en los dos endpoints) y el extracto OSM del repositorio es a z14: no lleva faros, ni el edificio de la ermita, ni el muelle de Poris. Lo que se podia sacar de el se saco con tools/osm_cerca.py."
+   "techo": "Overpass sigue cerrado desde aqui. El extracto OSM del repositorio es a z14 y NO lo trae todo: dio 0 faros en toda la isla y la Farola SI esta en OSM (way 193798986). Un 0 en el extracto significa «no lo trae», nunca «no existe». Los POIs que en OSM son una via o un poligono llegan aqui como un punto de rotulo, asi que la distancia a ese punto no es la distancia al sitio.",
+   "que_se_hizo": "Las 6 fichas que caian fuera de tierra se cerraron una a una. Cuatro con una coordenada de fuente (Wikidata, Wikipedia, la ficha oficial de la playa, el propio OSM del repositorio), una por la regla de aparcamientos y una -whale-watching- exenta por id con su motivo escrito. De paso, puerto-colon-adeje estaba 150 m en mar abierto, no en la darsena, y la exencion por categoria lo tapaba: movido al punto de la marina en OSM."
   }
  },
  "municipio_por_raya": {

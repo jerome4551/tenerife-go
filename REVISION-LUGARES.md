@@ -21,16 +21,15 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 69 respuestas x 10 idiomas = 690, y se llega a las 690 desde el buscador del asistente. |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 137 verificadas con su fuente · 650 sin mirar · 53 puestas a ojo |
+| `coordenadas` | abierto | 138 verificadas con su fuente · 649 sin mirar · 53 puestas a ojo |
 | `municipio_de_cada_ficha` | **cerrado** | 520 declaran municipio, 475 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno. 0 contradicciones y 0 municipios fue |
-| `lugares_en_el_mar` | abierto | Los que caen fuera de tierra los cuenta tools/auditar_en_el_mar.py; aqui no se escribe la cifra, que se queda vieja. De los 6 que  |
+| `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
 
-**Lo único que queda por hacer está en las 2 áreas abiertas:**
+**Lo único que queda por hacer está en el área abierta que queda:**
 
 - **`coordenadas`** — Las que estan escritas con 3 decimales significativos o menos en los dos ejes, o sea puestas a ojo. El informe las cuenta y las lista una a una.
-- **`lugares_en_el_mar`** — ermita-san-telmo: 18,6 m mar adentro. La ermita no esta en el extracto; si estan la Playa de San Telmo a 65 m y el Paseo de San Telmo a 70 m, pero las dos iglesias mas cercanas no son ella. Empujarla al borde la pondria en el paseo, no en el edificio.; puertito-poris-abona: 241 m. Exento por categoria, pero un embarcadero pequeño no tiene una darsena de 241 m. En 600 m no hay ningun muelle, marina ni puerto en el extracto, y en toda la isla lleva 17 muelles y 10 puertos, asi que no los filtra: ahi no hay ninguno.
 
-### Las 8 cerradas, con su techo escrito
+### Las 9 cerradas, con su techo escrito
 
 **`orientacion_playa`** · 2026-09-08
 - qué se hizo: Se buscaron fuentes publicadas para la orientacion de las 65 zonas de bano que no la tenian, y se auditaron una por una las que produjo un modelo de lenguaje.
@@ -77,6 +76,14 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 - lo único que quedó abierto de esta área:
   - 5 fichas en el borde municipal: se avisan y no suspenden, porque en un limite las paradas se mezclan y un control que cante en cada borde se acaba ignorando. Son mir-la-corona-guimar, mir-lomo-molino, montana-taco, playa-caleton-sauzal y pr-tf-52-monte-agua.
 
+**`lugares_en_el_mar`** · 2026-09-26
+- qué se hizo: Las 6 fichas que caian fuera de tierra se cerraron una a una. Cuatro con una coordenada de fuente (Wikidata, Wikipedia, la ficha oficial de la playa, el propio OSM del repositorio), una por la regla de aparcamientos y una -whale-watching- exenta por id con su motivo escrito. De paso, puerto-colon-adeje estaba 150 m en mar abierto, no en la darsena, y la exencion por categoria lo tapaba: movido al punto de la marina en OSM.
+- **el techo**: Overpass sigue cerrado desde aqui. El extracto OSM del repositorio es a z14 y NO lo trae todo: dio 0 faros en toda la isla y la Farola SI esta en OSM (way 193798986). Un 0 en el extracto significa «no lo trae», nunca «no existe». Los POIs que en OSM son una via o un poligono llegan aqui como un punto de rotulo, asi que la distancia a ese punto no es la distancia al sitio.
+- resultado: 0 fichas fuera de tierra que no sean puertos, marinas o charcos.
+- lo único que quedó abierto de esta área:
+  - puertito-poris-abona: 241 m mar adentro. Exento por categoria, pero un embarcadero pequeño no tiene una darsena de 241 m. En 600 m no hay ningun muelle, marina ni puerto en el extracto. Hace falta Overpass o la coordenada publicada.
+  - faro-santa-cruz-puerto: cuando haya Overpass, leer el way 193798986 de OSM y usar su geometria en vez del empuje de 15 m.
+
 ## 0 · Lo verificado, separado de lo que no
 
 Esto es lo primero porque es lo que faltaba. Antes se comprobaba un sitio y
@@ -86,8 +93,8 @@ parecía que todo fallaba siempre.
 
 | | fichas |
 |---|---|
-| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **137** |
-| Coordenada nunca comprobada por nadie | **650** |
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **138** |
+| Coordenada nunca comprobada por nadie | **649** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
 todavía.** Son dos cosas distintas y este informe no las mezcla.
@@ -128,8 +135,9 @@ De dónde viene cada una:
 | `el-duque` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `el-medano` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `el-pris` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `ermita-san-telmo` | 2026-09-26 | Wikidata Q2220075 (Ermita de San Telmo): 28.417550,-16.545617 = 28°25′03.18″N 16°32′44.22″O. En tierra, a 18,0 m del borde, asi que se usa tal cual sin empujar. Se mueve 155 m al este del pin viejo, que estaba 18,6 m mar adentro. CONTROL DE SENSATEZ: pasa la primera condicion -a 90 m de la «Playa de San Telmo» del extracto, limite 150- y NO se pudo evaluar la segunda como estaba escrita: el «Paseo de San Telmo» no esta en el extracto como via, sino como UN PUNTO de rotulo, y a ese punto hay 218 m. Un paseo maritimo reducido a un punto no dice a que distancia esta su recorrido. Lo que si hay al lado del punto: una zona peatonal a 31 m y la «Avenida Cristobal Colon» a 98 m, que son ese mismo paseo. |
 | `fanabe` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
-| `faro-santa-cruz-puerto` | 2026-09-26 | Parche auditoria-mar-8: coordenada publicada de la Farola del Mar (28.46935,-16.24581; Wikipedia, contrastada con una foto geolocalizada en Commons a 21 m), empujada 5 m tierra adentro por decision del dueño, con maximo de 15. Queda a 6,4 m del borde y cumple el margen de 3 m del propio parche. Wikipedia y Commons ya difieren 21 m entre si, asi que 5 m cae dentro de la incertidumbre del dato. |
+| `faro-santa-cruz-puerto` | 2026-09-26 | Wikidata Q5966669 (La Farola del Mar): 28.469439,-16.245831 = 28°28′09.98″N 16°14′44.99″O. La misma ficha da el elemento de OSM: way 193798986. Esa coordenada cae en el AGUA contra la capa earth a z14 -7,6 m del borde-, asi que se aplico la regla del dueño: empujar hasta 5 m tierra adentro sin moverse mas de 15. Dentro de esos 15 m el mejor margen alcanzable es 4,78 m, y se alcanza justo en el tope: 15,00 m de empuje. El resultado esta en tierra con 4,78 m de margen, a 15 m de la coordenada de Wikidata y a 4,7 m del pin anterior (que salia de la lista de Wikipedia). Las tres referencias -Wikidata, Wikipedia y la foto de Commons- difieren hasta 30 m entre si, asi que el empuje cae dentro de la incertidumbre del propio dato. CUANDO HAYA OVERPASS: leer el way 193798986 y usar su geometria. |
 | `golf-del-sur` | 2026-09-19 | OpenStreetMap, golf_course «Golf del Sur» |
 | `las-vistas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `lidl-puerto-cruz` | 2026-09-26 | OSM del repositorio: el unico Lidl a menos de 2,5 km, a 81 m de la «Carretera Gral. Icod-Santa Cruz». La direccion del establecimiento es Ctra. General Icod-Santa Cruz s/n, via de servicio Las Arenas, 38400 Puerto de la Cruz, y el edificio en OSM lleva esa misma direccion. El municipio lo confirma tools/municipio_raya.py: 8 paradas sin raya en medio, todas de Puerto de la Cruz. Esta pegado a la raya con La Orotava y hay directorios que lo situan alli; manda la direccion postal. |
@@ -241,7 +249,7 @@ Y no hace falta acordarse de apuntarlas: `tools/fijar_coordenada.py` escribe
 el apunte solo cuando aplica una coordenada, con la fuente que se le pase
 detrás de la `#`. Si no se le da fuente, avisa de que no la apunta.
 
-### De dónde salen las 137
+### De dónde salen las 138
 
 No se han inventado: se han sacado de los ficheros de fuente que ya se
 habían entregado y aplicado, y **se ha comprobado que la coordenada de hoy
@@ -297,8 +305,8 @@ menos preciso de cada ficha. Es la cuenta entera de los 787, no un umbral:
 | 1 | ~11 km | **2** |
 | 2 | ~1,1 km | **30** |
 | 3 | ~110 m | **142** |
-| 4 | ~11 m | **555** |
-| 5 | ~1 m | **15** |
+| 4 | ~11 m | **554** |
+| 5 | ~1 m | **16** |
 | 6 | ~10 cm | **17** |
 | 7 | ~1 cm | **25** |
 | 15 |  | **1** |

@@ -1,30 +1,77 @@
-# Bloque 2 · Los lugares con el pin en el agua
+# Bloque 2 · Los lugares con el pin en el agua — CERRADO
 
-De los 787, **6 caían fuera de tierra** contra la capa `earth` del OSM que ya
-lleva el repositorio. **Quedan 2**, y las dos por falta de una fuente, no por
-falta de trabajo.
+De los 787, **6 caían fuera de tierra** contra la capa `earth` del OSM del
+repositorio. **No queda ninguna.**
 
-| id | antes | ahora | estado |
-|---|---|---|---|
-| `faro-santa-cruz-puerto` | 444 m mar adentro | **en tierra, 6,4 m del borde** | ✅ |
-| `pk-poris-abona` | 82 m | **en tierra, 46,8 m** | ✅ |
-| `lidl-puerto-cruz` | 46 m | **en tierra, 232 m** | ✅ |
-| `pk-bajamar-piscinas` | 28 m | **en tierra, 33,5 m** | ✅ |
-| `whale-watching` | 23 m | igual, **exento con su motivo escrito** | ✅ |
-| `ermita-san-telmo` | 19 m | igual | ⏳ falta la coordenada |
+| id | antes | ahora |
+|---|---|---|
+| `faro-santa-cruz-puerto` | 444 m mar adentro | **en tierra, 4,8 m del borde** (Wikidata) |
+| `ermita-san-telmo` | 19 m | **en tierra, 18,0 m** (Wikidata) |
+| `pk-poris-abona` | 82 m | **en tierra, 46,8 m** |
+| `lidl-puerto-cruz` | 46 m | **en tierra, 232 m** |
+| `pk-bajamar-piscinas` | 28 m | **en tierra, 33,5 m** |
+| `whale-watching` | 23 m | igual, **exento por id y con el motivo escrito** |
+| `puerto-colon-adeje` | 150 m, en mar abierto | **58 m, en la dársena** |
 
-Y de los que estaban «en el agua a propósito», uno no lo estaba:
-
-| id | antes | ahora | estado |
-|---|---|---|---|
-| `puerto-colon-adeje` | 150 m, en mar abierto | **58 m, en la dársena** | ✅ |
-| `puertito-poris-abona` | 241 m | igual | ⏳ no hay muelle en el extracto |
-
-**Los parches pedían Overpass y el shapefile del Cabildo. Ninguno de los dos
-se puede abrir desde aquí, y aun así cinco se han cerrado**: el dato que
-pedían ya estaba dentro del repositorio.
+```
+lugares medidos contra la capa earth de OSM.: 787
+de tierra y FUERA de tierra.................: 0
+```
 
 ---
+
+## Lo que enseñó este bloque, y queda escrito en la herramienta
+
+**Que algo no esté en el extracto no quiere decir que no esté en OSM.**
+`tools/osm_cerca.py` dio **0 faros en toda la isla** y 0 nombres con «faro» o
+«farola» — y la Farola del Mar está en OSM, en el way 193798986, enlazada
+desde Wikidata. Lo mismo con la ermita. Un 0 del extracto significa «no lo
+trae», nunca «no existe», y así hay que decirlo al informar. Está ahora en la
+cabecera de la herramienta, para que no se me vuelva a escapar.
+
+Y la segunda, del mismo palo: **los POIs que en OSM son una vía o un polígono
+llegan al extracto como un punto de rótulo.** El «Paseo de San Telmo» está a
+218 m de su rótulo, y la zona peatonal que es ese mismo paseo, a 31 m. La
+distancia al rótulo no es la distancia al sitio.
+
+---
+
+## Las dos de Wikidata
+
+### `faro-santa-cruz-puerto` — Farola del Mar
+- **Wikidata Q5966669**: `28.469439, -16.245831`. La misma ficha da el
+  elemento de OSM: **way 193798986**.
+- Esa coordenada cae **en el agua** contra la capa `earth` a z14, a 7,6 m del
+  borde, así que corrió tu regla: empujar hasta 5 m tierra adentro sin moverse
+  más de 15.
+- **El mejor margen alcanzable dentro de esos 15 m es 4,78 m**, y se alcanza
+  justo en el tope. Resultado: `28.469309, -16.245872`, en tierra, **4,8 m de
+  margen**, a 15 m de Wikidata y a 4,7 m del pin anterior.
+- El muelle es estrecho y el polígono a z14 está generalizado: por eso empujar
+  12 m no da 12 m de margen. Se midió en cada paso, no se supuso.
+- Apuntado en `verificado.json`: **cuando haya Overpass, leer el way 193798986
+  y usar su geometría** en vez del empuje.
+
+### `ermita-san-telmo`
+- **Wikidata Q2220075**: `28.417550, -16.545617`. **En tierra, a 18,0 m del
+  borde**, así que se usa tal cual, sin empujar. Se mueve **155 m al este**
+  del pin viejo — exactamente los 155 m que decías.
+- ⚠️ **El control de sensatez: una condición pasa y la otra no se pudo evaluar
+  como estaba escrita.**
+  - «a 150 m o menos de la Playa de San Telmo» → **90 m** ✅
+  - «y del Paseo de San Telmo» → **218 m** ❌ … pero el Paseo **no está en el
+    extracto como vía, sino como un punto de rótulo**. Un paseo marítimo
+    reducido a un punto no dice a qué distancia pasa su recorrido.
+  - Lo que sí hay pegado al punto de Wikidata: una **zona peatonal a 31 m** y
+    la **«Avenida Cristóbal Colón» a 98 m**, que son ese mismo paseo.
+- **Lo he aplicado** porque tu propio mensaje ya hacía la comprobación de
+  sensatez —«está a 155 m al este del pin actual y a 98 m del punto oficial de
+  la Playa de San Telmo, cuadra con que la ermita esté junto a esa playa»— y
+  mis medidas reproducen las tuyas. **Si prefieres que lo revierta hasta tener
+  Overpass, dilo y lo revierto en un minuto.**
+
+---
+
 
 ## La regla de los aparcamientos, escrita y ejecutable
 
@@ -57,18 +104,6 @@ regla está dejando fuera.
 ---
 
 ## Lo que se cerró, una a una
-
-### `faro-santa-cruz-puerto` → Farola del Mar
-- Coordenada publicada de la Farola (`28.46935, -16.24581`; Wikipedia,
-  contrastada con una foto geolocalizada en Commons a 21 m), **empujada 5 m
-  tierra adentro**: `28.469307, -16.245824`. Queda a **6,4 m del borde** y
-  cumple el margen de 3 m del propio parche. Se mueve **1.968 m** del pin
-  viejo, que estaba en mitad de la dársena.
-- Nombre, descripción, `cat` y etiquetas nuevos, del parche `auditoria-mar-8`.
-  Venía en 8 idiomas; **el búlgaro y el polaco los he escrito yo** desde el
-  castellano, y pasan las mismas comprobaciones: mismas cifras (1862, 31,
-  1863), mismos trozos de `cat`, alfabeto correcto.
-- «Farola del Mar» y «Muelle de Enlace» quedan declaradas como nombre propio.
 
 ### `pk-poris-abona` → Calle Martín Rodríguez
 `28.164729, -16.431796`. A 58 m del ancla oficial (límite 80) y **46,8 m del
@@ -106,23 +141,20 @@ puesto en mar abierto.
 
 ---
 
-## Lo que queda: dos, y las dos por una fuente que no tengo
-
-### `ermita-san-telmo` — 18,6 m
-La ermita **no está en el extracto**. Sí están la «Playa de San Telmo» (65 m) y
-el «Paseo de San Telmo» (70 m), así que el barrio es el correcto, pero las dos
-iglesias más cercanas —«Nuestra Señora de la Peña de Francia» (129 m) y «San
-Francisco» (272 m)— no son la ermita. Con 18,6 m, empujarla al borde sería
-ponerla en el paseo, no en el edificio. **Hace falta la coordenada de la ermita
-o el volcado de Overpass.**
+## Lo único que queda mirar
 
 ### `puertito-poris-abona` — 241 m
-Tienes razón: un embarcadero pequeño no tiene dársena de 241 m. Lo he buscado
-en el OSM del repositorio y **no hay nada**: 0 elementos de tipo muelle, marina
-o puerto en 600 m, y en 350 m lo único con nombre es la «Urbanización Llanos
-del Porís», a 347 m. En toda la isla el extracto lleva 17 muelles y 10 puertos,
-así que no los está filtrando: es que ahí no hay ninguno. **Hace falta
-Overpass.**
+Tienes razón: un embarcadero pequeño no tiene dársena de 241 m. Está exento
+por categoría, así que no suspende, pero el control ahora **imprime siempre**
+los exentos a más de 150 m para que no se pueda esconder detrás de la
+exención. Lo busqué en el extracto y **no hay nada**: 0 muelles, marinas o
+puertos en 600 m, y en 350 m lo único con nombre es la «Urbanización Llanos
+del Porís» a 347 m. En toda la isla el extracto lleva 17 muelles y 10 puertos
+— pero, como acabamos de aprender, eso no prueba que ahí no haya uno en OSM.
+**Hace falta Overpass o la coordenada publicada.**
+
+El otro que pasa de 150 m es `puerto-granadilla-comercial` (216 m), y ése sí
+es un puerto industrial con dique largo.
 
 ---
 

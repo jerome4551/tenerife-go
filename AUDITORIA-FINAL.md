@@ -902,12 +902,12 @@ extracto OSM del mapa. Lo saca `tools/osm_cerca.py`.
 |---|---|---|
 | `montana-colorada` | **baja**: la ficha, su id en `suggestionIds` de `south`, y sus textos en los nueve `idiomas/*.json` | ninguna fuente la sitúa en Fasnia |
 | `windsurf-el-poris` | 28.1540, −16.4160 → **28.152765, −16.432303** | coordenada oficial de Playa Grande, empujada 8 m a tierra sobre el **segmento** de costa |
-| `faro-santa-cruz-puerto` | 444 m → **en tierra, 6,4 m del borde** | la coordenada publicada de la Farola del Mar, **empujada 5 m tierra adentro** (máximo 15, decisión del dueño): a 1,4 m no pasaba el margen de 3 m del propio parche. Wikipedia y Commons ya difieren 21 m entre sí, así que 5 m cae dentro de la incertidumbre del dato. Nombre, textos, `cat` y etiquetas nuevos en los diez idiomas |
+| `faro-santa-cruz-puerto` | 444 m → **en tierra, 4,8 m del borde** | **Wikidata Q5966669**, que además da el elemento de OSM: way 193798986. Esa coordenada cae en el agua a z14 (7,6 m), así que se empujó hacia tierra: dentro del tope de 15 m el mejor margen alcanzable es **4,78 m**, medido en cada paso porque el muelle es estrecho y el polígono está generalizado. Nombre, textos, `cat` y etiquetas nuevos en los diez idiomas |
 | `pk-poris-abona` | 82 m → **46,8 m en tierra** | «Calle Martín Rodríguez», a 58 m del ancla oficial (límite 80). La regla de aparcamientos, abajo |
 | `pk-bajamar-piscinas` | 28 m → **33,5 m en tierra** | «Avenida del Sol», a 63 m del ancla (límite 150) |
 | `lidl-puerto-cruz` | 46 m → **232 m en tierra** | el único Lidl a menos de 2,5 km, a 81 m de la «Carretera Gral. Icod-Santa Cruz» que nombraba el parche, y en Puerto de la Cruz según la dirección postal y la comprobación de rayas |
 | `whale-watching` | 23 m → **se queda** | está dentro de la marina, a 52 m de su punto en OSM. Exento POR ID, con el motivo escrito, no por categoría |
-| `ermita-san-telmo` | 19 m | **sigue pendiente**: la ermita no está en el extracto |
+| `ermita-san-telmo` | 19 m → **en tierra, 18,0 m** | **Wikidata Q2220075**, en tierra, se usa tal cual. Se mueve 155 m al este |
 
 La parada TITSA «Montaña Colorada» de Granadilla de Abona **no se ha tocado**:
 el parche avisaba de que es otra cosa, y lo es.
@@ -923,6 +923,19 @@ nombre, porque el extracto a z14 no trae `access` ni `service`: de una calle
 sin nombre no se sabe si es la entrada a una casa. No se queda escrita en un
 documento, que es donde las reglas se olvidan: es
 `tools/osm_cerca.py --aparcamiento`, e imprime también lo que descarta.
+
+### Y lo que enseñó el bloque
+
+**Que algo no esté en el extracto no quiere decir que no esté en OSM.**
+`tools/osm_cerca.py` dio **0 faros en toda la isla** y 0 nombres con «faro» o
+«farola» — y la Farola está en OSM, en el way 193798986, enlazada desde
+Wikidata. Lo mismo con la ermita. Un 0 del extracto significa «no lo trae»,
+nunca «no existe». Está escrito en la cabecera de la herramienta.
+
+Y la segunda: **los POIs que en OSM son una vía o un polígono llegan al
+extracto como un punto de rótulo**. El «Paseo de San Telmo» está a 218 m de su
+rótulo y la zona peatonal que es ese mismo paseo, a 31 m. La distancia al
+rótulo no es la distancia al sitio.
 
 ### Y un exento que no lo era
 
