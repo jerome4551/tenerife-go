@@ -355,7 +355,7 @@ pueden cerrar desde aquí. Si quieres, son la tanda siguiente.
 ## Los bloques que vienen detrás, por orden
 
 1. **6 lugares con el pin en el agua** — ya tienen su lista en
-   `COORDENADAS-PENDIENTES.md`. Dos son de verdad (444 m y 82 m mar adentro) y
+   `MAR-BLOQUE2.md`. Dos son de verdad (444 m y 82 m mar adentro) y
    cuatro son precisión del dibujo de la costa.
 2. **55 coordenadas puestas a ojo**, sin verificar (de 787).
 3. **3 orientaciones de playa** que quedaron abiertas: `playa-grande-abades`,

@@ -906,7 +906,7 @@ el parche avisaba de que es otra cosa, y lo es.
 
 **Las seis pendientes, y el insumo que falta.** Las seis pasan por
 **Overpass**, bloqueado desde aquí por la política de salida (`403` en los dos
-endpoints del parche). El detalle está en `COORDENADAS-PENDIENTES.md`.
+endpoints del parche). El detalle está en `MAR-BLOQUE2.md`.
 
 | ficha | se mete | por qué sigue pendiente |
 |---|---|---|
