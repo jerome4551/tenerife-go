@@ -1324,15 +1324,17 @@ declara —en un tramo del `cat` o en el paréntesis del nombre— sobre los 787
 
 ```
 que declaran municipio ......... 520
-  comprobados .................. 473
+  comprobados .................. 475
   sin paradas suficientes ......  45
 no declaran ninguno ............ 267
 
-se contradicen a si mismas ......  2
-el municipio no cuadra, en firme    1
+se contradicen a si mismas ......  0
+el municipio no cuadra, en firme    0
 en el borde, se avisa ...........  5
-cerradas contra las rayas .......  7
+cerradas contra las rayas ....... 10
 ```
+
+**El area queda CERRADA.** De diez hallazgos a cero, en tres tandas.
 
 ### Las cuatro cerradas, y con qué
 
@@ -1408,28 +1410,43 @@ ultima rama de la regla: el municipio del punto actual es La Laguna (14
 paradas, ninguna con raya en medio, la primera a 72 m) y el pin se queda,
 apuntado como PORTAL NO VERIFICADO.
 
-### Lo que sigue abierto: tres
+### Las tres del tercer parche
 
-**Dos se contradicen solas.** `casa-capitanes-generales` tiene el nombre y el
-punto en La Laguna (Plaza del Adelantado, a 116 m de su parada) y la
-descripción habla del Ayuntamiento de Santa Cruz, en la Plaza de la Candelaria:
-son dos edificios, y cuál de los dos quiere la ficha no se decide desde aquí.
-`rcg-tenerife` dice Tacoronte en el nombre y La Laguna en el `cat`: su punto
-cae en **Tacoronte** -5 paradas sin raya en medio, todas de Tacoronte, y 9
-cortadas por una raya-, asi que el que acierta es el nombre.
+Las tres se contradecian solas, y en las tres **el pin ya estaba bien**: lo que
+mentia era el texto. Ninguna coordenada se movio.
 
-**Una no cuadra en firme.** `guachinche-cordero` dice Arona y su punto esta
-dentro de San Miguel de Abona: 13 de las 14 paradas mas cercanas sin raya en
-medio, todas de San Miguel, y la raya a 988 m. Falta solo confirmar que el pin
-esta en el guachinche.
+`casa-capitanes-generales` es de **La Laguna**: el nombre y el punto lo decian
+y la descripcion hablaba de otro edificio -Plaza de la Candelaria, 1741-1750,
+Ayuntamiento de Santa Cruz-. Sustituida entera. El paso de afinado pedia
+Overpass con `name~Capitanes` y en el OSM del repositorio no hay ninguno a
+200 m, pero SI esta el edificio con su otro nombre, «Casa de
+Alvarado-Bracamonte», a **23 m** del pin: por debajo de los 40 m de la regla,
+asi que el pin se queda, y de paso queda confirmado.
+
+`rcg-tenerife` es de **Tacoronte**, que es lo que dice el propio club. La regla
+mandaba geocodificar si el poligono daba La Laguna: no hizo falta, el punto ya
+da Tacoronte.
+
+`guachinche-cordero` es de **San Miguel de Abona**. Ademas se le quitaron los
+datos que se contradecian: decia abierto todos los dias y a la vez «solo fines
+de semana».
+
+### Lo que sigue abierto: nada en firme
 
 **Las cinco del borde no suspenden.** Un mirador en un puerto de montaña o un
-sendero que cruza dos términos caen en el borde por definición, y un control
-que cante en cada borde se ignora a la semana. Se listan igual: callarlas sería
-el fallo contrario.
+sendero que cruza dos terminos caen en el borde por definicion, y un control
+que cante en cada borde se ignora a la semana. Se listan igual: callarlas seria
+el fallo contrario. Con la herramienta afinada, dos ya tienen respuesta
+-`montana-taco` da Buenavista del Norte diciendo La Laguna, y
+`playa-caleton-sauzal` da La Matanza diciendo El Sauzal- y las otras tres no se
+pueden cerrar desde aqui.
 
-La lista de las tres, con lo que hace falta para cada una, está en
-`MUNICIPIOS-PENDIENTE.md`.
+Y queda una etiqueta: `ar-la-quebrada` conserva «Tranquila», que contradice el
+«Muy tranquila» que se quito del texto. El parche no listaba `tags` para esa
+ficha y no se toco.
+
+El detalle de las diez, con lo que decidio cada parche, esta en
+`MUNICIPIOS-BLOQUE1.md`.
 
 ## El control de coordenadas a ojo se dejaba 42
 

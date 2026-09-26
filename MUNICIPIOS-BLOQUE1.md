@@ -12,30 +12,27 @@ comprobar*, no como buenas). De esas 473, **10 no cuadraban en firme**.
 
 | grupo | qué pasa | cuántas | estado |
 |---|---|---|---|
-| A | el punto está bien, **lo que miente es el texto** | 4 | ✅ **APLICADO** (parche `municipios-bloque1-A`) |
-| B | el punto o el texto, según la ficha | 3 | ✅ **APLICADO** (parche `municipios-bloque1-B`) |
-| C | la ficha **se contradice a sí misma** | 3 | ⏳ falta decidir **cuál de los dos** |
+| A | el punto está bien, **lo que miente es el texto** | 4 | ✅ `municipios-bloque1-A` |
+| B | el punto o el texto, según la ficha | 3 | ✅ `municipios-bloque1-B` |
+| C | la ficha **se contradice a sí misma** | 3 | ✅ `municipios-bloque1-C` |
 
-**Quedan 3**, las del grupo C. El control de municipio baja de **10 a 3**.
+**Las diez, cerradas.** El control pasa de **10 hallazgos a 0**: cero
+contradicciones y cero municipios fuera de sitio en firme. El área
+`municipio_de_cada_ficha` del registro queda en **cerrado**, con su techo
+escrito: no se vuelve a preguntar.
+
+Quedan dos cosas menores, al final de este documento.
 
 ---
 
-## Cómo mandarme las respuestas
+## Cómo se cerró cada una
 
-Del grupo C basta con decirme cuál de los dos sitios es.
+Los tres parches traían su hash canónico y los tres coincidieron antes de
+tocar nada: `594fa5ed…`, `cf3094e6…` y `30ff04bd…`.
 
-Si algún día mandas coordenadas, una línea por sitio con `id lat lng`. Se aplican con
-
-```
-python3 tools/fijar_coordenada.py --fichero nuevas.txt
-```
-
-que comprueba cada una antes de escribir (que el id exista, que caiga en
-Tenerife, que caiga en tierra y cuántos metros se mueve), **apunta la fuente en
-`datos/verificado.json`** y no escribe nada si alguna falla.
-
-Para sacar una coordenada en Google Maps: pulsación larga sobre el punto → los
-dos números → el primero es `lat`, el segundo `lng`.
+Lo aplicado se apunta en `datos/verificado.json`, sección
+`municipio_por_raya`, con la fuente de cada ficha, y se vuelve a comprobar
+solo en cada auditoría: `python3 tools/municipio_raya.py`.
 
 ---
 
@@ -213,62 +210,96 @@ Después de las dos correcciones, los diez idiomas dan **0 hallazgos**.
 
 ---
 
-## Grupo C · Las 3 que quedan
+## Grupo C · HECHO (3)
 
-Aquí **no es cuestión de coordenada**: la ficha dice dos cosas distintas, así
-que una de las dos está mal sí o sí.
+Parche `municipios-bloque1-C`, hash `30ff04bd…`. **Ningún pin se movió**: en
+las tres, la elección confirma lo que el punto ya decía.
 
-Con la herramienta de las rayas ya sé **en qué municipio cae el punto de cada
-una**, y eso reduce mucho lo que te toca a ti: en dos de las tres solo hace
-falta que me confirmes que **el pin está en el sitio**, y el resto lo arreglo.
+| id | elección | pin | campos cambiados |
+|---|---|---|---|
+| `casa-capitanes-generales` | **La Laguna** | igual | `desc` ×10, `cat` ×10, etiquetas |
+| `rcg-tenerife` | **Tacoronte** | igual | `desc` ×10, `cat` ×10, etiquetas |
+| `guachinche-cordero` | **San Miguel de Abona** | igual | `desc` ×10, `cat` ×10, etiquetas |
 
-### C1 · `casa-capitanes-generales` — la única que es de verdad una decisión
-- **El nombre** dice «Casa de los Capitanes Generales **(La Laguna)**» y el
-  punto (`28.4876, -16.3148`) cae **firmemente en La Laguna**: de las 14
-  paradas más cercanas, **ninguna** tiene raya en medio, la primera a 116 m
-  («Plaza del Adelantado»), y la raya más cercana está a **2.310 m**.
-- **La descripción** habla de otro edificio: «Plaza de la **Candelaria** de
-  Santa Cruz», «sede del **Ayuntamiento de Santa Cruz de Tenerife**». Y el
-  `cat` y las etiquetas dicen Santa Cruz.
-- O sea: **nombre y punto apuntan a un edificio y el texto describe otro.**
-- **Necesito que elijas**, y el otro lo damos de alta aparte si te interesa:
-  - **(a)** el de **La Laguna**, Plaza del Adelantado → hay que **reescribir la
-    descripción entera** en los diez idiomas.
-  - **(b)** el de **Santa Cruz**, Plaza de la Candelaria → hay que **cambiar el
-    nombre y la coordenada**.
+### C1 · La Casa de los Capitanes, y una confirmación que no esperaba
 
-### C2 · `rcg-tenerife` — el punto está en Tacoronte
-- El nombre dice «(Tacoronte)»; la descripción, el `cat` y las etiquetas dicen
-  «San Lázaro (**La Laguna**)».
-- **El punto está en Tacoronte**: 5 paradas sin raya en medio, todas de
-  Tacoronte (la primera a 262 m), y 9 cortadas por una raya. La raya está a
-  551 m. **El que acierta es el nombre**; el texto es el que miente.
-- **Solo necesito que me confirmes que el pin está en el club.** Si sí, cambio
-  `cat`, descripción y etiquetas a Tacoronte en los diez idiomas y esta se
-  cierra.
+El nombre y el punto eran de La Laguna y la descripción hablaba de otro
+edificio —Plaza de la Candelaria, 1741-1750, Ayuntamiento de Santa Cruz—.
+Sustituida entera con los datos del Ayuntamiento de La Laguna: los seis
+Capitanes Generales entre 1705 y 1723, Diego de Alvarado-Bracamonte, la
+fachada a la Plaza del Adelantado y el BIC de 1981.
 
-### C3 · `guachinche-cordero` — el punto está en San Miguel de Abona
-- La ficha dice «Arona» en el `cat` y en la dirección: «TF-652 nº 8, El Monte o
-  **Guargacho (Arona)**».
-- Dije que Guargacho estaba partido y que por eso no lo decidía. **Con las
-  rayas ya no hay duda sobre el punto**: 13 de las 14 paradas más cercanas no
-  tienen raya en medio y **todas son de San Miguel de Abona** (la primera a
-  116 m); la raya está a **988 m**. El pin no está en la raya, está dentro.
-- **Solo necesito que me confirmes que el pin está en el guachinche.** Si sí,
-  cambio Arona → San Miguel de Abona y esta se cierra. Si el guachinche está
-  en otro sitio, mándame dónde.
+El paso de afinado pedía Overpass con `name~"Capitanes"`. En el OSM del
+repositorio **no hay ningún elemento así a 200 m** — pero **sí está el
+edificio, con su otro nombre**: «Casa de Alvarado-Bracamonte» (*manor*), a
+**23 m** del pin. Por debajo de los 40 m que pedía tu regla, así que el pin se
+queda igual; y de paso confirma que está donde tiene que estar. Es el mismo
+nombre que abre la descripción nueva.
+
+### C2 · El club está en Tacoronte y el pin también
+
+La regla decía: si el polígono da La Laguna, geocodificar la dirección del
+club. **No hizo falta**: el punto ya da Tacoronte —5 paradas sin raya en medio,
+todas de Tacoronte, y 9 cortadas por una raya—, así que esa rama no llegó a
+aplicarse. «San Lázaro (La Laguna)» fuera de los diez idiomas, y dentro los
+600 m de altitud.
+
+### C3 · El guachinche, y la contradicción que llevaba dentro
+
+El punto está en San Miguel de Abona con margen: 13 de las 14 paradas más
+cercanas sin raya en medio, **todas** de San Miguel, la primera «Catú» a 116 m,
+y la raya a 988 m. Fuera «Arona».
+
+Y fuera también lo que se contradecía o caduca, como pedías: decía **abierto
+todos los días y a la vez «solo fines de semana»**; fuera el horario, fuera la
+nota con el número de reseñas, y fuera la cabra guisada y el vino propio, que
+la web del restaurante no menciona. Los platos son ahora los suyos: carnes a la
+brasa, papas arrugadas, mojo y queso asado. El teléfono se queda.
+
+### Lo que el parche no traía, y tres cosas que traía mal
+
+1. **Venía en 8 idiomas y la app tiene 10.** Escritos el búlgaro y el polaco de
+   los tres textos nuevos.
+2. **El `cat` de la Casa de los Capitanes venía corto en seis idiomas**: 3 o 4
+   trozos donde el castellano tiene 5. Completados con el trozo que la ficha ya
+   tenía (*Mairie · Rathaus · Municipio · Gemeentehuis · 市政厅 · 市政廳*).
+3. **El fragmento francés de `rcg-tenerife` no existía tal cual.** Pedía
+   sustituir «Entouré d'arbres indigènes.» y lo que hay es «Situé à San Lázaro
+   (La Laguna), entouré d'un bois d'arbres indigènes.». Aplicado el mismo
+   cambio sobre la frase de verdad.
+4. **El siglo.** Escribí «seventeenth / siebzehnten / zeventiende / 十七» para
+   evitar una cifra que el castellano no tiene… y me equivoqué: el control
+   **convierte «XVII» a 17**, así que el que se quedaba sin el dato era el
+   idioma. Devueltos a «17th century», «17. Jahrhunderts», «17e eeuw» y
+   «17世纪». El búlgaro y el polaco llevan el número romano, que también
+   cuenta.
+
+Y un efecto de rebote que conviene saber: el `cat` castellano terminaba en
+«Ayuntamiento», y de ahí el control de etiquetas sacaba que «Ayuntamiento» era
+un nombre de sitio. Al cambiarlo por «Alcaldía», esa etiqueta se quedó sin
+respaldo en otra ficha. Traducida a los nueve idiomas, junto con «Patrimonio de
+la Humanidad»; «Plaza del Adelantado» y «Alvarado-Bracamonte» quedan declaradas
+como nombre propio.
 
 ---
 
-## Lo que NO está en este bloque
+## Las dos cosas que quedan
 
-**5 fichas en el borde municipal** salen avisadas pero **no suspenden**, porque
-en un límite las paradas se mezclan y un control que canta en cada borde se
-acaba ignorando: `mir-la-corona-guimar`, `mir-lomo-molino`, `montana-taco`,
-`playa-caleton-sauzal`, `pr-tf-52-monte-agua`. Si quieres, las miramos después
-de estas 10.
+1. ⚠️ **`ar-la-quebrada` conserva la etiqueta «Tranquila».** Contradice el «Muy
+   tranquila» que quitamos del texto en los diez idiomas. El parche B no
+   listaba `tags` para esa ficha y no toco lo que no pides. **¿La borro?**
+2. **Las 5 fichas en el borde municipal** siguen avisadas, y no suspenden: en
+   un límite las paradas se mezclan y un control que canta en cada borde se
+   acaba ignorando. Son `mir-la-corona-guimar`, `mir-lomo-molino`,
+   `montana-taco`, `playa-caleton-sauzal` y `pr-tf-52-monte-agua`. Con la
+   herramienta afinada, dos de ellas ya tienen respuesta —`montana-taco` da
+   Buenavista del Norte y dice La Laguna; `playa-caleton-sauzal` da La Matanza
+   y dice El Sauzal— y las otras tres no se pueden cerrar desde aquí. Si
+   quieres, son la tanda siguiente.
 
-Y los bloques que vienen detrás, por orden, cuando cerremos este:
+---
+
+## Los bloques que vienen detrás, por orden
 
 1. **6 lugares con el pin en el agua** — ya tienen su lista en
    `COORDENADAS-PENDIENTES.md`. Dos son de verdad (444 m y 82 m mar adentro) y
@@ -284,5 +315,6 @@ Y los bloques que vienen detrás, por orden, cuando cerremos este:
 
 ---
 
-*Las cifras de este documento salen de `node tools/auditar_municipio.js`, que
-entra en `tools/auditar.sh`. Ninguna está escrita a mano.*
+*Las cifras de este documento salen de `node tools/auditar_municipio.js` y
+`python3 tools/municipio_raya.py`, que entran en `tools/auditar.sh`. Ninguna
+está escrita a mano.*
