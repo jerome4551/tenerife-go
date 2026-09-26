@@ -629,8 +629,8 @@
   },
   "coordenadas": {
    "estado": "abierto",
-   "resultado": "130 verificadas con fuente (ver la seccion `coordenada`). 657 entraron en la importacion inicial y no las ha mirado nadie.",
-   "abierto": "55 estan escritas con 3 decimales significativos o menos en los dos ejes, o sea puestas a ojo. Lista en REVISION-LUGARES.md."
+   "resultado": "Las verificadas, con su fuente, estan una a una en la seccion `coordenada` de este mismo fichero. Aqui NO se escribe cuantas son: las cuenta el informe al generarse, porque un numero escrito a mano se queda viejo al dia siguiente.",
+   "abierto": "Las que estan escritas con 3 decimales significativos o menos en los dos ejes, o sea puestas a ojo. El informe las cuenta y las lista una a una."
   },
   "municipio_de_cada_ficha": {
    "estado": "cerrado",

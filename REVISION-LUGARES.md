@@ -1,6 +1,6 @@
 # Revisión de los 787 lugares
 
-**21 de septiembre de 2026.** Generado con `node tools/informe_lugares.js`.
+**26 de septiembre de 2026.** Generado con `node tools/informe_lugares.js`.
 Barre los 787, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
@@ -21,17 +21,16 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 69 respuestas x 10 idiomas = 690, y se llega a las 690 desde el buscador del asistente. |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 130 verificadas con fuente (ver la seccion `coordenada`). 657 entraron en la importacion inicial y no las ha mirado nadie. |
-| `municipio_de_cada_ficha` | abierto | 520 declaran municipio, 473 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno. |
+| `coordenadas` | abierto | 132 verificadas con su fuente · 655 sin mirar · 54 puestas a ojo |
+| `municipio_de_cada_ficha` | **cerrado** | 520 declaran municipio, 475 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno. 0 contradicciones y 0 municipios fue |
 | `lugares_en_el_mar` | abierto | 781 de 787 caen en tierra contra la capa earth de OSM. |
 
-**Lo único que queda por hacer está en las 3 áreas abiertas:**
+**Lo único que queda por hacer está en las 2 áreas abiertas:**
 
-- **`coordenadas`** — 55 estan escritas con 3 decimales significativos o menos en los dos ejes, o sea puestas a ojo. Lista en REVISION-LUGARES.md.
-- **`municipio_de_cada_ficha`** — 2 fichas se contradicen a si mismas y 8 tienen el municipio fuera de sitio en firme. 5 mas en el borde, que se avisan y no suspenden.
+- **`coordenadas`** — Las que estan escritas con 3 decimales significativos o menos en los dos ejes, o sea puestas a ojo. El informe las cuenta y las lista una a una.
 - **`lugares_en_el_mar`** — 6 en el agua, las del parche auditoria-mar-8. Necesitan Overpass, que esta bloqueado en el entorno de trabajo.
 
-### Las 7 cerradas, con su techo escrito
+### Las 8 cerradas, con su techo escrito
 
 **`orientacion_playa`** · 2026-09-08
 - qué se hizo: Se buscaron fuentes publicadas para la orientacion de las 65 zonas de bano que no la tenian, y se auditaron una por una las que produjo un modelo de lenguaje.
@@ -71,6 +70,14 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 **`mapa_sin_conexion`** · 2026-09-12
 - resultado: 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red.
 
+**`municipio_de_cada_ficha`** · 2026-09-25
+- qué se hizo: Cruce de lo que cada ficha declara con el municipio de las paradas de TITSA de alrededor, sobre los 787.
+- **el techo**: El poligono municipal del Cabildo NO esta en el repositorio y no se puede bajar desde aqui (Overpass, Nominatim, IDECanarias y los portales de datos abiertos dan 000). La prueba que se usa son las rayas municipales admin_level 8 del mapa OSM del propio repositorio, con tools/municipio_raya.py, calibrado: de 849 parejas de paradas vecinas de municipio distinto a menos de 1,5 km, 805 (94,8%) tienen de verdad una raya en medio.
+- resultado: 520 declaran municipio, 475 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno. 0 contradicciones y 0 municipios fuera de sitio en firme.
+- lo único que quedó abierto de esta área:
+  - 5 fichas en el borde municipal: se avisan y no suspenden, porque en un limite las paradas se mezclan y un control que cante en cada borde se acaba ignorando. Son mir-la-corona-guimar, mir-lomo-molino, montana-taco, playa-caleton-sauzal y pr-tf-52-monte-agua.
+  - ar-la-quebrada conserva la etiqueta «Tranquila», que contradice el «Muy tranquila» que se quito del texto. El parche B no listaba tags para esa ficha y no se toco.
+
 ## 0 · Lo verificado, separado de lo que no
 
 Esto es lo primero porque es lo que faltaba. Antes se comprobaba un sitio y
@@ -80,8 +87,8 @@ parecía que todo fallaba siempre.
 
 | | fichas |
 |---|---|
-| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **130** |
-| Coordenada nunca comprobada por nadie | **657** |
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **132** |
+| Coordenada nunca comprobada por nadie | **655** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
 todavía.** Son dos cosas distintas y este informe no las mezcla.
@@ -102,6 +109,7 @@ De dónde viene cada una:
 | `acc-playa-troya` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `alcala` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `almaciga` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
+| `ar-la-quebrada` | 2026-09-25 | Parche municipios-bloque1-B (sha256 cf3094e6...). Tenerife ON (Cabildo de Tenerife), ficha oficial del area recreativa: enlace de acceso 28.532069688519, -16.300710533935. Acceso por el Camino de El Batan (TF-143), km 0,4, Cruce El Moquinal. Se mueve 4.068 m desde el punto viejo, que caia en un barrio de La Laguna. |
 | `bano-valleseco-bloque` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas] |
 | `benijo` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
 | `bollullo` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -125,6 +133,7 @@ De dónde viene cada una:
 | `golf-del-sur` | 2026-09-19 | OpenStreetMap, golf_course «Golf del Sur» |
 | `las-vistas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `lidl-santa-cruz` | 2026-09-19 | OpenStreetMap, supermarket «Lidl», el mas cercano al centro |
+| `mercadillo-la-victoria` | 2026-09-25 | Parche municipios-bloque1-B, metodo DERIVADO (no hay coordenada publicada). Punto medio entre «Casa de la Castana» (museo, OSM, 28.432695,-16.471387) y «Terrero Municipal de Lucha y Deportes» (OSM, 28.433360,-16.471129), separados 78 m, que es como el Ayuntamiento situa el mercadillo. Los tres pasos del parche se resolvieron con el OSM del propio repositorio (tools/osm_cerca.py) porque Overpass esta cerrado desde aqui: paso 1 exactamente 1 elemento, paso 2 ningun amenity=marketplace a 250 m (y 15 en toda la isla, asi que el extracto no los filtra), paso 3 exactamente 1. Se mueve 2.109 m. DERIVADO, no medido: si aparece la coordenada publicada, se cambia. |
 | `mesa-mar` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `nucleo-costa-adeje` | 2026-09-19 | OpenStreetMap, neighbourhood «Costa Adeje» |
 | `nucleo-los-gigantes` | 2026-09-19 | OpenStreetMap, neighbourhood «Los Gigantes» |
@@ -228,7 +237,7 @@ Y no hace falta acordarse de apuntarlas: `tools/fijar_coordenada.py` escribe
 el apunte solo cuando aplica una coordenada, con la fuente que se le pase
 detrás de la `#`. Si no se le da fuente, avisa de que no la apunta.
 
-### De dónde salen las 130
+### De dónde salen las 132
 
 No se han inventado: se han sacado de los ficheros de fuente que ya se
 habían entregado y aplicado, y **se ha comprobado que la coordenada de hoy
@@ -283,19 +292,14 @@ menos preciso de cada ficha. Es la cuenta entera de los 787, no un umbral:
 |---|---|---|
 | 1 | ~11 km | **2** |
 | 2 | ~1,1 km | **31** |
-| 3 | ~110 m | **144** |
+| 3 | ~110 m | **142** |
 | 4 | ~11 m | **559** |
-| 5 | ~1 m | **12** |
-| 6 | ~10 cm | **13** |
+| 5 | ~1 m | **13** |
+| 6 | ~10 cm | **14** |
 | 7 | ~1 cm | **25** |
 | 15 |  | **1** |
 
-Dos cifras, y las dos importan:
-
-- **177 fichas tienen al menos un eje con 3 decimales o menos.** De esas, unas
-  79 saldrían así por puro azar —el cuarto decimal es un cero una vez de cada
-  diez—, así que ese número no señala fichas concretas.
-- **55 tienen los DOS ejes con 3 decimales o menos**: eso no es una
+**54 fichas tienen los dos ejes con 3 decimales o menos**: eso no es una
 coordenada sacada de una fuente, es un marcador puesto a ojo. Que los dos
 caigan a la vez por casualidad es una entre un millón.
 
@@ -324,13 +328,12 @@ caigan a la vez por casualidad es una entre un millón.
 | `sala-westerdahl` | Sala Eduardo Westerdahl (Puerto de la Cruz) | 28.418, -16.55 | Puerto de la Cruz |
 | `sendero-la-orotava` | Sendero Teide — La Orotava (TF-7) | 28.3650, -16.5900 | Los Realejos |
 
-### Las otras 35, con 3 decimales (~110 m)
+### Las otras 34, con 3 decimales (~110 m)
 
 | id | qué es | escrita | municipio |
 |---|---|---|---|
 | `acc-paseo-cristianos` | Paseo Los Cristianos–Las Américas ♿ | 28.0560, -16.7260 | Arona |
 | `acc-paseo-garachico` | Paseo Costero Garachico ♿ | 28.3720, -16.7640 | Garachico |
-| `ar-la-quebrada` | Área Recreativa La Quebrada | 28.5010, -16.3230 | San Cristóbal de La Laguna |
 | `bici-agua-vilaflor` | Vilaflor — Agua y Descanso Ciclistas (1.400 m) | 28.1570, -16.6340 | Vilaflor |
 | `bici-bc2-inicio` | BC-2 Ruta MTB Principiantes — Corona Forestal | 28.3720, -16.4890 | La Orotava |
 | `buceo-puerto-cruz` | 🤿 Buceo Puerto de la Cruz — Centro Atlantik | 28.4150, -16.5480 | Puerto de la Cruz |
@@ -450,14 +453,13 @@ Puede ser correcto —dos cosas en el mismo sitio— o una coordenada copiada.
 
 ## 3 · Pares a menos de 25 m que no comparten coordenada
 
-**15 pares.** A esa distancia los dos pines se solapan en el mapa.
+**14 pares.** A esa distancia los dos pines se solapan en el mapa.
 
 - 11 m · `puertito-los-abrigos` y `zona-mariscos-los-abrigos`
 - 11 m · `pesca-los-abrigos` y `zona-mariscos-los-abrigos`
 - 11 m · `turismo-sct` y `pk-plaza-espana`
 - 11 m · `ciudad-candelaria` y `pk-plaza-patrona-candelaria`
 - 15 m · `mirador-pico-ingles` y `bici-puerto-pico-ingles`
-- 15 m · `ciudad-matanza` y `mercadillo-la-victoria`
 - 15 m · `kayak-punta-teno` y `faro-teno`
 - 20 m · `deporte-arona-multideporte` y `super-hiperdino-arona-pueblo`
 - 22 m · `sendero-sentidos` y `acc-sendero-sentidos`
@@ -481,33 +483,13 @@ Salida de `node tools/auditar_municipio.js`:
 === el municipio que dice la ficha, contra donde cae el punto ===
   lugares....................................... 787
     que nombran un municipio.................... 520
-    de esos, comprobados contra las paradas..... 473
+    de esos, comprobados contra las paradas..... 475
     y con menos de 3 paradas a 1,5 km: no se puede 45
   no declaran municipio......................... 267
 
-  LA FICHA SE CONTRADICE A SI MISMA............. 2
-      rcg-tenerife                  cat dice «San Cristóbal de La Laguna»  vs  nombre dice «Tacoronte»
-                                      alrededor: Tacoronte, San Cristóbal de La Laguna  ·  El Rodeo a 263 m
-      casa-capitanes-generales      cat dice «Santa Cruz de Tenerife»  vs  nombre dice «San Cristóbal de La Laguna»
-                                      alrededor: San Cristóbal de La Laguna  ·  Plaza del Adelantado a 116 m
+  LA FICHA SE CONTRADICE A SI MISMA............. 0
 
-  EL MUNICIPIO NO CUADRA, y es firme............ 8
-      ar-la-quebrada                dice «Tegueste»  ·  alrededor: San Cristóbal de La Laguna x8
-                                      28.501, -16.323  ·  parada mas cerca: Manuel de Falla (89 m)
-      buceo-tabaiba                 dice «Santa Cruz de Tenerife»  ·  alrededor: El Rosario x8
-                                      28.402, -16.3312  ·  parada mas cerca: Tabaiba (177 m)
-      cavis-violencia-sexual-tenerifedice «Santa Cruz de Tenerife»  ·  alrededor: San Cristóbal de La Laguna x8
-                                      28.4708, -16.2885  ·  parada mas cerca: Breña Alta (72 m)
-      guachinche-cordero            dice «Arona»  ·  alrededor: San Miguel de Abona x8
-                                      28.0454, -16.6292  ·  parada mas cerca: Catú (116 m)
-      kayak-radazul                 dice «Santa Cruz de Tenerife»  ·  alrededor: El Rosario x8
-                                      28.401, -16.3235  ·  parada mas cerca: Colón (56 m)
-      mercadillo-la-victoria        dice «La Victoria de Acentejo»  ·  alrededor: La Matanza de Acentejo x8
-                                      28.448, -16.4579  ·  parada mas cerca: La Matanza (35 m)
-      mir-cruz-hilda                dice «Santiago del Teide»  ·  alrededor: Buenavista del Norte x6
-                                      28.3129, -16.8457  ·  parada mas cerca: Cruz de Hilda (67 m)
-      parque-tabaiba-baja           dice «Santa Cruz de Tenerife»  ·  alrededor: El Rosario x8
-                                      28.4036, -16.3318  ·  parada mas cerca: Tabaiba (11 m)
+  EL MUNICIPIO NO CUADRA, y es firme............ 0
 
   en el borde: se avisa, no suspende............ 5
       mir-la-corona-guimar          dice «Güímar»  ·  alrededor: Arafo x3
@@ -521,7 +503,7 @@ Salida de `node tools/auditar_municipio.js`:
       pr-tf-52-monte-agua           dice «Buenavista del Norte»  ·  alrededor: El Tanque x5, Santiago del Teide x2, Los Silos x1
                                       28.3192, -16.809  ·  parada mas cerca: Puerto de Erjos (435 m)
 
-*** 10 ficha(s) con el municipio fuera de sitio, en firme ***
+ninguna ficha nombra un municipio que no le toque
 
 ```
 

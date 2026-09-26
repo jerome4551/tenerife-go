@@ -283,6 +283,57 @@ como nombre propio.
 
 ---
 
+## La verificación del bloque entero
+
+Antes de pasar al siguiente, se repasó el bloque completo, no solo lo que
+tocaban los parches. **Salió un fallo gordo que ningún control miraba.**
+
+### El polaco tenía una fuente detrás, y se había quedado atrás
+
+El polaco es el único idioma que se escribió por bloques: `idiomas/pl-lugares/`
+(9 ficheros) se juntan con `node tools/lugares_idioma.js montar pl` y **vuelcan
+`idiomas/pl.json`**. O sea: no es una copia de consulta, es la **fuente**.
+
+Todas las correcciones de polaco de este mes se hicieron tocando solo
+`pl.json`. La fuente se quedó con el texto viejo, así que **el día que alguien
+volviera a montar el polaco, todo eso volvía atrás**: Tabaiba y Radazul otra
+vez en Santa Cruz, el mirador otra vez en Santiago del Teide, la CAVIS otra vez
+en Santa Cruz. Y en silencio, porque la app no falla cuando un texto es
+correcto pero viejo.
+
+Eran **21 campos de 12 fichas** —16 de este bloque y 5 de antes
+(`charco-verde-guancha`, `ciudad-rosario`, `ciudad-tegueste`,
+`nucleo-la-ranilla`)— y una ficha entera que no estaba, `playa-fajana-realejos`.
+Sincronizada la fuente y comprobado que montar el polaco ahora da exactamente
+el mismo `pl.json`.
+
+Control nuevo, `tools/auditar_fuente_pl.js`, probado volviendo a meter el
+fallo: con la fuente desfasada canta el campo y el bloque donde está.
+
+### Lo demás que se comprobó, ficha por ficha
+
+| qué | resultado |
+|---|---|
+| El municipio descartado, en **todos** los ficheros que nombran la ficha (index.html, los 9 idiomas, la fuente del polaco) | **0 restos** |
+| Referencias a los 10 ids fuera de su ficha (planificador, listas) | **1 aparición cada uno**: solo su ficha, ninguna referencia rota |
+| La base del asistente | ninguna de las 10 aparece con su municipio viejo |
+| Las 2 coordenadas movidas, ¿crean un duplicado? | no: el vecino más cercano queda a 763 m y a 114 m |
+| ¿Siguen en tierra? | sí; las 6 del agua son las de siempre |
+| `ar-la-quebrada`, ¿sigue en Anaga como dice su texto? | sí: sus vecinos a menos de 900 m son los senderos PR-TF 11 y PR-TF 10 de Cruz del Carmen |
+| `mercadillo-la-victoria`, ¿cae en el pueblo? | sí: `ciudad-victoria` a 114 m |
+| Los diez idiomas | 0 hallazgos en los diez |
+| Cirílico | 0 variantes sospechosas |
+
+### Y dos cifras que se escribían a mano
+
+- `REVISION-LUGARES.md` llevaba la fecha **escrita**: decía «21 de septiembre»
+  con el contenido ya cambiado. Ahora la calcula al generarse.
+- El registro guardaba a mano «130 verificadas» y «55 a ojo» del área
+  `coordenadas`. Ya eran **132** y **54**. Esas cifras salen fuera del registro:
+  las cuenta el informe al generarse.
+
+---
+
 ## Las dos cosas que quedan
 
 1. ⚠️ **`ar-la-quebrada` conserva la etiqueta «Tranquila».** Contradice el «Muy

@@ -52,6 +52,8 @@ echo; echo "════════ idiomas, arranque y rendimiento ═══�
 node tools/auditar_web.js "$PUERTO" || fallos=$((fallos+1))
 echo; echo "════════ filas de idioma en todo el fuente ════════"
 node tools/barrido_idiomas.js bg || fallos=$((fallos+1))
+echo; echo "════════ el polaco por bloques, contra pl.json ════════"
+node tools/auditar_fuente_pl.js || fallos=$((fallos+1))
 echo; echo "════════ los idiomas que viven fuera de index.html ════════"
 node tools/auditar_idiomas_fuera.js "$PUERTO" || fallos=$((fallos+1))
 echo; echo "════════ cada idioma, uno por uno ════════"

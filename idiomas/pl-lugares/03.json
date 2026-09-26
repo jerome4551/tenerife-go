@@ -16,8 +16,8 @@
   "cat": "Przemoc seksualna · Pomoc 24h · Teneryfa"
  },
  "cavis-violencia-sexual-tenerife": {
-  "desc": "CAVIS — Służba Kompleksowej Pomocy Ofiarom Przemocy Seksualnej na Teneryfie (Cabildo de Tenerife / Kanaryjski Instytut Równości). Specjalistyczna pomoc na miejscu, bezpłatna i poufna: wsparcie psychologiczne, prawne i socjalne dla kobiet, które doświadczyły przemocy seksualnej, oraz dla ich otoczenia. Zgłoszenie na policję nie jest warunkiem. W Santa Cruz, ulica Franco de Medina 41 (budynek HICAN IV). W nagłych wypadkach całodobowo dzwoń pod 647 759 126 albo 112; całodobowa pomoc dla kobiet: 016.",
-  "cat": "Przemoc seksualna · Pomoc · Santa Cruz"
+  "desc": "CAVIS: publiczna służba Cabildo de Tenerife (IASS), należąca do sieci Kanaryjskiego Instytutu Równości, oferująca kompleksową pomoc kobietom, które doświadczyły przemocy seksualnej, niezależnie od narodowości. Wsparcie psychologiczne, prawne i socjalne, bezpłatne i poufne. Zgłoszenie na policję nie jest konieczne. Placówka w La Laguna: Calle Franco de Medina 41, Edificio HICAN IV, portal B, local C, La Cuesta. Telefon 822 351 910; WhatsApp 658 619 717. Inne placówki: Santa Cruz (Avenida Reyes Católicos 35; 822 095 353 lub 635 115 145) i San Isidro, Granadilla (Calle Castro 4, C. C. Guajara; 822 293 920). Czynne w godzinach pracy biura. Przez 24 godziny: 112, 016 lub Centrum Kryzysowe Teneryfy, 647 759 126.",
+  "cat": "Przemoc seksualna · Pomoc · La Laguna"
  },
  "siam-mujeres-santacruz": {
   "desc": "SIAM — Służba Kompleksowej Pomocy Kobietom Cabildo de Tenerife. Informacja oraz wsparcie psychologiczne, prawne i socjalne dla kobiet doświadczających przemocy ze względu na płeć, bezpłatnie i poufnie. Wizyty po wcześniejszym umówieniu w Palacete de Coviella, ulica Francisco de Aguiar y Aguiar 8, Santa Cruz. W nagłych wypadkach 112; całodobowa pomoc dla kobiet: 016.",
@@ -436,5 +436,10 @@
  "marina-santa-cruz": {
   "desc": "Nowoczesna marina w Santa Cruz przy Parque Marítimo César Manrique. Miejsca cumownicze dla jednostek rekreacyjnych z pełnym zapleczem. Promenada z barami i restauracjami z widokiem na ocean. Bardzo blisko Auditorio de Tenerife. Promenada i strefa restauracji są w pełni publiczne.",
   "cat": "Marina · Santa Cruz"
+ },
+ "playa-fajana-realejos": {
+  "_nombre": "Playa La Fajana (Los Realejos)",
+  "desc": "Dzika plaża z czarnym piaskiem, długa około 130 m i szeroka na 20, w obrębie Chronionego Krajobrazu Rambla de Castro. Wodospad spada wprost na piasek. Dochodzi się w jakieś 30 minut pieszo ścieżką od miejsca, gdzie zostawia się samochód, ze schodami po drodze i ostatnim odcinkiem po kamieniach nad samą wodą: niewskazane z dziećmi ani z osobami starszymi. Nie ma ratownika ani żadnych udogodnień, więc zabierz wodę, jedzenie i buty z dobrą przyczepnością. Morze od północy jest bardziej wzburzone i ma silniejsze prądy niż na południu: wchodź do wody tylko przy spokojnym morzu i nie odpływaj daleko.",
+  "cat": "Plaża z czarnym piaskiem · Los Realejos"
  }
 }

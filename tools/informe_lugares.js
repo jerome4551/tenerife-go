@@ -33,7 +33,14 @@ const muni = p => {
 
 w('# Revisión de los 787 lugares');
 w('');
-w('**21 de septiembre de 2026.** Generado con `node tools/informe_lugares.js`.');
+/* La fecha NO se escribe a mano: es la del dia en que se genera. Escrita,
+   el informe decia septiembre cuando ya era otro mes y lo de dentro era
+   nuevo, que es justo el dato viejo que este proyecto persigue. */
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
+               'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const HOY = new Date();
+w('**' + HOY.getDate() + ' de ' + MESES[HOY.getMonth()] + ' de ' + HOY.getFullYear()
+  + '.** Generado con `node tools/informe_lugares.js`.');
 w('Barre los 787, no una muestra. Lo que no se puede comprobar desde aquí sale');
 w('contado y listado, no callado.');
 w('');
@@ -68,7 +75,15 @@ for (const [k, a] of Object.entries(AREAS)) {
   const txt = typeof r === 'string' ? r
             : (r ? Object.entries(r).map(([x, y]) => x.replace(/_/g, ' ') + ' ' + y).join(' · ')
                  : (a.techo || ''));
-  const q = String(txt).replace(/\|/g, '').slice(0, 130);
+  /* Las cifras del area `coordenadas` NO se leen del registro: se cuentan
+     aqui. Escritas alli se quedaban viejas -decia 130 verificadas cuando ya
+     eran 132- y un informe con una cifra vieja es peor que sin cifra. */
+  const q = k === 'coordenadas'
+    ? (PLACES.filter(x => VER[x.id]).length + ' verificadas con su fuente · '
+       + PLACES.filter(x => !VER[x.id]).length + ' sin mirar · '
+       + PLACES.filter(x => sig(lit[x.id][0]) <= 3 && sig(lit[x.id][1]) <= 3).length
+       + ' puestas a ojo')
+    : String(txt).replace(/\|/g, '').slice(0, 130);
   w('| `' + k + '` | ' + marca + ' | ' + q + ' |');
 }
 w('');

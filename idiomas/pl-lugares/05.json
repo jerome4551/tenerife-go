@@ -40,7 +40,7 @@
   "cat": "Bezpłatny grill · La Laguna · Park Anaga"
  },
  "ar-la-quebrada": {
-  "desc": "Strefa rekreacyjna w Tegueste, w Parku Wiejskim Anaga. 18 stołów. Bezpłatne paleniska, toalety i parking. Las wawrzynowy i bór sosnowy w górach Anagi. Bardzo spokojna.",
+  "desc": "Strefa rekreacyjna w Tegueste, w Parku Wiejskim Anaga. 18 stołów. Bezpłatne paleniska, toalety i parking. Las wawrzynowy i bór sosnowy w górach Anagi.",
   "cat": "Bezpłatny grill · Tegueste · Park Anaga"
  },
  "ar-hoya-abade": {
@@ -176,7 +176,7 @@
   "cat": "Wino i tradycja · Północ"
  },
  "ciudad-tegueste": {
-  "desc": "Wiejska i winiarska gmina między La Laguną a Anagą. Zachowuje autentyczne kanaryjskie tradycje. Święta św. Marka w kwietniu z tańcami i baile mago. Wyjątkowe wysokogórskie wina białe. Bez wybrzeża, ale z nienaruszonym wiejskim urokiem.",
+  "desc": "Wiejska i winiarska gmina między La Laguną a Anagą. Zachowuje autentyczne kanaryjskie tradycje. Święta św. Marka w kwietniu z tańcami i baile mago. Wyjątkowe wysokogórskie wina białe. Bez wybrzeża, ale z nienaruszonym wiejskim urokiem. Dobrze skomunikowany autobusem z La Laguną.",
   "cat": "Wioska wiejska · Północ"
  },
  "ciudad-realejos": {
@@ -244,7 +244,7 @@
   "cat": "Miasteczko Muzyki · Południowy wschód"
  },
  "ciudad-rosario": {
-  "desc": "Gmina na średnich wysokościach między Santa Cruz a La Laguną. Las La Esperanza z borami sosnowymi i lasem wawrzynowym. Punkt widokowy Las Raíces, gdzie Franco przygotowywał powstanie z 1936 roku. Świeże powietrze, mistyczna mgła i szlaki.",
+  "desc": "Gmina na średnich wysokościach między Santa Cruz a La Laguną. Las La Esperanza z borami sosnowymi i lasem wawrzynowym. Punkt widokowy Las Raíces, gdzie Franco przygotowywał powstanie z 1936 roku. Świeże powietrze, mistyczna mgła i szlaki. Na wybrzeżu leży Radazul, z przystanią jachtową i plażą.",
   "cat": "Gmina · Cumbre Dorsal"
  },
  "nucleo-bajamar": {
@@ -281,7 +281,7 @@
  },
  "nucleo-la-ranilla": {
   "desc": "Historyczna dzielnica rybacka Puerto de la Cruz. Kolorowe domy, tradycyjne kanaryjskie restauracje, alternatywne życie nocne i najlepsza strefa na tapas z ryb. Bohemska i artystyczna atmosfera, bez turystycznego tłoku.",
-  "cat": "Dzielnica rybacka · Puerto Cruz"
+  "cat": "Dzielnica rybacka · Puerto de la Cruz"
  },
  "nucleo-las-galletas": {
   "desc": "Wioska rybacka na południu, wchłonięta przez Costa del Silencio. Bardzo popularny targ we wtorki i soboty. Mały port jachtowy, restauracje ze świeżą rybą w dobrej cenie. Mieszana atmosfera mieszkalna: miejscowi i obcokrajowcy.",
