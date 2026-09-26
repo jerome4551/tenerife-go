@@ -6,6 +6,7 @@ osm_cerca.py — que hay en OSM alrededor de un punto, sin salir a la red.
     python3 tools/osm_cerca.py 28.4327,-16.4714 400 --nombre "terrero|lucha"
     python3 tools/osm_cerca.py 28.4327,-16.4714 250 --tipo marketplace
     python3 tools/osm_cerca.py 28.1642,-16.4316 150 --via
+    python3 tools/osm_cerca.py 28.1642,-16.4316 80 --aparcamiento
 
 PARA QUE
   Los parches piden consultas a Overpass. Desde aqui Overpass esta cerrado
@@ -19,6 +20,23 @@ PARA QUE
   vertice: en una recta larga los vertices quedan lejos y medir al vertice
   infla la distancia. Eso ya ha dado tres bloqueantes falsos en este
   proyecto.
+
+LA REGLA DE LOS APARCAMIENTOS, SIN RED (--aparcamiento)
+  Un aparcamiento de playa no esta en OSM como tal casi nunca, asi que el pin
+  va a la via por la que se llega. La regla, escrita para no improvisarla dos
+  veces:
+
+      la via rodada CON NOMBRE mas cercana al ancla que cumpla
+      la distancia maxima Y el margen de 3 m contra la costa.
+
+  Las dos condiciones son la regla entera: una via a 2,9 m del borde no vale
+  aunque sea la mas cercana, porque cualquier retoque del dibujo de la costa
+  la devuelve al agua.
+
+  Y con nombre. El extracto a z14 NO trae `access` ni `service`, asi que de
+  una via sin nombre no se puede saber si es la entrada a una casa. Una calle
+  con nombre es publica con seguridad. Las sin nombre se imprimen igual, pero
+  marcadas, para que se vea lo que se esta descartando.
 
 LO QUE NO ES
   No es Overpass. El pmtiles es un extracto a z14: lleva el nombre y el tipo,
@@ -39,6 +57,7 @@ CAPAS = ('pois', 'places', 'landuse', 'buildings')
 # Lo que es una via RODADA, que es lo que piden los parches de aparcamientos.
 # `path` no entra: una vereda o unas escaleras no son donde se deja el coche.
 RODADA = ('highway', 'major_road', 'minor_road')
+MARGEN = 3.0   # metros de tierra que se le exigen al punto, como el parche del mar
 
 
 def tes(lat, lng, z=Z):
@@ -182,6 +201,34 @@ def main():
         return 2
     la, lo = (float(x) for x in sys.argv[1].split(','))
     radio = float(sys.argv[2])
+    if '--aparcamiento' in sys.argv:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            'costa', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'costa.py'))
+        costa = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(costa)
+        an = costa.abrir()
+        V = vias((la, lo), radio)
+        print('  ancla %.6f,%.6f · distancia maxima %d m · margen de costa %.0f m'
+              % (la, lo, radio, MARGEN))
+        elegida = None
+        for (nom, ref, det), (d, q, kind) in sorted(V.items(), key=lambda x: x[1][0]):
+            nombre = nom or ref
+            t, b, _ = an(q[0], q[1]) if an else (True, 999.0, None)
+            vale = bool(nombre) and t and b >= MARGEN
+            marca = ('ELEGIDA' if (vale and elegida is None) else
+                     ('vale' if vale else ('sin nombre' if not nombre else
+                      ('en el agua' if not t else 'margen %.1f m' % b))))
+            if vale and elegida is None:
+                elegida = (nombre, d, q, b)
+            print('    %5d m  %-9s %-34s %.6f,%.6f  borde %5.1f m  %s'
+                  % (round(d), det or '-', (nombre or '(sin nombre)')[:34], q[0], q[1], b, marca))
+        if elegida:
+            print('  -> %s, a %d m del ancla y %.1f m del borde: %.6f,%.6f'
+                  % (elegida[0], round(elegida[1]), elegida[3], elegida[2][0], elegida[2][1]))
+        else:
+            print('  -> ninguna cumple la regla: PENDIENTE')
+        return 0
     if '--via' in sys.argv:
         V = vias((la, lo), radio)
         print('  centro %.6f,%.6f · radio %d m · vias RODADAS, medidas al segmento'

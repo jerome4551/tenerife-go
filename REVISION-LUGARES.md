@@ -21,14 +21,14 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 69 respuestas x 10 idiomas = 690, y se llega a las 690 desde el buscador del asistente. |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 132 verificadas con su fuente · 655 sin mirar · 54 puestas a ojo |
+| `coordenadas` | abierto | 137 verificadas con su fuente · 650 sin mirar · 53 puestas a ojo |
 | `municipio_de_cada_ficha` | **cerrado** | 520 declaran municipio, 475 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno. 0 contradicciones y 0 municipios fue |
-| `lugares_en_el_mar` | abierto | 781 de 787 caen en tierra contra la capa earth de OSM. |
+| `lugares_en_el_mar` | abierto | Los que caen fuera de tierra los cuenta tools/auditar_en_el_mar.py; aqui no se escribe la cifra, que se queda vieja. De los 6 que  |
 
 **Lo único que queda por hacer está en las 2 áreas abiertas:**
 
 - **`coordenadas`** — Las que estan escritas con 3 decimales significativos o menos en los dos ejes, o sea puestas a ojo. El informe las cuenta y las lista una a una.
-- **`lugares_en_el_mar`** — 6 en el agua, las del parche auditoria-mar-8. Necesitan Overpass, que esta bloqueado en el entorno de trabajo.
+- **`lugares_en_el_mar`** — ermita-san-telmo: 18,6 m mar adentro. La ermita no esta en el extracto; si estan la Playa de San Telmo a 65 m y el Paseo de San Telmo a 70 m, pero las dos iglesias mas cercanas no son ella. Empujarla al borde la pondria en el paseo, no en el edificio.; puertito-poris-abona: 241 m. Exento por categoria, pero un embarcadero pequeño no tiene una darsena de 241 m. En 600 m no hay ningun muelle, marina ni puerto en el extracto, y en toda la isla lleva 17 muelles y 10 puertos, asi que no los filtra: ahi no hay ninguno.
 
 ### Las 8 cerradas, con su techo escrito
 
@@ -86,8 +86,8 @@ parecía que todo fallaba siempre.
 
 | | fichas |
 |---|---|
-| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **132** |
-| Coordenada nunca comprobada por nadie | **655** |
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **137** |
+| Coordenada nunca comprobada por nadie | **650** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
 todavía.** Son dos cosas distintas y este informe no las mezcla.
@@ -129,8 +129,10 @@ De dónde viene cada una:
 | `el-medano` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `el-pris` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `fanabe` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `faro-santa-cruz-puerto` | 2026-09-26 | Parche auditoria-mar-8: coordenada publicada de la Farola del Mar (28.46935,-16.24581; Wikipedia, contrastada con una foto geolocalizada en Commons a 21 m), empujada 5 m tierra adentro por decision del dueño, con maximo de 15. Queda a 6,4 m del borde y cumple el margen de 3 m del propio parche. Wikipedia y Commons ya difieren 21 m entre si, asi que 5 m cae dentro de la incertidumbre del dato. |
 | `golf-del-sur` | 2026-09-19 | OpenStreetMap, golf_course «Golf del Sur» |
 | `las-vistas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `lidl-puerto-cruz` | 2026-09-26 | OSM del repositorio: el unico Lidl a menos de 2,5 km, a 81 m de la «Carretera Gral. Icod-Santa Cruz». La direccion del establecimiento es Ctra. General Icod-Santa Cruz s/n, via de servicio Las Arenas, 38400 Puerto de la Cruz, y el edificio en OSM lleva esa misma direccion. El municipio lo confirma tools/municipio_raya.py: 8 paradas sin raya en medio, todas de Puerto de la Cruz. Esta pegado a la raya con La Orotava y hay directorios que lo situan alli; manda la direccion postal. |
 | `lidl-santa-cruz` | 2026-09-19 | OpenStreetMap, supermarket «Lidl», el mas cercano al centro |
 | `mercadillo-la-victoria` | 2026-09-25 | Parche municipios-bloque1-B, metodo DERIVADO (no hay coordenada publicada). Punto medio entre «Casa de la Castana» (museo, OSM, 28.432695,-16.471387) y «Terrero Municipal de Lucha y Deportes» (OSM, 28.433360,-16.471129), separados 78 m, que es como el Ayuntamiento situa el mercadillo. Los tres pasos del parche se resolvieron con el OSM del propio repositorio (tools/osm_cerca.py) porque Overpass esta cerrado desde aqui: paso 1 exactamente 1 elemento, paso 2 ningun amenity=marketplace a 250 m (y 15 en toda la isla, asi que el extracto no los filtra), paso 3 exactamente 1. Se mueve 2.109 m. DERIVADO, no medido: si aparece la coordenada publicada, se cambia. |
 | `mesa-mar` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -147,6 +149,8 @@ De dónde viene cada una:
 | `piscinas-garachico` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `piscinas-muelle` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `piscinas-poris` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `pk-bajamar-piscinas` | 2026-09-26 | Misma regla. «Avenida del Sol», a 63 m del ancla (piscinas-bajamar, 28.5564,-16.3445; limite 150) y a 33,5 m del borde. La via de servicio que quedaba a 30 m NO cumple el margen de 3 m -esta a 2,9- y la regla entera la descarta. |
+| `pk-poris-abona` | 2026-09-26 | Regla de aparcamientos sin red: la via rodada CON NOMBRE mas cercana al ancla oficial (28.164247,-16.431573, ficha de Playa El Poris) que cumpla el limite y el margen de 3 m. Es «Calle Martin Rodriguez», a 58 m del ancla (limite 80) y a 46,8 m del borde. La ficha oficial de la playa da su direccion en esa misma calle, Martin Rodriguez 14. La via sin nombre que quedaba a 35 m se descarta: el extracto no trae access ni service, asi que no se puede saber si es privada. |
 | `playa-abriguitos` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas] |
 | `playa-agua-dulce` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
 | `playa-americas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -202,6 +206,7 @@ De dónde viene cada una:
 | `playa-socorro-guimar` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
 | `playa-tabaiba` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
 | `playa-torviscas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `puerto-colon-adeje` | 2026-09-26 | OSM del repositorio: el punto de la marina «Puerto Colon». El pin viejo estaba 384 m mas alla, en mar abierto, no en la darsena. |
 | `puerto-guimar` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `punta-hidalgo` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `roque-bodegas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -236,7 +241,7 @@ Y no hace falta acordarse de apuntarlas: `tools/fijar_coordenada.py` escribe
 el apunte solo cuando aplica una coordenada, con la fuente que se le pase
 detrás de la `#`. Si no se le da fuente, avisa de que no la apunta.
 
-### De dónde salen las 132
+### De dónde salen las 137
 
 No se han inventado: se han sacado de los ficheros de fuente que ya se
 habían entregado y aplicado, y **se ha comprobado que la coordenada de hoy
@@ -290,19 +295,19 @@ menos preciso de cada ficha. Es la cuenta entera de los 787, no un umbral:
 | decimales | cuadrícula | fichas |
 |---|---|---|
 | 1 | ~11 km | **2** |
-| 2 | ~1,1 km | **31** |
+| 2 | ~1,1 km | **30** |
 | 3 | ~110 m | **142** |
-| 4 | ~11 m | **559** |
-| 5 | ~1 m | **13** |
-| 6 | ~10 cm | **14** |
+| 4 | ~11 m | **555** |
+| 5 | ~1 m | **15** |
+| 6 | ~10 cm | **17** |
 | 7 | ~1 cm | **25** |
 | 15 |  | **1** |
 
-**54 fichas tienen los dos ejes con 3 decimales o menos**: eso no es una
+**53 fichas tienen los dos ejes con 3 decimales o menos**: eso no es una
 coordenada sacada de una fuente, es un marcador puesto a ojo. Que los dos
 caigan a la vez por casualidad es una entre un millón.
 
-### Las 20 peores: algún eje con 2 decimales o menos (~1,1 km)
+### Las 19 peores: algún eje con 2 decimales o menos (~1,1 km)
 
 | id | qué es | escrita | municipio |
 |---|---|---|---|
@@ -315,7 +320,6 @@ caigan a la vez por casualidad es una entre un millón.
 | `gas-tf1-candelaria` | Cepsa Candelaria (TF-1) | 28.3530, -16.3800 | Candelaria |
 | `kayak-los-gigantes` | 🛶 Kayak & SUP Los Gigantes — Acantilados | 28.2440, -16.8400 | Santiago del Teide |
 | `lajiales-fasnia` | Los Lajiales de Fasnia | 28.2100, -16.4350 | Fasnia |
-| `lidl-puerto-cruz` | Lidl Puerto de la Cruz | 28.4200, -16.5450 | Puerto de la Cruz |
 | `mercadona-el-medano` | Mercadona El Médano | 28.0500, -16.5380 | Granadilla de Abona |
 | `minimarket-24h-las-americas` | Seven Ways Supermarket 24h (Las Américas) | 28.066, -16.73 | Adeje |
 | `mir-rambleta-teide` | Mirador La Rambleta (Teide · 3.555 m) | 28.27, -16.639 | La Orotava |
@@ -452,12 +456,13 @@ Puede ser correcto —dos cosas en el mismo sitio— o una coordenada copiada.
 
 ## 3 · Pares a menos de 25 m que no comparten coordenada
 
-**14 pares.** A esa distancia los dos pines se solapan en el mapa.
+**15 pares.** A esa distancia los dos pines se solapan en el mapa.
 
 - 11 m · `puertito-los-abrigos` y `zona-mariscos-los-abrigos`
 - 11 m · `pesca-los-abrigos` y `zona-mariscos-los-abrigos`
 - 11 m · `turismo-sct` y `pk-plaza-espana`
 - 11 m · `ciudad-candelaria` y `pk-plaza-patrona-candelaria`
+- 14 m · `rest-tipico-mirador-abona` y `pk-poris-abona`
 - 15 m · `mirador-pico-ingles` y `bici-puerto-pico-ingles`
 - 15 m · `kayak-punta-teno` y `faro-teno`
 - 20 m · `deporte-arona-multideporte` y `super-hiperdino-arona-pueblo`

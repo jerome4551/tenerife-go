@@ -885,37 +885,53 @@ verde. OSM no tenía el dato y aquí no se inventan coordenadas:
 De esas cuatro, el parche **auditoria-mar-8** resolvió las dos primeras. Va
 abajo, con lo que quedó fuera y por qué.
 
-## El parche «auditoria-mar-8» · 2 aplicadas de 8, y las 6 que no
+## El parche «auditoria-mar-8» · de 2 aplicadas de 8 a 7 de 8
 
 El parche traía 1 baja y 7 coordenadas, cada una con su fuente, sus límites y
 una regla explícita: *«Cero improvisación. Si te falta un insumo —la costa de
 la auditoría, el shapefile municipal del Cabildo o la red—, las fichas que lo
 necesitan quedan PENDIENTE.»* El bloque JSON llegó íntegro (sha256
-`bcecdadd…b321b`, el que el parche pedía) y las 8 pasaron la pre-comprobación
-de que nada había cambiado desde la auditoría.
+`bcecdadd…b321b`) y las 8 pasaron la pre-comprobación.
 
-**Aplicadas.**
+En septiembre se aplicaron **dos** y quedaron **seis**, todas esperando
+Overpass. En el bloque 2 se cerraron **cinco más**, y ninguna con Overpass: el
+dato que los parches pedían **ya estaba dentro del repositorio**, en el
+extracto OSM del mapa. Lo saca `tools/osm_cerca.py`.
 
 | ficha | qué se hizo | cómo |
 |---|---|---|
-| `montana-colorada` | **baja**: la ficha, su id en `suggestionIds` de `south`, y sus textos en los nueve `idiomas/*.json` | ninguna fuente la sitúa en Fasnia; el Monumento Natural del mismo nombre es otro sitio, en Granadilla y Vilaflor, de hasta 1.524 m |
-| `windsurf-el-poris` | 28.1540, −16.4160 → **28.152765, −16.432303** | coordenada oficial de Playa Grande (Turismo de Tenerife); cayó a 8 m en el agua, así que corrió su `si_falla`: empujada 8 m a tierra sobre el **segmento** de costa, 16 m de desplazamiento (el límite eran 40) |
+| `montana-colorada` | **baja**: la ficha, su id en `suggestionIds` de `south`, y sus textos en los nueve `idiomas/*.json` | ninguna fuente la sitúa en Fasnia |
+| `windsurf-el-poris` | 28.1540, −16.4160 → **28.152765, −16.432303** | coordenada oficial de Playa Grande, empujada 8 m a tierra sobre el **segmento** de costa |
+| `faro-santa-cruz-puerto` | 444 m → **en tierra, 6,4 m del borde** | la coordenada publicada de la Farola del Mar, **empujada 5 m tierra adentro** (máximo 15, decisión del dueño): a 1,4 m no pasaba el margen de 3 m del propio parche. Wikipedia y Commons ya difieren 21 m entre sí, así que 5 m cae dentro de la incertidumbre del dato. Nombre, textos, `cat` y etiquetas nuevos en los diez idiomas |
+| `pk-poris-abona` | 82 m → **46,8 m en tierra** | «Calle Martín Rodríguez», a 58 m del ancla oficial (límite 80). La regla de aparcamientos, abajo |
+| `pk-bajamar-piscinas` | 28 m → **33,5 m en tierra** | «Avenida del Sol», a 63 m del ancla (límite 150) |
+| `lidl-puerto-cruz` | 46 m → **232 m en tierra** | el único Lidl a menos de 2,5 km, a 81 m de la «Carretera Gral. Icod-Santa Cruz» que nombraba el parche, y en Puerto de la Cruz según la dirección postal y la comprobación de rayas |
+| `whale-watching` | 23 m → **se queda** | está dentro de la marina, a 52 m de su punto en OSM. Exento POR ID, con el motivo escrito, no por categoría |
+| `ermita-san-telmo` | 19 m | **sigue pendiente**: la ermita no está en el extracto |
 
 La parada TITSA «Montaña Colorada» de Granadilla de Abona **no se ha tocado**:
 el parche avisaba de que es otra cosa, y lo es.
 
-**Las seis pendientes, y el insumo que falta.** Las seis pasan por
-**Overpass**, bloqueado desde aquí por la política de salida (`403` en los dos
-endpoints del parche). El detalle está en `MAR-BLOQUE2.md`.
+### La regla de los aparcamientos, escrita y ejecutable
 
-| ficha | se mete | por qué sigue pendiente |
-|---|---|---|
-| `faro-santa-cruz-puerto` | 444 m | la coordenada de la Farola del Mar cae en tierra pero **a 1,4 m** de la costa, y el parche exige **3 m o más**; al no pasar, manda su `si_falla`, que es Overpass |
-| `pk-poris-abona` | 82 m | `calle_mas_cercana` → Overpass |
-| `lidl-puerto-cruz` | 46 m | `osm_lidl` → Overpass **y** el shapefile municipal del Cabildo |
-| `pk-bajamar-piscinas` | 28 m | `calle_mas_cercana` → Overpass (el ancla sí cuadra: `piscinas-bajamar` está exactamente donde el parche esperaba) |
-| `whale-watching` | 23 m | el empuje a tierra sí sale sin red —daría 28.077710, −16.736308, 33 m de los 60 permitidos— pero su `comprobacion_marina` es **obligatoria** y es Overpass |
-| `ermita-san-telmo` | 19 m | `osm_elemento` → Overpass |
+> La vía rodada **con nombre** más cercana al ancla que cumpla **la distancia
+> máxima** y **el margen de 3 m** contra la costa.
+
+Las dos condiciones son la regla entera: en Bajamar la vía más cercana estaba
+a 30 m del ancla pero a **2,9 m del borde**, y la regla la descarta. Y con
+nombre, porque el extracto a z14 no trae `access` ni `service`: de una calle
+sin nombre no se sabe si es la entrada a una casa. No se queda escrita en un
+documento, que es donde las reglas se olvidan: es
+`tools/osm_cerca.py --aparcamiento`, e imprime también lo que descarta.
+
+### Y un exento que no lo era
+
+`puerto-colon-adeje` estaba **150 m en mar abierto**, no en la dársena, y la
+exención por categoría lo tapaba. Movido al punto de la marina en OSM: 58 m.
+Ahora el control imprime siempre los exentos **a más de 150 m** —quedan
+`puertito-poris-abona` (241 m) y `puerto-granadilla-comercial` (216 m)— porque
+un puerto está en el agua por definición, pero no a cualquier distancia, y la
+exención no puede servir para esconder un pin puesto en mar abierto.
 
 El faro merece una nota, porque es el caso que más fácil habría sido dar por
 bueno: **cae en tierra**. Si el test hubiera sido «¿está en tierra?» habría

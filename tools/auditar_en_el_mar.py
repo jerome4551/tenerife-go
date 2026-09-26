@@ -43,8 +43,23 @@ RAIZ = costa.RAIZ
 # estaba a 444 m mar adentro se veia a simple vista en el movil.
 DEL_AGUA = {'puerto_ocio', 'puerto_comercial', 'piscinas', 'buceo', 'avistamiento'}
 
+# Y estos, uno por uno, con su motivo escrito. La exencion por CATEGORIA no
+# vale aqui: `whale-watching` esta en `familia` y exentar la categoria entera
+# dejaria de mirar decenas de fichas que si tienen que estar en tierra.
+DEL_AGUA_ID = {
+    'whale-watching': ('es una excursion en barco: el punto sale del puerto deportivo '
+                       'de Colon, y queda a 52 m del punto de la marina en OSM. '
+                       'Moverlo a tierra lo pondria en el paseo, no donde se embarca.'),
+}
+
 # A partir de aqui ya no es el dibujo generalizado: es un error de dato.
 UMBRAL = 60.0
+
+# Un puerto esta en el agua por definicion, pero no a cualquier distancia: una
+# darsena y un dique tienen un tamaño. Por encima de esto se imprime igual -no
+# suspende, porque puede ser un puerto industrial de verdad- para que nadie se
+# apoye en la exencion para esconder un pin puesto en mar abierto.
+LEJOS_EXENTO = 150.0
 
 
 def main():
@@ -68,7 +83,8 @@ def main():
         t, b, _ = analiza(la, lo)
         if t:
             continue
-        (exentos if cat in DEL_AGUA else fuera).append((b, pid, cat, nom, la, lo))
+        (exentos if (cat in DEL_AGUA or pid in DEL_AGUA_ID)
+         else fuera).append((b, pid, cat, nom, la, lo))
     fuera.sort(reverse=True)
     exentos.sort(reverse=True)
     graves = [x for x in fuera if x[0] >= UMBRAL]
@@ -84,6 +100,16 @@ def main():
         if lista:
             for b, pid, cat, nom, la, lo in exentos:
                 print('          %7.0f m  %-30s %s' % (b, pid, cat))
+        lejos = [x for x in exentos if x[0] >= LEJOS_EXENTO]
+        if lejos:
+            print('      de esos, a mas de %.0f m (conviene mirarlos, no suspende): %d'
+                  % (LEJOS_EXENTO, len(lejos)))
+            for b, pid, cat, nom, la, lo in lejos:
+                print('          %7.0f m  %-30s %s' % (b, pid, cat))
+        # Las exenciones de una sola ficha se imprimen SIEMPRE, con su motivo:
+        # una exencion que no se lee es un silencio.
+        for pid, por in sorted(DEL_AGUA_ID.items()):
+            print('      exento a mano: %s — %s' % (pid, por))
     return 1 if graves else 0
 
 

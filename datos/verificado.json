@@ -564,6 +564,26 @@
   "mercadillo-la-victoria": {
    "fecha": "2026-09-25",
    "fuente": "Parche municipios-bloque1-B, metodo DERIVADO (no hay coordenada publicada). Punto medio entre «Casa de la Castana» (museo, OSM, 28.432695,-16.471387) y «Terrero Municipal de Lucha y Deportes» (OSM, 28.433360,-16.471129), separados 78 m, que es como el Ayuntamiento situa el mercadillo. Los tres pasos del parche se resolvieron con el OSM del propio repositorio (tools/osm_cerca.py) porque Overpass esta cerrado desde aqui: paso 1 exactamente 1 elemento, paso 2 ningun amenity=marketplace a 250 m (y 15 en toda la isla, asi que el extracto no los filtra), paso 3 exactamente 1. Se mueve 2.109 m. DERIVADO, no medido: si aparece la coordenada publicada, se cambia."
+  },
+  "lidl-puerto-cruz": {
+   "fecha": "2026-09-26",
+   "fuente": "OSM del repositorio: el unico Lidl a menos de 2,5 km, a 81 m de la «Carretera Gral. Icod-Santa Cruz». La direccion del establecimiento es Ctra. General Icod-Santa Cruz s/n, via de servicio Las Arenas, 38400 Puerto de la Cruz, y el edificio en OSM lleva esa misma direccion. El municipio lo confirma tools/municipio_raya.py: 8 paradas sin raya en medio, todas de Puerto de la Cruz. Esta pegado a la raya con La Orotava y hay directorios que lo situan alli; manda la direccion postal."
+  },
+  "pk-poris-abona": {
+   "fecha": "2026-09-26",
+   "fuente": "Regla de aparcamientos sin red: la via rodada CON NOMBRE mas cercana al ancla oficial (28.164247,-16.431573, ficha de Playa El Poris) que cumpla el limite y el margen de 3 m. Es «Calle Martin Rodriguez», a 58 m del ancla (limite 80) y a 46,8 m del borde. La ficha oficial de la playa da su direccion en esa misma calle, Martin Rodriguez 14. La via sin nombre que quedaba a 35 m se descarta: el extracto no trae access ni service, asi que no se puede saber si es privada."
+  },
+  "pk-bajamar-piscinas": {
+   "fecha": "2026-09-26",
+   "fuente": "Misma regla. «Avenida del Sol», a 63 m del ancla (piscinas-bajamar, 28.5564,-16.3445; limite 150) y a 33,5 m del borde. La via de servicio que quedaba a 30 m NO cumple el margen de 3 m -esta a 2,9- y la regla entera la descarta."
+  },
+  "faro-santa-cruz-puerto": {
+   "fecha": "2026-09-26",
+   "fuente": "Parche auditoria-mar-8: coordenada publicada de la Farola del Mar (28.46935,-16.24581; Wikipedia, contrastada con una foto geolocalizada en Commons a 21 m), empujada 5 m tierra adentro por decision del dueño, con maximo de 15. Queda a 6,4 m del borde y cumple el margen de 3 m del propio parche. Wikipedia y Commons ya difieren 21 m entre si, asi que 5 m cae dentro de la incertidumbre del dato."
+  },
+  "puerto-colon-adeje": {
+   "fecha": "2026-09-26",
+   "fuente": "OSM del repositorio: el punto de la marina «Puerto Colon». El pin viejo estaba 384 m mas alla, en mar abierto, no en la darsena."
   }
  },
  "areas": {
@@ -656,9 +676,13 @@
   },
   "lugares_en_el_mar": {
    "estado": "abierto",
-   "fecha": "2026-09-20",
-   "resultado": "781 de 787 caen en tierra contra la capa earth de OSM.",
-   "abierto": "6 en el agua, las del parche auditoria-mar-8. Necesitan Overpass, que esta bloqueado en el entorno de trabajo."
+   "fecha": "2026-09-26",
+   "resultado": "Los que caen fuera de tierra los cuenta tools/auditar_en_el_mar.py; aqui no se escribe la cifra, que se queda vieja. De los 6 que habia, 4 se movieron con fuente y 1 quedo exento con su motivo escrito.",
+   "abierto": [
+    "ermita-san-telmo: 18,6 m mar adentro. La ermita no esta en el extracto; si estan la Playa de San Telmo a 65 m y el Paseo de San Telmo a 70 m, pero las dos iglesias mas cercanas no son ella. Empujarla al borde la pondria en el paseo, no en el edificio.",
+    "puertito-poris-abona: 241 m. Exento por categoria, pero un embarcadero pequeño no tiene una darsena de 241 m. En 600 m no hay ningun muelle, marina ni puerto en el extracto, y en toda la isla lleva 17 muelles y 10 puertos, asi que no los filtra: ahi no hay ninguno."
+   ],
+   "techo": "Overpass esta cerrado desde aqui (000 en los dos endpoints) y el extracto OSM del repositorio es a z14: no lleva faros, ni el edificio de la ermita, ni el muelle de Poris. Lo que se podia sacar de el se saco con tools/osm_cerca.py."
   }
  },
  "municipio_por_raya": {
