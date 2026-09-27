@@ -1385,7 +1385,7 @@ municipales** (`boundaries`, `admin_level` 8). No son polígonos —son líneas
 sueltas, recortadas por tesela— así que no se puede preguntar «dentro de quién
 cae». Pero sí lo único que hacía falta, que es justo el riesgo señalado:
 **¿hay una raya entre el punto y las paradas que lo rodean?** Eso es
-`tools/municipio_raya.py`:
+`tools/municipio_raya.py`, hoy sustituido por el polígono de verdad:
 
 | id | paradas de apoyo | raya más cercana | hueco del dato | rayas en medio |
 |---|---|---|---|---|

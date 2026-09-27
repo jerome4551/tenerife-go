@@ -82,19 +82,35 @@ for (const m of MUNIS) {
 }
 FORMAS.sort((a, b) => b[0].length - a[0].length);
 
-/* Cuanta evidencia hace falta para OPINAR. Con una sola parada, o con la mas
-   cercana a kilometros, la respuesta es «no se sabe», no «esta mal»: asi
-   salian marcados el area de Las Raices -una parada a 2,9 km- y tres
-   senderos de monte. Un control que opina sin datos se ignora a la semana. */
-const RADIO = 1500;      // metros: mas alla, la parada ya no dice nada del sitio
-const CUANTAS = 8;       // paradas que se miran
-const MINIMO = 3;        // menos de estas alrededor: no se opina
-/* Un hallazgo SUSPENDE solo si es firme: todas las paradas de alrededor del
-   mismo municipio Y la mas cercana pegada. Un mirador en un puerto de
-   montaña o un sendero que cruza dos terminos caen en el borde por
-   definicion, y un control que cante en cada borde se ignora a la semana.
-   Los del borde se listan igual: callarlos seria el fallo contrario. */
-const PEGADA = 250;      // metros de la parada mas cercana para llamarlo firme
+/* EL POLIGONO MANDA. Desde que llego el shapefile municipal del Cabildo, la
+   pregunta «¿en que municipio cae este punto?» tiene respuesta exacta:
+   tools/municipio.py hace point-in-polygon contra los 31 municipios. Se le
+   pregunta UNA vez por los 787 y la geometria vive en un solo sitio.
+
+   Antes esto se hacia por aproximacion, mirando si habia una raya municipal
+   entre el punto y las paradas de alrededor. Acertaba, pero no podia cerrar
+   un punto pegado a un limite y necesitaba tres paradas cerca para opinar.
+   Las paradas se siguen usando, pero solo para ENSEÑAR el entorno cuando algo
+   no cuadra, no para decidir. */
+const path = require('path');
+const { execFileSync } = require('child_process');
+const POLIGONO = (() => {
+  try {
+    const entrada = PLACES.map(p => p.id + ' ' + p.lat + ' ' + p.lng).join('\n');
+    const salida = execFileSync('python3', [path.join(__dirname, 'municipio.py'), '--lote'],
+                                { input: entrada, encoding: 'utf8', maxBuffer: 1 << 24 });
+    const m = {};
+    for (const l of salida.split('\n')) {
+      const t = l.split('\t');
+      if (t.length === 2 && t[1]) m[t[0]] = t[1];
+    }
+    return m;
+  } catch (e) { return null; }
+})();
+
+/* Las paradas, solo para enseñar el entorno de lo que no cuadra. */
+const RADIO = 1500;
+const CUANTAS = 8;
 
 const paradas = Object.values(CAT);
 
@@ -126,53 +142,53 @@ const sinDeclarar = [], sinComprobar = [], coinciden = [], mal = [], contra = []
 for (const p of PLACES) {
   const dichos = declara(p);
   if (!dichos.length) { sinDeclarar.push(p); continue; }
-  if (dichos.length > 1) { contra.push([p, dichos]); continue; }
+  const cae = POLIGONO ? POLIGONO[p.id] : undefined;
+  if (dichos.length > 1) {
+    /* Si se contradice pero el poligono dice cual de los dos es, ya no es una
+       contradiccion sin resolver: es un error con respuesta. */
+    contra.push([p, dichos, cae]);
+    continue;
+  }
   const dice = dichos[0][1];
-  const c = cerca(p);
-  if (c.length < MINIMO) { sinComprobar.push([p, dice]); continue; }
-  if (c.some(x => x.m === dice)) coinciden.push(p);
-  else mal.push([p, dice, c]);
+  if (!cae) { sinComprobar.push([p, dice]); continue; }   // en el mar, o sin poligono
+  if (cae === dice) coinciden.push(p);
+  else mal.push([p, dice, cerca(p), cae]);
 }
 
 const P = (t, v) => console.log('  ' + String(t).padEnd(46, '.') + ' ' + v);
 console.log('=== el municipio que dice la ficha, contra donde cae el punto ===');
+if (!POLIGONO) {
+  console.log('  no he podido preguntarle a tools/municipio.py: sin poligono no se comprueba');
+  process.exit(0);
+}
 P('lugares', PLACES.length);
 P('  que nombran un municipio', PLACES.length - sinDeclarar.length);
-P('  de esos, comprobados contra las paradas', coinciden.length + mal.length);
-P('  y con menos de 3 paradas a 1,5 km: no se puede', sinComprobar.length);
+P('  de esos, comprobados contra el POLIGONO del Cabildo', coinciden.length + mal.length);
+P('  y con el punto en el agua: no cae en ningun municipio', sinComprobar.length);
 P('no declaran municipio', sinDeclarar.length);
 console.log('');
 P('LA FICHA SE CONTRADICE A SI MISMA', contra.length);
-for (const [p, d] of contra) {
-  const c = cerca(p);
+for (const [p, d, cae] of contra) {
   console.log('      ' + p.id.padEnd(30) + d.map(x => x[0] + ' dice «' + x[1] + '»').join('  vs  '));
-  console.log('      ' + ' '.repeat(30) + '  alrededor: ' +
-    (c.length ? [...new Set(c.map(x => x.m))].join(', ') + '  ·  ' + c[0].n + ' a ' + Math.round(c[0].d) + ' m'
-              : 'sin paradas suficientes'));
+  console.log('      ' + ' '.repeat(30) + '  el poligono dice: ' + (cae || '(el punto cae en el agua)'));
 }
 console.log('');
-const firme = ([, , c]) => new Set(c.map(x => x.m)).size === 1 && c[0].d <= PEGADA;
+/* Ya no hay «borde»: el poligono no tiene bordes difusos. Lo unico que se
+   sigue enseñando de las paradas es el entorno, para poder mirarlo. */
 const pinta = l => {
-  for (const [p, dice, c] of l.sort((a, b) => a[0].id < b[0].id ? -1 : 1)) {
-    const cuenta = {};
-    c.forEach(x => cuenta[x.m] = (cuenta[x.m] || 0) + 1);
-    const donde = Object.entries(cuenta).sort((a, b) => b[1] - a[1])
-      .map(([m, n]) => m + ' x' + n).join(', ');
-    console.log('      ' + p.id.padEnd(30) + 'dice «' + dice + '»  ·  alrededor: ' + donde);
-    console.log('      ' + ' '.repeat(30) + '  ' + p.lat + ', ' + p.lng + '  ·  parada mas cerca: ' +
-                c[0].n + ' (' + Math.round(c[0].d) + ' m)');
+  for (const [p, dice, c, cae] of l.sort((a, b) => a[0].id < b[0].id ? -1 : 1)) {
+    console.log('      ' + p.id.padEnd(30) + 'dice «' + dice + '»  ·  el poligono dice «' + cae + '»');
+    console.log('      ' + ' '.repeat(30) + '  ' + p.lat + ', ' + p.lng +
+                (c.length ? '  ·  parada mas cerca: ' + c[0].n + ' (' + Math.round(c[0].d) + ' m, ' + c[0].m + ')' : ''));
   }
 };
-const firmes = mal.filter(firme), borde = mal.filter(x => !firme(x));
-P('EL MUNICIPIO NO CUADRA, y es firme', firmes.length);
-pinta(firmes);
-console.log('');
-P('en el borde: se avisa, no suspende', borde.length);
-pinta(borde);
+P('EL MUNICIPIO NO CUADRA', mal.length);
+pinta(mal);
+const firmes = mal;
 if (process.argv.includes('--sin-comprobar')) {
   console.log('\n  las que no se pueden comprobar, una por una:');
   for (const [p, dice] of sinComprobar)
-    console.log('      ' + p.id.padEnd(30) + 'dice «' + dice + '»  ·  sin paradas a 3 km');
+    console.log('      ' + p.id.padEnd(30) + 'dice «' + dice + '»  ·  el punto no cae en ningun municipio');
 }
 const total = firmes.length + contra.length;
 console.log('\n' + (total ? '*** ' + total + ' ficha(s) con el municipio fuera de sitio, en firme ***'

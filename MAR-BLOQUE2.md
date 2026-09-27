@@ -171,5 +171,5 @@ que caiga **en tierra**, y cuántos metros se mueve—, **apunta la fuente en
 ---
 
 *Las distancias de este documento salen de `tools/osm_cerca.py`,
-`tools/costa.py`, `tools/auditar_en_el_mar.py` y `tools/municipio_raya.py`.
+`tools/costa.py`, `tools/auditar_en_el_mar.py` y `tools/municipio.py`.
 Ninguna está escrita a mano.*

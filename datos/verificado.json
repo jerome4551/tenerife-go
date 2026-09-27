@@ -708,7 +708,7 @@
     "parque-tabaiba-baja",
     "rcg-tenerife"
    ],
-   "techo": "El poligono municipal del Cabildo NO esta en el repositorio y no se puede bajar desde aqui (Overpass, Nominatim, IDECanarias y los portales de datos abiertos dan 000). La prueba que se usa son las rayas municipales admin_level 8 del mapa OSM del propio repositorio, con tools/municipio_raya.py, calibrado: de 849 parejas de paradas vecinas de municipio distinto a menos de 1,5 km, 805 (94,8%) tienen de verdad una raya en medio."
+   "techo": "El poligono municipal del Cabildo YA ESTA en el repositorio (tools/datos/municipios-tenerife-2015.shp.zip, entregado el 27 de septiembre). La comprobacion es point-in-polygon exacto, no una aproximacion. Calibrado contra las 2.514 paradas de TITSA: coincide en 2.514, el 100,00 %. La unica trampa del fichero es que el anillo de La Laguna envuelve a Tegueste sin recortarle el hueco; se resuelve con «si un punto cae en varios, gana el mas pequeño», que es lo que pasa siempre con un enclave."
   },
   "lugares_en_el_mar": {
    "estado": "cerrado",
@@ -720,59 +720,6 @@
    ],
    "techo": "Overpass sigue cerrado desde aqui. El extracto OSM del repositorio es a z14 y NO lo trae todo: dio 0 faros en toda la isla y la Farola SI esta en OSM (way 193798986). Un 0 en el extracto significa «no lo trae», nunca «no existe». Los POIs que en OSM son una via o un poligono llegan aqui como un punto de rotulo, asi que la distancia a ese punto no es la distancia al sitio.",
    "que_se_hizo": "Las 6 fichas que caian fuera de tierra se cerraron una a una. Cuatro con una coordenada de fuente (Wikidata, Wikipedia, la ficha oficial de la playa, el propio OSM del repositorio), una por la regla de aparcamientos y una -whale-watching- exenta por id con su motivo escrito. De paso, puerto-colon-adeje estaba 150 m en mar abierto, no en la darsena, y la exencion por categoria lo tapaba: movido al punto de la marina en OSM."
-  }
- },
- "municipio_por_raya": {
-  "_": "Fichas cuyo municipio se cerro midiendo si hay una raya municipal entre el punto y las paradas que lo rodean, con tools/municipio_raya.py. NO es un point-in-polygon contra el shapefile del Cabildo: ese fichero no esta en el repositorio y no se puede bajar desde aqui. Lo que se usa son las rayas municipales (admin_level 8) del mapa OSM que el repositorio ya lleva. El metodo esta calibrado: de 849 parejas de paradas vecinas de municipio distinto a menos de 1,5 km, 805 (94,8%) tienen de verdad una raya en medio, asi que una ficha solo se cierra si la raya y el hueco de datos mas cercanos quedan a mas de 1,5 veces la distancia de las paradas en que se apoya. Si algun dia entra el poligono oficial, esto se rehace con el.",
-  "buceo-tabaiba": {
-   "fecha": "2026-09-25",
-   "municipio": "El Rosario",
-   "fuente": "Parche municipios-bloque1-A (sha256 594fa5ed...). tools/municipio_raya.py: 8 paradas de apoyo hasta 561 m, todas de El Rosario, la mas cercana «Tabaiba» a 177 m; raya municipal mas cercana a 909 m y hueco del dato a 911 m, los dos fuera del circulo; 0 rayas entre el punto y las 8 paradas."
-  },
-  "parque-tabaiba-baja": {
-   "fecha": "2026-09-25",
-   "municipio": "El Rosario",
-   "fuente": "Parche municipios-bloque1-A. tools/municipio_raya.py: 8 paradas de apoyo hasta 510 m, todas de El Rosario, la mas cercana «Tabaiba» a 11 m; raya a 987 m y hueco a 994 m; 0 rayas en medio."
-  },
-  "kayak-radazul": {
-   "fecha": "2026-09-25",
-   "municipio": "El Rosario",
-   "fuente": "Parche municipios-bloque1-A. tools/municipio_raya.py: 8 paradas de apoyo hasta 433 m, todas de El Rosario, la mas cercana «Colon» a 56 m; las 5 paradas que llevan «Radazul» son de El Rosario; raya a 1.618 m y hueco a 1.618 m; 0 rayas en medio."
-  },
-  "mir-cruz-hilda": {
-   "fecha": "2026-09-25",
-   "municipio": "Buenavista del Norte",
-   "fuente": "Parche municipios-bloque1-A. tools/municipio_raya.py: 8 paradas de apoyo hasta 1.780 m, todas de Buenavista del Norte, la mas cercana «Cruz de Hilda» a 67 m; raya a 2.166 m y hueco a 2.224 m; 0 rayas en medio. Texto nuevo del parche, de la ficha de Turismo de Tenerife. De paso se corrigio tools/auditar_municipio.js, que tenia «Masca» como alias de Santiago del Teide: las 3 paradas del catalogo con «Masca» en el nombre son de Buenavista del Norte."
-  },
-  "ar-la-quebrada": {
-   "fecha": "2026-09-25",
-   "municipio": "Tegueste",
-   "fuente": "tools/municipio_raya.py sobre la coordenada nueva: de las 14 paradas mas cercanas solo una no tiene raya municipal en medio, «Cruce el Moquinal» (Tegueste) a 380 m -el mismo cruce que nombra la ficha del Cabildo-, y las 13 de La Laguna estan todas al otro lado de una raya."
-  },
-  "mercadillo-la-victoria": {
-   "fecha": "2026-09-25",
-   "municipio": "La Victoria de Acentejo",
-   "fuente": "tools/municipio_raya.py sobre el punto derivado: 6 paradas sin raya en medio, todas de La Victoria de Acentejo (la primera a 232 m), y las 8 de La Matanza y Santa Ursula cortadas por una raya."
-  },
-  "cavis-violencia-sexual-tenerife": {
-   "fecha": "2026-09-25",
-   "municipio": "San Cristóbal de La Laguna",
-   "fuente": "Parche municipios-bloque1-B: segun el Instituto Canario de Igualdad, calle Franco de Medina 41 esta en La Cuesta, San Cristobal de La Laguna (38320). El pin NO se movio. PORTAL NO VERIFICADO: la regla del parche pedia geocodificar la direccion con CartoCiudad (IGN) o con OSM, y desde aqui los dos estan cerrados por la politica de salida (000). Se aplico la ultima rama de la regla: tools/municipio_raya.py sobre el pin actual da San Cristobal de La Laguna -14 paradas, ninguna con raya en medio, la primera a 72 m-, asi que el pin se queda."
-  },
-  "casa-capitanes-generales": {
-   "fecha": "2026-09-25",
-   "municipio": "San Cristóbal de La Laguna",
-   "fuente": "Parche municipios-bloque1-C (sha256 30ff04bd...). Eleccion del dueño: La Laguna. El pin NO se movio. tools/municipio_raya.py: 14 paradas miradas, NINGUNA con raya municipal en medio, la primera «Plaza del Adelantado» a 116 m, raya mas cercana a 2.310 m. El paso de afinado del parche pedia Overpass con name~Capitanes: en el OSM del repositorio no hay ningun elemento asi a 200 m, pero SI esta el edificio con su otro nombre, «Casa de Alvarado-Bracamonte» (manor), a 23 m del pin. Por debajo de los 40 m que pedia la regla, asi que el pin se queda igual, y de paso confirma que esta en el sitio."
-  },
-  "rcg-tenerife": {
-   "fecha": "2026-09-25",
-   "municipio": "Tacoronte",
-   "fuente": "Parche municipios-bloque1-C. Eleccion del dueño: Tacoronte, que es lo que dice el propio club (C/ Campo de Golf 1, 38350 Tacoronte). El pin NO se movio porque no hizo falta: tools/municipio_raya.py ya da Tacoronte -5 paradas sin raya en medio, todas de Tacoronte (la primera a 262 m), y 9 cortadas por una raya-, asi que la rama de geocodificar de la regla no llego a aplicarse."
-  },
-  "guachinche-cordero": {
-   "fecha": "2026-09-25",
-   "municipio": "San Miguel de Abona",
-   "fuente": "Parche municipios-bloque1-C. Eleccion del dueño: San Miguel de Abona. El pin NO se movio. tools/municipio_raya.py: 13 de las 14 paradas mas cercanas sin raya en medio, TODAS de San Miguel de Abona, la primera «Catu» a 116 m, y la raya a 988 m. De la descripcion se quitan los datos que caducan o se contradecian: el horario (decia todos los dias y a la vez solo fines de semana), la nota con el numero de reseñas, la cabra guisada y el vino propio."
   }
  },
  "coordenada_de_zona": {
@@ -824,6 +771,59 @@
   },
   "nucleo-torviscas": {
    "motivo": "Barrio: la coordenada es su centro aproximado, como en los demas nucleos."
+  }
+ },
+ "municipio_oficial": {
+  "_": "Fichas cuyo municipio se comprobo con POINT-IN-POLYGON contra el shapefile municipal del Cabildo (tools/datos/municipios-tenerife-2015.shp.zip, 31 municipios, 182 anillos, 143.737 vertices), con tools/municipio.py. Sustituye al metodo anterior, que era indirecto -mirar si habia una raya municipal del mapa OSM entre el punto y las paradas de alrededor- porque el shapefile no estaba. Las diez coinciden: el poligono confirma las diez decisiones. CALIBRACION: el poligono coincide con el municipio que traen las 2.514 paradas de TITSA en 2.514 de 2.514, el 100,00 %.",
+  "buceo-tabaiba": {
+   "fecha": "2026-09-27",
+   "municipio": "El Rosario",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-A (sha256 594fa5ed...). tools/municipio_raya.py: 8 paradas de apoyo hasta 561 m, todas de El Rosario, la mas cercana «Tabaiba» a 177 m; raya municipal mas cercana a 909 m y hueco del dato a 911 m, los dos fuera del circulo; 0 rayas entre el punto y las 8 paradas."
+  },
+  "parque-tabaiba-baja": {
+   "fecha": "2026-09-27",
+   "municipio": "El Rosario",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-A. tools/municipio_raya.py: 8 paradas de apoyo hasta 510 m, todas de El Rosario, la mas cercana «Tabaiba» a 11 m; raya a 987 m y hueco a 994 m; 0 rayas en medio."
+  },
+  "kayak-radazul": {
+   "fecha": "2026-09-27",
+   "municipio": "El Rosario",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-A. tools/municipio_raya.py: 8 paradas de apoyo hasta 433 m, todas de El Rosario, la mas cercana «Colon» a 56 m; las 5 paradas que llevan «Radazul» son de El Rosario; raya a 1.618 m y hueco a 1.618 m; 0 rayas en medio."
+  },
+  "mir-cruz-hilda": {
+   "fecha": "2026-09-27",
+   "municipio": "Buenavista del Norte",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-A. tools/municipio_raya.py: 8 paradas de apoyo hasta 1.780 m, todas de Buenavista del Norte, la mas cercana «Cruz de Hilda» a 67 m; raya a 2.166 m y hueco a 2.224 m; 0 rayas en medio. Texto nuevo del parche, de la ficha de Turismo de Tenerife. De paso se corrigio tools/auditar_municipio.js, que tenia «Masca» como alias de Santiago del Teide: las 3 paradas del catalogo con «Masca» en el nombre son de Buenavista del Norte."
+  },
+  "ar-la-quebrada": {
+   "fecha": "2026-09-27",
+   "municipio": "Tegueste",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. tools/municipio_raya.py sobre la coordenada nueva: de las 14 paradas mas cercanas solo una no tiene raya municipal en medio, «Cruce el Moquinal» (Tegueste) a 380 m -el mismo cruce que nombra la ficha del Cabildo-, y las 13 de La Laguna estan todas al otro lado de una raya."
+  },
+  "mercadillo-la-victoria": {
+   "fecha": "2026-09-27",
+   "municipio": "La Victoria de Acentejo",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. tools/municipio_raya.py sobre el punto derivado: 6 paradas sin raya en medio, todas de La Victoria de Acentejo (la primera a 232 m), y las 8 de La Matanza y Santa Ursula cortadas por una raya."
+  },
+  "cavis-violencia-sexual-tenerife": {
+   "fecha": "2026-09-27",
+   "municipio": "San Cristóbal de La Laguna",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-B: segun el Instituto Canario de Igualdad, calle Franco de Medina 41 esta en La Cuesta, San Cristobal de La Laguna (38320). El pin NO se movio. PORTAL NO VERIFICADO: la regla del parche pedia geocodificar la direccion con CartoCiudad (IGN) o con OSM, y desde aqui los dos estan cerrados por la politica de salida (000). Se aplico la ultima rama de la regla: tools/municipio_raya.py sobre el pin actual da San Cristobal de La Laguna -14 paradas, ninguna con raya en medio, la primera a 72 m-, asi que el pin se queda."
+  },
+  "casa-capitanes-generales": {
+   "fecha": "2026-09-27",
+   "municipio": "San Cristóbal de La Laguna",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-C (sha256 30ff04bd...). Eleccion del dueño: La Laguna. El pin NO se movio. tools/municipio_raya.py: 14 paradas miradas, NINGUNA con raya municipal en medio, la primera «Plaza del Adelantado» a 116 m, raya mas cercana a 2.310 m. El paso de afinado del parche pedia Overpass con name~Capitanes: en el OSM del repositorio no hay ningun elemento asi a 200 m, pero SI esta el edificio con su otro nombre, «Casa de Alvarado-Bracamonte» (manor), a 23 m del pin. Por debajo de los 40 m que pedia la regla, asi que el pin se queda igual, y de paso confirma que esta en el sitio."
+  },
+  "rcg-tenerife": {
+   "fecha": "2026-09-27",
+   "municipio": "Tacoronte",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-C. Eleccion del dueño: Tacoronte, que es lo que dice el propio club (C/ Campo de Golf 1, 38350 Tacoronte). El pin NO se movio porque no hizo falta: tools/municipio_raya.py ya da Tacoronte -5 paradas sin raya en medio, todas de Tacoronte (la primera a 262 m), y 9 cortadas por una raya-, asi que la rama de geocodificar de la regla no llego a aplicarse."
+  },
+  "guachinche-cordero": {
+   "fecha": "2026-09-27",
+   "municipio": "San Miguel de Abona",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-C. Eleccion del dueño: San Miguel de Abona. El pin NO se movio. tools/municipio_raya.py: 13 de las 14 paradas mas cercanas sin raya en medio, TODAS de San Miguel de Abona, la primera «Catu» a 116 m, y la raya a 988 m. De la descripcion se quitan los datos que caducan o se contradecian: el horario (decia todos los dias y a la vez solo fines de semana), la nota con el numero de reseñas, la cabra guisada y el vino propio."
   }
  }
 }

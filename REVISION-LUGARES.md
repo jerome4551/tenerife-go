@@ -71,7 +71,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 
 **`municipio_de_cada_ficha`** · 2026-09-25
 - qué se hizo: Cruce de lo que cada ficha declara con el municipio de las paradas de TITSA de alrededor, sobre los 787.
-- **el techo**: El poligono municipal del Cabildo NO esta en el repositorio y no se puede bajar desde aqui (Overpass, Nominatim, IDECanarias y los portales de datos abiertos dan 000). La prueba que se usa son las rayas municipales admin_level 8 del mapa OSM del propio repositorio, con tools/municipio_raya.py, calibrado: de 849 parejas de paradas vecinas de municipio distinto a menos de 1,5 km, 805 (94,8%) tienen de verdad una raya en medio.
+- **el techo**: El poligono municipal del Cabildo YA ESTA en el repositorio (tools/datos/municipios-tenerife-2015.shp.zip, entregado el 27 de septiembre). La comprobacion es point-in-polygon exacto, no una aproximacion. Calibrado contra las 2.514 paradas de TITSA: coincide en 2.514, el 100,00 %. La unica trampa del fichero es que el anillo de La Laguna envuelve a Tegueste sin recortarle el hueco; se resuelve con «si un punto cae en varios, gana el mas pequeño», que es lo que pasa siempre con un enclave.
 - resultado: 520 declaran municipio, 475 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno. 0 contradicciones y 0 municipios fuera de sitio en firme.
 - lo único que quedó abierto de esta área:
   - 5 fichas en el borde municipal: se avisan y no suspenden, porque en un limite las paradas se mezclan y un control que cante en cada borde se acaba ignorando. Son mir-la-corona-guimar, mir-lomo-molino, montana-taco, playa-caleton-sauzal y pr-tf-52-monte-agua.
@@ -500,27 +500,47 @@ Salida de `node tools/auditar_municipio.js`:
 === el municipio que dice la ficha, contra donde cae el punto ===
   lugares....................................... 787
     que nombran un municipio.................... 520
-    de esos, comprobados contra las paradas..... 475
-    y con menos de 3 paradas a 1,5 km: no se puede 45
+    de esos, comprobados contra el POLIGONO del Cabildo 510
+    y con el punto en el agua: no cae en ningun municipio 10
   no declaran municipio......................... 267
 
   LA FICHA SE CONTRADICE A SI MISMA............. 0
 
-  EL MUNICIPIO NO CUADRA, y es firme............ 0
+  EL MUNICIPIO NO CUADRA........................ 16
+      ar-las-lajas                  dice «Vilaflor»  ·  el poligono dice «Adeje»
+                                      28.1895, -16.6645  ·  parada mas cerca: Las Lajas (215 m, Adeje)
+      bici-alquiler-sur             dice «Arona»  ·  el poligono dice «Adeje»
+                                      28.0677, -16.7267  ·  parada mas cerca: Magma (59 m, Adeje)
+      camping-las-lajas             dice «Vilaflor»  ·  el poligono dice «Adeje»
+                                      28.1895, -16.6645  ·  parada mas cerca: Las Lajas (215 m, Adeje)
+      charco-golete                 dice «Candelaria»  ·  el poligono dice «Güímar»
+                                      28.2708, -16.3855  ·  parada mas cerca: Punta Prieta (209 m, Güímar)
+      escal-guaria                  dice «Guía de Isora»  ·  el poligono dice «Adeje»
+                                      28.145, -16.717  ·  parada mas cerca: Taucho (1383 m, Adeje)
+      guachinche-san-juan-rambla    dice «San Juan de la Rambla»  ·  el poligono dice «Los Realejos»
+                                      28.3885, -16.6218  ·  parada mas cerca: San Antonio del Realejo (433 m, Los Realejos)
+      minigolf-precise-resort       dice «Puerto de la Cruz»  ·  el poligono dice «Los Realejos»
+                                      28.4062, -16.5703  ·  parada mas cerca: Maritim (41 m, Los Realejos)
+      mir-chivisaya                 dice «Güímar»  ·  el poligono dice «Candelaria»
+                                      28.3717, -16.4275
+      mir-lomo-molino               dice «Garachico»  ·  el poligono dice «El Tanque»
+                                      28.3595, -16.7858  ·  parada mas cerca: Iglesia Cruz Grande (522 m, El Tanque)
+      montana-taco                  dice «San Cristóbal de La Laguna»  ·  el poligono dice «Buenavista del Norte»
+                                      28.374, -16.8337  ·  parada mas cerca: Las Canteras (723 m, Los Silos)
+      playa-caleton-sauzal          dice «El Sauzal»  ·  el poligono dice «La Matanza de Acentejo»
+                                      28.4583, -16.464  ·  parada mas cerca: La Montaña (1111 m, La Matanza de Acentejo)
+      pp-el-tanque                  dice «El Tanque»  ·  el poligono dice «Los Silos»
+                                      28.345, -16.81
+      pr-tf-52-monte-agua           dice «Buenavista del Norte»  ·  el poligono dice «Los Silos»
+                                      28.3192, -16.809  ·  parada mas cerca: Puerto de Erjos (435 m, El Tanque)
+      sendero-roque-conde           dice «Arona»  ·  el poligono dice «Adeje»
+                                      28.1042, -16.6986  ·  parada mas cerca: Las Casas (1397 m, Arona)
+      super-mercadona-tacoronte     dice «Tacoronte»  ·  el poligono dice «El Sauzal»
+                                      28.4732, -16.4198  ·  parada mas cerca: La Frontera (182 m, El Sauzal)
+      wc-troya                      dice «Arona»  ·  el poligono dice «Adeje»
+                                      28.0682, -16.7329  ·  parada mas cerca: Los Geranios (610 m, Adeje)
 
-  en el borde: se avisa, no suspende............ 5
-      mir-la-corona-guimar          dice «Güímar»  ·  alrededor: Arafo x3
-                                      28.3312, -16.4321  ·  parada mas cerca: Madrid (1282 m)
-      mir-lomo-molino               dice «Garachico»  ·  alrededor: El Tanque x8
-                                      28.3595, -16.7858  ·  parada mas cerca: Iglesia Cruz Grande (522 m)
-      montana-taco                  dice «San Cristóbal de La Laguna»  ·  alrededor: Los Silos x5, Buenavista del Norte x3
-                                      28.374, -16.8337  ·  parada mas cerca: Las Canteras (723 m)
-      playa-caleton-sauzal          dice «El Sauzal»  ·  alrededor: La Matanza de Acentejo x7
-                                      28.4583, -16.464  ·  parada mas cerca: La Montaña (1111 m)
-      pr-tf-52-monte-agua           dice «Buenavista del Norte»  ·  alrededor: El Tanque x5, Santiago del Teide x2, Los Silos x1
-                                      28.3192, -16.809  ·  parada mas cerca: Puerto de Erjos (435 m)
-
-ninguna ficha nombra un municipio que no le toque
+*** 16 ficha(s) con el municipio fuera de sitio, en firme ***
 
 ```
 

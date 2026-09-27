@@ -32,7 +32,11 @@ tocar nada: `594fa5ed…`, `cf3094e6…` y `30ff04bd…`.
 
 Lo aplicado se apunta en `datos/verificado.json`, sección
 `municipio_por_raya`, con la fuente de cada ficha, y se vuelve a comprobar
-solo en cada auditoría: `python3 tools/municipio_raya.py`.
+solo en cada auditoría: `python3 tools/municipio.py`.
+
+> **Al día siguiente llegó el shapefile municipal del Cabildo.** Las diez se
+> volvieron a comprobar con *point-in-polygon* de verdad y **las diez
+> coinciden**. Lo que sigue explica cómo se cerraron sin él.
 
 ---
 
@@ -66,7 +70,8 @@ riesgo que tú señalabas:
 
 > ¿hay una raya municipal **entre el punto y las paradas que lo rodean**?
 
-Está en `tools/municipio_raya.py`, y esto es lo que devuelve:
+Estaba en `tools/municipio_raya.py` —hoy sustituido por `tools/municipio.py`,
+que hace el point-in-polygon de verdad—, y esto es lo que devolvía:
 
 | id | paradas de apoyo | raya más cercana | hueco del dato | rayas en medio |
 |---|---|---|---|---|
@@ -369,5 +374,5 @@ pueden cerrar desde aquí. Si quieres, son la tanda siguiente.
 ---
 
 *Las cifras de este documento salen de `node tools/auditar_municipio.js` y
-`python3 tools/municipio_raya.py`, que entran en `tools/auditar.sh`. Ninguna
+`python3 tools/municipio.py`, que entran en `tools/auditar.sh`. Ninguna
 está escrita a mano.*
