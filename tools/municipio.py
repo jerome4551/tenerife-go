@@ -7,7 +7,7 @@ municipio.py — en que municipio cae un punto. Point-in-polygon, de verdad.
     python3 tools/municipio.py ID [ID ...]
     python3 tools/municipio.py --punto 28.5,-16.3
     python3 tools/municipio.py --calibrar           # contra las 2.514 paradas
-    python3 tools/municipio.py --lote < puntos.txt  # «id lat lng» por linea
+    python3 tools/municipio.py --lote < puntos.txt  # «id lat lng [municipio]»
 
 DE DONDE SALE
   Del shapefile municipal del Cabildo (31 municipios, 182 anillos, 143.737
@@ -37,6 +37,7 @@ LA TRAMPA QUE TIENE ESTE SHAPEFILE, Y HAY QUE RESOLVERLA
 import gzip
 import io
 import json
+import math
 import os
 import sys
 
@@ -112,6 +113,40 @@ def todos(lat, lng):
     return [ALIAS.get(n, n) for n in hit]
 
 
+def _d_seg(P, A, B):
+    """Metros del punto P=(lat,lon) al SEGMENTO AB, con A y B en (lon,lat)."""
+    k = math.cos(math.radians(P[0]))
+    ax, ay = (A[0] - P[1]) * 111320 * k, (A[1] - P[0]) * 110540
+    bx, by = (B[0] - P[1]) * 111320 * k, (B[1] - P[0]) * 110540
+    dx, dy = bx - ax, by - ay
+    L = dx * dx + dy * dy
+    t = 0.0 if L == 0 else max(0.0, min(1.0, (-ax * dx - ay * dy) / L))
+    return math.hypot(ax + t * dx, ay + t * dy)
+
+
+def metros_a(lat, lng, nombre):
+    """Metros del punto al borde del municipio `nombre`, o None si no existe.
+
+    Es EL dato que separa un error de texto de un pin impreciso: a 40 m de la
+    raya el pin pudo caer al otro lado por nada, y a 44 km no hay pin que
+    explique nada. Se mide al SEGMENTO, nunca al vertice."""
+    c = cargar()
+    if c is None:
+        return None
+    por, _ = c
+    inv = {v: k for k, v in ALIAS.items()}
+    anillos = por.get(inv.get(nombre, nombre))
+    if not anillos:
+        return None
+    mejor = float('inf')
+    for an in anillos:
+        for i in range(1, len(an)):
+            d = _d_seg((lat, lng), an[i - 1], an[i])
+            if d < mejor:
+                mejor = d
+    return mejor
+
+
 def _lugares():
     import subprocess
     o = subprocess.run(['node', '-e', "const{PLACES}=require('./tools/cargar');"
@@ -135,11 +170,18 @@ def main():
         # control en JavaScript pregunta una sola vez por los 787 y la
         # geometria vive en un solo sitio.
         for linea in sys.stdin:
-            t = linea.split()
+            t = linea.rstrip('\n').split('\t') if '\t' in linea else linea.split()
             if len(t) < 3:
                 continue
-            m = de(float(t[1]), float(t[2]))
-            sys.stdout.write('%s\t%s\n' % (t[0], m or ''))
+            la, lo = float(t[1]), float(t[2])
+            m = de(la, lo)
+            # Con un cuarto campo -el municipio que la ficha declara- se
+            # devuelve tambien a cuantos metros esta su raya. Esa cifra es la
+            # que separa «el pin cayo al otro lado por 40 m» de «el texto
+            # miente por 44 km».
+            d = metros_a(la, lo, t[3].strip()) if len(t) > 3 and t[3].strip() else None
+            sys.stdout.write('%s\t%s\t%s\n' % (t[0], m or '',
+                             '' if d is None else str(int(round(d)))))
         return 0
 
     if '--calibrar' in args:
