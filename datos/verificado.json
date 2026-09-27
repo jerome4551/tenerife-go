@@ -70,6 +70,10 @@
    "commit": "36660dc",
    "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
   },
+  "ar-la-quebrada": {
+   "fecha": "2026-09-25",
+   "fuente": "Parche municipios-bloque1-B (sha256 cf3094e6...). Tenerife ON (Cabildo de Tenerife), ficha oficial del area recreativa: enlace de acceso 28.532069688519, -16.300710533935. Acceso por el Camino de El Batan (TF-143), km 0,4, Cruce El Moquinal. Se mueve 4.068 m desde el punto viejo, que caia en un barrio de La Laguna."
+  },
   "bano-valleseco-bloque": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
@@ -136,6 +140,14 @@
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
+  "cueva-viento": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Cueva del Viento Centro de Visitantes» (attraction), a 2 m de la coordenada redonda anterior. Elemento unico con ese nombre en el extracto."
+  },
+  "deporte-orotava-parque": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Complejo Deportivo El Mayorazgo» (sports_centre), a 1 m del pin redondo: el punto ya estaba encima, lo que faltaba eran los decimales. Es el complejo deportivo municipal de La Orotava."
+  },
   "el-duque": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
@@ -148,9 +160,21 @@
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
+  "ermita-san-telmo": {
+   "fecha": "2026-09-26",
+   "fuente": "Wikidata Q2220075 (Ermita de San Telmo): 28.417550,-16.545617 = 28°25′03.18″N 16°32′44.22″O. En tierra, a 18,0 m del borde, asi que se usa tal cual sin empujar. Se mueve 155 m al este del pin viejo, que estaba 18,6 m mar adentro. CONTROL DE SENSATEZ: pasa la primera condicion -a 90 m de la «Playa de San Telmo» del extracto, limite 150- y NO se pudo evaluar la segunda como estaba escrita: el «Paseo de San Telmo» no esta en el extracto como via, sino como UN PUNTO de rotulo, y a ese punto hay 218 m. Un paseo maritimo reducido a un punto no dice a que distancia esta su recorrido. Lo que si hay al lado del punto: una zona peatonal a 31 m y la «Avenida Cristobal Colon» a 98 m, que son ese mismo paseo."
+  },
   "fanabe": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "faro-santa-cruz-puerto": {
+   "fecha": "2026-09-26",
+   "fuente": "Wikidata Q5966669 (La Farola del Mar): 28.469439,-16.245831 = 28°28′09.98″N 16°14′44.99″O. La misma ficha da el elemento de OSM: way 193798986. Esa coordenada cae en el AGUA contra la capa earth a z14 -7,6 m del borde-, asi que se aplico la regla del dueño: empujar hasta 5 m tierra adentro sin moverse mas de 15. Dentro de esos 15 m el mejor margen alcanzable es 4,78 m, y se alcanza justo en el tope: 15,00 m de empuje. El resultado esta en tierra con 4,78 m de margen, a 15 m de la coordenada de Wikidata y a 4,7 m del pin anterior (que salia de la lista de Wikipedia). Las tres referencias -Wikidata, Wikipedia y la foto de Commons- difieren hasta 30 m entre si, asi que el empuje cae dentro de la incertidumbre del propio dato. CUANDO HAYA OVERPASS: leer el way 193798986 y usar su geometria."
+  },
+  "golf-amarilla": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Amarilla Golf» (golf_course), el UNICO con ese nombre en toda la isla, y cae en San Miguel de Abona, que es lo que dice la ficha (tools/municipio_raya.py: 13 de 14 paradas sin raya en medio, todas de San Miguel). El pin redondo estaba a 1.919 m."
   },
   "golf-del-sur": {
    "fecha": "2026-09-19",
@@ -161,14 +185,34 @@
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
+  "lidl-puerto-cruz": {
+   "fecha": "2026-09-26",
+   "fuente": "OSM del repositorio: el unico Lidl a menos de 2,5 km, a 81 m de la «Carretera Gral. Icod-Santa Cruz». La direccion del establecimiento es Ctra. General Icod-Santa Cruz s/n, via de servicio Las Arenas, 38400 Puerto de la Cruz, y el edificio en OSM lleva esa misma direccion. El municipio lo confirma tools/municipio_raya.py: 8 paradas sin raya en medio, todas de Puerto de la Cruz. Esta pegado a la raya con La Orotava y hay directorios que lo situan alli; manda la direccion postal."
+  },
   "lidl-santa-cruz": {
    "fecha": "2026-09-19",
    "commit": "2ef7c67",
    "fuente": "OpenStreetMap, supermarket «Lidl», el mas cercano al centro"
   },
+  "mercadillo-la-victoria": {
+   "fecha": "2026-09-25",
+   "fuente": "Parche municipios-bloque1-B, metodo DERIVADO (no hay coordenada publicada). Punto medio entre «Casa de la Castana» (museo, OSM, 28.432695,-16.471387) y «Terrero Municipal de Lucha y Deportes» (OSM, 28.433360,-16.471129), separados 78 m, que es como el Ayuntamiento situa el mercadillo. Los tres pasos del parche se resolvieron con el OSM del propio repositorio (tools/osm_cerca.py) porque Overpass esta cerrado desde aqui: paso 1 exactamente 1 elemento, paso 2 ningun amenity=marketplace a 250 m (y 15 en toda la isla, asi que el extracto no los filtra), paso 3 exactamente 1. Se mueve 2.109 m. DERIVADO, no medido: si aparece la coordenada publicada, se cambia."
+  },
+  "mercadona-granadilla": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Mercadona» (supermarket), el unico de esa marca en 6 km, y cae en Granadilla de Abona como dice la ficha (14 paradas sin raya en medio, todas de Granadilla). El pin redondo estaba a 1.028 m."
+  },
   "mesa-mar": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "mirador-pico-ingles": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: el pico «Pico del Inglés» (peak), a 59 m de la coordenada redonda anterior. El mirador esta en el pico; el pico es el unico con ese nombre en el extracto."
+  },
+  "montana-amarilla": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Monumento Natural de Montaña Amarilla» (nature_reserve), a 71 m de la coordenada redonda anterior. Unico con ese nombre en el extracto."
   },
   "nucleo-costa-adeje": {
    "fecha": "2026-09-19",
@@ -224,6 +268,14 @@
   "piscinas-poris": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "pk-bajamar-piscinas": {
+   "fecha": "2026-09-26",
+   "fuente": "Misma regla. «Avenida del Sol», a 63 m del ancla (piscinas-bajamar, 28.5564,-16.3445; limite 150) y a 33,5 m del borde. La via de servicio que quedaba a 30 m NO cumple el margen de 3 m -esta a 2,9- y la regla entera la descarta."
+  },
+  "pk-poris-abona": {
+   "fecha": "2026-09-26",
+   "fuente": "Regla de aparcamientos sin red: la via rodada CON NOMBRE mas cercana al ancla oficial (28.164247,-16.431573, ficha de Playa El Poris) que cumpla el limite y el margen de 3 m. Es «Calle Martin Rodriguez», a 58 m del ancla (limite 80) y a 46,8 m del borde. La ficha oficial de la playa da su direccion en esa misma calle, Martin Rodriguez 14. La via sin nombre que quedaba a 35 m se descarta: el extracto no trae access ni service, asi que no se puede saber si es privada."
   },
   "playa-abriguitos": {
    "fecha": "2026-09-06",
@@ -448,6 +500,10 @@
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
+  "puerto-colon-adeje": {
+   "fecha": "2026-09-26",
+   "fuente": "OSM del repositorio: el punto de la marina «Puerto Colon». El pin viejo estaba 384 m mas alla, en mar abierto, no en la darsena."
+  },
   "puerto-guimar": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
@@ -498,6 +554,10 @@
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
+  "tea-tenerife": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Tenerife Espacio de las Artes» (arts_centre), el nombre exacto de la ficha, a 45 m del pin redondo. Unico con ese nombre en la isla."
+  },
   "tejita": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
@@ -505,6 +565,10 @@
   "teresitas": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "turismo-cv-pedregales": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Centro de Visitantes Los Pedregales» (information), a 21 m de la coordenada redonda anterior. Elemento unico con ese nombre en el extracto."
   },
   "wc-benijo": {
    "fecha": "2026-09-01",
@@ -556,38 +620,6 @@
   "windsurf-la-tejita": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
-  },
-  "ar-la-quebrada": {
-   "fecha": "2026-09-25",
-   "fuente": "Parche municipios-bloque1-B (sha256 cf3094e6...). Tenerife ON (Cabildo de Tenerife), ficha oficial del area recreativa: enlace de acceso 28.532069688519, -16.300710533935. Acceso por el Camino de El Batan (TF-143), km 0,4, Cruce El Moquinal. Se mueve 4.068 m desde el punto viejo, que caia en un barrio de La Laguna."
-  },
-  "mercadillo-la-victoria": {
-   "fecha": "2026-09-25",
-   "fuente": "Parche municipios-bloque1-B, metodo DERIVADO (no hay coordenada publicada). Punto medio entre «Casa de la Castana» (museo, OSM, 28.432695,-16.471387) y «Terrero Municipal de Lucha y Deportes» (OSM, 28.433360,-16.471129), separados 78 m, que es como el Ayuntamiento situa el mercadillo. Los tres pasos del parche se resolvieron con el OSM del propio repositorio (tools/osm_cerca.py) porque Overpass esta cerrado desde aqui: paso 1 exactamente 1 elemento, paso 2 ningun amenity=marketplace a 250 m (y 15 en toda la isla, asi que el extracto no los filtra), paso 3 exactamente 1. Se mueve 2.109 m. DERIVADO, no medido: si aparece la coordenada publicada, se cambia."
-  },
-  "lidl-puerto-cruz": {
-   "fecha": "2026-09-26",
-   "fuente": "OSM del repositorio: el unico Lidl a menos de 2,5 km, a 81 m de la «Carretera Gral. Icod-Santa Cruz». La direccion del establecimiento es Ctra. General Icod-Santa Cruz s/n, via de servicio Las Arenas, 38400 Puerto de la Cruz, y el edificio en OSM lleva esa misma direccion. El municipio lo confirma tools/municipio_raya.py: 8 paradas sin raya en medio, todas de Puerto de la Cruz. Esta pegado a la raya con La Orotava y hay directorios que lo situan alli; manda la direccion postal."
-  },
-  "pk-poris-abona": {
-   "fecha": "2026-09-26",
-   "fuente": "Regla de aparcamientos sin red: la via rodada CON NOMBRE mas cercana al ancla oficial (28.164247,-16.431573, ficha de Playa El Poris) que cumpla el limite y el margen de 3 m. Es «Calle Martin Rodriguez», a 58 m del ancla (limite 80) y a 46,8 m del borde. La ficha oficial de la playa da su direccion en esa misma calle, Martin Rodriguez 14. La via sin nombre que quedaba a 35 m se descarta: el extracto no trae access ni service, asi que no se puede saber si es privada."
-  },
-  "pk-bajamar-piscinas": {
-   "fecha": "2026-09-26",
-   "fuente": "Misma regla. «Avenida del Sol», a 63 m del ancla (piscinas-bajamar, 28.5564,-16.3445; limite 150) y a 33,5 m del borde. La via de servicio que quedaba a 30 m NO cumple el margen de 3 m -esta a 2,9- y la regla entera la descarta."
-  },
-  "faro-santa-cruz-puerto": {
-   "fecha": "2026-09-26",
-   "fuente": "Wikidata Q5966669 (La Farola del Mar): 28.469439,-16.245831 = 28°28′09.98″N 16°14′44.99″O. La misma ficha da el elemento de OSM: way 193798986. Esa coordenada cae en el AGUA contra la capa earth a z14 -7,6 m del borde-, asi que se aplico la regla del dueño: empujar hasta 5 m tierra adentro sin moverse mas de 15. Dentro de esos 15 m el mejor margen alcanzable es 4,78 m, y se alcanza justo en el tope: 15,00 m de empuje. El resultado esta en tierra con 4,78 m de margen, a 15 m de la coordenada de Wikidata y a 4,7 m del pin anterior (que salia de la lista de Wikipedia). Las tres referencias -Wikidata, Wikipedia y la foto de Commons- difieren hasta 30 m entre si, asi que el empuje cae dentro de la incertidumbre del propio dato. CUANDO HAYA OVERPASS: leer el way 193798986 y usar su geometria."
-  },
-  "puerto-colon-adeje": {
-   "fecha": "2026-09-26",
-   "fuente": "OSM del repositorio: el punto de la marina «Puerto Colon». El pin viejo estaba 384 m mas alla, en mar abierto, no en la darsena."
-  },
-  "ermita-san-telmo": {
-   "fecha": "2026-09-26",
-   "fuente": "Wikidata Q2220075 (Ermita de San Telmo): 28.417550,-16.545617 = 28°25′03.18″N 16°32′44.22″O. En tierra, a 18,0 m del borde, asi que se usa tal cual sin empujar. Se mueve 155 m al este del pin viejo, que estaba 18,6 m mar adentro. CONTROL DE SENSATEZ: pasa la primera condicion -a 90 m de la «Playa de San Telmo» del extracto, limite 150- y NO se pudo evaluar la segunda como estaba escrita: el «Paseo de San Telmo» no esta en el extracto como via, sino como UN PUNTO de rotulo, y a ese punto hay 218 m. Un paseo maritimo reducido a un punto no dice a que distancia esta su recorrido. Lo que si hay al lado del punto: una zona peatonal a 31 m y la «Avenida Cristobal Colon» a 98 m, que son ese mismo paseo."
   }
  },
  "areas": {
@@ -741,6 +773,57 @@
    "fecha": "2026-09-25",
    "municipio": "San Miguel de Abona",
    "fuente": "Parche municipios-bloque1-C. Eleccion del dueño: San Miguel de Abona. El pin NO se movio. tools/municipio_raya.py: 13 de las 14 paradas mas cercanas sin raya en medio, TODAS de San Miguel de Abona, la primera «Catu» a 116 m, y la raya a 988 m. De la descripcion se quitan los datos que caducan o se contradecian: el horario (decia todos los dias y a la vez solo fines de semana), la nota con el numero de reseñas, la cabra guisada y el vino propio."
+  }
+ },
+ "coordenada_de_zona": {
+  "_": "Fichas cuya coordenada es un ROTULO, no una posicion: una zona, un recorrido o un barrio. Un punto no las describe, y pedirle 6 decimales es pedirle algo que el sitio no tiene. No cuentan como «puesta a ojo» en tools/auditar_redondeo.py, pero se listan aparte con su motivo: la exencion queda escrita, no callada. Si alguna resulta ser un punto -un inicio de ruta, una puerta- se saca de aqui.",
+  "anaga": {
+   "motivo": "Parque Rural de Anaga: 14.419 ha."
+  },
+  "corona-forestal": {
+   "motivo": "Parque Natural Corona Forestal, el mayor espacio protegido de Canarias."
+  },
+  "caldeira-canadas": {
+   "motivo": "La Caldera de Las Cañadas entera, unos 16 km de diametro."
+  },
+  "riscos-chio": {
+   "motivo": "Paisaje volcanico: una extension, no un punto."
+  },
+  "lajiales-fasnia": {
+   "motivo": "Malpais: una extension."
+  },
+  "sendero-la-orotava": {
+   "motivo": "Un sendero es un recorrido."
+  },
+  "prtf-6-chamorga-roque-bermejo": {
+   "motivo": "Sendero circular: el punto es la chincheta del recorrido."
+  },
+  "gr131-tramo1-esperanza-caldera": {
+   "motivo": "Tramo de un GR: un recorrido de kilometros."
+  },
+  "bici-bc5-vilaflor": {
+   "motivo": "Ruta MTB: un recorrido."
+  },
+  "acc-paseo-cristianos": {
+   "motivo": "Paseo maritimo: un recorrido de varios kilometros."
+  },
+  "acc-paseo-garachico": {
+   "motivo": "Paseo costero: un recorrido."
+  },
+  "deporte-costa-adeje-paseo": {
+   "motivo": "Paseo maritimo con aparatos repartidos a lo largo."
+  },
+  "kayak-punta-teno": {
+   "motivo": "Tramo de costa, no un embarcadero concreto."
+  },
+  "escal-guaria": {
+   "motivo": "Zona de escalada: varias vias en un sector."
+  },
+  "escal-canada-capricho": {
+   "motivo": "Zona de escalada: varias vias en un sector."
+  },
+  "nucleo-torviscas": {
+   "motivo": "Barrio: la coordenada es su centro aproximado, como en los demas nucleos."
   }
  }
 }

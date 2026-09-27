@@ -81,8 +81,14 @@ for (const [k, a] of Object.entries(AREAS)) {
   const q = k === 'coordenadas'
     ? (PLACES.filter(x => VER[x.id]).length + ' verificadas con su fuente · '
        + PLACES.filter(x => !VER[x.id]).length + ' sin mirar · '
-       + PLACES.filter(x => sig(lit[x.id][0]) <= 3 && sig(lit[x.id][1]) <= 3).length
-       + ' puestas a ojo')
+       /* La misma cuenta que auditar_redondeo.py: sin las verificadas y sin
+          las que son un rotulo a proposito. Dos cifras distintas para lo
+          mismo en dos sitios es como no tener ninguna. */
+       + PLACES.filter(x => sig(lit[x.id][0]) <= 3 && sig(lit[x.id][1]) <= 3
+                            && !VER[x.id] && !(REG.coordenada_de_zona || {})[x.id]).length
+       + ' puestas a ojo · '
+       + PLACES.filter(x => (REG.coordenada_de_zona || {})[x.id]).length
+       + ' redondas a proposito')
     : String(txt).replace(/\|/g, '').slice(0, 130);
   w('| `' + k + '` | ' + marca + ' | ' + q + ' |');
 }
@@ -214,8 +220,24 @@ const rej = { 0: '~110 km', 1: '~11 km', 2: '~1,1 km', 3: '~110 m', 4: '~11 m', 
 for (const k of Object.keys(dist).sort((a, b) => a - b))
   w('| ' + k + ' | ' + (rej[k] || '') + ' | **' + dist[k] + '** |');
 w('');
-const red = PLACES.filter(p => sig(lit[p.id][0]) <= 3 && sig(lit[p.id][1]) <= 3);
+/* Las redondas A PROPOSITO -una zona, un recorrido, un barrio- no cuentan:
+   su coordenada es un rotulo, no una posicion, y estan declaradas una a una
+   con su motivo en `coordenada_de_zona`. Se listan aparte, no se callan. */
+const ZONA = REG.coordenada_de_zona || {};
+const redondas = PLACES.filter(p => sig(lit[p.id][0]) <= 3 && sig(lit[p.id][1]) <= 3);
+const red = redondas.filter(p => !ZONA[p.id]);
+const rotulo = redondas.filter(p => ZONA[p.id]);
 const peor = p => sig(lit[p.id][0]) <= 2 || sig(lit[p.id][1]) <= 2;
+if (rotulo.length) {
+  w('**' + rotulo.length + ' son redondas a propósito**: su coordenada es un rótulo, no una');
+  w('posición. El Parque Rural de Anaga son 14.419 hectáreas y la Caldera de Las');
+  w('Cañadas tiene 16 km de diámetro; un sendero es un recorrido. Están declaradas');
+  w('una a una con su motivo en `coordenada_de_zona`, y no se vuelven a pedir:');
+  w('');
+  for (const p of rotulo.sort((a, b) => a.id < b.id ? -1 : 1))
+    w('- `' + p.id + '` — ' + ZONA[p.id].motivo);
+  w('');
+}
 w('**' + red.length + ' fichas tienen los dos ejes con 3 decimales o menos**: eso no es una');
 w('coordenada sacada de una fuente, es un marcador puesto a ojo. Que los dos');
 w('caigan a la vez por casualidad es una entre un millón.');

@@ -48,6 +48,19 @@ def verificadas():
     return json.load(io.open(VERIF, encoding='utf-8')).get('coordenada', {})
 
 
+def zonas():
+    """Los ids cuya coordenada es un ROTULO y no una posicion.
+
+    El Parque Rural de Anaga son 14.419 hectareas y la Caldera de Las Cañadas
+    tiene 16 km de diametro; un sendero es un recorrido. Pedirles 6 decimales
+    es pedirles algo que el sitio no tiene. Se listan aparte con su motivo en
+    vez de callarlas: una exencion que no se lee es un silencio."""
+    if not os.path.exists(VERIF):
+        return {}
+    d = json.load(io.open(VERIF, encoding='utf-8')).get('coordenada_de_zona', {})
+    return {k: v for k, v in d.items() if not k.startswith('_')}
+
+
 def decimales(x):
     """Decimales SIGNIFICATIVOS: los ceros de la derecha no cuentan.
 
@@ -72,14 +85,20 @@ def main():
         return 1
 
     ok = verificadas()
+    zon = zonas()
     todas = [s for s in sitios if decimales(s[3]) <= 3 and decimales(s[4]) <= 3]
-    red = [s for s in todas if s[0] not in ok]
+    red = [s for s in todas if s[0] not in ok and s[0] not in zon]
     yaOk = [s for s in todas if s[0] in ok]
+    esZona = [s for s in todas if s[0] in zon and s[0] not in ok]
     print('  coordenadas verificadas, con su fuente apuntada........: %d' % len(ok))
     print('  a ojo Y SIN VERIFICAR (lat y lng con 3 decimales o menos): %d de %d'
           % (len(red), len(sitios)))
     for pid, cat, nom, la, lo in sorted(red, key=lambda s: (s[1], s[0])):
         print('      %-34s %-17s %9s,%9s  %s' % (pid, cat, la, lo, nom[:34]))
+    if esZona:
+        print('  redondas A PROPOSITO: el punto es un rotulo, no una posicion: %d' % len(esZona))
+        for pid, cat, nom, la, lo in sorted(esZona, key=lambda s: s[0]):
+            print('      %-34s %9s,%9s  <- %s' % (pid, la, lo, zon[pid]['motivo'][:56]))
     if yaOk:
         print('  a ojo pero YA VERIFICADAS, no se vuelven a pedir.......: %d' % len(yaOk))
         for pid, cat, nom, la, lo in sorted(yaOk, key=lambda s: s[0]):

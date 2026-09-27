@@ -1,6 +1,6 @@
 # Revisión de los 787 lugares
 
-**26 de septiembre de 2026.** Generado con `node tools/informe_lugares.js`.
+**27 de septiembre de 2026.** Generado con `node tools/informe_lugares.js`.
 Barre los 787, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
@@ -21,7 +21,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 69 respuestas x 10 idiomas = 690, y se llega a las 690 desde el buscador del asistente. |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 138 verificadas con su fuente · 649 sin mirar · 53 puestas a ojo |
+| `coordenadas` | abierto | 146 verificadas con su fuente · 641 sin mirar · 29 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | 520 declaran municipio, 475 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno. 0 contradicciones y 0 municipios fue |
 | `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
 
@@ -93,8 +93,8 @@ parecía que todo fallaba siempre.
 
 | | fichas |
 |---|---|
-| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **138** |
-| Coordenada nunca comprobada por nadie | **649** |
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **146** |
+| Coordenada nunca comprobada por nadie | **641** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
 todavía.** Son dos cosas distintas y este informe no las mezcla.
@@ -132,18 +132,24 @@ De dónde viene cada una:
 | `charco-roque` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
 | `charco-verde-guancha` | 2026-09-21 | El Dia + duenno del proyecto: 28°24'00"N 16°39'32"W. Municipio contrastado con las paradas de TITSA (4 de las 6 mas cercanas son de La Guancha, la mas proxima «Santa Catalina») |
 | `charco-viento` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `cueva-viento` | 2026-09-27 | OSM del repositorio: «Cueva del Viento Centro de Visitantes» (attraction), a 2 m de la coordenada redonda anterior. Elemento unico con ese nombre en el extracto. |
+| `deporte-orotava-parque` | 2026-09-27 | OSM del repositorio: «Complejo Deportivo El Mayorazgo» (sports_centre), a 1 m del pin redondo: el punto ya estaba encima, lo que faltaba eran los decimales. Es el complejo deportivo municipal de La Orotava. |
 | `el-duque` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `el-medano` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `el-pris` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `ermita-san-telmo` | 2026-09-26 | Wikidata Q2220075 (Ermita de San Telmo): 28.417550,-16.545617 = 28°25′03.18″N 16°32′44.22″O. En tierra, a 18,0 m del borde, asi que se usa tal cual sin empujar. Se mueve 155 m al este del pin viejo, que estaba 18,6 m mar adentro. CONTROL DE SENSATEZ: pasa la primera condicion -a 90 m de la «Playa de San Telmo» del extracto, limite 150- y NO se pudo evaluar la segunda como estaba escrita: el «Paseo de San Telmo» no esta en el extracto como via, sino como UN PUNTO de rotulo, y a ese punto hay 218 m. Un paseo maritimo reducido a un punto no dice a que distancia esta su recorrido. Lo que si hay al lado del punto: una zona peatonal a 31 m y la «Avenida Cristobal Colon» a 98 m, que son ese mismo paseo. |
 | `fanabe` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `faro-santa-cruz-puerto` | 2026-09-26 | Wikidata Q5966669 (La Farola del Mar): 28.469439,-16.245831 = 28°28′09.98″N 16°14′44.99″O. La misma ficha da el elemento de OSM: way 193798986. Esa coordenada cae en el AGUA contra la capa earth a z14 -7,6 m del borde-, asi que se aplico la regla del dueño: empujar hasta 5 m tierra adentro sin moverse mas de 15. Dentro de esos 15 m el mejor margen alcanzable es 4,78 m, y se alcanza justo en el tope: 15,00 m de empuje. El resultado esta en tierra con 4,78 m de margen, a 15 m de la coordenada de Wikidata y a 4,7 m del pin anterior (que salia de la lista de Wikipedia). Las tres referencias -Wikidata, Wikipedia y la foto de Commons- difieren hasta 30 m entre si, asi que el empuje cae dentro de la incertidumbre del propio dato. CUANDO HAYA OVERPASS: leer el way 193798986 y usar su geometria. |
+| `golf-amarilla` | 2026-09-27 | OSM del repositorio: «Amarilla Golf» (golf_course), el UNICO con ese nombre en toda la isla, y cae en San Miguel de Abona, que es lo que dice la ficha (tools/municipio_raya.py: 13 de 14 paradas sin raya en medio, todas de San Miguel). El pin redondo estaba a 1.919 m. |
 | `golf-del-sur` | 2026-09-19 | OpenStreetMap, golf_course «Golf del Sur» |
 | `las-vistas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `lidl-puerto-cruz` | 2026-09-26 | OSM del repositorio: el unico Lidl a menos de 2,5 km, a 81 m de la «Carretera Gral. Icod-Santa Cruz». La direccion del establecimiento es Ctra. General Icod-Santa Cruz s/n, via de servicio Las Arenas, 38400 Puerto de la Cruz, y el edificio en OSM lleva esa misma direccion. El municipio lo confirma tools/municipio_raya.py: 8 paradas sin raya en medio, todas de Puerto de la Cruz. Esta pegado a la raya con La Orotava y hay directorios que lo situan alli; manda la direccion postal. |
 | `lidl-santa-cruz` | 2026-09-19 | OpenStreetMap, supermarket «Lidl», el mas cercano al centro |
 | `mercadillo-la-victoria` | 2026-09-25 | Parche municipios-bloque1-B, metodo DERIVADO (no hay coordenada publicada). Punto medio entre «Casa de la Castana» (museo, OSM, 28.432695,-16.471387) y «Terrero Municipal de Lucha y Deportes» (OSM, 28.433360,-16.471129), separados 78 m, que es como el Ayuntamiento situa el mercadillo. Los tres pasos del parche se resolvieron con el OSM del propio repositorio (tools/osm_cerca.py) porque Overpass esta cerrado desde aqui: paso 1 exactamente 1 elemento, paso 2 ningun amenity=marketplace a 250 m (y 15 en toda la isla, asi que el extracto no los filtra), paso 3 exactamente 1. Se mueve 2.109 m. DERIVADO, no medido: si aparece la coordenada publicada, se cambia. |
+| `mercadona-granadilla` | 2026-09-27 | OSM del repositorio: «Mercadona» (supermarket), el unico de esa marca en 6 km, y cae en Granadilla de Abona como dice la ficha (14 paradas sin raya en medio, todas de Granadilla). El pin redondo estaba a 1.028 m. |
 | `mesa-mar` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `mirador-pico-ingles` | 2026-09-27 | OSM del repositorio: el pico «Pico del Inglés» (peak), a 59 m de la coordenada redonda anterior. El mirador esta en el pico; el pico es el unico con ese nombre en el extracto. |
+| `montana-amarilla` | 2026-09-27 | OSM del repositorio: «Monumento Natural de Montaña Amarilla» (nature_reserve), a 71 m de la coordenada redonda anterior. Unico con ese nombre en el extracto. |
 | `nucleo-costa-adeje` | 2026-09-19 | OpenStreetMap, neighbourhood «Costa Adeje» |
 | `nucleo-los-gigantes` | 2026-09-19 | OpenStreetMap, neighbourhood «Los Gigantes» |
 | `nucleo-playa-san-juan` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -227,8 +233,10 @@ De dónde viene cada una:
 | `surf-bollullo` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `surf-callao-salvaje` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `surf-playa-socorro` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `tea-tenerife` | 2026-09-27 | OSM del repositorio: «Tenerife Espacio de las Artes» (arts_centre), el nombre exacto de la ficha, a 45 m del pin redondo. Unico con ese nombre en la isla. |
 | `tejita` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `teresitas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `turismo-cv-pedregales` | 2026-09-27 | OSM del repositorio: «Centro de Visitantes Los Pedregales» (information), a 21 m de la coordenada redonda anterior. Elemento unico con ese nombre en el extracto. |
 | `wc-benijo` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
 | `wc-duque` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `wc-garachico` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -249,7 +257,7 @@ Y no hace falta acordarse de apuntarlas: `tools/fijar_coordenada.py` escribe
 el apunte solo cuando aplica una coordenada, con la fuente que se le pase
 detrás de la `#`. Si no se le da fuente, avisa de que no la apunta.
 
-### De dónde salen las 138
+### De dónde salen las 146
 
 No se han inventado: se han sacado de los ficheros de fuente que ya se
 habían entregado y aplicado, y **se ha comprobado que la coordenada de hoy
@@ -304,79 +312,77 @@ menos preciso de cada ficha. Es la cuenta entera de los 787, no un umbral:
 |---|---|---|
 | 1 | ~11 km | **2** |
 | 2 | ~1,1 km | **30** |
-| 3 | ~110 m | **142** |
+| 3 | ~110 m | **134** |
 | 4 | ~11 m | **554** |
-| 5 | ~1 m | **16** |
-| 6 | ~10 cm | **17** |
+| 5 | ~1 m | **18** |
+| 6 | ~10 cm | **23** |
 | 7 | ~1 cm | **25** |
 | 15 |  | **1** |
 
-**53 fichas tienen los dos ejes con 3 decimales o menos**: eso no es una
+**16 son redondas a propósito**: su coordenada es un rótulo, no una
+posición. El Parque Rural de Anaga son 14.419 hectáreas y la Caldera de Las
+Cañadas tiene 16 km de diámetro; un sendero es un recorrido. Están declaradas
+una a una con su motivo en `coordenada_de_zona`, y no se vuelven a pedir:
+
+- `acc-paseo-cristianos` — Paseo maritimo: un recorrido de varios kilometros.
+- `acc-paseo-garachico` — Paseo costero: un recorrido.
+- `anaga` — Parque Rural de Anaga: 14.419 ha.
+- `bici-bc5-vilaflor` — Ruta MTB: un recorrido.
+- `caldeira-canadas` — La Caldera de Las Cañadas entera, unos 16 km de diametro.
+- `corona-forestal` — Parque Natural Corona Forestal, el mayor espacio protegido de Canarias.
+- `deporte-costa-adeje-paseo` — Paseo maritimo con aparatos repartidos a lo largo.
+- `escal-canada-capricho` — Zona de escalada: varias vias en un sector.
+- `escal-guaria` — Zona de escalada: varias vias en un sector.
+- `gr131-tramo1-esperanza-caldera` — Tramo de un GR: un recorrido de kilometros.
+- `kayak-punta-teno` — Tramo de costa, no un embarcadero concreto.
+- `lajiales-fasnia` — Malpais: una extension.
+- `nucleo-torviscas` — Barrio: la coordenada es su centro aproximado, como en los demas nucleos.
+- `prtf-6-chamorga-roque-bermejo` — Sendero circular: el punto es la chincheta del recorrido.
+- `riscos-chio` — Paisaje volcanico: una extension, no un punto.
+- `sendero-la-orotava` — Un sendero es un recorrido.
+
+**29 fichas tienen los dos ejes con 3 decimales o menos**: eso no es una
 coordenada sacada de una fuente, es un marcador puesto a ojo. Que los dos
 caigan a la vez por casualidad es una entre un millón.
 
-### Las 19 peores: algún eje con 2 decimales o menos (~1,1 km)
+### Las 12 peores: algún eje con 2 decimales o menos (~1,1 km)
 
 | id | qué es | escrita | municipio |
 |---|---|---|---|
-| `anaga` | Parque Rural de Anaga | 28.5460, -16.1800 | Santa Cruz de Tenerife |
 | `ar-las-hayas` | Área Recreativa Las Hayas | 28.3500, -16.6900 | Icod de los Vinos |
-| `bici-bc5-vilaflor` | BC-5 Pinares de Vilaflor — MTB Moderado | 28.1570, -16.6400 | Vilaflor |
 | `buceo-los-gigantes` | 🤿 Buceo Los Gigantes — Diving Centre | 28.2440, -16.8400 | Santiago del Teide |
-| `caldeira-canadas` | Cañadas del Teide — Caldera | 28.2200, -16.6200 | La Orotava |
-| `corona-forestal` | Corona Forestal | 28.2600, -16.5800 | La Orotava |
 | `gas-tf1-candelaria` | Cepsa Candelaria (TF-1) | 28.3530, -16.3800 | Candelaria |
 | `kayak-los-gigantes` | 🛶 Kayak & SUP Los Gigantes — Acantilados | 28.2440, -16.8400 | Santiago del Teide |
-| `lajiales-fasnia` | Los Lajiales de Fasnia | 28.2100, -16.4350 | Fasnia |
 | `mercadona-el-medano` | Mercadona El Médano | 28.0500, -16.5380 | Granadilla de Abona |
 | `minimarket-24h-las-americas` | Seven Ways Supermarket 24h (Las Américas) | 28.066, -16.73 | Adeje |
 | `mir-rambleta-teide` | Mirador La Rambleta (Teide · 3.555 m) | 28.27, -16.639 | La Orotava |
 | `mirador-pino-galdo` | Mirador del Pino Galdo | 28.5600, -16.2650 | Santa Cruz de Tenerife |
-| `nucleo-torviscas` | Torviscas | 28.0840, -16.7300 | Adeje |
 | `pesca-los-gigantes` | 🎣 Pesca Deportiva Los Gigantes | 28.2440, -16.8400 | Santiago del Teide |
 | `pp-el-tanque` | 🪂 Parapente — Despegue El Tanque (Noroeste) | 28.3450, -16.8100 | El Tanque |
 | `pp-guimar` | 🪂 Parapente — Ladera de Güímar (Este) | 28.3100, -16.4050 | Güímar |
 | `sala-westerdahl` | Sala Eduardo Westerdahl (Puerto de la Cruz) | 28.418, -16.55 | Puerto de la Cruz |
-| `sendero-la-orotava` | Sendero Teide — La Orotava (TF-7) | 28.3650, -16.5900 | Los Realejos |
 
-### Las otras 34, con 3 decimales (~110 m)
+### Las otras 17, con 3 decimales (~110 m)
 
 | id | qué es | escrita | municipio |
 |---|---|---|---|
-| `acc-paseo-cristianos` | Paseo Los Cristianos–Las Américas ♿ | 28.0560, -16.7260 | Arona |
-| `acc-paseo-garachico` | Paseo Costero Garachico ♿ | 28.3720, -16.7640 | Garachico |
 | `bici-agua-vilaflor` | Vilaflor — Agua y Descanso Ciclistas (1.400 m) | 28.1570, -16.6340 | Vilaflor |
 | `bici-bc2-inicio` | BC-2 Ruta MTB Principiantes — Corona Forestal | 28.3720, -16.4890 | La Orotava |
 | `buceo-puerto-cruz` | 🤿 Buceo Puerto de la Cruz — Centro Atlantik | 28.4150, -16.5480 | Puerto de la Cruz |
-| `cueva-viento` | Cueva del Viento | 28.352, -16.704 | Icod de los Vinos |
-| `deporte-costa-adeje-paseo` | Paseo Marítimo Costa Adeje — Fitness | 28.0850, -16.7350 | Adeje |
-| `deporte-orotava-parque` | La Orotava — Parque Deportivo Municipal | 28.394, -16.531 | La Orotava |
 | `deporte-skatepark-laguna-copernico` | Skatepark La Laguna (C/ Copérnico) | 28.4930, -16.3150 | San Cristóbal de La Laguna |
 | `deporte-valle-san-lorenzo-kenguru` | Valle San Lorenzo — Calistenia Kenguru Pro | 28.091, -16.649 | Arona |
-| `escal-canada-capricho` | 🧗 Escalada Cañada del Capricho (Teide) | 28.2440, -16.5880 | La Orotava |
-| `escal-guaria` | 🧗 Escalada Guaría (Guía de Isora) | 28.1450, -16.7170 | Adeje |
 | `gas-tf1-adeje` | Repsol Costa Adeje (TF-1 km 15) | 28.0830, -16.7320 | Adeje |
 | `gas-tf5-icod` | Repsol Icod de los Vinos (TF-5) | 28.3680, -16.7050 | Icod de los Vinos |
-| `golf-amarilla` | Amarilla Golf (San Miguel de Abona) | 28.0310, -16.5960 | San Miguel de Abona |
-| `gr131-tramo1-esperanza-caldera` | GR-131 Anaga-Chasna · Tramo 1: La Esperanza — Área Rec. La Caldera | 28.4530, -16.4080 | El Sauzal |
 | `hiperdino-arona-montaneta` | HiperDino Arona (La Montañeta) | 28.0980, -16.6820 | Arona |
 | `hiperdino-los-realejos` | HiperDino Los Realejos | 28.3920, -16.5820 | Los Realejos |
-| `kayak-punta-teno` | 🛶 Kayak Punta de Teno — Costa Virgen (Noroeste) | 28.342, -16.923 | Buenavista del Norte |
 | `lidl-granadilla` | Lidl Granadilla de Abona | 28.1340, -16.5580 | Granadilla de Abona |
 | `lidl-la-laguna` | Lidl La Laguna (La Cuesta-Taco) | 28.4720, -16.3080 | San Cristóbal de La Laguna |
 | `mercadillo-santa-cruz` | Rastro de Santa Cruz | 28.4580, -16.2490 | Santa Cruz de Tenerife |
-| `mercadona-granadilla` | Mercadona Granadilla de Abona | 28.1270, -16.5760 | Granadilla de Abona |
 | `mir-cardon-guia-isora` | Mirador del Cardón (Guía de Isora) | 28.1870, -16.7520 | Guía de Isora |
-| `mirador-pico-ingles` | Mirador Pico del Inglés | 28.533, -16.264 | Santa Cruz de Tenerife |
-| `montana-amarilla` | Montaña Amarilla | 28.011, -16.636 | Arona |
 | `parkinson-tf-granadilla` | Párkinson Tenerife — Unidad Granadilla 🤝 | 28.122, -16.579 | Granadilla de Abona |
 | `parque-canino-laguna-via-ronda` | Parque Canino La Laguna (Vía Ronda) 🐾 | 28.4850, -16.3180 | San Cristóbal de La Laguna |
 | `pp-izana` | 🪂 Parapente — Despegue Izaña (2.200 m) | 28.3090, -16.4990 | — |
-| `prtf-6-chamorga-roque-bermejo` | PR-TF 6 · Chamorga — Roque Bermejo — Draguillo (circular) | 28.5740, -16.1370 | Santa Cruz de Tenerife |
 | `puerto-granadilla-comercial` | Puerto de Granadilla (Comercial) | 28.073, -16.499 | Granadilla de Abona |
-| `riscos-chio` | Paisaje Volcánico de Chío | 28.2060, -16.7450 | Guía de Isora |
-| `tea-tenerife` | TEA — Tenerife Espacio de las Artes | 28.464, -16.251 | Santa Cruz de Tenerife |
-| `turismo-cv-pedregales` | Centro de Visitantes Los Pedregales (Teno) | 28.342, -16.851 | Buenavista del Norte |
 
 ## 2 · Fichas que comparten coordenada exacta
 
@@ -464,14 +470,13 @@ Puede ser correcto —dos cosas en el mismo sitio— o una coordenada copiada.
 
 ## 3 · Pares a menos de 25 m que no comparten coordenada
 
-**15 pares.** A esa distancia los dos pines se solapan en el mapa.
+**14 pares.** A esa distancia los dos pines se solapan en el mapa.
 
 - 11 m · `puertito-los-abrigos` y `zona-mariscos-los-abrigos`
 - 11 m · `pesca-los-abrigos` y `zona-mariscos-los-abrigos`
 - 11 m · `turismo-sct` y `pk-plaza-espana`
 - 11 m · `ciudad-candelaria` y `pk-plaza-patrona-candelaria`
 - 14 m · `rest-tipico-mirador-abona` y `pk-poris-abona`
-- 15 m · `mirador-pico-ingles` y `bici-puerto-pico-ingles`
 - 15 m · `kayak-punta-teno` y `faro-teno`
 - 20 m · `deporte-arona-multideporte` y `super-hiperdino-arona-pueblo`
 - 22 m · `sendero-sentidos` y `acc-sendero-sentidos`
