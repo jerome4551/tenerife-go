@@ -100,10 +100,22 @@ const POLIGONO = (() => {
     const salida = execFileSync('python3', [path.join(__dirname, 'municipio.py'), '--lote'],
                                 { input: entrada, encoding: 'utf8', maxBuffer: 1 << 24 });
     const m = {};
+    let validos = null;
     for (const l of salida.split('\n')) {
+      /* municipio.py --lote devuelve «id \t municipio [\t metros]». El tercer
+         campo se añadio despues, y exigir exactamente dos dejo este control
+         leyendo CERO fichas: decia «520 con el punto en el agua» y 0
+         hallazgos. Un control que se queda mudo por un tabulador es peor que
+         no tenerlo, asi que aqui se aceptan dos campos o tres, y mas abajo se
+         comprueba que haya leido algo. */
       const t = l.split('\t');
-      if (t.length === 2 && t[1]) m[t[0]] = t[1];
+      if (t[0] === '#municipios') { validos = new Set(t[1].split('|')); continue; }
+      if (t.length >= 2 && t[1]) m[t[0]] = t[1];
     }
+    /* Dos cinturones, porque este control ya se quedo mudo una vez:
+       que haya leido fichas, y que lo leido SEAN municipios de verdad. */
+    if (Object.keys(m).length < PLACES.length / 2) return null;
+    if (validos && Object.values(m).some(x => !validos.has(x))) return null;
     return m;
   } catch (e) { return null; }
 })();

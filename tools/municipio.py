@@ -169,6 +169,12 @@ def main():
         # Una linea «id lat lng» por punto; devuelve «id<TAB>municipio». Asi el
         # control en JavaScript pregunta una sola vez por los 787 y la
         # geometria vive en un solo sitio.
+        # Primera linea: los municipios que existen. Quien lea esta salida
+        # puede comprobar que lo que le llega son nombres de municipio y no
+        # cualquier cosa. Sin esto, un cambio de formato deja al que pregunta
+        # leyendo basura sin enterarse.
+        sys.stdout.write('#municipios\t%s\n' % '|'.join(sorted(
+            {ALIAS.get(n, n) for n in cargar()[0]})))
         for linea in sys.stdin:
             t = linea.rstrip('\n').split('\t') if '\t' in linea else linea.split()
             if len(t) < 3:
