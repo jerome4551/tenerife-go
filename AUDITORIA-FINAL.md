@@ -1346,24 +1346,31 @@ hay que mezclar**: lo comprobado y correcto, lo comprobado y mal, y lo que no
 se puede comprobar desde aquí, con su motivo. Esa tercera columna es la que
 faltaba, y es la que hacía que cada semana apareciera una lista nueva.
 
-## El municipio que dice la ficha contra donde cae el punto
+## El municipio · 13 fuera de sitio, 14 que solo nombran una zona
 
-Las 2.514 paradas de TITSA traen municipio. Cruzándolas con lo que cada ficha
-declara —en un tramo del `cat` o en el paréntesis del nombre— sobre los 787:
+La primera version cruzaba lo que cada ficha declara —un tramo del `cat` o el
+paréntesis del nombre— con el municipio de **las paradas de TITSA de
+alrededor**. Daba **0 hallazgos en firme** y el área se cerró.
 
-```
-que declaran municipio ......... 520
-  comprobados .................. 475
-  sin paradas suficientes ......  45
-no declaran ninguno ............ 267
+Era una aproximación, y estaba tapando trabajo. Con el **polígono municipal del
+Cabildo** en el repositorio, la comprobación pasó a ser point-in-polygon exacto
+y aparecieron **16**. De esas:
 
-se contradicen a si mismas ......  0
-el municipio no cuadra, en firme    0
-en el borde, se avisa ...........  5
-cerradas contra las rayas ....... 10
-```
+- **3 eran fallo del control, no de las fichas.** En la tabla de alias se
+  habían colado dos nombres que no son de un municipio: `Las Américas`, que
+  está partida entre **Arona y Adeje** (de las 10 fichas que la nombran, 8 caen
+  en Arona y 2 en Adeje), y `Teno`, que es el **macizo** (de las 7 que lo
+  nombran, 6 caen en Buenavista del Norte y 1 en Los Silos). Un nombre que
+  manda a dos municipios distintos no es el nombre de uno. Ahora van a `ZONAS`,
+  con su propio apartado: **no pasan y no fallan, se cuentan y se listan**.
+- **13 son de verdad**, y están repartidas en `MUNICIPIOS-BLOQUE4.md`: 8 donde
+  miente el texto, 1 donde miente el pin, 3 sobre la raya que decide la fuente
+  oficial y 1 sin nada que la respalde.
 
-**El area queda CERRADA.** De diez hallazgos a cero, en tres tandas.
+**El área vuelve a estar ABIERTA.** Un área no puede estar cerrada mientras su
+control está en rojo. Las cifras no se escriben aquí a mano: las cuenta
+`node tools/auditar_municipio.js`, que además **coteja este titular** y se pone
+rojo si se queda viejo.
 
 ### Las cuatro cerradas, y con qué
 

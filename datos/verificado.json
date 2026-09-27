@@ -689,14 +689,16 @@
    "abierto": "Las que estan escritas con 3 decimales significativos o menos en los dos ejes, o sea puestas a ojo. El informe las cuenta y las lista una a una."
   },
   "municipio_de_cada_ficha": {
-   "estado": "cerrado",
-   "fecha": "2026-09-25",
-   "que_se_hizo": "Cruce de lo que cada ficha declara con el municipio de las paradas de TITSA de alrededor, sobre los 787.",
-   "resultado": "520 declaran municipio, 475 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno. 0 contradicciones y 0 municipios fuera de sitio en firme.",
+   "estado": "abierto",
+   "fecha": "2026-09-27",
+   "que_se_hizo": "Point-in-polygon de cada ficha contra el poligono municipal del Cabildo (tools/datos/municipios-tenerife-2015.shp.zip), no contra las paradas de alrededor.",
+   "resultado": "Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se queda viejo al dia siguiente.",
    "abierto": [
-    "5 fichas en el borde municipal: se avisan y no suspenden, porque en un limite las paradas se mezclan y un control que cante en cada borde se acaba ignorando. Son mir-la-corona-guimar, mir-lomo-molino, montana-taco, playa-caleton-sauzal y pr-tf-52-monte-agua."
+    "Las 13 que el poligono deja fuera de sitio, con su reparto y lo que hace falta para decidir cada una, en MUNICIPIOS-BLOQUE4.md. Ninguna se toca sin OK de Jerome."
    ],
-   "cerrado_por_raya": [
+   "techo": "El poligono municipal del Cabildo YA ESTA en el repositorio (tools/datos/municipios-tenerife-2015.shp.zip, entregado el 27 de septiembre). La comprobacion es point-in-polygon exacto, no una aproximacion. Calibrado contra las 2.514 paradas de TITSA: coincide en 2.514, el 100,00 %. La unica trampa del fichero es que el anillo de La Laguna envuelve a Tegueste sin recortarle el hueco; se resuelve con «si un punto cae en varios, gana el mas pequeño», que es lo que pasa siempre con un enclave. Lo que el poligono NO puede decidir: las fichas que nombran una ZONA de varios municipios («Las Americas», «Teno»). Esas se cuentan y se listan aparte, sin pasar ni fallar.",
+   "por_que_se_reabre": "Estuvo en «cerrado» con 0 hallazgos en firme, pero eso lo dijo la version que comparaba contra el municipio de las paradas de TITSA, que es una aproximacion. Al sustituirla por el poligono aparecieron 16, de las que 3 eran fallo del propio control (los alias «Las Americas» y «Teno», que no son municipios) y 13 son de verdad. Un area no puede estar cerrada mientras su control esta en rojo.",
+   "cerrado_por_poligono": [
     "ar-la-quebrada",
     "buceo-tabaiba",
     "casa-capitanes-generales",
@@ -707,8 +709,7 @@
     "mir-cruz-hilda",
     "parque-tabaiba-baja",
     "rcg-tenerife"
-   ],
-   "techo": "El poligono municipal del Cabildo YA ESTA en el repositorio (tools/datos/municipios-tenerife-2015.shp.zip, entregado el 27 de septiembre). La comprobacion es point-in-polygon exacto, no una aproximacion. Calibrado contra las 2.514 paradas de TITSA: coincide en 2.514, el 100,00 %. La unica trampa del fichero es que el anillo de La Laguna envuelve a Tegueste sin recortarle el hueco; se resuelve con «si un punto cae en varios, gana el mas pequeño», que es lo que pasa siempre con un enclave."
+   ]
   },
   "lugares_en_el_mar": {
    "estado": "cerrado",
