@@ -1,0 +1,106 @@
+{
+ "_": [
+  "Entrega de montana-taco, con la fuente que Jerome aporto el 28 de septiembre.",
+  "Fuente: Wikipedia en espanol, «Montana de Taco (embalse)».",
+  "Queda cerrado lo que el commit anterior dejaba a deber: la ficha tenia una",
+  "descripcion minima porque la anterior era la del OTRO Taco y no habia fuente."
+ ],
+ "correcciones_coordenada": {
+  "montana-taco": {
+   "antes": {
+    "lat": 28.374,
+    "lng": -16.8337
+   },
+   "despues": {
+    "lat": 28.373889,
+    "lng": -16.833611
+   },
+   "se_mueve_m": 15,
+   "fuente": "Wikipedia: 28°22'26\"N 16°50'01\"O",
+   "comprobado": "point-in-polygon: Buenavista del Norte, y a 0 m de la raya de Los Silos, que es exactamente lo que dice el articulo: «entre los limites de los municipios de Buenavista del Norte y Los Silos»."
+  }
+ },
+ "modificaciones": {
+  "montana-taco": {
+   "anadido": [
+    "volcan extinto entre Buenavista del Norte y Los Silos",
+    "en el crater hay un embalse",
+    "fue cantera de picon",
+    "convertida en balsa entre 1983 y 1985, la primera y la mayor del Plan de Balsas del Norte de Tenerife",
+    "821.700 m3, 13,7 m de profundidad maxima, 6,49 hectareas",
+    "ACCESO PARCIALMENTE RESTRINGIDO, solo personal de mantenimiento"
+   ],
+   "cat": {
+    "antes": "Volcán · Buenavista del Norte",
+    "despues": "Volcán y Embalse · Buenavista del Norte"
+   },
+   "desc_es": {
+    "antes": "Cono volcánico de Buenavista del Norte, junto a Los Silos, en la Isla Baja. No tiene nada que ver con el barrio de Taco, que está en La Laguna, al otro lado de la isla: son dos sitios distintos con el mismo nombre.",
+    "despues": "Volcán extinto entre los términos de Buenavista del Norte y Los Silos. En el cráter de su cono hay un embalse: la montaña fue cantera de picón y entre 1983 y 1985 se convirtió en balsa, la primera y la mayor del Plan de Balsas del Norte de Tenerife. Almacena unos 821.700 metros cúbicos, con 13,7 m de profundidad máxima y 6,49 hectáreas de lámina de agua. El acceso está parcialmente restringido: sólo lo tiene autorizado el personal de mantenimiento. No confundir con el barrio de Taco, que está en La Laguna."
+   },
+   "tags": {
+    "antes": [
+     "Volcán",
+     "Buenavista del Norte",
+     "Isla Baja",
+     "Noroeste"
+    ],
+    "despues": [
+     "Volcán",
+     "Cráter",
+     "Embalse",
+     "Buenavista del Norte",
+     "Los Silos",
+     "Isla Baja",
+     "Noroeste",
+     "Acceso Restringido"
+    ]
+   },
+   "etiquetas_nuevas": {
+    "Embalse": "fila nueva en los 9 glosarios",
+    "Acceso Restringido": "fila nueva en los 9 glosarios"
+   },
+   "idiomas": {
+    "en": {
+     "desc": "Extinct volcano straddling the municipalities of Buenavista del Norte and Los Silos. Its crater holds a reservoir: the mountain was once a picón quarry and between 1983 and 1985 it was turned into a water basin, the first and largest of the Plan de Balsas del Norte de Tenerife. It holds around 821,700 cubic metres, with a maximum depth of 13.7 m and 6.49 hectares of water surface. Access is partly restricted: only maintenance staff are authorised. Not to be confused with the Taco neighbourhood, which is in La Laguna.",
+     "cat": "Volcano and Reservoir · Buenavista del Norte"
+    },
+    "fr": {
+     "desc": "Volcan éteint à cheval sur les communes de Buenavista del Norte et de Los Silos. Son cratère abrite un réservoir : la montagne fut une carrière de picón et, entre 1983 et 1985, elle a été transformée en bassin, le premier et le plus grand du Plan de Balsas del Norte de Tenerife. Il contient environ 821.700 mètres cubes, avec 13,7 m de profondeur maximale et 6,49 hectares de plan d'eau. L'accès est partiellement restreint : seul le personnel d'entretien y est autorisé. À ne pas confondre avec le quartier de Taco, qui se trouve à La Laguna.",
+     "cat": "Volcan et Réservoir · Buenavista del Norte"
+    },
+    "de": {
+     "desc": "Erloschener Vulkan an der Grenze der Gemeinden Buenavista del Norte und Los Silos. In seinem Krater liegt ein Stausee: Der Berg war einst ein Picón-Steinbruch und wurde zwischen 1983 und 1985 zum Speicherbecken umgebaut, dem ersten und größten des Plan de Balsas del Norte de Tenerife. Er fasst rund 821.700 Kubikmeter, bei 13,7 m maximaler Tiefe und 6,49 Hektar Wasserfläche. Der Zugang ist teilweise beschränkt: Nur das Wartungspersonal ist zugelassen. Nicht zu verwechseln mit dem Stadtteil Taco, der in La Laguna liegt.",
+     "cat": "Vulkan und Stausee · Buenavista del Norte"
+    },
+    "it": {
+     "desc": "Vulcano spento a cavallo dei comuni di Buenavista del Norte e Los Silos. Nel cratere del suo cono c'è un bacino idrico: la montagna fu una cava di picón e tra il 1983 e il 1985 venne trasformata in invaso, il primo e il più grande del Plan de Balsas del Norte de Tenerife. Contiene circa 821.700 metri cubi, con 13,7 m di profondità massima e 6,49 ettari di specchio d'acqua. L'accesso è parzialmente limitato: è autorizzato solo il personale di manutenzione. Da non confondere con il quartiere di Taco, che si trova a La Laguna.",
+     "cat": "Vulcano e Bacino · Buenavista del Norte"
+    },
+    "nl": {
+     "desc": "Uitgedoofde vulkaan op de grens van de gemeenten Buenavista del Norte en Los Silos. In de krater ligt een stuwmeer: de berg was ooit een picón-groeve en werd tussen 1983 en 1985 omgebouwd tot waterbekken, het eerste en grootste van het Plan de Balsas del Norte de Tenerife. Het bevat ongeveer 821.700 kubieke meter, met 13,7 m maximale diepte en 6,49 hectare wateroppervlak. De toegang is deels beperkt: alleen onderhoudspersoneel is toegelaten. Niet te verwarren met de wijk Taco, die in La Laguna ligt.",
+     "cat": "Vulkaan en Stuwmeer · Buenavista del Norte"
+    },
+    "zh": {
+     "desc": "横跨布埃纳维斯塔与洛斯西洛斯两个市镇边界的死火山。火山口中是一座水库：这座山曾是火山砂石采石场，1983年至1985年间改建为蓄水池，是特内里费北部水库计划中最早也是最大的一座。蓄水量约821700立方米，最大水深13.7米，水面面积6.49公顷。出入受到部分限制，仅维护人员获准进入。请勿与拉拉古纳的塔科街区混淆。",
+     "cat": "火山与水库 · 布埃纳维斯塔"
+    },
+    "zht": {
+     "desc": "橫跨布埃納維斯塔與洛斯西洛斯兩個市鎮邊界的死火山。火山口中是一座水庫：這座山曾是火山砂石採石場，1983年至1985年間改建為蓄水池，是特內里費北部水庫計畫中最早也是最大的一座。蓄水量約821700立方公尺，最大水深13.7公尺，水面面積6.49公頃。出入受到部分限制，僅維護人員獲准進入。請勿與拉拉古納的塔科街區混淆。",
+     "cat": "火山與水庫 · 布埃納維斯塔"
+    },
+    "bg": {
+     "desc": "Изгаснал вулкан на границата между общините Буенависта дел Норте и Лос Силос. В кратера му има язовир: планината е била кариера за пикон, а между 1983 и 1985 г. е превърната във водоем, първият и най-големият от Plan de Balsas del Norte de Tenerife. Побира около 821.700 кубични метра, с 13,7 м максимална дълбочина и 6,49 хектара водна площ. Достъпът е частично ограничен: разрешен е само на поддържащия персонал. Да не се бърка с квартал Тако, който е в Ла Лагуна.",
+     "cat": "Вулкан и язовир · Буенависта дел Норте"
+    },
+    "pl": {
+     "desc": "Wygasły wulkan na granicy gmin Buenavista del Norte i Los Silos. W jego kraterze znajduje się zbiornik wodny: góra była kamieniołomem picónu, a w latach 1983–1985 przekształcono ją w zbiornik, pierwszy i największy w ramach Plan de Balsas del Norte de Tenerife. Mieści około 821.700 metrów sześciennych, przy 13,7 m maksymalnej głębokości i 6,49 hektara lustra wody. Dostęp jest częściowo ograniczony: zezwolenie ma tylko personel utrzymania. Nie mylić z dzielnicą Taco, która leży w La Lagunie.",
+     "cat": "Wulkan i zbiornik · Buenavista del Norte"
+    }
+   }
+  }
+ },
+ "no_usado": [
+  "El articulo da tambien la inversion (3250 millones de pesetas, 19.532.893 euros actuales) y la fecha de inauguracion (17 de mayo del ano siguiente a su finalizacion). No entran: son datos de la obra, no de lo que le sirve a quien visita, y cada cifra mas hay que sostenerla en diez idiomas."
+ ]
+}

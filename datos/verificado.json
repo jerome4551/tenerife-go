@@ -222,6 +222,10 @@
    "fecha": "2026-09-27",
    "fuente": "OSM del repositorio: «Monumento Natural de Montaña Amarilla» (nature_reserve), a 71 m de la coordenada redonda anterior. Unico con ese nombre en el extracto."
   },
+  "montana-taco": {
+   "fecha": "2026-09-28",
+   "fuente": "Wikipedia en español, «Montaña de Taco (embalse)», coordenadas del articulo 28 22 26 N 16 50 01 O. Aportada por Jerome el 28 de septiembre de 2026."
+  },
   "nucleo-costa-adeje": {
    "fecha": "2026-09-19",
    "commit": "2ef7c67",

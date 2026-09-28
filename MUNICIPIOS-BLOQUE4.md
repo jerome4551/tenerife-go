@@ -319,6 +319,11 @@ se van con el sendero que no consta en ninguna parte.
 **Si quieres una descripción completa de la Montaña de Taco, hace falta una
 fuente.**
 
+> **28 de septiembre, por la tarde: llegó la fuente.** Jerome mandó el artículo
+> de Wikipedia «Montaña de Taco (embalse)». Ver más abajo.
+
+
+
 ### Y dos detalles
 
 - **`playa-caleton-sauzal`** conserva el id, que es opaco y cambiarlo arrastraría
@@ -333,3 +338,37 @@ fuente.**
 ## Lo que queda del bloque 4
 
 **Una.** `escal-guaria`, que sigue necesitando a alguien que conozca el sector.
+
+---
+
+## Aplicado · `montana-taco`, con la fuente que faltaba (28 de septiembre)
+
+Wikipedia en español, «Montaña de Taco (embalse)». Con eso la ficha deja de tener
+una descripción mínima y pasa a contar lo que de verdad es.
+
+**La coordenada**, que el artículo publica: `28°22'26"N 16°50'01"O` →
+**`28.373889, -16.833611`**. Se mueve 15 m. Y confirma de paso lo que dice el
+texto del artículo: **el punto cae a 0 m de la raya de Los Silos**. Está
+literalmente en el límite, como dice Wikipedia — «entre los límites de los
+municipios de Buenavista del Norte y Los Silos»—. El polígono lo asigna a
+Buenavista del Norte, que es lo que lleva la ficha.
+
+**Lo que ahora cuenta la ficha**, todo del artículo:
+
+- Es un **volcán extinto** entre Buenavista del Norte y Los Silos.
+- En el cráter de su cono hay un **embalse**. La montaña fue **cantera de picón**
+  y entre **1983 y 1985** se convirtió en balsa: la **primera y la mayor** del
+  Plan de Balsas del Norte de Tenerife.
+- **821.700 m³**, **13,7 m** de profundidad máxima, **6,49 hectáreas** de lámina
+  de agua.
+- **El acceso está parcialmente restringido**: sólo lo tiene autorizado el
+  personal de mantenimiento. Esto es lo más importante para quien use la app: es
+  una ficha de un sitio al que no se puede subir sin más.
+- Y se mantiene el aviso de que no es el barrio de Taco de La Laguna.
+
+`cat` pasa a «Volcán y Embalse · Buenavista del Norte» y los tags recogen
+**Cráter**, **Embalse**, **Los Silos** y **Acceso Restringido**. «Embalse» y
+«Acceso Restringido» son etiquetas nuevas: van con su fila en los nueve
+glosarios, insertadas en su sitio para no reordenar el fichero entero.
+
+En los 10 idiomas.
