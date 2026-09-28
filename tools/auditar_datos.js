@@ -109,8 +109,10 @@ console.log('\n=== lugares ===');
    fuente situa en Fasnia (parche auditoria-mar-8); 803 -> 786 el mismo dia,
    al borrar las 17 fichas nucleo-* que duplicaban una cabecera municipal
    con la misma coordenada exacta; 786 -> 787 el 21 de septiembre, con el
-   alta de playa-fajana-realejos. */
-debe('lugares', PLACES.length, PLACES.length === 787);
+   alta de playa-fajana-realejos; 787 -> 786 el 28 de septiembre, al dar de
+   baja guachinche-san-juan-rambla: nombre generico, sin direccion ni
+   telefono y sin ningun guachinche que se llame asi. */
+debe('lugares', PLACES.length, PLACES.length === 786);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

@@ -3,8 +3,9 @@
 Era el único bloque en rojo. **Eran 16 y son 13**, porque tres no eran fallo de
 las fichas sino de mi control. Eso va primero, porque es lo que cambia la cifra.
 
-> **Al día 28 de septiembre: 2 resueltas, quedan 11.**
-> `sendero-roque-conde` (la 8) y `super-mercadona-tacoronte` (la 9). Las dos
+> **Al día 28 de septiembre: 5 resueltas, quedan 8.**
+> `sendero-roque-conde` (8), `super-mercadona-tacoronte` (9), `ar-las-lajas` (10),
+> `camping-las-lajas` (11) y `guachinche-san-juan-rambla` (12, de baja). Todas
 > aplicadas — ver el final del documento.
 
 ---
@@ -116,29 +117,10 @@ contradice: el paréntesis dice la verdad y el nombre del municipio no.
 
 ---
 
-## C · Sobre la raya: decide la fuente oficial (3)
+## C · Sobre la raya (3) — ~~LAS TRES RESUELTAS~~
 
-### `ar-las-lajas` y `camping-las-lajas`
-- Las dos dicen **Vilaflor** y **comparten exactamente el mismo punto**
-  (`28.1895, -16.6645`), 55 m dentro de Adeje.
-- OSM pone los tres elementos en Adeje: la zona de acampada 117 m dentro y el
-  área recreativa 241 m dentro. En 1 km alrededor **no hay un solo elemento de
-  Vilaflor**.
-- Pero `camping-las-lajas` lleva escrito `address: "Las Lajas, Vilaflor,
-  Tenerife"`, y es **zona de acampada del Cabildo**: su propia ficha oficial
-  dice a qué municipio la adscribe, y eso manda sobre OSM.
-- Aparte del municipio: **son dos fichas con un solo pin**, y OSM tiene el área
-  recreativa y la acampada separadas 127 m. Habría que darle a cada una la
-  suya.
-
-### `guachinche-san-juan-rambla`
-- Dice **San Juan de la Rambla**; cae 446 m dentro de Los Realejos.
-- El pin está junto al **Barranco de Ruiz, que es justo la raya**: lo más
-  cercano de Los Realejos está a 448 m y lo más cercano de San Juan de la
-  Rambla a 524 m. Casi empatados.
-- El guachinche no está en OSM. Hace falta su dirección real.
-
----
+`ar-las-lajas`, `camping-las-lajas` y `guachinche-san-juan-rambla`. Ver el final
+del documento.
 
 ## D · Sin nada que lo respalde (1)
 
@@ -156,9 +138,7 @@ contradice: el paréntesis dice la verdad y el nombre del municipio no.
 
 1. **Grupo A (7, era 8)** — ¿cambio el texto al municipio que dice el polígono?
    Con eso el bloque baja de 12 a 5. ~~`sendero-roque-conde`~~ ya está resuelta.
-2. **Grupo C (3)** — Las Lajas la decide el Cabildo; el guachinche, su
-   dirección. Y de paso: ¿le doy pin propio a cada una de las dos de Las Lajas?
-3. **Grupo D (1)** — `escal-guaria` necesita que alguien que conozca el sector
+2. **Grupo D (1)** — `escal-guaria` necesita que alguien que conozca el sector
    diga si está en Adeje o en Guía de Isora.
 
 Nada de esto está aplicado. Como en los bloques 1, 2 y 3: **OSM no es fuente
@@ -235,3 +215,66 @@ MERCADONA y la entrada a la vista.
 Escrita con `tools/fijar_coordenada.py`, que la comprobó antes (existe el id,
 está dentro de la caja, cae en tierra) y apuntó la fuente sola en
 `datos/verificado.json`.
+
+---
+
+## Aplicado · 10 y 11 · Las Lajas (28 de septiembre)
+
+**El Cabildo dice Adeje, no Vilaflor.** La condición que puse —que mandaba la
+ficha oficial— se cumplió al revés de como yo esperaba: Tenerife ON sitúa el área
+recreativa en **Lomo de Los Pegueros, Adeje** y la zona de acampada en **Altos de
+Adeje, Adeje**. El shapefile coincide.
+
+**Y cada una tiene ya su pin.** Los publica el Cabildo en el enlace «Acceso»:
+
+| | antes | después | se mueve | a la raya de Vilaflor |
+|---|---|---|---|---|
+| `ar-las-lajas` | `28.1895, -16.6645` | **`28.190285, -16.666189`** | 187 m | 237 m |
+| `camping-las-lajas` | el mismo punto | **`28.190608, -16.665057`** | 135 m | 139 m |
+
+Quedan a **117 m** una de otra, que es lo que las separa en Tenerife ON. El pin
+que compartían estaba a sólo 55 m de la raya.
+
+**Los datos tampoco cuadraban con el Cabildo:**
+
+- `ar-las-lajas` decía «1.400 m», «el pueblo más alto de España» y «42 mesas».
+  Fuera las tres. Ahora: **por encima de los 1.500 m**, **aforo de 475 plazas**,
+  mesas, fogones y área infantil; **los aseos sólo abren fines de semana y
+  festivos, de 10:00 a 17:30**; **el agua de la fuente NO es potable**; estancia
+  de sol a sol, y los grupos y entidades con reserva.
+- `camping-las-lajas` decía «acampada gratuita». La ficha oficial no lo dice, así
+  que fuera. Ahora: **aforo de 30 plazas**, **reserva obligatoria para todos** en
+  Tenerife ON, **de 12:00 a 12:00** y **máximo 7 días**, y el agua tampoco es
+  potable. Nombre «Zona Acampada Las Lajas (Adeje)» y dirección «Altos de Adeje,
+  Adeje».
+
+**La zona de autocaravanas** (11 plazas, Altos de Adeje) no entra como ficha
+nueva: se cuenta dentro del área recreativa, que es lo que pediste. Su coordenada
+(`28.190088, -16.664950`) queda apuntada en la entrega por si algún día la
+quieres aparte.
+
+En los 10 idiomas, con búlgaro y polaco desde el castellano.
+
+---
+
+## Aplicado · 12 · `guachinche-san-juan-rambla`, de baja (28 de septiembre)
+
+No hay dirección que buscar: nombre genérico —**la única de las 20 fichas de
+guachinche sin nombre propio**—, sin dirección ni teléfono, descripción genérica
+y ningún guachinche que se llame así. **Regla de cero datos inventados.**
+
+Borrada de `index.html`, de los nueve ficheros de idioma y de
+`idiomas/pl-lugares/`. Ninguna de sus seis etiquetas se queda huérfana: las usan
+otras fichas.
+
+**Son 786.** El contador de `auditar_datos.js` está movido a mano con el motivo
+escrito —es un tope a propósito, para que una baja no pase inadvertida— y las dos
+cifras «787 puntos de interés» y «787 lugares» que había en el fuente, al día. El
+control las cazó solo en cuanto borré la ficha.
+
+### Una corrección mía
+
+Escribí que el pin estaba «junto al **Barranco de Ruiz, que es justo la raya**».
+**No lo comprobé.** El pin caía 446 m dentro de Los Realejos y el cauce queda a
+441 m. Los 448 m y 524 m que di eran distancias a **bares de OSM**, no al límite
+municipal. La corrección es de Jerome.

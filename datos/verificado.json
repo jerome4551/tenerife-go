@@ -74,6 +74,10 @@
    "fecha": "2026-09-25",
    "fuente": "Parche municipios-bloque1-B (sha256 cf3094e6...). Tenerife ON (Cabildo de Tenerife), ficha oficial del area recreativa: enlace de acceso 28.532069688519, -16.300710533935. Acceso por el Camino de El Batan (TF-143), km 0,4, Cruce El Moquinal. Se mueve 4.068 m desde el punto viejo, que caia en un barrio de La Laguna."
   },
+  "ar-las-lajas": {
+   "fecha": "2026-09-28",
+   "fuente": "Cabildo de Tenerife, Tenerife ON, enlace «Acceso» de la ficha del area recreativa: tenerifeon.es/equipamientos/area-recreativa/las-lajas. Aportada por Jerome el 28 de septiembre de 2026."
+  },
   "bano-valleseco-bloque": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
@@ -86,6 +90,10 @@
   "bollullo": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "camping-las-lajas": {
+   "fecha": "2026-09-28",
+   "fuente": "Cabildo de Tenerife, Tenerife ON, enlace «Acceso» de la ficha de la zona de acampada: tenerifeon.es/equipamientos/zona-de-acampada/las-lajas. Aportada por Jerome el 28 de septiembre de 2026."
   },
   "charco-abrigos": {
    "fecha": "2026-09-06",

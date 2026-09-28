@@ -3,10 +3,6 @@
   "desc": "Przytulna kawiarnia-restauracja nad samym morzem w Poris de Abona, obok plaży i latarni Punta de Abona. Świeże tapas, ryby i lokalne produkty z najlepszym widokiem na zatokę.",
   "cat": "Kawiarnia-Restauracja · Poris de Abona · Morze"
  },
- "guachinche-san-juan-rambla": {
-  "desc": "Guachinche na obrzeżach San Juan de la Rambla z widokiem na morze. Wino z północy wyspy, mięso w sosie, papas arrugadas i mojo kolendrowe. Rodzinna atmosfera.",
-  "cat": "Guachinche · San Juan de la Rambla"
- },
  "guachinche-los-silos": {
   "desc": "Rodzinny guachinche na wzgórzach Los Silos, w skrajnie północno-zachodniej części wyspy. Domowa i bardzo dopracowana kuchnia kanaryjska: carne fiesta, escaldón, almogrote. Uznawany za jeden z najlepszych na wyspie. Otwarte od czwartku do niedzieli.",
   "cat": "Guachinche · Los Silos · Północny zachód"
@@ -199,9 +195,9 @@
   "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
  },
  "camping-las-lajas": {
-  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w Vilaflor. Leży w Parku Przyrody Corona Forestal. Wysoko w górach, tuż przy Parku Narodowym Teide; siedlisko zięby modrej. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
-  "cat": "Pole namiotowe · Vilaflor · Cabildo",
-  "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
+  "desc": "Oficjalna strefa biwakowa Cabildo de Tenerife w Adeje. Leży w Parku Naturalnym Corona Forestal. Wysoko w górach, obok Parku Narodowego Teide; siedlisko modrej zięby. Pojemność 30 miejsc. Rezerwacja w Tenerife ON jest obowiązkowa dla wszystkich, od 12:00 do 12:00 i maksymalnie 7 dni. Obok teren rekreacyjny z toaletami i paleniskami. Woda NIE nadaje się do picia: trzeba ją przywieźć.",
+  "cat": "Strefa biwakowa · Adeje · Cabildo",
+  "hours": "Rezerwacja obowiązkowa w Tenerife ON · od 12:00 do 12:00 · maks. 7 dni"
  },
  "camping-arenas-negras": {
   "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w Garachico. Leży w Parku Przyrody Corona Forestal. Kontrast czarnego wulkanicznego piasku, sosen i morza w tle. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",

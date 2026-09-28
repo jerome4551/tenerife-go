@@ -153,7 +153,7 @@ window.onunhandledrejection = function(e) {
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
       "author": { "@type": "Person", "name": "Jérôme B" },
       "image": "https://jerome4551.github.io/tenerife-go/og-image.jpg",
-      "featureList": "Mapa interactivo offline, 787 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
+      "featureList": "Mapa interactivo offline, 786 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
     },
     {
       "@type": "TouristDestination",
@@ -8722,7 +8722,7 @@ try {
    medias, sin que nadie hubiera elegido nada. Esconder la opcion del menu no
    tocaba ese camino.
    Cuando un idioma este completo se le quita de esta lista y se acabo.
-   El polaco ya salio: tiene la interfaz y los 787 lugares de
+   El polaco ya salio: tiene la interfaz y todas las fichas en
    idiomas/pl.json. La lista se queda vacia, que no es lo mismo que
    sobrar: el dia que entre el idioma numero once vuelve a hacer falta,
    y el numero que el usuario lee sale de contarla. */
@@ -9145,8 +9145,8 @@ Object.assign(UI_TX, {
   capaIslaCargando: { es:'Abriendo el mapa de la isla…', en:'Opening the island map…', fr:'Ouverture de la carte de l’île…', de:'Inselkarte wird geöffnet…', it:'Apertura della mappa dell’isola…', nl:'Eilandkaart wordt geopend…', zh:'正在打开海岛地图…', zht:'正在開啟海島地圖…', bg:'Отваря се картата на острова…', pl: "Otwieram mapę wyspy…" },
   capaSinRed:       { es:'Sin red: se pasa al mapa de la isla', en:'No connection: switching to the island map', fr:'Pas de réseau : passage à la carte de l’île', de:'Keine Verbindung: Wechsel zur Inselkarte', it:'Nessuna rete: si passa alla mappa dell’isola', nl:'Geen verbinding: overschakelen naar de eilandkaart', zh:'没有网络：切换到海岛地图', zht:'沒有網路：切換到海島地圖', bg:'Няма мрежа: минава се към картата на острова', pl: "Brak sieci: przełączam na mapę wyspy" },
   /* Sin {n} a proposito: el numero se antepone en el codigo. Asi el chino
-     queda "787 个地点" y el espanol distingue singular de plural, que es lo
-     que separa el "|". */
+     pega "个地点" detras de la cifra y el espanol distingue singular de
+     plural, que es lo que separa el "|". */
   contadorLugares:  { es:'lugar|lugares', en:'place|places', fr:'lieu|lieux', de:'Ort|Orte', it:'luogo|luoghi', nl:'plek|plekken', zh:'个地点', zht:'個地點', bg:'място|места', pl: "miejsce|miejsca|miejsc" },
   contadorResultados:{ es:'resultado|resultados', en:'result|results', fr:'résultat|résultats', de:'Ergebnis|Ergebnisse', it:'risultato|risultati', nl:'resultaat|resultaten', zh:'条结果', zht:'條結果', bg:'резултат|резултати', pl: "wynik|wyniki|wyników" },
   mapaDetalle:      { es:'Mapa detallado', en:'Detailed map', fr:'Carte détaillée', de:'Detailkarte', it:'Mappa dettagliata', nl:'Gedetailleerde kaart', zh:'详细地图', zht:'詳細地圖', bg:'Подробна карта', pl: "Mapa szczegółowa" },
@@ -12163,10 +12163,10 @@ const places = [
     cat:{ es:"Barbacoa Gratuita · Arafo · 900 m · 38 mesas" },
     tags:["Barbacoa","Gratuita","Arafo","Güímar","900m","Pinar","Sureste","38 mesas","Tranquila"] },
 
-  { id:"ar-las-lajas", warn:"incendio", category:"barbacoa", name:"Área Recreativa Las Lajas", emoji:"🪵", color:"#e65100", lat:28.1895, lng:-16.6645,
-    desc:{ es:"Área recreativa en Vilaflor (1.400 m), el pueblo más alto de España, en el Parque Natural de la Corona Forestal. 42 mesas. Fogones gratuitos, aseos y aparcamiento. Pinar centenario de gran belleza. Base ideal para el Teide." },
-    cat:{ es:"Barbacoa Gratuita · Vilaflor · 1.400 m · 42 mesas" },
-    tags:["Barbacoa","Gratuita","Vilaflor","1400m","42 mesas","Pinar","Teide","Pueblo más alto España"] },
+  { id:"ar-las-lajas", warn:"incendio", category:"barbacoa", name:"Área Recreativa Las Lajas", emoji:"🪵", color:"#e65100", lat:28.190285, lng:-16.666189,
+    desc:{ es:"Área recreativa en Adeje, por encima de los 1.500 m, en el Parque Natural de la Corona Forestal. Aforo de 475 plazas, con mesas, fogones y área infantil. Los aseos abren sólo fines de semana y festivos, de 10:00 a 17:30. El agua de la fuente NO es potable: hay que llevarla. Estancia de sol a sol; los grupos y las entidades necesitan reserva. Al lado, el Cabildo tiene una zona de autocaravanas con 11 plazas. Pinar centenario de gran belleza. Base ideal para el Teide." },
+    cat:{ es:"Barbacoa Gratuita · Adeje · +1.500 m · 475 plazas" },
+    tags:["Barbacoa","Gratuita","Adeje","Pinar","Teide"] },
 
   { id:"ar-los-pedregales", warn:"incendio", category:"barbacoa", name:"Área Recreativa Los Pedregales", emoji:"🪵", color:"#1b5e20", lat:28.3419, lng:-16.8566,
     desc:{ es:"Área recreativa en Buenavista del Norte, Parque Rural de Teno. 20 mesas. Fogones gratuitos, aseos y aparcamiento. Noroeste de la isla con vistas al Atlántico." },
@@ -13155,11 +13155,6 @@ const places = [
     tags:["Café","Tapas","Poris de Abona","Sur","Mar","Vistas","Faro"] },
 
   // ══ B3: GASTRONOMÍA TÍPICA NORTE ══════════════════════
-  { id:"guachinche-san-juan-rambla", category:"gastronomia", name:"Guachinche San Juan de la Rambla", emoji:"🍷", color:"#8e1f1f", lat:28.3885, lng:-16.6218,
-    desc:{ es:"Guachinche en las afueras de San Juan de la Rambla con vistas al mar. Vino de la zona norte, carne en salsa, papas arrugadas y mojo de cilantro. Ambiente familiar." },
-    cat:{ es:"Guachinche · San Juan de la Rambla" },
-    tags:["Guachinche","San Juan de la Rambla","Norte","Vistas","Mar","Mojo"] },
-
   { id:"guachinche-los-silos", category:"gastronomia", name:"Guachinche El Origen del Trigo (Los Silos)", emoji:"🍷", color:"#6d1414", lat:28.3525, lng:-16.8035,
     desc:{ es:"Guachinche familiar en las medianías de Los Silos, en el extremo noroeste. Cocina canaria casera y muy cuidada: carne fiesta, escaldón, almogrote. Considerado de los mejores de la isla. Abre de jueves a domingo." },
     cat:{ es:"Guachinche · Los Silos · Noroeste" },
@@ -13408,13 +13403,13 @@ const places = [
     phone:"922 23 95 00",
     address:"Ramón Caminero, La Orotava, Tenerife",
     tags:["Camping","Cabildo","La Orotava","Norte","Permiso","Naturaleza"] },
-  { id:"camping-las-lajas", warn:"incendio", category:"camping", name:"Zona Acampada Las Lajas (Vilaflor)", emoji:"🏕️", color:"#1c2833", lat:28.1895, lng:-16.6645,
-    desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en Vilaflor. Está en el Parque Natural de la Corona Forestal. En alta montaña, junto al Parque Nacional del Teide; hábitat del pinzón azul. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
-    cat:{ es:"Zona Acampada · Vilaflor · Cabildo" },
-    hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
+  { id:"camping-las-lajas", warn:"incendio", category:"camping", name:"Zona Acampada Las Lajas (Adeje)", emoji:"🏕️", color:"#1c2833", lat:28.190608, lng:-16.665057,
+    desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en Adeje. Está en el Parque Natural de la Corona Forestal. En alta montaña, junto al Parque Nacional del Teide; hábitat del pinzón azul. Aforo de 30 plazas. Reserva obligatoria para todos en Tenerife ON, de 12:00 a 12:00 y un máximo de 7 días. Junto a un área recreativa con aseos y fogones. El agua NO es potable: hay que llevarla." },
+    cat:{ es:"Zona Acampada · Adeje · Cabildo" },
+    hours:{ es:"Reserva obligatoria en Tenerife ON · de 12:00 a 12:00 · máximo 7 días" },
     phone:"922 23 95 00",
-    address:"Las Lajas, Vilaflor, Tenerife",
-    tags:["Camping","Cabildo","Vilaflor","Cumbre","Permiso","Naturaleza"] },
+    address:"Altos de Adeje, Adeje",
+    tags:["Camping","Cabildo","Adeje","Cumbre","Permiso","Naturaleza"] },
   { id:"camping-arenas-negras", warn:"incendio", category:"camping", name:"Zona Acampada Arenas Negras (Garachico)", emoji:"🏕️", color:"#1c2833", lat:28.3199, lng:-16.7576,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en Garachico. Está en el Parque Natural de la Corona Forestal. Contraste de arena volcánica negra, pinos y mar al fondo. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · Garachico · Cabildo" },

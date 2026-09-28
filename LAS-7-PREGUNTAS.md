@@ -114,9 +114,11 @@ parapente en **El Tanque (Tierra del Trigo)**».
 
 ## Lo que pasa si dices que sí a las siete
 
-El bloque baja de **11 a 4**: quedarían `ar-las-lajas` y `camping-las-lajas` (las
-decide el Cabildo), `guachinche-san-juan-rambla` (hace falta su dirección) y
-`escal-guaria` (hace falta alguien que conozca el sector).
+El bloque baja de **8 a 1**: quedaría sólo `escal-guaria`, que necesita a alguien
+que conozca el sector.
+
+*(Al 28 de septiembre, Las Lajas y el guachinche ya están resueltos: las dos de
+Las Lajas eran de Adeje y el guachinche se dio de baja.)*
 
 En las tres que además tienen el municipio metido en el nombre o en la
 descripción —la 3, la 6 y la 7— lo cambio también, y en los diez idiomas.

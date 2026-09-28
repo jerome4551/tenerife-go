@@ -1,0 +1,275 @@
+{
+ "_": [
+  "Entrega de las fichas 10, 11 y 12 del bloque 4, indexada por id.",
+  "Respuesta de Jerome del 28 de septiembre.",
+  "Fuente de todo lo de Las Lajas: Cabildo de Tenerife (Tenerife ON), enlace",
+  "«Acceso» de cada ficha. El shapefile del Cabildo coincide: las dos en Adeje."
+ ],
+ "correcciones_coordenada": {
+  "ar-las-lajas": {
+   "antes": {
+    "lat": 28.1895,
+    "lng": -16.6645,
+    "municipio_del_poligono": "Adeje",
+    "nota": "compartido con camping-las-lajas, a 55 m de la raya de Vilaflor"
+   },
+   "despues": {
+    "lat": 28.190285,
+    "lng": -16.666189,
+    "municipio_del_poligono": "Adeje"
+   },
+   "se_mueve_m": 187,
+   "a_la_raya_de_vilaflor_m": 237,
+   "fuente": "tenerifeon.es/equipamientos/area-recreativa/las-lajas, enlace «Acceso»"
+  },
+  "camping-las-lajas": {
+   "antes": {
+    "lat": 28.1895,
+    "lng": -16.6645,
+    "municipio_del_poligono": "Adeje",
+    "nota": "el mismo punto que ar-las-lajas"
+   },
+   "despues": {
+    "lat": 28.190608,
+    "lng": -16.665057,
+    "municipio_del_poligono": "Adeje"
+   },
+   "se_mueve_m": 135,
+   "a_la_raya_de_vilaflor_m": 139,
+   "fuente": "tenerifeon.es/equipamientos/zona-de-acampada/las-lajas, enlace «Acceso»"
+  },
+  "_separacion": "Las dos quedan a 117 m una de otra, que es lo que las separa en Tenerife ON. Antes compartian un unico punto."
+ },
+ "modificaciones": {
+  "ar-las-lajas": {
+   "municipio": "Vilaflor -> Adeje, en cat y tags. El name no lo llevaba.",
+   "quitado": [
+    "1.400 m",
+    "el pueblo mas alto de Espana",
+    "42 mesas",
+    "los tags «Vilaflor», «1400m», «42 mesas» y «Pueblo mas alto Espana»"
+   ],
+   "anadido": [
+    "por encima de los 1.500 m",
+    "aforo de 475 plazas",
+    "mesas, fogones y area infantil",
+    "aseos solo fines de semana y festivos, de 10:00 a 17:30",
+    "el agua de la fuente NO es potable",
+    "estancia de sol a sol",
+    "grupos y entidades, con reserva",
+    "la zona de autocaravanas del Cabildo, 11 plazas, que esta al lado",
+    "el tag «Adeje»"
+   ],
+   "cat": {
+    "antes": "Barbacoa Gratuita · Vilaflor · 1.400 m · 42 mesas",
+    "despues": "Barbacoa Gratuita · Adeje · +1.500 m · 475 plazas"
+   },
+   "desc_es": {
+    "antes": "Área recreativa en Vilaflor (1.400 m), el pueblo más alto de España, en el Parque Natural de la Corona Forestal. 42 mesas. Fogones gratuitos, aseos y aparcamiento. Pinar centenario de gran belleza. Base ideal para el Teide.",
+    "despues": "Área recreativa en Adeje, por encima de los 1.500 m, en el Parque Natural de la Corona Forestal. Aforo de 475 plazas, con mesas, fogones y área infantil. Los aseos abren sólo fines de semana y festivos, de 10:00 a 17:30. El agua de la fuente NO es potable: hay que llevarla. Estancia de sol a sol; los grupos y las entidades necesitan reserva. Al lado, el Cabildo tiene una zona de autocaravanas con 11 plazas. Pinar centenario de gran belleza. Base ideal para el Teide."
+   },
+   "tags": {
+    "antes": [
+     "Barbacoa",
+     "Gratuita",
+     "Vilaflor",
+     "1400m",
+     "42 mesas",
+     "Pinar",
+     "Teide",
+     "Pueblo más alto España"
+    ],
+    "despues": [
+     "Barbacoa",
+     "Gratuita",
+     "Adeje",
+     "Pinar",
+     "Teide"
+    ]
+   }
+  },
+  "camping-las-lajas": {
+   "municipio": "Vilaflor -> Adeje, en name, cat, desc, tags y address.",
+   "name": {
+    "antes": "Zona Acampada Las Lajas (Vilaflor)",
+    "despues": "Zona Acampada Las Lajas (Adeje)"
+   },
+   "address": {
+    "antes": "Las Lajas, Vilaflor, Tenerife",
+    "despues": "Altos de Adeje, Adeje"
+   },
+   "quitado": [
+    "«Acampada gratuita»: la ficha oficial no lo dice",
+    "«permiso previo», que se queda en reserva obligatoria",
+    "el agua de la lista de servicios, porque no es potable",
+    "el tag «Vilaflor»"
+   ],
+   "anadido": [
+    "aforo de 30 plazas",
+    "reserva obligatoria PARA TODOS en Tenerife ON",
+    "de 12:00 a 12:00",
+    "maximo 7 dias",
+    "el agua NO es potable",
+    "el tag «Adeje»"
+   ],
+   "cat": {
+    "antes": "Zona Acampada · Vilaflor · Cabildo",
+    "despues": "Zona Acampada · Adeje · Cabildo"
+   },
+   "hours": {
+    "antes": "Permiso previo obligatorio · reserva en Tenerife ON",
+    "despues": "Reserva obligatoria en Tenerife ON · de 12:00 a 12:00 · máximo 7 días"
+   },
+   "desc_es": {
+    "antes": "Zona de acampada oficial del Cabildo de Tenerife en Vilaflor. Está en el Parque Natural de la Corona Forestal. En alta montaña, junto al Parque Nacional del Teide; hábitat del pinzón azul. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+    "despues": "Zona de acampada oficial del Cabildo de Tenerife en Adeje. Está en el Parque Natural de la Corona Forestal. En alta montaña, junto al Parque Nacional del Teide; hábitat del pinzón azul. Aforo de 30 plazas. Reserva obligatoria para todos en Tenerife ON, de 12:00 a 12:00 y un máximo de 7 días. Junto a un área recreativa con aseos y fogones. El agua NO es potable: hay que llevarla."
+   },
+   "tags": {
+    "antes": [
+     "Camping",
+     "Cabildo",
+     "Vilaflor",
+     "Cumbre",
+     "Permiso",
+     "Naturaleza"
+    ],
+    "despues": [
+     "Camping",
+     "Cabildo",
+     "Adeje",
+     "Cumbre",
+     "Permiso",
+     "Naturaleza"
+    ]
+   }
+  },
+  "_idiomas": {
+   "en": {
+    "ar-las-lajas": {
+     "desc": "Recreational area in Adeje, above 1,500 m, within Corona Forestal Natural Park. Capacity 475 places, with tables, grills and a playground. The toilets open only at weekends and on public holidays, from 10:00 to 17:30. The water from the fountain is NOT drinkable: bring your own. Sunrise-to-sunset stay; groups and organisations must book. Next to it the Cabildo has a motorhome area with 11 pitches. Beautiful ancient pine forest. Ideal base for Teide.",
+     "cat": "Free BBQ · Adeje · +1,500 m · 475 places"
+    },
+    "camping-las-lajas": {
+     "desc": "Official Cabildo de Tenerife camping zone in Adeje. It lies in the Corona Forestal Natural Park. High in the mountains, next to Teide National Park; habitat of the blue chaffinch. Capacity 30 places. Booking on Tenerife ON is compulsory for everyone, from 12:00 to 12:00 and a maximum of 7 days. Beside a recreational area with toilets and grills. The water is NOT drinkable: bring your own.",
+     "cat": "Camping Zone · Adeje · Cabildo",
+     "hours": "Booking compulsory on Tenerife ON · from 12:00 to 12:00 · max. 7 days"
+    }
+   },
+   "fr": {
+    "ar-las-lajas": {
+     "desc": "Aire de loisirs à Adeje, au-dessus de 1.500 m, dans le parc naturel de Corona Forestal. Capacité de 475 places, avec tables, foyers et aire de jeux. Les toilettes n'ouvrent que les week-ends et jours fériés, de 10:00 à 17:30. L'eau de la fontaine n'est PAS potable : il faut l'apporter. Séjour du lever au coucher du soleil ; les groupes et les associations doivent réserver. À côté, le Cabildo a une aire de camping-cars de 11 places. Magnifique pinède centenaire. Base idéale pour le Teide.",
+     "cat": "Barbecue Gratuit · Adeje · +1.500 m · 475 places"
+    },
+    "camping-las-lajas": {
+     "desc": "Zone de camping officielle du Cabildo de Tenerife à Adeje. Elle se trouve dans le parc naturel de Corona Forestal. En haute montagne, à côté du parc national du Teide ; habitat du pinson bleu. Capacité de 30 places. Réservation obligatoire pour tous sur Tenerife ON, de 12:00 à 12:00 et 7 jours maximum. À côté d'une aire de loisirs avec toilettes et foyers. L'eau n'est PAS potable : il faut l'apporter.",
+     "cat": "Zone de Camping · Adeje · Cabildo",
+     "hours": "Réservation obligatoire sur Tenerife ON · de 12:00 à 12:00 · 7 jours max."
+    }
+   },
+   "de": {
+    "ar-las-lajas": {
+     "desc": "Erholungsgebiet in Adeje, über 1.500 m, im Naturpark Corona Forestal. Kapazität 475 Plätze, mit Tischen, Feuerstellen und Spielplatz. Die Toiletten öffnen nur an Wochenenden und Feiertagen, von 10:00 bis 17:30 Uhr. Das Wasser des Brunnens ist NICHT trinkbar: selbst mitbringen. Aufenthalt von Sonnenaufgang bis Sonnenuntergang; Gruppen und Vereine müssen reservieren. Nebenan hat der Cabildo einen Wohnmobilplatz mit 11 Stellplätzen. Wunderschöner alter Kiefernwald. Ideale Basis für den Teide.",
+     "cat": "Grillplatz Gratis · Adeje · +1.500 m · 475 Plätze"
+    },
+    "camping-las-lajas": {
+     "desc": "Offizieller Zeltplatz des Cabildo de Tenerife in Adeje. Er liegt im Naturpark Corona Forestal. Im Hochgebirge, neben dem Teide-Nationalpark; Lebensraum des Blaufinken. Kapazität 30 Plätze. Reservierung über Tenerife ON für alle verpflichtend, von 12:00 bis 12:00 Uhr und höchstens 7 Tage. Neben einem Erholungsgebiet mit Toiletten und Feuerstellen. Das Wasser ist NICHT trinkbar: selbst mitbringen.",
+     "cat": "Zeltplatz · Adeje · Cabildo",
+     "hours": "Reservierung über Tenerife ON verpflichtend · von 12:00 bis 12:00 · max. 7 Tage"
+    }
+   },
+   "it": {
+    "ar-las-lajas": {
+     "desc": "Area ricreativa ad Adeje, sopra i 1.500 m, nel Parco Naturale della Corona Forestal. Capienza di 475 posti, con tavoli, focolari e area giochi. I bagni aprono solo nei fine settimana e nei festivi, dalle 10:00 alle 17:30. L'acqua della fontana NON è potabile: portarla da casa. Permanenza dall'alba al tramonto; gruppi ed enti devono prenotare. Accanto il Cabildo ha un'area camper con 11 piazzole. Splendida pineta secolare. Base ideale per il Teide.",
+     "cat": "Barbecue Gratuito · Adeje · +1.500 m · 475 posti"
+    },
+    "camping-las-lajas": {
+     "desc": "Zona di campeggio ufficiale del Cabildo de Tenerife ad Adeje. Si trova nel Parco Naturale della Corona Forestal. In alta montagna, accanto al Parco Nazionale del Teide; habitat del fringuello azzurro. Capienza di 30 posti. Prenotazione obbligatoria per tutti su Tenerife ON, dalle 12:00 alle 12:00 e massimo 7 giorni. Accanto a un'area ricreativa con bagni e focolari. L'acqua NON è potabile: portarla da casa.",
+     "cat": "Zona Campeggio · Adeje · Cabildo",
+     "hours": "Prenotazione obbligatoria su Tenerife ON · dalle 12:00 alle 12:00 · max. 7 giorni"
+    }
+   },
+   "nl": {
+    "ar-las-lajas": {
+     "desc": "Recreatiegebied in Adeje, boven 1.500 m, in het natuurpark Corona Forestal. Capaciteit 475 plaatsen, met tafels, vuurplaatsen en speeltuin. De toiletten zijn alleen open in het weekend en op feestdagen, van 10:00 tot 17:30. Het water uit de fontein is NIET drinkbaar: neem het zelf mee. Verblijf van zonsopgang tot zonsondergang; groepen en verenigingen moeten reserveren. Ernaast heeft het Cabildo een camperplaats met 11 plekken. Prachtig eeuwenoud dennenbos. Ideale uitvalsbasis voor de Teide.",
+     "cat": "Gratis Barbecue · Adeje · +1.500 m · 475 plaatsen"
+    },
+    "camping-las-lajas": {
+     "desc": "Officiële kampeerzone van het Cabildo de Tenerife in Adeje. Gelegen in het natuurpark Corona Forestal. Hoog in de bergen, naast Nationaal Park Teide; leefgebied van de blauwe vink. Capaciteit 30 plaatsen. Reserveren via Tenerife ON is voor iedereen verplicht, van 12:00 tot 12:00 en maximaal 7 dagen. Naast een recreatiegebied met toiletten en vuurplaatsen. Het water is NIET drinkbaar: neem het zelf mee.",
+     "cat": "Kampeerzone · Adeje · Cabildo",
+     "hours": "Reserveren verplicht via Tenerife ON · van 12:00 tot 12:00 · max. 7 dagen"
+    }
+   },
+   "zh": {
+    "ar-las-lajas": {
+     "desc": "阿德赫的休闲区，海拔1500米以上，位于科罗纳森林自然公园内。可容纳475个位置，设有桌子、烧烤灶和儿童游乐区。厕所仅在周末与节假日开放，10:00至17:30。泉水不可饮用，请自备饮水。停留时间为日出至日落；团体与机构须预约。旁边是岛政府的房车区，共11个车位。百年松林风景优美。是攀登泰德峰的理想据点。",
+     "cat": "免费烧烤 · 阿德赫 · 1500米以上 · 475个位置"
+    },
+    "camping-las-lajas": {
+     "desc": "岛政府在阿德赫的官方露营区。位于科罗纳森林自然公园内。地处高山，紧邻泰德国家公园，是蓝燕雀的栖息地。可容纳30个位置。所有人都须在Tenerife ON预约，入营至退营为12:00至12:00，最多7天。旁边是设有厕所与烧烤灶的休闲区。水不可饮用，请自备。",
+     "cat": "露营区 · 阿德赫 · 岛政府",
+     "hours": "须在Tenerife ON预约 · 12:00至12:00 · 最多7天"
+    }
+   },
+   "zht": {
+    "ar-las-lajas": {
+     "desc": "阿德赫的休閒區，海拔1500公尺以上，位於科羅納森林自然公園內。可容納475個位置，設有桌子、烤肉灶和兒童遊樂區。廁所僅在週末與節假日開放，10:00至17:30。泉水不可飲用，請自備飲水。停留時間為日出至日落；團體與機構須預約。旁邊是島政府的房車區，共11個車位。百年松林風景優美。是攀登泰德峰的理想據點。",
+     "cat": "免費烤肉 · 阿德赫 · 1500公尺以上 · 475個位置"
+    },
+    "camping-las-lajas": {
+     "desc": "島政府在阿德赫的官方露營區。位於科羅納森林自然公園內。地處高山，緊鄰泰德國家公園，是藍燕雀的棲息地。可容納30個位置。所有人都須在Tenerife ON預約，入營至退營為12:00至12:00，最多7天。旁邊是設有廁所與烤肉灶的休閒區。水不可飲用，請自備。",
+     "cat": "露營區 · 阿德赫 · 島政府",
+     "hours": "須在Tenerife ON預約 · 12:00至12:00 · 最多7天"
+    }
+   },
+   "bg": {
+    "ar-las-lajas": {
+     "desc": "Зона за отдих в Адехе, над 1.500 м, в природен парк Корона Форестал. Капацитет 475 места, с маси, огнища и детска площадка. Тоалетните отварят само през почивните дни и празниците, от 10:00 до 17:30. Водата от чешмата НЕ е за пиене: носете си. Престой от изгрев до залез; групите и организациите трябва да резервират. До нея Кабилдото има зона за кемпери с 11 места. Вековна борова гора с голяма красота. Идеална база за Тейде.",
+     "cat": "Безплатно барбекю · Адехе · +1.500 м · 475 места"
+    },
+    "camping-las-lajas": {
+     "desc": "Официална зона за къмпинг на Кабилдото на Тенерифе в Адехе. Намира се в природен парк Корона Форестал. Във високата планина, до Национален парк Тейде; местообитание на синята чинка. Капацитет 30 места. Резервацията в Tenerife ON е задължителна за всички, от 12:00 до 12:00 и максимум 7 дни. До зона за отдих с тоалетни и огнища. Водата НЕ е за пиене: носете си.",
+     "cat": "Зона за къмпинг · Адехе · Кабилдо",
+     "hours": "Задължителна резервация в Tenerife ON · от 12:00 до 12:00 · макс. 7 дни"
+    }
+   },
+   "pl": {
+    "ar-las-lajas": {
+     "desc": "Teren rekreacyjny w Adeje, powyżej 1.500 m, w Parku Naturalnym Corona Forestal. Pojemność 475 miejsc, ze stołami, paleniskami i placem zabaw. Toalety otwarte tylko w weekendy i święta, od 10:00 do 17:30. Woda ze źródełka NIE nadaje się do picia: trzeba ją przywieźć. Pobyt od wschodu do zachodu słońca; grupy i organizacje muszą rezerwować. Obok Cabildo ma pole dla kamperów z 11 miejscami. Wiekowy las sosnowy o wielkiej urodzie. Idealna baza na Teide.",
+     "cat": "Bezpłatny grill · Adeje · +1.500 m · 475 miejsc"
+    },
+    "camping-las-lajas": {
+     "desc": "Oficjalna strefa biwakowa Cabildo de Tenerife w Adeje. Leży w Parku Naturalnym Corona Forestal. Wysoko w górach, obok Parku Narodowego Teide; siedlisko modrej zięby. Pojemność 30 miejsc. Rezerwacja w Tenerife ON jest obowiązkowa dla wszystkich, od 12:00 do 12:00 i maksymalnie 7 dni. Obok teren rekreacyjny z toaletami i paleniskami. Woda NIE nadaje się do picia: trzeba ją przywieźć.",
+     "cat": "Strefa biwakowa · Adeje · Cabildo",
+     "hours": "Rezerwacja obowiązkowa w Tenerife ON · od 12:00 do 12:00 · maks. 7 dni"
+    }
+   }
+  }
+ },
+ "bajas": {
+  "guachinche-san-juan-rambla": {
+   "motivo": "No verificable: nombre generico (la unica de las 20 fichas de guachinche sin nombre propio), sin direccion ni telefono, descripcion generica, y ningun guachinche que se llame asi. Regla de cero datos inventados.",
+   "estaba_en": {
+    "lat": 28.3885,
+    "lng": -16.6218,
+    "municipio_del_poligono": "Los Realejos",
+    "decia": "San Juan de la Rambla",
+    "a_la_raya_m": 446
+   },
+   "borrada_de": [
+    "index.html",
+    "idiomas/{en,fr,de,it,nl,zh,zht,bg,pl}.json",
+    "idiomas/pl-lugares/07.json"
+   ],
+   "efectos": [
+    "787 -> 786 lugares, con el contador de auditar_datos.js movido a mano y el motivo escrito",
+    "las dos cifras «787 puntos de interes» y «787 lugares» del fuente, al dia",
+    "ninguna etiqueta se queda huerfana: las seis que llevaba las usan otras fichas"
+   ],
+   "correccion_mia": "Dije que el pin estaba «junto al Barranco de Ruiz, que es justo la raya». No lo comprobe: el pin cae 446 m dentro de Los Realejos y el cauce queda a 441 m. Los 448 m y 524 m que di eran distancias a BARES de OSM, no al limite municipal. La correccion es de Jerome."
+  }
+ },
+ "no_aplicado": [
+  "La zona de autocaravanas de Las Lajas (11 plazas, Altos de Adeje, 28.190088, -16.664950) NO entra como ficha nueva: Jerome dijo que la tenemos dentro del area recreativa y que ahi se puede contar mas. Se menciona en la desc de ar-las-lajas, en los 10 idiomas. Si algun dia quiere ficha propia, la coordenada esta aqui.",
+  "La coordenada oficial del area recreativa (28.190285, -16.666189) esta a 17 m del punto de rotulo del picnic_site de OSM (28.19044, -16.66618), no «al metro» como decia el mensaje. No cambia nada: las dos caen en Adeje y la que manda es la del Cabildo."
+ ]
+}
