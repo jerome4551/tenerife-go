@@ -3,10 +3,11 @@
 Era el único bloque en rojo. **Eran 16 y son 13**, porque tres no eran fallo de
 las fichas sino de mi control. Eso va primero, porque es lo que cambia la cifra.
 
-> **Al día 28 de septiembre: 5 resueltas, quedan 8.**
-> `sendero-roque-conde` (8), `super-mercadona-tacoronte` (9), `ar-las-lajas` (10),
-> `camping-las-lajas` (11) y `guachinche-san-juan-rambla` (12, de baja). Todas
-> aplicadas — ver el final del documento.
+> **Al día 28 de septiembre: 12 resueltas, queda 1.**
+> Aplicadas las 7 del grupo A, `sendero-roque-conde` (8),
+> `super-mercadona-tacoronte` (9), `ar-las-lajas` (10), `camping-las-lajas` (11) y
+> la baja de `guachinche-san-juan-rambla` (12). **Sólo queda `escal-guaria`.**
+> Todo al final del documento.
 
 ---
 
@@ -70,7 +71,7 @@ se separan solas.
 
 ---
 
-## A · El texto miente (8)
+## A · El texto miente (8) — ~~LAS 7 RESUELTAS~~, ver el final
 
 En las ocho, OSM tiene **el sitio mismo** cerca del pin, en **el mismo
 municipio que dice el polígono**, y —esto es lo que lo cierra— el elemento de
@@ -278,3 +279,57 @@ Escribí que el pin estaba «junto al **Barranco de Ruiz, que es justo la raya**
 **No lo comprobé.** El pin caía 446 m dentro de Los Realejos y el cauce queda a
 441 m. Los 448 m y 524 m que di eran distancias a **bares de OSM**, no al límite
 municipal. La corrección es de Jerome.
+
+---
+
+## Aplicado · las 7 del grupo A (28 de septiembre)
+
+Jerome dijo que sí a las siete. En todas **el pin estaba bien y el municipio del
+texto estaba mal**, así que no se toca ninguna coordenada.
+
+| ficha | de | a |
+|---|---|---|
+| `mir-chivisaya` | Güímar | **Candelaria** |
+| `mir-lomo-molino` | Garachico | **El Tanque** |
+| `playa-caleton-sauzal` | El Sauzal | **La Matanza** |
+| `minigolf-precise-resort` | Puerto de la Cruz | **Los Realejos** |
+| `montana-taco` | La Laguna | **Buenavista del Norte** |
+| `charco-golete` | Candelaria | **Güímar** |
+| `pp-el-tanque` | El Tanque | **Los Silos** |
+
+En los 10 idiomas, cambiando `cat`, `tags` y, donde lo llevaban, el `name`, el
+`alias` y la descripción. Los topónimos que no son el municipio se quedan: el
+**Valle y el Malpaís de Güímar** siguen en `mir-chivisaya` (es lo que se ve desde
+allí) y el **Roque de Garachico** sigue en `mir-lomo-molino`.
+
+### Una no era sólo el municipio
+
+**`montana-taco`.** La descripción entera era la del **otro Taco**, el barrio de
+La Laguna: «en el corazón del municipio de La Laguna», «un pulmón verde entre la
+ciudad», «vistas al aeropuerto, La Laguna y la costa noreste», «sendero sencillo
+de 45 minutos desde la ciudad». Nada de eso vale para una montaña de Buenavista
+del Norte que está a 45 km.
+
+**No invento una descripción nueva.** Se deja sólo lo que tiene fuente —cono
+volcánico (OSM `node/652422882`, a 247 m), Buenavista del Norte (polígono del
+Cabildo), junto a Los Silos (711 m al elemento más cercano)— y se avisa
+explícitamente de que son dos sitios con el mismo nombre. Los tags de senderismo
+se van con el sendero que no consta en ninguna parte.
+
+**Si quieres una descripción completa de la Montaña de Taco, hace falta una
+fuente.**
+
+### Y dos detalles
+
+- **`playa-caleton-sauzal`** conserva el id, que es opaco y cambiarlo arrastraría
+  referencias por todo el repositorio. El `alias` mantiene «El Sauzal» para que
+  quien la busque así la siga encontrando.
+- **`pp-el-tanque`** conserva el nombre «Despegue El Tanque», que es como lo
+  llaman los pilotos, y ahora el texto lo dice: el despegue está en Tierra del
+  Trigo, término de Los Silos.
+
+---
+
+## Lo que queda del bloque 4
+
+**Una.** `escal-guaria`, que sigue necesitando a alguien que conozca el sector.

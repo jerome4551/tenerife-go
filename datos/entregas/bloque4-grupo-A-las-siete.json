@@ -1,0 +1,543 @@
+{
+ "_": [
+  "Entrega de las 7 fichas del grupo A del bloque 4, indexada por id.",
+  "Respuesta de Jerome del 28 de septiembre: si a las siete.",
+  "En todas el PIN estaba bien y el municipio del TEXTO estaba mal. El municipio",
+  "lo decide el poligono del Cabildo; OSM solo sirve de corroboracion de que el",
+  "pin esta en el sitio que la ficha describe.",
+  "Ninguna coordenada se toca: no hay seccion correcciones_coordenada."
+ ],
+ "modificaciones": {
+  "mir-chivisaya": {
+   "municipio": {
+    "antes": "Güímar",
+    "despues": "Candelaria"
+   },
+   "por_que": "OSM tiene el «Mirador de Chivisaya» a 1 m del pin, en Candelaria, y ese mirador esta a 4,3 km de la raya de Guimar. El Valle y el Malpais de Guimar se quedan: son los nombres de lo que se ve desde ahi, no del municipio donde esta.",
+   "cat": {
+    "antes": "Mirador · Güímar · Valle · Este",
+    "despues": "Mirador · Candelaria · Valle · Este"
+   },
+   "desc_es": {
+    "antes": "Mirador en las laderas de Güímar con vistas al Valle de Güímar, el Malpaís de Güímar (espacio natural protegido de coladas volcánicas) y la Costa Este de Tenerife. Rodeado de bosque de fayas y brezos. Acceso por carretera local desde Güímar. Tranquilo y poco conocido.",
+    "despues": "Mirador en Candelaria, sobre el Valle de Güímar, con vistas al Malpaís de Güímar (espacio natural protegido de coladas volcánicas) y a la Costa Este de Tenerife. Rodeado de bosque de fayas y brezos. Acceso por carretera local desde Güímar. Tranquilo y poco conocido."
+   },
+   "tags": {
+    "antes": [
+     "Mirador",
+     "Güímar",
+     "Valle",
+     "Malpaís",
+     "Este",
+     "Volcánico",
+     "Bosque"
+    ],
+    "despues": [
+     "Mirador",
+     "Candelaria",
+     "Valle",
+     "Malpaís",
+     "Este",
+     "Volcánico",
+     "Bosque"
+    ]
+   }
+  },
+  "mir-lomo-molino": {
+   "municipio": {
+    "antes": "Garachico",
+    "despues": "El Tanque"
+   },
+   "por_que": "Tres elementos de OSM encima del pin, los tres en El Tanque: el mirador a 12 m, el restaurante El Montero a 12 m y el rotulo a 32 m. De Garachico, lo mas cercano a 630 m y sin nombre. El Roque de Garachico se queda: es lo que se ve.",
+   "cat": {
+    "antes": "Mirador · Noroeste · Garachico · Teide",
+    "despues": "Mirador · Noroeste · El Tanque · Teide"
+   },
+   "desc_es": {
+    "antes": "Mirador panorámico en el norte de Tenerife con vistas al Roque de Garachico (islote volcánico), la Isla Baja, la costa de Buenavista y el majestuoso Teide al fondo. Rodeado de viñedos y bancales de plataneras. Uno de los miradores más fotogénicos del noroeste. Acceso por carretera local.",
+    "despues": "Mirador panorámico en El Tanque, en el norte de Tenerife, con vistas al Roque de Garachico (islote volcánico), la Isla Baja, la costa de Buenavista y el majestuoso Teide al fondo. Rodeado de viñedos y bancales de plataneras. Uno de los miradores más fotogénicos del noroeste. Acceso por carretera local."
+   },
+   "tags": {
+    "antes": [
+     "Mirador",
+     "Lomo Molino",
+     "Garachico",
+     "Isla Baja",
+     "Teide",
+     "Norte",
+     "Viñedos",
+     "Noroeste"
+    ],
+    "despues": [
+     "Mirador",
+     "Lomo Molino",
+     "El Tanque",
+     "Isla Baja",
+     "Teide",
+     "Norte",
+     "Viñedos",
+     "Noroeste"
+    ]
+   }
+  },
+  "playa-caleton-sauzal": {
+   "municipio": {
+    "antes": "El Sauzal",
+    "despues": "La Matanza"
+   },
+   "por_que": "El caserio «El Caleton» de OSM esta a 28 m, en La Matanza, y a 1,2 km de la raya de El Sauzal. En 1 km alrededor no hay un solo elemento de El Sauzal. El id sigue siendo playa-caleton-sauzal: un id es opaco y cambiarlo arrastraria referencias por todo el repositorio. El alias conserva «El Sauzal» para que quien lo busque asi lo encuentre.",
+   "name": {
+    "antes": "Playa del Caletón · El Sauzal",
+    "despues": "Playa del Caletón · La Matanza"
+   },
+   "alias": {
+    "antes": "Playa Caleton (El) · El Sauzal",
+    "despues": "Playa Caleton (El) · La Matanza · El Sauzal"
+   },
+   "cat": {
+    "antes": "Caserío y Baño · El Sauzal",
+    "despues": "Caserío y Baño · La Matanza"
+   },
+   "desc_es": {
+    "antes": "Antiguo caserío pesquero con casas cueva y un pequeño muelle. Sin servicios salvo un bar de temporada. Se baja por carretera estrecha y en curvas sin quitamiedos, y al agua se entra sobre roca. Con mar movido hay que ser buen nadador.",
+    "despues": "Antiguo caserío pesquero de La Matanza de Acentejo, con casas cueva y un pequeño muelle. Sin servicios salvo un bar de temporada. Se baja por carretera estrecha y en curvas sin quitamiedos, y al agua se entra sobre roca. Con mar movido hay que ser buen nadador."
+   },
+   "tags": {
+    "antes": [
+     "El Sauzal",
+     "Caserío",
+     "Acceso Difícil",
+     "Sin Servicios"
+    ],
+    "despues": [
+     "La Matanza",
+     "Caserío",
+     "Acceso Difícil",
+     "Sin Servicios"
+    ]
+   }
+  },
+  "minigolf-precise-resort": {
+   "municipio": {
+    "antes": "Puerto de la Cruz",
+    "despues": "Los Realejos"
+   },
+   "por_que": "El propio resort esta en OSM a 67 m, en Los Realejos. ES EL MAS AJUSTADO DE LOS SIETE: el hotel esta a 58 m de la raya de Puerto de la Cruz y hay elementos de Puerto de la Cruz a 177 m. Lo que decide es que el establecimiento que da nombre a la ficha cae del lado de Los Realejos. El «norte de Tenerife» del texto se queda: Los Realejos tambien es del norte.",
+   "name": {
+    "antes": "Minigolf Precise Resort (Puerto de la Cruz)",
+    "despues": "Minigolf Precise Resort (Los Realejos)"
+   },
+   "cat": {
+    "antes": "Minigolf 18 Hoyos · Puerto de la Cruz · Norte · Vistas Teide",
+    "despues": "Minigolf 18 Hoyos · Los Realejos · Norte · Vistas Teide"
+   },
+   "desc_es": {
+    "antes": "Campo de minigolf de 18 hoyos en los jardines subtropicales del Precise Resort de Puerto de la Cruz. Vistas espectaculares al océano Atlántico y al Pico del Teide. Entorno ajardinado único en el norte de Tenerife. Accesible también para no huéspedes del hotel. Horario: 9:00-00:00h. El único mini golf público del norte de Tenerife.",
+    "despues": "Campo de minigolf de 18 hoyos en los jardines subtropicales del Precise Resort, en Los Realejos. Vistas espectaculares al océano Atlántico y al Pico del Teide. Entorno ajardinado único en el norte de Tenerife. Accesible también para no huéspedes del hotel. Horario: 9:00-00:00h. El único mini golf público del norte de Tenerife."
+   },
+   "tags": {
+    "antes": [
+     "Minigolf",
+     "Precise Resort",
+     "Puerto de la Cruz",
+     "Norte",
+     "18 Hoyos",
+     "Teide",
+     "Atlántico",
+     "Jardín",
+     "Único Norte"
+    ],
+    "despues": [
+     "Minigolf",
+     "Precise Resort",
+     "Los Realejos",
+     "Norte",
+     "18 Hoyos",
+     "Teide",
+     "Atlántico",
+     "Jardín",
+     "Único Norte"
+    ]
+   }
+  },
+  "montana-taco": {
+   "municipio": {
+    "antes": "San Cristóbal de La Laguna",
+    "despues": "Buenavista del Norte"
+   },
+   "por_que": "ATENCION, ESTA NO ES SOLO EL MUNICIPIO. La descripcion entera era del OTRO Taco, el BARRIO de La Laguna: «en el corazon del municipio de La Laguna», «un pulmon verde entre la ciudad», «vistas al aeropuerto, La Laguna y la costa noreste», «sendero de 45 minutos desde la ciudad». Nada de eso vale para una montana de Buenavista del Norte, a 45 km. No invento una descripcion nueva: se deja SOLO lo que tiene fuente (cono volcanico, OSM node/652422882 a 247 m; municipio, poligono del Cabildo; junto a Los Silos, 711 m al elemento mas cercano) y se avisa de la confusion de nombres. Si quieres una descripcion completa hace falta una fuente. Los tags de senderismo se van con el sendero que no consta.",
+   "cat": {
+    "antes": "Volcán · La Laguna",
+    "despues": "Volcán · Buenavista del Norte"
+   },
+   "desc_es": {
+    "antes": "Pequeño cono volcánico en el corazón del municipio de La Laguna. Un pulmón verde inesperado entre la ciudad. Sus laderas están cubiertas de vegetación de monteverde y ofrece vistas sorprendentes al aeropuerto, La Laguna y la costa noreste. Sendero sencillo de 45 minutos, ideal para una escapada tranquila desde la ciudad.",
+    "despues": "Cono volcánico de Buenavista del Norte, junto a Los Silos, en la Isla Baja. No tiene nada que ver con el barrio de Taco, que está en La Laguna, al otro lado de la isla: son dos sitios distintos con el mismo nombre."
+   },
+   "tags": {
+    "antes": [
+     "Senderismo",
+     "Monteverde",
+     "Local",
+     "La Laguna",
+     "Fácil",
+     "Verde"
+    ],
+    "despues": [
+     "Volcán",
+     "Buenavista del Norte",
+     "Isla Baja",
+     "Noroeste"
+    ]
+   }
+  },
+  "charco-golete": {
+   "municipio": {
+    "antes": "Candelaria",
+    "despues": "Güímar"
+   },
+   "por_que": "No hay ninguna «La Caleta» en Candelaria: ni en OSM ni entre las 2.514 paradas del catalogo de TITSA. La que existe es La Caleta de Guimar, caserio que OSM tiene a 319 m del pin y a 7,3 km de la raya de Candelaria. Se corrige tambien el alias y el texto, que nombraban el sitio equivocado.",
+   "alias": {
+    "antes": "Charco del Golete · La Caleta · Candelaria",
+    "despues": "Charco del Golete · La Caleta · Güímar"
+   },
+   "cat": {
+    "antes": "Piscina Natural · Candelaria",
+    "despues": "Piscina Natural · Güímar"
+   },
+   "desc_es": {
+    "antes": "Charco pequeño en La Caleta de Candelaria, justo bajo la autopista. Suele estar vacío y tiene aparcamiento libre, pero las calles de bajada son muy empinadas. No hay duchas ni ningún servicio. Solo con viento y mar en calma.",
+    "despues": "Charco pequeño en La Caleta de Güímar, justo bajo la autopista. Suele estar vacío y tiene aparcamiento libre, pero las calles de bajada son muy empinadas. No hay duchas ni ningún servicio. Solo con viento y mar en calma."
+   },
+   "tags": {
+    "antes": [
+     "Candelaria",
+     "Piscina Natural",
+     "Tranquilo",
+     "Sin Servicios"
+    ],
+    "despues": [
+     "Güímar",
+     "Piscina Natural",
+     "Tranquilo",
+     "Sin Servicios"
+    ]
+   }
+  },
+  "pp-el-tanque": {
+   "municipio": {
+    "antes": "El Tanque",
+    "despues": "Los Silos"
+   },
+   "por_que": "La ficha llevaba la prueba escrita dentro: decia «El Tanque (Tierra del Trigo)», y La Tierra del Trigo es de Los Silos (OSM node/1437814532, la unica de la isla, 659 m por dentro de Los Silos). El NOMBRE de la ficha se queda como esta, «Despegue El Tanque», porque asi lo llaman los pilotos, y ahora el texto lo dice explicitamente.",
+   "cat": {
+    "antes": "Parapente · Despegue Noroeste · ~600 m · El Tanque",
+    "despues": "Parapente · Despegue Noroeste · ~600 m · Los Silos"
+   },
+   "desc_es": {
+    "antes": "Despegue de parapente en El Tanque (Tierra del Trigo), noroeste de Tenerife, a unos 600 m de altitud. Despegue renovado recientemente con mejoras de seguridad. Muy apreciado por los pilotos locales. Vistas al Macizo de Teno, el Atlántico y La Palma en días despejados. Viento del Oeste típico.",
+    "despues": "Despegue de parapente en Tierra del Trigo, en el término de Los Silos, noroeste de Tenerife, a unos 600 m de altitud. Los pilotos lo llaman «El Tanque». Despegue renovado recientemente con mejoras de seguridad. Muy apreciado por los pilotos locales. Vistas al Macizo de Teno, el Atlántico y La Palma en días despejados. Viento del Oeste típico."
+   },
+   "tags": {
+    "antes": [
+     "Parapente",
+     "Paragliding",
+     "El Tanque",
+     "Tierra del Trigo",
+     "Noroeste",
+     "600m",
+     "Teno",
+     "Locales",
+     "Renovado"
+    ],
+    "despues": [
+     "Parapente",
+     "Paragliding",
+     "Los Silos",
+     "Tierra del Trigo",
+     "Noroeste",
+     "600m",
+     "Teno",
+     "Locales",
+     "Renovado"
+    ]
+   }
+  },
+  "_idiomas": {
+   "en": {
+    "mir-chivisaya": {
+     "desc": "Viewpoint in Candelaria, above the Güímar Valley, overlooking the Güímar Badlands (protected natural space of lava flows) and Tenerife's East Coast. Surrounded by heath and faya forest. Access via local road from Güímar. Quiet and little known.",
+     "cat": "Viewpoint · Candelaria · Valley · East"
+    },
+    "mir-lomo-molino": {
+     "desc": "Panoramic viewpoint in El Tanque, north Tenerife, with views to the Roque de Garachico (volcanic islet), Isla Baja, the Buenavista coast and the majestic Teide in the background. Surrounded by vineyards and banana plantations. One of the most photogenic viewpoints in the northwest. Access by local road.",
+     "cat": "Viewpoint · Northwest · El Tanque · Teide"
+    },
+    "playa-caleton-sauzal": {
+     "desc": "An old fishing hamlet in La Matanza de Acentejo, with cave houses and a small pier. No facilities beyond a seasonal bar. The way down is a narrow winding road with no crash barriers, and you enter the water over rock. When the sea is rough you need to be a strong swimmer.",
+     "cat": "Hamlet and Bathing · La Matanza"
+    },
+    "minigolf-precise-resort": {
+     "desc": "18-hole minigolf course in the subtropical gardens of the Precise Resort, in Los Realejos. Spectacular views of the Atlantic Ocean and Mount Teide. Unique garden setting in north Tenerife. Also accessible to non-hotel guests. Hours: 09:00-00:00. The only public mini golf in north Tenerife.",
+     "cat": "Minigolf 18 Holes · Los Realejos · North · Teide Views"
+    },
+    "montana-taco": {
+     "desc": "Volcanic cone in Buenavista del Norte, next to Los Silos, in the Isla Baja. It has nothing to do with the Taco neighbourhood, which is in La Laguna, on the other side of the island: two different places with the same name.",
+     "cat": "Volcano · Buenavista del Norte"
+    },
+    "charco-golete": {
+     "desc": "Small rock pool at La Caleta de Güímar, right below the motorway. Usually empty, with free parking, though the streets down are very steep. No showers or facilities. Only when the wind and sea are calm.",
+     "cat": "Natural Pool · Güímar"
+    },
+    "pp-el-tanque": {
+     "desc": "Paragliding take-off at Tierra del Trigo, in the municipality of Los Silos, northwest Tenerife, around 600 m altitude. Pilots call it «El Tanque». Recently renovated with improved safety features. Very popular with local pilots. Views over the Teno Massif, the Atlantic and La Palma on clear days. Typical westerly wind.",
+     "cat": "Paragliding · NW Launch · ~600 m · Los Silos"
+    }
+   },
+   "fr": {
+    "mir-chivisaya": {
+     "desc": "Belvédère à Candelaria, au-dessus de la Vallée de Güímar, avec vues sur le Malpaís de Güímar (espace naturel protégé de coulées volcaniques) et la côte est de Tenerife. Entouré d'une forêt de fayas et de bruyères. Accès par une route locale depuis Güímar. Tranquille et peu connu.",
+     "cat": "Belvédère · Candelaria · Vallée · Est"
+    },
+    "mir-lomo-molino": {
+     "desc": "Belvédère panoramique à El Tanque, dans le nord de Tenerife, avec vue sur le Roque de Garachico (îlot volcanique), l'Isla Baja, la côte de Buenavista et le majestueux Teide au fond. Entouré de vignes et de terrasses de bananiers. L'un des belvédères les plus photogéniques du nord-ouest. Accès par route locale.",
+     "cat": "Belvédère · Nord-Ouest · El Tanque · Teide"
+    },
+    "playa-caleton-sauzal": {
+     "desc": "Ancien hameau de pêcheurs de La Matanza de Acentejo, avec maisons-grottes et un petit quai. Aucun service hormis un bar saisonnier. On descend par une route étroite en lacets sans glissières, et l'on entre dans l'eau sur la roche. Par mer agitée, il faut être bon nageur.",
+     "cat": "Hameau et Baignade · La Matanza"
+    },
+    "minigolf-precise-resort": {
+     "desc": "Parcours de minigolf de 18 trous dans les jardins subtropicaux du Precise Resort, à Los Realejos. Vues spectaculaires sur l'océan Atlantique et le Pico del Teide. Cadre paysager unique dans le nord de Tenerife. Accessible aussi aux personnes qui ne logent pas à l'hôtel. Horaires: 9:00-00:00h. Le seul minigolf public du nord de Tenerife.",
+     "cat": "Minigolf 18 Trous · Los Realejos · Nord · Vue Teide"
+    },
+    "montana-taco": {
+     "desc": "Cône volcanique de Buenavista del Norte, à côté de Los Silos, dans l'Isla Baja. Rien à voir avec le quartier de Taco, qui se trouve à La Laguna, de l'autre côté de l'île : deux endroits différents portant le même nom.",
+     "cat": "Volcan · Buenavista del Norte"
+    },
+    "charco-golete": {
+     "desc": "Petite vasque à La Caleta de Güímar, juste sous l'autoroute. Généralement déserte, avec stationnement libre, mais les rues de descente sont très raides. Ni douches ni services. Uniquement par vent et mer calmes.",
+     "cat": "Piscine Naturelle · Güímar"
+    },
+    "pp-el-tanque": {
+     "desc": "Décollage de parapente à Tierra del Trigo, dans la commune de Los Silos, nord-ouest de Tenerife, à environ 600 m d'altitude. Les pilotes l'appellent « El Tanque ». Décollage rénové récemment avec des améliorations de sécurité. Très apprécié des pilotes locaux. Vues sur le Massif de Teno, l'Atlantique et La Palma les jours dégagés. Vent d'Ouest typique.",
+     "cat": "Parapente · Décollage NO · ~600 m · Los Silos"
+    }
+   },
+   "de": {
+    "mir-chivisaya": {
+     "desc": "Aussichtspunkt in Candelaria, über dem Tal von Güímar, mit Blick auf das Malpaís de Güímar (geschütztes Naturgebiet aus vulkanischen Lavaströmen) und die Ostküste Teneriffas. Umgeben von Wachsmyrten- und Heidekrautwald. Zufahrt über eine Landstraße von Güímar aus. Ruhig und wenig bekannt.",
+     "cat": "Aussichtspunkt · Candelaria · Tal · Ost"
+    },
+    "mir-lomo-molino": {
+     "desc": "Panorama-Aussichtspunkt in El Tanque, im Norden Teneriffas, mit Blick auf den Roque de Garachico (vulkanisches Eiland), die Isla Baja, die Küste von Buenavista und im Hintergrund den majestätischen Teide. Umgeben von Weinbergen und Bananenterrassen. Einer der fotogensten Aussichtspunkte des Nordwestens. Zufahrt über eine lokale Straße.",
+     "cat": "Aussichtspunkt · Nordwest · El Tanque · Teide"
+    },
+    "playa-caleton-sauzal": {
+     "desc": "Altes Fischerdorf in La Matanza de Acentejo, mit Höhlenhäusern und einem kleinen Pier. Keine Einrichtungen außer einer Saisonbar. Die Abfahrt ist eine enge Kurvenstraße ohne Leitplanken, der Einstieg erfolgt über Fels. Bei rauer See sollte man ein guter Schwimmer sein.",
+     "cat": "Weiler und Badestelle · La Matanza"
+    },
+    "minigolf-precise-resort": {
+     "desc": "18-Loch-Minigolfanlage in den subtropischen Gärten des Precise Resort in Los Realejos. Spektakulärer Blick auf den Atlantik und den Pico del Teide. Einzigartige Gartenumgebung im Norden Teneriffas. Auch für Nicht-Hotelgäste zugänglich. Öffnungszeiten: 9:00-00:00 Uhr. Die einzige öffentliche Minigolfanlage im Norden Teneriffas.",
+     "cat": "Minigolf 18 Loch · Los Realejos · Nord · Teide-Blick"
+    },
+    "montana-taco": {
+     "desc": "Vulkankegel in Buenavista del Norte, neben Los Silos, in der Isla Baja. Er hat nichts mit dem Stadtteil Taco zu tun, der in La Laguna liegt, auf der anderen Seite der Insel: zwei verschiedene Orte mit demselben Namen.",
+     "cat": "Vulkan · Buenavista del Norte"
+    },
+    "charco-golete": {
+     "desc": "Kleines Felsbecken in La Caleta de Güímar, direkt unterhalb der Autobahn. Meist leer, mit freiem Parken, doch die Zufahrtsstraßen sind sehr steil. Keine Duschen, keine Einrichtungen. Nur bei ruhigem Wind und Meer.",
+     "cat": "Naturbecken · Güímar"
+    },
+    "pp-el-tanque": {
+     "desc": "Gleitschirm-Startplatz in Tierra del Trigo, in der Gemeinde Los Silos, im Nordwesten Teneriffas, auf etwa 600 m Höhe. Die Piloten nennen ihn «El Tanque». Kürzlich erneuerter Startplatz mit Sicherheitsverbesserungen. Sehr geschätzt von den örtlichen Piloten. Blick auf das Teno-Massiv, den Atlantik und La Palma an klaren Tagen. Typischer Westwind.",
+     "cat": "Paragliding · NW-Start · ~600 m · Los Silos"
+    }
+   },
+   "it": {
+    "mir-chivisaya": {
+     "desc": "Punto panoramico a Candelaria, sopra la Valle di Güímar, con vista sul Malpaís de Güímar, spazio naturale protetto di colate laviche, e sulla costa orientale di Tenerife. Circondato da un bosco di faie ed eriche. Si arriva per strada locale da Güímar. Tranquillo e poco conosciuto.",
+     "cat": "Belvedere · Candelaria · Valle · Est"
+    },
+    "mir-lomo-molino": {
+     "desc": "Punto panoramico a El Tanque, nel nord di Tenerife, con vista sul Roque de Garachico (isolotto vulcanico), sull'Isla Baja, sulla costa di Buenavista e sul maestoso Teide sullo sfondo. Circondato da vigneti e terrazze di banani. Uno dei punti panoramici più fotogenici del nord-ovest. Si arriva per strada locale.",
+     "cat": "Belvedere · Nord-Ovest · El Tanque · Teide"
+    },
+    "playa-caleton-sauzal": {
+     "desc": "Antico borgo di pescatori di La Matanza de Acentejo, con case grotta e un piccolo molo. Nessun servizio a parte un bar stagionale. Si scende per una strada stretta e tortuosa senza guardrail e si entra in acqua sulla roccia. Con mare mosso bisogna essere buoni nuotatori.",
+     "cat": "Borgo e Balneazione · La Matanza"
+    },
+    "minigolf-precise-resort": {
+     "desc": "Campo da minigolf di 18 buche nei giardini subtropicali del Precise Resort, a Los Realejos. Viste spettacolari sull'oceano Atlantico e sul Pico del Teide. Ambiente a giardino unico nel nord di Tenerife. Accessibile anche ai non ospiti dell'hotel. Orario: 9:00-00:00. L'unico minigolf pubblico del nord di Tenerife.",
+     "cat": "Minigolf 18 Buche · Los Realejos · Nord · Vista Teide"
+    },
+    "montana-taco": {
+     "desc": "Cono vulcanico di Buenavista del Norte, accanto a Los Silos, nell'Isla Baja. Non ha nulla a che vedere con il quartiere di Taco, che si trova a La Laguna, dall'altra parte dell'isola: due luoghi diversi con lo stesso nome.",
+     "cat": "Vulcano · Buenavista del Norte"
+    },
+    "charco-golete": {
+     "desc": "Piccola pozza a La Caleta de Güímar, proprio sotto l'autostrada. Di solito vuota, con parcheggio libero, ma le strade in discesa sono molto ripide. Niente docce né servizi. Solo con vento e mare calmi.",
+     "cat": "Piscina Naturale · Güímar"
+    },
+    "pp-el-tanque": {
+     "desc": "Decollo di parapendio a Tierra del Trigo, nel comune di Los Silos, nel nord-ovest di Tenerife, a circa 600 m di quota. I piloti lo chiamano «El Tanque». Decollo rinnovato di recente, con migliorie per la sicurezza. Molto apprezzato dai piloti locali. Vista sul Massiccio di Teno, sull'Atlantico e su La Palma nelle giornate limpide. Vento tipico da Ovest.",
+     "cat": "Parapendio · Decollo NO · ~600 m · Los Silos"
+    }
+   },
+   "nl": {
+    "mir-chivisaya": {
+     "desc": "Uitkijkpunt in Candelaria, boven het dal van Güímar, met uitzicht op de Malpaís de Güímar, een beschermd natuurgebied van lavastromen, en de oostkust van Tenerife. Omgeven door een bos van faya en boomheide. Bereikbaar via een lokale weg vanuit Güímar. Rustig en weinig bekend.",
+     "cat": "Uitkijkpunt · Candelaria · Vallei · Oost"
+    },
+    "mir-lomo-molino": {
+     "desc": "Panoramisch uitkijkpunt in El Tanque, in het noorden van Tenerife, met uitzicht op de Roque de Garachico (vulkanisch eilandje), de Isla Baja, de kust van Buenavista en de majestueuze Teide op de achtergrond. Omgeven door wijngaarden en bananenterrassen. Een van de fotogeniekste uitkijkpunten van het noordwesten. Bereikbaar via een lokale weg.",
+     "cat": "Uitkijkpunt · Noordwest · El Tanque · Teide"
+    },
+    "playa-caleton-sauzal": {
+     "desc": "Oud vissersgehucht in La Matanza de Acentejo, met grotwoningen en een kleine pier. Geen voorzieningen behalve een seizoensbar. De afdaling is een smalle bochtige weg zonder vangrails en je gaat het water in over rots. Bij ruwe zee moet je een sterke zwemmer zijn.",
+     "cat": "Gehucht en Zwemplek · La Matanza"
+    },
+    "minigolf-precise-resort": {
+     "desc": "Minigolfbaan met 18 holes in de subtropische tuinen van het Precise Resort, in Los Realejos. Spectaculair uitzicht op de Atlantische Oceaan en de Pico del Teide. Unieke tuinomgeving in het noorden van Tenerife. Ook toegankelijk voor niet-hotelgasten. Openingstijden: 9:00-00:00 uur. De enige openbare minigolf in het noorden van Tenerife.",
+     "cat": "Minigolf 18 Holes · Los Realejos · Noord · Teide-uitzicht"
+    },
+    "montana-taco": {
+     "desc": "Vulkaankegel in Buenavista del Norte, naast Los Silos, in de Isla Baja. Heeft niets te maken met de wijk Taco, die in La Laguna ligt, aan de andere kant van het eiland: twee verschillende plekken met dezelfde naam.",
+     "cat": "Vulkaan · Buenavista del Norte"
+    },
+    "charco-golete": {
+     "desc": "Kleine rotspoel in La Caleta de Güímar, vlak onder de snelweg. Meestal leeg, met gratis parkeren, maar de straten naar beneden zijn zeer steil. Geen douches of voorzieningen. Alleen bij kalme wind en zee.",
+     "cat": "Natuurlijk Zwembad · Güímar"
+    },
+    "pp-el-tanque": {
+     "desc": "Paragliding-opstijgpunt in Tierra del Trigo, in de gemeente Los Silos, in het noordwesten van Tenerife, op ongeveer 600 m hoogte. De piloten noemen het «El Tanque». Recent vernieuwd opstijgpunt met verbeteringen voor de veiligheid. Zeer gewaardeerd door lokale piloten. Uitzicht op het Teno-massief, de Atlantische Oceaan en La Palma op heldere dagen. Typische westenwind.",
+     "cat": "Paragliding · NW-Start · ~600 m · Los Silos"
+    }
+   },
+   "zh": {
+    "mir-chivisaya": {
+     "desc": "坎德拉里亚的观景台，位于圭马尔谷之上，可俯瞰圭马尔火山荒原（一处熔岩流构成的受保护自然空间）以及特内里费东海岸。四周是法亚树与欧石南林。从圭马尔走地方道路可达。安静，知道的人不多。",
+     "cat": "观景台·坎德拉里亚·山谷·东部"
+    },
+    "mir-lomo-molino": {
+     "desc": "埃尔坦克的全景观景台，位于特内里费北部，可望见加拉奇科礁（一座火山小岛）、下岛区、布埃纳维斯塔海岸，背景是雄伟的泰德峰。四周是葡萄园与香蕉梯田。西北部最上镜的观景台之一。走地方道路前往。",
+     "cat": "观景台·西北·埃尔坦克·泰德"
+    },
+    "playa-caleton-sauzal": {
+     "desc": "拉马坦萨昔日的渔村聚落，保有洞穴屋与一座小码头。除季节性酒吧外没有其他设施。下行道路狭窄多弯且无护栏，须踏过岩石入水。海况不佳时需具备良好泳技。",
+     "cat": "渔村与戏水点 · 拉马坦萨"
+    },
+    "minigolf-precise-resort": {
+     "desc": "洛斯雷亚莱霍斯Precise Resort亚热带花园中的18洞迷你高尔夫球场。可远眺大西洋与泰德峰，景色极佳。这样的园林环境在特内里费北部独一份。非住店客人也可入场。开放时间：9:00至24:00。这是特内里费北部唯一对外开放的迷你高尔夫。",
+     "cat": "迷你高尔夫18洞·洛斯雷亚莱霍斯·北部·泰德景观"
+    },
+    "montana-taco": {
+     "desc": "布埃纳维斯塔的火山锥，紧邻洛斯西洛斯，位于下岛区。与拉拉古纳的塔科街区毫无关系——那在岛的另一侧，是同名的两个不同地方。",
+     "cat": "火山 · 布埃纳维斯塔"
+    },
+    "charco-golete": {
+     "desc": "位于圭马尔拉卡莱塔、高速公路下方的小型岩池。通常人少，可免费停车，但下行街道极为陡峭。没有淋浴或任何设施。仅宜在风平浪静时前往。",
+     "cat": "天然泳池 · 圭马尔"
+    },
+    "pp-el-tanque": {
+     "desc": "位于洛斯西洛斯市镇蒂耶拉德尔特里戈、特内里费西北部、海拔约600米的滑翔伞起飞点。飞行员称之为「埃尔坦克」。起飞场近期整修过，安全性有所改善。当地飞行员很推崇。可望见特诺山地、大西洋，天气好时还能看到拉帕尔马岛。典型为西风。",
+     "cat": "滑翔伞·西北起飞·约600米·洛斯西洛斯"
+    }
+   },
+   "zht": {
+    "mir-chivisaya": {
+     "desc": "坎德拉里亞的觀景台，位於圭馬爾谷之上，可俯瞰圭馬爾火山荒原（一處熔岩流構成的受保護自然空間）以及特內里費東海岸。四周是法亞樹與歐石楠林。從圭馬爾走地方道路可達。安靜，知道的人不多。",
+     "cat": "觀景台·坎德拉里亞·山谷·東部"
+    },
+    "mir-lomo-molino": {
+     "desc": "埃爾坦克的全景觀景台，位於特內里費北部，可望見加拉奇科礁（一座火山小島）、下島區、布埃納維斯塔海岸，背景是雄偉的泰德峰。四周是葡萄園與香蕉梯田。西北部最上鏡的觀景台之一。走地方道路前往。",
+     "cat": "觀景台·西北·埃爾坦克·泰德"
+    },
+    "playa-caleton-sauzal": {
+     "desc": "拉馬坦薩昔日的漁村聚落，保有洞穴屋與一座小碼頭。除季節性酒吧外沒有其他設施。下行道路狹窄多彎且無護欄，須踏過岩石入水。海況不佳時需具備良好泳技。",
+     "cat": "漁村與戲水點 · 拉馬坦薩"
+    },
+    "minigolf-precise-resort": {
+     "desc": "洛斯雷亞萊霍斯Precise Resort亞熱帶花園中的18洞迷你高爾夫球場。可遠眺大西洋與泰德峰，景色極佳。這樣的園林環境在特內里費北部獨一份。非住店客人也可入場。開放時間：9:00至24:00。這是特內里費北部唯一對外開放的迷你高爾夫。",
+     "cat": "迷你高爾夫18洞·洛斯雷亞萊霍斯·北部·泰德景觀"
+    },
+    "montana-taco": {
+     "desc": "布埃納維斯塔的火山錐，緊鄰洛斯西洛斯，位於下島區。與拉拉古納的塔科街區毫無關係——那在島的另一側，是同名的兩個不同地方。",
+     "cat": "火山 · 布埃納維斯塔"
+    },
+    "charco-golete": {
+     "desc": "位於圭馬爾拉卡萊塔、高速公路下方的小型岩池。通常人少，可免費停車，但下行街道極為陡峭。沒有淋浴或任何設施。僅宜在風平浪靜時前往。",
+     "cat": "天然泳池 · 圭馬爾"
+    },
+    "pp-el-tanque": {
+     "desc": "位於洛斯西洛斯市鎮蒂耶拉德爾特里戈、特內里費西北部、海拔約600公尺的滑翔傘起飛點。飛行員稱之為「埃爾坦克」。起飛場近期整修過，安全性有所改善。當地飛行員很推崇。可望見特諾山地、大西洋，天氣好時還能看到拉帕爾馬島。典型為西風。",
+     "cat": "滑翔傘·西北起飛·約600公尺·洛斯西洛斯"
+    }
+   },
+   "bg": {
+    "mir-chivisaya": {
+     "desc": "Панорамна площадка в Канделария, над долината на Гуимар, с гледки към Малпаис де Гуимар (защитена природна територия от вулканични лавови потоци) и източния бряг на Тенерифе. Заобиколена от гора от восъчници и пирен. Достъп по местен път от Гуимар. Спокойна и малко позната.",
+     "cat": "Панорамна площадка · Канделария · Долина · Изток"
+    },
+    "mir-lomo-molino": {
+     "desc": "Панорамна площадка в Ел Танке, в северната част на Тенерифе, с гледки към Роке де Гарачико (вулканично островче), Исла Баха, брега на Буенависта и величествения Тейде на заден план. Заобиколена от лозя и тераси с бананови насаждения. Една от най-фотогеничните панорамни площадки на северозапада. Достъп по местен път.",
+     "cat": "Панорамна площадка · Северозапад · Ел Танке · Тейде"
+    },
+    "playa-caleton-sauzal": {
+     "desc": "Стара рибарска махала в Ла Матанса с къщи пещери и малък кей. Без услуги освен сезонен бар. Слиза се по тесен и криволичещ път без предпазни огради, а във водата се влиза по скала. При развълнувано море трябва да сте добър плувец.",
+     "cat": "Селце и къпане · Ла Матанса"
+    },
+    "minigolf-precise-resort": {
+     "desc": "Игрище за минголф с 18 дупки в субтропичните градини на Precise Resort в Лос Реалехос. Зрелищни гледки към Атлантическия океан и връх Тейде. Уникална градинска среда в северно Тенерифе. Достъпно и за гости, които не са настанени в хотела. Работно време: 9:00-00:00 ч. Единственият обществен минголф в северно Тенерифе.",
+     "cat": "Миниголф 18 дупки · Лос Реалехос · Север · Изглед към Тейде"
+    },
+    "montana-taco": {
+     "desc": "Вулканичен конус в Буенависта дел Норте, до Лос Силос, в Исла Баха. Няма нищо общо с квартал Тако, който е в Ла Лагуна, от другата страна на острова: две различни места с едно и също име.",
+     "cat": "Вулкан · Буенависта дел Норте"
+    },
+    "charco-golete": {
+     "desc": "Малко заливче в Ла Калета де Гуимар, точно под магистралата. Обикновено е празно и има свободен паркинг, но улиците надолу са много стръмни. Няма душове, нито каквито и да е услуги. Само при спокоен вятър и море.",
+     "cat": "Естествен басейн · Гуимар"
+    },
+    "pp-el-tanque": {
+     "desc": "Старт за парапланеризъм в Тиера дел Триго, в община Лос Силос, северозападно Тенерифе, на около 600 м надморска височина. Пилотите го наричат «Ел Танке». Наскоро обновен старт с подобрена безопасност. Много ценен от местните пилоти. Гледки към масива Тено, Атлантика и Ла Палма в ясни дни. Типичен западен вятър.",
+     "cat": "Парапланеризъм · Излитане северозапад · ~600 м · Лос Силос"
+    }
+   },
+   "pl": {
+    "mir-chivisaya": {
+     "desc": "Punkt widokowy w Candelarii, nad Doliną Güímar, z widokiem na Malpaís de Güímar (chroniony obszar przyrodniczy z potokami lawy) i wschodnie wybrzeże Teneryfy. Otoczony lasem faji i wrzośców. Dojazd lokalną drogą z Güímar. Spokojny i mało znany.",
+     "cat": "Punkt widokowy · Candelaria · Dolina · Wschód"
+    },
+    "mir-lomo-molino": {
+     "desc": "Panoramiczny punkt widokowy w El Tanque, na północy Teneryfy, z widokiem na Roque de Garachico (wulkaniczną wysepkę), Isla Baja, wybrzeże Buenavista i majestatyczny Teide w tle. Otoczony winnicami i tarasami plantacji bananów. Jeden z najbardziej fotogenicznych punktów północnego zachodu. Dojazd lokalną drogą.",
+     "cat": "Punkt widokowy · Północny zachód · El Tanque · Teide"
+    },
+    "playa-caleton-sauzal": {
+     "desc": "Dawna osada rybacka w La Matanza de Acentejo, z domami w grotach i małym pomostem. Bez infrastruktury poza sezonowym barem. Zjeżdża się wąską, krętą drogą bez barierek, a do wody wchodzi po skale. Przy wzburzonym morzu trzeba być dobrym pływakiem.",
+     "cat": "Osada i kąpielisko · La Matanza"
+    },
+    "minigolf-precise-resort": {
+     "desc": "Pole minigolfa o 18 dołkach w subtropikalnych ogrodach Precise Resort w Los Realejos. Spektakularne widoki na Ocean Atlantycki i Pico del Teide. Ogrodowe otoczenie wyjątkowe na północy Teneryfy. Dostępne także dla osób spoza hotelu. Godziny: 9:00-00:00. Jedyny publiczny minigolf na północy Teneryfy.",
+     "cat": "Minigolf 18 dołków · Los Realejos · Północ · Widok na Teide"
+    },
+    "montana-taco": {
+     "desc": "Stożek wulkaniczny w Buenavista del Norte, obok Los Silos, w Isla Baja. Nie ma nic wspólnego z dzielnicą Taco, która leży w La Lagunie, po drugiej stronie wyspy: dwa różne miejsca o tej samej nazwie.",
+     "cat": "Wulkan · Buenavista del Norte"
+    },
+    "charco-golete": {
+     "desc": "Małe rozlewisko w La Caleta de Güímar, dokładnie pod autostradą. Zwykle jest puste i ma bezpłatny parking, ale uliczki w dół są bardzo strome. Nie ma pryszniców ani żadnej infrastruktury. Tylko przy bezwietrznej i spokojnej wodzie.",
+     "cat": "Basen naturalny · Güímar"
+    },
+    "pp-el-tanque": {
+     "desc": "Start paralotniowy w Tierra del Trigo, w gminie Los Silos, na północnym zachodzie Teneryfy, na około 600 m n.p.m. Piloci nazywają go «El Tanque». Start niedawno odnowiony, z poprawkami bezpieczeństwa. Bardzo ceniony przez miejscowych pilotów. Widoki na masyw Teno, Atlantyk i La Palmę w pogodne dni. Typowy wiatr zachodni.",
+     "cat": "Paralotniarstwo · Start północny zachód · ~600 m · Los Silos"
+    }
+   }
+  }
+ },
+ "pendiente": [
+  "escal-guaria es la unica que queda del bloque 4. Dice Guia de Isora y cae en Adeje, a 3,6 km. «Guaria» no existe en OSM en toda la isla y en 1 km alrededor del pin todo es de Adeje. O el pin esta mal o el municipio lo esta, y no hay con que decidirlo.",
+  "montana-taco se queda con una descripcion MINIMA, solo lo que tiene fuente. Necesita una fuente para volver a tener una descripcion completa."
+ ]
+}

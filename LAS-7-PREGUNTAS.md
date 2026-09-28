@@ -1,4 +1,9 @@
-# Las 7 preguntas del grupo A
+# Las 7 preguntas del grupo A — **CONTESTADAS**
+
+> **28 de septiembre: sí a las siete. Aplicadas.** Este documento se queda como
+> el registro de con qué se decidió cada una. Lo aplicado está en
+> `MUNICIPIOS-BLOQUE4.md` y en
+> `datos/entregas/bloque4-grupo-A-las-siete.json`.
 
 Son la **misma pregunta siete veces**: en todas, el pin está donde debe y el
 municipio que dice el texto está mal. Puedes contestarlas de golpe con un «sí a

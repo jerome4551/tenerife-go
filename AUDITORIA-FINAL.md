@@ -1374,7 +1374,7 @@ fallo** donde antes decía 3 y ya está.
 Con los dos controles funcionando, **el único bloque en rojo del proyecto es el
 del municipio**.
 
-## El municipio · 8 fuera de sitio, 14 que solo nombran una zona
+## El municipio · 1 fuera de sitio, 14 que solo nombran una zona
 
 La primera version cruzaba lo que cada ficha declara —un tramo del `cat` o el
 paréntesis del nombre— con el municipio de **las paradas de TITSA de
@@ -1393,7 +1393,8 @@ y aparecieron **16**. De esas:
   con su propio apartado: **no pasan y no fallan, se cuentan y se listan**.
 - **13 son de verdad**, repartidas en `MUNICIPIOS-BLOQUE4.md`: 8 donde miente el
   texto, 1 donde miente el pin, 3 sobre la raya que decide la fuente oficial y 1
-  sin nada que la respalde. **Quedan 5 resueltas y 8 abiertas**:
+  sin nada que la respalde. **Queda 1 abierta**, `escal-guaria`. Las otras 12
+  están resueltas:
   `sendero-roque-conde` no era ni una cosa ni la otra — la ficha es **la subida,
   no la cumbre**, así que Arona era correcto y lo que estaba mal era el pin, que
   apuntaba al pico. Se mueve al inicio publicado por el Ayuntamiento de Adeje,
@@ -1405,7 +1406,13 @@ y aparecieron **16**. De esas:
   dice el propio Cabildo en Tenerife ON— y además dejaron de compartir un único
   pin: cada una tiene ahora la coordenada que publica su ficha oficial. Y
   `guachinche-san-juan-rambla` **se da de baja**: nombre genérico, sin dirección
-  ni teléfono y sin ningún guachinche que se llame así. Son **786**.
+  ni teléfono y sin ningún guachinche que se llame así. Son **786**. Y las **7 del
+  grupo A** llevan ya el municipio que dice el polígono. Una de ellas no era sólo
+  el municipio: la descripción entera de `montana-taco` era la del **otro Taco**,
+  el barrio de La Laguna —«un pulmón verde entre la ciudad», «vistas al
+  aeropuerto», «sendero de 45 minutos desde la ciudad»—, todo ello a 45 km de la
+  montaña. No se inventa una nueva: se deja **sólo lo que tiene fuente** y se
+  avisa de la confusión de nombres.
 
 **El área vuelve a estar ABIERTA.** Un área no puede estar cerrada mientras su
 control está en rojo. Las cifras no se escriben aquí a mano: las cuenta
