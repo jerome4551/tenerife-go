@@ -3,10 +3,9 @@
 Era el único bloque en rojo. **Eran 16 y son 13**, porque tres no eran fallo de
 las fichas sino de mi control. Eso va primero, porque es lo que cambia la cifra.
 
-> **Al día 28 de septiembre: 1 resuelta, quedan 12.**
-> `sendero-roque-conde` (la 8) no era ni texto ni pin de los de aquí: la ficha es
-> **la subida y no la cumbre**, así que Arona era correcto y lo que estaba mal era
-> el pin. Aplicada — ver el final del documento.
+> **Al día 28 de septiembre: 2 resueltas, quedan 11.**
+> `sendero-roque-conde` (la 8) y `super-mercadona-tacoronte` (la 9). Las dos
+> aplicadas — ver el final del documento.
 
 ---
 
@@ -111,17 +110,9 @@ contradice: el paréntesis dice la verdad y el nombre del municipio no.
 
 ---
 
-## B · El pin miente (1)
+## B · El pin miente (1) — ~~RESUELTA~~
 
-### `super-mercadona-tacoronte`
-- Dice **Tacoronte**; el pin cae en **El Sauzal**, a 270 m de la raya.
-- OSM tiene un **«Mercadona» a 880 m** (`28.478618, -16.413241`), dentro de
-  Tacoronte y **553 m** por dentro de la raya. El siguiente está a 2,4 km,
-  también en Tacoronte. En todo el km alrededor del pin actual no hay ningún
-  Mercadona.
-- La descripción («Mercadona en Tacoronte, zona vinícola») es correcta.
-  **Aquí lo que sobra es la coordenada**, no el texto. Dime que es ése y la
-  muevo.
+`super-mercadona-tacoronte`, aplicada. Ver el final del documento.
 
 ---
 
@@ -165,11 +156,9 @@ contradice: el paréntesis dice la verdad y el nombre del municipio no.
 
 1. **Grupo A (7, era 8)** — ¿cambio el texto al municipio que dice el polígono?
    Con eso el bloque baja de 12 a 5. ~~`sendero-roque-conde`~~ ya está resuelta.
-2. **Grupo B (1)** — ¿el Mercadona de Tacoronte es el de
-   `28.478618, -16.413241`?
-3. **Grupo C (3)** — Las Lajas la decide el Cabildo; el guachinche, su
+2. **Grupo C (3)** — Las Lajas la decide el Cabildo; el guachinche, su
    dirección. Y de paso: ¿le doy pin propio a cada una de las dos de Las Lajas?
-4. **Grupo D (1)** — `escal-guaria` necesita que alguien que conozca el sector
+3. **Grupo D (1)** — `escal-guaria` necesita que alguien que conozca el sector
    diga si está en Adeje o en Guía de Isora.
 
 Nada de esto está aplicado. Como en los bloques 1, 2 y 3: **OSM no es fuente
@@ -224,3 +213,25 @@ en `datos/entregas/bloque4-08-sendero-roque-conde.json`.
   pin — `sendero-guajara` (59 m) y `ruta-pico-viejo` (137 m, Pico Viejo
   Occidental). Las otras 35 ya apuntan a otra cosa. Fijar la regla toca **dos
   fichas, no treinta**.
+
+---
+
+## Aplicado · 9 · `super-mercadona-tacoronte` (28 de septiembre)
+
+El único del bloque donde **mentía el pin** y no el texto. Jerome lo confirmó con
+una captura de **Google Street View de junio de 2026**, con el rótulo de
+MERCADONA y la entrada a la vista.
+
+- **El pin** pasa de `28.47320, -16.41980` (El Sauzal, a 270 m de la raya) a
+  **`28.478611, -16.413250`**, la coordenada del propio visor
+  (28°28'43.0"N 16°24'47.7"W). Se mueve **879 m**. Comprobado con el polígono:
+  cae en **Tacoronte**.
+- Esa coordenada coincide **a 1,2 m** con el nodo de OSM `node/903016696`, que
+  era el candidato que yo había propuesto. Se usa la de Jerome, que es la que
+  lleva la foto del rótulo detrás.
+- **El texto no se toca**: «Mercadona en Tacoronte, zona vinícola» siempre fue
+  correcto, y el `cat` también.
+
+Escrita con `tools/fijar_coordenada.py`, que la comprobó antes (existe el id,
+está dentro de la caja, cae en tierra) y apuntó la fuente sola en
+`datos/verificado.json`.

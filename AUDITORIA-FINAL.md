@@ -1346,7 +1346,35 @@ hay que mezclar**: lo comprobado y correcto, lo comprobado y mal, y lo que no
 se puede comprobar desde aquí, con su motivo. Esa tercera columna es la que
 faltaba, y es la que hacía que cada semana apareciera una lista nueva.
 
-## El municipio · 12 fuera de sitio, 14 que solo nombran una zona
+## Dos controles llevaban dos días rotos y parecían hallazgos
+
+`auditar.sh` contaba en el mismo sitio un control que **encuentra algo** y un
+control que **no ha llegado a mirar nada**: los dos salen con estado distinto de
+cero. En un contenedor nuevo faltaban `pmtiles` y `mapbox_vector_tile`, así que
+`auditar_ubicacion.py` y `auditar_en_el_mar.py` reventaban con un `Traceback`, y
+el resumen decía **«3 bloque(s) con fallo»** como si hubiera tres cosas que
+mirar. Eran una.
+
+**Un control roto es peor que uno en rojo**: el rojo enseña algo, el roto no
+enseña nada y lo parece.
+
+Arreglado en dos sitios:
+
+- `auditar.sh` detecta el `Traceback` de Python y la pila de Node, lo cuenta
+  aparte y lo dice con otro nombre: *«NO SE PUDO EJECUTAR: le falta algo. No es
+  un hallazgo.»* Los tres controles que filtran su salida a mano
+  (`verificar_red.js`, `probar_faq.js` y el bucle de `auditar_idioma.js`) pasan
+  por la misma comprobación.
+- `tools/requisitos.txt`, que antes no existía: las dependencias de Python no
+  estaban declaradas en ninguna parte.
+
+Probado desinstalando `pmtiles` otra vez: la auditoría separa **2 rotos y 1
+fallo** donde antes decía 3 y ya está.
+
+Con los dos controles funcionando, **el único bloque en rojo del proyecto es el
+del municipio**.
+
+## El municipio · 11 fuera de sitio, 14 que solo nombran una zona
 
 La primera version cruzaba lo que cada ficha declara —un tramo del `cat` o el
 paréntesis del nombre— con el municipio de **las paradas de TITSA de
@@ -1365,12 +1393,15 @@ y aparecieron **16**. De esas:
   con su propio apartado: **no pasan y no fallan, se cuentan y se listan**.
 - **13 son de verdad**, repartidas en `MUNICIPIOS-BLOQUE4.md`: 8 donde miente el
   texto, 1 donde miente el pin, 3 sobre la raya que decide la fuente oficial y 1
-  sin nada que la respalde. **Queda 1 resuelta y 12 abiertas**:
+  sin nada que la respalde. **Quedan 2 resueltas y 11 abiertas**:
   `sendero-roque-conde` no era ni una cosa ni la otra — la ficha es **la subida,
   no la cumbre**, así que Arona era correcto y lo que estaba mal era el pin, que
   apuntaba al pico. Se mueve al inicio publicado por el Ayuntamiento de Adeje,
   Calle Vento (Arona), y de paso se corrigen los datos de la ruta, que no
-  coincidían con ninguna fuente oficial.
+  coincidían con ninguna fuente oficial. Y `super-mercadona-tacoronte` era el
+  caso contrario, el único donde **mentía el pin**: Jerome confirmó la tienda con
+  una captura de Street View, y el punto se mueve 879 m hasta ella, ya dentro de
+  Tacoronte.
 
 **El área vuelve a estar ABIERTA.** Un área no puede estar cerrada mientras su
 control está en rojo. Las cifras no se escriben aquí a mano: las cuenta
