@@ -172,6 +172,10 @@
    "fecha": "2026-09-26",
    "fuente": "Wikidata Q2220075 (Ermita de San Telmo): 28.417550,-16.545617 = 28°25′03.18″N 16°32′44.22″O. En tierra, a 18,0 m del borde, asi que se usa tal cual sin empujar. Se mueve 155 m al este del pin viejo, que estaba 18,6 m mar adentro. CONTROL DE SENSATEZ: pasa la primera condicion -a 90 m de la «Playa de San Telmo» del extracto, limite 150- y NO se pudo evaluar la segunda como estaba escrita: el «Paseo de San Telmo» no esta en el extracto como via, sino como UN PUNTO de rotulo, y a ese punto hay 218 m. Un paseo maritimo reducido a un punto no dice a que distancia esta su recorrido. Lo que si hay al lado del punto: una zona peatonal a 31 m y la «Avenida Cristobal Colon» a 98 m, que son ese mismo paseo."
   },
+  "escal-guaria": {
+   "fecha": "2026-09-28",
+   "fuente": "theCrag.com, escuela «Guaria»: ubicacion central de las paredes, dentro del Monumento Natural de la Montana de Tejina. Aportada por Jerome el 28 de septiembre de 2026 junto con el aparcamiento de Acojeja (28.196091,-16.763203) y el inicio del sendero (28.197601,-16.760102)."
+  },
   "fanabe": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
@@ -712,15 +716,13 @@
    "abierto": "Las que estan escritas con 3 decimales significativos o menos en los dos ejes, o sea puestas a ojo. El informe las cuenta y las lista una a una."
   },
   "municipio_de_cada_ficha": {
-   "estado": "abierto",
-   "fecha": "2026-09-27",
+   "estado": "cerrado",
+   "fecha": "2026-09-28",
    "que_se_hizo": "Point-in-polygon de cada ficha contra el poligono municipal del Cabildo (tools/datos/municipios-tenerife-2015.shp.zip), no contra las paradas de alrededor.",
    "resultado": "Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se queda viejo al dia siguiente.",
-   "abierto": [
-    "Las 13 que el poligono deja fuera de sitio, con su reparto y lo que hace falta para decidir cada una, en MUNICIPIOS-BLOQUE4.md. Ninguna se toca sin OK de Jerome."
-   ],
+   "abierto": [],
    "techo": "El poligono municipal del Cabildo YA ESTA en el repositorio (tools/datos/municipios-tenerife-2015.shp.zip, entregado el 27 de septiembre). La comprobacion es point-in-polygon exacto, no una aproximacion. Calibrado contra las 2.514 paradas de TITSA: coincide en 2.514, el 100,00 %. La unica trampa del fichero es que el anillo de La Laguna envuelve a Tegueste sin recortarle el hueco; se resuelve con «si un punto cae en varios, gana el mas pequeño», que es lo que pasa siempre con un enclave. Lo que el poligono NO puede decidir: las fichas que nombran una ZONA de varios municipios («Las Americas», «Teno»). Esas se cuentan y se listan aparte, sin pasar ni fallar.",
-   "por_que_se_reabre": "Estuvo en «cerrado» con 0 hallazgos en firme, pero eso lo dijo la version que comparaba contra el municipio de las paradas de TITSA, que es una aproximacion. Al sustituirla por el poligono aparecieron 16, de las que 3 eran fallo del propio control (los alias «Las Americas» y «Teno», que no son municipios) y 13 son de verdad. Un area no puede estar cerrada mientras su control esta en rojo.",
+   "por_que_se_reabre": "Estuvo en «cerrado» con 0 hallazgos en firme, pero eso lo dijo la version que comparaba contra el municipio de las paradas de TITSA, que es una aproximacion. Al sustituirla por el poligono aparecieron 16, de las que 3 eran fallo del propio control (los alias «Las Americas» y «Teno», que no son municipios) y 13 son de verdad. Un area no puede estar cerrada mientras su control esta en rojo. CERRADA el 28 de septiembre: las 13 resueltas con Jerome, una a una y con su fuente. El control da 0. Cerrado no quiere decir perfecto: las 14 fichas que nombran una ZONA de varios municipios siguen sin poder comprobarse, y eso esta escrito en el techo.",
    "cerrado_por_poligono": [
     "ar-la-quebrada",
     "buceo-tabaiba",
@@ -788,7 +790,17 @@
    "motivo": "Tramo de costa, no un embarcadero concreto."
   },
   "escal-guaria": {
-   "motivo": "Zona de escalada: varias vias en un sector."
+   "motivo": "Escuela de escalada: mas de 130 vias repartidas en seis sectores (Entrada, Peter Punk, Comando 25, Utah, Big Wall y Tralla) a lo largo de la pared. El punto es el centro de las paredes que publica theCrag, no una posicion unica.",
+   "otros_puntos": {
+    "aparcamiento_acojeja": [
+     28.196091,
+     -16.763203
+    ],
+    "inicio_del_sendero": [
+     28.197601,
+     -16.760102
+    ]
+   }
   },
   "escal-canada-capricho": {
    "motivo": "Zona de escalada: varias vias en un sector."

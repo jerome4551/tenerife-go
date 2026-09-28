@@ -1,0 +1,137 @@
+{
+ "_": [
+  "Entrega de escal-guaria, la ultima del bloque 4.",
+  "Respuesta de Jerome del 28 de septiembre, con la ficha de theCrag de la escuela",
+  "«Guaria» y las indicaciones de acceso.",
+  "AL REVES DE LO QUE YO SUPONIA: el texto tenia razon y el pin estaba a 6,9 km."
+ ],
+ "correcciones_coordenada": {
+  "escal-guaria": {
+   "antes": {
+    "lat": 28.145,
+    "lng": -16.717,
+    "municipio_del_poligono": "Adeje",
+    "a_la_raya_de_guia_de_isora_m": 3600
+   },
+   "despues": {
+    "lat": 28.19667,
+    "lng": -16.75611,
+    "municipio_del_poligono": "Guía de Isora",
+    "dentro_de_la_raya_m": 3162
+   },
+   "se_mueve_m": 6907,
+   "fuente": "theCrag.com, escuela «Guaria»: ubicacion central de las paredes.",
+   "otros_puntos_que_no_son_el_pin": {
+    "aparcamiento_acojeja": [
+     28.196091,
+     -16.763203
+    ],
+    "inicio_del_sendero": [
+     28.197601,
+     -16.760102
+    ]
+   },
+   "por_que_las_paredes": "La ficha describe la escuela de escalada, no el aparcamiento. Los otros dos puntos quedan apuntados en coordenada_de_zona del registro. Si prefieres que el pin sea el aparcamiento, se cambia en un minuto.",
+   "corroboracion": "OSM tiene la «Montana de Tejina» (peak) a 848 m del punto nuevo, en Guia de Isora, y todo lo que hay en 1,5 km alrededor es de Guia de Isora."
+  }
+ },
+ "modificaciones": {
+  "escal-guaria": {
+   "municipio": "SIN CAMBIO. Guia de Isora era correcto desde el principio.",
+   "cat": "SIN CAMBIO: «Escalada · Guaría · Guía de Isora · Sur · Deportiva».",
+   "quitado": [
+    "«5c-8a»: theCrag lo contradice, su histograma va de 4a a 8c",
+    "«codigo QR in situ»: el permiso se pide por internet al Cabildo, no con un QR",
+    "«ideal cuando Arico esta muy caluroso»: Guaria tambien es un sitio muy caluroso, orientacion sur y sol todo el dia",
+    "el tag «5c-8a»"
+   ],
+   "anadido": [
+    "Risco de Guaria, dentro del Monumento Natural de la Montana de Tejina",
+    "mas de 130 vias en seis sectores: Entrada, Peter Punk, Comando 25, Utah, Big Wall y Tralla",
+    "las lineas mas largas de la isla, muchas por encima de los 35 m",
+    "nivel medio-alto, poco por debajo de 6a",
+    "PERMISO OBLIGATORIO del Cabildo, por internet, cupo diario de 70 personas",
+    "de febrero a junio se cierran vias por la nidificacion del halcon tagarote",
+    "orientacion sur y sol todo el dia, mejor madrugar",
+    "aparcar en Acojeja sin bloquear portones ni accesos a las fincas",
+    "15 a 30 minutos a pie",
+    "los tags «Monumento Natural», «Montana de Tejina» y «Acojeja»"
+   ],
+   "desc_es": {
+    "antes": "Guaría, en el municipio de Guía de Isora, es uno de los sectores de escalada deportiva más populares del sur de Tenerife. Pared de basalto volcánico con vías de dificultad media-alta (5c-8a). Clima seco y soleado casi todo el año — ideal cuando Arico está muy caluroso. Requiere permiso de acceso (se puede obtener mediante código QR in situ). Vistas al Atlántico y La Gomera desde las vías más altas. Acceso en coche desde la carretera TF-82.",
+    "despues": "Escuela de escalada deportiva en el Risco de Guaría, en Guía de Isora, dentro del Monumento Natural de la Montaña de Tejina. Más de 130 vías en varios sectores —Entrada, Peter Punk, Comando 25, Utah, Big Wall y Tralla—, sobre roca volcánica y con las líneas más largas de la isla, muchas por encima de los 35 m. Nivel medio-alto: hay poco por debajo de 6a. PERMISO OBLIGATORIO del Cabildo, se pide por internet y hay un cupo diario de 70 personas. De febrero a junio se cierran vías por la nidificación del halcón tagarote. Orientación sur y sol todo el día: mejor madrugar. Se aparca en Acojeja sin bloquear portones ni accesos a las fincas, y se sube a pie entre 15 y 30 minutos. Vistas al Atlántico y a La Gomera."
+   },
+   "tags": {
+    "antes": [
+     "Escalada",
+     "Guaría",
+     "Guía de Isora",
+     "Sur",
+     "Deportiva",
+     "Basalto",
+     "5c-8a",
+     "Permiso",
+     "La Gomera",
+     "TF-82"
+    ],
+    "despues": [
+     "Escalada",
+     "Guaría",
+     "Guía de Isora",
+     "Sur",
+     "Deportiva",
+     "Basalto",
+     "Permiso",
+     "Monumento Natural",
+     "Montaña de Tejina",
+     "Acojeja",
+     "La Gomera",
+     "TF-82"
+    ]
+   },
+   "idiomas": {
+    "en": {
+     "desc": "Sport climbing school at the Risco de Guaría, in Guía de Isora, inside the Montaña de Tejina Natural Monument. More than 130 routes across several sectors —Entrada, Peter Punk, Comando 25, Utah, Big Wall and Tralla— on volcanic rock, with the longest lines on the island, many over 35 m. Medium to high level: there is little below 6a. PERMIT COMPULSORY from the Cabildo, requested online, with a daily quota of 70 people. From February to June routes are closed for the nesting of the Barbary falcon. South facing and sunny all day: better to start early. Park in Acojeja without blocking gates or farm entrances, then walk up for 15 to 30 minutes. Views over the Atlantic and La Gomera.",
+     "cat": "Climbing · Guaría · Guía de Isora · South · Sport"
+    },
+    "fr": {
+     "desc": "École d'escalade sportive du Risco de Guaría, à Guía de Isora, dans le Monument naturel de la Montaña de Tejina. Plus de 130 voies réparties en plusieurs secteurs —Entrada, Peter Punk, Comando 25, Utah, Big Wall et Tralla— sur roche volcanique, avec les lignes les plus longues de l'île, beaucoup au-delà de 35 m. Niveau moyen à élevé : il y a peu de choses en dessous de 6a. PERMIS OBLIGATOIRE du Cabildo, à demander en ligne, avec un quota journalier de 70 personnes. De février à juin, des voies ferment pour la nidification du faucon de Barbarie. Orientation sud et soleil toute la journée : mieux vaut partir tôt. On se gare à Acojeja sans bloquer les portails ni les accès aux fincas, puis 15 à 30 minutes de marche en montée. Vues sur l'Atlantique et La Gomera.",
+     "cat": "Escalade · Guaría · Guía de Isora · Sud · Sportive"
+    },
+    "de": {
+     "desc": "Sportkletterschule am Risco de Guaría, in Guía de Isora, im Naturdenkmal Montaña de Tejina. Über 130 Routen in mehreren Sektoren —Entrada, Peter Punk, Comando 25, Utah, Big Wall und Tralla— auf vulkanischem Fels, mit den längsten Linien der Insel, viele über 35 m. Mittleres bis hohes Niveau: unter 6a gibt es wenig. GENEHMIGUNG PFLICHT vom Cabildo, online zu beantragen, mit einem Tageskontingent von 70 Personen. Von Februar bis Juni werden Routen wegen der Brut des Wüstenfalken gesperrt. Südausrichtung und den ganzen Tag Sonne: besser früh los. Geparkt wird in Acojeja, ohne Tore oder Feldzufahrten zu blockieren, dann 15 bis 30 Minuten bergauf zu Fuß. Blick auf den Atlantik und La Gomera.",
+     "cat": "Klettern · Guaría · Guía de Isora · Süd · Sport"
+    },
+    "it": {
+     "desc": "Scuola di arrampicata sportiva al Risco de Guaría, a Guía de Isora, dentro il Monumento Naturale della Montaña de Tejina. Più di 130 vie in vari settori —Entrada, Peter Punk, Comando 25, Utah, Big Wall e Tralla— su roccia vulcanica, con le linee più lunghe dell'isola, molte oltre i 35 m. Livello medio-alto: sotto il 6a c'è poco. PERMESSO OBBLIGATORIO del Cabildo, da richiedere online, con un contingente giornaliero di 70 persone. Da febbraio a giugno si chiudono vie per la nidificazione del falco di Barberia. Esposizione sud e sole tutto il giorno: meglio partire presto. Si parcheggia ad Acojeja senza bloccare cancelli né accessi ai poderi, poi da 15 a 30 minuti a piedi in salita. Vista sull'Atlantico e su La Gomera.",
+     "cat": "Arrampicata · Guaría · Guía de Isora · Sud · Sportiva"
+    },
+    "nl": {
+     "desc": "Sportklimschool aan de Risco de Guaría, in Guía de Isora, in het Natuurmonument Montaña de Tejina. Meer dan 130 routes in verschillende sectoren —Entrada, Peter Punk, Comando 25, Utah, Big Wall en Tralla— op vulkanisch gesteente, met de langste lijnen van het eiland, veel boven de 35 m. Gemiddeld tot hoog niveau: onder 6a is er weinig. VERGUNNING VERPLICHT van het Cabildo, online aan te vragen, met een dagquotum van 70 personen. Van februari tot juni worden routes gesloten vanwege het broeden van de Barbarijse valk. Zuidgericht en de hele dag zon: beter vroeg beginnen. Parkeren in Acojeja zonder poorten of toegangen tot de fincas te blokkeren, daarna 15 tot 30 minuten omhoog lopen. Uitzicht op de Atlantische Oceaan en La Gomera.",
+     "cat": "Klimmen · Guaría · Guía de Isora · Zuid · Sportief"
+    },
+    "zh": {
+     "desc": "位于圭亚德伊索拉、特希纳山自然纪念物范围内的瓜里亚岩壁运动攀岩学校。130多条线路分布在数个区段——Entrada、Peter Punk、Comando 25、Utah、Big Wall与Tralla——岩质为火山岩，是岛上最长的攀登线路，不少超过35米。难度中高：6a以下的选择很少。必须向岛政府申请许可，网上办理，每日限额70人。二月至六月因巴巴利隼筑巢会封闭部分线路。朝南，全天日晒，建议早出发。在阿科赫哈停车，切勿堵住院门或农庄出入口，再步行上坡15至30分钟。可远眺大西洋与戈梅拉岛。",
+     "cat": "攀岩·瓜里亚·圭亚德伊索拉·南部·运动"
+    },
+    "zht": {
+     "desc": "位於圭亞德伊索拉、特希納山自然紀念物範圍內的瓜里亞岩壁運動攀岩學校。130多條路線分布在數個區段——Entrada、Peter Punk、Comando 25、Utah、Big Wall與Tralla——岩質為火山岩，是島上最長的攀登路線，不少超過35公尺。難度中高：6a以下的選擇很少。必須向島政府申請許可，網上辦理，每日限額70人。二月至六月因巴巴利隼築巢會封閉部分路線。朝南，全天日曬，建議早出發。在阿科赫哈停車，切勿堵住院門或農莊出入口，再步行上坡15至30分鐘。可遠眺大西洋與戈梅拉島。",
+     "cat": "攀岩·瓜里亞·圭亞德伊索拉·南部·運動"
+    },
+    "bg": {
+     "desc": "Училище по спортно катерене на Риско де Гуария, в Гия де Исора, в природния паметник Монтаня де Техина. Над 130 маршрута в няколко сектора —Entrada, Peter Punk, Comando 25, Utah, Big Wall и Tralla— по вулканична скала, с най-дългите линии на острова, много от тях над 35 м. Средно и високо ниво: под 6a има малко. ЗАДЪЛЖИТЕЛНО РАЗРЕШИТЕЛНО от Кабилдото, заявява се онлайн, с дневна квота от 70 души. От февруари до юни се затварят маршрути заради гнезденето на средиземноморския сокол. Южно изложение и слънце цял ден: по-добре рано. Паркира се в Акохеха, без да се блокират порти и входове към имотите, и се върви нагоре от 15 до 30 минути. Гледки към Атлантика и Ла Гомера.",
+     "cat": "Катерене · Гуария · Гия де Исора · Юг · Спортно"
+    },
+    "pl": {
+     "desc": "Szkoła wspinaczki sportowej na Risco de Guaría, w Guía de Isora, w obrębie Pomnika Przyrody Montaña de Tejina. Ponad 130 dróg w kilku sektorach —Entrada, Peter Punk, Comando 25, Utah, Big Wall i Tralla— na skale wulkanicznej, z najdłuższymi liniami na wyspie, wiele powyżej 35 m. Poziom średni i wysoki: poniżej 6a jest niewiele. POZWOLENIE OBOWIĄZKOWE od Cabildo, składane przez internet, z dziennym limitem 70 osób. Od lutego do czerwca zamyka się drogi z powodu lęgów sokoła berberyjskiego. Wystawa południowa i słońce przez cały dzień: lepiej wcześnie. Parkuje się w Acojeja, nie blokując bram ani wjazdów do gospodarstw, a potem od 15 do 30 minut pod górę. Widoki na Atlantyk i La Gomerę.",
+     "cat": "Wspinaczka · Guaría · Guía de Isora · Południe · Sportowa"
+    }
+   }
+  }
+ },
+ "lo_que_no_vi": "Escribi que «Guaria no existe en OSM en toda la isla». Era cierto y no servia de nada: el paquete de Geofabrik tiene CERO elementos de escalada en toda Tenerife, asi que su silencio no probaba nada. Es la leccion de la Farola otra vez. Lo que si deberia haberme hecho dudar es que el pin tuviera tres decimales y estuviera declarado como rotulo: un rotulo mal puesto no se nota, porque nadie espera que sea preciso.",
+ "discrepancias_entre_fuentes": [
+  "Tiempo a pie: theCrag dice 20-30 min («caminata pronunciada»), el texto de Jerome dice 10-15 min. La ficha pone «entre 15 y 30 minutos», que cubre las dos.",
+  "Altitud: theCrag da 900 m de altitud y 905/755 m de cota alta y baja. No entra en la ficha: cada cifra de mas hay que sostenerla en diez idiomas y esta no le cambia el plan a nadie."
+ ]
+}

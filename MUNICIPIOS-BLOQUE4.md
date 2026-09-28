@@ -3,10 +3,10 @@
 Era el único bloque en rojo. **Eran 16 y son 13**, porque tres no eran fallo de
 las fichas sino de mi control. Eso va primero, porque es lo que cambia la cifra.
 
-> **Al día 28 de septiembre: 12 resueltas, queda 1.**
+> **Al día 28 de septiembre: LAS 13 RESUELTAS. El bloque queda a cero.**
 > Aplicadas las 7 del grupo A, `sendero-roque-conde` (8),
 > `super-mercadona-tacoronte` (9), `ar-las-lajas` (10), `camping-las-lajas` (11) y
-> la baja de `guachinche-san-juan-rambla` (12). **Sólo queda `escal-guaria`.**
+> la baja de `guachinche-san-juan-rambla` (12) y `escal-guaria` (13).
 > Todo al final del documento.
 
 ---
@@ -123,7 +123,7 @@ contradice: el paréntesis dice la verdad y el nombre del municipio no.
 `ar-las-lajas`, `camping-las-lajas` y `guachinche-san-juan-rambla`. Ver el final
 del documento.
 
-## D · Sin nada que lo respalde (1)
+## D · Sin nada que lo respalde (1) — ~~RESUELTA~~, ver el final
 
 ### `escal-guaria`
 - Dice **Guía de Isora**; cae en Adeje, a **3,6 km** de Guía de Isora.
@@ -335,9 +335,64 @@ fuente.**
 
 ---
 
-## Lo que queda del bloque 4
+## Aplicado · 13 · `escal-guaria` (28 de septiembre, noche)
 
-**Una.** `escal-guaria`, que sigue necesitando a alguien que conozca el sector.
+**El texto tenía razón y el pin estaba a 6,9 km.** Es el caso contrario al que yo
+suponía cuando la puse en el grupo D.
+
+Jerome mandó la ficha de **theCrag** de la escuela «Guaria» y la información de
+acceso. Las tres coordenadas que trae caen todas en **Guía de Isora**, y no de
+milagro: a más de 3 km de la raya por dentro.
+
+| | coordenada | polígono | a la raya de Guía de Isora |
+|---|---|---|---|
+| el pin viejo | `28.145, -16.717` | **Adeje** | 3.600 m (por fuera) |
+| las paredes | `28.19667, -16.75611` | **Guía de Isora** | 3.162 m (por dentro) |
+| inicio del sendero | `28.197601, -16.760102` | **Guía de Isora** | 3.276 m |
+| aparcamiento de Acojeja | `28.196091, -16.763203` | **Guía de Isora** | 3.152 m |
+
+**El pin va a las paredes**, que es lo que la ficha describe. Se mueve **6.907 m**.
+El aparcamiento y el inicio del sendero quedan apuntados en el registro, en
+`coordenada_de_zona`.
+
+Y OSM lo corrobora desde otro lado: la **«Montaña de Tejina»** (peak) está a
+848 m del punto nuevo, en Guía de Isora, y todo lo que hay en 1,5 km alrededor es
+de Guía de Isora.
+
+### Por qué no lo vi
+
+Escribí que «Guaría no existe en OSM en toda la isla». Era cierto y **no servía
+de nada**: el paquete de Geofabrik tiene **cero elementos de escalada en toda
+Tenerife**. Su silencio no probaba nada, igual que con la Farola. Lo que sí
+debería haberme hecho dudar es que el pin tuviera tres decimales y estuviera
+declarado como rótulo: un rótulo mal puesto no se nota.
+
+### Lo que la ficha cuenta ahora
+
+Todo de theCrag y de lo que mandó Jerome:
+
+- **Más de 130 vías** en seis sectores: Entrada, Peter Punk, Comando 25, Utah,
+  Big Wall y Tralla.
+- Roca volcánica, **las líneas más largas de la isla**, muchas por encima de los
+  **35 m**. Nivel medio-alto: **hay poco por debajo de 6a**.
+- **PERMISO OBLIGATORIO del Cabildo**, por internet, con **cupo diario de 70
+  personas**. Antes la ficha decía «código QR in situ», que no es como se pide.
+- **De febrero a junio se cierran vías** por la nidificación del **halcón
+  tagarote**.
+- Orientación sur y sol todo el día: mejor madrugar.
+- **Se aparca en Acojeja sin bloquear portones ni accesos a las fincas** —la
+  relación con los vecinos es delicada— y se sube a pie entre 15 y 30 minutos.
+
+Fuera el rango «5c-8a», que theCrag contradice: su histograma va de 4a a 8c.
+
+En los 10 idiomas.
+
+---
+
+## El bloque 4 queda cerrado
+
+**0 fichas con el municipio fuera de sitio.** De las 16 del principio: 3 eran
+fallo de mi control, 12 se corrigieron y 1 se dio de baja.
 
 ---
 

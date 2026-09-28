@@ -1374,7 +1374,7 @@ fallo** donde antes decía 3 y ya está.
 Con los dos controles funcionando, **el único bloque en rojo del proyecto es el
 del municipio**.
 
-## El municipio · 1 fuera de sitio, 14 que solo nombran una zona
+## El municipio · 0 fuera de sitio, 14 que solo nombran una zona
 
 La primera version cruzaba lo que cada ficha declara —un tramo del `cat` o el
 paréntesis del nombre— con el municipio de **las paradas de TITSA de
@@ -1393,8 +1393,7 @@ y aparecieron **16**. De esas:
   con su propio apartado: **no pasan y no fallan, se cuentan y se listan**.
 - **13 son de verdad**, repartidas en `MUNICIPIOS-BLOQUE4.md`: 8 donde miente el
   texto, 1 donde miente el pin, 3 sobre la raya que decide la fuente oficial y 1
-  sin nada que la respalde. **Queda 1 abierta**, `escal-guaria`. Las otras 12
-  están resueltas:
+  sin nada que la respalde. **Las 13 están resueltas y el bloque queda a cero:**
   `sendero-roque-conde` no era ni una cosa ni la otra — la ficha es **la subida,
   no la cumbre**, así que Arona era correcto y lo que estaba mal era el pin, que
   apuntaba al pico. Se mueve al inicio publicado por el Ayuntamiento de Adeje,
@@ -1412,7 +1411,10 @@ y aparecieron **16**. De esas:
   el barrio de La Laguna —«un pulmón verde entre la ciudad», «vistas al
   aeropuerto», «sendero de 45 minutos desde la ciudad»—, todo ello a 45 km de la
   montaña. No se inventa una nueva: se deja **sólo lo que tiene fuente** y se
-  avisa de la confusión de nombres.
+  avisa de la confusión de nombres. Y la última, `escal-guaria`, resultó ser el
+  caso contrario al que yo suponía: **el texto tenía razón y el pin estaba a
+  6,9 km**. Guaría está en Guía de Isora, en el Monumento Natural de la Montaña
+  de Tejina, y el punto apuntaba a los altos de Adeje.
 
 **El área vuelve a estar ABIERTA.** Un área no puede estar cerrada mientras su
 control está en rojo. Las cifras no se escriben aquí a mano: las cuenta
