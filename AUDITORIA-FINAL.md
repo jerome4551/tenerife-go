@@ -1346,7 +1346,7 @@ hay que mezclar**: lo comprobado y correcto, lo comprobado y mal, y lo que no
 se puede comprobar desde aquí, con su motivo. Esa tercera columna es la que
 faltaba, y es la que hacía que cada semana apareciera una lista nueva.
 
-## El municipio · 13 fuera de sitio, 14 que solo nombran una zona
+## El municipio · 12 fuera de sitio, 14 que solo nombran una zona
 
 La primera version cruzaba lo que cada ficha declara —un tramo del `cat` o el
 paréntesis del nombre— con el municipio de **las paradas de TITSA de
@@ -1363,9 +1363,14 @@ y aparecieron **16**. De esas:
   nombran, 6 caen en Buenavista del Norte y 1 en Los Silos). Un nombre que
   manda a dos municipios distintos no es el nombre de uno. Ahora van a `ZONAS`,
   con su propio apartado: **no pasan y no fallan, se cuentan y se listan**.
-- **13 son de verdad**, y están repartidas en `MUNICIPIOS-BLOQUE4.md`: 8 donde
-  miente el texto, 1 donde miente el pin, 3 sobre la raya que decide la fuente
-  oficial y 1 sin nada que la respalde.
+- **13 son de verdad**, repartidas en `MUNICIPIOS-BLOQUE4.md`: 8 donde miente el
+  texto, 1 donde miente el pin, 3 sobre la raya que decide la fuente oficial y 1
+  sin nada que la respalde. **Queda 1 resuelta y 12 abiertas**:
+  `sendero-roque-conde` no era ni una cosa ni la otra — la ficha es **la subida,
+  no la cumbre**, así que Arona era correcto y lo que estaba mal era el pin, que
+  apuntaba al pico. Se mueve al inicio publicado por el Ayuntamiento de Adeje,
+  Calle Vento (Arona), y de paso se corrigen los datos de la ruta, que no
+  coincidían con ninguna fuente oficial.
 
 **El área vuelve a estar ABIERTA.** Un área no puede estar cerrada mientras su
 control está en rojo. Las cifras no se escriben aquí a mano: las cuenta

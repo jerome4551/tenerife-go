@@ -620,6 +620,13 @@
   "windsurf-la-tejita": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "sendero-roque-conde": {
+   "fecha": "2026-09-28",
+   "lat": 28.100997,
+   "lng": -16.687583,
+   "fuente": "Ayuntamiento de Adeje, costa-adeje.es/es/naturaleza/roque-del-conde: «Inicio: Calle Vento (Arona)». Coordenada publicada por el propio ayuntamiento.",
+   "nota": "La ficha es la SUBIDA, no la cumbre, asi que el punto va al inicio oficial y no al pico. Antes estaba en la cima (28.1042, -16.6986), que cae en Adeje a 13 m del pico marcado en OSM; se mueve 1.138 m. Comprobado con el poligono del Cabildo: el punto nuevo cae en Arona, a 354 m de la raya. El municipio de la ficha NO cambia: Arona es correcto. El Cabildo situa el inicio en la Plaza del Cristo de la Salud (Arona), unos 650 m antes, pero de esa plaza no hay coordenada publicada."
   }
  },
  "areas": {

@@ -3,6 +3,11 @@
 Era el único bloque en rojo. **Eran 16 y son 13**, porque tres no eran fallo de
 las fichas sino de mi control. Eso va primero, porque es lo que cambia la cifra.
 
+> **Al día 28 de septiembre: 1 resuelta, quedan 12.**
+> `sendero-roque-conde` (la 8) no era ni texto ni pin de los de aquí: la ficha es
+> **la subida y no la cumbre**, así que Arona era correcto y lo que estaba mal era
+> el pin. Aplicada — ver el final del documento.
+
 ---
 
 ## 0 · Tres de las 16 las cantaba yo mal
@@ -76,7 +81,7 @@ un pin que se cayó al otro lado por unos metros.
 |---|---|---|---|---|
 | `mir-chivisaya` | Güímar | **Candelaria** | «Mirador de Chivisaya» a **1 m** | 4,3 km |
 | `mir-lomo-molino` | Garachico | **El Tanque** | «Mirador Lomo Molino» a **12 m**, «El Montero» a 12 m y el rótulo a 32 m | 112 m |
-| `sendero-roque-conde` | Arona | **Adeje** | «Roque del Conde» (peak) a **13 m** | 720 m |
+| ~~`sendero-roque-conde`~~ | — | — | **RESUELTA de otra manera**, ver el final | — |
 | `playa-caleton-sauzal` | El Sauzal | **La Matanza de Acentejo** | «El Caletón» (caserío) a **28 m** | 1,2 km |
 | `minigolf-precise-resort` | Puerto de la Cruz | **Los Realejos** | «Precise Resort Tenerife» a **67 m** | 58 m |
 | `montana-taco` | San Cristóbal de La Laguna | **Buenavista del Norte** | «Montaña de Taco» (volcán) a **247 m** | 45 km |
@@ -103,13 +108,6 @@ encaja con ese sitio.
 (**Tierra del Trigo**)». La Tierra del Trigo es **de Los Silos** — es la única
 de la isla en OSM, y está 659 m dentro de Los Silos. La propia ficha se
 contradice: el paréntesis dice la verdad y el nombre del municipio no.
-
-### Una con matiz que decides tú
-
-**`sendero-roque-conde`.** El Roque del Conde es de Adeje, sin discusión: el
-pico está 720 m dentro. Pero la ficha es **el ascenso**, y el ascenso arranca
-en Arona (Vento). Si lo que quieres marcar es la ruta y no la cumbre, lo que
-hay que mover no es el texto sino el pin.
 
 ---
 
@@ -165,9 +163,8 @@ hay que mover no es el texto sino el pin.
 
 ## Lo que necesito de ti
 
-1. **Grupo A (8)** — ¿cambio el texto al municipio que dice el polígono? Con
-   eso el bloque baja de 13 a 5. En `sendero-roque-conde`, dime si la ficha es
-   la cumbre o la ruta.
+1. **Grupo A (7, era 8)** — ¿cambio el texto al municipio que dice el polígono?
+   Con eso el bloque baja de 12 a 5. ~~`sendero-roque-conde`~~ ya está resuelta.
 2. **Grupo B (1)** — ¿el Mercadona de Tacoronte es el de
    `28.478618, -16.413241`?
 3. **Grupo C (3)** — Las Lajas la decide el Cabildo; el guachinche, su
@@ -184,3 +181,46 @@ ficha se toca sin tu OK.
 *Todo lo de aquí se regenera con `node tools/auditar_municipio.js` (polígono del
 Cabildo, vía `tools/municipio.py`) y `python3 tools/geofabrik_cerca.py`
 (paquete de OSM en `datos/osm-geofabrik/`). Ninguna cifra está escrita a mano.*
+
+---
+
+## Aplicado · 8 · `sendero-roque-conde` (28 de septiembre)
+
+**No era del grupo A.** La ficha es **la subida**, no la cumbre, así que el
+municipio **no cambia**: Arona es correcto. Lo que estaba mal era el pin, que
+apuntaba al pico.
+
+- **El pin** pasa de `28.1042, -16.6986` (la cima, en Adeje, a 13 m del pico de
+  OSM) a **`28.100997, -16.687583`**, el inicio publicado por el **Ayuntamiento
+  de Adeje** («Inicio: Calle Vento (Arona)»). Se mueve **1.138 m**. Comprobado
+  con el polígono: cae en **Arona**, a 354 m de la raya.
+- **Los datos de la ruta** no coincidían con ninguna fuente oficial. Fuera
+  «circular», «7,5 km», «3 horas», «+410 m», «Difícil», «1.001 m», «menceyato de
+  Abona» y «cuerdas». Entra, del Ayuntamiento de Adeje: **lineal, 3,7 km hasta la
+  cima, 2 h, dificultad media, cotas 596–999 m, +484 m de desnivel, vuelta por el
+  mismo camino**. Y se dice que **la cima está en Adeje, pasado el Barranco del
+  Rey**, que es el límite.
+- **La etiqueta «Difícil» pasa a «Medio»**, que es como escriben la dificultad
+  media las otras 21 rutas y ya tenía fila en el glosario. «1001m» se va con la
+  cota.
+- **De paso**: el `cat` italiano decía «Cumbre», en castellano, desde siempre.
+  Ningún control lo miraba porque la vigilancia de etiquetas es de los chips del
+  globo, no del primer tramo del `cat`. Queda «Cima».
+
+En los 10 idiomas, con búlgaro y polaco traducidos desde el castellano y
+pasando las mismas comprobaciones. La entrega, con antes y después por id, está
+en `datos/entregas/bloque4-08-sendero-roque-conde.json`.
+
+**Lo que no he tocado y por qué:**
+
+- El inicio del **Cabildo** (Plaza del Cristo de la Salud, unos 650 m antes) no
+  se usa porque **no hay coordenada publicada de la plaza**. La de Vento es la
+  única. Si aparece, se cambia.
+- **`sendero-guajara`** está igual: pin en la cumbre, a 59 m del pico, y su
+  propio texto dice «Inicio en el Parador de Las Cañadas». **No lo he tocado**:
+  hace falta tu decisión y una coordenada de inicio con fuente.
+- **Alcance de la regla «senderismo = pin en el inicio», medido**: de las 37
+  fichas de senderismo, sólo **2** tienen un pico de OSM a menos de 300 m del
+  pin — `sendero-guajara` (59 m) y `ruta-pico-viejo` (137 m, Pico Viejo
+  Occidental). Las otras 35 ya apuntan a otra cosa. Fijar la regla toca **dos
+  fichas, no treinta**.
