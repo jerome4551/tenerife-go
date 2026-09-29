@@ -3,7 +3,8 @@
 """
 gasolineras.py — las gasolineras de la app contra el REGISTRO OFICIAL.
 
-    python3 tools/gasolineras.py
+    python3 tools/gasolineras.py              contra el registro oficial
+    python3 tools/gasolineras.py --sin-registro   provisional, mientras no llega
 
 QUE NECESITA
   datos/gasolineras/miteco_provincia38_AAAA-MM-DD.json, que es la respuesta de
@@ -20,6 +21,14 @@ POR QUE EL REGISTRO Y NO GOOGLE
   Google no da coordenadas y no es fuente oficial. El registro si: trae rotulo,
   direccion, municipio, horario, coordenadas y el IDEESS, que es el
   identificador oficial de la estacion y permite volver a sincronizar.
+
+EL MODO --sin-registro
+  Mientras el registro no este, empareja las CAPTURAS de Jerome con los
+  surtidores del mapa del repositorio: misma marca, mismo municipio, y la calle
+  de la direccion comprobada contra la red de calles. Sirve para saber CUAL es
+  cada estacion y cuales de las fichas de la app no tienen ninguna detras. NO DA
+  COORDENADA OFICIAL: para eso hace falta el registro, que es el unico que trae
+  el IDEESS. Todo lo que salga de aqui es provisional y lleva la etiqueta.
 
 QUE HACE, Y QUE NO
   Clasifica cada ficha de la app y prepara las altas. NO TOCA index.html: deja
@@ -154,7 +163,78 @@ def gasolineras_app():
     return json.loads(o.stdout)
 
 
+def calle_de(lat, lng, radio=150):
+    """Las calles con nombre alrededor de un punto, de mas cerca a mas lejos."""
+    import osm_cerca as o
+    vs = o.vias((lat, lng), radio)
+    return [(v[0], k[0]) for k, v in sorted(vs.items(), key=lambda x: x[1][0]) if k[0]]
+
+
+def sin_registro():
+    """Provisional: las capturas contra los surtidores del mapa del repo."""
+    caps = json.load(open(os.path.join(DIR, 'capturas_google_lote1.json'),
+                          encoding='utf-8'))['capturas']
+    fuel = [e for e in gf.cargar() if 'fuel' in (e.get('fclass') or [])]
+    for e in fuel:
+        e['marca_osm'] = marca_de(e.get('name'))
+        e['muni_pol'] = M.de(e['lat'], e['lng'])
+    print('surtidores en el mapa: %d  ·  con marca reconocible: %d'
+          % (len(fuel), sum(1 for e in fuel if e['marca_osm'])))
+    print('capturas del lote 1: %d\n' % len(caps))
+
+    out = {}
+    for k in sorted(caps):
+        c = caps[k]
+        mi = marca_de(c.get('marca') or c.get('nombre_google'))
+        muni = c.get('municipio_en_direccion')
+        cand = [e for e in fuel if mi and e['marca_osm'] == mi]
+        if muni:
+            enmuni = [e for e in cand if e['muni_pol'] and
+                      llano(e['muni_pol']).startswith(llano(muni)[:8])]
+            if enmuni:
+                cand = enmuni
+        # la calle de la direccion, sin el numero ni el CP
+        via = llano(re.split(r',', c.get('direccion_google') or '')[0])
+        via = re.sub(r'^(c|c/|calle|av|avda|avenida|carr|ctra|carretera|cam|camino|urb|pl|plaza)\.?\s+',
+                     '', via).strip()
+        marcados = []
+        for e in cand:
+            calles = calle_de(e['lat'], e['lng'])
+            casa = any(via and via[:9] in llano(n) for _, n in calles[:6])
+            marcados.append((0 if casa else 1, e, calles[:2]))
+        marcados.sort(key=lambda x: x[0])
+        casan = [m for m in marcados if m[0] == 0]
+        out[k] = {
+            'captura': {'nombre': c.get('nombre_google'), 'marca': c.get('marca'),
+                        'direccion': c.get('direccion_google'), 'cp': c.get('cp'),
+                        'telefono': c.get('telefono_google')},
+            'estado': ('una sola, y la calle casa' if len(casan) == 1 else
+                       'varias con la calle' if len(casan) > 1 else
+                       'ninguna casa por calle' if cand else 'la marca no esta en el mapa'),
+            'candidatos': [{'nombre_osm': e.get('name'), 'lat': e['lat'], 'lng': e['lng'],
+                            'municipio_poligono': e['muni_pol'], 'osm': e.get('osm'),
+                            'calles': [n for _, n in cl], 'la_calle_casa': (n0 == 0)}
+                           for n0, e, cl in marcados[:3]],
+            'AVISO': 'PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS.',
+        }
+        m0 = marcados[0] if marcados else None
+        print('  %-10s %-26s %-22s %s' % (
+            k, (c.get('nombre_google') or '')[:26], out[k]['estado'],
+            '' if not m0 else '%s · %s' % ((m0[1].get('name') or '?')[:18],
+                                           (m0[2][0][1] if m0[2] else '?')[:26])))
+    ruta = os.path.join(DIR, 'capturas_contra_el_mapa_PROVISIONAL.json')
+    json.dump({'_': ['PROVISIONAL, mientras no llega el registro oficial del MITECO.',
+                     'Las coordenadas son de OpenStreetMap, NO son oficiales y no traen IDEESS.',
+                     'Sirve para saber CUAL es cada estacion, no para escribir coordenadas.'],
+               'capturas': out}, open(ruta, 'w', encoding='utf-8'),
+              ensure_ascii=False, indent=1)
+    print('\nescrito %s' % ruta)
+    return 0
+
+
 def main():
+    if '--sin-registro' in sys.argv:
+        return sin_registro()
     reg, discrepan = cargar_registro()
     app = gasolineras_app()
     print('gasolineras en la app: %d\n' % len(app))

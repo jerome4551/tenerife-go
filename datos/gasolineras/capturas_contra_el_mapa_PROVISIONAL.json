@@ -1,0 +1,869 @@
+{
+ "_": [
+  "PROVISIONAL, mientras no llega el registro oficial del MITECO.",
+  "Las coordenadas son de OpenStreetMap, NO son oficiales y no traen IDEESS.",
+  "Sirve para saber CUAL es cada estacion, no para escribir coordenadas."
+ ],
+ "capturas": {
+  "IMG_3467": {
+   "captura": {
+    "nombre": "E.S. BP San Benito",
+    "marca": "BP",
+    "direccion": "Autopista del Nte., KM 10, 38203 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38203",
+    "telefono": "922 25 91 35"
+   },
+   "estado": "varias con la calle",
+   "candidatos": [
+    {
+     "nombre_osm": "BP SAN BENITO",
+     "lat": 28.486123,
+     "lng": -16.324091,
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "osm": "node/287006104",
+     "calles": [
+      "Calle Eduardo Westerdahl",
+      "Autopista del Norte"
+     ],
+     "la_calle_casa": true
+    },
+    {
+     "nombre_osm": "BP Los Naranjeros",
+     "lat": 28.480694,
+     "lng": -16.397972,
+     "municipio_poligono": "Tacoronte",
+     "osm": "node/839484060",
+     "calles": [
+      "Autopista del Norte",
+      "Calle Inocencio Rodríguez Guanche"
+     ],
+     "la_calle_casa": true
+    },
+    {
+     "nombre_osm": "BP",
+     "lat": 28.052252,
+     "lng": -16.636594,
+     "municipio_poligono": "San Miguel de Abona",
+     "osm": "node/903039898",
+     "calles": [
+      "Autopista del Sur",
+      "Lugar Oroteanda Alta"
+     ],
+     "la_calle_casa": true
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3469": {
+   "captura": {
+    "nombre": "Oceano",
+    "marca": "Océano",
+    "direccion": "Cam. la Villa, 183, 38203 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38203",
+    "telefono": null
+   },
+   "estado": "ninguna casa por calle",
+   "candidatos": [
+    {
+     "nombre_osm": "Estación de Servicio Océano Los Realejos",
+     "lat": 28.380895,
+     "lng": -16.575732,
+     "municipio_poligono": "Los Realejos",
+     "osm": "node/10724653045",
+     "calles": [
+      "Calle Los Fogueteros",
+      "Calle Anaga"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Estación de Servicio Océano Tabares",
+     "lat": 28.483969,
+     "lng": -16.290027,
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "osm": "area/1410869511",
+     "calles": [
+      "Carretera de los Campitos",
+      "Carretera de Valle Tabares"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3470": {
+   "captura": {
+    "nombre": "Estación de servicio Cepsa",
+    "marca": "Cepsa",
+    "direccion": "JUNTO A CASAL DEL MAR, Carr. Autovìa San Andrès, S/N, 38001 Santa Cruz de Tenerife",
+    "cp": "38001",
+    "telefono": "922 69 37 29"
+   },
+   "estado": "ninguna casa por calle",
+   "candidatos": [
+    {
+     "nombre_osm": "Moeve Fomento",
+     "lat": 28.458541,
+     "lng": -16.253559,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "node/839469411",
+     "calles": [
+      "Calle Fomento",
+      "Calle Álvaro Rodríguez López"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Moeve",
+     "lat": 28.436528,
+     "lng": -16.282167,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "node/839469859",
+     "calles": [
+      "Autopista del Sur"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Estación de Servicio Moeve Aracayú",
+     "lat": 28.467418,
+     "lng": -16.271056,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "node/839471393",
+     "calles": [
+      "Avenida de Venezuela",
+      "Avenida de Venezuela"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3471": {
+   "captura": {
+    "nombre": "DISA",
+    "marca": "DISA",
+    "direccion": "C. Virgen de Begoña, 25, 38320 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38320",
+    "telefono": "922 64 86 05"
+   },
+   "estado": "una sola, y la calle casa",
+   "candidatos": [
+    {
+     "nombre_osm": "Disa",
+     "lat": 28.465912,
+     "lng": -16.283144,
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "osm": "area/1410867102",
+     "calles": [
+      "Calle Virgen de Begoña",
+      "Avenida de los Menceyes"
+     ],
+     "la_calle_casa": true
+    },
+    {
+     "nombre_osm": "Disa",
+     "lat": 28.425459,
+     "lng": -16.316855,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "area/595523234",
+     "calles": [
+      "Calle Cruz de la Gallega",
+      "Carretera General del Sur"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Disa El Puertito",
+     "lat": 28.306473,
+     "lng": -16.386452,
+     "municipio_poligono": "Güímar",
+     "osm": "node/287006140",
+     "calles": [
+      "Carretera del Puertito",
+      "Camino Samarines"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3472": {
+   "captura": {
+    "nombre": "E.S. Pcan \"Consteide\"",
+    "marca": "Pcan",
+    "direccion": "Carr. de la Esperanza, 22, 38291 Santa Cruz de Tenerife",
+    "cp": "38291",
+    "telefono": "922 31 20 11"
+   },
+   "estado": "varias con la calle",
+   "candidatos": [
+    {
+     "nombre_osm": "PCAN",
+     "lat": 28.473972,
+     "lng": -16.336667,
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "osm": "node/287006093",
+     "calles": [
+      "Carretera de La Esperanza",
+      "Camino la Mina"
+     ],
+     "la_calle_casa": true
+    },
+    {
+     "nombre_osm": "PCAN",
+     "lat": 28.456,
+     "lng": -16.362139,
+     "municipio_poligono": "El Rosario",
+     "osm": "node/287006159",
+     "calles": [
+      "Calle Cascajal",
+      "Carretera de La Esperanza"
+     ],
+     "la_calle_casa": true
+    },
+    {
+     "nombre_osm": "PCAN",
+     "lat": 28.399552,
+     "lng": -16.350834,
+     "municipio_poligono": "Candelaria",
+     "osm": "node/287006078",
+     "calles": [
+      "Carretera General del Sur",
+      "Calle Mora el Pino"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3473": {
+   "captura": {
+    "nombre": "Estación de Servicio DISA",
+    "marca": "DISA",
+    "direccion": "Urb. Cuevas Blancas, C. Punta de la Vista, S/N, 38109 Santa María del Mar, Santa Cruz de Tenerife",
+    "cp": "38109",
+    "telefono": "689 75 29 53"
+   },
+   "estado": "ninguna casa por calle",
+   "candidatos": [
+    {
+     "nombre_osm": "Disa",
+     "lat": 28.425459,
+     "lng": -16.316855,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "area/595523234",
+     "calles": [
+      "Calle Cruz de la Gallega",
+      "Carretera General del Sur"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Disa El Puertito",
+     "lat": 28.306473,
+     "lng": -16.386452,
+     "municipio_poligono": "Güímar",
+     "osm": "node/287006140",
+     "calles": [
+      "Carretera del Puertito",
+      "Camino Samarines"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Disa",
+     "lat": 28.153495,
+     "lng": -16.640249,
+     "municipio_poligono": "Vilaflor",
+     "osm": "node/287006233",
+     "calles": [
+      "Calle Santa Catalina",
+      "Camino del Coto"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3474": {
+   "captura": {
+    "nombre": "DISA",
+    "marca": "DISA",
+    "direccion": "Av. Francisco la Roche, S/N, 38001 Santa Cruz de Tenerife",
+    "cp": "38001",
+    "telefono": null
+   },
+   "estado": "varias con la calle",
+   "candidatos": [
+    {
+     "nombre_osm": "Disa Tres de Mayo",
+     "lat": 28.45738,
+     "lng": -16.265212,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "node/839476253",
+     "calles": [
+      "Calle Ortega y Gasset",
+      "Autopista del Norte"
+     ],
+     "la_calle_casa": true
+    },
+    {
+     "nombre_osm": "Disa Náutico",
+     "lat": 28.479241,
+     "lng": -16.242934,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "area/550110240",
+     "calles": [
+      "Avenida Francisco La Roche",
+      "Avenida Francisco La Roche"
+     ],
+     "la_calle_casa": true
+    },
+    {
+     "nombre_osm": "Disa",
+     "lat": 28.425459,
+     "lng": -16.316855,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "area/595523234",
+     "calles": [
+      "Calle Cruz de la Gallega",
+      "Carretera General del Sur"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3475": {
+   "captura": {
+    "nombre": "DISA",
+    "marca": "DISA",
+    "direccion": "C/ Panamá, 1. Barrio Buenos Aires, C. Panamá, 3, Nave 8H, 38009 Santa Cruz de Tenerife",
+    "cp": "38009",
+    "telefono": "609 50 84 60"
+   },
+   "estado": "ninguna casa por calle",
+   "candidatos": [
+    {
+     "nombre_osm": "Disa",
+     "lat": 28.425459,
+     "lng": -16.316855,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "area/595523234",
+     "calles": [
+      "Calle Cruz de la Gallega",
+      "Carretera General del Sur"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Disa",
+     "lat": 28.488638,
+     "lng": -16.231627,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "node/287006395",
+     "calles": [
+      "Autovía de San Andrés",
+      "Vía de Servicio del Bufadero"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Disa Tío Pino",
+     "lat": 28.458884,
+     "lng": -16.272425,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "node/287006434",
+     "calles": [
+      "Carretera del Rosario",
+      "Senda Trasera Bloque 20"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3476": {
+   "captura": {
+    "nombre": "E.S. BP Las Canteras",
+    "marca": "BP",
+    "direccion": "Av. de la República Argentina, 86, 38201 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38201",
+    "telefono": "922 25 58 15"
+   },
+   "estado": "ninguna casa por calle",
+   "candidatos": [
+    {
+     "nombre_osm": "BP SAN BENITO",
+     "lat": 28.486123,
+     "lng": -16.324091,
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "osm": "node/287006104",
+     "calles": [
+      "Calle Eduardo Westerdahl",
+      "Autopista del Norte"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "BP",
+     "lat": 28.413738,
+     "lng": -16.546244,
+     "municipio_poligono": "Puerto de la Cruz",
+     "osm": "node/287006176",
+     "calles": [
+      "Carretera Botánico",
+      "Carretera Taoro"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "BP",
+     "lat": 28.033096,
+     "lng": -16.650317,
+     "municipio_poligono": "Arona",
+     "osm": "node/287006232",
+     "calles": [
+      "Avenida Fernando Salazar González",
+      "Calle Beleño"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3477": {
+   "captura": {
+    "nombre": "Estación de Servicio Repsol",
+    "marca": "Repsol",
+    "direccion": "TF-1, 54, 38611 San Isidro, Santa Cruz de Tenerife",
+    "cp": "38611",
+    "telefono": "922 39 09 09"
+   },
+   "estado": "ninguna casa por calle",
+   "candidatos": [
+    {
+     "nombre_osm": "Repsol",
+     "lat": 28.455757,
+     "lng": -16.316953,
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "osm": "node/287006420",
+     "calles": [
+      "Calle San Antonio",
+      "Camino San Miguel de Geneto"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Repsol",
+     "lat": 28.426391,
+     "lng": -16.299488,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "node/287006439",
+     "calles": [
+      "Calle Bentagay",
+      "Rambla Añaza"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Repsol",
+     "lat": 28.058965,
+     "lng": -16.690988,
+     "municipio_poligono": "Arona",
+     "osm": "node/287006583",
+     "calles": [
+      "Autopista del Sur"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3478": {
+   "captura": {
+    "nombre": "E.S. BP",
+    "marca": "BP",
+    "direccion": "Carr. Gral. del Nte., 73, 38360 El Sauzal, Santa Cruz de Tenerife",
+    "cp": "38360",
+    "telefono": "822 17 85 44"
+   },
+   "estado": "ninguna casa por calle",
+   "candidatos": [
+    {
+     "nombre_osm": "BP SAN BENITO",
+     "lat": 28.486123,
+     "lng": -16.324091,
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "osm": "node/287006104",
+     "calles": [
+      "Calle Eduardo Westerdahl",
+      "Autopista del Norte"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "BP",
+     "lat": 28.413738,
+     "lng": -16.546244,
+     "municipio_poligono": "Puerto de la Cruz",
+     "osm": "node/287006176",
+     "calles": [
+      "Carretera Botánico",
+      "Carretera Taoro"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "BP",
+     "lat": 28.033096,
+     "lng": -16.650317,
+     "municipio_poligono": "Arona",
+     "osm": "node/287006232",
+     "calles": [
+      "Avenida Fernando Salazar González",
+      "Calle Beleño"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3479": {
+   "captura": {
+    "nombre": "Gasolinera Tgas El Rosario",
+    "marca": "Tgas",
+    "direccion": "C. Isaac Peral, 38109 El Rosario, Santa Cruz de Tenerife",
+    "cp": "38109",
+    "telefono": "922 26 84 43"
+   },
+   "estado": "ninguna casa por calle",
+   "candidatos": [
+    {
+     "nombre_osm": "Tgas",
+     "lat": 28.38975,
+     "lng": -16.665028,
+     "municipio_poligono": "La Guancha",
+     "osm": "node/287006222",
+     "calles": [],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Tgas",
+     "lat": 28.484639,
+     "lng": -16.313778,
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "osm": "node/287006424",
+     "calles": [
+      "Calle Santo Domingo",
+      "Plaza de San Cristóbal"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "TGAS Hipertrébol",
+     "lat": 28.442083,
+     "lng": -16.284056,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "node/287006431",
+     "calles": [
+      "Calle Laura Gröte de La Puerta",
+      "Calle Ingeniero Cervera"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3480": {
+   "captura": {
+    "nombre": "E.S. DISA",
+    "marca": "DISA",
+    "direccion": "Av. Trinidad, 78, 38203 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38203",
+    "telefono": "682 25 67 09"
+   },
+   "estado": "una sola, y la calle casa",
+   "candidatos": [
+    {
+     "nombre_osm": "Disa",
+     "lat": 28.481535,
+     "lng": -16.318562,
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "osm": "area/142470444",
+     "calles": [
+      "Leocadio Machado",
+      "Autopista del Norte"
+     ],
+     "la_calle_casa": true
+    },
+    {
+     "nombre_osm": "Disa",
+     "lat": 28.425459,
+     "lng": -16.316855,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "area/595523234",
+     "calles": [
+      "Calle Cruz de la Gallega",
+      "Carretera General del Sur"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Disa El Puertito",
+     "lat": 28.306473,
+     "lng": -16.386452,
+     "municipio_poligono": "Güímar",
+     "osm": "node/287006140",
+     "calles": [
+      "Carretera del Puertito",
+      "Camino Samarines"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3481": {
+   "captura": {
+    "nombre": "Estación de Servicio - Océano Güimar",
+    "marca": "Océano",
+    "direccion": "Manzana 13, Parcela 10, 38508, Santa Cruz de Tenerife",
+    "cp": "38508",
+    "telefono": "699 48 02 08"
+   },
+   "estado": "ninguna casa por calle",
+   "candidatos": [
+    {
+     "nombre_osm": "Estación de Servicio Océano Los Realejos",
+     "lat": 28.380895,
+     "lng": -16.575732,
+     "municipio_poligono": "Los Realejos",
+     "osm": "node/10724653045",
+     "calles": [
+      "Calle Los Fogueteros",
+      "Calle Anaga"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Estación de Servicio Océano Tabares",
+     "lat": 28.483969,
+     "lng": -16.290027,
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "osm": "area/1410869511",
+     "calles": [
+      "Carretera de los Campitos",
+      "Carretera de Valle Tabares"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3482": {
+   "captura": {
+    "nombre": "Estación De Servicio Cepsa La Palmesa",
+    "marca": "Cepsa",
+    "direccion": "Carr. Local, 75, 38360 El Sauzal, Santa Cruz de Tenerife",
+    "cp": "38360",
+    "telefono": "922 56 07 44"
+   },
+   "estado": "ninguna casa por calle",
+   "candidatos": [
+    {
+     "nombre_osm": "Moeve",
+     "lat": 28.461,
+     "lng": -16.415111,
+     "municipio_poligono": "El Sauzal",
+     "osm": "node/839471145",
+     "calles": [
+      "Calle Real Orotava",
+      "Camino de los Corrales"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Moeve",
+     "lat": 28.47596,
+     "lng": -16.434887,
+     "municipio_poligono": "El Sauzal",
+     "osm": "node/2533584140",
+     "calles": [
+      "Avenida Presidente Paulino Rivero Baute",
+      "Calle Sierva de Dios"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3483": {
+   "captura": {
+    "nombre": "Gasolinera Tgas Tu Trébol",
+    "marca": "Tgas",
+    "direccion": "Las Nieves (T), 38670, Santa Cruz de Tenerife",
+    "cp": "38670",
+    "telefono": "922 95 95 00"
+   },
+   "estado": "ninguna casa por calle",
+   "candidatos": [
+    {
+     "nombre_osm": "Tgas",
+     "lat": 28.38975,
+     "lng": -16.665028,
+     "municipio_poligono": "La Guancha",
+     "osm": "node/287006222",
+     "calles": [],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Tgas",
+     "lat": 28.484639,
+     "lng": -16.313778,
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "osm": "node/287006424",
+     "calles": [
+      "Calle Santo Domingo",
+      "Plaza de San Cristóbal"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "TGAS Hipertrébol",
+     "lat": 28.442083,
+     "lng": -16.284056,
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "osm": "node/287006431",
+     "calles": [
+      "Calle Laura Gröte de La Puerta",
+      "Calle Ingeniero Cervera"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3484": {
+   "captura": {
+    "nombre": "Gasolinera Tgas La Gorvorana",
+    "marca": "Tgas",
+    "direccion": "TF-320, 10, 38418 Los Realejos, Santa Cruz de Tenerife",
+    "cp": "38418",
+    "telefono": "922 34 50 06"
+   },
+   "estado": "ninguna casa por calle",
+   "candidatos": [
+    {
+     "nombre_osm": "Gasolinera Tgas La Gorvorana",
+     "lat": 28.394101,
+     "lng": -16.572654,
+     "municipio_poligono": "Los Realejos",
+     "osm": "area/1085466304",
+     "calles": [],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3485": {
+   "captura": {
+    "nombre": "Estación de servicio Cepsa",
+    "marca": "Cepsa",
+    "direccion": "PARAJE EL TERRERO, S/N, 38410 Los Realejos, Santa Cruz de Tenerife",
+    "cp": "38410",
+    "telefono": "922 35 57 30"
+   },
+   "estado": "ninguna casa por calle",
+   "candidatos": [
+    {
+     "nombre_osm": "Moeve",
+     "lat": 28.373603,
+     "lng": -16.59004,
+     "municipio_poligono": "Los Realejos",
+     "osm": "node/672531151",
+     "calles": [
+      "Calle Caserío la Azadilla"
+     ],
+     "la_calle_casa": false
+    },
+    {
+     "nombre_osm": "Moeve",
+     "lat": 28.372556,
+     "lng": -16.575,
+     "municipio_poligono": "Los Realejos",
+     "osm": "node/839486580",
+     "calles": [
+      "Carretera Palo Blanco",
+      "Calle los Angostos"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3486": {
+   "captura": {
+    "nombre": "Shell Las Dehesas",
+    "marca": "Shell",
+    "direccion": "C. el Toscal, 8, 38417 Los Realejos, Santa Cruz de Tenerife",
+    "cp": "38417",
+    "telefono": "608 43 19 68"
+   },
+   "estado": "una sola, y la calle casa",
+   "candidatos": [
+    {
+     "nombre_osm": "Shell Las Dehesas",
+     "lat": 28.400148,
+     "lng": -16.574308,
+     "municipio_poligono": "Los Realejos",
+     "osm": "area/702471981",
+     "calles": [
+      "Calle El Toscal",
+      "Calle La Pintora"
+     ],
+     "la_calle_casa": true
+    },
+    {
+     "nombre_osm": "Estación de Servicio Shell Los Realejos",
+     "lat": 28.384194,
+     "lng": -16.577167,
+     "municipio_poligono": "Los Realejos",
+     "osm": "node/839468355",
+     "calles": [
+      "Calle Anaga",
+      "Calle los Cuartos"
+     ],
+     "la_calle_casa": false
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  },
+  "IMG_3487": {
+   "captura": {
+    "nombre": "Petroprix",
+    "marca": "Petroprix",
+    "direccion": "C. Anaga, 38419 Los Realejos, Santa Cruz de Tenerife",
+    "cp": "38419",
+    "telefono": "953 90 00 09"
+   },
+   "estado": "una sola, y la calle casa",
+   "candidatos": [
+    {
+     "nombre_osm": "Petroprix Los Realejos",
+     "lat": 28.383778,
+     "lng": -16.576597,
+     "municipio_poligono": "Los Realejos",
+     "osm": "node/10724653046",
+     "calles": [
+      "Calle Anaga",
+      "Calle Las Cesteras"
+     ],
+     "la_calle_casa": true
+    }
+   ],
+   "AVISO": "PROVISIONAL. Coordenada de OSM, no del registro oficial. Sin IDEESS."
+  }
+ }
+}

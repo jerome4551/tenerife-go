@@ -75,8 +75,57 @@ municipio, así que nunca se comprobó. Lo mismo puede pasarle a otras.
 
 ---
 
-## Sobre las otras tandas
+## Las capturas: qué son y qué dan (29 de septiembre)
 
-Dijiste de hacer 4 tandas. Para **verificar** no me hacen falta: el registro trae
-todas las estaciones. Sólo merecen la pena si quieres los **teléfonos**, que el
-registro no trae. Tú decides.
+Aclarado: **no son el registro**, son tu recorrido — fuiste una por una por todas
+las gasolineras de la isla, y en vez de 60 capturas tienes la lista transcrita.
+Lo que llegó es el **lote 1: 20 estaciones**.
+
+He escrito `python3 tools/gasolineras.py --sin-registro`, que empareja cada
+captura con los surtidores del mapa del repositorio: misma marca, mismo municipio
+y la calle de la dirección comprobada contra la red de calles.
+
+**Resultado del lote 1:**
+
+| | |
+|---|---|
+| identificadas con la calle coincidiendo | **4** |
+| varias candidatas con la calle | 3 |
+| ninguna casa por calle | 13 |
+
+Las cuatro claras: **Petroprix** en C. Anaga (Los Realejos), **Shell Las Dehesas**
+en C. El Toscal, **DISA** en C. Virgen de Begoña (La Laguna) y **DISA** de la Av.
+Trinidad. Las otras fallan casi siempre porque la dirección de Google y el nombre
+de la calle en el mapa no se escriben igual («Carr. Gral. del Nte.» contra lo que
+ponga OSM), no porque la estación no exista.
+
+### Lo que esto NO da
+
+**Ninguna coordenada.** Lo que sale de aquí es de OpenStreetMap, no del registro,
+y no trae **IDEESS**. Sirve para saber *cuál* es cada estación, no para escribir
+nada en la app. Por eso el fichero se llama
+`capturas_contra_el_mapa_PROVISIONAL.json` y lleva el aviso dentro.
+
+### Y algo que no esperaba
+
+Los municipios del lote 1 y los de las fichas de la app **casi no se tocan**:
+
+- **Lote 1**: La Laguna, Santa Cruz, Los Realejos, El Sauzal, El Rosario.
+- **Las 20 de la app**: repartidas por **17 municipios**, casi todas en autopista.
+- **En los dos lados: sólo 2** — El Sauzal y Los Realejos.
+
+O sea que **el lote 1 apenas sirve para verificar las fichas que ya hay**: es
+sobre todo inventario de estaciones nuevas.
+
+## Entonces, ¿mando las otras tandas?
+
+**Sí.** Por dos razones:
+
+1. Es donde van a aparecer las gasolineras que la app ya tiene, que están en el
+   sur y en las autopistas. El lote 1 no las toca.
+2. Es el inventario de lo que existe de verdad, y eso es lo que dice cuáles de
+   las 20 de la app son fantasmas.
+
+**Pero el registro sigue haciendo falta**, y vale más que las 60 capturas: es lo
+único que da coordenada oficial e IDEESS. Las capturas dicen *qué* hay; el
+registro dice *dónde* está y permite volver a sincronizar mañana.
