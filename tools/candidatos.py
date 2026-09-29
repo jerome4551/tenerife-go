@@ -72,6 +72,25 @@ AFIN = {
 }
 
 
+# La misma marca escrita de varias formas, y las que han cambiado de nombre.
+# Sin esto la herramienta dice «no existe» de cosas que existen, y eso ya ha
+# pasado dos veces el mismo dia:
+#   · «SuperDino Los Realejos» estaba en OSM como «Super Dino», CON ESPACIO, y
+#     como la busqueda es por palabras enteras, «hiperdino» no casaba con «dino».
+#     Llegue a escribir «de los 46 HiperDino de la isla, ninguno esta en Los
+#     Realejos». Estaba a 486 m del pin.
+#   · «Cepsa» se llama ahora MOEVE. Busque «cepsa», encontre 1 en toda la isla y
+#     di por hecho que el paquete no cubria la marca. Hay 41 Moeve.
+# Regla: si una palabra de la ficha esta aqui, se busca tambien por sus hermanas.
+MARCAS = {
+    'hiperdino': {'hiperdino', 'hiper', 'dino', 'superdino'},
+    'superdino': {'superdino', 'super', 'dino', 'hiperdino'},
+    'dino':      {'dino', 'hiperdino', 'superdino'},
+    'cepsa':     {'cepsa', 'moeve'},
+    'moeve':     {'moeve', 'cepsa'},
+}
+
+
 def llano(s):
     s = unicodedata.normalize('NFD', (s or '').lower())
     s = ''.join(c for c in s if unicodedata.category(c) != 'Mn')
@@ -79,11 +98,18 @@ def llano(s):
 
 
 def palabras(txt):
-    """Las que identifican: sin emoji, sin parentesis final, sin las vacias."""
+    """Las que identifican: sin emoji, sin parentesis final, sin las vacias.
+       Una marca arrastra a sus hermanas: ver MARCAS."""
     t = re.sub(r'\([^)]*\)', ' ', txt or '')
     t = llano(t)
     t = re.sub(r'[^a-z0-9 ]+', ' ', t)
-    return [w for w in t.split() if len(w) >= 3 and w not in VACIAS]
+    out = set()
+    for w in t.split():
+        if len(w) < 3 or w in VACIAS:
+            continue
+        out.add(w)
+        out |= MARCAS.get(w, set())
+    return sorted(out)
 
 
 def fichas(ids=None):

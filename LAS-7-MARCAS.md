@@ -1,9 +1,9 @@
 # Las 7 marcas del bloque 5
 
-> **29 de septiembre: tres resueltas con las capturas de Jerome.**
-> `lidl-granadilla` y `lidl-la-laguna` aplicadas; `mercadona-el-medano`
-> **de baja**, porque en El Médano no hay ningún Mercadona. Al final del
-> documento. **Quedan 4.**
+> **29 de septiembre: cinco resueltas con las capturas de Jerome.**
+> Los dos Lidl, los dos Dino y la baja del Mercadona. Al final del documento.
+> **Quedan 2, las dos gasolineras** — y con una corrección de peso: Cepsa se
+> llama ahora **Moeve**, y yo la buscaba por el nombre viejo.
 
 No he podido llegar a ninguna fuente oficial: los buscadores de tiendas de Lidl,
 Mercadona, HiperDino, Repsol y Cepsa dan `000` desde aquí, igual que Overpass y
@@ -206,3 +206,58 @@ del schema.org al día.
 - **El segundo Lidl de Granadilla.** Tu captura enseña también un «Lidl, C.
   Tenerife, 39, 38612 Granadilla», el del casco. No está en OSM y la app no lo
   tiene. Sería otro alta.
+
+---
+
+## Aplicado · los dos Dino (29 de septiembre)
+
+### `hiperdino-los-realejos` — existía, y es un **SuperDino**
+
+Escribí que «de los 46 HiperDino de la isla, ninguno está en Los Realejos».
+**Estaba a 486 m del pin.** En OSM se llama **«Super Dino», con espacio**, y mi
+búsqueda es por palabras enteras: `hiperdino` no casaba con `dino`.
+
+```
+antes    28.392,    -16.582      un descampado, con «Los Barros» a 172 m
+después  28.388094, -16.584238   Plaza Mencey Bencomo (a 27 m)
+```
+
+La captura de Jerome lo confirma: **SuperDino Los Realejos, Pl. Mencey Bencomo,
+s/n, 38410**, tel. 922 44 16 81. La ficha pasa a llamarse **SuperDino Los
+Realejos**: la marca era la que estaba mal, no sólo el sitio.
+
+### `hiperdino-arona-montaneta` — el texto sí, el pin todavía no
+
+**En Arona no hay ningún HiperDino**; el de la zona es el de **Valle de San
+Lorenzo**, que también es del municipio de Arona: **Av. Valle San Lorenzo, 131,
+TF-28, 38626**, tel. 922 44 16 84.
+
+Cambiado el nombre, la descripción, el `cat` y los tags en los 10 idiomas.
+**El pin NO se mueve**, y esto es a propósito: OSM no tiene ese HiperDino, la
+Avenida Valle San Lorenzo sí está en el mapa pero el número 131 no, y no me
+invento una coordenada. La ficha sigue en la lista de «a ojo y sin verificar»,
+que es donde le toca.
+
+**Me hace falta una captura como la del Mercadona de Tacoronte** y se cierra.
+
+---
+
+## Corrección de peso: Cepsa se llama Moeve
+
+Escribí que el paquete «no cubre Cepsa» porque encontré **una sola** en toda la
+isla. Es falso: **Cepsa se llama ahora Moeve**, y hay **41**.
+
+Eso cambia las dos gasolineras que quedan, porque ahora sí puedo mirar qué hay
+**de cualquier marca** cerca de cada pin:
+
+| ficha | dice | surtidores de verdad cerca del pin |
+|---|---|---|
+| `gas-tf1-adeje` | Repsol, TF-1 km 15 | **Moeve a 707 m** y otro a 873 m, BP a 1,8 km. **Repsol, ninguno hasta 4,8 km** |
+| `gas-tf5-icod` | Repsol, TF-5 km 55 | **DISA a 694 m**, Moeve a 1,3 km, Shell a 1,4 km. **Repsol, ninguno hasta 6,8 km** |
+| `gas-tf1-candelaria` | Cepsa, TF-1 km 55 | **DISA a 892 m** y nada más en 2 km. El Moeve más cercano, a 5,4 km |
+
+En las tres, **la marca que dice la ficha no está donde dice el pin**. Puede que
+lo que haya que corregir sea el nombre y no la coordenada.
+
+*(De las 202 gasolineras del paquete, **89 no llevan marca en el nombre**. Así que
+«no hay ningún Repsol cerca» tampoco es prueba: podría ser una de esas 89.)*

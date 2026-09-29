@@ -193,6 +193,10 @@
    "commit": "2ef7c67",
    "fuente": "OpenStreetMap, golf_course «Golf del Sur»"
   },
+  "hiperdino-los-realejos": {
+   "fecha": "2026-09-29",
+   "fuente": "SuperDino, ficha de la propia empresa en Google: «SuperDino Los Realejos, Pl. Mencey Bencomo, s/n, 38410 Los Realejos», tel. 922 44 16 81. Captura de Jerome del 29 de septiembre de 2026. El elemento de OSM (node/8428054218) esta a 27 m de la Plaza Mencey Bencomo."
+  },
   "las-vistas": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
