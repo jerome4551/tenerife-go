@@ -343,10 +343,6 @@
   "desc": "Sklep 24 godziny w strefie miasteczka Arona. Produkty podstawowe, napoje i przekąski dla mieszkańców wnętrza gminy.",
   "cat": "Sklep 24h · Arona"
  },
- "mercadona-el-medano": {
-  "desc": "Supermarket Mercadona w El Médano (Av. José Miguel Galván Bello), na południu Teneryfy. Główny punkt zakupów dla mieszkańców i turystów z El Médano, La Tejita, Los Abrigos i Golf del Sur. Duży bezpłatny parking. Świeże produkty, piekarnia, ryby. Zwykłe godziny: od poniedziałku do soboty 09:00-21:30.",
-  "cat": "Supermarket · El Médano · Południe"
- },
  "hiperdino-los-realejos": {
   "desc": "Supermarket HiperDino w Los Realejos, gminie na północy Teneryfy między Puerto de la Cruz a Icod de los Vinos. Punkt zakupów dla mieszkańców gminy i odwiedzających północne wybrzeże.",
   "cat": "Supermarket · Los Realejos · Północ"
@@ -360,7 +356,7 @@
   "cat": "Supermarket · Mercadona · Candelaria · Wschód"
  },
  "lidl-la-laguna": {
-  "desc": "Supermarket Lidl w La Cuesta-Taco (San Cristóbal de La Laguna). Ctra. General La Cuesta-Taco km 1,1. Piekarnia, owoce i warzywa, cotygodniowe oferty bazarowe oraz dobre produkty marki własnej w konkurencyjnej cenie. Bezpłatny parking. Pn-Sob 9:00-21:30.",
+  "desc": "Supermarket Lidl w Taco (San Cristóbal de La Laguna), calle Nuestra Señora de la Ternura 1. Piekarnia, owoce i warzywa, cotygodniowe oferty bazarowe oraz dobre produkty marki własnej w konkurencyjnej cenie. Bezpłatny parking. Pn-Sob 9:00-21:30.",
   "cat": "Supermarket · Lidl · La Laguna"
  },
  "lidl-puerto-cruz": {
@@ -368,7 +364,7 @@
   "cat": "Supermarket · Lidl · Puerto de la Cruz · Północ"
  },
  "lidl-granadilla": {
-  "desc": "Supermarket Lidl w Granadilla de Abona, Avenida de la Democracia. Blisko lotniska południowego i El Médano. Piekarnia, owoce i warzywa, cotygodniowe oferty bazarowe. Bezpłatny parking. Pn-Sob 9:00-21:30.",
+  "desc": "Supermarket Lidl w San Isidro (Granadilla de Abona), Avenida de la Democracia. Blisko lotniska południowego i El Médano. Piekarnia, owoce i warzywa, cotygodniowe oferty bazarowe. Bezpłatny parking. Pn-Sob 9:00-21:30.",
   "cat": "Supermarket · Lidl · Granadilla · Południe"
  },
  "mercadona-granadilla": {

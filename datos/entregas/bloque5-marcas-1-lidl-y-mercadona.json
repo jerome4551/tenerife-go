@@ -1,0 +1,171 @@
+{
+ "_": [
+  "Entrega de las tres primeras de las 7 marcas del bloque 5.",
+  "Respuesta de Jerome del 29 de septiembre, con las fichas de la propia empresa",
+  "en Google (Lidl) y la orden de dar de baja el Mercadona de El Medano."
+ ],
+ "correcciones_coordenada": {
+  "lidl-granadilla": {
+   "antes": {
+    "lat": 28.134,
+    "lng": -16.558,
+    "donde": "el casco viejo de Granadilla: Calle Acaymo, Camino Real. Sin ningun supermercado en 1 km."
+   },
+   "despues": {
+    "lat": 28.073287,
+    "lng": -16.549583,
+    "donde": "Avenida de la Democracia, San Isidro (38611)"
+   },
+   "se_mueve_m": 6828,
+   "fuente": "Lidl, ficha de la propia empresa en Google: «Av. de la Democracia, S/N, 38611 San Isidro».",
+   "lo_que_ya_decia_la_app": "La descripcion de la ficha YA nombraba la Avenida de la Democracia. El pin y el texto decian dos sitios distintos y el texto traia la calle."
+  },
+  "lidl-la-laguna": {
+   "antes": {
+    "lat": 28.472,
+    "lng": -16.308,
+    "donde": "la zona universitaria: Calle Osa Mayor, Camino la Hornera. Encima, el Archivo Historico Provincial a 51 m."
+   },
+   "despues": {
+    "lat": 28.457152,
+    "lng": -16.303379,
+    "donde": "Calle Ntra. Sra. de la Ternura 1, Taco (38108)"
+   },
+   "se_mueve_m": 1712,
+   "fuente": "Lidl, ficha de la propia empresa en Google: «Calle Ntra. Sra. de la Ternura, 1, 38108 La Laguna».",
+   "comprobado": "El elemento de OSM esta a 29 m de esa calle."
+  }
+ },
+ "modificaciones": {
+  "lidl-granadilla": {
+   "desc_es": {
+    "antes": "Supermercado Lidl en Granadilla de Abona, Avenida de la Democracia. …",
+    "despues": "Supermercado Lidl en San Isidro (Granadilla de Abona), Avenida de la Democracia. Cerca del Aeropuerto Sur y de El Médano. Panadería, frutas y verduras, bazar semanal. Parking gratuito. L-S 9:00-21:30."
+   },
+   "por_que": "Anadido San Isidro: el Lidl esta en San Isidro, que es del municipio de Granadilla de Abona pero no del casco."
+  },
+  "lidl-la-laguna": {
+   "desc_es": {
+    "antes": "… Ctra. General La Cuesta-Taco km 1,1. …",
+    "despues": "Supermercado Lidl en Taco (San Cristóbal de La Laguna), calle Nuestra Señora de la Ternura 1. Panadería, frutas y verduras, bazar semanal y productos propios de calidad a precio competitivo. Parking gratuito. L-S 9:00-21:30."
+   },
+   "por_que": "La direccion que llevaba escrita era otra. La de la empresa es calle Nuestra Senora de la Ternura 1."
+  },
+  "_idiomas": {
+   "en": {
+    "lidl-granadilla": {
+     "desc": "Lidl supermarket in San Isidro (Granadilla de Abona), Avenida de la Democracia. Near Tenerife South Airport and El Médano. Bakery, fresh produce, weekly bazaar. Free parking. Mon-Sat 9:00-21:30.",
+     "cat": "Supermarket · Lidl · Granadilla · South"
+    },
+    "lidl-la-laguna": {
+     "desc": "Lidl supermarket in Taco (La Laguna), calle Nuestra Señora de la Ternura 1. Bakery, fruit and veg, weekly bazaar. Free parking. Mon-Sat 9:00-21:30.",
+     "cat": "Supermarket · Lidl · La Laguna"
+    }
+   },
+   "fr": {
+    "lidl-granadilla": {
+     "desc": "Supermarché Lidl à San Isidro (Granadilla de Abona), Avenida de la Democracia. Près de l'aéroport Sud et d'El Médano. Boulangerie, fruits et légumes, bazar hebdomadaire. Parking gratuit. Lun-Sam 9:00-21:30.",
+     "cat": "Supermarché · Lidl · Granadilla · Sud"
+    },
+    "lidl-la-laguna": {
+     "desc": "Supermarché Lidl à Taco (San Cristóbal de La Laguna), calle Nuestra Señora de la Ternura 1. Boulangerie, fruits et légumes, bazar hebdomadaire et produits de marque propre de qualité à prix compétitif. Parking gratuit. Lun-Sam 9h00-21h30.",
+     "cat": "Supermarché · Lidl · La Laguna"
+    }
+   },
+   "de": {
+    "lidl-granadilla": {
+     "desc": "Lidl in San Isidro (Granadilla de Abona), Avenida de la Democracia. In der Nähe des Flughafens Süd und von El Médano. Bäckerei, Obst und Gemüse, wöchentlicher Basar. Kostenloser Parkplatz. Mo-Sa 9:00-21:30 Uhr.",
+     "cat": "Supermarkt · Lidl · Granadilla · Süd"
+    },
+    "lidl-la-laguna": {
+     "desc": "Lidl-Supermarkt in Taco (San Cristóbal de La Laguna), calle Nuestra Señora de la Ternura 1. Bäckerei, Obst und Gemüse, wöchentlicher Bazar und hochwertige Eigenmarken zu wettbewerbsfähigen Preisen. Kostenloser Parkplatz. Mo-Sa 9:00-21:30.",
+     "cat": "Supermarkt · Lidl · La Laguna"
+    }
+   },
+   "it": {
+    "lidl-granadilla": {
+     "desc": "Supermercato Lidl a San Isidro (Granadilla de Abona), Avenida de la Democracia. Vicino all'aeroporto sud e a El Médano. Panetteria, frutta e verdura, bazar settimanale. Parcheggio gratuito. Lun-sab 9:00-21:30.",
+     "cat": "Supermercato · Lidl · Granadilla · Sud"
+    },
+    "lidl-la-laguna": {
+     "desc": "Supermercato Lidl a Taco (San Cristóbal de La Laguna), calle Nuestra Señora de la Ternura 1. Panetteria, frutta e verdura, bazar settimanale e prodotti a marchio proprio di qualità a prezzi competitivi. Parcheggio gratuito. Lun-sab 9:00-21:30.",
+     "cat": "Supermercato · Lidl · La Laguna"
+    }
+   },
+   "nl": {
+    "lidl-granadilla": {
+     "desc": "Lidl-supermarkt in San Isidro (Granadilla de Abona), Avenida de la Democracia. Vlak bij de zuidelijke luchthaven en El Médano. Bakkerij, groenten en fruit, wekelijkse bazaar. Gratis parkeren. Ma-za 9:00-21:30.",
+     "cat": "Supermarkt · Lidl · Granadilla · Zuid"
+    },
+    "lidl-la-laguna": {
+     "desc": "Lidl-supermarkt in Taco (San Cristóbal de La Laguna), calle Nuestra Señora de la Ternura 1. Bakkerij, groenten en fruit, wekelijkse bazaar en kwaliteitsproducten van het eigen merk voor een scherpe prijs. Gratis parkeren. Ma-za 9:00-21:30.",
+     "cat": "Supermarkt · Lidl · La Laguna"
+    }
+   },
+   "zh": {
+    "lidl-granadilla": {
+     "desc": "位于圣伊西德罗（格拉纳迪亚德阿沃纳）民主大道上的Lidl超市。靠近南部机场和埃尔梅达诺。设有面包房、蔬果区和每周特卖专区。免费停车。周一至周六 9:00-21:30。",
+     "cat": "超市·利德·格拉纳蒂利亚·南部"
+    },
+    "lidl-la-laguna": {
+     "desc": "位于拉拉古纳塔科的Lidl超市，地址在特尔努拉圣母街1号。设有面包房、蔬果区、每周特卖专区，以及价格实惠的优质自有品牌商品。免费停车。周一至周六 9:00-21:30。",
+     "cat": "超市·利德·拉拉古纳"
+    }
+   },
+   "zht": {
+    "lidl-granadilla": {
+     "desc": "位於聖伊西德羅（格拉納迪亞德阿沃納）民主大道上的Lidl超市。靠近南部機場和埃爾梅達諾。設有麵包房、蔬果區和每週特賣專區。免費停車。週一至週六 9:00-21:30。",
+     "cat": "超市·利德·格拉納蒂利亞·南部"
+    },
+    "lidl-la-laguna": {
+     "desc": "位於拉拉古納塔科的Lidl超市，地址在特爾努拉聖母街1號。設有麵包房、蔬果區、每週特賣專區，以及價格實惠的優質自有品牌商品。免費停車。週一至週六 9:00-21:30。",
+     "cat": "超市·利德·拉拉古納"
+    }
+   },
+   "bg": {
+    "lidl-granadilla": {
+     "desc": "Супермаркет Lidl в Сан Исидро (Гранадиля де Абона), Авенида де ла Демокрасия. Близо до летище Юг и до Ел Медано. Пекарна, плодове и зеленчуци, седмичен базар. Безплатен паркинг. Понеделник–събота 9:00-21:30.",
+     "cat": "Супермаркет · Lidl · Гранадиля · Юг"
+    },
+    "lidl-la-laguna": {
+     "desc": "Супермаркет Lidl в Тако (Сан Кристобал де ла Лагуна), улица Нуестра Сеньора де ла Тернура 1. Пекарна, плодове и зеленчуци, седмичен базар и качествени продукти собствена марка на конкурентна цена. Безплатен паркинг. Понеделник–събота 9:00-21:30.",
+     "cat": "Супермаркет · Lidl · Ла Лагуна"
+    }
+   },
+   "pl": {
+    "lidl-granadilla": {
+     "desc": "Supermarket Lidl w San Isidro (Granadilla de Abona), Avenida de la Democracia. Blisko lotniska południowego i El Médano. Piekarnia, owoce i warzywa, cotygodniowe oferty bazarowe. Bezpłatny parking. Pn-Sob 9:00-21:30.",
+     "cat": "Supermarket · Lidl · Granadilla · Południe"
+    },
+    "lidl-la-laguna": {
+     "desc": "Supermarket Lidl w Taco (San Cristóbal de La Laguna), calle Nuestra Señora de la Ternura 1. Piekarnia, owoce i warzywa, cotygodniowe oferty bazarowe oraz dobre produkty marki własnej w konkurencyjnej cenie. Bezpłatny parking. Pn-Sob 9:00-21:30.",
+     "cat": "Supermarket · Lidl · La Laguna"
+    }
+   }
+  }
+ },
+ "bajas": {
+  "mercadona-el-medano": {
+   "motivo": "En El Medano no hay ningun Mercadona. El que aparecia al buscar es el de San Isidro, a 2,9 km. Orden de Jerome del 29 de septiembre.",
+   "estaba_en": {
+    "lat": 28.05,
+    "lng": -16.538
+   },
+   "borrada_de": [
+    "index.html",
+    "idiomas/{en,fr,de,it,nl,zh,zht,bg,pl}.json",
+    "idiomas/pl-lugares/07.json"
+   ],
+   "efectos": [
+    "786 -> 785 lugares, con el contador de auditar_datos.js movido a mano y el motivo escrito",
+    "la cifra «786 puntos de interes» del schema.org, al dia",
+    "ninguna etiqueta huerfana nueva: las huerfanas siguen siendo 54"
+   ],
+   "correccion_mia": "El 28 de septiembre la puse en el grupo C diciendo que el pin estaba a 2,9 km del Mercadona mas cercano. Compare con «el mas cercano» sin mirar si era el mismo sitio. Lo que pasaba es que no existe."
+  }
+ },
+ "pendiente_de_jerome": [
+  "EL MERCADO DE EL MEDANO. Jerome dijo «deja solo el hiperDino de el medano», pero la app NO TIENE ninguna ficha de HiperDino en El Medano: el unico supermercado que tenia alli era el Mercadona que acabo de borrar. OSM tiene un «SuperDino» a 367 m de donde estaba el pin (28.046743, -16.537422), que es del mismo grupo que HiperDino. Si lo quiere, es un ALTA, y hay que saber si el rotulo dice SuperDino o HiperDino.",
+  "EL SEGUNDO LIDL DE GRANADILLA. La captura de Jerome enseña tambien un «Lidl, C. Tenerife, 39, 38612 Granadilla», que es el del casco. No esta en OSM y la app no lo tiene. Seria otro alta si lo quiere."
+ ]
+}

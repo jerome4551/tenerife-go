@@ -1,5 +1,10 @@
 # Las 7 marcas del bloque 5
 
+> **29 de septiembre: tres resueltas con las capturas de Jerome.**
+> `lidl-granadilla` y `lidl-la-laguna` aplicadas; `mercadona-el-medano`
+> **de baja**, porque en El Médano no hay ningún Mercadona. Al final del
+> documento. **Quedan 4.**
+
 No he podido llegar a ninguna fuente oficial: los buscadores de tiendas de Lidl,
 Mercadona, HiperDino, Repsol y Cepsa dan `000` desde aquí, igual que Overpass y
 Nominatim. Así que lo he hecho al revés: **he cruzado lo que cada ficha dice de sí
@@ -141,3 +146,63 @@ esto dice dónde mirar, no qué escribir.
 *Se regenera con `python3 tools/candidatos.py <id>` y
 `python3 tools/osm_cerca.py <lat,lng> <radio> --via`. Ninguna cifra está escrita
 a mano.*
+
+---
+
+## Aplicado · 29 de septiembre
+
+Jerome mandó las fichas de la propia empresa (Lidl en Google) y la orden sobre el
+Mercadona.
+
+### `lidl-granadilla` — se mueve 6.828 m
+
+```
+antes    28.134,    -16.558      el casco viejo: Calle Acaymo, Camino Real
+                                 sin ningún supermercado en 1 km
+después  28.073287, -16.549583   Av. de la Democracia, San Isidro (38611)
+```
+
+**La ficha ya lo decía.** Su descripción nombraba la Avenida de la Democracia
+desde el principio; el pin decía otra cosa. La captura lo confirma.
+
+Se añade «San Isidro» al texto en los 10 idiomas: el Lidl está en San Isidro, que
+es del municipio de Granadilla de Abona pero no del casco.
+
+### `lidl-la-laguna` — se mueve 1.712 m
+
+```
+antes    28.472,    -16.308      la zona universitaria: Calle Osa Mayor,
+                                 Camino la Hornera, Archivo Histórico a 51 m
+después  28.457152, -16.303379   Calle Ntra. Sra. de la Ternura 1, Taco (38108)
+```
+
+La dirección que la ficha llevaba escrita —«Ctra. General La Cuesta-Taco km 1,1»—
+**no era la suya**. La de la empresa es calle Nuestra Señora de la Ternura 1, y el
+elemento de OSM está a 29 m de esa calle. Corregido el texto en los 10 idiomas.
+
+### `mercadona-el-medano` — de baja
+
+**En El Médano no hay ningún Mercadona.** El que salía al buscar es el de San
+Isidro, a 2,9 km.
+
+Y aquí se cierra mi error del día 28: dije que el pin estaba mal por 2,9 km, luego
+me corregí diciendo que estaba bien por 231 m. **Las dos veces me equivocaba en lo
+mismo**: comparaba con «el Mercadona más cercano» sin preguntarme si existía uno
+allí. No existe.
+
+Borrada de `index.html`, de los nueve ficheros de idioma y de `pl-lugares/`. **Son
+785.** El contador de `auditar_datos.js` movido a mano con el motivo, y la cifra
+del schema.org al día.
+
+---
+
+## Dos altas posibles, que no hago sin que lo digas
+
+- **El supermercado de El Médano.** Dijiste «deja sólo el HiperDino de El Médano»,
+  pero **la app no tiene ninguna ficha de HiperDino allí**: el único supermercado
+  que había en El Médano era ese Mercadona. OSM tiene un **«SuperDino» a 367 m** de
+  donde estaba el pin (`28.046743, -16.537422`), que es del mismo grupo. Si lo
+  quieres, es un alta — y hace falta saber si el rótulo dice SuperDino o HiperDino.
+- **El segundo Lidl de Granadilla.** Tu captura enseña también un «Lidl, C.
+  Tenerife, 39, 38612 Granadilla», el del casco. No está en OSM y la app no lo
+  tiene. Sería otro alta.

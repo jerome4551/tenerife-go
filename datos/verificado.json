@@ -197,6 +197,14 @@
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
+  "lidl-granadilla": {
+   "fecha": "2026-09-29",
+   "fuente": "Lidl, ficha de la propia empresa en Google: «Av. de la Democracia, S/N, 38611 San Isidro». Captura de Jerome del 29 de septiembre de 2026. La descripcion de la ficha ya nombraba esa avenida, y el elemento de OSM (area/462719671) esta a 70 m de ella."
+  },
+  "lidl-la-laguna": {
+   "fecha": "2026-09-29",
+   "fuente": "Lidl, ficha de la propia empresa en Google: «Calle Ntra. Sra. de la Ternura, 1, 38108 La Laguna». Captura de Jerome del 29 de septiembre de 2026. El elemento de OSM esta a 29 m de esa calle."
+  },
   "lidl-puerto-cruz": {
    "fecha": "2026-09-26",
    "fuente": "OSM del repositorio: el unico Lidl a menos de 2,5 km, a 81 m de la «Carretera Gral. Icod-Santa Cruz». La direccion del establecimiento es Ctra. General Icod-Santa Cruz s/n, via de servicio Las Arenas, 38400 Puerto de la Cruz, y el edificio en OSM lleva esa misma direccion. El municipio lo confirma tools/municipio_raya.py: 8 paradas sin raya en medio, todas de Puerto de la Cruz. Esta pegado a la raya con La Orotava y hay directorios que lo situan alli; manda la direccion postal."
