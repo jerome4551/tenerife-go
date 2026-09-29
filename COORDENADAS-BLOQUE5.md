@@ -11,10 +11,10 @@ mayoría no son eso: **están en otro lado**, a kilómetros.
 |---|---|---|
 | A | el sitio está en OSM **encima del pin**: sólo falta precisión | **2** |
 | B | el sitio está en OSM **lejos**: el pin está mal | **3** |
-| C | **marcas**: en el pin no hay nada de esa marca | **7** |
+| C | **marcas**: en el pin no hay nada de esa marca | **6** (era 7) |
 | D | el paquete **no cubre la marca**: no se puede decir nada | **2** |
 | E | **tres fichas, un solo pin** | **3** |
-| F | no hay con qué: rótulo de zona, o OSM no lo tiene | **12** |
+| F | no hay con qué: rótulo de zona, o OSM no lo tiene | **13** (con el Mercadona) |
 
 **Nada de esto está aplicado.** OSM no es fuente oficial (LEEME §2.1): esto dice
 **dónde mirar**, no qué escribir.
@@ -55,7 +55,7 @@ la palabra correcta.
 
 ---
 
-## C · Las marcas: en el pin no hay nada de esa marca (7)
+## C · Las marcas: en el pin no hay nada de esa marca (6)
 
 Aquí el argumento no es «OSM dice que está allí», sino algo más fuerte: **en el
 pin no hay ninguna gasolinera ni ningún supermercado de esa marca**, y el paquete
@@ -67,9 +67,20 @@ sí cubre bien esas marcas.
 | `gas-tf5-icod` | «Deportivo» a 199 m, un club de pádel a 220 m | Repsol a **6,8 km** | **0 Repsol en Icod**, pero 1 DISA a 694 m |
 | `lidl-granadilla` | nada en 300 m | Lidl a **6,8 km** | 2 Lidl en Granadilla |
 | `lidl-la-laguna` | el Archivo Histórico Provincial a 51 m | Lidl a **1,7 km** | 3 Lidl en La Laguna |
-| `mercadona-el-medano` | nada con nombre; El Cabezo a 247 m | Mercadona a **2,9 km** | 3 Mercadona en Granadilla |
+| ~~`mercadona-el-medano`~~ | **me equivoqué, ver abajo** | — | — |
 | `hiperdino-arona-montaneta` | el **Centro de Salud de Arona** a 18 m | HiperDino a **4,4 km** | — |
 | `hiperdino-los-realejos` | «Los Barros» a 172 m y una gasolinera DISA a 179 m | HiperDino a **3,1 km**, en Puerto de la Cruz | **0 HiperDino en Los Realejos** (de 46 en la isla) |
+
+### Corrección: `mercadona-el-medano` no era de este grupo
+
+La metí aquí diciendo que el pin estaba a 2,9 km del Mercadona más cercano. **Eso
+era mío, no del dato.** La descripción de la ficha nombra la **Av. José Miguel
+Galván Bello**, y esa avenida está a **231 m del pin**. El Mercadona de OSM que
+está a 2.839 m **es otro**, el de San Isidro. Lo que pasa es que OSM no trae el de
+El Médano.
+
+Comparé con «el más cercano» sin mirar si era el mismo sitio. El grupo C se queda
+en **6**.
 
 **Dos merecen mirada aparte:**
 
@@ -151,3 +162,8 @@ Son de tres clases:
 `auditar_redondeo.py` y busca cada ficha en `datos/osm-geofabrik/`. Ninguna cifra
 está escrita a mano. **Que algo no salga ahí no prueba que no exista**: el paquete
 tiene cero elementos de escalada en toda la isla y Guaría tiene 130 vías.*
+
+---
+
+*29 de septiembre: el detalle de las marcas, con la calle que cada ficha nombra
+cruzada contra la red de calles del mapa, está en `LAS-7-MARCAS.md`.*
