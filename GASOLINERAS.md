@@ -75,7 +75,85 @@ municipio, así que nunca se comprobó. Lo mismo puede pasarle a otras.
 
 ---
 
-## Las capturas: qué son y qué dan (29 de septiembre)
+## Etapa 1 · Las 62 capturas, guardadas y validadas (1 de octubre)
+
+Llegaron los cuatro lotes con el cotejo previo contra el listado de Canarias7.
+Está en `datos/gasolineras/capturas_google.json`. El fichero del lote 1 se
+retira: éste lo incluye.
+
+**No me he creído ninguna cifra: las he contado.**
+
+| lo que decías | lo que cuenta el fichero |
+|---|---|
+| 62 estaciones | **62** ✓ |
+| 47 confirmadas · 10 probables · 2 sin casar · 3 sin cotejar | **47 · 10 · 2 · 3** ✓ |
+| 24 teléfonos cortados | **24** ✓ |
+| dos nombres con comilla doble | **2**: `IMG_3457` «Los Rodeos» y `IMG_3472` «Consteide» ✓ |
+| la duplicada fuera | `IMG_3447` **no está** ✓ |
+| lotes 1–4 | 20 + 19 + 20 + 3 = **62** ✓ |
+
+Claves repetidas: **0**. Saltos de línea dentro de un campo: **0**. Sin teléfono
+visible: **16** en total.
+
+Marcas: DISA 18 · Moeve 10 · Tgas 8 · BP 7 · Océano 5 · Shell 4 · Repsol 4 ·
+Pcan 3 · Petroprix 1 · Canary Oil 1 · GMOil 1.
+
+### Lo único que no podía dar por bueno: los municipios
+
+El LEEME manda **parar** si el polígono no coincide. Así que he cogido las **26
+capturas que traen un id de OSM** en la nota, he buscado cada elemento en mi
+paquete y he pasado **mi** `municipio.py` sobre su coordenada.
+
+```
+cuadran 26 · no cuadran 0 · el id no está en mi paquete 0
+```
+
+**Ni una discrepancia.** Las más justas son `IMG_3456` (Repsol del puerto, a 20 m
+de la raya), `IMG_3453` (Tgas Las Mercedes, 178 m) y `IMG_3474` (DISA Náutico,
+200 m), y las tres caen del lado que dices.
+
+**Lo que no he podido comprobar**: 3 de las 27 marcadas «confirmado»
+—`IMG_3471`, `IMG_3459`, `IMG_3431`— dicen «polígono y listado coinciden» pero
+**no nombran el elemento**, así que no tengo qué comprobar. No digo que estén
+mal; digo que de ésas me fío de ti, no de un cálculo mío.
+
+Y 4 siguen sin municipio, como ya sabías: `IMG_3464`, `IMG_3477`, `IMG_3481` y
+`IMG_3485`.
+
+---
+
+## Lo de «Moeve (antes Cepsa)»
+
+De acuerdo con el fondo, pero lo pondría en otro sitio. El nombre de la ficha es
+lo que se ve en el pin del mapa, y un paréntesis ahí envejece: el día que acaben
+de cambiar los rótulos habrá que tocar diez fichas.
+
+**Lo que propongo:** nombre **«Moeve»** a secas, y en la descripción una frase:
+*«Antes Cepsa; algunas estaciones conservan todavía el rótulo antiguo.»* Cuando
+el cambio termine se borra una frase y ya está, en vez de renombrar diez pines.
+
+Si lo prefieres en el nombre, se hace igual — dímelo y lo escribo en el LEEME.
+
+---
+
+## El reparto que pides
+
+Lo hago por etapas, y cada una se cierra antes de empezar la siguiente.
+
+| | etapa | estado |
+|---|---|---|
+| **1** | guardar y validar las 62 · comprobar los municipios contra el polígono | **hecha** |
+| **2** | las **20 fichas de la app** contra las 62: cuáles tienen una estación real detrás y cuáles no | la siguiente |
+| **3** | localizar las 62 en el mapa del repositorio (provisional, sin coordenada oficial) | después |
+| **4** | **altas**, con coordenada e IDEESS | **bloqueada**: hace falta el registro |
+
+La 4 no se puede hacer sin el registro del MITECO, que sigue dando `000` desde
+aquí. Las etapas 2 y 3 sí, y la 2 es la que de verdad importa: es la que dice
+cuáles de las gasolineras que la app ya enseña **no existen**.
+
+---
+
+## Lo que se hizo con el lote 1 (29 de septiembre)
 
 Aclarado: **no son el registro**, son tu recorrido — fuiste una por una por todas
 las gasolineras de la isla, y en vez de 60 capturas tienes la lista transcrita.
