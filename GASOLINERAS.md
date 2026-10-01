@@ -122,6 +122,65 @@ Y 4 siguen sin municipio, como ya sabías: `IMG_3464`, `IMG_3477`, `IMG_3481` y
 
 ---
 
+## Etapa 2 · Las 20 de la app contra las 62 capturas (1 de octubre)
+
+**El resultado es sobre todo un aviso: tus capturas no son de toda la isla.**
+
+Las 62 están casi todas en el área metropolitana —**29 en Santa Cruz y 20 en La
+Laguna**, 49 de 58 localizadas—. Las gasolineras de la app están repartidas por
+**17 municipios**, casi todas en autopista. Se tocan en cuatro: Adeje, El Sauzal,
+Los Realejos y La Laguna.
+
+Las 62 se hicieron **entre las 13:31 y las 13:42**, once minutos: es el listado de
+Google desplazado desde donde estabas, no un barrido de la isla.
+
+| | |
+|---|---|
+| emparejadas con una captura | **2** |
+| **sin ninguna captura en su municipio** | **15** |
+| hay capturas en el municipio, pero ninguna es ésta | 3 |
+
+### Las dos que sí
+
+- **`gas-tf2-lalaguna`** «Cepsa La Laguna Sur» ← **IMG_3431**. El surtidor del pin
+  es «Moeve (Los Andenes)», en la Avenida Los Majuelos; la captura es «Cepsa Los
+  Andenes · Avenida Paso El (los Majuelos), 108». Casan **nombre propio y calle**.
+  Y es una de las que pasa a llamarse **Moeve**.
+- **`gas-tf5-lalaguna`** «Repsol La Laguna Norte» ← **IMG_3443** «Disa Las
+  Chumberas». **Candidata, no confirmada**: las dos se llaman «Las Chumberas»,
+  pero el surtidor del pin está en la **Avenida La Unión** y la captura dice «Av.
+  la Libertad, 63», que está a **871 m**. O son dos con el mismo nombre, o la
+  dirección de Google está mal. **Lo decide el registro.**
+
+  Lo que sí está claro: en ese pin **no hay ningún Repsol**. Lo que hay se llama
+  «Las Chumberas».
+
+### Un fallo que cacé a tiempo
+
+El primer emparejamiento por nombre me dio **10**. Era mentira: casaba por la
+**marca sola**. Daba por buena una ficha de **La Orotava** contra una captura de
+**El Rosario** porque las dos decían «Moeve», y la DISA de Los Realejos contra una
+de La Laguna porque las dos decían «DISA». Con 49 DISA en la isla, la marca no
+identifica nada.
+
+Corregido: la palabra compartida **no puede ser la marca** y el municipio tiene
+que ser el mismo. De 10 se quedó en **2**, que son las de verdad.
+
+### Y un aviso del cruce con OSM, aparte de las capturas
+
+Dos fichas que dicen **Repsol** tienen en el pin un surtidor que **no se llama
+Repsol**:
+
+- `gas-tf5-lalaguna` → «Las Chumberas» a 18 m
+- `gas-tf5-el-sauzal` → «Estación de Servicio Las Banderas» a 13 m
+
+Ninguna de las dos aparece en tus 62. Súmalas a las que ya teníamos: Adeje, Icod,
+Candelaria, Los Gigantes y la de Guaza.
+
+Entrega: `datos/gasolineras/etapa2_app_contra_capturas.json`.
+
+---
+
 ## Lo de «Moeve (antes Cepsa)»
 
 De acuerdo con el fondo, pero lo pondría en otro sitio. El nombre de la ficha es

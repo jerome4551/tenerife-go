@@ -1,0 +1,407 @@
+{
+ "_": [
+  "ETAPA 2. Las 20 gasolineras de la app contra las 62 capturas.",
+  "PARCIAL Y PROVISIONAL: sin el registro del MITECO no hay coordenada oficial ni IDEESS.",
+  "Las capturas cubren casi solo Santa Cruz (29) y La Laguna (20); la app tiene las suyas",
+  "repartidas por 17 municipios, casi todas en autopista.",
+  "El emparejamiento por nombre exige una palabra que NO sea la marca y el mismo municipio:",
+  "con la marca sola, «Moeve» casaba con cualquier Moeve de la isla.",
+  "NADA DE ESTO ESTA APLICADO: index.html no se toca."
+ ],
+ "fichas": {
+  "gas-tf1-abades": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "Estación Abades (TF-1 km 44)",
+    "lat": 28.1308,
+    "lng": -16.4648,
+    "marca": null,
+    "municipio_poligono": "Arico",
+    "address": ""
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "PCAN",
+    "a_metros": 1,
+    "osm": "node/287006206"
+   },
+   "aviso": null
+  },
+  "gas-tf1-adeje": {
+   "estado_segun_las_capturas": "hay_capturas_pero_ninguna_es_esta",
+   "app": {
+    "name": "Repsol Costa Adeje (TF-1 km 15)",
+    "lat": 28.083,
+    "lng": -16.732,
+    "marca": "repsol",
+    "municipio_poligono": "Adeje",
+    "address": "TF-1 km 15, Costa Adeje"
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 1,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "Moeve",
+    "a_metros": 707,
+    "osm": "node/287006598"
+   },
+   "aviso": null
+  },
+  "gas-tf1-candelaria": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "Cepsa Candelaria (TF-1)",
+    "lat": 28.353,
+    "lng": -16.38,
+    "marca": "moeve",
+    "municipio_poligono": "Candelaria",
+    "address": "TF-1 km 55, Candelaria"
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "Disa",
+    "a_metros": 892,
+    "osm": "area/1303306636"
+   },
+   "aviso": null
+  },
+  "gas-tf1-granadilla": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "Repsol TF-1 Granadilla",
+    "lat": 28.0735,
+    "lng": -16.5346,
+    "marca": "repsol",
+    "municipio_poligono": "Granadilla de Abona",
+    "address": "TF-1 km 31, Granadilla de Abona"
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "Repsol",
+    "a_metros": 7,
+    "osm": "node/839476034"
+   },
+   "aviso": null
+  },
+  "gas-tf1-guaza": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "BP Guaza (TF-1 km 21)",
+    "lat": 28.0456,
+    "lng": -16.6789,
+    "marca": "bp",
+    "municipio_poligono": "Arona",
+    "address": "TF-1 km 21, Guaza, Arona"
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "BP",
+    "a_metros": 3,
+    "osm": "area/1025564649"
+   },
+   "aviso": null
+  },
+  "gas-tf1-guaza2": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "Cepsa Los Cristianos (TF-1 km 19)",
+    "lat": 28.0395,
+    "lng": -16.68,
+    "marca": "moeve",
+    "municipio_poligono": "Arona",
+    "address": "TF-1 km 19, Los Cristianos, Arona"
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "BP",
+    "a_metros": 685,
+    "osm": "area/1025564649"
+   },
+   "aviso": null
+  },
+  "gas-tf1-guimar": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "BP Güímar (TF-1)",
+    "lat": 28.3315,
+    "lng": -16.3763,
+    "marca": "bp",
+    "municipio_poligono": "Arafo",
+    "address": "TF-1 km 49, Güímar"
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "BP",
+    "a_metros": 23,
+    "osm": "area/482067070"
+   },
+   "aviso": null
+  },
+  "gas-tf2-aeropuerto": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "BP Aeropuerto Sur (TF-2)",
+    "lat": 28.0611,
+    "lng": -16.5818,
+    "marca": "bp",
+    "municipio_poligono": "Granadilla de Abona",
+    "address": "TF-2 / TF-1 Aeropuerto Sur, Granadilla"
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "BP",
+    "a_metros": 5,
+    "osm": "node/5485230522"
+   },
+   "aviso": null
+  },
+  "gas-tf2-lalaguna": {
+   "estado_segun_las_capturas": "captura_encontrada",
+   "app": {
+    "name": "Cepsa La Laguna Sur (TF-2)",
+    "lat": 28.4474,
+    "lng": -16.3073,
+    "marca": "moeve",
+    "municipio_poligono": "San Cristóbal de La Laguna",
+    "address": "TF-2 km 2, La Laguna"
+   },
+   "captura": {
+    "id": "IMG_3431",
+    "por": "nombre propio del surtidor",
+    "palabras": [
+     "andenes"
+    ],
+    "nombre_google": "Estación de servicio Cepsa",
+    "direccion": "AVDA. LOS MAJUELOS, MANZANA LL-92, 38293 La Laguna, Santa Cruz de Tenerife",
+    "nota": "El surtidor del pin es «Moeve (Los Andenes)», en la Avenida Los Majuelos, y la captura es «Cepsa Los Andenes · Avenida Paso El (los Majuelos), 108». Casan nombre propio y calle."
+   },
+   "capturas_en_ese_municipio": 20,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "Moeve (Los Andenes)",
+    "a_metros": 7,
+    "osm": "node/839488557"
+   },
+   "aviso": null
+  },
+  "gas-tf21-aguamansa": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "Cepsa La Cañada (TF-21 · última antes del Teide)",
+    "lat": 28.3882,
+    "lng": -16.5153,
+    "marca": "moeve",
+    "municipio_poligono": "La Orotava",
+    "address": ""
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "Moeve",
+    "a_metros": 11,
+    "osm": "node/903038006"
+   },
+   "aviso": null
+  },
+  "gas-tf5-el-bohio": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "DISA El Bohío (TF-5 km 25)",
+    "lat": 28.45,
+    "lng": -16.4606,
+    "marca": "disa",
+    "municipio_poligono": "La Matanza de Acentejo",
+    "address": ""
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "DISA el Bohio",
+    "a_metros": 31,
+    "osm": "area/1089640011"
+   },
+   "aviso": null
+  },
+  "gas-tf5-el-sauzal": {
+   "estado_segun_las_capturas": "hay_capturas_pero_ninguna_es_esta",
+   "app": {
+    "name": "Repsol El Sauzal (TF-5 km 22.5)",
+    "lat": 28.4646,
+    "lng": -16.4387,
+    "marca": "repsol",
+    "municipio_poligono": "El Sauzal",
+    "address": ""
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 2,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "Estación de Servicio Las Banderas",
+    "a_metros": 13,
+    "osm": "node/1119023435"
+   },
+   "aviso": "el surtidor del pin no lleva marca en el nombre: «Estación de Servicio Las Banderas»"
+  },
+  "gas-tf5-icod": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "Repsol Icod de los Vinos (TF-5)",
+    "lat": 28.368,
+    "lng": -16.705,
+    "marca": "repsol",
+    "municipio_poligono": "Icod de los Vinos",
+    "address": "TF-5 km 55, Icod de los Vinos"
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "DISA ICOD DE LOS VINOS",
+    "a_metros": 694,
+    "osm": "node/839482503"
+   },
+   "aviso": null
+  },
+  "gas-tf5-lalaguna": {
+   "estado_segun_las_capturas": "captura_encontrada",
+   "app": {
+    "name": "Repsol La Laguna Norte (TF-5)",
+    "lat": 28.4647,
+    "lng": -16.3049,
+    "marca": "repsol",
+    "municipio_poligono": "San Cristóbal de La Laguna",
+    "address": "TF-5 km 8, La Laguna"
+   },
+   "captura": {
+    "id": "IMG_3443",
+    "por": "nombre propio del surtidor",
+    "palabras": [
+     "chumberas"
+    ],
+    "nombre_google": "Disa Las Chumberas",
+    "direccion": "Av. la Libertad, 63, 38108 La Laguna, Santa Cruz de Tenerife",
+    "AVISO": "CANDIDATA, NO CONFIRMADA. Las dos se llaman «Las Chumberas», pero la direccion no cuadra: el surtidor del pin esta en la Avenida La Union (28.464865,-16.304915) y la captura dice «Av. la Libertad, 63», que esta a 871 m. O son dos estaciones con el mismo nombre, o la direccion de Google esta mal. Lo decide el registro."
+   },
+   "capturas_en_ese_municipio": 20,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "Las Chumberas",
+    "a_metros": 18,
+    "osm": "area/482073602"
+   },
+   "aviso": "el surtidor del pin no lleva marca en el nombre: «Las Chumberas»"
+  },
+  "gas-tf5-los-realejos": {
+   "estado_segun_las_capturas": "hay_capturas_pero_ninguna_es_esta",
+   "app": {
+    "name": "DISA TF-5 km 46 (Los Realejos)",
+    "lat": 28.3904,
+    "lng": -16.5821,
+    "marca": "disa",
+    "municipio_poligono": "Los Realejos",
+    "address": ""
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 3,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "DISA Los Barros",
+    "a_metros": 2,
+    "osm": "area/1044568737"
+   },
+   "aviso": null
+  },
+  "gas-tf5-ptocz": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "BP Puerto de la Cruz (TF-5 km 30)",
+    "lat": 28.4137,
+    "lng": -16.5462,
+    "marca": "bp",
+    "municipio_poligono": "Puerto de la Cruz",
+    "address": "TF-5 km 30, Puerto de la Cruz"
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "BP",
+    "a_metros": 6,
+    "osm": "node/287006176"
+   },
+   "aviso": null
+  },
+  "gas-tf5-tacoronte": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "Cepsa Tacoronte (TF-5)",
+    "lat": 28.4874,
+    "lng": -16.383,
+    "marca": "moeve",
+    "municipio_poligono": "Tacoronte",
+    "address": "TF-5 km 18, Tacoronte"
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "Moeve",
+    "a_metros": 8,
+    "osm": "node/903038603"
+   },
+   "aviso": null
+  },
+  "gas-tf51-vilaflor": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "DISA Vilaflor (TF-51)",
+    "lat": 28.1534,
+    "lng": -16.6403,
+    "marca": "disa",
+    "municipio_poligono": "Vilaflor",
+    "address": ""
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "Disa",
+    "a_metros": 12,
+    "osm": "node/287006233"
+   },
+   "aviso": null
+  },
+  "gas-tf82-guia-isora": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "Shell Guía de Isora (TF-82)",
+    "lat": 28.2137,
+    "lng": -16.7829,
+    "marca": "shell",
+    "municipio_poligono": "Guía de Isora",
+    "address": ""
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": {
+    "nombre": "Shell",
+    "a_metros": 13,
+    "osm": "area/368686843"
+   },
+   "aviso": null
+  },
+  "gas-tf82-los-gigantes": {
+   "estado_segun_las_capturas": "sin_capturas_en_el_municipio",
+   "app": {
+    "name": "DISA Los Gigantes (TF-82)",
+    "lat": 28.2434,
+    "lng": -16.8412,
+    "marca": "disa",
+    "municipio_poligono": "Santiago del Teide",
+    "address": ""
+   },
+   "captura": null,
+   "capturas_en_ese_municipio": 0,
+   "surtidor_mas_cercano_en_osm": null,
+   "aviso": null
+  }
+ }
+}
