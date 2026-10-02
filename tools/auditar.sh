@@ -67,6 +67,8 @@ python3 tools/auditar_redondeo.py
 echo; echo "════════ el municipio, contra el poligono del Cabildo ════════"
 control municipio.py python3 tools/municipio.py
 control municipio.py python3 tools/municipio.py --calibrar
+echo; echo "════════ las gasolineras del registro ════════"
+control auditar_gasolineras.js node tools/auditar_gasolineras.js
 echo; echo "════════ el municipio que dice cada ficha ════════"
 control auditar_municipio.js node tools/auditar_municipio.js
 echo; echo "════════ lo que se sale de la pantalla, y el popup ════════"

@@ -1,0 +1,314 @@
+{
+ "_": [
+  "Cuaderno de las gasolineras. Una sesion por municipio, mas tres aparte.",
+  "estado: pendiente | en_curso | hecha",
+  "Lo vigila tools/auditar_gasolineras.js: si una estacion del registro no",
+  "esta en la app Y su sesion ya figura como hecha, el control se pone ROJO.",
+  "Asi no depende de que alguien se acuerde."
+ ],
+ "sesiones": {
+  "00-plantilla": {
+   "que": "Asentar la plantilla de ficha de gasolinera y el formateador de horarios en los 10 idiomas.",
+   "estado": "pendiente",
+   "municipio": null,
+   "estaciones": 0
+  },
+  "01-santa-cruz-de-tenerife": {
+   "que": "Las 33 estaciones de Santa Cruz de Tenerife (33 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Santa Cruz de Tenerife",
+   "estaciones": 33,
+   "altas": 33,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/01-santa-cruz-de-tenerife.json"
+  },
+  "02-san-cristobal-de-la-laguna": {
+   "que": "Las 28 estaciones de San Cristóbal de La Laguna (26 altas, 2 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "San Cristóbal de La Laguna",
+   "estaciones": 28,
+   "altas": 26,
+   "ya": 2,
+   "plan": "datos/gasolineras/plan/02-san-cristobal-de-la-laguna.json"
+  },
+  "03-arona": {
+   "que": "Las 15 estaciones de Arona (14 altas, 1 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Arona",
+   "estaciones": 15,
+   "altas": 14,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/03-arona.json"
+  },
+  "04-adeje": {
+   "que": "Las 14 estaciones de Adeje (14 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Adeje",
+   "estaciones": 14,
+   "altas": 14,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/04-adeje.json"
+  },
+  "05-los-realejos": {
+   "que": "Las 13 estaciones de Los Realejos (12 altas, 1 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Los Realejos",
+   "estaciones": 13,
+   "altas": 12,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/05-los-realejos.json"
+  },
+  "06-granadilla-de-abona": {
+   "que": "Las 11 estaciones de Granadilla de Abona (10 altas, 1 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Granadilla de Abona",
+   "estaciones": 11,
+   "altas": 10,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/06-granadilla-de-abona.json"
+  },
+  "07-la-orotava": {
+   "que": "Las 10 estaciones de La Orotava (9 altas, 1 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "La Orotava",
+   "estaciones": 10,
+   "altas": 9,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/07-la-orotava.json"
+  },
+  "08-san-miguel-de-abona": {
+   "que": "Las 10 estaciones de San Miguel de Abona (10 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "San Miguel de Abona",
+   "estaciones": 10,
+   "altas": 10,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/08-san-miguel-de-abona.json"
+  },
+  "09-arafo": {
+   "que": "Las 7 estaciones de Arafo (6 altas, 1 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Arafo",
+   "estaciones": 7,
+   "altas": 6,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/09-arafo.json"
+  },
+  "10-guia-de-isora": {
+   "que": "Las 7 estaciones de Guía de Isora (6 altas, 1 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Guía de Isora",
+   "estaciones": 7,
+   "altas": 6,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/10-guia-de-isora.json"
+  },
+  "11-guimar": {
+   "que": "Las 6 estaciones de Güímar (6 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Güímar",
+   "estaciones": 6,
+   "altas": 6,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/11-guimar.json"
+  },
+  "12-tacoronte": {
+   "que": "Las 6 estaciones de Tacoronte (5 altas, 1 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Tacoronte",
+   "estaciones": 6,
+   "altas": 5,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/12-tacoronte.json"
+  },
+  "13-arico": {
+   "que": "Las 5 estaciones de Arico (4 altas, 1 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Arico",
+   "estaciones": 5,
+   "altas": 4,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/13-arico.json"
+  },
+  "14-icod-de-los-vinos": {
+   "que": "Las 5 estaciones de Icod de los Vinos (5 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Icod de los Vinos",
+   "estaciones": 5,
+   "altas": 5,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/14-icod-de-los-vinos.json"
+  },
+  "15-puerto-de-la-cruz": {
+   "que": "Las 5 estaciones de Puerto de la Cruz (4 altas, 1 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Puerto de la Cruz",
+   "estaciones": 5,
+   "altas": 4,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/15-puerto-de-la-cruz.json"
+  },
+  "16-el-sauzal": {
+   "que": "Las 5 estaciones de El Sauzal (4 altas, 1 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "El Sauzal",
+   "estaciones": 5,
+   "altas": 4,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/16-el-sauzal.json"
+  },
+  "17-candelaria": {
+   "que": "Las 4 estaciones de Candelaria (4 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Candelaria",
+   "estaciones": 4,
+   "altas": 4,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/17-candelaria.json"
+  },
+  "18-santiago-del-teide": {
+   "que": "Las 4 estaciones de Santiago del Teide (4 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Santiago del Teide",
+   "estaciones": 4,
+   "altas": 4,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/18-santiago-del-teide.json"
+  },
+  "19-fasnia": {
+   "que": "Las 3 estaciones de Fasnia (3 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Fasnia",
+   "estaciones": 3,
+   "altas": 3,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/19-fasnia.json"
+  },
+  "20-la-guancha": {
+   "que": "Las 3 estaciones de La Guancha (3 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "La Guancha",
+   "estaciones": 3,
+   "altas": 3,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/20-la-guancha.json"
+  },
+  "21-la-matanza-de-acentejo": {
+   "que": "Las 3 estaciones de La Matanza de Acentejo (2 altas, 1 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "La Matanza de Acentejo",
+   "estaciones": 3,
+   "altas": 2,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/21-la-matanza-de-acentejo.json"
+  },
+  "22-el-rosario": {
+   "que": "Las 3 estaciones de El Rosario (3 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "El Rosario",
+   "estaciones": 3,
+   "altas": 3,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/22-el-rosario.json"
+  },
+  "23-tegueste": {
+   "que": "Las 3 estaciones de Tegueste (3 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Tegueste",
+   "estaciones": 3,
+   "altas": 3,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/23-tegueste.json"
+  },
+  "24-santa-ursula": {
+   "que": "Las 2 estaciones de Santa Úrsula (2 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Santa Úrsula",
+   "estaciones": 2,
+   "altas": 2,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/24-santa-ursula.json"
+  },
+  "25-buenavista-del-norte": {
+   "que": "Las 1 estaciones de Buenavista del Norte (1 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Buenavista del Norte",
+   "estaciones": 1,
+   "altas": 1,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/25-buenavista-del-norte.json"
+  },
+  "26-garachico": {
+   "que": "Las 1 estaciones de Garachico (1 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Garachico",
+   "estaciones": 1,
+   "altas": 1,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/26-garachico.json"
+  },
+  "27-san-juan-de-la-rambla": {
+   "que": "Las 1 estaciones de San Juan de la Rambla (1 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "San Juan de la Rambla",
+   "estaciones": 1,
+   "altas": 1,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/27-san-juan-de-la-rambla.json"
+  },
+  "28-los-silos": {
+   "que": "Las 1 estaciones de Los Silos (1 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Los Silos",
+   "estaciones": 1,
+   "altas": 1,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/28-los-silos.json"
+  },
+  "29-el-tanque": {
+   "que": "Las 1 estaciones de El Tanque (1 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "El Tanque",
+   "estaciones": 1,
+   "altas": 1,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/29-el-tanque.json"
+  },
+  "30-la-victoria-de-acentejo": {
+   "que": "Las 1 estaciones de La Victoria de Acentejo (1 altas, 0 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "La Victoria de Acentejo",
+   "estaciones": 1,
+   "altas": 1,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/30-la-victoria-de-acentejo.json"
+  },
+  "31-vilaflor": {
+   "que": "Las 1 estaciones de Vilaflor (0 altas, 1 ya en la app).",
+   "estado": "pendiente",
+   "municipio": "Vilaflor",
+   "estaciones": 1,
+   "altas": 0,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/31-vilaflor.json"
+  },
+  "90-las-seis-que-no-estan-en-el-registro": {
+   "que": "gas-tf1-adeje · gas-tf1-candelaria · gas-tf1-guaza2 · gas-tf2-aeropuerto · gas-tf5-icod · gas-tf82-los-gigantes. Ninguna tiene estacion del registro a 300 m.",
+   "estado": "pendiente",
+   "municipio": null,
+   "estaciones": 6
+  },
+  "91-las-ocho-a-ajustar": {
+   "que": "Las 14 que si casan: 12 confirmadas (solo anadir IDEESS), 1 a corregir coordenada (gas-tf82-guia-isora, 166 m) y 1 de marca distinta (gas-tf1-abades).",
+   "estado": "pendiente",
+   "municipio": null,
+   "estaciones": 14
+  },
+  "92-el-fichero-de-precios": {
+   "que": "Flujo diario que extrae los precios del registro a datos/precios-gasolineras.json con su fecha, y el modo de las 10 mas baratas. NINGUN PRECIO dentro de index.html.",
+   "estado": "pendiente",
+   "municipio": null,
+   "estaciones": 0
+  }
+ }
+}
