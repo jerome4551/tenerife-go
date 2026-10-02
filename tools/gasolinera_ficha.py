@@ -222,9 +222,15 @@ def titulo(s, via=True):
                          for t in p.split('-'))
         if out and llano(out[-1]) == llano(trozo):
             continue                       # «CARRETERA CARRETERA»
-        if len(out) == 1 and llano(out[0]) == 'carretera' and \
-           llano(trozo) in ('autopista', 'autovia'):
-            out[0] = trozo     # «CR AUTOPISTA DEL NORTE»: la via es la autopista
+        # Dos tipos de via seguidos: el de verdad es el segundo. «CR AUTOPISTA
+        # DEL NORTE» es la autopista; «CALLE AVENIDA DE LOS PUEBLOS», la avenida;
+        # «CALLE BULEVAR CHAJOFE», el bulevar. No se inventa nada: se quita una
+        # palabra que sobra y todo lo que queda sigue saliendo del registro.
+        TIPOS = ('calle', 'avenida', 'carretera', 'autopista', 'autovia', 'bulevar',
+                 'camino', 'paseo', 'plaza', 'glorieta', 'via')
+        if len(out) == 1 and llano(out[0]) in TIPOS and llano(trozo) in TIPOS \
+           and llano(trozo) != llano(out[0]):
+            out[0] = trozo
             continue
         if out and llano(trozo) == llano(out[0]) and llano(trozo) in (
                 'autopista', 'autovía', 'autovia', 'carretera', 'calle', 'avenida'):
@@ -271,6 +277,12 @@ def calle_corta(direccion):
                          ('CRA.', 'CARRETERA'), ('GRAL.', 'GENERAL'),
                          ('AVDA.', 'AVENIDA'), ('POL.', 'POLIGONO')):
         t = re.sub(r'(?i)\b%s\s*' % re.escape(corto), largo + ' ', t)
+    # Y cualquier otra abreviatura de VIAL escrita con punto: «CRTRA. VALLE SAN
+    # LORENZO» se quedaba en «Carretera» a secas, porque el punto de «CRTRA.»
+    # parecia el final de una frase y se comia el resto.
+    for corto, largo in VIAL.items():
+        if not corto.endswith('.') and corto.isalpha():
+            t = re.sub(r'(?i)\b%s\.\s*' % re.escape(corto), largo.upper() + ' ', t)
     t = re.sub(r'(?i)\bTF\s+(\d+)', r'TF-\1', t)      # «TF 154» es la TF-154
     t = re.split(r'(?i)\s+MANZ\b', t)[0]              # la manzana, como la parcela
     # La urbanizacion y la parcela son el barrio y el numero, no la calle.
@@ -284,6 +296,7 @@ def calle_corta(direccion):
     # del corte por coma, porque «MZ. 13» lleva punto dentro.
     t = re.split(r'(?i)\s+(MZ|PC|PARCELA|FINCA|NAVE|LOCAL|EDIF)\.?\s*\d', t)[0]
     t = re.split(r',', t)[0]          # detras de la coma va el numero, no la via
+    t = re.split(r'(?i)\s+N[º°O]\.?\s*\d', t)[0]   # «... LAS GALLETAS Nº2»: el numero
     t = re.split(r'\.\s+(?=[A-ZÁ-Ú])', t)[0]   # «TEJINA DE GUIA. GUIA DE ISORA»
     # «S7N» es como el registro escribe «S/N» en una de ellas.
     t = re.split(r'(?i)\s+S[/.]?7?N\.?\b', t)[0]   # «S/N», «S.N.», «S7N»

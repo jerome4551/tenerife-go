@@ -55,12 +55,19 @@
   },
   "03-arona": {
    "que": "Las 15 estaciones de Arona (14 altas, 1 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Arona",
    "estaciones": 15,
    "altas": 14,
    "ya": 1,
-   "plan": "datos/gasolineras/plan/03-arona.json"
+   "plan": "datos/gasolineras/plan/03-arona.json",
+   "hecho_el": "2026-10-02",
+   "altas_hechas": 14,
+   "enlazadas": {
+    "gas-tf1-guaza": "8743 (a 10 m)"
+   },
+   "revisada_el": "2026-10-02",
+   "revision": "tools/revisar_gasolineras.py: 14 fichas, 0 hallazgos, 15/15 estaciones con su ficha"
   },
   "04-adeje": {
    "que": "Las 14 estaciones de Adeje (14 altas, 0 ya en la app).",

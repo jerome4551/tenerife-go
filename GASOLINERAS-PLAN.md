@@ -359,9 +359,32 @@ idiomas: habría cazado «Favorito») y la ficha abierta dentro de
 `auditar_desborde.js`, con ida y vuelta por el castellano. Probados quitando
 cada arreglo por separado: rojo las tres veces.
 
+## Sesión 03 · Arona · HECHA el 2 de octubre
+
+**14 altas** de 15. La app pasa de 839 a **853 lugares**. La otra estación ya la
+cubría `gas-tf1-guaza` (BP, a 10 m): sólo se le pone el `ideess`. Revisor: 14
+fichas campo a campo, **0 hallazgos**, 15 de 15 estaciones con su ficha.
+
+Antes de aplicar, tres nombres que no valían y que eran fallos de mi limpieza,
+arreglados como reglas generales y no como parches:
+
+* «**CRTRA.** VALLE SAN LORENZO - LAS GALLETAS» salía «Tgas · Carretera» a
+  secas: el punto de la abreviatura parecía fin de frase. Ahora cualquier
+  abreviatura de vía con punto se desata antes de cortar.
+* «CALLE AVENIDA DE LOS PUEBLOS», «CALLE BULEVAR CHAJOFE»: dos tipos de vía
+  seguidos; vale el segundo, como ya pasaba con «CR AUTOPISTA».
+* «Nº2» es el número del portal, no la calle.
+
+Cambian 9 nombres de las 212, ninguno de los municipios ya aplicados.
+
+Lo que **no** he tocado: «**CARRERA** GENERAL LAS GALLETAS» es casi seguro una
+errata de «Carretera», pero cambiarla sería adivinar. Y «Moeve · Carretera
+General» (km 136, Valle de San Lorenzo) es pobre, pero es todo lo que dice el
+registro.
+
 ## Lo que queda
 
-**28 sesiones**, 152 altas. La siguiente es la **03, Arona (15)**.
+**27 sesiones**, 138 altas. La siguiente es la **04, Adeje (14)**.
 
 ---
 

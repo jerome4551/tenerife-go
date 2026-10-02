@@ -837,5 +837,19 @@
  "gas-13353-san-cristobal-de-la-laguna": {"desc": "Camino de la Villa, San Cristóbal de La Laguna. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Taxlaguna", "hours": "Lun-Ven 06:30-22:00 · Sam-Dim 08:00-22:00"},
  "gas-7736-san-cristobal-de-la-laguna": {"desc": "Carretera TF-12 Las Canteras, San Cristóbal de La Laguna. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Tgas", "hours": "Lun-Sam 07:00-22:00 · Dim 08:00-21:00"},
  "gas-8751-san-cristobal-de-la-laguna": {"desc": "Carretera TF-265, San Cristóbal de La Laguna. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 06:00-22:00"},
- "gas-7734-san-cristobal-de-la-laguna": {"desc": "Plaza San Cristóbal, San Cristóbal de La Laguna. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 06:00-22:00"}
+ "gas-7734-san-cristobal-de-la-laguna": {"desc": "Plaza San Cristóbal, San Cristóbal de La Laguna. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-7787-arona": {"desc": "Avenida de los Pueblos, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Dim 24 h"},
+ "gas-7766-arona": {"desc": "Bulevar Chajofe, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Dim 24 h"},
+ "gas-9920-arona": {"desc": "Carretera General Valle San Lorenzo-Guaza, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Dim 24 h"},
+ "gas-10057-arona": {"desc": "Carretera de las Galletas, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Sam 06:00-21:30 · Dim 07:00-13:00"},
+ "gas-9947-arona": {"desc": "Carretera General Valle San Lorenzo, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · DISA", "hours": "Lun-Sam 07:00-22:00 · Dim 07:00-14:00"},
+ "gas-10543-arona": {"desc": "Carrera General Las Galletas, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 24 h"},
+ "gas-7640-arona": {"desc": "Carretera General, Arona. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-9483-arona": {"desc": "Carretera General Guaza Los Cristianos, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 24 h"},
+ "gas-10951-arona": {"desc": "Carretera TF-28, Arona. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 07:00-23:00"},
+ "gas-8772-arona": {"desc": "Autopista del Sur km 70,5, Arona. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 24 h"},
+ "gas-12370-arona": {"desc": "Carretera General TF-66, Arona. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-10127-arona": {"desc": "Autopista TF-1 km 65,5, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Shell", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-7780-arona": {"desc": "Carretera General TF-51, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Tgas", "hours": "Lun-Sam 07:00-21:00 · Dim 07:00-14:00"},
+ "gas-8280-arona": {"desc": "Carretera Valle San Lorenzo-Las Galletas, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 24 h"}
 }
