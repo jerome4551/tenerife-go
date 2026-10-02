@@ -277,9 +277,45 @@ reescribieron con `gasolinera_alta.py --rehacer`, que re-sincroniza una ficha
 con el registro por su IDEESS y **para** si el bloque viejo no es uno de los
 que generó ella.
 
+## Sesión 02 · La Laguna · HECHA el 2 de octubre
+
+**26 altas** de 28. La app pasa de 813 a **839 lugares**. Auditoría en verde.
+
+Las otras **2 ya las cubrían fichas antiguas** y no se duplican: a
+`gas-tf2-lalaguna` (CEPSA Los Andenes, a 7 m) y a `gas-tf5-lalaguna` (REPSOL de
+la Calle Libertad, a 4 m) se les pone sólo el `ideess`, un enlace invisible. El
+nombre al estilo nuevo se les cambia en su turno, la sesión 91.
+
+**Tu regla de la autopista, una más:** «CR AUTOPISTA DEL NORTE, KM. 10,2» no se
+reconocía como autopista porque empieza por «CR». Ahora es «BP · Autopista del
+Norte km 10,2».
+
+**Un fallo mío que cazaron los controles.** Al re-sincronizar La Laguna después
+de enlazar las dos antiguas, sus dos estaciones se dieron de alta **otra vez**:
+una ficha enlazada ya no «reclama» por distancia, y el aplicador sólo reconocía
+como «ya en la app» las fichas con el id que genera él. Salieron 841 lugares en
+vez de 839 y la cifra se puso roja. Corregido: una estación está cubierta si
+**cualquier** ficha lleva su IDEESS. Y el control de gasolineras ya vigilaba
+«dos fichas con el mismo IDEESS»: lo comprobé inyectando uno, y da FALLO.
+
+### Lo que pasará con las 14 antiguas en sus sesiones
+
+Ninguna se queda sin emparejar, así que **no hay riesgo de duplicado**. 11 se
+enlazarán solas (misma marca, a menos de 50 m). Tres **pararán** para mirarlas
+contigo:
+
+| ficha | estación | por qué para |
+|---|---|---|
+| `gas-tf1-abades` | 7726, Arico, a 1 m | el nombre de la ficha no dice marca |
+| `gas-tf5-el-bohio` | 9635, La Matanza, a 54 m | pasa de 50 m |
+| `gas-tf82-guia-isora` | 9176, Guía de Isora, a 166 m | el pin está lejos |
+
+Y una curiosidad para la sesión 91: `gas-tf1-guimar` («BP Güímar (TF-1)») está
+en realidad en **Arafo**, según el polígono del Cabildo.
+
 ## Lo que queda
 
-**29 sesiones**, 178 altas. La siguiente por número es la **02, La Laguna (28)**.
+**28 sesiones**, 152 altas. La siguiente es la **03, Arona (15)**.
 
 ---
 

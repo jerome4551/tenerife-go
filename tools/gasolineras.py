@@ -171,7 +171,8 @@ def cargar_registro():
 def gasolineras_app():
     js = ("const{PLACES}=require('./tools/cargar');console.log(JSON.stringify("
           "PLACES.filter(p=>p.category==='gasolinera').map(p=>({id:p.id,name:p.name,"
-          "lat:p.lat,lng:p.lng,address:p.address||'',cat:(p.cat&&p.cat.es)||''}))))")
+          "lat:p.lat,lng:p.lng,ideess:p.ideess||null,address:p.address||'',"
+          "cat:(p.cat&&p.cat.es)||''}))))")
     o = subprocess.run(['node', '-e', js], cwd=RAIZ, capture_output=True, text=True)
     if o.returncode:
         sys.exit(o.stderr.strip() or 'no puedo leer PLACES')

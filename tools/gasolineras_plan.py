@@ -41,31 +41,49 @@ def llano(s):
     return ''.join(c for c in s if unicodedata.category(c) != 'Mn')
 
 
-def main():
-    reg, _ = G.cargar_registro()
-    app = G.gasolineras_app()
-    for p in app:
-        p['marca'] = G.marca_de(p['name'])
+def reclamadas(reg, app=None):
+    """ideess -> la ficha ANTIGUA de la app que ya cubre esa estacion.
 
-    # El emparejamiento es EXCLUSIVO: cada ficha de la app reclama UNA sola
-    # estacion, la mas cercana. Sin esto salian 18 emparejamientos para 14 fichas,
-    # porque hay pines con dos o tres estaciones alrededor -el de Guimar tiene un
-    # BP a 14 m, una H2EXAGON a 224 m y una PLENERGY a 194 m- y las tres se daban
-    # por «ya en la app». Las otras dos siguen necesitando su ficha.
-    reclamada = {}
+    El emparejamiento es EXCLUSIVO: cada ficha de la app reclama UNA sola
+    estacion, la mas cercana. Sin esto salian 18 emparejamientos para 14 fichas,
+    porque hay pines con dos o tres estaciones alrededor -el de Guimar tiene un
+    BP a 14 m, una H2EXAGON a 224 m y una PLENERGY a 194 m- y las tres se daban
+    por «ya en la app». Las otras dos siguen necesitando su ficha.
+
+    Solo cuentan las fichas SIN ideess: las que ya lo tienen estan enlazadas y
+    no reclaman nada por distancia. La usan este plan y gasolinera_alta.py: la
+    misma logica en los dos sitios, no una copia."""
+    if app is None:
+        app = G.gasolineras_app()
+    out = {}
     for p in app:
+        if p.get('ideess'):
+            continue
+        marca = G.marca_de(p['name'])
         mejor = None
         for e in reg:
             d = gf.metros(p['lat'], p['lng'], e['lat'], e['lng'])
             if d > 300:
                 continue
-            if e['marca'] and p['marca'] and e['marca'] != p['marca']:
+            if e['marca'] and marca and e['marca'] != marca:
                 continue
             if mejor is None or d < mejor[0]:
                 mejor = (d, e)
         if mejor:
-            reclamada[mejor[1]['ideess']] = {'id': p['id'], 'name': p['name'],
-                                             'a_metros': round(mejor[0])}
+            out[mejor[1]['ideess']] = {'id': p['id'], 'name': p['name'],
+                                       'a_metros': round(mejor[0]),
+                                       'misma_marca': bool(marca and marca == mejor[1]['marca'])}
+    return out
+
+
+def main():
+    reg, _ = G.cargar_registro()
+    app = G.gasolineras_app()
+
+    reclamada = reclamadas(reg, app)
+    for p in app:                     # y las que ya estan enlazadas por su IDEESS
+        if p.get('ideess'):
+            reclamada[p['ideess']] = {'id': p['id'], 'name': p['name'], 'a_metros': 0}
 
     porm = {}
     for e in reg:

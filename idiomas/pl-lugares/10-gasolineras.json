@@ -168,5 +168,135 @@
   "desc": "Calle Fomento, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 24 h"
+ },
+ "gas-7817-san-cristobal-de-la-laguna": {
+  "desc": "Autopista del Norte km 10,2, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · BP",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-10905-san-cristobal-de-la-laguna": {
+  "desc": "Avenida República Argentina, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · BP",
+  "hours": "Pn-So 07:00-22:00"
+ },
+ "gas-7784-san-cristobal-de-la-laguna": {
+  "desc": "Carretera TF-411, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · BP",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7819-san-cristobal-de-la-laguna": {
+  "desc": "Carretera Tejina Bajamar, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · BP",
+  "hours": "Pn-Pt 06:00-22:00 · So-Nd 07:00-22:00"
+ },
+ "gas-7872-san-cristobal-de-la-laguna": {
+  "desc": "Avenida Bajamar, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7860-san-cristobal-de-la-laguna": {
+  "desc": "Avenida Los Majuelos, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-7862-san-cristobal-de-la-laguna": {
+  "desc": "Calle Felipe Castillo, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-9966-san-cristobal-de-la-laguna": {
+  "desc": "Calle La Milagrosa La Cuesta, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-So 06:00-22:00 · Nd 08:00-22:00"
+ },
+ "gas-9961-san-cristobal-de-la-laguna": {
+  "desc": "Carretera Sur, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i LPG.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7861-san-cristobal-de-la-laguna": {
+  "desc": "Glorieta del Brasil, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i LPG.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7769-san-cristobal-de-la-laguna": {
+  "desc": "Polígono Industrial Los Majuelos, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-So 06:00-22:00 · Nd 08:00-21:00"
+ },
+ "gas-15534-san-cristobal-de-la-laguna": {
+  "desc": "Calle Santa Amelia, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Océano",
+  "hours": "Pn-Cz 06:00-00:00 · Pt 24 h · So-Nd 06:00-02:00"
+ },
+ "gas-13837-san-cristobal-de-la-laguna": {
+  "desc": "Carretera TF-111, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Océano",
+  "hours": "Pn-So 06:00-22:00 · Nd 07:00-22:00"
+ },
+ "gas-9290-san-cristobal-de-la-laguna": {
+  "desc": "Avenida Los Menceyes, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Pcan",
+  "hours": "Pn-Nd 06:00-21:30"
+ },
+ "gas-11562-san-cristobal-de-la-laguna": {
+  "desc": "Calle Lázaro López, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Pcan",
+  "hours": "Pn 06:00-23:00"
+ },
+ "gas-15575-san-cristobal-de-la-laguna": {
+  "desc": "Carretera TF-152, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Pcan",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-7725-san-cristobal-de-la-laguna": {
+  "desc": "Carretera TF-24 La Laguna-El Portillo, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Pcan",
+  "hours": "Pn-Nd 06:00-23:00"
+ },
+ "gas-7675-san-cristobal-de-la-laguna": {
+  "desc": "Camino San Miguel de Geneto, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
+  "hours": "Pn 24 h"
+ },
+ "gas-7701-san-cristobal-de-la-laguna": {
+  "desc": "Carretera General, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
+  "hours": "Pn-Nd 06:00-23:00"
+ },
+ "gas-7686-san-cristobal-de-la-laguna": {
+  "desc": "Carretera General del Norte, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-7690-san-cristobal-de-la-laguna": {
+  "desc": "Carretera TF-16, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-8768-san-cristobal-de-la-laguna": {
+  "desc": "Avenida Calvo Sotelo, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Shell",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-13353-san-cristobal-de-la-laguna": {
+  "desc": "Camino de la Villa, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Taxlaguna",
+  "hours": "Pn-Pt 06:30-22:00 · So-Nd 08:00-22:00"
+ },
+ "gas-7736-san-cristobal-de-la-laguna": {
+  "desc": "Carretera TF-12 Las Canteras, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Tgas",
+  "hours": "Pn-So 07:00-22:00 · Nd 08:00-21:00"
+ },
+ "gas-8751-san-cristobal-de-la-laguna": {
+  "desc": "Carretera TF-265, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Tgas",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7734-san-cristobal-de-la-laguna": {
+  "desc": "Plaza San Cristóbal, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Tgas",
+  "hours": "Pn-Nd 06:00-22:00"
  }
 }

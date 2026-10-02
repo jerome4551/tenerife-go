@@ -209,6 +209,10 @@ def titulo(s, via=True):
                          for t in p.split('-'))
         if out and llano(out[-1]) == llano(trozo):
             continue                       # «CARRETERA CARRETERA»
+        if len(out) == 1 and llano(out[0]) == 'carretera' and \
+           llano(trozo) in ('autopista', 'autovia'):
+            out[0] = trozo     # «CR AUTOPISTA DEL NORTE»: la via es la autopista
+            continue
         if out and llano(trozo) == llano(out[0]) and llano(trozo) in (
                 'autopista', 'autovía', 'autovia', 'carretera', 'calle', 'avenida'):
             continue       # «AUTOPISTA TF1 AUTOPISTA SUR»: el tipo de via, otra vez
@@ -359,7 +363,11 @@ def horario(txt, L):
 
 
 def es_autopista(direccion):
-    return bool(re.match(r'(?i)^(AUTOPISTA|AUTOV[IÍ]A)\b', (direccion or '').strip()))
+    """En la autopista o la autovia, segun el registro. Tambien cuando la escribe
+       como «CR AUTOPISTA DEL NORTE, KM. 10,2»: sin eso esa BP de La Laguna se
+       quedaba sin su km."""
+    return bool(re.match(r'(?i)^((CR|CRTRA|CARRETERA)\s+)?(AUTOPISTA|AUTOV[IÍ]A)\b',
+                         (direccion or '').strip()))
 
 
 def km_de(direccion):
