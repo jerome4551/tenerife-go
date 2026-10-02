@@ -31,7 +31,9 @@
    "plan": "datos/gasolineras/plan/01-santa-cruz-de-tenerife.json",
    "hecho_el": "2026-10-02",
    "altas_hechas": 33,
-   "nota": "Dos pares no se pueden distinguir con los datos del registro y llevan el IDEESS en el nombre: los dos DISA de la Autovia Santa Cruz-San Andres (misma direccion, sin km) y, en Granadilla, los dos REPSOL de la CARRETERA TF-1 KM. 54, a 83 m uno de otro."
+   "nota": "Dos pares no se pueden distinguir con los datos del registro y llevan el IDEESS en el nombre: los dos DISA de la Autovia Santa Cruz-San Andres (misma direccion, sin km) y, en Granadilla, los dos REPSOL de la CARRETERA TF-1 KM. 54, a 83 m uno de otro.",
+   "revisada_el": "2026-10-02",
+   "revision": "tools/revisar_gasolineras.py, campo a campo contra el registro: 0 hallazgos tras anadir los 3 combustibles que faltaban"
   },
   "02-san-cristobal-de-la-laguna": {
    "que": "Las 28 estaciones de San Cristóbal de La Laguna (26 altas, 2 ya en la app).",
@@ -47,7 +49,9 @@
     "gas-tf2-lalaguna": "7634 (a 7 m)",
     "gas-tf5-lalaguna": "7688 (a 4 m)"
    },
-   "nota": "Las 2 fichas antiguas solo reciben el ideess; el nombre al estilo nuevo, en la sesion 91."
+   "nota": "Las 2 fichas antiguas solo reciben el ideess; el nombre al estilo nuevo, en la sesion 91.",
+   "revisada_el": "2026-10-02",
+   "revision": "tools/revisar_gasolineras.py, campo a campo contra el registro: 0 hallazgos tras anadir los 3 combustibles que faltaban"
   },
   "03-arona": {
    "que": "Las 15 estaciones de Arona (14 altas, 1 ya en la app).",
@@ -267,7 +271,9 @@
    "hecho_el": "2026-10-02",
    "altas_hechas": [
     "gas-7749-garachico"
-   ]
+   ],
+   "revisada_el": "2026-10-02",
+   "revision": "tools/revisar_gasolineras.py, campo a campo contra el registro: 0 hallazgos tras anadir los 3 combustibles que faltaban"
   },
   "27-san-juan-de-la-rambla": {
    "que": "Las 1 estaciones de San Juan de la Rambla (1 altas, 0 ya en la app).",

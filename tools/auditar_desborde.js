@@ -32,7 +32,7 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
   await p.waitForTimeout(2500);
 
   let fallos = 0;
-  const popups = {};
+  const popups = {}, favs = {};
   const P = (t, v) => console.log('  ' + String(t).padEnd(46, '.') + ' ' + v);
   console.log('=== lo que se sale de la pantalla, y el texto del popup ===');
   P('ancho de pantalla usado', ANCHO + ' px');
@@ -97,8 +97,56 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
       await new Promise(r2 => setTimeout(r2, 500));
       const hint = document.querySelector('.popup-tap-hint');
       o.popup = hint ? hint.textContent.trim() : null;
+
+      /* 3 · LA HOJA DE DETALLE. Tampoco la miraba nadie: las etiquetas salian
+         en castellano en los diez idiomas («GASOLINERA · INTERIOR · SUR ·
+         MONTAÑA») porque se pintaban a pelo y no por TG_ETIQUETAS, como el
+         globo; y el boton decia «Favorito» en los diez, tambien en ingles.
+         Lo encontro una foto en chino. Cada etiqueta tiene que decir lo que
+         dice TG_ETIQUETAS en ese idioma. */
+      o.hoja = { mal: [], fav: null };
+      try {
+        const fx = places.find(x => x.id === 'gas-tf51-vilaflor') || pl;
+        /* Ida y vuelta por el castellano, y la ficha abierta ANTES de que
+           llegue el glosario: los dos casos que dejaban las etiquetas en
+           castellano. Despues se espera a que el glosario este, y la ficha
+           que ya estaba abierta tiene que haberse repintado sola. */
+        if (lang !== 'es') { setLang('es'); await new Promise(r2 => setTimeout(r2, 250)); setLang(lang); }
+        openDetailSheet(fx.id);
+        const t0 = Date.now();
+        while (lang !== 'es' && TG_ETIQUETAS.de('Gasolinera') === 'Gasolinera' && Date.now() - t0 < 6000)
+          await new Promise(r2 => setTimeout(r2, 100));
+        if (lang !== 'es' && TG_ETIQUETAS.de('Gasolinera') === 'Gasolinera')
+          o.hoja.mal.push('el glosario no llega tras ir y volver por el castellano');
+        await new Promise(r2 => setTimeout(r2, 300));
+        const chips = [...document.querySelectorAll('#detail-sheet-tags .popup-tag')].map(e => e.textContent);
+        (fx.tags || []).forEach((tg, k) => {
+          const debe = TG_ETIQUETAS.de(tg);
+          if (chips[k] !== debe) o.hoja.mal.push(tg + ' -> «' + chips[k] + '» (debe «' + debe + '»)');
+        });
+        /* Si el glosario del idioma aun no ha llegado, TG_ETIQUETAS devuelve el
+           castellano y la comparacion de arriba da verde comparando castellano
+           con castellano. Vilaflor lleva «Gasolinera», «Sur» y «Montaña», que
+           se traducen en los nueve: alguna TIENE que cambiar. */
+        if (lang !== 'es' && chips.length && chips.every((c, k) => c === fx.tags[k]))
+          o.hoja.mal.push('ninguna etiqueta cambia: ' + chips.slice(0, 4).join(' · '));
+        const fl = document.getElementById('detail-fav-lbl');
+        o.hoja.fav = fl ? fl.textContent.trim() : null;
+        if (typeof closeDetailSheet === 'function') closeDetailSheet();
+      } catch (e) { o.hoja.mal.push('no se pudo abrir: ' + e.message); }
       return o;
     }, { lang: L, ancho: ANCHO, margen: MARGEN });
+
+    if (r.hoja.mal.length) {
+      fallos++;
+      console.log('  MAL  ' + L.padEnd(4) + 'hoja de detalle: ' + r.hoja.mal.length + ' etiqueta(s) sin traducir');
+      r.hoja.mal.slice(0, 4).forEach(x => console.log('           ' + x));
+    }
+    if (L !== 'es' && r.hoja.fav === 'Favorito') {
+      fallos++;
+      console.log('  MAL  ' + L.padEnd(4) + 'el boton de favoritos dice «Favorito», en castellano');
+    }
+    favs[L] = r.hoja.fav;
 
     if (r.desborde.length) {
       fallos++;
@@ -119,6 +167,7 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
   if (iguales.length) fallos++;
   const sinPopup = IDIOMAS.filter(L => !popups[L]);
   if (sinPopup.length) { P('idiomas en los que no se pudo abrir el popup', sinPopup.join(' ')); fallos++; }
+  P('boton de favoritos de la hoja de detalle', IDIOMAS.map(L => L + ' «' + favs[L] + '»').join('  '));
   P('errores de pagina', errores.length);
   if (errores.length) fallos++;
   console.log('\n' + (fallos ? '*** ' + fallos + ' idioma(s) con algo fuera de sitio ***'

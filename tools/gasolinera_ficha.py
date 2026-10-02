@@ -75,6 +75,19 @@ V = {
              'de': 'Premium-Diesel', 'it': 'gasolio premium', 'nl': 'premiumdiesel',
              'zh': '优质柴油', 'zht': '優質柴油', 'bg': 'премиум дизел',
              'pl': 'olej napędowy premium'},
+ 'g95p': {'es': 'gasolina 95 premium', 'en': 'premium petrol 95', 'fr': 'essence 95 premium',
+          'de': 'Premium-Benzin 95', 'it': 'benzina 95 premium', 'nl': 'premium benzine 95',
+          'zh': '优质95号汽油', 'zht': '優質95號汽油', 'bg': 'бензин 95 премиум',
+          'pl': 'benzyna 95 premium'},
+ 'renovable': {'es': 'diésel renovable', 'en': 'renewable diesel', 'fr': 'gazole renouvelable',
+               'de': 'erneuerbarer Diesel', 'it': 'gasolio rinnovabile',
+               'nl': 'hernieuwbare diesel', 'zh': '可再生柴油', 'zht': '可再生柴油',
+               'bg': 'възобновяем дизел', 'pl': 'odnawialny olej napędowy'},
+ 'gnc': {'es': 'gas natural comprimido', 'en': 'compressed natural gas',
+         'fr': 'gaz naturel comprimé', 'de': 'komprimiertes Erdgas',
+         'it': 'gas naturale compresso', 'nl': 'gecomprimeerd aardgas',
+         'zh': '压缩天然气', 'zht': '壓縮天然氣', 'bg': 'компресиран природен газ',
+         'pl': 'sprężony gaz ziemny'},
  'glp': {'es': 'GLP', 'en': 'LPG', 'fr': 'GPL', 'de': 'Autogas', 'it': 'GPL',
          'nl': 'LPG', 'zh': '液化石油气', 'zht': '液化石油氣', 'bg': 'газ LPG',
          'pl': 'LPG'},
@@ -313,13 +326,23 @@ def rotulo_corto(rot):
 
 
 def combustibles(e):
-    """Los que el registro trae con precio. El campo vacio = no lo sirve."""
+    """Los que el registro trae con precio. El campo vacio = no lo sirve.
+
+       El registro tiene 23 campos de precio. En Tenerife traen dato 9: estos
+       8 combustibles y el AdBlue, que es un aditivo y no va en «Combustibles».
+       La plantilla miraba solo 5 y se dejaba el diesel renovable (39
+       estaciones), la gasolina 95 premium (2) y el gas natural comprimido (1):
+       lo cazo tools/revisar_gasolineras.py, que falla si un campo con dato no
+       sabe nombrarlo."""
     hay = []
     for campo, clave in [('Precio Gasolina 95 E5', 'g95'),
+                         ('Precio Gasolina 95 E5 Premium', 'g95p'),
                          ('Precio Gasolina 98 E5', 'g98'),
                          ('Precio Gasoleo A', 'gasoleo'),
                          ('Precio Gasoleo Premium', 'premium'),
-                         ('Precio Gases licuados del petróleo', 'glp')]:
+                         ('Precio Diésel Renovable', 'renovable'),
+                         ('Precio Gases licuados del petróleo', 'glp'),
+                         ('Precio Gas Natural Comprimido', 'gnc')]:
         if (e.get(campo) or '').strip():
             hay.append(clave)
     return hay

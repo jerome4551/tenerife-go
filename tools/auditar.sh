@@ -69,10 +69,14 @@ control municipio.py python3 tools/municipio.py
 control municipio.py python3 tools/municipio.py --calibrar
 echo; echo "════════ las gasolineras del registro ════════"
 control auditar_gasolineras.js node tools/auditar_gasolineras.js
+echo "════════ cada gasolinera, contra el registro, campo a campo ════════"
+control revisar_gasolineras.py python3 tools/revisar_gasolineras.py
 echo; echo "════════ el municipio que dice cada ficha ════════"
 control auditar_municipio.js node tools/auditar_municipio.js
 echo; echo "════════ lo que se sale de la pantalla, y el popup ════════"
 control auditar_desborde.js node tools/auditar_desborde.js "$PUERTO"
+echo; echo "════════ texto de reserva en castellano ════════"
+control auditar_reservas.py python3 tools/auditar_reservas.py
 echo; echo "════════ mapa sin conexion ════════"
 control auditar_mapa.js node tools/auditar_mapa.js "$PUERTO"
 echo; echo "════════ idiomas, arranque y rendimiento ════════"

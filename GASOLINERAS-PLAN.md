@@ -313,6 +313,52 @@ contigo:
 Y una curiosidad para la sesión 91: `gas-tf1-guimar` («BP Güímar (TF-1)») está
 en realidad en **Arafo**, según el polígono del Cabildo.
 
+## Revisión de los bloques 01 y 02 · 2 de octubre
+
+Con un revisor **independiente**, `tools/revisar_gasolineras.py`: no importa
+nada de la plantilla, lee el registro crudo y compara ficha por ficha. Si usara
+el código de la plantilla, solo comprobaría que la plantilla está de acuerdo
+consigo misma. Ya va dentro de `auditar.sh`.
+
+**60 fichas** (las 59 de los dos bloques y Garachico): coordenada, municipio,
+horario, marca, que ninguna palabra del nombre salga de fuera del registro, los
+diez idiomas, ni un precio, y cada estación con **una** ficha (Santa Cruz 33/33,
+La Laguna 28/28). Todo bien salvo una cosa:
+
+**Faltaban combustibles.** El registro tiene 23 campos de precio y la plantilla
+miraba 5. Se dejaba el **diésel renovable** (39 estaciones de la isla), la
+**gasolina 95 premium** (2) y el **gas natural comprimido** (1). En los dos
+bloques eran **13 fichas** que decían menos de lo que el registro sabe.
+Añadidos, en los diez idiomas, y las 13 re-sincronizadas. El **AdBlue** (23
+estaciones) no va: es un aditivo, no un combustible.
+
+El revisor se probó metiéndole **seis fallos distintos** a propósito
+(coordenada movida, horario cambiado, palabra inventada en el nombre, día en
+castellano en inglés, combustible quitado, un precio en francés): los seis,
+cazados.
+
+### Y al mirar las fichas en un navegador de verdad, tres fallos de la app
+
+Ninguno lo trajeron las gasolineras: estaban en **las 839 fichas**.
+
+1. **En la ficha abierta, las etiquetas salían en castellano en los diez
+   idiomas** («GASOLINERA · INTERIOR · SUR · MONTAÑA»). El globo del mapa las
+   traducía; la ficha no.
+2. **El botón decía «Favorito» en los diez idiomas**, también en inglés: la
+   traducción no existía en ninguno y salía siempre el texto de reserva.
+3. **Inglés → castellano → inglés dejaba todas las etiquetas en castellano**,
+   también las del mapa, hasta cambiar a un tercer idioma.
+
+Y uno más pequeño: con un **enlace compartido** en otro idioma, la ficha se abre
+antes de que lleguen los textos y se quedaba en castellano hasta cerrarla.
+Ahora se repinta sola.
+
+Controles nuevos para que no vuelvan: `auditar_reservas.py` (cualquier
+`L.clave || 'texto en castellano'` tiene que tener la clave en los diez
+idiomas: habría cazado «Favorito») y la ficha abierta dentro de
+`auditar_desborde.js`, con ida y vuelta por el castellano. Probados quitando
+cada arreglo por separado: rojo las tres veces.
+
 ## Lo que queda
 
 **28 sesiones**, 152 altas. La siguiente es la **03, Arona (15)**.

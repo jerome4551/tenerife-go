@@ -25,7 +25,7 @@
   "hours": "Pn-Nd 06:00-22:00"
  },
  "gas-11394-santa-cruz-de-tenerife": {
-  "desc": "Vía Interior del Puerto, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Vía Interior del Puerto, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · Repsol",
   "hours": "Pn-Nd 07:00-21:00"
  },
@@ -40,7 +40,7 @@
   "hours": "Pn-Pt 24 h · So 06:00-20:00 · Nd 08:00-15:00"
  },
  "gas-14262-santa-cruz-de-tenerife": {
-  "desc": "Carretera del Rosario, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i LPG.",
+  "desc": "Carretera del Rosario, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy, odnawialny olej napędowy i LPG.",
   "cat": "Stacja paliw · Moeve",
   "hours": "Pn-Nd 24 h"
  },
@@ -50,7 +50,7 @@
   "hours": "Pn-Nd 24 h"
  },
  "gas-14868-santa-cruz-de-tenerife": {
-  "desc": "Calle Jesús Hernández Guzmán, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i LPG.",
+  "desc": "Calle Jesús Hernández Guzmán, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy, odnawialny olej napędowy, LPG i sprężony gaz ziemny.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 06:00-22:00"
  },
@@ -65,12 +65,12 @@
   "hours": "Pn-Pt 07:00-15:00"
  },
  "gas-7637-santa-cruz-de-tenerife": {
-  "desc": "Autopista TF-21 km 3,5, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Autopista TF-21 km 3,5, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · Moeve",
   "hours": "Pn-Nd 24 h"
  },
  "gas-7713-santa-cruz-de-tenerife": {
-  "desc": "Polígono Industrial Añaza, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Polígono Industrial Añaza, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · Repsol",
   "hours": "Pn-Nd 06:00-22:00"
  },
@@ -110,7 +110,7 @@
   "hours": "Pn-Nd 24 h"
  },
  "gas-7863-santa-cruz-de-tenerife": {
-  "desc": "Carretera General del Sur, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "desc": "Carretera General del Sur, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i odnawialny olej napędowy.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-So 06:00-22:00 · Nd 08:00-22:00"
  },
@@ -125,7 +125,7 @@
   "hours": "Pn-Nd 06:00-22:00"
  },
  "gas-7875-santa-cruz-de-tenerife": {
-  "desc": "Vía Penetración, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Vía Penetración, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 24 h"
  },
@@ -160,7 +160,7 @@
   "hours": "Pn-Nd 06:00-22:00"
  },
  "gas-9900-santa-cruz-de-tenerife": {
-  "desc": "Avenida Anaga, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Avenida Anaga, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · Moeve",
   "hours": "Pn-Pt 06:00-22:00 · So-Nd 07:30-22:00"
  },
@@ -195,7 +195,7 @@
   "hours": "Pn-Nd 06:00-22:00"
  },
  "gas-7860-san-cristobal-de-la-laguna": {
-  "desc": "Avenida Los Majuelos, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "desc": "Avenida Los Majuelos, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i odnawialny olej napędowy.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 24 h"
  },
@@ -255,22 +255,22 @@
   "hours": "Pn-Nd 06:00-23:00"
  },
  "gas-7675-san-cristobal-de-la-laguna": {
-  "desc": "Camino San Miguel de Geneto, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Camino San Miguel de Geneto, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · Repsol",
   "hours": "Pn 24 h"
  },
  "gas-7701-san-cristobal-de-la-laguna": {
-  "desc": "Carretera General, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Carretera General, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · Repsol",
   "hours": "Pn-Nd 06:00-23:00"
  },
  "gas-7686-san-cristobal-de-la-laguna": {
-  "desc": "Carretera General del Norte, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Carretera General del Norte, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · Repsol",
   "hours": "Pn-Nd 24 h"
  },
  "gas-7690-san-cristobal-de-la-laguna": {
-  "desc": "Carretera TF-16, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Carretera TF-16, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · Repsol",
   "hours": "Pn-Nd 06:00-22:00"
  },

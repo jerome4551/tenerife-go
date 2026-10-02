@@ -6707,6 +6707,8 @@ banderasTitulo: '¿Qué significa cada bandera?',
     emergencyTel: '🆘 Emergencias: 112',
     pharmacyGuardLink: '💊 Ver farmacia de guardia hoy (oficial)',
     shareBtn: 'Compartir',
+    favAdd: 'Favorito',
+    favRemove: 'Quitar',
     shareTitle: 'Mira este lugar en Tenerife',
     shareGmaps: 'Abrir en Google Maps',
     shareCopied: '¡Enlace copiado!',
@@ -6878,6 +6880,8 @@ banderasTitulo: 'What does each flag mean?',
     emergencyTel: '🆘 Emergency: 112',
     pharmacyGuardLink: '💊 Find today\'s on-duty pharmacy (official)',
     shareBtn: 'Share',
+    favAdd: 'Favourite',
+    favRemove: 'Remove',
     shareTitle: 'Check out this place in Tenerife',
     shareGmaps: 'Open in Google Maps',
     shareCopied: 'Link copied!',
@@ -7049,6 +7053,8 @@ banderasTitulo: 'Que signifie chaque drapeau ?',
     emergencyTel: '🆘 Urgences : 112',
     pharmacyGuardLink: '💊 Pharmacie de garde aujourd\'hui (officiel)',
     shareBtn: 'Partager',
+    favAdd: 'Favori',
+    favRemove: 'Retirer',
     shareTitle: 'Découvrez ce lieu à Tenerife',
     shareGmaps: 'Ouvrir dans Google Maps',
     shareCopied: 'Lien copié !',
@@ -7220,6 +7226,8 @@ banderasTitulo: 'Was bedeutet welche Flagge?',
     emergencyTel: '🆘 Notruf: 112',
     pharmacyGuardLink: '💊 Notdienstapotheke heute (offiziell)',
     shareBtn: 'Teilen',
+    favAdd: 'Favorit',
+    favRemove: 'Entfernen',
     shareTitle: 'Schau dir diesen Ort auf Teneriffa an',
     shareGmaps: 'In Google Maps öffnen',
     shareCopied: 'Link kopiert!',
@@ -7395,6 +7403,8 @@ banderasTitulo: 'Che cosa significa ogni bandiera?',
     emergencyTel: '🆘 Emergenze: 112',
     pharmacyGuardLink: '💊 Farmacia di turno oggi (ufficiale)',
     shareBtn: 'Condividi',
+    favAdd: 'Preferito',
+    favRemove: 'Rimuovi',
     shareTitle: 'Guarda questo luogo a Tenerife',
     shareGmaps: 'Apri in Google Maps',
     shareCopied: 'Link copiato!',
@@ -7564,6 +7574,8 @@ banderasTitulo: 'Wat betekent elke vlag?',
     emergencyTel: '🆘 Noodgeval: 112',
     pharmacyGuardLink: '💊 Bekijk dienstapotheek vandaag (officieel)',
     shareBtn: 'Delen',
+    favAdd: 'Favoriet',
+    favRemove: 'Verwijderen',
     shareTitle: 'Kijk deze plek op Tenerife',
     shareGmaps: 'Open in Google Maps',
     shareCopied: 'Link gekopieerd!',
@@ -7739,6 +7751,8 @@ banderasTitulo: '每种旗帜是什么意思？',
     emergencyTel: '🆘 紧急电话：112',
     pharmacyGuardLink: '💊 查看今日值班药房（官方）',
     shareBtn: '分享',
+    favAdd: '收藏',
+    favRemove: '取消收藏',
     shareTitle: '看看特内里费岛的这个地方',
     shareGmaps: '在 Google 地图中打开',
     shareCopied: '链接已复制！',
@@ -7917,6 +7931,8 @@ banderasTitulo: '每种旗帜是什么意思？',
     "emergencyTel": "🆘 Спешни случаи: 112",
     "pharmacyGuardLink": "💊 Дежурна аптека днес (официално)",
     "shareBtn": "Сподели",
+    "favAdd": "Любими",
+    "favRemove": "Премахни",
     "shareTitle": "Виж това място в Тенерифе",
     "shareGmaps": "Отвори в Google Maps",
     "shareCopied": "Връзката е копирана!",
@@ -8090,6 +8106,8 @@ banderasTitulo: '每种旗帜是什么意思？',
     "emergencyTel": "🆘 Alarmowy: 112",
     "pharmacyGuardLink": "💊 Sprawdź dyżurną aptekę na dziś (oficjalne)",
     "shareBtn": "Udostępnij",
+    "favAdd": "Ulubione",
+    "favRemove": "Usuń",
     "shareTitle": "Zobacz to miejsce na Teneryfie",
     "shareGmaps": "Otwórz w Mapach Google",
     "shareCopied": "Link skopiowany!",
@@ -8594,6 +8612,8 @@ banderasTitulo: '每種旗幟是什麼意思？',
     emergencyTel: '🆘 緊急電話：112',
     pharmacyGuardLink: '💊 查看今日值班藥房（官方）',
     shareBtn: '分享',
+    favAdd: '收藏',
+    favRemove: '取消收藏',
     shareTitle: '看看特內里費島的這個地方',
     shareGmaps: '在 Google 地圖中開啟',
     shareCopied: '連結已複製！',
@@ -8928,6 +8948,7 @@ const TG_LUGARES_I18N = (function () {
     try { if (typeof updateMarkers === 'function') updateMarkers(); } catch (e) {}
     try { if (typeof rebuildCategoryList === 'function') rebuildCategoryList(); } catch (e) {}
     try { if (typeof updateFilterStatus === 'function') updateFilterStatus(); } catch (e) {}
+    try { repintarHojaAbierta(); } catch (e) {}
   }
 
   function aplicar(lang, puerta) {
@@ -9017,7 +9038,12 @@ const TG_ETIQUETAS = (function () {
   'use strict';
   let tabla = null, pedido = null;
   function bajar(lang) {
-    if (!lang || lang === 'es') { tabla = null; return Promise.resolve(); }
+    /* Al pasar al castellano hay que olvidar TAMBIEN que idioma se habia
+       pedido. Sin `pedido = null`, ingles -> castellano -> ingles se quedaba
+       con la tabla vacia: «ya lo tengo pedido», no se volvia a bajar, y todas
+       las etiquetas salian en castellano estando en ingles, en el mapa y en la
+       ficha, hasta cambiar a un tercer idioma. */
+    if (!lang || lang === 'es') { tabla = null; pedido = null; return Promise.resolve(); }
     if (pedido === lang) return Promise.resolve();
     pedido = lang;
     return fetch('idiomas/etiquetas/' + lang + '.json', { cache: 'force-cache' })
@@ -9026,6 +9052,7 @@ const TG_ETIQUETAS = (function () {
         if (pedido !== lang) return;          // llego tarde, ya cambiaron de idioma
         tabla = d || null;
         try { if (typeof updateMarkers === 'function') updateMarkers(); } catch (e) {}
+        try { repintarHojaAbierta(); } catch (e) {}
       })
       .catch(() => { if (pedido === lang) tabla = null; });
   }
@@ -11531,7 +11558,7 @@ const places = [
     tags:["Gasolinera","DISA","San Cristóbal de La Laguna"] },
   { id:"gas-7860-san-cristobal-de-la-laguna", category:"gasolinera", name:"DISA · Avenida Los Majuelos", emoji:"⛽", color:"#dc2626", lat:28.454667, lng:-16.296722, ideess:"7860",
     hours:{ es:"L-D 24 h" },
-    desc:{ es:"Avenida Los Majuelos, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium." },
+    desc:{ es:"Avenida Los Majuelos, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y diésel renovable." },
     cat:{ es:"Gasolinera · DISA" },
     tags:["Gasolinera","DISA","San Cristóbal de La Laguna"] },
   { id:"gas-7862-san-cristobal-de-la-laguna", category:"gasolinera", name:"DISA · Calle Felipe Castillo", emoji:"⛽", color:"#dc2626", lat:28.53325, lng:-16.363056, ideess:"7862",
@@ -11591,22 +11618,22 @@ const places = [
     tags:["Gasolinera","Pcan","San Cristóbal de La Laguna"] },
   { id:"gas-7675-san-cristobal-de-la-laguna", category:"gasolinera", name:"Repsol · Camino San Miguel de Geneto", emoji:"⛽", color:"#dc2626", lat:28.456083, lng:-16.316889, ideess:"7675",
     hours:{ es:"L 24 h" },
-    desc:{ es:"Camino San Miguel de Geneto, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98 y gasóleo A." },
+    desc:{ es:"Camino San Miguel de Geneto, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable." },
     cat:{ es:"Gasolinera · Repsol" },
     tags:["Gasolinera","Repsol","San Cristóbal de La Laguna"] },
   { id:"gas-7701-san-cristobal-de-la-laguna", category:"gasolinera", name:"Repsol · Carretera General", emoji:"⛽", color:"#dc2626", lat:28.518167, lng:-16.389, ideess:"7701",
     hours:{ es:"L-D 06:00-23:00" },
-    desc:{ es:"Carretera General, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98 y gasóleo A." },
+    desc:{ es:"Carretera General, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable." },
     cat:{ es:"Gasolinera · Repsol" },
     tags:["Gasolinera","Repsol","San Cristóbal de La Laguna"] },
   { id:"gas-7686-san-cristobal-de-la-laguna", category:"gasolinera", name:"Repsol · Carretera General del Norte", emoji:"⛽", color:"#dc2626", lat:28.490667, lng:-16.3545, ideess:"7686",
     hours:{ es:"L-D 24 h" },
-    desc:{ es:"Carretera General del Norte, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98 y gasóleo A." },
+    desc:{ es:"Carretera General del Norte, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable." },
     cat:{ es:"Gasolinera · Repsol" },
     tags:["Gasolinera","Repsol","San Cristóbal de La Laguna"] },
   { id:"gas-7690-san-cristobal-de-la-laguna", category:"gasolinera", name:"Repsol · Carretera TF-16", emoji:"⛽", color:"#dc2626", lat:28.510556, lng:-16.398583, ideess:"7690",
     hours:{ es:"L-D 06:00-22:00" },
-    desc:{ es:"Carretera TF-16, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98 y gasóleo A." },
+    desc:{ es:"Carretera TF-16, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable." },
     cat:{ es:"Gasolinera · Repsol" },
     tags:["Gasolinera","Repsol","San Cristóbal de La Laguna"] },
   { id:"gas-8768-san-cristobal-de-la-laguna", category:"gasolinera", name:"Shell · Avenida Calvo Sotelo", emoji:"⛽", color:"#dc2626", lat:28.4815, lng:-16.313611, ideess:"8768",
@@ -11686,7 +11713,7 @@ const places = [
     tags:["Gasolinera","DISA","Santa Cruz de Tenerife"] },
   { id:"gas-14868-santa-cruz-de-tenerife", category:"gasolinera", name:"DISA · Calle Jesús Hernández Guzmán", emoji:"⛽", color:"#dc2626", lat:28.441806, lng:-16.281194, ideess:"14868",
     hours:{ es:"L-D 06:00-22:00" },
-    desc:{ es:"Calle Jesús Hernández Guzmán, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y GLP." },
+    desc:{ es:"Calle Jesús Hernández Guzmán, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A, diésel renovable, GLP y gas natural comprimido." },
     cat:{ es:"Gasolinera · DISA" },
     tags:["Gasolinera","DISA","Santa Cruz de Tenerife"] },
   { id:"gas-7857-santa-cruz-de-tenerife", category:"gasolinera", name:"DISA · Calle Ortega y Gasset", emoji:"⛽", color:"#dc2626", lat:28.45725, lng:-16.265167, ideess:"7857",
@@ -11711,7 +11738,7 @@ const places = [
     tags:["Gasolinera","DISA","Santa Cruz de Tenerife"] },
   { id:"gas-7863-santa-cruz-de-tenerife", category:"gasolinera", name:"DISA · Carretera General del Sur km 7,5", emoji:"⛽", color:"#dc2626", lat:28.438528, lng:-16.305167, ideess:"7863",
     hours:{ es:"L-S 06:00-22:00 · D 08:00-22:00" },
-    desc:{ es:"Carretera General del Sur, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium." },
+    desc:{ es:"Carretera General del Sur, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y diésel renovable." },
     cat:{ es:"Gasolinera · DISA" },
     tags:["Gasolinera","DISA","Santa Cruz de Tenerife"] },
   { id:"gas-10924-santa-cruz-de-tenerife", category:"gasolinera", name:"DISA · Carretera General del Sur km 9,2", emoji:"⛽", color:"#dc2626", lat:28.425417, lng:-16.317, ideess:"10924",
@@ -11731,7 +11758,7 @@ const places = [
     tags:["Gasolinera","DISA","Santa Cruz de Tenerife"] },
   { id:"gas-7875-santa-cruz-de-tenerife", category:"gasolinera", name:"DISA · Vía Penetración", emoji:"⛽", color:"#dc2626", lat:28.4515, lng:-16.261417, ideess:"7875",
     hours:{ es:"L-D 24 h" },
-    desc:{ es:"Vía Penetración, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98 y gasóleo A." },
+    desc:{ es:"Vía Penetración, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable." },
     cat:{ es:"Gasolinera · DISA" },
     tags:["Gasolinera","DISA","Santa Cruz de Tenerife"] },
   { id:"gas-13966-santa-cruz-de-tenerife", category:"gasolinera", name:"GMOil · Calle Laura Grote de la Puerta", emoji:"⛽", color:"#dc2626", lat:28.445778, lng:-16.281361, ideess:"13966",
@@ -11741,12 +11768,12 @@ const places = [
     tags:["Gasolinera","GMOil","Santa Cruz de Tenerife"] },
   { id:"gas-7637-santa-cruz-de-tenerife", category:"gasolinera", name:"Moeve · Autopista TF-21 km 3,5", emoji:"⛽", color:"#dc2626", lat:28.436528, lng:-16.282167, ideess:"7637",
     hours:{ es:"L-D 24 h" },
-    desc:{ es:"Autopista TF-21 km 3,5, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98 y gasóleo A." },
+    desc:{ es:"Autopista TF-21 km 3,5, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable." },
     cat:{ es:"Gasolinera · Moeve" },
     tags:["Gasolinera","Moeve","Santa Cruz de Tenerife"] },
   { id:"gas-9900-santa-cruz-de-tenerife", category:"gasolinera", name:"Moeve · Avenida Anaga", emoji:"⛽", color:"#dc2626", lat:28.482833, lng:-16.239611, ideess:"9900",
     hours:{ es:"L-V 06:00-22:00 · S-D 07:30-22:00" },
-    desc:{ es:"Avenida Anaga, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98 y gasóleo A." },
+    desc:{ es:"Avenida Anaga, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable." },
     cat:{ es:"Gasolinera · Moeve" },
     tags:["Gasolinera","Moeve","Santa Cruz de Tenerife"] },
   { id:"gas-10219-santa-cruz-de-tenerife", category:"gasolinera", name:"Moeve · Avenida Ángel Romero", emoji:"⛽", color:"#dc2626", lat:28.463083, lng:-16.277056, ideess:"10219",
@@ -11761,7 +11788,7 @@ const places = [
     tags:["Gasolinera","Moeve","Santa Cruz de Tenerife"] },
   { id:"gas-14262-santa-cruz-de-tenerife", category:"gasolinera", name:"Moeve · Carretera del Rosario", emoji:"⛽", color:"#dc2626", lat:28.447056, lng:-16.291444, ideess:"14262",
     hours:{ es:"L-D 24 h" },
-    desc:{ es:"Carretera del Rosario, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y GLP." },
+    desc:{ es:"Carretera del Rosario, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A, diésel renovable y GLP." },
     cat:{ es:"Gasolinera · Moeve" },
     tags:["Gasolinera","Moeve","Santa Cruz de Tenerife"] },
   { id:"gas-10842-santa-cruz-de-tenerife", category:"gasolinera", name:"Moeve · Polígono El Mayorazgo", emoji:"⛽", color:"#dc2626", lat:28.4435, lng:-16.278806, ideess:"10842",
@@ -11776,12 +11803,12 @@ const places = [
     tags:["Gasolinera","Océano","Santa Cruz de Tenerife"] },
   { id:"gas-7713-santa-cruz-de-tenerife", category:"gasolinera", name:"Repsol · Polígono Industrial Añaza", emoji:"⛽", color:"#dc2626", lat:28.427472, lng:-16.301, ideess:"7713",
     hours:{ es:"L-D 06:00-22:00" },
-    desc:{ es:"Polígono Industrial Añaza, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98 y gasóleo A." },
+    desc:{ es:"Polígono Industrial Añaza, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable." },
     cat:{ es:"Gasolinera · Repsol" },
     tags:["Gasolinera","Repsol","Santa Cruz de Tenerife"] },
   { id:"gas-11394-santa-cruz-de-tenerife", category:"gasolinera", name:"Repsol · Vía Interior del Puerto", emoji:"⛽", color:"#dc2626", lat:28.496444, lng:-16.208639, ideess:"11394",
     hours:{ es:"L-D 07:00-21:00" },
-    desc:{ es:"Vía Interior del Puerto, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98 y gasóleo A." },
+    desc:{ es:"Vía Interior del Puerto, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable." },
     cat:{ es:"Gasolinera · Repsol" },
     tags:["Gasolinera","Repsol","Santa Cruz de Tenerife"] },
   { id:"gas-8759-santa-cruz-de-tenerife", category:"gasolinera", name:"Shell · Carretera Santa Cruz-La Laguna", emoji:"⛽", color:"#dc2626", lat:28.464056, lng:-16.279417, ideess:"8759",
@@ -15474,7 +15501,9 @@ function openDetailSheet(placeId) {
 
   // Tags (reusar popup-tag style)
   const tagsEl = document.getElementById('detail-sheet-tags');
-  tagsEl.innerHTML = tags.map(tag => `<span class="popup-tag">${escapeHtml(tag)}</span>`).join('');
+  // Por el mismo traductor que el globo del mapa (TG_ETIQUETAS). Sin el, la fila
+  // de etiquetas del detalle salia en castellano en los diez idiomas.
+  tagsEl.innerHTML = tags.map(tag => `<span class="popup-tag">${escapeHtml(TG_ETIQUETAS.de(tag))}</span>`).join('');
 
   // Info salud/dirección si existe
   const infoEl = document.getElementById('detail-sheet-info');
@@ -15549,6 +15578,17 @@ function closeDetailSheet() {
   document.getElementById('detail-sheet').classList.remove('open');
   document.getElementById('detail-overlay').classList.remove('open');
   _detailPlaceId = null;
+}
+
+/* Los textos del idioma (idiomas/<l>.json) y el glosario de etiquetas llegan
+   por la red DESPUES de pintar. Los dos repintaban los marcadores, pero no una
+   ficha abierta: un enlace compartido la abre en el mismo arranque, y en la
+   primera visita en otro idioma se quedaba con la descripcion y las etiquetas
+   en castellano hasta cerrarla. openDetailSheet solo rellena contenido y pone
+   la clase «open», asi que volver a llamarla con la ficha abierta es seguro. */
+function repintarHojaAbierta() {
+  const hoja = document.getElementById('detail-sheet');
+  if (_detailPlaceId && hoja && hoja.classList.contains('open')) openDetailSheet(_detailPlaceId);
 }
 
 function detailSheetFav() {
