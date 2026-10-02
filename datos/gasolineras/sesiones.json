@@ -9,9 +9,17 @@
  "sesiones": {
   "00-plantilla": {
    "que": "Asentar la plantilla de ficha de gasolinera y el formateador de horarios en los 10 idiomas.",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": null,
-   "estaciones": 0
+   "estaciones": 0,
+   "hecho_el": "2026-10-02",
+   "deja": [
+    "tools/gasolinera_ficha.py  el molde: 12 palabras y 7 dias x 10 idiomas, y el",
+    "  vocabulario se saca solo con --vocabulario para poder revisarlo.",
+    "tools/gasolinera_alta.py   mete un municipio entero en index.html, en los 9",
+    "  ficheros de idioma y en las etiquetas. Si algo falla lo deja como estaba.",
+    "Probado sobre Garachico, 1 estacion, y la auditoria en verde."
+   ]
   },
   "01-santa-cruz-de-tenerife": {
    "que": "Las 33 estaciones de Santa Cruz de Tenerife (33 altas, 0 ya en la app).",
@@ -240,12 +248,16 @@
   },
   "26-garachico": {
    "que": "Las 1 estaciones de Garachico (1 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Garachico",
    "estaciones": 1,
    "altas": 1,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/26-garachico.json"
+   "plan": "datos/gasolineras/plan/26-garachico.json",
+   "hecho_el": "2026-10-02",
+   "altas_hechas": [
+    "gas-7749-garachico"
+   ]
   },
   "27-san-juan-de-la-rambla": {
    "que": "Las 1 estaciones de San Juan de la Rambla (1 altas, 0 ya en la app).",

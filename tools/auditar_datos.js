@@ -116,9 +116,11 @@ console.log('\n=== lugares ===');
    Mercadona, el que salia era el de San Isidro; 785 -> 779 el 2 de octubre, al
    dar de baja las SEIS gasolineras que el registro oficial del MITECO no tiene
    a menos de 300 m (gas-tf1-adeje, gas-tf1-candelaria, gas-tf1-guaza2,
-   gas-tf2-aeropuerto, gas-tf5-icod y gas-tf82-los-gigantes). Esta cifra subira
-   mucho en cuanto entren las 198 altas del registro. */
-debe('lugares', PLACES.length, PLACES.length === 779);
+   gas-tf2-aeropuerto, gas-tf5-icod y gas-tf82-los-gigantes); 779 -> 780 el 2 de
+   octubre, con la primera alta del registro (gas-7749-garachico, sesion 26).
+   Esta cifra sube una vez por sesion de gasolineras hasta las 198 altas, y se
+   cambia A MANO a proposito: asi ningun municipio entra sin que nadie lo vea. */
+debe('lugares', PLACES.length, PLACES.length === 780);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

@@ -103,7 +103,15 @@ if (accion === 'montar') {
     for (const c of CAMPOS) if (campos.has(c)) salida[id][c] = junto[id][c];
   }
   const ruta = path.join(RAIZ, 'idiomas', L + '.json');
-  fs.writeFileSync(ruta, JSON.stringify(salida, null, 1));
+  /* Una linea por ficha, como los otros nueve idiomas. Con JSON.stringify(…,1)
+     el fichero salia a 3.249 lineas en vez de 781, y entonces anadir UNA ficha
+     daba un diff de tres mil lineas en el que no se ve lo que ha cambiado. */
+  /* El espacio detras de los dos puntos y de la coma tambien importa: sin el,
+     anadir una ficha cambiaba las 780 lineas en vez de una sola. */
+  const fila = v => '{' + Object.entries(v).map(
+    ([c, t]) => JSON.stringify(c) + ': ' + JSON.stringify(t)).join(', ') + '}';
+  fs.writeFileSync(ruta, '{\n' + Object.entries(salida).map(
+    ([k, v]) => ' ' + JSON.stringify(k) + ': ' + fila(v)).join(',\n') + '\n}\n');
   const n = Object.values(salida).reduce((a, v) => a + Object.keys(v).length, 0);
   console.log(ruta + '  ' + Object.keys(salida).length + ' lugares · ' + n + ' textos · '
             + Math.round(fs.statSync(ruta).size / 1024) + ' kB');

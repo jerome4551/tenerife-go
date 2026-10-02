@@ -130,15 +130,107 @@ Ahora son 14 y 14, sin repetir ninguna.
 
 ---
 
-## Lo que necesito de ti antes de empezar
+# Sesión 00 · la plantilla · HECHA el 2 de octubre
+
+Probada sobre **Garachico**, que tiene una sola estación. La app pasa de 779 a
+**780 lugares** y la auditoría está en verde.
+
+## Las decisiones, y por qué
+
+**El nombre es «marca · calle».** No lo elegí a ojo, lo conté sobre las 212:
+
+| nombre | distintos | chocan |
+|---|---|---|
+| marca + **calle** | **210** | 2 |
+| marca + localidad | 162 | 80 |
+| marca + municipio | 124 | 133 |
+
+Con el municipio salían **quince «DISA · Santa Cruz de Tenerife»** seguidos, que
+no le sirven a nadie. A los 2 que seguían chocando se les añade la localidad, y
+si aún chocan, el km; dos REPSOL tienen la **misma dirección exacta** del
+registro («CARRETERA TF-1 KM. 54», a 83 m una de otra) y sólo se distinguen por
+su IDEESS. Resultado: **212 nombres, los 212 distintos**, el más largo de 56
+caracteres (el tope que ya tenía la app era 66).
+
+**Los topónimos se quedan en castellano en los diez idiomas.** «Garachico» y
+«Carretera Icod-Buenavista» no se traducen ni se transcriben al chino ni al
+búlgaro. Tres razones:
+
+* es lo que pone en las señales y en Google Maps, que es donde el conductor lo
+  va a leer;
+* **no existe transcripción revisada** de los 31 municipios: `idiomas/glosario-cat`
+  no tiene búlgaro ni polaco, y del chino sólo cubre 4 de 31. Escribirlas yo
+  sería inventármelas;
+* es la regla que la app ya tiene escrita en `tools/auditar_idioma.js:408`.
+
+El control de alfabeto pide que el chino **tenga** han y el búlgaro **tenga**
+cirílico, no que no tengan latín: lo cumplen las palabras traducidas de
+alrededor.
+
+**La descripción no lleva ni verbo ni preposición**, y es a propósito. «Oferuje
+benzyna 95» está mal en polaco (pide acusativo), el francés necesita artículo
+(«sur la Carretera») y el castellano también («en **la** carretera»), y el
+artículo depende del tipo de vía. Una etiqueta y una lista en nominativo no
+declina nada y es correcta en los diez:
+
+> Carretera Icod-Buenavista, Garachico. Combustibles: gasolina 95, gasolina 98 y
+> gasóleo A.
+
+**Los combustibles salen de qué campos «Precio \*» traen dato**, porque el campo
+viene vacío cuando la estación no sirve ese combustible. **Ningún precio entra en
+la ficha**: caduca en 24 h.
+
+## El campo «Dirección» del registro viene sucio: 24 de 212
+
+Tipo de vía repetido («CARRETERA CARRETERA GENERAL DEL SUR»), paréntesis sin
+cerrar («TF-66(GUAZA-GALLE KM. 2»), un «  EN  » usado de separador («AVENIDA AYYO
+DE  EN  ADEJE»), el artículo pospuesto («CALLE MILAGROSA (LA)», «CARRETERA
+ROSARIO (DEL)», «AVENIDA PASO EL»), «S/N» en medio de la frase y dos erratas
+(«CARRETEA», «S7N»). Son un conjunto **cerrado**: las reglas de limpieza se
+comprobaron mirando las 212 salidas una a una. El texto original no se pierde:
+va en `direccion_registro`.
+
+Lo que **no** he tocado: los acentos de los nombres de persona de las calles
+(«Felix Benitez», «Dominguez»), porque ahí no tengo fuente y no voy a adivinar.
+Sí he puesto la grafía oficial del Cabildo donde aparece un municipio
+(«GÜIMAR» → «Güímar») y el acento de «Polígono», que es palabra común.
+
+**Una cosa para que la confirmes:** el polígono de Granadilla sale como **«El
+Carreton»**, sin acento, porque así lo escribe el registro y no tengo fuente para
+los nombres de sitio por debajo del municipio. Si me dices que es «El Carretón»,
+lo cambio en las dos fichas que lo llevan.
+
+## Las herramientas que deja
+
+```
+python3 tools/gasolinera_ficha.py --vocabulario    las 12 palabras y los 7 dias
+python3 tools/gasolinera_ficha.py --municipio X    las fichas, sin tocar nada
+python3 tools/gasolinera_alta.py X --ver           que haria
+python3 tools/gasolinera_alta.py X                 lo hace
+node tools/lugares_idioma.js montar pl
+bash tools/auditar.sh
+```
+
+`gasolinera_alta.py` **no pisa nada** (si el id ya está, lo dice y no lo toca) y
+**no deja a medias**: si falla a mitad, devuelve los ficheros como estaban.
+
+De paso arreglé `lugares_idioma.js`: escribía `pl.json` con otro formato que los
+otros nueve idiomas, así que añadir **una** ficha daba un diff de **3.249
+líneas** en el que no se ve lo que ha cambiado. Ahora da una línea.
+
+## Lo que queda
+
+Las **31 sesiones** de municipio (198 altas). Recomiendo seguir de menor a
+mayor y dejar **Santa Cruz (33)** y **La Laguna (28)** para el final.
+
+---
+
+## Lo que necesito de ti antes de seguir
 
 1. **Los precios aparte, ¿te vale?** Es la única forma de que el modo de «las 10
    más baratas» no mienta.
-2. **¿Empezamos por una pequeña** para asentar la plantilla, o prefieres ir por
-   orden de tamaño?
-3. Las **6 fichas de la app que no están en el registro** —Adeje, Candelaria,
-   Icod, Los Gigantes, el aeropuerto y la de Guaza— ¿las arreglamos antes de
-   empezar con las altas, o después?
+2. Las **14 fichas que sí casan** siguen con el nombre al estilo antiguo
+   («BP Güímar (TF-1)») mientras las nuevas van en «marca · calle». ¿Las dejo
+   como están o las paso al estilo nuevo en la sesión 91?
 
-*Nada de esto está aplicado. `python3 tools/gasolineras_plan.py` rehace las 31
-tandas desde el registro.*
+*`python3 tools/gasolineras_plan.py` rehace las 31 tandas desde el registro.*
