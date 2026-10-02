@@ -120,12 +120,14 @@ VIAL = {
     'pg': 'Polígono', 'pol': 'Polígono',
     'c/': 'Calle', 'gral': 'General', 'gral.': 'General',
     'poligono': 'Polígono',          # el registro va sin acentos
+    'autovia': 'Autovía',
+    'ind': 'Industrial', 'ind.': 'Industrial',   # «PG IND. AÑAZA»
     'carretea': 'Carretera',         # errata del registro, 1 caso
     'urbanitzacion': 'Urbanización',   # el registro lo escribe asi
 }
 # Siglas: se quedan en mayusculas porque no son palabras. Sin esta lista,
 # «E.S. LA CALETA» salia «E.s. la Caleta» y «BP» salia «Bp».
-SIGLAS = {'BP', 'ES', 'SL', 'SA', 'KM', 'GLP', 'IND', 'CC', 'II', 'III', 'IV'}
+SIGLAS = {'BP', 'ES', 'SL', 'SA', 'KM', 'GLP', 'CC', 'II', 'III', 'IV'}
 # En un nombre de via el articulo va en minuscula («Avenida de las Palmitas»);
 # en un nombre propio NO («La Caleta», «El Gomero»). La preposicion va en
 # minuscula en los dos casos («Santa Cruz de Tenerife», «Red de Combustibles»).
@@ -187,13 +189,20 @@ def titulo(s, via=True):
             if not out or llano(out[-1]) != llano(exp):
                 out.append(exp)
             continue
+        cod = re.match(r'(?i)^TF-?(\d+)$', crudo)
+        if cod:
+            out.append('TF-%s' % cod.group(1))
+            continue
         if crudo.upper() in SIGLAS or re.match(r'^(?:[A-ZÁ-Ú]\.)+$', p) \
-           or re.match(r'^TF-?\d+$', crudo, re.I) or re.match(r'^\d', crudo):
+           or re.match(r'^\d', crudo):
             out.append(p if p.isupper() or '.' in p else p.upper())
             continue
         trozo = '-'.join(t[:1].upper() + t[1:].lower() for t in p.split('-'))
         if out and llano(out[-1]) == llano(trozo):
             continue                       # «CARRETERA CARRETERA»
+        if out and llano(trozo) == llano(out[0]) and llano(trozo) in (
+                'autopista', 'autovía', 'autovia', 'carretera', 'calle', 'avenida'):
+            continue       # «AUTOPISTA TF1 AUTOPISTA SUR»: el tipo de via, otra vez
         out.append(trozo)
     while out and llano(out[-1]) in PREPOSICIONES:
         out.pop()                          # «Avenida Ayyo de» -> «Avenida Ayyo»
@@ -225,6 +234,15 @@ def calle_corta(direccion):
     """La via sola, que es lo que va en el nombre del pin: sin numero, sin
        kilometro, sin el barrio entre parentesis y sin la basura del registro."""
     t = (direccion or '').strip()
+    # Las abreviaturas con punto se desatan ANTES de cortar por el punto. Sin
+    # esto «PG IND. AÑAZA PARC-39» se quedaba en «Polígono IND»: el punto de
+    # «IND.» parecia el final de una frase.
+    for corto, largo in (('IND.', 'INDUSTRIAL'), ('CTRA.', 'CARRETERA'),
+                         ('GRAL.', 'GENERAL'), ('AVDA.', 'AVENIDA'),
+                         ('POL.', 'POLIGONO')):
+        t = re.sub(r'(?i)\b%s' % re.escape(corto), largo, t)
+    # La urbanizacion y la parcela son el barrio y el numero, no la calle.
+    t = re.split(r'(?i)[\s,-]*\b(URB|PARC|BARRIO|BLOQUE)\b\.?', t)[0]
     t = re.sub(r'(?i)\s*KM\.?\s*[\d,\.-]*.*$', '', t)  # desde «KM.» hasta el final
     t = re.split(r'\s{2}EN\s{2}|\s+EN\s{2}|\s{2}EN\s+', t)[0]  # el separador raro
     t = dar_vuelta(t)
@@ -236,8 +254,11 @@ def calle_corta(direccion):
     t = re.split(r',', t)[0]          # detras de la coma va el numero, no la via
     t = re.split(r'\.\s+(?=[A-ZÁ-Ú])', t)[0]   # «TEJINA DE GUIA. GUIA DE ISORA»
     # «S7N» es como el registro escribe «S/N» en una de ellas.
-    t = re.split(r'(?i)\s+S/?7?N\b', t)[0]
-    return municipios_bien(titulo(t.strip(' ,.-')))
+    t = re.split(r'(?i)\s+S[/.]?7?N\.?\b', t)[0]   # «S/N», «S.N.», «S7N»
+    t = re.sub(r'\s*-\s*', '-', t)   # «SANTA CRUZ - SAN ANDRES» y «SANTA CRUZ-SAN
+    #                                 ANDRES» son la misma via escrita de dos formas
+    r = municipios_bien(titulo(t.strip(' ,.-')))
+    return _ACENTOS.get(llano(r), r)
 
 
 # Los municipios se escriben como los escribe el Cabildo, no como el registro.
@@ -246,6 +267,7 @@ def calle_corta(direccion):
 # correccion CON FUENTE, no un acento adivinado. Los nombres de persona de las
 # calles se dejan como los escribe el registro: ahi no tengo fuente.
 _MUNIS = None
+_ACENTOS = {}
 
 
 def municipios_bien(txt):
@@ -321,21 +343,43 @@ def horario(txt, L):
     return ' · '.join(piezas), crudas
 
 
+def es_autopista(direccion):
+    return bool(re.match(r'(?i)^(AUTOPISTA|AUTOV[IÍ]A)\b', (direccion or '').strip()))
+
+
+def km_de(direccion):
+    m = re.search(r'(?i)\bKM\.?\s*(\d+(?:[,\.]\d+)?)', direccion or '')
+    return m.group(1) if m else None
+
+
 def ficha(e, muni, sufijo=''):
     """e es la estacion tal como viene del registro. muni, el del poligono."""
+    municipios_bien('')            # deja _MUNIS cargado
     rot = (e.get('Rótulo') or '').strip()
     marca = marca_de(rot)
     base = marca or rotulo_corto(rot)
     calle = calle_corta(e.get('Dirección'))
     loc = titulo(dar_vuelta(e.get('Localidad')), via=False)
     comb = combustibles(e)
+    km = km_de(e.get('Dirección'))
+    if es_autopista(e.get('Dirección')) and km:
+        calle = '%s km %s' % (calle, km)
     nombre = '%s · %s' % (base, calle)
     if sufijo:
-        nombre += ' (%s)' % loc
+        # La localidad NO se usa para desempatar si es el nombre de OTRO
+        # municipio. El registro pone «EL ROSARIO» de localidad en una estacion
+        # que el poligono del Cabildo sitúa 599 m DENTRO de Santa Cruz: la ficha
+        # se llamaba «... (El Rosario)» y afirmaba un municipio que no es el
+        # suyo. Lo cazo el control del municipio. En ese caso se pasa al km.
+        if llano(loc) != llano(muni) and llano(loc) in {llano(m) for m in _MUNIS}:
+            sufijo = 'km'
+        else:
+            # Si la localidad ES el municipio, se escribe como lo escribe el
+            # Cabildo: el registro pone «GUIMAR» y «SANTA URSULA», sin acento.
+            nombre += ' (%s)' % (muni if llano(loc) == llano(muni) else loc)
     if sufijo == 'km':
-        km = re.search(r'(?i)KM\.?\s*([\d,\.]+)', e.get('Dirección') or '')
-        nombre = '%s · %s km %s' % (base, calle, km.group(1)) if km else \
-                 '%s · %s (%s)' % (base, calle, e['IDEESS'])
+        nombre = '%s · %s km %s' % (base, calle, km) if km and 'km ' not in calle \
+                 else '%s · %s (%s)' % (base, calle, e['IDEESS'])
     elif sufijo == 'ideess':
         nombre = '%s · %s (%s)' % (base, calle, e['IDEESS'])
     f = {
@@ -382,6 +426,17 @@ def ficha(e, muni, sufijo=''):
     return f
 
 
+def acentos_del_registro(calles):
+    """llano(calle) -> la variante que el registro escribe con mas acentos."""
+    mapa = {}
+    for c in calles:
+        k = llano(c)
+        tildes = sum(1 for ch in c if ch not in llano(c))
+        if k not in mapa or tildes > mapa[k][0]:
+            mapa[k] = (tildes, c)
+    return {k: v[1] for k, v in mapa.items()}
+
+
 def cargar(seleccion=None):
     """Devuelve las fichas, ya resueltos los nombres que chocan."""
     import gasolineras as G
@@ -395,6 +450,10 @@ def cargar(seleccion=None):
     # lleva el IDEESS, que es unico por definicion. De las 212 solo hacen falta
     # las tres pasadas para 4 estaciones, y el IDEESS para 2: dos REPSOL con la
     # misma direccion exacta («CARRETERA TF-1 KM. 54») a 83 m una de otra.
+    # Primera pasada solo para saber como escribe el registro cada calle.
+    global _ACENTOS
+    _ACENTOS = acentos_del_registro(
+        [calle_corta(x.get('Dirección')) for x in mios])
     out, pendientes = [], list(mios)
     for paso in ('', 'loc', 'km', 'ideess'):
         cuenta = {}

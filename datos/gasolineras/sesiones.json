@@ -23,12 +23,15 @@
   },
   "01-santa-cruz-de-tenerife": {
    "que": "Las 33 estaciones de Santa Cruz de Tenerife (33 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Santa Cruz de Tenerife",
    "estaciones": 33,
    "altas": 33,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/01-santa-cruz-de-tenerife.json"
+   "plan": "datos/gasolineras/plan/01-santa-cruz-de-tenerife.json",
+   "hecho_el": "2026-10-02",
+   "altas_hechas": 33,
+   "nota": "Dos pares no se pueden distinguir con los datos del registro y llevan el IDEESS en el nombre: los dos DISA de la Autovia Santa Cruz-San Andres (misma direccion, sin km) y, en Granadilla, los dos REPSOL de la CARRETERA TF-1 KM. 54, a 83 m uno de otro."
   },
   "02-san-cristobal-de-la-laguna": {
    "que": "Las 28 estaciones de San Cristóbal de La Laguna (26 altas, 2 ya en la app).",

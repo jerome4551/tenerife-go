@@ -218,10 +218,54 @@ De paso arreglé `lugares_idioma.js`: escribía `pl.json` con otro formato que l
 otros nueve idiomas, así que añadir **una** ficha daba un diff de **3.249
 líneas** en el que no se ve lo que ha cambiado. Ahora da una línea.
 
+## Sesión 01 · Santa Cruz de Tenerife · HECHA el 2 de octubre
+
+**33 altas.** La app pasa de 780 a **813 lugares**, 48 gasolineras. Auditoría en
+verde.
+
+### Tu regla del código de vía, aplicada
+
+De las 212, **50 traen un código TF** en la dirección del registro y **15 son
+autopista o autovía** (acceso directo). A esas 15 les va el código **y el km**,
+que es como se encuentran: «Repsol · Autovía TF-1 km 39», «DISA · Autopista TF-5
+km 25», «Moeve · Autopista TF-21 km 3,5». A las que el registro **no** les da
+código, no se lo pongo: seis dicen sólo «Autopista del Sur» o «Autopista Tenerife
+Sur» y así se quedan. El código oficial lleva guion, así que «TF1» del registro
+se escribe «TF-1», igual que en las 14 fichas antiguas y en las líneas de TITSA.
+
+### El control del municipio cazó un defecto de diseño mío
+
+Usaba la **localidad** para desempatar nombres repetidos. El registro pone
+localidad «EL ROSARIO» en una estación que el polígono del Cabildo sitúa **599 m
+dentro de Santa Cruz**: la ficha se llamaba «DISA · Carretera General del Sur
+(El Rosario)» y **afirmaba un municipio que no es el suyo**. No era un dato malo,
+era mi plantilla. Corregido: si la localidad es el nombre de otro municipio, se
+desempata por el km. Ahora es «DISA · Carretera General del Sur km 9,2».
+
+De paso: cuando la localidad **sí** es el municipio, se escribe como lo escribe
+el Cabildo. El registro pone «GUIMAR» y «SANTA URSULA» sin acento.
+
+### Dos pares que el registro no distingue
+
+Llevan el IDEESS en el nombre porque no hay nada más con que separarlos:
+
+* los dos **DISA de la Autovía Santa Cruz-San Andrés** — misma dirección, sin km;
+* en Granadilla, los dos **REPSOL de la «CARRETERA TF-1 KM. 54»**, a 83 m uno de
+  otro (los dos sentidos de la autopista, casi seguro).
+
+### Acentos que el registro se come y para los que no tengo fuente
+
+Los dejo como el registro los escribe. **Dime si quieres que los ponga** y los
+cambio de una vez:
+
+`El Carreton` (polígono de Granadilla) · `San Andres` · `Vía Penetracion` ·
+`Guia` (localidad de La Matanza) · y los nombres de persona de las calles
+(`Felix Benitez`, `Dominguez`, `Jesus Hernandez Guzman`, `Panama` ya resuelto
+porque el propio registro lo escribe «Panamá» en otro asiento).
+
 ## Lo que queda
 
-Las **31 sesiones** de municipio (198 altas). Recomiendo seguir de menor a
-mayor y dejar **Santa Cruz (33)** y **La Laguna (28)** para el final.
+**29 sesiones**, 178 altas. La siguiente por número es la **02, La Laguna (28)**.
 
 ---
 
@@ -229,8 +273,7 @@ mayor y dejar **Santa Cruz (33)** y **La Laguna (28)** para el final.
 
 1. **Los precios aparte, ¿te vale?** Es la única forma de que el modo de «las 10
    más baratas» no mienta.
-2. Las **14 fichas que sí casan** siguen con el nombre al estilo antiguo
-   («BP Güímar (TF-1)») mientras las nuevas van en «marca · calle». ¿Las dejo
-   como están o las paso al estilo nuevo en la sesión 91?
+2. Las **14 fichas que sí casan** pasan al estilo nuevo en la **sesión 91**, como
+   me dijiste.
 
 *`python3 tools/gasolineras_plan.py` rehace las 31 tandas desde el registro.*
