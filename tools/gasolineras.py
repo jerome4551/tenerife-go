@@ -67,6 +67,16 @@ def llano(s):
     return ''.join(c for c in s if unicodedata.category(c) != 'Mn')
 
 
+def muni_llano(s):
+    """El registro escribe el articulo al final: «Realejos (Los)». Comparado tal
+       cual, salian 40 discrepancias de municipio que no lo eran -13 de Los
+       Realejos, 10 de La Orotava...- y un control que canta 40 falsos no lo mira
+       nadie. Se le da la vuelta antes de comparar."""
+    t = llano(s).strip()
+    m = re.match(r'^(.*?)\s*\((el|la|los|las)\)$', t)
+    return ('%s %s' % (m.group(2), m.group(1))) if m else t
+
+
 def marca_de(txt):
     t = llano(txt)
     for clave, canon in MARCA.items():
@@ -97,14 +107,19 @@ def numero(v):
 
 
 def cargar_registro():
-    ficheros = sorted(glob.glob(os.path.join(DIR, 'miteco_provincia38_*.json')))
+    # Lo baja el flujo de GitHub Actions .github/workflows/registro-gasolineras.yml,
+    # porque desde este contenedor la API del MITECO da 000. Se guarda tal cual lo
+    # manda el Ministerio, sin tocar.
+    ficheros = ([os.path.join(RAIZ, 'registro', 'gasolineras-canarias.json')]
+                if os.path.exists(os.path.join(RAIZ, 'registro', 'gasolineras-canarias.json'))
+                else sorted(glob.glob(os.path.join(DIR, 'miteco_provincia38_*.json'))))
     if not ficheros:
-        print('PARO: no encuentro datos/gasolineras/miteco_provincia38_*.json')
-        print('      Desde este entorno la descarga esta bloqueada (000).')
-        print('      Que Jerome la baje del navegador y la suba ahi.')
+        print('PARO: no encuentro el registro.')
+        print('      Lanza el flujo «Registro gasolineras» en Actions, que lo baja')
+        print('      a registro/gasolineras-canarias.json. Desde aqui la API da 000.')
         sys.exit(2)
     ruta = ficheros[-1]
-    d = json.load(open(ruta, encoding='utf-8'))
+    d = json.load(open(ruta, encoding='utf-8-sig'))   # el fichero puede traer BOM
     lista = None
     for k, v in (d.items() if isinstance(d, dict) else []):
         if isinstance(v, list) and v and isinstance(v[0], dict):
@@ -114,7 +129,7 @@ def cargar_registro():
         lista = d
     if not lista:
         sys.exit('PARO: %s no trae ninguna lista de estaciones' % ruta)
-    print('registro: %s · %d estaciones en la provincia 38' % (os.path.basename(ruta), len(lista)))
+    print('registro: %s · %s · %d estaciones' % (os.path.basename(ruta), d.get('Fecha'), len(lista)))
 
     out, fuera, sin_coord, no_publico = [], 0, 0, 0
     for f in lista:
@@ -148,7 +163,7 @@ def cargar_registro():
     if no_publico:
         print('  descartadas por no ser de venta al publico: %d' % no_publico)
     discrepan = [e for e in out if e['municipio_poligono'] and
-                 llano(e['municipio_poligono']) != llano(e['municipio_registro'])]
+                 muni_llano(e['municipio_poligono']) != muni_llano(e['municipio_registro'])]
     print('  el municipio del registro y el del poligono discrepan en %d' % len(discrepan))
     return out, discrepan
 
@@ -172,7 +187,7 @@ def calle_de(lat, lng, radio=150):
 
 def sin_registro():
     """Provisional: las capturas contra los surtidores del mapa del repo."""
-    caps = json.load(open(os.path.join(DIR, 'capturas_google_lote1.json'),
+    caps = json.load(open(os.path.join(DIR, 'capturas_google.json'),
                           encoding='utf-8'))['capturas']
     fuel = [e for e in gf.cargar() if 'fuel' in (e.get('fclass') or [])]
     for e in fuel:
@@ -271,17 +286,30 @@ def main():
             '' if e is None else '%s a %d m (%s)' % (e['rotulo'][:24], round(d), e['marca'])))
 
     # ── las capturas de Jerome, localizadas en el registro ───────────────────
-    cap_path = os.path.join(DIR, 'capturas_google_lote1.json')
+    cap_path = os.path.join(DIR, 'capturas_google.json')
     caps = {}
     if os.path.exists(cap_path):
         caps = json.load(open(cap_path, encoding='utf-8'))['capturas']
     loc = {}
     for k, c in caps.items():
         mi = marca_de(c.get('marca') or c.get('nombre_google'))
-        cand = [e for e in reg
-                if (not c.get('cp') or e['cp'] == c['cp']) and (not mi or e['marca'] == mi)]
-        if not cand:
-            cand = [e for e in reg if mi and e['marca'] == mi]
+        muni = muni_llano(c.get('municipio') or '')
+        # NUNCA la marca sola: hay 49 DISA en la isla. La primera version cogia la
+        # primera de la marca cuando el CP no casaba, y mando la «Shell Las
+        # Dehesas» de Los Realejos a una SHELL de Adeje. Se acota siempre.
+        por_cp = [e for e in reg if c.get('cp') and e['cp'] == c['cp']
+                  and (not mi or e['marca'] == mi)]
+        por_muni = [e for e in reg if muni and muni_llano(e['municipio_registro']) == muni
+                    and (not mi or e['marca'] == mi)]
+        cand = por_cp or por_muni
+        # si siguen siendo varias, el rotulo del cotejo de Canarias7 desempata
+        r7 = (c.get('registro_c7') or {}).get('rotulo')
+        if len(cand) > 1 and r7:
+            clave = [w for w in llano(r7).replace('.', ' ').split()
+                     if len(w) >= 4 and (not mi or w != mi)]
+            afinan = [e for e in cand if any(w in llano(e['rotulo']) for w in clave)]
+            if len(afinan) == 1:
+                cand = afinan
         loc[k] = {'captura': {kk: c.get(kk) for kk in
                               ('nombre_google', 'marca', 'direccion_google', 'cp', 'telefono_google')},
                   'candidatos_en_el_registro': [
@@ -289,6 +317,7 @@ def main():
                        'cp': e['cp'], 'municipio_poligono': e['municipio_poligono'],
                        'horario': e['horario'], 'lat': e['lat'], 'lng': e['lng']}
                       for e in cand[:5]],
+                  'como': ('cp+marca' if por_cp else 'municipio+marca' if por_muni else None),
                   'estado': 'sin_registro' if not cand else
                             ('una' if len(cand) == 1 else 'varias: hay que elegir')}
 
@@ -308,6 +337,8 @@ def main():
               if v['estado'] in ('confirmada', 'corregir_coordenada') and v['registro_mas_cercano']}
     altas = {}
     for k, l in loc.items():
+        if l['estado'] != 'una':          # ambigua o sin registro: NO se da de alta
+            continue
         for c in l['candidatos_en_el_registro'][:1]:
             if c['ideess'] in usados:
                 continue

@@ -1,6 +1,93 @@
 # Gasolineras · estado
 
-## Lo primero: la descarga está bloqueada
+## Etapas 3 y 4 · Con el registro oficial en la mano (2 de octubre)
+
+Jerome escribió un **flujo de GitHub Actions** que baja el registro desde los
+runners de GitHub, que no están detrás de mi proxy. **Verificado antes de
+instalarlo**, que es lo que pidió: YAML válido, los tres `run` pasan `bash -n`,
+el Python incrustado compila, y —lo que importa— **se le inyectaron seis ficheros
+malos y los caza todos**:
+
+```
+ResultadoConsulta != OK   rc=1      estaciones fuera de Canarias  rc=1
+lista vacía               rc=1      nada dentro del bbox          rc=1
+IDEESS repetidos          rc=1      la respuesta no es JSON       rc=1
+un fichero bueno          rc=0
+```
+
+Lanzado, y funcionó: **`registro/gasolineras-canarias.json`, 2 de octubre, 495
+estaciones** (243 en la provincia 38), todas de venta al público, ninguna sin
+coordenada. **212 dentro de Tenerife.**
+
+### Primera buena señal: el registro y el polígono dicen lo mismo
+
+De las 212, el municipio del registro y el del polígono del Cabildo **coinciden
+en las 212**.
+
+*(Primero me salieron 40 discrepancias. Eran falsas: el registro escribe el
+artículo al final —«Realejos (Los)», «Orotava (La)»—. Un control que canta 40
+falsos no lo mira nadie, así que lo arreglé antes de enseñártelo.)*
+
+### Las 20 de la app
+
+| estado | |
+|---|---|
+| **confirmada** (misma marca a ≤150 m) | **12** |
+| **corregir_coordenada** (misma marca a 150–300 m) | **1** |
+| **marca_distinta** | **1** |
+| **no existe en el registro** → baja | **6** |
+
+### Te dije dos cosas mal, y el registro las corrige
+
+Hace dos días te escribí que `gas-tf5-lalaguna` y `gas-tf5-el-sauzal` «dicen
+Repsol y en el pin hay un surtidor que no se llama Repsol».
+
+**Las dos son Repsol.** El registro tiene un **REPSOL a 4 m** del primero (Calle
+Libertad) y un **REPSOL a 18 m** del segundo (Autopista TF-5 km 22,5). Lo que
+pasaba es que OSM los tiene con el nombre del sitio —«Las Chumberas», «Las
+Banderas»— y sin la marca. **Me fié de un nombre que no estaba.**
+
+### Las 6 que el registro no tiene
+
+| ficha | la más cercana del registro |
+|---|---|
+| `gas-tf2-aeropuerto` | BP AEROPUERTO REINA SOFÍA a **553 m** |
+| `gas-tf1-guaza2` | BP GUAZA a **695 m** (y ese BP ya es `gas-tf1-guaza`) |
+| `gas-tf5-icod` | DISA ICOD DE LOS VINOS a **694 m** |
+| `gas-tf1-adeje` | DISA a **707 m** |
+| `gas-tf1-candelaria` | DISA CANDELARIA a **896 m** |
+| `gas-tf82-los-gigantes` | CEPSA a **1.860 m** |
+
+Cuatro de ellas no son «no existe»: es que **el pin está lejos y la marca no es
+la que dice la ficha**. `gas-tf2-aeropuerto` parece sólo un pin desplazado.
+
+### Las 62 capturas, localizadas en el registro
+
+| | |
+|---|---|
+| una sola, sin ambigüedad | **50** |
+| varias candidatas, hay que elegir | 11 |
+| no está en el registro | 1 (`IMG_3481`, Océano Güímar) |
+
+**48 altas propuestas**, todas con **IDEESS, coordenada y horario oficiales**.
+Ninguna sin horario, ninguna sin municipio.
+
+### Y otro fallo mío, cazado antes de enseñártelo
+
+La primera versión de las altas daba 36 y mandaba la **«Shell Las Dehesas» de Los
+Realejos a una SHELL de Adeje**: cuando el código postal no casaba, cogía *la
+primera de esa marca en toda la isla*. El mismo error de la etapa 2, otra vez.
+
+Corregido: se acota siempre por **CP+marca** o **municipio+marca**, el rótulo del
+cotejo desempata, y **si quedan varias no se propone alta**. Ahora la Shell Las
+Dehesas casa con «SHELL LAS DEHESAS · CARRETERA EL TOSCAL · Los Realejos».
+
+**Nada aplicado a `index.html`.** Entregas en
+`datos/gasolineras/gasolineras_verificacion.json` y `gasolineras_altas.json`.
+
+---
+
+## Historial · la descarga estaba bloqueada (29 de septiembre)
 
 Probé los dos dominios del registro del Ministerio y los dos dan `000`:
 
