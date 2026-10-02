@@ -331,21 +331,6 @@
   "cat": "Stacja paliw · TF-1 Południe",
   "hours": "24h · Codziennie"
  },
- "gas-tf1-guaza2": {
-  "desc": "Stacja Cepsa na zjeździe do Los Cristianos z TF-1. Bardzo uczęszczana, zawsze otwarta.",
-  "cat": "Stacja paliw · TF-1 Południe",
-  "hours": "24h · Codziennie"
- },
- "gas-tf1-adeje": {
-  "desc": "Repsol przy Costa Adeje. Turystyczna strefa o dużym natężeniu ruchu. Rozległa strefa obsługi ze sklepem.",
-  "cat": "Stacja paliw · TF-1 Południe",
-  "hours": "24h · Codziennie"
- },
- "gas-tf1-candelaria": {
-  "desc": "Stacja Cepsa na zjeździe do Candelarii. Strategiczny punkt między północą a południem. Pełna obsługa.",
-  "cat": "Stacja paliw · TF-1 Wschód",
-  "hours": "06:00–23:00 · Codziennie"
- },
  "gas-tf1-guimar": {
   "desc": "BP na zjeździe do Güímar. Blisko Piramid Güímar. Dobre zaplecze.",
   "cat": "Stacja paliw · TF-1 Wschód",
@@ -366,30 +351,15 @@
   "cat": "Stacja paliw · TF-5 Północ",
   "hours": "24h · Codziennie"
  },
- "gas-tf5-icod": {
-  "desc": "Repsol w Icod, bardzo blisko Tysiącletniego Smoczego Drzewa. Punkt tankowania na północnym zachodzie wyspy.",
-  "cat": "Stacja paliw · TF-5 Północny zachód",
-  "hours": "07:00–22:00 · Codziennie"
- },
  "gas-tf2-lalaguna": {
   "desc": "Cepsa przy TF-2, zjazd La Laguna w stronę południa. Kluczowy punkt między lotniskiem a stolicą.",
   "cat": "Stacja paliw · TF-2 Centrum",
-  "hours": "24h · Codziennie"
- },
- "gas-tf2-aeropuerto": {
-  "desc": "BP przy lotnisku Reina Sofía (TFS). Niezbędna, żeby oddać samochód z wypożyczalni z pełnym bakiem.",
-  "cat": "Stacja paliw · Lotnisko południowe",
   "hours": "24h · Codziennie"
  },
  "gas-tf1-abades": {
   "desc": "Stacja przy TF-1 km 44, strefa Abades/Arico. Ważny przystanek na autostradzie południowej, na odcinku wschodnim. Jedna z nielicznych stacji między lotniskiem a Güímar.",
   "cat": "Stacja paliw · TF-1 · Arico",
   "hours": "Pn-Pt 06:00-22:00 · So 07:00-22:00 · Nd 08:00-21:00"
- },
- "gas-tf82-los-gigantes": {
-  "desc": "DISA na zjeździe do Los Gigantes, TF-82/Puerto Santiago km 1,5. Strefa zachodnia. Niezbędna przed dalszą jazdą na północ zachodnim wybrzeżem albo podjazdem do Santiago del Teide. Strefa górska z niewieloma alternatywami.",
-  "cat": "Stacja paliw · TF-82 · Los Gigantes",
-  "hours": "Codziennie 07:00-22:00"
  },
  "gas-tf21-aguamansa": {
   "desc": "⚠️ OSTATNIA stacja paliw przed Parkiem Narodowym Teide, jadąc drogą TF-21 z La Orotava (Aguamansa). W Parku Narodowym NIE MA stacji paliw. Trzeba koniecznie zatankować tutaj przed wjazdem na Teide.",

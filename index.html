@@ -153,7 +153,7 @@ window.onunhandledrejection = function(e) {
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
       "author": { "@type": "Person", "name": "Jérôme B" },
       "image": "https://jerome4551.github.io/tenerife-go/og-image.jpg",
-      "featureList": "Mapa interactivo offline, 785 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
+      "featureList": "Mapa interactivo offline, 779 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
     },
     {
       "@type": "TouristDestination",
@@ -11427,27 +11427,6 @@ const places = [
     cat:{ es:"Gasolinera · TF-1 Sur" },
     tags:["BP","TF-1","24h","Arona","Los Cristianos"] },
 
-  { id:"gas-tf1-guaza2", category:"gasolinera", name:"Cepsa Los Cristianos (TF-1 km 19)", emoji:"⛽", color:"#f97316", lat:28.0395, lng:-16.6800,
-    phone:"922 75 70 10", address:"TF-1 km 19, Los Cristianos, Arona",
-    hours:{ es:"24h · Todos los días" },
-    desc:{ es:"Gasolinera Cepsa en la salida de Los Cristianos desde la TF-1. Muy concurrida, siempre abierta." },
-    cat:{ es:"Gasolinera · TF-1 Sur" },
-    tags:["Cepsa","TF-1","24h","Los Cristianos"] },
-
-  { id:"gas-tf1-adeje", category:"gasolinera", name:"Repsol Costa Adeje (TF-1 km 15)", emoji:"⛽", color:"#f97316", lat:28.0830, lng:-16.7320,
-    phone:"922 71 00 50", address:"TF-1 km 15, Costa Adeje",
-    hours:{ es:"24h · Todos los días" },
-    desc:{ es:"Repsol junto a Costa Adeje. Zona turística de alto tráfico. Amplia zona de servicio con tienda." },
-    cat:{ es:"Gasolinera · TF-1 Sur" },
-    tags:["Repsol","TF-1","24h","Costa Adeje"] },
-
-  { id:"gas-tf1-candelaria", category:"gasolinera", name:"Cepsa Candelaria (TF-1)", emoji:"⛽", color:"#f97316", lat:28.3530, lng:-16.3800,
-    phone:"922 50 10 22", address:"TF-1 km 55, Candelaria",
-    hours:{ es:"06:00–23:00 · Todos los días" },
-    desc:{ es:"Gasolinera Cepsa en la salida de Candelaria. Punto estratégico entre norte y sur. Servicio completo." },
-    cat:{ es:"Gasolinera · TF-1 Este" },
-    tags:["Cepsa","TF-1","Candelaria","Este"] },
-
   { id:"gas-tf1-guimar", category:"gasolinera", name:"BP Güímar (TF-1)", emoji:"⛽", color:"#f97316", lat:28.3315, lng:-16.3763,
     phone:"922 51 40 18", address:"TF-1 km 49, Güímar",
     hours:{ es:"07:00–22:00 · Todos los días" },
@@ -11477,14 +11456,6 @@ const places = [
     cat:{ es:"Gasolinera · TF-5 Norte" },
     tags:["BP","TF-5","24h","Puerto de la Cruz","Norte"] },
 
-  { id:"gas-tf5-icod", category:"gasolinera", name:"Repsol Icod de los Vinos (TF-5)", emoji:"⛽", color:"#f97316", lat:28.3680, lng:-16.7050,
-    phone:"922 81 20 35", address:"TF-5 km 55, Icod de los Vinos",
-    hours:{ es:"07:00–22:00 · Todos los días" },
-    desc:{ es:"Repsol en Icod, muy cerca del Drago Milenario. Punto de repostaje en el noroeste de la isla." },
-    cat:{ es:"Gasolinera · TF-5 Noroeste" },
-    tags:["Repsol","TF-5","Icod","Noroeste"] },
-
-  // — TF-2 (Autopista Norte-Sur interior) —
   { id:"gas-tf2-lalaguna", category:"gasolinera", name:"Cepsa La Laguna Sur (TF-2)", emoji:"⛽", color:"#f97316", lat:28.4474, lng:-16.3073,
     phone:"922 26 55 80", address:"TF-2 km 2, La Laguna",
     hours:{ es:"24h · Todos los días" },
@@ -11492,26 +11463,11 @@ const places = [
     cat:{ es:"Gasolinera · TF-2 Central" },
     tags:["Cepsa","TF-2","24h","La Laguna","Aeropuerto"] },
 
-  { id:"gas-tf2-aeropuerto", category:"gasolinera", name:"BP Aeropuerto Sur (TF-2)", emoji:"⛽", color:"#f97316", lat:28.0611, lng:-16.5818,
-    phone:"922 75 90 15", address:"TF-2 / TF-1 Aeropuerto Sur, Granadilla",
-    hours:{ es:"24h · Todos los días" },
-    desc:{ es:"BP junto al Aeropuerto Reina Sofía (TFS). Imprescindible para devolver coches de alquiler con el depósito lleno." },
-    cat:{ es:"Gasolinera · Aeropuerto Sur" },
-    tags:["BP","TF-2","24h","Aeropuerto","Alquiler"] },
-
-  // ── GASOLINERAS ADICIONALES ────────────────────────────────────────────────
-
   { id:"gas-tf1-abades", category:"gasolinera", name:"Estación Abades (TF-1 km 44)", emoji:"⛽", color:"#f97316", lat:28.1308, lng:-16.4648,
     hours:{ es:"L-V 06:00-22:00 · S 07:00-22:00 · D 08:00-21:00" },
     desc:{ es:"Gasolinera en la TF-1 km 44, zona Abades/Arico. Importante parada en la autopista del sur en el tramo este. Una de las pocas estaciones entre el aeropuerto y Güímar." },
     cat:{ es:"Gasolinera · TF-1 · Arico" },
     tags:["Gasolinera","TF-1","Autopista Sur","Arico","Este","Abades"] },
-
-  { id:"gas-tf82-los-gigantes", category:"gasolinera", name:"DISA Los Gigantes (TF-82)", emoji:"⛽", color:"#f97316", lat:28.2434, lng:-16.8412,
-    hours:{ es:"Todos los días 07:00-22:00" },
-    desc:{ es:"DISA en la bajada a Los Gigantes, TF-82/Puerto Santiago km 1,5. Zona oeste. Esencial antes de continuar hacia el norte por la costa oeste o subir a Santiago del Teide. Zona de montaña con pocas alternativas." },
-    cat:{ es:"Gasolinera · TF-82 · Los Gigantes" },
-    tags:["Gasolinera","TF-82","Oeste","Los Gigantes","Santiago del Teide","Costa Oeste"] },
 
   { id:"gas-tf21-aguamansa", category:"gasolinera", name:"Cepsa La Cañada (TF-21 · última antes del Teide)", emoji:"⛽", color:"#dc2626", lat:28.3882, lng:-16.5153,
     hours:{ es:"L-S 07:00-21:00 · Consultar festivos" },
