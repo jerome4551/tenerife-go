@@ -1,0 +1,130 @@
+# Registro oficial de gasolineras de Canarias
+# Fuente: Ministerio para la Transicion Ecologica y el Reto Demografico,
+# Geoportal de Gasolineras (servicio REST publico).
+#
+# Uso: pestana Actions -> "Registro gasolineras" -> Run workflow.
+# Guarda la respuesta oficial, sin modificar, en registro/gasolineras-canarias.json.
+# Si la descarga falla o el fichero no supera las comprobaciones, el run sale
+# en rojo y no se escribe nada en el repo.
+
+name: Registro gasolineras
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  descargar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Descargar registro (Canarias, comunidad 05)
+        run: |
+          set -euo pipefail
+          mkdir -p registro
+          RUTA="PreciosCarburantes/EstacionesTerrestres/FiltroCCAA/05"
+          OK=""
+          for BASE in "https://energia.serviciosmin.gob.es/ServiciosRestCarburantes" \
+                      "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes"; do
+            if curl -sS --fail --retry 3 --retry-delay 15 --max-time 120 \
+                 -H "Accept: application/json" \
+                 -o registro/descarga.tmp "$BASE/$RUTA"; then
+              OK="$BASE"
+              break
+            fi
+          done
+          if [ -z "$OK" ]; then
+            echo "::error::No se pudo descargar el registro desde ninguno de los dos dominios"
+            exit 1
+          fi
+          mv registro/descarga.tmp registro/gasolineras-canarias.json
+          echo "Descargado de $OK"
+
+      - name: Comprobar y resumir
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          python3 - <<'PY'
+          import json, os
+
+          F = 'registro/gasolineras-canarias.json'
+          try:
+              d = json.load(open(F, encoding='utf-8-sig'))
+          except ValueError as ex:
+              print('::error::La respuesta no es JSON valido: %s' % ex)
+              raise SystemExit(1)
+          L = d.get('ListaEESSPrecio') or []
+
+          def campo(e, *claves):
+              return next((e[c] for c in claves if c in e), None)
+
+          def num(s):
+              try:
+                  return float(str(s).replace(',', '.'))
+              except ValueError:
+                  return None
+
+          def cod(s):
+              return str(s or '').strip().zfill(2)
+
+          def coord(e):
+              return (num(e.get('Latitud')),
+                      num(campo(e, 'Longitud (WGS84)', 'Longitud_x0020__x0028_WGS84_x0029_')))
+
+          errores = []
+          if str(d.get('ResultadoConsulta', '')).strip().upper() != 'OK':
+              errores.append('ResultadoConsulta = %r' % d.get('ResultadoConsulta'))
+          if not L:
+              errores.append('lista vacia')
+          ids = [e.get('IDEESS') for e in L]
+          if len(ids) != len(set(ids)):
+              errores.append('IDEESS repetidos')
+          fuera = sum(cod(e.get('IDCCAA')) != '05' for e in L)
+          if fuera:
+              errores.append('%d estaciones fuera de Canarias' % fuera)
+
+          sin_coord = sum(None in coord(e) for e in L)
+          tf = [e for e in L if None not in coord(e)
+                and 27.9 <= coord(e)[0] <= 28.65 and -17.05 <= coord(e)[1] <= -16.0]
+          if L and not tf:
+              errores.append('0 estaciones dentro del bbox de Tenerife')
+          tv = [str(campo(e, 'Tipo Venta', 'Tipo_x0020_Venta') or '').strip() for e in tf]
+          publico = ('%d de venta al publico' % tv.count('P')) if any(tv) else 'tipo de venta no encontrado'
+
+          lineas = [
+              '### Registro oficial de gasolineras - Canarias',
+              '- Fecha del registro: %s' % d.get('Fecha'),
+              '- Canarias: %d estaciones (provincia 38: %d, provincia 35: %d)' % (
+                  len(L),
+                  sum(cod(e.get('IDProvincia')) == '38' for e in L),
+                  sum(cod(e.get('IDProvincia')) == '35' for e in L)),
+              '- Tenerife (bbox de la app): %d, %s' % (len(tf), publico),
+              '- Sin coordenadas: %d' % sin_coord,
+          ]
+          if errores:
+              lineas.append('- ERRORES: ' + ' | '.join(errores))
+          texto = '\n'.join(lineas)
+          print(texto)
+          resumen = os.environ.get('GITHUB_STEP_SUMMARY')
+          if resumen:
+              with open(resumen, 'a', encoding='utf-8') as s:
+                  s.write(texto + '\n')
+          if errores:
+              print('::error::' + ' | '.join(errores))
+              raise SystemExit(1)
+          PY
+
+      - name: Guardar en el repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add registro/gasolineras-canarias.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+            exit 0
+          fi
+          git commit -m "Registro oficial gasolineras Canarias (MITECO) $(date -u +%Y-%m-%d)"
+          git push
