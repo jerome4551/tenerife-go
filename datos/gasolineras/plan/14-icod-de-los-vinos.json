@@ -1,0 +1,79 @@
+{
+ "_": [
+  "Tanda 14 de 31: Icod de los Vinos.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Icod de los Vinos",
+ "estaciones": 5,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 5,
+ "lista": [
+  {
+   "ideess": "12298",
+   "rotulo": "CEPSA",
+   "marca": "cepsa",
+   "direccion": "CARRETERA TF-82 KM. 53,6",
+   "cp": "38430",
+   "localidad": "ICOD DE LOS VINOS",
+   "municipio": "Icod de los Vinos",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.378972,
+   "lng": -16.700722,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "10201",
+   "rotulo": "CEPSA",
+   "marca": "cepsa",
+   "direccion": "CARRETERA GENERAL C-820 KM. 52,7",
+   "cp": "38430",
+   "localidad": "ICOD DE LOS VINOS",
+   "municipio": "Icod de los Vinos",
+   "horario": "L-V: 05:30-21:30; S-D: 06:00-22:00",
+   "lat": 28.379222,
+   "lng": -16.694056,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7866",
+   "rotulo": "DISA ICOD DE LOS VINOS",
+   "marca": "disa",
+   "direccion": "AVENIDA PRINCIPES DE ESPAÑA, 40",
+   "cp": "38430",
+   "localidad": "ICOD DE LOS VINOS",
+   "municipio": "Icod de los Vinos",
+   "horario": "L-D: 24H",
+   "lat": 28.37225,
+   "lng": -16.710194,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "15846",
+   "rotulo": "RED DE COMBUSTIBLES CANARIOS",
+   "marca": null,
+   "direccion": "CAMINO LA PITERA, 10",
+   "cp": "38430",
+   "localidad": "ICOD DE LOS VINOS",
+   "municipio": "Icod de los Vinos",
+   "horario": "L-D: 24H",
+   "lat": 28.379667,
+   "lng": -16.696194,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "8760",
+   "rotulo": "SHELL ICOD DE LOS VINOS",
+   "marca": "shell",
+   "direccion": "CALLE FRANCISCO MIRANDA, 1",
+   "cp": "38430",
+   "localidad": "ICOD DE LOS VINOS",
+   "municipio": "Icod de los Vinos",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.368528,
+   "lng": -16.719694,
+   "ya_en_la_app": null
+  }
+ ]
+}

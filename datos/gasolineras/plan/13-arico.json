@@ -1,0 +1,83 @@
+{
+ "_": [
+  "Tanda 13 de 31: Arico.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Arico",
+ "estaciones": 5,
+ "ya_en_la_app": 1,
+ "altas_nuevas": 4,
+ "lista": [
+  {
+   "ideess": "7696",
+   "rotulo": "CEPSA",
+   "marca": "cepsa",
+   "direccion": "CARRETERA GENERAL DEL SUR KM. 62",
+   "cp": "38589",
+   "localidad": "CISNERA",
+   "municipio": "Arico",
+   "horario": "L: 06:00-22:00",
+   "lat": 28.157083,
+   "lng": -16.509667,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7703",
+   "rotulo": "CEPSA",
+   "marca": "cepsa",
+   "direccion": "CARRETERA TF-1 KM. 44,2",
+   "cp": "38260",
+   "localidad": "ARICO",
+   "municipio": "Arico",
+   "horario": "L-D: 24H",
+   "lat": 28.130972,
+   "lng": -16.463528,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7828",
+   "rotulo": "DISA",
+   "marca": "disa",
+   "direccion": "CARRETERA TF-822 KM. 50",
+   "cp": "38589",
+   "localidad": "ARICO NUEVO",
+   "municipio": "Arico",
+   "horario": "L-V: 06:00-22:00; S-D: 07:00-20:00",
+   "lat": 28.182528,
+   "lng": -16.480028,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7726",
+   "rotulo": "ESTACIÓN ABADES KM 44",
+   "marca": null,
+   "direccion": "AUTOPISTA AUTOPISTA TENERIFE SUR KM. 44,2",
+   "cp": "38260",
+   "localidad": "ARICO",
+   "municipio": "Arico",
+   "horario": "L-D: 24H",
+   "lat": 28.130806,
+   "lng": -16.464806,
+   "ya_en_la_app": {
+    "id": "gas-tf1-abades",
+    "name": "Estación Abades (TF-1 km 44)",
+    "a_metros": 1
+   }
+  },
+  {
+   "ideess": "11731",
+   "rotulo": "REPSOL",
+   "marca": "repsol",
+   "direccion": "AUTOVIA TF-1 KM. 39",
+   "cp": "38588",
+   "localidad": "PORIS DE ABONA",
+   "municipio": "Arico",
+   "horario": "L-D: 24H",
+   "lat": 28.169083,
+   "lng": -16.433278,
+   "ya_en_la_app": null
+  }
+ ]
+}

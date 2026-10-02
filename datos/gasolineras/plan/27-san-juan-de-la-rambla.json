@@ -1,0 +1,27 @@
+{
+ "_": [
+  "Tanda 27 de 31: San Juan de la Rambla.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "San Juan de la Rambla",
+ "estaciones": 1,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 1,
+ "lista": [
+  {
+   "ideess": "7683",
+   "rotulo": "REPSOL",
+   "marca": "repsol",
+   "direccion": "CARRETERA TF-5 KM. 46,3",
+   "cp": "38420",
+   "localidad": "SAN JUAN DE LA RAMBLA",
+   "municipio": "San Juan de la Rambla",
+   "horario": "L-V: 05:30-20:30; S-D: 08:00-20:00",
+   "lat": 28.393972,
+   "lng": -16.642333,
+   "ya_en_la_app": null
+  }
+ ]
+}

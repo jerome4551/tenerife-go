@@ -1,0 +1,27 @@
+{
+ "_": [
+  "Tanda 30 de 31: La Victoria de Acentejo.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "La Victoria de Acentejo",
+ "estaciones": 1,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 1,
+ "lista": [
+  {
+   "ideess": "9629",
+   "rotulo": "SHELL LA VICTORIA",
+   "marca": "shell",
+   "direccion": "CARRETERA CTRA. GRAL. DEL  NORTE KM. 27",
+   "cp": "38380",
+   "localidad": "VICTORIA DE ACENTEJO (LA)",
+   "municipio": "La Victoria de Acentejo",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.436083,
+   "lng": -16.466778,
+   "ya_en_la_app": null
+  }
+ ]
+}

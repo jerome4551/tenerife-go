@@ -1,0 +1,53 @@
+{
+ "_": [
+  "Tanda 22 de 31: El Rosario.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "El Rosario",
+ "estaciones": 3,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 3,
+ "lista": [
+  {
+   "ideess": "8802",
+   "rotulo": "MOEVE",
+   "marca": "cepsa",
+   "direccion": "C/ LA CAMPANA, S/N (CTRA. GRAL. DEL SUR km 4)",
+   "cp": "38420",
+   "localidad": "ROSARIO (EL)",
+   "municipio": "El Rosario",
+   "horario": "L-D: 24H",
+   "lat": 28.419333,
+   "lng": -16.320222,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7720",
+   "rotulo": "PCAN",
+   "marca": "pcan",
+   "direccion": "CARRETERA TF24 LA LAGUNA - EL PORTILLO KM. 5,5",
+   "cp": "38420",
+   "localidad": "ROSARIO (EL)",
+   "municipio": "El Rosario",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.456,
+   "lng": -16.362139,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "15713",
+   "rotulo": "TGAS EL ROSARIO",
+   "marca": "tgas",
+   "direccion": "CALLE ISAAC PERAL, 10",
+   "cp": "38109",
+   "localidad": "SAN ISIDRO",
+   "municipio": "El Rosario",
+   "horario": "L-V: 06:00-20:00; S: 07:00-17:00",
+   "lat": 28.414583,
+   "lng": -16.318083,
+   "ya_en_la_app": null
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "_": [
+  "Tanda 26 de 31: Garachico.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Garachico",
+ "estaciones": 1,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 1,
+ "lista": [
+  {
+   "ideess": "7749",
+   "rotulo": "E.S. LA CALETA",
+   "marca": null,
+   "direccion": "CR ICOD-BUENAVISTA, KM. 8,9",
+   "cp": "38450",
+   "localidad": "GARACHICO",
+   "municipio": "Garachico",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.370083,
+   "lng": -16.7925,
+   "ya_en_la_app": null
+  }
+ ]
+}

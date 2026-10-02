@@ -1,0 +1,27 @@
+{
+ "_": [
+  "Tanda 28 de 31: Los Silos.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Los Silos",
+ "estaciones": 1,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 1,
+ "lista": [
+  {
+   "ideess": "7827",
+   "rotulo": "DISA LOS SILOS",
+   "marca": "disa",
+   "direccion": "CALLE FELIX BENITEZ DE LUGO S/N LOS MORALITOS (GENERAL TF-142 KM 11), 28",
+   "cp": "38470",
+   "localidad": "SILOS, LOS",
+   "municipio": "Los Silos",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.365694,
+   "lng": -16.819528,
+   "ya_en_la_app": null
+  }
+ ]
+}

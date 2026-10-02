@@ -1,0 +1,53 @@
+{
+ "_": [
+  "Tanda 20 de 31: La Guancha.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "La Guancha",
+ "estaciones": 3,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 3,
+ "lista": [
+  {
+   "ideess": "11566",
+   "rotulo": "DISA           STO DOMINGO",
+   "marca": "disa",
+   "direccion": "AVENIDA OCHO DE AGOSTO, 37",
+   "cp": "38437",
+   "localidad": "SANTO DOMINGO",
+   "municipio": "La Guancha",
+   "horario": "L-V: 07:00-20:00; S: 08:00-16:00; D: 08:00-14:00",
+   "lat": 28.390222,
+   "lng": -16.672167,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7747",
+   "rotulo": "PCAN",
+   "marca": "pcan",
+   "direccion": "AVENIDA HIPOLITO SINFORIANO,8, 8",
+   "cp": "38440",
+   "localidad": "GUANCHA (LA)",
+   "municipio": "La Guancha",
+   "horario": "L-V: 05:00-21:00; S: 06:00-21:00; D: 07:00-14:00",
+   "lat": 28.374111,
+   "lng": -16.650639,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7724",
+   "rotulo": "TGAS SANTA CATALINA",
+   "marca": "tgas",
+   "direccion": "CARRETERA TF-5 SANTA CRUZ - ICOD KM. 49",
+   "cp": "38440",
+   "localidad": "GUANCHA (LA)",
+   "municipio": "La Guancha",
+   "horario": "L-D: 24H",
+   "lat": 28.38975,
+   "lng": -16.665028,
+   "ya_en_la_app": null
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "_": [
+  "Tanda 31 de 31: Vilaflor.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Vilaflor",
+ "estaciones": 1,
+ "ya_en_la_app": 1,
+ "altas_nuevas": 0,
+ "lista": [
+  {
+   "ideess": "7951",
+   "rotulo": "DISA",
+   "marca": "disa",
+   "direccion": "CARRETERA CARRETERA GENERAL 821 KM. 68,80",
+   "cp": "38613",
+   "localidad": "VILAFLOR",
+   "municipio": "Vilaflor",
+   "horario": "L-S: 07:00-21:00; D: 08:00-14:00",
+   "lat": 28.153028,
+   "lng": -16.640167,
+   "ya_en_la_app": {
+    "id": "gas-tf51-vilaflor",
+    "name": "DISA Vilaflor (TF-51)",
+    "a_metros": 43
+   }
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "_": [
+  "Tanda 23 de 31: Tegueste.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Tegueste",
+ "estaciones": 3,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 3,
+ "lista": [
+  {
+   "ideess": "15101",
+   "rotulo": "BP TEGUESTE",
+   "marca": "bp",
+   "direccion": "CARRETERA GENERAL A PUNTA HIDALGO KM. 320",
+   "cp": "38280",
+   "localidad": "TEGUESTE CENTRO",
+   "municipio": "Tegueste",
+   "horario": "L-V: 06:00-22:00; S-D: 07:00-22:00",
+   "lat": 28.524306,
+   "lng": -16.350528,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7865",
+   "rotulo": "DISA EL SOCORRO",
+   "marca": "disa",
+   "direccion": "CARRETERA TF 154 DELPORTEZUELO ALS TODCAS KM. 1",
+   "cp": "38292",
+   "localidad": "SOCORRO (EL)",
+   "municipio": "Tegueste",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.520389,
+   "lng": -16.356861,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7728",
+   "rotulo": "TGAS TEGUESTE",
+   "marca": "tgas",
+   "direccion": "CARRETERA TF-13 LA LAGUNA - BAJAMAR KM. 6",
+   "cp": "38280",
+   "localidad": "TEGUESTE CENTRO",
+   "municipio": "Tegueste",
+   "horario": "L: 06:00-23:00",
+   "lat": 28.519972,
+   "lng": -16.335028,
+   "ya_en_la_app": null
+  }
+ ]
+}

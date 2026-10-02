@@ -1,0 +1,40 @@
+{
+ "_": [
+  "Tanda 24 de 31: Santa Úrsula.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Santa Úrsula",
+ "estaciones": 2,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 2,
+ "lista": [
+  {
+   "ideess": "7678",
+   "rotulo": "REPSOL",
+   "marca": "repsol",
+   "direccion": "CARRETERA VIEJA KM. 213",
+   "cp": "38390",
+   "localidad": "SANTA URSULA",
+   "municipio": "Santa Úrsula",
+   "horario": "L-S: 06:00-23:00; D: 07:00-23:00",
+   "lat": 28.428722,
+   "lng": -16.484667,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "8762",
+   "rotulo": "SHELL SANTA URSULA",
+   "marca": "shell",
+   "direccion": "CARRETERA GENERAL DEL NORTE KM. 31",
+   "cp": "38390",
+   "localidad": "SANTA URSULA",
+   "municipio": "Santa Úrsula",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.425222,
+   "lng": -16.494333,
+   "ya_en_la_app": null
+  }
+ ]
+}

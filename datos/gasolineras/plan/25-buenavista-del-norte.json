@@ -1,0 +1,27 @@
+{
+ "_": [
+  "Tanda 25 de 31: Buenavista del Norte.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Buenavista del Norte",
+ "estaciones": 1,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 1,
+ "lista": [
+  {
+   "ideess": "7888",
+   "rotulo": "DISA",
+   "marca": "disa",
+   "direccion": "AVENIDA JUAN MENDEZ EL VIEJO, S/N",
+   "cp": "38480",
+   "localidad": "BUENAVISTA DEL NORTE",
+   "municipio": "Buenavista del Norte",
+   "horario": "L-S: 06:00-23:00; D: 07:00-10:00",
+   "lat": 28.369889,
+   "lng": -16.84825,
+   "ya_en_la_app": null
+  }
+ ]
+}

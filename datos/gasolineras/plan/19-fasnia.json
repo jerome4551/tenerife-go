@@ -1,0 +1,53 @@
+{
+ "_": [
+  "Tanda 19 de 31: Fasnia.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Fasnia",
+ "estaciones": 3,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 3,
+ "lista": [
+  {
+   "ideess": "7718",
+   "rotulo": "BP FASNIA",
+   "marca": "bp",
+   "direccion": "AUTOVIA TF-1 KM. 36,5",
+   "cp": "38570",
+   "localidad": "FASNIA",
+   "municipio": "Fasnia",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.222694,
+   "lng": -16.414139,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7835",
+   "rotulo": "DISA",
+   "marca": "disa",
+   "direccion": "CARRETERA LOS ROQUES KM. 6,5",
+   "cp": "38570",
+   "localidad": "FASNIA",
+   "municipio": "Fasnia",
+   "horario": "L-S: 06:00-22:00; D: 07:00-14:00",
+   "lat": 28.236417,
+   "lng": -16.439583,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "10950",
+   "rotulo": "MOEVE",
+   "marca": "cepsa",
+   "direccion": "AUTOVIA TF-1 KM. 34",
+   "cp": "38570",
+   "localidad": "FASNIA",
+   "municipio": "Fasnia",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.2135,
+   "lng": -16.423306,
+   "ya_en_la_app": null
+  }
+ ]
+}
