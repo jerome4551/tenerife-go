@@ -136,6 +136,14 @@ ARTICULOS = {'la', 'las', 'el', 'los'}
 # Lo que en un rotulo no dice nada: todas son gasolineras y el `cat` ya lo dice.
 GENERICO = re.compile(r'(?i)^(e\.s\.|es|estaci[oó]n(\s+de\s+servicios?)?)\s+')
 
+# Acentos y texto ilegible del registro: viven en un fichero de DATOS, no aqui,
+# para que se sigan aplicando cada vez que el registro se descarga de nuevo.
+# Ver el «_» de ese fichero para el porque de cada cosa.
+_CORR = json.load(open(os.path.join(RAIZ, 'datos', 'gasolineras',
+                                    'correcciones-registro.json'), encoding='utf-8'))
+ACENTOS = _CORR['acentos']
+ILEGIBLE = list(_CORR['ilegible'])
+
 # Las marcas, tal como se escriben. CEPSA se llama ahora MOEVE y en el registro
 # estan las dos: la misma empresa con el rotulo a medio cambiar.
 MARCAS = [('MOEVE', 'Moeve'), ('CEPSA', 'Moeve'), ('DISA', 'DISA'), ('REPSOL', 'Repsol'),
@@ -197,7 +205,8 @@ def titulo(s, via=True):
            or re.match(r'^\d', crudo):
             out.append(p if p.isupper() or '.' in p else p.upper())
             continue
-        trozo = '-'.join(t[:1].upper() + t[1:].lower() for t in p.split('-'))
+        trozo = '-'.join(ACENTOS.get(llano(t), t[:1].upper() + t[1:].lower())
+                         for t in p.split('-'))
         if out and llano(out[-1]) == llano(trozo):
             continue                       # «CARRETERA CARRETERA»
         if out and llano(trozo) == llano(out[0]) and llano(trozo) in (
@@ -234,13 +243,19 @@ def calle_corta(direccion):
     """La via sola, que es lo que va en el nombre del pin: sin numero, sin
        kilometro, sin el barrio entre parentesis y sin la basura del registro."""
     t = (direccion or '').strip()
+    for malo in ILEGIBLE:             # no se corrige: se corta
+        t = t.split(malo)[0]
     # Las abreviaturas con punto se desatan ANTES de cortar por el punto. Sin
     # esto «PG IND. AÑAZA PARC-39» se quedaba en «Polígono IND»: el punto de
-    # «IND.» parecia el final de una frase.
+    # «IND.» parecia el final de una frase. Y se desatan CON un espacio detras:
+    # el registro las pega («CTRA.GRAL.ADEJE», «CRA.GRAL.LA ZAMORA») y sin el
+    # espacio salia «Carreteragral.adeje».
     for corto, largo in (('IND.', 'INDUSTRIAL'), ('CTRA.', 'CARRETERA'),
-                         ('GRAL.', 'GENERAL'), ('AVDA.', 'AVENIDA'),
-                         ('POL.', 'POLIGONO')):
-        t = re.sub(r'(?i)\b%s' % re.escape(corto), largo, t)
+                         ('CRA.', 'CARRETERA'), ('GRAL.', 'GENERAL'),
+                         ('AVDA.', 'AVENIDA'), ('POL.', 'POLIGONO')):
+        t = re.sub(r'(?i)\b%s\s*' % re.escape(corto), largo + ' ', t)
+    t = re.sub(r'(?i)\bTF\s+(\d+)', r'TF-\1', t)      # «TF 154» es la TF-154
+    t = re.split(r'(?i)\s+MANZ\b', t)[0]              # la manzana, como la parcela
     # La urbanizacion y la parcela son el barrio y el numero, no la calle.
     t = re.split(r'(?i)[\s,-]*\b(URB|PARC|BARRIO|BLOQUE)\b\.?', t)[0]
     t = re.sub(r'(?i)\s*KM\.?\s*[\d,\.-]*.*$', '', t)  # desde «KM.» hasta el final

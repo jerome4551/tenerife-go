@@ -253,15 +253,29 @@ Llevan el IDEESS en el nombre porque no hay nada más con que separarlos:
 * en Granadilla, los dos **REPSOL de la «CARRETERA TF-1 KM. 54»**, a 83 m uno de
   otro (los dos sentidos de la autopista, casi seguro).
 
-### Acentos que el registro se come y para los que no tengo fuente
+### Acentos y erratas del registro · con el OK de Jerome (2 de octubre)
 
-Los dejo como el registro los escribe. **Dime si quieres que los ponga** y los
-cambio de una vez:
+Están en un fichero de **datos**, `datos/gasolineras/correcciones-registro.json`,
+no en el código: así se siguen aplicando cada vez que el registro se descarga.
 
-`El Carreton` (polígono de Granadilla) · `San Andres` · `Vía Penetracion` ·
-`Guia` (localidad de La Matanza) · y los nombres de persona de las calles
-(`Felix Benitez`, `Dominguez`, `Jesus Hernandez Guzman`, `Panama` ya resuelto
-porque el propio registro lo escribe «Panamá» en otro asiento).
+* **27 palabras con tilde segura**: Andrés, Ángel, Benítez, Botánico, Cáceres,
+  Carretón, Cristóbal, Díaz, Domínguez, Dublín, Félix, González, Gorrín, Guía,
+  Guzmán, Hernández, Hipólito, Jesús, Marítima, Martiánez, Médano, Méndez,
+  Penetración, Pérez, Príncipes, República, Torreón.
+* **Los topónimos guanches no se tocan** (Adjona, Atogo, Axaentemir, Chajofe,
+  Tamaimo, Guaza…): no llevan tilde y no me toca ponérsela.
+* **Abreviaturas pegadas**: «CTRA.GRAL.ADEJE» salía «Carreteragral.adeje»; ahora
+  «Carretera General Adeje a Guía de Isora». Igual «CRA.GRAL.LA ZAMORA».
+* **«TF 154»** con espacio es la TF-154. «MANZ-» es la manzana: se corta.
+* **Ilegible**: «DELPORTEZUELO ALS TODCAS» (Tegueste) seguramente es «del
+  Portezuelo a Las Toscas», pero «Todcas» por «Toscas» sería adivinar. **Se
+  corta**, y la ficha se queda en «DISA · Carretera TF-154», que es lo que el
+  registro sí dice claro.
+
+Cambian **36 nombres** de las 212. Cinco ya estaban en la app (Santa Cruz) y se
+reescribieron con `gasolinera_alta.py --rehacer`, que re-sincroniza una ficha
+con el registro por su IDEESS y **para** si el bloque viejo no es uno de los
+que generó ella.
 
 ## Lo que queda
 

@@ -1,0 +1,29 @@
+{
+ "_": [
+  "Correcciones al texto del registro del MITECO antes de volcarlo en una ficha.",
+  "Las aplica tools/gasolinera_ficha.py cada vez que lee el registro, asi que",
+  "siguen valiendo cuando el registro se vuelve a descargar.",
+  "",
+  "ACENTOS: el registro va en mayusculas y sin tildes. Estas son palabras y",
+  "nombres castellanos con la tilde segura. Jerome dio el OK el 2 de octubre de",
+  "2026 («Si y sigue»). Los toponimos guanches (Adjona, Atogo, Axaentemir,",
+  "Chajofe, Tamaimo, Guaza...) NO estan: no llevan tilde y no me toca ponersela.",
+  "Los municipios no hacen falta aqui: salen del poligono del Cabildo.",
+  "",
+  "ILEGIBLE: texto del registro que no se puede leer sin adivinar. No se",
+  "corrige: se corta, y la ficha se queda con lo que el registro SI dice claro."
+ ],
+ "acentos": {
+  "andres": "Andrés", "angel": "Ángel", "benitez": "Benítez", "botanico": "Botánico",
+  "caceres": "Cáceres", "carreton": "Carretón", "cristobal": "Cristóbal",
+  "diaz": "Díaz", "dominguez": "Domínguez", "dublin": "Dublín", "felix": "Félix",
+  "gonzalez": "González", "gorrin": "Gorrín", "guia": "Guía", "guzman": "Guzmán",
+  "hernandez": "Hernández", "hipolito": "Hipólito", "jesus": "Jesús",
+  "maritima": "Marítima", "martianez": "Martiánez", "medano": "Médano",
+  "mendez": "Méndez", "penetracion": "Penetración", "perez": "Pérez",
+  "principes": "Príncipes", "republica": "República", "torreon": "Torreón"
+ },
+ "ilegible": {
+  "DELPORTEZUELO ALS TODCAS": "Seguramente «del Portezuelo a Las Toscas», pero «Todcas» por «Toscas» seria adivinar. Queda «Carretera TF-154»."
+ }
+}

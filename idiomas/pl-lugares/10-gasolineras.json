@@ -1,6 +1,6 @@
 {
  "gas-10219-santa-cruz-de-tenerife": {
-  "desc": "Avenida Angel Romero, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "desc": "Avenida Ángel Romero, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · Moeve",
   "hours": "Pn-Nd 06:00-22:00"
  },
@@ -20,7 +20,7 @@
   "hours": "Pn-Nd 06:00-22:00"
  },
  "gas-10995-santa-cruz-de-tenerife": {
-  "desc": "Autovía Santa Cruz-San Andres, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i LPG.",
+  "desc": "Autovía Santa Cruz-San Andrés, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i LPG.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 06:00-22:00"
  },
@@ -50,7 +50,7 @@
   "hours": "Pn-Nd 24 h"
  },
  "gas-14868-santa-cruz-de-tenerife": {
-  "desc": "Calle Jesus Hernandez Guzman, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i LPG.",
+  "desc": "Calle Jesús Hernández Guzmán, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i LPG.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 06:00-22:00"
  },
@@ -125,12 +125,12 @@
   "hours": "Pn-Nd 06:00-22:00"
  },
  "gas-7875-santa-cruz-de-tenerife": {
-  "desc": "Vía Penetracion, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Vía Penetración, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 24 h"
  },
  "gas-7879-santa-cruz-de-tenerife": {
-  "desc": "Autovía Santa Cruz-San Andres, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "desc": "Autovía Santa Cruz-San Andrés, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 24 h"
  },
