@@ -21,7 +21,10 @@
   "gasolinera_ficha.py (no las genera), revisar_gasolineras.py y",
   "auditar_gasolineras.js, que FALLA si una de estas tiene ficha en la app.",
   "CONFIRMADAS_TRAS_ESPERA: las que estuvieron en espera y Jerome confirmo",
-  "despues. Ya no las lee ninguna herramienta: se guardan por el rastro."
+  "despues. Ya no las lee ninguna herramienta: se guardan por el rastro.",
+  "",
+  "ERRATAS: texto del registro que esta mal y se sabe como es, con fuente y OK de",
+  "Jerome. Se corrige en el texto crudo, antes de todo lo demas."
  ],
  "acentos": {
   "albanileria": "Albañilería",
@@ -78,6 +81,12 @@
    "desde": "2026-10-03",
    "confirmada_el": "2026-10-03",
    "como": "Jerome manda la ficha de la web de Repsol («CRED AEROPUERTO TENERIFE SUR AIRE»: abierta 24 horas, margen DERECHO como el registro, con «Como llegar») y una respuesta de Google. Ninguna de las dos dice si se puede entrar; lo dice el mapa: esta a 106 m de un enlace de la autopista y a 134 m del TF-1, junto a la TF-644 y a una calle publica, lejos de la terminal (a 2,4 km). «Lado aire» es el lado de la via que da al aeropuerto, igual que la Repsol «LADO AIRE» de Gran Canaria, que esta en la autovia GC-1 km 16. OSM no se usa como fuente de ningun dato de la ficha: todo sale del registro."
+  }
+ },
+ "erratas": {
+  "MOLINOS DE GOLFO": {
+   "se_escribe": "MOLINOS DE GOFIO",
+   "fuente": "Jerome, 3 de octubre: captura de Google Maps de «Plenergy La Orotava II», «C. Molinos de Gofio, s/n, 38312 La Orotava»; OSM tambien dice «Calle Molinos de Gofio». En Canarias, los molinos de gofio."
   }
  }
 }

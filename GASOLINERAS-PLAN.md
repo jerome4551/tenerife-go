@@ -656,9 +656,45 @@ falsas alarmas. Pero salió una que no cuadra:
   está desplazado (tiene cuatro decimales, de los puestos a ojo). **Pregunta
   abierta**, no es de las gasolineras.
 
+## Tus respuestas del 3 de octubre
+
+* **«Molinos de Gofio»**: la errata era del registro. Va en `correcciones-registro.json`
+  como errata con fuente (tu captura de Google y OSM), así que se sigue aplicando
+  cada vez que se descarga el registro. Ahora: «Plenergy · Calle Molinos de Gofio».
+* **Moeve de la C/ Filipinas**: Google da ahora L-V 07:00-15:00, sábado y domingo
+  cerrado, **lo mismo que el registro**. La app tenía razón; la captura antigua
+  era la equivocada.
+* **HiperDino de San Juan de la Rambla**: Google da como más cercanos tres
+  SuperDino de Icod y Los Realejos, y en el sitio del pin no hay nada a 300 m en
+  el mapa. Todo apunta a que **no existe**, como el Mercadona de El Médano.
+  **Pendiente de tu OK para borrarla.**
+
+## Sesión 10 · Guía de Isora · HECHA el 3 de octubre
+
+**6 altas** de 7. La app pasa de 914 a **920 lugares**. Revisor: 6 fichas, **0
+hallazgos**, 7 de 7 con su ficha.
+
+La séptima la cubría la antigua «Shell Guía de Isora (TF-82)», a **166 m** de la
+Shell de la Avenida de Isora, 86, la única a menos de 600 m. Tu LEEME tiene la
+regla exacta: misma marca a 150-300 m, **coordenada del registro**, con antes y
+después. Hecho con `fijar_coordenada.py` (comprueba que cae en tierra y apunta la
+fuente en `verificado.json`): de 28.2137, -16.7829 a 28.212417, -16.782028. Su
+horario era «todos los días 07:00-22:00» y el registro da L-S 06:00-22:00 · D
+07:00-17:00: corregido.
+
+El aplicador paraba a partir de 50 m, más estricto que tu LEEME sin motivo. Ahora
+usa tus umbrales: misma marca a ≤150 m, se enlaza; a 150-300 m, se enlaza y se
+corrige el pin; otra marca o sin marca, para.
+
+**Para la sesión 91:** su descripción dice «Shell en la TF-82, Guía de Isora **km
+120**», y el km 120 es la **otra** Shell, la de Tejina de Guía.
+
+Retoque de forma: «AVENIDA AV ISORA» era la avenida repetida y abreviada; ahora
+«Shell · Avenida Isora».
+
 ## Lo que queda
 
-**21 sesiones**, 63 altas. La siguiente es la **10-guia-de-isora** (7).
+**20 sesiones**, 57 altas. La siguiente es la **11-guimar** (6).
 
 ## Lo que necesito de ti antes de seguir
 

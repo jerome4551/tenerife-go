@@ -137,8 +137,7 @@
    },
    "revisada_el": "2026-10-03",
    "revision": "tools/revisar_gasolineras.py: 9 fichas, 0 hallazgos, 10/10 estaciones con su ficha",
-   "aviso_del_teide": "Movido el 3 de octubre, con OK de Jerome: de la Cepsa La Cañada (gas-tf21-aguamansa) a la Repsol Barroso (7677), que esta 1,3 km mas arriba por la TF-21. Textos trasladados tal cual en los diez idiomas; el aviso vive en datos/gasolineras/avisos.json.",
-   "pregunta_a_jerome": "16315 Plenergy: el registro dice «CALLE MOLINOS DE GOLFO» y OSM «Calle Molinos de Gofio». OSM no es fuente oficial: no se cambia sin su OK."
+   "aviso_del_teide": "Movido el 3 de octubre, con OK de Jerome: de la Cepsa La Cañada (gas-tf21-aguamansa) a la Repsol Barroso (7677), que esta 1,3 km mas arriba por la TF-21. Textos trasladados tal cual en los diez idiomas; el aviso vive en datos/gasolineras/avisos.json."
   },
   "08-san-miguel-de-abona": {
    "que": "Las 10 estaciones de San Miguel de Abona (10 altas, 0 ya en la app).",
@@ -172,12 +171,34 @@
   },
   "10-guia-de-isora": {
    "que": "Las 7 estaciones de Guía de Isora (6 altas, 1 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Guía de Isora",
    "estaciones": 7,
    "altas": 6,
    "ya": 1,
-   "plan": "datos/gasolineras/plan/10-guia-de-isora.json"
+   "plan": "datos/gasolineras/plan/10-guia-de-isora.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 6,
+   "enlazadas": {
+    "gas-tf82-guia-isora": "9176 (a 166 m: coordenada corregida a la del registro, LEEME 150-300 m)"
+   },
+   "correccion_coordenada": {
+    "gas-tf82-guia-isora": {
+     "antes": [
+      28.2137,
+      -16.7829
+     ],
+     "despues": [
+      28.212417,
+      -16.782028
+     ],
+     "metros": 166,
+     "fuente": "Registro MITECO IDEESS 9176; apuntada en datos/verificado.json"
+    }
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 6 fichas, 0 hallazgos, 7/7 estaciones con su ficha",
+   "para_la_91": "gas-tf82-guia-isora dice en la descripcion «Shell en la TF-82, Guia de Isora km 120», pero el km 120 es la OTRA Shell, la de Tejina de Guia (10345). La suya es la de la Avenida de Isora, 86."
   },
   "11-guimar": {
    "que": "Las 6 estaciones de Güímar (6 altas, 0 ya en la app).",
@@ -397,7 +418,7 @@
  "horarios_google_contra_registro": {
   "_": "Las capturas de Jerome contra el registro, 3 de octubre. El registro manda (LEEME) y no se cambia nada; es una lista para comprobar.",
   "8759": "Shell El Ramonal (SC): Google cierra 22:00 · registro 24 h",
-  "7628": "Cepsa C/ Filipinas (SC): Google cierra 23:00 · registro solo L-V 07:00-15:00",
+  "7628": "Cepsa C/ Filipinas (SC): RESUELTA el 3 de octubre. Google ahora da L-V 07:00-15:00, sabado y domingo cerrado: lo mismo que el registro. La captura antigua era la equivocada.",
   "16466": "Oceano C/ Panama (SC): Google 24 h · registro 06:00-22:00",
   "12412": "DISA Hogar Taxista (SC): Google cierra 16:00 · registro L-S 07-21, D 08-13",
   "10214": "Cepsa Palo Blanco (Los Realejos): Google 24 h · registro 07:00-22:00",

@@ -184,6 +184,10 @@
    "fecha": "2026-09-26",
    "fuente": "Wikidata Q5966669 (La Farola del Mar): 28.469439,-16.245831 = 28°28′09.98″N 16°14′44.99″O. La misma ficha da el elemento de OSM: way 193798986. Esa coordenada cae en el AGUA contra la capa earth a z14 -7,6 m del borde-, asi que se aplico la regla del dueño: empujar hasta 5 m tierra adentro sin moverse mas de 15. Dentro de esos 15 m el mejor margen alcanzable es 4,78 m, y se alcanza justo en el tope: 15,00 m de empuje. El resultado esta en tierra con 4,78 m de margen, a 15 m de la coordenada de Wikidata y a 4,7 m del pin anterior (que salia de la lista de Wikipedia). Las tres referencias -Wikidata, Wikipedia y la foto de Commons- difieren hasta 30 m entre si, asi que el empuje cae dentro de la incertidumbre del propio dato. CUANDO HAYA OVERPASS: leer el way 193798986 y usar su geometria."
   },
+  "gas-tf82-guia-isora": {
+   "fecha": "2026-10-03",
+   "fuente": "Registro del MITECO, IDEESS 9176 (Shell · Avenida Isora). Regla del LEEME de gasolineras: misma marca a 150-300 m -> coordenada del registro. Antes 28.2137, -16.7829, a 166 m."
+  },
   "golf-amarilla": {
    "fecha": "2026-09-27",
    "fuente": "OSM del repositorio: «Amarilla Golf» (golf_course), el UNICO con ese nombre en toda la isla, y cae en San Miguel de Abona, que es lo que dice la ficha (tools/municipio_raya.py: 13 de 14 paradas sin raya en medio, todas de San Miguel). El pin redondo estaba a 1.919 m."

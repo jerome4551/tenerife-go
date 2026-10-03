@@ -140,10 +140,12 @@ console.log('\n=== lugares ===');
    otra ya la cubria gas-tf21-aguamansa, que se enlaza;
    898 -> 908 el 3 de octubre, con las 10 de San Miguel de Abona (sesion 08);
    908 -> 914 el 3 de octubre, con 6 de las 7 de Arafo (sesion 09): la otra ya
-   la cubria gas-tf1-guimar, que se enlaza.
+   la cubria gas-tf1-guimar, que se enlaza;
+   914 -> 920 el 3 de octubre, con 6 de las 7 de Guia de Isora (sesion 10): la
+   otra ya la cubria gas-tf82-guia-isora, que se enlaza y se le corrige el pin.
    Esta cifra sube una vez por sesion de gasolineras hasta las 198 altas, y se
    cambia A MANO a proposito: asi ningun municipio entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 914);
+debe('lugares', PLACES.length, PLACES.length === 920);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

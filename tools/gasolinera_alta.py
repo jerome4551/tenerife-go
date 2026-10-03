@@ -67,6 +67,25 @@ def bloque(f):
         js(f['idiomas']['es']['cat']), ','.join(js(t) for t in f['tags']))
 
 
+def fijar(corregir):
+    """Mueve el pin de las antiguas enlazadas a 150-300 m a la coordenada del
+       registro, con la herramienta de siempre: comprueba que cae en tierra y
+       apunta la fuente en datos/verificado.json. Si no puede, PARA."""
+    import subprocess
+    for vid, f, metros in corregir:
+        src = open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
+        m = re.search(r'\{ id:"%s"[^\n]*?lat:([-\d.]+), lng:([-\d.]+)' % re.escape(vid), src)
+        fuente = ('Registro del MITECO, IDEESS %s (%s). Regla del LEEME de gasolineras: misma marca a '
+                  '150-300 m -> coordenada del registro. Antes %s, %s, a %d m.'
+                  % (f['ideess'], f['name'], m.group(1), m.group(2), metros))
+        o = subprocess.run([sys.executable, os.path.join(RAIZ, 'tools', 'fijar_coordenada.py'),
+                            vid, str(f['lat']), str(f['lng']), fuente],
+                           cwd=RAIZ, capture_output=True, text=True)
+        print(o.stdout.strip())
+        if o.returncode:
+            sys.exit('PARO: fijar_coordenada.py no pudo mover %s: %s' % (vid, o.stderr.strip()))
+
+
 def retirar(ideess):
     """Quita de la app la ficha GENERADA de una estacion: index.html, los nueve
        idiomas y el polaco fuente. Es el gemelo del alta, para no tocar cinco
@@ -187,18 +206,25 @@ def main():
     # duplicadas. A la ficha antigua solo se le pone el ideess, que es un enlace
     # invisible, para que el control sepa que esta cubierta. El nombre al estilo
     # nuevo se le cambia en su turno, la sesion 91 (Jerome, 2 de octubre).
-    # Se enlaza SOLO si es la misma marca y esta a menos de 50 m; si no, PARA.
+    # Los umbrales son los del LEEME de las gasolineras: misma marca a <=150 m,
+    # se enlaza; misma marca a 150-300 m, se enlaza Y se corrige la coordenada a
+    # la del registro (antes/despues, con tools/fijar_coordenada.py, que mira que
+    # caiga en tierra y apunta la fuente); otra marca o sin marca, PARA. Antes
+    # paraba a partir de 50 m, mas estricto que el LEEME sin motivo.
     import gasolineras as G
     import gasolineras_plan as GP
     reg, _ = G.cargar_registro()
     recl = GP.reclamadas(reg)
-    enlazar = []
+    enlazar, corregir = [], []
     for f in [f for f in fichas if f['ideess'] in recl]:
         r = recl[f['ideess']]
-        if r['a_metros'] >= 50 or not r['misma_marca']:
-            sys.exit('PARO: %s la reclama %s a %d m, %s. Eso se mira a mano.' % (
-                f['ideess'], r['id'], r['a_metros'],
-                'misma marca' if r['misma_marca'] else 'OTRA MARCA'))
+        if not r['misma_marca']:
+            sys.exit('PARO: %s la reclama %s a %d m con OTRA MARCA o sin marca. Eso se mira a mano.' % (
+                f['ideess'], r['id'], r['a_metros']))
+        if r['a_metros'] > 150:
+            corregir.append((r['id'], f, r['a_metros']))
+            print('   %s esta a %d m: se corrige su coordenada a la del registro (LEEME, 150-300 m)'
+                  % (r['id'], r['a_metros']))
         enlazar.append((r['id'], f['ideess'], r['a_metros']))
         print('   ya la cubre %-22s (a %d m): no se duplica, se enlaza con ideess %s'
               % (r['id'], r['a_metros'], f['ideess']))
@@ -223,6 +249,7 @@ def main():
     if enlazar and not fichas:
         if '--ver' not in sys.argv:
             open(os.path.join(RAIZ, 'index.html'), 'w', encoding='utf-8').write(src)
+            fijar(corregir)
         return 0
     ya = [f['id'] for f in fichas if '{ id:"%s"' % f['id'] in src]
     if ya and not rehacer:
@@ -312,6 +339,7 @@ def main():
         sys.exit('PARO y lo dejo como estaba: %s' % e)
     for c in copias.values():
         os.remove(c)
+    fijar(corregir)
     print('\nhecho. Ahora, a mano y mirando lo que sale:')
     print('   node tools/lugares_idioma.js montar pl')
     print('   bash tools/auditar.sh')

@@ -121,6 +121,8 @@ def main():
     plf = json.load(open(os.path.join(RAIZ, 'idiomas', 'pl-lugares', '10-gasolineras.json'),
                          encoding='utf-8'))
     print('registro del %s · %d fichas de gasolinera en la app' % (reg.get('Fecha'), len(app)))
+    erratas = json.load(open(os.path.join(RAIZ, 'datos', 'gasolineras', 'correcciones-registro.json'),
+                             encoding='utf-8')).get('erratas', {})
     fav = os.path.join(RAIZ, 'datos', 'gasolineras', 'avisos.json')
     avisos = {k: x for k, x in json.load(open(fav, encoding='utf-8')).items()
               if k != '_'} if os.path.exists(fav) else {}
@@ -176,6 +178,11 @@ def main():
         # nombre: nada inventado
         fuente = set(piezas(' '.join([e['Rótulo'], e['Dirección'], e['Localidad'],
                                       muni, e['IDEESS']]))) | VIAS
+        # Lo que trae una errata corregida con fuente y OK de Jerome tambien
+        # sale «del registro»: del registro corregido, y esta documentado.
+        for malo, x in erratas.items():
+            if malo in e['Dirección']:
+                fuente |= set(piezas(x['se_escribe']))
         for w in piezas(p['name']):
             if w not in fuente:
                 mal(p['id'], 'el nombre lleva «%s», que no sale del registro' % w)
@@ -241,7 +248,7 @@ def main():
                                                    'tgas', 'pcan', 'plenergy', 'oceano', 'petroprix'}
         print('  antigua enlazada: %-22s -> %s a %.0f m, %s' % (
             p['id'], p['ideess'], d, 'misma marca' if marca else 'MARCA DISTINTA O SIN MARCA'))
-        if d >= 50:
+        if d > 150:     # LEEME: <=150 m, confirmada; 150-300 m se corrige la coordenada
             mal(p['id'], 'enlazada a %s, que esta a %.0f m' % (p['ideess'], d))
         # Su horario tambien sale del registro: el nombre y la descripcion se
         # rehacen en la sesion 91, pero un horario falso no espera. «Repsol TF-1

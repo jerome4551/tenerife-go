@@ -141,6 +141,7 @@ VIAL = {
     'c/': 'Calle', 'gral': 'General', 'gral.': 'General',
     'poligono': 'Polígono',          # el registro va sin acentos
     'autovia': 'Autovía',
+    'av': 'Avenida', 'avda': 'Avenida',  # «AVENIDA AV ISORA»: la avenida, repetida y abreviada
     'crt': 'Carretera',                 # «CARRETERA CRT GRAL ICOD-S/C»
     'ind': 'Industrial', 'ind.': 'Industrial',   # «PG IND. AÑAZA»
     'carretea': 'Carretera',         # errata del registro, 1 caso
@@ -169,6 +170,7 @@ _AV = os.path.join(RAIZ, 'datos', 'gasolineras', 'avisos.json')
 AVISOS = {k: v for k, v in json.load(open(_AV, encoding='utf-8')).items()
           if k != '_'} if os.path.exists(_AV) else {}
 ILEGIBLE = list(_CORR['ilegible'])
+ERRATAS = {k: v['se_escribe'] for k, v in _CORR.get('erratas', {}).items()}
 
 # Las marcas, tal como se escriben. CEPSA se llama ahora MOEVE y en el registro
 # estan las dos: la misma empresa con el rotulo a medio cambiar.
@@ -282,6 +284,8 @@ def calle_corta(direccion):
     """La via sola, que es lo que va en el nombre del pin: sin numero, sin
        kilometro, sin el barrio entre parentesis y sin la basura del registro."""
     t = (direccion or '').strip()
+    for mal_escrito, bien in ERRATAS.items():   # con fuente y OK de Jerome
+        t = t.replace(mal_escrito, bien)
     for malo in ILEGIBLE:             # no se corrige: se corta
         t = t.split(malo)[0]
     # Las abreviaturas con punto se desatan ANTES de cortar por el punto. Sin

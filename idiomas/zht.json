@@ -279,7 +279,7 @@
  "gas-tf5-el-bohio": {"hours": "週一至週五 06:15-22:15 · 週六 06:45-22:15 · 週日 07:15-22:15", "desc": "TF-5公路25公里處、阿森特霍-拉馬坦薩的DISA加油站。北部高速公路，位於拉拉古納與克魯斯港之間，位置便利。理想的歇腳點。", "cat": "加油站 · TF-5 · 拉馬坦薩"},
  "gas-tf5-el-sauzal": {"hours": "每天 06:00-23:00", "desc": "TF-5公路22.5公里處、索薩爾的Repsol加油站。北部，位於拉拉古納與塔科龍特之間。是從北部高速公路最易進出的加油站之一。", "cat": "加油站 · TF-5 · 索薩爾"},
  "gas-tf51-vilaflor": {"hours": "週一至週五 07:00-21:00 · 節假日請查詢", "desc": "TF-51阿羅納-比拉弗洛爾公路4公里處的加油站。南部內陸。對上行至比拉弗洛爾（西班牙海拔最高村莊）或從南面進入國家公園的人很重要。進入高海拔區前的最後一個加油站。", "cat": "⚠️ 加油站 · 南部內陸 · 比拉弗洛爾"},
- "gas-tf82-guia-isora": {"hours": "每天 07:00-22:00", "desc": "TF-82公路、吉亞德伊索拉120公里處的Shell加油站。特內里費西南部。阿德赫與洛斯希甘特斯之間的重要一站，前方是西海岸最偏僻的路段。", "cat": "加油站 · TF-82 · 吉亞德伊索拉"},
+ "gas-tf82-guia-isora": {"hours": "週一至週六 06:00至22:00 · 週日 07:00至17:00", "desc": "TF-82公路、吉亞德伊索拉120公里處的Shell加油站。特內里費西南部。阿德赫與洛斯希甘特斯之間的重要一站，前方是西海岸最偏僻的路段。", "cat": "加油站 · TF-82 · 吉亞德伊索拉"},
  "gas-tf5-los-realejos": {"hours": "週一至週日 06:00至22:00", "desc": "TF-5公路46公里處、洛斯雷亞萊霍斯的DISA加油站。北部，位於克魯斯港與葡萄酒城伊科德之間。便利繼續前往加拉奇科或島嶼西北部的旅客。", "cat": "加油站 · TF-5 · 洛斯雷亞萊霍斯"},
  "puerto-santa-cruz": {"desc": "⚠️ 限制進入的商業港。加那利最大的港口，也是大西洋最重要的港口之一。貨櫃碼頭、郵輪與雜貨泊位。大型遠洋郵輪在此停靠——從海洋公園望去蔚為壯觀。僅限專業人員與持證郵輪旅客進入。但外側海濱步道對公眾開放。", "cat": "⚠️ 商業港 · 僅供觀賞"},
  "puerto-los-cristianos": {"desc": "綜合性港口：商業（渡輪）與漁業兼具。弗雷德·奧爾森（Fred Olsen）與阿爾馬斯航運（Naviera Armas）的渡輪由此開往戈梅拉、拉帕爾馬與耶羅島。登船區對持票旅客實行管制進入。但餐廳區與外側海濱步道對公眾開放，十分熱鬧。也是南部乘船遊覽的出發點。", "cat": "渡輪港 · 洛斯克里斯蒂亞諾斯"},
@@ -893,7 +893,7 @@
  "gas-9741-la-orotava": {"desc": "Carretera C-820（La Orotava）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · DISA", "hours": "週一至週五 06:00至22:00 · 週六 07:00至22:00 · 週日 08:00至14:00"},
  "gas-7856-la-orotava": {"desc": "Plaza La Paz（La Orotava）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · DISA", "hours": "週一至週日 24小時"},
  "gas-15901-la-orotava": {"desc": "Calle Albañilería（La Orotava）。燃料：95號汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "週一至週日 24小時"},
- "gas-16315-la-orotava": {"desc": "Calle Molinos de Golfo（La Orotava）。燃料：95號汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "週一至週日 24小時"},
+ "gas-16315-la-orotava": {"desc": "Calle Molinos de Gofio（La Orotava）。燃料：95號汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "週一至週日 24小時"},
  "gas-7677-la-orotava": {"desc": "⚠️ 經TF-21從拉奧羅塔瓦（阿瓜曼薩）上行進入泰德國家公園前的最後一個加油站。國家公園內沒有加油站。上泰德峰前務必在此加油。Carretera TF-21 Aguamansa（La Orotava）。燃料：95號汽油、98號汽油和柴油。", "cat": "⚠️ 最後一個加油站 · Repsol", "hours": "週一至週日 06:00至22:00"},
  "gas-7699-la-orotava": {"desc": "Carretera TF-324（La Orotava）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Repsol", "hours": "週一至週五 06:00至22:00 · 週六至週日 07:00至23:00"},
  "gas-8776-la-orotava": {"desc": "Carretera General del Norte（La Orotava）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Shell", "hours": "週一至週日 06:00至22:00"},
@@ -912,5 +912,11 @@
  "gas-16177-arafo": {"desc": "Camino La Molineta Polígono El Carretón（Arafo）。燃料：95號汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "週一至週日 24小時"},
  "gas-8326-arafo": {"desc": "Carretera Arafo La Hidalga TF-281（Arafo）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 24小時"},
  "gas-12630-arafo": {"desc": "Plaza Industrial Valle Güímar（Arafo）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 06:00至22:00"},
- "gas-10635-arafo": {"desc": "Carretera General del Sur（Arafo）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · Tgas", "hours": "週一至週六 06:00至21:00 · 週日 07:00至15:00"}
+ "gas-10635-arafo": {"desc": "Carretera General del Sur（Arafo）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · Tgas", "hours": "週一至週六 06:00至21:00 · 週日 07:00至15:00"},
+ "gas-7849-guia-de-isora": {"desc": "Carretera General TF-623（Guía de Isora）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · DISA", "hours": "週一至週日 06:00至22:00"},
+ "gas-8977-guia-de-isora": {"desc": "Carretera General TF-82（Guía de Isora）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · DISA", "hours": "週一至週六 06:00至22:00 · 週日 08:00至17:00"},
+ "gas-13972-guia-de-isora": {"desc": "Avenida La Gaviota（Guía de Isora）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Moeve", "hours": "週一至週日 06:00至22:00"},
+ "gas-10206-guia-de-isora": {"desc": "Paseo La Libertad（Guía de Isora）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · Moeve", "hours": "週一至週日 06:00至22:00"},
+ "gas-7722-guia-de-isora": {"desc": "Carretera TF-47 Armeñime-Puerto Santiago（Guía de Isora）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · Pcan", "hours": "週一至週日 24小時"},
+ "gas-10345-guia-de-isora": {"desc": "Tejina de Guía（Guía de Isora）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Shell", "hours": "週一至週日 24小時"}
 }

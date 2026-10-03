@@ -575,7 +575,7 @@
   "hours": "Pn-Nd 24 h"
  },
  "gas-16315-la-orotava": {
-  "desc": "Calle Molinos de Golfo, La Orotava. Paliwa: benzyna 95 i olej napędowy.",
+  "desc": "Calle Molinos de Gofio, La Orotava. Paliwa: benzyna 95 i olej napędowy.",
   "cat": "Stacja paliw · Plenergy",
   "hours": "Pn-Nd 24 h"
  },
@@ -673,5 +673,35 @@
   "desc": "Carretera General del Sur, Arafo. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
   "cat": "Stacja paliw · Tgas",
   "hours": "Pn-So 06:00-21:00 · Nd 07:00-15:00"
+ },
+ "gas-7849-guia-de-isora": {
+  "desc": "Carretera General TF-623, Guía de Isora. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-8977-guia-de-isora": {
+  "desc": "Carretera General TF-82, Guía de Isora. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-So 06:00-22:00 · Nd 08:00-17:00"
+ },
+ "gas-13972-guia-de-isora": {
+  "desc": "Avenida La Gaviota, Guía de Isora. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Moeve",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-10206-guia-de-isora": {
+  "desc": "Paseo La Libertad, Guía de Isora. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Moeve",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7722-guia-de-isora": {
+  "desc": "Carretera TF-47 Armeñime-Puerto Santiago, Guía de Isora. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Pcan",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-10345-guia-de-isora": {
+  "desc": "Tejina de Guía, Guía de Isora. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Shell",
+  "hours": "Pn-Nd 24 h"
  }
 }
