@@ -349,7 +349,7 @@
  "gas-tf5-ptocz": {
   "desc": "BP u wjazdu do Puerto de la Cruz od strony autostrady. Bardzo praktyczna dla turystów. Duża i jasna.",
   "cat": "Stacja paliw · TF-5 Północ",
-  "hours": "24h · Codziennie"
+  "hours": "Pn-Nd 06:30-22:30"
  },
  "gas-tf2-lalaguna": {
   "desc": "Cepsa przy TF-2, zjazd La Laguna w stronę południa. Kluczowy punkt między lotniskiem a stolicą.",
@@ -369,17 +369,17 @@
  "gas-tf5-el-bohio": {
   "desc": "DISA przy TF-5 km 25, La Matanza de Acentejo. Autostrada północna, dobrze położona między La Laguną a Puerto de la Cruz. Dobry punkt postoju.",
   "cat": "Stacja paliw · TF-5 · La Matanza",
-  "hours": "Pn-Pt 06:15-22:15 · So 06:45-22:15 · Nd 07:15-22:15"
+  "hours": "Pn-Nd 24 h"
  },
  "gas-tf5-el-sauzal": {
   "desc": "Repsol przy TF-5 km 22,5, El Sauzal. Północ między La Laguną a Tacoronte. Jedna z najłatwiej dostępnych stacji z autostrady północnej.",
   "cat": "Stacja paliw · TF-5 · El Sauzal",
-  "hours": "Codziennie 06:00-23:00"
+  "hours": "Pn-Nd 06:00-22:00"
  },
  "gas-tf51-vilaflor": {
   "desc": "Stacja przy TF-51 Arona-Vilaflor km 4. Wnętrze południa. Ważna dla tych, którzy jadą do Vilaflor (najwyżej położona wieś Hiszpanii) albo wjeżdżają do Parku Narodowego od południa. Ostatnia stacja przed strefą wysokogórską.",
   "cat": "⚠️ Stacja paliw · Wnętrze południa · Vilaflor",
-  "hours": "Pn-Pt 07:00-21:00 · Święta sprawdzić"
+  "hours": "Pn-So 07:00-21:00 · Nd 08:00-14:00"
  },
  "gas-tf82-guia-isora": {
   "desc": "Shell przy TF-82, Guía de Isora km 120. Południowy zachód Teneryfy. Ważny przystanek między Adeje a Los Gigantes przed najbardziej odludnym odcinkiem zachodniego wybrzeża.",

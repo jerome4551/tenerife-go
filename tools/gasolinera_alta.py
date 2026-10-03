@@ -185,7 +185,45 @@ def horas_antiguas(ver=False):
     return 0
 
 
+def enlazar_antiguas(ver=False):
+    """Enlaza con su estacion TODAS las fichas antiguas que aun no lo estan, sin
+       esperar a la sesion de su municipio, con las reglas del LEEME (misma marca
+       a <=150 m; a 150-300 m, ademas, coordenada del registro). Hace falta porque
+       11 de las 14 antiguas tenian el horario mal y Jerome pidio arreglarlo ya:
+       sin el enlace, --horas-antiguas no sabe de que estacion es cada una."""
+    import gasolineras as G
+    import gasolineras_plan as GP
+    reg, _ = G.cargar_registro()
+    recl = GP.reclamadas(reg)
+    src = open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
+    porreg = {x['ideess']: x for x in reg}
+    corregir = []
+    for ide, r in sorted(recl.items(), key=lambda kv: kv[1]['id']):
+        if not r['misma_marca']:
+            print('   NO se enlaza %s: otra marca o sin marca. Eso se mira a mano.' % r['id'])
+            continue
+        i = src.index('  { id:"%s"' % r['id'])
+        k = src.index('\n', i)
+        if 'ideess:' in src[i:k]:
+            continue
+        print('   %-22s -> %s a %d m%s' % (r['id'], ide, r['a_metros'],
+              ' (y se corrige el pin: 150-300 m)' if r['a_metros'] > 150 else ''))
+        src = src[:k] + ' ideess:"%s",' % ide + src[k:]
+        if r['a_metros'] > 150:
+            e = porreg[ide]
+            corregir.append((r['id'], {'ideess': ide, 'name': e['rotulo'], 'lat': e['lat'],
+                                       'lng': e['lng']}, r['a_metros']))
+    if ver:
+        return 0
+    open(os.path.join(RAIZ, 'index.html'), 'w', encoding='utf-8').write(src)
+    fijar(corregir)
+    print('hecho. Ahora: --horas-antiguas, y montar el polaco')
+    return 0
+
+
 def main():
+    if '--enlazar-antiguas' in sys.argv:
+        return enlazar_antiguas('--ver' in sys.argv)
     if '--horas-antiguas' in sys.argv:
         return horas_antiguas('--ver' in sys.argv)
     if '--retirar' in sys.argv:

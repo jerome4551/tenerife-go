@@ -771,6 +771,32 @@ el nombre de la ficha. El revisor tiene la misma regla, escrita aparte. Su horar
 decía «L-V 06:00-22:00 · S 07:00-22:00 · D 08:00-21:00» y el registro da **24 h**:
 corregido. Es la sexta antigua con el horario mal de las diez enlazadas.
 
+## Las 14 antiguas, con el horario del registro · 3 de octubre
+
+Pediste arreglar el horario sin esperar a cada sesión. Las 4 que faltaban, todas
+mal:
+
+| ficha antigua | decía | el registro |
+|---|---|---|
+| BP Puerto de la Cruz | **24 h** | 06:30-22:30 |
+| DISA El Bohío | L-V 06:15-22:15 · S · D | **24 h** |
+| Repsol El Sauzal | 06:00-23:00 | 06:00-22:00 |
+| DISA Vilaflor | solo L-V 07:00-21:00 | L-S 07:00-21:00 · **D 08:00-14:00** |
+
+En total, **11 de las 14** antiguas tenían el horario mal (te dije «6 de 10»
+cuando eran 7 de 10). Ahora las 14 están enlazadas con su estación (`--enlazar-antiguas`,
+con las reglas del LEEME) y con horario y dirección del registro. La BP de Puerto
+de la Cruz decía además «TF-5 km 30» y es la Carretera del Botánico km 6.
+
+## Revisión de los bloques 12 y 13 · 3 de octubre
+
+Registro sin cambios; revisor: 9 fichas, **0 hallazgos**, 11 de 11 estaciones.
+Los 11 pins, a menos de 20 m de una vía con coches. Ningún duplicado nuevo con
+otras categorías. En el mapa la carretera de Tacoronte es la «Carretera General
+del Norte · TF-152», que confirma que el «KM. 152» del registro era el número de
+la carretera copiado. En la app: la Estación Abades, una de Arico en chino, una
+de Tacoronte en francés y la BP de Puerto de la Cruz en italiano, bien.
+
 ## Lo que queda
 
 **17 sesiones**, 42 altas. La siguiente es la **14-icod-de-los-vinos** (5).
