@@ -876,5 +876,15 @@
  "gas-7684-los-realejos": {"desc": "Carretera TF-326, Los Realejos. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-So 06:30-00:00"},
  "gas-8757-los-realejos": {"desc": "Carretera El Toscal, Los Realejos. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Shell", "hours": "Mo-So 06:00-22:00"},
  "gas-8756-los-realejos": {"desc": "Carretera General La Zamora 22, Los Realejos. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Shell", "hours": "Mo-So 06:00-22:00"},
- "gas-7791-los-realejos": {"desc": "Carretera General Icod-S/C, Los Realejos. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Tgas", "hours": "Mo-So 06:00-23:00"}
+ "gas-7791-los-realejos": {"desc": "Carretera General Icod-S/C, Los Realejos. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Tgas", "hours": "Mo-So 06:00-23:00"},
+ "gas-7840-santa-cruz-de-tenerife": {"desc": "Calle Pedro de Valdivia, Santa Cruz de Tenerife. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-So 07:00-22:00"},
+ "gas-11690-granadilla-de-abona": {"desc": "Carretera Atogo, Granadilla de Abona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · BP", "hours": "Mo-So 24 Std."},
+ "gas-10307-granadilla-de-abona": {"desc": "Avenida Fundador Gonzalo González, Granadilla de Abona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-So 06:00-23:00"},
+ "gas-9490-granadilla-de-abona": {"desc": "Avenida Santa Cruz, Granadilla de Abona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-So 24 Std."},
+ "gas-7889-granadilla-de-abona": {"desc": "Carretera Granadilla Médano, Granadilla de Abona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-So 24 Std."},
+ "gas-7616-granadilla-de-abona": {"desc": "San Isidro-El Médano, Granadilla de Abona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-So 06:00-22:00"},
+ "gas-7731-granadilla-de-abona": {"desc": "Carretera TF-636 San Isidro-Chimiche, Granadilla de Abona. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Pcan", "hours": "Mo-So 08:00-23:00"},
+ "gas-7626-granadilla-de-abona": {"desc": "Acceso Aeropuerto Tenerife Sur, Granadilla de Abona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-So 24 Std."},
+ "gas-7705-granadilla-de-abona": {"desc": "Carretera TF-1 km 54, Granadilla de Abona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-So 24 Std."},
+ "gas-7721-granadilla-de-abona": {"desc": "Carretera TF-64 Granadilla-El Médano, Granadilla de Abona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Tgas", "hours": "Mo-So 24 Std."}
 }

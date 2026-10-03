@@ -462,9 +462,48 @@ carretera (la «General 821» es la antigua C-821), y no sé cuál es.
 pone en la **Calle Los Barros, 33**. Antes de dejarle el TF-5 en el nombre hay
 que mirar si de verdad tiene acceso directo desde la autopista, que es tu regla.
 
+## La DISA de Pedro de Valdivia, de vuelta · 3 de octubre
+
+Jerome lo confirma con la web de la propia DISA (disagrupo.es): «E.S. DISA LAS
+DELICIAS», abierta de lunes a domingo de 07:00 a 22:00, el mismo horario que da
+el registro. Vuelve a la app (878 → 879). El aviso no se borra: pasa a
+`confirmadas_tras_espera`, con la fuente y la fecha.
+
+## Sesión 06 · Granadilla de Abona · HECHA el 3 de octubre
+
+**9 altas** de 11. La app pasa de 879 a **888 lugares**. Revisor: 9 fichas,
+**0 hallazgos**.
+
+* Una ya la cubría `gas-tf1-granadilla` (Repsol, a 22 m): se enlaza.
+* **Una queda en espera:** la **Repsol de la «Vía Lado Aire» del aeropuerto**
+  Tenerife Sur. En un aeropuerto el «lado aire» es la zona restringida, al otro
+  lado del control. El registro la marca como venta al público, y cerca hay un
+  restaurante y un alquiler de coches, pero su dirección dice lo contrario. Si es
+  restringida y entra, alguien conduce hasta una barrera; si es pública y espera,
+  falta una estación un día. **Necesito que me confirmes si se puede entrar.**
+  (La otra Repsol del aeropuerto, la del acceso, está a 2,4 km y sí entra.)
+
+**Tu regla del km, ampliada con cuidado.** Los dos Repsol gemelos dicen
+«CARRETERA TF-1 KM. 54», pero el TF-1 ahí es autopista. Mi primera versión daba
+por hecho que todo el TF-1 y todo el TF-5 son autopista, y le ponía el km a dos
+estaciones del TF-5 en La Guancha y San Juan de la Rambla que están **más allá**
+de donde termina la autopista del Norte. Corregido: el tramo de autopista sale
+**del propio registro** (del km más bajo al más alto de las estaciones que él
+llama «AUTOPISTA»/«AUTOVÍA»). TF-1: km 34 a 65,5. TF-5: km 16 a 25. Cambian
+3 nombres: los gemelos («… km 54») y una Moeve de Arico («… km 44,2»).
+
+**Los gemelos del km 54 no son la misma estación:** el registro los pone en
+**lados opuestos** de la autopista (margen derecho e izquierdo) y con horarios
+distintos (06:00-00:00 y 24 h). Llevan el IDEESS en el nombre porque «sentido
+sur» no es un nombre propio y en el nombre se quedaría sin traducir.
+
+**Para la sesión 91:** la ficha antigua «BP Guaza (**TF-1 km 21**)» está, según
+el registro, en la «CARRETERA GENERAL GUAZA **TF-66** KM. 79». No está en el
+TF-1.
+
 ## Lo que queda
 
-**25 sesiones**, 112 altas. La siguiente es la **06, Granadilla de Abona (11)**.
+**24 sesiones**, 103 altas. La siguiente es la **07, La Orotava (10)**.
 
 ---
 

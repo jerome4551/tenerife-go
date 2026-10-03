@@ -419,8 +419,39 @@ def es_autopista(direccion):
     """En la autopista o la autovia, segun el registro. Tambien cuando la escribe
        como «CR AUTOPISTA DEL NORTE, KM. 10,2»: sin eso esa BP de La Laguna se
        quedaba sin su km."""
-    return bool(re.match(r'(?i)^((CR|CRTRA|CARRETERA)\s+)?(AUTOPISTA|AUTOV[IÍ]A)\b',
-                         (direccion or '').strip()))
+    t = (direccion or '').strip()
+    if re.match(r'(?i)^((CR|CRTRA|CARRETERA)\s+)?(AUTOPISTA|AUTOV[IÍ]A)\b', t):
+        return True
+    # «CARRETERA TF-1 KM. 54»: es autopista si ese km cae en el tramo que el
+    # PROPIO REGISTRO llama autopista o autovia en esa via (ver _TRAMOS). No se
+    # da por hecho que un TF entero sea autopista: el TF-5 deja de serlo en Los
+    # Realejos, y la primera version de esta regla le ponia el km a dos
+    # estaciones de La Guancha y San Juan de la Rambla que estan mas alla.
+    m = re.match(r'(?i)^(CR|CRTRA|CARRETERA)\s+TF-?(\d+)\b', t)
+    km = km_de(t)
+    if m and km and m.group(2) in _TRAMOS:
+        a, b = _TRAMOS[m.group(2)]
+        return a <= float(km.replace(',', '.')) <= b
+    return False
+
+
+_TRAMOS = {}
+
+
+def tramos_autopista(registro):
+    """Via -> (km minimo, km maximo) de las estaciones que el registro escribe
+       «AUTOPISTA TF-n» o «AUTOVIA TF-n» con su km. Es el tramo de autopista
+       segun el registro, sin saber nada de carreteras por mi cuenta."""
+    out = {}
+    for x in registro:
+        d = (x.get('Dirección') or '').strip()
+        m = re.match(r'(?i)^(AUTOPISTA|AUTOV[IÍ]A)\s+(?:\w+\s+)?TF-?(\d+)\b', d)
+        km = km_de(d)
+        if m and km:
+            k = float(km.replace(',', '.'))
+            a, b = out.get(m.group(2), (k, k))
+            out[m.group(2)] = (min(a, k), max(b, k))
+    return out
 
 
 def km_de(direccion):
@@ -533,7 +564,8 @@ def cargar(seleccion=None):
     # las tres pasadas para 4 estaciones, y el IDEESS para 2: dos REPSOL con la
     # misma direccion exacta («CARRETERA TF-1 KM. 54») a 83 m una de otra.
     # Primera pasada solo para saber como escribe el registro cada calle.
-    global _ACENTOS
+    global _ACENTOS, _TRAMOS
+    _TRAMOS = tramos_autopista(mios)
     _ACENTOS = acentos_del_registro(
         [calle_corta(x.get('Dirección')) for x in mios])
     out, pendientes = [], list(mios)

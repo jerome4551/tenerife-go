@@ -17,7 +17,9 @@
   "que Jerome confirme que estan abiertas. Estar en el registro no lo prueba:",
   "una estacion en obras sigue saliendo con sus ultimos precios. Las leen",
   "gasolinera_ficha.py (no las genera), revisar_gasolineras.py y",
-  "auditar_gasolineras.js, que FALLA si una de estas tiene ficha en la app."
+  "auditar_gasolineras.js, que FALLA si una de estas tiene ficha en la app.",
+  "CONFIRMADAS_TRAS_ESPERA: las que estuvieron en espera y Jerome confirmo",
+  "despues. Ya no las lee ninguna herramienta: se guardan por el rastro."
  ],
  "acentos": {
   "andres": "Andrés",
@@ -52,10 +54,19 @@
   "DELPORTEZUELO ALS TODCAS": "Seguramente «del Portezuelo a Las Toscas», pero «Todcas» por «Toscas» seria adivinar. Queda «Carretera TF-154»."
  },
  "en_espera": {
+  "16132": {
+   "estacion": "REPSOL · Vía Lado Aire Aeropuerto Tenerife Sur, 1 · Granadilla de Abona",
+   "por_que": "En un aeropuerto el «lado aire» es la zona restringida, al otro lado del control. Si es una estacion para los vehiculos del aeropuerto, un turista no puede repostar alli. El registro la marca como venta al publico y cerca hay un restaurante y un alquiler de coches, pero el nombre dice lo contrario. Hasta que Jerome confirme que se puede entrar, no se da de alta.",
+   "desde": "2026-10-03"
+  }
+ },
+ "confirmadas_tras_espera": {
   "7840": {
    "estacion": "DISA LAS DELICIAS · Calle Pedro de Valdivia, 9 · Santa Cruz de Tenerife",
    "por_que": "Captura IMG_3428: Google dice «Combustible (FUERA DE SERVICIO POR OBRAS)». El LEEME de las capturas manda no darla de alta sin confirmar que esta operativa. Se dio de alta en la sesion 01 por error y se retiro el 3 de octubre al revisar.",
-   "desde": "2026-10-03"
+   "desde": "2026-10-03",
+   "confirmada_el": "2026-10-03",
+   "como": "Jerome: «online dice que esta abierto». Captura de disagrupo.es, la web de la propia DISA: E.S. DISA LAS DELICIAS, lunes a domingo 07:00-22:00, el mismo horario que da el registro."
   }
  }
 }

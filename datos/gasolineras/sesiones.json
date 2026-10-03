@@ -30,12 +30,12 @@
    "ya": 0,
    "plan": "datos/gasolineras/plan/01-santa-cruz-de-tenerife.json",
    "hecho_el": "2026-10-02",
-   "altas_hechas": 32,
+   "altas_hechas": 33,
    "nota": "Dos pares no se pueden distinguir con los datos del registro y llevan el IDEESS en el nombre: los dos DISA de la Autovia Santa Cruz-San Andres (misma direccion, sin km) y, en Granadilla, los dos REPSOL de la CARRETERA TF-1 KM. 54, a 83 m uno de otro.",
    "revisada_el": "2026-10-02",
    "revision": "tools/revisar_gasolineras.py, campo a campo contra el registro: 0 hallazgos tras anadir los 3 combustibles que faltaban",
-   "en_espera": {
-    "7840": "DISA Las Delicias, Calle Pedro de Valdivia: Google dice fuera de servicio por obras. Retirada el 3 de octubre hasta que Jerome confirme."
+   "confirmada_tras_espera": {
+    "7840": "Jerome, 3 de octubre, con la web de DISA: abierta, L-D 07:00-22:00."
    }
   },
   "02-san-cristobal-de-la-laguna": {
@@ -70,7 +70,8 @@
     "gas-tf1-guaza": "8743 (a 10 m)"
    },
    "revisada_el": "2026-10-03",
-   "revision": "tools/revisar_gasolineras.py: 14 fichas, 0 hallazgos, 15/15 estaciones con su ficha"
+   "revision": "tools/revisar_gasolineras.py: 14 fichas, 0 hallazgos, 15/15 estaciones con su ficha",
+   "para_la_91": "gas-tf1-guaza se llama «BP Guaza (TF-1 km 21)» y el registro la pone en la CARRETERA GENERAL GUAZA TF-66 KM. 79: no esta en el TF-1. Justo lo que Jerome no quiere ver."
   },
   "04-adeje": {
    "que": "Las 14 estaciones de Adeje (14 altas, 0 ya en la app).",
@@ -104,12 +105,22 @@
   },
   "06-granadilla-de-abona": {
    "que": "Las 11 estaciones de Granadilla de Abona (10 altas, 1 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Granadilla de Abona",
    "estaciones": 11,
    "altas": 10,
    "ya": 1,
-   "plan": "datos/gasolineras/plan/06-granadilla-de-abona.json"
+   "plan": "datos/gasolineras/plan/06-granadilla-de-abona.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 9,
+   "enlazadas": {
+    "gas-tf1-granadilla": "7692 (a 22 m)"
+   },
+   "en_espera": {
+    "16132": "REPSOL «Vía Lado Aire» del aeropuerto Tenerife Sur: falta saber si se puede entrar."
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 9 fichas, 0 hallazgos, 10/11 con ficha y 1 en espera"
   },
   "07-la-orotava": {
    "que": "Las 10 estaciones de La Orotava (9 altas, 1 ya en la app).",

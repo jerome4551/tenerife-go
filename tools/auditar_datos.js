@@ -128,10 +128,15 @@ console.log('\n=== lugares ===');
    el LEEME de las capturas decia no darla de alta sin confirmar que esta
    abierta (Google: «fuera de servicio por obras») y entro por error en la 01;
    866 -> 878 el 3 de octubre, con 12 de las 13 de Los Realejos (sesion 05): la
-   otra ya la cubria gas-tf5-los-realejos, que se enlaza.
+   otra ya la cubria gas-tf5-los-realejos, que se enlaza;
+   878 -> 879 el 3 de octubre, al volver la DISA de Pedro de Valdivia: Jerome
+   confirma con la web de DISA que esta abierta;
+   879 -> 888 el 3 de octubre, con 9 de las 11 de Granadilla de Abona (sesion
+   06): una ya la cubria gas-tf1-granadilla, que se enlaza, y la REPSOL del
+   «lado aire» del aeropuerto queda en espera hasta saber si se puede entrar.
    Esta cifra sube una vez por sesion de gasolineras hasta las 198 altas, y se
    cambia A MANO a proposito: asi ningun municipio entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 878);
+debe('lugares', PLACES.length, PLACES.length === 888);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

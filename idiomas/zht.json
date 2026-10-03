@@ -876,5 +876,15 @@
  "gas-7684-los-realejos": {"desc": "Carretera TF-326（Los Realejos）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 06:30至00:00"},
  "gas-8757-los-realejos": {"desc": "Carretera El Toscal（Los Realejos）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Shell", "hours": "週一至週日 06:00至22:00"},
  "gas-8756-los-realejos": {"desc": "Carretera General La Zamora 22（Los Realejos）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Shell", "hours": "週一至週日 06:00至22:00"},
- "gas-7791-los-realejos": {"desc": "Carretera General Icod-S/C（Los Realejos）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Tgas", "hours": "週一至週日 06:00至23:00"}
+ "gas-7791-los-realejos": {"desc": "Carretera General Icod-S/C（Los Realejos）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Tgas", "hours": "週一至週日 06:00至23:00"},
+ "gas-7840-santa-cruz-de-tenerife": {"desc": "Calle Pedro de Valdivia（Santa Cruz de Tenerife）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · DISA", "hours": "週一至週日 07:00至22:00"},
+ "gas-11690-granadilla-de-abona": {"desc": "Carretera Atogo（Granadilla de Abona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · BP", "hours": "週一至週日 24小時"},
+ "gas-10307-granadilla-de-abona": {"desc": "Avenida Fundador Gonzalo González（Granadilla de Abona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · DISA", "hours": "週一至週日 06:00至23:00"},
+ "gas-9490-granadilla-de-abona": {"desc": "Avenida Santa Cruz（Granadilla de Abona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · DISA", "hours": "週一至週日 24小時"},
+ "gas-7889-granadilla-de-abona": {"desc": "Carretera Granadilla Médano（Granadilla de Abona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Moeve", "hours": "週一至週日 24小時"},
+ "gas-7616-granadilla-de-abona": {"desc": "San Isidro-El Médano（Granadilla de Abona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Moeve", "hours": "週一至週日 06:00至22:00"},
+ "gas-7731-granadilla-de-abona": {"desc": "Carretera TF-636 San Isidro-Chimiche（Granadilla de Abona）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · Pcan", "hours": "週一至週日 08:00至23:00"},
+ "gas-7626-granadilla-de-abona": {"desc": "Acceso Aeropuerto Tenerife Sur（Granadilla de Abona）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 24小時"},
+ "gas-7705-granadilla-de-abona": {"desc": "Carretera TF-1 km 54（Granadilla de Abona）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 24小時"},
+ "gas-7721-granadilla-de-abona": {"desc": "Carretera TF-64 Granadilla-El Médano（Granadilla de Abona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Tgas", "hours": "週一至週日 24小時"}
 }

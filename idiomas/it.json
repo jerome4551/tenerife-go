@@ -876,5 +876,15 @@
  "gas-7684-los-realejos": {"desc": "Carretera TF-326, Los Realejos. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Repsol", "hours": "Lun-Dom 06:30-00:00"},
  "gas-8757-los-realejos": {"desc": "Carretera El Toscal, Los Realejos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"},
  "gas-8756-los-realejos": {"desc": "Carretera General La Zamora 22, Los Realejos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"},
- "gas-7791-los-realejos": {"desc": "Carretera General Icod-S/C, Los Realejos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Tgas", "hours": "Lun-Dom 06:00-23:00"}
+ "gas-7791-los-realejos": {"desc": "Carretera General Icod-S/C, Los Realejos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Tgas", "hours": "Lun-Dom 06:00-23:00"},
+ "gas-7840-santa-cruz-de-tenerife": {"desc": "Calle Pedro de Valdivia, Santa Cruz de Tenerife. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · DISA", "hours": "Lun-Dom 07:00-22:00"},
+ "gas-11690-granadilla-de-abona": {"desc": "Carretera Atogo, Granadilla de Abona. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · BP", "hours": "Lun-Dom 24 h"},
+ "gas-10307-granadilla-de-abona": {"desc": "Avenida Fundador Gonzalo González, Granadilla de Abona. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · DISA", "hours": "Lun-Dom 06:00-23:00"},
+ "gas-9490-granadilla-de-abona": {"desc": "Avenida Santa Cruz, Granadilla de Abona. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · DISA", "hours": "Lun-Dom 24 h"},
+ "gas-7889-granadilla-de-abona": {"desc": "Carretera Granadilla Médano, Granadilla de Abona. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 24 h"},
+ "gas-7616-granadilla-de-abona": {"desc": "San Isidro-El Médano, Granadilla de Abona. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 06:00-22:00"},
+ "gas-7731-granadilla-de-abona": {"desc": "Carretera TF-636 San Isidro-Chimiche, Granadilla de Abona. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Pcan", "hours": "Lun-Dom 08:00-23:00"},
+ "gas-7626-granadilla-de-abona": {"desc": "Acceso Aeropuerto Tenerife Sur, Granadilla de Abona. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Repsol", "hours": "Lun-Dom 24 h"},
+ "gas-7705-granadilla-de-abona": {"desc": "Carretera TF-1 km 54, Granadilla de Abona. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Repsol", "hours": "Lun-Dom 24 h"},
+ "gas-7721-granadilla-de-abona": {"desc": "Carretera TF-64 Granadilla-El Médano, Granadilla de Abona. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Tgas", "hours": "Lun-Dom 24 h"}
 }

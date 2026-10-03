@@ -876,5 +876,15 @@
  "gas-7684-los-realejos": {"desc": "Carretera TF-326, Los Realejos. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 06:30-00:00"},
  "gas-8757-los-realejos": {"desc": "Carretera El Toscal, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"},
  "gas-8756-los-realejos": {"desc": "Carretera General La Zamora 22, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"},
- "gas-7791-los-realejos": {"desc": "Carretera General Icod-S/C, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Tgas", "hours": "Пон-Нед 06:00-23:00"}
+ "gas-7791-los-realejos": {"desc": "Carretera General Icod-S/C, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Tgas", "hours": "Пон-Нед 06:00-23:00"},
+ "gas-7840-santa-cruz-de-tenerife": {"desc": "Calle Pedro de Valdivia, Santa Cruz de Tenerife. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Нед 07:00-22:00"},
+ "gas-11690-granadilla-de-abona": {"desc": "Carretera Atogo, Granadilla de Abona. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · BP", "hours": "Пон-Нед 24 ч"},
+ "gas-10307-granadilla-de-abona": {"desc": "Avenida Fundador Gonzalo González, Granadilla de Abona. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Нед 06:00-23:00"},
+ "gas-9490-granadilla-de-abona": {"desc": "Avenida Santa Cruz, Granadilla de Abona. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Нед 24 ч"},
+ "gas-7889-granadilla-de-abona": {"desc": "Carretera Granadilla Médano, Granadilla de Abona. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Нед 24 ч"},
+ "gas-7616-granadilla-de-abona": {"desc": "San Isidro-El Médano, Granadilla de Abona. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Нед 06:00-22:00"},
+ "gas-7731-granadilla-de-abona": {"desc": "Carretera TF-636 San Isidro-Chimiche, Granadilla de Abona. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Pcan", "hours": "Пон-Нед 08:00-23:00"},
+ "gas-7626-granadilla-de-abona": {"desc": "Acceso Aeropuerto Tenerife Sur, Granadilla de Abona. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 24 ч"},
+ "gas-7705-granadilla-de-abona": {"desc": "Carretera TF-1 km 54, Granadilla de Abona. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 24 ч"},
+ "gas-7721-granadilla-de-abona": {"desc": "Carretera TF-64 Granadilla-El Médano, Granadilla de Abona. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Tgas", "hours": "Пон-Нед 24 ч"}
 }
