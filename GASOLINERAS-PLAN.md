@@ -406,6 +406,43 @@ estaciones con su ficha. Ya hay 9 fichas que dicen AdBlue.
 «Avenida **de** Ayyo» (Plenergy) y «Avenida Ayyo» (Repsol, Shell) conviven
 porque así lo escribe el registro; al ser marcas distintas no se confunden.
 
+## Revisión de los bloques 03 y 04 · 3 de octubre
+
+El registro no ha cambiado. El revisor vuelve a dar **28 fichas, 0 hallazgos**,
+pero repetirlo no es revisar: busqué lo que el revisor **no** miraba.
+
+**1. Un error mío en el bloque 01, que salió al cruzar con tus capturas.** El
+LEEME de las capturas decía de la **DISA de Pedro de Valdivia** (Santa Cruz,
+IMG_3428): «Google dice “fuera de servicio por obras”. **No dar de alta sin
+confirmar que está operativa.**» Y la di de alta. El aviso estaba escrito en
+prosa y ninguna herramienta lo leía. El registro la trae con precios, pero eso
+no prueba que esté abierta: su gasóleo (1,769 €) está muy por encima del más
+barato de la isla (1,519 €), que es lo que cabe esperar de un precio que nadie
+actualiza.
+
+**Retirada.** Y para que no se vuelva a colar, el aviso es ahora un **dato**
+(`en_espera` en `correcciones-registro.json`) que leen la plantilla (no la
+genera), el aplicador (un `--rehacer` de Santa Cruz no la mete), el revisor y el
+control, que **se pone rojo si una estación en espera tiene ficha**. Probado:
+con la ficha dentro, rojo; retirada, verde. Era el único aviso así en todo el
+LEEME. **Necesito que me confirmes si está abierta.**
+
+Para retirarla sin tocar cinco ficheros a mano, el aplicador tiene ahora
+`--retirar <IDEESS>`, el gemelo del alta.
+
+**2. Las fichas antiguas enlazadas no las miraba nadie.** Contaban como
+«estación con su ficha» sin comprobar el enlace. Ahora el revisor mide la
+distancia y la marca: `gas-tf1-guaza` a 10 m, `gas-tf5-lalaguna` a 4 m,
+`gas-tf2-lalaguna` a 7 m, las tres de la misma marca.
+
+**3. En la app, de verdad.** Cinco fichas difíciles abiertas en un móvil de
+360 px (la de AdBlue con nombre de autopista, la de nombre más largo de Adeje y
+la antigua de Guaza, en castellano, chino, alemán, búlgaro e inglés): todas se
+abren, nada se sale de la pantalla, cero errores, y las etiquetas y el botón ya
+en su idioma.
+
+La app queda en **866 lugares** (867 menos la retirada). Auditoría en verde.
+
 ## Lo que queda
 
 **26 sesiones**, 124 altas. La siguiente es la **05, Los Realejos (13)**.

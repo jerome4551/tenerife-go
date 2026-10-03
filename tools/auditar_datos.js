@@ -123,10 +123,13 @@ console.log('\n=== lugares ===');
    otras 2 ya las cubrian gas-tf2-lalaguna y gas-tf5-lalaguna, que se enlazan;
    839 -> 853 el 2 de octubre, con 14 de las 15 de Arona (sesion 03): la otra
    ya la cubria gas-tf1-guaza, que se enlaza;
-   853 -> 867 el 3 de octubre, con las 14 de Adeje (sesion 04).
+   853 -> 867 el 3 de octubre, con las 14 de Adeje (sesion 04);
+   867 -> 866 el 3 de octubre, al retirar la DISA de Pedro de Valdivia (7840):
+   el LEEME de las capturas decia no darla de alta sin confirmar que esta
+   abierta (Google: «fuera de servicio por obras») y entro por error en la 01.
    Esta cifra sube una vez por sesion de gasolineras hasta las 198 altas, y se
    cambia A MANO a proposito: asi ningun municipio entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 867);
+debe('lugares', PLACES.length, PLACES.length === 866);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

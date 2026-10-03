@@ -11,19 +11,51 @@
   "Los municipios no hacen falta aqui: salen del poligono del Cabildo.",
   "",
   "ILEGIBLE: texto del registro que no se puede leer sin adivinar. No se",
-  "corrige: se corta, y la ficha se queda con lo que el registro SI dice claro."
+  "corrige: se corta, y la ficha se queda con lo que el registro SI dice claro.",
+  "",
+  "EN_ESPERA: estaciones que el registro trae pero que NO se dan de alta hasta",
+  "que Jerome confirme que estan abiertas. Estar en el registro no lo prueba:",
+  "una estacion en obras sigue saliendo con sus ultimos precios. Las leen",
+  "gasolinera_ficha.py (no las genera), revisar_gasolineras.py y",
+  "auditar_gasolineras.js, que FALLA si una de estas tiene ficha en la app."
  ],
  "acentos": {
-  "andres": "Andrés", "angel": "Ángel", "benitez": "Benítez", "botanico": "Botánico",
-  "caceres": "Cáceres", "carreton": "Carretón", "cristobal": "Cristóbal",
-  "diaz": "Díaz", "dominguez": "Domínguez", "dublin": "Dublín", "felix": "Félix",
-  "gonzalez": "González", "gorrin": "Gorrín", "guia": "Guía", "guzman": "Guzmán",
-  "hernandez": "Hernández", "hipolito": "Hipólito", "jesus": "Jesús",
-  "maritima": "Marítima", "martianez": "Martiánez", "medano": "Médano",
-  "mendez": "Méndez", "penetracion": "Penetración", "perez": "Pérez",
-  "principes": "Príncipes", "republica": "República", "torreon": "Torreón"
+  "andres": "Andrés",
+  "angel": "Ángel",
+  "benitez": "Benítez",
+  "botanico": "Botánico",
+  "caceres": "Cáceres",
+  "carreton": "Carretón",
+  "cristobal": "Cristóbal",
+  "diaz": "Díaz",
+  "dominguez": "Domínguez",
+  "dublin": "Dublín",
+  "felix": "Félix",
+  "gonzalez": "González",
+  "gorrin": "Gorrín",
+  "guia": "Guía",
+  "guzman": "Guzmán",
+  "hernandez": "Hernández",
+  "hipolito": "Hipólito",
+  "jesus": "Jesús",
+  "maritima": "Marítima",
+  "martianez": "Martiánez",
+  "medano": "Médano",
+  "mendez": "Méndez",
+  "penetracion": "Penetración",
+  "perez": "Pérez",
+  "principes": "Príncipes",
+  "republica": "República",
+  "torreon": "Torreón"
  },
  "ilegible": {
   "DELPORTEZUELO ALS TODCAS": "Seguramente «del Portezuelo a Las Toscas», pero «Todcas» por «Toscas» seria adivinar. Queda «Carretera TF-154»."
+ },
+ "en_espera": {
+  "7840": {
+   "estacion": "DISA LAS DELICIAS · Calle Pedro de Valdivia, 9 · Santa Cruz de Tenerife",
+   "por_que": "Captura IMG_3428: Google dice «Combustible (FUERA DE SERVICIO POR OBRAS)». El LEEME de las capturas manda no darla de alta sin confirmar que esta operativa. Se dio de alta en la sesion 01 por error y se retiro el 3 de octubre al revisar.",
+   "desde": "2026-10-03"
+  }
  }
 }

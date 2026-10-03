@@ -202,7 +202,33 @@ def main():
         if '€' in (p['desc'] or '') + (p['name'] or ''):
             mal(p['id'], 'un precio en castellano')
 
-    # por municipio: cada estacion UNA ficha
+    espera = json.load(open(os.path.join(RAIZ, 'datos', 'gasolineras',
+                                         'correcciones-registro.json'),
+                            encoding='utf-8')).get('en_espera', {})
+    # Las fichas ANTIGUAS enlazadas por su ideess: su texto es el de antes y se
+    # rehace en la sesion 91, pero el ENLACE se mira ya. Contaban como «estacion
+    # con su ficha» sin que nadie comprobara que el enlace fuera bueno.
+    viejas = [p for p in app if p['ideess'] and p not in nuevas]
+    for p in viejas:
+        e = porid.get(p['ideess'])
+        if e is None:
+            mal(p['id'], 'enlazada a %s, que NO esta en el registro' % p['ideess'])
+            continue
+        muni = muni_registro(e['Municipio'])
+        if sel and llano(muni) not in sel:
+            continue
+        d = metros(p['lat'], p['lng'], num(e['Latitud']), num(e['Longitud (WGS84)']))
+        rot = set(piezas(e['Rótulo'])) | ({'cepsa', 'moeve'} if {'cepsa', 'moeve'} & set(piezas(e['Rótulo'])) else set())
+        marca = rot & set(piezas(p['name'])) & {'bp', 'disa', 'repsol', 'shell', 'cepsa', 'moeve',
+                                                   'tgas', 'pcan', 'plenergy', 'oceano', 'petroprix'}
+        print('  antigua enlazada: %-22s -> %s a %.0f m, %s' % (
+            p['id'], p['ideess'], d, 'misma marca' if marca else 'MARCA DISTINTA O SIN MARCA'))
+        if d >= 50:
+            mal(p['id'], 'enlazada a %s, que esta a %.0f m' % (p['ideess'], d))
+        if not marca:
+            mal(p['id'], 'enlazada a %s («%s») y su nombre no dice esa marca' % (p['ideess'], e['Rótulo']))
+
+    # por municipio: cada estacion UNA ficha; las que estan en espera, NINGUNA
     enlaz = {}
     for p in app:
         if p['ideess']:
@@ -214,10 +240,14 @@ def main():
                 and x.get('Tipo Venta') == 'P']
         for x in ests:
             n = enlaz.get(str(x['IDEESS']), [])
-            if len(n) != 1:
-                mal('(%s)' % mu, 'la estacion %s tiene %d fichas %s' % (x['IDEESS'], len(n), n))
-        print('  %-28s %2d estaciones del registro, %2d con su ficha' % (
-            mu, len(ests), sum(1 for x in ests if len(enlaz.get(str(x['IDEESS']), [])) == 1)))
+            debe = 0 if str(x['IDEESS']) in espera else 1
+            if len(n) != debe:
+                mal('(%s)' % mu, 'la estacion %s tiene %d fichas %s%s' % (
+                    x['IDEESS'], len(n), n, ' y esta EN ESPERA' if debe == 0 else ''))
+        ne = sum(1 for x in ests if str(x['IDEESS']) in espera)
+        print('  %-28s %2d estaciones del registro, %2d con su ficha%s' % (
+            mu, len(ests), sum(1 for x in ests if len(enlaz.get(str(x['IDEESS']), [])) == 1),
+            ', %d en espera' % ne if ne else ''))
     # pares demasiado cerca
     for i, a in enumerate(app):
         for b in app[i + 1:]:

@@ -66,7 +66,38 @@ def bloque(f):
         js(f['idiomas']['es']['cat']), ','.join(js(t) for t in f['tags']))
 
 
+def retirar(ideess):
+    """Quita de la app la ficha GENERADA de una estacion: index.html, los nueve
+       idiomas y el polaco fuente. Es el gemelo del alta, para no tocar cinco
+       ficheros a mano. Solo retira fichas «gas-<ideess>-...»: las antiguas no
+       las genero esta herramienta y no las toca."""
+    src = open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
+    m = re.search(r'  \{ id:"(gas-%s-[a-z0-9-]+)"' % re.escape(ideess), src)
+    if not m:
+        sys.exit('no hay ninguna ficha generada de la estacion %s' % ideess)
+    fid = m.group(1)
+    i = m.start()
+    j = src.index('\n', src.index('\n    tags:[', i) + 1) + 1
+    blq = src[i:j]
+    if 'ideess:"%s"' % ideess not in blq or blq.count('{ id:') != 1:
+        sys.exit('PARO: el bloque de %s no es el que genero esta herramienta' % fid)
+    open(os.path.join(RAIZ, 'index.html'), 'w', encoding='utf-8').write(src[:i] + src[j:])
+    for L in OTROS:
+        p = os.path.join(RAIZ, 'idiomas/%s.json' % L)
+        d = json.load(open(p, encoding='utf-8'))
+        d.pop(fid, None)
+        open(p, 'w', encoding='utf-8').write(una_linea(d))
+    p = os.path.join(RAIZ, PL_FUENTE)
+    d = json.load(open(p, encoding='utf-8'))
+    d.pop(fid, None)
+    open(p, 'w', encoding='utf-8').write(json.dumps(d, ensure_ascii=False, indent=1) + '\n')
+    print('retirada %s de index.html, de los nueve idiomas y del polaco fuente' % fid)
+    print('ahora: node tools/lugares_idioma.js montar pl')
+
+
 def main():
+    if '--retirar' in sys.argv:
+        return retirar(sys.argv[sys.argv.index('--retirar') + 1])
     a = [x for x in sys.argv[1:] if not x.startswith('--')]
     ver = '--ver' in sys.argv
     if not a:

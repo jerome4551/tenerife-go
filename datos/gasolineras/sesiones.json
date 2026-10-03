@@ -30,10 +30,13 @@
    "ya": 0,
    "plan": "datos/gasolineras/plan/01-santa-cruz-de-tenerife.json",
    "hecho_el": "2026-10-02",
-   "altas_hechas": 33,
+   "altas_hechas": 32,
    "nota": "Dos pares no se pueden distinguir con los datos del registro y llevan el IDEESS en el nombre: los dos DISA de la Autovia Santa Cruz-San Andres (misma direccion, sin km) y, en Granadilla, los dos REPSOL de la CARRETERA TF-1 KM. 54, a 83 m uno de otro.",
    "revisada_el": "2026-10-02",
-   "revision": "tools/revisar_gasolineras.py, campo a campo contra el registro: 0 hallazgos tras anadir los 3 combustibles que faltaban"
+   "revision": "tools/revisar_gasolineras.py, campo a campo contra el registro: 0 hallazgos tras anadir los 3 combustibles que faltaban",
+   "en_espera": {
+    "7840": "DISA Las Delicias, Calle Pedro de Valdivia: Google dice fuera de servicio por obras. Retirada el 3 de octubre hasta que Jerome confirme."
+   }
   },
   "02-san-cristobal-de-la-laguna": {
    "que": "Las 28 estaciones de San Cristóbal de La Laguna (26 altas, 2 ya en la app).",
@@ -66,7 +69,7 @@
    "enlazadas": {
     "gas-tf1-guaza": "8743 (a 10 m)"
    },
-   "revisada_el": "2026-10-02",
+   "revisada_el": "2026-10-03",
    "revision": "tools/revisar_gasolineras.py: 14 fichas, 0 hallazgos, 15/15 estaciones con su ficha"
   },
   "04-adeje": {

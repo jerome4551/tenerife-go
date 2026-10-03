@@ -162,6 +162,7 @@ GENERICO = re.compile(r'(?i)^(e\.s\.|es|estaci[oó]n(\s+de\s+servicios?)?)\s+')
 _CORR = json.load(open(os.path.join(RAIZ, 'datos', 'gasolineras',
                                     'correcciones-registro.json'), encoding='utf-8'))
 ACENTOS = _CORR['acentos']
+EN_ESPERA = set(_CORR.get('en_espera', {}))   # no se generan: ver el fichero
 ILEGIBLE = list(_CORR['ilegible'])
 
 # Las marcas, tal como se escriben. CEPSA se llama ahora MOEVE y en el registro
@@ -518,7 +519,9 @@ def cargar(seleccion=None):
     muni = {x['ideess']: x['municipio_poligono'] for x in reg}
     crudo = json.load(open(os.path.join(RAIZ, 'registro', 'gasolineras-canarias.json'),
                            encoding='utf-8-sig'))['ListaEESSPrecio']
-    mios = [x for x in crudo if str(x.get('IDEESS')) in muni]
+    # Las que estan EN ESPERA no se generan nunca: asi ni un --rehacer las mete.
+    mios = [x for x in crudo if str(x.get('IDEESS')) in muni
+            and str(x.get('IDEESS')) not in EN_ESPERA]
     # Primero sin sufijo, para ver cual choca con cual. Son 2 de 212.
     # Tres pasadas: a secas, con la localidad y con el km. Lo que siga chocando
     # lleva el IDEESS, que es unico por definicion. De las 212 solo hacen falta

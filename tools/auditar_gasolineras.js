@@ -65,9 +65,19 @@ const llano = s => (s || '').normalize('NFD').replace(/\p{M}/gu, '').toLowerCase
 const sesionDe = new Map();
 for (const [k, s] of Object.entries(ses)) if (s.municipio) sesionDe.set(llano(s.municipio), k);
 
+/* EN ESPERA: el registro las trae pero no se dan de alta hasta que Jerome
+   confirme que estan abiertas (datos/gasolineras/correcciones-registro.json).
+   La DISA de Pedro de Valdivia entro en la sesion 01 aunque el LEEME de las
+   capturas decia «no dar de alta sin confirmar que esta operativa»: el aviso
+   estaba escrito en prosa y nada lo leia. Ahora es un dato, y si una de estas
+   tiene ficha, esto se pone ROJO. */
+const fCor = path.join(RAIZ, 'datos', 'gasolineras', 'correcciones-registro.json');
+const espera = fs.existsSync(fCor) ? (JSON.parse(fs.readFileSync(fCor, 'utf8')).en_espera || {}) : {};
+const colada = Object.keys(espera).filter(i => porId.has(i));
 const sinFicha = [], perdidas = [];
 for (const e of esta) {
   if (porId.has(String(e.IDEESS))) continue;
+  if (espera[String(e.IDEESS)]) continue;
   const k = sesionDe.get(llano(e.Municipio));
   const estado = k ? ses[k].estado : null;
   (estado === 'hecha' ? perdidas : sinFicha).push({ e, k, estado });
@@ -76,8 +86,11 @@ for (const e of esta) {
 P('estaciones del registro en Tenerife', esta.length);
 P('fichas de gasolinera en la app', gas.length);
 P('  de esas, con IDEESS apuntado', conId.length);
-P('estaciones que ya tienen ficha', esta.length - sinFicha.length - perdidas.length);
+P('estaciones que ya tienen ficha', esta.length - sinFicha.length - perdidas.length - Object.keys(espera).length + colada.length);
 P('estaciones aun sin ficha, con su sesion pendiente', sinFicha.length);
+P('en espera de confirmar que estan abiertas', Object.keys(espera).length);
+for (const i of Object.keys(espera)) console.log('      ' + i.padEnd(8) + (espera[i].estacion || ''));
+P('EN ESPERA Y CON FICHA (no debia entrar)', colada.length);
 P('SE QUEDARON ATRAS (su sesion dice «hecha»)', perdidas.length);
 for (const x of perdidas.slice(0, 20)) {
   console.log('      ' + String(x.e.IDEESS).padEnd(8) + (x.e['Rótulo'] || '?').slice(0, 28).padEnd(30) +
@@ -86,7 +99,9 @@ for (const x of perdidas.slice(0, 20)) {
 const hechas = Object.values(ses).filter(s => s.estado === 'hecha').length;
 P('sesiones hechas', hechas + ' de ' + Object.keys(ses).length);
 
-const mal = perdidas.length + (conId.length !== gas.length && hechas > 0 ? 0 : 0);
-console.log('\n' + (mal ? '*** ' + mal + ' estacion(es) se quedaron atras ***'
-                        : 'ninguna estacion se ha quedado atras'));
+const mal = perdidas.length + colada.length;
+console.log('\n' + (mal ? '*** ' + [perdidas.length ? perdidas.length + ' estacion(es) se quedaron atras' : '',
+                                   colada.length ? colada.length + ' en espera y con ficha: no debia entrar' : '']
+                                  .filter(Boolean).join(' · ') + ' ***'
+                        : 'ninguna estacion se ha quedado atras ni se ha colado ninguna en espera'));
 process.exit(mal ? 1 : 0);
