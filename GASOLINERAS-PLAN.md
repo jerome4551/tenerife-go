@@ -667,7 +667,8 @@ falsas alarmas. Pero salió una que no cuadra:
 * **HiperDino de San Juan de la Rambla**: Google da como más cercanos tres
   SuperDino de Icod y Los Realejos, y en el sitio del pin no hay nada a 300 m en
   el mapa. Todo apunta a que **no existe**, como el Mercadona de El Médano.
-  **Pendiente de tu OK para borrarla.**
+  **Borrada** con tu OK (919 lugares), documentada en
+  `datos/entregas/baja-hiperdino-san-juan-rambla.json`.
 
 ## Sesión 10 · Guía de Isora · HECHA el 3 de octubre
 
@@ -692,9 +693,21 @@ corrige el pin; otra marca o sin marca, para.
 Retoque de forma: «AVENIDA AV ISORA» era la avenida repetida y abreviada; ahora
 «Shell · Avenida Isora».
 
+## Sesión 11 · Güímar · HECHA el 3 de octubre
+
+**6 altas**, sin ficha antigua en el municipio (la «BP Güímar» antigua está en
+Arafo y se enlazó en la 09). La app pasa de 919 a **925 lugares**. Revisor: 6
+fichas, **0 hallazgos**.
+
+Un fallo de la plantilla, arreglado antes de aplicar: la regla que pone la
+grafía del Cabildo a un municipio dentro de una calle comparaba sin acentos solo
+por un lado, y «GÜIMAR» (con diéresis y sin la tilde de la í) no casaba nunca:
+salía «Polígono Industrial Valle de **Güimar**». Ahora compara sin acentos por
+los dos lados: «Valle de **Güímar**». No cambia ningún otro nombre.
+
 ## Lo que queda
 
-**20 sesiones**, 57 altas. La siguiente es la **11-guimar** (6).
+**19 sesiones**, 51 altas. La siguiente es la **12-tacoronte** (6).
 
 ## Lo que necesito de ti antes de seguir
 

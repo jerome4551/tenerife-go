@@ -917,5 +917,11 @@
  "gas-13972-guia-de-isora": {"desc": "Avenida La Gaviota, Guía de Isora. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Moeve", "hours": "Ma-Zo 06:00-22:00"},
  "gas-10206-guia-de-isora": {"desc": "Paseo La Libertad, Guía de Isora. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Moeve", "hours": "Ma-Zo 06:00-22:00"},
  "gas-7722-guia-de-isora": {"desc": "Carretera TF-47 Armeñime-Puerto Santiago, Guía de Isora. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Pcan", "hours": "Ma-Zo 24 u"},
- "gas-10345-guia-de-isora": {"desc": "Tejina de Guía, Guía de Isora. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Shell", "hours": "Ma-Zo 24 u"}
+ "gas-10345-guia-de-isora": {"desc": "Tejina de Guía, Guía de Isora. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Shell", "hours": "Ma-Zo 24 u"},
+ "gas-7881-guimar": {"desc": "Avenida Santa Cruz, Güímar. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel. Ook: AdBlue.", "cat": "Tankstation · DISA", "hours": "Ma-Di 06:00-22:00 · Wo 05:30-19:30 · Do-Za 06:00-22:00 · Zo 07:00-21:00"},
+ "gas-7752-guimar": {"desc": "Carretera TF-61, Güímar. Brandstoffen: benzine 95, benzine 98 en diesel. Ook: AdBlue.", "cat": "Tankstation · DISA", "hours": "Ma-Zo 24 u"},
+ "gas-7858-guimar": {"desc": "Avenida Axaentemir, Güímar. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · El Escobonal", "hours": "Ma-Za 07:00-21:00 · Zo 08:00-14:00"},
+ "gas-7621-guimar": {"desc": "Avenida Obispo Pérez Cáceres, Güímar. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Moeve", "hours": "Ma-Za 06:00-22:00 · Zo 06:00-14:00"},
+ "gas-12479-guimar": {"desc": "Polígono Industrial Valle de Güímar, Güímar. Brandstoffen: benzine 95, premium benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Océano", "hours": "Ma-Vr 06:00-22:00 · Za 07:00-22:00 · Zo 08:00-21:00"},
+ "gas-8749-guimar": {"desc": "Calle Rigoberto Díaz Melero, Güímar. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Shell", "hours": "Ma-Zo 06:00-22:00"}
 }

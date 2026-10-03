@@ -202,12 +202,16 @@
   },
   "11-guimar": {
    "que": "Las 6 estaciones de Güímar (6 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Güímar",
    "estaciones": 6,
    "altas": 6,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/11-guimar.json"
+   "plan": "datos/gasolineras/plan/11-guimar.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 6,
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 6 fichas, 0 hallazgos, 6/6 estaciones con su ficha"
   },
   "12-tacoronte": {
    "que": "Las 6 estaciones de Tacoronte (5 altas, 1 ya en la app).",

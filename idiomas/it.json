@@ -917,5 +917,11 @@
  "gas-13972-guia-de-isora": {"desc": "Avenida La Gaviota, Guía de Isora. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 06:00-22:00"},
  "gas-10206-guia-de-isora": {"desc": "Paseo La Libertad, Guía de Isora. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 06:00-22:00"},
  "gas-7722-guia-de-isora": {"desc": "Carretera TF-47 Armeñime-Puerto Santiago, Guía de Isora. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Pcan", "hours": "Lun-Dom 24 h"},
- "gas-10345-guia-de-isora": {"desc": "Tejina de Guía, Guía de Isora. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 24 h"}
+ "gas-10345-guia-de-isora": {"desc": "Tejina de Guía, Guía de Isora. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 24 h"},
+ "gas-7881-guimar": {"desc": "Avenida Santa Cruz, Güímar. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium. Inoltre: AdBlue.", "cat": "Distributore · DISA", "hours": "Lun-Mar 06:00-22:00 · Mer 05:30-19:30 · Gio-Sab 06:00-22:00 · Dom 07:00-21:00"},
+ "gas-7752-guimar": {"desc": "Carretera TF-61, Güímar. Carburanti: benzina 95, benzina 98 e gasolio. Inoltre: AdBlue.", "cat": "Distributore · DISA", "hours": "Lun-Dom 24 h"},
+ "gas-7858-guimar": {"desc": "Avenida Axaentemir, Güímar. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · El Escobonal", "hours": "Lun-Sab 07:00-21:00 · Dom 08:00-14:00"},
+ "gas-7621-guimar": {"desc": "Avenida Obispo Pérez Cáceres, Güímar. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Moeve", "hours": "Lun-Sab 06:00-22:00 · Dom 06:00-14:00"},
+ "gas-12479-guimar": {"desc": "Polígono Industrial Valle de Güímar, Güímar. Carburanti: benzina 95, benzina 95 premium, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Océano", "hours": "Lun-Ven 06:00-22:00 · Sab 07:00-22:00 · Dom 08:00-21:00"},
+ "gas-8749-guimar": {"desc": "Calle Rigoberto Díaz Melero, Güímar. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"}
 }

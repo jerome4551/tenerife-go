@@ -144,10 +144,11 @@ console.log('\n=== lugares ===');
    914 -> 920 el 3 de octubre, con 6 de las 7 de Guia de Isora (sesion 10): la
    otra ya la cubria gas-tf82-guia-isora, que se enlaza y se le corrige el pin;
    920 -> 919 el 3 de octubre, al dar de baja super-hiperdino-san-juan-rambla: en San
-   Juan de la Rambla no hay ningun HiperDino (orden de Jerome).
+   Juan de la Rambla no hay ningun HiperDino (orden de Jerome);
+   919 -> 925 el 3 de octubre, con las 6 de Guimar (sesion 11).
    Esta cifra sube una vez por sesion de gasolineras hasta las 198 altas, y se
    cambia A MANO a proposito: asi ningun municipio entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 919);
+debe('lugares', PLACES.length, PLACES.length === 925);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

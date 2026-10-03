@@ -917,5 +917,11 @@
  "gas-13972-guia-de-isora": {"desc": "Avenida La Gaviota, Guía de Isora. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Нед 06:00-22:00"},
  "gas-10206-guia-de-isora": {"desc": "Paseo La Libertad, Guía de Isora. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Нед 06:00-22:00"},
  "gas-7722-guia-de-isora": {"desc": "Carretera TF-47 Armeñime-Puerto Santiago, Guía de Isora. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Pcan", "hours": "Пон-Нед 24 ч"},
- "gas-10345-guia-de-isora": {"desc": "Tejina de Guía, Guía de Isora. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 24 ч"}
+ "gas-10345-guia-de-isora": {"desc": "Tejina de Guía, Guía de Isora. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 24 ч"},
+ "gas-7881-guimar": {"desc": "Avenida Santa Cruz, Güímar. Горива: бензин 95, бензин 98, дизел и премиум дизел. Също: AdBlue.", "cat": "Бензиностанция · DISA", "hours": "Пон-Вто 06:00-22:00 · Сря 05:30-19:30 · Чет-Съб 06:00-22:00 · Нед 07:00-21:00"},
+ "gas-7752-guimar": {"desc": "Carretera TF-61, Güímar. Горива: бензин 95, бензин 98 и дизел. Също: AdBlue.", "cat": "Бензиностанция · DISA", "hours": "Пон-Нед 24 ч"},
+ "gas-7858-guimar": {"desc": "Avenida Axaentemir, Güímar. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · El Escobonal", "hours": "Пон-Съб 07:00-21:00 · Нед 08:00-14:00"},
+ "gas-7621-guimar": {"desc": "Avenida Obispo Pérez Cáceres, Güímar. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Съб 06:00-22:00 · Нед 06:00-14:00"},
+ "gas-12479-guimar": {"desc": "Polígono Industrial Valle de Güímar, Güímar. Горива: бензин 95, бензин 95 премиум, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Océano", "hours": "Пон-Пет 06:00-22:00 · Съб 07:00-22:00 · Нед 08:00-21:00"},
+ "gas-8749-guimar": {"desc": "Calle Rigoberto Díaz Melero, Güímar. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"}
 }

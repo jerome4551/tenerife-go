@@ -703,5 +703,35 @@
   "desc": "Tejina de Guía, Guía de Isora. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · Shell",
   "hours": "Pn-Nd 24 h"
+ },
+ "gas-7881-guimar": {
+  "desc": "Avenida Santa Cruz, Güímar. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium. Także: AdBlue.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Wt 06:00-22:00 · Śr 05:30-19:30 · Cz-So 06:00-22:00 · Nd 07:00-21:00"
+ },
+ "gas-7752-guimar": {
+  "desc": "Carretera TF-61, Güímar. Paliwa: benzyna 95, benzyna 98 i olej napędowy. Także: AdBlue.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-7858-guimar": {
+  "desc": "Avenida Axaentemir, Güímar. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · El Escobonal",
+  "hours": "Pn-So 07:00-21:00 · Nd 08:00-14:00"
+ },
+ "gas-7621-guimar": {
+  "desc": "Avenida Obispo Pérez Cáceres, Güímar. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Moeve",
+  "hours": "Pn-So 06:00-22:00 · Nd 06:00-14:00"
+ },
+ "gas-12479-guimar": {
+  "desc": "Polígono Industrial Valle de Güímar, Güímar. Paliwa: benzyna 95, benzyna 95 premium, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Océano",
+  "hours": "Pn-Pt 06:00-22:00 · So 07:00-22:00 · Nd 08:00-21:00"
+ },
+ "gas-8749-guimar": {
+  "desc": "Calle Rigoberto Díaz Melero, Güímar. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Shell",
+  "hours": "Pn-Nd 06:00-22:00"
  }
 }

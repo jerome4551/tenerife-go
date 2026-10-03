@@ -343,10 +343,15 @@ def municipios_bien(txt):
         import gasolineras as G
         reg, _ = G.cargar_registro()
         _MUNIS = sorted({x['municipio_poligono'] for x in reg}, key=len, reverse=True)
+    # Sin acentos POR LOS DOS LADOS: el registro escribe «GÜIMAR», con dieresis
+    # y sin la tilde de la i, y comparando solo «guimar» contra el texto tal
+    # cual no casaba nunca: salia «Valle de Güimar».
+    VAR = {'a': '[aáàäâ]', 'e': '[eéèëê]', 'i': '[iíìïî]', 'o': '[oóòöô]',
+           'u': '[uúùüû]', 'n': '[nñ]'}
     for m in _MUNIS:
         if llano(m) != m.lower():      # solo los que llevan acento o mayuscula interna
-            txt = re.sub(re.escape(llano(m)), m, txt, flags=re.I) \
-                if llano(m) in llano(txt) else txt
+            patron = ''.join(VAR.get(c, re.escape(c)) for c in llano(m))
+            txt = re.sub(r'(?i)\b%s\b' % patron, m, txt)
     return txt
 
 

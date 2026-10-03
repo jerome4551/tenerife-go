@@ -917,5 +917,11 @@
  "gas-13972-guia-de-isora": {"desc": "Avenida La Gaviota（Guía de Isora）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Moeve", "hours": "周一至周日 06:00至22:00"},
  "gas-10206-guia-de-isora": {"desc": "Paseo La Libertad（Guía de Isora）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · Moeve", "hours": "周一至周日 06:00至22:00"},
  "gas-7722-guia-de-isora": {"desc": "Carretera TF-47 Armeñime-Puerto Santiago（Guía de Isora）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · Pcan", "hours": "周一至周日 24小时"},
- "gas-10345-guia-de-isora": {"desc": "Tejina de Guía（Guía de Isora）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 24小时"}
+ "gas-10345-guia-de-isora": {"desc": "Tejina de Guía（Guía de Isora）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 24小时"},
+ "gas-7881-guimar": {"desc": "Avenida Santa Cruz（Güímar）。燃料：95号汽油、98号汽油、柴油和优质柴油。另有：AdBlue。", "cat": "加油站 · DISA", "hours": "周一至周二 06:00至22:00 · 周三 05:30至19:30 · 周四至周六 06:00至22:00 · 周日 07:00至21:00"},
+ "gas-7752-guimar": {"desc": "Carretera TF-61（Güímar）。燃料：95号汽油、98号汽油和柴油。另有：AdBlue。", "cat": "加油站 · DISA", "hours": "周一至周日 24小时"},
+ "gas-7858-guimar": {"desc": "Avenida Axaentemir（Güímar）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · El Escobonal", "hours": "周一至周六 07:00至21:00 · 周日 08:00至14:00"},
+ "gas-7621-guimar": {"desc": "Avenida Obispo Pérez Cáceres（Güímar）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · Moeve", "hours": "周一至周六 06:00至22:00 · 周日 06:00至14:00"},
+ "gas-12479-guimar": {"desc": "Polígono Industrial Valle de Güímar（Güímar）。燃料：95号汽油、优质95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Océano", "hours": "周一至周五 06:00至22:00 · 周六 07:00至22:00 · 周日 08:00至21:00"},
+ "gas-8749-guimar": {"desc": "Calle Rigoberto Díaz Melero（Güímar）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 06:00至22:00"}
 }
