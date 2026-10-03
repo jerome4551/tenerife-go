@@ -274,7 +274,7 @@
  "gas-tf5-tacoronte": {"hours": "Lun-Dim 24 h", "desc": "Cepsa à la sortie de Tacoronte. Zone de vignobles et guachinches. Café et boutique disponibles.", "cat": "Carburant · TF-5 Nord"},
  "gas-tf5-ptocz": {"hours": "24h · Tous les jours", "desc": "BP à l'entrée de Puerto de la Cruz par l'autoroute. Très pratique pour les touristes. Spacieuse et bien éclairée.", "cat": "Carburant · TF-5 Nord"},
  "gas-tf2-lalaguna": {"hours": "Lun-Dim 24 h", "desc": "Cepsa sur la TF-2, sortie La Laguna vers le sud. Point clé entre l'aéroport et la capitale.", "cat": "Carburant · TF-2 Central"},
- "gas-tf1-abades": {"hours": "Lun-Ven 06:00-22:00 · Sam 07:00-22:00 · Dim 08:00-21:00", "desc": "Station-service sur la TF-1 km 44, zone Abades/Arico. Arrêt important sur l'autoroute du sud dans le tronçon est. L'une des rares stations entre l'aéroport et Güímar.", "cat": "Station-service · TF-1 · Arico"},
+ "gas-tf1-abades": {"hours": "Lun-Dim 24 h", "desc": "Station-service sur la TF-1 km 44, zone Abades/Arico. Arrêt important sur l'autoroute du sud dans le tronçon est. L'une des rares stations entre l'aéroport et Güímar.", "cat": "Station-service · TF-1 · Arico"},
  "gas-tf21-aguamansa": {"hours": "Lun-Dim 06:00-00:00", "desc": "Carretera Las Cañadas, La Orotava. Carburants : essence 95, essence 98, gazole et gazole premium. Également : AdBlue.", "cat": "Station-service · Route Teide"},
  "gas-tf5-el-bohio": {"hours": "Lun-Ven 06:15-22:15 · Sam 06:45-22:15 · Dim 07:15-22:15", "desc": "DISA sur la TF-5 km 25, La Matanza de Acentejo. Autoroute du nord, bien située entre La Laguna et Puerto de la Cruz. Bon point d'arrêt.", "cat": "Station-service · TF-5 · La Matanza"},
  "gas-tf5-el-sauzal": {"hours": "Tous les jours 06:00-23:00", "desc": "Repsol sur la TF-5 km 22,5, El Sauzal. Nord, entre La Laguna et Tacoronte. L'une des stations-service les plus accessibles depuis l'autoroute du nord.", "cat": "Station-service · TF-5 · El Sauzal"},
@@ -928,5 +928,9 @@
  "gas-15182-tacoronte": {"desc": "Carretera General del Norte, Tacoronte. Carburants : essence 95, essence 98, gazole, gazole premium et gazole renouvelable.", "cat": "Station-service · DISA", "hours": "Lun-Dim 06:00-22:00"},
  "gas-7636-tacoronte": {"desc": "Camino Real, Tacoronte. Carburants : essence 95, essence 98, gazole et gazole premium. Également : AdBlue.", "cat": "Station-service · Moeve", "hours": "Lun-Sam 06:00-22:00 · Dim 08:00-22:00"},
  "gas-14982-tacoronte": {"desc": "Carretera General Norte, Tacoronte. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 06:00-22:00"},
- "gas-7733-tacoronte": {"desc": "Carretera General del Norte, Tacoronte. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 24 h"}
+ "gas-7733-tacoronte": {"desc": "Carretera General del Norte, Tacoronte. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 24 h"},
+ "gas-7828-arico": {"desc": "Carretera TF-822, Arico. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · DISA", "hours": "Lun-Ven 06:00-22:00 · Sam-Dim 07:00-20:00"},
+ "gas-7696-arico": {"desc": "Carretera General del Sur, Arico. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Moeve", "hours": "Lun 06:00-22:00"},
+ "gas-7703-arico": {"desc": "Carretera TF-1 km 44,2, Arico. Carburants : essence 95, essence 98, gazole et gazole premium. Également : AdBlue.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 24 h"},
+ "gas-11731-arico": {"desc": "Autovía TF-1 km 39, Arico. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 24 h"}
 }

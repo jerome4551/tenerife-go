@@ -359,7 +359,7 @@
  "gas-tf1-abades": {
   "desc": "Stacja przy TF-1 km 44, strefa Abades/Arico. Ważny przystanek na autostradzie południowej, na odcinku wschodnim. Jedna z nielicznych stacji między lotniskiem a Güímar.",
   "cat": "Stacja paliw · TF-1 · Arico",
-  "hours": "Pn-Pt 06:00-22:00 · So 07:00-22:00 · Nd 08:00-21:00"
+  "hours": "Pn-Nd 24 h"
  },
  "gas-tf21-aguamansa": {
   "desc": "Carretera Las Cañadas, La Orotava. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium. Także: AdBlue.",

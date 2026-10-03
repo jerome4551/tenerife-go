@@ -254,8 +254,18 @@ def main():
         rot = set(piezas(e['Rótulo'])) | ({'cepsa', 'moeve'} if {'cepsa', 'moeve'} & set(piezas(e['Rótulo'])) else set())
         marca = rot & set(piezas(p['name'])) & {'bp', 'disa', 'repsol', 'shell', 'cepsa', 'moeve',
                                                    'tgas', 'pcan', 'plenergy', 'oceano', 'petroprix'}
+        # Sin marca en el rotulo: vale que el nombre propio del rotulo este en el
+        # nombre de la ficha («ESTACIÓN ABADES KM 44» / «Estación Abades (TF-1
+        # km 44)»). Escrito aqui otra vez, no importado: el revisor es aparte.
+        GEN = set('estacion estaciones servicio servicios es e s de del la el los las km sl sa'.split())
+        rotulo_sin_marca = not (rot & {'bp', 'disa', 'repsol', 'shell', 'cepsa', 'moeve', 'tgas',
+                                       'pcan', 'plenergy', 'oceano', 'petroprix'})
+        propio = {w for w in piezas(e['Rótulo']) if not w.isdigit()} - GEN
+        if rotulo_sin_marca and propio and propio <= set(piezas(p['name'])):
+            marca = propio
         print('  antigua enlazada: %-22s -> %s a %.0f m, %s' % (
-            p['id'], p['ideess'], d, 'misma marca' if marca else 'MARCA DISTINTA O SIN MARCA'))
+            p['id'], p['ideess'], d, ('misma marca' if not rotulo_sin_marca else 'sin marca, mismo nombre')
+            if marca else 'MARCA DISTINTA O SIN MARCA'))
         if d > 150:     # LEEME: <=150 m, confirmada; 150-300 m se corrige la coordenada
             mal(p['id'], 'enlazada a %s, que esta a %.0f m' % (p['ideess'], d))
         # Su horario tambien sale del registro: el nombre y la descripcion se

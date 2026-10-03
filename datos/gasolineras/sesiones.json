@@ -231,12 +231,19 @@
   },
   "13-arico": {
    "que": "Las 5 estaciones de Arico (4 altas, 1 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Arico",
    "estaciones": 5,
    "altas": 4,
    "ya": 1,
-   "plan": "datos/gasolineras/plan/13-arico.json"
+   "plan": "datos/gasolineras/plan/13-arico.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 4,
+   "enlazadas": {
+    "gas-tf1-abades": "7726 (a 1 m; sin marca en ninguno de los dos, mismo nombre propio «Abades»)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 5/5 estaciones con su ficha"
   },
   "14-icod-de-los-vinos": {
    "que": "Las 5 estaciones de Icod de los Vinos (5 altas, 0 ya en la app).",

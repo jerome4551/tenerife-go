@@ -22,6 +22,7 @@ LO QUE NO ESCRIBE
   precio caduca en 24 h y no puede vivir dentro de la app.
 """
 import json
+import re
 import os
 import subprocess
 import sys
@@ -39,6 +40,10 @@ SALIDA = os.path.join(RAIZ, 'datos', 'gasolineras', 'plan')
 def llano(s):
     s = unicodedata.normalize('NFD', (s or '').lower())
     return ''.join(c for c in s if unicodedata.category(c) != 'Mn')
+
+
+# Palabras de rotulo que no dicen de que estacion se trata.
+GENERICO = set('estacion estaciones servicio servicios es e s de del la el los las km sl sa'.split())
 
 
 def reclamadas(reg, app=None):
@@ -70,9 +75,17 @@ def reclamadas(reg, app=None):
             if mejor is None or d < mejor[0]:
                 mejor = (d, e)
         if mejor:
-            out[mejor[1]['ideess']] = {'id': p['id'], 'name': p['name'],
-                                       'a_metros': round(mejor[0]),
-                                       'misma_marca': bool(marca and marca == mejor[1]['marca'])}
+            e = mejor[1]
+            # Sin marca ni en la ficha ni en el registro: son la misma si el nombre
+            # propio del rotulo esta en el nombre de la ficha. «ESTACIÓN ABADES KM
+            # 44» y «Estación Abades (TF-1 km 44)», a 1 m, se trataban como «marca
+            # distinta» y el aplicador paraba.
+            propio = set(re.findall(r'[a-z]+', G.llano(e['rotulo']))) - GENERICO
+            sin_marca_mismo_nombre = (not marca and not e['marca'] and propio and
+                                      propio <= set(re.findall(r'[a-z]+', G.llano(p['name']))))
+            out[e['ideess']] = {'id': p['id'], 'name': p['name'],
+                                'a_metros': round(mejor[0]),
+                                'misma_marca': bool(marca and marca == e['marca']) or bool(sin_marca_mismo_nombre)}
     return out
 
 

@@ -754,12 +754,26 @@ datos, sin adivinar:
 Cambian **11 direcciones** y ningún nombre; las 6 de municipios ya hechos se
 rehicieron (Arona, La Orotava, La Laguna, Santa Cruz).
 
-Y una errata del registro que no toco sin tu OK: «CARRETERA GRAL. PUERTO **CUZ**-LAS
-ARENAS» (Puerto de la Cruz). Casi seguro es «Cruz».
+Y una errata del registro: «CARRETERA GRAL. PUERTO **CUZ**-LAS ARENAS» (Puerto de
+la Cruz). Corregida a «Cruz» con tu OK, como errata con fuente en
+`correcciones-registro.json`.
+
+## Sesión 13 · Arico · HECHA el 3 de octubre
+
+**4 altas** de 5. La app pasa de 930 a **934 lugares**. Revisor: 4 fichas, **0
+hallazgos**.
+
+La quinta la cubría la antigua «Estación Abades (TF-1 km 44)», a 1 m de la
+«ESTACIÓN ABADES KM 44» del registro. Ninguna de las dos tiene marca, y el
+emparejador lo trataba como «marca distinta» y paraba. Ahora, sin marca en
+ninguna de las dos, son la misma si el nombre propio del rótulo («Abades») está en
+el nombre de la ficha. El revisor tiene la misma regla, escrita aparte. Su horario
+decía «L-V 06:00-22:00 · S 07:00-22:00 · D 08:00-21:00» y el registro da **24 h**:
+corregido. Es la sexta antigua con el horario mal de las diez enlazadas.
 
 ## Lo que queda
 
-**18 sesiones**, 46 altas. La siguiente es la **13-arico** (5).
+**17 sesiones**, 42 altas. La siguiente es la **14-icod-de-los-vinos** (5).
 
 ## Lo que necesito de ti antes de seguir
 

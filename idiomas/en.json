@@ -274,7 +274,7 @@
  "gas-tf5-tacoronte": {"hours": "Mon-Sun 24 h", "desc": "Cepsa by the Tacoronte exit. Wine and guachinche area. Coffee and shop available.", "cat": "Petrol · TF-5 North"},
  "gas-tf5-ptocz": {"hours": "24h · Every day", "desc": "BP at the motorway entrance to Puerto de la Cruz. Very practical for tourists. Spacious and well-lit.", "cat": "Petrol · TF-5 North"},
  "gas-tf2-lalaguna": {"hours": "Mon-Sun 24 h", "desc": "Cepsa on TF-2, La Laguna exit heading south. Key point between the airport and the capital.", "cat": "Petrol · TF-2 Central"},
- "gas-tf1-abades": {"hours": "Mon-Fri 06:00-22:00 · Sat 07:00-22:00 · Sun 08:00-21:00", "desc": "Petrol station on TF-1 km 44, Abades/Arico area. Important stop on the southern motorway eastern section. One of few stations between the airport and Güímar.", "cat": "Petrol Station · TF-1 · Arico"},
+ "gas-tf1-abades": {"hours": "Mon-Sun 24 h", "desc": "Petrol station on TF-1 km 44, Abades/Arico area. Important stop on the southern motorway eastern section. One of few stations between the airport and Güímar.", "cat": "Petrol Station · TF-1 · Arico"},
  "gas-tf21-aguamansa": {"hours": "Mon-Sun 06:00-00:00", "desc": "Carretera Las Cañadas, La Orotava. Fuels: petrol 95, petrol 98, diesel and premium diesel. Also: AdBlue.", "cat": "Petrol station · Teide Road"},
  "gas-tf5-el-bohio": {"hours": "Mon-Fri 06:15-22:15 · Sat 06:45-22:15 · Sun 07:15-22:15", "desc": "DISA on TF-5 km 25, La Matanza de Acentejo. Northern motorway, well located between La Laguna and Puerto de la Cruz.", "cat": "Petrol Station · TF-5 · La Matanza"},
  "gas-tf5-el-sauzal": {"hours": "Every day 06:00-23:00", "desc": "Repsol on TF-5 km 22.5, El Sauzal. Northern area between La Laguna and Tacoronte. One of the easiest petrol stations to reach from the northern motorway.", "cat": "Petrol Station · TF-5 · El Sauzal"},
@@ -928,5 +928,9 @@
  "gas-15182-tacoronte": {"desc": "Carretera General del Norte, Tacoronte. Fuels: petrol 95, petrol 98, diesel, premium diesel and renewable diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 06:00-22:00"},
  "gas-7636-tacoronte": {"desc": "Camino Real, Tacoronte. Fuels: petrol 95, petrol 98, diesel and premium diesel. Also: AdBlue.", "cat": "Petrol station · Moeve", "hours": "Mon-Sat 06:00-22:00 · Sun 08:00-22:00"},
  "gas-14982-tacoronte": {"desc": "Carretera General Norte, Tacoronte. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Sun 06:00-22:00"},
- "gas-7733-tacoronte": {"desc": "Carretera General del Norte, Tacoronte. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Tgas", "hours": "Mon-Sun 24 h"}
+ "gas-7733-tacoronte": {"desc": "Carretera General del Norte, Tacoronte. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Tgas", "hours": "Mon-Sun 24 h"},
+ "gas-7828-arico": {"desc": "Carretera TF-822, Arico. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Fri 06:00-22:00 · Sat-Sun 07:00-20:00"},
+ "gas-7696-arico": {"desc": "Carretera General del Sur, Arico. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Moeve", "hours": "Mon 06:00-22:00"},
+ "gas-7703-arico": {"desc": "Carretera TF-1 km 44,2, Arico. Fuels: petrol 95, petrol 98, diesel and premium diesel. Also: AdBlue.", "cat": "Petrol station · Moeve", "hours": "Mon-Sun 24 h"},
+ "gas-11731-arico": {"desc": "Autovía TF-1 km 39, Arico. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 24 h"}
 }
