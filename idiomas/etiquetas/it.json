@@ -686,5 +686,13 @@
  "Ópera": "Opera",
  "Última": "Ultima",
  "Único": "Unico",
- "Único Norte": "Unico del nord"
+ "Único Norte": "Unico del nord",
+ "Norte": "Nord",
+ "Sur": "Sud",
+ "Este": "Est",
+ "Oeste": "Ovest",
+ "Noroeste": "Nord-ovest",
+ "Sureste": "Sud-est",
+ "Centro": "Centro",
+ "Interior": "Entroterra"
 }

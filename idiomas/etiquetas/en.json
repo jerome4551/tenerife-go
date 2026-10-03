@@ -686,5 +686,13 @@
  "Ópera": "Opera",
  "Última": "Last",
  "Único": "Unique",
- "Único Norte": "Only one in the north"
+ "Único Norte": "Only one in the north",
+ "Norte": "North",
+ "Sur": "South",
+ "Este": "East",
+ "Oeste": "West",
+ "Noroeste": "Northwest",
+ "Sureste": "Southeast",
+ "Centro": "Town centre",
+ "Interior": "Inland"
 }

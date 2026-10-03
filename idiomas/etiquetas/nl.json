@@ -686,5 +686,13 @@
  "Ópera": "Opera",
  "Última": "Laatste",
  "Único": "Uniek",
- "Único Norte": "Enige in het noorden"
+ "Único Norte": "Enige in het noorden",
+ "Norte": "Noord",
+ "Sur": "Zuid",
+ "Este": "Oost",
+ "Oeste": "West",
+ "Noroeste": "Noordwest",
+ "Sureste": "Zuidoost",
+ "Centro": "Centrum",
+ "Interior": "Binnenland"
 }

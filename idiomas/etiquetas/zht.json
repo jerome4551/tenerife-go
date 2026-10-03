@@ -686,5 +686,13 @@
  "Ópera": "歌劇",
  "Última": "末班",
  "Único": "獨一無二",
- "Único Norte": "北部唯一"
+ "Único Norte": "北部唯一",
+ "Norte": "北部",
+ "Sur": "南部",
+ "Este": "東部",
+ "Oeste": "西部",
+ "Noroeste": "西北",
+ "Sureste": "東南",
+ "Centro": "市中心",
+ "Interior": "內陸"
 }

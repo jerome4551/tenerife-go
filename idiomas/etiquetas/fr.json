@@ -686,5 +686,13 @@
  "Ópera": "Opéra",
  "Última": "Dernière",
  "Único": "Unique",
- "Único Norte": "Unique dans le nord"
+ "Único Norte": "Unique dans le nord",
+ "Norte": "Nord",
+ "Sur": "Sud",
+ "Este": "Est",
+ "Oeste": "Ouest",
+ "Noroeste": "Nord-ouest",
+ "Sureste": "Sud-est",
+ "Centro": "Centre-ville",
+ "Interior": "Intérieur"
 }

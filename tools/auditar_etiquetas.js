@@ -65,7 +65,15 @@ for (const p of PLACES) {
    como sitio lo que el catalogo nombra COMO zona: el municipio o el barrio
    que va detras del punto volado en `cat`. Todo lo demas, o se traduce o se
    declara. */
-const esSitio = t => LUGARES.has(t);
+/* Y aun asi se colaban los PUNTOS CARDINALES: «Norte» (191 fichas), «Sur»
+   (153), «Oeste», «Este»... salian en castellano en los diez idiomas, en el
+   globo y en la ficha, porque alguna ficha tiene «… · Sur» detras del punto
+   volado y eso bastaba para darlas por nombre de sitio. Lo encontro una foto de
+   una ficha en italiano. Un punto cardinal, «Centro» o «Interior» no son
+   nombres propios aunque vayan detras del punto: se traducen. */
+const NO_SON_SITIO = new Set(['Norte', 'Sur', 'Este', 'Oeste', 'Noroeste', 'Nordeste',
+  'Sureste', 'Suroeste', 'Centro', 'Interior']);
+const esSitio = t => LUGARES.has(t) && !NO_SON_SITIO.has(t);
 
 const cuenta = new Map();
 for (const p of PLACES) for (const t of (p.tags || [])) cuenta.set(t, (cuenta.get(t) || 0) + 1);

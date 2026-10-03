@@ -686,5 +686,13 @@
  "Ópera": "Opera",
  "Última": "Ostatnia",
  "Único": "Jedyny",
- "Único Norte": "Jedyny na północy"
+ "Único Norte": "Jedyny na północy",
+ "Norte": "Północ",
+ "Sur": "Południe",
+ "Este": "Wschód",
+ "Oeste": "Zachód",
+ "Noroeste": "Północny zachód",
+ "Sureste": "Południowy wschód",
+ "Centro": "Centrum",
+ "Interior": "Wnętrze"
 }
