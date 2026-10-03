@@ -896,5 +896,15 @@
  "gas-16315-la-orotava": {"desc": "Calle Molinos de Golfo（La Orotava）。燃料：95號汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "週一至週日 24小時"},
  "gas-7677-la-orotava": {"desc": "⚠️ 經TF-21從拉奧羅塔瓦（阿瓜曼薩）上行進入泰德國家公園前的最後一個加油站。國家公園內沒有加油站。上泰德峰前務必在此加油。Carretera TF-21 Aguamansa（La Orotava）。燃料：95號汽油、98號汽油和柴油。", "cat": "⚠️ 最後一個加油站 · Repsol", "hours": "週一至週日 06:00至22:00"},
  "gas-7699-la-orotava": {"desc": "Carretera TF-324（La Orotava）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Repsol", "hours": "週一至週五 06:00至22:00 · 週六至週日 07:00至23:00"},
- "gas-8776-la-orotava": {"desc": "Carretera General del Norte（La Orotava）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Shell", "hours": "週一至週日 06:00至22:00"}
+ "gas-8776-la-orotava": {"desc": "Carretera General del Norte（La Orotava）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Shell", "hours": "週一至週日 06:00至22:00"},
+ "gas-7859-san-miguel-de-abona": {"desc": "Carretera General a las Galletas-Chafiras（San Miguel de Abona）。燃料：95號汽油、98號汽油、柴油、優質柴油和液化石油氣。", "cat": "加油站 · DISA", "hours": "週一至週日 24小時"},
+ "gas-9614-san-miguel-de-abona": {"desc": "Carretera General del Sur（San Miguel de Abona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · DISA", "hours": "週一至週日 06:00至22:00"},
+ "gas-14423-san-miguel-de-abona": {"desc": "Avenida Eugenio Domínguez Sierra（San Miguel de Abona）。燃料：95號汽油、98號汽油、柴油、優質柴油和液化石油氣。另有：AdBlue。", "cat": "加油站 · El Gomero", "hours": "週一至週日 24小時"},
+ "gas-13694-san-miguel-de-abona": {"desc": "Carretera a los Abrigos（San Miguel de Abona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Moeve", "hours": "週一至週五 06:00至20:00 · 週六 07:00至20:00 · 週日 07:00至14:00"},
+ "gas-13292-san-miguel-de-abona": {"desc": "Avenida Lucio Díaz Flores Feo（San Miguel de Abona）。燃料：95號汽油、優質95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Océano", "hours": "週一至週日 24小時"},
+ "gas-13201-san-miguel-de-abona": {"desc": "Avenida Modesto Hernández González（San Miguel de Abona）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · Pcan", "hours": "週一至週日 24小時"},
+ "gas-16520-san-miguel-de-abona": {"desc": "Avenida Claudio Delgado Díaz（San Miguel de Abona）。燃料：95號汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "週一至週日 24小時"},
+ "gas-15913-san-miguel-de-abona": {"desc": "Calle Mencey Adjona（San Miguel de Abona）。燃料：95號汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "週一至週日 24小時"},
+ "gas-10633-san-miguel-de-abona": {"desc": "Autopista del Sur km 64,9（San Miguel de Abona）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 24小時"},
+ "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65（San Miguel de Abona）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 06:00至23:00"}
 }

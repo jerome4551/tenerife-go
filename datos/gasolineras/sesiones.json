@@ -141,12 +141,16 @@
   },
   "08-san-miguel-de-abona": {
    "que": "Las 10 estaciones de San Miguel de Abona (10 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "San Miguel de Abona",
    "estaciones": 10,
    "altas": 10,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/08-san-miguel-de-abona.json"
+   "plan": "datos/gasolineras/plan/08-san-miguel-de-abona.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 10,
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 10 fichas, 0 hallazgos, 10/10 estaciones con su ficha"
   },
   "09-arafo": {
    "que": "Las 7 estaciones de Arafo (6 altas, 1 ya en la app).",

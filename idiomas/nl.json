@@ -896,5 +896,15 @@
  "gas-16315-la-orotava": {"desc": "Calle Molinos de Golfo, La Orotava. Brandstoffen: benzine 95 en diesel.", "cat": "Tankstation · Plenergy", "hours": "Ma-Zo 24 u"},
  "gas-7677-la-orotava": {"desc": "⚠️ LAATSTE tankstation vóór het Nationaal Park Teide, omhoog via de TF-21 vanuit La Orotava (Aguamansa). Er zijn GEEN tankstations in het Nationaal Park. Tank hier absoluut voordat je de Teide op gaat. Carretera TF-21 Aguamansa, La Orotava. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "⚠️ Laatste Tankstation · Repsol", "hours": "Ma-Zo 06:00-22:00"},
  "gas-7699-la-orotava": {"desc": "Carretera TF-324, La Orotava. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Repsol", "hours": "Ma-Vr 06:00-22:00 · Za-Zo 07:00-23:00"},
- "gas-8776-la-orotava": {"desc": "Carretera General del Norte, La Orotava. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Shell", "hours": "Ma-Zo 06:00-22:00"}
+ "gas-8776-la-orotava": {"desc": "Carretera General del Norte, La Orotava. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Shell", "hours": "Ma-Zo 06:00-22:00"},
+ "gas-7859-san-miguel-de-abona": {"desc": "Carretera General a las Galletas-Chafiras, San Miguel de Abona. Brandstoffen: benzine 95, benzine 98, diesel, premiumdiesel en LPG.", "cat": "Tankstation · DISA", "hours": "Ma-Zo 24 u"},
+ "gas-9614-san-miguel-de-abona": {"desc": "Carretera General del Sur, San Miguel de Abona. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · DISA", "hours": "Ma-Zo 06:00-22:00"},
+ "gas-14423-san-miguel-de-abona": {"desc": "Avenida Eugenio Domínguez Sierra, San Miguel de Abona. Brandstoffen: benzine 95, benzine 98, diesel, premiumdiesel en LPG. Ook: AdBlue.", "cat": "Tankstation · El Gomero", "hours": "Ma-Zo 24 u"},
+ "gas-13694-san-miguel-de-abona": {"desc": "Carretera a los Abrigos, San Miguel de Abona. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Moeve", "hours": "Ma-Vr 06:00-20:00 · Za 07:00-20:00 · Zo 07:00-14:00"},
+ "gas-13292-san-miguel-de-abona": {"desc": "Avenida Lucio Díaz Flores Feo, San Miguel de Abona. Brandstoffen: benzine 95, premium benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Océano", "hours": "Ma-Zo 24 u"},
+ "gas-13201-san-miguel-de-abona": {"desc": "Avenida Modesto Hernández González, San Miguel de Abona. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Pcan", "hours": "Ma-Zo 24 u"},
+ "gas-16520-san-miguel-de-abona": {"desc": "Avenida Claudio Delgado Díaz, San Miguel de Abona. Brandstoffen: benzine 95 en diesel.", "cat": "Tankstation · Plenergy", "hours": "Ma-Zo 24 u"},
+ "gas-15913-san-miguel-de-abona": {"desc": "Calle Mencey Adjona, San Miguel de Abona. Brandstoffen: benzine 95 en diesel.", "cat": "Tankstation · Plenergy", "hours": "Ma-Zo 24 u"},
+ "gas-10633-san-miguel-de-abona": {"desc": "Autopista del Sur km 64,9, San Miguel de Abona. Brandstoffen: benzine 95, benzine 98, diesel en hernieuwbare diesel.", "cat": "Tankstation · Repsol", "hours": "Ma-Zo 24 u"},
+ "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65, San Miguel de Abona. Brandstoffen: benzine 95, benzine 98, diesel en hernieuwbare diesel.", "cat": "Tankstation · Repsol", "hours": "Ma-Zo 06:00-23:00"}
 }

@@ -589,9 +589,16 @@ declaraba todas «nombres propios sin traducir», y así declaró «Montaña»,
 «Importante» y «Última», que **sí** están traducidas. Deshecho; ahora solo
 declara las que no estén en los glosarios, y nunca un código de carretera.
 
+## Sesión 08 · San Miguel de Abona · HECHA el 3 de octubre
+
+**10 altas**, ninguna ficha antigua en el municipio. La app pasa de 898 a **908
+lugares**. Revisor: 10 fichas, **0 hallazgos**, 10 de 10 estaciones con su
+ficha. Los diez nombres y direcciones salieron limpios del registro con las
+reglas que ya había; no hizo falta ninguna nueva.
+
 ## Lo que queda
 
-**23 sesiones**, 94 altas. La siguiente es la **08-san-miguel-de-abona** (10).
+**22 sesiones**, 69 altas. La siguiente es la **09-arafo** (7).
 
 ---
 

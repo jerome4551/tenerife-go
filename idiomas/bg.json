@@ -896,5 +896,15 @@
  "gas-16315-la-orotava": {"desc": "Calle Molinos de Golfo, La Orotava. Горива: бензин 95 и дизел.", "cat": "Бензиностанция · Plenergy", "hours": "Пон-Нед 24 ч"},
  "gas-7677-la-orotava": {"desc": "⚠️ ПОСЛЕДНАТА бензиностанция преди Национален парк Тейде по TF-21 откъм Ла Оротава (Агуаманса). В националния парк НЯМА бензиностанции. Задължително заредете тук, преди да се качите на Тейде. Carretera TF-21 Aguamansa, La Orotava. Горива: бензин 95, бензин 98 и дизел.", "cat": "⚠️ Последна бензиностанция · Repsol", "hours": "Пон-Нед 06:00-22:00"},
  "gas-7699-la-orotava": {"desc": "Carretera TF-324, La Orotava. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Пет 06:00-22:00 · Съб-Нед 07:00-23:00"},
- "gas-8776-la-orotava": {"desc": "Carretera General del Norte, La Orotava. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"}
+ "gas-8776-la-orotava": {"desc": "Carretera General del Norte, La Orotava. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"},
+ "gas-7859-san-miguel-de-abona": {"desc": "Carretera General a las Galletas-Chafiras, San Miguel de Abona. Горива: бензин 95, бензин 98, дизел, премиум дизел и газ LPG.", "cat": "Бензиностанция · DISA", "hours": "Пон-Нед 24 ч"},
+ "gas-9614-san-miguel-de-abona": {"desc": "Carretera General del Sur, San Miguel de Abona. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Нед 06:00-22:00"},
+ "gas-14423-san-miguel-de-abona": {"desc": "Avenida Eugenio Domínguez Sierra, San Miguel de Abona. Горива: бензин 95, бензин 98, дизел, премиум дизел и газ LPG. Също: AdBlue.", "cat": "Бензиностанция · El Gomero", "hours": "Пон-Нед 24 ч"},
+ "gas-13694-san-miguel-de-abona": {"desc": "Carretera a los Abrigos, San Miguel de Abona. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Пет 06:00-20:00 · Съб 07:00-20:00 · Нед 07:00-14:00"},
+ "gas-13292-san-miguel-de-abona": {"desc": "Avenida Lucio Díaz Flores Feo, San Miguel de Abona. Горива: бензин 95, бензин 95 премиум, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Océano", "hours": "Пон-Нед 24 ч"},
+ "gas-13201-san-miguel-de-abona": {"desc": "Avenida Modesto Hernández González, San Miguel de Abona. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Pcan", "hours": "Пон-Нед 24 ч"},
+ "gas-16520-san-miguel-de-abona": {"desc": "Avenida Claudio Delgado Díaz, San Miguel de Abona. Горива: бензин 95 и дизел.", "cat": "Бензиностанция · Plenergy", "hours": "Пон-Нед 24 ч"},
+ "gas-15913-san-miguel-de-abona": {"desc": "Calle Mencey Adjona, San Miguel de Abona. Горива: бензин 95 и дизел.", "cat": "Бензиностанция · Plenergy", "hours": "Пон-Нед 24 ч"},
+ "gas-10633-san-miguel-de-abona": {"desc": "Autopista del Sur km 64,9, San Miguel de Abona. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 24 ч"},
+ "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65, San Miguel de Abona. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 06:00-23:00"}
 }

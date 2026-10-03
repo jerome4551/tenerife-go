@@ -896,5 +896,15 @@
  "gas-16315-la-orotava": {"desc": "Calle Molinos de Golfo, La Orotava. Fuels: petrol 95 and diesel.", "cat": "Petrol station · Plenergy", "hours": "Mon-Sun 24 h"},
  "gas-7677-la-orotava": {"desc": "⚠️ LAST petrol station before Teide National Park going up TF-21 from La Orotava (Aguamansa). NO petrol stations in the National Park. Essential to fill up here before going up to Teide. Carretera TF-21 Aguamansa, La Orotava. Fuels: petrol 95, petrol 98 and diesel.", "cat": "⚠️ Last Petrol · Repsol", "hours": "Mon-Sun 06:00-22:00"},
  "gas-7699-la-orotava": {"desc": "Carretera TF-324, La Orotava. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Fri 06:00-22:00 · Sat-Sun 07:00-23:00"},
- "gas-8776-la-orotava": {"desc": "Carretera General del Norte, La Orotava. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 06:00-22:00"}
+ "gas-8776-la-orotava": {"desc": "Carretera General del Norte, La Orotava. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 06:00-22:00"},
+ "gas-7859-san-miguel-de-abona": {"desc": "Carretera General a las Galletas-Chafiras, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel, premium diesel and LPG.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 24 h"},
+ "gas-9614-san-miguel-de-abona": {"desc": "Carretera General del Sur, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 06:00-22:00"},
+ "gas-14423-san-miguel-de-abona": {"desc": "Avenida Eugenio Domínguez Sierra, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel, premium diesel and LPG. Also: AdBlue.", "cat": "Petrol station · El Gomero", "hours": "Mon-Sun 24 h"},
+ "gas-13694-san-miguel-de-abona": {"desc": "Carretera a los Abrigos, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Fri 06:00-20:00 · Sat 07:00-20:00 · Sun 07:00-14:00"},
+ "gas-13292-san-miguel-de-abona": {"desc": "Avenida Lucio Díaz Flores Feo, San Miguel de Abona. Fuels: petrol 95, premium petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Océano", "hours": "Mon-Sun 24 h"},
+ "gas-13201-san-miguel-de-abona": {"desc": "Avenida Modesto Hernández González, San Miguel de Abona. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Pcan", "hours": "Mon-Sun 24 h"},
+ "gas-16520-san-miguel-de-abona": {"desc": "Avenida Claudio Delgado Díaz, San Miguel de Abona. Fuels: petrol 95 and diesel.", "cat": "Petrol station · Plenergy", "hours": "Mon-Sun 24 h"},
+ "gas-15913-san-miguel-de-abona": {"desc": "Calle Mencey Adjona, San Miguel de Abona. Fuels: petrol 95 and diesel.", "cat": "Petrol station · Plenergy", "hours": "Mon-Sun 24 h"},
+ "gas-10633-san-miguel-de-abona": {"desc": "Autopista del Sur km 64,9, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 24 h"},
+ "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 06:00-23:00"}
 }
