@@ -277,12 +277,20 @@
   },
   "16-el-sauzal": {
    "que": "Las 5 estaciones de El Sauzal (4 altas, 1 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "El Sauzal",
    "estaciones": 5,
    "altas": 4,
    "ya": 1,
-   "plan": "datos/gasolineras/plan/16-el-sauzal.json"
+   "plan": "datos/gasolineras/plan/16-el-sauzal.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 4,
+   "enlazadas": {
+    "gas-tf5-el-sauzal": "7700 (a 18 m)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 5/5 estaciones con su ficha",
+   "pregunta_a_jerome": "«CARRERA GENERAL» en el registro (aqui y en Arona, «CARRERA GENERAL LAS GALLETAS»): ¿errata de «Carretera»?"
   },
   "17-candelaria": {
    "que": "Las 4 estaciones de Candelaria (4 altas, 0 ya en la app).",

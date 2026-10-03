@@ -812,9 +812,24 @@ La app pasa de 934 a **943 lugares** (934 + 5 + 4, comprobado a mano). Revisor:
 **Para la sesión 91:** «BP Puerto de la Cruz (**TF-5 km 30**)» está, según el
 registro, en la Carretera del Botánico km 6.
 
+## Sesión 16 · El Sauzal · HECHA el 3 de octubre
+
+**4 altas** de 5; la quinta es la antigua «Repsol El Sauzal», ya enlazada. La app
+pasa de 943 a **947 lugares**. Revisor: 4 fichas, **0 hallazgos**.
+
+Un fallo mío, arreglado antes de aplicar: «CARRERA GENERAL DEL NORTE, **20,450**»
+salía «…, **20**». Un número con decimales no es un portal, es un punto
+kilométrico (las de al lado, en la misma carretera, son el 20,65 y el 20,400).
+No se convierte en km porque el registro no lo dice: se quita. Cambia también una
+de Candelaria («…, 14.1»), que aún no está aplicada.
+
+**Pregunta:** el registro escribe «**CARRERA** GENERAL DEL NORTE» (aquí) y
+«**CARRERA** GENERAL LAS GALLETAS» (Arona), mientras la estación de al lado dice
+«CARRETERA GENERAL DEL NORTE». ¿Es «Carretera»? Sin tu OK se queda como está.
+
 ## Lo que queda
 
-**15 sesiones**, 33 altas. La siguiente es la **16-el-sauzal** (5).
+**14 sesiones**, 29 altas. La siguiente es la **17-candelaria** (4).
 
 ## Lo que necesito de ti antes de seguir
 

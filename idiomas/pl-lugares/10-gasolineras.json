@@ -823,5 +823,25 @@
   "desc": "Carretera Martiánez TF-131, Puerto de la Cruz. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · Shell",
   "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7778-el-sauzal": {
+  "desc": "Carretera General del Norte, El Sauzal. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · BP",
+  "hours": "Pn-So 06:00-23:00 · Nd 07:00-22:00"
+ },
+ "gas-7846-el-sauzal": {
+  "desc": "Carrera General del Norte, El Sauzal. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7852-el-sauzal": {
+  "desc": "Carretera General del Norte, El Sauzal. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7674-el-sauzal": {
+  "desc": "Carretera TF-172, El Sauzal. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Moeve",
+  "hours": "Pn-Nd 06:00-22:00"
  }
 }

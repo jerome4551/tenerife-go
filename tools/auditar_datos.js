@@ -151,10 +151,12 @@ console.log('\n=== lugares ===');
    930 -> 934 el 3 de octubre, con 4 de las 5 de Arico (sesion 13): la otra ya
    la cubria gas-tf1-abades, que se enlaza;
    934 -> 943 el 3 de octubre, con las 5 de Icod de los Vinos (sesion 14) y 4 de
-   las 5 de Puerto de la Cruz (sesion 15): la otra ya la cubria gas-tf5-ptocz.
+   las 5 de Puerto de la Cruz (sesion 15): la otra ya la cubria gas-tf5-ptocz;
+   943 -> 947 el 3 de octubre, con 4 de las 5 de El Sauzal (sesion 16): la otra
+   ya la cubria gas-tf5-el-sauzal.
    Esta cifra sube una vez por sesion de gasolineras hasta las 198 altas, y se
    cambia A MANO a proposito: asi ningun municipio entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 943);
+debe('lugares', PLACES.length, PLACES.length === 947);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

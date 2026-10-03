@@ -941,5 +941,9 @@
  "gas-7829-puerto-de-la-cruz": {"desc": "Carretera Lavera La Montaña, Puerto de la Cruz. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-Sa 06:00-22:00 · So 08:00-22:00"},
  "gas-7624-puerto-de-la-cruz": {"desc": "Carretera del Botánico, Puerto de la Cruz. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo 06:00-00:00"},
  "gas-8754-puerto-de-la-cruz": {"desc": "Carretera General Puerto Cruz-Las Arenas, Puerto de la Cruz. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Shell", "hours": "Mo 24 Std."},
- "gas-8753-puerto-de-la-cruz": {"desc": "Carretera Martiánez TF-131, Puerto de la Cruz. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Shell", "hours": "Mo-So 06:00-22:00"}
+ "gas-8753-puerto-de-la-cruz": {"desc": "Carretera Martiánez TF-131, Puerto de la Cruz. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Shell", "hours": "Mo-So 06:00-22:00"},
+ "gas-7778-el-sauzal": {"desc": "Carretera General del Norte, El Sauzal. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · BP", "hours": "Mo-Sa 06:00-23:00 · So 07:00-22:00"},
+ "gas-7846-el-sauzal": {"desc": "Carrera General del Norte, El Sauzal. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-So 06:00-22:00"},
+ "gas-7852-el-sauzal": {"desc": "Carretera General del Norte, El Sauzal. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-So 06:00-22:00"},
+ "gas-7674-el-sauzal": {"desc": "Carretera TF-172, El Sauzal. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-So 06:00-22:00"}
 }

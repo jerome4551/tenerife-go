@@ -941,5 +941,9 @@
  "gas-7829-puerto-de-la-cruz": {"desc": "Carretera Lavera La Montaña（Puerto de la Cruz）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · DISA", "hours": "周一至周六 06:00至22:00 · 周日 08:00至22:00"},
  "gas-7624-puerto-de-la-cruz": {"desc": "Carretera del Botánico（Puerto de la Cruz）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Moeve", "hours": "周一 06:00至00:00"},
  "gas-8754-puerto-de-la-cruz": {"desc": "Carretera General Puerto Cruz-Las Arenas（Puerto de la Cruz）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一 24小时"},
- "gas-8753-puerto-de-la-cruz": {"desc": "Carretera Martiánez TF-131（Puerto de la Cruz）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 06:00至22:00"}
+ "gas-8753-puerto-de-la-cruz": {"desc": "Carretera Martiánez TF-131（Puerto de la Cruz）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 06:00至22:00"},
+ "gas-7778-el-sauzal": {"desc": "Carretera General del Norte（El Sauzal）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · BP", "hours": "周一至周六 06:00至23:00 · 周日 07:00至22:00"},
+ "gas-7846-el-sauzal": {"desc": "Carrera General del Norte（El Sauzal）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · DISA", "hours": "周一至周日 06:00至22:00"},
+ "gas-7852-el-sauzal": {"desc": "Carretera General del Norte（El Sauzal）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · DISA", "hours": "周一至周日 06:00至22:00"},
+ "gas-7674-el-sauzal": {"desc": "Carretera TF-172（El Sauzal）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Moeve", "hours": "周一至周日 06:00至22:00"}
 }

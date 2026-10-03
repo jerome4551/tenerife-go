@@ -498,7 +498,7 @@ def km_de(direccion):
         return None
     km = m.group(1)
     entero = km.replace('.', ',').split(',')[0]
-    p = re.match(r'^[^,]*,\s*(\d+)\b', re.sub(r'(?i)(\.?\s*\bPK\b|\s*\bKM\b).*$', '', d))
+    p = re.match(r'^[^,]*,\s*(\d+)\b(?![,.]\d)', re.sub(r'(?i)(\.?\s*\bPK\b|\s*\bKM\b).*$', '', d))
     if p and p.group(1) == entero:
         return None
     if re.search(r'(?i)\bTF[\s-]?%s\b' % re.escape(entero), d):
@@ -535,7 +535,11 @@ def direccion(e, muni):
     # el registro escribe los km con coma decimal («KM. 38,8») y el decimal salia
     # como portal: «Icod-S/C, 8 km 38,8», «TF-333, 300 km 0,300».
     sin_km = re.sub(r'(?i)(\.?\s*\bPK\b|\s*\bKM\b).*$', '', raw)
-    m = re.match(r'^[^,]*,\s*(\d+[A-Za-z]?)\b', sin_km)   # el portal, si lo hay
+    # Un numero con decimales NO es un portal: «CARRERA GENERAL DEL NORTE,
+    # 20,450» es un punto kilometrico (las de al lado, en la misma carretera, son
+    # el 20,65 y el 20,400) y salia «…, 20». No se convierte en km porque el
+    # registro no lo dice: se quita.
+    m = re.match(r'^[^,]*,\s*(\d+[A-Za-z]?)\b(?![,.]\d)', sin_km)   # el portal
     num = m.group(1) if m else None
     if num and num.lstrip('0') == '':
         num = None                     # «, 0» no es un portal: es «sin numero»
