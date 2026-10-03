@@ -864,5 +864,17 @@
  "gas-12784-adeje": {"desc": "Avenida Ayyo, Adeje. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 24 h"},
  "gas-7709-adeje": {"desc": "Carretera TF-47, Adeje. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 06:00-22:00"},
  "gas-11525-adeje": {"desc": "Avenida Ayyo, Adeje. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 24 h"},
- "gas-7730-adeje": {"desc": "Autopista TF-1 Sur a Armeñime, Adeje. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Tgas", "hours": "Mon-Sun 08:00-21:00"}
+ "gas-7730-adeje": {"desc": "Autopista TF-1 Sur a Armeñime, Adeje. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Tgas", "hours": "Mon-Sun 08:00-21:00"},
+ "gas-10970-los-realejos": {"desc": "Carretera TF-342 Los Realejos-La Guancha, Los Realejos. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sat 06:00-22:00 · Sun 08:00-20:00"},
+ "gas-10591-los-realejos": {"desc": "Carretera del Norte, Los Realejos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · El Mirador", "hours": "Mon-Sun 24 h"},
+ "gas-10214-los-realejos": {"desc": "Carretera General de Palo Blanco, Los Realejos. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Sun 07:00-22:00"},
+ "gas-7855-los-realejos": {"desc": "Carretera Los Realejos-Icod El Alto, Los Realejos. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Océano", "hours": "Mon-Fri 06:15-22:15 · Sat 06:45-22:15 · Sun 07:15-22:15"},
+ "gas-14769-los-realejos": {"desc": "Polígono La Gañanía, Los Realejos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Océano", "hours": "Mon-Sat 06:00-22:00 · Sun 07:00-22:00"},
+ "gas-10990-los-realejos": {"desc": "Calle Los Barros, Los Realejos. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Pcan", "hours": "Mon-Sun 24 h"},
+ "gas-15044-los-realejos": {"desc": "Calle Anaga, Los Realejos. Fuels: petrol 95 and diesel.", "cat": "Petrol station · Petroprix", "hours": "Mon-Sun 24 h"},
+ "gas-7685-los-realejos": {"desc": "Calle Piñera, Los Realejos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Repsol", "hours": "Mon 06:00-00:00"},
+ "gas-7684-los-realejos": {"desc": "Carretera TF-326, Los Realejos. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 06:30-00:00"},
+ "gas-8757-los-realejos": {"desc": "Carretera El Toscal, Los Realejos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 06:00-22:00"},
+ "gas-8756-los-realejos": {"desc": "Carretera General La Zamora 22, Los Realejos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 06:00-22:00"},
+ "gas-7791-los-realejos": {"desc": "Carretera General Icod-S/C, Los Realejos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Tgas", "hours": "Mon-Sun 06:00-23:00"}
 }

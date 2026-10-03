@@ -141,6 +141,7 @@ VIAL = {
     'c/': 'Calle', 'gral': 'General', 'gral.': 'General',
     'poligono': 'Polígono',          # el registro va sin acentos
     'autovia': 'Autovía',
+    'crt': 'Carretera',                 # «CARRETERA CRT GRAL ICOD-S/C»
     'ind': 'Industrial', 'ind.': 'Industrial',   # «PG IND. AÑAZA»
     'carretea': 'Carretera',         # errata del registro, 1 caso
     'urbanitzacion': 'Urbanización',   # el registro lo escribe asi
@@ -226,7 +227,10 @@ def titulo(s, via=True):
            or re.match(r'^\d', crudo):
             out.append(p if p.isupper() or '.' in p else p.upper())
             continue
-        trozo = '-'.join(ACENTOS.get(llano(t), t[:1].upper() + t[1:].lower())
+        # Una abreviatura con barra se queda en mayusculas: «S/C» es Santa Cruz y
+        # no se despliega (seria interpretar), pero «S/c» no es nada.
+        trozo = '-'.join(t.upper() if '/' in t else
+                         ACENTOS.get(llano(t), t[:1].upper() + t[1:].lower())
                          for t in p.split('-'))
         if out and llano(out[-1]) == llano(trozo):
             continue                       # «CARRETERA CARRETERA»
@@ -296,6 +300,7 @@ def calle_corta(direccion):
     # La urbanizacion y la parcela son el barrio y el numero, no la calle.
     t = re.split(r'(?i)[\s,-]*\b(URB|PARC|BARRIO|BLOQUE)\b\.?', t)[0]
     t = re.sub(r'(?i)\s*KM\.?\s*[\d,\.-]*.*$', '', t)  # desde «KM.» hasta el final
+    t = re.sub(r'(?i)\.?\s*\bPK\b.*$', '', t)            # «.PK 38.8»: punto kilometrico
     t = re.split(r'\s{2}EN\s{2}|\s+EN\s{2}|\s{2}EN\s+', t)[0]  # el separador raro
     t = dar_vuelta(t)
     t = re.split(r'[(]', t)[0]        # el parentesis, cerrado o no: es el barrio

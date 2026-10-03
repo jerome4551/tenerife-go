@@ -443,9 +443,28 @@ en su idioma.
 
 La app queda en **866 lugares** (867 menos la retirada). Auditoría en verde.
 
+## Sesión 05 · Los Realejos · HECHA el 3 de octubre
+
+**12 altas** de 13. La app pasa de 866 a **878 lugares**. La otra ya la cubría
+`gas-tf5-los-realejos` (DISA, a 36 m): sólo se enlaza. Revisor: 12 fichas,
+**0 hallazgos**, 13 de 13 estaciones con su ficha.
+
+Un nombre arreglado antes de aplicar: «CARRETERA CRT GRAL ICOD-S/C.PK 38.8»
+salía «Carretera Crt General Icod-S/c.pk 38.8». «CRT» es otra abreviatura de
+carretera, «PK» es el punto kilométrico, y «S/C» (Santa Cruz) **no se
+despliega** —sería interpretar— pero se escribe «S/C» y no «S/c». Ahora:
+«Tgas · Carretera General Icod-S/C». No cambia ningún otro nombre.
+
+No se toca «La Zamora **22**»: un número suelto puede ser el portal o una
+carretera (la «General 821» es la antigua C-821), y no sé cuál es.
+
+**Para la sesión 91:** la antigua se llama «DISA **TF-5 km 46**» y el registro la
+pone en la **Calle Los Barros, 33**. Antes de dejarle el TF-5 en el nombre hay
+que mirar si de verdad tiene acceso directo desde la autopista, que es tu regla.
+
 ## Lo que queda
 
-**26 sesiones**, 124 altas. La siguiente es la **05, Los Realejos (13)**.
+**25 sesiones**, 112 altas. La siguiente es la **06, Granadilla de Abona (11)**.
 
 ---
 

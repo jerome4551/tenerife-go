@@ -433,5 +433,65 @@
   "desc": "Autopista TF-1 Sur a Armeñime, Adeje. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
   "cat": "Stacja paliw · Tgas",
   "hours": "Pn-Nd 08:00-21:00"
+ },
+ "gas-10970-los-realejos": {
+  "desc": "Carretera TF-342 Los Realejos-La Guancha, Los Realejos. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-So 06:00-22:00 · Nd 08:00-20:00"
+ },
+ "gas-10591-los-realejos": {
+  "desc": "Carretera del Norte, Los Realejos. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · El Mirador",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-10214-los-realejos": {
+  "desc": "Carretera General de Palo Blanco, Los Realejos. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Moeve",
+  "hours": "Pn-Nd 07:00-22:00"
+ },
+ "gas-7855-los-realejos": {
+  "desc": "Carretera Los Realejos-Icod El Alto, Los Realejos. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Océano",
+  "hours": "Pn-Pt 06:15-22:15 · So 06:45-22:15 · Nd 07:15-22:15"
+ },
+ "gas-14769-los-realejos": {
+  "desc": "Polígono La Gañanía, Los Realejos. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Océano",
+  "hours": "Pn-So 06:00-22:00 · Nd 07:00-22:00"
+ },
+ "gas-10990-los-realejos": {
+  "desc": "Calle Los Barros, Los Realejos. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Pcan",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-15044-los-realejos": {
+  "desc": "Calle Anaga, Los Realejos. Paliwa: benzyna 95 i olej napędowy.",
+  "cat": "Stacja paliw · Petroprix",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-7685-los-realejos": {
+  "desc": "Calle Piñera, Los Realejos. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Repsol",
+  "hours": "Pn 06:00-00:00"
+ },
+ "gas-7684-los-realejos": {
+  "desc": "Carretera TF-326, Los Realejos. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
+  "hours": "Pn-Nd 06:30-00:00"
+ },
+ "gas-8757-los-realejos": {
+  "desc": "Carretera El Toscal, Los Realejos. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Shell",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-8756-los-realejos": {
+  "desc": "Carretera General La Zamora 22, Los Realejos. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Shell",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7791-los-realejos": {
+  "desc": "Carretera General Icod-S/C, Los Realejos. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Tgas",
+  "hours": "Pn-Nd 06:00-23:00"
  }
 }

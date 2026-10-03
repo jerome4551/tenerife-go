@@ -864,5 +864,17 @@
  "gas-12784-adeje": {"desc": "Avenida Ayyo, Adeje. Brandstoffen: benzine 95, benzine 98, diesel en hernieuwbare diesel.", "cat": "Tankstation · Repsol", "hours": "Ma-Zo 24 u"},
  "gas-7709-adeje": {"desc": "Carretera TF-47, Adeje. Brandstoffen: benzine 95, benzine 98, diesel en hernieuwbare diesel.", "cat": "Tankstation · Repsol", "hours": "Ma-Zo 06:00-22:00"},
  "gas-11525-adeje": {"desc": "Avenida Ayyo, Adeje. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Shell", "hours": "Ma-Zo 24 u"},
- "gas-7730-adeje": {"desc": "Autopista TF-1 Sur a Armeñime, Adeje. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Tgas", "hours": "Ma-Zo 08:00-21:00"}
+ "gas-7730-adeje": {"desc": "Autopista TF-1 Sur a Armeñime, Adeje. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Tgas", "hours": "Ma-Zo 08:00-21:00"},
+ "gas-10970-los-realejos": {"desc": "Carretera TF-342 Los Realejos-La Guancha, Los Realejos. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · DISA", "hours": "Ma-Za 06:00-22:00 · Zo 08:00-20:00"},
+ "gas-10591-los-realejos": {"desc": "Carretera del Norte, Los Realejos. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · El Mirador", "hours": "Ma-Zo 24 u"},
+ "gas-10214-los-realejos": {"desc": "Carretera General de Palo Blanco, Los Realejos. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Moeve", "hours": "Ma-Zo 07:00-22:00"},
+ "gas-7855-los-realejos": {"desc": "Carretera Los Realejos-Icod El Alto, Los Realejos. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Océano", "hours": "Ma-Vr 06:15-22:15 · Za 06:45-22:15 · Zo 07:15-22:15"},
+ "gas-14769-los-realejos": {"desc": "Polígono La Gañanía, Los Realejos. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Océano", "hours": "Ma-Za 06:00-22:00 · Zo 07:00-22:00"},
+ "gas-10990-los-realejos": {"desc": "Calle Los Barros, Los Realejos. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Pcan", "hours": "Ma-Zo 24 u"},
+ "gas-15044-los-realejos": {"desc": "Calle Anaga, Los Realejos. Brandstoffen: benzine 95 en diesel.", "cat": "Tankstation · Petroprix", "hours": "Ma-Zo 24 u"},
+ "gas-7685-los-realejos": {"desc": "Calle Piñera, Los Realejos. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Repsol", "hours": "Ma 06:00-00:00"},
+ "gas-7684-los-realejos": {"desc": "Carretera TF-326, Los Realejos. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Repsol", "hours": "Ma-Zo 06:30-00:00"},
+ "gas-8757-los-realejos": {"desc": "Carretera El Toscal, Los Realejos. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Shell", "hours": "Ma-Zo 06:00-22:00"},
+ "gas-8756-los-realejos": {"desc": "Carretera General La Zamora 22, Los Realejos. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Shell", "hours": "Ma-Zo 06:00-22:00"},
+ "gas-7791-los-realejos": {"desc": "Carretera General Icod-S/C, Los Realejos. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Tgas", "hours": "Ma-Zo 06:00-23:00"}
 }

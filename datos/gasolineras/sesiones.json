@@ -87,12 +87,20 @@
   },
   "05-los-realejos": {
    "que": "Las 13 estaciones de Los Realejos (12 altas, 1 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Los Realejos",
    "estaciones": 13,
    "altas": 12,
    "ya": 1,
-   "plan": "datos/gasolineras/plan/05-los-realejos.json"
+   "plan": "datos/gasolineras/plan/05-los-realejos.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 12,
+   "enlazadas": {
+    "gas-tf5-los-realejos": "7723 (a 36 m)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 12 fichas, 0 hallazgos, 13/13 estaciones con su ficha",
+   "para_la_91": "gas-tf5-los-realejos se llama «DISA TF-5 km 46» pero el registro la pone en la Calle Los Barros, 33: mirar si de verdad tiene acceso directo de la TF-5 antes de dejarle el TF-5 en el nombre."
   },
   "06-granadilla-de-abona": {
    "que": "Las 11 estaciones de Granadilla de Abona (10 altas, 1 ya en la app).",

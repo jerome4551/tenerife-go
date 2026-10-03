@@ -864,5 +864,17 @@
  "gas-12784-adeje": {"desc": "Avenida Ayyo, Adeje. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 24 h"},
  "gas-7709-adeje": {"desc": "Carretera TF-47, Adeje. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 06:00-22:00"},
  "gas-11525-adeje": {"desc": "Avenida Ayyo, Adeje. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Shell", "hours": "Lun-Dim 24 h"},
- "gas-7730-adeje": {"desc": "Autopista TF-1 Sur a Armeñime, Adeje. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 08:00-21:00"}
+ "gas-7730-adeje": {"desc": "Autopista TF-1 Sur a Armeñime, Adeje. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 08:00-21:00"},
+ "gas-10970-los-realejos": {"desc": "Carretera TF-342 Los Realejos-La Guancha, Los Realejos. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · DISA", "hours": "Lun-Sam 06:00-22:00 · Dim 08:00-20:00"},
+ "gas-10591-los-realejos": {"desc": "Carretera del Norte, Los Realejos. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · El Mirador", "hours": "Lun-Dim 24 h"},
+ "gas-10214-los-realejos": {"desc": "Carretera General de Palo Blanco, Los Realejos. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 07:00-22:00"},
+ "gas-7855-los-realejos": {"desc": "Carretera Los Realejos-Icod El Alto, Los Realejos. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Océano", "hours": "Lun-Ven 06:15-22:15 · Sam 06:45-22:15 · Dim 07:15-22:15"},
+ "gas-14769-los-realejos": {"desc": "Polígono La Gañanía, Los Realejos. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Océano", "hours": "Lun-Sam 06:00-22:00 · Dim 07:00-22:00"},
+ "gas-10990-los-realejos": {"desc": "Calle Los Barros, Los Realejos. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Pcan", "hours": "Lun-Dim 24 h"},
+ "gas-15044-los-realejos": {"desc": "Calle Anaga, Los Realejos. Carburants : essence 95 et gazole.", "cat": "Station-service · Petroprix", "hours": "Lun-Dim 24 h"},
+ "gas-7685-los-realejos": {"desc": "Calle Piñera, Los Realejos. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Repsol", "hours": "Lun 06:00-00:00"},
+ "gas-7684-los-realejos": {"desc": "Carretera TF-326, Los Realejos. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 06:30-00:00"},
+ "gas-8757-los-realejos": {"desc": "Carretera El Toscal, Los Realejos. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Shell", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-8756-los-realejos": {"desc": "Carretera General La Zamora 22, Los Realejos. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Shell", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-7791-los-realejos": {"desc": "Carretera General Icod-S/C, Los Realejos. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 06:00-23:00"}
 }

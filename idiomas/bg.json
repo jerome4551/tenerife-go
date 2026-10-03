@@ -864,5 +864,17 @@
  "gas-12784-adeje": {"desc": "Avenida Ayyo, Adeje. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 24 ч"},
  "gas-7709-adeje": {"desc": "Carretera TF-47, Adeje. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 06:00-22:00"},
  "gas-11525-adeje": {"desc": "Avenida Ayyo, Adeje. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 24 ч"},
- "gas-7730-adeje": {"desc": "Autopista TF-1 Sur a Armeñime, Adeje. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Tgas", "hours": "Пон-Нед 08:00-21:00"}
+ "gas-7730-adeje": {"desc": "Autopista TF-1 Sur a Armeñime, Adeje. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Tgas", "hours": "Пон-Нед 08:00-21:00"},
+ "gas-10970-los-realejos": {"desc": "Carretera TF-342 Los Realejos-La Guancha, Los Realejos. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Съб 06:00-22:00 · Нед 08:00-20:00"},
+ "gas-10591-los-realejos": {"desc": "Carretera del Norte, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · El Mirador", "hours": "Пон-Нед 24 ч"},
+ "gas-10214-los-realejos": {"desc": "Carretera General de Palo Blanco, Los Realejos. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Нед 07:00-22:00"},
+ "gas-7855-los-realejos": {"desc": "Carretera Los Realejos-Icod El Alto, Los Realejos. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Océano", "hours": "Пон-Пет 06:15-22:15 · Съб 06:45-22:15 · Нед 07:15-22:15"},
+ "gas-14769-los-realejos": {"desc": "Polígono La Gañanía, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Océano", "hours": "Пон-Съб 06:00-22:00 · Нед 07:00-22:00"},
+ "gas-10990-los-realejos": {"desc": "Calle Los Barros, Los Realejos. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Pcan", "hours": "Пон-Нед 24 ч"},
+ "gas-15044-los-realejos": {"desc": "Calle Anaga, Los Realejos. Горива: бензин 95 и дизел.", "cat": "Бензиностанция · Petroprix", "hours": "Пон-Нед 24 ч"},
+ "gas-7685-los-realejos": {"desc": "Calle Piñera, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон 06:00-00:00"},
+ "gas-7684-los-realejos": {"desc": "Carretera TF-326, Los Realejos. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 06:30-00:00"},
+ "gas-8757-los-realejos": {"desc": "Carretera El Toscal, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"},
+ "gas-8756-los-realejos": {"desc": "Carretera General La Zamora 22, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"},
+ "gas-7791-los-realejos": {"desc": "Carretera General Icod-S/C, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Tgas", "hours": "Пон-Нед 06:00-23:00"}
 }
