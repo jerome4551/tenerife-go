@@ -797,9 +797,24 @@ del Norte · TF-152», que confirma que el «KM. 152» del registro era el núme
 la carretera copiado. En la app: la Estación Abades, una de Arico en chino, una
 de Tacoronte en francés y la BP de Puerto de la Cruz en italiano, bien.
 
+## Sesiones 14 y 15 · Icod de los Vinos y Puerto de la Cruz · HECHAS el 3 de octubre
+
+Pediste «sigue con el 15, no dejes nada en el camino»: se hicieron la 14 y la 15.
+
+* **Icod de los Vinos: 5 altas**, sin ficha antigua.
+* **Puerto de la Cruz: 4 altas** de 5; la quinta es la antigua «BP Puerto de la
+  Cruz», enlazada esta misma tarde. Aquí entra la errata corregida («Puerto
+  **Cruz**-Las Arenas») y sin el «km 132» imposible.
+
+La app pasa de 934 a **943 lugares** (934 + 5 + 4, comprobado a mano). Revisor:
+9 fichas, **0 hallazgos**, 10 de 10 estaciones.
+
+**Para la sesión 91:** «BP Puerto de la Cruz (**TF-5 km 30**)» está, según el
+registro, en la Carretera del Botánico km 6.
+
 ## Lo que queda
 
-**17 sesiones**, 42 altas. La siguiente es la **14-icod-de-los-vinos** (5).
+**15 sesiones**, 33 altas. La siguiente es la **16-el-sauzal** (5).
 
 ## Lo que necesito de ti antes de seguir
 

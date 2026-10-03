@@ -932,5 +932,14 @@
  "gas-7828-arico": {"desc": "Carretera TF-822（Arico）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · DISA", "hours": "週一至週五 06:00至22:00 · 週六至週日 07:00至20:00"},
  "gas-7696-arico": {"desc": "Carretera General del Sur（Arico）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · Moeve", "hours": "週一 06:00至22:00"},
  "gas-7703-arico": {"desc": "Carretera TF-1 km 44,2（Arico）。燃料：95號汽油、98號汽油、柴油和優質柴油。另有：AdBlue。", "cat": "加油站 · Moeve", "hours": "週一至週日 24小時"},
- "gas-11731-arico": {"desc": "Autovía TF-1 km 39（Arico）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 24小時"}
+ "gas-11731-arico": {"desc": "Autovía TF-1 km 39（Arico）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 24小時"},
+ "gas-7866-icod-de-los-vinos": {"desc": "Avenida Príncipes de España（Icod de los Vinos）。燃料：95號汽油、98號汽油、柴油、優質柴油和液化石油氣。", "cat": "加油站 · DISA", "hours": "週一至週日 24小時"},
+ "gas-10201-icod-de-los-vinos": {"desc": "Carretera General C-820（Icod de los Vinos）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Moeve", "hours": "週一至週五 05:30至21:30 · 週六至週日 06:00至22:00"},
+ "gas-12298-icod-de-los-vinos": {"desc": "Carretera TF-82（Icod de los Vinos）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Moeve", "hours": "週一至週日 06:00至22:00"},
+ "gas-15846-icod-de-los-vinos": {"desc": "Camino La Pitera（Icod de los Vinos）。燃料：95號汽油和柴油。另有：AdBlue。", "cat": "加油站 · Red de Combustibles Canarios", "hours": "週一至週日 24小時"},
+ "gas-8760-icod-de-los-vinos": {"desc": "Calle Francisco Miranda（Icod de los Vinos）。燃料：95號汽油、98號汽油、柴油和優質柴油。另有：AdBlue。", "cat": "加油站 · Shell", "hours": "週一至週日 06:00至22:00"},
+ "gas-7829-puerto-de-la-cruz": {"desc": "Carretera Lavera La Montaña（Puerto de la Cruz）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · DISA", "hours": "週一至週六 06:00至22:00 · 週日 08:00至22:00"},
+ "gas-7624-puerto-de-la-cruz": {"desc": "Carretera del Botánico（Puerto de la Cruz）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Moeve", "hours": "週一 06:00至00:00"},
+ "gas-8754-puerto-de-la-cruz": {"desc": "Carretera General Puerto Cruz-Las Arenas（Puerto de la Cruz）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Shell", "hours": "週一 24小時"},
+ "gas-8753-puerto-de-la-cruz": {"desc": "Carretera Martiánez TF-131（Puerto de la Cruz）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Shell", "hours": "週一至週日 06:00至22:00"}
 }

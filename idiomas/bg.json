@@ -932,5 +932,14 @@
  "gas-7828-arico": {"desc": "Carretera TF-822, Arico. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Пет 06:00-22:00 · Съб-Нед 07:00-20:00"},
  "gas-7696-arico": {"desc": "Carretera General del Sur, Arico. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон 06:00-22:00"},
  "gas-7703-arico": {"desc": "Carretera TF-1 km 44,2, Arico. Горива: бензин 95, бензин 98, дизел и премиум дизел. Също: AdBlue.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Нед 24 ч"},
- "gas-11731-arico": {"desc": "Autovía TF-1 km 39, Arico. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 24 ч"}
+ "gas-11731-arico": {"desc": "Autovía TF-1 km 39, Arico. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 24 ч"},
+ "gas-7866-icod-de-los-vinos": {"desc": "Avenida Príncipes de España, Icod de los Vinos. Горива: бензин 95, бензин 98, дизел, премиум дизел и газ LPG.", "cat": "Бензиностанция · DISA", "hours": "Пон-Нед 24 ч"},
+ "gas-10201-icod-de-los-vinos": {"desc": "Carretera General C-820, Icod de los Vinos. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Пет 05:30-21:30 · Съб-Нед 06:00-22:00"},
+ "gas-12298-icod-de-los-vinos": {"desc": "Carretera TF-82, Icod de los Vinos. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Нед 06:00-22:00"},
+ "gas-15846-icod-de-los-vinos": {"desc": "Camino La Pitera, Icod de los Vinos. Горива: бензин 95 и дизел. Също: AdBlue.", "cat": "Бензиностанция · Red de Combustibles Canarios", "hours": "Пон-Нед 24 ч"},
+ "gas-8760-icod-de-los-vinos": {"desc": "Calle Francisco Miranda, Icod de los Vinos. Горива: бензин 95, бензин 98, дизел и премиум дизел. Също: AdBlue.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"},
+ "gas-7829-puerto-de-la-cruz": {"desc": "Carretera Lavera La Montaña, Puerto de la Cruz. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Съб 06:00-22:00 · Нед 08:00-22:00"},
+ "gas-7624-puerto-de-la-cruz": {"desc": "Carretera del Botánico, Puerto de la Cruz. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон 06:00-00:00"},
+ "gas-8754-puerto-de-la-cruz": {"desc": "Carretera General Puerto Cruz-Las Arenas, Puerto de la Cruz. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон 24 ч"},
+ "gas-8753-puerto-de-la-cruz": {"desc": "Carretera Martiánez TF-131, Puerto de la Cruz. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"}
 }

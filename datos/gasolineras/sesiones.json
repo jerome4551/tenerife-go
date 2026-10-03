@@ -247,21 +247,33 @@
   },
   "14-icod-de-los-vinos": {
    "que": "Las 5 estaciones de Icod de los Vinos (5 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Icod de los Vinos",
    "estaciones": 5,
    "altas": 5,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/14-icod-de-los-vinos.json"
+   "plan": "datos/gasolineras/plan/14-icod-de-los-vinos.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 5,
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 5 fichas, 0 hallazgos, 5/5 estaciones con su ficha"
   },
   "15-puerto-de-la-cruz": {
    "que": "Las 5 estaciones de Puerto de la Cruz (4 altas, 1 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Puerto de la Cruz",
    "estaciones": 5,
    "altas": 4,
    "ya": 1,
-   "plan": "datos/gasolineras/plan/15-puerto-de-la-cruz.json"
+   "plan": "datos/gasolineras/plan/15-puerto-de-la-cruz.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 4,
+   "enlazadas": {
+    "gas-tf5-ptocz": "7771 (a 6 m)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 5/5 estaciones con su ficha",
+   "para_la_91": "gas-tf5-ptocz se llama «BP Puerto de la Cruz (TF-5 km 30)» y el registro la pone en la Carretera del Botanico km 6."
   },
   "16-el-sauzal": {
    "que": "Las 5 estaciones de El Sauzal (4 altas, 1 ya en la app).",

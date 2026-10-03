@@ -932,5 +932,14 @@
  "gas-7828-arico": {"desc": "Carretera TF-822, Arico. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · DISA", "hours": "Lun-Ven 06:00-22:00 · Sab-Dom 07:00-20:00"},
  "gas-7696-arico": {"desc": "Carretera General del Sur, Arico. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Moeve", "hours": "Lun 06:00-22:00"},
  "gas-7703-arico": {"desc": "Carretera TF-1 km 44,2, Arico. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium. Inoltre: AdBlue.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 24 h"},
- "gas-11731-arico": {"desc": "Autovía TF-1 km 39, Arico. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Repsol", "hours": "Lun-Dom 24 h"}
+ "gas-11731-arico": {"desc": "Autovía TF-1 km 39, Arico. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Repsol", "hours": "Lun-Dom 24 h"},
+ "gas-7866-icod-de-los-vinos": {"desc": "Avenida Príncipes de España, Icod de los Vinos. Carburanti: benzina 95, benzina 98, gasolio, gasolio premium e GPL.", "cat": "Distributore · DISA", "hours": "Lun-Dom 24 h"},
+ "gas-10201-icod-de-los-vinos": {"desc": "Carretera General C-820, Icod de los Vinos. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Moeve", "hours": "Lun-Ven 05:30-21:30 · Sab-Dom 06:00-22:00"},
+ "gas-12298-icod-de-los-vinos": {"desc": "Carretera TF-82, Icod de los Vinos. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 06:00-22:00"},
+ "gas-15846-icod-de-los-vinos": {"desc": "Camino La Pitera, Icod de los Vinos. Carburanti: benzina 95 e gasolio. Inoltre: AdBlue.", "cat": "Distributore · Red de Combustibles Canarios", "hours": "Lun-Dom 24 h"},
+ "gas-8760-icod-de-los-vinos": {"desc": "Calle Francisco Miranda, Icod de los Vinos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium. Inoltre: AdBlue.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"},
+ "gas-7829-puerto-de-la-cruz": {"desc": "Carretera Lavera La Montaña, Puerto de la Cruz. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · DISA", "hours": "Lun-Sab 06:00-22:00 · Dom 08:00-22:00"},
+ "gas-7624-puerto-de-la-cruz": {"desc": "Carretera del Botánico, Puerto de la Cruz. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Moeve", "hours": "Lun 06:00-00:00"},
+ "gas-8754-puerto-de-la-cruz": {"desc": "Carretera General Puerto Cruz-Las Arenas, Puerto de la Cruz. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun 24 h"},
+ "gas-8753-puerto-de-la-cruz": {"desc": "Carretera Martiánez TF-131, Puerto de la Cruz. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"}
 }
