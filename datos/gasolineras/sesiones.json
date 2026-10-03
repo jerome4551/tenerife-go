@@ -290,16 +290,20 @@
    },
    "revisada_el": "2026-10-03",
    "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 5/5 estaciones con su ficha",
-   "pregunta_a_jerome": "«CARRERA GENERAL» en el registro (aqui y en Arona, «CARRERA GENERAL LAS GALLETAS»): ¿errata de «Carretera»?"
+   "carrera": "«CARRERA GENERAL» corregido a «Carretera General» con OK de Jerome (3 de octubre); tambien en Arona."
   },
   "17-candelaria": {
    "que": "Las 4 estaciones de Candelaria (4 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Candelaria",
    "estaciones": 4,
    "altas": 4,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/17-candelaria.json"
+   "plan": "datos/gasolineras/plan/17-candelaria.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 4,
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 4/4 estaciones con su ficha"
   },
   "18-santiago-del-teide": {
    "que": "Las 4 estaciones de Santiago del Teide (4 altas, 0 ya en la app).",

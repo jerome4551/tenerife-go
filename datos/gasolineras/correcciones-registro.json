@@ -91,6 +91,10 @@
   "PUERTO CUZ": {
    "se_escribe": "PUERTO CRUZ",
    "fuente": "Jerome, 3 de octubre: «Si es Cruz». El registro escribe «CARRETERA GRAL. PUERTO CUZ-LAS ARENAS» (Puerto de la Cruz)."
+  },
+  "CARRERA GENERAL": {
+   "se_escribe": "CARRETERA GENERAL",
+   "fuente": "Jerome, 3 de octubre: «Si». El registro escribe «CARRERA GENERAL DEL NORTE» (DISA, El Sauzal) mientras la BP de al lado, en la misma carretera, dice «CARRETERA GENERAL DEL NORTE»; y «CARRERA GENERAL LAS GALLETAS» (Moeve, Arona)."
   }
  }
 }

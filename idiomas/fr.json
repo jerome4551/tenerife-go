@@ -841,7 +841,7 @@
  "gas-9920-arona": {"desc": "Carretera General Valle San Lorenzo-Guaza, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Dim 24 h"},
  "gas-10057-arona": {"desc": "Carretera de las Galletas, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Sam 06:00-21:30 · Dim 07:00-13:00"},
  "gas-9947-arona": {"desc": "Carretera General Valle San Lorenzo, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · DISA", "hours": "Lun-Sam 07:00-22:00 · Dim 07:00-14:00"},
- "gas-10543-arona": {"desc": "Carrera General Las Galletas, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 24 h"},
+ "gas-10543-arona": {"desc": "Carretera General Las Galletas, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 24 h"},
  "gas-7640-arona": {"desc": "Carretera General, Arona. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 06:00-22:00"},
  "gas-9483-arona": {"desc": "Carretera General Guaza Los Cristianos, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 24 h"},
  "gas-10951-arona": {"desc": "Carretera TF-28, Arona. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 07:00-23:00"},
@@ -943,7 +943,11 @@
  "gas-8754-puerto-de-la-cruz": {"desc": "Carretera General Puerto Cruz-Las Arenas, Puerto de la Cruz. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Shell", "hours": "Lun 24 h"},
  "gas-8753-puerto-de-la-cruz": {"desc": "Carretera Martiánez TF-131, Puerto de la Cruz. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Shell", "hours": "Lun-Dim 06:00-22:00"},
  "gas-7778-el-sauzal": {"desc": "Carretera General del Norte, El Sauzal. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Sam 06:00-23:00 · Dim 07:00-22:00"},
- "gas-7846-el-sauzal": {"desc": "Carrera General del Norte, El Sauzal. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · DISA", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-7846-el-sauzal": {"desc": "Carretera General del Norte, El Sauzal. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · DISA", "hours": "Lun-Dim 06:00-22:00"},
  "gas-7852-el-sauzal": {"desc": "Carretera General del Norte, El Sauzal. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · DISA", "hours": "Lun-Dim 06:00-22:00"},
- "gas-7674-el-sauzal": {"desc": "Carretera TF-172, El Sauzal. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 06:00-22:00"}
+ "gas-7674-el-sauzal": {"desc": "Carretera TF-172, El Sauzal. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-12523-candelaria": {"desc": "Avenida Marítima, Candelaria. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · DISA", "hours": "Lun-Sam 06:00-23:00 · Dim 08:00-22:00"},
+ "gas-7834-candelaria": {"desc": "Calle Las Bichas, Candelaria. Carburants : essence 95, essence 98, gazole, gazole premium et GPL.", "cat": "Station-service · DISA", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-7719-candelaria": {"desc": "Carretera TF-28 General del Sur, Candelaria. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Pcan", "hours": "Lun-Sam 06:00-22:00 · Dim 07:00-15:00"},
+ "gas-7786-candelaria": {"desc": "Carretera Acceso a Caletillas, Candelaria. Carburants : essence 95, essence 98, gazole et gazole premium. Également : AdBlue.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 06:00-23:00"}
 }

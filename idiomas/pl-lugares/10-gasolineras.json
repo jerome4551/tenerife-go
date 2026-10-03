@@ -320,7 +320,7 @@
   "hours": "Pn-So 07:00-22:00 · Nd 07:00-14:00"
  },
  "gas-10543-arona": {
-  "desc": "Carrera General Las Galletas, Arona. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "desc": "Carretera General Las Galletas, Arona. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · Moeve",
   "hours": "Pn-Nd 24 h"
  },
@@ -830,7 +830,7 @@
   "hours": "Pn-So 06:00-23:00 · Nd 07:00-22:00"
  },
  "gas-7846-el-sauzal": {
-  "desc": "Carrera General del Norte, El Sauzal. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Carretera General del Norte, El Sauzal. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 06:00-22:00"
  },
@@ -843,5 +843,25 @@
   "desc": "Carretera TF-172, El Sauzal. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · Moeve",
   "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-12523-candelaria": {
+  "desc": "Avenida Marítima, Candelaria. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-So 06:00-23:00 · Nd 08:00-22:00"
+ },
+ "gas-7834-candelaria": {
+  "desc": "Calle Las Bichas, Candelaria. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i LPG.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7719-candelaria": {
+  "desc": "Carretera TF-28 General del Sur, Candelaria. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Pcan",
+  "hours": "Pn-So 06:00-22:00 · Nd 07:00-15:00"
+ },
+ "gas-7786-candelaria": {
+  "desc": "Carretera Acceso a Caletillas, Candelaria. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium. Także: AdBlue.",
+  "cat": "Stacja paliw · Tgas",
+  "hours": "Pn-Nd 06:00-23:00"
  }
 }

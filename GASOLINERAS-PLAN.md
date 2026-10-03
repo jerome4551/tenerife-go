@@ -823,13 +823,20 @@ kilométrico (las de al lado, en la misma carretera, son el 20,65 y el 20,400).
 No se convierte en km porque el registro no lo dice: se quita. Cambia también una
 de Candelaria («…, 14.1»), que aún no está aplicada.
 
-**Pregunta:** el registro escribe «**CARRERA** GENERAL DEL NORTE» (aquí) y
-«**CARRERA** GENERAL LAS GALLETAS» (Arona), mientras la estación de al lado dice
-«CARRETERA GENERAL DEL NORTE». ¿Es «Carretera»? Sin tu OK se queda como está.
+«**CARRERA** GENERAL DEL NORTE» (aquí) y «**CARRERA** GENERAL LAS GALLETAS»
+(Arona): con tu OK, errata con fuente, «Carretera». La DISA de Ravelo pasa a
+llamarse «DISA · Carretera General del Norte (**Ravelo**)», para no confundirse con
+la otra DISA de El Sauzal ni con la de Tacoronte.
+
+## Sesión 17 · Candelaria · HECHA el 3 de octubre
+
+**4 altas**, sin ficha antigua. La app pasa de 947 a **951 lugares**. Revisor: 4
+fichas, **0 hallazgos**. Los cuatro nombres, limpios con las reglas que ya había
+(«AVENIDA AVDA. MARÍTIMA» → «Avenida Marítima»).
 
 ## Lo que queda
 
-**14 sesiones**, 29 altas. La siguiente es la **17-candelaria** (4).
+**13 sesiones**, 25 altas. La siguiente es la **18-santiago-del-teide** (4).
 
 ## Lo que necesito de ti antes de seguir
 
