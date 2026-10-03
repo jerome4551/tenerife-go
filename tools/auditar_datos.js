@@ -133,10 +133,12 @@ console.log('\n=== lugares ===');
    confirma con la web de DISA que esta abierta;
    879 -> 888 el 3 de octubre, con 9 de las 11 de Granadilla de Abona (sesion
    06): una ya la cubria gas-tf1-granadilla, que se enlaza, y la REPSOL del
-   «lado aire» del aeropuerto queda en espera hasta saber si se puede entrar.
+   «lado aire» del aeropuerto queda en espera hasta saber si se puede entrar;
+   888 -> 889 el 3 de octubre, al entrar esa Repsol: esta a 134 m del TF-1, fuera
+   del aeropuerto, y Repsol la da abierta las 24 horas.
    Esta cifra sube una vez por sesion de gasolineras hasta las 198 altas, y se
    cambia A MANO a proposito: asi ningun municipio entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 888);
+debe('lugares', PLACES.length, PLACES.length === 889);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

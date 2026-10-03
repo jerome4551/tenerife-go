@@ -324,12 +324,12 @@
  "gas-tf1-granadilla": {
   "desc": "Stacja Repsol przy TF-1 w Granadilli. Sklep i myjnia samochodowa. Łatwy zjazd z autostrady.",
   "cat": "Stacja paliw · TF-1 Południe",
-  "hours": "24h · Codziennie"
+  "hours": "Pn-Nd 06:00-00:00"
  },
  "gas-tf1-guaza": {
   "desc": "Stacja BP w Guaza, zjazd na Aronę. Dobry przystanek przed Los Cristianos i Las Américas.",
   "cat": "Stacja paliw · TF-1 Południe",
-  "hours": "24h · Codziennie"
+  "hours": "Pn-Nd 24 h"
  },
  "gas-tf1-guimar": {
   "desc": "BP na zjeździe do Güímar. Blisko Piramid Güímar. Dobre zaplecze.",
@@ -339,7 +339,7 @@
  "gas-tf5-lalaguna": {
   "desc": "Repsol na zjeździe do La Laguny z TF-5. Jedna z najbardziej ruchliwych na północy. Myjnia automatyczna.",
   "cat": "Stacja paliw · TF-5 Północ",
-  "hours": "24h · Codziennie"
+  "hours": "Pn-Nd 24 h"
  },
  "gas-tf5-tacoronte": {
   "desc": "Cepsa przy zjeździe do Tacoronte. Strefa winiarni i guachinches. Kawa i sklep na miejscu.",
@@ -354,7 +354,7 @@
  "gas-tf2-lalaguna": {
   "desc": "Cepsa przy TF-2, zjazd La Laguna w stronę południa. Kluczowy punkt między lotniskiem a stolicą.",
   "cat": "Stacja paliw · TF-2 Centrum",
-  "hours": "24h · Codziennie"
+  "hours": "Pn-Nd 24 h"
  },
  "gas-tf1-abades": {
   "desc": "Stacja przy TF-1 km 44, strefa Abades/Arico. Ważny przystanek na autostradzie południowej, na odcinku wschodnim. Jedna z nielicznych stacji między lotniskiem a Güímar.",
@@ -389,7 +389,7 @@
  "gas-tf5-los-realejos": {
   "desc": "DISA przy TF-5 km 46, Los Realejos. Północ między Puerto de la Cruz a Icod de los Vinos. Przydatna dla jadących dalej do Garachico albo na północny zachód wyspy.",
   "cat": "Stacja paliw · TF-5 · Los Realejos",
-  "hours": "Pn-Pt 06:15-22:15 · So-Nd 07:00-22:00"
+  "hours": "Pn-Nd 06:00-22:00"
  },
  "puerto-santa-cruz": {
   "desc": "⚠️ Port handlowy o ograniczonym dostępie. Największy port Wysp Kanaryjskich i jeden z najważniejszych na Atlantyku. Nabrzeża kontenerowe, wycieczkowce i ładunki ogólne. Wielkie transatlantyki cumują właśnie tutaj — imponujące widowisko z Parque Marítimo. Dostęp tylko dla pracowników i pasażerów rejsów z dokumentami. Zewnętrzna promenada nadmorska JEST publiczna.",

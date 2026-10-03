@@ -501,6 +501,59 @@ sur» no es un nombre propio y en el nombre se quedaría sin traducir.
 el registro, en la «CARRETERA GENERAL GUAZA **TF-66** KM. 79». No está en el
 TF-1.
 
+## La Repsol del «lado aire», dentro · 3 de octubre
+
+Jerome manda la web de Repsol (abierta 24 horas, margen derecho como el
+registro) y Google. Ninguna de las dos dice si se puede **entrar**, que era la
+duda; lo dice el mapa: está a 106 m de un enlace de la autopista y a 134 m del
+TF-1, junto a la TF-644 y a una calle pública, a 2,4 km de la terminal. «Lado
+aire» es el lado de la vía que da al aeropuerto: igual que la Repsol «LADO
+AIRE» de Gran Canaria, que está en la autovía GC-1. (El campo «Tipo Venta» del
+registro no servía: las 495 de Canarias son «P», porque la descarga solo trae
+las de venta al público.) 888 → **889 lugares**.
+
+## Revisión de los bloques 05 y 06 · 3 de octubre
+
+Registro sin cambios; revisor, 0 hallazgos. Lo que salió al mirar lo que el
+revisor **no** miraba:
+
+**1. Las fichas no tenían dirección.** El LEEME la pedía («coordenadas,
+dirección y horario, del registro») y las 110 nuevas salieron sin la línea 📍:
+el nombre lleva la calle, pero no el portal ni el código postal. Ahora sí:
+«Calle Charfa, 28, 38670 Adeje», y cuando la localidad no es el municipio,
+«Calle Libertad, 38108 Taco, San Cristóbal de La Laguna». Una dirección no se
+traduce, igual que en las 94 fichas que ya la tenían. Al hacerla salió un fallo
+mío: el registro escribe los km con coma decimal y el decimal salía como portal
+(«Icod-S/C, 8 km 38,8»); corregido antes de aplicar.
+
+**2. Siete tildes más**, de palabras que solo salen en las direcciones: Alcalá,
+Américas, Baldíos, Chío, Jerónimo, Porís, Sofía.
+
+**3. Las fichas antiguas enlazadas enseñaban datos falsos** y no los miraba
+nadie:
+
+| ficha | decía | el registro |
+|---|---|---|
+| Repsol TF-1 Granadilla | **24 h** · 📍 TF-1 **km 31** | **06:00-00:00** · TF-1 **km 54** |
+| BP Guaza | 📍 **TF-1 km 21** | **TF-66 km 79** |
+| Repsol La Laguna Norte | 📍 TF-5 km 8 | Calle Libertad, Taco |
+| Cepsa La Laguna Sur | 📍 TF-2 km 2 | Avenida El Paso, 108 |
+| DISA TF-5 km 46 | L-V 06:15-22:15 · S-D 07:00-22:00 | L-D 06:00-22:00 · Calle Los Barros, 33 |
+
+La de Granadilla es la peligrosa: a las tres de la mañana está cerrada. La de 24
+h es su gemela del otro lado de la autopista; la ficha antigua mezcló las dos.
+Corregidos **solo el horario y la dirección**, desde el registro, y quitada la
+etiqueta «24H» de Granadilla. El nombre y la descripción siguen para la sesión
+91, como dijiste. El revisor mira ya el horario y la dirección de las antiguas:
+con Granadilla otra vez a 24 h, salta.
+
+**4. La regla del LEEME de «parar si el municipio de la captura no cuadra con el
+polígono»:** comprobada en las 50 capturas que casan con una sola estación. Cero
+discrepancias.
+
+**5. Teléfonos:** el LEEME dice «solo el de la captura y solo con OK de Jerome».
+No se ha puesto ninguno.
+
 ## Lo que queda
 
 **24 sesiones**, 103 altas. La siguiente es la **07, La Orotava (10)**.

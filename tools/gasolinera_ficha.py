@@ -459,6 +459,45 @@ def km_de(direccion):
     return m.group(1) if m else None
 
 
+def localidad_de(e, muni):
+    """La localidad del registro, del derecho y sin el parentesis final cuando
+       solo repite el municipio o la provincia: «PLAYA DE LAS AMERICAS (ARONA)»,
+       «AEROPUERTO REINA SOFIA (SANTA CRUZ DE TENERIFE)». Si ES el municipio, con
+       la grafia del Cabildo."""
+    t = (e.get('Localidad') or '').strip()
+    m = re.match(r'^(.*?)\s*\(([^)]+)\)$', t)
+    if m and llano(m.group(2)) in (llano(muni), llano(e.get('Provincia'))):
+        t = m.group(1)
+    loc = titulo(dar_vuelta(t), via=False)
+    return muni if llano(loc) == llano(muni) else loc
+
+
+def direccion(e, muni):
+    """La direccion del registro, para la linea 📍 de la ficha. El LEEME de las
+       gasolineras la pedia («coordenadas, direccion y horario, del registro») y
+       las primeras 104 fichas salieron sin ella: el nombre lleva la calle, pero
+       no el numero ni el codigo postal. Lo encontro la revision de los bloques
+       05 y 06. Va igual en los diez idiomas, como en las 94 fichas que ya la
+       tenian: una direccion no se traduce."""
+    raw = (e.get('Dirección') or '').strip()
+    calle = calle_corta(raw)
+    km = km_de(raw)
+    # El portal es lo que va detras de la primera coma... quitando ANTES el km:
+    # el registro escribe los km con coma decimal («KM. 38,8») y el decimal salia
+    # como portal: «Icod-S/C, 8 km 38,8», «TF-333, 300 km 0,300».
+    sin_km = re.sub(r'(?i)(\.?\s*\bPK\b|\s*\bKM\b).*$', '', raw)
+    m = re.match(r'^[^,]*,\s*(\d+[A-Za-z]?)\b', sin_km)   # el portal, si lo hay
+    num = m.group(1) if m else None
+    if num and km and num == km.split(',')[0]:
+        num = None                     # «GUAZA,380 KM. 380»: el numero es el km
+    t = calle + (', %s' % num if num else '') + (' km %s' % km if km else '')
+    loc = localidad_de(e, muni)
+    lugar = '%s %s' % ((e.get('C.P.') or '').strip(), loc)
+    if llano(loc) != llano(muni):
+        lugar += ', %s' % muni
+    return '%s, %s' % (t, lugar.strip())
+
+
 def ficha(e, muni, sufijo=''):
     """e es la estacion tal como viene del registro. muni, el del poligono."""
     municipios_bien('')            # deja _MUNIS cargado
@@ -466,7 +505,7 @@ def ficha(e, muni, sufijo=''):
     marca = marca_de(rot)
     base = marca or rotulo_corto(rot)
     calle = calle_corta(e.get('Dirección'))
-    loc = titulo(dar_vuelta(e.get('Localidad')), via=False)
+    loc = localidad_de(e, muni)
     comb = combustibles(e)
     km = km_de(e.get('Dirección'))
     if es_autopista(e.get('Dirección')) and km:
@@ -497,6 +536,7 @@ def ficha(e, muni, sufijo=''):
         'lat': round(float(str(e['Latitud']).replace(',', '.')), 6),
         'lng': round(float(str(e['Longitud (WGS84)']).replace(',', '.')), 6),
         'marca': marca, 'municipio': muni, 'localidad': loc,
+        'address': direccion(e, muni),
         'direccion_registro': (e.get('Dirección') or '').strip(),   # el original, sin tocar
         'cp': (e.get('C.P.') or '').strip(),
         'tags': ['Gasolinera'] + ([base] if base else []) + [muni],

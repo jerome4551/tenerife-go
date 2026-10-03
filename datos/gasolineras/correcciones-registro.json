@@ -9,6 +9,8 @@
   "2026 («Si y sigue»). Los toponimos guanches (Adjona, Atogo, Axaentemir,",
   "Chajofe, Tamaimo, Guaza...) NO estan: no llevan tilde y no me toca ponersela.",
   "Los municipios no hacen falta aqui: salen del poligono del Cabildo.",
+  "El 3 de octubre se anaden 7 que solo salen en las DIRECCIONES (Alcala, Americas,",
+  "Baldios, Chio, Jeronimo, Poris, Sofia), con el mismo OK.",
   "",
   "ILEGIBLE: texto del registro que no se puede leer sin adivinar. No se",
   "corrige: se corta, y la ficha se queda con lo que el registro SI dice claro.",
@@ -22,12 +24,16 @@
   "despues. Ya no las lee ninguna herramienta: se guardan por el rastro."
  ],
  "acentos": {
+  "alcala": "Alcalá",
+  "americas": "Américas",
   "andres": "Andrés",
   "angel": "Ángel",
+  "baldios": "Baldíos",
   "benitez": "Benítez",
   "botanico": "Botánico",
   "caceres": "Cáceres",
   "carreton": "Carretón",
+  "chio": "Chío",
   "cristobal": "Cristóbal",
   "diaz": "Díaz",
   "dominguez": "Domínguez",
@@ -39,6 +45,7 @@
   "guzman": "Guzmán",
   "hernandez": "Hernández",
   "hipolito": "Hipólito",
+  "jeronimo": "Jerónimo",
   "jesus": "Jesús",
   "maritima": "Marítima",
   "martianez": "Martiánez",
@@ -46,20 +53,16 @@
   "mendez": "Méndez",
   "penetracion": "Penetración",
   "perez": "Pérez",
+  "poris": "Porís",
   "principes": "Príncipes",
   "republica": "República",
+  "sofia": "Sofía",
   "torreon": "Torreón"
  },
  "ilegible": {
   "DELPORTEZUELO ALS TODCAS": "Seguramente «del Portezuelo a Las Toscas», pero «Todcas» por «Toscas» seria adivinar. Queda «Carretera TF-154»."
  },
- "en_espera": {
-  "16132": {
-   "estacion": "REPSOL · Vía Lado Aire Aeropuerto Tenerife Sur, 1 · Granadilla de Abona",
-   "por_que": "En un aeropuerto el «lado aire» es la zona restringida, al otro lado del control. Si es una estacion para los vehiculos del aeropuerto, un turista no puede repostar alli. El registro la marca como venta al publico y cerca hay un restaurante y un alquiler de coches, pero el nombre dice lo contrario. Hasta que Jerome confirme que se puede entrar, no se da de alta.",
-   "desde": "2026-10-03"
-  }
- },
+ "en_espera": {},
  "confirmadas_tras_espera": {
   "7840": {
    "estacion": "DISA LAS DELICIAS · Calle Pedro de Valdivia, 9 · Santa Cruz de Tenerife",
@@ -67,6 +70,13 @@
    "desde": "2026-10-03",
    "confirmada_el": "2026-10-03",
    "como": "Jerome: «online dice que esta abierto». Captura de disagrupo.es, la web de la propia DISA: E.S. DISA LAS DELICIAS, lunes a domingo 07:00-22:00, el mismo horario que da el registro."
+  },
+  "16132": {
+   "estacion": "REPSOL · Vía Lado Aire Aeropuerto Tenerife Sur, 1 · Granadilla de Abona",
+   "por_que": "En un aeropuerto el «lado aire» es la zona restringida, al otro lado del control. Si es una estacion para los vehiculos del aeropuerto, un turista no puede repostar alli. El registro la marca como venta al publico y cerca hay un restaurante y un alquiler de coches, pero el nombre dice lo contrario. Hasta que Jerome confirme que se puede entrar, no se da de alta.",
+   "desde": "2026-10-03",
+   "confirmada_el": "2026-10-03",
+   "como": "Jerome manda la ficha de la web de Repsol («CRED AEROPUERTO TENERIFE SUR AIRE»: abierta 24 horas, margen DERECHO como el registro, con «Como llegar») y una respuesta de Google. Ninguna de las dos dice si se puede entrar; lo dice el mapa: esta a 106 m de un enlace de la autopista y a 134 m del TF-1, junto a la TF-644 y a una calle publica, lejos de la terminal (a 2,4 km). «Lado aire» es el lado de la via que da al aeropuerto, igual que la Repsol «LADO AIRE» de Gran Canaria, que esta en la autovia GC-1 km 16. OSM no se usa como fuente de ningun dato de la ficha: todo sale del registro."
   }
  }
 }

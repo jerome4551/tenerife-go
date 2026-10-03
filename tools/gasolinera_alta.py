@@ -57,11 +57,12 @@ def bloque(f):
     """La ficha tal como se escribe en index.html, al estilo de la casa."""
     return ('  { id:%s, category:"gasolinera", name:%s, emoji:"⛽", color:"#dc2626"'
             ', lat:%s, lng:%s, ideess:%s,\n'
+            '    address:%s,\n'
             '    hours:{ es:%s },\n'
             '    desc:{ es:%s },\n'
             '    cat:{ es:%s },\n'
             '    tags:[%s] },\n') % (
-        js(f['id']), js(f['name']), f['lat'], f['lng'], js(f['ideess']),
+        js(f['id']), js(f['name']), f['lat'], f['lng'], js(f['ideess']), js(f['address']),
         js(f['idiomas']['es']['hours']), js(f['idiomas']['es']['desc']),
         js(f['idiomas']['es']['cat']), ','.join(js(t) for t in f['tags']))
 
@@ -95,7 +96,79 @@ def retirar(ideess):
     print('ahora: node tools/lugares_idioma.js montar pl')
 
 
+def horas_antiguas(ver=False):
+    """El HORARIO de las fichas antiguas enlazadas, desde el registro y en los
+       diez idiomas. Solo el horario: el nombre y la descripcion se rehacen en la
+       sesion 91. Hace falta ya porque un horario equivocado no es estilo, es un
+       dato falso: «Repsol TF-1 Granadilla» decia 24 h y el registro dice 06:00 a
+       00:00 (la de 24 h es su gemela del otro lado de la autopista)."""
+    import gasolineras as G
+    crudo = json.load(open(os.path.join(RAIZ, 'registro', 'gasolineras-canarias.json'),
+                           encoding='utf-8-sig'))['ListaEESSPrecio']
+    porid = {str(x['IDEESS']): x for x in crudo}
+    src = open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
+    viejas = re.findall(r'\{ id:"(gas-[a-z0-9-]+)"[^\n]*?ideess:"(\d+)"', src)
+    viejas = [(i, d) for i, d in viejas if not i.startswith('gas-%s-' % d)]
+    idi = {L: json.load(open(os.path.join(RAIZ, 'idiomas/%s.json' % L), encoding='utf-8'))
+           for L in OTROS}
+    plf = {}
+    for f in sorted(os.listdir(os.path.join(RAIZ, 'idiomas', 'pl-lugares'))):
+        plf[f] = json.load(open(os.path.join(RAIZ, 'idiomas', 'pl-lugares', f), encoding='utf-8'))
+    for fid, ide in viejas:
+        h = {L: F.horario(porid[ide]['Horario'], L)[0] for L in F.IDIOMAS}
+        i = src.index('  { id:"%s"' % fid)
+        j = src.find('\n  { id:', i + 5)
+        blq = src[i:j]
+        m = re.search(r'hours:\{ es:"([^"]*)" \}', blq)
+        if not m:
+            sys.exit('PARO: %s no tiene «hours:{ es:"..." }» como se esperaba' % fid)
+        print('  %-22s «%s» -> «%s»' % (fid, m.group(1), h['es']))
+        nuevo = blq.replace(m.group(0), 'hours:{ es:"%s" }' % h['es'], 1)
+        # La direccion, tambien del registro: «Repsol TF-1 Granadilla» decia
+        # «TF-1 km 31» y el registro dice km 54; «BP Guaza», «TF-1 km 21» y es
+        # la TF-66 km 79.
+        muni = next(x['municipio_poligono'] for x in G.cargar_registro()[0] if x['ideess'] == ide)
+        dire = F.direccion(porid[ide], muni)
+        ma = re.search(r'address:"([^"]*)"', nuevo)
+        if ma:
+            print('  %-22s 📍 «%s» -> «%s»' % ('', ma.group(1), dire))
+            nuevo = nuevo.replace(ma.group(0), 'address:%s' % js(dire), 1)
+        else:
+            nuevo = nuevo.replace(' ideess:"%s",' % ide, ' ideess:"%s", address:%s,' % (ide, js(dire)), 1)
+        # Una etiqueta «24H» en una estacion que el registro NO da abierta 24 h
+        # es falsa: se quita. Las que si abren 24 h la conservan.
+        if 'L-D: 24H' not in porid[ide]['Horario']:
+            mt = re.search(r'tags:\[[^\]]*\]', nuevo)
+            if mt and re.search(r'"24[hH]"', mt.group(0)):
+                print('  %-22s etiqueta «24H» quitada: el registro da %s' % ('', porid[ide]['Horario']))
+                nuevo = nuevo.replace(mt.group(0), re.sub(r',?"24[hH]"', '', mt.group(0)).replace('[,', '['), 1)
+        src = src[:i] + nuevo + src[j:]
+        for L in OTROS:
+            if fid not in idi[L] or 'hours' not in idi[L][fid]:
+                sys.exit('PARO: %s no tiene horario en %s' % (fid, L))
+            idi[L][fid]['hours'] = h[L]
+        donde = [f for f, d in plf.items() if fid in d]
+        if len(donde) != 1:
+            sys.exit('PARO: el polaco de %s esta en %d ficheros' % (fid, len(donde)))
+        plf[donde[0]][fid]['hours'] = h['pl']
+    if ver:
+        return 0
+    open(os.path.join(RAIZ, 'index.html'), 'w', encoding='utf-8').write(src)
+    for L in OTROS:
+        open(os.path.join(RAIZ, 'idiomas/%s.json' % L), 'w', encoding='utf-8').write(una_linea(idi[L]))
+    for f, d in plf.items():
+        p = os.path.join(RAIZ, 'idiomas', 'pl-lugares', f)
+        nuevo = json.dumps(d, ensure_ascii=False, indent=1) + '\n'
+        viejo = open(p, encoding='utf-8').read()
+        if json.loads(viejo) != d:          # solo se escribe el que cambia
+            open(p, 'w', encoding='utf-8').write(nuevo)
+    print('hecho. Ahora: node tools/lugares_idioma.js montar pl')
+    return 0
+
+
 def main():
+    if '--horas-antiguas' in sys.argv:
+        return horas_antiguas('--ver' in sys.argv)
     if '--retirar' in sys.argv:
         return retirar(sys.argv[sys.argv.index('--retirar') + 1])
     a = [x for x in sys.argv[1:] if not x.startswith('--')]

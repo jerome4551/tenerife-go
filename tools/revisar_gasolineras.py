@@ -102,7 +102,7 @@ def num(x):
 def fichas_app():
     js = ("const{PLACES}=require('./tools/cargar');console.log(JSON.stringify("
           "PLACES.filter(p=>p.category==='gasolinera').map(p=>({id:p.id,name:p.name,"
-          "lat:p.lat,lng:p.lng,ideess:p.ideess||null,tags:p.tags||[],"
+          "lat:p.lat,lng:p.lng,ideess:p.ideess||null,tags:p.tags||[],address:p.address||null,"
           "desc:p.desc&&p.desc.es,cat:p.cat&&p.cat.es,hours:p.hours&&p.hours.es}))))")
     o = subprocess.run(['node', '-e', js], cwd=RAIZ, capture_output=True, text=True)
     if o.returncode:
@@ -176,6 +176,17 @@ def main():
         for w in piezas(p['name']):
             if w not in fuente:
                 mal(p['id'], 'el nombre lleva «%s», que no sale del registro' % w)
+        # direccion: la pedia el LEEME y las primeras 104 salieron sin ella
+        cp = (e.get('C.P.') or '').strip()
+        if not p.get('address'):
+            mal(p['id'], 'no tiene direccion')
+        else:
+            if cp not in p['address']:
+                mal(p['id'], 'la direccion no lleva su codigo postal %s' % cp)
+            fuente_d = fuente | set(piezas(e.get('Provincia'))) | set(piezas(cp))
+            for w in piezas(p['address']):
+                if w not in fuente_d:
+                    mal(p['id'], 'la direccion lleva «%s», que no sale del registro' % w)
         # marca
         trozos = (p['cat'] or '').split(' · ')
         if len(trozos) != 2 or trozos[0] != 'Gasolinera':
@@ -225,6 +236,17 @@ def main():
             p['id'], p['ideess'], d, 'misma marca' if marca else 'MARCA DISTINTA O SIN MARCA'))
         if d >= 50:
             mal(p['id'], 'enlazada a %s, que esta a %.0f m' % (p['ideess'], d))
+        # Su horario tambien sale del registro: el nombre y la descripcion se
+        # rehacen en la sesion 91, pero un horario falso no espera. «Repsol TF-1
+        # Granadilla» decia 24 h y el registro dice 06:00 a 00:00.
+        esperado = horario_es(e['Horario'])
+        if p['hours'] != esperado:
+            mal(p['id'], 'horario «%s», el registro da «%s»' % (p['hours'], esperado))
+        cifras = sorted(re.findall(r'\d', esperado))
+        for L in IDIOMAS:
+            h = (idi[L].get(p['id']) or {}).get('hours') or ''
+            if ES_DIAS.search(h) or sorted(re.findall(r'\d', h)) != cifras:
+                mal(p['id'], '%s: horario «%s» no cuadra con el registro' % (L, h))
         if not marca:
             mal(p['id'], 'enlazada a %s («%s») y su nombre no dice esa marca' % (p['ideess'], e['Rótulo']))
 

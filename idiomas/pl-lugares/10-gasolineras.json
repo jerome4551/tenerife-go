@@ -543,5 +543,10 @@
   "desc": "Carretera TF-64 Granadilla-El Médano, Granadilla de Abona. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · Tgas",
   "hours": "Pn-Nd 24 h"
+ },
+ "gas-16132-granadilla-de-abona": {
+  "desc": "Vía Lado Aire Aeropuerto Tenerife Sur, Granadilla de Abona. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Repsol",
+  "hours": "Pn-Nd 24 h"
  }
 }
