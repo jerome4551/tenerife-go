@@ -271,7 +271,7 @@
  "gas-tf1-guaza": {"hours": "周一至周日 24小时", "desc": "瓜萨（阿罗纳出口）的BP加油站。前往洛斯克里斯蒂亚诺斯与美洲海滩前的理想一站。", "cat": "加油站 · TF-1 南部"},
  "gas-tf1-guimar": {"hours": "周一至周日 24小时", "desc": "圭马尔出口的BP加油站。邻近圭马尔金字塔。设施完善。", "cat": "加油站 · TF-1 东部"},
  "gas-tf5-lalaguna": {"hours": "周一至周日 24小时", "desc": "TF-5公路拉拉古纳出口的Repsol加油站。北部车流最繁忙的之一。设有自动洗车。", "cat": "加油站 · TF-5 北部"},
- "gas-tf5-tacoronte": {"hours": "06:00–23:00 · 每天", "desc": "塔科龙特出口旁的Cepsa加油站。酒庄与乡村酒馆云集之地。设有咖啡与便利店。", "cat": "加油站 · TF-5 北部"},
+ "gas-tf5-tacoronte": {"hours": "周一至周日 24小时", "desc": "塔科龙特出口旁的Cepsa加油站。酒庄与乡村酒馆云集之地。设有咖啡与便利店。", "cat": "加油站 · TF-5 北部"},
  "gas-tf5-ptocz": {"hours": "24小时 · 每天", "desc": "经高速公路进入克鲁斯港入口处的BP加油站。对游客非常方便。宽敞明亮。", "cat": "加油站 · TF-5 北部"},
  "gas-tf2-lalaguna": {"hours": "周一至周日 24小时", "desc": "TF-2公路、拉拉古纳南向出口的Cepsa加油站。机场与首府之间的关键节点。", "cat": "加油站 · TF-2 中部"},
  "gas-tf1-abades": {"hours": "周一至周五 06:00-22:00 · 周六 07:00-22:00 · 周日 08:00-21:00", "desc": "TF-1公路44公里处、阿瓦德斯/阿里科一带的加油站。南部高速公路东段的重要一站。是机场与圭马尔之间为数不多的加油站之一。", "cat": "加油站 · TF-1 · 阿里科"},
@@ -923,5 +923,10 @@
  "gas-7858-guimar": {"desc": "Avenida Axaentemir（Güímar）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · El Escobonal", "hours": "周一至周六 07:00至21:00 · 周日 08:00至14:00"},
  "gas-7621-guimar": {"desc": "Avenida Obispo Pérez Cáceres（Güímar）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · Moeve", "hours": "周一至周六 06:00至22:00 · 周日 06:00至14:00"},
  "gas-12479-guimar": {"desc": "Polígono Industrial Valle de Güímar（Güímar）。燃料：95号汽油、优质95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Océano", "hours": "周一至周五 06:00至22:00 · 周六 07:00至22:00 · 周日 08:00至21:00"},
- "gas-8749-guimar": {"desc": "Calle Rigoberto Díaz Melero（Güímar）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 06:00至22:00"}
+ "gas-8749-guimar": {"desc": "Calle Rigoberto Díaz Melero（Güímar）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 06:00至22:00"},
+ "gas-7770-tacoronte": {"desc": "Autopista El Torreón km 11,00（Tacoronte）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · BP", "hours": "周一至周六 06:00至00:00 · 周日 08:00至14:00"},
+ "gas-15182-tacoronte": {"desc": "Carretera General del Norte（Tacoronte）。燃料：95号汽油、98号汽油、柴油、优质柴油和可再生柴油。", "cat": "加油站 · DISA", "hours": "周一至周日 06:00至22:00"},
+ "gas-7636-tacoronte": {"desc": "Camino Real（Tacoronte）。燃料：95号汽油、98号汽油、柴油和优质柴油。另有：AdBlue。", "cat": "加油站 · Moeve", "hours": "周一至周六 06:00至22:00 · 周日 08:00至22:00"},
+ "gas-14982-tacoronte": {"desc": "Carretera General Norte（Tacoronte）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Moeve", "hours": "周一至周日 06:00至22:00"},
+ "gas-7733-tacoronte": {"desc": "Carretera General del Norte（Tacoronte）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Tgas", "hours": "周一至周日 24小时"}
 }

@@ -215,12 +215,19 @@
   },
   "12-tacoronte": {
    "que": "Las 6 estaciones de Tacoronte (5 altas, 1 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Tacoronte",
    "estaciones": 6,
    "altas": 5,
    "ya": 1,
-   "plan": "datos/gasolineras/plan/12-tacoronte.json"
+   "plan": "datos/gasolineras/plan/12-tacoronte.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 5,
+   "enlazadas": {
+    "gas-tf5-tacoronte": "7890 (a 1 m)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 5 fichas, 0 hallazgos, 6/6 estaciones con su ficha"
   },
   "13-arico": {
    "que": "Las 5 estaciones de Arico (4 altas, 1 ya en la app).",

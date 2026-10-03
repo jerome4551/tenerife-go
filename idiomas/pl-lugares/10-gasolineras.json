@@ -733,5 +733,30 @@
   "desc": "Calle Rigoberto Díaz Melero, Güímar. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · Shell",
   "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7770-tacoronte": {
+  "desc": "Autopista El Torreón km 11,00, Tacoronte. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · BP",
+  "hours": "Pn-So 06:00-00:00 · Nd 08:00-14:00"
+ },
+ "gas-15182-tacoronte": {
+  "desc": "Carretera General del Norte, Tacoronte. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i odnawialny olej napędowy.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7636-tacoronte": {
+  "desc": "Camino Real, Tacoronte. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium. Także: AdBlue.",
+  "cat": "Stacja paliw · Moeve",
+  "hours": "Pn-So 06:00-22:00 · Nd 08:00-22:00"
+ },
+ "gas-14982-tacoronte": {
+  "desc": "Carretera General Norte, Tacoronte. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Moeve",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7733-tacoronte": {
+  "desc": "Carretera General del Norte, Tacoronte. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Tgas",
+  "hours": "Pn-Nd 24 h"
  }
 }

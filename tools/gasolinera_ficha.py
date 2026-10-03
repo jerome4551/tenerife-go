@@ -483,8 +483,29 @@ def tramos_autopista(registro):
 
 
 def km_de(direccion):
-    m = re.search(r'(?i)\bKM\.?\s*(\d+(?:[,\.]\d+)?)', direccion or '')
-    return m.group(1) if m else None
+    """El km del registro, si es un kilometro de verdad. El campo KM a veces es
+       una COPIA de otro numero o un valor imposible, y entonces se tira:
+         · copia del portal: «GUAZA,380 KM. 380», «DEL NORTE, 173 KM. 173»
+         · copia de la carretera: «(TF-152 ... KM. 152»
+         · imposible: >= 130. El km mas alto con carretera identificable en el
+           propio registro es el 120 (Tejina de Guia, antigua carretera general
+           del sur), y salian «km 13200», «km 386», «km 320», «km 186»... Alguno
+           sera un decimal perdido (13200 seria el 13,2) pero no se sabe cual:
+           se quita y no se pone nada en su lugar."""
+    d = direccion or ''
+    m = re.search(r'(?i)\bKM\.?\s*(\d+(?:[,\.]\d+)?)', d)
+    if not m:
+        return None
+    km = m.group(1)
+    entero = km.replace('.', ',').split(',')[0]
+    p = re.match(r'^[^,]*,\s*(\d+)\b', re.sub(r'(?i)(\.?\s*\bPK\b|\s*\bKM\b).*$', '', d))
+    if p and p.group(1) == entero:
+        return None
+    if re.search(r'(?i)\bTF[\s-]?%s\b' % re.escape(entero), d):
+        return None
+    if float(km.replace(',', '.')) >= 130:
+        return None
+    return km
 
 
 def localidad_de(e, muni):
@@ -518,8 +539,12 @@ def direccion(e, muni):
     num = m.group(1) if m else None
     if num and num.lstrip('0') == '':
         num = None                     # «, 0» no es un portal: es «sin numero»
-    if num and km and num == km.split(',')[0]:
-        num = None                     # «GUAZA,380 KM. 380»: el numero es el km
+    # El campo KM del registro a veces es una COPIA de otro numero, y entonces
+    # no es un kilometro: «GUAZA,380 KM. 380» y «DEL NORTE, 173 KM. 173» copian
+    # el portal; «(TF-152 ... KM. 152» copia la carretera. Salian «km 386» y «km
+    # 152» en carreteras que no llegan a eso. Antes se quitaba el portal y se
+    # dejaba el km: justo al reves.
+    # (km_de ya ha tirado los km que copian el portal o la carretera, y los imposibles)
     t = calle + (', %s' % num if num else '') + (' km %s' % km if km else '')
     loc = localidad_de(e, muni)
     lugar = '%s %s' % ((e.get('C.P.') or '').strip(), loc)

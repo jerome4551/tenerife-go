@@ -729,9 +729,37 @@ Registro sin cambios; revisor: 12 fichas, **0 hallazgos**, 13 de 13 estaciones.
 * En la app: la Shell antigua de Guía de Isora con su pin ya en el sitio del
   registro, y la Océano de Güímar en castellano y en chino tradicional.
 
+## Sesión 12 · Tacoronte · HECHA el 3 de octubre
+
+**5 altas** de 6. La app pasa de 925 a **930 lugares**. La sexta la cubría la
+antigua «Cepsa Tacoronte (TF-5)», a 1 m: se enlaza, y su horario pasa de
+«06:00-23:00 · todos los días» a lo que dice el registro, **24 h**. Otra antigua
+con el horario mal. Revisor: 5 fichas, **0 hallazgos**.
+
+### Kilómetros imposibles en las direcciones
+
+Salían «Carretera General Norte **km 386**» y «… del Norte **km 152**» en
+Tacoronte. Ninguna carretera de Tenerife llega a eso. El campo KM del registro a
+veces no es un kilómetro, y ahora se tira en tres casos que se ven en los propios
+datos, sin adivinar:
+
+* **copia del portal**: «GUAZA,**380** KM. **380**», «DEL NORTE, **173** KM.
+  **173**». Antes se quitaba el portal y se dejaba el km: justo al revés.
+* **copia de la carretera**: «(TF-**152** … KM. **152**».
+* **imposible, ≥ 130**: el km más alto con carretera identificable en el registro
+  es el **120** (Tejina de Guía). Quedaban 13200, 386, 320, 213, 194, 186, 136 y
+  132. Alguno será un decimal perdido (13200 sería el 13,2), pero no se sabe
+  cuál: se quita y no se pone nada.
+
+Cambian **11 direcciones** y ningún nombre; las 6 de municipios ya hechos se
+rehicieron (Arona, La Orotava, La Laguna, Santa Cruz).
+
+Y una errata del registro que no toco sin tu OK: «CARRETERA GRAL. PUERTO **CUZ**-LAS
+ARENAS» (Puerto de la Cruz). Casi seguro es «Cruz».
+
 ## Lo que queda
 
-**19 sesiones**, 51 altas. La siguiente es la **12-tacoronte** (6).
+**18 sesiones**, 46 altas. La siguiente es la **13-arico** (5).
 
 ## Lo que necesito de ti antes de seguir
 
