@@ -137,7 +137,8 @@
    },
    "revisada_el": "2026-10-03",
    "revision": "tools/revisar_gasolineras.py: 9 fichas, 0 hallazgos, 10/10 estaciones con su ficha",
-   "aviso_del_teide": "Movido el 3 de octubre, con OK de Jerome: de la Cepsa La Cañada (gas-tf21-aguamansa) a la Repsol Barroso (7677), que esta 1,3 km mas arriba por la TF-21. Textos trasladados tal cual en los diez idiomas; el aviso vive en datos/gasolineras/avisos.json."
+   "aviso_del_teide": "Movido el 3 de octubre, con OK de Jerome: de la Cepsa La Cañada (gas-tf21-aguamansa) a la Repsol Barroso (7677), que esta 1,3 km mas arriba por la TF-21. Textos trasladados tal cual en los diez idiomas; el aviso vive en datos/gasolineras/avisos.json.",
+   "pregunta_a_jerome": "16315 Plenergy: el registro dice «CALLE MOLINOS DE GOLFO» y OSM «Calle Molinos de Gofio». OSM no es fuente oficial: no se cambia sin su OK."
   },
   "08-san-miguel-de-abona": {
    "que": "Las 10 estaciones de San Miguel de Abona (10 altas, 0 ya en la app).",
@@ -384,5 +385,14 @@
    "municipio": null,
    "estaciones": 0
   }
+ },
+ "horarios_google_contra_registro": {
+  "_": "Las capturas de Jerome contra el registro, 3 de octubre. El registro manda (LEEME) y no se cambia nada; es una lista para comprobar.",
+  "8759": "Shell El Ramonal (SC): Google cierra 22:00 · registro 24 h",
+  "7628": "Cepsa C/ Filipinas (SC): Google cierra 23:00 · registro solo L-V 07:00-15:00",
+  "16466": "Oceano C/ Panama (SC): Google 24 h · registro 06:00-22:00",
+  "12412": "DISA Hogar Taxista (SC): Google cierra 16:00 · registro L-S 07-21, D 08-13",
+  "10214": "Cepsa Palo Blanco (Los Realejos): Google 24 h · registro 07:00-22:00",
+  "9966": "DISA Vistabella (La Laguna): Google 21:45 · registro 22:00 (despreciable)"
  }
 }

@@ -596,6 +596,36 @@ lugares**. Revisor: 10 fichas, **0 hallazgos**, 10 de 10 estaciones con su
 ficha. Los diez nombres y direcciones salieron limpios del registro con las
 reglas que ya había; no hizo falta ninguna nueva.
 
+## Revisión de los bloques 07 y 08 · 3 de octubre
+
+Registro sin cambios. Revisor: 19 fichas, **0 hallazgos**, 20 de 20 estaciones
+con su ficha. Dos pruebas nuevas:
+
+**1. Cada pin junto a una vía con coches** (OSM, solo como contraste): los 20, a
+menos de 33 m. Ninguna coordenada del registro apunta a un sitio raro. De paso:
+el registro dice «Calle Molinos de **Golfo**» (Plenergy, La Orotava) y OSM
+«Molinos de **Gofio**». OSM no es fuente oficial; **pregunta abierta**.
+
+**2. Tus capturas contra el registro.** No hay ninguna de La Orotava ni de San
+Miguel, así que lo pasé por las de los bloques anteriores: de 50 capturas con
+una sola estación, en **6 el horario de Google no casa**:
+
+| estación | Google | registro |
+|---|---|---|
+| Shell El Ramonal (SC) | cierra 22:00 | 24 h |
+| Cepsa, C/ Filipinas (SC) | cierra 23:00 | **solo L-V 07:00-15:00** |
+| Océano, C/ Panamá (SC) | 24 h | 06:00-22:00 |
+| DISA Hogar Taxista (SC) | cierra 16:00 | L-S 07-21 · D 08-13 |
+| Cepsa Palo Blanco (Los Realejos) | 24 h | 07:00-22:00 |
+| DISA Vistabella (La Laguna) | cierra 21:45 | 22:00 (despreciable) |
+
+El registro manda (LEEME) y la app enseña el suyo; no se cambia nada. Es una
+lista para comprobar en la web de cada marca.
+
+**3. En la app**, la Repsol del aviso del Teide en castellano, alemán y chino
+(el aviso, arriba del todo), la Cepsa ya sin él, y una de San Miguel en búlgaro:
+todas bien, nada fuera de la pantalla, cero errores.
+
 ## Lo que queda
 
 **22 sesiones**, 69 altas. La siguiente es la **09-arafo** (7).
