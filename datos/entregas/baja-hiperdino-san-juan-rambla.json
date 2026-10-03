@@ -1,0 +1,23 @@
+{
+ "_": [
+  "Baja de una ficha que no corresponde a ningun sitio, con orden de Jerome.",
+  "Indexado por id, como pide el LEEME del paquete de OSM."
+ ],
+ "bajas": {
+  "super-hiperdino-san-juan-rambla": {
+   "motivo": "En San Juan de la Rambla no hay ningun HiperDino. Google, preguntado por «HiperDino San Juan de la Rambla», da como mas cercanos tres SuperDino en los municipios de al lado (dos en Icod de los Vinos y el de Los Realejos), y en el sitio del pin no hay nada a 300 m en el mapa de OSM. Orden de Jerome del 3 de octubre: «Borralo».",
+   "como_salio": "Al revisar los bloques 07 y 08 de gasolineras: el pin estaba 234 m dentro de Los Realejos y su categoria decia «San Juan Rambla», abreviado, por eso el control del municipio no lo vio.",
+   "estaba_en": {
+    "lat": 28.3868,
+    "lng": -16.6238
+   },
+   "borrada_de": [
+    "index.html",
+    "idiomas/{en,fr,de,it,nl,zh,zht,bg}.json",
+    "idiomas/pl-lugares/07.json",
+    "idiomas/pl.json (montado)"
+   ],
+   "el_mismo_error_que": "mercadona-el-medano: una ficha que no existe, y lo que habia que preguntar no era «donde esta el mas cercano» sino «existe uno ahi»."
+  }
+ }
+}
