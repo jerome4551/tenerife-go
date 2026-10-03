@@ -364,7 +364,7 @@
  "gas-tf21-aguamansa": {
   "desc": "⚠️ OSTATNIA stacja paliw przed Parkiem Narodowym Teide, jadąc drogą TF-21 z La Orotava (Aguamansa). W Parku Narodowym NIE MA stacji paliw. Trzeba koniecznie zatankować tutaj przed wjazdem na Teide.",
   "cat": "⚠️ Ostatnia stacja paliw · Podjazd na Teide",
-  "hours": "Pn-So 07:00-21:00 · Święta sprawdzić"
+  "hours": "Pn-Nd 06:00-00:00"
  },
  "gas-tf5-el-bohio": {
   "desc": "DISA przy TF-5 km 25, La Matanza de Acentejo. Autostrada północna, dobrze położona między La Laguną a Puerto de la Cruz. Dobry punkt postoju.",

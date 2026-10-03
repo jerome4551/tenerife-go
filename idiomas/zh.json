@@ -275,7 +275,7 @@
  "gas-tf5-ptocz": {"hours": "24小时 · 每天", "desc": "经高速公路进入克鲁斯港入口处的BP加油站。对游客非常方便。宽敞明亮。", "cat": "加油站 · TF-5 北部"},
  "gas-tf2-lalaguna": {"hours": "周一至周日 24小时", "desc": "TF-2公路、拉拉古纳南向出口的Cepsa加油站。机场与首府之间的关键节点。", "cat": "加油站 · TF-2 中部"},
  "gas-tf1-abades": {"hours": "周一至周五 06:00-22:00 · 周六 07:00-22:00 · 周日 08:00-21:00", "desc": "TF-1公路44公里处、阿瓦德斯/阿里科一带的加油站。南部高速公路东段的重要一站。是机场与圭马尔之间为数不多的加油站之一。", "cat": "加油站 · TF-1 · 阿里科"},
- "gas-tf21-aguamansa": {"hours": "周一至周六 07:00-21:00 · 节假日请查询", "desc": "⚠️ 经TF-21从拉奥罗塔瓦（阿瓜曼萨）上行进入泰德国家公园前的最后一个加油站。国家公园内没有加油站。上泰德峰前务必在此加油。", "cat": "⚠️ 最后一个加油站 · 泰德上行"},
+ "gas-tf21-aguamansa": {"hours": "周一至周日 06:00至00:00", "desc": "⚠️ 经TF-21从拉奥罗塔瓦（阿瓜曼萨）上行进入泰德国家公园前的最后一个加油站。国家公园内没有加油站。上泰德峰前务必在此加油。", "cat": "⚠️ 最后一个加油站 · 泰德上行"},
  "gas-tf5-el-bohio": {"hours": "周一至周五 06:15-22:15 · 周六 06:45-22:15 · 周日 07:15-22:15", "desc": "TF-5公路25公里处、阿森特霍-拉马坦萨的DISA加油站。北部高速公路，位于拉拉古纳与克鲁斯港之间，位置便利。理想的歇脚点。", "cat": "加油站 · TF-5 · 拉马坦萨"},
  "gas-tf5-el-sauzal": {"hours": "每天 06:00-23:00", "desc": "TF-5公路22.5公里处、索萨尔的Repsol加油站。北部，位于拉拉古纳与塔科龙特之间。是从北部高速公路最易进出的加油站之一。", "cat": "加油站 · TF-5 · 索萨尔"},
  "gas-tf51-vilaflor": {"hours": "周一至周五 07:00-21:00 · 节假日请查询", "desc": "TF-51阿罗纳-比拉弗洛尔公路4公里处的加油站。南部内陆。对上行至比拉弗洛尔（西班牙海拔最高村庄）或从南面进入国家公园的人很重要。进入高海拔区前的最后一个加油站。", "cat": "⚠️ 加油站 · 南部内陆 · 比拉弗洛尔"},
@@ -887,5 +887,14 @@
  "gas-7626-granadilla-de-abona": {"desc": "Acceso Aeropuerto Tenerife Sur（Granadilla de Abona）。燃料：95号汽油、98号汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "周一至周日 24小时"},
  "gas-7705-granadilla-de-abona": {"desc": "Carretera TF-1 km 54（Granadilla de Abona）。燃料：95号汽油、98号汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "周一至周日 24小时"},
  "gas-7721-granadilla-de-abona": {"desc": "Carretera TF-64 Granadilla-El Médano（Granadilla de Abona）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Tgas", "hours": "周一至周日 24小时"},
- "gas-16132-granadilla-de-abona": {"desc": "Vía Lado Aire Aeropuerto Tenerife Sur（Granadilla de Abona）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Repsol", "hours": "周一至周日 24小时"}
+ "gas-16132-granadilla-de-abona": {"desc": "Vía Lado Aire Aeropuerto Tenerife Sur（Granadilla de Abona）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Repsol", "hours": "周一至周日 24小时"},
+ "gas-12381-la-orotava": {"desc": "Carretera Insular TF-333（La Orotava）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · BP", "hours": "周一至周日 06:00至22:00"},
+ "gas-7768-la-orotava": {"desc": "Urbanización Carmenaty（La Orotava）。燃料：95号汽油、98号汽油、柴油和优质柴油。另有：AdBlue。", "cat": "加油站 · BP", "hours": "周一至周日 06:00至22:00"},
+ "gas-9741-la-orotava": {"desc": "Carretera C-820（La Orotava）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · DISA", "hours": "周一至周五 06:00至22:00 · 周六 07:00至22:00 · 周日 08:00至14:00"},
+ "gas-7856-la-orotava": {"desc": "Plaza La Paz（La Orotava）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · DISA", "hours": "周一至周日 24小时"},
+ "gas-15901-la-orotava": {"desc": "Calle Albañilería（La Orotava）。燃料：95号汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "周一至周日 24小时"},
+ "gas-16315-la-orotava": {"desc": "Calle Molinos de Golfo（La Orotava）。燃料：95号汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "周一至周日 24小时"},
+ "gas-7677-la-orotava": {"desc": "Carretera TF-21 Aguamansa（La Orotava）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · Repsol", "hours": "周一至周日 06:00至22:00"},
+ "gas-7699-la-orotava": {"desc": "Carretera TF-324（La Orotava）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Repsol", "hours": "周一至周五 06:00至22:00 · 周六至周日 07:00至23:00"},
+ "gas-8776-la-orotava": {"desc": "Carretera General del Norte（La Orotava）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 06:00至22:00"}
 }

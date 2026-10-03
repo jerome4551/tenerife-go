@@ -296,6 +296,7 @@ def calle_corta(direccion):
         if not corto.endswith('.') and corto.isalpha():
             t = re.sub(r'(?i)\b%s\.\s*' % re.escape(corto), largo.upper() + ' ', t)
     t = re.sub(r'(?i)\bTF\s+(\d+)', r'TF-\1', t)      # «TF 154» es la TF-154
+    t = re.sub(r'(?i)\bC\s+(\d{3})\b', r'C-\1', t)    # «C 820», como el «C-822» de otra
     t = re.split(r'(?i)\s+MANZ\b', t)[0]              # la manzana, como la parcela
     # La urbanizacion y la parcela son el barrio y el numero, no la calle.
     t = re.split(r'(?i)[\s,-]*\b(URB|PARC|BARRIO|BLOQUE)\b\.?', t)[0]

@@ -124,12 +124,20 @@
   },
   "07-la-orotava": {
    "que": "Las 10 estaciones de La Orotava (9 altas, 1 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "La Orotava",
    "estaciones": 10,
    "altas": 9,
    "ya": 1,
-   "plan": "datos/gasolineras/plan/07-la-orotava.json"
+   "plan": "datos/gasolineras/plan/07-la-orotava.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 9,
+   "enlazadas": {
+    "gas-tf21-aguamansa": "7790 (a 12 m)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 9 fichas, 0 hallazgos, 10/10 estaciones con su ficha",
+   "pregunta_a_jerome": "gas-tf21-aguamansa (Cepsa La Cañada) dice «ULTIMA gasolinera antes del Parque Nacional del Teide subiendo por la TF-21» y lleva la etiqueta «Última». La Repsol Barroso (7677, «CARRETERA TF-21 AGUAMANSA») esta unos 1,3 km mas arriba por la misma carretera: la ultima es esa. Falta su OK para cambiar el texto."
   },
   "08-san-miguel-de-abona": {
    "que": "Las 10 estaciones de San Miguel de Abona (10 altas, 0 ya en la app).",

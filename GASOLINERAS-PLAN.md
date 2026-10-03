@@ -554,9 +554,35 @@ discrepancias.
 **5. Teléfonos:** el LEEME dice «solo el de la captura y solo con OK de Jerome».
 No se ha puesto ninguno.
 
+## Los puntos cardinales, en castellano en los diez idiomas · 3 de octubre
+
+Al mirar la ficha de Granadilla en italiano salió la etiqueta «SUR». No era de
+las gasolineras: «Norte» (191 fichas), «Sur» (153), «Oeste», «Noroeste», «Este»,
+«Sureste», «Centro» e «Interior» salían en castellano en toda la app, en el
+globo y en la ficha. La auditoría las tomaba por nombres de sitio porque alguna
+ficha lleva «… · Sur» detrás del punto volado. El glosario estaba a medias
+(«Nordeste» y «Suroeste» sí estaban). Añadidas las 72 traducciones con el mismo
+estilo, y la auditoría ya no acepta un punto cardinal como nombre de sitio:
+probada en rojo sin ellas y en verde con ellas.
+
+## Sesión 07 · La Orotava · HECHA el 3 de octubre
+
+**9 altas** de 10. La app pasa de 889 a **898 lugares**. La otra la cubría
+`gas-tf21-aguamansa` (Cepsa La Cañada, a 12 m): se enlaza, y su horario y su
+dirección pasan a ser los del registro (decía «L-S 07:00-21:00 · Consultar
+festivos»; el registro, «L-D 06:00-00:00»). Revisor: 9 fichas, **0 hallazgos**.
+Retoques de forma: «Albañilería» con tilde y «C 820» como «C-820».
+
+**Una pregunta para ti.** Esa ficha antigua dice «⚠️ **ÚLTIMA** gasolinera antes
+del Parque Nacional del Teide subiendo por la TF-21 (…) Imprescindible repostar
+aquí» y lleva la etiqueta «Última». Pero la **Repsol Barroso**, en la «CARRETERA
+TF-21 AGUAMANSA», está **unos 1,3 km más arriba** por la misma carretera. La
+última, subiendo por ahí, es la Repsol. Es texto redactado en diez idiomas y no
+lo toco sin tu OK.
+
 ## Lo que queda
 
-**24 sesiones**, 103 altas. La siguiente es la **07, La Orotava (10)**.
+**23 sesiones**, 94 altas. La siguiente es la **08-san-miguel-de-abona** (10).
 
 ---
 
