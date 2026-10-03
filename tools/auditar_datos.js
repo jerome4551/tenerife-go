@@ -138,10 +138,12 @@ console.log('\n=== lugares ===');
    del aeropuerto, y Repsol la da abierta las 24 horas;
    889 -> 898 el 3 de octubre, con 9 de las 10 de La Orotava (sesion 07): la
    otra ya la cubria gas-tf21-aguamansa, que se enlaza;
-   898 -> 908 el 3 de octubre, con las 10 de San Miguel de Abona (sesion 08).
+   898 -> 908 el 3 de octubre, con las 10 de San Miguel de Abona (sesion 08);
+   908 -> 914 el 3 de octubre, con 6 de las 7 de Arafo (sesion 09): la otra ya
+   la cubria gas-tf1-guimar, que se enlaza.
    Esta cifra sube una vez por sesion de gasolineras hasta las 198 altas, y se
    cambia A MANO a proposito: asi ningun municipio entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 908);
+debe('lugares', PLACES.length, PLACES.length === 914);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

@@ -626,11 +626,39 @@ lista para comprobar en la web de cada marca.
 (el aviso, arriba del todo), la Cepsa ya sin él, y una de San Miguel en búlgaro:
 todas bien, nada fuera de la pantalla, cero errores.
 
+## Sesión 09 · Arafo · HECHA el 3 de octubre
+
+**6 altas** de 7. La app pasa de 908 a **914 lugares**. Revisor: 6 fichas, **0
+hallazgos**, 7 de 7 con su ficha. La séptima la cubría la antigua «BP Güímar
+(TF-1)», a 14 m: se enlaza, y su horario pasa de **07:00-22:00** a lo que dice el
+registro, **24 h**. Otra antigua con el horario mal.
+
+**Para la sesión 91:** esa ficha se llama «BP **Güímar** (TF-1)» y lleva la
+etiqueta «Güímar», pero está en **Arafo** (Polígono Plan Parcial El Carretón), y
+el registro no dice TF-1.
+
+Retoque de forma: «ACCESO CARRETERA A LA HIDALGA, **0**»: un cero no es un
+portal; ahora cuenta como «sin número».
+
+### Dos puntos ciegos del control del municipio
+
+El control solo lee los trozos de la categoría y el paréntesis final del nombre.
+No mira el **cuerpo del nombre** ni las **etiquetas**, y solo reconoce el nombre
+**entero** del municipio. Medido: 22 etiquetas en 20 fichas nombran otro
+municipio que el del polígono. Casi todas tienen sentido (un sendero de Vilaflor
+a Arona, el HiperDino de Santiago del Teide etiquetado «El Tanque» porque es el
+súper de ese pueblo), así que convertirlo en un control que falla solo daría
+falsas alarmas. Pero salió una que no cuadra:
+
+* **«HiperDino San Juan de la Rambla»** tiene el pin **234 m dentro de Los
+  Realejos**. Su categoría dice «San Juan **Rambla**», abreviado, y por eso el
+  control no lo vio. O el súper está en Los Realejos junto a la raya, o el pin
+  está desplazado (tiene cuatro decimales, de los puestos a ojo). **Pregunta
+  abierta**, no es de las gasolineras.
+
 ## Lo que queda
 
-**22 sesiones**, 69 altas. La siguiente es la **09-arafo** (7).
-
----
+**21 sesiones**, 63 altas. La siguiente es la **10-guia-de-isora** (7).
 
 ## Lo que necesito de ti antes de seguir
 

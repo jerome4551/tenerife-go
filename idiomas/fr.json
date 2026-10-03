@@ -269,7 +269,7 @@
  "farm-adeje-austria": {"hours": "Lun-Ven 9h–21h · Sam 9h–14h · Garde tournante", "desc": "Pharmacie au centre d'Adeje. Grands horaires en semaine. Garde tournante avec les autres pharmacies d'Adeje.", "cat": "Pharmacie · Adeje"},
  "gas-tf1-granadilla": {"hours": "Lun-Dim 06:00-00:00", "desc": "Station Repsol sur la TF-1 à Granadilla. Boutique et lavage auto. Accès facile depuis l'autoroute.", "cat": "Carburant · TF-1 Sud"},
  "gas-tf1-guaza": {"hours": "Lun-Dim 24 h", "desc": "Station BP à Guaza, sortie Arona. Bon arrêt avant Los Cristianos et Las Américas.", "cat": "Carburant · TF-1 Sud"},
- "gas-tf1-guimar": {"hours": "07h–22h · Tous les jours", "desc": "BP à la sortie de Güímar. Près des Pyramides de Güímar. Bonnes installations.", "cat": "Carburant · TF-1 Est"},
+ "gas-tf1-guimar": {"hours": "Lun-Dim 24 h", "desc": "BP à la sortie de Güímar. Près des Pyramides de Güímar. Bonnes installations.", "cat": "Carburant · TF-1 Est"},
  "gas-tf5-lalaguna": {"hours": "Lun-Dim 24 h", "desc": "Repsol à la sortie de La Laguna sur la TF-5. L'une des plus fréquentées du nord. Lavage automatique.", "cat": "Carburant · TF-5 Nord"},
  "gas-tf5-tacoronte": {"hours": "06h–23h · Tous les jours", "desc": "Cepsa à la sortie de Tacoronte. Zone de vignobles et guachinches. Café et boutique disponibles.", "cat": "Carburant · TF-5 Nord"},
  "gas-tf5-ptocz": {"hours": "24h · Tous les jours", "desc": "BP à l'entrée de Puerto de la Cruz par l'autoroute. Très pratique pour les touristes. Spacieuse et bien éclairée.", "cat": "Carburant · TF-5 Nord"},
@@ -906,5 +906,11 @@
  "gas-16520-san-miguel-de-abona": {"desc": "Avenida Claudio Delgado Díaz, San Miguel de Abona. Carburants : essence 95 et gazole.", "cat": "Station-service · Plenergy", "hours": "Lun-Dim 24 h"},
  "gas-15913-san-miguel-de-abona": {"desc": "Calle Mencey Adjona, San Miguel de Abona. Carburants : essence 95 et gazole.", "cat": "Station-service · Plenergy", "hours": "Lun-Dim 24 h"},
  "gas-10633-san-miguel-de-abona": {"desc": "Autopista del Sur km 64,9, San Miguel de Abona. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 24 h"},
- "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65, San Miguel de Abona. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 06:00-23:00"}
+ "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65, San Miguel de Abona. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 06:00-23:00"},
+ "gas-16267-arafo": {"desc": "Polígono Industrial El Carretón, Arafo. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · H2exagon", "hours": "Lun-Dim 24 h"},
+ "gas-7639-arafo": {"desc": "Acceso Carretera a la Hidalga, Arafo. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 24 h"},
+ "gas-16177-arafo": {"desc": "Camino La Molineta Polígono El Carretón, Arafo. Carburants : essence 95 et gazole.", "cat": "Station-service · Plenergy", "hours": "Lun-Dim 24 h"},
+ "gas-8326-arafo": {"desc": "Carretera Arafo La Hidalga TF-281, Arafo. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 24 h"},
+ "gas-12630-arafo": {"desc": "Plaza Industrial Valle Güímar, Arafo. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-10635-arafo": {"desc": "Carretera General del Sur, Arafo. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Tgas", "hours": "Lun-Sam 06:00-21:00 · Dim 07:00-15:00"}
 }

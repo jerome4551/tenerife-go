@@ -643,5 +643,35 @@
   "desc": "Carretera TF-65, San Miguel de Abona. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · Repsol",
   "hours": "Pn-Nd 06:00-23:00"
+ },
+ "gas-16267-arafo": {
+  "desc": "Polígono Industrial El Carretón, Arafo. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · H2exagon",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-7639-arafo": {
+  "desc": "Acceso Carretera a la Hidalga, Arafo. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "cat": "Stacja paliw · Moeve",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-16177-arafo": {
+  "desc": "Camino La Molineta Polígono El Carretón, Arafo. Paliwa: benzyna 95 i olej napędowy.",
+  "cat": "Stacja paliw · Plenergy",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-8326-arafo": {
+  "desc": "Carretera Arafo La Hidalga TF-281, Arafo. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-12630-arafo": {
+  "desc": "Plaza Industrial Valle Güímar, Arafo. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-10635-arafo": {
+  "desc": "Carretera General del Sur, Arafo. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Tgas",
+  "hours": "Pn-So 06:00-21:00 · Nd 07:00-15:00"
  }
 }

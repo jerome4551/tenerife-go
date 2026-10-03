@@ -155,12 +155,20 @@
   },
   "09-arafo": {
    "que": "Las 7 estaciones de Arafo (6 altas, 1 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Arafo",
    "estaciones": 7,
    "altas": 6,
    "ya": 1,
-   "plan": "datos/gasolineras/plan/09-arafo.json"
+   "plan": "datos/gasolineras/plan/09-arafo.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 6,
+   "enlazadas": {
+    "gas-tf1-guimar": "13012 (a 14 m)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 6 fichas, 0 hallazgos, 7/7 estaciones con su ficha",
+   "para_la_91": "gas-tf1-guimar se llama «BP Güímar (TF-1)» y lleva la etiqueta «Güímar», pero esta en Arafo (Poligono Plan Parcial El Carreton) y el registro no dice TF-1. Su horario decia 07:00-22:00 y el registro da 24 h: ya corregido."
   },
   "10-guia-de-isora": {
    "que": "Las 7 estaciones de Guía de Isora (6 altas, 1 ya en la app).",

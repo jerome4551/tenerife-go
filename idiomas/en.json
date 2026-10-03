@@ -269,7 +269,7 @@
  "farm-adeje-austria": {"hours": "Mon-Fri 9:00–21:00 · Sat 9:00–14:00 · Rotating duty", "desc": "Pharmacy in Adeje centre. Long weekday hours. Rotating duty with other pharmacies in Adeje and Costa Adeje area.", "cat": "Pharmacy · Adeje"},
  "gas-tf1-granadilla": {"hours": "Mon-Sun 06:00-00:00", "desc": "Repsol petrol station by TF-1 in Granadilla. Shop and car wash. Easy motorway access.", "cat": "Petrol · TF-1 South"},
  "gas-tf1-guaza": {"hours": "Mon-Sun 24 h", "desc": "BP petrol station in Guaza, Arona exit. Good stop before Los Cristianos and Las Américas.", "cat": "Petrol · TF-1 South"},
- "gas-tf1-guimar": {"hours": "07:00–22:00 · Every day", "desc": "BP at the Güímar exit. Near the Pyramids of Güímar. Good facilities.", "cat": "Petrol · TF-1 East"},
+ "gas-tf1-guimar": {"hours": "Mon-Sun 24 h", "desc": "BP at the Güímar exit. Near the Pyramids of Güímar. Good facilities.", "cat": "Petrol · TF-1 East"},
  "gas-tf5-lalaguna": {"hours": "Mon-Sun 24 h", "desc": "Repsol at La Laguna exit on TF-5. One of the busiest in the north. Automatic car wash.", "cat": "Petrol · TF-5 North"},
  "gas-tf5-tacoronte": {"hours": "06:00–23:00 · Every day", "desc": "Cepsa by the Tacoronte exit. Wine and guachinche area. Coffee and shop available.", "cat": "Petrol · TF-5 North"},
  "gas-tf5-ptocz": {"hours": "24h · Every day", "desc": "BP at the motorway entrance to Puerto de la Cruz. Very practical for tourists. Spacious and well-lit.", "cat": "Petrol · TF-5 North"},
@@ -906,5 +906,11 @@
  "gas-16520-san-miguel-de-abona": {"desc": "Avenida Claudio Delgado Díaz, San Miguel de Abona. Fuels: petrol 95 and diesel.", "cat": "Petrol station · Plenergy", "hours": "Mon-Sun 24 h"},
  "gas-15913-san-miguel-de-abona": {"desc": "Calle Mencey Adjona, San Miguel de Abona. Fuels: petrol 95 and diesel.", "cat": "Petrol station · Plenergy", "hours": "Mon-Sun 24 h"},
  "gas-10633-san-miguel-de-abona": {"desc": "Autopista del Sur km 64,9, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 24 h"},
- "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 06:00-23:00"}
+ "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 06:00-23:00"},
+ "gas-16267-arafo": {"desc": "Polígono Industrial El Carretón, Arafo. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · H2exagon", "hours": "Mon-Sun 24 h"},
+ "gas-7639-arafo": {"desc": "Acceso Carretera a la Hidalga, Arafo. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Sun 24 h"},
+ "gas-16177-arafo": {"desc": "Camino La Molineta Polígono El Carretón, Arafo. Fuels: petrol 95 and diesel.", "cat": "Petrol station · Plenergy", "hours": "Mon-Sun 24 h"},
+ "gas-8326-arafo": {"desc": "Carretera Arafo La Hidalga TF-281, Arafo. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 24 h"},
+ "gas-12630-arafo": {"desc": "Plaza Industrial Valle Güímar, Arafo. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 06:00-22:00"},
+ "gas-10635-arafo": {"desc": "Carretera General del Sur, Arafo. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Tgas", "hours": "Mon-Sat 06:00-21:00 · Sun 07:00-15:00"}
 }

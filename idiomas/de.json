@@ -269,7 +269,7 @@
  "farm-adeje-austria": {"hours": "Mo-Fr 9–21 · Sa 9–14 Uhr · Rotierender Notdienst", "desc": "Apotheke im Zentrum von Adeje. Lange Öffnungszeiten. Rotierender Notdienst mit anderen Apotheken.", "cat": "Apotheke · Adeje"},
  "gas-tf1-granadilla": {"hours": "Mo-So 06:00-00:00", "desc": "Repsol-Tankstelle an der TF-1 in Granadilla. Shop und Autowaschanlage. Einfache Autobahnauffahrt.", "cat": "Tankstelle · TF-1 Süd"},
  "gas-tf1-guaza": {"hours": "Mo-So 24 Std.", "desc": "BP-Tankstelle in Guaza, Ausfahrt Arona. Guter Stopp vor Los Cristianos und Las Américas.", "cat": "Tankstelle · TF-1 Süd"},
- "gas-tf1-guimar": {"hours": "07–22 Uhr · Jeden Tag", "desc": "BP an der Ausfahrt Güímar. Nahe der Pyramiden von Güímar. Gute Einrichtungen.", "cat": "Tankstelle · TF-1 Ost"},
+ "gas-tf1-guimar": {"hours": "Mo-So 24 Std.", "desc": "BP an der Ausfahrt Güímar. Nahe der Pyramiden von Güímar. Gute Einrichtungen.", "cat": "Tankstelle · TF-1 Ost"},
  "gas-tf5-lalaguna": {"hours": "Mo-So 24 Std.", "desc": "Repsol an der Ausfahrt La Laguna der TF-5. Eine der meistbefahrenen im Norden. Automatische Waschanlage.", "cat": "Tankstelle · TF-5 Nord"},
  "gas-tf5-tacoronte": {"hours": "06–23 Uhr · Jeden Tag", "desc": "Cepsa an der Ausfahrt Tacoronte. Wein- und Guachinche-Gebiet. Kaffee und Shop vorhanden.", "cat": "Tankstelle · TF-5 Nord"},
  "gas-tf5-ptocz": {"hours": "24h · Jeden Tag", "desc": "BP an der Autobahneinfahrt nach Puerto de la Cruz. Sehr praktisch für Touristen. Geräumig und hell beleuchtet.", "cat": "Tankstelle · TF-5 Nord"},
@@ -906,5 +906,11 @@
  "gas-16520-san-miguel-de-abona": {"desc": "Avenida Claudio Delgado Díaz, San Miguel de Abona. Kraftstoffe: Benzin 95 und Diesel.", "cat": "Tankstelle · Plenergy", "hours": "Mo-So 24 Std."},
  "gas-15913-san-miguel-de-abona": {"desc": "Calle Mencey Adjona, San Miguel de Abona. Kraftstoffe: Benzin 95 und Diesel.", "cat": "Tankstelle · Plenergy", "hours": "Mo-So 24 Std."},
  "gas-10633-san-miguel-de-abona": {"desc": "Autopista del Sur km 64,9, San Miguel de Abona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-So 24 Std."},
- "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65, San Miguel de Abona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-So 06:00-23:00"}
+ "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65, San Miguel de Abona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-So 06:00-23:00"},
+ "gas-16267-arafo": {"desc": "Polígono Industrial El Carretón, Arafo. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · H2exagon", "hours": "Mo-So 24 Std."},
+ "gas-7639-arafo": {"desc": "Acceso Carretera a la Hidalga, Arafo. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-So 24 Std."},
+ "gas-16177-arafo": {"desc": "Camino La Molineta Polígono El Carretón, Arafo. Kraftstoffe: Benzin 95 und Diesel.", "cat": "Tankstelle · Plenergy", "hours": "Mo-So 24 Std."},
+ "gas-8326-arafo": {"desc": "Carretera Arafo La Hidalga TF-281, Arafo. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-So 24 Std."},
+ "gas-12630-arafo": {"desc": "Plaza Industrial Valle Güímar, Arafo. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-So 06:00-22:00"},
+ "gas-10635-arafo": {"desc": "Carretera General del Sur, Arafo. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Tgas", "hours": "Mo-Sa 06:00-21:00 · So 07:00-15:00"}
 }

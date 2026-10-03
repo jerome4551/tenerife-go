@@ -493,6 +493,8 @@ def direccion(e, muni):
     sin_km = re.sub(r'(?i)(\.?\s*\bPK\b|\s*\bKM\b).*$', '', raw)
     m = re.match(r'^[^,]*,\s*(\d+[A-Za-z]?)\b', sin_km)   # el portal, si lo hay
     num = m.group(1) if m else None
+    if num and num.lstrip('0') == '':
+        num = None                     # «, 0» no es un portal: es «sin numero»
     if num and km and num == km.split(',')[0]:
         num = None                     # «GUAZA,380 KM. 380»: el numero es el km
     t = calle + (', %s' % num if num else '') + (' km %s' % km if km else '')

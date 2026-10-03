@@ -269,7 +269,7 @@
  "farm-adeje-austria": {"hours": "週一至週五 9:00–21:00 · 週六 9:00–14:00 · 輪值", "desc": "阿德赫市中心的藥房。工作日營業時間長。與阿德赫及阿德赫海岸地區的其他藥房輪流值班。", "cat": "藥房 · 阿德赫"},
  "gas-tf1-granadilla": {"hours": "週一至週日 06:00至00:00", "desc": "格拉納迪利亞TF-1公路旁的Repsol加油站。設有便利商店與洗車。從高速公路進出便捷。", "cat": "加油站 · TF-1 南部"},
  "gas-tf1-guaza": {"hours": "週一至週日 24小時", "desc": "瓜薩（阿羅納出口）的BP加油站。前往洛斯克里斯蒂亞諾斯與美洲海灘前的理想一站。", "cat": "加油站 · TF-1 南部"},
- "gas-tf1-guimar": {"hours": "07:00–22:00 · 每天", "desc": "圭馬爾出口的BP加油站。鄰近圭馬爾金字塔。設施完善。", "cat": "加油站 · TF-1 東部"},
+ "gas-tf1-guimar": {"hours": "週一至週日 24小時", "desc": "圭馬爾出口的BP加油站。鄰近圭馬爾金字塔。設施完善。", "cat": "加油站 · TF-1 東部"},
  "gas-tf5-lalaguna": {"hours": "週一至週日 24小時", "desc": "TF-5公路拉拉古納出口的Repsol加油站。北部車流最繁忙的之一。設有自動洗車。", "cat": "加油站 · TF-5 北部"},
  "gas-tf5-tacoronte": {"hours": "06:00–23:00 · 每天", "desc": "塔科龍特出口旁的Cepsa加油站。酒莊與鄉村酒館雲集之地。設有咖啡與便利商店。", "cat": "加油站 · TF-5 北部"},
  "gas-tf5-ptocz": {"hours": "24小時 · 每天", "desc": "經高速公路進入克魯斯港入口處的BP加油站。對遊客非常方便。寬敞明亮。", "cat": "加油站 · TF-5 北部"},
@@ -906,5 +906,11 @@
  "gas-16520-san-miguel-de-abona": {"desc": "Avenida Claudio Delgado Díaz（San Miguel de Abona）。燃料：95號汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "週一至週日 24小時"},
  "gas-15913-san-miguel-de-abona": {"desc": "Calle Mencey Adjona（San Miguel de Abona）。燃料：95號汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "週一至週日 24小時"},
  "gas-10633-san-miguel-de-abona": {"desc": "Autopista del Sur km 64,9（San Miguel de Abona）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 24小時"},
- "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65（San Miguel de Abona）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 06:00至23:00"}
+ "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65（San Miguel de Abona）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 06:00至23:00"},
+ "gas-16267-arafo": {"desc": "Polígono Industrial El Carretón（Arafo）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · H2exagon", "hours": "週一至週日 24小時"},
+ "gas-7639-arafo": {"desc": "Acceso Carretera a la Hidalga（Arafo）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Moeve", "hours": "週一至週日 24小時"},
+ "gas-16177-arafo": {"desc": "Camino La Molineta Polígono El Carretón（Arafo）。燃料：95號汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "週一至週日 24小時"},
+ "gas-8326-arafo": {"desc": "Carretera Arafo La Hidalga TF-281（Arafo）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 24小時"},
+ "gas-12630-arafo": {"desc": "Plaza Industrial Valle Güímar（Arafo）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 06:00至22:00"},
+ "gas-10635-arafo": {"desc": "Carretera General del Sur（Arafo）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · Tgas", "hours": "週一至週六 06:00至21:00 · 週日 07:00至15:00"}
 }
