@@ -45,12 +45,12 @@
   "hours": "Pn-Nd 24 h"
  },
  "gas-14353-santa-cruz-de-tenerife": {
-  "desc": "Calle Subida al Mayorazgo, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Calle Subida al Mayorazgo, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98 i olej napędowy. Także: AdBlue.",
   "cat": "Stacja paliw · Canary Oil",
   "hours": "Pn-Nd 24 h"
  },
  "gas-14868-santa-cruz-de-tenerife": {
-  "desc": "Calle Jesús Hernández Guzmán, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy, odnawialny olej napędowy, LPG i sprężony gaz ziemny.",
+  "desc": "Calle Jesús Hernández Guzmán, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy, odnawialny olej napędowy, LPG i sprężony gaz ziemny. Także: AdBlue.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 06:00-22:00"
  },
@@ -110,7 +110,7 @@
   "hours": "Pn-Nd 24 h"
  },
  "gas-7863-santa-cruz-de-tenerife": {
-  "desc": "Carretera General del Sur, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i odnawialny olej napędowy.",
+  "desc": "Carretera General del Sur, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i odnawialny olej napędowy. Także: AdBlue.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-So 06:00-22:00 · Nd 08:00-22:00"
  },
@@ -125,7 +125,7 @@
   "hours": "Pn-Nd 06:00-22:00"
  },
  "gas-7875-santa-cruz-de-tenerife": {
-  "desc": "Vía Penetración, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "desc": "Vía Penetración, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy. Także: AdBlue.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 24 h"
  },
@@ -165,7 +165,7 @@
   "hours": "Pn-Pt 06:00-22:00 · So-Nd 07:30-22:00"
  },
  "gas-9951-santa-cruz-de-tenerife": {
-  "desc": "Calle Fomento, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Calle Fomento, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98 i olej napędowy. Także: AdBlue.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 24 h"
  },
@@ -280,7 +280,7 @@
   "hours": "Pn-Nd 24 h"
  },
  "gas-13353-san-cristobal-de-la-laguna": {
-  "desc": "Camino de la Villa, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "desc": "Camino de la Villa, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium. Także: AdBlue.",
   "cat": "Stacja paliw · Taxlaguna",
   "hours": "Pn-Pt 06:30-22:00 · So-Nd 08:00-22:00"
  },
@@ -355,7 +355,7 @@
   "hours": "Pn-Nd 06:00-22:00"
  },
  "gas-10127-arona": {
-  "desc": "Autopista TF-1 km 65,5, Arona. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "desc": "Autopista TF-1 km 65,5, Arona. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium. Także: AdBlue.",
   "cat": "Stacja paliw · Shell",
   "hours": "Pn-Nd 06:00-22:00"
  },
@@ -368,5 +368,75 @@
   "desc": "Carretera Valle San Lorenzo-Las Galletas, Arona. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · Tgas",
   "hours": "Pn-Nd 24 h"
+ },
+ "gas-13228-adeje": {
+  "desc": "Avenida Siam, Adeje. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · BP",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-12776-adeje": {
+  "desc": "Calle Charfa, Adeje. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · BP",
+  "hours": "Pn-So 06:00-22:00 · Nd 07:00-22:00"
+ },
+ "gas-7776-adeje": {
+  "desc": "Polígono Industrial Barranco Las Torres, Adeje. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · BP",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-7864-adeje": {
+  "desc": "Carretera General Adeje a Guía de Isora, Adeje. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7832-adeje": {
+  "desc": "General C-822, Adeje. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i odnawialny olej napędowy. Także: AdBlue.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-7853-adeje": {
+  "desc": "Urbanización San Eugenio, Adeje. Paliwa: benzyna 95 i olej napędowy.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 08:00-17:30"
+ },
+ "gas-13639-adeje": {
+  "desc": "Calle Charfa Esquina Avenida Las Palmitas, Adeje. Paliwa: benzyna 95 i olej napędowy.",
+  "cat": "Stacja paliw · GMOil",
+  "hours": "Pn-So 07:00-22:00 · Nd 09:00-16:00"
+ },
+ "gas-8741-adeje": {
+  "desc": "Carretera General Adeje a Playa San Juan, Adeje. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy. Także: AdBlue.",
+  "cat": "Stacja paliw · H2GO",
+  "hours": "Pn-Nd 07:00-22:00"
+ },
+ "gas-13992-adeje": {
+  "desc": "Calle Dublín, Adeje. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "cat": "Stacja paliw · Moeve",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-16015-adeje": {
+  "desc": "Avenida de Ayyo, Adeje. Paliwa: benzyna 95 i olej napędowy.",
+  "cat": "Stacja paliw · Plenergy",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-12784-adeje": {
+  "desc": "Avenida Ayyo, Adeje. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-7709-adeje": {
+  "desc": "Carretera TF-47, Adeje. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-11525-adeje": {
+  "desc": "Avenida Ayyo, Adeje. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Shell",
+  "hours": "Pn-Nd 24 h"
+ },
+ "gas-7730-adeje": {
+  "desc": "Autopista TF-1 Sur a Armeñime, Adeje. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Tgas",
+  "hours": "Pn-Nd 08:00-21:00"
  }
 }

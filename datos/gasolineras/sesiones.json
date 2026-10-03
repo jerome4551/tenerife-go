@@ -71,12 +71,16 @@
   },
   "04-adeje": {
    "que": "Las 14 estaciones de Adeje (14 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Adeje",
    "estaciones": 14,
    "altas": 14,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/04-adeje.json"
+   "plan": "datos/gasolineras/plan/04-adeje.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 14,
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 14 fichas, 0 hallazgos, 14/14 estaciones con su ficha"
   },
   "05-los-realejos": {
    "que": "Las 13 estaciones de Los Realejos (12 altas, 1 ya en la app).",

@@ -122,10 +122,11 @@ console.log('\n=== lugares ===');
    813 -> 839 el 2 de octubre, con 26 de las 28 de La Laguna (sesion 02): las
    otras 2 ya las cubrian gas-tf2-lalaguna y gas-tf5-lalaguna, que se enlazan;
    839 -> 853 el 2 de octubre, con 14 de las 15 de Arona (sesion 03): la otra
-   ya la cubria gas-tf1-guaza, que se enlaza.
+   ya la cubria gas-tf1-guaza, que se enlaza;
+   853 -> 867 el 3 de octubre, con las 14 de Adeje (sesion 04).
    Esta cifra sube una vez por sesion de gasolineras hasta las 198 altas, y se
    cambia A MANO a proposito: asi ningun municipio entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 853);
+debe('lugares', PLACES.length, PLACES.length === 867);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

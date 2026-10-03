@@ -382,9 +382,33 @@ errata de «Carretera», pero cambiarla sería adivinar. Y «Moeve · Carretera
 General» (km 136, Valle de San Lorenzo) es pobre, pero es todo lo que dice el
 registro.
 
+## El AdBlue · 3 de octubre, a petición de Jerome
+
+Va en la ficha de las **23 estaciones** que lo venden según el registro. No es un
+combustible —es un aditivo para el escape de los diésel—, así que no va en la
+lista de «Combustibles» sino aparte, con la misma forma de etiqueta y dos
+puntos, que no declina nada en ningún idioma:
+
+> Autopista TF-1 km 65,5, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo
+> A y gasóleo premium. **Además: AdBlue.**
+
+«AdBlue» es lo que pone en el surtidor y se escribe igual en los diez. El
+revisor exige las dos cosas: que lo diga **quien lo vende** y que **no** lo diga
+quien no lo vende. Antes de re-sincronizar dio 70 hallazgos (7 fichas × 10
+idiomas); después, 0.
+
+## Sesión 04 · Adeje · HECHA el 3 de octubre
+
+**14 altas**, ninguna ficha antigua en Adeje. La app pasa de 853 a **867
+lugares**. Revisor: 14 fichas campo a campo, **0 hallazgos**, 14 de 14
+estaciones con su ficha. Ya hay 9 fichas que dicen AdBlue.
+
+«Avenida **de** Ayyo» (Plenergy) y «Avenida Ayyo» (Repsol, Shell) conviven
+porque así lo escribe el registro; al ser marcas distintas no se confunden.
+
 ## Lo que queda
 
-**27 sesiones**, 138 altas. La siguiente es la **04, Adeje (14)**.
+**26 sesiones**, 124 altas. La siguiente es la **05, Los Realejos (13)**.
 
 ---
 

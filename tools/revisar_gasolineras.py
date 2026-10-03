@@ -40,7 +40,8 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IDIOMAS = ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']
 
 # Campo de precio del registro -> como lo nombra el castellano de la ficha.
-# AdBlue no esta: es un aditivo, no un combustible, y no va en «Combustibles».
+# AdBlue no esta: es un aditivo, no un combustible. Va aparte, en «Además:
+# AdBlue.», y se mira por separado.
 NOMBRE = {
     'Precio Gasolina 95 E5': 'gasolina 95',
     'Precio Gasolina 95 E5 Premium': 'gasolina 95 premium',
@@ -155,13 +156,20 @@ def main():
         for k in sorted(raros):
             mal(p['id'], 'el registro trae «%s» y la revision no sabe nombrarlo' % k)
         debe = {NOMBRE[k] for k in con if k in NOMBRE}
-        m = re.search(r'Combustibles: (.*)\.$', p['desc'] or '')
+        m = re.search(r'Combustibles: ([^.]*)\.', p['desc'] or '')
         dice = set(re.split(r', | y ', m.group(1))) if m else set()
         if dice != debe:
             if debe - dice:
                 mal(p['id'], 'le FALTA: %s' % ', '.join(sorted(debe - dice)))
             if dice - debe:
                 mal(p['id'], 'le SOBRA: %s' % ', '.join(sorted(dice - debe)))
+        # AdBlue: lo dice quien lo vende y SOLO quien lo vende
+        vende = bool((e.get('Precio Adblue') or '').strip())
+        dice_ad = 'AdBlue' in (p['desc'] or '')
+        if vende and not dice_ad:
+            mal(p['id'], 'el registro dice que vende AdBlue y la ficha no')
+        if dice_ad and not vende:
+            mal(p['id'], 'la ficha dice AdBlue y el registro no lo trae')
         # nombre: nada inventado
         fuente = set(piezas(' '.join([e['Rótulo'], e['Dirección'], e['Localidad'],
                                       muni, e['IDEESS']]))) | VIAS
@@ -184,6 +192,8 @@ def main():
                 mal(p['id'], '%s: dia en castellano en «%s»' % (L, t['hours']))
             if sorted(re.findall(r'\d', t['hours'])) != cifras:
                 mal(p['id'], '%s: horario con otras cifras: «%s»' % (L, t['hours']))
+            if vende != ('AdBlue' in t['desc']):
+                mal(p['id'], '%s: el AdBlue no cuadra con el castellano' % L)
             todo = ' '.join(t.values())
             if '€' in todo or re.search(r'\d[,.]\d{3}\b', todo):
                 mal(p['id'], '%s: parece un precio' % L)

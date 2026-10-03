@@ -91,7 +91,14 @@ V = {
  'glp': {'es': 'GLP', 'en': 'LPG', 'fr': 'GPL', 'de': 'Autogas', 'it': 'GPL',
          'nl': 'LPG', 'zh': '液化石油气', 'zht': '液化石油氣', 'bg': 'газ LPG',
          'pl': 'LPG'},
- 'dospuntos': {'zh': '：', 'zht': '：'},   # el chino usa los suyos, de ancho completo
+ 'dospuntos': {'zh': '：', 'zht': '：'},
+ # El AdBlue no es un combustible -es un aditivo para el escape de los diesel-
+ # asi que no va en la lista de «Combustibles»: va aparte, con la misma forma de
+ # etiqueta y dos puntos, que no declina nada. «AdBlue» es lo que pone en el
+ # surtidor y se escribe igual en los diez. Lo pidio Jerome el 3 de octubre.
+ 'ademas': {'es': 'Además', 'en': 'Also', 'fr': 'Également', 'de': 'Außerdem',
+            'it': 'Inoltre', 'nl': 'Ook', 'zh': '另有', 'zht': '另有', 'bg': 'Също',
+            'pl': 'Także'},   # el chino usa los suyos, de ancho completo
  'y': {'es': 'y', 'en': 'and', 'fr': 'et', 'de': 'und', 'it': 'e', 'nl': 'en',
        'zh': '和', 'zht': '和', 'bg': 'и', 'pl': 'i'},
  'coma': {'zh': '、', 'zht': '、'},     # el chino enumera con ideografica, no con «,»
@@ -338,6 +345,10 @@ def rotulo_corto(rot):
     return titulo(corto or t, via=False)
 
 
+def tiene_adblue(e):
+    return bool((e.get('Precio Adblue') or '').strip())
+
+
 def combustibles(e):
     """Los que el registro trae con precio. El campo vacio = no lo sirve.
 
@@ -472,11 +483,15 @@ def ficha(e, muni, sufijo=''):
             if fuel:
                 desc += '%s%s%s%s' % (V['combustibles'][L], V['dospuntos'][L],
                                       fuel, V['punto'][L])
+            if tiene_adblue(e):
+                desc += '%s%sAdBlue%s' % (V['ademas'][L], V['dospuntos'][L], V['punto'][L])
         else:
             desc = '%s, %s.' % (calle, muni)
+            sep = ' :' if L == 'fr' else ':'   # el frances deja espacio antes
             if fuel:
-                sep = ' :' if L == 'fr' else ':'   # el frances deja espacio antes
                 desc += ' %s%s %s.' % (V['combustibles'][L], sep, fuel)
+            if tiene_adblue(e):
+                desc += ' %s%s AdBlue.' % (V['ademas'][L], sep)
         h, crudas = horario(e.get('Horario'), L)
         f['idiomas'][L] = {'desc': desc, 'cat': '%s · %s' % (V['gasolinera'][L], base),
                            'hours': h}
