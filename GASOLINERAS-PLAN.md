@@ -705,6 +705,30 @@ por un lado, y «GÜIMAR» (con diéresis y sin la tilde de la í) no casaba nun
 salía «Polígono Industrial Valle de **Güimar**». Ahora compara sin acentos por
 los dos lados: «Valle de **Güímar**». No cambia ningún otro nombre.
 
+## Revisión de los bloques 10 y 11 · 3 de octubre
+
+Registro sin cambios; revisor: 12 fichas, **0 hallazgos**, 13 de 13 estaciones.
+
+* **Pins:** los 13, a menos de 43 m de una vía con coches.
+* **La captura «sin registro» sí estaba.** IMG_3481, «Océano Güímar», era la única
+  de tus 62 que no se había encontrado en el registro. Google la pone en
+  «Manzana 13, Parcela 10» y el registro en «POLÍGONO INDUSTRIAL VALLE DE GÜÍMAR
+  MZ. 13, PC. 10»: es la Océano 12479, que ya está en la app. No casaba porque
+  Google le da el código postal 38508 y el registro 38500, y la captura no traía
+  municipio. **De tus 62 capturas no falta ninguna estación.**
+* **Duplicados con otras categorías:** ninguno. Las 6 fichas de otra categoría a
+  menos de 40 m de una gasolinera son cosas distintas que están al lado (un
+  Mercadona, buceo y pesca del Puerto Colón, un mercadillo...).
+* **La marca «Océano» salía traducida** en las etiquetas: «Ocean», «海洋»,
+  «Океан». Dos campos de golf usan la etiqueta «Océano» para el mar y el
+  glosario la traduce, cosa correcta para ellos. Ahora un nombre propio (marca o
+  municipio) no va como etiqueta si el glosario traduce esa palabra como otra
+  cosa: la marca ya está en el nombre y en la categoría, que no pasan por el
+  glosario. Era la única que chocaba. Las 7 Océano, rehechas; el revisor lo
+  vigila, y lo cazó en las 7 antes de arreglarlo.
+* En la app: la Shell antigua de Guía de Isora con su pin ya en el sitio del
+  registro, y la Océano de Güímar en castellano y en chino tradicional.
+
 ## Lo que queda
 
 **19 sesiones**, 51 altas. La siguiente es la **12-tacoronte** (6).

@@ -123,6 +123,8 @@ def main():
     print('registro del %s · %d fichas de gasolinera en la app' % (reg.get('Fecha'), len(app)))
     erratas = json.load(open(os.path.join(RAIZ, 'datos', 'gasolineras', 'correcciones-registro.json'),
                              encoding='utf-8')).get('erratas', {})
+    glos = [json.load(open(os.path.join(RAIZ, 'idiomas', 'etiquetas', '%s.json' % L), encoding='utf-8'))
+            for L in IDIOMAS]
     fav = os.path.join(RAIZ, 'datos', 'gasolineras', 'avisos.json')
     avisos = {k: x for k, x in json.load(open(fav, encoding='utf-8')).items()
               if k != '_'} if os.path.exists(fav) else {}
@@ -197,6 +199,12 @@ def main():
             for w in piezas(p['address']):
                 if w not in fuente_d:
                     mal(p['id'], 'la direccion lleva «%s», que no sale del registro' % w)
+        # Ningun nombre propio de la ficha (marca, municipio) como etiqueta si el
+        # glosario lo traduce como otra cosa: «Océano» salia «海洋».
+        for tg in p['tags']:
+            if tg in (muni, ((p['cat'] or '').split(' · ') + [''])[1]) and \
+               any(tg in g and g[tg] != tg for g in glos):
+                mal(p['id'], 'la etiqueta «%s» es un nombre propio y el glosario la traduce' % tg)
         # marca
         trozos = (p['cat'] or '').split(' · ')
         av = avisos.get(p['ideess'])

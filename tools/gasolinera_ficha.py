@@ -172,6 +172,20 @@ AVISOS = {k: v for k, v in json.load(open(_AV, encoding='utf-8')).items()
 ILEGIBLE = list(_CORR['ilegible'])
 ERRATAS = {k: v['se_escribe'] for k, v in _CORR.get('erratas', {}).items()}
 
+# Los glosarios de etiquetas. Una marca o un municipio es un nombre propio y NO
+# se traduce; pero la etiqueta se pinta por el glosario, y si el glosario traduce
+# esa misma palabra como otra cosa, la marca sale traducida. «Océano» es una
+# marca de gasolineras y tambien una etiqueta de dos campos de golf (el mar): en
+# chino salia «海洋». Ese nombre propio no va como etiqueta: ya esta en el nombre
+# y en la categoria, que no pasan por el glosario.
+_GLOS = [json.load(open(os.path.join(RAIZ, 'idiomas', 'etiquetas', '%s.json' % _L), encoding='utf-8'))
+         for _L in ('en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl')]
+
+
+def se_traduce(t):
+    return any(t in g and g[t] != t for g in _GLOS)
+
+
 # Las marcas, tal como se escriben. CEPSA se llama ahora MOEVE y en el registro
 # estan las dos: la misma empresa con el rotulo a medio cambiar.
 MARCAS = [('MOEVE', 'Moeve'), ('CEPSA', 'Moeve'), ('DISA', 'DISA'), ('REPSOL', 'Repsol'),
@@ -555,7 +569,7 @@ def ficha(e, muni, sufijo=''):
         'address': direccion(e, muni),
         'direccion_registro': (e.get('Dirección') or '').strip(),   # el original, sin tocar
         'cp': (e.get('C.P.') or '').strip(),
-        'tags': ['Gasolinera'] + ([base] if base else []) + [muni] + [
+        'tags': ['Gasolinera'] + [t for t in (base, muni) if t and not se_traduce(t)] + [
             t for t in AVISOS.get(str(e['IDEESS']), {}).get('tags', [])
             if t not in (base, muni)],
         'idiomas': {}, 'horas_crudas': [],
