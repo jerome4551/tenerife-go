@@ -275,7 +275,7 @@
  "gas-tf5-ptocz": {"hours": "24h · Every day", "desc": "BP at the motorway entrance to Puerto de la Cruz. Very practical for tourists. Spacious and well-lit.", "cat": "Petrol · TF-5 North"},
  "gas-tf2-lalaguna": {"hours": "Mon-Sun 24 h", "desc": "Cepsa on TF-2, La Laguna exit heading south. Key point between the airport and the capital.", "cat": "Petrol · TF-2 Central"},
  "gas-tf1-abades": {"hours": "Mon-Fri 06:00-22:00 · Sat 07:00-22:00 · Sun 08:00-21:00", "desc": "Petrol station on TF-1 km 44, Abades/Arico area. Important stop on the southern motorway eastern section. One of few stations between the airport and Güímar.", "cat": "Petrol Station · TF-1 · Arico"},
- "gas-tf21-aguamansa": {"hours": "Mon-Sun 06:00-00:00", "desc": "⚠️ LAST petrol station before Teide National Park going up TF-21 from La Orotava (Aguamansa). NO petrol stations in the National Park. Essential to fill up here before going up to Teide.", "cat": "⚠️ Last Petrol · Teide Road"},
+ "gas-tf21-aguamansa": {"hours": "Mon-Sun 06:00-00:00", "desc": "Carretera Las Cañadas, La Orotava. Fuels: petrol 95, petrol 98, diesel and premium diesel. Also: AdBlue.", "cat": "Petrol station · Teide Road"},
  "gas-tf5-el-bohio": {"hours": "Mon-Fri 06:15-22:15 · Sat 06:45-22:15 · Sun 07:15-22:15", "desc": "DISA on TF-5 km 25, La Matanza de Acentejo. Northern motorway, well located between La Laguna and Puerto de la Cruz.", "cat": "Petrol Station · TF-5 · La Matanza"},
  "gas-tf5-el-sauzal": {"hours": "Every day 06:00-23:00", "desc": "Repsol on TF-5 km 22.5, El Sauzal. Northern area between La Laguna and Tacoronte. One of the easiest petrol stations to reach from the northern motorway.", "cat": "Petrol Station · TF-5 · El Sauzal"},
  "gas-tf51-vilaflor": {"hours": "Mon-Fri 07:00-21:00 · Check public holidays", "desc": "Petrol station on the TF-51 Arona-Vilaflor at km 4. Southern inland. Important for anyone heading up to Vilaflor (Spain's highest village) or reaching the National Park from the south. The last petrol station before the high ground.", "cat": "⚠️ Petrol · South Interior · Vilaflor"},
@@ -894,7 +894,7 @@
  "gas-7856-la-orotava": {"desc": "Plaza La Paz, La Orotava. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 24 h"},
  "gas-15901-la-orotava": {"desc": "Calle Albañilería, La Orotava. Fuels: petrol 95 and diesel.", "cat": "Petrol station · Plenergy", "hours": "Mon-Sun 24 h"},
  "gas-16315-la-orotava": {"desc": "Calle Molinos de Golfo, La Orotava. Fuels: petrol 95 and diesel.", "cat": "Petrol station · Plenergy", "hours": "Mon-Sun 24 h"},
- "gas-7677-la-orotava": {"desc": "Carretera TF-21 Aguamansa, La Orotava. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 06:00-22:00"},
+ "gas-7677-la-orotava": {"desc": "⚠️ LAST petrol station before Teide National Park going up TF-21 from La Orotava (Aguamansa). NO petrol stations in the National Park. Essential to fill up here before going up to Teide. Carretera TF-21 Aguamansa, La Orotava. Fuels: petrol 95, petrol 98 and diesel.", "cat": "⚠️ Last Petrol · Repsol", "hours": "Mon-Sun 06:00-22:00"},
  "gas-7699-la-orotava": {"desc": "Carretera TF-324, La Orotava. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Fri 06:00-22:00 · Sat-Sun 07:00-23:00"},
  "gas-8776-la-orotava": {"desc": "Carretera General del Norte, La Orotava. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 06:00-22:00"}
 }

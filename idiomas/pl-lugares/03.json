@@ -362,8 +362,8 @@
   "hours": "Pn-Pt 06:00-22:00 · So 07:00-22:00 · Nd 08:00-21:00"
  },
  "gas-tf21-aguamansa": {
-  "desc": "⚠️ OSTATNIA stacja paliw przed Parkiem Narodowym Teide, jadąc drogą TF-21 z La Orotava (Aguamansa). W Parku Narodowym NIE MA stacji paliw. Trzeba koniecznie zatankować tutaj przed wjazdem na Teide.",
-  "cat": "⚠️ Ostatnia stacja paliw · Podjazd na Teide",
+  "desc": "Carretera Las Cañadas, La Orotava. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium. Także: AdBlue.",
+  "cat": "Stacja paliw · Podjazd na Teide",
   "hours": "Pn-Nd 06:00-00:00"
  },
  "gas-tf5-el-bohio": {

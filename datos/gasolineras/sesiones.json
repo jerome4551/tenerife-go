@@ -137,7 +137,7 @@
    },
    "revisada_el": "2026-10-03",
    "revision": "tools/revisar_gasolineras.py: 9 fichas, 0 hallazgos, 10/10 estaciones con su ficha",
-   "pregunta_a_jerome": "gas-tf21-aguamansa (Cepsa La Cañada) dice «ULTIMA gasolinera antes del Parque Nacional del Teide subiendo por la TF-21» y lleva la etiqueta «Última». La Repsol Barroso (7677, «CARRETERA TF-21 AGUAMANSA») esta unos 1,3 km mas arriba por la misma carretera: la ultima es esa. Falta su OK para cambiar el texto."
+   "aviso_del_teide": "Movido el 3 de octubre, con OK de Jerome: de la Cepsa La Cañada (gas-tf21-aguamansa) a la Repsol Barroso (7677), que esta 1,3 km mas arriba por la TF-21. Textos trasladados tal cual en los diez idiomas; el aviso vive en datos/gasolineras/avisos.json."
   },
   "08-san-miguel-de-abona": {
    "que": "Las 10 estaciones de San Miguel de Abona (10 altas, 0 ya en la app).",

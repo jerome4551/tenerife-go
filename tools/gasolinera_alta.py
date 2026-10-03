@@ -256,7 +256,16 @@ def main():
     etq = json.load(open(os.path.join(RAIZ, 'idiomas/etiquetas-sin-traducir.json'),
                          encoding='utf-8'))
     clave_sitio = next(k for k in etq if 'nombre de sitio' in k)
-    faltan = sorted({t for f in fichas for t in f['tags'][1:]}
+    # Solo se declaran «sin traducir» las etiquetas que NO estan traducidas en
+    # los glosarios: la marca y el municipio, que son nombres propios. Antes se
+    # declaraba toda etiqueta que no estuviera ya en la lista, y al llevar la
+    # Repsol Barroso el aviso del Teide se declararon «Montaña», «Importante» y
+    # «Última», que SI estan traducidas: una declaracion falsa que habria tapado
+    # el dia que faltara su traduccion.
+    glos = [json.load(open(os.path.join(RAIZ, 'idiomas', 'etiquetas', '%s.json' % L),
+                           encoding='utf-8')) for L in OTROS + ['pl']]
+    traducida = lambda t: all(t in g for g in glos) or bool(re.match(r'^TF-\d+$', t))  # un codigo no se declara como sitio
+    faltan = sorted({t for f in fichas for t in f['tags'][1:] if not traducida(t)}
                     - {x for v in etq.values() for x in v})
     if ver:
         print('\n-- index.html, lo que se mete:\n%s' % ''.join(bloque(f) for f in nuevas))

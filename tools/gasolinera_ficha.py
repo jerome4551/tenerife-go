@@ -164,6 +164,10 @@ _CORR = json.load(open(os.path.join(RAIZ, 'datos', 'gasolineras',
                                     'correcciones-registro.json'), encoding='utf-8'))
 ACENTOS = _CORR['acentos']
 EN_ESPERA = set(_CORR.get('en_espera', {}))   # no se generan: ver el fichero
+# Avisos de UNA estacion concreta («la ultima antes del Teide»): ver el fichero.
+_AV = os.path.join(RAIZ, 'datos', 'gasolineras', 'avisos.json')
+AVISOS = {k: v for k, v in json.load(open(_AV, encoding='utf-8')).items()
+          if k != '_'} if os.path.exists(_AV) else {}
 ILEGIBLE = list(_CORR['ilegible'])
 
 # Las marcas, tal como se escriben. CEPSA se llama ahora MOEVE y en el registro
@@ -540,7 +544,9 @@ def ficha(e, muni, sufijo=''):
         'address': direccion(e, muni),
         'direccion_registro': (e.get('Dirección') or '').strip(),   # el original, sin tocar
         'cp': (e.get('C.P.') or '').strip(),
-        'tags': ['Gasolinera'] + ([base] if base else []) + [muni],
+        'tags': ['Gasolinera'] + ([base] if base else []) + [muni] + [
+            t for t in AVISOS.get(str(e['IDEESS']), {}).get('tags', [])
+            if t not in (base, muni)],
         'idiomas': {}, 'horas_crudas': [],
     }
     for L in IDIOMAS:
@@ -571,8 +577,12 @@ def ficha(e, muni, sufijo=''):
             if tiene_adblue(e):
                 desc += ' %s%s AdBlue.' % (V['ademas'][L], sep)
         h, crudas = horario(e.get('Horario'), L)
-        f['idiomas'][L] = {'desc': desc, 'cat': '%s · %s' % (V['gasolinera'][L], base),
-                           'hours': h}
+        cat = '%s · %s' % (V['gasolinera'][L], base)
+        av = AVISOS.get(str(e['IDEESS']))
+        if av:
+            desc = av['desc'][L] + ('' if L in ('zh', 'zht') else ' ') + desc
+            cat = '%s · %s' % (av['cat'][L], base)
+        f['idiomas'][L] = {'desc': desc, 'cat': cat, 'hours': h}
         if L == 'es':
             f['horas_crudas'] = crudas
     return f

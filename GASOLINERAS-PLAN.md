@@ -573,12 +573,21 @@ dirección pasan a ser los del registro (decía «L-S 07:00-21:00 · Consultar
 festivos»; el registro, «L-D 06:00-00:00»). Revisor: 9 fichas, **0 hallazgos**.
 Retoques de forma: «Albañilería» con tilde y «C 820» como «C-820».
 
-**Una pregunta para ti.** Esa ficha antigua dice «⚠️ **ÚLTIMA** gasolinera antes
-del Parque Nacional del Teide subiendo por la TF-21 (…) Imprescindible repostar
-aquí» y lleva la etiqueta «Última». Pero la **Repsol Barroso**, en la «CARRETERA
-TF-21 AGUAMANSA», está **unos 1,3 km más arriba** por la misma carretera. La
-última, subiendo por ahí, es la Repsol. Es texto redactado en diez idiomas y no
-lo toco sin tu OK.
+**El aviso del Teide, en su sitio** (con tu OK). La Cepsa La Cañada decía
+«⚠️ **ÚLTIMA** gasolinera antes del Parque Nacional del Teide subiendo por la
+TF-21», y la **Repsol Barroso** está unos 1,3 km más arriba por la misma
+carretera. El aviso pasa a la Repsol, con los mismos textos que ya tenía la Cepsa
+en los diez idiomas, sin escribir nada nuevo, y con su categoría «⚠️ Última
+Gasolinera · Repsol» y las etiquetas «Última» e «Importante». La Cepsa queda
+como «Cepsa La Cañada (TF-21)», «Gasolinera · Subida Teide», con su dirección y
+combustibles. El aviso de la Repsol vive en `datos/gasolineras/avisos.json`, así
+que un `--rehacer` desde el registro no lo borra, y el revisor comprueba que la
+descripción empiece por él.
+
+De paso cazé un fallo del aplicador: al ver etiquetas nuevas en una ficha las
+declaraba todas «nombres propios sin traducir», y así declaró «Montaña»,
+«Importante» y «Última», que **sí** están traducidas. Deshecho; ahora solo
+declara las que no estén en los glosarios, y nunca un código de carretera.
 
 ## Lo que queda
 

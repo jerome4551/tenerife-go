@@ -121,6 +121,9 @@ def main():
     plf = json.load(open(os.path.join(RAIZ, 'idiomas', 'pl-lugares', '10-gasolineras.json'),
                          encoding='utf-8'))
     print('registro del %s · %d fichas de gasolinera en la app' % (reg.get('Fecha'), len(app)))
+    fav = os.path.join(RAIZ, 'datos', 'gasolineras', 'avisos.json')
+    avisos = {k: x for k, x in json.load(open(fav, encoding='utf-8')).items()
+              if k != '_'} if os.path.exists(fav) else {}
 
     fallos, mirados = [], 0
     def mal(fid, que):
@@ -189,7 +192,11 @@ def main():
                     mal(p['id'], 'la direccion lleva «%s», que no sale del registro' % w)
         # marca
         trozos = (p['cat'] or '').split(' · ')
-        if len(trozos) != 2 or trozos[0] != 'Gasolinera':
+        av = avisos.get(p['ideess'])
+        primero = av['cat']['es'] if av else 'Gasolinera'
+        if av and not (p['desc'] or '').startswith(av['desc']['es']):
+            mal(p['id'], 'tiene aviso en avisos.json y la descripcion no empieza por el')
+        if len(trozos) != 2 or trozos[0] != primero:
             mal(p['id'], 'cat raro: «%s»' % p['cat'])
         elif not set(piezas(trozos[1])) <= (set(piezas(e['Rótulo'])) | {'moeve'}):
             mal(p['id'], 'la marca «%s» no esta en el rotulo «%s»' % (trozos[1], e['Rótulo']))

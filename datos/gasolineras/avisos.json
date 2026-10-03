@@ -1,0 +1,45 @@
+{
+ "_": [
+  "Avisos que van en la ficha de UNA estacion concreta, por su IDEESS. Los lee",
+  "tools/gasolinera_ficha.py: el aviso va delante de la descripcion, su trozo de",
+  "categoria delante de la marca, y sus etiquetas se anaden. Viven aqui, y no",
+  "escritos a mano en index.html, para que un --rehacer desde el registro no los borre."
+ ],
+ "7677": {
+  "estacion": "REPSOL BARROSO · Carretera TF-21 Aguamansa · La Orotava",
+  "por_que": "Es la ultima gasolinera subiendo al Teide por la TF-21: esta unos 1,3 km mas arriba por la misma carretera que la Cepsa La Cañada (7790), que era la que llevaba el aviso. Jerome, 3 de octubre: «Si quitale pero ponle a la ultima entonce».",
+  "de_donde": "Los textos son los que tenia gas-tf21-aguamansa en los diez idiomas, trasladados tal cual.",
+  "cat": {
+   "es": "⚠️ Última Gasolinera",
+   "en": "⚠️ Last Petrol",
+   "fr": "⚠️ Dernière Station",
+   "de": "⚠️ Letzte Tankstelle",
+   "it": "⚠️ Ultima Stazione di Servizio",
+   "nl": "⚠️ Laatste Tankstation",
+   "zh": "⚠️ 最后一个加油站",
+   "zht": "⚠️ 最後一個加油站",
+   "bg": "⚠️ Последна бензиностанция",
+   "pl": "⚠️ Ostatnia stacja paliw"
+  },
+  "desc": {
+   "es": "⚠️ ÚLTIMA gasolinera antes del Parque Nacional del Teide subiendo por la TF-21 desde La Orotava (Aguamansa). NO hay gasolineras en el Parque Nacional. Imprescindible repostar aquí antes de subir al Teide.",
+   "en": "⚠️ LAST petrol station before Teide National Park going up TF-21 from La Orotava (Aguamansa). NO petrol stations in the National Park. Essential to fill up here before going up to Teide.",
+   "fr": "⚠️ DERNIÈRE station avant le Parc National du Teide en montant par TF-21. Aucune station dans le Parc National. Indispensable de faire le plein ici.",
+   "de": "⚠️ LETZTE Tankstelle vor dem Teide-Nationalpark auf dem Weg über die TF-21 von La Orotava (Aguamansa) hinauf. Im Nationalpark gibt es KEINE Tankstellen. Unbedingt hier tanken, bevor man zum Teide hinauffährt.",
+   "it": "⚠️ ULTIMA stazione di servizio prima del Parco Nazionale del Teide salendo per la TF-21 da La Orotava (Aguamansa). NON ci sono distributori nel Parco Nazionale. Indispensabile fare rifornimento qui prima di salire al Teide.",
+   "nl": "⚠️ LAATSTE tankstation vóór het Nationaal Park Teide, omhoog via de TF-21 vanuit La Orotava (Aguamansa). Er zijn GEEN tankstations in het Nationaal Park. Tank hier absoluut voordat je de Teide op gaat.",
+   "zh": "⚠️ 经TF-21从拉奥罗塔瓦（阿瓜曼萨）上行进入泰德国家公园前的最后一个加油站。国家公园内没有加油站。上泰德峰前务必在此加油。",
+   "zht": "⚠️ 經TF-21從拉奧羅塔瓦（阿瓜曼薩）上行進入泰德國家公園前的最後一個加油站。國家公園內沒有加油站。上泰德峰前務必在此加油。",
+   "bg": "⚠️ ПОСЛЕДНАТА бензиностанция преди Национален парк Тейде по TF-21 откъм Ла Оротава (Агуаманса). В националния парк НЯМА бензиностанции. Задължително заредете тук, преди да се качите на Тейде.",
+   "pl": "⚠️ OSTATNIA stacja paliw przed Parkiem Narodowym Teide, jadąc drogą TF-21 z La Orotava (Aguamansa). W Parku Narodowym NIE MA stacji paliw. Trzeba koniecznie zatankować tutaj przed wjazdem na Teide."
+  },
+  "tags": [
+   "TF-21",
+   "Teide",
+   "Montaña",
+   "Aguamansa",
+   "Importante",
+   "Última"
+  ]
+ }
+}
