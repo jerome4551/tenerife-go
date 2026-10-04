@@ -75,6 +75,8 @@ echo; echo "════════ el municipio que dice cada ficha ═══�
 control auditar_municipio.js node tools/auditar_municipio.js
 echo; echo "════════ lo que se sale de la pantalla, y el popup ════════"
 control auditar_desborde.js node tools/auditar_desborde.js "$PUERTO"
+echo; echo "════════ las 212 fichas de gasolinera, en pantalla, en los diez idiomas ════════"
+control verificar_fichas_app.js node tools/verificar_fichas_app.js "$PUERTO"
 echo; echo "════════ texto de reserva en castellano ════════"
 control auditar_reservas.py python3 tools/auditar_reservas.py
 echo; echo "════════ mapa sin conexion ════════"

@@ -498,7 +498,8 @@
    "estaciones": 1,
    "altas": 0,
    "ya": 1,
-   "plan": "datos/gasolineras/plan/31-vilaflor.json"
+   "plan": "datos/gasolineras/plan/31-vilaflor.json",
+   "verificada": "2026-10-04: la antigua «DISA Vilaflor (TF-51)» enlazada a 7951 (a 43 m, misma marca), horario y direccion del registro, la TF-51 pasa junto al pin. Sin altas. Se cierra cuando Jerome diga."
   },
   "90-las-seis-que-no-estan-en-el-registro": {
    "que": "gas-tf1-adeje · gas-tf1-candelaria · gas-tf1-guaza2 · gas-tf2-aeropuerto · gas-tf5-icod · gas-tf82-los-gigantes. Ninguna tiene estacion del registro a 300 m.",
@@ -532,5 +533,32 @@
  "antiguas_enlazadas_todas": "3 de octubre, a peticion de Jerome («Arregla el horario»): las 14 fichas antiguas, enlazadas con su estacion y con horario y direccion del registro. 11 de las 14 tenian el horario mal.",
  "horario_no_se_ve": "Arreglado el 4 de octubre con el «Si» de Jerome: el horario se pinta en la ficha (movil) y en el globo del mapa (ordenador) de las fichas con IDEESS, las del registro oficial. Los de las 18 oficinas de turismo y los 18 campings NO: no tienen fuente (REVISION-LUGARES.md, «Horarios, precios y telefonos: no hay contra que contrastarlos»), y tres oficinas tienen el mismo horario, de plantilla. auditar_desborde.js lo controla.",
  "marca_contra_osm": "Revision de los bloques 24-26, 4 de octubre: 17 de 212 estaciones tienen en OSM, a menos de 60 m, otra marca que el registro: 7853 Adeje (DISA/Moeve), 10635 Arafo (Tgas/BP), 7726 Arico (Estacion Abades/PCAN), 7786 Candelaria (Tgas/Disa a 30 m), 7846 El Sauzal (DISA/Moeve), 7718 Fasnia (BP/Repsol: Street View, BP), 7835 Fasnia (DISA/Moeve), 7749 Garachico (La Caleta/Moeve), 7626 Granadilla (Repsol/DISA Aeropuerto), 11566 La Guancha (DISA/Moeve), 7723 Los Realejos (DISA/PCAN a 25 m), 7855 Los Realejos (Oceano/Moeve), 9966 La Laguna (DISA/Moeve), 10633 San Miguel (Repsol/BP), 7887 y 9951 Santa Cruz (DISA/Moeve), 7840 Santa Cruz (DISA/Moeve: web de DISA, DISA). Las dos comprobadas daban la razon al registro. Manda el registro (LEEME); no se cambia nada.",
- "mayusculas": "Jerome, 4 de octubre, «Ok»: aplicadas las cuatro («mayusculas» en correcciones-registro.json). Cambian 4 fichas de Arafo, Buenavista y San Miguel de Abona."
+ "mayusculas": "Jerome, 4 de octubre, «Ok»: aplicadas las cuatro («mayusculas» en correcciones-registro.json). Cambian 4 fichas de Arafo, Buenavista y San Miguel de Abona.",
+ "verificacion_00_31": {
+  "hecha_el": "2026-10-04",
+  "como": "tools/verificar_bloques.py (informe en datos/gasolineras/verificacion-bloques.md) y tools/verificar_fichas_app.js (las 212 fichas y sus globos, abiertos en los diez idiomas; ya en auditar.sh).",
+  "resultado": "212 estaciones, 212 fichas (198 nuevas, 14 antiguas); revisor 0 hallazgos; 0 diferencias con la plantilla; 62 de 62 capturas con su ficha; 2.120 fichas y 2.120 globos bien en pantalla; sesiones.json cuadra; LEEME bien en las nuevas.",
+  "fallos": [
+   "7637 «Moeve · Autopista TF-21 km 3,5»: TF-21 no pasa por Santa Cruz; tu captura IMG_3429 dice «Autop. del Sur, PK 3,5» y OSM tiene la TF-1 a 30 m.",
+   "8753 «Shell · Carretera Martianez TF-131»: no hay TF-131 en la isla; TF-31 a 12 m.",
+   "7828 «DISA · Carretera TF-822» (Arico): no hay TF-822; TF-28 a 12 m (la mezcla de C-822 y TF-28, como Icod).",
+   "7849 «DISA · Carretera General TF-623» (Playa San Juan): no hay TF-623; TF-47 a 46 m, y su km 13 cuadra con el 2,7 de la TF-47 en Armenime.",
+   "7784 «BP · Carretera TF-411» (Taco): no hay TF-411 en OSM; TF-194 (Carretera General La Cuesta-Taco) a 20 m. Pero tu captura tambien dice TF-411."
+  ],
+  "coordenadas_a_mirar": [
+   "9483 Moeve Llano Azul (Arona): el pin del registro cae junto al Monkey Park, a 118 m de cualquier via; OSM tiene una Moeve a 496 m, en la TF-662 de su direccion.",
+   "9961 DISA Ofra (La Laguna): el pin del registro esta en la Carretera La Cuesta-Taco de su direccion; tu captura la pone en la Calle Zerolo, 6, donde OSM tiene una Disa, a 1,2 km.",
+   "Menos claras (el pin del registro esta en la carretera de su direccion): 10057 BP Ten Bel, 11690 BP Aeropuerto, 8326 Repsol Arafo, 7677 Repsol Barroso, 11731 Repsol Poris."
+  ],
+  "nombres_con_ideess": [
+   "10995 y 7879, las dos DISA de la Autovia de San Andres: el registro las llama «BALNEARIO II» y «BALNEARIO I»; mejor eso que el numero.",
+   "7705 «Repsol · Carretera TF-1 km 54 (7705)»: la otra es la antigua 7692; mismo rotulo y misma direccion. Para la 91."
+  ],
+  "para_la_91": [
+   "Nombres con «Cepsa» (es Moeve): gas-tf2-lalaguna, gas-tf21-aguamansa, gas-tf5-tacoronte.",
+   "Codigo de carretera que no es el suyo: gas-tf5-lalaguna (TF-5; junto a la TF-2), gas-tf1-guaza (TF-1 km 21; junto a la TF-66), gas-tf5-los-realejos (TF-5 km 46; junto a la TF-334), gas-tf5-ptocz (TF-5 km 30; junto a la TF-312).",
+   "Telefonos sin captura ni OK (no se ensenan): gas-tf1-granadilla, gas-tf1-guaza, gas-tf1-guimar, gas-tf5-lalaguna, gas-tf5-tacoronte, gas-tf5-ptocz, gas-tf2-lalaguna.",
+   "Lo ya apuntado en cada sesion («para_la_91»)."
+  ]
+ }
 }

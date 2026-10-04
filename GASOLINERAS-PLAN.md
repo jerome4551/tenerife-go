@@ -1156,10 +1156,73 @@ C-820 KM. 53,6». Ahora «**Moeve · Carretera General C-820 km 53,6**» y su ve
 hallazgos**. En OSM, una Shell a 3 m del pin, en la Carretera General del Norte;
 su km 27 va en orden. **Las 212 estaciones del registro tienen ficha.**
 
+## Verificación de los bloques 00 a 31 · 4 de octubre
+
+Pediste verificar cada bloque antes de la 31. Dos herramientas nuevas, para poder
+repetirlo con cada registro nuevo: `tools/verificar_bloques.py` (informe entero en
+`datos/gasolineras/verificacion-bloques.md`) y `tools/verificar_fichas_app.js`, que
+abre en la app las 212 fichas y sus 212 globos en los diez idiomas (ya está en la
+auditoría; probado metiendo dos fallos).
+
+**Lo que está bien, en los 32 bloques:**
+
+* **212 estaciones, 212 fichas** (198 nuevas y 14 antiguas), una por estación,
+  todas de venta al público y con su IDEESS. El municipio del polígono = el del
+  registro en las 212.
+* **Revisor independiente: 0 hallazgos.** **Plantilla: 0 diferencias** (ningún
+  cambio de regla sin aplicar).
+* **Tus 62 capturas tienen todas su ficha.**
+* **En pantalla: 2.120 fichas y 2.120 globos, bien**: nombre, categoría,
+  descripción y horario en su idioma, etiquetas traducidas, dirección, nada
+  fuera de la pantalla.
+* LEEME en las 198 nuevas: ni Cepsa (todas Moeve), ni teléfonos, ni precios ni
+  valoraciones, ni comillas. `sesiones.json` cuadra con la app.
+* Bloque 00: el vocabulario de la plantilla, leído palabra a palabra en los diez
+  idiomas, bien.
+
+**Fallos: 5, los cinco del mismo tipo que Icod**: un código de carretera en el
+nombre que **no pasa junto al pin** (y que, salvo la TF-21, no existe en toda la
+isla según OSM). Propuesta, como errata del registro:
+
+| ficha | ahora | propuesta | prueba |
+|---|---|---|---|
+| Moeve, Santa Cruz | Autopista **TF-21** km 3,5 | Autopista **TF-1** km 3,5 | tu captura: «Autop. del Sur, PK 3,5»; TF-1 a 30 m |
+| Shell, Puerto de la Cruz | Carretera Martiánez **TF-131** | **TF-31** | TF-31 a 12 m (como TF-142 → TF-42) |
+| DISA, Arico Nuevo | Carretera **TF-822** | **TF-28** | TF-28 a 12 m; mezcla de C-822 y TF-28, como Icod |
+| DISA, Playa San Juan | Carretera General **TF-623** | **TF-47** | TF-47 a 46 m; su km 13 cuadra con el 2,7 de la TF-47 en Armeñime |
+| BP, Taco | Carretera **TF-411** | **TF-194**? | TF-194 a 20 m; pero tu captura de Google también dice TF-411 |
+
+Simulado: solo cambian esas cinco fichas.
+
+**Coordenadas que no cuadran con OSM** (el registro manda; no se toca sin fuente):
+
+* **Moeve «Llano Azul», Arona:** el pin del registro cae junto al Monkey Park, a
+  118 m de cualquier vía; OSM tiene una Moeve a 496 m, en la TF-662 de su
+  dirección («Guaza-Los Cristianos»). La web de Moeve da coordenadas (como en
+  Icod): es la mejor fuente.
+* **DISA Ofra, La Laguna:** el pin del registro está en la Carretera La Cuesta-Taco
+  de su dirección, pero tu captura la pone en la **Calle Zerolo, 6**, donde OSM
+  tiene una Disa, a 1,2 km.
+* Menos claras (el pin del registro sí está en la carretera de su dirección): BP
+  Ten Bel, BP Aeropuerto Sur, Repsol Arafo, Repsol Barroso, Repsol Porís.
+
+**Nombres con el IDEESS:** las dos DISA de la Autovía de San Andrés salen
+«(10995)» y «(7879)»; el registro las llama «**Balneario II**» y «**Balneario I**».
+Propuesta: usar eso. La pareja de Repsol del TF-1 km 54, en la 91.
+
+**Para la sesión 91** (las 14 antiguas): tres se llaman «**Cepsa**» (es Moeve);
+cuatro llevan un TF que no es el suyo; siete llevan un **teléfono** sin captura ni
+OK (no se enseña, pero el LEEME no lo quiere); y lo apuntado en cada sesión.
+
+**Para mirar, sin fallo:** dos escalas de km en la TF-82 y en la Carretera
+General del Sur (las dos del registro); 17 marcas distintas en OSM (las dos
+comprobadas daban la razón al registro); 3 CP sin fuente para el bueno.
+
 ## Lo que queda
 
-La **31** (Vilaflor), sin altas: su estación ya la cubre la antigua «DISA
-Vilaflor (TF-51)». Antes, por tu encargo, la verificación de los bloques 00 a 31.
+La **31** (Vilaflor), **verificada**: la antigua «DISA Vilaflor (TF-51)» está
+enlazada a 43 m, con horario y dirección del registro, y la TF-51 pasa junto al
+pin. Sin altas: se cierra cuando digas.
 
 ## Lo que necesito de ti antes de seguir
 
