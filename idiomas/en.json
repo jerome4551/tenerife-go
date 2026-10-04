@@ -871,7 +871,7 @@
  "gas-14769-los-realejos": {"desc": "Polígono La Gañanía, Los Realejos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Océano", "hours": "Mon-Sat 06:00-22:00 · Sun 07:00-22:00"},
  "gas-10990-los-realejos": {"desc": "Calle Los Barros, Los Realejos. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Pcan", "hours": "Mon-Sun 24 h"},
  "gas-15044-los-realejos": {"desc": "Calle Anaga, Los Realejos. Fuels: petrol 95 and diesel.", "cat": "Petrol station · Petroprix", "hours": "Mon-Sun 24 h"},
- "gas-7685-los-realejos": {"desc": "Calle Piñera, Los Realejos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Repsol", "hours": "Mon 06:00-00:00"},
+ "gas-7685-los-realejos": {"desc": "Calle Piñera, Los Realejos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Fri 06:00-22:00 · Sat-Sun 07:00-22:00"},
  "gas-7684-los-realejos": {"desc": "Carretera TF-326, Los Realejos. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 06:30-00:00"},
  "gas-8757-los-realejos": {"desc": "Carretera El Toscal, Los Realejos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 06:00-22:00"},
  "gas-8756-los-realejos": {"desc": "Carretera General La Zamora 22, Los Realejos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 06:00-22:00"},
@@ -971,5 +971,6 @@
  "gas-7678-santa-ursula": {"desc": "Carretera Vieja, Santa Úrsula. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sat 06:00-23:00 · Sun 07:00-23:00"},
  "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 06:00-22:00"},
  "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez El Viejo, Buenavista del Norte. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sat 06:00-23:00 · Sun 07:00-10:00"},
- "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Fri 05:30-20:30 · Sat-Sun 08:00-20:00"}
+ "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Fri 05:30-20:30 · Sat-Sun 08:00-20:00"},
+ "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 06:00-22:00"}
 }

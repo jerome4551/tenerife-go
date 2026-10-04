@@ -1098,9 +1098,28 @@ ficha, **0 hallazgos**. En OSM, a 16 m de la **TF-5** y a 6 m de una Repsol: el
 «TF-5» del nombre es verdad. Su km 46,3 va en orden con el 49 de La Guancha. Sin
 km en el nombre: ahí la TF-5 ya no es el tramo que el registro llama autopista.
 
+## La Repsol de Cruz Santa · 4 de octubre
+
+Tu captura (Google Maps, «C. El Mocan, 1A, 38413 Cruz Santa») es de la 7685: la
+Calle el Mocán está a 32 m de su pin y a 1,6 km de la otra Repsol. Su horario
+pasa de «L 06:00-00:00» (solo el lunes, del registro) a **L-V 06:00-22:00 · S-D
+07:00-22:00**. Ya no queda ningún horario de un solo día sin comprobar.
+
+## Sesión 28 · Los Silos · HECHA el 4 de octubre
+
+**1 alta**, sin ficha antigua. La app pasa de 973 a **974 lugares**. Revisor: 1
+ficha, **0 hallazgos**. En OSM, una DISA a 3 m del pin. La dirección sale con el
+km en su paréntesis: «Calle Félix Benítez de Lugo (General TF-142 km 11)».
+
+**Pregunta: ¿«TF-142» es «TF-42»?** En OSM no hay ninguna TF-142 en toda la
+isla. La calle de la gasolinera es la **TF-42a**, el ramal de la TF-42 por Los
+Silos, y la estación de Garachico, 2,7 km antes por la TF-42, está en el km 8,9:
+el km 11 cuadra con la TF-42. El nombre no lleva el número; la dirección lleva el
+texto del registro hasta tu OK.
+
 ## Lo que queda
 
-**4 sesiones**, 3 altas. La siguiente es la **28-los-silos** (1).
+**3 sesiones**, 2 altas. La siguiente es la **29-el-tanque** (1).
 
 ## Lo que necesito de ti antes de seguir
 

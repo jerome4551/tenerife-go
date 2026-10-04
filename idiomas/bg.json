@@ -871,7 +871,7 @@
  "gas-14769-los-realejos": {"desc": "Polígono La Gañanía, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Océano", "hours": "Пон-Съб 06:00-22:00 · Нед 07:00-22:00"},
  "gas-10990-los-realejos": {"desc": "Calle Los Barros, Los Realejos. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Pcan", "hours": "Пон-Нед 24 ч"},
  "gas-15044-los-realejos": {"desc": "Calle Anaga, Los Realejos. Горива: бензин 95 и дизел.", "cat": "Бензиностанция · Petroprix", "hours": "Пон-Нед 24 ч"},
- "gas-7685-los-realejos": {"desc": "Calle Piñera, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон 06:00-00:00"},
+ "gas-7685-los-realejos": {"desc": "Calle Piñera, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Пет 06:00-22:00 · Съб-Нед 07:00-22:00"},
  "gas-7684-los-realejos": {"desc": "Carretera TF-326, Los Realejos. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 06:30-00:00"},
  "gas-8757-los-realejos": {"desc": "Carretera El Toscal, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"},
  "gas-8756-los-realejos": {"desc": "Carretera General La Zamora 22, Los Realejos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"},
@@ -971,5 +971,6 @@
  "gas-7678-santa-ursula": {"desc": "Carretera Vieja, Santa Úrsula. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Съб 06:00-23:00 · Нед 07:00-23:00"},
  "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"},
  "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez El Viejo, Buenavista del Norte. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Съб 06:00-23:00 · Нед 07:00-10:00"},
- "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Пет 05:30-20:30 · Съб-Нед 08:00-20:00"}
+ "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Пет 05:30-20:30 · Съб-Нед 08:00-20:00"},
+ "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Нед 06:00-22:00"}
 }

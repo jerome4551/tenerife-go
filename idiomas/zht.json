@@ -871,7 +871,7 @@
  "gas-14769-los-realejos": {"desc": "Polígono La Gañanía（Los Realejos）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Océano", "hours": "週一至週六 06:00至22:00 · 週日 07:00至22:00"},
  "gas-10990-los-realejos": {"desc": "Calle Los Barros（Los Realejos）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · Pcan", "hours": "週一至週日 24小時"},
  "gas-15044-los-realejos": {"desc": "Calle Anaga（Los Realejos）。燃料：95號汽油和柴油。", "cat": "加油站 · Petroprix", "hours": "週一至週日 24小時"},
- "gas-7685-los-realejos": {"desc": "Calle Piñera（Los Realejos）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Repsol", "hours": "週一 06:00至00:00"},
+ "gas-7685-los-realejos": {"desc": "Calle Piñera（Los Realejos）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Repsol", "hours": "週一至週五 06:00至22:00 · 週六至週日 07:00至22:00"},
  "gas-7684-los-realejos": {"desc": "Carretera TF-326（Los Realejos）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 06:30至00:00"},
  "gas-8757-los-realejos": {"desc": "Carretera El Toscal（Los Realejos）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Shell", "hours": "週一至週日 06:00至22:00"},
  "gas-8756-los-realejos": {"desc": "Carretera General La Zamora 22（Los Realejos）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Shell", "hours": "週一至週日 06:00至22:00"},
@@ -971,5 +971,6 @@
  "gas-7678-santa-ursula": {"desc": "Carretera Vieja（Santa Úrsula）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · Repsol", "hours": "週一至週六 06:00至23:00 · 週日 07:00至23:00"},
  "gas-8762-santa-ursula": {"desc": "Carretera General del Norte（Santa Úrsula）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Shell", "hours": "週一至週日 06:00至22:00"},
  "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez El Viejo（Buenavista del Norte）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · DISA", "hours": "週一至週六 06:00至23:00 · 週日 07:00至10:00"},
- "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5（San Juan de la Rambla）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週五 05:30至20:30 · 週六至週日 08:00至20:00"}
+ "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5（San Juan de la Rambla）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週五 05:30至20:30 · 週六至週日 08:00至20:00"},
+ "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo（Los Silos）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · DISA", "hours": "週一至週日 06:00至22:00"}
 }

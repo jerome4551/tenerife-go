@@ -162,6 +162,12 @@
    "registro": "L: 06:00-23:00",
    "se_escribe": "L-D: 06:00-21:30",
    "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «L 06:00-21h30»: cierra a las 21:30, no a las 23:00."
+  },
+  "7685": {
+   "estacion": "REPSOL · CALLE PINERA, SN · Cruz Santa, Los Realejos",
+   "registro": "L: 06:00-00:00",
+   "se_escribe": "L-V: 06:00-22:00; S-D: 07:00-22:00",
+   "fuente": "Jerome, 4 de octubre, 13:51: captura de Google Maps de «Estacion de Servicio Repsol», «C. El Mocan, 1A, 38413 Cruz Santa»: lunes a viernes 6:00-22:00, sabado y domingo 7:00-22:00. La Calle el Mocan esta a 32 m del pin de la 7685 y a 1,6 km de la otra Repsol de Los Realejos (7684)."
   }
  },
  "cp": {

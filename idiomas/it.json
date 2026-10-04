@@ -871,7 +871,7 @@
  "gas-14769-los-realejos": {"desc": "Polígono La Gañanía, Los Realejos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Océano", "hours": "Lun-Sab 06:00-22:00 · Dom 07:00-22:00"},
  "gas-10990-los-realejos": {"desc": "Calle Los Barros, Los Realejos. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Pcan", "hours": "Lun-Dom 24 h"},
  "gas-15044-los-realejos": {"desc": "Calle Anaga, Los Realejos. Carburanti: benzina 95 e gasolio.", "cat": "Distributore · Petroprix", "hours": "Lun-Dom 24 h"},
- "gas-7685-los-realejos": {"desc": "Calle Piñera, Los Realejos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Repsol", "hours": "Lun 06:00-00:00"},
+ "gas-7685-los-realejos": {"desc": "Calle Piñera, Los Realejos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Repsol", "hours": "Lun-Ven 06:00-22:00 · Sab-Dom 07:00-22:00"},
  "gas-7684-los-realejos": {"desc": "Carretera TF-326, Los Realejos. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Repsol", "hours": "Lun-Dom 06:30-00:00"},
  "gas-8757-los-realejos": {"desc": "Carretera El Toscal, Los Realejos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"},
  "gas-8756-los-realejos": {"desc": "Carretera General La Zamora 22, Los Realejos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"},
@@ -971,5 +971,6 @@
  "gas-7678-santa-ursula": {"desc": "Carretera Vieja, Santa Úrsula. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Repsol", "hours": "Lun-Sab 06:00-23:00 · Dom 07:00-23:00"},
  "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"},
  "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez El Viejo, Buenavista del Norte. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · DISA", "hours": "Lun-Sab 06:00-23:00 · Dom 07:00-10:00"},
- "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Repsol", "hours": "Lun-Ven 05:30-20:30 · Sab-Dom 08:00-20:00"}
+ "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Repsol", "hours": "Lun-Ven 05:30-20:30 · Sab-Dom 08:00-20:00"},
+ "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · DISA", "hours": "Lun-Dom 06:00-22:00"}
 }

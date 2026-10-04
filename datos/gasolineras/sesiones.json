@@ -392,7 +392,7 @@
    "revisada_el": "2026-10-04",
    "revision": "tools/revisar_gasolineras.py: 3 fichas, 0 hallazgos, 3/3 estaciones con su ficha",
    "horarios_de_un_dia": "Jerome, 4 de octubre, los comprobo: 7728, 7696, 8754, 7624, 7675 y 11562 abren todos los dias («horarios» en correcciones-registro.json; 11562 cierra a las 21:30). La 7685 (Repsol, Calle Pinera, Cruz Santa) NO: la captura «Repsol Palo Blanco», Carr. la Ferruja 52, es la otra Repsol de Los Realejos, la 7684 (el paraje de La Ferruja esta a 110 m de ella y a 1,6 km de la 7685), que ya da L-D 06:30-00:00 en el registro.",
-   "pregunta_a_jerome": "7685 Repsol, Calle Pinera, SN, Cruz Santa (Los Realejos): el registro da «L: 06:00-00:00». ¿Su horario de verdad?"
+   "horario_7685": "Jerome, 4 de octubre, 13:51: captura de Google Maps (C. El Mocan, 1A, Cruz Santa): L-V 06:00-22:00, S-D 07:00-22:00. Aplicado («horarios»)."
   },
   "24-santa-ursula": {
    "que": "Las 2 estaciones de Santa Úrsula (2 altas, 0 ya en la app).",
@@ -451,12 +451,17 @@
   },
   "28-los-silos": {
    "que": "Las 1 estaciones de Los Silos (1 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Los Silos",
    "estaciones": 1,
    "altas": 1,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/28-los-silos.json"
+   "plan": "datos/gasolineras/plan/28-los-silos.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 1,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 1 ficha, 0 hallazgos, 1/1 estaciones con su ficha",
+   "pregunta_a_jerome": "7827 DISA Los Silos: el registro dice «(GENERAL TF-142 KM 11)». En OSM no hay ninguna TF-142 en la isla; la calle de la gasolinera es la TF-42a (el ramal de la TF-42 por Los Silos) y la de Garachico, 2,7 km antes por la TF-42, esta en el km 8,9, asi que el km 11 cuadra con la TF-42. ¿Errata «TF-142» -> «TF-42»? Mientras, la direccion lleva el texto del registro; el nombre no lleva el numero."
   },
   "29-el-tanque": {
    "que": "Las 1 estaciones de El Tanque (1 altas, 0 ya en la app).",

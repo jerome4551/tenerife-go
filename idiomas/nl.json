@@ -871,7 +871,7 @@
  "gas-14769-los-realejos": {"desc": "Polígono La Gañanía, Los Realejos. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Océano", "hours": "Ma-Za 06:00-22:00 · Zo 07:00-22:00"},
  "gas-10990-los-realejos": {"desc": "Calle Los Barros, Los Realejos. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Pcan", "hours": "Ma-Zo 24 u"},
  "gas-15044-los-realejos": {"desc": "Calle Anaga, Los Realejos. Brandstoffen: benzine 95 en diesel.", "cat": "Tankstation · Petroprix", "hours": "Ma-Zo 24 u"},
- "gas-7685-los-realejos": {"desc": "Calle Piñera, Los Realejos. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Repsol", "hours": "Ma 06:00-00:00"},
+ "gas-7685-los-realejos": {"desc": "Calle Piñera, Los Realejos. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Repsol", "hours": "Ma-Vr 06:00-22:00 · Za-Zo 07:00-22:00"},
  "gas-7684-los-realejos": {"desc": "Carretera TF-326, Los Realejos. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Repsol", "hours": "Ma-Zo 06:30-00:00"},
  "gas-8757-los-realejos": {"desc": "Carretera El Toscal, Los Realejos. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Shell", "hours": "Ma-Zo 06:00-22:00"},
  "gas-8756-los-realejos": {"desc": "Carretera General La Zamora 22, Los Realejos. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Shell", "hours": "Ma-Zo 06:00-22:00"},
@@ -971,5 +971,6 @@
  "gas-7678-santa-ursula": {"desc": "Carretera Vieja, Santa Úrsula. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Repsol", "hours": "Ma-Za 06:00-23:00 · Zo 07:00-23:00"},
  "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Shell", "hours": "Ma-Zo 06:00-22:00"},
  "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez El Viejo, Buenavista del Norte. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · DISA", "hours": "Ma-Za 06:00-23:00 · Zo 07:00-10:00"},
- "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Brandstoffen: benzine 95, benzine 98, diesel en hernieuwbare diesel.", "cat": "Tankstation · Repsol", "hours": "Ma-Vr 05:30-20:30 · Za-Zo 08:00-20:00"}
+ "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Brandstoffen: benzine 95, benzine 98, diesel en hernieuwbare diesel.", "cat": "Tankstation · Repsol", "hours": "Ma-Vr 05:30-20:30 · Za-Zo 08:00-20:00"},
+ "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · DISA", "hours": "Ma-Zo 06:00-22:00"}
 }
