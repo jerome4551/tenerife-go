@@ -924,7 +924,7 @@
  "gas-7621-guimar": {"desc": "Avenida Obispo Pérez Cáceres, Güímar. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-Sa 06:00-22:00 · So 06:00-14:00"},
  "gas-12479-guimar": {"desc": "Polígono Industrial Valle de Güímar, Güímar. Kraftstoffe: Benzin 95, Premium-Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Océano", "hours": "Mo-Fr 06:00-22:00 · Sa 07:00-22:00 · So 08:00-21:00"},
  "gas-8749-guimar": {"desc": "Calle Rigoberto Díaz Melero, Güímar. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Shell", "hours": "Mo-So 06:00-22:00"},
- "gas-7770-tacoronte": {"desc": "Autopista El Torreón km 11,00, Tacoronte. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · BP", "hours": "Mo-Sa 06:00-00:00 · So 08:00-14:00"},
+ "gas-7770-tacoronte": {"desc": "Autopista El Torreón, Tacoronte. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · BP", "hours": "Mo-Sa 06:00-00:00 · So 08:00-14:00"},
  "gas-15182-tacoronte": {"desc": "Carretera General del Norte, Tacoronte. Kraftstoffe: Benzin 95, Benzin 98, Diesel, Premium-Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-So 06:00-22:00"},
  "gas-7636-tacoronte": {"desc": "Camino Real, Tacoronte. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel. Außerdem: AdBlue.", "cat": "Tankstelle · Moeve", "hours": "Mo-Sa 06:00-22:00 · So 08:00-22:00"},
  "gas-14982-tacoronte": {"desc": "Carretera General Norte, Tacoronte. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-So 06:00-22:00"},
@@ -969,5 +969,6 @@
  "gas-7865-tegueste": {"desc": "Carretera TF-154, Tegueste. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-So 06:00-22:00"},
  "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Tgas", "hours": "Mo-So 06:00-23:00"},
  "gas-7678-santa-ursula": {"desc": "Carretera Vieja, Santa Úrsula. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-Sa 06:00-23:00 · So 07:00-23:00"},
- "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Shell", "hours": "Mo-So 06:00-22:00"}
+ "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Shell", "hours": "Mo-So 06:00-22:00"},
+ "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez El Viejo, Buenavista del Norte. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-Sa 06:00-23:00 · So 07:00-10:00"}
 }

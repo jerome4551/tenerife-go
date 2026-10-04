@@ -175,6 +175,17 @@ KM_CONTRADICHO = set(_CORR.get('km_contradicho', {}))   # posicion comprobada qu
 HORARIOS = _CORR.get('horarios', {})   # «L: 24H» (solo el lunes) que Jerome comprobo
 
 
+CP = _CORR.get('cp', {})   # codigos postales que no cuadran, con fuente para el bueno
+
+
+def cp_del_registro(e):
+    """El C.P. del registro, con la correccion comprobada si la hay; como el
+       horario, solo mientras el registro siga diciendo lo que se corrigio."""
+    c = (e.get('C.P.') or '').strip()
+    k = CP.get(str(e.get('IDEESS')))
+    return k['se_escribe'] if k and k['registro'] == c else c
+
+
 def horario_del_registro(e):
     """El campo Horario del registro, con la correccion comprobada si la hay. Solo
        vale mientras el registro siga diciendo exactamente lo que se corrigio."""
@@ -572,7 +583,7 @@ def direccion(e, muni):
     elif km:
         t += ' km %s' % km
     loc = localidad_de(e, muni)
-    lugar = '%s %s' % ((e.get('C.P.') or '').strip(), loc)
+    lugar = '%s %s' % (cp_del_registro(e), loc)
     if llano(loc) != llano(muni):
         lugar += ', %s' % muni
     return '%s, %s' % (t, lugar.strip())
@@ -618,7 +629,7 @@ def ficha(e, muni, sufijo=''):
         'marca': marca, 'municipio': muni, 'localidad': loc,
         'address': direccion(e, muni),
         'direccion_registro': (e.get('Dirección') or '').strip(),   # el original, sin tocar
-        'cp': (e.get('C.P.') or '').strip(),
+        'cp': cp_del_registro(e),
         'tags': ['Gasolinera'] + [t for t in (base, muni) if t and not se_traduce(t)] + [
             t for t in AVISOS.get(str(e['IDEESS']), {}).get('tags', [])
             if t not in (base, muni)],

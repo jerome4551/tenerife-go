@@ -33,7 +33,10 @@
   "HORARIOS: el registro da a algunas estaciones un horario de UN solo dia («L: 24H»:",
   "solo el lunes). Jerome los comprobo el 4 de octubre y abren todos los dias. Se",
   "corrige solo si el registro sigue diciendo exactamente lo mismo («registro»): si",
-  "cambia, manda el registro nuevo."
+  "cambia, manda el registro nuevo.",
+  "",
+  "CP: codigos postales del registro que no cuadran y tienen fuente para el bueno.",
+  "Como HORARIOS: solo vale mientras el registro siga diciendo exactamente lo mismo."
  ],
  "acentos": {
   "albanileria": "Albañilería",
@@ -111,6 +114,16 @@
    "estacion": "BP FASNIA · «AUTOVIA TF-1 KM. 36,5» · Fasnia",
    "por_que": "Esta AL NORTE de la Moeve del km 34 (31,1 km en linea recta de Santa Cruz, frente a 32,5), las dos a unos 60 m de la autopista: va antes por el TF-1 y su km tiene que ser menor que 34. Las otras nueve estaciones del TF-1 van en orden y por su relacion le corresponderia hacia el km 33.",
    "posicion_comprobada": "Jerome, 4 de octubre: Street View de agosto de 2026 en 28.222694, -16.414139 (la coordenada del registro): se ve la BP. La «Repsol» que OSM tiene ahi estaba desfasada."
+  },
+  "7770": {
+   "estacion": "BP · «AUTOPISTA AUTOPISTA EL TORREON KM. 11,00» · Tacoronte",
+   "por_que": "Su coordenada, su municipio (Tacoronte) y su CP (38350) la ponen 1,5 km al OESTE de la Moeve del km 16 (14,1 km en linea recta de Santa Cruz frente a 12,7): va despues del 16. Y el km 11 de la TF-5 cae en La Laguna: segun el poligono del Cabildo, Tacoronte empieza hacia el km 15.",
+   "posicion_comprobada": "Los campos del propio registro (coordenada, municipio, CP) y OSM, que tiene en el pin una «BP Los Naranjeros» a 0 m, junto a la Autopista del Norte. Jerome, 4 de octubre: «Si» a quitarlos como en Fasnia."
+  },
+  "7733": {
+   "estacion": "TGAS TACORONTE · «CARRETERA GENERAL DEL NORTE KM. 79» · Tacoronte",
+   "por_que": "Las de la Carretera General del Norte van en orden del km 20,4 (El Sauzal) al 52,7 (Icod), nueve de nueve; la Tgas esta ANTES que las de El Sauzal (15,4 km en linea recta de Santa Cruz frente a 16,3), asi que su km tendria que ser menor que 20,4.",
+   "posicion_comprobada": "Los campos del propio registro (coordenada, municipio, CP) y OSM, que tiene una «Tgas» a 8 m, junto a la Carretera General del Norte. Jerome, 4 de octubre: «Si» a quitarlos como en Fasnia."
   }
  },
  "horarios": {
@@ -149,6 +162,14 @@
    "registro": "L: 06:00-23:00",
    "se_escribe": "L-D: 06:00-21:30",
    "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «L 06:00-21h30»: cierra a las 21:30, no a las 23:00."
+  }
+ },
+ "cp": {
+  "8802": {
+   "estacion": "MOEVE · C/ LA CAMPANA, S/N · El Rosario",
+   "registro": "38420",
+   "se_escribe": "38109",
+   "fuente": "Jerome, 4 de octubre: «Si» a cambiarlo con fuente. Su captura de Google Maps (IMG_3459): «POLIGONO INDUSTRIAL LA CAMPANA, C. la Campana, 2, 38109 El Rosario». El registro da 38109 a la Tgas del mismo poligono (15713, Calle Isaac Peral, a 550 m), y el 38420 lo da a la Repsol de San Juan de la Rambla, a 30 km."
   }
  }
 }

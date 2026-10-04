@@ -924,7 +924,7 @@
  "gas-7621-guimar": {"desc": "Avenida Obispo Pérez Cáceres, Güímar. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Moeve", "hours": "Lun-Sab 06:00-22:00 · Dom 06:00-14:00"},
  "gas-12479-guimar": {"desc": "Polígono Industrial Valle de Güímar, Güímar. Carburanti: benzina 95, benzina 95 premium, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Océano", "hours": "Lun-Ven 06:00-22:00 · Sab 07:00-22:00 · Dom 08:00-21:00"},
  "gas-8749-guimar": {"desc": "Calle Rigoberto Díaz Melero, Güímar. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"},
- "gas-7770-tacoronte": {"desc": "Autopista El Torreón km 11,00, Tacoronte. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · BP", "hours": "Lun-Sab 06:00-00:00 · Dom 08:00-14:00"},
+ "gas-7770-tacoronte": {"desc": "Autopista El Torreón, Tacoronte. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · BP", "hours": "Lun-Sab 06:00-00:00 · Dom 08:00-14:00"},
  "gas-15182-tacoronte": {"desc": "Carretera General del Norte, Tacoronte. Carburanti: benzina 95, benzina 98, gasolio, gasolio premium e gasolio rinnovabile.", "cat": "Distributore · DISA", "hours": "Lun-Dom 06:00-22:00"},
  "gas-7636-tacoronte": {"desc": "Camino Real, Tacoronte. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium. Inoltre: AdBlue.", "cat": "Distributore · Moeve", "hours": "Lun-Sab 06:00-22:00 · Dom 08:00-22:00"},
  "gas-14982-tacoronte": {"desc": "Carretera General Norte, Tacoronte. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 06:00-22:00"},
@@ -969,5 +969,6 @@
  "gas-7865-tegueste": {"desc": "Carretera TF-154, Tegueste. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · DISA", "hours": "Lun-Dom 06:00-22:00"},
  "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Tgas", "hours": "Lun-Dom 06:00-23:00"},
  "gas-7678-santa-ursula": {"desc": "Carretera Vieja, Santa Úrsula. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Repsol", "hours": "Lun-Sab 06:00-23:00 · Dom 07:00-23:00"},
- "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"}
+ "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"},
+ "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez El Viejo, Buenavista del Norte. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · DISA", "hours": "Lun-Sab 06:00-23:00 · Dom 07:00-10:00"}
 }

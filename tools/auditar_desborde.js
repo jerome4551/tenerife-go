@@ -130,6 +130,26 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
            se traducen en los nueve: alguna TIENE que cambiar. */
         if (lang !== 'es' && chips.length && chips.every((c, k) => c === fx.tags[k]))
           o.hoja.mal.push('ninguna etiqueta cambia: ' + chips.slice(0, 4).join(' · '));
+        /* El horario de una gasolinera (sale del registro oficial, IDEESS)
+           estaba guardado en los diez idiomas y no se pintaba en ningun sitio.
+           Tiene que salir, en el idioma de la pantalla. Y uno sin fuente (un
+           camping) no tiene que salir. */
+        const t1 = Date.now();
+        while (fx.hours && !fx.hours[lang] && Date.now() - t1 < 6000)
+          await new Promise(r2 => setTimeout(r2, 100));
+        openDetailSheet(fx.id);
+        await new Promise(r2 => setTimeout(r2, 200));
+        const info = (document.getElementById('detail-sheet-info') || {}).textContent || '';
+        if (fx.ideess && fx.hours && !info.includes('🕐 ' + fx.hours[lang]))
+          o.hoja.mal.push('horario: la ficha dice «' + info.trim().slice(0, 60) + '», debe «🕐 ' + fx.hours[lang] + '»');
+        const sinFuente = places.find(x => x.hours && !x.ideess && x.category === 'camping');
+        if (sinFuente) {
+          openDetailSheet(sinFuente.id);
+          await new Promise(r2 => setTimeout(r2, 200));
+          if (((document.getElementById('detail-sheet-info') || {}).textContent || '').includes('🕐'))
+            o.hoja.mal.push('horario sin fuente pintado: ' + sinFuente.id);
+          openDetailSheet(fx.id);
+        }
         const fl = document.getElementById('detail-fav-lbl');
         o.hoja.fav = fl ? fl.textContent.trim() : null;
         if (typeof closeDetailSheet === 'function') closeDetailSheet();
@@ -139,7 +159,7 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
 
     if (r.hoja.mal.length) {
       fallos++;
-      console.log('  MAL  ' + L.padEnd(4) + 'hoja de detalle: ' + r.hoja.mal.length + ' etiqueta(s) sin traducir');
+      console.log('  MAL  ' + L.padEnd(4) + 'hoja de detalle: ' + r.hoja.mal.length + ' fallo(s) (etiquetas u horario)');
       r.hoja.mal.slice(0, 4).forEach(x => console.log('           ' + x));
     }
     if (L !== 'es' && r.hoja.fav === 'Favorito') {

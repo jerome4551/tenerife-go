@@ -228,7 +228,7 @@
    },
    "revisada_el": "2026-10-03",
    "revision": "tools/revisar_gasolineras.py: 5 fichas, 0 hallazgos, 6/6 estaciones con su ficha",
-   "pregunta_a_jerome": "Dos km del registro que contradicen su propia posicion (revision de los bloques 20 y 21, prueba del km en orden por la TF-5 y la Carretera General del Norte). 7770 BP, «AUTOPISTA AUTOPISTA EL TORREON KM. 11,00»: su coordenada, su municipio (Tacoronte) y su CP (38350) la ponen 1,5 km al oeste de la Moeve del km 16, asi que va DESPUES del 16; y el km 11 de la TF-5 cae en La Laguna (segun el poligono del Cabildo, Tacoronte empieza hacia el km 15). OSM tiene en el pin una «BP Los Naranjeros» a 0 m. 7733 Tgas, «CARRETERA GENERAL DEL NORTE KM. 79»: las de esa carretera van en orden del 20,4 (El Sauzal) al 52,7 (Icod) y la Tgas esta antes que las de El Sauzal (15,4 km en linea recta de Santa Cruz frente a 16,3); OSM tiene una Tgas a 8 m. Propuesta: quitar los dos km como en Fasnia (km_contradicho), sin poner otro. Mientras, se quedan los del registro."
+   "km_contradichos": "Jerome, 4 de octubre, «Si»: fuera el km 11 de la BP 7770 (ahora «BP · Autopista El Torreon») y el km 79 de la Tgas 7733 (solo estaba en la direccion). km_contradicho en correcciones-registro.json, con la prueba."
   },
   "13-arico": {
    "que": "Las 5 estaciones de Arico (4 altas, 1 ya en la app).",
@@ -377,7 +377,7 @@
    "revisada_el": "2026-10-04",
    "revision": "tools/revisar_gasolineras.py: 3 fichas, 0 hallazgos, 3/3 estaciones con su ficha",
    "km_del_parentesis": "8802 «C/ LA CAMPANA, S/N (CTRA. GRAL. DEL SUR km 4)»: el km 4 es de la Carretera General del Sur, no de la calle. La direccion pasa a «Calle La Campana (Carretera General del Sur km 4)». Misma regla para 10345 (Guia de Isora, rehecha) y 7827 (Los Silos, sin aplicar).",
-   "pregunta_a_jerome": "Codigo postal (revision de los bloques 22 y 23): el registro da 38420 a la Moeve 8802 y a la Pcan 7720 de El Rosario, y el mismo 38420 a la Repsol 7683 de San Juan de la Rambla, a 30 km. Para la 8802, tu captura IMG_3459 dice «C. la Campana, 2, 38109 El Rosario», y el registro da 38109 a la Tgas del mismo poligono, a 550 m. Igual con 38260: dos de Abades (7726 y 7703, Arico) y dos de Tejina (7819 y 7862, La Laguna). ¿Se cambia o se quita?"
+   "pregunta_a_jerome": "CP: la Moeve 8802 ya va con 38109 (tu captura IMG_3459 y la Tgas de su poligono). Siguen con el CP del registro, sin fuente para el bueno: la Pcan 7720 de El Rosario (38420, el de San Juan de la Rambla) y las dos de Abades, 7726 y 7703 (38260, el de Tejina)."
   },
   "23-tegueste": {
    "que": "Las 3 estaciones de Tegueste (3 altas, 0 ya en la app).",
@@ -409,12 +409,16 @@
   },
   "25-buenavista-del-norte": {
    "que": "Las 1 estaciones de Buenavista del Norte (1 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Buenavista del Norte",
    "estaciones": 1,
    "altas": 1,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/25-buenavista-del-norte.json"
+   "plan": "datos/gasolineras/plan/25-buenavista-del-norte.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 1,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 1 ficha, 0 hallazgos, 1/1 estaciones con su ficha"
   },
   "26-garachico": {
    "que": "Las 1 estaciones de Garachico (1 altas, 0 ya en la app).",
@@ -506,5 +510,5 @@
   "9966": "DISA Vistabella (La Laguna): Google 21:45 · registro 22:00 (despreciable)"
  },
  "antiguas_enlazadas_todas": "3 de octubre, a peticion de Jerome («Arregla el horario»): las 14 fichas antiguas, enlazadas con su estacion y con horario y direccion del registro. 11 de las 14 tenian el horario mal.",
- "horario_no_se_ve": "Revision de los bloques 22 y 23: la app NO ensena el horario de las gasolineras en ningun sitio. La hoja de detalle solo pinta la direccion; el globo del mapa pinta horario y direccion solo para hospital, farmacia, csalud, veterinario y salud. Igual les pasa a 18 oficinas de turismo y 18 campings. Pregunta a Jerome: ¿se pinta?"
+ "horario_no_se_ve": "Arreglado el 4 de octubre con el «Si» de Jerome: el horario se pinta en la ficha (movil) y en el globo del mapa (ordenador) de las fichas con IDEESS, las del registro oficial. Los de las 18 oficinas de turismo y los 18 campings NO: no tienen fuente (REVISION-LUGARES.md, «Horarios, precios y telefonos: no hay contra que contrastarlos»), y tres oficinas tienen el mismo horario, de plantilla. auditar_desborde.js lo controla."
 }

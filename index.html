@@ -153,7 +153,7 @@ window.onunhandledrejection = function(e) {
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
       "author": { "@type": "Person", "name": "Jérôme B" },
       "image": "https://jerome4551.github.io/tenerife-go/og-image.jpg",
-      "featureList": "Mapa interactivo offline, 971 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
+      "featureList": "Mapa interactivo offline, 972 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
     },
     {
       "@type": "TouristDestination",
@@ -11531,6 +11531,12 @@ const places = [
     desc:{ es:"DISA en la TF-5 km 46, Los Realejos. Norte entre Puerto de la Cruz e Icod de los Vinos. Útil para quienes continúan hacia Garachico o el noroeste de la isla." },
     cat:{ es:"Gasolinera · TF-5 · Los Realejos" },
     tags:["Gasolinera","TF-5","Norte","Los Realejos","Autopista Norte"] },
+  { id:"gas-7888-buenavista-del-norte", category:"gasolinera", name:"DISA · Avenida Juan Méndez El Viejo", emoji:"⛽", color:"#dc2626", lat:28.369889, lng:-16.84825, ideess:"7888",
+    address:"Avenida Juan Méndez El Viejo, 38480 Buenavista del Norte",
+    hours:{ es:"L-S 06:00-23:00 · D 07:00-10:00" },
+    desc:{ es:"Avenida Juan Méndez El Viejo, Buenavista del Norte. Combustibles: gasolina 95, gasolina 98 y gasóleo A." },
+    cat:{ es:"Gasolinera · DISA" },
+    tags:["Gasolinera","DISA","Buenavista del Norte"] },
   { id:"gas-7678-santa-ursula", category:"gasolinera", name:"Repsol · Carretera Vieja", emoji:"⛽", color:"#dc2626", lat:28.428722, lng:-16.484667, ideess:"7678",
     address:"Carretera Vieja, 38390 Santa Úrsula",
     hours:{ es:"L-S 06:00-23:00 · D 07:00-23:00" },
@@ -11562,7 +11568,7 @@ const places = [
     cat:{ es:"Gasolinera · Tgas" },
     tags:["Gasolinera","Tgas","Tegueste"] },
   { id:"gas-8802-el-rosario", category:"gasolinera", name:"Moeve · Calle La Campana", emoji:"⛽", color:"#dc2626", lat:28.419333, lng:-16.320222, ideess:"8802",
-    address:"Calle La Campana (Carretera General del Sur km 4), 38420 El Rosario",
+    address:"Calle La Campana (Carretera General del Sur km 4), 38109 El Rosario",
     hours:{ es:"L-D 24 h" },
     desc:{ es:"Calle La Campana, El Rosario. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable." },
     cat:{ es:"Gasolinera · Moeve" },
@@ -11777,10 +11783,10 @@ const places = [
     desc:{ es:"Autovía TF-1 km 39, Arico. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable." },
     cat:{ es:"Gasolinera · Repsol" },
     tags:["Gasolinera","Repsol","Arico"] },
-  { id:"gas-7770-tacoronte", category:"gasolinera", name:"BP · Autopista El Torreón km 11,00", emoji:"⛽", color:"#dc2626", lat:28.480694, lng:-16.397972, ideess:"7770",
-    address:"Autopista El Torreón km 11,00, 38350 Tacoronte",
+  { id:"gas-7770-tacoronte", category:"gasolinera", name:"BP · Autopista El Torreón", emoji:"⛽", color:"#dc2626", lat:28.480694, lng:-16.397972, ideess:"7770",
+    address:"Autopista El Torreón, 38350 Tacoronte",
     hours:{ es:"L-S 06:00-00:00 · D 08:00-14:00" },
-    desc:{ es:"Autopista El Torreón km 11,00, Tacoronte. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium." },
+    desc:{ es:"Autopista El Torreón, Tacoronte. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium." },
     cat:{ es:"Gasolinera · BP" },
     tags:["Gasolinera","BP","Tacoronte"] },
   { id:"gas-15182-tacoronte", category:"gasolinera", name:"DISA · Carretera General del Norte (Tacoronte)", emoji:"⛽", color:"#dc2626", lat:28.478, lng:-16.4085, ideess:"15182",
@@ -11802,7 +11808,7 @@ const places = [
     cat:{ es:"Gasolinera · Moeve" },
     tags:["Gasolinera","Moeve","Tacoronte"] },
   { id:"gas-7733-tacoronte", category:"gasolinera", name:"Tgas · Carretera General del Norte", emoji:"⛽", color:"#dc2626", lat:28.477472, lng:-16.411778, ideess:"7733",
-    address:"Carretera General del Norte km 79, 38350 Tacoronte",
+    address:"Carretera General del Norte, 38350 Tacoronte",
     hours:{ es:"L-D 24 h" },
     desc:{ es:"Carretera General del Norte, Tacoronte. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium." },
     cat:{ es:"Gasolinera · Tgas" },
@@ -16362,8 +16368,13 @@ function openDetailSheet(placeId) {
   // Info salud/dirección si existe
   const infoEl = document.getElementById('detail-sheet-info');
   infoEl.innerHTML = '';
-  if (place.address) {
-    infoEl.innerHTML = `<div class="popup-info"><div class="popup-info-addr">📍 ${escapeHtml(place.address)}</div></div>`;
+  // El horario, solo si sale del registro oficial (IDEESS): ver el globo del mapa.
+  const _hora = (place.ideess && place.hours) ? localized(place.hours) : '';
+  if (place.address || _hora) {
+    infoEl.innerHTML = '<div class="popup-info">' +
+      (_hora ? `<div class="popup-info-row">${L.hoursLabel} ${escapeHtml(_hora)}</div>` : '') +
+      (place.address ? `<div class="popup-info-addr">📍 ${escapeHtml(place.address)}</div>` : '') +
+      '</div>';
   }
 
   // ===== BLOQUE 3: Parking cercano con aforo en ficha playa ======
@@ -17562,6 +17573,22 @@ function _updateMarkersImpl() {
           rows.push(`<div class="popup-info-row popup-info-addr">📍 ${escapeHtml(place.address)}</div>`);
         }
         rows.push(`<div class="popup-info-row popup-info-112"><a href="tel:112" class="popup-info-link">${L.emergencyTel}</a></div>`);
+        healthInfo = `<div class="popup-info">${rows.join('')}</div>`;
+      }
+      /* Horario y direccion de las fichas que salen del registro oficial del
+         MITECO: las que llevan IDEESS, o sea, las gasolineras. El horario
+         estaba guardado en los diez idiomas y no se pintaba en ningun sitio.
+         Otros horarios guardados (oficinas de turismo, campings) no tienen
+         fuente comprobada y por eso NO se pintan: el criterio es la fuente,
+         no la categoria. */
+      if (!healthInfo && place.ideess && (place.hours || place.address)) {
+        const rows = [];
+        if (place.hours) {
+          rows.push(`<div class="popup-info-row">${L.hoursLabel} ${escapeHtml(localized(place.hours))}</div>`);
+        }
+        if (place.address) {
+          rows.push(`<div class="popup-info-row popup-info-addr">📍 ${escapeHtml(place.address)}</div>`);
+        }
         healthInfo = `<div class="popup-info">${rows.join('')}</div>`;
       }
 

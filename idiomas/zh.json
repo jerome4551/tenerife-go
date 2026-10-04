@@ -924,7 +924,7 @@
  "gas-7621-guimar": {"desc": "Avenida Obispo Pérez Cáceres（Güímar）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · Moeve", "hours": "周一至周六 06:00至22:00 · 周日 06:00至14:00"},
  "gas-12479-guimar": {"desc": "Polígono Industrial Valle de Güímar（Güímar）。燃料：95号汽油、优质95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Océano", "hours": "周一至周五 06:00至22:00 · 周六 07:00至22:00 · 周日 08:00至21:00"},
  "gas-8749-guimar": {"desc": "Calle Rigoberto Díaz Melero（Güímar）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 06:00至22:00"},
- "gas-7770-tacoronte": {"desc": "Autopista El Torreón km 11,00（Tacoronte）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · BP", "hours": "周一至周六 06:00至00:00 · 周日 08:00至14:00"},
+ "gas-7770-tacoronte": {"desc": "Autopista El Torreón（Tacoronte）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · BP", "hours": "周一至周六 06:00至00:00 · 周日 08:00至14:00"},
  "gas-15182-tacoronte": {"desc": "Carretera General del Norte（Tacoronte）。燃料：95号汽油、98号汽油、柴油、优质柴油和可再生柴油。", "cat": "加油站 · DISA", "hours": "周一至周日 06:00至22:00"},
  "gas-7636-tacoronte": {"desc": "Camino Real（Tacoronte）。燃料：95号汽油、98号汽油、柴油和优质柴油。另有：AdBlue。", "cat": "加油站 · Moeve", "hours": "周一至周六 06:00至22:00 · 周日 08:00至22:00"},
  "gas-14982-tacoronte": {"desc": "Carretera General Norte（Tacoronte）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Moeve", "hours": "周一至周日 06:00至22:00"},
@@ -969,5 +969,6 @@
  "gas-7865-tegueste": {"desc": "Carretera TF-154（Tegueste）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · DISA", "hours": "周一至周日 06:00至22:00"},
  "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar（Tegueste）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · Tgas", "hours": "周一至周日 06:00至23:00"},
  "gas-7678-santa-ursula": {"desc": "Carretera Vieja（Santa Úrsula）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · Repsol", "hours": "周一至周六 06:00至23:00 · 周日 07:00至23:00"},
- "gas-8762-santa-ursula": {"desc": "Carretera General del Norte（Santa Úrsula）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 06:00至22:00"}
+ "gas-8762-santa-ursula": {"desc": "Carretera General del Norte（Santa Úrsula）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 06:00至22:00"},
+ "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez El Viejo（Buenavista del Norte）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · DISA", "hours": "周一至周六 06:00至23:00 · 周日 07:00至10:00"}
 }

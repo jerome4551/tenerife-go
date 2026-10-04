@@ -924,7 +924,7 @@
  "gas-7621-guimar": {"desc": "Avenida Obispo Pérez Cáceres, Güímar. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Съб 06:00-22:00 · Нед 06:00-14:00"},
  "gas-12479-guimar": {"desc": "Polígono Industrial Valle de Güímar, Güímar. Горива: бензин 95, бензин 95 премиум, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Océano", "hours": "Пон-Пет 06:00-22:00 · Съб 07:00-22:00 · Нед 08:00-21:00"},
  "gas-8749-guimar": {"desc": "Calle Rigoberto Díaz Melero, Güímar. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"},
- "gas-7770-tacoronte": {"desc": "Autopista El Torreón km 11,00, Tacoronte. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · BP", "hours": "Пон-Съб 06:00-00:00 · Нед 08:00-14:00"},
+ "gas-7770-tacoronte": {"desc": "Autopista El Torreón, Tacoronte. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · BP", "hours": "Пон-Съб 06:00-00:00 · Нед 08:00-14:00"},
  "gas-15182-tacoronte": {"desc": "Carretera General del Norte, Tacoronte. Горива: бензин 95, бензин 98, дизел, премиум дизел и възобновяем дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Нед 06:00-22:00"},
  "gas-7636-tacoronte": {"desc": "Camino Real, Tacoronte. Горива: бензин 95, бензин 98, дизел и премиум дизел. Също: AdBlue.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Съб 06:00-22:00 · Нед 08:00-22:00"},
  "gas-14982-tacoronte": {"desc": "Carretera General Norte, Tacoronte. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Нед 06:00-22:00"},
@@ -969,5 +969,6 @@
  "gas-7865-tegueste": {"desc": "Carretera TF-154, Tegueste. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Нед 06:00-22:00"},
  "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Tgas", "hours": "Пон-Нед 06:00-23:00"},
  "gas-7678-santa-ursula": {"desc": "Carretera Vieja, Santa Úrsula. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Съб 06:00-23:00 · Нед 07:00-23:00"},
- "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"}
+ "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"},
+ "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez El Viejo, Buenavista del Norte. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Съб 06:00-23:00 · Нед 07:00-10:00"}
 }

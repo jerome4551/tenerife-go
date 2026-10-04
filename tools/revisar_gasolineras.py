@@ -198,6 +198,9 @@ def main():
                 mal(p['id'], 'el nombre lleva «%s», que no sale del registro' % w)
         # direccion: la pedia el LEEME y las primeras 104 salieron sin ella
         cp = (e.get('C.P.') or '').strip()
+        kc = corr.get('cp', {}).get(str(e['IDEESS']))
+        if kc and kc['registro'] == cp:     # corregido con fuente: ver correcciones-registro.json
+            cp = kc['se_escribe']
         if not p.get('address'):
             mal(p['id'], 'no tiene direccion')
         else:

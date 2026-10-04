@@ -1035,9 +1035,35 @@ fichas, **0 hallazgos**. En OSM, la Repsol a 9 m y la Shell a 6 m de sus pins. E
 campo del km, como el 152 de Tacoronte: no sale. El km 31 de la Shell va en orden
 con los de la Carretera General del Norte.
 
+## Tus respuestas del 4 de octubre, por la tarde («Sí y sigue 25»)
+
+**El horario ya se ve.** En la ficha (móvil) y en el globo del mapa (ordenador),
+encima de la dirección y en el idioma de la pantalla: «🕐 Mon-Sun 06:00-21:30».
+Solo para las fichas que salen del **registro oficial** (las que llevan IDEESS,
+las gasolineras). Las 18 oficinas de turismo y los 18 campings también tienen
+horario guardado, pero **no se pinta**: no tiene fuente (`REVISION-LUGARES.md`:
+«horarios, precios y teléfonos… no hay contra qué contrastarlos») y tres oficinas
+(Santa Cruz, Puerto de la Cruz, Adeje) tienen exactamente el mismo, de plantilla.
+Lo de los campings ni siquiera es un horario («Permiso previo obligatorio ·
+reserva en Tenerife ON»). La auditoría lo controla: el horario de una gasolinera
+tiene que salir en su idioma, y el de un camping no tiene que salir (probado
+metiendo los dos fallos).
+
+**Tacoronte, sin los km contradichos:** «BP · Autopista El Torreón» (fuera el km
+11) y la Tgas sin el km 79 en la dirección. Como en Fasnia, en `km_contradicho`.
+
+**El CP de la Moeve de La Campana:** 38420 → **38109**, con tu captura y el CP que
+el registro da a la Tgas de su polígono. Las otras tres (la Pcan de La Esperanza
+y las dos de Abades) siguen con el del registro: no hay fuente para el bueno.
+
+## Sesión 25 · Buenavista del Norte · HECHA el 4 de octubre
+
+**1 alta**, sin ficha antigua. La app pasa de 971 a **972 lugares**. Revisor: 1
+ficha, **0 hallazgos**. En OSM, la DISA a 6 m del pin, en la TF-42.
+
 ## Lo que queda
 
-**6 sesiones**, 5 altas. La siguiente es la **25-buenavista-del-norte** (1).
+**5 sesiones**, 4 altas. La siguiente es la **27-san-juan-de-la-rambla** (1).
 
 ## Lo que necesito de ti antes de seguir
 
