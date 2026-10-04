@@ -967,5 +967,7 @@
  "gas-15713-el-rosario": {"desc": "Calle Isaac Peral, El Rosario. Carburants : essence 95, essence 98, gazole et gazole premium. Également : AdBlue.", "cat": "Station-service · Tgas", "hours": "Lun-Ven 06:00-20:00 · Sam 07:00-17:00"},
  "gas-15101-tegueste": {"desc": "Carretera General a Punta Hidalgo, Tegueste. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Ven 06:00-22:00 · Sam-Dim 07:00-22:00"},
  "gas-7865-tegueste": {"desc": "Carretera TF-154, Tegueste. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · DISA", "hours": "Lun-Dim 06:00-22:00"},
- "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 06:00-23:00"}
+ "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 06:00-23:00"},
+ "gas-7678-santa-ursula": {"desc": "Carretera Vieja, Santa Úrsula. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Repsol", "hours": "Lun-Sam 06:00-23:00 · Dim 07:00-23:00"},
+ "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Shell", "hours": "Lun-Dim 06:00-22:00"}
 }

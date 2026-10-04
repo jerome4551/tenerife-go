@@ -967,5 +967,7 @@
  "gas-15713-el-rosario": {"desc": "Calle Isaac Peral, El Rosario. Fuels: petrol 95, petrol 98, diesel and premium diesel. Also: AdBlue.", "cat": "Petrol station · Tgas", "hours": "Mon-Fri 06:00-20:00 · Sat 07:00-17:00"},
  "gas-15101-tegueste": {"desc": "Carretera General a Punta Hidalgo, Tegueste. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · BP", "hours": "Mon-Fri 06:00-22:00 · Sat-Sun 07:00-22:00"},
  "gas-7865-tegueste": {"desc": "Carretera TF-154, Tegueste. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 06:00-22:00"},
- "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Tgas", "hours": "Mon-Sun 06:00-23:00"}
+ "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Tgas", "hours": "Mon-Sun 06:00-23:00"},
+ "gas-7678-santa-ursula": {"desc": "Carretera Vieja, Santa Úrsula. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sat 06:00-23:00 · Sun 07:00-23:00"},
+ "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 06:00-22:00"}
 }

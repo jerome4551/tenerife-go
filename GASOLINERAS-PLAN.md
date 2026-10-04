@@ -1027,9 +1027,17 @@ el registro da a la Tgas del mismo polígono, a 550 m. Para las otras no hay
 captura. **Pregunta:** ¿se cambia (con fuente) o se quita el CP? Mientras, el del
 registro.
 
+## Sesión 24 · Santa Úrsula · HECHA el 4 de octubre
+
+**2 altas**, sin ficha antigua. La app pasa de 969 a **971 lugares**. Revisor: 2
+fichas, **0 hallazgos**. En OSM, la Repsol a 9 m y la Shell a 6 m de sus pins. El
+«KM. 213» de la Repsol es el número de su carretera (la TF-213) copiado en el
+campo del km, como el 152 de Tacoronte: no sale. El km 31 de la Shell va en orden
+con los de la Carretera General del Norte.
+
 ## Lo que queda
 
-**7 sesiones**, 7 altas. La siguiente es la **24-santa-ursula** (2).
+**6 sesiones**, 5 altas. La siguiente es la **25-buenavista-del-norte** (1).
 
 ## Lo que necesito de ti antes de seguir
 

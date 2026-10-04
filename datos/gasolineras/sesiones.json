@@ -396,12 +396,16 @@
   },
   "24-santa-ursula": {
    "que": "Las 2 estaciones de Santa Úrsula (2 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Santa Úrsula",
    "estaciones": 2,
    "altas": 2,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/24-santa-ursula.json"
+   "plan": "datos/gasolineras/plan/24-santa-ursula.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 2,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 2 fichas, 0 hallazgos, 2/2 estaciones con su ficha"
   },
   "25-buenavista-del-norte": {
    "que": "Las 1 estaciones de Buenavista del Norte (1 altas, 0 ya en la app).",

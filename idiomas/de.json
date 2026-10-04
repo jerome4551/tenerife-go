@@ -967,5 +967,7 @@
  "gas-15713-el-rosario": {"desc": "Calle Isaac Peral, El Rosario. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel. Außerdem: AdBlue.", "cat": "Tankstelle · Tgas", "hours": "Mo-Fr 06:00-20:00 · Sa 07:00-17:00"},
  "gas-15101-tegueste": {"desc": "Carretera General a Punta Hidalgo, Tegueste. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · BP", "hours": "Mo-Fr 06:00-22:00 · Sa-So 07:00-22:00"},
  "gas-7865-tegueste": {"desc": "Carretera TF-154, Tegueste. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-So 06:00-22:00"},
- "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Tgas", "hours": "Mo-So 06:00-23:00"}
+ "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Tgas", "hours": "Mo-So 06:00-23:00"},
+ "gas-7678-santa-ursula": {"desc": "Carretera Vieja, Santa Úrsula. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-Sa 06:00-23:00 · So 07:00-23:00"},
+ "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Shell", "hours": "Mo-So 06:00-22:00"}
 }
