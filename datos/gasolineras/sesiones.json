@@ -366,12 +366,17 @@
   },
   "22-el-rosario": {
    "que": "Las 3 estaciones de El Rosario (3 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "El Rosario",
    "estaciones": 3,
    "altas": 3,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/22-el-rosario.json"
+   "plan": "datos/gasolineras/plan/22-el-rosario.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 3,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 3 fichas, 0 hallazgos, 3/3 estaciones con su ficha",
+   "km_del_parentesis": "8802 «C/ LA CAMPANA, S/N (CTRA. GRAL. DEL SUR km 4)»: el km 4 es de la Carretera General del Sur, no de la calle. La direccion pasa a «Calle La Campana (Carretera General del Sur km 4)». Misma regla para 10345 (Guia de Isora, rehecha) y 7827 (Los Silos, sin aplicar)."
   },
   "23-tegueste": {
    "que": "Las 3 estaciones de Tegueste (3 altas, 0 ya en la app).",

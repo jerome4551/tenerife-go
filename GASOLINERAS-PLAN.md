@@ -939,9 +939,27 @@ Hasta tu OK se quedan los del registro.
 **Para la sesión 91:** en chino tradicional, El Bohío dice «拉馬坦薩» en la
 categoría y «La Matanza», en castellano, en la etiqueta.
 
+## Sesión 22 · El Rosario · HECHA el 4 de octubre
+
+**3 altas**, sin ficha antigua. La app pasa de 963 a **966 lugares**. Revisor: 3
+fichas, **0 hallazgos**. Contraste con OSM: la Pcan, a 21 m de la **TF-24**, así
+que el «TF-24» de su nombre es verdad, y su km 5,5 va en orden con el 2,2 de la
+Pcan de La Laguna. La Moeve está en la Carretera General del Sur (TF-28), **no**
+en la TF-1, y su nombre no dice TF-1. La Tgas, a 9 m de la Calle Isaac Peral.
+
+**Un fallo de la plantilla, arreglado antes de aplicar.** El registro escribe
+«C/ LA CAMPANA, S/N (**CTRA. GRAL. DEL SUR km 4**)» y salía «Calle La Campana km
+4»: una calle no tiene km 4, ese km es de la carretera del paréntesis. Ahora
+sale «Calle La Campana (Carretera General del Sur km 4)». De las 212 cambian
+solo 3 direcciones: esta, la Shell de Tejina de Guía (ya en la app, rehecha:
+«Tejina de Guía (Carretera General km 120)») y la 7827 de Los Silos, que aún no
+está. Cuando el paréntesis es solo el tramo («TF-66(GUAZA-GALLE KM. 2»), el km
+sigue siendo de la carretera de fuera. El revisor lo controla ya; probado
+metiendo el fallo a propósito.
+
 ## Lo que queda
 
-**9 sesiones**, 13 altas. La siguiente es la **22-el-rosario** (3).
+**8 sesiones**, 10 altas. La siguiente es la **23-tegueste** (3).
 
 ## Lo que necesito de ti antes de seguir
 

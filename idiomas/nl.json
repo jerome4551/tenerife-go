@@ -961,5 +961,8 @@
  "gas-7747-la-guancha": {"desc": "Avenida Hipólito Sinforiano, La Guancha. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Pcan", "hours": "Ma-Vr 05:00-21:00 · Za 06:00-21:00 · Zo 07:00-14:00"},
  "gas-7724-la-guancha": {"desc": "Carretera TF-5 Santa Cruz-Icod, La Guancha. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Tgas", "hours": "Ma-Zo 24 u"},
  "gas-7854-la-matanza-de-acentejo": {"desc": "Carretera General del Norte C-820, La Matanza de Acentejo. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · DISA", "hours": "Ma-Zo 06:00-22:00"},
- "gas-7767-la-matanza-de-acentejo": {"desc": "Carretera General del Norte, La Matanza de Acentejo. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Shell", "hours": "Ma-Za 06:00-22:00 · Zo 07:00-21:00"}
+ "gas-7767-la-matanza-de-acentejo": {"desc": "Carretera General del Norte, La Matanza de Acentejo. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Shell", "hours": "Ma-Za 06:00-22:00 · Zo 07:00-21:00"},
+ "gas-8802-el-rosario": {"desc": "Calle La Campana, El Rosario. Brandstoffen: benzine 95, benzine 98, diesel en hernieuwbare diesel.", "cat": "Tankstation · Moeve", "hours": "Ma-Zo 24 u"},
+ "gas-7720-el-rosario": {"desc": "Carretera TF-24 La Laguna-El Portillo, El Rosario. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Pcan", "hours": "Ma-Zo 06:00-22:00"},
+ "gas-15713-el-rosario": {"desc": "Calle Isaac Peral, El Rosario. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel. Ook: AdBlue.", "cat": "Tankstation · Tgas", "hours": "Ma-Vr 06:00-20:00 · Za 07:00-17:00"}
 }

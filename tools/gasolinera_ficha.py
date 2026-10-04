@@ -550,7 +550,18 @@ def direccion(e, muni):
     # 152» en carreteras que no llegan a eso. Antes se quitaba el portal y se
     # dejaba el km: justo al reves.
     # (km_de ya ha tirado los km que copian el portal o la carretera, y los imposibles)
-    t = calle + (', %s' % num if num else '') + (' km %s' % km if km else '')
+    # Un km DENTRO de un parentesis que nombra otra carretera es de ESA
+    # carretera, no de la calle: «C/ LA CAMPANA, S/N (CTRA. GRAL. DEL SUR km 4)»
+    # salia «Calle La Campana km 4», y una calle no tiene km 4. Va con la suya:
+    # «Calle La Campana (Carretera General del Sur km 4)». Si el parentesis es
+    # solo el tramo («TF-66(GUAZA-GALLE KM. 2»), el km es de la carretera de fuera.
+    otra = re.search(r'\(\s*((?:CTRA|CARRETERA|CRTA|CR|GRAL|GENERAL|AUTOPISTA|AUTOVIA|TF)\b'
+                     r'[^()]*?)[\s.,]*\b(?:KM|PK)\b', raw, re.I)
+    t = calle + (', %s' % num if num else '')
+    if km and otra:
+        t += ' (%s km %s)' % (calle_corta(otra.group(1)), km)
+    elif km:
+        t += ' km %s' % km
     loc = localidad_de(e, muni)
     lugar = '%s %s' % ((e.get('C.P.') or '').strip(), loc)
     if llano(loc) != llano(muni):

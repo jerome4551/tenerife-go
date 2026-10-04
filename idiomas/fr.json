@@ -961,5 +961,8 @@
  "gas-7747-la-guancha": {"desc": "Avenida Hipólito Sinforiano, La Guancha. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Pcan", "hours": "Lun-Ven 05:00-21:00 · Sam 06:00-21:00 · Dim 07:00-14:00"},
  "gas-7724-la-guancha": {"desc": "Carretera TF-5 Santa Cruz-Icod, La Guancha. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 24 h"},
  "gas-7854-la-matanza-de-acentejo": {"desc": "Carretera General del Norte C-820, La Matanza de Acentejo. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · DISA", "hours": "Lun-Dim 06:00-22:00"},
- "gas-7767-la-matanza-de-acentejo": {"desc": "Carretera General del Norte, La Matanza de Acentejo. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Shell", "hours": "Lun-Sam 06:00-22:00 · Dim 07:00-21:00"}
+ "gas-7767-la-matanza-de-acentejo": {"desc": "Carretera General del Norte, La Matanza de Acentejo. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Shell", "hours": "Lun-Sam 06:00-22:00 · Dim 07:00-21:00"},
+ "gas-8802-el-rosario": {"desc": "Calle La Campana, El Rosario. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 24 h"},
+ "gas-7720-el-rosario": {"desc": "Carretera TF-24 La Laguna-El Portillo, El Rosario. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Pcan", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-15713-el-rosario": {"desc": "Calle Isaac Peral, El Rosario. Carburants : essence 95, essence 98, gazole et gazole premium. Également : AdBlue.", "cat": "Station-service · Tgas", "hours": "Lun-Ven 06:00-20:00 · Sam 07:00-17:00"}
 }

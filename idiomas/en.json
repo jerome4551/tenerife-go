@@ -961,5 +961,8 @@
  "gas-7747-la-guancha": {"desc": "Avenida Hipólito Sinforiano, La Guancha. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Pcan", "hours": "Mon-Fri 05:00-21:00 · Sat 06:00-21:00 · Sun 07:00-14:00"},
  "gas-7724-la-guancha": {"desc": "Carretera TF-5 Santa Cruz-Icod, La Guancha. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Tgas", "hours": "Mon-Sun 24 h"},
  "gas-7854-la-matanza-de-acentejo": {"desc": "Carretera General del Norte C-820, La Matanza de Acentejo. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 06:00-22:00"},
- "gas-7767-la-matanza-de-acentejo": {"desc": "Carretera General del Norte, La Matanza de Acentejo. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sat 06:00-22:00 · Sun 07:00-21:00"}
+ "gas-7767-la-matanza-de-acentejo": {"desc": "Carretera General del Norte, La Matanza de Acentejo. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sat 06:00-22:00 · Sun 07:00-21:00"},
+ "gas-8802-el-rosario": {"desc": "Calle La Campana, El Rosario. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Sun 24 h"},
+ "gas-7720-el-rosario": {"desc": "Carretera TF-24 La Laguna-El Portillo, El Rosario. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Pcan", "hours": "Mon-Sun 06:00-22:00"},
+ "gas-15713-el-rosario": {"desc": "Calle Isaac Peral, El Rosario. Fuels: petrol 95, petrol 98, diesel and premium diesel. Also: AdBlue.", "cat": "Petrol station · Tgas", "hours": "Mon-Fri 06:00-20:00 · Sat 07:00-17:00"}
 }

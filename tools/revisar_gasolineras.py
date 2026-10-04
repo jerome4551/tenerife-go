@@ -21,6 +21,8 @@ QUE MIRA, EN CADA FICHA
                 traen dato. Un campo con dato que nadie sabe nombrar es FALLO.
   nombre        cada palabra sale del registro (rotulo, direccion, localidad,
                 municipio) o del vocabulario de vias. Nada inventado.
+  direccion     con su CP, cada palabra del registro, y el km de un parentesis
+                («(CTRA. GRAL. DEL SUR km 4)») con su carretera, no con la calle
   marca         el segundo trozo del «cat» esta en el rotulo
   precios       ni un precio ni un «€» en ningun texto
   idiomas       desc, cat y hours en los diez, y el polaco fuente = pl.json
@@ -199,6 +201,15 @@ def main():
             for w in piezas(p['address']):
                 if w not in fuente_d:
                     mal(p['id'], 'la direccion lleva «%s», que no sale del registro' % w)
+            # Si el registro pone el km DENTRO de un parentesis con otra carretera
+            # («C/ LA CAMPANA, S/N (CTRA. GRAL. DEL SUR km 4)»), ese km no es de la
+            # calle: la direccion no puede pegarlo detras de ella, fuera del parentesis.
+            if re.search(r'\(\s*(CTRA|CARRETERA|CRTA|CR|GRAL|GENERAL|AUTOPISTA|AUTOVIA|TF)\b'
+                         r'[^()]*\b(KM|PK)\b', e['Dirección'], re.I) and \
+               re.search(r'\bkm\b', p['address']) and \
+               not re.search(r'\([^()]*\bkm\b[^()]*\)', p['address']):
+                mal(p['id'], 'el km del registro es de la carretera del parentesis y '
+                             'la direccion se lo pone a la calle')
         # Ningun nombre propio de la ficha (marca, municipio) como etiqueta si el
         # glosario lo traduce como otra cosa: «Océano» salia «海洋».
         for tg in p['tags']:
