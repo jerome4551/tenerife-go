@@ -331,7 +331,7 @@
    "altas_hechas": 3,
    "revisada_el": "2026-10-04",
    "revision": "tools/revisar_gasolineras.py: 3 fichas, 0 hallazgos, 3/3 estaciones con su ficha",
-   "pregunta_a_jerome": "7718 «BP FASNIA», «AUTOVIA TF-1 KM. 36,5»: esta AL NORTE de la Moeve del km 34 (31,1 km en linea recta de Santa Cruz, frente a 32,5), asi que su km tendria que ser menor; por la relacion de las otras nueve saldria hacia el km 33. Y en su pin OSM tiene una Repsol a 1 m. ¿Street View en 28.222694, -16.414139: BP o Repsol?"
+   "km_de_la_bp": "7718: Street View de Jerome (agosto 2026) confirma la BP en la coordenada del registro, al norte de la Moeve del km 34; el «km 36,5» queda contradicho y se quita (km_contradicho en correcciones-registro.json). Ahora «BP · Autovia TF-1»."
   },
   "20-la-guancha": {
    "que": "Las 3 estaciones de La Guancha (3 altas, 0 ya en la app).",
@@ -348,12 +348,19 @@
   },
   "21-la-matanza-de-acentejo": {
    "que": "Las 3 estaciones de La Matanza de Acentejo (2 altas, 1 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "La Matanza de Acentejo",
    "estaciones": 3,
    "altas": 2,
    "ya": 1,
-   "plan": "datos/gasolineras/plan/21-la-matanza-de-acentejo.json"
+   "plan": "datos/gasolineras/plan/21-la-matanza-de-acentejo.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 2,
+   "enlazadas": {
+    "gas-tf5-el-bohio": "9635 (a 54 m)"
+   },
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 2 fichas, 0 hallazgos, 3/3 estaciones con su ficha"
   },
   "22-el-rosario": {
    "que": "Las 3 estaciones de El Rosario (3 altas, 0 ya en la app).",

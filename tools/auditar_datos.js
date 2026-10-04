@@ -157,10 +157,12 @@ console.log('\n=== lugares ===');
    947 -> 951 el 3 de octubre, con las 4 de Candelaria (sesion 17);
    951 -> 955 el 4 de octubre, con las 4 de Santiago del Teide (sesion 18);
    955 -> 958 el 4 de octubre, con las 3 de Fasnia (sesion 19);
-   958 -> 961 el 4 de octubre, con las 3 de La Guancha (sesion 20).
+   958 -> 961 el 4 de octubre, con las 3 de La Guancha (sesion 20);
+   961 -> 963 el 4 de octubre, con 2 de las 3 de La Matanza de Acentejo (sesion
+   21): la otra ya la cubria gas-tf5-el-bohio.
    Esta cifra sube una vez por sesion de gasolineras hasta las 198 altas, y se
    cambia A MANO a proposito: asi ningun municipio entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 961);
+debe('lugares', PLACES.length, PLACES.length === 963);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

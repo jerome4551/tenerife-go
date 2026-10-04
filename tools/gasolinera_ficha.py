@@ -171,6 +171,7 @@ AVISOS = {k: v for k, v in json.load(open(_AV, encoding='utf-8')).items()
           if k != '_'} if os.path.exists(_AV) else {}
 ILEGIBLE = list(_CORR['ilegible'])
 ERRATAS = {k: v['se_escribe'] for k, v in _CORR.get('erratas', {}).items()}
+KM_CONTRADICHO = set(_CORR.get('km_contradicho', {}))   # posicion comprobada que lo desmiente
 
 # Los glosarios de etiquetas. Una marca o un municipio es un nombre propio y NO
 # se traduce; pero la etiqueta se pinta por el glosario, y si el glosario traduce
@@ -530,7 +531,7 @@ def direccion(e, muni):
        tenian: una direccion no se traduce."""
     raw = (e.get('Dirección') or '').strip()
     calle = calle_corta(raw)
-    km = km_de(raw)
+    km = None if str(e['IDEESS']) in KM_CONTRADICHO else km_de(raw)
     # El portal es lo que va detras de la primera coma... quitando ANTES el km:
     # el registro escribe los km con coma decimal («KM. 38,8») y el decimal salia
     # como portal: «Icod-S/C, 8 km 38,8», «TF-333, 300 km 0,300».
@@ -566,7 +567,7 @@ def ficha(e, muni, sufijo=''):
     calle = calle_corta(e.get('Dirección'))
     loc = localidad_de(e, muni)
     comb = combustibles(e)
-    km = km_de(e.get('Dirección'))
+    km = None if str(e['IDEESS']) in KM_CONTRADICHO else km_de(e.get('Dirección'))
     if es_autopista(e.get('Dirección')) and km:
         calle = '%s km %s' % (calle, km)
     nombre = '%s · %s' % (base, calle)

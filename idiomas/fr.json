@@ -954,10 +954,12 @@
  "gas-9664-santiago-del-teide": {"desc": "Avenida General Franco 3, Santiago del Teide. Carburants : essence 95, essence 98 et gazole. Également : AdBlue.", "cat": "Station-service · DISA", "hours": "Lun-Sam 05:30-22:00 · Dim 05:30-21:00"},
  "gas-7735-santiago-del-teide": {"desc": "Carretera Puerto Santiago-Tamaimo, Santiago del Teide. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · DISA", "hours": "Lun-Ven 08:00-16:00"},
  "gas-10779-santiago-del-teide": {"desc": "Carretera General del Sur, Santiago del Teide. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Moeve", "hours": "Lun-Sam 06:00-22:00 · Dim 07:00-21:30"},
- "gas-7718-fasnia": {"desc": "Autovía TF-1 km 36,5, Fasnia. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-7718-fasnia": {"desc": "Autovía TF-1, Fasnia. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Dim 06:00-22:00"},
  "gas-7835-fasnia": {"desc": "Carretera Los Roques, Fasnia. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · DISA", "hours": "Lun-Sam 06:00-22:00 · Dim 07:00-14:00"},
  "gas-10950-fasnia": {"desc": "Autovía TF-1 km 34, Fasnia. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 06:00-22:00"},
  "gas-11566-la-guancha": {"desc": "Avenida Ocho de Agosto, La Guancha. Carburants : essence 95 et gazole.", "cat": "Station-service · DISA", "hours": "Lun-Ven 07:00-20:00 · Sam 08:00-16:00 · Dim 08:00-14:00"},
  "gas-7747-la-guancha": {"desc": "Avenida Hipólito Sinforiano, La Guancha. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Pcan", "hours": "Lun-Ven 05:00-21:00 · Sam 06:00-21:00 · Dim 07:00-14:00"},
- "gas-7724-la-guancha": {"desc": "Carretera TF-5 Santa Cruz-Icod, La Guancha. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 24 h"}
+ "gas-7724-la-guancha": {"desc": "Carretera TF-5 Santa Cruz-Icod, La Guancha. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 24 h"},
+ "gas-7854-la-matanza-de-acentejo": {"desc": "Carretera General del Norte C-820, La Matanza de Acentejo. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · DISA", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-7767-la-matanza-de-acentejo": {"desc": "Carretera General del Norte, La Matanza de Acentejo. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Shell", "hours": "Lun-Sam 06:00-22:00 · Dim 07:00-21:00"}
 }

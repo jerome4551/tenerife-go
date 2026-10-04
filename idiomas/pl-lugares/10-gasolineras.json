@@ -885,7 +885,7 @@
   "hours": "Pn-So 06:00-22:00 · Nd 07:00-21:30"
  },
  "gas-7718-fasnia": {
-  "desc": "Autovía TF-1 km 36,5, Fasnia. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "desc": "Autovía TF-1, Fasnia. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · BP",
   "hours": "Pn-Nd 06:00-22:00"
  },
@@ -913,5 +913,15 @@
   "desc": "Carretera TF-5 Santa Cruz-Icod, La Guancha. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · Tgas",
   "hours": "Pn-Nd 24 h"
+ },
+ "gas-7854-la-matanza-de-acentejo": {
+  "desc": "Carretera General del Norte C-820, La Matanza de Acentejo. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7767-la-matanza-de-acentejo": {
+  "desc": "Carretera General del Norte, La Matanza de Acentejo. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Shell",
+  "hours": "Pn-So 06:00-22:00 · Nd 07:00-21:00"
  }
 }

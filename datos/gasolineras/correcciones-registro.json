@@ -24,7 +24,11 @@
   "despues. Ya no las lee ninguna herramienta: se guardan por el rastro.",
   "",
   "ERRATAS: texto del registro que esta mal y se sabe como es, con fuente y OK de",
-  "Jerome. Se corrige en el texto crudo, antes de todo lo demas."
+  "Jerome. Se corrige en el texto crudo, antes de todo lo demas.",
+  "",
+  "KM_CONTRADICHO: estaciones cuya posicion esta comprobada y contradice el km del",
+  "registro. El km se quita (del nombre y de la direccion) y no se pone otro: el",
+  "bueno se podria deducir, pero ninguna fuente lo dice."
  ],
  "acentos": {
   "albanileria": "Albañilería",
@@ -95,6 +99,13 @@
   "CARRERA GENERAL": {
    "se_escribe": "CARRETERA GENERAL",
    "fuente": "Jerome, 3 de octubre: «Si». El registro escribe «CARRERA GENERAL DEL NORTE» (DISA, El Sauzal) mientras la BP de al lado, en la misma carretera, dice «CARRETERA GENERAL DEL NORTE»; y «CARRERA GENERAL LAS GALLETAS» (Moeve, Arona)."
+  }
+ },
+ "km_contradicho": {
+  "7718": {
+   "estacion": "BP FASNIA · «AUTOVIA TF-1 KM. 36,5» · Fasnia",
+   "por_que": "Esta AL NORTE de la Moeve del km 34 (31,1 km en linea recta de Santa Cruz, frente a 32,5), las dos a unos 60 m de la autopista: va antes por el TF-1 y su km tiene que ser menor que 34. Las otras nueve estaciones del TF-1 van en orden y por su relacion le corresponderia hacia el km 33.",
+   "posicion_comprobada": "Jerome, 4 de octubre: Street View de agosto de 2026 en 28.222694, -16.414139 (la coordenada del registro): se ve la BP. La «Repsol» que OSM tiene ahi estaba desfasada."
   }
  }
 }

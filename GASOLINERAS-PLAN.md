@@ -891,8 +891,12 @@ La BP está **al norte** de la Moeve, las dos a unos 60 m de la autopista, así 
 va antes por el TF-1 y su km tendría que ser menor que 34; por la relación de las
 otras nueve, hacia el **km 33**. Y en su pin OSM tiene una **Repsol** a 1 m. O OSM
 está desfasado (cambió de Repsol a BP) o la coordenada apunta a otra estación.
-**Pregunta abierta:** un Street View en 28.222694, -16.414139, ¿BP o Repsol? Sin
-eso, se queda el km del registro.
+**Resuelto con tu Street View** (agosto de 2026): en 28.222694, -16.414139 está
+la **BP**; la Repsol de OSM estaba desfasada. Con la posición comprobada, el «km
+36,5» queda contradicho: se quita del nombre y de la dirección y no se pone otro,
+porque el bueno (hacia el 33) lo deduciría yo y ninguna fuente lo dice. Va como
+dato, `km_contradicho` en `correcciones-registro.json`, con tu captura de prueba.
+Ahora es «**BP · Autovía TF-1**».
 
 ## Sesión 20 · La Guancha · HECHA el 4 de octubre
 
@@ -901,9 +905,15 @@ fichas, **0 hallazgos**. La Tgas de la «TF-5 km 49» no lleva el km en el nombr
 está fuera del tramo que el registro llama autopista (km 16 a 25); ahí la TF-5 ya
 es carretera normal.
 
+## Sesión 21 · La Matanza de Acentejo · HECHA el 4 de octubre
+
+**2 altas** de 3; la tercera es la antigua «DISA El Bohío (TF-5 km 25)», ya
+enlazada, y su km coincide con el del registro. La app pasa de 961 a **963
+lugares**. Revisor: 2 fichas, **0 hallazgos**.
+
 ## Lo que queda
 
-**10 sesiones**, 15 altas. La siguiente es la **21-la-matanza-de-acentejo** (3).
+**9 sesiones**, 13 altas. La siguiente es la **22-el-rosario** (3).
 
 ## Lo que necesito de ti antes de seguir
 
