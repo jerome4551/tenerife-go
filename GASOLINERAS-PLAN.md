@@ -1091,9 +1091,16 @@ mirar alguna.
 | Carretera General a **las** Galletas-Chafiras | a **Las** Galletas | ídem |
 | Carretera a **los** Abrigos | a **Los** Abrigos | ídem |
 
+## Sesión 27 · San Juan de la Rambla · HECHA el 4 de octubre
+
+**1 alta**, sin ficha antigua. La app pasa de 972 a **973 lugares**. Revisor: 1
+ficha, **0 hallazgos**. En OSM, a 16 m de la **TF-5** y a 6 m de una Repsol: el
+«TF-5» del nombre es verdad. Su km 46,3 va en orden con el 49 de La Guancha. Sin
+km en el nombre: ahí la TF-5 ya no es el tramo que el registro llama autopista.
+
 ## Lo que queda
 
-**5 sesiones**, 4 altas. La siguiente es la **27-san-juan-de-la-rambla** (1).
+**4 sesiones**, 3 altas. La siguiente es la **28-los-silos** (1).
 
 ## Lo que necesito de ti antes de seguir
 

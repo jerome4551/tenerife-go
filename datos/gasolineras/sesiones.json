@@ -438,12 +438,16 @@
   },
   "27-san-juan-de-la-rambla": {
    "que": "Las 1 estaciones de San Juan de la Rambla (1 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "San Juan de la Rambla",
    "estaciones": 1,
    "altas": 1,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/27-san-juan-de-la-rambla.json"
+   "plan": "datos/gasolineras/plan/27-san-juan-de-la-rambla.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 1,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 1 ficha, 0 hallazgos, 1/1 estaciones con su ficha"
   },
   "28-los-silos": {
    "que": "Las 1 estaciones de Los Silos (1 altas, 0 ya en la app).",

@@ -968,5 +968,10 @@
   "desc": "Avenida Juan Méndez El Viejo, Buenavista del Norte. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-So 06:00-23:00 · Nd 07:00-10:00"
+ },
+ "gas-7683-san-juan-de-la-rambla": {
+  "desc": "Carretera TF-5, San Juan de la Rambla. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
+  "hours": "Pn-Pt 05:30-20:30 · So-Nd 08:00-20:00"
  }
 }

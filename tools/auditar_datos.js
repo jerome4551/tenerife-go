@@ -164,9 +164,10 @@ console.log('\n=== lugares ===');
    966 -> 969 el 4 de octubre, con las 3 de Tegueste (sesion 23);
    969 -> 971 el 4 de octubre, con las 2 de Santa Ursula (sesion 24);
    971 -> 972 el 4 de octubre, con la de Buenavista del Norte (sesion 25);
+   972 -> 973 el 4 de octubre, con la de San Juan de la Rambla (sesion 27);
    Esta cifra sube una vez por sesion de gasolineras hasta las 198 altas, y se
    cambia A MANO a proposito: asi ningun municipio entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 972);
+debe('lugares', PLACES.length, PLACES.length === 973);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);
