@@ -227,7 +227,8 @@
     "gas-tf5-tacoronte": "7890 (a 1 m)"
    },
    "revisada_el": "2026-10-03",
-   "revision": "tools/revisar_gasolineras.py: 5 fichas, 0 hallazgos, 6/6 estaciones con su ficha"
+   "revision": "tools/revisar_gasolineras.py: 5 fichas, 0 hallazgos, 6/6 estaciones con su ficha",
+   "pregunta_a_jerome": "Dos km del registro que contradicen su propia posicion (revision de los bloques 20 y 21, prueba del km en orden por la TF-5 y la Carretera General del Norte). 7770 BP, «AUTOPISTA AUTOPISTA EL TORREON KM. 11,00»: su coordenada, su municipio (Tacoronte) y su CP (38350) la ponen 1,5 km al oeste de la Moeve del km 16, asi que va DESPUES del 16; y el km 11 de la TF-5 cae en La Laguna (segun el poligono del Cabildo, Tacoronte empieza hacia el km 15). OSM tiene en el pin una «BP Los Naranjeros» a 0 m. 7733 Tgas, «CARRETERA GENERAL DEL NORTE KM. 79»: las de esa carretera van en orden del 20,4 (El Sauzal) al 52,7 (Icod) y la Tgas esta antes que las de El Sauzal (15,4 km en linea recta de Santa Cruz frente a 16,3); OSM tiene una Tgas a 8 m. Propuesta: quitar los dos km como en Fasnia (km_contradicho), sin poner otro. Mientras, se quedan los del registro."
   },
   "13-arico": {
    "que": "Las 5 estaciones de Arico (4 altas, 1 ya en la app).",
@@ -360,7 +361,8 @@
     "gas-tf5-el-bohio": "9635 (a 54 m)"
    },
    "revisada_el": "2026-10-04",
-   "revision": "tools/revisar_gasolineras.py: 2 fichas, 0 hallazgos, 3/3 estaciones con su ficha"
+   "revision": "tools/revisar_gasolineras.py: 2 fichas, 0 hallazgos, 3/3 estaciones con su ficha",
+   "para_la_91": "gas-tf5-el-bohio: en chino tradicional la categoria dice 拉馬坦薩 y la etiqueta «La Matanza» sale en castellano; las fichas nuevas dejan los municipios en castellano en todos los idiomas."
   },
   "22-el-rosario": {
    "que": "Las 3 estaciones de El Rosario (3 altas, 0 ya en la app).",

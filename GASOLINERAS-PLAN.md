@@ -911,6 +911,34 @@ es carretera normal.
 enlazada, y su km coincide con el del registro. La app pasa de 961 a **963
 lugares**. Revisor: 2 fichas, **0 hallazgos**.
 
+## Revisión de los bloques 20 y 21 · 4 de octubre
+
+Registro del 2 de octubre, sin cambios. Revisor: 5 fichas, **0 hallazgos**, 6 de 6
+estaciones, y la antigua de El Bohío enlazada bien (54 m, misma marca). Pins: los
+6, a menos de 40 m de una vía con coches; la Tgas de La Guancha, a 21 m de la
+**TF-5** de OSM, así que el «TF-5» de su nombre es verdad. El «(Guía)» de la Shell
+de La Matanza es un sitio de allí: el pin está a 3 m de la «Calle Toscas de Guía».
+Ningún duplicado con otras categorías. En la app, cuatro fichas (francés,
+italiano, chino tradicional, polaco): bien, nada fuera de la pantalla, cero
+errores.
+
+**Prueba nueva: el km en orden por la TF-5 y por la Carretera General del
+Norte**, como la del TF-1. En la TF-5, seis de siete en orden; en la Carretera
+General, nueve de diez. Las dos que no, **las dos de Tacoronte** (sesión 12):
+
+| estación | km del registro | lo que dice su posición |
+|---|---|---|
+| BP, «Autopista El Torreón» | **11** | 1,5 km **después** de la Moeve del km 16. Y el km 11 de la TF-5 cae en **La Laguna**: Tacoronte empieza hacia el 15 |
+| Tgas, «Carretera General del Norte» | **79** | **antes** que las de El Sauzal (km 20,4 y 20,65); la serie va del 20,4 al 52,7 de Icod |
+
+Aquí no hay duda de qué estación es: la coordenada, el municipio y el CP del
+registro dicen Tacoronte, y OSM tiene en los pins una «BP Los Naranjeros» (0 m) y
+una «Tgas» (8 m). **Propuesta:** quitar los dos km como en Fasnia, sin poner otro.
+Hasta tu OK se quedan los del registro.
+
+**Para la sesión 91:** en chino tradicional, El Bohío dice «拉馬坦薩» en la
+categoría y «La Matanza», en castellano, en la etiqueta.
+
 ## Lo que queda
 
 **9 sesiones**, 13 altas. La siguiente es la **22-el-rosario** (3).
