@@ -834,6 +834,24 @@ la otra DISA de El Sauzal ni con la de Tacoronte.
 fichas, **0 hallazgos**. Los cuatro nombres, limpios con las reglas que ya había
 («AVENIDA AVDA. MARÍTIMA» → «Avenida Marítima»).
 
+## Revisión de los bloques 15, 16 y 17 · 4 de octubre
+
+Pediste revisar la 15 y la 16 y «seguir con la 17», que ya estaba hecha: se
+revisaron las tres.
+
+* **Registro:** el último es del 2 de octubre; el workflow no se ha vuelto a
+  lanzar. Revisor contra ese registro: 12 fichas, **0 hallazgos**, 14 de 14
+  estaciones con su ficha, y las dos antiguas enlazadas (Puerto de la Cruz y El
+  Sauzal) bien.
+* **Pins:** los 14, a menos de 20 m de una vía con coches.
+* **Tus dos capturas de El Sauzal cuadran con el registro:** la BP cierra a las
+  23:00 en las dos fuentes (el registro añade que el domingo a las 22:00) y la
+  Cepsa a las 22:00 en las dos.
+* **Duplicados con otras categorías:** ninguno nuevo.
+* **En la app:** la DISA de Ravelo con su nombre nuevo (inglés), la de la
+  Avenida Marítima de Candelaria (polaco) y la Shell de «Puerto Cruz» (búlgaro),
+  bien, nada fuera de la pantalla.
+
 ## Lo que queda
 
 **13 sesiones**, 25 altas. La siguiente es la **18-santiago-del-teide** (4).

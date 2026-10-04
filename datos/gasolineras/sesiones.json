@@ -271,7 +271,7 @@
    "enlazadas": {
     "gas-tf5-ptocz": "7771 (a 6 m)"
    },
-   "revisada_el": "2026-10-03",
+   "revisada_el": "2026-10-04",
    "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 5/5 estaciones con su ficha",
    "para_la_91": "gas-tf5-ptocz se llama «BP Puerto de la Cruz (TF-5 km 30)» y el registro la pone en la Carretera del Botanico km 6."
   },
@@ -288,7 +288,7 @@
    "enlazadas": {
     "gas-tf5-el-sauzal": "7700 (a 18 m)"
    },
-   "revisada_el": "2026-10-03",
+   "revisada_el": "2026-10-04",
    "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 5/5 estaciones con su ficha",
    "carrera": "«CARRERA GENERAL» corregido a «Carretera General» con OK de Jerome (3 de octubre); tambien en Arona."
   },
@@ -302,7 +302,7 @@
    "plan": "datos/gasolineras/plan/17-candelaria.json",
    "hecho_el": "2026-10-03",
    "altas_hechas": 4,
-   "revisada_el": "2026-10-03",
+   "revisada_el": "2026-10-04",
    "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 4/4 estaciones con su ficha"
   },
   "18-santiago-del-teide": {
