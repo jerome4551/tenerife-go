@@ -258,7 +258,7 @@
    "altas_hechas": 5,
    "revisada_el": "2026-10-03",
    "revision": "tools/revisar_gasolineras.py: 5 fichas, 0 hallazgos, 5/5 estaciones con su ficha",
-   "pregunta_a_jerome": "12298 Moeve, «CARRETERA TF-82 KM. 53,6», se llama «Moeve · Carretera TF-82», pero en OSM esta a 19 m de la TF-42 y a 2,3 km de la TF-82. Su km 53,6 es de la antigua C-820: la otra Moeve de Icod (10201), a 0,7 km, es «CARRETERA GENERAL C-820 KM. 52,7». Propuesta: errata «CARRETERA TF-82» -> «CARRETERA GENERAL C-820», como su vecina; el nombre pasaria a «Moeve · Carretera General C-820 km 53,6» y la vecina a «... km 52,7»."
+   "errata_tf82": "Jerome, 4 de octubre, con la web de Moeve («ICOD DE LOS VINOS», «C-820 PK 53,5», misma posicion y horario): «CARRETERA TF-82 KM. 53,6» -> «CARRETERA GENERAL C-820 KM. 53,6». Ahora «Moeve · Carretera General C-820 km 53,6» y su vecina «... km 52,7»."
   },
   "15-puerto-de-la-cruz": {
    "que": "Las 5 estaciones de Puerto de la Cruz (4 altas, 1 ya en la app).",
@@ -480,12 +480,16 @@
   },
   "30-la-victoria-de-acentejo": {
    "que": "Las 1 estaciones de La Victoria de Acentejo (1 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "La Victoria de Acentejo",
    "estaciones": 1,
    "altas": 1,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/30-la-victoria-de-acentejo.json"
+   "plan": "datos/gasolineras/plan/30-la-victoria-de-acentejo.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 1,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 1 ficha, 0 hallazgos, 1/1 estaciones con su ficha"
   },
   "31-vilaflor": {
    "que": "Las 1 estaciones de Vilaflor (0 altas, 1 ya en la app).",

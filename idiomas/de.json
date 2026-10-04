@@ -935,7 +935,7 @@
  "gas-11731-arico": {"desc": "Autovía TF-1 km 39, Arico. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-So 24 Std."},
  "gas-7866-icod-de-los-vinos": {"desc": "Avenida Príncipes de España, Icod de los Vinos. Kraftstoffe: Benzin 95, Benzin 98, Diesel, Premium-Diesel und Autogas.", "cat": "Tankstelle · DISA", "hours": "Mo-So 24 Std."},
  "gas-10201-icod-de-los-vinos": {"desc": "Carretera General C-820, Icod de los Vinos. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-Fr 05:30-21:30 · Sa-So 06:00-22:00"},
- "gas-12298-icod-de-los-vinos": {"desc": "Carretera TF-82, Icod de los Vinos. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-So 06:00-22:00"},
+ "gas-12298-icod-de-los-vinos": {"desc": "Carretera General C-820, Icod de los Vinos. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-So 06:00-22:00"},
  "gas-15846-icod-de-los-vinos": {"desc": "Camino La Pitera, Icod de los Vinos. Kraftstoffe: Benzin 95 und Diesel. Außerdem: AdBlue.", "cat": "Tankstelle · Red de Combustibles Canarios", "hours": "Mo-So 24 Std."},
  "gas-8760-icod-de-los-vinos": {"desc": "Calle Francisco Miranda, Icod de los Vinos. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel. Außerdem: AdBlue.", "cat": "Tankstelle · Shell", "hours": "Mo-So 06:00-22:00"},
  "gas-7829-puerto-de-la-cruz": {"desc": "Carretera Lavera La Montaña, Puerto de la Cruz. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-Sa 06:00-22:00 · So 08:00-22:00"},
@@ -973,5 +973,6 @@
  "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez el Viejo, Buenavista del Norte. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-Sa 06:00-23:00 · So 07:00-10:00"},
  "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-Fr 05:30-20:30 · Sa-So 08:00-20:00"},
  "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-So 06:00-22:00"},
- "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-So 06:00-21:00"}
+ "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-So 06:00-21:00"},
+ "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte, La Victoria de Acentejo. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Shell", "hours": "Mo-So 06:00-22:00"}
 }

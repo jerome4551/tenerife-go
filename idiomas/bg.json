@@ -935,7 +935,7 @@
  "gas-11731-arico": {"desc": "Autovía TF-1 km 39, Arico. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 24 ч"},
  "gas-7866-icod-de-los-vinos": {"desc": "Avenida Príncipes de España, Icod de los Vinos. Горива: бензин 95, бензин 98, дизел, премиум дизел и газ LPG.", "cat": "Бензиностанция · DISA", "hours": "Пон-Нед 24 ч"},
  "gas-10201-icod-de-los-vinos": {"desc": "Carretera General C-820, Icod de los Vinos. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Пет 05:30-21:30 · Съб-Нед 06:00-22:00"},
- "gas-12298-icod-de-los-vinos": {"desc": "Carretera TF-82, Icod de los Vinos. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Нед 06:00-22:00"},
+ "gas-12298-icod-de-los-vinos": {"desc": "Carretera General C-820, Icod de los Vinos. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Нед 06:00-22:00"},
  "gas-15846-icod-de-los-vinos": {"desc": "Camino La Pitera, Icod de los Vinos. Горива: бензин 95 и дизел. Също: AdBlue.", "cat": "Бензиностанция · Red de Combustibles Canarios", "hours": "Пон-Нед 24 ч"},
  "gas-8760-icod-de-los-vinos": {"desc": "Calle Francisco Miranda, Icod de los Vinos. Горива: бензин 95, бензин 98, дизел и премиум дизел. Също: AdBlue.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"},
  "gas-7829-puerto-de-la-cruz": {"desc": "Carretera Lavera La Montaña, Puerto de la Cruz. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Съб 06:00-22:00 · Нед 08:00-22:00"},
@@ -973,5 +973,6 @@
  "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez el Viejo, Buenavista del Norte. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Съб 06:00-23:00 · Нед 07:00-10:00"},
  "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Пет 05:30-20:30 · Съб-Нед 08:00-20:00"},
  "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Нед 06:00-22:00"},
- "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 06:00-21:00"}
+ "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Repsol", "hours": "Пон-Нед 06:00-21:00"},
+ "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte, La Victoria de Acentejo. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Shell", "hours": "Пон-Нед 06:00-22:00"}
 }

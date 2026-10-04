@@ -1141,9 +1141,25 @@ C-820: la otra Moeve de Icod, a 0,7 km, es «CARRETERA GENERAL C-820 KM. 52,7».
 **Propuesta:** errata «CARRETERA TF-82» → «CARRETERA GENERAL C-820», como su
 vecina. Quedarían «Moeve · Carretera General C-820 km 53,6» y «… km 52,7».
 
+## La Moeve de Icod · 4 de octubre
+
+Comprobado por ti en la web de Moeve: «ICOD DE LOS VINOS», «**C-820 PK 53,5**»,
+la misma posición que el registro (a menos de 2 m) y el mismo horario. El
+registro cambió «C-820» por «TF-82» y dejó el km viejo, pero ese tramo de Icod
+no es la TF-82. Errata con fuente: «CARRETERA TF-82 KM. 53,6» → «CARRETERA GENERAL
+C-820 KM. 53,6». Ahora «**Moeve · Carretera General C-820 km 53,6**» y su vecina
+«**… km 52,7**» (llevan el km para no llamarse igual). El km es el del registro.
+
+## Sesión 30 · La Victoria de Acentejo · HECHA el 4 de octubre
+
+**1 alta**, la última. La app pasa de 975 a **976 lugares**. Revisor: 1 ficha, **0
+hallazgos**. En OSM, una Shell a 3 m del pin, en la Carretera General del Norte;
+su km 27 va en orden. **Las 212 estaciones del registro tienen ficha.**
+
 ## Lo que queda
 
-**2 sesiones**, 1 alta. La siguiente es la **30-la-victoria-de-acentejo** (1).
+La **31** (Vilaflor), sin altas: su estación ya la cubre la antigua «DISA
+Vilaflor (TF-51)». Antes, por tu encargo, la verificación de los bloques 00 a 31.
 
 ## Lo que necesito de ti antes de seguir
 

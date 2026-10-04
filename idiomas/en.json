@@ -935,7 +935,7 @@
  "gas-11731-arico": {"desc": "Autovía TF-1 km 39, Arico. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 24 h"},
  "gas-7866-icod-de-los-vinos": {"desc": "Avenida Príncipes de España, Icod de los Vinos. Fuels: petrol 95, petrol 98, diesel, premium diesel and LPG.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 24 h"},
  "gas-10201-icod-de-los-vinos": {"desc": "Carretera General C-820, Icod de los Vinos. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Fri 05:30-21:30 · Sat-Sun 06:00-22:00"},
- "gas-12298-icod-de-los-vinos": {"desc": "Carretera TF-82, Icod de los Vinos. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Sun 06:00-22:00"},
+ "gas-12298-icod-de-los-vinos": {"desc": "Carretera General C-820, Icod de los Vinos. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Sun 06:00-22:00"},
  "gas-15846-icod-de-los-vinos": {"desc": "Camino La Pitera, Icod de los Vinos. Fuels: petrol 95 and diesel. Also: AdBlue.", "cat": "Petrol station · Red de Combustibles Canarios", "hours": "Mon-Sun 24 h"},
  "gas-8760-icod-de-los-vinos": {"desc": "Calle Francisco Miranda, Icod de los Vinos. Fuels: petrol 95, petrol 98, diesel and premium diesel. Also: AdBlue.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 06:00-22:00"},
  "gas-7829-puerto-de-la-cruz": {"desc": "Carretera Lavera La Montaña, Puerto de la Cruz. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sat 06:00-22:00 · Sun 08:00-22:00"},
@@ -973,5 +973,6 @@
  "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez el Viejo, Buenavista del Norte. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sat 06:00-23:00 · Sun 07:00-10:00"},
  "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Fri 05:30-20:30 · Sat-Sun 08:00-20:00"},
  "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 06:00-22:00"},
- "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 06:00-21:00"}
+ "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 06:00-21:00"},
+ "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte, La Victoria de Acentejo. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 06:00-22:00"}
 }

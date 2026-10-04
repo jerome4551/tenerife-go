@@ -935,7 +935,7 @@
  "gas-11731-arico": {"desc": "Autovía TF-1 km 39, Arico. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Repsol", "hours": "Lun-Dom 24 h"},
  "gas-7866-icod-de-los-vinos": {"desc": "Avenida Príncipes de España, Icod de los Vinos. Carburanti: benzina 95, benzina 98, gasolio, gasolio premium e GPL.", "cat": "Distributore · DISA", "hours": "Lun-Dom 24 h"},
  "gas-10201-icod-de-los-vinos": {"desc": "Carretera General C-820, Icod de los Vinos. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Moeve", "hours": "Lun-Ven 05:30-21:30 · Sab-Dom 06:00-22:00"},
- "gas-12298-icod-de-los-vinos": {"desc": "Carretera TF-82, Icod de los Vinos. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 06:00-22:00"},
+ "gas-12298-icod-de-los-vinos": {"desc": "Carretera General C-820, Icod de los Vinos. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 06:00-22:00"},
  "gas-15846-icod-de-los-vinos": {"desc": "Camino La Pitera, Icod de los Vinos. Carburanti: benzina 95 e gasolio. Inoltre: AdBlue.", "cat": "Distributore · Red de Combustibles Canarios", "hours": "Lun-Dom 24 h"},
  "gas-8760-icod-de-los-vinos": {"desc": "Calle Francisco Miranda, Icod de los Vinos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium. Inoltre: AdBlue.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"},
  "gas-7829-puerto-de-la-cruz": {"desc": "Carretera Lavera La Montaña, Puerto de la Cruz. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · DISA", "hours": "Lun-Sab 06:00-22:00 · Dom 08:00-22:00"},
@@ -973,5 +973,6 @@
  "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez el Viejo, Buenavista del Norte. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · DISA", "hours": "Lun-Sab 06:00-23:00 · Dom 07:00-10:00"},
  "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Repsol", "hours": "Lun-Ven 05:30-20:30 · Sab-Dom 08:00-20:00"},
  "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · DISA", "hours": "Lun-Dom 06:00-22:00"},
- "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Repsol", "hours": "Lun-Dom 06:00-21:00"}
+ "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Repsol", "hours": "Lun-Dom 06:00-21:00"},
+ "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte, La Victoria de Acentejo. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"}
 }

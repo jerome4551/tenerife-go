@@ -115,6 +115,10 @@
   "GENERAL TF-142": {
    "se_escribe": "GENERAL TF-42",
    "fuente": "Jerome, 4 de octubre: «Ok». El registro escribe «CALLE FELIX BENITEZ DE LUGO S/N LOS MORALITOS (GENERAL TF-142 KM 11), 28» (DISA, Los Silos). En OSM no hay ninguna TF-142 en la isla; la calle de la gasolinera es la TF-42a, el ramal de la TF-42 por Los Silos, y la estacion de Garachico, 2,7 km antes por la TF-42, esta en el km 8,9: el km 11 cuadra con la TF-42."
+  },
+  "CARRETERA TF-82 KM. 53,6": {
+   "se_escribe": "CARRETERA GENERAL C-820 KM. 53,6",
+   "fuente": "Jerome, 4 de octubre: la web de Moeve (la operadora) llama a esta estacion «ICOD DE LOS VINOS», direccion «C-820 PK 53,5», coordenadas 28.37896, -16.700733 (a menos de 2 m de las del registro) y horario 06:00-22:00 todos los dias, el del registro. Su vecina, a 0,65 km, es en el registro «CARRETERA GENERAL C-820 KM. 52,7», con la misma numeracion antigua. En OSM esta a 19 m de la TF-42 y a 2,3 km de la TF-82: el registro cambio «C-820» por «TF-82» y dejo el km viejo, pero este tramo de Icod no es la TF-82. El km se queda el del registro (53,6)."
   }
  },
  "km_contradicho": {

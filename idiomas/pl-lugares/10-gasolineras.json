@@ -790,7 +790,7 @@
   "hours": "Pn-Pt 05:30-21:30 · So-Nd 06:00-22:00"
  },
  "gas-12298-icod-de-los-vinos": {
-  "desc": "Carretera TF-82, Icod de los Vinos. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "desc": "Carretera General C-820, Icod de los Vinos. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · Moeve",
   "hours": "Pn-Nd 06:00-22:00"
  },
@@ -983,5 +983,10 @@
   "desc": "Carretera TF-82, El Tanque. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
   "cat": "Stacja paliw · Repsol",
   "hours": "Pn-Nd 06:00-21:00"
+ },
+ "gas-9629-la-victoria-de-acentejo": {
+  "desc": "Carretera General del Norte, La Victoria de Acentejo. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Shell",
+  "hours": "Pn-Nd 06:00-22:00"
  }
 }
