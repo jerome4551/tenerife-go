@@ -957,9 +957,36 @@ está. Cuando el paréntesis es solo el tramo («TF-66(GUAZA-GALLE KM. 2»), el 
 sigue siendo de la carretera de fuera. El revisor lo controla ya; probado
 metiendo el fallo a propósito.
 
+## Sesión 23 · Tegueste · HECHA el 4 de octubre
+
+**3 altas**, sin ficha antigua. La app pasa de 966 a **969 lugares**. Revisor: 3
+fichas, **0 hallazgos**. Contraste con OSM: la BP y la Tgas, a menos de 30 m de la
+**TF-13**; la DISA, a 20 m de la **TF-154**. Los «TF» de los nombres son verdad. El
+«KM. 320» de la BP no sale: esa carretera no llega a 320.
+
+**Pregunta: horarios de «solo lunes».** El registro da a la Tgas «**L**: 06:00-23:00»,
+o sea, solo el lunes, y la ficha lo enseña así («Mon 06:00-23:00» en inglés). No
+es la única: hay **6 más ya en la app** con el mismo «L» a secas.
+
+| estación | registro |
+|---|---|
+| Tgas, Tegueste (7728) | L 06:00-23:00 |
+| Moeve, Arico (7696) | L 06:00-22:00 |
+| Shell, Puerto de la Cruz (8754) | L 24 h |
+| Moeve, Puerto de la Cruz (7624) | L 06:00-00:00 |
+| Repsol, Los Realejos (7685) | L 06:00-00:00 |
+| Repsol, Geneto, La Laguna (7675) | L 24 h |
+| Pcan, La Laguna (11562) | L 06:00-23:00 |
+
+Tus capturas de Google: la Repsol de Geneto, «Abierto 24 horas»; la Tgas, abierta
+hasta las 23:00 el día de la captura (no consta qué día era). Lo más probable es
+que abran todos los días, pero el registro no lo dice y no me toca ponerlo.
+**¿Se dejan como dice el registro, se miran en la web de cada marca o se quita el
+horario en esas siete?** Mientras, se quedan como dice el registro.
+
 ## Lo que queda
 
-**8 sesiones**, 10 altas. La siguiente es la **23-tegueste** (3).
+**7 sesiones**, 7 altas. La siguiente es la **24-santa-ursula** (2).
 
 ## Lo que necesito de ti antes de seguir
 

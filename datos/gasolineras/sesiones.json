@@ -380,12 +380,17 @@
   },
   "23-tegueste": {
    "que": "Las 3 estaciones de Tegueste (3 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Tegueste",
    "estaciones": 3,
    "altas": 3,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/23-tegueste.json"
+   "plan": "datos/gasolineras/plan/23-tegueste.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 3,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 3 fichas, 0 hallazgos, 3/3 estaciones con su ficha",
+   "pregunta_a_jerome": "7728 Tgas Tegueste: el registro da «L: 06:00-23:00», solo el LUNES, y la ficha lo ensena asi («Mon 06:00-23:00» en ingles). Hay 6 mas igual ya en la app: 7696 Moeve Arico (L 06:00-22:00), 8754 Shell y 7624 Moeve de Puerto de la Cruz (L 24 h, L 06:00-00:00), 7685 Repsol Los Realejos (L 06:00-00:00), 7675 Repsol Geneto y 11562 Pcan de La Laguna (L 24 h, L 06:00-23:00). Google: Repsol Geneto «Abierto 24 horas»; Tgas Tegueste «cierre 23:00 el dia de la captura» (no consta que dia). Lo mas probable es que abran todos los dias, pero el registro no lo dice. ¿Se dejan como dice el registro, se miran en la web de cada marca, o se quita el horario en esas 7?"
   },
   "24-santa-ursula": {
    "que": "Las 2 estaciones de Santa Úrsula (2 altas, 0 ya en la app).",

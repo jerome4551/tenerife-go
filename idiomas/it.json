@@ -964,5 +964,8 @@
  "gas-7767-la-matanza-de-acentejo": {"desc": "Carretera General del Norte, La Matanza de Acentejo. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Shell", "hours": "Lun-Sab 06:00-22:00 · Dom 07:00-21:00"},
  "gas-8802-el-rosario": {"desc": "Calle La Campana, El Rosario. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 24 h"},
  "gas-7720-el-rosario": {"desc": "Carretera TF-24 La Laguna-El Portillo, El Rosario. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Pcan", "hours": "Lun-Dom 06:00-22:00"},
- "gas-15713-el-rosario": {"desc": "Calle Isaac Peral, El Rosario. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium. Inoltre: AdBlue.", "cat": "Distributore · Tgas", "hours": "Lun-Ven 06:00-20:00 · Sab 07:00-17:00"}
+ "gas-15713-el-rosario": {"desc": "Calle Isaac Peral, El Rosario. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium. Inoltre: AdBlue.", "cat": "Distributore · Tgas", "hours": "Lun-Ven 06:00-20:00 · Sab 07:00-17:00"},
+ "gas-15101-tegueste": {"desc": "Carretera General a Punta Hidalgo, Tegueste. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · BP", "hours": "Lun-Ven 06:00-22:00 · Sab-Dom 07:00-22:00"},
+ "gas-7865-tegueste": {"desc": "Carretera TF-154, Tegueste. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · DISA", "hours": "Lun-Dom 06:00-22:00"},
+ "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Tgas", "hours": "Lun 06:00-23:00"}
 }
