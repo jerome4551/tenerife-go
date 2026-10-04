@@ -322,73 +322,73 @@
   "hours": "Pn-Pt 9:00–21:00 · So 9:00–14:00 · Dyżur rotacyjny"
  },
  "gas-tf1-granadilla": {
-  "desc": "Stacja Repsol przy TF-1 w Granadilli. Sklep i myjnia samochodowa. Łatwy zjazd z autostrady.",
-  "cat": "Stacja paliw · TF-1 Południe",
+  "desc": "Carretera TF-1 km 54, Granadilla de Abona. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
   "hours": "Pn-Nd 06:00-00:00"
  },
  "gas-tf1-guaza": {
-  "desc": "Stacja BP w Guaza, zjazd na Aronę. Dobry przystanek przed Los Cristianos i Las Américas.",
-  "cat": "Stacja paliw · TF-1 Południe",
+  "desc": "Carretera General Guaza TF-66, Arona. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · BP",
   "hours": "Pn-Nd 24 h"
  },
  "gas-tf1-guimar": {
-  "desc": "BP na zjeździe do Güímar. Blisko Piramid Güímar. Dobre zaplecze.",
-  "cat": "Stacja paliw · TF-1 Wschód",
+  "desc": "Polígono Plan Parcial El Carretón, Arafo. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium. Także: AdBlue.",
+  "cat": "Stacja paliw · BP",
   "hours": "Pn-Nd 24 h"
  },
  "gas-tf5-lalaguna": {
-  "desc": "Repsol na zjeździe do La Laguny z TF-5. Jedna z najbardziej ruchliwych na północy. Myjnia automatyczna.",
-  "cat": "Stacja paliw · TF-5 Północ",
+  "desc": "Calle Libertad, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
   "hours": "Pn-Nd 24 h"
  },
  "gas-tf5-tacoronte": {
-  "desc": "Cepsa przy zjeździe do Tacoronte. Strefa winiarni i guachinches. Kawa i sklep na miejscu.",
-  "cat": "Stacja paliw · TF-5 Północ",
+  "desc": "Autopista Norte TF-5 km 16, Tacoronte. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "cat": "Stacja paliw · Moeve",
   "hours": "Pn-Nd 24 h"
  },
  "gas-tf5-ptocz": {
-  "desc": "BP u wjazdu do Puerto de la Cruz od strony autostrady. Bardzo praktyczna dla turystów. Duża i jasna.",
-  "cat": "Stacja paliw · TF-5 Północ",
+  "desc": "Carretera del Botánico, Puerto de la Cruz. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · BP",
   "hours": "Pn-Nd 06:30-22:30"
  },
  "gas-tf2-lalaguna": {
-  "desc": "Cepsa przy TF-2, zjazd La Laguna w stronę południa. Kluczowy punkt między lotniskiem a stolicą.",
-  "cat": "Stacja paliw · TF-2 Centrum",
+  "desc": "Avenida El Paso, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Moeve",
   "hours": "Pn-Nd 24 h"
  },
  "gas-tf1-abades": {
-  "desc": "Stacja przy TF-1 km 44, strefa Abades/Arico. Ważny przystanek na autostradzie południowej, na odcinku wschodnim. Jedna z nielicznych stacji między lotniskiem a Güímar.",
-  "cat": "Stacja paliw · TF-1 · Arico",
+  "desc": "Autopista Tenerife Sur km 44,2, Arico. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Abades",
   "hours": "Pn-Nd 24 h"
  },
  "gas-tf21-aguamansa": {
   "desc": "Carretera Las Cañadas, La Orotava. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium. Także: AdBlue.",
-  "cat": "Stacja paliw · Podjazd na Teide",
+  "cat": "Stacja paliw · Moeve",
   "hours": "Pn-Nd 06:00-00:00"
  },
  "gas-tf5-el-bohio": {
-  "desc": "DISA przy TF-5 km 25, La Matanza de Acentejo. Autostrada północna, dobrze położona między La Laguną a Puerto de la Cruz. Dobry punkt postoju.",
-  "cat": "Stacja paliw · TF-5 · La Matanza",
+  "desc": "Autopista TF-5 km 25, La Matanza de Acentejo. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i LPG. Także: AdBlue.",
+  "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 24 h"
  },
  "gas-tf5-el-sauzal": {
-  "desc": "Repsol przy TF-5 km 22,5, El Sauzal. Północ między La Laguną a Tacoronte. Jedna z najłatwiej dostępnych stacji z autostrady północnej.",
-  "cat": "Stacja paliw · TF-5 · El Sauzal",
+  "desc": "Autopista TF-5 km 22,5, El Sauzal. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
   "hours": "Pn-Nd 06:00-22:00"
  },
  "gas-tf51-vilaflor": {
-  "desc": "Stacja przy TF-51 Arona-Vilaflor km 4. Wnętrze południa. Ważna dla tych, którzy jadą do Vilaflor (najwyżej położona wieś Hiszpanii) albo wjeżdżają do Parku Narodowego od południa. Ostatnia stacja przed strefą wysokogórską.",
-  "cat": "⚠️ Stacja paliw · Wnętrze południa · Vilaflor",
+  "desc": "⚠️ OSTATNIA stacja paliw przed Parkiem Narodowym Teide, jadąc drogą TF-21 od południa (Vilaflor). W Parku Narodowym NIE MA stacji paliw. Trzeba koniecznie zatankować tutaj przed wjazdem na Teide. Carretera General 821, Vilaflor. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "⚠️ Ostatnia stacja paliw · DISA",
   "hours": "Pn-So 07:00-21:00 · Nd 08:00-14:00"
  },
  "gas-tf82-guia-isora": {
-  "desc": "Shell przy TF-82, Guía de Isora km 120. Południowy zachód Teneryfy. Ważny przystanek między Adeje a Los Gigantes przed najbardziej odludnym odcinkiem zachodniego wybrzeża.",
-  "cat": "Stacja paliw · TF-82 · Guía de Isora",
+  "desc": "Avenida Isora, Guía de Isora. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · Shell",
   "hours": "Pn-So 06:00-22:00 · Nd 07:00-17:00"
  },
  "gas-tf5-los-realejos": {
-  "desc": "DISA przy TF-5 km 46, Los Realejos. Północ między Puerto de la Cruz a Icod de los Vinos. Przydatna dla jadących dalej do Garachico albo na północny zachód wyspy.",
-  "cat": "Stacja paliw · TF-5 · Los Realejos",
+  "desc": "Calle Los Barros, Los Realejos. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 06:00-22:00"
  },
  "puerto-santa-cruz": {

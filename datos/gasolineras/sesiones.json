@@ -493,13 +493,20 @@
   },
   "31-vilaflor": {
    "que": "Las 1 estaciones de Vilaflor (0 altas, 1 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Vilaflor",
    "estaciones": 1,
    "altas": 0,
    "ya": 1,
    "plan": "datos/gasolineras/plan/31-vilaflor.json",
-   "verificada": "2026-10-04: la antigua «DISA Vilaflor (TF-51)» enlazada a 7951 (a 43 m, misma marca), horario y direccion del registro, la TF-51 pasa junto al pin. Sin altas. Se cierra cuando Jerome diga."
+   "verificada": "2026-10-04: la antigua «DISA Vilaflor (TF-51)» enlazada a 7951 (a 43 m, misma marca), horario y direccion del registro, la TF-51 pasa junto al pin. Sin altas. Se cierra cuando Jerome diga.",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 0,
+   "enlazadas": {
+    "gas-tf51-vilaflor": "7951 (a 43 m)"
+   },
+   "revisada_el": "2026-10-04",
+   "revision": "verificacion de los bloques 00 a 31; rehecha en la sesion 91, con el aviso de ultima gasolinera antes del Teide por el sur"
   },
   "90-las-seis-que-no-estan-en-el-registro": {
    "que": "gas-tf1-adeje · gas-tf1-candelaria · gas-tf1-guaza2 · gas-tf2-aeropuerto · gas-tf5-icod · gas-tf82-los-gigantes. Ninguna tiene estacion del registro a 300 m.",
@@ -510,9 +517,11 @@
   },
   "91-las-ocho-a-ajustar": {
    "que": "Las 14 que si casan: 12 confirmadas (solo anadir IDEESS), 1 a corregir coordenada (gas-tf82-guia-isora, 166 m) y 1 de marca distinta (gas-tf1-abades).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": null,
-   "estaciones": 14
+   "estaciones": 14,
+   "hecho_el": "2026-10-04",
+   "resultado": "Jerome, 4 de octubre: «Arregla lo que puedes». Las 14 antiguas, rehechas desde el registro con tools/gasolinera_alta.py --antiguas-91: conservan su id y su pin; nombre, categoria, descripcion, horario, direccion, etiquetas y color salen de la plantilla, en los diez idiomas. Fuera los «Cepsa» (3, ahora Moeve), los TF que no eran el suyo (4), los 7 telefonos sin captura ni OK y las frases sin fuente. Vilaflor conserva lo que si valia, como aviso con su porque (avisos.json, 7951). La pareja de Repsol del TF-1 km 54 se distingue por el margen del registro."
   },
   "92-el-fichero-de-precios": {
    "que": "Flujo diario que extrae los precios del registro a datos/precios-gasolineras.json con su fecha, y el modo de las 10 mas baratas. NINGUN PRECIO dentro de index.html.",
@@ -559,6 +568,19 @@
    "Codigo de carretera que no es el suyo: gas-tf5-lalaguna (TF-5; junto a la TF-2), gas-tf1-guaza (TF-1 km 21; junto a la TF-66), gas-tf5-los-realejos (TF-5 km 46; junto a la TF-334), gas-tf5-ptocz (TF-5 km 30; junto a la TF-312).",
    "Telefonos sin captura ni OK (no se ensenan): gas-tf1-granadilla, gas-tf1-guaza, gas-tf1-guimar, gas-tf5-lalaguna, gas-tf5-tacoronte, gas-tf5-ptocz, gas-tf2-lalaguna.",
    "Lo ya apuntado en cada sesion («para_la_91»)."
+  ],
+  "resuelto_el_4_de_octubre_por_la_noche": [
+   "Erratas con dos pruebas: TF-21 -> TF-1 (7637), TF-822 -> TF-28 (7828), TF-623 -> TF-47 (7849).",
+   "TF-411 se queda: la web de DISA, Google y el registro la usan (codigos_carretera en correcciones-registro.json).",
+   "Nombres con IDEESS: Balneario I y II (rotulo del registro) y margen derecho / izquierdo (Margen del registro).",
+   "Sesion 91 hecha; la 31, cerrada.",
+   "Etiquetas: «Última» en chino era «末班» (ultimo servicio de autobus) -> 最后一个 / 最後一個; «Importante» en ingles era «Major» -> Important; en polaco Wazny -> Wazne."
+  ],
+  "pendiente": [
+   "8753 Shell El Aguila: «TF-131» (no existe en OSM; la TF-31 pasa a 12 m). Falta una segunda fuente (Google Maps o la web de Shell).",
+   "9483 Moeve Llano Azul y 9961 DISA Ofra: la coordenada. Las capturas de Jerome confirman direccion y horario, no la posicion. Falta un Street View en el pin del registro o las coordenadas de la web de la operadora.",
+   "7951 DISA Vilaflor: «CARRETERA GENERAL 821» es la antigua C-821, hoy TF-21 (a 14 m en OSM). ¿Errata a TF-21?",
+   "Sesion 92: el fichero diario de precios y el modo de las 10 mas baratas."
   ]
  }
 }

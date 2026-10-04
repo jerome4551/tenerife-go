@@ -193,6 +193,10 @@ def main():
         for malo, x in erratas.items():
             if malo in e['Dirección']:
                 fuente |= set(piezas(x['se_escribe']))
+        # El campo Margen (D / I) es del registro: «margen derecho» o «izquierdo»,
+        # el que diga ESTA estacion, nunca el otro.
+        fuente |= set(piezas({'D': 'margen derecho', 'I': 'margen izquierdo'}.get(
+            (e.get('Margen') or '').strip(), '')))
         for w in piezas(p['name']):
             if w not in fuente:
                 mal(p['id'], 'el nombre lleva «%s», que no sale del registro' % w)

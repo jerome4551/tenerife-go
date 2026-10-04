@@ -40,7 +40,10 @@
   "",
   "MAYUSCULAS: el registro va en mayusculas y no dice cuales lo son. Estas son las que la",
   "regla general (articulo en minuscula solo detras de preposicion) deja mal, con el OK de Jerome",
-  "del 4 de octubre («Ok»). Se aplican al texto ya escrito, palabra entera."
+  "del 4 de octubre («Ok»). Se aplican al texto ya escrito, palabra entera.",
+  "",
+  "CODIGOS_CARRETERA: codigos de carretera del registro que OSM no tiene pero que estan",
+  "en uso y comprobados con otra fuente. tools/verificar_bloques.py no los da por malos."
  ],
  "acentos": {
   "albanileria": "Albañilería",
@@ -119,6 +122,18 @@
   "CARRETERA TF-82 KM. 53,6": {
    "se_escribe": "CARRETERA GENERAL C-820 KM. 53,6",
    "fuente": "Jerome, 4 de octubre: la web de Moeve (la operadora) llama a esta estacion «ICOD DE LOS VINOS», direccion «C-820 PK 53,5», coordenadas 28.37896, -16.700733 (a menos de 2 m de las del registro) y horario 06:00-22:00 todos los dias, el del registro. Su vecina, a 0,65 km, es en el registro «CARRETERA GENERAL C-820 KM. 52,7», con la misma numeracion antigua. En OSM esta a 19 m de la TF-42 y a 2,3 km de la TF-82: el registro cambio «C-820» por «TF-82» y dejo el km viejo, pero este tramo de Icod no es la TF-82. El km se queda el del registro (53,6)."
+  },
+  "AUTOPISTA TF-21 KM. 3,5": {
+   "se_escribe": "AUTOPISTA TF-1 KM. 3,5",
+   "fuente": "Jerome, 4 de octubre: «Si estas seguro de las direcciones cambialas». Moeve de Santa Cruz (7637). La TF-21 es la carretera del Teide y no pasa por Santa Cruz; la captura de Jerome (IMG_3429) dice «Autop. del Sur, PK 3, 5» y en OSM la Autopista del Sur TF-1 esta a 30 m. Con la errata, el tramo de autopista del TF-1 segun el registro empieza en el km 3,5; no cambia ningun otro nombre."
+  },
+  "CARRETERA TF-822 KM. 50": {
+   "se_escribe": "CARRETERA TF-28 KM. 50",
+   "fuente": "Jerome, 4 de octubre: «Si estas seguro de las direcciones cambialas». DISA de Arico Nuevo (7828). No hay TF-822 en la isla: es la antigua C-822 mezclada con su nombre de hoy, TF-28, como paso en Icod. Su km 50 cae en la serie de la Carretera General del Sur del propio registro (km 22 en La Hidalga, a 20,1 km de Santa Cruz; km 50 a 38,7; km 62 en La Cisnera, a 42,7) y en OSM la Carretera General del Sur TF-28 esta a 12 m."
+  },
+  "GENERAL TF-623 KM. 13": {
+   "se_escribe": "GENERAL TF-47 KM. 13",
+   "fuente": "Jerome, 4 de octubre: «Si estas seguro de las direcciones cambialas». DISA de Playa San Juan (7849). No hay TF-623 en la isla; en OSM la TF-47 esta a 46 m, y su km 13 cuadra con el km 2,7 que el registro da a la Repsol de la TF-47 en Armenime (8,5 km en linea recta para 10,3 km de carretera). Es la «Carretera General Adeje a Playa San Juan» que el registro da a la H2GO de al lado."
   }
  },
  "km_contradicho": {
@@ -206,6 +221,11 @@
   "a los Abrigos": {
    "se_escribe": "a Los Abrigos",
    "por_que": "el articulo es parte del nombre del pueblo (Los Abrigos). Moeve de San Miguel de Abona. Jerome, 4 de octubre: «Ok»."
+  }
+ },
+ "codigos_carretera": {
+  "TF-411": {
+   "por_que": "Jerome, 4 de octubre: la web de DISA llama «CARRETERA TF-411» a la DISA Ofra (Carretera Sur Cuesta-Taco), Google tambien («Carretera Sur (Cuesta-Taco), km 2 (Carretera TF-411)»), y el registro la usa para la BP Taco Norte (km 2,45). OSM tiene esa carretera como TF-194 «Carretera General La Cuesta - Taco». Se deja TF-411: es el nombre que usan el registro y la operadora."
   }
  }
 }

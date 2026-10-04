@@ -193,7 +193,8 @@
   "Teresitas",
   "Tgas",
   "Torviscas",
-  "Valle Güímar"
+  "Valle Güímar",
+  "Vilaflor"
  ],
  "nombre de edificio, museo o monumento": [
   "Casa Anchieta",
@@ -305,10 +306,13 @@
   "PR-TF 6.1",
   "PR-TF 6.3",
   "PR-TF-52",
+  "TF-1",
   "TF-11",
   "TF-2",
+  "TF-21",
   "TF-42",
   "TF-51",
+  "TF-82",
   "TFN"
  ]
 }

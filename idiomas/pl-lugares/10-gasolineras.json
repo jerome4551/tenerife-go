@@ -65,7 +65,7 @@
   "hours": "Pn-Pt 07:00-15:00"
  },
  "gas-7637-santa-cruz-de-tenerife": {
-  "desc": "Autopista TF-21 km 3,5, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "desc": "Autopista TF-1 km 3,5, Santa Cruz de Tenerife. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · Moeve",
   "hours": "Pn-Nd 24 h"
  },
@@ -675,7 +675,7 @@
   "hours": "Pn-So 06:00-21:00 · Nd 07:00-15:00"
  },
  "gas-7849-guia-de-isora": {
-  "desc": "Carretera General TF-623, Guía de Isora. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "desc": "Carretera General TF-47, Guía de Isora. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 06:00-22:00"
  },
@@ -760,7 +760,7 @@
   "hours": "Pn-Nd 24 h"
  },
  "gas-7828-arico": {
-  "desc": "Carretera TF-822, Arico. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "desc": "Carretera TF-28, Arico. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Pt 06:00-22:00 · So-Nd 07:00-20:00"
  },

@@ -207,15 +207,17 @@ def main():
 
     # plantilla --------------------------------------------------------------
     for p in app:
-        if not es_generada(p):
+        if not p['ideess']:
             continue
         g = gen.get(p['ideess'])
         if not g:
             H[de(p['id'])].append('plantilla: %s no sale de la plantilla' % p['id'])
             continue
-        par = [('id', p['id'], g['id']), ('nombre', p['name'], g['name']), ('direccion', p['address'], g['address']),
-               ('coordenada', (p['lat'], p['lng']), (g['lat'], g['lng'])), ('etiquetas', p['tags'], g['tags']),
-               ('color', p['color'], g['color'])]
+        par = [('nombre', p['name'], g['name']), ('direccion', p['address'], g['address']),
+               ('etiquetas', p['tags'], g['tags']), ('color', p['color'], g['color'])]
+        # Las 14 antiguas (sesion 91) conservan su id y su pin; lo demas, igual.
+        if es_generada(p):
+            par += [('id', p['id'], g['id']), ('coordenada', (p['lat'], p['lng']), (g['lat'], g['lng']))]
         for c in ('desc', 'cat', 'hours'):
             for L in IDIOMAS:
                 par.append(('%s.%s' % (c, L), texto(p, c, L), g['idiomas'][L][c]))
@@ -237,7 +239,7 @@ def main():
             H[b].append('antigua: %s, horario «%s», registro «%s»' % (p['id'], (p['hours'] or {}).get('es'), g['idiomas']['es']['hours']))
         if p['address'] != g['address']:
             H[b].append('antigua: %s, direccion «%s», registro «%s»' % (p['id'], p['address'], g['address']))
-        I[b].append('antigua: %s «%s» -> %s %s a %.0f m (para la 91: nombre y texto)' % (p['id'], p['name'], p['ideess'], e['rotulo'].strip(), d))
+        I[b].append('antigua: %s «%s» -> %s %s a %.0f m, con su id y su pin de siempre' % (p['id'], p['name'], p['ideess'], e['rotulo'].strip(), d))
 
     # osm --------------------------------------------------------------------
     E = GF.cargar()
@@ -256,6 +258,9 @@ def main():
             for r in (ref or '').replace(';', ' ').split():
                 refs[r] = min(refs.get(r, 9e9), d)
         for c in codigos(p['name']):
+            if c in corr.get('codigos_carretera', {}):
+                I[b].append('osm: %s, «%s»: OSM no lo tiene, pero esta comprobado (correcciones-registro.json)' % (p['id'], c))
+                continue
             if c.startswith('C-'):
                 I[b].append('osm: %s, «%s» en el nombre es un codigo antiguo: OSM no lo tiene' % (p['id'], c))
                 continue

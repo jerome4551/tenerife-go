@@ -1218,11 +1218,66 @@ OK (no se enseña, pero el LEEME no lo quiere); y lo apuntado en cada sesión.
 General del Sur (las dos del registro); 17 marcas distintas en OSM (las dos
 comprobadas daban la razón al registro); 3 CP sin fuente para el bueno.
 
+## Tus respuestas del 4 de octubre, por la noche
+
+**Los cinco códigos de carretera** («si estás seguro, cámbialas»). Solo los que
+tienen dos pruebas que no dependen una de otra:
+
+| ficha | ahora | pruebas |
+|---|---|---|
+| Moeve, Santa Cruz | «Autopista **TF-1** km 3,5» | tu captura («Autop. del Sur») y la TF-1 a 30 m |
+| DISA, Arico Nuevo | «Carretera **TF-28**» | su km 50 cae en la serie de la Carretera General del Sur del propio registro; la TF-28 a 12 m |
+| DISA, Playa San Juan | «Carretera General **TF-47**» | su km 13 cuadra con el 2,7 de la TF-47 en Armeñime; la TF-47 a 46 m |
+| BP, Taco | sigue «**TF-411**» | la web de DISA llama así a esa carretera, igual que Google y el registro |
+| Shell, Puerto de la Cruz | sigue «**TF-131**» | solo tengo OSM: **falta una segunda fuente** |
+
+**Las dos coordenadas.** Tus capturas confirman la dirección y el horario de la
+Moeve Llano Azul (24 h) y de la DISA Ofra (06:00-22:00), que son los del
+registro. Pero ninguna trae la posición, así que los pins no se tocan: hace falta
+un Street View en el pin del registro (como en Fasnia) o las coordenadas de la
+web de la operadora (como en Icod).
+
+**Nombres sin IDEESS.** «DISA · Autovía Santa Cruz-San Andrés (Balneario I)» y
+«(Balneario II)», como las llama el registro; y la pareja de Repsol del TF-1 km
+54, «(margen derecho)» y «(margen izquierdo)», el campo Margen del registro tal
+cual. Ya no queda ningún nombre con un número.
+
+## Sesión 91 · las 14 antiguas · HECHA el 4 de octubre
+
+Rehechas desde el registro, como las demás: **conservan su id** (favoritos y
+enlaces siguen valiendo) **y su pin** (el LEEME lo dio por bueno, misma marca a
+menos de 150 m); nombre, categoría, descripción, horario, dirección, etiquetas y
+color salen de la plantilla, en los diez idiomas. Con eso se van:
+
+* los tres «**Cepsa**» (ahora Moeve);
+* los cuatro **TF que no eran el suyo** («BP Guaza (TF-1 km 21)» está en la
+  TF-66: ahora «BP · Carretera General Guaza TF-66»);
+* los siete **teléfonos** que no salían de ninguna captura;
+* las frases que nadie podía comprobar («Buen punto de parada», «Amplia y
+  luminosa», «pueblo más alto de España»).
+
+Lo que sí valía se queda, con su porqué: **Vilaflor** lleva ahora el aviso de
+«última gasolinera antes del Teide por el sur», como la Barroso por el norte (el
+registro no tiene ninguna estación más arriba de Vilaflor). El francés del aviso
+de la Barroso decía menos que los otros nueve: completado.
+
+De paso, tres etiquetas mal traducidas: «Última» en chino era «末班» (último
+servicio de autobús), ahora «最后一个»; «Importante» en inglés era «Major», ahora
+«Important»; y en polaco «Ważne». El revisor aprendió el campo Margen (y caza el
+margen contrario) y el verificador compara ya las 14 antiguas con la plantilla.
+
+## Sesión 31 · Vilaflor · HECHA el 4 de octubre
+
+Sin altas: su estación es la antigua de Vilaflor, verificada y rehecha en la 91.
+
 ## Lo que queda
 
-La **31** (Vilaflor), **verificada**: la antigua «DISA Vilaflor (TF-51)» está
-enlazada a 43 m, con horario y dirección del registro, y la TF-51 pasa junto al
-pin. Sin altas: se cierra cuando digas.
+* **Shell de Puerto de la Cruz:** «TF-131» o «TF-31». Una segunda fuente.
+* **Moeve Llano Azul y DISA Ofra:** la posición (Street View en el pin del
+  registro, o las coordenadas de la web de Moeve y de DISA).
+* **DISA Vilaflor:** «Carretera General 821» es la antigua C-821, hoy la TF-21
+  (a 14 m). ¿Errata a «TF-21»?
+* **Sesión 92:** el fichero diario de precios y el modo de las 10 más baratas.
 
 ## Lo que necesito de ti antes de seguir
 

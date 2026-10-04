@@ -406,6 +406,16 @@ def rotulo_corto(rot):
     return titulo(corto or t, via=False)
 
 
+def nombre_propio(rot, base):
+    """Lo que el rotulo dice ademas de la marca: «DISA BALNEARIO II» -> «Balneario
+       II». Vacio si no dice nada mas («REPSOL»). Los numeros romanos, en mayusculas."""
+    t = rotulo_corto(rot)
+    t = re.sub(r'(?i)^%s\b\s*' % re.escape(base or ''), '', t).strip() if base else t
+    if not t or llano(t) == llano(base or ''):
+        return ''
+    return ' '.join(w.upper() if re.fullmatch(r'(?i)[ivx]+', w) else w for w in t.split())
+
+
 def tiene_adblue(e):
     return bool((e.get('Precio Adblue') or '').strip())
 
@@ -500,6 +510,8 @@ def tramos_autopista(registro):
     out = {}
     for x in registro:
         d = (x.get('Dirección') or '').strip()
+        for mal_escrito, bien in ERRATAS.items():   # «AUTOPISTA TF-21 KM. 3,5» es la TF-1
+            d = d.replace(mal_escrito, bien)
         m = re.match(r'(?i)^(AUTOPISTA|AUTOV[IÍ]A)\s+(?:\w+\s+)?TF-?(\d+)\b', d)
         km = km_de(d)
         if m and km:
@@ -620,9 +632,22 @@ def ficha(e, muni, sufijo=''):
             # Si la localidad ES el municipio, se escribe como lo escribe el
             # Cabildo: el registro pone «GUIMAR» y «SANTA URSULA», sin acento.
             nombre += ' (%s)' % (muni if llano(loc) == llano(muni) else loc)
+    # Desempates, de mas a menos legible. Si un paso no tiene con que, deja el
+    # nombre como estaba: sigue chocando y pasa al siguiente. Antes, sin km se
+    # saltaba directo al IDEESS: las dos DISA de la Autovia de San Andres salian
+    # «(10995)» y «(7879)», y el registro las llama «BALNEARIO II» y «BALNEARIO I».
     if sufijo == 'km':
-        nombre = '%s · %s km %s' % (base, calle, km) if km and 'km ' not in calle \
-                 else '%s · %s (%s)' % (base, calle, e['IDEESS'])
+        if km and 'km ' not in calle:
+            nombre = '%s · %s km %s' % (base, calle, km)
+    elif sufijo == 'rotulo':
+        propio = nombre_propio(rot, base)
+        if propio:
+            nombre = '%s · %s (%s)' % (base, calle, propio)
+    elif sufijo == 'margen':
+        # El margen tal cual lo da el registro, sin deducir el sentido.
+        lado = {'D': 'margen derecho', 'I': 'margen izquierdo'}.get((e.get('Margen') or '').strip())
+        if lado:
+            nombre = '%s · %s (%s)' % (base, calle, lado)
     elif sufijo == 'ideess':
         nombre = '%s · %s (%s)' % (base, calle, e['IDEESS'])
     f = {
@@ -712,7 +737,7 @@ def cargar(seleccion=None):
     _ACENTOS = acentos_del_registro(
         [calle_corta(x.get('Dirección')) for x in mios])
     out, pendientes = [], list(mios)
-    for paso in ('', 'loc', 'km', 'ideess'):
+    for paso in ('', 'loc', 'km', 'rotulo', 'margen', 'ideess'):
         cuenta = {}
         for x in pendientes:
             cuenta.setdefault(ficha(x, muni[str(x['IDEESS'])], paso)['name'], []).append(x)

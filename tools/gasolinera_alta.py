@@ -221,7 +221,79 @@ def enlazar_antiguas(ver=False):
     return 0
 
 
+def antiguas_91(ver=False):
+    """Sesion 91: las 14 fichas ANTIGUAS, al estilo de las nuevas y desde el
+       registro, como cualquier otra. Conservan su id (favoritos, enlaces) y su
+       pin, que el LEEME dio por bueno (misma marca a <=150 m). Lo demas sale de
+       la plantilla: nombre, categoria, descripcion, horario, direccion,
+       etiquetas y color, en los diez idiomas. Con eso se van los «Cepsa» (es
+       Moeve), los TF que no eran el suyo («BP Guaza (TF-1 km 21)» esta en la
+       TF-66), los telefonos que no salian de ninguna captura y las frases que
+       nadie podia comprobar («Buen punto de parada», «Amplia y luminosa»). Lo
+       que si vale de una antigua y no sale del registro va como aviso, con su
+       porque, en datos/gasolineras/avisos.json (Vilaflor, la ultima antes del
+       Teide por el sur)."""
+    src = open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
+    gen = {g['ideess']: g for g in F.cargar()}
+    viejas = re.findall(r'\{ id:"(gas-[a-z0-9-]+)"[^\n]*?ideess:"(\d+)"', src)
+    viejas = [(i, d) for i, d in viejas if not i.startswith('gas-%s-' % d)]
+    idi = {L: json.load(open(os.path.join(RAIZ, 'idiomas/%s.json' % L), encoding='utf-8'))
+           for L in OTROS}
+    plf = {f: json.load(open(os.path.join(RAIZ, 'idiomas', 'pl-lugares', f), encoding='utf-8'))
+           for f in sorted(os.listdir(os.path.join(RAIZ, 'idiomas', 'pl-lugares')))}
+    fichas = []
+    for fid, ide in viejas:
+        i = src.index('  { id:"%s"' % fid)
+        j = src.index('\n', src.index('\n    tags:[', i) + 1) + 1
+        blq = src[i:j]
+        if blq.count('{ id:') != 1 or 'ideess:"%s"' % ide not in blq:
+            sys.exit('PARO: el bloque de %s no es como esperaba. No improviso.' % fid)
+        m = re.search(r'lat:([-\d.]+), lng:([-\d.]+)', blq)
+        f = dict(gen[ide])
+        f['id'] = fid
+        f['lat'], f['lng'] = m.group(1), m.group(2)      # el pin, tal cual estaba
+        nombre = re.search(r'name:"([^"]*)"', blq).group(1)
+        print('  %-22s «%s» -> «%s»' % (fid, nombre, f['name']))
+        src = src[:i] + bloque(f) + src[j:]
+        for L in OTROS:
+            if fid not in idi[L]:
+                sys.exit('PARO: %s no tiene textos en %s' % (fid, L))
+            idi[L][fid] = f['idiomas'][L]
+        donde = [k for k, d in plf.items() if fid in d]
+        if len(donde) != 1:
+            sys.exit('PARO: el polaco de %s esta en %d ficheros' % (fid, len(donde)))
+        plf[donde[0]][fid] = f['idiomas']['pl']
+        fichas.append(f)
+    if len(fichas) != 14:
+        sys.exit('PARO: esperaba 14 antiguas y hay %d' % len(fichas))
+    etq = json.load(open(os.path.join(RAIZ, 'idiomas/etiquetas-sin-traducir.json'), encoding='utf-8'))
+    clave_sitio = next(k for k in etq if 'nombre de sitio' in k)
+    glos = [json.load(open(os.path.join(RAIZ, 'idiomas', 'etiquetas', '%s.json' % L), encoding='utf-8'))
+            for L in OTROS + ['pl']]
+    traducida = lambda t: all(t in g for g in glos) or bool(re.match(r'^TF-\d+$', t))
+    faltan = sorted({t for f in fichas for t in f['tags'][1:] if not traducida(t)}
+                    - {x for v in etq.values() for x in v})
+    print('  etiquetas nuevas a declarar: %s' % (', '.join(faltan) or 'ninguna'))
+    if ver:
+        return 0
+    open(os.path.join(RAIZ, 'index.html'), 'w', encoding='utf-8').write(src)
+    for L in OTROS:
+        open(os.path.join(RAIZ, 'idiomas/%s.json' % L), 'w', encoding='utf-8').write(una_linea(idi[L]))
+    for k, d in plf.items():
+        p = os.path.join(RAIZ, 'idiomas', 'pl-lugares', k)
+        if json.load(open(p, encoding='utf-8')) != d:
+            open(p, 'w', encoding='utf-8').write(json.dumps(d, ensure_ascii=False, indent=1) + '\n')
+    if faltan:
+        etq[clave_sitio] = sorted(set(etq[clave_sitio]) | set(faltan))
+        open(os.path.join(RAIZ, 'idiomas/etiquetas-sin-traducir.json'), 'w', encoding='utf-8').write(
+            json.dumps(etq, ensure_ascii=False, indent=1) + '\n')
+    print('hecho. Ahora: node tools/lugares_idioma.js montar pl, y la auditoria')
+    return 0
+
+
 def main():
+    if '--antiguas-91' in sys.argv:
+        return antiguas_91('--ver' in sys.argv)
     if '--enlazar-antiguas' in sys.argv:
         return enlazar_antiguas('--ver' in sys.argv)
     if '--horas-antiguas' in sys.argv:
