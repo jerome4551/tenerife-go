@@ -896,10 +896,10 @@
  "gas-7677-la-orotava": {"desc": "⚠️ DERNIÈRE station avant le Parc National du Teide en montant par TF-21. Aucune station dans le Parc National. Indispensable de faire le plein ici. Carretera TF-21 Aguamansa, La Orotava. Carburants : essence 95, essence 98 et gazole.", "cat": "⚠️ Dernière Station · Repsol", "hours": "Lun-Dim 06:00-22:00"},
  "gas-7699-la-orotava": {"desc": "Carretera TF-324, La Orotava. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Repsol", "hours": "Lun-Ven 06:00-22:00 · Sam-Dim 07:00-23:00"},
  "gas-8776-la-orotava": {"desc": "Carretera General del Norte, La Orotava. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Shell", "hours": "Lun-Dim 06:00-22:00"},
- "gas-7859-san-miguel-de-abona": {"desc": "Carretera General a las Galletas-Chafiras, San Miguel de Abona. Carburants : essence 95, essence 98, gazole, gazole premium et GPL.", "cat": "Station-service · DISA", "hours": "Lun-Dim 24 h"},
+ "gas-7859-san-miguel-de-abona": {"desc": "Carretera General a Las Galletas-Chafiras, San Miguel de Abona. Carburants : essence 95, essence 98, gazole, gazole premium et GPL.", "cat": "Station-service · DISA", "hours": "Lun-Dim 24 h"},
  "gas-9614-san-miguel-de-abona": {"desc": "Carretera General del Sur, San Miguel de Abona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · DISA", "hours": "Lun-Dim 06:00-22:00"},
  "gas-14423-san-miguel-de-abona": {"desc": "Avenida Eugenio Domínguez Sierra, San Miguel de Abona. Carburants : essence 95, essence 98, gazole, gazole premium et GPL. Également : AdBlue.", "cat": "Station-service · El Gomero", "hours": "Lun-Dim 24 h"},
- "gas-13694-san-miguel-de-abona": {"desc": "Carretera a los Abrigos, San Miguel de Abona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Moeve", "hours": "Lun-Ven 06:00-20:00 · Sam 07:00-20:00 · Dim 07:00-14:00"},
+ "gas-13694-san-miguel-de-abona": {"desc": "Carretera a Los Abrigos, San Miguel de Abona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Moeve", "hours": "Lun-Ven 06:00-20:00 · Sam 07:00-20:00 · Dim 07:00-14:00"},
  "gas-13292-san-miguel-de-abona": {"desc": "Avenida Lucio Díaz Flores Feo, San Miguel de Abona. Carburants : essence 95, essence 95 premium, essence 98, gazole et gazole premium.", "cat": "Station-service · Océano", "hours": "Lun-Dim 24 h"},
  "gas-13201-san-miguel-de-abona": {"desc": "Avenida Modesto Hernández González, San Miguel de Abona. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Pcan", "hours": "Lun-Dim 24 h"},
  "gas-16520-san-miguel-de-abona": {"desc": "Avenida Claudio Delgado Díaz, San Miguel de Abona. Carburants : essence 95 et gazole.", "cat": "Station-service · Plenergy", "hours": "Lun-Dim 24 h"},
@@ -907,7 +907,7 @@
  "gas-10633-san-miguel-de-abona": {"desc": "Autopista del Sur km 64,9, San Miguel de Abona. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 24 h"},
  "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65, San Miguel de Abona. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 06:00-23:00"},
  "gas-16267-arafo": {"desc": "Polígono Industrial El Carretón, Arafo. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · H2exagon", "hours": "Lun-Dim 24 h"},
- "gas-7639-arafo": {"desc": "Acceso Carretera a la Hidalga, Arafo. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 24 h"},
+ "gas-7639-arafo": {"desc": "Acceso Carretera a La Hidalga, Arafo. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 24 h"},
  "gas-16177-arafo": {"desc": "Camino La Molineta Polígono El Carretón, Arafo. Carburants : essence 95 et gazole.", "cat": "Station-service · Plenergy", "hours": "Lun-Dim 24 h"},
  "gas-8326-arafo": {"desc": "Carretera Arafo La Hidalga TF-281, Arafo. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 24 h"},
  "gas-12630-arafo": {"desc": "Plaza Industrial Valle Güímar, Arafo. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 06:00-22:00"},
@@ -970,7 +970,8 @@
  "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Tgas", "hours": "Lun-Dim 06:00-23:00"},
  "gas-7678-santa-ursula": {"desc": "Carretera Vieja, Santa Úrsula. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Repsol", "hours": "Lun-Sam 06:00-23:00 · Dim 07:00-23:00"},
  "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Shell", "hours": "Lun-Dim 06:00-22:00"},
- "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez El Viejo, Buenavista del Norte. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · DISA", "hours": "Lun-Sam 06:00-23:00 · Dim 07:00-10:00"},
+ "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez el Viejo, Buenavista del Norte. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · DISA", "hours": "Lun-Sam 06:00-23:00 · Dim 07:00-10:00"},
  "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Ven 05:30-20:30 · Sam-Dim 08:00-20:00"},
- "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · DISA", "hours": "Lun-Dim 06:00-22:00"}
+ "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · DISA", "hours": "Lun-Dim 06:00-22:00"},
+ "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 06:00-21:00"}
 }

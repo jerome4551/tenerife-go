@@ -171,6 +171,7 @@ AVISOS = {k: v for k, v in json.load(open(_AV, encoding='utf-8')).items()
           if k != '_'} if os.path.exists(_AV) else {}
 ILEGIBLE = list(_CORR['ilegible'])
 ERRATAS = {k: v['se_escribe'] for k, v in _CORR.get('erratas', {}).items()}
+MAYUSCULAS = {k: v['se_escribe'] for k, v in _CORR.get('mayusculas', {}).items()}
 KM_CONTRADICHO = set(_CORR.get('km_contradicho', {}))   # posicion comprobada que lo desmiente
 HORARIOS = _CORR.get('horarios', {})   # «L: 24H» (solo el lunes) que Jerome comprobo
 
@@ -291,7 +292,12 @@ def titulo(s, via=True):
         out.append(trozo)
     while out and llano(out[-1]) in PREPOSICIONES:
         out.pop()                          # «Avenida Ayyo de» -> «Avenida Ayyo»
-    return ' '.join(out)
+    t = ' '.join(out)
+    # Las que la regla deja mal y Jerome dio por buenas: «a Los Abrigos» (el
+    # articulo es del pueblo), «Juan Méndez el Viejo» (sobrenombre). Ver el fichero.
+    for mal_escrita, bien in MAYUSCULAS.items():
+        t = re.sub(r'(?<!\w)%s(?!\w)' % re.escape(mal_escrita), bien, t)
+    return t
 
 
 def dar_vuelta(s):

@@ -166,9 +166,10 @@ console.log('\n=== lugares ===');
    971 -> 972 el 4 de octubre, con la de Buenavista del Norte (sesion 25);
    972 -> 973 el 4 de octubre, con la de San Juan de la Rambla (sesion 27);
    973 -> 974 el 4 de octubre, con la de Los Silos (sesion 28);
+   974 -> 975 el 4 de octubre, con la de El Tanque (sesion 29);
    Esta cifra sube una vez por sesion de gasolineras hasta las 198 altas, y se
    cambia A MANO a proposito: asi ningun municipio entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 974);
+debe('lugares', PLACES.length, PLACES.length === 975);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

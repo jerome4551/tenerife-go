@@ -896,10 +896,10 @@
  "gas-7677-la-orotava": {"desc": "⚠️ LAST petrol station before Teide National Park going up TF-21 from La Orotava (Aguamansa). NO petrol stations in the National Park. Essential to fill up here before going up to Teide. Carretera TF-21 Aguamansa, La Orotava. Fuels: petrol 95, petrol 98 and diesel.", "cat": "⚠️ Last Petrol · Repsol", "hours": "Mon-Sun 06:00-22:00"},
  "gas-7699-la-orotava": {"desc": "Carretera TF-324, La Orotava. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Fri 06:00-22:00 · Sat-Sun 07:00-23:00"},
  "gas-8776-la-orotava": {"desc": "Carretera General del Norte, La Orotava. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 06:00-22:00"},
- "gas-7859-san-miguel-de-abona": {"desc": "Carretera General a las Galletas-Chafiras, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel, premium diesel and LPG.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 24 h"},
+ "gas-7859-san-miguel-de-abona": {"desc": "Carretera General a Las Galletas-Chafiras, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel, premium diesel and LPG.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 24 h"},
  "gas-9614-san-miguel-de-abona": {"desc": "Carretera General del Sur, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 06:00-22:00"},
  "gas-14423-san-miguel-de-abona": {"desc": "Avenida Eugenio Domínguez Sierra, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel, premium diesel and LPG. Also: AdBlue.", "cat": "Petrol station · El Gomero", "hours": "Mon-Sun 24 h"},
- "gas-13694-san-miguel-de-abona": {"desc": "Carretera a los Abrigos, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Fri 06:00-20:00 · Sat 07:00-20:00 · Sun 07:00-14:00"},
+ "gas-13694-san-miguel-de-abona": {"desc": "Carretera a Los Abrigos, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Fri 06:00-20:00 · Sat 07:00-20:00 · Sun 07:00-14:00"},
  "gas-13292-san-miguel-de-abona": {"desc": "Avenida Lucio Díaz Flores Feo, San Miguel de Abona. Fuels: petrol 95, premium petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Océano", "hours": "Mon-Sun 24 h"},
  "gas-13201-san-miguel-de-abona": {"desc": "Avenida Modesto Hernández González, San Miguel de Abona. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Pcan", "hours": "Mon-Sun 24 h"},
  "gas-16520-san-miguel-de-abona": {"desc": "Avenida Claudio Delgado Díaz, San Miguel de Abona. Fuels: petrol 95 and diesel.", "cat": "Petrol station · Plenergy", "hours": "Mon-Sun 24 h"},
@@ -907,7 +907,7 @@
  "gas-10633-san-miguel-de-abona": {"desc": "Autopista del Sur km 64,9, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 24 h"},
  "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65, San Miguel de Abona. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 06:00-23:00"},
  "gas-16267-arafo": {"desc": "Polígono Industrial El Carretón, Arafo. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · H2exagon", "hours": "Mon-Sun 24 h"},
- "gas-7639-arafo": {"desc": "Acceso Carretera a la Hidalga, Arafo. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Sun 24 h"},
+ "gas-7639-arafo": {"desc": "Acceso Carretera a La Hidalga, Arafo. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Sun 24 h"},
  "gas-16177-arafo": {"desc": "Camino La Molineta Polígono El Carretón, Arafo. Fuels: petrol 95 and diesel.", "cat": "Petrol station · Plenergy", "hours": "Mon-Sun 24 h"},
  "gas-8326-arafo": {"desc": "Carretera Arafo La Hidalga TF-281, Arafo. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 24 h"},
  "gas-12630-arafo": {"desc": "Plaza Industrial Valle Güímar, Arafo. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 06:00-22:00"},
@@ -970,7 +970,8 @@
  "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Tgas", "hours": "Mon-Sun 06:00-23:00"},
  "gas-7678-santa-ursula": {"desc": "Carretera Vieja, Santa Úrsula. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sat 06:00-23:00 · Sun 07:00-23:00"},
  "gas-8762-santa-ursula": {"desc": "Carretera General del Norte, Santa Úrsula. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Shell", "hours": "Mon-Sun 06:00-22:00"},
- "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez El Viejo, Buenavista del Norte. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sat 06:00-23:00 · Sun 07:00-10:00"},
+ "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez el Viejo, Buenavista del Norte. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sat 06:00-23:00 · Sun 07:00-10:00"},
  "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Fri 05:30-20:30 · Sat-Sun 08:00-20:00"},
- "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 06:00-22:00"}
+ "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sun 06:00-22:00"},
+ "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Repsol", "hours": "Mon-Sun 06:00-21:00"}
 }

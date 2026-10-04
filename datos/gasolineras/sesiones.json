@@ -257,7 +257,8 @@
    "hecho_el": "2026-10-03",
    "altas_hechas": 5,
    "revisada_el": "2026-10-03",
-   "revision": "tools/revisar_gasolineras.py: 5 fichas, 0 hallazgos, 5/5 estaciones con su ficha"
+   "revision": "tools/revisar_gasolineras.py: 5 fichas, 0 hallazgos, 5/5 estaciones con su ficha",
+   "pregunta_a_jerome": "12298 Moeve, «CARRETERA TF-82 KM. 53,6», se llama «Moeve · Carretera TF-82», pero en OSM esta a 19 m de la TF-42 y a 2,3 km de la TF-82. Su km 53,6 es de la antigua C-820: la otra Moeve de Icod (10201), a 0,7 km, es «CARRETERA GENERAL C-820 KM. 52,7». Propuesta: errata «CARRETERA TF-82» -> «CARRETERA GENERAL C-820», como su vecina; el nombre pasaria a «Moeve · Carretera General C-820 km 53,6» y la vecina a «... km 52,7»."
   },
   "15-puerto-de-la-cruz": {
    "que": "Las 5 estaciones de Puerto de la Cruz (4 altas, 1 ya en la app).",
@@ -461,16 +462,21 @@
    "altas_hechas": 1,
    "revisada_el": "2026-10-04",
    "revision": "tools/revisar_gasolineras.py: 1 ficha, 0 hallazgos, 1/1 estaciones con su ficha",
-   "pregunta_a_jerome": "7827 DISA Los Silos: el registro dice «(GENERAL TF-142 KM 11)». En OSM no hay ninguna TF-142 en la isla; la calle de la gasolinera es la TF-42a (el ramal de la TF-42 por Los Silos) y la de Garachico, 2,7 km antes por la TF-42, esta en el km 8,9, asi que el km 11 cuadra con la TF-42. ¿Errata «TF-142» -> «TF-42»? Mientras, la direccion lleva el texto del registro; el nombre no lleva el numero."
+   "errata": "Jerome, 4 de octubre, «Ok»: «GENERAL TF-142» -> «GENERAL TF-42» (erratas en correcciones-registro.json)."
   },
   "29-el-tanque": {
    "que": "Las 1 estaciones de El Tanque (1 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "El Tanque",
    "estaciones": 1,
    "altas": 1,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/29-el-tanque.json"
+   "plan": "datos/gasolineras/plan/29-el-tanque.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 1,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 1 ficha, 0 hallazgos, 1/1 estaciones con su ficha",
+   "tf82": "Su km 8 es el de una TF-82 que empieza en Icod; las otras TF-82 del registro llevan los km antiguos de la C-820 (Santiago del Teide 82,9 y 84,95; Guia de Isora 96). Dos escalas en la misma carretera, las dos del registro: no se toca."
   },
   "30-la-victoria-de-acentejo": {
    "que": "Las 1 estaciones de La Victoria de Acentejo (1 altas, 0 ya en la app).",
@@ -522,5 +528,5 @@
  "antiguas_enlazadas_todas": "3 de octubre, a peticion de Jerome («Arregla el horario»): las 14 fichas antiguas, enlazadas con su estacion y con horario y direccion del registro. 11 de las 14 tenian el horario mal.",
  "horario_no_se_ve": "Arreglado el 4 de octubre con el «Si» de Jerome: el horario se pinta en la ficha (movil) y en el globo del mapa (ordenador) de las fichas con IDEESS, las del registro oficial. Los de las 18 oficinas de turismo y los 18 campings NO: no tienen fuente (REVISION-LUGARES.md, «Horarios, precios y telefonos: no hay contra que contrastarlos»), y tres oficinas tienen el mismo horario, de plantilla. auditar_desborde.js lo controla.",
  "marca_contra_osm": "Revision de los bloques 24-26, 4 de octubre: 17 de 212 estaciones tienen en OSM, a menos de 60 m, otra marca que el registro: 7853 Adeje (DISA/Moeve), 10635 Arafo (Tgas/BP), 7726 Arico (Estacion Abades/PCAN), 7786 Candelaria (Tgas/Disa a 30 m), 7846 El Sauzal (DISA/Moeve), 7718 Fasnia (BP/Repsol: Street View, BP), 7835 Fasnia (DISA/Moeve), 7749 Garachico (La Caleta/Moeve), 7626 Granadilla (Repsol/DISA Aeropuerto), 11566 La Guancha (DISA/Moeve), 7723 Los Realejos (DISA/PCAN a 25 m), 7855 Los Realejos (Oceano/Moeve), 9966 La Laguna (DISA/Moeve), 10633 San Miguel (Repsol/BP), 7887 y 9951 Santa Cruz (DISA/Moeve), 7840 Santa Cruz (DISA/Moeve: web de DISA, DISA). Las dos comprobadas daban la razon al registro. Manda el registro (LEEME); no se cambia nada.",
- "mayusculas_propuestas": "Para el OK de Jerome, como las tildes: «Avenida Juan Mendez el Viejo» (sobrenombre: articulo en minuscula; OSM lo escribe asi) y, al reves, «Acceso Carretera a La Hidalga», «Carretera General a Las Galletas-Chafiras» y «Carretera a Los Abrigos» (el articulo es parte del nombre del pueblo; La Hidalga sale asi como localidad en el propio registro)."
+ "mayusculas": "Jerome, 4 de octubre, «Ok»: aplicadas las cuatro («mayusculas» en correcciones-registro.json). Cambian 4 fichas de Arafo, Buenavista y San Miguel de Abona."
 }

@@ -36,7 +36,11 @@
   "cambia, manda el registro nuevo.",
   "",
   "CP: codigos postales del registro que no cuadran y tienen fuente para el bueno.",
-  "Como HORARIOS: solo vale mientras el registro siga diciendo exactamente lo mismo."
+  "Como HORARIOS: solo vale mientras el registro siga diciendo exactamente lo mismo.",
+  "",
+  "MAYUSCULAS: el registro va en mayusculas y no dice cuales lo son. Estas son las que la",
+  "regla general (articulo en minuscula solo detras de preposicion) deja mal, con el OK de Jerome",
+  "del 4 de octubre («Ok»). Se aplican al texto ya escrito, palabra entera."
  ],
  "acentos": {
   "albanileria": "Albañilería",
@@ -107,6 +111,10 @@
   "CARRERA GENERAL": {
    "se_escribe": "CARRETERA GENERAL",
    "fuente": "Jerome, 3 de octubre: «Si». El registro escribe «CARRERA GENERAL DEL NORTE» (DISA, El Sauzal) mientras la BP de al lado, en la misma carretera, dice «CARRETERA GENERAL DEL NORTE»; y «CARRERA GENERAL LAS GALLETAS» (Moeve, Arona)."
+  },
+  "GENERAL TF-142": {
+   "se_escribe": "GENERAL TF-42",
+   "fuente": "Jerome, 4 de octubre: «Ok». El registro escribe «CALLE FELIX BENITEZ DE LUGO S/N LOS MORALITOS (GENERAL TF-142 KM 11), 28» (DISA, Los Silos). En OSM no hay ninguna TF-142 en la isla; la calle de la gasolinera es la TF-42a, el ramal de la TF-42 por Los Silos, y la estacion de Garachico, 2,7 km antes por la TF-42, esta en el km 8,9: el km 11 cuadra con la TF-42."
   }
  },
  "km_contradicho": {
@@ -176,6 +184,24 @@
    "registro": "38420",
    "se_escribe": "38109",
    "fuente": "Jerome, 4 de octubre: «Si» a cambiarlo con fuente. Su captura de Google Maps (IMG_3459): «POLIGONO INDUSTRIAL LA CAMPANA, C. la Campana, 2, 38109 El Rosario». El registro da 38109 a la Tgas del mismo poligono (15713, Calle Isaac Peral, a 550 m), y el 38420 lo da a la Repsol de San Juan de la Rambla, a 30 km."
+  }
+ },
+ "mayusculas": {
+  "Juan Méndez El Viejo": {
+   "se_escribe": "Juan Méndez el Viejo",
+   "por_que": "sobrenombre: el articulo va en minuscula (asi lo escribe tambien OSM). DISA de Buenavista del Norte. Jerome, 4 de octubre: «Ok»."
+  },
+  "a la Hidalga": {
+   "se_escribe": "a La Hidalga",
+   "por_que": "el articulo es parte del nombre del pueblo; el propio registro da la localidad «HIDALGA (LA)». Moeve de Arafo. Jerome, 4 de octubre: «Ok»."
+  },
+  "a las Galletas": {
+   "se_escribe": "a Las Galletas",
+   "por_que": "el articulo es parte del nombre del pueblo (Las Galletas). DISA de San Miguel de Abona. Jerome, 4 de octubre: «Ok»."
+  },
+  "a los Abrigos": {
+   "se_escribe": "a Los Abrigos",
+   "por_que": "el articulo es parte del nombre del pueblo (Los Abrigos). Moeve de San Miguel de Abona. Jerome, 4 de octubre: «Ok»."
   }
  }
 }

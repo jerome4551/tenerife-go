@@ -896,10 +896,10 @@
  "gas-7677-la-orotava": {"desc": "⚠️ 经TF-21从拉奥罗塔瓦（阿瓜曼萨）上行进入泰德国家公园前的最后一个加油站。国家公园内没有加油站。上泰德峰前务必在此加油。Carretera TF-21 Aguamansa（La Orotava）。燃料：95号汽油、98号汽油和柴油。", "cat": "⚠️ 最后一个加油站 · Repsol", "hours": "周一至周日 06:00至22:00"},
  "gas-7699-la-orotava": {"desc": "Carretera TF-324（La Orotava）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Repsol", "hours": "周一至周五 06:00至22:00 · 周六至周日 07:00至23:00"},
  "gas-8776-la-orotava": {"desc": "Carretera General del Norte（La Orotava）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 06:00至22:00"},
- "gas-7859-san-miguel-de-abona": {"desc": "Carretera General a las Galletas-Chafiras（San Miguel de Abona）。燃料：95号汽油、98号汽油、柴油、优质柴油和液化石油气。", "cat": "加油站 · DISA", "hours": "周一至周日 24小时"},
+ "gas-7859-san-miguel-de-abona": {"desc": "Carretera General a Las Galletas-Chafiras（San Miguel de Abona）。燃料：95号汽油、98号汽油、柴油、优质柴油和液化石油气。", "cat": "加油站 · DISA", "hours": "周一至周日 24小时"},
  "gas-9614-san-miguel-de-abona": {"desc": "Carretera General del Sur（San Miguel de Abona）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · DISA", "hours": "周一至周日 06:00至22:00"},
  "gas-14423-san-miguel-de-abona": {"desc": "Avenida Eugenio Domínguez Sierra（San Miguel de Abona）。燃料：95号汽油、98号汽油、柴油、优质柴油和液化石油气。另有：AdBlue。", "cat": "加油站 · El Gomero", "hours": "周一至周日 24小时"},
- "gas-13694-san-miguel-de-abona": {"desc": "Carretera a los Abrigos（San Miguel de Abona）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Moeve", "hours": "周一至周五 06:00至20:00 · 周六 07:00至20:00 · 周日 07:00至14:00"},
+ "gas-13694-san-miguel-de-abona": {"desc": "Carretera a Los Abrigos（San Miguel de Abona）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Moeve", "hours": "周一至周五 06:00至20:00 · 周六 07:00至20:00 · 周日 07:00至14:00"},
  "gas-13292-san-miguel-de-abona": {"desc": "Avenida Lucio Díaz Flores Feo（San Miguel de Abona）。燃料：95号汽油、优质95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Océano", "hours": "周一至周日 24小时"},
  "gas-13201-san-miguel-de-abona": {"desc": "Avenida Modesto Hernández González（San Miguel de Abona）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · Pcan", "hours": "周一至周日 24小时"},
  "gas-16520-san-miguel-de-abona": {"desc": "Avenida Claudio Delgado Díaz（San Miguel de Abona）。燃料：95号汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "周一至周日 24小时"},
@@ -907,7 +907,7 @@
  "gas-10633-san-miguel-de-abona": {"desc": "Autopista del Sur km 64,9（San Miguel de Abona）。燃料：95号汽油、98号汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "周一至周日 24小时"},
  "gas-7676-san-miguel-de-abona": {"desc": "Carretera TF-65（San Miguel de Abona）。燃料：95号汽油、98号汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "周一至周日 06:00至23:00"},
  "gas-16267-arafo": {"desc": "Polígono Industrial El Carretón（Arafo）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · H2exagon", "hours": "周一至周日 24小时"},
- "gas-7639-arafo": {"desc": "Acceso Carretera a la Hidalga（Arafo）。燃料：95号汽油、98号汽油、柴油和可再生柴油。", "cat": "加油站 · Moeve", "hours": "周一至周日 24小时"},
+ "gas-7639-arafo": {"desc": "Acceso Carretera a La Hidalga（Arafo）。燃料：95号汽油、98号汽油、柴油和可再生柴油。", "cat": "加油站 · Moeve", "hours": "周一至周日 24小时"},
  "gas-16177-arafo": {"desc": "Camino La Molineta Polígono El Carretón（Arafo）。燃料：95号汽油和柴油。", "cat": "加油站 · Plenergy", "hours": "周一至周日 24小时"},
  "gas-8326-arafo": {"desc": "Carretera Arafo La Hidalga TF-281（Arafo）。燃料：95号汽油、98号汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "周一至周日 24小时"},
  "gas-12630-arafo": {"desc": "Plaza Industrial Valle Güímar（Arafo）。燃料：95号汽油、98号汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "周一至周日 06:00至22:00"},
@@ -970,7 +970,8 @@
  "gas-7728-tegueste": {"desc": "Carretera TF-13 La Laguna-Bajamar（Tegueste）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · Tgas", "hours": "周一至周日 06:00至23:00"},
  "gas-7678-santa-ursula": {"desc": "Carretera Vieja（Santa Úrsula）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · Repsol", "hours": "周一至周六 06:00至23:00 · 周日 07:00至23:00"},
  "gas-8762-santa-ursula": {"desc": "Carretera General del Norte（Santa Úrsula）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 06:00至22:00"},
- "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez El Viejo（Buenavista del Norte）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · DISA", "hours": "周一至周六 06:00至23:00 · 周日 07:00至10:00"},
+ "gas-7888-buenavista-del-norte": {"desc": "Avenida Juan Méndez el Viejo（Buenavista del Norte）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · DISA", "hours": "周一至周六 06:00至23:00 · 周日 07:00至10:00"},
  "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5（San Juan de la Rambla）。燃料：95号汽油、98号汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "周一至周五 05:30至20:30 · 周六至周日 08:00至20:00"},
- "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo（Los Silos）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · DISA", "hours": "周一至周日 06:00至22:00"}
+ "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo（Los Silos）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · DISA", "hours": "周一至周日 06:00至22:00"},
+ "gas-7682-el-tanque": {"desc": "Carretera TF-82（El Tanque）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · Repsol", "hours": "周一至周日 06:00至21:00"}
 }

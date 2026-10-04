@@ -1117,9 +1117,33 @@ Silos, y la estación de Garachico, 2,7 km antes por la TF-42, está en el km 8,
 el km 11 cuadra con la TF-42. El nombre no lleva el número; la dirección lleva el
 texto del registro hasta tu OK.
 
+## Tu «Ok» del 4 de octubre
+
+* **Errata «TF-142» → «TF-42»** (Los Silos): «Calle Félix Benítez de Lugo
+  (General **TF-42** km 11)».
+* **Las cuatro mayúsculas**: «Avenida Juan Méndez **el** Viejo», «Acceso Carretera
+  a **La** Hidalga», «Carretera General a **Las** Galletas-Chafiras», «Carretera a
+  **Los** Abrigos». Van como dato (`mayusculas` en `correcciones-registro.json`).
+  De las 212 cambian solo esas cinco fichas.
+
+## Sesión 29 · El Tanque · HECHA el 4 de octubre
+
+**1 alta**, sin ficha antigua. La app pasa de 974 a **975 lugares**. Revisor: 1
+ficha, **0 hallazgos**. En OSM, a 26 m de la **TF-82** y a 11 m de una Repsol: el
+«TF-82» del nombre es verdad. Su km 8 es el de una TF-82 que empieza en Icod; las
+otras TF-82 del registro llevan los km antiguos de la C-820 (Santiago del Teide
+82,9 y 84,95; Guía de Isora 96). Dos escalas, las dos del registro: no se toca.
+
+**Pregunta: la Moeve de Icod (sesión 14) no está en la TF-82.** Se llama «Moeve ·
+Carretera TF-82» porque el registro dice «CARRETERA TF-82 KM. 53,6», pero en OSM
+está a 19 m de la **TF-42** y a 2,3 km de la TF-82. Su km 53,6 es de la antigua
+C-820: la otra Moeve de Icod, a 0,7 km, es «CARRETERA GENERAL C-820 KM. 52,7».
+**Propuesta:** errata «CARRETERA TF-82» → «CARRETERA GENERAL C-820», como su
+vecina. Quedarían «Moeve · Carretera General C-820 km 53,6» y «… km 52,7».
+
 ## Lo que queda
 
-**3 sesiones**, 2 altas. La siguiente es la **29-el-tanque** (1).
+**2 sesiones**, 1 alta. La siguiente es la **30-la-victoria-de-acentejo** (1).
 
 ## Lo que necesito de ti antes de seguir
 

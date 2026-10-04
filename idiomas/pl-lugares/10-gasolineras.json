@@ -595,7 +595,7 @@
   "hours": "Pn-Nd 06:00-22:00"
  },
  "gas-7859-san-miguel-de-abona": {
-  "desc": "Carretera General a las Galletas-Chafiras, San Miguel de Abona. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i LPG.",
+  "desc": "Carretera General a Las Galletas-Chafiras, San Miguel de Abona. Paliwa: benzyna 95, benzyna 98, olej napędowy, olej napędowy premium i LPG.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 24 h"
  },
@@ -610,7 +610,7 @@
   "hours": "Pn-Nd 24 h"
  },
  "gas-13694-san-miguel-de-abona": {
-  "desc": "Carretera a los Abrigos, San Miguel de Abona. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "desc": "Carretera a Los Abrigos, San Miguel de Abona. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · Moeve",
   "hours": "Pn-Pt 06:00-20:00 · So 07:00-20:00 · Nd 07:00-14:00"
  },
@@ -650,7 +650,7 @@
   "hours": "Pn-Nd 24 h"
  },
  "gas-7639-arafo": {
-  "desc": "Acceso Carretera a la Hidalga, Arafo. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "desc": "Acceso Carretera a La Hidalga, Arafo. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · Moeve",
   "hours": "Pn-Nd 24 h"
  },
@@ -965,7 +965,7 @@
   "hours": "Pn-Nd 06:00-22:00"
  },
  "gas-7888-buenavista-del-norte": {
-  "desc": "Avenida Juan Méndez El Viejo, Buenavista del Norte. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "desc": "Avenida Juan Méndez el Viejo, Buenavista del Norte. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-So 06:00-23:00 · Nd 07:00-10:00"
  },
@@ -978,5 +978,10 @@
   "desc": "Calle Félix Benítez de Lugo, Los Silos. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · DISA",
   "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7682-el-tanque": {
+  "desc": "Carretera TF-82, El Tanque. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · Repsol",
+  "hours": "Pn-Nd 06:00-21:00"
  }
 }
