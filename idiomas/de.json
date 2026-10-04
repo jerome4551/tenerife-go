@@ -949,5 +949,9 @@
  "gas-12523-candelaria": {"desc": "Avenida Marítima, Candelaria. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-Sa 06:00-23:00 · So 08:00-22:00"},
  "gas-7834-candelaria": {"desc": "Calle Las Bichas, Candelaria. Kraftstoffe: Benzin 95, Benzin 98, Diesel, Premium-Diesel und Autogas.", "cat": "Tankstelle · DISA", "hours": "Mo-So 06:00-22:00"},
  "gas-7719-candelaria": {"desc": "Carretera TF-28 General del Sur, Candelaria. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Pcan", "hours": "Mo-Sa 06:00-22:00 · So 07:00-15:00"},
- "gas-7786-candelaria": {"desc": "Carretera Acceso a Caletillas, Candelaria. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel. Außerdem: AdBlue.", "cat": "Tankstelle · Tgas", "hours": "Mo-So 06:00-23:00"}
+ "gas-7786-candelaria": {"desc": "Carretera Acceso a Caletillas, Candelaria. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel. Außerdem: AdBlue.", "cat": "Tankstelle · Tgas", "hours": "Mo-So 06:00-23:00"},
+ "gas-7948-santiago-del-teide": {"desc": "Avenida Coronel Gorrín, Santiago del Teide. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-Sa 06:00-22:00 · So 07:00-22:00"},
+ "gas-9664-santiago-del-teide": {"desc": "Avenida General Franco 3, Santiago del Teide. Kraftstoffe: Benzin 95, Benzin 98 und Diesel. Außerdem: AdBlue.", "cat": "Tankstelle · DISA", "hours": "Mo-Sa 05:30-22:00 · So 05:30-21:00"},
+ "gas-7735-santiago-del-teide": {"desc": "Carretera Puerto Santiago-Tamaimo, Santiago del Teide. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-Fr 08:00-16:00"},
+ "gas-10779-santiago-del-teide": {"desc": "Carretera General del Sur, Santiago del Teide. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-Sa 06:00-22:00 · So 07:00-21:30"}
 }

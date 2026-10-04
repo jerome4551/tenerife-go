@@ -307,12 +307,17 @@
   },
   "18-santiago-del-teide": {
    "que": "Las 4 estaciones de Santiago del Teide (4 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Santiago del Teide",
    "estaciones": 4,
    "altas": 4,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/18-santiago-del-teide.json"
+   "plan": "datos/gasolineras/plan/18-santiago-del-teide.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 4,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 4/4 estaciones con su ficha",
+   "pregunta_a_jerome": "9664: el registro dice «CARRETERA AVENIDA GENERAL FRANCO 3 KM. 82,9». ¿La calle sigue llamandose asi? Y el «3» pegado, ¿es el portal? Se deja como lo escribe el registro."
   },
   "19-fasnia": {
    "que": "Las 3 estaciones de Fasnia (3 altas, 0 ya en la app).",

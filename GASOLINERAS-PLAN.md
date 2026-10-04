@@ -852,9 +852,19 @@ revisaron las tres.
   Avenida Marítima de Candelaria (polaco) y la Shell de «Puerto Cruz» (búlgaro),
   bien, nada fuera de la pantalla.
 
+## Sesión 18 · Santiago del Teide · HECHA el 4 de octubre
+
+**4 altas**, sin ficha antigua. La app pasa de 951 a **955 lugares**. Revisor: 4
+fichas, **0 hallazgos**.
+
+Se deja como lo escribe el registro, y es pregunta para ti: «CARRETERA **AVENIDA
+GENERAL FRANCO 3** KM. 82,9». ¿La calle sigue llamándose así? Y el «3» pegado,
+¿es el portal? (Lo mismo que «La Zamora 22»: no sé si es portal o parte del
+nombre.)
+
 ## Lo que queda
 
-**13 sesiones**, 25 altas. La siguiente es la **18-santiago-del-teide** (4).
+**12 sesiones**, 21 altas. La siguiente es la **19-fasnia** (3).
 
 ## Lo que necesito de ti antes de seguir
 
