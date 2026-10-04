@@ -28,7 +28,12 @@
   "",
   "KM_CONTRADICHO: estaciones cuya posicion esta comprobada y contradice el km del",
   "registro. El km se quita (del nombre y de la direccion) y no se pone otro: el",
-  "bueno se podria deducir, pero ninguna fuente lo dice."
+  "bueno se podria deducir, pero ninguna fuente lo dice.",
+  "",
+  "HORARIOS: el registro da a algunas estaciones un horario de UN solo dia («L: 24H»:",
+  "solo el lunes). Jerome los comprobo el 4 de octubre y abren todos los dias. Se",
+  "corrige solo si el registro sigue diciendo exactamente lo mismo («registro»): si",
+  "cambia, manda el registro nuevo."
  ],
  "acentos": {
   "albanileria": "Albañilería",
@@ -106,6 +111,44 @@
    "estacion": "BP FASNIA · «AUTOVIA TF-1 KM. 36,5» · Fasnia",
    "por_que": "Esta AL NORTE de la Moeve del km 34 (31,1 km en linea recta de Santa Cruz, frente a 32,5), las dos a unos 60 m de la autopista: va antes por el TF-1 y su km tiene que ser menor que 34. Las otras nueve estaciones del TF-1 van en orden y por su relacion le corresponderia hacia el km 33.",
    "posicion_comprobada": "Jerome, 4 de octubre: Street View de agosto de 2026 en 28.222694, -16.414139 (la coordenada del registro): se ve la BP. La «Repsol» que OSM tiene ahi estaba desfasada."
+  }
+ },
+ "horarios": {
+  "7728": {
+   "estacion": "TGAS TEGUESTE · Tegueste",
+   "registro": "L: 06:00-23:00",
+   "se_escribe": "L-D: 06:00-23:00",
+   "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «L 06:00-23:00. Correcto»."
+  },
+  "7696": {
+   "estacion": "CEPSA · CISNERA, Arico",
+   "registro": "L: 06:00-22:00",
+   "se_escribe": "L-D: 06:00-22:00",
+   "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «captura»: resumen de Google que cita la web de Moeve, «Gasolinera Moeve La Cisnera (TF-28) · Carretera TF-28, kilometro 62 (La Cisnera, Arico) · Horario: Lunes a Domingo de 06:00 a 22:00»."
+  },
+  "8754": {
+   "estacion": "SHELL · Puerto de la Cruz",
+   "registro": "L: 24H",
+   "se_escribe": "L-D: 24H",
+   "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «L 24 h correcto»."
+  },
+  "7624": {
+   "estacion": "CEPSA PUERTO DE LA CRUZ · Carretera del Botanico",
+   "registro": "L: 06:00-00:00",
+   "se_escribe": "L-D: 06:00-00:00",
+   "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «L 06:00-00:00 correcto»."
+  },
+  "7675": {
+   "estacion": "REPSOL · Camino San Miguel de Geneto, La Laguna",
+   "registro": "L: 24H",
+   "se_escribe": "L-D: 24H",
+   "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «L 24 h correcto». Su captura de Google anterior (IMG_3454): «Abierto 24 horas»."
+  },
+  "11562": {
+   "estacion": "PCAN · Calle Lazaro Lopez, Guamasa (La Laguna)",
+   "registro": "L: 06:00-23:00",
+   "se_escribe": "L-D: 06:00-21:30",
+   "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «L 06:00-21h30»: cierra a las 21:30, no a las 23:00."
   }
  }
 }

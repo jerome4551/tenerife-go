@@ -984,6 +984,49 @@ que abran todos los días, pero el registro no lo dice y no me toca ponerlo.
 **¿Se dejan como dice el registro, se miran en la web de cada marca o se quita el
 horario en esas siete?** Mientras, se quedan como dice el registro.
 
+## Tus horarios de «solo lunes» · 4 de octubre
+
+Aplicados como dato, con tu nota de fuente (`horarios` en
+`correcciones-registro.json`). Valen mientras el registro siga diciendo lo mismo;
+si cambia, manda el nuevo. Ahora abren **todos los días**: Tgas Tegueste
+(06:00-23:00), Moeve Arico (06:00-22:00, por tu captura), Shell y Moeve de Puerto
+de la Cruz (24 h y 06:00-00:00), Repsol Geneto (24 h) y Pcan Guamasa (**06:00-21:30**,
+no 23:00). De las 212 cambian solo esos seis horarios.
+
+**La Repsol de Los Realejos, no.** Tu captura «Repsol Palo Blanco, Carr. la
+Ferruja, 52» es la **otra** Repsol, la 7684 de la TF-326: el paraje de La Ferruja
+está a 110 m de ella y a 1,6 km de la de la nota (7685, Calle Piñera, Cruz
+Santa). La 7684 ya tiene en el registro «L-D 06:30-00:00», lo mismo que Google.
+La 7685 se queda con «L 06:00-00:00» y el revisor la avisa.
+
+## Revisión de los bloques 22 y 23 · 4 de octubre
+
+Registro del 2 de octubre, sin cambios. Revisor, con todas: 191 fichas, **0
+hallazgos**. Pins: los 6, a menos de 31 m de su vía. Vecindad: el mercadillo de
+Tegueste, a 45 m de la Tgas; otra cosa, no un duplicado.
+
+**Lo que no se ve: el horario.** Al abrir las fichas para mirar los horarios
+nuevos, no salen: **la app no enseña el horario de las gasolineras en ningún
+sitio**. La hoja de detalle solo pinta la dirección, y el globo del mapa pinta
+horario y dirección solo para hospitales, centros de salud, farmacias y
+veterinarios. Les pasa igual a 18 oficinas de turismo y 18 campings. El dato
+está, en los diez idiomas, pero nadie lo ve. Te dije que «la ficha lo enseña así»:
+**no era verdad**, lo enseñan los datos, no la pantalla. **Pregunta:** ¿se pinta?
+
+**Prueba nueva: el código postal contra el municipio.** Un mismo CP en dos
+municipios es normal si son vecinos (38108, Taco: La Laguna y Santa Cruz; 38660,
+Las Américas: Adeje y Arona). Dos no lo son:
+
+| CP | dónde lo pone el registro |
+|---|---|
+| **38420** | Moeve y Pcan de **El Rosario** (sesión 22) · Repsol de **San Juan de la Rambla**, a 30 km |
+| **38260** | dos de **Abades** (Arico) · dos de **Tejina** (La Laguna), a 50 km |
+
+Para la Moeve de La Campana, tu captura (IMG_3459) dice **38109**, el mismo que
+el registro da a la Tgas del mismo polígono, a 550 m. Para las otras no hay
+captura. **Pregunta:** ¿se cambia (con fuente) o se quita el CP? Mientras, el del
+registro.
+
 ## Lo que queda
 
 **7 sesiones**, 7 altas. La siguiente es la **24-santa-ursula** (2).

@@ -123,8 +123,14 @@ def main():
     plf = json.load(open(os.path.join(RAIZ, 'idiomas', 'pl-lugares', '10-gasolineras.json'),
                          encoding='utf-8'))
     print('registro del %s · %d fichas de gasolinera en la app' % (reg.get('Fecha'), len(app)))
-    erratas = json.load(open(os.path.join(RAIZ, 'datos', 'gasolineras', 'correcciones-registro.json'),
-                             encoding='utf-8')).get('erratas', {})
+    corr = json.load(open(os.path.join(RAIZ, 'datos', 'gasolineras', 'correcciones-registro.json'),
+                          encoding='utf-8'))
+    erratas = corr.get('erratas', {})
+    # Horarios de UN dia («L: 24H», solo el lunes) que Jerome comprobo: valen solo
+    # mientras el registro siga diciendo exactamente lo que se corrigio.
+    def hor(e):
+        c = corr.get('horarios', {}).get(str(e['IDEESS']))
+        return c['se_escribe'] if c and c['registro'] == e['Horario'].strip() else e['Horario']
     glos = [json.load(open(os.path.join(RAIZ, 'idiomas', 'etiquetas', '%s.json' % L), encoding='utf-8'))
             for L in IDIOMAS]
     fav = os.path.join(RAIZ, 'datos', 'gasolineras', 'avisos.json')
@@ -155,7 +161,7 @@ def main():
         if llano(muni) not in llano(p['desc']):
             mal(p['id'], 'el desc no nombra su municipio «%s»' % muni)
         # horario castellano
-        esperado = horario_es(e['Horario'])
+        esperado = horario_es(hor(e))
         if p['hours'] != esperado:
             mal(p['id'], 'horario «%s», el registro da «%s»' % (p['hours'], esperado))
         cifras = sorted(re.findall(r'\d', esperado))
@@ -282,7 +288,7 @@ def main():
         # Su horario tambien sale del registro: el nombre y la descripcion se
         # rehacen en la sesion 91, pero un horario falso no espera. «Repsol TF-1
         # Granadilla» decia 24 h y el registro dice 06:00 a 00:00.
-        esperado = horario_es(e['Horario'])
+        esperado = horario_es(hor(e))
         if p['hours'] != esperado:
             mal(p['id'], 'horario «%s», el registro da «%s»' % (p['hours'], esperado))
         cifras = sorted(re.findall(r'\d', esperado))
@@ -320,6 +326,13 @@ def main():
             if d < 20:
                 mal(a['id'], 'a %.0f m de %s' % (d, b['id']))
 
+    # Un horario de UN solo dia («L: 24H») casi seguro que es un fallo del registro:
+    # no se arregla solo (el LEEME manda el registro), pero se ve, con su ficha.
+    for p in app:
+        e = porid.get(p['ideess'] or '')
+        if e and re.fullmatch(r'[LMXJVSD]: .*', hor(e).strip()):
+            print('  aviso: %s, el registro da un solo dia («%s»), sin comprobar'
+                  % (p['id'], e['Horario'].strip()))
     print('  fichas revisadas campo a campo .............. %d' % mirados)
     print('  hallazgos ................................... %d' % len(fallos))
     for f, q in fallos:

@@ -134,7 +134,7 @@ def horas_antiguas(ver=False):
     for f in sorted(os.listdir(os.path.join(RAIZ, 'idiomas', 'pl-lugares'))):
         plf[f] = json.load(open(os.path.join(RAIZ, 'idiomas', 'pl-lugares', f), encoding='utf-8'))
     for fid, ide in viejas:
-        h = {L: F.horario(porid[ide]['Horario'], L)[0] for L in F.IDIOMAS}
+        h = {L: F.horario(F.horario_del_registro(porid[ide]), L)[0] for L in F.IDIOMAS}
         i = src.index('  { id:"%s"' % fid)
         j = src.find('\n  { id:', i + 5)
         blq = src[i:j]
@@ -156,10 +156,10 @@ def horas_antiguas(ver=False):
             nuevo = nuevo.replace(' ideess:"%s",' % ide, ' ideess:"%s", address:%s,' % (ide, js(dire)), 1)
         # Una etiqueta «24H» en una estacion que el registro NO da abierta 24 h
         # es falsa: se quita. Las que si abren 24 h la conservan.
-        if 'L-D: 24H' not in porid[ide]['Horario']:
+        if 'L-D: 24H' not in F.horario_del_registro(porid[ide]):
             mt = re.search(r'tags:\[[^\]]*\]', nuevo)
             if mt and re.search(r'"24[hH]"', mt.group(0)):
-                print('  %-22s etiqueta «24H» quitada: el registro da %s' % ('', porid[ide]['Horario']))
+                print('  %-22s etiqueta «24H» quitada: el registro da %s' % ('', F.horario_del_registro(porid[ide])))
                 nuevo = nuevo.replace(mt.group(0), re.sub(r',?"24[hH]"', '', mt.group(0)).replace('[,', '['), 1)
         src = src[:i] + nuevo + src[j:]
         for L in OTROS:

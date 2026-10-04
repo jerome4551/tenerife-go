@@ -237,7 +237,7 @@
  "gas-11562-san-cristobal-de-la-laguna": {
   "desc": "Calle Lázaro López, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
   "cat": "Stacja paliw · Pcan",
-  "hours": "Pn 06:00-23:00"
+  "hours": "Pn-Nd 06:00-21:30"
  },
  "gas-15575-san-cristobal-de-la-laguna": {
   "desc": "Carretera TF-152, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
@@ -252,7 +252,7 @@
  "gas-7675-san-cristobal-de-la-laguna": {
   "desc": "Camino San Miguel de Geneto, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
   "cat": "Stacja paliw · Repsol",
-  "hours": "Pn 24 h"
+  "hours": "Pn-Nd 24 h"
  },
  "gas-7701-san-cristobal-de-la-laguna": {
   "desc": "Carretera General, San Cristóbal de La Laguna. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
@@ -767,7 +767,7 @@
  "gas-7696-arico": {
   "desc": "Carretera General del Sur, Arico. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
   "cat": "Stacja paliw · Moeve",
-  "hours": "Pn 06:00-22:00"
+  "hours": "Pn-Nd 06:00-22:00"
  },
  "gas-7703-arico": {
   "desc": "Carretera TF-1 km 44,2, Arico. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium. Także: AdBlue.",
@@ -812,12 +812,12 @@
  "gas-7624-puerto-de-la-cruz": {
   "desc": "Carretera del Botánico, Puerto de la Cruz. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · Moeve",
-  "hours": "Pn 06:00-00:00"
+  "hours": "Pn-Nd 06:00-00:00"
  },
  "gas-8754-puerto-de-la-cruz": {
   "desc": "Carretera General Puerto Cruz-Las Arenas, Puerto de la Cruz. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · Shell",
-  "hours": "Pn 24 h"
+  "hours": "Pn-Nd 24 h"
  },
  "gas-8753-puerto-de-la-cruz": {
   "desc": "Carretera Martiánez TF-131, Puerto de la Cruz. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
@@ -952,6 +952,6 @@
  "gas-7728-tegueste": {
   "desc": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
   "cat": "Stacja paliw · Tgas",
-  "hours": "Pn 06:00-23:00"
+  "hours": "Pn-Nd 06:00-23:00"
  }
 }

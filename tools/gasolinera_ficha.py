@@ -172,6 +172,15 @@ AVISOS = {k: v for k, v in json.load(open(_AV, encoding='utf-8')).items()
 ILEGIBLE = list(_CORR['ilegible'])
 ERRATAS = {k: v['se_escribe'] for k, v in _CORR.get('erratas', {}).items()}
 KM_CONTRADICHO = set(_CORR.get('km_contradicho', {}))   # posicion comprobada que lo desmiente
+HORARIOS = _CORR.get('horarios', {})   # «L: 24H» (solo el lunes) que Jerome comprobo
+
+
+def horario_del_registro(e):
+    """El campo Horario del registro, con la correccion comprobada si la hay. Solo
+       vale mientras el registro siga diciendo exactamente lo que se corrigio."""
+    h = (e.get('Horario') or '').strip()
+    c = HORARIOS.get(str(e.get('IDEESS')))
+    return c['se_escribe'] if c and c['registro'] == h else h
 
 # Los glosarios de etiquetas. Una marca o un municipio es un nombre propio y NO
 # se traduce; pero la etiqueta se pinta por el glosario, y si el glosario traduce
@@ -642,7 +651,7 @@ def ficha(e, muni, sufijo=''):
                 desc += ' %s%s %s.' % (V['combustibles'][L], sep, fuel)
             if tiene_adblue(e):
                 desc += ' %s%s AdBlue.' % (V['ademas'][L], sep)
-        h, crudas = horario(e.get('Horario'), L)
+        h, crudas = horario(horario_del_registro(e), L)
         cat = '%s · %s' % (V['gasolinera'][L], base)
         av = AVISOS.get(str(e['IDEESS']))
         if av:
