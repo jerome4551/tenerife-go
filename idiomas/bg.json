@@ -956,5 +956,8 @@
  "gas-10779-santiago-del-teide": {"desc": "Carretera General del Sur, Santiago del Teide. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Съб 06:00-22:00 · Нед 07:00-21:30"},
  "gas-7718-fasnia": {"desc": "Autovía TF-1 km 36,5, Fasnia. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · BP", "hours": "Пон-Нед 06:00-22:00"},
  "gas-7835-fasnia": {"desc": "Carretera Los Roques, Fasnia. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Съб 06:00-22:00 · Нед 07:00-14:00"},
- "gas-10950-fasnia": {"desc": "Autovía TF-1 km 34, Fasnia. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Нед 06:00-22:00"}
+ "gas-10950-fasnia": {"desc": "Autovía TF-1 km 34, Fasnia. Горива: бензин 95, бензин 98, дизел и възобновяем дизел.", "cat": "Бензиностанция · Moeve", "hours": "Пон-Нед 06:00-22:00"},
+ "gas-11566-la-guancha": {"desc": "Avenida Ocho de Agosto, La Guancha. Горива: бензин 95 и дизел.", "cat": "Бензиностанция · DISA", "hours": "Пон-Пет 07:00-20:00 · Съб 08:00-16:00 · Нед 08:00-14:00"},
+ "gas-7747-la-guancha": {"desc": "Avenida Hipólito Sinforiano, La Guancha. Горива: бензин 95, бензин 98 и дизел.", "cat": "Бензиностанция · Pcan", "hours": "Пон-Пет 05:00-21:00 · Съб 06:00-21:00 · Нед 07:00-14:00"},
+ "gas-7724-la-guancha": {"desc": "Carretera TF-5 Santa Cruz-Icod, La Guancha. Горива: бензин 95, бензин 98, дизел и премиум дизел.", "cat": "Бензиностанция · Tgas", "hours": "Пон-Нед 24 ч"}
 }

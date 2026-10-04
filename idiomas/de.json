@@ -956,5 +956,8 @@
  "gas-10779-santiago-del-teide": {"desc": "Carretera General del Sur, Santiago del Teide. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-Sa 06:00-22:00 · So 07:00-21:30"},
  "gas-7718-fasnia": {"desc": "Autovía TF-1 km 36,5, Fasnia. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · BP", "hours": "Mo-So 06:00-22:00"},
  "gas-7835-fasnia": {"desc": "Carretera Los Roques, Fasnia. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-Sa 06:00-22:00 · So 07:00-14:00"},
- "gas-10950-fasnia": {"desc": "Autovía TF-1 km 34, Fasnia. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-So 06:00-22:00"}
+ "gas-10950-fasnia": {"desc": "Autovía TF-1 km 34, Fasnia. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-So 06:00-22:00"},
+ "gas-11566-la-guancha": {"desc": "Avenida Ocho de Agosto, La Guancha. Kraftstoffe: Benzin 95 und Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-Fr 07:00-20:00 · Sa 08:00-16:00 · So 08:00-14:00"},
+ "gas-7747-la-guancha": {"desc": "Avenida Hipólito Sinforiano, La Guancha. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Pcan", "hours": "Mo-Fr 05:00-21:00 · Sa 06:00-21:00 · So 07:00-14:00"},
+ "gas-7724-la-guancha": {"desc": "Carretera TF-5 Santa Cruz-Icod, La Guancha. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Tgas", "hours": "Mo-So 24 Std."}
 }

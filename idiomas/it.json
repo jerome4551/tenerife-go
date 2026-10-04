@@ -956,5 +956,8 @@
  "gas-10779-santiago-del-teide": {"desc": "Carretera General del Sur, Santiago del Teide. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Moeve", "hours": "Lun-Sab 06:00-22:00 · Dom 07:00-21:30"},
  "gas-7718-fasnia": {"desc": "Autovía TF-1 km 36,5, Fasnia. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · BP", "hours": "Lun-Dom 06:00-22:00"},
  "gas-7835-fasnia": {"desc": "Carretera Los Roques, Fasnia. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · DISA", "hours": "Lun-Sab 06:00-22:00 · Dom 07:00-14:00"},
- "gas-10950-fasnia": {"desc": "Autovía TF-1 km 34, Fasnia. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 06:00-22:00"}
+ "gas-10950-fasnia": {"desc": "Autovía TF-1 km 34, Fasnia. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 06:00-22:00"},
+ "gas-11566-la-guancha": {"desc": "Avenida Ocho de Agosto, La Guancha. Carburanti: benzina 95 e gasolio.", "cat": "Distributore · DISA", "hours": "Lun-Ven 07:00-20:00 · Sab 08:00-16:00 · Dom 08:00-14:00"},
+ "gas-7747-la-guancha": {"desc": "Avenida Hipólito Sinforiano, La Guancha. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Pcan", "hours": "Lun-Ven 05:00-21:00 · Sab 06:00-21:00 · Dom 07:00-14:00"},
+ "gas-7724-la-guancha": {"desc": "Carretera TF-5 Santa Cruz-Icod, La Guancha. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Tgas", "hours": "Lun-Dom 24 h"}
 }

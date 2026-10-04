@@ -956,5 +956,8 @@
  "gas-10779-santiago-del-teide": {"desc": "Carretera General del Sur（Santiago del Teide）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Moeve", "hours": "週一至週六 06:00至22:00 · 週日 07:00至21:30"},
  "gas-7718-fasnia": {"desc": "Autovía TF-1 km 36,5（Fasnia）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · BP", "hours": "週一至週日 06:00至22:00"},
  "gas-7835-fasnia": {"desc": "Carretera Los Roques（Fasnia）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · DISA", "hours": "週一至週六 06:00至22:00 · 週日 07:00至14:00"},
- "gas-10950-fasnia": {"desc": "Autovía TF-1 km 34（Fasnia）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Moeve", "hours": "週一至週日 06:00至22:00"}
+ "gas-10950-fasnia": {"desc": "Autovía TF-1 km 34（Fasnia）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Moeve", "hours": "週一至週日 06:00至22:00"},
+ "gas-11566-la-guancha": {"desc": "Avenida Ocho de Agosto（La Guancha）。燃料：95號汽油和柴油。", "cat": "加油站 · DISA", "hours": "週一至週五 07:00至20:00 · 週六 08:00至16:00 · 週日 08:00至14:00"},
+ "gas-7747-la-guancha": {"desc": "Avenida Hipólito Sinforiano（La Guancha）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · Pcan", "hours": "週一至週五 05:00至21:00 · 週六 06:00至21:00 · 週日 07:00至14:00"},
+ "gas-7724-la-guancha": {"desc": "Carretera TF-5 Santa Cruz-Icod（La Guancha）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Tgas", "hours": "週一至週日 24小時"}
 }

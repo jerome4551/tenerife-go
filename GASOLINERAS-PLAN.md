@@ -894,9 +894,16 @@ está desfasado (cambió de Repsol a BP) o la coordenada apunta a otra estación
 **Pregunta abierta:** un Street View en 28.222694, -16.414139, ¿BP o Repsol? Sin
 eso, se queda el km del registro.
 
+## Sesión 20 · La Guancha · HECHA el 4 de octubre
+
+**3 altas**, sin ficha antigua. La app pasa de 958 a **961 lugares**. Revisor: 3
+fichas, **0 hallazgos**. La Tgas de la «TF-5 km 49» no lleva el km en el nombre:
+está fuera del tramo que el registro llama autopista (km 16 a 25); ahí la TF-5 ya
+es carretera normal.
+
 ## Lo que queda
 
-**11 sesiones**, 18 altas. La siguiente es la **20-la-guancha** (3).
+**10 sesiones**, 15 altas. La siguiente es la **21-la-matanza-de-acentejo** (3).
 
 ## Lo que necesito de ti antes de seguir
 

@@ -956,5 +956,8 @@
  "gas-10779-santiago-del-teide": {"desc": "Carretera General del Sur, Santiago del Teide. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Sat 06:00-22:00 · Sun 07:00-21:30"},
  "gas-7718-fasnia": {"desc": "Autovía TF-1 km 36,5, Fasnia. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · BP", "hours": "Mon-Sun 06:00-22:00"},
  "gas-7835-fasnia": {"desc": "Carretera Los Roques, Fasnia. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Sat 06:00-22:00 · Sun 07:00-14:00"},
- "gas-10950-fasnia": {"desc": "Autovía TF-1 km 34, Fasnia. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Sun 06:00-22:00"}
+ "gas-10950-fasnia": {"desc": "Autovía TF-1 km 34, Fasnia. Fuels: petrol 95, petrol 98, diesel and renewable diesel.", "cat": "Petrol station · Moeve", "hours": "Mon-Sun 06:00-22:00"},
+ "gas-11566-la-guancha": {"desc": "Avenida Ocho de Agosto, La Guancha. Fuels: petrol 95 and diesel.", "cat": "Petrol station · DISA", "hours": "Mon-Fri 07:00-20:00 · Sat 08:00-16:00 · Sun 08:00-14:00"},
+ "gas-7747-la-guancha": {"desc": "Avenida Hipólito Sinforiano, La Guancha. Fuels: petrol 95, petrol 98 and diesel.", "cat": "Petrol station · Pcan", "hours": "Mon-Fri 05:00-21:00 · Sat 06:00-21:00 · Sun 07:00-14:00"},
+ "gas-7724-la-guancha": {"desc": "Carretera TF-5 Santa Cruz-Icod, La Guancha. Fuels: petrol 95, petrol 98, diesel and premium diesel.", "cat": "Petrol station · Tgas", "hours": "Mon-Sun 24 h"}
 }

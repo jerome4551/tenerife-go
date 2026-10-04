@@ -335,12 +335,16 @@
   },
   "20-la-guancha": {
    "que": "Las 3 estaciones de La Guancha (3 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "La Guancha",
    "estaciones": 3,
    "altas": 3,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/20-la-guancha.json"
+   "plan": "datos/gasolineras/plan/20-la-guancha.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 3,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 3 fichas, 0 hallazgos, 3/3 estaciones con su ficha"
   },
   "21-la-matanza-de-acentejo": {
    "que": "Las 3 estaciones de La Matanza de Acentejo (2 altas, 1 ya en la app).",
