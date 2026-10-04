@@ -869,6 +869,31 @@ sea antiguo.
 fichas, **0 hallazgos**. Las dos de la autovía con su código y su km («BP · Autovía
 TF-1 km 36,5», «Moeve · Autovía TF-1 km 34»).
 
+## Revisión de los bloques 18 y 19 · 4 de octubre
+
+Registro del 2 de octubre, sin cambios. Revisor: 7 fichas, **0 hallazgos**, 7 de 7
+estaciones. Pins: los 7, a menos de 22 m de una vía con coches. Una vecindad
+nueva con otra categoría: el centro de salud de Santiago del Teide, a 23 m de la
+DISA; una cosa distinta al lado, no un duplicado. En la app, tres fichas (alemán,
+chino, neerlandés): bien.
+
+**Prueba nueva: el km de las estaciones del TF-1, en orden.** El TF-1 empieza en
+Santa Cruz, así que a más km, más lejos de Santa Cruz. Nueve de diez van en
+orden. Una no:
+
+| estación | km del registro | en línea recta de Santa Cruz |
+|---|---|---|
+| Moeve, Fasnia | 34 | 32,5 km |
+| **BP Fasnia** | **36,5** | **31,1 km** |
+| Repsol, Arico | 39 | 37,3 km |
+
+La BP está **al norte** de la Moeve, las dos a unos 60 m de la autopista, así que
+va antes por el TF-1 y su km tendría que ser menor que 34; por la relación de las
+otras nueve, hacia el **km 33**. Y en su pin OSM tiene una **Repsol** a 1 m. O OSM
+está desfasado (cambió de Repsol a BP) o la coordenada apunta a otra estación.
+**Pregunta abierta:** un Street View en 28.222694, -16.414139, ¿BP o Repsol? Sin
+eso, se queda el km del registro.
+
 ## Lo que queda
 
 **11 sesiones**, 18 altas. La siguiente es la **20-la-guancha** (3).

@@ -330,7 +330,8 @@
    "hecho_el": "2026-10-04",
    "altas_hechas": 3,
    "revisada_el": "2026-10-04",
-   "revision": "tools/revisar_gasolineras.py: 3 fichas, 0 hallazgos, 3/3 estaciones con su ficha"
+   "revision": "tools/revisar_gasolineras.py: 3 fichas, 0 hallazgos, 3/3 estaciones con su ficha",
+   "pregunta_a_jerome": "7718 «BP FASNIA», «AUTOVIA TF-1 KM. 36,5»: esta AL NORTE de la Moeve del km 34 (31,1 km en linea recta de Santa Cruz, frente a 32,5), asi que su km tendria que ser menor; por la relacion de las otras nueve saldria hacia el km 33. Y en su pin OSM tiene una Repsol a 1 m. ¿Street View en 28.222694, -16.414139: BP o Repsol?"
   },
   "20-la-guancha": {
    "que": "Las 3 estaciones de La Guancha (3 altas, 0 ya en la app).",
