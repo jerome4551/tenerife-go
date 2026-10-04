@@ -1061,6 +1061,36 @@ y las dos de Abades) siguen con el del registro: no hay fuente para el bueno.
 **1 alta**, sin ficha antigua. La app pasa de 971 a **972 lugares**. Revisor: 1
 ficha, **0 hallazgos**. En OSM, la DISA a 6 m del pin, en la TF-42.
 
+## Revisión de los bloques 24, 25 y 26 · 4 de octubre
+
+Registro del 2 de octubre, sin cambios. Revisor: 4 fichas, **0 hallazgos**, 4 de 4
+estaciones. Pins: los 4, a menos de 25 m de su vía y a menos de 16 m de una
+gasolinera de OSM. Ningún duplicado con otras categorías. En la app, Garachico
+(italiano), Santa Úrsula (chino tradicional) y Buenavista (alemán), con su
+horario ya a la vista: bien.
+
+**Prueba nueva 1: la app contra la plantilla de hoy.** Cada una de las 194 fichas
+generadas, campo a campo y en los diez idiomas, contra lo que la plantilla
+genera ahora: **0 diferencias**. Ningún cambio de regla se ha quedado sin
+aplicar en ningún municipio, tampoco en Garachico, que se hizo el 2 de octubre.
+
+**Prueba nueva 2: la marca del registro contra OSM.** 17 de 212 tienen en OSM, a
+menos de 60 m, otra marca. Las dos que ya se comprobaron daban la razón al
+registro (la BP de Fasnia, por tu Street View; la DISA de Las Delicias, por la
+web de DISA). En el bloque 26: **Garachico**, «E.S. LA CALETA» en el registro y
+«Estación de Servicio Moeve Garachico» en OSM. Manda el registro y no se cambia
+nada; la lista entera está en `sesiones.json` (`marca_contra_osm`) por si quieres
+mirar alguna.
+
+**Para tu OK, cuatro mayúsculas** (como las tildes):
+
+| ahora | propuesta | por qué |
+|---|---|---|
+| Avenida Juan Méndez **El** Viejo | Juan Méndez **el** Viejo | sobrenombre: el artículo va en minúscula (OSM lo escribe así) |
+| Acceso Carretera a **la** Hidalga | a **La** Hidalga | el artículo es parte del nombre del pueblo; el propio registro dice «La Hidalga» |
+| Carretera General a **las** Galletas-Chafiras | a **Las** Galletas | ídem |
+| Carretera a **los** Abrigos | a **Los** Abrigos | ídem |
+
 ## Lo que queda
 
 **5 sesiones**, 4 altas. La siguiente es la **27-san-juan-de-la-rambla** (1).

@@ -433,7 +433,8 @@
     "gas-7749-garachico"
    ],
    "revisada_el": "2026-10-02",
-   "revision": "tools/revisar_gasolineras.py, campo a campo contra el registro: 0 hallazgos tras anadir los 3 combustibles que faltaban"
+   "revision": "tools/revisar_gasolineras.py, campo a campo contra el registro: 0 hallazgos tras anadir los 3 combustibles que faltaban",
+   "revision_4_oct": "Revisor 0 hallazgos; la ficha, igual a lo que genera la plantilla hoy. Pin a 19 m de la TF-42. OSM tiene a 15 m una «Estacion de Servicio Moeve Garachico»; el registro dice «E.S. LA CALETA». Manda el registro; contraste para Jerome."
   },
   "27-san-juan-de-la-rambla": {
    "que": "Las 1 estaciones de San Juan de la Rambla (1 altas, 0 ya en la app).",
@@ -510,5 +511,7 @@
   "9966": "DISA Vistabella (La Laguna): Google 21:45 · registro 22:00 (despreciable)"
  },
  "antiguas_enlazadas_todas": "3 de octubre, a peticion de Jerome («Arregla el horario»): las 14 fichas antiguas, enlazadas con su estacion y con horario y direccion del registro. 11 de las 14 tenian el horario mal.",
- "horario_no_se_ve": "Arreglado el 4 de octubre con el «Si» de Jerome: el horario se pinta en la ficha (movil) y en el globo del mapa (ordenador) de las fichas con IDEESS, las del registro oficial. Los de las 18 oficinas de turismo y los 18 campings NO: no tienen fuente (REVISION-LUGARES.md, «Horarios, precios y telefonos: no hay contra que contrastarlos»), y tres oficinas tienen el mismo horario, de plantilla. auditar_desborde.js lo controla."
+ "horario_no_se_ve": "Arreglado el 4 de octubre con el «Si» de Jerome: el horario se pinta en la ficha (movil) y en el globo del mapa (ordenador) de las fichas con IDEESS, las del registro oficial. Los de las 18 oficinas de turismo y los 18 campings NO: no tienen fuente (REVISION-LUGARES.md, «Horarios, precios y telefonos: no hay contra que contrastarlos»), y tres oficinas tienen el mismo horario, de plantilla. auditar_desborde.js lo controla.",
+ "marca_contra_osm": "Revision de los bloques 24-26, 4 de octubre: 17 de 212 estaciones tienen en OSM, a menos de 60 m, otra marca que el registro: 7853 Adeje (DISA/Moeve), 10635 Arafo (Tgas/BP), 7726 Arico (Estacion Abades/PCAN), 7786 Candelaria (Tgas/Disa a 30 m), 7846 El Sauzal (DISA/Moeve), 7718 Fasnia (BP/Repsol: Street View, BP), 7835 Fasnia (DISA/Moeve), 7749 Garachico (La Caleta/Moeve), 7626 Granadilla (Repsol/DISA Aeropuerto), 11566 La Guancha (DISA/Moeve), 7723 Los Realejos (DISA/PCAN a 25 m), 7855 Los Realejos (Oceano/Moeve), 9966 La Laguna (DISA/Moeve), 10633 San Miguel (Repsol/BP), 7887 y 9951 Santa Cruz (DISA/Moeve), 7840 Santa Cruz (DISA/Moeve: web de DISA, DISA). Las dos comprobadas daban la razon al registro. Manda el registro (LEEME); no se cambia nada.",
+ "mayusculas_propuestas": "Para el OK de Jerome, como las tildes: «Avenida Juan Mendez el Viejo» (sobrenombre: articulo en minuscula; OSM lo escribe asi) y, al reves, «Acceso Carretera a La Hidalga», «Carretera General a Las Galletas-Chafiras» y «Carretera a Los Abrigos» (el articulo es parte del nombre del pueblo; La Hidalga sale asi como localidad en el propio registro)."
 }
