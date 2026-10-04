@@ -883,5 +883,20 @@
   "desc": "Carretera General del Sur, Santiago del Teide. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
   "cat": "Stacja paliw · Moeve",
   "hours": "Pn-So 06:00-22:00 · Nd 07:00-21:30"
+ },
+ "gas-7718-fasnia": {
+  "desc": "Autovía TF-1 km 36,5, Fasnia. Paliwa: benzyna 95, benzyna 98, olej napędowy i olej napędowy premium.",
+  "cat": "Stacja paliw · BP",
+  "hours": "Pn-Nd 06:00-22:00"
+ },
+ "gas-7835-fasnia": {
+  "desc": "Carretera Los Roques, Fasnia. Paliwa: benzyna 95, benzyna 98 i olej napędowy.",
+  "cat": "Stacja paliw · DISA",
+  "hours": "Pn-So 06:00-22:00 · Nd 07:00-14:00"
+ },
+ "gas-10950-fasnia": {
+  "desc": "Autovía TF-1 km 34, Fasnia. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
+  "cat": "Stacja paliw · Moeve",
+  "hours": "Pn-Nd 06:00-22:00"
  }
 }

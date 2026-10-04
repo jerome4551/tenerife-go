@@ -317,16 +317,20 @@
    "altas_hechas": 4,
    "revisada_el": "2026-10-04",
    "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 4/4 estaciones con su ficha",
-   "pregunta_a_jerome": "9664: el registro dice «CARRETERA AVENIDA GENERAL FRANCO 3 KM. 82,9». ¿La calle sigue llamandose asi? Y el «3» pegado, ¿es el portal? Se deja como lo escribe el registro."
+   "9664_comprobada": "4 de octubre: Jerome manda Street View (julio de 2026) en 28.293833, -16.815583, que es exactamente la coordenada del registro: se ve una DISA. Se usa el IDEESS 9664, la coordenada del registro y su direccion tal cual («Avenida General Franco 3 km 82,9»): es el texto oficial, aunque el nombre de la calle sea antiguo."
   },
   "19-fasnia": {
    "que": "Las 3 estaciones de Fasnia (3 altas, 0 ya en la app).",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": "Fasnia",
    "estaciones": 3,
    "altas": 3,
    "ya": 0,
-   "plan": "datos/gasolineras/plan/19-fasnia.json"
+   "plan": "datos/gasolineras/plan/19-fasnia.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 3,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 3 fichas, 0 hallazgos, 3/3 estaciones con su ficha"
   },
   "20-la-guancha": {
    "que": "Las 3 estaciones de La Guancha (3 altas, 0 ya en la app).",

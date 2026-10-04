@@ -857,14 +857,21 @@ revisaron las tres.
 **4 altas**, sin ficha antigua. La app pasa de 951 a **955 lugares**. Revisor: 4
 fichas, **0 hallazgos**.
 
-Se deja como lo escribe el registro, y es pregunta para ti: «CARRETERA **AVENIDA
-GENERAL FRANCO 3** KM. 82,9». ¿La calle sigue llamándose así? Y el «3» pegado,
-¿es el portal? (Lo mismo que «La Zamora 22»: no sé si es portal o parte del
-nombre.)
+La DISA de la «CARRETERA AVENIDA GENERAL FRANCO 3 KM. 82,9», **comprobada**: tu
+Street View de julio de 2026 en 28.293833, -16.815583, que es exactamente la
+coordenada del registro, enseña una DISA. Se usa el IDEESS 9664, la coordenada del
+registro y la dirección tal cual: es el texto oficial, aunque el nombre de la calle
+sea antiguo.
+
+## Sesión 19 · Fasnia · HECHA el 4 de octubre
+
+**3 altas**, sin ficha antigua. La app pasa de 955 a **958 lugares**. Revisor: 3
+fichas, **0 hallazgos**. Las dos de la autovía con su código y su km («BP · Autovía
+TF-1 km 36,5», «Moeve · Autovía TF-1 km 34»).
 
 ## Lo que queda
 
-**12 sesiones**, 21 altas. La siguiente es la **19-fasnia** (3).
+**11 sesiones**, 18 altas. La siguiente es la **20-la-guancha** (3).
 
 ## Lo que necesito de ti antes de seguir
 

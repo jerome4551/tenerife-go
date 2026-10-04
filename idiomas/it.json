@@ -953,5 +953,8 @@
  "gas-7948-santiago-del-teide": {"desc": "Avenida Coronel Gorrín, Santiago del Teide. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · DISA", "hours": "Lun-Sab 06:00-22:00 · Dom 07:00-22:00"},
  "gas-9664-santiago-del-teide": {"desc": "Avenida General Franco 3, Santiago del Teide. Carburanti: benzina 95, benzina 98 e gasolio. Inoltre: AdBlue.", "cat": "Distributore · DISA", "hours": "Lun-Sab 05:30-22:00 · Dom 05:30-21:00"},
  "gas-7735-santiago-del-teide": {"desc": "Carretera Puerto Santiago-Tamaimo, Santiago del Teide. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · DISA", "hours": "Lun-Ven 08:00-16:00"},
- "gas-10779-santiago-del-teide": {"desc": "Carretera General del Sur, Santiago del Teide. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Moeve", "hours": "Lun-Sab 06:00-22:00 · Dom 07:00-21:30"}
+ "gas-10779-santiago-del-teide": {"desc": "Carretera General del Sur, Santiago del Teide. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Moeve", "hours": "Lun-Sab 06:00-22:00 · Dom 07:00-21:30"},
+ "gas-7718-fasnia": {"desc": "Autovía TF-1 km 36,5, Fasnia. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · BP", "hours": "Lun-Dom 06:00-22:00"},
+ "gas-7835-fasnia": {"desc": "Carretera Los Roques, Fasnia. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · DISA", "hours": "Lun-Sab 06:00-22:00 · Dom 07:00-14:00"},
+ "gas-10950-fasnia": {"desc": "Autovía TF-1 km 34, Fasnia. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 06:00-22:00"}
 }
