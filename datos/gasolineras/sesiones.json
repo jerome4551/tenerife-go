@@ -577,10 +577,13 @@
    "Etiquetas: «Última» en chino era «末班» (ultimo servicio de autobus) -> 最后一个 / 最後一個; «Importante» en ingles era «Major» -> Important; en polaco Wazny -> Wazne."
   ],
   "pendiente": [
-   "8753 Shell El Aguila: «TF-131» (no existe en OSM; la TF-31 pasa a 12 m). Falta una segunda fuente (Google Maps o la web de Shell).",
-   "9483 Moeve Llano Azul y 9961 DISA Ofra: la coordenada. Las capturas de Jerome confirman direccion y horario, no la posicion. Falta un Street View en el pin del registro o las coordenadas de la web de la operadora.",
-   "7951 DISA Vilaflor: «CARRETERA GENERAL 821» es la antigua C-821, hoy TF-21 (a 14 m en OSM). ¿Errata a TF-21?",
+   "9961 DISA Ofra: la coordenada del registro esta mal con mucha probabilidad. Google Maps la pone en la Calle Zerolo, 6; OSM tiene una Disa ahi (28.459471, -16.293256); y la web de DISA da 1,23 km entre Ofra y Vistabella: desde la Disa de la Calle Zerolo al pin de Vistabella hay 1,18 km, desde el pin de Ofra del registro, 0,26. Falta el OK de Jerome para mover el pin (o las coordenadas del mapa de la web de DISA).",
+   "9483 Moeve Llano Azul: la web de Moeve confirma direccion (Ctra. General Guaza-Los Cristianos PK 1,0) y horario (24 h), no la posicion. Falta la coordenada (el boton «Como llegar» de la web de Moeve, o un Street View en 28.061333, -16.692139).",
+   "8753 Shell El Aguila: «TF-131». La pagina de dieselogasolina.com copia el registro letra por letra (direccion, horario, margen N y coordenadas): no es otra fuente. Google repite TF-131, pero llama a la carretera «Ctra. del Este», que es la que OSM llama TF-31. Falta la ficha de la web de DISA (opera las Shell en Canarias), como en la TF-411.",
    "Sesion 92: el fichero diario de precios y el modo de las 10 mas baratas."
+  ],
+  "resuelto_el_5_de_octubre": [
+   "7951 DISA Vilaflor: «Carretera General 821» -> «TF-21» (errata) y fuera el km 68,80, que es de la numeracion antigua (km_contradicho). Fuentes de Jerome: IGN (C-821 = La Orotava-Granadilla) y Turismo de Tenerife (TF-21 km 59,544 entre Vilaflor y Granadilla)."
   ]
  }
 }

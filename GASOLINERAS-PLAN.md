@@ -1270,13 +1270,32 @@ margen contrario) y el verificador compara ya las 14 antiguas con la plantilla.
 
 Sin altas: su estación es la antigua de Vilaflor, verificada y rehecha en la 91.
 
+## Tus fuentes del 5 de octubre
+
+**DISA Vilaflor → TF-21**, como dijiste: la C-821 es la antigua carretera de La
+Orotava a Granadilla (IGN) y la TF-21 es hoy esa misma, por Vilaflor (Turismo de
+Tenerife, km 59,544 entre Vilaflor y Granadilla). Ahora «**DISA · Carretera
+General TF-21**», y fuera el km 68,80, que era de la numeración antigua.
+
+**DISA Ofra: el pin del registro está mal, casi seguro.** Tus cuentas cuadran con
+las mías: desde la Disa que OSM tiene en la **Calle Zerolo** (donde la pone Google
+Maps) hasta el pin de la DISA Vistabella hay **1,18 km**, y la web de DISA da 1,23;
+desde el pin de Ofra del registro, 0,26. El pin de Vistabella está bien (una Disa
+de OSM a 66 m).
+
+**Shell El Águila:** la página de dieselogasolina.com copia el registro letra por
+letra (dirección, horario, «Margen: N» y coordenadas): no es otra fuente. Google
+repite «TF-131», pero llama a la carretera «Ctra. del Este», que es la que OSM
+tiene como TF-31. Falta la ficha de DISA, que lleva las Shell de Canarias (como la
+de Shell Las Arenas que me mandaste): con la de Ofra salió la TF-411.
+
 ## Lo que queda
 
-* **Shell de Puerto de la Cruz:** «TF-131» o «TF-31». Una segunda fuente.
-* **Moeve Llano Azul y DISA Ofra:** la posición (Street View en el pin del
-  registro, o las coordenadas de la web de Moeve y de DISA).
-* **DISA Vilaflor:** «Carretera General 821» es la antigua C-821, hoy la TF-21
-  (a 14 m). ¿Errata a «TF-21»?
+* **DISA Ofra:** ¿muevo el pin a la Disa de la Calle Zerolo (28.459471,
+  -16.293256)? O las coordenadas del mapa de su ficha en la web de DISA.
+* **Moeve Llano Azul:** la posición (el botón «Cómo llegar» de su ficha en la web
+  de Moeve, o un Street View en 28.061333, -16.692139).
+* **Shell El Águila:** su ficha en la web de DISA, para «TF-131» o «TF-31».
 * **Sesión 92:** el fichero diario de precios y el modo de las 10 más baratas.
 
 ## Lo que necesito de ti antes de seguir

@@ -169,6 +169,6 @@ Revisor independiente: 0 hallazgos (salida 0). Capturas de Jerome: 62, sin estac
 ## 30-la-victoria-de-acentejo
 
 ## 31-vilaflor
-- antigua: gas-tf51-vilaflor «DISA · Carretera General 821» -> 7951 DISA a 43 m, con su id y su pin de siempre
+- antigua: gas-tf51-vilaflor «DISA · Carretera General TF-21» -> 7951 DISA a 43 m, con su id y su pin de siempre
 
 FALLOS: 1

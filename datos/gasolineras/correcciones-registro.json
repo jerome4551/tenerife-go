@@ -134,6 +134,10 @@
   "GENERAL TF-623 KM. 13": {
    "se_escribe": "GENERAL TF-47 KM. 13",
    "fuente": "Jerome, 4 de octubre: «Si estas seguro de las direcciones cambialas». DISA de Playa San Juan (7849). No hay TF-623 en la isla; en OSM la TF-47 esta a 46 m, y su km 13 cuadra con el km 2,7 que el registro da a la Repsol de la TF-47 en Armenime (8,5 km en linea recta para 10,3 km de carretera). Es la «Carretera General Adeje a Playa San Juan» que el registro da a la H2GO de al lado."
+  },
+  "GENERAL 821": {
+   "se_escribe": "GENERAL TF-21",
+   "fuente": "Jerome, 5 de octubre: «si, cambiala a TF-21». La C-821 es la antigua carretera de La Orotava a Granadilla (documento oficial del Instituto Geografico Nacional) y la TF-21 es hoy esa misma carretera, que pasa por Vilaflor (Turismo de Tenerife cita su km 59,544 en el tramo Vilaflor-Granadilla). En OSM la DISA de Vilaflor (7951) esta a 14 m de la TF-21. No es como Icod: alli la antigua C-820 es hoy carreteras distintas segun el tramo."
   }
  },
  "km_contradicho": {
@@ -151,6 +155,11 @@
    "estacion": "TGAS TACORONTE · «CARRETERA GENERAL DEL NORTE KM. 79» · Tacoronte",
    "por_que": "Las de la Carretera General del Norte van en orden del km 20,4 (El Sauzal) al 52,7 (Icod), nueve de nueve; la Tgas esta ANTES que las de El Sauzal (15,4 km en linea recta de Santa Cruz frente a 16,3), asi que su km tendria que ser menor que 20,4.",
    "posicion_comprobada": "Los campos del propio registro (coordenada, municipio, CP) y OSM, que tiene una «Tgas» a 8 m, junto a la Carretera General del Norte. Jerome, 4 de octubre: «Si» a quitarlos como en Fasnia."
+  },
+  "7951": {
+   "estacion": "DISA · «CARRETERA CARRETERA GENERAL 821 KM. 68,80» · Vilaflor",
+   "por_que": "El km 68,80 es de la numeracion antigua de la C-821; la TF-21 de hoy lleva otra (Turismo de Tenerife: km 59,544 en el tramo Vilaflor-Granadilla). Con el nombre de hoy, ese km seria falso.",
+   "posicion_comprobada": "Jerome, 5 de octubre: «El km: si el nombre lo lleva, quitalo. Es de la numeracion antigua». El pin, a 14 m de la TF-21 en OSM."
   }
  },
  "horarios": {

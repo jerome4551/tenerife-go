@@ -278,7 +278,7 @@
  "gas-tf21-aguamansa": {"desc": "Carretera Las Cañadas（La Orotava）。燃料：95號汽油、98號汽油、柴油和優質柴油。另有：AdBlue。", "cat": "加油站 · Moeve", "hours": "週一至週日 06:00至00:00"},
  "gas-tf5-el-bohio": {"desc": "Autopista TF-5 km 25（La Matanza de Acentejo）。燃料：95號汽油、98號汽油、柴油、優質柴油和液化石油氣。另有：AdBlue。", "cat": "加油站 · DISA", "hours": "週一至週日 24小時"},
  "gas-tf5-el-sauzal": {"desc": "Autopista TF-5 km 22,5（El Sauzal）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "週一至週日 06:00至22:00"},
- "gas-tf51-vilaflor": {"desc": "⚠️ 經TF-21從南部（Vilaflor）上行進入泰德國家公園前的最後一個加油站。國家公園內沒有加油站。上泰德峰前務必在此加油。Carretera General 821（Vilaflor）。燃料：95號汽油、98號汽油和柴油。", "cat": "⚠️ 最後一個加油站 · DISA", "hours": "週一至週六 07:00至21:00 · 週日 08:00至14:00"},
+ "gas-tf51-vilaflor": {"desc": "⚠️ 經TF-21從南部（Vilaflor）上行進入泰德國家公園前的最後一個加油站。國家公園內沒有加油站。上泰德峰前務必在此加油。Carretera General TF-21（Vilaflor）。燃料：95號汽油、98號汽油和柴油。", "cat": "⚠️ 最後一個加油站 · DISA", "hours": "週一至週六 07:00至21:00 · 週日 08:00至14:00"},
  "gas-tf82-guia-isora": {"desc": "Avenida Isora（Guía de Isora）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Shell", "hours": "週一至週六 06:00至22:00 · 週日 07:00至17:00"},
  "gas-tf5-los-realejos": {"desc": "Calle Los Barros（Los Realejos）。燃料：95號汽油、98號汽油和柴油。", "cat": "加油站 · DISA", "hours": "週一至週日 06:00至22:00"},
  "puerto-santa-cruz": {"desc": "⚠️ 限制進入的商業港。加那利最大的港口，也是大西洋最重要的港口之一。貨櫃碼頭、郵輪與雜貨泊位。大型遠洋郵輪在此停靠——從海洋公園望去蔚為壯觀。僅限專業人員與持證郵輪旅客進入。但外側海濱步道對公眾開放。", "cat": "⚠️ 商業港 · 僅供觀賞"},
