@@ -264,9 +264,9 @@
   "8753": {
    "estacion": "SHELL EL AGUILA · CARRETERA MARTIANEZ TF-131 KM. 2,4 · Puerto de la Cruz",
    "registro": "28,411722 -16,529556",
-   "lat": 28.4121389,
-   "lng": -16.5296944,
-   "fuente": "Jerome, 5 de octubre: marcador de Google Maps en «E.S. Shell El Aguila, Carretera Del Este, Calz. Martianez, 6» (28°24'43.7\"N 16°31'46.9\"W). OSM tiene una Shell a 3 m. El pin del registro estaba a 48 m, en la misma estacion; el marcador cae dentro. Municipio: Puerto de la Cruz, el del registro."
+   "lat": 28.4121631,
+   "lng": -16.5297129,
+   "fuente": "Jerome, 5 de octubre: marcador de Google Maps en la E.S. Shell El Aguila, (28.4121631, -16.5297129), dentro de la estacion, junto a la TF-31 «Carretera Del Este, Calz. Martianez, 6». Sustituye al de la captura anterior en grados, minutos y segundos (28°24'43.7\"N 16°31'46.9\"W), redondeado a la decima de segundo, a unos 3 m. OSM tiene una Shell a pocos metros. El pin del registro estaba a unos 50 m, en la misma estacion. Municipio: Puerto de la Cruz, el del registro."
   }
  }
 }

@@ -1300,7 +1300,7 @@ su carretera y junto a la gasolinera de su marca en OSM:
 |---|---|---|---|
 | DISA Ofra | a **1.159 m**, en La Cuesta | 28.459505, -16.293179 | Calle Zerolo; Disa de OSM a 8 m; 1,18 km a Vistabella (DISA da 1,23) |
 | Moeve Llano Azul | a **506 m**, junto al Monkey Park | 28.0589205, -16.6965134 | tu marcador y Street View de abril de 2026, junto al Llano Azul Bar, TF-662 |
-| Shell El Águila | a 48 m, en la misma estación | 28.4121389, -16.5296944 | tu marcador, dentro de la estación |
+| Shell El Águila | a unos 50 m, en la misma estación | 28.4121631, -16.5297129 | tu marcador en decimales, dentro de la estación (el de la captura en grados quedaba a 3 m) |
 
 Y la Shell pasa a «**Shell · Carretera Martiánez TF-31**»: el mapa de Google
 rotula TF-31 esa carretera (su resumen decía TF-131: no se fía de sí mismo) y OSM
