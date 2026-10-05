@@ -187,6 +187,19 @@ def cp_del_registro(e):
     return k['se_escribe'] if k and k['registro'] == c else c
 
 
+COORDENADAS = _CORR.get('coordenadas', {})   # pins del registro que no estan en la estacion
+
+
+def coordenada(e):
+    """La del registro, salvo que Jerome haya comprobado otra (ver el fichero), y
+       solo mientras el registro siga dando la misma que se corrigio."""
+    reg = '%s %s' % (str(e['Latitud']).strip(), str(e['Longitud (WGS84)']).strip())
+    c = COORDENADAS.get(str(e.get('IDEESS')))
+    if c and c['registro'] == reg:
+        return c['lat'], c['lng']
+    return float(str(e['Latitud']).replace(',', '.')), float(str(e['Longitud (WGS84)']).replace(',', '.'))
+
+
 def horario_del_registro(e):
     """El campo Horario del registro, con la correccion comprobada si la hay. Solo
        vale mientras el registro siga diciendo exactamente lo que se corrigio."""
@@ -655,8 +668,8 @@ def ficha(e, muni, sufijo=''):
         'ideess': str(e['IDEESS']),
         'category': 'gasolinera', 'emoji': '⛽', 'color': '#dc2626',
         'name': nombre,
-        'lat': round(float(str(e['Latitud']).replace(',', '.')), 6),
-        'lng': round(float(str(e['Longitud (WGS84)']).replace(',', '.')), 6),
+        'lat': round(coordenada(e)[0], 6),
+        'lng': round(coordenada(e)[1], 6),
         'marca': marca, 'municipio': muni, 'localidad': loc,
         'address': direccion(e, muni),
         'direccion_registro': (e.get('Dirección') or '').strip(),   # el original, sin tocar

@@ -43,7 +43,12 @@
   "del 4 de octubre («Ok»). Se aplican al texto ya escrito, palabra entera.",
   "",
   "CODIGOS_CARRETERA: codigos de carretera del registro que OSM no tiene pero que estan",
-  "en uso y comprobados con otra fuente. tools/verificar_bloques.py no los da por malos."
+  "en uso y comprobados con otra fuente. tools/verificar_bloques.py no los da por malos.",
+  "",
+  "COORDENADAS: estaciones cuyo pin del registro no esta en la estacion, con la posicion",
+  "comprobada por Jerome. Solo vale mientras el registro siga dando la misma coordenada",
+  "(«registro»); si la cambia, manda la nueva. El municipio del punto nuevo tiene que ser el",
+  "del registro (LEEME)."
  ],
  "acentos": {
   "albanileria": "Albañilería",
@@ -138,6 +143,10 @@
   "GENERAL 821": {
    "se_escribe": "GENERAL TF-21",
    "fuente": "Jerome, 5 de octubre: «si, cambiala a TF-21». La C-821 es la antigua carretera de La Orotava a Granadilla (documento oficial del Instituto Geografico Nacional) y la TF-21 es hoy esa misma carretera, que pasa por Vilaflor (Turismo de Tenerife cita su km 59,544 en el tramo Vilaflor-Granadilla). En OSM la DISA de Vilaflor (7951) esta a 14 m de la TF-21. No es como Icod: alli la antigua C-820 es hoy carreteras distintas segun el tramo."
+  },
+  "MARTIANEZ TF-131": {
+   "se_escribe": "MARTIANEZ TF-31",
+   "fuente": "Jerome, 5 de octubre: el mapa de Google Maps rotula «TF-31» la carretera junto a la E.S. Shell El Aguila («Carretera Del Este»), aunque el resumen de Google repetia «TF-131»; OSM tiene esa via como «Carretera Este», TF-31, a 12 m. No hay ninguna TF-131 en la isla. La pagina de dieselogasolina.com copia el registro letra por letra y no cuenta."
   }
  },
  "km_contradicho": {
@@ -235,6 +244,29 @@
  "codigos_carretera": {
   "TF-411": {
    "por_que": "Jerome, 4 de octubre: la web de DISA llama «CARRETERA TF-411» a la DISA Ofra (Carretera Sur Cuesta-Taco), Google tambien («Carretera Sur (Cuesta-Taco), km 2 (Carretera TF-411)»), y el registro la usa para la BP Taco Norte (km 2,45). OSM tiene esa carretera como TF-194 «Carretera General La Cuesta - Taco». Se deja TF-411: es el nombre que usan el registro y la operadora."
+  }
+ },
+ "coordenadas": {
+  "9961": {
+   "estacion": "DISA OFRA · CARRETERA SUR (CUESTA-TACO) KM. 2 · San Cristobal de La Laguna",
+   "registro": "28,467667 -16,285806",
+   "lat": 28.459505,
+   "lng": -16.293179,
+   "fuente": "Jerome, 5 de octubre: «Las coordenadas decimales exactas para posicionarte justo dentro de la estacion DISA Ofra». Cuadran con todo lo demas: Google Maps la pone en la Calle Zerolo, 6; OSM tiene una Disa a 8 m del punto; y la web de DISA da 1,23 km entre Ofra y Vistabella (desde el punto nuevo, 1,18 km; desde el pin del registro, 0,26). El pin del registro estaba a 1.159 m. Municipio: La Laguna, el del registro."
+  },
+  "9483": {
+   "estacion": "MOEVE LLANO AZUL · CARRETERA GENERAL GUAZA LOS CRISTIANOS KM. 1 · Arona",
+   "registro": "28,061333 -16,692139",
+   "lat": 28.0589205,
+   "lng": -16.6965134,
+   "fuente": "Jerome, 5 de octubre: marcador de Google Maps en la «Estacion de servicio Cepsa», junto al «Llano Azul Bar Restaurante», en el cruce de la TF-662 con la TF-655, y Street View de abril de 2026 con la estacion. La web de Moeve: «CTRA. GENERAL GUAZA-LOS CRISTIANOS, PK 1.0», 24 h. OSM tiene una Moeve a 15 m del punto. El pin del registro estaba a 506 m, junto al Monkey Park y a 118 m de cualquier via. Municipio: Arona, el del registro."
+  },
+  "8753": {
+   "estacion": "SHELL EL AGUILA · CARRETERA MARTIANEZ TF-131 KM. 2,4 · Puerto de la Cruz",
+   "registro": "28,411722 -16,529556",
+   "lat": 28.4121389,
+   "lng": -16.5296944,
+   "fuente": "Jerome, 5 de octubre: marcador de Google Maps en «E.S. Shell El Aguila, Carretera Del Este, Calz. Martianez, 6» (28°24'43.7\"N 16°31'46.9\"W). OSM tiene una Shell a 3 m. El pin del registro estaba a 48 m, en la misma estacion; el marcador cae dentro. Municipio: Puerto de la Cruz, el del registro."
   }
  }
 }

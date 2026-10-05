@@ -7,8 +7,8 @@ Revisor independiente: 0 hallazgos (salida 0). Capturas de Jerome: 62, sin estac
 |---|---|---|---|---|---|---|---|
 | 00-plantilla | 0 | 0 | 0 | 0 | - | **0** | 0 |
 | 01-santa-cruz-de-tenerife | 33 | 33 | 33 | 0 | 42 m | **0** | 10 |
-| 02-san-cristobal-de-la-laguna | 28 | 28 | 26 | 2 | 24 m | **0** | 8 |
-| 03-arona | 15 | 15 | 14 | 1 | 118 m | **0** | 5 |
+| 02-san-cristobal-de-la-laguna | 28 | 28 | 26 | 2 | 24 m | **0** | 7 |
+| 03-arona | 15 | 15 | 14 | 1 | 34 m | **0** | 3 |
 | 04-adeje | 14 | 14 | 14 | 0 | 42 m | **0** | 4 |
 | 05-los-realejos | 13 | 13 | 12 | 1 | 19 m | **0** | 2 |
 | 06-granadilla-de-abona | 11 | 11 | 10 | 1 | 94 m | **0** | 5 |
@@ -20,7 +20,7 @@ Revisor independiente: 0 hallazgos (salida 0). Capturas de Jerome: 62, sin estac
 | 12-tacoronte | 6 | 6 | 5 | 1 | 20 m | **0** | 1 |
 | 13-arico | 5 | 5 | 4 | 1 | 16 m | **0** | 5 |
 | 14-icod-de-los-vinos | 5 | 5 | 5 | 0 | 19 m | **0** | 2 |
-| 15-puerto-de-la-cruz | 5 | 5 | 4 | 1 | 19 m | **1** | 1 |
+| 15-puerto-de-la-cruz | 5 | 5 | 4 | 1 | 19 m | **0** | 1 |
 | 16-el-sauzal | 5 | 5 | 4 | 1 | 20 m | **0** | 2 |
 | 17-candelaria | 4 | 4 | 4 | 0 | 10 m | **0** | 1 |
 | 18-santiago-del-teide | 4 | 4 | 4 | 0 | 22 m | **0** | 2 |
@@ -57,16 +57,13 @@ Revisor independiente: 0 hallazgos (salida 0). Capturas de Jerome: 62, sin estac
 - antigua: gas-tf2-lalaguna «Moeve · Avenida El Paso» -> 7634 CEPSA LOS ANDENES a 7 m, con su id y su pin de siempre
 - osm: gas-7784-san-cristobal-de-la-laguna, «TF-411»: OSM no lo tiene, pero esta comprobado (correcciones-registro.json)
 - osm: gas-9966-san-cristobal-de-la-laguna, el registro dice «DISA VISTABELLA» y OSM, a 0 m, «Moeve»
-- coordenada: 9961 (DISA OFRA, «CARRETERA SUR (CUESTA-TACO) KM. 2»): ninguna gasolinera de OSM en el pin; «Disa», de su marca, a 1167 m (28.459471, -16.293256), sin ninguna estacion del registro a menos de 633 m
 - cp: 7819 (BP TEJINA) lleva el 38260, que el registro da tambien en ['Arico'], a mas de 10 km (2 de 4 en su municipio)
 - cp: 7862 (DISA TEJINA) lleva el 38260, que el registro da tambien en ['Arico'], a mas de 10 km (2 de 4 en su municipio)
 - horario: 10905 (BP E.S. LAS CANTERAS S.L.) no abre D segun el registro («L-S: 7:00-22:00»)
 
 ## 03-arona
 - antigua: gas-tf1-guaza «BP · Carretera General Guaza TF-66» -> 8743 BP GUAZA a 10 m, con su id y su pin de siempre
-- osm: gas-9483-arona, la via mas cercana a 118 m
 - coordenada: 10057 (BP TEN BEL, «CARRETERA DE LAS GALLETAS KM. 91»): ninguna gasolinera de OSM en el pin; «BP», de su marca, a 490 m (28.033096, -16.650317), sin ninguna estacion del registro a menos de 490 m
-- coordenada: 9483 (MOEVE LLANO AZUL, «CARRETERA CARRETERA GENERAL GUAZA LOS CRISTIANOS KM. 1»): ninguna gasolinera de OSM en el pin; «Moeve», de su marca, a 496 m (28.059054, -16.696479), sin ninguna estacion del registro a menos de 496 m
 - vecinos: gas-7766-arona a 22 m de deporte-los-cristianos-paseo (deporte_publico)
 
 ## 04-adeje
@@ -121,7 +118,6 @@ Revisor independiente: 0 hallazgos (salida 0). Capturas de Jerome: 62, sin estac
 - osm: gas-12298-icod-de-los-vinos, «C-820» en el nombre es un codigo antiguo: OSM no lo tiene
 
 ## 15-puerto-de-la-cruz
-- **FALLO** osm: gas-8753-puerto-de-la-cruz se llama «Shell · Carretera Martiánez TF-131» y no hay ninguna TF-131 a menos de 160 m (cerca: TF-31 12 m)
 - antigua: gas-tf5-ptocz «BP · Carretera del Botánico» -> 7771 BP PUERTO DE LA CRUZ a 6 m, con su id y su pin de siempre
 
 ## 16-el-sauzal
@@ -171,4 +167,4 @@ Revisor independiente: 0 hallazgos (salida 0). Capturas de Jerome: 62, sin estac
 ## 31-vilaflor
 - antigua: gas-tf51-vilaflor «DISA · Carretera General TF-21» -> 7951 DISA a 43 m, con su id y su pin de siempre
 
-FALLOS: 1
+FALLOS: 0

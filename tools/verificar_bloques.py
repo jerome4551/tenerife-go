@@ -115,6 +115,13 @@ def main():
 
     reg, discrepan = GR.cargar_registro()
     porid = {e['ideess']: e for e in reg}
+    _corr = json.load(open(os.path.join(DG, 'correcciones-registro.json'), encoding='utf-8'))
+    _cr = {str(x['IDEESS']): x for x in json.load(open(os.path.join(RAIZ, 'registro', 'gasolineras-canarias.json'),
+                                                       encoding='utf-8-sig'))['ListaEESSPrecio']}
+    for i, c in _corr.get('coordenadas', {}).items():     # el pin que comprobo Jerome
+        x = _cr.get(i)
+        if i in porid and x and c['registro'] == '%s %s' % (x['Latitud'].strip(), x['Longitud (WGS84)'].strip()):
+            porid[i]['lat'], porid[i]['lng'] = c['lat'], c['lng']
     crudo = {str(x['IDEESS']): x for x in json.load(open(os.path.join(RAIZ, 'registro', 'gasolineras-canarias.json'),
                                                         encoding='utf-8-sig'))['ListaEESSPrecio']}
     gen = {g['ideess']: g for g in F.cargar()}

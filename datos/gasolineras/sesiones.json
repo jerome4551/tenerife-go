@@ -577,13 +577,15 @@
    "Etiquetas: «Última» en chino era «末班» (ultimo servicio de autobus) -> 最后一个 / 最後一個; «Importante» en ingles era «Major» -> Important; en polaco Wazny -> Wazne."
   ],
   "pendiente": [
-   "9961 DISA Ofra: la coordenada del registro esta mal con mucha probabilidad. Google Maps la pone en la Calle Zerolo, 6; OSM tiene una Disa ahi (28.459471, -16.293256); y la web de DISA da 1,23 km entre Ofra y Vistabella: desde la Disa de la Calle Zerolo al pin de Vistabella hay 1,18 km, desde el pin de Ofra del registro, 0,26. Falta el OK de Jerome para mover el pin (o las coordenadas del mapa de la web de DISA).",
-   "9483 Moeve Llano Azul: la web de Moeve confirma direccion (Ctra. General Guaza-Los Cristianos PK 1,0) y horario (24 h), no la posicion. Falta la coordenada (el boton «Como llegar» de la web de Moeve, o un Street View en 28.061333, -16.692139).",
-   "8753 Shell El Aguila: «TF-131». La pagina de dieselogasolina.com copia el registro letra por letra (direccion, horario, margen N y coordenadas): no es otra fuente. Google repite TF-131, pero llama a la carretera «Ctra. del Este», que es la que OSM llama TF-31. Falta la ficha de la web de DISA (opera las Shell en Canarias), como en la TF-411.",
+   "Para mirar si quieres (el pin del registro SI esta en la carretera de su direccion, pero OSM tiene una de su marca lejos que ninguna otra estacion explica): 8326 Repsol Arafo (517 m), 11690 BP Aeropuerto Sur (550 m), 10057 BP Ten Bel (490 m), 11731 Repsol Poris (299 m), 7677 Repsol Barroso (271 m).",
    "Sesion 92: el fichero diario de precios y el modo de las 10 mas baratas."
   ],
   "resuelto_el_5_de_octubre": [
-   "7951 DISA Vilaflor: «Carretera General 821» -> «TF-21» (errata) y fuera el km 68,80, que es de la numeracion antigua (km_contradicho). Fuentes de Jerome: IGN (C-821 = La Orotava-Granadilla) y Turismo de Tenerife (TF-21 km 59,544 entre Vilaflor y Granadilla)."
+   "7951 DISA Vilaflor: «Carretera General 821» -> «TF-21» (errata) y fuera el km 68,80, que es de la numeracion antigua (km_contradicho). Fuentes de Jerome: IGN (C-821 = La Orotava-Granadilla) y Turismo de Tenerife (TF-21 km 59,544 entre Vilaflor y Granadilla).",
+   "9961 DISA Ofra: pin a 28.459505, -16.293179 (coordenadas de Jerome; Calle Zerolo; Disa de OSM a 8 m; 1,18 km a Vistabella, la web de DISA da 1,23). Estaba a 1.159 m.",
+   "9483 Moeve Llano Azul: pin a 28.0589205, -16.6965134 (marcador y Street View de abril de 2026 de Jerome; junto al Llano Azul Bar Restaurante, TF-662). Estaba a 506 m, junto al Monkey Park.",
+   "8753 Shell El Aguila: pin a 28.4121389, -16.5296944 (marcador de Jerome, dentro de la estacion; estaba a 48 m) y «TF-131» -> «TF-31» (el mapa de Google rotula TF-31 la carretera; OSM tambien).",
+   "Las tres van en «coordenadas» / «erratas» de correcciones-registro.json; la plantilla, el revisor y el verificador las leen cada uno por su cuenta. Verificador: 0 fallos."
   ]
  }
 }

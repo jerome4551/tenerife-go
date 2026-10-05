@@ -1289,13 +1289,30 @@ repite «TF-131», pero llama a la carretera «Ctra. del Este», que es la que O
 tiene como TF-31. Falta la ficha de DISA, que lleva las Shell de Canarias (como la
 de Shell Las Arenas que me mandaste): con la de Ofra salió la TF-411.
 
+## Tus coordenadas del 5 de octubre
+
+Tres pins movidos a la posición que comprobaste, como dato con su fuente
+(`coordenadas` en `correcciones-registro.json`; valen mientras el registro siga
+dando la coordenada vieja). Los tres caen en el municipio del registro, junto a
+su carretera y junto a la gasolinera de su marca en OSM:
+
+| estación | antes (registro) | ahora | prueba |
+|---|---|---|---|
+| DISA Ofra | a **1.159 m**, en La Cuesta | 28.459505, -16.293179 | Calle Zerolo; Disa de OSM a 8 m; 1,18 km a Vistabella (DISA da 1,23) |
+| Moeve Llano Azul | a **506 m**, junto al Monkey Park | 28.0589205, -16.6965134 | tu marcador y Street View de abril de 2026, junto al Llano Azul Bar, TF-662 |
+| Shell El Águila | a 48 m, en la misma estación | 28.4121389, -16.5296944 | tu marcador, dentro de la estación |
+
+Y la Shell pasa a «**Shell · Carretera Martiánez TF-31**»: el mapa de Google
+rotula TF-31 esa carretera (su resumen decía TF-131: no se fía de sí mismo) y OSM
+también. **La verificación de los bloques 00 a 31 queda con 0 fallos.**
+
 ## Lo que queda
 
-* **DISA Ofra:** ¿muevo el pin a la Disa de la Calle Zerolo (28.459471,
-  -16.293256)? O las coordenadas del mapa de su ficha en la web de DISA.
-* **Moeve Llano Azul:** la posición (el botón «Cómo llegar» de su ficha en la web
-  de Moeve, o un Street View en 28.061333, -16.692139).
-* **Shell El Águila:** su ficha en la web de DISA, para «TF-131» o «TF-31».
+* **Para mirar, si quieres**, con un marcador como estos: cinco estaciones con el
+  pin del registro en la carretera de su dirección, pero con una de su marca en
+  OSM a unos cientos de metros que ninguna otra estación explica. Repsol Arafo
+  (517 m), BP Aeropuerto Sur (550 m), BP Ten Bel (490 m), Repsol Porís (299 m) y
+  Repsol Barroso (271 m).
 * **Sesión 92:** el fichero diario de precios y el modo de las 10 más baratas.
 
 ## Lo que necesito de ti antes de seguir

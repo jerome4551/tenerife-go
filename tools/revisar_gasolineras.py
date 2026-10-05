@@ -151,8 +151,13 @@ def main():
         if sel and llano(muni) not in sel:
             continue
         mirados += 1
-        # coordenada
-        d = metros(p['lat'], p['lng'], num(e['Latitud']), num(e['Longitud (WGS84)']))
+        # coordenada: la del registro, o la que Jerome comprobo si el registro
+        # sigue dando exactamente la que se corrigio (correcciones-registro.json)
+        cla, clo = num(e['Latitud']), num(e['Longitud (WGS84)'])
+        cc = corr.get('coordenadas', {}).get(str(e['IDEESS']))
+        if cc and cc['registro'] == '%s %s' % (e['Latitud'].strip(), e['Longitud (WGS84)'].strip()):
+            cla, clo = cc['lat'], cc['lng']
+        d = metros(p['lat'], p['lng'], cla, clo)
         if d > 0.2:
             mal(p['id'], 'coordenada a %.1f m de la del registro' % d)
         # municipio
