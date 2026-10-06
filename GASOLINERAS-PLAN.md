@@ -1306,14 +1306,40 @@ Y la Shell pasa a «**Shell · Carretera Martiánez TF-31**»: el mapa de Google
 rotula TF-31 esa carretera (su resumen decía TF-131: no se fía de sí mismo) y OSM
 también. **La verificación de los bloques 00 a 31 queda con 0 fallos.**
 
+## Tus marcadores del 6 de octubre
+
+Cuatro pins más, a la posición de tu marcador. Cada uno cae en el municipio del
+registro, a 3-12 m de la gasolinera de su marca en OSM y sin ninguna otra estación
+del registro a menos de 300 m:
+
+| estación | el pin del registro estaba a |
+|---|---|
+| BP Aeropuerto Sur (Granadilla) | **552 m**, junto a la TF-1 |
+| Repsol Arafo | **524 m** |
+| Repsol Porís (Arico) | 292 m |
+| Repsol Barroso (La Orotava) | 276 m; sigue siendo **la última subiendo al Teide**, 1,1 km por encima de la de La Cañada |
+
+**BP Ten Bel, en espera** («no existe»): fuera de la app, como la DISA de Las
+Delicias en su día. La app pasa de 976 a **975 lugares**. Por si un día la ves: el
+registro del 2 de octubre aún le daba precio a 4 combustibles, y OSM tiene una BP
+a 490 m de su pin, en la Avenida Fernando Salazar González (TF-652), en 28.033096,
+-16.650317. Si está ahí, vuelve.
+
 ## Lo que queda
 
-* **Para mirar, si quieres**, con un marcador como estos: cinco estaciones con el
-  pin del registro en la carretera de su dirección, pero con una de su marca en
-  OSM a unos cientos de metros que ninguna otra estación explica. Repsol Arafo
-  (517 m), BP Aeropuerto Sur (550 m), BP Ten Bel (490 m), Repsol Porís (299 m) y
-  Repsol Barroso (271 m).
-* **Sesión 92:** el fichero diario de precios y el modo de las 10 más baratas.
+* **Sesión 92**, que tienes que decidir tú (ver abajo).
+
+### Qué es la sesión 92
+
+Al empezar lo de las gasolineras me pediste **«las 10 más baratas cada 24 h»**. Tu
+propio LEEME dice «nunca precios en la app: son datos perecederos», así que te
+propuse hacerlo sin meter ni un precio en `index.html`: un **fichero aparte**
+(`datos/precios-gasolineras.json`, con el IDEESS y el precio de cada estación, y
+**la fecha dentro**) que el flujo de GitHub Actions rehace **cada día** desde el
+registro del Ministerio. La app lo lee al abrir; si no llega o es viejo, **no
+enseña ningún precio y lo dice**. Con eso, un modo «las 10 más baratas» (de
+gasolina 95 y de diésel, en la isla o cerca de ti), siempre con la fecha del
+precio. Está **sin empezar**: falta que me digas si lo quieres.
 
 ## Lo que necesito de ti antes de seguir
 

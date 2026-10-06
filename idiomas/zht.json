@@ -839,7 +839,6 @@
  "gas-7787-arona": {"desc": "Avenida de los Pueblos（Arona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · BP", "hours": "週一至週日 24小時"},
  "gas-7766-arona": {"desc": "Bulevar Chajofe（Arona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · BP", "hours": "週一至週日 24小時"},
  "gas-9920-arona": {"desc": "Carretera General Valle San Lorenzo-Guaza（Arona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · BP", "hours": "週一至週日 24小時"},
- "gas-10057-arona": {"desc": "Carretera de las Galletas（Arona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · BP", "hours": "週一至週六 06:00至21:30 · 週日 07:00至13:00"},
  "gas-9947-arona": {"desc": "Carretera General Valle San Lorenzo（Arona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · DISA", "hours": "週一至週六 07:00至22:00 · 週日 07:00至14:00"},
  "gas-10543-arona": {"desc": "Carretera General Las Galletas（Arona）。燃料：95號汽油、98號汽油、柴油和優質柴油。", "cat": "加油站 · Moeve", "hours": "週一至週日 24小時"},
  "gas-7640-arona": {"desc": "Carretera General（Arona）。燃料：95號汽油、98號汽油、柴油和可再生柴油。", "cat": "加油站 · Moeve", "hours": "週一至週日 06:00至22:00"},

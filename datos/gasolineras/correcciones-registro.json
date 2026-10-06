@@ -90,7 +90,14 @@
  "ilegible": {
   "DELPORTEZUELO ALS TODCAS": "Seguramente «del Portezuelo a Las Toscas», pero «Todcas» por «Toscas» seria adivinar. Queda «Carretera TF-154»."
  },
- "en_espera": {},
+ "en_espera": {
+  "10057": {
+   "estacion": "BP TEN BEL · Carretera de las Galletas km 91 · Arona",
+   "por_que": "Jerome, 6 de octubre: «Bp tenbel no existe. La unica cerca de Ten Bel es la Cepsa» (la de Costa del Silencio, 10543, que si esta en la app). El LEEME avisa de que estar en el registro no prueba que este abierta.",
+   "para_volver": "El registro del 2 de octubre aun le da precio a 4 combustibles, y OSM tiene una BP a 490 m de su pin, en la Avenida Fernando Salazar Gonzalez (TF-652), en 28.033096, -16.650317. Si Jerome la ve ahi, vuelve con esa comprobacion.",
+   "desde": "2026-10-06"
+  }
+ },
  "confirmadas_tras_espera": {
   "7840": {
    "estacion": "DISA LAS DELICIAS · Calle Pedro de Valdivia, 9 · Santa Cruz de Tenerife",
@@ -267,6 +274,34 @@
    "lat": 28.4121631,
    "lng": -16.5297129,
    "fuente": "Jerome, 5 de octubre: marcador de Google Maps en la E.S. Shell El Aguila, (28.4121631, -16.5297129), dentro de la estacion, junto a la TF-31 «Carretera Del Este, Calz. Martianez, 6». Sustituye al de la captura anterior en grados, minutos y segundos (28°24'43.7\"N 16°31'46.9\"W), redondeado a la decima de segundo, a unos 3 m. OSM tiene una Shell a pocos metros. El pin del registro estaba a unos 50 m, en la misma estacion. Municipio: Puerto de la Cruz, el del registro."
+  },
+  "11690": {
+   "estacion": "BP AEROPUERTO REINA SOFIA · Carretera Atogo km 0,5 · Granadilla de Abona",
+   "registro": "28,061056 -16,576167",
+   "lat": 28.0610357,
+   "lng": -16.5817963,
+   "fuente": "Jerome, 6 de octubre: marcador de Google Maps en la estacion. «BP Aeropuerto Reina Sofia». OSM tiene una BP a 3 m. El pin del registro estaba a 552 m, junto a la TF-1. Municipio: Granadilla de Abona, el del registro."
+  },
+  "8326": {
+   "estacion": "REPSOL · Carretera Arafo La Hidalga TF-281 km 1 · Arafo",
+   "registro": "28,328306 -16,382583",
+   "lat": 28.3286305,
+   "lng": -16.377243,
+   "fuente": "Jerome, 6 de octubre: marcador de Google Maps en la estacion. «Estacion de Servicio Repsol», junto a la TF-281. OSM tiene la «Estacion de Servicio Repsol Volcan de Arafo» a 7 m. El pin del registro estaba a 524 m. Municipio: Arafo, el del registro."
+  },
+  "11731": {
+   "estacion": "REPSOL · Autovia TF-1 km 39 · Poris de Abona, Arico",
+   "registro": "28,169083 -16,433278",
+   "lat": 28.1664941,
+   "lng": -16.4337702,
+   "fuente": "Jerome, 6 de octubre: marcador de Google Maps en la estacion. «Estacion de Servicio Repsol», junto a la TF-1 (el mapa marca el km 39 al lado). OSM tiene una Repsol a 9 m. El pin del registro estaba a 292 m. Municipio: Arico, el del registro."
+  },
+  "7677": {
+   "estacion": "REPSOL BARROSO · Carretera TF-21 Aguamansa · La Orotava",
+   "registro": "28,377028 -16,509972",
+   "lat": 28.3782962,
+   "lng": -16.5123992,
+   "fuente": "Jerome, 6 de octubre: marcador de Google Maps en la estacion. «Estacion de Servicio Repsol», en la Carretera de las Canadas del Teide (TF-21, a 28 m). OSM tiene una Repsol a 12 m. El pin del registro estaba a 276 m. Sigue siendo la ultima subiendo al Teide: queda 1,1 km mas arriba que la Moeve de La Canada (7790). Municipio: La Orotava, el del registro."
   }
  }
 }

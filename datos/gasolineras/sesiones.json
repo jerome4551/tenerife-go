@@ -65,13 +65,14 @@
    "ya": 1,
    "plan": "datos/gasolineras/plan/03-arona.json",
    "hecho_el": "2026-10-02",
-   "altas_hechas": 14,
+   "altas_hechas": 13,
    "enlazadas": {
     "gas-tf1-guaza": "8743 (a 10 m)"
    },
    "revisada_el": "2026-10-03",
    "revision": "tools/revisar_gasolineras.py: 14 fichas, 0 hallazgos, 15/15 estaciones con su ficha",
-   "para_la_91": "gas-tf1-guaza se llama «BP Guaza (TF-1 km 21)» y el registro la pone en la CARRETERA GENERAL GUAZA TF-66 KM. 79: no esta en el TF-1. Justo lo que Jerome no quiere ver."
+   "para_la_91": "gas-tf1-guaza se llama «BP Guaza (TF-1 km 21)» y el registro la pone en la CARRETERA GENERAL GUAZA TF-66 KM. 79: no esta en el TF-1. Justo lo que Jerome no quiere ver.",
+   "en_espera": "10057 BP Ten Bel, desde el 6 de octubre: Jerome dice que no existe (la unica cerca de Ten Bel es la Cepsa de Costa del Silencio). Ficha retirada; si aparece, vuelve (ver en_espera en correcciones-registro.json)."
   },
   "04-adeje": {
    "que": "Las 14 estaciones de Adeje (14 altas, 0 ya en la app).",
@@ -577,8 +578,8 @@
    "Etiquetas: «Última» en chino era «末班» (ultimo servicio de autobus) -> 最后一个 / 最後一個; «Importante» en ingles era «Major» -> Important; en polaco Wazny -> Wazne."
   ],
   "pendiente": [
-   "Para mirar si quieres (el pin del registro SI esta en la carretera de su direccion, pero OSM tiene una de su marca lejos que ninguna otra estacion explica): 8326 Repsol Arafo (517 m), 11690 BP Aeropuerto Sur (550 m), 10057 BP Ten Bel (490 m), 11731 Repsol Poris (299 m), 7677 Repsol Barroso (271 m).",
-   "Sesion 92: el fichero diario de precios y el modo de las 10 mas baratas."
+   "Sesion 92 (el fichero diario de precios y las 10 mas baratas): Jerome pregunta que es; falta su decision.",
+   "10057 BP Ten Bel: si existe, OSM la pone en 28.033096, -16.650317 (Avenida Fernando Salazar Gonzalez, TF-652), a 490 m del pin del registro."
   ],
   "resuelto_el_5_de_octubre": [
    "7951 DISA Vilaflor: «Carretera General 821» -> «TF-21» (errata) y fuera el km 68,80, que es de la numeracion antigua (km_contradicho). Fuentes de Jerome: IGN (C-821 = La Orotava-Granadilla) y Turismo de Tenerife (TF-21 km 59,544 entre Vilaflor y Granadilla).",
@@ -586,6 +587,10 @@
    "9483 Moeve Llano Azul: pin a 28.0589205, -16.6965134 (marcador y Street View de abril de 2026 de Jerome; junto al Llano Azul Bar Restaurante, TF-662). Estaba a 506 m, junto al Monkey Park.",
    "8753 Shell El Aguila: pin a 28.4121631, -16.5297129 (marcador de Jerome en decimales, dentro de la estacion; el de la captura en grados quedaba a 3 m) y «TF-131» -> «TF-31» (el mapa de Google rotula TF-31 la carretera; OSM tambien).",
    "Las tres van en «coordenadas» / «erratas» de correcciones-registro.json; la plantilla, el revisor y el verificador las leen cada uno por su cuenta. Verificador: 0 fallos."
+  ],
+  "resuelto_el_6_de_octubre": [
+   "Pins con el marcador de Jerome: 11690 BP Aeropuerto Sur (estaba a 552 m), 8326 Repsol Arafo (524 m), 11731 Repsol Poris (292 m), 7677 Repsol Barroso (276 m; sigue siendo la ultima subiendo al Teide, 1,1 km por encima de La Canada).",
+   "10057 BP Ten Bel, en espera: Jerome dice que no existe. Ficha retirada (976 -> 975 lugares)."
   ]
  }
 }

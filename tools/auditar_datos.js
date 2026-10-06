@@ -169,9 +169,11 @@ console.log('\n=== lugares ===');
    974 -> 975 el 4 de octubre, con la de El Tanque (sesion 29);
    975 -> 976 el 4 de octubre, con la de La Victoria de Acentejo (sesion 30): la
    ultima alta. Las 212 del registro tienen ficha.
+   976 -> 975 el 6 de octubre: fuera la BP Ten Bel (Arona), que segun Jerome no
+   existe; queda en espera en correcciones-registro.json.
    Esta cifra subio una vez por sesion de gasolineras hasta la ultima alta, y se
    cambia A MANO a proposito: asi ningun lugar entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 976);
+debe('lugares', PLACES.length, PLACES.length === 975);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

@@ -839,7 +839,6 @@
  "gas-7787-arona": {"desc": "Avenida de los Pueblos, Arona. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · BP", "hours": "Lun-Dom 24 h"},
  "gas-7766-arona": {"desc": "Bulevar Chajofe, Arona. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · BP", "hours": "Lun-Dom 24 h"},
  "gas-9920-arona": {"desc": "Carretera General Valle San Lorenzo-Guaza, Arona. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · BP", "hours": "Lun-Dom 24 h"},
- "gas-10057-arona": {"desc": "Carretera de las Galletas, Arona. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · BP", "hours": "Lun-Sab 06:00-21:30 · Dom 07:00-13:00"},
  "gas-9947-arona": {"desc": "Carretera General Valle San Lorenzo, Arona. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · DISA", "hours": "Lun-Sab 07:00-22:00 · Dom 07:00-14:00"},
  "gas-10543-arona": {"desc": "Carretera General Las Galletas, Arona. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 24 h"},
  "gas-7640-arona": {"desc": "Carretera General, Arona. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Moeve", "hours": "Lun-Dom 06:00-22:00"},

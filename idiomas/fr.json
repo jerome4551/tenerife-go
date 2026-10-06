@@ -839,7 +839,6 @@
  "gas-7787-arona": {"desc": "Avenida de los Pueblos, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Dim 24 h"},
  "gas-7766-arona": {"desc": "Bulevar Chajofe, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Dim 24 h"},
  "gas-9920-arona": {"desc": "Carretera General Valle San Lorenzo-Guaza, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Dim 24 h"},
- "gas-10057-arona": {"desc": "Carretera de las Galletas, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · BP", "hours": "Lun-Sam 06:00-21:30 · Dim 07:00-13:00"},
  "gas-9947-arona": {"desc": "Carretera General Valle San Lorenzo, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · DISA", "hours": "Lun-Sam 07:00-22:00 · Dim 07:00-14:00"},
  "gas-10543-arona": {"desc": "Carretera General Las Galletas, Arona. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 24 h"},
  "gas-7640-arona": {"desc": "Carretera General, Arona. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Moeve", "hours": "Lun-Dim 06:00-22:00"},

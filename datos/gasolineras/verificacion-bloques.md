@@ -1,6 +1,6 @@
 # Verificacion de los bloques 00 a 31
 
-Registro del 02/10/2026 13:05:06 · 212 estaciones de Tenerife · 212 fichas de gasolinera en la app (198 nuevas, 14 antiguas)
+Registro del 02/10/2026 13:05:06 · 212 estaciones de Tenerife · 211 fichas de gasolinera en la app (197 nuevas, 14 antiguas)
 Revisor independiente: 0 hallazgos (salida 0). Capturas de Jerome: 62, sin estacion del registro: 0 []
 
 | bloque | estaciones | fichas | nuevas | antiguas | via mas lejana | fallos | para mirar |
@@ -8,17 +8,17 @@ Revisor independiente: 0 hallazgos (salida 0). Capturas de Jerome: 62, sin estac
 | 00-plantilla | 0 | 0 | 0 | 0 | - | **0** | 0 |
 | 01-santa-cruz-de-tenerife | 33 | 33 | 33 | 0 | 42 m | **0** | 10 |
 | 02-san-cristobal-de-la-laguna | 28 | 28 | 26 | 2 | 24 m | **0** | 7 |
-| 03-arona | 15 | 15 | 14 | 1 | 34 m | **0** | 3 |
+| 03-arona | 15 | 14 | 13 | 1 | 34 m | **0** | 3 |
 | 04-adeje | 14 | 14 | 14 | 0 | 42 m | **0** | 4 |
 | 05-los-realejos | 13 | 13 | 12 | 1 | 19 m | **0** | 2 |
-| 06-granadilla-de-abona | 11 | 11 | 10 | 1 | 94 m | **0** | 5 |
-| 07-la-orotava | 10 | 10 | 9 | 1 | 20 m | **0** | 4 |
+| 06-granadilla-de-abona | 11 | 11 | 10 | 1 | 94 m | **0** | 4 |
+| 07-la-orotava | 10 | 10 | 9 | 1 | 28 m | **0** | 3 |
 | 08-san-miguel-de-abona | 10 | 10 | 10 | 0 | 33 m | **0** | 1 |
-| 09-arafo | 7 | 7 | 6 | 1 | 62 m | **0** | 4 |
+| 09-arafo | 7 | 7 | 6 | 1 | 53 m | **0** | 2 |
 | 10-guia-de-isora | 7 | 7 | 6 | 1 | 16 m | **0** | 1 |
 | 11-guimar | 6 | 6 | 6 | 0 | 43 m | **0** | 0 |
 | 12-tacoronte | 6 | 6 | 5 | 1 | 20 m | **0** | 1 |
-| 13-arico | 5 | 5 | 4 | 1 | 16 m | **0** | 5 |
+| 13-arico | 5 | 5 | 4 | 1 | 16 m | **0** | 4 |
 | 14-icod-de-los-vinos | 5 | 5 | 5 | 0 | 19 m | **0** | 2 |
 | 15-puerto-de-la-cruz | 5 | 5 | 4 | 1 | 19 m | **0** | 1 |
 | 16-el-sauzal | 5 | 5 | 4 | 1 | 20 m | **0** | 2 |
@@ -81,12 +81,10 @@ Revisor independiente: 0 hallazgos (salida 0). Capturas de Jerome: 62, sin estac
 - osm: gas-16132-granadilla-de-abona, la via mas cercana a 94 m
 - osm: gas-7731-granadilla-de-abona, la via mas cercana a 65 m
 - osm: gas-7626-granadilla-de-abona, el registro dice «REPSOL» y OSM, a 9 m, «DISA Aeropuerto TFS»
-- coordenada: 11690 (BP AEROPUERTO REINA SOFIA, «CARRETERA ATOGO KM. 0,5»): ninguna gasolinera de OSM en el pin; «BP», de su marca, a 550 m (28.061061, -16.581776), sin ninguna estacion del registro a menos de 550 m
 
 ## 07-la-orotava
 - antigua: gas-tf21-aguamansa «Moeve · Carretera Las Cañadas» -> 7790 CEPSA LA CAÑADA a 12 m, con su id y su pin de siempre
 - osm: gas-9741-la-orotava, «C-820» en el nombre es un codigo antiguo: OSM no lo tiene
-- coordenada: 7677 (REPSOL BARROSO, «CARRETERA TF-21 AGUAMANSA KM.»): ninguna gasolinera de OSM en el pin; «Repsol», de su marca, a 271 m (28.378190, -16.512405), sin ninguna estacion del registro a menos de 271 m
 - vecinos: gas-7856-la-orotava a 19 m de super-mercadona-orotava (supermercado)
 
 ## 08-san-miguel-de-abona
@@ -94,9 +92,7 @@ Revisor independiente: 0 hallazgos (salida 0). Capturas de Jerome: 62, sin estac
 
 ## 09-arafo
 - antigua: gas-tf1-guimar «BP · Polígono Plan Parcial El Carretón» -> 13012 BP POLIGONO GUIMAR a 14 m, con su id y su pin de siempre
-- osm: gas-8326-arafo, la via mas cercana a 62 m
 - osm: gas-10635-arafo, el registro dice «TGAS LA HIDALGA» y OSM, a 6 m, «BP Arafo»
-- coordenada: 8326 (REPSOL, «CARRETERA ARAFO LA HIDALGA TF-281 KM. 1»): ninguna gasolinera de OSM en el pin; «Estación de Servicio Repsol Volcán de Arafo», de su marca, a 517 m (28.328633, -16.377316), sin ninguna estacion del registro a menos de 344 m
 
 ## 10-guia-de-isora
 - antigua: gas-tf82-guia-isora «Shell · Avenida Isora» -> 9176 SHELL a 0 m, con su id y su pin de siempre
@@ -109,7 +105,6 @@ Revisor independiente: 0 hallazgos (salida 0). Capturas de Jerome: 62, sin estac
 ## 13-arico
 - antigua: gas-tf1-abades «Abades · Autopista Tenerife Sur km 44,2» -> 7726 ESTACIÓN ABADES KM 44 a 1 m, con su id y su pin de siempre
 - osm: gas-tf1-abades, el registro dice «ESTACIÓN ABADES KM 44» y OSM, a 1 m, «PCAN»
-- coordenada: 11731 (REPSOL, «AUTOVIA TF-1 KM. 39»): ninguna gasolinera de OSM en el pin; «Repsol», de su marca, a 299 m (28.166423, -16.433735), sin ninguna estacion del registro a menos de 299 m
 - cp: 7726 (ESTACIÓN ABADES KM 44) lleva el 38260, que el registro da tambien en ['San Cristóbal de La Laguna'], a mas de 10 km (2 de 4 en su municipio)
 - cp: 7703 (CEPSA) lleva el 38260, que el registro da tambien en ['San Cristóbal de La Laguna'], a mas de 10 km (2 de 4 en su municipio)
 

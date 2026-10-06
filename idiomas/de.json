@@ -839,7 +839,6 @@
  "gas-7787-arona": {"desc": "Avenida de los Pueblos, Arona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · BP", "hours": "Mo-So 24 Std."},
  "gas-7766-arona": {"desc": "Bulevar Chajofe, Arona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · BP", "hours": "Mo-So 24 Std."},
  "gas-9920-arona": {"desc": "Carretera General Valle San Lorenzo-Guaza, Arona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · BP", "hours": "Mo-So 24 Std."},
- "gas-10057-arona": {"desc": "Carretera de las Galletas, Arona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · BP", "hours": "Mo-Sa 06:00-21:30 · So 07:00-13:00"},
  "gas-9947-arona": {"desc": "Carretera General Valle San Lorenzo, Arona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-Sa 07:00-22:00 · So 07:00-14:00"},
  "gas-10543-arona": {"desc": "Carretera General Las Galletas, Arona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-So 24 Std."},
  "gas-7640-arona": {"desc": "Carretera General, Arona. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Moeve", "hours": "Mo-So 06:00-22:00"},
