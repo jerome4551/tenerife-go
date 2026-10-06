@@ -1325,21 +1325,37 @@ registro del 2 de octubre aún le daba precio a 4 combustibles, y OSM tiene una 
 a 490 m de su pin, en la Avenida Fernando Salazar González (TF-652), en 28.033096,
 -16.650317. Si está ahí, vuelve.
 
+## Sesión 92 · las más baratas de cada municipio · HECHA el 7 de octubre
+
+Como la pediste: en cada municipio, las más baratas (**menos de 3 gasolineras,
+ninguna; de 3 a 7, la mejor; de 8 a 14, las dos; de 15 en adelante, las tres**),
+**gasolina 95 y diésel por separado**, y **los empates salen todos**. Hoy salen
+23 municipios.
+
+**Cómo llegan los precios, y cada cuándo.** Del registro oficial del Ministerio,
+el mismo de las fichas, **dos veces al día, a las 7:00 y a las 15:00 de Canarias**.
+GitHub llega 4-8 horas tarde a los cron (medido en este repo), así que el flujo
+«Precios gasolineras» pasa **cada hora** y el guion mira la hora real de
+Canarias: la primera pasada después de las 7:00 baja los precios, la primera
+después de las 15:00 también, y las demás no hacen nada. Escribe solo
+`datos/precios-gasolineras.json` (las más baratas, con la fecha del Ministerio);
+**ningún precio entra en `index.html`**, y el registro de las fichas no se toca.
+La web se republica sola a los pocos segundos.
+
+**En la app:** una categoría nueva en Servicios, «💶 **Gasolineras más baratas**»,
+y en el globo y en la ficha de cada una: «💶 Gasolina 95: **1,289 €** · la más
+barata de Arafo», con la fecha debajo, en los diez idiomas y con el euro como se
+escribe en cada uno. Si los precios tienen más de 2 días, no enseña ninguno y lo
+dice («No hay precios de hoy: los últimos son del…»). La app los vuelve a mirar
+cada media hora, y el service worker los pide a la red primero.
+
+**Controles:** `tools/auditar_precios_gasolineras.py`, en la auditoría: que el
+guion funciona, que el fichero cumple tu regla (probado metiendo cuatro fallos)
+y que no hay ni un precio en `index.html`.
+
 ## Lo que queda
 
-* **Sesión 92**, que tienes que decidir tú (ver abajo).
-
-### Qué es la sesión 92
-
-Al empezar lo de las gasolineras me pediste **«las 10 más baratas cada 24 h»**. Tu
-propio LEEME dice «nunca precios en la app: son datos perecederos», así que te
-propuse hacerlo sin meter ni un precio en `index.html`: un **fichero aparte**
-(`datos/precios-gasolineras.json`, con el IDEESS y el precio de cada estación, y
-**la fecha dentro**) que el flujo de GitHub Actions rehace **cada día** desde el
-registro del Ministerio. La app lo lee al abrir; si no llega o es viejo, **no
-enseña ningún precio y lo dice**. Con eso, un modo «las 10 más baratas» (de
-gasolina 95 y de diésel, en la isla o cerca de ti), siempre con la fecha del
-precio. Está **sin empezar**: falta que me digas si lo quieres.
+Nada de las gasolineras. Si un día vuelve la BP Ten Bel, ver arriba.
 
 ## Lo que necesito de ti antes de seguir
 

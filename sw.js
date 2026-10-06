@@ -243,7 +243,12 @@ self.addEventListener('fetch', e => {
          el fallo que ya tuvo la prevision del tiempo. Red primero y cache de
          respaldo, igual que el armazon, porque son la misma cosa. */
       // Network first for index.html to get updates fast
+      /* Los precios de las gasolineras, tambien red primero: se rehacen a las
+         7:00 y a las 15:00, y con `cached || fetch` el primero que entrase se
+         quedaria para siempre. Sin red sale el ultimo, y la app no lo ensena
+         si tiene mas de 2 dias. */
       if (req.url.endsWith('index.html') || req.url.endsWith('/') ||
+          url.pathname.endsWith('/datos/precios-gasolineras.json') ||
           /\/(idiomas\/(etiquetas\/)?|faq\/)[a-z]{2,3}\.json$/.test(url.pathname)) {
         return fetch(req).then(res => {
           if (guardableShell(res)) guardar(req, res);

@@ -526,11 +526,14 @@
   },
   "92-el-fichero-de-precios": {
    "que": "Flujo diario que extrae los precios del registro a datos/precios-gasolineras.json con su fecha, y el modo de las 10 mas baratas. NINGUN PRECIO dentro de index.html.",
-   "estado": "pendiente",
+   "estado": "hecha",
    "municipio": null,
    "estaciones": 0,
    "pedido_de_jerome": "6 de octubre: no las 10 mas baratas de la isla, sino las mas baratas de CADA MUNICIPIO. Los municipios con menos de 3 gasolineras no cuentan; de 3 a 8, la mejor; de 8 a 15, las dos mejores; de 15 en adelante, las tres mejores.",
-   "propuesta": "Lectura de los tramos: 3-7 -> 1, 8-14 -> 2, 15 o mas -> 3 (con las de hoy ningun municipio cae justo en 8 ni en 15). Por combustible: gasolina 95 y diesel, por separado; si hay empate en el corte, salen las empatadas. Precios del registro del Ministerio, que el flujo «Registro gasolineras» baja ya desde GitHub (desde este contenedor la API no responde); hoy solo a mano: se le pone horario diario y escribe un fichero aparte, con la fecha dentro. Si el fichero tiene mas de 2 dias, la app no ensena precios y lo dice. Pendiente del OK de Jerome."
+   "propuesta": "Lectura de los tramos: 3-7 -> 1, 8-14 -> 2, 15 o mas -> 3 (con las de hoy ningun municipio cae justo en 8 ni en 15). Por combustible: gasolina 95 y diesel, por separado; si hay empate en el corte, salen las empatadas. Precios del registro del Ministerio, que el flujo «Registro gasolineras» baja ya desde GitHub (desde este contenedor la API no responde); hoy solo a mano: se le pone horario diario y escribe un fichero aparte, con la fecha dentro. Si el fichero tiene mas de 2 dias, la app no ensena precios y lo dice. Pendiente del OK de Jerome.",
+   "hecho_el": "2026-10-07",
+   "decisiones_de_jerome": "6 de octubre: gasolina 95 y diesel cada uno por separado; los empates salen todos; dos veces al dia (7:00 y 15:00).",
+   "como": ".github/workflows/precios-gasolineras.yml pasa cada hora (GitHub llega 4-8 h tarde a los cron) y tools/precios_gasolineras.py --toca decide por la hora real de Canarias: baja el registro del Ministerio en la primera pasada tras las 7:00 y tras las 15:00 y escribe datos/precios-gasolineras.json (solo las mas baratas de cada municipio, con la fecha del Ministerio). La app lo lee al abrir y cada 30 min; categoria «Gasolineras mas baratas» (Servicios) y lineas de precio en el globo y en la ficha, en los diez idiomas. Con mas de 2 dias no ensena precios y lo dice. El service worker lo pide red primero. Control: tools/auditar_precios_gasolineras.py, en auditar.sh."
   }
  },
  "horarios_google_contra_registro": {
