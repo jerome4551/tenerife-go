@@ -1,0 +1,587 @@
+{
+ "_": [
+  "Lo escribe .github/workflows/precios-gasolineras.yml con tools/precios_gasolineras.py, dos veces al dia (7:00 y 15:00 de Canarias). No se edita a mano.",
+  "Regla de Jerome: menos de 3 gasolineras, ninguna; de 3 a 7, la mas barata; de 8 a 14, las 2; de 15 en adelante, las 3. Gasolina 95 y diesel por separado; los empates, todos.",
+  "La app no ensena estos precios si «fecha» tiene mas de 2 dias."
+ ],
+ "fuente": "Ministerio para la Transicion Ecologica y el Reto Demografico, Geoportal de Gasolineras",
+ "fecha": "2026-10-06T22:48:44Z",
+ "fecha_ministerio": "07/10/2026 0:48:44",
+ "franja": "2026-10-06 15:00",
+ "municipios": {
+  "Adeje": {
+   "gasolineras": 14,
+   "cuantas": 2,
+   "g95": [
+    {
+     "id": "gas-7730-adeje",
+     "ideess": "7730",
+     "precio": 1.439
+    },
+    {
+     "id": "gas-13639-adeje",
+     "ideess": "13639",
+     "precio": 1.459
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-13639-adeje",
+     "ideess": "13639",
+     "precio": 1.599
+    },
+    {
+     "id": "gas-7730-adeje",
+     "ideess": "7730",
+     "precio": 1.599
+    }
+   ]
+  },
+  "Arafo": {
+   "gasolineras": 7,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-16267-arafo",
+     "ideess": "16267",
+     "precio": 1.299
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-16267-arafo",
+     "ideess": "16267",
+     "precio": 1.599
+    }
+   ]
+  },
+  "Arico": {
+   "gasolineras": 5,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-tf1-abades",
+     "ideess": "7726",
+     "precio": 1.524
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-7696-arico",
+     "ideess": "7696",
+     "precio": 1.709
+    },
+    {
+     "id": "gas-7828-arico",
+     "ideess": "7828",
+     "precio": 1.709
+    }
+   ]
+  },
+  "Arona": {
+   "gasolineras": 14,
+   "cuantas": 2,
+   "g95": [
+    {
+     "id": "gas-12370-arona",
+     "ideess": "12370",
+     "precio": 1.529
+    },
+    {
+     "id": "gas-8280-arona",
+     "ideess": "8280",
+     "precio": 1.529
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-8280-arona",
+     "ideess": "8280",
+     "precio": 1.689
+    },
+    {
+     "id": "gas-10543-arona",
+     "ideess": "10543",
+     "precio": 1.699
+    },
+    {
+     "id": "gas-12370-arona",
+     "ideess": "12370",
+     "precio": 1.699
+    },
+    {
+     "id": "gas-9947-arona",
+     "ideess": "9947",
+     "precio": 1.699
+    }
+   ]
+  },
+  "Candelaria": {
+   "gasolineras": 4,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-7786-candelaria",
+     "ideess": "7786",
+     "precio": 1.438
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-7719-candelaria",
+     "ideess": "7719",
+     "precio": 1.718
+    }
+   ]
+  },
+  "El Rosario": {
+   "gasolineras": 3,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-7720-el-rosario",
+     "ideess": "7720",
+     "precio": 1.518
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-7720-el-rosario",
+     "ideess": "7720",
+     "precio": 1.697
+    }
+   ]
+  },
+  "El Sauzal": {
+   "gasolineras": 5,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-tf5-el-sauzal",
+     "ideess": "7700",
+     "precio": 1.559
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-tf5-el-sauzal",
+     "ideess": "7700",
+     "precio": 1.729
+    }
+   ]
+  },
+  "Fasnia": {
+   "gasolineras": 3,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-7718-fasnia",
+     "ideess": "7718",
+     "precio": 1.569
+    },
+    {
+     "id": "gas-7835-fasnia",
+     "ideess": "7835",
+     "precio": 1.569
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-7835-fasnia",
+     "ideess": "7835",
+     "precio": 1.709
+    }
+   ]
+  },
+  "Granadilla de Abona": {
+   "gasolineras": 11,
+   "cuantas": 2,
+   "g95": [
+    {
+     "id": "gas-7731-granadilla-de-abona",
+     "ideess": "7731",
+     "precio": 1.524
+    },
+    {
+     "id": "gas-7626-granadilla-de-abona",
+     "ideess": "7626",
+     "precio": 1.559
+    },
+    {
+     "id": "gas-7721-granadilla-de-abona",
+     "ideess": "7721",
+     "precio": 1.559
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-7626-granadilla-de-abona",
+     "ideess": "7626",
+     "precio": 1.689
+    },
+    {
+     "id": "gas-11690-granadilla-de-abona",
+     "ideess": "11690",
+     "precio": 1.699
+    },
+    {
+     "id": "gas-16132-granadilla-de-abona",
+     "ideess": "16132",
+     "precio": 1.699
+    },
+    {
+     "id": "gas-7721-granadilla-de-abona",
+     "ideess": "7721",
+     "precio": 1.699
+    }
+   ]
+  },
+  "Guía de Isora": {
+   "gasolineras": 7,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-7722-guia-de-isora",
+     "ideess": "7722",
+     "precio": 1.529
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-10345-guia-de-isora",
+     "ideess": "10345",
+     "precio": 1.708
+    }
+   ]
+  },
+  "Güímar": {
+   "gasolineras": 6,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-12479-guimar",
+     "ideess": "12479",
+     "precio": 1.399
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-7621-guimar",
+     "ideess": "7621",
+     "precio": 1.689
+    }
+   ]
+  },
+  "Icod de los Vinos": {
+   "gasolineras": 5,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-15846-icod-de-los-vinos",
+     "ideess": "15846",
+     "precio": 1.479
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-15846-icod-de-los-vinos",
+     "ideess": "15846",
+     "precio": 1.579
+    }
+   ]
+  },
+  "La Guancha": {
+   "gasolineras": 3,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-7724-la-guancha",
+     "ideess": "7724",
+     "precio": 1.497
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-7747-la-guancha",
+     "ideess": "7747",
+     "precio": 1.637
+    }
+   ]
+  },
+  "La Matanza de Acentejo": {
+   "gasolineras": 3,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-tf5-el-bohio",
+     "ideess": "9635",
+     "precio": 1.563
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-tf5-el-bohio",
+     "ideess": "9635",
+     "precio": 1.758
+    }
+   ]
+  },
+  "La Orotava": {
+   "gasolineras": 10,
+   "cuantas": 2,
+   "g95": [
+    {
+     "id": "gas-15901-la-orotava",
+     "ideess": "15901",
+     "precio": 1.459
+    },
+    {
+     "id": "gas-16315-la-orotava",
+     "ideess": "16315",
+     "precio": 1.459
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-15901-la-orotava",
+     "ideess": "15901",
+     "precio": 1.639
+    },
+    {
+     "id": "gas-16315-la-orotava",
+     "ideess": "16315",
+     "precio": 1.639
+    }
+   ]
+  },
+  "Los Realejos": {
+   "gasolineras": 13,
+   "cuantas": 2,
+   "g95": [
+    {
+     "id": "gas-15044-los-realejos",
+     "ideess": "15044",
+     "precio": 1.437
+    },
+    {
+     "id": "gas-10970-los-realejos",
+     "ideess": "10970",
+     "precio": 1.473
+    },
+    {
+     "id": "gas-14769-los-realejos",
+     "ideess": "14769",
+     "precio": 1.473
+    },
+    {
+     "id": "gas-7855-los-realejos",
+     "ideess": "7855",
+     "precio": 1.473
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-15044-los-realejos",
+     "ideess": "15044",
+     "precio": 1.599
+    },
+    {
+     "id": "gas-10970-los-realejos",
+     "ideess": "10970",
+     "precio": 1.657
+    },
+    {
+     "id": "gas-14769-los-realejos",
+     "ideess": "14769",
+     "precio": 1.657
+    },
+    {
+     "id": "gas-7855-los-realejos",
+     "ideess": "7855",
+     "precio": 1.657
+    }
+   ]
+  },
+  "Puerto de la Cruz": {
+   "gasolineras": 5,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-7624-puerto-de-la-cruz",
+     "ideess": "7624",
+     "precio": 1.559
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-7624-puerto-de-la-cruz",
+     "ideess": "7624",
+     "precio": 1.699
+    }
+   ]
+  },
+  "San Cristóbal de La Laguna": {
+   "gasolineras": 28,
+   "cuantas": 3,
+   "g95": [
+    {
+     "id": "gas-15534-san-cristobal-de-la-laguna",
+     "ideess": "15534",
+     "precio": 1.439
+    },
+    {
+     "id": "gas-13837-san-cristobal-de-la-laguna",
+     "ideess": "13837",
+     "precio": 1.469
+    },
+    {
+     "id": "gas-7725-san-cristobal-de-la-laguna",
+     "ideess": "7725",
+     "precio": 1.515
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-13837-san-cristobal-de-la-laguna",
+     "ideess": "13837",
+     "precio": 1.688
+    },
+    {
+     "id": "gas-9290-san-cristobal-de-la-laguna",
+     "ideess": "9290",
+     "precio": 1.688
+    },
+    {
+     "id": "gas-13353-san-cristobal-de-la-laguna",
+     "ideess": "13353",
+     "precio": 1.69
+    }
+   ]
+  },
+  "San Miguel de Abona": {
+   "gasolineras": 10,
+   "cuantas": 2,
+   "g95": [
+    {
+     "id": "gas-13292-san-miguel-de-abona",
+     "ideess": "13292",
+     "precio": 1.439
+    },
+    {
+     "id": "gas-15913-san-miguel-de-abona",
+     "ideess": "15913",
+     "precio": 1.459
+    },
+    {
+     "id": "gas-16520-san-miguel-de-abona",
+     "ideess": "16520",
+     "precio": 1.459
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-15913-san-miguel-de-abona",
+     "ideess": "15913",
+     "precio": 1.599
+    },
+    {
+     "id": "gas-16520-san-miguel-de-abona",
+     "ideess": "16520",
+     "precio": 1.599
+    }
+   ]
+  },
+  "Santa Cruz de Tenerife": {
+   "gasolineras": 33,
+   "cuantas": 3,
+   "g95": [
+    {
+     "id": "gas-14353-santa-cruz-de-tenerife",
+     "ideess": "14353",
+     "precio": 1.385
+    },
+    {
+     "id": "gas-16466-santa-cruz-de-tenerife",
+     "ideess": "16466",
+     "precio": 1.439
+    },
+    {
+     "id": "gas-7727-santa-cruz-de-tenerife",
+     "ideess": "7727",
+     "precio": 1.439
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-14353-santa-cruz-de-tenerife",
+     "ideess": "14353",
+     "precio": 1.575
+    },
+    {
+     "id": "gas-13966-santa-cruz-de-tenerife",
+     "ideess": "13966",
+     "precio": 1.599
+    },
+    {
+     "id": "gas-7727-santa-cruz-de-tenerife",
+     "ideess": "7727",
+     "precio": 1.599
+    }
+   ]
+  },
+  "Santiago del Teide": {
+   "gasolineras": 4,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-10779-santiago-del-teide",
+     "ideess": "10779",
+     "precio": 1.58
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-10779-santiago-del-teide",
+     "ideess": "10779",
+     "precio": 1.7
+    }
+   ]
+  },
+  "Tacoronte": {
+   "gasolineras": 6,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-7733-tacoronte",
+     "ideess": "7733",
+     "precio": 1.498
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-7733-tacoronte",
+     "ideess": "7733",
+     "precio": 1.658
+    }
+   ]
+  },
+  "Tegueste": {
+   "gasolineras": 3,
+   "cuantas": 1,
+   "g95": [
+    {
+     "id": "gas-15101-tegueste",
+     "ideess": "15101",
+     "precio": 1.589
+    }
+   ],
+   "diesel": [
+    {
+     "id": "gas-7728-tegueste",
+     "ideess": "7728",
+     "precio": 1.725
+    }
+   ]
+  }
+ }
+}
