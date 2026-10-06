@@ -528,7 +528,9 @@
    "que": "Flujo diario que extrae los precios del registro a datos/precios-gasolineras.json con su fecha, y el modo de las 10 mas baratas. NINGUN PRECIO dentro de index.html.",
    "estado": "pendiente",
    "municipio": null,
-   "estaciones": 0
+   "estaciones": 0,
+   "pedido_de_jerome": "6 de octubre: no las 10 mas baratas de la isla, sino las mas baratas de CADA MUNICIPIO. Los municipios con menos de 3 gasolineras no cuentan; de 3 a 8, la mejor; de 8 a 15, las dos mejores; de 15 en adelante, las tres mejores.",
+   "propuesta": "Lectura de los tramos: 3-7 -> 1, 8-14 -> 2, 15 o mas -> 3 (con las de hoy ningun municipio cae justo en 8 ni en 15). Por combustible: gasolina 95 y diesel, por separado; si hay empate en el corte, salen las empatadas. Precios del registro del Ministerio, que el flujo «Registro gasolineras» baja ya desde GitHub (desde este contenedor la API no responde); hoy solo a mano: se le pone horario diario y escribe un fichero aparte, con la fecha dentro. Si el fichero tiene mas de 2 dias, la app no ensena precios y lo dice. Pendiente del OK de Jerome."
   }
  },
  "horarios_google_contra_registro": {
