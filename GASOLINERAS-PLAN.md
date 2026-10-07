@@ -1353,6 +1353,45 @@ cada media hora, y el service worker los pide a la red primero.
 guion funciona, que el fichero cumple tu regla (probado metiendo cuatro fallos)
 y que no hay ni un precio en `index.html`.
 
+## Sesión 93 · la más barata cerca de mí · HECHA el 7 de octubre
+
+Lo que pediste: «un botón: encuentra la gasolinera más barata cerca de mí».
+
+**Dónde está el botón.** En dos sitios, los dos con el mismo texto en los diez
+idiomas: en la hoja de categorías, pestaña **Servicios**, debajo de las
+gasolineras («💶 La gasolinera más barata cerca de mí»); y **sobre el mapa**
+cuando tienes filtradas «Gasolineras» o «Gasolineras más baratas», justo encima
+de la barra del filtro.
+
+**Lo que hace.** Pide la posición del móvil (o usa la del GPS de la app si ya
+está encendido) y abre un panel con **gasolina 95 y diésel por separado**: las
+**3 más baratas** a menos de **10 km**, y si otras empatan con la tercera,
+salen también (tu regla de los empates). Con un toque cambias a **5 o 20 km**.
+Cada fila dice precio, nombre y distancia, y abre la ficha. Arriba, la fecha del
+Ministerio.
+
+**Lo que elegí yo, porque no lo dijiste** (cámbialo si no te vale):
+- el radio de 10 km de entrada, con 5 y 20 a un toque;
+- a igual precio, la más cerca primero;
+- la distancia es **en línea recta**, no por carretera, y el panel lo dice
+  («En línea recta, a menos de:»);
+- como el panel enseña el precio de **cualquier** gasolinera, su ficha también
+  lo enseña ahora (antes solo las más baratas de su municipio), para que no
+  digan cosas distintas. La frase «la más barata de…» sigue saliendo solo en
+  las que lo son.
+
+**De dónde salen los precios.** Del mismo fichero de la sesión 92: el flujo
+«Precios gasolineras» escribe ahora también el precio de **cada** gasolinera de
+la app («estaciones»), a las 7:00 y a las 15:00. **Ningún precio en
+`index.html`.** Si tienen más de 2 días, el botón no busca y dice de cuándo son
+los últimos; fuera de Tenerife o sin permiso de ubicación, lo dice también.
+
+**Controles:** `tools/auditar_precios_gasolineras.py` mira ahora también
+«estaciones» (que son gasolineras de la app, que cuadran con las más baratas de
+cada municipio; probado metiendo seis fallos) y `tools/auditar_gas_cerca.js`
+abre el botón en los diez idiomas con la posición simulada y compara cada lista
+con un cálculo hecho aparte (probado ordenando mal a propósito: se pone rojo).
+
 ## Lo que queda
 
 Nada de las gasolineras. Si un día vuelve la BP Ten Bel, ver arriba.

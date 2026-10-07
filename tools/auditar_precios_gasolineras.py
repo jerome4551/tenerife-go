@@ -11,6 +11,9 @@ de que llegue a la app. Esto lo mira:
      la app, que cada municipio lleva las que dice la regla de Jerome (menos de
      3, ninguna; 3-7, una; 8-14, dos; 15 o mas, tres; los empates, todos), que
      van de mas barata a mas cara y que ningun precio es absurdo.
+     Y «estaciones» (el boton «la mas barata cerca de mi»): que cada id es una
+     gasolinera de la app, que cuadra con la lista de su municipio y que no
+     falta media isla.
   3. Que index.html no lleva ningun precio de gasolina (LEEME: son perecederos).
 
 Sale con 1 si algo falla. No escribe nada en el repo.
@@ -34,6 +37,35 @@ fallos = []
 def mal(t):
     fallos.append(t)
     print('  FALLO: ' + t)
+
+
+def revisar_estaciones(d, fichas, nombre, cuenta):
+    est = d.get('estaciones')
+    if est is None:
+        return False
+    porid = {f['id']: f for f in fichas}
+    for i, x in est.items():
+        if i not in porid:
+            mal('%s: estaciones: %s no es una gasolinera de la app' % (nombre, i))
+        if not x or set(x) - set(P.COMBUSTIBLES):
+            mal('%s: estaciones: %s lleva %r' % (nombre, i, x))
+        for p in x.values():
+            if not 0.5 < p < 3.5:
+                mal('%s: estaciones: %s a %s el litro' % (nombre, i, p))
+    if len(est) < 0.8 * len(fichas):
+        mal('%s: estaciones: solo %d de %d gasolineras llevan precio' % (nombre, len(est), len(fichas)))
+    # lo mismo que dice cada municipio, visto desde «estaciones»
+    for mu, m in d['municipios'].items():
+        for comb in P.COMBUSTIBLES:
+            ps = [est[f['id']][comb] for f in cuenta.get(mu, []) if comb in est.get(f['id'], {})]
+            for y in m.get(comb) or []:
+                if est.get(y['id'], {}).get(comb) != y['precio']:
+                    mal('%s: %s %s: %s dice %s y estaciones %s' % (nombre, mu, comb, y['id'], y['precio'],
+                                                                   est.get(y['id'], {}).get(comb)))
+            if ps and m.get(comb) and m[comb][0]['precio'] != min(ps):
+                mal('%s: %s %s: la mas barata es %s y la lista empieza en %s' % (nombre, mu, comb, min(ps),
+                                                                                 m[comb][0]['precio']))
+    return True
 
 
 def revisar(d, fichas, nombre):
@@ -71,6 +103,7 @@ def revisar(d, fichas, nombre):
                     mal('%s: %s no es de %s o no es la estacion %s' % (nombre, y['id'], mu, y['ideess']))
                 if not 0.5 < y['precio'] < 3.5:
                     mal('%s: %s a %s el litro' % (nombre, y['id'], y['precio']))
+    return revisar_estaciones(d, fichas, nombre, cuenta)
 
 
 def main():
@@ -89,15 +122,20 @@ def main():
             mal('el guion no funciona: %s' % (o.stderr or o.stdout).strip())
         else:
             prueba = json.load(open(s, encoding='utf-8'))
-            revisar(prueba, fichas, 'prueba')
-            print('  el guion, con el registro del repo a hoy: %d municipios' % len(prueba['municipios']))
+            if not revisar(prueba, fichas, 'prueba'):
+                mal('prueba: el guion no escribe «estaciones» (el boton «cerca de mi» se queda sin precios)')
+            print('  el guion, con el registro del repo a hoy: %d municipios, %d gasolineras con precio'
+                  % (len(prueba['municipios']), len(prueba.get('estaciones') or {})))
     # 2 · el fichero de verdad, si ya existe
     real = os.path.join(RAIZ, 'datos', 'precios-gasolineras.json')
     if os.path.exists(real):
         r = json.load(open(real, encoding='utf-8'))
-        revisar(r, fichas, 'datos/precios-gasolineras.json')
-        print('  datos/precios-gasolineras.json: precios del %s (franja %s), %d municipios'
-              % (r.get('fecha_ministerio'), r.get('franja'), len(r.get('municipios', {}))))
+        con = revisar(r, fichas, 'datos/precios-gasolineras.json')
+        print('  datos/precios-gasolineras.json: precios del %s (franja %s), %d municipios, %s'
+              % (r.get('fecha_ministerio'), r.get('franja'), len(r.get('municipios', {})),
+                 '%d gasolineras con precio' % len(r['estaciones']) if con else
+                 'aun sin «estaciones»: las escribe el flujo en su proxima pasada (hasta entonces el boton '
+                 '«cerca de mi» dice que no hay precios)'))
     else:
         print('  datos/precios-gasolineras.json: aun no lo ha escrito el flujo (la app lo dice y no ensena precios)')
     # 3 · ningun precio dentro de index.html

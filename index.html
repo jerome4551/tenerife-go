@@ -3618,6 +3618,86 @@ window.onunhandledrejection = function(e) {
     letter-spacing: 0.02em;
   }
 
+  /* ── «La gasolinera mas barata cerca de mi» ── */
+  .cat-sheet-gas-row[hidden], .gas-cerca-fab[hidden] { display: none; }
+  .cat-sheet-gas-row { margin-top: 8px; border-color: rgba(201,168,76,0.45); }
+  .cat-sheet-gas-ir { color: var(--gold); font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
+  .gas-cerca-fab {
+    /* dentro de .filter-status, encima de ella */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(100% + 8px);
+    width: max-content;
+    /* centrado y sin llegar al trofeo (a 12 px del borde, 36 de ancho) */
+    max-width: calc(100vw - 112px);
+    padding: 8px 14px;
+    border-radius: 99px;
+    background: rgba(27,35,48,0.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+    text-wrap: balance;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  }
+  .gas-cerca-fab:active { transform: translateX(-50%) scale(0.97); }
+  .gas-cerca-panel { border-color: rgba(201,168,76,0.4); }
+  @media (min-width: 768px) {
+    .gas-cerca-panel { left: calc(50% - 280px); right: calc(50% - 280px); }
+  }
+  .gas-cerca-panel .nearby-stops-header { border-bottom-color: rgba(201,168,76,0.18); }
+  .gas-cerca-panel .nearby-stops-title { color: var(--gold-light); }
+  .gas-cerca-panel .nearby-stops-subtitle { white-space: normal; }
+  .gas-cerca-radios {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px 0;
+    flex-shrink: 0;
+  }
+  .gas-cerca-radio-lbl { font-size: 0.68rem; color: var(--muted); font-family: 'DM Sans', sans-serif; margin-right: 2px; }
+  .gas-cerca-radio {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 99px;
+    padding: 3px 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    cursor: pointer;
+  }
+  .gas-cerca-radio.active { background: rgba(201,168,76,0.18); border-color: var(--gold); color: var(--gold-light); font-weight: 600; }
+  .gas-cerca-comb {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    margin-top: 4px;
+  }
+  .gas-cerca-comb:first-child { margin-top: 0; }
+  .gas-cerca-panel .nearby-stop { background: rgba(255,255,255,0.03); border-color: var(--border); }
+  .gas-cerca-panel .nearby-stop:hover { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.4); }
+  .gas-cerca-panel .nearby-stop.la-mas-barata { background: rgba(201,168,76,0.1); border-color: var(--gold); }
+  .gas-cerca-panel .nearby-stop-name { white-space: normal; }
+  .gas-cerca-precio {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    flex-shrink: 0;
+    min-width: 62px;
+  }
+  .gas-cerca-dist { font-size: 0.68rem; color: var(--muted); flex-shrink: 0; white-space: nowrap; }
+  .gas-cerca-vacio { font-size: 0.74rem; color: var(--muted); font-style: italic; padding: 2px 2px 4px; }
+
   /* Acción en popup de lugar/GPS: botón "Cómo llegar" */
   .popup-howto-btn {
     display: flex;
@@ -6315,6 +6395,16 @@ window.onunhandledrejection = function(e) {
       <div class="cat-grid" id="cat-grid"></div>
     </div>
 
+    <!-- «La gasolinera mas barata cerca de mi»: solo en la pestaña Servicios -->
+    <div class="cat-sheet-bus-row cat-sheet-gas-row" id="cat-sheet-gas-row" role="button" tabindex="0" onclick="abrirGasCerca(event)" hidden>
+      <span class="cat-sheet-bus-icon" aria-hidden="true">💶</span>
+      <div style="flex:1;min-width:0">
+        <div class="cat-sheet-bus-label" data-tx="gasCercaBoton">La gasolinera más barata cerca de mí</div>
+        <div class="cat-sheet-bus-sub" data-tx="gasCercaSub">Gasolina 95 y diésel · precio oficial del Ministerio</div>
+      </div>
+      <span class="cat-sheet-gas-ir" aria-hidden="true">›</span>
+    </div>
+
     <!-- Separador + toggle bus -->
     <div class="cat-sheet-sep"></div>
     <div class="cat-sheet-bus-row" id="cat-sheet-bus-row" onclick="toggleBusAccessFilter(event)">
@@ -6574,6 +6664,10 @@ window.onunhandledrejection = function(e) {
   <div class="filter-status" id="filter-status">
     <span id="filter-status-text"></span>
     <button class="filter-clear-btn" onclick="clearAllFilters()" id="filter-clear-label">Limpiar</button>
+    <!-- «La gasolinera mas barata cerca de mi» sobre el mapa: solo con las
+         gasolineras filtradas, y por eso va dentro de esta barra, que con un
+         filtro siempre esta: queda justo encima, mida lo que mida -->
+    <button type="button" class="gas-cerca-fab" id="gas-cerca-fab" onclick="abrirGasCerca(event)" hidden><span aria-hidden="true">💶</span> <span data-tx="gasCercaBoton">La gasolinera más barata cerca de mí</span></button>
   </div>
 
   <!-- TOAST COMPARTIR BUS -->
@@ -6591,6 +6685,19 @@ window.onunhandledrejection = function(e) {
       <button class="nearby-stops-close" onclick="closeNearbyStops()" data-tx-aria="ariaCerrarParadas" aria-label="Cerrar paradas cercanas">✕</button>
     </div>
     <div class="nearby-stops-list" id="nearby-stops-list"></div>
+  </div>
+
+  <!-- PANEL «LA GASOLINERA MAS BARATA CERCA DE MI» -->
+  <div class="nearby-stops-panel gas-cerca-panel" id="gas-cerca-panel" role="dialog" aria-labelledby="gas-cerca-titulo">
+    <div class="nearby-stops-header">
+      <div style="flex:1;min-width:0">
+        <div class="nearby-stops-title"><span aria-hidden="true">💶</span> <span id="gas-cerca-titulo" data-tx="gasCercaTitulo">Gasolineras más baratas cerca de ti</span></div>
+        <div class="nearby-stops-subtitle" id="gas-cerca-fecha"></div>
+      </div>
+      <button class="nearby-stops-close" onclick="cerrarGasCerca()" data-tx-aria="ariaCerrar" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="gas-cerca-radios" id="gas-cerca-radios"></div>
+    <div class="nearby-stops-list" id="gas-cerca-lista"></div>
   </div>
 
   <!-- PANEL BUS TITSA -->
@@ -9153,6 +9260,7 @@ Object.assign(UI_TX, {"busYaSalio": {"es": "La guagua {n} al Teide sale una vez 
 Object.assign(UI_TX, {"busNoDisponible": {"es": "Sin conexión", "en": "No connection", "fr": "Pas de liaison", "de": "Keine Verbindung", "it": "Nessun collegamento", "nl": "Geen verbinding", "zh": "无直达", "zht": "無直達", "bg": "Няма връзка", pl: "Brak połączenia"}, "busSinRuta": {"es": "No se encontró una ruta en guagua para este trayecto.", "en": "No bus route found for this journey.", "fr": "Aucun itinéraire en bus trouvé pour ce trajet.", "de": "Für diese Strecke wurde keine Busverbindung gefunden.", "it": "Nessun percorso in autobus trovato per questo tragitto.", "nl": "Geen busroute gevonden voor dit traject.", "zh": "没有找到这段行程的公交路线。", "zht": "沒有找到這段行程的公車路線。", "bg": "Не е намерен автобусен маршрут за това пътуване.", pl: "Nie znaleziono połączenia autobusowego na tej trasie."}});
 Object.assign(UI_TX, {"photoLoading": {"es": "Cargando", "en": "Loading", "fr": "Chargement", "de": "Lädt", "it": "Caricamento", "nl": "Laden", "zh": "加载中", "zht": "載入中", "bg": "Зарежда", pl: "Wczytywanie"}});
 Object.assign(UI_TX, {"gasPrecioG95": {"es": "Gasolina 95", "en": "Petrol 95", "fr": "Essence 95", "de": "Benzin 95", "it": "Benzina 95", "nl": "Benzine 95", "zh": "95号汽油", "zht": "95號汽油", "bg": "Бензин 95", "pl": "Benzyna 95"}, "gasPrecioDiesel": {"es": "Diésel", "en": "Diesel", "fr": "Gazole", "de": "Diesel", "it": "Gasolio", "nl": "Diesel", "zh": "柴油", "zht": "柴油", "bg": "Дизел", "pl": "Olej napędowy"}, "gasBarataUna": {"es": "la más barata de {m}", "en": "the cheapest in {m}", "fr": "la moins chère de {m}", "de": "die günstigste in {m}", "it": "la più economica di {m}", "nl": "de goedkoopste in {m}", "zh": "{m}最便宜", "zht": "{m}最便宜", "bg": "най-евтината в {m}", "pl": "najtańsza w {m}"}, "gasBarataVarias": {"es": "entre las {n} más baratas de {m}", "en": "one of the {n} cheapest in {m}", "fr": "parmi les {n} moins chères de {m}", "de": "unter den {n} günstigsten in {m}", "it": "tra le {n} più economiche di {m}", "nl": "bij de {n} goedkoopste in {m}", "zh": "{m}最便宜的{n}家之一", "zht": "{m}最便宜的{n}家之一", "bg": "сред {n}-те най-евтини в {m}", "pl": "wśród {n} najtańszych w {m}"}, "gasPrecioFecha": {"es": "Precio oficial del Ministerio · {f}", "en": "Official price (Spanish Ministry) · {f}", "fr": "Prix officiel du ministère · {f}", "de": "Amtlicher Preis des Ministeriums · {f}", "it": "Prezzo ufficiale del Ministero · {f}", "nl": "Officiële prijs van het ministerie · {f}", "zh": "西班牙政府官方价格 · {f}", "zht": "西班牙政府官方價格 · {f}", "bg": "Официална цена на министерството · {f}", "pl": "Oficjalna cena ministerstwa · {f}"}, "gasPreciosViejos": {"es": "No hay precios de hoy: los últimos son del {f}.", "en": "No current prices: the latest are from {f}.", "fr": "Pas de prix à jour : les derniers datent du {f}.", "de": "Keine aktuellen Preise: die letzten sind vom {f}.", "it": "Nessun prezzo aggiornato: gli ultimi sono del {f}.", "nl": "Geen actuele prijzen: de laatste zijn van {f}.", "zh": "暂无最新价格：最近一次为{f}。", "zht": "暫無最新價格：最近一次為{f}。", "bg": "Няма актуални цени: последните са от {f}.", "pl": "Brak aktualnych cen: ostatnie są z {f}."}, "gasPreciosNo": {"es": "Los precios no están disponibles ahora.", "en": "Prices are not available right now.", "fr": "Les prix ne sont pas disponibles pour le moment.", "de": "Die Preise sind gerade nicht verfügbar.", "it": "I prezzi non sono disponibili al momento.", "nl": "De prijzen zijn nu niet beschikbaar.", "zh": "目前无法获取价格。", "zht": "目前無法取得價格。", "bg": "В момента цените не са достъпни.", "pl": "Ceny są teraz niedostępne."}});
+Object.assign(UI_TX, {"gasCercaBoton": {"es": "La gasolinera más barata cerca de mí", "en": "Cheapest petrol station near me", "fr": "La station la moins chère près de moi", "de": "Günstigste Tankstelle in meiner Nähe", "it": "Il distributore più economico vicino a me", "nl": "Goedkoopste tankstation bij mij in de buurt", "zh": "我附近最便宜的加油站", "zht": "我附近最便宜的加油站", "bg": "Най-евтината бензиностанция близо до мен", "pl": "Najtańsza stacja paliw w pobliżu"}, "gasCercaSub": {"es": "Gasolina 95 y diésel · precio oficial del Ministerio", "en": "Petrol 95 and diesel · official price (Spanish Ministry)", "fr": "Essence 95 et gazole · prix officiel du ministère", "de": "Benzin 95 und Diesel · amtlicher Preis des Ministeriums", "it": "Benzina 95 e gasolio · prezzo ufficiale del Ministero", "nl": "Benzine 95 en diesel · officiële prijs van het ministerie", "zh": "95号汽油和柴油 · 西班牙政府官方价格", "zht": "95號汽油和柴油 · 西班牙政府官方價格", "bg": "Бензин 95 и дизел · официална цена на министерството", "pl": "Benzyna 95 i olej napędowy · oficjalna cena ministerstwa"}, "gasCercaTitulo": {"es": "Gasolineras más baratas cerca de ti", "en": "Cheapest petrol stations near you", "fr": "Stations les moins chères près de vous", "de": "Günstigste Tankstellen in Ihrer Nähe", "it": "Distributori più economici vicino a te", "nl": "Goedkoopste tankstations bij jou in de buurt", "zh": "你附近最便宜的加油站", "zht": "你附近最便宜的加油站", "bg": "Най-евтини бензиностанции близо до вас", "pl": "Najtańsze stacje paliw w pobliżu"}, "gasCercaRadio": {"es": "En línea recta, a menos de:", "en": "Straight-line distance, within:", "fr": "À vol d’oiseau, à moins de :", "de": "Luftlinie, im Umkreis von:", "it": "In linea d’aria, entro:", "nl": "Hemelsbreed, binnen:", "zh": "直线距离，不超过：", "zht": "直線距離，不超過：", "bg": "По права линия, до:", "pl": "W linii prostej, do:"}, "gasCercaNinguna": {"es": "Ninguna gasolinera con precio a menos de {d}.", "en": "No petrol station with a price within {d}.", "fr": "Aucune station avec un prix à moins de {d}.", "de": "Keine Tankstelle mit Preis im Umkreis von {d}.", "it": "Nessun distributore con prezzo entro {d}.", "nl": "Geen tankstation met een prijs binnen {d}.", "zh": "{d}以内没有带价格的加油站。", "zht": "{d}以內沒有帶價格的加油站。", "bg": "Няма бензиностанция с цена в рамките на {d}.", "pl": "Brak stacji z ceną w promieniu {d}."}});
 Object.assign(UI_TX, {"routeCalculating": {"es": "Calculando…", "en": "Calculating…", "fr": "Calcul en cours…", "de": "Wird berechnet…", "it": "Calcolo in corso…", "nl": "Berekenen…", "zh": "正在计算…", "zht": "正在計算…", "bg": "Изчислява…", pl: "Obliczam…"}, "routeBusSearch": {"es": "Buscando paradas y líneas…", "en": "Looking for stops and lines…", "fr": "Recherche d’arrêts et de lignes…", "de": "Haltestellen und Linien werden gesucht…", "it": "Ricerca di fermate e linee…", "nl": "Haltes en lijnen zoeken…", "zh": "正在查找站点与线路…", "zht": "正在查詢站點與路線…", "bg": "Търсене на спирки и линии…", pl: "Szukam przystanków i linii…"}, "gpsNoSupport": {"es": "GPS no disponible en este navegador", "en": "GPS is not available in this browser", "fr": "GPS non disponible dans ce navigateur", "de": "GPS in diesem Browser nicht verfügbar", "it": "GPS non disponibile in questo browser", "nl": "GPS niet beschikbaar in deze browser", "zh": "此浏览器不支持 GPS", "zht": "此瀏覽器不支援 GPS", "bg": "GPS не е достъпен в този браузър", pl: "GPS niedostępny w tej przeglądarce"}, "authNotConfigured": {"es": "Servicio no configurado todavía.", "en": "The service is not set up yet.", "fr": "Le service n’est pas encore configuré.", "de": "Der Dienst ist noch nicht eingerichtet.", "it": "Il servizio non è ancora configurato.", "nl": "De dienst is nog niet ingesteld.", "zh": "服务尚未配置。", "zht": "服務尚未設定。", "bg": "Услугата още не е настроена.", pl: "Usługa nie jest jeszcze skonfigurowana."}});
 Object.assign(UI_TX, {"camposObligatorios": {"es": "Por favor rellena todos los campos obligatorios (*)", "en": "Please fill in all the required fields (*)", "fr": "Merci de remplir tous les champs obligatoires (*)", "de": "Bitte fülle alle Pflichtfelder aus (*)", "it": "Compila tutti i campi obbligatori (*)", "nl": "Vul alle verplichte velden in (*)", "zh": "请填写所有必填栏位（*）", "zht": "請填寫所有必填欄位（*）", "bg": "Моля, попълнете всички задължителни полета (*)", pl: "Wypełnij wszystkie pola obowiązkowe (*)"}, "shopAdded": {"es": "Añadido", "en": "Added", "fr": "Ajouté", "de": "Hinzugefügt", "it": "Aggiunto", "nl": "Toegevoegd", "zh": "已加入", "zht": "已加入", "bg": "Добавено", pl: "Dodano"}});
 Object.assign(UI_TX, {"shopExcTeide": {"es": "Teide al Amanecer", "en": "Teide at Sunrise", "fr": "Le Teide au lever du soleil", "de": "Teide bei Sonnenaufgang", "it": "Teide all’alba", "nl": "Teide bij zonsopgang", "zh": "泰德峰日出", "zht": "泰德峰日出", "bg": "Тейде на изгрев", pl: "Teide o wschodzie słońca"}, "shopExcTeideD": {"es": "Sube al volcán más alto de España y vive el amanecer desde la cima. Incluye transporte, guía y desayuno.", "en": "Climb Spain’s highest volcano and watch the sunrise from the summit. Transport, guide and breakfast included.", "fr": "Montez sur le plus haut volcan d’Espagne et vivez le lever du soleil depuis le sommet. Transport, guide et petit-déjeuner inclus.", "de": "Besteige den höchsten Vulkan Spaniens und erlebe den Sonnenaufgang vom Gipfel. Transport, Guide und Frühstück inbegriffen.", "it": "Sali sul vulcano più alto di Spagna e vivi l’alba dalla cima. Trasporto, guida e colazione inclusi.", "nl": "Beklim de hoogste vulkaan van Spanje en beleef de zonsopgang vanaf de top. Vervoer, gids en ontbijt inbegrepen.", "zh": "登上西班牙最高的火山，在山顶迎接日出。含交通、导览与早餐。", "zht": "登上西班牙最高的火山，在山頂迎接日出。含交通、導覽與早餐。", "bg": "Изкачете най-високия вулкан в Испания и посрещнете изгрева от върха. Включва транспорт, водач и закуска.", pl: "Wejdź na najwyższy wulkan Hiszpanii i przeżyj wschód słońca ze szczytu. W cenie transport, przewodnik i śniadanie."}, "shopExcBallenas": {"es": "Avistamiento de Ballenas", "en": "Whale Watching", "fr": "Observation des baleines", "de": "Walbeobachtung", "it": "Avvistamento di balene", "nl": "Walvissen spotten", "zh": "观鲸之旅", "zht": "觀鯨之旅", "bg": "Наблюдение на китове", pl: "Obserwacja wielorybów"}, "shopExcBallenasD": {"es": "Observa ballenas y delfines en su hábitat natural frente a la costa sur de Tenerife. Salida desde Los Cristianos.", "en": "Watch whales and dolphins in their natural habitat off the south coast of Tenerife. Departs from Los Cristianos.", "fr": "Observez baleines et dauphins dans leur habitat naturel au large de la côte sud de Tenerife. Départ de Los Cristianos.", "de": "Beobachte Wale und Delfine in ihrem natürlichen Lebensraum vor der Südküste Teneriffas. Abfahrt in Los Cristianos.", "it": "Osserva balene e delfini nel loro habitat naturale davanti alla costa sud di Tenerife. Partenza da Los Cristianos.", "nl": "Bekijk walvissen en dolfijnen in hun natuurlijke omgeving voor de zuidkust van Tenerife. Vertrek vanuit Los Cristianos.", "zh": "在特内里费岛南岸外的自然栖息地观赏鲸豚。自洛斯克里斯蒂亚诺斯出发。", "zht": "在特內里費島南岸外的自然棲息地觀賞鯨豚。自洛斯克里斯蒂亞諾斯出發。", "bg": "Наблюдавайте китове и делфини в естествената им среда край южния бряг на Тенерифе. Отплаване от Лос Кристианос.", pl: "Obserwuj wieloryby i delfiny w ich naturalnym środowisku u południowych wybrzeży Teneryfy. Wypłynięcie z Los Cristianos."}, "shopExcAnaga": {"es": "Anaga Bosque Primario", "en": "Anaga Ancient Forest", "fr": "Anaga, forêt primaire", "de": "Anaga Urwald", "it": "Anaga, foresta primaria", "nl": "Anaga oerbos", "zh": "阿纳加原始森林", "zht": "阿納加原始森林", "bg": "Анага, девствена гора", pl: "Anaga, las pierwotny"}, "shopExcAnagaD": {"es": "Ruta guiada por el bosque laurisilva de Anaga, declarado Reserva de la Biosfera. El pulmón verde de Tenerife.", "en": "Guided walk through the Anaga laurel forest, a UNESCO Biosphere Reserve. Tenerife’s green lung.", "fr": "Randonnée guidée dans la laurisylve d’Anaga, réserve de biosphère. Le poumon vert de Tenerife.", "de": "Geführte Wanderung durch den Lorbeerwald von Anaga, Biosphärenreservat. Die grüne Lunge Teneriffas.", "it": "Escursione guidata nella laurisilva di Anaga, Riserva della Biosfera. Il polmone verde di Tenerife.", "nl": "Begeleide wandeling door het laurierbos van Anaga, Biosfeerreservaat. De groene long van Tenerife.", "zh": "在阿纳加月桂林中徒步导览，此地为生物圈保护区，是特内里费岛的绿肺。", "zht": "在阿納加月桂林中徒步導覽，此地為生物圈保護區，是特內里費島的綠肺。", "bg": "Воден преход през лавровата гора на Анага, обявена за биосферен резерват. Зеленият бял дроб на Тенерифе.", pl: "Trasa z przewodnikiem przez wawrzynowy las Anaga, uznany za Rezerwat Biosfery. Zielone płuca Teneryfy."}, "shopSouvCamiseta": {"es": "Camiseta Tenerife Go", "en": "Tenerife Go T-shirt", "fr": "T-shirt Tenerife Go", "de": "Tenerife Go T-Shirt", "it": "T-shirt Tenerife Go", "nl": "Tenerife Go T-shirt", "zh": "Tenerife Go T恤", "zht": "Tenerife Go T恤", "bg": "Тениска Tenerife Go", pl: "Koszulka Tenerife Go"}, "shopSouvCamisetaD": {"es": "Camiseta 100% algodón con diseño exclusivo de Tenerife. Disponible en tallas S, M, L, XL y colores negro y blanco.", "en": "100% cotton T-shirt with an exclusive Tenerife design. Sizes S, M, L, XL, in black and white.", "fr": "T-shirt 100% coton avec un design exclusif de Tenerife. Tailles S, M, L, XL, en noir et blanc.", "de": "T-Shirt aus 100% Baumwolle mit exklusivem Teneriffa-Design. Größen S, M, L, XL, in Schwarz und Weiß.", "it": "T-shirt 100% cotone con design esclusivo di Tenerife. Taglie S, M, L, XL, in nero e bianco.", "nl": "T-shirt van 100% katoen met een exclusief Tenerife-ontwerp. Maten S, M, L, XL, in zwart en wit.", "zh": "100% 纯棉 T 恤，特内里费独家设计。尺码 S、M、L、XL，有黑白两色。", "zht": "100% 純棉 T 恤，特內里費獨家設計。尺碼 S、M、L、XL，有黑白兩色。", "bg": "Тениска от 100% памук с ексклузивен дизайн на Тенерифе. Размери S, M, L, XL, в черно и бяло.", pl: "Koszulka w 100 % z bawełny z wyłącznym wzorem Teneryfy. Rozmiary S, M, L, XL, kolory czarny i biały."}, "shopSouvGorra": {"es": "Gorra Tenerife Go", "en": "Tenerife Go Cap", "fr": "Casquette Tenerife Go", "de": "Tenerife Go Cap", "it": "Cappellino Tenerife Go", "nl": "Tenerife Go pet", "zh": "Tenerife Go 帽子", "zht": "Tenerife Go 帽子", "bg": "Шапка Tenerife Go", pl: "Czapka Tenerife Go"}, "shopSouvGorraD": {"es": "Gorra bordada con el logo de Tenerife Go. Ajuste regulable. Perfecta para el sol canario.", "en": "Cap embroidered with the Tenerife Go logo. Adjustable fit. Perfect for the Canary sun.", "fr": "Casquette brodée du logo Tenerife Go. Taille réglable. Parfaite pour le soleil des Canaries.", "de": "Cap mit gesticktem Tenerife-Go-Logo. Größenverstellbar. Perfekt für die kanarische Sonne.", "it": "Cappellino ricamato con il logo Tenerife Go. Regolabile. Perfetto per il sole delle Canarie.", "nl": "Pet met geborduurd Tenerife Go-logo. Verstelbaar. Perfect voor de Canarische zon.", "zh": "绣有 Tenerife Go 标志的帽子，尺寸可调，适合加那利的阳光。", "zht": "繡有 Tenerife Go 標誌的帽子，尺寸可調，適合加那利的陽光。", "bg": "Шапка с бродирано лого на Tenerife Go. Регулируем размер. Идеална за канарското слънце.", pl: "Czapka z haftowanym logo Tenerife Go. Regulowana. Idealna na kanaryjskie słońce."}, "shopSouvPack": {"es": "Pack Tenerife Go", "en": "Tenerife Go Bundle", "fr": "Pack Tenerife Go", "de": "Tenerife Go Set", "it": "Pack Tenerife Go", "nl": "Tenerife Go pakket", "zh": "Tenerife Go 套装", "zht": "Tenerife Go 套裝", "bg": "Комплект Tenerife Go", pl: "Zestaw Tenerife Go"}, "shopSouvPackD": {"es": "Camiseta + Gorra + Imán de nevera exclusivo. El regalo perfecto para llevarte un trozo de Tenerife.", "en": "T-shirt + cap + exclusive fridge magnet. The perfect gift to take a piece of Tenerife home.", "fr": "T-shirt + casquette + aimant de frigo exclusif. Le cadeau parfait pour emporter un morceau de Tenerife.", "de": "T-Shirt + Cap + exklusiver Kühlschrankmagnet. Das perfekte Geschenk, um ein Stück Teneriffa mitzunehmen.", "it": "T-shirt + cappellino + calamita da frigo esclusiva. Il regalo perfetto per portarti a casa un pezzo di Tenerife.", "nl": "T-shirt + pet + exclusieve koelkastmagneet. Het perfecte cadeau om een stukje Tenerife mee te nemen.", "zh": "T 恤 + 帽子 + 独家冰箱贴。把特内里费带回家的完美礼物。", "zht": "T 恤 + 帽子 + 獨家冰箱貼。把特內里費帶回家的完美禮物。", "bg": "Тениска + шапка + ексклузивен магнит за хладилник. Перфектният подарък, за да отнесете парченце от Тенерифе.", pl: "Koszulka + czapka + ekskluzywny magnes na lodówkę. Idealny prezent, żeby zabrać ze sobą kawałek Teneryfy."}, "shopSouvIman": {"es": "Imán Nevera Tenerife", "en": "Tenerife Fridge Magnet", "fr": "Aimant de frigo Tenerife", "de": "Teneriffa Kühlschrankmagnet", "it": "Calamita da frigo Tenerife", "nl": "Tenerife koelkastmagneet", "zh": "特内里费冰箱贴", "zht": "特內里費冰箱貼", "bg": "Магнит Тенерифе", pl: "Magnes na lodówkę Teneryfa"}, "shopSouvImanD": {"es": "Imán artesanal con ilustración del Teide. Fabricado en Tenerife. El souvenir perfecto.", "en": "Handmade magnet with an illustration of the Teide. Made in Tenerife. The perfect souvenir.", "fr": "Aimant artisanal illustré du Teide. Fabriqué à Tenerife. Le souvenir parfait.", "de": "Handgefertigter Magnet mit einer Teide-Illustration. Hergestellt auf Teneriffa. Das perfekte Souvenir.", "it": "Calamita artigianale con illustrazione del Teide. Prodotta a Tenerife. Il souvenir perfetto.", "nl": "Handgemaakte magneet met een illustratie van de Teide. Gemaakt op Tenerife. Het perfecte souvenir.", "zh": "手工制作的泰德峰插画磁贴，产自特内里费，是最合适的纪念品。", "zht": "手工製作的泰德峰插畫磁貼，產自特內里費，是最合適的紀念品。", "bg": "Ръчно изработен магнит с илюстрация на Тейде. Произведен в Тенерифе. Перфектният сувенир.", pl: "Ręcznie robiony magnes z ilustracją Teide. Wyprodukowany na Teneryfie. Idealna pamiątka."}, "admFaltanIdiomas": {"es": "🌐 Sin traducir: {l}", "en": "🌐 Not translated: {l}", "fr": "🌐 Non traduit : {l}", "de": "🌐 Nicht übersetzt: {l}", "it": "🌐 Non tradotto: {l}", "nl": "🌐 Niet vertaald: {l}", "zh": "🌐 未翻译：{l}", "zht": "🌐 未翻譯：{l}", "bg": "🌐 Непреведено: {l}", "pl": "🌐 Bez tłumaczenia: {l}"}, "admTraducido": {"es": "🌐 Traducido a los {n}", "en": "🌐 Translated into all {n}", "fr": "🌐 Traduit dans les {n}", "de": "🌐 In alle {n} übersetzt", "it": "🌐 Tradotto in tutte e {n}", "nl": "🌐 In alle {n} vertaald", "zh": "🌐 已翻译成 {n} 种语言", "zht": "🌐 已翻譯成 {n} 種語言", "bg": "🌐 Преведено на всички {n}", "pl": "🌐 Przetłumaczone na {n}"}, "ariaFechaReserva": {"es": "Fecha de la reserva", "en": "Booking date", "fr": "Date de la réservation", "de": "Datum der Buchung", "it": "Data della prenotazione", "nl": "Datum van de boeking", "zh": "预订日期", "zht": "預訂日期", "bg": "Дата на резервацията", "pl": "Data rezerwacji"}, "shopMinutes": {"es": "{n} min", "en": "{n} min", "fr": "{n} min", "de": "{n} Min.", "it": "{n} min", "nl": "{n} min", "zh": "{n} 分钟", "zht": "{n} 分鐘", "bg": "{n} мин", "pl": "{n} min"}, "shopDays": {"es": "{n} día|{n} días", "en": "{n} day|{n} days", "fr": "{n} jour|{n} jours", "de": "{n} Tag|{n} Tage", "it": "{n} giorno|{n} giorni", "nl": "{n} dag|{n} dagen", "zh": "{n} 天", "zht": "{n} 天", "bg": "{n} ден|{n} дни", "pl": "{n} dzień|{n} dni|{n} dni"}, "shopHours": {"es": "{n} hora|{n} horas", "en": "{n} hour|{n} hours", "fr": "{n} heure|{n} heures", "de": "{n} Stunde|{n} Stunden", "it": "{n} ora|{n} ore", "nl": "{n} uur", "zh": "{n} 小时", "zht": "{n} 小時", "bg": "{n} час|{n} часа", "pl": "{n} godz."}, "shopShipping": {"es": "Envío a toda España", "en": "Shipping across Spain", "fr": "Livraison dans toute l’Espagne", "de": "Versand in ganz Spanien", "it": "Spedizione in tutta la Spagna", "nl": "Verzending door heel Spanje", "zh": "西班牙全境配送", "zht": "西班牙全境配送", "bg": "Доставка до цяла Испания", pl: "Wysyłka na całą Hiszpanię"}, "shopColors": {"es": "{n} color|{n} colores", "en": "{n} colour|{n} colours", "fr": "{n} coloris", "de": "{n} Farbe|{n} Farben", "it": "{n} colore|{n} colori", "nl": "{n} kleur|{n} kleuren", "zh": "{n} 种颜色", "zht": "{n} 種顏色", "bg": "{n} цвят|{n} цвята", "pl": "{n} kolor|{n} kolory|{n} kolorów"}, "shopColorBlackBeige": {"es": "Negro / Beige", "en": "Black / Beige", "fr": "Noir / Beige", "de": "Schwarz / Beige", "it": "Nero / Beige", "nl": "Zwart / Beige", "zh": "黑色 / 米色", "zht": "黑色 / 米色", "bg": "Черно / Бежово", pl: "Czarny / beżowy"}, "shopDesignsVarious": {"es": "Varios diseños", "en": "Several designs", "fr": "Plusieurs motifs", "de": "Mehrere Designs", "it": "Vari disegni", "nl": "Meerdere ontwerpen", "zh": "多款设计", "zht": "多款設計", "bg": "Различни дизайни", pl: "Kilka wzorów"}, "shopSave": {"es": "Ahorra {n}€", "en": "Save {n}€", "fr": "Économisez {n}€", "de": "Spare {n}€", "it": "Risparmia {n}€", "nl": "Bespaar {n}€", "zh": "省 {n}€", "zht": "省 {n}€", "bg": "Спестявате {n}€", pl: "Oszczędzasz {n} €"}});
@@ -16531,19 +16639,32 @@ function avisoPreciosGas() {
   showLayerToast(f ? tx('gasPreciosViejos', { f: f }) : tx('gasPreciosNo'));
 }
 
-/* Las lineas de precio del globo y de la ficha: una por combustible en el que
-   esta gasolinera es de las mas baratas de su municipio, y la fecha. */
+function euroGas() {
+  return new Intl.NumberFormat(PRECIOS_GAS_LOCALE[currentLang] || 'es-ES',
+    { style: 'currency', currency: 'EUR', minimumFractionDigits: 3, maximumFractionDigits: 3 });
+}
+
+/* Las lineas de precio del globo y de la ficha: una por combustible con
+   precio, con «la mas barata de...» si lo es de su municipio, y la fecha.
+   Hasta el 7 de octubre solo salian en las mas baratas de cada municipio; el
+   boton «cerca de mi» ensena el precio de todas, y la ficha que abre tiene
+   que decir el mismo. */
 function filasPreciosGas(place) {
   if (!place || !preciosGasFrescos()) return [];
-  const l = PRECIOS_GAS.porId[place.id];
-  if (!l || !l.length) return [];
-  const euro = new Intl.NumberFormat(PRECIOS_GAS_LOCALE[currentLang] || 'es-ES',
-    { style: 'currency', currency: 'EUR', minimumFractionDigits: 3, maximumFractionDigits: 3 });
-  const filas = l.map(x => {
-    const comb = tx(x.comb === 'g95' ? 'gasPrecioG95' : 'gasPrecioDiesel');
-    const frase = x.cuantas === 1 ? tx('gasBarataUna', { m: x.mu }) : tx('gasBarataVarias', { n: x.cuantas, m: x.mu });
-    return `<div class="popup-info-row">💶 ${escapeHtml(comb)}: <b>${escapeHtml(euro.format(x.precio))}</b> · ${escapeHtml(frase)}</div>`;
+  const est = ((PRECIOS_GAS.datos && PRECIOS_GAS.datos.estaciones) || {})[place.id] || {};
+  const bar = {};
+  (PRECIOS_GAS.porId[place.id] || []).forEach(x => { bar[x.comb] = x; });
+  const euro = euroGas();
+  const filas = [];
+  ['g95', 'diesel'].forEach(c => {
+    const x = bar[c];
+    const precio = typeof est[c] === 'number' ? est[c] : (x ? x.precio : null);
+    if (typeof precio !== 'number') return;
+    const comb = tx(c === 'g95' ? 'gasPrecioG95' : 'gasPrecioDiesel');
+    const frase = !x ? '' : x.cuantas === 1 ? tx('gasBarataUna', { m: x.mu }) : tx('gasBarataVarias', { n: x.cuantas, m: x.mu });
+    filas.push(`<div class="popup-info-row">💶 ${escapeHtml(comb)}: <b>${escapeHtml(euro.format(precio))}</b>${frase ? ' · ' + escapeHtml(frase) : ''}</div>`);
   });
+  if (!filas.length) return [];
   filas.push(`<div class="popup-info-row popup-info-addr">${escapeHtml(tx('gasPrecioFecha', { f: fechaPreciosGas() }))}</div>`);
   return filas;
 }
@@ -16571,6 +16692,7 @@ function cargarPreciosGas() {
       });
       updateMarkers();
       repintarHojaAbierta();
+      if (GAS_CERCA.abierto) pintarGasCerca();
     })
     .catch(() => { if (!PRECIOS_GAS.datos) PRECIOS_GAS.estado = 'sin'; });
 }
@@ -16580,6 +16702,151 @@ document.addEventListener('DOMContentLoaded', () => {
   // la app puede quedarse abierta de una franja a la siguiente
   setInterval(cargarPreciosGas, 30 * 60 * 1000);
 });
+
+/* ══ «LA GASOLINERA MAS BARATA CERCA DE MI» ══
+   Lo pidio Jerome el 7 de octubre. Con la posicion del movil y el precio de
+   cada gasolinera (datos/precios-gasolineras.json, «estaciones», del
+   registro del Ministerio): gasolina 95 y diesel por separado, las 3 mas
+   baratas a menos de 5, 10 o 20 km (10 de entrada), y si otras empatan con
+   la tercera, salen tambien. La distancia es en linea recta y el panel lo
+   dice: no es la de la carretera. Sin precios de menos de 2 dias no busca:
+   dice de cuando son los ultimos, como la categoria.
+   Dos entradas: la fila de la pestaña Servicios de la hoja de categorias y
+   el boton sobre el mapa, que sale solo con las gasolineras filtradas. */
+const GAS_CERCA = { pos: null, radio: 10, abierto: false };
+const GAS_CERCA_RADIOS = [5, 10, 20];
+const GAS_CERCA_CUANTAS = 3;
+
+function kmGas(km) {
+  const loc = PRECIOS_GAS_LOCALE[currentLang] || 'es-ES';
+  try {
+    if (km < 1) return new Intl.NumberFormat(loc, { style: 'unit', unit: 'meter', unitDisplay: 'short' })
+      .format(Math.max(10, Math.round(km * 100) * 10));
+    return new Intl.NumberFormat(loc, { style: 'unit', unit: 'kilometer', unitDisplay: 'short',
+      maximumFractionDigits: km < 10 ? 1 : 0 }).format(km);
+  } catch (e) {
+    return km < 1 ? Math.round(km * 1000) + ' m' : (Math.round(km * 10) / 10) + ' km';
+  }
+}
+
+/* Las de un combustible a menos del radio, de mas barata a mas cara (a igual
+   precio, la mas cerca primero): las 3 primeras y las que empatan con la 3.ª */
+function listaGasCerca(comb) {
+  const est = (PRECIOS_GAS.datos && PRECIOS_GAS.datos.estaciones) || {};
+  const pos = GAS_CERCA.pos;
+  const c = [];
+  places.forEach(p => {
+    if (p.category !== 'gasolinera' || !p.ideess || !est[p.id]) return;
+    const precio = est[p.id][comb];
+    if (typeof precio !== 'number') return;
+    const km = haversineKm(pos.lat, pos.lng, p.lat, p.lng);
+    if (km <= GAS_CERCA.radio) c.push({ p: p, precio: precio, km: km });
+  });
+  c.sort((a, b) => a.precio - b.precio || a.km - b.km);
+  if (c.length <= GAS_CERCA_CUANTAS) return c;
+  const corte = c[GAS_CERCA_CUANTAS - 1].precio;
+  return c.filter(x => x.precio <= corte);
+}
+
+function pintarGasCerca() {
+  if (!GAS_CERCA.pos) return;
+  document.getElementById('gas-cerca-fecha').textContent = tx('gasPrecioFecha', { f: fechaPreciosGas() });
+  const rad = document.getElementById('gas-cerca-radios');
+  rad.innerHTML = '';
+  const lbl = document.createElement('span');
+  lbl.className = 'gas-cerca-radio-lbl';
+  lbl.textContent = tx('gasCercaRadio');
+  rad.appendChild(lbl);
+  GAS_CERCA_RADIOS.forEach(r => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'gas-cerca-radio' + (r === GAS_CERCA.radio ? ' active' : '');
+    b.setAttribute('aria-pressed', r === GAS_CERCA.radio ? 'true' : 'false');
+    b.textContent = kmGas(r);
+    b.onclick = (ev) => { ev.stopPropagation(); GAS_CERCA.radio = r; pintarGasCerca(); };
+    rad.appendChild(b);
+  });
+  const euro = euroGas();
+  const lista = document.getElementById('gas-cerca-lista');
+  lista.innerHTML = '';
+  ['g95', 'diesel'].forEach(comb => {
+    const h = document.createElement('div');
+    h.className = 'gas-cerca-comb';
+    h.textContent = '⛽ ' + tx(comb === 'g95' ? 'gasPrecioG95' : 'gasPrecioDiesel');
+    lista.appendChild(h);
+    const l = listaGasCerca(comb);
+    if (!l.length) {
+      const v = document.createElement('div');
+      v.className = 'gas-cerca-vacio';
+      v.textContent = tx('gasCercaNinguna', { d: kmGas(GAS_CERCA.radio) });
+      lista.appendChild(v);
+      return;
+    }
+    l.forEach(x => {
+      const fila = document.createElement('div');
+      fila.className = 'nearby-stop gas-cerca-fila' + (x.precio === l[0].precio ? ' la-mas-barata' : '');
+      fila.setAttribute('role', 'button');
+      fila.tabIndex = 0;
+      fila.dataset.id = x.p.id;
+      fila.innerHTML = `<div class="gas-cerca-precio">${escapeHtml(euro.format(x.precio))}</div>
+        <div class="nearby-stop-info"><div class="nearby-stop-name">${escapeHtml(x.p.name)}</div></div>
+        <div class="gas-cerca-dist">${escapeHtml(kmGas(x.km))}</div>`;
+      fila.onclick = () => irAGasolinera(x.p.id);
+      fila.onkeydown = (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); irAGasolinera(x.p.id); } };
+      lista.appendChild(fila);
+    });
+  });
+}
+
+function abrirGasCerca(ev) {
+  if (ev) ev.stopPropagation();
+  if (!preciosGasFrescos()) { avisoPreciosGas(); return; }
+  if (!(PRECIOS_GAS.datos && PRECIOS_GAS.datos.estaciones)) { showLayerToast(tx('gasPreciosNo')); return; }
+  if (!navigator.geolocation) { showGpsToast(tx('gpsNoSupport'), 'error'); hideGpsToast(3000); return; }
+  const seguir = (lat, lng) => {
+    if (!isInTenerife(lat, lng)) { showGpsToast(t().gpsOutside, 'error'); hideGpsToast(4000); return; }
+    hideGpsToast();
+    GAS_CERCA.pos = { lat: lat, lng: lng };
+    closeCategorySheet();
+    pintarGasCerca();
+    document.getElementById('gas-cerca-panel').classList.add('open');
+    GAS_CERCA.abierto = true;
+  };
+  // con el GPS de la app encendido, su ultima posicion
+  if (gpsActive && gpsMarker) { const ll = gpsMarker.getLatLng(); seguir(ll.lat, ll.lng); return; }
+  showGpsToast(t().gpsSearching);
+  navigator.geolocation.getCurrentPosition(
+    pos => seguir(pos.coords.latitude, pos.coords.longitude),
+    err => { showGpsToast(err && err.code === 1 ? t().gpsDenied : t().gpsError, 'error'); hideGpsToast(4000); },
+    { enableHighAccuracy: false, timeout: 20000, maximumAge: 120000 }
+  );
+}
+
+function cerrarGasCerca() {
+  document.getElementById('gas-cerca-panel').classList.remove('open');
+  GAS_CERCA.abierto = false;
+}
+
+/* Lleva a la gasolinera: globo en el ordenador, ficha completa en el movil
+   (openDetailSheet no hace nada en pantallas anchas). Si el filtro de
+   categorias la esconde, se suman las gasolineras: es lo que se buscaba. */
+function irAGasolinera(id) {
+  cerrarGasCerca();
+  const p = places.find(q => q.id === id);
+  if (!p) return;
+  if (selectedCategories.size && !placeMatchesCat(p, selectedCategories)) selectCategory('gasolinera');
+  selectPlaceFromSuggestion(id);
+  setTimeout(() => openDetailSheet(id), 1250);
+}
+
+/* El boton sobre el mapa: solo con «Gasolineras» o «Gasolineras mas baratas»
+   en el filtro. */
+function syncGasCercaFab() {
+  const b = document.getElementById('gas-cerca-fab');
+  if (b) b.hidden = !(selectedCategories.has('gasolinera') || selectedCategories.has('gasolinera_barata'));
+}
+
+try { TG_IDIOMA.registrar('gasolineras cerca de mi', function () { if (GAS_CERCA.abierto) pintarGasCerca(); }); } catch (e) {}
 
 function detailSheetFav() {
   if (!_detailPlaceId) return;
@@ -16691,6 +16958,8 @@ function _buildCatSheet() {
   const gridEl = document.getElementById('cat-grid');
   gridEl.innerHTML = '';
   const activeGroup = CAT_GROUPS.find(g => g.id === _activeCatTab) || CAT_GROUPS[0];
+  const gasRow = document.getElementById('cat-sheet-gas-row');
+  if (gasRow) gasRow.hidden = !activeGroup.cats.includes('gasolinera');
   activeGroup.cats.forEach((key, _ci) => {
     const cat = categoriesBase[key];
     if (!cat) return;
@@ -16746,6 +17015,7 @@ function toggleCategoryDropdown(e) {
 function syncGasBtn() {
   const btn = document.getElementById('gas-quick-btn');
   if (btn) btn.classList.toggle('active', selectedCategories.has('gasolinera'));
+  syncGasCercaFab();
 }
 
 function setCategory(cat) {
@@ -17573,6 +17843,8 @@ function updateMarkers(opts) {
 }
 
 function _updateMarkersImpl() {
+  // todo cambio de filtro pasa por aqui: el boton «cerca de mi» del mapa tambien
+  if (typeof syncGasCercaFab === 'function') syncGasCercaFab();
   // Vaciar todos los marcadores anteriores del cluster de una vez (mucho más rápido)
   clusterGroup.clearLayers();
   activeMarkers = [];

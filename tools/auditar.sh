@@ -71,8 +71,10 @@ echo; echo "════════ las gasolineras del registro ════�
 control auditar_gasolineras.js node tools/auditar_gasolineras.js
 echo "════════ cada gasolinera, contra el registro, campo a campo ════════"
 control revisar_gasolineras.py python3 tools/revisar_gasolineras.py
-echo "════════ los precios de las gasolineras (las mas baratas de cada municipio) ════════"
+echo "════════ los precios de las gasolineras (las mas baratas de cada municipio, y la de cada una) ════════"
 control auditar_precios_gasolineras.py python3 tools/auditar_precios_gasolineras.py
+echo "════════ el boton «la gasolinera mas barata cerca de mi», en los diez idiomas ════════"
+control auditar_gas_cerca.js node tools/auditar_gas_cerca.js "$PUERTO"
 echo; echo "════════ el municipio que dice cada ficha ════════"
 control auditar_municipio.js node tools/auditar_municipio.js
 echo; echo "════════ lo que se sale de la pantalla, y el popup ════════"

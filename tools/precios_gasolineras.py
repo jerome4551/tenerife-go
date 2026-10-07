@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-precios_gasolineras.py — las gasolineras más baratas de CADA MUNICIPIO, desde
-el registro oficial del Ministerio, para datos/precios-gasolineras.json.
+precios_gasolineras.py — las gasolineras más baratas de CADA MUNICIPIO, y el
+precio de cada gasolinera de la app, desde el registro oficial del Ministerio,
+para datos/precios-gasolineras.json.
 
     python3 tools/precios_gasolineras.py --toca          ¿toca bajar precios? (si / no)
     python3 tools/precios_gasolineras.py --registro F    escribe el fichero de precios
@@ -19,6 +20,12 @@ LO QUE PIDIO JEROME (6 de octubre)
   cuentan en el tramo de arriba). Gasolina 95 y diésel, cada uno por su lado.
   Los empates salen todos: si dos tienen el mismo precio que la última que
   entra, entran las dos. Dos veces al día, a las 7:00 y a las 15:00 de Canarias.
+
+LO QUE PIDIO DESPUES (7 de octubre)
+  «Un botón: encuentra la gasolinera más barata cerca de mí». Para eso la app
+  necesita el precio de TODAS, no solo el de las más baratas de cada
+  municipio: van en «estaciones», por id de ficha, gasolina 95 y diésel. Una
+  estación que no trae precio de un combustible no lleva esa clave.
 
 POR QUE «--toca» Y NO UN CRON A LAS 7:00
   GitHub no lanza los flujos programados a su hora: en este repo salen entre 4
@@ -135,17 +142,33 @@ def construir(descarga):
             m[clave] = [{'id': f['id'], 'ideess': f['ideess'], 'precio': round(p, 3)}
                         for p, f in c if p <= corte]   # los empates, todos
         municipios[mu] = m
+
+    estaciones = {}                                     # el botón «cerca de mí»
+    for f in sorted(fichas, key=lambda f: f['id']):
+        e = reg.get(f['ideess'])
+        if not e:
+            continue
+        x = {}
+        for clave, campo in COMBUSTIBLES.items():
+            p = precio(e.get(campo))
+            if p is not None:
+                x[clave] = round(p, 3)
+        if x:
+            estaciones[f['id']] = x
     return {
         '_': ['Lo escribe .github/workflows/precios-gasolineras.yml con tools/precios_gasolineras.py, '
               'dos veces al dia (7:00 y 15:00 de Canarias). No se edita a mano.',
               'Regla de Jerome: menos de 3 gasolineras, ninguna; de 3 a 7, la mas barata; de 8 a 14, '
               'las 2; de 15 en adelante, las 3. Gasolina 95 y diesel por separado; los empates, todos.',
+              '«estaciones»: el precio de cada gasolinera de la app que lo trae, para el boton '
+              '«la mas barata cerca de mi».',
               'La app no ensena estos precios si «fecha» tiene mas de 2 dias.'],
         'fuente': 'Ministerio para la Transicion Ecologica y el Reto Demografico, Geoportal de Gasolineras',
         'fecha': fecha.astimezone(dt.timezone.utc).isoformat().replace('+00:00', 'Z'),
         'fecha_ministerio': d['Fecha'].strip(),
         'franja': franja(),
         'municipios': municipios,
+        'estaciones': estaciones,
     }
 
 
@@ -164,8 +187,10 @@ def main():
     with open(salida, 'w', encoding='utf-8') as fh:
         fh.write(json.dumps(out, ensure_ascii=False, indent=1, sort_keys=False) + '\n')
     n = sum(len(m['g95']) + len(m['diesel']) for m in out['municipios'].values())
-    print('precios del Ministerio del %s · franja %s · %d municipios · %d lineas de precio -> %s'
-          % (out['fecha_ministerio'], out['franja'], len(out['municipios']), n, os.path.relpath(salida, RAIZ)))
+    print('precios del Ministerio del %s · franja %s · %d municipios · %d lineas de precio · '
+          '%d gasolineras con precio -> %s'
+          % (out['fecha_ministerio'], out['franja'], len(out['municipios']), n, len(out['estaciones']),
+             os.path.relpath(salida, RAIZ)))
     return 0
 
 

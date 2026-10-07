@@ -1,4 +1,6 @@
-# Precios de las gasolineras: las más baratas de cada municipio.
+# Precios de las gasolineras: las más baratas de cada municipio (sesion 92) y
+# el precio de cada gasolinera de la app, para el boton «la mas barata cerca de
+# mi» (sesion 93).
 # Fuente: Ministerio para la Transicion Ecologica y el Reto Demografico,
 # Geoportal de Gasolineras (servicio REST publico), el mismo registro del que
 # salen las fichas.
@@ -65,7 +67,7 @@ jobs:
           echo "::error::No se pudo descargar el registro desde ninguno de los dos dominios"
           exit 1
 
-      - name: Las mas baratas de cada municipio
+      - name: Las mas baratas de cada municipio, y el precio de cada una
         if: steps.toca.outputs.toca == 'si'
         env:
           PYTHONIOENCODING: utf-8

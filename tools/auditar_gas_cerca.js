@@ -1,0 +1,217 @@
+/*
+  auditar_gas_cerca.js — el boton «la gasolinera mas barata cerca de mi», en la
+  app de verdad, con la posicion simulada.
+
+      python3 -m http.server 8820 &      (desde la raiz del repo)
+      node tools/auditar_gas_cerca.js 8820
+
+  No usa la red: los precios salen de tools/precios_gasolineras.py pasado por
+  el registro del repo con la fecha puesta a hoy, como en
+  auditar_precios_gasolineras.py, y la app los recibe por una ruta simulada.
+
+  MIRA
+    en los diez idiomas   la fila de la pestaña Servicios (y que no sale en
+                          otra pestaña), el panel (titulo, fecha, radios),
+                          que cada lista a 5, 10 y 20 km es la que da un
+                          calculo hecho aparte (las 3 mas baratas y las que
+                          empatan con la tercera, en linea recta), que nada se
+                          sale por los lados, y que la fila lleva a la ficha
+                          de esa gasolinera con el mismo precio.
+    el boton del mapa     solo con «Gasolineras» o «Gasolineras mas baratas»
+                          en el filtro; abre el panel; sin pisar nada; y una
+                          gasolinera que el filtro esconde se puede abrir.
+    lo que sale mal       fuera de Tenerife, sin permiso de ubicacion, precios
+                          de mas de 2 dias, fichero sin «estaciones»: no abre
+                          y dice por que.
+    el idioma             cambiarlo con el panel abierto lo repinta.
+
+  Sale con 1 si algo falla.
+*/
+const { chromium } = require('/opt/node22/lib/node_modules/playwright');
+const fs = require('fs');
+const os = require('os'), path = require('path'), { execFileSync } = require('child_process');
+const RAIZ = path.join(__dirname, '..');
+const PUERTO = process.argv[2] || '8820';
+// los precios: el guion de verdad, con el registro del repo puesto a hoy
+const S = fs.mkdtempSync(path.join(os.tmpdir(), 'gas-cerca-'));
+execFileSync('python3', ['-c', [
+  'import json, datetime as dt, sys',
+  'from zoneinfo import ZoneInfo',
+  "d = json.load(open(sys.argv[1], encoding='utf-8-sig'))",
+  "d['Fecha'] = dt.datetime.now(ZoneInfo('Europe/Madrid')).strftime('%d/%m/%Y %H:%M:%S')",
+  "json.dump(d, open(sys.argv[2], 'w', encoding='utf-8'), ensure_ascii=False)"].join('\n'),
+  path.join(RAIZ, 'registro', 'gasolineras-canarias.json'), path.join(S, 'registro.json')]);
+execFileSync('python3', [path.join(RAIZ, 'tools', 'precios_gasolineras.py'), '--registro', path.join(S, 'registro.json'),
+  '--forzar', '--salida', path.join(S, 'pc_frescos.json')], { cwd: RAIZ });
+{
+  const d = JSON.parse(fs.readFileSync(path.join(S, 'pc_frescos.json')));
+  const v = JSON.parse(JSON.stringify(d));
+  v.fecha = new Date(Date.now() - 3 * 86400000).toISOString().replace(/\.\d+Z$/, 'Z');
+  fs.writeFileSync(path.join(S, 'pc_viejos.json'), JSON.stringify(v));
+  delete d.estaciones;
+  fs.writeFileSync(path.join(S, 'pc_sinest.json'), JSON.stringify(d));
+}
+const SC = { latitude: 28.4636, longitude: -16.2518 };   // Santa Cruz, plaza de España aprox.
+const MADRID = { latitude: 40.4168, longitude: -3.7038 };
+async function abrir(b, { lang = 'es', w = 360, h = 740, geo = SC, permiso = true, fichero = 'pc_frescos.json' } = {}) {
+  const ctx = await b.newContext({ viewport: { width: w, height: h }, serviceWorkers: 'block',
+    geolocation: geo, permissions: permiso ? ['geolocation'] : [] });
+  const p = await ctx.newPage();
+  const err = []; p.on('pageerror', e => err.push(e.message));
+  await p.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '1'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
+  await p.route('**/datos/precios-gasolineras.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: fs.readFileSync(S + '/' + fichero) }));
+  await p.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'networkidle' });
+  await p.waitForTimeout(600);
+  await p.click('.v19-w-lang[data-lang="' + lang + '"]'); await p.waitForTimeout(300);
+  await p.click('#v19-welcome-start'); await p.waitForTimeout(3000);
+  return { ctx, p, err };
+}
+// lo que deberia salir, calculado aparte
+function esperado(datos, places, pos, radio, comb) {
+  const R = 6371, rad = d => d * Math.PI / 180;
+  const km = (a, b, c, d) => { const x = Math.sin(rad(c - a) / 2) ** 2 + Math.cos(rad(a)) * Math.cos(rad(c)) * Math.sin(rad(d - b) / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(x)); };
+  const c = places.filter(q => q.category === 'gasolinera' && datos.estaciones[q.id] && typeof datos.estaciones[q.id][comb] === 'number')
+    .map(q => ({ id: q.id, precio: datos.estaciones[q.id][comb], km: km(pos.latitude, pos.longitude, q.lat, q.lng) }))
+    .filter(x => x.km <= radio).sort((a, b) => a.precio - b.precio || a.km - b.km);
+  if (c.length <= 3) return c.map(x => x.id);
+  return c.filter(x => x.precio <= c[2].precio).map(x => x.id);
+}
+(async () => {
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const datos = JSON.parse(fs.readFileSync(S + '/pc_frescos.json'));
+  let fallos = 0;
+  const mal = t => { fallos++; console.log('  FALLO', t); };
+  for (const lang of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    const { ctx, p, err } = await abrir(b, { lang });
+    const r = await p.evaluate(async () => {
+      const o = {};
+      o.fabAntes = document.getElementById('gas-cerca-fab').hidden;
+      toggleCategorySheet();
+      _activeCatTab = CAT_GROUPS[0].id; _buildCatSheet();
+      o.filaEnOtraPestana = !document.getElementById('cat-sheet-gas-row').hidden;
+      _activeCatTab = 'servicios'; _buildCatSheet();
+      const fila = document.getElementById('cat-sheet-gas-row');
+      o.fila = fila.hidden ? 'OCULTA' : fila.innerText.replace(/\n/g, ' | ');
+      fila.click();
+      await new Promise(r => setTimeout(r, 1200));
+      const pan = document.getElementById('gas-cerca-panel');
+      o.abierto = pan.classList.contains('open');
+      o.hojaCerrada = !document.getElementById('cat-sheet').classList.contains('open');
+      o.titulo = pan.querySelector('.nearby-stops-title').innerText;
+      o.fecha = document.getElementById('gas-cerca-fecha').innerText;
+      o.radios = document.getElementById('gas-cerca-radios').innerText.replace(/\n/g, ' ');
+      const lee = () => { const s = {}; let k = null;
+        document.querySelectorAll('#gas-cerca-lista > *').forEach(e => {
+          if (e.classList.contains('gas-cerca-comb')) { k = e.innerText; s[k] = []; }
+          else if (e.dataset.id) s[k].push(e.dataset.id);
+          else s[k].push('VACIO:' + e.innerText);
+        }); return s; };
+      o.r10 = lee();
+      o.filas = [...document.querySelectorAll('#gas-cerca-lista .gas-cerca-fila')].slice(0, 2).map(e => e.innerText.replace(/\n/g, ' · '));
+      let fuera = 0; pan.querySelectorAll('*').forEach(e => { const q = e.getBoundingClientRect(); if (q.width && (q.right > innerWidth + 1 || q.left < -1)) fuera++; });
+      o.fuera = fuera;
+      document.querySelectorAll('.gas-cerca-radio')[0].click(); o.r5 = lee();
+      document.querySelectorAll('.gas-cerca-radio')[2].click(); o.r20 = lee();
+      document.querySelectorAll('.gas-cerca-radio')[1].click();
+      o.places = places.filter(q => q.category === 'gasolinera').map(q => ({ id: q.id, category: q.category, lat: q.lat, lng: q.lng }));
+      return o;
+    });
+    // comprobar contra el calculo aparte
+    for (const [rk, radio] of [['r5', 5], ['r10', 10], ['r20', 20]]) {
+      const secs = Object.values(r[rk]);
+      ['g95', 'diesel'].forEach((comb, i) => {
+        const e = esperado(datos, r.places, { latitude: 28.4636, longitude: -16.2518 }, radio, comb);
+        const v = secs[i] || [];
+        const ok = e.length ? JSON.stringify(v) === JSON.stringify(e) : (v.length === 1 && v[0].startsWith('VACIO:'));
+        if (!ok) mal(lang + ' ' + rk + ' ' + comb + ' sale ' + JSON.stringify(v) + ' y deberia ' + JSON.stringify(e));
+      });
+    }
+    if (!r.fabAntes) mal(lang + ': el boton del mapa sale sin filtro');
+    if (r.filaEnOtraPestana) mal(lang + ': la fila sale fuera de Servicios');
+    if (!r.abierto || !r.hojaCerrada) mal(lang + ': el panel no abre o la hoja no cierra');
+    if (r.fuera) mal(lang + ': ' + r.fuera + ' elementos se salen');
+    // fila -> ficha con el mismo precio
+    const f = await p.evaluate(async () => {
+      const fila = document.querySelector('#gas-cerca-lista .gas-cerca-fila');
+      const id = fila.dataset.id, precio = fila.querySelector('.gas-cerca-precio').innerText;
+      fila.click();
+      await new Promise(r => setTimeout(r, 2200));
+      return { id, precio, panel: document.getElementById('gas-cerca-panel').classList.contains('open'),
+        ficha: _detailPlaceId, info: document.getElementById('detail-sheet-info').innerText.replace(/\n/g, ' | ') };
+    });
+    if (f.panel || f.ficha !== f.id || !f.info.includes(f.precio)) mal(lang + ': la ficha no es la de la fila o no dice ' + f.precio + ': ' + JSON.stringify(f));
+    console.log(lang.padEnd(3), '| fila:', r.fila, '\n    titulo:', r.titulo, '| fecha:', r.fecha, '| radios:', r.radios,
+      '\n    10 km:', JSON.stringify(Object.fromEntries(Object.entries(r.r10).map(([k, v]) => [k, v.length]))), '|', r.filas.join(' ‖ '),
+      '\n    ficha:', f.info.slice(0, 160), '| errores:', err.length, err.slice(0, 2).join(' / '));
+    if (err.length) mal(lang + ': errores JS ' + err.join(' / '));
+    await ctx.close();
+  }
+  // el boton del mapa, en movil y en ordenador
+  for (const [w, h] of [[360, 740], [1280, 800]]) {
+    const { ctx, p, err } = await abrir(b, { w, h });
+    const r = await p.evaluate(async () => {
+      const o = {};
+      selectCategory('gasolinera'); await new Promise(r => setTimeout(r, 300));
+      const b = document.getElementById('gas-cerca-fab');
+      o.conGas = !b.hidden; const q = b.getBoundingClientRect(); o.caja = [q.left, q.top, q.right, q.bottom].map(Math.round);
+      o.texto = b.innerText;
+      // ¿pisa algo? lo que hay en el centro de cada borde
+      o.pisa = [[q.left + 2, q.top + q.height / 2], [q.right - 2, q.top + q.height / 2]].map(([x, y]) => { const e = document.elementFromPoint(x, y); return e && !b.contains(e) ? (e.className || e.tagName) : ''; }).filter(Boolean);
+      selectCategory('gasolinera'); await new Promise(r => setTimeout(r, 300));
+      o.sinGas = b.hidden;
+      selectCategory('gasolinera_barata'); await new Promise(r => setTimeout(r, 300));
+      o.conBarata = !b.hidden;
+      selectCategory('gasolinera_barata'); selectCategory('farmacia'); await new Promise(r => setTimeout(r, 300));
+      o.conFarmacia = b.hidden;
+      abrirGasCerca(); await new Promise(r => setTimeout(r, 1200));
+      o.abre = document.getElementById('gas-cerca-panel').classList.contains('open');
+      // una fila que el filtro «mas baratas» esconde: se suman las gasolineras
+      const est = PRECIOS_GAS.datos.estaciones;
+      const fila = [...document.querySelectorAll('#gas-cerca-lista .gas-cerca-fila')].find(e => !placeMatchesCat(places.find(x => x.id === e.dataset.id), selectedCategories));
+      o.escondida = fila ? fila.dataset.id : null;
+      if (fila) { fila.click(); await new Promise(r => setTimeout(r, 2200)); o.filtro = [...selectedCategories]; o.marcador = !!markerMap[o.escondida]; }
+      return o;
+    });
+    console.log('fab', w, JSON.stringify(r), 'errores:', err.length);
+    if (!r.conGas || !r.sinGas || !r.conBarata || !r.conFarmacia || !r.abre || r.pisa.length) mal('boton del mapa ' + w + ': ' + JSON.stringify(r));
+    if (!r.escondida || (!r.filtro.includes('gasolinera') || !r.marcador)) mal('fila escondida por el filtro ' + w);
+    await ctx.close();
+  }
+  // los casos raros
+  for (const [nom, o, espera] of [
+    ['fuera de Tenerife', { geo: MADRID }, 'gpsOutside'],
+    ['sin permiso', { permiso: false }, 'gpsDenied'],
+    ['precios viejos', { fichero: 'pc_viejos.json' }, 'viejos'],
+    ['sin estaciones', { fichero: 'pc_sinest.json' }, 'gasPreciosNo'],
+  ]) {
+    const { ctx, p, err } = await abrir(b, o);
+    const r = await p.evaluate(async (espera) => {
+      abrirGasCerca(); await new Promise(r => setTimeout(r, 1500));
+      const gps = document.getElementById('gps-toast'), lay = document.getElementById('layer-toast');
+      const txt = (gps.classList.contains('visible') ? gps.innerText : '') + '|' + (lay ? lay.textContent : '');
+      const quiere = espera === 'viejos' ? tx('gasPreciosViejos', { f: fechaPreciosGas() }) : espera.startsWith('gps') ? t()[espera] : tx(espera);
+      return { txt, quiere, abierto: document.getElementById('gas-cerca-panel').classList.contains('open') };
+    }, espera);
+    const ok = !r.abierto && r.txt.includes(r.quiere);
+    console.log(nom.padEnd(18), ok ? 'bien' : 'MAL', JSON.stringify(r), 'errores:', err.length);
+    if (!ok) mal(nom);
+    await ctx.close();
+  }
+  // cambio de idioma con el panel abierto
+  {
+    const { ctx, p } = await abrir(b, {});
+    const r = await p.evaluate(async () => {
+      abrirGasCerca(); await new Promise(r => setTimeout(r, 1200));
+      setLang('de'); await new Promise(r => setTimeout(r, 800));
+      return { titulo: document.getElementById('gas-cerca-titulo').innerText, radio: document.querySelector('.gas-cerca-radio-lbl').innerText,
+        comb: document.querySelector('.gas-cerca-comb').innerText, fecha: document.getElementById('gas-cerca-fecha').innerText };
+    });
+    console.log('idioma en vivo', JSON.stringify(r));
+    if (r.titulo !== 'Günstigste Tankstellen in Ihrer Nähe' || !r.radio.startsWith('Luftlinie') || !r.comb.includes('Benzin')) mal('cambio de idioma');
+    await ctx.close();
+  }
+  console.log('  fallos ...................................... ' + fallos);
+  await b.close();
+  fs.rmSync(S, { recursive: true, force: true });
+  process.exit(fallos ? 1 : 0);
+})().catch(e => { console.error(e); fs.rmSync(S, { recursive: true, force: true }); process.exit(1); });
