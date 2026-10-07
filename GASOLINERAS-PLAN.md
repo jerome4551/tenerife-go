@@ -1404,9 +1404,30 @@ Mira también **las 211 fichas**, globo y ficha, en cuatro idiomas: el precio
 exacto de cada combustible, nada donde no hay precio, y ni uno con precios
 viejos (probado metiendo dos fallos: los dos en rojo).
 
+## Por qué GitHub no lanzaba los precios · y la solución (7 de octubre)
+
+Me pediste verificarlo. **No es cosa de este repo**: desde el 26 de agosto de
+2026 el programador de GitHub (`schedule`) está roto para todo el mundo, con
+horas de retraso o ejecuciones que no salen, y GitHub no ha respondido. Aquí,
+medido: el flujo de precios, con un cron cada hora, solo corrió 2 veces en 16
+horas (3:26 y 11:21), y la notificación diaria lleva semanas saliendo entre
+las 11 y las 17 h en vez de por la mañana. Lanzado por la API, en cambio,
+arranca en segundos.
+
+**Solución:** un reloj de fuera (cron-job.org, gratis) llama a la API de
+GitHub a las 7:05 y 15:05 (y a y media, por si falla la primera). El flujo
+acepta ahora `forzar=no`, y así solo baja precios si la franja aún no está:
+las llamadas de más no hacen nada. El cron de GitHub se queda de respaldo.
+Lo que hay que hacer una vez, paso a paso, está en **`RELOJ-EXTERNO.md`**
+(un token de GitHub que solo sirve para lanzar flujos de este repo y dos
+tareas en cron-job.org). `python3 tools/reloj_flujos.py` dice a qué hora llegó
+cada franja.
+
 ## Lo que queda
 
-Nada de las gasolineras. Si un día vuelve la BP Ten Bel, ver arriba.
+- **El reloj de fuera** (`RELOJ-EXTERNO.md`): lo tienes que crear tú, porque
+  lleva un token tuyo.
+- Si un día vuelve la BP Ten Bel, ver arriba.
 
 ## Lo que necesito de ti antes de seguir
 
