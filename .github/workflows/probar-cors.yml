@@ -1,0 +1,24 @@
+# TEMPORAL (7 de octubre): ¿deja el Ministerio que una web le pida los precios
+# desde el navegador, como Open-Meteo con el tiempo y el mar? Se borra al
+# terminar la prueba.
+name: Probar CORS del Ministerio (temporal)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cabeceras con Origin de la app
+        run: |
+          for U in "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroProvincia/38" \
+                   "https://energia.serviciosmin.gob.es/ServiciosRestCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroProvincia/38"; do
+            echo "=== GET $U"
+            curl -sS -m 90 --compressed -o /tmp/r.json -D - -H "Origin: https://jerome4551.github.io" -H "Accept: application/json" \
+                 -w 'BYTES_DESCARGADOS=%{size_download} TIEMPO=%{time_total}s HTTP=%{http_code}\n' "$U" | grep -iE "^HTTP|access-control|content-encoding|content-length|content-type|cache-control|BYTES|vary" || true
+            echo "tamano sin comprimir: $(wc -c < /tmp/r.json) bytes"
+            python3 -c "import json;d=json.load(open('/tmp/r.json',encoding='utf-8-sig'));print('estaciones:',len(d['ListaEESSPrecio']),'Fecha:',d['Fecha'])" || true
+            echo "=== OPTIONS (preflight) $U"
+            curl -sS -m 60 -o /dev/null -D - -X OPTIONS -H "Origin: https://jerome4551.github.io" -H "Access-Control-Request-Method: GET" "$U" | grep -iE "^HTTP|access-control" || true
+          done
