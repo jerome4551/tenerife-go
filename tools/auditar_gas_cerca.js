@@ -24,6 +24,12 @@
                           de mas de 2 dias, fichero sin «estaciones»: no abre
                           y dice por que.
     el idioma             cambiarlo con el panel abierto lo repinta.
+    cada ficha            Jerome, 7 de octubre: «puedes poner los precios si
+                          estan actualizados a cada gasolinera». En las 211
+                          (globo y ficha, cuatro idiomas): su precio exacto en
+                          cada combustible que lo tiene, ninguna linea en el
+                          que no, y con precios de mas de 2 dias, ni uno en
+                          ninguna.
 
   Sale con 1 si algo falla.
 */
@@ -48,6 +54,13 @@ execFileSync('python3', [path.join(RAIZ, 'tools', 'precios_gasolineras.py'), '--
   const v = JSON.parse(JSON.stringify(d));
   v.fecha = new Date(Date.now() - 3 * 86400000).toISOString().replace(/\.\d+Z$/, 'Z');
   fs.writeFileSync(path.join(S, 'pc_viejos.json'), JSON.stringify(v));
+  const h = JSON.parse(JSON.stringify(d));
+  const enMunicipio = new Set();
+  Object.values(h.municipios).forEach(m => ['g95', 'diesel'].forEach(c => (m[c] || []).forEach(x => enMunicipio.add(x.id))));
+  const libres = Object.keys(h.estaciones).filter(i => !enMunicipio.has(i)).sort();
+  delete h.estaciones[libres[0]];               // sin ningun precio
+  delete h.estaciones[libres[1]].g95;           // sin el de 95
+  fs.writeFileSync(path.join(S, 'pc_huecos.json'), JSON.stringify(h));
   delete d.estaciones;
   fs.writeFileSync(path.join(S, 'pc_sinest.json'), JSON.stringify(d));
 }
@@ -195,6 +208,52 @@ function esperado(datos, places, pos, radio, comb) {
     const ok = !r.abierto && r.txt.includes(r.quiere);
     console.log(nom.padEnd(18), ok ? 'bien' : 'MAL', JSON.stringify(r), 'errores:', err.length);
     if (!ok) mal(nom);
+    await ctx.close();
+  }
+  // el precio en la ficha y en el globo de cada gasolinera
+  for (const [lang, fichero] of [['es', 'pc_huecos.json'], ['en', 'pc_frescos.json'], ['zh', 'pc_frescos.json'],
+                                 ['bg', 'pc_frescos.json'], ['es', 'pc_viejos.json']]) {
+    const datosF = JSON.parse(fs.readFileSync(path.join(S, fichero)));
+    const { ctx, p, err } = await abrir(b, { lang, fichero });
+    const r = await p.evaluate(async ({ datosF, viejos }) => {
+      const LOC = { es: 'es-ES', en: 'en-GB', fr: 'fr-FR', de: 'de-DE', it: 'it-IT', nl: 'nl-NL', zh: 'zh-CN', zht: 'zh-TW', bg: 'bg-BG', pl: 'pl-PL' };
+      const euro = new Intl.NumberFormat(LOC[currentLang], { style: 'currency', currency: 'EUR', minimumFractionDigits: 3, maximumFractionDigits: 3 });
+      const mun = {};
+      Object.values(datosF.municipios).forEach(m => ['g95', 'diesel'].forEach(c => (m[c] || []).forEach(x => { (mun[x.id] = mun[x.id] || {})[c] = x.precio; })));
+      const gas = places.filter(x => x.category === 'gasolinera');
+      setCategory('gasolinera'); updateMarkers({ immediate: true });
+      const mal = []; let conPrecio = 0, sinPrecio = 0;
+      for (const x of gas) {
+        const quiere = [];
+        ['g95', 'diesel'].forEach(c => {
+          const pr = ((datosF.estaciones || {})[x.id] || {})[c] ?? (mun[x.id] || {})[c];
+          if (!viejos && typeof pr === 'number') quiere.push(tx(c === 'g95' ? 'gasPrecioG95' : 'gasPrecioDiesel') + ': ' + euro.format(pr));
+        });
+        quiere.length ? conPrecio++ : sinPrecio++;
+        openDetailSheet(x.id);
+        const ficha = document.getElementById('detail-sheet-info').innerText;
+        const m = markerMap[x.id];
+        const c = m ? m.getPopup().getContent() : '';
+        const tmp = document.createElement('div'); tmp.innerHTML = typeof c === 'string' ? c : c.innerHTML;
+        const globo = tmp.innerText || tmp.textContent;
+        for (const [donde, txt] of [['ficha', ficha], ['globo', globo]]) {
+          const filas = (txt.match(/💶/g) || []).length;
+          if (filas !== quiere.length) mal.push(x.id + ' ' + donde + ': ' + filas + ' linea(s) de precio y deberian ser ' + quiere.length);
+          quiere.forEach(q => { if (!txt.includes(q)) mal.push(x.id + ' ' + donde + ': no dice «' + q + '»'); });
+          const fecha = tx('gasPrecioFecha', { f: fechaPreciosGas() });
+          if (!!quiere.length !== txt.includes(fecha)) mal.push(x.id + ' ' + donde + ': la fecha ' + (quiere.length ? 'falta' : 'sobra'));
+        }
+      }
+      closeDetailSheet();
+      return { n: gas.length, conPrecio, sinPrecio, mal };
+    }, { datosF, viejos: fichero === 'pc_viejos.json' });
+    console.log('fichas ' + lang.padEnd(3) + ' ' + fichero.padEnd(16) + r.n + ' gasolineras · ' + r.conPrecio + ' con precio · ' +
+                r.sinPrecio + ' sin · ' + r.mal.length + ' fallo(s) · errores: ' + err.length);
+    r.mal.slice(0, 6).forEach(x => mal('fichas ' + lang + ' ' + fichero + ': ' + x));
+    if (r.mal.length > 6) mal('fichas ' + lang + ': y ' + (r.mal.length - 6) + ' mas');
+    if (fichero === 'pc_viejos.json' ? r.conPrecio : r.conPrecio < 0.8 * r.n) mal('fichas ' + lang + ' ' + fichero + ': ' + r.conPrecio + ' con precio');
+    if (fichero === 'pc_huecos.json' && r.sinPrecio !== 1) mal('fichas: la gasolinera sin precio no se ha mirado');
+    if (err.length) mal('fichas ' + lang + ': errores JS ' + err.join(' / '));
     await ctx.close();
   }
   // cambio de idioma con el panel abierto

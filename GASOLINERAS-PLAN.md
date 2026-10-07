@@ -1378,7 +1378,9 @@ Ministerio.
 - como el panel enseña el precio de **cualquier** gasolinera, su ficha también
   lo enseña ahora (antes solo las más baratas de su municipio), para que no
   digan cosas distintas. La frase «la más barata de…» sigue saliendo solo en
-  las que lo son.
+  las que lo son. **OK tuyo el mismo día:** «Puedes poner los precios si están
+  actualizados a cada gasolinera sin problema». Solo con precios de menos de 2
+  días; con más, ninguna ficha enseña precio.
 
 **De dónde salen los precios.** Del mismo fichero de la sesión 92: el flujo
 «Precios gasolineras» escribe ahora también el precio de **cada** gasolinera de
@@ -1391,6 +1393,9 @@ los últimos; fuera de Tenerife o sin permiso de ubicación, lo dice también.
 cada municipio; probado metiendo seis fallos) y `tools/auditar_gas_cerca.js`
 abre el botón en los diez idiomas con la posición simulada y compara cada lista
 con un cálculo hecho aparte (probado ordenando mal a propósito: se pone rojo).
+Mira también **las 211 fichas**, globo y ficha, en cuatro idiomas: el precio
+exacto de cada combustible, nada donde no hay precio, y ni uno con precios
+viejos (probado metiendo dos fallos: los dos en rojo).
 
 ## Lo que queda
 
