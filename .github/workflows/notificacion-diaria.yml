@@ -3,7 +3,17 @@
 #  Va en el repo en:  .github/workflows/notificacion-diaria.yml
 #  Se ejecuta sola cada manana. La franja de las 9/10 la aplica el script
 #  (hora real de Canarias). La tabla push_sends evita enviar dos veces.
-#  Un lanzamiento manual (Run workflow) siempre envia.
+#  Un lanzamiento manual (Run workflow) con forzar=si, lo que sale por
+#  defecto, siempre envia.
+#
+#  EL RELOJ DE FUERA (desde el 7 de octubre). El programador de GitHub esta
+#  roto desde el 26 de agosto de 2026 para todo el mundo: aqui los cron de
+#  abajo salen de 5 a 7 horas tarde y la notificacion llega hacia mediodia.
+#  cron-job.org (ver RELOJ-EXTERNO.md) llama a la API a las 9:05 y 9:35 de
+#  Canarias con {"ref":"main","inputs":{"forzar":"no"}}: con forzar=no se
+#  aplican la ventana y push_sends, asi que la segunda llamada, o los cron de
+#  GitHub que lleguen tarde, salen con «Ya se envio hoy» sin mandar nada.
+#  Los cron se quedan de respaldo por si el reloj de fuera dejara de llamar.
 # =====================================================================
 name: Notificacion diaria Tenerife Go
 
@@ -27,6 +37,12 @@ on:
     - cron: '7 6 * * *'    # 06:07 UTC
     - cron: '7 7 * * *'    # 07:07 UTC
   workflow_dispatch:
+    inputs:
+      forzar:
+        description: 'si = enviar aunque ya se haya enviado hoy (pruebas). no = solo si toca (el reloj de fuera).'
+        type: choice
+        options: ['si', 'no']
+        default: 'si'
 
 # El GITHUB_TOKEN de este job solo necesita leer el repo. Sin este bloque
 # hereda los permisos por defecto del repositorio, que en repos antiguos
@@ -65,5 +81,5 @@ jobs:
           # impide enviar dos veces es push_sends, no esto.
           TARGET_HOURS:         '7,8,9,10,11,12,13,14,15,16'
           APP_URL:              'https://jerome4551.github.io/tenerife-go/'
-          FORCE:                ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
+          FORCE:                ${{ github.event_name == 'workflow_dispatch' && inputs.forzar != 'no' && '1' || '0' }}
         run: node enviar-notificacion.js

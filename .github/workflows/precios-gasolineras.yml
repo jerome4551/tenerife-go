@@ -11,16 +11,31 @@
 # revisado del que salen las fichas (registro/gasolineras-canarias.json) no se
 # toca.
 #
-# POR QUE CADA HORA Y NO A LAS 7:00. GitHub no lanza los flujos programados a
-# su hora: en este repo salen entre 4 y 8 horas tarde (ver la notificacion
-# diaria). Este pasa cada hora y tools/precios_gasolineras.py --toca mira la
-# hora REAL de Canarias: el primer paso despues de las 7:00 baja los precios de
-# esa franja, el primero despues de las 15:00 los de la suya, y los demas
-# terminan en segundos sin bajar nada ni escribir nada. No usa el minuto :00,
-# que es el mas saturado.
+# POR QUE NO BASTA CON EL CRON DE GITHUB (medido el 7 de octubre).
+# Desde el 26 de agosto de 2026 el programador de GitHub esta roto para todo
+# el mundo (github.com/orgs/community/discussions/207346 y 209514, sin
+# respuesta de GitHub): los flujos programados salen con horas de retraso o
+# no salen. En este repo, la notificacion diaria sale de 5 a 7 horas tarde,
+# todos los dias, y va a peor; y este flujo, con un cron cada hora, solo
+# corrio 2 veces en 16 horas (02:26 y 10:21 UTC), casi 8 horas una de otra.
+# Lanzado con workflow_dispatch, en cambio, arranca en segundos.
 #
-# Uso a mano: pestana Actions -> "Precios gasolineras" -> Run workflow (baja y
-# escribe aunque no toque).
+# LA SOLUCION: un reloj de fuera (cron-job.org, ver RELOJ-EXTERNO.md) llama a
+# la API de GitHub a las 7:05, 7:35, 15:05 y 15:35 de Canarias con
+# {"ref":"main","inputs":{"forzar":"no"}}. Con forzar=no manda
+# tools/precios_gasolineras.py --toca, que mira la hora REAL de Canarias y el
+# fichero: el primer aviso despues de las 7:00 baja los precios de esa franja,
+# el primero despues de las 15:00 los de la suya, y los demas terminan en
+# segundos sin bajar ni escribir nada. Por eso el de y media no estorba: solo
+# trabaja si el de en punto fallo.
+#
+# El cron de cada hora se queda de respaldo: si el reloj de fuera dejara de
+# llamar (el token caduca al ano), GitHub seguiria lanzandolo, tarde, y la
+# app no ensena precios de mas de 2 dias. No usa el minuto :00, el mas
+# saturado.
+#
+# Uso a mano: pestana Actions -> "Precios gasolineras" -> Run workflow, con
+# forzar=si (lo que sale por defecto): baja y escribe aunque no toque.
 
 name: Precios gasolineras
 
@@ -28,6 +43,12 @@ on:
   schedule:
     - cron: '23 * * * *'
   workflow_dispatch:
+    inputs:
+      forzar:
+        description: 'si = bajar los precios aunque ya esten los de esta franja (a mano). no = solo si toca (el reloj de fuera).'
+        type: choice
+        options: ['si', 'no']
+        default: 'si'
 
 permissions:
   contents: write
@@ -44,12 +65,18 @@ jobs:
 
       - name: ¿Toca? (franjas de las 7:00 y las 15:00 de Canarias)
         id: toca
+        # La entrada va por el entorno y no pegada en el guion: un valor que
+        # viene de fuera no se escribe nunca dentro de un comando.
+        env:
+          EVENTO: ${{ github.event_name }}
+          FORZAR: ${{ inputs.forzar }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          if [ "$EVENTO" = "workflow_dispatch" ] && [ "$FORZAR" != "no" ]; then
             echo "toca=si" >> "$GITHUB_OUTPUT"
           else
             echo "toca=$(python3 tools/precios_gasolineras.py --toca)" >> "$GITHUB_OUTPUT"
           fi
+          echo "evento=$EVENTO forzar=${FORZAR:-(no viene)} -> $(tail -1 "$GITHUB_OUTPUT")"
 
       - name: Descargar el registro del Ministerio (Canarias)
         if: steps.toca.outputs.toca == 'si'
