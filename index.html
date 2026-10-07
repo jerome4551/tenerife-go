@@ -2466,6 +2466,26 @@ window.onunhandledrejection = function(e) {
 
   /* ── BOTÓN ESTRELLA EN POPUP ─────────────────────────── */
   .dice-btn { font-size: 1.05rem; line-height: 1; }
+  /* ⛽ con un «€» dorado: se distingue de los demas sin gritar */
+  .gas-top-btn { font-size: 0.95rem; line-height: 1; width: 32px; padding: 0; border-color: rgba(212,175,55,0.55); }
+  .gas-top-euro {
+    position: absolute;
+    right: -3px;
+    bottom: -3px;
+    min-width: 13px;
+    height: 13px;
+    padding: 0 2px;
+    border-radius: 99px;
+    background: var(--gold);
+    color: #111;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.55rem;
+    font-weight: 700;
+    line-height: 13px;
+    text-align: center;
+    box-shadow: 0 0 0 1.5px var(--bg, #0d1420);
+    pointer-events: none;
+  }
   .dice-btn.spin { animation: diceSpin 0.55s cubic-bezier(0.3, 0.7, 0.3, 1); }
   @keyframes diceSpin { to { transform: rotate(360deg); } }
   .popup-fav-btn.fav-pop { animation: favPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
@@ -4263,7 +4283,7 @@ window.onunhandledrejection = function(e) {
     .icon-btn { padding: 0 0.35rem; gap: 0.15rem; font-size: 0.7rem; }
     .route-toggle-btn { min-width: 30px; padding: 0; }
     .route-toggle-btn > span:not(.route-badge) { display: none; }
-    .gas-quick-btn, .bus-quick-btn { width: 28px; }
+    .gas-quick-btn, .bus-quick-btn, .gas-top-btn { width: 28px; }
     .gps-btn { width: 30px; height: 30px; padding: 0; }
     .fav-toggle-btn { width: 30px; height: 30px; padding: 0; font-size: 0.9rem; }
     .auth-btn { width: 30px; height: 30px; padding: 0; }
@@ -6212,6 +6232,9 @@ window.onunhandledrejection = function(e) {
   <div class="topbar-right">
     <!-- BOTÓN CAPAS (reemplaza Calles/Satélite/Topo) -->
     <button class="icon-btn dice-btn" id="dice-btn" onclick="surpriseMe()" title="Sorpréndeme" aria-label="Sorpréndeme">🎲</button>
+    <!-- «La gasolinera mas barata cerca de mi», al lado del dado: lo pidio
+         Jerome el 7 de octubre («esta muy escondido el boton») -->
+    <button class="icon-btn gas-top-btn" id="gas-top-btn" onclick="abrirGasCerca(event)" data-tx-title="gasCercaBoton" data-tx-aria="gasCercaBoton" title="La gasolinera más barata cerca de mí" aria-label="La gasolinera más barata cerca de mí"><span aria-hidden="true">⛽</span><span class="gas-top-euro" aria-hidden="true">€</span></button>
     <div class="layers-selector" id="layers-selector">
       <button class="icon-btn layers-btn" id="layers-btn" data-tx-title="tCapasMapa" title="Capas del mapa">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
@@ -7477,7 +7500,7 @@ banderasTitulo: 'Was bedeutet welche Flagge?',
     noResults: 'Nessun luogo trovato',
     filterLabel: 'Filtra',
     clearBtn: 'Cancella',
-    showing: 'Mostrando',
+    showing: 'Visualizzati',   // «Mostrando» es italiano correcto, pero es la palabra castellana y se lee como un hueco
     of: 'di',
     places: 'luoghi',
     streets: 'Strade',
@@ -9163,7 +9186,13 @@ const TG_ETIQUETAS = (function () {
     if (!lang || lang === 'es') { tabla = null; pedido = null; return Promise.resolve(); }
     if (pedido === lang) return Promise.resolve();
     pedido = lang;
-    return fetch('idiomas/etiquetas/' + lang + '.json', { cache: 'force-cache' })
+    /* 'no-cache', no 'force-cache'. Con 'force-cache' el navegador sirve la
+       copia que tenga aunque este vieja, y el service worker (red primero) la
+       pide con ese mismo modo: el 7 de octubre entraron 106 etiquetas
+       traducidas y un movil que ya tuviera el fichero no las habria visto.
+       'no-cache' pregunta al servidor si hay otra (un 304 si no) y sin red el
+       service worker sirve la guardada. */
+    return fetch('idiomas/etiquetas/' + lang + '.json', { cache: 'no-cache' })
       .then(r => r.ok ? r.json() : null)
       .then(d => {
         if (pedido !== lang) return;          // llego tarde, ya cambiaron de idioma
@@ -9223,7 +9252,8 @@ const TG_FAQ = (function () {
     if (!lang) return Promise.resolve();
     if (pedido === lang) return Promise.resolve();
     pedido = lang;
-    return fetch('faq/' + lang + '.json', { cache: 'force-cache' })
+    // 'no-cache' por lo mismo que las etiquetas (ver TG_ETIQUETAS)
+    return fetch('faq/' + lang + '.json', { cache: 'no-cache' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (pedido !== lang) return;        // llego tarde, ya cambiaron de idioma
@@ -26432,9 +26462,13 @@ function refreshBusPanelTexts() {
   if (inpEl)   inpEl.placeholder   = L_.busSearchPlaceholder || 'Buscar parada o línea...';
   if (linkEl)  linkEl.textContent  = L_.busOfficialLink || '🔗 titsa.com · metrotenerife.com';
 
-  // Etiquetas de los botones aeropuerto (textos cortos)
-  if (tfsBtn) tfsBtn.innerHTML = '✈️ TFS ' + (currentLang==='es'?'Sur':currentLang==='en'?'South':currentLang==='fr'?'Sud':'Süd');
-  if (tfnBtn) tfnBtn.innerHTML = '✈️ TFN ' + (currentLang==='es'?'Norte':currentLang==='en'?'North':currentLang==='fr'?'Nord':'Nord');
+  /* Etiquetas de los botones aeropuerto. Antes se escribian aqui con un
+     «es ? Sur : en ? South : fr ? Sud : Süd», asi que en italiano,
+     neerlandes, chino, bulgaro y polaco ponia «Süd», en aleman, encima de la
+     traduccion buena que ya traian (data-tx="busTfs"). Lo vio el barrido de
+     pantalla en los diez idiomas del 7 de octubre. */
+  if (tfsBtn) tfsBtn.textContent = tx('busTfs');
+  if (tfnBtn) tfnBtn.textContent = tx('busTfn');
 }
 
 // ── ACTIVAR / DESACTIVAR UNA LÍNEA ────────────────────────

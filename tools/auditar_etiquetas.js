@@ -7,10 +7,11 @@
  * para todo el mundo: en bulgaro el globo decia "Уебкамера на живо" y justo
  * debajo "Webcam · En directo · Teide".
  *
- * REGLA: cada etiqueta distinta tiene que estar traducida en los ocho
+ * REGLA: cada etiqueta distinta tiene que estar traducida en todos los
  * ficheros, O declarada en idiomas/etiquetas-sin-traducir.json con su
- * motivo, O ser reconocible sola como nombre de sitio del propio catalogo.
- * Lo que no encaje en ninguna de las tres, se canta.
+ * motivo. Lo que no encaje en ninguna de las dos, se canta.
+ * (Habia una tercera via, «reconocible sola como nombre de sitio», y se
+ * quito el 7 de octubre: ver mas abajo.)
  *
  * SE GUARDA TAMBIEN LO QUE SE ESCRIBE IGUAL. Al principio no: si el italiano
  * decia "Cala" como el castellano, se omitia la fila. Y entonces el hueco
@@ -48,14 +49,9 @@ for (let k = o; k < src.length; k++) {
 }
 const PLACES = eval('(' + src.slice(o, fin) + ')');
 
-/* los nombres de sitio salen del propio catalogo, como en auditar_idioma.js */
-const LUGARES = new Set();
-for (const p of PLACES) {
-  if (p.cat && typeof p.cat.es === 'string') {
-    const t = p.cat.es.split(/[·()]/).map(x => x.trim()).filter(Boolean);
-    for (const x of t.slice(1)) LUGARES.add(x);
-  }
-}
+/* HISTORIA DE LA TERCERA VIA, LA DE «NOMBRE DE SITIO», YA QUITADA.
+   Se reconocia como sitio lo que el catalogo pone detras del punto volado en
+   `cat` (el municipio, el barrio). */
 /* NO VALE "todas sus palabras salen en algun nombre de ficha". Se probo y
    era demasiado ancho: "Casa del Vino" hacia que "Vino" pasara por nombre
    propio, y con el "Museo" de "Museo Etnografico", la "Farmacia" de
@@ -71,9 +67,17 @@ for (const p of PLACES) {
    volado y eso bastaba para darlas por nombre de sitio. Lo encontro una foto de
    una ficha en italiano. Un punto cardinal, «Centro» o «Interior» no son
    nombres propios aunque vayan detras del punto: se traducen. */
-const NO_SON_SITIO = new Set(['Norte', 'Sur', 'Este', 'Oeste', 'Noroeste', 'Nordeste',
-  'Sureste', 'Suroeste', 'Centro', 'Interior']);
-const esSitio = t => LUGARES.has(t) && !NO_SON_SITIO.has(t);
+/* Y TAMPOCO ASI. El 7 de octubre Jerome vio cosas sin traducir y un barrido
+   de la pantalla en los diez idiomas encontro 200 etiquetas que este control
+   daba por «nombre de sitio» y salian en castellano en los nueve: «Permiso»,
+   «Teleferico», «Familia», «Lujo», «Gratuito», «Acantilados», «18 Hoyos»...
+   Bastaba con que alguna ficha llevara la palabra detras del punto volado
+   («Golf · Lujo») para que pasara por un pueblo. Despues de los puntos
+   cardinales, cien palabras mas: la regla no distingue un nombre de una
+   palabra, y una lista de excepciones detras de otra no la arregla.
+   Ahora no hay atajo: un nombre de sitio se declara en
+   etiquetas-sin-traducir.json con su motivo, como las marcas y los codigos,
+   y todo lo demas se traduce. */
 
 const cuenta = new Map();
 for (const p of PLACES) for (const t of (p.tags || [])) cuenta.set(t, (cuenta.get(t) || 0) + 1);
@@ -98,17 +102,15 @@ P('etiquetas distintas', cuenta.size);
 P('apariciones en las fichas', [...cuenta.values()].reduce((a, b) => a + b, 0));
 if (sinFichero.length) { P('FICHEROS QUE FALTAN', sinFichero.join(' ')); process.exitCode = 1; }
 
-let sitio = 0, decl = 0, trad = 0;
+let decl = 0, trad = 0;
 const huecos = [], acortos = [];
 for (const [t] of cuenta) {
   if (declarado.has(t)) { decl++; continue; }
-  if (esSitio(t)) { sitio++; continue; }
   const faltan = IDI.filter(l => TAB[l] && !TAB[l][t]);
   if (faltan.length === IDI.length) { huecos.push(t); continue; }
   if (faltan.length) { acortos.push(t + '  (sin ' + faltan.join(' ') + ')'); continue; }
   trad++;
 }
-P('reconocidas solas como nombre de sitio', sitio);
 P('declaradas sin traducir, con motivo', decl);
 P('traducidas en los ' + IDI.length + ' idiomas', trad);
 P('SIN TRADUCIR Y SIN DECLARAR', huecos.length);
@@ -137,7 +139,7 @@ const OTROS = ['zh', 'zht', 'bg'];
 const CODIGOS = /^[\d.,x+]+$|^[A-Z]{2,4}$|^[A-Z]{2,4}[\s-]?\d/;
 const enCastellano = [];
 for (const [t] of cuenta) {
-  if (declarado.has(t) || esSitio(t)) continue;
+  if (declarado.has(t)) continue;
   if (CODIGOS.test(t)) continue;
   for (const l of OTROS) if (TAB[l] && TAB[l][t] === t) enCastellano.push(l + ': ' + t);
 }

@@ -1357,11 +1357,18 @@ y que no hay ni un precio en `index.html`.
 
 Lo que pediste: «un botón: encuentra la gasolinera más barata cerca de mí».
 
-**Dónde está el botón.** En dos sitios, los dos con el mismo texto en los diez
-idiomas: en la hoja de categorías, pestaña **Servicios**, debajo de las
-gasolineras («💶 La gasolinera más barata cerca de mí»); y **sobre el mapa**
-cuando tienes filtradas «Gasolineras» o «Gasolineras más baratas», justo encima
-de la barra del filtro.
+**Dónde está el botón.** En tres sitios, con el mismo texto en los diez
+idiomas:
+- **En la barra de arriba, al lado del dado**: ⛽ con un «€» dorado. Lo pediste
+  el mismo día («está muy escondido el botón… mira si entra al lado del
+  dado»). Entra: la barra no se sale de la pantalla de 320 a 412 px. El precio
+  es que en móviles estrechos el texto «TENERIFE GO» de la izquierda se recorta
+  más (el logo se queda): en 360 px queda «TENE…». Es la regla que ya tenía la
+  barra: la marca cede antes que los botones.
+- En la hoja de categorías, pestaña **Servicios**, debajo de las gasolineras
+  («💶 La gasolinera más barata cerca de mí»).
+- **Sobre el mapa** cuando tienes filtradas «Gasolineras» o «Gasolineras más
+  baratas», justo encima de la barra del filtro.
 
 **Lo que hace.** Pide la posición del móvil (o usa la del GPS de la app si ya
 está encendido) y abre un panel con **gasolina 95 y diésel por separado**: las

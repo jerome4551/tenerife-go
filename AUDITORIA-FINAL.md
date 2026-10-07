@@ -210,6 +210,39 @@ consentimiento contando otra cosa es pedirlo mal. Ahora nombra el servicio.
    listo`). No lo recibe nadie. Un dueño de negocio deja su correo creyendo que
    se ha apuntado.
 
+## «Vi cosas no traducidas» · lo que se ve en pantalla (7 de octubre)
+
+Jerome lo vio en el móvil y ningún control lo había visto: los de idioma miran
+el fuente (tablas, filas, ficheros), y el único que mira la pantalla
+(`auditar_sin_traducir.js`) solo abre la página de arranque y solo en búlgaro.
+Un barrido nuevo, `tools/barrido_pantallas.js`, abre 75 paneles y fichas en
+los diez idiomas y busca castellano que no sea nombre propio. Encontró:
+
+- **200 etiquetas de ficha en castellano en los nueve idiomas**: «Permiso»,
+  «Teleférico», «Familia», «Lujo», «Gratuito», «Acantilados», «18 Hoyos»…
+  `auditar_etiquetas.js` las daba por **nombres de sitio** porque alguna ficha
+  las lleva detrás del punto volado en su categoría («Golf · Lujo»). Es el
+  mismo agujero que ya dejó pasar «Norte» y «Sur», con cien palabras más. Se
+  arregló con datos que ya estaban en la app: la categoría de cada ficha ya
+  traía esas palabras traducidas en los nueve idiomas, así que **106 se
+  traducen igual que su categoría** (con nueve correcciones a mano donde el
+  emparejamiento salía mal, como «Intermedio» → neerlandés «Gevorderd», que es
+  avanzado) y **94 nombres propios** (pueblos, marcas, personas, códigos) se
+  declaran con su motivo. El control ya no tiene la vía «nombre de sitio»: se
+  traduce o se declara.
+- **«Süd», en alemán, en los botones de los aeropuertos** del panel de guaguas
+  en italiano, neerlandés, chino, búlgaro y polaco: el código escribía
+  «Sur / South / Sud» y para todo lo demás «Süd», encima de la traducción
+  buena que el botón ya traía.
+- **«Mostrando»** en la barra del filtro en italiano. Es italiano correcto, pero
+  es la palabra castellana y se lee como un hueco: ahora «Visualizzati».
+
+Las 975 fichas, abiertas una a una en los diez idiomas, quedan sin castellano
+fuera de nombres propios. Lo que no es un hueco va en
+`idiomas/pantalla-aceptado.json` con su motivo (hoy, cuatro romerías en
+francés, donde la preposición también es «de»). Probado metiendo otra vez el
+«Süd» y el «Mostrando»: los dos en rojo.
+
 ## El punto ciego · una segunda forma de fila de idioma
 
 `barrido_idiomas.js` busca objetos con `es`, `en`, `fr` como claves directas.
@@ -3787,7 +3820,8 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_arranque.js` | el texto que se queda en el idioma de **arranque**, comparando contra `setLang` |
 | `tools/partir_idiomas.js` | la mudanza de los ocho idiomas de `places[]` a `idiomas/*.json` |
 | `tools/auditar_idiomas_fuera.js` | que lo mudado esté entero y el navegador lo pegue antes de montar el mapa |
-| `tools/auditar_etiquetas.js` | los chips del globo: traducidos, declarados con motivo, o reconocidos como nombre de sitio |
+| `tools/auditar_etiquetas.js` | los chips del globo: traducidos o declarados con motivo (desde el 7 de octubre, sin la vía «nombre de sitio») |
+| `tools/barrido_pantallas.js` | lo que **se ve**: 75 paneles y fichas abiertos en los diez idiomas, buscando castellano que no sea nombre propio |
 | `tools/auditar_idioma.js` | un idioma entero contra el castellano: cifras, horarios, teléfonos, trozos de etiqueta, alfabeto |
 | `tools/faltan_textos.js` | **cribado**, no veredicto: descripciones más cortas de lo esperado contra la mediana de ese idioma |
 | `tools/meter_descripcion.py` | mete descripciones rehechas comprobando que el texto es **de ese lugar** |

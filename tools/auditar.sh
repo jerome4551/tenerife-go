@@ -124,6 +124,8 @@ echo; echo "════════ texto que se queda en el idioma de arranque
 control auditar_arranque.js node tools/auditar_arranque.js "$PUERTO"
 echo; echo "════════ texto que no cambia al cambiar de idioma ════════"
 control auditar_sin_traducir.js node tools/auditar_sin_traducir.js "$PUERTO"
+echo; echo "════════ lo que se ve en pantalla, en los diez idiomas (paneles y fichas) ════════"
+control barrido_pantallas.js node tools/barrido_pantallas.js "$PUERTO"
 echo
 # Los rotos van PRIMERO y con su propio nombre: son los que no han mirado nada.
 [ "$rotos" = 0 ] || echo "*** $rotos control(es) QUE NO SE PUDIERON EJECUTAR (pip install -r tools/requisitos.txt) ***"

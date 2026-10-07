@@ -17,6 +17,10 @@
                           empatan con la tercera, en linea recta), que nada se
                           sale por los lados, y que la fila lleva a la ficha
                           de esa gasolinera con el mismo precio.
+    el de la barra        el ⛽€ al lado del dado (lo pidio Jerome: «esta muy
+                          escondido»): abre el panel, su title y aria-label en
+                          cada idioma, y la barra de arriba no se sale de la
+                          pantalla de 320 a 412 px.
     el boton del mapa     solo con «Gasolineras» o «Gasolineras mas baratas»
                           en el filtro; abre el panel; sin pisar nada; y una
                           gasolinera que el filtro esconde se puede abrir.
@@ -157,6 +161,33 @@ function esperado(datos, places, pos, radio, comb) {
       '\n    10 km:', JSON.stringify(Object.fromEntries(Object.entries(r.r10).map(([k, v]) => [k, v.length]))), '|', r.filas.join(' ‖ '),
       '\n    ficha:', f.info.slice(0, 160), '| errores:', err.length, err.slice(0, 2).join(' / '));
     if (err.length) mal(lang + ': errores JS ' + err.join(' / '));
+    await ctx.close();
+  }
+  // el boton de la barra de arriba, al lado del dado
+  for (const lang of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    const { ctx, p, err } = await abrir(b, { lang });
+    const r = await p.evaluate(async () => {
+      const bt = document.getElementById('gas-top-btn');
+      const o = { title: bt.title, aria: bt.getAttribute('aria-label'), quiere: tx('gasCercaBoton'),
+        alLado: bt.previousElementSibling && bt.previousElementSibling.id };
+      bt.click(); await new Promise(r => setTimeout(r, 1200));
+      o.abre = document.getElementById('gas-cerca-panel').classList.contains('open');
+      return o;
+    });
+    if (r.title !== r.quiere || r.aria !== r.quiere || r.alLado !== 'dice-btn' || !r.abre)
+      mal('barra ' + lang + ': ' + JSON.stringify(r));
+    if (err.length) mal('barra ' + lang + ': errores JS ' + err.join(' / '));
+    await ctx.close();
+  }
+  for (const w of [320, 360, 375, 390, 412]) {
+    const { ctx, p } = await abrir(b, { w, h: 740 });
+    const r = await p.evaluate(() => {
+      const tr = document.querySelector('.topbar-right');
+      const fuera = [...tr.children].filter(e => { const q = e.getBoundingClientRect(); return q.width && (q.right > innerWidth + 0.5 || q.left < -0.5); }).map(e => e.id || e.className);
+      return { fuera, desborda: tr.scrollWidth > tr.clientWidth + 1 };
+    });
+    console.log('barra ' + w + ' px: ' + JSON.stringify(r));
+    if (r.fuera.length || r.desborda) mal('la barra de arriba se sale a ' + w + ' px: ' + JSON.stringify(r));
     await ctx.close();
   }
   // el boton del mapa, en movil y en ordenador
