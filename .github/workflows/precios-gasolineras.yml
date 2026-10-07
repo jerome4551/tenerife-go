@@ -1,6 +1,11 @@
 # Precios de las gasolineras: las más baratas de cada municipio (sesion 92) y
 # el precio de cada gasolinera de la app, para el boton «la mas barata cerca de
 # mi» (sesion 93).
+#
+# DESDE EL 7 DE OCTUBRE ES EL RESPALDO. La app pide los precios en vivo al
+# Ministerio, como el tiempo a Open-Meteo, y hace ella la misma cuenta que
+# tools/precios_gasolineras.py (comprobado en tools/auditar_gas_cerca.js). Este
+# fichero sirve cuando el Ministerio no contesta o antes de que conteste.
 # Fuente: Ministerio para la Transicion Ecologica y el Reto Demografico,
 # Geoportal de Gasolineras (servicio REST publico), el mismo registro del que
 # salen las fichas.

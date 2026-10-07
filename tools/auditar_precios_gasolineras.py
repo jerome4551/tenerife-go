@@ -15,6 +15,10 @@ de que llegue a la app. Esto lo mira:
      gasolinera de la app, que cuadra con la lista de su municipio y que no
      falta media isla.
   3. Que index.html no lleva ningun precio de gasolina (LEEME: son perecederos).
+  4. Que datos/gasolineras-municipio.json (el municipio de cada gasolinera, con
+     el que la app calcula en vivo las mas baratas de cada municipio desde el
+     7 de octubre) dice lo mismo que el poligono de cada ficha. Que la cuenta
+     de la app es la de este guion lo mira tools/auditar_gas_cerca.js.
 
 Sale con 1 si algo falla. No escribe nada en el repo.
 """
@@ -143,6 +147,20 @@ def main():
     for m in re.finditer(r'\{ id:"gas-[^\n]*', src):
         if re.search(r'€|\b1[,.]\d{3}\b', m.group(0)):
             mal('index.html lleva un precio en %s' % m.group(0)[:60])
+    # 4 · el municipio de cada gasolinera, para la cuenta en vivo de la app
+    import municipio as M
+    try:
+        mu = json.load(open(os.path.join(RAIZ, 'datos', 'gasolineras-municipio.json'), encoding='utf-8'))['municipios']
+    except (OSError, ValueError, KeyError):
+        mu = None
+        mal('falta datos/gasolineras-municipio.json: python3 tools/gasolineras_municipio.py')
+    if mu is not None:
+        distintos = [f['id'] for f in fichas if mu.get(f['id']) != M.de(f['lat'], f['lng'])]
+        sobran = sorted(set(mu) - {f['id'] for f in fichas})
+        if distintos or sobran:
+            mal('datos/gasolineras-municipio.json no esta al dia (%d distintas, %d de mas): '
+                'python3 tools/gasolineras_municipio.py' % (len(distintos), len(sobran)))
+        print('  datos/gasolineras-municipio.json: %d gasolineras, %s' % (len(mu), 'al dia' if not (distintos or sobran) else 'NO al dia'))
     print('  fallos ...................................... %d' % len(fallos))
     return 1 if fallos else 0
 

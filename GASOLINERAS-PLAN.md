@@ -1423,10 +1423,50 @@ Lo que hay que hacer una vez, paso a paso, está en **`RELOJ-EXTERNO.md`**
 tareas en cron-job.org). `python3 tools/reloj_flujos.py` dice a qué hora llegó
 cada franja.
 
+## Los precios, en vivo como el tiempo y el mar · 7 de octubre
+
+Me preguntaste: «¿cómo no lo hacen si nosotros ya lo hacemos con el tiempo y
+el estado del mar? ¿No se actualiza solo?». Tenías razón. El tiempo y el mar
+los pide **cada móvil** a Open-Meteo cuando abres el panel; GitHub no
+interviene. Los precios se pueden pedir igual: lo comprobé desde GitHub y el
+servicio del Ministerio deja que una web le pida los datos
+(`Access-Control-Allow-Origin: *`). La provincia son 242 gasolineras, 265 kB,
+en algo más de un segundo, con los precios **del momento**.
+
+Así que ahora:
+
+- **La app pide los precios al Ministerio cuando hacen falta**: al filtrar
+  gasolineras, al abrir una gasolinera (globo o ficha) y con el botón «la más
+  barata cerca de mí». Como mucho una vez cada media hora, igual que el
+  tiempo. No al abrir la app: 265 kB no son para cada turista que solo busca
+  playas.
+- Calcula ella **las más baratas de cada municipio**, con tu regla y el mismo
+  municipio que el guion de GitHub (`datos/gasolineras-municipio.json`, el
+  polígono de cada ficha). Comprobado: con el mismo registro, la cuenta del
+  móvil y la del guion salen **idénticas**, y cada pieza (la regla de 0 a 40
+  gasolineras, los precios raros, la hora en los dos cambios de hora) igual que
+  en Python.
+- Si un globo está abierto cuando llegan los precios, **no se cierra**: se
+  rellena.
+- **Ningún precio en `index.html`**, como pide el LEEME: viajan del Ministerio
+  al móvil, con su fecha, y la fecha sale debajo.
+- **Respaldo**: si el Ministerio no contesta, se queda lo que haya: el fichero
+  que escribe el flujo de GitHub (sigue igual, aunque llegue tarde) o los
+  últimos precios en vivo que guardó el móvil. Si todo tiene más de 2 días, no
+  se enseña ningún precio y se dice de cuándo son los últimos.
+- La política de privacidad lo dice, en los diez idiomas: el móvil pide al
+  Ministerio los precios de la provincia y no le manda nada tuyo.
+
+Con esto **los precios ya no dependen del programador de GitHub**. El reloj
+de fuera (`RELOJ-EXTERNO.md`) ya no hace falta para ellos: solo mantendría al
+día el fichero de respaldo. Donde sí sigue haciendo falta es en la
+**notificación diaria**, que la tiene que enviar un servidor y no el móvil.
+
 ## Lo que queda
 
-- **El reloj de fuera** (`RELOJ-EXTERNO.md`): lo tienes que crear tú, porque
-  lleva un token tuyo.
+- **La notificación diaria** sigue saliendo hacia mediodía por el retraso de
+  GitHub. Para que salga por la mañana: el reloj de fuera
+  (`RELOJ-EXTERNO.md`, tarea 2), que lleva un token tuyo.
 - Si un día vuelve la BP Ten Bel, ver arriba.
 
 ## Lo que necesito de ti antes de seguir

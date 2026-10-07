@@ -223,7 +223,9 @@ self.addEventListener('fetch', e => {
      minutos de vida y tira de ella en el catch si no hay red. El cache del
      service worker solo estorbaba. Lo que si se queda cacheado es
      Wikipedia: eso es contenido, no un dato vivo, y ahi ayuda sin mentir. */
-  const EN_VIVO = ['open-meteo.com', 'aemet.es', 'project-osrm.org'];
+  /* Los precios de las gasolineras, desde el 7 de octubre, se piden en vivo al
+     Ministerio como el tiempo a Open-Meteo: tampoco se cachean aqui. */
+  const EN_VIVO = ['open-meteo.com', 'aemet.es', 'project-osrm.org', 'serviciosmin.gob.es', 'minetur.gob.es'];
   if (url.hostname.includes('supabase.co') || url.hostname.includes('nominatim') ||
       EN_VIVO.some(h => url.hostname === h || url.hostname.endsWith('.' + h))) {
     return; // no cachear apis, tiempo ni rutas - siempre fresco
@@ -246,9 +248,12 @@ self.addEventListener('fetch', e => {
       /* Los precios de las gasolineras, tambien red primero: se rehacen a las
          7:00 y a las 15:00, y con `cached || fetch` el primero que entrase se
          quedaria para siempre. Sin red sale el ultimo, y la app no lo ensena
-         si tiene mas de 2 dias. */
+         si tiene mas de 2 dias. El municipio de cada gasolinera (con el que la
+         app calcula en vivo las mas baratas) tambien: cambia si cambia una
+         ficha, y con `cached || fetch` se quedaria el primero. */
       if (req.url.endsWith('index.html') || req.url.endsWith('/') ||
           url.pathname.endsWith('/datos/precios-gasolineras.json') ||
+          url.pathname.endsWith('/datos/gasolineras-municipio.json') ||
           /\/(idiomas\/(etiquetas\/)?|faq\/)[a-z]{2,3}\.json$/.test(url.pathname)) {
         return fetch(req).then(res => {
           if (guardableShell(res)) guardar(req, res);

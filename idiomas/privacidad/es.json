@@ -2,7 +2,7 @@
 "ppEnlace":"Privacidad · RGPD",
 "ppCerrar":"✕ Cerrar",
 "ppTitulo":"🔒 Política de Privacidad",
-"ppActualizado":"— Última actualización: septiembre de 2026",
+"ppActualizado":"— Última actualización: octubre de 2026",
 
 "ppRespTitulo":"Responsable del tratamiento",
 "ppRespDir":"· Tenerife, Islas Canarias, España.",
@@ -40,6 +40,7 @@
 "ppTercNominatim":"el texto que escribes al buscar una dirección.",
 "ppTercMeteo":"las coordenadas del lugar o de la zona cuya previsión consultas.",
 "ppTercAemet":"avisos meteorológicos de la isla; no se le manda nada tuyo.",
+"ppTercCarburantes":"los precios oficiales de las gasolineras de la provincia, cuando los miras; no se le manda nada tuyo.",
 "ppTercWiki":"el título del artículo del lugar que abres.",
 "ppTercCdn":"tipografías y librerías.",
 "ppTercGa":"solo si aceptas el aviso de cookies.",

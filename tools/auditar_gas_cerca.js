@@ -28,6 +28,16 @@
                           de mas de 2 dias, fichero sin «estaciones»: no abre
                           y dice por que.
     el idioma             cambiarlo con el panel abierto lo repinta.
+    en vivo               (desde el 7 de octubre la app pide los precios al
+                          Ministerio, como el tiempo a Open-Meteo) con el
+                          Ministerio simulado: que la cuenta que hace el movil
+                          es IDENTICA a la de tools/precios_gasolineras.py
+                          con el mismo registro; que se usa en vivo; que si
+                          el primer dominio falla va al segundo; que si fallan
+                          los dos se queda el fichero; que unos precios viejos
+                          no pisan a unos nuevos; que un globo abierto no se
+                          cierra al llegar los precios y se rellena; y que con
+                          el fichero caducado el boton sigue funcionando.
     cada ficha            Jerome, 7 de octubre: «puedes poner los precios si
                           estan actualizados a cada gasolinera». En las 211
                           (globo y ficha, cuatro idiomas): su precio exacto en
@@ -70,13 +80,27 @@ execFileSync('python3', [path.join(RAIZ, 'tools', 'precios_gasolineras.py'), '--
 }
 const SC = { latitude: 28.4636, longitude: -16.2518 };   // Santa Cruz, plaza de España aprox.
 const MADRID = { latitude: 40.4168, longitude: -3.7038 };
-async function abrir(b, { lang = 'es', w = 360, h = 740, geo = SC, permiso = true, fichero = 'pc_frescos.json' } = {}) {
+/* El Ministerio simulado: «ok» devuelve el registro del repo con la fecha de
+   hoy (el mismo del que salio pc_frescos.json con el guion de Python),
+   «falla» un 503 en los dos dominios, «primero» falla el primer dominio y
+   responde el segundo. */
+const MINISTERIO = /serviciosmin\.gob\.es|minetur\.gob\.es/;
+async function abrir(b, { lang = 'es', w = 360, h = 740, geo = SC, permiso = true, fichero = 'pc_frescos.json', ministerio = 'falla' } = {}) {
   const ctx = await b.newContext({ viewport: { width: w, height: h }, serviceWorkers: 'block',
     geolocation: geo, permissions: permiso ? ['geolocation'] : [] });
   const p = await ctx.newPage();
   const err = []; p.on('pageerror', e => err.push(e.message));
   await p.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '1'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
   await p.route('**/datos/precios-gasolineras.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: fs.readFileSync(S + '/' + fichero) }));
+  const pedidas = [];
+  await p.route(MINISTERIO, r => {
+    const u = r.request().url(); pedidas.push(u);
+    const bien = ministerio === 'ok' || (ministerio === 'primero' && /minetur/.test(u));
+    return bien ? r.fulfill({ status: 200, contentType: 'application/json; charset=utf-8',
+                              headers: { 'Access-Control-Allow-Origin': '*' }, body: fs.readFileSync(S + '/registro.json') })
+                : r.fulfill({ status: 503, headers: { 'Access-Control-Allow-Origin': '*' }, body: 'no' });
+  });
+  p.__pedidas = pedidas;
   await p.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'networkidle' });
   await p.waitForTimeout(600);
   await p.click('.v19-w-lang[data-lang="' + lang + '"]'); await p.waitForTimeout(300);
@@ -285,6 +309,112 @@ function esperado(datos, places, pos, radio, comb) {
     if (fichero === 'pc_viejos.json' ? r.conPrecio : r.conPrecio < 0.8 * r.n) mal('fichas ' + lang + ' ' + fichero + ': ' + r.conPrecio + ' con precio');
     if (fichero === 'pc_huecos.json' && r.sinPrecio !== 1) mal('fichas: la gasolinera sin precio no se ha mirado');
     if (err.length) mal('fichas ' + lang + ': errores JS ' + err.join(' / '));
+    await ctx.close();
+  }
+  // ── EN VIVO ──────────────────────────────────────────────────────────
+  {
+    const py = JSON.parse(fs.readFileSync(path.join(S, 'pc_frescos.json')));
+    const reg = JSON.parse(fs.readFileSync(path.join(S, 'registro.json')));
+    const mu = JSON.parse(fs.readFileSync(path.join(RAIZ, 'datos', 'gasolineras-municipio.json'))).municipios;
+    // 1 · la misma cuenta que el guion de Python, con el mismo registro
+    const { ctx, p, err } = await abrir(b, { ministerio: 'ok' });
+    // 0 · cada pieza contra Python, tambien donde los datos de hoy no llegan
+    //     (ningun municipio tiene justo 8 ni 15 gasolineras; nadie cambia la
+    //     hora un 7 de octubre)
+    const PRECIOS = ['', '1,449', '1.449', ' 1,5 ', '0,4', '0,5', '3,5', '3,6', 'abc', '1,5abc', '2'];
+    const FECHAS = ['07/10/2026 22:14:08', '7/10/2026 0:48:44', '15/01/2026 09:00:00', '29/03/2026 01:59:59',
+      '29/03/2026 02:30:00', '29/03/2026 03:00:00', '25/10/2026 01:59:59', '25/10/2026 02:30:00', '25/10/2026 03:00:00'];
+    const pyRef = JSON.parse(execFileSync('python3', ['-c', [
+      'import json, sys, datetime as dt',
+      "sys.path.insert(0, 'tools')",
+      'import precios_gasolineras as P',
+      'precios, fechas = json.loads(sys.argv[1]), json.loads(sys.argv[2])',
+      'f = lambda s: int(dt.datetime.strptime(s.strip(), "%d/%m/%Y %H:%M:%S").replace(tzinfo=P.MADRID).timestamp() * 1000)',
+      "print(json.dumps({'cuantas': [P.cuantas(n) for n in range(41)], 'precio': [P.precio(x) for x in precios], 'fecha': [f(x) for x in fechas]}))"
+    ].join('\n'), JSON.stringify(PRECIOS), JSON.stringify(FECHAS)], { cwd: RAIZ }).toString());
+    const jsRef = await p.evaluate(({ PRECIOS, FECHAS }) => ({
+      cuantas: [...Array(41).keys()].map(n => cuantasGas(n)),
+      precio: PRECIOS.map(x => precioGas(x)),
+      fecha: FECHAS.map(x => fechaMinisterioUtc(x)) }), { PRECIOS, FECHAS });
+    for (const k of ['cuantas', 'precio', 'fecha']) {
+      const a = JSON.stringify(jsRef[k]), c = JSON.stringify(pyRef[k]);
+      console.log('en vivo · ' + k + ' contra Python: ' + (a === c ? 'igual' : 'DISTINTO'));
+      if (a !== c) mal('en vivo: «' + k + '» no es como en Python:\n         app    ' + a + '\n         Python ' + c);
+    }
+    const js = await p.evaluate(({ reg, mu }) => construirPreciosGas(reg, mu), { reg, mu });
+    for (const k of ['fecha', 'fecha_ministerio', 'municipios', 'estaciones']) {
+      if (JSON.stringify(js[k]) !== JSON.stringify(py[k])) mal('en vivo: «' + k + '» no sale igual que en tools/precios_gasolineras.py');
+    }
+    console.log('en vivo · la cuenta del movil y la del guion: ' + (js.error ? 'ERROR ' + js.error : Object.keys(js.municipios).length + ' municipios, ' + Object.keys(js.estaciones).length + ' gasolineras'));
+    // 2 · al abrir el boton se piden en vivo y se usan
+    const r = await p.evaluate(async () => { abrirGasCerca(); await new Promise(r => setTimeout(r, 2500));
+      return { fuente: PRECIOS_GAS.fuente, abierto: document.getElementById('gas-cerca-panel').classList.contains('open') }; });
+    console.log('en vivo · boton con el Ministerio respondiendo: ' + JSON.stringify(r) + ' · peticiones: ' + p.__pedidas.length);
+    if (r.fuente !== 'vivo' || !r.abierto || p.__pedidas.length !== 1) mal('en vivo: el boton no usa los precios del Ministerio: ' + JSON.stringify(r));
+    // 3 · media hora sin volver a pedir
+    await p.evaluate(async () => { cerrarGasCerca(); abrirGasCerca(); await new Promise(r => setTimeout(r, 1500)); });
+    if (p.__pedidas.length !== 1) mal('en vivo: vuelve a pedir antes de media hora (' + p.__pedidas.length + ' peticiones)');
+    // 4 · unos precios mas viejos no pisan a los nuevos
+    const pisa = await p.evaluate(() => { const d = JSON.parse(JSON.stringify(PRECIOS_GAS.datos));
+      d.fecha = new Date(Date.parse(d.fecha) - 3600e3).toISOString().replace(/\.\d{3}Z$/, 'Z');
+      const antes = PRECIOS_GAS.datos.fecha; const r = aplicarPreciosGas(d, 'fichero'); return { r, igual: PRECIOS_GAS.datos.fecha === antes }; });
+    if (pisa.r !== false || !pisa.igual) mal('en vivo: unos precios mas viejos pisaron a los nuevos');
+    if (err.length) mal('en vivo: errores JS ' + err.join(' / '));
+    await ctx.close();
+  }
+  for (const [nom, o, fuente] of [
+    ['primer dominio caido', { ministerio: 'primero' }, 'vivo'],
+    ['Ministerio caido, fichero bueno', { ministerio: 'falla' }, 'fichero'],
+  ]) {
+    const { ctx, p, err } = await abrir(b, o);
+    const r = await p.evaluate(async () => { abrirGasCerca(); await new Promise(r => setTimeout(r, 2500));
+      return { fuente: PRECIOS_GAS.fuente, abierto: document.getElementById('gas-cerca-panel').classList.contains('open') }; });
+    console.log('en vivo · ' + nom + ': ' + JSON.stringify(r) + ' · peticiones: ' + p.__pedidas.length);
+    if (r.fuente !== fuente || !r.abierto) mal('en vivo · ' + nom + ': ' + JSON.stringify(r));
+    if (err.length) mal('en vivo · ' + nom + ': errores JS ' + err.join(' / '));
+    await ctx.close();
+  }
+  // 5 · fichero caducado (el cron de GitHub no paso) y Ministerio bueno: el boton funciona
+  {
+    const { ctx, p, err } = await abrir(b, { fichero: 'pc_viejos.json', ministerio: 'ok' });
+    const r = await p.evaluate(async () => { abrirGasCerca(); await new Promise(r => setTimeout(r, 2500));
+      return { fuente: PRECIOS_GAS.fuente, estado: PRECIOS_GAS.estado, abierto: document.getElementById('gas-cerca-panel').classList.contains('open') }; });
+    console.log('en vivo · fichero caducado y Ministerio bueno: ' + JSON.stringify(r));
+    if (r.fuente !== 'vivo' || r.estado !== 'frescos' || !r.abierto) mal('en vivo · fichero caducado: ' + JSON.stringify(r));
+    // y la categoria «mas baratas», que sin precios frescos decia que no los habia
+    if (err.length) mal('en vivo · fichero caducado: errores JS ' + err.join(' / '));
+    await ctx.close();
+  }
+  {
+    const { ctx, p, err } = await abrir(b, { fichero: 'pc_viejos.json', ministerio: 'ok' });
+    const r = await p.evaluate(async () => {
+      toggleCategorySheet(); _activeCatTab = 'servicios'; _buildCatSheet();
+      document.querySelector('#cat-grid [data-category="gasolinera_barata"]').click();
+      await new Promise(r => setTimeout(r, 2500));
+      return { sel: selectedCategories.has('gasolinera_barata'), n: places.filter(x => placeInCat(x, 'gasolinera_barata')).length };
+    });
+    console.log('en vivo · «mas baratas» con el fichero caducado: ' + JSON.stringify(r));
+    if (!r.sel || !r.n) mal('en vivo · «mas baratas» con el fichero caducado no se filtra: ' + JSON.stringify(r));
+    if (err.length) mal('en vivo · categoria: errores JS ' + err.join(' / '));
+    await ctx.close();
+  }
+  // 6 · un globo de gasolinera abierto no se cierra cuando llegan los precios
+  {
+    const { ctx, p, err } = await abrir(b, { w: 1280, h: 800, fichero: 'pc_viejos.json', ministerio: 'ok' });
+    const r = await p.evaluate(async () => {
+      setCategory('gasolinera'); updateMarkers({ immediate: true });
+      await new Promise(r => setTimeout(r, 2500));       // llegan los precios en vivo por el filtro
+      _gasVivo.ok = 0; _gasVivo.intento = 0;               // como si hubiera pasado media hora
+      PRECIOS_GAS.datos = null; PRECIOS_GAS.estado = 'sin'; PRECIOS_GAS.porId = {};
+      const id = 'gas-14353-santa-cruz-de-tenerife', m = markerMap[id];
+      clusterGroup.zoomToShowLayer(m, () => m.openPopup());
+      await new Promise(r => setTimeout(r, 2500));
+      const g = document.querySelector('.leaflet-popup .gas-precios');
+      return { abierto: !!document.querySelector('.leaflet-popup'), filas: g ? (g.innerText.match(/💶/g) || []).length : -1, fuente: PRECIOS_GAS.fuente };
+    });
+    console.log('en vivo · globo abierto al llegar los precios: ' + JSON.stringify(r));
+    if (!r.abierto || r.filas < 2 || r.fuente !== 'vivo') mal('en vivo · el globo se cerro o no se relleno: ' + JSON.stringify(r));
+    if (err.length) mal('en vivo · globo: errores JS ' + err.join(' / '));
     await ctx.close();
   }
   // cambio de idioma con el panel abierto

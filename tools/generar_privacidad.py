@@ -42,8 +42,15 @@ bloque = ('/* La politica de privacidad, en los diez idiomas.\n'
 p = os.path.join(RAIZ, 'index.html')
 s = open(p, encoding='utf-8').read()
 
-ini = s.find('Object.assign(UI_TX, {\n  "ppCerrar"')
+# El bloque empieza por la primera clave del castellano (era ppCerrar; desde
+# que entro ppEnlace ya no lo encontraba). Y se corta desde el comentario que
+# escribe este mismo guion, si esta justo encima: si no, cada pasada dejaba
+# otra copia del comentario.
+ini = s.find('Object.assign(UI_TX, {\n  "%s"' % claves[0])
 if ini < 0: print('no encuentro el bloque pp* de UI_TX'); sys.exit(1)
+com = s.rfind('/* La politica de privacidad, en los diez idiomas.', 0, ini)
+if com >= 0 and not s[com:ini].split('*/', 1)[1].strip():
+    ini = com
 fin = s.find('\n});\n', ini) + len('\n});\n')
 s = s[:ini] + bloque + s[fin:]
 
@@ -102,6 +109,7 @@ m.append(terc('OSRM', 'https://project-osrm.org/', 'ppTercOsrm'))
 m.append(terc('Nominatim', 'https://osmfoundation.org/wiki/Privacy_Policy', 'ppTercNominatim'))
 m.append(terc('Open-Meteo', 'https://open-meteo.com/en/terms', 'ppTercMeteo'))
 m.append(terc('AEMET', 'https://www.aemet.es/es/nota_legal', 'ppTercAemet'))
+m.append(terc('Ministerio para la Transición Ecológica y el Reto Demográfico', 'https://geoportalgasolineras.es/', 'ppTercCarburantes'))
 m.append(terc('Wikipedia · Wikimedia', 'https://foundation.wikimedia.org/wiki/Policy:Privacy_policy', 'ppTercWiki'))
 m.append(terc('Google Fonts · jsDelivr', 'https://policies.google.com/privacy', 'ppTercCdn'))
 m.append(terc('Google Analytics', 'https://policies.google.com/privacy', 'ppTercGa'))

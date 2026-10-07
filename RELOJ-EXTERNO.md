@@ -1,5 +1,12 @@
 # Reloj de fuera para los flujos de GitHub
 
+> **Actualización del 7 de octubre, por la noche.** Los precios de las
+> gasolineras ya no dependen de esto: la app los pide en vivo al Ministerio,
+> como el tiempo a Open-Meteo (ver `GASOLINERAS-PLAN.md`). Para los precios,
+> la tarea 1 solo mantendría al día el fichero de respaldo; es opcional.
+> **Lo que sí lo necesita es la notificación diaria (tarea 2)**: la envía un
+> servidor, no el móvil, y con el retraso de GitHub sale hacia mediodía.
+
 **7 de octubre de 2026.** Los precios de las gasolineras (7:00 y 15:00) y la
 notificación diaria (por la mañana) los lanza GitHub con su programador
 (`schedule`). Desde el **26 de agosto de 2026** ese programador está roto para
