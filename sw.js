@@ -28,6 +28,10 @@ const TESELAS_TOPE = 1200;
 const MAPA_OSM = 'tgo-mapa-osm-v1';
 const CORE = [
   './', './index.html', './manifest.webmanifest',
+  /* La red de guaguas y tranvia: salio de index.html el 9 de octubre de 2026
+     y la app la carga al arrancar, antes de su codigo. Sin ella aqui, quien
+     abriera la app sin conexion se quedaria sin guaguas. */
+  './datos/titsa.js',
   // Leaflet y MarkerCluster ya no vienen de un CDN: viven en ./vendor/.
   // Al ser del propio origen se precachean aqui, asi el mapa tambien
   // arranca sin conexion.
@@ -251,7 +255,11 @@ self.addEventListener('fetch', e => {
          si tiene mas de 2 dias. El municipio de cada gasolinera (con el que la
          app calcula en vivo las mas baratas) tambien: cambia si cambia una
          ficha, y con `cached || fetch` se quedaria el primero. */
+      /* La red de guaguas (datos/titsa.js) tambien: es un trozo de index.html
+         que vive aparte, y con `cached || fetch` una red nueva no llegaria
+         nunca a quien ya tuviera la vieja. */
       if (req.url.endsWith('index.html') || req.url.endsWith('/') ||
+          url.pathname.endsWith('/datos/titsa.js') ||
           url.pathname.endsWith('/datos/precios-gasolineras.json') ||
           url.pathname.endsWith('/datos/gasolineras-municipio.json') ||
           /\/(idiomas\/(etiquetas\/)?|faq\/)[a-z]{2,3}\.json$/.test(url.pathname)) {

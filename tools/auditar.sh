@@ -39,7 +39,9 @@ echo "════════ sintaxis ════════"
 python3 tools/extract_js.py >/dev/null 2>&1
 mal=0; for f in chk/*.js; do node --check "$f" >/dev/null 2>&1 || { mal=$((mal+1)); echo "  FALLO $f"; }; done
 echo "  scripts en linea: $(ls chk/*.js 2>/dev/null | wc -l), con fallo: $mal"
-for f in sw.js enviar-notificacion.js; do
+# datos/titsa.js: la red de guaguas, fuera de index.html desde el 9 de octubre
+# de 2026. extract_js.py solo saca los bloques en linea, asi que va aqui.
+for f in sw.js enviar-notificacion.js datos/titsa.js; do
   if node --check "$f"; then echo "  $f ok"; else mal=$((mal+1)); fi
 done
 [ "$mal" != 0 ] && fallos=$((fallos+1))

@@ -30,7 +30,13 @@ import io, os, re, sys, collections
 
 RUTA = 'index.html'
 BG = os.path.join('idiomas', 'bg.json')
-src = io.open(RUTA, encoding='utf-8').read()
+# index.html Y los ficheros de datos que carga: las notas de las lineas de
+# guagua, en bulgaro tambien, viven en datos/titsa.js desde el 9 de octubre de
+# 2026. Al mudarlas, este control paso de 1.161 nombres a 1.160 y siguio en
+# verde. Ver tools/fuente.py.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import fuente
+src = fuente.html()
 
 OK = set(re.findall(r'CIRILICO-OK:\s*(\S+)', src))
 

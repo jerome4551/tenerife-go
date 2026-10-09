@@ -2,6 +2,12 @@
 /* Que le falta a un idioma nuevo, tabla por tabla y con el castellano al lado.
  *   node tools/faltan_pl.js pl            resumen por tabla
  *   node tools/faltan_pl.js pl TABLA      los textos de esa tabla
+ *
+ * SOLO index.html. Las notas de algunas lineas de guagua -en diez idiomas-
+ * viven en datos/titsa.js desde el 9 de octubre de 2026, y esta herramienta
+ * ni las ve ni las escribe: van a mano alli. No se pierden de vista:
+ * tools/barrido_idiomas.js barre los dos ficheros y las canta si les falta
+ * un idioma.
  */
 'use strict';
 const fs=require('fs'),path=require('path');

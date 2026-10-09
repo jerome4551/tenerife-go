@@ -12,6 +12,9 @@ consigo misma.
 Se cuenta lo que el navegador pide de verdad para ensenar la app:
 
     index.html                      siempre, y lleva el castellano dentro
+    datos/titsa.js                  siempre: la red de guaguas, que salio de
+                                    index.html el 9 de octubre de 2026 y se
+                                    pide al arrancar igual que antes
     idiomas/<lang>.json             los textos de los 804 lugares
     idiomas/etiquetas/<lang>.json   los chips del globo
     faq/<lang>.json                 las 69 respuestas del asistente
@@ -29,6 +32,8 @@ import sys
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 PIEZAS = ('idiomas/%s.json', 'idiomas/etiquetas/%s.json', 'faq/%s.json')
+sys.path.insert(0, str(RAIZ / 'tools'))
+import fuente   # los ficheros propios que index.html carga al arrancar
 
 
 def comprimido(p):
@@ -56,13 +61,18 @@ def main():
     base = comprimido(RAIZ / 'index.html')
     print('=== lo que baja la primera visita, comprimido (gzip -9) ===')
     print('  %-30s %5d kB' % ('index.html', kb(base)))
+    # Lo que index.html carga de lo suyo (datos/titsa.js): va con el, siempre.
+    for ruta, _ in fuente.ficheros()[1]:
+        n = comprimido(RAIZ / ruta)
+        print('  %-30s %5d kB' % (ruta, kb(n)))
+        base += n
     filas = []
     for l in idiomas():
         piezas = [RAIZ / (p % l) for p in PIEZAS]
         piezas = [f for f in piezas if f.exists()]
         filas.append((l, base + sum(comprimido(f) for f in piezas), len(piezas)))
     for l, total, n in filas:
-        print('  %-30s %5d kB   (index + %d)' % (l, kb(total), n))
+        print('  %-30s %5d kB   (index y lo suyo + %d)' % (l, kb(total), n))
     barato = min(filas, key=lambda x: x[1])
     caro = max(filas, key=lambda x: x[1])
     print('\n  el mas barato: %s, %d kB' % (barato[0], kb(barato[1])))

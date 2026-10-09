@@ -6,7 +6,13 @@ Marca con <-- lo que hay que mirar a mano: no todo lo marcado es un fallo."""
 import io, re, os, sys, unicodedata, collections
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-s  = io.open(os.path.join(RAIZ, 'index.html'), encoding='utf8').read()
+# index.html Y los ficheros de datos que carga (datos/titsa.js, desde el 9 de
+# octubre de 2026): la codificacion y la inyeccion se miran en todo lo que el
+# navegador ejecuta, no solo en lo que queda dentro de index.html. Los numeros
+# de linea de index.html no se mueven: ver tools/fuente.py.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import fuente
+s  = fuente.html()
 sw = io.open(os.path.join(RAIZ, 'sw.js'), encoding='utf8').read()
 
 print('=== codificacion ===')

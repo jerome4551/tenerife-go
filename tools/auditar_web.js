@@ -132,7 +132,8 @@ function revisar(tablas, o) {
       lineas: typeof TITSA_LINES !== 'undefined' ? TITSA_LINES.length : -1,
       catalogo: typeof TITSA_PARADAS !== 'undefined' ? Object.keys(TITSA_PARADAS).length : -1,
       paradas: typeof TITSA_LINES !== 'undefined' ? TITSA_LINES.reduce((a,l)=>a+(l.paradas||[]).length,0) : -1,
-      hidratado: typeof TITSA_LINES !== 'undefined' && TITSA_LINES.every(l => typeof (l.paradas||[])[0] !== 'string') };
+      hidratado: typeof TITSA_LINES !== 'undefined' && TITSA_LINES.every(l => typeof (l.paradas||[])[0] !== 'string'),
+      sinDatos: typeof TITSA_SIN_DATOS !== 'undefined' ? TITSA_SIN_DATOS : null };
     const esFila = x => x && typeof x === 'object' && !Array.isArray(x) && typeof x.es === 'string';
     const tablas = {};
     for (const g of window.__N__) {
@@ -207,11 +208,20 @@ function revisar(tablas, o) {
 
   const n = a => a.length;
   console.log('arranque: ' + JSON.stringify(r.arranque));
+  /* LA RED DE GUAGUAS LLEGA. Vive en datos/titsa.js desde el 9 de octubre de
+     2026 y, si no llega, la app arranca igual -sin guaguas- para no caerse
+     entera (TITSA_SIN_DATOS). Por eso mismo hay que mirarlo: una etiqueta mal
+     escrita o un fichero que no se sube dejarian la app en pie, sin errores y
+     sin una sola linea, y nada mas lo diria. */
+  const okRed = r.arranque.sinDatos === false && r.arranque.lineas > 0 && r.arranque.catalogo > 0 && r.arranque.hidratado;
+  console.log('  ' + (okRed ? 'OK ' : 'MAL') + ' la red de guaguas llega al navegador desde datos/titsa.js   (' +
+              r.arranque.lineas + ' lineas, ' + r.arranque.catalogo + ' marquesinas, ' + (r.arranque.hidratado ? 'hidratadas' : 'SIN HIDRATAR') +
+              (r.arranque.sinDatos ? ', TITSA_SIN_DATOS' : '') + ')');
   console.log('\n=== idiomas ===');
   console.log('  tablas alcanzadas / filas con es : %d / %d', r.tablas, r.filas);
   /* Ese par de numeros esta escrito tambien en AUDITORIA-FINAL.md, donde
      caduca sin que nada avise: decia 404 filas con 422 dentro. Se coteja. */
-  let docMal = 0;
+  let docMal = okRed ? 0 : 1;
   try {
     const doc = fs.readFileSync(path.join(RAIZ, 'AUDITORIA-FINAL.md'), 'utf8');
     const d = doc.match(/## Idiomas · (\d+) tablas, (\d+) filas/);
@@ -694,7 +704,9 @@ function revisar(tablas, o) {
      Esto no se ve mirando la pagina ya cargada, asi que se mira el <head>
      y se cuenta lo que el navegador pidio de verdad. */
   const cab = await page.evaluate(() => {
-    const sc = [...document.querySelectorAll('head script[src]')];
+    /* Todos, no solo los del <head>: datos/titsa.js va en el <body>, justo
+       antes del codigo, y para el parseo igual que los de arriba. */
+    const sc = [...document.querySelectorAll('script[src]')];
     const ln = [...document.querySelectorAll('head link[rel="stylesheet"]')];
     return {
       /* Se exige solo a los de OTRO dominio. Los de ./vendor/ tambien
@@ -708,7 +720,7 @@ function revisar(tablas, o) {
       bloqueantes: sc.filter(e => !e.defer && !e.async && !e.src.startsWith(location.origin))
                      .map(e => e.src.slice(0, 60)),
       propios: sc.filter(e => !e.defer && !e.async && e.src.startsWith(location.origin))
-                 .map(e => e.src.split('/').pop()),
+                 .map(e => new URL(e.src).pathname.replace(/^\//, '')),
       hojasDeFuera: ln.filter(e => !e.href.startsWith(location.origin)).map(e => e.href.slice(0, 60)),
       fuentes: [...document.fonts].filter(f => f.status === 'loaded').length
     };
@@ -719,6 +731,15 @@ function revisar(tablas, o) {
   console.log('  ' + (okBlq ? 'OK ' : 'MAL') + ' ningun script DE FUERA para el parseo del HTML' +
               (okBlq ? '' : '   <--  ' + cab.bloqueantes.join(' ')));
   console.log('      (del propio origen y precacheados, si bloquean: ' + cab.propios.join(' ') + ')');
+  /* «Precacheados» no se suponia: se mira en sw.js. Uno que bloquea y no esta
+     en el precache deja la app sin el sin conexion -sin guaguas, si es
+     datos/titsa.js- y aqui seguia escrito que lo estaba. */
+  const coreSW = (fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8').match(/const CORE = \[([\s\S]*?)\];/) || [, ''])[1];
+  const enCore = new Set([...coreSW.matchAll(/'\.\/([^']+)'/g)].map(m => m[1]));
+  const sinPre = cab.propios.filter(p => !enCore.has(p));
+  const okPre = cab.propios.length > 0 && sinPre.length === 0;
+  console.log('  ' + (okPre ? 'OK ' : 'MAL') + ' y todos estan de verdad en el precache del service worker' +
+              (okPre ? '   (' + cab.propios.length + ')' : '   <--  ' + (sinPre.join(' ') || 'no encuentro CORE en sw.js')));
   const okHoja = cab.hojasDeFuera.length === 0;
   console.log('  ' + (okHoja ? 'OK ' : 'MAL') + ' ninguna hoja de estilo viene de otro dominio' +
               (okHoja ? '' : '   <--  ' + cab.hojasDeFuera.join(' ')));
@@ -726,7 +747,7 @@ function revisar(tablas, o) {
   console.log('  ' + (okG ? 'OK ' : 'MAL') + ' cero peticiones de fuentes a Google   (' + aGoogle.length + ')');
   const okF = cab.fuentes >= 4;
   console.log('  ' + (okF ? 'OK ' : 'MAL') + ' las fuentes del proyecto cargan   (' + cab.fuentes + ' cargadas)');
-  if (!okBlq || !okHoja || !okG || !okF) docMal = 1;
+  if (!okBlq || !okPre || !okHoja || !okG || !okF) docMal = 1;
 
   /* ── EL ITINERARIO DE «ORGANIZA TU DIA» ──
      Salia entero en castellano aunque la app estuviera en bulgaro: la

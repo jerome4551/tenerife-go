@@ -24,7 +24,12 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const src = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+/* index.html Y los ficheros de datos que carga (datos/titsa.js): ver
+   tools/fuente.js. Las notas de las lineas de guagua van en diez idiomas y
+   viven en datos/titsa.js; al mudarlas, este barrido paso de 2.964 filas a
+   2.959 sin dejar de dar verde. */
+const FUENTE = require('./fuente');
+const src = FUENTE.html();
 const IDI_BASE = ['es','en','fr','de','it','nl','zh','zht'];
 /* IDI sale de SUPPORTED_LANGS del fuente, no de una lista a mano: escrita
    aqui se queda vieja el dia que entre un idioma y el control da verde
@@ -80,18 +85,22 @@ const bloques = [];
 
 /* las filas: todo objeto literal con una clave `es` de texto */
 const crudas = [];
+/* donde empieza y acaba cada tabla declarada con nombre: para las exentas */
+const decls = {};
 for (const b of bloques) {
   const code = src.slice(b.ini, b.fin);
   let ast;
   try { ast = acorn.parse(code, { ecmaVersion: 'latest', sourceType: 'script' }); }
   catch (e) {
-    console.error('NO SE PUDO ANALIZAR el <script> de la linea ' + linea(b.ini) + ': ' + e.message);
+    console.error('NO SE PUDO ANALIZAR el <script> de ' + FUENTE.donde(linea(b.ini)) + ': ' + e.message);
     process.exitCode = 1;
     continue;
   }
   (function anda(n) {
     if (!n || typeof n !== 'object') return;
     if (Array.isArray(n)) { n.forEach(anda); return; }
+    if (n.type === 'VariableDeclarator' && n.id && n.id.type === 'Identifier' && n.init && n.init.type === 'ObjectExpression')
+      (decls[n.id.name] = decls[n.id.name] || []).push({ ini: b.ini + n.init.start, fin: b.ini + n.init.end });
     if (n.type === 'ObjectExpression') {
       const claves = new Map();
       for (const p of n.properties) {
@@ -161,17 +170,14 @@ for (const b of bloques) {
    que, y el control no canta lobo cada vez que se ejecuta. */
 const exentas = [];
 for (const m of src.matchAll(/SIN-TRADUCIR:\s*([A-Za-z_$][\w$]*)/g)) {
-  const re = new RegExp('(?:const|let|var)\\s+' + m[1].replace(/\$/g, '\\$') + '\\s*=\\s*\\{', 'g');
-  let d;
-  while ((d = re.exec(src))) {
-    const abre = re.lastIndex - 1;
-    /* hasta donde llega esa tabla: la fila mas lejana que empiece dentro */
-    const dentro = crudas.filter(c => c.ini > abre).sort((a, b) => a.ini - b.ini);
-    if (!dentro.length) continue;
-    let fin = abre;
-    for (const c of dentro) { if (c.ini - fin > 4000) break; fin = c.fin; }
-    exentas.push({ nom: m[1], ini: abre, fin });
-  }
+  /* LA TABLA ACABA DONDE ACABA SU OBJETO, segun el analizador. Antes se
+     alargaba fila a fila mientras hubiera otra a menos de 4.000 caracteres,
+     y con una tabla de una sola linea eso se come lo que venga detras: al
+     declarar FI_LOCALE -los codigos de idioma de las fechas de las fiestas,
+     9 de octubre de 2026- las exentas pasaron de 18 a 58, porque se tragaba
+     las filas de FI_DATA, nombres y descripciones de las fiestas, que van
+     justo debajo. Exentas = sin vigilar: tienen que ser las justas. */
+  for (const r of (decls[m[1]] || [])) exentas.push({ nom: m[1], ini: r.ini, fin: r.fin });
 }
 const esExenta = o => exentas.some(e => o.ini >= e.ini && o.fin <= e.fin);
 const filas = crudas.map(c => ({ ini: c.ini, fin: c.fin, v: c.v, l: linea(c.ini) }))
@@ -197,7 +203,7 @@ for (const f of filas) {
   if (OBJ && f.v[OBJ] === undefined && !esExenta(f)) { por[z].sin++; huecos.push({ z, l: f.l, es: String(f.v.es).slice(0, 60) }); }
 }
 const P = (t, v) => console.log('  ' + String(t).padEnd(40, '.') + ' ' + v);
-console.log('=== filas de idioma en todo index.html ===');
+console.log('=== filas de idioma en todo el fuente (index.html y ' + FUENTE.ficheros().map(f => f.ruta).join(', ') + ') ===');
 P('total', filas.length);
 /* Lo que antes no se veia: filas a las que les falta uno de los OCHO base.
    No es cosa del idioma nuevo; son huecos que llevaban ahi desde antes. */
@@ -250,6 +256,6 @@ let fuera = 0, sinFichero = [];
 if (OBJ) {
   const sin = por['interfaz'].sin + por['places[]'].sin;
   P('completas en ' + OBJ, filas.length - sin + fuera);
-  if (LISTA) huecos.forEach(h => console.log('   ' + h.z.padEnd(9) + ' linea ' + String(h.l).padStart(6) + '  ' + h.es));
+  if (LISTA) huecos.forEach(h => console.log('   ' + h.z.padEnd(9) + ' ' + FUENTE.donde(h.l).padEnd(22) + '  ' + h.es));
   process.exitCode = (por['interfaz'].sin || cojas.length || sinFichero.length) ? 1 : 0;
 }

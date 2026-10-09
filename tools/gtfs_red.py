@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Regenera la red TITSA de index.html desde el GTFS oficial.
+"""Regenera la red TITSA (datos/titsa.js) desde el GTFS oficial.
 
     python3 tools/gtfs_red.py Google_transit.zip                 # fase 1: solo informe
     python3 tools/gtfs_red.py Google_transit.zip --emitir salida/ # ademas escribe los bloques
 
-NO toca index.html. Lee el ZIP, lee el index para saber que lineas hay y de
-donde sacar el municipio, y emite dos ficheros de texto:
+NO toca la app. Lee el ZIP, lee datos/titsa.js -donde vive la red desde el
+9 de octubre de 2026; antes estaba dentro de index.html- para saber que lineas
+hay y de donde sacar el municipio, y emite dos ficheros de texto:
 
     salida/TITSA_PARADAS.js   el catalogo de paradas fisicas
     salida/secuencias.js      el campo paradas[] y terminales[] de cada linea
@@ -16,7 +17,7 @@ Reglas, todas del documento de reconstruccion:
 
   · Par ida/vuelta = mismo nombre normalizado a menos de 80 m. Se queda el
     stop_id menor como clave; el resto van al campo `s`. El umbral no se sube.
-  · Municipio: el de la parada MAS CERCANA del index actual, y solo si esta a
+  · Municipio: el de la parada MAS CERCANA de la red actual, y solo si esta a
     menos de 3 km. Si no, cadena vacia. Nunca se inventa.
   · Trip canonico de cada linea: el que tiene mas paradas distintas.
   · terminales = primera y ultima de la secuencia, ya deduplicada.
@@ -92,11 +93,11 @@ def leer_csv(z, nombre):
     raise SystemExit('ABORTADO: el ZIP no trae %s' % nombre)
 
 
-# ─────────────────────────────────────────── lo que ya hay en index.html
+# ─────────────────────────────────────────── lo que ya hay en la app
 
-def leer_index():
-    """Saca TITSA_LINES del index sin ejecutar JS: solo lo que necesitamos."""
-    s = io.open(os.path.join(RAIZ, 'index.html'), encoding='utf8').read()
+def leer_red():
+    """Saca TITSA_LINES de datos/titsa.js sin ejecutar JS: solo lo que necesitamos."""
+    s = io.open(os.path.join(RAIZ, 'datos', 'titsa.js'), encoding='utf8').read()
     i = s.index('const TITSA_LINES = [')
     o = s.index('[', i)
     d, q, fin = 0, None, -1
@@ -219,7 +220,7 @@ def construir_catalogo(stops, paradas_viejas, avisos):
         for s in ent.get('s', ()):
             alias[s] = clave
 
-    # municipio: el de la parada mas cercana del index, si esta a menos de 3 km
+    # municipio: el de la parada mas cercana de la red actual, si esta a menos de 3 km
     sin_muni = 0
     for clave, ent in catalogo.items():
         mejor, dmin = '', 1e18
@@ -402,13 +403,13 @@ HIDRATACION = '''
 def informe(catalogo, alias, secuencias, lineas, agrupadas, sin_muni, avisos):
     P = []
     w = P.append
-    w('# Informe de la fase 1 — no se ha tocado index.html')
+    w('# Informe de la fase 1 — no se ha tocado la app')
     w('')
     w('## Catalogo')
     w('  paradas fisicas          : %d' % len(catalogo))
     w('  stop_id agrupados        : %d  (par ida/vuelta a menos de %.0f m)' % (agrupadas, UMBRAL_PAREJA_M))
     w('  claves + alias           : %d' % len(alias))
-    w('  sin municipio            : %d  (ninguna parada del index a menos de %.0f km)'
+    w('  sin municipio            : %d  (ninguna parada de la red actual a menos de %.0f km)'
       % (sin_muni, UMBRAL_MUNI_KM))
     fuera = [k for k, e in catalogo.items()
              if not (BBOX[0] <= e['la'] <= BBOX[1] and BBOX[2] <= e['lo'] <= BBOX[3])]
@@ -444,7 +445,7 @@ def informe(catalogo, alias, secuencias, lineas, agrupadas, sin_muni, avisos):
             regen.append(ln)
         else:
             marcar.append(ln['id'])
-    w('  del index                : %d' % len(lineas))
+    w('  de la red actual         : %d' % len(lineas))
     w('  se regeneran             : %d' % len(regen))
     w('  se marcan (sin GTFS)     : %d   %s' % (len(marcar), ' '.join(marcar)))
     w('  no se tocan (decision)   : %d   %s' % (len(parar), ' '.join(parar)))
@@ -456,7 +457,7 @@ def informe(catalogo, alias, secuencias, lineas, agrupadas, sin_muni, avisos):
 
     en_index = {num_linea(l['numero']) for l in lineas}
     solo_gtfs = sorted(set(secuencias) - en_index, key=lambda x: (len(x), x))
-    w('  en el GTFS y no en index : %d' % len(solo_gtfs))
+    w('  en el GTFS y no en la red: %d' % len(solo_gtfs))
     for n in solo_gtfs:
         w('      %-6s %s' % (secuencias[n]['corto'], secuencias[n]['largo']))
 
@@ -515,9 +516,9 @@ def main():
     z = zipfile.ZipFile(a.zip)
     avisos = []
 
-    lineas, paradas_viejas = leer_index()
+    lineas, paradas_viejas = leer_red()
     if not lineas:
-        raise SystemExit('ABORTADO: no he podido leer TITSA_LINES de index.html')
+        raise SystemExit('ABORTADO: no he podido leer TITSA_LINES de datos/titsa.js')
 
     stops = leer_csv(z, 'stops.txt')
     catalogo, alias, agrupadas, sin_muni = construir_catalogo(stops, paradas_viejas, avisos)

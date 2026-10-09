@@ -1,7 +1,12 @@
 #!/usr/bin/env node
-/* Cargador comun de la auditoria: lee index.html y DEVUELVE LA RED YA
- * HIDRATADA. Leer TITSA_LINES en crudo da paradas que son claves, no objetos,
- * y todo lo que mida lat/lng/nombre sale mal sin dar error.
+/* Cargador comun de la auditoria: lee la red de guaguas y places[] y DEVUELVE
+ * LA RED YA HIDRATADA. Leer TITSA_LINES en crudo da paradas que son claves,
+ * no objetos, y todo lo que mida lat/lng/nombre sale mal sin dar error.
+ *
+ * La red (TITSA_LINES y TITSA_PARADAS) vive en datos/titsa.js desde el 9 de
+ * octubre de 2026; places[] sigue en index.html. Si falta cualquiera de las
+ * tres, esto REVIENTA: un cargador que devuelve null deja a cada control
+ * decidir que hacer con nada, y alguno lo da por bueno.
  *
  *     const { LINES, CAT, PLACES, km, norm } = require('./tools/cargar');
  */
@@ -10,8 +15,10 @@ const fs = require('fs');
 const path = require('path');
 const RAIZ = path.dirname(__dirname);
 const src = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+const red = fs.readFileSync(path.join(RAIZ, 'datos', 'titsa.js'), 'utf8');
 
-function grab(decl, abre) {
+function grab(decl, abre, txt = src) {
+  const src = txt;
   const i = src.indexOf(decl);
   if (i < 0) return null;
   const o = src.indexOf(abre, i);
@@ -27,9 +34,11 @@ function grab(decl, abre) {
   return null;
 }
 
-const LINES  = grab('const TITSA_LINES = [', '[');
-const CAT    = grab('const TITSA_PARADAS = {', '{');
+const LINES  = grab('const TITSA_LINES = [', '[', red);
+const CAT    = grab('const TITSA_PARADAS = {', '{', red);
 const PLACES = grab('const places = [', '[');
+if (!LINES || !CAT) throw new Error('no encuentro TITSA_LINES o TITSA_PARADAS en datos/titsa.js');
+if (!PLACES) throw new Error('no encuentro places[] en index.html');
 
 for (const line of LINES) {
   if (!Array.isArray(line.paradas) || typeof line.paradas[0] !== 'string') continue;

@@ -22,6 +22,12 @@
  *
  * Cada idioma entra detras del que le toca en el orden es,en,fr,de,it,nl,
  * zh,zht,bg, no al final: asi la fila se lee igual que las demas.
+ *
+ * SOLO index.html. Las «notas de linea» de arriba ya no viven ahi: desde el
+ * 9 de octubre de 2026 estan en datos/titsa.js, con el resto de la red de
+ * guaguas, y esta herramienta no las escribe: van a mano alli. No se pierden
+ * de vista: tools/barrido_idiomas.js barre los dos ficheros y las canta si
+ * les falta un idioma.
  */
 'use strict';
 const fs = require('fs');

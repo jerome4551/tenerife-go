@@ -15,6 +15,12 @@
  *     node tools/poner_idioma.js pl            mete todas las tablas que haya
  *     node tools/poner_idioma.js pl UI_TX      solo esa
  *     node tools/poner_idioma.js pl --listar   que tablas tienen fuente
+ *
+ * SOLO index.html. Las notas de algunas lineas de guagua -en diez idiomas-
+ * viven en datos/titsa.js desde el 9 de octubre de 2026, y esta herramienta
+ * ni las ve ni las escribe: van a mano alli. No se pierden de vista:
+ * tools/barrido_idiomas.js barre los dos ficheros y las canta si les falta
+ * un idioma.
  */
 'use strict';
 const fs = require('fs'), path = require('path');

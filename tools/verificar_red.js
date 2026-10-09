@@ -4,13 +4,16 @@
  *
  *     node tools/verificar_red.js
  *
- * No modifica nada: lee index.html y evalua sus estructuras.  */
+ * No modifica nada: lee datos/titsa.js, donde vive la red desde el 9 de
+ * octubre de 2026, y evalua sus estructuras. Y mira que index.html la cargue.  */
 'use strict';
 const fs = require('fs');
 const path = require('path');
 
 const RAIZ = path.dirname(__dirname);
-const src = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+const RUTA_RED = 'datos/titsa.js';
+const html = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+const src = fs.existsSync(path.join(RAIZ, RUTA_RED)) ? fs.readFileSync(path.join(RAIZ, RUTA_RED), 'utf8') : '';
 
 function grab(decl, abre) {
   const i = src.indexOf(decl);
@@ -43,7 +46,7 @@ const metros = (a, b) => {
 };
 
 const LINES = grab('const TITSA_LINES = [', '[');
-const CAT = grab('const TITSA_PARADAS = {', '{');   // null antes de la fase 2
+const CAT = grab('const TITSA_PARADAS = {', '{');
 
 let fallos = 0;
 const ok = (n, cond, detalle) => {
@@ -51,9 +54,59 @@ const ok = (n, cond, detalle) => {
   console.log('  ' + (cond ? 'OK   ' : 'FALLO') + '  ' + n + (detalle ? '  ·  ' + detalle : ''));
 };
 
-console.log('Controles de la seccion 6\n');
+/* ── DONDE VIVE LA RED, Y QUE LA APP LA CARGUE ─────────────────────────────
+   El 9 de octubre de 2026 TITSA_PARADAS y TITSA_LINES salieron de index.html
+   a datos/titsa.js, tal cual. Tres cosas que ningun otro control de este
+   fichero veria si se rompen:
+     · si index.html deja de cargarlo, la app sigue en pie SIN GUAGUAS
+       (TITSA_SIN_DATOS) y todo lo de abajo, que mira los datos, da verde;
+     · si la red vuelve a estar tambien en index.html, hay dos copias y solo
+       una es la que se ve;
+     · si en datos/titsa.js entra codigo, deja de ser un fichero de datos que
+       se puede regenerar entero. */
+console.log('Donde vive la red\n');
+{
+  const declara = /^\s*(?:const|let|var)\s+TITSA_(?:LINES|PARADAS)\b/m.test(html);
+  ok('la red no esta tambien en index.html', !declara, declara ? 'index.html declara TITSA_LINES o TITSA_PARADAS' : '');
+  const etiquetas = [...html.matchAll(/<script\b[^>]*\bsrc\s*=\s*["']\.?\/?datos\/titsa\.js["'][^>]*>/gi)];
+  const primerUso = (() => {
+    const re = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi; let m;
+    while ((m = re.exec(html))) if (!/\bsrc\s*=/i.test(m[1]) && /\bTITSA_(?:LINES|PARADAS)\b/.test(m[2].replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, ''))) return m.index;
+    return -1;
+  })();
+  const sincrona = etiquetas.length === 1 && !/\b(?:defer|async)\b/i.test(etiquetas[0][0]);
+  ok('index.html carga ' + RUTA_RED + ' una vez, sin defer ni async', sincrona,
+     etiquetas.length === 1 ? etiquetas[0][0].replace(/\s+/g, ' ').slice(0, 50) : etiquetas.length + ' etiquetas');
+  ok('y antes del primer codigo que usa la red', etiquetas.length === 1 && primerUso > etiquetas[0].index,
+     'etiqueta en ' + (etiquetas.length ? html.slice(0, etiquetas[0].index).split('\n').length : '-') +
+     ' · primer uso en ' + (primerUso >= 0 ? html.slice(0, primerUso).split('\n').length : '-'));
+  let solo = false, detalle = 'no existe';
+  if (src) {
+    try {
+      const acorn = require('/opt/node22/lib/node_modules/eslint/node_modules/acorn');
+      const ast = acorn.parse(src, { ecmaVersion: 'latest', sourceType: 'script' });
+      const que = ast.body.map(n => n.type === 'VariableDeclaration' && n.kind === 'const' && n.declarations.length === 1 ? n.declarations[0].id.name : n.type);
+      let raro = '';
+      (function mira(n) {
+        if (!n || typeof n !== 'object' || raro) return;
+        if (Array.isArray(n)) { n.forEach(mira); return; }
+        if (typeof n.type === 'string' && !['Program', 'VariableDeclaration', 'VariableDeclarator', 'Identifier', 'ObjectExpression', 'ArrayExpression', 'Property', 'Literal', 'UnaryExpression'].includes(n.type)) raro = n.type;
+        if (n.type === 'Property' && n.computed) raro = 'clave calculada';
+        for (const k of Object.keys(n)) if (k !== 'key' && k !== 'type') mira(n[k]);
+      })(ast);
+      solo = que.join() === 'TITSA_PARADAS,TITSA_LINES' && !raro;
+      detalle = solo ? 'las dos constantes, literales puros' : 'trae ' + que.join(', ') + (raro ? ' · ' + raro : '');
+    } catch (e) { detalle = 'no se puede analizar: ' + e.message; }
+  }
+  ok(RUTA_RED + ' son datos y nada mas', solo, detalle);
+}
 
-if (!LINES) { console.log('  FALLO  no encuentro TITSA_LINES'); process.exit(1); }
+console.log('\nControles de la seccion 6\n');
+
+if (!LINES) { console.log('  FALLO  no encuentro TITSA_LINES en ' + RUTA_RED); process.exit(1); }
+/* Antes de la fase 2 no habia catalogo y los controles 2 y 3 se saltaban.
+   Esa fase acabo hace meses: hoy, sin catalogo, la red esta rota. */
+if (!CAT) { console.log('  FALLO  no encuentro TITSA_PARADAS en ' + RUTA_RED); process.exit(1); }
 
 // Hidratar igual que la app: leyendo el fichero crudo, las lineas regeneradas
 // tienen claves, no objetos, y sin este paso los controles 5, 6 y 7 miden mal.

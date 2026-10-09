@@ -726,7 +726,7 @@ etiquetas que lo rehacen (canta en búlgaro) y la función con otro nombre (dice
 que no puede contar, en vez de contar cero y dar verde). Contra la versión de
 antes: 2 y 3 veces, y los dos globos en rojo.
 
-**Lo que queda, medido y sin hacer.** `index.html` son 3,3 MB y 2,9 MB de eso
+**Lo que quedaba, medido.** `index.html` son 3,3 MB y 2,9 MB de eso
 son JavaScript en línea, que el móvil tiene que leer y compilar para
 arrancar. Los datos de TITSA son 1,06 MB de ese JavaScript —`TITSA_LINES`
 785 kB, `TITSA_PARADAS` 278 kB— y solo se usan con las guaguas. Dos
@@ -744,11 +744,129 @@ El otro experimento, TITSA como JSON dentro de `index.html`, ganaba algo más
 comentarios con el origen de cada dato —qué es del GTFS, qué se ancló a mano y
 por qué— y el JSON no admite comentarios. `TITSA_PARADAS` no lleva ninguno.
 
-El fichero aparte pide tocar `index.html`, `sw.js` —precargarlo, para que las
-guaguas funcionen sin conexión— y las herramientas que leen la red de
-`index.html`: `cargar.js` (y con él las seis que lo usan), `verificar_red.js`,
-`gtfs_red.py` y `mapa_base.py`. Es cambiar cómo está hecho el proyecto, así que
-queda para cuando Jerome lo diga.
+El fichero aparte pedía tocar `index.html`, `sw.js` y las herramientas que
+leen la red, así que se le preguntó a Jerome. Dijo que sí, el mismo día: «Si
+hazlo cuidado no romper nada». Hecho en la sección siguiente.
+
+## La red de guaguas, en su propio fichero
+
+**9 de octubre.** `TITSA_PARADAS` y `TITSA_LINES` salen de `index.html` a
+`datos/titsa.js`, **tal cual**: las 5.954 líneas, comentarios de origen
+incluidos, desde el comentario «DATOS DE LÍNEAS» hasta el `];` que cierra las
+líneas. La hidratación de las paradas se queda en `index.html`: es código.
+
+**Que no cambió ni un dato.** El trozo de antes —1.069.598 bytes— está entero
+al final de `datos/titsa.js`; evaluados, los dos dan exactamente los mismos
+objetos (2.514 marquesinas, 183 líneas); e `index.html` solo gana 24 líneas
+—la nota en el sitio de los datos, la etiqueta y el respaldo— y no pierde
+ninguna otra. Antes de cortar se comprobó con acorn que en ese trozo no había
+más que las dos declaraciones y que eran literales puros.
+
+**Cómo se carga.** Una etiqueta `src` normal —ni `defer` ni `async`— justo
+antes del bloque de código principal, que usa la red en cuanto empieza; las dos
+constantes quedan en el ámbito global igual que cuando vivían dentro. Si el
+fichero no llegara —sin red y sin caché—, un bloquecito detrás de la etiqueta
+las pone vacías y marca `TITSA_SIN_DATOS`: **la app arranca igual, sin
+guaguas**, en vez de pararse en la primera línea que las tocara. Probado
+bloqueando el fichero: 975 lugares, cero errores de página, cero líneas.
+
+**Sin conexión.** `sw.js` lo precarga (`CORE`) y lo sirve **red primero**,
+como `index.html`: con `cached || fetch` una red nueva no llegaría nunca a quien
+ya tuviera la vieja. Probado con el service worker de verdad en Chromium:
+
+```
+primera visita con red      service worker activo, datos/titsa.js en caché
+recarga en modo avión       183 líneas, 2.514 marquesinas, panel de guaguas
+                            con sus 183 filas, aeropuerto sur 7 · 0 errores
+```
+
+Y el caso de quien ya tiene la app instalada con el service worker de antes:
+abre con red y le llega la versión nueva al momento; la vuelve a abrir sin
+conexión y siguen las 183 líneas, cero errores.
+
+**Medido**, CPU de móvil (4×), primera visita, mediana de cinco, dos tandas:
+
+| | antes | ahora |
+|---|---|---|
+| `DOMContentLoaded` | 3.151 / 3.013 ms | **2.487 / 2.531 ms** |
+| la tarea más larga | 1.102 / 1.058 ms | **624 / 645 ms** |
+| tareas largas, sumadas | 2.109 / 2.013 ms | **1.604 / 1.631 ms** |
+
+Con el navegador abierto, a la cuarta carga: 1.662 → 1.094 ms. La descarga no
+cambia: 970 kB en castellano y 1.082 kB en búlgaro, ahora repartidos entre
+`index.html` (687 kB) y `datos/titsa.js` (270 kB).
+
+### Lo que encontró la mudanza en las herramientas
+
+Se pasaron todas las herramientas sin navegador **antes y después**, y se
+compararon las salidas línea a línea. Las que leían la red de `index.html`
+reventaron, que es lo bueno: `cargar.js` y todo lo que lo usa, de Node y de
+Python, y `verificar_red.js`. Pero tres siguieron en verde **mirando menos**:
+
+```
+barrido_idiomas.js     2.964 filas -> 2.959    las notas de 5 líneas
+auditar_idioma.js      557 textos  -> 477
+auditar_cirilico.py    1.161 nombres -> 1.160
+```
+
+`tools/fuente.js` y `tools/fuente.py` devuelven ahora el fuente entero:
+`index.html` con los ficheros propios que carga —los `<script src>` que no son
+de `vendor/`— pegados al final, sin mover sus números de línea. Los usan esas
+tres y `auditar_seguridad.py`, que mira la codificación también en
+`datos/titsa.js`. Con eso vuelven a 2.964 y 1.161, y la de seguridad da la
+misma salida que antes, byte a byte.
+
+**El 557 era mentira desde antes.** `auditar_idioma.js` buscaba las filas
+recorriendo el fichero carácter a carácter, contando comillas y llaves, y
+pasaba por el HTML, el CSS y expresiones regulares con comillas dentro. Iba
+desincronizado, y el bloque de TITSA lo volvía a poner en fase por casualidad:
+sin él dejó de ver 75 textos de la propia `index.html` —«Comenzar»,
+«Cerrar», el panel de información—. Ahora analiza el JavaScript con acorn,
+como `barrido_idiomas.js`, y ve **659 filas, entre ellas las 578 que veía
+antes**: 81 que no había mirado nunca. El mismo análisis sobre el fichero de
+antes y sobre el de ahora da exactamente las mismas 659.
+
+Esas 81 traían once avisos, todos de dos clases:
+
+- **`FI_LOCALE`**, los códigos de idioma con los que se escriben las fechas de
+  las fiestas (`'zh-CN'`, `'bg-BG'`). No son texto: se declara
+  `SIN-TRADUCIR` a su lado, igual que `TTS_LOCALE`.
+- **Nombres de fiesta que salen igual que en castellano**: «Virgen del Carmen»
+  en inglés y alemán, «Fiestas del Cristo» en inglés, y en francés
+  «Carnaval de Santa Cruz» y las cuatro «Romería de…», que
+  `idiomas/pantalla-aceptado.json` ya aceptaba por el mismo motivo. Se
+  declaran en `IGUAL_UI` con su razón. **No se cambió ningún texto**: salían
+  así en la app y así siguen.
+
+Y al declarar `FI_LOCALE`, las exentas del barrido saltaron de 18 a 58: la
+regla que decidía dónde acaba una tabla exenta se alargaba fila a fila y se
+tragaba las fiestas que van debajo. Ahora acaba donde acaba su objeto, según
+el analizador. Siguen siendo 18, pero no las mismas: las tres tablas de
+códigos y los 15 títulos de Wikipedia. Antes, dos de las 18 eran «Escuchar» y
+«Parar» de la audioguía, que se vigilan ahora y están bien en los diez.
+
+### Los controles nuevos, y las averías con las que se probaron
+
+| control | qué mira | avería | canta |
+|---|---|---|---|
+| `verificar_red.js` | la red no está también en `index.html` | `const TITSA_PARADAS` vuelto a meter | sí |
+| | `index.html` carga el fichero, una vez, sin `defer` ni `async` | etiqueta quitada · con `defer` | sí · sí |
+| | y antes del primer código que usa la red | | |
+| | `datos/titsa.js` son las dos constantes y nada más | un `console.log` al final | sí |
+| `auditar_sw.js` | está en el precache | quitado de `CORE` | sí |
+| | red primero, y sin red la última guardada | servido con caché primero | sí |
+| `auditar_web.js` | la red llega al navegador, hidratada | la etiqueta apunta a `titsa2.js` | sí |
+| | los scripts propios que bloquean, de verdad en el precache | el mismo | sí |
+| `barrido_idiomas.js` | las notas de `datos/titsa.js` | una nota sin búlgaro | sí |
+
+`auditar_web.js` decía de los scripts que bloquean «del propio origen y
+precacheados» sin mirarlo, y solo miraba los del `<head>`; ahora mira todos y
+lo comprueba contra `sw.js`.
+
+**Lo que no ve ninguna herramienta, y hay que saber.** `faltan_pl.js`,
+`poner_idioma.js` y `meter_idioma.js` —las que meten un idioma nuevo— trabajan
+solo sobre `index.html`. Las notas de las líneas, si algún día entra otro
+idioma, van a mano en `datos/titsa.js`. No se pierden: el barrido las canta.
 
 ## «Organiza tu día» devolvía el itinerario en castellano
 
@@ -3033,6 +3151,18 @@ instalación nueva sin ningún envío previo, verde —no hay falsa alarma—.
 58. **`UI_TX` no es un objeto, son once.** Se declara con
     `Object.assign({...},{...},{...})` y recibe diez `Object.assign` más.
     Escribir en el primero deja las otras diez partes sin idioma, en silencio.
+59. **El fuente ya no es solo `index.html`.** Desde el 9 de octubre de 2026 la
+    red de guaguas vive en `datos/titsa.js`, y lleva textos en diez idiomas
+    —las notas de algunas líneas— y nombres en cirílico. Una herramienta que
+    barra `index.html` a pelo no los ve y da verde: al mudarlos, el barrido de
+    idiomas pasó de 2.964 filas a 2.959 sin cambiar de color. Para barrer el
+    fuente, `tools/fuente.js` (o `.py`): devuelve `index.html` con los
+    ficheros propios que carga pegados al final, sin mover sus líneas.
+60. **Una tabla declarada exenta acaba donde acaba su objeto.** El barrido
+    alargaba la exención fila a fila mientras hubiera otra a menos de 4.000
+    caracteres: al declarar `FI_LOCALE`, una sola línea de códigos de idioma,
+    se tragó las 40 filas de las fiestas que van debajo. Y antes ya se había
+    tragado «Escuchar» y «Parar» de la audioguía, detrás de `TTS_LOCALE`.
 
 ## El búlgaro · bloque 3, y lo que había debajo
 
@@ -3911,6 +4041,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_xss.js` | regresión con datos hostiles, en navegador |
 | `tools/auditar_web.js` | idiomas, arranque y rendimiento, en navegador; que el mapa no se rehaga de más |
 | `tools/extract_js.py` | extrae los `<script>` para `node --check` |
+| `tools/fuente.js` · `tools/fuente.py` | el fuente entero para barrerlo: `index.html` y los ficheros propios que carga (`datos/titsa.js`) |
 | `tools/gtfs_red.py` | regenera la red desde un GTFS completo |
 | `tools/orientacion.py` | deduce orientación de playa desde la costa · **suspendido por su propio control** |
 | `tools/auditar_sw.js` | el service worker en un ámbito falso: mapa sin conexión, tope y actualizaciones |

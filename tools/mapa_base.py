@@ -89,6 +89,9 @@ def rango_teselas(z):
 
 def leer_datos():
     src = open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
+    # Los `via` de las lineas viven en datos/titsa.js desde el 9 de octubre de
+    # 2026; los nucleos siguen en places[], dentro de index.html.
+    red = open(os.path.join(RAIZ, 'datos', 'titsa.js'), encoding='utf-8').read()
 
     costa = json.load(open(os.path.join(RAIZ, 'tools/datos/costa_tenerife.json'), encoding='utf-8'))
     tierra = Polygon([(p[1], p[0]) for p in costa['anillo']])          # [lat,lon] -> (lon,lat)
@@ -96,10 +99,13 @@ def leer_datos():
         tierra = tierra.buffer(0)
 
     vias = []
-    for m in re.finditer(r'via:\s*\[\s*(\[[^\]]*\](?:\s*,\s*\[[^\]]*\])*)\s*\]', src):
+    for m in re.finditer(r'via:\s*\[\s*(\[[^\]]*\](?:\s*,\s*\[[^\]]*\])*)\s*\]', red):
         pts = [tuple(map(float, p.split(','))) for p in re.findall(r'\[([-\d.]+,\s*[-\d.]+)\]', m.group(1))]
         if len(pts) > 1:
             vias.append(LineString([(lo, la) for la, lo in pts]))       # a (lon,lat)
+    # Sin trazados el mapa saldria sin carreteras y sin dar error: se para.
+    if not vias:
+        raise SystemExit('ABORTADO: no encuentro ningun `via` en datos/titsa.js')
 
     # Nucleos y ciudades: los dos prefijos apuntan al mismo sitio en muchos
     # casos, asi que se quedan por nombre y coordenada, sin repetir.

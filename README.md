@@ -12,7 +12,8 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
 | Fichero | Qué es |
 |---|---|
-| `index.html` | **La aplicación entera**: 34.478 líneas, 4,2 MB (1,27 MB comprimidos). HTML, CSS y JavaScript en un solo fichero, y dentro los 765 lugares y las 183 líneas. |
+| `index.html` | **La aplicación**: 33.271 líneas, 2,3 MB (687 kB comprimidos) a 9 de octubre de 2026. HTML, CSS y JavaScript en un solo fichero, y dentro los 975 lugares. |
+| `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
 | `sw.js` | Service worker. Caché offline y notificaciones push. |
 | `manifest.webmanifest` | Manifiesto PWA: iconos, color de tema, `display: standalone`. |
 | `enviar-notificacion.js` | Script de Node que envía la notificación diaria. Corre en GitHub Actions, nunca en el navegador. |
@@ -25,7 +26,9 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
 Es un monolito a propósito, no un proyecto a medio modularizar. No hay
 build, ni dependencias que instalar, ni paso de compilación: se sirve
-`index.html` y funciona.
+`index.html` y funciona. La única pieza aparte es la red de guaguas, que son
+datos y no código: 1 MB que solo se usa con las guaguas y que dentro de la
+página había que leer y compilar en cada apertura.
 
 ### Probarlo en local
 
@@ -90,6 +93,13 @@ categorías en italiano otra. Merece la pena comprobarlo al añadir una.
 
 ### Guaguas y tranvía
 
+La red vive en **`datos/titsa.js`**, fuera de `index.html` desde el 9 de octubre
+de 2026: 1 MB que el móvil ya no tiene que leer y compilar dentro de la página.
+Lo carga su propia etiqueta, justo antes del código; el service worker lo
+precarga y lo sirve red primero; y si no llegara, la app arranca igual, sin
+guaguas (`TITSA_SIN_DATOS`). Son **solo datos**: `tools/verificar_red.js`
+comprueba que no entre código ahí y que `index.html` lo cargue.
+
 `TITSA_LINES` tiene **183 líneas y 6.263 paradas**: las 181 del GTFS oficial de
 TITSA más L1 y L2 del tranvía. Ese número **no se escribe en ninguna parte**: el
 subtítulo del panel lleva `{n}` en los 8 idiomas y el render lo sustituye por
@@ -98,9 +108,11 @@ subtítulo del panel lleva `{n}` en los 8 idiomas y el render lo sustituye por
 **Las paradas no se guardan en la línea.** `TITSA_PARADAS` es un catálogo de
 2.514 marquesinas físicas, con los `stop_id` del GTFS agrupados por par
 ida/vuelta en el campo `s`. Cada línea guarda `paradas` como lista de claves y
-`terminales` como par, y un IIFE justo debajo de `TITSA_LINES` los hidrata a
-objetos al arrancar. **Un script que lea el fichero sin hidratar no falla:
-devuelve `undefined`.** Hay un cargador que hidrata en `tools/verificar_red.js`.
+`terminales` como par, y un IIFE de `index.html` —donde empieza el código de
+las guaguas— los hidrata a objetos al arrancar. **Un script que lea el fichero
+sin hidratar no falla: devuelve `undefined`.** `tools/cargar.js` lee la red ya
+hidratada. Y para barrer el fuente buscando textos o idiomas, `tools/fuente.js`
+(o `.py`): `index.html` solo ya no es todo el fuente.
 
 Cada línea lleva además `via`: el trazado real de la carretera, sacado de
 `shapes.txt` y simplificado con Douglas-Peucker a 12 m. Son 26.593 puntos entre

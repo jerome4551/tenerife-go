@@ -172,7 +172,37 @@ function opaca() {
        'el boton de vaciar el mapa busca el prefijo del cache real', filtro + ' vs ' + nombre);
   }
 
-  /* ── 9. la unica suposicion que el ambito falso no puede comprobar ──
+  /* ── 9. la red de guaguas va con la app ──
+
+     datos/titsa.js salio de index.html el 9 de octubre de 2026 y la app lo
+     carga al arrancar. Dos cosas que solo se ven aqui:
+       · tiene que estar en el precache: si no, quien abre la app sin
+         conexion se queda sin guaguas;
+       · y tiene que servirse RED PRIMERO, como index.html: con
+         `cached || fetch` la primera red guardada se quedaria para siempre,
+         que es el fallo que ya tuvo la prevision del tiempo. */
+  {
+    const src = fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8');
+    const core = (src.match(/const CORE = \[([\s\S]*?)\];/) || [, ''])[1];
+    ok(/'\.\/datos\/titsa\.js'/.test(core), 'datos/titsa.js esta en el precache (CORE)');
+    const basica = txt => { const r = new Response(txt, { status: 200 }); Object.defineProperty(r, 'type', { value: 'basic' }); return r; };
+    let version = 'red-1', hayRed = true;
+    const sw = cargarSW(async () => { if (!hayRed) throw new Error('sin red'); return basica(version); });
+    const U = 'https://jerome4551.github.io/tenerife-go/datos/titsa.js';
+    const espera = () => new Promise(r => setTimeout(r, 20));
+    const r1 = await pedir(sw, U); await espera();
+    ok(r1 && await r1.text() === 'red-1', 'con red, la red de guaguas sale de la red');
+    version = 'red-2';
+    const r2 = await pedir(sw, U); await espera();
+    const t2 = r2 && await r2.text();
+    ok(t2 === 'red-2', 'red primero: una red nueva llega aunque ya haya otra guardada', t2);
+    hayRed = false;
+    const r3 = await pedir(sw, U);
+    const t3 = r3 && await r3.text();
+    ok(t3 === 'red-2', 'sin red, sale la ultima guardada', t3);
+  }
+
+  /* ── 10. la unica suposicion que el ambito falso no puede comprobar ──
 
      Todo lo de arriba prueba el flujo, no el navegador. Lo que el arreglo da
      por hecho es que Cache.put() acepta una respuesta OPACA y la devuelve

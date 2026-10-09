@@ -413,9 +413,21 @@ const LUGARES_EXTRA = ['La Granja', 'La Manzanilla', 'Barmanía', 'Chimisay',
    traduce "Friendly Zone" y el ingles no puede; el ingles dice "Bundle"
    donde el italiano dice "Pack". Por eso, otra vez, por idioma. */
 const IGUAL_UI = {
-  en: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop'],
-  fr: ['Pack Tenerife Go'],
-  de: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop'],
+  /* LOS NOMBRES DE FIESTA que el idioma deja como en castellano. Este control
+     no los veia hasta el 9 de octubre de 2026 (contaba llaves y se le
+     escapaban; ver la seccion 2), asi que nadie los habia declarado. No los
+     cambia nadie aqui: salian asi en la app y asi siguen.
+       · «Virgen del Carmen» y «Fiestas del Cristo» son el nombre de la
+         fiesta, y el ingles y el aleman lo dejan en castellano. Regla de
+         Jerome: lo que no se traduce se deja en castellano.
+       · En frances «Carnaval de Santa Cruz» ya es frances, y en las cuatro
+         «Romería de...» la preposicion francesa tambien es «de»: son las
+         mismas que idiomas/pantalla-aceptado.json acepta, por el mismo
+         motivo, para tools/barrido_pantallas.js. */
+  en: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Virgen del Carmen', 'Fiestas del Cristo'],
+  fr: ['Pack Tenerife Go', 'Carnaval de Santa Cruz', 'Romería de San Marcos', 'Romería de San Isidro',
+       'Romería de San Benito Abad', 'Romería de San Roque'],
+  de: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Virgen del Carmen'],
   it: ['Friendly Zone 🐾', 'Pack Tenerife Go'],
   nl: ['Friendly Zone 🐾'],
   zh: [], zht: [], bg: [],
@@ -593,7 +605,12 @@ const hallazgos = [];
 const apunta = (tipo, donde, txt) => hallazgos.push({ tipo, donde, txt });
 
 /* ── 1. los textos de lugar, que viven en idiomas/<lang>.json ───────────── */
-const src = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+/* index.html Y los ficheros de datos que carga: las notas de las lineas de
+   guagua, en diez idiomas, viven en datos/titsa.js desde el 9 de octubre.
+   Al mudarlas, este control paso de mirar 557 textos de interfaz a 477 sin
+   dejar de dar verde. Ver tools/fuente.js. */
+const FUENTE = require('./fuente');
+const src = FUENTE.html();
 function span(decl, abre) {
   const i = src.indexOf(decl), o = src.indexOf(abre, i);
   const cierra = abre === '[' ? ']' : '}';
@@ -642,15 +659,47 @@ for (const p of PLACES) {
   }
 }
 
-/* ── 2. los textos de interfaz, que siguen dentro de index.html ─────────── */
-const pila = [], objetos = [];
-for (let k = 0; k < src.length; k++) {
-  const c = src[k];
-  if (c === '"' || c === "'" || c === '`') { const q = c; for (k++; k < src.length; k++) { if (src[k] === '\\') { k++; continue; } if (src[k] === q) break; } continue; }
-  if (c === '/' && src[k+1] === '/') { k = src.indexOf('\n', k); if (k < 0) break; continue; }
-  if (c === '/' && src[k+1] === '*') { k = src.indexOf('*/', k) + 1; continue; }
-  if (c === '{') pila.push(k);
-  else if (c === '}') { const a = pila.pop(); if (a !== undefined) objetos.push({ ini: a, fin: k + 1 }); }
+/* ── 2. los textos de interfaz: index.html y los datos que carga ───────── */
+/* LAS FILAS SE BUSCAN ANALIZANDO EL JAVASCRIPT, no contando llaves.
+   Hasta el 9 de octubre de 2026 esto recorria el fichero entero caracter a
+   caracter, saltando lo que hubiera entre comillas. Pasaba por el HTML, el
+   CSS y expresiones regulares con comillas dentro, y se desincronizaba: el
+   dia que la red de guaguas salio a datos/titsa.js dejo de ver 75 textos de
+   la propia index.html -«Comenzar», «Cerrar», los del panel de
+   informacion...- y siguio en verde. No los escondio la mudanza: el contador
+   ya iba desincronizado antes y el bloque de TITSA lo volvia a poner en fase
+   por casualidad. barrido_idiomas.js aprendio esto antes (ver alli). */
+let acorn;
+try { acorn = require('/opt/node22/lib/node_modules/eslint/node_modules/acorn'); }
+catch (e) {
+  console.error('no se encuentra acorn: sin analizador no se puede barrer el fuente,');
+  console.error('y contar llaves a mano ya dio verde sobre lo que no miraba.');
+  process.exit(2);
+}
+const objetos = [];
+{
+  const re = /<script\b([^>]*)>/gi;
+  let m;
+  while ((m = re.exec(src))) {
+    const ini = m.index + m[0].length, fin = src.indexOf('</script>', ini);
+    if (fin < 0) continue;
+    re.lastIndex = fin;
+    if (/\bsrc\s*=/i.test(m[1])) continue;
+    const tipo = (m[1].match(/type\s*=\s*["']([^"']+)["']/i) || [])[1];
+    if (tipo && !/^(text|application)\/(java|ecma)script$|^module$/i.test(tipo)) continue;
+    let ast;
+    try { ast = acorn.parse(src.slice(ini, fin), { ecmaVersion: 'latest', sourceType: 'script' }); }
+    catch (e) {
+      console.error('NO SE PUDO ANALIZAR el <script> de ' + FUENTE.donde(src.slice(0, ini).split('\n').length) + ': ' + e.message);
+      process.exit(2);
+    }
+    (function anda(n) {
+      if (!n || typeof n !== 'object') return;
+      if (Array.isArray(n)) { n.forEach(anda); return; }
+      if (n.type === 'ObjectExpression') objetos.push({ ini: ini + n.start, fin: ini + n.end });
+      for (const k of Object.keys(n)) if (k !== 'type' && k !== 'start' && k !== 'end') anda(n[k]);
+    })(ast);
+  }
 }
 objetos.sort((a, b) => (a.fin - a.ini) - (b.fin - b.ini));
 /* ── EXCEPCIONES DECLARADAS EN EL PROPIO FUENTE ───────────────────────────
@@ -688,7 +737,7 @@ for (const o of objetos) {
   try { v = eval('(' + src.slice(o.ini, o.fin) + ')'); } catch (e) { continue; }
   if (!v || typeof v !== 'object' || typeof v.es !== 'string') continue;
   dentroYa.push(o);
-  const linea = src.slice(0, o.ini).split('\n').length;
+  const linea = FUENTE.donde(src.slice(0, o.ini).split('\n').length).replace(/^index\.html:/, '');
   const tr = LANG === 'es' ? v.es : v[LANG];
   if (typeof tr !== 'string' || !tr.trim()) { apunta('FALTA', 'interfaz:' + linea, String(v.es).slice(0, 60)); continue; }
   nUi++;
