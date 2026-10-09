@@ -288,7 +288,8 @@ function esperado(datos, places, pos, radio, comb) {
         openDetailSheet(x.id);
         const ficha = document.getElementById('detail-sheet-info').innerText;
         const m = markerMap[x.id];
-        const c = m ? m.getPopup().getContent() : '';
+        // el globo se fabrica al abrirlo (htmlGlobo): getContent() es la funcion que lo hace
+        const c0 = m ? m.getPopup().getContent() : '', c = typeof c0 === 'function' ? c0(m) : c0;
         const tmp = document.createElement('div'); tmp.innerHTML = typeof c === 'string' ? c : c.innerHTML;
         const globo = tmp.innerText || tmp.textContent;
         for (const [donde, txt] of [['ficha', ficha], ['globo', globo]]) {

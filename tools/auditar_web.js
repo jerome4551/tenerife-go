@@ -887,6 +887,54 @@ function revisar(tablas, o) {
 
   console.log('\n=== rendimiento ===');
   console.log('  aeropuerto sur: %d lineas · %d capas · %d ms', perf.lineas, perf.capas, perf.ms);
+
+  /* EL MAPA NO SE REHACE DE MAS (9 de octubre). Jerome: «empieza a ponerse
+     mas lenta». Medido con CPU de movil: al arrancar, el mapa se rehacia
+     cuatro veces, y cada vez fabricaba el globo de los 975 lugares aunque
+     nadie abriera ninguno; 2,4 s. Lo habia empeorado la sesion 94: llegaban
+     los precios de las gasolineras, se rehacia otra vez entero, y cada globo
+     de gasolinera creaba su propio Intl (830 ms). Ahora el globo se fabrica
+     al abrirlo (htmlGlobo) y ni los precios, ni las etiquetas, ni los textos
+     de los lugares rehacen el mapa si no cambia lo que se ve.
+     Se cuenta metiendo un contador en _updateMarkersImpl en la copia que se
+     sirve, no en el fichero. Si la funcion cambia de nombre, el control lo
+     dice en vez de contar cero y dar verde. */
+  const rehechos = async lang => {
+    const c2 = await b.newContext({ serviceWorkers: 'block', viewport: { width: 390, height: 844 } });
+    const p2 = await c2.newPage();
+    const MARCA = 'function _updateMarkersImpl() {';
+    if (!src.includes(MARCA)) { await c2.close(); return null; }
+    const conContador = src.replace(MARCA, MARCA + ' window.__rehechos = (window.__rehechos || 0) + 1;');
+    await p2.route('**/index.html', r => r.fulfill({ status: 200, contentType: 'text/html; charset=utf-8', body: conContador }));
+    await p2.addInitScript(l => {
+      try { localStorage.setItem('tg_lang', l); localStorage.setItem('tenerife.tour.seen', '1'); } catch (e) {}
+    }, lang);
+    await p2.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'load', timeout: 60000 });
+    // los precios llegan a los 1,5 s, las etiquetas y los textos por red
+    await p2.waitForTimeout(5000);
+    const o = await p2.evaluate(() => {
+      const m = Object.values(markerMap)[0];
+      const veces = window.__rehechos || 0;      // antes de rehacerlo aqui para medirlo
+      const t0 = performance.now();
+      updateMarkers({ immediate: true });
+      return { veces, idioma: currentLang, marcadores: activeMarkers.length,
+               perezoso: !!m && typeof m.getPopup().getContent() === 'function',
+               ms: Math.round(performance.now() - t0) };
+    });
+    await c2.close();
+    return o;
+  };
+  console.log('\n=== el mapa no se rehace de mas ===');
+  for (const lang of ['es', 'bg']) {
+    const o = await rehechos(lang);
+    if (!o) { console.log('  MAL no encuentro _updateMarkersImpl: el control no puede contar'); docMal = 1; break; }
+    const ok = o.veces === 1 && o.idioma === lang;
+    console.log('  ' + (ok ? 'OK ' : 'MAL') + ' arrancando en ' + lang + ' el mapa se hace UNA vez   (' + o.veces + ' en 5 s, idioma ' + o.idioma + ')');
+    const okP = o.perezoso;
+    console.log('  ' + (okP ? 'OK ' : 'MAL') + ' el globo se fabrica al abrirlo, no al hacer el mapa');
+    console.log('  --  rehacerlo con ' + o.marcadores + ' marcadores: ' + o.ms + ' ms — se informa, no falla');
+    if (!ok || !okP) docMal = 1;
+  }
   console.log('\npageerrors: ' + errs.length);
   errs.slice(0, 5).forEach(e => console.log('   ' + e));
   await b.close();

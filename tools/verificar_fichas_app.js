@@ -77,7 +77,8 @@ const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
       for (const x of gas) {
         const m = markerMap[x.id];
         if (!m) { mal.push(x.id + ': sin marcador en el mapa'); continue; }
-        const c = m.getPopup().getContent();
+        // el globo se fabrica al abrirlo (htmlGlobo): getContent() es la funcion que lo hace
+        const c0 = m.getPopup().getContent(), c = typeof c0 === 'function' ? c0(m) : c0;
         const t = typeof c === 'string' ? c : c.innerHTML;
         const h = x.hours && x.hours[L];
         if (h && !t.includes('🕐 ' + escapeHtml(h))) mal.push(x.id + ': el globo no ensena el horario');

@@ -642,6 +642,114 @@ porque **quince herramientas leen y ESCRIBEN `const places = [` con cirugía
 fina**, y moverlo sin moverlas es como el proyecto ya aprendió con los
 idiomas: el control deja de mirar y da verde.
 
+## «Empieza a ponerse más lenta» · el mapa fabricaba 975 globos cada vez
+
+**9 de octubre.** Jerome: «Mírame si puede hacer que la app se va más rápido
+que empieza a ponerse más lenta». Medido otra vez antes de tocar nada: CPU de
+móvil (4× más lenta), servidor local, en castellano.
+
+**Lo que pesaba.** Cada vez que el mapa se rehacía —al arrancar, al poner o
+quitar una categoría— se fabricaba el HTML del globo de **todos** los lugares
+que se ven, los 975 sin filtro, aunque nadie abriera ninguno. Y al arrancar se
+rehacía varias veces: la primera, y otra cada vez que llegaba algo por red
+—los precios de las gasolineras; en otro idioma, también las etiquetas y los
+textos de los lugares—.
+
+**Y lo empeoré yo**, en las sesiones 92 a 94: cada globo de gasolinera creaba
+su propio formateador de fecha y de euros (`Intl`), que en un móvil cuesta
+milisegundos cada uno; con 211 gasolineras, 830 ms. Y los precios, que llegan
+a los 1,5 s de abrir la app, rehacían el mapa entero: un parón justo cuando
+uno empieza a tocar.
+
+**Lo que cambia:**
+
+1. **El globo se fabrica al abrirlo** (`htmlGlobo`). El marcador lleva una
+   función y Leaflet la llama cada vez que se abre el globo: sale con el
+   idioma, los favoritos, las etiquetas y los precios de ese momento, sin
+   rehacer el mapa para nada de eso.
+2. Los formateadores de la fecha de los precios y del euro se crean una vez
+   por idioma, no por gasolinera; los de la fecha y la hora de Canarias, una
+   vez.
+3. **Nada rehace el mapa si no cambia lo que se ve.** Los precios, solo con el
+   filtro «las más baratas» puesto, que es lo único de los marcadores que
+   depende de ellos. Las etiquetas, nunca: solo salen en el globo y en la
+   ficha. Los textos de los lugares, solo con una búsqueda escrita, porque el
+   buscador mira la categoría traducida. Cambiar de idioma sí lo rehace: así
+   se cierra el globo que estuviera abierto en el idioma de antes.
+
+**Medido.** Lo que tarda en rehacerse el mapa al tocar categorías, mediana de
+tres:
+
+| | antes | ahora |
+|---|---|---|
+| quitar «playa» (vuelven los 975) | 416 ms | **60 ms** |
+| poner «gasolinera» | 240 ms | **42 ms** |
+| poner tres categorías | 253 ms | **23 ms** |
+| limpiar los filtros | 585 ms | **55 ms** |
+| todas las veces que se hace al arrancar | 959 ms | **172 ms** |
+
+El arranque, mediana de cinco cargas:
+
+| | antes | ahora |
+|---|---|---|
+| JavaScript ejecutándose | 1.621 ms | **924 ms** |
+| tareas largas, sumadas | 2.719 ms | **2.058 ms** |
+| memoria de JavaScript | 17,0 MB | **11,7 MB** |
+| veces que se hace el mapa en 5 s, castellano / búlgaro | 2 / 3 | **1 / 1** |
+
+El `DOMContentLoaded` casi no se mueve (3.234 → 3.056 ms, dentro de lo que
+varía de una carga a otra): lo que queda del arranque es **leer** el
+fichero, no hacer cosas. La tabla de la sección anterior decía «pintar todos
+los marcadores: 1 ms»; `updateMarkers()` vuelve en eso porque solo programa
+el trabajo para 60 ms después. Con el trabajo dentro, eran los 416-585 ms de
+arriba.
+
+**El control**, en `tools/auditar_web.js`. Mete un contador en
+`_updateMarkersImpl` en la copia que sirve —no en el fichero—, arranca en
+castellano y en búlgaro —que baja etiquetas y textos por red— y cuenta las
+veces que se hace el mapa en cinco segundos. Y mira que el globo sea una
+función, no un HTML hecho de antemano:
+
+```
+=== el mapa no se rehace de mas ===
+  OK  arrancando en es el mapa se hace UNA vez   (1 en 5 s, idioma es)
+  OK  el globo se fabrica al abrirlo, no al hacer el mapa
+  --  rehacerlo con 975 marcadores: 26 ms — se informa, no falla
+  OK  arrancando en bg el mapa se hace UNA vez   (1 en 5 s, idioma bg)
+  OK  el globo se fabrica al abrirlo, no al hacer el mapa
+  --  rehacerlo con 975 marcadores: 20 ms — se informa, no falla
+```
+
+Probado devolviendo las averías una a una: los precios que rehacen el mapa
+(canta en los dos idiomas), el globo hecho de antemano (canta en los dos), las
+etiquetas que lo rehacen (canta en búlgaro) y la función con otro nombre (dice
+que no puede contar, en vez de contar cero y dar verde). Contra la versión de
+antes: 2 y 3 veces, y los dos globos en rojo.
+
+**Lo que queda, medido y sin hacer.** `index.html` son 3,3 MB y 2,9 MB de eso
+son JavaScript en línea, que el móvil tiene que leer y compilar para
+arrancar. Los datos de TITSA son 1,06 MB de ese JavaScript —`TITSA_LINES`
+785 kB, `TITSA_PARADAS` 278 kB— y solo se usan con las guaguas. Dos
+experimentos, mediana de cinco:
+
+| primera visita | DOMContentLoaded | la tarea más larga |
+|---|---|---|
+| como está | 2.718 ms | 965 ms |
+| TITSA en un fichero aparte, tal cual, con sus comentarios | **2.370 ms** | **607 ms** |
+
+Y con el navegador abierto, a la cuarta carga: 1.491 → 1.228 ms.
+
+El otro experimento, TITSA como JSON dentro de `index.html`, ganaba algo más
+(2.906 → 2.402 ms), pero **se descarta**: `TITSA_LINES` lleva 309 líneas de
+comentarios con el origen de cada dato —qué es del GTFS, qué se ancló a mano y
+por qué— y el JSON no admite comentarios. `TITSA_PARADAS` no lleva ninguno.
+
+El fichero aparte pide tocar `index.html`, `sw.js` —precargarlo, para que las
+guaguas funcionen sin conexión— y las herramientas que leen la red de
+`index.html`: `cargar.js` (y con él las seis que lo usan), `verificar_red.js`,
+`gtfs_red.py` y `mapa_base.py`. Es cambiar cómo está hecho el proyecto, así que
+queda para cuando Jerome lo diga.
+
 ## «Organiza tu día» devolvía el itinerario en castellano
 
 La app en búlgaro, el itinerario en castellano: el título, la descripción de
@@ -3801,7 +3909,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_datos.js` | catálogo, líneas, trazado y lugares |
 | `tools/auditar_seguridad.py` | inyección, CSP, codificación, textos fijos y tipografía china |
 | `tools/auditar_xss.js` | regresión con datos hostiles, en navegador |
-| `tools/auditar_web.js` | idiomas, arranque y rendimiento, en navegador |
+| `tools/auditar_web.js` | idiomas, arranque y rendimiento, en navegador; que el mapa no se rehaga de más |
 | `tools/extract_js.py` | extrae los `<script>` para `node --check` |
 | `tools/gtfs_red.py` | regenera la red desde un GTFS completo |
 | `tools/orientacion.py` | deduce orientación de playa desde la costa · **suspendido por su propio control** |

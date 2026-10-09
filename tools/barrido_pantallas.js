@@ -157,7 +157,8 @@ async function recorrer(b, L) {
       setCategory(x.category); updateMarkers({ immediate: true });
       const m = markerMap[id];
       if (m) {
-        const c = m.getPopup().getContent();
+        // el globo se fabrica al abrirlo (htmlGlobo): getContent() es la funcion que lo hace
+        const c0 = m.getPopup().getContent(), c = typeof c0 === 'function' ? c0(m) : c0;
         const d = document.createElement('div'); d.style.cssText = 'position:fixed;left:0;top:0;width:300px;z-index:-1';
         d.innerHTML = typeof c === 'string' ? c : c.outerHTML; document.body.appendChild(d);
         d.innerText.split('\n').map(s => s.trim()).filter(s => s.length > 1).forEach(s => t.add(s));

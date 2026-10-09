@@ -9085,7 +9085,11 @@ const TG_LUGARES_I18N = (function () {
   function repintar(lang, puerta) {
     momentos[lang] = puerta;
     if (puerta !== 'repintando') return;
-    try { if (typeof updateMarkers === 'function') updateMarkers(); } catch (e) {}
+    /* El mapa solo se rehace si hay una busqueda escrita: el buscador mira
+       tambien la categoria traducida (localized(place.cat)) y lo que sale
+       puede cambiar. Los textos del globo ya no piden rehacerlo: el globo se
+       fabrica al abrirlo (htmlGlobo). */
+    try { if (searchQuery && typeof updateMarkers === 'function') updateMarkers(); } catch (e) {}
     try { if (typeof rebuildCategoryList === 'function') rebuildCategoryList(); } catch (e) {}
     try { if (typeof updateFilterStatus === 'function') updateFilterStatus(); } catch (e) {}
     try { repintarHojaAbierta(); } catch (e) {}
@@ -9197,7 +9201,8 @@ const TG_ETIQUETAS = (function () {
       .then(d => {
         if (pedido !== lang) return;          // llego tarde, ya cambiaron de idioma
         tabla = d || null;
-        try { if (typeof updateMarkers === 'function') updateMarkers(); } catch (e) {}
+        /* Sin rehacer el mapa: las etiquetas solo salen en el globo, que se
+           fabrica al abrirlo (htmlGlobo), y en la ficha, que se repinta aqui. */
         try { repintarHojaAbierta(); } catch (e) {}
       })
       .catch(() => { if (pedido === lang) tabla = null; });
@@ -9931,7 +9936,9 @@ function setLang(lang) {
   // Categorías del dropdown
   rebuildCategoryList();
 
-  // Marcadores (popups)
+  /* Marcadores. Los globos ya se fabrican al abrirlos (htmlGlobo), pero el
+     mapa se sigue rehaciendo: el buscador mira la categoria traducida, y
+     rehacerlo cierra el globo que estuviera abierto en el idioma de antes. */
   updateMarkers();
   updateFilterStatus();
 
@@ -16658,14 +16665,23 @@ const PRECIOS_GAS_LOCALE = { es:'es-ES', en:'en-GB', fr:'fr-FR', de:'de-DE', it:
 
 function preciosGasFrescos() { return PRECIOS_GAS.estado === 'frescos'; }
 
+/* La fecha de los precios y el formato del euro se calculan una vez por
+   idioma y por precios, no por gasolinera: crear un Intl cada vez llego a ser
+   lo que mas pesaba al arrancar (830 ms con CPU de movil, 9 de octubre). */
+const _cacheGas = { fechaClave: '', fecha: '', euroLang: '', euro: null };
 function fechaPreciosGas() {
   const d = PRECIOS_GAS.datos;
   if (!d || !d.fecha) return '';
+  const clave = currentLang + '|' + d.fecha;
+  if (_cacheGas.fechaClave === clave) return _cacheGas.fecha;
+  let txt;
   try {
-    return new Intl.DateTimeFormat(PRECIOS_GAS_LOCALE[currentLang] || 'es-ES', {
+    txt = new Intl.DateTimeFormat(PRECIOS_GAS_LOCALE[currentLang] || 'es-ES', {
       timeZone: 'Atlantic/Canary', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
     }).format(new Date(d.fecha));
-  } catch (e) { return d.fecha_ministerio || ''; }
+  } catch (e) { txt = d.fecha_ministerio || ''; }
+  _cacheGas.fechaClave = clave; _cacheGas.fecha = txt;
+  return txt;
 }
 
 function avisoPreciosGas() {
@@ -16674,8 +16690,12 @@ function avisoPreciosGas() {
 }
 
 function euroGas() {
-  return new Intl.NumberFormat(PRECIOS_GAS_LOCALE[currentLang] || 'es-ES',
-    { style: 'currency', currency: 'EUR', minimumFractionDigits: 3, maximumFractionDigits: 3 });
+  if (_cacheGas.euroLang !== currentLang || !_cacheGas.euro) {
+    _cacheGas.euro = new Intl.NumberFormat(PRECIOS_GAS_LOCALE[currentLang] || 'es-ES',
+      { style: 'currency', currency: 'EUR', minimumFractionDigits: 3, maximumFractionDigits: 3 });
+    _cacheGas.euroLang = currentLang;
+  }
+  return _cacheGas.euro;
 }
 
 /* Las lineas de precio del globo y de la ficha: una por combustible con
@@ -16740,10 +16760,14 @@ function aplicarPreciosGas(d, fuente) {
     const p = places.find(q => q.id === el.dataset.gasId);
     if (p) el.innerHTML = filasPreciosGas(p).join('');
   });
-  // el mapa se rehace (los marcadores llevan sus globos dentro), pero no con
-  // un globo abierto: se espera a que se cierre
-  if (document.querySelector('.leaflet-popup') && typeof map !== 'undefined' && map) map.once('popupclose', () => updateMarkers());
-  else updateMarkers();
+  // El mapa solo se rehace con el filtro «las mas baratas» puesto: es lo unico
+  // de los marcadores que cambia con los precios (los globos se fabrican al
+  // abrirlos, ver htmlGlobo). Y no con un globo abierto: se espera a que se
+  // cierre.
+  if (selectedCategories.has('gasolinera_barata')) {
+    if (document.querySelector('.leaflet-popup') && typeof map !== 'undefined' && map) map.once('popupclose', () => updateMarkers());
+    else updateMarkers();
+  }
   repintarHojaAbierta();
   if (GAS_CERCA.abierto) pintarGasCerca();
   return true;
@@ -18081,6 +18105,251 @@ function updateMarkers(opts) {
   }, 60); // 60 ms: imperceptible para el usuario, agrupa cascadas de teclas
 }
 
+/* EL GLOBO DE CADA LUGAR SE FABRICA AL ABRIRLO (9 de octubre).
+   Antes se fabricaba aqui dentro de _updateMarkersImpl, el de los 975 lugares
+   cada vez que se rehacia el mapa, aunque nadie abriera ninguno. Medido con
+   CPU de movil: el mapa se rehace 4 veces al arrancar y eso eran 2,4 s; la de
+   «Comenzar», 1,2 s de paron. Ahora el marcador lleva una funcion y Leaflet la
+   llama al abrir el globo (y cada vez que se abre): sale con el idioma, los
+   favoritos, las etiquetas y los precios de ESE momento, sin rehacer el mapa
+   para nada de eso. */
+const GLOBO_FOTO_CATS = ['naturaleza', 'playa', 'piscinas', 'montana', 'cultura', 'museo', 'gastronomia', 'familia', 'animales', 'faros', 'deporte_publico'];
+function htmlGlobo(place) {
+  const L = t();
+  const isFav = favorites.has(place.id);
+  const badges = [];
+  const bSoc = badgeSocorristas(place, L);
+  if (bSoc) badges.push(bSoc);
+  if (place.blueFlag) badges.push(`<span class="popup-badge badge-blueflag">${L.blueFlag}</span>`);
+  /* Calidad del agua del censo oficial. La fuente va en el title, para no
+     repetirla en cada globo. Solo hay tres valores posibles. */
+  if (place.aguaCalidad) {
+    const nivel = { excelente: L.aguaExcelente, buena: L.aguaBuena, suficiente: L.aguaSuficiente }[place.aguaCalidad];
+    /* El ano sale de la ficha y no del texto: si manana hay censo nuevo,
+       las que sigan siendo del 2025 lo tienen que seguir diciendo. Todas
+       las fichas con aguaCalidad llevan aguaCalidadAnio, y hay un control
+       en tools/auditar_datos.js que no deja que se separen. */
+    const fuente = (L.aguaFuente || '').replace('{a}', place.aguaCalidadAnio || '');
+    if (nivel) badges.push(`<span class="popup-badge badge-agua-${escapeAttr(place.aguaCalidad)}" title="${escapeAttr(fuente)}">${escapeHtml(nivel)}</span>`);
+  }
+  if (place.emergency24) badges.push(`<span class="popup-badge badge-emergency">${L.emergency24}</span>`);
+  if (place.pharmacy24)  badges.push(`<span class="popup-badge badge-pharmacy">${L.pharmacy24}</span>`);
+
+  /* El visor de playas del Gobierno de Canarias acepta la playa en la
+     propia URL. Antes se mandaba a todo el mundo a la portada, que
+     abre el mapa de las siete islas con globos de "34 playas", "51
+     playas"... y a partir de ahi te buscabas la vida. Comprobado en
+     el movil: con lat, lng y zoom abre directamente encima de la
+     playa, y ahi si se ve su bandera -verde, amarilla, roja, uso
+     prohibido o sin informacion-, que es a lo que va uno.
+
+     El zoom 16 es el que enseña la playa entera con algo de
+     alrededor para situarse.
+
+     Las coordenadas salen de places[], son numeros nuestros y no
+     texto de nadie, pero se codifican igual por costumbre. */
+  const flagLink = place.category === 'playa'
+    ? `<a href="${escapeAttr('https://webmap.infoplayascanarias.es/?lat=' + encodeURIComponent(place.lat) + '&lng=' + encodeURIComponent(place.lng) + '&zoom=16')}" target="_blank" rel="noopener noreferrer" class="popup-flag-link">${L.flagLink}</a>`
+    : '';
+
+  /* Leyenda de banderas. OJO CON EL ORIGEN DE ESTO.
+
+     Estas seis son las que se usan HOY en las playas de Canarias,
+     confirmadas por la Subdireccion de Proteccion Civil y Emergencias
+     del Gobierno de Canarias.
+
+     Antes aqui habia otra leyenda distinta, sacada del Decreto 116/2018
+     y de la Orden de 22/7/2022 que modificaba sus anexos. Estaba mal de
+     raiz: **el Decreto 116/2018 fue ANULADO** por sentencia del Tribunal
+     Supremo de 27/9/2023, publicada en el BOC 82 del 25/4/2024, que
+     declara su nulidad. Que el texto siguiera colgado en las webs
+     oficiales -y en el visor de playas- no lo hacia vigente.
+
+     Y no era un matiz juridico: aquella leyenda decia que la amarilla
+     significaba "playa clasificada como peligrosa" cuando lo que
+     significa es "bañate con precaucion". Sobre seguridad en el agua eso
+     no se puede equivocar.
+
+     Que no se repita: una norma publicada no es una norma vigente.
+     Antes de escribir aqui nada sacado de un BOE o un BOC, hay que
+     comprobar que no este anulada ni derogada. El nuevo modelo de
+     regulacion esta en preparacion y todavia no aprobado, asi que esta
+     leyenda va sin citar norma: describe el uso real. */
+  const flagLeyenda = place.category === 'playa'
+    ? `<details class="popup-ban">
+         <summary>${escapeHtml(L.banderasTitulo)}</summary>
+         <div class="popup-ban-fila"><i class="bn bn-ve"></i>${escapeHtml(L.banderasVerde)}</div>
+         <div class="popup-ban-fila"><i class="bn bn-am"></i>${escapeHtml(L.banderasAmarilla)}</div>
+         <div class="popup-ban-fila"><i class="bn bn-ro"></i>${escapeHtml(L.banderasRoja)}</div>
+         <div class="popup-ban-fila"><i class="bn bn-ne"></i>${escapeHtml(L.banderasNegra)}</div>
+         <div class="popup-ban-fila"><i class="bn bn-na"></i>${escapeHtml(L.banderasNaranja)}</div>
+         <div class="popup-ban-fila"><i class="bn bn-mo"></i>${escapeHtml(L.banderasMorada)}</div>
+         <div class="popup-ban-src">${escapeHtml(L.banderasFuente)}</div>
+       </details>`
+    : '';
+
+  // Bloque de info para servicios sanitarios y veterinarios
+  // (teléfono, horario, dirección, 112). Se muestra para cualquier
+  // lugar con datos clínicos disponibles (phone/hours/address), lo
+  // que cubre hospitales, centros de salud, farmacias 24h y
+  // veterinarios 24h sin tener que enumerar la categoría exacta.
+  let healthInfo = '';
+  const HEALTH_CATS = ['hospital', 'farmacia', 'csalud', 'veterinario', 'salud'];
+  if (HEALTH_CATS.includes(place.category) && (place.phone || place.hours || place.address)) {
+    const rows = [];
+    if (place.phone) {
+      // Sanitizar teléfono para href tel: solo dígitos, + y espacios eliminados
+      const telHref = String(place.phone).replace(/[^\d+]/g, '');
+      rows.push(`<div class="popup-info-row"><a href="tel:${escapeAttr(telHref)}" class="popup-info-link">${L.phoneLabel} ${escapeHtml(place.phone)}</a></div>`);
+    }
+    if (place.hours) {
+      const h = localized(place.hours);
+      rows.push(`<div class="popup-info-row">${L.hoursLabel} ${escapeHtml(h)}</div>`);
+    }
+    if (place.address) {
+      rows.push(`<div class="popup-info-row popup-info-addr">📍 ${escapeHtml(place.address)}</div>`);
+    }
+    rows.push(`<div class="popup-info-row popup-info-112"><a href="tel:112" class="popup-info-link">${L.emergencyTel}</a></div>`);
+    healthInfo = `<div class="popup-info">${rows.join('')}</div>`;
+  }
+  /* Horario y direccion de las fichas que salen del registro oficial del
+     MITECO: las que llevan IDEESS, o sea, las gasolineras. El horario
+     estaba guardado en los diez idiomas y no se pintaba en ningun sitio.
+     Otros horarios guardados (oficinas de turismo, campings) no tienen
+     fuente comprobada y por eso NO se pintan: el criterio es la fuente,
+     no la categoria. */
+  if (!healthInfo && place.ideess && (place.hours || place.address)) {
+    const rows = [];
+    if (place.hours) {
+      rows.push(`<div class="popup-info-row">${L.hoursLabel} ${escapeHtml(localized(place.hours))}</div>`);
+    }
+    rows.push(bloquePreciosGas(place));
+    if (place.address) {
+      rows.push(`<div class="popup-info-row popup-info-addr">📍 ${escapeHtml(place.address)}</div>`);
+    }
+    healthInfo = `<div class="popup-info">${rows.join('')}</div>`;
+  }
+
+  /* Ficha de parking. Solo se pinta lo que tiene valor.
+
+     El precio va SIEMPRE con su fecha: cambia cada temporada y sin
+     fecha nadie sabe si fiarse. Y no hay ocupacion en vivo porque
+     ninguna fuente publica la da; las claves que la asumen
+     (parkingFree "{free} libres de {total}", parkingOccupancy,
+     parkingRealTime) siguen definidas para el dia que la haya, sin
+     usar. Inventar un aforo es peor que no darlo: alguien conduce
+     hasta alli fiandose. */
+  let parkingInfo = '';
+  const pk = place.parking;
+  if (pk) {
+    const filas = [];
+    const eur = n => n.toFixed(2).replace('.', ',');
+    if (typeof pk.plazas === 'number' && pk.plazas > 0) {
+      filas.push('<div class="popup-info-row">🅿️ ' + escapeHtml(tx('parkingSpaces', { n: pk.plazas })) + '</div>');
+    }
+    if (pk.gratis) {
+      filas.push('<div class="popup-info-row" style="color:#4ade80">💶 ' + escapeHtml(tx('parkingFreeOfCharge')) + '</div>');
+    } else if (typeof pk.precioHora === 'number') {
+      let t = eur(pk.precioHora) + ' €/h ' + tx('parkingApprox');
+      if (typeof pk.precioDia === 'number') t += ' · ' + tx('parkingMaxDay', { n: pk.precioDia });
+      if (pk.precioFecha) t += ' (' + tx('parkingPriceDate', { f: pk.precioFecha }) + ')';
+      filas.push('<div class="popup-info-row">💶 ' + escapeHtml(t) + '</div>');
+    }
+    if (pk.aviso) {
+      filas.push('<div class="popup-info-row" style="color:#fbbf24">⚠️ ' + escapeHtml(localized(pk.aviso)) + '</div>');
+    }
+    if (!filas.length) filas.push('<div class="popup-info-row">🅿️ ' + escapeHtml(tx('parkingHere')) + '</div>');
+    parkingInfo = '<div class="popup-info">' + filas.join('') + '</div>';
+  }
+
+  // Enlace farmacia de guardia (solo para farmacias)
+  const pharmacyLink = place.emoji === '💊'
+    ? `<a href="https://www.farmaten.com/es/info/farmacias-abiertas-ahora-tenerife.html" target="_blank" rel="noopener noreferrer" class="popup-flag-link">${L.pharmacyGuardLink}</a>`
+    : '';
+
+  const desc = localized(place.desc);
+  const cat  = localized(place.cat);
+
+  const favBtnLabel = isFav ? L.removeFav : L.addFav;
+  const favBtnClass = isFav ? 'popup-fav-btn is-fav' : 'popup-fav-btn';
+  const favBtnStar = isFav ? '★' : '☆';
+
+  // Mostrar foto Wikipedia solo en lugares turísticos (no en salud/gasolineras)
+  const photoBlock = GLOBO_FOTO_CATS.includes(place.category)
+    ? `<div class="popup-photo" data-place-id="${place.id}"><div class="popup-photo-loader">${escapeHtml(tx('photoLoading'))}</div></div>`
+    : '';
+
+  // Escapar TODO lo dinámico (defense-in-depth: aunque los datos sean
+  // locales hoy, mañana podrían venir de un JSON externo y queremos que
+  // un nombre con comillas, < o > nunca rompa el HTML del popup ni cree XSS).
+  const safeName     = escapeHtml(place.name);
+  const safeDesc     = escapeHtml(desc);
+  const safeCat      = escapeHtml(cat);
+  const safeEmoji    = escapeHtml(place.emoji);
+  const safeId       = escapeAttr(place.id);
+  const safeFavLabel = escapeHtml(favBtnLabel);
+  const safeFavStar  = escapeHtml(favBtnStar);
+  const safeShareTtl = escapeAttr(L.shareBtn);
+  const safeShareLbl = escapeHtml(L.shareBtn);
+  const safeHowToLbl = escapeHtml(L.nearbyHowToBtn || '🚏 Cómo llegar en bus');
+  /* Estaba escrito a pelo en castellano dentro de la plantilla del popup,
+     asi que salia en español en los otros nueve idiomas. No lo cazo el
+     control de idioma porque compara el DOM de la pagina quieta y esto
+     solo existe cuando tocas un pin del mapa. */
+  const safeVerFicha = escapeHtml(L.popupVerFicha || 'Ver descripción completa');
+  const safeDirLbl   = escapeHtml(L.directionsBtn || '🚗 Cómo llegar en coche');
+  const _dirCoord = place.lat + ',' + place.lng;
+  const _dirIOS = /iPhone|iPad|iPod/.test(navigator.userAgent || '') ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const safeDirUrl = escapeAttr(_dirIOS
+    ? ('https://maps.apple.com/?daddr=' + _dirCoord + '&dirflg=d')
+    : ('https://www.google.com/maps/dir/?api=1&destination=' + _dirCoord + '&travelmode=driving'));
+  const seaBlock = COAST_CATS.includes(place.category)
+    ? `<div class="popup-sea-wrap" data-place-id="${safeId}"><button type="button" class="popup-sea-toggle">🌊 ${escapeHtml(seaTx().title)}</button><div class="popup-sea-details" hidden></div></div>`
+    : '';
+  const safeTags     = place.tags.map(tag => `<span class="popup-tag">${escapeHtml(TG_ETIQUETAS.de(tag))}</span>`).join('');
+
+  return `
+    <div class="popup-inner" data-place-id="${safeId}">
+      <div class="popup-cat">${safeCat}</div>
+      ${photoBlock}
+      <div class="popup-name">${safeEmoji} ${safeName}</div>
+      <div class="popup-desc">${safeDesc}</div>
+      ${badges.length ? `<div class="popup-badges">${badges.join('')}</div>` : ''}
+      ${healthInfo}
+      ${parkingInfo}
+      <div class="popup-tags">${safeTags}</div>
+      ${flagLink}
+      ${flagLeyenda}
+      ${pharmacyLink}
+      ${seaBlock}
+      <div class="popup-actions">
+        <button class="${favBtnClass}" data-action="fav" data-place-id="${safeId}">
+          <span class="star-icon">${safeFavStar}</span>
+          <span>${safeFavLabel}</span>
+        </button>
+        <button class="popup-share-btn" data-action="share" data-place-id="${safeId}" title="${safeShareTtl}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/>
+            <line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/>
+          </svg>
+          <span>${safeShareLbl}</span>
+        </button>
+      </div>
+      <button class="popup-howto-btn" data-action="howto" data-place-id="${safeId}">
+        ${safeHowToLbl}
+      </button>
+      <a class="popup-howto-btn popup-car-btn" href="${safeDirUrl}" target="_blank" rel="noopener noreferrer">
+        ${safeDirLbl}
+      </a>
+      <div class="popup-tap-hint" data-action="detail" data-place-id="${safeId}">👆 ${safeVerFicha}</div>
+    </div>
+  `;
+}
+
 function _updateMarkersImpl() {
   // todo cambio de filtro pasa por aqui: el boton «cerca de mi» del mapa tambien
   if (typeof syncGasCercaFab === 'function') syncGasCercaFab();
@@ -18119,241 +18388,12 @@ function _updateMarkersImpl() {
       });
       const marker = window.L.marker([place.lat, place.lng], { icon });
 
-      const badges = [];
-      const bSoc = badgeSocorristas(place, L);
-      if (bSoc) badges.push(bSoc);
-      if (place.blueFlag) badges.push(`<span class="popup-badge badge-blueflag">${L.blueFlag}</span>`);
-      /* Calidad del agua del censo oficial. La fuente va en el title, para no
-         repetirla en cada globo. Solo hay tres valores posibles. */
-      if (place.aguaCalidad) {
-        const nivel = { excelente: L.aguaExcelente, buena: L.aguaBuena, suficiente: L.aguaSuficiente }[place.aguaCalidad];
-        /* El ano sale de la ficha y no del texto: si manana hay censo nuevo,
-           las que sigan siendo del 2025 lo tienen que seguir diciendo. Todas
-           las fichas con aguaCalidad llevan aguaCalidadAnio, y hay un control
-           en tools/auditar_datos.js que no deja que se separen. */
-        const fuente = (L.aguaFuente || '').replace('{a}', place.aguaCalidadAnio || '');
-        if (nivel) badges.push(`<span class="popup-badge badge-agua-${escapeAttr(place.aguaCalidad)}" title="${escapeAttr(fuente)}">${escapeHtml(nivel)}</span>`);
-      }
-      if (place.emergency24) badges.push(`<span class="popup-badge badge-emergency">${L.emergency24}</span>`);
-      if (place.pharmacy24)  badges.push(`<span class="popup-badge badge-pharmacy">${L.pharmacy24}</span>`);
-
-      /* El visor de playas del Gobierno de Canarias acepta la playa en la
-         propia URL. Antes se mandaba a todo el mundo a la portada, que
-         abre el mapa de las siete islas con globos de "34 playas", "51
-         playas"... y a partir de ahi te buscabas la vida. Comprobado en
-         el movil: con lat, lng y zoom abre directamente encima de la
-         playa, y ahi si se ve su bandera -verde, amarilla, roja, uso
-         prohibido o sin informacion-, que es a lo que va uno.
-
-         El zoom 16 es el que enseña la playa entera con algo de
-         alrededor para situarse.
-
-         Las coordenadas salen de places[], son numeros nuestros y no
-         texto de nadie, pero se codifican igual por costumbre. */
-      const flagLink = place.category === 'playa'
-        ? `<a href="${escapeAttr('https://webmap.infoplayascanarias.es/?lat=' + encodeURIComponent(place.lat) + '&lng=' + encodeURIComponent(place.lng) + '&zoom=16')}" target="_blank" rel="noopener noreferrer" class="popup-flag-link">${L.flagLink}</a>`
-        : '';
-
-      /* Leyenda de banderas. OJO CON EL ORIGEN DE ESTO.
-
-         Estas seis son las que se usan HOY en las playas de Canarias,
-         confirmadas por la Subdireccion de Proteccion Civil y Emergencias
-         del Gobierno de Canarias.
-
-         Antes aqui habia otra leyenda distinta, sacada del Decreto 116/2018
-         y de la Orden de 22/7/2022 que modificaba sus anexos. Estaba mal de
-         raiz: **el Decreto 116/2018 fue ANULADO** por sentencia del Tribunal
-         Supremo de 27/9/2023, publicada en el BOC 82 del 25/4/2024, que
-         declara su nulidad. Que el texto siguiera colgado en las webs
-         oficiales -y en el visor de playas- no lo hacia vigente.
-
-         Y no era un matiz juridico: aquella leyenda decia que la amarilla
-         significaba "playa clasificada como peligrosa" cuando lo que
-         significa es "bañate con precaucion". Sobre seguridad en el agua eso
-         no se puede equivocar.
-
-         Que no se repita: una norma publicada no es una norma vigente.
-         Antes de escribir aqui nada sacado de un BOE o un BOC, hay que
-         comprobar que no este anulada ni derogada. El nuevo modelo de
-         regulacion esta en preparacion y todavia no aprobado, asi que esta
-         leyenda va sin citar norma: describe el uso real. */
-      const flagLeyenda = place.category === 'playa'
-        ? `<details class="popup-ban">
-             <summary>${escapeHtml(L.banderasTitulo)}</summary>
-             <div class="popup-ban-fila"><i class="bn bn-ve"></i>${escapeHtml(L.banderasVerde)}</div>
-             <div class="popup-ban-fila"><i class="bn bn-am"></i>${escapeHtml(L.banderasAmarilla)}</div>
-             <div class="popup-ban-fila"><i class="bn bn-ro"></i>${escapeHtml(L.banderasRoja)}</div>
-             <div class="popup-ban-fila"><i class="bn bn-ne"></i>${escapeHtml(L.banderasNegra)}</div>
-             <div class="popup-ban-fila"><i class="bn bn-na"></i>${escapeHtml(L.banderasNaranja)}</div>
-             <div class="popup-ban-fila"><i class="bn bn-mo"></i>${escapeHtml(L.banderasMorada)}</div>
-             <div class="popup-ban-src">${escapeHtml(L.banderasFuente)}</div>
-           </details>`
-        : '';
-
-      // Bloque de info para servicios sanitarios y veterinarios
-      // (teléfono, horario, dirección, 112). Se muestra para cualquier
-      // lugar con datos clínicos disponibles (phone/hours/address), lo
-      // que cubre hospitales, centros de salud, farmacias 24h y
-      // veterinarios 24h sin tener que enumerar la categoría exacta.
-      let healthInfo = '';
-      const HEALTH_CATS = ['hospital', 'farmacia', 'csalud', 'veterinario', 'salud'];
-      if (HEALTH_CATS.includes(place.category) && (place.phone || place.hours || place.address)) {
-        const rows = [];
-        if (place.phone) {
-          // Sanitizar teléfono para href tel: solo dígitos, + y espacios eliminados
-          const telHref = String(place.phone).replace(/[^\d+]/g, '');
-          rows.push(`<div class="popup-info-row"><a href="tel:${escapeAttr(telHref)}" class="popup-info-link">${L.phoneLabel} ${escapeHtml(place.phone)}</a></div>`);
-        }
-        if (place.hours) {
-          const h = localized(place.hours);
-          rows.push(`<div class="popup-info-row">${L.hoursLabel} ${escapeHtml(h)}</div>`);
-        }
-        if (place.address) {
-          rows.push(`<div class="popup-info-row popup-info-addr">📍 ${escapeHtml(place.address)}</div>`);
-        }
-        rows.push(`<div class="popup-info-row popup-info-112"><a href="tel:112" class="popup-info-link">${L.emergencyTel}</a></div>`);
-        healthInfo = `<div class="popup-info">${rows.join('')}</div>`;
-      }
-      /* Horario y direccion de las fichas que salen del registro oficial del
-         MITECO: las que llevan IDEESS, o sea, las gasolineras. El horario
-         estaba guardado en los diez idiomas y no se pintaba en ningun sitio.
-         Otros horarios guardados (oficinas de turismo, campings) no tienen
-         fuente comprobada y por eso NO se pintan: el criterio es la fuente,
-         no la categoria. */
-      if (!healthInfo && place.ideess && (place.hours || place.address)) {
-        const rows = [];
-        if (place.hours) {
-          rows.push(`<div class="popup-info-row">${L.hoursLabel} ${escapeHtml(localized(place.hours))}</div>`);
-        }
-        rows.push(bloquePreciosGas(place));
-        if (place.address) {
-          rows.push(`<div class="popup-info-row popup-info-addr">📍 ${escapeHtml(place.address)}</div>`);
-        }
-        healthInfo = `<div class="popup-info">${rows.join('')}</div>`;
-      }
-
-      /* Ficha de parking. Solo se pinta lo que tiene valor.
-
-         El precio va SIEMPRE con su fecha: cambia cada temporada y sin
-         fecha nadie sabe si fiarse. Y no hay ocupacion en vivo porque
-         ninguna fuente publica la da; las claves que la asumen
-         (parkingFree "{free} libres de {total}", parkingOccupancy,
-         parkingRealTime) siguen definidas para el dia que la haya, sin
-         usar. Inventar un aforo es peor que no darlo: alguien conduce
-         hasta alli fiandose. */
-      let parkingInfo = '';
-      const pk = place.parking;
-      if (pk) {
-        const filas = [];
-        const eur = n => n.toFixed(2).replace('.', ',');
-        if (typeof pk.plazas === 'number' && pk.plazas > 0) {
-          filas.push('<div class="popup-info-row">🅿️ ' + escapeHtml(tx('parkingSpaces', { n: pk.plazas })) + '</div>');
-        }
-        if (pk.gratis) {
-          filas.push('<div class="popup-info-row" style="color:#4ade80">💶 ' + escapeHtml(tx('parkingFreeOfCharge')) + '</div>');
-        } else if (typeof pk.precioHora === 'number') {
-          let t = eur(pk.precioHora) + ' €/h ' + tx('parkingApprox');
-          if (typeof pk.precioDia === 'number') t += ' · ' + tx('parkingMaxDay', { n: pk.precioDia });
-          if (pk.precioFecha) t += ' (' + tx('parkingPriceDate', { f: pk.precioFecha }) + ')';
-          filas.push('<div class="popup-info-row">💶 ' + escapeHtml(t) + '</div>');
-        }
-        if (pk.aviso) {
-          filas.push('<div class="popup-info-row" style="color:#fbbf24">⚠️ ' + escapeHtml(localized(pk.aviso)) + '</div>');
-        }
-        if (!filas.length) filas.push('<div class="popup-info-row">🅿️ ' + escapeHtml(tx('parkingHere')) + '</div>');
-        parkingInfo = '<div class="popup-info">' + filas.join('') + '</div>';
-      }
-
-      // Enlace farmacia de guardia (solo para farmacias)
-      const pharmacyLink = place.emoji === '💊'
-        ? `<a href="https://www.farmaten.com/es/info/farmacias-abiertas-ahora-tenerife.html" target="_blank" rel="noopener noreferrer" class="popup-flag-link">${L.pharmacyGuardLink}</a>`
-        : '';
-
-      const desc = localized(place.desc);
-      const cat  = localized(place.cat);
-
-      const favBtnLabel = isFav ? L.removeFav : L.addFav;
-      const favBtnClass = isFav ? 'popup-fav-btn is-fav' : 'popup-fav-btn';
-      const favBtnStar = isFav ? '★' : '☆';
-
-      // Mostrar foto Wikipedia solo en lugares turísticos (no en salud/gasolineras)
-      const SHOW_PHOTO_CATEGORIES = ['naturaleza', 'playa', 'piscinas', 'montana', 'cultura', 'museo', 'gastronomia', 'familia', 'animales', 'faros', 'deporte_publico'];
-      const photoBlock = SHOW_PHOTO_CATEGORIES.includes(place.category)
-        ? `<div class="popup-photo" data-place-id="${place.id}"><div class="popup-photo-loader">${escapeHtml(tx('photoLoading'))}</div></div>`
-        : '';
-
-      // Escapar TODO lo dinámico (defense-in-depth: aunque los datos sean
-      // locales hoy, mañana podrían venir de un JSON externo y queremos que
-      // un nombre con comillas, < o > nunca rompa el HTML del popup ni cree XSS).
-      const safeName     = escapeHtml(place.name);
-      const safeDesc     = escapeHtml(desc);
-      const safeCat      = escapeHtml(cat);
-      const safeEmoji    = escapeHtml(place.emoji);
-      const safeId       = escapeAttr(place.id);
-      const safeFavLabel = escapeHtml(favBtnLabel);
-      const safeFavStar  = escapeHtml(favBtnStar);
-      const safeShareTtl = escapeAttr(L.shareBtn);
-      const safeShareLbl = escapeHtml(L.shareBtn);
-      const safeHowToLbl = escapeHtml(L.nearbyHowToBtn || '🚏 Cómo llegar en bus');
-      /* Estaba escrito a pelo en castellano dentro de la plantilla del popup,
-         asi que salia en español en los otros nueve idiomas. No lo cazo el
-         control de idioma porque compara el DOM de la pagina quieta y esto
-         solo existe cuando tocas un pin del mapa. */
-      const safeVerFicha = escapeHtml(L.popupVerFicha || 'Ver descripción completa');
-      const safeDirLbl   = escapeHtml(L.directionsBtn || '🚗 Cómo llegar en coche');
-      const _dirCoord = place.lat + ',' + place.lng;
-      const _dirIOS = /iPhone|iPad|iPod/.test(navigator.userAgent || '') ||
-                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      const safeDirUrl = escapeAttr(_dirIOS
-        ? ('https://maps.apple.com/?daddr=' + _dirCoord + '&dirflg=d')
-        : ('https://www.google.com/maps/dir/?api=1&destination=' + _dirCoord + '&travelmode=driving'));
-      const seaBlock = COAST_CATS.includes(place.category)
-        ? `<div class="popup-sea-wrap" data-place-id="${safeId}"><button type="button" class="popup-sea-toggle">🌊 ${escapeHtml(seaTx().title)}</button><div class="popup-sea-details" hidden></div></div>`
-        : '';
-      const safeTags     = place.tags.map(tag => `<span class="popup-tag">${escapeHtml(TG_ETIQUETAS.de(tag))}</span>`).join('');
-
-      const popup = window.L.popup({ maxWidth: 260, closeButton: true, autoPan: true, autoPanPadding: [20, 70], keepInView: true }).setContent(`
-        <div class="popup-inner" data-place-id="${safeId}">
-          <div class="popup-cat">${safeCat}</div>
-          ${photoBlock}
-          <div class="popup-name">${safeEmoji} ${safeName}</div>
-          <div class="popup-desc">${safeDesc}</div>
-          ${badges.length ? `<div class="popup-badges">${badges.join('')}</div>` : ''}
-          ${healthInfo}
-          ${parkingInfo}
-          <div class="popup-tags">${safeTags}</div>
-          ${flagLink}
-          ${flagLeyenda}
-          ${pharmacyLink}
-          ${seaBlock}
-          <div class="popup-actions">
-            <button class="${favBtnClass}" data-action="fav" data-place-id="${safeId}">
-              <span class="star-icon">${safeFavStar}</span>
-              <span>${safeFavLabel}</span>
-            </button>
-            <button class="popup-share-btn" data-action="share" data-place-id="${safeId}" title="${safeShareTtl}">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="18" cy="5" r="3"/>
-                <circle cx="6" cy="12" r="3"/>
-                <circle cx="18" cy="19" r="3"/>
-                <line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/>
-                <line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/>
-              </svg>
-              <span>${safeShareLbl}</span>
-            </button>
-          </div>
-          <button class="popup-howto-btn" data-action="howto" data-place-id="${safeId}">
-            ${safeHowToLbl}
-          </button>
-          <a class="popup-howto-btn popup-car-btn" href="${safeDirUrl}" target="_blank" rel="noopener noreferrer">
-            ${safeDirLbl}
-          </a>
-          <div class="popup-tap-hint" data-action="detail" data-place-id="${safeId}">👆 ${safeVerFicha}</div>
-        </div>
-      `);
+      // El globo se fabrica al abrirlo: ver htmlGlobo()
+      const popup = window.L.popup({ maxWidth: 260, closeButton: true, autoPan: true, autoPanPadding: [20, 70], keepInView: true })
+        .setContent(() => htmlGlobo(place));
       marker.bindPopup(popup);
-      if (photoBlock) attachPhotoLoader(marker, place);
-      if (seaBlock) attachSeaLoader(marker, place);
+      if (GLOBO_FOTO_CATS.includes(place.category)) attachPhotoLoader(marker, place);
+      if (COAST_CATS.includes(place.category)) attachSeaLoader(marker, place);
       attachPopupActions(marker, place);
       patchMarkerForRoute(marker, place);
       toAdd.push(marker);
@@ -19096,11 +19136,16 @@ const SOCORRISTAS = {
 const SOC_VIDA_DIAS = 100;          // un trimestre y un poco de margen
 
 // Fecha y hora en Canarias, que es lo unico que vale para decidir esto.
+/* Los formateadores de Intl se crean UNA vez: crear uno cuesta lo suyo (en un
+   movil, del orden del milisegundo) y esto se llama por cada playa y cada
+   linea de guagua. Medido el 9 de octubre: crearlos en cada llamada era de lo
+   que mas pesaba al arrancar. */
+let _fmtFechaCanaria = null, _fmtHoraCanaria = null;
 function fechaCanaria() {
   try {
-    const f = new Intl.DateTimeFormat('en-CA', {
+    const f = _fmtFechaCanaria || (_fmtFechaCanaria = new Intl.DateTimeFormat('en-CA', {
       timeZone: 'Atlantic/Canary', year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'short'
-    });
+    }));
     const p = f.formatToParts(new Date());
     const g = t => (p.find(x => x.type === t) || {}).value;
     const iso = g('year') + '-' + g('month') + '-' + g('day');
@@ -19175,9 +19220,9 @@ function badgeSocorristas(place, L) {
 
 function horaCanaria() {
   try {
-    const f = new Intl.DateTimeFormat('es-ES', {
+    const f = _fmtHoraCanaria || (_fmtHoraCanaria = new Intl.DateTimeFormat('es-ES', {
       timeZone: 'Atlantic/Canary', hour: '2-digit', minute: '2-digit', hour12: false
-    });
+    }));
     const partes = f.formatToParts(new Date());
     const h = parseInt(partes.find(x => x.type === 'hour').value, 10);
     const m = parseInt(partes.find(x => x.type === 'minute').value, 10);
