@@ -6,6 +6,14 @@
 > la tarea 1 solo mantendría al día el fichero de respaldo; es opcional.
 > **Lo que sí lo necesita es la notificación diaria (tarea 2)**: la envía un
 > servidor, no el móvil, y con el retraso de GitHub sale hacia mediodía.
+>
+> **9 de octubre: no se crea.** Jerome: «una vez al día está bien si permite
+> evitar crear el token». GitHub lanza la notificación solo, todos los días
+> (del 3 al 9 de octubre salió cada día a sus 4 suscriptores), con un retraso
+> de unas 7 horas casi fijo. En vez del token, los horarios del flujo van
+> adelantados (uno cada hora desde las 00:07 UTC) para que, con ese retraso,
+> caiga hacia las 8 de la mañana. Esta guía queda por si algún día hace falta
+> la hora exacta.
 
 **7 de octubre de 2026.** Los precios de las gasolineras (7:00 y 15:00) y la
 notificación diaria (por la mañana) los lanza GitHub con su programador

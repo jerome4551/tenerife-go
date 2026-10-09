@@ -1464,9 +1464,11 @@ día el fichero de respaldo. Donde sí sigue haciendo falta es en la
 
 ## Lo que queda
 
-- **La notificación diaria** sigue saliendo hacia mediodía por el retraso de
-  GitHub. Para que salga por la mañana: el reloj de fuera
-  (`RELOJ-EXTERNO.md`, tarea 2), que lleva un token tuyo.
+- **La notificación diaria**: decidiste el 9 de octubre no crear el token
+  («una vez al día está bien»). GitHub la lanza solo, cada día, unas 7 horas
+  tarde; con los horarios adelantados (desde las 00:07 UTC) debería caer hacia
+  las 8 de la mañana en vez de hacia mediodía. `RELOJ-EXTERNO.md` queda por si
+  algún día hace falta la hora exacta.
 - Si un día vuelve la BP Ten Bel, ver arriba.
 
 ## Lo que necesito de ti antes de seguir

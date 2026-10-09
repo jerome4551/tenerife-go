@@ -6,14 +6,13 @@
 #  Un lanzamiento manual (Run workflow) con forzar=si, lo que sale por
 #  defecto, siempre envia.
 #
-#  EL RELOJ DE FUERA (desde el 7 de octubre). El programador de GitHub esta
-#  roto desde el 26 de agosto de 2026 para todo el mundo: aqui los cron de
-#  abajo salen de 5 a 7 horas tarde y la notificacion llega hacia mediodia.
-#  cron-job.org (ver RELOJ-EXTERNO.md) llama a la API a las 9:05 y 9:35 de
-#  Canarias con {"ref":"main","inputs":{"forzar":"no"}}: con forzar=no se
-#  aplican la ventana y push_sends, asi que la segunda llamada, o los cron de
-#  GitHub que lleguen tarde, salen con «Ya se envio hoy» sin mandar nada.
-#  Los cron se quedan de respaldo por si el reloj de fuera dejara de llamar.
+#  EL RELOJ DE FUERA, OPCIONAL. El programador de GitHub esta roto desde el
+#  26 de agosto de 2026 para todo el mundo y los cron de abajo salen horas
+#  tarde. Se puede lanzar a su hora desde cron-job.org (RELOJ-EXTERNO.md)
+#  con {"ref":"main","inputs":{"forzar":"no"}}, pero lleva un token, y Jerome
+#  decidio el 9 de octubre que no: «una vez al dia esta bien si permite
+#  evitar crear el token». Por eso los cron de abajo van adelantados (ver
+#  alli): con el retraso de ahora, la notificacion sale hacia las 8.
 # =====================================================================
 name: Notificacion diaria Tenerife Go
 
@@ -31,6 +30,22 @@ on:
     # Canarias, dentro de la ventana. Y si algun dia GitHub va puntual,
     # aterrizan entre las 6 y las 10, tambien dentro salvo el primero.
     # push_sends evita que se envie mas de una vez pase lo que pase.
+    #
+    # 9 DE OCTUBRE: CUATRO MAS, AUN MAS TEMPRANO. El retraso ya es de unas 7
+    # horas y casi fijo (el 8 de octubre: 7h09, 6h49, 6h35, 7h10 y 7h25), y la
+    # notificacion salia entre las 10:47 y las 12:21. Con uno cada hora desde
+    # las 00:07 UTC, el primero que cae dentro de la ventana (de 7 a 16 h de
+    # Canarias) envia y los demas salen con «Ya se envio hoy»:
+    #   · con 7 h de retraso, el de las 00:07 cae hacia las 8:07 de Canarias
+    #     (las 7:07 en invierno);
+    #   · si GitHub fuera puntual, los primeros caen de madrugada, fuera de la
+    #     ventana, no envian nada, y envia el de las 06:07 a las 7:07;
+    #   · y aguanta retrasos de hasta unas 15 horas: el de las 00:07 sigue
+    #     cayendo dentro de la ventana.
+    - cron: '7 0 * * *'    # 00:07 UTC
+    - cron: '7 1 * * *'    # 01:07 UTC
+    - cron: '7 2 * * *'    # 02:07 UTC
+    - cron: '7 3 * * *'    # 03:07 UTC
     - cron: '7 4 * * *'    # 04:07 UTC
     - cron: '7 5 * * *'    # 05:07 UTC
     - cron: '37 5 * * *'   # 05:37 UTC
