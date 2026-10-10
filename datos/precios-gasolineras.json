@@ -6,9 +6,9 @@
   "La app no ensena estos precios si «fecha» tiene mas de 2 dias."
  ],
  "fuente": "Ministerio para la Transicion Ecologica y el Reto Demografico, Geoportal de Gasolineras",
- "fecha": "2026-10-10T12:39:58Z",
- "fecha_ministerio": "10/10/2026 14:39:58",
- "franja": "2026-10-10 07:00",
+ "fecha": "2026-10-10T17:53:32Z",
+ "fecha_ministerio": "10/10/2026 19:53:32",
+ "franja": "2026-10-10 15:00",
  "municipios": {
   "Adeje": {
    "gasolineras": 14,
@@ -668,7 +668,7 @@
   },
   "gas-11394-santa-cruz-de-tenerife": {
    "g95": 1.639,
-   "diesel": 1.759
+   "diesel": 1.749
   },
   "gas-11525-adeje": {
    "g95": 1.588,
@@ -715,7 +715,7 @@
   },
   "gas-12630-arafo": {
    "g95": 1.559,
-   "diesel": 1.729
+   "diesel": 1.719
   },
   "gas-12776-adeje": {
    "g95": 1.589,
@@ -958,7 +958,7 @@
    "diesel": 1.719
   },
   "gas-7713-santa-cruz-de-tenerife": {
-   "g95": 1.589,
+   "g95": 1.599,
    "diesel": 1.729
   },
   "gas-7718-fasnia": {
@@ -1230,8 +1230,8 @@
    "diesel": 1.709
   },
   "gas-7948-santiago-del-teide": {
-   "g95": 1.581,
-   "diesel": 1.708
+   "g95": 1.638,
+   "diesel": 1.719
   },
   "gas-8280-arona": {
    "g95": 1.529,
@@ -1294,8 +1294,8 @@
    "diesel": 1.745
   },
   "gas-8772-arona": {
-   "g95": 1.589,
-   "diesel": 1.729
+   "g95": 1.579,
+   "diesel": 1.719
   },
   "gas-8776-la-orotava": {
    "g95": 1.569,
