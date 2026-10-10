@@ -4059,9 +4059,10 @@ quedaba castellano dentro de los nueve idiomas. Ninguno leía las palabras:
 - **Etiquetas del catálogo**: seis fichas de buceo llevaban «Buceo» y
   «Diving», y seis de parapente «Parapente» y «Paragliding»: en castellano
   salía el inglés, y en los otros nueve el mismo chip dos veces
-  («Plongée · Plongée»). Y en el castellano de las etiquetas, «Iconic»,
-  «Sport Climbing» y «Multi-Pitch». En total, 18 etiquetas puestas o quitadas
-  en 16 fichas.
+  («Plongée · Plongée»). El kayak de Los Gigantes llevaba «SUP» y «Paddle
+  surf», que son lo mismo. Y en el castellano de las etiquetas, «Iconic»,
+  «Sport Climbing» y «Multi-Pitch». En total, 19 etiquetas puestas o quitadas
+  en 17 fichas.
 - **Siete erratas del castellano**: «relictico», «eufórbias», «statuas»,
   «peláficos», «Waterfalls» y «Picnic area.» —inglés dentro del castellano— y
   «fuerte y gustoso» dicho del viento, que es «fuerte y racheado».
@@ -4078,11 +4079,11 @@ una pregunta del asistente son dos, la pregunta y la respuesta):
 | alemán | 99 | 4 | 4 | 8 | 115 |
 | italiano | 62 | 9 | 11 | 10 | 92 |
 | neerlandés | 45 | 6 | 6 | 10 | 67 |
-| chino simplificado | 3 | 7 | 1 | 0 | 11 |
-| chino tradicional | 4 | 7 | 1 | 0 | 12 |
+| chino simplificado | 3 | 6 | 1 | 0 | 10 |
+| chino tradicional | 4 | 6 | 1 | 0 | 11 |
 | búlgaro | 14 | 11 | 4 | 4 | 33 |
 | polaco | 26 | 14 | 4 | 11 | 55 |
-| **total** | | | | | **598** |
+| **total** | | | | | **596** |
 
 ### Lo que se queda en castellano a propósito
 
@@ -4192,6 +4193,16 @@ idioma dicen lo mismo. Pasa al poner las etiquetas —«Buceo» y «Diving» en 
 misma ficha salían «Plongée · Plongée» en francés— y al traducir: «Charco» y
 «Piscina Natural» eran las dos «Naturalny basen» en polaco. Hoy, 0 en los diez
 idiomas.
+
+Y una que se arregló mal la primera vez. El kayak de Los Gigantes llevaba
+«SUP» y «Paddle surf», y en chino las dos eran 桨板. Para que no salieran dos
+veces se dejó «SUP» sin traducir en chino, y la auditoría completa lo cazó:
+`barrido_pantallas.js` vio «SUP» en letras latinas en las fichas chinas, igual
+que en los idiomas latinos. `auditar_etiquetas.js` no podía verlo, porque
+cuatro mayúsculas pasan por código, como «BMX». El arreglo bueno es el de
+«Diving»: «SUP» y «Paddle surf» son la misma actividad, así que la ficha se
+queda con «SUP», como las otras dos que la llevan, y el chino vuelve a decir
+桨板.
 
 ### Lo que no se ha tocado, para que lo decida Jerome
 
