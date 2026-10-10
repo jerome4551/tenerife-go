@@ -45,7 +45,7 @@
   "cat": "Plaża luksusowa · Costa Adeje"
  },
  "benijo": {
-  "desc": "Czarny piasek wulkaniczny ze skałami roques. Dzika i surowa, idealna do zdjęć. Ratownicy tylko latem.",
+  "desc": "Czarny piasek wulkaniczny ze skalnymi iglicami. Dzika i surowa, idealna do zdjęć. Ratownicy tylko latem.",
   "cat": "Plaża dzika · Anaga"
  },
  "el-medano": {
@@ -166,7 +166,7 @@
   "cat": "Trasa panoramiczna · Wnętrze wyspy"
  },
  "sendero-la-orotava": {
-  "desc": "Historyczny trakt królewski łączący La Orotava z Teide. 18 km ciągłego podejścia wśród borów sosnowych i cañadas. Ta sama droga, którą guanczowie szli na święty szczyt. Wymaga dobrej kondycji.",
+  "desc": "Historyczny trakt królewski łączący La Orotava z Teide. 18 km ciągłego podejścia wśród borów sosnowych i płaskowyżu. Ta sama droga, którą guanczowie szli na święty szczyt. Wymaga dobrej kondycji.",
   "cat": "Szlak historyczny · Północ–Teide"
  },
  "ruta-anaga-taganana": {
@@ -186,7 +186,7 @@
   "cat": "Szlak · Anaga (Średni · 3h · Pozwolenie)"
  },
  "sendero-afur-taganana": {
-  "desc": "⚠️ KOMUNIKAT OFICJALNY: PR-TF 8 może być zamknięty z powodu prac konserwacyjnych. Sprawdź tenerifeon.es/incidencias przed wyjściem. · Wymagająca trasa pętlą 14 km, 5-6 godzin. Startuje z wioski Afur (mniej niż 100 mieszkańców), przecina Barranco del Tamadiste aż do wybrzeża, wspina się w stronę Taganany i wraca przez monteverde. Łączy wąwozy, las wawrzynowy, nadmorskie klify i malownicze wioski. Dla doświadczonych piechurów. Zabierz wodę i jedzenie.",
+  "desc": "⚠️ KOMUNIKAT OFICJALNY: PR-TF 8 może być zamknięty z powodu prac konserwacyjnych. Sprawdź tenerifeon.es/incidencias przed wyjściem. · Wymagająca trasa pętlą 14 km, 5-6 godzin. Startuje z wioski Afur (mniej niż 100 mieszkańców), przecina Barranco del Tamadiste aż do wybrzeża, wspina się w stronę Taganany i wraca przez wiecznie zielony las. Łączy wąwozy, las wawrzynowy, nadmorskie klify i malownicze wioski. Dla doświadczonych piechurów. Zabierz wodę i jedzenie.",
   "cat": "PR-TF 8 · Anaga (Wymagający · 14 km · 5-6h)"
  },
  "sendero-guajara": {
@@ -198,7 +198,7 @@
   "cat": "Krater · Teide (Bardzo trudny · 20 km · 7-8h)"
  },
  "sendero-teno-baracan": {
-  "desc": "Przepiękna trasa pętlą po Parku Wiejskim Teno. ~10 km, 4 godziny. Startuje z wioski Teno Alto (przysiółki kozich hodowców, rzemieślnicze serowarnie) i wchodzi na Pico Baracán (1002 m) ze spektakularnym widokiem na Teide oraz na La Gomerę, La Palmę i El Hierro w pogodne dni. Przecina zarośla fayal-brezal i wyjątkowy wysokogórski las wawrzynowy. Trudność średnia. Bar i sklep w Teno Alto, żeby nabrać sił.",
+  "desc": "Przepiękna trasa pętlą po Parku Wiejskim Teno. ~10 km, 4 godziny. Startuje z wioski Teno Alto (przysiółki kozich hodowców, rzemieślnicze serowarnie) i wchodzi na Pico Baracán (1002 m) ze spektakularnym widokiem na Teide oraz na La Gomerę, La Palmę i El Hierro w pogodne dni. Przecina zarośla woskownic i wrzośców drzewiastych oraz wyjątkowy wysokogórski las wawrzynowy. Trudność średnia. Bar i sklep w Teno Alto, żeby nabrać sił.",
   "cat": "Trasa pętlą · Teno (Średni · 10 km · 4h)"
  },
  "sendero-chinyero": {
@@ -246,7 +246,7 @@
   "cat": "PR-TF 6.1 · Anaga (Średni · 3,2 km · 1h 40min)"
  },
  "prtf-9-afur-carboneras": {
-  "desc": "Krótki i ładny szlak między dwiema wioskami liczącymi mniej niż 100 mieszkańców, w sercu Anagi. 4 km w jedną stronę, 1 godz. 30 min, trudność umiarkowana. Przecina Barranco de Las Carboneras, monteverde i las wawrzynowy. W Las Carboneras zachowały się jaskiniowe domy. Naturalne połączenie z PR-TF 8 (Afur-Taganana) i PR-TF 10.1.",
+  "desc": "Krótki i ładny szlak między dwiema wioskami liczącymi mniej niż 100 mieszkańców, w sercu Anagi. 4 km w jedną stronę, 1 godz. 30 min, trudność umiarkowana. Przecina Barranco de Las Carboneras, wiecznie zielony las i las wawrzynowy. W Las Carboneras zachowały się jaskiniowe domy. Naturalne połączenie z PR-TF 8 (Afur-Taganana) i PR-TF 10.1.",
   "cat": "PR-TF 9 · Anaga (Średni · 4 km · 1h 30min)"
  },
  "prtf-11-cruz-carmen-batan": {
@@ -370,7 +370,7 @@
   "cat": "Formacja wulkaniczna"
  },
  "malpais-guimar": {
-  "desc": "Chroniony Obszar Przyrodniczy na wschodnim wybrzeżu Teneryfy. Pole potoków lawy sprzed 1000-2000 lat, które dochodzą do morza, tworząc wyjątkowe wybrzeże z czarnej skały. Siedlisko jaszczurki kanaryjskiej tizón i wielu endemicznych roślin. Blisko Piramid Güímar. Wstęp wolny lokalnymi szlakami.",
+  "desc": "Chroniony Obszar Przyrodniczy na wschodnim wybrzeżu Teneryfy. Pole potoków lawy sprzed 1000-2000 lat, które dochodzą do morza, tworząc wyjątkowe wybrzeże z czarnej skały. Siedlisko jaszczurki kanaryjskiej i wielu endemicznych roślin. Blisko Piramid Güímar. Wstęp wolny lokalnymi szlakami.",
   "cat": "Obszar przyrodniczy · Güímar · Wulkaniczny · Wschodnie wybrzeże"
  },
  "jardin-botanico-puerto-cruz": {
@@ -378,7 +378,7 @@
   "cat": "Ogród botaniczny · Puerto de la Cruz · 1788 · 3€"
  },
  "lajiales-fasnia": {
-  "desc": "Pole law wulkanicznych na wschodnim wybrzeżu Teneryfy, w gminie Fasnia. Chroniony Obszar Przyrodniczy o dużej wartości geologicznej i krajobrazowej. Rozległe historyczne potoki lawy dochodzące do morza tworzą bardzo osobliwe czarne wybrzeże z małymi zatoczkami i naturalnymi rozlewiskami. Siedlisko jaszczurki kanaryjskiej tizón i fauny morskiej. Wstęp wolny od strony wybrzeża Fasnii. Imponujący temat na fotografię krajobrazu wulkanicznego.",
+  "desc": "Pole law wulkanicznych na wschodnim wybrzeżu Teneryfy, w gminie Fasnia. Chroniony Obszar Przyrodniczy o dużej wartości geologicznej i krajobrazowej. Rozległe historyczne potoki lawy dochodzące do morza tworzą bardzo osobliwe czarne wybrzeże z małymi zatoczkami i naturalnymi rozlewiskami. Siedlisko jaszczurki kanaryjskiej i fauny morskiej. Wstęp wolny od strony wybrzeża Fasnii. Imponujący temat na fotografię krajobrazu wulkanicznego.",
   "cat": "Obszar przyrodniczy · Fasnia · Wulkaniczny · Wschód"
  },
  "mirador-teide": {

@@ -1,0 +1,87 @@
+{
+ "_": [
+  "Lo que tools/castellano_suelto.js encuentra en castellano dentro de otro idioma y se queda asi A PROPOSITO.",
+  "Regla de Jerome: «Si no se traduce se deja en castellano». Cada entrada va bajo su motivo, por idioma o para «todos».",
+  "Una palabra sola vale para todo el idioma; «palabra@donde» solo para ese texto (donde = lo que imprime la herramienta);",
+  "«palabra@es:trozo» solo en los textos cuyo castellano dice ese trozo (para las filas del fuente, cuyo «donde» lleva un numero de linea que cambia).",
+  "Una entrada que ya no hace falta SUSPENDE el control: lo que esta aqui deja de mirarse, y sobrar solo sirve para tapar la proxima vez.",
+  "Revisado palabra por palabra el 10 de octubre de 2026."
+ ],
+ "palabras": {
+  "platos y productos de la cocina canaria: es su nombre (papas arrugadas, huevos al estampido, mojo, gofio, escaldón, almogrote, sancocho, ropa vieja, churros de pescado, pimientos de Padrón). En chino va el nombre y detras lo que es: «mojo辣酱», «gofio烤粉», «碎牛肉（ropavieja）»": {
+   "todos": ["papas", "arrugadas", "аругадас", "huevos", "mojo", "mojos", "gofio", "escaldón", "almogrote", "sancocho", "ropavieja",
+             "ropa@es:ropa vieja", "vieja@es:ropa vieja", "churros", "padrón", "padrón-pepertjes"]
+  },
+  "guachinche: la casa de comidas canaria que el asistente explica; no hay otra palabra": {
+   "todos": ["guachinche", "guachinches"]
+  },
+  "el asistente explica estas palabras: son la leccion («guagua es el autobús»), no un resto": {
+   "todos": ["cotufas", "ustedes", "vosotros", "autobús", "había", "guagua@faq pra-07.a", "millo@faq pra-07.a", "fisco@faq pra-07.a"]
+  },
+  "el glosario canario (GL_DATA): el ejemplo en castellano es lo que se enseña, y va con su traduccion detras («fleje de gente» = mucha gente)": {
+   "todos": ["fleje@es:había fleje de gente", "gente@es:había fleje de gente", "uno@es:Írsele a uno el baifo", "baifo@es:Írsele a uno el baifo"]
+  },
+  "romería: el texto la explica a continuacion («su romería, la fiesta en su honor») o pregunta que es": {
+   "todos": ["romería@faq cul-07.a", "romería@faq cul-08.l", "romería@faq exc-10.a",
+             "ромерия@faq cul-07.a", "ромерия@faq cul-08.l", "ромерия@faq exc-10.a"]
+  },
+  "historia guanche: «mencey» era el rey y «menceyato» su reino, y el texto lo dice entre parentesis": {
+   "todos": ["menceyes", "menceyato", "menceyatos"]
+  },
+  "carnaval: «murga» y «comparsa» son los dos tipos de grupo, explicados entre parentesis": {
+   "todos": ["murga", "murgas", "comparsa", "comparsas"]
+  },
+  "plantas con nombre local, el que usan las guias de la isla, sin otro nombre corriente (viñátigo, píjara, retama, tabaiba, cardón)": {
+   "todos": ["viñátigo", "píjara", "píjaras", "píjara-varens", "retamas", "tabaiba", "tabaibas", "cardón", "cardónstruweel"]
+  },
+  "nombre cientifico, en latin: se escribe igual en todos los idiomas (Euphorbia canariensis)": {
+   "todos": ["canariensis"]
+  },
+  "ten+: el nombre de la tarjeta de transporte de la isla": {
+   "todos": ["ten"]
+  },
+  "Listán: la variedad de uva (Listán Negro, Listán Blanco); es su nombre": {
+   "todos": ["listán"]
+  },
+  "en chino, la palabra castellana entre parentesis DESPUES de traducirla, para reconocerla en los carteles": {
+   "zh": ["malpaís", "baile@es:baile mago", "mago@es:baile mago"],
+   "zht": ["malpaís", "baile@es:baile mago", "mago@es:baile mago"]
+  },
+  "jerga del skate: «rollin» (del ingles roll-in) es como lo dice el castellano, y el ingles, el frances, el italiano, el neerlandes y el polaco lo dejan igual": {
+   "zh": ["rollin"],
+   "zht": ["rollin"]
+  },
+  "direccion postal, copiada tal cual para encontrar el sitio: «Edificio HICAN IV, portal B, local C»": {
+   "zh": ["portal@es:portal B, local C", "local@es:portal B, local C"],
+   "zht": ["portal@es:portal B, local C", "local@es:portal B, local C"],
+   "bg": ["portal@es:portal B, local C", "local@es:portal B, local C"]
+  },
+  "Mar, Lago y Montaña: los nombres que el castellano da a los tres recorridos del campo de golf; van como nombres, igual que en frances, italiano y neerlandes": {
+   "de": ["montaña@lugar golf-costa-adeje.desc"]
+  },
+  "palabras de ese idioma que se escriben igual que el castellano": {
+   "en": ["guanches", "buggies", "primates", "iguanas", "lianas", "barracudas", "hubbas", "cookies", "orcas"],
+   "fr": ["guanches", "pesetas", "visibles", "tigres", "rapaces", "tropicales", "subtropicales", "verticales", "locales",
+          "variables", "permanentes", "barracudas", "ocres", "coloniales", "patronales", "tomates", "originales", "navales",
+          "libres", "principales", "parapentes", "rurales", "patios", "potables", "primates", "hubbas", "cookies"],
+   "de": ["cookies", "orcas", "hubbas"],
+   "it": ["pesetas", "conquistadores"],
+   "nl": ["guanches", "cookies", "vóór"]
+  },
+  "finca: el aleman y el neerlandes la usan para la casa de campo española (Duden, Van Dale)": {
+   "de": ["finca"],
+   "nl": ["finca"]
+  }
+ },
+ "frases": {
+  "el ingles junta en una «Desnivel: 660 m. Pendiente media: 6% constante.», y no falta nada": {
+   "en": ["bici-puerto-bailadero"]
+  }
+ },
+ "cortas": {
+  "breves pero completas: dicen todo lo del castellano (leidas contra el original)": {
+   "fr": ["cs-sanisidro", "cs-medano"],
+   "nl": ["pk-bajamar-piscinas"]
+  }
+ }
+}

@@ -172,7 +172,7 @@
   "cat": "Wędkarstwo sportowe · Los Cristianos · Południe · Marlin · Tradycyjne"
  },
  "pesca-los-gigantes": {
-  "desc": "Port Los Gigantes ma długą tradycję morskiego wędkarstwa sportowego. Czarter Nashira Uno działa z tego portu od ponad 30 lat i jest zwycięzcą obu jedynych rozegranych tu mistrzostw. Codziennie wypływają na trolling między klifami Los Gigantes a cieśniną La Gomery. Odmiany: trolling pełnomorski (marlin błękitny, marlin biały, opastun, tuńczyk żółtopłetwy, koryfena, wahoo, peto, makrela) i połów denny (kielce, granikowate, wrakoń). Dostępne także przybrzeżne wędkarstwo tradycyjne. Godziny: 09:30 (4h lub 7h) i 13:30 (3h). Czarter prywatny albo zbiorowy.",
+  "desc": "Port Los Gigantes ma długą tradycję morskiego wędkarstwa sportowego. Czarter Nashira Uno działa z tego portu od ponad 30 lat i jest zwycięzcą obu jedynych rozegranych tu mistrzostw. Codziennie wypływają na trolling między klifami Los Gigantes a cieśniną La Gomery. Odmiany: trolling pełnomorski (marlin błękitny, marlin biały, opastun, tuńczyk żółtopłetwy, koryfena, wahoo, pelamida) i połów denny (kielce, granikowate, wrakoń). Dostępne także przybrzeżne wędkarstwo tradycyjne. Godziny: 09:30 (4h lub 7h) i 13:30 (3h). Czarter prywatny albo zbiorowy.",
   "cat": "Wędkarstwo sportowe · Los Gigantes · Marlin · Ponad 30 lat · Zachód"
  },
  "pesca-los-abrigos": {
@@ -276,7 +276,7 @@
   "cat": "Kalistenika Kenguru Pro · Valle San Lorenzo"
  },
  "bici-bc1-inicio": {
-  "desc": "Punkt startowy oficjalnej trasy rowerowej BC-1 Cabildo, najdłuższej na Teneryfie (84,8 km). Zaczyna się w La Esperanza i przecina północ ze wschodu na zachód przez monteverde, bory sosnowe i masyw Teno. Oznakowana na pomarańczowo. Wskaźnik IBP: 120 (wysoki). Tylko dla rowerzystów w dobrej formie i z doświadczeniem. Kask obowiązkowy.",
+  "desc": "Punkt startowy oficjalnej trasy rowerowej BC-1 Cabildo, najdłuższej na Teneryfie (84,8 km). Zaczyna się w La Esperanza i przecina północ ze wschodu na zachód przez wiecznie zielone lasy, bory sosnowe i masyw Teno. Oznakowana na pomarańczowo. Wskaźnik IBP: 120 (wysoki). Tylko dla rowerzystów w dobrej formie i z doświadczeniem. Kask obowiązkowy.",
   "cat": "MTB oficjalna BC-1 · La Esperanza · Cabildo"
  },
  "bici-bc2-inicio": {
@@ -292,7 +292,7 @@
   "cat": "Kolarstwo szosowe · Teide · Poziom wysoki"
  },
  "bici-anaga-cruz-carmen": {
-  "desc": "Najwyżej oceniana trasa MTB na Teneryfie (4,4★ w AllTrails, 70 opinii). Techniczne ścieżki w monteverde Parku Wiejskiego Anaga — światowe dziedzictwo UNESCO. Krajobraz wiecznego lasu, mgły i wąwozów. Poziom wymagający. Dojazd z Cruz del Carmen drogą TF-12. Tylko rowery górskie. Kask obowiązkowy.",
+  "desc": "Najwyżej oceniana trasa MTB na Teneryfie (4,4★ w AllTrails, 70 opinii). Techniczne ścieżki w wiecznie zielonym lesie Parku Wiejskiego Anaga — światowe dziedzictwo UNESCO. Krajobraz wiecznego lasu, mgły i wąwozów. Poziom wymagający. Dojazd z Cruz del Carmen drogą TF-12. Tylko rowery górskie. Kask obowiązkowy.",
   "cat": "MTB Anaga · Cruz del Carmen · ★ Czołówka Teneryfy"
  },
  "bici-chinyero-ruta": {
@@ -368,7 +368,7 @@
   "cat": "Impreza kolarska · GranFondo UCI · Puerto de la Cruz"
  },
  "ar-la-caldera": {
-  "desc": "Jedna z najbardziej kompletnych na Teneryfie, w górnej części La Orotava (1200 m), w dawnym kraterze wulkanicznym. Sosna kanaryjska i monteverde. Bezpłatne paleniska, stoły, bar-restauracja, plac zabaw, toalety, strefa biwakowa (za wcześniejszym zezwoleniem). Dojazd: TF-21 km 16,2 albo autobus 345/346. Węgiel lub drewno: we własnym zakresie. Przenośne grille: zabronione. Ogień latem tylko do 20:00.",
+  "desc": "Jedna z najbardziej kompletnych na Teneryfie, w górnej części La Orotava (1200 m), w dawnym kraterze wulkanicznym. Sosna kanaryjska i wiecznie zielony las. Bezpłatne paleniska, stoły, bar-restauracja, plac zabaw, toalety, strefa biwakowa (za wcześniejszym zezwoleniem). Dojazd: TF-21 km 16,2 albo autobus 345/346. Węgiel lub drewno: we własnym zakresie. Przenośne grille: zabronione. Ogień latem tylko do 20:00.",
   "cat": "Bezpłatny grill · La Orotava · 1200 m"
  },
  "ar-fuente-fria": {
@@ -376,7 +376,7 @@
   "cat": "Bezpłatny grill · El Sauzal · Cabildo"
  },
  "ar-las-lagunetas": {
-  "desc": "Strefa rekreacyjna na około 1200 m na stoku Pinolere (Santa Úrsula), w Chronionym Krajobrazie Las Lagunetas. Zarośla fayal-brezal z sosną kanaryjską i widokiem na Dolinę La Orotava. Paleniska, stoły, woda, toalety i plac zabaw. Dojazd drogą gruntową (lepiej 4x4) albo pieszo. Rezerwacja dla grup w Tenerife ON.",
+  "desc": "Strefa rekreacyjna na około 1200 m na stoku Pinolere (Santa Úrsula), w Chronionym Krajobrazie Las Lagunetas. Zarośla woskownic i wrzośców drzewiastych z sosną kanaryjską i widokiem na Dolinę La Orotava. Paleniska, stoły, woda, toalety i plac zabaw. Dojazd drogą gruntową (lepiej 4x4) albo pieszo. Rezerwacja dla grup w Tenerife ON.",
   "cat": "Bezpłatny grill · Santa Úrsula · 1200 m"
  },
  "ar-ramon-caminero": {
@@ -392,7 +392,7 @@
   "cat": "Bezpłatny grill · El Rosario · 56 stołów · Największa"
  },
  "ar-lomo-la-jara": {
-  "desc": "Strefa rekreacyjna w Tacoronte, w Chronionym Krajobrazie Las Lagunetas. 31 stołów. Bezpłatne paleniska, toalety i parking. Bór sosnowy i monteverde.",
+  "desc": "Strefa rekreacyjna w Tacoronte, w Chronionym Krajobrazie Las Lagunetas. 31 stołów. Bezpłatne paleniska, toalety i parking. Bór sosnowy i wiecznie zielony las.",
   "cat": "Bezpłatny grill · Tacoronte · 31 stołów"
  },
  "ar-las-calderetas": {

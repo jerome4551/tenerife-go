@@ -108,6 +108,12 @@ for L in $IDIOMAS; do
   if reventado "$salida"; then roto "auditar_idioma.js $L"
   elif [ "$rc" != 0 ]; then echo "  FALLO en $L"; fallos=$((fallos+1)); fi
 done
+echo; echo "════════ castellano que se queda dentro de cada idioma, y frases que faltan ════════"
+# Desde el 10 de octubre de 2026: palabras castellanas sueltas («fincas»,
+# «monteverde», «Malpaís»), frases del castellano que la traduccion no tiene
+# y fichas resumidas. Los nueve de una vez: lo aceptado «para todos» solo se
+# puede dar por sobrante si se han mirado todos.
+control castellano_suelto.js node tools/castellano_suelto.js
 echo; echo "════════ la frase diaria, en los diez idiomas ════════"
 control auditar_frases.js node tools/auditar_frases.js
 echo; echo "════════ etiquetas del globo ════════"

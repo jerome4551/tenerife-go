@@ -240,7 +240,9 @@ los diez idiomas y busca castellano que no sea nombre propio. Encontró:
 Las 975 fichas, abiertas una a una en los diez idiomas, quedan sin castellano
 fuera de nombres propios. Lo que no es un hueco va en
 `idiomas/pantalla-aceptado.json` con su motivo (hoy, cuatro romerías en
-francés, donde la preposición también es «de»). Probado metiendo otra vez el
+francés, donde la preposición también es «de»). *(El 10 de octubre se
+tradujeron y el fichero se quedó sin ellas: ver «Todo traducido, y otra vez
+idioma por idioma».)* Probado metiendo otra vez el
 «Süd» y el «Mostrando»: los dos en rojo.
 
 ## El punto ciego · una segunda forma de fila de idioma
@@ -836,7 +838,9 @@ Esas 81 traían once avisos, todos de dos clases:
   «Carnaval de Santa Cruz» y las cuatro «Romería de…», que
   `idiomas/pantalla-aceptado.json` ya aceptaba por el mismo motivo. Se
   declaran en `IGUAL_UI` con su razón. **No se cambió ningún texto**: salían
-  así en la app y así siguen.
+  así en la app y así siguen. *(Ya no: el 10 de octubre se tradujeron todos
+  menos «Carnaval de Santa Cruz» en francés, que es francés. Ver «Todo
+  traducido, y otra vez idioma por idioma».)*
 
 Y al declarar `FI_LOCALE`, las exentas del barrido saltaron de 18 a 58: la
 regla que decidía dónde acaba una tabla exenta se alargaba fila a fila y se
@@ -4022,6 +4026,201 @@ Lo que sí es exacto y se queda: en chino y búlgaro, que no usan alfabeto latin
 dejar el castellano es **siempre** un olvido salvo un código como `4x4` o `BMX`.
 Probado rompiendo una etiqueta a propósito en búlgaro y en alemán.
 
+## Todo traducido, y otra vez idioma por idioma (10 de octubre)
+
+Jerome: «Si traduce todo ya y de nuevo hace auditorio con cada idioma. Una por
+una no dejar nada atrás». Todos los controles estaban en verde, y aun así
+quedaba castellano dentro de los nueve idiomas. Ninguno leía las palabras:
+`auditar_idioma.js` compara cifras, horas, avisos y marcadores;
+`auditar_etiquetas.js` mira que cada etiqueta tenga fila;
+`barrido_pantallas.js` busca texto **igual** al castellano, y «Malpaís» por
+«Malpais» no es igual.
+
+### Lo que quedaba
+
+- **Palabras castellanas sueltas** dentro del texto traducido: «ermitas» en
+  inglés, «fincas» y «barrancos» en francés, «laguneros» en alemán e
+  italiano, «monteverde» en seis idiomas, «Malpaís» en las etiquetas de tres,
+  «lonja», «morcilla», «avenidas», «gorrillas»…
+- **127 frases enteras** que el castellano dice y la traducción no, sobre todo
+  en francés y alemán: se tradujeron antes de que el castellano creciera.
+- **109 descripciones resumidas**: las mismas frases, sin los datos. La
+  reunión abierta del último lunes de Alcohólicos Anónimos, la calle del
+  servicio de atención a las mujeres, las muletas anfibias de las playas
+  accesibles.
+- **Los nombres de fiesta que `IGUAL_UI` daba por buenos**: las cuatro
+  «Romería de…» en francés, alemán, italiano y neerlandés, «Virgen del Carmen»
+  en inglés y alemán y «Fiestas del Cristo» en inglés. Ahora son «Pèlerinage
+  de San Isidro», «San-Isidro-Wallfahrt», «Our Lady of Mount Carmel»… En
+  `IGUAL_UI` quedan las marcas («Friendly Zone 🐾», «🏪 Tenerife Go Shop»,
+  «Pack Tenerife Go») y «Carnaval de Santa Cruz» en francés, que es francés.
+  Y `idiomas/pantalla-aceptado.json` se queda sin las cuatro romerías
+  francesas.
+- **Etiquetas del catálogo**: seis fichas de buceo llevaban «Buceo» y
+  «Diving», y seis de parapente «Parapente» y «Paragliding»: en castellano
+  salía el inglés, y en los otros nueve el mismo chip dos veces
+  («Plongée · Plongée»). Y en el castellano de las etiquetas, «Iconic»,
+  «Sport Climbing» y «Multi-Pitch». En total, 18 etiquetas puestas o quitadas
+  en 16 fichas.
+- **Siete erratas del castellano**: «relictico», «eufórbias», «statuas»,
+  «peláficos», «Waterfalls» y «Picnic area.» —inglés dentro del castellano— y
+  «fuerte y gustoso» dicho del viento, que es «fuerte y racheado».
+
+### Cuánto, idioma por idioma
+
+Textos que cambian contra el commit anterior (una descripción es un texto;
+una pregunta del asistente son dos, la pregunta y la respuesta):
+
+| idioma | fichas | etiquetas | asistente | resto de la app | total |
+|---|---:|---:|---:|---:|---:|
+| inglés | 39 | 5 | 4 | 5 | 53 |
+| francés | 133 | 11 | 9 | 7 | 160 |
+| alemán | 99 | 4 | 4 | 8 | 115 |
+| italiano | 62 | 9 | 11 | 10 | 92 |
+| neerlandés | 45 | 6 | 6 | 10 | 67 |
+| chino simplificado | 3 | 7 | 1 | 0 | 11 |
+| chino tradicional | 4 | 7 | 1 | 0 | 12 |
+| búlgaro | 14 | 11 | 4 | 4 | 33 |
+| polaco | 26 | 14 | 4 | 11 | 55 |
+| **total** | | | | | **598** |
+
+### Lo que se queda en castellano a propósito
+
+Regla de Jerome: «Si no se traduce se deja en castellano». Va en
+`idiomas/castellano-aceptado.json`, cada cosa con su motivo, revisado palabra
+por palabra:
+
+- los **platos** (papas arrugadas, mojo, gofio, escaldón, almogrote,
+  sancocho, ropa vieja…): es su nombre. En chino va el nombre y detrás lo que
+  es: «mojo辣酱», «gofio烤粉»;
+- **guachinche**, que el asistente explica;
+- **la lección**: «guagua es el autobús» en el asistente, «había fleje de
+  gente» en el glosario canario;
+- **romería, mencey, murga y comparsa** donde el texto las explica a
+  continuación;
+- las **plantas con nombre local** (viñátigo, píjara, retama, tabaiba, cardón)
+  y el nombre científico *Euphorbia canariensis*;
+- **ten+**, la tarjeta de transporte, y una **dirección postal** copiada tal
+  cual para poder encontrar el sitio;
+- las palabras que **el idioma escribe igual**: «primates», «barracudas» o
+  «tropicales» en francés, «finca» en alemán y neerlandés (Duden, Van Dale).
+
+Una entrada que ya no hace falta **suspende** el control: lo aceptado deja de
+mirarse, y una entrada de más solo sirve para tapar la próxima vez.
+
+### El control nuevo: `tools/castellano_suelto.js`
+
+En `auditar.sh` desde hoy. Lee todo lo que lee el usuario en cada idioma
+—fichas, etiquetas, asistente, privacidad y las filas de idioma de todo el
+fuente: 4.234 textos por idioma, 4.029 en chino tradicional— y busca:
+
+- **letras y signos** del castellano que el idioma no usa (á í ó ú ñ, «¿», «¡»;
+  el polaco sí usa la «ó»);
+- **palabras corrientes** del castellano: romería, barranco, malpaís, ermita,
+  finca, mirador…;
+- **palabras copiadas**: en minúscula, con plural castellano, igual que en el
+  castellano de ese mismo texto y que el idioma no usa en ningún otro sitio.
+  Así salieron «fincas», «escalones» o «laguneros» sin conocerlas de antemano;
+- en búlgaro, el castellano pasado tal cual al cirílico («ромерия»,
+  «кардонал»); en búlgaro y chino, las palabras en alfabeto latino;
+- **frases de menos**: la descripción con menos frases que el castellano;
+- **fichas resumidas**: mucho más cortas de lo normal en ese idioma.
+
+Antes de buscar quita los nombres propios, sacados del propio catálogo
+(fichas, paradas y líneas de TITSA, etiquetas declaradas) y por su forma
+(«Calle Chile», «Barranco del Rey»). **Un nombre del catálogo solo se quita si
+el castellano de ese mismo texto lo tiene**: un nombre que la traducción copia
+del original está en el original.
+
+### Las averías del propio control
+
+| # | avería | canta |
+|---|---|---|
+| 1 | «ermitas» otra vez en una ficha inglesa | sí: palabra castellana |
+| 2 | una ficha francesa pierde su última frase | sí: 3 frases en castellano, 2 en francés |
+| 3 | la etiqueta francesa «Malpais» vuelve a «Malpaís» | sí (**en la primera ronda, no**) |
+| 4 | «Romería», con mayúscula, en una ficha alemana | sí (**en la primera ronda, no**) |
+| 5 | «кардонал» en una ficha búlgara | sí: castellano en cirílico |
+| 6 | «mirador» en una ficha china | sí (**en la primera ronda, no**) |
+| 7 | una palabra aceptada que no sale en ningún texto | sí: sobra |
+| 8 | una ficha alemana resumida a la mitad | sí: frases de menos |
+| 9 | «escalones», que no está en ninguna lista, en inglés | sí: copiada del castellano |
+| 10 | «¿Czym jest romería?» en el asistente polaco | sí (en la primera ronda la avería no llegó a meterse, y al mirar por qué salió que **la regla no podía cantar**) |
+| 11 | «barranco» pegado al chino tradicional, sin espacios | sí: alfabeto latino |
+| 12 | vuelve «Cumbre Dorsal» en alemán | sí: palabra castellana |
+| 13 | una aceptación por trozo del castellano que ya no hace falta | sí: sobra |
+| 14 | «¡Oh là là !» en el glosario francés | sí: signo castellano |
+| 15 | dos etiquetas de la misma ficha iguales en italiano (`auditar_etiquetas.js`) | sí: 2 fichas |
+| 16 | la misma etiqueta dos veces en el castellano (`auditar_etiquetas.js`) | sí: en los diez idiomas |
+
+En la primera ronda, de diez averías **tres pasaron sin cantar** y otra no
+llegó a meterse (apuntaba a un fichero que no era). Detrás de esas cuatro había
+cuatro reglas que no miraban nada aunque estaban escritas:
+
+1. **El alfabeto latino en búlgaro y chino no saltaba nunca.** La expresión de
+   los códigos («TF-5») iba junta con la de las unidades, que lleva la bandera
+   «i», y así casaba con **cualquier** palabra en minúscula. Arreglada,
+   salieron 93 casos en búlgaro y en los dos chinos, y ninguno era un resto:
+   nombres de platos y plantas, «ten+», la dirección, la lección del
+   asistente, y códigos («lat/lng», «supabase/tienda.sql», «wi-fi») que ahora
+   se reconocen como código. Lo demás se aceptó uno a uno, con su motivo.
+2. **«¿» y «¡» se buscaban dentro de cada palabra**, y las palabras solo
+   tienen letras: no podía saltar. Arreglada, encontró «¡Ños, ale gorąco!» en
+   el glosario polaco. El polaco no abre las exclamaciones: ahora «Ños, ale
+   gorąco!», y «Ños» se queda porque es la palabra que se enseña.
+3. **El catálogo borraba sus nombres aunque el castellano no los tuviera.** La
+   etiqueta «Malpais» traducida «Malpaís» se escapaba porque «Malpaís» es el
+   nombre de dos paradas de guagua. Arreglada, encontró «Cumbre Dorsal» en
+   alemán donde el castellano dice «cumbre dorsal», en minúscula: es una
+   descripción, no un nombre. Ahora «zentraler Bergkamm», como «central ridge»
+   en inglés y «crête centrale» en francés.
+4. **En alemán**, que escribe con mayúscula todos los sustantivos, las
+   palabras corrientes con tilde («die Romería») no se miraban.
+
+Y una quinta, al repasar lo que salía: en chino no hay espacios, y «配mojo辣酱»
+era para el control una sola palabra, con la latina dentro. Ahora se mira cada
+tramo latino por separado.
+
+Una lección que se repite (ya pasó con `auditar_etiquetas.js`): **un control
+en verde no dice nada hasta que se le ha visto en rojo**. Las cuatro reglas
+estaban escritas, comentadas y en verde.
+
+### El mismo chip dos veces
+
+Nuevo en `auditar_etiquetas.js`: una ficha con dos etiquetas que en algún
+idioma dicen lo mismo. Pasa al poner las etiquetas —«Buceo» y «Diving» en la
+misma ficha salían «Plongée · Plongée» en francés— y al traducir: «Charco» y
+«Piscina Natural» eran las dos «Naturalny basen» en polaco. Hoy, 0 en los diez
+idiomas.
+
+### Lo que no se ha tocado, para que lo decida Jerome
+
+Son datos del castellano, y sin fuente no se cambian:
+
+- **Golf Costa Adeje** dice «3 recorridos de 9 hoyos: Mar, Lago y Montana».
+  «Montana» parece errata de «Montaña», pero los nombres no se han podido
+  confirmar: las fuentes que salen hablan de un campo de 18 hoyos «Costa
+  Adeje» y otro de 9, «Los Lagos». El inglés y el chino los traducen (Sea,
+  Lake and Mountain); el resto los deja como nombres.
+- **Costa del Silencio** termina en «Tendedero submarino popular.»: no se
+  entiende qué quiere decir. Las traducciones lo siguen como pueden.
+- **Pico del Inglés — Subida desde San Andrés** dice «Coordenadas
+  verificadas por OpenStreetMap y Wikipedia». Según el LEEME de OSM, OSM no es fuente oficial.
+- **Mirador del Cardón** llama al cardón «el cactus endémico más emblemático
+  de Canarias»; es una euforbia, no un cactus.
+- **Pesca Deportiva Los Gigantes** pone «wahoo, peto» como si fueran dos peces: son
+  el mismo (el Diccionario histórico del español de Canarias da «peto» por
+  wahoo).
+- **PR-TF 3 · Chinamada** habla de «ovejas pediguey autóctonas»: no se ha encontrado esa
+  raza.
+- «Pets Friendly», en el castellano y el inglés del filtro de mascotas, se ha
+  dejado como está; en polaco era lo mismo, y ahora es «Przyjazne
+  zwierzętom».
+- «fuerte y gustoso» → «fuerte y racheado», el viento de **El Porís de
+  Abona**: las nueve traducciones ya decían racheado («gusty», «rafaleux»,
+  «böig»…), así que «gustoso» era el inglés *gusty* mal pasado. Se ha
+  corregido, pero conviene que lo vea.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -4059,9 +4258,10 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_arranque.js` | el texto que se queda en el idioma de **arranque**, comparando contra `setLang` |
 | `tools/partir_idiomas.js` | la mudanza de los ocho idiomas de `places[]` a `idiomas/*.json` |
 | `tools/auditar_idiomas_fuera.js` | que lo mudado esté entero y el navegador lo pegue antes de montar el mapa |
-| `tools/auditar_etiquetas.js` | los chips del globo: traducidos o declarados con motivo (desde el 7 de octubre, sin la vía «nombre de sitio») |
+| `tools/auditar_etiquetas.js` | los chips del globo: traducidos o declarados con motivo (desde el 7 de octubre, sin la vía «nombre de sitio»), y el mismo chip dos veces en una ficha |
 | `tools/barrido_pantallas.js` | lo que **se ve**: 75 paneles y fichas abiertos en los diez idiomas, buscando castellano que no sea nombre propio |
 | `tools/auditar_idioma.js` | un idioma entero contra el castellano: cifras, horarios, teléfonos, trozos de etiqueta, alfabeto |
+| `tools/castellano_suelto.js` | el castellano que se queda **dentro** de cada idioma —letras, palabras corrientes, palabras copiadas, alfabeto latino en búlgaro y chino— y las frases que la traducción no tiene; lo que se queda a propósito, en `idiomas/castellano-aceptado.json` |
 | `tools/faltan_textos.js` | **cribado**, no veredicto: descripciones más cortas de lo esperado contra la mediana de ese idioma |
 | `tools/meter_descripcion.py` | mete descripciones rehechas comprobando que el texto es **de ese lugar** |
 | `tools/completar_cat.js` | devuelve a las etiquetas `cat` los trozos que perdieron, con el glosario del propio catálogo |

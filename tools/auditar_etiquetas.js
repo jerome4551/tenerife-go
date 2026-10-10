@@ -149,6 +149,31 @@ if (enCastellano.length) {
   process.exitCode = 1;
 }
 
+/* EL MISMO CHIP DOS VECES EN UNA FICHA. Seis fichas de buceo llevaban
+   «Buceo» y «Diving», y seis de parapente «Parapente» y «Paragliding»: en
+   castellano salia el ingles, y en los otros nueve idiomas el mismo chip dos
+   veces («Plongée · Plongée»). Tambien pasa al traducir: dos etiquetas
+   distintas que el idioma dice igual («Charco» y «Piscina Natural» eran las
+   dos «Naturalny basen»). Lo encontro el repaso del 10 de octubre de 2026. */
+const repetidos = [];
+for (const p of PLACES) {
+  const tags = p.tags || [];
+  for (const l of ['es'].concat(IDI)) {
+    if (l !== 'es' && !TAB[l]) continue;
+    const visto = new Map();
+    for (const t of tags) {
+      const chip = String(l === 'es' ? t : (TAB[l][t] || t)).toLowerCase();
+      if (visto.has(chip)) repetidos.push(l + ': ' + p.id + ' · «' + visto.get(chip) + '» y «' + t + '» salen los dos «' + (l === 'es' ? t : TAB[l][t] || t) + '»');
+      else visto.set(chip, t);
+    }
+  }
+}
+P('chips repetidos en una ficha', repetidos.length);
+if (repetidos.length) {
+  (LISTA ? repetidos : repetidos.slice(0, 40)).forEach(x => console.log('     ' + x));
+  process.exitCode = 1;
+}
+
 /* y al reves: una fila en el fichero que ya no use ninguna ficha solo sirve
    para engordar lo que se descarga */
 let sobran = 0;

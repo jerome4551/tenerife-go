@@ -2,8 +2,5 @@
  "_": [
   "Textos que tools/barrido_pantallas.js ve en pantalla y que NO son un hueco de traduccion.",
   "Cada uno con su motivo, por idioma. Solo texto exacto: si cambia, el control vuelve a mirarlo."
- ],
- "en frances la preposicion tambien es «de»: «Romeria de San Marcos» ya es frances, igual que «Romeria von San Marcos» en aleman o «Romeria di» en italiano": {
-  "fr": ["Romería de San Marcos", "Romería de San Isidro", "Romería de San Benito Abad", "Romería de San Roque"]
- }
+ ]
 }

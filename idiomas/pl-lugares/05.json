@@ -92,7 +92,7 @@
   "cat": "Latarnia · Rezerwat Montaña Roja"
  },
  "faro-abona": {
-  "desc": "Najwyżej położona latarnia Wysp Kanaryjskich, 193 m n.p.m. Zbudowana w 1895 roku na południowym wschodzie wyspy, w gminie Arico. Biała wieża o wysokości 28 m, widoczna z dużych odległości. Otoczona czarnym malpaís wulkanicznym i widokiem na otwarte morze. Strefa łowiectwa podwodnego i surfingu. Wstęp wolny drogą gruntową z TF-1.",
+  "desc": "Najwyżej położona latarnia Wysp Kanaryjskich, 193 m n.p.m. Zbudowana w 1895 roku na południowym wschodzie wyspy, w gminie Arico. Biała wieża o wysokości 28 m, widoczna z dużych odległości. Otoczona czarnymi polami lawowymi i widokiem na otwarte morze. Strefa łowiectwa podwodnego i surfingu. Wstęp wolny drogą gruntową z TF-1.",
   "cat": "Latarnia · Arico · Południowy wschód"
  },
  "faro-punta-hidalgo": {
@@ -232,7 +232,7 @@
   "cat": "Gmina · Południe"
  },
  "ciudad-arico": {
-  "desc": "Gmina na południowym wschodzie, największa powierzchniowo na Teneryfie. Suchy krajobraz, wulkaniczne malpaís i dziewicza plaża Los Abrigos. Latarnia Punta de Abona, najwyższa na Wyspach Kanaryjskich. Rezerwat nieba, idealny na astronomię.",
+  "desc": "Gmina na południowym wschodzie, największa powierzchniowo na Teneryfie. Suchy krajobraz, pola lawowe i dziewicza plaża Los Abrigos. Latarnia Punta de Abona, najwyższa na Wyspach Kanaryjskich. Rezerwat nieba, idealny na astronomię.",
   "cat": "Gmina · Południowy wschód"
  },
  "ciudad-fasnia": {
@@ -240,7 +240,7 @@
   "cat": "Wioska wulkaniczna · Południowy wschód"
  },
  "ciudad-arafo": {
-  "desc": "Miejscowość w Dolinie Güímar znana jako „Miasteczko Muzyki” dzięki stuletniej tradycji muzycznej. Orkiestry dęte, charangi i zespoły folklorystyczne. Kwitnące migdałowce w lutym, nagradzany rzemieślniczy miód i białe wino ze średnich wysokości.",
+  "desc": "Miejscowość w Dolinie Güímar znana jako „Miasteczko Muzyki” dzięki stuletniej tradycji muzycznej. Orkiestry dęte, kapele i zespoły folklorystyczne. Kwitnące migdałowce w lutym, nagradzany rzemieślniczy miód i białe wino ze średnich wysokości.",
   "cat": "Miasteczko Muzyki · Południowy wschód"
  },
  "ciudad-rosario": {
@@ -252,7 +252,7 @@
   "cat": "Wioska nadmorska · La Laguna"
  },
  "nucleo-punta-hidalgo": {
-  "desc": "Ostatnia miejscowość dostępna samochodem na północnym wybrzeżu Anagi. Ikoniczna latarnia, naturalne baseny z falami, skały roques wyrastające z morza i początek szlaku do Chinamady. Punkt obowiązkowy, żeby odkryć najbardziej autentyczną Anagę.",
+  "desc": "Ostatnia miejscowość dostępna samochodem na północnym wybrzeżu Anagi. Ikoniczna latarnia, naturalne baseny z falami, skalne iglice wyrastające z morza i początek szlaku do Chinamady. Punkt obowiązkowy, żeby odkryć najbardziej autentyczną Anagę.",
   "cat": "Wioska Anagi · La Laguna"
  },
  "nucleo-taganana": {

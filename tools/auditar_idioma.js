@@ -413,25 +413,24 @@ const LUGARES_EXTRA = ['La Granja', 'La Manzanilla', 'Barmanía', 'Chimisay',
    traduce "Friendly Zone" y el ingles no puede; el ingles dice "Bundle"
    donde el italiano dice "Pack". Por eso, otra vez, por idioma. */
 const IGUAL_UI = {
-  /* LOS NOMBRES DE FIESTA que el idioma deja como en castellano. Este control
-     no los veia hasta el 9 de octubre de 2026 (contaba llaves y se le
-     escapaban; ver la seccion 2), asi que nadie los habia declarado. No los
-     cambia nadie aqui: salian asi en la app y asi siguen.
-       · «Virgen del Carmen» y «Fiestas del Cristo» son el nombre de la
-         fiesta, y el ingles y el aleman lo dejan en castellano. Regla de
-         Jerome: lo que no se traduce se deja en castellano.
-       · En frances «Carnaval de Santa Cruz» ya es frances, y en las cuatro
-         «Romería de...» la preposicion francesa tambien es «de»: son las
-         mismas que idiomas/pantalla-aceptado.json acepta, por el mismo
-         motivo, para tools/barrido_pantallas.js. */
-  en: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Virgen del Carmen', 'Fiestas del Cristo'],
-  fr: ['Pack Tenerife Go', 'Carnaval de Santa Cruz', 'Romería de San Marcos', 'Romería de San Isidro',
-       'Romería de San Benito Abad', 'Romería de San Roque'],
-  de: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Virgen del Carmen'],
+  /* LOS NOMBRES DE FIESTA. El 9 de octubre de 2026 este control empezo a
+     verlos (contaba llaves y se le escapaban; ver la seccion 2) y salieron
+     siete que el ingles, el frances y el aleman dejaban en castellano:
+     «Virgen del Carmen», «Fiestas del Cristo» y cuatro «Romería de...». Se
+     declararon aqui. El 10 se tradujeron a peticion de Jerome («traduce todo
+     ya») y se quitaron de esta lista: lo que esta escrito aqui deja de
+     mirarse, asi que una entrada que ya no hace falta solo sirve para tapar
+     la proxima vez que alguien deje ese texto en castellano.
+     Queda «Carnaval de Santa Cruz» en frances, que es frances.
+     «Pets Friendly» salio del polaco por lo mismo: los otros siete idiomas
+     lo traducen, y ahora el polaco tambien («Przyjazne zwierzętom»). */
+  en: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop'],
+  fr: ['Pack Tenerife Go', 'Carnaval de Santa Cruz'],
+  de: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop'],
   it: ['Friendly Zone 🐾', 'Pack Tenerife Go'],
   nl: ['Friendly Zone 🐾'],
   zh: [], zht: [], bg: [],
-  pl: ['Pets Friendly', 'Friendly Zone 🐾', '🏪 Tenerife Go Shop']
+  pl: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop']
 };
 
 /* Los nombres de sitio no se declaran a mano: se sacan del propio catalogo.
