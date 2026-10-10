@@ -4113,7 +4113,7 @@ mirarse, y una entrada de más solo sirve para tapar la próxima vez.
 
 En `auditar.sh` desde hoy. Lee todo lo que lee el usuario en cada idioma
 —fichas, etiquetas, asistente, privacidad y las filas de idioma de todo el
-fuente: 4.234 textos por idioma, 4.029 en chino tradicional— y busca:
+fuente: 4.233 textos por idioma, 4.028 en chino tradicional— y busca:
 
 - **letras y signos** del castellano que el idioma no usa (á í ó ú ñ, «¿», «¡»;
   el polaco sí usa la «ó»);
