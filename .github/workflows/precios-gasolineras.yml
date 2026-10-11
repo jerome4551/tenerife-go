@@ -39,6 +39,22 @@
 # app no ensena precios de mas de 2 dias. No usa el minuto :00, el mas
 # saturado.
 #
+# 9 DE OCTUBRE: SIN RELOJ DE FUERA. Jerome decidio no crear el token; desde
+# entonces solo lanza GitHub.
+#
+# 11 DE OCTUBRE: VEINTICUATRO LINEAS EN VEZ DE UNA. Medido con
+# tools/reloj_flujos.py --github: GitHub lanza CADA LINEA DE CRON MAS O MENOS
+# UNA VEZ AL DIA, tarde. La notificacion diaria paso de 5 a 9 ejecuciones al
+# dia justo cuando paso de 5 a 9 lineas. Y la linea unica '23 * * * *', que
+# pide 24 al dia, se quedaba en 3, 4 o 5, separadas unas 6 horas: las franjas
+# llegaban, las dos todos los dias, pero con 3,3 horas de retraso de media
+# (del 8 al 11 de octubre: entre 7 minutos y 6,7 horas).
+# Por eso ahora son 24 lineas diarias, una por hora, al minuto :23 de siempre:
+# las mismas 24 llamadas de antes, escritas de forma que GitHub las cuente
+# una por una. --toca sigue decidiendo: solo baja precios la primera despues
+# de las 7:00 y la primera despues de las 15:00 de Canarias (en verano y en
+# invierno, porque mira la hora real); las demas terminan en segundos.
+#
 # Uso a mano: pestana Actions -> "Precios gasolineras" -> Run workflow, con
 # forzar=si (lo que sale por defecto): baja y escribe aunque no toque.
 
@@ -46,7 +62,30 @@ name: Precios gasolineras
 
 on:
   schedule:
-    - cron: '23 * * * *'
+    - cron: '23 0 * * *'
+    - cron: '23 1 * * *'
+    - cron: '23 2 * * *'
+    - cron: '23 3 * * *'
+    - cron: '23 4 * * *'
+    - cron: '23 5 * * *'
+    - cron: '23 6 * * *'
+    - cron: '23 7 * * *'
+    - cron: '23 8 * * *'
+    - cron: '23 9 * * *'
+    - cron: '23 10 * * *'
+    - cron: '23 11 * * *'
+    - cron: '23 12 * * *'
+    - cron: '23 13 * * *'
+    - cron: '23 14 * * *'
+    - cron: '23 15 * * *'
+    - cron: '23 16 * * *'
+    - cron: '23 17 * * *'
+    - cron: '23 18 * * *'
+    - cron: '23 19 * * *'
+    - cron: '23 20 * * *'
+    - cron: '23 21 * * *'
+    - cron: '23 22 * * *'
+    - cron: '23 23 * * *'
   workflow_dispatch:
     inputs:
       forzar:

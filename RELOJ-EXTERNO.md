@@ -14,6 +14,12 @@
 > adelantados (uno cada hora desde las 00:07 UTC) para que, con ese retraso,
 > caiga hacia las 8 de la mañana. Esta guía queda por si algún día hace falta
 > la hora exacta.
+>
+> **11 de octubre: los precios, 24 líneas de cron.** GitHub lanza cada línea
+> más o menos una vez al día; la línea horaria de los precios se quedaba en 3-5
+> ejecuciones y las franjas llegaban 3,3 horas tarde de media. Ahora son 24
+> líneas diarias (ver `GASOLINERAS-PLAN.md`, «El respaldo, dos veces al día y a
+> su hora»).
 
 **7 de octubre de 2026.** Los precios de las gasolineras (7:00 y 15:00) y la
 notificación diaria (por la mañana) los lanza GitHub con su programador

@@ -1462,6 +1462,36 @@ de fuera (`RELOJ-EXTERNO.md`) ya no hace falta para ellos: solo mantendría al
 día el fichero de respaldo. Donde sí sigue haciendo falta es en la
 **notificación diaria**, que la tiene que enviar un servidor y no el móvil.
 
+## El respaldo, dos veces al día y a su hora · 11 de octubre
+
+Me pediste comprobar si el botón salió bien hoy y que salga dos veces al día.
+
+**Hoy, bien.** El botón pide los precios **en vivo** al Ministerio cada vez
+que hace falta (ver arriba); el fichero de GitHub es el respaldo. Las dos
+franjas del respaldo llegaron hoy, la de las 7:00 a las 8:16 y la de las
+15:00 a las 15:07, cada una bajada del Ministerio en su ejecución (las otras
+dos del día vieron que ya estaba hecha y no hicieron nada): 208 gasolineras
+con precio en 23 municipios. Y el botón, probado en la auditoría completa de
+hoy en los diez idiomas: la lista, los precios con «precio oficial del
+Ministerio» y la barra sin salirse de la pantalla de 320 a 412 px.
+
+**Dos veces al día ya salía, pero tarde.** Desde el 7 de octubre, las dos
+franjas han llegado **todos los días**, pero con **3,3 horas de retraso de
+media** del 8 al 11 (entre 7 minutos y 6,7 horas). Medido con
+`python3 tools/reloj_flujos.py --github`, la causa: **GitHub lanza cada línea
+de cron más o menos una vez al día**. La notificación pasó de 5 a 9
+ejecuciones diarias justo cuando pasó de 5 a 9 líneas; la línea única de los
+precios, `23 * * * *`, que pide 24 al día, se quedaba en 3, 4 o 5, separadas
+unas 6 horas.
+
+**Ahora son 24 líneas diarias**, una por hora al minuto :23: las mismas 24
+llamadas de antes, escritas de forma que GitHub las cuente una por una. Si se
+porta como con la notificación, habrá una ejecución cada hora más o menos, y
+cada franja llegará como mucho una hora tarde. `--toca` sigue mandando: solo
+baja precios la primera después de las 7:00 y la primera después de las 15:00
+de Canarias, también tras el cambio de hora del 25 de octubre; las demás
+terminan en segundos. Sin token y sin reloj de fuera, como decidiste.
+
 ## Lo que queda
 
 - **La notificación diaria**: decidiste el 9 de octubre no crear el token
