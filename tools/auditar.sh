@@ -134,6 +134,10 @@ echo; echo "════════ texto que no cambia al cambiar de idioma �
 control auditar_sin_traducir.js node tools/auditar_sin_traducir.js "$PUERTO"
 echo; echo "════════ lo que se ve en pantalla, en los diez idiomas (paneles y fichas) ════════"
 control barrido_pantallas.js node tools/barrido_pantallas.js "$PUERTO"
+echo; echo "════════ el tour de bienvenida, entero, en los diez idiomas y cuatro moviles ════════"
+# Desde el 11 de octubre de 2026: el tour lo recorre de verdad, paso a paso.
+# Sus textos estuvieron un mes en listas que ningun control leia.
+control auditar_tour.js node tools/auditar_tour.js "$PUERTO"
 echo
 # Los rotos van PRIMERO y con su propio nombre: son los que no han mirado nada.
 [ "$rotos" = 0 ] || echo "*** $rotos control(es) QUE NO SE PUDIERON EJECUTAR (pip install -r tools/requisitos.txt) ***"

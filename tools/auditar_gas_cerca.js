@@ -90,7 +90,7 @@ async function abrir(b, { lang = 'es', w = 360, h = 740, geo = SC, permiso = tru
     geolocation: geo, permissions: permiso ? ['geolocation'] : [] });
   const p = await ctx.newPage();
   const err = []; p.on('pageerror', e => err.push(e.message));
-  await p.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '1'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
+  await p.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
   await p.route('**/datos/precios-gasolineras.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: fs.readFileSync(S + '/' + fichero) }));
   const pedidas = [];
   await p.route(MINISTERIO, r => {

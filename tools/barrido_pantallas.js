@@ -121,7 +121,7 @@ async function recorrer(b, L) {
     geolocation: { latitude: 28.4636, longitude: -16.2518 }, permissions: ['geolocation'] });
   const p = await ctx.newPage();
   const err = []; p.on('pageerror', e => err.push(e.message));
-  await p.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '1'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
+  await p.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
   await p.route('**/datos/precios-gasolineras.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: PRECIOS }));
   await p.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'networkidle' });
   await p.waitForTimeout(600);

@@ -23265,10 +23265,12 @@ window.addEventListener('hashchange', () => {
 
 <!-- ════════════════════════════════
      TOUR DE PRIMERA VEZ (onboarding)
-     Se ofrece UNA sola vez (localStorage 'tenerife.tour.seen'): al
-     cerrar la bienvenida aparece un mini-diálogo "¿Tour rápido?" con
-     [Ver el tour] / [Ahora no]. Si acepta: 6 pasos con foco (spotlight)
-     sobre la UI real. En 10 idiomas. Relanzable: window.v19StartTour().
+     Se ofrece UNA vez por version (localStorage 'tenerife.tour.seen'
+     guarda la version vista): al cerrar la bienvenida aparece "¿Un tour
+     rapido?" con [Ver el tour] / [Ahora no]; quien vio uno anterior ve
+     "¡Hay novedades!". Si acepta: 13 pasos con foco (spotlight) sobre la UI
+     real, animados. En 10 idiomas, textos en UI_TX. Relanzable desde la
+     leyenda del mapa: window.v19StartTour().
      ════════════════════════════════ -->
 <style>
 /* ══ ANIMACIONES v3 — micro-interacciones (CSS puro) ═══════════ */
@@ -23394,9 +23396,56 @@ window.addEventListener('hashchange', () => {
 }
 .v19t-card p { margin: 0 0 14px; font-size: 0.86rem; line-height: 1.45; color: #cfd6e4; }
 .v19t-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.v19t-dots { display: flex; gap: 5px; }
-.v19t-dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(212,175,55,0.3); }
-.v19t-dots i.on { background: #D4AF37; }
+/* TOUR v2 (11 de octubre de 2026): animado pero explicito. El foco late,
+   la tarjeta entra en cada paso, el icono salta, la barra de arriba se
+   llena y lo nuevo brilla. Trece puntos no cabian al lado de los botones en
+   un movil de 320 px: la barra y el «4/13» dicen lo mismo en menos sitio. */
+.v19t-hole::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: inherit;
+  border: 2px solid rgba(245,199,107,0.9);
+  animation: v19tLatido 1.7s ease-out infinite;
+}
+.v19t-hole.none::after { display: none; }
+@keyframes v19tLatido {
+  0%   { transform: scale(0.97); opacity: 0.95; }
+  70%  { transform: scale(1.12); opacity: 0; }
+  100% { transform: scale(1.12); opacity: 0; }
+}
+.v19t-barra {
+  position: absolute; left: 0; right: 0; top: 0; height: 3px;
+  border-radius: 16px 16px 0 0; overflow: hidden;
+  background: rgba(212,175,55,0.18);
+}
+.v19t-barra i {
+  display: block; height: 100%; width: 0;
+  background: linear-gradient(90deg, #b8912f, #F5C76B);
+  transition: width .45s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+.v19t-cab { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+.v19t-ico { display: inline-block; font-size: 1.6rem; line-height: 1.1; }
+.v19t-num { margin-left: auto; font-size: 0.72rem; color: #8b93a5; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
+.v19t-nuevo {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #171106;
+  background: linear-gradient(90deg, #e9c458 0%, #fff3c4 50%, #e9c458 100%);
+  background-size: 200% 100%;
+  animation: v19tBrillo 2.4s linear infinite;
+}
+.v19t-prompt .v19t-nuevo { margin-bottom: 8px; }
+@keyframes v19tBrillo { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+.v19t-entra { animation: v19tSube .38s cubic-bezier(0.2, 0.9, 0.3, 1.1) both; }
+.v19t-entra .v19t-ico { animation: v19tSalta .5s cubic-bezier(0.2, 1.5, 0.4, 1) .06s both; }
+@keyframes v19tSube { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes v19tSalta { 0% { transform: scale(0.3) rotate(-15deg); opacity: 0; } 100% { transform: none; opacity: 1; } }
 .v19t-btns { display: flex; gap: 8px; align-items: center; }
 .v19t-skip { background: none; border: none; color: #8b93a5; font-size: 0.8rem; padding: 8px 6px; cursor: pointer; font-family: inherit; }
 .v19t-back { background: none; border: none; color: #8b93a5; font-size: 0.8rem; padding: 8px 6px; cursor: pointer; font-family: inherit; }
@@ -23414,6 +23463,8 @@ window.addEventListener('hashchange', () => {
   box-shadow: 0 4px 14px rgba(212,175,55,0.35);
 }
 .v19t-next:active { transform: scale(0.96); }
+.v19t-next, .v19t-back, .v19t-skip { white-space: nowrap; }
+.v19t-btns { margin-left: auto; }   /* a la derecha tambien cuando no hay «Saltar» (ultimo paso) */
 .v19t-prompt {
   position: fixed; inset: 0; z-index: 8600;
   display: flex; align-items: center; justify-content: center;
@@ -23436,52 +23487,106 @@ window.addEventListener('hashchange', () => {
 @media (prefers-reduced-motion: reduce) {
   .v19t-hole { transition: none; }
   .v19t-card, .v19t-prompt { animation: none; }
+  .v19t-hole::after, .v19t-entra, .v19t-entra .v19t-ico, .v19t-nuevo { animation: none; }
+  .v19t-barra i { transition: none; }
 }
 </style>
 
 <script>
 (function v19Tour() {
   'use strict';
+  /* TOUR, VERSION 2 · 11 de octubre de 2026. Jerome: «Prepara el tour de
+     nuevo que añadimos cosas. Verifica que se traduce en cada idioma. Sin
+     errores. Animado pero explicito».
+     · LOS TEXTOS SON FILAS DE UI_TX, aqui debajo. Antes iban en un objeto
+       propio con los pasos en listas, y las listas no las leia ningun control
+       de idioma: estuvieron un mes diciendo «mas de 700 lugares
+       verificados» sin que nada lo viera.
+     · LAS CIFRAS SE CUENTAN al abrir cada paso, no se escriben: {n} lugares
+       del mapa, {L} idiomas terminados, {C} costas del panel del mar, {S}
+       pasos. En polaco, {n} lleva sus tres formas de plural.
+     · Paso NUEVO: el boton ⛽ de la gasolinera mas barata, con su etiqueta
+       «Nuevo».
+     · Quien vio el tour de antes (guardado «1») lo vuelve a ver ofrecido UNA
+       vez, como novedades. Las herramientas que lo saltan guardan «99».
+     · tools/auditar_tour.js lo recorre entero, en los diez idiomas y en
+       cuatro tamaños de movil. */
   var KEY = 'tenerife.tour.seen';
-  function tourSeen() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return true; } }
-  function markSeen() { try { localStorage.setItem(KEY, '1'); } catch (e) {} }
+  var VERSION = 2;
+  function visto() { try { return Number(localStorage.getItem(KEY)) || 0; } catch (e) { return VERSION; } }
+  function tourSeen() { return visto() >= VERSION; }
+  function markSeen() { try { localStorage.setItem(KEY, String(VERSION)); } catch (e) {} }
 
-  var I18N = {
-    es: {pt:"¿Un tour rápido?",pb:"Te enseñamos lo esencial de Tenerife Go en 30 segundos.",yes:"Ver el tour",no:"Ahora no",skip:"Saltar",next:"Siguiente",done:"¡A explorar!",back:"Atr\u00e1s",steps:[["Busca cualquier lugar","M\u00e1s de 700 lugares verificados: playas, senderos, guachinches, miradores y mucho m\u00e1s."],["Filtra por categor\u00edas","Activa solo lo que te interesa hoy: naturaleza, gastronom\u00eda, cultura, deporte\u2026"],["\u00bfSin plan? Tira el dado","Te lleva a un lugar al azar. Con filtros puestos, la sorpresa es a tu gusto."],["Elige tu mapa","Toca para cambiar entre calles, sat\u00e9lite y relieve. Ideal para senderos."],["Microclimas","Aqu\u00ed llueve en un pueblo y hace sol en el siguiente. Mira el tiempo real por zonas."],["El mar hoy","Estado del mar en 7 costas. Antes de ba\u00f1arte o ir a una piscina natural, m\u00edralo."],["Fiestas y tradiciones","Romer\u00edas, carnavales y fiestas patronales con sus fechas. La cultura de la isla."],["Guaguas","Paradas cercanas y l\u00edneas TITSA para moverte sin coche."],["En tu idioma","Toda la app en {L} idiomas. C\u00e1mbialo aqu\u00ed cuando quieras."],["Tu barra de viaje","Favoritos, rutas, tienda, asistente y tu cuenta, siempre a mano."],["Logros","Marca lugares como visitados y desbloquea trofeos mientras descubres la isla."],["Toca los marcadores","Cada punto tiene fotos, descripci\u00f3n, el tiempo all\u00ed y c\u00f3mo llegar. \u00a1La isla es tuya!"]]},
-    en: {pt:"A quick tour?",pb:"Let us show you the essentials of Tenerife Go in 30 seconds.",yes:"Take the tour",no:"Not now",skip:"Skip",next:"Next",done:"Start exploring!",back:"Back",steps:[["Search any place","Over 700 verified places: beaches, trails, guachinches, viewpoints and much more."],["Filter by category","Show only what you fancy today: nature, food, culture, sports\u2026"],["No plan? Roll the dice","It takes you to a random place. With filters on, the surprise is your kind of surprise."],["Pick your map","Tap to switch between streets, satellite and terrain. Great for hiking."],["Microclimates","It can rain in one village and be sunny in the next. Live weather by area."],["The sea today","Sea conditions on 7 coasts. Check it before swimming or visiting a natural pool."],["Fiestas & traditions","Romer\u00edas, carnivals and patron saint festivities with their dates."],["Buses","Nearby stops and TITSA lines so you can get around without a car."],["In your language","The whole app in {L} languages. Change it here anytime."],["Your travel bar","Favourites, routes, shop, assistant and your account, always at hand."],["Achievements","Mark places as visited and unlock trophies as you explore the island."],["Tap the markers","Every point has photos, details, local weather and directions. The island is yours!"]]},
-    fr: {pt:"Un tour rapide ?",pb:"Découvrez l'essentiel de Tenerife Go en 30 secondes.",yes:"Voir le tour",no:"Plus tard",skip:"Passer",next:"Suivant",done:"C'est parti !",back:"Retour",steps:[["Cherchez un lieu","Plus de 700 lieux v\u00e9rifi\u00e9s : plages, sentiers, guachinches, miradors et bien plus."],["Filtrez par cat\u00e9gorie","Affichez seulement ce qui vous tente : nature, gastronomie, culture, sport\u2026"],["Sans plan ? Lancez le d\u00e9","Il vous emm\u00e8ne au hasard. Avec des filtres, la surprise reste \u00e0 votre go\u00fbt."],["Choisissez votre carte","Touchez pour passer de rues \u00e0 satellite ou relief. Parfait pour les randos."],["Microclimats","Il pleut dans un village et il fait soleil dans le suivant. M\u00e9t\u00e9o en direct par zone."],["La mer aujourd\u2019hui","\u00c9tat de la mer sur 7 c\u00f4tes. \u00c0 consulter avant de vous baigner."],["F\u00eates et traditions","Romer\u00edas, carnavals et f\u00eates patronales avec leurs dates."],["Bus","Arr\u00eats proches et lignes TITSA pour circuler sans voiture."],["Dans votre langue","Toute l\u2019app en {L} langues. Changez-la ici \u00e0 tout moment."],["Votre barre de voyage","Favoris, itin\u00e9raires, boutique, assistant et votre compte, toujours \u00e0 port\u00e9e."],["Troph\u00e9es","Marquez les lieux visit\u00e9s et d\u00e9bloquez des troph\u00e9es en explorant l\u2019\u00eele."],["Touchez les marqueurs","Chaque point a photos, infos, m\u00e9t\u00e9o locale et itin\u00e9raire. L\u2019\u00eele est \u00e0 vous !"]]},
-    de: {pt:"Eine kurze Tour?",pb:"Wir zeigen dir Tenerife Go in 30 Sekunden.",yes:"Tour starten",no:"Später",skip:"Überspringen",next:"Weiter",done:"Los geht's!",back:"Zur\u00fcck",steps:[["Orte suchen","\u00dcber 700 gepr\u00fcfte Orte: Str\u00e4nde, Wanderwege, Guachinches, Aussichtspunkte und mehr."],["Nach Kategorien filtern","Zeig nur, was dich heute interessiert: Natur, Gastronomie, Kultur, Sport\u2026"],["Kein Plan? W\u00fcrfle","Bringt dich zu einem zuf\u00e4lligen Ort. Mit Filtern bleibt die \u00dcberraschung nach deinem Geschmack."],["Karte w\u00e4hlen","Tippen wechselt zwischen Stra\u00dfen, Satellit und Gel\u00e4nde. Ideal zum Wandern."],["Mikroklimas","Im einen Dorf regnet es, im n\u00e4chsten scheint die Sonne. Wetter je Gebiet, live."],["Das Meer heute","Seegang an 7 K\u00fcsten. Vor dem Baden oder einem Naturbecken unbedingt ansehen."],["Feste & Traditionen","Romer\u00edas, Karneval und Patronatsfeste mit ihren Terminen."],["Busse","Haltestellen in der N\u00e4he und TITSA-Linien, um ohne Auto unterwegs zu sein."],["Deine Sprache","Die ganze App in {L} Sprachen. Hier jederzeit wechseln."],["Deine Reiseleiste","Favoriten, Routen, Shop, Assistent und dein Konto \u2013 immer griffbereit."],["Erfolge","Markiere besuchte Orte und schalte Troph\u00e4en frei, w\u00e4hrend du die Insel entdeckst."],["Tippe auf die Marker","Jeder Punkt bietet Fotos, Infos, Wetter vor Ort und Anfahrt. Die Insel geh\u00f6rt dir!"]]},
-    it: {pt:"Un tour veloce?",pb:"Ti mostriamo Tenerife Go in 30 secondi.",yes:"Fai il tour",no:"Non ora",skip:"Salta",next:"Avanti",done:"Si parte!",back:"Indietro",steps:[["Cerca un luogo","Oltre 700 luoghi verificati: spiagge, sentieri, guachinches, miradores e molto altro."],["Filtra per categoria","Mostra solo ci\u00f2 che ti va oggi: natura, gastronomia, cultura, sport\u2026"],["Senza piani? Tira il dado","Ti porta in un luogo a caso. Con i filtri attivi, la sorpresa resta nei tuoi gusti."],["Scegli la mappa","Tocca per passare da strade a satellite o rilievo. Perfetto per il trekking."],["Microclimi","Piove in un paese e c\u2019\u00e8 sole in quello accanto. Meteo in tempo reale per zone."],["Il mare oggi","Stato del mare su 7 coste. Da controllare prima di fare il bagno."],["Feste e tradizioni","Romer\u00edas, carnevali e feste patronali con le loro date."],["Autobus","Fermate vicine e linee TITSA per muoverti senza auto."],["Nella tua lingua","Tutta l\u2019app in {L} lingue. Cambiala qui quando vuoi."],["La tua barra di viaggio","Preferiti, percorsi, negozio, assistente e il tuo account, sempre a portata."],["Obiettivi","Segna i luoghi visitati e sblocca trofei mentre scopri l\u2019isola."],["Tocca i marcatori","Ogni punto ha foto, dettagli, meteo locale e indicazioni. L\u2019isola \u00e8 tua!"]]},
-    nl: {pt:"Een snelle tour?",pb:"We laten je Tenerife Go zien in 30 seconden.",yes:"Start de tour",no:"Niet nu",skip:"Overslaan",next:"Volgende",done:"Op pad!",back:"Terug",steps:[["Zoek een plek","Meer dan 700 geverifieerde plekken: stranden, paden, guachinches, uitzichtpunten en meer."],["Filter op categorie","Toon alleen waar je vandaag zin in hebt: natuur, eten, cultuur, sport\u2026"],["Geen plan? Gooi de dobbelsteen","Brengt je naar een willekeurige plek. Met filters blijft de verrassing naar jouw smaak."],["Kies je kaart","Tik om te wisselen tussen straten, satelliet en reli\u00ebf. Ideaal voor wandelingen."],["Microklimaten","In het ene dorp regent het, in het volgende schijnt de zon. Live weer per gebied."],["De zee vandaag","Zeegang op 7 kusten. Bekijk het voor je gaat zwemmen of naar een natuurlijk bad gaat."],["Feesten & tradities","Romer\u00edas, carnavals en patroonsfeesten met hun data."],["Bussen","Haltes in de buurt en TITSA-lijnen om zonder auto rond te reizen."],["In jouw taal","De hele app in {L} talen. Wijzig het hier wanneer je wilt."],["Je reisbalk","Favorieten, routes, winkel, assistent en je account, altijd bij de hand."],["Prestaties","Markeer bezochte plekken en ontgrendel trofee\u00ebn terwijl je het eiland ontdekt."],["Tik op de markers","Elk punt heeft foto\u2019s, details, lokaal weer en de route. Het eiland is van jou!"]]},
-    zh: {pt:"快速导览？",pb:"30秒了解应用的核心功能。",yes:"开始导览",no:"暂时不用",skip:"跳过",next:"下一步",done:"开始探索！",back:"\u4e0a\u4e00\u6b65",steps:[["\u641c\u7d22\u4efb\u4f55\u5730\u70b9","700 \u591a\u4e2a\u7ecf\u6838\u5b9e\u7684\u5730\u70b9\uff1a\u6d77\u6ee9\u3001\u6b65\u9053\u3001\u4e61\u6751\u9152\u9986\u3001\u89c2\u666f\u53f0\u7b49\u7b49\u3002"],["\u6309\u7c7b\u522b\u7b5b\u9009","\u53ea\u663e\u793a\u4f60\u4eca\u5929\u60f3\u770b\u7684\uff1a\u81ea\u7136\u3001\u7f8e\u98df\u3001\u6587\u5316\u3001\u8fd0\u52a8\u2026\u2026"],["\u6ca1\u4e3b\u610f\uff1f\u63b7\u9ab0\u5b50","\u968f\u673a\u5e26\u4f60\u53bb\u4e00\u4e2a\u5730\u65b9\u3002\u5f00\u7740\u7b5b\u9009\u65f6\uff0c\u60ca\u559c\u4e5f\u5408\u4f60\u53e3\u5473\u3002"],["\u9009\u62e9\u5730\u56fe","\u70b9\u51fb\u53ef\u5728\u8857\u9053\u3001\u536b\u661f\u4e0e\u5730\u5f62\u4e4b\u95f4\u5207\u6362\uff0c\u5f92\u6b65\u65f6\u7279\u522b\u597d\u7528\u3002"],["\u5fae\u6c14\u5019","\u8fd9\u4e2a\u6751\u5728\u4e0b\u96e8\uff0c\u9694\u58c1\u6751\u5374\u662f\u6674\u5929\u3002\u53ef\u67e5\u770b\u5404\u533a\u57df\u7684\u5b9e\u65f6\u5929\u6c14\u3002"],["\u4eca\u65e5\u6d77\u51b5","7 \u6bb5\u6d77\u5cb8\u7684\u6d77\u51b5\u3002\u4e0b\u6c34\u6216\u524d\u5f80\u5929\u7136\u6cf3\u6c60\u524d\u8bf7\u5148\u67e5\u770b\u3002"],["\u8282\u5e86\u4e0e\u4f20\u7edf","\u671d\u5723\u6e38\u884c\u3001\u72c2\u6b22\u8282\u4e0e\u4e3b\u4fdd\u8282\u5e86\u53ca\u5176\u65e5\u671f\u3002"],["\u516c\u4ea4","\u9644\u8fd1\u7ad9\u70b9\u4e0e TITSA \u8def\u7ebf\uff0c\u6ca1\u6709\u8f66\u4e5f\u80fd\u5230\u5904\u8d70\u3002"],["\u4f60\u7684\u8bed\u8a00","\u6574\u4e2a\u5e94\u7528\u652f\u6301 {L} \u79cd\u8bed\u8a00\uff0c\u968f\u65f6\u5728\u6b64\u5207\u6362\u3002"],["\u4f60\u7684\u65c5\u884c\u680f","\u6536\u85cf\u3001\u8def\u7ebf\u3001\u5546\u5e97\u3001\u52a9\u624b\u4e0e\u8d26\u6237\uff0c\u968f\u65f6\u53ef\u7528\u3002"],["\u6210\u5c31","\u628a\u53bb\u8fc7\u7684\u5730\u65b9\u6807\u8bb0\u4e3a\u5df2\u8bbf\u95ee\uff0c\u8fb9\u63a2\u7d22\u8fb9\u89e3\u9501\u5956\u676f\u3002"],["\u70b9\u6309\u5730\u56fe\u6807\u8bb0","\u6bcf\u4e2a\u5730\u70b9\u90fd\u6709\u7167\u7247\u3001\u4ecb\u7ecd\u3001\u5f53\u5730\u5929\u6c14\u4e0e\u8def\u7ebf\u3002\u6574\u5ea7\u5c9b\u5c7f\u4efb\u4f60\u63a2\u7d22\uff01"]]},
-    zht: {pt:"快速導覽？",pb:"30秒了解應用程式的核心功能。",yes:"開始導覽",no:"暫時不用",skip:"跳過",next:"下一步",done:"開始探索！",back:"\u4e0a\u4e00\u6b65",steps:[["\u641c\u5c0b\u4efb\u4f55\u5730\u9ede","700 \u591a\u500b\u7d93\u6838\u5be6\u7684\u5730\u9ede\uff1a\u6d77\u7058\u3001\u6b65\u9053\u3001\u9109\u6751\u9152\u9928\u3001\u89c0\u666f\u53f0\u7b49\u7b49\u3002"],["\u4f9d\u985e\u5225\u7be9\u9078","\u53ea\u986f\u793a\u4f60\u4eca\u5929\u60f3\u770b\u7684\uff1a\u81ea\u7136\u3001\u7f8e\u98df\u3001\u6587\u5316\u3001\u904b\u52d5\u2026\u2026"],["\u6c92\u4e3b\u610f\uff1f\u64f2\u9ab0\u5b50","\u96a8\u6a5f\u5e36\u4f60\u53bb\u4e00\u500b\u5730\u65b9\u3002\u958b\u8457\u7be9\u9078\u6642\uff0c\u9a5a\u559c\u4e5f\u5408\u4f60\u53e3\u5473\u3002"],["\u9078\u64c7\u5730\u5716","\u9ede\u64ca\u53ef\u5728\u8857\u9053\u3001\u885b\u661f\u8207\u5730\u5f62\u4e4b\u9593\u5207\u63db\uff0c\u5065\u884c\u6642\u7279\u5225\u597d\u7528\u3002"],["\u5fae\u6c23\u5019","\u9019\u500b\u6751\u5728\u4e0b\u96e8\uff0c\u9694\u58c1\u6751\u537b\u662f\u6674\u5929\u3002\u53ef\u67e5\u770b\u5404\u5340\u57df\u7684\u5373\u6642\u5929\u6c23\u3002"],["\u4eca\u65e5\u6d77\u6cc1","7 \u6bb5\u6d77\u5cb8\u7684\u6d77\u6cc1\u3002\u4e0b\u6c34\u6216\u524d\u5f80\u5929\u7136\u6cf3\u6c60\u524d\u8acb\u5148\u67e5\u770b\u3002"],["\u7bc0\u6176\u8207\u50b3\u7d71","\u671d\u8056\u904a\u884c\u3001\u5609\u5e74\u83ef\u8207\u4e3b\u4fdd\u7bc0\u6176\u53ca\u5176\u65e5\u671f\u3002"],["\u516c\u8eca","\u9644\u8fd1\u7ad9\u9ede\u8207 TITSA \u8def\u7dda\uff0c\u6c92\u6709\u8eca\u4e5f\u80fd\u5230\u8655\u8d70\u3002"],["\u4f60\u7684\u8a9e\u8a00","\u6574\u500b\u61c9\u7528\u652f\u63f4 {L} \u7a2e\u8a9e\u8a00\uff0c\u96a8\u6642\u5728\u6b64\u5207\u63db\u3002"],["\u4f60\u7684\u65c5\u884c\u5217","\u6536\u85cf\u3001\u8def\u7dda\u3001\u5546\u5e97\u3001\u52a9\u624b\u8207\u5e33\u6236\uff0c\u96a8\u6642\u53ef\u7528\u3002"],["\u6210\u5c31","\u628a\u53bb\u904e\u7684\u5730\u65b9\u6a19\u8a18\u70ba\u5df2\u9020\u8a2a\uff0c\u908a\u63a2\u7d22\u908a\u89e3\u9396\u734e\u76c3\u3002"],["\u9ede\u6309\u5730\u5716\u6a19\u8a18","\u6bcf\u500b\u5730\u9ede\u90fd\u6709\u7167\u7247\u3001\u4ecb\u7d39\u3001\u7576\u5730\u5929\u6c23\u8207\u8def\u7dda\u3002\u6574\u5ea7\u5cf6\u5dbc\u4efb\u4f60\u63a2\u7d22\uff01"]]},
-    bg: {pt:"Бърза обиколка?",pb:"Ще ви покажем основното в Tenerife Go за 30 секунди.",yes:"Виж обиколката",no:"Не сега",skip:"Пропусни",next:"Напред",done:"Да разглеждаме!",back:"Назад",steps:[["Търсете всяко място","Над 700 проверени места: плажове, пътеки, гуачинчес, панорамни площадки и още много."],["Филтрирайте по категории","Показвайте само това, което ви интересува днес: природа, кухня, култура, спорт…"],["Без план? Хвърлете зара","Отвежда ви на случайно място. С включени филтри изненадата е по вашия вкус."],["Изберете своята карта","Докоснете, за да превключите между улици, сателит и релеф. Идеално за пътеки."],["Микроклимат","В едно село вали, а в съседното грее слънце. Вижте времето на живо по зони."],["Морето днес","Състояние на морето по 7 бряга. Преди да влезете във водата или да отидете на естествен басейн, го проверете."],["Празници и традиции","Ромерии, карнавали и патронни празници с техните дати. Културата на острова."],["Автобуси","Близки спирки и линии на TITSA, за да се движите без кола."],["На вашия език","Цялото приложение на {L} езика. Сменете го оттук по всяко време."],["Вашата лента за пътуване","Любими, маршрути, магазин, асистент и профилът ви — винаги под ръка."],["Постижения","Отбелязвайте местата като посетени и отключвайте трофеи, докато откривате острова."],["Докоснете маркерите","Всяка точка има снимки, описание, времето там и как да стигнете. Островът е ваш!"]]}, pl: {"pt":"Krótki przewodnik?","pb":"Pokażemy ci to, co najważniejsze w Tenerife Go, w 30 sekund.","yes":"Obejrzyj przewodnik","no":"Nie teraz","skip":"Pomiń","next":"Dalej","done":"Ruszamy zwiedzać!","back":"Wstecz","steps":[["Znajdź dowolne miejsce","Ponad 700 sprawdzonych miejsc: plaże, szlaki, guachinches, punkty widokowe i wiele więcej."],["Filtruj według kategorii","Włącz tylko to, co cię dziś interesuje: przyroda, gastronomia, kultura, sport…"],["Brak planu? Rzuć kostką","Zabierze cię w losowe miejsce. Z włączonymi filtrami niespodzianka będzie w twoim guście."],["Wybierz swoją mapę","Dotknij, żeby przełączać między ulicami, satelitą i rzeźbą terenu. Idealne na szlaki."],["Mikroklimaty","Tu pada w jednej wiosce, a w następnej świeci słońce. Sprawdź pogodę na żywo według stref."],["Morze dzisiaj","Stan morza na 7 wybrzeżach. Zanim wejdziesz do wody albo pójdziesz do naturalnego basenu, zajrzyj tutaj."],["Święta i tradycje","Romerías, karnawały i święta patronalne z datami. Kultura wyspy."],["Autobusy","Przystanki w pobliżu i linie TITSA, żeby poruszać się bez samochodu."],["W twoim języku","Cała aplikacja w {L} językach. Zmienisz go tutaj, kiedy zechcesz."],["Twój pasek podróży","Ulubione, trasy, sklep, asystent i konto, zawsze pod ręką."],["Osiągnięcia","Oznaczaj miejsca jako odwiedzone i odblokowuj trofea, odkrywając wyspę."],["Dotykaj znaczników","Każdy punkt ma zdjęcia, opis, pogodę na miejscu i dojazd. Wyspa jest twoja!"]]}
-  };
-
-  function LT() {
-    var lg = 'es';
-    try { if (typeof currentLang !== 'undefined' && I18N[currentLang]) lg = currentLang; } catch (e) {}
-    return I18N[lg];
-  }
+  Object.assign(UI_TX, {
+    "tourPregT": {"es": "¿Un tour rápido?", "en": "A quick tour?", "fr": "Un tour rapide ?", "de": "Eine kurze Tour?", "it": "Un tour veloce?", "nl": "Een snelle tour?", "zh": "快速导览？", "zht": "快速導覽？", "bg": "Бърза обиколка?", "pl": "Szybki przewodnik?"},
+    "tourPregP": {"es": "Te enseñamos lo esencial de Tenerife Go en {S} pasos. Puedes saltarlo cuando quieras.", "en": "We'll show you the essentials of Tenerife Go in {S} steps. You can skip it at any time.", "fr": "On vous montre l'essentiel de Tenerife Go en {S} étapes. Vous pouvez le passer à tout moment.", "de": "Wir zeigen dir das Wichtigste von Tenerife Go in {S} Schritten. Du kannst sie jederzeit überspringen.", "it": "Ti mostriamo l'essenziale di Tenerife Go in {S} passi. Puoi saltarlo quando vuoi.", "nl": "We laten je het belangrijkste van Tenerife Go zien in {S} stappen. Je kunt hem altijd overslaan.", "zh": "用{S}步带你了解Tenerife Go的核心功能，随时可以跳过。", "zht": "用{S}步帶你了解Tenerife Go的核心功能，隨時可以跳過。", "bg": "Ще ви покажем основното в Tenerife Go в {S} стъпки. Можете да я пропуснете по всяко време.", "pl": "Pokażemy ci najważniejsze funkcje Tenerife Go w {S} krokach. Możesz go pominąć w każdej chwili."},
+    "tourNovT": {"es": "¡Hay novedades!", "en": "There's something new!", "fr": "Du nouveau !", "de": "Es gibt Neues!", "it": "Ci sono novità!", "nl": "Er is iets nieuws!", "zh": "有新功能！", "zht": "有新功能！", "bg": "Има новости!", "pl": "Są nowości!"},
+    "tourNovP": {"es": "Ahora encuentras la gasolinera más barata cerca de ti, con el precio oficial del Ministerio. ¿Te enseñamos el tour con todo lo nuevo?", "en": "You can now find the cheapest petrol station near you, with the official price from the Spanish Ministry. Shall we show you the tour with everything new?", "fr": "Vous trouvez maintenant la station-service la moins chère près de vous, au prix officiel du ministère. On vous montre le tour avec toutes les nouveautés ?", "de": "Jetzt findest du die günstigste Tankstelle in deiner Nähe, mit dem amtlichen Preis des Ministeriums. Sollen wir dir die Tour mit allem Neuen zeigen?", "it": "Ora trovi il distributore più economico vicino a te, con il prezzo ufficiale del Ministero. Ti mostriamo il tour con tutte le novità?", "nl": "Je vindt nu het goedkoopste tankstation bij jou in de buurt, met de officiële prijs van het ministerie. Zullen we je de tour met alles wat nieuw is laten zien?", "zh": "现在可以找到你附近最便宜的加油站，并显示西班牙政府的官方价格。要不要看看包含所有新功能的导览？", "zht": "現在可以找到你附近最便宜的加油站，並顯示西班牙政府的官方價格。要不要看看包含所有新功能的導覽？", "bg": "Вече можете да намерите най-евтината бензиностанция близо до вас, с официалната цена на министерството. Да ви покажем обиколката с всичко ново?", "pl": "Teraz znajdziesz najtańszą stację paliw w pobliżu, z oficjalną ceną ministerstwa. Pokazać ci przewodnik ze wszystkimi nowościami?"},
+    "tourVer": {"es": "Ver el tour", "en": "Take the tour", "fr": "Voir le tour", "de": "Tour starten", "it": "Fai il tour", "nl": "Start de tour", "zh": "开始导览", "zht": "開始導覽", "bg": "Виж обиколката", "pl": "Zobacz przewodnik"},
+    "tourAhoraNo": {"es": "Ahora no", "en": "Not now", "fr": "Plus tard", "de": "Später", "it": "Non ora", "nl": "Niet nu", "zh": "暂时不用", "zht": "暫時不用", "bg": "Не сега", "pl": "Nie teraz"},
+    "tourSaltar": {"es": "Saltar", "en": "Skip", "fr": "Passer", "de": "Überspringen", "it": "Salta", "nl": "Overslaan", "zh": "跳过", "zht": "跳過", "bg": "Пропусни", "pl": "Pomiń"},
+    "tourSiguiente": {"es": "Siguiente", "en": "Next", "fr": "Suivant", "de": "Weiter", "it": "Avanti", "nl": "Volgende", "zh": "下一步", "zht": "下一步", "bg": "Напред", "pl": "Dalej"},
+    "tourAtras": {"es": "Atrás", "en": "Back", "fr": "Retour", "de": "Zurück", "it": "Indietro", "nl": "Terug", "zh": "上一步", "zht": "上一步", "bg": "Назад", "pl": "Wstecz"},
+    "tourAExplorar": {"es": "¡A explorar!", "en": "Start exploring!", "fr": "C'est parti !", "de": "Los geht's!", "it": "Si parte!", "nl": "Op pad!", "zh": "开始探索！", "zht": "開始探索！", "bg": "Да разглеждаме!", "pl": "Ruszamy!"},
+    "tourNuevo": {"es": "Nuevo", "en": "New", "fr": "Nouveau", "de": "Neu", "it": "Novità", "nl": "Nieuw", "zh": "新", "zht": "新", "bg": "Ново", "pl": "Nowość"},
+    "tourBuscarT": {"es": "Busca cualquier lugar", "en": "Search any place", "fr": "Cherchez un lieu", "de": "Orte suchen", "it": "Cerca un luogo", "nl": "Zoek een plek", "zh": "搜索任何地点", "zht": "搜尋任何地點", "bg": "Търсете всяко място", "pl": "Szukaj dowolnego miejsca"},
+    "tourBuscarP": {"es": "{n} lugares en el mapa: playas, senderos, guachinches, miradores, gasolineras… Escribe el nombre, con tildes o sin ellas.", "en": "{n} places on the map: beaches, trails, guachinches, viewpoints, petrol stations… Type the name, with or without accents.", "fr": "{n} lieux sur la carte : plages, sentiers, guachinches, belvédères, stations-service… Tapez le nom, avec ou sans accents.", "de": "{n} Orte auf der Karte: Strände, Wanderwege, Guachinches, Aussichtspunkte, Tankstellen… Gib den Namen ein, mit oder ohne Akzente.", "it": "{n} luoghi sulla mappa: spiagge, sentieri, guachinches, punti panoramici, distributori… Scrivi il nome, con o senza accenti.", "nl": "{n} plekken op de kaart: stranden, wandelpaden, guachinches, uitzichtpunten, tankstations… Typ de naam, met of zonder accenten.", "zh": "地图上共有{n}个地点：海滩、步道、乡村酒馆、观景台、加油站……输入名称即可，带不带重音符号都行。", "zht": "地圖上共有{n}個地點：海灘、步道、鄉村酒館、觀景台、加油站……輸入名稱即可，有沒有重音符號都行。", "bg": "{n} места на картата: плажове, пътеки, гуачинчес, панорамни площадки, бензиностанции… Напишете името, със или без диакритични знаци.", "pl": "{n} miejsce na mapie: plaże, szlaki, guachinches, punkty widokowe, stacje paliw… Wpisz nazwę, z hiszpańskimi akcentami albo bez.|{n} miejsca na mapie: plaże, szlaki, guachinches, punkty widokowe, stacje paliw… Wpisz nazwę, z hiszpańskimi akcentami albo bez.|{n} miejsc na mapie: plaże, szlaki, guachinches, punkty widokowe, stacje paliw… Wpisz nazwę, z hiszpańskimi akcentami albo bez."},
+    "tourCatT": {"es": "Filtra por categorías", "en": "Filter by category", "fr": "Filtrez par catégorie", "de": "Nach Kategorien filtern", "it": "Filtra per categoria", "nl": "Filter op categorie", "zh": "按类别筛选", "zht": "依類別篩選", "bg": "Филтрирайте по категории", "pl": "Filtruj według kategorii"},
+    "tourCatP": {"es": "Enciende solo lo que te apetece hoy: naturaleza y playas, cultura, deporte, miradores, mercadillos… Y también lugares con mascotas o accesibles.", "en": "Switch on only what you fancy today: nature and beaches, culture, sport, viewpoints, markets… And also pet-friendly or accessible places.", "fr": "Activez seulement ce qui vous tente aujourd'hui : nature et plages, culture, sport, belvédères, marchés… Et aussi des lieux qui acceptent les animaux ou accessibles.", "de": "Schalte nur ein, worauf du heute Lust hast: Natur und Strände, Kultur, Sport, Aussichtspunkte, Märkte… Und auch Orte, an denen Haustiere willkommen sind, oder barrierefreie Orte.", "it": "Attiva solo quello che ti va oggi: natura e spiagge, cultura, sport, punti panoramici, mercatini… E anche luoghi che accettano animali o accessibili.", "nl": "Zet alleen aan waar je vandaag zin in hebt: natuur en stranden, cultuur, sport, uitzichtpunten, markten… En ook plekken waar huisdieren welkom zijn of die toegankelijk zijn.", "zh": "只打开你今天感兴趣的：自然与海滩、文化、运动、观景台、集市……还有欢迎宠物和无障碍的地点。", "zht": "只開啟你今天感興趣的：自然與海灘、文化、運動、觀景台、市集……還有歡迎寵物和無障礙的地點。", "bg": "Включете само това, което ви се иска днес: природа и плажове, култура, спорт, панорамни площадки, пазари… И места, подходящи за домашни любимци, или достъпни.", "pl": "Włącz tylko to, na co masz dziś ochotę: przyroda i plaże, kultura, sport, punkty widokowe, targi… A także miejsca przyjazne zwierzętom lub dostępne."},
+    "tourDadoT": {"es": "¿Sin plan? Tira el dado", "en": "No plan? Roll the dice", "fr": "Sans plan ? Lancez le dé", "de": "Kein Plan? Würfle", "it": "Senza piani? Tira il dado", "nl": "Geen plan? Gooi de dobbelsteen", "zh": "没主意？掷个骰子", "zht": "沒主意？擲個骰子", "bg": "Нямате план? Хвърлете зара", "pl": "Nie masz planu? Rzuć kostką"},
+    "tourDadoP": {"es": "Te lleva a un lugar al azar. Con filtros puestos, la sorpresa es a tu gusto.", "en": "It takes you to a random place. With filters on, the surprise is your kind of surprise.", "fr": "Il vous emmène dans un lieu au hasard. Avec des filtres, la surprise reste à votre goût.", "de": "Bringt dich zu einem zufälligen Ort. Mit Filtern bleibt die Überraschung nach deinem Geschmack.", "it": "Ti porta in un luogo a caso. Con i filtri attivi, la sorpresa resta nei tuoi gusti.", "nl": "Brengt je naar een willekeurige plek. Met filters blijft de verrassing naar jouw smaak.", "zh": "随机带你去一个地点。开启筛选后，惊喜也合你的口味。", "zht": "隨機帶你去一個地點。開啟篩選後，驚喜也合你的口味。", "bg": "Отвежда ви на случайно място. С включени филтри изненадата е по ваш вкус.", "pl": "Przeniesie cię w losowe miejsce. Z włączonymi filtrami niespodzianka będzie w twoim guście."},
+    "tourGasT": {"es": "La gasolinera más barata, a un toque", "en": "The cheapest petrol station, one tap away", "fr": "La station la moins chère, en un geste", "de": "Die günstigste Tankstelle, mit einem Tipp", "it": "Il distributore più economico, con un tocco", "nl": "Het goedkoopste tankstation, met één tik", "zh": "一键找到最便宜的加油站", "zht": "一鍵找到最便宜的加油站", "bg": "Най-евтината бензиностанция с едно докосване", "pl": "Najtańsza stacja paliw jednym dotknięciem"},
+    "tourGasP": {"es": "Toca ⛽ y, con tu ubicación, verás las más baratas a 5, 10 o 20 km: gasolina 95 y diésel, con el precio oficial del Ministerio. Cada gasolinera del mapa enseña también su precio.", "en": "Tap ⛽ and, using your location, you'll see the cheapest ones within 5, 10 or 20 km: petrol 95 and diesel, at the official price from the Spanish Ministry. Every petrol station on the map also shows its price.", "fr": "Touchez ⛽ et, avec votre position, vous verrez les moins chères à 5, 10 ou 20 km : essence 95 et gazole, au prix officiel du ministère. Chaque station de la carte affiche aussi son prix.", "de": "Tippe auf ⛽ und du siehst mit deinem Standort die günstigsten im Umkreis von 5, 10 oder 20 km: Benzin 95 und Diesel, zum amtlichen Preis des Ministeriums. Jede Tankstelle auf der Karte zeigt auch ihren Preis.", "it": "Tocca ⛽ e, con la tua posizione, vedrai i più economici entro 5, 10 o 20 km: benzina 95 e gasolio, al prezzo ufficiale del Ministero. Ogni distributore sulla mappa mostra anche il suo prezzo.", "nl": "Tik op ⛽ en met je locatie zie je de goedkoopste binnen 5, 10 of 20 km: benzine 95 en diesel, tegen de officiële prijs van het ministerie. Elk tankstation op de kaart toont ook zijn prijs.", "zh": "点⛽，根据你的位置显示5、10或20公里内最便宜的加油站：95号汽油和柴油，西班牙政府官方价格。地图上每个加油站也都显示价格。", "zht": "點⛽，根據你的位置顯示5、10或20公里內最便宜的加油站：95號汽油和柴油，西班牙政府官方價格。地圖上每個加油站也都顯示價格。", "bg": "Докоснете ⛽ и според местоположението си ще видите най-евтините в радиус 5, 10 или 20 км: бензин 95 и дизел, по официалната цена на министерството. Всяка бензиностанция на картата показва и цената си.", "pl": "Dotknij ⛽, a na podstawie twojej lokalizacji zobaczysz najtańsze w promieniu 5, 10 lub 20 km: benzyna 95 i olej napędowy, po oficjalnej cenie ministerstwa. Każda stacja na mapie pokazuje też swoją cenę."},
+    "tourMapaT": {"es": "Elige tu mapa", "en": "Pick your map", "fr": "Choisissez votre carte", "de": "Karte wählen", "it": "Scegli la mappa", "nl": "Kies je kaart", "zh": "选择地图", "zht": "選擇地圖", "bg": "Изберете своята карта", "pl": "Wybierz swoją mapę"},
+    "tourMapaP": {"es": "Calles, satélite o relieve: toca para cambiar. El relieve es ideal para el senderismo.", "en": "Streets, satellite or terrain: tap to switch. Terrain is ideal for hiking.", "fr": "Rues, satellite ou relief : touchez pour changer. Le relief est idéal pour la randonnée.", "de": "Straßen, Satellit oder Relief: tippen zum Wechseln. Das Relief ist ideal zum Wandern.", "it": "Strade, satellite o rilievo: tocca per cambiare. Il rilievo è perfetto per il trekking.", "nl": "Straten, satelliet of reliëf: tik om te wisselen. Reliëf is ideaal om te wandelen.", "zh": "街道、卫星或地形：点击即可切换。地形图最适合徒步。", "zht": "街道、衛星或地形：點一下即可切換。地形圖最適合健行。", "bg": "Улици, сателит или релеф: докоснете, за да смените. Релефът е идеален за преходи.", "pl": "Ulice, satelita albo rzeźba terenu: dotknij, żeby zmienić. Rzeźba terenu świetnie sprawdza się na szlakach."},
+    "tourMicroT": {"es": "Microclimas", "en": "Microclimates", "fr": "Microclimats", "de": "Mikroklimas", "it": "Microclimi", "nl": "Microklimaten", "zh": "微气候", "zht": "微氣候", "bg": "Микроклимати", "pl": "Mikroklimaty"},
+    "tourMicroP": {"es": "Puede llover en un pueblo y hacer sol en el de al lado. Aquí ves el tiempo en directo, zona por zona.", "en": "It can rain in one village and be sunny in the next. Here you see the live weather, area by area.", "fr": "Il peut pleuvoir dans un village et faire beau dans le suivant. Ici, la météo en direct, zone par zone.", "de": "In einem Dorf kann es regnen und im nächsten die Sonne scheinen. Hier siehst du das Wetter live, Zone für Zone.", "it": "Può piovere in un paese e splendere il sole in quello accanto. Qui vedi il meteo in diretta, zona per zona.", "nl": "Het kan regenen in het ene dorp en zonnig zijn in het volgende. Hier zie je het weer live, zone per zone.", "zh": "可能这个村子下雨，隔壁村子却阳光明媚。这里按区域显示实时天气。", "zht": "可能這個村子下雨，隔壁村子卻陽光普照。這裡依區域顯示即時天氣。", "bg": "В едно село може да вали, а в съседното да грее слънце. Тук виждате времето на живо, зона по зона.", "pl": "W jednej wsi może padać, a w sąsiedniej świecić słońce. Tu zobaczysz pogodę na żywo, strefa po strefie."},
+    "tourMarT": {"es": "El mar hoy", "en": "The sea today", "fr": "La mer aujourd'hui", "de": "Das Meer heute", "it": "Il mare oggi", "nl": "De zee vandaag", "zh": "今日海况", "zht": "今日海況", "bg": "Морето днес", "pl": "Morze dzisiaj"},
+    "tourMarP": {"es": "El estado del mar en las {C} costas de la isla. Míralo antes de bañarte o de ir a una piscina natural.", "en": "Sea conditions on the island's {C} coasts. Check them before swimming or visiting a natural pool.", "fr": "L'état de la mer sur les {C} côtes de l'île. Consultez-le avant de vous baigner ou d'aller à une piscine naturelle.", "de": "Der Seegang an den {C} Küsten der Insel. Schau nach, bevor du baden gehst oder ein Naturschwimmbecken besuchst.", "it": "Lo stato del mare sulle {C} coste dell'isola. Controllalo prima di fare il bagno o di andare in una piscina naturale.", "nl": "De zeegang aan de {C} kusten van het eiland. Bekijk hem voordat je gaat zwemmen of naar een natuurlijk zwembad gaat.", "zh": "全岛{C}段海岸的海况。下海游泳或去天然泳池前先看一看。", "zht": "全島{C}段海岸的海況。下海游泳或去天然泳池前先看一看。", "bg": "Състоянието на морето по {C}-те брега на острова. Проверете го, преди да се къпете или да отидете до естествен басейн.", "pl": "Stan morza na {C} wybrzeżach wyspy. Sprawdź go przed kąpielą albo wyjściem na naturalny basen."},
+    "tourFiestasT": {"es": "Fiestas y tradiciones", "en": "Fiestas and traditions", "fr": "Fêtes et traditions", "de": "Feste und Traditionen", "it": "Feste e tradizioni", "nl": "Feesten en tradities", "zh": "节庆与传统", "zht": "節慶與傳統", "bg": "Празници и традиции", "pl": "Święta i tradycje"},
+    "tourFiestasP": {"es": "Romerías, carnavales y fiestas patronales, con sus fechas.", "en": "Pilgrimages, carnivals and patron saint festivals, with their dates.", "fr": "Pèlerinages, carnavals et fêtes patronales, avec leurs dates.", "de": "Wallfahrten, Karneval und Patronatsfeste, mit ihren Terminen.", "it": "Pellegrinaggi, carnevali e feste patronali, con le loro date.", "nl": "Bedevaarten, carnavals en patroonheiligenfeesten, met hun data.", "zh": "朝圣游行、狂欢节和主保圣人节，附有日期。", "zht": "朝聖遊行、狂歡節和主保聖人節，附有日期。", "bg": "Поклонения, карнавали и празници на светци покровители, с датите им.", "pl": "Pielgrzymki, karnawały i święta patronalne, z ich datami."},
+    "tourGuaguasT": {"es": "Guaguas", "en": "Buses", "fr": "Bus", "de": "Busse", "it": "Autobus", "nl": "Bussen", "zh": "公交", "zht": "公車", "bg": "Автобуси", "pl": "Autobusy"},
+    "tourGuaguasP": {"es": "Las paradas cercanas y las líneas de TITSA, para moverte sin coche.", "en": "Nearby stops and TITSA lines, so you can get around without a car.", "fr": "Les arrêts proches et les lignes TITSA, pour vous déplacer sans voiture.", "de": "Haltestellen in der Nähe und TITSA-Linien, damit du ohne Auto unterwegs bist.", "it": "Le fermate vicine e le linee TITSA, per muoverti senz'auto.", "nl": "Haltes in de buurt en TITSA-lijnen, om je zonder auto te verplaatsen.", "zh": "附近的站点和TITSA线路，没有车也能出行。", "zht": "附近的站牌和TITSA路線，沒有車也能出門。", "bg": "Близките спирки и линиите на TITSA, за да се придвижвате без кола.", "pl": "Pobliskie przystanki i linie TITSA, żeby poruszać się bez samochodu."},
+    "tourIdiomaT": {"es": "En tu idioma", "en": "In your language", "fr": "Dans votre langue", "de": "Deine Sprache", "it": "Nella tua lingua", "nl": "In jouw taal", "zh": "你的语言", "zht": "你的語言", "bg": "На вашия език", "pl": "W twoim języku"},
+    "tourIdiomaP": {"es": "Toda la app en {L} idiomas. Cámbialo aquí cuando quieras.", "en": "The whole app in {L} languages. Change it here anytime.", "fr": "Toute l'appli en {L} langues. Changez-la ici quand vous voulez.", "de": "Die ganze App in {L} Sprachen. Hier jederzeit umstellen.", "it": "Tutta l'app in {L} lingue. Cambiala qui quando vuoi.", "nl": "De hele app in {L} talen. Wijzig het hier wanneer je wilt.", "zh": "整个应用支持{L}种语言，可随时在这里切换。", "zht": "整個應用程式支援{L}種語言，可隨時在這裡切換。", "bg": "Цялото приложение на {L} езика. Сменете го тук по всяко време.", "pl": "Cała aplikacja w {L} językach. Zmień go tutaj, kiedy chcesz."},
+    "tourBarraT": {"es": "Tu barra de viaje", "en": "Your travel bar", "fr": "Votre barre de voyage", "de": "Deine Reiseleiste", "it": "La tua barra di viaggio", "nl": "Je reisbalk", "zh": "你的旅行栏", "zht": "你的旅行列", "bg": "Вашата лента за пътуване", "pl": "Twój pasek podróży"},
+    "tourBarraP": {"es": "Siempre a mano: favoritos, rutas para organizar tu día, la tienda, el asistente que contesta tus dudas y tu cuenta.", "en": "Always at hand: favourites, routes to plan your day, the shop, the assistant that answers your questions and your account.", "fr": "Toujours à portée de main : favoris, itinéraires pour organiser votre journée, la boutique, l'assistant qui répond à vos questions et votre compte.", "de": "Immer griffbereit: Favoriten, Routen, um deinen Tag zu planen, der Shop, der Assistent, der deine Fragen beantwortet, und dein Konto.", "it": "Sempre a portata di mano: preferiti, percorsi per organizzare la giornata, il negozio, l'assistente che risponde ai tuoi dubbi e il tuo account.", "nl": "Altijd bij de hand: favorieten, routes om je dag te plannen, de winkel, de assistent die je vragen beantwoordt en je account.", "zh": "随手可用：收藏、规划一天的路线、商店、为你解答疑问的助手，以及你的账户。", "zht": "隨手可用：收藏、規劃一天的路線、商店、為你解答疑問的助手，以及你的帳戶。", "bg": "Винаги под ръка: любими, маршрути за планиране на деня, магазинът, асистентът, който отговаря на въпросите ви, и вашият профил.", "pl": "Zawsze pod ręką: ulubione, trasy do zaplanowania dnia, sklep, asystent, który odpowiada na twoje pytania, i twoje konto."},
+    "tourLogrosT": {"es": "Logros", "en": "Achievements", "fr": "Succès", "de": "Erfolge", "it": "Traguardi", "nl": "Prestaties", "zh": "成就", "zht": "成就", "bg": "Постижения", "pl": "Osiągnięcia"},
+    "tourLogrosP": {"es": "Marca los lugares que visitas y desbloquea trofeos mientras exploras la isla.", "en": "Mark the places you visit and unlock trophies as you explore the island.", "fr": "Marquez les lieux que vous visitez et débloquez des trophées en explorant l'île.", "de": "Markiere die Orte, die du besuchst, und schalte Trophäen frei, während du die Insel entdeckst.", "it": "Segna i luoghi che visiti e sblocca trofei mentre esplori l'isola.", "nl": "Markeer de plekken die je bezoekt en ontgrendel trofeeën terwijl je het eiland verkent.", "zh": "标记去过的地点，在探索全岛的同时解锁奖杯。", "zht": "標記去過的地點，在探索全島的同時解鎖獎盃。", "bg": "Отбелязвайте местата, които посещавате, и отключвайте трофеи, докато опознавате острова.", "pl": "Zaznaczaj odwiedzone miejsca i odblokowuj trofea, odkrywając wyspę."},
+    "tourMarcadoresT": {"es": "Toca los marcadores", "en": "Tap the markers", "fr": "Touchez les marqueurs", "de": "Tippe auf die Marker", "it": "Tocca i marcatori", "nl": "Tik op de markers", "zh": "点按地图标记", "zht": "點按地圖標記", "bg": "Докоснете маркерите", "pl": "Dotykaj znaczników"},
+    "tourMarcadoresP": {"es": "Cada uno te dice qué es, su horario si lo tiene y cómo llegar en coche o en guagua; en la costa, también el estado del mar. Este tour está siempre en la leyenda del mapa. ¡La isla es tuya!", "en": "Each one tells you what it is, its opening hours if it has them and how to get there by car or bus; on the coast, the sea conditions too. This tour is always in the map legend. The island is yours!", "fr": "Chacun vous dit ce que c'est, ses horaires s'il en a et comment y aller en voiture ou en bus ; sur la côte, l'état de la mer aussi. Ce tour se trouve toujours dans la légende de la carte. L'île est à vous !", "de": "Jeder zeigt dir, was es ist, die Öffnungszeiten, falls es welche gibt, und wie du mit dem Auto oder Bus hinkommst; an der Küste auch den Seegang. Diese Tour findest du immer in der Kartenlegende. Die Insel gehört dir!", "it": "Ognuno ti dice cos'è, l'orario se ce l'ha e come arrivarci in auto o in autobus; sulla costa, anche lo stato del mare. Questo tour è sempre nella legenda della mappa. L'isola è tua!", "nl": "Elke marker vertelt je wat het is, de openingstijden als die er zijn en hoe je er met de auto of de bus komt; aan de kust ook de zeegang. Deze tour staat altijd in de legenda van de kaart. Het eiland is van jou!", "zh": "每个标记都会告诉你这是什么地方、营业时间（如有）以及开车或乘公交怎么去；海边的地点还会显示海况。这个导览随时可以在地图图例中找到。整座岛都是你的！", "zht": "每個標記都會告訴你這是什麼地方、營業時間（如有）以及開車或搭公車怎麼去；海邊的地點還會顯示海況。這個導覽隨時可以在地圖圖例中找到。整座島都是你的！", "bg": "Всеки ви казва какво е, работното време, ако има такова, и как да стигнете с кола или автобус; на брега — и състоянието на морето. Тази обиколка е винаги в легендата на картата. Островът е ваш!", "pl": "Każdy powie ci, co to za miejsce, w jakich godzinach jest otwarte, jeśli ma godziny, i jak dojechać samochodem lub autobusem; na wybrzeżu także stan morza. Ten przewodnik znajdziesz zawsze w legendzie mapy. Wyspa jest twoja!"}
+  });
 
   // Pasos: selector real de la UI + radio del recorte. sel:null = centrado.
   var STEPS = [
-    { sel: '#search-input-wrap', r: 24 },
-    { sel: '#category-btn',      r: 18 },
-    { sel: '#dice-btn',          r: 18 },
-    { sel: '#layers-btn',        r: 18 },
-    { sel: '#mc-btn',            r: 18 },
-    { sel: '#mar-btn',           r: 18 },
-    { sel: '#fi-btn',            r: 18 },
-    { sel: '#bus-quick-btn',     r: 18 },
-    { sel: '#lang-btn',          r: 18 },
-    { sel: '.v19-bottom-nav',    r: 20, pad: 5 },
-    { sel: '.tg-trophy-fab',     r: 18 },
-    { sel: null }
+    { sel: '#search-input-wrap', r: 24, ico: '🔎', k: 'tourBuscar' },
+    { sel: '#category-btn',      r: 18, ico: '🧭', k: 'tourCat' },
+    { sel: '#dice-btn',          r: 18, ico: '🎲', k: 'tourDado' },
+    { sel: '#gas-top-btn',       r: 18, ico: '⛽', k: 'tourGas', nuevo: true },
+    { sel: '#layers-btn',        r: 18, ico: '🗺️', k: 'tourMapa' },
+    { sel: '#mc-btn',            r: 18, ico: '🌦️', k: 'tourMicro' },
+    { sel: '#mar-btn',           r: 18, ico: '🌊', k: 'tourMar' },
+    { sel: '#fi-btn',            r: 18, ico: '🎉', k: 'tourFiestas' },
+    { sel: '#bus-quick-btn',     r: 18, ico: '🚌', k: 'tourGuaguas' },
+    { sel: '#lang-btn',          r: 18, ico: '🌐', k: 'tourIdioma' },
+    { sel: '.v19-bottom-nav',    r: 20, pad: 5, ico: '🧳', k: 'tourBarra' },
+    { sel: '.tg-trophy-fab',     r: 18, ico: '🏆', k: 'tourLogros' },
+    { sel: null,                        ico: '📍', k: 'tourMarcadores' }
   ];
+
+  /* Lo que se cuenta no se escribe: si cambia el numero de lugares, de
+     idiomas o de costas, el tour lo dice solo. */
+  function cifras() {
+    var c = { n: 0, L: 0, C: 0, S: STEPS.length };
+    try { c.n = places.length; } catch (e) {}
+    try { c.L = nIdiomasListos(); } catch (e) {}
+    try { c.C = window.TGO_MAR.costas.length; } catch (e) {}   // la unica salida del bloque del mar
+    return c;
+  }
+  function T(clave) { return tx(clave, cifras()); }
+
   var idx = 0;
-  var backBtn = null;
-  var root = null, hole, card, h3, p, dots, skipBtn, nextBtn, promptEl = null;
+  var root = null, hole, card, cuerpo, ico, nuevoEl, num, h3, p, barra, skipBtn, backBtn, nextBtn, promptEl = null;
 
   function el(tag, cls) { var n = document.createElement(tag); if (cls) n.className = cls; return n; }
   function q(sel) { try { return sel ? document.querySelector(sel) : null; } catch (e) { return null; } }
@@ -23496,51 +23601,63 @@ window.addEventListener('hashchange', () => {
     root = el('div'); root.id = 'v19-tour';
     root.setAttribute('role', 'dialog');
     root.setAttribute('aria-modal', 'true');
-    root.setAttribute('aria-label', 'Tour');
     hole = el('div', 'v19t-hole');
     card = el('div', 'v19t-card');
+    barra = el('div', 'v19t-barra'); barra.appendChild(el('i'));
+    cuerpo = el('div', 'v19t-cuerpo');
+    cuerpo.setAttribute('aria-live', 'polite');
+    var cab = el('div', 'v19t-cab');
+    ico = el('span', 'v19t-ico'); ico.setAttribute('aria-hidden', 'true');
+    nuevoEl = el('span', 'v19t-nuevo');
+    num = el('span', 'v19t-num');
+    cab.appendChild(ico); cab.appendChild(nuevoEl); cab.appendChild(num);
     h3 = el('h3'); p = el('p');
+    cuerpo.appendChild(cab); cuerpo.appendChild(h3); cuerpo.appendChild(p);
     var foot = el('div', 'v19t-foot');
-    dots = el('div', 'v19t-dots');
-    for (var i = 0; i < STEPS.length; i++) dots.appendChild(el('i'));
     var btns = el('div', 'v19t-btns');
     skipBtn = el('button', 'v19t-skip'); skipBtn.type = 'button';
     backBtn = el('button', 'v19t-back'); backBtn.type = 'button';
     nextBtn = el('button', 'v19t-next'); nextBtn.type = 'button';
-    btns.appendChild(skipBtn); btns.appendChild(backBtn); btns.appendChild(nextBtn);
-    foot.appendChild(dots); foot.appendChild(btns);
-    card.appendChild(h3); card.appendChild(p); card.appendChild(foot);
+    btns.appendChild(backBtn); btns.appendChild(nextBtn);
+    foot.appendChild(skipBtn); foot.appendChild(btns);
+    card.appendChild(barra); card.appendChild(cuerpo); card.appendChild(foot);
     root.appendChild(hole); root.appendChild(card);
     document.body.appendChild(root);
 
     skipBtn.addEventListener('click', endTour);
     nextBtn.addEventListener('click', next);
-    backBtn.addEventListener('click', function () { if (idx > 0) { idx--; place(idx); } });
+    backBtn.addEventListener('click', back);
     window.addEventListener('resize', function () {
-      if (root.classList.contains('open')) place(idx);
+      if (root.classList.contains('open')) place(idx, true);
     });
     document.addEventListener('keydown', function (e) {
-      if (root.classList.contains('open') && e.key === 'Escape') endTour();
+      if (!root.classList.contains('open')) return;
+      if (e.key === 'Escape') endTour();
+      else if (e.key === 'ArrowRight') next();
+      else if (e.key === 'ArrowLeft') back();
     });
   }
 
-  function place(i) {
-    var st = STEPS[i], L = LT();
-    /* «Toda la app en 9 idiomas» estaba escrito a mano en los diez idiomas y
-       en los diez se habria quedado en 9 al entrar el polaco. El numero se
-       cuenta, no se escribe: {L} son los idiomas TERMINADOS, y el dia que el
-       polaco deje de estar en IDIOMAS_INCOMPLETOS los diez textos se
-       corrigen solos. */
-    var nIdiomas = nIdiomasListos();
-    h3.textContent = String(L.steps[i][0]).replace('{L}', nIdiomas);
-    p.textContent  = String(L.steps[i][1]).replace('{L}', nIdiomas);
-    skipBtn.textContent = L.skip;
-    // Retroceso: se oculta en el primer paso, no hay a donde volver
-    backBtn.textContent = L.back || 'Atras';
+  function place(i, sinAnimar) {
+    var st = STEPS[i];
+    root.setAttribute('aria-label', T(st.k + 'T'));
+    ico.textContent = st.ico;
+    nuevoEl.textContent = T('tourNuevo');
+    nuevoEl.style.display = st.nuevo ? '' : 'none';
+    num.textContent = (i + 1) + '/' + STEPS.length;
+    h3.textContent = T(st.k + 'T');
+    p.textContent = T(st.k + 'P');
+    skipBtn.textContent = T('tourSaltar');
+    // en el ultimo paso no hay nada que saltar, y con el hueco ocupado «Los
+    // geht's!» se partia en dos lineas en un movil de 320 px
+    skipBtn.style.display = (i === STEPS.length - 1) ? 'none' : '';
+    backBtn.textContent = T('tourAtras');
     backBtn.style.display = (i === 0) ? 'none' : '';
-    nextBtn.textContent = (i === STEPS.length - 1) ? L.done : L.next;
-    for (var j = 0; j < dots.children.length; j++) {
-      dots.children[j].className = (j === i) ? 'on' : '';
+    nextBtn.textContent = (i === STEPS.length - 1) ? T('tourAExplorar') : T('tourSiguiente');
+    barra.firstChild.style.width = Math.round((i + 1) / STEPS.length * 100) + '%';
+    if (!sinAnimar) {
+      // la entrada se repite en cada paso: se quita la clase y se vuelve a poner
+      cuerpo.classList.remove('v19t-entra'); void cuerpo.offsetWidth; cuerpo.classList.add('v19t-entra');
     }
     var t = q(st.sel);
     card.classList.remove('center');
@@ -23554,12 +23671,19 @@ window.addEventListener('hashchange', () => {
       hole.style.width = (r.width + pad * 2) + 'px';
       hole.style.height = (r.height + pad * 2) + 'px';
       hole.style.borderRadius = (st.r || 14) + 'px';
-      if (r.top < window.innerHeight * 0.5) {
-        card.style.top = Math.min(r.bottom + pad + 16, window.innerHeight - 230) + 'px';
-      } else {
-        card.style.bottom = (window.innerHeight - r.top + pad + 16) + 'px';
-      }
+      /* Debajo del boton si esta arriba, encima si esta abajo, y SIEMPRE
+         dentro de la pantalla. Antes se media contra 230 px fijos; con los
+         textos de ahora, mas explicitos, la tarjeta podia salirse por abajo. */
+      var alto = card.offsetHeight, H = window.innerHeight, m = 10;
+      var top = (r.top < H * 0.5) ? r.bottom + pad + 14 : r.top - pad - 14 - alto;
+      card.style.top = Math.max(m, Math.min(top, H - alto - m)) + 'px';
     } else {
+      /* Sin boton que señalar, el foco se recoge en el centro. Hay que quitar
+         lo que dejo el paso anterior: la clase «none» pone ancho y alto 0,
+         pero el estilo en linea manda, y el tour de antes dejaba el hueco del
+         paso 12 abierto en el 13 (los trofeos, sin oscurecer, detras de la
+         tarjeta). */
+      hole.style.left = hole.style.top = hole.style.width = hole.style.height = '';
       hole.className = 'v19t-hole none';
       card.classList.add('center');
     }
@@ -23571,6 +23695,7 @@ window.addEventListener('hashchange', () => {
     place(idx);
     try { nextBtn.focus({ preventScroll: true }); } catch (e) {}
   }
+  function back() { if (idx > 0) { idx--; place(idx); } }
   function endTour() {
     markSeen();
     if (root) root.classList.remove('open');
@@ -23586,16 +23711,17 @@ window.addEventListener('hashchange', () => {
 
   function showPrompt() {
     if (tourSeen() || promptEl) return;
-    var L = LT();
+    var vuelve = visto() > 0;   // vio un tour anterior: se le ofrece como novedades
     promptEl = el('div', 'v19t-prompt');
     promptEl.setAttribute('role', 'dialog');
     promptEl.setAttribute('aria-modal', 'true');
     var c = el('div', 'v19t-card');
-    var t = el('h3'); t.textContent = L.pt;
-    var b = el('p'); b.textContent = L.pb;
+    if (vuelve) { var nv = el('span', 'v19t-nuevo'); nv.textContent = T('tourNuevo'); c.appendChild(nv); }
+    var t = el('h3'); t.textContent = T(vuelve ? 'tourNovT' : 'tourPregT');
+    var b = el('p'); b.textContent = T(vuelve ? 'tourNovP' : 'tourPregP');
     var row = el('div', 'v19t-row');
-    var no = el('button', 'v19t-ghost'); no.type = 'button'; no.textContent = L.no;
-    var yes = el('button', 'v19t-next'); yes.type = 'button'; yes.textContent = L.yes;
+    var no = el('button', 'v19t-ghost'); no.type = 'button'; no.textContent = T('tourAhoraNo');
+    var yes = el('button', 'v19t-next'); yes.type = 'button'; yes.textContent = T('tourVer');
     row.appendChild(no); row.appendChild(yes);
     c.appendChild(t); c.appendChild(b); c.appendChild(row);
     promptEl.appendChild(c);
@@ -23617,10 +23743,10 @@ window.addEventListener('hashchange', () => {
     if (tourSeen()) return;
     setTimeout(showPrompt, 450);
   };
-  // Relanzar manualmente (p. ej. desde consola o un futuro botón de ayuda)
+  // Relanzar a mano: el boton «✦ Ver el tour» de la leyenda del mapa
   window.v19StartTour = startTour;
 
-  // Usuarios existentes: bienvenida ya vista pero tour no -> ofrecer al cargar
+  // Usuarios existentes: bienvenida ya vista pero este tour no -> ofrecer al cargar
   function initOffer() {
     if (tourSeen()) return;
     var ws = false;
@@ -26685,7 +26811,10 @@ const CHAT_KB = [
 
   // ═══ AYUDA DE LA APP ═══
   { keys:['ayuda','como funciona','manual','instrucciones','tutorial','que sabes hacer','guia de la app'],
-    answer:'ℹ️ Tenerife GO en 30 segundos:\n• Mapa con 700+ lugares: toca un pin y verás su ficha completa\n• Arriba: buscador 🔍, filtros por categoría, dado 🎲 «Sorpréndeme» e idioma 🌐\n• Abajo: Favoritos ❤️, Rutas 🧭, Tienda 🛍️, este Asistente 💬 y tu Cuenta 👤\n• En cada ficha: clima actual, audio 🔊, compartir, favorito y «Cómo llegar en bus» 🚏\nPregúntame por cualquier función y te la explico al detalle.',
+    /* 11 de octubre de 2026: decia «700+ lugares» y «en cada ficha: clima actual, audio». El tiempo
+       del sitio solo sale en la costa (el mar, el viento, el UV) y la ficha no lleva audio. Ahora dice
+       lo mismo que el tour, que se comprobo boton por boton. */
+    answer:'ℹ️ Tenerife GO, en pocas palabras:\n• El mapa: toca un pin y verás qué es, su horario si lo tiene y cómo llegar en coche o en guagua; en la costa, también el estado del mar\n• Arriba: el dado 🎲 «Sorpréndeme», la gasolinera más barata cerca de ti ⛽, el tiempo por zonas, el mar, las fiestas, las guaguas y el idioma 🌐\n• A los lados: el buscador 🔍 y los filtros por categoría\n• Abajo: Favoritos ❤️, Rutas 🧭, Tienda 🛍️, este Asistente 💬 y tu Cuenta 👤\n• El tour de la app está siempre en la leyenda del mapa (✦ Ver el tour)\nPregúntame por cualquier función y te la explico al detalle.',
     follow:['Cómo guardar favoritos','Modo sin conexión','Planificador de día'] },
 
   { keys:['favorito','favoritos','corazon','guardar','guardo','me gusta','lista de lugares'],

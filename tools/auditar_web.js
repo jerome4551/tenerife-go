@@ -928,7 +928,7 @@ function revisar(tablas, o) {
     const conContador = src.replace(MARCA, MARCA + ' window.__rehechos = (window.__rehechos || 0) + 1;');
     await p2.route('**/index.html', r => r.fulfill({ status: 200, contentType: 'text/html; charset=utf-8', body: conContador }));
     await p2.addInitScript(l => {
-      try { localStorage.setItem('tg_lang', l); localStorage.setItem('tenerife.tour.seen', '1'); } catch (e) {}
+      try { localStorage.setItem('tg_lang', l); localStorage.setItem('tenerife.tour.seen', '99'); } catch (e) {}
     }, lang);
     await p2.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'load', timeout: 60000 });
     // los precios llegan a los 1,5 s, las etiquetas y los textos por red
