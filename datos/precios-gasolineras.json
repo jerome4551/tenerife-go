@@ -6,9 +6,9 @@
   "La app no ensena estos precios si «fecha» tiene mas de 2 dias."
  ],
  "fuente": "Ministerio para la Transicion Ecologica y el Reto Demografico, Geoportal de Gasolineras",
- "fecha": "2026-10-11T07:16:44Z",
- "fecha_ministerio": "11/10/2026 9:16:44",
- "franja": "2026-10-11 07:00",
+ "fecha": "2026-10-11T14:07:04Z",
+ "fecha_ministerio": "11/10/2026 16:07:04",
+ "franja": "2026-10-11 15:00",
  "municipios": {
   "Adeje": {
    "gasolineras": 14,
@@ -603,10 +603,6 @@
    "g95": 1.638,
    "diesel": 1.719
   },
-  "gas-10214-los-realejos": {
-   "g95": 1.558,
-   "diesel": 1.719
-  },
   "gas-10219-santa-cruz-de-tenerife": {
    "g95": 1.599,
    "diesel": 1.739
@@ -632,8 +628,8 @@
    "diesel": 1.699
   },
   "gas-10633-san-miguel-de-abona": {
-   "g95": 1.579,
-   "diesel": 1.719
+   "g95": 1.589,
+   "diesel": 1.729
   },
   "gas-10635-arafo": {
    "g95": 1.559,
@@ -677,7 +673,7 @@
   },
   "gas-11394-santa-cruz-de-tenerife": {
    "g95": 1.639,
-   "diesel": 1.749
+   "diesel": 1.759
   },
   "gas-11525-adeje": {
    "g95": 1.588,
@@ -967,8 +963,8 @@
    "diesel": 1.719
   },
   "gas-7713-santa-cruz-de-tenerife": {
-   "g95": 1.589,
-   "diesel": 1.739
+   "g95": 1.599,
+   "diesel": 1.729
   },
   "gas-7718-fasnia": {
    "g95": 1.579,
