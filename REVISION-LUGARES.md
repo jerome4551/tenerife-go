@@ -1,6 +1,6 @@
 # Revisión de los 787 lugares
 
-**27 de septiembre de 2026.** Generado con `node tools/informe_lugares.js`.
+**11 de octubre de 2026.** Generado con `node tools/informe_lugares.js`.
 Barre los 787, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
@@ -21,8 +21,8 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 69 respuestas x 10 idiomas = 690, y se llega a las 690 desde el buscador del asistente. |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 146 verificadas con su fuente · 641 sin mirar · 29 puestas a ojo · 16 redondas a proposito |
-| `municipio_de_cada_ficha` | **cerrado** | 520 declaran municipio, 475 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno. 0 contradicciones y 0 municipios fue |
+| `coordenadas` | abierto | 157 verificadas con su fuente · 817 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
+| `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
 | `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
 
 **Lo único que queda por hacer está en el área abierta que queda:**
@@ -69,12 +69,10 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 **`mapa_sin_conexion`** · 2026-09-12
 - resultado: 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red.
 
-**`municipio_de_cada_ficha`** · 2026-09-25
-- qué se hizo: Cruce de lo que cada ficha declara con el municipio de las paradas de TITSA de alrededor, sobre los 787.
-- **el techo**: El poligono municipal del Cabildo YA ESTA en el repositorio (tools/datos/municipios-tenerife-2015.shp.zip, entregado el 27 de septiembre). La comprobacion es point-in-polygon exacto, no una aproximacion. Calibrado contra las 2.514 paradas de TITSA: coincide en 2.514, el 100,00 %. La unica trampa del fichero es que el anillo de La Laguna envuelve a Tegueste sin recortarle el hueco; se resuelve con «si un punto cae en varios, gana el mas pequeño», que es lo que pasa siempre con un enclave.
-- resultado: 520 declaran municipio, 475 comprobados, 45 sin paradas suficientes, 267 no declaran ninguno. 0 contradicciones y 0 municipios fuera de sitio en firme.
-- lo único que quedó abierto de esta área:
-  - 5 fichas en el borde municipal: se avisan y no suspenden, porque en un limite las paradas se mezclan y un control que cante en cada borde se acaba ignorando. Son mir-la-corona-guimar, mir-lomo-molino, montana-taco, playa-caleton-sauzal y pr-tf-52-monte-agua.
+**`municipio_de_cada_ficha`** · 2026-09-28
+- qué se hizo: Point-in-polygon de cada ficha contra el poligono municipal del Cabildo (tools/datos/municipios-tenerife-2015.shp.zip), no contra las paradas de alrededor.
+- **el techo**: El poligono municipal del Cabildo YA ESTA en el repositorio (tools/datos/municipios-tenerife-2015.shp.zip, entregado el 27 de septiembre). La comprobacion es point-in-polygon exacto, no una aproximacion. Calibrado contra las 2.514 paradas de TITSA: coincide en 2.514, el 100,00 %. La unica trampa del fichero es que el anillo de La Laguna envuelve a Tegueste sin recortarle el hueco; se resuelve con «si un punto cae en varios, gana el mas pequeño», que es lo que pasa siempre con un enclave. Lo que el poligono NO puede decidir: las fichas que nombran una ZONA de varios municipios («Las Americas», «Teno»). Esas se cuentan y se listan aparte, sin pasar ni fallar.
+- resultado: Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se queda viejo al dia siguiente.
 
 **`lugares_en_el_mar`** · 2026-09-26
 - qué se hizo: Las 6 fichas que caian fuera de tierra se cerraron una a una. Cuatro con una coordenada de fuente (Wikidata, Wikipedia, la ficha oficial de la playa, el propio OSM del repositorio), una por la regla de aparcamientos y una -whale-watching- exenta por id con su motivo escrito. De paso, puerto-colon-adeje estaba 150 m en mar abierto, no en la darsena, y la exencion por categoria lo tapaba: movido al punto de la marina en OSM.
@@ -93,8 +91,8 @@ parecía que todo fallaba siempre.
 
 | | fichas |
 |---|---|
-| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **146** |
-| Coordenada nunca comprobada por nadie | **641** |
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **157** |
+| Coordenada nunca comprobada por nadie | **817** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
 todavía.** Son dos cosas distintas y este informe no las mezcla.
@@ -116,9 +114,12 @@ De dónde viene cada una:
 | `alcala` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `almaciga` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
 | `ar-la-quebrada` | 2026-09-25 | Parche municipios-bloque1-B (sha256 cf3094e6...). Tenerife ON (Cabildo de Tenerife), ficha oficial del area recreativa: enlace de acceso 28.532069688519, -16.300710533935. Acceso por el Camino de El Batan (TF-143), km 0,4, Cruce El Moquinal. Se mueve 4.068 m desde el punto viejo, que caia en un barrio de La Laguna. |
+| `ar-las-lajas` | 2026-09-28 | Cabildo de Tenerife, Tenerife ON, enlace «Acceso» de la ficha del area recreativa: tenerifeon.es/equipamientos/area-recreativa/las-lajas. Aportada por Jerome el 28 de septiembre de 2026. |
 | `bano-valleseco-bloque` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas] |
 | `benijo` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
+| `bici-puerto-pico-ingles` | 2026-10-11 | La subida acaba en el Mirador Pico del Inglés: el mismo punto oficial de Turismo de Tenerife (UTM huso 28 X 376352 Y 3156846 -> 28.5325194, -16.2637869). Aportada por Jerome el 11 de octubre de 2026. |
 | `bollullo` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `camping-las-lajas` | 2026-09-28 | Cabildo de Tenerife, Tenerife ON, enlace «Acceso» de la ficha de la zona de acampada: tenerifeon.es/equipamientos/zona-de-acampada/las-lajas. Aportada por Jerome el 28 de septiembre de 2026. |
 | `charco-abrigos` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `charco-archile` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
 | `charco-chochos` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -138,18 +139,24 @@ De dónde viene cada una:
 | `el-medano` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `el-pris` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `ermita-san-telmo` | 2026-09-26 | Wikidata Q2220075 (Ermita de San Telmo): 28.417550,-16.545617 = 28°25′03.18″N 16°32′44.22″O. En tierra, a 18,0 m del borde, asi que se usa tal cual sin empujar. Se mueve 155 m al este del pin viejo, que estaba 18,6 m mar adentro. CONTROL DE SENSATEZ: pasa la primera condicion -a 90 m de la «Playa de San Telmo» del extracto, limite 150- y NO se pudo evaluar la segunda como estaba escrita: el «Paseo de San Telmo» no esta en el extracto como via, sino como UN PUNTO de rotulo, y a ese punto hay 218 m. Un paseo maritimo reducido a un punto no dice a que distancia esta su recorrido. Lo que si hay al lado del punto: una zona peatonal a 31 m y la «Avenida Cristobal Colon» a 98 m, que son ese mismo paseo. |
+| `escal-guaria` | 2026-09-28 | theCrag.com, escuela «Guaria»: ubicacion central de las paredes, dentro del Monumento Natural de la Montana de Tejina. Aportada por Jerome el 28 de septiembre de 2026 junto con el aparcamiento de Acojeja (28.196091,-16.763203) y el inicio del sendero (28.197601,-16.760102). |
 | `fanabe` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `faro-santa-cruz-puerto` | 2026-09-26 | Wikidata Q5966669 (La Farola del Mar): 28.469439,-16.245831 = 28°28′09.98″N 16°14′44.99″O. La misma ficha da el elemento de OSM: way 193798986. Esa coordenada cae en el AGUA contra la capa earth a z14 -7,6 m del borde-, asi que se aplico la regla del dueño: empujar hasta 5 m tierra adentro sin moverse mas de 15. Dentro de esos 15 m el mejor margen alcanzable es 4,78 m, y se alcanza justo en el tope: 15,00 m de empuje. El resultado esta en tierra con 4,78 m de margen, a 15 m de la coordenada de Wikidata y a 4,7 m del pin anterior (que salia de la lista de Wikipedia). Las tres referencias -Wikidata, Wikipedia y la foto de Commons- difieren hasta 30 m entre si, asi que el empuje cae dentro de la incertidumbre del propio dato. CUANDO HAYA OVERPASS: leer el way 193798986 y usar su geometria. |
+| `gas-tf82-guia-isora` | 2026-10-03 | Registro del MITECO, IDEESS 9176 (Shell · Avenida Isora). Regla del LEEME de gasolineras: misma marca a 150-300 m -> coordenada del registro. Antes 28.2137, -16.7829, a 166 m. |
 | `golf-amarilla` | 2026-09-27 | OSM del repositorio: «Amarilla Golf» (golf_course), el UNICO con ese nombre en toda la isla, y cae en San Miguel de Abona, que es lo que dice la ficha (tools/municipio_raya.py: 13 de 14 paradas sin raya en medio, todas de San Miguel). El pin redondo estaba a 1.919 m. |
 | `golf-del-sur` | 2026-09-19 | OpenStreetMap, golf_course «Golf del Sur» |
+| `hiperdino-los-realejos` | 2026-09-29 | SuperDino, ficha de la propia empresa en Google: «SuperDino Los Realejos, Pl. Mencey Bencomo, s/n, 38410 Los Realejos», tel. 922 44 16 81. Captura de Jerome del 29 de septiembre de 2026. El elemento de OSM (node/8428054218) esta a 27 m de la Plaza Mencey Bencomo. |
 | `las-vistas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `lidl-granadilla` | 2026-09-29 | Lidl, ficha de la propia empresa en Google: «Av. de la Democracia, S/N, 38611 San Isidro». Captura de Jerome del 29 de septiembre de 2026. La descripcion de la ficha ya nombraba esa avenida, y el elemento de OSM (area/462719671) esta a 70 m de ella. |
+| `lidl-la-laguna` | 2026-09-29 | Lidl, ficha de la propia empresa en Google: «Calle Ntra. Sra. de la Ternura, 1, 38108 La Laguna». Captura de Jerome del 29 de septiembre de 2026. El elemento de OSM esta a 29 m de esa calle. |
 | `lidl-puerto-cruz` | 2026-09-26 | OSM del repositorio: el unico Lidl a menos de 2,5 km, a 81 m de la «Carretera Gral. Icod-Santa Cruz». La direccion del establecimiento es Ctra. General Icod-Santa Cruz s/n, via de servicio Las Arenas, 38400 Puerto de la Cruz, y el edificio en OSM lleva esa misma direccion. El municipio lo confirma tools/municipio_raya.py: 8 paradas sin raya en medio, todas de Puerto de la Cruz. Esta pegado a la raya con La Orotava y hay directorios que lo situan alli; manda la direccion postal. |
 | `lidl-santa-cruz` | 2026-09-19 | OpenStreetMap, supermarket «Lidl», el mas cercano al centro |
 | `mercadillo-la-victoria` | 2026-09-25 | Parche municipios-bloque1-B, metodo DERIVADO (no hay coordenada publicada). Punto medio entre «Casa de la Castana» (museo, OSM, 28.432695,-16.471387) y «Terrero Municipal de Lucha y Deportes» (OSM, 28.433360,-16.471129), separados 78 m, que es como el Ayuntamiento situa el mercadillo. Los tres pasos del parche se resolvieron con el OSM del propio repositorio (tools/osm_cerca.py) porque Overpass esta cerrado desde aqui: paso 1 exactamente 1 elemento, paso 2 ningun amenity=marketplace a 250 m (y 15 en toda la isla, asi que el extracto no los filtra), paso 3 exactamente 1. Se mueve 2.109 m. DERIVADO, no medido: si aparece la coordenada publicada, se cambia. |
 | `mercadona-granadilla` | 2026-09-27 | OSM del repositorio: «Mercadona» (supermarket), el unico de esa marca en 6 km, y cae en Granadilla de Abona como dice la ficha (14 paradas sin raya en medio, todas de Granadilla). El pin redondo estaba a 1.028 m. |
 | `mesa-mar` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
-| `mirador-pico-ingles` | 2026-09-27 | OSM del repositorio: el pico «Pico del Inglés» (peak), a 59 m de la coordenada redonda anterior. El mirador esta en el pico; el pico es el unico con ese nombre en el extracto. |
+| `mirador-pico-ingles` | 2026-10-11 | Turismo de Tenerife, Mirador Pico del Inglés: UTM huso 28 X 376352 Y 3156846. Pasado a WGS84 con pyproj (EPSG:32628 y EPSG:4083 dan lo mismo): 28.5325194, -16.2637869. Aportada por Jerome el 11 de octubre de 2026. Sustituye al pico «Pico del Inglés» de OSM, que esta a 116 m. |
 | `montana-amarilla` | 2026-09-27 | OSM del repositorio: «Monumento Natural de Montaña Amarilla» (nature_reserve), a 71 m de la coordenada redonda anterior. Unico con ese nombre en el extracto. |
+| `montana-taco` | 2026-09-28 | Wikipedia en español, «Montaña de Taco (embalse)», coordenadas del articulo 28 22 26 N 16 50 01 O. Aportada por Jerome el 28 de septiembre de 2026. |
 | `nucleo-costa-adeje` | 2026-09-19 | OpenStreetMap, neighbourhood «Costa Adeje» |
 | `nucleo-los-gigantes` | 2026-09-19 | OpenStreetMap, neighbourhood «Los Gigantes» |
 | `nucleo-playa-san-juan` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -228,6 +235,8 @@ De dónde viene cada una:
 | `san-juan` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `san-marcos` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `sendero-roque-bodegas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `sendero-roque-conde` | 2026-09-28 | Ayuntamiento de Adeje, costa-adeje.es/es/naturaleza/roque-del-conde: «Inicio: Calle Vento (Arona)». Coordenada publicada por el propio ayuntamiento. |
+| `super-mercadona-tacoronte` | 2026-09-28 | Jerome, 28 de septiembre de 2026: captura de Google Street View (junio de 2026) con el rotulo de MERCADONA y la entrada a la vista, coordenada del propio visor 28 28 43.0 N 16 24 47.7 W. Coincide a 1,2 m con el nodo de OSM node/903016696. |
 | `surf-almaciga` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
 | `surf-benijo` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
 | `surf-bollullo` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -257,7 +266,7 @@ Y no hace falta acordarse de apuntarlas: `tools/fijar_coordenada.py` escribe
 el apunte solo cuando aplica una coordenada, con la fuente que se le pase
 detrás de la `#`. Si no se le da fuente, avisa de que no la apunta.
 
-### De dónde salen las 146
+### De dónde salen las 157
 
 No se han inventado: se han sacado de los ficheros de fuente que ya se
 habían entregado y aplicado, y **se ha comprobado que la coordenada de hoy
@@ -311,15 +320,15 @@ menos preciso de cada ficha. Es la cuenta entera de los 787, no un umbral:
 | decimales | cuadrícula | fichas |
 |---|---|---|
 | 1 | ~11 km | **2** |
-| 2 | ~1,1 km | **30** |
-| 3 | ~110 m | **134** |
-| 4 | ~11 m | **554** |
-| 5 | ~1 m | **18** |
-| 6 | ~10 cm | **23** |
+| 2 | ~1,1 km | **29** |
+| 3 | ~110 m | **139** |
+| 4 | ~11 m | **556** |
+| 5 | ~1 m | **39** |
+| 6 | ~10 cm | **183** |
 | 7 | ~1 cm | **25** |
 | 15 |  | **1** |
 
-**16 son redondas a propósito**: su coordenada es un rótulo, no una
+**15 son redondas a propósito**: su coordenada es un rótulo, no una
 posición. El Parque Rural de Anaga son 14.419 hectáreas y la Caldera de Las
 Cañadas tiene 16 km de diámetro; un sendero es un recorrido. Están declaradas
 una a una con su motivo en `coordenada_de_zona`, y no se vuelven a pedir:
@@ -332,7 +341,6 @@ una a una con su motivo en `coordenada_de_zona`, y no se vuelven a pedir:
 - `corona-forestal` — Parque Natural Corona Forestal, el mayor espacio protegido de Canarias.
 - `deporte-costa-adeje-paseo` — Paseo maritimo con aparatos repartidos a lo largo.
 - `escal-canada-capricho` — Zona de escalada: varias vias en un sector.
-- `escal-guaria` — Zona de escalada: varias vias en un sector.
 - `gr131-tramo1-esperanza-caldera` — Tramo de un GR: un recorrido de kilometros.
 - `kayak-punta-teno` — Tramo de costa, no un embarcadero concreto.
 - `lajiales-fasnia` — Malpais: una extension.
@@ -341,19 +349,17 @@ una a una con su motivo en `coordenada_de_zona`, y no se vuelven a pedir:
 - `riscos-chio` — Paisaje volcanico: una extension, no un punto.
 - `sendero-la-orotava` — Un sendero es un recorrido.
 
-**29 fichas tienen los dos ejes con 3 decimales o menos**: eso no es una
+**21 fichas tienen los dos ejes con 3 decimales o menos**: eso no es una
 coordenada sacada de una fuente, es un marcador puesto a ojo. Que los dos
 caigan a la vez por casualidad es una entre un millón.
 
-### Las 12 peores: algún eje con 2 decimales o menos (~1,1 km)
+### Las 10 peores: algún eje con 2 decimales o menos (~1,1 km)
 
 | id | qué es | escrita | municipio |
 |---|---|---|---|
 | `ar-las-hayas` | Área Recreativa Las Hayas | 28.3500, -16.6900 | Icod de los Vinos |
 | `buceo-los-gigantes` | 🤿 Buceo Los Gigantes — Diving Centre | 28.2440, -16.8400 | Santiago del Teide |
-| `gas-tf1-candelaria` | Cepsa Candelaria (TF-1) | 28.3530, -16.3800 | Candelaria |
 | `kayak-los-gigantes` | 🛶 Kayak & SUP Los Gigantes — Acantilados | 28.2440, -16.8400 | Santiago del Teide |
-| `mercadona-el-medano` | Mercadona El Médano | 28.0500, -16.5380 | Granadilla de Abona |
 | `minimarket-24h-las-americas` | Seven Ways Supermarket 24h (Las Américas) | 28.066, -16.73 | Adeje |
 | `mir-rambleta-teide` | Mirador La Rambleta (Teide · 3.555 m) | 28.27, -16.639 | La Orotava |
 | `mirador-pino-galdo` | Mirador del Pino Galdo | 28.5600, -16.2650 | Santa Cruz de Tenerife |
@@ -362,7 +368,7 @@ caigan a la vez por casualidad es una entre un millón.
 | `pp-guimar` | 🪂 Parapente — Ladera de Güímar (Este) | 28.3100, -16.4050 | Güímar |
 | `sala-westerdahl` | Sala Eduardo Westerdahl (Puerto de la Cruz) | 28.418, -16.55 | Puerto de la Cruz |
 
-### Las otras 17, con 3 decimales (~110 m)
+### Las otras 11, con 3 decimales (~110 m)
 
 | id | qué es | escrita | municipio |
 |---|---|---|---|
@@ -371,14 +377,8 @@ caigan a la vez por casualidad es una entre un millón.
 | `buceo-puerto-cruz` | 🤿 Buceo Puerto de la Cruz — Centro Atlantik | 28.4150, -16.5480 | Puerto de la Cruz |
 | `deporte-skatepark-laguna-copernico` | Skatepark La Laguna (C/ Copérnico) | 28.4930, -16.3150 | San Cristóbal de La Laguna |
 | `deporte-valle-san-lorenzo-kenguru` | Valle San Lorenzo — Calistenia Kenguru Pro | 28.091, -16.649 | Arona |
-| `gas-tf1-adeje` | Repsol Costa Adeje (TF-1 km 15) | 28.0830, -16.7320 | Adeje |
-| `gas-tf5-icod` | Repsol Icod de los Vinos (TF-5) | 28.3680, -16.7050 | Icod de los Vinos |
-| `hiperdino-arona-montaneta` | HiperDino Arona (La Montañeta) | 28.0980, -16.6820 | Arona |
-| `hiperdino-los-realejos` | HiperDino Los Realejos | 28.3920, -16.5820 | Los Realejos |
-| `lidl-granadilla` | Lidl Granadilla de Abona | 28.1340, -16.5580 | Granadilla de Abona |
-| `lidl-la-laguna` | Lidl La Laguna (La Cuesta-Taco) | 28.4720, -16.3080 | San Cristóbal de La Laguna |
+| `hiperdino-arona-montaneta` | HiperDino Valle San Lorenzo (Arona) | 28.0980, -16.6820 | Arona |
 | `mercadillo-santa-cruz` | Rastro de Santa Cruz | 28.4580, -16.2490 | Santa Cruz de Tenerife |
-| `mir-cardon-guia-isora` | Mirador del Cardón (Guía de Isora) | 28.1870, -16.7520 | Guía de Isora |
 | `parkinson-tf-granadilla` | Párkinson Tenerife — Unidad Granadilla 🤝 | 28.122, -16.579 | Granadilla de Abona |
 | `parque-canino-laguna-via-ronda` | Parque Canino La Laguna (Vía Ronda) 🐾 | 28.4850, -16.3180 | San Cristóbal de La Laguna |
 | `pp-izana` | 🪂 Parapente — Despegue Izaña (2.200 m) | 28.3090, -16.4990 | — |
@@ -409,6 +409,7 @@ Son pares o tríos donde las acompañantes llevan prefijo conocido (`wc-`,
 - `almaciga` = `surf-almaciga`
 - `punta-hidalgo` = `wc-punta-hidalgo`
 - `sendero-chinyero` = `bici-chinyero-ruta`
+- `mirador-pico-ingles` = `bici-puerto-pico-ingles`
 - `siam-park` = `acc-siam-park`
 - `nucleo-los-cristianos` = `wc-los-cristianos`
 - `mirador-teide` = `wc-teide-parque`
@@ -433,7 +434,6 @@ Son pares o tríos donde las acompañantes llevan prefijo conocido (`wc-`,
 - `ar-arenas-negras` = `camping-arenas-negras`
 - `ar-san-jose-llanos` = `camping-san-jose-llanos`
 - `ar-el-lagar` = `camping-el-lagar`
-- `ar-las-lajas` = `camping-las-lajas`
 - `ar-los-pedregales` = `camping-los-pedregales`
 - `ar-el-contador` = `camping-el-contador`
 - `ciudad-orotava` = `wc-orotava`
@@ -470,7 +470,7 @@ Puede ser correcto —dos cosas en el mismo sitio— o una coordenada copiada.
 
 ## 3 · Pares a menos de 25 m que no comparten coordenada
 
-**14 pares.** A esa distancia los dos pines se solapan en el mapa.
+**19 pares.** A esa distancia los dos pines se solapan en el mapa.
 
 - 11 m · `puertito-los-abrigos` y `zona-mariscos-los-abrigos`
 - 11 m · `pesca-los-abrigos` y `zona-mariscos-los-abrigos`
@@ -478,13 +478,18 @@ Puede ser correcto —dos cosas en el mismo sitio— o una coordenada copiada.
 - 11 m · `ciudad-candelaria` y `pk-plaza-patrona-candelaria`
 - 14 m · `rest-tipico-mirador-abona` y `pk-poris-abona`
 - 15 m · `kayak-punta-teno` y `faro-teno`
+- 19 m · `gas-7856-la-orotava` y `super-mercadona-orotava`
 - 20 m · `deporte-arona-multideporte` y `super-hiperdino-arona-pueblo`
+- 22 m · `gas-7853-adeje` y `buceo-puerto-colon`
+- 22 m · `gas-7853-adeje` y `pesca-deportiva-puerto-colon`
 - 22 m · `sendero-sentidos` y `acc-sendero-sentidos`
 - 22 m · `sendero-bosque-enigmas` y `acc-sendero-sentidos`
 - 22 m · `bici-anaga-cruz-carmen` y `acc-sendero-sentidos`
 - 22 m · `acc-sendero-sentidos` y `turismo-cv-cruz-carmen`
+- 22 m · `gas-7766-arona` y `deporte-los-cristianos-paseo`
 - 22 m · `pk-plaza-europa-pc` y `playa-san-telmo`
 - 23 m · `cs-arona` y `hiperdino-arona-montaneta`
+- 23 m · `cs-santiago-teide` y `gas-9664-santiago-del-teide`
 - 24 m · `parkinson-tf-silos` y `mercadillo-los-silos`
 
 ## 4 · El municipio que dice la ficha, contra donde cae el punto
@@ -498,49 +503,36 @@ Salida de `node tools/auditar_municipio.js`:
 
 ```
 === el municipio que dice la ficha, contra donde cae el punto ===
-  lugares....................................... 787
-    que nombran un municipio.................... 520
-    de esos, comprobados contra el POLIGONO del Cabildo 510
+  lugares....................................... 974
+    que nombran un municipio.................... 505
+    de esos, comprobados contra el POLIGONO del Cabildo 495
     y con el punto en el agua: no cae en ningun municipio 10
-  no declaran municipio......................... 267
+  solo nombran una zona de varios municipios.... 14
+  no declaran municipio......................... 455
+
+  nombran una ZONA, que no es un municipio: no hay nada que comprobar
+      bici-alquiler-sur             dice «Las Américas»  ·  el poligono dice «Adeje»
+      ciudad-buenavista             dice «Teno»  ·  el poligono dice «Buenavista del Norte»
+      hosp-hospiten-sur             dice «Las Américas»  ·  el poligono dice «Arona»
+      mercadillo-las-americas       dice «Las Américas»  ·  el poligono dice «Arona»
+      minigolf-parque-santiago      dice «Las Américas»  ·  el poligono dice «Arona»
+      minigolf-vivo-americas        dice «Las Américas»  ·  el poligono dice «Arona»
+      minimarket-24h-las-americas   dice «Las Américas»  ·  el poligono dice «Arona»
+      mir-baracan                   dice «Teno»  ·  el poligono dice «Buenavista del Norte»
+      mir-ermita-palmar             dice «Teno»  ·  el poligono dice «Buenavista del Norte»
+      mirador-maska                 dice «Teno»  ·  el poligono dice «Buenavista del Norte»
+      pr-tf-52-monte-agua           dice «Teno»  ·  el poligono dice «Los Silos»
+      surf-las-americas             dice «Las Américas»  ·  el poligono dice «Arona»
+      turismo-cv-pedregales         dice «Teno»  ·  el poligono dice «Buenavista del Norte»
+      wc-troya                      dice «Las Américas»  ·  el poligono dice «Adeje»
 
   LA FICHA SE CONTRADICE A SI MISMA............. 0
 
-  EL MUNICIPIO NO CUADRA........................ 16
-      ar-las-lajas                  dice «Vilaflor»  ·  el poligono dice «Adeje»
-                                      28.1895, -16.6645  ·  parada mas cerca: Las Lajas (215 m, Adeje)
-      bici-alquiler-sur             dice «Arona»  ·  el poligono dice «Adeje»
-                                      28.0677, -16.7267  ·  parada mas cerca: Magma (59 m, Adeje)
-      camping-las-lajas             dice «Vilaflor»  ·  el poligono dice «Adeje»
-                                      28.1895, -16.6645  ·  parada mas cerca: Las Lajas (215 m, Adeje)
-      charco-golete                 dice «Candelaria»  ·  el poligono dice «Güímar»
-                                      28.2708, -16.3855  ·  parada mas cerca: Punta Prieta (209 m, Güímar)
-      escal-guaria                  dice «Guía de Isora»  ·  el poligono dice «Adeje»
-                                      28.145, -16.717  ·  parada mas cerca: Taucho (1383 m, Adeje)
-      guachinche-san-juan-rambla    dice «San Juan de la Rambla»  ·  el poligono dice «Los Realejos»
-                                      28.3885, -16.6218  ·  parada mas cerca: San Antonio del Realejo (433 m, Los Realejos)
-      minigolf-precise-resort       dice «Puerto de la Cruz»  ·  el poligono dice «Los Realejos»
-                                      28.4062, -16.5703  ·  parada mas cerca: Maritim (41 m, Los Realejos)
-      mir-chivisaya                 dice «Güímar»  ·  el poligono dice «Candelaria»
-                                      28.3717, -16.4275
-      mir-lomo-molino               dice «Garachico»  ·  el poligono dice «El Tanque»
-                                      28.3595, -16.7858  ·  parada mas cerca: Iglesia Cruz Grande (522 m, El Tanque)
-      montana-taco                  dice «San Cristóbal de La Laguna»  ·  el poligono dice «Buenavista del Norte»
-                                      28.374, -16.8337  ·  parada mas cerca: Las Canteras (723 m, Los Silos)
-      playa-caleton-sauzal          dice «El Sauzal»  ·  el poligono dice «La Matanza de Acentejo»
-                                      28.4583, -16.464  ·  parada mas cerca: La Montaña (1111 m, La Matanza de Acentejo)
-      pp-el-tanque                  dice «El Tanque»  ·  el poligono dice «Los Silos»
-                                      28.345, -16.81
-      pr-tf-52-monte-agua           dice «Buenavista del Norte»  ·  el poligono dice «Los Silos»
-                                      28.3192, -16.809  ·  parada mas cerca: Puerto de Erjos (435 m, El Tanque)
-      sendero-roque-conde           dice «Arona»  ·  el poligono dice «Adeje»
-                                      28.1042, -16.6986  ·  parada mas cerca: Las Casas (1397 m, Arona)
-      super-mercadona-tacoronte     dice «Tacoronte»  ·  el poligono dice «El Sauzal»
-                                      28.4732, -16.4198  ·  parada mas cerca: La Frontera (182 m, El Sauzal)
-      wc-troya                      dice «Arona»  ·  el poligono dice «Adeje»
-                                      28.0682, -16.7329  ·  parada mas cerca: Los Geranios (610 m, Adeje)
+  EL MUNICIPIO NO CUADRA........................ 0
 
-*** 16 ficha(s) con el municipio fuera de sitio, en firme ***
+  OK  AUDITORIA-FINAL.md dice lo mismo
+
+ninguna ficha nombra un municipio que no le toque
 
 ```
 

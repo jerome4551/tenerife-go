@@ -4206,6 +4206,9 @@ queda con «SUP», como las otras dos que la llevan, y el chino vuelve a decir
 
 ### Lo que no se ha tocado, para que lo decida Jerome
 
+*(Decidido el 11 de octubre: ver «Lo que no tenía fuente, decidido por
+Jerome».)*
+
 Son datos del castellano, y sin fuente no se cambian:
 
 - **Golf Costa Adeje** dice «3 recorridos de 9 hoyos: Mar, Lago y Montana».
@@ -4231,6 +4234,80 @@ Son datos del castellano, y sin fuente no se cambian:
   Abona**: las nueve traducciones ya decían racheado («gusty», «rafaleux»,
   «böig»…), así que «gustoso» era el inglés *gusty* mal pasado. Se ha
   corregido, pero conviene que lo vea.
+
+## Lo que no tenía fuente, decidido por Jerome (11 de octubre)
+
+El repaso del 10 de octubre dejó siete cosas sin tocar, para que las
+decidiera Jerome. Las decidió con fuentes (la web oficial de Golf Costa Adeje
+y sus dos recorridos, la entrevista de Andalucía Golf, Turismo de Tenerife,
+Hello Canary Islands, el Jardín de Flora Canaria de la ULL, ICCAT y el
+catálogo de razas del Ministerio de Agricultura), y así quedan, en los diez
+idiomas:
+
+| | decisión | qué cambia |
+|---|---|---|
+| 1 | **Golf Costa Adeje**: texto nuevo, solo con datos oficiales | Antigua finca de plataneras con bancales y muros de piedra; 27 hoyos = recorrido Championship (18, par 72) + Los Lagos (9, par 33); Tenerife Open del European Tour en 2021. Fuera «Mar, Lago y Montana», que no existen, y la «BMW Golf Cup» de 1999, que no sale en la web oficial, con su etiqueta «BMW Cup». La ficha de **Los Lagos**: «6 lagos», no «5 obstáculos de agua» |
+| 2 | **Costa del Silencio**: fuera «Tendedero submarino popular», sin sustituto | Cada traducción había hecho de esa frase una cosa distinta: «popular diving spot» en inglés, «lugar de pesca submarina» en búlgaro y polaco |
+| 3 | **Pico del Inglés**: fuera «Coordenadas verificadas por OpenStreetMap y Wikipedia», y la coordenada a fuente oficial | La frase estaba en los diez idiomas, no solo en castellano e inglés. Coordenada: ver abajo. Altitud **980 m** en las dos fichas y en el sendero PR-TF 2 de Taborno, que también decía 992: texto, nombre de la ficha de la bici, `cat` y la etiqueta «980 m» |
+| 4 | **Mirador del Cardón** (Guía de Isora): fuera la ficha | No figura en el listado oficial de miradores de Turismo de Tenerife ni en otra fuente; el único con ese nombre está en Gran Canaria |
+| 5 | **Pesca Los Gigantes**: solo «peto» en castellano; fuera los horarios del chárter y lo que dice de sí mismo | Peto y wahoo son la misma especie (*Acanthocybium solandri*): las traducciones ya decían un solo «wahoo». Fuera las 09:30 y 13:30, los «más de 30 años» y los «dos únicos campeonatos», el «30+ años» de la etiqueta de categoría y los chips «30 años» y «Nashira Uno» |
+| 6 | **Chinamada**: fuera la granja de ovejas | «Pediguey» es casi seguro el pelibuey (la oveja Canaria de Pelo), pero nada sitúa una granja en Chinamada |
+| 7 | **Filtro de mascotas**: «Con mascotas» y «Pet-friendly» | Solo castellano e inglés |
+
+### Pico del Inglés, a la coordenada oficial
+
+Turismo de Tenerife da para el mirador UTM huso 28 X 376352, Y 3156846.
+Pasado a WGS84 con `pyproj` —EPSG:32628 y EPSG:4083, REGCAN95, dan lo
+mismo— es **28.5325194, -16.2637869**: el 28.5325, -16.2638 de Jerome, a 2,5 m.
+Se escribe con seis decimales (28.532519, -16.263787) en las dos fichas, el
+mirador y la subida en bici, que acaba en él, con `tools/fijar_coordenada.py`,
+que comprueba que cae en tierra y apunta la fuente en `datos/verificado.json`.
+
+La bici se mueve **71 m**. El mirador, **116 m**, no 57: desde el 27 de
+septiembre estaba en el pico «Pico del Inglés» de OSM, que no es el punto que
+da Turismo de Tenerife. El punto oficial cae en Santa Cruz de Tenerife, el
+municipio que dice la ficha de la bici (`python3 tools/municipio.py --punto
+28.532519,-16.263787`, contra el polígono del Cabildo).
+
+### Lo que la ficha retirada se llevó consigo
+
+- Sale de `index.html`, de los nueve idiomas y de su bloque polaco.
+- Sus etiquetas «El Cardón» (declarada como nombre) y «Cardones» no las usaba
+  ninguna otra ficha: fuera. Y «canariensis», aceptada en
+  `castellano-aceptado.json` solo por ella, también: `castellano_suelto.js`
+  la cantó como sobrante, que es para lo que está.
+- **975 → 974 lugares**, a mano y con su porqué en `auditar_datos.js`, en el
+  schema.org (`featureList`) y en un comentario del código. El comentario lo
+  encontró el control de cifras exactas: un «975 lugares» escrito en cualquier
+  sitio del fichero cuenta.
+
+### El «wahoo» en las otras dos fichas de pesca
+
+La regla de Jerome —wahoo en inglés, peto en castellano— vale también para
+**Puerto Colón** y **Los Cristianos**, que decían «wahoo» en el texto
+castellano. Ahora dicen «peto», y el chip castellano «Wahoo» de las tres es
+«Peto». Los otros idiomas siguen con wahoo; el chip búlgaro decía «Вахо» y su
+propia descripción «уаху»: ahora «Уаху».
+
+### El filtro de mascotas y la huella
+
+Jerome escribió «Con mascotas 🐾». El grupo ya pinta su icono 🐾 **delante** del
+rótulo, en el panel y en la pestaña, así que con la huella dentro del texto
+saldría «🐾 Con mascotas 🐾». El rótulo es el texto y en pantalla sale
+**«🐾 Con mascotas»** y **«🐾 Pet-friendly»**. Se cambió también
+`catGrpMascotas`, una clave que ya no usa nadie, para que no quede
+«Pets Friendly» en ninguna parte.
+
+### Y de paso
+
+- El chino llamaba al Pico del Inglés de dos maneras: 英格勒斯峰 en la bici y
+  英国人峰 en el sendero de Taborno. Ahora las dos 英格勒斯峰, que es como la
+  app escribe los nombres propios (transcritos: 塔沃尔诺, 塞科谷).
+- `REVISION-LUGARES.md` llevaba sin regenerarse desde el 27 de septiembre:
+  decía 146 coordenadas verificadas y en el registro había 156. Regenerado,
+  con las dos de hoy: 157.
+- Las etiquetas «Teide» y «Fañabé» de Golf Costa Adeje no salen en el texto
+  oficial nuevo. No se han tocado: lo decide Jerome.
 
 ---
 

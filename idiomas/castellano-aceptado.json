@@ -34,9 +34,6 @@
   "plantas con nombre local, el que usan las guias de la isla, sin otro nombre corriente (viñátigo, píjara, retama, tabaiba, cardón)": {
    "todos": ["viñátigo", "píjara", "píjaras", "píjara-varens", "retamas", "tabaiba", "tabaibas", "cardón", "cardónstruweel"]
   },
-  "nombre cientifico, en latin: se escribe igual en todos los idiomas (Euphorbia canariensis)": {
-   "todos": ["canariensis"]
-  },
   "ten+: el nombre de la tarjeta de transporte de la isla": {
    "todos": ["ten"]
   },
@@ -55,9 +52,6 @@
    "zh": ["portal@es:portal B, local C", "local@es:portal B, local C"],
    "zht": ["portal@es:portal B, local C", "local@es:portal B, local C"],
    "bg": ["portal@es:portal B, local C", "local@es:portal B, local C"]
-  },
-  "Mar, Lago y Montaña: los nombres que el castellano da a los tres recorridos del campo de golf; van como nombres, igual que en frances, italiano y neerlandes": {
-   "de": ["montaña@lugar golf-costa-adeje.desc"]
   },
   "palabras de ese idioma que se escriben igual que el castellano": {
    "en": ["guanches", "buggies", "primates", "iguanas", "lianas", "barracudas", "hubbas", "cookies", "orcas"],

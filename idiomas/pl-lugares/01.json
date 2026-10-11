@@ -210,7 +210,7 @@
   "cat": "PR-TF 1 · Anaga (Średni · 4 km · 2,5h)"
  },
  "prtf-2-taborno-pico-ingles": {
-  "desc": "Spektakularna trasa graniowa między Taborno a punktem widokowym Pico del Inglés (992 m), ze zejściem do Valle Seco. 11 km, 5 godzin, wymagające przewyższenia. Wyjątkowe widoki na masyw Anagi oraz na północne i południowe wybrzeże w pogodne dni. Dla piechurów z doświadczeniem. Połączenie z PR-TF 2.1 (odgałęzienie Frontón).",
+  "desc": "Spektakularna trasa graniowa między Taborno a punktem widokowym Pico del Inglés (980 m), ze zejściem do Valle Seco. 11 km, 5 godzin, wymagające przewyższenia. Wyjątkowe widoki na masyw Anagi oraz na północne i południowe wybrzeże w pogodne dni. Dla piechurów z doświadczeniem. Połączenie z PR-TF 2.1 (odgałęzienie Frontón).",
   "cat": "PR-TF 2 · Anaga (Trudny · 11 km · 5h)"
  },
  "prtf-4-bailadero-taganana": {
@@ -286,7 +286,7 @@
   "cat": "PR-TF 58 · Teno (Trudny · 10,5 km · 4,5-5h)"
  },
  "pr-tf-3-chinamada": {
-  "desc": "Szlak prowadzący do przysiółka Chinamada w Parku Wiejskim Anaga, jednego z najbardziej osobliwych zamieszkanych osiedli Wysp Kanaryjskich: około 30 domów wykutych w skale, zamieszkanych do dziś. Najczęstsze dojście to Punta del Hidalgo (PR-TF 10, odcinek Chinamada) albo Las Carboneras. Chinamada ma małą kaplicę, hodowlę rodzimych owiec pediguey i spektakularne widoki na wąwozy Anagi. Punkt widokowy Aguaide (400 m od przysiółka) to punkt obowiązkowy. Trudność: średnio-wysoka. Tylko dla piechurów z doświadczeniem. Zabierz wodę.",
+  "desc": "Szlak prowadzący do przysiółka Chinamada w Parku Wiejskim Anaga, jednego z najbardziej osobliwych zamieszkanych osiedli Wysp Kanaryjskich: około 30 domów wykutych w skale, zamieszkanych do dziś. Najczęstsze dojście to Punta del Hidalgo (PR-TF 10, odcinek Chinamada) albo Las Carboneras. Chinamada ma małą kaplicę i spektakularne widoki na wąwozy Anagi. Punkt widokowy Aguaide (400 m od przysiółka) to punkt obowiązkowy. Trudność: średnio-wysoka. Tylko dla piechurów z doświadczeniem. Zabierz wodę.",
   "cat": "Szlaki piesze · Chinamada · Domy w skale · Anaga"
  },
  "gr131-tramo2-portillo-guajara": {
@@ -318,7 +318,7 @@
   "cat": "Golf · 27 dołków · San Miguel de Abona · European Tour"
  },
  "golf-costa-adeje": {
-  "desc": "Pole golfowe w Adeje, otwarte w 1998 roku. 27 dołków (trzy pętle po 9: Mar, Lago i Montana). Par 72 dla 18 dołków. Miejsce finału światowego BMW Golf Cup International (1999). Projekt Pepe Gancedo. Widoki na Teide, La Gomerę i Atlantyk. Akademia golfa, driving range. Położone przy osiedlu Fañabé, bardzo dostępne z Costa Adeje i Las Américas.",
+  "desc": "Pole golfowe w Adeje, otwarte w 1998 roku i zaprojektowane przez Pepe Gancedo na dawnej plantacji bananów, z której zachowało tarasy i kamienne mury. 27 dołków: pole Championship (18 dołków, par 72) i pole Los Lagos (9 dołków, par 33). W 2021 roku gospodarz turnieju Tenerife Open w ramach European Tour. Widoki na morze i La Gomerę. Akademia golfa z driving range.",
   "cat": "Golf · 27 dołków · Adeje · Costa Adeje"
  },
  "golf-las-americas": {
@@ -334,11 +334,11 @@
   "cat": "Golf · 9 dołków · Arona · Początkujący · Rodziny"
  },
  "golf-los-lagos": {
-  "desc": "Pole golfowe o 9 dołkach, par 33, 2223 m, w Costa Adeje. Otoczone pięcioma przeszkodami wodnymi ze strumieniami i spektakularnym wodospadem. Połączenie dołków łatwych i bardziej technicznych, bronionych przez bunkry i jeziora. Uprzywilejowane naturalne otoczenie na południu Teneryfy. Odpowiednie dla wszystkich poziomów.",
+  "desc": "Pole golfowe o 9 dołkach, par 33, 2223 m, w Costa Adeje. Otoczone 6 jeziorami ze strumieniami i spektakularnym wodospadem. Połączenie dołków łatwych i bardziej technicznych, bronionych przez bunkry i jeziora. Uprzywilejowane naturalne otoczenie na południu Teneryfy. Odpowiednie dla wszystkich poziomów.",
   "cat": "Golf · 9 dołków · Par 33 · Costa Adeje · Południe"
  },
  "mirador-pico-ingles": {
-  "desc": "Najbardziej imponujący punkt widokowy Anagi, na 992 m. Widok 360° na całą wyspę, północ i ocean. Często ponad chmurami. Dojazd samochodem drogą TF-12.",
+  "desc": "Najbardziej imponujący punkt widokowy Anagi, na 980 m. Widok 360° na całą wyspę, północ i ocean. Często ponad chmurami. Dojazd samochodem drogą TF-12.",
   "cat": "Punkt widokowy 360° · Anaga"
  },
  "candelaria": {

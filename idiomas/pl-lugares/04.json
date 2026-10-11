@@ -172,8 +172,8 @@
   "cat": "Wędkarstwo sportowe · Los Cristianos · Południe · Marlin · Tradycyjne"
  },
  "pesca-los-gigantes": {
-  "desc": "Port Los Gigantes ma długą tradycję morskiego wędkarstwa sportowego. Czarter Nashira Uno działa z tego portu od ponad 30 lat i jest zwycięzcą obu jedynych rozegranych tu mistrzostw. Codziennie wypływają na trolling między klifami Los Gigantes a cieśniną La Gomery. Odmiany: trolling pełnomorski (marlin błękitny, marlin biały, opastun, tuńczyk żółtopłetwy, koryfena, wahoo, pelamida) i połów denny (kielce, granikowate, wrakoń). Dostępne także przybrzeżne wędkarstwo tradycyjne. Godziny: 09:30 (4h lub 7h) i 13:30 (3h). Czarter prywatny albo zbiorowy.",
-  "cat": "Wędkarstwo sportowe · Los Gigantes · Marlin · Ponad 30 lat · Zachód"
+  "desc": "Port Los Gigantes ma długą tradycję morskiego wędkarstwa sportowego. Codziennie wypływają na trolling między klifami Los Gigantes a cieśniną La Gomery. Odmiany: trolling pełnomorski (marlin błękitny, marlin biały, opastun, tuńczyk żółtopłetwy, koryfena, wahoo, pelamida) i połów denny (kielce, granikowate, wrakoń). Dostępne także przybrzeżne wędkarstwo tradycyjne. Czarter prywatny albo zbiorowy.",
+  "cat": "Wędkarstwo sportowe · Los Gigantes · Marlin · Zachód"
  },
  "pesca-los-abrigos": {
   "desc": "Los Abrigos to autentyczna i spokojna wioska rybacka na południu Teneryfy (gmina Granadilla de Abona), znana z restauracji ze świeżymi owocami morza. Mały port przyjmuje łodzie rybołówstwa tradycyjnego i kilka czarterów przybrzeżnego wędkarstwa sportowego: sargus, kielec, vieja (kanaryjska ryba papuzia), granik, barakuda, chopa. Także trolling na małe gatunki pelagiczne (bonito, listao, makrela, koryfena). Atmosfera w 100% lokalna. Bez turystycznego tłoku. Bractwo rybackie jest jednym z najaktywniejszych na południu.",
@@ -360,8 +360,8 @@
   "cat": "Przełęcz górska · Anaga · 11 km · 660 m ↑"
  },
  "bici-puerto-pico-ingles": {
-  "desc": "Rowerowy podjazd na Pico del Inglés (990 m), jeden z najwyższych szczytów gminy Santa Cruz de Tenerife, w masywie Anagi. Start z San Andrés drogą TF-12, dalej TF-114 do punktu widokowego. Wąska i kręta droga wśród tysięcy drzew i niemal bez ruchu. Ze szczytu: widok 360° — Santa Cruz, Teide, Gran Canaria i La Palma w pogodne dni. Współrzędne zweryfikowane w OpenStreetMap i Wikipedii.",
-  "cat": "Przełęcz górska · Anaga · 990 m n.p.m. · TF-114"
+  "desc": "Rowerowy podjazd na Pico del Inglés (980 m), jeden z najwyższych szczytów gminy Santa Cruz de Tenerife, w masywie Anagi. Start z San Andrés drogą TF-12, dalej TF-114 do punktu widokowego. Wąska i kręta droga wśród tysięcy drzew i niemal bez ruchu. Ze szczytu: widok 360° — Santa Cruz, Teide, Gran Canaria i La Palma w pogodne dni.",
+  "cat": "Przełęcz górska · Anaga · 980 m n.p.m. · TF-114"
  },
  "bici-evento-vuelta-teide": {
   "desc": "Punkt startowy Vuelta al Teide, najważniejszej maratonu rowerowego GranFondo kategorii UCI na Teneryfie. Rozgrywany corocznie wiosną (kwiecień-maj). Trzy dystanse: GranFondo 182 km z 4600 m przewyższenia, MedioFondo 86 km z 1700 m, FondoCorto 64 km z 1300 m. Start i wydawanie numerów w rejonie Lago Martiánez, Puerto de la Cruz. Oficjalna strona: vteide.com",

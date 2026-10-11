@@ -171,9 +171,12 @@ console.log('\n=== lugares ===');
    ultima alta. Las 212 del registro tienen ficha.
    976 -> 975 el 6 de octubre: fuera la BP Ten Bel (Arona), que segun Jerome no
    existe; queda en espera en correcciones-registro.json.
+   975 -> 974 el 11 de octubre: fuera el Mirador del Cardon (Guia de Isora). No
+   figura en el listado oficial de miradores de Turismo de Tenerife ni en ninguna
+   otra fuente; el unico «Mirador del Cardon» esta en Gran Canaria (Jerome).
    Esta cifra subio una vez por sesion de gasolineras hasta la ultima alta, y se
    cambia A MANO a proposito: asi ningun lugar entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 975);
+debe('lugares', PLACES.length, PLACES.length === 974);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

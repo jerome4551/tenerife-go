@@ -87,6 +87,10 @@
    "commit": "36660dc",
    "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
   },
+  "bici-puerto-pico-ingles": {
+   "fecha": "2026-10-11",
+   "fuente": "La subida acaba en el Mirador Pico del Inglés: el mismo punto oficial de Turismo de Tenerife (UTM huso 28 X 376352 Y 3156846 -> 28.5325194, -16.2637869). Aportada por Jerome el 11 de octubre de 2026."
+  },
   "bollullo": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
@@ -235,8 +239,8 @@
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
   "mirador-pico-ingles": {
-   "fecha": "2026-09-27",
-   "fuente": "OSM del repositorio: el pico «Pico del Inglés» (peak), a 59 m de la coordenada redonda anterior. El mirador esta en el pico; el pico es el unico con ese nombre en el extracto."
+   "fecha": "2026-10-11",
+   "fuente": "Turismo de Tenerife, Mirador Pico del Inglés: UTM huso 28 X 376352 Y 3156846. Pasado a WGS84 con pyproj (EPSG:32628 y EPSG:4083 dan lo mismo): 28.5325194, -16.2637869. Aportada por Jerome el 11 de octubre de 2026. Sustituye al pico «Pico del Inglés» de OSM, que esta a 116 m."
   },
   "montana-amarilla": {
    "fecha": "2026-09-27",
