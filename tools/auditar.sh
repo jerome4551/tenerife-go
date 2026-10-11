@@ -13,6 +13,11 @@ trap 'kill $SRV 2>/dev/null' EXIT
 sleep 2
 fallos=0
 rotos=0
+# Los nombres de lo que falla, no solo cuantos. El 11 de octubre el resumen
+# dijo «1 bloque(s) con fallo» y hubo que buscarlo a mano entre 40 bloques:
+# era una cifra de AUDITORIA-FINAL.md que coteja auditar_web.js.
+fallidos=""
+falla() { fallos=$((fallos+1)); fallidos="$fallidos $1"; echo "  *** $1: EN ROJO ***"; }
 # UN CONTROL QUE NO ARRANCA NO ES UN CONTROL QUE ENCUENTRA ALGO.
 # Los dos salen con estado != 0, asi que si se cuentan en el mismo sitio un
 # `pip install` que falta se lee exactamente igual que un hallazgo. Paso: en un
@@ -32,7 +37,7 @@ control() {
   salida=$("$@" 2>&1); rc=$?
   printf '%s\n' "$salida"
   if reventado "$salida"; then roto "$nombre"; else
-    [ "$rc" = 0 ] || fallos=$((fallos+1))
+    [ "$rc" = 0 ] || falla "$nombre"
   fi
 }
 echo "════════ sintaxis ════════"
@@ -44,12 +49,12 @@ echo "  scripts en linea: $(ls chk/*.js 2>/dev/null | wc -l), con fallo: $mal"
 for f in sw.js enviar-notificacion.js datos/titsa.js; do
   if node --check "$f"; then echo "  $f ok"; else mal=$((mal+1)); fi
 done
-[ "$mal" != 0 ] && fallos=$((fallos+1))
+[ "$mal" != 0 ] && falla sintaxis
 echo; echo "════════ red ════════"
 salida=$(node tools/verificar_red.js 2>&1); rc=$?
 printf '%s\n' "$salida" | grep -E "^\s+(OK|FALLO)|lineas |controles" | sed 's/·.*paradas ->.*//' | cut -c1-120
 if reventado "$salida"; then printf '%s\n' "$salida" | tail -5; roto verificar_red.js
-else [ "$rc" = 0 ] || fallos=$((fallos+1)); fi
+else [ "$rc" = 0 ] || falla verificar_red.js; fi
 echo; echo "════════ datos ════════"
 control auditar_datos.js node tools/auditar_datos.js
 echo; echo "════════ seguridad y codificacion ════════"
@@ -99,14 +104,14 @@ echo; echo "════════ cada idioma, uno por uno ══════
 # La lista sale del fuente, no escrita aqui: a mano se quedo en nueve y el
 # idioma decimo no pasaba por este bloque.
 IDIOMAS=$(sed -n "s/.*SUPPORTED_LANGS *= *\[\([^]]*\)\].*/\1/p" index.html | head -1 | tr -d "'\" " | tr ',' ' ')
-[ -n "$IDIOMAS" ] || { echo "  FALLO: no encuentro SUPPORTED_LANGS en index.html"; fallos=$((fallos+1)); }
+[ -n "$IDIOMAS" ] || { echo "  FALLO: no encuentro SUPPORTED_LANGS en index.html"; falla SUPPORTED_LANGS; }
 # Con `| head -4` el estado que llegaba era el de head: este bloque no podia
 # ponerse rojo, y un idioma sin fila en ESCRITURA reventaba en silencio.
 for L in $IDIOMAS; do
   salida=$(node tools/auditar_idioma.js "$L" 2>&1); rc=$?
   printf '%s\n' "$salida" | head -4
   if reventado "$salida"; then roto "auditar_idioma.js $L"
-  elif [ "$rc" != 0 ]; then echo "  FALLO en $L"; fallos=$((fallos+1)); fi
+  elif [ "$rc" != 0 ]; then falla "auditar_idioma.js $L"; fi
 done
 echo; echo "════════ castellano que se queda dentro de cada idioma, y frases que faltan ════════"
 # Desde el 10 de octubre de 2026: palabras castellanas sueltas («fincas»,
@@ -124,7 +129,7 @@ echo; echo "════════ preguntas de prueba al asistente ═══�
 salida=$(node tools/probar_faq.js 2>&1); rc=$?
 printf '%s\n' "$salida" | tail -3
 if reventado "$salida"; then roto probar_faq.js
-else [ "$rc" = 0 ] || fallos=$((fallos+1)); fi
+else [ "$rc" = 0 ] || falla probar_faq.js; fi
 
 echo "════════ erratas al transliterar al cirilico ════════"
 control auditar_cirilico.py python3 tools/auditar_cirilico.py
@@ -141,6 +146,6 @@ control auditar_tour.js node tools/auditar_tour.js "$PUERTO"
 echo
 # Los rotos van PRIMERO y con su propio nombre: son los que no han mirado nada.
 [ "$rotos" = 0 ] || echo "*** $rotos control(es) QUE NO SE PUDIERON EJECUTAR (pip install -r tools/requisitos.txt) ***"
-[ "$fallos" = 0 ] || echo "*** $fallos bloque(s) con fallo ***"
+[ "$fallos" = 0 ] || echo "*** $fallos bloque(s) con fallo:$fallidos ***"
 [ "$fallos" = 0 ] && [ "$rotos" = 0 ] && echo "AUDITORIA EN VERDE"
 exit $((fallos + rotos))

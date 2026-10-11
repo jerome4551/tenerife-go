@@ -1998,7 +1998,10 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 34 tablas, 830 filas (y 2.964 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 859 filas (y 2.999 filas, dentro y fuera del fuente)
+
+*(Cifras del 11 de octubre: el tour dejó de ser una tabla propia y sus
+textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las dos primeras.)*
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
