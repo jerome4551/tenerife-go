@@ -98,6 +98,12 @@ function problemasDelPaso(L, tam, i, d, cifras) {
   return out;
 }
 
+/* Un boton que no se puede pulsar (fuera de la pantalla, tapado) es un FALLO
+   del tour, no del control: se apunta y se sigue. Sin esto, la averia de la
+   tarjeta encima del boton tumbaba la prueba entera, y auditar.sh lo habria
+   contado como «control que no se pudo ejecutar», no como lo que es. */
+async function pulsa(p, sel) { try { await p.click(sel, { timeout: 4000 }); return true; } catch (e) { return false; } }
+
 async function idioma(b, L) {
   const fallos = [], textos = {};
   const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
@@ -135,11 +141,17 @@ async function idioma(b, L) {
       if (w === 390) textos['paso ' + (i + 1)] = d.titulo + ' ¦ ' + d.cuerpo + (d.nuevo ? ' ¦ ' + d.nuevo : '') + ' ¦ ' + d.botones.join(' ¦ ');
       if (w === 390 && i === 0 && !d.cuerpo.includes(String(cifras.n))) fallos.push(L + ' paso 1: no dice los ' + cifras.n + ' lugares');
       if (w === 390 && /\{L\}/.test(d.cuerpo)) fallos.push(L + ': {L} sin sustituir');
-      if (i < S - 1) await p.click('#v19-tour .v19t-next');
+      if (i < S - 1 && !(await pulsa(p, '#v19-tour .v19t-next'))) {
+        fallos.push(L + ' ' + tam + ' paso ' + (i + 1) + ': no se puede pulsar «Siguiente» (fuera de la pantalla o tapado)');
+        break;
+      }
       await p.waitForTimeout(60);
     }
     // el ultimo «Siguiente» cierra y guarda la version
-    await p.click('#v19-tour .v19t-next');
+    if (!(await pulsa(p, '#v19-tour.open .v19t-next'))) {
+      await p.evaluate(() => { const r = document.getElementById('v19-tour'); if (r) r.classList.remove('open'); });
+      continue;
+    }
     const guardado = await p.evaluate(() => localStorage.getItem('tenerife.tour.seen'));
     if (!(Number(guardado) >= 2)) fallos.push(L + ' ' + tam + ': al terminar se guarda «' + guardado + '»');
   }
@@ -177,7 +189,8 @@ async function idioma(b, L) {
   const res = {};
   let total = 0;
   for (const L of IDIOMAS) {
-    res[L] = await idioma(b, L);
+    try { res[L] = await idioma(b, L); }
+    catch (e) { res[L] = { fallos: [L + ': la prueba no pudo seguir: ' + String(e && e.message || e).split('\n')[0]], textos: {} }; }
     total += res[L].fallos.length;
     P(L + ' · ' + Object.keys(res[L].textos).filter(k => k.startsWith('paso')).length + ' pasos en ' + TAMANOS.length + ' tamaños', res[L].fallos.length ? res[L].fallos.length + ' fallo(s)' : 'bien');
     res[L].fallos.slice(0, 12).forEach(f => console.log('       ' + f));

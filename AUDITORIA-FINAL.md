@@ -4309,6 +4309,102 @@ saldría «🐾 Con mascotas 🐾». El rótulo es el texto y en pantalla sale
 - Las etiquetas «Teide» y «Fañabé» de Golf Costa Adeje no salen en el texto
   oficial nuevo. No se han tocado: lo decide Jerome.
 
+## El tour de bienvenida, rehecho (11 de octubre)
+
+Jerome: «Prepara el tour de nuevo que añadimos cosas. Verifica que se traduce
+en cada idioma. Sin errores. Animado pero explícito».
+
+### Lo que decía el de antes
+
+- «**Más de 700 lugares verificados**», con 975 en el mapa, y sin poder decir
+  «verificados» de todos.
+- «Cada punto tiene **fotos**, descripción, **el tiempo allí** y cómo llegar»:
+  las fotos solo salen en algunas categorías, y el tiempo del sitio solo en la
+  costa (el mar, el viento y el UV).
+- «Filtra: naturaleza, **gastronomía**, cultura, deporte»: gastronomía no es
+  ningún grupo del filtro.
+- Nada de lo nuevo: ni las gasolineras con su precio oficial ni el botón ⛽.
+- Los textos de los pasos iban en **listas dentro de un objeto propio**, y
+  ninguna lista la leía ningún control de idioma. Por eso estuvieron un mes
+  así sin que nada lo viera.
+
+### El de ahora
+
+- **13 pasos.** Nuevo el del botón ⛽ de la gasolinera más barata, con la
+  etiqueta «Nuevo». Los demás, reescritos para decir **qué hace cada botón y
+  cómo**, y nada que no sea verdad: en la costa, el estado del mar; en
+  cualquier marcador, qué es, su horario si lo tiene y cómo llegar en coche o
+  en guagua.
+- **Las cifras se cuentan** al abrir cada paso: los lugares del mapa (974),
+  los idiomas (10), las costas del panel del mar (7) y los pasos (13). En
+  polaco, el número de lugares lleva sus tres formas de plural.
+- **Animado**: el foco late alrededor del botón, la tarjeta entra en cada
+  paso, el icono salta, una barra de progreso se llena arriba y «Nuevo»
+  brilla. Con «reducir movimiento» del sistema, todo quieto.
+- **Explícito**: «4/13» en cada tarjeta, flechas del teclado y Escape.
+- **Quien vio el tour de antes** lo ve ofrecido una vez más, como «¡Hay
+  novedades!». Se guarda la versión vista; las herramientas que lo saltan
+  guardan «99».
+- **Los textos son 37 filas de `UI_TX`** en los diez idiomas, que leen ya
+  todos los controles de idioma (`castellano_suelto.js`, `auditar_idioma.js`,
+  `barrido_idiomas.js`…). Los que estaban bien se han conservado: el mismo
+  «Marker» o «marqueurs», y en el título de los logros, el nombre que el
+  botón ya tenía en cada idioma.
+
+### Tres fallos que salieron al probarlo
+
+1. **«En las 0 costas».** `MAR_COSTAS` no es global: vive dentro del bloque
+   del mar. El tour lee el número por la única salida de ese bloque,
+   `window.TGO_MAR.costas`, como pide su propio comentario.
+2. **El hueco del paso 12, abierto en el 13.** En el último paso no hay botón
+   que señalar, pero el estilo en línea del paso anterior seguía mandando y
+   los trofeos se veían sin oscurecer detrás de la tarjeta. **Ya pasaba en
+   el tour de antes.**
+3. **«Los geht's!» partido en dos líneas** en un móvil de 320 px: el botón
+   «Saltar» del último paso estaba oculto pero ocupando su sitio.
+
+El primero lo destapó el propio control nuevo, que no encontraba
+`MAR_COSTAS` para comparar. Los otros dos no los veía: salieron en las
+capturas de pantalla. Ahora el control mira las dos cosas, y se ha probado
+devolviéndolas a su sitio (abajo).
+
+### Y el asistente decía lo mismo
+
+La respuesta de ayuda del asistente («Tenerife GO en 30 segundos», en
+`CHAT_KB`) repetía los dos errores: «700+ lugares» y «en cada ficha: clima
+actual, audio». La ficha no lleva ni tiempo ni audio. Ahora dice lo mismo que
+el tour. Sigue **solo en castellano**, como todo `CHAT_KB`, y las respuestas
+traducidas no tienen ninguna de ayuda: quien escribe «tutorial» o «manual» en
+otro idioma recibe esta, en castellano. Pasarla a la base traducida, en los
+diez idiomas, queda propuesto.
+
+### El control nuevo: `tools/auditar_tour.js`
+
+En `auditar.sh`, después del barrido de pantallas. Abre la app como alguien
+nuevo en cada idioma (elige el idioma en la bienvenida y entra) y recorre el
+tour entero en **cuatro tamaños de móvil** (320×568, 360×640, 390×844 y
+412×915). En cada paso mira que el texto no tenga nada por sustituir, que el
+foco caiga en su botón, que la tarjeta quepa entera en la pantalla sin
+taparlo, que no se salga ni se parta ningún texto y que no quede abierto el
+hueco del paso anterior. Comprueba las cifras contra la propia app, que al
+terminar quede guardada la versión y que quien vio el tour de antes vea las
+novedades. Y al final compara los idiomas entre sí: **nada igual al
+castellano** en los otros nueve **ni al inglés** en los otros ocho, porque si
+a una fila le falta un idioma, `tx()` pone el inglés y todo lo demás daría
+verde. Tarda unos dos minutos y medio.
+
+| # | avería | canta |
+|---|---|---|
+| 1 | al paso de la gasolinera le falta el polaco | sí: sale el inglés, «igual que el inglés» |
+| 2 | el paso de la gasolinera apunta a un botón que no existe | sí: foco en el centro |
+| 3 | vuelve el hueco del paso 12 abierto en el 13 | sí |
+| 4 | vuelve «Los geht's!» partido en dos líneas | sí: alemán, 320 px |
+| 5 | al terminar se guarda la versión vieja | sí: «1» |
+| 6 | el título del dado en castellano, en italiano | sí: «igual que el castellano» |
+| 7 | «{N}» en vez de «{n}» en el castellano | sí: texto roto, y no dice los 974 lugares |
+| 8 | la tarjeta se pone encima del botón | sí: «tapa el botón que señala» (la primera vez tumbó la prueba: ahora un botón que no se puede pulsar se apunta y se sigue) |
+| 9 | quien vio el tour viejo recibe la pregunta de alguien nuevo | sí: sin la etiqueta de novedades |
+
 ---
 
 # 5 · Cómo se vuelve a medir
