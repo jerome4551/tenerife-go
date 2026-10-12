@@ -1,0 +1,48 @@
+# Prueba de una sola vez: leer en el BOC el Decreto 71/2003 (Fiesta de los
+# Corazones de Tejina, Bien de Interes Cultural) para comprobar la referencia
+# antes de cambiar la ficha. Solo lee y lo escribe en el registro. Va en esta
+# rama, no en main.
+name: Explorar BOC (prueba, solo lee)
+
+on:
+  push:
+    branches: ['claude/tenerife-go-security-review-7r5ayk']
+    paths: ['.github/workflows/explorar-boc.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  leer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: El BOC n. 102 de 2003, disposicion 931
+        shell: python3 {0}
+        run: |
+          import re, html, urllib.request
+          def pedir(u):
+              req = urllib.request.Request(u, headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0'})
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  return r.status, r.headers.get('Content-Type'), r.read()
+          def texto(b, cs):
+              t = b.decode(cs, 'replace')
+              t = re.sub(r'(?is)<(script|style).*?</\1>', ' ', t)
+              t = re.sub(r'(?s)<[^>]+>', '\n', t)
+              t = html.unescape(t)
+              return re.sub(r'\n\s*\n+', '\n', t)
+          for u in ('https://www.gobiernodecanarias.org/boc/2003/102/931.html',
+                    'https://www.gobiernodecanarias.org/boc/2003/102/index.html'):
+              try:
+                  st, ct, b = pedir(u)
+                  cs = 'utf-8'
+                  m = re.search(r'charset=([\w-]+)', ct or '') or re.search(rb'charset=["\']?([\w-]+)', b[:2000])
+                  if m: cs = m.group(1).decode() if isinstance(m.group(1), bytes) else m.group(1)
+                  t = texto(b, cs)
+                  print('=' * 20, u, st, ct, len(b))
+                  if u.endswith('931.html'):
+                      print(t[:12000])
+                  else:
+                      for linea in t.split('\n'):
+                          if re.search(r'Tejina|71/2003|931', linea): print('  ', linea.strip()[:300])
+              except Exception as e:
+                  print('=' * 20, u, 'ERROR', e)
