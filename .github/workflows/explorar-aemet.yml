@@ -1,7 +1,7 @@
-# Prueba de una sola vez (tercera vuelta): el canal de avisos de la isla de
-# Tenerife y el texto del Plan Meteoalerta (fenomenos, niveles, formato CAP).
-# Solo lee y lo escribe en el registro; no guarda nada en el repo. Va en esta
-# rama, no en main.
+# Prueba de una sola vez (cuarta vuelta): copia fiel del estado de avisos de
+# Tenerife (canal y .tar.gz, en base64) y unos cuantos avisos reales de nivel
+# amarillo o superior de toda Espana, para probar el lector con datos de
+# verdad. Solo lee y lo escribe en el registro; no guarda nada en el repo.
 name: Explorar avisos AEMET (prueba, solo lee)
 
 on:
@@ -16,41 +16,35 @@ jobs:
   explorar:
     runs-on: ubuntu-latest
     steps:
-      - name: Canal de la isla de Tenerife
+      - name: Copias
         shell: python3 {0}
         run: |
-          import re, io, tarfile, urllib.request
+          import re, io, base64, tarfile, urllib.request
           def pedir(url):
-              with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'}), timeout=40) as r:
-                  return dict(r.headers), r.read()
-          for canal in ('CAP_AFAP6596_RSS.xml', 'CAP_AFAZ659601_RSS.xml'):
-              h, b = pedir('https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/' + canal)
-              s = b.decode('utf-8', 'replace')
-              print('=' * 20, canal, h.get('Content-Type'), h.get('Last-Modified'), len(b))
-              print(s)
-              m = re.search(r'<item>.*?<link>([^<]+)</link>', s, re.S)
-              if m:
-                  h2, c = pedir(m.group(1))
-                  print('TAR', m.group(1), h2.get('Content-Type'), len(c))
-                  tf = tarfile.open(fileobj=io.BytesIO(c))
-                  for nm in tf.getnames():
-                      x = tf.extractfile(nm).read().decode('utf-8', 'replace')
-                      ev = re.findall(r'<event>([^<]+)</event>', x)
-                      zon = re.findall(r'<geocode>\s*<valueName>[^<]+</valueName>\s*<value>([^<]+)</value>', x)
-                      par = re.findall(r'<parameter>\s*<valueName>([^<]+)</valueName>\s*<value>([^<]*)</value>', x)
-                      print('  ', nm, '|', ev[:2], '| zonas', sorted(set(zon)), '| param', par[:6])
-
-      - name: Texto del Plan Meteoalerta (anexo CAP y plan)
-        run: |
-          pip install -q pypdf >/dev/null 2>&1
-          for u in https://www.aemet.es/documentos/es/eltiempo/prediccion/avisos/plan_meteoalerta/METEOALERTA_ANX3_CAP.pdf https://www.aemet.es/documentos/es/eltiempo/prediccion/avisos/plan_meteoalerta/plan_meteoalerta.pdf; do
-            curl -sS -A 'Mozilla/5.0' -o /tmp/x.pdf "$u"
-            echo "=============== PDF $u"
-            python3 - <<'EOF'
-          from pypdf import PdfReader
-          r = PdfReader('/tmp/x.pdf')
-          for i, p in enumerate(r.pages):
-              print('########## PAGINA', i + 1)
-              print(p.extract_text() or '')
-          EOF
-          done
+              with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'TenerifeGo/1.0 (+https://jerome4551.github.io/tenerife-go/)'}), timeout=60) as r:
+                  return r.read()
+          base = 'https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/'
+          rss = pedir(base + 'CAP_AFAP6596_RSS.xml')
+          print('B64RSS ' + base64.b64encode(rss).decode())
+          tar_url = re.search(rb'<item>.*?<link>([^<]+)</link>', rss, re.S).group(1).decode()
+          tar = pedir(tar_url)
+          print('B64TAR ' + tar_url.rsplit('/', 1)[1] + ' ' + base64.b64encode(tar).decode())
+          # toda Espana: avisos reales de nivel amarillo o superior
+          rss_e = pedir(base + 'CAP_AFAE_RSS.xml')
+          tar_e_url = re.search(rb'<item>.*?<link>([^<]+)</link>', rss_e, re.S).group(1).decode()
+          print('ESPANA', tar_e_url)
+          tf = tarfile.open(fileobj=io.BytesIO(pedir(tar_e_url)))
+          vistos = set()
+          for nm in tf.getnames():
+              x = tf.extractfile(nm).read()
+              s = x.decode('utf-8', 'replace')
+              niv = re.search(r'Meteoalerta nivel</valueName>\s*<value>([^<]+)', s)
+              fen = re.search(r'<value>([A-Z]{2});', s)
+              if not niv or niv.group(1) == 'verde':
+                  continue
+              clave = (niv.group(1), fen.group(1) if fen else '?', 'references' in s)
+              print('NOVERDE', nm, clave)
+              if clave in vistos or len(vistos) >= 6:
+                  continue
+              vistos.add(clave)
+              print('B64CAP ' + nm + ' ' + base64.b64encode(x).decode())
