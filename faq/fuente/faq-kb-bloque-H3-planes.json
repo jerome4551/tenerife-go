@@ -1,0 +1,1670 @@
+{
+ "meta": {
+  "bloque": "H3 · Planes, naturaleza y clima",
+  "version": "1.0",
+  "fecha": "2026-10-12",
+  "idiomas": [
+   "es",
+   "en",
+   "de",
+   "fr",
+   "it",
+   "nl",
+   "pl",
+   "zh",
+   "zht"
+  ],
+  "entradas": 16,
+  "origen": "Redactado el 12/10/2026 a partir de las entradas de CHAT_KB, que solo estaban en castellano; cada dato, comprobado antes de traducirlo, y lo que no se pudo comprobar, fuera (ver AUDITORIA-FINAL.md).",
+  "politica_datos": "Lo de cada lugar sale de su ficha en el mapa; lo del Teide, del bloque B1. Ninguna tarifa, horario de salida ni frecuencia (la misma politica que C1). Van volatil:true las que dependen de una regulacion que cambia: drones, acampada, la 111, Teno y el Barranco del Infierno."
+ },
+ "entradas": [
+  {
+   "id": "pla-01",
+   "cat": "clima",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué clima tiene Tenerife?",
+    "en": "What is the weather like in Tenerife?",
+    "de": "Wie ist das Klima auf Teneriffa?",
+    "fr": "Quel climat a Tenerife ?",
+    "it": "Che clima ha Tenerife?",
+    "nl": "Wat voor klimaat heeft Tenerife?",
+    "pl": "Jaki klimat ma Teneryfa?",
+    "zh": "特内里费岛的气候怎么样？",
+    "zht": "特內里費島的氣候怎麼樣？"
+   },
+   "keys": {
+    "es": [
+     "clima",
+     "tiempo",
+     "el tiempo",
+     "temperatura",
+     "temperaturas",
+     "microclimas",
+     "panza de burro",
+     "mar de nubes",
+     "nublado",
+     "calor",
+     "viento"
+    ],
+    "en": [
+     "climate",
+     "weather",
+     "temperature",
+     "temperatures",
+     "microclimates",
+     "sea of clouds",
+     "cloudy",
+     "hot",
+     "windy"
+    ],
+    "de": [
+     "klima",
+     "wetter",
+     "temperatur",
+     "temperaturen",
+     "mikroklima",
+     "wolkenmeer",
+     "bewolkt",
+     "hitze",
+     "wind"
+    ],
+    "fr": [
+     "climat",
+     "meteo",
+     "temps",
+     "temperature",
+     "temperatures",
+     "microclimats",
+     "mer de nuages",
+     "nuageux",
+     "chaleur",
+     "vent"
+    ],
+    "it": [
+     "clima",
+     "meteo",
+     "tempo",
+     "temperatura",
+     "temperature",
+     "microclimi",
+     "mare di nuvole",
+     "nuvoloso",
+     "caldo",
+     "vento"
+    ],
+    "nl": [
+     "klimaat",
+     "weer",
+     "het weer",
+     "temperatuur",
+     "temperaturen",
+     "microklimaten",
+     "wolkenzee",
+     "bewolkt",
+     "warmte",
+     "wind"
+    ],
+    "pl": [
+     "klimat",
+     "pogoda",
+     "temperatura",
+     "temperatury",
+     "mikroklimat",
+     "morze chmur",
+     "pochmurno",
+     "upal",
+     "wiatr"
+    ],
+    "zh": [
+     "气候",
+     "天气",
+     "温度",
+     "气温",
+     "微气候",
+     "云海",
+     "多云",
+     "热不热"
+    ],
+    "zht": [
+     "氣候",
+     "天氣",
+     "溫度",
+     "氣溫",
+     "微氣候",
+     "雲海",
+     "多雲",
+     "熱不熱"
+    ]
+   },
+   "a": {
+    "es": "🌤️ Una isla de microclimas: los vientos alisios dejan en el norte más nubes y más verde, y el sur y el oeste son más secos y soleados. En verano son típicas por la mañana, en el norte, las nubes bajas de la «panza de burro»; en la cumbre hace frío de verdad y en invierno puede nevar. Si está nublado donde estás, cruzar la isla suele cambiarlo. Para el tiempo de hoy, zona por zona, el termómetro 🌡️ de arriba.",
+    "en": "🌤️ An island of microclimates: the trade winds leave more cloud and more green in the north, while the south and west are drier and sunnier. In summer the low morning clouds of the «panza de burro» are typical in the north; on the summit it is properly cold and in winter it can snow. If it is cloudy where you are, crossing the island often changes that. For today’s weather, area by area, use the thermometer 🌡️ at the top.",
+    "de": "🌤️ Eine Insel der Mikroklimas: Die Passatwinde bringen dem Norden mehr Wolken und mehr Grün, der Süden und Westen sind trockener und sonniger. Im Sommer sind morgens im Norden die tiefen Wolken der «panza de burro» typisch; auf dem Gipfel ist es richtig kalt, und im Winter kann es schneien. Ist es bei dir bewölkt, ändert eine Fahrt auf die andere Inselseite das oft. Für das Wetter von heute, Zone für Zone: das Thermometer 🌡️ oben.",
+    "fr": "🌤️ Une île de microclimats : les alizés laissent plus de nuages et plus de vert au nord, tandis que le sud et l’ouest sont plus secs et ensoleillés. En été, les nuages bas du matin, la «panza de burro», sont typiques du nord ; au sommet il fait vraiment froid et en hiver il peut neiger. S’il fait gris là où tu es, traverser l’île change souvent la donne. Pour la météo du jour, zone par zone, le thermomètre 🌡️ en haut.",
+    "it": "🌤️ Un’isola di microclimi: gli alisei lasciano al nord più nuvole e più verde, mentre il sud e l’ovest sono più secchi e soleggiati. In estate al nord sono tipiche le nuvole basse del mattino, la «panza de burro»; in vetta fa freddo davvero e d’inverno può nevicare. Se dove sei è nuvoloso, attraversare l’isola spesso cambia tutto. Per il meteo di oggi, zona per zona, il termometro 🌡️ in alto.",
+    "nl": "🌤️ Een eiland vol microklimaten: de passaatwinden geven het noorden meer wolken en meer groen, terwijl het zuiden en westen droger en zonniger zijn. In de zomer zijn de lage ochtendwolken van de «panza de burro» typisch voor het noorden; op de top is het echt koud en in de winter kan het sneeuwen. Is het bewolkt waar je bent, dan verandert een tochtje naar de andere kant van het eiland dat vaak. Voor het weer van vandaag, zone per zone: de thermometer 🌡️ bovenaan.",
+    "pl": "🌤️ To wyspa mikroklimatów: pasaty przynoszą na północ więcej chmur i zieleni, a południe i zachód są suchsze i bardziej słoneczne. Latem na północy typowe są niskie poranne chmury zwane «panza de burro»; na szczycie jest naprawdę zimno, a zimą może padać śnieg. Jeśli tam, gdzie jesteś, jest pochmurno, przejazd na drugą stronę wyspy często to zmienia. Pogodę na dziś, strefa po strefie, pokaże termometr 🌡️ na górze.",
+    "zh": "🌤️ 这是一座微气候之岛：信风让北部云多、植被更绿，南部和西部则更干燥、阳光更足。夏天北部早上常有低云，当地人叫它「panza de burro」；山顶真的很冷，冬天还可能下雪。如果你所在的地方阴天，换到岛的另一边往往就不一样了。想看今天各区域的天气，点顶部的温度计 🌡️。",
+    "zht": "🌤️ 這是一座微氣候之島：信風讓北部雲多、植被更綠，南部和西部則更乾燥、陽光更足。夏天北部早上常有低雲，當地人叫它「panza de burro」；山頂真的很冷，冬天還可能下雪。如果你所在的地方陰天，換到島的另一邊往往就不一樣了。想看今天各區域的天氣，點頂部的溫度計 🌡️。"
+   },
+   "follow": [
+    "app-13",
+    "pla-02",
+    "pla-03"
+   ],
+   "comprobado": "Climatologia general (AEMET): alisios, norte mas nuboso y verde, sur y oeste mas secos y soleados, mar de nubes (panza de burro) frecuente en verano en el norte; nieve en la cumbre en invierno (tei-11); boton del tiempo por zonas (mc-btn)"
+  },
+  {
+   "id": "pla-02",
+   "cat": "clima",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Cuál es la mejor época para venir?",
+    "en": "When is the best time to come?",
+    "de": "Wann ist die beste Reisezeit?",
+    "fr": "Quelle est la meilleure période pour venir ?",
+    "it": "Qual è il periodo migliore per venire?",
+    "nl": "Wat is de beste tijd om te komen?",
+    "pl": "Kiedy najlepiej przyjechać?",
+    "zh": "什么时候去最好？",
+    "zht": "什麼時候去最好？"
+   },
+   "keys": {
+    "es": [
+     "mejor epoca",
+     "cuando venir",
+     "cuando ir",
+     "temporada",
+     "que mes",
+     "mejor mes",
+     "temporada alta"
+    ],
+    "en": [
+     "best time",
+     "when to come",
+     "when to go",
+     "season",
+     "which month",
+     "best month",
+     "high season"
+    ],
+    "de": [
+     "beste reisezeit",
+     "wann reisen",
+     "wann kommen",
+     "saison",
+     "welcher monat",
+     "bester monat",
+     "hochsaison"
+    ],
+    "fr": [
+     "meilleure periode",
+     "quand venir",
+     "quand partir",
+     "saison",
+     "quel mois",
+     "meilleur mois",
+     "haute saison"
+    ],
+    "it": [
+     "periodo migliore",
+     "quando venire",
+     "quando andare",
+     "stagione",
+     "quale mese",
+     "mese migliore",
+     "alta stagione"
+    ],
+    "nl": [
+     "beste tijd",
+     "wanneer komen",
+     "wanneer gaan",
+     "seizoen",
+     "welke maand",
+     "beste maand",
+     "hoogseizoen"
+    ],
+    "pl": [
+     "najlepszy czas",
+     "kiedy przyjechac",
+     "kiedy jechac",
+     "sezon",
+     "ktory miesiac",
+     "najlepszy miesiac",
+     "wysoki sezon"
+    ],
+    "zh": [
+     "最佳季节",
+     "什么时候去",
+     "什么季节",
+     "哪个月",
+     "旺季"
+    ],
+    "zht": [
+     "最佳季節",
+     "什麼時候去",
+     "什麼季節",
+     "哪個月",
+     "旺季"
+    ]
+   },
+   "a": {
+    "es": "📅 Cualquiera: en la costa el clima es suave todo el año. Lo que cambia es el plan: en verano, más calor y el mar más templado; en invierno, posible nieve en el Teide; en febrero o marzo, el Carnaval. Si quieres subir al pico del Teide, mira con tiempo que haya plazas del permiso.",
+    "en": "📅 Any time: on the coast the climate is mild all year. What changes is the plan: in summer, more heat and warmer sea; in winter, possible snow on the Teide; in February or March, Carnival. If you want to climb to the Teide peak, check early that there are permit places.",
+    "de": "📅 Jederzeit: An der Küste ist das Klima das ganze Jahr mild. Was sich ändert, ist das Programm: im Sommer mehr Hitze und wärmeres Meer; im Winter möglicherweise Schnee auf dem Teide; im Februar oder März Karneval. Willst du auf den Gipfel des Teide, schau rechtzeitig, ob es noch Plätze für die Genehmigung gibt.",
+    "fr": "📅 N’importe quand : sur la côte, le climat est doux toute l’année. C’est le programme qui change : en été, plus de chaleur et une mer plus chaude ; en hiver, de la neige possible sur le Teide ; en février ou mars, le Carnaval. Si tu veux monter au sommet du Teide, vérifie à l’avance qu’il reste des places pour l’autorisation.",
+    "it": "📅 Qualsiasi: sulla costa il clima è mite tutto l’anno. Quello che cambia è il programma: d’estate, più caldo e mare più tiepido; d’inverno, possibile neve sul Teide; a febbraio o marzo, il Carnevale. Se vuoi salire in vetta al Teide, controlla per tempo che ci siano posti per il permesso.",
+    "nl": "📅 Altijd: aan de kust is het klimaat het hele jaar mild. Wat verandert is het programma: in de zomer meer warmte en warmer zeewater; in de winter mogelijk sneeuw op de Teide; in februari of maart carnaval. Wil je naar de top van de Teide, kijk dan op tijd of er nog plaatsen voor de vergunning zijn.",
+    "pl": "📅 Każda: na wybrzeżu klimat jest łagodny przez cały rok. Zmienia się plan: latem więcej upału i cieplejsze morze; zimą możliwy śnieg na Teide; w lutym lub marcu karnawał. Jeśli chcesz wejść na szczyt Teide, sprawdź z wyprzedzeniem, czy są miejsca na pozwolenie.",
+    "zh": "📅 什么时候都行：海边全年气候温和。不同的是玩法：夏天更热、海水更暖；冬天泰德峰可能下雪；二三月有狂欢节。如果想登泰德峰顶，记得提早查看许可还有没有名额。",
+    "zht": "📅 什麼時候都行：海邊全年氣候溫和。不同的是玩法：夏天更熱、海水更暖；冬天泰德峰可能下雪；二三月有嘉年華。如果想登泰德峰頂，記得提早查看許可還有沒有名額。"
+   },
+   "follow": [
+    "pla-01",
+    "cul-06",
+    "tei-02"
+   ],
+   "comprobado": "Clima suave todo el ano en la costa (AEMET); nieve posible en el Teide en invierno (tei-11); Carnaval en febrero o marzo (cul-06); reserva del permiso del pico (tei-02)"
+  },
+  {
+   "id": "pla-03",
+   "cat": "planes",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Me alojo en el norte o en el sur?",
+    "en": "Should I stay in the north or the south?",
+    "de": "Wohne ich besser im Norden oder im Süden?",
+    "fr": "Je loge au nord ou au sud ?",
+    "it": "Mi conviene alloggiare al nord o al sud?",
+    "nl": "Logeer ik in het noorden of in het zuiden?",
+    "pl": "Nocować na północy czy na południu?",
+    "zh": "住北部还是南部好？",
+    "zht": "住北部還是南部好？"
+   },
+   "keys": {
+    "es": [
+     "norte o sur",
+     "norte vs sur",
+     "donde alojarse",
+     "donde alojarme",
+     "alojamiento",
+     "hotel",
+     "hoteles",
+     "donde dormir",
+     "apartamento",
+     "que zona elegir"
+    ],
+    "en": [
+     "north or south",
+     "north vs south",
+     "where to stay",
+     "accommodation",
+     "hotel",
+     "hotels",
+     "where to sleep",
+     "apartment",
+     "which area to stay"
+    ],
+    "de": [
+     "norden oder suden",
+     "wo ubernachten",
+     "unterkunft",
+     "hotel",
+     "hotels",
+     "wo schlafen",
+     "ferienwohnung",
+     "welche gegend"
+    ],
+    "fr": [
+     "nord ou sud",
+     "ou loger",
+     "hebergement",
+     "hotel",
+     "hotels",
+     "ou dormir",
+     "appartement",
+     "quelle zone choisir"
+    ],
+    "it": [
+     "nord o sud",
+     "dove alloggiare",
+     "alloggio",
+     "hotel",
+     "dove dormire",
+     "appartamento",
+     "che zona scegliere"
+    ],
+    "nl": [
+     "noord of zuid",
+     "waar overnachten",
+     "accommodatie",
+     "hotel",
+     "hotels",
+     "waar slapen",
+     "appartement",
+     "welke streek"
+    ],
+    "pl": [
+     "polnoc czy poludnie",
+     "gdzie nocowac",
+     "nocleg",
+     "hotel",
+     "hotele",
+     "gdzie spac",
+     "apartament"
+    ],
+    "zh": [
+     "住北部还是南部",
+     "住哪里",
+     "住宿",
+     "酒店",
+     "公寓",
+     "选哪个区域"
+    ],
+    "zht": [
+     "住北部還是南部",
+     "住哪裡",
+     "住宿",
+     "飯店",
+     "公寓",
+     "選哪個區域"
+    ]
+   },
+   "a": {
+    "es": "🧭 Depende de lo que busques. El sur (Costa Adeje, Los Cristianos, El Médano) tiene el sol más seguro y las playas más cómodas. El norte (Puerto de la Cruz, La Orotava, Garachico) es más verde y más canario, con los guachinches cerca. La isla no es grande: duermas donde duermas, el otro lado queda a una excursión de un día.",
+    "en": "🧭 It depends on what you are after. The south (Costa Adeje, Los Cristianos, El Médano) has the most reliable sun and the easiest beaches. The north (Puerto de la Cruz, La Orotava, Garachico) is greener and more Canarian, with the guachinches close by. The island is not big: wherever you sleep, the other side is a day trip away.",
+    "de": "🧭 Kommt darauf an, was du suchst. Der Süden (Costa Adeje, Los Cristianos, El Médano) hat die verlässlichste Sonne und die bequemsten Strände. Der Norden (Puerto de la Cruz, La Orotava, Garachico) ist grüner und kanarischer, mit den Guachinches in der Nähe. Die Insel ist nicht groß: Wo du auch schläfst, die andere Seite ist ein Tagesausflug.",
+    "fr": "🧭 Ça dépend de ce que tu cherches. Le sud (Costa Adeje, Los Cristianos, El Médano) a le soleil le plus sûr et les plages les plus faciles. Le nord (Puerto de la Cruz, La Orotava, Garachico) est plus vert et plus canarien, avec les guachinches tout près. L’île n’est pas grande : où que tu dormes, l’autre côté est à une excursion d’une journée.",
+    "it": "🧭 Dipende da cosa cerchi. Il sud (Costa Adeje, Los Cristianos, El Médano) ha il sole più sicuro e le spiagge più comode. Il nord (Puerto de la Cruz, La Orotava, Garachico) è più verde e più canario, con i guachinches vicini. L’isola non è grande: ovunque dormi, l’altro lato è a una gita di un giorno.",
+    "nl": "🧭 Dat hangt af van wat je zoekt. Het zuiden (Costa Adeje, Los Cristianos, El Médano) heeft de meest betrouwbare zon en de makkelijkste stranden. Het noorden (Puerto de la Cruz, La Orotava, Garachico) is groener en Canarischer, met de guachinches dichtbij. Het eiland is niet groot: waar je ook slaapt, de andere kant is een dagtocht.",
+    "pl": "🧭 Zależy, czego szukasz. Południe (Costa Adeje, Los Cristianos, El Médano) ma najpewniejsze słońce i najwygodniejsze plaże. Północ (Puerto de la Cruz, La Orotava, Garachico) jest bardziej zielona i bardziej kanaryjska, z guachinches w pobliżu. Wyspa nie jest duża: gdziekolwiek śpisz, druga strona to jednodniowa wycieczka.",
+    "zh": "🧭 看你想要什么。南部（Costa Adeje、Los Cristianos、El Médano）阳光最稳定，海滩最方便。北部（Puerto de la Cruz、La Orotava、Garachico）更绿、更有加那利味道，guachinche 乡村酒馆也近。岛不大：住在哪边，另一边都是一日游的距离。",
+    "zht": "🧭 看你想要什麼。南部（Costa Adeje、Los Cristianos、El Médano）陽光最穩定，海灘最方便。北部（Puerto de la Cruz、La Orotava、Garachico）更綠、更有加那利味道，guachinche 鄉村酒館也近。島不大：住在哪邊，另一邊都是一日遊的距離。"
+   },
+   "follow": [
+    "pla-01",
+    "pla-04",
+    "exc-03"
+   ],
+   "comprobado": "Descripcion general: sur mas soleado y con playas de servicios (fichas de Las Vistas, Fanabe, El Duque), norte mas verde y con los guachinches cerca (17 de 19 en el norte, com-02)"
+  },
+  {
+   "id": "pla-04",
+   "cat": "playas",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué playas hay?",
+    "en": "What beaches are there?",
+    "de": "Welche Strände gibt es?",
+    "fr": "Quelles plages y a-t-il ?",
+    "it": "Che spiagge ci sono?",
+    "nl": "Welke stranden zijn er?",
+    "pl": "Jakie są plaże?",
+    "zh": "有哪些海滩？",
+    "zht": "有哪些海灘？"
+   },
+   "keys": {
+    "es": [
+     "playa",
+     "playas",
+     "mejor playa",
+     "mejores playas",
+     "banarse",
+     "arena negra",
+     "arena dorada"
+    ],
+    "en": [
+     "beach",
+     "beaches",
+     "best beach",
+     "best beaches",
+     "swimming",
+     "black sand",
+     "golden sand"
+    ],
+    "de": [
+     "strand",
+     "strande",
+     "bester strand",
+     "beste strande",
+     "baden",
+     "schwarzer sand",
+     "goldener sand"
+    ],
+    "fr": [
+     "plage",
+     "plages",
+     "meilleure plage",
+     "meilleures plages",
+     "se baigner",
+     "sable noir",
+     "sable dore"
+    ],
+    "it": [
+     "spiaggia",
+     "spiagge",
+     "spiaggia migliore",
+     "migliori spiagge",
+     "fare il bagno",
+     "sabbia nera",
+     "sabbia dorata"
+    ],
+    "nl": [
+     "strand",
+     "stranden",
+     "beste strand",
+     "beste stranden",
+     "zwemmen",
+     "zwart zand",
+     "goudgeel zand"
+    ],
+    "pl": [
+     "plaza",
+     "plaze",
+     "najlepsza plaza",
+     "najlepsze plaze",
+     "kapiel",
+     "czarny piasek",
+     "zloty piasek"
+    ],
+    "zh": [
+     "海滩",
+     "最好的海滩",
+     "游泳",
+     "黑沙滩",
+     "金沙滩"
+    ],
+    "zht": [
+     "海灘",
+     "最好的海灘",
+     "游泳",
+     "黑沙灘",
+     "金沙灘"
+    ]
+   },
+   "a": {
+    "es": "🏖️ Las hay de arena negra volcánica, de arena dorada y de callaos, y muy distintas según la costa: en el sur, más resguardadas y con servicios; en el norte y en Anaga, más salvajes y con más oleaje. Antes de bañarte, mira en el globo de cada playa su aviso ⚠️ si lo lleva, la bandera y el estado del mar.",
+    "en": "🏖️ There are beaches of black volcanic sand, golden sand and pebbles, and they are very different depending on the coast: in the south, more sheltered and with facilities; in the north and in Anaga, wilder and with bigger waves. Before swimming, check each beach’s pop-up for its ⚠️ note if it has one, the flag and the sea conditions.",
+    "de": "🏖️ Es gibt Strände mit schwarzem Vulkansand, mit goldenem Sand und mit Kieseln, und je nach Küste sind sie sehr verschieden: im Süden geschützter und mit Service, im Norden und in Anaga wilder und mit mehr Brandung. Schau vor dem Baden im Pop-up jedes Strandes nach dem ⚠️-Hinweis, falls vorhanden, nach der Flagge und nach dem Seegang.",
+    "fr": "🏖️ Il y en a de sable noir volcanique, de sable doré et de galets, et elles changent beaucoup selon la côte : au sud, plus abritées et avec des services ; au nord et à Anaga, plus sauvages et avec plus de vagues. Avant de te baigner, regarde dans la bulle de chaque plage son avertissement ⚠️ s’il y en a un, le drapeau et l’état de la mer.",
+    "it": "🏖️ Ce ne sono di sabbia nera vulcanica, di sabbia dorata e di ciottoli, e cambiano molto a seconda della costa: al sud più riparate e con servizi; al nord e ad Anaga più selvagge e con più onde. Prima di fare il bagno, guarda nel fumetto di ogni spiaggia l’avviso ⚠️ se c’è, la bandiera e lo stato del mare.",
+    "nl": "🏖️ Er zijn stranden met zwart vulkanisch zand, met goudgeel zand en met kiezels, en ze verschillen sterk per kust: in het zuiden beschutter en met voorzieningen, in het noorden en in Anaga ruiger en met meer golven. Kijk voor het zwemmen in de pop-up van elk strand naar de ⚠️-waarschuwing als die er is, de vlag en de zeegang.",
+    "pl": "🏖️ Są plaże z czarnym piaskiem wulkanicznym, ze złotym piaskiem i kamieniste, a każde wybrzeże wygląda inaczej: na południu bardziej osłonięte i z udogodnieniami, na północy i w Anadze dzikie i z większymi falami. Przed kąpielą sprawdź w dymku każdej plaży ostrzeżenie ⚠️, jeśli jest, flagę i stan morza.",
+    "zh": "🏖️ 有黑色火山沙、金色沙和卵石三种海滩，不同海岸差别很大：南部的更避风、设施更全；北部和 Anaga 的更原始、浪更大。下水前，先在每个海滩的信息框里看看有没有 ⚠️ 提示，以及旗帜和海况。",
+    "zht": "🏖️ 有黑色火山沙、金色沙和卵石三種海灘，不同海岸差別很大：南部的更避風、設施更齊全；北部和 Anaga 的更原始、浪更大。下水前，先在每個海灘的資訊框裡看看有沒有 ⚠️ 提示，以及旗幟和海況。"
+   },
+   "follow": [
+    "sal-02",
+    "pla-05",
+    "pla-03"
+   ],
+   "comprobado": "Fichas de las playas del mapa: arena negra volcanica (Benijo, Almaciga, El Socorro), arena dorada (Las Teresitas, La Tejita), callaos (Candelaria); sur resguardado y con servicios (Las Vistas, Fanabe), norte y Anaga con oleaje (Benijo, Almaciga, avisos «mar»); globo con aviso, leyenda de banderas y estado del mar"
+  },
+  {
+   "id": "pla-05",
+   "cat": "playas",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Dónde hay piscinas naturales?",
+    "en": "Where are there natural pools?",
+    "de": "Wo gibt es Naturpools?",
+    "fr": "Où y a-t-il des piscines naturelles ?",
+    "it": "Dove ci sono piscine naturali?",
+    "nl": "Waar zijn natuurlijke zwembaden?",
+    "pl": "Gdzie są naturalne baseny?",
+    "zh": "哪里有天然泳池？",
+    "zht": "哪裡有天然泳池？"
+   },
+   "keys": {
+    "es": [
+     "piscina natural",
+     "piscinas naturales",
+     "charco",
+     "charcos",
+     "piscinas de mar"
+    ],
+    "en": [
+     "natural pool",
+     "natural pools",
+     "rock pool",
+     "rock pools",
+     "sea pools"
+    ],
+    "de": [
+     "naturpool",
+     "naturpools",
+     "naturschwimmbecken",
+     "meerwasserbecken"
+    ],
+    "fr": [
+     "piscine naturelle",
+     "piscines naturelles",
+     "bassin naturel",
+     "bassins naturels"
+    ],
+    "it": [
+     "piscina naturale",
+     "piscine naturali",
+     "pozza",
+     "pozze"
+    ],
+    "nl": [
+     "natuurlijk zwembad",
+     "natuurlijke zwembaden",
+     "natuurzwembad",
+     "natuurzwembaden",
+     "zeebaden"
+    ],
+    "pl": [
+     "naturalny basen",
+     "naturalne baseny",
+     "baseny skalne"
+    ],
+    "zh": [
+     "天然泳池",
+     "海水泳池",
+     "礁石泳池"
+    ],
+    "zht": [
+     "天然泳池",
+     "海水泳池",
+     "礁石泳池"
+    ]
+   },
+   "a": {
+    "es": "💧 Son charcos de agua de mar entre la lava, casi todos en la costa norte. Báñate solo con el mar en calma, entra por las escaleras y lleva escarpines, que la roca corta. Con oleaje, no te acerques al borde. En el globo de cada una tienes su aviso y el estado del mar.",
+    "en": "💧 They are seawater pools among the lava, almost all on the north coast. Swim only when the sea is calm, get in by the steps and wear water shoes, because the rock is sharp. In rough seas, stay away from the edge. Each pool’s pop-up has its safety note and the sea conditions.",
+    "de": "💧 Das sind Meerwasserbecken zwischen der Lava, fast alle an der Nordküste. Bade nur bei ruhigem Meer, steig über die Treppen ein und trag Badeschuhe, denn der Fels ist scharf. Bei Wellengang bleib vom Rand weg. Im Pop-up jedes Beckens stehen sein Hinweis und der Seegang.",
+    "fr": "💧 Ce sont des bassins d’eau de mer au milieu de la lave, presque tous sur la côte nord. Baigne-toi seulement par mer calme, entre par les escaliers et mets des chaussons, car la roche coupe. Quand il y a des vagues, ne t’approche pas du bord. La bulle de chacune donne son avertissement et l’état de la mer.",
+    "it": "💧 Sono pozze di acqua di mare tra la lava, quasi tutte sulla costa nord. Fai il bagno solo con il mare calmo, entra dalle scalette e metti le scarpette, perché la roccia taglia. Con le onde, non avvicinarti al bordo. Nel fumetto di ognuna trovi il suo avviso e lo stato del mare.",
+    "nl": "💧 Het zijn zeewaterbaden tussen de lava, bijna allemaal aan de noordkust. Zwem alleen bij kalme zee, ga erin via de trappen en draag waterschoenen, want de rots is scherp. Bij golven blijf je weg van de rand. In de pop-up van elk bad staan de waarschuwing en de zeegang.",
+    "pl": "💧 To baseny z morską wodą wśród lawy, prawie wszystkie na północnym wybrzeżu. Kąp się tylko przy spokojnym morzu, wchodź po schodkach i załóż buty do wody, bo skała tnie. Przy falach nie podchodź do krawędzi. W dymku każdego basenu jest jego ostrzeżenie i stan morza.",
+    "zh": "💧 这些是熔岩之间的海水池，几乎都在北部海岸。只在风平浪静时下水，从台阶进出，穿上溯溪鞋，因为礁石很割脚。有浪时别靠近池边。每个泳池的信息框里都有它的安全提示和海况。",
+    "zht": "💧 這些是熔岩之間的海水池，幾乎都在北部海岸。只在風平浪靜時下水，從台階進出，穿上溯溪鞋，因為礁石很割腳。有浪時別靠近池邊。每個泳池的資訊框裡都有它的安全提示和海況。"
+   },
+   "follow": [
+    "sal-02",
+    "pla-04",
+    "cul-04"
+   ],
+   "comprobado": "Fichas de piscinas naturales del mapa: charcos de agua de mar entre la lava, casi todos en la costa norte (Garachico, Bajamar, Punta del Hidalgo, Charco del Viento, El Pris, La Laja), con aviso «mar»; «Roca cortante: escarpines» (ficha piscina-hidalgo-norte)"
+  },
+  {
+   "id": "pla-06",
+   "cat": "planes",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué hago con niños?",
+    "en": "What can I do with kids?",
+    "de": "Was kann ich mit Kindern machen?",
+    "fr": "Que faire avec des enfants ?",
+    "it": "Cosa faccio con i bambini?",
+    "nl": "Wat doe ik met kinderen?",
+    "pl": "Co robić z dziećmi?",
+    "zh": "带孩子去哪里玩？",
+    "zht": "帶孩子去哪裡玩？"
+   },
+   "keys": {
+    "es": [
+     "ninos",
+     "familia",
+     "en familia",
+     "plan familiar",
+     "con bebe",
+     "planes para ninos"
+    ],
+    "en": [
+     "kids",
+     "children",
+     "with kids",
+     "family",
+     "family day out",
+     "with a baby",
+     "things to do with kids"
+    ],
+    "de": [
+     "kinder",
+     "mit kindern",
+     "familie",
+     "familienausflug",
+     "mit baby",
+     "was mit kindern"
+    ],
+    "fr": [
+     "enfants",
+     "avec des enfants",
+     "famille",
+     "en famille",
+     "avec un bebe",
+     "activites pour enfants"
+    ],
+    "it": [
+     "bambini",
+     "con i bambini",
+     "famiglia",
+     "in famiglia",
+     "con un neonato",
+     "cosa fare con i bambini"
+    ],
+    "nl": [
+     "kinderen",
+     "gezin",
+     "familie",
+     "met een baby",
+     "wat te doen met kinderen"
+    ],
+    "pl": [
+     "dzieci",
+     "z dziecmi",
+     "rodzina",
+     "rodzinna wycieczka",
+     "z niemowlakiem"
+    ],
+    "zh": [
+     "孩子",
+     "带孩子",
+     "亲子",
+     "家庭游",
+     "带宝宝"
+    ],
+    "zht": [
+     "孩子",
+     "帶孩子",
+     "親子",
+     "家庭遊",
+     "帶寶寶"
+    ]
+   },
+   "a": {
+    "es": "👨‍👩‍👧 En el mapa tienes las categorías Familia y Animales: parques acuáticos y de animales, museos para tocar y experimentar, playas de aguas tranquilas… Al Teide pueden subir en teleférico, contando con el frío y la altura. Y en Rutas, «Organiza tu día», elige Familia y la app te prepara el plan.",
+    "en": "👨‍👩‍👧 The map has the Family and Animals categories: water parks and animal parks, hands-on museums, beaches with calm water… They can go up the Teide by cable car, bearing in mind the cold and the altitude. And in Routes, «Plan your day», choose Family and the app puts the plan together.",
+    "de": "👨‍👩‍👧 Auf der Karte gibt es die Kategorien Familie und Tiere: Wasser- und Tierparks, Museen zum Anfassen und Ausprobieren, Strände mit ruhigem Wasser… Auf den Teide können sie mit der Seilbahn, wenn man Kälte und Höhe einplant. Und unter Routen, «Tag planen», wählst du Familie und die App stellt den Plan zusammen.",
+    "fr": "👨‍👩‍👧 Sur la carte, tu as les catégories Famille et Animaux : parcs aquatiques et animaliers, musées où l’on touche et on expérimente, plages aux eaux calmes… Ils peuvent monter au Teide en téléphérique, en tenant compte du froid et de l’altitude. Et dans Itinéraires, «Organise ta journée», choisis Famille et l’appli prépare le programme.",
+    "it": "👨‍👩‍👧 Sulla mappa hai le categorie Famiglia e Animali: parchi acquatici e faunistici, musei da toccare e sperimentare, spiagge con acqua tranquilla… Sul Teide possono salire in funivia, tenendo conto del freddo e dell’altitudine. E in Percorsi, «Organizza la giornata», scegli Famiglia e l’app prepara il programma.",
+    "nl": "👨‍👩‍👧 Op de kaart heb je de categorieën Familie en Dieren: waterparken en dierenparken, doe-musea, stranden met rustig water… De Teide op kan met de kabelbaan, als je rekening houdt met de kou en de hoogte. En in Routes, «Plan je dag», kies je Gezin en de app maakt het plan.",
+    "pl": "👨‍👩‍👧 Na mapie masz kategorie Rodzina i Zwierzęta: parki wodne i parki z zwierzętami, muzea, w których można dotykać i eksperymentować, plaże ze spokojną wodą… Na Teide mogą wjechać kolejką, pamiętając o zimnie i wysokości. A w zakładce «Trasy», w «Zaplanuj dzień», wybierz Rodzinę i aplikacja ułoży plan.",
+    "zh": "👨‍👩‍👧 地图上有「家庭」和「动物」类别：水上乐园和动物园、可以动手体验的博物馆、水面平静的海滩……泰德峰可以坐缆车上去，但要考虑寒冷和高海拔。在「路线」的「规划一天」里选「家庭」，应用就会帮你排好行程。",
+    "zht": "👨‍👩‍👧 地圖上有「家庭」和「動物」類別：水上樂園和動物園、可以動手體驗的博物館、水面平靜的海灘……泰德峰可以搭纜車上去，但要考慮寒冷和高海拔。在「路線」的「規劃一天」裡選「家庭」，應用程式就會幫你排好行程。"
+   },
+   "follow": [
+    "tei-14",
+    "pla-04",
+    "app-16"
+   ],
+   "rotulos": [
+    "UI.tabPlanner"
+   ],
+   "comprobado": "Categorias Familia y Animales del mapa (parques acuaticos y de animales, Museo de la Ciencia y el Cosmos, playas tranquilas como Las Vistas); teleferico con ninos (tei-14); tarjeta Familia de DP_CARDS en «Organiza tu dia»"
+  },
+  {
+   "id": "pla-07",
+   "cat": "planes",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué hago si llueve?",
+    "en": "What can I do if it rains?",
+    "de": "Was tun, wenn es regnet?",
+    "fr": "Que faire s’il pleut ?",
+    "it": "Cosa faccio se piove?",
+    "nl": "Wat doe ik als het regent?",
+    "pl": "Co robić, gdy pada?",
+    "zh": "下雨天做什么？",
+    "zht": "下雨天做什麼？"
+   },
+   "keys": {
+    "es": [
+     "lluvia",
+     "llueve",
+     "si llueve",
+     "esta lloviendo",
+     "mal tiempo",
+     "dia gris",
+     "plan bajo techo",
+     "que hacer si llueve"
+    ],
+    "en": [
+     "rain",
+     "raining",
+     "if it rains",
+     "bad weather",
+     "rainy day",
+     "grey day",
+     "indoor plans",
+     "what to do if it rains"
+    ],
+    "de": [
+     "regen",
+     "es regnet",
+     "wenn es regnet",
+     "schlechtes wetter",
+     "regentag",
+     "indoor"
+    ],
+    "fr": [
+     "pluie",
+     "il pleut",
+     "s il pleut",
+     "mauvais temps",
+     "jour de pluie",
+     "activites a l interieur"
+    ],
+    "it": [
+     "pioggia",
+     "piove",
+     "se piove",
+     "brutto tempo",
+     "giornata di pioggia",
+     "al coperto"
+    ],
+    "nl": [
+     "regen",
+     "het regent",
+     "als het regent",
+     "slecht weer",
+     "regendag",
+     "binnenactiviteiten"
+    ],
+    "pl": [
+     "deszcz",
+     "pada",
+     "jak pada",
+     "zla pogoda",
+     "deszczowy dzien",
+     "pod dachem"
+    ],
+    "zh": [
+     "下雨",
+     "雨天",
+     "天气不好",
+     "室内活动"
+    ],
+    "zht": [
+     "下雨",
+     "雨天",
+     "天氣不好",
+     "室內活動"
+    ]
+   },
+   "a": {
+    "es": "🌧️ Lo primero, cruza la isla: si llueve en el norte, en el sur suele hacer sol. Si prefieres techo, tira de museos: el de Naturaleza y Arqueología, en Santa Cruz, o el de la Ciencia y el Cosmos, en La Laguna. La Cueva del Viento, en Icod, se visita con reserva. En el mapa, la categoría Museos.",
+    "en": "🌧️ First, cross the island: if it rains in the north, the south is usually sunny. If you would rather be indoors, go for museums: the Museum of Nature and Archaeology in Santa Cruz or the Museum of Science and the Cosmos in La Laguna. The Cueva del Viento lava tube in Icod is visited by booking. On the map, the Museums category.",
+    "de": "🌧️ Erstens: Fahr auf die andere Inselseite – regnet es im Norden, scheint im Süden meist die Sonne. Lieber drinnen? Dann Museen: das Museum für Natur und Archäologie in Santa Cruz oder das Museum für Wissenschaft und Kosmos in La Laguna. Die Cueva del Viento in Icod besichtigt man mit Reservierung. Auf der Karte: die Kategorie Museen.",
+    "fr": "🌧️ D’abord, traverse l’île : s’il pleut au nord, il fait souvent beau au sud. Si tu préfères un toit, mise sur les musées : celui de la Nature et de l’Archéologie, à Santa Cruz, ou celui de la Science et du Cosmos, à La Laguna. La Cueva del Viento, à Icod, se visite sur réservation. Sur la carte, la catégorie Musées.",
+    "it": "🌧️ Per prima cosa, attraversa l’isola: se piove al nord, al sud di solito c’è il sole. Se preferisci stare al coperto, punta sui musei: quello di Natura e Archeologia a Santa Cruz o quello della Scienza e del Cosmo a La Laguna. La Cueva del Viento, a Icod, si visita su prenotazione. Sulla mappa, la categoria Musei.",
+    "nl": "🌧️ Eerst: steek het eiland over – regent het in het noorden, dan schijnt in het zuiden meestal de zon. Liever binnen? Kies een museum: het Museum voor Natuur en Archeologie in Santa Cruz of het Museum voor Wetenschap en Kosmos in La Laguna. De Cueva del Viento in Icod bezoek je op reservering. Op de kaart: de categorie Musea.",
+    "pl": "🌧️ Najpierw przejedź na drugą stronę wyspy: gdy pada na północy, na południu zwykle świeci słońce. Jeśli wolisz dach nad głową, wybierz muzeum: Przyrody i Archeologii w Santa Cruz albo Nauki i Kosmosu w La Lagunie. Cueva del Viento w Icod zwiedza się po rezerwacji. Na mapie: kategoria Muzea.",
+    "zh": "🌧️ 首先，换到岛的另一边：北部下雨时，南部往往是晴天。想待在室内的话，就去博物馆：圣克鲁斯的自然与考古博物馆，或拉拉古纳的科学与宇宙博物馆。伊科德的 Cueva del Viento 熔岩洞需预约参观。地图上请看「博物馆」类别。",
+    "zht": "🌧️ 首先，換到島的另一邊：北部下雨時，南部往往是晴天。想待在室內的話，就去博物館：聖克魯斯的自然與考古博物館，或拉拉古納的科學與宇宙博物館。伊科德的 Cueva del Viento 熔岩洞需預約參觀。地圖上請看「博物館」類別。"
+   },
+   "follow": [
+    "pla-01",
+    "cul-10",
+    "app-13"
+   ],
+   "comprobado": "Microclimas (pla-01); fichas del mapa: Museo de Naturaleza y Arqueologia (Santa Cruz), Museo de la Ciencia y el Cosmos (La Laguna), Cueva del Viento (Icod: «Visitas guiadas limitadas. Imprescindible reservar»); categoria Museos"
+  },
+  {
+   "id": "pla-08",
+   "cat": "planes",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué se puede hacer gratis?",
+    "en": "What can I do for free?",
+    "de": "Was kann man kostenlos machen?",
+    "fr": "Que faire gratuitement ?",
+    "it": "Cosa si può fare gratis?",
+    "nl": "Wat kan ik gratis doen?",
+    "pl": "Co można robić za darmo?",
+    "zh": "有什么免费的玩法？",
+    "zht": "有什麼免費的玩法？"
+   },
+   "keys": {
+    "es": [
+     "gratis",
+     "gratuito",
+     "sin pagar",
+     "que hacer gratis",
+     "cosas gratis",
+     "planes gratis",
+     "low cost"
+    ],
+    "en": [
+     "free",
+     "for free",
+     "free things",
+     "free things to do",
+     "without paying",
+     "low cost"
+    ],
+    "de": [
+     "kostenlos",
+     "gratis",
+     "umsonst",
+     "kostenlose aktivitaten",
+     "ohne zu bezahlen"
+    ],
+    "fr": [
+     "gratuit",
+     "gratuitement",
+     "activites gratuites",
+     "sans payer",
+     "petit budget"
+    ],
+    "it": [
+     "gratis",
+     "gratuito",
+     "gratuitamente",
+     "cose gratis",
+     "senza pagare"
+    ],
+    "nl": [
+     "gratis",
+     "kosteloos",
+     "gratis dingen",
+     "gratis activiteiten",
+     "zonder te betalen"
+    ],
+    "pl": [
+     "za darmo",
+     "darmowe",
+     "bezplatnie",
+     "darmowe atrakcje",
+     "bez placenia"
+    ],
+    "zh": [
+     "免费",
+     "不花钱",
+     "免费景点",
+     "免费活动"
+    ],
+    "zht": [
+     "免費",
+     "不花錢",
+     "免費景點",
+     "免費活動"
+    ]
+   },
+   "a": {
+    "es": "🆓 Mucho: las playas, los miradores, los cascos históricos de La Laguna, La Orotava o Garachico, los mercadillos y la mayoría de los senderos, también en el Parque Nacional del Teide, donde no se paga entrada. Algunos senderos piden reserva previa aunque sean gratis, como el Bosque Encantado de Anaga; el del pico del Teide, además, necesita autorización.",
+    "en": "🆓 Plenty: the beaches, the viewpoints, the old towns of La Laguna, La Orotava or Garachico, the markets and most trails, including those in Teide National Park, which has no entrance fee. Some trails need booking in advance even though they are free, like the Bosque Encantado in Anaga; the Teide peak trail also needs an authorisation.",
+    "de": "🆓 Vieles: die Strände, die Aussichtspunkte, die Altstädte von La Laguna, La Orotava oder Garachico, die Märkte und die meisten Wanderwege, auch im Teide-Nationalpark, der keinen Eintritt kostet. Manche Wege muss man vorher reservieren, auch wenn sie kostenlos sind, etwa den Bosque Encantado in Anaga; der Weg zum Teide-Gipfel braucht außerdem eine Genehmigung.",
+    "fr": "🆓 Beaucoup de choses : les plages, les belvédères, les centres historiques de La Laguna, La Orotava ou Garachico, les marchés et la plupart des sentiers, y compris dans le parc national du Teide, dont l’entrée est gratuite. Certains sentiers demandent une réservation même s’ils sont gratuits, comme le Bosque Encantado d’Anaga ; celui du sommet du Teide exige en plus une autorisation.",
+    "it": "🆓 Molto: le spiagge, i punti panoramici, i centri storici di La Laguna, La Orotava o Garachico, i mercatini e la maggior parte dei sentieri, anche nel Parco Nazionale del Teide, dove non si paga l’ingresso. Alcuni sentieri richiedono la prenotazione anche se sono gratuiti, come il Bosque Encantado di Anaga; quello della vetta del Teide richiede inoltre un’autorizzazione.",
+    "nl": "🆓 Veel: de stranden, de uitkijkpunten, de oude centra van La Laguna, La Orotava of Garachico, de markten en de meeste wandelpaden, ook in het Nationaal Park Teide, waar je geen entree betaalt. Sommige paden moet je vooraf reserveren, ook al zijn ze gratis, zoals het Bosque Encantado in Anaga; het pad naar de top van de Teide vraagt bovendien een vergunning.",
+    "pl": "🆓 Sporo: plaże, punkty widokowe, stare miasta La Laguny, La Orotavy czy Garachico, targi i większość szlaków, także w Parku Narodowym Teide, gdzie nie płaci się za wstęp. Niektóre szlaki wymagają wcześniejszej rezerwacji, choć są darmowe, jak Bosque Encantado w Anadze; szlak na szczyt Teide wymaga ponadto pozwolenia.",
+    "zh": "🆓 很多：海滩、观景台、拉拉古纳、拉奥罗塔瓦和加拉奇科的老城、集市，以及大多数步道，包括不收门票的泰德国家公园里的步道。有些步道虽然免费，但要提前预约，比如 Anaga 的 Bosque Encantado（魔法森林）；登泰德峰顶的步道还需要许可。",
+    "zht": "🆓 很多：海灘、觀景台、拉拉古納、拉奧羅塔瓦和加拉奇科的老城、市集，以及大多數步道，包括不收門票的泰德國家公園裡的步道。有些步道雖然免費，但要提前預約，例如 Anaga 的 Bosque Encantado（魔法森林）；登泰德峰頂的步道還需要許可。"
+   },
+   "follow": [
+    "pla-09",
+    "tei-08",
+    "cul-11"
+   ],
+   "comprobado": "Parque Nacional sin entrada (tei-08); playas de dominio publico; El Pijaral con permiso obligatorio gratuito (ficha sendero-pijaral); pico del Teide con autorizacion (tei-01)"
+  },
+  {
+   "id": "pla-09",
+   "cat": "naturaleza",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué senderos fáciles hay?",
+    "en": "Are there easy trails?",
+    "de": "Gibt es leichte Wanderwege?",
+    "fr": "Y a-t-il des sentiers faciles ?",
+    "it": "Ci sono sentieri facili?",
+    "nl": "Zijn er makkelijke wandelpaden?",
+    "pl": "Są tu łatwe szlaki?",
+    "zh": "有哪些轻松的步道？",
+    "zht": "有哪些輕鬆的步道？"
+   },
+   "keys": {
+    "es": [
+     "senderos faciles",
+     "sendero facil",
+     "ruta facil",
+     "rutas faciles",
+     "senderismo con ninos",
+     "caminatas suaves",
+     "paseo facil"
+    ],
+    "en": [
+     "easy trails",
+     "easy trail",
+     "easy walk",
+     "easy hikes",
+     "hiking with kids",
+     "gentle walks"
+    ],
+    "de": [
+     "leichte wanderwege",
+     "leichter wanderweg",
+     "leichte wanderung",
+     "einfache wanderung",
+     "wandern mit kindern"
+    ],
+    "fr": [
+     "sentiers faciles",
+     "sentier facile",
+     "randonnee facile",
+     "balade facile",
+     "randonnee avec enfants"
+    ],
+    "it": [
+     "sentieri facili",
+     "sentiero facile",
+     "escursione facile",
+     "passeggiata facile",
+     "trekking con bambini"
+    ],
+    "nl": [
+     "makkelijke wandelpaden",
+     "makkelijke wandeling",
+     "eenvoudige wandeling",
+     "wandelen met kinderen"
+    ],
+    "pl": [
+     "latwe szlaki",
+     "latwy szlak",
+     "latwa trasa",
+     "spacer z dziecmi"
+    ],
+    "zh": [
+     "轻松步道",
+     "简单步道",
+     "适合孩子的步道",
+     "轻松徒步"
+    ],
+    "zht": [
+     "輕鬆步道",
+     "簡單步道",
+     "適合孩子的步道",
+     "輕鬆健行"
+    ]
+   },
+   "a": {
+    "es": "🥾 Para empezar: el Sendero de los Sentidos, en Cruz del Carmen (Anaga), con tramos cortos y uno adaptado a sillas de ruedas; la ruta circular de los Roques de García, en el Parque Nacional del Teide; y el paseo costero de Almáciga al Roque de las Bodegas, también en Anaga. Toca cada uno en el mapa para ver su ficha.",
+    "en": "🥾 To start with: the Sendero de los Sentidos at Cruz del Carmen (Anaga), with short loops and one adapted for wheelchairs; the Roques de García loop in Teide National Park; and the coastal walk from Almáciga to Roque de las Bodegas, also in Anaga. Tap each one on the map to see its details.",
+    "de": "🥾 Für den Anfang: der Sendero de los Sentidos in Cruz del Carmen (Anaga), mit kurzen Rundwegen, einer davon rollstuhlgerecht; die Runde um die Roques de García im Teide-Nationalpark; und der Küstenweg von Almáciga zum Roque de las Bodegas, ebenfalls in Anaga. Tippe auf der Karte auf jeden, um seine Infos zu sehen.",
+    "fr": "🥾 Pour commencer : le Sendero de los Sentidos, à Cruz del Carmen (Anaga), avec de courtes boucles dont une adaptée aux fauteuils roulants ; la boucle des Roques de García, dans le parc national du Teide ; et la balade côtière d’Almáciga au Roque de las Bodegas, à Anaga aussi. Touche chacun sur la carte pour voir sa fiche.",
+    "it": "🥾 Per cominciare: il Sendero de los Sentidos, a Cruz del Carmen (Anaga), con brevi anelli e uno adatto alle sedie a rotelle; l’anello dei Roques de García, nel Parco Nazionale del Teide; e la passeggiata costiera da Almáciga al Roque de las Bodegas, sempre ad Anaga. Tocca ciascuno sulla mappa per vedere la sua scheda.",
+    "nl": "🥾 Om te beginnen: de Sendero de los Sentidos bij Cruz del Carmen (Anaga), met korte rondjes waarvan één geschikt voor rolstoelen; de rondwandeling langs de Roques de García in het Nationaal Park Teide; en de kustwandeling van Almáciga naar de Roque de las Bodegas, ook in Anaga. Tik ze op de kaart aan voor de info.",
+    "pl": "🥾 Na początek: Sendero de los Sentidos w Cruz del Carmen (Anaga), z krótkimi pętlami, z których jedna jest dostosowana do wózków; pętla wokół Roques de García w Parku Narodowym Teide; i nadmorski spacer z Almácigi do Roque de las Bodegas, także w Anadze. Dotknij każdego na mapie, żeby zobaczyć opis.",
+    "zh": "🥾 入门推荐：Anaga 的 Cruz del Carmen 的 Sendero de los Sentidos（感官步道），有几条短环线，其中一条适合轮椅；泰德国家公园的 Roques de García 环线；还有同在 Anaga 的从 Almáciga 到 Roque de las Bodegas 的海岸步道。在地图上点它们就能看到介绍。",
+    "zht": "🥾 入門推薦：Anaga 的 Cruz del Carmen 的 Sendero de los Sentidos（感官步道），有幾條短環線，其中一條適合輪椅；泰德國家公園的 Roques de García 環線；還有同在 Anaga 的從 Almáciga 到 Roque de las Bodegas 的海岸步道。在地圖上點它們就能看到介紹。"
+   },
+   "follow": [
+    "sal-04",
+    "pla-14",
+    "tei-14"
+   ],
+   "comprobado": "Fichas del mapa: Sendero de los Sentidos (tres trazados circulares cortos desde Cruz del Carmen, el Sendero 1 accesible para sillas de ruedas), Roques de Garcia (circular, «facil con algunos desniveles»), Almaciga - Roque de las Bodegas («paseo costero corto y facil»)"
+  },
+  {
+   "id": "pla-10",
+   "cat": "normas",
+   "prio": 2,
+   "volatil": true,
+   "label": {
+    "es": "¿Puedo volar un dron?",
+    "en": "Can I fly a drone?",
+    "de": "Darf ich eine Drohne fliegen?",
+    "fr": "Puis-je faire voler un drone ?",
+    "it": "Posso far volare un drone?",
+    "nl": "Mag ik een drone vliegen?",
+    "pl": "Czy mogę latać dronem?",
+    "zh": "可以飞无人机吗？",
+    "zht": "可以飛無人機嗎？"
+   },
+   "keys": {
+    "es": [
+     "dron",
+     "drones",
+     "drone",
+     "volar dron",
+     "volar un dron",
+     "mi dron"
+    ],
+    "en": [
+     "drone",
+     "drones",
+     "fly a drone",
+     "flying a drone",
+     "my drone"
+    ],
+    "de": [
+     "drohne",
+     "drohnen",
+     "drohne fliegen",
+     "meine drohne"
+    ],
+    "fr": [
+     "drone",
+     "drones",
+     "faire voler un drone",
+     "mon drone"
+    ],
+    "it": [
+     "drone",
+     "droni",
+     "far volare un drone",
+     "il mio drone"
+    ],
+    "nl": [
+     "drone",
+     "drones",
+     "drone vliegen",
+     "mijn drone"
+    ],
+    "pl": [
+     "dron",
+     "drony",
+     "latac dronem",
+     "moj dron"
+    ],
+    "zh": [
+     "无人机",
+     "航拍",
+     "飞无人机"
+    ],
+    "zht": [
+     "無人機",
+     "空拍",
+     "飛無人機"
+    ]
+   },
+   "a": {
+    "es": "🚁 Con mucho cuidado: en el Parque Nacional del Teide y en los demás espacios naturales protegidos no se puede volar un dron por ocio sin autorización, y la Guardia Civil denuncia. Para todo lo demás, mira antes de despegar las normas de AESA (aesa.gob.es): registro, seguro y zonas donde no se puede volar, como cerca de los aeropuertos.",
+    "en": "🚁 Very carefully: in Teide National Park and the other protected natural areas you cannot fly a drone for leisure without authorisation, and the Guardia Civil issues fines. For everything else, check the AESA rules (aesa.gob.es) before take-off: registration, insurance and no-fly zones, such as near airports.",
+    "de": "🚁 Mit großer Vorsicht: Im Teide-Nationalpark und in den anderen Naturschutzgebieten darf man ohne Genehmigung keine Drohne zum Vergnügen fliegen, und die Guardia Civil verhängt Strafen. Für alles andere schau dir vor dem Start die Regeln der AESA an (aesa.gob.es): Registrierung, Versicherung und Flugverbotszonen, etwa in der Nähe von Flughäfen.",
+    "fr": "🚁 Avec beaucoup de prudence : dans le parc national du Teide et les autres espaces naturels protégés, on ne peut pas faire voler un drone de loisir sans autorisation, et la Guardia Civil verbalise. Pour le reste, regarde avant de décoller les règles de l’AESA (aesa.gob.es) : enregistrement, assurance et zones interdites, comme près des aéroports.",
+    "it": "🚁 Con molta attenzione: nel Parco Nazionale del Teide e negli altri spazi naturali protetti non si può far volare un drone per svago senza autorizzazione, e la Guardia Civil multa. Per tutto il resto, prima di decollare guarda le regole dell’AESA (aesa.gob.es): registrazione, assicurazione e zone vietate, come vicino agli aeroporti.",
+    "nl": "🚁 Heel voorzichtig: in het Nationaal Park Teide en de andere beschermde natuurgebieden mag je zonder vergunning geen drone voor je plezier vliegen, en de Guardia Civil deelt boetes uit. Voor de rest: bekijk voor het opstijgen de regels van AESA (aesa.gob.es): registratie, verzekering en verboden zones, zoals bij vliegvelden.",
+    "pl": "🚁 Bardzo ostrożnie: w Parku Narodowym Teide i na pozostałych chronionych obszarach przyrodniczych nie wolno latać dronem rekreacyjnie bez zezwolenia, a Guardia Civil nakłada kary. W pozostałych sprawach przed startem sprawdź przepisy AESA (aesa.gob.es): rejestracja, ubezpieczenie i strefy zakazane, na przykład w pobliżu lotnisk.",
+    "zh": "🚁 要非常小心：在泰德国家公园和其他自然保护区，未经许可不能以娱乐目的飞无人机，国民警卫队（Guardia Civil）会开罚单。其他地方，起飞前请查看西班牙航空安全局 AESA 的规定（aesa.gob.es）：登记、保险，以及禁飞区，比如机场附近。",
+    "zht": "🚁 要非常小心：在泰德國家公園和其他自然保護區，未經許可不能以娛樂目的飛無人機，國民警衛隊（Guardia Civil）會開罰單。其他地方，起飛前請查看西班牙航空安全局 AESA 的規定（aesa.gob.es）：登記、保險，以及禁飛區，例如機場附近。"
+   },
+   "follow": [
+    "tei-08",
+    "pla-11"
+   ],
+   "comprobado": "Vuelo recreativo de drones no permitido sin autorizacion en el Parque Nacional del Teide y otros espacios naturales protegidos de Tenerife; denuncias de la Guardia Civil (RTVC 2024, Diario de Avisos 12/2023). Normas generales: AESA (aesa.gob.es): registro de operador, seguro, zonas restringidas como los aeropuertos"
+  },
+  {
+   "id": "pla-11",
+   "cat": "normas",
+   "prio": 2,
+   "volatil": true,
+   "label": {
+    "es": "¿Dónde puedo acampar?",
+    "en": "Where can I camp?",
+    "de": "Wo darf ich zelten?",
+    "fr": "Où puis-je camper ?",
+    "it": "Dove posso campeggiare?",
+    "nl": "Waar mag ik kamperen?",
+    "pl": "Gdzie mogę biwakować?",
+    "zh": "在哪里可以露营？",
+    "zht": "在哪裡可以露營？"
+   },
+   "keys": {
+    "es": [
+     "acampar",
+     "acampada",
+     "acampada libre",
+     "camping",
+     "camping libre",
+     "dormir en tienda",
+     "tienda de campana"
+    ],
+    "en": [
+     "camping",
+     "camp",
+     "wild camping",
+     "campsite",
+     "tent",
+     "where to camp"
+    ],
+    "de": [
+     "zelten",
+     "camping",
+     "wildcampen",
+     "zeltplatz",
+     "zelt",
+     "wo zelten"
+    ],
+    "fr": [
+     "camper",
+     "camping",
+     "camping sauvage",
+     "bivouac",
+     "tente",
+     "ou camper"
+    ],
+    "it": [
+     "campeggiare",
+     "campeggio",
+     "campeggio libero",
+     "tenda",
+     "dove campeggiare"
+    ],
+    "nl": [
+     "kamperen",
+     "camping",
+     "wildkamperen",
+     "tent",
+     "waar kamperen"
+    ],
+    "pl": [
+     "biwak",
+     "kemping",
+     "biwakowanie",
+     "namiot",
+     "gdzie biwakowac",
+     "dziki kemping"
+    ],
+    "zh": [
+     "露营",
+     "野营",
+     "搭帐篷",
+     "露营地"
+    ],
+    "zht": [
+     "露營",
+     "野營",
+     "搭帳篷",
+     "露營地"
+    ]
+   },
+   "a": {
+    "es": "🏕️ Solo en zonas autorizadas: acampar fuera de ellas está prohibido y se denuncia. El Cabildo tiene zonas de acampada en el monte, gratis con autorización previa. En el mapa están en la categoría Campings. En época de riesgo de incendio pueden cerrarse, así que mira su estado antes de ir.",
+    "en": "🏕️ Only in authorised areas: camping outside them is forbidden and fined. The Cabildo has camping areas in the hills, free with prior authorisation. On the map they are in the Campsites category. They can close when there is a fire risk, so check their status before you go.",
+    "de": "🏕️ Nur auf genehmigten Plätzen: Zelten außerhalb ist verboten und wird bestraft. Der Cabildo hat Zeltplätze in den Bergen, kostenlos mit vorheriger Genehmigung. Auf der Karte stehen sie in der Kategorie Campingplätze. Bei Brandgefahr können sie geschlossen werden, also prüf vorher ihren Status.",
+    "fr": "🏕️ Seulement dans les zones autorisées : camper en dehors est interdit et verbalisé. Le Cabildo a des aires de camping en montagne, gratuites avec autorisation préalable. Sur la carte, elles sont dans la catégorie Campings. En période de risque d’incendie, elles peuvent fermer : vérifie leur état avant d’y aller.",
+    "it": "🏕️ Solo nelle aree autorizzate: campeggiare fuori è vietato e sanzionato. Il Cabildo ha aree di campeggio in montagna, gratuite con autorizzazione preventiva. Sulla mappa sono nella categoria Campeggi. Nei periodi a rischio incendio possono chiudere, quindi controlla il loro stato prima di andare.",
+    "nl": "🏕️ Alleen op toegestane plekken: daarbuiten kamperen is verboden en wordt beboet. De Cabildo heeft kampeerplekken in de bergen, gratis met vooraf een vergunning. Op de kaart staan ze in de categorie Campings. Bij brandgevaar kunnen ze dicht, dus check de status voordat je gaat.",
+    "pl": "🏕️ Tylko w wyznaczonych miejscach: biwakowanie poza nimi jest zabronione i karane. Cabildo ma pola biwakowe w górach, bezpłatne po wcześniejszym uzyskaniu zezwolenia. Na mapie są w kategorii Kempingi. W okresie zagrożenia pożarowego mogą być zamknięte, więc sprawdź ich stan przed wyjazdem.",
+    "zh": "🏕️ 只能在获准的营地露营：在其他地方露营是禁止的，会被罚款。岛政府（Cabildo）在山里设有露营区，免费，但要事先申请许可。地图上它们在「露营地」类别里。火灾风险高的时期可能关闭，出发前请查看开放状态。",
+    "zht": "🏕️ 只能在核准的營地露營：在其他地方露營是禁止的，會被罰款。島政府（Cabildo）在山裡設有露營區，免費，但要事先申請許可。地圖上它們在「露營地」類別裡。火災風險高的時期可能關閉，出發前請查看開放狀態。"
+   },
+   "follow": [
+    "pla-08",
+    "sal-04",
+    "app-14"
+   ],
+   "comprobado": "Cabildo de Tenerife: acampada solo en zonas de servicio publico autorizadas, con autorizacion previa gratuita (documentos de centralreservas.tenerife.es; ficha camping-la-caldera: «Acampada gratuita con permiso previo»); «no acampar bajo ningun concepto en zonas no autorizadas» y operaciones con denuncias (RTVC 01/04/2026); cierres por riesgo de incendio (Cabildo, tenerifeon.es)"
+  },
+  {
+   "id": "pla-12",
+   "cat": "movilidad",
+   "prio": 2,
+   "volatil": true,
+   "label": {
+    "es": "¿Por dónde va la guagua 111?",
+    "en": "Where does bus 111 go?",
+    "de": "Wo fährt der Bus 111?",
+    "fr": "Par où passe le bus 111 ?",
+    "it": "Che percorso fa l’autobus 111?",
+    "nl": "Waar rijdt bus 111?",
+    "pl": "Którędy jedzie autobus 111?",
+    "zh": "111 路公交走哪里？",
+    "zht": "111 路公車走哪裡？"
+   },
+   "keys": {
+    "es": [
+     "111",
+     "linea 111",
+     "la 111",
+     "guagua 111",
+     "bus 111"
+    ],
+    "en": [
+     "111",
+     "line 111",
+     "bus 111",
+     "route 111"
+    ],
+    "de": [
+     "111",
+     "linie 111",
+     "bus 111"
+    ],
+    "fr": [
+     "111",
+     "ligne 111",
+     "bus 111"
+    ],
+    "it": [
+     "111",
+     "linea 111",
+     "autobus 111"
+    ],
+    "nl": [
+     "111",
+     "lijn 111",
+     "bus 111"
+    ],
+    "pl": [
+     "111",
+     "linia 111",
+     "autobus 111"
+    ],
+    "zh": [
+     "111",
+     "111路",
+     "111路公交"
+    ],
+    "zht": [
+     "111",
+     "111路",
+     "111路公車"
+    ]
+   },
+   "a": {
+    "es": "🚌 La 111 une el Intercambiador de Santa Cruz con la Estación de Costa Adeje, pasando por Los Cristianos. Arriba, en el botón de guaguas 🚌, búscala por su número y tócala: se dibuja en el mapa con todas sus paradas. El horario del día, en titsa.com.",
+    "en": "🚌 The 111 links the Santa Cruz Intercambiador with the Costa Adeje bus station, by way of Los Cristianos. At the top, in the buses button 🚌, search for it by its number and tap it: it is drawn on the map with all its stops. The day’s times are on titsa.com.",
+    "de": "🚌 Die 111 verbindet den Intercambiador von Santa Cruz mit dem Busbahnhof Costa Adeje, über Los Cristianos. Oben im Bus-Knopf 🚌 suchst du sie nach ihrer Nummer und tippst sie an: Sie wird mit allen Haltestellen auf der Karte gezeichnet. Die Zeiten des Tages stehen auf titsa.com.",
+    "fr": "🚌 La 111 relie l’Intercambiador de Santa Cruz à la gare routière de Costa Adeje, en passant par Los Cristianos. En haut, dans le bouton des bus 🚌, cherche-la par son numéro et touche-la : elle se dessine sur la carte avec tous ses arrêts. Les horaires du jour sont sur titsa.com.",
+    "it": "🚌 La 111 collega l’Intercambiador di Santa Cruz con la stazione di Costa Adeje, passando per Los Cristianos. In alto, nel pulsante degli autobus 🚌, cercala per numero e toccala: si disegna sulla mappa con tutte le fermate. Gli orari del giorno sono su titsa.com.",
+    "nl": "🚌 De 111 verbindt het Intercambiador van Santa Cruz met het busstation van Costa Adeje, via Los Cristianos. Zoek hem bovenaan, bij de busknop 🚌, op nummer en tik erop: hij wordt met al zijn haltes op de kaart getekend. De tijden van die dag staan op titsa.com.",
+    "pl": "🚌 Linia 111 łączy Intercambiador w Santa Cruz z dworcem autobusowym Costa Adeje, przez Los Cristianos. Na górze, w przycisku autobusów 🚌, wyszukaj ją po numerze i dotknij: narysuje się na mapie ze wszystkimi przystankami. Godziny na dany dzień znajdziesz na titsa.com.",
+    "zh": "🚌 111 路连接圣克鲁斯的 Intercambiador 换乘站和 Costa Adeje 汽车站，途经 Los Cristianos。在顶部的公交按钮 🚌 里输入线路号找到它，点一下，地图上就会画出它的全部站点。当天的时刻请查 titsa.com。",
+    "zht": "🚌 111 路連接聖克魯斯的 Intercambiador 轉乘站和 Costa Adeje 客運站，途經 Los Cristianos。在頂部的公車按鈕 🚌 裡輸入路線號找到它，點一下，地圖上就會畫出它的全部站點。當天的時刻請查 titsa.com。"
+   },
+   "follow": [
+    "mov-01",
+    "mov-03",
+    "app-17"
+   ],
+   "comprobado": "Linea 111 en datos/titsa.js (GTFS oficial de TITSA): de la Estacion Costa Adeje al Intercambiador Santa Cruz, con parada en Los Cristianos; panel de guaguas (bus-quick-btn) con buscador de linea y drawBusLine (traza y paradas). Sin horarios ni tarifas (politica del bloque C1)"
+  },
+  {
+   "id": "pla-13",
+   "cat": "teide",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué tengo que saber del Teide?",
+    "en": "What should I know about the Teide?",
+    "de": "Was muss ich über den Teide wissen?",
+    "fr": "Que faut-il savoir sur le Teide ?",
+    "it": "Cosa devo sapere sul Teide?",
+    "nl": "Wat moet ik weten over de Teide?",
+    "pl": "Co trzeba wiedzieć o Teide?",
+    "zh": "关于泰德峰要知道什么？",
+    "zht": "關於泰德峰要知道什麼？"
+   },
+   "keys": {
+    "es": [
+     "teide",
+     "el teide",
+     "pico del teide",
+     "subir al teide",
+     "volcan teide",
+     "cima del teide",
+     "parque nacional del teide"
+    ],
+    "en": [
+     "teide",
+     "mount teide",
+     "teide volcano",
+     "teide summit",
+     "climb the teide",
+     "teide national park"
+    ],
+    "de": [
+     "teide",
+     "der teide",
+     "vulkan teide",
+     "teide gipfel besteigen",
+     "auf den teide",
+     "teide nationalpark"
+    ],
+    "fr": [
+     "teide",
+     "le teide",
+     "volcan du teide",
+     "sommet du teide",
+     "monter au teide",
+     "parc national du teide"
+    ],
+    "it": [
+     "teide",
+     "il teide",
+     "vulcano teide",
+     "vetta del teide",
+     "salire sul teide",
+     "parco nazionale del teide"
+    ],
+    "nl": [
+     "teide",
+     "de teide",
+     "vulkaan teide",
+     "top van de teide",
+     "de teide op",
+     "nationaal park teide"
+    ],
+    "pl": [
+     "teide",
+     "wulkan teide",
+     "szczyt teide",
+     "wejscie na teide",
+     "park narodowy teide"
+    ],
+    "zh": [
+     "泰德峰",
+     "泰德火山",
+     "泰德国家公园",
+     "登泰德峰"
+    ],
+    "zht": [
+     "泰德峰",
+     "泰德火山",
+     "泰德國家公園",
+     "登泰德峰"
+    ]
+   },
+   "a": {
+    "es": "🌋 El Teide, con 3.715 m, es el punto más alto de España, y al Parque Nacional se entra gratis. El teleférico sube hasta La Rambleta, a unos 3.555 m, sin permiso; el último tramo hasta el cráter necesita una autorización previa que se reserva en Tenerife ON y no va incluida en el billete. Arriba hace frío y hay menos oxígeno: abrígate y sube despacio. Sin coche, llegan las guaguas 342 y 348.",
+    "en": "🌋 At 3,715 m the Teide is the highest point in Spain, and entry to the National Park is free. The cable car goes up to La Rambleta, at about 3,555 m, with no permit; the last stretch to the crater needs a prior authorisation, booked on Tenerife ON and not included in the ticket. Up there it is cold and there is less oxygen: wrap up and go slowly. Without a car, buses 342 and 348 get you there.",
+    "de": "🌋 Mit 3.715 m ist der Teide der höchste Punkt Spaniens, und der Nationalpark kostet keinen Eintritt. Die Seilbahn fährt ohne Genehmigung bis La Rambleta, auf etwa 3.555 m; für das letzte Stück zum Krater braucht man eine vorherige Genehmigung, die man bei Tenerife ON reserviert und die nicht im Ticket enthalten ist. Oben ist es kalt und die Luft dünner: zieh dich warm an und geh langsam. Ohne Auto bringen dich die Busse 342 und 348 hin.",
+    "fr": "🌋 Avec ses 3.715 m, le Teide est le point culminant de l’Espagne, et l’entrée du parc national est gratuite. Le téléphérique monte jusqu’à La Rambleta, vers 3.555 m, sans autorisation ; le dernier tronçon jusqu’au cratère exige une autorisation préalable, à réserver sur Tenerife ON et non incluse dans le billet. Là-haut il fait froid et il y a moins d’oxygène : couvre-toi et monte doucement. Sans voiture, les bus 342 et 348 y vont.",
+    "it": "🌋 Con i suoi 3.715 m, il Teide è il punto più alto della Spagna, e al Parco Nazionale si entra gratis. La funivia sale fino a La Rambleta, a circa 3.555 m, senza permesso; l’ultimo tratto fino al cratere richiede un’autorizzazione preventiva, da prenotare su Tenerife ON e non inclusa nel biglietto. Lassù fa freddo e c’è meno ossigeno: copriti bene e sali piano. Senza auto, ci arrivano gli autobus 342 e 348.",
+    "nl": "🌋 Met 3.715 m is de Teide het hoogste punt van Spanje, en het Nationaal Park is gratis toegankelijk. De kabelbaan gaat zonder vergunning tot La Rambleta, op zo’n 3.555 m; voor het laatste stuk naar de krater heb je vooraf een vergunning nodig, te reserveren via Tenerife ON en niet inbegrepen in het kaartje. Boven is het koud en is er minder zuurstof: kleed je warm aan en ga rustig. Zonder auto brengen bus 342 en 348 je erheen.",
+    "pl": "🌋 Teide, mierzący 3.715 m, to najwyższy punkt Hiszpanii, a wstęp do Parku Narodowego jest bezpłatny. Kolejka wjeżdża bez pozwolenia na La Rambletę, na około 3.555 m; ostatni odcinek do krateru wymaga wcześniejszego pozwolenia, rezerwowanego w Tenerife ON i nieobjętego biletem. Na górze jest zimno i mniej tlenu: ubierz się ciepło i idź powoli. Bez samochodu dojedziesz autobusami 342 i 348.",
+    "zh": "🌋 泰德峰海拔 3,715 米，是西班牙的最高点，进入国家公园免费。缆车不需许可就能上到约 3,555 米的 La Rambleta；从那里到火山口的最后一段需要事先申请许可，在 Tenerife ON 预约，缆车票不包含。山顶很冷、氧气更少：穿暖和，慢慢走。没有车的话，可以坐 342 和 348 路公交上山。",
+    "zht": "🌋 泰德峰海拔 3,715 公尺，是西班牙的最高點，進入國家公園免費。纜車不需許可就能上到約 3,555 公尺的 La Rambleta；從那裡到火山口的最後一段需要事先申請許可，在 Tenerife ON 預約，纜車票不包含。山頂很冷、氧氣更少：穿暖和，慢慢走。沒有車的話，可以搭 342 和 348 路公車上山。"
+   },
+   "follow": [
+    "tei-01",
+    "tei-05",
+    "mov-12"
+   ],
+   "comprobado": "Resumen del bloque B1 (fuente tenerifeon.es, PNT 10): 3.715 m (tei-15), parque sin entrada (tei-08), teleferico a La Rambleta sin permiso (tei-04, tei-05), autorizacion previa del tramo final en Tenerife ON, no incluida en el billete (tei-01, tei-02, tei-04), frio y menos oxigeno (tei-09, tei-10); guaguas 342 y 348 (mov-12)"
+  },
+  {
+   "id": "pla-14",
+   "cat": "naturaleza",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué ver en Anaga?",
+    "en": "What to see in Anaga?",
+    "de": "Was sehe ich in Anaga?",
+    "fr": "Que voir à Anaga ?",
+    "it": "Cosa vedere ad Anaga?",
+    "nl": "Wat te zien in Anaga?",
+    "pl": "Co zobaczyć w Anadze?",
+    "zh": "Anaga 有什么好看的？",
+    "zht": "Anaga 有什麼好看的？"
+   },
+   "keys": {
+    "es": [
+     "anaga",
+     "macizo de anaga",
+     "parque rural de anaga",
+     "laurisilva",
+     "bosque encantado",
+     "el pijaral"
+    ],
+    "en": [
+     "anaga",
+     "anaga mountains",
+     "anaga rural park",
+     "laurel forest",
+     "enchanted forest",
+     "el pijaral"
+    ],
+    "de": [
+     "anaga",
+     "anaga gebirge",
+     "landschaftspark anaga",
+     "lorbeerwald",
+     "verwunschener wald",
+     "el pijaral"
+    ],
+    "fr": [
+     "anaga",
+     "massif d anaga",
+     "parc rural d anaga",
+     "laurisylve",
+     "foret enchantee",
+     "el pijaral"
+    ],
+    "it": [
+     "anaga",
+     "massiccio di anaga",
+     "parco rurale di anaga",
+     "laurisilva",
+     "bosco incantato",
+     "el pijaral"
+    ],
+    "nl": [
+     "anaga",
+     "anagagebergte",
+     "landelijk park anaga",
+     "laurierbos",
+     "betoverd bos",
+     "el pijaral"
+    ],
+    "pl": [
+     "anaga",
+     "gory anaga",
+     "park anaga",
+     "las wawrzynowy",
+     "zaczarowany las",
+     "el pijaral"
+    ],
+    "zh": [
+     "anaga",
+     "阿纳加",
+     "月桂林",
+     "魔法森林"
+    ],
+    "zht": [
+     "anaga",
+     "阿納加",
+     "月桂林",
+     "魔法森林"
+    ]
+   },
+   "a": {
+    "es": "🌿 El Parque Rural de Anaga, al noreste, es Reserva de la Biosfera y está cubierto de laurisilva. Para empezar, el Centro de Visitantes de Cruz del Carmen y el Sendero de los Sentidos; luego, los caseríos y las playas salvajes de Taganana, Benijo y Almáciga. El Bosque Encantado (El Pijaral) solo se visita con permiso previo gratuito: los detalles, en su ficha. Suele haber niebla y el suelo resbala: buen calzado.",
+    "en": "🌿 Anaga Rural Park, in the north-east, is a Biosphere Reserve covered in laurel forest. To start, the Cruz del Carmen Visitor Centre and the Sendero de los Sentidos; then the hamlets and wild beaches of Taganana, Benijo and Almáciga. The Bosque Encantado (El Pijaral) can only be visited with a free prior permit: details in its entry. It is often misty and the ground is slippery: wear good shoes.",
+    "de": "🌿 Der Landschaftspark Anaga im Nordosten ist Biosphärenreservat und mit Lorbeerwald bedeckt. Zum Einstieg das Besucherzentrum Cruz del Carmen und der Sendero de los Sentidos; dann die Weiler und wilden Strände von Taganana, Benijo und Almáciga. Den Bosque Encantado (El Pijaral) darf man nur mit vorheriger, kostenloser Genehmigung besuchen: Details in seinem Eintrag. Oft ist es neblig und der Boden rutschig: gute Schuhe.",
+    "fr": "🌿 Le parc rural d’Anaga, au nord-est, est une réserve de biosphère couverte de laurisylve. Pour commencer, le centre des visiteurs de Cruz del Carmen et le Sendero de los Sentidos ; ensuite, les hameaux et les plages sauvages de Taganana, Benijo et Almáciga. Le Bosque Encantado (El Pijaral) ne se visite qu’avec une autorisation préalable gratuite : les détails sont dans sa fiche. Il y a souvent du brouillard et le sol glisse : de bonnes chaussures.",
+    "it": "🌿 Il Parco Rurale di Anaga, a nord-est, è Riserva della Biosfera ed è coperto di laurisilva. Per cominciare, il Centro Visitatori di Cruz del Carmen e il Sendero de los Sentidos; poi i borghi e le spiagge selvagge di Taganana, Benijo e Almáciga. Il Bosque Encantado (El Pijaral) si visita solo con permesso preventivo gratuito: i dettagli sono nella sua scheda. C’è spesso nebbia e il terreno scivola: scarpe buone.",
+    "nl": "🌿 Het landelijk park Anaga, in het noordoosten, is biosfeerreservaat en bedekt met laurierbos. Begin bij het bezoekerscentrum Cruz del Carmen en de Sendero de los Sentidos; daarna de gehuchten en wilde stranden van Taganana, Benijo en Almáciga. Het Bosque Encantado (El Pijaral) bezoek je alleen met een gratis vergunning vooraf: details in de info van die plek. Het is er vaak mistig en de grond is glad: goede schoenen.",
+    "pl": "🌿 Park wiejski Anaga, na północnym wschodzie, to rezerwat biosfery porośnięty lasem wawrzynowym. Na początek centrum dla zwiedzających Cruz del Carmen i Sendero de los Sentidos; potem osady i dzikie plaże Taganany, Benijo i Almácigi. Bosque Encantado (El Pijaral) można odwiedzić tylko z wcześniejszym bezpłatnym pozwoleniem: szczegóły w jego opisie. Często jest mgła, a podłoże jest śliskie: dobre buty.",
+    "zh": "🌿 位于东北部的 Anaga 乡村公园是生物圈保护区，覆盖着月桂林。可以先去 Cruz del Carmen 游客中心和 Sendero de los Sentidos（感官步道），再去 Taganana、Benijo 和 Almáciga 的小村庄和原始海滩。Bosque Encantado（El Pijaral，魔法森林）只能凭事先申请的免费许可进入，详情见它的介绍。那里常有雾，地面湿滑：请穿好鞋。",
+    "zht": "🌿 位於東北部的 Anaga 鄉村公園是生物圈保護區，覆蓋著月桂林。可以先去 Cruz del Carmen 遊客中心和 Sendero de los Sentidos（感官步道），再去 Taganana、Benijo 和 Almáciga 的小村落和原始海灘。Bosque Encantado（El Pijaral，魔法森林）只能憑事先申請的免費許可進入，詳情見它的介紹。那裡常有霧，地面濕滑：請穿好鞋。"
+   },
+   "follow": [
+    "pla-09",
+    "cul-02",
+    "sal-04"
+   ],
+   "comprobado": "Anaga: Reserva de la Biosfera (UNESCO, 2015); fichas del mapa: Centro de Visitantes Cruz del Carmen, Sendero de los Sentidos, Taganana, Benijo y Almaciga (playas salvajes con oleaje), El Pijaral con permiso obligatorio gratuito, niebla y laurisilva"
+  },
+  {
+   "id": "pla-15",
+   "cat": "naturaleza",
+   "prio": 2,
+   "volatil": true,
+   "label": {
+    "es": "¿Cómo voy a Punta de Teno?",
+    "en": "How do I get to Punta de Teno?",
+    "de": "Wie komme ich nach Punta de Teno?",
+    "fr": "Comment aller à Punta de Teno ?",
+    "it": "Come arrivo a Punta de Teno?",
+    "nl": "Hoe kom ik in Punta de Teno?",
+    "pl": "Jak dojechać do Punta de Teno?",
+    "zh": "怎么去 Punta de Teno？",
+    "zht": "怎麼去 Punta de Teno？"
+   },
+   "keys": {
+    "es": [
+     "teno",
+     "punta de teno",
+     "faro de teno",
+     "parque rural de teno"
+    ],
+    "en": [
+     "teno",
+     "punta de teno",
+     "teno lighthouse",
+     "teno rural park"
+    ],
+    "de": [
+     "teno",
+     "punta de teno",
+     "leuchtturm teno",
+     "teno gebirge"
+    ],
+    "fr": [
+     "teno",
+     "punta de teno",
+     "phare de teno",
+     "parc rural de teno"
+    ],
+    "it": [
+     "teno",
+     "punta de teno",
+     "faro di teno",
+     "parco rurale di teno"
+    ],
+    "nl": [
+     "teno",
+     "punta de teno",
+     "vuurtoren van teno",
+     "tenogebergte"
+    ],
+    "pl": [
+     "teno",
+     "punta de teno",
+     "latarnia teno",
+     "gory teno"
+    ],
+    "zh": [
+     "teno",
+     "punta de teno",
+     "特诺灯塔",
+     "特诺角"
+    ],
+    "zht": [
+     "teno",
+     "punta de teno",
+     "特諾燈塔",
+     "特諾角"
+    ]
+   },
+   "a": {
+    "es": "🌅 Punta de Teno es el extremo noroeste de la isla, con su faro y vistas a La Gomera. La carretera del final está regulada: en las horas de regulación no se puede subir en coche particular y se va en la guagua lanzadera desde Buenavista del Norte. Antes de ir, mira el horario vigente.",
+    "en": "🌅 Punta de Teno is the island’s north-western tip, with its lighthouse and views of La Gomera. The last stretch of road is regulated: during the regulated hours you cannot drive up in a private car, and you go on the shuttle bus from Buenavista del Norte. Check the current times before you go.",
+    "de": "🌅 Punta de Teno ist die Nordwestspitze der Insel, mit ihrem Leuchtturm und Blick auf La Gomera. Das letzte Straßenstück ist reguliert: In den geregelten Zeiten darf man nicht mit dem Privatauto hinauf und fährt mit dem Shuttlebus ab Buenavista del Norte. Prüf vorher die aktuell geltenden Zeiten.",
+    "fr": "🌅 Punta de Teno est la pointe nord-ouest de l’île, avec son phare et une vue sur La Gomera. La fin de la route est réglementée : pendant les heures de régulation, on ne peut pas y monter en voiture particulière et on y va avec la navette depuis Buenavista del Norte. Avant d’y aller, vérifie les horaires en vigueur.",
+    "it": "🌅 Punta de Teno è l’estremità nord-occidentale dell’isola, con il suo faro e la vista su La Gomera. L’ultimo tratto di strada è regolamentato: nelle ore di regolamentazione non si può salire con l’auto privata e si va con la navetta da Buenavista del Norte. Prima di andare, controlla gli orari in vigore.",
+    "nl": "🌅 Punta de Teno is de noordwestpunt van het eiland, met zijn vuurtoren en uitzicht op La Gomera. Het laatste stuk weg is gereguleerd: tijdens de gereguleerde uren mag je er niet met je eigen auto heen en neem je de pendelbus vanaf Buenavista del Norte. Check vooraf de geldende tijden.",
+    "pl": "🌅 Punta de Teno to północno-zachodni kraniec wyspy, z latarnią i widokiem na La Gomerę. Ostatni odcinek drogi jest regulowany: w godzinach regulacji nie wolno tam wjechać prywatnym samochodem i jedzie się autobusem wahadłowym z Buenavista del Norte. Przed wyjazdem sprawdź obowiązujące godziny.",
+    "zh": "🌅 Punta de Teno 是全岛的西北端，有灯塔，还能远眺拉戈梅拉岛。最后一段公路实行管制：管制时段内私家车不能开上去，要从 Buenavista del Norte 坐接驳公交前往。出发前请查看现行时间。",
+    "zht": "🌅 Punta de Teno 是全島的西北端，有燈塔，還能遠眺拉戈梅拉島。最後一段公路實施管制：管制時段內自用車不能開上去，要從 Buenavista del Norte 搭接駁公車前往。出發前請查看現行時間。"
+   },
+   "follow": [
+    "pla-14",
+    "mov-13",
+    "cul-04"
+   ],
+   "comprobado": "Fichas del mapa: Faro de Teno (extremo noroeste, vistas a La Gomera, carretera TF-445 reservada a residentes y transporte publico), PR-TF 51 («acceso a Punta de Teno regulado, solo bus»), kayak-punta-teno («acceso solo en bus lanzadera desde Buenavista»)"
+  },
+  {
+   "id": "pla-16",
+   "cat": "naturaleza",
+   "prio": 2,
+   "volatil": true,
+   "label": {
+    "es": "¿Cómo es el Barranco del Infierno?",
+    "en": "What is the Barranco del Infierno like?",
+    "de": "Wie ist der Barranco del Infierno?",
+    "fr": "Comment est le Barranco del Infierno ?",
+    "it": "Com’è il Barranco del Infierno?",
+    "nl": "Hoe is de Barranco del Infierno?",
+    "pl": "Jak wygląda Barranco del Infierno?",
+    "zh": "Barranco del Infierno 怎么样？",
+    "zht": "Barranco del Infierno 怎麼樣？"
+   },
+   "keys": {
+    "es": [
+     "barranco del infierno",
+     "infierno",
+     "cascada de adeje"
+    ],
+    "en": [
+     "barranco del infierno",
+     "hell s gorge",
+     "adeje waterfall"
+    ],
+    "de": [
+     "barranco del infierno",
+     "hollenschlucht",
+     "wasserfall adeje"
+    ],
+    "fr": [
+     "barranco del infierno",
+     "gorge de l enfer",
+     "cascade d adeje"
+    ],
+    "it": [
+     "barranco del infierno",
+     "gola dell inferno",
+     "cascata di adeje"
+    ],
+    "nl": [
+     "barranco del infierno",
+     "hellekloof",
+     "waterval adeje"
+    ],
+    "pl": [
+     "barranco del infierno",
+     "piekielny wawoz",
+     "wodospad adeje"
+    ],
+    "zh": [
+     "barranco del infierno",
+     "地狱峡谷",
+     "阿德赫瀑布"
+    ],
+    "zht": [
+     "barranco del infierno",
+     "地獄峽谷",
+     "阿德赫瀑布"
+    ]
+   },
+   "a": {
+    "es": "💦 Es un sendero de Adeje que remonta el barranco hasta una cascada, en un espacio protegido con aforo diario limitado. La reserva es obligatoria en barrancodelinfierno.es; el casco también, y te lo dan allí. Cierra los días de lluvia o viento. Lleva agua y calzado de senderismo.",
+    "en": "💦 It is a trail in Adeje that goes up the ravine to a waterfall, in a protected area with a limited number of visitors per day. Booking is compulsory at barrancodelinfierno.es; so is the helmet, which they give you there. It closes on rainy or windy days. Take water and hiking shoes.",
+    "de": "💦 Ein Wanderweg in Adeje, der die Schlucht hinauf bis zu einem Wasserfall führt, in einem Schutzgebiet mit begrenzter Besucherzahl pro Tag. Die Reservierung auf barrancodelinfierno.es ist Pflicht, der Helm auch – den bekommst du vor Ort. An Regen- oder Windtagen ist er geschlossen. Nimm Wasser und Wanderschuhe mit.",
+    "fr": "💦 C’est un sentier d’Adeje qui remonte le ravin jusqu’à une cascade, dans un espace protégé avec un nombre de visiteurs limité par jour. La réservation est obligatoire sur barrancodelinfierno.es ; le casque aussi, et on te le donne sur place. Il ferme les jours de pluie ou de vent. Prends de l’eau et des chaussures de randonnée.",
+    "it": "💦 È un sentiero di Adeje che risale il burrone fino a una cascata, in un’area protetta con numero di visitatori giornaliero limitato. La prenotazione è obbligatoria su barrancodelinfierno.es; anche il casco, che ti danno sul posto. Chiude nei giorni di pioggia o vento. Porta acqua e scarpe da trekking.",
+    "nl": "💦 Een wandelpad in Adeje dat door de kloof omhoog loopt naar een waterval, in een beschermd gebied met een beperkt aantal bezoekers per dag. Reserveren via barrancodelinfierno.es is verplicht, een helm ook – die krijg je ter plekke. Op dagen met regen of wind is het dicht. Neem water en wandelschoenen mee.",
+    "pl": "💦 To szlak w Adeje, który prowadzi w górę wąwozu do wodospadu, na obszarze chronionym z dziennym limitem odwiedzających. Rezerwacja na barrancodelinfierno.es jest obowiązkowa; kask też, dostaniesz go na miejscu. W deszczowe lub wietrzne dni szlak jest zamknięty. Weź wodę i buty trekkingowe.",
+    "zh": "💦 这是阿德赫（Adeje）的一条步道，沿峡谷而上直到一处瀑布，位于每日限流的保护区内。必须在 barrancodelinfierno.es 预约；头盔也是必须的，现场会发。下雨或刮风的日子关闭。请带上水和登山鞋。",
+    "zht": "💦 這是阿德赫（Adeje）的一條步道，沿峽谷而上直到一處瀑布，位於每日限流的保護區內。必須在 barrancodelinfierno.es 預約；頭盔也是必須的，現場會發。下雨或颳風的日子關閉。請帶上水和登山鞋。"
+   },
+   "follow": [
+    "pla-09",
+    "sal-04",
+    "pla-04"
+   ],
+   "comprobado": "Ficha sendero-barranco-infierno: reserva obligatoria en barrancodelinfierno.es, aforo diario limitado, casco obligatorio (proporcionado), cerrada dias de lluvia o viento, llevar agua y calzado de senderismo; cascada al final"
+  }
+ ]
+}

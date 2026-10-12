@@ -3,4 +3,5 @@
  "near":["w pobliżu","niedaleko mnie","obok mnie","w okolicy"],
  "nearTok":["pobliżu","okolicy","niedaleko","blisko"],
  "count":["ile miejsc","ile jest miejsc"],
- "cats":{"playa":["kąpiel","kąpać się","piasek"],"senderismo":["wędrówka","szlak","spacer"],"gastronomia":["jedzenie","gdzie zjeść","wino"],"piscinas":["naturalny basen","basen w skałach"]}}
+ "cats":{"playa":["kąpiel","kąpać się","piasek"],"senderismo":["wędrówka","szlak","spacer"],"gastronomia":["jedzenie","gdzie zjeść","wino"],"piscinas":["naturalny basen","basen w skałach"]},
+ "zonas":{"norte": ["polnoc", "polnocy", "na polnocy", "polnocna"], "sur": ["poludnie", "poludniu", "na poludniu", "poludniowa"], "este": ["wschod", "wschodzie", "na wschodzie", "wschodnia"], "oeste": ["zachod", "zachodzie", "na zachodzie", "zachodnia"], "centro": ["srodek wyspy", "centrum wyspy"]}}

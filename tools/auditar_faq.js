@@ -111,6 +111,60 @@ function preguntar(q) {
   return ctx.chatMatchKB(' ' + qn + ' ', tokset, qn);
 }
 
+/* ── 5. ninguna base de respuestas escrita en un solo idioma ─────────────
+   Hasta el 12 de octubre de 2026 el buscador miraba ademas CHAT_KB, 79
+   respuestas solo en castellano, y bastaba con que una ganara por un punto
+   para contestar en castellano en cualquier idioma: «Teide», «Anaga» o el
+   boton «Best beaches» lo hacian. Si alguien la vuelve a meter, aqui canta. */
+if (/\bCHAT_KB\s*=/.test(html)) mal('index.html vuelve a declarar CHAT_KB: una base de respuestas fuera de faq/, en un solo idioma');
+const nucleo = html.slice(html.indexOf('/*CHAT_CORE_START*/'), html.indexOf('/*CHAT_CORE_END*/'));
+if (/\banswer\s*:\s*['"]/.test(nucleo)) mal('el nucleo del asistente lleva respuestas escritas a mano (answer:\'…\'); van en faq/fuente/');
+
+/* ── 6. nada igual al castellano ni al ingles ─────────────────────────
+   Si a una entrada le falta un idioma y alguien la rellena copiando, todo lo
+   demas da verde. Un rotulo o una respuesta identicos al castellano (o al
+   ingles, fuera del ingles) es un idioma que no se ha escrito. */
+const porId = L => new Map(ficheros[L].e.map(x => [x.id, x]));
+if (ficheros.es && ficheros.en) {
+  const ES = porId('es'), EN = porId('en');
+  for (const L of IDIOMAS) {
+    if (L === 'es') continue;
+    for (const x of ficheros[L].e) {
+      const es = ES.get(x.id), en = EN.get(x.id);
+      if (es && x.a === es.a) mal(L + '/' + x.id + ': la respuesta es la del castellano');
+      if (es && x.l === es.l) mal(L + '/' + x.id + ': el rotulo es el del castellano');
+      if (L !== 'en' && en && x.a === en.a) mal(L + '/' + x.id + ': la respuesta es la del ingles');
+      if (L !== 'en' && en && x.l === en.l) mal(L + '/' + x.id + ': el rotulo es el del ingles');
+    }
+  }
+}
+
+/* ── 7. los botones que cita una respuesta existen con ese nombre ─────
+   Las respuestas sobre la app dicen «toca "Añadir a favoritos"». Si el boton
+   cambia de nombre en un idioma y la respuesta no, el asistente manda a
+   buscar un boton que no esta. Cada entrada declara en "rotulos" que textos
+   de la app cita (faq/indice.json); aqui se saca cada uno de index.html, en
+   cada idioma, y la respuesta tiene que contenerlo tal cual. */
+const indice = JSON.parse(fs.readFileSync(path.join(RAIZ, 'faq', 'indice.json'), 'utf8')).entradas;
+const ROT = require('./rotulos_app');
+let rotulosMirados = 0;
+for (const [id, inf] of Object.entries(indice)) {
+  for (const clave of inf.rotulos || []) {
+    for (const L of IDIOMAS) {
+      const x = porId(L).get(id), v = ROT.valor(clave, L);
+      if (!v) { mal(id + ': ' + clave + ' no existe en ' + L); continue; }
+      rotulosMirados++;
+      if (x && x.a.indexOf(v) < 0) mal(L + '/' + id + ': no dice «' + v + '» (' + clave + '), que es como se llama en pantalla');
+    }
+  }
+  // y la del boton de contacto, igual en los diez
+  for (const L of IDIOMAS) {
+    const x = porId(L).get(id);
+    if (x && !!inf.contacto !== (x.c === 1)) mal(L + '/' + id + ': el boton de contacto no coincide con el indice');
+  }
+}
+
+const otras = [];
 (async () => {
   let mirado = 0, perdidas = 0;
   for (const L of IDIOMAS) {
@@ -123,18 +177,22 @@ function preguntar(q) {
       const r = preguntar(e.l);            // su propio rotulo, que es la pregunta
       if (!r) { perdidas++; mal(L + '/' + e.id + ': «' + e.l + '» no encuentra ninguna respuesta'); }
       else if (r.item.answer !== e.a) {
-        /* Que caiga en otra entrada del FAQ no siempre es un fallo: «¿Qué ver
-           en La Laguna?» y «¿Qué pueblos bonitos hay?» se pisan de verdad. Se
-           avisa solo si acaba en CHAT_KB, que esta en castellano, porque eso
-           si deja al usuario sin su idioma. */
-        const esDelFaq = pool.some(p => p.answer === r.item.answer);
-        if (!esDelFaq) { perdidas++; mal(L + '/' + e.id + ': «' + e.l + '» acaba en CHAT_KB, en castellano'); }
+        /* Su rotulo es tambien el boton de seguimiento que la lleva: si lleva
+           a otra entrada, ese boton contesta otra cosa. Antes se toleraba
+           («se pisan de verdad») y solo se avisaba si acababa en CHAT_KB; el
+           12 de octubre de 2026 eran cero, y al meter 52 entradas nuevas
+           salieron cuatro, todas por claves nuevas. Desde entonces, fallo. */
+        const otra = (pool.find(p => p.answer === r.item.answer) || { keys: ['?'] }).keys.slice(-1)[0];
+        otras.push(L + '/' + e.id);
+        mal(L + '/' + e.id + ': su boton «' + e.l + '» lleva a «' + otra + '»');
       }
     }
   }
   console.log('  entradas.................. ' + ids.length + ' x ' + IDIOMAS.length + ' idiomas = ' + mirado);
   console.log('  idiomas................... ' + IDIOMAS.join(' '));
   console.log('  se llega a ellas.......... ' + (mirado - perdidas) + ' de ' + mirado);
+  console.log('  su rotulo lleva a otra.... ' + otras.length + (otras.length ? '  (' + otras.slice(0, 4).join(' · ') + (otras.length > 4 ? ' …' : '') + ')' : ''));
+  console.log('  botones citados, mirados.. ' + rotulosMirados);
   console.log(fallos ? '\n' + fallos + ' fallos' : '\nbase de conocimiento en verde');
   process.exit(fallos ? 1 : 0);
 })();

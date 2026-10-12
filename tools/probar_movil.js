@@ -45,7 +45,33 @@ const CONSULTAS = [
     debe: [/TITSA/, /Autobusy/],
     noDebe: [/guaguas/i, /Las guaguas/],
     botones: /[a-zA-Ząćęłńóśźż]/ },
+
+  /* Lo que hasta el 12 de octubre de 2026 contestaba CHAT_KB, en castellano,
+     en cualquier idioma. Cada una con algo que solo dice la respuesta de su
+     idioma y algo que solo decia la vieja en castellano. */
+  { que: 'el Teide a secas, en aleman', lang: 'de', q: 'Teide',
+    debe: [/Genehmigung/, /3\.715/], noDebe: [/autorización/i, /teleférico/i] },
+
+  { que: 'el boton «Meilleures plages», en frances', lang: 'fr', boton: /Meilleures plages/,
+    /* el boton manda por dentro «mejores playas»: antes caia en la respuesta
+       castellana de CHAT_KB («Según lo que busques…») */
+    debe: [/Plages/], noDebe: [/Según lo que busques/i, /Arena negra/i], conLista: true },
+
+  { que: 'ayuda en ingles', lang: 'en', q: 'help', debe: [/112/], noDebe: [/emergencia/i] },
+
+  { que: 'la app sin conexion, en neerlandes', lang: 'nl', q: 'werkt het offline',
+    debe: [/Eiland offline/], noDebe: [/sin conexión/i] },
+
+  { que: 'algo falla, en castellano: respuesta y boton de contacto', lang: 'es', q: 'no funciona',
+    debe: [/Recargar/], noDebe: [], contacto: true },
+
+  { que: 'la bienvenida en polaco cuenta bien el plural', lang: 'pl', q: 'zaskocz mnie',
+    debe: [/kostka|losowe|Przenosi/i], noDebe: [/dado/i], bienvenidaPlural: true },
 ];
+
+/* La forma polaca que pide el numero de lugares: 1 miejsce · 2-4 miejsca
+   (salvo 12-14) · 5+ miejsc. La bienvenida tiene que traer la suya. */
+const formaPl = n => n === 1 ? 'miejsce' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 'miejsca' : 'miejsc';
 
 (async () => {
   const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
@@ -76,9 +102,26 @@ const CONSULTAS = [
     await pg.waitForFunction(() => document.querySelectorAll('#chat-messages .chat-bubble.bot .chat-body').length >= 1,
                              null, { timeout: 15000 }).catch(() => {});
     const antes = await cuenta(pg);
+    let bienvenidaMal = '';
+    if (c.bienvenidaPlural) {
+      const [n, saludo] = await pg.evaluate(() => [places.length,
+        document.querySelector('#chat-messages .chat-bubble.bot .chat-body').textContent]);
+      if (!new RegExp(n + ' ' + formaPl(n) + '\\b').test(saludo)) bienvenidaMal = n + ' pide «' + formaPl(n) + '»: ' + saludo.slice(0, 120);
+    }
 
-    await pg.evaluate(q => { document.getElementById('chat-input').value = q; }, c.q);
-    await pg.click('.chat-send');
+    if (c.boton) {
+      // pulsar el boton de seguimiento, que es lo que hace la gente
+      const hecho = await pg.evaluate(src => {
+        const re = new RegExp(src);
+        const b = [...document.querySelectorAll('#chat-quick .chat-qbtn')].find(x => re.test(x.textContent));
+        if (b) b.click();
+        return !!b;
+      }, c.boton.source);
+      if (!hecho) errores.push('no hay boton que case con ' + c.boton);
+    } else {
+      await pg.evaluate(q => { document.getElementById('chat-input').value = q; }, c.q);
+      await pg.click('.chat-send');
+    }
     await pg.waitForFunction(n => document.querySelectorAll('#chat-messages .chat-bubble.bot .chat-body').length > n,
                              antes, { timeout: 20000 }).catch(() => {});
     const despues = await cuenta(pg);
@@ -90,17 +133,25 @@ const CONSULTAS = [
     const lista = await pg.evaluate(() => document.querySelectorAll('#chat-messages .chat-poi-item, #chat-messages .chat-poi').length);
     const chips = await pg.evaluate(() => [...document.querySelectorAll('#chat-quick .chat-qbtn')].map(b => b.textContent));
 
+    /* el boton de contacto no va dentro de la burbuja: addBotMessage lo pone
+       detras, como hermano, en #chat-messages */
+    const contacto = await pg.evaluate(() => {
+      const m = document.getElementById('chat-messages');
+      const ult = m && m.lastElementChild;
+      return !!(ult && (ult.classList.contains('chat-contact-btn') || ult.querySelector('.chat-contact-btn')));
+    });
     const faltan  = c.debe.filter(r => !r.test(resp));
     const sobran  = c.noDebe.filter(r => r.test(resp));
     const sinLista = c.conLista && !lista;
     /* Los botones de seguimiento tambien son respuesta: una contestacion en
        chino con los botones en castellano no esta bien puesta. */
     const botonesMal = c.botones ? !(chips.length && chips.every(t => c.botones.test(t))) : false;
+    const sinContacto = c.contacto && !contacto;
     const ok = despues > antes && !faltan.length && !sobran.length && !sinLista
-            && !botonesMal && !errores.length;
+            && !botonesMal && !errores.length && !sinContacto && !bienvenidaMal;
     if (!ok) malos++;
 
-    console.log((ok ? '  ok   ' : ' FALLA ') + c.que + '   [' + c.lang + '] «' + c.q + '»');
+    console.log((ok ? '  ok   ' : ' FALLA ') + c.que + '   [' + c.lang + '] «' + (c.q || 'boton ' + c.boton) + '»');
     console.log('        idioma en LANGS: ' + (tieneIdioma ? 'si' : 'NO')
               + ' · entradas FAQ cargadas: ' + cargadas
               + ' · burbujas ' + antes + '→' + despues + (c.conLista ? ' · lugares: ' + lista : ''));
@@ -110,6 +161,8 @@ const CONSULTAS = [
     if (sobran.length)  console.log('        sale en otro idioma: ' + sobran.join(' '));
     if (sinLista)       console.log('        no salio ninguna lista de lugares');
     if (botonesMal)     console.log('        los botones no estan en ese idioma');
+    if (sinContacto)    console.log('        falta el boton de escribirle a Jerome');
+    if (bienvenidaMal)  console.log('        bienvenida con el plural mal: ' + bienvenidaMal);
     if (errores.length) console.log('        ERRORES DE PAGINA: ' + errores.join(' / '));
     console.log('');
     await pg.close();

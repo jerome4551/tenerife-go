@@ -1,0 +1,708 @@
+{
+ "meta": {
+  "bloque": "H2 · Comer y beber",
+  "version": "1.0",
+  "fecha": "2026-10-12",
+  "idiomas": [
+   "es",
+   "en",
+   "de",
+   "fr",
+   "it",
+   "nl",
+   "pl",
+   "zh",
+   "zht"
+  ],
+  "entradas": 7,
+  "origen": "Redactado el 12/10/2026 a partir de las entradas de CHAT_KB, que solo estaban en castellano; cada dato, comprobado antes de traducirlo, y lo que no se pudo comprobar, fuera (ver AUDITORIA-FINAL.md).",
+  "politica_datos": "Cocina tradicional sin precios ni nombres de locales. Guachinches: Decreto 83/2013 del Gobierno de Canarias. Denominaciones de origen: Turismo de Tenerife y la ficha de la Casa del Vino del mapa."
+ },
+ "entradas": [
+  {
+   "id": "com-01",
+   "cat": "gastronomia",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué es lo típico de comer?",
+    "en": "What is the typical food?",
+    "de": "Was isst man hier typisch?",
+    "fr": "Que manger de typique ?",
+    "it": "Cosa si mangia di tipico?",
+    "nl": "Wat is het typische eten?",
+    "pl": "Co się tu typowo je?",
+    "zh": "有什么特色美食？",
+    "zht": "有什麼特色美食？"
+   },
+   "keys": {
+    "es": [
+     "comida tipica",
+     "comida canaria",
+     "que comer",
+     "que probar",
+     "platos tipicos",
+     "plato tipico",
+     "gastronomia canaria",
+     "cocina canaria"
+    ],
+    "en": [
+     "typical food",
+     "canarian food",
+     "what to eat",
+     "what to try",
+     "local dishes",
+     "local food",
+     "canarian cuisine"
+    ],
+    "de": [
+     "typisches essen",
+     "kanarische kuche",
+     "was essen",
+     "was probieren",
+     "typische gerichte",
+     "lokale spezialitaten"
+    ],
+    "fr": [
+     "cuisine typique",
+     "cuisine canarienne",
+     "que manger",
+     "quoi gouter",
+     "plats typiques",
+     "specialites locales"
+    ],
+    "it": [
+     "cibo tipico",
+     "cucina canaria",
+     "cosa mangiare",
+     "cosa assaggiare",
+     "piatti tipici",
+     "specialita locali"
+    ],
+    "nl": [
+     "typisch eten",
+     "canarische keuken",
+     "wat eten",
+     "wat proeven",
+     "typische gerechten",
+     "lokale specialiteiten"
+    ],
+    "pl": [
+     "typowe jedzenie",
+     "kuchnia kanaryjska",
+     "co zjesc",
+     "czego sprobowac",
+     "typowe dania",
+     "lokalne jedzenie"
+    ],
+    "zh": [
+     "特色美食",
+     "当地美食",
+     "吃什么",
+     "加那利菜",
+     "特色菜"
+    ],
+    "zht": [
+     "特色美食",
+     "當地美食",
+     "吃什麼",
+     "加那利菜",
+     "特色菜"
+    ]
+   },
+   "a": {
+    "es": "🍽️ Lo que no te puedes ir sin probar: papas arrugadas con mojo rojo y verde, gofio, queso de la isla, pescado fresco, carne de cabra y conejo en salmorejo, y de postre bienmesabe o quesillo. Para beber, vino de la tierra o un barraquito. En el mapa, la categoría Gastronomía.",
+    "en": "🍽️ What you cannot leave without trying: papas arrugadas with red and green mojo, gofio, local cheese, fresh fish, goat meat and conejo en salmorejo (rabbit in a spicy marinade), and for dessert bienmesabe or quesillo. To drink, local wine or a barraquito. On the map, the Gastronomy category.",
+    "de": "🍽️ Was du probieren musst, bevor du abreist: papas arrugadas mit rotem und grünem Mojo, Gofio, Käse von der Insel, frischen Fisch, Ziegenfleisch und conejo en salmorejo (Kaninchen in würziger Marinade), und als Nachtisch Bienmesabe oder Quesillo. Dazu Wein von der Insel oder ein Barraquito. Auf der Karte: die Kategorie Gastronomie.",
+    "fr": "🍽️ Ce que tu ne peux pas quitter l’île sans goûter : papas arrugadas avec mojo rouge et vert, gofio, fromage de l’île, poisson frais, viande de chèvre et conejo en salmorejo (lapin mariné), et en dessert bienmesabe ou quesillo. À boire, du vin local ou un barraquito. Sur la carte, la catégorie Gastronomie.",
+    "it": "🍽️ Quello che non puoi andare via senza assaggiare: papas arrugadas con mojo rosso e verde, gofio, formaggio dell’isola, pesce fresco, carne di capra e conejo en salmorejo (coniglio marinato), e per dolce bienmesabe o quesillo. Da bere, vino dell’isola o un barraquito. Sulla mappa, la categoria Gastronomia.",
+    "nl": "🍽️ Wat je niet mag missen: papas arrugadas met rode en groene mojo, gofio, kaas van het eiland, verse vis, geitenvlees en conejo en salmorejo (konijn in pittige marinade), en als toetje bienmesabe of quesillo. Om te drinken: wijn van het eiland of een barraquito. Op de kaart: de categorie Gastronomie.",
+    "pl": "🍽️ Tego nie możesz nie spróbować: papas arrugadas z czerwonym i zielonym mojo, gofio, ser z wyspy, świeże ryby, mięso kozie i conejo en salmorejo (królik w ostrej marynacie), a na deser bienmesabe albo quesillo. Do picia miejscowe wino albo barraquito. Na mapie: kategoria Gastronomia.",
+    "zh": "🍽️ 来了一定要尝的：配红、绿两种 mojo 酱的皱皮土豆（papas arrugadas）、gofio（烤谷物粉）、本岛奶酪、新鲜鱼、山羊肉和腌兔肉（conejo en salmorejo），甜点有 bienmesabe 或 quesillo。饮品可以选本地葡萄酒或一杯 barraquito 咖啡。地图上请看「美食」类别。",
+    "zht": "🍽️ 來了一定要嚐的：配紅、綠兩種 mojo 醬的皺皮馬鈴薯（papas arrugadas）、gofio（烤穀物粉）、本島起司、新鮮魚、山羊肉和醃兔肉（conejo en salmorejo），甜點有 bienmesabe 或 quesillo。飲品可以選本地葡萄酒或一杯 barraquito 咖啡。地圖上請看「美食」類別。"
+   },
+   "follow": [
+    "com-02",
+    "com-03",
+    "com-06"
+   ],
+   "comprobado": "Cocina canaria tradicional (Turismo de Tenerife, webtenerife.com, gastronomia; guias): papas arrugadas con mojo, gofio, queso, pescado, carne de cabra, conejo en salmorejo, bienmesabe, quesillo; categoria Gastronomia del mapa"
+  },
+  {
+   "id": "com-02",
+   "cat": "gastronomia",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué es un guachinche?",
+    "en": "What is a guachinche?",
+    "de": "Was ist ein Guachinche?",
+    "fr": "Qu’est-ce qu’un guachinche ?",
+    "it": "Cos’è un guachinche?",
+    "nl": "Wat is een guachinche?",
+    "pl": "Co to jest guachinche?",
+    "zh": "Guachinche 是什么？",
+    "zht": "Guachinche 是什麼？"
+   },
+   "keys": {
+    "es": [
+     "guachinche",
+     "guachinches",
+     "que es un guachinche",
+     "vino casero",
+     "vino de cosecha propia"
+    ],
+    "en": [
+     "guachinche",
+     "guachinches",
+     "what is a guachinche",
+     "homemade wine",
+     "local wine tavern"
+    ],
+    "de": [
+     "guachinche",
+     "guachinches",
+     "was ist ein guachinche",
+     "hauswein"
+    ],
+    "fr": [
+     "guachinche",
+     "guachinches",
+     "qu est ce qu un guachinche",
+     "vin maison"
+    ],
+    "it": [
+     "guachinche",
+     "guachinches",
+     "cos e un guachinche",
+     "vino della casa"
+    ],
+    "nl": [
+     "guachinche",
+     "guachinches",
+     "wat is een guachinche",
+     "huiswijn"
+    ],
+    "pl": [
+     "guachinche",
+     "guachinches",
+     "co to jest guachinche",
+     "domowe wino"
+    ],
+    "zh": [
+     "guachinche",
+     "乡村酒馆",
+     "自酿葡萄酒",
+     "农家酒馆"
+    ],
+    "zht": [
+     "guachinche",
+     "鄉村酒館",
+     "自釀葡萄酒",
+     "農家酒館"
+    ]
+   },
+   "a": {
+    "es": "🍷 Un guachinche es un local donde el viticultor vende el vino de su propia cosecha, acompañado de unos pocos platos tradicionales. Lo regula el Gobierno de Canarias: solo puede abrir unos meses al año y cierra cuando se acaba el vino, así que el que te gustó puede no estar abierto. En el mapa están en Gastronomía, y la mayoría, en el norte.",
+    "en": "🍷 A guachinche is a place where the winegrower sells wine from their own harvest, along with a few traditional dishes. The Canary Islands Government regulates them: they can only open for a few months a year and close when the wine runs out, so the one you liked may not be open. On the map they are under Gastronomy, and most of them are in the north.",
+    "de": "🍷 Ein Guachinche ist ein Lokal, in dem der Winzer den Wein aus seiner eigenen Ernte verkauft, dazu ein paar traditionelle Gerichte. Die Regierung der Kanaren regelt das: Er darf nur einige Monate im Jahr öffnen und schließt, wenn der Wein aus ist, deshalb hat dein Lieblings-Guachinche vielleicht gerade zu. Auf der Karte findest du sie unter Gastronomie, die meisten im Norden.",
+    "fr": "🍷 Un guachinche est un lieu où le vigneron vend le vin de sa propre récolte, accompagné de quelques plats traditionnels. C’est réglementé par le gouvernement des Canaries : il ne peut ouvrir que quelques mois par an et ferme quand le vin est épuisé, donc celui qui t’a plu peut être fermé. Sur la carte, ils sont dans Gastronomie, et la plupart dans le nord.",
+    "it": "🍷 Un guachinche è un locale dove il viticoltore vende il vino del proprio raccolto, insieme a pochi piatti tradizionali. Lo regola il governo delle Canarie: può aprire solo alcuni mesi all’anno e chiude quando il vino finisce, quindi quello che ti è piaciuto potrebbe essere chiuso. Sulla mappa sono in Gastronomia, e la maggior parte al nord.",
+    "nl": "🍷 Een guachinche is een plek waar de wijnboer wijn van zijn eigen oogst verkoopt, met een paar traditionele gerechten erbij. De Canarische regering regelt het: hij mag maar een paar maanden per jaar open en sluit als de wijn op is, dus die ene waar je zo van genoot, kan dicht zijn. Op de kaart staan ze onder Gastronomie, de meeste in het noorden.",
+    "pl": "🍷 Guachinche to lokal, w którym winiarz sprzedaje wino z własnych zbiorów z kilkoma tradycyjnymi daniami. Reguluje to rząd Wysp Kanaryjskich: może działać tylko kilka miesięcy w roku i zamyka się, gdy skończy się wino, więc ten, który ci smakował, może być zamknięty. Na mapie są w kategorii Gastronomia, a większość na północy.",
+    "zh": "🍷 Guachinche 是葡萄种植者出售自家酿的葡萄酒、搭配几道传统菜的地方。它受加那利群岛政府监管：每年只能开几个月，酒卖完就关门，所以你喜欢的那家可能没在营业。地图上它们在「美食」类别里，大多数在北部。",
+    "zht": "🍷 Guachinche 是葡萄農出售自家釀的葡萄酒、搭配幾道傳統菜的地方。它受加那利群島政府規範：每年只能開幾個月，酒賣完就關門，所以你喜歡的那家可能沒在營業。地圖上它們在「美食」類別裡，大多數在北部。"
+   },
+   "follow": [
+    "com-06",
+    "com-01",
+    "cul-07"
+   ],
+   "comprobado": "Decreto 83/2013, de 1 de agosto, del Gobierno de Canarias (comercializacion temporal de vino de cosecha propia): vino del propio viticultor con un numero limitado de platos tradicionales, maximo cuatro meses al ano y cese al agotarse el vino. En el mapa: 17 de los 19 guachinches de Gastronomia estan en el norte (contado el 12/10/2026)"
+  },
+  {
+   "id": "com-03",
+   "cat": "gastronomia",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué son las papas arrugadas con mojo?",
+    "en": "What are papas arrugadas with mojo?",
+    "de": "Was sind Papas arrugadas mit Mojo?",
+    "fr": "Que sont les papas arrugadas au mojo ?",
+    "it": "Cosa sono le papas arrugadas con mojo?",
+    "nl": "Wat zijn papas arrugadas met mojo?",
+    "pl": "Co to są papas arrugadas z mojo?",
+    "zh": "皱皮土豆配 mojo 酱是什么？",
+    "zht": "皺皮馬鈴薯配 mojo 醬是什麼？"
+   },
+   "keys": {
+    "es": [
+     "papas arrugadas",
+     "mojo",
+     "mojo picon",
+     "mojo rojo",
+     "mojo verde",
+     "papas"
+    ],
+    "en": [
+     "papas arrugadas",
+     "wrinkled potatoes",
+     "mojo",
+     "mojo sauce",
+     "red mojo",
+     "green mojo"
+    ],
+    "de": [
+     "papas arrugadas",
+     "runzelkartoffeln",
+     "mojo",
+     "mojo sosse",
+     "rote mojo",
+     "grune mojo"
+    ],
+    "fr": [
+     "papas arrugadas",
+     "pommes de terre ridees",
+     "mojo",
+     "sauce mojo",
+     "mojo rouge",
+     "mojo vert"
+    ],
+    "it": [
+     "papas arrugadas",
+     "patate rugose",
+     "mojo",
+     "salsa mojo",
+     "mojo rosso",
+     "mojo verde"
+    ],
+    "nl": [
+     "papas arrugadas",
+     "gerimpelde aardappels",
+     "mojo",
+     "mojosaus",
+     "rode mojo",
+     "groene mojo"
+    ],
+    "pl": [
+     "papas arrugadas",
+     "pomarszczone ziemniaki",
+     "mojo",
+     "sos mojo",
+     "czerwone mojo",
+     "zielone mojo"
+    ],
+    "zh": [
+     "皱皮土豆",
+     "papas arrugadas",
+     "mojo",
+     "mojo酱",
+     "红酱",
+     "绿酱"
+    ],
+    "zht": [
+     "皺皮馬鈴薯",
+     "papas arrugadas",
+     "mojo",
+     "mojo醬",
+     "紅醬",
+     "綠醬"
+    ]
+   },
+   "a": {
+    "es": "🥔 Papas pequeñas cocidas con mucha sal hasta que la piel se arruga; se comen con piel, mojadas en mojo: el rojo, o picón, con pimienta, y el verde, con cilantro. Es el plato canario por excelencia.",
+    "en": "🥔 Small potatoes boiled with lots of salt until the skin wrinkles; you eat them skin and all, dipped in mojo: the red one, or picón, made with peppers, and the green one, with coriander. It is the Canarian dish par excellence.",
+    "de": "🥔 Kleine Kartoffeln, mit viel Salz gekocht, bis die Schale schrumpelt; man isst sie mit Schale, getunkt in Mojo: die rote, oder Picón, mit Paprika, und die grüne, mit Koriander. Das kanarische Gericht schlechthin.",
+    "fr": "🥔 De petites pommes de terre cuites avec beaucoup de sel jusqu’à ce que la peau se ride ; on les mange avec la peau, trempées dans le mojo : le rouge, ou picón, au piment, et le vert, à la coriandre. C’est le plat canarien par excellence.",
+    "it": "🥔 Patate piccole bollite con molto sale finché la buccia si raggrinzisce; si mangiano con la buccia, intinte nel mojo: quello rosso, o picón, con il peperoncino, e quello verde, con il coriandolo. È il piatto canario per eccellenza.",
+    "nl": "🥔 Kleine aardappels, met veel zout gekookt tot de schil rimpelt; je eet ze met schil en al, gedoopt in mojo: de rode, of picón, met paprika, en de groene, met koriander. Hét Canarische gerecht.",
+    "pl": "🥔 Małe ziemniaki gotowane z dużą ilością soli, aż skórka się pomarszczy; je się je ze skórką, maczane w mojo: czerwonym, czyli picón, z papryką, i zielonym, z kolendrą. To kanaryjskie danie numer jeden.",
+    "zh": "🥔 小土豆加大量盐煮到外皮起皱，连皮一起吃，蘸 mojo 酱：红色的（picón）用辣椒做，绿色的用香菜做。这是最具代表性的加那利菜。",
+    "zht": "🥔 小馬鈴薯加大量鹽煮到外皮起皺，連皮一起吃，沾 mojo 醬：紅色的（picón）用辣椒做，綠色的用香菜做。這是最具代表性的加那利菜。"
+   },
+   "follow": [
+    "com-01",
+    "com-04",
+    "app-20"
+   ],
+   "comprobado": "Glosario canario de la propia app (GL_DATA: «Papas arrugadas»: papas pequenas cocidas con sal, piel arrugada, con mojo el plato canario; «Mojo»: rojo (picon) o verde (cilantro)); el mojo rojo lleva pimienta"
+  },
+  {
+   "id": "com-04",
+   "cat": "gastronomia",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué es el gofio?",
+    "en": "What is gofio?",
+    "de": "Was ist Gofio?",
+    "fr": "Qu’est-ce que le gofio ?",
+    "it": "Cos’è il gofio?",
+    "nl": "Wat is gofio?",
+    "pl": "Co to jest gofio?",
+    "zh": "Gofio 是什么？",
+    "zht": "Gofio 是什麼？"
+   },
+   "keys": {
+    "es": [
+     "gofio",
+     "escaldon",
+     "que es el gofio"
+    ],
+    "en": [
+     "gofio",
+     "escaldon",
+     "what is gofio"
+    ],
+    "de": [
+     "gofio",
+     "escaldon",
+     "was ist gofio"
+    ],
+    "fr": [
+     "gofio",
+     "escaldon",
+     "qu est ce que le gofio"
+    ],
+    "it": [
+     "gofio",
+     "escaldon",
+     "cos e il gofio"
+    ],
+    "nl": [
+     "gofio",
+     "escaldon",
+     "wat is gofio"
+    ],
+    "pl": [
+     "gofio",
+     "escaldon",
+     "co to jest gofio"
+    ],
+    "zh": [
+     "gofio",
+     "烤谷物粉",
+     "escaldon"
+    ],
+    "zht": [
+     "gofio",
+     "烤穀物粉",
+     "escaldon"
+    ]
+   },
+   "a": {
+    "es": "🌾 El gofio es harina de cereales tostados, y ya lo comían los antiguos canarios. Se toma salado, en escaldón (amasado con caldo), y dulce, en la leche o en postres.",
+    "en": "🌾 Gofio is flour made from toasted cereals, and the ancient Canarians already ate it. It is eaten savoury, in escaldón (mixed with broth), and sweet, in milk or in desserts.",
+    "de": "🌾 Gofio ist Mehl aus gerösteten Getreidekörnern, das schon die alten Kanarier aßen. Man isst es herzhaft, als Escaldón (mit Brühe angerührt), und süß, in der Milch oder in Desserts.",
+    "fr": "🌾 Le gofio est une farine de céréales grillées, que mangeaient déjà les anciens Canariens. On le prend salé, en escaldón (pétri avec du bouillon), et sucré, dans le lait ou en dessert.",
+    "it": "🌾 Il gofio è farina di cereali tostati, e lo mangiavano già gli antichi canari. Si mangia salato, nell’escaldón (impastato con il brodo), e dolce, nel latte o nei dessert.",
+    "nl": "🌾 Gofio is meel van geroosterde granen, dat de oude Canariërs al aten. Je eet het hartig, als escaldón (aangemaakt met bouillon), en zoet, in melk of in toetjes.",
+    "pl": "🌾 Gofio to mąka z prażonych zbóż, którą jedli już dawni Kanaryjczycy. Je się je na słono, jako escaldón (zarobione z bulionem), i na słodko, w mleku albo w deserach.",
+    "zh": "🌾 Gofio 是用烤过的谷物磨成的粉，早在古代加那利人时期就有人吃了。咸的吃法是 escaldón（用热汤拌成糊），甜的吃法是加进牛奶或做成甜点。",
+    "zht": "🌾 Gofio 是用烤過的穀物磨成的粉，早在古代加那利人時期就有人吃了。鹹的吃法是 escaldón（用熱湯拌成糊），甜的吃法是加進牛奶或做成甜點。"
+   },
+   "follow": [
+    "com-01",
+    "com-03",
+    "cul-09"
+   ],
+   "comprobado": "Gofio: harina de cereales tostados, base de la alimentacion de los antiguos canarios; escaldon: gofio amasado con caldo (Turismo de Tenerife y guias consultadas el 12/10/2026)"
+  },
+  {
+   "id": "com-05",
+   "cat": "gastronomia",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué es un barraquito?",
+    "en": "What is a barraquito?",
+    "de": "Was ist ein Barraquito?",
+    "fr": "Qu’est-ce qu’un barraquito ?",
+    "it": "Cos’è un barraquito?",
+    "nl": "Wat is een barraquito?",
+    "pl": "Co to jest barraquito?",
+    "zh": "Barraquito 是什么？",
+    "zht": "Barraquito 是什麼？"
+   },
+   "keys": {
+    "es": [
+     "barraquito",
+     "cafe canario",
+     "cafe barraquito"
+    ],
+    "en": [
+     "barraquito",
+     "canarian coffee",
+     "local coffee"
+    ],
+    "de": [
+     "barraquito",
+     "kanarischer kaffee"
+    ],
+    "fr": [
+     "barraquito",
+     "cafe canarien"
+    ],
+    "it": [
+     "barraquito",
+     "caffe canario"
+    ],
+    "nl": [
+     "barraquito",
+     "canarische koffie"
+    ],
+    "pl": [
+     "barraquito",
+     "kanaryjska kawa"
+    ],
+    "zh": [
+     "barraquito",
+     "加那利咖啡",
+     "分层咖啡"
+    ],
+    "zht": [
+     "barraquito",
+     "加那利咖啡",
+     "分層咖啡"
+    ]
+   },
+   "a": {
+    "es": "☕ El café de la isla, servido en vaso y por capas: leche condensada, licor, café, leche espumada, canela y corteza de limón. Si no quieres alcohol, pídelo sin licor.",
+    "en": "☕ The island’s coffee, served in a glass in layers: condensed milk, liqueur, coffee, frothed milk, cinnamon and lemon peel. If you do not want alcohol, ask for it without liqueur.",
+    "de": "☕ Der Kaffee der Insel, im Glas und in Schichten serviert: Kondensmilch, Likör, Kaffee, Milchschaum, Zimt und Zitronenschale. Wenn du keinen Alkohol willst, bestell ihn ohne Likör.",
+    "fr": "☕ Le café de l’île, servi en verre et par couches : lait concentré, liqueur, café, lait mousseux, cannelle et zeste de citron. Si tu ne veux pas d’alcool, demande-le sans liqueur.",
+    "it": "☕ Il caffè dell’isola, servito nel bicchiere e a strati: latte condensato, liquore, caffè, latte montato, cannella e scorza di limone. Se non vuoi alcol, chiedilo senza liquore.",
+    "nl": "☕ De koffie van het eiland, in een glas en in laagjes: gecondenseerde melk, likeur, koffie, opgeschuimde melk, kaneel en citroenschil. Wil je geen alcohol, vraag hem dan zonder likeur.",
+    "pl": "☕ Kawa wyspy, podawana w szklance warstwami: mleko skondensowane, likier, kawa, spienione mleko, cynamon i skórka cytryny. Jeśli nie chcesz alkoholu, poproś bez likieru.",
+    "zh": "☕ 本岛的招牌咖啡，用玻璃杯分层装：炼乳、利口酒、咖啡、奶泡、肉桂和柠檬皮。不想喝酒的话，点不加利口酒的。",
+    "zht": "☕ 本島的招牌咖啡，用玻璃杯分層裝：煉乳、利口酒、咖啡、奶泡、肉桂和檸檬皮。不想喝酒的話，點不加利口酒的。"
+   },
+   "follow": [
+    "com-01",
+    "cul-02"
+   ],
+   "comprobado": "Barraquito: cafe por capas con leche condensada, licor, cafe, leche espumada, canela y cascara de limon (guias de gastronomia de Tenerife consultadas el 12/10/2026, coinciden en los ingredientes)"
+  },
+  {
+   "id": "com-06",
+   "cat": "gastronomia",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué vino se hace en Tenerife?",
+    "en": "What wine is made in Tenerife?",
+    "de": "Welcher Wein wird auf Teneriffa gemacht?",
+    "fr": "Quel vin fait-on à Tenerife ?",
+    "it": "Che vino si fa a Tenerife?",
+    "nl": "Welke wijn wordt er op Tenerife gemaakt?",
+    "pl": "Jakie wino robi się na Teneryfie?",
+    "zh": "特内里费岛产什么葡萄酒？",
+    "zht": "特內里費島產什麼葡萄酒？"
+   },
+   "keys": {
+    "es": [
+     "vino",
+     "vinos",
+     "vino de tenerife",
+     "bodega",
+     "bodegas",
+     "denominacion de origen",
+     "denominaciones de origen",
+     "cata de vinos",
+     "malvasia",
+     "listan"
+    ],
+    "en": [
+     "wine",
+     "wines",
+     "tenerife wine",
+     "winery",
+     "wineries",
+     "designation of origin",
+     "wine tasting",
+     "malvasia"
+    ],
+    "de": [
+     "wein",
+     "weine",
+     "wein von teneriffa",
+     "weingut",
+     "weinguter",
+     "herkunftsbezeichnung",
+     "weinprobe",
+     "malvasier"
+    ],
+    "fr": [
+     "vin",
+     "vins",
+     "vin de tenerife",
+     "cave",
+     "caves",
+     "appellation d origine",
+     "degustation de vin",
+     "malvoisie"
+    ],
+    "it": [
+     "vino",
+     "vini",
+     "vino di tenerife",
+     "cantina",
+     "cantine",
+     "denominazione di origine",
+     "degustazione di vini",
+     "malvasia"
+    ],
+    "nl": [
+     "wijn",
+     "wijnen",
+     "wijn van tenerife",
+     "wijnhuis",
+     "wijnmakerij",
+     "herkomstbenaming",
+     "wijnproeverij",
+     "malvezij"
+    ],
+    "pl": [
+     "wino",
+     "wina",
+     "wino z teneryfy",
+     "winnica",
+     "winiarnia",
+     "apelacja",
+     "degustacja wina",
+     "malwazja"
+    ],
+    "zh": [
+     "葡萄酒",
+     "酒庄",
+     "品酒",
+     "原产地",
+     "本地酒"
+    ],
+    "zht": [
+     "葡萄酒",
+     "酒莊",
+     "品酒",
+     "原產地",
+     "本地酒"
+    ]
+   },
+   "a": {
+    "es": "🍇 Tenerife tiene cinco denominaciones de origen propias: Abona, Tacoronte-Acentejo, Valle de Güímar, Valle de La Orotava e Ycoden-Daute-Isora. La Casa del Vino, en El Sauzal, las reúne todas y es un buen sitio para empezar. Y por San Andrés, a finales de noviembre, se estrena el vino nuevo.",
+    "en": "🍇 Tenerife has five designations of origin of its own: Abona, Tacoronte-Acentejo, Valle de Güímar, Valle de La Orotava and Ycoden-Daute-Isora. The Casa del Vino in El Sauzal brings them all together and is a good place to start. And at San Andrés, at the end of November, the new wine is opened.",
+    "de": "🍇 Teneriffa hat fünf eigene Herkunftsbezeichnungen: Abona, Tacoronte-Acentejo, Valle de Güímar, Valle de La Orotava und Ycoden-Daute-Isora. Die Casa del Vino in El Sauzal vereint sie alle und ist ein guter Anfang. Und zu San Andrés, Ende November, wird der neue Wein angestochen.",
+    "fr": "🍇 Tenerife a cinq appellations d’origine propres : Abona, Tacoronte-Acentejo, Valle de Güímar, Valle de La Orotava et Ycoden-Daute-Isora. La Casa del Vino, à El Sauzal, les réunit toutes et c’est un bon point de départ. Et pour la San Andrés, fin novembre, on goûte le vin nouveau.",
+    "it": "🍇 Tenerife ha cinque denominazioni di origine proprie: Abona, Tacoronte-Acentejo, Valle de Güímar, Valle de La Orotava e Ycoden-Daute-Isora. La Casa del Vino, a El Sauzal, le riunisce tutte ed è un buon punto di partenza. E per San Andrés, a fine novembre, si apre il vino nuovo.",
+    "nl": "🍇 Tenerife heeft vijf eigen herkomstbenamingen: Abona, Tacoronte-Acentejo, Valle de Güímar, Valle de La Orotava en Ycoden-Daute-Isora. De Casa del Vino in El Sauzal brengt ze allemaal samen en is een goed begin. En rond San Andrés, eind november, gaat de nieuwe wijn open.",
+    "pl": "🍇 Teneryfa ma pięć własnych apelacji: Abona, Tacoronte-Acentejo, Valle de Güímar, Valle de La Orotava i Ycoden-Daute-Isora. Casa del Vino w El Sauzal zbiera je wszystkie i to dobre miejsce na początek. A na San Andrés, pod koniec listopada, otwiera się młode wino.",
+    "zh": "🍇 特内里费岛有五个自己的葡萄酒原产地命名：Abona、Tacoronte-Acentejo、Valle de Güímar、Valle de La Orotava 和 Ycoden-Daute-Isora。位于 El Sauzal 的 Casa del Vino 把它们都汇集在一起，是入门的好地方。每年十一月底的 San Andrés 节，新酒开坛。",
+    "zht": "🍇 特內里費島有五個自己的葡萄酒原產地命名：Abona、Tacoronte-Acentejo、Valle de Güímar、Valle de La Orotava 和 Ycoden-Daute-Isora。位於 El Sauzal 的 Casa del Vino 把它們都匯集在一起，是入門的好地方。每年十一月底的 San Andrés 節，新酒開罈。"
+   },
+   "follow": [
+    "com-02",
+    "cul-07",
+    "com-07"
+   ],
+   "comprobado": "Cinco denominaciones de origen de Tenerife: Abona, Tacoronte-Acentejo, Valle de Guimar, Valle de La Orotava e Ycoden-Daute-Isora (Turismo de Tenerife, webtenerife; ficha de la Casa del Vino en el mapa, casa-del-vino-sauzal, que las cubre todas); San Andres a finales de noviembre, cuando se estrena el vino nuevo (cul-07)"
+  },
+  {
+   "id": "com-07",
+   "cat": "gastronomia",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué queso es típico?",
+    "en": "What cheese is typical?",
+    "de": "Welcher Käse ist typisch?",
+    "fr": "Quel fromage est typique ?",
+    "it": "Che formaggio è tipico?",
+    "nl": "Welke kaas is typisch?",
+    "pl": "Jaki ser jest typowy?",
+    "zh": "这里有什么特色奶酪？",
+    "zht": "這裡有什麼特色起司？"
+   },
+   "keys": {
+    "es": [
+     "queso",
+     "quesos",
+     "queso canario",
+     "queseria",
+     "queso asado",
+     "queso de cabra"
+    ],
+    "en": [
+     "cheese",
+     "cheeses",
+     "canarian cheese",
+     "goat cheese",
+     "grilled cheese"
+    ],
+    "de": [
+     "kase",
+     "kanarischer kase",
+     "ziegenkase",
+     "kaserei",
+     "gegrillter kase"
+    ],
+    "fr": [
+     "fromage",
+     "fromages",
+     "fromage canarien",
+     "fromage de chevre",
+     "fromagerie"
+    ],
+    "it": [
+     "formaggio",
+     "formaggi",
+     "formaggio canario",
+     "formaggio di capra",
+     "caseificio"
+    ],
+    "nl": [
+     "kaas",
+     "kazen",
+     "canarische kaas",
+     "geitenkaas",
+     "kaasmakerij"
+    ],
+    "pl": [
+     "ser",
+     "sery",
+     "ser kanaryjski",
+     "ser kozi",
+     "ser z grilla"
+    ],
+    "zh": [
+     "奶酪",
+     "山羊奶酪",
+     "烤奶酪",
+     "本地奶酪"
+    ],
+    "zht": [
+     "起司",
+     "山羊起司",
+     "烤起司",
+     "本地起司"
+    ]
+   },
+   "a": {
+    "es": "🧀 En la isla manda el queso de cabra: fresco, semicurado, curado o ahumado. Lo verás asado con mojo o con miel de palma. Los quesos de aquí se encuentran en los mercados del agricultor.",
+    "en": "🧀 Goat’s cheese rules on the island: fresh, semi-cured, cured or smoked. You will see it grilled with mojo or with palm honey. Local cheeses are sold at the farmers’ markets.",
+    "de": "🧀 Auf der Insel regiert der Ziegenkäse: frisch, halbgereift, gereift oder geräuchert. Du bekommst ihn gegrillt mit Mojo oder mit Palmhonig. Die Käse von hier findest du auf den Bauernmärkten.",
+    "fr": "🧀 Sur l’île, c’est le fromage de chèvre qui règne : frais, demi-affiné, affiné ou fumé. Tu le verras grillé avec du mojo ou du miel de palme. Les fromages d’ici se trouvent sur les marchés de producteurs.",
+    "it": "🧀 Sull’isola comanda il formaggio di capra: fresco, semistagionato, stagionato o affumicato. Lo troverai alla griglia con mojo o con miele di palma. I formaggi locali si trovano nei mercati contadini.",
+    "nl": "🧀 Op het eiland is geitenkaas de baas: vers, halfbelegen, belegen of gerookt. Je ziet hem gegrild met mojo of met palmhoning. Kaas van hier vind je op de boerenmarkten.",
+    "pl": "🧀 Na wyspie króluje ser kozi: świeży, półdojrzały, dojrzały albo wędzony. Zobaczysz go z grilla z mojo albo z miodem palmowym. Tutejsze sery kupisz na targach rolniczych.",
+    "zh": "🧀 岛上的主角是山羊奶酪：新鲜的、半熟成、熟成或烟熏的。你会看到它烤着吃，配 mojo 酱或棕榈蜜。本地奶酪可以在农夫市集买到。",
+    "zht": "🧀 島上的主角是山羊起司：新鮮的、半熟成、熟成或煙燻的。你會看到它烤著吃，配 mojo 醬或棕櫚蜜。本地起司可以在農夫市集買到。"
+   },
+   "follow": [
+    "cul-11",
+    "com-01",
+    "com-06"
+   ],
+   "comprobado": "Quesos de cabra de Tenerife (fresco, semicurado, curado, ahumado), queso asado con mojo o miel de palma; productos locales en los mercados del agricultor (cul-11); ficha de la Casa del Vino: cata de vinos y quesos locales"
+  }
+ ]
+}

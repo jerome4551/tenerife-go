@@ -119,6 +119,8 @@ echo; echo "════════ castellano que se queda dentro de cada idio
 # y fichas resumidas. Los nueve de una vez: lo aceptado «para todos» solo se
 # puede dar por sobrante si se han mirado todos.
 control castellano_suelto.js node tools/castellano_suelto.js
+echo; echo "════════ palabras escritas sin sus letras (waehle, carre avec fleche) ════════"
+control auditar_letras.js node tools/auditar_letras.js
 echo; echo "════════ la frase diaria, en los diez idiomas ════════"
 control auditar_frases.js node tools/auditar_frases.js
 echo; echo "════════ etiquetas del globo ════════"
@@ -130,6 +132,8 @@ salida=$(node tools/probar_faq.js 2>&1); rc=$?
 printf '%s\n' "$salida" | tail -3
 if reventado "$salida"; then roto probar_faq.js
 else [ "$rc" = 0 ] || falla probar_faq.js; fi
+echo; echo "════════ el asistente en un movil de verdad, en su idioma ════════"
+control probar_movil.js node tools/probar_movil.js "$PUERTO"
 
 echo "════════ erratas al transliterar al cirilico ════════"
 control auditar_cirilico.py python3 tools/auditar_cirilico.py

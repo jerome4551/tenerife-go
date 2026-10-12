@@ -65,6 +65,22 @@
   "finca: el aleman y el neerlandes la usan para la casa de campo española (Duden, Van Dale)": {
    "de": ["finca"],
    "nl": ["finca"]
+  },
+  "asistente, 12 de octubre de 2026 · la respuesta del glosario canario (app-20) cita las palabras que el glosario enseña: «guagua, chacho, ños…»": {
+   "todos": ["ños@faq app-20.a", "guagua@faq app-20.a", "chacho@faq app-20.a"]
+  },
+  "asistente · el mojo rojo se llama picón, y la respuesta lo dice y explica (com-03)": {
+   "todos": ["picón@faq com-03.a", "пикон@faq com-03.a"]
+  },
+  "asistente · platos con nombre propio que la respuesta explica al lado: «conejo en salmorejo (conejo marinado)», bienmesabe, quesillo, barraquito (com-01)": {
+   "todos": ["conejo@faq com-01.a", "salmorejo@faq com-01.a", "bienmesabe@faq com-01.a", "quesillo@faq com-01.a", "barraquito@faq com-01.a"]
+  },
+  "asistente · «panza de burro» es como llaman aqui a las nubes bajas del norte, y la respuesta lo explica (pla-01)": {
+   "todos": ["panza@faq pla-01.a", "burro@faq pla-01.a"]
+  },
+  "asistente · palabras de ese idioma que coinciden con el castellano o lo toman: el ingles dice «fiestas» (la app tambien: «Fiestas and traditions»), en italiano «casco» es el casco y el escaldón va con su articulo": {
+   "en": ["fiestas@faq app-01.a", "fiestas@faq app-20.a"],
+   "it": ["casco@faq pla-16.a", "nell’escaldón@faq com-04.a"]
   }
  },
  "frases": {

@@ -1,6 +1,6 @@
 # Revisión de los 787 lugares
 
-**11 de octubre de 2026.** Generado con `node tools/informe_lugares.js`.
+**12 de octubre de 2026.** Generado con `node tools/informe_lugares.js`.
 Barre los 787, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
@@ -19,7 +19,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `bandera_azul` | **cerrado** | 11 fichas con blueFlag:true, cifra exacta comprobada contra la lista. |
 | `red_titsa` | **cerrado** | 183 lineas, 6.263 referencias de parada sobre 2.514 marquesinas, trazados regenerados del GTFS. La parada mas lejos de su trazado, |
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
-| `asistente` | **cerrado** | 69 respuestas x 10 idiomas = 690, y se llega a las 690 desde el buscador del asistente. |
+| `asistente` | **cerrado** | 121 respuestas x 10 idiomas = 1210, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
 | `coordenadas` | abierto | 157 verificadas con su fuente · 817 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
@@ -63,8 +63,8 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 **`idiomas`** · 2026-09-21
 - resultado: Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin traducir ni declarar. 0 textos que se queden en el idioma de arranque.
 
-**`asistente`** · 2026-09-18
-- resultado: 69 respuestas x 10 idiomas = 690, y se llega a las 690 desde el buscador del asistente.
+**`asistente`** · 2026-10-12
+- resultado: 121 respuestas x 10 idiomas = 1210, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026).
 
 **`mapa_sin_conexion`** · 2026-09-12
 - resultado: 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red.

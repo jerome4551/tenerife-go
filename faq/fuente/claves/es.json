@@ -1,0 +1,19 @@
+{
+ "_motivo": "Claves de busqueda en castellano que antes contestaba CHAT_KB y que las entradas de los bloques no tenian. Al retirar CHAT_KB (12/10/2026) estas preguntas se habrian quedado sin respuesta: «bus», «tram», «la gomera», «ballena»… Van aqui y no dentro de los bloques porque los bloques se quedan como llegaron. Solo claves: ningun texto que lea el usuario.",
+ "mov-03": ["bus", "autobuses"],
+ "mov-05": ["alquilar un coche", "alquilo coche", "alquiler de coches"],
+ "mov-07": ["aparco", "donde aparcar"],
+ "mov-09": ["tram"],
+ "mov-11": ["la gomera"],
+ "mov-12": ["guagua al teide", "guagua teide", "dentro del parque"],
+ "tei-13": ["astronomia", "observar el cielo", "starlight"],
+ "exc-01": ["ballena", "delfin"],
+ "cul-03": ["orotava", "alfombras"],
+ "cul-07": ["fiesta"],
+ "pra-01": ["dinero"],
+ "pra-02": ["grifo"],
+ "pra-07": ["palabras", "que significa", "vocabulario", "dialecto", "hablar canario"],
+ "pra-08": ["roaming", "cobertura", "sim"],
+ "pra-11": ["siesta", "horario comercial"],
+ "pra-13": ["caro", "barato", "precios"]
+}

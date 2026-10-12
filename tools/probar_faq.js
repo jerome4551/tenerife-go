@@ -49,12 +49,12 @@ const LANGS = sacarConst('LANGS');
 // y encima los ZHT_OVERRIDES. Con LANGS.zht = LANGS.zh esto probaria el
 // simplificado y daria por bueno un tradicional que no existe.
 LANGS.zht = Object.assign(JSON.parse(JSON.stringify(LANGS.zh)), sacarConst('ZHT_OVERRIDES'));
-const ctx = { places: [], LANGS: LANGS, currentLang: 'es' };
+const ctx = { places: [], LANGS: LANGS, currentLang: 'es', chatPending: null, chatLastPoiId: null };
 const vm = require('vm');
 vm.createContext(ctx);
 ctx.fetch = global.fetch;
 vm.runInContext(modulo + '\n' + core + '\nthis.TG_FAQ=TG_FAQ;this.chatNorm=chatNorm;this.chatTokens=chatTokens;'
-              + 'this.chatMatchKB=chatMatchKB;this.CHAT_KB=CHAT_KB;this.chatDetectCats=chatDetectCats;'
+              + 'this.chatMatchKB=chatMatchKB;this.chatDetectCats=chatDetectCats;this.chatResolve=chatResolve;'
               + 'this.chatSinEsp=chatSinEsp;', ctx);
 
 function partes(pregunta) {
@@ -99,6 +99,35 @@ const CASOS = [
   ['pl', 'rezerwacja teide',            'Tenerife ON'],
   ['zh', 'guagua是什么意思',            'guagua'],
   ['bg', 'колко е висок тейде',        '3715'],
+  /* Lo que hasta el 12 de octubre de 2026 contestaba CHAT_KB, y en castellano
+     en cualquier idioma: una pregunta por idioma, con un trozo que solo esta
+     en la respuesta de ese idioma. Si alguna vuelve a caer en castellano o en
+     otra entrada, canta. */
+  ['de', 'Teide',                       'Genehmigung'],
+  ['en', 'help',                        '112'],
+  ['de', 'Hilfe',                       '112'],
+  ['fr', 'au secours',                  '112'],
+  ['zh', '救命',                         '112'],
+  ['bg', 'помощ',                        '112'],
+  ['pl', 'pomoc',                       '112'],
+  ['it', 'Anaga',                       'Riserva della Biosfera'],
+  ['nl', 'mag ik een drone vliegen',    'AESA'],
+  ['zht','露營',                         'Cabildo'],
+  ['fr', 'calima',                      'Sahara'],
+  ['pl', 'guachinche',                  'winiarz'],
+  ['bg', 'гофио',                        'брашно'],
+  ['it', 'come funziona l app',         'Fai il tour'],
+  ['de', 'funktioniert die app offline','Insel offline'],
+  ['en', 'how do i install the app',    'Add to Home Screen'],
+  ['zh', '怎么分享',                      '分享'],
+  ['nl', 'wat zijn de waarschuwingen',  'waarschuwing'],
+  ['pl', 'jak zmienic jezyk',           'Słuchaj'],
+  ['fr', 'que faire s il pleut',        'Cueva del Viento'],
+  ['es', 'teide',                       '3.715'],
+  ['es', 'bus',                         'TITSA'],
+  ['es', 'la gomera',                   'Los Cristianos'],
+  ['es', 'ballena',                     'Barco Azul'],
+  ['es', 'no funciona',                 'Recargar'],
 ];
 
 let malos = 0;
@@ -152,6 +181,29 @@ let malos = 0;
     console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg
       + '   → ' + (c.keys.length ? c.keys.join(',') + '  «' + c.label + '»' : 'NINGUNA CATEGORIA'));
   }
+  /* Las zonas en el idioma de cada uno. La bienvenida de cada idioma invita a
+     pedir «plages dans le nord»; hasta el 12 de octubre de 2026 el norte solo
+     se entendia en castellano e ingles y el resto recibia la isla entera.
+     Y «où est…» no puede leerse como «el este». */
+  console.log('');
+  const ZONAS = [
+    ['fr', 'plages dans le nord', 'norte'], ['fr', "plages à l'est", 'este'], ['fr', 'où est la plage', null], ['fr', 'est', 'este', { type: 'what' }],
+    ['de', 'Strände im Süden', 'sur'], ['it', 'spiagge al sud', 'sur'], ['nl', 'stranden in het westen', 'oeste'],
+    ['pl', 'plaże na północy', 'norte'], ['bg', 'плажове на север', 'norte'], ['zh', '北部的海滩', 'norte'],
+    ['zht', '東部的海灘', 'este'], ['es', 'playas en el norte', 'norte'], ['en', 'beaches in the south', 'sur'],
+  ];
+  for (const [lang, preg, esperada, pendiente] of ZONAS) {
+    await ctx.TG_FAQ.cambiarA(lang);
+    ctx.currentLang = lang;
+    /* «est» a secas solo tiene sentido como respuesta a «¿qué zona?» */
+    ctx.chatPending = pendiente || null;
+    const z = (ctx.chatResolve(preg, null) || {}).zone || null;
+    ctx.chatPending = null;
+    const ok = z === esperada;
+    if (!ok) malos++;
+    console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → zona ' + (z || 'ninguna'));
+  }
+  mirados += ZONAS.length;
   console.log('\n' + malos + ' fallos de ' + (CASOS.length + mirados)
     + (saltadas ? '   (' + saltadas + ' saltada(s) por idioma que la app no tiene)' : ''));
   process.exit(malos ? 1 : 0);

@@ -16,7 +16,7 @@ idiomas/     9 ficheros de lugares · 2.489.750 bytes · 76 a 95 kB comprimidos
              + glosario-cat/ · 7, y no hacen falta los diez: no se cargan en la
                app, los lee tools/completar_cat.js al construir
              + pl-lugares/ y pl-fuente/ · el polaco por bloques, revisable
-faq/         10 ficheros · 69 respuestas del asistente en cada idioma
+faq/         10 ficheros · 121 respuestas del asistente en cada idioma
              el móvil baja solo el suyo
              + fuente/ · los bloques tal y como llegaron, y el bulgaro aparte
 ```
@@ -4408,6 +4408,138 @@ verde. Tarda unos dos minutos y medio.
 | 8 | la tarjeta se pone encima del botón | sí: «tapa el botón que señala» (la primera vez tumbó la prueba: ahora un botón que no se puede pulsar se apunta y se sigue) |
 | 9 | quien vio el tour viejo recibe la pregunta de alguien nuevo | sí: sin la etiqueta de novedades |
 
+## El asistente, entero en los diez idiomas (12 de octubre)
+
+Jerome: «Es más que importante de traducir toda hasta el tout».
+
+### Lo que había
+
+El asistente tenía **dos** bases de respuestas. Las 69 de `faq/<idioma>.json`,
+en los diez idiomas, y `CHAT_KB`: **79 respuestas escritas solo en castellano**
+dentro de `index.html`, que el buscador miraba **en cualquier idioma**. Bastaba
+con que una de ellas sumara un punto más que la traducida para contestar en
+castellano. Lo hacían, entre otras, «Teide» o «Anaga» en alemán, «help» en
+inglés y, sin que nadie escribiera nada, **el botón «Meilleures plages»** del
+francés (y sus equivalentes en los otros ocho idiomas): los botones de
+sugerencia mandan por dentro la consulta en castellano («mejores playas»), y
+esa consulta caía en la respuesta castellana de las playas.
+
+### Antes de traducir, comprobarlo todo
+
+Traducir `CHAT_KB` tal cual habría puesto en diez idiomas lo que no era
+verdad. Cada respuesta se miró contra el código (las de la app) o contra
+fuente oficial o la ficha del propio lugar (las de viaje). Lo que estaba mal:
+
+| decía | lo que hay |
+|---|---|
+| «toca el **corazón**» para guardar un favorito | en el globo es la estrella ☆ «Añadir a favoritos»; el corazón es el de la barra de abajo |
+| «cuantos más lugares **(y más variados)** visites, más trofeos» | los logros solo cuentan cuántos, y hay uno especial por la cumbre del Teide |
+| «**cada ficha** tiene el botón Escuchar» | lo tiene el globo, y solo si el móvil tiene voz para ese idioma |
+| «instálala y va **100 % offline**» | funciona sin red una vez abierta con conexión, instalada o no; lo en directo no |
+| «despliega los **38+ tipos** de lugar» | cifra sin contar: no se escribe |
+| «en la ficha, **el tiempo que hace AHORA** allí» · «cada ficha muestra el tiempo real de ESE punto» | el tiempo está en el termómetro de arriba, por zonas; en el globo, solo el mar en la costa |
+| «cuando AEMET emite avisos, **la app los refleja**» | ver «Para Jerome», abajo: no llegan |
+| «están en **78** lugares sensibles» | son 116, contados; no se escribe la cifra |
+| el planificador: «eliges zona — **Norte, Sur o Mezcla**» | se elige el tiempo que tienes, qué te apetece y cómo te mueves |
+| la cuenta: «**solo pedimos el email**» | email y contraseña |
+| «si me sueltas una palabra canaria, **te la explico**» | el asistente no lee el glosario; tiene la respuesta de palabras canarias |
+| «si instalaste hace tiempo, **borra y vuelve a añadir**» | la app avisa «Nueva versión disponible» y se recarga |
+| la tienda: «hay excursiones con guía, transporte y seguro: Teide, ballenas, **Masca, estrellas**» | todo está «PRÓXIMAMENTE», no se puede reservar ni pagar, y ni Masca ni estrellas existen |
+| banderas: «roja, prohibido; amarilla, precaución» | la app ya tiene la leyenda oficial en el globo de cada playa (Protección Civil; el Decreto 116/2018 está anulado): se usa esa |
+| la 111: «**ya no entra** en la terminal del Aeropuerto Sur» | los datos oficiales de TITSA de la app la ponen en la parada de la terminal, la misma que la 10 y la 40, y también en el Enlace: no se pudo saber qué expedición para dónde, y se quedó solo lo seguro |
+| precios (bono 10 €, ten+ 2 €, teleférico 23,50 €, Barranco del Infierno 13 € —la ficha dice 11 €—, Twin Ticket 78 €…), horarios, empresas recomendadas, «el mejor parque acuático del mundo según TripAdvisor» | fuera: la misma política que el bloque C1, que llegó así |
+
+### Lo que hay ahora
+
+- **121 respuestas en cada idioma** (las 69 de antes y 52 nuevas), en
+  `faq/fuente/` con el mismo formato que los bloques que llegaron: **G1** la
+  app (22), **H1** seguridad y salud (7), **H2** comer y beber (7) y **H3**
+  planes, naturaleza y clima (16). Cada entrada lleva en `comprobado` de dónde
+  sale cada dato. El búlgaro, en `faq/fuente/bg/`, como siempre.
+- De las 79 de `CHAT_KB`: **24** eran preguntas que ya estaban traducidas y se
+  quitan sin más; **53** pasan, como 52 entradas, a los bloques nuevos; **2**
+  eran de lugares concretos (el Paisaje Lunar; Siam Park y Loro Parque) y las
+  contesta su ficha del mapa, que ya está en los diez idiomas. `CHAT_KB` ya no
+  existe, y el buscador tiene una sola fuente.
+- **Claves de búsqueda que se habrían perdido** al quitarla («bus», «tram», «la
+  gomera», «ballena», «siesta»…): 35 en castellano, en
+  `faq/fuente/claves/es.json`, aparte, porque los bloques se quedan como
+  llegaron. De paso, 6 en chino y polaco para «aeropuerto Sur/Norte».
+- **La de «algo falla»** lleva debajo el botón para escribirle a Jerome, como
+  antes: `"contacto": true` en el bloque, `"c": 1` en el fichero.
+- **Los botones que citan las respuestas son los de la pantalla**, en cada
+  idioma: «Añadir a favoritos», «Zu Favoriten hinzufügen», «加入收藏»… 390
+  citas, comprobadas.
+- **Las zonas en cada idioma.** La bienvenida francesa invita a pedir «plages
+  dans le nord», pero el asistente solo entendía norte/sur en castellano e
+  inglés y devolvía la isla entera. Ahora cada idioma trae sus zonas en
+  `faq/fuente/intenciones/` («nord», «im Süden», «na północy», «北部»…). En
+  francés «est» es también el verbo de «où est…»: solo cuenta como zona si es
+  la respuesta entera.
+- **Textos fijos del asistente:** «{N} lugares **verificados**» en los diez
+  idiomas, lo mismo que se quitó del tour, ya no lo dice. Y el **polaco** tiene
+  tres plurales: con 974 lugares decía «974 miejsc» y es «974 miejsca». La
+  bienvenida, la cuenta y la respuesta de «no sé» llevan las tres formas, y
+  `chatFmt` coge la del número, como `tx()`. «Tienes 1 lugares» tampoco sale ya
+  en ningún idioma.
+
+### Encontrado de paso, y arreglado
+
+**«Instalar la app» en francés y alemán, sin acentos ni diéresis:** «(carre
+avec fleche)», «Sur l’ecran d’accueil», «waehle», «Oeffne… das Menue». Se
+escribió así «para evitar problemas de codificación» que el fichero no tiene.
+Corregido, y con control nuevo (`tools/auditar_letras.js`): busca formas que
+no existen en ningún idioma de la app escritas así. Sobre el fichero de antes
+encuentra las 9.
+
+### Los controles
+
+- `auditar_faq.js`: que **nadie vuelva a meter** una base de respuestas fuera
+  de `faq/` (ni `CHAT_KB` ni `answer:'…'` escrito en el núcleo); que **ninguna
+  respuesta ni rótulo** sea el del castellano en otro idioma ni el del inglés
+  fuera del inglés; que **cada botón citado** siga llamándose así en la
+  pantalla de ese idioma; y, ahora como fallo, que **el botón de seguimiento de
+  cada entrada lleve a ella** (antes se toleraba que cayera en otra; al meter
+  las 52 nuevas salieron 4, todas por claves nuevas, y se arreglaron).
+- `probar_faq.js`: de 28 a **66** preguntas: lo que antes contestaba `CHAT_KB`
+  en castellano, una por idioma, y las zonas de los diez idiomas.
+- `probar_movil.js`, la app entera en un móvil: de 3 a **9** consultas (el
+  botón «Meilleures plages», «help», «Teide» en alemán, el botón de contacto,
+  el plural polaco de la bienvenida…), y ahora **dentro de `auditar.sh`**.
+- `castellano_suelto.js` en verde: las palabras canarias que las respuestas
+  citan a propósito («picón», «panza de burro», «ños» del glosario, «conejo en
+  salmorejo»…) van en `idiomas/castellano-aceptado.json`, cada una solo para su
+  respuesta.
+
+| # | avería | canta |
+|---|---|---|
+| 1 | la respuesta alemana del Teide, la del castellano | sí: «la respuesta es la del castellano» |
+| 2 | el rótulo italiano de la calima, el del inglés | sí: «el rótulo es el del inglés» |
+| 3 | el botón «Zu Favoriten hinzufügen» cambia de nombre en la app | sí: las dos respuestas que lo citan |
+| 4 | vuelve `CHAT_KB` a `index.html` | sí, por las dos reglas |
+| 5 | una clave nueva le roba a tei-14 su botón «¿Puedo ir con niños?» | sí |
+| 6 | la bienvenida polaca vuelve a una sola forma («974 miejsc») | sí: «974 pide miejsca» |
+| 7 | la de «algo falla» pierde el botón de contacto | sí: «falta el botón de escribirle a Jerome» |
+
+### Para Jerome
+
+1. **Los avisos de AEMET no llegan.** El módulo los pide desde el navegador a
+   `aemet.es/xml/municipios/localidad_38038.xml`, que es la previsión de un
+   municipio, no los avisos, y AEMET no contesta a peticiones de otra web. No
+   enseña nada falso (si no llega nada, no pinta nada), pero la función no
+   funciona. El asistente ya no la promete.
+2. **La respuesta exc-03** (bloque E2, tal como llegó) dice «guarda los sitios
+   en favoritos y **te los ordeno por distancia**»: el asistente no ordena
+   favoritos. No se ha tocado; propongo quitar esa frase.
+3. **Dos fichas dicen que Anaga es «Patrimonio Mundial» / «Patrimonio de la
+   Humanidad»** (`bici-anaga-cruz-carmen`, `acc-sendero-sentidos`): Anaga es
+   Reserva de la Biosfera. Sin tocar hasta tu OK.
+4. El schema.org que leen los buscadores dice «más de 700 lugares
+   **verificados**» y «alertas meteorológicas», y su lista de idiomas no tiene
+   el polaco.
+5. «socorro» a secas abre la ficha de la Playa El Socorro (gana el nombre del
+   sitio); «pedir socorro», «emergencia» o «112» van a la de emergencias.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -4449,6 +4581,10 @@ Y cada bloque por separado, si hace falta:
 | `tools/barrido_pantallas.js` | lo que **se ve**: 75 paneles y fichas abiertos en los diez idiomas, buscando castellano que no sea nombre propio |
 | `tools/auditar_tour.js` | el tour de bienvenida **recorrido de verdad**: los diez idiomas, cuatro tamaños de móvil, cada paso con su botón enfocado, la tarjeta dentro de la pantalla, las cifras contadas y nada igual al castellano ni al inglés |
 | `tools/auditar_idioma.js` | un idioma entero contra el castellano: cifras, horarios, teléfonos, trozos de etiqueta, alfabeto |
+| `tools/auditar_faq.js` | el asistente: cada respuesta en los diez idiomas, alcanzable por su botón, ninguna igual al castellano o al inglés, los botones que cita con su nombre de pantalla, y ninguna base fuera de `faq/` |
+| `tools/rotulos_app.js` | los rótulos de la app en los diez idiomas, sacados de `index.html` (lo usa `auditar_faq.js`) |
+| `tools/probar_faq.js` · `tools/probar_movil.js` | preguntas de prueba al asistente: en Node con el núcleo de verdad, y en un móvil con la app entera |
+| `tools/auditar_letras.js` | palabras escritas sin sus letras («waehle», «carre avec fleche») |
 | `tools/castellano_suelto.js` | el castellano que se queda **dentro** de cada idioma —letras, palabras corrientes, palabras copiadas, alfabeto latino en búlgaro y chino— y las frases que la traducción no tiene; lo que se queda a propósito, en `idiomas/castellano-aceptado.json` |
 | `tools/faltan_textos.js` | **cribado**, no veredicto: descripciones más cortas de lo esperado contra la mediana de ese idioma |
 | `tools/meter_descripcion.py` | mete descripciones rehechas comprobando que el texto es **de ese lugar** |

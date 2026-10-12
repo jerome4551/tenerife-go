@@ -1,0 +1,2476 @@
+{
+ "meta": {
+  "bloque": "G1 · Usar la app",
+  "version": "1.0",
+  "fecha": "2026-10-12",
+  "idiomas": [
+   "es",
+   "en",
+   "de",
+   "fr",
+   "it",
+   "nl",
+   "pl",
+   "zh",
+   "zht"
+  ],
+  "entradas": 22,
+  "origen": "Redactado el 12/10/2026 a partir de las entradas de CHAT_KB, que solo estaban en castellano; cada dato, comprobado antes de traducirlo, y lo que no se pudo comprobar, fuera (ver AUDITORIA-FINAL.md).",
+  "politica_datos": "Cada afirmacion sobre la app comprobada en el codigo de index.html y sw.js el 12/10/2026 (ver «nota» de cada entrada). Los rotulos entre comillas son los de la propia app en cada idioma y estan listados en «rotulos»: tools/auditar_faq.js comprueba que siguen siendo los de la pantalla. Sin cifras escritas a mano: {N} lugares y {L} idiomas los cuenta la app al contestar."
+ },
+ "entradas": [
+  {
+   "id": "app-01",
+   "cat": "app",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Cómo funciona la app?",
+    "en": "How does the app work?",
+    "de": "Wie funktioniert die App?",
+    "fr": "Comment marche l’appli ?",
+    "it": "Come funziona l’app?",
+    "nl": "Hoe werkt de app?",
+    "pl": "Jak działa aplikacja?",
+    "zh": "这个应用怎么用？",
+    "zht": "這個應用程式怎麼用？"
+   },
+   "keys": {
+    "es": [
+     "ayuda",
+     "como funciona",
+     "como funciona la app",
+     "manual",
+     "instrucciones",
+     "tutorial",
+     "que sabes hacer",
+     "guia de la app",
+     "como se usa"
+    ],
+    "en": [
+     "how does it work",
+     "how does the app work",
+     "manual",
+     "instructions",
+     "tutorial",
+     "what can you do",
+     "app guide",
+     "how to use the app",
+     "app help"
+    ],
+    "de": [
+     "wie funktioniert das",
+     "wie funktioniert die app",
+     "anleitung",
+     "bedienungsanleitung",
+     "tutorial",
+     "was kannst du",
+     "app erklaren",
+     "hilfe zur app"
+    ],
+    "fr": [
+     "aide",
+     "comment ca marche",
+     "comment marche l appli",
+     "mode d emploi",
+     "tutoriel",
+     "que sais tu faire",
+     "guide de l appli",
+     "comment utiliser l appli"
+    ],
+    "it": [
+     "come funziona",
+     "come funziona l app",
+     "istruzioni",
+     "tutorial",
+     "cosa sai fare",
+     "guida all app",
+     "come si usa",
+     "aiuto con l app"
+    ],
+    "nl": [
+     "hoe werkt het",
+     "hoe werkt de app",
+     "handleiding",
+     "uitleg",
+     "tutorial",
+     "wat kun je",
+     "hoe gebruik ik de app",
+     "hulp bij de app"
+    ],
+    "pl": [
+     "jak to dziala",
+     "jak dziala aplikacja",
+     "instrukcja",
+     "samouczek",
+     "co potrafisz",
+     "jak uzywac aplikacji",
+     "pomoc z aplikacja"
+    ],
+    "zh": [
+     "帮助",
+     "怎么用",
+     "使用说明",
+     "教程",
+     "你会什么",
+     "应用指南",
+     "这个应用怎么用"
+    ],
+    "zht": [
+     "幫助",
+     "怎麼用",
+     "使用說明",
+     "教學",
+     "你會什麼",
+     "應用程式指南",
+     "這個應用程式怎麼用"
+    ]
+   },
+   "a": {
+    "es": "ℹ️ Tenerife GO, en pocas palabras:\n• El mapa: toca un pin y verás qué es, su horario si lo tiene y cómo llegar en coche o en guagua; en la costa, también el estado del mar\n• Arriba: el dado 🎲, la gasolinera más barata cerca de ti ⛽, las capas del mapa, el tiempo por zonas, el mar, las fiestas, las guaguas y el idioma\n• A los lados: el buscador 🔍 y las categorías\n• Abajo: Favoritos, Rutas, Tienda, este Asistente y tu Cuenta\n• El tour de la app está siempre en la leyenda del mapa: «Ver el tour»\nPregúntame por cualquier función y te la explico.",
+    "en": "ℹ️ Tenerife GO in a nutshell:\n• The map: tap a marker to see what it is, its opening hours if it has them and how to get there by car or bus; on the coast, the sea conditions too\n• At the top: the dice 🎲, the cheapest petrol station near you ⛽, the map layers, the weather by area, the sea, the fiestas, the buses and the language\n• On the sides: search 🔍 and the categories\n• At the bottom: Favorites, Routes, Shop, this Assistant and your Account\n• The app tour is always in the map legend: «Take the tour»\nAsk me about any feature and I will explain it.",
+    "de": "ℹ️ Tenerife GO auf einen Blick:\n• Die Karte: Tippe auf einen Marker und du siehst, was es ist, die Öffnungszeiten, falls es welche gibt, und wie du mit dem Auto oder Bus hinkommst; an der Küste auch den Seegang\n• Oben: der Würfel 🎲, die günstigste Tankstelle in deiner Nähe ⛽, die Kartenebenen, das Wetter nach Zonen, das Meer, die Feste, die Busse und die Sprache\n• An den Seiten: die Suche 🔍 und die Kategorien\n• Unten: Favoriten, Routen, Shop, dieser Assistent und dein Konto\n• Die Tour durch die App ist immer in der Kartenlegende: «Tour starten»\nFrag mich nach jeder Funktion, und ich erkläre sie dir.",
+    "fr": "ℹ️ Tenerife GO en bref :\n• La carte : touche un marqueur pour voir ce que c’est, ses horaires s’il en a et comment y aller en voiture ou en bus ; sur la côte, l’état de la mer aussi\n• En haut : le dé 🎲, la station-service la moins chère près de toi ⛽, les fonds de carte, la météo par zone, la mer, les fêtes, les bus et la langue\n• Sur les côtés : la recherche 🔍 et les catégories\n• En bas : Favoris, Itinéraires, Boutique, cet Assistant et ton Compte\n• La visite de l’appli est toujours dans la légende de la carte : «Voir le tour»\nDemande-moi n’importe quelle fonction et je te l’explique.",
+    "it": "ℹ️ Tenerife GO in breve:\n• La mappa: tocca un marcatore e vedi cos’è, l’orario se ce l’ha e come arrivarci in auto o in autobus; sulla costa, anche lo stato del mare\n• In alto: il dado 🎲, il distributore più economico vicino a te ⛽, i livelli della mappa, il meteo per zone, il mare, le feste, gli autobus e la lingua\n• Ai lati: la ricerca 🔍 e le categorie\n• In basso: Preferiti, Percorsi, Negozio, questo Assistente e il tuo Account\n• Il tour dell’app è sempre nella legenda della mappa: «Fai il tour»\nChiedimi qualsiasi funzione e te la spiego.",
+    "nl": "ℹ️ Tenerife GO in het kort:\n• De kaart: tik op een marker en je ziet wat het is, de openingstijden als die er zijn en hoe je er met de auto of de bus komt; aan de kust ook de zeegang\n• Bovenaan: de dobbelsteen 🎲, het goedkoopste tankstation bij jou in de buurt ⛽, de kaartlagen, het weer per zone, de zee, de feesten, de bussen en de taal\n• Aan de zijkanten: zoeken 🔍 en de categorieën\n• Onderaan: Favorieten, Routes, Winkel, deze Assistent en je Account\n• De tour door de app staat altijd in de legenda van de kaart: «Start de tour»\nVraag me naar elke functie en ik leg het je uit.",
+    "pl": "ℹ️ Tenerife GO w skrócie:\n• Mapa: dotknij znacznika, a zobaczysz, co to za miejsce, w jakich godzinach jest otwarte, jeśli ma godziny, i jak dojechać samochodem lub autobusem; na wybrzeżu także stan morza\n• Na górze: kostka 🎲, najtańsza stacja paliw w pobliżu ⛽, warstwy mapy, pogoda według stref, morze, święta, autobusy i język\n• Po bokach: wyszukiwarka 🔍 i kategorie\n• Na dole: Ulubione, Trasy, Sklep, ten Asystent i twoje Konto\n• Przewodnik po aplikacji jest zawsze w legendzie mapy: «Zobacz przewodnik»\nZapytaj mnie o dowolną funkcję, a ci ją wyjaśnię.",
+    "zh": "ℹ️ Tenerife GO 简介：\n• 地图：点按地图标记，就能看到这是什么地方、营业时间（如有）以及开车或乘公交怎么去；海边的地点还会显示海况\n• 顶部：骰子 🎲、你附近最便宜的加油站 ⛽、地图图层、分区天气、海况、节庆、公交和语言\n• 两侧：搜索 🔍 和分类\n• 底部：收藏、路线、商店、本助手和你的账户\n• 应用导览随时可以在地图图例中找到：「开始导览」\n想了解任何功能，尽管问我。",
+    "zht": "ℹ️ Tenerife GO 簡介：\n• 地圖：點按地圖標記，就能看到這是什麼地方、營業時間（如有）以及開車或搭公車怎麼去；海邊的地點還會顯示海況\n• 頂部：骰子 🎲、你附近最便宜的加油站 ⛽、地圖圖層、分區天氣、海況、節慶、公車和語言\n• 兩側：搜尋 🔍 和分類\n• 底部：收藏、路線、商店、本助手和你的帳戶\n• 應用程式導覽隨時可以在地圖圖例中找到：「開始導覽」\n想了解任何功能，儘管問我。"
+   },
+   "follow": [
+    "app-02",
+    "app-06",
+    "app-16"
+   ],
+   "rotulos": [
+    "UI.navFav",
+    "UI.navRoutes",
+    "UI.navShop",
+    "UI.navChat",
+    "UI.navAccount",
+    "UI.tourVer"
+   ],
+   "comprobado": "htmlGlobo (horario solo si tiene fuente, mar en COAST_CATS), barra superior (dado, gas-top-btn, capas, mc-btn, mar-btn, fi-btn, bus, idioma), buscador a la izquierda y category-btn a la derecha (capturas del tour), barra inferior v19, tourVer en la leyenda"
+  },
+  {
+   "id": "app-02",
+   "cat": "app",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Cómo guardo un lugar en favoritos?",
+    "en": "How do I save a place to favourites?",
+    "de": "Wie speichere ich einen Ort als Favorit?",
+    "fr": "Comment ajouter un lieu aux favoris ?",
+    "it": "Come salvo un luogo nei preferiti?",
+    "nl": "Hoe bewaar ik een plek bij favorieten?",
+    "pl": "Jak dodać miejsce do ulubionych?",
+    "zh": "怎么收藏一个地点？",
+    "zht": "怎麼收藏一個地點？"
+   },
+   "keys": {
+    "es": [
+     "favorito",
+     "favoritos",
+     "guardar favoritos",
+     "guardar un lugar",
+     "guardar un sitio",
+     "me gusta",
+     "lista de lugares",
+     "mis favoritos"
+    ],
+    "en": [
+     "favourite",
+     "favourites",
+     "favorite",
+     "favorites",
+     "save a place",
+     "my favourites",
+     "my favorites",
+     "saved places"
+    ],
+    "de": [
+     "favorit",
+     "favoriten",
+     "ort speichern",
+     "meine favoriten",
+     "gespeicherte orte",
+     "merken"
+    ],
+    "fr": [
+     "favori",
+     "favoris",
+     "ajouter aux favoris",
+     "enregistrer un lieu",
+     "mes favoris",
+     "lieux enregistres"
+    ],
+    "it": [
+     "preferito",
+     "preferiti",
+     "salvare un luogo",
+     "i miei preferiti",
+     "luoghi salvati"
+    ],
+    "nl": [
+     "favoriet",
+     "favorieten",
+     "plek bewaren",
+     "mijn favorieten",
+     "opgeslagen plekken"
+    ],
+    "pl": [
+     "ulubione",
+     "ulubionych",
+     "zapisac miejsce",
+     "moje ulubione",
+     "zapisane miejsca"
+    ],
+    "zh": [
+     "收藏",
+     "我的收藏",
+     "保存地点",
+     "收藏地点"
+    ],
+    "zht": [
+     "收藏",
+     "我的收藏",
+     "儲存地點",
+     "收藏地點"
+    ]
+   },
+   "a": {
+    "es": "⭐ En el globo de cualquier lugar, toca «Añadir a favoritos». Abajo, Favoritos te enseña en el mapa solo los que has guardado, con un contador. Sin cuenta se quedan en este móvil; si inicias sesión, se guardan también en la nube y los tienes en cualquier dispositivo.",
+    "en": "⭐ In the pop-up of any place, tap «Add to favourites». At the bottom, Favorites shows only the places you have saved on the map, with a counter. Without an account they stay on this phone; if you sign in, they are also saved in the cloud and you have them on any device.",
+    "de": "⭐ Tippe im Pop-up eines Ortes auf «Zu Favoriten hinzufügen». Unten zeigt dir Favoriten auf der Karte nur die gespeicherten Orte, mit einem Zähler. Ohne Konto bleiben sie auf diesem Handy; wenn du dich anmeldest, werden sie auch in der Cloud gespeichert und du hast sie auf jedem Gerät.",
+    "fr": "⭐ Dans la bulle de n’importe quel lieu, touche «Ajouter aux favoris». En bas, Favoris n’affiche sur la carte que ceux que tu as gardés, avec un compteur. Sans compte, ils restent sur ce téléphone ; si tu te connectes, ils sont aussi enregistrés dans le cloud et tu les retrouves sur n’importe quel appareil.",
+    "it": "⭐ Nel fumetto di qualsiasi luogo, tocca «Aggiungi ai preferiti». In basso, Preferiti ti mostra sulla mappa solo quelli che hai salvato, con un contatore. Senza account restano su questo telefono; se accedi, vengono salvati anche nel cloud e li ritrovi su qualsiasi dispositivo.",
+    "nl": "⭐ Tik in de pop-up van een plek op «Toevoegen aan favorieten». Onderaan toont Favorieten op de kaart alleen de plekken die je hebt bewaard, met een teller. Zonder account blijven ze op deze telefoon; als je inlogt, worden ze ook in de cloud bewaard en heb je ze op elk apparaat.",
+    "pl": "⭐ W dymku dowolnego miejsca dotknij «Dodaj do ulubionych». Na dole Ulubione pokazują na mapie tylko zapisane przez ciebie miejsca, z licznikiem. Bez konta zostają w tym telefonie; jeśli się zalogujesz, zapiszą się też w chmurze i będziesz je mieć na każdym urządzeniu.",
+    "zh": "⭐ 在任一地点的信息框里点「加入收藏」。底部的「收藏」会在地图上只显示你收藏的地点，并带计数。不登录时只保存在这部手机上；登录后还会同步到云端，换设备也不会丢。",
+    "zht": "⭐ 在任一地點的資訊框裡點「加入收藏」。底部的「收藏」會在地圖上只顯示你收藏的地點，並附計數。不登入時只儲存在這支手機上；登入後還會同步到雲端，換裝置也不會不見。"
+   },
+   "follow": [
+    "app-18",
+    "app-03",
+    "app-16"
+   ],
+   "rotulos": [
+    "LANGS.addFav",
+    "UI.navFav"
+   ],
+   "comprobado": "popup-fav-btn ☆/★ con L.addFav; v19-nav-fav -> toggleFavoritesView (solo favoritos en el mapa) con contador v19-nav-fav-badge; localStorage y, con sesion, tabla favorites de Supabase"
+  },
+  {
+   "id": "app-03",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Cómo marco un lugar como visitado?",
+    "en": "How do I mark a place as visited?",
+    "de": "Wie markiere ich einen Ort als besucht?",
+    "fr": "Comment marquer un lieu comme visité ?",
+    "it": "Come segno un luogo come visitato?",
+    "nl": "Hoe markeer ik een plek als bezocht?",
+    "pl": "Jak oznaczyć miejsce jako odwiedzone?",
+    "zh": "怎么标记去过的地点？",
+    "zht": "怎麼標記去過的地點？"
+   },
+   "keys": {
+    "es": [
+     "visitado",
+     "visitados",
+     "marcar visitado",
+     "marcar como visitado",
+     "ya fui",
+     "estuve alli"
+    ],
+    "en": [
+     "visited",
+     "mark visited",
+     "mark as visited",
+     "places i visited",
+     "been there"
+    ],
+    "de": [
+     "besucht",
+     "besucht markieren",
+     "als besucht markieren",
+     "schon dort gewesen"
+    ],
+    "fr": [
+     "visite",
+     "visites",
+     "marquer visite",
+     "marquer comme visite",
+     "deja alle"
+    ],
+    "it": [
+     "visitato",
+     "visitati",
+     "segna visitato",
+     "segnare come visitato",
+     "ci sono gia stato"
+    ],
+    "nl": [
+     "bezocht",
+     "markeer bezocht",
+     "als bezocht markeren",
+     "al geweest"
+    ],
+    "pl": [
+     "odwiedzone",
+     "oznacz jako odwiedzone",
+     "odwiedzone miejsca",
+     "juz tam bylem"
+    ],
+    "zh": [
+     "已访问",
+     "标记已访问",
+     "去过的地点",
+     "标记去过"
+    ],
+    "zht": [
+     "已造訪",
+     "標記已造訪",
+     "去過的地點",
+     "標記去過"
+    ]
+   },
+   "a": {
+    "es": "✅ En el globo de cada lugar tienes «○ Marcar visitado»: tócalo y queda «✓ Visitado». Cuenta para tus logros 🏆 y se guarda en este móvil.",
+    "en": "✅ In the pop-up of every place there is «○ Mark visited»: tap it and it turns into «✓ Visited». It counts towards your achievements 🏆 and is saved on this phone.",
+    "de": "✅ Im Pop-up jedes Ortes gibt es «○ Besucht markieren»: Tippe darauf, dann steht dort «✓ Besucht». Das zählt für deine Erfolge 🏆 und wird auf diesem Handy gespeichert.",
+    "fr": "✅ Dans la bulle de chaque lieu, tu as «○ Marquer visité» : touche-le et il devient «✓ Visité». Ça compte pour tes succès 🏆 et c’est enregistré sur ce téléphone.",
+    "it": "✅ Nel fumetto di ogni luogo c’è «○ Segna visitato»: toccalo e diventa «✓ Visitato». Conta per i tuoi traguardi 🏆 e resta salvato su questo telefono.",
+    "nl": "✅ In de pop-up van elke plek staat «○ Markeer bezocht»: tik erop en het wordt «✓ Bezocht». Het telt mee voor je prestaties 🏆 en wordt op deze telefoon bewaard.",
+    "pl": "✅ W dymku każdego miejsca jest «○ Oznacz jako odwiedzone»: dotknij, a zmieni się na «✓ Odwiedzone». Liczy się do twoich osiągnięć 🏆 i zapisuje w tym telefonie.",
+    "zh": "✅ 每个地点的信息框里都有「○ 标记已访问」：点一下就变成「✓ 已访问」。它会计入你的成就 🏆，并保存在这部手机上。",
+    "zht": "✅ 每個地點的資訊框裡都有「○ 標記已造訪」：點一下就變成「✓ 已造訪」。它會計入你的成就 🏆，並儲存在這支手機上。"
+   },
+   "follow": [
+    "app-04",
+    "app-02",
+    "app-11"
+   ],
+   "rotulos": [
+    "VIS.mark",
+    "VIS.done"
+   ],
+   "comprobado": "modulo VISITADO + LOGROS: boton popup-visit-btn «○ VIS.mark» / «✓ VIS.done», localStorage tenerife.visited, checkBadges"
+  },
+  {
+   "id": "app-04",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Cómo funcionan los logros?",
+    "en": "How do achievements work?",
+    "de": "Wie funktionieren die Erfolge?",
+    "fr": "Comment marchent les succès ?",
+    "it": "Come funzionano i traguardi?",
+    "nl": "Hoe werken de prestaties?",
+    "pl": "Jak działają osiągnięcia?",
+    "zh": "成就怎么获得？",
+    "zht": "成就怎麼獲得？"
+   },
+   "keys": {
+    "es": [
+     "logro",
+     "logros",
+     "trofeo",
+     "trofeos",
+     "medalla",
+     "medallas"
+    ],
+    "en": [
+     "achievement",
+     "achievements",
+     "trophy",
+     "trophies",
+     "badges",
+     "medals"
+    ],
+    "de": [
+     "erfolge",
+     "trophae",
+     "trophaen",
+     "abzeichen",
+     "medaillen"
+    ],
+    "fr": [
+     "succes",
+     "trophee",
+     "trophees",
+     "badges",
+     "medailles"
+    ],
+    "it": [
+     "traguardo",
+     "traguardi",
+     "trofeo",
+     "trofei",
+     "medaglie"
+    ],
+    "nl": [
+     "prestatie",
+     "prestaties",
+     "trofee",
+     "trofeeen",
+     "medailles"
+    ],
+    "pl": [
+     "osiagniecia",
+     "osiagniecie",
+     "trofeum",
+     "trofea",
+     "medale"
+    ],
+    "zh": [
+     "成就",
+     "奖杯",
+     "勋章"
+    ],
+    "zht": [
+     "成就",
+     "獎盃",
+     "勳章"
+    ]
+   },
+   "a": {
+    "es": "🏆 Los logros se desbloquean marcando lugares como visitados: cuantos más marques, más ganas, y hay uno especial por la cumbre del Teide. Toca el trofeo 🏆, a la derecha del mapa, para ver los que llevas y cuántos lugares has visitado.",
+    "en": "🏆 You unlock achievements by marking places as visited: the more you mark, the more you earn, and there is a special one for the summit of the Teide. Tap the trophy 🏆 on the right of the map to see the ones you have and how many places you have visited.",
+    "de": "🏆 Erfolge schaltest du frei, indem du Orte als besucht markierst: Je mehr du markierst, desto mehr bekommst du, und für den Gipfel des Teide gibt es einen besonderen. Tippe rechts auf der Karte auf die Trophäe 🏆, um deine Erfolge und die Zahl deiner besuchten Orte zu sehen.",
+    "fr": "🏆 Les succès se débloquent en marquant des lieux comme visités : plus tu en marques, plus tu en gagnes, et il y en a un spécial pour le sommet du Teide. Touche le trophée 🏆, à droite de la carte, pour voir ceux que tu as et combien de lieux tu as visités.",
+    "it": "🏆 I traguardi si sbloccano segnando i luoghi come visitati: più ne segni, più ne ottieni, e ce n’è uno speciale per la vetta del Teide. Tocca il trofeo 🏆, a destra della mappa, per vedere quelli che hai e quanti luoghi hai visitato.",
+    "nl": "🏆 Prestaties ontgrendel je door plekken als bezocht te markeren: hoe meer je markeert, hoe meer je er haalt, en er is een speciale voor de top van de Teide. Tik op de trofee 🏆 rechts op de kaart om te zien welke je hebt en hoeveel plekken je hebt bezocht.",
+    "pl": "🏆 Osiągnięcia odblokowujesz, oznaczając miejsca jako odwiedzone: im więcej oznaczysz, tym więcej zdobędziesz, a za szczyt Teide jest specjalne. Dotknij pucharu 🏆 po prawej stronie mapy, żeby zobaczyć, które już masz i ile miejsc odwiedziłeś.",
+    "zh": "🏆 把地点标记为已访问就能解锁成就：标记得越多，解锁得越多；登上泰德峰顶还有一个特别成就。点地图右侧的奖杯 🏆，就能看到已获得的成就和你去过的地点数量。",
+    "zht": "🏆 把地點標記為已造訪就能解鎖成就：標記得越多，解鎖得越多；登上泰德峰頂還有一個特別成就。點地圖右側的獎盃 🏆，就能看到已獲得的成就和你去過的地點數量。"
+   },
+   "follow": [
+    "app-03",
+    "app-11",
+    "app-01"
+   ],
+   "comprobado": "VIS_BADGES por numero de visitados + SUMMIT (cumbre del Teide); tg-trophy-fab a la derecha (right:12px); panel con visitados/total y cada logro"
+  },
+  {
+   "id": "app-05",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Puedo escuchar la descripción de un lugar?",
+    "en": "Can I listen to a place’s description?",
+    "de": "Kann ich mir die Beschreibung eines Ortes anhören?",
+    "fr": "Puis-je écouter la description d’un lieu ?",
+    "it": "Posso ascoltare la descrizione di un luogo?",
+    "nl": "Kan ik de beschrijving van een plek beluisteren?",
+    "pl": "Czy mogę odsłuchać opis miejsca?",
+    "zh": "可以朗读地点介绍吗？",
+    "zht": "可以朗讀地點介紹嗎？"
+   },
+   "keys": {
+    "es": [
+     "audio",
+     "audioguia",
+     "escuchar",
+     "leer en voz alta",
+     "leerme",
+     "narrar",
+     "que me lea"
+    ],
+    "en": [
+     "audio",
+     "audio guide",
+     "listen",
+     "read aloud",
+     "read it to me",
+     "voice"
+    ],
+    "de": [
+     "audio",
+     "audioguide",
+     "anhoren",
+     "vorlesen",
+     "sprachausgabe"
+    ],
+    "fr": [
+     "audio",
+     "audioguide",
+     "ecouter",
+     "lire a voix haute",
+     "lecture vocale"
+    ],
+    "it": [
+     "audio",
+     "audioguida",
+     "ascoltare",
+     "leggere ad alta voce",
+     "lettura vocale"
+    ],
+    "nl": [
+     "audio",
+     "audiogids",
+     "luisteren",
+     "voorlezen",
+     "voorleesfunctie"
+    ],
+    "pl": [
+     "audio",
+     "audioprzewodnik",
+     "sluchaj",
+     "czytanie na glos",
+     "przeczytaj na glos"
+    ],
+    "zh": [
+     "朗读",
+     "语音",
+     "语音导览",
+     "听介绍"
+    ],
+    "zht": [
+     "朗讀",
+     "語音",
+     "語音導覽",
+     "聽介紹"
+    ]
+   },
+   "a": {
+    "es": "🔊 Sí. En el globo de cada lugar, «▶ Escuchar» lee en voz alta el nombre y la descripción, en el idioma que tengas puesto y con la voz de tu móvil. Si tu móvil no tiene voz para ese idioma, el botón no aparece; si no oyes nada, sube el volumen.",
+    "en": "🔊 Yes. In the pop-up of every place, «▶ Listen» reads out the name and the description, in the language you have set and with your phone’s voice. If your phone has no voice for that language, the button does not appear; if you hear nothing, turn the volume up.",
+    "de": "🔊 Ja. Im Pop-up jedes Ortes liest «▶ Anhören» Name und Beschreibung vor, in der eingestellten Sprache und mit der Stimme deines Handys. Hat dein Handy keine Stimme für diese Sprache, erscheint der Knopf nicht; hörst du nichts, dreh die Lautstärke hoch.",
+    "fr": "🔊 Oui. Dans la bulle de chaque lieu, «▶ Écouter» lit à voix haute le nom et la description, dans la langue choisie et avec la voix de ton téléphone. Si ton téléphone n’a pas de voix pour cette langue, le bouton n’apparaît pas ; si tu n’entends rien, monte le volume.",
+    "it": "🔊 Sì. Nel fumetto di ogni luogo, «▶ Ascolta» legge ad alta voce il nome e la descrizione, nella lingua impostata e con la voce del tuo telefono. Se il telefono non ha una voce per quella lingua, il pulsante non compare; se non senti niente, alza il volume.",
+    "nl": "🔊 Ja. In de pop-up van elke plek leest «▶ Luisteren» de naam en de beschrijving voor, in de taal die je hebt ingesteld en met de stem van je telefoon. Heeft je telefoon geen stem voor die taal, dan verschijnt de knop niet; hoor je niets, zet het volume hoger.",
+    "pl": "🔊 Tak. W dymku każdego miejsca «▶ Słuchaj» czyta na głos nazwę i opis, w wybranym języku i głosem twojego telefonu. Jeśli telefon nie ma głosu dla tego języka, przycisk się nie pojawia; jeśli nic nie słyszysz, podgłośnij.",
+    "zh": "🔊 可以。每个地点的信息框里，「▶ 朗读」会用你当前的语言、以手机自带的语音读出名称和介绍。如果手机没有这种语言的语音，就不会出现这个按钮；如果听不到声音，请调高音量。",
+    "zht": "🔊 可以。每個地點的資訊框裡，「▶ 朗讀」會用你目前的語言、以手機內建的語音唸出名稱和介紹。如果手機沒有這種語言的語音，就不會出現這個按鈕；如果聽不到聲音，請調高音量。"
+   },
+   "follow": [
+    "app-08",
+    "app-12",
+    "app-06"
+   ],
+   "rotulos": [
+    "TTS.play"
+   ],
+   "comprobado": "modulo TTS: popup-tts-btn «▶ TTS.play» en popupopen si hasVoiceFor(locale); lee .popup-name y .popup-desc con SpeechSynthesis en TTS_LOCALE del idioma"
+  },
+  {
+   "id": "app-06",
+   "cat": "app",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Funciona sin conexión?",
+    "en": "Does it work offline?",
+    "de": "Funktioniert die App offline?",
+    "fr": "Ça marche hors ligne ?",
+    "it": "Funziona offline?",
+    "nl": "Werkt het offline?",
+    "pl": "Czy działa offline?",
+    "zh": "没网也能用吗？",
+    "zht": "沒網路也能用嗎？"
+   },
+   "keys": {
+    "es": [
+     "offline",
+     "sin internet",
+     "sin conexion",
+     "sin cobertura",
+     "modo avion",
+     "no tengo datos",
+     "funciona sin internet"
+    ],
+    "en": [
+     "offline",
+     "no internet",
+     "without internet",
+     "no signal",
+     "airplane mode",
+     "no data",
+     "works offline"
+    ],
+    "de": [
+     "offline",
+     "ohne internet",
+     "kein internet",
+     "kein netz",
+     "flugmodus",
+     "keine daten"
+    ],
+    "fr": [
+     "hors ligne",
+     "sans internet",
+     "sans connexion",
+     "sans reseau",
+     "mode avion",
+     "pas de donnees"
+    ],
+    "it": [
+     "offline",
+     "senza internet",
+     "senza connessione",
+     "senza campo",
+     "modalita aereo",
+     "niente dati"
+    ],
+    "nl": [
+     "offline",
+     "zonder internet",
+     "geen internet",
+     "geen bereik",
+     "vliegtuigmodus",
+     "geen data"
+    ],
+    "pl": [
+     "offline",
+     "bez internetu",
+     "bez polaczenia",
+     "bez zasiegu",
+     "tryb samolotowy",
+     "brak danych"
+    ],
+    "zh": [
+     "离线",
+     "没网",
+     "没有网络",
+     "无网络",
+     "飞行模式",
+     "没有信号"
+    ],
+    "zht": [
+     "離線",
+     "沒網路",
+     "沒有網路",
+     "無網路",
+     "飛航模式",
+     "沒有訊號"
+    ]
+   },
+   "a": {
+    "es": "📴 Sí, una vez que la hayas abierto con conexión. Sin red siguen funcionando los lugares y sus fichas, el buscador, las categorías, las guaguas con sus paradas y este asistente. En las capas del mapa tienes «Isla offline», un mapa de toda la isla que va dentro de la app, y el mapa normal guarda las zonas que ya has mirado. Lo que llega en directo sí necesita conexión: el tiempo, el estado del mar, la ruta en coche y las webcams.",
+    "en": "📴 Yes, once you have opened it with a connection. With no signal, the places and their details, search, the categories, the buses with their stops and this assistant all keep working. In the map layers you have «Island offline», a map of the whole island that comes inside the app, and the normal map keeps the areas you have already looked at. Live things do need a connection: the weather, the sea conditions, the car route and the webcams.",
+    "de": "📴 Ja, sobald du sie einmal mit Verbindung geöffnet hast. Ohne Netz funktionieren die Orte mit ihren Infos, die Suche, die Kategorien, die Busse mit ihren Haltestellen und dieser Assistent weiter. Bei den Kartenebenen gibt es «Insel offline», eine Karte der ganzen Insel, die in der App steckt, und die normale Karte behält die Gegenden, die du schon angesehen hast. Was live kommt, braucht Verbindung: das Wetter, der Seegang, die Autoroute und die Webcams.",
+    "fr": "📴 Oui, une fois que tu l’as ouverte avec une connexion. Sans réseau, les lieux et leurs fiches, la recherche, les catégories, les bus avec leurs arrêts et cet assistant continuent de marcher. Dans les fonds de carte tu as «Île hors ligne», une carte de toute l’île incluse dans l’appli, et la carte normale garde les zones que tu as déjà regardées. Ce qui arrive en direct a besoin de connexion : la météo, l’état de la mer, l’itinéraire en voiture et les webcams.",
+    "it": "📴 Sì, dopo che l’hai aperta almeno una volta con la connessione. Senza rete continuano a funzionare i luoghi con le loro schede, la ricerca, le categorie, gli autobus con le fermate e questo assistente. Tra i livelli della mappa hai «Isola offline», una mappa di tutta l’isola compresa nell’app, e la mappa normale conserva le zone che hai già guardato. Quello che arriva in diretta ha bisogno di connessione: il meteo, lo stato del mare, il percorso in auto e le webcam.",
+    "nl": "📴 Ja, zodra je hem één keer met verbinding hebt geopend. Zonder netwerk blijven de plekken met hun info, zoeken, de categorieën, de bussen met hun haltes en deze assistent werken. Bij de kaartlagen heb je «Eiland offline», een kaart van het hele eiland die in de app zit, en de gewone kaart onthoudt de gebieden die je al hebt bekeken. Wat live binnenkomt heeft wel verbinding nodig: het weer, de zeegang, de autoroute en de webcams.",
+    "pl": "📴 Tak, jeśli raz otworzysz ją z połączeniem. Bez sieci dalej działają miejsca z opisami, wyszukiwarka, kategorie, autobusy z przystankami i ten asystent. W warstwach mapy masz «Wyspa offline» — mapę całej wyspy wbudowaną w aplikację, a zwykła mapa zachowuje obszary, które już oglądałeś. To, co przychodzi na żywo, wymaga połączenia: pogoda, stan morza, trasa samochodem i kamery na żywo.",
+    "zh": "📴 可以，只要你先联网打开过一次。没网时，地点和介绍、搜索、分类、公交线路和站点，以及这个助手都能照常使用。地图图层里有「离线海岛图」，这是内置在应用里的全岛地图；普通地图也会保留你看过的区域。实时内容则需要联网：天气、海况、驾车路线和实时影像。",
+    "zht": "📴 可以，只要你先連網打開過一次。沒網路時，地點和介紹、搜尋、分類、公車路線和站點，以及這個助手都能照常使用。地圖圖層裡有「離線海島圖」，這是內建在應用程式裡的全島地圖；一般地圖也會保留你看過的區域。即時內容則需要連網：天氣、海況、開車路線和即時影像。"
+   },
+   "follow": [
+    "app-07",
+    "app-13",
+    "sal-04"
+   ],
+   "rotulos": [
+    "LANGS.isla"
+   ],
+   "comprobado": "sw.js: CORE precachea index.html, datos/titsa.js y mapa/tenerife-base.pmtiles; idiomas/ y faq/ red primero con cache; capa isla (LANGS.isla) e irAIslaSinRed; TESELAS guarda lo mirado; EN_VIVO sin cache: open-meteo (tiempo y mar), OSRM (ruta en coche); webcams son enlaces externos"
+  },
+  {
+   "id": "app-07",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Cómo instalo la app?",
+    "en": "How do I install the app?",
+    "de": "Wie installiere ich die App?",
+    "fr": "Comment installer l’appli ?",
+    "it": "Come installo l’app?",
+    "nl": "Hoe installeer ik de app?",
+    "pl": "Jak zainstalować aplikację?",
+    "zh": "怎么安装这个应用？",
+    "zht": "怎麼安裝這個應用程式？"
+   },
+   "keys": {
+    "es": [
+     "instalar",
+     "instalar la app",
+     "instalo",
+     "instalacion",
+     "pantalla de inicio",
+     "anadir a pantalla de inicio",
+     "pwa",
+     "descargar la app",
+     "app store",
+     "play store"
+    ],
+    "en": [
+     "install",
+     "install the app",
+     "installation",
+     "home screen",
+     "add to home screen",
+     "pwa",
+     "download the app",
+     "app store",
+     "play store"
+    ],
+    "de": [
+     "installieren",
+     "app installieren",
+     "installation",
+     "home bildschirm",
+     "app herunterladen",
+     "app store",
+     "play store"
+    ],
+    "fr": [
+     "installer",
+     "installer l appli",
+     "installation",
+     "ecran d accueil",
+     "telecharger l appli",
+     "app store",
+     "play store"
+    ],
+    "it": [
+     "installare",
+     "installare l app",
+     "installazione",
+     "schermata home",
+     "scaricare l app",
+     "app store",
+     "play store"
+    ],
+    "nl": [
+     "installeren",
+     "app installeren",
+     "installatie",
+     "beginscherm",
+     "app downloaden",
+     "app store",
+     "play store"
+    ],
+    "pl": [
+     "zainstalowac",
+     "instalacja",
+     "zainstaluj aplikacje",
+     "ekran poczatkowy",
+     "pobrac aplikacje",
+     "app store",
+     "play store"
+    ],
+    "zh": [
+     "安装",
+     "安装应用",
+     "主屏幕",
+     "下载应用",
+     "应用商店"
+    ],
+    "zht": [
+     "安裝",
+     "安裝應用程式",
+     "主畫面",
+     "下載應用程式",
+     "應用程式商店"
+    ]
+   },
+   "a": {
+    "es": "📲 No está en las tiendas: se instala desde el navegador.\n• iPhone: en Safari, toca el botón Compartir (cuadrado con flecha) y elige «Añadir a pantalla de inicio»\n• Android: en Chrome, abre el menú ⋮ y elige «Instalar aplicación»\nQueda como una app más en tu pantalla de inicio.",
+    "en": "📲 It is not in the app stores: you install it from the browser.\n• iPhone: in Safari, tap the Share button (square with arrow) and choose «Add to Home Screen»\n• Android: in Chrome, open the ⋮ menu and choose «Install app»\nIt then sits on your home screen like any other app.",
+    "de": "📲 Sie ist in keinem App-Store: Du installierst sie über den Browser.\n• iPhone: Tippe in Safari auf Teilen (Quadrat mit Pfeil) und wähle «Zum Home-Bildschirm»\n• Android: Öffne in Chrome das Menü ⋮ und wähle «App installieren»\nDann liegt sie wie jede andere App auf deinem Startbildschirm.",
+    "fr": "📲 Elle n’est pas dans les stores : elle s’installe depuis le navigateur.\n• iPhone : dans Safari, touche le bouton Partager (carré avec flèche) et choisis «Sur l’écran d’accueil»\n• Android : dans Chrome, ouvre le menu ⋮ et choisis «Installer l’application»\nElle reste sur ton écran d’accueil comme n’importe quelle appli.",
+    "it": "📲 Non è negli store: si installa dal browser.\n• iPhone: in Safari, tocca Condividi (quadrato con freccia) e scegli «Aggiungi a Home»\n• Android: in Chrome, apri il menu ⋮ e scegli «Installa app»\nResta nella schermata Home come qualsiasi altra app.",
+    "nl": "📲 Hij staat niet in de appwinkels: je installeert hem vanuit de browser.\n• iPhone: tik in Safari op Deel (vierkant met pijl) en kies «Zet op beginscherm»\n• Android: open in Chrome het menu ⋮ en kies «App installeren»\nDaarna staat hij op je beginscherm zoals elke andere app.",
+    "pl": "📲 Nie ma jej w sklepach z aplikacjami: instaluje się ją z przeglądarki.\n• iPhone: w Safari dotknij przycisku Udostępnij (kwadrat ze strzałką) i wybierz «Do ekranu początkowego»\n• Android: w Chrome otwórz menu ⋮ i wybierz «Zainstaluj aplikację»\nPotem jest na ekranie początkowym jak każda inna aplikacja.",
+    "zh": "📲 应用商店里没有它：直接从浏览器安装。\n• iPhone：在 Safari 中点分享按钮（带箭头的方块），选择「添加到主屏幕」\n• Android：在 Chrome 中打开⋮菜单，选择「安装应用」\n之后它就像普通应用一样待在你的主屏幕上。",
+    "zht": "📲 應用程式商店裡沒有它：直接從瀏覽器安裝。\n• iPhone：在 Safari 中點分享按鈕（帶箭頭的方塊），選擇「加入主畫面」\n• Android：在 Chrome 中打開⋮選單，選擇「安裝應用程式」\n之後它就像一般應用程式一樣待在你的主畫面上。"
+   },
+   "follow": [
+    "app-06",
+    "app-08",
+    "app-01"
+   ],
+   "comprobado": "showInstallInstructions TX[l].ios / TX[l].and (textos de la app) y beforeinstallprompt; no hay ficha en tiendas"
+  },
+  {
+   "id": "app-08",
+   "cat": "app",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Cómo cambio el idioma?",
+    "en": "How do I change the language?",
+    "de": "Wie stelle ich die Sprache um?",
+    "fr": "Comment changer de langue ?",
+    "it": "Come cambio la lingua?",
+    "nl": "Hoe verander ik de taal?",
+    "pl": "Jak zmienić język?",
+    "zh": "怎么切换语言？",
+    "zht": "怎麼切換語言？"
+   },
+   "keys": {
+    "es": [
+     "idioma",
+     "idiomas",
+     "cambiar idioma",
+     "cambiar el idioma",
+     "otro idioma",
+     "english",
+     "francais",
+     "deutsch",
+     "italiano",
+     "nederlands",
+     "polski"
+    ],
+    "en": [
+     "language",
+     "languages",
+     "change language",
+     "change the language",
+     "other language",
+     "espanol",
+     "francais",
+     "deutsch",
+     "italiano",
+     "nederlands",
+     "polski"
+    ],
+    "de": [
+     "sprache",
+     "sprachen",
+     "sprache andern",
+     "sprache umstellen",
+     "andere sprache",
+     "english",
+     "espanol",
+     "francais",
+     "italiano",
+     "nederlands",
+     "polski"
+    ],
+    "fr": [
+     "langue",
+     "langues",
+     "changer de langue",
+     "changer la langue",
+     "autre langue",
+     "english",
+     "espanol",
+     "deutsch",
+     "italiano",
+     "nederlands",
+     "polski"
+    ],
+    "it": [
+     "lingua",
+     "lingue",
+     "cambiare lingua",
+     "cambiare la lingua",
+     "altra lingua",
+     "english",
+     "espanol",
+     "francais",
+     "deutsch",
+     "nederlands",
+     "polski"
+    ],
+    "nl": [
+     "taal",
+     "talen",
+     "taal wijzigen",
+     "taal veranderen",
+     "andere taal",
+     "english",
+     "espanol",
+     "francais",
+     "deutsch",
+     "italiano",
+     "polski"
+    ],
+    "pl": [
+     "jezyk",
+     "jezyki",
+     "zmiana jezyka",
+     "zmienic jezyk",
+     "inny jezyk",
+     "english",
+     "espanol"
+    ],
+    "zh": [
+     "语言",
+     "切换语言",
+     "更改语言",
+     "中文",
+     "英文",
+     "繁体中文"
+    ],
+    "zht": [
+     "語言",
+     "切換語言",
+     "更改語言",
+     "繁體中文",
+     "英文",
+     "簡體中文"
+    ]
+   },
+   "a": {
+    "es": "🌐 Toca la bandera, la última de la barra de arriba, y elige tu idioma: la app está en {L} idiomas. Cambian la interfaz, las fichas de los {N} lugares, la voz de «Escuchar» y mis respuestas.",
+    "en": "🌐 Tap the flag, the last button on the top bar, and pick your language: the app comes in {L} languages. The interface, the details of the {N} places, the «Listen» voice and my answers all change.",
+    "de": "🌐 Tippe auf die Flagge, den letzten Knopf der oberen Leiste, und wähle deine Sprache: Die App gibt es in {L} Sprachen. Es wechseln die Oberfläche, die Infos zu den {N} Orten, die Stimme von «Anhören» und meine Antworten.",
+    "fr": "🌐 Touche le drapeau, le dernier bouton de la barre du haut, et choisis ta langue : l’appli existe en {L} langues. L’interface, les fiches des {N} lieux, la voix de «Écouter» et mes réponses changent.",
+    "it": "🌐 Tocca la bandiera, l’ultimo pulsante della barra in alto, e scegli la tua lingua: l’app è disponibile in {L} lingue. Cambiano l’interfaccia, le schede dei {N} luoghi, la voce di «Ascolta» e le mie risposte.",
+    "nl": "🌐 Tik op de vlag, de laatste knop in de bovenste balk, en kies je taal: de app is er in {L} talen. De interface, de info over de {N} plekken, de stem van «Luisteren» en mijn antwoorden veranderen mee.",
+    "pl": "🌐 Dotknij flagi, ostatniego przycisku na górnym pasku, i wybierz swój język: aplikacja jest dostępna w {L} językach. Zmieniają się interfejs, opisy miejsc na mapie, głos funkcji «Słuchaj» i moje odpowiedzi.",
+    "zh": "🌐 点顶部栏最后一个按钮（国旗），选择你的语言：应用共支持 {L} 种语言。界面、{N} 个地点的介绍、「朗读」的语音和我的回答都会随之切换。",
+    "zht": "🌐 點頂部列最後一個按鈕（國旗），選擇你的語言：應用程式共支援 {L} 種語言。介面、{N} 個地點的介紹、「朗讀」的語音和我的回答都會隨之切換。"
+   },
+   "follow": [
+    "app-05",
+    "app-01",
+    "app-09"
+   ],
+   "comprobado": "lang-btn al final de topbar-right (bandera); {L} = nIdiomasListos(); {N} = places.length (chatFmt en la respuesta kb); TTS_LOCALE por idioma; respuestas por faq/<L>.json"
+  },
+  {
+   "id": "app-09",
+   "cat": "app",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Cómo busco un lugar?",
+    "en": "How do I search for a place?",
+    "de": "Wie suche ich einen Ort?",
+    "fr": "Comment chercher un lieu ?",
+    "it": "Come cerco un luogo?",
+    "nl": "Hoe zoek ik een plek?",
+    "pl": "Jak wyszukać miejsce?",
+    "zh": "怎么搜索地点？",
+    "zht": "怎麼搜尋地點？"
+   },
+   "keys": {
+    "es": [
+     "buscador",
+     "busqueda",
+     "lupa",
+     "como busco",
+     "buscar un lugar",
+     "buscar un sitio",
+     "encontrar un lugar"
+    ],
+    "en": [
+     "search bar",
+     "magnifying glass",
+     "how do i search",
+     "search for a place",
+     "find a place",
+     "search box"
+    ],
+    "de": [
+     "suchfeld",
+     "lupe",
+     "ort suchen",
+     "ort finden",
+     "suchfunktion"
+    ],
+    "fr": [
+     "barre de recherche",
+     "loupe",
+     "chercher un lieu",
+     "trouver un lieu",
+     "comment chercher"
+    ],
+    "it": [
+     "barra di ricerca",
+     "lente",
+     "cercare un luogo",
+     "trovare un luogo",
+     "come cercare"
+    ],
+    "nl": [
+     "zoekbalk",
+     "vergrootglas",
+     "plek zoeken",
+     "plek vinden",
+     "zoekfunctie"
+    ],
+    "pl": [
+     "wyszukiwarka",
+     "lupa",
+     "szukac miejsca",
+     "znalezc miejsce",
+     "jak szukac"
+    ],
+    "zh": [
+     "搜索框",
+     "放大镜",
+     "找地点",
+     "搜索地点",
+     "怎么搜索"
+    ],
+    "zht": [
+     "搜尋框",
+     "放大鏡",
+     "找地點",
+     "搜尋地點",
+     "怎麼搜尋"
+    ]
+   },
+   "a": {
+    "es": "🔍 Toca la lupa, a la izquierda del mapa, y escribe el nombre del lugar o una categoría, con tildes o sin ellas. Mientras escribes salen sugerencias y el mapa se queda solo con lo que coincide; si pulsas Intro y hay un único resultado, te lleva a él y abre su globo. La ✕ lo borra. También me lo puedes preguntar a mí: «¿dónde está el Drago Milenario?».",
+    "en": "🔍 Tap the magnifying glass on the left of the map and type the name of the place or a category, with or without accents. As you type, suggestions appear and the map keeps only what matches; if you press Enter and there is a single result, it takes you there and opens its pop-up. The ✕ clears it. You can also ask me: «where is the Drago Milenario?».",
+    "de": "🔍 Tippe links auf der Karte auf die Lupe und gib den Namen des Ortes oder eine Kategorie ein, mit oder ohne Akzente. Beim Tippen erscheinen Vorschläge und die Karte zeigt nur noch, was passt; drückst du Enter und gibt es nur ein Ergebnis, bringt sie dich hin und öffnet das Pop-up. Das ✕ löscht alles. Du kannst auch mich fragen: «Wo ist der Drago Milenario?».",
+    "fr": "🔍 Touche la loupe, à gauche de la carte, et écris le nom du lieu ou une catégorie, avec ou sans accents. Pendant que tu écris, des suggestions s’affichent et la carte ne garde que ce qui correspond ; si tu appuies sur Entrée et qu’il n’y a qu’un résultat, elle t’y emmène et ouvre sa bulle. La ✕ efface tout. Tu peux aussi me le demander : «où est le Drago Milenario ?».",
+    "it": "🔍 Tocca la lente, a sinistra della mappa, e scrivi il nome del luogo o una categoria, con o senza accenti. Mentre scrivi compaiono dei suggerimenti e la mappa mostra solo ciò che corrisponde; se premi Invio e c’è un solo risultato, ti ci porta e apre il suo fumetto. La ✕ cancella tutto. Puoi chiederlo anche a me: «dov’è il Drago Milenario?».",
+    "nl": "🔍 Tik op het vergrootglas links op de kaart en typ de naam van de plek of een categorie, met of zonder accenten. Terwijl je typt verschijnen suggesties en toont de kaart alleen wat overeenkomt; druk je op Enter en is er maar één resultaat, dan gaat de kaart erheen en opent de pop-up. Het ✕ wist alles. Je kunt het ook aan mij vragen: «waar is de Drago Milenario?».",
+    "pl": "🔍 Dotknij lupy po lewej stronie mapy i wpisz nazwę miejsca albo kategorię, z akcentami lub bez. Podczas pisania pojawiają się podpowiedzi, a mapa pokazuje tylko pasujące miejsca; jeśli naciśniesz Enter i wynik jest jeden, mapa cię tam przeniesie i otworzy jego dymek. ✕ wszystko czyści. Możesz też zapytać mnie: «gdzie jest Drago Milenario?».",
+    "zh": "🔍 点地图左侧的放大镜，输入地点名称或类别，带不带重音符号都行。输入时会出现建议，地图也只显示符合的地点；按回车时如果只有一个结果，就会直接带你过去并打开它的信息框。点 ✕ 可以清除。你也可以直接问我：「Drago Milenario 在哪里」。",
+    "zht": "🔍 點地圖左側的放大鏡，輸入地點名稱或類別，有沒有重音符號都行。輸入時會出現建議，地圖也只顯示符合的地點；按 Enter 時如果只有一個結果，就會直接帶你過去並打開它的資訊框。點 ✕ 可以清除。你也可以直接問我：「Drago Milenario 在哪裡」。"
+   },
+   "follow": [
+    "app-10",
+    "app-11",
+    "app-12"
+   ],
+   "comprobado": "search-input: filtra por nombre, alias o categoria con sinTildes; sugerencias desde 2 letras y updateMarkers en cada tecla; Enter bloquea resultados y con uno solo vuela y abre el globo; search-clear ✕; boton de busqueda a la izquierda (capturas del tour); el asistente contesta «donde esta» con la ficha (probado en los diez idiomas)"
+  },
+  {
+   "id": "app-10",
+   "cat": "app",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Cómo filtro por categorías?",
+    "en": "How do I filter by category?",
+    "de": "Wie filtere ich nach Kategorien?",
+    "fr": "Comment filtrer par catégorie ?",
+    "it": "Come filtro per categoria?",
+    "nl": "Hoe filter ik op categorie?",
+    "pl": "Jak filtrować według kategorii?",
+    "zh": "怎么按类别筛选？",
+    "zht": "怎麼依類別篩選？"
+   },
+   "keys": {
+    "es": [
+     "filtro",
+     "filtros",
+     "filtrar",
+     "categorias",
+     "filtrar por categorias",
+     "iconos del mapa"
+    ],
+    "en": [
+     "filter",
+     "filters",
+     "categories",
+     "filter by category",
+     "map icons"
+    ],
+    "de": [
+     "filter",
+     "filtern",
+     "kategorien",
+     "nach kategorien filtern",
+     "kartensymbole"
+    ],
+    "fr": [
+     "filtre",
+     "filtres",
+     "filtrer",
+     "categories",
+     "filtrer par categorie",
+     "icones de la carte"
+    ],
+    "it": [
+     "filtro",
+     "filtri",
+     "filtrare",
+     "categorie",
+     "filtrare per categoria",
+     "icone della mappa"
+    ],
+    "nl": [
+     "filter",
+     "filters",
+     "filteren",
+     "categorieen",
+     "filteren op categorie",
+     "kaartpictogrammen"
+    ],
+    "pl": [
+     "filtr",
+     "filtry",
+     "filtrowac",
+     "kategorie",
+     "filtrowanie wedlug kategorii"
+    ],
+    "zh": [
+     "筛选",
+     "分类",
+     "类别",
+     "按类别筛选",
+     "地图图标"
+    ],
+    "zht": [
+     "篩選",
+     "分類",
+     "類別",
+     "依類別篩選",
+     "地圖圖示"
+    ]
+   },
+   "a": {
+    "es": "🗂️ El botón de categorías, a la derecha del mapa, abre los filtros por pestañas: naturaleza y playas, cultura, deporte, miradores, mercadillos… y también lugares con mascotas o accesibles. Cada categoría dice cuántos lugares tiene. Toca varias y el mapa enseña solo esas; mantén pulsada una para quedarte solo con ella. «Mostrar todos» lo quita. También me lo puedes pedir a mí: «miradores».",
+    "en": "🗂️ The categories button on the right of the map opens the filters in tabs: nature and beaches, culture, sport, viewpoints, markets… and also pet-friendly or accessible places. Each category shows how many places it has. Tap several and the map shows only those; press and hold one to keep just that one. «Show all» removes the filter. You can also ask me: «viewpoints».",
+    "de": "🗂️ Der Kategorien-Knopf rechts auf der Karte öffnet die Filter in Reitern: Natur und Strände, Kultur, Sport, Aussichtspunkte, Märkte… und auch Orte, an denen Haustiere willkommen sind, oder barrierefreie Orte. Jede Kategorie zeigt, wie viele Orte sie hat. Tippe mehrere an und die Karte zeigt nur diese; halte eine gedrückt, um nur sie zu behalten. «Alle anzeigen» hebt den Filter auf. Du kannst auch mich fragen: «Aussichtspunkte».",
+    "fr": "🗂️ Le bouton des catégories, à droite de la carte, ouvre les filtres par onglets : nature et plages, culture, sport, belvédères, marchés… et aussi des lieux qui acceptent les animaux ou accessibles. Chaque catégorie indique combien de lieux elle compte. Touches-en plusieurs et la carte n’affiche que celles-là ; garde le doigt sur une pour ne garder qu’elle. «Tout afficher» enlève le filtre. Tu peux aussi me le demander : «belvédères».",
+    "it": "🗂️ Il pulsante delle categorie, a destra della mappa, apre i filtri a schede: natura e spiagge, cultura, sport, punti panoramici, mercatini… e anche luoghi che accettano animali o accessibili. Ogni categoria indica quanti luoghi ha. Toccane più di una e la mappa mostra solo quelle; tieni premuta una per lasciare solo quella. «Mostra tutti» toglie il filtro. Puoi chiederlo anche a me: «punti panoramici».",
+    "nl": "🗂️ De categorieknop rechts op de kaart opent de filters in tabbladen: natuur en stranden, cultuur, sport, uitzichtpunten, markten… en ook plekken waar huisdieren welkom zijn of die toegankelijk zijn. Elke categorie laat zien hoeveel plekken ze heeft. Tik er meerdere aan en de kaart toont alleen die; houd er één ingedrukt om alleen die over te houden. «Alles tonen» haalt het filter weg. Je kunt het ook aan mij vragen: «uitkijkpunten».",
+    "pl": "🗂️ Przycisk kategorii po prawej stronie mapy otwiera filtry w zakładkach: przyroda i plaże, kultura, sport, punkty widokowe, targi… a także miejsca przyjazne zwierzętom lub dostępne. Każda kategoria pokazuje, ile ma miejsc. Dotknij kilku, a mapa pokaże tylko je; przytrzymaj jedną, żeby zostawić tylko ją. «Pokaż wszystkie» usuwa filtr. Możesz też zapytać mnie: «punkty widokowe».",
+    "zh": "🗂️ 地图右侧的分类按钮会按标签页打开筛选：自然与海滩、文化、运动、观景台、集市……还有欢迎宠物和无障碍的地点。每个类别都会显示有多少个地点。可以同时点选多个，地图只显示这些类别；长按某一个则只保留它。「显示全部」取消筛选。也可以直接问我：「观景台」。",
+    "zht": "🗂️ 地圖右側的分類按鈕會依分頁打開篩選：自然與海灘、文化、運動、觀景台、市集……還有歡迎寵物和無障礙的地點。每個類別都會顯示有多少個地點。可以同時點選多個，地圖只顯示這些類別；長按某一個則只保留它。「顯示全部」取消篩選。也可以直接問我：「觀景台」。"
+   },
+   "follow": [
+    "app-09",
+    "app-11",
+    "pla-04"
+   ],
+   "rotulos": [
+    "UI.catMostrarTodos"
+   ],
+   "comprobado": "category-btn a la derecha; _buildCatSheet: pestanas CAT_GROUPS, cada chip con su cuenta (cat-chip-badge), toque = alterna (varias a la vez), pulsacion larga = solo esa, cat-sheet-clear-btn «catMostrarTodos»; el asistente detecta la categoria por su nombre en cada idioma (probar_faq.js)"
+  },
+  {
+   "id": "app-11",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué hace el dado?",
+    "en": "What does the dice do?",
+    "de": "Was macht der Würfel?",
+    "fr": "À quoi sert le dé ?",
+    "it": "Cosa fa il dado?",
+    "nl": "Wat doet de dobbelsteen?",
+    "pl": "Do czego służy kostka?",
+    "zh": "骰子是做什么的？",
+    "zht": "骰子是做什麼的？"
+   },
+   "keys": {
+    "es": [
+     "sorprendeme",
+     "dado",
+     "el dado",
+     "aleatorio",
+     "al azar",
+     "lugar al azar",
+     "random"
+    ],
+    "en": [
+     "surprise me",
+     "dice",
+     "the dice",
+     "random",
+     "random place",
+     "at random"
+    ],
+    "de": [
+     "uberrasch mich",
+     "wurfel",
+     "der wurfel",
+     "zufall",
+     "zufalliger ort"
+    ],
+    "fr": [
+     "surprends moi",
+     "le de",
+     "au hasard",
+     "lieu au hasard",
+     "aleatoire",
+     "lancer le de"
+    ],
+    "it": [
+     "sorprendimi",
+     "dado",
+     "il dado",
+     "a caso",
+     "luogo a caso",
+     "casuale"
+    ],
+    "nl": [
+     "verras me",
+     "dobbelsteen",
+     "de dobbelsteen",
+     "willekeurig",
+     "willekeurige plek"
+    ],
+    "pl": [
+     "kostka",
+     "kostke",
+     "zaskocz mnie",
+     "losowo",
+     "losowe miejsce"
+    ],
+    "zh": [
+     "骰子",
+     "随机",
+     "随机地点",
+     "给我惊喜"
+    ],
+    "zht": [
+     "骰子",
+     "隨機",
+     "隨機地點",
+     "給我驚喜"
+    ]
+   },
+   "a": {
+    "es": "🎲 Te lleva a un lugar al azar y abre su globo. Si tienes categorías elegidas, la sorpresa sale de ellas: con «Miradores» puesto, te toca un mirador.",
+    "en": "🎲 It takes you to a random place and opens its pop-up. If you have categories selected, the surprise comes from them: with «Viewpoints» on, you get a viewpoint.",
+    "de": "🎲 Er bringt dich zu einem zufälligen Ort und öffnet sein Pop-up. Hast du Kategorien gewählt, kommt die Überraschung aus ihnen: mit «Aussichtspunkte» landest du an einem Aussichtspunkt.",
+    "fr": "🎲 Il t’emmène dans un lieu au hasard et ouvre sa bulle. Si tu as choisi des catégories, la surprise sort de celles-là : avec «Belvédères», tu tombes sur un belvédère.",
+    "it": "🎲 Ti porta in un luogo a caso e apre il suo fumetto. Se hai scelto delle categorie, la sorpresa esce da quelle: con «Punti Panoramici» attivo, ti tocca un punto panoramico.",
+    "nl": "🎲 Hij brengt je naar een willekeurige plek en opent de pop-up. Heb je categorieën gekozen, dan komt de verrassing daaruit: met «Uitkijkpunten» aan krijg je een uitkijkpunt.",
+    "pl": "🎲 Przenosi cię w losowe miejsce i otwiera jego dymek. Jeśli masz wybrane kategorie, niespodzianka pochodzi z nich: z włączonymi «Punkty widokowe» trafisz na punkt widokowy.",
+    "zh": "🎲 它会随机带你去一个地点，并打开它的信息框。如果你选了类别，惊喜就从这些类别里出：选了「观景台」，就会随机到一个观景台。",
+    "zht": "🎲 它會隨機帶你去一個地點，並打開它的資訊框。如果你選了類別，驚喜就從這些類別裡出：選了「觀景台」，就會隨機到一個觀景台。"
+   },
+   "follow": [
+    "app-10",
+    "app-04",
+    "app-01"
+   ],
+   "comprobado": "surpriseMe(): pool = places, filtrado por selectedCategories (y solo favoritos si esta esa vista); flyTo y openPopup"
+  },
+  {
+   "id": "app-12",
+   "cat": "app",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué sale al tocar un lugar?",
+    "en": "What do I see when I tap a place?",
+    "de": "Was sehe ich, wenn ich auf einen Ort tippe?",
+    "fr": "Que s’affiche-t-il quand je touche un lieu ?",
+    "it": "Cosa appare quando tocco un luogo?",
+    "nl": "Wat zie ik als ik op een plek tik?",
+    "pl": "Co widać po dotknięciu miejsca?",
+    "zh": "点一个地点会显示什么？",
+    "zht": "點一個地點會顯示什麼？"
+   },
+   "keys": {
+    "es": [
+     "ficha",
+     "ficha del lugar",
+     "globo",
+     "popup",
+     "pin",
+     "marcador",
+     "informacion del lugar",
+     "detalle del lugar"
+    ],
+    "en": [
+     "place details",
+     "pop up",
+     "popup",
+     "pin",
+     "marker",
+     "place information",
+     "info card"
+    ],
+    "de": [
+     "ortsinfo",
+     "pop up",
+     "popup",
+     "pin",
+     "marker",
+     "infos zum ort"
+    ],
+    "fr": [
+     "fiche",
+     "fiche du lieu",
+     "bulle",
+     "popup",
+     "marqueur",
+     "infos du lieu"
+    ],
+    "it": [
+     "scheda",
+     "scheda del luogo",
+     "fumetto",
+     "popup",
+     "segnaposto",
+     "marcatore",
+     "informazioni del luogo"
+    ],
+    "nl": [
+     "info van de plek",
+     "pop up",
+     "popup",
+     "pin",
+     "marker",
+     "informatie over de plek"
+    ],
+    "pl": [
+     "dymek",
+     "opis miejsca",
+     "pinezka",
+     "znacznik",
+     "informacje o miejscu"
+    ],
+    "zh": [
+     "信息框",
+     "地点详情",
+     "图钉",
+     "地图标记",
+     "地点信息"
+    ],
+    "zht": [
+     "資訊框",
+     "地點詳情",
+     "圖釘",
+     "地圖標記",
+     "地點資訊"
+    ]
+   },
+   "a": {
+    "es": "📍 Al tocar un pin se abre su globo: qué es y su descripción en tu idioma, el horario y el teléfono si los tiene, los avisos ⚠️ si los hay y, en la costa, el estado del mar. Debajo tienes «Añadir a favoritos», «Compartir», «▶ Escuchar», «○ Marcar visitado», «🚏 Cómo llegar en bus» y «🚗 Cómo llegar en coche». «Ver descripción completa» abre la ficha entera.",
+    "en": "📍 Tapping a marker opens its pop-up: what it is and its description in your language, opening hours and phone number if it has them, safety notes ⚠️ if there are any and, on the coast, the sea conditions. Below are «Add to favourites», «Share», «▶ Listen», «○ Mark visited», «🚏 How to get there by bus» and «🚗 Get there by car». «See full description» opens the complete details.",
+    "de": "📍 Ein Tipp auf einen Marker öffnet sein Pop-up: was es ist und die Beschreibung in deiner Sprache, Öffnungszeiten und Telefon, falls vorhanden, Hinweise ⚠️, falls es welche gibt, und an der Küste den Seegang. Darunter: «Zu Favoriten hinzufügen», «Teilen», «▶ Anhören», «○ Besucht markieren», «🚏 Mit dem Bus dorthin» und «🚗 Mit dem Auto hinfahren». «Vollständige Beschreibung ansehen» öffnet alle Infos.",
+    "fr": "📍 Toucher un marqueur ouvre sa bulle : ce que c’est et sa description dans ta langue, les horaires et le téléphone s’il y en a, les avertissements ⚠️ s’il y en a et, sur la côte, l’état de la mer. En dessous : «Ajouter aux favoris», «Partager», «▶ Écouter», «○ Marquer visité», «🚏 Comment y aller en bus» et «🚗 Y aller en voiture». «Voir la description complète» ouvre la fiche entière.",
+    "it": "📍 Toccando un marcatore si apre il suo fumetto: cos’è e la descrizione nella tua lingua, l’orario e il telefono se ci sono, gli avvisi ⚠️ se ce ne sono e, sulla costa, lo stato del mare. Sotto trovi «Aggiungi ai preferiti», «Condividi», «▶ Ascolta», «○ Segna visitato», «🚏 Come arrivare in bus» e «🚗 Arrivare in auto». «Vedi la descrizione completa» apre la scheda intera.",
+    "nl": "📍 Als je op een marker tikt, opent de pop-up: wat het is en de beschrijving in jouw taal, openingstijden en telefoonnummer als die er zijn, waarschuwingen ⚠️ als die er zijn en, aan de kust, de zeegang. Daaronder: «Toevoegen aan favorieten», «Delen», «▶ Luisteren», «○ Markeer bezocht», «🚏 Hoe te komen met de bus» en «🚗 Ernaartoe met de auto». «Volledige beschrijving bekijken» opent alle info.",
+    "pl": "📍 Po dotknięciu znacznika otwiera się jego dymek: co to za miejsce i opis w twoim języku, godziny otwarcia i telefon, jeśli są, ostrzeżenia ⚠️, jeśli są, a na wybrzeżu także stan morza. Pod spodem masz «Dodaj do ulubionych», «Udostępnij», «▶ Słuchaj», «○ Oznacz jako odwiedzone», «🚏 Jak dojechać autobusem» i «🚗 Jak dojechać samochodem». «Zobacz pełny opis» otwiera wszystkie informacje.",
+    "zh": "📍 点按地图标记会打开它的信息框：这是什么地方、你所用语言的介绍、营业时间和电话（如有）、安全提示 ⚠️（如有），海边的地点还有海况。下面有「加入收藏」「分享」「▶ 朗读」「○ 标记已访问」「🚏 如何乘公交前往」和「🚗 驾车前往」。点「查看完整介绍」可打开完整信息。",
+    "zht": "📍 點按地圖標記會打開它的資訊框：這是什麼地方、你所用語言的介紹、營業時間和電話（如有）、安全提示 ⚠️（如有），海邊的地點還有海況。下面有「加入收藏」「分享」「▶ 朗讀」「○ 標記已造訪」「🚏 如何搭公車前往」和「🚗 開車前往」。點「查看完整介紹」可打開完整資訊。"
+   },
+   "follow": [
+    "app-05",
+    "app-17",
+    "app-14"
+   ],
+   "rotulos": [
+    "LANGS.addFav",
+    "LANGS.shareBtn",
+    "TTS.play",
+    "VIS.mark",
+    "LANGS.nearbyHowToBtn",
+    "LANGS.directionsBtn",
+    "LANGS.popupVerFicha"
+   ],
+   "comprobado": "htmlGlobo: categoria, nombre, desc (localized), healthInfo (telefono/horario con fuente: sanitarios y gasolineras), aviso popup-warn, seaBlock en COAST_CATS; popup-actions: fav, share; TTS y visitado se anaden en popupopen; howto, coche; popup-tap-hint «Ver descripcion completa» -> openDetailSheet"
+  },
+  {
+   "id": "app-13",
+   "cat": "app",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Dónde veo el tiempo de hoy?",
+    "en": "Where can I see today’s weather?",
+    "de": "Wo sehe ich das Wetter von heute?",
+    "fr": "Où voir la météo du jour ?",
+    "it": "Dove vedo il meteo di oggi?",
+    "nl": "Waar zie ik het weer van vandaag?",
+    "pl": "Gdzie sprawdzić dzisiejszą pogodę?",
+    "zh": "在哪里看今天的天气？",
+    "zht": "在哪裡看今天的天氣？"
+   },
+   "keys": {
+    "es": [
+     "tiempo de hoy",
+     "tiempo ahora",
+     "que tiempo hace hoy",
+     "prevision",
+     "prevision del tiempo",
+     "tiempo por zonas",
+     "estado del mar",
+     "como esta el mar"
+    ],
+    "en": [
+     "weather today",
+     "todays weather",
+     "weather now",
+     "forecast",
+     "weather forecast",
+     "weather by area",
+     "sea conditions",
+     "how is the sea"
+    ],
+    "de": [
+     "wetter heute",
+     "wetter jetzt",
+     "vorhersage",
+     "wettervorhersage",
+     "wetter nach zonen",
+     "seegang",
+     "wie ist das meer"
+    ],
+    "fr": [
+     "meteo du jour",
+     "meteo aujourd hui",
+     "meteo maintenant",
+     "previsions",
+     "previsions meteo",
+     "etat de la mer"
+    ],
+    "it": [
+     "meteo di oggi",
+     "meteo oggi",
+     "meteo adesso",
+     "previsioni",
+     "previsioni meteo",
+     "stato del mare"
+    ],
+    "nl": [
+     "weer vandaag",
+     "het weer nu",
+     "weerbericht",
+     "weersverwachting",
+     "weer per zone",
+     "zeegang"
+    ],
+    "pl": [
+     "pogoda dzisiaj",
+     "pogoda teraz",
+     "prognoza",
+     "prognoza pogody",
+     "pogoda wedlug stref",
+     "stan morza"
+    ],
+    "zh": [
+     "今天天气",
+     "天气预报",
+     "现在天气",
+     "分区天气",
+     "海况",
+     "海浪"
+    ],
+    "zht": [
+     "今天天氣",
+     "天氣預報",
+     "現在天氣",
+     "分區天氣",
+     "海況",
+     "海浪"
+    ]
+   },
+   "a": {
+    "es": "🌡️ Arriba, el termómetro te da el tiempo en directo, zona por zona: aquí puede llover en un pueblo y hacer sol en el de al lado. La ola 🌊 te enseña el estado del mar por costas, y en el globo de cada lugar de costa tienes el del mar allí mismo. Necesita conexión.",
+    "en": "🌡️ At the top, the thermometer gives you the live weather, area by area: here it can rain in one village and be sunny in the next. The wave 🌊 shows the sea conditions by coast, and the pop-up of every coastal place has the sea right there. It needs a connection.",
+    "de": "🌡️ Oben zeigt dir das Thermometer das Wetter live, Zone für Zone: Hier kann es in einem Dorf regnen und im nächsten die Sonne scheinen. Die Welle 🌊 zeigt den Seegang nach Küsten, und im Pop-up jedes Küstenortes siehst du das Meer genau dort. Dafür brauchst du Verbindung.",
+    "fr": "🌡️ En haut, le thermomètre te donne la météo en direct, zone par zone : ici il peut pleuvoir dans un village et faire beau dans le suivant. La vague 🌊 te montre l’état de la mer par côte, et la bulle de chaque lieu du littoral donne la mer à cet endroit précis. Il faut une connexion.",
+    "it": "🌡️ In alto, il termometro ti dà il meteo in diretta, zona per zona: qui può piovere in un paese e splendere il sole in quello accanto. L’onda 🌊 ti mostra lo stato del mare per costa, e nel fumetto di ogni luogo sulla costa hai il mare proprio lì. Serve la connessione.",
+    "nl": "🌡️ Bovenaan geeft de thermometer je het weer live, zone per zone: hier kan het in het ene dorp regenen en in het volgende zonnig zijn. De golf 🌊 toont de zeegang per kust, en in de pop-up van elke kustplek zie je de zee precies daar. Daarvoor heb je verbinding nodig.",
+    "pl": "🌡️ Na górze termometr pokazuje pogodę na żywo, strefa po strefie: tu w jednej wsi może padać, a w sąsiedniej świecić słońce. Fala 🌊 pokazuje stan morza według wybrzeży, a w dymku każdego miejsca nad morzem masz morze dokładnie tam. Potrzebne jest połączenie.",
+    "zh": "🌡️ 顶部的温度计按区域显示实时天气：这里可能这个村子下雨，隔壁村子却阳光明媚。海浪按钮 🌊 按海岸显示海况，海边每个地点的信息框里也有当地的海况。需要联网。",
+    "zht": "🌡️ 頂部的溫度計依區域顯示即時天氣：這裡可能這個村子下雨，隔壁村子卻陽光普照。海浪按鈕 🌊 依海岸顯示海況，海邊每個地點的資訊框裡也有當地的海況。需要連網。"
+   },
+   "follow": [
+    "pla-01",
+    "sal-03",
+    "app-06"
+   ],
+   "comprobado": "mc-btn 🌡️ (microclimas: tiempo en directo por zonas, tourMicroP); mar-btn 🌊 (estado del mar por costas, tourMarP); seaBlock en el globo de COAST_CATS; open-meteo y marine-api en EN_VIVO (necesitan red)"
+  },
+  {
+   "id": "app-14",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué son los avisos ⚠️ de algunos lugares?",
+    "en": "What are the ⚠️ notes on some places?",
+    "de": "Was sind die ⚠️-Hinweise bei manchen Orten?",
+    "fr": "Que sont les avertissements ⚠️ de certains lieux ?",
+    "it": "Cosa sono gli avvisi ⚠️ di alcuni luoghi?",
+    "nl": "Wat zijn de ⚠️-waarschuwingen bij sommige plekken?",
+    "pl": "Czym są ostrzeżenia ⚠️ przy niektórych miejscach?",
+    "zh": "有些地点的 ⚠️ 提示是什么？",
+    "zht": "有些地點的 ⚠️ 提示是什麼？"
+   },
+   "keys": {
+    "es": [
+     "aviso",
+     "avisos",
+     "advertencia",
+     "advertencias",
+     "aviso de seguridad",
+     "avisos de seguridad"
+    ],
+    "en": [
+     "warning",
+     "warnings",
+     "safety note",
+     "safety notes",
+     "safety warning"
+    ],
+    "de": [
+     "warnhinweis",
+     "warnhinweise",
+     "sicherheitshinweis",
+     "sicherheitshinweise",
+     "warnung"
+    ],
+    "fr": [
+     "avertissement",
+     "avertissements",
+     "alerte de securite",
+     "mise en garde"
+    ],
+    "it": [
+     "avviso",
+     "avvisi",
+     "avvertenza",
+     "avviso di sicurezza",
+     "avvisi di sicurezza"
+    ],
+    "nl": [
+     "waarschuwing",
+     "waarschuwingen",
+     "veiligheidswaarschuwing",
+     "veiligheidsmelding"
+    ],
+    "pl": [
+     "ostrzezenie",
+     "ostrzezenia",
+     "ostrzezenie o bezpieczenstwie",
+     "uwaga bezpieczenstwo"
+    ],
+    "zh": [
+     "安全提示",
+     "警告",
+     "提示是什么",
+     "注意事项"
+    ],
+    "zht": [
+     "安全提示",
+     "警告",
+     "提示是什麼",
+     "注意事項"
+    ]
+   },
+   "a": {
+    "es": "⚠️ Algunos lugares llevan en su globo un aviso de seguridad propio: mar con oleaje y corrientes, alta montaña, ruta exigente, bordes sin vallar, zona forestal con riesgo de incendio o carretera de montaña estrecha. Léelo antes de ir.",
+    "en": "⚠️ Some places carry their own safety note in their pop-up: rough sea and currents, high mountain, demanding route, unfenced edges, forest area with fire risk or narrow mountain road. Read it before you go.",
+    "de": "⚠️ Manche Orte haben im Pop-up einen eigenen Sicherheitshinweis: Brandung und Strömungen, Hochgebirge, anspruchsvolle Route, ungesicherte Kanten, Waldgebiet mit Brandgefahr oder enge Bergstraße. Lies ihn, bevor du losgehst.",
+    "fr": "⚠️ Certains lieux ont dans leur bulle un avertissement de sécurité qui leur est propre : mer agitée et courants, haute montagne, itinéraire exigeant, bords non sécurisés, zone forestière à risque d’incendie ou route de montagne étroite. Lis-le avant d’y aller.",
+    "it": "⚠️ Alcuni luoghi hanno nel fumetto un avviso di sicurezza tutto loro: mare mosso e correnti, alta montagna, percorso impegnativo, bordi senza protezione, zona forestale a rischio incendio o strada di montagna stretta. Leggilo prima di andare.",
+    "nl": "⚠️ Sommige plekken hebben in hun pop-up een eigen veiligheidswaarschuwing: woeste zee en stromingen, hooggebergte, zware route, onbeveiligde randen, bosgebied met brandgevaar of smalle bergweg. Lees hem voordat je gaat.",
+    "pl": "⚠️ Niektóre miejsca mają w dymku własne ostrzeżenie: fale i prądy, wysokie góry, wymagająca trasa, krawędzie bez barierek, teren leśny z zagrożeniem pożarowym albo wąska droga górska. Przeczytaj je przed wyjściem.",
+    "zh": "⚠️ 有些地点的信息框里带有专属的安全提示：海浪和洋流、高山、难度较大的路线、无护栏的边缘、有火灾风险的林区，或狭窄的山路。出发前请先看一看。",
+    "zht": "⚠️ 有些地點的資訊框裡附有專屬的安全提示：海浪和洋流、高山、難度較高的路線、無護欄的邊緣、有火災風險的林區，或狹窄的山路。出發前請先看一看。"
+   },
+   "follow": [
+    "sal-02",
+    "sal-04",
+    "sal-01"
+   ],
+   "comprobado": "modulo AVISOS: banner popup-warn bajo la descripcion si place.warn esta en WARN_I18N: mar, altura, sendero, vertigo, incendio, carretera (auditar_datos.js comprueba que no hay otros)"
+  },
+  {
+   "id": "app-15",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Cómo calculo una ruta de A a B?",
+    "en": "How do I plan a route from A to B?",
+    "de": "Wie berechne ich eine Route von A nach B?",
+    "fr": "Comment calculer un itinéraire de A à B ?",
+    "it": "Come calcolo un percorso da A a B?",
+    "nl": "Hoe bereken ik een route van A naar B?",
+    "pl": "Jak wyznaczyć trasę z A do B?",
+    "zh": "怎么规划从A到B的路线？",
+    "zht": "怎麼規劃從A到B的路線？"
+   },
+   "keys": {
+    "es": [
+     "ruta a b",
+     "de a a b",
+     "ruta en coche",
+     "calcular ruta",
+     "trazar ruta",
+     "navegacion",
+     "navegar",
+     "como ir de un sitio a otro"
+    ],
+    "en": [
+     "route a b",
+     "from a to b",
+     "car route",
+     "plan a route",
+     "calculate route",
+     "directions",
+     "navigation"
+    ],
+    "de": [
+     "route a b",
+     "von a nach b",
+     "autoroute",
+     "route berechnen",
+     "route planen",
+     "navigation"
+    ],
+    "fr": [
+     "itineraire a b",
+     "de a a b",
+     "itineraire en voiture",
+     "calculer un itineraire",
+     "navigation"
+    ],
+    "it": [
+     "percorso a b",
+     "da a a b",
+     "percorso in auto",
+     "calcolare un percorso",
+     "navigazione"
+    ],
+    "nl": [
+     "route a b",
+     "van a naar b",
+     "autoroute",
+     "route berekenen",
+     "route plannen",
+     "navigatie"
+    ],
+    "pl": [
+     "trasa a b",
+     "z a do b",
+     "trasa samochodem",
+     "wyznaczyc trase",
+     "nawigacja"
+    ],
+    "zh": [
+     "a到b",
+     "路线规划",
+     "计算路线",
+     "驾车路线",
+     "导航"
+    ],
+    "zht": [
+     "a到b",
+     "路線規劃",
+     "計算路線",
+     "開車路線",
+     "導航"
+    ]
+   },
+   "a": {
+    "es": "🧭 En Rutas, abajo, pestaña «A→B»: elige el origen y el destino tocando el mapa, escribiendo una dirección o con el GPS, y pulsa «Calcular ruta». Te da los minutos y los kilómetros en coche y las opciones en guagua. Para ir en coche a un lugar concreto, en su globo tienes «🚗 Cómo llegar en coche».",
+    "en": "🧭 In Routes, at the bottom, «A→B» tab: choose the start and the destination by tapping the map, typing an address or using GPS, and press «Calculate route». It gives you the minutes and kilometres by car and the bus options. To drive to a specific place, its pop-up has «🚗 Get there by car».",
+    "de": "🧭 Unter Routen, unten, Reiter «A→B»: Wähle Start und Ziel, indem du auf die Karte tippst, eine Adresse eingibst oder GPS nutzt, und drück auf «Route berechnen». Du bekommst Minuten und Kilometer mit dem Auto und die Busoptionen. Um mit dem Auto zu einem bestimmten Ort zu fahren, hat sein Pop-up «🚗 Mit dem Auto hinfahren».",
+    "fr": "🧭 Dans Itinéraires, en bas, onglet «A→B» : choisis le départ et l’arrivée en touchant la carte, en écrivant une adresse ou avec le GPS, puis appuie sur «Calculer l'itinéraire». Tu obtiens les minutes et les kilomètres en voiture et les options en bus. Pour aller en voiture à un lieu précis, sa bulle a «🚗 Y aller en voiture».",
+    "it": "🧭 In Percorsi, in basso, scheda «A→B»: scegli partenza e arrivo toccando la mappa, scrivendo un indirizzo o con il GPS, e premi «Calcola il percorso». Ti dà i minuti e i chilometri in auto e le opzioni in autobus. Per andare in auto in un luogo preciso, nel suo fumetto c’è «🚗 Arrivare in auto».",
+    "nl": "🧭 In Routes, onderaan, tabblad «A→B»: kies vertrek en bestemming door op de kaart te tikken, een adres te typen of met gps, en druk op «Route berekenen». Je krijgt de minuten en kilometers met de auto en de busopties. Om met de auto naar een bepaalde plek te gaan, heeft de pop-up «🚗 Ernaartoe met de auto».",
+    "pl": "🧭 W zakładce «Trasy», na dole, otwórz «A→B»: wybierz początek i cel, dotykając mapy, wpisując adres albo przez GPS, i naciśnij «Wyznacz trasę». Dostaniesz minuty i kilometry samochodem oraz połączenia autobusowe. Żeby pojechać samochodem do konkretnego miejsca, w jego dymku masz «🚗 Jak dojechać samochodem».",
+    "zh": "🧭 在底部的「路线」里选「A→B」页：点地图、输入地址或用 GPS 选出起点和终点，然后点「计算路线」。会显示开车所需的分钟数和公里数，以及公交方案。想开车去某个具体地点，它的信息框里就有「🚗 驾车前往」。",
+    "zht": "🧭 在底部的「路線」裡選「A→B」頁：點地圖、輸入地址或用 GPS 選出起點和終點，然後點「計算路線」。會顯示開車所需的分鐘數和公里數，以及公車方案。想開車去某個具體地點，它的資訊框裡就有「🚗 開車前往」。"
+   },
+   "follow": [
+    "app-16",
+    "app-17",
+    "mov-07"
+   ],
+   "rotulos": [
+    "UI.navRoutes",
+    "UI.routeCalcular",
+    "LANGS.directionsBtn"
+   ],
+   "comprobado": "route-panel pestana A→B: origen/destino tocando el mapa, direccion o GPS (routeHint); calculateRoute: coche (min, km; OSRM) y tarjeta de guagua (TITSA local); popup-car-btn abre Google Maps / Apple Maps"
+  },
+  {
+   "id": "app-16",
+   "cat": "app",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Me ayudas a organizar el día?",
+    "en": "Can you help me plan my day?",
+    "de": "Hilfst du mir, den Tag zu planen?",
+    "fr": "Tu m’aides à organiser ma journée ?",
+    "it": "Mi aiuti a organizzare la giornata?",
+    "nl": "Help je me mijn dag te plannen?",
+    "pl": "Pomożesz mi zaplanować dzień?",
+    "zh": "能帮我安排一天的行程吗？",
+    "zht": "能幫我安排一天的行程嗎？"
+   },
+   "keys": {
+    "es": [
+     "planificador",
+     "planificar",
+     "planificar el dia",
+     "organizar el dia",
+     "organiza tu dia",
+     "plan del dia",
+     "ruta del dia"
+    ],
+    "en": [
+     "planner",
+     "day planner",
+     "plan my day",
+     "plan your day",
+     "organise my day",
+     "day route"
+    ],
+    "de": [
+     "planer",
+     "tag planen",
+     "meinen tag planen",
+     "tagesroute",
+     "tagesplaner"
+    ],
+    "fr": [
+     "planificateur",
+     "organiser ma journee",
+     "organise ta journee",
+     "planifier la journee",
+     "itineraire du jour"
+    ],
+    "it": [
+     "pianificatore",
+     "organizzare la giornata",
+     "organizza la giornata",
+     "programma della giornata",
+     "itinerario del giorno"
+    ],
+    "nl": [
+     "planner",
+     "dag plannen",
+     "plan je dag",
+     "dagplanning",
+     "route van de dag"
+    ],
+    "pl": [
+     "planer",
+     "zaplanuj dzien",
+     "zaplanowac dzien",
+     "trasa dnia",
+     "planer dnia"
+    ],
+    "zh": [
+     "规划一天",
+     "安排一天",
+     "一日行程",
+     "今日路线",
+     "行程规划工具"
+    ],
+    "zht": [
+     "規劃一天",
+     "安排一天",
+     "一日行程",
+     "今日路線",
+     "行程規劃工具"
+    ]
+   },
+   "a": {
+    "es": "✨ En Rutas, abajo, pestaña «Organiza tu día»: dices cuánto tiempo tienes, qué te apetece (naturaleza, playa, cultura, gastronomía… uno o varios) y cómo te mueves (coche, guagua, a pie o bici), y te prepara un itinerario. Puedes rehacerlo, guardarlo en «Ruta del día» o en Favoritos y compartirlo.",
+    "en": "✨ In Routes, at the bottom, «Plan your day» tab: say how much time you have, what you fancy (nature, beach, culture, food… one or several) and how you are getting around (car, bus, on foot or bike), and it puts together an itinerary. You can redo it, save it to «Day Route» or to Favorites, and share it.",
+    "de": "✨ Unter Routen, unten, Reiter «Tag planen»: Du sagst, wie viel Zeit du hast, worauf du Lust hast (Natur, Strand, Kultur, Essen… eins oder mehrere) und wie du unterwegs bist (Auto, Bus, zu Fuß oder Rad), und er stellt dir einen Plan zusammen. Du kannst ihn neu erstellen, in «Tagesroute» oder in Favoriten speichern und teilen.",
+    "fr": "✨ Dans Itinéraires, en bas, onglet «Organise ta journée» : tu indiques combien de temps tu as, ce qui te tente (nature, plage, culture, gastronomie… un ou plusieurs) et comment tu te déplaces (voiture, bus, à pied ou à vélo), et il te prépare un itinéraire. Tu peux le refaire, l’enregistrer dans «Itinéraire du jour» ou dans Favoris, et le partager.",
+    "it": "✨ In Percorsi, in basso, scheda «Organizza la giornata»: dici quanto tempo hai, cosa ti va (natura, spiaggia, cultura, gastronomia… uno o più) e come ti sposti (auto, autobus, a piedi o in bici), e ti prepara un itinerario. Puoi rifarlo, salvarlo in «Itinerario del giorno» o nei Preferiti e condividerlo.",
+    "nl": "✨ In Routes, onderaan, tabblad «Plan je dag»: je zegt hoeveel tijd je hebt, waar je zin in hebt (natuur, strand, cultuur, eten… één of meer) en hoe je je verplaatst (auto, bus, te voet of fiets), en hij stelt een plan voor je samen. Je kunt het opnieuw laten maken, bewaren in «Route van de dag» of bij Favorieten, en delen.",
+    "pl": "✨ W zakładce «Trasy», na dole, otwórz «Zaplanuj dzień»: mówisz, ile masz czasu, na co masz ochotę (przyroda, plaża, kultura, jedzenie… jedno albo kilka) i czym się poruszasz (samochód, autobus, pieszo albo rowerem), a aplikacja układa ci plan. Możesz go przygotować od nowa, zapisać w «Trasa dnia» albo w «Ulubione» i udostępnić.",
+    "zh": "✨ 在底部的「路线」里选「规划一天」页：说出你有多少时间、想做什么（自然、海滩、文化、美食……可多选），以及怎么出行（开车、公交、步行或骑车），它就会为你排好行程。你可以重新生成，保存到「今日路线」或「收藏」，也可以分享。",
+    "zht": "✨ 在底部的「路線」裡選「規劃一天」頁：說出你有多少時間、想做什麼（自然、海灘、文化、美食……可複選），以及怎麼出行（開車、公車、步行或騎車），它就會為你排好行程。你可以重新產生，儲存到「今日路線」或「收藏」，也可以分享。"
+   },
+   "follow": [
+    "app-15",
+    "exc-02",
+    "exc-03"
+   ],
+   "rotulos": [
+    "UI.navRoutes",
+    "UI.tabPlanner",
+    "LANGS.daytripTitle",
+    "UI.navFav"
+   ],
+   "comprobado": "pestana tab-planner (dpTitulo): DP_TIMES (cuanto tiempo), DP_CARDS (uno o varios), DP_TRANSPORT (coche, guagua, a pie, bici); resultado con dpiRegenerate, dpiSaveToRoute (Ruta del dia), dpiSaveToFavs, dpShare"
+  },
+  {
+   "id": "app-17",
+   "cat": "app",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué guagua me deja en un lugar?",
+    "en": "Which bus takes me to a place?",
+    "de": "Welcher Bus bringt mich zu einem Ort?",
+    "fr": "Quel bus m’emmène à un lieu ?",
+    "it": "Quale autobus mi porta in un luogo?",
+    "nl": "Welke bus brengt me naar een plek?",
+    "pl": "Który autobus dowiezie mnie na miejsce?",
+    "zh": "哪路公交能到某个地点？",
+    "zht": "哪路公車能到某個地點？"
+   },
+   "keys": {
+    "es": [
+     "como llegar en bus",
+     "como llegar en guagua",
+     "que guagua me deja",
+     "que linea me deja",
+     "paradas cerca",
+     "parada mas cercana"
+    ],
+    "en": [
+     "how to get there by bus",
+     "which bus",
+     "which bus line",
+     "nearest bus stop",
+     "bus stops nearby"
+    ],
+    "de": [
+     "mit dem bus dorthin",
+     "welcher bus",
+     "welche buslinie",
+     "nachste haltestelle",
+     "haltestellen in der nahe"
+    ],
+    "fr": [
+     "comment y aller en bus",
+     "quel bus",
+     "quelle ligne de bus",
+     "arret le plus proche",
+     "arrets proches"
+    ],
+    "it": [
+     "come arrivare in bus",
+     "quale autobus",
+     "quale linea",
+     "fermata piu vicina",
+     "fermate vicine"
+    ],
+    "nl": [
+     "hoe te komen met de bus",
+     "welke bus",
+     "welke buslijn",
+     "dichtstbijzijnde halte",
+     "haltes in de buurt"
+    ],
+    "pl": [
+     "jak dojechac autobusem",
+     "ktory autobus",
+     "ktora linia",
+     "najblizszy przystanek",
+     "przystanki w poblizu"
+    ],
+    "zh": [
+     "乘公交前往",
+     "坐哪路公交",
+     "哪条公交线",
+     "最近的车站",
+     "附近的车站"
+    ],
+    "zht": [
+     "搭公車前往",
+     "搭哪路公車",
+     "哪條公車路線",
+     "最近的車站",
+     "附近的車站"
+    ]
+   },
+   "a": {
+    "es": "🚏 En el globo de cada lugar, «🚏 Cómo llegar en bus» te enseña las paradas más cercanas a ese sitio y las líneas que paran en cada una. Toca una parada y verás su línea en el mapa. El horario del día, en titsa.com.",
+    "en": "🚏 In the pop-up of every place, «🚏 How to get there by bus» shows the stops closest to it and the lines that call at each one. Tap a stop to see its line on the map. Times for the day are on titsa.com.",
+    "de": "🚏 Im Pop-up jedes Ortes zeigt dir «🚏 Mit dem Bus dorthin» die nächstgelegenen Haltestellen und die Linien, die dort halten. Tippe auf eine Haltestelle und du siehst ihre Linie auf der Karte. Die Zeiten des Tages stehen auf titsa.com.",
+    "fr": "🚏 Dans la bulle de chaque lieu, «🚏 Comment y aller en bus» te montre les arrêts les plus proches et les lignes qui s’arrêtent à chacun. Touche un arrêt pour voir sa ligne sur la carte. Les horaires du jour sont sur titsa.com.",
+    "it": "🚏 Nel fumetto di ogni luogo, «🚏 Come arrivare in bus» ti mostra le fermate più vicine e le linee che passano da ciascuna. Tocca una fermata e vedrai la sua linea sulla mappa. Gli orari del giorno su titsa.com.",
+    "nl": "🚏 In de pop-up van elke plek toont «🚏 Hoe te komen met de bus» de dichtstbijzijnde haltes en de lijnen die er stoppen. Tik op een halte en je ziet de lijn op de kaart. De tijden van die dag staan op titsa.com.",
+    "pl": "🚏 W dymku każdego miejsca «🚏 Jak dojechać autobusem» pokazuje najbliższe przystanki i linie, które się na nich zatrzymują. Dotknij przystanku, a zobaczysz jego linię na mapie. Godziny na dany dzień znajdziesz na titsa.com.",
+    "zh": "🚏 每个地点的信息框里，「🚏 如何乘公交前往」会列出离它最近的车站，以及停靠每个车站的线路。点一个车站，就能在地图上看到这条线路。当天的时刻请查 titsa.com。",
+    "zht": "🚏 每個地點的資訊框裡，「🚏 如何搭公車前往」會列出離它最近的車站，以及停靠每個車站的路線。點一個車站，就能在地圖上看到這條路線。當天的時刻請查 titsa.com。"
+   },
+   "follow": [
+    "mov-03",
+    "pla-12",
+    "mov-01"
+   ],
+   "rotulos": [
+    "LANGS.nearbyHowToBtn"
+   ],
+   "comprobado": "popup-howto-btn -> showNearbyStops: paradas cercanas a pie (findNearbyBusStops) con sus lineas; al tocar una parada activa su primera linea en el mapa"
+  },
+  {
+   "id": "app-18",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Necesito crear una cuenta?",
+    "en": "Do I need an account?",
+    "de": "Brauche ich ein Konto?",
+    "fr": "Faut-il créer un compte ?",
+    "it": "Devo creare un account?",
+    "nl": "Heb ik een account nodig?",
+    "pl": "Czy muszę założyć konto?",
+    "zh": "需要注册账户吗？",
+    "zht": "需要註冊帳戶嗎？"
+   },
+   "keys": {
+    "es": [
+     "cuenta",
+     "crear cuenta",
+     "registrarse",
+     "registrarme",
+     "registro",
+     "iniciar sesion",
+     "login",
+     "invitado",
+     "sincronizar",
+     "perfil"
+    ],
+    "en": [
+     "account",
+     "create an account",
+     "sign up",
+     "register",
+     "sign in",
+     "log in",
+     "login",
+     "guest",
+     "sync",
+     "profile"
+    ],
+    "de": [
+     "konto",
+     "konto erstellen",
+     "registrieren",
+     "anmelden",
+     "einloggen",
+     "login",
+     "gast",
+     "synchronisieren",
+     "profil"
+    ],
+    "fr": [
+     "compte",
+     "creer un compte",
+     "s inscrire",
+     "inscription",
+     "se connecter",
+     "connexion",
+     "invite",
+     "synchroniser",
+     "profil"
+    ],
+    "it": [
+     "account",
+     "creare un account",
+     "registrarsi",
+     "registrazione",
+     "accedere",
+     "login",
+     "ospite",
+     "sincronizzare",
+     "profilo"
+    ],
+    "nl": [
+     "account",
+     "account aanmaken",
+     "registreren",
+     "inloggen",
+     "login",
+     "gast",
+     "synchroniseren",
+     "profiel"
+    ],
+    "pl": [
+     "konto",
+     "zalozyc konto",
+     "rejestracja",
+     "zalogowac",
+     "logowanie",
+     "gosc",
+     "synchronizacja",
+     "profil"
+    ],
+    "zh": [
+     "账户",
+     "注册",
+     "登录",
+     "访客",
+     "同步",
+     "个人资料"
+    ],
+    "zht": [
+     "帳戶",
+     "註冊",
+     "登入",
+     "訪客",
+     "同步",
+     "個人資料"
+    ]
+   },
+   "a": {
+    "es": "👤 No: la app es igual sin cuenta. En Cuenta, abajo, puedes «Continuar como invitado». Si te registras con email y contraseña, tus favoritos se guardan también en la nube y los recuperas en otro dispositivo; sin cuenta, se quedan en este móvil.",
+    "en": "👤 No: the app is the same without an account. In Account, at the bottom, you can «Continue as guest». If you sign up with email and password, your favourites are also saved in the cloud and you get them back on another device; without an account they stay on this phone.",
+    "de": "👤 Nein: Die App ist ohne Konto genau gleich. Unter Konto, unten, kannst du «Als Gast fortfahren». Registrierst du dich mit E-Mail und Passwort, werden deine Favoriten auch in der Cloud gespeichert und du hast sie auf einem anderen Gerät wieder; ohne Konto bleiben sie auf diesem Handy.",
+    "fr": "👤 Non : l’appli est la même sans compte. Dans Compte, en bas, tu peux «Continuer en invité». Si tu t’inscris avec e-mail et mot de passe, tes favoris sont aussi enregistrés dans le cloud et tu les retrouves sur un autre appareil ; sans compte, ils restent sur ce téléphone.",
+    "it": "👤 No: l’app è uguale anche senza account. In Account, in basso, puoi «Continua come ospite». Se ti registri con email e password, i tuoi preferiti vengono salvati anche nel cloud e li ritrovi su un altro dispositivo; senza account restano su questo telefono.",
+    "nl": "👤 Nee: de app is zonder account precies hetzelfde. In Account, onderaan, kun je «Doorgaan als gast». Als je je registreert met e-mail en wachtwoord, worden je favorieten ook in de cloud bewaard en heb je ze terug op een ander apparaat; zonder account blijven ze op deze telefoon.",
+    "pl": "👤 Nie: aplikacja działa tak samo bez konta. W zakładce «Konto», na dole, możesz wybrać «Kontynuuj jako gość». Jeśli zarejestrujesz się e-mailem i hasłem, twoje ulubione zapiszą się też w chmurze i odzyskasz je na innym urządzeniu; bez konta zostają w tym telefonie.",
+    "zh": "👤 不需要：不注册也能使用全部功能。在底部的「账户」里可以选「以访客身份继续」。用邮箱和密码注册后，你的收藏还会保存到云端，换设备也能找回；不注册的话，收藏只保存在这部手机上。",
+    "zht": "👤 不需要：不註冊也能使用全部功能。在底部的「帳戶」裡可以選「以訪客身分繼續」。用電子郵件和密碼註冊後，你的收藏還會儲存到雲端，換裝置也能找回；不註冊的話，收藏只儲存在這支手機上。"
+   },
+   "follow": [
+    "app-02",
+    "app-01",
+    "app-22"
+   ],
+   "rotulos": [
+    "UI.navAccount",
+    "LANGS.authTabGuest"
+   ],
+   "comprobado": "auth-modal: pestanas login / signup (email + contrasena, minlength 6) / invitado (authTabGuest); sincronizacion de favoritos con Supabase solo con sesion; invitado: favoritos solo en el dispositivo (auth-guest-hint)"
+  },
+  {
+   "id": "app-19",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Cómo comparto un lugar?",
+    "en": "How do I share a place?",
+    "de": "Wie teile ich einen Ort?",
+    "fr": "Comment partager un lieu ?",
+    "it": "Come condivido un luogo?",
+    "nl": "Hoe deel ik een plek?",
+    "pl": "Jak udostępnić miejsce?",
+    "zh": "怎么分享一个地点？",
+    "zht": "怎麼分享一個地點？"
+   },
+   "keys": {
+    "es": [
+     "compartir",
+     "comparto",
+     "compartir un lugar",
+     "whatsapp",
+     "enviar un lugar",
+     "mandar un sitio",
+     "enlace del lugar"
+    ],
+    "en": [
+     "share",
+     "share a place",
+     "whatsapp",
+     "send a place",
+     "link to a place"
+    ],
+    "de": [
+     "teilen",
+     "ort teilen",
+     "whatsapp",
+     "ort schicken",
+     "link zum ort"
+    ],
+    "fr": [
+     "partager",
+     "partager un lieu",
+     "whatsapp",
+     "envoyer un lieu",
+     "lien du lieu"
+    ],
+    "it": [
+     "condividere",
+     "condividere un luogo",
+     "whatsapp",
+     "inviare un luogo",
+     "link del luogo"
+    ],
+    "nl": [
+     "delen",
+     "plek delen",
+     "whatsapp",
+     "plek sturen",
+     "link naar de plek"
+    ],
+    "pl": [
+     "udostepnic",
+     "udostepnij",
+     "udostepnic miejsce",
+     "whatsapp",
+     "wyslac miejsce"
+    ],
+    "zh": [
+     "分享",
+     "分享地点",
+     "发给朋友",
+     "微信",
+     "whatsapp"
+    ],
+    "zht": [
+     "分享",
+     "分享地點",
+     "傳給朋友",
+     "line",
+     "whatsapp"
+    ]
+   },
+   "a": {
+    "es": "📤 En el globo de cada lugar, toca «Compartir»: se abre el menú de compartir de tu móvil (WhatsApp, correo…). Si tu móvil no lo tiene, el texto con el enlace se copia y te avisa.",
+    "en": "📤 In the pop-up of every place, tap «Share»: your phone’s share menu opens (WhatsApp, email…). If your phone does not have one, the text with the link is copied and you get a notice.",
+    "de": "📤 Tippe im Pop-up jedes Ortes auf «Teilen»: Das Teilen-Menü deines Handys geht auf (WhatsApp, E-Mail…). Hat dein Handy keins, wird der Text mit dem Link kopiert und du bekommst eine Meldung.",
+    "fr": "📤 Dans la bulle de chaque lieu, touche «Partager» : le menu de partage de ton téléphone s’ouvre (WhatsApp, e-mail…). Si ton téléphone n’en a pas, le texte avec le lien est copié et un message te prévient.",
+    "it": "📤 Nel fumetto di ogni luogo, tocca «Condividi»: si apre il menu di condivisione del telefono (WhatsApp, email…). Se il telefono non ce l’ha, il testo con il link viene copiato e un avviso te lo dice.",
+    "nl": "📤 Tik in de pop-up van elke plek op «Delen»: het deelmenu van je telefoon gaat open (WhatsApp, e-mail…). Heeft je telefoon dat niet, dan wordt de tekst met de link gekopieerd en krijg je een melding.",
+    "pl": "📤 W dymku każdego miejsca dotknij «Udostępnij»: otworzy się menu udostępniania telefonu (WhatsApp, e-mail…). Jeśli telefon go nie ma, tekst z linkiem zostanie skopiowany, a ty dostaniesz komunikat.",
+    "zh": "📤 在每个地点的信息框里点「分享」：会打开手机的分享菜单（WhatsApp、邮件等）。如果手机没有分享菜单，带链接的文字会被复制，并弹出提示。",
+    "zht": "📤 在每個地點的資訊框裡點「分享」：會打開手機的分享選單（WhatsApp、電子郵件等）。如果手機沒有分享選單，附連結的文字會被複製，並跳出提示。"
+   },
+   "follow": [
+    "app-12",
+    "app-02",
+    "app-16"
+   ],
+   "rotulos": [
+    "LANGS.shareBtn"
+   ],
+   "comprobado": "sharePlace: navigator.share (menu del movil) con titulo, texto y url #lugar=; si no hay o falla, copia el texto al portapapeles y showShareToast(shareCopied)"
+  },
+  {
+   "id": "app-20",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Dónde está el glosario canario?",
+    "en": "Where is the Canarian glossary?",
+    "de": "Wo ist das kanarische Glossar?",
+    "fr": "Où est le glossaire canarien ?",
+    "it": "Dov’è il glossario canario?",
+    "nl": "Waar is de Canarische woordenlijst?",
+    "pl": "Gdzie jest słowniczek kanaryjski?",
+    "zh": "加那利方言词汇表在哪里？",
+    "zht": "加那利方言詞彙表在哪裡？"
+   },
+   "keys": {
+    "es": [
+     "glosario",
+     "glosario canario",
+     "diccionario canario",
+     "habla como un canario",
+     "palabras de la app"
+    ],
+    "en": [
+     "glossary",
+     "canarian glossary",
+     "canarian dictionary",
+     "speak like a canarian"
+    ],
+    "de": [
+     "glossar",
+     "kanarisches glossar",
+     "worterbuch",
+     "sprich wie ein kanare"
+    ],
+    "fr": [
+     "glossaire",
+     "glossaire canarien",
+     "dictionnaire canarien",
+     "parlez comme un canarien"
+    ],
+    "it": [
+     "glossario",
+     "glossario canario",
+     "dizionario canario",
+     "parla come un canario"
+    ],
+    "nl": [
+     "woordenlijst",
+     "canarische woordenlijst",
+     "woordenboek",
+     "praat als een canarier"
+    ],
+    "pl": [
+     "slowniczek",
+     "slowniczek kanaryjski",
+     "slownik",
+     "mow jak kanaryjczyk"
+    ],
+    "zh": [
+     "词汇表",
+     "方言词汇",
+     "加那利方言",
+     "学说加那利方言"
+    ],
+    "zht": [
+     "詞彙表",
+     "方言詞彙",
+     "加那利方言",
+     "學說加那利方言"
+    ]
+   },
+   "a": {
+    "es": "📖 En el panel de las fiestas 🎉, arriba, el botón «📚 Habla como un canario» despliega palabras de aquí con su significado: guagua, chacho, ños, papas arrugadas, mojo, guachinche…",
+    "en": "📖 In the fiestas panel 🎉 at the top, the «📚 Speak like a Canarian» button opens up local words with their meaning: guagua, chacho, ños, papas arrugadas, mojo, guachinche…",
+    "de": "📖 Im Feste-Panel 🎉 oben klappt der Knopf «📚 Sprich wie ein Kanare» Wörter von hier mit ihrer Bedeutung auf: guagua, chacho, ños, papas arrugadas, mojo, guachinche…",
+    "fr": "📖 Dans le panneau des fêtes 🎉, en haut, le bouton «📚 Parlez comme un Canarien» déroule des mots d’ici avec leur sens : guagua, chacho, ños, papas arrugadas, mojo, guachinche…",
+    "it": "📖 Nel pannello delle feste 🎉, in alto, il pulsante «📚 Parla come un canario» apre parole del posto con il loro significato: guagua, chacho, ños, papas arrugadas, mojo, guachinche…",
+    "nl": "📖 In het feestenpaneel 🎉 bovenaan klapt de knop «📚 Praat als een Canariër» woorden van hier uit met hun betekenis: guagua, chacho, ños, papas arrugadas, mojo, guachinche…",
+    "pl": "📖 W panelu świąt 🎉 na górze przycisk «📚 Mów jak Kanaryjczyk» rozwija tutejsze słowa z ich znaczeniem: guagua, chacho, ños, papas arrugadas, mojo, guachinche…",
+    "zh": "📖 在顶部的节庆面板 🎉 里，点「📚 学说加那利方言」按钮，就会展开当地词语及其意思：guagua、chacho、ños、papas arrugadas、mojo、guachinche……",
+    "zht": "📖 在頂部的節慶面板 🎉 裡，點「📚 學說加那利方言」按鈕，就會展開當地詞語及其意思：guagua、chacho、ños、papas arrugadas、mojo、guachinche……"
+   },
+   "follow": [
+    "pra-07",
+    "cul-07",
+    "com-02"
+   ],
+   "rotulos": [
+    "GLT"
+   ],
+   "comprobado": "GLOSARIO CANARIO: boton gl-toggle «GL_T» dentro del panel de fiestas (fi-panel, boton fi-btn 🎉 de la barra superior); GL_DATA: Guagua, Chacho/a, Ños, Agüita, Fleje, Papas arrugadas, Mojo, Guachinche, Enyesque, Cotufas, Baifo, Magua, Cholas, Tenderete"
+  },
+  {
+   "id": "app-21",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué hago si algo falla?",
+    "en": "What do I do if something fails?",
+    "de": "Was tun, wenn etwas nicht funktioniert?",
+    "fr": "Que faire si quelque chose ne marche pas ?",
+    "it": "Cosa faccio se qualcosa non funziona?",
+    "nl": "Wat doe ik als iets niet werkt?",
+    "pl": "Co zrobić, gdy coś nie działa?",
+    "zh": "出问题了怎么办？",
+    "zht": "出問題了怎麼辦？"
+   },
+   "keys": {
+    "es": [
+     "no funciona",
+     "falla",
+     "error",
+     "bug",
+     "se cuelga",
+     "no carga",
+     "pantalla en blanco",
+     "se queda colgada",
+     "problema con la app"
+    ],
+    "en": [
+     "not working",
+     "does not work",
+     "doesnt work",
+     "error",
+     "bug",
+     "crash",
+     "not loading",
+     "blank screen",
+     "problem with the app"
+    ],
+    "de": [
+     "funktioniert nicht",
+     "geht nicht",
+     "fehler",
+     "bug",
+     "absturz",
+     "ladt nicht",
+     "weisser bildschirm",
+     "problem mit der app"
+    ],
+    "fr": [
+     "ne marche pas",
+     "ne fonctionne pas",
+     "erreur",
+     "bug",
+     "plante",
+     "ne charge pas",
+     "ecran blanc",
+     "probleme avec l appli"
+    ],
+    "it": [
+     "non funziona",
+     "errore",
+     "bug",
+     "si blocca",
+     "non carica",
+     "schermo bianco",
+     "problema con l app"
+    ],
+    "nl": [
+     "werkt niet",
+     "fout",
+     "bug",
+     "loopt vast",
+     "laadt niet",
+     "wit scherm",
+     "probleem met de app"
+    ],
+    "pl": [
+     "nie dziala",
+     "blad",
+     "bug",
+     "zawiesza sie",
+     "nie laduje",
+     "bialy ekran",
+     "problem z aplikacja"
+    ],
+    "zh": [
+     "不能用",
+     "出错",
+     "错误",
+     "卡住",
+     "打不开",
+     "白屏",
+     "应用有问题"
+    ],
+    "zht": [
+     "不能用",
+     "出錯",
+     "錯誤",
+     "卡住",
+     "打不開",
+     "白屏",
+     "應用程式有問題"
+    ]
+   },
+   "a": {
+    "es": "🔧 Prueba esto:\n1. Cierra la app y vuelve a abrirla, o recarga la página\n2. Si era algo en directo (el tiempo, el mar, una ruta), mira que tengas conexión\n3. Si te sale «Nueva versión disponible», toca «Recargar»\n¿Sigue igual? Escríbele a Jerome con el botón de abajo y cuéntale qué pasó.",
+    "en": "🔧 Try this:\n1. Close the app and open it again, or reload the page\n2. If it was something live (the weather, the sea, a route), check that you have a connection\n3. If you see «New version available», tap «Reload»\nStill the same? Write to Jerome with the button below and tell him what happened.",
+    "de": "🔧 Versuch Folgendes:\n1. Schließ die App und öffne sie neu, oder lade die Seite neu\n2. Wenn es etwas Live-Inhalt war (Wetter, Meer, eine Route), prüf deine Verbindung\n3. Siehst du «Neue Version verfügbar», tippe auf «Neu laden»\nImmer noch? Schreib Jerome über den Knopf unten und erzähl ihm, was passiert ist.",
+    "fr": "🔧 Essaie ceci :\n1. Ferme l’appli et rouvre-la, ou recharge la page\n2. Si c’était quelque chose en direct (la météo, la mer, un itinéraire), vérifie ta connexion\n3. Si tu vois «Nouvelle version disponible», touche «Recharger»\nToujours pareil ? Écris à Jerome avec le bouton ci-dessous et raconte-lui ce qui s’est passé.",
+    "it": "🔧 Prova così:\n1. Chiudi l’app e riaprila, oppure ricarica la pagina\n2. Se era qualcosa in diretta (il meteo, il mare, un percorso), controlla la connessione\n3. Se compare «Nuova versione disponibile», tocca «Ricarica»\nAncora niente? Scrivi a Jerome con il pulsante qui sotto e raccontagli cos’è successo.",
+    "nl": "🔧 Probeer dit:\n1. Sluit de app en open hem opnieuw, of herlaad de pagina\n2. Was het iets live (het weer, de zee, een route), controleer dan je verbinding\n3. Zie je «Nieuwe versie beschikbaar», tik dan op «Herladen»\nNog steeds? Schrijf Jerome met de knop hieronder en vertel wat er gebeurde.",
+    "pl": "🔧 Spróbuj tak:\n1. Zamknij aplikację i otwórz ją ponownie albo odśwież stronę\n2. Jeśli chodziło o coś na żywo (pogoda, morze, trasa), sprawdź połączenie\n3. Jeśli zobaczysz «Dostępna nowa wersja», dotknij «Odśwież»\nNadal nic? Napisz do Jerome’a przyciskiem poniżej i opowiedz, co się stało.",
+    "zh": "🔧 试试这样：\n1. 关闭应用后重新打开，或刷新页面\n2. 如果出问题的是实时内容（天气、海况、路线），检查一下网络\n3. 如果看到「有新版本可用」，点「重新载入」\n还是不行？用下面的按钮写信给 Jerome，告诉他发生了什么。",
+    "zht": "🔧 試試這樣：\n1. 關閉應用程式後重新打開，或重新整理頁面\n2. 如果出問題的是即時內容（天氣、海況、路線），檢查一下網路\n3. 如果看到「有新版本可用」，點「重新載入」\n還是不行？用下面的按鈕寫信給 Jerome，告訴他發生了什麼。"
+   },
+   "follow": [
+    "app-07",
+    "app-06"
+   ],
+   "contacto": true,
+   "rotulos": [
+    "PWA.versionNueva",
+    "PWA.recargar"
+   ],
+   "comprobado": "aviso de version nueva del service worker (PWA_TX versionNueva / recargar, SKIP_WAITING); lo en directo (open-meteo, marine, OSRM) no se cachea; showContact pinta el boton de contacto con Jerome debajo de la respuesta"
+  },
+  {
+   "id": "app-22",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué hay en la tienda?",
+    "en": "What is in the shop?",
+    "de": "Was gibt es im Shop?",
+    "fr": "Qu’y a-t-il dans la boutique ?",
+    "it": "Cosa c’è nel negozio?",
+    "nl": "Wat is er in de winkel?",
+    "pl": "Co jest w sklepie?",
+    "zh": "商店里有什么？",
+    "zht": "商店裡有什麼？"
+   },
+   "keys": {
+    "es": [
+     "tienda",
+     "la tienda",
+     "souvenir",
+     "souvenirs",
+     "regalo",
+     "reservar excursion",
+     "anunciar mi negocio",
+     "anunciarme",
+     "comprar en la tienda"
+    ],
+    "en": [
+     "shop",
+     "the shop",
+     "souvenir",
+     "souvenirs",
+     "gift",
+     "book a tour",
+     "advertise my business",
+     "buy in the shop"
+    ],
+    "de": [
+     "shop",
+     "der shop",
+     "souvenir",
+     "souvenirs",
+     "geschenk",
+     "tour buchen",
+     "fur mein geschaft werben",
+     "im shop kaufen"
+    ],
+    "fr": [
+     "boutique",
+     "la boutique",
+     "souvenir",
+     "souvenirs",
+     "cadeau",
+     "reserver une excursion",
+     "annoncer mon commerce",
+     "acheter dans la boutique"
+    ],
+    "it": [
+     "negozio",
+     "il negozio",
+     "souvenir",
+     "regalo",
+     "prenotare un escursione",
+     "pubblicizzare la mia attivita",
+     "comprare nel negozio"
+    ],
+    "nl": [
+     "winkel",
+     "de winkel",
+     "souvenir",
+     "souvenirs",
+     "cadeau",
+     "excursie boeken",
+     "mijn bedrijf adverteren",
+     "kopen in de winkel"
+    ],
+    "pl": [
+     "sklep",
+     "pamiatka",
+     "pamiatki",
+     "prezent",
+     "zarezerwowac wycieczke",
+     "reklamowac moja firme",
+     "kupic w sklepie"
+    ],
+    "zh": [
+     "商店",
+     "纪念品",
+     "礼物",
+     "预订行程",
+     "投放广告",
+     "在商店购买"
+    ],
+    "zht": [
+     "商店",
+     "紀念品",
+     "禮物",
+     "預訂行程",
+     "投放廣告",
+     "在商店購買"
+    ]
+   },
+   "a": {
+    "es": "🛍️ La Tienda, abajo, está en preparación: las excursiones y los souvenirs que ves llevan la etiqueta «PRÓXIMAMENTE» y todavía no se pueden reservar ni pagar. Si tienes un negocio en Tenerife, en la pestaña «Anúnciate» puedes pedir aparecer.",
+    "en": "🛍️ The Shop, at the bottom, is still being prepared: the tours and souvenirs you see carry the «COMING SOON» label and cannot be booked or paid for yet. If you have a business in Tenerife, you can ask to appear in the «Advertise» tab.",
+    "de": "🛍️ Der Shop, unten, ist noch in Vorbereitung: Die Touren und Souvenirs dort tragen das Etikett «DEMNÄCHST» und lassen sich noch nicht buchen oder bezahlen. Hast du einen Betrieb auf Teneriffa, kannst du im Reiter «Werben» anfragen, dort zu erscheinen.",
+    "fr": "🛍️ La Boutique, en bas, est en préparation : les excursions et les souvenirs que tu vois portent l’étiquette «BIENTÔT» et ne peuvent pas encore être réservés ni payés. Si tu as un commerce à Tenerife, tu peux demander à y figurer dans l’onglet «Annoncez-vous».",
+    "it": "🛍️ Il Negozio, in basso, è in preparazione: le escursioni e i souvenir che vedi hanno l’etichetta «PROSSIMAMENTE» e non si possono ancora prenotare né pagare. Se hai un’attività a Tenerife, nella scheda «Pubblicizzati» puoi chiedere di comparire.",
+    "nl": "🛍️ De Winkel, onderaan, is nog in voorbereiding: de excursies en souvenirs die je ziet hebben het label «BINNENKORT» en kunnen nog niet geboekt of betaald worden. Heb je een bedrijf op Tenerife, dan kun je in het tabblad «Adverteren» vragen om erin te komen.",
+    "pl": "🛍️ Sklep na dole jest jeszcze w przygotowaniu: wycieczki i pamiątki, które widzisz, mają etykietę «WKRÓTCE» i na razie nie można ich zarezerwować ani opłacić. Jeśli masz firmę na Teneryfie, w zakładce «Reklamuj się» możesz poprosić o miejsce.",
+    "zh": "🛍️ 底部的「商店」还在筹备中：里面的行程和纪念品都标着「即将推出」，暂时还不能预订或付款。如果你在特内里费岛有生意，可以在「投放广告」页申请上架。",
+    "zht": "🛍️ 底部的「商店」還在籌備中：裡面的行程和紀念品都標著「即將推出」，暫時還不能預訂或付款。如果你在特內里費島有生意，可以在「投放廣告」頁申請上架。"
+   },
+   "follow": [
+    "cul-11",
+    "exc-11",
+    "app-01"
+   ],
+   "rotulos": [
+    "UI.navShop",
+    "UI.shopSoon",
+    "UI.shopAd"
+   ],
+   "comprobado": "shop-panel: pestanas Excursiones, Souvenirs, Negocios, Anunciate; todas las tarjetas llevan badge-soon (shopSoon); Reservar/Comprar acaban en showBookingSoon (reservasPronto); shop-register-form para negocios"
+  }
+ ]
+}

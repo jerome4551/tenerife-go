@@ -9232,22 +9232,24 @@ const TG_ETIQUETAS = (function () {
 
 /* Base de conocimiento del asistente, un fichero por idioma.
 
-   Las entradas de CHAT_KB estan escritas en castellano y en nada mas: a un
-   aleman que preguntaba por el permiso del Teide se le contestaba en
-   castellano y no habia nada que lo delatara, porque la respuesta llegaba
-   igual. Estas 69 vienen redactadas en los diez idiomas, cada una con sus
-   propias claves de busqueda, y viven fuera del HTML porque el movil solo
-   necesita el idioma que esta usando: 32 kB en vez de los 300 de las diez.
+   Es la unica que hay. Hasta el 12 de octubre de 2026 convivia con CHAT_KB,
+   escrita en castellano y en nada mas, y a un aleman que preguntaba por el
+   Teide se le contestaba en castellano sin que nada lo delatara, porque la
+   respuesta llegaba igual. Ahora las 121 entradas vienen redactadas en los
+   diez idiomas, cada una con sus propias claves de busqueda, y viven fuera
+   del HTML porque el movil solo necesita el idioma que esta usando.
 
-   Si el fichero no ha llegado, el asistente contesta con CHAT_KB como
-   siempre. Nunca se queda mudo. */
+   Si el fichero no ha llegado (sin red y sin cache), el asistente sigue
+   contestando lugares y categorias, que salen de places[]; lo demas lo dice
+   que no lo sabe y ofrece escribirle a Jerome. Mudo no se queda. */
 const TG_FAQ = (function () {
   'use strict';
-  let pool = [], cats = {}, inte = {}, pedido = null;
+  let pool = [], cats = {}, inte = {}, zon = {}, pedido = null;
 
-  /* Le da a cada entrada la forma de las de CHAT_KB para que el buscador no
-     tenga que distinguirlas, y resuelve los follow, que en el fichero son
-     ids, al rotulo de ese idioma. Las ordena por prioridad: cuando dos
+  /* Le da a cada entrada la forma que espera el buscador ({keys, answer,
+     follow, showContact}), y resuelve los follow, que en el fichero son
+     ids, al rotulo de ese idioma. "c": 1 es la entrada que lleva debajo el
+     boton de escribirle a Jerome (la de «algo falla»). Las ordena por prioridad: cuando dos
      entradas empatan gana la de arriba, y arriba queremos las de prio 1.
 
      El rotulo se anade a las claves de su propia entrada. No es un adorno:
@@ -9265,7 +9267,8 @@ const TG_FAQ = (function () {
       return {
         keys: e.k.concat([e.l]),
         answer: e.a,
-        follow: (e.f || []).map(function (id) { return rotulo[id]; }).filter(Boolean)
+        follow: (e.f || []).map(function (id) { return rotulo[id]; }).filter(Boolean),
+        showContact: e.c === 1
       };
     });
   }
@@ -9281,14 +9284,16 @@ const TG_FAQ = (function () {
         pool = armar(d);
         cats = (d && d.c) || {};
         inte = (d && d.i) || {};
+        zon = (d && d.z) || {};
       })
-      .catch(function () { if (pedido === lang) { pool = []; cats = {}; inte = {}; } });
+      .catch(function () { if (pedido === lang) { pool = []; cats = {}; inte = {}; zon = {}; } });
   }
   return {
     arrancar: bajar, cambiarA: bajar,
     entradas: function () { return pool; },
     categorias: function () { return cats; },
-    intencion: function (k) { return inte[k] || []; }
+    intencion: function (k) { return inte[k] || []; },
+    zonas: function () { return zon; }
   };
 })();
 
@@ -22625,8 +22630,8 @@ window.addEventListener('hashchange', () => {
     var TX = {
       es:{t:'Instalar la app',ios:'En <b>Safari</b>, toca el botón <b>Compartir</b> (cuadrado con flecha) y elige <b>Añadir a pantalla de inicio</b>.',and:'En <b>Chrome</b>, abre el menú <b>\u22EE</b> y elige <b>Instalar aplicación</b>.',pc:'En el navegador, busca el icono de <b>instalar</b> en la barra de direcciones, o abre el menú y elige <b>Instalar</b>.',ok:'Entendido'},
       en:{t:'Install the app',ios:'In <b>Safari</b>, tap the <b>Share</b> button (square with arrow) and choose <b>Add to Home Screen</b>.',and:'In <b>Chrome</b>, open the <b>\u22EE</b> menu and choose <b>Install app</b>.',pc:'In your browser, look for the <b>install</b> icon in the address bar, or open the menu and choose <b>Install</b>.',ok:'Got it'},
-      fr:{t:'Installer l\u2019app',ios:'Dans <b>Safari</b>, touche le bouton <b>Partager</b> (carre avec fleche) et choisis <b>Sur l\u2019ecran d\u2019accueil</b>.',and:'Dans <b>Chrome</b>, ouvre le menu <b>\u22EE</b> et choisis <b>Installer l\u2019application</b>.',pc:'Dans le navigateur, cherche l\u2019icone <b>installer</b> dans la barre d\u2019adresse, ou ouvre le menu et choisis <b>Installer</b>.',ok:'Compris'},
-      de:{t:'App installieren',ios:'Tippe in <b>Safari</b> auf <b>Teilen</b> (Quadrat mit Pfeil) und waehle <b>Zum Home-Bildschirm</b>.',and:'Oeffne in <b>Chrome</b> das Menue <b>\u22EE</b> und waehle <b>App installieren</b>.',pc:'Suche im Browser das <b>Installieren</b>-Symbol in der Adresszeile oder oeffne das Menue und waehle <b>Installieren</b>.',ok:'Verstanden'},
+      fr:{t:'Installer l\u2019app',ios:'Dans <b>Safari</b>, touche le bouton <b>Partager</b> (carré avec flèche) et choisis <b>Sur l\u2019écran d\u2019accueil</b>.',and:'Dans <b>Chrome</b>, ouvre le menu <b>\u22EE</b> et choisis <b>Installer l\u2019application</b>.',pc:'Dans le navigateur, cherche l\u2019icône <b>installer</b> dans la barre d\u2019adresse, ou ouvre le menu et choisis <b>Installer</b>.',ok:'Compris'},
+      de:{t:'App installieren',ios:'Tippe in <b>Safari</b> auf <b>Teilen</b> (Quadrat mit Pfeil) und wähle <b>Zum Home-Bildschirm</b>.',and:'Öffne in <b>Chrome</b> das Menü <b>\u22EE</b> und wähle <b>App installieren</b>.',pc:'Suche im Browser das <b>Installieren</b>-Symbol in der Adresszeile oder öffne das Menü und wähle <b>Installieren</b>.',ok:'Verstanden'},
       it:{t:'Installa l\u2019app',ios:'In <b>Safari</b>, tocca <b>Condividi</b> (quadrato con freccia) e scegli <b>Aggiungi a Home</b>.',and:'In <b>Chrome</b>, apri il menu <b>\u22EE</b> e scegli <b>Installa app</b>.',pc:'Nel browser, cerca l\u2019icona <b>installa</b> nella barra degli indirizzi, oppure apri il menu e scegli <b>Installa</b>.',ok:'Ho capito'},
       nl:{t:'App installeren',ios:'Tik in <b>Safari</b> op <b>Deel</b> (vierkant met pijl) en kies <b>Zet op beginscherm</b>.',and:'Open in <b>Chrome</b> het menu <b>\u22EE</b> en kies <b>App installeren</b>.',pc:'Zoek in je browser het <b>installeren</b>-icoon in de adresbalk, of open het menu en kies <b>Installeren</b>.',ok:'Begrepen'},
       zh:{t:'\u5B89\u88C5\u5E94\u7528',ios:'\u5728 <b>Safari</b> \u4E2D\u70B9\u51FB<b>\u5206\u4EAB</b>\u6309\u94AE\uFF08\u5E26\u7BAD\u5934\u7684\u65B9\u5757\uFF09\uFF0C\u9009\u62E9<b>\u6DFB\u52A0\u5230\u4E3B\u5C4F\u5E55</b>\u3002',and:'\u5728 <b>Chrome</b> \u4E2D\u6253\u5F00<b>\u22EE</b>\u83DC\u5355\uFF0C\u9009\u62E9<b>\u5B89\u88C5\u5E94\u7528</b>\u3002',pc:'\u5728\u6D4F\u89C8\u5668\u5730\u5740\u680F\u67E5\u627E<b>\u5B89\u88C5</b>\u56FE\u6807\uFF0C\u6216\u6253\u5F00\u83DC\u5355\u9009\u62E9<b>\u5B89\u88C5</b>\u3002',ok:'\u77E5\u9053\u4E86'},
@@ -26564,347 +26569,22 @@ var CHAT_INTENT={donde:1,esta:1,estan:1,queda:1,quedan:1,encuentra:1,llegar:1,ll
 CHAT_ASKINFO={cuanto:1,cuesta:1,cuestan:1,precio:1,precios:1,vale:1,valen:1,entrada:1,entradas:1,reserva:1,reservar:1,reservo:1,permiso:1,permisos:1,horario:1,horarios:1,cuando:1,abre:1,abren:1,cierra:1,cierran:1,tarifa:1,tarifas:1},
 CHAT_WHAT_EXCLUDE={farmacia:1,hospital:1,csalud:1,veterinario:1,gasolinera:1,supermercado:1,webcam:1,municipio:1,ayuda:1,oficina_turismo:1,puerto_comercial:1};
 
-const CHAT_KB = [
-  // ═══ MOVILIDAD ═══
-  { keys:['titsa','bus','autobus','guagua','guaguas','transporte publico','bono','ten+','ten mas'],
-    answer:'🚌 Las guaguas de Tenerife son de TITSA (titsa.com y app). Formas de pagar:\n• Efectivo al conductor (billetes de 10€ como máximo)\n• Tarjeta bancaria contactless en las líneas turísticas y de aeropuerto\n• Tarjeta ten+ (2€, recargable) o app ten+ móvil → tarifa reducida en interurbanos\n• Bono día 10€ (no válido en líneas del Teide ni Teno)\nDime a dónde quieres ir y te oriento con la línea.',
-    follow:['Bus al Teide','Bus a Masca','Aeropuerto Sur'] },
-
-  { keys:['bus teide','guagua teide','teide en bus','teide en guagua','al teide en bus','al teide en guagua','guagua al teide','bus al teide','dentro del parque','342','348','341','ir al teide sin coche'],
-    answer:'🚌🌋 Al Parque Nacional del Teide llegan dos líneas turísticas de TITSA:\n• 342 desde Costa Adeje (por Los Cristianos y Vilaflor)\n• 348 desde Puerto de la Cruz (por La Orotava)\nAmbas hacen una salida por la mañana y regresan por la tarde, con tarifa plena (efectivo o tarjeta bancaria, los bonos NO valen). La línea 341 recorre el interior del Parque: Portillo, Minas de San José, Montaña Blanca, Teleférico y Parador.\nConfirma horarios del día en titsa.com antes de ir.',
-    follow:['Teleférico del Teide','Permiso para la cima','Miradores'] },
-
-  { keys:['111','linea 111','santa cruz adeje bus'],
-    answer:'🚌 La línea 111 une el Intercambiador de Santa Cruz con la Estación de Costa Adeje por la autopista TF-1. Ojo: ya no entra en la terminal del Aeropuerto Sur; solo para en «Enlace Aeropuerto», en la autopista. Para entrar al aeropuerto usa la 10 (Santa Cruz) o la 40 (Costa Adeje).',
-    follow:['Aeropuerto Sur','Aeropuerto Norte','Guaguas TITSA'] },
-
-  { keys:['aeropuerto sur','aeropuerto tfs','tfs','reina sofia','llegar del aeropuerto','del aeropuerto a'],
-    answer:'✈️ Aeropuerto Tenerife Sur (TFS):\n• Línea 10 directa a Santa Cruz (~9€; de noche circula como 711)\n• Línea 40 aeroexpress a Los Cristianos y Costa Adeje\n• Línea 343 conecta con Puerto de la Cruz y con el Aeropuerto Norte\n• Taxi a Costa Adeje ~25-35€ según zona y hora\nSe paga en efectivo o con tarjeta bancaria al conductor.',
-    follow:['Aeropuerto Norte','Alquiler de coche','Taxi'] },
-
-  { keys:['aeropuerto norte','tfn','los rodeos'],
-    answer:'✈️ Aeropuerto Tenerife Norte (TFN, Los Rodeos):\n• Líneas 20 y 30 aeroexpress a Santa Cruz y La Laguna\n• Línea 343 al sur (Costa Adeje) y a Puerto de la Cruz\nEstá a 10 min de La Laguna. El tranvía no llega al aeropuerto, pero sí une La Laguna con Santa Cruz.',
-    follow:['La Laguna','Aeropuerto Sur','Guaguas TITSA'] },
-
-  { keys:['tranvia','tram','metropolitano'],
-    answer:'🚋 El tranvía une Santa Cruz con La Laguna (Línea 1, ~37 min) y tiene un ramal a La Cuesta–Tíncer (Línea 2). Funciona desde temprano hasta la medianoche y se paga con ten+ o billete en máquina. Es la forma más cómoda de moverse entre las dos ciudades.',
-    follow:['Santa Cruz','La Laguna','Guaguas TITSA'] },
-
-  { keys:['taxi','taxis','cabify','uber'],
-    answer:'🚕 Los taxis oficiales son blancos, con taxímetro y suplementos de aeropuerto/nocturnos. Se cogen en paradas, por teléfono o desde el hotel; en zonas turísticas hay paradas por todas partes. Las apps de VTC funcionan solo en algunas zonas y con flota limitada, así que no cuentes con ellas como plan A. Para excursiones, pide precio cerrado antes de subir.',
-    follow:['Alquiler de coche','Aeropuerto Sur','Guaguas TITSA'] },
-
-  { keys:['alquiler','alquilar','alquilo','coche','rent a car','coche de alquiler','conducir'],
-    answer:'🚗 Alquilar coche es la forma más libre de ver la isla. Consejos:\n• Compañías locales con buena fama: Cicar, PlusCar, AutoReisen (suelen ir sin franquicia ni letra pequeña)\n• Reserva con antelación en temporada alta\n• La gasolina es más barata que en la península (menos impuestos)\n• Carreteras de montaña con muchas curvas: calcula tiempos con calma\n• Carné UE válido; el internacional solo si el tuyo no es europeo.',
-    follow:['Aparcar en Tenerife','Gasolineras','Ruta por el norte'] },
-
-  { keys:['ferry','ferri','la gomera','el hierro','la palma','gran canaria','naviera','fred olsen'],
-    answer:'⛴️ Ferris entre islas:\n• A La Gomera: desde Los Cristianos, ~50 min (Fred. Olsen) o ~1h20 (Armas) — ideal para excursión de un día\n• A La Palma y El Hierro: también desde Los Cristianos\n• A Gran Canaria: desde Santa Cruz (~80 min el rápido)\nReserva online; si llevas coche, con más antelación.',
-    follow:['Los Cristianos','Santa Cruz','Excursiones'] },
-
-  { keys:['aparcar','aparco','aparcamiento','parking','parkings','estacionar'],
-    answer:'🅿️ Aparcar:\n• Ciudades: zona azul de pago (parquímetro) entre semana; garajes públicos en los centros\n• Pueblos turísticos (Masca, Garachico, La Orotava): llega antes de las 10h o usa transporte público\n• Teide: los aparcamientos de miradores se llenan de 10 a 16h; madruga o ve al atardecer\n• Nunca en línea amarilla ni en salidas: la grúa actúa rápido.',
-    follow:['Bus al Teide','Alquiler de coche','Miradores'] },
-
-  // ═══ TEIDE Y SENDEROS REGULADOS ═══
-  /* Esta entrada decia que el permiso de la cima era gratuito y que se
-     reservaba en reservasparquesnacionales.es. Las dos cosas dejaron de ser
-     ciertas: se reserva en Tenerife ON y en la franja del teleferico se
-     paga. Queda aqui la version corta y correcta, que es la que sale si
-     faq/<lang>.json no ha llegado; el detalle esta en las quince entradas
-     del bloque del Teide. */
-  { keys:['teide','pico del teide','cima','volcan','subir al teide','permiso teide','telesforo bravo'],
-    answer:'🌋 El Teide (3.715 m) es el pico más alto de España. Claves:\n• Con el teleférico subes a 3.555 m (La Rambleta) sin ningún permiso\n• Para el tramo final a la CIMA (sendero PNT 10, Telesforo Bravo) hace falta autorización previa: se reserva en Tenerife ON (tenerifeon.es), registro gratuito. Las plazas se abren cada lunes a las 07:00 hora canaria para los 56 días siguientes, una reserva por persona cada 15 días\n• En la franja del teleférico (9:00–17:00) hay tarifa; residentes en Tenerife y menores no pagan. Fuera de esa franja no hay tarifa, pero la reserva sigue siendo obligatoria\n• El billete del teleférico NO incluye el permiso: son dos gestiones distintas\n• Arriba hace frío y hay la mitad de oxígeno: abrígate y ve despacio\n• En guagua: líneas 342 (desde el sur) y 348 (desde el norte).',
-    follow:['Dónde reservo el permiso','Bus al Teide','Ver las estrellas'] },
-
-  { keys:['teleferico','el teleferico','al teleferico','del teleferico','cable car','telesferico'],
-    answer:'🚡 Teleférico del Teide: sube de 2.356 a 3.555 m en 8 minutos.\n• Horario general 9:00–17:00 (amplía en verano); cierra si hay viento fuerte\n• Precio no residente: 23,50€ por trayecto (~45-47€ ida y vuelta); residentes canarios mucho menos; niños mitad\n• Compra online en volcanoteide.com para elegir hora y evitar cola\n• Arriba, sin permiso, puedes hacer los senderos 11 (mirador de La Fortaleza) y 12 (mirador de Pico Viejo), ~30-60 min cada uno. La cima requiere permiso aparte.',
-    follow:['Permiso para la cima','Bus al Teide','Qué hacer cerca del Teide'] },
-
-  { keys:['masca','barranco de masca','caserio de masca','barco de masca'],
-    answer:'🏞️ Masca, dos planes distintos:\n• El CASERÍO se visita libre y gratis (mejor en guagua 355 o temprano: casi no hay parking)\n• El BARRANCO (bajada de ~4-5 h hasta la playa) exige reserva nominal con DNI/pasaporte en caminobarrancodemasca.com. Bajadas entre 8:30 y 13:00, hay que salir del barranco antes de las 18:00\n• Desde diciembre de 2025 se sube al inicio en la guagua 355 desde Santiago del Teide (estar en la parada 1 h antes) y pasar el control del Centro de Visitantes 30 min antes de tu hora\n• La vuelta es en barco o kayak hasta Los Gigantes: ticket aparte en la misma web\n• Cierra si el tiempo es malo. Lleva 2 L de agua y calzado de montaña.',
-    follow:['Los Gigantes','Senderos fáciles','Excursiones'] },
-
-  { keys:['barranco del infierno','infierno','cascada adeje'],
-    answer:'💦 Barranco del Infierno (Adeje): sendero de 6,5 km ida y vuelta (~3 h) hasta una cascada, en una Reserva Natural con aforo diario limitado.\n• Reserva obligatoria en barrancodelinfierno.es: 13€ adulto, 6,50€ niños de 5 a 12 (residentes menos)\n• Casco obligatorio (te lo dan allí) · no se permiten mascotas\n• Empieza en la parte alta del pueblo de Adeje (guaguas 416/417/473 desde la zona turística)\n• Ve temprano: hay poca sombra a mediodía.',
-    follow:['Senderos fáciles','Costa Adeje','Playas en el sur'] },
-
-  { keys:['anaga','laurisilva','bosque encantado','taganana','chamorga'],
-    answer:'🌿 El Parque Rural de Anaga guarda la mejor laurisilva de Canarias y es Reserva de la Biosfera. Imprescindibles:\n• Cruz del Carmen: centro de visitantes y Sendero de los Sentidos (fácil, con niños)\n• Taganana y las playas de Benijo/Almáciga\n• Chamorga y el faro de Anaga para los más camperos\nEl «Bosque Encantado» (El Pijaral) requiere autorización gratuita previa. Suele haber niebla y el suelo resbala: buen calzado siempre.',
-    follow:['Playa Benijo','Senderos fáciles','La Laguna'] },
-
-  { keys:['teno','punta de teno','faro de teno','buenavista'],
-    answer:'🌅 Punta de Teno, el extremo oeste, tiene el faro y vistas brutales a Los Gigantes. La carretera TF-445 se cierra al coche particular muchos días y franjas horarias (sobre todo fines de semana y festivos): en esas horas se sube en la lanzadera desde Buenavista del Norte. Consulta la regulación vigente antes de ir y evita el tramo con viento fuerte o desprendimientos.',
-    follow:['Los Gigantes','Masca','Miradores en el oeste'] },
-
-  { keys:['paisaje lunar','vilaflor','sombrerito'],
-    answer:'🌕 El Paisaje Lunar (Vilaflor) es una ruta circular de ~13 km (4-5 h) entre pinares hasta unas formaciones de toba blanca únicas. Sin permisos, pero con poca sombra en la parte alta: sal temprano, lleva 2 L de agua y protección solar. En invierno puede helar por la mañana.',
-    follow:['Senderos fáciles','Teide','Qué hacer cerca de Vilaflor'] },
-
-  { keys:['senderos faciles','ruta facil','senderismo con ninos','caminatas suaves'],
-    answer:'🥾 Senderos suaves y muy agradecidos:\n• Sendero de los Sentidos (Anaga) — 30-60 min entre laurisilva\n• Roques de García (Teide) — 1,5 h circular ante el Roque Cinchado\n• La Caldera–Aguamansa (La Orotava) — pinar con áreas de picnic\n• Rambla de Castro (Los Realejos) — costa, palmeral y casona histórica\n• Malpaís de Güímar — volcán joven junto al mar, llano\nTodos aparecen en el mapa con su ficha.',
-    follow:['Senderos','Barranco del Infierno','Anaga'] },
-
-  // ═══ SEGURIDAD Y SALUD ═══
-  /* «help», «hilfe», «aiuto» y «pomoc» estaban en la entrada de ayuda de la
-     app, que explica los botones. Quien escribe eso puede estar pidiendo
-     ayuda de verdad, asi que las hereda emergencias. Si solo queria el
-     manual, lo tiene a un toque en la barra de abajo; al reves no. */
-  { keys:['emergencia','emergencias','112','socorro','rescate','urgente','help','hilfe','aiuto','pomoc','hulp'],
-    answer:'🚨 Para CUALQUIER emergencia en Tenerife llama al 112 (gratuito, atienden en varios idiomas). Si estás en el monte o la costa, abre tu ubicación en el mapa de la app y dales las coordenadas exactas: acelera mucho el rescate. Para urgencias médicas no graves también puedes acudir al centro de salud más cercano (los tienes en el mapa).',
-    follow:['Hospitales','Farmacias','Seguridad en el mar'] },
-
-  { keys:['mar','olas','corrientes','bandera','peligroso','peligrosa','resaca','ahogamiento','seguridad playa','marea'],
-    answer:'🌊 El Atlántico aquí exige respeto:\n• Bandera roja = prohibido el baño; amarilla = precaución. Sin socorrista, extrema el cuidado\n• Las playas del norte (Benijo, El Socorro…) tienen corrientes y resaca fuertes\n• Nunca des la espalda al mar en charcos y rompientes: las «olas escaleras» sorprenden\n• Piscinas naturales: solo con mar en calma y por las escaleras\n• Si te atrapa una corriente: no luches contra ella, nada en paralelo a la costa y pide ayuda (112).',
-    follow:['Piscinas naturales','Playas en el norte','Emergencias 112'] },
-
-  { keys:['calima','polvo','bruma','aire sahara'],
-    answer:'🌫️ La calima es polvo en suspensión del Sáhara: el cielo se pone amarillento, sube la temperatura y baja la calidad del aire. Suele durar 1-3 días. Si hay episodio fuerte: evita deporte intenso al aire libre, hidrátate y, si eres asmático o sensible, mascarilla FFP2 y ventanas cerradas. Consulta el estado en la web de AEMET.',
-    follow:['El tiempo','Planes bajo techo','Webcams'] },
-
-  { keys:['seguridad','consejos','precauciones','seguridad senderismo','perderse','montana peligro','precauciones ruta'],
-    answer:'⚠️ Reglas de oro en el monte:\n• Agua de sobra (2 L por persona), gorra y capa extra: el tiempo cambia rápido con la altitud\n• Di a alguien tu ruta y hora prevista de vuelta\n• No abandones el sendero marcado: los barrancos engañan\n• Mira la previsión y evita barrancos con lluvia (crecidas)\n• Muchas fichas del mapa llevan avisos ⚠️ específicos del lugar: léelos antes de salir\n• Ante un problema: 112 + coordenadas de la app.',
-    follow:['Senderos fáciles','Emergencias 112','El tiempo'] },
-
-  { keys:['sol','quemadura','protector solar','uv','indice uv','crema solar'],
-    answer:'☀️ El índice UV en Canarias es alto TODO el año, incluso nublado («panza de burro» también quema). SPF 50, gorra y gafas; repite crema tras cada baño. En el Teide el sol pega el doble: a 3.500 m te quemas en minutos. Bebe agua a menudo: la brisa disimula el calor.',
-    follow:['El tiempo','Playas','Teide'] },
-
-  { keys:['farmacia guardia','de guardia','guardia','medicamento','receta electronica'],
-    answer:'💊 Las farmacias se reconocen por la cruz verde; horario típico 9-13:30 y 17-20:30, y siempre hay una de guardia 24 h por zona (el cartel de cada farmacia indica cuál toca). En el mapa tienes la categoría Farmacias 💊 para localizar la más cercana. Con receta electrónica de otra región de España te dispensan sin problema; con recetas de fuera de España, pregunta: muchos medicamentos comunes se venden con equivalente local.',
-    follow:['Hospitales','Emergencias 112','Centros de salud'] },
-
-  /* «insolacion» y «golpe de calor» estaban en la entrada del sol, que habla
-     de crema y de indice UV. Quien los escribe suele tener a alguien mal
-     delante y necesita que hacer, no consejos de proteccion. */
-  { keys:['medico','sanidad','tarjeta sanitaria','seguro','hospital','hospitales','urgencias','insolacion','golpe de calor','deshidratacion','primeros auxilios'],
-    answer:'🏥 Salud para visitantes:\n• Ciudadanos UE: la Tarjeta Sanitaria Europea (TSE) cubre urgencias en la sanidad pública\n• Resto: conviene seguro de viaje con cobertura médica\n• Hospitales públicos de referencia: HUC (La Laguna), La Candelaria (Santa Cruz) y Hospital del Sur (Arona); además hay clínicas privadas en las zonas turísticas\n• Insolación o golpe de calor: a la sombra, fresco, agua a sorbos y aflojar la ropa. Si hay vómitos, confusión o desmayo, 112 sin esperar\n• Urgencia grave: 112 directamente.',
-    follow:['Farmacias','Emergencias 112','Centros de salud'] },
-
-  // ═══ CLIMA ═══
-  { keys:['tiempo','clima','temperatura','lluvia','viento','nublado','calor','frio','panza de burro','mar de nubes'],
-    answer:'🌤️ Tenerife es un mosaico de microclimas por los vientos alisios:\n• Sur y oeste: sol casi garantizado, 21-28 °C todo el año\n• Norte: más verde; el «mar de nubes» (panza de burro) es habitual en verano por la mañana\n• Cumbres: frío real, y nieve algunas semanas de invierno\nTruco isleño: si está nublado donde estás, cruza la isla — a 40 min suele haber sol. Toca cualquier lugar del mapa para ver su tiempo actual.',
-    follow:['Mejor época para venir','Norte o sur','Webcams'] },
-
-  { keys:['mejor epoca','cuando venir','temporada','que mes'],
-    answer:'📅 No hay mala época — la llaman la isla de la eterna primavera:\n• Mar-may: campo en flor y menos gente\n• Jun-sep: más calor y mar más cálido (22-24 °C)\n• Oct-nov: temperaturas top y ofertas\n• Dic-feb: 20-23 °C en costa, posible nieve en el Teide y Carnaval a la vista\nEl agua del mar nunca baja de ~19 °C.',
-    follow:['El tiempo','Carnaval','Playas'] },
-
-  { keys:['norte o sur','norte vs sur','alojarse','alojo','alojamiento','hotel','hoteles','donde dormir','apartamento'],
-    answer:'🧭 ¿Norte o sur? Rápido:\n• SUR (Costa Adeje, Los Cristianos, El Médano): sol fiable, playas cómodas, ambiente internacional\n• NORTE (Puerto de la Cruz, La Orotava, Garachico): paisaje verde, esencia canaria, guachinches y menos masificación\nLo ideal: dormir en uno y cruzar a explorar el otro — la isla se recorre en una hora y pico.',
-    follow:['Playas en el sur','Qué hacer en el norte','Alojamiento'] },
-  // ═══ GASTRONOMÍA ═══
-  { keys:['comer','comida','tipico','tipica','tipicos','tipicas','gastronomia','plato','platos','que probar'],
-    answer:'🍽️ Imprescindibles de la cocina canaria:\n• Papas arrugadas con mojo rojo y verde\n• Gofio (en escaldón, con leche o de postre)\n• Carne fiesta, conejo en salmorejo y cabra en salsa\n• Pescado fresco: cherne, vieja, chocos\n• Queso asado con miel de palma\n• Postres: bienmesabe, quesillo, frangollo\nY de beber, vino de la tierra: hay 5 denominaciones de origen en la isla.',
-    follow:['Guachinches','Vinos de Tenerife','Restaurantes en el norte'] },
-
-  { keys:['guachinche','guachinches','vino casero','comida casera barata'],
-    answer:'🍷 Un guachinche es una casa particular del norte que abre temporalmente para vender el vino de su cosecha con comida casera a precio popular: carne fiesta, costillas con piña, garbanzas, huevos al estampido…\n• Zona clásica: Valle de La Orotava, La Matanza, La Victoria, Tacoronte, Santa Úrsula\n• Temporada fuerte desde el vino nuevo (San Andrés, finales de noviembre) hasta agotar cosecha\n• Solo efectivo en muchos, carta corta escrita a mano — esa es la gracia\nEn el mapa los tienes bajo Gastronomía 🍷.',
-    follow:['Vinos de Tenerife','Comida típica','Qué hacer en La Orotava'] },
-
-  { keys:['mojo','papas arrugadas','papas'],
-    answer:'🥔 Las papas arrugadas se cuecen con mucha sal hasta que la piel queda arrugadita y se comen enteras, mojadas en:\n• Mojo rojo o picón: pimienta palmera, ajo, comino (pica lo justo)\n• Mojo verde: cilantro o perejil, suave\nLas variedades antiguas (papas bonitas, negras yema de huevo) son oro local — si las ves en carta, pídelas.',
-    follow:['Comida típica','Guachinches','Mercadillos'] },
-
-  { keys:['gofio','escaldon'],
-    answer:'🌾 El gofio es harina de cereales tostados, herencia guanche y base de la cocina isleña. Pruébalo como escaldón (amasado con caldo caliente, se come con cebolla o costilla), en la leche del desayuno, o de postre en mousse y helado. Sano, saciante y con mucha historia.',
-    follow:['Comida típica','Mercadillos','Museos'] },
-
-  { keys:['barraquito','cafe canario','zaperoco'],
-    answer:'☕ El barraquito es EL café de Tenerife, por capas: leche condensada, licor 43, café, leche espumada, canela y corteza de limón. Pídelo «completo» (con licor) o «sin» si no quieres alcohol. En Santa Cruz y La Laguna lo bordan.',
-    follow:['Comida típica','Santa Cruz','La Laguna'] },
-
-  { keys:['vino','vinos','bodega','bodegas','denominacion','denominacion de origen','malvasia','listan'],
-    answer:'🍇 Tenerife tiene 5 Denominaciones de Origen: Tacoronte-Acentejo, Valle de La Orotava (con sus vides en cordón trenzado únicas), Ycoden-Daute-Isora, Valle de Güímar y Abona. Uvas estrella: listán negro, listán blanco y la histórica malvasía que ya elogiaba Shakespeare. Muchas bodegas se visitan con cata: pregunta en la oficina de turismo o mira Gastronomía 🍷 en el mapa.',
-    follow:['Guachinches','Icod de los Vinos','Comida típica'] },
-
-  { keys:['queso','quesos','queseria'],
-    answer:'🧀 Los quesos canarios (sobre todo de cabra) son premiados internacionalmente: fresco, tierno, ahumado o curado. Pídelo asado a la plancha con miel de palma (de La Gomera) o mojo. En los mercadillos de agricultor encuentras queseras artesanas de la isla.',
-    follow:['Mercadillos','Comida típica','Guachinches'] },
-
-  // ═══ PLANES TOP ═══
-  { keys:['playa','playas','mejor playa','arena','banarse'],
-    answer:'🏖️ Según lo que busques:\n• Arena negra salvaje → Benijo y Almáciga (Anaga), El Bollullo\n• Arena dorada → Las Teresitas (la clásica de postal)\n• Comodidad y servicios → El Duque, Fañabé, Las Vistas\n• Ambiente local → El Médano (y viento para kite)\n• Nudista → La Tejita, Los Patos\nEn el norte vigila siempre el estado del mar. Dime zona y te enseño las del mapa.',
-    follow:['Playas en el norte','Playas en el sur','Piscinas naturales'] },
-
-  { keys:['piscina natural','piscinas naturales','charco','charcos'],
-    answer:'💧 Las piscinas naturales son lo más de la costa norte: lava que forma charcos de agua salada.\n• Garachico (El Caletón) — las más famosas\n• Bajamar y Punta del Hidalgo — con socorrista en temporada\n• Charco del Viento, Charco de La Laja, El Pris…\nBáñate SOLO con mar en calma, entra por las escaleras y cuidado con erizos (escarpines = gloria). Con oleaje, ni te acerques al borde.',
-    follow:['Garachico','Seguridad en el mar','Playas en el norte'] },
-
-  { keys:['ballena','ballenas','delfin','delfines','cetaceos','avistamiento','whale'],
-    answer:'🐋 La franja entre Los Gigantes y Rasca es Patrimonio de Ballenas (una de las primeras de Europa): calderones tropicales y delfines mulares residen aquí todo el año, así que el avistamiento es casi seguro.\n• Salidas desde Los Gigantes, Puerto Colón y Los Cristianos (2-3 h, ~35-60€)\n• Elige barcos con distintivo «Barco Azul»: cumplen la normativa de acercamiento\n• Mañanas = mar más tranquilo. A veces se ven desde los acantilados gratis.',
-    follow:['Los Gigantes','Excursiones','Playas en el sur'] },
-
-  { keys:['estrellas','astronomia','via lactea','observar cielo','starlight'],
-    answer:'✨ Tenerife es Destino Starlight: uno de los mejores cielos del planeta.\n• Por libre: sube al Parque Nacional al anochecer (miradores y aparcamientos de Las Cañadas), luna nueva = más Vía Láctea\n• Con telescopio y guía: tours de atardecer + estrellas, algunos visitan el Observatorio del Teide de día\n• Abrígate en serio: de noche a 2.000 m hace frío hasta en agosto.',
-    follow:['Teide','Teleférico del Teide','Excursiones'] },
-
-  { keys:['la laguna','san cristobal de la laguna','patrimonio humanidad'],
-    answer:'🏛️ San Cristóbal de La Laguna es Patrimonio de la Humanidad: la primera ciudad colonial «no amurallada», modelo de las ciudades de América. Piérdete a pie por sus calles de casonas con patios, sube a la torre de la Concepción y tapea por el mercado y la calle Herradores. Desde Santa Cruz, tranvía directo. Ambiente universitario y fresquito rico.',
-    follow:['Santa Cruz','Anaga','Barraquito'] },
-
-  { keys:['la orotava','orotava','alfombras','corpus'],
-    answer:'🏘️ La Orotava presume del casco histórico mejor conservado: la Casa de los Balcones, jardines Victoria, iglesia de la Concepción… En el Corpus Christi (mayo/junio) sus famosas alfombras de flores y arenas del Teide cubren las calles: espectáculo único. Base perfecta para combinar con guachinches del valle.',
-    follow:['Guachinches','Puerto de la Cruz','Senderos fáciles'] },
-
-  { keys:['garachico','caleton'],
-    answer:'⚓ Garachico fue el gran puerto de la isla hasta que el volcán de 1706 lo sepultó a medias; de aquella lava nacieron las piscinas naturales de El Caletón. Hoy es de los pueblos más bonitos: castillo de San Miguel, plazas con drago y calma total. Ideal medio día + baño si el mar lo permite.',
-    follow:['Piscinas naturales','Icod de los Vinos','Qué hacer en el norte'] },
-
-  { keys:['carnaval','carnavales','murgas','comparsas'],
-    answer:'🎭 El Carnaval de Santa Cruz es de los mayores del mundo: gala de elección de la Reina, murgas, comparsas y varias noches de baile en la calle con cientos de miles de personas. Fechas variables (febrero/marzo, según Cuaresma). El «Entierro de la Sardina» cierra la fiesta. Puerto de la Cruz tiene su propia versión con encanto. Si vienes en fechas: disfraz puesto, que aquí va TODO el mundo disfrazado.',
-    follow:['Santa Cruz','Mejor época para venir','Fiestas'] },
-
-  { keys:['fiesta','fiestas','romeria','san andres','tradiciones'],
-    answer:'🎉 Calendario festivo isleño:\n• Carnaval (feb/mar) — el grande\n• Alfombras del Corpus, La Orotava (may/jun)\n• Romerías de mayo a septiembre: trajes de mago, carretas y vino (Tegueste, La Orotava, Garachico…)\n• San Andrés (29-30 nov): se abre el vino nuevo; en Icod los chicos bajan las «tablas» enceradas calle abajo\n• Navidad: belenes y conciertos.',
-    follow:['Carnaval','Guachinches','La Orotava'] },
-
-  // ═══ FAMILIA ═══
-  { keys:['ninos','familia','plan familiar','con bebe'],
-    answer:'👨‍👩‍👧 Tenerife con niños funciona sola:\n• Siam Park (Costa Adeje) y Loro Parque (Puerto de la Cruz) — los dos nº1 del mundo en su categoría\n• Playas mansas: Las Vistas, El Duque, lago artificial de la Playa Jardín\n• Teleférico del Teide (desde 3 años sube bien)\n• Barcos de ballenas: éxito asegurado\n• Sendero de los Sentidos y La Caldera para su primera «montaña»\nFiltra Familia 🎢 en el mapa para más ideas.',
-    follow:['Siam Park y Loro Parque','Playas en el sur','Senderos fáciles'] },
-
-  { keys:['siam park','loro parque','parque acuatico','zoo','twin ticket'],
-    answer:'🎢 Los dos gigantes de la isla:\n• Siam Park (Costa Adeje): mejor parque acuático del mundo según TripAdvisor; el Tower of Power es leyenda\n• Loro Parque (Puerto de la Cruz): zoo premiado con orcas, pingüinos y la mayor colección de loros\n• Twin Ticket combinado: 78€ adulto / 57€ niño (3-11), un parque por día con 15 días de margen — ahorra ~10€ por persona\n• Compra online; parking 7€/día en ambos.',
-    follow:['Planes en familia','Costa Adeje','Puerto de la Cruz'] },
-
-  { keys:['lluvia','llueve','si llueve','esta lloviendo','mal tiempo','plan bajo techo','nublado que hacer'],
-    answer:'🌧️ ¿Día gris? Opciones:\n1. Cruza la isla: si el norte llora, el sur suele reír (30-50 min)\n2. Museos top: MUNA (naturaleza y momias guanches, Santa Cruz), Museo de la Ciencia y el Cosmos (La Laguna)\n3. Cueva del Viento (Icod): el mayor tubo volcánico de Europa — reserva previa\n4. Loro Parque aguanta bien la llovizna\n5. Barraquito + repostería en La Laguna, plan redondo.',
-    follow:['El tiempo','Museos','Norte o sur'] },
-
-  // ═══ PRÁCTICO ═══
-  { keys:['dinero','pagar','tarjeta','efectivo','propina','cajero'],
-    answer:'💶 Euro, como en toda España. La tarjeta se acepta casi en todas partes (contactless hasta en la guagua turística), pero lleva algo de efectivo para guachinches, mercadillos y pueblos pequeños. Propina: no es obligatoria; redondear o dejar 5-10% si el servicio fue bueno se agradece. Cajeros por todas partes; evita los «independientes» de zonas turísticas (comisiones altas).',
-    follow:['Guachinches','Mercadillos','Precios orientativos'] },
-
-  { keys:['precio','precios','caro','barato','presupuesto','presupuestos'],
-    answer:'💰 Precios orientativos (2026):\n• Guagua interurbana: 1-10€ según distancia (con ten+, menos)\n• Menú del día: 10-15€ · Cena media: 20-35€/persona\n• Teleférico Teide: ~45€ i/v adulto no residente\n• Siam o Loro: ~44€ suelto · Twin 78€\n• Barranco del Infierno: 13€ · Barranco de Masca: entrada + barco aparte\n• Excursión ballenas: 35-60€\nLo mejor de la isla (playas, senderos, miradores, pueblos) es gratis.',
-    follow:['Actividades gratis','Guaguas TITSA','Excursiones'] },
-
-  { keys:['gratis','gratuito','free','sin pagar','low cost','que hacer gratis','cosas gratis'],
-    answer:'🆓 Tenerife en modo gratis total:\n• Senderos de Anaga, Teno y el Parque Nacional (los clásicos como Roques de García no cuestan nada)\n• Todas las playas y muchas piscinas naturales\n• Cascos históricos: La Laguna, La Orotava, Garachico\n• Miradores de infarto al atardecer\n• Cielo estrellado desde Las Cañadas\n• Mercadillos y romerías si coincides\nLa app te lleva a todos: son la mayoría de los 700+ lugares del mapa.',
-    follow:['Miradores','Senderos','Piscinas naturales'] },
-
-  { keys:['horario','horarios','domingo','abierto','cerrado','siesta','hora'],
-    answer:'🕐 Ritmo isleño:\n• Comercio de barrio: 9-13:30 y 17-20:30 (la «siesta» va en serio en los pueblos)\n• Centros comerciales: 10-22 seguido\n• Domingos: cierra casi todo el comercio; supermercados grandes abren algunos y los chinos-bazar casi siempre\n• Comidas: almuerzo 13:30-15:30, cena 20:30-23\n• OJO relojes: Canarias va 1 hora MENOS que la España peninsular (huso de Londres).',
-    follow:['Mercadillos','Dinero y propinas','Supermercados'] },
-
-  { keys:['agua','grifo','beber agua','agua embotellada'],
-    answer:'🚰 El agua del grifo es potable y controlada, pero al ser en parte desalada o muy mineralizada, el sabor no convence y la mayoría (locales incluidos) bebe embotellada — el garrafón de 8 L del súper sale baratísimo. Para cocinar y lavarte, la del grifo perfecta. En rutas: rellena en fuentes señalizadas como potables.',
-    follow:['Supermercados','Consejos de sol','Senderos fáciles'] },
-
-  { keys:['palabras','canario','hablar','que significa','significa','significado','vocabulario','dialecto'],
-    answer:'🗣️ Mini-diccionario canario:\n• guagua = autobús · cholas = chanclas\n• fisco = un poquito · machango = payasete\n• «¿queee pasó?» = hola qué tal · chacho/chacha = ¡tío!\n• papas = patatas · cotufas = palomitas\n• Aquí no se dice «vosotros»: todo es «ustedes»\nLa app tiene un glosario canario completo dentro del panel de Fiestas 🎉.',
-    follow:['Comida típica','Guachinches','Fiestas'] },
-
-  { keys:['dron','drone','volar dron','mi dron','drones'],
-    answer:'🚁 Normativa de drones (AESA, España):\n• Prohibido sin autorización en Espacios Naturales Protegidos: Teide, Anaga, Teno, Corona Forestal… (o sea, casi todos los sitios bonitos)\n• Nada de sobrevolar personas, playas concurridas ni cerca de aeropuertos\n• Registro de operador UE + seguro para casi cualquier uso\nLas multas son serias. Infórmate en la web de AESA/ENAIRE antes de despegar.',
-    follow:['Miradores','Webcams','Fotografía'] },
-
-  { keys:['acampar','acampada','camping libre','dormir tienda','autocaravana'],
-    answer:'🏕️ La acampada libre está prohibida en Tenerife. Lo legal:\n• Áreas de acampada del Cabildo (muchas gratuitas, en pinares preciosos): permiso previo online en la web del Cabildo (Tenerife ON)\n• Campings privados en el sur\n• Autocaravanas: solo pernocta en áreas habilitadas, no en miradores ni playas\nEn el mapa tienes la categoría Campings 🏕️ con los puntos autorizados.',
-    follow:['Campings','Barbacoas y pícnic','Senderos'] },
-
-  { keys:['internet','wifi','sim','esim','roaming','datos','cobertura'],
-    answer:'📶 Conectividad:\n• SIM de la UE: roaming sin coste extra, como en casa\n• Desde fuera de la UE: una eSIM local/regional sale muy barata\n• Cobertura 4G/5G buena en costa y ciudades; en Anaga, Teno y barrancos hay zonas SIN señal — descarga esta app y los mapas offline antes de ir\n• Wifi gratis en muchos hoteles, cafés y plazas principales.',
-    follow:['Modo offline de la app','Senderos','Emergencias 112'] },
-
-  // ═══ AYUDA DE LA APP ═══
-  { keys:['ayuda','como funciona','manual','instrucciones','tutorial','que sabes hacer','guia de la app'],
-    /* 11 de octubre de 2026: decia «700+ lugares» y «en cada ficha: clima actual, audio». El tiempo
-       del sitio solo sale en la costa (el mar, el viento, el UV) y la ficha no lleva audio. Ahora dice
-       lo mismo que el tour, que se comprobo boton por boton. */
-    answer:'ℹ️ Tenerife GO, en pocas palabras:\n• El mapa: toca un pin y verás qué es, su horario si lo tiene y cómo llegar en coche o en guagua; en la costa, también el estado del mar\n• Arriba: el dado 🎲 «Sorpréndeme», la gasolinera más barata cerca de ti ⛽, el tiempo por zonas, el mar, las fiestas, las guaguas y el idioma 🌐\n• A los lados: el buscador 🔍 y los filtros por categoría\n• Abajo: Favoritos ❤️, Rutas 🧭, Tienda 🛍️, este Asistente 💬 y tu Cuenta 👤\n• El tour de la app está siempre en la leyenda del mapa (✦ Ver el tour)\nPregúntame por cualquier función y te la explico al detalle.',
-    follow:['Cómo guardar favoritos','Modo sin conexión','Planificador de día'] },
-
-  { keys:['favorito','favoritos','corazon','guardar','guardo','me gusta','lista de lugares'],
-    answer:'❤️ Favoritos:\n1. Abre la ficha de un lugar y toca el corazón\n2. Tu lista vive en Favoritos, en la barra inferior (con contador)\n3. Se guardan en tu móvil al instante; si inicias sesión con tu cuenta, se sincronizan y no los pierdes al cambiar de dispositivo\nDesde la lista puedes saltar a cada lugar en el mapa.',
-    follow:['Crear cuenta','Marcar visitados','Planificador de día'] },
-
-  { keys:['visitado','visitados','marcar visitado','estuve','ya fui'],
-    answer:'✅ En la ficha de cada lugar puedes marcarlo como «Visitado». Sirve para llevar tu diario de la isla y alimenta tus logros: cuantos más lugares (y más variados) visites, más trofeos desbloqueas. Se guarda en tu móvil.',
-    follow:['Logros y trofeos','Favoritos','Sorpréndeme'] },
-
-  { keys:['logro','logros','trofeo','trofeos','medalla','medallas','achievements'],
-    answer:'🏆 Los logros premian tu exploración: playas, senderos, miradores, pueblos… Toca el botón del trofeo 🏆 (lateral derecho del mapa) para abrir tu vitrina y ver cuáles llevas y qué falta para el siguiente. Se desbloquean marcando lugares como visitados.',
-    follow:['Marcar visitados','Sorpréndeme','Cuántos lugares hay'] },
-
-  { keys:['audio','audioguia','escuchar','voz','leer','leerme','lee','descripcion','leer en voz alta','narrar'],
-    answer:'🔊 Cada ficha tiene el botón «Escuchar»: la app te lee el nombre y la descripción del lugar con la voz del sistema, en el idioma que tengas activo. Perfecto conduciendo de copiloto o caminando. Si no suena: sube el volumen y quita el modo silencio; la voz depende de las que tenga instaladas tu móvil.',
-    follow:['Cambiar idioma','Ficha de un lugar','Modo sin conexión'] },
-
-  { keys:['offline','sin internet','sin conexion','sin cobertura','modo avion','no tengo datos'],
-    answer:'📴 Tenerife GO funciona sin conexión: instálala en tu pantalla de inicio y las fichas, el buscador y este asistente van 100% offline. El mapa guarda las zonas por las que ya navegaste; ábrelas con wifi antes de meterte en Anaga, Teno o los barrancos (allí no hay cobertura). El clima en vivo y las webcams sí necesitan internet.',
-    follow:['Instalar la app','Seguridad en rutas','Webcams'] },
-
-  { keys:['instalar','instalo','instalacion','iphone','android','pantalla de inicio','anadir a inicio','pwa','descargar la app','app store'],
-    answer:'📲 No está en las tiendas: se instala directa desde el navegador (y ocupa poquísimo):\n• iPhone: Safari → botón Compartir → «Añadir a pantalla de inicio»\n• Android: Chrome → menú ⋮ → «Instalar aplicación» (o acepta el aviso que aparece)\nQueda como una app más, a pantalla completa y con modo sin conexión.',
-    follow:['Modo sin conexión','Cambiar idioma','Cómo funciona la app'] },
-
-  { keys:['idioma','idiomas','cambiar idioma','language','english','francais','deutsch','italiano','nederlands','chino'],
-    answer:'🌐 Toca el botón de idioma (el último de la barra superior) y elige entre {L}: español, English, français, Deutsch, italiano, Nederlands, 中文, 繁體中文, български y polski. También están en la pantalla de bienvenida. Se traduce TODO: las fichas de los {N} lugares, la interfaz y el audio 🔊. Y yo te respondo en el idioma que tengas puesto.',
-    follow:['Audioguía','Cómo funciona la app','Buscar lugares'] },
-
-  { keys:['buscar','busco','buscador','busqueda','lupa','encontrar lugar'],
-    answer:'🔍 El buscador de arriba encuentra cualquier lugar por nombre, pueblo o categoría. Mientras escribes salen sugerencias tocables; con Enter, el mapa se queda solo con los resultados (la X lo limpia). Y a mí puedes pedirme lo mismo hablando: «¿dónde está el Drago Milenario?».',
-    follow:['Filtrar por categorías','Sorpréndeme','¿Dónde está Masca?'] },
-
-  { keys:['filtro','filtros','categorias','capas','iconos del mapa'],
-    answer:'🗂️ El botón de categorías (arriba) despliega los 38+ tipos de lugar: playas, senderos, guachinches, farmacias, webcams… Puedes activar varias a la vez y el mapa muestra solo esas. También me lo puedes pedir directo: «enséñame las piscinas naturales del norte».',
-    follow:['Playas','Senderos','Webcams'] },
-
-  { keys:['sorprendeme','dado','aleatorio','random','no se que hacer hoy'],
-    answer:'🎲 ¿Sin plan? Toca el dado de la barra superior y la app te lleva volando a un lugar al azar (respeta los filtros que tengas puestos: dado + categoría «miradores» = mirador sorpresa). Ideal para romper la rutina de la toalla.',
-    follow:['Qué hacer cerca de mí','Filtrar por categorías','Logros'] },
-
-  { keys:['ficha','popup','pin','informacion del lugar','detalle'],
-    answer:'📍 Toca cualquier pin del mapa y se abre su ficha: descripción completa en tu idioma, categoría, el tiempo que hace AHORA allí, avisos de seguridad ⚠️ si los hay, y botones de Favorito ❤️, Compartir, Escuchar 🔊 y «Cómo llegar en bus» 🚏. Todo lo importante sin salir del mapa.',
-    follow:['Audioguía','Cómo llegar en bus','El tiempo'] },
-
-  { keys:['clima de la app','tiempo en la ficha','prevision lugar','alertas aemet'],
-    answer:'🌦️ Cada ficha muestra el tiempo real de ESE punto exacto (aquí los microclimas mandan: puede llover en La Laguna y hacer 25° en Adeje). Cuando AEMET emite avisos oficiales (viento, calima, oleaje…), la app los refleja. Para ver el ambiente en vivo, tira de la categoría Webcams 📷.',
-    follow:['Webcams','Calima','Norte o sur'] },
-
-  { keys:['aviso','avisos','advertencia','banner naranja','peligro ficha'],
-    answer:'⚠️ Los recuadros ámbar en algunas fichas son avisos de seguridad específicos del lugar: corrientes en esa playa, tramo con caídas, calor extremo, acceso regulado… Están en 78 lugares sensibles. Léelos antes de ir: son la diferencia entre un anecdota y un susto.',
-    follow:['Seguridad en el mar','Seguridad en rutas','Emergencias 112'] },
-
-  { keys:['ruta a b','ruta en coche','navegacion','navegar','trazar','trazo','direcciones','trazar ruta','ir de un sitio a otro'],
-    answer:'🧭 En Rutas (barra inferior) tienes la pestaña Ruta A→B: eliges origen y destino y la app traza el recorrido sobre el mapa con distancia y tiempo estimado. Perfecta para encadenar varios lugares del día sin salir de Tenerife GO.',
-    follow:['Planificador de día','Cómo llegar en bus','Aparcar'] },
-
-  { keys:['planificador','planificar','plan del dia','itinerario','organizar dia'],
-    answer:'✨ El Planificador de día (panel Rutas, barra inferior) te monta la jornada solo: eliges zona — Norte, Sur o Mezcla «Sorpréndeme» — y te propone un recorrido con paradas variadas: mirador, playa, pueblo, sitio para comer… Tocas cualquier parada y la ves en el mapa. Ajusta y listo.',
-    follow:['Ruta A-B','Qué hacer en el norte','Guachinches'] },
-
-  { keys:['como llegar en bus','paradas cerca','parada de guagua','que linea me deja','me deja','que guagua','guagua me deja'],
-    answer:'🚏 Dentro de la ficha de cada lugar, el botón «Cómo llegar en bus» abre las paradas de TITSA más cercanas y sus líneas: sabes al momento qué guagua te deja allí. Combínalo conmigo: pregunta «bus al Teide» o «línea 111» y te doy el detalle.',
-    follow:['Guaguas TITSA','Bus al Teide','Aeropuerto Sur'] },
-
-  { keys:['cuenta','registrarse','registrarme','registro','sesion','crear cuenta','iniciar sesion','login','invitado','sincronizar','perfil'],
-    answer:'👤 En Cuenta (barra inferior) puedes registrarte con tu email o seguir como invitado — la app es igual de completa sin registro. La ventaja de la cuenta: tus favoritos se sincronizan en la nube y los recuperas en cualquier dispositivo. Solo pedimos el email, nada más.',
-    follow:['Favoritos','Cómo funciona la app','Tienda'] },
-
-  { keys:['compartir','comparto','whatsapp','enviar lugar','mandar por whatsapp','link del lugar'],
-    answer:'📤 En cada ficha, el botón Compartir envía el lugar por WhatsApp, correo o la app que elijas; si tu móvil no tiene menú de compartir, copia el enlace al portapapeles y te avisa con un toast. Ideal para cuadrar el plan con el grupo.',
-    follow:['Ficha de un lugar','Favoritos','Excursiones'] },
-
-  { keys:['glosario','diccionario canario','palabras de la app'],
-    answer:'📖 El glosario canario completo está dentro del panel de Fiestas 🎉: un plegable con las palabras y expresiones de la isla y su significado. Y si me sueltas una («¿qué es un fisco?»), también te la explico por aquí.',
-    follow:['Palabras canarias','Fiestas','Carnaval'] },
-
-  { keys:['no funciona','falla','error','bug','se cuelga','no carga','queda en blanco','se queda colgada','pantalla en blanco','problema con la app'],
-    answer:'🔧 ¿Algo raro? Primeros auxilios:\n1. Cierra y reabre la app (o recarga la página)\n2. Comprueba la conexión si era algo en vivo (clima, webcams)\n3. Si instalaste hace tiempo, borra y vuelve a añadir a la pantalla de inicio para pillar la última versión\n¿Sigue igual? Escríbele a Jerome con el botón de abajo y cuéntale qué pasó: lo arregla volando.',
-    follow:['Instalar la app','Modo sin conexión'], showContact:true },
-  // ═══ TIENDA / EXCURSIONES (app) ═══
-  { keys:['comprar','souvenir','tienda','artesania','regalo'],
-    answer:'🛍️ En la tienda de la app encontrarás souvenirs seleccionados y colaboraciones con negocios locales recomendados. Y para llevarte algo auténtico de la isla: mojo embotellado, queso, vino de las 5 DO, miel de Tenerife y artesanía de los mercadillos.',
-    follow:['Ver tienda','Mercadillos','Vinos de Tenerife'] },
-
-  { keys:['excursion','excursiones','tour','organizado','guia'],
-    answer:'🏔️ En la tienda de la app hay excursiones organizadas con guía, transporte y seguro: Teide, ballenas, Masca, estrellas… Ideales si no alquilas coche o para actividades reguladas donde el tour resuelve permisos y logística. ¿Qué tipo de plan buscas: montaña, mar o cultura?',
-    follow:['Ver tienda','Avistamiento de ballenas','Teide'] },
-];
+/* CHAT_KB YA NO EXISTE (12 de octubre de 2026).
+   Eran 79 respuestas escritas solo en castellano, y el buscador las miraba en
+   cualquier idioma: a un aleman que escribia «Teide» o «Anaga», a un ingles que
+   pulsaba «Best beaches», les contestaba en castellano. Ahora todo lo que sabe
+   el asistente viene de faq/<idioma>.json, en los diez idiomas:
+     · 24 eran las mismas preguntas que ya estaban traducidas: fuera, y sus
+       claves de busqueda que faltaban, en faq/fuente/claves/es.json;
+     · 53 pasaron, como 52 entradas, a los bloques G1 (la app), H1 (seguridad
+       y salud), H2 (comer y beber) y H3 (planes, naturaleza y clima), cada
+       dato comprobado antes: en el codigo lo de la app, en fuente oficial o en
+       la ficha del lugar lo demas. Lo que no se pudo comprobar no paso
+       (precios, horarios, «38+ tipos», «el tiempo de AHORA en cada ficha»…);
+     · 2 eran de lugares concretos (el Paisaje Lunar; Siam Park y Loro Parque)
+       y los contesta su ficha del mapa, que ya esta en los diez idiomas.
+   Si el fichero del idioma no llega (sin red y sin cache), el asistente sigue
+   contestando lugares y categorias; lo que no sabe, lo dice. */
 
 
 // ── Índice de lugares (se construye una vez, en memoria) ──────────
@@ -27022,7 +26702,8 @@ function chatDetectCats(padded,tokset,qnc){
    - La frase descolocada. Un aleman escribe «Genehmigung fur den Gipfel» y
      la clave es «gipfel genehmigung»: las dos palabras estan, el orden no.
      Antes eso no puntuaba nada y la pregunta se iba a la entrada castellana
-     de CHAT_KB, que puntuaba 2 por el token «teide» suelto.
+     de CHAT_KB (la base solo en castellano que hubo hasta el 12 de octubre
+     de 2026), que puntuaba 2 por el token «teide» suelto.
 
      Tienen que estar TODAS las palabras de la clave de tres letras o mas, y
      ser al menos dos. La primera version pedia solo dos cualesquiera y eso
@@ -27071,21 +26752,17 @@ function chatAlguna(lista,padded,tokset,qnc){
   }
   return false;
 }
-/* Dos fuentes: las entradas del idioma del usuario, que llegan en
-   faq/<lang>.json, y las de CHAT_KB, que siguen estando solo en castellano.
-   Se miran primero las traducidas y se le exige a CHAT_KB que gane, no que
-   empate: donde las dos saben la respuesta, la buena es la que esta en el
-   idioma de quien pregunta. Si el fichero no ha llegado, la primera lista
-   viene vacia y esto se comporta exactamente como antes. */
+/* Una sola fuente: las entradas del idioma del usuario, que llegan en
+   faq/<lang>.json. Hasta el 12 de octubre habia una segunda, CHAT_KB, solo en
+   castellano, y bastaba con que ganara por un punto para que la respuesta
+   saliera en castellano en cualquier idioma. Cuando dos entradas empatan gana
+   la primera: TG_FAQ las deja ordenadas por prioridad. */
 function chatMatchKB(padded,tokset,qn){
-  var fuentes=[TG_FAQ.entradas(),CHAT_KB],best=null,bs=0,qnc=chatSinEsp(qn||'');
-  for(var f=0;f<fuentes.length;f++){
-    var lista=fuentes[f];
-    for(var i=0;i<lista.length;i++){
-      var item=lista[i],sc=0;
-      for(var j=0;j<item.keys.length;j++)sc+=chatCoincide(chatNorm(item.keys[j]),padded,tokset,qnc);
-      if(sc>bs){bs=sc;best=item;}
-    }
+  var lista=TG_FAQ.entradas(),best=null,bs=0,qnc=chatSinEsp(qn||'');
+  for(var i=0;i<lista.length;i++){
+    var item=lista[i],sc=0;
+    for(var j=0;j<item.keys.length;j++)sc+=chatCoincide(chatNorm(item.keys[j]),padded,tokset,qnc);
+    if(sc>bs){bs=sc;best=item;}
   }
   return bs>=2?{item:best,sc:bs}:null;
 }
@@ -27126,6 +26803,18 @@ function chatResolve(question,pos){
   var cats=chatDetectCats(padded,tokset,qnc);
   var zone=null;
   for(var z1=0;z1<toks.length;z1++){var zk=CHAT_ZONE_W[toks[z1]];if(zk&&!(z1>0&&(toks[z1-1]==='aeropuerto'||toks[z1-1]==='airport'))){zone=zk;break;}}
+  /* CHAT_ZONE_W solo sabe castellano e ingles, y la bienvenida de cada idioma
+     invita a pedir «plages dans le nord» o «Strände im Süden»: el norte se
+     perdia y salia la isla entera. Las zonas de cada idioma llegan en
+     faq/<lang>.json, como el resto de su vocabulario. */
+  /* Una zona que empieza por «=» vale solo si es la pregunta entera: «est» es
+     el este en frances y tambien el verbo de «où est Masca». Contestando a
+     «¿qué zona?», «est» a secas es el este; dentro de una frase, no. */
+  if(!zone){var zz=TG_FAQ.zonas();for(var zk2 in zz){var lz=zz[zk2]||[];
+    for(var zi=0;zi<lz.length&&!zone;zi++){var kz=String(lz[zi]);
+      if(kz.charAt(0)==='='){if(qn===chatNorm(kz.slice(1)))zone=zk2;}
+      else if(chatCoincide(chatNorm(kz),padded,tokset,qnc))zone=zk2;}
+    if(zone)break;}}
 
   var kbr=chatMatchKB(padded,tokset,qn);
   var askInfo=false;
@@ -27230,9 +26919,9 @@ es:{
   welcome:'¡Bienvenido a Tenerife GO! 🌴\n\nSoy tu asistente y conozco los {N} lugares del mapa. Pregúntame «¿dónde está…?», pide «playas en el norte» o «qué hacer cerca de mí».',
   greet:'¡Hola! 👋 Pregúntame por cualquiera de los {N} lugares del mapa, por categorías («miradores en el sur») o «qué hacer cerca de mí».',
   thanks:'¡De nada! 🌴 Aquí estoy para lo que necesites. Y si quieres hablar con Jerome directamente, tienes el botón abajo.',
-  countAns:'Ahora mismo tienes {N} lugares verificados en el mapa 🗺️ — playas, senderos, miradores, guachinches, piscinas naturales y mucho más, con fichas en {L} idiomas.',
+  countAns:'Ahora mismo tienes {N} lugares en el mapa 🗺️ — playas, senderos, miradores, guachinches, piscinas naturales y mucho más, con fichas en {L} idiomas.',
   catIntro:'🔎 {label}{zone}: hay {n} en la app. Los más destacados:',
-  catAlso:'📍 Además, en el mapa tienes {n} lugares de esta categoría. Aquí van algunos:',
+  catAlso:'📍 Además, en el mapa tienes {n} lugar de esta categoría:|📍 Además, en el mapa tienes {n} lugares de esta categoría. Aquí van algunos:',
   catNone:'No encontré lugares de {label}{zone} 😕 Prueba con otra zona.',
   whatIntro:'✨ Planes{zone}. Toca cualquiera para verlo en el mapa:',
   whatLbl:'Qué hacer',
@@ -27259,9 +26948,9 @@ en:{
   welcome:'Welcome to Tenerife GO! 🌴\n\nI am your assistant and I know all {N} places on the map. Ask me «where is…?», try «beaches in the north» or «what to do near me».',
   greet:'Hi! 👋 Ask me about any of the {N} places on the map, by category («viewpoints in the south») or «what to do near me».',
   thanks:'You are welcome! 🌴 I am here whenever you need me. And if you want to talk to Jerome directly, the button is below.',
-  countAns:'Right now the map has {N} verified places 🗺️ — beaches, trails, viewpoints, guachinches, natural pools and much more, in {L} languages.',
+  countAns:'Right now the map has {N} places 🗺️ — beaches, trails, viewpoints, guachinches, natural pools and much more, in {L} languages.',
   catIntro:'🔎 {label}{zone}: {n} in the app. Top picks:',
-  catAlso:'📍 The map also has {n} places in this category. Here are a few:',
+  catAlso:'📍 The map also has {n} place in this category:|📍 The map also has {n} places in this category. Here are a few:',
   catNone:'I found no {label}{zone} 😕 Try another area.',
   whatIntro:'✨ Ideas{zone}. Tap any of them to see it on the map:',
   whatLbl:'Things to do',
@@ -27288,9 +26977,9 @@ fr:{
   welcome:'Bienvenue sur Tenerife GO ! \ud83c\udf34\n\nJe suis ton assistant et je connais les {N} lieux de la carte. Demande-moi \u00ab o\u00f9 est\u2026 ? \u00bb, \u00ab plages dans le nord \u00bb ou \u00ab que faire pr\u00e8s de moi \u00bb.',
   greet:'Salut ! \ud83d\udc4b Demande-moi n\u2019importe lequel des {N} lieux de la carte, par cat\u00e9gorie (\u00ab belv\u00e9d\u00e8res dans le sud \u00bb) ou \u00ab que faire pr\u00e8s de moi \u00bb.',
   thanks:'Avec plaisir ! \ud83c\udf34 Je suis l\u00e0 quand tu veux. Et pour parler \u00e0 Jerome directement, le bouton est juste en dessous.',
-  countAns:'La carte compte {N} lieux v\u00e9rifi\u00e9s \ud83d\uddfa\ufe0f \u2014 plages, sentiers, belv\u00e9d\u00e8res, guachinches, piscines naturelles et bien plus, en {L} langues.',
+  countAns:'La carte compte {N} lieux 🗺️ — plages, sentiers, belvédères, guachinches, piscines naturelles et bien plus, en {L} langues.',
   catIntro:'\ud83d\udd0e {label}{zone} : {n} dans l\u2019app. Les incontournables :',
-  catAlso:'\ud83d\udccd La carte a aussi {n} lieux de cette cat\u00e9gorie. En voici quelques-uns :',
+  catAlso:'📍 La carte a aussi {n} lieu de cette catégorie :|📍 La carte a aussi {n} lieux de cette catégorie. En voici quelques-uns :',
   catNone:'Aucun r\u00e9sultat pour {label}{zone} \ud83d\ude15 Essaie une autre zone.',
   whatIntro:'\u2728 Id\u00e9es{zone}. Touches-en une pour la voir sur la carte :',
   whatLbl:'Que faire',
@@ -27317,9 +27006,9 @@ de:{
   welcome:'Willkommen bei Tenerife GO! \ud83c\udf34\n\nIch bin dein Assistent und kenne alle {N} Orte der Karte. Frag mich \u00abwo ist \u2026?\u00bb, \u00abStr\u00e4nde im Norden\u00bb oder \u00abwas kann ich in der N\u00e4he machen\u00bb.',
   greet:'Hallo! \ud83d\udc4b Frag mich nach jedem der {N} Orte der Karte, nach Kategorien (\u00abAussichtspunkte im S\u00fcden\u00bb) oder \u00abwas kann ich in der N\u00e4he machen\u00bb.',
   thanks:'Gern geschehen! \ud83c\udf34 Ich bin da, wann immer du mich brauchst. F\u00fcr direkten Kontakt zu Jerome: der Button unten.',
-  countAns:'Die Karte hat gerade {N} verifizierte Orte \ud83d\uddfa\ufe0f \u2014 Str\u00e4nde, Wanderwege, Aussichtspunkte, Guachinches, Naturpools und mehr, in {L} Sprachen.',
+  countAns:'Die Karte hat gerade {N} Orte 🗺️ — Strände, Wanderwege, Aussichtspunkte, Guachinches, Naturpools und mehr, in {L} Sprachen.',
   catIntro:'\ud83d\udd0e {label}{zone}: {n} in der App. Highlights:',
-  catAlso:'\ud83d\udccd Die Karte hat au\u00dferdem {n} Orte dieser Kategorie. Eine Auswahl:',
+  catAlso:'📍 Die Karte hat außerdem {n} Ort dieser Kategorie:|📍 Die Karte hat außerdem {n} Orte dieser Kategorie. Eine Auswahl:',
   catNone:'Keine Treffer f\u00fcr {label}{zone} \ud83d\ude15 Versuch eine andere Gegend.',
   whatIntro:'\u2728 Ideen{zone}. Tippe darauf, um sie auf der Karte zu sehen:',
   whatLbl:'Was tun',
@@ -27346,9 +27035,9 @@ it:{
   welcome:'Benvenuto su Tenerife GO! \ud83c\udf34\n\nSono il tuo assistente e conosco i {N} luoghi della mappa. Chiedimi \u00abdov\u2019\u00e8\u2026?\u00bb, \u00abspiagge nel nord\u00bb o \u00abcosa fare vicino a me\u00bb.',
   greet:'Ciao! \ud83d\udc4b Chiedimi qualsiasi dei {N} luoghi della mappa, per categoria (\u00abbelvedere nel sud\u00bb) o \u00abcosa fare vicino a me\u00bb.',
   thanks:'Di niente! \ud83c\udf34 Sono qui quando vuoi. E per parlare direttamente con Jerome, il pulsante \u00e8 qui sotto.',
-  countAns:'La mappa ha {N} luoghi verificati \ud83d\uddfa\ufe0f \u2014 spiagge, sentieri, belvedere, guachinches, piscine naturali e molto altro, in {L} lingue.',
+  countAns:'La mappa ha {N} luoghi 🗺️ — spiagge, sentieri, belvedere, guachinches, piscine naturali e molto altro, in {L} lingue.',
   catIntro:'\ud83d\udd0e {label}{zone}: {n} nell\u2019app. I migliori:',
-  catAlso:'\ud83d\udccd Sulla mappa ci sono altri {n} luoghi di questa categoria. Eccone alcuni:',
+  catAlso:'📍 Sulla mappa c’è un altro luogo di questa categoria:|📍 Sulla mappa ci sono altri {n} luoghi di questa categoria. Eccone alcuni:',
   catNone:'Nessun risultato per {label}{zone} \ud83d\ude15 Prova un\u2019altra zona.',
   whatIntro:'\u2728 Idee{zone}. Toccane una per vederla sulla mappa:',
   whatLbl:'Cosa fare',
@@ -27375,9 +27064,9 @@ nl:{
   welcome:'Welkom bij Tenerife GO! \ud83c\udf34\n\nIk ben je assistent en ken alle {N} plekken op de kaart. Vraag me \u00abwaar is\u2026?\u00bb, \u00abstranden in het noorden\u00bb of \u00abwat te doen bij mij in de buurt\u00bb.',
   greet:'Hoi! \ud83d\udc4b Vraag naar elk van de {N} plekken op de kaart, per categorie (\u00abuitzichtpunten in het zuiden\u00bb) of \u00abwat te doen in de buurt\u00bb.',
   thanks:'Graag gedaan! \ud83c\udf34 Ik ben er wanneer je me nodig hebt. Direct met Jerome praten? De knop staat hieronder.',
-  countAns:'De kaart telt nu {N} geverifieerde plekken \ud83d\uddfa\ufe0f \u2014 stranden, wandelpaden, uitzichtpunten, guachinches, natuurlijke zwembaden en meer, in {L} talen.',
+  countAns:'De kaart telt nu {N} plekken 🗺️ — stranden, wandelpaden, uitzichtpunten, guachinches, natuurlijke zwembaden en meer, in {L} talen.',
   catIntro:'\ud83d\udd0e {label}{zone}: {n} in de app. De toppers:',
-  catAlso:'\ud83d\udccd De kaart heeft nog {n} plekken in deze categorie. Een paar:',
+  catAlso:'📍 De kaart heeft nog {n} plek in deze categorie:|📍 De kaart heeft nog {n} plekken in deze categorie. Een paar:',
   catNone:'Niets gevonden voor {label}{zone} \ud83d\ude15 Probeer een ander gebied.',
   whatIntro:'\u2728 Idee\u00ebn{zone}. Tik erop om ze op de kaart te zien:',
   whatLbl:'Wat te doen',
@@ -27404,7 +27093,7 @@ zh:{
   welcome:'\u6b22\u8fce\u6765\u5230 Tenerife GO\uff01\ud83c\udf34\n\n\u6211\u662f\u4f60\u7684\u52a9\u624b\uff0c\u719f\u6089\u5730\u56fe\u4e0a\u5168\u90e8 {N} \u4e2a\u5730\u70b9\u3002\u53ef\u4ee5\u95ee\u6211\u300c\u2026\u2026\u5728\u54ea\u91cc\uff1f\u300d\u3001\u300c\u5317\u90e8\u7684\u6d77\u6ee9\u300d\u6216\u300c\u9644\u8fd1\u6709\u4ec0\u4e48\u53ef\u73a9\u7684\u300d\u3002',
   greet:'\u4f60\u597d\uff01\ud83d\udc4b \u5730\u56fe\u4e0a\u7684 {N} \u4e2a\u5730\u70b9\u90fd\u53ef\u4ee5\u95ee\u6211\uff0c\u4e5f\u53ef\u4ee5\u6309\u7c7b\u522b\uff08\u300c\u5357\u90e8\u7684\u89c2\u666f\u53f0\u300d\uff09\u6216\u95ee\u300c\u9644\u8fd1\u6709\u4ec0\u4e48\u53ef\u73a9\u7684\u300d\u3002',
   thanks:'\u4e0d\u5ba2\u6c14\uff01\ud83c\udf34 \u968f\u65f6\u627e\u6211\u3002\u60f3\u76f4\u63a5\u8054\u7cfb Jerome\uff0c\u4e0b\u9762\u6709\u6309\u94ae\u3002',
-  countAns:'\u5730\u56fe\u4e0a\u73b0\u6709 {N} \u4e2a\u7ecf\u8fc7\u6838\u5b9e\u7684\u5730\u70b9 \ud83d\uddfa\ufe0f \u2014 \u6d77\u6ee9\u3001\u6b65\u9053\u3001\u89c2\u666f\u53f0\u3001Guachinche \u5c0f\u9986\u3001\u5929\u7136\u6cf3\u6c60\u7b49\uff0c\u652f\u6301 {L} \u79cd\u8bed\u8a00\u3002',
+  countAns:'地图上现有 {N} 个地点 🗺️ — 海滩、步道、观景台、Guachinche 小馆、天然泳池等，支持 {L} 种语言。',
   catIntro:'\ud83d\udd0e {label}{zone}\uff1a\u5e94\u7528\u5185\u5171 {n} \u4e2a\u3002\u7cbe\u9009\uff1a',
   catAlso:'\ud83d\udccd \u5730\u56fe\u4e0a\u8fd8\u6709 {n} \u4e2a\u6b64\u7c7b\u5730\u70b9\uff0c\u4f8b\u5982\uff1a',
   catNone:'\u6ca1\u6709\u627e\u5230{label}{zone}\ud83d\ude15 \u6362\u4e2a\u533a\u57df\u8bd5\u8bd5\u3002',
@@ -27433,7 +27122,7 @@ zht:{
   welcome:'\u6b61\u8fce\u4f86\u5230 Tenerife GO\uff01\ud83c\udf34\n\n\u6211\u662f\u4f60\u7684\u52a9\u624b\uff0c\u719f\u6089\u5730\u5716\u4e0a\u5168\u90e8 {N} \u500b\u5730\u9ede\u3002\u53ef\u4ee5\u554f\u6211\u300c\u2026\u2026\u5728\u54ea\u88e1\uff1f\u300d\u3001\u300c\u5317\u90e8\u7684\u6d77\u7058\u300d\u6216\u300c\u9644\u8fd1\u6709\u4ec0\u9ebc\u597d\u73a9\u7684\u300d\u3002',
   greet:'\u4f60\u597d\uff01\ud83d\udc4b \u5730\u5716\u4e0a\u7684 {N} \u500b\u5730\u9ede\u90fd\u53ef\u4ee5\u554f\u6211\uff0c\u4e5f\u53ef\u4ee5\u6309\u985e\u5225\uff08\u300c\u5357\u90e8\u7684\u89c0\u666f\u53f0\u300d\uff09\u6216\u554f\u300c\u9644\u8fd1\u6709\u4ec0\u9ebc\u597d\u73a9\u7684\u300d\u3002',
   thanks:'\u4e0d\u5ba2\u6c23\uff01\ud83c\udf34 \u96a8\u6642\u627e\u6211\u3002\u60f3\u76f4\u63a5\u806f\u7e6b Jerome\uff0c\u4e0b\u9762\u6709\u6309\u9215\u3002',
-  countAns:'\u5730\u5716\u4e0a\u73fe\u6709 {N} \u500b\u7d93\u904e\u6838\u5be6\u7684\u5730\u9ede \ud83d\uddfa\ufe0f \u2014 \u6d77\u7058\u3001\u6b65\u9053\u3001\u89c0\u666f\u53f0\u3001Guachinche \u5c0f\u9928\u3001\u5929\u7136\u6cf3\u6c60\u7b49\uff0c\u652f\u63f4 {L} \u7a2e\u8a9e\u8a00\u3002',
+  countAns:'地圖上現有 {N} 個地點 🗺️ — 海灘、步道、觀景台、Guachinche 小館、天然泳池等，支援 {L} 種語言。',
   catIntro:'\ud83d\udd0e {label}{zone}\uff1a\u61c9\u7528\u5167\u5171 {n} \u500b\u3002\u7cbe\u9078\uff1a',
   catAlso:'\ud83d\udccd \u5730\u5716\u4e0a\u9084\u6709 {n} \u500b\u6b64\u985e\u5730\u9ede\uff0c\u4f8b\u5982\uff1a',
   catNone:'\u6c92\u6709\u627e\u5230{label}{zone}\ud83d\ude15 \u63db\u500b\u5340\u57df\u8a66\u8a66\u3002',
@@ -27457,7 +27146,7 @@ zht:{
   qrAfterPoi:[['\u9644\u8fd1\u6709\u4ec0\u9ebc','que hay cerca'],['\u9644\u8fd1\u7684\u6d77\u7058','playas cercanas'],['\u9644\u8fd1\u7684\u6b65\u9053','senderos cercanos']],
   qrThanks:[['\u518d\u554f\u4e00\u500b','otra pregunta'],['\u6700\u4f73\u6d77\u7058','mejores playas']]
 },
-bg:{senderName:'Асистент',welcome:'Добре дошли в Tenerife GO! 🌴\n\nАз съм вашият асистент и познавам {N}-те места на картата. Питайте ме «къде е…?», поискайте «плажове на север» или «какво да правя близо до мен».',greet:'Здравейте! 👋 Питайте ме за което и да е от {N}-те места на картата, по категории («панорамни места на юг») или «какво да правя близо до мен».',thanks:'Няма защо! 🌴 Тук съм за каквото ви трябва. А ако искате да говорите директно с Jerome, бутонът е долу.',countAns:'В момента имате {N} проверени места на картата 🗺️ — плажове, пътеки, панорамни места, гуачинчес, естествени басейни и още много, с описания на {L} езика.',catIntro:'🔎 {label}{zone}: има {n} в приложението. Най-забележителните:',catAlso:'📍 Освен това на картата има {n} места от тази категория. Ето някои:',catNone:'Не намерих места от {label}{zone} 😕 Опитайте с друга зона.',whatIntro:'✨ Идеи{zone}. Докоснете която и да е, за да я видите на картата:',whatLbl:'Какво да правя',ambIntro:'Намерих няколко места, които съвпадат. Някое от тези ли имате предвид?',askZone:'Разбира се! Коя зона ви интересува?',geoFail:'Не успях да взема местоположението ви 📵 Кажете ми зона (север, юг, изток, запад) или населено място и продължавам оттам.',viewMap:'📍 Виж на картата',viewAll:'🗺️ Виж всички на картата',errGeneric:'Опа, нещо се обърка при мен 🙈 Опитайте пак с други думи.',fallback:'Още нямам точен отговор за това 🤔\n\nМога да ви помогна с:\n• «Къде е + име?» — познавам {N}-те места на картата\n• «плажове / пътеки / панорамни места на юг»\n• «какво да правя близо до Гарачико»\n\nА за лични въпроси Jerome е на един допир 👇',contactTitle:'Говори с Jérôme',contactSub:'Нужна ви е лична помощ? Пишете му директно.',nearYou:'близо до вас',nearOf:'близо до {a}',zone:{norte:'на север',sur:'на юг',este:'на изток',oeste:'на запад',centro:'в центъра на острова',metro:'в Санта Крус – Ла Лагуна'},qrHome:[['Най-добрите плажове','mejores playas'],['Пътеки','senderos'],['Къде е Masca?','donde esta masca'],['Какво да правя наблизо','que hacer cerca de mi']],qrZones:[['На север','en el norte'],['На юг','en el sur'],['Близо до мен','cerca de mi']],qrZonesFull:[['На север','en el norte'],['На юг','en el sur'],['На изток','en el este'],['На запад','en el oeste'],['Близо до мен','cerca de mi']],qrAfterPoi:[['Какво има наблизо','que hay cerca'],['Плажове наблизо','playas cercanas'],['Пътеки наблизо','senderos cercanos']],qrThanks:[['Друг въпрос','otra pregunta'],['Най-добрите плажове','mejores playas']]}, pl: {"senderName":"Asystent","welcome":"Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam wszystkie {N} miejsc na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».","greet":"Cześć! 👋 Zapytaj mnie o którekolwiek z {N} miejsc na mapie, o kategorie («punkty widokowe na południu») albo o to, «co robić w pobliżu».","thanks":"Nie ma za co! 🌴 Jestem tu, gdybyś czegoś potrzebował. A jeśli chcesz porozmawiać bezpośrednio z Jérôme'em, masz przycisk poniżej.","countAns":"W tej chwili masz na mapie {N} sprawdzonych miejsc 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.","catIntro":"🔎 {label}{zone}: w aplikacji jest ich {n}. Najciekawsze:","catAlso":"📍 Poza tym na mapie masz {n} miejsc z tej kategorii. Oto kilka:","catNone":"Nie znalazłem miejsc z kategorii {label}{zone} 😕 Spróbuj z inną strefą.","whatIntro":"✨ Pomysły{zone}. Dotknij dowolnego, żeby zobaczyć go na mapie:","whatLbl":"Co robić","ambIntro":"Znalazłem kilka pasujących miejsc. Chodzi ci o któreś z tych?","askZone":"Jasne! Która strefa cię interesuje?","geoFail":"Nie udało mi się ustalić twojej lokalizacji 📵 Podaj strefę (północ, południe, wschód, zachód) albo miejscowość, a ruszę stamtąd.","viewMap":"📍 Zobacz na mapie","viewAll":"🗺️ Zobacz wszystkie na mapie","errGeneric":"Ups, coś poszło nie tak po mojej stronie 🙈 Spróbuj jeszcze raz, innymi słowami.","fallback":"Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam wszystkie {N} miejsc na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇","contactTitle":"Napisz do Jérôme'a","contactSub":"Potrzebujesz porady na własną miarę? Napisz do niego bezpośrednio.","nearYou":"w twojej okolicy","nearOf":"w okolicy {a}","zone":{"norte":"na północy","sur":"na południu","este":"na wschodzie","oeste":"na zachodzie","centro":"w centrum wyspy","metro":"w Santa Cruz – La Laguna"},"qrHome":["Najlepsze plaże","Szlaki","Gdzie jest Masca?","Co robić w pobliżu"],"qrZones":["Na północy","Na południu","W pobliżu"],"qrZonesFull":["Na północy","Na południu","Na wschodzie","Na zachodzie","W pobliżu"],"qrAfterPoi":["Co jest w pobliżu","Plaże w pobliżu","Szlaki w pobliżu"],"qrThanks":["Kolejne pytanie","Najlepsze plaże"]}
+bg:{senderName:'Асистент',welcome:'Добре дошли в Tenerife GO! 🌴\n\nАз съм вашият асистент и познавам {N}-те места на картата. Питайте ме «къде е…?», поискайте «плажове на север» или «какво да правя близо до мен».',greet:'Здравейте! 👋 Питайте ме за което и да е от {N}-те места на картата, по категории («панорамни места на юг») или «какво да правя близо до мен».',thanks:'Няма защо! 🌴 Тук съм за каквото ви трябва. А ако искате да говорите директно с Jerome, бутонът е долу.',countAns:'В момента имате {N} места на картата 🗺️ — плажове, пътеки, панорамни места, гуачинчес, естествени басейни и още много, с описания на {L} езика.',catIntro:'🔎 {label}{zone}: има {n} в приложението. Най-забележителните:',catAlso:'📍 Освен това на картата има {n} място от тази категория:|📍 Освен това на картата има {n} места от тази категория. Ето някои:',catNone:'Не намерих места от {label}{zone} 😕 Опитайте с друга зона.',whatIntro:'✨ Идеи{zone}. Докоснете която и да е, за да я видите на картата:',whatLbl:'Какво да правя',ambIntro:'Намерих няколко места, които съвпадат. Някое от тези ли имате предвид?',askZone:'Разбира се! Коя зона ви интересува?',geoFail:'Не успях да взема местоположението ви 📵 Кажете ми зона (север, юг, изток, запад) или населено място и продължавам оттам.',viewMap:'📍 Виж на картата',viewAll:'🗺️ Виж всички на картата',errGeneric:'Опа, нещо се обърка при мен 🙈 Опитайте пак с други думи.',fallback:'Още нямам точен отговор за това 🤔\n\nМога да ви помогна с:\n• «Къде е + име?» — познавам {N}-те места на картата\n• «плажове / пътеки / панорамни места на юг»\n• «какво да правя близо до Гарачико»\n\nА за лични въпроси Jerome е на един допир 👇',contactTitle:'Говори с Jérôme',contactSub:'Нужна ви е лична помощ? Пишете му директно.',nearYou:'близо до вас',nearOf:'близо до {a}',zone:{norte:'на север',sur:'на юг',este:'на изток',oeste:'на запад',centro:'в центъра на острова',metro:'в Санта Крус – Ла Лагуна'},qrHome:[['Най-добрите плажове','mejores playas'],['Пътеки','senderos'],['Къде е Masca?','donde esta masca'],['Какво да правя наблизо','que hacer cerca de mi']],qrZones:[['На север','en el norte'],['На юг','en el sur'],['Близо до мен','cerca de mi']],qrZonesFull:[['На север','en el norte'],['На юг','en el sur'],['На изток','en el este'],['На запад','en el oeste'],['Близо до мен','cerca de mi']],qrAfterPoi:[['Какво има наблизо','que hay cerca'],['Плажове наблизо','playas cercanas'],['Пътеки наблизо','senderos cercanos']],qrThanks:[['Друг въпрос','otra pregunta'],['Най-добрите плажове','mejores playas']]}, pl: {"senderName":"Asystent","welcome":"Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam {N} miejsce na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».|Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam wszystkie {N} miejsca na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».|Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam wszystkie {N} miejsc na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».","greet":"Cześć! 👋 Zapytaj mnie o którekolwiek z {N} miejsc na mapie, o kategorie («punkty widokowe na południu») albo o to, «co robić w pobliżu».","thanks":"Nie ma za co! 🌴 Jestem tu, gdybyś czegoś potrzebował. A jeśli chcesz porozmawiać bezpośrednio z Jérôme'em, masz przycisk poniżej.","countAns":"W tej chwili masz na mapie {N} miejsce 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.|W tej chwili masz na mapie {N} miejsca 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.|W tej chwili masz na mapie {N} miejsc 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.","catIntro":"🔎 {label}{zone}: w aplikacji jest ich {n}. Najciekawsze:","catAlso":"📍 Poza tym na mapie masz {n} miejsce z tej kategorii:|📍 Poza tym na mapie masz {n} miejsca z tej kategorii. Oto kilka:|📍 Poza tym na mapie masz {n} miejsc z tej kategorii. Oto kilka:","catNone":"Nie znalazłem miejsc z kategorii {label}{zone} 😕 Spróbuj z inną strefą.","whatIntro":"✨ Pomysły{zone}. Dotknij dowolnego, żeby zobaczyć go na mapie:","whatLbl":"Co robić","ambIntro":"Znalazłem kilka pasujących miejsc. Chodzi ci o któreś z tych?","askZone":"Jasne! Która strefa cię interesuje?","geoFail":"Nie udało mi się ustalić twojej lokalizacji 📵 Podaj strefę (północ, południe, wschód, zachód) albo miejscowość, a ruszę stamtąd.","viewMap":"📍 Zobacz na mapie","viewAll":"🗺️ Zobacz wszystkie na mapie","errGeneric":"Ups, coś poszło nie tak po mojej stronie 🙈 Spróbuj jeszcze raz, innymi słowami.","fallback":"Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam {N} miejsce na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇|Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam wszystkie {N} miejsca na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇|Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam wszystkie {N} miejsc na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇","contactTitle":"Napisz do Jérôme'a","contactSub":"Potrzebujesz porady na własną miarę? Napisz do niego bezpośrednio.","nearYou":"w twojej okolicy","nearOf":"w okolicy {a}","zone":{"norte":"na północy","sur":"na południu","este":"na wschodzie","oeste":"na zachodzie","centro":"w centrum wyspy","metro":"w Santa Cruz – La Laguna"},"qrHome":["Najlepsze plaże","Szlaki","Gdzie jest Masca?","Co robić w pobliżu"],"qrZones":["Na północy","Na południu","W pobliżu"],"qrZonesFull":["Na północy","Na południu","Na wschodzie","Na zachodzie","W pobliżu"],"qrAfterPoi":["Co jest w pobliżu","Plaże w pobliżu","Szlaki w pobliżu"],"qrThanks":["Kolejne pytanie","Najlepsze plaże"]}
 };
 function chatT(k){
   var d=(CHAT_STR[currentLang]||CHAT_STR.en);
@@ -27465,8 +27154,17 @@ function chatT(k){
   if(v===undefined)v=CHAT_STR.es[k];
   return v;
 }
+/* Con varias formas separadas por «|», la del numero, igual que tx(): {n} si
+   lo hay y si no {N}. El polaco tiene tres (1 miejsce · 2-4 miejsca · 5+
+   miejsc) y con una sola el asistente decia «974 miejsc», cuando 974 acaba en
+   4 y pide «miejsca». Las respuestas de faq/ no llevan «|». */
 function chatFmt(tpl,vars){
-  return String(tpl).replace(/\{(\w+)\}/g,function(m,k){return (vars&&vars[k]!==undefined)?vars[k]:m;});
+  var s=String(tpl);
+  if(s.indexOf('|')>=0&&vars){
+    var cuenta=(vars.n!==undefined)?vars.n:vars.N;
+    if(cuenta!==undefined&&typeof pluralIdx==='function'){var formas=s.split('|');s=formas[pluralIdx(cuenta,formas.length)];}
+  }
+  return s.replace(/\{(\w+)\}/g,function(m,k){return (vars&&vars[k]!==undefined)?vars[k]:m;});
 }
 function chatTrim(s,n){s=String(s||'');return s.length>n?s.slice(0,n-1)+'…':s;}
 function chatKmTxt(km){

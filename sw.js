@@ -240,7 +240,7 @@ self.addEventListener('fetch', e => {
       /* Los idiomas de los lugares van con index.html, no por su cuenta.
          idiomas/<lang>.json lleva las descripciones de los 804 lugares en ese
          idioma, y idiomas/etiquetas/<lang>.json los chips del globo, en ese
-         idioma. faq/<lang>.json son las 69 respuestas del asistente en ese
+         idioma. faq/<lang>.json son las 121 respuestas del asistente en ese
          idioma, y las tres cosas cambian con la app aunque vayan aparte;
          index.html solo trae el castellano. Si este manejador los
          sirviera con `cached || fetch` -lo de por defecto-, una version nueva

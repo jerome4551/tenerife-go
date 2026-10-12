@@ -426,6 +426,392 @@
    "volatil": true,
    "bloque": "F1 · Prácticos del viaje",
    "version": "1.0"
+  },
+  "app-01": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.navFav",
+    "UI.navRoutes",
+    "UI.navShop",
+    "UI.navChat",
+    "UI.navAccount",
+    "UI.tourVer"
+   ]
+  },
+  "app-02": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "LANGS.addFav",
+    "UI.navFav"
+   ]
+  },
+  "app-03": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "VIS.mark",
+    "VIS.done"
+   ]
+  },
+  "app-04": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0"
+  },
+  "app-05": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "TTS.play"
+   ]
+  },
+  "app-06": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "LANGS.isla"
+   ]
+  },
+  "app-07": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0"
+  },
+  "app-08": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0"
+  },
+  "app-09": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0"
+  },
+  "app-10": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.catMostrarTodos"
+   ]
+  },
+  "app-11": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0"
+  },
+  "app-12": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "LANGS.addFav",
+    "LANGS.shareBtn",
+    "TTS.play",
+    "VIS.mark",
+    "LANGS.nearbyHowToBtn",
+    "LANGS.directionsBtn",
+    "LANGS.popupVerFicha"
+   ]
+  },
+  "app-13": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0"
+  },
+  "app-14": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0"
+  },
+  "app-15": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.navRoutes",
+    "UI.routeCalcular",
+    "LANGS.directionsBtn"
+   ]
+  },
+  "app-16": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.navRoutes",
+    "UI.tabPlanner",
+    "LANGS.daytripTitle",
+    "UI.navFav"
+   ]
+  },
+  "app-17": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "LANGS.nearbyHowToBtn"
+   ]
+  },
+  "app-18": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.navAccount",
+    "LANGS.authTabGuest"
+   ]
+  },
+  "app-19": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "LANGS.shareBtn"
+   ]
+  },
+  "app-20": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "GLT"
+   ]
+  },
+  "app-21": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "PWA.versionNueva",
+    "PWA.recargar"
+   ],
+   "contacto": true
+  },
+  "app-22": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.navShop",
+    "UI.shopSoon",
+    "UI.shopAd"
+   ]
+  },
+  "sal-01": {
+   "cat": "seguridad",
+   "volatil": false,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0"
+  },
+  "sal-02": {
+   "cat": "seguridad",
+   "volatil": false,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0",
+   "rotulos": [
+    "LANGS.banderasTitulo"
+   ]
+  },
+  "sal-03": {
+   "cat": "seguridad",
+   "volatil": false,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0"
+  },
+  "sal-04": {
+   "cat": "seguridad",
+   "volatil": false,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0"
+  },
+  "sal-05": {
+   "cat": "seguridad",
+   "volatil": false,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0"
+  },
+  "sal-06": {
+   "cat": "salud",
+   "volatil": false,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0"
+  },
+  "sal-07": {
+   "cat": "salud",
+   "volatil": false,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0"
+  },
+  "com-01": {
+   "cat": "gastronomia",
+   "volatil": false,
+   "bloque": "H2 · Comer y beber",
+   "version": "1.0"
+  },
+  "com-02": {
+   "cat": "gastronomia",
+   "volatil": false,
+   "bloque": "H2 · Comer y beber",
+   "version": "1.0"
+  },
+  "com-03": {
+   "cat": "gastronomia",
+   "volatil": false,
+   "bloque": "H2 · Comer y beber",
+   "version": "1.0"
+  },
+  "com-04": {
+   "cat": "gastronomia",
+   "volatil": false,
+   "bloque": "H2 · Comer y beber",
+   "version": "1.0"
+  },
+  "com-05": {
+   "cat": "gastronomia",
+   "volatil": false,
+   "bloque": "H2 · Comer y beber",
+   "version": "1.0"
+  },
+  "com-06": {
+   "cat": "gastronomia",
+   "volatil": false,
+   "bloque": "H2 · Comer y beber",
+   "version": "1.0"
+  },
+  "com-07": {
+   "cat": "gastronomia",
+   "volatil": false,
+   "bloque": "H2 · Comer y beber",
+   "version": "1.0"
+  },
+  "pla-01": {
+   "cat": "clima",
+   "volatil": false,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-02": {
+   "cat": "clima",
+   "volatil": false,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-03": {
+   "cat": "planes",
+   "volatil": false,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-04": {
+   "cat": "playas",
+   "volatil": false,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-05": {
+   "cat": "playas",
+   "volatil": false,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-06": {
+   "cat": "planes",
+   "volatil": false,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0",
+   "rotulos": [
+    "UI.tabPlanner"
+   ]
+  },
+  "pla-07": {
+   "cat": "planes",
+   "volatil": false,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-08": {
+   "cat": "planes",
+   "volatil": false,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-09": {
+   "cat": "naturaleza",
+   "volatil": false,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-10": {
+   "cat": "normas",
+   "volatil": true,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-11": {
+   "cat": "normas",
+   "volatil": true,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-12": {
+   "cat": "movilidad",
+   "volatil": true,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-13": {
+   "cat": "teide",
+   "volatil": false,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-14": {
+   "cat": "naturaleza",
+   "volatil": false,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-15": {
+   "cat": "naturaleza",
+   "volatil": true,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
+  },
+  "pla-16": {
+   "cat": "naturaleza",
+   "volatil": true,
+   "bloque": "H3 · Planes, naturaleza y clima",
+   "version": "1.0"
   }
  }
 }

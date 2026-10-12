@@ -7,6 +7,8 @@ Entrada : faq/fuente/*.json             los bloques tal y como se redactaron
           faq/fuente/intenciones/*.json el vocabulario de intencion de cada
                                         idioma: «donde esta», «que hacer»,
                                         «cerca de mi», «cuantos lugares»
+          faq/fuente/claves/<idioma>.json claves de busqueda de mas para
+                                        entradas que ya existen, por id
 
 Salida  : faq/<idioma>.json  lo que descarga el movil, solo su idioma
           faq/indice.json    cat/volatil/bloque; solo lo leen los controles
@@ -15,6 +17,14 @@ El bulgaro va aparte a proposito. Los bloques llegan escritos de una pieza
 y se vuelven a mandar corregidos; si el bulgaro estuviera dentro se perderia
 en cada reenvio y el diff no dejaria ver que cambio. Asi el bloque original
 se queda como llego y el suplemento se funde al generar.
+
+Las claves de mas van aparte por lo mismo: al retirar CHAT_KB (12/10/2026)
+hubo que darle a entradas de los bloques preguntas que antes contestaba el, y
+meterlas dentro del bloque las perderia en el siguiente reenvio. Son solo
+claves de busqueda, ningun texto que lea el usuario.
+
+Una entrada con "contacto": true sale con "c": 1 y el asistente pinta debajo
+el boton para escribirle a Jerome (la de «algo falla»).
 
 No inventa nada: si un idioma le falta a una entrada, se planta.
 """
@@ -58,8 +68,27 @@ def main():
             entradas.append(e)
             indice[e['id']] = {'cat': e['cat'], 'volatil': bool(e['volatil']),
                                'bloque': meta['bloque'], 'version': meta['version']}
+            # los rotulos de la app que cita la respuesta: los mira auditar_faq.js
+            if e.get('rotulos'): indice[e['id']]['rotulos'] = e['rotulos']
+            if e.get('contacto'): indice[e['id']]['contacto'] = True
 
     idiomas = idiomas + ['bg']
+
+    # claves de mas, por idioma y por id; un id que no existe es un error
+    porid = {e['id']: e for e in entradas}
+    for L in idiomas:
+        f = os.path.join(FUENTE, 'claves', L + '.json')
+        if not os.path.exists(f): continue
+        extra = json.load(open(f, encoding='utf-8'))
+        for id_, ks in extra.items():
+            if id_.startswith('_'): continue
+            if id_ not in porid:
+                print(f'claves/{L}.json: {id_} no es ninguna entrada'); return 1
+            ya = porid[id_]['keys'][L]
+            nuevas = [k for k in ks if k not in ya]
+            if len(nuevas) != len(ks):
+                print(f'claves/{L}.json: {id_} repite claves que la entrada ya tiene'); return 1
+            porid[id_]['keys'][L] = ya + nuevas
 
     # ── controles antes de escribir nada ──────────────────────────────
     ids = [e['id'] for e in entradas]
@@ -90,10 +119,14 @@ def main():
 
     # ── escritura ─────────────────────────────────────────────────────
     for L in idiomas:
-        filas = [{'id': e['id'], 'p': e['prio'],
-                  'k': [k.strip().lower() for k in e['keys'][L]],
-                  'l': e['label'][L], 'a': e['a'][L],
-                  'f': e.get('follow', [])} for e in entradas]
+        filas = []
+        for e in entradas:
+            fila = {'id': e['id'], 'p': e['prio'],
+                    'k': [k.strip().lower() for k in e['keys'][L]],
+                    'l': e['label'][L], 'a': e['a'][L],
+                    'f': e.get('follow', [])}
+            if e.get('contacto'): fila['c'] = 1
+            filas.append(fila)
         salida = {'v': 1, 'lang': L, 'e': filas}
 
         # vocabulario de intencion y sinonimos de categoria de ese idioma.
@@ -107,7 +140,7 @@ def main():
             print(f'falta faq/fuente/intenciones/{L}.json'); return 1
         else:
             d = json.load(open(inte, encoding='utf-8'))
-            sobran = set(d) - {'where', 'what', 'near', 'nearTok', 'count', 'cats'}
+            sobran = set(d) - {'where', 'what', 'near', 'nearTok', 'count', 'cats', 'zonas'}
             if sobran:
                 print(f'{L}: claves que no existen en el vocabulario: {sorted(sobran)}'); return 1
             for campo in ('where', 'what', 'near', 'nearTok', 'count'):
@@ -116,6 +149,12 @@ def main():
             salida['i'] = {k: d[k] for k in ('where', 'what', 'near', 'nearTok', 'count')}
             if d.get('cats'):
                 salida['c'] = d['cats']
+            # las zonas («nord», «Süden», «北部»): las de castellano e ingles
+            # viven en index.html (CHAT_ZONE_W)
+            if d.get('zonas'):
+                if set(d['zonas']) != {'norte', 'sur', 'este', 'oeste', 'centro'}:
+                    print(f'{L}: las zonas son norte, sur, este, oeste y centro: {sorted(d["zonas"])}'); return 1
+                salida['z'] = d['zonas']
 
         ruta = os.path.join(DESTINO, L + '.json')
         with open(ruta, 'w', encoding='utf-8') as fh:

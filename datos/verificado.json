@@ -722,8 +722,8 @@
   },
   "asistente": {
    "estado": "cerrado",
-   "fecha": "2026-09-18",
-   "resultado": "69 respuestas x 10 idiomas = 690, y se llega a las 690 desde el buscador del asistente."
+   "fecha": "2026-10-12",
+   "resultado": "121 respuestas x 10 idiomas = 1210, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026)."
   },
   "mapa_sin_conexion": {
    "estado": "cerrado",
