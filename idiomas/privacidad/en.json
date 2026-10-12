@@ -34,7 +34,6 @@
 "ppTercOsrm":"start and end points when you calculate a driving route.",
 "ppTercNominatim":"the text you type when searching for an address.",
 "ppTercMeteo":"the coordinates of the place or area whose forecast you are checking.",
-"ppTercAemet":"weather warnings for the island; nothing of yours is sent to it.",
 "ppTercCarburantes":"the official petrol station prices for the province, when you look at them; nothing of yours is sent to it.",
 "ppTercWiki":"the article title of the place you open.",
 "ppTercCdn":"fonts and libraries.",

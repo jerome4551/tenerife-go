@@ -57,6 +57,10 @@ execFileSync('python3', ['-c', [
 execFileSync('python3', [path.join(RAIZ, 'tools', 'precios_gasolineras.py'), '--registro', path.join(TMP, 'registro.json'),
   '--forzar', '--salida', path.join(TMP, 'precios.json')], { cwd: RAIZ });
 const PRECIOS = fs.readFileSync(path.join(TMP, 'precios.json'));
+/* los avisos de AEMET, con dos en pie (uno naranja en la costa y uno
+   amarillo de lluvias), para que la pildora, su panel y las lineas de los
+   paneles del tiempo y del mar salgan en cada idioma: tools/avisos_prueba.js */
+const AVISOS = JSON.stringify(require('./avisos_prueba').ficheros().conAvisos);
 fs.rmSync(TMP, { recursive: true, force: true });
 const ESTADOS = `
 window.__estados = [
@@ -73,6 +77,7 @@ window.__estados = [
   ['bus', async () => { toggleBusPanel(); }],
   ['mar', async () => { document.getElementById('mar-btn').click(); await espera(1500); }],
   ['microclimas', async () => { document.getElementById('mc-btn').click(); await espera(1500); }],
+  ['avisos AEMET', async () => { await fetchWxAlerts(); toggleWxPanel(); }],
   ['fiestas', async () => { document.getElementById('fi-btn').click(); await espera(800); }],
   ['tienda', async () => { openShopPanel(); await espera(800); }],
   ['asistente', async () => { openChatPanel(); await espera(800); }],
@@ -90,7 +95,7 @@ window.__cierra = async () => {
   try { map.closePopup(); } catch (e) {}
   document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
   document.body.click();
-  for (const id of ['mar-panel','mc-panel','fi-panel']) { const e = document.getElementById(id); if (e) e.style.display = 'none'; }
+  for (const id of ['mar-panel','mc-panel','fi-panel','wx-panel']) { const e = document.getElementById(id); if (e) e.style.display = 'none'; }
   for (const s of ['#mar-close','#mc-close','#fi-close','.mar-close','.mc-close','.fi-close']) { const e = document.querySelector(s); if (e && e.offsetParent) try { e.click(); } catch (x) {} }
   try { clearAllFilters(); } catch (e) {}
   await espera(250);
@@ -123,6 +128,7 @@ async function recorrer(b, L) {
   const err = []; p.on('pageerror', e => err.push(e.message));
   await p.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
   await p.route('**/datos/precios-gasolineras.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: PRECIOS }));
+  await p.route('**/datos/avisos-aemet.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: AVISOS }));
   await p.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'networkidle' });
   await p.waitForTimeout(600);
   await p.click('.v19-w-lang[data-lang="' + L + '"]'); await p.waitForTimeout(300);

@@ -1,5 +1,6 @@
 {
- "_motivo": "«南部機場» y «北部機場»: lo mismo que en chino simplificado (12/10/2026).",
+ "_motivo": "«南部機場» y «北部機場»: lo mismo que en chino simplificado (12/10/2026). · Palabras de emergencia de mas para sal-01 (112), 12/10/2026. Jerome: «no borrar emergencia, no todos usan la misma palabra». «socorro» y «auxilio» van en los diez idiomas porque un turista en apuros puede escribir la palabra en castellano; las demas (policia, bomberos, accidente, herido) son las de cada idioma. El 112 atiende todas esas emergencias (Centro Coordinador 112 del Gobierno de Canarias, ver la nota de sal-01). Solo claves: ningun texto que lea el usuario.",
  "mov-01": ["南部機場"],
- "mov-02": ["北部機場"]
+ "mov-02": ["北部機場"],
+ "sal-01": ["socorro", "auxilio", "警察", "報警", "消防", "火警", "事故", "受傷"]
 }

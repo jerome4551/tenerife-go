@@ -108,7 +108,9 @@ m.append(terc('OpenStreetMap · ArcGIS', 'https://osmfoundation.org/wiki/Privacy
 m.append(terc('OSRM', 'https://project-osrm.org/', 'ppTercOsrm'))
 m.append(terc('Nominatim', 'https://osmfoundation.org/wiki/Privacy_Policy', 'ppTercNominatim'))
 m.append(terc('Open-Meteo', 'https://open-meteo.com/en/terms', 'ppTercMeteo'))
-m.append(terc('AEMET', 'https://www.aemet.es/es/nota_legal', 'ppTercAemet'))
+# AEMET salio de esta lista el 12/10/2026: la app ya no le pide nada desde el
+# dispositivo. Los avisos los baja GitHub (.github/workflows/avisos-aemet.yml)
+# y la app los lee de su propio dominio, asi que AEMET no recibe ni la IP.
 m.append(terc('Ministerio para la Transición Ecológica y el Reto Demográfico', 'https://geoportalgasolineras.es/', 'ppTercCarburantes'))
 m.append(terc('Wikipedia · Wikimedia', 'https://foundation.wikimedia.org/wiki/Policy:Privacy_policy', 'ppTercWiki'))
 m.append(terc('Google Fonts · jsDelivr', 'https://policies.google.com/privacy', 'ppTercCdn'))

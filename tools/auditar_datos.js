@@ -252,6 +252,56 @@ const mienten = exactas.filter(x => x.n !== PLACES.length);
 debe('cifras exactas de lugares que no son ' + PLACES.length, mienten.length, mienten.length === 0);
 mienten.slice(0, 5).forEach(x => console.log('      <--  ' + x.txt));
 
+/* 12 de octubre de 2026. Dos fichas de Anaga (bici-anaga-cruz-carmen y
+   acc-sendero-sentidos) decian que Anaga o su laurisilva son «Patrimonio
+   Mundial», en los diez idiomas. No lo son: el Macizo de Anaga es Reserva de
+   la Biosfera de la UNESCO, declarada el 9 de junio de 2015 (Ministerio para
+   la Transicion Ecologica, programa MAB, ficha «Macizo de Anaga»). En Tenerife
+   son Patrimonio Mundial San Cristobal de La Laguna (1999) y el Parque
+   Nacional del Teide (2007). Ningun lugar de Anaga puede decir otra cosa en
+   ningun idioma. */
+{
+  const WHS = /Patrimonio Mundial|Patrimonio de la Humanidad|World Heritage|Patrimoine mondial|Welterbe|Weltnaturerbe|Patrimonio Mondiale|Patrimonio dell.Umanit|werelderfgoed|世界遗产|世界遺產|световно наследство|[śs]wiatow\S* dziedzictw/i;
+  const deAnaga = PLACES.filter(p => /anaga|cruz del carmen/i.test(p.id + ' ' + p.name + ' ' + ((p.desc && p.desc.es) || '')));
+  const malos = [];
+  for (const p of deAnaga) if (WHS.test((p.desc && p.desc.es) || '')) malos.push(p.id + ' [es]');
+  for (const L of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    let t = {};
+    try { t = JSON.parse(fs_.readFileSync(require('path').join(__dirname, '..', 'idiomas', L + '.json'), 'utf8')); } catch (e) { malos.push('no se lee idiomas/' + L + '.json'); continue; }
+    for (const p of deAnaga) if (t[p.id] && WHS.test(t[p.id].desc || '')) malos.push(p.id + ' [' + L + ']');
+  }
+  debe('lugares de Anaga (' + deAnaga.length + ') que dicen «Patrimonio Mundial» en algun idioma', malos.length, deAnaga.length > 0 && malos.length === 0);
+  malos.slice(0, 6).forEach(x => console.log('      <--  ' + x));
+}
+
+/* 12 de octubre de 2026. El "mas de 700" de arriba se dejaba pasar porque era
+   cierto, y asi el schema.org que leen los buscadores estuvo diciendo «mas de
+   700 lugares verificados» con 974 en el mapa. Jerome: «verifica el polaco
+   y los 700». Desde hoy lo que lee alguien (la cabecera, sin comentarios, y
+   los textos entre comillas) no lleva cifras redondas de lugares sino la
+   contada, no dice que esten todos "verificados" (no se puede demostrar
+   lugar a lugar) y el schema.org declara todos los idiomas de la app. */
+const cabeza = html.slice(0, html.indexOf('</head>')).replace(/<!--[\s\S]*?-->/g, '');
+const literales = html.match(/'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"|`(?:[^`\\]|\\.)*`/g) || [];
+const REDONDA = /(?:m[aá]s de|\+)\s*(\d{3,4})\s*(?:puntos de inter[eé]s|marcadores|lugares|sitios)/gi;
+const redondas = [];
+for (const t of [cabeza, ...literales]) for (const m of t.matchAll(REDONDA)) redondas.push(m[0]);
+debe('cifras redondas de lugares en lo que se lee (va la contada, ' + PLACES.length + ')', redondas.length, redondas.length === 0);
+[...new Set(redondas)].slice(0, 5).forEach(t => console.log('      <--  ' + t));
+const verif = (cabeza.match(/[^."]*verificad[^."]*/gi) || []);
+debe('la cabecera (schema.org, meta) dice que los lugares estan «verificados»', verif.length, verif.length === 0);
+verif.slice(0, 3).forEach(t => console.log('      <--  ' + t.trim().slice(0, 90)));
+{
+  const sopLd = ((html.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1])
+    .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean)
+    .map(l => l === 'zht' ? 'zh-Hant' : l);
+  const ld = (cabeza.match(/"inLanguage"\s*:\s*\[([^\]]*)\]/) || [, ''])[1]
+    .split(',').map(x => x.trim().replace(/^"|"$/g, '')).filter(Boolean);
+  const faltan = sopLd.filter(l => !ld.includes(l));
+  debe('idiomas de la app que el schema.org no declara (inLanguage)', faltan.length ? faltan.join(' ') : 0,
+       ld.length > 0 && faltan.length === 0);
+}
+
 /* La misma regla para el numero de idiomas, que ademas se mueve solo.
    "Toda la app en 8 idiomas" y "con fichas en 8 idiomas" estan escritos en
    cada idioma; el dia que un idioma a medias deje de estarlo pasan a ser

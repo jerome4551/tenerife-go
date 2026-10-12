@@ -1998,10 +1998,13 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 859 filas (y 2.999 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 895 filas (y 2.999 filas, dentro y fuera del fuente)
 
-*(Cifras del 11 de octubre: el tour dejó de ser una tabla propia y sus
-textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las dos primeras.)*
+*(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
+AEMET y 3 del asistente para «socorro», y una menos de la privacidad (AEMET
+ya no recibe nada del dispositivo). El 11 de octubre el tour dejó de ser una
+tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
+dos primeras. La tercera no la coteja nadie y no se ha vuelto a contar.)*
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una

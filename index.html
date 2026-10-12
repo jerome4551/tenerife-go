@@ -116,7 +116,7 @@ window.onunhandledrejection = function(e) {
 </script>
 
 <title>Tenerife Go — Mapa Interactivo</title>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://energia.serviciosmin.gob.es https://sedeaplicaciones.minetur.gob.es https://nominatim.openstreetmap.org https://router.project-osrm.org https://www.aemet.es https://opendata.aemet.es https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://energia.serviciosmin.gob.es https://sedeaplicaciones.minetur.gob.es https://nominatim.openstreetmap.org https://router.project-osrm.org https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
 <!-- Google tag (gtag.js) — GA4 · Consent Mode v2 (básico) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -144,16 +144,16 @@ window.onunhandledrejection = function(e) {
       "name": "Tenerife Go",
       "alternateName": "Tenerife GO — Mapa Interactivo de Tenerife",
       "url": "https://jerome4551.github.io/tenerife-go/",
-      "description": "Guía turística gratuita de Tenerife con mapa interactivo: más de 700 lugares verificados, playas, senderos, miradores, gastronomía canaria, guachinches, transporte TITSA, rutas, planificador de día y alertas meteorológicas. Disponible en 10 idiomas. Somos parte de ti.",
+      "description": "Guía turística gratuita de Tenerife con mapa interactivo: 974 lugares, playas, senderos, miradores, gastronomía canaria, guachinches, transporte TITSA, rutas, planificador de día y avisos meteorológicos de AEMET. Disponible en 10 idiomas. Somos parte de ti.",
       "applicationCategory": "TravelApplication",
       "operatingSystem": "Web, Android, iOS",
       "browserRequirements": "Requires JavaScript",
-      "inLanguage": ["es", "en", "fr", "de", "it", "nl", "zh", "zh-Hant", "bg"],
+      "inLanguage": ["es", "en", "fr", "de", "it", "nl", "zh", "zh-Hant", "bg", "pl"],
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
       "author": { "@type": "Person", "name": "Jérôme B" },
       "image": "https://jerome4551.github.io/tenerife-go/og-image.jpg",
-      "featureList": "Mapa interactivo offline, 974 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, alertas AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
+      "featureList": "Mapa interactivo offline, 974 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, avisos meteorológicos de AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
     },
     {
       "@type": "TouristDestination",
@@ -9265,6 +9265,7 @@ const TG_FAQ = (function () {
     for (const e of d.e) rotulo[e.id] = e.l;
     return d.e.slice().sort(function (a, b) { return a.p - b.p; }).map(function (e) {
       return {
+        id: e.id,
         keys: e.k.concat([e.l]),
         answer: e.a,
         follow: (e.f || []).map(function (id) { return rotulo[id]; }).filter(Boolean),
@@ -9544,9 +9545,51 @@ Object.assign(UI_TX, {
   "shopPanelTitulo": {"es":"🏪 Tenerife Go Shop","en":"🏪 Tenerife Go Shop","fr":"🏪 Boutique Tenerife Go","de":"🏪 Tenerife Go Shop","it":"🏪 Negozio Tenerife Go","nl":"🏪 Tenerife Go Winkel","zh":"🏪 Tenerife Go 商店","zht":"🏪 Tenerife Go 商店","bg":"🏪 Магазин Tenerife Go", pl: "🏪 Tenerife Go Shop"},
   "shopQuieroAnunciar": {"es":"🏪 Quiero anunciar mi negocio","en":"🏪 I want to advertise my business","fr":"🏪 Je veux promouvoir mon activité","de":"🏪 Ich möchte mein Unternehmen bewerben","it":"🏪 Voglio pubblicizzare la mia attività","nl":"🏪 Ik wil mijn bedrijf adverteren","zh":"🏪 我想推广我的商家","zht":"🏪 我想推廣我的商家","bg":"🏪 Искам да рекламирам бизнеса си", pl: "🏪 Chcę zareklamować swoją firmę"},
   "shopEnviarSolicitud": {"es":"Enviar solicitud","en":"Send request","fr":"Envoyer la demande","de":"Anfrage senden","it":"Invia richiesta","nl":"Aanvraag versturen","zh":"提交申请","zht":"提交申請","bg":"Изпрати заявка", pl: "Wyślij zgłoszenie"},
-  "wxLogo": {"es":"Alertas Tenerife","en":"Tenerife alerts","fr":"Alertes Tenerife","de":"Warnungen Teneriffa","it":"Allerte Tenerife","nl":"Waarschuwingen Tenerife","zh":"特内里费预警","zht":"特內里費預警","bg":"Предупреждения за Тенерифе", pl: "Ostrzeżenia Teneryfa"},
+  "wxLogo": {"es":"Avisos meteorológicos · Tenerife","en":"Weather warnings · Tenerife","fr":"Alertes météo · Tenerife","de":"Wetterwarnungen · Teneriffa","it":"Allerte meteo · Tenerife","nl":"Weerwaarschuwingen · Tenerife","zh":"天气预警 · 特内里费","zht":"天氣預警 · 特內里費","bg":"Метеорологични предупреждения · Тенерифе", pl: "Ostrzeżenia pogodowe · Teneryfa"},
   "wxFuente": {"es":"Fuente: AEMET","en":"Source: AEMET","fr":"Source : AEMET","de":"Quelle: AEMET","it":"Fonte: AEMET","nl":"Bron: AEMET","zh":"来源：AEMET","zht":"來源：AEMET","bg":"Източник: AEMET", pl: "Źródło: AEMET"},
   "wxActualizar": {"es":"Actualizar","en":"Refresh","fr":"Actualiser","de":"Aktualisieren","it":"Aggiorna","nl":"Vernieuwen","zh":"刷新","zht":"重新整理","bg":"Обнови", pl: "Odśwież"}
+});
+
+/* Avisos meteorologicos de AEMET (12 de octubre de 2026). Nombres de nivel,
+   fenomeno, parametro y zona del Plan Meteoalerta, por su codigo oficial
+   (anexo 3, METEOALERTA_ANX3_CAP.pdf): el fichero datos/avisos-aemet.json
+   solo trae codigos y el texto de AEMET, y aqui se traducen. Un codigo que
+   no este en esta tabla sale con el nombre que da AEMET, en castellano. */
+Object.assign(UI_TX, {
+  "wxNivel_amarillo": {"es":"Aviso amarillo","en":"Yellow warning","fr":"Alerte jaune","de":"Warnstufe Gelb","it":"Allerta gialla","nl":"Code geel","zh":"黄色预警","zht":"黃色預警","bg":"Жълт код", pl: "Ostrzeżenie żółte"},
+  "wxNivel_naranja": {"es":"Aviso naranja","en":"Orange warning","fr":"Alerte orange","de":"Warnstufe Orange","it":"Allerta arancione","nl":"Code oranje","zh":"橙色预警","zht":"橙色預警","bg":"Оранжев код", pl: "Ostrzeżenie pomarańczowe"},
+  "wxNivel_rojo": {"es":"Aviso rojo","en":"Red warning","fr":"Alerte rouge","de":"Warnstufe Rot","it":"Allerta rossa","nl":"Code rood","zh":"红色预警","zht":"紅色預警","bg":"Червен код", pl: "Ostrzeżenie czerwone"},
+  "wxFen_PR": {"es":"Lluvias","en":"Rain","fr":"Pluie","de":"Regen","it":"Pioggia","nl":"Regen","zh":"降雨","zht":"降雨","bg":"Дъжд", pl: "Deszcz"},
+  "wxFen_NE": {"es":"Nevadas","en":"Snow","fr":"Neige","de":"Schnee","it":"Neve","nl":"Sneeuw","zh":"降雪","zht":"降雪","bg":"Сняг", pl: "Śnieg"},
+  "wxFen_VI": {"es":"Vientos","en":"Wind","fr":"Vent","de":"Wind","it":"Vento","nl":"Wind","zh":"大风","zht":"強風","bg":"Вятър", pl: "Wiatr"},
+  "wxFen_TO": {"es":"Tormentas","en":"Thunderstorms","fr":"Orages","de":"Gewitter","it":"Temporali","nl":"Onweer","zh":"雷暴","zht":"雷暴","bg":"Гръмотевични бури", pl: "Burze"},
+  "wxFen_AT": {"es":"Temperaturas máximas","en":"High temperatures","fr":"Températures maximales","de":"Höchsttemperaturen","it":"Temperature massime","nl":"Maximumtemperaturen","zh":"高温","zht":"高溫","bg":"Максимални температури", pl: "Temperatury maksymalne"},
+  "wxFen_BT": {"es":"Temperaturas mínimas","en":"Low temperatures","fr":"Températures minimales","de":"Tiefsttemperaturen","it":"Temperature minime","nl":"Minimumtemperaturen","zh":"低温","zht":"低溫","bg":"Минимални температури", pl: "Temperatury minimalne"},
+  "wxFen_CO": {"es":"Fenómenos costeros","en":"Coastal events","fr":"Phénomènes côtiers","de":"Küstenereignisse","it":"Fenomeni costieri","nl":"Kustverschijnselen","zh":"沿海风浪","zht":"沿海風浪","bg":"Явления по крайбрежието", pl: "Zjawiska przybrzeżne"},
+  "wxFen_VS": {"es":"Polvo en suspensión","en":"Suspended dust","fr":"Poussière en suspension","de":"Schwebstaub","it":"Polvere in sospensione","nl":"Stof in de lucht","zh":"浮尘","zht":"浮塵","bg":"Прах във въздуха", pl: "Pył zawieszony"},
+  "wxFen_NI": {"es":"Nieblas","en":"Fog","fr":"Brouillard","de":"Nebel","it":"Nebbia","nl":"Mist","zh":"雾","zht":"霧","bg":"Мъгла", pl: "Mgła"},
+  "wxPar_P1": {"es":"Precipitación acumulada en una hora","en":"One-hour accumulated precipitation","fr":"Précipitations cumulées en une heure","de":"Niederschlag in einer Stunde","it":"Precipitazione accumulata in un’ora","nl":"Neerslag in één uur","zh":"1小时累计降水量","zht":"1小時累積降水量","bg":"Валеж за един час", pl: "Suma opadów w ciągu godziny"},
+  "wxPar_P2": {"es":"Precipitación acumulada en 12 horas","en":"12-hour accumulated precipitation","fr":"Précipitations cumulées en 12 heures","de":"Niederschlag in 12 Stunden","it":"Precipitazione accumulata in 12 ore","nl":"Neerslag in 12 uur","zh":"12小时累计降水量","zht":"12小時累積降水量","bg":"Валеж за 12 часа", pl: "Suma opadów w ciągu 12 godzin"},
+  "wxPar_NV": {"es":"Acumulación de nieve en 24 horas","en":"24-hour accumulated snowfall","fr":"Neige accumulée en 24 heures","de":"Neuschnee in 24 Stunden","it":"Neve accumulata in 24 ore","nl":"Sneeuwval in 24 uur","zh":"24小时积雪量","zht":"24小時積雪量","bg":"Натрупан сняг за 24 часа", pl: "Przyrost śniegu w ciągu 24 godzin"},
+  "wxPar_RM": {"es":"Rachas máximas","en":"Maximum gusts","fr":"Rafales maximales","de":"Maximale Böen","it":"Raffiche massime","nl":"Maximale windstoten","zh":"最大阵风","zht":"最大陣風","bg":"Максимални пориви", pl: "Maksymalne porywy"},
+  "wxPar_TA": {"es":"Temperatura máxima","en":"Maximum temperature","fr":"Température maximale","de":"Höchsttemperatur","it":"Temperatura massima","nl":"Maximumtemperatuur","zh":"最高气温","zht":"最高氣溫","bg":"Максимална температура", pl: "Temperatura maksymalna"},
+  "wxPar_TI": {"es":"Temperatura mínima","en":"Minimum temperature","fr":"Température minimale","de":"Tiefsttemperatur","it":"Temperatura minima","nl":"Minimumtemperatuur","zh":"最低气温","zht":"最低氣溫","bg":"Минимална температура", pl: "Temperatura minimalna"},
+  "wxPar_VIS": {"es":"Visibilidad","en":"Visibility","fr":"Visibilité","de":"Sichtweite","it":"Visibilità","nl":"Zicht","zh":"能见度","zht":"能見度","bg":"Видимост", pl: "Widzialność"},
+  "wxZona_659601": {"es":"Norte de Tenerife","en":"North of Tenerife","fr":"Nord de Tenerife","de":"Norden von Teneriffa","it":"Nord di Tenerife","nl":"Noorden van Tenerife","zh":"特内里费北部","zht":"特內里費北部","bg":"Север на Тенерифе", pl: "Północ Teneryfy"},
+  "wxZona_659602": {"es":"Área metropolitana de Tenerife","en":"Tenerife metropolitan area","fr":"Aire métropolitaine de Tenerife","de":"Ballungsraum Teneriffa","it":"Area metropolitana di Tenerife","nl":"Metropoolgebied van Tenerife","zh":"特内里费都市区","zht":"特內里費都會區","bg":"Метрополен район на Тенерифе", pl: "Obszar metropolitalny Teneryfy"},
+  "wxZona_659603": {"es":"Este, sur y oeste de Tenerife","en":"East, south and west of Tenerife","fr":"Est, sud et ouest de Tenerife","de":"Osten, Süden und Westen von Teneriffa","it":"Est, sud e ovest di Tenerife","nl":"Oosten, zuiden en westen van Tenerife","zh":"特内里费东部、南部和西部","zht":"特內里費東部、南部和西部","bg":"Изток, юг и запад на Тенерифе", pl: "Wschód, południe i zachód Teneryfy"},
+  "wxCosta": {"es":"Costa – {z}","en":"Coast – {z}","fr":"Côte – {z}","de":"Küste – {z}","it":"Litorale – {z}","nl":"Kust – {z}","zh":"沿海 – {z}","zht":"沿海 – {z}","bg":"Крайбрежие – {z}", pl: "Wybrzeże – {z}"},
+  "wxDeA": {"es":"De {a} a {b}","en":"From {a} to {b}","fr":"Du {a} au {b}","de":"Von {a} bis {b}","it":"Da {a} a {b}","nl":"Van {a} tot {b}","zh":"{a} 至 {b}","zht":"{a} 至 {b}","bg":"От {a} до {b}", pl: "Od {a} do {b}"},
+  "wxHoraCanarias": {"es":"hora de Canarias","en":"Canary Islands time","fr":"heure des Canaries","de":"Kanarenzeit","it":"ora delle Canarie","nl":"Canarische tijd","zh":"加那利群岛时间","zht":"加那利群島時間","bg":"канарско време", pl: "czas na Wyspach Kanaryjskich"},
+  "wxProb": {"es":"Probabilidad: {p}","en":"Probability: {p}","fr":"Probabilité : {p}","de":"Wahrscheinlichkeit: {p}","it":"Probabilità: {p}","nl":"Kans: {p}","zh":"概率：{p}","zht":"機率：{p}","bg":"Вероятност: {p}", pl: "Prawdopodobieństwo: {p}"},
+  "wxTextoAemet": {"es":"Texto de AEMET","en":"AEMET text","fr":"Texte de l’AEMET (en espagnol)","de":"Text der AEMET (auf Spanisch)","it":"Testo dell’AEMET (in spagnolo)","nl":"Tekst van AEMET (in het Spaans)","zh":"AEMET 原文（西班牙语）","zht":"AEMET 原文（西班牙語）","bg":"Текст на AEMET (на испански)", pl: "Tekst AEMET (po hiszpańsku)"},
+  "wxSinAvisos": {"es":"Sin avisos de AEMET para Tenerife","en":"No AEMET warnings for Tenerife","fr":"Aucune alerte de l’AEMET pour Tenerife","de":"Keine AEMET-Warnungen für Teneriffa","it":"Nessuna allerta AEMET per Tenerife","nl":"Geen AEMET-waarschuwingen voor Tenerife","zh":"AEMET 未对特内里费发布预警","zht":"AEMET 未對特內里費發布預警","bg":"Няма предупреждения от AEMET за Тенерифе", pl: "Brak ostrzeżeń AEMET dla Teneryfy"},
+  "wxSinAvisosHasta": {"es":"Sin avisos de AEMET para Tenerife hasta {f}","en":"No AEMET warnings for Tenerife until {f}","fr":"Aucune alerte de l’AEMET pour Tenerife jusqu’au {f}","de":"Keine AEMET-Warnungen für Teneriffa bis {f}","it":"Nessuna allerta AEMET per Tenerife fino a {f}","nl":"Geen AEMET-waarschuwingen voor Tenerife tot {f}","zh":"截至{f}，AEMET 未对特内里费发布预警","zht":"截至{f}，AEMET 未對特內里費發布預警","bg":"Няма предупреждения от AEMET за Тенерифе до {f}", pl: "Brak ostrzeżeń AEMET dla Teneryfy do {f}"},
+  "wxHayAvisos": {"es":"{n} aviso de AEMET para Tenerife|{n} avisos de AEMET para Tenerife","en":"{n} AEMET warning for Tenerife|{n} AEMET warnings for Tenerife","fr":"{n} alerte de l’AEMET pour Tenerife|{n} alertes de l’AEMET pour Tenerife","de":"{n} AEMET-Warnung für Teneriffa|{n} AEMET-Warnungen für Teneriffa","it":"{n} allerta AEMET per Tenerife|{n} allerte AEMET per Tenerife","nl":"{n} AEMET-waarschuwing voor Tenerife|{n} AEMET-waarschuwingen voor Tenerife","zh":"AEMET 对特内里费发布了 {n} 条预警","zht":"AEMET 對特內里費發布了 {n} 則預警","bg":"{n} предупреждение от AEMET за Тенерифе|{n} предупреждения от AEMET за Тенерифе", pl: "{n} ostrzeżenie AEMET dla Teneryfy|{n} ostrzeżenia AEMET dla Teneryfy|{n} ostrzeżeń AEMET dla Teneryfy"},
+  "wxComprobado": {"es":"Comprobado: {h}","en":"Checked: {h}","fr":"Vérifié : {h}","de":"Geprüft: {h}","it":"Controllato: {h}","nl":"Gecontroleerd: {h}","zh":"核对时间：{h}","zht":"核對時間：{h}","bg":"Проверено: {h}", pl: "Sprawdzono: {h}"},
+  "wxSinComprobar": {"es":"No se han podido comprobar los avisos desde {h}: puede haber cambios.","en":"Warnings could not be checked since {h}: there may be changes.","fr":"Les alertes n’ont pas pu être vérifiées depuis {h} : il peut y avoir du nouveau.","de":"Die Warnungen konnten seit {h} nicht geprüft werden – es kann Änderungen geben.","it":"Non è stato possibile controllare le allerte da {h}: potrebbero esserci novità.","nl":"De waarschuwingen konden sinds {h} niet worden gecontroleerd: er kan iets veranderd zijn.","zh":"自{h}起无法核对预警，情况可能已有变化。","zht":"自{h}起無法核對預警，情況可能已有變化。","bg":"Предупрежденията не са проверявани от {h}: възможно е да има промени.", pl: "Nie udało się sprawdzić ostrzeżeń od {h}: mogły zajść zmiany."},
+  "wxNoDisponible": {"es":"No se han podido consultar los avisos de AEMET.","en":"AEMET warnings could not be loaded.","fr":"Impossible de consulter les alertes de l’AEMET.","de":"Die AEMET-Warnungen konnten nicht abgerufen werden.","it":"Non è stato possibile consultare le allerte AEMET.","nl":"De AEMET-waarschuwingen konden niet worden opgehaald.","zh":"无法获取 AEMET 的预警信息。","zht":"無法取得 AEMET 的預警資訊。","bg":"Предупрежденията на AEMET не можаха да бъдат заредени.", pl: "Nie udało się pobrać ostrzeżeń AEMET."},
+  "wxVerAemet": {"es":"Ver en aemet.es","en":"See aemet.es","fr":"Voir sur aemet.es","de":"Auf aemet.es ansehen","it":"Vedi su aemet.es","nl":"Bekijk op aemet.es","zh":"前往 aemet.es 查看","zht":"前往 aemet.es 查看","bg":"Виж в aemet.es", pl: "Zobacz na aemet.es"}
 });
 
 /* Cuatro trozos que estaban dentro de una frase con <strong> y que hay que
@@ -9610,7 +9653,6 @@ Object.assign(UI_TX, {
   "ppTercOsrm": {"es":"origen y destino cuando calculas una ruta en coche.", "en":"start and end points when you calculate a driving route.", "fr":"départ et arrivée quand vous calculez un itinéraire en voiture.", "de":"Start und Ziel, wenn du eine Autoroute berechnest.", "it":"partenza e arrivo quando calcoli un percorso in auto.", "nl":"start en bestemming wanneer je een autoroute berekent.", "zh":"计算驾车路线时的起点和终点。", "zht":"計算開車路線時的起點與終點。", "bg":"начало и край, когато изчислявате маршрут с кола.", "pl":"początek i cel, kiedy wyznaczasz trasę samochodem."},
   "ppTercNominatim": {"es":"el texto que escribes al buscar una dirección.", "en":"the text you type when searching for an address.", "fr":"le texte que vous saisissez en cherchant une adresse.", "de":"den Text, den du bei der Adresssuche eingibst.", "it":"il testo che scrivi cercando un indirizzo.", "nl":"de tekst die je typt bij het zoeken van een adres.", "zh":"你搜索地址时输入的文字。", "zht":"你搜尋地址時輸入的文字。", "bg":"текста, който пишете при търсене на адрес.", "pl":"tekst, który wpisujesz, szukając adresu."},
   "ppTercMeteo": {"es":"las coordenadas del lugar o de la zona cuya previsión consultas.", "en":"the coordinates of the place or area whose forecast you are checking.", "fr":"les coordonnées du lieu ou de la zone dont vous consultez les prévisions.", "de":"die Koordinaten des Ortes oder Gebiets, dessen Vorhersage du abrufst.", "it":"le coordinate del luogo o della zona di cui consulti le previsioni.", "nl":"de coördinaten van de plek of het gebied waarvan je de verwachting opvraagt.", "zh":"你查询预报的地点或区域的坐标。", "zht":"你查詢預報的地點或區域的座標。", "bg":"координатите на мястото или зоната, чиято прогноза проверявате.", "pl":"współrzędne miejsca albo strefy, której prognozę sprawdzasz."},
-  "ppTercAemet": {"es":"avisos meteorológicos de la isla; no se le manda nada tuyo.", "en":"weather warnings for the island; nothing of yours is sent to it.", "fr":"les alertes météo de l’île ; rien de vous ne lui est envoyé.", "de":"Wetterwarnungen für die Insel; von dir wird nichts übermittelt.", "it":"gli avvisi meteo dell’isola; non gli viene inviato nulla di tuo.", "nl":"weerwaarschuwingen voor het eiland; er gaat niets van jou naartoe.", "zh":"岛上的气象预警；不会向其发送任何属于你的信息。", "zht":"島上的氣象警報；不會向其傳送任何屬於你的資訊。", "bg":"метеорологичните предупреждения за острова; нищо ваше не се изпраща натам.", "pl":"ostrzeżenia pogodowe dla wyspy; nic twojego tam nie trafia."},
   "ppTercCarburantes": {"es":"los precios oficiales de las gasolineras de la provincia, cuando los miras; no se le manda nada tuyo.", "en":"the official petrol station prices for the province, when you look at them; nothing of yours is sent to it.", "fr":"les prix officiels des stations-service de la province, quand vous les consultez ; rien de vous ne lui est envoyé.", "de":"die amtlichen Tankstellenpreise der Provinz, wenn du sie ansiehst; von dir wird nichts übermittelt.", "it":"i prezzi ufficiali dei distributori della provincia, quando li consulti; non gli viene inviato nulla di tuo.", "nl":"de officiële prijzen van de tankstations in de provincie, wanneer je ze bekijkt; er gaat niets van jou naartoe.", "zh":"你查看时获取本省加油站的官方价格；不会向其发送任何属于你的信息。", "zht":"你查看時取得本省加油站的官方價格；不會向其傳送任何屬於你的資訊。", "bg":"официалните цени на бензиностанциите в провинцията, когато ги разглеждате; нищо ваше не се изпраща натам.", "pl":"oficjalne ceny stacji paliw w prowincji, kiedy je przeglądasz; nic twojego tam nie trafia."},
   "ppTercWiki": {"es":"el título del artículo del lugar que abres.", "en":"the article title of the place you open.", "fr":"le titre de l’article du lieu que vous ouvrez.", "de":"den Artikeltitel des Ortes, den du öffnest.", "it":"il titolo dell’articolo del luogo che apri.", "nl":"de artikeltitel van de plek die je opent.", "zh":"你打开的地点对应的条目标题。", "zht":"你開啟的地點對應的條目標題。", "bg":"заглавието на статията за мястото, което отваряте.", "pl":"tytuł artykułu o miejscu, które otwierasz."},
   "ppTercCdn": {"es":"tipografías y librerías.", "en":"fonts and libraries.", "fr":"polices et bibliothèques.", "de":"Schriften und Bibliotheken.", "it":"caratteri e librerie.", "nl":"lettertypen en bibliotheken.", "zh":"字体与程序库。", "zht":"字型與程式庫。", "bg":"шрифтове и библиотеки.", "pl":"kroje pisma i biblioteki."},
@@ -13339,7 +13381,7 @@ const places = [
     tags:["Ciclismo Carretera","Teide","TF-21","50 km","1700m","Nivel Alto","La Orotava","Profesional"] },
 
   { id:"bici-anaga-cruz-carmen", category:"ciclismo", name:"Anaga — Cruz del Carmen MTB ★ Mejor Valorada", emoji:"🚵", color:"#00695c", lat:28.53115, lng:-16.27984,
-    desc:{ es:"La ruta MTB mejor valorada de Tenerife (4,4★ en AllTrails, 70 reseñas). Pistas técnicas en el monteverde del Parque Rural de Anaga — Patrimonio Mundial UNESCO. Paisaje de bosque eterno, niebla y barrancos. Nivel exigente. Acceso desde Cruz del Carmen por TF-12. Solo bicicletas de montaña. Casco obligatorio." },
+    desc:{ es:"La ruta MTB mejor valorada de Tenerife (4,4★ en AllTrails, 70 reseñas). Pistas técnicas en el monteverde del Parque Rural de Anaga — Reserva de la Biosfera de la UNESCO desde 2015. Paisaje de bosque eterno, niebla y barrancos. Nivel exigente. Acceso desde Cruz del Carmen por TF-12. Solo bicicletas de montaña. Casco obligatorio." },
     cat:{ es:"MTB Anaga · Cruz del Carmen · ★ Top Tenerife" },
     tags:["MTB","Anaga","Cruz del Carmen","4.4 Estrellas","UNESCO","Nivel Alto","Técnico","Casco","Top Tenerife"] },
 
@@ -14084,7 +14126,7 @@ const places = [
     tags:["Accesible","Silla de ruedas","Playa","Arico","Este"] },
 
   { id:"acc-sendero-sentidos", category:"accesible", name:"Sendero de los Sentidos ♿", emoji:"♿", color:"#3b82f6", lat:28.531, lng:-16.2797,
-    desc:{ es:"En la Cruz del Carmen (Anaga). Su primer tramo está adaptado para sillas de ruedas y personas con movilidad reducida: un paseo sensorial por la laurisilva, Patrimonio de la Humanidad. Centro de visitantes accesible." },
+    desc:{ es:"En la Cruz del Carmen (Anaga). Su primer tramo está adaptado para sillas de ruedas y personas con movilidad reducida: un paseo sensorial por la laurisilva de Anaga, Reserva de la Biosfera de la UNESCO desde 2015. Centro de visitantes accesible." },
     cat:{ es:"Sendero Adaptado · Anaga" },
     tags:["Accesible","Silla de ruedas","Sendero","Anaga","Naturaleza","Laurisilva"] },
 
@@ -26768,6 +26810,8 @@ function chatMatchKB(padded,tokset,qn){
 }
 
 // ── Resolución de la pregunta → intención + datos ─────────────────
+/* la respuesta de emergencias (112): ver «SOCORRO» en chatResolve */
+var CHAT_ID_EMERGENCIA='sal-01';
 function chatResolve(question,pos){
   var qn=chatNorm(question);
   if(!qn)return {kind:'fallback'};
@@ -26842,6 +26886,28 @@ function chatResolve(question,pos){
   var allowRev=!cats.keys.length&&!whatHit;
   var matches=sToks.length?chatFindByName(padded,sToks,allowRev):[];
   var best=matches[0]||null,sec=matches[1]||null;
+
+  /* «SOCORRO» ES UNA PLAYA Y ES PEDIR AYUDA. Hasta el 12/10/2026 ganaba el
+     nombre del sitio y abria la Playa El Socorro, tambien a quien lo escribia
+     en un apuro. Jerome: «que proponga los 3, Playa El Socorro, emergencia y
+     112, y la gente elige». Cuando TODO lo que se escribe son palabras de la
+     respuesta de emergencias (sal-01) y a la vez del nombre de un lugar, no se
+     elige por nadie: se ofrecen las tres cosas. Si dice algo que solo es de
+     emergencia («pedir socorro», «auxilio») va directo al 112; si dice algo
+     mas del sitio («playa el socorro»), al sitio, como siempre. */
+  if(kbr&&kbr.item.id===CHAT_ID_EMERGENCIA&&best&&best.strong&&!cats.keys.length&&!zone&&sToks.length){
+    var deEmerg={},delSitio={},nomS=chatNorm(best.p.name).split(' ');
+    for(var ke=0;ke<kbr.item.keys.length;ke++){var pk=chatNorm(kbr.item.keys[ke]).split(' ');for(var pe=0;pe<pk.length;pe++)deEmerg[pk[pe]]=1;}
+    for(var ns=0;ns<nomS.length;ns++)delSitio[nomS[ns]]=1;
+    var soloEmerg=true;
+    for(var se=0;se<sToks.length;se++){if(!deEmerg[sToks[se]]||!delSitio[sToks[se]]){soloEmerg=false;break;}}
+    if(soloEmerg){
+      var lstE=[];
+      for(var me=0;me<matches.length&&lstE.length<4;me++){if(matches[me].s>=5&&matches[me].strong)lstE.push(matches[me].p);}
+      if(!lstE.length)lstE.push(best.p);
+      return {kind:'elegir',list:lstE,item:kbr.item};
+    }
+  }
 
   var bigName=best&&best.s>=60;
   var leftoverAll=0;
@@ -26926,6 +26992,9 @@ es:{
   whatIntro:'✨ Planes{zone}. Toca cualquiera para verlo en el mapa:',
   whatLbl:'Qué hacer',
   ambIntro:'He encontrado varios lugares que encajan. ¿Te refieres a alguno de estos?',
+  elegirIntro:'¿Necesitas ayuda o buscas el lugar? Elige:',
+  emergencia:'🆘 Emergencia',
+  llamar112:'📞 Llamar al 112',
   askZone:'¡Claro! ¿Por qué zona te interesa?',
   geoFail:'No pude acceder a tu ubicación 📵 Dime una zona (norte, sur, este, oeste) o un pueblo y sigo desde ahí.',
   viewMap:'📍 Ver en el mapa',
@@ -26955,6 +27024,9 @@ en:{
   whatIntro:'✨ Ideas{zone}. Tap any of them to see it on the map:',
   whatLbl:'Things to do',
   ambIntro:'I found several matching places. Did you mean one of these?',
+  elegirIntro:'Do you need help, or are you looking for the place? Choose:',
+  emergencia:'🆘 Emergency',
+  llamar112:'📞 Call 112',
   askZone:'Sure! Which area are you interested in?',
   geoFail:'I could not access your location 📵 Tell me an area (north, south, east, west) or a town and I will continue from there.',
   viewMap:'📍 See on the map',
@@ -26984,6 +27056,9 @@ fr:{
   whatIntro:'\u2728 Id\u00e9es{zone}. Touches-en une pour la voir sur la carte :',
   whatLbl:'Que faire',
   ambIntro:'J\u2019ai trouv\u00e9 plusieurs lieux qui correspondent. Tu penses \u00e0 l\u2019un d\u2019eux ?',
+  elegirIntro:'Tu as besoin d\u2019aide ou tu cherches le lieu ? Choisis :',
+  emergencia:'\ud83c\udd98 Urgence',
+  llamar112:'\ud83d\udcde Appeler le 112',
   askZone:'Bien s\u00fbr ! Quelle zone t\u2019int\u00e9resse ?',
   geoFail:'Impossible d\u2019acc\u00e9der \u00e0 ta position \ud83d\udcf5 Indique-moi une zone (nord, sud, est, ouest) ou un village et je continue.',
   viewMap:'\ud83d\udccd Voir sur la carte',
@@ -27013,6 +27088,9 @@ de:{
   whatIntro:'\u2728 Ideen{zone}. Tippe darauf, um sie auf der Karte zu sehen:',
   whatLbl:'Was tun',
   ambIntro:'Ich habe mehrere passende Orte gefunden. Meinst du einen davon?',
+  elegirIntro:'Brauchst du Hilfe oder suchst du den Ort? Wähle:',
+  emergencia:'🆘 Notfall',
+  llamar112:'📞 112 anrufen',
   askZone:'Klar! Welche Gegend interessiert dich?',
   geoFail:'Kein Zugriff auf deinen Standort \ud83d\udcf5 Nenn mir eine Zone (Norden, S\u00fcden, Osten, Westen) oder ein Dorf, dann geht\u2019s weiter.',
   viewMap:'\ud83d\udccd Auf der Karte ansehen',
@@ -27042,6 +27120,9 @@ it:{
   whatIntro:'\u2728 Idee{zone}. Toccane una per vederla sulla mappa:',
   whatLbl:'Cosa fare',
   ambIntro:'Ho trovato pi\u00f9 luoghi corrispondenti. Intendi uno di questi?',
+  elegirIntro:'Hai bisogno di aiuto o cerchi il luogo? Scegli:',
+  emergencia:'\ud83c\udd98 Emergenza',
+  llamar112:'\ud83d\udcde Chiama il 112',
   askZone:'Certo! Quale zona ti interessa?',
   geoFail:'Non riesco ad accedere alla tua posizione \ud83d\udcf5 Dimmi una zona (nord, sud, est, ovest) o un paese e continuo da l\u00ec.',
   viewMap:'\ud83d\udccd Vedi sulla mappa',
@@ -27071,6 +27152,9 @@ nl:{
   whatIntro:'\u2728 Idee\u00ebn{zone}. Tik erop om ze op de kaart te zien:',
   whatLbl:'Wat te doen',
   ambIntro:'Ik vond meerdere passende plekken. Bedoel je een van deze?',
+  elegirIntro:'Heb je hulp nodig of zoek je de plek? Kies:',
+  emergencia:'🆘 Noodgeval',
+  llamar112:'📞 Bel 112',
   askZone:'Tuurlijk! Welk gebied interesseert je?',
   geoFail:'Geen toegang tot je locatie \ud83d\udcf5 Noem een zone (noord, zuid, oost, west) of een dorp en ik ga verder.',
   viewMap:'\ud83d\udccd Bekijk op de kaart',
@@ -27100,6 +27184,9 @@ zh:{
   whatIntro:'\u2728 \u63a8\u8350\u73a9\u6cd5{zone}\u3002\u70b9\u6309\u5373\u53ef\u5728\u5730\u56fe\u4e0a\u67e5\u770b\uff1a',
   whatLbl:'\u73a9\u4ec0\u4e48',
   ambIntro:'\u627e\u5230\u591a\u4e2a\u5339\u914d\u7684\u5730\u70b9\uff0c\u4f60\u6307\u7684\u662f\u5176\u4e2d\u4e00\u4e2a\u5417\uff1f',
+  elegirIntro:'\u4f60\u9700\u8981\u5e2e\u52a9\uff0c\u8fd8\u662f\u5728\u627e\u8fd9\u4e2a\u5730\u65b9\uff1f\u8bf7\u9009\u62e9\uff1a',
+  emergencia:'\ud83c\udd98 \u7d27\u6025\u60c5\u51b5',
+  llamar112:'\ud83d\udcde \u62e8\u6253 112',
   askZone:'\u597d\u7684\uff01\u4f60\u60f3\u770b\u54ea\u4e2a\u533a\u57df\uff1f',
   geoFail:'\u65e0\u6cd5\u83b7\u53d6\u4f60\u7684\u4f4d\u7f6e \ud83d\udcf5 \u544a\u8bc9\u6211\u4e00\u4e2a\u533a\u57df\uff08\u5317\u3001\u5357\u3001\u4e1c\u3001\u897f\uff09\u6216\u4e00\u4e2a\u5c0f\u9547\uff0c\u6211\u63a5\u7740\u627e\u3002',
   viewMap:'\ud83d\udccd \u5728\u5730\u56fe\u4e0a\u67e5\u770b',
@@ -27129,6 +27216,9 @@ zht:{
   whatIntro:'\u2728 \u63a8\u85a6\u73a9\u6cd5{zone}\u3002\u9ede\u6309\u5373\u53ef\u5728\u5730\u5716\u4e0a\u67e5\u770b\uff1a',
   whatLbl:'\u73a9\u4ec0\u9ebc',
   ambIntro:'\u627e\u5230\u591a\u500b\u7b26\u5408\u7684\u5730\u9ede\uff0c\u4f60\u6307\u7684\u662f\u5176\u4e2d\u4e00\u500b\u55ce\uff1f',
+  elegirIntro:'\u4f60\u9700\u8981\u5e6b\u52a9\uff0c\u9084\u662f\u5728\u627e\u9019\u500b\u5730\u65b9\uff1f\u8acb\u9078\u64c7\uff1a',
+  emergencia:'\ud83c\udd98 \u7dca\u6025\u60c5\u6cc1',
+  llamar112:'\ud83d\udcde \u64a5\u6253 112',
   askZone:'\u597d\u7684\uff01\u4f60\u60f3\u770b\u54ea\u500b\u5340\u57df\uff1f',
   geoFail:'\u7121\u6cd5\u53d6\u5f97\u4f60\u7684\u4f4d\u7f6e \ud83d\udcf5 \u544a\u8a34\u6211\u4e00\u500b\u5340\u57df\uff08\u5317\u3001\u5357\u3001\u6771\u3001\u897f\uff09\u6216\u4e00\u500b\u5c0f\u93ae\uff0c\u6211\u518d\u7e7c\u7e8c\u627e\u3002',
   viewMap:'\ud83d\udccd \u5728\u5730\u5716\u4e0a\u67e5\u770b',
@@ -27146,7 +27236,7 @@ zht:{
   qrAfterPoi:[['\u9644\u8fd1\u6709\u4ec0\u9ebc','que hay cerca'],['\u9644\u8fd1\u7684\u6d77\u7058','playas cercanas'],['\u9644\u8fd1\u7684\u6b65\u9053','senderos cercanos']],
   qrThanks:[['\u518d\u554f\u4e00\u500b','otra pregunta'],['\u6700\u4f73\u6d77\u7058','mejores playas']]
 },
-bg:{senderName:'Асистент',welcome:'Добре дошли в Tenerife GO! 🌴\n\nАз съм вашият асистент и познавам {N}-те места на картата. Питайте ме «къде е…?», поискайте «плажове на север» или «какво да правя близо до мен».',greet:'Здравейте! 👋 Питайте ме за което и да е от {N}-те места на картата, по категории («панорамни места на юг») или «какво да правя близо до мен».',thanks:'Няма защо! 🌴 Тук съм за каквото ви трябва. А ако искате да говорите директно с Jerome, бутонът е долу.',countAns:'В момента имате {N} места на картата 🗺️ — плажове, пътеки, панорамни места, гуачинчес, естествени басейни и още много, с описания на {L} езика.',catIntro:'🔎 {label}{zone}: има {n} в приложението. Най-забележителните:',catAlso:'📍 Освен това на картата има {n} място от тази категория:|📍 Освен това на картата има {n} места от тази категория. Ето някои:',catNone:'Не намерих места от {label}{zone} 😕 Опитайте с друга зона.',whatIntro:'✨ Идеи{zone}. Докоснете която и да е, за да я видите на картата:',whatLbl:'Какво да правя',ambIntro:'Намерих няколко места, които съвпадат. Някое от тези ли имате предвид?',askZone:'Разбира се! Коя зона ви интересува?',geoFail:'Не успях да взема местоположението ви 📵 Кажете ми зона (север, юг, изток, запад) или населено място и продължавам оттам.',viewMap:'📍 Виж на картата',viewAll:'🗺️ Виж всички на картата',errGeneric:'Опа, нещо се обърка при мен 🙈 Опитайте пак с други думи.',fallback:'Още нямам точен отговор за това 🤔\n\nМога да ви помогна с:\n• «Къде е + име?» — познавам {N}-те места на картата\n• «плажове / пътеки / панорамни места на юг»\n• «какво да правя близо до Гарачико»\n\nА за лични въпроси Jerome е на един допир 👇',contactTitle:'Говори с Jérôme',contactSub:'Нужна ви е лична помощ? Пишете му директно.',nearYou:'близо до вас',nearOf:'близо до {a}',zone:{norte:'на север',sur:'на юг',este:'на изток',oeste:'на запад',centro:'в центъра на острова',metro:'в Санта Крус – Ла Лагуна'},qrHome:[['Най-добрите плажове','mejores playas'],['Пътеки','senderos'],['Къде е Masca?','donde esta masca'],['Какво да правя наблизо','que hacer cerca de mi']],qrZones:[['На север','en el norte'],['На юг','en el sur'],['Близо до мен','cerca de mi']],qrZonesFull:[['На север','en el norte'],['На юг','en el sur'],['На изток','en el este'],['На запад','en el oeste'],['Близо до мен','cerca de mi']],qrAfterPoi:[['Какво има наблизо','que hay cerca'],['Плажове наблизо','playas cercanas'],['Пътеки наблизо','senderos cercanos']],qrThanks:[['Друг въпрос','otra pregunta'],['Най-добрите плажове','mejores playas']]}, pl: {"senderName":"Asystent","welcome":"Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam {N} miejsce na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».|Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam wszystkie {N} miejsca na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».|Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam wszystkie {N} miejsc na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».","greet":"Cześć! 👋 Zapytaj mnie o którekolwiek z {N} miejsc na mapie, o kategorie («punkty widokowe na południu») albo o to, «co robić w pobliżu».","thanks":"Nie ma za co! 🌴 Jestem tu, gdybyś czegoś potrzebował. A jeśli chcesz porozmawiać bezpośrednio z Jérôme'em, masz przycisk poniżej.","countAns":"W tej chwili masz na mapie {N} miejsce 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.|W tej chwili masz na mapie {N} miejsca 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.|W tej chwili masz na mapie {N} miejsc 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.","catIntro":"🔎 {label}{zone}: w aplikacji jest ich {n}. Najciekawsze:","catAlso":"📍 Poza tym na mapie masz {n} miejsce z tej kategorii:|📍 Poza tym na mapie masz {n} miejsca z tej kategorii. Oto kilka:|📍 Poza tym na mapie masz {n} miejsc z tej kategorii. Oto kilka:","catNone":"Nie znalazłem miejsc z kategorii {label}{zone} 😕 Spróbuj z inną strefą.","whatIntro":"✨ Pomysły{zone}. Dotknij dowolnego, żeby zobaczyć go na mapie:","whatLbl":"Co robić","ambIntro":"Znalazłem kilka pasujących miejsc. Chodzi ci o któreś z tych?","askZone":"Jasne! Która strefa cię interesuje?","geoFail":"Nie udało mi się ustalić twojej lokalizacji 📵 Podaj strefę (północ, południe, wschód, zachód) albo miejscowość, a ruszę stamtąd.","viewMap":"📍 Zobacz na mapie","viewAll":"🗺️ Zobacz wszystkie na mapie","errGeneric":"Ups, coś poszło nie tak po mojej stronie 🙈 Spróbuj jeszcze raz, innymi słowami.","fallback":"Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam {N} miejsce na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇|Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam wszystkie {N} miejsca na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇|Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam wszystkie {N} miejsc na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇","contactTitle":"Napisz do Jérôme'a","contactSub":"Potrzebujesz porady na własną miarę? Napisz do niego bezpośrednio.","nearYou":"w twojej okolicy","nearOf":"w okolicy {a}","zone":{"norte":"na północy","sur":"na południu","este":"na wschodzie","oeste":"na zachodzie","centro":"w centrum wyspy","metro":"w Santa Cruz – La Laguna"},"qrHome":["Najlepsze plaże","Szlaki","Gdzie jest Masca?","Co robić w pobliżu"],"qrZones":["Na północy","Na południu","W pobliżu"],"qrZonesFull":["Na północy","Na południu","Na wschodzie","Na zachodzie","W pobliżu"],"qrAfterPoi":["Co jest w pobliżu","Plaże w pobliżu","Szlaki w pobliżu"],"qrThanks":["Kolejne pytanie","Najlepsze plaże"]}
+bg:{senderName:'Асистент',welcome:'Добре дошли в Tenerife GO! 🌴\n\nАз съм вашият асистент и познавам {N}-те места на картата. Питайте ме «къде е…?», поискайте «плажове на север» или «какво да правя близо до мен».',greet:'Здравейте! 👋 Питайте ме за което и да е от {N}-те места на картата, по категории («панорамни места на юг») или «какво да правя близо до мен».',thanks:'Няма защо! 🌴 Тук съм за каквото ви трябва. А ако искате да говорите директно с Jerome, бутонът е долу.',countAns:'В момента имате {N} места на картата 🗺️ — плажове, пътеки, панорамни места, гуачинчес, естествени басейни и още много, с описания на {L} езика.',catIntro:'🔎 {label}{zone}: има {n} в приложението. Най-забележителните:',catAlso:'📍 Освен това на картата има {n} място от тази категория:|📍 Освен това на картата има {n} места от тази категория. Ето някои:',catNone:'Не намерих места от {label}{zone} 😕 Опитайте с друга зона.',whatIntro:'✨ Идеи{zone}. Докоснете която и да е, за да я видите на картата:',whatLbl:'Какво да правя',ambIntro:'Намерих няколко места, които съвпадат. Някое от тези ли имате предвид?',elegirIntro:'Нуждаете ли се от помощ, или търсите мястото? Изберете:',emergencia:'🆘 Спешен случай',llamar112:'📞 Обадете се на 112',askZone:'Разбира се! Коя зона ви интересува?',geoFail:'Не успях да взема местоположението ви 📵 Кажете ми зона (север, юг, изток, запад) или населено място и продължавам оттам.',viewMap:'📍 Виж на картата',viewAll:'🗺️ Виж всички на картата',errGeneric:'Опа, нещо се обърка при мен 🙈 Опитайте пак с други думи.',fallback:'Още нямам точен отговор за това 🤔\n\nМога да ви помогна с:\n• «Къде е + име?» — познавам {N}-те места на картата\n• «плажове / пътеки / панорамни места на юг»\n• «какво да правя близо до Гарачико»\n\nА за лични въпроси Jerome е на един допир 👇',contactTitle:'Говори с Jérôme',contactSub:'Нужна ви е лична помощ? Пишете му директно.',nearYou:'близо до вас',nearOf:'близо до {a}',zone:{norte:'на север',sur:'на юг',este:'на изток',oeste:'на запад',centro:'в центъра на острова',metro:'в Санта Крус – Ла Лагуна'},qrHome:[['Най-добрите плажове','mejores playas'],['Пътеки','senderos'],['Къде е Masca?','donde esta masca'],['Какво да правя наблизо','que hacer cerca de mi']],qrZones:[['На север','en el norte'],['На юг','en el sur'],['Близо до мен','cerca de mi']],qrZonesFull:[['На север','en el norte'],['На юг','en el sur'],['На изток','en el este'],['На запад','en el oeste'],['Близо до мен','cerca de mi']],qrAfterPoi:[['Какво има наблизо','que hay cerca'],['Плажове наблизо','playas cercanas'],['Пътеки наблизо','senderos cercanos']],qrThanks:[['Друг въпрос','otra pregunta'],['Най-добрите плажове','mejores playas']]}, pl: {"senderName":"Asystent","welcome":"Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam {N} miejsce na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».|Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam wszystkie {N} miejsca na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».|Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam wszystkie {N} miejsc na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».","greet":"Cześć! 👋 Zapytaj mnie o którekolwiek z {N} miejsc na mapie, o kategorie («punkty widokowe na południu») albo o to, «co robić w pobliżu».","thanks":"Nie ma za co! 🌴 Jestem tu, gdybyś czegoś potrzebował. A jeśli chcesz porozmawiać bezpośrednio z Jérôme'em, masz przycisk poniżej.","countAns":"W tej chwili masz na mapie {N} miejsce 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.|W tej chwili masz na mapie {N} miejsca 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.|W tej chwili masz na mapie {N} miejsc 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.","catIntro":"🔎 {label}{zone}: w aplikacji jest ich {n}. Najciekawsze:","catAlso":"📍 Poza tym na mapie masz {n} miejsce z tej kategorii:|📍 Poza tym na mapie masz {n} miejsca z tej kategorii. Oto kilka:|📍 Poza tym na mapie masz {n} miejsc z tej kategorii. Oto kilka:","catNone":"Nie znalazłem miejsc z kategorii {label}{zone} 😕 Spróbuj z inną strefą.","whatIntro":"✨ Pomysły{zone}. Dotknij dowolnego, żeby zobaczyć go na mapie:","whatLbl":"Co robić","ambIntro":"Znalazłem kilka pasujących miejsc. Chodzi ci o któreś z tych?","elegirIntro":"Potrzebujesz pomocy czy szukasz tego miejsca? Wybierz:","emergencia":"🆘 Nagły wypadek","llamar112":"📞 Zadzwoń pod 112","askZone":"Jasne! Która strefa cię interesuje?","geoFail":"Nie udało mi się ustalić twojej lokalizacji 📵 Podaj strefę (północ, południe, wschód, zachód) albo miejscowość, a ruszę stamtąd.","viewMap":"📍 Zobacz na mapie","viewAll":"🗺️ Zobacz wszystkie na mapie","errGeneric":"Ups, coś poszło nie tak po mojej stronie 🙈 Spróbuj jeszcze raz, innymi słowami.","fallback":"Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam {N} miejsce na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇|Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam wszystkie {N} miejsca na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇|Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam wszystkie {N} miejsc na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇","contactTitle":"Napisz do Jérôme'a","contactSub":"Potrzebujesz porady na własną miarę? Napisz do niego bezpośrednio.","nearYou":"w twojej okolicy","nearOf":"w okolicy {a}","zone":{"norte":"na północy","sur":"na południu","este":"na wschodzie","oeste":"na zachodzie","centro":"w centrum wyspy","metro":"w Santa Cruz – La Laguna"},"qrHome":["Najlepsze plaże","Szlaki","Gdzie jest Masca?","Co robić w pobliżu"],"qrZones":["Na północy","Na południu","W pobliżu"],"qrZonesFull":["Na północy","Na południu","Na wschodzie","Na zachodzie","W pobliżu"],"qrAfterPoi":["Co jest w pobliżu","Plaże w pobliżu","Szlaki w pobliżu"],"qrThanks":["Kolejne pytanie","Najlepsze plaże"]}
 };
 function chatT(k){
   var d=(CHAT_STR[currentLang]||CHAT_STR.en);
@@ -27268,6 +27358,21 @@ function chatBuildReply(r){
       out.answer=(p.emoji?p.emoji+' ':'')+p.name+'\n'+chatTrim(localized(p.cat),60)+'\n\n'+(localized(p.desc)||'');
       out.actions=[{label:chatT('viewMap'),run:chatMakeFly(p.id)}];
       out.follow=chatT('qrAfterPoi');break;
+    case 'elegir':
+      /* Primero el 112 y la emergencia, por si de verdad lo es; luego el
+         sitio. Si hay varios con ese nombre (dos playas y un sitio de surf),
+         el boton del sitio los ensena todos para elegir. */
+      out.answer=chatT('elegirIntro');
+      (function(item,lista){
+        var p0=lista[0];
+        out.actions=[
+          {label:chatT('llamar112'),run:function(){window.location.href='tel:112';}},
+          {label:chatT('emergencia'),run:function(){chatEmit(chatBuildReply({kind:'kb',item:item}));}},
+          {label:(p0.emoji?p0.emoji+' ':'📍 ')+p0.name,
+           run:lista.length===1?chatMakeFly(p0.id):function(){chatEmit(chatBuildReply({kind:'poiList',list:lista}));}}
+        ];
+      })(r.item,r.list);
+      out.follow=chatT('qrHome');break;
     case 'poiList':
       out.answer=chatT('ambIntro');
       out.pois=chatPoisPack(r.list,null);
@@ -27522,9 +27627,13 @@ function processUserMessage(text){
 
 
 <!-- ══════════════════════════════════════════════════════════════════
-     ALERTAS METEOROLÓGICAS AEMET — TENERIFE GO
-     Fuente: AEMET API pública (sin key para nivel isla)
-     Diseño: píldora discreta bajo el top bar, expandible
+     AVISOS METEOROLÓGICOS DE AEMET — TENERIFE GO
+     Fuente: AEMET, Plan Meteoalerta, canal de la isla de Tenerife, que
+     .github/workflows/avisos-aemet.yml copia cada hora en
+     datos/avisos-aemet.json (aemet.es no deja leerlo desde el navegador).
+     Diseño: píldora discreta en la barra de arriba, expandible, solo cuando
+     hay avisos; y una línea en el panel del tiempo que dice si los hay y
+     cuándo se comprobó.
 ════════════════════════════════════════════════════════════════════ -->
 <style>
 /* ── PÍLDORA ALERTA (estado colapsado) ──────────────────────── */
@@ -27649,6 +27758,38 @@ function processUserMessage(text){
 .wx-updating { animation:wxspin .8s linear infinite; display:inline-block; }
 @keyframes wxspin { to { transform:rotate(360deg); } }
 
+.wx-alert-zonas { font-size:0.74rem; color:rgba(255,255,255,0.75); margin-bottom:4px; }
+.wx-alert-param { font-size:0.74rem; color:rgba(255,255,255,0.88); font-weight:600; margin-bottom:4px; }
+.wx-alert-oficial {
+  font-size:0.6rem; letter-spacing:0.05em; text-transform:uppercase;
+  color:rgba(255,255,255,0.35); margin:8px 0 3px;
+}
+.wx-alert-instr { font-size:0.72rem; color:rgba(255,255,255,0.45); line-height:1.4; }
+.wx-vacio { font-size:0.78rem; color:rgba(255,255,255,0.65); padding:4px 2px; }
+.wx-estado {
+  margin:10px 12px 0; padding:9px 11px; border-radius:10px;
+  font-size:0.74rem; line-height:1.45; color:#fde68a;
+  background:rgba(234,179,8,0.08); border:1px solid rgba(234,179,8,0.28);
+}
+.wx-panel-footer2 { border-top:none; padding-top:0; }
+.wx-comprobado { font-size:0.66rem; color:rgba(255,255,255,0.4); }
+.wx-aemet-link { font-size:0.68rem; color:#c9a84c; text-decoration:none; white-space:nowrap; }
+.wx-aemet-link:hover { text-decoration:underline; }
+/* la linea de avisos en los paneles del tiempo y del mar */
+.mc-avisos, .mar-avisos { padding:8px 14px 2px; font-size:0.72rem; line-height:1.45; color:rgba(255,255,255,0.7); }
+.mar-avisos { padding-bottom:6px; }
+.wx-linea-btn {
+  display:block; width:100%; text-align:left; cursor:pointer;
+  padding:7px 10px; margin-bottom:5px; border-radius:9px;
+  font-size:0.74rem; font-weight:600; color:#fff; line-height:1.35;
+  background:rgba(234,179,8,0.10); border:1px solid rgba(234,179,8,0.35);
+}
+.wx-linea-btn.wx-naranja { background:rgba(249,115,22,0.12); border-color:rgba(249,115,22,0.45); }
+.wx-linea-btn.wx-rojo    { background:rgba(239,68,68,0.14); border-color:rgba(239,68,68,0.55); }
+.wx-linea-txt { color:rgba(255,255,255,0.78); }
+.wx-linea-hora { font-size:0.62rem; color:rgba(255,255,255,0.35); margin-top:2px; }
+.wx-linea-viejo { color:#fde68a; margin-top:3px; }
+
 /* Alerta integrada en topbar — sin ajuste del mapa */
 </style>
 
@@ -27665,6 +27806,7 @@ function processUserMessage(text){
     </div>
     <button class="mar-close" id="mar-close" data-tx-aria="ariaCerrar" aria-label="Cerrar">✕</button>
   </div>
+  <div id="mar-avisos" class="mar-avisos" style="display:none"></div>
   <div id="mar-list"></div>
   <div class="mar-footer">
     <span class="mar-source" data-sin-traducir="credito de la fuente de datos">Open-Meteo · Atlantic/Canary</span>
@@ -27673,216 +27815,296 @@ function processUserMessage(text){
 </div>
 
 <!-- PÍLDORA ALERTA (se inserta en topbar-right via JS) -->
-<div id="wx-pill">
+<div id="wx-pill" role="button" tabindex="0" data-tx-aria="wxLogo" aria-label="Avisos meteorológicos · Tenerife">
   <div class="wx-pill-dot"></div>
   <span class="wx-pill-icon" id="wx-pill-icon">⚠️</span>
   <button class="wx-pill-close" id="wx-pill-close" data-tx-aria="ariaCerrarAlerta" aria-label="Cerrar alerta">✕</button>
 </div>
 
 <!-- PANEL EXPANDIDO -->
-<div id="wx-panel">
+<div id="wx-panel" role="dialog" data-tx-aria="wxLogo" aria-label="Avisos meteorológicos · Tenerife">
   <div class="wx-panel-header">
-    <div class="wx-panel-logo" data-tx="wxLogo">Alertas Tenerife</div>
+    <div class="wx-panel-logo" data-tx="wxLogo">Avisos meteorológicos · Tenerife</div>
     <div class="wx-panel-source" data-tx="wxFuente">Fuente: AEMET</div>
     <button class="wx-panel-close" onclick="toggleWxPanel()" data-tx-aria="ariaCerrarAlertas" aria-label="Cerrar alertas meteorológicas">✕</button>
   </div>
+  <div class="wx-estado" id="wx-estado" style="display:none"></div>
   <div class="wx-alerts-list" id="wx-alerts-list">
     <!-- Se rellena dinámicamente -->
   </div>
   <div class="wx-panel-footer">
-    <span class="wx-footer-brand" data-sin-traducir="nombre oficial del organismo">AEMET · Agencia Estatal de Meteorología</span>
+    <span class="wx-comprobado" id="wx-comprobado"></span>
     <button class="wx-refresh-btn" onclick="fetchWxAlerts(true)" id="wx-refresh-btn">
       <span id="wx-refresh-icon">↻</span> <span data-tx="wxActualizar">Actualizar</span>
     </button>
+  </div>
+  <div class="wx-panel-footer wx-panel-footer2">
+    <span class="wx-footer-brand" data-sin-traducir="nombre oficial del organismo">AEMET · Agencia Estatal de Meteorología</span>
+    <a class="wx-aemet-link" id="wx-aemet-link" href="https://www.aemet.es/es/eltiempo/prediccion/avisos?p=6596" target="_blank" rel="noopener" data-tx="wxVerAemet">Ver en aemet.es</a>
   </div>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-//  SISTEMA DE ALERTAS METEOROLÓGICAS — TENERIFE GO
+//  AVISOS METEOROLOGICOS DE AEMET — TENERIFE GO
 //
-//  API AEMET CAP (RSS público, sin key):
-//  https://www.aemet.es/es/eltiempo/prediccion/avisos_cap
-//  Código AEMET Tenerife: 38 (provincia)
+//  HASTA EL 12 DE OCTUBRE DE 2026 ESTO NO FUNCIONO NUNCA. Pedia desde el
+//  navegador https://www.aemet.es/xml/municipios/localidad_38038.xml, que es
+//  la prevision de Santa Cruz y no trae avisos, y aemet.es no deja que otra
+//  web lea sus ficheros (no manda cabeceras CORS): la peticion fallaba
+//  siempre, la lista salia vacia y la pildora no aparecia nunca. Como «no hay
+//  avisos» y «no funciona» se pintaban igual -nada-, nadie lo vio en meses.
 //
-//  MODO DEMO: mientras no hay CORS configurado en producción,
-//  usamos datos de ejemplo realistas. En Netlify añades un
-//  proxy redirect y funciona con datos reales automáticamente.
+//  AHORA. .github/workflows/avisos-aemet.yml baja cada hora el canal oficial
+//  del Plan Meteoalerta para la isla (tools/avisos_aemet.py) y lo deja en
+//  datos/avisos-aemet.json, que la app lee de su propio dominio. El fichero
+//  trae codigos (nivel, fenomeno, parametro, zona) y el texto de AEMET en
+//  castellano e ingles, que son los que da AEMET; los nombres se traducen
+//  aqui por su codigo con UI_TX (wxNivel_*, wxFen_*, wxPar_*, wxZona_*).
+//
+//  LO QUE NO HACE NUNCA:
+//   · decir «sin avisos» sin decir cuando se comprobo;
+//   · dar por buena una comprobacion de mas de 6 horas: entonces dice desde
+//     cuando no se ha podido comprobar y manda a aemet.es;
+//   · ensenar un aviso despues de su fin oficial: lo mira el reloj del
+//     dispositivo, aunque el fichero no se haya podido renovar;
+//   · rellenar nada si no llega el fichero: lo dice y manda a aemet.es.
 // ══════════════════════════════════════════════════════════════════
 
-const WX_CACHE_KEY = 'tgo_wx_cache';
-const WX_CACHE_TTL = 30 * 60 * 1000; // 30 min
-
-// Iconos por tipo de fenómeno AEMET
-const WX_ICONS = {
-  viento:'💨', lluvia:'🌧️', tormenta:'⛈️', nieve:'❄️',
-  calima:'🌫️', costero:'🌊', uv:'☀️', granizo:'🌨️',
-  niebla:'🌫️', oleaje:'🌊', default:'⚠️'
-};
-
-// Nivel → clase CSS
+const WX_URL = 'datos/avisos-aemet.json';
+const WX_VIEJO_MS = 6 * 60 * 60 * 1000;
+const WX_ICONS = { VI:'💨', PR:'🌧️', TO:'⛈️', NE:'❄️', VS:'🌫️', CO:'🌊', AT:'🌡️', BT:'🥶', NI:'🌫️', default:'⚠️' };
 const WX_LEVELS = { amarillo:'wx-amarillo', naranja:'wx-naranja', rojo:'wx-rojo' };
-
-// Prioridad de nivel (para la píldora muestra el peor)
 const WX_PRIORITY = { rojo:3, naranja:2, amarillo:1 };
+// parametro del anexo 3 -> fila de UI_TX (VI y NI son los dos «visibilidad»)
+const WX_PARAM = { P1:'wxPar_P1', P2:'wxPar_P2', NV:'wxPar_NV', RM:'wxPar_RM', TA:'wxPar_TA', TI:'wxPar_TI', VI:'wxPar_VIS', NI:'wxPar_VIS' };
 
-// ── DATOS DEMO (se usan cuando no hay API disponible) ─────────
-/* getWxDemo eliminada: generaba avisos meteorologicos ficticios
-   que se mostraban como oficiales cuando AEMET no respondia. */
+let wxDatos = null;            // el ultimo fichero bueno que llego
+let wxEstado = 'cargando';     // cargando · ok · viejo · error
+let wxCerrada = '';            // avisos cuya pildora cerro el usuario
+try { wxCerrada = sessionStorage.getItem('tgo_wx_cerrada') || ''; } catch (e) {}
+// la cache del sistema anterior, que guardaba listas vacias
+try { localStorage.removeItem('tgo_wx_cache'); } catch (e) {}
 
-// ── FETCH ALERTAS (API AEMET + fallback demo) ─────────────────
-async function fetchWxAlerts(forceRefresh) {
-  // Intentar caché primero
-  if (!forceRefresh) {
-    try {
-      const cached = JSON.parse(localStorage.getItem(WX_CACHE_KEY));
-      if (cached && Date.now() - cached.ts < WX_CACHE_TTL) {
-        renderWxAlerts(cached.alerts);
-        return;
-      }
-    } catch(e) {}
-  }
+function wxLang() { return (typeof currentLang !== 'undefined' && currentLang) || 'es'; }
+function wxLocale() {
+  return (typeof PRECIOS_GAS_LOCALE !== 'undefined' && PRECIOS_GAS_LOCALE[wxLang()]) || 'es-ES';
+}
+// AAAA-MM-DD en hora de Canarias
+function wxDia(d) {
+  try { return new Intl.DateTimeFormat('en-CA', { timeZone:'Atlantic/Canary', year:'numeric', month:'2-digit', day:'2-digit' }).format(d); }
+  catch (e) { return d.toISOString().slice(0, 10); }
+}
+function wxHora(iso, conDia) {
+  var d = new Date(iso);
+  if (isNaN(d)) return '';
+  var o = { timeZone:'Atlantic/Canary', hour:'2-digit', minute:'2-digit' };
+  if (conDia) { o.weekday = 'short'; o.day = 'numeric'; }
+  try { return new Intl.DateTimeFormat(wxLocale(), o).format(d); }
+  catch (e) { return d.toISOString().slice(0, 16).replace('T', ' ') + ' UTC'; }
+}
+// con el dia delante solo si no es hoy
+function wxHoraCorta(iso) { return wxHora(iso, wxDia(new Date(iso)) !== wxDia(new Date())); }
 
-  // Spinner de actualización
-  const refreshIcon = document.getElementById('wx-refresh-icon');
-  if (refreshIcon) refreshIcon.className = 'wx-updating';
+function wxNombreZona(z) {
+  var cod = String((z && z.codigo) || ''), n = tx('wxZona_' + cod.replace(/C$/, ''));
+  if (!n) return (z && z.nombre_es) || cod;      // zona nueva de AEMET: su nombre, en castellano
+  return /C$/.test(cod) ? tx('wxCosta', { z: n }) : n;
+}
+function wxNombreFen(a) { return tx('wxFen_' + a.fenomeno) || a.fenomeno_es || ''; }
 
-  let alerts = [];
-  try {
-    // AEMET API pública CAP — proxy en Netlify resuelve CORS
-    // En demo/file:// cae al catch y usa datos demo
-    const res = await fetch(
-      'https://www.aemet.es/xml/municipios/localidad_38038.xml',
-      { signal: AbortSignal.timeout(4000) }
-    );
-    if (res.ok) {
-      const text = await res.text();
-      alerts = parseAemetXML(text);
-    } else {
-      alerts = [];
-    }
-  } catch(e) {
-    /* Sin red, o AEMET rechaza la peticion del navegador (no envia
-       cabeceras CORS). ANTES aqui se devolvian alertas INVENTADAS
-       ("rachas de hasta 70 km/h"), que se mostraban siempre y a todo
-       el mundo como si fueran oficiales. Un aviso meteorologico falso
-       puede llevar a decisiones de seguridad equivocadas: preferimos
-       no mostrar nada a mostrar algo que no es cierto. */
-    alerts = [];
-  }
-
-  // Guardar caché
-  try {
-    localStorage.setItem(WX_CACHE_KEY, JSON.stringify({ ts: Date.now(), alerts }));
-  } catch(e) {}
-
-  if (refreshIcon) { refreshIcon.className = ''; refreshIcon.textContent = '↻'; }
-  renderWxAlerts(alerts);
+/* Los avisos que siguen en pie AHORA, juntando en una tarjeta los que solo
+   cambian de zona (AEMET manda un mensaje por zona). */
+function wxVigentes() {
+  if (!wxDatos || !Array.isArray(wxDatos.avisos)) return [];
+  var ahora = Date.now(), grupos = {}, orden = [];
+  wxDatos.avisos.forEach(function (a) {
+    if (!a || !WX_LEVELS[a.nivel] || !(Date.parse(a.fin) > ahora)) return;
+    var k = [a.fenomeno, a.nivel, a.inicio, a.fin, a.parametro, a.valor, a.probabilidad, (a.es && a.es.descripcion) || ''].join('|');
+    if (!grupos[k]) { grupos[k] = Object.assign({}, a, { zonas: [], ids: [] }); orden.push(k); }
+    (a.zonas || []).forEach(function (z) { grupos[k].zonas.push(z); });
+    grupos[k].ids.push(a.id);
+  });
+  return orden.map(function (k) { return grupos[k]; }).sort(function (x, y) {
+    return (WX_PRIORITY[y.nivel] - WX_PRIORITY[x.nivel]) || (Date.parse(x.inicio) - Date.parse(y.inicio));
+  });
 }
 
-// ── PARSEAR XML AEMET (simplificado) ─────────────────────────
-function parseAemetXML(xml) {
-  // Parser básico para el formato CAP de AEMET
-  // En producción el proxy devuelve JSON limpio
-  const alerts = [];
+// ── LEER EL FICHERO ───────────────────────────────────────────
+async function fetchWxAlerts() {
+  var icono = document.getElementById('wx-refresh-icon');
+  if (icono) icono.className = 'wx-updating';
   try {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(xml, 'text/xml');
-    const items = doc.querySelectorAll('alert info');
-    items.forEach(info => {
-      const getTag = tag => info.querySelector(tag)?.textContent?.trim() || '';
-      const event = getTag('event').toLowerCase();
-      let nivel = 'amarillo';
-      const severity = getTag('severity').toLowerCase();
-      if (severity === 'extreme' || severity === 'severe') nivel = 'rojo';
-      else if (severity === 'moderate') nivel = 'naranja';
-      
-      let tipo = 'default';
-      if (event.includes('vient')) tipo = 'viento';
-      else if (event.includes('lluvi') || event.includes('precipit')) tipo = 'lluvia';
-      else if (event.includes('torm')) tipo = 'tormenta';
-      else if (event.includes('calima') || event.includes('polvo')) tipo = 'calima';
-      else if (event.includes('costero') || event.includes('oleaje')) tipo = 'costero';
-      else if (event.includes('nieve')) tipo = 'nieve';
-      else if (event.includes('niebla')) tipo = 'niebla';
+    var op = { cache: 'no-cache' };
+    if (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) op.signal = AbortSignal.timeout(8000);
+    var res = await fetch(WX_URL, op);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    var d = await res.json();
+    if (!d || !Array.isArray(d.avisos) || isNaN(Date.parse(d.consultado))) throw new Error('fichero sin la forma esperada');
+    wxDatos = d;
+  } catch (e) {
+    /* Sin red ni copia, o un fichero raro: no se rellena nada. Si ya habia
+       uno bueno se sigue usando con SU hora, y la regla de las 6 horas dice
+       si vale o no. */
+  }
+  wxEstado = !wxDatos ? 'error'
+           : (Date.now() - Date.parse(wxDatos.consultado) > WX_VIEJO_MS) ? 'viejo' : 'ok';
+  if (icono) icono.className = '';
+  renderWxAlerts();
+}
 
-      const onset = getTag('onset');
-      const expires = getTag('expires');
-      const fmtDate = iso => {
-        if (!iso) return '–';
-        const d = new Date(iso);
-        return d.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
-      };
-
-      alerts.push({
-        tipo, nivel,
-        titulo: getTag('event') || 'Alerta meteorológica',
-        desc: getTag('description') || getTag('headline') || '',
-        desde: fmtDate(onset),
-        hasta: fmtDate(expires),
-        zona: 'Tenerife'
-      });
+// ── PINTAR ────────────────────────────────────────────────────
+function wxEl(tag, cls, txt) {
+  var e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (txt !== undefined && txt !== null) e.textContent = txt;
+  return e;
+}
+function wxEnlaceAemet() {
+  var a = wxEl('a', 'wx-aemet-link', tx('wxVerAemet'));
+  a.href = 'https://www.aemet.es/' + (wxLang() === 'en' ? 'en' : 'es') + '/eltiempo/prediccion/avisos?p=6596';
+  a.target = '_blank'; a.rel = 'noopener';
+  return a;
+}
+function wxTarjeta(a) {
+  var c = wxEl('div', 'wx-alert-card ' + WX_LEVELS[a.nivel]);
+  var top = wxEl('div', 'wx-alert-top');
+  top.appendChild(wxEl('span', 'wx-alert-icon', WX_ICONS[a.fenomeno] || WX_ICONS.default));
+  top.appendChild(wxEl('span', 'wx-alert-title', wxNombreFen(a)));
+  top.appendChild(wxEl('span', 'wx-alert-badge', tx('wxNivel_' + a.nivel)));
+  c.appendChild(top);
+  c.appendChild(wxEl('div', 'wx-alert-zonas', a.zonas.map(wxNombreZona).join(' · ')));
+  var dato = [];
+  if (a.valor) {
+    var np = (WX_PARAM[a.parametro] && tx(WX_PARAM[a.parametro])) || a.parametro_es || '';
+    dato.push(np ? np + ': ' + a.valor : a.valor);
+  }
+  if (a.probabilidad) dato.push(tx('wxProb', { p: a.probabilidad }));
+  if (dato.length) c.appendChild(wxEl('div', 'wx-alert-param', dato.join(' · ')));
+  c.appendChild(wxEl('div', 'wx-alert-time', '🕐 ' + tx('wxDeA', { a: wxHora(a.inicio, true), b: wxHora(a.fin, true) })
+                                            + ' (' + tx('wxHoraCanarias') + ')'));
+  /* El texto lo escribe AEMET y solo lo da en castellano y en ingles: en
+     ingles para quien tiene la app en ingles, en castellano para los demas
+     (y la etiqueta lo dice). No se traduce a mano un aviso oficial. */
+  var enIngles = wxLang() === 'en' && a.en;
+  var t = (enIngles ? a.en : a.es) || {};
+  if (t.descripcion || t.instruccion) {
+    c.appendChild(wxEl('div', 'wx-alert-oficial', tx('wxTextoAemet')));
+    ['descripcion', 'instruccion'].forEach(function (k) {
+      if (!t[k]) return;
+      var p = wxEl('div', k === 'descripcion' ? 'wx-alert-desc' : 'wx-alert-instr', t[k]);
+      if (!enIngles && wxLang() !== 'es') p.setAttribute('data-sin-traducir', 'texto oficial de AEMET: solo lo da en castellano y en ingles');
+      c.appendChild(p);
     });
-  } catch(e) {}
-  /* Si AEMET responde pero no hay avisos, eso significa exactamente eso:
-     NO hay avisos. Antes se devolvian alertas de demostracion, que el
-     usuario leia como oficiales. */
-  return alerts;
+  }
+  return c;
 }
 
-// ── RENDERIZAR ────────────────────────────────────────────────
-function renderWxAlerts(alerts) {
-  const pill    = document.getElementById('wx-pill');
-  const pillIn  = document.getElementById('wx-pill-inner');
-  const pillIcon= document.getElementById('wx-pill-icon');
-  const pillLbl = document.getElementById('wx-pill-label');
-  const list    = document.getElementById('wx-alerts-list');
+function renderWxAlerts() {
+  var pill = document.getElementById('wx-pill');
+  var pillIcon = document.getElementById('wx-pill-icon');
+  var list = document.getElementById('wx-alerts-list');
+  var estado = document.getElementById('wx-estado');
+  var hora = document.getElementById('wx-comprobado');
+  var enlace = document.getElementById('wx-aemet-link');
+  var vig = wxVigentes();
+  var firma = vig.map(function (a) { return a.ids.join('+'); }).join(',');
 
-  if (!alerts || alerts.length === 0) {
-    pill.style.display = 'none';
-    document.body.classList.remove('wx-active');
-    return;
+  // Pildora: solo con avisos en pie (amarillo, naranja o rojo), del color del peor.
+  if (pill) {
+    if (!vig.length || firma === wxCerrada) {
+      pill.style.display = 'none';
+    } else {
+      pill.style.display = 'inline-flex';
+      pill.classList.remove('wx-amarillo', 'wx-naranja', 'wx-rojo');
+      pill.classList.add(WX_LEVELS[vig[0].nivel]);
+      if (pillIcon) pillIcon.textContent = WX_ICONS[vig[0].fenomeno] || WX_ICONS.default;
+    }
   }
 
-  // Encontrar el nivel más alto
-  let topAlert = alerts.reduce((prev, cur) =>
-    (WX_PRIORITY[cur.nivel] || 0) > (WX_PRIORITY[prev.nivel] || 0) ? cur : prev
-  , alerts[0]);
+  if (estado) {
+    estado.textContent = '';
+    if (wxEstado === 'viejo' || wxEstado === 'error') {
+      estado.appendChild(wxEl('span', '', (wxEstado === 'viejo'
+        ? tx('wxSinComprobar', { h: wxHoraCorta(wxDatos.consultado) }) : tx('wxNoDisponible')) + ' '));
+      estado.appendChild(wxEnlaceAemet());
+      estado.style.display = 'block';
+    } else estado.style.display = 'none';
+  }
+  if (list) {
+    list.textContent = '';
+    vig.forEach(function (a) { list.appendChild(wxTarjeta(a)); });
+    if (!vig.length && wxEstado === 'ok') list.appendChild(wxEl('div', 'wx-vacio', '✓ ' + tx('wxSinAvisos')));
+  }
+  if (hora) hora.textContent = wxDatos ? tx('wxComprobado', { h: wxHoraCorta(wxDatos.consultado) }) : '';
+  if (enlace) enlace.href = 'https://www.aemet.es/' + (wxLang() === 'en' ? 'en' : 'es') + '/eltiempo/prediccion/avisos?p=6596';
 
-  // Mostrar píldora en topbar
-  pill.style.display = 'inline-flex';
-  // Quitar clases de nivel anteriores
-  pill.classList.remove('wx-amarillo','wx-naranja','wx-rojo');
-  pill.classList.add(WX_LEVELS[topAlert.nivel] || 'wx-amarillo');
+  /* Una linea en el panel del tiempo (🌡️): ahi se ve que esto funciona
+     tambien cuando no hay avisos, y desde cuando no se ha podido mirar. */
+  var mc = document.getElementById('mc-avisos');
+  if (mc) {
+    mc.textContent = '';
+    if (wxEstado === 'cargando') { mc.style.display = 'none'; }
+    else {
+      mc.style.display = 'block';
+      if (wxEstado === 'error') {
+        mc.appendChild(wxEl('span', 'wx-linea-txt', '⚠️ ' + tx('wxNoDisponible') + ' '));
+        mc.appendChild(wxEnlaceAemet());
+      } else {
+        if (vig.length) {
+          var b = wxEl('button', 'wx-linea-btn ' + WX_LEVELS[vig[0].nivel], '⚠️ ' + tx('wxHayAvisos', { n: vig.length }));
+          b.type = 'button';
+          b.addEventListener('click', wxAbrirDesde);
+          mc.appendChild(b);
+        } else if (wxEstado === 'ok') {
+          var alc = wxDatos.aemet && wxDatos.aemet.alcance;
+          mc.appendChild(wxEl('span', 'wx-linea-txt', '✓ ' + ((alc && Date.parse(alc) > Date.now())
+            ? tx('wxSinAvisosHasta', { f: wxHora(alc, true) }) : tx('wxSinAvisos'))));
+        }
+        if (wxEstado === 'viejo') {
+          var v = wxEl('div', 'wx-linea-viejo', tx('wxSinComprobar', { h: wxHoraCorta(wxDatos.consultado) }) + ' ');
+          v.appendChild(wxEnlaceAemet());
+          mc.appendChild(v);
+        } else {
+          mc.appendChild(wxEl('div', 'wx-linea-hora', tx('wxComprobado', { h: wxHoraCorta(wxDatos.consultado) }) + ' · AEMET'));
+        }
+      }
+    }
+  }
 
-  // Icono
-  pillIcon.textContent = WX_ICONS[topAlert.tipo] || WX_ICONS.default;
-
-  // Renderizar tarjetas en el panel
-  list.innerHTML = alerts.map(a => `
-    <div class="wx-alert-card ${WX_LEVELS[a.nivel] || 'wx-amarillo'}">
-      <div class="wx-alert-top">
-        <span class="wx-alert-icon">${WX_ICONS[a.tipo] || WX_ICONS.default}</span>
-        <span class="wx-alert-title">${escapeAdmin(a.titulo)}</span>
-        <span class="wx-alert-badge">${escapeAdmin(a.nivel)}</span>
-      </div>
-      <div class="wx-alert-desc">${escapeAdmin(a.desc)}</div>
-      <div class="wx-alert-time">
-        🕐 Hasta las ${escapeAdmin(a.hasta)} · ${escapeAdmin(a.zona)}
-      </div>
-    </div>
-  `).join('');
+  // Y en el panel del mar, los avisos costeros, que son los del mar.
+  var mar = document.getElementById('mar-avisos');
+  if (mar) {
+    mar.textContent = '';
+    var co = vig.filter(function (a) { return a.fenomeno === 'CO'; });
+    mar.style.display = co.length ? 'block' : 'none';
+    co.forEach(function (a) {
+      var b = wxEl('button', 'wx-linea-btn ' + WX_LEVELS[a.nivel],
+        WX_ICONS.CO + ' ' + tx('wxNivel_' + a.nivel) + ' · ' + a.zonas.map(wxNombreZona).join(' · '));
+      b.type = 'button';
+      b.addEventListener('click', wxAbrirDesde);
+      mar.appendChild(b);
+    });
+  }
 }
 
-// ── TOGGLE PANEL ──────────────────────────────────────────────
+// ── ABRIR Y CERRAR ────────────────────────────────────────────
 function toggleWxPanel() {
   const panel = document.getElementById('wx-panel');
   const isOpen = panel.style.display === 'block';
   panel.style.display = isOpen ? 'none' : 'block';
 }
-
-// ── CERRAR ALERTA (cruz en topbar) ────────────────────────────
+// desde el panel del tiempo o del mar: se cierra ese y se abre el de avisos
+function wxAbrirDesde(e) {
+  if (e) e.stopPropagation();
+  ['mc-panel', 'mar-panel'].forEach(function (id) { var p = document.getElementById(id); if (p) p.style.display = 'none'; });
+  var panel = document.getElementById('wx-panel');
+  if (panel) panel.style.display = 'block';
+}
+// la cruz de la pildora la esconde hasta que cambien los avisos
 function dismissWxPill() {
+  wxCerrada = wxVigentes().map(function (a) { return a.ids.join('+'); }).join(',');
+  try { sessionStorage.setItem('tgo_wx_cerrada', wxCerrada); } catch (e) {}
   document.getElementById('wx-pill').style.display = 'none';
   const panel = document.getElementById('wx-panel');
   if (panel) panel.style.display = 'none';
@@ -27902,7 +28124,7 @@ document.addEventListener('click', function(e) {
 function insertWxPillInTopbar() {
   const pill = document.getElementById('wx-pill');
   const topbarRight = document.querySelector('.topbar-right');
-  if (!pill || !topbarRight) return;
+  if (!pill || !topbarRight || pill.parentNode === topbarRight) return;
   // Insertar antes del lang-selector (último elemento)
   const langSel = document.getElementById('lang-selector');
   if (langSel && langSel.parentNode === topbarRight) {
@@ -27910,9 +28132,13 @@ function insertWxPillInTopbar() {
   } else {
     topbarRight.insertBefore(pill, topbarRight.firstChild);
   }
-  // Conectar eventos
   pill.addEventListener('click', function(e) {
     if (e.target.id === 'wx-pill-close' || e.target.closest('#wx-pill-close')) return;
+    toggleWxPanel();
+  });
+  pill.addEventListener('keydown', function(e) {
+    if (e.target !== pill || (e.key !== 'Enter' && e.key !== ' ')) return;
+    e.preventDefault();
     toggleWxPanel();
   });
   const closeBtn = document.getElementById('wx-pill-close');
@@ -27923,15 +28149,18 @@ function insertWxPillInTopbar() {
 }
 
 // ── INICIALIZAR ───────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', function() {
+let wxIniciado = false;
+function wxIniciar() {
+  if (wxIniciado) return;
+  wxIniciado = true;
   insertWxPillInTopbar();
   setTimeout(fetchWxAlerts, 1200);
-  setInterval(fetchWxAlerts, 30 * 60 * 1000);
-});
-if (document.readyState !== 'loading') {
-  insertWxPillInTopbar();
-  setTimeout(fetchWxAlerts, 1200);
+  setInterval(fetchWxAlerts, 30 * 60 * 1000);   // el fichero se renueva cada hora
+  setInterval(renderWxAlerts, 5 * 60 * 1000);   // y lo que ya termino se quita solo
+  try { TG_IDIOMA.registrar('avisos-aemet', renderWxAlerts); } catch (e) {}
 }
+if (document.readyState !== 'loading') wxIniciar();
+else document.addEventListener('DOMContentLoaded', wxIniciar);
 </script>
 
 <!-- ════════════════════════════════════════════════════════════════
@@ -28035,6 +28264,7 @@ if (document.readyState !== 'loading') {
   </div>
   <div class="mc-list" id="mc-list"></div>
   <div id="mc-sunset"></div>
+  <div id="mc-avisos" class="mc-avisos" style="display:none"></div>
   <div class="mc-footer">
     <span class="mc-source" data-sin-traducir="credito de la fuente de datos">Open-Meteo · Atlantic/Canary</span>
     <button class="mc-refresh" id="mc-refresh">↻ <span id="mc-refresh-txt" data-tx="wxActualizar">Actualizar</span></button>
@@ -31766,7 +31996,6 @@ function closePrivacyPanel() {
       <li><a href="https://project-osrm.org/" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">OSRM</a> — <span data-tx="ppTercOsrm">origen y destino cuando calculas una ruta en coche.</span></li>
       <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Nominatim</a> — <span data-tx="ppTercNominatim">el texto que escribes al buscar una dirección.</span></li>
       <li><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Open-Meteo</a> — <span data-tx="ppTercMeteo">las coordenadas del lugar o de la zona cuya previsión consultas.</span></li>
-      <li><a href="https://www.aemet.es/es/nota_legal" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">AEMET</a> — <span data-tx="ppTercAemet">avisos meteorológicos de la isla; no se le manda nada tuyo.</span></li>
       <li><a href="https://geoportalgasolineras.es/" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Ministerio para la Transición Ecológica y el Reto Demográfico</a> — <span data-tx="ppTercCarburantes">los precios oficiales de las gasolineras de la provincia, cuando los miras; no se le manda nada tuyo.</span></li>
       <li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Wikipedia · Wikimedia</a> — <span data-tx="ppTercWiki">el título del artículo del lugar que abres.</span></li>
       <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Google Fonts · jsDelivr</a> — <span data-tx="ppTercCdn">tipografías y librerías.</span></li>

@@ -24,12 +24,13 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `coordenadas` | abierto | 157 verificadas con su fuente · 817 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
 | `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
+| `avisos_aemet` | **cerrado** | tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un nav |
 
 **Lo único que queda por hacer está en el área abierta que queda:**
 
 - **`coordenadas`** — Las que estan escritas con 3 decimales significativos o menos en los dos ejes, o sea puestas a ojo. El informe las cuenta y las lista una a una.
 
-### Las 9 cerradas, con su techo escrito
+### Las 10 cerradas, con su techo escrito
 
 **`orientacion_playa`** · 2026-09-08
 - qué se hizo: Se buscaron fuentes publicadas para la orientacion de las 65 zonas de bano que no la tenian, y se auditaron una por una las que produjo un modelo de lenguaje.
@@ -81,6 +82,12 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 - lo único que quedó abierto de esta área:
   - puertito-poris-abona: 241 m mar adentro. Exento por categoria, pero un embarcadero pequeño no tiene una darsena de 241 m. En 600 m no hay ningun muelle, marina ni puerto en el extracto. Hace falta Overpass o la coordenada publicada.
   - faro-santa-cruz-puerto: cuando haya Overpass, leer el way 193798986 de OSM y usar su geometria en vez del empuje de 15 m.
+
+**`avisos_aemet`** · 2026-10-12
+- fuente: AEMET, Plan Meteoalerta. Canal sin clave de la isla de Tenerife: https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAP6596_RSS.xml (listado en https://www.aemet.es/es/rss_info/avisos/coo). Formato: anexo 3, METEOALERTA_ANX3_CAP.pdf (31-may-2022). Zonas de Tenerife: 659601 Norte, 659602 Area metropolitana, 659603 Este, sur y oeste; con C al final, su costa.
+- qué se hizo: La pildora de avisos llevaba meses sin salir: pedia desde el navegador la prevision de Santa Cruz (localidad_38038.xml), que no son avisos, y aemet.es no deja que otra web lea sus ficheros (sin CORS). Ahora .github/workflows/avisos-aemet.yml baja cada hora el canal oficial de la isla y la app lee datos/avisos-aemet.json de su propio dominio.
+- **el techo**: AEMET da el texto de cada aviso solo en castellano y en ingles: en los otros ocho idiomas se traducen nivel, fenomeno, parametro, zona y horas por su codigo, y el texto oficial sale en castellano y lo dice. GitHub no lanza los cron a su hora: la comprobacion es mas o menos cada hora, no exacta; a las 6 horas sin comprobar la app lo dice y manda a aemet.es.
+- resultado: tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un navegador, en los diez idiomas; cinco fallos metidos a proposito, los cinco en rojo.
 
 ## 0 · Lo verificado, separado de lo que no
 

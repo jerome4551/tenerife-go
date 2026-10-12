@@ -67,6 +67,24 @@ const CONSULTAS = [
 
   { que: 'la bienvenida en polaco cuenta bien el plural', lang: 'pl', q: 'zaskocz mnie',
     debe: [/kostka|losowe|Przenosi/i], noDebe: [/dado/i], bienvenidaPlural: true },
+
+  /* «socorro» es una playa y es pedir ayuda (12/10/2026). Jerome: «que
+     proponga los 3, Playa El Socorro, emergencia y 112, y la gente elige».
+     Los tres botones, en su idioma y en su orden; y el de emergencia, pulsado,
+     tiene que dar la respuesta del 112. */
+  { que: '«socorro»: 112, emergencia y la playa, para elegir', lang: 'es', q: 'socorro',
+    debe: [/ayuda/], noDebe: [/Los Realejos/], acciones: [/112/, /Emergencia/, /Playa El Socorro/],
+    pulsar: /Emergencia/, trasPulsar: [/llama al 112/] },
+  { que: '«socorro» en aleman: los botones en aleman', lang: 'de', q: 'socorro',
+    debe: [/Hilfe/], noDebe: [/Emergencia/], acciones: [/112 anrufen/, /Notfall/, /Playa El Socorro/],
+    pulsar: /Playa El Socorro/, trasPulsarLista: 3 },
+  { que: '«socorro» en polaco', lang: 'pl', q: 'socorro',
+    debe: [/pomocy/], noDebe: [/Emergencia/], acciones: [/Zadzwoń pod 112/, /Nagły wypadek/, /Playa El Socorro/] },
+  { que: '«pedir socorro» no es ambiguo: el 112 directo', lang: 'es', q: 'pedir socorro',
+    debe: [/llama al 112/], noDebe: [], sinAcciones: true },
+  { que: '«auxilio»: el 112 directo', lang: 'es', q: 'auxilio', debe: [/llama al 112/], noDebe: [] },
+  { que: '«emergencia» sigue llevando al 112', lang: 'es', q: 'emergencia', debe: [/llama al 112/], noDebe: [] },
+  { que: '«Polizei», en aleman: el 112', lang: 'de', q: 'Polizei', debe: [/112/], noDebe: [/llama/] },
 ];
 
 /* La forma polaca que pide el numero de lugares: 1 miejsce · 2-4 miejsca
@@ -140,6 +158,35 @@ const formaPl = n => n === 1 ? 'miejsce' : (n % 10 >= 2 && n % 10 <= 4 && (n % 1
       const ult = m && m.lastElementChild;
       return !!(ult && (ult.classList.contains('chat-contact-btn') || ult.querySelector('.chat-contact-btn')));
     });
+    /* los botones de accion van detras de la burbuja, como hermanos */
+    const acciones = await pg.evaluate(() => {
+      const m = document.getElementById('chat-messages'), out = [];
+      let n = m ? m.lastElementChild : null;
+      while (n && !n.classList.contains('chat-bubble')) {
+        if (n.classList.contains('chat-action-btn')) out.unshift(n.textContent);
+        n = n.previousElementSibling;
+      }
+      return out;
+    });
+    let accionesMal = '';
+    if (c.acciones && (acciones.length !== c.acciones.length || c.acciones.some((r, i) => !r.test(acciones[i] || ''))))
+      accionesMal = acciones.join(' | ') || '(ninguno)';
+    if (c.sinAcciones && acciones.length) accionesMal = 'no debia haber botones: ' + acciones.join(' | ');
+    let trasMal = '';
+    if (c.pulsar) {
+      const antes2 = await cuenta(pg);
+      await pg.evaluate(src => {
+        const re = new RegExp(src);
+        const b = [...document.querySelectorAll('#chat-messages .chat-action-btn')].reverse().find(x => re.test(x.textContent));
+        if (b) b.click();
+      }, c.pulsar.source);
+      await pg.waitForFunction(n => document.querySelectorAll('#chat-messages .chat-bubble.bot .chat-body').length > n,
+                               antes2, { timeout: 20000 }).catch(() => {});
+      const r2 = await pg.evaluate(() => { const b = document.querySelectorAll('#chat-messages .chat-bubble.bot .chat-body'); return b[b.length - 1].textContent; });
+      const l2 = await pg.evaluate(() => { const m = document.getElementById('chat-messages'); const u = m.lastElementChild; return u && u.querySelectorAll ? u.querySelectorAll('.chat-poi-item').length : 0; });
+      if (c.trasPulsar && c.trasPulsar.some(r => !r.test(r2))) trasMal = 'tras pulsar: ' + r2.slice(0, 120);
+      if (c.trasPulsarLista && l2 !== c.trasPulsarLista) trasMal = 'tras pulsar salen ' + l2 + ' lugares, no ' + c.trasPulsarLista;
+    }
     const faltan  = c.debe.filter(r => !r.test(resp));
     const sobran  = c.noDebe.filter(r => r.test(resp));
     const sinLista = c.conLista && !lista;
@@ -148,7 +195,7 @@ const formaPl = n => n === 1 ? 'miejsce' : (n % 10 >= 2 && n % 10 <= 4 && (n % 1
     const botonesMal = c.botones ? !(chips.length && chips.every(t => c.botones.test(t))) : false;
     const sinContacto = c.contacto && !contacto;
     const ok = despues > antes && !faltan.length && !sobran.length && !sinLista
-            && !botonesMal && !errores.length && !sinContacto && !bienvenidaMal;
+            && !botonesMal && !errores.length && !sinContacto && !bienvenidaMal && !accionesMal && !trasMal;
     if (!ok) malos++;
 
     console.log((ok ? '  ok   ' : ' FALLA ') + c.que + '   [' + c.lang + '] «' + (c.q || 'boton ' + c.boton) + '»');
@@ -163,6 +210,9 @@ const formaPl = n => n === 1 ? 'miejsce' : (n % 10 >= 2 && n % 10 <= 4 && (n % 1
     if (botonesMal)     console.log('        los botones no estan en ese idioma');
     if (sinContacto)    console.log('        falta el boton de escribirle a Jerome');
     if (bienvenidaMal)  console.log('        bienvenida con el plural mal: ' + bienvenidaMal);
+    if (acciones.length) console.log('        acciones: ' + acciones.join(' | '));
+    if (accionesMal)    console.log('        los botones de accion no son los que tocan: ' + accionesMal);
+    if (trasMal)        console.log('        ' + trasMal);
     if (errores.length) console.log('        ERRORES DE PAGINA: ' + errores.join(' / '));
     console.log('');
     await pg.close();

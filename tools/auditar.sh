@@ -134,6 +134,12 @@ if reventado "$salida"; then roto probar_faq.js
 else [ "$rc" = 0 ] || falla probar_faq.js; fi
 echo; echo "════════ el asistente en un movil de verdad, en su idioma ════════"
 control probar_movil.js node tools/probar_movil.js "$PUERTO"
+echo; echo "════════ avisos de AEMET: el lector, con copias reales de AEMET ════════"
+# Desde el 12 de octubre de 2026. La pildora de avisos estuvo meses sin salir
+# nunca y nadie lo vio: «no hay avisos» y «no funciona» se pintaban igual.
+control probar_avisos_aemet.py python3 tools/probar_avisos_aemet.py
+echo; echo "════════ avisos de AEMET en la app, en los diez idiomas ════════"
+control probar_avisos.js node tools/probar_avisos.js "$PUERTO"
 
 echo "════════ erratas al transliterar al cirilico ════════"
 control auditar_cirilico.py python3 tools/auditar_cirilico.py

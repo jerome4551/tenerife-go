@@ -219,8 +219,9 @@ self.addEventListener('fetch', e => {
      prevision del primer dia. De ahi que saliera "la misma prevision
      durante muchos dias".
 
-     Afecta a lo mismo en el estado del mar, el "donde me bano" y los
-     avisos de AEMET, y a las rutas de OSRM.
+     Afecta a lo mismo en el estado del mar, el "donde me bano" y a las
+     rutas de OSRM. (Los avisos de AEMET ya no se piden a aemet.es desde el
+     12 de octubre de 2026: van en datos/avisos-aemet.json, mas abajo.)
 
      Aqui no se pone caducidad ni se cambia a red-primero: no hace falta.
      Cada modulo ya guarda su ultima lectura buena en localStorage con 30
@@ -229,7 +230,7 @@ self.addEventListener('fetch', e => {
      Wikipedia: eso es contenido, no un dato vivo, y ahi ayuda sin mentir. */
   /* Los precios de las gasolineras, desde el 7 de octubre, se piden en vivo al
      Ministerio como el tiempo a Open-Meteo: tampoco se cachean aqui. */
-  const EN_VIVO = ['open-meteo.com', 'aemet.es', 'project-osrm.org', 'serviciosmin.gob.es', 'minetur.gob.es'];
+  const EN_VIVO = ['open-meteo.com', 'project-osrm.org', 'serviciosmin.gob.es', 'minetur.gob.es'];
   if (url.hostname.includes('supabase.co') || url.hostname.includes('nominatim') ||
       EN_VIVO.some(h => url.hostname === h || url.hostname.endsWith('.' + h))) {
     return; // no cachear apis, tiempo ni rutas - siempre fresco
@@ -258,10 +259,16 @@ self.addEventListener('fetch', e => {
       /* La red de guaguas (datos/titsa.js) tambien: es un trozo de index.html
          que vive aparte, y con `cached || fetch` una red nueva no llegaria
          nunca a quien ya tuviera la vieja. */
+      /* Y los avisos de AEMET (12 de octubre de 2026): el fichero se rehace
+         cada hora; con `cached || fetch` el primero que entrase se quedaria
+         para siempre, que es justo lo que no puede pasar con un aviso. Sin
+         red sale el ultimo, con su hora, y la app dice desde cuando no se ha
+         podido comprobar. */
       if (req.url.endsWith('index.html') || req.url.endsWith('/') ||
           url.pathname.endsWith('/datos/titsa.js') ||
           url.pathname.endsWith('/datos/precios-gasolineras.json') ||
           url.pathname.endsWith('/datos/gasolineras-municipio.json') ||
+          url.pathname.endsWith('/datos/avisos-aemet.json') ||
           /\/(idiomas\/(etiquetas\/)?|faq\/)[a-z]{2,3}\.json$/.test(url.pathname)) {
         return fetch(req).then(res => {
           if (guardableShell(res)) guardar(req, res);

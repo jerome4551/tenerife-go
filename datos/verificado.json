@@ -766,6 +766,14 @@
    ],
    "techo": "Overpass sigue cerrado desde aqui. El extracto OSM del repositorio es a z14 y NO lo trae todo: dio 0 faros en toda la isla y la Farola SI esta en OSM (way 193798986). Un 0 en el extracto significa «no lo trae», nunca «no existe». Los POIs que en OSM son una via o un poligono llegan aqui como un punto de rotulo, asi que la distancia a ese punto no es la distancia al sitio.",
    "que_se_hizo": "Las 6 fichas que caian fuera de tierra se cerraron una a una. Cuatro con una coordenada de fuente (Wikidata, Wikipedia, la ficha oficial de la playa, el propio OSM del repositorio), una por la regla de aparcamientos y una -whale-watching- exenta por id con su motivo escrito. De paso, puerto-colon-adeje estaba 150 m en mar abierto, no en la darsena, y la exencion por categoria lo tapaba: movido al punto de la marina en OSM."
+  },
+  "avisos_aemet": {
+   "estado": "cerrado",
+   "fecha": "2026-10-12",
+   "que_se_hizo": "La pildora de avisos llevaba meses sin salir: pedia desde el navegador la prevision de Santa Cruz (localidad_38038.xml), que no son avisos, y aemet.es no deja que otra web lea sus ficheros (sin CORS). Ahora .github/workflows/avisos-aemet.yml baja cada hora el canal oficial de la isla y la app lee datos/avisos-aemet.json de su propio dominio.",
+   "fuente": "AEMET, Plan Meteoalerta. Canal sin clave de la isla de Tenerife: https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAP6596_RSS.xml (listado en https://www.aemet.es/es/rss_info/avisos/coo). Formato: anexo 3, METEOALERTA_ANX3_CAP.pdf (31-may-2022). Zonas de Tenerife: 659601 Norte, 659602 Area metropolitana, 659603 Este, sur y oeste; con C al final, su costa.",
+   "techo": "AEMET da el texto de cada aviso solo en castellano y en ingles: en los otros ocho idiomas se traducen nivel, fenomeno, parametro, zona y horas por su codigo, y el texto oficial sale en castellano y lo dice. GitHub no lanza los cron a su hora: la comprobacion es mas o menos cada hora, no exacta; a las 6 horas sin comprobar la app lo dice y manda a aemet.es.",
+   "resultado": "tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un navegador, en los diez idiomas; cinco fallos metidos a proposito, los cinco en rojo."
   }
  },
  "coordenada_de_zona": {

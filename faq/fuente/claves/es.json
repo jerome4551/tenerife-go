@@ -1,5 +1,5 @@
 {
- "_motivo": "Claves de busqueda en castellano que antes contestaba CHAT_KB y que las entradas de los bloques no tenian. Al retirar CHAT_KB (12/10/2026) estas preguntas se habrian quedado sin respuesta: «bus», «tram», «la gomera», «ballena»… Van aqui y no dentro de los bloques porque los bloques se quedan como llegaron. Solo claves: ningun texto que lea el usuario.",
+ "_motivo": "Claves de busqueda en castellano que antes contestaba CHAT_KB y que las entradas de los bloques no tenian. Al retirar CHAT_KB (12/10/2026) estas preguntas se habrian quedado sin respuesta: «bus», «tram», «la gomera», «ballena»… Van aqui y no dentro de los bloques porque los bloques se quedan como llegaron. Solo claves: ningun texto que lea el usuario. · Palabras de emergencia de mas para sal-01 (112), 12/10/2026. Jerome: «no borrar emergencia, no todos usan la misma palabra». «socorro» y «auxilio» van en los diez idiomas porque un turista en apuros puede escribir la palabra en castellano; las demas (policia, bomberos, accidente, herido) son las de cada idioma. El 112 atiende todas esas emergencias (Centro Coordinador 112 del Gobierno de Canarias, ver la nota de sal-01). Solo claves: ningun texto que lea el usuario.",
  "mov-03": ["bus", "autobuses"],
  "mov-05": ["alquilar un coche", "alquilo coche", "alquiler de coches", "alquilar", "alquilo"],
  "mov-07": ["aparco", "donde aparcar"],
@@ -17,5 +17,6 @@
  "pra-11": ["siesta", "horario comercial", "horario", "horarios"],
  "pra-13": ["caro", "barato", "precios", "precio"],
  "cul-11": ["artesania"],
- "exc-11": ["excursion", "excursiones"]
+ "exc-11": ["excursion", "excursiones"],
+ "sal-01": ["socorro", "auxilio", "accidente", "policia", "bomberos", "guardia civil", "urgencia", "herido"]
 }
