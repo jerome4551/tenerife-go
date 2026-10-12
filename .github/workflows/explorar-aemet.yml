@@ -1,7 +1,6 @@
-# Prueba de una sola vez: que fuentes de avisos de AEMET se pueden leer sin
-# clave desde fuera, en que formato llegan y si el navegador puede pedirlas
-# directamente (cabeceras CORS). Solo lee y lo escribe en el registro; no
-# guarda nada en el repo. Va en esta rama, no en main.
+# Prueba de una sola vez (segunda vuelta): que fuentes de avisos de AEMET se
+# pueden leer sin clave desde fuera y en que formato llegan. Solo lee y lo
+# escribe en el registro; no guarda nada en el repo. Va en esta rama, no en main.
 name: Explorar avisos AEMET (prueba, solo lee)
 
 on:
@@ -16,133 +15,141 @@ jobs:
   explorar:
     runs-on: ubuntu-latest
     steps:
-      - name: Fuentes de avisos
+      - name: AEMET directo
         shell: python3 {0}
         run: |
-          import re, html, io, tarfile, urllib.request, urllib.error, json
-          UA = 'Mozilla/5.0 (X11; Linux x86_64) TenerifeGo-prueba'
-          ORIGEN = 'https://jerome4551.github.io'
-
-          def pedir(url, n=None, origen=False):
-              req = urllib.request.Request(url, headers={'User-Agent': UA, **({'Origin': ORIGEN} if origen else {})})
+          import re, html, io, tarfile, urllib.request, urllib.error
+          UAS = {
+            'navegador': 'Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0',
+            'python': None,
+            'curl': 'curl/8.5.0',
+          }
+          def pedir(url, ua='navegador', extra=None):
+              h = {}
+              if UAS[ua]: h['User-Agent'] = UAS[ua]
+              if extra: h.update(extra)
+              req = urllib.request.Request(url, headers=h)
               try:
                   with urllib.request.urlopen(req, timeout=40) as r:
-                      cuerpo = r.read()
-                      return r.status, dict(r.headers), cuerpo
+                      return r.status, dict(r.headers), r.read()
               except urllib.error.HTTPError as e:
                   return e.code, dict(e.headers), e.read()
               except Exception as e:
                   return None, {}, str(e).encode()
-
           def cab(h):
-              return {k: v for k, v in h.items() if k.lower() in ('content-type', 'access-control-allow-origin',
-                      'last-modified', 'cache-control', 'content-length', 'date', 'location')}
+              return {k: v for k, v in h.items() if k.lower() in ('content-type', 'access-control-allow-origin', 'last-modified', 'content-length')}
 
-          print('=' * 30, 'INDICE RSS')
-          st, h, b = pedir('https://www.aemet.es/es/rss_info/avisos/esp')
+          print('=' * 30, 'PAGINA DE CANARIAS')
+          st, h, b = pedir('https://www.aemet.es/es/rss_info/avisos/coo')
           print(st, cab(h), len(b))
-          t = b.decode('utf-8', 'replace')
-          canales = []
-          for m in re.finditer(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', t, re.S):
-              href = html.unescape(m.group(1)); txt = html.unescape(re.sub(r'<[^>]+>', ' ', m.group(2))).strip()
-              txt = re.sub(r'\s+', ' ', txt)
-              if 'rss' in href.lower() or 'atom' in href.lower() or href.endswith(('.xml', '.tar', '.gz')):
-                  print('ENLACE', href, '|', txt[:90])
-                  canales.append((href, txt))
-          # contexto alrededor de Canarias y Tenerife
-          for pal in ('Canarias', 'Tenerife'):
-              for m in re.finditer(pal, t):
-                  frag = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', t[max(0, m.start() - 400): m.end() + 400]))
-                  print('CONTEXTO', pal, '::', frag[:500])
-                  break
-          hrefs = re.findall(r'href="([^"]*(?:rss|RSS|atom|ATOM)[^"]*)"', t)
-          print('HREFS rss/atom:', len(hrefs))
-          for x in sorted(set(hrefs)):
-              print('  ', html.unescape(x))
+          t = b.decode('iso-8859-15', 'replace')
+          filas = re.findall(r'<tr[^>]*>(.*?)</tr>', t, re.S)
+          for f in filas:
+              txt = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', f))).strip()
+              hr = re.findall(r'href="([^"]+)"', f)
+              if hr:
+                  print('FILA', txt[:80], '|', ' '.join(hr))
 
-          def absol(u):
-              if u.startswith('http'):
-                  return u
-              return 'https://www.aemet.es' + (u if u.startswith('/') else '/' + u)
-
-          elegidos = [absol(u) for u in sorted(set(hrefs)) if re.search(r'(65|38|Canarias|canarias|Tenerife|tenerife)', u)]
-          print('ELEGIDOS', elegidos)
-          primero_items = []
-          for u in elegidos[:12]:
-              print('=' * 30, 'CANAL', u)
-              st, h, b = pedir(u, origen=True)
-              print(st, cab(h), len(b))
-              s = b.decode('utf-8', 'replace')
-              print(s[:3000])
-              for it in re.findall(r'<link>([^<]+)</link>', s)[:4]:
-                  primero_items.append(it)
-              for it in re.findall(r'<link[^>]+href="([^"]+)"', s)[:4]:
-                  primero_items.append(html.unescape(it))
-              for it in re.findall(r'<enclosure[^>]+url="([^"]+)"', s)[:4]:
-                  primero_items.append(html.unescape(it))
-
-          print('=' * 30, 'ITEMS', primero_items)
-          vistos = set()
-          for u in primero_items:
-              if u in vistos or 'aemet' not in u:
-                  continue
-              vistos.add(u)
-              if not re.search(r'\.(tar|gz|xml)$', u) and 'documentos' not in u:
-                  continue
-              print('=' * 30, 'FICHERO', u)
-              st, h, b = pedir(u, origen=True)
-              print(st, cab(h), len(b))
-              if b[:5] == b'<?xml' or b[:1] == b'<':
-                  print(b.decode('utf-8', 'replace')[:6000])
-                  continue
-              try:
-                  tf = tarfile.open(fileobj=io.BytesIO(b))
-                  nombres = tf.getnames()
-                  print('TAR con', len(nombres), 'ficheros:', nombres[:60])
-                  n = 0
-                  for nm in nombres:
-                      x = tf.extractfile(nm).read().decode('utf-8', 'replace')
-                      if 'Tenerife' in x:
-                          n += 1
-                          if n <= 3:
-                              print('-' * 20, nm)
-                              print(x[:7000])
-                  print('ficheros con Tenerife:', n)
-              except Exception as e:
-                  print('no es tar:', e, b[:300])
-              if len(vistos) > 8:
+          url = 'https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAC65_RSS.xml'
+          ok = None
+          for ua in UAS:
+              for extra in (None, {'Accept': 'application/rss+xml, application/xml;q=0.9, */*;q=0.8'}):
+                  st, h, b = pedir(url, ua, extra)
+                  rech = b'Request Rejected' in b
+                  print('CANAL 65 con UA', ua, 'Accept' if extra else '', '->', st, cab(h), len(b), 'RECHAZADO' if rech else 'OK')
+                  if not rech and st == 200 and ok is None:
+                      ok = (ua, extra, b)
+          if ok:
+              b = ok[2].decode('utf-8', 'replace')
+              print(b[:4000])
+              enl = re.findall(r'<link>([^<]+)</link>', b) + re.findall(r'<enclosure[^>]+url="([^"]+)"', b)
+              print('ENLACES', enl[:10])
+              for u in enl:
+                  if not re.search(r'\.(tar|gz|xml)$', u) or u.endswith('_RSS.xml'):
+                      continue
+                  st, h, c = pedir(u, ok[0], ok[1])
+                  print('=' * 20, 'FICHERO', u, st, cab(h), len(c), 'RECHAZADO' if b'Request Rejected' in c else '')
+                  try:
+                      tf = tarfile.open(fileobj=io.BytesIO(c))
+                      nombres = tf.getnames()
+                      print('TAR con', len(nombres))
+                      n = 0
+                      for nm in nombres:
+                          x = tf.extractfile(nm).read().decode('utf-8', 'replace')
+                          if 'Tenerife' in x:
+                              n += 1
+                              if n <= 2:
+                                  print('-' * 20, nm); print(x[:9000])
+                      print('con Tenerife:', n)
+                  except Exception as e:
+                      print('no tar', e); print(c[:3000].decode('utf-8', 'replace'))
                   break
 
-          print('=' * 30, 'METEOALARM')
-          for u in ('https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-spain',
-                    'https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-spain',
-                    'https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain'):
-              st, h, b = pedir(u, origen=True)
-              s = b.decode('utf-8', 'replace')
-              print('-' * 20, u, st, cab(h), len(s))
-              print(s[:1500])
-              for m in re.finditer(r'Tenerife', s):
-                  print('TENERIFE ::', s[max(0, m.start() - 1500): m.end() + 1500])
-                  break
-
-          print('=' * 30, 'OPENDATA SIN CLAVE')
-          for u in ('https://opendata.aemet.es/opendata/api/avisos_cap/ultimoelaborado/area/65',):
-              st, h, b = pedir(u, origen=True)
-              print(u, st, cab(h), b[:400])
-
-          print('=' * 30, 'PLAN METEOALERTA (zonas)')
-          for u in ('https://www.aemet.es/documentos/es/eltiempo/prediccion/avisos/plan_meteoalerta/METEOALERTA_ANX3_CAP.pdf',
-                    'https://www.aemet.es/documentos/es/eltiempo/prediccion/avisos/plan_meteoalerta/plan_meteoalerta.pdf'):
-              st, h, b = pedir(u)
-              print(u, st, cab(h), len(b))
-              if st == 200 and b[:4] == b'%PDF':
-                  open('/tmp/' + u.rsplit('/', 1)[1], 'wb').write(b)
-
-      - name: Texto de los PDF del Plan Meteoalerta (zonas de Tenerife)
+      - name: MeteoAlarm (los mismos avisos de AEMET), zonas de Tenerife
+        shell: python3 {0}
         run: |
-          sudo apt-get install -y -qq poppler-utils >/dev/null 2>&1 || true
-          for f in /tmp/*.pdf; do
-            [ -f "$f" ] || continue
-            echo "=============== $f"
-            pdftotext -layout "$f" - | grep -n -i -B2 -A2 "tenerife\|6538\|zona" | head -150
+          import json, urllib.request, datetime
+          req = urllib.request.Request('https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain',
+                                       headers={'User-Agent': 'Mozilla/5.0', 'Origin': 'https://jerome4551.github.io'})
+          with urllib.request.urlopen(req, timeout=60) as r:
+              print('cabeceras', {k: v for k, v in r.headers.items()})
+              d = json.load(r)
+          ws = d['warnings']
+          print('avisos en el fichero', len(ws), 'claves de arriba', list(d.keys()))
+          zonas = {}
+          for w in ws:
+              for inf in w['alert']['info']:
+                  for a in inf.get('area', []):
+                      if 'Tenerife' in a['areaDesc']:
+                          for g in a.get('geocode', []):
+                              zonas[a['areaDesc']] = g['value']
+          print('ZONAS DE TENERIFE VISTAS', zonas)
+          ahora = datetime.datetime.now(datetime.timezone.utc)
+          tf = []
+          for w in ws:
+              al = w['alert']
+              for inf in al['info']:
+                  if any('Tenerife' in a['areaDesc'] for a in inf.get('area', [])):
+                      tf.append((al, inf))
+          print('infos con Tenerife', len(tf))
+          vistos = 0
+          for al, inf in tf:
+              exp = datetime.datetime.fromisoformat(inf['expires'])
+              nivel = [p['value'] for p in inf.get('parameter', []) if p['valueName'] == 'awareness_level']
+              print(al['identifier'], al['msgType'], al.get('status'), inf['language'], inf['event'], '|', nivel, '| onset', inf.get('onset'), '| expires', inf['expires'], 'CADUCADO' if exp < ahora else 'VIGENTE')
+          for al, inf in tf:
+              exp = datetime.datetime.fromisoformat(inf['expires'])
+              nivel = ' '.join(p['value'] for p in inf.get('parameter', []) if p['valueName'] == 'awareness_level')
+              if exp > ahora and 'green' not in nivel and vistos < 3:
+                  vistos += 1
+                  print('=' * 20, 'VIGENTE NO VERDE')
+                  print(json.dumps(al, ensure_ascii=False, indent=1)[:6000])
+          # cuantos avisos verdes y no verdes hay en todo el fichero, por nivel
+          from collections import Counter
+          c = Counter()
+          for w in ws:
+              for inf in w['alert']['info']:
+                  for p in inf.get('parameter', []):
+                      if p['valueName'] == 'awareness_level':
+                          c[p['value']] += 1
+          print('niveles en todo el fichero', c)
+          print('msgType', Counter(w['alert']['msgType'] for w in ws))
+          print('idiomas', Counter(inf['language'] for w in ws for inf in w['alert']['info']))
+
+      - name: Zonas de Tenerife en el Plan Meteoalerta (PDF oficial)
+        run: |
+          pip install -q pypdf >/dev/null 2>&1
+          for u in https://www.aemet.es/documentos/es/eltiempo/prediccion/avisos/plan_meteoalerta/plan_meteoalerta.pdf https://www.aemet.es/documentos/es/eltiempo/prediccion/avisos/plan_meteoalerta/METEOALERTA_ANX3_CAP.pdf; do
+            curl -sS -A 'Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0' -o /tmp/x.pdf "$u"
+            echo "=============== $u"
+            python3 - <<'EOF'
+          import re
+          from pypdf import PdfReader
+          r = PdfReader('/tmp/x.pdf')
+          print('paginas', len(r.pages))
+          for i, p in enumerate(r.pages):
+              t = p.extract_text() or ''
+              for m in re.finditer(r'Tenerife', t):
+                  print('PAG', i + 1, '::', t[max(0, m.start() - 300): m.end() + 300].replace('\n', ' | '))
+          EOF
           done
