@@ -260,18 +260,41 @@ mienten.slice(0, 5).forEach(x => console.log('      <--  ' + x.txt));
    son Patrimonio Mundial San Cristobal de La Laguna (1999) y el Parque
    Nacional del Teide (2007). Ningun lugar de Anaga puede decir otra cosa en
    ningun idioma. */
+/* Y la Fiesta de los Corazones de Tejina (12 de octubre de 2026, Jerome): la
+   ficha nucleo-tejina decia «Patrimonio de la Humanidad UNESCO», en
+   septiembre y «unica en el mundo». Es Bien de Interes Cultural, con categoria
+   de ambito local, por el Decreto 71/2003, de 12 de mayo (BOC n. 102, de 29
+   de mayo de 2003, disposicion 931), y se celebra en agosto, por San
+   Bartolome. No tiene ninguna declaracion de la UNESCO: ni en el texto, en
+   ningun idioma, ni en las etiquetas. */
 {
   const WHS = /Patrimonio Mundial|Patrimonio de la Humanidad|World Heritage|Patrimoine mondial|Welterbe|Weltnaturerbe|Patrimonio Mondiale|Patrimonio dell.Umanit|werelderfgoed|世界遗产|世界遺產|световно наследство|[śs]wiatow\S* dziedzictw/i;
-  const deAnaga = PLACES.filter(p => /anaga|cruz del carmen/i.test(p.id + ' ' + p.name + ' ' + ((p.desc && p.desc.es) || '')));
-  const malos = [];
-  for (const p of deAnaga) if (WHS.test((p.desc && p.desc.es) || '')) malos.push(p.id + ' [es]');
+  const UNESCO = /UNESCO|ЮНЕСКО|联合国教科文|聯合國教科文|人类遗产|人類遺產/i;
+  const GRUPOS = [
+    { que: 'lugares de Anaga', mal: WHS,
+      de: p => /anaga|cruz del carmen/i.test(p.id + ' ' + p.name + ' ' + ((p.desc && p.desc.es) || '')) },
+    { que: 'la Fiesta de los Corazones de Tejina', mal: new RegExp(WHS.source + '|' + UNESCO.source, 'i'), etiquetas: true,
+      de: p => p.id === 'nucleo-tejina' || /corazones de tejina/i.test((p.desc && p.desc.es) || '') },
+  ];
+  const textos = {};
   for (const L of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
-    let t = {};
-    try { t = JSON.parse(fs_.readFileSync(require('path').join(__dirname, '..', 'idiomas', L + '.json'), 'utf8')); } catch (e) { malos.push('no se lee idiomas/' + L + '.json'); continue; }
-    for (const p of deAnaga) if (t[p.id] && WHS.test(t[p.id].desc || '')) malos.push(p.id + ' [' + L + ']');
+    try { textos[L] = JSON.parse(fs_.readFileSync(require('path').join(__dirname, '..', 'idiomas', L + '.json'), 'utf8')); }
+    catch (e) { textos[L] = null; }
   }
-  debe('lugares de Anaga (' + deAnaga.length + ') que dicen «Patrimonio Mundial» en algun idioma', malos.length, deAnaga.length > 0 && malos.length === 0);
-  malos.slice(0, 6).forEach(x => console.log('      <--  ' + x));
+  for (const g of GRUPOS) {
+    const lugares = PLACES.filter(g.de), malos = [];
+    for (const p of lugares) {
+      if (g.mal.test((p.desc && p.desc.es) || '')) malos.push(p.id + ' [es]');
+      if (g.etiquetas && (p.tags || []).some(t => g.mal.test(t))) malos.push(p.id + ' [etiquetas]');
+      for (const L of Object.keys(textos)) {
+        if (!textos[L]) { malos.push('no se lee idiomas/' + L + '.json'); continue; }
+        if (textos[L][p.id] && g.mal.test(textos[L][p.id].desc || '')) malos.push(p.id + ' [' + L + ']');
+      }
+    }
+    debe(g.que + ' (' + lugares.length + ') que dicen «Patrimonio Mundial»' + (g.etiquetas ? ' o UNESCO' : '') + ' en algun idioma',
+         malos.length, lugares.length > 0 && malos.length === 0);
+    malos.slice(0, 6).forEach(x => console.log('      <--  ' + x));
+  }
 }
 
 /* 12 de octubre de 2026. El "mas de 700" de arriba se dejaba pasar porque era

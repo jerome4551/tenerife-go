@@ -13879,9 +13879,9 @@ const places = [
     tags:["Anaga","Aislado","Local","Plataneras","Senderismo","Santa Cruz"] },
 
   { id:"nucleo-tejina", category:"municipio", name:"Tejina", emoji:"🌽", color:"#7cb342", lat:28.530911, lng:-16.355104,
-    desc:{ es:"Pueblo rural agrícola en el norte de La Laguna. Famoso por la Fiesta de los Corazones de Tejina (septiembre, Patrimonio de la Humanidad UNESCO), espectacular tradición popular única en el mundo. Vegas verdes y plataneras." },
+    desc:{ es:"Pueblo rural agrícola en el norte de La Laguna. Famoso por la Fiesta de los Corazones de Tejina, que se celebra en agosto en honor a San Bartolomé y es Bien de Interés Cultural desde 2003. Vegas verdes y plataneras." },
     cat:{ es:"Pueblo Rural · La Laguna" },
-    tags:["UNESCO","Corazones","Rural","Norte","Tradición","La Laguna"] },
+    tags:["San Bartolomé","Corazones","Rural","Norte","Tradición","La Laguna"] },
 
   { id:"nucleo-valle-guerra", category:"municipio", name:"Valle de Guerra", emoji:"🌳", color:"#558b2f", lat:28.51921, lng:-16.39124,
     desc:{ es:"Pueblo rural entre Tegueste y Tacoronte. Vegas, plataneras, viñedos y la Casa Museo del Campesino. Ambiente totalmente agrícola, sin presencia turística. Producto local de huerta exquisito y los mejores aguacates de Tenerife." },
@@ -26608,6 +26608,11 @@ var CHAT_WHAT=['que hacer','que ver','que visitar','what to do','what to see','t
 /* «ordena mis favoritos por distancia» (12/10/2026): las dos palabras tienen
    que estar, la de favoritos y la de ordenar (o «cerca de mi»). Con solo
    «favoritos» sigue saliendo como se guardan (app-02). */
+/* «ayuda» a secas (12/10/2026): FRASES ENTERAS, no palabras sueltas. Solo
+   cuando lo escrito es eso y nada mas; «pedir ayuda» o «ayuda con la app»
+   siguen yendo a su respuesta. Los otros ocho idiomas, en faq/<lang>.json
+   («ayuda» de su vocabulario). */
+var CHAT_AYUDA_W=['ayuda','ayudame','necesito ayuda','ayuda por favor','por favor ayuda','help','help me','i need help','help please','please help'];
 var CHAT_FAV_W=['favorito','favoritos','mis favoritos','favourite','favourites','favorite','favorites'];
 var CHAT_ORDEN_W=['ordena','ordenar','ordename','ordenamelos','ordenalos','orden','por distancia','distancia','ruta','recorrido','sort','order','by distance','distance','route','closest','nearest'];
 var CHAT_WHERE=['donde esta','donde estan','donde queda','donde se encuentra','where is','where are','como llegar','como llego','how to get to','llevame a','take me to','muestrame','ensename','show me'];
@@ -26817,6 +26822,14 @@ function chatMatchKB(padded,tokset,qn){
 // ── Resolución de la pregunta → intención + datos ─────────────────
 /* la respuesta de emergencias (112): ver «SOCORRO» en chatResolve */
 var CHAT_ID_EMERGENCIA='sal-01';
+/* y la de como funciona la app: ver «AYUDA» A SECAS */
+var CHAT_ID_AYUDA_APP='app-01';
+/* ¿Es lo escrito, entero, una de estas frases? */
+function chatEsFrase(qn,lista){
+  if(!lista)return false;
+  for(var i=0;i<lista.length;i++){if(qn===chatNorm(String(lista[i])))return true;}
+  return false;
+}
 function chatResolve(question,pos){
   var qn=chatNorm(question);
   if(!qn)return {kind:'fallback'};
@@ -26833,6 +26846,10 @@ function chatResolve(question,pos){
 
   if(/(^| )(hola|buenas|hello|hi|hey|bonjour|hallo|ciao|hoi|saludos)( |$)/.test(padded)&&toks.length<=2)return {kind:'greet'};
   if(/(^| )(gracias|thanks|thank|merci|danke|grazie|bedankt|genial|perfecto)( |$)/.test(padded)&&toks.length<=3)return {kind:'thanks'};
+  /* «AYUDA» A SECAS. Puede ser una emergencia o la ayuda de la app. Jerome
+     (12/10/2026), como con «socorro»: que proponga y la gente elija. Primero
+     el 112 y la emergencia, por si lo es. */
+  if(chatEsFrase(qn,CHAT_AYUDA_W)||chatEsFrase(qn,TG_FAQ.intencion('ayuda')))return {kind:'elegirAyuda'};
   var qnc=chatSinEsp(qn);
   for(var c0=0;c0<CHAT_COUNT_Q.length;c0++){if(padded.indexOf(' '+CHAT_COUNT_Q[c0]+' ')>=0)return {kind:'count'};}
   if(chatAlguna(TG_FAQ.intencion('count'),padded,tokset,qnc))return {kind:'count'};
@@ -27009,6 +27026,8 @@ es:{
   elegirIntro:'¿Necesitas ayuda o buscas el lugar? Elige:',
   emergencia:'🆘 Emergencia',
   llamar112:'📞 Llamar al 112',
+  elegirAyudaIntro:'¿Es una emergencia o necesitas ayuda con la app? Elige:',
+  ayudaApp:'❓ Ayuda con la app',
   favOrden:'📍 Tus favoritos ({n}) en orden, desde donde estás y sin idas y vueltas, para no cruzar la isla dos veces (distancias en línea recta):',
   favOrdenSinPos:'📍 No sé dónde estás, así que empiezo por un extremo: tus favoritos ({n}) en orden, sin idas y vueltas (distancias en línea recta):',
   favNinguno:'Aún no tienes favoritos ⭐ En el globo de cualquier lugar toca «{btn}» y vuelve a pedírmelo.',
@@ -27047,6 +27066,8 @@ en:{
   elegirIntro:'Do you need help, or are you looking for the place? Choose:',
   emergencia:'🆘 Emergency',
   llamar112:'📞 Call 112',
+  elegirAyudaIntro:'Is it an emergency, or do you need help with the app? Choose:',
+  ayudaApp:'❓ Help with the app',
   favOrden:'📍 Your favourites ({n}) in order, from where you are and without going back and forth, so you do not cross the island twice (straight-line distances):',
   favOrdenSinPos:'📍 I do not know where you are, so I start from one end: your favourites ({n}) in order, without going back and forth (straight-line distances):',
   favNinguno:'You have no favourites yet ⭐ In the pop-up of any place, tap «{btn}» and ask me again.',
@@ -27085,6 +27106,8 @@ fr:{
   elegirIntro:'Tu as besoin d\u2019aide ou tu cherches le lieu ? Choisis :',
   emergencia:'\ud83c\udd98 Urgence',
   llamar112:'\ud83d\udcde Appeler le 112',
+  elegirAyudaIntro:'C\u2019est une urgence ou tu as besoin d\u2019aide avec l\u2019appli ? Choisis :',
+  ayudaApp:'\u2753 Aide avec l\u2019appli',
   favOrden:'\ud83d\udccd Tes favoris ({n}) dans l\u2019ordre, depuis l\u2019endroit o\u00f9 tu es et sans allers-retours, pour ne pas traverser l\u2019\u00eele deux fois (distances \u00e0 vol d\u2019oiseau) :',
   favOrdenSinPos:'\ud83d\udccd Je ne sais pas o\u00f9 tu es, alors je commence par une extr\u00e9mit\u00e9 : tes favoris ({n}) dans l\u2019ordre, sans allers-retours (distances \u00e0 vol d\u2019oiseau) :',
   favNinguno:'Tu n\u2019as pas encore de favoris \u2b50 Dans la bulle de n\u2019importe quel lieu, touche \u00ab{btn}\u00bb et redemande-le-moi.',
@@ -27123,6 +27146,8 @@ de:{
   elegirIntro:'Brauchst du Hilfe oder suchst du den Ort? Wähle:',
   emergencia:'🆘 Notfall',
   llamar112:'📞 112 anrufen',
+  elegirAyudaIntro:'Ist es ein Notfall, oder brauchst du Hilfe mit der App? Wähle:',
+  ayudaApp:'❓ Hilfe zur App',
   favOrden:'📍 Deine Favoriten ({n}) in Reihenfolge, von deinem Standort aus und ohne Hin und Her – so durchquerst du die Insel nicht zweimal (Entfernungen in Luftlinie):',
   favOrdenSinPos:'📍 Ich weiß nicht, wo du bist, also fange ich an einem Ende an: deine Favoriten ({n}) in Reihenfolge, ohne Hin und Her (Entfernungen in Luftlinie):',
   favNinguno:'Du hast noch keine Favoriten ⭐ Tippe im Pop-up eines Ortes auf «{btn}» und frag mich dann noch einmal.',
@@ -27161,6 +27186,8 @@ it:{
   elegirIntro:'Hai bisogno di aiuto o cerchi il luogo? Scegli:',
   emergencia:'\ud83c\udd98 Emergenza',
   llamar112:'\ud83d\udcde Chiama il 112',
+  elegirAyudaIntro:'\u00c8 un\u2019emergenza o ti serve aiuto con l\u2019app? Scegli:',
+  ayudaApp:'\u2753 Aiuto con l\u2019app',
   favOrden:'\ud83d\udccd I tuoi preferiti ({n}) in ordine, da dove ti trovi e senza andare avanti e indietro, cos\u00ec non attraversi l\u2019isola due volte (distanze in linea d\u2019aria):',
   favOrdenSinPos:'\ud83d\udccd Non so dove ti trovi, quindi parto da un\u2019estremit\u00e0: i tuoi preferiti ({n}) in ordine, senza andare avanti e indietro (distanze in linea d\u2019aria):',
   favNinguno:'Non hai ancora preferiti \u2b50 Nel fumetto di qualsiasi luogo tocca \u00ab{btn}\u00bb e poi chiedimelo di nuovo.',
@@ -27199,6 +27226,8 @@ nl:{
   elegirIntro:'Heb je hulp nodig of zoek je de plek? Kies:',
   emergencia:'🆘 Noodgeval',
   llamar112:'📞 Bel 112',
+  elegirAyudaIntro:'Is het een noodgeval of heb je hulp nodig met de app? Kies:',
+  ayudaApp:'❓ Hulp bij de app',
   favOrden:'📍 Je favorieten ({n}) op volgorde, vanaf waar je bent en zonder heen en weer te gaan, zodat je het eiland niet twee keer oversteekt (afstanden in vogelvlucht):',
   favOrdenSinPos:'📍 Ik weet niet waar je bent, dus ik begin aan één uiteinde: je favorieten ({n}) op volgorde, zonder heen en weer te gaan (afstanden in vogelvlucht):',
   favNinguno:'Je hebt nog geen favorieten ⭐ Tik in de pop-up van een plek op «{btn}» en vraag het me daarna opnieuw.',
@@ -27237,6 +27266,8 @@ zh:{
   elegirIntro:'\u4f60\u9700\u8981\u5e2e\u52a9\uff0c\u8fd8\u662f\u5728\u627e\u8fd9\u4e2a\u5730\u65b9\uff1f\u8bf7\u9009\u62e9\uff1a',
   emergencia:'\ud83c\udd98 \u7d27\u6025\u60c5\u51b5',
   llamar112:'\ud83d\udcde \u62e8\u6253 112',
+  elegirAyudaIntro:'\u662f\u7d27\u6025\u60c5\u51b5\uff0c\u8fd8\u662f\u9700\u8981\u5e94\u7528\u4f7f\u7528\u65b9\u9762\u7684\u5e2e\u52a9\uff1f\u8bf7\u9009\u62e9\uff1a',
+  ayudaApp:'\u2753 \u5e94\u7528\u4f7f\u7528\u5e2e\u52a9',
   favOrden:'\ud83d\udccd \u4f60\u7684\u6536\u85cf\uff08{n}\u4e2a\uff09\u6309\u987a\u5e8f\u6392\u5217\uff1a\u4ece\u4f60\u6240\u5728\u7684\u4f4d\u7f6e\u51fa\u53d1\uff0c\u4e0d\u8d70\u56de\u5934\u8def\uff0c\u8fd9\u6837\u5c31\u4e0d\u7528\u4e24\u6b21\u6a2a\u7a7f\u5168\u5c9b\uff08\u76f4\u7ebf\u8ddd\u79bb\uff09\uff1a',
   favOrdenSinPos:'\ud83d\udccd \u6211\u4e0d\u77e5\u9053\u4f60\u5728\u54ea\u91cc\uff0c\u6240\u4ee5\u4ece\u4e00\u7aef\u5f00\u59cb\uff1a\u4f60\u7684\u6536\u85cf\uff08{n}\u4e2a\uff09\u6309\u987a\u5e8f\u6392\u5217\uff0c\u4e0d\u8d70\u56de\u5934\u8def\uff08\u76f4\u7ebf\u8ddd\u79bb\uff09\uff1a',
   favNinguno:'\u4f60\u8fd8\u6ca1\u6709\u6536\u85cf \u2b50 \u5728\u4efb\u4e00\u5730\u70b9\u7684\u4fe1\u606f\u6846\u91cc\u70b9\u300c{btn}\u300d\uff0c\u7136\u540e\u518d\u95ee\u6211\u4e00\u6b21\u3002',
@@ -27275,6 +27306,8 @@ zht:{
   elegirIntro:'\u4f60\u9700\u8981\u5e6b\u52a9\uff0c\u9084\u662f\u5728\u627e\u9019\u500b\u5730\u65b9\uff1f\u8acb\u9078\u64c7\uff1a',
   emergencia:'\ud83c\udd98 \u7dca\u6025\u60c5\u6cc1',
   llamar112:'\ud83d\udcde \u64a5\u6253 112',
+  elegirAyudaIntro:'\u662f\u7dca\u6025\u60c5\u6cc1\uff0c\u9084\u662f\u9700\u8981\u61c9\u7528\u7a0b\u5f0f\u4f7f\u7528\u4e0a\u7684\u5e6b\u52a9\uff1f\u8acb\u9078\u64c7\uff1a',
+  ayudaApp:'\u2753 \u61c9\u7528\u7a0b\u5f0f\u4f7f\u7528\u8aaa\u660e',
   favOrden:'\ud83d\udccd \u4f60\u7684\u6536\u85cf\uff08{n}\u500b\uff09\u6309\u9806\u5e8f\u6392\u5217\uff1a\u5f9e\u4f60\u6240\u5728\u7684\u4f4d\u7f6e\u51fa\u767c\uff0c\u4e0d\u8d70\u56de\u982d\u8def\uff0c\u9019\u6a23\u5c31\u4e0d\u7528\u5169\u6b21\u6a6b\u7a7f\u5168\u5cf6\uff08\u76f4\u7dda\u8ddd\u96e2\uff09\uff1a',
   favOrdenSinPos:'\ud83d\udccd \u6211\u4e0d\u77e5\u9053\u4f60\u5728\u54ea\u88e1\uff0c\u6240\u4ee5\u5f9e\u4e00\u7aef\u958b\u59cb\uff1a\u4f60\u7684\u6536\u85cf\uff08{n}\u500b\uff09\u6309\u9806\u5e8f\u6392\u5217\uff0c\u4e0d\u8d70\u56de\u982d\u8def\uff08\u76f4\u7dda\u8ddd\u96e2\uff09\uff1a',
   favNinguno:'\u4f60\u9084\u6c92\u6709\u6536\u85cf \u2b50 \u5728\u4efb\u4e00\u5730\u9ede\u7684\u8cc7\u8a0a\u6846\u88e1\u9ede\u300c{btn}\u300d\uff0c\u7136\u5f8c\u518d\u554f\u6211\u4e00\u6b21\u3002',
@@ -27298,7 +27331,7 @@ zht:{
   qrAfterPoi:[['\u9644\u8fd1\u6709\u4ec0\u9ebc','que hay cerca'],['\u9644\u8fd1\u7684\u6d77\u7058','playas cercanas'],['\u9644\u8fd1\u7684\u6b65\u9053','senderos cercanos']],
   qrThanks:[['\u518d\u554f\u4e00\u500b','otra pregunta'],['\u6700\u4f73\u6d77\u7058','mejores playas']]
 },
-bg:{senderName:'Асистент',welcome:'Добре дошли в Tenerife GO! 🌴\n\nАз съм вашият асистент и познавам {N}-те места на картата. Питайте ме «къде е…?», поискайте «плажове на север» или «какво да правя близо до мен».',greet:'Здравейте! 👋 Питайте ме за което и да е от {N}-те места на картата, по категории («панорамни места на юг») или «какво да правя близо до мен».',thanks:'Няма защо! 🌴 Тук съм за каквото ви трябва. А ако искате да говорите директно с Jerome, бутонът е долу.',countAns:'В момента имате {N} места на картата 🗺️ — плажове, пътеки, панорамни места, гуачинчес, естествени басейни и още много, с описания на {L} езика.',catIntro:'🔎 {label}{zone}: има {n} в приложението. Най-забележителните:',catAlso:'📍 Освен това на картата има {n} място от тази категория:|📍 Освен това на картата има {n} места от тази категория. Ето някои:',catNone:'Не намерих места от {label}{zone} 😕 Опитайте с друга зона.',whatIntro:'✨ Идеи{zone}. Докоснете която и да е, за да я видите на картата:',whatLbl:'Какво да правя',ambIntro:'Намерих няколко места, които съвпадат. Някое от тези ли имате предвид?',elegirIntro:'Нуждаете ли се от помощ, или търсите мястото? Изберете:',emergencia:'🆘 Спешен случай',llamar112:'📞 Обадете се на 112',favOrden:'📍 Любимите ви места ({n}) по ред: от мястото, където се намирате, без връщане назад, за да не прекосявате острова два пъти (разстояния по права линия):',favOrdenSinPos:'📍 Не знам къде се намирате, затова започвам от единия край: любимите ви места ({n}) по ред, без връщане назад (разстояния по права линия):',favNinguno:'Все още нямате любими места ⭐ В балончето на което и да е място докоснете «{btn}» и после ме попитайте отново.',favUno:'📍 Засега имате само едно любимо място:',favDeTi:'на {d} от вас',favDelAnterior:'на {d} от предишното',askZone:'Разбира се! Коя зона ви интересува?',geoFail:'Не успях да взема местоположението ви 📵 Кажете ми зона (север, юг, изток, запад) или населено място и продължавам оттам.',viewMap:'📍 Виж на картата',viewAll:'🗺️ Виж всички на картата',errGeneric:'Опа, нещо се обърка при мен 🙈 Опитайте пак с други думи.',fallback:'Още нямам точен отговор за това 🤔\n\nМога да ви помогна с:\n• «Къде е + име?» — познавам {N}-те места на картата\n• «плажове / пътеки / панорамни места на юг»\n• «какво да правя близо до Гарачико»\n\nА за лични въпроси Jerome е на един допир 👇',contactTitle:'Говори с Jérôme',contactSub:'Нужна ви е лична помощ? Пишете му директно.',nearYou:'близо до вас',nearOf:'близо до {a}',zone:{norte:'на север',sur:'на юг',este:'на изток',oeste:'на запад',centro:'в центъра на острова',metro:'в Санта Крус – Ла Лагуна'},qrHome:[['Най-добрите плажове','mejores playas'],['Пътеки','senderos'],['Къде е Masca?','donde esta masca'],['Какво да правя наблизо','que hacer cerca de mi']],qrZones:[['На север','en el norte'],['На юг','en el sur'],['Близо до мен','cerca de mi']],qrZonesFull:[['На север','en el norte'],['На юг','en el sur'],['На изток','en el este'],['На запад','en el oeste'],['Близо до мен','cerca de mi']],qrAfterPoi:[['Какво има наблизо','que hay cerca'],['Плажове наблизо','playas cercanas'],['Пътеки наблизо','senderos cercanos']],qrThanks:[['Друг въпрос','otra pregunta'],['Най-добрите плажове','mejores playas']]}, pl: {"senderName":"Asystent","welcome":"Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam {N} miejsce na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».|Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam wszystkie {N} miejsca na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».|Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam wszystkie {N} miejsc na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».","greet":"Cześć! 👋 Zapytaj mnie o którekolwiek z {N} miejsc na mapie, o kategorie («punkty widokowe na południu») albo o to, «co robić w pobliżu».","thanks":"Nie ma za co! 🌴 Jestem tu, gdybyś czegoś potrzebował. A jeśli chcesz porozmawiać bezpośrednio z Jérôme'em, masz przycisk poniżej.","countAns":"W tej chwili masz na mapie {N} miejsce 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.|W tej chwili masz na mapie {N} miejsca 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.|W tej chwili masz na mapie {N} miejsc 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.","catIntro":"🔎 {label}{zone}: w aplikacji jest ich {n}. Najciekawsze:","catAlso":"📍 Poza tym na mapie masz {n} miejsce z tej kategorii:|📍 Poza tym na mapie masz {n} miejsca z tej kategorii. Oto kilka:|📍 Poza tym na mapie masz {n} miejsc z tej kategorii. Oto kilka:","catNone":"Nie znalazłem miejsc z kategorii {label}{zone} 😕 Spróbuj z inną strefą.","whatIntro":"✨ Pomysły{zone}. Dotknij dowolnego, żeby zobaczyć go na mapie:","whatLbl":"Co robić","ambIntro":"Znalazłem kilka pasujących miejsc. Chodzi ci o któreś z tych?","elegirIntro":"Potrzebujesz pomocy czy szukasz tego miejsca? Wybierz:","emergencia":"🆘 Nagły wypadek","llamar112":"📞 Zadzwoń pod 112","favOrden":"📍 Twoje ulubione ({n}) w kolejności: od miejsca, w którym jesteś, bez krążenia tam i z powrotem, żeby nie przejeżdżać wyspy dwa razy (odległości w linii prostej):","favOrdenSinPos":"📍 Nie wiem, gdzie jesteś, więc zaczynam od jednego końca: twoje ulubione ({n}) w kolejności, bez krążenia tam i z powrotem (odległości w linii prostej):","favNinguno":"Nie masz jeszcze ulubionych ⭐ W dymku dowolnego miejsca dotknij «{btn}» i zapytaj mnie ponownie.","favUno":"📍 Na razie masz tylko jedno ulubione miejsce:","favDeTi":"{d} od ciebie","favDelAnterior":"{d} od poprzedniego","askZone":"Jasne! Która strefa cię interesuje?","geoFail":"Nie udało mi się ustalić twojej lokalizacji 📵 Podaj strefę (północ, południe, wschód, zachód) albo miejscowość, a ruszę stamtąd.","viewMap":"📍 Zobacz na mapie","viewAll":"🗺️ Zobacz wszystkie na mapie","errGeneric":"Ups, coś poszło nie tak po mojej stronie 🙈 Spróbuj jeszcze raz, innymi słowami.","fallback":"Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam {N} miejsce na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇|Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam wszystkie {N} miejsca na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇|Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam wszystkie {N} miejsc na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇","contactTitle":"Napisz do Jérôme'a","contactSub":"Potrzebujesz porady na własną miarę? Napisz do niego bezpośrednio.","nearYou":"w twojej okolicy","nearOf":"w okolicy {a}","zone":{"norte":"na północy","sur":"na południu","este":"na wschodzie","oeste":"na zachodzie","centro":"w centrum wyspy","metro":"w Santa Cruz – La Laguna"},"qrHome":["Najlepsze plaże","Szlaki","Gdzie jest Masca?","Co robić w pobliżu"],"qrZones":["Na północy","Na południu","W pobliżu"],"qrZonesFull":["Na północy","Na południu","Na wschodzie","Na zachodzie","W pobliżu"],"qrAfterPoi":["Co jest w pobliżu","Plaże w pobliżu","Szlaki w pobliżu"],"qrThanks":["Kolejne pytanie","Najlepsze plaże"]}
+bg:{senderName:'Асистент',welcome:'Добре дошли в Tenerife GO! 🌴\n\nАз съм вашият асистент и познавам {N}-те места на картата. Питайте ме «къде е…?», поискайте «плажове на север» или «какво да правя близо до мен».',greet:'Здравейте! 👋 Питайте ме за което и да е от {N}-те места на картата, по категории («панорамни места на юг») или «какво да правя близо до мен».',thanks:'Няма защо! 🌴 Тук съм за каквото ви трябва. А ако искате да говорите директно с Jerome, бутонът е долу.',countAns:'В момента имате {N} места на картата 🗺️ — плажове, пътеки, панорамни места, гуачинчес, естествени басейни и още много, с описания на {L} езика.',catIntro:'🔎 {label}{zone}: има {n} в приложението. Най-забележителните:',catAlso:'📍 Освен това на картата има {n} място от тази категория:|📍 Освен това на картата има {n} места от тази категория. Ето някои:',catNone:'Не намерих места от {label}{zone} 😕 Опитайте с друга зона.',whatIntro:'✨ Идеи{zone}. Докоснете която и да е, за да я видите на картата:',whatLbl:'Какво да правя',ambIntro:'Намерих няколко места, които съвпадат. Някое от тези ли имате предвид?',elegirIntro:'Нуждаете ли се от помощ, или търсите мястото? Изберете:',emergencia:'🆘 Спешен случай',llamar112:'📞 Обадете се на 112',elegirAyudaIntro:'Спешен случай ли е, или имате нужда от помощ с приложението? Изберете:',ayudaApp:'❓ Помощ за приложението',favOrden:'📍 Любимите ви места ({n}) по ред: от мястото, където се намирате, без връщане назад, за да не прекосявате острова два пъти (разстояния по права линия):',favOrdenSinPos:'📍 Не знам къде се намирате, затова започвам от единия край: любимите ви места ({n}) по ред, без връщане назад (разстояния по права линия):',favNinguno:'Все още нямате любими места ⭐ В балончето на което и да е място докоснете «{btn}» и после ме попитайте отново.',favUno:'📍 Засега имате само едно любимо място:',favDeTi:'на {d} от вас',favDelAnterior:'на {d} от предишното',askZone:'Разбира се! Коя зона ви интересува?',geoFail:'Не успях да взема местоположението ви 📵 Кажете ми зона (север, юг, изток, запад) или населено място и продължавам оттам.',viewMap:'📍 Виж на картата',viewAll:'🗺️ Виж всички на картата',errGeneric:'Опа, нещо се обърка при мен 🙈 Опитайте пак с други думи.',fallback:'Още нямам точен отговор за това 🤔\n\nМога да ви помогна с:\n• «Къде е + име?» — познавам {N}-те места на картата\n• «плажове / пътеки / панорамни места на юг»\n• «какво да правя близо до Гарачико»\n\nА за лични въпроси Jerome е на един допир 👇',contactTitle:'Говори с Jérôme',contactSub:'Нужна ви е лична помощ? Пишете му директно.',nearYou:'близо до вас',nearOf:'близо до {a}',zone:{norte:'на север',sur:'на юг',este:'на изток',oeste:'на запад',centro:'в центъра на острова',metro:'в Санта Крус – Ла Лагуна'},qrHome:[['Най-добрите плажове','mejores playas'],['Пътеки','senderos'],['Къде е Masca?','donde esta masca'],['Какво да правя наблизо','que hacer cerca de mi']],qrZones:[['На север','en el norte'],['На юг','en el sur'],['Близо до мен','cerca de mi']],qrZonesFull:[['На север','en el norte'],['На юг','en el sur'],['На изток','en el este'],['На запад','en el oeste'],['Близо до мен','cerca de mi']],qrAfterPoi:[['Какво има наблизо','que hay cerca'],['Плажове наблизо','playas cercanas'],['Пътеки наблизо','senderos cercanos']],qrThanks:[['Друг въпрос','otra pregunta'],['Най-добрите плажове','mejores playas']]}, pl: {"senderName":"Asystent","welcome":"Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam {N} miejsce na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».|Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam wszystkie {N} miejsca na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».|Witamy w Tenerife GO! 🌴\n\nJestem twoim asystentem i znam wszystkie {N} miejsc na mapie. Zapytaj mnie «gdzie jest…?», poproś o «plaże na północy» albo «co robić w pobliżu».","greet":"Cześć! 👋 Zapytaj mnie o którekolwiek z {N} miejsc na mapie, o kategorie («punkty widokowe na południu») albo o to, «co robić w pobliżu».","thanks":"Nie ma za co! 🌴 Jestem tu, gdybyś czegoś potrzebował. A jeśli chcesz porozmawiać bezpośrednio z Jérôme'em, masz przycisk poniżej.","countAns":"W tej chwili masz na mapie {N} miejsce 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.|W tej chwili masz na mapie {N} miejsca 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.|W tej chwili masz na mapie {N} miejsc 🗺️ — plaże, szlaki, punkty widokowe, guachinches, naturalne baseny i wiele więcej, z opisami w {L} językach.","catIntro":"🔎 {label}{zone}: w aplikacji jest ich {n}. Najciekawsze:","catAlso":"📍 Poza tym na mapie masz {n} miejsce z tej kategorii:|📍 Poza tym na mapie masz {n} miejsca z tej kategorii. Oto kilka:|📍 Poza tym na mapie masz {n} miejsc z tej kategorii. Oto kilka:","catNone":"Nie znalazłem miejsc z kategorii {label}{zone} 😕 Spróbuj z inną strefą.","whatIntro":"✨ Pomysły{zone}. Dotknij dowolnego, żeby zobaczyć go na mapie:","whatLbl":"Co robić","ambIntro":"Znalazłem kilka pasujących miejsc. Chodzi ci o któreś z tych?","elegirIntro":"Potrzebujesz pomocy czy szukasz tego miejsca? Wybierz:","emergencia":"🆘 Nagły wypadek","llamar112":"📞 Zadzwoń pod 112","elegirAyudaIntro":"To nagły wypadek czy potrzebujesz pomocy z aplikacją? Wybierz:","ayudaApp":"❓ Pomoc z aplikacją","favOrden":"📍 Twoje ulubione ({n}) w kolejności: od miejsca, w którym jesteś, bez krążenia tam i z powrotem, żeby nie przejeżdżać wyspy dwa razy (odległości w linii prostej):","favOrdenSinPos":"📍 Nie wiem, gdzie jesteś, więc zaczynam od jednego końca: twoje ulubione ({n}) w kolejności, bez krążenia tam i z powrotem (odległości w linii prostej):","favNinguno":"Nie masz jeszcze ulubionych ⭐ W dymku dowolnego miejsca dotknij «{btn}» i zapytaj mnie ponownie.","favUno":"📍 Na razie masz tylko jedno ulubione miejsce:","favDeTi":"{d} od ciebie","favDelAnterior":"{d} od poprzedniego","askZone":"Jasne! Która strefa cię interesuje?","geoFail":"Nie udało mi się ustalić twojej lokalizacji 📵 Podaj strefę (północ, południe, wschód, zachód) albo miejscowość, a ruszę stamtąd.","viewMap":"📍 Zobacz na mapie","viewAll":"🗺️ Zobacz wszystkie na mapie","errGeneric":"Ups, coś poszło nie tak po mojej stronie 🙈 Spróbuj jeszcze raz, innymi słowami.","fallback":"Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam {N} miejsce na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇|Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam wszystkie {N} miejsca na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇|Nie mam jeszcze dokładnej odpowiedzi na to 🤔\n\nMogę ci pomóc z:\n• «Gdzie jest + nazwa?» — znam wszystkie {N} miejsc na mapie\n• «plaże / szlaki / punkty widokowe na południu»\n• «co robić w pobliżu Garachico»\n\nA przy osobistych pytaniach Jérôme jest o jedno dotknięcie 👇","contactTitle":"Napisz do Jérôme'a","contactSub":"Potrzebujesz porady na własną miarę? Napisz do niego bezpośrednio.","nearYou":"w twojej okolicy","nearOf":"w okolicy {a}","zone":{"norte":"na północy","sur":"na południu","este":"na wschodzie","oeste":"na zachodzie","centro":"w centrum wyspy","metro":"w Santa Cruz – La Laguna"},"qrHome":["Najlepsze plaże","Szlaki","Gdzie jest Masca?","Co robić w pobliżu"],"qrZones":["Na północy","Na południu","W pobliżu"],"qrZonesFull":["Na północy","Na południu","Na wschodzie","Na zachodzie","W pobliżu"],"qrAfterPoi":["Co jest w pobliżu","Plaże w pobliżu","Szlaki w pobliżu"],"qrThanks":["Kolejne pytanie","Najlepsze plaże"]}
 };
 function chatT(k){
   var d=(CHAT_STR[currentLang]||CHAT_STR.en);
@@ -27496,6 +27529,17 @@ function chatBuildReply(r){
         }
         out.pois=pack;
         out.actions=[{label:chatT('viewAll'),run:chatMakeShowSet(idsF,(typeof tx==='function'&&tx('navFav'))||'⭐')}];
+        out.follow=chatT('qrHome');
+      })();
+      break;
+    case 'elegirAyuda':
+      (function(){
+        var porId=function(id){var l=TG_FAQ.entradas();for(var k=0;k<l.length;k++){if(l[k].id===id)return l[k];}return null;};
+        var emerg=porId(CHAT_ID_EMERGENCIA),appA=porId(CHAT_ID_AYUDA_APP);
+        out.answer=chatT('elegirAyudaIntro');
+        out.actions=[{label:chatT('llamar112'),run:function(){window.location.href='tel:112';}}];
+        if(emerg)out.actions.push({label:chatT('emergencia'),run:function(){chatEmit(chatBuildReply({kind:'kb',item:emerg}));}});
+        if(appA)out.actions.push({label:chatT('ayudaApp'),run:function(){chatEmit(chatBuildReply({kind:'kb',item:appA}));}});
         out.follow=chatT('qrHome');
       })();
       break;

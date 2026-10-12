@@ -141,8 +141,10 @@ def main():
         else:
             d = json.load(open(inte, encoding='utf-8'))
             # favs y orden (12/10/2026): «ordena mis favoritos por distancia»,
-            # que exc-03 prometia y el asistente no sabia hacer.
-            INTENCIONES = ('where', 'what', 'near', 'nearTok', 'count', 'favs', 'orden')
+            # que exc-03 prometia y el asistente no sabia hacer. ayuda: la
+            # palabra de ayuda a secas, frases enteras (112, emergencia o la
+            # ayuda de la app, para elegir).
+            INTENCIONES = ('where', 'what', 'near', 'nearTok', 'count', 'favs', 'orden', 'ayuda')
             sobran = set(d) - set(INTENCIONES) - {'cats', 'zonas'}
             if sobran:
                 print(f'{L}: claves que no existen en el vocabulario: {sorted(sobran)}'); return 1

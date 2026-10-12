@@ -57,7 +57,16 @@ const CONSULTAS = [
        castellana de CHAT_KB («Según lo que busques…») */
     debe: [/Plages/], noDebe: [/Según lo que busques/i, /Arena negra/i], conLista: true },
 
-  { que: 'ayuda en ingles', lang: 'en', q: 'help', debe: [/112/], noDebe: [/emergencia/i] },
+  /* «help» a secas: desde el 12/10/2026 propone 112, emergencia y ayuda de
+     la app (Jerome, para «ayuda»; lo mismo en los diez idiomas). El de
+     emergencia, pulsado, da el 112. */
+  { que: 'ayuda en ingles: 112, emergencia o ayuda de la app', lang: 'en', q: 'help', debe: [/emergency/], noDebe: [/emergencia/i],
+    acciones: [/Call 112/, /Emergency/, /Help with the app/], pulsar: /Emergency/, trasPulsar: [/112/] },
+  { que: '«ayuda» a secas: el boton de la app lleva a como funciona', lang: 'es', q: '¡ayuda!', debe: [/emergencia/], noDebe: [],
+    acciones: [/Llamar al 112/, /Emergencia/, /Ayuda con la app/], pulsar: /Ayuda con la app/, trasPulsar: [/en pocas palabras/] },
+  { que: '«Hilfe» en aleman', lang: 'de', q: 'Hilfe', debe: [/Notfall/], noDebe: [/emergencia/i],
+    acciones: [/112 anrufen/, /Notfall/, /Hilfe zur App/] },
+  { que: '«pedir ayuda» no es ambiguo: el 112 directo', lang: 'es', q: 'pedir ayuda', debe: [/llama al 112/], noDebe: [], sinAcciones: true },
 
   { que: 'la app sin conexion, en neerlandes', lang: 'nl', q: 'werkt het offline',
     debe: [/Eiland offline/], noDebe: [/sin conexión/i] },

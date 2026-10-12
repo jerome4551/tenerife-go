@@ -6,4 +6,5 @@
  "cats":{"playa":["bagno","fare il bagno","sabbia"],"senderismo":["camminata","escursione","passeggiata"],"gastronomia":["mangiare","dove mangiare","vino"],"piscinas":["piscina naturale","vasca naturale"]},
  "zonas":{"norte": ["nord", "al nord"], "sur": ["sud", "al sud"], "este": ["est", "a est"], "oeste": ["ovest", "a ovest"], "centro": ["centro dell isola"]},
  "favs":["preferito", "preferiti", "i miei preferiti"],
- "orden":["ordina", "ordinare", "ordine", "per distanza", "distanza", "percorso", "piu vicino"]}
+ "orden":["ordina", "ordinare", "ordine", "per distanza", "distanza", "percorso", "piu vicino"],
+ "ayuda":["aiuto", "aiutami", "ho bisogno di aiuto", "aiuto per favore"]}

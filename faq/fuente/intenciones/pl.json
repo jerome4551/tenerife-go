@@ -6,4 +6,5 @@
  "cats":{"playa":["kąpiel","kąpać się","piasek"],"senderismo":["wędrówka","szlak","spacer"],"gastronomia":["jedzenie","gdzie zjeść","wino"],"piscinas":["naturalny basen","basen w skałach"]},
  "zonas":{"norte": ["polnoc", "polnocy", "na polnocy", "polnocna"], "sur": ["poludnie", "poludniu", "na poludniu", "poludniowa"], "este": ["wschod", "wschodzie", "na wschodzie", "wschodnia"], "oeste": ["zachod", "zachodzie", "na zachodzie", "zachodnia"], "centro": ["srodek wyspy", "centrum wyspy"]},
  "favs":["ulubione", "ulubionych", "moje ulubione"],
- "orden":["posortuj", "sortuj", "uporzadkuj", "kolejnosc", "wedlug odleglosci", "odleglosci", "odleglosc", "trasa", "najblizej"]}
+ "orden":["posortuj", "sortuj", "uporzadkuj", "kolejnosc", "wedlug odleglosci", "odleglosci", "odleglosc", "trasa", "najblizej"],
+ "ayuda":["pomoc", "pomocy", "pomoz mi", "potrzebuje pomocy", "pomozcie"]}

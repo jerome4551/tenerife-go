@@ -228,6 +228,28 @@ let malos = 0;
     console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → ' + k);
   }
   mirados += FAVS.length;
+  /* «ayuda» a secas (12/10/2026): puede ser una emergencia o la ayuda de la
+     app, y se propone para elegir. Solo lo escrito entero; «pedir ayuda» y
+     «ayuda con la app» siguen yendo a su respuesta, y las palabras de
+     emergencia no se tocan. */
+  console.log('');
+  const AYUDA = [
+    ['es', 'ayuda', 'elegirAyuda'], ['es', '¡Ayuda!', 'elegirAyuda'], ['es', 'necesito ayuda', 'elegirAyuda'],
+    ['en', 'help', 'elegirAyuda'], ['en', 'Help me!', 'elegirAyuda'], ['fr', 'aide', 'elegirAyuda'],
+    ['de', 'Hilfe', 'elegirAyuda'], ['it', 'aiuto', 'elegirAyuda'], ['nl', 'hulp', 'elegirAyuda'],
+    ['zh', '帮助', 'elegirAyuda'], ['zht', '幫助', 'elegirAyuda'], ['bg', 'помощ', 'elegirAyuda'], ['pl', 'pomoc', 'elegirAyuda'],
+    ['es', 'pedir ayuda', 'kb'], ['es', 'ayuda con la app', 'kb'], ['es', 'emergencia', 'kb'], ['fr', 'au secours', 'kb'],
+    ['zh', '救命', 'kb'], ['en', 'sos', 'kb'],
+  ];
+  for (const [lang, preg, esperada] of AYUDA) {
+    await ctx.TG_FAQ.cambiarA(lang);
+    ctx.currentLang = lang;
+    const k = (ctx.chatResolve(preg, null) || {}).kind;
+    const ok = k === esperada;
+    if (!ok) malos++;
+    console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → ' + k);
+  }
+  mirados += AYUDA.length;
   console.log('\n' + malos + ' fallos de ' + (CASOS.length + mirados)
     + (saltadas ? '   (' + saltadas + ' saltada(s) por idioma que la app no tiene)' : ''));
   process.exit(malos ? 1 : 0);

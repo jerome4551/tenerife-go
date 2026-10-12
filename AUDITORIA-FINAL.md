@@ -1998,11 +1998,12 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 901 filas (y 2.999 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 903 filas (y 2.999 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
-AEMET, 3 del asistente para «socorro» y 6 para ordenar los favoritos, y una
-menos de la privacidad (AEMET ya no recibe nada del dispositivo). El 11 de octubre el tour dejó de ser una
+AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
+«ayuda», y una menos de la privacidad (AEMET ya no recibe nada del
+dispositivo). El 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera no la coteja nadie y no se ha vuelto a contar.)*
 
@@ -4659,18 +4660,35 @@ policía, bomberos, accidente… van directos al 112, en los diez idiomas
 escribe). No se ha quitado ninguna palabra de las que ya había. 7 casos en
 `probar_movil.js`, con los botones pulsados.
 
+### Lo que Jerome contestó, hecho el mismo día
+
+1. **Tejina.** La ficha `nucleo-tejina` decía «(septiembre, Patrimonio de la
+   Humanidad UNESCO), espectacular tradición popular única en el mundo», en
+   los diez idiomas. Jerome trajo la fuente: **Decreto 71/2003, de 12 de mayo,
+   por el que se declara Bien de Interés Cultural, con categoría de ámbito
+   local, la Fiesta de los Corazones de Tejina** (BOC n.º 102, de 29 de mayo
+   de 2003, disposición 931). Comprobado en el propio BOC, bajado desde
+   GitHub: el índice de ese número trae la disposición 931 con ese título,
+   palabra por palabra. La fiesta es en agosto, por San Bartolomé. Texto nuevo
+   de Jerome en ocho idiomas; el búlgaro y el polaco, traducidos de su
+   castellano con los términos que ya usaba la ficha. Fuera «septiembre»,
+   «UNESCO» y «única en el mundo» (ninguna fuente lo respalda); la etiqueta
+   «UNESCO» pasa a «San Bartolomé», traducida en los nueve ficheros de
+   etiquetas. Control: `auditar_datos.js` canta si la ficha vuelve a citar la
+   UNESCO o el Patrimonio Mundial en cualquier idioma o en las etiquetas
+   (probado metiendo el chino viejo y la etiqueta: canta las dos).
+2. **«ayuda» a secas** (Jerome: «sí»): «ayuda», «¡ayuda!», «necesito ayuda»,
+   «help», «Hilfe», «aide», «aiuto», «hulp», «pomoc», «помощ», «帮助»… escrito
+   solo, propone 📞 Llamar al 112, 🆘 Emergencia y ❓ Ayuda con la app, en el
+   idioma de la app. Frases enteras: «pedir ayuda» va directo al 112 y «ayuda
+   con la app» a cómo funciona. Ninguna palabra de emergencia se ha quitado.
+   `probar_faq.js` 19 frases (102 de 102); `probar_movil.js` 4 casos (25 de
+   25). Fallos metidos: sin la regla, sin el vocabulario de los otros ocho
+   idiomas, y los botones en otro orden: los tres en rojo.
+
 ### Para Jerome
 
-1. **Tejina.** La ficha `nucleo-tejina` dice que la Fiesta de los Corazones es
-   «Patrimonio de la Humanidad UNESCO», en los diez idiomas. No está en
-   ninguna lista de la UNESCO. La prensa dice que es Bien de Interés Cultural
-   del Gobierno de Canarias desde 2003, pero no he encontrado el decreto en el
-   BOC para citarlo. No se ha tocado: un dato falso no se quita, se cambia
-   por el real, y el real todavía no tiene fuente oficial.
-2. **«ayuda» a secas** sigue llevando a la ayuda de la app (app-01), mientras
-   que «help», «Hilfe» o «pomoc» llevan al 112. Si quieres, que «ayuda»
-   proponga también 112, emergencia y ayuda de la app, como «socorro».
-3. **GitHub no lanza los cron a su hora** (lo mismo que con las gasolineras): la
+1. **GitHub no lanza los cron a su hora** (lo mismo que con las gasolineras): la
    comprobación de avisos es «más o menos cada hora». Si algún día se retrasa
    más de 6 horas, la app lo dice.
 
