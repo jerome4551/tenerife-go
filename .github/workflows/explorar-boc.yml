@@ -30,8 +30,38 @@ jobs:
               t = re.sub(r'(?s)<[^>]+>', '\n', t)
               t = html.unescape(t)
               return re.sub(r'\n\s*\n+', '\n', t)
-          for u in ('https://www.gobiernodecanarias.org/boc/2003/102/931.html',
-                    'https://www.gobiernodecanarias.org/boc/2003/102/index.html'):
+          # segunda vuelta: los enlaces de la disposicion 931 y su texto
+          import urllib.parse
+          base = 'https://www.gobiernodecanarias.org/boc/2003/102/index.html'
+          st, ct, b0 = pedir(base)
+          crudo = b0.decode('iso-8859-1', 'replace')
+          i = crudo.find('71/2003')
+          trozo = crudo[max(0, i - 3000): i + 1500]
+          enlaces = [urllib.parse.urljoin(base, h) for h in re.findall(r'href="([^"]+)"', trozo)]
+          print('ENLACES cerca de 71/2003:', enlaces)
+          for u in enlaces:
+              if not re.search(r'931|\.pdf$', u): continue
+              try:
+                  st, ct, b = pedir(u)
+                  print('=' * 20, u, st, ct, len(b))
+                  if b[:4] == b'%PDF':
+                      open('/tmp/d.pdf', 'wb').write(b)
+                      import subprocess
+                      subprocess.run(['pip', 'install', '-q', 'pypdf'], check=False)
+                      from pypdf import PdfReader
+                      for n, pg in enumerate(PdfReader('/tmp/d.pdf').pages):
+                          t = pg.extract_text() or ''
+                          for m in re.finditer(r'Tejina', t):
+                              print('PAG', n + 1, '::', t[max(0, m.start() - 600): m.end() + 1500].replace('\n', ' '))
+                              break
+                  else:
+                      cs = 'iso-8859-1' if b'iso-8859' in b[:2000].lower() else 'utf-8'
+                      t = texto(b, cs)
+                      k = t.find('Tejina')
+                      print(t[max(0, k - 500): k + 6000])
+              except Exception as e:
+                  print('=' * 20, u, 'ERROR', e)
+          for u in ():
               try:
                   st, ct, b = pedir(u)
                   cs = 'utf-8'
