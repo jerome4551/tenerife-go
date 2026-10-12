@@ -1,7 +1,7 @@
-# Prueba de una sola vez (cuarta vuelta): copia fiel del estado de avisos de
-# Tenerife (canal y .tar.gz, en base64) y unos cuantos avisos reales de nivel
-# amarillo o superior de toda Espana, para probar el lector con datos de
-# verdad. Solo lee y lo escribe en el registro; no guarda nada en el repo.
+# Prueba de una sola vez (quinta vuelta): copia fiel del estado de avisos de
+# Tenerife (canal y .tar.gz) y de los avisos reales de nivel amarillo o
+# superior que haya en toda Espana, guardados en ESTA rama (no en main) en
+# pruebas-aemet/, para probar el lector con datos de verdad.
 name: Explorar avisos AEMET (prueba, solo lee)
 
 on:
@@ -10,41 +10,42 @@ on:
     paths: ['.github/workflows/explorar-aemet.yml']
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   explorar:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - name: Copias
         shell: python3 {0}
         run: |
-          import re, io, base64, tarfile, urllib.request
+          import re, io, os, tarfile, urllib.request
           def pedir(url):
               with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'TenerifeGo/1.0 (+https://jerome4551.github.io/tenerife-go/)'}), timeout=60) as r:
                   return r.read()
+          os.makedirs('pruebas-aemet', exist_ok=True)
           base = 'https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/'
-          rss = pedir(base + 'CAP_AFAP6596_RSS.xml')
-          print('B64RSS ' + base64.b64encode(rss).decode())
-          tar_url = re.search(rb'<item>.*?<link>([^<]+)</link>', rss, re.S).group(1).decode()
-          tar = pedir(tar_url)
-          print('B64TAR ' + tar_url.rsplit('/', 1)[1] + ' ' + base64.b64encode(tar).decode())
-          # toda Espana: avisos reales de nivel amarillo o superior
-          rss_e = pedir(base + 'CAP_AFAE_RSS.xml')
-          tar_e_url = re.search(rb'<item>.*?<link>([^<]+)</link>', rss_e, re.S).group(1).decode()
-          print('ESPANA', tar_e_url)
-          tf = tarfile.open(fileobj=io.BytesIO(pedir(tar_e_url)))
-          vistos = set()
-          for nm in tf.getnames():
-              x = tf.extractfile(nm).read()
-              s = x.decode('utf-8', 'replace')
-              niv = re.search(r'Meteoalerta nivel</valueName>\s*<value>([^<]+)', s)
-              fen = re.search(r'<value>([A-Z]{2});', s)
-              if not niv or niv.group(1) == 'verde':
-                  continue
-              clave = (niv.group(1), fen.group(1) if fen else '?', 'references' in s)
-              print('NOVERDE', nm, clave)
-              if clave in vistos or len(vistos) >= 6:
-                  continue
-              vistos.add(clave)
-              print('B64CAP ' + nm + ' ' + base64.b64encode(x).decode())
+          for canal in ('CAP_AFAP6596_RSS.xml', 'CAP_AFAE_RSS.xml'):
+              rss = pedir(base + canal)
+              open('pruebas-aemet/' + canal, 'wb').write(rss)
+              url = re.search(rb'<item>.*?<link>([^<]+)</link>', rss, re.S).group(1).decode()
+              tar = pedir(url)
+              open('pruebas-aemet/' + url.rsplit('/', 1)[1], 'wb').write(tar)
+              print(canal, url, len(tar))
+              if canal == 'CAP_AFAE_RSS.xml':
+                  tf = tarfile.open(fileobj=io.BytesIO(tar))
+                  for nm in tf.getnames():
+                      x = tf.extractfile(nm).read()
+                      s = x.decode('utf-8', 'replace')
+                      niv = re.search(r'Meteoalerta nivel</valueName>\s*<value>([^<]+)', s)
+                      if niv and niv.group(1) != 'verde':
+                          open('pruebas-aemet/' + nm, 'wb').write(x)
+                          print('  no verde:', nm, niv.group(1))
+      - name: Guardar en esta rama
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pruebas-aemet
+          git commit -m "Copias de AEMET para probar el lector (solo en esta rama)" || exit 0
+          git push origin "HEAD:${GITHUB_REF_NAME}"
