@@ -1,7 +1,6 @@
-# Prueba de una sola vez: leer en el BOC el Decreto 71/2003 (Fiesta de los
-# Corazones de Tejina, Bien de Interes Cultural) para comprobar la referencia
-# antes de cambiar la ficha. Solo lee y lo escribe en el registro. Va en esta
-# rama, no en main.
+# Prueba de una sola vez (tercera vuelta): el texto del Decreto 71/2003 en el
+# BOC n. 102 de 2003 (Fiesta de los Corazones de Tejina). Solo lee y lo
+# escribe en el registro. Va en esta rama, no en main.
 name: Explorar BOC (prueba, solo lee)
 
 on:
@@ -16,63 +15,27 @@ jobs:
   leer:
     runs-on: ubuntu-latest
     steps:
-      - name: El BOC n. 102 de 2003, disposicion 931
+      - name: pypdf
+        run: python3 -m pip install -q pypdf
+      - name: El decreto, en los PDF del BOC n. 102 de 2003
         shell: python3 {0}
         run: |
-          import re, html, urllib.request
+          import re, io, urllib.request
+          from pypdf import PdfReader
           def pedir(u):
               req = urllib.request.Request(u, headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0'})
-              with urllib.request.urlopen(req, timeout=60) as r:
-                  return r.status, r.headers.get('Content-Type'), r.read()
-          def texto(b, cs):
-              t = b.decode(cs, 'replace')
-              t = re.sub(r'(?is)<(script|style).*?</\1>', ' ', t)
-              t = re.sub(r'(?s)<[^>]+>', '\n', t)
-              t = html.unescape(t)
-              return re.sub(r'\n\s*\n+', '\n', t)
-          # segunda vuelta: los enlaces de la disposicion 931 y su texto
-          import urllib.parse
-          base = 'https://www.gobiernodecanarias.org/boc/2003/102/index.html'
-          st, ct, b0 = pedir(base)
-          crudo = b0.decode('iso-8859-1', 'replace')
-          i = crudo.find('71/2003')
-          trozo = crudo[max(0, i - 3000): i + 1500]
-          enlaces = [urllib.parse.urljoin(base, h) for h in re.findall(r'href="([^"]+)"', trozo)]
-          print('ENLACES cerca de 71/2003:', enlaces)
-          for u in enlaces:
-              if not re.search(r'931|\.pdf$', u): continue
+              with urllib.request.urlopen(req, timeout=90) as r:
+                  return r.read()
+          for n in range(1, 16):
+              u = 'https://www.gobiernodecanarias.org/boc/2003/102/boc-2003-102-%03d.pdf' % n
               try:
-                  st, ct, b = pedir(u)
-                  print('=' * 20, u, st, ct, len(b))
-                  if b[:4] == b'%PDF':
-                      open('/tmp/d.pdf', 'wb').write(b)
-                      import subprocess
-                      subprocess.run(['pip', 'install', '-q', 'pypdf'], check=False)
-                      from pypdf import PdfReader
-                      for n, pg in enumerate(PdfReader('/tmp/d.pdf').pages):
-                          t = pg.extract_text() or ''
-                          for m in re.finditer(r'Tejina', t):
-                              print('PAG', n + 1, '::', t[max(0, m.start() - 600): m.end() + 1500].replace('\n', ' '))
-                              break
-                  else:
-                      cs = 'iso-8859-1' if b'iso-8859' in b[:2000].lower() else 'utf-8'
-                      t = texto(b, cs)
-                      k = t.find('Tejina')
-                      print(t[max(0, k - 500): k + 6000])
+                  b = pedir(u)
               except Exception as e:
-                  print('=' * 20, u, 'ERROR', e)
-          for u in ():
-              try:
-                  st, ct, b = pedir(u)
-                  cs = 'utf-8'
-                  m = re.search(r'charset=([\w-]+)', ct or '') or re.search(rb'charset=["\']?([\w-]+)', b[:2000])
-                  if m: cs = m.group(1).decode() if isinstance(m.group(1), bytes) else m.group(1)
-                  t = texto(b, cs)
-                  print('=' * 20, u, st, ct, len(b))
-                  if u.endswith('931.html'):
-                      print(t[:12000])
-                  else:
-                      for linea in t.split('\n'):
-                          if re.search(r'Tejina|71/2003|931', linea): print('  ', linea.strip()[:300])
-              except Exception as e:
-                  print('=' * 20, u, 'ERROR', e)
+                  print(u, 'ERROR', e); continue
+              t = '\n'.join((p.extract_text() or '') for p in PdfReader(io.BytesIO(b)).pages)
+              if 'Tejina' not in t:
+                  print(u, 'sin Tejina'); continue
+              print('=' * 30, u, len(b))
+              t = re.sub(r'[ \t]+', ' ', t)
+              print(t[:9000])
+              break
