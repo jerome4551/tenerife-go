@@ -1237,8 +1237,8 @@
     "en": "🎲 It takes you to a random place and opens its pop-up. If you have categories selected, the surprise comes from them: with «Viewpoints» on, you get a viewpoint.",
     "de": "🎲 Er bringt dich zu einem zufälligen Ort und öffnet sein Pop-up. Hast du Kategorien gewählt, kommt die Überraschung aus ihnen: mit «Aussichtspunkte» landest du an einem Aussichtspunkt.",
     "fr": "🎲 Il t’emmène dans un lieu au hasard et ouvre sa bulle. Si tu as choisi des catégories, la surprise sort de celles-là : avec «Belvédères», tu tombes sur un belvédère.",
-    "it": "🎲 Ti porta in un luogo a caso e apre il suo fumetto. Se hai scelto delle categorie, la sorpresa esce da quelle: con «Punti Panoramici» attivo, ti tocca un punto panoramico.",
-    "nl": "🎲 Hij brengt je naar een willekeurige plek en opent de pop-up. Heb je categorieën gekozen, dan komt de verrassing daaruit: met «Uitkijkpunten» aan krijg je een uitkijkpunt.",
+    "it": "🎲 Ti porta in un luogo a caso e apre il suo fumetto. Se hai scelto delle categorie, la sorpresa esce da quelle: con «Punti panoramici» attivo, ti tocca un punto panoramico.",
+    "nl": "🎲 Hij brengt je naar een willekeurige plek en opent de pop-up. Heb je categorieën gekozen, dan komt de verrassing daaruit: met «Uitzichtpunten» aan krijg je een uitzichtpunt.",
     "pl": "🎲 Przenosi cię w losowe miejsce i otwiera jego dymek. Jeśli masz wybrane kategorie, niespodzianka pochodzi z nich: z włączonymi «Punkty widokowe» trafisz na punkt widokowy.",
     "zh": "🎲 它会随机带你去一个地点，并打开它的信息框。如果你选了类别，惊喜就从这些类别里出：选了「观景台」，就会随机到一个观景台。",
     "zht": "🎲 它會隨機帶你去一個地點，並打開它的資訊框。如果你選了類別，驚喜就從這些類別裡出：選了「觀景台」，就會隨機到一個觀景台。"
@@ -1777,13 +1777,13 @@
    "a": {
     "es": "✨ En Rutas, abajo, pestaña «Organiza tu día»: dices cuánto tiempo tienes, qué te apetece (naturaleza, playa, cultura, gastronomía… uno o varios) y cómo te mueves (coche, guagua, a pie o bici), y te prepara un itinerario. Puedes rehacerlo, guardarlo en «Ruta del día» o en Favoritos y compartirlo.",
     "en": "✨ In Routes, at the bottom, «Plan your day» tab: say how much time you have, what you fancy (nature, beach, culture, food… one or several) and how you are getting around (car, bus, on foot or bike), and it puts together an itinerary. You can redo it, save it to «Day Route» or to Favorites, and share it.",
-    "de": "✨ Unter Routen, unten, Reiter «Tag planen»: Du sagst, wie viel Zeit du hast, worauf du Lust hast (Natur, Strand, Kultur, Essen… eins oder mehrere) und wie du unterwegs bist (Auto, Bus, zu Fuß oder Rad), und er stellt dir einen Plan zusammen. Du kannst ihn neu erstellen, in «Tagesroute» oder in Favoriten speichern und teilen.",
-    "fr": "✨ Dans Itinéraires, en bas, onglet «Organise ta journée» : tu indiques combien de temps tu as, ce qui te tente (nature, plage, culture, gastronomie… un ou plusieurs) et comment tu te déplaces (voiture, bus, à pied ou à vélo), et il te prépare un itinéraire. Tu peux le refaire, l’enregistrer dans «Itinéraire du jour» ou dans Favoris, et le partager.",
-    "it": "✨ In Percorsi, in basso, scheda «Organizza la giornata»: dici quanto tempo hai, cosa ti va (natura, spiaggia, cultura, gastronomia… uno o più) e come ti sposti (auto, autobus, a piedi o in bici), e ti prepara un itinerario. Puoi rifarlo, salvarlo in «Itinerario del giorno» o nei Preferiti e condividerlo.",
+    "de": "✨ Unter Routen, unten, Reiter «Plane deinen Tag»: Du sagst, wie viel Zeit du hast, worauf du Lust hast (Natur, Strand, Kultur, Essen… eins oder mehrere) und wie du unterwegs bist (Auto, Bus, zu Fuß oder Rad), und er stellt dir einen Plan zusammen. Du kannst ihn neu erstellen, in «Tagesroute» oder in Favoriten speichern und teilen.",
+    "fr": "✨ Dans Itinéraires, en bas, onglet «Organisez votre journée» : tu indiques combien de temps tu as, ce qui te tente (nature, plage, culture, gastronomie… un ou plusieurs) et comment tu te déplaces (voiture, bus, à pied ou à vélo), et il te prépare un itinéraire. Tu peux le refaire, l’enregistrer dans «Itinéraire du jour» ou dans Favoris, et le partager.",
+    "it": "✨ In Percorsi, in basso, scheda «Organizza la tua giornata»: dici quanto tempo hai, cosa ti va (natura, spiaggia, cultura, gastronomia… uno o più) e come ti sposti (auto, autobus, a piedi o in bici), e ti prepara un itinerario. Puoi rifarlo, salvarlo in «Itinerario del giorno» o nei Preferiti e condividerlo.",
     "nl": "✨ In Routes, onderaan, tabblad «Plan je dag»: je zegt hoeveel tijd je hebt, waar je zin in hebt (natuur, strand, cultuur, eten… één of meer) en hoe je je verplaatst (auto, bus, te voet of fiets), en hij stelt een plan voor je samen. Je kunt het opnieuw laten maken, bewaren in «Route van de dag» of bij Favorieten, en delen.",
     "pl": "✨ W zakładce «Trasy», na dole, otwórz «Zaplanuj dzień»: mówisz, ile masz czasu, na co masz ochotę (przyroda, plaża, kultura, jedzenie… jedno albo kilka) i czym się poruszasz (samochód, autobus, pieszo albo rowerem), a aplikacja układa ci plan. Możesz go przygotować od nowa, zapisać w «Trasa dnia» albo w «Ulubione» i udostępnić.",
-    "zh": "✨ 在底部的「路线」里选「规划一天」页：说出你有多少时间、想做什么（自然、海滩、文化、美食……可多选），以及怎么出行（开车、公交、步行或骑车），它就会为你排好行程。你可以重新生成，保存到「今日路线」或「收藏」，也可以分享。",
-    "zht": "✨ 在底部的「路線」裡選「規劃一天」頁：說出你有多少時間、想做什麼（自然、海灘、文化、美食……可複選），以及怎麼出行（開車、公車、步行或騎車），它就會為你排好行程。你可以重新產生，儲存到「今日路線」或「收藏」，也可以分享。"
+    "zh": "✨ 在底部的「路线」里选「规划你的一天」页：说出你有多少时间、想做什么（自然、海滩、文化、美食……可多选），以及怎么出行（开车、公交、步行或骑车），它就会为你排好行程。你可以重新生成，保存到「今日路线」或「收藏」，也可以分享。",
+    "zht": "✨ 在底部的「路線」裡選「規劃你的一天」頁：說出你有多少時間、想做什麼（自然、海灘、文化、美食……可複選），以及怎麼出行（開車、公車、步行或騎車），它就會為你排好行程。你可以重新產生，儲存到「今日路線」或「收藏」，也可以分享。"
    },
    "follow": [
     "app-15",
@@ -1792,7 +1792,7 @@
    ],
    "rotulos": [
     "UI.navRoutes",
-    "UI.tabPlanner",
+    "UI.dpTitulo",
     "LANGS.daytripTitle",
     "UI.navFav"
    ],

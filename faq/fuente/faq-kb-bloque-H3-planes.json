@@ -689,13 +689,13 @@
    "a": {
     "es": "👨‍👩‍👧 En el mapa tienes las categorías Familia y Animales: parques acuáticos y de animales, museos para tocar y experimentar, playas de aguas tranquilas… Al Teide pueden subir en teleférico, contando con el frío y la altura. Y en Rutas, «Organiza tu día», elige Familia y la app te prepara el plan.",
     "en": "👨‍👩‍👧 The map has the Family and Animals categories: water parks and animal parks, hands-on museums, beaches with calm water… They can go up the Teide by cable car, bearing in mind the cold and the altitude. And in Routes, «Plan your day», choose Family and the app puts the plan together.",
-    "de": "👨‍👩‍👧 Auf der Karte gibt es die Kategorien Familie und Tiere: Wasser- und Tierparks, Museen zum Anfassen und Ausprobieren, Strände mit ruhigem Wasser… Auf den Teide können sie mit der Seilbahn, wenn man Kälte und Höhe einplant. Und unter Routen, «Tag planen», wählst du Familie und die App stellt den Plan zusammen.",
-    "fr": "👨‍👩‍👧 Sur la carte, tu as les catégories Famille et Animaux : parcs aquatiques et animaliers, musées où l’on touche et on expérimente, plages aux eaux calmes… Ils peuvent monter au Teide en téléphérique, en tenant compte du froid et de l’altitude. Et dans Itinéraires, «Organise ta journée», choisis Famille et l’appli prépare le programme.",
-    "it": "👨‍👩‍👧 Sulla mappa hai le categorie Famiglia e Animali: parchi acquatici e faunistici, musei da toccare e sperimentare, spiagge con acqua tranquilla… Sul Teide possono salire in funivia, tenendo conto del freddo e dell’altitudine. E in Percorsi, «Organizza la giornata», scegli Famiglia e l’app prepara il programma.",
+    "de": "👨‍👩‍👧 Auf der Karte gibt es die Kategorien Familie und Tiere: Wasser- und Tierparks, Museen zum Anfassen und Ausprobieren, Strände mit ruhigem Wasser… Auf den Teide können sie mit der Seilbahn, wenn man Kälte und Höhe einplant. Und unter Routen, «Plane deinen Tag», wählst du Familie und die App stellt den Plan zusammen.",
+    "fr": "👨‍👩‍👧 Sur la carte, tu as les catégories Famille et Animaux : parcs aquatiques et animaliers, musées où l’on touche et on expérimente, plages aux eaux calmes… Ils peuvent monter au Teide en téléphérique, en tenant compte du froid et de l’altitude. Et dans Itinéraires, «Organisez votre journée», choisis Famille et l’appli prépare le programme.",
+    "it": "👨‍👩‍👧 Sulla mappa hai le categorie Famiglia e Animali: parchi acquatici e faunistici, musei da toccare e sperimentare, spiagge con acqua tranquilla… Sul Teide possono salire in funivia, tenendo conto del freddo e dell’altitudine. E in Percorsi, «Organizza la tua giornata», scegli Famiglia e l’app prepara il programma.",
     "nl": "👨‍👩‍👧 Op de kaart heb je de categorieën Familie en Dieren: waterparken en dierenparken, doe-musea, stranden met rustig water… De Teide op kan met de kabelbaan, als je rekening houdt met de kou en de hoogte. En in Routes, «Plan je dag», kies je Gezin en de app maakt het plan.",
     "pl": "👨‍👩‍👧 Na mapie masz kategorie Rodzina i Zwierzęta: parki wodne i parki z zwierzętami, muzea, w których można dotykać i eksperymentować, plaże ze spokojną wodą… Na Teide mogą wjechać kolejką, pamiętając o zimnie i wysokości. A w zakładce «Trasy», w «Zaplanuj dzień», wybierz Rodzinę i aplikacja ułoży plan.",
-    "zh": "👨‍👩‍👧 地图上有「家庭」和「动物」类别：水上乐园和动物园、可以动手体验的博物馆、水面平静的海滩……泰德峰可以坐缆车上去，但要考虑寒冷和高海拔。在「路线」的「规划一天」里选「家庭」，应用就会帮你排好行程。",
-    "zht": "👨‍👩‍👧 地圖上有「家庭」和「動物」類別：水上樂園和動物園、可以動手體驗的博物館、水面平靜的海灘……泰德峰可以搭纜車上去，但要考慮寒冷和高海拔。在「路線」的「規劃一天」裡選「家庭」，應用程式就會幫你排好行程。"
+    "zh": "👨‍👩‍👧 地图上有「家庭」和「动物」类别：水上乐园和动物园、可以动手体验的博物馆、水面平静的海滩……泰德峰可以坐缆车上去，但要考虑寒冷和高海拔。在「路线」的「规划你的一天」里选「家庭」，应用就会帮你排好行程。",
+    "zht": "👨‍👩‍👧 地圖上有「家庭」和「動物」類別：水上樂園和動物園、可以動手體驗的博物館、水面平靜的海灘……泰德峰可以搭纜車上去，但要考慮寒冷和高海拔。在「路線」的「規劃你的一天」裡選「家庭」，應用程式就會幫你排好行程。"
    },
    "follow": [
     "tei-14",
@@ -703,7 +703,7 @@
     "app-16"
    ],
    "rotulos": [
-    "UI.tabPlanner"
+    "UI.dpTitulo"
    ],
    "comprobado": "Categorias Familia y Animales del mapa (parques acuaticos y de animales, Museo de la Ciencia y el Cosmos, playas tranquilas como Las Vistas); teleferico con ninos (tei-14); tarjeta Familia de DP_CARDS en «Organiza tu dia»"
   },

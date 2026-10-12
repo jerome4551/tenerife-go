@@ -1998,12 +1998,14 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 903 filas (y 2.999 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 918 filas (y 2.999 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
 «ayuda», y una menos de la privacidad (AEMET ya no recibe nada del
-dispositivo). El 11 de octubre el tour dejó de ser una
+dispositivo). Esa noche, 17 más del tour y de Rutas y dos menos: la frase
+falsa de la guagua del Teide y el rótulo de pestaña que no se veía. El 11 de
+octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera no la coteja nadie y no se ha vuelto a contar.)*
 
@@ -4721,6 +4723,119 @@ escribe). No se ha quitado ninguna palabra de las que ya había. 7 casos en
    get there by bus», «Comment y aller en bus»…). Las dos son traducciones
    buenas; si prefieres las del globo, es cambiar la fila.
 
+## El tour explica el botón Rutas (12 de octubre, por la noche)
+
+Jerome: «El tour debería explicar más sobre el botón ruta y sus funciones».
+
+**Los pasos nuevos.** El tour pasa de 13 a 17 pasos (los cuenta `STEPS`; la
+pregunta del principio dice el número sola). Detrás de «Tu barra de viaje»:
+
+1. **El botón Rutas**, con el foco en el botón de la barra: las tres
+   herramientas.
+2. **Organiza tu día**: el tour abre el panel en esa pestaña y la señala.
+   Tiempo, qué te apetece y cómo te mueves; itinerario ordenado por
+   cercanía, con pausa para comer si es medio día o día completo; cambiar
+   paradas, guardar, compartir y GPX.
+3. **Ruta del día**: Norte, Sur o Cumbre; «+» para añadir; «Mi ruta»
+   numerada; centrar en el mapa o ver la información; 🗓️+ trae aquí el
+   itinerario de «Organiza tu día».
+4. **De A a B**: origen y destino tocando un marcador, escribiendo una
+   dirección o con el GPS; en coche, minutos y kilómetros; en guagua, la
+   línea de TITSA, el transbordo si hace falta y lo que se camina; si a esa
+   hora no pasa ninguna, su horario.
+
+Cada frase está comprobada contra el código, y cada pestaña se nombra como
+sale en pantalla en cada idioma. El tour cierra el panel al pasar a otro
+paso, al saltarlo y al terminar, si lo abrió él. En 320×568 los textos de
+«Organiza tu día» y «A→B» no cabían en francés, alemán y neerlandés (la
+tarjeta tapaba la pestaña): se acortaron en los diez idiomas sin quitar
+ninguna función.
+
+**Lo que salió al usar Rutas de verdad.** Para escribir el tour hubo que
+usar cada pestaña con datos, y eso no lo hacía ningún control:
+
+1. **De noche, «A→B» decía que no había guagua entre La Laguna y el Puerto
+   de la Cruz.** El planificador solo miraba las 8 paradas más cercanas al
+   origen y al destino, y en el centro de La Laguna las 8 son de guaguas
+   urbanas: la 102, que circula hasta las 23:40, no entraba. Ahora mira, de
+   cada línea, su parada más cercana a pie. A horas fijas, antes → ahora:
+
+   | Trayecto | Hora | Antes | Ahora |
+   |---|---|---|---|
+   | La Laguna → Puerto de la Cruz | 21:55 | ninguna | 102 |
+   | La Laguna → Puerto de la Cruz | 03:00 | ninguna | 104 (nocturna) |
+   | La Laguna → Puerto de la Cruz | 10:00 | 206 + 100, ~80 min | 100 directa, ~73 min |
+   | Los Cristianos → Santa Cruz | 12:00 | 112 + 909, ~93 min | 112 directa, ~90 min |
+
+   Cada plan tarda 50 ms como mucho.
+2. **Y lo decía con la frase de la guagua del Teide**: «La guagua 206, 104,
+   100, 203, 204, 271 al Teide sale una vez al día y ya ha salido hoy ().
+   Mañana vuelve a haber.» Falsa para esas líneas, con la hora vacía, y la
+   104 todavía no había salido. Ahora dice el horario de las líneas que unen
+   los dos puntos, sacado de sus datos: «100 (06:15–21:30) · …», y la del
+   Teide «348 (09:30, vuelta 16:00)», con «vuelta» traducida.
+3. **En castellano en los diez idiomas**: «Toca un marcador del mapa como
+   Origen»; «Calcular ruta» en cuanto se calculaba una; «No hay paradas a
+   menos de 2 km del origen» (ahora con el tope del código, 2,6 km a pie);
+   el texto que se comparte del itinerario («Mi día en Tenerife — », sin la
+   duración), y «transbordo». Y «min» escrito a mano en el trayecto en
+   guagua y en las paradas del itinerario: en chino y en búlgaro no es su
+   unidad (分钟, 分鐘, мин).
+4. **La pestaña «Organiza tu día» tenía dos rótulos que se pisaban**
+   (`dpTitulo` y `tabPlanner`): se veía siempre el primero, y el asistente
+   citaba el segundo, «Tag planen» por «Plane deinen Tag», y lo mismo en
+   francés, italiano y chino. Fuera `tabPlanner`. Con ellos salieron otros
+   rótulos que el asistente citaba con un nombre que no sale en pantalla
+   («Uitkijkpunten», «Punti Panoramici», «Cómo llegar» en neerlandés y
+   chino): 15, corregidos. Y mov-08 decía «Toca “Cómo llegar” en cualquier
+   ficha y te calculo la ruta real»: ese botón de la ficha enseña las
+   paradas cercanas. La ruta en coche es «🚗 Cómo llegar en coche», en el
+   globo, y se abre en Google Maps o, en iPhone, en el mapa de Apple.
+   Corregida en los diez idiomas.
+5. **Un fallo mío por el camino**: al quitar la frase del Teide se fue
+   también la fila de «No hay líneas que conecten estos dos puntos», que iba
+   en la misma línea. Lo vio el recuento de filas; ahora lo ve un control.
+
+**Controles nuevos**, cada uno probado metiendo el fallo:
+
+- `tools/probar_rutas.js`, 88 casos: trayectos conocidos a hora fija y, en
+  los diez idiomas, lo que se ve al usar A→B (aviso, botón, sin parada,
+  fuera de horario, ninguna línea, minutos) y lo que se comparte del
+  itinerario. Volver a las 8 paradas, el botón en castellano y la frase del
+  Teide: los tres en rojo.
+- `barrido_pantallas.js`: seis estados de Rutas usadas (itinerario y lo que
+  se comparte, ruta del día con paradas, A→B eligiendo origen, calculada,
+  sin parada cerca y fuera de horario); 82 pantallas por idioma. Con la
+  versión de antes canta los cinco textos en castellano. «Toca», «marcador»
+  y «origen» entran en su lista de palabras: «Toca un marcador del mapa como
+  Origen» no llevaba tilde ni ninguna de las que había.
+- `auditar_tour.js`: espera a que el panel haya entrado para medir, y mira
+  que se cierre al terminar y al saltar el tour.
+- `auditar_faq.js`: todo lo que una respuesta cita entre «» y es un rótulo
+  de la app tiene que salir con el rótulo de cada idioma, aunque no esté
+  declarado en el índice (198 citas). Con la base de antes, 5 en rojo.
+- `tools/auditar_claves_tx.js`: cada `tx('…')` con la clave escrita tiene
+  su fila (153). Quitando otra vez la de «No hay líneas…», en rojo.
+
+### Para Jerome
+
+1. **Entre parada y parada, el itinerario de «Organiza tu día» pone siempre
+   el mismo tiempo**: «En guagua ~25 min», «En coche ~15 min», «A pie ~15
+   min», «En bici ~20 min». No se calcula: es un rótulo fijo, y del Teide a
+   Arico en guagua «~25 min» es falso. Propuesta: calcularlo con lo que la
+   app ya tiene. En coche, la misma estimación que usa A→B sin conexión; a
+   pie, la distancia por 1,3 a 4,5 km/h, como el planificador de guaguas;
+   en guagua, ese planificador entre las dos paradas, y si no hay guagua,
+   decirlo; en bici no hay velocidad comprobada, así que solo los
+   kilómetros. Por eso el tour no habla de esos tiempos.
+2. **El tour no se vuelve a ofrecer** a quien ya vio el de ayer: sigue en la
+   versión 2. Para que salga a todos como novedad hay que cambiar también la
+   frase de novedades, que hoy habla de la gasolinera más barata.
+3. **El planificador de guaguas busca como mucho un transbordo**. Los
+   Cristianos → Masca dice «No hay líneas que conecten estos dos puntos»,
+   y con dos transbordos se llega: hay 26 combinaciones en los datos, por
+   ejemplo 473 → 460 → 355.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -4759,7 +4874,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/partir_idiomas.js` | la mudanza de los ocho idiomas de `places[]` a `idiomas/*.json` |
 | `tools/auditar_idiomas_fuera.js` | que lo mudado esté entero y el navegador lo pegue antes de montar el mapa |
 | `tools/auditar_etiquetas.js` | los chips del globo: traducidos o declarados con motivo (desde el 7 de octubre, sin la vía «nombre de sitio»), y el mismo chip dos veces en una ficha |
-| `tools/barrido_pantallas.js` | lo que **se ve**: 76 paneles y fichas abiertos en los diez idiomas, buscando castellano que no sea nombre propio, y botones con el mismo emoji dos veces |
+| `tools/barrido_pantallas.js` | lo que **se ve**: 82 paneles y fichas abiertos en los diez idiomas (Rutas usadas, no solo abiertas), buscando castellano que no sea nombre propio, y botones con el mismo emoji dos veces |
 | `tools/auditar_tour.js` | el tour de bienvenida **recorrido de verdad**: los diez idiomas, cuatro tamaños de móvil, cada paso con su botón enfocado, la tarjeta dentro de la pantalla, las cifras contadas y nada igual al castellano ni al inglés |
 | `tools/auditar_idioma.js` | un idioma entero contra el castellano: cifras, horarios, teléfonos, trozos de etiqueta, alfabeto |
 | `tools/auditar_faq.js` | el asistente: cada respuesta en los diez idiomas, alcanzable por su botón, ninguna igual al castellano o al inglés, los botones que cita con su nombre de pantalla, y ninguna base fuera de `faq/` |
@@ -4768,6 +4883,8 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_letras.js` | palabras escritas sin sus letras («waehle», «carre avec fleche») |
 | `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json` (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, ficheros rotos, el latido de 3 horas |
+| `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos y lo que se comparte del itinerario |
+| `tools/auditar_claves_tx.js` | cada `tx('…')` con la clave escrita tiene su fila en `UI_TX` (`tx()` devuelve vacío sin avisar) |
 | `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: píldora, panel, líneas del tiempo y del mar, comprobación vieja, fichero que no llega |
 | `tools/castellano_suelto.js` | el castellano que se queda **dentro** de cada idioma —letras, palabras corrientes, palabras copiadas, alfabeto latino en búlgaro y chino— y las frases que la traducción no tiene; lo que se queda a propósito, en `idiomas/castellano-aceptado.json` |
 | `tools/faltan_textos.js` | **cribado**, no veredicto: descripciones más cortas de lo esperado contra la mediana de ese idioma |

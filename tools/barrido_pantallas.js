@@ -78,6 +78,23 @@ window.__estados = [
   ['rutas:planner', async () => { toggleRoutePanel(); switchRouteTab('planner'); }],
   ['rutas:day', async () => { toggleRoutePanel(); switchRouteTab('day'); }],
   ['rutas:ab', async () => { toggleRoutePanel(); switchRouteTab('ab'); }],
+  /* Rutas USADAS, no solo abiertas (12 de octubre de 2026): el aviso al elegir
+     origen, el boton tras calcular, el mensaje de sin parada y el texto que se
+     comparte del itinerario salian en castellano en los diez idiomas, y ningun
+     estado de este barrido llegaba hasta ahi. */
+  ['rutas:itinerario', async () => { toggleRoutePanel(); switchRouteTab('planner'); dpiSelectTime('fullday');
+      document.querySelectorAll('#dpi-zone-grid .dp-zone-card').forEach(c => { if (['naturaleza', 'playa'].includes(c.dataset.zone)) dpiToggleZone(c); });
+      dpiConfirmZones(); dpiSelectTransport('guagua', document.querySelector('#dpi-transport-grid .dp-time-card[data-opt="guagua"]'));
+      await espera(1300);
+      let c = null; const v = navigator.share; navigator.share = d => { c = d; return Promise.resolve(); };
+      try { dpShare(); } catch (e) {} navigator.share = v;
+      window.__extra = c ? [c.title, c.text] : []; }],
+  ['rutas:ruta del dia con paradas', async () => { toggleRoutePanel(); switchRouteTab('day'); selectDayTripZone('north');
+      toggleDayTripStop('anaga'); toggleDayTripStop('ciudad-laguna'); }],
+  ['rutas:A→B eligiendo origen', async () => { toggleRoutePanel(); switchRouteTab('ab'); activatePick('origin'); }],
+  ['rutas:A→B calculada', async () => { await __ruta('ciudad-laguna', 'ciudad-puerto-cruz', 10 * 60); }],
+  ['rutas:A→B sin parada cerca', async () => { await __ruta('teide', 'ciudad-laguna', 12 * 60); }],
+  ['rutas:A→B fuera de horario', async () => { await __ruta('ciudad-puerto-cruz', 'teide-teleforico', 12 * 60); }],
   ['paradas cerca', async () => { showNearbyStops(28.4636, -16.2518); }],
   ['bus', async () => { toggleBusPanel(); }],
   ['mar', async () => { document.getElementById('mar-btn').click(); await espera(1500); }],
@@ -95,6 +112,16 @@ window.__estados = [
       window.__extra = t; }],
 ];
 window.espera = ms => new Promise(r => setTimeout(r, ms));
+/* una ruta A→B entre dos lugares a una hora de Canarias fija (la del
+   planificador de guaguas depende de la hora: sin fijarla, el barrido veria
+   cosas distintas segun cuando se pase) */
+window.__ruta = async (a, b, min) => {
+  toggleRoutePanel(); switchRouteTab('ab'); clearRoute();
+  pickingMode = 'origin'; onMarkerClickForRoute(places.find(p => p.id === a));
+  pickingMode = 'dest'; onMarkerClickForRoute(places.find(p => p.id === b));
+  const h = window.horaCanaria; window.horaCanaria = () => min;
+  try { await calculateRoute(); } finally { window.horaCanaria = h; }
+};
 window.__cierra = async () => {
   for (const f of ['closeDetailSheet','closeCategorySheet','cerrarGasCerca','closeNearbyStops','closeRoutePanel','closeBusPanel','closeShopPanel','closeChatPanel','closeAuthModal']) { try { window[f] && window[f](); } catch (e) {} }
   try { map.closePopup(); } catch (e) {}
@@ -103,6 +130,10 @@ window.__cierra = async () => {
   for (const id of ['mar-panel','mc-panel','fi-panel','wx-panel']) { const e = document.getElementById(id); if (e) e.style.display = 'none'; }
   for (const s of ['#mar-close','#mc-close','#fi-close','.mar-close','.mc-close','.fi-close']) { const e = document.querySelector(s); if (e && e.offsetParent) try { e.click(); } catch (x) {} }
   try { clearAllFilters(); } catch (e) {}
+  // lo que dejan los estados de rutas: la ruta, las paradas del dia, el itinerario
+  try { clearRoute(); } catch (e) {}
+  try { dayTripStops.splice(0); renderMyRoute(); updateDayTripBadge(); } catch (e) {}
+  try { dpiReset(); } catch (e) {}
   await espera(250);
 };
 window.__repetido = el => {
@@ -148,6 +179,9 @@ async function recorrer(b, L) {
   await p.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
   await p.route('**/datos/precios-gasolineras.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: PRECIOS }));
   await p.route('**/datos/avisos-aemet.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: AVISOS }));
+  // sin red de fuera: la ruta en coche sale con la estimacion de respaldo, igual en cada pasada
+  await p.route('**/router.project-osrm.org/**', r => r.abort());
+  await p.route('**/nominatim.openstreetmap.org/**', r => r.abort());
   await p.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'networkidle' });
   await p.waitForTimeout(600);
   await p.click('.v19-w-lang[data-lang="' + L + '"]'); await p.waitForTimeout(300);
@@ -218,7 +252,11 @@ const FUERTES = new Set(('más muy hoy horario abierto abierta cerrado cerrada p
   'mejores barata baratas barato ubicación posición permiso aparcamiento baños accesible pueblo horas minutos semana desde ' +
   'hasta según después antes ahora abre cierra lunes martes miércoles jueves viernes sábado domingo enero febrero marzo ' +
   'abril mayo junio julio agosto septiembre octubre noviembre diciembre añadir quitar reservar necesario necesaria ' +
-  'obligatorio obligatoria coche niños perros familia lujo volcánico histórico teleférico cumbre acantilados').split(' '));
+  'obligatorio obligatoria coche niños perros familia lujo volcánico histórico teleférico cumbre acantilados ' +
+  /* «Toca un marcador del mapa como Origen» salio en castellano en los diez
+     idiomas sin que nada cantara: sin tildes y sin ninguna palabra de esta
+     lista (12 de octubre de 2026) */
+  'toca marcador origen').split(' '));
 /* las que tambien son palabra de ese idioma */
 const CHOCA = { it: ['marzo', 'agosto'], nl: ['ver'], pl: ['parada'] };
 const LATINOS = IDI.filter(l => !['zh', 'zht', 'bg'].includes(l));

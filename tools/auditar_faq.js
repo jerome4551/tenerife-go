@@ -164,6 +164,37 @@ for (const [id, inf] of Object.entries(indice)) {
   }
 }
 
+/* Y los que cita sin declararlos. El indice dice que botones cita cada
+   entrada, pero solo los que alguien apunto: el 12 de octubre de 2026 cinco
+   entradas citaban una pestaña o una categoria con un nombre que no sale en
+   pantalla («Tag planen» por «Plane deinen Tag», «Uitkijkpunten» por
+   «Uitzichtpunten»…), y una declaraba la fila que la pantalla no pinta.
+   Aqui no hace falta declarar nada: todo lo que la respuesta en castellano
+   pone entre «» y es un rotulo de la app tiene que salir, en cada idioma,
+   con el rotulo de ese idioma. */
+const ROT_ES = new Map();
+{
+  const mete = (es, fila) => { if (typeof es === 'string' && es.trim().length > 1) { const k = es.trim(); if (!ROT_ES.has(k)) ROT_ES.set(k, []); ROT_ES.get(k).push(fila); } };
+  for (const k in ROT.UI) { const r = ROT.UI[k]; if (r && typeof r === 'object') mete(r.es, r); }
+  for (const k in ROT.LANGS.es) { const fila = {}; for (const L in ROT.LANGS) fila[L] = (ROT.LANGS[L] || {})[k]; mete(ROT.LANGS.es[k], fila); }
+}
+let citadosSueltos = 0;
+for (const e of (ficheros.es ? ficheros.es.e : [])) {
+  for (const m of String(e.a).matchAll(/«([^»]+)»/g)) {
+    const filas = ROT_ES.get(m[1].trim());
+    if (!filas) continue;
+    for (const L of IDIOMAS) {
+      if (L === 'es') continue;
+      const x = porId(L).get(e.id);
+      const buenos = [...new Set(filas.map(f => f[L]).filter(v => typeof v === 'string' && v.trim()))];
+      if (!x || !buenos.length) continue;
+      citadosSueltos++;
+      if (!buenos.some(b => x.a.indexOf(b.trim()) >= 0))
+        mal(L + '/' + e.id + ': cita «' + m[1] + '» y en pantalla se llama ' + buenos.map(b => '«' + b + '»').join(' o '));
+    }
+  }
+}
+
 const otras = [];
 (async () => {
   let mirado = 0, perdidas = 0;
@@ -193,6 +224,7 @@ const otras = [];
   console.log('  se llega a ellas.......... ' + (mirado - perdidas) + ' de ' + mirado);
   console.log('  su rotulo lleva a otra.... ' + otras.length + (otras.length ? '  (' + otras.slice(0, 4).join(' · ') + (otras.length > 4 ? ' …' : '') + ')' : ''));
   console.log('  botones citados, mirados.. ' + rotulosMirados);
+  console.log('  y sin declarar, mirados... ' + citadosSueltos);
   console.log(fallos ? '\n' + fallos + ' fallos' : '\nbase de conocimiento en verde');
   process.exit(fallos ? 1 : 0);
 })();

@@ -123,6 +123,9 @@ echo; echo "════════ palabras escritas sin sus letras (waehle, c
 control auditar_letras.js node tools/auditar_letras.js
 echo; echo "════════ la frase diaria, en los diez idiomas ════════"
 control auditar_frases.js node tools/auditar_frases.js
+echo; echo "════════ filas que el codigo pide con tx() y no existen ════════"
+# Desde el 12 de octubre de 2026: tx() devuelve '' sin avisar si falta la fila.
+control auditar_claves_tx.js node tools/auditar_claves_tx.js
 echo; echo "════════ etiquetas del globo ════════"
 control auditar_etiquetas.js node tools/auditar_etiquetas.js
 echo; echo "════════ base de conocimiento del asistente ════════"
@@ -140,6 +143,11 @@ echo; echo "════════ avisos de AEMET: el lector, con copias real
 control probar_avisos_aemet.py python3 tools/probar_avisos_aemet.py
 echo; echo "════════ avisos de AEMET en la app, en los diez idiomas ════════"
 control probar_avisos.js node tools/probar_avisos.js "$PUERTO"
+echo; echo "════════ rutas: guaguas a hora fija y lo que se ve al usarlas, en los diez idiomas ════════"
+# Desde el 12 de octubre de 2026. Ningun control pedia una ruta: de noche
+# «A→B» decia que no habia guagua entre La Laguna y el Puerto de la Cruz, con
+# la frase de la guagua del Teide, y varios textos salian en castellano.
+control probar_rutas.js node tools/probar_rutas.js "$PUERTO"
 
 echo "════════ erratas al transliterar al cirilico ════════"
 control auditar_cirilico.py python3 tools/auditar_cirilico.py

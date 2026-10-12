@@ -563,7 +563,7 @@
    "version": "1.0",
    "rotulos": [
     "UI.navRoutes",
-    "UI.tabPlanner",
+    "UI.dpTitulo",
     "LANGS.daytripTitle",
     "UI.navFav"
    ]
@@ -756,7 +756,7 @@
    "bloque": "H3 · Planes, naturaleza y clima",
    "version": "1.0",
    "rotulos": [
-    "UI.tabPlanner"
+    "UI.dpTitulo"
    ]
   },
   "pla-07": {

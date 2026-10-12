@@ -20,6 +20,9 @@
  *         por dentro y que no tape el boton que señala;
  *       - las cifras que se cuentan: los lugares del mapa, los idiomas, las
  *         costas del panel del mar y los pasos;
+ *   · los pasos de Rutas abren el panel en su pestaña: se espera a que haya
+ *     entrado (data-listo) para medir, y al terminar o saltar el tour el
+ *     panel tiene que quedar cerrado;
  *   · al terminar, que quede guardada la version del tour;
  *   · quien vio el tour viejo (guardado «1») ve «novedades» con la etiqueta.
  * Y al final, entre idiomas: ningun texto puede ser igual que el castellano
@@ -103,6 +106,9 @@ function problemasDelPaso(L, tam, i, d, cifras) {
    tarjeta encima del boton tumbaba la prueba entera, y auditar.sh lo habria
    contado como «control que no se pudo ejecutar», no como lo que es. */
 async function pulsa(p, sel) { try { await p.click(sel, { timeout: 4000 }); return true; } catch (e) { return false; } }
+/* el paso que abre el panel de rutas vuelve a medir el foco cuando el panel
+   ha entrado: hasta entonces el tour lleva data-listo="0" */
+const listo = p => p.waitForFunction(() => (document.getElementById('v19-tour').getAttribute('data-listo') || '1') === '1', null, { timeout: 4000 }).catch(() => {});
 
 async function idioma(b, L) {
   const fallos = [], textos = {};
@@ -136,6 +142,7 @@ async function idioma(b, L) {
     await p.evaluate(() => window.v19StartTour());
     await p.waitForTimeout(250);
     for (let i = 0; i < S; i++) {
+      await listo(p);
       const d = await p.evaluate(LEER);
       fallos.push(...problemasDelPaso(L, tam, i, d, cifras));
       if (w === 390) textos['paso ' + (i + 1)] = d.titulo + ' ¦ ' + d.cuerpo + (d.nuevo ? ' ¦ ' + d.nuevo : '') + ' ¦ ' + d.botones.join(' ¦ ');
@@ -154,6 +161,25 @@ async function idioma(b, L) {
     }
     const guardado = await p.evaluate(() => localStorage.getItem('tenerife.tour.seen'));
     if (!(Number(guardado) >= 2)) fallos.push(L + ' ' + tam + ': al terminar se guarda «' + guardado + '»');
+    if (await p.evaluate(() => routePanelOpen)) fallos.push(L + ' ' + tam + ': al terminar el tour se queda abierto el panel de rutas');
+  }
+  /* saltar el tour con el panel de rutas abierto por el: tiene que cerrarse */
+  {
+    await p.evaluate(() => window.v19StartTour());
+    await p.waitForTimeout(250);
+    let llego = false;
+    for (let i = 0; i < 30 && !llego; i++) {
+      llego = await p.evaluate(() => routePanelOpen);
+      if (!llego && !(await pulsa(p, '#v19-tour .v19t-next'))) break;
+      await listo(p);
+    }
+    if (!llego) fallos.push(L + ': ningun paso abre el panel de rutas');
+    else {
+      const tab = await p.evaluate(() => (document.querySelector('.route-tab.active') || {}).id);
+      if (tab !== 'tab-planner') fallos.push(L + ': el primer paso de rutas abre la pestaña «' + tab + '»');
+      await pulsa(p, '#v19-tour .v19t-skip');
+      if (await p.evaluate(() => routePanelOpen)) fallos.push(L + ': al saltar el tour se queda abierto el panel de rutas');
+    }
   }
   // las cifras de los pasos que las llevan
   const cuerpos = Object.values(textos).join(' ');
