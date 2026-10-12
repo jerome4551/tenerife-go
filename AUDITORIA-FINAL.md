@@ -4669,14 +4669,18 @@ escribe). No se ha quitado ninguna palabra de las que ya había. 7 casos en
    local, la Fiesta de los Corazones de Tejina** (BOC n.º 102, de 29 de mayo
    de 2003, disposición 931). Comprobado en el propio BOC, bajado desde
    GitHub: el índice de ese número trae la disposición 931 con ese título,
-   palabra por palabra. La fiesta es en agosto, por San Bartolomé. Texto nuevo
-   de Jerome en ocho idiomas; el búlgaro y el polaco, traducidos de su
-   castellano con los términos que ya usaba la ficha. Fuera «septiembre»,
-   «UNESCO» y «única en el mundo» (ninguna fuente lo respalda); la etiqueta
-   «UNESCO» pasa a «San Bartolomé», traducida en los nueve ficheros de
-   etiquetas. Control: `auditar_datos.js` canta si la ficha vuelve a citar la
-   UNESCO o el Patrimonio Mundial en cualquier idioma o en las etiquetas
-   (probado metiendo el chino viejo y la etiqueta: canta las dos).
+   palabra por palabra, y el decreto dispone «Declarar Bien de Interés
+   Cultural con categoría de Ámbito Local, la Fiesta de los Corazones de
+   Tejina» («Dado en Las Palmas de Gran Canaria, a 12 de mayo de 2003»). La
+   fecha está en su anexo: «en el día de su patrono, San Bartolomé, el 24 de
+   agosto». La ficha dice solo «agosto», como quiso Jerome, para no fijar un
+   día. Texto nuevo de Jerome en ocho idiomas; el búlgaro y el polaco,
+   traducidos de su castellano con los términos que ya usaba la ficha. Fuera
+   «septiembre», «UNESCO» y «única en el mundo» (ninguna fuente lo respalda);
+   la etiqueta «UNESCO» pasa a «San Bartolomé», traducida en los nueve
+   ficheros de etiquetas. Control: `auditar_datos.js` canta si la ficha vuelve
+   a citar la UNESCO o el Patrimonio Mundial en cualquier idioma o en las
+   etiquetas (probado metiendo el chino viejo y la etiqueta: canta las dos).
 2. **«ayuda» a secas** (Jerome: «sí»): «ayuda», «¡ayuda!», «necesito ayuda»,
    «help», «Hilfe», «aide», «aiuto», «hulp», «pomoc», «помощ», «帮助»… escrito
    solo, propone 📞 Llamar al 112, 🆘 Emergencia y ❓ Ayuda con la app, en el
@@ -4686,11 +4690,36 @@ escribe). No se ha quitado ninguna palabra de las que ya había. 7 casos en
    25). Fallos metidos: sin la regla, sin el vocabulario de los otros ocho
    idiomas, y los botones en otro orden: los tres en rojo.
 
+### Visto al hacer las capturas para Jerome
+
+1. **Un emoji repetido en dos botones, en los diez idiomas.** El botón «Cómo
+   llegar en bus» de cada ficha decía «🚏 🚏 Cómo llegar en bus» desde el 18
+   de septiembre: el botón trae su 🚏 y `openDetailSheet` le ponía
+   `nearbyHowToBtn`, que trae otro (es el texto del globo y de la lista de
+   cerca, donde va solo). Ahora le pone la fila de su `data-tx`
+   (`detComoLlegarBus`), la misma que pone el cambio de idioma. En alemán esa
+   fila decía «Mit dem Bus hin»; pasa a «Mit dem Bus dorthin», que es lo que
+   se leía hasta hoy. En la tienda, el botón de la cesta vacía decía «🛒 🛒»:
+   ahora «🛒 0», como al cargar la página.
+   Control nuevo en `barrido_pantallas.js`: un botón o enlace con el mismo
+   emoji dos veces seguidas, en cada pantalla, en cada ficha y en su globo.
+   Son dos nodos de texto, así que el barrido de textos no podía verlo. Con la
+   versión de antes canta los dos, en castellano y en alemán («🚏 🚏» en las 44
+   fichas que abre); con la de ahora, 0. Probado además en el navegador: un
+   solo 🚏 y en su idioma en los diez, también al cambiar de idioma con la
+   ficha abierta.
+
 ### Para Jerome
 
 1. **GitHub no lanza los cron a su hora** (lo mismo que con las gasolineras): la
    comprobación de avisos es «más o menos cada hora». Si algún día se retrasa
    más de 6 horas, la app lo dice.
+2. **El botón «Cómo llegar en bus» de la ficha** dice ahora lo de su fila,
+   también en inglés, francés, italiano, neerlandés y chino («Get there by
+   bus», «Y aller en bus», «Come arrivare in autobus», «Met de bus
+   ernaartoe», «乘公交前往», «搭公車前往»), y no el texto del globo («How to
+   get there by bus», «Comment y aller en bus»…). Las dos son traducciones
+   buenas; si prefieres las del globo, es cambiar la fila.
 
 ---
 
@@ -4730,7 +4759,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/partir_idiomas.js` | la mudanza de los ocho idiomas de `places[]` a `idiomas/*.json` |
 | `tools/auditar_idiomas_fuera.js` | que lo mudado esté entero y el navegador lo pegue antes de montar el mapa |
 | `tools/auditar_etiquetas.js` | los chips del globo: traducidos o declarados con motivo (desde el 7 de octubre, sin la vía «nombre de sitio»), y el mismo chip dos veces en una ficha |
-| `tools/barrido_pantallas.js` | lo que **se ve**: 75 paneles y fichas abiertos en los diez idiomas, buscando castellano que no sea nombre propio |
+| `tools/barrido_pantallas.js` | lo que **se ve**: 76 paneles y fichas abiertos en los diez idiomas, buscando castellano que no sea nombre propio, y botones con el mismo emoji dos veces |
 | `tools/auditar_tour.js` | el tour de bienvenida **recorrido de verdad**: los diez idiomas, cuatro tamaños de móvil, cada paso con su botón enfocado, la tarjeta dentro de la pantalla, las cifras contadas y nada igual al castellano ni al inglés |
 | `tools/auditar_idioma.js` | un idioma entero contra el castellano: cifras, horarios, teléfonos, trozos de etiqueta, alfabeto |
 | `tools/auditar_faq.js` | el asistente: cada respuesta en los diez idiomas, alcanzable por su botón, ninguna igual al castellano o al inglés, los botones que cita con su nombre de pantalla, y ninguna base fuera de `faq/` |

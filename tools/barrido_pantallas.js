@@ -26,7 +26,12 @@
  *   · palabras castellanas que no son de ese idioma («mostrando», «horario»,
  *     «guaguas», «permiso»...);
  *   · en chino y bulgaro, un texto latino identico al de otro idioma (asi se
- *     vio el «Süd» aleman dentro del chino).
+ *     vio el «Süd» aleman dentro del chino);
+ *   · un boton o enlace con el mismo emoji dos veces seguidas. El de «Como
+ *     llegar en bus» de cada ficha decia «🚏 🚏» en los diez idiomas desde el
+ *     18 de septiembre hasta el 12 de octubre: el boton traia su 🚏 y el texto
+ *     que le ponia openDetailSheet traia otro. Son dos nodos de texto, asi que
+ *     el barrido de textos no lo podia ver: se mira el boton entero.
  * Lo que no es un hueco va declarado en idiomas/pantalla-aceptado.json, con
  * su motivo. Sale con 1 si algo falla.
  */
@@ -100,6 +105,20 @@ window.__cierra = async () => {
   try { clearAllFilters(); } catch (e) {}
   await espera(250);
 };
+window.__repetido = el => {
+  const t = (el.textContent || '').replace(/\\s+/g, ' ').trim();
+  return /(\\p{Extended_Pictographic})\\uFE0F?\\s*\\1/u.test(t) ? t : null;
+};
+window.__repetidos = (raiz) => {
+  const vis = el => el && (el.checkVisibility ? el.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true }) : !!el.offsetParent);
+  const out = [];
+  for (const el of (raiz || document).querySelectorAll('button, a, [role=button]')) {
+    if (!raiz && !vis(el)) continue;
+    const t = __repetido(el);
+    if (t) out.push(t);
+  }
+  return out;
+};
 window.__textos = () => {
   const vis = el => el && (el.checkVisibility ? el.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true }) : !!el.offsetParent);
   const out = new Set();
@@ -135,7 +154,7 @@ async function recorrer(b, L) {
   await p.click('#v19-welcome-start'); await p.waitForTimeout(3500);
   await p.evaluate(ESTADOS);
   const n = await p.evaluate(() => __estados.length);
-  const porEstado = {};
+  const porEstado = {}, repetidos = [];
   for (let i = 0; i < n; i++) {
     const r = await p.evaluate(async i => {
       const [nom, f] = __estados[i];
@@ -143,22 +162,25 @@ async function recorrer(b, L) {
       try { await f(); } catch (e) { return { nom, error: String(e) }; }
       await espera(500);
       const t = __textos();
+      const rep = __repetidos();
       if (window.__extra) window.__extra.forEach(x => x.split('\n').forEach(y => y.trim().length > 1 && t.push(y.trim())));
       await __cierra();
-      return { nom, t };
+      return { nom, t, rep };
     }, i);
     if (r.error) err.push(r.nom + ': ' + r.error);
     porEstado[r.nom] = r.t || [];
+    (r.rep || []).forEach(t => repetidos.push([r.nom, t]));
   }
-  Object.assign(porEstado, await p.evaluate(async () => {
+  const fichas = await p.evaluate(async () => {
     const ids = [], vistas = new Set();
     for (const x of places) if (!vistas.has(x.category)) { vistas.add(x.category); ids.push(x.id); }
     places.filter(q => ['7677', '7951', '14353'].includes(String(q.ideess))).forEach(q => ids.push(q.id));
-    const out = {};
+    const out = {}, rep = [];
     for (const id of ids) {
       const x = places.find(q => q.id === id);
       openDetailSheet(id); await espera(120);
       const t = new Set(document.getElementById('detail-sheet').innerText.split('\n').map(s => s.trim()).filter(s => s.length > 1));
+      __repetidos(document.getElementById('detail-sheet')).forEach(x => rep.push(['ficha ' + id, x]));
       closeDetailSheet();
       setCategory(x.category); updateMarkers({ immediate: true });
       const m = markerMap[id];
@@ -168,13 +190,16 @@ async function recorrer(b, L) {
         const d = document.createElement('div'); d.style.cssText = 'position:fixed;left:0;top:0;width:300px;z-index:-1';
         d.innerHTML = typeof c === 'string' ? c : c.outerHTML; document.body.appendChild(d);
         d.innerText.split('\n').map(s => s.trim()).filter(s => s.length > 1).forEach(s => t.add(s));
+        __repetidos(d).forEach(x => rep.push(['globo ' + id, x]));
         d.remove();
       }
       out['ficha ' + id] = [...t];
     }
     clearAllFilters();
-    return out;
-  }));
+    return { out, rep };
+  });
+  Object.assign(porEstado, fichas.out);
+  fichas.rep.forEach(x => repetidos.push(x));
   const nombres = await p.evaluate(() => {
     const s = new Set();
     places.forEach(x => { if (x.name) s.add(x.name); if (x.address) s.add(x.address); });
@@ -182,7 +207,7 @@ async function recorrer(b, L) {
     return [...s].filter(x => x && String(x).length > 2);
   });
   await ctx.close();
-  return { porEstado, err, nombres };
+  return { porEstado, err, nombres, repetidos };
 }
 
 /* palabras castellanas que no son nombre propio ni palabra de otro idioma:
@@ -221,6 +246,11 @@ const LATINOS = IDI.filter(l => !['zh', 'zht', 'bg'].includes(l));
   P('pantallas y fichas por idioma', Object.keys(res.es.porEstado).length);
   for (const L of IDI) {
     errores += res[L].err.length;
+    const rep = new Map();
+    for (const [est, t] of res[L].repetidos) { if (!rep.has(t)) rep.set(t, []); rep.get(t).push(est); }
+    total += rep.size;
+    P(L + ' · botones con un emoji repetido', rep.size);
+    [...rep].slice(0, LISTA ? 1e9 : 8).forEach(([t, est]) => console.log('       «' + t.slice(0, 100) + '» en ' + est.slice(0, 3).join(', ') + (est.length > 3 ? ' y ' + (est.length - 3) + ' mas' : '')));
     if (L === 'es') continue;
     const malos = new Map();
     for (const [est, ts] of Object.entries(res[L].porEstado)) {

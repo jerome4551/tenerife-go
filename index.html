@@ -9506,7 +9506,7 @@ Object.assign(UI_TX, {
   "chatNombre": {"es":"Asistente Tenerife GO","en":"Tenerife GO Assistant","fr":"Assistant Tenerife GO","de":"Tenerife-GO-Assistent","it":"Assistente Tenerife GO","nl":"Tenerife GO-assistent","zh":"Tenerife GO 助手","zht":"Tenerife GO 助手","bg":"Асистент Tenerife GO", pl: "Asystent Tenerife GO"},
   "chatEstado": {"es":"En línea · Responde al instante","en":"Online · Replies instantly","fr":"En ligne · Répond instantanément","de":"Online · Antwortet sofort","it":"Online · Risponde subito","nl":"Online · Antwoordt direct","zh":"在线 · 即时回复","zht":"線上 · 即時回覆","bg":"На линия · Отговаря веднага", pl: "Online · Odpowiada natychmiast"},
   "detFavorito": {"es":"Favorito","en":"Favourite","fr":"Favori","de":"Favorit","it":"Preferito","nl":"Favoriet","zh":"收藏","zht":"收藏","bg":"Любимо", pl: "Ulubione"},
-  "detComoLlegarBus": {"es":"Cómo llegar en bus","en":"Get there by bus","fr":"Y aller en bus","de":"Mit dem Bus hin","it":"Come arrivare in autobus","nl":"Met de bus ernaartoe","zh":"乘公交前往","zht":"搭公車前往","bg":"Как да стигна с автобус", pl: "Jak dojechać autobusem"},
+  "detComoLlegarBus": {"es":"Cómo llegar en bus","en":"Get there by bus","fr":"Y aller en bus","de":"Mit dem Bus dorthin","it":"Come arrivare in autobus","nl":"Met de bus ernaartoe","zh":"乘公交前往","zht":"搭公車前往","bg":"Как да стигна с автобус", pl: "Jak dojechać autobusem"},
   "detCompartir": {"es":"Compartir","en":"Share","fr":"Partager","de":"Teilen","it":"Condividi","nl":"Delen","zh":"分享","zht":"分享","bg":"Сподели", pl: "Udostępnij"},
   "dpCompartir": {"es":"📤 Compartir","en":"📤 Share","fr":"📤 Partager","de":"📤 Teilen","it":"📤 Condividi","nl":"📤 Delen","zh":"📤 分享","zht":"📤 分享","bg":"📤 Сподели", pl: "📤 Udostępnij"},
   "dpSub": {"es":"Tenerife GO · Planificador","en":"Tenerife GO · Planner","fr":"Tenerife GO · Planificateur","de":"Tenerife GO · Planer","it":"Tenerife GO · Pianificatore","nl":"Tenerife GO · Planner","zh":"Tenerife GO · 行程规划","zht":"Tenerife GO · 行程規劃","bg":"Tenerife GO · Планер", pl: "Tenerife GO · Planer"},
@@ -16679,7 +16679,10 @@ function openDetailSheet(placeId) {
 
   // Labels compartir / howto
   document.getElementById('detail-share-lbl').textContent = L.shareBtn || 'Compartir';
-  document.getElementById('detail-howto-lbl').textContent = L.nearbyHowToBtn || 'Cómo llegar en bus';
+  /* La fila de su data-tx, la misma que pone el cambio de idioma. Ponia
+     nearbyHowToBtn, que ya trae su 🚏 para el globo y la lista de cerca, y el
+     boton de la ficha lleva el suyo: salian dos (desde el 18 de septiembre). */
+  document.getElementById('detail-howto-lbl').textContent = tx('detComoLlegarBus');
 
   // Abrir
   document.getElementById('detail-sheet').classList.add('open');
@@ -24246,9 +24249,10 @@ function updateCartUI() {
       badge.classList.toggle('has-items', totalItems > 0);
     }
   }
-  // Badge en header tienda
+  // Badge en header tienda. El boton ya lleva su 🛒: con la cesta vacia el
+  // contador ponia otro («🛒 🛒»); ahora dice 0, como al cargar la pagina.
   const headerBadge = document.getElementById('cart-badge-header');
-  if (headerBadge) headerBadge.textContent = totalItems > 0 ? totalItems : '🛒';
+  if (headerBadge) headerBadge.textContent = totalItems;
 }
 
 function renderCartContent() {
