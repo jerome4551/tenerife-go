@@ -134,6 +134,9 @@ const caso = (nombre, ok, detalle) => {
     fija('ciudad-laguna', 'ciudad-puerto-cruz', '10:00');
     await calculateRoute(); await espera(50);
     out.conGuagua = limpio(document.getElementById('route-bus-summary').textContent) + ' | ' + limpio(document.getElementById('route-bus-detail').textContent);
+    out.cocheKm = limpio(document.getElementById('route-car-dist').textContent);
+    out.cocheMin = limpio(document.getElementById('route-car-time').textContent);
+    out.decimal = (1.5).toLocaleString(PRECIOS_GAS_LOCALE[L]).replace(/\d/g, '');
     out.min = tx('routeMin');
     clearRoute();
     // lo que se comparte del itinerario
@@ -164,6 +167,7 @@ const caso = (nombre, ok, detalle) => {
       d.fuera.startsWith(d.fueraEsperado) && /348 \(\d{1,2}:\d{2}, /.test(d.fuera) && d.fuera.includes(d.vuelta) && !/\(\)/.test(d.fuera), d.fuera);
     caso(`[${L}] sin parada cerca: su frase, con el tope de BUS_PLAN`, d.sinParada === d.sinParadaFila, JSON.stringify([d.sinParada, d.sinParadaFila]));
     caso(`[${L}] ninguna linea: su frase, y no vacia`, !!d.sinLineaFila && d.sinLinea === d.sinLineaFila, JSON.stringify([d.sinLinea, d.sinLineaFila]));
+    caso(`[${L}] coche: km con «${d.decimal}» y la estimacion como «~N»`, /^\d+\D\d$/.test(d.cocheKm) && d.cocheKm.includes(d.decimal) && /^~\d+$/.test(d.cocheMin), JSON.stringify([d.cocheKm, d.cocheMin]));
     caso(`[${L}] con guagua: minutos en «${d.min}»`, d.conGuagua.includes(' ' + d.min) && (d.min === 'min' || !/\bmin\b/.test(d.conGuagua)), d.conGuagua);
     const t = (d.compartido && d.compartido.text) || '';
     caso(`[${L}] lo que se comparte: titulo, duracion y pie en su idioma`,

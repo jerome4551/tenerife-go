@@ -18796,7 +18796,6 @@ async function calculateRoute() {
     const route = data.routes[0];
     const coords = route.geometry.coordinates.map(([lng, lat]) => [lat, lng]);
     const distKmNum = route.distance / 1000;
-    const distKm  = distKmNum.toFixed(1);
 
     /* OSRM devuelve tiempos de CIRCULACIÓN LIBRE: usa los límites de
        velocidad de OpenStreetMap sin tráfico, semáforos, ni el hecho de
@@ -18871,7 +18870,7 @@ async function calculateRoute() {
     map.fitBounds(routeLine.getBounds(), { padding: [50, 50] });
 
     // Mostrar info COCHE
-    document.getElementById('route-car-dist').textContent = distKm;
+    document.getElementById('route-car-dist').textContent = kmRuta(distKmNum);
     document.getElementById('route-car-time').textContent = timeMin;
     document.getElementById('route-modes').classList.add('visible');
     document.getElementById('route-hint').style.display = 'none';
@@ -18907,6 +18906,15 @@ async function calculateRoute() {
    2026). Ahora se guardan sus nodos la primera vez -el icono y el span que
    traduce el cambio de idioma- y se reponen tal cual, con su fila. */
 let _btnCalcularNodos = null;
+
+/* Los kilometros del coche, con la coma o el punto de cada idioma: salian
+   «35.2 km» en castellano, aleman o polaco. */
+function kmRuta(n) {
+  try {
+    return new Intl.NumberFormat(PRECIOS_GAS_LOCALE[currentLang] || 'es-ES',
+      { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(n);
+  } catch (e) { return String(n); }
+}
 function botonCalcular(calculando) {
   const b = document.getElementById('route-btn-go');
   if (!b) return;
@@ -18942,8 +18950,9 @@ function drawFallbackRoute() {
     : distKm < 40
       ? (distKm * 1.45).toFixed(1)
       : (distKm * 1.25).toFixed(1);
-  document.getElementById('route-car-dist').textContent = distEstKm;
-  document.getElementById('route-car-time').textContent = timeMin + '~';
+  document.getElementById('route-car-dist').textContent = kmRuta(parseFloat(distEstKm));
+  // estimada: «~50», como el tiempo en guagua (antes «50~»)
+  document.getElementById('route-car-time').textContent = '~' + timeMin;
   document.getElementById('route-modes').classList.add('visible');
   document.getElementById('route-hint').style.display = 'none';
   const mid = [(A[0]+B[0])/2, (A[1]+B[1])/2];

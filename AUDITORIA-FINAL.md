@@ -4780,7 +4780,10 @@ usar cada pestaña con datos, y eso no lo hacía ningún control:
    el texto que se comparte del itinerario («Mi día en Tenerife — », sin la
    duración), y «transbordo». Y «min» escrito a mano en el trayecto en
    guagua y en las paradas del itinerario: en chino y en búlgaro no es su
-   unidad (分钟, 分鐘, мин).
+   unidad (分钟, 分鐘, мин). Y el coche ponía los kilómetros con punto en
+   todos los idiomas («35.2 km» en castellano) y la estimación sin conexión
+   como «50~ min»: ahora «35,2 km» con la coma o el punto de cada idioma, y
+   «~50 min».
 4. **La pestaña «Organiza tu día» tenía dos rótulos que se pisaban**
    (`dpTitulo` y `tabPlanner`): se veía siempre el primero, y el asistente
    citaba el segundo, «Tag planen» por «Plane deinen Tag», y lo mismo en
@@ -4798,10 +4801,10 @@ usar cada pestaña con datos, y eso no lo hacía ningún control:
 
 **Controles nuevos**, cada uno probado metiendo el fallo:
 
-- `tools/probar_rutas.js`, 88 casos: trayectos conocidos a hora fija y, en
+- `tools/probar_rutas.js`, 98 casos: trayectos conocidos a hora fija y, en
   los diez idiomas, lo que se ve al usar A→B (aviso, botón, sin parada,
-  fuera de horario, ninguna línea, minutos) y lo que se comparte del
-  itinerario. Volver a las 8 paradas, el botón en castellano y la frase del
+  fuera de horario, ninguna línea, minutos, kilómetros del coche) y lo que
+  se comparte del itinerario. Volver a las 8 paradas, el botón en castellano y la frase del
   Teide: los tres en rojo.
 - `barrido_pantallas.js`: seis estados de Rutas usadas (itinerario y lo que
   se comparte, ruta del día con paradas, A→B eligiendo origen, calculada,
@@ -4883,7 +4886,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_letras.js` | palabras escritas sin sus letras («waehle», «carre avec fleche») |
 | `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json` (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, ficheros rotos, el latido de 3 horas |
-| `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos y lo que se comparte del itinerario |
+| `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos, los kilómetros del coche y lo que se comparte del itinerario |
 | `tools/auditar_claves_tx.js` | cada `tx('…')` con la clave escrita tiene su fila en `UI_TX` (`tx()` devuelve vacío sin avisar) |
 | `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: píldora, panel, líneas del tiempo y del mar, comprobación vieja, fichero que no llega |
 | `tools/castellano_suelto.js` | el castellano que se queda **dentro** de cada idioma —letras, palabras corrientes, palabras copiadas, alfabeto latino en búlgaro y chino— y las frases que la traducción no tiene; lo que se queda a propósito, en `idiomas/castellano-aceptado.json` |
