@@ -4462,9 +4462,15 @@ fuente oficial o la ficha del propio lugar (las de viaje). Lo que estaba mal:
   contesta su ficha del mapa, que ya está en los diez idiomas. `CHAT_KB` ya no
   existe, y el buscador tiene una sola fuente.
 - **Claves de búsqueda que se habrían perdido** al quitarla («bus», «tram», «la
-  gomera», «ballena», «siesta»…): 35 en castellano, en
-  `faq/fuente/claves/es.json`, aparte, porque los bloques se quedan como
-  llegaron. De paso, 6 en chino y polaco para «aeropuerto Sur/Norte».
+  gomera», «ballena», «siesta»…): 48 en castellano para entradas de los
+  bloques que llegaron, en `faq/fuente/claves/es.json`, aparte, porque esos
+  bloques se quedan como llegaron; las de las entradas nuevas, dentro de su
+  bloque. De paso, 6 en chino y polaco para «aeropuerto Sur/Norte». De las
+  **471 claves** que tenía `CHAT_KB`, **430** siguen llevando a una respuesta;
+  las **41** que no, a propósito: palabras sueltas que se llevarían otras
+  preguntas («coche», «sol», «seguro», «buscar», «comprar», «chino», «tour»),
+  nombres de empresa («fred olsen», «twin ticket») y lo que no se pudo
+  comprobar (las propinas, las autocaravanas, «alertas aemet»).
 - **La de «algo falla»** lleva debajo el botón para escribirle a Jerome, como
   antes: `"contacto": true` en el bloque, `"c": 1` en el fichero.
 - **Los botones que citan las respuestas son los de la pantalla**, en cada

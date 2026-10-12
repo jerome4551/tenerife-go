@@ -45,7 +45,13 @@
      "ambulancia",
      "pedir ayuda",
      "pedir socorro",
-     "numero de emergencias"
+     "numero de emergencias",
+     "help",
+     "hilfe",
+     "aiuto",
+     "pomoc",
+     "hulp",
+     "sos"
     ],
     "en": [
      "emergency",
@@ -174,7 +180,10 @@
      "seguridad en el mar",
      "seguridad playa",
      "olas grandes",
-     "corriente marina"
+     "corriente marina",
+     "mar",
+     "bandera",
+     "marea"
     ],
     "en": [
      "dangerous sea",
@@ -417,7 +426,9 @@
      "seguridad senderismo",
      "perderse",
      "me he perdido",
-     "precauciones ruta"
+     "precauciones ruta",
+     "seguridad",
+     "consejos"
     ],
     "en": [
      "mountain safety",
@@ -525,7 +536,8 @@
      "uv",
      "insolacion",
      "golpe de calor",
-     "protegerse del sol"
+     "protegerse del sol",
+     "deshidratacion"
     ],
     "en": [
      "sunscreen",

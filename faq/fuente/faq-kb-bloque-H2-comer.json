@@ -44,7 +44,9 @@
      "platos tipicos",
      "plato tipico",
      "gastronomia canaria",
-     "cocina canaria"
+     "cocina canaria",
+     "plato",
+     "platos"
     ],
     "en": [
      "typical food",
@@ -511,7 +513,8 @@
      "denominaciones de origen",
      "cata de vinos",
      "malvasia",
-     "listan"
+     "listan",
+     "denominacion"
     ],
     "en": [
      "wine",

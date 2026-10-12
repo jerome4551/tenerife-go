@@ -47,7 +47,8 @@
      "mar de nubes",
      "nublado",
      "calor",
-     "viento"
+     "viento",
+     "frio"
     ],
     "en": [
      "climate",
@@ -297,7 +298,9 @@
      "hoteles",
      "donde dormir",
      "apartamento",
-     "que zona elegir"
+     "que zona elegir",
+     "alojarse",
+     "alojo"
     ],
     "en": [
      "north or south",
@@ -836,7 +839,8 @@
      "que hacer gratis",
      "cosas gratis",
      "planes gratis",
-     "low cost"
+     "low cost",
+     "free"
     ],
     "en": [
      "free",
@@ -1311,7 +1315,8 @@
      "subir al teide",
      "volcan teide",
      "cima del teide",
-     "parque nacional del teide"
+     "parque nacional del teide",
+     "cima"
     ],
     "en": [
      "teide",

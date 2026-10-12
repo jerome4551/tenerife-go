@@ -177,7 +177,9 @@
      "guardar un sitio",
      "me gusta",
      "lista de lugares",
-     "mis favoritos"
+     "mis favoritos",
+     "corazon",
+     "guardar"
     ],
     "en": [
      "favourite",
@@ -284,7 +286,8 @@
      "marcar visitado",
      "marcar como visitado",
      "ya fui",
-     "estuve alli"
+     "estuve alli",
+     "estuve"
     ],
     "en": [
      "visited",
@@ -383,7 +386,8 @@
      "trofeo",
      "trofeos",
      "medalla",
-     "medallas"
+     "medallas",
+     "achievements"
     ],
     "en": [
      "achievement",
@@ -481,7 +485,9 @@
      "leer en voz alta",
      "leerme",
      "narrar",
-     "que me lea"
+     "que me lea",
+     "voz",
+     "leer"
     ],
     "en": [
      "audio",
@@ -700,7 +706,9 @@
      "pwa",
      "descargar la app",
      "app store",
-     "play store"
+     "play store",
+     "iphone",
+     "android"
     ],
     "en": [
      "install",
@@ -819,7 +827,8 @@
      "deutsch",
      "italiano",
      "nederlands",
-     "polski"
+     "polski",
+     "language"
     ],
     "en": [
      "language",
@@ -1591,7 +1600,10 @@
      "trazar ruta",
      "navegacion",
      "navegar",
-     "como ir de un sitio a otro"
+     "como ir de un sitio a otro",
+     "trazar",
+     "direcciones",
+     "ir de un sitio a otro"
     ],
     "en": [
      "route a b",
@@ -1915,7 +1927,8 @@
      "login",
      "invitado",
      "sincronizar",
-     "perfil"
+     "perfil",
+     "sesion"
     ],
     "en": [
      "account",
@@ -2045,7 +2058,8 @@
      "whatsapp",
      "enviar un lugar",
      "mandar un sitio",
-     "enlace del lugar"
+     "enlace del lugar",
+     "link del lugar"
     ],
     "en": [
      "share",
