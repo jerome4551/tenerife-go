@@ -85,6 +85,30 @@ const CONSULTAS = [
   { que: '«auxilio»: el 112 directo', lang: 'es', q: 'auxilio', debe: [/llama al 112/], noDebe: [] },
   { que: '«emergencia» sigue llevando al 112', lang: 'es', q: 'emergencia', debe: [/llama al 112/], noDebe: [] },
   { que: '«Polizei», en aleman: el 112', lang: 'de', q: 'Polizei', debe: [/112/], noDebe: [/llama/] },
+
+  /* «Ordena mis favoritos por distancia» (12/10/2026): exc-03 lo prometia y
+     el asistente no sabia hacerlo. Con la ubicacion, el orden tiene que ser
+     el del vecino mas cercano desde donde esta la persona, calculado aqui
+     aparte; sin ella, lo dice; sin favoritos, dice el boton con el rotulo
+     de la pantalla. */
+  { que: 'favoritos ordenados desde Santa Cruz, en aleman', lang: 'de', q: 'Sortiere meine Favoriten nach Entfernung',
+    favs: ['teide', 'anaga', 'playa-socorro', 'playa-socorro-guimar'], geo: { latitude: 28.4636, longitude: -16.2518 },
+    debe: [/Luftlinie/, /ohne Hin und Her/], noDebe: [/ordeno|línea recta/], ordenDesde: true },
+  { que: 'nueve favoritos por toda la isla, desde La Laguna, en ingles: sin cruces', lang: 'en', q: 'sort my favourites by distance',
+    favs: ['masca', 'piscinas-garachico', 'nucleo-los-cristianos', 'acantilados-gigantes', 'el-medano', 'candelaria', 'catedral-laguna', 'anaga', 'teide'],
+    geo: { latitude: 28.4874, longitude: -16.3159 }, debe: [/without going back and forth/, /straight-line/], noDebe: [/línea recta/], ordenDesde: true },
+  /* Con estos seis, desde Santa Cruz, «cada vez el mas cercano» se cruza
+     consigo mismo (buscado entre los lugares reales para que esta prueba vea
+     si falta la parte que deshace las idas y vueltas). */
+  { que: 'seis favoritos donde «el mas cercano» se cruza: el orden no', lang: 'it', q: 'ordina i miei preferiti per distanza',
+    favs: ['playa-los-patos', 'playa-tabaiba', 'paisaje-lunar', 'mirador-pico-ingles', 'playa-socorro-guimar', 'benijo'],
+    geo: { latitude: 28.4636, longitude: -16.2518 }, debe: [/senza andare avanti e indietro/, /linea d’aria/], noDebe: [/línea recta/], ordenDesde: true },
+  { que: 'favoritos sin ubicacion, en polaco: empieza por un extremo y lo dice', lang: 'pl', q: 'posortuj moje ulubione',
+    favs: ['teide', 'anaga', 'playa-socorro'], debe: [/Nie wiem, gdzie jesteś/], noDebe: [/No sé/], listaDe: 3 },
+  { que: 'sin favoritos: el boton con su rotulo de la pantalla', lang: 'es', q: 'ordena mis favoritos',
+    favs: [], debe: [/Aún no tienes favoritos/], noDebe: [], rotuloAddFav: true },
+  { que: 'el boton «Ordena mis favoritos por distancia» de app-02 lo hace', lang: 'es', q: '¿Cómo guardo un lugar en favoritos?',
+    favs: ['teide', 'anaga'], pulsarChip: /Ordena mis favoritos/, debe: [/Añadir a favoritos/], noDebe: [], trasChip: [/línea recta/], trasChipLista: 2 },
 ];
 
 /* La forma polaca que pide el numero de lugares: 1 miejsce · 2-4 miejsca
@@ -110,6 +134,9 @@ const formaPl = n => n === 1 ? 'miejsce' : (n % 10 >= 2 && n % 10 <= 4 && (n % 1
     await pg.waitForFunction(() => typeof setLang === 'function' && typeof TG_FAQ !== 'undefined',
                              null, { timeout: 30000 });
 
+    if (c.geo) { await ctx.grantPermissions(['geolocation']); await ctx.setGeolocation(c.geo); }
+    else { await ctx.clearPermissions(); }
+    if (c.favs) await pg.evaluate(ids => { favorites.clear(); ids.forEach(i => favorites.add(i)); }, c.favs);
     const tieneIdioma = await pg.evaluate(l => typeof LANGS !== 'undefined' && !!LANGS[l], c.lang);
     await pg.evaluate(l => { try { setLang(l); } catch (e) {} }, c.lang);
     await pg.waitForFunction(() => TG_FAQ.entradas().length > 0, null, { timeout: 15000 }).catch(() => {});
@@ -187,6 +214,50 @@ const formaPl = n => n === 1 ? 'miejsce' : (n % 10 >= 2 && n % 10 <= 4 && (n % 1
       if (c.trasPulsar && c.trasPulsar.some(r => !r.test(r2))) trasMal = 'tras pulsar: ' + r2.slice(0, 120);
       if (c.trasPulsarLista && l2 !== c.trasPulsarLista) trasMal = 'tras pulsar salen ' + l2 + ' lugares, no ' + c.trasPulsarLista;
     }
+    let favMal = '';
+    const nombresLista = await pg.evaluate(() => {
+      const m = document.getElementById('chat-messages');
+      const l = m && [...m.querySelectorAll('.chat-poi-list')].pop();
+      return l ? [...l.querySelectorAll('.chat-poi-name')].map(x => x.textContent) : [];
+    });
+    if (c.ordenDesde) {
+      /* Lo que tiene que cumplir el orden, mirado aqui sin el codigo de la
+         app: estan todos los favoritos, una vez; el recorrido desde la
+         posicion no es mas largo que el de «cada vez el mas cercano»; y no
+         se cruza consigo mismo (sin idas y vueltas). */
+      const v = await pg.evaluate(([ids, g, lista]) => {
+        const R = 6371, rad = Math.PI / 180;
+        const d = (a, b) => { const x = Math.sin((b.lat - a.lat) * rad / 2) ** 2 + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin((b.lng - a.lng) * rad / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(x)); };
+        const yo = { lat: g.latitude, lng: g.longitude };
+        const favs = ids.map(i => places.find(p => p.id === i));
+        const app = lista.map(t => favs.find(p => (t.replace(/^\d+\. /, '')) === p.name));
+        if (app.some(x => !x) || new Set(app).size !== favs.length) return 'no son los favoritos: ' + lista.join(' | ');
+        const largo = r => r.reduce((s, p, i) => i ? s + d(r[i - 1], p) : 0, 0);
+        let act = yo, resto = favs.slice(), nn = [yo];
+        while (resto.length) { resto.sort((a, b) => d(act, a) - d(act, b)); act = resto.shift(); nn.push(act); }
+        const rApp = [yo].concat(app);
+        if (largo(rApp) > largo(nn) + 1e-6) return 'mas largo (' + largo(rApp).toFixed(1) + ' km) que el del mas cercano (' + largo(nn).toFixed(1) + ' km)';
+        const cruza = (p1, p2, p3, p4) => { const o = (a, b, c) => Math.sign((b.lng - a.lng) * (c.lat - a.lat) - (b.lat - a.lat) * (c.lng - a.lng)); return o(p1, p2, p3) * o(p1, p2, p4) < 0 && o(p3, p4, p1) * o(p3, p4, p2) < 0; };
+        for (let i = 1; i < rApp.length; i++) for (let k = i + 2; k < rApp.length; k++) if (cruza(rApp[i - 1], rApp[i], rApp[k - 1], rApp[k])) return 'el recorrido se cruza';
+        return '';
+      }, [c.favs, c.geo, nombresLista]);
+      if (v) favMal = v;
+    }
+    if (c.listaDe && nombresLista.length !== c.listaDe) favMal = 'la lista trae ' + nombresLista.length + ', no ' + c.listaDe;
+    if (c.rotuloAddFav) {
+      const rot = await pg.evaluate(l => LANGS[l].addFav, c.lang);
+      if (!rot || resp.indexOf('«' + rot + '»') < 0) favMal = 'no cita «' + rot + '», el rotulo de la pantalla';
+    }
+    if (c.pulsarChip) {
+      const antes3 = await cuenta(pg);
+      const hay = await pg.evaluate(src => { const re = new RegExp(src); const b = [...document.querySelectorAll('#chat-quick .chat-qbtn')].find(x => re.test(x.textContent)); if (b) b.click(); return !!b; }, c.pulsarChip.source);
+      if (!hay) favMal = 'no hay boton que case con ' + c.pulsarChip;
+      await pg.waitForFunction(n => document.querySelectorAll('#chat-messages .chat-bubble.bot .chat-body').length > n, antes3, { timeout: 25000 }).catch(() => {});
+      const r3 = await pg.evaluate(() => { const b = document.querySelectorAll('#chat-messages .chat-bubble.bot .chat-body'); return b[b.length - 1].textContent; });
+      const l3 = await pg.evaluate(() => { const m = document.getElementById('chat-messages'); const l = [...m.querySelectorAll('.chat-poi-list')].pop(); return l ? l.querySelectorAll('.chat-poi-item').length : 0; });
+      if (hay && c.trasChip.some(r => !r.test(r3))) favMal = 'tras el boton: ' + r3.slice(0, 120);
+      if (hay && c.trasChipLista && l3 !== c.trasChipLista) favMal = 'tras el boton salen ' + l3 + ' lugares, no ' + c.trasChipLista;
+    }
     const faltan  = c.debe.filter(r => !r.test(resp));
     const sobran  = c.noDebe.filter(r => r.test(resp));
     const sinLista = c.conLista && !lista;
@@ -195,7 +266,7 @@ const formaPl = n => n === 1 ? 'miejsce' : (n % 10 >= 2 && n % 10 <= 4 && (n % 1
     const botonesMal = c.botones ? !(chips.length && chips.every(t => c.botones.test(t))) : false;
     const sinContacto = c.contacto && !contacto;
     const ok = despues > antes && !faltan.length && !sobran.length && !sinLista
-            && !botonesMal && !errores.length && !sinContacto && !bienvenidaMal && !accionesMal && !trasMal;
+            && !botonesMal && !errores.length && !sinContacto && !bienvenidaMal && !accionesMal && !trasMal && !favMal;
     if (!ok) malos++;
 
     console.log((ok ? '  ok   ' : ' FALLA ') + c.que + '   [' + c.lang + '] «' + (c.q || 'boton ' + c.boton) + '»');
@@ -213,6 +284,8 @@ const formaPl = n => n === 1 ? 'miejsce' : (n % 10 >= 2 && n % 10 <= 4 && (n % 1
     if (acciones.length) console.log('        acciones: ' + acciones.join(' | '));
     if (accionesMal)    console.log('        los botones de accion no son los que tocan: ' + accionesMal);
     if (trasMal)        console.log('        ' + trasMal);
+    if (nombresLista.length && (c.favs || c.ordenDesde)) console.log('        lista: ' + nombresLista.join(' | '));
+    if (favMal)         console.log('        favoritos: ' + favMal);
     if (errores.length) console.log('        ERRORES DE PAGINA: ' + errores.join(' / '));
     console.log('');
     await pg.close();

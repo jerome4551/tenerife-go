@@ -4,4 +4,6 @@
  "nearTok":["nähe","umgebung","nahe","nahegelegen"],
  "count":["wie viele orte","wie viele plätze"],
  "cats":{"playa":["baden","schwimmen","sand"],"senderismo":["wanderung","wanderweg","spazieren"],"gastronomia":["essen","wo essen","wein"],"piscinas":["naturbecken","meerwasserbecken"]},
- "zonas":{"norte": ["nord", "norden", "im norden", "nordlich"], "sur": ["sud", "suden", "im suden", "sudlich"], "este": ["ost", "osten", "im osten", "ostlich"], "oeste": ["west", "westen", "im westen", "westlich"], "centro": ["zentrum", "inselmitte"]}}
+ "zonas":{"norte": ["nord", "norden", "im norden", "nordlich"], "sur": ["sud", "suden", "im suden", "sudlich"], "este": ["ost", "osten", "im osten", "ostlich"], "oeste": ["west", "westen", "im westen", "westlich"], "centro": ["zentrum", "inselmitte"]},
+ "favs":["favorit", "favoriten", "meine favoriten"],
+ "orden":["sortiere", "sortieren", "ordne", "ordnen", "reihenfolge", "nach entfernung", "entfernung", "route"]}

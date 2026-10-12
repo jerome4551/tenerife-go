@@ -204,6 +204,30 @@ let malos = 0;
     console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → zona ' + (z || 'ninguna'));
   }
   mirados += ZONAS.length;
+  /* «Ordena mis favoritos por distancia» (12/10/2026): exc-03 lo prometia y
+     el asistente no sabia hacerlo. Tiene que entenderse en cada idioma, con
+     el rotulo del boton que lo lleva (app-23) y como lo escribiria cualquiera;
+     y «favoritos» a secas tiene que seguir diciendo como se guardan. */
+  console.log('');
+  const FAVS = [
+    ['es', 'ordena mis favoritos por distancia', 'favOrdenGeo'], ['es', 'mis favoritos cerca de mí', 'favOrdenGeo'],
+    ['es', 'en qué orden visito mis favoritos', 'favOrdenGeo'], ['en', 'sort my favourites by distance', 'favOrdenGeo'],
+    ['en', 'favorites route', 'favOrdenGeo'], ['fr', 'trie mes favoris par distance', 'favOrdenGeo'],
+    ['de', 'Sortiere meine Favoriten nach Entfernung', 'favOrdenGeo'], ['it', 'ordina i miei preferiti per distanza', 'favOrdenGeo'],
+    ['nl', 'sorteer mijn favorieten op afstand', 'favOrdenGeo'], ['zh', '按距离排列我的收藏', 'favOrdenGeo'],
+    ['zht', '按距離排列我的收藏', 'favOrdenGeo'], ['bg', 'Подреди любимите ми по разстояние', 'favOrdenGeo'],
+    ['pl', 'Posortuj moje ulubione według odległości', 'favOrdenGeo'],
+    ['es', 'favoritos', 'kb'], ['es', 'cómo guardo favoritos', 'kb'], ['de', 'Favoriten', 'kb'], ['pl', 'ulubione', 'kb'],
+  ];
+  for (const [lang, preg, esperada] of FAVS) {
+    await ctx.TG_FAQ.cambiarA(lang);
+    ctx.currentLang = lang;
+    const k = (ctx.chatResolve(preg, null) || {}).kind;
+    const ok = k === esperada;
+    if (!ok) malos++;
+    console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → ' + k);
+  }
+  mirados += FAVS.length;
   console.log('\n' + malos + ' fallos de ' + (CASOS.length + mirados)
     + (saltadas ? '   (' + saltadas + ' saltada(s) por idioma que la app no tiene)' : ''));
   process.exit(malos ? 1 : 0);

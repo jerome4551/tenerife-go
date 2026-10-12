@@ -627,6 +627,12 @@
     "UI.shopAd"
    ]
   },
+  "app-23": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0"
+  },
   "sal-01": {
    "cat": "seguridad",
    "volatil": false,

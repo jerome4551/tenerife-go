@@ -4,4 +4,6 @@
  "nearTok":["buurt","dichtbij","omgeving","nabij"],
  "count":["hoeveel plekken","hoeveel plaatsen"],
  "cats":{"playa":["zwemmen","zwem","zand"],"senderismo":["wandeling","wandelen","route"],"gastronomia":["eten","waar eten","wijn"],"piscinas":["natuurlijk zwembad","zeewaterbad"]},
- "zonas":{"norte": ["noord", "noorden", "in het noorden"], "sur": ["zuid", "zuiden", "in het zuiden"], "este": ["oost", "oosten", "in het oosten"], "oeste": ["west", "westen", "in het westen"], "centro": ["centrum", "midden van het eiland"]}}
+ "zonas":{"norte": ["noord", "noorden", "in het noorden"], "sur": ["zuid", "zuiden", "in het zuiden"], "este": ["oost", "oosten", "in het oosten"], "oeste": ["west", "westen", "in het westen"], "centro": ["centrum", "midden van het eiland"]},
+ "favs":["favoriet", "favorieten", "mijn favorieten"],
+ "orden":["sorteer", "sorteren", "ordenen", "volgorde", "op afstand", "afstand", "route", "dichtstbij"]}

@@ -19,7 +19,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `bandera_azul` | **cerrado** | 11 fichas con blueFlag:true, cifra exacta comprobada contra la lista. |
 | `red_titsa` | **cerrado** | 183 lineas, 6.263 referencias de parada sobre 2.514 marquesinas, trazados regenerados del GTFS. La parada mas lejos de su trazado, |
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
-| `asistente` | **cerrado** | 121 respuestas x 10 idiomas = 1210, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). |
+| `asistente` | **cerrado** | 122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
 | `coordenadas` | abierto | 157 verificadas con su fuente · 817 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
@@ -65,7 +65,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 - resultado: Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin traducir ni declarar. 0 textos que se queden en el idioma de arranque.
 
 **`asistente`** · 2026-10-12
-- resultado: 121 respuestas x 10 idiomas = 1210, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026).
+- resultado: 122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La 122, app-23, es «ordena mis favoritos por distancia», que exc-03 prometia y desde el 12/10/2026 el asistente hace de verdad.
 
 **`mapa_sin_conexion`** · 2026-09-12
 - resultado: 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red.

@@ -17,7 +17,7 @@ Se cuenta lo que el navegador pide de verdad para ensenar la app:
                                     pide al arrancar igual que antes
     idiomas/<lang>.json             los textos de los 804 lugares
     idiomas/etiquetas/<lang>.json   los chips del globo
-    faq/<lang>.json                 las 121 respuestas del asistente
+    faq/<lang>.json                 las 122 respuestas del asistente
 
 El castellano no tiene idiomas/es.json ni etiquetas porque viven dentro de
 index.html: por eso es el mas barato, y por eso su cifra no sale de restarle

@@ -14,7 +14,7 @@
    "zh",
    "zht"
   ],
-  "entradas": 22,
+  "entradas": 23,
   "origen": "Redactado el 12/10/2026 a partir de las entradas de CHAT_KB, que solo estaban en castellano; cada dato, comprobado antes de traducirlo, y lo que no se pudo comprobar, fuera (ver AUDITORIA-FINAL.md).",
   "politica_datos": "Cada afirmacion sobre la app comprobada en el codigo de index.html y sw.js el 12/10/2026 (ver «nota» de cada entrada). Los rotulos entre comillas son los de la propia app en cada idioma y estan listados en «rotulos»: tools/auditar_faq.js comprueba que siguen siendo los de la pantalla. Sin cifras escritas a mano: {N} lugares y {L} idiomas los cuenta la app al contestar."
  },
@@ -253,6 +253,7 @@
     "zht": "⭐ 在任一地點的資訊框裡點「加入收藏」。底部的「收藏」會在地圖上只顯示你收藏的地點，並附計數。不登入時只儲存在這支手機上；登入後還會同步到雲端，換裝置也不會不見。"
    },
    "follow": [
+    "app-23",
     "app-18",
     "app-03",
     "app-16"
@@ -2485,6 +2486,112 @@
     "UI.shopAd"
    ],
    "comprobado": "shop-panel: pestanas Excursiones, Souvenirs, Negocios, Anunciate; todas las tarjetas llevan badge-soon (shopSoon); Reservar/Comprar acaban en showBookingSoon (reservasPronto); shop-register-form para negocios"
+  },
+  {
+   "id": "app-23",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "Ordena mis favoritos por distancia",
+    "en": "Sort my favourites by distance",
+    "de": "Sortiere meine Favoriten nach Entfernung",
+    "fr": "Trie mes favoris par distance",
+    "it": "Ordina i miei preferiti per distanza",
+    "nl": "Sorteer mijn favorieten op afstand",
+    "pl": "Posortuj moje ulubione według odległości",
+    "zh": "按距离排列我的收藏",
+    "zht": "按距離排列我的收藏"
+   },
+   "keys": {
+    "es": [
+     "ordenar favoritos",
+     "ordena mis favoritos",
+     "favoritos por distancia",
+     "orden de mis favoritos",
+     "favoritos cerca de mi",
+     "ruta por mis favoritos"
+    ],
+    "en": [
+     "sort favourites",
+     "sort my favourites",
+     "sort my favorites",
+     "favourites by distance",
+     "favorites by distance",
+     "order my favourites",
+     "route through my favourites"
+    ],
+    "de": [
+     "favoriten sortieren",
+     "sortiere meine favoriten",
+     "favoriten nach entfernung",
+     "reihenfolge meiner favoriten",
+     "route durch meine favoriten"
+    ],
+    "fr": [
+     "trier mes favoris",
+     "trie mes favoris",
+     "favoris par distance",
+     "ordre de mes favoris",
+     "itineraire par mes favoris"
+    ],
+    "it": [
+     "ordinare i preferiti",
+     "ordina i miei preferiti",
+     "preferiti per distanza",
+     "ordine dei miei preferiti",
+     "percorso tra i miei preferiti"
+    ],
+    "nl": [
+     "favorieten sorteren",
+     "sorteer mijn favorieten",
+     "favorieten op afstand",
+     "volgorde van mijn favorieten",
+     "route langs mijn favorieten"
+    ],
+    "pl": [
+     "posortuj ulubione",
+     "posortuj moje ulubione",
+     "ulubione wedlug odleglosci",
+     "kolejnosc moich ulubionych",
+     "trasa przez moje ulubione"
+    ],
+    "zh": [
+     "排列收藏",
+     "收藏按距离",
+     "按距离排列收藏",
+     "收藏的顺序",
+     "收藏路线",
+     "按距离排列",
+     "排列我的收藏"
+    ],
+    "zht": [
+     "排列收藏",
+     "收藏按距離",
+     "按距離排列收藏",
+     "收藏的順序",
+     "收藏路線",
+     "按距離排列",
+     "排列我的收藏"
+    ]
+   },
+   "a": {
+    "es": "📍 Pídemelo así: «ordena mis favoritos por distancia». Te los pongo en orden desde donde estás y sin idas y vueltas, para no cruzar la isla dos veces. Si no me dejas saber dónde estás, empiezo por el de un extremo. Las distancias son en línea recta, no por carretera.",
+    "en": "📍 Ask me like this: «sort my favourites by distance». I put them in order from where you are and without going back and forth, so you do not cross the island twice. If you do not let me know where you are, I start from the one at one end. The distances are in a straight line, not by road.",
+    "de": "📍 Frag mich so: «Sortiere meine Favoriten nach Entfernung». Ich bringe sie in eine Reihenfolge, von deinem Standort aus und ohne Hin und Her – so durchquerst du die Insel nicht zweimal. Wenn du mir nicht verrätst, wo du bist, fange ich bei dem an einem Ende an. Die Entfernungen sind Luftlinie, nicht über die Straße.",
+    "fr": "📍 Demande-le-moi ainsi : «trie mes favoris par distance». Je les mets dans l’ordre depuis l’endroit où tu es et sans allers-retours, pour ne pas traverser l’île deux fois. Si tu ne me laisses pas savoir où tu es, je commence par celui qui est à une extrémité. Les distances sont à vol d’oiseau, pas par la route.",
+    "it": "📍 Chiedimelo così: «ordina i miei preferiti per distanza». Li metto in ordine da dove ti trovi e senza andare avanti e indietro, così non attraversi l’isola due volte. Se non mi lasci sapere dove sei, comincio da quello a un’estremità. Le distanze sono in linea d’aria, non su strada.",
+    "nl": "📍 Vraag het me zo: «sorteer mijn favorieten op afstand». Ik zet ze op volgorde vanaf waar je bent en zonder heen en weer te gaan, zodat je het eiland niet twee keer oversteekt. Als je me niet laat weten waar je bent, begin ik bij de plek aan één uiteinde. De afstanden zijn in vogelvlucht, niet over de weg.",
+    "pl": "📍 Poproś mnie tak: «posortuj moje ulubione według odległości». Ustawię je w kolejności od miejsca, w którym jesteś, bez krążenia tam i z powrotem, żeby nie przejeżdżać wyspy dwa razy. Jeśli nie dasz mi znać, gdzie jesteś, zacznę od miejsca na jednym z końców. Odległości są w linii prostej, nie po drodze.",
+    "zh": "📍 这样问我：「按距离排列我的收藏」。我会从你所在的位置出发排好顺序，不走回头路，这样就不用两次横穿全岛。如果你不让我知道你在哪里，我就从位于一端的那个开始。距离是直线距离，不是道路距离。",
+    "zht": "📍 這樣問我：「按距離排列我的收藏」。我會從你所在的位置出發排好順序，不走回頭路，這樣就不用兩次橫穿全島。如果你不讓我知道你在哪裡，我就從位於一端的那個開始。距離是直線距離，不是道路距離。"
+   },
+   "follow": [
+    "app-02",
+    "exc-03",
+    "app-03"
+   ],
+   "comprobado": "Comprobado en index.html el 12/10/2026: chatResolve (palabra de favoritos y de ordenar, distancia, ruta o «cerca de mi»); chatOrdenCercania (desde la posicion, o sin ella desde el favorito mas lejano del centro de todos; cada vez el mas cercano de los que quedan y despues 2-opt: se da la vuelta a un tramo si acorta el recorrido, asi que el recorrido no se cruza); chatDistKm (linea recta). Si el navegador no contesta a la ubicacion, a los 8 segundos se ordena sin ella. Lo prometia exc-03; lo pidio Jerome el 12/10/2026."
   }
  ]
 }

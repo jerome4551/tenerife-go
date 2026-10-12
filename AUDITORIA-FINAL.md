@@ -16,7 +16,7 @@ idiomas/     9 ficheros de lugares · 2.489.750 bytes · 76 a 95 kB comprimidos
              + glosario-cat/ · 7, y no hacen falta los diez: no se cargan en la
                app, los lee tools/completar_cat.js al construir
              + pl-lugares/ y pl-fuente/ · el polaco por bloques, revisable
-faq/         10 ficheros · 121 respuestas del asistente en cada idioma
+faq/         10 ficheros · 122 respuestas del asistente en cada idioma
              el móvil baja solo el suyo
              + fuente/ · los bloques tal y como llegaron, y el bulgaro aparte
 ```
@@ -1998,11 +1998,11 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 895 filas (y 2.999 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 901 filas (y 2.999 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
-AEMET y 3 del asistente para «socorro», y una menos de la privacidad (AEMET
-ya no recibe nada del dispositivo). El 11 de octubre el tour dejó de ser una
+AEMET, 3 del asistente para «socorro» y 6 para ordenar los favoritos, y una
+menos de la privacidad (AEMET ya no recibe nada del dispositivo). El 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera no la coteja nadie y no se ha vuelto a contar.)*
 
@@ -4549,6 +4549,131 @@ encuentra las 9.
 5. «socorro» a secas abre la ficha de la Playa El Socorro (gana el nombre del
    sitio); «pedir socorro», «emergencia» o «112» van a la de emergencias.
 
+
+## Los cinco puntos del 12 de octubre por la tarde
+
+Jerome contestó a los cinco «Para Jerome» de la sección anterior. Están los
+cinco hechos, en los diez idiomas y con control.
+
+### 1 · Los avisos de AEMET, que de verdad funcionen
+
+> «¿Cómo no funciona? La tenemos por meses ahí y no viste que no funciona.
+> Soluciónalo. ¿Y cómo deja datos correctos si no tiene acceso?»
+
+**Por qué no funcionó nunca.** La app pedía desde el navegador
+`aemet.es/xml/municipios/localidad_38038.xml`, que es la previsión de Santa
+Cruz y no trae avisos; y aemet.es no deja que otra web lea sus ficheros (no
+manda cabeceras CORS). La petición fallaba siempre, la lista salía vacía y la
+píldora no salía nunca. «No hay avisos» y «no funciona» se pintaban igual:
+nada. Por eso nadie lo vio.
+
+**Lo que hay ahora.**
+
+| pieza | qué hace |
+|---|---|
+| fuente | el canal oficial y sin clave del Plan Meteoalerta para **la isla de Tenerife**: `CAP_AFAP6596_RSS.xml` (listado en aemet.es/es/rss_info/avisos/coo). Su primer elemento es un `.tar.gz` con todos los avisos vigentes en CAP 1.2 |
+| formato | Plan Meteoalerta, anexo 3 (`METEOALERTA_ANX3_CAP.pdf`, 31-may-2022): nivel verde (= sin aviso), amarillo, naranja o rojo; 9 fenómenos en Canarias; zonas 659601 Norte, 659602 Área metropolitana, 659603 Este, sur y oeste, y con una C, su costa; un mensaje que caduca al emitirse es una retirada, no un aviso |
+| `.github/workflows/avisos-aemet.yml` | 24 líneas de cron (minuto :41), una por hora, como las gasolineras |
+| `tools/avisos_aemet.py` | baja el canal y el `.tar.gz`, quita los verdes, las retiradas, los sustituidos y los caducados, y escribe `datos/avisos-aemet.json` con la hora de la comprobación. **Si algo falla no escribe nada.** Si AEMET dice «No hay avisos» y aquí sale alguno, para. Sin cambios, solo reescribe cada 3 horas para renovar la hora |
+| la app | lee `datos/avisos-aemet.json` de su propio dominio (red primero en `sw.js`). Píldora del color del peor aviso solo cuando hay alguno; panel con nivel, fenómeno, parámetro, zona y horas en el idioma de la app; el texto de AEMET en inglés para el inglés y en castellano para los demás, y la etiqueta lo dice. Una línea en el panel del tiempo 🌡️ y los costeros en el del mar 🌊 |
+
+**Sin acceso (la pregunta de Jerome).** No se inventa ni se rellena nada:
+
+- si GitHub no puede bajarlo, el fichero se queda con su última comprobación
+  buena **y su hora**;
+- la app enseña siempre esa hora («Comprobado: 16:41»); a las **6 horas** sin
+  comprobar deja de decir «sin avisos» y dice «No se han podido comprobar los
+  avisos desde las 10:41: puede haber cambios», con el enlace a aemet.es;
+- cada aviso lleva su fin oficial, y la app lo quita a su hora con el reloj del
+  móvil aunque el fichero no se haya renovado;
+- si el fichero no llega (sin red y sin copia), lo dice y manda a aemet.es.
+
+AEMET sale de la CSP y de la política de privacidad: el móvil ya no le pide
+nada, así que ya no recibe ni la IP.
+
+**Probado.** El flujo, lanzado a mano en GitHub el 12/10 a las 15:19 UTC: bajó
+el canal de verdad, lo leyó y, sin cambios, no reescribió («la última
+comprobación escrita es de hace 27 min»). `tools/probar_avisos_aemet.py`:
+**24 de 24** con copias reales de AEMET guardadas en `tools/pruebas/aemet/` (el
+estado de Tenerife del 11/10 y un aviso amarillo real de Mallorca puesto en
+una zona de Tenerife). `tools/probar_avisos.js`: **75 de 75** en un navegador,
+en los diez idiomas. Fallos metidos a propósito:
+
+| # | avería | canta |
+|---|---|---|
+| 1 | sin la regla de las 6 horas | sí, 9 casos («dice que no se ha podido comprobar», «NO dice sin avisos») |
+| 2 | un aviso se enseña después de su fin | sí, 2 |
+| 3 | el nombre alemán de «lluvias» en castellano | sí: «sin rótulos en castellano» |
+| 4 | el inglés recibe el texto en castellano | sí |
+| 5 | «sin avisos» aunque la comprobación sea vieja | sí, 3 |
+
+### 2 · El asistente ordena los favoritos
+
+exc-03 decía «guarda los sitios en favoritos y te los ordeno por distancia
+para no cruzar la isla dos veces», y no sabía. Ahora «ordena mis favoritos por
+distancia» (y «favoritos cerca de mí», «sort my favourites», «按距离排列我的收藏»…,
+en los diez idiomas) los pone en orden **desde donde está la persona**: cada
+vez el más cercano de los que quedan, y luego se deshacen las idas y vueltas
+(2-opt: si dar la vuelta a un tramo acorta el recorrido, se le da; el
+recorrido resultante no se cruza). Sin ubicación, o si el navegador no
+contesta en 8 segundos, empieza por un extremo y lo dice. Distancias en línea
+recta, y lo dice. Sin favoritos, dice el botón con su rótulo de la pantalla.
+«Favoritos» a secas sigue explicando cómo se guardan (app-02), que ahora lleva
+el botón «Ordena mis favoritos por distancia» (app-23, nueva: 122 respuestas).
+
+`probar_faq.js`: 17 frases en los diez idiomas. `probar_movil.js`: 6 casos en
+un navegador, con un oráculo que no usa el código de la app (están todos, el
+recorrido no es más largo que el de «el más cercano cada vez» y no se cruza).
+Fallos metidos: sin la mejora 2-opt (canta el caso de seis favoritos buscado
+entre los lugares reales donde «el más cercano» se cruza), sin el límite de 8
+s, sin el vocabulario de los otros ocho idiomas, y el orden al revés. Los
+cuatro, en rojo.
+
+### 3 · Anaga es Reserva de la Biosfera, no Patrimonio Mundial
+
+`bici-anaga-cruz-carmen` y `acc-sendero-sentidos`, en los diez idiomas: «Reserva
+de la Biosfera de la UNESCO desde 2015» (Ministerio para la Transición
+Ecológica, programa MAB, ficha «Macizo de Anaga»: declarada el 9 de junio de
+2015), con los mismos términos que ya usaba la ficha de Anaga en cada idioma.
+En Tenerife son Patrimonio Mundial La Laguna (1999) y el Parque Nacional del
+Teide (2007). Control nuevo en `auditar_datos.js`: ninguno de los 58 lugares de
+Anaga puede decir «Patrimonio Mundial» en ningún idioma (probado metiendo
+«UNESCO-Weltnaturerbe» en el alemán: canta).
+
+### 4 · El schema.org
+
+`inLanguage` con `pl`; «más de 700 lugares verificados» → «974 lugares»;
+«alertas AEMET» → «avisos meteorológicos de AEMET», que ahora es verdad.
+Controles nuevos en `auditar_datos.js`: ninguna cifra redonda de lugares en lo
+que se lee (va la contada), la cabecera no dice «verificados», y el schema.org
+declara todos los idiomas de la app. Probado con el texto viejo: los tres cantan.
+
+### 5 · «socorro»: el asistente propone y la gente elige
+
+Cuando lo escrito es a la vez una palabra de emergencias y el nombre de un
+lugar («socorro»: dos playas y un sitio de surf), propone 📞 Llamar al 112,
+🆘 Emergencia y 🏄 Playa El Socorro, en el idioma de la app; primero lo de la
+emergencia, por si lo es. «pedir socorro», «auxilio», «emergencia», «112»,
+policía, bomberos, accidente… van directos al 112, en los diez idiomas
+(«socorro» y «auxilio» también fuera del castellano, por si un turista los
+escribe). No se ha quitado ninguna palabra de las que ya había. 7 casos en
+`probar_movil.js`, con los botones pulsados.
+
+### Para Jerome
+
+1. **Tejina.** La ficha `nucleo-tejina` dice que la Fiesta de los Corazones es
+   «Patrimonio de la Humanidad UNESCO», en los diez idiomas. No está en
+   ninguna lista de la UNESCO. La prensa dice que es Bien de Interés Cultural
+   del Gobierno de Canarias desde 2003, pero no he encontrado el decreto en el
+   BOC para citarlo. No se ha tocado: un dato falso no se quita, se cambia
+   por el real, y el real todavía no tiene fuente oficial.
+2. **«ayuda» a secas** sigue llevando a la ayuda de la app (app-01), mientras
+   que «help», «Hilfe» o «pomoc» llevan al 112. Si quieres, que «ayuda»
+   proponga también 112, emergencia y ayuda de la app, como «socorro».
+3. **GitHub no lanza los cron a su hora** (lo mismo que con las gasolineras): la
+   comprobación de avisos es «más o menos cada hora». Si algún día se retrasa
+   más de 6 horas, la app lo dice.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -4594,6 +4719,9 @@ Y cada bloque por separado, si hace falta:
 | `tools/rotulos_app.js` | los rótulos de la app en los diez idiomas, sacados de `index.html` (lo usa `auditar_faq.js`) |
 | `tools/probar_faq.js` · `tools/probar_movil.js` | preguntas de prueba al asistente: en Node con el núcleo de verdad, y en un móvil con la app entera |
 | `tools/auditar_letras.js` | palabras escritas sin sus letras («waehle», «carre avec fleche») |
+| `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json` (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
+| `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, ficheros rotos, el latido de 3 horas |
+| `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: píldora, panel, líneas del tiempo y del mar, comprobación vieja, fichero que no llega |
 | `tools/castellano_suelto.js` | el castellano que se queda **dentro** de cada idioma —letras, palabras corrientes, palabras copiadas, alfabeto latino en búlgaro y chino— y las frases que la traducción no tiene; lo que se queda a propósito, en `idiomas/castellano-aceptado.json` |
 | `tools/faltan_textos.js` | **cribado**, no veredicto: descripciones más cortas de lo esperado contra la mediana de ese idioma |
 | `tools/meter_descripcion.py` | mete descripciones rehechas comprobando que el texto es **de ese lugar** |

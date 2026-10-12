@@ -140,13 +140,16 @@ def main():
             print(f'falta faq/fuente/intenciones/{L}.json'); return 1
         else:
             d = json.load(open(inte, encoding='utf-8'))
-            sobran = set(d) - {'where', 'what', 'near', 'nearTok', 'count', 'cats', 'zonas'}
+            # favs y orden (12/10/2026): «ordena mis favoritos por distancia»,
+            # que exc-03 prometia y el asistente no sabia hacer.
+            INTENCIONES = ('where', 'what', 'near', 'nearTok', 'count', 'favs', 'orden')
+            sobran = set(d) - set(INTENCIONES) - {'cats', 'zonas'}
             if sobran:
                 print(f'{L}: claves que no existen en el vocabulario: {sorted(sobran)}'); return 1
-            for campo in ('where', 'what', 'near', 'nearTok', 'count'):
+            for campo in INTENCIONES:
                 if not d.get(campo):
                     print(f'{L}: el vocabulario no trae «{campo}»'); return 1
-            salida['i'] = {k: d[k] for k in ('where', 'what', 'near', 'nearTok', 'count')}
+            salida['i'] = {k: d[k] for k in INTENCIONES}
             if d.get('cats'):
                 salida['c'] = d['cats']
             # las zonas («nord», «Süden», «北部»): las de castellano e ingles

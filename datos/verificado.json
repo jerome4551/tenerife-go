@@ -723,7 +723,7 @@
   "asistente": {
    "estado": "cerrado",
    "fecha": "2026-10-12",
-   "resultado": "121 respuestas x 10 idiomas = 1210, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026)."
+   "resultado": "122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La 122, app-23, es «ordena mis favoritos por distancia», que exc-03 prometia y desde el 12/10/2026 el asistente hace de verdad."
   },
   "mapa_sin_conexion": {
    "estado": "cerrado",
