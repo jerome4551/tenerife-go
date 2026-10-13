@@ -1,6 +1,6 @@
 # Revisión de los 787 lugares
 
-**12 de octubre de 2026.** Generado con `node tools/informe_lugares.js`.
+**13 de octubre de 2026.** Generado con `node tools/informe_lugares.js`.
 Barre los 787, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
@@ -365,14 +365,14 @@ caigan a la vez por casualidad es una entre un millón.
 | id | qué es | escrita | municipio |
 |---|---|---|---|
 | `ar-las-hayas` | Área Recreativa Las Hayas | 28.3500, -16.6900 | Icod de los Vinos |
-| `buceo-los-gigantes` | 🤿 Buceo Los Gigantes — Diving Centre | 28.2440, -16.8400 | Santiago del Teide |
-| `kayak-los-gigantes` | 🛶 Kayak & SUP Los Gigantes — Acantilados | 28.2440, -16.8400 | Santiago del Teide |
+| `buceo-los-gigantes` | Buceo Los Gigantes — Diving Centre | 28.2440, -16.8400 | Santiago del Teide |
+| `kayak-los-gigantes` | Kayak & SUP Los Gigantes — Acantilados | 28.2440, -16.8400 | Santiago del Teide |
 | `minimarket-24h-las-americas` | Seven Ways Supermarket 24h (Las Américas) | 28.066, -16.73 | Adeje |
 | `mir-rambleta-teide` | Mirador La Rambleta (Teide · 3.555 m) | 28.27, -16.639 | La Orotava |
 | `mirador-pino-galdo` | Mirador del Pino Galdo | 28.5600, -16.2650 | Santa Cruz de Tenerife |
-| `pesca-los-gigantes` | 🎣 Pesca Deportiva Los Gigantes | 28.2440, -16.8400 | Santiago del Teide |
-| `pp-el-tanque` | 🪂 Parapente — Despegue El Tanque (Noroeste) | 28.3450, -16.8100 | El Tanque |
-| `pp-guimar` | 🪂 Parapente — Ladera de Güímar (Este) | 28.3100, -16.4050 | Güímar |
+| `pesca-los-gigantes` | Pesca Deportiva Los Gigantes | 28.2440, -16.8400 | Santiago del Teide |
+| `pp-el-tanque` | Parapente — Despegue El Tanque (Noroeste) | 28.3450, -16.8100 | El Tanque |
+| `pp-guimar` | Parapente — Ladera de Güímar (Este) | 28.3100, -16.4050 | Güímar |
 | `sala-westerdahl` | Sala Eduardo Westerdahl (Puerto de la Cruz) | 28.418, -16.55 | Puerto de la Cruz |
 
 ### Las otras 11, con 3 decimales (~110 m)
@@ -381,14 +381,14 @@ caigan a la vez por casualidad es una entre un millón.
 |---|---|---|---|
 | `bici-agua-vilaflor` | Vilaflor — Agua y Descanso Ciclistas (1.400 m) | 28.1570, -16.6340 | Vilaflor |
 | `bici-bc2-inicio` | BC-2 Ruta MTB Principiantes — Corona Forestal | 28.3720, -16.4890 | La Orotava |
-| `buceo-puerto-cruz` | 🤿 Buceo Puerto de la Cruz — Centro Atlantik | 28.4150, -16.5480 | Puerto de la Cruz |
+| `buceo-puerto-cruz` | Buceo Puerto de la Cruz — Centro Atlantik | 28.4150, -16.5480 | Puerto de la Cruz |
 | `deporte-skatepark-laguna-copernico` | Skatepark La Laguna (C/ Copérnico) | 28.4930, -16.3150 | San Cristóbal de La Laguna |
 | `deporte-valle-san-lorenzo-kenguru` | Valle San Lorenzo — Calistenia Kenguru Pro | 28.091, -16.649 | Arona |
 | `hiperdino-arona-montaneta` | HiperDino Valle San Lorenzo (Arona) | 28.0980, -16.6820 | Arona |
 | `mercadillo-santa-cruz` | Rastro de Santa Cruz | 28.4580, -16.2490 | Santa Cruz de Tenerife |
 | `parkinson-tf-granadilla` | Párkinson Tenerife — Unidad Granadilla 🤝 | 28.122, -16.579 | Granadilla de Abona |
 | `parque-canino-laguna-via-ronda` | Parque Canino La Laguna (Vía Ronda) 🐾 | 28.4850, -16.3180 | San Cristóbal de La Laguna |
-| `pp-izana` | 🪂 Parapente — Despegue Izaña (2.200 m) | 28.3090, -16.4990 | — |
+| `pp-izana` | Parapente — Despegue Izaña (2.200 m) | 28.3090, -16.4990 | — |
 | `puerto-granadilla-comercial` | Puerto de Granadilla (Comercial) | 28.073, -16.499 | Granadilla de Abona |
 
 ## 2 · Fichas que comparten coordenada exacta

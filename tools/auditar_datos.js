@@ -184,6 +184,14 @@ debe('fuera de la caja de Tenerife',
      PLACES.filter(p => p.lat < 27.95 || p.lat > 28.62 || p.lng < -16.98 || p.lng > -16.05).length, true);
 const urls = []; PLACES.forEach(p => Object.values(p).forEach(v => { if (typeof v === 'string' && /^https?:/.test(v)) urls.push(v); }));
 debe('urls sin cifrar', urls.filter(u => u.startsWith('http://')).length + ' de ' + urls.length, !urls.some(u => u.startsWith('http://')));
+/* El emoji de la ficha va en su campo, y la app ya lo pinta delante del
+   nombre: 28 nombres (buceo, kayak, escalada, pesca, parapente, windsurf)
+   lo llevaban ademas escrito dentro y salian con el emoji dos veces. Se
+   quitaron el 13 de octubre de 2026 con el OK de Jerome. Lo que va DETRAS
+   del nombre (🐾 ♿ 🤝) es una marca de servicio y se queda. */
+const emojiDelante = PLACES.filter(p => /^\p{Extended_Pictographic}/u.test(String(p.name)));
+debe('nombres que empiezan por un emoji', emojiDelante.length, emojiDelante.length === 0);
+emojiDelante.slice(0, 5).forEach(p => console.log('      <--  ' + p.id + ' : ' + p.name));
 
 /* La calidad del agua y su ano no se pueden separar: el texto de la insignia
    dice "censo oficial {a}", asi que una ficha con calidad y sin ano pintaria

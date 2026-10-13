@@ -4921,6 +4921,18 @@ estaba en un bloque que ya no se monta. No se ve en ningún idioma.
    2,5 veces más. Ahora que cada tramo dice su tiempo, se ve: hay tramos de
    50 km. Si quieres, se acorta el radio.
 
+## Los 28 nombres, sin su emoji delante (13 de octubre)
+
+Con tu OK («1 ok cambia»): los 28 nombres que empezaban por su propio emoji
+ya no lo llevan («Escalada Arico — Referencia Internacional», «Buceo Los
+Gigantes — Diving Centre», «Parapente — Despegue Taucho (Adeje)»…). El emoji
+sigue en su icono, que es lo que la app pinta delante del nombre; las marcas
+del final (♿ 🐾 🤝) se quedan. Ningún otro dato de las fichas cambia, y no
+sale ningún nombre repetido nuevo. `REVISION-LUGARES.md`, regenerado.
+
+Control nuevo en `tools/auditar_datos.js`: «nombres que empiezan por un
+emoji» tiene que dar 0. Con el `index.html` de antes da 28 y se pone en rojo.
+
 ---
 
 # 5 · Cómo se vuelve a medir
