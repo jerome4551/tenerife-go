@@ -441,6 +441,32 @@ console.log('\n=== catalogo del planificador ===');
   multi.forEach(([i, z]) => console.log('      ·  ' + i + '  ' + z.join(' + ')));
 }
 
+console.log('\n=== grupos de categorias (las pestañas del boton de categorias) ===');
+{
+  /* Cada categoria del mapa en una pestaña, y en una sola: en dos, el mismo
+     filtro saldria dos veces; en ninguna, no se podria filtrar por ella. Y
+     lo que Jerome decide de un grupo se queda como lo decidio: el 13 de
+     octubre de 2026, «Senderismo quiero la categoría en deportes». */
+  const { grab } = require('./rotulos_app');
+  const GRUPOS = grab('const CAT_GROUPS = [');
+  const BASE = grab('const categoriesBase = {');
+  const enGrupo = {};
+  GRUPOS.forEach(g => g.cats.forEach(c => (enGrupo[c] = enGrupo[c] || []).push(g.id)));
+  const dobles = Object.entries(enGrupo).filter(([, gs]) => gs.length > 1);
+  const sueltas = Object.keys(BASE).filter(c => !enGrupo[c]);
+  const fantasmas = Object.keys(enGrupo).filter(c => !BASE[c]);
+  P('pestañas', GRUPOS.length);
+  debe('categorias en dos pestañas', dobles.length, dobles.length === 0);
+  dobles.forEach(([c, gs]) => console.log('      ' + c + ': ' + gs.join(' y ')));
+  debe('categorias sin pestaña', sueltas.length, sueltas.length === 0);
+  sueltas.forEach(c => console.log('      ' + c));
+  debe('en una pestaña y sin ser categoria', fantasmas.length, fantasmas.length === 0);
+  fantasmas.forEach(c => console.log('      ' + c));
+  const DECIDIDO = { senderismo: 'deporte' };
+  for (const [c, g] of Object.entries(DECIDIDO))
+    debe(c + ' en la pestaña «' + g + '» (lo decidio Jerome)', (enGrupo[c] || []).join(', ') || 'ninguna', (enGrupo[c] || []).join() === g);
+}
+
 console.log('\n=== rotulos repetidos ===');
 const por = {}; Object.entries(CAT).forEach(([k, p]) => (por[norm(p.n)] = por[norm(p.n)] || []).push(k));
 const dup = Object.entries(por).filter(([, a]) => a.length > 1);

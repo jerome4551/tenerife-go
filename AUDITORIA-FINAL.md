@@ -4839,6 +4839,21 @@ usar cada pestaña con datos, y eso no lo hacía ningún control:
    y con dos transbordos se llega: hay 26 combinaciones en los datos, por
    ejemplo 473 → 460 → 355.
 
+## Senderismo, en la pestaña Deporte (13 de octubre)
+
+Jerome: «Senderismo quiero la categoría en deportes». En el botón de
+categorías, Senderismo deja la pestaña «Naturaleza & Playas» y pasa a la
+primera de «Deporte», en los diez idiomas (las pestañas salen de
+`CAT_GROUPS`). Sus 38 lugares no cambian; solo la pestaña.
+
+Control nuevo en `auditar_datos.js`: cada categoría del mapa en una
+pestaña y en una sola (43 categorías, 11 pestañas), ninguna pestaña con una
+categoría que no existe, y Senderismo en Deporte, como lo decidió Jerome.
+Con la versión de antes, en rojo.
+
+En «Organiza tu día», la tarjeta «Naturaleza · Rutas, volcanes» sigue
+proponiendo senderos: es el planificador, no el filtro, y no se ha tocado.
+
 ---
 
 # 5 · Cómo se vuelve a medir
