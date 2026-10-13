@@ -5018,6 +5018,62 @@ Acantilados de Los Gigantes entran solo con Norte. Fallos metidos: los Roques
 de García solo en el Norte, Masca otra vez en el Sur de «Ruta del día» y el
 Teide fuera del Sur: los tres en rojo.
 
+Y la tercera opción se queda como está: «Me da igual está bien» (Jerome).
+
+## «Organiza tu día»: nunca dos paradas del mismo sitio (13 de octubre)
+
+Jerome, a la propuesta: «Hazlo y bien pensado». Del Teide salían el volcán y
+su cumbre, uno detrás de otro: «~0 min · 0,1 km». No era el único caso: entre
+los 564 lugares que usa el planificador hay 57 parejas con la misma
+coordenada exacta.
+
+Para la app son el mismo sitio (`DP_SITIO`):
+- las fichas con la **misma coordenada exacta**: la playa y su ficha de surf,
+  el parque y su ficha 🐾, el área recreativa y su zona de acampada, el
+  buceo, el kayak y la pesca de un mismo puerto…;
+- las que se **llaman igual** (sin contar emojis, tildes ni mayúsculas) a
+  menos de 1 km: las dos «Mesa del Mar», las piscinas y el pueblo, a 180 m.
+  Con la distancia, dos sitios que se llamen igual en dos pueblos no se
+  juntan;
+- y los de `DP_MISMO_SITIO`, el mismo sitio con otra coordenada: el Teide (el
+  volcán, la cumbre y la ficha del Parque Nacional con perro, las tres en la
+  cumbre, a menos de 130 m).
+
+Lo que está cerca pero es otra cosa sigue pudiendo ir junto: el puerto y su
+restaurante, el pueblo y su mercadillo, el Drago y la Casa del Drago, Masca y
+su mirador, el Teide y su teleférico. Por eso no se junta por distancia: a
+50 m hay museos distintos que se ven a pie en la misma mañana.
+
+En toda la app, las 974 fichas son 892 sitios. Un sitio cuenta una vez:
+- **en las paradas y en la comida**: nunca dos del mismo sitio;
+- **al elegir la zona del día**, que se escoge por sitios y no por fichas:
+  tres fichas de un mismo puerto son una parada;
+- **en «🔄 Otro»**, que no trae el mismo sitio que la parada que cambia ni el
+  de otra del itinerario (cambiar la playa por su ficha de surf no es
+  cambiar); si no queda otro sitio, no cambia;
+- **en el aviso** de que en la zona no hay más: kayak y pesca en el Sur son
+  siete fichas en cinco sitios, y salen cinco paradas con el aviso;
+- y **en las sugerencias de «Ruta del día»**, que enseñaban dos veces «Mesa
+  del Mar» (Norte) y dos veces «Playa San Juan» (Sur), con el mismo nombre.
+  Se queda la primera de la lista: las piscinas y la playa. Las listas no se
+  tocan; se dejan de pintar dos veces.
+
+Controles, en `probar_organiza.js`, con código propio y no el de la app: las
+57 parejas, el Teide y «Mesa del Mar» son un sitio para la app, y el Drago con
+su restaurante, Masca con su mirador o el Teide con su teleférico no; 210
+itinerarios (catorce tarjetas, Norte, Sur y toda la isla, cinco azares) y
+«Naturaleza» en el Sur con sesenta azares, sin ningún sitio repetido; kayak y
+pesca en el Sur; «Otro» parada por parada; las sugerencias de «Ruta del día»
+(81 de 82 en el Norte, 58 de 59 en el Sur). Fallos metidos: elegir las
+paradas mirando solo el id, «Otro» como antes, sin el grupo del Teide, sin la
+regla del nombre, el aviso contando fichas en vez de sitios y «Ruta del día»
+pintándolo todo: los seis en rojo.
+
+### Para Jerome
+
+1. **La ficha «Parque Nacional Teide 🐾»** (el Teide con perro) es de La
+   Orotava y sale solo con Norte. ¿También con Sur, como el Teide?
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -5066,7 +5122,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json` (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, ficheros rotos, el latido de 3 horas |
 | `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos, los kilómetros del coche y lo que se comparte del itinerario |
-| `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, Norte y Sur sin paradas de la otra zona (y «Otro» tampoco), el aviso cuando no hay más, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano |
+| `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, Norte y Sur sin paradas de la otra zona (y «Otro» tampoco), nunca dos paradas del mismo sitio (comprobado con código propio), el aviso cuando no hay más, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano |
 | `tools/zonas_lugares.py` | Norte o Sur de cada lugar por el polígono oficial de su municipio: lo escribe en `index.html` y con `--comprobar` lo rehace y lo compara; coteja también las listas Norte y Sur de «Ruta del día» |
 | `tools/auditar_claves_tx.js` | cada `tx('…')` con la clave escrita tiene su fila en `UI_TX` (`tx()` devuelve vacío sin avisar) |
 | `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: píldora, panel, líneas del tiempo y del mar, comprobación vieja, fichero que no llega |

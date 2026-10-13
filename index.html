@@ -20310,11 +20310,17 @@ function renderDayTripCatalog() {
                     : 'daytripZoneCenter';
   headerEl.textContent = (L.daytripCatalogTitle || 'Sugerencias') + ' · ' + L[zoneNameKey];
 
-  // Construir lista
+  // Construir lista. Cada sitio, una vez: «Mesa del Mar» y «Playa San Juan»
+  // tienen dos fichas cada una y salian dos veces, con el mismo nombre. Se
+  // queda la primera de la lista (el mismo sitio: DP_SITIO, en «Organiza tu
+  // día»; 13 de octubre de 2026).
   listEl.innerHTML = '';
+  const mostrados = [];
   zone.suggestionIds.forEach(id => {
     const place = places.find(p => p.id === id);
     if (!place) return;
+    if (typeof dpMismoSitio === 'function' && mostrados.some(q => dpMismoSitio(q, place))) return;
+    mostrados.push(place);
     const isAdded = dayTripStops.includes(id);
 
     const item = document.createElement('div');
@@ -31472,6 +31478,54 @@ const DP_ZONA_DE = {
   sur: new Set(DP_ZONA_LUGAR.sur.split(' '))
 };
 
+/* EL MISMO SITIO, DOS FICHAS. Jerome, 13 de octubre de 2026: en un mismo
+   itinerario, nunca dos paradas del mismo sitio («Hazlo y bien pensado»). Del
+   Teide salian el volcan y su cumbre, una detras de otra: «~0 min · 0,1 km».
+   Son el mismo sitio:
+   · las fichas con la MISMA coordenada exacta: la playa y su ficha de surf, el
+     parque y su ficha 🐾, el area recreativa y su zona de acampada, el buceo,
+     el kayak y la pesca de un mismo puerto... (57 parejas entre los lugares
+     del planificador, el 13 de octubre);
+   · las que se LLAMAN igual (sin contar emojis, tildes ni mayusculas) a menos
+     de 1 km: «Mesa del Mar», las piscinas, y «Mesa del Mar», el pueblo, a
+     180 m. Con la distancia, dos sitios que se llamen igual en dos pueblos no
+     se juntan;
+   · y los de DP_MISMO_SITIO: el mismo sitio con otra coordenada.
+   Lo que esta cerca pero es otra cosa (el puerto y su restaurante, el pueblo y
+   su mercadillo, el Drago y la Casa del Drago) sigue pudiendo ir junto.
+   Un sitio cuenta una vez en todo: las paradas, la comida, «🔄 Otro» y el
+   aviso de que en la zona no hay mas. */
+const DP_MISMO_SITIO = [
+  // el volcan, su cumbre y la ficha del Parque Nacional con perro: las tres
+  // en la cumbre, a menos de 130 m
+  ['teide', 'pico-teide-cumbre', 'teide-petfriendly'],
+];
+const DP_SITIO = (function () {
+  const lista = (typeof places !== 'undefined' && Array.isArray(places)) ? places : [];
+  const padre = new Map();
+  const raiz = k => { while (padre.get(k) !== k) k = padre.get(k); return k; };
+  const une = (a, b) => { a = raiz(a); b = raiz(b); if (a !== b) padre.set(b, a); };
+  const nombre = n => sinTildes(n).replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+  const porCoord = new Map(), porNombre = new Map();
+  lista.forEach(p => padre.set(p.id, p.id));
+  lista.forEach(p => {
+    const c = p.lat + ',' + p.lng;
+    if (porCoord.has(c)) une(porCoord.get(c), p.id); else porCoord.set(c, p.id);
+    const n = nombre(p.name);
+    if (!n) return;
+    const antes = porNombre.get(n) || [];
+    antes.forEach(q => { if (haversineKm(p.lat, p.lng, q.lat, q.lng) <= 1) une(q.id, p.id); });
+    porNombre.set(n, antes.concat([p]));
+  });
+  DP_MISMO_SITIO.forEach(g => g.forEach(id => { if (padre.has(id) && padre.has(g[0])) une(g[0], id); }));
+  const sitio = new Map();
+  lista.forEach(p => sitio.set(p.id, raiz(p.id)));
+  return sitio;
+})();
+// La clave del sitio de un lugar: los del mismo sitio tienen la misma.
+function dpSitio(p) { return DP_SITIO.get(p.id) || ('@' + p.lat + ',' + p.lng); }
+function dpMismoSitio(a, b) { return !!a && !!b && dpSitio(a) === dpSitio(b); }
+
 /* Tiempo, transporte y textos de interfaz de los dos planificadores,
    en los 10 idiomas. Igual que DP_CARDS: una sola fuente de verdad,
    las tarjetas se generan por JS y se regeneran al cambiar idioma. */
@@ -32067,9 +32121,11 @@ function dpiGenerate() {
   for (const seed of seeds) {
     for (const r of [radius, radius * 1.6, radius * 2.5]) {
       const near = pool.filter(p => haversineKm(seed.lat, seed.lng, p.lat, p.lng) <= r);
-      if (near.length < Math.min(nStops, 2)) continue;
+      // cuentan los sitios, no las fichas: tres del mismo puerto son una parada
+      const sitios = new Set(near.map(dpSitio)).size;
+      if (sitios < Math.min(nStops, 2)) continue;
       const variety = new Set(near.map(p => p.category)).size;
-      const score = Math.min(near.length, nStops * 3) * 10 + variety;
+      const score = Math.min(sitios, nStops * 3) * 10 + variety;
       if (!best || score > best.score) best = { seed, near, score, r };
       break; // este radio ya sirve para esta semilla
     }
@@ -32080,18 +32136,19 @@ function dpiGenerate() {
   const cand = best.near.slice().sort(() => Math.random() - 0.5);
   const selected = [];
   const usedCats = new Set();
+  // nunca dos del mismo sitio (DP_SITIO)
   for (const p of cand) {
     if (selected.length >= nStops) break;
-    if (!usedCats.has(p.category)) { selected.push(p); usedCats.add(p.category); }
+    if (!usedCats.has(p.category) && !selected.some(s => dpMismoSitio(s, p))) { selected.push(p); usedCats.add(p.category); }
   }
   for (const p of cand) {
     if (selected.length >= nStops) break;
-    if (!selected.find(s => s.id === p.id)) selected.push(p);
+    if (!selected.some(s => dpMismoSitio(s, p))) selected.push(p);
   }
   /* Con Norte o Sur puede que no haya bastantes (Museos, en el Sur, son
      dos). Se dice solo si de verdad no queda ninguno mas en la zona: si
      faltan porque los demas estan lejos, la frase seria falsa. */
-  dpiAviso = dpiZona !== 'igual' && selected.length < nStops && selected.length === pool.length;
+  dpiAviso = dpiZona !== 'igual' && selected.length < nStops && selected.length === new Set(pool.map(dpSitio)).size;
 
   // Comida: también cercana. Antes se cogía de toda la isla y podía
   // mandar a comer a 60 km del resto de paradas.
@@ -32099,7 +32156,7 @@ function dpiGenerate() {
     const ref = selected[0] || best.seed;
     const food = all
       .filter(p => p.category === 'gastronomia' && p.name && p.lat && p.lng && dpiEnZona(p))
-      .filter(p => !selected.find(s => s.id === p.id))
+      .filter(p => !selected.some(s => dpMismoSitio(s, p)))
       .map(p => ({ p, d: haversineKm(ref.lat, ref.lng, p.lat, p.lng) }))
       .filter(x => x.d <= best.r * 1.3)
       .sort((a, b) => a.d - b.d)
@@ -32223,13 +32280,17 @@ function dpTramoHtml(a, b, modo) {
    con esas categorias -con dos tarjetas o mas, ni eso: las de «Sorpréndeme»-
    y podia cambiar una parada de Los Cristianos por una de Anaga. Ahora: de lo
    elegido, en la zona elegida, y uno de los cinco mas cercanos a la parada
-   que se cambia, de la misma categoria si los hay. La comida, por otra. */
+   que se cambia, de la misma categoria si los hay. La comida, por otra. Y
+   nunca del mismo sitio que esta parada ni que otra del itinerario
+   (DP_SITIO): cambiar la playa por su ficha de surf no es cambiar. */
 function dpiSwapOne(idx) {
   const current = dpCurrentStops[idx];
   if (!current) return;
   const cats = dpiCategorias().concat([current.category]);
   const candidates = (typeof places !== 'undefined' ? places : [])
-    .filter(p => cats.includes(p.category) && !dpUsedIds.has(p.id) && p.name && p.lat && p.lng && dpiEnZona(p))
+    .filter(p => cats.includes(p.category) && !dpUsedIds.has(p.id) && p.name && p.lat && p.lng && dpiEnZona(p)
+      // ni del sitio de esta parada ni del de ninguna otra del itinerario
+      && !dpCurrentStops.some(st => dpMismoSitio(st, p)))
     .map(p => ({ p, d: haversineKm(current.lat, current.lng, p.lat, p.lng) }))
     .sort((a, b) => a.d - b.d);
   const sameCat = candidates.filter(x => x.p.category === current.category);

@@ -45,6 +45,20 @@
  *     teid debe salir en sur y norte, igual por su teleférico, Roque garcia.
  *     El resto es norte»).
  *
+ * Y nunca dos paradas del mismo sitio (Jerome: «Hazlo y bien pensado»): se
+ * mira aqui con su propio codigo, no con el de la app. Mismo sitio: la misma
+ * coordenada exacta, el mismo nombre a menos de 1 km o el Teide (el volcan,
+ * la cumbre y su ficha con perro). En castellano:
+ *   · las 57 parejas con la misma coordenada, el Teide y «Mesa del Mar» son
+ *     un sitio para la app; el Drago y la Casa del Drago, o Masca y su
+ *     mirador, no;
+ *   · 210 itinerarios (catorce tarjetas, Norte, Sur y toda la isla, cinco
+ *     azares) y «Naturaleza» en el Sur con sesenta azares: ninguno repite;
+ *   · kayak y pesca en el Sur, siete fichas en cinco sitios: salen cinco
+ *     paradas, una por sitio, y el aviso de que no hay mas;
+ *   · «🔄 Otro» no trae nunca el mismo sitio ni repite otro del itinerario;
+ *   · y en las sugerencias de «Ruta del día», cada sitio una vez.
+ *
  *     node tools/probar_organiza.js [puerto]
  *     node tools/probar_organiza.js [puerto] de,zh     solo esos (y el castellano)
  */
@@ -195,6 +209,14 @@ const RECORRER = async () => {
     out.titulos.tres = { titulo: r.titulo, fila: ['deporte', 'aventura', 'petfriendly'].map(id => { const c = DP_CARDS.find(x => x.id === id); return c.icon + ' ' + c.tx[L][0]; }).join(' · ') };
   }
   out.deporte = DP_ZONES.deporte.slice(); out.naturaleza = DP_ZONES.naturaleza.slice();
+  /* «el mismo sitio», con codigo propio: la misma coordenada exacta, el mismo
+     nombre (sin emojis, tildes ni mayusculas) a menos de 1 km, o el Teide */
+  const km = (a, b) => { const R = 6371, r = x => x * Math.PI / 180, dl = r(b.lat - a.lat), dn = r(b.lng - a.lng);
+    const h = Math.sin(dl / 2) ** 2 + Math.cos(r(a.lat)) * Math.cos(r(b.lat)) * Math.sin(dn / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
+  const pliega = n => String(n).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+  const TEIDE = ['teide', 'pico-teide-cumbre', 'teide-petfriendly'];
+  const mismo = (a, b) => a.id === b.id || (a.lat === b.lat && a.lng === b.lng) || (pliega(a.name) === pliega(b.name) && km(a, b) <= 1) || (TEIDE.includes(a.id) && TEIDE.includes(b.id));
+  const repetidos = lista => { const r = []; for (let i = 0; i < lista.length; i++) for (let j = i + 1; j < lista.length; j++) if (mismo(lista[i], lista[j])) r.push(lista[i].id + '=' + lista[j].id); return r; };
   // ── Norte y Sur
   const etZona = id => { const o = DP_ZONAS.find(x => x.id === id); return o.icon + ' ' + o.tx[L][0]; };
   const etTarjetas = ids => ids.map(id => { const c = DP_CARDS.find(x => x.id === id); return c.icon + ' ' + c.tx[L][0]; }).join(' · ');
@@ -211,13 +233,14 @@ const RECORRER = async () => {
     for (let i = 0; i < dpCurrentStops.length; i++) {
       const antes = dpCurrentStops[i], usados = new Set(dpUsedIds);
       const cats = dpiCategorias().concat([antes.category]);
-      const cand = places.filter(p => cats.includes(p.category) && !usados.has(p.id) && p.name && p.lat && p.lng && DP_ZONA_DE.sur.has(p.id))
+      const cand = places.filter(p => cats.includes(p.category) && !usados.has(p.id) && p.name && p.lat && p.lng && DP_ZONA_DE.sur.has(p.id) && !dpCurrentStops.some(st => dpMismoSitio(st, p)))
         .map(p => ({ id: p.id, cat: p.category, d: hav(antes, p) })).sort((a, b) => a.d - b.d);
       const misma = cand.filter(x => x.cat === antes.category);
       const esperados = (misma.length ? misma : cand).slice(0, 5).map(x => x.id);
       dpiSwapOne(i);
       const despues = dpCurrentStops[i];
-      cambios.push({ antes: antes.id, despues: despues.id, enSur: DP_ZONA_DE.sur.has(despues.id), esperado: esperados.includes(despues.id), esperados });
+      cambios.push({ antes: antes.id, despues: despues.id, enSur: DP_ZONA_DE.sur.has(despues.id), esperado: esperados.includes(despues.id), esperados,
+        mismoSitio: mismo(antes, despues), repetidos: repetidos(dpCurrentStops) });
     }
     out.zonas.otro = cambios;
   }
@@ -230,14 +253,68 @@ const RECORRER = async () => {
   }
   // en castellano, las catorce tarjetas por cinco azares en cada zona
   if (L === 'es') {
-    const malas = []; let n = 0;
-    for (const c of DP_CARDS) for (const zona of ['norte', 'sur']) for (let k = 1; k <= 5; k++) {
+    const malas = [], dobles = []; let n = 0;
+    for (const c of DP_CARDS) for (const zona of ['norte', 'sur', 'igual']) for (let k = 1; k <= 5; k++) {
       sem.v = 1000 + k;
       dpiReset(); dpiTime = 'fullday'; dpiSelectedZones = [c.id]; dpiZone = c.id; dpiZona = zona; dpiTransport = 'coche';
       dpiGenerate(); n++;
-      dpCurrentStops.forEach(p => { if (!DP_ZONA_DE[zona].has(p.id)) malas.push(c.id + '/' + zona + ': ' + p.id); });
+      dpCurrentStops.forEach(p => { if (zona !== 'igual' && !DP_ZONA_DE[zona].has(p.id)) malas.push(c.id + '/' + zona + ': ' + p.id); });
+      repetidos(dpCurrentStops).forEach(x => dobles.push(c.id + '/' + zona + ': ' + x));
     }
-    out.zonas.azar = { n, malas };
+    out.zonas.azar = { n, malas, dobles };
+    // «Naturaleza» en el Sur, sesenta azares: el Teide, una vez como mucho
+    const teide = [];
+    for (let k = 1; k <= 60; k++) {
+      sem.v = k;
+      dpiReset(); dpiTime = 'halfday'; dpiSelectedZones = ['naturaleza']; dpiZone = 'naturaleza'; dpiZona = 'sur'; dpiTransport = 'coche';
+      dpiGenerate();
+      const t = dpCurrentStops.filter(p => TEIDE.includes(p.id)).map(p => p.id);
+      if (t.length > 1 || repetidos(dpCurrentStops).length) teide.push(k + ': ' + dpCurrentStops.map(p => p.id).join(','));
+    }
+    out.zonas.teide60 = teide;
+    // los datos: lo que la app junta y lo que no
+    const plan = new Set(); DP_CARDS.forEach(c => c.cats.forEach(x => plan.add(x))); plan.add('gastronomia');
+    const P = places.filter(p => plan.has(p.category) && p.name && p.lat && p.lng);
+    let parejas = 0; const sueltas = [];
+    for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) if (P[i].lat === P[j].lat && P[i].lng === P[j].lng) {
+      parejas++; if (!dpMismoSitio(P[i], P[j])) sueltas.push(P[i].id + '/' + P[j].id); }
+    const id = x => places.find(p => p.id === x);
+    const juntos = [['teide', 'pico-teide-cumbre'], ['teide', 'teide-petfriendly'], ['mesa-mar', 'nucleo-mesa-mar']];
+    const separados = [['icod', 'restaurante-drago'], ['puertito-los-abrigos', 'zona-mariscos-los-abrigos'], ['masca', 'mirador-maska'], ['teide', 'teide-teleforico'], ['teide', 'mir-rambleta-teide']];
+    out.zonas.datos = { parejas, sueltas,
+      juntos: juntos.map(([a, b]) => [a, b, !!id(a) && !!id(b) && dpMismoSitio(id(a), id(b))]),
+      separados: separados.map(([a, b]) => [a, b, !!id(a) && !!id(b) && !dpMismoSitio(id(a), id(b))]),
+      grupoExiste: DP_MISMO_SITIO.every(g => g.every(x => !!id(x))) };
+    // kayak y pesca en el Sur: siete fichas, cinco sitios
+    DP_ZONES.__prueba = ['kayak', 'pesca'];
+    sem.v = 7;
+    dpiReset(); dpiTime = 'fullday'; dpiSelectedZones = ['__prueba']; dpiZone = '__prueba'; dpiZona = 'sur'; dpiTransport = 'coche';
+    document.querySelectorAll('.dpi-step').forEach(x => x.classList.remove('active'));
+    document.getElementById('dpi-step-4').classList.add('active');
+    dpiGenerate();
+    const fichas = places.filter(p => DP_ZONES.__prueba.includes(p.category) && DP_ZONA_DE.sur.has(p.id));
+    const sitiosPropios = [];
+    fichas.forEach(p => { if (!sitiosPropios.some(q => mismo(p, q))) sitiosPropios.push(p); });
+    const paradas = dpCurrentStops.filter(p => p.category !== 'gastronomia');
+    const av = document.getElementById('dpi-zona-aviso');
+    // «Otro» sin otro sitio libre: no cambia
+    const antes = dpCurrentStops.map(p => p.id).join(',');
+    for (let i = 0; i < dpCurrentStops.length; i++) if (dpCurrentStops[i].category !== 'gastronomia') dpiSwapOne(i);
+    out.zonas.kayakPesca = { fichas: fichas.length, sitios: sitiosPropios.length, paradas: paradas.map(p => p.id), repetidos: repetidos(dpCurrentStops),
+      aviso: av && !av.hidden ? av.textContent.trim() : '', avisoFila: tx('dpZonaSinMas'),
+      otroIgual: antes === dpCurrentStops.map(p => p.id).join(','), otroRepite: repetidos(dpCurrentStops) };
+    delete DP_ZONES.__prueba;
+    // «Ruta del día»: en sus sugerencias, cada sitio una vez
+    out.zonas.rutaDia = Object.keys(DAY_TRIP_ZONES).map(z => {
+      selectDayTripZone(z);
+      const ids = [...document.querySelectorAll('#daytrip-catalog-list .catalog-item-add')]
+        .map(b => ((b.getAttribute('onclick') || '').match(/toggleDayTripStop\('([^']+)'\)/) || [])[1]).filter(Boolean);
+      const vistos = ids.map(i => places.find(p => p.id === i)).filter(Boolean);
+      const lista = DAY_TRIP_ZONES[z].suggestionIds.map(i => places.find(p => p.id === i)).filter(Boolean);
+      const sitios = []; lista.forEach(p => { if (!sitios.some(q => mismo(p, q))) sitios.push(p); });
+      return { z, items: vistos.length, sitios: sitios.length, fichas: lista.length, repetidos: repetidos(vistos) };
+    });
+    currentDayTripZone = null;
     out.zonas.sinZona = places.filter(p => !DP_ZONA_DE.norte.has(p.id) && !DP_ZONA_DE.sur.has(p.id)).map(p => p.id);
   }
   /* el Teide, su teleferico y los Roques de Garcia, en las dos; lo demas de
@@ -357,8 +434,8 @@ const RECORRER = async () => {
       caso(`[${L}] ${zona}: el titulo dice la zona («${z.tituloFila}»)`, z.titulo === z.tituloFila && !z.aviso, JSON.stringify([z.titulo, z.aviso]));
     }
     {
-      const o = d.zonas.otro, mal = o.filter(x => !x.enSur || !x.esperado || x.despues === x.antes);
-      caso(`[${L}] «Otro» en el Sur: ${o.length} cambios, en el Sur, en lo elegido y entre los cinco mas cercanos`, o.length >= 4 && mal.length === 0, JSON.stringify(mal).slice(0, 400));
+      const o = d.zonas.otro, mal = o.filter(x => !x.enSur || !x.esperado || x.despues === x.antes || x.mismoSitio || x.repetidos.length);
+      caso(`[${L}] «Otro» en el Sur: ${o.length} cambios, en el Sur, en lo elegido, entre los cinco mas cercanos y sin repetir sitio`, o.length >= 4 && mal.length === 0, JSON.stringify(mal).slice(0, 400));
       const ms = d.zonas['museo-sur'], mn = d.zonas['museo-norte'];
       const museosSur = ms.paradas.filter(p => p.cat !== 'gastronomia').map(p => p.id).sort();
       caso(`[${L}] Museos en el Sur: estan los ${ms.hay.length} que hay y lo dice («${ms.avisoFila}»)`,
@@ -369,7 +446,20 @@ const RECORRER = async () => {
       caso(`[${L}] La Ruleta, el Llano de Ucanca, Masca y los Acantilados de Los Gigantes, solo en el Norte`, ld.norte.every(([, n, s]) => n && !s), JSON.stringify(ld.norte));
     }
     if (d.zonas.azar) {
-      caso(`[es] ${d.zonas.azar.n} itinerarios (catorce tarjetas, Norte y Sur, cinco azares): ninguna parada de la otra zona`, d.zonas.azar.malas.length === 0, d.zonas.azar.malas.slice(0, 8).join(' | '));
+      caso(`[es] ${d.zonas.azar.n} itinerarios (catorce tarjetas, Norte, Sur y toda la isla, cinco azares): ninguna parada de la otra zona`, d.zonas.azar.malas.length === 0, d.zonas.azar.malas.slice(0, 8).join(' | '));
+      caso(`[es] los mismos ${d.zonas.azar.n}: ninguno con dos paradas del mismo sitio`, d.zonas.azar.dobles.length === 0, d.zonas.azar.dobles.slice(0, 8).join(' | '));
+      caso(`[es] «Naturaleza» en el Sur con sesenta azares: el Teide, una vez como mucho, y nada repetido`, d.zonas.teide60.length === 0, d.zonas.teide60.slice(0, 4).join(' | '));
+      const dt = d.zonas.datos;
+      caso(`[es] las ${dt.parejas} parejas con la misma coordenada exacta son un sitio para la app`, dt.parejas === 57 && dt.sueltas.length === 0, JSON.stringify([dt.parejas, dt.sueltas.slice(0, 6)]));
+      caso(`[es] el Teide (volcan, cumbre y su ficha con perro) y las dos «Mesa del Mar», un sitio cada uno`, dt.grupoExiste && dt.juntos.every(x => x[2]), JSON.stringify(dt.juntos));
+      caso(`[es] lo cercano que es otra cosa sigue aparte (el Drago y su restaurante, Masca y su mirador, el Teide y su teleferico)`, dt.separados.every(x => x[2]), JSON.stringify(dt.separados));
+      const kp = d.zonas.kayakPesca;
+      caso(`[es] kayak y pesca en el Sur (${kp.fichas} fichas, ${kp.sitios} sitios): ${kp.sitios} paradas, una por sitio, y el aviso`,
+        kp.fichas > kp.sitios && kp.sitios < 6 && kp.paradas.length === kp.sitios && kp.repetidos.length === 0 && kp.aviso === kp.avisoFila, JSON.stringify(kp));
+      caso(`[es] kayak y pesca en el Sur: «Otro» sin otro sitio libre no cambia a uno repetido`, kp.otroIgual && kp.otroRepite.length === 0, JSON.stringify(kp));
+      const rd = d.zonas.rutaDia;
+      caso(`[es] «Ruta del día»: en las sugerencias, cada sitio una vez (${rd.map(x => x.z + ' ' + x.items + ' de ' + x.fichas).join(', ')})`,
+        rd.length === 3 && rd.every(x => x.items === x.sitios && x.repetidos.length === 0) && rd.some(x => x.fichas > x.sitios), JSON.stringify(rd));
       caso(`[es] todos los lugares tienen zona`, d.zonas.sinZona.length === 0, d.zonas.sinZona.slice(0, 8).join(', '));
     }
     caso(`[${L}] Senderismo en la tarjeta Deporte y no en Naturaleza`, d.deporte.includes('senderismo') && !d.naturaleza.includes('senderismo'), JSON.stringify([d.deporte, d.naturaleza]));
