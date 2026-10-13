@@ -4952,7 +4952,8 @@ polígono oficial del Cabildo (el de `tools/municipio.py`, que coincide con
 las 2.514 paradas de TITSA). Norte: los 19 municipios de Santa Cruz a
 Buenavista del Norte. Sur: los 12 de Candelaria a Santiago del Teide. Es el
 reparto que ya usaba «Ruta del día» (Candelaria, Arafo y Güímar en el Sur; El
-Rosario en el Norte). Salen 594 lugares en el Norte y 380 en el Sur. Quince
+Rosario en el Norte). Salen 594 lugares en el Norte y 384 en el Sur: cuatro
+van en los dos (abajo, lo que contestó Jerome). Quince
 (muelles, piscinas y playas en la misma orilla) caen unos metros fuera del
 dibujo municipal y van con el municipio más cercano: el que más, el puerto de
 Granadilla, a 493 m, y el siguiente municipio siempre al menos al doble; si
@@ -4991,16 +4992,31 @@ el paso y el itinerario con el aviso. Fallos metidos: un lugar sin zona, el
 Castillo otra vez en el Sur de «Ruta del día», la zona que no filtra, «Otro»
 como antes, sin el aviso y sin el paso: los seis en rojo.
 
-### Para Jerome
+### Lo que Jerome contestó, hecho el mismo día
 
-1. **El Teide sale en el Norte.** El Teide, el Teleférico, los Roques de
-   García, La Ruleta, Montaña Blanca, el Llano de Ucanca y la Ruta del Pico
-   Viejo son del municipio de La Orotava; el Paisaje Lunar (Granadilla) y el
-   Observatorio (Fasnia) son del Sur. Y **Masca, el Mirador de Masca, la Ruta
-   Masca–Playa y los Acantilados de Los Gigantes** son de Buenavista del
-   Norte: con «Sur» no salen, aunque mucha gente va desde el sur. ¿Los quieres
-   en las dos zonas? En «Ruta del día» esos cuatro están en el Sur, y no lo he
-   tocado.
+Se le preguntó si el Teide, que es de La Orotava, tenía que salir solo con
+Norte, y lo mismo Masca y los Acantilados de Los Gigantes (Buenavista del
+Norte). Respuesta: «el teid debe salir en sur y norte, igual por su
+teleférico, Roque garcia. El resto es norte».
+
+- El Teide (tiene dos fichas: «Volcán El Teide» y «Pico del Teide — Cumbre
+  (3.715 m)»), el Teleférico y los Roques de García salen con Norte y con
+  Sur. Es la única excepción al municipio, y está escrita con la frase de
+  Jerome en `LAS_DOS`, en `tools/zonas_lugares.py`, que además comprueba que
+  los cuatro siguen siendo de La Orotava: si no, para.
+- Lo demás de Las Cañadas (La Ruleta, el Llano de Ucanca, Montaña Blanca, el
+  Pico Viejo…), Masca y los Acantilados de Los Gigantes, solo con Norte, que
+  es lo que dice su municipio.
+- En «Ruta del día», Masca, el Mirador de Masca, la Ruta Masca–Playa y los
+  Acantilados de Los Gigantes estaban entre las sugerencias del Sur: pasan a
+  las del Norte (y siguen en Cumbre). El control ya no tiene ninguna
+  excepción para «Ruta del día».
+
+`probar_organiza.js` (540 casos) comprueba en los diez idiomas que los cuatro
+entran con Norte y con Sur, y que La Ruleta, el Llano de Ucanca, Masca y los
+Acantilados de Los Gigantes entran solo con Norte. Fallos metidos: los Roques
+de García solo en el Norte, Masca otra vez en el Sur de «Ruta del día» y el
+Teide fuera del Sur: los tres en rojo.
 
 ---
 

@@ -20242,6 +20242,7 @@ const DAY_TRIP_ZONES = {
       'faro-teno', 'faro-punta-hidalgo', 'faro-puerto-cruz', 'ciudad-icod', 'ciudad-tacoronte',
       'ciudad-tegueste', 'ciudad-realejos', 'ciudad-sauzal', 'ciudad-matanza', 'ciudad-victoria',
       'ciudad-santa-ursula', 'ciudad-san-juan-rambla', 'ciudad-guancha', 'ciudad-silos', 'ciudad-buenavista',
+      'masca', 'mirador-maska', 'ruta-masca-playa', 'acantilados-gigantes',
       'ciudad-tanque', 'ciudad-rosario', 'nucleo-san-andres', 'nucleo-bajamar', 'nucleo-punta-hidalgo',
       'nucleo-taganana', 'nucleo-igueste-san-andres', 'nucleo-tejina', 'nucleo-valle-guerra', 'nucleo-mesa-mar',
       'nucleo-realejo-bajo', 'nucleo-la-ranilla'
@@ -20254,9 +20255,9 @@ const DAY_TRIP_ZONES = {
       'playa-camison', 'fanabe', 'el-duque', 'abama', 'siam-park',
       'jungle-park', 'karting', 'aqualand-sur', 'monkey-park', 'whale-watching',
       'san-juan', 'alcala', 'arena', 'playa-callao', 'playa-puertito',
-      'masca', 'ruta-masca-playa', 'mirador-maska', 'candelaria', 'piramides-guimar',
+      'candelaria', 'piramides-guimar',
       'sendero-barranco-infierno', 'montana-roja', 'montana-pelada', 'montana-amarilla',
-      'montana-guaza', 'acantilados-gigantes', 'riscos-chio', 'ciudad-guimar', 'ciudad-adeje',
+      'montana-guaza', 'riscos-chio', 'ciudad-guimar', 'ciudad-adeje',
       'playa-torviscas', 'playa-puerto-santiago', 'playa-diego-hernandez', 'playa-jaquita', 'playa-amarilla',
       'faro-rasca', 'faro-abona', 'ciudad-arona', 'ciudad-candelaria', 'ciudad-granadilla',
       'ciudad-santiago-teide', 'ciudad-vilaflor', 'ciudad-san-miguel', 'ciudad-arico', 'ciudad-fasnia',
@@ -31218,8 +31219,9 @@ DP_CARDS.forEach(function(c){ DP_ZONES[c.id] = c.cats.slice(); });
 /* >>> zonas de los lugares · las escribe tools/zonas_lugares.py: NO SE TOCAN A MANO.
    Norte o Sur de cada lugar, por el poligono oficial de su municipio
    (Cabildo). Las usa «Organiza tu día»: Norte, Sur o «Me da igual».
-   Un lugar nuevo no tiene zona hasta que se vuelve a pasar el guion, y
-   auditar.sh lo dice. */
+   El Teide, su teleferico y los Roques de Garcia van en las dos
+   (Jerome). Un lugar nuevo no tiene zona hasta que se vuelve a pasar
+   el guion, y auditar.sh lo dice. */
 const DP_ZONA_LUGAR = {
   norte: [
     'aa-serenidad-realejos acantilados-gigantes acc-loro-parque acc-paseo-garachico',
@@ -31432,41 +31434,43 @@ const DP_ZONA_LUGAR = {
     'nucleo-puerto-santiago nucleo-torviscas observatorio paisaje-lunar parkinson-tf-granadilla',
     'parque-canino-callao-salvaje parque-canino-el-medano parque-canino-playa-san-juan',
     'parque-canino-puntalarga paseo-maritimo-costa-adeje pesca-deportiva-los-cristianos',
-    'pesca-deportiva-puerto-colon pesca-los-abrigos pesca-los-gigantes piramides-guimar',
-    'piscina-gigantes piscina-guimar piscinas-alcala-jaquita piscinas-poris pk-candelaria-centro',
-    'pk-clubo-la-pinta pk-guia-isora pk-guimar pk-juan-carlos-cristianos pk-los-gigantes',
-    'pk-medano-publico pk-oasis-americas pk-playa-arena-santiago pk-plaza-duque-adeje',
-    'pk-plaza-patrona-candelaria pk-poris-abona pk-puerto-cristianos pk-san-miguel-golf',
-    'playa-abriguitos playa-amarilla playa-americas playa-beril playa-bobo playa-cabezo',
-    'playa-cabezo-medano playa-callao playa-callao-arona playa-camison playa-candelaria',
-    'playa-charcada playa-chimisay playa-confital playa-diego-hernandez playa-enramada',
-    'playa-galletas playa-grande-abades playa-guios playa-jaca playa-jaquita playa-jaquita-medano',
-    'playa-la-caleta-adeje playa-las-bajas playa-pinta playa-puertito playa-puertito-adeje',
-    'playa-puertito-guimar playa-puerto-santiago playa-punta-larga playa-socorro-guimar',
-    'playa-torviscas pp-guimar pp-ifonche pp-izana pp-taucho puertito-alcala puertito-el-medano',
-    'puertito-fasnia puertito-la-caleta puertito-la-jaca puertito-los-abrigos',
+    'pesca-deportiva-puerto-colon pesca-los-abrigos pesca-los-gigantes pico-teide-cumbre',
+    'piramides-guimar piscina-gigantes piscina-guimar piscinas-alcala-jaquita piscinas-poris',
+    'pk-candelaria-centro pk-clubo-la-pinta pk-guia-isora pk-guimar pk-juan-carlos-cristianos',
+    'pk-los-gigantes pk-medano-publico pk-oasis-americas pk-playa-arena-santiago',
+    'pk-plaza-duque-adeje pk-plaza-patrona-candelaria pk-poris-abona pk-puerto-cristianos',
+    'pk-san-miguel-golf playa-abriguitos playa-amarilla playa-americas playa-beril playa-bobo',
+    'playa-cabezo playa-cabezo-medano playa-callao playa-callao-arona playa-camison',
+    'playa-candelaria playa-charcada playa-chimisay playa-confital playa-diego-hernandez',
+    'playa-enramada playa-galletas playa-grande-abades playa-guios playa-jaca playa-jaquita',
+    'playa-jaquita-medano playa-la-caleta-adeje playa-las-bajas playa-pinta playa-puertito',
+    'playa-puertito-adeje playa-puertito-guimar playa-puerto-santiago playa-punta-larga',
+    'playa-socorro-guimar playa-torviscas pp-guimar pp-ifonche pp-izana pp-taucho puertito-alcala',
+    'puertito-el-medano puertito-fasnia puertito-la-caleta puertito-la-jaca puertito-los-abrigos',
     'puertito-poris-abona puertito-tajao puerto-amarilla-marina puerto-candelaria',
     'puerto-colon-adeje puerto-gigantes puerto-granadilla-comercial puerto-guimar',
     'puerto-los-cristianos puerto-playa-san-juan rest-tipico-el-jable rest-tipico-mirador-abona',
-    'riscos-chio san-juan sendero-barranco-infierno sendero-chinyero',
+    'riscos-chio roques-garcia san-juan sendero-barranco-infierno sendero-chinyero',
     'sendero-prtf-72-paisaje-lunar sendero-roque-conde sendero-samara siam-park',
     'super-hiperdino-adeje super-hiperdino-arona super-hiperdino-arona-pueblo',
     'super-hiperdino-candelaria super-hiperdino-granadilla super-hiperdino-guimar',
     'super-hiperdino-san-miguel super-hiperdino-santiago-teide super-mercadona-adeje',
-    'super-mercadona-arona surf-callao-salvaje surf-las-americas surf-medano tejita turismo-adeje',
-    'turismo-arona turismo-candelaria turismo-guimar turismo-los-cristianos turismo-medano',
-    'turismo-santiago-teide vet-masvet-chafiras vet-patas-colas wc-duque wc-gigantes',
-    'wc-las-vistas wc-los-cristianos wc-medano wc-san-juan wc-troya whale-watching',
-    'windsurf-el-medano windsurf-el-poris windsurf-la-tejita zona-mariscos-los-abrigos'
+    'super-mercadona-arona surf-callao-salvaje surf-las-americas surf-medano teide',
+    'teide-teleforico tejita turismo-adeje turismo-arona turismo-candelaria turismo-guimar',
+    'turismo-los-cristianos turismo-medano turismo-santiago-teide vet-masvet-chafiras',
+    'vet-patas-colas wc-duque wc-gigantes wc-las-vistas wc-los-cristianos wc-medano wc-san-juan',
+    'wc-troya whale-watching windsurf-el-medano windsurf-el-poris windsurf-la-tejita',
+    'zona-mariscos-los-abrigos'
   ].join(' ')
 };
 /* <<< zonas de los lugares */
-/* id -> 'norte' o 'sur'. Un lugar que no este (dado de alta sin pasar el
-   guion) solo sale con «Me da igual». */
-const DP_ZONA_DE = new Map();
-['norte', 'sur'].forEach(function (z) {
-  DP_ZONA_LUGAR[z].split(' ').forEach(function (id) { if (id) DP_ZONA_DE.set(id, z); });
-});
+/* Los lugares de cada zona, en un conjunto por zona: el Teide, su
+   teleferico y los Roques de Garcia estan en los dos. Un lugar que no este en
+   ninguno (dado de alta sin pasar el guion) solo sale con «Me da igual». */
+const DP_ZONA_DE = {
+  norte: new Set(DP_ZONA_LUGAR.norte.split(' ')),
+  sur: new Set(DP_ZONA_LUGAR.sur.split(' '))
+};
 
 /* Tiempo, transporte y textos de interfaz de los dos planificadores,
    en los 10 idiomas. Igual que DP_CARDS: una sola fuente de verdad,
@@ -31981,7 +31985,7 @@ function dpiSelectZona(z) {
 
 // ¿Entra este lugar en la zona elegida? Con «Me da igual», todos.
 function dpiEnZona(p) {
-  return dpiZona === 'igual' || DP_ZONA_DE.get(p.id) === dpiZona;
+  return dpiZona === 'igual' || (!!DP_ZONA_DE[dpiZona] && DP_ZONA_DE[dpiZona].has(p.id));
 }
 
 // Las categorias de lo elegido en el paso 2: con varias tarjetas, la union.

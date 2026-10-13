@@ -22,10 +22,13 @@ DE DONDE SALE LA ZONA
   Es el reparto que ya usaba la pestaña «Ruta del día»: Candelaria, Arafo y
   Güímar en el Sur, El Rosario en el Norte.
 
-  LO QUE SE LE HA DICHO A JEROME: el Teide y casi todo Las Cañadas son de La
-  Orotava, asi que salen en el Norte; Masca y los Acantilados de Los Gigantes
-  son de Buenavista del Norte, y tambien. Si un dia se quieren en las dos
-  zonas, se dice AQUI, con su porque, y no a mano en index.html.
+  LA UNICA EXCEPCION, DE JEROME (13 de octubre de 2026): «el teid debe salir
+  en sur y norte, igual por su teleférico, Roque garcia. El resto es norte».
+  El Teide (sus dos fichas: el volcan y la cumbre), el Teleferico y los Roques
+  de Garcia son de La Orotava y van en LAS DOS zonas: LAS_DOS, mas abajo. Lo
+  demas de Las Cañadas, Masca y los Acantilados de Los Gigantes, al Norte,
+  que es lo que dice su municipio. Otra excepcion se escribe AQUI, con su
+  porque y con el OK de Jerome, y nunca a mano en index.html.
 
 LO QUE CAE FUERA DE TODO POLIGONO
   El dibujo municipal acaba en la orilla, y un muelle o una piscina natural
@@ -69,24 +72,36 @@ SUR = [
 ]
 ZONA = dict([(m, 'norte') for m in NORTE] + [(m, 'sur') for m in SUR])
 
+# En las dos zonas aunque su municipio sea uno: se sube igual desde el norte
+# que desde el sur. Jerome, 13 de octubre de 2026: «el teid debe salir en sur
+# y norte, igual por su teleférico, Roque garcia. El resto es norte». El Teide
+# tiene dos fichas, el volcan y la cumbre, y van las dos. Al lado, el
+# municipio que dice el poligono: si un dia no es ese, el guion PARA, porque
+# la razon de estar aqui ya no seria la misma.
+LAS_DOS = {
+    'teide': 'La Orotava',               # Volcán El Teide
+    'pico-teide-cumbre': 'La Orotava',   # Pico del Teide — Cumbre (3.715 m)
+    'teide-teleforico': 'La Orotava',    # Teleférico del Teide
+    'roques-garcia': 'La Orotava',       # Roques de García · Roque Cinchado
+}
+
 # Fuera de todo poligono: el mas cercano, si esta a menos de esto...
 FUERA_MAX_M = 1000
 # ...y el siguiente queda al menos a tantas veces esa distancia.
 FUERA_VECES = 2
 
-# «Ruta del día» tiene sus listas de sugerencias por zona, hechas a mano.
-# Estas cuatro son de Buenavista del Norte y la lista las pone en el Sur: se
-# llega a ellas desde Los Gigantes y Santiago del Teide. Estan asi desde antes
-# del 13 de octubre de 2026 y quedan preguntadas a Jerome; no se cambian sin su
-# OK. Cualquier otra que no case con el poligono pone esto en rojo.
-RUTA_DIA_PREGUNTADAS = {'masca', 'ruta-masca-playa', 'mirador-maska', 'acantilados-gigantes'}
+# «Ruta del día» tiene sus listas de sugerencias por zona, hechas a mano, y
+# tienen que decir lo mismo que el poligono (y que LAS_DOS). Masca, el Mirador
+# de Masca, la Ruta Masca-Playa y los Acantilados de Los Gigantes estaban en su
+# Sur; son de Buenavista del Norte, y Jerome: «El resto es norte».
 
 INI = '/* >>> zonas de los lugares'
 FIN = '/* <<< zonas de los lugares */'
 
 
 def calcular():
-    """{id: (zona, municipio, metros fuera o 0)}, o sale con un mensaje."""
+    """{id: (zonas, municipio, metros fuera o 0)}, o sale con un mensaje.
+    zonas es una tupla: ('norte',), ('sur',) o, en LAS_DOS, las dos."""
     por, _ = M.cargar()
     municipios = sorted(M.ALIAS.get(n, n) for n in por)
     sin_zona = [m for m in municipios if m not in ZONA]
@@ -106,7 +121,16 @@ def calcular():
             if d > FUERA_MAX_M or d2 < FUERA_VECES * max(d, 1):
                 paran.append('%s: %s a %.0f m, %s a %.0f m' % (i, m, d, m2, d2))
                 continue
-        res[i] = (ZONA[m], m, d)
+        if i in LAS_DOS:
+            if m != LAS_DOS[i]:
+                paran.append('%s: esta en LAS_DOS por ser de %s y el poligono dice %s' % (i, LAS_DOS[i], m))
+                continue
+            res[i] = (('norte', 'sur'), m, d)
+        else:
+            res[i] = ((ZONA[m],), m, d)
+    for i in LAS_DOS:
+        if i not in res and not any(x.startswith(i + ':') for x in paran):
+            paran.append('%s: esta en LAS_DOS y no hay ninguna ficha con ese id' % i)
     if paran:
         print('  PARA: lugares fuera de todo poligono sin un municipio claro:')
         for x in paran:
@@ -117,7 +141,7 @@ def calcular():
 
 def bloque(res):
     def lineas(z):
-        ids = sorted(i for i, v in res.items() if v[0] == z)
+        ids = sorted(i for i, v in res.items() if z in v[0])
         out, cur = [], ''
         for i in ids:
             if cur and len(cur) + 1 + len(i) > 92:
@@ -131,8 +155,9 @@ def bloque(res):
     return (INI + ' · las escribe tools/zonas_lugares.py: NO SE TOCAN A MANO.\n'
             '   Norte o Sur de cada lugar, por el poligono oficial de su municipio\n'
             '   (Cabildo). Las usa «Organiza tu día»: Norte, Sur o «Me da igual».\n'
-            '   Un lugar nuevo no tiene zona hasta que se vuelve a pasar el guion, y\n'
-            '   auditar.sh lo dice. */\n'
+            '   El Teide, su teleferico y los Roques de Garcia van en las dos\n'
+            '   (Jerome). Un lugar nuevo no tiene zona hasta que se vuelve a pasar\n'
+            '   el guion, y auditar.sh lo dice. */\n'
             'const DP_ZONA_LUGAR = {\n'
             '  norte: [\n' + lineas('norte') + '\n  ].join(\' \'),\n'
             '  sur: [\n' + lineas('sur') + '\n  ].join(\' \')\n'
@@ -164,11 +189,14 @@ def main():
         return 1
     actual = s[a:b + len(FIN)]
 
-    n = sum(1 for v in res.values() if v[0] == 'norte')
+    n = sum(1 for v in res.values() if 'norte' in v[0])
+    su = sum(1 for v in res.values() if 'sur' in v[0])
+    dos = sorted(i for i, v in res.items() if len(v[0]) == 2)
     fuera = sorted((v[2], i, v[1]) for i, v in res.items() if v[2])
     print('  lugares con zona, por el poligono de su municipio: %d' % len(res))
     print('    Norte (%d municipios)....................... %d' % (len(NORTE), n))
-    print('    Sur (%d municipios)......................... %d' % (len(SUR), len(res) - n))
+    print('    Sur (%d municipios)......................... %d' % (len(SUR), su))
+    print('    en las dos (Jerome: el Teide, su teleferico y los Roques de Garcia): %d (%s)' % (len(dos), ', '.join(dos)))
     print('    fuera del poligono, con el mas cercano...... %d%s' % (
         len(fuera), (' (el mas lejos: %s, %s, a %.0f m)' % (fuera[-1][1], fuera[-1][2], fuera[-1][0])) if fuera else ''))
 
@@ -189,10 +217,10 @@ def main():
             trozo = actual[k:actual.find(']', k)] if k >= 0 else ''
             for linea in trozo.split('\n')[1:]:
                 for i in linea.strip().strip(",'").split():
-                    ids_html[i] = z
+                    ids_html.setdefault(i, set()).add(z)
         sin = sorted(i for i in res if i not in ids_html)
         sobra = sorted(i for i in ids_html if i not in res)
-        cambia = sorted(i for i in res if i in ids_html and ids_html[i] != res[i][0])
+        cambia = sorted(i for i in res if i in ids_html and ids_html[i] != set(res[i][0]))
         print('  EL BLOQUE DE index.html NO ESTA AL DIA (python3 tools/zonas_lugares.py):')
         print('    lugares sin zona.......................... %d %s' % (len(sin), ' '.join(sin[:6])))
         print('    zonas de lugares que ya no existen......... %d %s' % (len(sobra), ' '.join(sobra[:6])))
@@ -202,16 +230,13 @@ def main():
 
     rd = ruta_del_dia()
     for z in ('norte', 'sur'):
-        malos = [i for i in rd[z] if i in res and res[i][0] != z and i not in RUTA_DIA_PREGUNTADAS]
+        malos = [i for i in rd[z] if i in res and z not in res[i][0]]
         no_hay = [i for i in rd[z] if i not in res]
         print('  «Ruta del día», %s: %d sugerencias; en un municipio de la otra zona: %d; que no existen: %d'
               % (z.capitalize(), len(rd[z]), len(malos), len(no_hay)))
         for i in malos + no_hay:
             print('      <--  %s %s' % (i, ('(' + res[i][1] + ')') if i in res else '(no hay ficha)'))
         mal += len(malos) + len(no_hay)
-    preg = sorted(i for i in RUTA_DIA_PREGUNTADAS if i in rd['sur'] and i in res and res[i][0] == 'norte')
-    print('    preguntadas a Jerome, en el Sur de «Ruta del día» y de un municipio del Norte: %d (%s)'
-          % (len(preg), ', '.join(preg)))
     print('  todo en orden' if not mal else '  *** %d cosa(s) que mirar ***' % mal)
     return 1 if mal else 0
 

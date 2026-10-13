@@ -39,7 +39,11 @@
  *   · Museos en el Sur (son dos): el aviso de que no hay mas, y estan todos;
  *     en el Norte, sin aviso;
  *   · «🔄 Otro» se queda en la zona y en lo elegido, y coge uno de los cinco
- *     mas cercanos a la parada que cambia.
+ *     mas cercanos a la parada que cambia;
+ *   · el Teide (sus dos fichas), su teleferico y los Roques de Garcia, en el
+ *     Norte y en el Sur; La Ruleta y Masca, solo en el Norte (Jerome: «el
+ *     teid debe salir en sur y norte, igual por su teleférico, Roque garcia.
+ *     El resto es norte»).
  *
  *     node tools/probar_organiza.js [puerto]
  *     node tools/probar_organiza.js [puerto] de,zh     solo esos (y el castellano)
@@ -157,7 +161,7 @@ const RECORRER = async () => {
     const r = {
       titulo: limpio(document.getElementById('dpi-result-title').textContent),
       aviso: av && !av.hidden ? limpio(av.textContent) : '',
-      paradas: dpCurrentStops.map(p => ({ id: p.id, lat: p.lat, lng: p.lng, cat: p.category, zona: DP_ZONA_DE.get(p.id) || '' })),
+      paradas: dpCurrentStops.map(p => ({ id: p.id, lat: p.lat, lng: p.lng, cat: p.category, zonas: ['norte', 'sur'].filter(z => DP_ZONA_DE[z].has(p.id)) })),
       nombres: [...document.querySelectorAll('#dpi-itinerary .dp-stop-name')].map(e => limpio(e.textContent)),
       tramos: [...document.querySelectorAll('#dpi-itinerary .dp-sep-text')].map(e => limpio(e.textContent)),
       lineas: [...document.querySelectorAll('#dpi-itinerary .dp-sep-text .line-badge')].map(e => limpio(e.textContent)),
@@ -207,19 +211,19 @@ const RECORRER = async () => {
     for (let i = 0; i < dpCurrentStops.length; i++) {
       const antes = dpCurrentStops[i], usados = new Set(dpUsedIds);
       const cats = dpiCategorias().concat([antes.category]);
-      const cand = places.filter(p => cats.includes(p.category) && !usados.has(p.id) && p.name && p.lat && p.lng && DP_ZONA_DE.get(p.id) === 'sur')
+      const cand = places.filter(p => cats.includes(p.category) && !usados.has(p.id) && p.name && p.lat && p.lng && DP_ZONA_DE.sur.has(p.id))
         .map(p => ({ id: p.id, cat: p.category, d: hav(antes, p) })).sort((a, b) => a.d - b.d);
       const misma = cand.filter(x => x.cat === antes.category);
       const esperados = (misma.length ? misma : cand).slice(0, 5).map(x => x.id);
       dpiSwapOne(i);
       const despues = dpCurrentStops[i];
-      cambios.push({ antes: antes.id, despues: despues.id, zona: DP_ZONA_DE.get(despues.id) || '', esperado: esperados.includes(despues.id), esperados });
+      cambios.push({ antes: antes.id, despues: despues.id, enSur: DP_ZONA_DE.sur.has(despues.id), esperado: esperados.includes(despues.id), esperados });
     }
     out.zonas.otro = cambios;
   }
   for (const zona of ['sur', 'norte']) {
     const r = await genera('fullday', ['museo'], 'coche', zona);
-    r.hay = places.filter(p => DP_ZONES.museo.includes(p.category) && DP_ZONA_DE.get(p.id) === zona).map(p => p.id);
+    r.hay = places.filter(p => DP_ZONES.museo.includes(p.category) && DP_ZONA_DE[zona].has(p.id)).map(p => p.id);
     r.avisoFila = tx('dpZonaSinMas');
     out.zonas['museo-' + zona] = r;
     if (zona === 'sur') textos('itinerario museos en el sur');
@@ -231,10 +235,24 @@ const RECORRER = async () => {
       sem.v = 1000 + k;
       dpiReset(); dpiTime = 'fullday'; dpiSelectedZones = [c.id]; dpiZone = c.id; dpiZona = zona; dpiTransport = 'coche';
       dpiGenerate(); n++;
-      dpCurrentStops.forEach(p => { if (DP_ZONA_DE.get(p.id) !== zona) malas.push(c.id + '/' + zona + ': ' + p.id); });
+      dpCurrentStops.forEach(p => { if (!DP_ZONA_DE[zona].has(p.id)) malas.push(c.id + '/' + zona + ': ' + p.id); });
     }
     out.zonas.azar = { n, malas };
-    out.zonas.sinZona = places.filter(p => !DP_ZONA_DE.has(p.id)).map(p => p.id);
+    out.zonas.sinZona = places.filter(p => !DP_ZONA_DE.norte.has(p.id) && !DP_ZONA_DE.sur.has(p.id)).map(p => p.id);
+  }
+  /* el Teide, su teleferico y los Roques de Garcia, en las dos; lo demas de
+     Las Cañadas y Masca, solo en el Norte: con el mismo filtro que usa el
+     itinerario y la tarjeta que los trae */
+  {
+    const entra = (zona, tarjeta, id) => { dpiZona = zona; const cats = DP_ZONES[tarjeta];
+      return places.some(p => p.id === id && cats.includes(p.category) && dpiEnZona(p)); };
+    const dos = [['naturaleza', 'teide'], ['naturaleza', 'pico-teide-cumbre'], ['familia', 'teide-teleforico'], ['naturaleza', 'roques-garcia']];
+    const norte = [['naturaleza', 'mirador-ruleta-canadas'], ['naturaleza', 'llano-ucanca'], ['naturaleza', 'masca'], ['naturaleza', 'acantilados-gigantes']];
+    out.zonas.lasDos = {
+      dos: dos.map(([t, id]) => [id, entra('norte', t, id), entra('sur', t, id)]),
+      norte: norte.map(([t, id]) => [id, entra('norte', t, id), entra('sur', t, id)]),
+    };
+    dpiZona = 'igual';
   }
   closeRoutePanel();
   return out;
@@ -334,18 +352,21 @@ const RECORRER = async () => {
     const tit = Object.entries(d.titulos).filter(([, v]) => v.titulo !== v.fila);
     caso(`[${L}] titulo del itinerario con cada tarjeta (${Object.keys(d.titulos).length - 1}) y con tres a la vez`, tit.length === 0, tit.map(([k, v]) => k + ': «' + v.titulo + '» y no «' + v.fila + '»').join(' | '));
     for (const zona of ['norte', 'sur']) {
-      const z = d.zonas[zona], fuera = z.paradas.filter(p => p.zona !== zona);
-      caso(`[${L}] ${zona}: las ${z.paradas.length} paradas (con la comida) son de esa zona`, z.paradas.length >= 4 && fuera.length === 0, fuera.map(p => p.id + '=' + (p.zona || 'sin zona')).join(', '));
+      const z = d.zonas[zona], fuera = z.paradas.filter(p => !p.zonas.includes(zona));
+      caso(`[${L}] ${zona}: las ${z.paradas.length} paradas (con la comida) son de esa zona`, z.paradas.length >= 4 && fuera.length === 0, fuera.map(p => p.id + '=' + (p.zonas.join('+') || 'sin zona')).join(', '));
       caso(`[${L}] ${zona}: el titulo dice la zona («${z.tituloFila}»)`, z.titulo === z.tituloFila && !z.aviso, JSON.stringify([z.titulo, z.aviso]));
     }
     {
-      const o = d.zonas.otro, mal = o.filter(x => x.zona !== 'sur' || !x.esperado || x.despues === x.antes);
+      const o = d.zonas.otro, mal = o.filter(x => !x.enSur || !x.esperado || x.despues === x.antes);
       caso(`[${L}] «Otro» en el Sur: ${o.length} cambios, en el Sur, en lo elegido y entre los cinco mas cercanos`, o.length >= 4 && mal.length === 0, JSON.stringify(mal).slice(0, 400));
       const ms = d.zonas['museo-sur'], mn = d.zonas['museo-norte'];
       const museosSur = ms.paradas.filter(p => p.cat !== 'gastronomia').map(p => p.id).sort();
       caso(`[${L}] Museos en el Sur: estan los ${ms.hay.length} que hay y lo dice («${ms.avisoFila}»)`,
         ms.hay.length > 0 && JSON.stringify(museosSur) === JSON.stringify(ms.hay.slice().sort()) && ms.aviso === ms.avisoFila && !!ms.aviso, JSON.stringify([museosSur, ms.hay, ms.aviso]));
-      caso(`[${L}] Museos en el Norte: sin aviso, que hay ${mn.hay.length}`, !mn.aviso && mn.paradas.every(p => p.zona === 'norte'), JSON.stringify([mn.aviso, mn.paradas.map(p => p.id)]));
+      caso(`[${L}] Museos en el Norte: sin aviso, que hay ${mn.hay.length}`, !mn.aviso && mn.paradas.every(p => p.zonas.includes('norte')), JSON.stringify([mn.aviso, mn.paradas.map(p => p.id)]));
+      const ld = d.zonas.lasDos;
+      caso(`[${L}] el Teide (sus dos fichas), su teleferico y los Roques de Garcia salen en el Norte y en el Sur`, ld.dos.every(([, n, s]) => n && s), JSON.stringify(ld.dos));
+      caso(`[${L}] La Ruleta, el Llano de Ucanca, Masca y los Acantilados de Los Gigantes, solo en el Norte`, ld.norte.every(([, n, s]) => n && !s), JSON.stringify(ld.norte));
     }
     if (d.zonas.azar) {
       caso(`[es] ${d.zonas.azar.n} itinerarios (catorce tarjetas, Norte y Sur, cinco azares): ninguna parada de la otra zona`, d.zonas.azar.malas.length === 0, d.zonas.azar.malas.slice(0, 8).join(' | '));
