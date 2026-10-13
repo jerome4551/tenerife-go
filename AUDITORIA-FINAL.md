@@ -1998,13 +1998,15 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 918 filas (y 2.999 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 913 filas (y 2.999 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
 «ayuda», y una menos de la privacidad (AEMET ya no recibe nada del
 dispositivo). Esa noche, 17 más del tour y de Rutas y dos menos: la frase
-falsa de la guagua del Teide y el rótulo de pestaña que no se veía. El 11 de
+falsa de la guagua del Teide y el rótulo de pestaña que no se veía. El 13,
+una más (sin guagua entre dos paradas) y seis menos de «Organiza tu día»: los
+cuatro tiempos fijos entre paradas y dos títulos que ya no usa nadie. El 11 de
 octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera no la coteja nadie y no se ha vuelto a contar.)*
@@ -4822,7 +4824,8 @@ usar cada pestaña con datos, y eso no lo hacía ningún control:
 
 ### Para Jerome
 
-1. **Entre parada y parada, el itinerario de «Organiza tu día» pone siempre
+1. *(Hecho el 13 de octubre: ver «Organiza tu día», más abajo.)*
+   **Entre parada y parada, el itinerario de «Organiza tu día» pone siempre
    el mismo tiempo**: «En guagua ~25 min», «En coche ~15 min», «A pie ~15
    min», «En bici ~20 min». No se calcula: es un rótulo fijo, y del Teide a
    Arico en guagua «~25 min» es falso. Propuesta: calcularlo con lo que la
@@ -4851,8 +4854,69 @@ pestaña y en una sola (43 categorías, 11 pestañas), ninguna pestaña con una
 categoría que no existe, y Senderismo en Deporte, como lo decidió Jerome.
 Con la versión de antes, en rojo.
 
-En «Organiza tu día», la tarjeta «Naturaleza · Rutas, volcanes» sigue
-proponiendo senderos: es el planificador, no el filtro, y no se ha tocado.
+En «Organiza tu día», la tarjeta «Naturaleza · Rutas, volcanes» seguía
+proponiendo senderos. *Cambiado el mismo día, a petición de Jerome: ver
+abajo.*
+
+## «Organiza tu día»: Senderismo en Deporte, tramos calculados y los diez idiomas (13 de octubre)
+
+Jerome: «Cámbialo también en organiza tu día. Verifica el mismo tiempo todo
+los idioma en organiza tu día».
+
+1. **Senderismo pasa a la tarjeta Deporte**, como en el botón de categorías.
+   Los subtítulos dicen lo que hay de verdad, en los diez idiomas:
+   «Deporte · Senderismo, ciclismo, golf» y «Naturaleza · Bosques, volcanes»
+   (Anaga, La Esperanza, la Corona Forestal, y paisajes volcánicos y
+   montañas), que ya no dice «Rutas».
+2. **El tiempo entre paradas se calcula.** Era un rótulo fijo para cualquier
+   tramo («En guagua ~25 min», «En coche ~15 min», «A pie ~15 min», «En bici
+   ~20 min»). Ahora:
+   - en coche, la estimación de A→B sin conexión (factor de rodeo y velocidad
+     media de las carreteras de Tenerife): «~14 min · 8,5 km»;
+   - a pie, la distancia por el rodeo de las aceras a 4,5 km/h, como el
+     planificador de guaguas: «~7 min · 0,5 km»;
+   - en guagua, ese planificador entre las dos paradas: la línea, o las dos
+     del transbordo, y el tiempo con lo que se camina y se espera («~46 min ·
+     345», «~93 min · 100 + 224»), a cualquier hora porque el itinerario no
+     la tiene; si no hay, «Sin guagua directa ni con un transbordo»;
+   - en bici no hay velocidad comprobada: solo los kilómetros («9,0 km»).
+3. **El título del itinerario**: solo ocho de las catorce tarjetas tenían
+   título. Con «Deporte», «Aventura» o «Con perro» salía «Tu itinerario», y
+   con varias elegidas el nombre interno en castellano para los diez idiomas
+   («🌿 Natur · deporte»). Ahora, el nombre de la tarjeta tal y como sale en
+   el paso 2: «🚴 Deporte · 🏄 Aventura · 🐕 Con perro».
+4. **Con un itinerario a la vista, cambiar de idioma lo dejaba en el
+   anterior** (título, acciones de cada parada, tramos, descripciones). Ahora
+   se vuelve a pintar.
+
+Control nuevo, `tools/probar_organiza.js` (378 casos): los cuatro pasos en
+los diez idiomas, con el azar fijo para que el itinerario sea el mismo en
+todos; cada tramo calculado otra vez por su cuenta y comparado; el título con
+las catorce tarjetas y con tres a la vez; el cambio de idioma con el
+itinerario abierto, y ningún texto con letras igual que en castellano (salvo
+nombres de sitio, «Picnic & BBQ» y el italiano «Cultura»). Fallos metidos: el
+tiempo fijo, el nombre interno en el título, sin repintar al cambiar de
+idioma y Senderismo otra vez en Naturaleza: los cuatro en rojo.
+
+Queda en el código un planificador anterior (`dp-overlay`, `openDayPlanner`)
+con sus propios tiempos fijos. No lo abre nada: el único botón que lo abría
+estaba en un bloque que ya no se monta. No se ve en ningún idioma.
+
+### Para Jerome
+
+1. **Nombres de lugar con emoji dentro**: 87 de los 974. En 28 el nombre
+   empieza por su propio emoji («🧗 Escalada Arico», «🤿 Buceo Los
+   Gigantes», «🪂 Parapente — Despegue Taucho»…), y donde la app pone el
+   emoji delante del nombre (el itinerario, «Ruta del día», A→B) sale dos
+   veces: «🧗 🧗 Escalada Arico». Los otros 59 lo llevan al final como marca
+   («Playa de Las Vistas ♿», «Parque La Granja 🐾», «… 🤝»), que distingue
+   la ficha accesible o con mascotas de la normal. Propuesta: quitar el
+   emoji del principio en esos 28 nombres (ya está en su icono) y dejar las
+   marcas del final. Son datos de las fichas: no lo toco sin tu OK.
+2. **Con coche y día completo, el itinerario puede cruzar media isla**: el
+   planificador busca las paradas en un radio de 35 km, y si no llega, hasta
+   2,5 veces más. Ahora que cada tramo dice su tiempo, se ve: hay tramos de
+   50 km. Si quieres, se acorta el radio.
 
 ---
 
@@ -4902,6 +4966,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json` (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, ficheros rotos, el latido de 3 horas |
 | `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos, los kilómetros del coche y lo que se comparte del itinerario |
+| `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los cuatro pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano |
 | `tools/auditar_claves_tx.js` | cada `tx('…')` con la clave escrita tiene su fila en `UI_TX` (`tx()` devuelve vacío sin avisar) |
 | `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: píldora, panel, líneas del tiempo y del mar, comprobación vieja, fichero que no llega |
 | `tools/castellano_suelto.js` | el castellano que se queda **dentro** de cada idioma —letras, palabras corrientes, palabras copiadas, alfabeto latino en búlgaro y chino— y las frases que la traducción no tiene; lo que se queda a propósito, en `idiomas/castellano-aceptado.json` |
