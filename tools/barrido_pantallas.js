@@ -89,6 +89,14 @@ window.__estados = [
       let c = null; const v = navigator.share; navigator.share = d => { c = d; return Promise.resolve(); };
       try { dpShare(); } catch (e) {} navigator.share = v;
       window.__extra = c ? [c.title, c.text] : []; }],
+  /* Norte, Sur o «Me da igual» (13 de octubre de 2026): el paso, y un
+     itinerario en el Sur con el aviso de que no hay mas (Museos: dos). */
+  ['rutas:organiza, la zona', async () => { toggleRoutePanel(); switchRouteTab('planner'); dpiSelectTime('fullday');
+      dpiToggleZone(document.querySelector('#dpi-zone-grid .dp-zone-card[data-zone="museo"]')); dpiConfirmZones(); }],
+  ['rutas:itinerario en el Sur, sin mas lugares', async () => { toggleRoutePanel(); switchRouteTab('planner'); dpiSelectTime('fullday');
+      dpiToggleZone(document.querySelector('#dpi-zone-grid .dp-zone-card[data-zone="museo"]')); dpiConfirmZones(); dpiSelectZona('sur');
+      dpiSelectTransport('coche', document.querySelector('#dpi-transport-grid .dp-time-card[data-opt="coche"]'));
+      await espera(1300); }],
   ['rutas:ruta del dia con paradas', async () => { toggleRoutePanel(); switchRouteTab('day'); selectDayTripZone('north');
       toggleDayTripStop('anaga'); toggleDayTripStop('ciudad-laguna'); }],
   ['rutas:A→B eligiendo origen', async () => { toggleRoutePanel(); switchRouteTab('ab'); activatePick('origin'); }],

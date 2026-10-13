@@ -1998,7 +1998,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 913 filas (y 2.999 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 916 filas (y 3.045 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -2006,10 +2006,13 @@ AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
 dispositivo). Esa noche, 17 más del tour y de Rutas y dos menos: la frase
 falsa de la guagua del Teide y el rótulo de pestaña que no se veía. El 13,
 una más (sin guagua entre dos paradas) y seis menos de «Organiza tu día»: los
-cuatro tiempos fijos entre paradas y dos títulos que ya no usa nadie. El 11 de
-octubre el tour dejó de ser una
+cuatro tiempos fijos entre paradas y dos títulos que ya no usa nadie. Esa
+tarde, tres más: el título y el «atrás» del paso Norte o Sur, y el aviso de
+que en esa zona no hay más lugares. El 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
-dos primeras. La tercera no la coteja nadie y no se ha vuelto a contar.)*
+dos primeras. La tercera es el «total mirado, dentro y fuera» de
+`barrido_idiomas.js`, contado el 13 de octubre por la tarde; no la coteja
+nadie.)*
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
@@ -4933,6 +4936,72 @@ sale ningún nombre repetido nuevo. `REVISION-LUGARES.md`, regenerado.
 Control nuevo en `tools/auditar_datos.js`: «nombres que empiezan por un
 emoji» tiene que dar 0. Con el `index.html` de antes da 28 y se pone en rojo.
 
+## «Organiza tu día»: Norte, Sur o «Me da igual» (13 de octubre)
+
+Jerome: «la isla es grande, si voy de los cristianos a Santa Cruz son más de
+50km. Podríamos proponer si quiere quedarse en el sur o norte o no importa».
+
+Entre «¿Qué quieres hacer?» y «¿Cómo te mueves?» hay un paso nuevo, «¿Qué zona
+de la isla?», con tres tarjetas: 🌿 Norte (Santa Cruz, Puerto de la Cruz),
+☀️ Sur (Los Cristianos, Costa Adeje) y 🏝️ Me da igual (toda la isla, como
+hasta ahora). Con Norte o con Sur, todas las paradas son de esa zona, la
+comida también, y lo que trae «🔄 Otro» también.
+
+**De dónde sale la zona de cada lugar.** Del municipio, y el municipio, del
+polígono oficial del Cabildo (el de `tools/municipio.py`, que coincide con
+las 2.514 paradas de TITSA). Norte: los 19 municipios de Santa Cruz a
+Buenavista del Norte. Sur: los 12 de Candelaria a Santiago del Teide. Es el
+reparto que ya usaba «Ruta del día» (Candelaria, Arafo y Güímar en el Sur; El
+Rosario en el Norte). Salen 594 lugares en el Norte y 380 en el Sur. Quince
+(muelles, piscinas y playas en la misma orilla) caen unos metros fuera del
+dibujo municipal y van con el municipio más cercano: el que más, el puerto de
+Granadilla, a 493 m, y el siguiente municipio siempre al menos al doble; si
+no, el guion para. La lista la escribe `tools/zonas_lugares.py` en
+`index.html`, y con `--comprobar` (en `auditar.sh`) la rehace y la compara:
+un lugar dado de alta sin pasarlo no saldría ni en el Norte ni en el Sur.
+
+Y además:
+- **Si en una zona no hay bastantes, lo dice.** Museos, en el Sur, son dos:
+  salen los dos y «En esta zona no hay más lugares con lo que has elegido».
+  Solo cuando de verdad no queda ninguno: si faltan porque los demás están
+  lejos, la frase sería falsa y no sale.
+- **El título dice la zona**: «🏖️ Playa & Mar · 🍽️ Gastronomía · ☀️ Sur».
+- **«🔄 Otro»** cogía cualquier lugar de la isla con esas categorías (con dos
+  tarjetas o más, ni eso: las de «Sorpréndeme»), y podía cambiar una parada
+  de Los Cristianos por una de Anaga. Ahora coge de lo elegido, en la zona,
+  uno de los cinco más cercanos a la parada que cambia; la comida, por otra.
+- El tour y la respuesta del asistente sobre «Organiza tu día» dicen que se
+  elige norte o sur, en los diez idiomas.
+- En chino y en búlgaro los pueblos van escritos como ya los escribe la app
+  en otras fichas (圣克鲁斯, 克鲁斯港, 洛斯克里斯蒂亚诺斯, 阿德赫海岸;
+  Санта Крус, Пуерто де ла Крус, Лос Кристианос, Коста Адехе).
+
+**Visto al cotejar con «Ruta del día»**: el Castillo de San Juan Bautista (el
+Castillo Negro, en Santa Cruz) estaba entre sus sugerencias del Sur. Pasa a
+las del Norte, y `zonas_lugares.py --comprobar` coteja desde hoy las dos
+listas de «Ruta del día» con el polígono.
+
+Controles: `probar_organiza.js` (de 418 a 520 casos) suma el paso de la zona
+en los diez idiomas (título, sus dos «atrás», las tres tarjetas; Norte y Sur
+con el mismo nombre que en «Ruta del día»), Norte y Sur sin ninguna parada de
+la otra zona (en castellano, además, las catorce tarjetas por cinco azares en
+cada zona), Museos en el Sur con su aviso y en el Norte sin él, y «Otro» en el
+Sur parada por parada. `barrido_pantallas.js`: dos pantallas más por idioma,
+el paso y el itinerario con el aviso. Fallos metidos: un lugar sin zona, el
+Castillo otra vez en el Sur de «Ruta del día», la zona que no filtra, «Otro»
+como antes, sin el aviso y sin el paso: los seis en rojo.
+
+### Para Jerome
+
+1. **El Teide sale en el Norte.** El Teide, el Teleférico, los Roques de
+   García, La Ruleta, Montaña Blanca, el Llano de Ucanca y la Ruta del Pico
+   Viejo son del municipio de La Orotava; el Paisaje Lunar (Granadilla) y el
+   Observatorio (Fasnia) son del Sur. Y **Masca, el Mirador de Masca, la Ruta
+   Masca–Playa y los Acantilados de Los Gigantes** son de Buenavista del
+   Norte: con «Sur» no salen, aunque mucha gente va desde el sur. ¿Los quieres
+   en las dos zonas? En «Ruta del día» esos cuatro están en el Sur, y no lo he
+   tocado.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -4981,7 +5050,8 @@ Y cada bloque por separado, si hace falta:
 | `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json` (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, ficheros rotos, el latido de 3 horas |
 | `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos, los kilómetros del coche y lo que se comparte del itinerario |
-| `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los cuatro pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano |
+| `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, Norte y Sur sin paradas de la otra zona (y «Otro» tampoco), el aviso cuando no hay más, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano |
+| `tools/zonas_lugares.py` | Norte o Sur de cada lugar por el polígono oficial de su municipio: lo escribe en `index.html` y con `--comprobar` lo rehace y lo compara; coteja también las listas Norte y Sur de «Ruta del día» |
 | `tools/auditar_claves_tx.js` | cada `tx('…')` con la clave escrita tiene su fila en `UI_TX` (`tx()` devuelve vacío sin avisar) |
 | `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: píldora, panel, líneas del tiempo y del mar, comprobación vieja, fichero que no llega |
 | `tools/castellano_suelto.js` | el castellano que se queda **dentro** de cada idioma —letras, palabras corrientes, palabras copiadas, alfabeto latino en búlgaro y chino— y las frases que la traducción no tiene; lo que se queda a propósito, en `idiomas/castellano-aceptado.json` |

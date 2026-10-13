@@ -6653,9 +6653,18 @@ window.onunhandledrejection = function(e) {
         </button>
       </div>
 
-            <!-- PASO 3: Transporte -->
-      <div id="dpi-step-3" class="dpi-step">
+      <!-- ZONA: Norte, Sur o «Me da igual». Jerome, 13 de octubre de 2026: «la
+           isla es grande, si voy de los cristianos a Santa Cruz son más de
+           50km». Tarjetas generadas desde DP_ZONAS -->
+      <div id="dpi-step-zona" class="dpi-step">
         <button onclick="dpiGoBack(2)" style="background:none;border:none;color:rgba(255,255,255,0.5);font-size:0.8rem;cursor:pointer;padding:0 0 10px;text-align:left;width:100%;">‹ Cambiar actividades</button>
+        <div class="dpi-step-title" id="dpi-zona-title">¿Qué zona de la isla?</div>
+        <div class="dp-time-grid" id="dpi-zona-grid"></div>
+      </div>
+
+      <!-- PASO 3: Transporte -->
+      <div id="dpi-step-3" class="dpi-step">
+        <button onclick="dpiGoBack('zona')" style="background:none;border:none;color:rgba(255,255,255,0.5);font-size:0.8rem;cursor:pointer;padding:0 0 10px;text-align:left;width:100%;">‹ Cambiar zona</button>
         <div class="dpi-step-title" id="dpi-transport-title">¿Cómo te mueves?</div>
         <div class="dp-time-grid" id="dpi-transport-grid"></div>
       </div>
@@ -6669,6 +6678,7 @@ window.onunhandledrejection = function(e) {
         </div>
         <div id="dpi-result" style="display:none">
           <div class="dpi-step-title" id="dpi-result-title" data-tx="dpiResultado">Tu itinerario</div>
+          <div class="dpi-zona-aviso" id="dpi-zona-aviso" hidden></div>
           <div class="dp-itinerary" id="dpi-itinerary"></div>
         </div>
         <div class="dpi-footer">
@@ -9313,7 +9323,7 @@ const UI_TX = Object.assign({"parkingSpaces": {"es": "{n} plaza|{n} plazas", "en
    puntos", que es falso y ademas empuja a alquilar un coche. */
 Object.assign(UI_TX, {"busPago": {"es": "Puedes pagar acercando tarjeta bancaria, móvil o reloj al datáfono del conductor. Con la tarjeta Ten+ el billete sale más barato. En trayectos de más de 20 km, el billete de ida y vuelta lleva un 10 % de descuento.", "en": "You can pay by tapping a bank card, phone or watch on the driver's card reader. The Ten+ card makes the fare cheaper. On journeys over 20 km, the return ticket has a 10% discount.", "fr": "Vous pouvez payer en approchant une carte bancaire, un téléphone ou une montre du terminal du conducteur. La carte Ten+ réduit le prix. Sur les trajets de plus de 20 km, le billet aller-retour bénéficie de 10 % de réduction.", "de": "Sie können bezahlen, indem Sie Bankkarte, Handy oder Uhr an das Lesegerät des Fahrers halten. Mit der Ten+-Karte wird die Fahrt günstiger. Bei Fahrten über 20 km gibt es 10 % Rabatt auf die Hin- und Rückfahrkarte.", "it": "Puoi pagare avvicinando carta bancaria, telefono o orologio al lettore dell'autista. Con la carta Ten+ il biglietto costa meno. Sui percorsi di oltre 20 km, il biglietto di andata e ritorno ha uno sconto del 10 %.", "nl": "Je kunt betalen door een bankpas, telefoon of horloge tegen de lezer van de chauffeur te houden. Met de Ten+-kaart is het ritje goedkoper. Bij ritten van meer dan 20 km krijg je 10 % korting op het retourticket.", "zh": "可直接用银行卡、手机或手表在司机的读卡器上刷卡付款。使用 Ten+ 卡票价更便宜。超过 20 公里的行程，往返票享 9 折。", "zht": "可直接用銀行卡、手機或手錶在司機的讀卡機上感應付款。使用 Ten+ 卡票價更便宜。超過 20 公里的行程，來回票享 9 折。", "bg": "Може да платите, като допрете банкова карта, телефон или часовник до четеца на шофьора. С картата Ten+ билетът е по-евтин. При пътувания над 20 км билетът за отиване и връщане е с 10 % отстъпка.", pl: "Możesz zapłacić, zbliżając kartę bankową, telefon albo zegarek do terminala u kierowcy. Z kartą Ten+ bilet wychodzi taniej. Na trasach powyżej 20 km bilet w obie strony ma 10 % zniżki."}});
 Object.assign(UI_TX, {"busCaminataLarga": {"es": "Caminata larga hasta la parada ({km} km aprox. por calle).", "en": "Long walk to the stop (about {km} km by street).", "fr": "Longue marche jusqu'à l'arrêt (environ {km} km par la rue).", "de": "Langer Fußweg zur Haltestelle (ca. {km} km über die Straße).", "it": "Camminata lunga fino alla fermata (circa {km} km su strada).", "nl": "Lange wandeling naar de halte (ongeveer {km} km over straat).", "zh": "步行到车站较远（按街道约 {km} 公里）。", "zht": "步行到車站較遠（按街道約 {km} 公里）。", "bg": "Дълго пеша до спирката (около {km} км по улиците).", pl: "Długie dojście do przystanku ({km} km w przybliżeniu ulicami)."}, "busAltTransbordo": {"es": "Alternativa con transbordo: {l1}+{l2}, ~{min} min.", "en": "Alternative with a transfer: {l1}+{l2}, ~{min} min.", "fr": "Alternative avec correspondance : {l1}+{l2}, ~{min} min.", "de": "Alternative mit Umstieg: {l1}+{l2}, ~{min} Min.", "it": "Alternativa con cambio: {l1}+{l2}, ~{min} min.", "nl": "Alternatief met overstap: {l1}+{l2}, ~{min} min.", "zh": "换乘方案：{l1}+{l2}，约 {min} 分钟。", "zht": "轉乘方案：{l1}+{l2}，約 {min} 分鐘。", "bg": "Вариант с прекачване: {l1}+{l2}, ~{min} мин.", pl: "Alternatywa z przesiadką: {l1}+{l2}, ~{min} min."}, "busAltDirecta": {"es": "Alternativa directa: {l}, ~{min} min.", "en": "Direct alternative: {l}, ~{min} min.", "fr": "Alternative directe : {l}, ~{min} min.", "de": "Direkte Alternative: {l}, ~{min} Min.", "it": "Alternativa diretta: {l}, ~{min} min.", "nl": "Direct alternatief: {l}, ~{min} min.", "zh": "直达方案：{l}，约 {min} 分钟。", "zht": "直達方案：{l}，約 {min} 分鐘。", "bg": "Директен вариант: {l}, ~{min} мин.", pl: "Alternatywa bezpośrednia: {l}, ~{min} min."}});
-Object.assign(UI_TX, {"dpSinGuagua": {"es": "Sin guagua directa ni con un transbordo", "en": "No direct bus or one-change connection", "fr": "Pas de bus direct ni avec une correspondance", "de": "Kein Bus, weder direkt noch mit einmal Umsteigen", "it": "Nessun autobus diretto né con un cambio", "nl": "Geen bus, direct noch met één overstap", "zh": "没有直达或一次换乘的公交", "zht": "沒有直達或一次轉乘的公車", "bg": "Няма автобус, нито директен, нито с едно прекачване", "pl": "Brak autobusu bezpośredniego ani z jedną przesiadką"}, "busSinConexion": {"es": "No hay líneas que conecten estos dos puntos.", "en": "No bus lines connect these two points.", "fr": "Aucune ligne ne relie ces deux points.", "de": "Keine Linie verbindet diese beiden Punkte.", "it": "Nessuna linea collega questi due punti.", "nl": "Geen enkele lijn verbindt deze twee punten.", "zh": "没有线路连接这两个地点。", "zht": "沒有路線連接這兩個地點。", "bg": "Няма линии, които свързват тези две точки.", pl: "Nie ma linii łączących te dwa punkty."}, "busFueraHorario": {"es": "A esta hora no pasa ninguna guagua que una estos dos puntos. Horario de las líneas que los unen: {lineas}.", "en": "No bus links these two points at this time. Timetable of the lines that connect them: {lineas}.", "fr": "À cette heure, aucun bus ne relie ces deux points. Horaires des lignes qui les relient : {lineas}.", "de": "Zu dieser Uhrzeit verbindet kein Bus diese beiden Punkte. Betriebszeiten der Linien, die sie verbinden: {lineas}.", "it": "A quest'ora nessun autobus collega questi due punti. Orari delle linee che li collegano: {lineas}.", "nl": "Op dit uur rijdt er geen bus tussen deze twee punten. Dienstregeling van de lijnen die ze verbinden: {lineas}.", "zh": "此时没有公交连接这两个地点。连接两地的线路运营时间：{lineas}。", "zht": "此時沒有公車連接這兩個地點。連接兩地的路線營運時間：{lineas}。", "bg": "По това време няма автобус между тези две точки. Разписание на линиите, които ги свързват: {lineas}.", "pl": "O tej porze żaden autobus nie łączy tych dwóch punktów. Godziny kursowania linii, które je łączą: {lineas}."}, "busVuelta": {"es": "vuelta", "en": "return", "fr": "retour", "de": "Rückfahrt", "it": "ritorno", "nl": "terugrit", "zh": "返程", "zht": "返程", "bg": "връщане", "pl": "powrót"}, "busSinParadaOrigen": {"es": "No hay ninguna parada de guagua a menos de {km} km a pie del origen.", "en": "There is no bus stop within {km} km on foot of the starting point.", "fr": "Aucun arrêt de bus à moins de {km} km à pied du départ.", "de": "Keine Bushaltestelle im Umkreis von {km} km zu Fuß vom Start.", "it": "Nessuna fermata dell'autobus a meno di {km} km a piedi dalla partenza.", "nl": "Er is geen bushalte binnen {km} km lopen van het vertrekpunt.", "zh": "起点步行{km}公里内没有公交站。", "zht": "起點步行{km}公里內沒有公車站。", "bg": "Няма автобусна спирка на по-малко от {km} км пеша от началната точка.", "pl": "W promieniu {km} km pieszo od początku trasy nie ma żadnego przystanku."}, "busSinParadaDestino": {"es": "No hay ninguna parada de guagua a menos de {km} km a pie del destino.", "en": "There is no bus stop within {km} km on foot of the destination.", "fr": "Aucun arrêt de bus à moins de {km} km à pied de l'arrivée.", "de": "Keine Bushaltestelle im Umkreis von {km} km zu Fuß vom Ziel.", "it": "Nessuna fermata dell'autobus a meno di {km} km a piedi dall'arrivo.", "nl": "Er is geen bushalte binnen {km} km lopen van de bestemming.", "zh": "终点步行{km}公里内没有公交站。", "zht": "終點步行{km}公里內沒有公車站。", "bg": "Няма автобусна спирка на по-малко от {km} км пеша от крайната точка.", "pl": "W promieniu {km} km pieszo od celu nie ma żadnego przystanku."}, "busTransbordo": {"es": "transbordo", "en": "change", "fr": "correspondance", "de": "Umstieg", "it": "cambio", "nl": "overstap", "zh": "换乘", "zht": "轉乘", "bg": "прекачване", "pl": "przesiadka"}, "routeToastOrigen": {"es": "Toca un marcador del mapa como *Origen*", "en": "Tap a marker on the map to set the *start*", "fr": "Touchez un marqueur de la carte pour le *départ*", "de": "Tippe auf einen Marker auf der Karte als *Start*", "it": "Tocca un marcatore sulla mappa come *partenza*", "nl": "Tik op een marker op de kaart als *vertrekpunt*", "zh": "点击地图上的标记作为*起点*", "zht": "點擊地圖上的標記作為*起點*", "bg": "Докоснете маркер на картата като *начална точка*", "pl": "Dotknij znacznika na mapie, aby wybrać *początek*"}, "routeToastDestino": {"es": "Toca un marcador del mapa como *Destino*", "en": "Tap a marker on the map to set the *destination*", "fr": "Touchez un marqueur de la carte pour l'*arrivée*", "de": "Tippe auf einen Marker auf der Karte als *Ziel*", "it": "Tocca un marcatore sulla mappa come *arrivo*", "nl": "Tik op een marker op de kaart als *bestemming*", "zh": "点击地图上的标记作为*终点*", "zht": "點擊地圖上的標記作為*終點*", "bg": "Докоснете маркер на картата като *крайна точка*", "pl": "Dotknij znacznika na mapie, aby wybrać *cel*"}, "dpCompartirTitulo": {"es": "Mi día en Tenerife", "en": "My day in Tenerife", "fr": "Ma journée à Tenerife", "de": "Mein Tag auf Teneriffa", "it": "La mia giornata a Tenerife", "nl": "Mijn dag op Tenerife", "zh": "我的特内里费一日", "zht": "我的特內里費一日", "bg": "Моят ден на Тенерифе", "pl": "Mój dzień na Teneryfie"}, "dpCompartirPie": {"es": "Planificado con Tenerife GO", "en": "Planned with Tenerife GO", "fr": "Planifié avec Tenerife GO", "de": "Geplant mit Tenerife GO", "it": "Pianificato con Tenerife GO", "nl": "Gepland met Tenerife GO", "zh": "用 Tenerife GO 规划", "zht": "用 Tenerife GO 規劃", "bg": "Планирано с Tenerife GO", "pl": "Zaplanowane z Tenerife GO"}});
+Object.assign(UI_TX, {"dpSinGuagua": {"es": "Sin guagua directa ni con un transbordo", "en": "No direct bus or one-change connection", "fr": "Pas de bus direct ni avec une correspondance", "de": "Kein Bus, weder direkt noch mit einmal Umsteigen", "it": "Nessun autobus diretto né con un cambio", "nl": "Geen bus, direct noch met één overstap", "zh": "没有直达或一次换乘的公交", "zht": "沒有直達或一次轉乘的公車", "bg": "Няма автобус, нито директен, нито с едно прекачване", "pl": "Brak autobusu bezpośredniego ani z jedną przesiadką"}, "busSinConexion": {"es": "No hay líneas que conecten estos dos puntos.", "en": "No bus lines connect these two points.", "fr": "Aucune ligne ne relie ces deux points.", "de": "Keine Linie verbindet diese beiden Punkte.", "it": "Nessuna linea collega questi due punti.", "nl": "Geen enkele lijn verbindt deze twee punten.", "zh": "没有线路连接这两个地点。", "zht": "沒有路線連接這兩個地點。", "bg": "Няма линии, които свързват тези две точки.", pl: "Nie ma linii łączących te dwa punkty."}, "busFueraHorario": {"es": "A esta hora no pasa ninguna guagua que una estos dos puntos. Horario de las líneas que los unen: {lineas}.", "en": "No bus links these two points at this time. Timetable of the lines that connect them: {lineas}.", "fr": "À cette heure, aucun bus ne relie ces deux points. Horaires des lignes qui les relient : {lineas}.", "de": "Zu dieser Uhrzeit verbindet kein Bus diese beiden Punkte. Betriebszeiten der Linien, die sie verbinden: {lineas}.", "it": "A quest'ora nessun autobus collega questi due punti. Orari delle linee che li collegano: {lineas}.", "nl": "Op dit uur rijdt er geen bus tussen deze twee punten. Dienstregeling van de lijnen die ze verbinden: {lineas}.", "zh": "此时没有公交连接这两个地点。连接两地的线路运营时间：{lineas}。", "zht": "此時沒有公車連接這兩個地點。連接兩地的路線營運時間：{lineas}。", "bg": "По това време няма автобус между тези две точки. Разписание на линиите, които ги свързват: {lineas}.", "pl": "O tej porze żaden autobus nie łączy tych dwóch punktów. Godziny kursowania linii, które je łączą: {lineas}."}, "busVuelta": {"es": "vuelta", "en": "return", "fr": "retour", "de": "Rückfahrt", "it": "ritorno", "nl": "terugrit", "zh": "返程", "zht": "返程", "bg": "връщане", "pl": "powrót"}, "busSinParadaOrigen": {"es": "No hay ninguna parada de guagua a menos de {km} km a pie del origen.", "en": "There is no bus stop within {km} km on foot of the starting point.", "fr": "Aucun arrêt de bus à moins de {km} km à pied du départ.", "de": "Keine Bushaltestelle im Umkreis von {km} km zu Fuß vom Start.", "it": "Nessuna fermata dell'autobus a meno di {km} km a piedi dalla partenza.", "nl": "Er is geen bushalte binnen {km} km lopen van het vertrekpunt.", "zh": "起点步行{km}公里内没有公交站。", "zht": "起點步行{km}公里內沒有公車站。", "bg": "Няма автобусна спирка на по-малко от {km} км пеша от началната точка.", "pl": "W promieniu {km} km pieszo od początku trasy nie ma żadnego przystanku."}, "busSinParadaDestino": {"es": "No hay ninguna parada de guagua a menos de {km} km a pie del destino.", "en": "There is no bus stop within {km} km on foot of the destination.", "fr": "Aucun arrêt de bus à moins de {km} km à pied de l'arrivée.", "de": "Keine Bushaltestelle im Umkreis von {km} km zu Fuß vom Ziel.", "it": "Nessuna fermata dell'autobus a meno di {km} km a piedi dall'arrivo.", "nl": "Er is geen bushalte binnen {km} km lopen van de bestemming.", "zh": "终点步行{km}公里内没有公交站。", "zht": "終點步行{km}公里內沒有公車站。", "bg": "Няма автобусна спирка на по-малко от {km} км пеша от крайната точка.", "pl": "W promieniu {km} km pieszo od celu nie ma żadnego przystanku."}, "busTransbordo": {"es": "transbordo", "en": "change", "fr": "correspondance", "de": "Umstieg", "it": "cambio", "nl": "overstap", "zh": "换乘", "zht": "轉乘", "bg": "прекачване", "pl": "przesiadka"}, "routeToastOrigen": {"es": "Toca un marcador del mapa como *Origen*", "en": "Tap a marker on the map to set the *start*", "fr": "Touchez un marqueur de la carte pour le *départ*", "de": "Tippe auf einen Marker auf der Karte als *Start*", "it": "Tocca un marcatore sulla mappa come *partenza*", "nl": "Tik op een marker op de kaart als *vertrekpunt*", "zh": "点击地图上的标记作为*起点*", "zht": "點擊地圖上的標記作為*起點*", "bg": "Докоснете маркер на картата като *начална точка*", "pl": "Dotknij znacznika na mapie, aby wybrać *początek*"}, "routeToastDestino": {"es": "Toca un marcador del mapa como *Destino*", "en": "Tap a marker on the map to set the *destination*", "fr": "Touchez un marqueur de la carte pour l'*arrivée*", "de": "Tippe auf einen Marker auf der Karte als *Ziel*", "it": "Tocca un marcatore sulla mappa come *arrivo*", "nl": "Tik op een marker op de kaart als *bestemming*", "zh": "点击地图上的标记作为*终点*", "zht": "點擊地圖上的標記作為*終點*", "bg": "Докоснете маркер на картата като *крайна точка*", "pl": "Dotknij znacznika na mapie, aby wybrać *cel*"}, "dpCompartirTitulo": {"es": "Mi día en Tenerife", "en": "My day in Tenerife", "fr": "Ma journée à Tenerife", "de": "Mein Tag auf Teneriffa", "it": "La mia giornata a Tenerife", "nl": "Mijn dag op Tenerife", "zh": "我的特内里费一日", "zht": "我的特內里費一日", "bg": "Моят ден на Тенерифе", "pl": "Mój dzień na Teneryfie"}, "dpCompartirPie": {"es": "Planificado con Tenerife GO", "en": "Planned with Tenerife GO", "fr": "Planifié avec Tenerife GO", "de": "Geplant mit Tenerife GO", "it": "Pianificato con Tenerife GO", "nl": "Gepland met Tenerife GO", "zh": "用 Tenerife GO 规划", "zht": "用 Tenerife GO 規劃", "bg": "Планирано с Tenerife GO", "pl": "Zaplanowane z Tenerife GO"}, "dpZonaSinMas": {"es": "En esta zona no hay más lugares con lo que has elegido.", "en": "There are no more places in this area for what you picked.", "fr": "Il n’y a pas d’autres lieux dans cette zone pour ce que tu as choisi.", "de": "In diesem Teil der Insel gibt es keine weiteren Orte für deine Auswahl.", "it": "In questa zona non ci sono altri luoghi per ciò che hai scelto.", "nl": "In dit gebied zijn er geen andere plekken voor wat je hebt gekozen.", "zh": "按你的选择，这个区域没有更多地点了。", "zht": "按你的選擇，這個區域沒有更多地點了。", "bg": "В тази част на острова няма повече места според избора ви.", "pl": "W tej części wyspy nie ma więcej miejsc pasujących do wyboru."}});
 Object.assign(UI_TX, {"busNoDisponible": {"es": "Sin conexión", "en": "No connection", "fr": "Pas de liaison", "de": "Keine Verbindung", "it": "Nessun collegamento", "nl": "Geen verbinding", "zh": "无直达", "zht": "無直達", "bg": "Няма връзка", pl: "Brak połączenia"}, "busSinRuta": {"es": "No se encontró una ruta en guagua para este trayecto.", "en": "No bus route found for this journey.", "fr": "Aucun itinéraire en bus trouvé pour ce trajet.", "de": "Für diese Strecke wurde keine Busverbindung gefunden.", "it": "Nessun percorso in autobus trovato per questo tragitto.", "nl": "Geen busroute gevonden voor dit traject.", "zh": "没有找到这段行程的公交路线。", "zht": "沒有找到這段行程的公車路線。", "bg": "Не е намерен автобусен маршрут за това пътуване.", pl: "Nie znaleziono połączenia autobusowego na tej trasie."}});
 Object.assign(UI_TX, {"photoLoading": {"es": "Cargando", "en": "Loading", "fr": "Chargement", "de": "Lädt", "it": "Caricamento", "nl": "Laden", "zh": "加载中", "zht": "載入中", "bg": "Зарежда", pl: "Wczytywanie"}});
 Object.assign(UI_TX, {"gasPrecioG95": {"es": "Gasolina 95", "en": "Petrol 95", "fr": "Essence 95", "de": "Benzin 95", "it": "Benzina 95", "nl": "Benzine 95", "zh": "95号汽油", "zht": "95號汽油", "bg": "Бензин 95", "pl": "Benzyna 95"}, "gasPrecioDiesel": {"es": "Diésel", "en": "Diesel", "fr": "Gazole", "de": "Diesel", "it": "Gasolio", "nl": "Diesel", "zh": "柴油", "zht": "柴油", "bg": "Дизел", "pl": "Olej napędowy"}, "gasBarataUna": {"es": "la más barata de {m}", "en": "the cheapest in {m}", "fr": "la moins chère de {m}", "de": "die günstigste in {m}", "it": "la più economica di {m}", "nl": "de goedkoopste in {m}", "zh": "{m}最便宜", "zht": "{m}最便宜", "bg": "най-евтината в {m}", "pl": "najtańsza w {m}"}, "gasBarataVarias": {"es": "entre las {n} más baratas de {m}", "en": "one of the {n} cheapest in {m}", "fr": "parmi les {n} moins chères de {m}", "de": "unter den {n} günstigsten in {m}", "it": "tra le {n} più economiche di {m}", "nl": "bij de {n} goedkoopste in {m}", "zh": "{m}最便宜的{n}家之一", "zht": "{m}最便宜的{n}家之一", "bg": "сред {n}-те най-евтини в {m}", "pl": "wśród {n} najtańszych w {m}"}, "gasPrecioFecha": {"es": "Precio oficial del Ministerio · {f}", "en": "Official price (Spanish Ministry) · {f}", "fr": "Prix officiel du ministère · {f}", "de": "Amtlicher Preis des Ministeriums · {f}", "it": "Prezzo ufficiale del Ministero · {f}", "nl": "Officiële prijs van het ministerie · {f}", "zh": "西班牙政府官方价格 · {f}", "zht": "西班牙政府官方價格 · {f}", "bg": "Официална цена на министерството · {f}", "pl": "Oficjalna cena ministerstwa · {f}"}, "gasPreciosViejos": {"es": "No hay precios de hoy: los últimos son del {f}.", "en": "No current prices: the latest are from {f}.", "fr": "Pas de prix à jour : les derniers datent du {f}.", "de": "Keine aktuellen Preise: die letzten sind vom {f}.", "it": "Nessun prezzo aggiornato: gli ultimi sono del {f}.", "nl": "Geen actuele prijzen: de laatste zijn van {f}.", "zh": "暂无最新价格：最近一次为{f}。", "zht": "暫無最新價格：最近一次為{f}。", "bg": "Няма актуални цени: последните са от {f}.", "pl": "Brak aktualnych cen: ostatnie są z {f}."}, "gasPreciosNo": {"es": "Los precios no están disponibles ahora.", "en": "Prices are not available right now.", "fr": "Les prix ne sont pas disponibles pour le moment.", "de": "Die Preise sind gerade nicht verfügbar.", "it": "I prezzi non sono disponibili al momento.", "nl": "De prijzen zijn nu niet beschikbaar.", "zh": "目前无法获取价格。", "zht": "目前無法取得價格。", "bg": "В момента цените не са достъпни.", "pl": "Ceny są teraz niedostępne."}});
@@ -20222,6 +20232,7 @@ const DAY_TRIP_ZONES = {
       'ciudad-puerto-cruz', 'lago-martianez', 'playa-jardin', 'bollullo', 'ciudad-orotava',
       'mirador-humboldt', 'icod', 'ciudad-garachico', 'piscinas-garachico', 'tacoronte',
       'bodega-monje', 'mercado-lagunero', 'iglesia-concepcion', 'museo-naturaleza', 'auditorio',
+      'castillo-negro',
       'ciudad-santa-cruz', 'mercado-africano', 'teresitas', 'mirador-teresitas', 'punta-hidalgo',
       'piscinas-bajamar', 'playa-socorro', 'charco-viento', 'el-pris', 'mesa-mar',
       'loro-parque', 'casa-balcones', 'cueva-viento', 'tea-tenerife', 'castillo-san-felipe',
@@ -20244,7 +20255,7 @@ const DAY_TRIP_ZONES = {
       'jungle-park', 'karting', 'aqualand-sur', 'monkey-park', 'whale-watching',
       'san-juan', 'alcala', 'arena', 'playa-callao', 'playa-puertito',
       'masca', 'ruta-masca-playa', 'mirador-maska', 'candelaria', 'piramides-guimar',
-      'castillo-negro', 'sendero-barranco-infierno', 'montana-roja', 'montana-pelada', 'montana-amarilla',
+      'sendero-barranco-infierno', 'montana-roja', 'montana-pelada', 'montana-amarilla',
       'montana-guaza', 'acantilados-gigantes', 'riscos-chio', 'ciudad-guimar', 'ciudad-adeje',
       'playa-torviscas', 'playa-puerto-santiago', 'playa-diego-hernandez', 'playa-jaquita', 'playa-amarilla',
       'faro-rasca', 'faro-abona', 'ciudad-arona', 'ciudad-candelaria', 'ciudad-granadilla',
@@ -23675,7 +23686,7 @@ window.addEventListener('hashchange', () => {
     "tourRutasT": {"es": "El botón Rutas", "en": "The Routes button", "fr": "Le bouton Itinéraires", "de": "Der Routen-Button", "it": "Il pulsante Percorsi", "nl": "De knop Routes", "zh": "路线按钮", "zht": "路線按鈕", "bg": "Бутонът „Маршрути“", "pl": "Przycisk Trasy"},
     "tourRutasP": {"es": "Aquí tienes tres herramientas para organizar el viaje: «Organiza tu día», «Ruta del día» y «A→B». Te las enseñamos una a una.", "en": "Three tools to plan your trip: “Plan your day”, “Day Route” and “A→B”. We'll show you each one.", "fr": "Trois outils pour organiser votre voyage : « Organisez votre journée », « Itinéraire du jour » et « A→B ». On vous les montre un par un.", "de": "Drei Werkzeuge für deine Reise: „Plane deinen Tag“, „Tagesroute“ und „A→B“. Wir zeigen sie dir nacheinander.", "it": "Tre strumenti per organizzare il viaggio: «Organizza la tua giornata», «Itinerario del giorno» e «A→B». Te li mostriamo uno per uno.", "nl": "Drie hulpmiddelen om je reis te plannen: “Plan je dag”, “Route van de dag” en “A→B”. We laten ze je een voor een zien.", "zh": "三个规划行程的工具：“规划你的一天”“今日路线”和“A→B”。我们逐一为你介绍。", "zht": "三個規劃行程的工具：「規劃你的一天」「今日路線」和「A→B」。我們逐一為你介紹。", "bg": "Три инструмента за планиране на пътуването: „Организирай деня си“, „Маршрут за деня“ и „A→B“. Ще ви ги покажем едно по едно.", "pl": "Trzy narzędzia do planowania podróży: „Zaplanuj dzień”, „Trasa dnia” i „A→B”. Pokażemy ci je po kolei."},
     "tourOrganizaT": {"es": "Organiza tu día", "en": "Plan your day", "fr": "Organisez votre journée", "de": "Plane deinen Tag", "it": "Organizza la tua giornata", "nl": "Plan je dag", "zh": "规划你的一天", "zht": "規劃你的一天", "bg": "Организирай деня си", "pl": "Zaplanuj dzień"},
-    "tourOrganizaP": {"es": "Dinos cuánto tiempo tienes, qué te apetece y cómo te mueves: coche, guagua, a pie o bici. Te propone un itinerario ordenado por cercanía, con pausa para comer si es medio día o día completo. Cambia paradas, guárdalo, compártelo o descárgalo en GPX.", "en": "Tell us how much time you have, what you fancy and how you get around: car, bus, on foot or bike. You get an itinerary ordered by proximity, with a lunch break for a half or full day. Swap stops, save it, share it or download it as GPX.", "fr": "Dites combien de temps vous avez, ce qui vous tente et comment vous bougez : voiture, bus, à pied ou vélo. Vous obtenez un itinéraire ordonné par proximité, avec pause déjeuner sur une demi-journée ou plus. Modifiez les étapes, puis enregistrez, partagez ou exportez en GPX.", "de": "Sag uns, wie viel Zeit du hast, worauf du Lust hast und wie du unterwegs bist: Auto, Bus, zu Fuß oder Rad. Du bekommst eine nach Nähe sortierte Route, mit Mittagspause bei einem halben oder ganzen Tag. Tausche Stopps, speichere, teile oder lade sie als GPX herunter.", "it": "Dicci quanto tempo hai, cosa ti va di fare e come ti muovi: auto, autobus, a piedi o bici. Ti propone un itinerario ordinato per vicinanza, con pausa pranzo se è mezza giornata o giornata intera. Cambia tappe, salvalo, condividilo o scaricalo in GPX.", "nl": "Vertel hoeveel tijd je hebt, waar je zin in hebt en hoe je reist: auto, bus, te voet of fiets. Je krijgt een route gesorteerd op afstand, met lunchpauze bij een halve of hele dag. Wissel stops, bewaar, deel of download hem als GPX.", "zh": "告诉我们你有多少时间、想做什么、怎么出行：自驾、公交、步行或骑车。它会生成按远近排序的行程，半天或一整天还会安排午餐。可以更换站点、保存、分享或下载为GPX。", "zht": "告訴我們你有多少時間、想做什麼、怎麼出行：自駕、公車、步行或騎車。它會產生依遠近排序的行程，半天或一整天還會安排午餐。可以更換站點、儲存、分享或下載為GPX。", "bg": "Кажете с колко време разполагате, какво ви се прави и как се придвижвате: кола, автобус, пеша или колело. Получавате маршрут, подреден по близост, с почивка за обяд при половин или цял ден. Сменяйте спирки, запазете, споделете или изтеглете като GPX.", "pl": "Powiedz, ile masz czasu, na co masz ochotę i jak się poruszasz: samochodem, autobusem, pieszo czy rowerem. Dostaniesz plan ułożony według odległości, z przerwą na obiad przy pół dnia lub całym dniu. Zmieniaj przystanki, zapisz, udostępnij albo pobierz jako GPX."},
+    "tourOrganizaP": {"es": "Dinos cuánto tiempo tienes, qué te apetece, si prefieres el norte o el sur y cómo te mueves. Te propone un itinerario ordenado por cercanía, con pausa para comer si es medio día o día completo. Cambia paradas, guárdalo, compártelo o descárgalo en GPX.", "en": "Tell us how much time you have, what you fancy, north or south, and how you get around. You get an itinerary ordered by proximity, with a lunch break for a half or full day. Swap stops, save it, share it or download it as GPX.", "fr": "Dites combien de temps vous avez, ce qui vous tente, nord ou sud, et comment vous bougez. Vous obtenez un itinéraire ordonné par proximité, avec pause déjeuner sur une demi-journée ou plus. Modifiez les étapes, puis enregistrez, partagez ou exportez en GPX.", "de": "Sag uns, wie viel Zeit du hast, worauf du Lust hast, ob lieber Norden oder Süden und wie du unterwegs bist. Du bekommst eine nach Nähe sortierte Route, mit Mittagspause bei einem halben oder ganzen Tag. Tausche Stopps, speichere, teile oder lade sie als GPX herunter.", "it": "Dicci quanto tempo hai, cosa ti va di fare, se preferisci il nord o il sud e come ti muovi. Ti propone un itinerario ordinato per vicinanza, con pausa pranzo se è mezza giornata o giornata intera. Cambia tappe, salvalo, condividilo o scaricalo in GPX.", "nl": "Vertel hoeveel tijd je hebt, waar je zin in hebt, noord of zuid, en hoe je reist. Je krijgt een route gesorteerd op afstand, met lunchpauze bij een halve of hele dag. Wissel stops, bewaar, deel of download hem als GPX.", "zh": "告诉我们你有多少时间、想做什么、想去北部还是南部、怎么出行。它会生成按远近排序的行程，半天或一整天还会安排午餐。可以更换站点、保存、分享或下载为GPX。", "zht": "告訴我們你有多少時間、想做什麼、想去北部還是南部、怎麼出行。它會產生依遠近排序的行程，半天或一整天還會安排午餐。可以更換站點、儲存、分享或下載為GPX。", "bg": "Кажете с колко време разполагате, какво ви се прави, дали предпочитате севера или юга и как се придвижвате. Получавате маршрут, подреден по близост, с почивка за обяд при половин или цял ден. Сменяйте спирки, запазете, споделете или изтеглете като GPX.", "pl": "Powiedz, ile masz czasu, na co masz ochotę, czy wolisz północ, czy południe, i jak się poruszasz. Dostaniesz plan ułożony według odległości, z przerwą na obiad przy pół dnia lub całym dniu. Zmieniaj przystanki, zapisz, udostępnij albo pobierz jako GPX."},
     "tourRutaDiaT": {"es": "Ruta del día", "en": "Day Route", "fr": "Itinéraire du jour", "de": "Tagesroute", "it": "Itinerario del giorno", "nl": "Route van de dag", "zh": "今日路线", "zht": "今日路線", "bg": "Маршрут за деня", "pl": "Trasa dnia"},
     "tourRutaDiaP": {"es": "Elige Norte, Sur o Cumbre y añade con + los lugares que quieras visitar: se numeran en «Mi ruta». Cada parada la centras en el mapa o ves su información. Con 🗓️+ también añades aquí el itinerario de «Organiza tu día».", "en": "Pick North, South or Summit and add the places you want to visit with +: they're numbered in “My route”. You can centre each stop on the map or see its info. With 🗓️+ you can also add your “Plan your day” itinerary here.", "fr": "Choisissez Nord, Sud ou Sommet et ajoutez avec + les lieux que vous voulez visiter : ils sont numérotés dans « Mon itinéraire ». Chaque étape peut être centrée sur la carte ou afficher ses infos. Avec 🗓️+, vous y ajoutez aussi l'itinéraire créé dans « Organisez votre journée ».", "de": "Wähle Norden, Süden oder Gipfel und füge mit + die Orte hinzu, die du besuchen willst: Sie werden in „Meine Route“ nummeriert. Jeden Stopp kannst du auf der Karte zentrieren oder seine Infos ansehen. Mit 🗓️+ fügst du hier auch deinen geplanten Tag hinzu.", "it": "Scegli Nord, Sud o Vetta e aggiungi con + i luoghi che vuoi visitare: vengono numerati in «Il mio percorso». Ogni tappa puoi centrarla sulla mappa o vederne le informazioni. Con 🗓️+ aggiungi qui anche l'itinerario di «Organizza la tua giornata».", "nl": "Kies Noord, Zuid of Top en voeg met + de plekken toe die je wilt bezoeken: ze worden genummerd in “Mijn route”. Elke stop kun je op de kaart centreren of de info bekijken. Met 🗓️+ voeg je hier ook je geplande dag toe.", "zh": "选择北部、南部或山顶，用+添加想去的地点，它们会在“我的路线”中依次编号。每一站都可以在地图上居中或查看信息。用🗓️+还能把“规划你的一天”的行程加到这里。", "zht": "選擇北部、南部或山頂，用+加入想去的地點，它們會在「我的路線」中依序編號。每一站都可以在地圖上置中或查看資訊。用🗓️+還能把「規劃你的一天」的行程加到這裡。", "bg": "Изберете Север, Юг или Планината и добавете с + местата, които искате да посетите: те се номерират в „Моят маршрут“. Всяка спирка можете да центрирате на картата или да видите информацията ѝ. С 🗓️+ добавяте тук и маршрута от „Организирай деня си“.", "pl": "Wybierz Północ, Południe albo Szczyt i dodaj przyciskiem + miejsca, które chcesz odwiedzić: numerują się w sekcji „Moja trasa”. Każdy przystanek wyśrodkujesz na mapie albo zobaczysz jego informacje. Przyciskiem 🗓️+ dodasz tu też plan z „Zaplanuj dzień”."},
     "tourABT": {"es": "De A a B", "en": "From A to B", "fr": "De A à B", "de": "Von A nach B", "it": "Da A a B", "nl": "Van A naar B", "zh": "从A到B", "zht": "從A到B", "bg": "От A до B", "pl": "Z A do B"},
@@ -31058,6 +31069,9 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
 /* el tramo entre paradas: antes un rotulo fijo, casi transparente; desde el
    13 de octubre de 2026 dice el tiempo y los km calculados, y se tiene que leer */
 .dp-sep-text { font-size:0.72rem; color:rgba(255,255,255,0.62); }
+/* «En esta zona no hay más lugares con lo que has elegido» (Norte o Sur) */
+.dpi-zona-aviso { font-size:0.78rem; line-height:1.35; color:rgba(255,255,255,0.8); background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.35); border-radius:8px; padding:8px 10px; margin:-4px 0 12px; }
+.dpi-zona-aviso[hidden] { display:none; }
 
 /* ── FOOTER ACCIONES ────────────────────────────────────────── */
 .dp-footer {
@@ -31201,6 +31215,259 @@ const DP_STEP_TITLE = {"es":["\u00bfQu\u00e9 quieres hacer?","Elige uno o varios
 const DP_ZONES = {};
 DP_CARDS.forEach(function(c){ DP_ZONES[c.id] = c.cats.slice(); });
 
+/* >>> zonas de los lugares · las escribe tools/zonas_lugares.py: NO SE TOCAN A MANO.
+   Norte o Sur de cada lugar, por el poligono oficial de su municipio
+   (Cabildo). Las usa «Organiza tu día»: Norte, Sur o «Me da igual».
+   Un lugar nuevo no tiene zona hasta que se vuelve a pasar el guion, y
+   auditar.sh lo dice. */
+const DP_ZONA_LUGAR = {
+  norte: [
+    'aa-serenidad-realejos acantilados-gigantes acc-loro-parque acc-paseo-garachico',
+    'acc-piscina-jover acc-playa-teresitas acc-sendero-sentidos acc-teide-portillo almaciga anaga',
+    'ar-arenas-negras ar-chanajiga ar-el-lagar ar-fuente-fria ar-hoya-abade ar-la-caldera',
+    'ar-la-quebrada ar-la-tahona ar-las-calderetas ar-las-hayas ar-las-lagunetas ar-las-raices',
+    'ar-llano-viejos ar-lomo-la-jara ar-los-pedregales ar-ramon-caminero ar-san-jose-llanos',
+    'auditorio bano-valleseco bano-valleseco-bloque benijo bici-agua-la-esperanza',
+    'bici-alquiler-norte bici-alquiler-triciclos-sc bici-alquiler-triciclos-sursula',
+    'bici-anaga-cruz-carmen bici-bc1-inicio bici-bc2-inicio bici-circular-santa-cruz',
+    'bici-evento-vuelta-teide bici-mtb-teno-erjos bici-puerto-bailadero bici-puerto-pico-ingles',
+    'bici-ruta-norte-buenavista bici-ruta-norte-garachico bici-teide-subida bodega-cueva-rey-icod',
+    'bodega-el-lomo bodega-insulares bodega-linaje-pago bodega-monje bodega-suertes-marques',
+    'bodega-tajinaste bodega-vinatigo bollullo bosque-esperanza buceo-puerto-cruz buceo-tabaiba',
+    'cad-icod caldeira-canadas camping-arenas-negras camping-barranco-arena camping-el-lagar',
+    'camping-fuente-pedro camping-la-caldera camping-la-tahona camping-las-calderetas',
+    'camping-las-hayas camping-las-raices camping-los-pedregales camping-ramon-caminero',
+    'camping-san-jose-llanos casa-anchieta-laguna casa-balcones casa-capitanes-generales',
+    'casa-carta-valle-guerra casa-del-vino-sauzal casa-lercaro casa-salazar-laguna castillo-negro',
+    'castillo-paso-alto castillo-san-cristobal castillo-san-felipe catedral-laguna',
+    'cavis-violencia-sexual-tenerife charco-chochos charco-diablo charco-don-gabino',
+    'charco-faro-buenavista charco-gomero charco-laja charco-laja-bajamar charco-roque',
+    'charco-verde-guancha charco-viento ciudad-buenavista ciudad-garachico ciudad-guancha',
+    'ciudad-icod ciudad-laguna ciudad-matanza ciudad-orotava ciudad-puerto-cruz ciudad-realejos',
+    'ciudad-rosario ciudad-san-juan-rambla ciudad-santa-cruz ciudad-santa-ursula ciudad-sauzal',
+    'ciudad-silos ciudad-tacoronte ciudad-tanque ciudad-tegueste ciudad-victoria',
+    'convento-san-francisco-garachico corona-forestal cs-buenavista-norte cs-garachico cs-geneto',
+    'cs-icod cs-ofra cs-orotava cs-pcruz cs-realejos cs-tacoronte cueva-viento cumbre-dorsal',
+    'deporte-garcia-sanabria deporte-laguna-parque-avenidas deporte-orotava-parque',
+    'deporte-parque-granja deporte-pista-multideporte-cabildo-realejos',
+    'deporte-pista-multideporte-icod deporte-pista-multideporte-tacoronte',
+    'deporte-puerto-cruz-piscina deporte-rambla-sc deporte-realejos-street-workout',
+    'deporte-sc-chimisay deporte-sc-plaza-espana deporte-sc-tenerife-barmania',
+    'deporte-skatepark-granja-sc deporte-skatepark-laguna-copernico el-pris ermita-san-telmo',
+    'escal-anaga escal-canada-capricho farm-anaga farm-anchieta farm-bethencourt-pcruz',
+    'farm-hernandez-sct farm-islas-canarias-sct farm-orotava farm-pozo-pcruz farm-salamanca',
+    'faro-anaga faro-garachico faro-puerto-cruz faro-punta-hidalgo faro-santa-cruz-puerto',
+    'faro-teno forestal-park gas-10201-icod-de-los-vinos gas-10214-los-realejos',
+    'gas-10219-santa-cruz-de-tenerife gas-10282-santa-cruz-de-tenerife gas-10591-los-realejos',
+    'gas-10842-santa-cruz-de-tenerife gas-10905-san-cristobal-de-la-laguna',
+    'gas-10924-santa-cruz-de-tenerife gas-10970-los-realejos gas-10990-los-realejos',
+    'gas-10995-santa-cruz-de-tenerife gas-11394-santa-cruz-de-tenerife',
+    'gas-11562-san-cristobal-de-la-laguna gas-11566-la-guancha gas-12298-icod-de-los-vinos',
+    'gas-12381-la-orotava gas-12412-santa-cruz-de-tenerife gas-13353-san-cristobal-de-la-laguna',
+    'gas-13837-san-cristobal-de-la-laguna gas-13966-santa-cruz-de-tenerife',
+    'gas-14262-santa-cruz-de-tenerife gas-14353-santa-cruz-de-tenerife gas-14769-los-realejos',
+    'gas-14868-santa-cruz-de-tenerife gas-14982-tacoronte gas-15044-los-realejos',
+    'gas-15101-tegueste gas-15182-tacoronte gas-15534-san-cristobal-de-la-laguna',
+    'gas-15575-san-cristobal-de-la-laguna gas-15713-el-rosario gas-15846-icod-de-los-vinos',
+    'gas-15901-la-orotava gas-16315-la-orotava gas-16466-santa-cruz-de-tenerife',
+    'gas-7624-puerto-de-la-cruz gas-7628-santa-cruz-de-tenerife gas-7636-tacoronte',
+    'gas-7637-santa-cruz-de-tenerife gas-7674-el-sauzal gas-7675-san-cristobal-de-la-laguna',
+    'gas-7677-la-orotava gas-7678-santa-ursula gas-7682-el-tanque gas-7683-san-juan-de-la-rambla',
+    'gas-7684-los-realejos gas-7685-los-realejos gas-7686-san-cristobal-de-la-laguna',
+    'gas-7690-san-cristobal-de-la-laguna gas-7699-la-orotava gas-7701-san-cristobal-de-la-laguna',
+    'gas-7713-santa-cruz-de-tenerife gas-7720-el-rosario gas-7724-la-guancha',
+    'gas-7725-san-cristobal-de-la-laguna gas-7727-santa-cruz-de-tenerife gas-7728-tegueste',
+    'gas-7733-tacoronte gas-7734-san-cristobal-de-la-laguna gas-7736-san-cristobal-de-la-laguna',
+    'gas-7747-la-guancha gas-7749-garachico gas-7767-la-matanza-de-acentejo gas-7768-la-orotava',
+    'gas-7769-san-cristobal-de-la-laguna gas-7770-tacoronte gas-7778-el-sauzal',
+    'gas-7784-san-cristobal-de-la-laguna gas-7791-los-realejos gas-7815-santa-cruz-de-tenerife',
+    'gas-7816-santa-cruz-de-tenerife gas-7817-san-cristobal-de-la-laguna',
+    'gas-7818-santa-cruz-de-tenerife gas-7819-san-cristobal-de-la-laguna gas-7827-los-silos',
+    'gas-7829-puerto-de-la-cruz gas-7840-santa-cruz-de-tenerife gas-7846-el-sauzal',
+    'gas-7852-el-sauzal gas-7854-la-matanza-de-acentejo gas-7855-los-realejos gas-7856-la-orotava',
+    'gas-7857-santa-cruz-de-tenerife gas-7860-san-cristobal-de-la-laguna',
+    'gas-7861-san-cristobal-de-la-laguna gas-7862-san-cristobal-de-la-laguna',
+    'gas-7863-santa-cruz-de-tenerife gas-7865-tegueste gas-7866-icod-de-los-vinos',
+    'gas-7869-santa-cruz-de-tenerife gas-7871-santa-cruz-de-tenerife',
+    'gas-7872-san-cristobal-de-la-laguna gas-7875-santa-cruz-de-tenerife',
+    'gas-7879-santa-cruz-de-tenerife gas-7880-santa-cruz-de-tenerife',
+    'gas-7887-santa-cruz-de-tenerife gas-7888-buenavista-del-norte',
+    'gas-8751-san-cristobal-de-la-laguna gas-8753-puerto-de-la-cruz gas-8754-puerto-de-la-cruz',
+    'gas-8756-los-realejos gas-8757-los-realejos gas-8758-santa-cruz-de-tenerife',
+    'gas-8759-santa-cruz-de-tenerife gas-8760-icod-de-los-vinos gas-8761-santa-cruz-de-tenerife',
+    'gas-8762-santa-ursula gas-8768-san-cristobal-de-la-laguna gas-8776-la-orotava',
+    'gas-8802-el-rosario gas-9290-san-cristobal-de-la-laguna gas-9629-la-victoria-de-acentejo',
+    'gas-9741-la-orotava gas-9900-santa-cruz-de-tenerife gas-9951-santa-cruz-de-tenerife',
+    'gas-9961-san-cristobal-de-la-laguna gas-9966-san-cristobal-de-la-laguna gas-tf2-lalaguna',
+    'gas-tf21-aguamansa gas-tf5-el-bohio gas-tf5-el-sauzal gas-tf5-lalaguna gas-tf5-los-realejos',
+    'gas-tf5-ptocz gas-tf5-tacoronte gofio-escaldado golf-buenavista',
+    'gr131-tramo1-esperanza-caldera gr131-tramo2-portillo-guajara gr131-tramo3-guajara-vilaflor',
+    'guachinche-ana-eva guachinche-basilio guachinche-bodega-sursula guachinche-casa-lito',
+    'guachinche-casa-pedro guachinche-casa-yayi guachinche-corujera guachinche-cubano',
+    'guachinche-el-patio guachinche-el-primero guachinche-guayero guachinche-los-silos',
+    'guachinche-parralito guachinche-ramal guachinche-ramon guachinche-romance',
+    'guachinche-talegazo hiperdino-los-realejos hosp-bellevue hosp-candelaria hosp-ceu-laguna',
+    'hosp-hospiten-rambla hosp-huc hosp-norte hosp-parque hosp-quiron-sc hosp-sjd',
+    'hosp-uro-tenerife hosp-vithas-sct icod iglesia-concepcion iglesia-concepcion-laguna',
+    'iglesia-orotava iglesia-san-agustin-laguna iglesia-san-francisco-orotava',
+    'iglesia-san-juan-orotava iglesia-san-marcos-icod jardin-botanico-puerto-cruz',
+    'kayak-punta-teno kayak-radazul lago-martianez lidl-la-laguna lidl-puerto-cruz',
+    'lidl-santa-cruz llano-ucanca loro-parque marina-santa-cruz mariposario-drago masca',
+    'mercadillo-buenavista mercadillo-garachico mercadillo-icod mercadillo-la-laguna',
+    'mercadillo-la-victoria mercadillo-los-realejos mercadillo-los-silos mercadillo-orotava',
+    'mercadillo-puerto-cruz mercadillo-santa-cruz mercadillo-tacoronte mercadillo-tegueste',
+    'mercado-africano mercado-lagunero mesa-mar minigolf-precise-resort minimarket-24h-laguna',
+    'minimarket-24h-pcruz minimarket-24h-sct mir-aguaide mir-bailadero mir-baracan mir-chipeque',
+    'mir-cruz-hilda mir-ermita-palmar mir-garachico mir-la-jardina mir-lomo-molino',
+    'mir-los-campitos mir-pico-flores-anaga mir-punta-hidalgo mir-rambla-castro',
+    'mir-rambleta-teide mirador-humboldt mirador-la-ruleta mirador-maska mirador-pico-ingles',
+    'mirador-pino-galdo mirador-punta-homem mirador-ruleta-canadas mirador-teide',
+    'mirador-teresitas montana-blanca montana-taco museo-bellas-artes museo-carnaval-sct',
+    'museo-ciencia-cosmos museo-militar-almeyda museo-naturaleza na-grupo2006-santacruz',
+    'nucleo-bajamar nucleo-igueste-san-andres nucleo-la-ranilla nucleo-mesa-mar',
+    'nucleo-punta-hidalgo nucleo-realejo-bajo nucleo-san-andres nucleo-taganana nucleo-tejina',
+    'nucleo-valle-guerra palacio-carta palacio-episcopal-laguna palacio-nava-laguna palmetum',
+    'park-la-gesta park-la-vega park-montillo park-taoro parkinson-tf-realejos',
+    'parkinson-tf-sede-laguna parkinson-tf-silos parque-anaga-petfriendly',
+    'parque-canino-ana-bautista parque-canino-laguna-via-ronda parque-canino-san-benito',
+    'parque-canino-taoro parque-cesar-manrique parque-cuchillitos-tristan parque-don-quijote-sct',
+    'parque-el-montillo parque-garcia-sanabria parque-garcia-sanabria-pet parque-la-granja',
+    'parque-la-granja-sct parque-las-mantecas-laguna parque-tabaiba-baja',
+    'parroquia-san-pedro-daute pico-teide-cumbre piscina-hidalgo-norte piscina-jover-tejina',
+    'piscinas-bajamar piscinas-garachico piscinas-muelle pk-alvarez-icod pk-bajamar-piscinas',
+    'pk-buenavista-casco pk-campo-futbol-garachico pk-casco-botanico-pc pk-cruz-carmen-anaga',
+    'pk-drago-icod pk-garachico-casco pk-intercambiador-sc pk-la-torrita-orotava pk-los-realejos',
+    'pk-los-silos pk-magalona-icod pk-martianez-pc pk-muelle-puerto-cruz pk-orotava-centro',
+    'pk-palmetum pk-parque-taoro-pc pk-plaza-espana pk-plaza-europa-pc pk-quinteras-laguna',
+    'pk-ramon-cajal pk-san-agustin-orotava pk-tacoronte-estacion pk-tegueste pk-tfn-p1',
+    'playa-agua-dulce playa-antequera playa-arenal-bajamar playa-arenisco',
+    'playa-barqueros-buenavista playa-caleton-sauzal playa-castillo-pcruz playa-fajana-realejos',
+    'playa-guincho playa-igueste-san-andres playa-jardin playa-las-aguas playa-las-gaviotas',
+    'playa-los-patos playa-los-troches playa-martianez playa-muelle-garachico playa-nea',
+    'playa-punta-fraile playa-radazul playa-rambla playa-rincon playa-rojas playa-roques-rambla',
+    'playa-san-juan-bajamar playa-san-telmo playa-socorro playa-tabaiba plaza-adelantado-laguna',
+    'pp-el-tanque pp-la-corona pr-tf-3-chinamada pr-tf-52-monte-agua proyecto-hombre-santacruz',
+    'prtf-1-mercedes-cruz-carmen prtf-10-cruz-carmen-chinamada prtf-11-cruz-carmen-batan',
+    'prtf-2-taborno-pico-ingles prtf-4-bailadero-taganana prtf-5-chamorga-igueste',
+    'prtf-6-1-chamorga-faro-anaga prtf-6-3-benijo-draguillo prtf-6-chamorga-roque-bermejo',
+    'prtf-9-afur-carboneras puertito-los-silos puertito-san-andres-norte puertito-san-marcos',
+    'puerto-chico-sct puerto-el-pris puerto-garachico puerto-marina-tenerife-sc',
+    'puerto-mesa-del-mar puerto-pcruz-nautico puerto-radazul puerto-rcnt-santa-cruz',
+    'puerto-santa-cruz punta-hidalgo rcg-tenerife restaurante-drago roque-bodegas roques-garcia',
+    'ruta-anaga-taganana ruta-masca-playa ruta-pico-viejo sala-westerdahl san-marcos',
+    'san-miguel-laguna san-miguel-santacruz sendero-afur-taganana sendero-bosque-enigmas',
+    'sendero-guajara sendero-la-orotava sendero-pico-viejo sendero-pijaral',
+    'sendero-prtf-51-punta-teno sendero-prtf-58-camino-risco sendero-roque-bodegas',
+    'sendero-sentidos sendero-teno-baracan siam-mujeres-santacruz super-hiperdino-buenavista',
+    'super-hiperdino-icod super-hiperdino-laguna super-hiperdino-pcruz super-hiperdino-sauzal',
+    'super-hiperdino-sct super-hiperdino-tacoronte super-mercadona-laguna super-mercadona-orotava',
+    'super-mercadona-pcruz super-mercadona-sct super-mercadona-tacoronte surf-almaciga',
+    'surf-benijo surf-bollullo surf-playa-jardin surf-playa-socorro surf-punta-hidalgo tacoronte',
+    'tea-tenerife teatro-guimera teatro-leal-laguna teide teide-petfriendly teide-teleforico',
+    'telefono-esperanza-tenerife teresitas turismo-buenavista turismo-cv-canada-blanca',
+    'turismo-cv-cruz-carmen turismo-cv-masca turismo-cv-pedregales turismo-cv-portillo',
+    'turismo-cv-telesforo turismo-garachico turismo-icod turismo-laguna turismo-orotava',
+    'turismo-pcruz turismo-sct turismo-tacoronte vet-cruz-piedra vet-hospital-santa-cruz',
+    'vet-hosvetnorte vet-medivet-sanantonio violencia-sexual-24h-tenerife wc-benijo wc-garachico',
+    'wc-martianez wc-orotava wc-plaza-espana wc-punta-hidalgo wc-teide-hoy wc-teide-parque',
+    'wc-teresitas'
+  ].join(' '),
+  sur: [
+    'aa-granadilla-san-isidro aa-harbour-los-cristianos aa-sin-fronteras-adeje abama acc-adissur',
+    'acc-paseo-cristianos acc-playa-duque acc-playa-fanabe acc-playa-las-vistas',
+    'acc-playa-los-cristianos acc-playa-poris acc-playa-torviscas acc-playa-troya acc-siam-park',
+    'alcala aqualand-sur ar-chio ar-el-contador ar-las-lajas ar-los-brezos ar-los-frailes arena',
+    'bici-agua-vilaflor bici-alquiler-medano-bikepoint bici-alquiler-sur bici-bc5-vilaflor',
+    'bici-chinyero-ruta bici-mtb-arico-volcan bici-paseo-sur bici-ruta-medano-teide',
+    'bodega-cumbres-abona bodega-frontos-granadilla buceo-las-galletas buceo-los-cristianos',
+    'buceo-los-gigantes buceo-puerto-colon camel-park camping-chio camping-el-contador',
+    'camping-fuente-llano camping-las-lajas camping-madre-agua camping-nauta candelaria',
+    'charco-abrigos charco-archile charco-golete ciudad-adeje ciudad-arafo ciudad-arico',
+    'ciudad-arona ciudad-candelaria ciudad-fasnia ciudad-granadilla ciudad-guimar',
+    'ciudad-san-miguel ciudad-santiago-teide ciudad-vilaflor cs-adeje cs-arona cs-candelaria',
+    'cs-cristianos cs-granadilla cs-guimar cs-medano cs-sanisidro cs-santiago-teide',
+    'deporte-arona-multideporte deporte-candelaria-paseo deporte-costa-adeje-paseo',
+    'deporte-guia-isora-skate deporte-los-cristianos-paseo deporte-medano-playa',
+    'deporte-palm-mar-fitness deporte-san-isidro-zona deporte-valle-san-lorenzo-kenguru el-duque',
+    'el-medano escal-arico escal-guaria fanabe farm-adeje-austria farm-americas-arona farm-blesa',
+    'farm-galletas farm-pharmadeje faro-abona faro-abona-viejo faro-los-cristianos faro-rasca',
+    'gas-10127-arona gas-10206-guia-de-isora gas-10307-granadilla-de-abona',
+    'gas-10345-guia-de-isora gas-10543-arona gas-10633-san-miguel-de-abona gas-10635-arafo',
+    'gas-10779-santiago-del-teide gas-10950-fasnia gas-10951-arona gas-11525-adeje',
+    'gas-11690-granadilla-de-abona gas-11731-arico gas-12370-arona gas-12479-guimar',
+    'gas-12523-candelaria gas-12630-arafo gas-12776-adeje gas-12784-adeje',
+    'gas-13201-san-miguel-de-abona gas-13228-adeje gas-13292-san-miguel-de-abona gas-13639-adeje',
+    'gas-13694-san-miguel-de-abona gas-13972-guia-de-isora gas-13992-adeje',
+    'gas-14423-san-miguel-de-abona gas-15913-san-miguel-de-abona gas-16015-adeje',
+    'gas-16132-granadilla-de-abona gas-16177-arafo gas-16267-arafo gas-16520-san-miguel-de-abona',
+    'gas-7616-granadilla-de-abona gas-7621-guimar gas-7626-granadilla-de-abona gas-7639-arafo',
+    'gas-7640-arona gas-7676-san-miguel-de-abona gas-7696-arico gas-7703-arico',
+    'gas-7705-granadilla-de-abona gas-7709-adeje gas-7718-fasnia gas-7719-candelaria',
+    'gas-7721-granadilla-de-abona gas-7722-guia-de-isora gas-7730-adeje',
+    'gas-7731-granadilla-de-abona gas-7735-santiago-del-teide gas-7752-guimar gas-7766-arona',
+    'gas-7776-adeje gas-7780-arona gas-7786-candelaria gas-7787-arona gas-7828-arico',
+    'gas-7832-adeje gas-7834-candelaria gas-7835-fasnia gas-7849-guia-de-isora gas-7853-adeje',
+    'gas-7858-guimar gas-7859-san-miguel-de-abona gas-7864-adeje gas-7881-guimar',
+    'gas-7889-granadilla-de-abona gas-7948-santiago-del-teide gas-8280-arona gas-8326-arafo',
+    'gas-8741-adeje gas-8749-guimar gas-8772-arona gas-8977-guia-de-isora gas-9483-arona',
+    'gas-9490-granadilla-de-abona gas-9614-san-miguel-de-abona gas-9664-santiago-del-teide',
+    'gas-9920-arona gas-9947-arona gas-tf1-abades gas-tf1-granadilla gas-tf1-guaza gas-tf1-guimar',
+    'gas-tf51-vilaflor gas-tf82-guia-isora golf-abama golf-amarilla golf-costa-adeje golf-del-sur',
+    'golf-las-americas golf-los-lagos golf-los-palos gr131-tramo5-vilaflor-arona',
+    'guachinche-cordero guachinche-vilaflor hiperdino-arona-montaneta hosp-hospiten-sur',
+    'hosp-quiron-adeje hosp-sur jungle-park karting kayak-la-caleta kayak-los-cristianos',
+    'kayak-los-gigantes lajiales-fasnia las-vistas lidl-granadilla malpais-guimar',
+    'marina-sur-galletas mercadillo-arico-pueblo mercadillo-arona mercadillo-candelaria',
+    'mercadillo-costa-adeje mercadillo-granadilla-sur mercadillo-guimar mercadillo-las-americas',
+    'mercadillo-los-abrigos mercadillo-los-cristianos mercadillo-medano mercadillo-san-isidro',
+    'mercadillo-san-miguel-abona mercadona-candelaria mercadona-granadilla minigolf-kapital-adeje',
+    'minigolf-la-pinta-adeje minigolf-oasis-cristianos minigolf-parque-santiago',
+    'minigolf-vivo-americas minigolf-wakanda-adeje minimarket-24h-adeje minimarket-24h-arona',
+    'minimarket-24h-las-americas mir-archipenque mir-chivisaya mir-don-martin mir-guia-isora',
+    'mir-la-corona-guimar mir-narices-teide mir-tajao monkey-park montana-amarilla montana-guaza',
+    'montana-pelada montana-roja mujer-adeje mujer-san-miguel museo-etnografico-granadilla',
+    'nucleo-amarilla-golf nucleo-callao-salvaje nucleo-costa-adeje nucleo-costa-silencio',
+    'nucleo-golf-del-sur nucleo-guia-isora nucleo-la-caleta nucleo-las-galletas',
+    'nucleo-los-cristianos nucleo-los-gigantes nucleo-playa-paraiso nucleo-playa-san-juan',
+    'nucleo-puerto-santiago nucleo-torviscas observatorio paisaje-lunar parkinson-tf-granadilla',
+    'parque-canino-callao-salvaje parque-canino-el-medano parque-canino-playa-san-juan',
+    'parque-canino-puntalarga paseo-maritimo-costa-adeje pesca-deportiva-los-cristianos',
+    'pesca-deportiva-puerto-colon pesca-los-abrigos pesca-los-gigantes piramides-guimar',
+    'piscina-gigantes piscina-guimar piscinas-alcala-jaquita piscinas-poris pk-candelaria-centro',
+    'pk-clubo-la-pinta pk-guia-isora pk-guimar pk-juan-carlos-cristianos pk-los-gigantes',
+    'pk-medano-publico pk-oasis-americas pk-playa-arena-santiago pk-plaza-duque-adeje',
+    'pk-plaza-patrona-candelaria pk-poris-abona pk-puerto-cristianos pk-san-miguel-golf',
+    'playa-abriguitos playa-amarilla playa-americas playa-beril playa-bobo playa-cabezo',
+    'playa-cabezo-medano playa-callao playa-callao-arona playa-camison playa-candelaria',
+    'playa-charcada playa-chimisay playa-confital playa-diego-hernandez playa-enramada',
+    'playa-galletas playa-grande-abades playa-guios playa-jaca playa-jaquita playa-jaquita-medano',
+    'playa-la-caleta-adeje playa-las-bajas playa-pinta playa-puertito playa-puertito-adeje',
+    'playa-puertito-guimar playa-puerto-santiago playa-punta-larga playa-socorro-guimar',
+    'playa-torviscas pp-guimar pp-ifonche pp-izana pp-taucho puertito-alcala puertito-el-medano',
+    'puertito-fasnia puertito-la-caleta puertito-la-jaca puertito-los-abrigos',
+    'puertito-poris-abona puertito-tajao puerto-amarilla-marina puerto-candelaria',
+    'puerto-colon-adeje puerto-gigantes puerto-granadilla-comercial puerto-guimar',
+    'puerto-los-cristianos puerto-playa-san-juan rest-tipico-el-jable rest-tipico-mirador-abona',
+    'riscos-chio san-juan sendero-barranco-infierno sendero-chinyero',
+    'sendero-prtf-72-paisaje-lunar sendero-roque-conde sendero-samara siam-park',
+    'super-hiperdino-adeje super-hiperdino-arona super-hiperdino-arona-pueblo',
+    'super-hiperdino-candelaria super-hiperdino-granadilla super-hiperdino-guimar',
+    'super-hiperdino-san-miguel super-hiperdino-santiago-teide super-mercadona-adeje',
+    'super-mercadona-arona surf-callao-salvaje surf-las-americas surf-medano tejita turismo-adeje',
+    'turismo-arona turismo-candelaria turismo-guimar turismo-los-cristianos turismo-medano',
+    'turismo-santiago-teide vet-masvet-chafiras vet-patas-colas wc-duque wc-gigantes',
+    'wc-las-vistas wc-los-cristianos wc-medano wc-san-juan wc-troya whale-watching',
+    'windsurf-el-medano windsurf-el-poris windsurf-la-tejita zona-mariscos-los-abrigos'
+  ].join(' ')
+};
+/* <<< zonas de los lugares */
+/* id -> 'norte' o 'sur'. Un lugar que no este (dado de alta sin pasar el
+   guion) solo sale con «Me da igual». */
+const DP_ZONA_DE = new Map();
+['norte', 'sur'].forEach(function (z) {
+  DP_ZONA_LUGAR[z].split(' ').forEach(function (id) { if (id) DP_ZONA_DE.set(id, z); });
+});
+
 /* Tiempo, transporte y textos de interfaz de los dos planificadores,
    en los 10 idiomas. Igual que DP_CARDS: una sola fuente de verdad,
    las tarjetas se generan por JS y se regeneran al cambiar idioma. */
@@ -31216,7 +31483,17 @@ const DP_TRANSPORT = [
   {id:"pie",icon:"\ud83d\udeb6",tx:{"es":["A pie","Rutas cercanas, ciudad"],"en":["Walking","Nearby routes, city"],"fr":["\u00c0 pied","Parcours proches, ville"],"de":["Zu Fu\u00df","Nahe Routen, Stadt"],"it":["A piedi","Percorsi vicini, citt\u00e0"],"nl":["Te voet","Routes dichtbij, stad"],"zh":["\u6b65\u884c","\u9644\u8fd1\u8def\u7ebf\u3001\u57ce\u533a"],"zht":["\u6b65\u884c","\u9644\u8fd1\u8def\u7dda\u3001\u57ce\u5340"], "bg":["Пеша","Близки маршрути, град"], pl: ["Pieszo","Bliskie trasy, miasto"]}},
   {id:"bici",icon:"\ud83d\udeb2",tx:{"es":["Bicicleta","Rutas ciclistas y costa"],"en":["Bicycle","Cycle routes and coast"],"fr":["V\u00e9lo","Pistes cyclables et c\u00f4te"],"de":["Fahrrad","Radwege und K\u00fcste"],"it":["Bicicletta","Percorsi ciclabili e costa"],"nl":["Fiets","Fietsroutes en kust"],"zh":["\u81ea\u884c\u8f66","\u9a91\u884c\u8def\u7ebf\u4e0e\u6d77\u5cb8"],"zht":["\u81ea\u884c\u8eca","\u9a0e\u884c\u8def\u7dda\u8207\u6d77\u5cb8"], "bg":["Велосипед","Велосипедни маршрути и крайбрежие"], pl: ["Rower","Trasy rowerowe i wybrzeże"]}},
 ];
-const DP_UI = {"tr15coche":{"es": "15 min en coche", "en": "15 min by car", "fr": "15 min en voiture", "de": "15 Min. mit dem Auto", "it": "15 min in auto", "nl": "15 min met de auto", "zh": "自驾 15 分钟", "zht": "自駕 15 分鐘", "bg": "15 мин с кола", "pl": "15 min samochodem"},"tr20titsa":{"es": "20 min en guagua TITSA", "en": "20 min on a TITSA bus", "fr": "20 min en bus TITSA", "de": "20 Min. mit dem TITSA-Bus", "it": "20 min in autobus TITSA", "nl": "20 min met de TITSA-bus", "zh": "乘 TITSA 公交 20 分钟", "zht": "搭 TITSA 公車 20 分鐘", "bg": "20 мин с автобус TITSA", "pl": "20 min autobusem TITSA"},"tr10pie":{"es": "10 min a pie", "en": "10 min on foot", "fr": "10 min à pied", "de": "10 Min. zu Fuß", "it": "10 min a piedi", "nl": "10 min te voet", "zh": "步行 10 分钟", "zht": "步行 10 分鐘", "bg": "10 мин пеша", "pl": "10 min pieszo"},"tr20coche":{"es": "20 min en coche", "en": "20 min by car", "fr": "20 min en voiture", "de": "20 Min. mit dem Auto", "it": "20 min in auto", "nl": "20 min met de auto", "zh": "自驾 20 分钟", "zht": "自駕 20 分鐘", "bg": "20 мин с кола", "pl": "20 min samochodem"},"tr30guagua":{"es": "30 min en guagua", "en": "30 min by bus", "fr": "30 min en bus", "de": "30 Min. mit dem Bus", "it": "30 min in autobus", "nl": "30 min met de bus", "zh": "乘公交 30 分钟", "zht": "搭公車 30 分鐘", "bg": "30 мин с автобус", "pl": "30 min autobusem"},"zNaturaleza":{"es": "🌿 Naturaleza", "en": "🌿 Nature", "fr": "🌿 Nature", "de": "🌿 Natur", "it": "🌿 Natura", "nl": "🌿 Natuur", "zh": "🌿 自然", "zht": "🌿 自然", "bg": "🌿 Природа", "pl": "🌿 Przyroda"},"zCultura":{"es": "🏛️ Cultura", "en": "🏛️ Culture", "fr": "🏛️ Culture", "de": "🏛️ Kultur", "it": "🏛️ Cultura", "nl": "🏛️ Cultuur", "zh": "🏛️ 文化", "zht": "🏛️ 文化", "bg": "🏛️ Култура", "pl": "🏛️ Kultura"},"zPlaya":{"es": "🏖️ Playa", "en": "🏖️ Beach", "fr": "🏖️ Plage", "de": "🏖️ Strand", "it": "🏖️ Spiaggia", "nl": "🏖️ Strand", "zh": "🏖️ 海滩", "zht": "🏖️ 海灘", "bg": "🏖️ Плаж", "pl": "🏖️ Plaża"},"zGastronomia":{"es": "🍽️ Gastronomía", "en": "🍽️ Food", "fr": "🍽️ Gastronomie", "de": "🍽️ Gastronomie", "it": "🍽️ Gastronomia", "nl": "🍽️ Gastronomie", "zh": "🍽️ 美食", "zht": "🍽️ 美食", "bg": "🍽️ Кухня", "pl": "🍽️ Gastronomia"},"zFamilia":{"es": "👨‍👩‍👧 Familia", "en": "👨‍👩‍👧 Family", "fr": "👨‍👩‍👧 Famille", "de": "👨‍👩‍👧 Familie", "it": "👨‍👩‍👧 Famiglia", "nl": "👨‍👩‍👧 Gezin", "zh": "👨‍👩‍👧 亲子", "zht": "👨‍👩‍👧 親子", "bg": "👨‍👩‍👧 Семейство", "pl": "👨‍👩‍👧 Rodzina"},"zMix":{"es": "✨ Lo mejor de hoy", "en": "✨ Today's best", "fr": "✨ Le meilleur du jour", "de": "✨ Das Beste von heute", "it": "✨ Il meglio di oggi", "nl": "✨ Het beste van vandaag", "zh": "✨ 今日精选", "zht": "✨ 今日精選", "bg": "✨ Най-доброто за днес", "pl": "✨ Najlepsze na dziś"},"tuItinerario":{"es": "Tu itinerario", "en": "Your itinerary", "fr": "Ton itinéraire", "de": "Deine Route", "it": "Il tuo itinerario", "nl": "Jouw route", "zh": "你的行程", "zht": "你的行程", "bg": "Вашият маршрут", "pl": "Twój plan"},"verMapa":{"es": "📍 Ver mapa", "en": "📍 See on map", "fr": "📍 Voir sur la carte", "de": "📍 Auf der Karte", "it": "📍 Vedi sulla mappa", "nl": "📍 Op de kaart", "zh": "📍 在地图上看", "zht": "📍 在地圖上看", "bg": "📍 Виж на картата", "pl": "📍 Zobacz na mapie"},"otroLugar":{"es": "🔄 Otro", "en": "🔄 Another", "fr": "🔄 Un autre", "de": "🔄 Anderer", "it": "🔄 Un altro", "nl": "🔄 Een andere", "zh": "🔄 换一个", "zht": "🔄 換一個", "bg": "🔄 Друго", "pl": "🔄 Inne"},"cambiarEste":{"es": "Cambiar este lugar", "en": "Change this place", "fr": "Changer ce lieu", "de": "Diesen Ort wechseln", "it": "Cambia questo luogo", "nl": "Deze plek wisselen", "zh": "更换这个地点", "zht": "更換這個地點", "bg": "Смени това място", "pl": "Zmień to miejsce"},"quitarDeRuta":{"es": "Quitar del itinerario", "en": "Remove from itinerary", "fr": "Retirer de l’itinéraire", "de": "Aus der Route entfernen", "it": "Togli dall’itinerario", "nl": "Uit de route halen", "zh": "从行程中移除", "zht": "從行程中移除", "bg": "Премахни от маршрута", "pl": "Usuń z planu"},"pausaComida":{"es": "Pausa comida", "en": "Lunch break", "fr": "Pause déjeuner", "de": "Mittagspause", "it": "Pausa pranzo", "nl": "Lunchpauze", "zh": "午餐时间", "zht": "午餐時間", "bg": "Пауза за обяд", "pl": "Przerwa na obiad"},"pausa":{"es": "🍽️ Pausa", "en": "🍽️ Break", "fr": "🍽️ Pause", "de": "🍽️ Pause", "it": "🍽️ Pausa", "nl": "🍽️ Pauze", "zh": "🍽️ 休息", "zht": "🍽️ 休息", "bg": "🍽️ Пауза", "pl": "🍽️ Przerwa"},"timeTitle":{"es":"\u00bfCu\u00e1nto tiempo tienes?","en":"How much time do you have?","fr":"Combien de temps as-tu ?","de":"Wie viel Zeit hast du?","it":"Quanto tempo hai?","nl":"Hoeveel tijd heb je?","zh":"\u4f60\u6709\u591a\u5c11\u65f6\u95f4\uff1f","zht":"\u4f60\u6709\u591a\u5c11\u6642\u9593\uff1f", "bg":"С колко време разполагате?", pl: "Ile masz czasu?"},"transportTitle":{"es":"\u00bfC\u00f3mo te mueves?","en":"How do you get around?","fr":"Comment te d\u00e9places-tu ?","de":"Wie bist du unterwegs?","it":"Come ti muovi?","nl":"Hoe verplaats je je?","zh":"\u4f60\u600e\u4e48\u51fa\u884c\uff1f","zht":"\u4f60\u600e\u9ebc\u51fa\u884c\uff1f", "bg":"Как се придвижвате?", pl: "Jak się przemieszczasz?"},"dayTypeTitle":{"es":"\u00bfQu\u00e9 tipo de d\u00eda buscas?","en":"What kind of day are you after?","fr":"Quel genre de journ\u00e9e ?","de":"Was f\u00fcr ein Tag soll es sein?","it":"Che tipo di giornata cerchi?","nl":"Wat voor dag zoek je?","zh":"\u60f3\u8981\u4ec0\u4e48\u6837\u7684\u4e00\u5929\uff1f","zht":"\u60f3\u8981\u4ec0\u9ebc\u6a23\u7684\u4e00\u5929\uff1f", "bg":"Какъв ден търсите?", pl: "Jakiego dnia szukasz?"},"backTime":{"es":"\u2039 Cambiar tiempo","en":"\u2039 Change time","fr":"\u2039 Changer la dur\u00e9e","de":"\u2039 Zeit \u00e4ndern","it":"\u2039 Cambia durata","nl":"\u2039 Tijd wijzigen","zh":"\u2039 \u66f4\u6539\u65f6\u957f","zht":"\u2039 \u66f4\u6539\u6642\u9577", "bg":"‹ Смени времето", pl: "‹ Zmień czas"},"backActivities":{"es":"\u2039 Cambiar actividades","en":"\u2039 Change activities","fr":"\u2039 Changer d\u2019activit\u00e9s","de":"\u2039 Aktivit\u00e4ten \u00e4ndern","it":"\u2039 Cambia attivit\u00e0","nl":"\u2039 Activiteiten wijzigen","zh":"\u2039 \u66f4\u6539\u6d3b\u52a8","zht":"\u2039 \u66f4\u6539\u6d3b\u52d5", "bg":"‹ Смени дейностите", pl: "‹ Zmień zajęcia"},"createBtn":{"es":"Crear itinerario \u2192","en":"Create itinerary \u2192","fr":"Cr\u00e9er l\u2019itin\u00e9raire \u2192","de":"Route erstellen \u2192","it":"Crea itinerario \u2192","nl":"Route maken \u2192","zh":"\u751f\u6210\u884c\u7a0b \u2192","zht":"\u7522\u751f\u884c\u7a0b \u2192", "bg":"Създай маршрут →", pl: "Utwórz plan →"}};
+/* Norte, Sur o «Me da igual» (Jerome, 13 de octubre de 2026). Norte y Sur se
+   llaman como las zonas de «Ruta del día» (daytripZoneNorth/South), y los
+   pueblos del subtitulo son de un municipio de esa zona; en chino y en
+   bulgaro van escritos como ya los escribe la app. Que lugar es de cada
+   zona lo dice DP_ZONA_LUGAR, mas abajo. */
+const DP_ZONAS = [
+  {id:"norte",icon:"🌿",tx:{"es":["Norte", "Santa Cruz, Puerto de la Cruz"],"en":["North", "Santa Cruz, Puerto de la Cruz"],"fr":["Nord", "Santa Cruz, Puerto de la Cruz"],"de":["Norden", "Santa Cruz, Puerto de la Cruz"],"it":["Nord", "Santa Cruz, Puerto de la Cruz"],"nl":["Noord", "Santa Cruz, Puerto de la Cruz"],"zh":["北部", "圣克鲁斯、克鲁斯港"],"zht":["北部", "聖克魯斯、克魯斯港"],"bg":["Север", "Санта Крус, Пуерто де ла Крус"],"pl":["Północ", "Santa Cruz, Puerto de la Cruz"]}},
+  {id:"sur",icon:"☀️",tx:{"es":["Sur", "Los Cristianos, Costa Adeje"],"en":["South", "Los Cristianos, Costa Adeje"],"fr":["Sud", "Los Cristianos, Costa Adeje"],"de":["Süden", "Los Cristianos, Costa Adeje"],"it":["Sud", "Los Cristianos, Costa Adeje"],"nl":["Zuid", "Los Cristianos, Costa Adeje"],"zh":["南部", "洛斯克里斯蒂亚诺斯、阿德赫海岸"],"zht":["南部", "洛斯克里斯蒂亞諾斯、阿德赫海岸"],"bg":["Юг", "Лос Кристианос, Коста Адехе"],"pl":["Południe", "Los Cristianos, Costa Adeje"]}},
+  {id:"igual",icon:"🏝️",tx:{"es":["Me da igual", "Toda la isla"],"en":["I don’t mind", "The whole island"],"fr":["Peu importe", "Toute l’île"],"de":["Ist mir egal", "Die ganze Insel"],"it":["Non importa", "Tutta l’isola"],"nl":["Maakt niet uit", "Het hele eiland"],"zh":["都可以", "全岛"],"zht":["都可以", "全島"],"bg":["Няма значение", "Целият остров"],"pl":["Wszystko jedno", "Cała wyspa"]}}
+];
+const DP_UI = {"tr15coche":{"es": "15 min en coche", "en": "15 min by car", "fr": "15 min en voiture", "de": "15 Min. mit dem Auto", "it": "15 min in auto", "nl": "15 min met de auto", "zh": "自驾 15 分钟", "zht": "自駕 15 分鐘", "bg": "15 мин с кола", "pl": "15 min samochodem"},"tr20titsa":{"es": "20 min en guagua TITSA", "en": "20 min on a TITSA bus", "fr": "20 min en bus TITSA", "de": "20 Min. mit dem TITSA-Bus", "it": "20 min in autobus TITSA", "nl": "20 min met de TITSA-bus", "zh": "乘 TITSA 公交 20 分钟", "zht": "搭 TITSA 公車 20 分鐘", "bg": "20 мин с автобус TITSA", "pl": "20 min autobusem TITSA"},"tr10pie":{"es": "10 min a pie", "en": "10 min on foot", "fr": "10 min à pied", "de": "10 Min. zu Fuß", "it": "10 min a piedi", "nl": "10 min te voet", "zh": "步行 10 分钟", "zht": "步行 10 分鐘", "bg": "10 мин пеша", "pl": "10 min pieszo"},"tr20coche":{"es": "20 min en coche", "en": "20 min by car", "fr": "20 min en voiture", "de": "20 Min. mit dem Auto", "it": "20 min in auto", "nl": "20 min met de auto", "zh": "自驾 20 分钟", "zht": "自駕 20 分鐘", "bg": "20 мин с кола", "pl": "20 min samochodem"},"tr30guagua":{"es": "30 min en guagua", "en": "30 min by bus", "fr": "30 min en bus", "de": "30 Min. mit dem Bus", "it": "30 min in autobus", "nl": "30 min met de bus", "zh": "乘公交 30 分钟", "zht": "搭公車 30 分鐘", "bg": "30 мин с автобус", "pl": "30 min autobusem"},"zNaturaleza":{"es": "🌿 Naturaleza", "en": "🌿 Nature", "fr": "🌿 Nature", "de": "🌿 Natur", "it": "🌿 Natura", "nl": "🌿 Natuur", "zh": "🌿 自然", "zht": "🌿 自然", "bg": "🌿 Природа", "pl": "🌿 Przyroda"},"zCultura":{"es": "🏛️ Cultura", "en": "🏛️ Culture", "fr": "🏛️ Culture", "de": "🏛️ Kultur", "it": "🏛️ Cultura", "nl": "🏛️ Cultuur", "zh": "🏛️ 文化", "zht": "🏛️ 文化", "bg": "🏛️ Култура", "pl": "🏛️ Kultura"},"zPlaya":{"es": "🏖️ Playa", "en": "🏖️ Beach", "fr": "🏖️ Plage", "de": "🏖️ Strand", "it": "🏖️ Spiaggia", "nl": "🏖️ Strand", "zh": "🏖️ 海滩", "zht": "🏖️ 海灘", "bg": "🏖️ Плаж", "pl": "🏖️ Plaża"},"zGastronomia":{"es": "🍽️ Gastronomía", "en": "🍽️ Food", "fr": "🍽️ Gastronomie", "de": "🍽️ Gastronomie", "it": "🍽️ Gastronomia", "nl": "🍽️ Gastronomie", "zh": "🍽️ 美食", "zht": "🍽️ 美食", "bg": "🍽️ Кухня", "pl": "🍽️ Gastronomia"},"zFamilia":{"es": "👨‍👩‍👧 Familia", "en": "👨‍👩‍👧 Family", "fr": "👨‍👩‍👧 Famille", "de": "👨‍👩‍👧 Familie", "it": "👨‍👩‍👧 Famiglia", "nl": "👨‍👩‍👧 Gezin", "zh": "👨‍👩‍👧 亲子", "zht": "👨‍👩‍👧 親子", "bg": "👨‍👩‍👧 Семейство", "pl": "👨‍👩‍👧 Rodzina"},"zMix":{"es": "✨ Lo mejor de hoy", "en": "✨ Today's best", "fr": "✨ Le meilleur du jour", "de": "✨ Das Beste von heute", "it": "✨ Il meglio di oggi", "nl": "✨ Het beste van vandaag", "zh": "✨ 今日精选", "zht": "✨ 今日精選", "bg": "✨ Най-доброто за днес", "pl": "✨ Najlepsze na dziś"},"tuItinerario":{"es": "Tu itinerario", "en": "Your itinerary", "fr": "Ton itinéraire", "de": "Deine Route", "it": "Il tuo itinerario", "nl": "Jouw route", "zh": "你的行程", "zht": "你的行程", "bg": "Вашият маршрут", "pl": "Twój plan"},"verMapa":{"es": "📍 Ver mapa", "en": "📍 See on map", "fr": "📍 Voir sur la carte", "de": "📍 Auf der Karte", "it": "📍 Vedi sulla mappa", "nl": "📍 Op de kaart", "zh": "📍 在地图上看", "zht": "📍 在地圖上看", "bg": "📍 Виж на картата", "pl": "📍 Zobacz na mapie"},"otroLugar":{"es": "🔄 Otro", "en": "🔄 Another", "fr": "🔄 Un autre", "de": "🔄 Anderer", "it": "🔄 Un altro", "nl": "🔄 Een andere", "zh": "🔄 换一个", "zht": "🔄 換一個", "bg": "🔄 Друго", "pl": "🔄 Inne"},"cambiarEste":{"es": "Cambiar este lugar", "en": "Change this place", "fr": "Changer ce lieu", "de": "Diesen Ort wechseln", "it": "Cambia questo luogo", "nl": "Deze plek wisselen", "zh": "更换这个地点", "zht": "更換這個地點", "bg": "Смени това място", "pl": "Zmień to miejsce"},"quitarDeRuta":{"es": "Quitar del itinerario", "en": "Remove from itinerary", "fr": "Retirer de l’itinéraire", "de": "Aus der Route entfernen", "it": "Togli dall’itinerario", "nl": "Uit de route halen", "zh": "从行程中移除", "zht": "從行程中移除", "bg": "Премахни от маршрута", "pl": "Usuń z planu"},"pausaComida":{"es": "Pausa comida", "en": "Lunch break", "fr": "Pause déjeuner", "de": "Mittagspause", "it": "Pausa pranzo", "nl": "Lunchpauze", "zh": "午餐时间", "zht": "午餐時間", "bg": "Пауза за обяд", "pl": "Przerwa na obiad"},"pausa":{"es": "🍽️ Pausa", "en": "🍽️ Break", "fr": "🍽️ Pause", "de": "🍽️ Pause", "it": "🍽️ Pausa", "nl": "🍽️ Pauze", "zh": "🍽️ 休息", "zht": "🍽️ 休息", "bg": "🍽️ Пауза", "pl": "🍽️ Przerwa"},"timeTitle":{"es":"\u00bfCu\u00e1nto tiempo tienes?","en":"How much time do you have?","fr":"Combien de temps as-tu ?","de":"Wie viel Zeit hast du?","it":"Quanto tempo hai?","nl":"Hoeveel tijd heb je?","zh":"\u4f60\u6709\u591a\u5c11\u65f6\u95f4\uff1f","zht":"\u4f60\u6709\u591a\u5c11\u6642\u9593\uff1f", "bg":"С колко време разполагате?", pl: "Ile masz czasu?"},"transportTitle":{"es":"\u00bfC\u00f3mo te mueves?","en":"How do you get around?","fr":"Comment te d\u00e9places-tu ?","de":"Wie bist du unterwegs?","it":"Come ti muovi?","nl":"Hoe verplaats je je?","zh":"\u4f60\u600e\u4e48\u51fa\u884c\uff1f","zht":"\u4f60\u600e\u9ebc\u51fa\u884c\uff1f", "bg":"Как се придвижвате?", pl: "Jak się przemieszczasz?"},"dayTypeTitle":{"es":"\u00bfQu\u00e9 tipo de d\u00eda buscas?","en":"What kind of day are you after?","fr":"Quel genre de journ\u00e9e ?","de":"Was f\u00fcr ein Tag soll es sein?","it":"Che tipo di giornata cerchi?","nl":"Wat voor dag zoek je?","zh":"\u60f3\u8981\u4ec0\u4e48\u6837\u7684\u4e00\u5929\uff1f","zht":"\u60f3\u8981\u4ec0\u9ebc\u6a23\u7684\u4e00\u5929\uff1f", "bg":"Какъв ден търсите?", pl: "Jakiego dnia szukasz?"},"backTime":{"es":"\u2039 Cambiar tiempo","en":"\u2039 Change time","fr":"\u2039 Changer la dur\u00e9e","de":"\u2039 Zeit \u00e4ndern","it":"\u2039 Cambia durata","nl":"\u2039 Tijd wijzigen","zh":"\u2039 \u66f4\u6539\u65f6\u957f","zht":"\u2039 \u66f4\u6539\u6642\u9577", "bg":"‹ Смени времето", pl: "‹ Zmień czas"},"backActivities":{"es":"\u2039 Cambiar actividades","en":"\u2039 Change activities","fr":"\u2039 Changer d\u2019activit\u00e9s","de":"\u2039 Aktivit\u00e4ten \u00e4ndern","it":"\u2039 Cambia attivit\u00e0","nl":"\u2039 Activiteiten wijzigen","zh":"\u2039 \u66f4\u6539\u6d3b\u52a8","zht":"\u2039 \u66f4\u6539\u6d3b\u52d5", "bg":"‹ Смени дейностите", pl: "‹ Zmień zajęcia"},"createBtn":{"es":"Crear itinerario \u2192","en":"Create itinerary \u2192","fr":"Cr\u00e9er l\u2019itin\u00e9raire \u2192","de":"Route erstellen \u2192","it":"Crea itinerario \u2192","nl":"Route maken \u2192","zh":"\u751f\u6210\u884c\u7a0b \u2192","zht":"\u7522\u751f\u884c\u7a0b \u2192", "bg":"Създай маршрут →", pl: "Utwórz plan →"},"zonaTitle":{"es": "¿Qué zona de la isla?", "en": "Which area of the island?", "fr": "Quelle zone de l’île ?", "de": "Welcher Teil der Insel?", "it": "Quale zona dell’isola?", "nl": "Welk gebied van het eiland?", "zh": "想去岛上哪个区域？", "zht": "想去島上哪個區域？", "bg": "В коя част на острова?", "pl": "Która część wyspy?"},"backZona":{"es": "‹ Cambiar zona", "en": "‹ Change area", "fr": "‹ Changer de zone", "de": "‹ Inselteil ändern", "it": "‹ Cambia zona", "nl": "‹ Gebied wijzigen", "zh": "‹ 更改区域", "zht": "‹ 更改區域", "bg": "‹ Смени частта на острова", "pl": "‹ Zmień część wyspy"}};
 
 // Duración estimada por categoría (minutos)
 const DP_DURATION = {
@@ -31559,6 +31836,11 @@ function dpiSelectTime(t) {
 // dpiZone ahora es un array de zonas seleccionadas
 let dpiSelectedZones = [];
 let dpiTransport = 'coche'; // por defecto
+/* Norte, Sur o «Me da igual» (DP_ZONAS). Por defecto, toda la isla, como
+   hasta el 13 de octubre de 2026. dpiAviso: con Norte o Sur no habia
+   bastantes lugares y ya estan todos en el itinerario. */
+let dpiZona = 'igual';
+let dpiAviso = false;
 
 function dpiToggleZone(card) {
   const z = card.dataset.zone;
@@ -31638,8 +31920,11 @@ function dpApplyUiTexts() {
   set('dp-step2-title',      pick('dayTypeTitle'));
   var back1 = document.querySelector('#dpi-step-2 button[onclick*="dpiGoBack(1)"]');
   if (back1) back1.textContent = pick('backTime');
-  var back2 = document.querySelector('#dpi-step-3 button[onclick*="dpiGoBack(2)"]');
-  if (back2) back2.textContent = pick('backActivities');
+  var backZ = document.querySelector('#dpi-step-zona button[onclick*="dpiGoBack(2)"]');
+  if (backZ) backZ.textContent = pick('backActivities');
+  var back2 = document.querySelector('#dpi-step-3 button[onclick*="dpiGoBack(\'zona\')"]');
+  if (back2) back2.textContent = pick('backZona');
+  set('dpi-zona-title', pick('zonaTitle'));
   var mk = document.getElementById('dpi-confirm-btn');
   if (mk) mk.textContent = pick('createBtn');
 }
@@ -31677,6 +31962,7 @@ function dpiRenderCards() {
   // Tiempo y transporte de este planificador, tambien traducidos
   dpRenderOptionGrid('dpi-time-grid', DP_TIMES, function(id){ dpiSelectTime(id); });
   dpRenderOptionGrid('dpi-transport-grid', DP_TRANSPORT, function(id, el){ dpiSelectTransport(id, el); });
+  dpRenderOptionGrid('dpi-zona-grid', DP_ZONAS, function(id){ dpiSelectZona(id); });
   dpApplyUiTexts();
 }
 
@@ -31684,7 +31970,28 @@ function dpiConfirmZones() {
   if (!dpiSelectedZones.length) return;
   dpiZone = dpiSelectedZones.length === 1 ? dpiSelectedZones[0] : 'custom';
   document.getElementById('dpi-step-2').classList.remove('active');
+  document.getElementById('dpi-step-zona').classList.add('active');
+}
+
+function dpiSelectZona(z) {
+  dpiZona = DP_ZONAS.some(o => o.id === z) ? z : 'igual';
+  document.getElementById('dpi-step-zona').classList.remove('active');
   document.getElementById('dpi-step-3').classList.add('active');
+}
+
+// ¿Entra este lugar en la zona elegida? Con «Me da igual», todos.
+function dpiEnZona(p) {
+  return dpiZona === 'igual' || DP_ZONA_DE.get(p.id) === dpiZona;
+}
+
+// Las categorias de lo elegido en el paso 2: con varias tarjetas, la union.
+function dpiCategorias() {
+  if (dpiSelectedZones.length > 1) {
+    const todas = new Set();
+    dpiSelectedZones.forEach(z => (DP_ZONES[z] || []).forEach(c => todas.add(c)));
+    return [...todas];
+  }
+  return DP_ZONES[dpiZone] || DP_ZONES.mix;
 }
 
 function dpiSelectTransport(t, card) {
@@ -31695,7 +32002,7 @@ function dpiSelectTransport(t, card) {
   card.style.background = 'rgba(201,168,76,0.15)';
   card.style.borderColor = '#c9a84c';
   setTimeout(() => {
-    document.getElementById('dpi-step-3').classList.remove('active');
+    document.querySelectorAll('.dpi-step').forEach(s => s.classList.remove('active'));
     document.getElementById('dpi-step-4').classList.add('active');
     document.getElementById('dpi-loading').style.display = 'block';
     document.getElementById('dpi-result').style.display  = 'none';
@@ -31738,19 +32045,12 @@ function dpOrderByProximity(list) {
 
 function dpiGenerate() {
   const nStops = DP_STOPS[dpiTime] || 3;
-  // Construir pool de categorías desde la selección múltiple
-  let cats;
-  if (dpiSelectedZones.length > 1) {
-    // Unión de categorías de todos los tipos seleccionados
-    const allCats = new Set();
-    dpiSelectedZones.forEach(z => (DP_ZONES[z] || []).forEach(c => allCats.add(c)));
-    cats = [...allCats];
-  } else {
-    cats = DP_ZONES[dpiZone] || DP_ZONES.mix;
-  }
+  const cats = dpiCategorias();
   const all  = (typeof places !== 'undefined' ? places : []);
-  const pool = all.filter(p => cats.includes(p.category) && p.name && p.lat && p.lng);
-  if (!pool.length) { dpiRenderResult([]); return; }
+  // Con Norte o Sur, solo los lugares de esa zona (DP_ZONA_LUGAR)
+  const pool = all.filter(p => cats.includes(p.category) && p.name && p.lat && p.lng && dpiEnZona(p));
+  dpiAviso = false;
+  if (!pool.length) { dpiAviso = dpiZona !== 'igual'; dpiRenderResult([]); return; }
 
   const radius = (DP_RADIUS[dpiTransport] || DP_RADIUS.coche)[dpiTime] || 22;
 
@@ -31784,13 +32084,17 @@ function dpiGenerate() {
     if (selected.length >= nStops) break;
     if (!selected.find(s => s.id === p.id)) selected.push(p);
   }
+  /* Con Norte o Sur puede que no haya bastantes (Museos, en el Sur, son
+     dos). Se dice solo si de verdad no queda ninguno mas en la zona: si
+     faltan porque los demas estan lejos, la frase seria falsa. */
+  dpiAviso = dpiZona !== 'igual' && selected.length < nStops && selected.length === pool.length;
 
   // Comida: también cercana. Antes se cogía de toda la isla y podía
   // mandar a comer a 60 km del resto de paradas.
   if (dpiTime === 'fullday' || dpiTime === 'halfday') {
     const ref = selected[0] || best.seed;
     const food = all
-      .filter(p => p.category === 'gastronomia' && p.name && p.lat && p.lng)
+      .filter(p => p.category === 'gastronomia' && p.name && p.lat && p.lng && dpiEnZona(p))
       .filter(p => !selected.find(s => s.id === p.id))
       .map(p => ({ p, d: haversineKm(ref.lat, ref.lng, p.lat, p.lng) }))
       .filter(x => x.d <= best.r * 1.3)
@@ -31821,7 +32125,12 @@ function dpiRenderResult(stops) {
   const titleText = dpiSelectedZones.length > 1
     ? dpiSelectedZones.map(etiquetaTarjeta).join(' · ')
     : (dpiZone ? etiquetaTarjeta(dpiZone) : dpT('tuItinerario'));
-  document.getElementById('dpi-result-title').textContent = titleText;
+  // Y la zona, si se ha elegido Norte o Sur: «🏖️ Playa & Mar · ☀️ Sur»
+  const z = dpiZona !== 'igual' && DP_ZONAS.find(o => o.id === dpiZona);
+  document.getElementById('dpi-result-title').textContent =
+    titleText + (z ? ' · ' + z.icon + ' ' + (z.tx[currentLang] || z.tx.es)[0] : '');
+  const aviso = document.getElementById('dpi-zona-aviso');
+  if (aviso) { aviso.textContent = dpiAviso ? tx('dpZonaSinMas') : ''; aviso.hidden = !dpiAviso; }
 
   const container = document.getElementById('dpi-itinerary');
   container.innerHTML = stops.map((place, i) => {
@@ -31906,15 +32215,23 @@ function dpTramoHtml(a, b, modo) {
   return '~' + t.min + ' ' + MIN + ' · ' + escapeHtml(kmRuta(t.km)) + ' ' + KM;
 }
 
+/* «🔄 Otro». Hasta el 13 de octubre de 2026 cogia cualquier lugar de la isla
+   con esas categorias -con dos tarjetas o mas, ni eso: las de «Sorpréndeme»-
+   y podia cambiar una parada de Los Cristianos por una de Anaga. Ahora: de lo
+   elegido, en la zona elegida, y uno de los cinco mas cercanos a la parada
+   que se cambia, de la misma categoria si los hay. La comida, por otra. */
 function dpiSwapOne(idx) {
   const current = dpCurrentStops[idx];
-  const cats = DP_ZONES[dpiZone] || DP_ZONES.mix;
+  if (!current) return;
+  const cats = dpiCategorias().concat([current.category]);
   const candidates = (typeof places !== 'undefined' ? places : [])
-    .filter(p => cats.includes(p.category) && !dpUsedIds.has(p.id) && p.name)
-    .sort(() => Math.random() - 0.5);
-  const sameCat = candidates.filter(p => p.category === current.category);
-  const pick = (sameCat.length ? sameCat : candidates)[0];
-  if (!pick) { return; }
+    .filter(p => cats.includes(p.category) && !dpUsedIds.has(p.id) && p.name && p.lat && p.lng && dpiEnZona(p))
+    .map(p => ({ p, d: haversineKm(current.lat, current.lng, p.lat, p.lng) }))
+    .sort((a, b) => a.d - b.d);
+  const sameCat = candidates.filter(x => x.p.category === current.category);
+  const cerca = (sameCat.length ? sameCat : candidates).slice(0, 5);
+  if (!cerca.length) { return; }
+  const pick = cerca[Math.floor(Math.random() * cerca.length)].p;
   dpUsedIds.delete(current.id);
   dpUsedIds.add(pick.id);
   dpCurrentStops[idx] = pick;
@@ -32218,7 +32535,7 @@ function dpiGoBack(toStep) {
   document.querySelectorAll('.dpi-step').forEach(s => s.classList.remove('active'));
   document.getElementById('dpi-step-' + toStep).classList.add('active');
   if (toStep === 1) {
-    dpiTime = null; dpiZone = null; dpiTransport = 'coche'; dpiSelectedZones = [];
+    dpiTime = null; dpiZone = null; dpiTransport = 'coche'; dpiSelectedZones = []; dpiZona = 'igual';
     document.querySelectorAll('#dpi-zone-grid .dp-zone-card').forEach(c => c.classList.remove('selected'));
     const btn = document.getElementById('dpi-confirm-btn');
     if (btn) btn.style.display = 'none';
@@ -32243,7 +32560,7 @@ try {
 } catch (e) {}
 
 function dpiReset() {
-  dpiTime = null; dpiZone = null; dpiTransport = 'coche'; dpiSelectedZones = [];
+  dpiTime = null; dpiZone = null; dpiTransport = 'coche'; dpiSelectedZones = []; dpiZona = 'igual';
   document.querySelectorAll('#dpi-zone-grid .dp-zone-card').forEach(c => c.classList.remove('selected'));
   const btn = document.getElementById('dpi-confirm-btn');
   if (btn) btn.style.display = 'none';

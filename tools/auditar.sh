@@ -74,6 +74,11 @@ python3 tools/auditar_redondeo.py
 echo; echo "════════ el municipio, contra el poligono del Cabildo ════════"
 control municipio.py python3 tools/municipio.py
 control municipio.py python3 tools/municipio.py --calibrar
+echo "════════ Norte o Sur de cada lugar, por el poligono de su municipio ════════"
+# Desde el 13 de octubre de 2026: «Organiza tu día» deja elegir Norte, Sur o
+# «Me da igual», y la zona de cada lugar la escribe tools/zonas_lugares.py. Un
+# lugar dado de alta sin pasarlo no saldria ni en el Norte ni en el Sur.
+control zonas_lugares.py python3 tools/zonas_lugares.py --comprobar
 echo; echo "════════ las gasolineras del registro ════════"
 control auditar_gasolineras.js node tools/auditar_gasolineras.js
 echo "════════ cada gasolinera, contra el registro, campo a campo ════════"
