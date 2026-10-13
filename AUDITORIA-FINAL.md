@@ -4880,6 +4880,9 @@ los idioma en organiza tu día».
      345», «~93 min · 100 + 224»), a cualquier hora porque el itinerario no
      la tiene; si no hay, «Sin guagua directa ni con un transbordo»;
    - en bici no hay velocidad comprobada: solo los kilómetros («9,0 km»).
+
+   El texto del tramo era casi transparente (solo decía un rótulo fijo):
+   ahora se lee.
 3. **El título del itinerario**: solo ocho de las catorce tarjetas tenían
    título. Con «Deporte», «Aventura» o «Con perro» salía «Tu itinerario», y
    con varias elegidas el nombre interno en castellano para los diez idiomas
@@ -4889,7 +4892,7 @@ los idioma en organiza tu día».
    anterior** (título, acciones de cada parada, tramos, descripciones). Ahora
    se vuelve a pintar.
 
-Control nuevo, `tools/probar_organiza.js` (378 casos): los cuatro pasos en
+Control nuevo, `tools/probar_organiza.js` (418 casos): los cuatro pasos en
 los diez idiomas, con el azar fijo para que el itinerario sea el mismo en
 todos; cada tramo calculado otra vez por su cuenta y comparado; el título con
 las catorce tarjetas y con tres a la vez; el cambio de idioma con el
