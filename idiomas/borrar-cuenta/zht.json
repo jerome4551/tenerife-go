@@ -1,0 +1,15 @@
+{
+ "idioma": "語言",
+ "intro": "如果您在 Tenerife Go 建立了帳戶，可以隨時刪除：在應用程式內刪除，或透過電子郵件申請。",
+ "appTitulo": "在應用程式內",
+ "appTxt": "點按「{cuenta}」（如有提示請先登入），然後點按「{cerrar}」下方的「{eliminar}」。應用程式會請您點按「{confirmar}」進行確認，帳戶隨即刪除。",
+ "correoTitulo": "不使用應用程式",
+ "correoTxt": "請用您帳戶的電子郵件地址寄信至 {correo}，主旨寫「{asunto}」。我們會在收到郵件後最遲一個月內刪除（GDPR 第 12 條第 3 項）。",
+ "asunto": "刪除我的帳戶",
+ "borraTitulo": "會刪除哪些內容",
+ "borraTxt": "您的電子郵件地址、您的密碼（以加密方式儲存）以及您儲存在雲端的收藏。",
+ "noTitulo": "不會隨帳戶刪除的內容",
+ "noPush": "通知：請在瀏覽器或手機設定中關閉。",
+ "noDispositivo": "儲存在您裝置上的內容，例如語言或您的收藏：會在瀏覽器中清除本站資料或解除安裝應用程式時消失。",
+ "volver": "返回 Tenerife Go"
+}

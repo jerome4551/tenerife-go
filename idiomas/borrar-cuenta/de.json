@@ -1,0 +1,15 @@
+{
+ "idioma": "Sprache",
+ "intro": "Wenn du bei Tenerife Go ein Konto angelegt hast, kannst du es jederzeit löschen: in der App oder per E-Mail.",
+ "appTitulo": "In der App",
+ "appTxt": "Tippe auf «{cuenta}» (melde dich an, falls du danach gefragt wirst) und dann unter «{cerrar}» auf «{eliminar}». Die App bittet dich, mit «{confirmar}» zu bestätigen, und das Konto wird sofort gelöscht.",
+ "correoTitulo": "Ohne die App",
+ "correoTxt": "Schreib uns an {correo} von der E-Mail-Adresse deines Kontos, mit dem Betreff «{asunto}». Wir löschen es spätestens einen Monat nach Eingang deiner E-Mail (DSGVO, Artikel 12 Absatz 3).",
+ "asunto": "Mein Konto löschen",
+ "borraTitulo": "Was gelöscht wird",
+ "borraTxt": "Deine E-Mail-Adresse, dein Passwort (verschlüsselt gespeichert) und die Favoriten, die du in der Cloud gespeichert hast.",
+ "noTitulo": "Was nicht mit dem Konto gelöscht wird",
+ "noPush": "Benachrichtigungen: Du schaltest sie im Browser oder in den Einstellungen deines Handys aus.",
+ "noDispositivo": "Was auf deinem Gerät liegt, zum Beispiel die Sprache oder deine Favoriten: Es verschwindet, wenn du die Websitedaten im Browser löschst oder die App deinstallierst.",
+ "volver": "Zurück zu Tenerife Go"
+}

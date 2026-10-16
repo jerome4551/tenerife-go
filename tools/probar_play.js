@@ -12,6 +12,18 @@
  *   · «⚙️ Administrador», en la cuenta: lo ve un administrador y nadie mas, y
  *     abre su panel.
  *
+ * 1.2 BORRAR LA CUENTA
+ *   · en los diez idiomas: «Eliminar cuenta» debajo de «Cerrar sesion», la
+ *     confirmacion con sus tres textos, y «Cancelar» que no borra nada;
+ *   · si el servidor no borra (false, error o sin red): la sesion sigue y
+ *     sale el enlace a borrar-cuenta.html, en el idioma de la app;
+ *   · si borra: una sola llamada, cierre de sesion SOLO local
+ *     (signOut({ scope: 'local' })) y el mensaje de hecho;
+ *   · la politica dice como borrarla, con los botones tal cual y el enlace;
+ *   · borrar-cuenta.html se lee entera SIN JavaScript, idioma a idioma, con
+ *     los cuatro botones que cita escritos como en la app; y con JavaScript
+ *     se abre sola en el idioma de la app, o en el del navegador.
+ *
  * Supabase no esta aqui: se le da a la app un cliente falso, con la sesion y
  * las respuestas que toca en cada caso (sin sesion, con sesion normal, con
  * sesion de administrador). La app lo usa igual que el de verdad.
@@ -37,7 +49,9 @@ const caso = (nombre, ok, detalle) => {
 /* El cliente falso de Supabase. Va dentro de la pagina (addInitScript), asi
    que no puede usar nada de fuera: lo que necesita, en `cfg`. */
 function supabaseFalso(cfg) {
-  window.__sb = { rpcs: [], signOuts: [] };
+  // respuestas: lo que contesta cada rpc; la prueba lo cambia en marcha.
+  // 'lanzar' imita que no hay red: la llamada revienta.
+  window.__sb = { rpcs: [], signOuts: [], respuestas: Object.assign({}, cfg.rpc || {}) };
   const vacio = { data: [], error: null };
   const consulta = () => {
     const q = {};
@@ -66,7 +80,9 @@ function supabaseFalso(cfg) {
     rpc: async nombre => {
       window.__sb.rpcs.push(nombre);
       if (nombre === 'es_admin') return { data: !!cfg.esAdmin, error: null };
-      if (cfg.rpc && nombre in cfg.rpc) return cfg.rpc[nombre];
+      const resp = window.__sb.respuestas[nombre];
+      if (resp === 'lanzar') throw new TypeError('Failed to fetch');
+      if (resp !== undefined) return resp;
       return { data: null, error: { message: 'rpc ' + nombre + ' no simulada' } };
     }
   };
@@ -203,6 +219,140 @@ function supabaseFalso(cfg) {
       admin.logueado && admin.visible && admin.enLaCuenta && admin.panel && admin.cuentaCerrada && admin.vista === 'block', JSON.stringify(admin));
     caso('sin errores de pagina (cuenta)', [sin, normal, admin].every(x => x.errores.length === 0),
       [sin, normal, admin].map(x => x.nombre + ': ' + x.errores.join(' / ')).join(' | '));
+  }
+
+  console.log('\n=== 1.2 borrar la cuenta ===');
+  const R = require('./rotulos_app');
+  const comillas = L => (L === 'zh' || L === 'zht') ? ['「', '」'] : ['«', '»'];
+  // ── en la app, en los diez idiomas: el boton, la confirmacion, los fallos y el borrado
+  for (const L of IDIOMAS) {
+    const { ctx, pg, errores } = await abrir({ lang: L, user: { id: 'u-' + L, email: L + '@prueba.es' }, esAdmin: false });
+    await pg.waitForFunction(() => window.AppAuth.isLoggedIn(), null, { timeout: 10000 }).catch(() => {});
+    const r = await pg.evaluate(async () => {
+      const espera = ms => new Promise(res => setTimeout(res, ms));
+      const $ = id => document.getElementById(id);
+      const vis = el => !!el && !el.hidden && getComputedStyle(el).display !== 'none' && el.getBoundingClientRect().height > 0;
+      const entero = el => el.scrollWidth <= el.clientWidth + 1;
+      const fila = k => (UI_TX[k] || {})[currentLang] || '';
+      const claves = ['cuentaBorrarBtn', 'cuentaBorrarAviso', 'cuentaBorrarSi', 'cuentaBorrarNo', 'cuentaBorrada', 'cuentaBorrarError', 'cuentaBorrarPagina'];
+      const out = { fila: {}, comoCastellano: [] };
+      for (const k of claves) {
+        out.fila[k] = fila(k);
+        if (currentLang !== 'es' && out.fila[k] === (UI_TX[k] || {}).es) out.comoCastellano.push(k);
+      }
+      openAuthModal(); await espera(400);
+      const btn = $('auth-borrar-btn'), caja = $('auth-borrar-confirm'), si = $('auth-borrar-si'),
+            no = $('auth-borrar-no'), msg = $('auth-borrar-msg'), salir = $('auth-logout-btn');
+      out.btn = { visible: vis(btn), texto: btn.textContent.trim(), entero: entero(btn),
+                  debajo: salir.getBoundingClientRect().bottom <= btn.getBoundingClientRect().top + 1 };
+      out.cajaAntes = vis(caja);
+      // 1. confirmar y cancelar
+      btn.click(); await espera(150);
+      out.confirma = { visible: vis(caja), aviso: caja.querySelector('p').textContent.trim(), si: si.textContent.trim(),
+                       no: no.textContent.trim(), btnEscondido: !vis(btn), enteros: [si, no].every(entero) };
+      no.click(); await espera(150);
+      const llamadas = () => window.__sb.rpcs.filter(n => n === 'borrar_mi_cuenta').length;
+      out.cancelar = { caja: vis(caja), btn: vis(btn), llamadas: llamadas(), sesion: window.AppAuth.isLoggedIn() };
+      // 2. el servidor no borra: false (administrador o sin sesion), un error, o no hay red
+      out.fallos = [];
+      for (const resp of [{ data: false, error: null },
+                          { data: null, error: { message: 'permission denied for table users', code: '42501' } },
+                          'lanzar']) {
+        window.__sb.respuestas.borrar_mi_cuenta = resp;
+        btn.click(); await espera(100); si.click(); await espera(400);
+        const a = msg.querySelector('a');
+        out.fallos.push({ resp: typeof resp === 'string' ? resp : JSON.stringify(resp), visible: vis(msg),
+                          error: msg.classList.contains('error'), texto: msg.textContent.trim(),
+                          enlace: a ? { href: a.getAttribute('href'), texto: a.textContent.trim(), blank: a.target === '_blank' } : null,
+                          sesion: window.AppAuth.isLoggedIn(), signOuts: window.__sb.signOuts.length, caja: vis(caja) });
+      }
+      // 3. el servidor borra
+      window.__sb.respuestas.borrar_mi_cuenta = { data: true, error: null };
+      const antes = llamadas();
+      btn.click(); await espera(100); si.click(); await espera(500);
+      const lm = $('auth-login-msg');
+      out.borrada = { llamadas: llamadas() - antes, signOuts: JSON.stringify(window.__sb.signOuts),
+                      sesion: window.AppAuth.isLoggedIn(), login: $('auth-form-login').classList.contains('active'),
+                      msg: lm.textContent.trim(), exito: lm.classList.contains('success') && vis(lm) };
+      // 4. la politica: como borrarla, con los botones de la app y el enlace
+      closeAuthModal(); openPrivacyPanel(); await espera(300);
+      const pp = document.querySelector('#privacy-panel [data-tx="ppConsCuenta"]');
+      const enl = pp && pp.parentElement.querySelector('a[href="borrar-cuenta.html"]');
+      out.politica = { texto: pp ? pp.textContent : '', enlace: enl ? enl.textContent.trim() : null,
+                       cuenta: fila('navAccount'), eliminar: fila('cuentaBorrarBtn') };
+      return out;
+    });
+    const f = r.fila, q = comillas(L);
+    caso(`[${L}] «${r.btn.texto}», debajo de «Cerrar sesion», con su rotulo entero; los siete textos traducidos`,
+      r.btn.visible && r.btn.texto === f.cuentaBorrarBtn && r.btn.debajo && r.btn.entero && !r.cajaAntes &&
+      Object.values(f).every(Boolean) && r.comoCastellano.length === 0, JSON.stringify([r.btn, r.cajaAntes, r.comoCastellano, f]));
+    caso(`[${L}] la confirmacion, en el idioma: aviso, «${r.confirma.si}» y «${r.confirma.no}»`,
+      r.confirma.visible && r.confirma.aviso === f.cuentaBorrarAviso && r.confirma.si === f.cuentaBorrarSi &&
+      r.confirma.no === f.cuentaBorrarNo && r.confirma.btnEscondido && r.confirma.enteros, JSON.stringify(r.confirma));
+    caso(`[${L}] «Cancelar» no llama al servidor y deja todo como estaba`,
+      !r.cancelar.caja && r.cancelar.btn && r.cancelar.llamadas === 0 && r.cancelar.sesion, JSON.stringify(r.cancelar));
+    caso(`[${L}] si el servidor no borra (false, error o sin red): la sesion sigue y sale el enlace a borrar-cuenta.html#${L}`,
+      r.fallos.length === 3 && r.fallos.every(x => x.visible && x.error && x.texto.startsWith(f.cuentaBorrarError) && x.enlace &&
+        x.enlace.href === 'borrar-cuenta.html#' + L && x.enlace.texto === f.cuentaBorrarPagina && x.enlace.blank &&
+        x.sesion && x.signOuts === 0 && !x.caja), JSON.stringify(r.fallos));
+    caso(`[${L}] si borra: una llamada, cierre de sesion solo en este dispositivo y «${r.borrada.msg}»`,
+      r.borrada.llamadas === 1 && r.borrada.signOuts === '[{"scope":"local"}]' && !r.borrada.sesion &&
+      r.borrada.login && r.borrada.msg === f.cuentaBorrada && r.borrada.exito, JSON.stringify(r.borrada));
+    caso(`[${L}] la politica dice como borrarla: ${q[0]}${r.politica.cuenta}${q[1]} → ${q[0]}${r.politica.eliminar}${q[1]}, y el enlace a la pagina`,
+      r.politica.texto.includes(q[0] + r.politica.cuenta + q[1]) && r.politica.texto.includes(q[0] + r.politica.eliminar + q[1]) &&
+      r.politica.enlace === f.cuentaBorrarPagina, JSON.stringify(r.politica));
+    caso(`[${L}] sin errores de pagina (borrar la cuenta)`, errores.length === 0, errores.join(' / '));
+    await ctx.close();
+  }
+
+  // ── borrar-cuenta.html, SIN JavaScript: se lee entera, idioma a idioma
+  const PAG = 'http://127.0.0.1:' + PUERTO + '/borrar-cuenta.html';
+  const seccionesVistas = () => [...document.querySelectorAll('section.idioma')]
+    .filter(s => getComputedStyle(s).display !== 'none').map(s => s.id).join();
+  {
+    const ctx = await nav.newContext({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
+    const pg = await ctx.newPage();
+    await pg.goto(PAG, { waitUntil: 'load' });
+    const r0 = await pg.evaluate(`(${seccionesVistas})()`);
+    const t0 = await pg.title();
+    caso(`sin JavaScript y sin #idioma: se ve el castellano, solo el, y el titulo lleva el nombre de la app («${t0}»)`,
+      r0 === 'es' && t0 === 'Tenerife Go — ' + R.valor('UI.cuentaBorrarPagina', 'es'), JSON.stringify([r0, t0]));
+    for (const L of IDIOMAS) {
+      await pg.goto(PAG + '#' + L, { waitUntil: 'load' });
+      const r = await pg.evaluate(id => {
+        const s = document.getElementById(id);
+        const vistas = [...document.querySelectorAll('section.idioma')].filter(x => getComputedStyle(x).display !== 'none').map(x => x.id);
+        return { vistas, h1: s.querySelector('h1').textContent, texto: s.innerText,
+                 mail: [...s.querySelectorAll('a[href^="mailto:"]')].map(a => a.getAttribute('href')),
+                 ancho: document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1 };
+      }, L);
+      const q = comillas(L);
+      const botones = ['UI.navAccount', 'LANGS.authLogoutBtn', 'UI.cuentaBorrarBtn', 'UI.cuentaBorrarSi'].map(k => q[0] + R.valor(k, L) + q[1]);
+      const faltan = botones.filter(b => !r.texto.includes(b));
+      caso(`[${L}] borrar-cuenta.html#${L} sin JavaScript: solo ese idioma, su titulo, los botones tal cual (${botones.join(' ')}) y el correo`,
+        r.vistas.join() === L && r.h1 === R.valor('UI.cuentaBorrarPagina', L) && faltan.length === 0 && r.mail.length === 1 &&
+        /^mailto:tenerife\.go\.app@gmail\.com\?subject=\S+$/.test(r.mail[0]) && r.ancho,
+        JSON.stringify({ vistas: r.vistas, h1: r.h1, faltan, mail: r.mail, ancho: r.ancho }));
+    }
+    await pg.goto(PAG + '#de', { waitUntil: 'load' });
+    await pg.click('#de nav a[href="#pl"]');
+    const r1 = await pg.evaluate(`(${seccionesVistas})()`);
+    caso('sin JavaScript, el enlace «Polski» cambia de idioma', r1 === 'pl', r1);
+    await ctx.close();
+  }
+  // ── con JavaScript: se abre sola en el idioma de la app, o en el del navegador
+  for (const [locale, guardado, espera] of [['de-DE', 'it', 'it'], ['de-DE', null, 'de'], ['ja-JP', null, 'en'], ['es-ES', 'zht', 'zht']]) {
+    const ctx = await nav.newContext({ locale });
+    const pg = await ctx.newPage();
+    if (guardado) await pg.addInitScript(l => { try { localStorage.setItem('tg_lang', l); } catch (e) {} }, guardado);
+    await pg.goto(PAG, { waitUntil: 'load' });
+    await pg.waitForTimeout(200);
+    const r = await pg.evaluate(`({ hash: location.hash, vistas: (${seccionesVistas})(), titulo: document.title, lang: document.documentElement.lang })`);
+    const lang = { zh: 'zh-Hans', zht: 'zh-Hant' }[espera] || espera;
+    caso(`con JavaScript, navegador ${locale}${guardado ? ' y la app en ' + guardado : ''}: abre en ${espera}, con el titulo y el lang de ese idioma`,
+      r.hash === '#' + espera && r.vistas === espera && r.titulo === 'Tenerife Go — ' + R.valor('UI.cuentaBorrarPagina', espera) && r.lang === lang,
+      JSON.stringify(r));
+    await ctx.close();
   }
 
   await nav.close();

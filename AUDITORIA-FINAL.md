@@ -1998,7 +1998,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 895 filas (y 3.024 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 902 filas (y 3.031 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5138,6 +5138,81 @@ administrador no sale sin sesión ni con una cuenta normal, y con la de
 administrador sale y abre su panel. Fallos metidos: la tienda activa, el botón
 de administrador para todos y una tarjeta de vuelta: los tres en rojo.
 
+### 1.2 · Borrar la cuenta
+
+Google Play exige, si la app deja crear cuenta, poder borrarla desde la app (o
+desde un enlace dentro de ella) y una página web, con el nombre de la app, que
+diga cómo. No había ninguna de las dos: la política decía «Para borrarla,
+escríbenos».
+
+- **`supabase/borrar-cuenta.sql`**, la función del documento tal cual:
+  `borrar_mi_cuenta()` borra de `auth.users` a quien llama y a nadie más, nunca
+  a un administrador, y devuelve `true` si borró. `favorites` y `admins` caen
+  solas (`on delete cascade`); `push_subs` no va con la cuenta (se da de alta
+  sin id de usuario) y la app no usa Storage. **No está ejecutada**: la
+  ejecuta Jerome en el SQL Editor y la prueba con una cuenta de usar y tirar
+  va antes de darla por buena. El fichero dice qué hacer si falla
+  («permission denied»: una Edge Function con `deleteUser()`; `23503`: una
+  tabla sin cascada) y, mientras tanto, la app no borra nada y enseña el
+  enlace a la página.
+- **En la app**, en la cuenta, debajo de «Cerrar sesión»: «Eliminar cuenta».
+  La confirmación va dentro de la misma ventana y traducida (el `confirm()`
+  del navegador saldría en el idioma del navegador): se borran la cuenta y
+  los favoritos de la nube, y no se puede deshacer. Si el servidor devuelve
+  `true`, `signOut({ scope: 'local' })` y «Cuenta eliminada…»: según la guía
+  de Supabase, borrar de `auth.users` no cierra la sesión, el token vale
+  hasta que caduca. Si devuelve `false`, da error o no hay red, no se ha
+  borrado nada: la sesión sigue y sale el enlace a `borrar-cuenta.html`, que
+  se abre en el idioma de la app. Siete textos nuevos, en los diez idiomas.
+- **`borrar-cuenta.html`**, en la raíz y en los diez idiomas, que se cambian
+  con enlaces y se leen enteros sin JavaScript (solo CSS, con `:target`; el
+  castellano, sin almohadilla). Con JavaScript se abre sola en el idioma de
+  la app o, si no lo hay, en el del navegador, como la app. Título «Tenerife
+  Go — Borrar tu cuenta»; desde la app; sin la app (escribir a
+  tenerife.go.app@gmail.com desde el correo de la cuenta, asunto «Borrar mi
+  cuenta», un mes como máximo, RGPD 12.3); qué se borra (el correo, la
+  contraseña cifrada y los favoritos de la nube); y qué no se borra con la
+  cuenta (las notificaciones, que se apagan en el navegador o en el móvil, y
+  lo guardado en el dispositivo). Nada de copias de seguridad ni de plazos de
+  conservación que no se saben. La escribe `tools/generar_borrar_cuenta.py`
+  desde `idiomas/borrar-cuenta/<idioma>.json`, y los cuatro botones que cita
+  («Cuenta», «Cerrar sesión», «Eliminar cuenta» y la confirmación) no van
+  escritos a mano: se leen de `index.html` en cada idioma, así que la página
+  dice lo que dice la app. El armazón (diez secciones, barra de idiomas,
+  estilo) es `tools/pagina_fija.py`, que servirá también para
+  `privacidad.html` (1.3).
+- **La política** (`ppConsCuenta`, diez idiomas): se borra desde la app
+  («Cuenta» → «Eliminar cuenta») o por correo, con el enlace a la página.
+  Los dos botones y el enlace los pone `generar_privacidad.py`, leídos de la
+  app, como pone `MAIL`; si a un idioma le falta un hueco, para.
+- **`sw.js`**: las dos páginas (esta y la `privacidad.html` de la 1.3) van con
+  red primero, como `index.html`.
+
+Controles:
+
+- `probar_play.js`, en los diez idiomas: el botón debajo de «Cerrar sesión»,
+  con su rótulo entero; la confirmación con sus tres textos; «Cancelar» que no
+  llama al servidor; los tres fallos (`false`, error y sin red) con la sesión
+  intacta y el enlace en el idioma de la app; el borrado, con una sola
+  llamada, el cierre de sesión solo en ese dispositivo y el mensaje; y la
+  política, con los botones y el enlace. La página, sin JavaScript e idioma a
+  idioma: solo ese idioma, su título, los cuatro botones tal cual y el
+  correo; el enlace «Polski» cambia de idioma sin JavaScript; y con
+  JavaScript se abre en el idioma de la app, en el del navegador, o en inglés
+  si el del navegador no está, como la app.
+- `generar_borrar_cuenta.py --comprobar`, en `auditar.sh`: la página al día
+  con sus textos y con los botones de la app. Para también si un idioma
+  pierde un hueco (`{correo}`…) o copia el castellano.
+- `auditar_sw.js`: las dos páginas, red primero, y sin red la última.
+- `castellano_suelto.js` lee también los textos de la página.
+
+Fallos metidos, uno por copia: la fila polaca de la confirmación borrada, el
+cierre de sesión global, un `false` tomado por borrado, la página sin la
+regla que esconde el castellano, el botón renombrado sin volver a generar la
+página, la página fuera de la lista de red primero del `sw.js`, un texto
+alemán copiado del castellano, «información» dentro del alemán, y un hueco
+perdido en la política francesa y en la página italiana: los diez, en rojo.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -5187,7 +5262,9 @@ Y cada bloque por separado, si hace falta:
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, ficheros rotos, el latido de 3 horas |
 | `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos, los kilómetros del coche y lo que se comparte del itinerario |
 | `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, Norte y Sur sin paradas de la otra zona (y «Otro» tampoco), nunca dos paradas del mismo sitio (comprobado con código propio), el aviso cuando no hay más, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano |
-| `tools/probar_play.js` | lo que pide Google Play (LANZAMIENTO-PLAY.md, Fase 1), en un navegador y con un Supabase falso: la tienda que no se ve ni se abre, el botón de administrador solo para quien lo es |
+| `tools/probar_play.js` | lo que pide Google Play (LANZAMIENTO-PLAY.md, Fase 1), en un navegador y con un Supabase falso: la tienda que no se ve ni se abre, el botón de administrador solo para quien lo es, borrar la cuenta (botón, confirmación, fallos y borrado) en los diez idiomas y `borrar-cuenta.html` sin JavaScript |
+| `tools/generar_borrar_cuenta.py` | escribe `borrar-cuenta.html` desde `idiomas/borrar-cuenta/` y los botones de la app; con `--comprobar`, para si no está al día |
+| `tools/pagina_fija.py` | el armazón de las páginas fijas de la raíz: diez idiomas que se cambian sin JavaScript |
 | `tools/zonas_lugares.py` | Norte o Sur de cada lugar por el polígono oficial de su municipio: lo escribe en `index.html` y con `--comprobar` lo rehace y lo compara; coteja también las listas Norte y Sur de «Ruta del día» |
 | `tools/auditar_claves_tx.js` | cada `tx('…')` con la clave escrita tiene su fila en `UI_TX` (`tx()` devuelve vacío sin avisar) |
 | `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: píldora, panel, líneas del tiempo y del mar, comprobación vieja, fichero que no llega |

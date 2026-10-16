@@ -1,0 +1,15 @@
+{
+ "idioma": "Langue",
+ "intro": "Si vous avez créé un compte dans Tenerife Go, vous pouvez le supprimer quand vous voulez : depuis l’app ou par e-mail.",
+ "appTitulo": "Depuis l’app",
+ "appTxt": "Touchez «{cuenta}» (connectez-vous si on vous le demande) puis, sous «{cerrar}», touchez «{eliminar}». L’app vous demande de confirmer avec «{confirmar}», et le compte est supprimé aussitôt.",
+ "correoTitulo": "Sans l’app",
+ "correoTxt": "Écrivez-nous à {correo} depuis l’adresse e-mail de votre compte, avec l’objet «{asunto}». Nous le supprimons au plus tard un mois après réception de votre e-mail (RGPD, article 12, paragraphe 3).",
+ "asunto": "Supprimer mon compte",
+ "borraTitulo": "Ce qui est supprimé",
+ "borraTxt": "Votre adresse e-mail, votre mot de passe (conservé chiffré) et les favoris que vous avez enregistrés dans le cloud.",
+ "noTitulo": "Ce qui n’est pas supprimé avec le compte",
+ "noPush": "Les notifications : elles se désactivent dans le navigateur ou dans les réglages du téléphone.",
+ "noDispositivo": "Ce qui est stocké sur votre appareil, comme la langue ou vos favoris : cela disparaît quand vous effacez les données du site dans le navigateur ou désinstallez l’app.",
+ "volver": "Retour à Tenerife Go"
+}

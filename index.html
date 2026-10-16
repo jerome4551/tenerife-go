@@ -4639,6 +4639,21 @@ window.onunhandledrejection = function(e) {
     transition: all var(--t-normal) var(--ease-out);
   }
   .auth-logout-btn:hover { background: rgba(248,113,113,0.18); color: #fecaca; }
+  /* Eliminar la cuenta: discreto, y con la confirmacion dentro de la propia
+     ventana (traducida; el confirm() del navegador saldria en su idioma) */
+  .auth-borrar-btn { width: 100%; margin-top: 10px; background: none; border: none;
+    color: rgba(252,165,165,0.75); font-size: 0.78rem; text-decoration: underline;
+    cursor: pointer; padding: 6px; font-family: inherit; }
+  .auth-borrar-confirm { margin-top: 10px; padding: 12px; border-radius: 10px;
+    background: rgba(248,113,113,0.08); border: 1px solid rgba(248,113,113,0.3); }
+  .auth-borrar-confirm[hidden] { display: none; }
+  .auth-borrar-confirm p { margin: 0 0 10px; font-size: 0.82rem; line-height: 1.4; color: #fecaca; }
+  .auth-borrar-si { width: 100%; padding: 10px; border-radius: 9px; border: none; cursor: pointer;
+    background: #dc2626; color: #fff; font-weight: 600; font-size: 0.85rem; font-family: inherit; }
+  .auth-borrar-no { width: 100%; margin-top: 8px; padding: 9px; border-radius: 9px; cursor: pointer;
+    background: none; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.85);
+    font-size: 0.82rem; font-family: inherit; }
+  .auth-msg a { color: inherit; font-weight: 600; }
 
   /* Spinner */
   .auth-spinner {
@@ -9621,6 +9636,19 @@ Object.assign(UI_TX, {
 /* La politica de privacidad, en los nueve idiomas. Estaba entera en
    castellano: un aleman o un chino leian el aviso legal en un idioma que no
    entienden, que es justo lo que un aviso legal no puede permitirse. */
+/* Borrar la cuenta desde la app (Google Play lo exige: LANZAMIENTO-PLAY.md
+   1.2, 16 de octubre de 2026). cuentaBorrarBtn y cuentaBorrarPagina los
+   leen tambien generar_borrar_cuenta.py y generar_privacidad.py: la
+   pagina y la politica dicen exactamente lo mismo que el boton. */
+Object.assign(UI_TX, {
+  "cuentaBorrarBtn": {"es": "Eliminar cuenta", "en": "Delete account", "fr": "Supprimer le compte", "de": "Konto löschen", "it": "Elimina account", "nl": "Account verwijderen", "zh": "删除账户", "zht": "刪除帳戶", "bg": "Изтриване на профила", "pl": "Usuń konto"},
+  "cuentaBorrarAviso": {"es": "Se borrarán tu cuenta y los favoritos que tienes guardados en la nube. No se puede deshacer.", "en": "Your account and the favourites saved in the cloud will be deleted. This cannot be undone.", "fr": "Votre compte et les favoris enregistrés dans le cloud seront supprimés. C’est définitif.", "de": "Dein Konto und die in der Cloud gespeicherten Favoriten werden gelöscht. Das lässt sich nicht rückgängig machen.", "it": "Verranno eliminati il tuo account e i preferiti salvati nel cloud. Non si può annullare.", "nl": "Je account en de favorieten die in de cloud staan worden verwijderd. Dit kan niet ongedaan worden gemaakt.", "zh": "您的账户以及保存在云端的收藏将被删除。此操作无法撤销。", "zht": "您的帳戶以及儲存在雲端的收藏將被刪除。此操作無法復原。", "bg": "Профилът ви и любимите, запазени в облака, ще бъдат изтрити. Това не може да бъде отменено.", "pl": "Twoje konto i ulubione zapisane w chmurze zostaną usunięte. Tej operacji nie można cofnąć."},
+  "cuentaBorrarSi": {"es": "Sí, eliminar mi cuenta", "en": "Yes, delete my account", "fr": "Oui, supprimer mon compte", "de": "Ja, mein Konto löschen", "it": "Sì, elimina il mio account", "nl": "Ja, verwijder mijn account", "zh": "确定删除我的账户", "zht": "確定刪除我的帳戶", "bg": "Да, изтрий профила ми", "pl": "Tak, usuń moje konto"},
+  "cuentaBorrarNo": {"es": "Cancelar", "en": "Cancel", "fr": "Annuler", "de": "Abbrechen", "it": "Annulla", "nl": "Annuleren", "zh": "取消", "zht": "取消", "bg": "Отказ", "pl": "Anuluj"},
+  "cuentaBorrada": {"es": "Cuenta eliminada: se han borrado tu cuenta y tus favoritos de la nube.", "en": "Account deleted: your account and your favourites in the cloud have been erased.", "fr": "Compte supprimé : votre compte et vos favoris dans le cloud ont été effacés.", "de": "Konto gelöscht: Dein Konto und deine Favoriten in der Cloud wurden entfernt.", "it": "Account eliminato: il tuo account e i tuoi preferiti nel cloud sono stati cancellati.", "nl": "Account verwijderd: je account en je favorieten in de cloud zijn gewist.", "zh": "账户已删除：您的账户和云端收藏已被清除。", "zht": "帳戶已刪除：您的帳戶和雲端收藏已被清除。", "bg": "Профилът е изтрит заедно с любимите ви в облака.", "pl": "Konto usunięte: Twoje konto i ulubione w chmurze zostały skasowane."},
+  "cuentaBorrarError": {"es": "No se ha podido eliminar la cuenta desde aquí. Mira cómo pedirlo:", "en": "The account could not be deleted from here. See how to request it:", "fr": "Le compte n’a pas pu être supprimé depuis ici. Voici comment le demander :", "de": "Das Konto konnte hier nicht gelöscht werden. So kannst du es beantragen:", "it": "Non è stato possibile eliminare l’account da qui. Ecco come chiederlo:", "nl": "Het account kon hier niet worden verwijderd. Zo kun je het aanvragen:", "zh": "无法在此删除账户。请看如何申请删除：", "zht": "無法在此刪除帳戶。請看如何申請刪除：", "bg": "Профилът не можа да бъде изтрит оттук. Вижте как да го поискате:", "pl": "Nie udało się usunąć konta tutaj. Zobacz, jak o to poprosić:"},
+  "cuentaBorrarPagina": {"es": "Borrar tu cuenta", "en": "Delete your account", "fr": "Supprimer votre compte", "de": "Dein Konto löschen", "it": "Eliminare il tuo account", "nl": "Je account verwijderen", "zh": "删除您的账户", "zht": "刪除您的帳戶", "bg": "Изтриване на профила ви", "pl": "Usuwanie konta"}
+});
 /* La politica de privacidad, en los diez idiomas.
    El texto vive en idiomas/privacidad/<lang>.json y lo vuelca aqui
    tools/generar_privacidad.py. Es texto legal y tiene que decir lo que
@@ -9673,7 +9701,7 @@ Object.assign(UI_TX, {
   "ppBaseContrato": {"es":"ejecución de contrato", "en":"performance of a contract", "fr":"exécution d’un contrat", "de":"Vertragserfüllung", "it":"esecuzione di un contratto", "nl":"uitvoering van een overeenkomst", "zh":"履行合同", "zht":"履行契約", "bg":"изпълнение на договор", "pl":"wykonanie umowy"},
   "ppBaseLi2": {"es":"Geolocalización, notificaciones y estadísticas: consentimiento, que puedes retirar cuando quieras.", "en":"Location, notifications and statistics: consent, which you can withdraw at any time.", "fr":"Géolocalisation, notifications et statistiques : consentement, que vous pouvez retirer à tout moment.", "de":"Standort, Benachrichtigungen und Statistik: Einwilligung, die du jederzeit widerrufen kannst.", "it":"Geolocalizzazione, notifiche e statistiche: consenso, che puoi revocare quando vuoi.", "nl":"Locatie, meldingen en statistieken: toestemming, die je altijd kunt intrekken.", "zh":"定位、通知与统计：基于同意，你可以随时撤回。", "zht":"定位、通知與統計：基於同意，你可以隨時撤回。", "bg":"Местоположение, известия и статистика: съгласие, което можете да оттеглите по всяко време.", "pl":"Lokalizacja, powiadomienia i statystyki: zgoda, którą możesz wycofać w dowolnej chwili."},
   "ppConsTitulo": {"es":"Conservación", "en":"Retention", "fr":"Conservation", "de":"Speicherdauer", "it":"Conservazione", "nl":"Bewaartermijn", "zh":"保存期限", "zht":"保存期限", "bg":"Съхранение", "pl":"Przechowywanie"},
-  "ppConsCuenta": {"es":"Los datos de la cuenta se conservan mientras la cuenta exista. Para borrarla, escríbenos y se elimina junto con tus favoritos.", "en":"Account data is kept for as long as the account exists. To delete it, write to us and it is removed along with your favourites.", "fr":"Les données du compte sont conservées tant que le compte existe. Pour le supprimer, écrivez-nous : il est effacé avec vos favoris.", "de":"Kontodaten bleiben gespeichert, solange das Konto besteht. Zum Löschen schreib uns; es wird zusammen mit deinen Favoriten entfernt.", "it":"I dati dell’account restano finché l’account esiste. Per cancellarlo scrivici: viene eliminato insieme ai tuoi preferiti.", "nl":"Accountgegevens blijven bewaard zolang het account bestaat. Wil je het verwijderen, schrijf ons dan: het wordt samen met je favorieten gewist.", "zh":"账户数据在账户存在期间保留。要删除账户请写信给我们，届时会连同你的收藏一并删除。", "zht":"帳戶資料在帳戶存在期間保留。要刪除帳戶請寫信給我們，屆時會連同你的收藏一併刪除。", "bg":"Данните на профила се пазят, докато профилът съществува. За да го изтриете, пишете ни и той се премахва заедно с любимите ви.", "pl":"Dane konta są przechowywane, dopóki konto istnieje. Żeby je usunąć, napisz do nas — zostanie skasowane razem z twoimi ulubionymi."},
+  "ppConsCuenta": {"es":"Los datos de la cuenta se conservan mientras la cuenta exista. Puedes borrarla cuando quieras, junto con tus favoritos, desde la app («Cuenta» → «Eliminar cuenta») o por correo. Cómo hacerlo:", "en":"Account data is kept for as long as the account exists. You can delete it whenever you like, along with your favourites, from the app («Account» → «Delete account») or by email. How to do it:", "fr":"Les données du compte sont conservées tant que le compte existe. Vous pouvez le supprimer quand vous voulez, avec vos favoris, depuis l’app («Compte» → «Supprimer le compte») ou par e-mail. Comment faire :", "de":"Kontodaten bleiben gespeichert, solange das Konto besteht. Du kannst es jederzeit zusammen mit deinen Favoriten löschen, in der App («Konto» → «Konto löschen») oder per E-Mail. So geht’s:", "it":"I dati dell’account restano finché l’account esiste. Puoi eliminarlo quando vuoi, insieme ai tuoi preferiti, dall’app («Account» → «Elimina account») o via e-mail. Come fare:", "nl":"Accountgegevens blijven bewaard zolang het account bestaat. Je kunt het wanneer je wilt verwijderen, samen met je favorieten, in de app («Account» → «Account verwijderen») of per e-mail. Zo doe je dat:", "zh":"账户数据在账户存在期间保留。你可以随时在应用内（「账户」→「删除账户」）或通过电子邮件删除账户，你的收藏也会一并删除。操作方法：", "zht":"帳戶資料在帳戶存在期間保留。你可以隨時在應用程式內（「帳戶」→「刪除帳戶」）或透過電子郵件刪除帳戶，你的收藏也會一併刪除。操作方法：", "bg":"Данните на профила се пазят, докато профилът съществува. Можете да го изтриете по всяко време заедно с любимите си: от приложението («Профил» → «Изтриване на профила») или по имейл. Как става:", "pl":"Dane konta są przechowywane, dopóki konto istnieje. Możesz usunąć konto w dowolnej chwili, razem z ulubionymi: w aplikacji («Konto» → «Usuń konto») albo e-mailem. Jak to zrobić:"},
   "ppConsDispositivo": {"es":"Lo guardado en tu dispositivo desaparece al borrar los datos del sitio o desinstalar la app.", "en":"Anything stored on your device disappears when you clear the site data or uninstall the app.", "fr":"Ce qui est stocké sur votre appareil disparaît en effaçant les données du site ou en désinstallant l’app.", "de":"Was auf deinem Gerät liegt, verschwindet, wenn du die Websitedaten löschst oder die App deinstallierst.", "it":"Quello che è salvato sul tuo dispositivo sparisce cancellando i dati del sito o disinstallando l’app.", "nl":"Wat op je toestel staat verdwijnt als je de sitegegevens wist of de app verwijdert.", "zh":"保存在你设备上的内容，会在清除本站数据或卸载应用时消失。", "zht":"保存在你裝置上的內容，會在清除本站資料或解除安裝應用程式時消失。", "bg":"Запазеното на устройството ви изчезва, когато изтриете данните на сайта или деинсталирате приложението.", "pl":"To, co zapisane na twoim urządzeniu, znika po wyczyszczeniu danych witryny albo odinstalowaniu aplikacji."},
   "ppDerTitulo": {"es":"Derechos", "en":"Your rights", "fr":"Vos droits", "de":"Deine Rechte", "it":"I tuoi diritti", "nl":"Je rechten", "zh":"你的权利", "zht":"你的權利", "bg":"Вашите права", "pl":"Twoje prawa"},
   "ppDerTxt": {"es":"Tienes derecho de acceso, rectificación, supresión, portabilidad, limitación y oposición. Ejércelos escribiendo a", "en":"You have the right of access, rectification, erasure, portability, restriction and objection. Exercise them by writing to", "fr":"Vous disposez des droits d’accès, de rectification, d’effacement, de portabilité, de limitation et d’opposition. Exercez-les en écrivant à", "de":"Du hast das Recht auf Auskunft, Berichtigung, Löschung, Datenübertragbarkeit, Einschränkung und Widerspruch. Wende dich dafür an", "it":"Hai diritto di accesso, rettifica, cancellazione, portabilità, limitazione e opposizione. Esercitali scrivendo a", "nl":"Je hebt recht op inzage, rectificatie, wissing, overdraagbaarheid, beperking en bezwaar. Oefen ze uit door te schrijven naar", "zh":"你享有访问、更正、删除、可携、限制处理和反对的权利。行使方式是写信到", "zht":"你享有查閱、更正、刪除、可攜、限制處理與反對的權利。行使方式是寫信到", "bg":"Имате право на достъп, коригиране, изтриване, преносимост, ограничаване и възражение. Упражнявате ги, като пишете на", "pl":"Masz prawo dostępu, sprostowania, usunięcia, przenoszenia, ograniczenia i sprzeciwu. Skorzystasz z nich, pisząc na"},
@@ -21641,6 +21669,15 @@ window.addEventListener('hashchange', () => {
       </div>
       <div class="auth-sync-status" id="auth-sync-status">Tus favoritos se guardan en la nube</div>
       <button type="button" class="auth-logout-btn" id="auth-logout-btn">Cerrar sesión</button>
+      <!-- Eliminar la cuenta (Google Play lo exige; LANZAMIENTO-PLAY.md 1.2).
+           Llama a la funcion borrar_mi_cuenta (supabase/borrar-cuenta.sql). -->
+      <button type="button" class="auth-borrar-btn" id="auth-borrar-btn" data-tx="cuentaBorrarBtn">Eliminar cuenta</button>
+      <div class="auth-borrar-confirm" id="auth-borrar-confirm" hidden>
+        <p data-tx="cuentaBorrarAviso">Se borrarán tu cuenta y los favoritos que tienes guardados en la nube. No se puede deshacer.</p>
+        <button type="button" class="auth-borrar-si" id="auth-borrar-si" data-tx="cuentaBorrarSi">Sí, eliminar mi cuenta</button>
+        <button type="button" class="auth-borrar-no" id="auth-borrar-no" data-tx="cuentaBorrarNo">Cancelar</button>
+      </div>
+      <div class="auth-msg" id="auth-borrar-msg" role="alert" aria-live="polite"></div>
       <button type="button" id="auth-push-btn" style="width:100%;margin-top:12px;padding:12px;border:none;border-radius:10px;background:#D4AF37;color:#1a1a1a;font-weight:600;cursor:pointer;font-family:inherit;" data-tx="pushBtnActivar">Activar notificaciones</button>
       <div id="auth-push-msg" style="margin-top:8px;font-size:13px;text-align:center;opacity:.9;color:#F5C76B;"></div>
       <!-- Solo para quien es administrador: lo dice la base de datos
@@ -22003,7 +22040,7 @@ window.addEventListener('hashchange', () => {
 
   function clearMessages() {
     const els = getModalEls();
-    [els.loginMsg, els.signupMsg].forEach(m => {
+    [els.loginMsg, els.signupMsg, document.getElementById('auth-borrar-msg')].forEach(m => {
       if (!m) return;
       m.classList.remove('show', 'error', 'success');
       m.textContent = '';
@@ -22186,6 +22223,70 @@ window.addEventListener('hashchange', () => {
         setBusy(els.logoutBtn, false, L().authLogoutBtn || 'Cerrar sesión');
       }
     });
+
+    /* ELIMINAR LA CUENTA (16 de octubre de 2026, LANZAMIENTO-PLAY.md 1.2).
+       Google Play exige que se pueda borrar desde la app. Primero se pide
+       confirmacion aqui mismo; despues, la funcion borrar_mi_cuenta del
+       servidor (supabase/borrar-cuenta.sql), que solo borra a quien llama y
+       nunca a un administrador. Si devuelve true, se cierra la sesion SOLO
+       en este dispositivo: segun Supabase, borrar la fila de auth.users no
+       cierra la sesion -el token vale hasta que caduca- y un cierre global
+       le preguntaria al servidor por un usuario que ya no existe. Si falla
+       o devuelve false, no se ha borrado nada, y se dice como pedirlo:
+       borrar-cuenta.html, por correo. */
+    const borrarBtn  = document.getElementById('auth-borrar-btn');
+    const borrarCaja = document.getElementById('auth-borrar-confirm');
+    const borrarSi   = document.getElementById('auth-borrar-si');
+    const borrarNo   = document.getElementById('auth-borrar-no');
+    const borrarMsg  = document.getElementById('auth-borrar-msg');
+    if (borrarBtn && borrarCaja && borrarSi && borrarNo && borrarMsg) {
+      borrarBtn.addEventListener('click', () => {
+        clearMessages();
+        borrarCaja.hidden = false;
+        borrarBtn.hidden = true;
+      });
+      borrarNo.addEventListener('click', () => {
+        borrarCaja.hidden = true;
+        borrarBtn.hidden = false;
+      });
+      borrarSi.addEventListener('click', async () => {
+        if (authBusy) return;
+        authBusy = true;
+        setBusy(borrarSi, true);
+        let borrada = false;
+        try {
+          if (sbClient && currentUser) {
+            const { data, error } = await sbClient.rpc('borrar_mi_cuenta');
+            borrada = !error && data === true;
+          }
+          if (borrada) {
+            try { await sbClient.auth.signOut({ scope: 'local' }); } catch (_) {}
+            handleSignedOut();
+          }
+        } catch (_) {
+          borrada = false;
+        } finally {
+          authBusy = false;
+          setBusy(borrarSi, false, tx('cuentaBorrarSi'));
+          borrarSi.textContent = tx('cuentaBorrarSi');
+        }
+        borrarCaja.hidden = true;
+        borrarBtn.hidden = false;
+        if (borrada) {
+          showTab('login');
+          showMessage(getModalEls().loginMsg, 'success', tx('cuentaBorrada'));
+        } else {
+          showMessage(borrarMsg, 'error', tx('cuentaBorrarError') + ' ');
+          const a = document.createElement('a');
+          // la pagina se abre en el idioma que tiene la app
+          a.href = 'borrar-cuenta.html#' + (typeof currentLang === 'string' ? currentLang : 'es');
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.textContent = tx('cuentaBorrarPagina');
+          borrarMsg.appendChild(a);
+        }
+      });
+    }
   }
 
   // ─────────────────────────────────────────────────────────────────
@@ -22198,6 +22299,10 @@ window.addEventListener('hashchange', () => {
       els.loggedEmail.textContent = currentUser.email || '';
       showTab('logged');
       pintarBotonAdmin();
+      const caja = document.getElementById('auth-borrar-confirm');
+      const btnB = document.getElementById('auth-borrar-btn');
+      if (caja) caja.hidden = true;
+      if (btnB) btnB.hidden = false;
     } else {
       showTab('login');
     }
@@ -32691,7 +32796,7 @@ function closePrivacyPanel() {
     </ul>
 
     <h3><span data-sin-traducir="numero de apartado">7.</span> <span data-tx="ppConsTitulo">Conservación</span></h3>
-    <p data-tx="ppConsCuenta">Los datos de la cuenta se conservan mientras la cuenta exista. Para borrarla, escríbenos y se elimina junto con tus favoritos.</p>
+    <p><span data-tx="ppConsCuenta">Los datos de la cuenta se conservan mientras la cuenta exista. Puedes borrarla cuando quieras, junto con tus favoritos, desde la app («Cuenta» → «Eliminar cuenta») o por correo. Cómo hacerlo:</span> <a href="borrar-cuenta.html" target="_blank" rel="noopener" data-tx="cuentaBorrarPagina">Borrar tu cuenta</a></p>
     <p data-tx="ppConsDispositivo">Lo guardado en tu dispositivo desaparece al borrar los datos del sitio o desinstalar la app.</p>
 
     <h3><span data-sin-traducir="numero de apartado">8.</span> <span data-tx="ppDerTitulo">Derechos</span></h3>

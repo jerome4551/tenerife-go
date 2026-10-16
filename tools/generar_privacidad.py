@@ -27,6 +27,28 @@ for L in LANGS:
     ext = [k for k in tab[L] if k not in claves]
     if ext: print(f'{L}: claves que el castellano no tiene: {ext}'); sys.exit(1)
 
+# Los botones que cita la politica (ppConsCuenta: «Cuenta» → «Eliminar
+# cuenta») no se escriben en los JSON: se leen de index.html en cada idioma,
+# como hace borrar-cuenta.html, para que digan siempre lo que dice la app.
+# Un hueco que un idioma no tenga, o una llave que quede sin rellenar, para.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from pagina_fija import rotulos
+BOTONES = {'cuenta': 'UI.navAccount', 'eliminar': 'UI.cuentaBorrarBtn'}
+ROT = rotulos(list(BOTONES.values()) + ['UI.cuentaBorrarPagina'])
+huecos = lambda v: sorted(set(re.findall(r'\{(\w+)\}', v)))
+for k in claves:
+    h_es = huecos(tab['es'][k])
+    for L in LANGS:
+        if huecos(tab[L][k]) != h_es:
+            print(f'{L}: {k} tiene los huecos {huecos(tab[L][k])} y el castellano {h_es}'); sys.exit(1)
+    for L in LANGS:
+        v = tab[L][k]
+        for h, clave in BOTONES.items():
+            v = v.replace('{' + h + '}', ROT[clave][L])
+        if '{' in v or '}' in v:
+            print(f'{L}: {k} con una llave sin rellenar: {v}'); sys.exit(1)
+        tab[L][k] = v
+
 # ── la tabla para UI_TX ───────────────────────────────────────────────
 filas = []
 for k in claves:
@@ -59,6 +81,11 @@ def t(k, tag='span', extra=''):
     return f'<{tag} data-tx="{k}"{extra}>{tab["es"][k]}</{tag}>'
 
 MAIL = '<a href="mailto:tenerife.go.app@gmail.com" data-sin-traducir="direccion de correo">tenerife.go.app@gmail.com</a>'
+# La pagina para borrar la cuenta (Google Play, LANZAMIENTO-PLAY.md 1.2). Su
+# rotulo es el titulo de la pagina, de UI_TX, y la pagina se abre sola en
+# el idioma de la app.
+BORRAR = ('<a href="borrar-cuenta.html" target="_blank" rel="noopener" data-tx="cuentaBorrarPagina">'
+          + ROT['UI.cuentaBorrarPagina']['es'] + '</a>')
 def h3(n, k):
     # el numero del apartado va fuera del texto traducido: renumerar un
     # apartado no puede obligar a retocar diez traducciones
@@ -126,8 +153,8 @@ m.append(f'      <li data-tx="ppBaseLi2">{tab["es"]["ppBaseLi2"]}</li>')
 m.append('    </ul>')
 m.append('')
 m.append(h3(7, 'ppConsTitulo'))
-for k in ('ppConsCuenta', 'ppConsDispositivo'):
-    m.append(f'    <p data-tx="{k}">{tab["es"][k]}</p>')
+m.append(f'    <p>{t("ppConsCuenta")} {BORRAR}</p>')
+m.append(f'    <p data-tx="ppConsDispositivo">{tab["es"]["ppConsDispositivo"]}</p>')
 m.append('')
 m.append(h3(8, 'ppDerTitulo'))
 m.append(f'    <p>{t("ppDerTxt")} {MAIL}{t("ppDerReclamar")} '

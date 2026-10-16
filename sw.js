@@ -264,7 +264,13 @@ self.addEventListener('fetch', e => {
          para siempre, que es justo lo que no puede pasar con un aviso. Sin
          red sale el ultimo, con su hora, y la app dice desde cuando no se ha
          podido comprobar. */
+      /* Y las dos paginas fijas que pide Google Play (16 de octubre de 2026,
+         LANZAMIENTO-PLAY.md 1.2 y 1.3): borrar-cuenta.html y privacidad.html.
+         Son texto legal; con `cached || fetch` el primer texto que entrase
+         se quedaria para siempre aunque la politica cambiara. */
       if (req.url.endsWith('index.html') || req.url.endsWith('/') ||
+          url.pathname.endsWith('/borrar-cuenta.html') ||
+          url.pathname.endsWith('/privacidad.html') ||
           url.pathname.endsWith('/datos/titsa.js') ||
           url.pathname.endsWith('/datos/precios-gasolineras.json') ||
           url.pathname.endsWith('/datos/gasolineras-municipio.json') ||

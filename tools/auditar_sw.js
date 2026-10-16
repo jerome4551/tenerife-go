@@ -202,6 +202,30 @@ function opaca() {
     ok(t3 === 'red-2', 'sin red, sale la ultima guardada', t3);
   }
 
+  /* ── 9b. las paginas que pide Google Play, red primero ──
+
+     borrar-cuenta.html y privacidad.html (LANZAMIENTO-PLAY.md 1.2 y 1.3)
+     son texto legal: si la politica cambia, nadie se puede quedar leyendo
+     la vieja porque la primera que entro se quedo en el cache. */
+  {
+    const basica = txt => { const r = new Response(txt, { status: 200 }); Object.defineProperty(r, 'type', { value: 'basic' }); return r; };
+    const espera = () => new Promise(r => setTimeout(r, 20));
+    for (const pag of ['borrar-cuenta.html', 'privacidad.html']) {
+      let version = 'texto-1', hayRed = true;
+      const sw = cargarSW(async () => { if (!hayRed) throw new Error('sin red'); return basica(version); });
+      const U = 'https://jerome4551.github.io/tenerife-go/' + pag;
+      await pedir(sw, U); await espera();
+      version = 'texto-2';
+      const r2 = await pedir(sw, U); await espera();
+      const t2 = r2 && await r2.text();
+      ok(t2 === 'texto-2', pag + ': red primero, el texto nuevo llega aunque ya haya otro guardado', t2);
+      hayRed = false;
+      const r3 = await pedir(sw, U);
+      const t3 = r3 && await r3.text();
+      ok(t3 === 'texto-2', pag + ': sin red, sale la ultima guardada', t3);
+    }
+  }
+
   /* ── 10. la unica suposicion que el ambito falso no puede comprobar ──
 
      Todo lo de arriba prueba el flujo, no el navegador. Lo que el arreglo da
