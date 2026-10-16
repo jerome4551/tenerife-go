@@ -4952,7 +4952,7 @@ polígono oficial del Cabildo (el de `tools/municipio.py`, que coincide con
 las 2.514 paradas de TITSA). Norte: los 19 municipios de Santa Cruz a
 Buenavista del Norte. Sur: los 12 de Candelaria a Santiago del Teide. Es el
 reparto que ya usaba «Ruta del día» (Candelaria, Arafo y Güímar en el Sur; El
-Rosario en el Norte). Salen 594 lugares en el Norte y 384 en el Sur: cuatro
+Rosario en el Norte). Salen 594 lugares en el Norte y 385 en el Sur: cinco
 van en los dos (abajo, lo que contestó Jerome). Quince
 (muelles, piscinas y playas en la misma orilla) caen unos metros fuera del
 dibujo municipal y van con el municipio más cercano: el que más, el puerto de
@@ -4999,11 +4999,12 @@ Norte, y lo mismo Masca y los Acantilados de Los Gigantes (Buenavista del
 Norte). Respuesta: «el teid debe salir en sur y norte, igual por su
 teleférico, Roque garcia. El resto es norte».
 
-- El Teide (tiene dos fichas: «Volcán El Teide» y «Pico del Teide — Cumbre
-  (3.715 m)»), el Teleférico y los Roques de García salen con Norte y con
-  Sur. Es la única excepción al municipio, y está escrita con la frase de
-  Jerome en `LAS_DOS`, en `tools/zonas_lugares.py`, que además comprueba que
-  los cuatro siguen siendo de La Orotava: si no, para.
+- El Teide («Volcán El Teide» y «Pico del Teide — Cumbre (3.715 m)»; su
+  tercera ficha, la del Parque Nacional con perro, entró el 16 de octubre,
+  más abajo), el Teleférico y los Roques de García salen con Norte y con Sur.
+  Es la única excepción al municipio, y está escrita con la frase de Jerome
+  en `LAS_DOS`, en `tools/zonas_lugares.py`, que además comprueba que siguen
+  siendo de La Orotava: si no, para.
 - Lo demás de Las Cañadas (La Ruleta, el Llano de Ucanca, Montaña Blanca, el
   Pico Viejo…), Masca y los Acantilados de Los Gigantes, solo con Norte, que
   es lo que dice su municipio.
@@ -5069,10 +5070,16 @@ paradas mirando solo el id, «Otro» como antes, sin el grupo del Teide, sin la
 regla del nombre, el aviso contando fichas en vez de sitios y «Ruta del día»
 pintándolo todo: los seis en rojo.
 
-### Para Jerome
+### Lo que Jerome contestó (16 de octubre)
 
-1. **La ficha «Parque Nacional Teide 🐾»** (el Teide con perro) es de La
-   Orotava y sale solo con Norte. ¿También con Sur, como el Teide?
+La ficha «Parque Nacional Teide 🐾» era de La Orotava y salía solo con Norte.
+Jerome: «Es el mismo lugar que el teid (parque nacional con perros) es solo
+que confirma que puedes irte con animales». Sale ahora con Norte y con Sur,
+como el Teide: va en `LAS_DOS` con su frase, y quedan 594 lugares en el Norte
+y 385 en el Sur (cinco en los dos). Como es el mismo sitio que el volcán y la
+cumbre, nunca sale junto a ellos en un itinerario. `probar_organiza.js` lo
+comprueba con la tarjeta «Con perro». Fallo metido, la ficha fuera del Sur:
+en rojo en `zonas_lugares.py --comprobar` y en `probar_organiza.js`.
 
 ---
 

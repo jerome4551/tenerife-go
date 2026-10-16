@@ -31225,9 +31225,9 @@ DP_CARDS.forEach(function(c){ DP_ZONES[c.id] = c.cats.slice(); });
 /* >>> zonas de los lugares · las escribe tools/zonas_lugares.py: NO SE TOCAN A MANO.
    Norte o Sur de cada lugar, por el poligono oficial de su municipio
    (Cabildo). Las usa «Organiza tu día»: Norte, Sur o «Me da igual».
-   El Teide, su teleferico y los Roques de Garcia van en las dos
-   (Jerome). Un lugar nuevo no tiene zona hasta que se vuelve a pasar
-   el guion, y auditar.sh lo dice. */
+   El Teide (sus tres fichas), su teleferico y los Roques de Garcia van
+   en las dos (Jerome). Un lugar nuevo no tiene zona hasta que se vuelve
+   a pasar el guion, y auditar.sh lo dice. */
 const DP_ZONA_LUGAR = {
   norte: [
     'aa-serenidad-realejos acantilados-gigantes acc-loro-parque acc-paseo-garachico',
@@ -31462,11 +31462,11 @@ const DP_ZONA_LUGAR = {
     'super-hiperdino-candelaria super-hiperdino-granadilla super-hiperdino-guimar',
     'super-hiperdino-san-miguel super-hiperdino-santiago-teide super-mercadona-adeje',
     'super-mercadona-arona surf-callao-salvaje surf-las-americas surf-medano teide',
-    'teide-teleforico tejita turismo-adeje turismo-arona turismo-candelaria turismo-guimar',
-    'turismo-los-cristianos turismo-medano turismo-santiago-teide vet-masvet-chafiras',
-    'vet-patas-colas wc-duque wc-gigantes wc-las-vistas wc-los-cristianos wc-medano wc-san-juan',
-    'wc-troya whale-watching windsurf-el-medano windsurf-el-poris windsurf-la-tejita',
-    'zona-mariscos-los-abrigos'
+    'teide-petfriendly teide-teleforico tejita turismo-adeje turismo-arona turismo-candelaria',
+    'turismo-guimar turismo-los-cristianos turismo-medano turismo-santiago-teide',
+    'vet-masvet-chafiras vet-patas-colas wc-duque wc-gigantes wc-las-vistas wc-los-cristianos',
+    'wc-medano wc-san-juan wc-troya whale-watching windsurf-el-medano windsurf-el-poris',
+    'windsurf-la-tejita zona-mariscos-los-abrigos'
   ].join(' ')
 };
 /* <<< zonas de los lugares */

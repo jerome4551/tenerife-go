@@ -24,8 +24,9 @@ DE DONDE SALE LA ZONA
 
   LA UNICA EXCEPCION, DE JEROME (13 de octubre de 2026): «el teid debe salir
   en sur y norte, igual por su teleférico, Roque garcia. El resto es norte».
-  El Teide (sus dos fichas: el volcan y la cumbre), el Teleferico y los Roques
-  de Garcia son de La Orotava y van en LAS DOS zonas: LAS_DOS, mas abajo. Lo
+  El Teide (sus tres fichas: el volcan, la cumbre y la del Parque Nacional
+  con perro), el Teleferico y los Roques de Garcia son de La Orotava y van en
+  LAS DOS zonas: LAS_DOS, mas abajo. Lo
   demas de Las Cañadas, Masca y los Acantilados de Los Gigantes, al Norte,
   que es lo que dice su municipio. Otra excepcion se escribe AQUI, con su
   porque y con el OK de Jerome, y nunca a mano en index.html.
@@ -75,12 +76,16 @@ ZONA = dict([(m, 'norte') for m in NORTE] + [(m, 'sur') for m in SUR])
 # En las dos zonas aunque su municipio sea uno: se sube igual desde el norte
 # que desde el sur. Jerome, 13 de octubre de 2026: «el teid debe salir en sur
 # y norte, igual por su teleférico, Roque garcia. El resto es norte». El Teide
-# tiene dos fichas, el volcan y la cumbre, y van las dos. Al lado, el
+# tiene tres fichas y van las tres: el volcan, la cumbre y la del Parque
+# Nacional con perro («Es el mismo lugar que el teid (parque nacional con
+# perros) es solo que confirma que puedes irte con animales», Jerome, el 16 de
+# octubre). Al lado, el
 # municipio que dice el poligono: si un dia no es ese, el guion PARA, porque
 # la razon de estar aqui ya no seria la misma.
 LAS_DOS = {
     'teide': 'La Orotava',               # Volcán El Teide
     'pico-teide-cumbre': 'La Orotava',   # Pico del Teide — Cumbre (3.715 m)
+    'teide-petfriendly': 'La Orotava',   # Parque Nacional Teide 🐾
     'teide-teleforico': 'La Orotava',    # Teleférico del Teide
     'roques-garcia': 'La Orotava',       # Roques de García · Roque Cinchado
 }
@@ -155,9 +160,9 @@ def bloque(res):
     return (INI + ' · las escribe tools/zonas_lugares.py: NO SE TOCAN A MANO.\n'
             '   Norte o Sur de cada lugar, por el poligono oficial de su municipio\n'
             '   (Cabildo). Las usa «Organiza tu día»: Norte, Sur o «Me da igual».\n'
-            '   El Teide, su teleferico y los Roques de Garcia van en las dos\n'
-            '   (Jerome). Un lugar nuevo no tiene zona hasta que se vuelve a pasar\n'
-            '   el guion, y auditar.sh lo dice. */\n'
+            '   El Teide (sus tres fichas), su teleferico y los Roques de Garcia van\n'
+            '   en las dos (Jerome). Un lugar nuevo no tiene zona hasta que se vuelve\n'
+            '   a pasar el guion, y auditar.sh lo dice. */\n'
             'const DP_ZONA_LUGAR = {\n'
             '  norte: [\n' + lineas('norte') + '\n  ].join(\' \'),\n'
             '  sur: [\n' + lineas('sur') + '\n  ].join(\' \')\n'
