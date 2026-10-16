@@ -66,8 +66,12 @@ async function pedir(sw, url) {
   return r;
 }
 
-const TESELA = 'https://a.tile.openstreetmap.org/14/7800/6300.png';
+/* Las teselas que se guardan son las de Esri. Las de OpenStreetMap van solo
+   por red desde el 16 de octubre de 2026 (LANZAMIENTO-PLAY.md 1.6): su
+   politica no permite usarlas sin conexion. */
+const OSM    = 'https://a.tile.openstreetmap.org/14/7800/6300.png';
 const ESRI   = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/14/6300/7800';
+const esri = (z, y, x) => 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/' + z + '/' + y + '/' + x;
 
 /* Una tesela como la que llega de verdad: opaca, porque las capas del mapa
    no piden CORS. La cabecera es para reconocerla despues del clone(), que es
@@ -84,10 +88,11 @@ function opaca() {
   // ── 1. con red: se sirve de la red Y se guarda ──
   {
     const sw = cargarSW(async () => opaca());
-    await pedir(sw, TESELA);
+    const rOsm = await pedir(sw, OSM);
     await pedir(sw, ESRI);
     const c = await sw.cachesFalso.open('tgo-teselas-v1');
-    ok((await c.keys()).length === 2, 'con red, la tesela se guarda al pasar (OSM y Esri)', (await c.keys()).length);
+    ok((await c.keys()).length === 1, 'con red, la tesela de Esri se guarda al pasar', (await c.keys()).length);
+    ok(rOsm === null, 'la de OpenStreetMap no pasa por el service worker: solo red, como pide su politica de teselas');
     ok((await sw.cachesFalso.open('tgo-teselas-v1')) !== undefined, 'el cache del mapa va aparte del de la app');
   }
 
@@ -107,38 +112,47 @@ function opaca() {
   {
     let hayRed = true;
     const sw = cargarSW(async () => { if (!hayRed) throw new Error('sin red'); return opaca(); });
-    const conRed = await pedir(sw, TESELA);       // el usuario la mira con wifi
+    const conRed = await pedir(sw, ESRI);         // el usuario la mira con wifi
     ok(conRed && conRed.type === 'opaque', 'con red se sirve la de la red, sin cambiar nada de antes');
     hayRed = false;                               // modo avion
-    const r = await pedir(sw, TESELA);
-    ok(r && r.headers.get('x-prueba') === 'si', 'sin red, una tesela ya vista sale del cache', r && r.type);
-    const r2 = await pedir(sw, 'https://a.tile.openstreetmap.org/16/1/1.png');
+    const r = await pedir(sw, ESRI);
+    ok(r && r.headers.get('x-prueba') === 'si', 'sin red, una tesela de Esri ya vista sale del cache', r && r.type);
+    const r2 = await pedir(sw, esri(16, 1, 1));
     ok(r2 && r2.type === 'error', 'sin red, una tesela nunca vista falla limpia (no cuelga)', r2 && r2.type);
+    // una de OSM guardada por una version de antes: sin red NO se contesta desde Cache Storage
+    await (await sw.cachesFalso.open('tgo-teselas-v1')).put(new Request(OSM), opaca());
+    const r3 = await pedir(sw, OSM);
+    ok(r3 === null, 'sin red, una tesela de OSM no sale de Cache Storage aunque este guardada (la app pasa a «Isla offline»)');
   }
 
   // ── 4. el tope se aplica, y se van las mas viejas ──
   {
     const sw = cargarSW(async () => opaca());
-    for (let i = 0; i < 1400; i++) await pedir(sw, 'https://a.tile.openstreetmap.org/16/' + i + '/1.png');
+    for (let i = 0; i < 1400; i++) await pedir(sw, esri(16, 1, i));
     const c = await sw.cachesFalso.open('tgo-teselas-v1');
     const ks = await c.keys();
     ok(ks.length <= 1200, 'el cache del mapa no crece sin freno (tope 1200)', ks.length);
-    ok(!(await c.match(new Request('https://a.tile.openstreetmap.org/16/0/1.png'))), 'al llenarse se va la mas vieja');
-    ok(!!(await c.match(new Request('https://a.tile.openstreetmap.org/16/1399/1.png'))), 'y se queda la mas nueva');
+    ok(!(await c.match(new Request(esri(16, 1, 0)))), 'al llenarse se va la mas vieja');
+    ok(!!(await c.match(new Request(esri(16, 1, 1399)))), 'y se queda la mas nueva');
   }
 
   // ── 5. actualizar la app NO borra el mapa descargado ──
   {
     const sw = cargarSW(async () => opaca());
-    await pedir(sw, TESELA);
+    await pedir(sw, ESRI);
     const cs = sw.cachesFalso;
     await cs.open('tgo-v5-viejo');                       // una version anterior
+    // y una tesela de OSM que guardo una version de antes del 16 de octubre
+    await (await cs.open('tgo-teselas-v1')).put(new Request(OSM), opaca());
     const esperas = [];
     for (const f of sw.manejadores.activate) f({ waitUntil: p => esperas.push(p) });
     await Promise.all(esperas);
     const nombres = await cs.keys();
     ok(nombres.includes('tgo-teselas-v1'), 'tras actualizar la app, el mapa guardado sigue ahi', nombres.join(','));
     ok(!nombres.includes('tgo-v5-viejo'), 'y el cache de la version vieja se va');
+    const tc = await cs.open('tgo-teselas-v1');
+    ok(!(await tc.match(new Request(OSM))) && !!(await tc.match(new Request(ESRI))),
+       'al activar se van las teselas de OSM guardadas antes, y las de Esri se quedan');
   }
 
   // ── 6. lo que NO debe cachearse sigue sin cachearse ──

@@ -5346,6 +5346,33 @@ de las piscinas naturales más valoradas del norte» (Charco Los Chochos),
 «Equipo… muy bien valorado» (+Vet Chafiras) y los superlativos editoriales
 del tipo «uno de los mejores…».
 
+### 1.6 · OpenStreetMap: el crédito con enlace, y sus teselas sin conexión no
+
+La política de teselas de OSM dice «Offline use is not permitted on
+tile.openstreetmap.org»; volver a ver lo ya visto desde una caché que respete
+sus cabeceras sí vale. Y pide la atribución, visible en el mapa.
+
+- **`sw.js`**: las teselas de `tile.openstreetmap.org` van solo por red. El
+  service worker no las guarda ni las sirve (`esTeselaOSM`), y la caché HTTP
+  del navegador hace lo suyo. Al activarse, borra de `tgo-teselas-v1` las
+  que guardaron las versiones de antes. Las de Esri (satélite y topo) siguen
+  como estaban. Sin red, la app ya pasaba sola a «Isla offline», que es
+  nuestra. El porqué, con la cita de la política, va en el comentario.
+- **La capa de calles**: «© OpenStreetMap» enlaza a
+  https://www.openstreetmap.org/copyright, como pide la guía de atribución
+  de la OSMF. La capa detallada ya lo llevaba.
+- **El asistente** (`app-06`, diez idiomas) decía que «el mapa normal guarda
+  las zonas que ya has mirado». Ahora dice que las guardan «Satélite» y
+  «Topo», y declara las dos capas en sus `rotulos`.
+
+Controles: `auditar_sw.js` —la tesela de OSM no pasa por el service worker,
+sin red no sale de Cache Storage aunque esté guardada, y al activar se van las
+de OSM y se quedan las de Esri; el tope y el caso del avión, ahora con teselas
+de Esri—; `probar_play.js`, el crédito con su enlace. Que sin red el mapa
+cae a la isla ya lo comprueba `auditar_mapa.js` con el navegador
+desconectado de verdad. Fallos metidos: OSM otra vez al caché, sin la purga y
+el crédito sin enlace: los tres, en rojo.
+
 ---
 
 # 5 · Cómo se vuelve a medir

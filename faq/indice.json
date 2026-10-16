@@ -481,7 +481,9 @@
    "bloque": "G1 · Usar la app",
    "version": "1.0",
    "rotulos": [
-    "LANGS.isla"
+    "LANGS.isla",
+    "LANGS.satellite",
+    "LANGS.topo"
    ]
   },
   "app-07": {

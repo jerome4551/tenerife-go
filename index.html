@@ -16065,7 +16065,11 @@ map.on('click', () => {
 const tileBounds = L.latLngBounds(L.latLng(27.35, -17.65), L.latLng(29.20, -15.40));
 const tileOptions = { bounds: tileBounds, maxZoom: 19 };
 const layers = {
-  streets: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { ...tileOptions, subdomains: ['a','b','c'], attribution: '© OpenStreetMap' }),
+  /* El credito de OSM, con enlace a su pagina de derechos de autor y
+     licencia, como pide la guia de atribucion de la OSMF (16 de octubre de
+     2026, LANZAMIENTO-PLAY.md 1.6): «© OpenStreetMap» suelto no nombraba la
+     licencia en ningun sitio visible. */
+  streets: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { ...tileOptions, subdomains: ['a','b','c'], attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>' }),
   satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, maxNativeZoom: 18, attribution: '© Esri', crossOrigin: false, detectRetina: true }),
   // Topo: Esri World_Topo_Map — mismo CDN fiable que el satélite.
   // (OpenTopoMap aplica rate-limiting y fallaba en móvil: caché fría → 429/503.)

@@ -42,6 +42,12 @@
  *     formato del idioma y con su «hasta» traducido (era «hasta 2026-12-31»
  *     en los diez).
  *
+ * 1.6 OPENSTREETMAP
+ *   · con la capa de calles, el credito dice «© OpenStreetMap» con enlace a
+ *     su pagina de derechos y licencia. (Lo del service worker -sus teselas
+ *     solo por red y fuera de Cache Storage- esta en auditar_sw.js, y que sin
+ *     red el mapa cae a la isla, en auditar_mapa.js.)
+ *
  * Supabase no esta aqui: se le da a la app un cliente falso, con la sesion y
  * las respuestas que toca en cada caso (sin sesion, con sesion normal, con
  * sesion de administrador). La app lo usa igual que el de verdad.
@@ -540,6 +546,37 @@ function supabaseFalso(cfg) {
         (L === 'es' || !/hasta/.test(r.promo)), JSON.stringify(r));
     }
     caso('sin errores de pagina (pines de pago)', errores.length === 0, errores.join(' / '));
+    await ctx.close();
+  }
+
+  console.log('\n=== 1.6 OpenStreetMap: el credito, con enlace ===');
+  {
+    const ctx = await nav.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
+    const pg = await ctx.newPage();
+    const errores = [];
+    pg.on('pageerror', e => errores.push(e.message));
+    await pg.route('**/cdn.jsdelivr.net/**', r => r.abort());
+    /* Desde aqui no se llega a tile.openstreetmap.org: sin esto las teselas
+       fallarian y la app pasaria sola a la isla. Se le da una imagen local. */
+    const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', 'base64');
+    await pg.route(/tile\.openstreetmap\.org/, r => r.fulfill({ status: 200, contentType: 'image/png', body: PNG }));
+    await pg.addInitScript(supabaseFalso, { user: null });
+    await pg.goto(BASE, { waitUntil: 'networkidle' });
+    try { await pg.click('#v19-welcome-start', { timeout: 3000 }); } catch (e) {}
+    await pg.waitForTimeout(600);
+    await pg.evaluate(() => { setLang('es'); setStyleFromMenu('streets'); });
+    await pg.waitForTimeout(800);
+    const r = await pg.evaluate(() => {
+      const att = document.querySelector('.leaflet-control-attribution');
+      const a = att && att.querySelector('a[href="https://www.openstreetmap.org/copyright"]');
+      const b = att && att.getBoundingClientRect();
+      return { capa: currentLayer, texto: att ? att.textContent.replace(/\s+/g, ' ').trim() : null,
+               enlace: a ? a.textContent.trim() : null, nueva: a ? a.target === '_blank' && /noopener/.test(a.rel) : false,
+               visible: !!b && b.width > 0 && b.bottom <= window.innerHeight };
+    });
+    caso(`con la capa de calles, el credito dice «© OpenStreetMap» y enlaza a su pagina de derechos y licencia («${r.texto}»)`,
+      r.capa === 'streets' && r.enlace === 'OpenStreetMap' && /© OpenStreetMap/.test(r.texto) && r.nueva && r.visible, JSON.stringify(r));
+    caso('sin errores de pagina (credito del mapa)', errores.length === 0, errores.join(' / '));
     await ctx.close();
   }
 

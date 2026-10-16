@@ -90,6 +90,10 @@ self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys()
       .then(keys => Promise.all(keys.filter(k => k !== CACHE && k !== TESELAS && k !== MAPA_OSM).map(k => caches.delete(k))))
+      // las teselas de OSM que guardaron las versiones de antes se van: ver esTeselaOSM()
+      .then(() => caches.open(TESELAS).then(c => c.keys().then(ks =>
+        Promise.all(ks.filter(k => { try { return esTeselaOSM(new URL(k.url)); } catch (_) { return false; } })
+          .map(k => c.delete(k))))).catch(() => {}))
       .then(() => recortarTeselas())
       .then(() => self.clients.claim())
   );
@@ -117,14 +121,26 @@ function guardar(req, res) {
   caches.open(CACHE).then(c => c.put(req, copia)).catch(() => {});
 }
 
-/* Una tesela del mapa, y solo eso.
-
-   El patron de OSM tiene que dejar fuera a nominatim.openstreetmap.org, que
-   es un geocodificador y no se cachea. Por eso se compara el dominio entero
-   y no con includes('openstreetmap'), que cogia a los dos. */
+/* Una tesela del mapa que se guarda: las de Esri (satelite y topo), y solo
+   esas. Las de OpenStreetMap, no: ver esTeselaOSM(). */
 function esTesela(url) {
-  return /(^|\.)tile\.openstreetmap\.org$/.test(url.hostname)
-      || url.hostname === 'server.arcgisonline.com';
+  return url.hostname === 'server.arcgisonline.com';
+}
+
+/* Una tesela de OpenStreetMap (16 de octubre de 2026, LANZAMIENTO-PLAY.md
+   1.6). Su politica de teselas
+   (https://operations.osmfoundation.org/policies/tiles/) dice: «Offline use
+   is not permitted on tile.openstreetmap.org». Volver a ver lo ya visto
+   desde una cache que respete sus cabeceras si vale, y eso ya lo hace la
+   cache HTTP del navegador: estas teselas van solo por red y este service
+   worker no las guarda ni las sirve. Sin conexion la app pasa sola a la capa
+   «Isla offline», que es nuestra (irAIslaSinRed, en index.html).
+
+   El patron tiene que dejar fuera a nominatim.openstreetmap.org, que es un
+   geocodificador: se compara el dominio entero y no con
+   includes('openstreetmap'), que cogia a los dos. */
+function esTeselaOSM(url) {
+  return /(^|\.)tile\.openstreetmap\.org$/.test(url.hostname);
 }
 
 /* El recorte no puede correr en cada tesela: keys() recorre el cache entero
@@ -174,22 +190,26 @@ self.addEventListener('fetch', e => {
      offline" fuera mentira.
 
      Se pide siempre a la red primero, asi que con conexion se comporta
-     exactamente igual que antes. La politica de teselas de OSM pide
-     respetar sus cabeceras de caducidad y de eso ya se encarga el cache
-     HTTP del navegador, que es por donde pasa este fetch. Sin conexion sale
-     lo que el usuario ya haya mirado. Y una tesela mala que se colara nunca
-     se queda pegada: en linea se vuelve a pedir siempre.
+     exactamente igual que antes. Sin conexion sale lo que el usuario ya haya
+     mirado. Desde el 16 de octubre de 2026, solo las teselas de Esri
+     (satelite y topo): las de OpenStreetMap no se guardan, porque su
+     politica no permite usarlas sin conexion (ver esTeselaOSM). Y una
+     tesela mala que se colara nunca se queda pegada: en linea se vuelve a
+     pedir siempre.
 
      Se guarda tambien la respuesta opaca (type 'opaque', status 0). Las
      capas de index.html no piden CORS y no se les toca: cambiar crossOrigin
      arriesga romper el mapa en linea, que hoy funciona, y no hay forma de
-     comprobar desde aqui que los dos servidores manden las cabeceras. Una
+     comprobar desde aqui que el servidor mande las cabeceras. Una
      opaca no se puede mirar por dentro, pero para servirsela a un <img>
      vale igual. */
   /* El mapa detallado no pasa por aqui. Lo descarga la app y lo guarda en su
      cache; si ademas lo cachease este manejador, el movil acabaria con dos
      copias de decenas de megas. */
   if (url.pathname.endsWith('/mapa/tenerife-osm.pmtiles')) return;
+
+  // Las teselas de OpenStreetMap: solo red, sin pasar por aqui (esTeselaOSM).
+  if (esTeselaOSM(url)) return;
 
   if (esTesela(url)) {
     e.respondWith(
