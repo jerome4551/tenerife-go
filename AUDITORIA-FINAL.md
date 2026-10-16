@@ -5303,6 +5303,49 @@ Control: `probar_play.js`, el globo de un pin de pago en los diez idiomas.
 Fallos metidos: el alemán con la etiqueta en castellano, la estrella de
 vuelta y el «hasta» fijo: los tres, en rojo.
 
+### 1.5 · Fuera las valoraciones de terceros
+
+Notas y recuentos de reseñas de plataformas (Google, TripAdvisor, AllTrails):
+caducan y no son nuestras.
+
+- **Las 26 fichas del documento**, en castellano y en los nueve idiomas (el
+  polaco, en su fuente `idiomas/pl-lugares/` y montado después con
+  `lugares_idioma.js montar pl`): las 21 con «(N,N★ con X reseñas)» —la PR-TF
+  6.3, quince guachinches y cinco bodegas—; la ruta MTB de Cruz del Carmen
+  (la nota de AllTrails y «la mejor valorada», en la descripción, en el
+  nombre —«★ Mejor Valorada»— y en la categoría —«★ Top Tenerife»—); El
+  Montillo (la nota de Google); Barmanía Park («de los mejor valorados», con
+  su nota); Loro Parque y el minigolf («el mejor… según TripAdvisor»).
+- Se quitó la cifra y el superlativo que la anunciaba («con nota
+  excepcional», «con mejor nota», «muy recomendado», «TOP»…), y nada más.
+  Donde la frase entera era la nota, la frase entera. El resto de cada ficha
+  sigue igual, y cada frase queda bien escrita en los diez idiomas.
+- **Dos fichas más** con la misma nota de terceros, que el documento no
+  listaba: los parques de calistenia de la Plaza de España («valoración
+  4,7/5») y Kenguru Pro («valorado con 4,6/5 por más de 34 usuarios»).
+- **Etiquetas**: fuera «4.7★», «4.6★», «4.4 Estrellas», «Top Tenerife» y
+  «TripAdvisor» (las tres últimas no las listaba el documento; son de las
+  mismas fichas), con sus 18 filas del diccionario y sus 3 declaraciones,
+  que ya no usaba nadie.
+- «PADI 5★» se queda: es el nivel del centro de buceo, no una nota.
+- De paso, **dos errores de traducción** en esas fichas: Linaje del Pago (El
+  Sauzal) salía como «D.O. Valle de La Orotava» en italiano, neerlandés y
+  los dos chinos —es D.O. Tacoronte-Acentejo, como dice el castellano—; y en
+  La Huerta de Ana y Eva el inglés, el alemán y el polaco decían «premiado
+  varias veces» donde el castellano dice «premiado».
+
+Control nuevo en `auditar_datos.js`: ninguna nota con decimal («4,7★»,
+«4.6/5»), ningún recuento de reseñas y ni TripAdvisor ni AllTrails en el
+nombre, la categoría, las etiquetas y la descripción, en los diez idiomas.
+Sobre el texto de antes salta 284 veces; ahora, ninguna.
+
+Sin tocar, porque no son notas de plataformas (se le pregunta a Jerome): la
+etiqueta «Top» de siete guachinches y bodegas, «Premiado entre los mejores
+de Tenerife» (Ana y Eva), «Vino propio muy bien valorado» (El Ramal), «una
+de las piscinas naturales más valoradas del norte» (Charco Los Chochos),
+«Equipo… muy bien valorado» (+Vet Chafiras) y los superlativos editoriales
+del tipo «uno de los mejores…».
+
 ---
 
 # 5 · Cómo se vuelve a medir

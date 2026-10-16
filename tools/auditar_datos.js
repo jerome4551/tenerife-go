@@ -193,6 +193,33 @@ const emojiDelante = PLACES.filter(p => /^\p{Extended_Pictographic}/u.test(Strin
 debe('nombres que empiezan por un emoji', emojiDelante.length, emojiDelante.length === 0);
 emojiDelante.slice(0, 5).forEach(p => console.log('      <--  ' + p.id + ' : ' + p.name));
 
+/* Las valoraciones de terceros -notas y recuentos de Google, TripAdvisor,
+   AllTrails- caducan y no son nuestras: salieron de las fichas el 16 de
+   octubre de 2026 (LANZAMIENTO-PLAY.md 1.5), en los diez idiomas. Se miran el
+   nombre, la categoria, las etiquetas y la descripcion en castellano, y la
+   descripcion y la categoria en los nueve idiomas. «PADI 5★» es el nivel de un
+   centro de buceo, no una nota, y no lo coge: aqui cuentan las notas con
+   decimal («4,7★», «4.6/5»), los recuentos de reseñas y esas plataformas. */
+{
+  const NOTA = new RegExp([
+    '\\b[0-5][.,]\\d\\s*(?:★|☆|\\/\\s*5\\b|星|estrellas|stars|étoiles|sterne|stelle|sterren|звезд|gwiazd)',
+    'TripAdvisor|AllTrails',
+    '\\d\\+?\\s*(?:reseñas|valoraciones|reviews|avis\\b|Bewertungen|recensioni|beoordelingen|recensies|opinii|opiniach|отзива|оценки)',
+    '\\d\\s*多?\\s*[条條]\\s*[评評][价價]'].join('|'), 'iu');
+  const conNota = [];
+  for (const p of PLACES) {
+    const campos = { nombre: p.name, cat: (p.cat || {}).es, desc: (p.desc || {}).es, etiquetas: (p.tags || []).join(' | ') };
+    for (const [c, t] of Object.entries(campos)) if (t && NOTA.test(t)) conNota.push(p.id + ' (es, ' + c + '): ' + t.match(NOTA)[0]);
+  }
+  for (const L of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    const d = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'idiomas', L + '.json'), 'utf8'));
+    for (const [id, e] of Object.entries(d)) for (const c of ['desc', 'cat'])
+      if (e[c] && NOTA.test(e[c])) conNota.push(id + ' (' + L + ', ' + c + '): ' + e[c].match(NOTA)[0]);
+  }
+  debe('valoraciones de terceros en las fichas (diez idiomas)', conNota.length, conNota.length === 0);
+  conNota.slice(0, 6).forEach(x => console.log('      <--  ' + x));
+}
+
 /* La calidad del agua y su ano no se pueden separar: el texto de la insignia
    dice "censo oficial {a}", asi que una ficha con calidad y sin ano pintaria
    el marcador crudo. */
