@@ -435,7 +435,6 @@
    "rotulos": [
     "UI.navFav",
     "UI.navRoutes",
-    "UI.navShop",
     "UI.navChat",
     "UI.navAccount",
     "UI.tourVer"
@@ -620,12 +619,7 @@
    "cat": "app",
    "volatil": false,
    "bloque": "G1 · Usar la app",
-   "version": "1.0",
-   "rotulos": [
-    "UI.navShop",
-    "UI.shopSoon",
-    "UI.shopAd"
-   ]
+   "version": "1.0"
   },
   "app-23": {
    "cat": "app",

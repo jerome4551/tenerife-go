@@ -158,6 +158,11 @@ echo; echo "════════ «Organiza tu día» entero, en los diez id
 # («En guagua ~25 min» para cualquier tramo) y varios titulos salian sin traducir.
 control probar_organiza.js node tools/probar_organiza.js "$PUERTO"
 
+echo "════════ lo que pide Google Play (LANZAMIENTO-PLAY.md, Fase 1), en un navegador ════════"
+# Desde el 16 de octubre de 2026: la tienda fuera de la vista y el boton de
+# administrador en la cuenta, y lo que vaya entrando de la Fase 1.
+control probar_play.js node tools/probar_play.js "$PUERTO"
+
 echo "════════ erratas al transliterar al cirilico ════════"
 control auditar_cirilico.py python3 tools/auditar_cirilico.py
 echo; echo "════════ texto que se queda en el idioma de arranque ════════"

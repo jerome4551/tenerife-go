@@ -109,7 +109,9 @@ window.__estados = [
   ['microclimas', async () => { document.getElementById('mc-btn').click(); await espera(1500); }],
   ['avisos AEMET', async () => { await fetchWxAlerts(); toggleWxPanel(); }],
   ['fiestas', async () => { document.getElementById('fi-btn').click(); await espera(800); }],
-  ['tienda', async () => { openShopPanel(); await espera(800); }],
+  /* 'tienda' salio el 16 de octubre de 2026: la tienda no se ve
+     (TIENDA_ACTIVA, LANZAMIENTO-PLAY.md 1.1). Que no se abra lo mira
+     probar_play.js. */
   ['asistente', async () => { openChatPanel(); await espera(800); }],
   ['cuenta', async () => { openAuthModal(); }],
   ['favoritos', async () => { document.getElementById('v19-nav-fav').click(); }],

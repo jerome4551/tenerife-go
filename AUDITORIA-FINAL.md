@@ -1998,7 +1998,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 916 filas (y 3.045 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 895 filas (y 3.024 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -2008,10 +2008,12 @@ falsa de la guagua del Teide y el rótulo de pestaña que no se veía. El 13,
 una más (sin guagua entre dos paradas) y seis menos de «Organiza tu día»: los
 cuatro tiempos fijos entre paradas y dos títulos que ya no usa nadie. Esa
 tarde, tres más: el título y el «atrás» del paso Norte o Sur, y el aviso de
-que en esa zona no hay más lugares. El 11 de octubre el tour dejó de ser una
+que en esa zona no hay más lugares. El 16, 21 menos: las de las siete
+tarjetas inventadas de la tienda y su hueco de AdSense, que se borraron. El
+11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
-`barrido_idiomas.js`, contado el 13 de octubre por la tarde; no la coteja
+`barrido_idiomas.js`, contado el 16 de octubre; no la coteja
 nadie.)*
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
@@ -5081,6 +5083,61 @@ cumbre, nunca sale junto a ellos en un itinerario. `probar_organiza.js` lo
 comprueba con la tarjeta «Con perro». Fallo metido, la ficha fuera del Sur:
 en rojo en `zonas_lugares.py --comprobar` y en `probar_organiza.js`.
 
+## Google Play, Fase 1 (16 de octubre)
+
+Jerome trae `LANZAMIENTO-PLAY.md` (De la PWA a Google Play, tres fases) y la
+entrega `lanzamiento-lugares.json`: «verifica bien antes de aplicarlos». La
+Fase 1 se hace ya; la 2 (el dominio) y la 3 (el enlace con la app de Play)
+esperan a su mensaje. El documento se comprobó contra el commit `9b0a4b7`, y
+el `index.html` de ese commit es el mismo que habia aqui (md5
+`7f6d1729…`, 34.096 líneas). Antes de empezar, `auditar.sh` en verde.
+
+Lo que el documento cita de fuera se ha contrastado con búsquedas, porque
+desde este contenedor no se abre ninguna de esas páginas: la política de
+teselas de OSM («Offline use is not permitted on tile.openstreetmap.org»), la
+guía de atribución de la OSMF, lo que pide Google Play para borrar la cuenta,
+la política de jsDelivr, el artículo 20.1 de la LSSI y el plazo del artículo
+12.3 del RGPD. Y las cuatro fichas de la entrega, contra Turismo de Tenerife.
+
+### 1.1 · La tienda, fuera de la vista
+
+Todo lo que decía el documento estaba así: siete tarjetas escritas a mano con
+precio (tres excursiones y cuatro souvenirs), «Reservar» y «Pagar» que acaban
+en un aviso de «próximamente», el hueco de «Próximamente Google AdSense» y
+«Anúnciate», que guarda la solicitud solo en el móvil de quien la rellena y le
+contesta que le escribirán en 48 horas.
+
+- `TIENDA_ACTIVA = false`: no se ven ni el botón de la barra de abajo ni la
+  cesta (aunque el móvil guarde artículos de antes), y ni `openShopPanel` ni
+  `openCartPanel` abren nada. El código se queda, con un comentario: antes de
+  ponerla a `true`, «Anúnciate» tiene que entregar la solicitud de verdad y el
+  pago tiene que funcionar o no ofrecerse.
+- Las siete tarjetas y el hueco de AdSense, **borrados**, y las 21 filas de
+  `UI_TX` que solo usaban ellas (nombres, descripciones, «Envío a toda
+  España», colores…). Lo que el administrador sube a Supabase se sigue
+  pintando igual.
+- «⚙️ Administrador» sale de la tienda y entra en la cuenta, escondido: solo
+  aparece si la base de datos dice que esa cuenta es administradora
+  (`es_admin`). Al tocarlo se cierra la cuenta y se abre el panel.
+- Ya no nombran la tienda: el tour (`tourBarraP`) y el asistente (`app-01`,
+  la barra de abajo), en los diez idiomas. `app-22` («¿Qué hay en la
+  tienda?») no se borra, porque `app-18` la enlaza: dice que la tienda no está
+  disponible por ahora y que quien tenga un negocio escriba a
+  tenerife.go.app@gmail.com. En `faq/indice.json`, fuera `UI.navShop` de
+  `app-01` y los tres rótulos de la tienda de `app-22`.
+- `auditar_web.js` probaba el botón de comprar con una de las tarjetas
+  borradas: ahora monta una tarjeta de prueba igual que aquellas y la quita al
+  terminar. `barrido_pantallas.js` ya no tiene la pantalla de la tienda.
+
+Control nuevo, `tools/probar_play.js` (en `auditar.sh`), con un Supabase
+falso para tener sesión sin servidor: la barra de abajo con cinco botones,
+dentro de la pantalla y con el rótulo entero, en los diez idiomas a 390×844;
+ni la tienda ni la cesta se abren, ni por su función ni por sus botones, con
+artículos de antes en la cesta; ninguna tarjeta inventada; el botón de
+administrador no sale sin sesión ni con una cuenta normal, y con la de
+administrador sale y abre su panel. Fallos metidos: la tienda activa, el botón
+de administrador para todos y una tarjeta de vuelta: los tres en rojo.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -5130,6 +5187,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, ficheros rotos, el latido de 3 horas |
 | `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos, los kilómetros del coche y lo que se comparte del itinerario |
 | `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, Norte y Sur sin paradas de la otra zona (y «Otro» tampoco), nunca dos paradas del mismo sitio (comprobado con código propio), el aviso cuando no hay más, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano |
+| `tools/probar_play.js` | lo que pide Google Play (LANZAMIENTO-PLAY.md, Fase 1), en un navegador y con un Supabase falso: la tienda que no se ve ni se abre, el botón de administrador solo para quien lo es |
 | `tools/zonas_lugares.py` | Norte o Sur de cada lugar por el polígono oficial de su municipio: lo escribe en `index.html` y con `--comprobar` lo rehace y lo compara; coteja también las listas Norte y Sur de «Ruta del día» |
 | `tools/auditar_claves_tx.js` | cada `tx('…')` con la clave escrita tiene su fila en `UI_TX` (`tx()` devuelve vacío sin avisar) |
 | `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: píldora, panel, líneas del tiempo y del mar, comprobación vieja, fichero que no llega |

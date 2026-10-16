@@ -302,9 +302,21 @@ function revisar(tablas, o) {
   const vivo = await page.evaluate(async () => {
     const IDI = (typeof SUPPORTED_LANGS !== 'undefined') ? SUPPORTED_LANGS.slice() : [];
     const out = { claves: [], cesta: [], boton: [] };
+    /* Desde el 16 de octubre de 2026 la tienda no tiene tarjetas escritas a
+       mano: eran inventadas y se quitaron (LANZAMIENTO-PLAY.md 1.1). El codigo
+       del boton de comprar se queda, y se sigue probando con una tarjeta de
+       prueba montada aqui igual que aquellas: el titulo con su clave en
+       data-tx y el id en data-souvenir-id. Se quita al terminar. */
+    const prueba = document.createElement('div');
+    prueba.className = 'excursion-card'; prueba.id = 'tarjeta-de-prueba';
+    prueba.innerHTML = '<div class="excursion-img">🧢</div><div class="excursion-body">' +
+      '<div class="excursion-title" data-souvenir-id="prueba"><span data-tx="navShop">Tienda</span></div>' +
+      '<div class="excursion-footer"><div class="excursion-price">9,99€</div>' +
+      '<button class="excursion-book-btn souvenir-buy-btn" onclick="addSouvenirToCart(this)">Comprar</button></div></div>';
+    document.getElementById('shop-tab-content-souvenirs').appendChild(prueba);
     for (const l of ['es','en','zht']) {
       setLang(l);
-      const btn = document.querySelector('.excursion-card .souvenir-buy-btn');
+      const btn = document.querySelector('#tarjeta-de-prueba .souvenir-buy-btn');
       const rot = btn.textContent.trim();
       const antes = getCart().length;
       addSouvenirToCart(btn);
@@ -324,6 +336,7 @@ function revisar(tablas, o) {
        decir MAL, no reventar el proceso y llevarse por delante los otros
        tres resultados de este bloque. */
     out.wiki = IDI.map(l => (typeof wikiDominio === 'function' ? wikiDominio(l) : '(sin funcion)'));
+    prueba.remove();
     return out;
   });
   console.log('\n=== lo que se pinta al vuelo ===');
