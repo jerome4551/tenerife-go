@@ -1998,7 +1998,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 903 filas (y 3.032 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 904 filas (y 3.033 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5278,6 +5278,30 @@ enlace, el bloque otra vez a 80 px, `privacidad.html` tocada a mano, Google
 Fonts de vuelta, el alemán sin su `{aepd}`, la publicidad italiana sin la
 etiqueta, un `data-tx-hueco` sin fila y un texto cambiado sin volver a
 generar: los ocho, en rojo.
+
+### 1.4 · «Patrocinado» en los pines de pago
+
+Los pines de `anuncios` son de negocios que pagan, y la LSSI (art. 20.1) pide
+que la comunicación comercial se reconozca como tal. Su globo decía «⭐
+Recomendación de Jérôme».
+
+- `adRecommend`, la propuesta del documento en los diez idiomas:
+  «Patrocinado», «Sponsored», «Sponsorisé», «Anzeige», «Sponsorizzato»,
+  «Gesponsord», «赞助», «贊助», «Спонсорирано», «Sponsorowane». El nombre del
+  negocio sigue en el globo.
+- Sin la «⭐» delante: delante de «Patrocinado» se leía como una nota. La
+  estrella pequeña del icono del pin se queda; se le pregunta a Jerome.
+- La fecha de la promoción salía «hasta 2026-12-31» en los diez idiomas: la
+  palabra en castellano y la fecha en bruto, tal como llega de la base.
+  Ahora va en el formato de cada idioma, con su «hasta» (fila nueva
+  `adHasta`): «hasta el 31/12/2026», «until 31/12/2026», «bis 31.12.2026»,
+  «有效期至 2026/12/31»…
+- La política dice ya «Van marcados con la etiqueta «Patrocinado»», sin
+  tocarla: la cita de la app (1.3).
+
+Control: `probar_play.js`, el globo de un pin de pago en los diez idiomas.
+Fallos metidos: el alemán con la etiqueta en castellano, la estrella de
+vuelta y el «hasta» fijo: los tres, en rojo.
 
 ---
 

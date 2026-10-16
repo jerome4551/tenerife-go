@@ -36,6 +36,12 @@
  *   · privacidad.html se lee entera sin JavaScript, idioma a idioma, y dice
  *     LO MISMO que el panel de la app en ese idioma, letra a letra.
  *
+ * 1.4 «PATROCINADO» EN LOS PINES DE PAGO
+ *   · en los diez idiomas, el globo de un pin de pago dice la etiqueta de
+ *     ese idioma, sin estrella delante, y la fecha de la promocion en el
+ *     formato del idioma y con su «hasta» traducido (era «hasta 2026-12-31»
+ *     en los diez).
+ *
  * Supabase no esta aqui: se le da a la app un cliente falso, con la sesion y
  * las respuestas que toca en cada caso (sin sesion, con sesion normal, con
  * sesion de administrador). La app lo usa igual que el de verdad.
@@ -497,6 +503,43 @@ function supabaseFalso(cfg) {
     caso(`privacidad.html con JavaScript, navegador ${locale}${guardado ? ' y la app en ' + guardado : ''}: abre en ${espera}`,
       r.hash === '#' + espera && r.vistas === espera && r.lang === espera &&
       r.titulo === 'Tenerife Go — ' + R.valor('UI.ppTitulo', espera).replace(/^[^\p{L}\p{N}]+/u, ''), JSON.stringify(r));
+    await ctx.close();
+  }
+
+  console.log('\n=== 1.4 «Patrocinado» en los pines de pago ===');
+  {
+    const ctx = await nav.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
+    const pg = await ctx.newPage();
+    const errores = [];
+    pg.on('pageerror', e => errores.push(e.message));
+    await pg.route('**/cdn.jsdelivr.net/**', r => r.abort());
+    await pg.addInitScript(supabaseFalso, { user: null });
+    await pg.goto(BASE, { waitUntil: 'networkidle' });
+    await pg.waitForFunction(() => window.AppAuth && window.AppAuth.isReady(), null, { timeout: 30000 });
+    for (const L of IDIOMAS) {
+      await pg.evaluate(l => setLang(l), L);
+      await pg.waitForTimeout(150);
+      const r = await pg.evaluate(() => {
+        // un anuncio como los que llegan de Supabase (promo_until es una fecha)
+        adsPublicCache = [{ id: 'prueba', emoji: '🍷', name: 'Bodega de prueba', tagline: 'Cata', zone: 'La Orotava',
+                            lat: 28.39, lng: -16.52, promoText: '2x1', promoUntil: '2026-12-31', visible: true, i18n: null }];
+        renderAdMarkers();
+        const html = adMarkers.length ? adMarkers[0].getPopup().getContent() : '';
+        const d = document.createElement('div'); d.innerHTML = html;
+        const cat = d.querySelector('.popup-cat'), promo = d.querySelector('.popup-promo-badge');
+        const fecha = new Intl.DateTimeFormat(PRECIOS_GAS_LOCALE[currentLang], { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' })
+          .format(new Date(Date.UTC(2026, 11, 31)));
+        const out = { n: adMarkers.length, cat: cat ? cat.textContent.trim() : null, promo: promo ? promo.textContent.trim().replace(/\s+/g, ' ') : null,
+                      etiqueta: tx('adRecommend'), es: UI_TX.adRecommend.es, hasta: tx('adHasta', { f: fecha }).replace(/\s+/g, ' '), fecha };
+        adsPublicCache = []; renderAdMarkers();
+        return out;
+      });
+      caso(`[${L}] el globo del pin de pago: «${r.cat}» y «${r.promo}»`,
+        r.n === 1 && r.cat === r.etiqueta + ' · La Orotava' && !/⭐|★/.test(r.cat) && (L === 'es' || r.etiqueta !== r.es) &&
+        r.promo === '🎁 2x1 · ' + r.hasta && !r.promo.includes('2026-12-31') && /31/.test(r.fecha) && /12/.test(r.fecha) &&
+        (L === 'es' || !/hasta/.test(r.promo)), JSON.stringify(r));
+    }
+    caso('sin errores de pagina (pines de pago)', errores.length === 0, errores.join(' / '));
     await ctx.close();
   }
 
