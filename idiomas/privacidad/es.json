@@ -1,5 +1,6 @@
 {
 "ppEnlace":"Privacidad · RGPD",
+"ppEnlaceWeb":"Versión web",
 "ppCerrar":"✕ Cerrar",
 "ppTitulo":"🔒 Política de Privacidad",
 "ppActualizado":"— Última actualización: octubre de 2026",
@@ -29,7 +30,7 @@
 "ppStatsGuarda":"Tu respuesta se guarda 180 días en tu dispositivo; después se vuelve a preguntar. Para cambiarla antes, borra los datos del sitio en tu navegador.",
 
 "ppPubTitulo":"Publicidad y contenidos promocionados",
-"ppPubQue":"El mapa muestra negocios que pagan un plan de promoción mensual. Van marcados como recomendación y no alteran el resto del contenido.",
+"ppPubQue":"El mapa muestra negocios que pagan un plan de promoción mensual. Van marcados con la etiqueta «{patrocinado}» y no alteran el resto del contenido.",
 "ppPubNoDatos":"Esa promoción no usa tus datos: se enseñan a todo el mundo por igual, sin segmentación, sin perfilado y sin cookies publicitarias. En la app no hay ninguna red publicitaria de terceros en funcionamiento.",
 
 "ppTercTitulo":"Terceros que reciben datos",
@@ -41,12 +42,12 @@
 "ppTercMeteo":"las coordenadas del lugar o de la zona cuya previsión consultas.",
 "ppTercCarburantes":"los precios oficiales de las gasolineras de la provincia, cuando los miras; no se le manda nada tuyo.",
 "ppTercWiki":"el título del artículo del lugar que abres.",
-"ppTercCdn":"tipografías y librerías.",
+"ppTercCdn":"sirve la librería de Supabase que usa la app; no se le manda nada tuyo.",
 "ppTercGa":"solo si aceptas el aviso de cookies.",
 "ppTercNoVenta":"Ninguno de estos datos se vende ni se cede con fines comerciales.",
 
 "ppBaseTitulo":"Finalidad y base legal",
-"ppBaseLi1a":"Prestar el servicio de guía turística interactiva (",
+"ppBaseLi1":"Prestar el servicio de guía turística interactiva ({interes} / {contrato}).",
 "ppBaseInteres":"interés legítimo",
 "ppBaseContrato":"ejecución de contrato",
 "ppBaseLi2":"Geolocalización, notificaciones y estadísticas: consentimiento, que puedes retirar cuando quieras.",
@@ -57,7 +58,7 @@
 
 "ppDerTitulo":"Derechos",
 "ppDerTxt":"Tienes derecho de acceso, rectificación, supresión, portabilidad, limitación y oposición. Ejércelos escribiendo a",
-"ppDerReclamar":". También puedes reclamar ante la",
+"ppDerReclamar":". También puedes reclamar ante la {aepd}.",
 
 "ppSegTitulo":"Seguridad",
 "ppSegTxt":"Toda la comunicación va por HTTPS. Supabase guarda las contraseñas cifradas y el acceso a las tablas está limitado por RLS; no tenemos acceso a tu contraseña.",

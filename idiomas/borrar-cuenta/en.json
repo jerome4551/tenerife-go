@@ -1,5 +1,4 @@
 {
- "idioma": "Language",
  "intro": "If you created an account in Tenerife Go, you can delete it whenever you like: from the app or by email.",
  "appTitulo": "From the app",
  "appTxt": "Tap «{cuenta}» (sign in if asked) and then, below «{cerrar}», tap «{eliminar}». The app asks you to confirm with «{confirmar}», and the account is deleted right away.",
@@ -10,6 +9,5 @@
  "borraTxt": "Your email address, your password (stored encrypted) and the favourites you have saved in the cloud.",
  "noTitulo": "What is not deleted with the account",
  "noPush": "Notifications: you turn them off in your browser or in your phone’s settings.",
- "noDispositivo": "What is saved on your device, such as the language or your favourites: it disappears when you clear the site data in your browser or uninstall the app.",
- "volver": "Back to Tenerife Go"
+ "noDispositivo": "What is saved on your device, such as the language or your favourites: it disappears when you clear the site data in your browser or uninstall the app."
 }

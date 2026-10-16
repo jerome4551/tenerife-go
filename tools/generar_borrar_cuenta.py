@@ -13,7 +13,7 @@ generarla.
     python3 tools/generar_borrar_cuenta.py              escribe la pagina
     python3 tools/generar_borrar_cuenta.py --comprobar  solo comprueba
 """
-import os, sys
+import os, re, sys
 from urllib.parse import quote
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -22,7 +22,7 @@ from pagina_fija import (LANGS, CORREO, esc, textos, rotulos, rellenar,
 
 T = textos('borrar-cuenta')
 R = rotulos(['UI.cuentaBorrarPagina', 'UI.navAccount', 'LANGS.authLogoutBtn',
-             'UI.cuentaBorrarBtn', 'UI.cuentaBorrarSi'])
+             'UI.cuentaBorrarBtn', 'UI.cuentaBorrarSi', 'UI.ppTitulo'])
 
 # Los huecos de cada texto, iguales en los diez idiomas: un idioma que se
 # comiera {correo} dejaria la pagina sin la direccion a la que escribir.
@@ -57,12 +57,15 @@ for L in LANGS:
         f'<li>{rellenar(t["noPush"], {}, L)}</li>',
         f'<li>{rellenar(t["noDispositivo"], {}, L)}</li>',
         '</ul>',
-        f'<p class="volver"><a href="./">{esc(t["volver"])}</a></p>',
     ])
 
-html = pagina(titulo, cuerpo, {L: T[L]['idioma'] for L in LANGS},
+# al pie, la politica de privacidad (privacidad.html), con su titulo sin el
+# candado del principio
+politica = {L: re.sub(r'^\W+', '', R['UI.ppTitulo'][L]) for L in LANGS}
+html = pagina(titulo, cuerpo,
               'Generada por tools/generar_borrar_cuenta.py desde '
               'idiomas/borrar-cuenta/*.json y los botones de index.html. '
-              'No se edita a mano.')
+              'No se edita a mano.',
+              pie=[('privacidad.html', politica)])
 sys.exit(0 if escribir_o_comprobar('borrar-cuenta.html', html,
                                    'generar_borrar_cuenta.py') else 1)

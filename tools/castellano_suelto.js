@@ -23,7 +23,7 @@
  *
  * QUE MIRA, por idioma, en TODO lo que lee el usuario: las fichas
  * (idiomas/<L>.json), las etiquetas, el asistente (faq/<L>.json), la
- * privacidad, la pagina de borrar la cuenta (idiomas/borrar-cuenta) y las
+ * privacidad, las paginas fijas (idiomas/borrar-cuenta, idiomas/paginas) y las
  * filas de idioma de todo el fuente (index.html y lo que
  * carga: tools/fuente.js).
  *   PALABRAS (alfabeto latino)
@@ -188,6 +188,9 @@ function textos(L) {
   // la pagina de borrar la cuenta (borrar-cuenta.html, Google Play)
   const bc = lee('idiomas/borrar-cuenta/' + L + '.json'), bces = lee('idiomas/borrar-cuenta/es.json');
   for (const [k, v] of Object.entries(bc)) if (typeof v === 'string') r.push({ donde: 'borrar-cuenta ' + k, es: bces[k], txt: v });
+  // y lo comun a las paginas fijas (la barra de idiomas, «Volver a Tenerife Go»)
+  const pf = lee('idiomas/paginas/' + L + '.json'), pfes = lee('idiomas/paginas/es.json');
+  for (const [k, v] of Object.entries(pf)) if (typeof v === 'string') r.push({ donde: 'paginas ' + k, es: pfes[k], txt: v });
   for (const f of filasDelFuente()) if (typeof f.fila[L] === 'string') r.push({ donde: f.donde, es: f.fila.es, txt: f.fila[L] });
   return r;
 }

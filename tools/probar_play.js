@@ -24,6 +24,18 @@
  *     los cuatro botones que cita escritos como en la app; y con JavaScript
  *     se abre sola en el idioma de la app, o en el del navegador.
  *
+ * 1.3 LA POLITICA DE PRIVACIDAD, CON DIRECCION PROPIA
+ *   · en los diez idiomas, a 390x844 y a 360x740: «Version web» y «Borrar tu
+ *     cuenta» encima de «Privacidad · RGPD», traducidos, a sus paginas y sin
+ *     tapar la leyenda, el zoom, el boton de informacion, el credito del
+ *     mapa ni la barra de abajo;
+ *   · el panel: la frase de la AEPD con el enlace DENTRO y en su sitio en
+ *     cada idioma, la base legal con sus dos enfasis, la publicidad citando
+ *     la etiqueta que se ve en el mapa, y jsDelivr con su politica (Google
+ *     Fonts ya no recibe nada);
+ *   · privacidad.html se lee entera sin JavaScript, idioma a idioma, y dice
+ *     LO MISMO que el panel de la app en ese idioma, letra a letra.
+ *
  * Supabase no esta aqui: se le da a la app un cliente falso, con la sesion y
  * las respuestas que toca en cada caso (sin sesion, con sesion normal, con
  * sesion de administrador). La app lo usa igual que el de verdad.
@@ -352,6 +364,139 @@ function supabaseFalso(cfg) {
     caso(`con JavaScript, navegador ${locale}${guardado ? ' y la app en ' + guardado : ''}: abre en ${espera}, con el titulo y el lang de ese idioma`,
       r.hash === '#' + espera && r.vistas === espera && r.titulo === 'Tenerife Go — ' + R.valor('UI.cuentaBorrarPagina', espera) && r.lang === lang,
       JSON.stringify(r));
+    await ctx.close();
+  }
+
+  console.log('\n=== 1.3 la politica de privacidad, con direccion propia ===');
+  const sinEspacios = t => String(t || '').replace(/\s+/g, '');
+  const primeraDiferencia = (a, b) => {
+    a = sinEspacios(a); b = sinEspacios(b);
+    let i = 0; while (i < a.length && a[i] === b[i]) i++;
+    return i >= a.length && i >= b.length ? '' : 'difieren en ' + i + ': «' + a.slice(Math.max(0, i - 30), i + 40) + '» / «' + b.slice(Math.max(0, i - 30), i + 40) + '»';
+  };
+  const textoPanel = {};
+  for (const [ancho, alto] of [[390, 844], [360, 740]]) {
+    const ctx = await nav.newContext({ viewport: { width: ancho, height: alto }, serviceWorkers: 'block' });
+    const pg = await ctx.newPage();
+    const errores = [];
+    pg.on('pageerror', e => errores.push(e.message));
+    await pg.route('**/cdn.jsdelivr.net/**', r => r.abort());
+    await pg.addInitScript(supabaseFalso, { user: null });
+    await pg.goto(BASE, { waitUntil: 'networkidle' });
+    await pg.waitForFunction(() => window.AppAuth && window.AppAuth.isReady(), null, { timeout: 30000 });
+    try { await pg.click('#v19-welcome-start', { timeout: 3000 }); } catch (e) {}
+    await pg.waitForTimeout(900);
+    for (const L of IDIOMAS) {
+      await pg.evaluate(l => setLang(l), L);
+      await pg.waitForTimeout(250);
+      const r = await pg.evaluate(() => {
+        const caja = el => { const b = el.getBoundingClientRect(); return { l: b.left, t: b.top, r: b.right, b: b.bottom }; };
+        const vis = el => !!el && getComputedStyle(el).display !== 'none' && getComputedStyle(el).visibility !== 'hidden' &&
+          el.getBoundingClientRect().width > 0;
+        const choca = (a, b) => a.l < b.r && b.l < a.r && a.t < b.b && b.t < a.b;
+        const web = document.getElementById('pp-enlace-web'), borrar = document.getElementById('pp-enlace-borrar');
+        const pildora = document.querySelector('.pp-pie > button.pp-link');
+        const mios = [['version web', web], ['borrar tu cuenta', borrar], ['Privacidad · RGPD', pildora]];
+        const vecinos = [['la leyenda', '#map-legend-toggle'], ['el zoom', '.leaflet-control-zoom'], ['el boton de informacion', '.pwa-fab'],
+                         ['el credito del mapa', '.leaflet-control-attribution'], ['la barra de abajo', '.v19-bottom-nav']]
+          .map(([n, sel]) => [n, document.querySelector(sel)]).filter(([, el]) => vis(el));
+        const choques = [];
+        for (const [n1, m] of mios) for (const [n2, el] of vecinos) if (choca(caja(m), caja(el))) choques.push(n1 + ' tapa ' + n2);
+        for (let i = 0; i < mios.length; i++) for (let j = i + 1; j < mios.length; j++)
+          if (choca(caja(mios[i][1]), caja(mios[j][1]))) choques.push(mios[i][0] + ' encima de ' + mios[j][0]);
+        const W = document.documentElement.clientWidth;
+        const fuera = mios.filter(([, m]) => { const c = caja(m); return c.l < 0 || c.r > W; }).map(([n]) => n);
+        const comoCastellano = ['ppEnlaceWeb', 'cuentaBorrarPagina', 'ppEnlace', 'ppDerReclamar', 'ppBaseLi1', 'ppTercCdn', 'ppPubQue']
+          .filter(k => currentLang !== 'es' && tx(k) === UI_TX[k].es);
+        openPrivacyPanel();
+        const hoja = document.querySelector('#privacy-panel .pp-sheet').cloneNode(true);
+        hoja.querySelector('.pp-close').remove(); hoja.querySelector('h2').remove();
+        const der = document.querySelector('#privacy-panel [data-tx-hueco="ppDerReclamar"]');
+        const base = document.querySelector('#privacy-panel [data-tx-hueco="ppBaseLi1"]');
+        const pub = document.querySelector('#privacy-panel [data-tx="ppPubQue"]');
+        const cdn = document.querySelector('#privacy-panel [data-tx="ppTercCdn"]');
+        const out = {
+          web: { texto: web.textContent.trim(), fila: tx('ppEnlaceWeb'), href: web.getAttribute('href'), blank: web.target === '_blank', vis: vis(web) },
+          borrar: { texto: borrar.textContent.trim(), fila: tx('cuentaBorrarPagina'), href: borrar.getAttribute('href'), blank: borrar.target === '_blank', vis: vis(borrar) },
+          pildora: { texto: pildora.textContent.trim(), fila: tx('ppEnlace'), vis: vis(pildora) },
+          choques, fuera, comoCastellano,
+          texto: hoja.textContent,
+          aepd: document.querySelectorAll('#privacy-panel a[href="https://www.aepd.es"]').length,
+          der: der ? der.textContent : null, derEsperado: tx('ppDerReclamar').replace('{aepd}', 'AEPD'),
+          derEnlaceDentro: !!(der && der.querySelector('a[href="https://www.aepd.es"]')),
+          base: base ? base.textContent : null,
+          baseEsperado: tx('ppBaseLi1').replace('{interes}', tx('ppBaseInteres')).replace('{contrato}', tx('ppBaseContrato')),
+          baseEm: base ? base.querySelectorAll('em').length : 0,
+          pub: pub ? pub.textContent : '', etiqueta: tx('adRecommend'),
+          cdnProveedor: cdn ? cdn.parentElement.querySelector('a').textContent : null,
+          cdnUrl: cdn ? cdn.parentElement.querySelector('a').getAttribute('href') : null,
+          google: /Google Fonts/.test(document.getElementById('privacy-panel').textContent)
+        };
+        closePrivacyPanel();
+        return out;
+      });
+      const q = comillas(L);
+      caso(`[${L} ${ancho}] «${r.web.texto}» y «${r.borrar.texto}» encima de «${r.pildora.texto}»: traducidos, a sus paginas y sin tapar nada`,
+        r.web.vis && r.borrar.vis && r.pildora.vis && r.web.texto === r.web.fila && r.borrar.texto === r.borrar.fila &&
+        r.pildora.texto === r.pildora.fila && r.web.href === 'privacidad.html' && r.borrar.href === 'borrar-cuenta.html' &&
+        r.web.blank && r.borrar.blank && r.choques.length === 0 && r.fuera.length === 0 && r.comoCastellano.length === 0,
+        JSON.stringify({ web: r.web, borrar: r.borrar, pildora: r.pildora, choques: r.choques, fuera: r.fuera, comoCastellano: r.comoCastellano }));
+      if (ancho !== 390) continue;
+      textoPanel[L] = r.texto;
+      caso(`[${L}] el panel: la frase de la AEPD, con el enlace dentro y en su sitio («${(r.der || '').trim()}»)`,
+        r.der === r.derEsperado && r.derEnlaceDentro && r.aepd === 1, JSON.stringify([r.der, r.derEsperado, r.derEnlaceDentro, r.aepd]));
+      caso(`[${L}] el panel: la base legal, con sus dos enfasis («${(r.base || '').trim()}»)`,
+        r.base === r.baseEsperado && r.baseEm === 2, JSON.stringify([r.base, r.baseEsperado, r.baseEm]));
+      caso(`[${L}] el panel: la publicidad cita la etiqueta que se ve en el mapa (${q[0]}${r.etiqueta}${q[1]})`,
+        !!r.etiqueta && r.pub.includes(q[0] + r.etiqueta + q[1]), JSON.stringify([r.pub, r.etiqueta]));
+      caso(`[${L}] el panel: jsDelivr, con su politica; Google Fonts ya no`,
+        r.cdnProveedor === 'jsDelivr' && r.cdnUrl === 'https://www.jsdelivr.com/terms/privacy-policy' && !r.google,
+        JSON.stringify([r.cdnProveedor, r.cdnUrl, r.google]));
+    }
+    caso(`sin errores de pagina (politica, ${ancho})`, errores.length === 0, errores.join(' / '));
+    await ctx.close();
+  }
+
+  // ── privacidad.html, SIN JavaScript: entera, idioma a idioma, igual que el panel
+  {
+    const POL = 'http://127.0.0.1:' + PUERTO + '/privacidad.html';
+    const ctx = await nav.newContext({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
+    const pg = await ctx.newPage();
+    await pg.goto(POL, { waitUntil: 'load' });
+    const r0 = await pg.evaluate(`(${seccionesVistas})()`);
+    const t0 = await pg.title();
+    const tituloDe = L => R.valor('UI.ppTitulo', L).replace(/^[^\p{L}\p{N}]+/u, '');
+    caso(`sin JavaScript y sin #idioma: se ve el castellano, solo el, con el nombre de la app en el titulo («${t0}»)`,
+      r0 === 'es' && t0 === 'Tenerife Go — ' + tituloDe('es'), JSON.stringify([r0, t0]));
+    for (const L of IDIOMAS) {
+      await pg.goto(POL + '#' + L, { waitUntil: 'load' });
+      const r = await pg.evaluate(id => {
+        const s = document.getElementById(id);
+        const c = s.cloneNode(true);
+        c.querySelector('nav').remove(); c.querySelector('h1').remove(); c.querySelector('.pie').remove();
+        return { vistas: [...document.querySelectorAll('section.idioma')].filter(x => getComputedStyle(x).display !== 'none').map(x => x.id),
+                 h1: s.querySelector('h1').textContent, texto: c.textContent,
+                 borrar: !!s.querySelector('a[href="borrar-cuenta.html#' + id + '"]'),
+                 ancho: document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1 };
+      }, L);
+      const dif = primeraDiferencia(r.texto, textoPanel[L]);
+      caso(`[${L}] privacidad.html#${L} sin JavaScript: solo ese idioma, su titulo, y LO MISMO que el panel de la app en ese idioma`,
+        r.vistas.join() === L && r.h1 === tituloDe(L) && !!textoPanel[L] && dif === '' && r.borrar && r.ancho,
+        JSON.stringify({ vistas: r.vistas, h1: r.h1, dif, borrar: r.borrar, ancho: r.ancho }));
+    }
+    await ctx.close();
+  }
+  // ── con JavaScript: se abre en el idioma de la app, o en el del navegador
+  for (const [locale, guardado, espera] of [['de-DE', 'nl', 'nl'], ['fr-FR', null, 'fr']]) {
+    const ctx = await nav.newContext({ locale });
+    const pg = await ctx.newPage();
+    if (guardado) await pg.addInitScript(l => { try { localStorage.setItem('tg_lang', l); } catch (e) {} }, guardado);
+    await pg.goto('http://127.0.0.1:' + PUERTO + '/privacidad.html', { waitUntil: 'load' });
+    await pg.waitForTimeout(200);
+    const r = await pg.evaluate(`({ hash: location.hash, vistas: (${seccionesVistas})(), titulo: document.title, lang: document.documentElement.lang })`);
+    caso(`privacidad.html con JavaScript, navegador ${locale}${guardado ? ' y la app en ' + guardado : ''}: abre en ${espera}`,
+      r.hash === '#' + espera && r.vistas === espera && r.lang === espera &&
+      r.titulo === 'Tenerife Go — ' + R.valor('UI.ppTitulo', espera).replace(/^[^\p{L}\p{N}]+/u, ''), JSON.stringify(r));
     await ctx.close();
   }
 

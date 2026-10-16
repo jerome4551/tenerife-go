@@ -1,5 +1,4 @@
 {
- "idioma": "Lingua",
  "intro": "Se hai creato un account su Tenerife Go, puoi eliminarlo quando vuoi: dall’app o via e-mail.",
  "appTitulo": "Dall’app",
  "appTxt": "Tocca «{cuenta}» (accedi, se te lo chiede) e poi, sotto «{cerrar}», tocca «{eliminar}». L’app ti chiede di confermare con «{confirmar}» e l’account viene eliminato subito.",
@@ -10,6 +9,5 @@
  "borraTxt": "Il tuo indirizzo e-mail, la tua password (conservata cifrata) e i preferiti che hai salvato nel cloud.",
  "noTitulo": "Cosa non viene eliminato con l’account",
  "noPush": "Le notifiche: si disattivano nel browser o nelle impostazioni del telefono.",
- "noDispositivo": "Quello che è salvato sul tuo dispositivo, come la lingua o i tuoi preferiti: sparisce quando cancelli i dati del sito nel browser o disinstalli l’app.",
- "volver": "Torna a Tenerife Go"
+ "noDispositivo": "Quello che è salvato sul tuo dispositivo, come la lingua o i tuoi preferiti: sparisce quando cancelli i dati del sito nel browser o disinstalli l’app."
 }

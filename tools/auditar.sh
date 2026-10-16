@@ -166,6 +166,10 @@ echo "════════ borrar-cuenta.html, al dia con sus textos y con l
 # La pagina que pide Google Play (1.2) cita los botones de la app en cada
 # idioma; si uno cambia de nombre y no se vuelve a generar, para aqui.
 control generar_borrar_cuenta.py python3 tools/generar_borrar_cuenta.py --comprobar
+echo "════════ la politica de privacidad: el panel y privacidad.html, al dia y de la misma pasada ════════"
+# 1.3: los dos salen de idiomas/privacidad y citan botones y etiquetas de la
+# app; si alguno cambia y no se vuelve a generar, para aqui.
+control generar_privacidad.py python3 tools/generar_privacidad.py --comprobar
 
 echo "════════ erratas al transliterar al cirilico ════════"
 control auditar_cirilico.py python3 tools/auditar_cirilico.py

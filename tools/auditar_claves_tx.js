@@ -11,7 +11,7 @@
  * «No hay líneas que conecten estos dos puntos» se quedaba en blanco.
  *
  * QUE MIRA: cada tx('…'), tx("…") y dpT('…') con la clave escrita tal cual
- * en index.html. Las que se arman en tiempo de ejecucion (tx(k), tx('a' + b))
+ * en index.html, y cada data-tx-hueco="…" (frases con un enlace dentro). Las que se arman en tiempo de ejecucion (tx(k), tx('a' + b))
  * no se pueden mirar asi y no cuentan.
  */
 'use strict';
@@ -26,6 +26,13 @@ for (const m of src.matchAll(/\b(tx|dpT)\(\s*(['"])([A-Za-z0-9_]+)\2\s*[,)]/g)) 
   const [, fn, , clave] = m;
   const k = fn + ':' + clave;
   if (!pedidas.has(k)) pedidas.set(k, { fn, clave, linea: src.slice(0, m.index).split('\n').length });
+}
+/* Y las frases con un enlace dentro (data-tx-hueco, 16 de octubre de 2026):
+   la app las rehace con tx(), asi que una fila que falte las deja en
+   castellano sin avisar, igual que un tx() suelto. */
+for (const m of src.matchAll(/data-tx-hueco="([A-Za-z0-9_]+)"/g)) {
+  const k = 'tx:' + m[1];
+  if (!pedidas.has(k)) pedidas.set(k, { fn: 'tx', clave: m[1], linea: src.slice(0, m.index).split('\n').length });
 }
 const faltan = [...pedidas.values()].filter(p => p.fn === 'tx' ? !UI[p.clave] : !DPUI[p.clave]);
 const P = (t, v) => console.log('  ' + String(t).padEnd(46, '.') + ' ' + v);

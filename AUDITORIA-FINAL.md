@@ -1998,7 +1998,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 902 filas (y 3.031 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 903 filas (y 3.032 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5213,6 +5213,72 @@ página, la página fuera de la lista de red primero del `sw.js`, un texto
 alemán copiado del castellano, «información» dentro del alemán, y un hueco
 perdido en la política francesa y en la página italiana: los diez, en rojo.
 
+### 1.3 · La política de privacidad, con dirección propia
+
+Play Console pide la política en una dirección pública y activa, que no sea un
+PDF ni se pueda editar. Solo existía como panel dentro de la app.
+
+- **`privacidad.html`**, en la raíz y en los diez idiomas, que se cambian con
+  enlaces y se leen enteros sin JavaScript (el armazón de
+  `borrar-cuenta.html`, `tools/pagina_fija.py`; lo común a las dos —la barra
+  de idiomas y «Volver a Tenerife Go»— pasa a `idiomas/paginas/`). La escribe
+  `generar_privacidad.py` en la misma pasada que el panel y con la misma
+  función, `cuerpo()`: el panel y la página no pueden decir cosas distintas.
+  Antes de tocar nada se comprobó que el generador nuevo dejaba el panel
+  igual, byte a byte. Las dos páginas se enlazan entre sí al pie.
+- **Dos correcciones del documento**, en los diez idiomas:
+  - jsDelivr en lugar de «Google Fonts · jsDelivr»: las tipografías viven en
+    `vendor/fuentes/` (la CSP solo deja `font-src 'self' data:`) y Google Fonts
+    no recibe nada; jsDelivr sirve la librería de Supabase. Con el enlace a su
+    política.
+  - La publicidad ya no dice «van marcados como recomendación»: cita la
+    etiqueta que se ve en el mapa, leída de la app (`adRecommend`). Hoy dice
+    «Recomendación de Jérôme»; con la 1.4 dirá «Patrocinado» sin tocar la
+    política.
+- **Cuatro fallos que ya estaban en el panel**, y que salieron al montar la
+  página:
+  - alemán: «Du kannst dich außerdem bei der AEPD.», sin el verbo
+    («… beschweren»);
+  - chino, los dos: «你也可以向 AEPD.», sin «投诉 / 投訴» y con el punto latino;
+  - chino, los dos: «（合法利益 / 履行合同).», con el cierre y el punto latinos;
+  - francés e italiano: «auprès de l’ AEPD», «all’ AEPD», con un espacio
+    detrás del apóstrofo.
+
+  La causa era una: el enlace iba fijo detrás del texto traducido, y ningún
+  idioma podía poner nada después. Ahora la fila lleva el hueco (`{aepd}`,
+  `{interes}`, `{contrato}`) donde va el elemento, y la app rehace el texto
+  de alrededor al cambiar de idioma (`data-tx-hueco`, en `applyUiTx`) sin
+  tocar el enlace. `auditar_claves_tx.js` mira también esas filas.
+- **Encima de «Privacidad · RGPD»**: «Versión web» (`privacidad.html`) y
+  «Borrar tu cuenta» (`borrar-cuenta.html`), traducidos, que se abren en el
+  idioma de la app. Encima y no al lado: al lado no caben entre «Leyenda» y
+  el botón de información en todos los idiomas. Y el bloque sube 10 px: a 360
+  px de ancho, en francés, alemán y búlgaro, «Privacidad · RGPD» pisaba el
+  crédito del mapa (© OpenStreetMap), que tiene que leerse.
+
+Controles:
+
+- `generar_privacidad.py --comprobar`, en `auditar.sh`: el panel y la página,
+  al día con sus textos y con lo que citan de la app. Y el generador para si
+  un idioma pierde un hueco o deja una llave sin rellenar.
+- `probar_play.js`, en los diez idiomas, a 390×844 y a 360×740: los dos
+  enlaces y la píldora, traducidos, a sus páginas, sin tapar la leyenda, el
+  zoom, el botón de información, el crédito del mapa ni la barra de abajo
+  (medido también a 412 y a 320 px: ningún choque). El panel: la frase de la
+  AEPD con el enlace dentro y en su sitio, la base legal con sus dos
+  énfasis, la publicidad con la etiqueta del mapa, jsDelivr con su política
+  y ni rastro de Google Fonts. `privacidad.html` sin JavaScript, idioma a
+  idioma: solo ese idioma, su título, y el mismo texto que el panel de la app
+  en ese idioma, letra a letra. Con JavaScript, se abre en el idioma de la
+  app o en el del navegador.
+- `castellano_suelto.js` lee también `idiomas/paginas/`.
+
+Fallos metidos, uno por copia: la app sin el repintado de las frases con
+enlace, el bloque otra vez a 80 px, `privacidad.html` tocada a mano, Google
+Fonts de vuelta, el alemán sin su `{aepd}`, la publicidad italiana sin la
+etiqueta, un `data-tx-hueco` sin fila y un texto cambiado sin volver a
+generar: los ocho, en rojo.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -5264,7 +5330,8 @@ Y cada bloque por separado, si hace falta:
 | `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, Norte y Sur sin paradas de la otra zona (y «Otro» tampoco), nunca dos paradas del mismo sitio (comprobado con código propio), el aviso cuando no hay más, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano |
 | `tools/probar_play.js` | lo que pide Google Play (LANZAMIENTO-PLAY.md, Fase 1), en un navegador y con un Supabase falso: la tienda que no se ve ni se abre, el botón de administrador solo para quien lo es, borrar la cuenta (botón, confirmación, fallos y borrado) en los diez idiomas y `borrar-cuenta.html` sin JavaScript |
 | `tools/generar_borrar_cuenta.py` | escribe `borrar-cuenta.html` desde `idiomas/borrar-cuenta/` y los botones de la app; con `--comprobar`, para si no está al día |
-| `tools/pagina_fija.py` | el armazón de las páginas fijas de la raíz: diez idiomas que se cambian sin JavaScript |
+| `tools/pagina_fija.py` | el armazón de las páginas fijas de la raíz: diez idiomas que se cambian sin JavaScript; lo común, en `idiomas/paginas/` |
+| `tools/generar_privacidad.py` | la política: las filas de `UI_TX`, el panel de `index.html` y `privacidad.html`, de la misma pasada; con `--comprobar`, para si no están al día |
 | `tools/zonas_lugares.py` | Norte o Sur de cada lugar por el polígono oficial de su municipio: lo escribe en `index.html` y con `--comprobar` lo rehace y lo compara; coteja también las listas Norte y Sur de «Ruta del día» |
 | `tools/auditar_claves_tx.js` | cada `tx('…')` con la clave escrita tiene su fila en `UI_TX` (`tx()` devuelve vacío sin avisar) |
 | `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: píldora, panel, líneas del tiempo y del mar, comprobación vieja, fichero que no llega |

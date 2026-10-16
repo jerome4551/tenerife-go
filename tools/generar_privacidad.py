@@ -1,17 +1,32 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Mete la politica de privacidad de idiomas/privacidad/*.json en index.html.
+"""La politica de privacidad, de idiomas/privacidad/*.json a dos sitios en la
+misma pasada:
+
+  · index.html: las filas pp* de UI_TX y el panel (#privacy-panel), en
+    castellano y con data-tx, que la app traduce al vuelo;
+  · privacidad.html: la pagina publica que pide Google Play
+    (LANZAMIENTO-PLAY.md 1.3, 16 de octubre de 2026), con los diez idiomas
+    enteros y legibles sin JavaScript (tools/pagina_fija.py).
+
+Los dos salen de la misma funcion, cuerpo(), asi que no pueden decir cosas
+distintas.
 
 La politica es texto legal: tiene que decir lo que la app hace, y lo que la
 app hace cambia. Por eso vive en diez ficheros revisables y no suelta dentro
-de 37.000 lineas de HTML. Este script la vuelca; si un idioma no tiene todas
-las claves, no escribe nada.
+de 37.000 lineas de HTML. Si un idioma no tiene todas las claves, no escribe
+nada.
+
+    python3 tools/generar_privacidad.py              escribe los dos
+    python3 tools/generar_privacidad.py --comprobar  solo comprueba que esten
+                                                     al dia (auditar.sh)
 """
-import json, os, sys, re
+import html, json, os, sys, re
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIR  = os.path.join(RAIZ, 'idiomas', 'privacidad')
 LANGS = ['es','en','fr','de','it','nl','zh','zht','bg','pl']
+COMPROBAR = '--comprobar' in sys.argv
 
 tab = {}
 for L in LANGS:
@@ -27,14 +42,21 @@ for L in LANGS:
     ext = [k for k in tab[L] if k not in claves]
     if ext: print(f'{L}: claves que el castellano no tiene: {ext}'); sys.exit(1)
 
-# Los botones que cita la politica (ppConsCuenta: «Cuenta» → «Eliminar
-# cuenta») no se escriben en los JSON: se leen de index.html en cada idioma,
-# como hace borrar-cuenta.html, para que digan siempre lo que dice la app.
+# Lo que la politica cita de la app no se escribe en los JSON: se lee de
+# index.html en cada idioma, como hace borrar-cuenta.html, para que diga
+# siempre lo que dice la app. Los botones de borrar la cuenta (ppConsCuenta:
+# «Cuenta» → «Eliminar cuenta») y la etiqueta de los pines de pago
+# (ppPubQue: la de adRecommend, la que se ve en el mapa).
 # Un hueco que un idioma no tenga, o una llave que quede sin rellenar, para.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from pagina_fija import rotulos
-BOTONES = {'cuenta': 'UI.navAccount', 'eliminar': 'UI.cuentaBorrarBtn'}
+from pagina_fija import rotulos, pagina, escribir_o_comprobar, textos
+BOTONES = {'cuenta': 'UI.navAccount', 'eliminar': 'UI.cuentaBorrarBtn', 'patrocinado': 'UI.adRecommend'}
 ROT = rotulos(list(BOTONES.values()) + ['UI.cuentaBorrarPagina'])
+# Los huecos que se quedan en la fila: un enlace o un enfasis que va DENTRO
+# de la frase, cada idioma en su sitio («bei der {aepd} beschweren», «向
+# {aepd} 投诉»). En el panel los rellena la app al cambiar de idioma
+# (data-tx-hueco, en applyUiTx); en la pagina, cuerpo(). Cada uno, una vez.
+VIVOS = {'aepd', 'interes', 'contrato'}
 huecos = lambda v: sorted(set(re.findall(r'\{(\w+)\}', v)))
 for k in claves:
     h_es = huecos(tab['es'][k])
@@ -45,8 +67,11 @@ for k in claves:
         v = tab[L][k]
         for h, clave in BOTONES.items():
             v = v.replace('{' + h + '}', ROT[clave][L])
-        if '{' in v or '}' in v:
+        resto = re.sub(r'\{(?:%s)\}' % '|'.join(sorted(VIVOS)), '', v)
+        if '{' in resto or '}' in resto:
             print(f'{L}: {k} con una llave sin rellenar: {v}'); sys.exit(1)
+        if any(v.count('{' + h + '}') > 1 for h in VIVOS):
+            print(f'{L}: {k} lleva un hueco dos veces: {v}'); sys.exit(1)
         tab[L][k] = v
 
 # ── la tabla para UI_TX ───────────────────────────────────────────────
@@ -62,7 +87,8 @@ bloque = ('/* La politica de privacidad, en los diez idiomas.\n'
           'Object.assign(UI_TX, {\n' + ',\n'.join(filas) + '\n});\n')
 
 p = os.path.join(RAIZ, 'index.html')
-s = open(p, encoding='utf-8').read()
+original = open(p, encoding='utf-8').read()
+s = original
 
 # El bloque empieza por la primera clave del castellano (era ppCerrar; desde
 # que entro ppEnlace ya no lo encontraba). Y se corta desde el comentario que
@@ -76,106 +102,172 @@ if com >= 0 and not s[com:ini].split('*/', 1)[1].strip():
 fin = s.find('\n});\n', ini) + len('\n});\n')
 s = s[:ini] + bloque + s[fin:]
 
-# ── el marcado ────────────────────────────────────────────────────────
-def t(k, tag='span', extra=''):
-    return f'<{tag} data-tx="{k}"{extra}>{tab["es"][k]}</{tag}>'
+# ── el texto, para el panel o para la pagina ──────────────────────────
+MAIL_DIR = 'tenerife.go.app@gmail.com'
+# Los terceros: el nombre (no se traduce), la direccion de su politica y la
+# clave de lo que reciben.
+TERCEROS = [
+    ('Supabase', 'https://supabase.com/privacy', 'ppTercSupabase'),
+    ('OpenStreetMap · ArcGIS', 'https://osmfoundation.org/wiki/Privacy_Policy', 'ppTercMapas'),
+    ('OSRM', 'https://project-osrm.org/', 'ppTercOsrm'),
+    ('Nominatim', 'https://osmfoundation.org/wiki/Privacy_Policy', 'ppTercNominatim'),
+    ('Open-Meteo', 'https://open-meteo.com/en/terms', 'ppTercMeteo'),
+    # AEMET salio de esta lista el 12/10/2026: la app ya no le pide nada desde
+    # el dispositivo. Los avisos los baja GitHub (.github/workflows/avisos-aemet.yml)
+    # y la app los lee de su propio dominio, asi que AEMET no recibe ni la IP.
+    ('Ministerio para la Transición Ecológica y el Reto Demográfico', 'https://geoportalgasolineras.es/', 'ppTercCarburantes'),
+    ('Wikipedia · Wikimedia', 'https://foundation.wikimedia.org/wiki/Policy:Privacy_policy', 'ppTercWiki'),
+    # Las tipografias viven en vendor/fuentes/ desde hace tiempo: Google
+    # Fonts no recibe nada. jsDelivr sirve la libreria de Supabase
+    # (index.html, el <script> de supabase-js). LANZAMIENTO-PLAY.md 1.3.
+    ('jsDelivr', 'https://www.jsdelivr.com/terms/privacy-policy', 'ppTercCdn'),
+    ('Google Analytics', 'https://policies.google.com/privacy', 'ppTercGa'),
+]
 
-MAIL = '<a href="mailto:tenerife.go.app@gmail.com" data-sin-traducir="direccion de correo">tenerife.go.app@gmail.com</a>'
-# La pagina para borrar la cuenta (Google Play, LANZAMIENTO-PLAY.md 1.2). Su
-# rotulo es el titulo de la pagina, de UI_TX, y la pagina se abre sola en
-# el idioma de la app.
-BORRAR = ('<a href="borrar-cuenta.html" target="_blank" rel="noopener" data-tx="cuentaBorrarPagina">'
-          + ROT['UI.cuentaBorrarPagina']['es'] + '</a>')
-def h3(n, k):
-    # el numero del apartado va fuera del texto traducido: renumerar un
-    # apartado no puede obligar a retocar diez traducciones
-    return (f'    <h3><span data-sin-traducir="numero de apartado">{n}.</span> '
-            f'<span data-tx="{k}">{tab["es"][k]}</span></h3>')
-def li(lk, tk):
-    return f'      <li><strong data-tx="{lk}">{tab["es"][lk]}</strong> {t(tk)}</li>'
-def terc(nombre, url, k, nota=''):
-    a = f'<a href="{url}" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">{nombre}</a>'
-    return f'      <li>{a} — {t(k)}</li>'
 
-m = []
-m.append('<div id="privacy-panel" role="dialog" data-tx-aria="ariaPrivacidad" aria-label="Política de privacidad" aria-modal="true">')
-m.append('  <div class="pp-sheet">')
-m.append(f'    <button class="pp-close" onclick="closePrivacyPanel()" data-tx-aria="ariaCerrar" aria-label="Cerrar" data-tx="ppCerrar">{tab["es"]["ppCerrar"]}</button>')
-m.append(f'    <h2 data-tx="ppTitulo">{tab["es"]["ppTitulo"]}</h2>')
-m.append(f'    <p><strong data-sin-traducir="marca">Tenerife Go</strong> {t("ppActualizado")}</p>')
-m.append('')
-m.append(h3(1, 'ppRespTitulo'))
-m.append(f'    <p><span data-sin-traducir="nombre del responsable">Jérôme Bourgeois ·</span> {MAIL} {t("ppRespDir")}</p>')
-m.append('')
-m.append(h3(2, 'ppDatosTitulo'))
-m.append('    <ul>')
-m.append(li('ppDatosGeo', 'ppDatosGeoTxt'))
-m.append(f'      <li><strong data-tx="ppDatosCuenta">{tab["es"]["ppDatosCuenta"]}</strong> {t("ppDatosCuentaTxt")} '
-         '<a href="https://supabase.com/privacy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Supabase</a>'
-         f'{t("ppDatosRls")}</li>')
-m.append(li('ppDatosFav', 'ppDatosFavTxt'))
-m.append(li('ppDatosPref', 'ppDatosPrefTxt'))
-m.append(li('ppDatosPush', 'ppDatosPushTxt'))
-m.append(li('ppDatosStats', 'ppDatosStatsTxt'))
-m.append('    </ul>')
-m.append('')
-m.append(h3(3, 'ppStatsTitulo'))
-for k in ('ppStatsAntes', 'ppStatsSi', 'ppStatsConsent', 'ppStatsGuarda'):
-    m.append(f'    <p data-tx="{k}">{tab["es"][k]}</p>')
-m.append('')
-m.append(h3(4, 'ppPubTitulo'))
-for k in ('ppPubQue', 'ppPubNoDatos'):
-    m.append(f'    <p data-tx="{k}">{tab["es"][k]}</p>')
-m.append('')
-m.append(h3(5, 'ppTercTitulo'))
-m.append(f'    <p data-tx="ppTercIntro">{tab["es"]["ppTercIntro"]}</p>')
-m.append('    <ul>')
-m.append(terc('Supabase', 'https://supabase.com/privacy', 'ppTercSupabase'))
-m.append(terc('OpenStreetMap · ArcGIS', 'https://osmfoundation.org/wiki/Privacy_Policy', 'ppTercMapas'))
-m.append(terc('OSRM', 'https://project-osrm.org/', 'ppTercOsrm'))
-m.append(terc('Nominatim', 'https://osmfoundation.org/wiki/Privacy_Policy', 'ppTercNominatim'))
-m.append(terc('Open-Meteo', 'https://open-meteo.com/en/terms', 'ppTercMeteo'))
-# AEMET salio de esta lista el 12/10/2026: la app ya no le pide nada desde el
-# dispositivo. Los avisos los baja GitHub (.github/workflows/avisos-aemet.yml)
-# y la app los lee de su propio dominio, asi que AEMET no recibe ni la IP.
-m.append(terc('Ministerio para la Transición Ecológica y el Reto Demográfico', 'https://geoportalgasolineras.es/', 'ppTercCarburantes'))
-m.append(terc('Wikipedia · Wikimedia', 'https://foundation.wikimedia.org/wiki/Policy:Privacy_policy', 'ppTercWiki'))
-m.append(terc('Google Fonts · jsDelivr', 'https://policies.google.com/privacy', 'ppTercCdn'))
-m.append(terc('Google Analytics', 'https://policies.google.com/privacy', 'ppTercGa'))
-m.append('    </ul>')
-m.append(f'    <p data-tx="ppTercNoVenta">{tab["es"]["ppTercNoVenta"]}</p>')
-m.append('')
-m.append(h3(6, 'ppBaseTitulo'))
-m.append('    <ul>')
-m.append(f'      <li>{t("ppBaseLi1a")}<em data-tx="ppBaseInteres">{tab["es"]["ppBaseInteres"]}</em> / '
-         f'<em data-tx="ppBaseContrato">{tab["es"]["ppBaseContrato"]}</em>).</li>')
-m.append(f'      <li data-tx="ppBaseLi2">{tab["es"]["ppBaseLi2"]}</li>')
-m.append('    </ul>')
-m.append('')
-m.append(h3(7, 'ppConsTitulo'))
-m.append(f'    <p>{t("ppConsCuenta")} {BORRAR}</p>')
-m.append(f'    <p data-tx="ppConsDispositivo">{tab["es"]["ppConsDispositivo"]}</p>')
-m.append('')
-m.append(h3(8, 'ppDerTitulo'))
-m.append(f'    <p>{t("ppDerTxt")} {MAIL}{t("ppDerReclamar")} '
-         '<a href="https://www.aepd.es" target="_blank" rel="noopener" data-sin-traducir="nombre oficial del organismo">AEPD</a>.</p>')
-m.append('')
-m.append(h3(9, 'ppSegTitulo'))
-m.append(f'    <p data-tx="ppSegTxt">{tab["es"]["ppSegTxt"]}</p>')
-m.append('')
-m.append(h3(10, 'ppContTitulo'))
-m.append(f'    <p>{MAIL}</p>')
-m.append('  </div>')
-m.append('</div>')
-marcado = '\n'.join(m)
+def cuerpo(L, panel):
+    """La politica en el idioma L, sin el titulo.
+
+    panel=True: el marcado de #privacy-panel en index.html, en castellano y
+    con data-tx para que la app lo traduzca (L es siempre 'es'); lo que no se
+    traduce lleva data-sin-traducir, que es lo que leen los controles.
+    panel=False: la seccion de ese idioma en privacidad.html, texto llano.
+    Panel y pagina salen de aqui y solo de aqui."""
+    T = tab[L]
+    e = lambda k: html.escape(T[k], quote=False)
+    sangria = (lambda n: ' ' * n) if panel else (lambda n: '')
+
+    def t(k):                                    # un trozo traducido
+        return f'<span data-tx="{k}">{e(k)}</span>' if panel else e(k)
+
+    def par(k):                                  # un parrafo entero
+        return f'    <p data-tx="{k}">{e(k)}</p>' if panel else f'<p>{e(k)}</p>'
+
+    def sin(que, texto):                         # algo que no se traduce
+        return f'<span data-sin-traducir="{que}">{texto}</span>' if panel else texto
+
+    def fuera(url, texto, que, hueco=None):      # enlace a fuera, sin traducir
+        extra = f' data-sin-traducir="{que}"' if panel else ''
+        if panel and hueco:
+            extra += f' data-hueco="{hueco}"'
+        return f'<a href="{url}" target="_blank" rel="noopener"{extra}>{texto}</a>'
+
+    correo = (f'<a href="mailto:{MAIL_DIR}"'
+              + (' data-sin-traducir="direccion de correo"' if panel else '')
+              + f'>{MAIL_DIR}</a>')
+
+    def h(n, k):
+        # el numero del apartado va fuera del texto traducido: renumerar un
+        # apartado no puede obligar a retocar diez traducciones
+        if panel:
+            return (f'    <h3><span data-sin-traducir="numero de apartado">{n}.</span> '
+                    f'<span data-tx="{k}">{e(k)}</span></h3>')
+        return f'<h2>{n}. {e(k)}</h2>'
+
+    def li(lk, tk):
+        if panel:
+            return f'      <li><strong data-tx="{lk}">{e(lk)}</strong> {t(tk)}</li>'
+        return f'<li><strong>{e(lk)}</strong> {e(tk)}</li>'
+
+    def em(k, hueco):
+        return (f'<em data-hueco="{hueco}" data-tx="{k}">{e(k)}</em>' if panel
+                else f'<em>{e(k)}</em>')
+
+    def con_huecos(k, hijos, tag):
+        """Una frase con elementos DENTRO: cada idioma los pone en su sitio.
+        En el panel el contenedor lleva data-tx-hueco y cada elemento
+        data-hueco, y la app rehace el texto de alrededor al cambiar de
+        idioma; en la pagina va ya montada. tag None: sin contenedor."""
+        trozos = re.split(r'\{(\w+)\}', T[k])
+        dentro = ''.join(hijos[x] if i % 2 else html.escape(x, quote=False)
+                         for i, x in enumerate(trozos))
+        if panel:
+            return f'<{tag or "span"} data-tx-hueco="{k}">{dentro}</{tag or "span"}>'
+        return f'<{tag}>{dentro}</{tag}>' if tag else dentro
+
+    # La pagina para borrar la cuenta (Google Play, LANZAMIENTO-PLAY.md 1.2).
+    # En el panel, su rotulo es el de UI_TX y la pagina se abre sola en el
+    # idioma de la app; en privacidad.html, ya en el idioma de la seccion.
+    if panel:
+        borrar = ('<a href="borrar-cuenta.html" target="_blank" rel="noopener" data-tx="cuentaBorrarPagina">'
+                  + ROT['UI.cuentaBorrarPagina']['es'] + '</a>')
+    else:
+        borrar = (f'<a href="borrar-cuenta.html#{L}">'
+                  + html.escape(ROT['UI.cuentaBorrarPagina'][L], quote=False) + '</a>')
+
+    marca = ' data-sin-traducir="marca"' if panel else ''
+    m = [f'{sangria(4)}<p><strong{marca}>Tenerife Go</strong> {t("ppActualizado")}</p>', '']
+    m += [h(1, 'ppRespTitulo'),
+          f'{sangria(4)}<p>{sin("nombre del responsable", "Jérôme Bourgeois ·")} {correo} {t("ppRespDir")}</p>', '']
+    m += [h(2, 'ppDatosTitulo'), f'{sangria(4)}<ul>', li('ppDatosGeo', 'ppDatosGeoTxt')]
+    fuerte = (f'<strong data-tx="ppDatosCuenta">{e("ppDatosCuenta")}</strong>' if panel
+              else f'<strong>{e("ppDatosCuenta")}</strong>')
+    m.append(f'{sangria(6)}<li>{fuerte} {t("ppDatosCuentaTxt")} '
+             f'{fuera("https://supabase.com/privacy", "Supabase", "nombre del proveedor")}{t("ppDatosRls")}</li>')
+    for a, b in (('ppDatosFav', 'ppDatosFavTxt'), ('ppDatosPref', 'ppDatosPrefTxt'),
+                 ('ppDatosPush', 'ppDatosPushTxt'), ('ppDatosStats', 'ppDatosStatsTxt')):
+        m.append(li(a, b))
+    m += [f'{sangria(4)}</ul>', '']
+    m += [h(3, 'ppStatsTitulo')] + [par(k) for k in ('ppStatsAntes', 'ppStatsSi', 'ppStatsConsent', 'ppStatsGuarda')] + ['']
+    m += [h(4, 'ppPubTitulo')] + [par(k) for k in ('ppPubQue', 'ppPubNoDatos')] + ['']
+    m += [h(5, 'ppTercTitulo'), par('ppTercIntro'), f'{sangria(4)}<ul>']
+    for nombre, url, k in TERCEROS:
+        m.append(f'{sangria(6)}<li>{fuera(url, nombre, "nombre del proveedor")} — {t(k)}</li>')
+    m += [f'{sangria(4)}</ul>', par('ppTercNoVenta'), '']
+    m += [h(6, 'ppBaseTitulo'), f'{sangria(4)}<ul>',
+          sangria(6) + con_huecos('ppBaseLi1', {'interes': em('ppBaseInteres', 'interes'),
+                                                'contrato': em('ppBaseContrato', 'contrato')}, 'li'),
+          f'      <li data-tx="ppBaseLi2">{e("ppBaseLi2")}</li>' if panel else f'<li>{e("ppBaseLi2")}</li>',
+          f'{sangria(4)}</ul>', '']
+    m += [h(7, 'ppConsTitulo'), f'{sangria(4)}<p>{t("ppConsCuenta")} {borrar}</p>', par('ppConsDispositivo'), '']
+    m += [h(8, 'ppDerTitulo'),
+          f'{sangria(4)}<p>{t("ppDerTxt")} {correo}'
+          + con_huecos('ppDerReclamar', {'aepd': fuera('https://www.aepd.es', 'AEPD',
+                                                       'nombre oficial del organismo', 'aepd')}, None)
+          + '</p>', '']
+    m += [h(9, 'ppSegTitulo'), par('ppSegTxt'), '']
+    m += [h(10, 'ppContTitulo'), f'{sangria(4)}<p>{correo}</p>']
+    if not panel:
+        m = [x for x in m if x]                  # la pagina, sin lineas vacias
+    return '\n'.join(m)
+
+
+# ── el panel, en index.html ───────────────────────────────────────────
+marcado = '\n'.join([
+    '<div id="privacy-panel" role="dialog" data-tx-aria="ariaPrivacidad" aria-label="Política de privacidad" aria-modal="true">',
+    '  <div class="pp-sheet">',
+    f'    <button class="pp-close" onclick="closePrivacyPanel()" data-tx-aria="ariaCerrar" aria-label="Cerrar" data-tx="ppCerrar">{tab["es"]["ppCerrar"]}</button>',
+    f'    <h2 data-tx="ppTitulo">{tab["es"]["ppTitulo"]}</h2>',
+    cuerpo('es', True),
+    '  </div>',
+    '</div>'])
 
 i2 = s.find('<div id="privacy-panel"')
 if i2 < 0: print('no encuentro el panel de privacidad'); sys.exit(1)
-f2 = s.find('\n</div>\n', s.find('</div>\n  </div>', i2)) + len('\n</div>\n')
-# mas robusto: cortar hasta el comentario del pie que va justo despues
+# hasta el comentario del pie que va justo despues
 f2 = s.find('<!-- Enlace pie de privacidad -->', i2)
 if f2 < 0: print('no encuentro el final del panel'); sys.exit(1)
 s = s[:i2] + marcado + '\n\n' + s[f2:]
 
-open(p, 'w', encoding='utf-8').write(s)
-print(f'{len(claves)} claves x {len(LANGS)} idiomas = {len(claves)*len(LANGS)} textos')
+bien = True
+if COMPROBAR:
+    if s != original:
+        print('index.html: la politica no esta al dia con idiomas/privacidad '
+              'o con los botones de la app: python3 tools/generar_privacidad.py')
+        bien = False
+    else:
+        print(f'index.html: la politica al dia ({len(claves)} claves x {len(LANGS)} idiomas)')
+else:
+    open(p, 'w', encoding='utf-8').write(s)
+    print(f'{len(claves)} claves x {len(LANGS)} idiomas = {len(claves)*len(LANGS)} textos')
+
+# ── la pagina, privacidad.html ────────────────────────────────────────
+# El titulo, sin el candado del principio; al pie, la pagina para borrar la
+# cuenta en el mismo idioma.
+titulo = {L: re.sub(r'^\W+', '', tab[L]['ppTitulo']) for L in LANGS}
+pag = pagina(titulo, {L: cuerpo(L, False) for L in LANGS},
+             'Generada por tools/generar_privacidad.py desde idiomas/privacidad/*.json, '
+             'en la misma pasada que el panel de index.html. No se edita a mano.',
+             pie=[('borrar-cuenta.html', ROT['UI.cuentaBorrarPagina'])])
+bien = escribir_o_comprobar('privacidad.html', pag, 'generar_privacidad.py') and bien
+sys.exit(0 if bien else 1)

@@ -105,7 +105,7 @@ h2 { font-size: 1.05rem; color: #c9a84c; margin: 26px 0 6px; }
 p, li { color: #d7d4cc; }
 ul { padding-left: 1.2em; }
 a { color: #c9a84c; }
-.volver { margin-top: 30px; }
+.pie { margin-top: 30px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.12); }
 .idioma { display: none; }
 #es { display: block; }
 .idioma:target { display: block; }
@@ -139,22 +139,28 @@ JS = """
 """.strip('\n') % json.dumps(LANGS)
 
 
-def pagina(titulo, cuerpo, rotulo_idioma, aviso):
-    """titulo, cuerpo y rotulo_idioma: {idioma: ...}. titulo es texto (el
-    <title> y el <h1>); cuerpo, HTML ya escapado; rotulo_idioma, el nombre
-    de la barra de idiomas para los lectores de pantalla. aviso: el
-    comentario de cabecera (de donde sale la pagina)."""
+def pagina(titulo, cuerpo, aviso, pie=()):
+    """titulo y cuerpo: {idioma: ...}. titulo es texto (el <title> y el
+    <h1>); cuerpo, HTML ya escapado. aviso: el comentario de cabecera (de
+    donde sale la pagina). pie: las otras paginas fijas que se enlazan al
+    final, [(fichero, {idioma: rotulo})], cada una en el mismo idioma.
+    La barra de idiomas y «Volver a Tenerife Go» son comunes a todas las
+    paginas: idiomas/paginas/<idioma>.json."""
+    comun = textos('paginas')
     secciones = []
     for L in LANGS[1:] + LANGS[:1]:          # el castellano, la ultima
         nav = ' '.join(
             f'<a href="#{o}" lang="{HTML_LANG.get(o, o)}" hreflang="{HTML_LANG.get(o, o)}"'
             + (' aria-current="page"' if o == L else '') + f'>{NOMBRES[o]}</a>'
             for o in LANGS)
+        enlaces = [f'<a href="./">{esc(comun[L]["volver"])}</a>'] + [
+            f'<a href="{fichero}#{L}">{esc(rotulo[L])}</a>' for fichero, rotulo in pie]
         secciones.append(
             f'<section class="idioma" id="{L}" lang="{HTML_LANG.get(L, L)}" '
             f'data-titulo="{html.escape("Tenerife Go — " + titulo[L])}">\n'
-            f'<nav class="idiomas" aria-label="{html.escape(rotulo_idioma[L])}">{nav}</nav>\n'
-            f'<h1>{esc(titulo[L])}</h1>\n{cuerpo[L]}\n</section>')
+            f'<nav class="idiomas" aria-label="{html.escape(comun[L]["idioma"])}">{nav}</nav>\n'
+            f'<h1>{esc(titulo[L])}</h1>\n{cuerpo[L]}\n'
+            f'<p class="pie">{" · ".join(enlaces)}</p>\n</section>')
     return (
         '<!DOCTYPE html>\n<html lang="es">\n<head>\n'
         f'<!-- {aviso} -->\n'

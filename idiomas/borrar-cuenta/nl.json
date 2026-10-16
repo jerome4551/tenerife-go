@@ -1,5 +1,4 @@
 {
- "idioma": "Taal",
  "intro": "Heb je in Tenerife Go een account aangemaakt, dan kun je het verwijderen wanneer je wilt: in de app of per e-mail.",
  "appTitulo": "In de app",
  "appTxt": "Tik op «{cuenta}» (log in als daarom gevraagd wordt) en tik daarna, onder «{cerrar}», op «{eliminar}». De app vraagt je te bevestigen met «{confirmar}», en het account wordt meteen verwijderd.",
@@ -10,6 +9,5 @@
  "borraTxt": "Je e-mailadres, je wachtwoord (versleuteld bewaard) en de favorieten die je in de cloud hebt opgeslagen.",
  "noTitulo": "Wat niet met het account wordt verwijderd",
  "noPush": "Meldingen: die zet je uit in je browser of in de instellingen van je telefoon.",
- "noDispositivo": "Wat op je toestel staat, zoals de taal of je favorieten: dat verdwijnt als je de sitegegevens in je browser wist of de app verwijdert.",
- "volver": "Terug naar Tenerife Go"
+ "noDispositivo": "Wat op je toestel staat, zoals de taal of je favorieten: dat verdwijnt als je de sitegegevens in je browser wist of de app verwijdert."
 }
