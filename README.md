@@ -1,7 +1,7 @@
 # Tenerife Go
 
-Guía de Tenerife en forma de PWA: un mapa con 765 lugares verificados y la
-red entera de guaguas y tranvía, traducida a 8 idiomas, que funciona sin
+Guía de Tenerife en forma de PWA: un mapa con lugares de toda la isla y la
+red entera de guaguas y tranvía, traducida a diez idiomas, que funciona sin
 conexión una vez cargada.
 
 Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
@@ -46,23 +46,26 @@ manifiesto necesitan un origen `http://`.
 
 ### Lugares
 
-Los 765 lugares viven en el array `places[]` dentro de `index.html`.
-Cada uno es un objeto así:
+Los lugares viven en el array `places[]` dentro de `index.html`, en
+castellano. Cada uno es un objeto así:
 
 ```js
 { id:"teresitas", category:"playa", cats:["parking"],
   name:"Playa Las Teresitas", emoji:"🏝️", lat:28.5097, lng:-16.1847,
-  parking:{ gratis:true, aviso:{ es:"…", en:"…" /* 8 idiomas */ } },
-  desc:{ es:"…", en:"…", fr:"…", de:"…", it:"…", nl:"…", zh:"…", zht:"…" },
-  cat:{ /* mismos 8 idiomas */ },
+  parking:{ gratis:true, aviso:{ es:"…" } },
+  desc:{ es:"…" },
+  cat:{ es:"…" },
   tags:["Arena Sahara","Familiar","Santa Cruz"] }
 ```
 
 - `category` es la principal. `cats[]` añade categorías extra: así una
   playa puede aparecer también en el filtro de parkings sin duplicar el
   pin en el mapa.
-- `desc` y `cat` llevan **los 8 idiomas siempre**. Si falta uno, el
-  lugar se ve incompleto en ese idioma.
+- Los otros nueve idiomas de `desc`, `cat` y `aviso` viven en
+  `idiomas/<idioma>.json`, una línea por lugar; el polaco se escribe en
+  `idiomas/pl-lugares/` y se monta con `tools/lugares_idioma.js montar pl`.
+  Si a un idioma le falta uno, ese lugar sale en otro idioma sin avisar: lo
+  vigilan los controles de `tools/auditar.sh`.
 - El `id` se usa dentro de manejadores `onclick`, así que solo puede
   llevar letras, dígitos, punto y guion.
 
@@ -102,7 +105,7 @@ comprueba que no entre código ahí y que `index.html` lo cargue.
 
 `TITSA_LINES` tiene **183 líneas y 6.263 paradas**: las 181 del GTFS oficial de
 TITSA más L1 y L2 del tranvía. Ese número **no se escribe en ninguna parte**: el
-subtítulo del panel lleva `{n}` en los 8 idiomas y el render lo sustituye por
+subtítulo del panel lleva `{n}` en los diez idiomas y el render lo sustituye por
 `TITSA_LINES.length`.
 
 **Las paradas no se guardan en la línea.** `TITSA_PARADAS` es un catálogo de
@@ -269,7 +272,7 @@ Por orden de lo que más ha dolido:
 
 1. **Cero `pageerrors`** al cargar. Un error de sintaxis dentro de
    `places[]` se lleva por delante la aplicación entera.
-2. **Los 8 idiomas**, no solo el español. Cambiar de idioma en vivo y
+2. **Los diez idiomas**, no solo el español. Cambiar de idioma en vivo y
    mirar que la sección nueva se repinta.
 3. **Ningún idioma vacío** en `desc` ni en `cat`, y ninguna categoría
    sin nombre: las dos cosas fallan en silencio.

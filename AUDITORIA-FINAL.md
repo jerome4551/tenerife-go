@@ -5373,6 +5373,27 @@ cae a la isla ya lo comprueba `auditar_mapa.js` con el navegador
 desconectado de verdad. Fallos metidos: OSM otra vez al caché, sin la purga y
 el crédito sin enlace: los tres, en rojo.
 
+### 1.7 · Retoques
+
+- **`manifest.webmanifest`**: la descripción decía «Mapa interactivo de
+  Tenerife - 720 lugares verificados». Ahora, la del documento: «Guía de
+  Tenerife con mapa: playas, senderos, guaguas y tranvía. Funciona sin
+  conexión.» Comprobado antes: el tranvía está (L1 y L2 de Metrotenerife, en
+  el panel de guaguas).
+- **`README.md`**: sin la cifra de lugares escrita a mano («765 lugares
+  verificados», «Los 765 lugares») y con los diez idiomas, que decía ocho; el
+  ejemplo de lugar dice ya cómo son hoy los datos (castellano en
+  `index.html`, los otros nueve idiomas en `idiomas/`).
+- **`og-image.jpg`**: no existía y la pedían `og:image`, `twitter:image` y el
+  JSON-LD. 1200×630, 37 kB, el logo a su tamaño sobre #0F1117, sin cifras ni
+  promesas. El fondo del propio logo es más oscuro que #0F1117: se le
+  difuminan los bordes para que no se vea un cuadrado. La hace
+  `tools/generar_og_image.js`.
+
+Control, en `auditar_datos.js`: la descripción del manifest sin cifras de
+lugares ni «verificados», y `og-image.jpg` presente, JPG y de 1200×630 si la
+cabecera la pide. Sobre lo de antes, las dos en rojo.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -5425,6 +5446,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/probar_play.js` | lo que pide Google Play (LANZAMIENTO-PLAY.md, Fase 1), en un navegador y con un Supabase falso: la tienda que no se ve ni se abre, el botón de administrador solo para quien lo es, borrar la cuenta (botón, confirmación, fallos y borrado) en los diez idiomas y `borrar-cuenta.html` sin JavaScript |
 | `tools/generar_borrar_cuenta.py` | escribe `borrar-cuenta.html` desde `idiomas/borrar-cuenta/` y los botones de la app; con `--comprobar`, para si no está al día |
 | `tools/pagina_fija.py` | el armazón de las páginas fijas de la raíz: diez idiomas que se cambian sin JavaScript; lo común, en `idiomas/paginas/` |
+| `tools/generar_og_image.js` | `og-image.jpg`, la imagen para compartir: 1200×630, el logo sobre #0F1117 |
 | `tools/generar_privacidad.py` | la política: las filas de `UI_TX`, el panel de `index.html` y `privacidad.html`, de la misma pasada; con `--comprobar`, para si no están al día |
 | `tools/zonas_lugares.py` | Norte o Sur de cada lugar por el polígono oficial de su municipio: lo escribe en `index.html` y con `--comprobar` lo rehace y lo compara; coteja también las listas Norte y Sur de «Ruta del día» |
 | `tools/auditar_claves_tx.js` | cada `tx('…')` con la clave escrita tiene su fila en `UI_TX` (`tx()` devuelve vacío sin avisar) |

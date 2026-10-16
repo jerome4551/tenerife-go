@@ -1,7 +1,7 @@
 {
   "name": "Tenerife Go",
   "short_name": "TenerifeGo",
-  "description": "Mapa interactivo de Tenerife - 720 lugares verificados",
+  "description": "Guía de Tenerife con mapa: playas, senderos, guaguas y tranvía. Funciona sin conexión.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0F1117",

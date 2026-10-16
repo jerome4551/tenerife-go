@@ -349,6 +349,32 @@ debe('cifras redondas de lugares en lo que se lee (va la contada, ' + PLACES.len
 const verif = (cabeza.match(/[^."]*verificad[^."]*/gi) || []);
 debe('la cabecera (schema.org, meta) dice que los lugares estan «verificados»', verif.length, verif.length === 0);
 verif.slice(0, 3).forEach(t => console.log('      <--  ' + t.trim().slice(0, 90)));
+/* Lo mismo para el manifest, que es lo que ensena el movil al instalar
+   («720 lugares verificados» hasta el 16 de octubre de 2026), y la imagen
+   para compartir, que la cabecera pedia y no existia (LANZAMIENTO-PLAY.md
+   1.7). */
+{
+  const raiz = require('path').join(__dirname, '..');
+  const man = JSON.parse(fs_.readFileSync(require('path').join(raiz, 'manifest.webmanifest'), 'utf8'));
+  const d = man.description || '';
+  debe('el manifest: la descripcion, sin cifras de lugares ni «verificados»', JSON.stringify(d),
+       !!d && !/\d{3}|verificad/i.test(d));
+  const tamJpeg = b => {
+    if (!b || b[0] !== 0xFF || b[1] !== 0xD8) return null;
+    for (let i = 2; i + 9 < b.length; ) {
+      if (b[i] !== 0xFF) return null;
+      const m = b[i + 1], largo = b.readUInt16BE(i + 2);
+      if (m >= 0xC0 && m <= 0xC3) return { h: b.readUInt16BE(i + 5), w: b.readUInt16BE(i + 7) };
+      i += 2 + largo;
+    }
+    return null;
+  };
+  let tam = null;
+  try { tam = tamJpeg(fs_.readFileSync(require('path').join(raiz, 'og-image.jpg'))); } catch (e) {}
+  const pide = /og-image\.jpg/.test(cabeza);
+  debe('og-image.jpg existe, es JPG y mide 1200x630 (la piden og:image, twitter:image y el JSON-LD)',
+       tam ? tam.w + 'x' + tam.h : 'no esta', !pide || (!!tam && tam.w === 1200 && tam.h === 630));
+}
 {
   const sopLd = ((html.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1])
     .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean)
