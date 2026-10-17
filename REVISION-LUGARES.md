@@ -1,7 +1,7 @@
-# Revisión de los 977 lugares
+# Revisión de los 980 lugares
 
 **17 de octubre de 2026.** Generado con `node tools/informe_lugares.js`.
-Barre los 977, no una muestra. Lo que no se puede comprobar desde aquí sale
+Barre los 980, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
 ## 0 · El estado de cada área, de un vistazo
@@ -21,7 +21,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 161 verificadas con su fuente · 816 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
+| `coordenadas` | abierto | 164 verificadas con su fuente · 816 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
 | `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
 | `avisos_aemet` | **cerrado** | tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un nav |
@@ -98,7 +98,7 @@ parecía que todo fallaba siempre.
 
 | | fichas |
 |---|---|
-| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **161** |
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **164** |
 | Coordenada nunca comprobada por nadie | **816** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
@@ -127,6 +127,7 @@ De dónde viene cada una:
 | `bici-puerto-pico-ingles` | 2026-10-11 | La subida acaba en el Mirador Pico del Inglés: el mismo punto oficial de Turismo de Tenerife (UTM huso 28 X 376352 Y 3156846 -> 28.5325194, -16.2637869). Aportada por Jerome el 11 de octubre de 2026. |
 | `bollullo` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `camping-las-lajas` | 2026-09-28 | Cabildo de Tenerife, Tenerife ON, enlace «Acceso» de la ficha de la zona de acampada: tenerifeon.es/equipamientos/zona-de-acampada/las-lajas. Aportada por Jerome el 28 de septiembre de 2026. |
+| `castillo-san-miguel-garachico` | 2026-10-17 | OSM area/195580026 «Castillo de San Miguel» (fort), a 0 m. Sin fuente oficial: con el OK de Jerome, que vive en la isla y conoce el sitio («vivo aquí y conozco estos lugares», 17/10/2026)  [datos/entregas/lanzamiento-lugares.json, pendiente_de_jerome] |
 | `charco-abrigos` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `charco-archile` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
 | `charco-chochos` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -163,6 +164,8 @@ De dónde viene cada una:
 | `mercadillo-la-victoria` | 2026-09-25 | Parche municipios-bloque1-B, metodo DERIVADO (no hay coordenada publicada). Punto medio entre «Casa de la Castana» (museo, OSM, 28.432695,-16.471387) y «Terrero Municipal de Lucha y Deportes» (OSM, 28.433360,-16.471129), separados 78 m, que es como el Ayuntamiento situa el mercadillo. Los tres pasos del parche se resolvieron con el OSM del propio repositorio (tools/osm_cerca.py) porque Overpass esta cerrado desde aqui: paso 1 exactamente 1 elemento, paso 2 ningun amenity=marketplace a 250 m (y 15 en toda la isla, asi que el extracto no los filtra), paso 3 exactamente 1. Se mueve 2.109 m. DERIVADO, no medido: si aparece la coordenada publicada, se cambia. |
 | `mercadona-granadilla` | 2026-09-27 | OSM del repositorio: «Mercadona» (supermarket), el unico de esa marca en 6 km, y cae en Granadilla de Abona como dice la ficha (14 paradas sin raya en medio, todas de Granadilla). El pin redondo estaba a 1.028 m. |
 | `mesa-mar` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `mir-cherfe` | 2026-10-17 | OSM node/314031941 «Mirador Cherfe» (viewpoint), a 0 m; a 12 m de la raya entre Buenavista del Norte y Santiago del Teide, por eso la ficha no dice municipio. Sin fuente oficial: con el OK de Jerome, que vive en la isla y conoce el sitio («vivo aquí y conozco estos lugares», 17/10/2026)  [datos/entregas/lanzamiento-lugares.json, pendiente_de_jerome] |
+| `mir-la-garanona` | 2026-10-17 | OSM area/496120712 «Mirador de La Garañona» (viewpoint), a 0 m. Sin fuente oficial: con el OK de Jerome, que vive en la isla y conoce el sitio («vivo aquí y conozco estos lugares», 17/10/2026)  [datos/entregas/lanzamiento-lugares.json, pendiente_de_jerome] |
 | `mir-rambla-castro` | 2026-10-17 | Turismo de Tenerife, ficha «Mirador de San Pedro»: «TF-5 Km pt. 41. Los Realejos», UTM 28N 0343842/3142082; OSM area/129728824 «Mirador de San Pedro» a 6 m  [datos/entregas/lanzamiento-lugares.json] |
 | `mirador-pico-ingles` | 2026-10-11 | Turismo de Tenerife, Mirador Pico del Inglés: UTM huso 28 X 376352 Y 3156846. Pasado a WGS84 con pyproj (EPSG:32628 y EPSG:4083 dan lo mismo): 28.5325194, -16.2637869. Aportada por Jerome el 11 de octubre de 2026. Sustituye al pico «Pico del Inglés» de OSM, que esta a 116 m. |
 | `montana-amarilla` | 2026-09-27 | OSM del repositorio: «Monumento Natural de Montaña Amarilla» (nature_reserve), a 71 m de la coordenada redonda anterior. Unico con ese nombre en el extracto. |
@@ -328,7 +331,7 @@ cuáles, así que desde aquí no se pueden separar.
 ## 1 · Con cuánta precisión está escrita cada coordenada
 
 Decimales **significativos** —los ceros de la derecha no cuentan— del eje
-menos preciso de cada ficha. Es la cuenta entera de los 977, no un umbral:
+menos preciso de cada ficha. Es la cuenta entera de los 980, no un umbral:
 
 | decimales | cuadrícula | fichas |
 |---|---|---|
@@ -336,8 +339,8 @@ menos preciso de cada ficha. Es la cuenta entera de los 977, no un umbral:
 | 2 | ~1,1 km | **29** |
 | 3 | ~110 m | **139** |
 | 4 | ~11 m | **555** |
-| 5 | ~1 m | **40** |
-| 6 | ~10 cm | **186** |
+| 5 | ~1 m | **42** |
+| 6 | ~10 cm | **187** |
 | 7 | ~1 cm | **25** |
 | 15 |  | **1** |
 
@@ -516,11 +519,11 @@ Salida de `node tools/auditar_municipio.js`:
 
 ```
 === el municipio que dice la ficha, contra donde cae el punto ===
-  lugares....................................... 977
-    que nombran un municipio.................... 509
-    de esos, comprobados contra el POLIGONO del Cabildo 499
+  lugares....................................... 980
+    que nombran un municipio.................... 511
+    de esos, comprobados contra el POLIGONO del Cabildo 501
     y con el punto en el agua: no cae en ningun municipio 10
-  solo nombran una zona de varios municipios.... 14
+  solo nombran una zona de varios municipios.... 15
   no declaran municipio......................... 454
 
   nombran una ZONA, que no es un municipio: no hay nada que comprobar
@@ -532,6 +535,7 @@ Salida de `node tools/auditar_municipio.js`:
       minigolf-vivo-americas        dice «Las Américas»  ·  el poligono dice «Arona»
       minimarket-24h-las-americas   dice «Las Américas»  ·  el poligono dice «Arona»
       mir-baracan                   dice «Teno»  ·  el poligono dice «Buenavista del Norte»
+      mir-cherfe                    dice «Teno»  ·  el poligono dice «Buenavista del Norte»
       mir-ermita-palmar             dice «Teno»  ·  el poligono dice «Buenavista del Norte»
       mirador-maska                 dice «Teno»  ·  el poligono dice «Buenavista del Norte»
       pr-tf-52-monte-agua           dice «Teno»  ·  el poligono dice «Los Silos»
@@ -561,7 +565,7 @@ que cada semana saliera una lista nueva.
 | **Horarios, precios y teléfonos** | cambian y no hay contra qué contrastarlos |
 | **Lo que dice cada descripción** | que un pueblo sea «famoso por sus aguacates» no se puede verificar con lo que hay dentro del repositorio |
 | **El municipio de 454 fichas** | no declaran ninguno en el `cat` ni en el nombre, así que no hay nada que contrastar |
-| **El de 14 más** | solo nombran una zona que abarca varios municipios, no un municipio |
+| **El de 15 más** | solo nombran una zona que abarca varios municipios, no un municipio |
 | **El de 10 que sí lo nombran** | el punto cae en el agua, fuera de todos los polígonos: no hay con qué compararlo |
 
 **Las fuentes de fuera están bloqueadas** en este entorno: Wikipedia,
@@ -569,14 +573,14 @@ tenerife.es, webtenerife.com, eldia.es y los dos endpoints de Overpass dan
 `000` o `403`. Todo lo de arriba sale de cruzar datos que ya estaban dentro
 del repositorio.
 
-## 6 · Lo que sí queda comprobado sobre los 977
+## 6 · Lo que sí queda comprobado sobre los 980
 
 | comprobación | resultado |
 |---|---|
-| Caen dentro de la caja de Tenerife | **977 de 977** |
-| Caen en tierra (capa `earth` de OSM) | **968** de 977; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
-| Ids únicos y con el formato `[a-z0-9-]` | **977** de 977 |
-| Tienen `desc` y `cat` en los diez idiomas | **977** de 977 |
+| Caen dentro de la caja de Tenerife | **980 de 980** |
+| Caen en tierra (capa `earth` de OSM) | **971** de 980; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
+| Ids únicos y con el formato `[a-z0-9-]` | **980** de 980 |
+| Tienen `desc` y `cat` en los diez idiomas | **980** de 980 |
 | Referencias huérfanas desde el planificador | **0** de 162 |
 | Zonas de baño sin orientación | **0** de 100 |
 | `lifeguard` con un valor que no sea true/false/null | **0** |

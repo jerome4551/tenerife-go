@@ -1637,7 +1637,7 @@ fallo** donde antes decía 3 y ya está.
 Con los dos controles funcionando, **el único bloque en rojo del proyecto es el
 del municipio**.
 
-## El municipio · 0 fuera de sitio, 14 que solo nombran una zona
+## El municipio · 0 fuera de sitio, 15 que solo nombran una zona
 
 La primera version cruzaba lo que cada ficha declara —un tramo del `cat` o el
 paréntesis del nombre— con el municipio de **las paradas de TITSA de
@@ -1998,7 +1998,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 904 filas (y 3.039 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 904 filas (y 3.045 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5520,6 +5520,40 @@ Queda en manos de Jerome:
 - el mensaje que abre la Fase 2 («dominio activo: https://DOMINIO/»), los
   tres datos de la Fase 3 y, para el aviso legal, nombre, domicilio, correo
   y NIF.
+
+### Lo que Jerome contestó (17 de octubre)
+
+- **La estrellita del icono de los pines de pago** (1.4): se queda.
+- **«Top» y los superlativos que no son notas de plataformas** (1.5): se
+  quedan, como están.
+- **Los tres lugares de `pendiente_de_jerome`**: «vivo aquí y conozco estos
+  lugares». La entrega decía que con su OK pasaban a altas tal cual, y así
+  entran: el Castillo de San Miguel (Garachico), el Mirador de La Garañona
+  (El Sauzal) y el Mirador de Cherfe. El castellano, el de la entrega; los
+  nueve idiomas, traducidos de él sin añadir nada (el aviso de La Garañona,
+  «No bajes a la playa…», con el mismo imperativo que los avisos de otras
+  fichas en cada idioma). Lo que la entrega no traía —la `cat`, las
+  etiquetas y, en los dos miradores, el emoji y el color— sale de las fichas
+  vecinas: el Castillo de San Felipe, el mirador de San Pedro y el de la Cruz
+  de Hilda, en la misma carretera que Cherfe. Comprobado antes: los tres
+  puntos están a 0 m de su objeto de OSM, caen en tierra, en el municipio de
+  su ficha, y ninguno repite un lugar que ya estuviera. Cherfe cae en
+  Buenavista del Norte a 12 m de la raya con Santiago del Teide: su ficha no
+  dice municipio (dice «Teno», que es una zona) y «Organiza tu día» lo ofrece
+  en el Norte, que es lo que dice el polígono. Las tres coordenadas, en
+  `datos/verificado.json` con su objeto de OSM y el OK de Jerome; ninguna
+  tiene fuente oficial y así consta. Una etiqueta nueva traducida («Siglo
+  XVI») y una declarada (TF-436, carretera). 977 → 980; el titular del
+  municipio pasa a 15 que solo nombran una zona (Cherfe dice Teno), y las
+  filas de idioma, a 3.045. Visto en un navegador: las tres en los diez
+  idiomas (30) pintan lo que dicen sus ficheros, sin errores.
+- **La Fase 3 todavía no se puede hacer.** `assetlinks.json` tiene que estar
+  en la raíz del dominio (https://DOMINIO/.well-known/assetlinks.json): en
+  la dirección de hoy quedaría dentro de `/tenerife-go/`, donde Android no lo
+  busca. Y sus tres datos salen de PWABuilder (el paquete y la huella de la
+  clave de subida), que se hace con la dirección del dominio, y de Play
+  Console (la huella de la clave de firma de Google), después de subir la
+  primera versión. Primero el dominio y la Fase 2.
 
 ---
 

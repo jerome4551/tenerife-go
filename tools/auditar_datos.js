@@ -178,9 +178,13 @@ console.log('\n=== lugares ===');
    del Santo Hermano Pedro (Granadilla de Abona) y el Pino Gordo (Vilaflor), de
    la entrega lanzamiento-lugares (LANZAMIENTO-PLAY.md 1.8): fuente de Turismo
    de Tenerife y OK de Jerome.
+   977 -> 980 el 17 de octubre: el Castillo de San Miguel (Garachico) y los
+   miradores de La Garañona (El Sauzal) y de Cherfe, los tres de
+   `pendiente_de_jerome` en la misma entrega. No tienen fuente oficial; entran
+   con el OK de Jerome: «vivo aquí y conozco estos lugares».
    Esta cifra subio una vez por sesion de gasolineras hasta la ultima alta, y se
    cambia A MANO a proposito: asi ningun lugar entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 977);
+debe('lugares', PLACES.length, PLACES.length === 980);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

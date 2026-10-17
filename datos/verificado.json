@@ -99,6 +99,10 @@
    "fecha": "2026-09-28",
    "fuente": "Cabildo de Tenerife, Tenerife ON, enlace «Acceso» de la ficha de la zona de acampada: tenerifeon.es/equipamientos/zona-de-acampada/las-lajas. Aportada por Jerome el 28 de septiembre de 2026."
   },
+  "castillo-san-miguel-garachico": {
+   "fecha": "2026-10-17",
+   "fuente": "OSM area/195580026 «Castillo de San Miguel» (fort), a 0 m. Sin fuente oficial: con el OK de Jerome, que vive en la isla y conoce el sitio («vivo aquí y conozco estos lugares», 17/10/2026)  [datos/entregas/lanzamiento-lugares.json, pendiente_de_jerome]"
+  },
   "charco-abrigos": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
@@ -245,6 +249,14 @@
   "mesa-mar": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "mir-cherfe": {
+   "fecha": "2026-10-17",
+   "fuente": "OSM node/314031941 «Mirador Cherfe» (viewpoint), a 0 m; a 12 m de la raya entre Buenavista del Norte y Santiago del Teide, por eso la ficha no dice municipio. Sin fuente oficial: con el OK de Jerome, que vive en la isla y conoce el sitio («vivo aquí y conozco estos lugares», 17/10/2026)  [datos/entregas/lanzamiento-lugares.json, pendiente_de_jerome]"
+  },
+  "mir-la-garanona": {
+   "fecha": "2026-10-17",
+   "fuente": "OSM area/496120712 «Mirador de La Garañona» (viewpoint), a 0 m. Sin fuente oficial: con el OK de Jerome, que vive en la isla y conoce el sitio («vivo aquí y conozco estos lugares», 17/10/2026)  [datos/entregas/lanzamiento-lugares.json, pendiente_de_jerome]"
   },
   "mir-rambla-castro": {
    "fecha": "2026-10-17",

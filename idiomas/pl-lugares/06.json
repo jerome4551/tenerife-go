@@ -188,6 +188,10 @@
   "desc": "Punkt widokowy przy TF-5, na wysokości 41. kilometra, w Los Realejos. Widać z niego północne wybrzeże i chroniony krajobraz Rambla de Castro: palmy, plantacje bananów, Hacienda de los Castro i dawną przepompownię wody La Gordejuela.",
   "cat": "Punkt widokowy · Rambla de Castro · Los Realejos"
  },
+ "mir-la-garanona": {
+  "desc": "Park i punkt widokowy nad wybrzeżem El Sauzal, z ogrodami, ścieżkami i palmami. Nie schodź na plażę: dostęp do brzegu jest niedozwolony, a dawna ścieżka rybaków jest nie do przejścia i zdarzają się na niej obrywy skalne.",
+  "cat": "Punkt widokowy · Park · El Sauzal"
+ },
  "mercadillo-tegueste": {
   "desc": "Tradycyjny niedzielny targ na placu w Tegueste. Owoce, lokalne warzywa, rękodzieło. Niedziele rano.",
   "cat": "Targ · Niedziele · Północ"
@@ -259,6 +263,10 @@
  "mir-cruz-hilda": {
   "desc": "Punkt widokowy przy drodze TF-436, powyżej wioski Masca. Oferuje panoramiczny widok na Mascę i jej wąwóz, z tarasami uprawnymi, palmami oraz zaroślami retamy i tabaiby.",
   "cat": "Punkt widokowy · Buenavista del Norte · Zachód"
+ },
+ "mir-cherfe": {
+  "desc": "Punkt widokowy przy TF-436, w masywie Teno, na drodze do Masca.",
+  "cat": "Punkt widokowy · Teno · TF-436"
  },
  "mir-la-corona-guimar": {
   "desc": "Punkt widokowy nad Doliną Güímar z widokiem na piramidy i wschodnie wybrzeże. Dojście z centrum Güímar. Strefa o historycznej tradycji guanczów.",
