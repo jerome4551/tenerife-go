@@ -5500,6 +5500,9 @@ francés en castellano, sigue en rojo. No lo vieron los controles que se
 pasaron al cerrar la 1.5, porque `auditar_idioma.js` no estaba entre ellos:
 por eso la auditoría entera va al final de cada fase.
 
+Con el arreglo, `auditar.sh` entero otra vez: **AUDITORIA EN VERDE**, ningún
+control en rojo y ninguno que no se pudiera ejecutar.
+
 Lo que el documento pedía ver hoy, visto:
 
 - 33 scripts en línea, los 33 compilan.
