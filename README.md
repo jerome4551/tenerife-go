@@ -12,16 +12,16 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
 | Fichero | Qué es |
 |---|---|
-| `index.html` | **La aplicación**: 33.271 líneas, 2,3 MB (687 kB comprimidos) a 9 de octubre de 2026. HTML, CSS y JavaScript en un solo fichero, y dentro los 975 lugares. |
+| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 17 de octubre de 2026: 34.188 líneas, 2,3 MB (715 kB con gzip). |
 | `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
 | `sw.js` | Service worker. Caché offline y notificaciones push. |
 | `manifest.webmanifest` | Manifiesto PWA: iconos, color de tema, `display: standalone`. |
 | `enviar-notificacion.js` | Script de Node que envía la notificación diaria. Corre en GitHub Actions, nunca en el navegador. |
 | `frases.json` | Las 365 frases de la notificación diaria, una por día del año. |
-| `vendor/` | Leaflet 1.9.4 y Leaflet.markercluster 1.5.3, alojados aquí en vez de en un CDN. |
+| `vendor/` | Leaflet 1.9.4 y Leaflet.markercluster 1.5.3, alojados aquí en vez de en un CDN; las dos librerías del mapa sin conexión (`pmtiles.js` y `protomaps-leaflet.js`) y las tipografías. |
 | `supabase/*.sql` | Las tablas y sus políticas de seguridad, para poder recrear el proyecto. |
 | `.github/workflows/` | El cron de la notificación diaria. |
-| `tools/` | `verificar_red.js` (los 10 controles de la red), `extract_js.py` y `gtfs_red.py`. |
+| `tools/` | Los controles y las herramientas; `bash tools/auditar.sh` los pasa todos. Entre ellos, `verificar_red.js` (la red de guaguas), `extract_js.py`, `gtfs_red.py` y `auditar_readme.js`, que coteja las cifras de este fichero. |
 | `AUDITORIA-FINAL.md` | Estado del proyecto, auditoría, lo que falta y las trampas conocidas. |
 
 Es un monolito a propósito, no un proyecto a medio modularizar. No hay
@@ -69,18 +69,19 @@ castellano. Cada uno es un objeto así:
 - El `id` se usa dentro de manejadores `onclick`, así que solo puede
   llevar letras, dígitos, punto y guion.
 
-Reparto actual: 42 categorías repartidas en 11 grupos de filtro. Las más
-pobladas son municipios (41), parkings (42, contando los que van como
-atributo de otro lugar), gastronomía (39), supermercados (38),
-senderismo (37) y playas (35).
+Reparto actual: 43 categorías en 11 pestañas de filtro. Las que más lugares
+tienen, contando solo la categoría principal de cada uno: gasolineras (211),
+playas (74), parkings (40), gastronomía (38), senderismo (37) y
+supermercados (36). Todas estas cifras las coteja `tools/auditar_readme.js`
+contra los datos: si cambian y este fichero no, la auditoría se pone en rojo.
 
 ### Idiomas
 
 Dos estructuras distintas, y conviene no confundirlas:
 
-- **`LANGS`** — 137 claves de interfaz por idioma, en mapas planos:
+- **`LANGS`** — 130 claves de interfaz por idioma, en mapas planos:
   `LANGS.es.searchPlaceholder`. Dentro va `categories`, con el nombre de
-  las 42 categorías.
+  las 43 categorías.
 - **`UI_TX`** — el formato inverso, `{clave: {idioma: texto}}`, para lo
   que se fue añadiendo después. Se lee con `tx(clave, vars)`.
 
@@ -132,9 +133,11 @@ una vez al día se ofrecía como si viniera cada media hora**. Si no reconoce na
 usa 30 minutos. Las nocturnas (`Madrugada`) siguen cayendo en ese valor por
 defecto: es lo que queda por hacer aquí.
 
-**19 líneas van sin `precio`** —las 18 añadidas desde el GTFS y la 449— porque
-el GTFS no trae `fare_attributes.txt` y la tarifa no se inventa. El globo no
-pinta el `💶` suelto cuando el campo falta.
+**Todas las líneas llevan `precio`.** TITSA no cobra por línea sino por
+trayecto: en las 130 que llevan `precioDesde`, el importe es el mínimo y se
+pinta con «desde»; las otras 53 llevan el suyo. El porqué está en «El precio»,
+en `AUDITORIA-FINAL.md`. Si algún día falta el campo, `busPrecioTexto()` no se
+inventa nada: devuelve vacío.
 
 El planificador agrupa las paradas por coordenada redondeada a cuatro decimales,
 así que **dos líneas solo hacen transbordo si comparten la coordenada exacta**.
@@ -165,7 +168,7 @@ Las líneas se agrupan en el panel por `tipo`: `tranvia`, `norte`, `sur`,
 | Nominatim | Búsqueda de direcciones | La búsqueda por texto no responde |
 | OSRM | Rutas A→B | No se calculan rutas |
 | Wikipedia | Fotos de los lugares | Las fichas salen sin foto |
-| Supabase | Favoritos, tienda, panel admin, suscripciones push | Esas secciones quedan vacías |
+| Supabase | Cuentas y favoritos, anuncios, panel admin, suscripciones push (la tienda está oculta: `TIENDA_ACTIVA = false`) | Esas secciones quedan vacías |
 
 Los dos paneles que dependen del tiempo —el del mar y el de «Báñate aquí
 hoy»— **se ocultan si no hay dato real**. Es deliberado: una
@@ -175,7 +178,7 @@ recomendación inventada manda a alguien al agua.
 
 ## Supabase
 
-Cinco tablas. El esquema y las políticas están en `supabase/`.
+Siete tablas. El esquema y las políticas están en `supabase/`.
 
 | Tabla | Quién puede leer | Quién puede escribir |
 |---|---|---|
@@ -203,9 +206,12 @@ Cadena completa, y los tres eslabones tienen que estar:
    (`pushManager.subscribe`), y guarda la suscripción llamando a
    `guardar_push_sub()`. Solo se ofrece si la app está instalada en la
    pantalla de inicio: en iOS es obligatorio y en Android es lo sensato.
-2. **El workflow** corre cuatro veces cada mañana, coge la frase del día
-   de `frases.json` y la envía firmada con las claves VAPID. Borra las
-   suscripciones que devuelven 404 o 410.
+2. **El workflow** se lanza nueve veces, de las 00:07 a las 07:07 UTC,
+   porque GitHub retrasa sus crons varias horas. Envía el primero que cae
+   dentro de la ventana (de 7 a 16 h en Canarias): coge la frase del día de
+   `frases.json` y la envía firmada con las claves VAPID; `push_sends`
+   impide que salga dos veces el mismo día. Borra las suscripciones que
+   devuelven 404 o 410.
 3. **El service worker** escucha `push` y muestra la notificación, y
    `notificationclick` enfoca la app si ya está abierta.
 

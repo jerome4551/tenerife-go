@@ -5547,6 +5547,28 @@ Queda en manos de Jerome:
   municipio pasa a 15 que solo nombran una zona (Cherfe dice Teno), y las
   filas de idioma, a 3.045. Visto en un navegador: las tres en los diez
   idiomas (30) pintan lo que dicen sus ficheros, sin errores.
+- **Las cifras del README: que se cuenten.** Además de las tres que se le
+  dijeron (42 categorías, «playas (35)», sin las 211 gasolineras), estaban
+  viejas «137 claves de interfaz» (son 130), «el nombre de las 42
+  categorías» (43), «Cinco tablas» (siete), el aviso diario que «corre cuatro
+  veces cada mañana» (se lanza nueve, de 00:07 a 07:07 UTC, y envía el primero
+  que cae entre las 7 y las 16 h de Canarias) y «19 líneas van sin `precio`»
+  (todas lo llevan: 130 «desde» y 53 con su importe). Y «los 975 lugares»,
+  con fecha del 9 de octubre: ahora 980, y la medida del fichero, con la fecha
+  de hoy. «Los 10 controles de la red» no era ninguna cuenta (son cuatro
+  comprobaciones y ocho controles numerados): se quita la cifra, también en la
+  tabla de herramientas de este documento. De paso, la fila de Supabase ya no
+  dice «tienda» a secas (está oculta desde la 1.1) y la de `vendor/` nombra las
+  librerías del mapa sin conexión y las tipografías.
+  Control nuevo, `tools/auditar_readme.js`, en `auditar.sh`: cada cifra del
+  README que habla de hoy —lugares, categorías y las seis con más lugares en
+  su orden, idiomas, claves, la red y sus precios, tablas, costas del mar,
+  lanzamientos y ventana del aviso, versión de Leaflet— contra lo que cuenta.
+  Si una frase se reescribe y ya no la encuentra, también en rojo. Probado en
+  copias: un lugar más sin tocar el README, «Seis tablas», un lanzamiento más
+  en el workflow, «Reparto de hoy» en vez de «Reparto actual» y dos categorías
+  cambiadas de orden: las cinco, en rojo. Con el README de antes salían 14 en
+  rojo.
 - **La Fase 3 todavía no se puede hacer.** `assetlinks.json` tiene que estar
   en la raíz del dominio (https://DOMINIO/.well-known/assetlinks.json): en
   la dirección de hoy quedaría dentro de `/tenerife-go/`, donde Android no lo
@@ -5568,7 +5590,7 @@ Y cada bloque por separado, si hace falta:
 | | |
 |---|---|
 | `tools/cargar.js` | cargador comun: devuelve la red **ya hidratada** |
-| `tools/verificar_red.js` | los 10 controles de la red |
+| `tools/verificar_red.js` | los controles de la red |
 | `tools/auditar_datos.js` | catálogo, líneas, trazado y lugares |
 | `tools/auditar_seguridad.py` | inyección, CSP, codificación, textos fijos y tipografía china |
 | `tools/auditar_xss.js` | regresión con datos hostiles, en navegador |
@@ -5609,6 +5631,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/pagina_fija.py` | el armazón de las páginas fijas de la raíz: diez idiomas que se cambian sin JavaScript; lo común, en `idiomas/paginas/` |
 | `tools/generar_og_image.js` | `og-image.jpg`, la imagen para compartir: 1200×630, el logo sobre #0F1117 |
 | `tools/generar_privacidad.py` | la política: las filas de `UI_TX`, el panel de `index.html` y `privacidad.html`, de la misma pasada; con `--comprobar`, para si no están al día |
+| `tools/auditar_readme.js` | cada cifra que el README dice del estado de hoy, contra lo que hay; si la frase cambia, también en rojo |
 | `tools/informe_lugares.js` | `REVISION-LUGARES.md`: lo que se puede comprobar de los lugares y lo que no, con cada cifra contada al generarlo; con `--comprobar`, para si no está al día |
 | `tools/zonas_lugares.py` | Norte o Sur de cada lugar por el polígono oficial de su municipio: lo escribe en `index.html` y con `--comprobar` lo rehace y lo compara; coteja también las listas Norte y Sur de «Ruta del día» |
 | `tools/auditar_claves_tx.js` | cada `tx('…')` con la clave escrita tiene su fila en `UI_TX` (`tx()` devuelve vacío sin avisar) |

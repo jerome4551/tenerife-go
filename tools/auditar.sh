@@ -95,6 +95,12 @@ control auditar_municipio.js node tools/auditar_municipio.js
 # no es lo que saldria ahora (la fecha aparte).
 echo; echo "════════ REVISION-LUGARES.md, al dia y con cada cifra contada ════════"
 control informe_lugares.js node tools/informe_lugares.js --comprobar
+# El README tambien decia cifras de memoria: 42 categorias, 137 claves, cinco
+# tablas, el aviso diario «cuatro veces cada mañana», 19 lineas sin precio.
+# Desde el 17 de octubre de 2026 cada cifra que dice del estado de hoy se
+# coteja con lo que hay, y si la frase cambia tambien se pone en rojo.
+echo; echo "════════ las cifras del README ════════"
+control auditar_readme.js node tools/auditar_readme.js
 echo; echo "════════ lo que se sale de la pantalla, y el popup ════════"
 control auditar_desborde.js node tools/auditar_desborde.js "$PUERTO"
 echo; echo "════════ las fichas de gasolinera, en pantalla, en los diez idiomas ════════"
