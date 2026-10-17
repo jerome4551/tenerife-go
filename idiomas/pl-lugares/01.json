@@ -377,9 +377,17 @@
   "desc": "Najstarszy ogród botaniczny Wysp Kanaryjskich i drugi najstarszy w Hiszpanii, założony w 1788 roku na rozkaz króla Karola III. Położony w Puerto de la Cruz (Calle Retama 2), mieści ponad 5000 gatunków tropikalnych i subtropikalnych oraz stuletnie drzewa o wysokości ponad 40 m. Dobro Kultury od 1994 roku. Godziny: 09:00–18:00 (zamknięte 1 stycznia, w Wielki Piątek i 25 grudnia). Wstęp: 3€. Dostępny pieszo z centrum Puerto de la Cruz.",
   "cat": "Ogród botaniczny · Puerto de la Cruz · 1788 · 3€"
  },
+ "jardines-victoria-orotava": {
+  "desc": "Tarasowe ogrody z XIX wieku w historycznym centrum La Orotava, przy placu Plaza de la Constitución. W stylu eklektycznym, z fontannami i kwiatami na kolejnych tarasach, zaprojektował je francuski artysta. Powstały jako mauzoleum markiza de la Quinta Roja, któremu biskupstwo odmawiało chrześcijańskiego pochówku; ostatecznie mu go przyznano i nigdy nie został tu pochowany. Z góry widać starówkę miasteczka.",
+  "cat": "Ogród · La Orotava · XIX wiek"
+ },
  "lajiales-fasnia": {
   "desc": "Pole law wulkanicznych na wschodnim wybrzeżu Teneryfy, w gminie Fasnia. Chroniony Obszar Przyrodniczy o dużej wartości geologicznej i krajobrazowej. Rozległe historyczne potoki lawy dochodzące do morza tworzą bardzo osobliwe czarne wybrzeże z małymi zatoczkami i naturalnymi rozlewiskami. Siedlisko jaszczurki kanaryjskiej i fauny morskiej. Wstęp wolny od strony wybrzeża Fasnii. Imponujący temat na fotografię krajobrazu wulkanicznego.",
   "cat": "Obszar przyrodniczy · Fasnia · Wulkaniczny · Wschód"
+ },
+ "pino-gordo-vilaflor": {
+  "desc": "Dwie legendarne sosny kanaryjskie w Vilaflor de Chasna: Pino Gordo o obwodzie pnia 9 m i, bardzo blisko, Pino de las Dos Pernadas o wysokości 56 m.",
+  "cat": "Drzewa pomnikowe · Vilaflor · Południe"
  },
  "mirador-teide": {
   "desc": "Najbardziej imponujący punkt widokowy Parku Narodowego, na 2356 m przy stacji kolejki linowej. Widok 360° na krater, Las Cañadas i całą wyspę. Punkt startowy kolejki i tras na szczyt.",

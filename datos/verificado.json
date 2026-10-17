@@ -152,6 +152,10 @@
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
+  "cueva-santo-hermano-pedro": {
+   "fecha": "2026-10-17",
+   "fuente": "OSM node/313038499 «Cueva del Santo Hermano Pedro» (cave_entrance); Turismo de Tenerife, ficha de la cueva: «TF-643, 38600 Granadilla», cerca del aeropuerto  [datos/entregas/lanzamiento-lugares.json]"
+  },
   "cueva-viento": {
    "fecha": "2026-09-27",
    "fuente": "OSM del repositorio: «Cueva del Viento Centro de Visitantes» (attraction), a 2 m de la coordenada redonda anterior. Elemento unico con ese nombre en el extracto."
@@ -205,6 +209,10 @@
    "fecha": "2026-09-29",
    "fuente": "SuperDino, ficha de la propia empresa en Google: «SuperDino Los Realejos, Pl. Mencey Bencomo, s/n, 38410 Los Realejos», tel. 922 44 16 81. Captura de Jerome del 29 de septiembre de 2026. El elemento de OSM (node/8428054218) esta a 27 m de la Plaza Mencey Bencomo."
   },
+  "jardines-victoria-orotava": {
+   "fecha": "2026-10-17",
+   "fuente": "OSM area/25092134 «Jardines del marquesado de la Quinta Roja», punto dentro del poligono; Turismo de Tenerife, ficha «Victoria Gardens»: «C/ Tomás Pérez s/n - Plaza de la Constitución, s/n»  [datos/entregas/lanzamiento-lugares.json]"
+  },
   "las-vistas": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
@@ -238,6 +246,10 @@
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
+  "mir-rambla-castro": {
+   "fecha": "2026-10-17",
+   "fuente": "Turismo de Tenerife, ficha «Mirador de San Pedro»: «TF-5 Km pt. 41. Los Realejos», UTM 28N 0343842/3142082; OSM area/129728824 «Mirador de San Pedro» a 6 m  [datos/entregas/lanzamiento-lugares.json]"
+  },
   "mirador-pico-ingles": {
    "fecha": "2026-10-11",
    "fuente": "Turismo de Tenerife, Mirador Pico del Inglés: UTM huso 28 X 376352 Y 3156846. Pasado a WGS84 con pyproj (EPSG:32628 y EPSG:4083 dan lo mismo): 28.5325194, -16.2637869. Aportada por Jerome el 11 de octubre de 2026. Sustituye al pico «Pico del Inglés» de OSM, que esta a 116 m."
@@ -268,6 +280,10 @@
    "fecha": "2026-09-19",
    "commit": "2ef7c67",
    "fuente": "OpenStreetMap, locality «San Andres»"
+  },
+  "pino-gordo-vilaflor": {
+   "fecha": "2026-10-17",
+   "fuente": "OSM node/313301148 «Pino Gordo» (tree); Turismo de Tenerife, ficha «Árboles leyenda» (Vilaflor)  [datos/entregas/lanzamiento-lugares.json]"
   },
   "piscina-gigantes": {
    "fecha": "2026-09-06",

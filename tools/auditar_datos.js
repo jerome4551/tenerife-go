@@ -174,9 +174,13 @@ console.log('\n=== lugares ===');
    975 -> 974 el 11 de octubre: fuera el Mirador del Cardon (Guia de Isora). No
    figura en el listado oficial de miradores de Turismo de Tenerife ni en ninguna
    otra fuente; el unico «Mirador del Cardon» esta en Gran Canaria (Jerome).
+   974 -> 977 el 17 de octubre: los Jardines Victoria (La Orotava), la Cueva
+   del Santo Hermano Pedro (Granadilla de Abona) y el Pino Gordo (Vilaflor), de
+   la entrega lanzamiento-lugares (LANZAMIENTO-PLAY.md 1.8): fuente de Turismo
+   de Tenerife y OK de Jerome.
    Esta cifra subio una vez por sesion de gasolineras hasta la ultima alta, y se
    cambia A MANO a proposito: asi ningun lugar entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 974);
+debe('lugares', PLACES.length, PLACES.length === 977);
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);

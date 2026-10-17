@@ -1998,7 +1998,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 904 filas (y 3.033 filas, dentro y fuera del fuente)
+## Idiomas · 33 tablas, 904 filas (y 3.039 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5393,6 +5393,64 @@ el crédito sin enlace: los tres, en rojo.
 Control, en `auditar_datos.js`: la descripción del manifest sin cifras de
 lugares ni «verificados», y `og-image.jpg` presente, JPG y de 1200×630 si la
 cabecera la pide. Sobre lo de antes, las dos en rojo.
+
+### 1.8 · Lugares: San Pedro corregido y tres altas
+
+La entrega, tal cual, en `datos/entregas/lanzamiento-lugares.json`. Se
+aplican la corrección y las tres altas; **no** se aplica lo de
+`pendiente_de_jerome` (Castillo de San Miguel, Mirador de La Garañona,
+Mirador de Cherfe) ni lo de `no_ahora`.
+
+- **`mir-rambla-castro` pasa a «Mirador de San Pedro (Los Realejos)».** El id
+  no cambia: va en los favoritos de la gente. El punto, el de la ficha de
+  Turismo de Tenerife (UTM 28N 0343842/3142082; pasada a grados da
+  28.395804, -16.593971, la cifra de la entrega): se mueve 130 m. El
+  «Mirador de San Pedro» de OSM está a 6 m. Texto, `cat` y etiquetas, los de
+  la entrega; fuera «Rambla Castro» y «Puerto Cruz» (el mirador está en Los
+  Realejos), que siguen en otras fichas.
+- **Tres altas**, cada una detrás de una vecina de su categoría: Jardines
+  Victoria (La Orotava), Cueva del Santo Hermano Pedro (Granadilla) y Pino
+  Gordo y Pino de las Dos Pernadas (Vilaflor). El castellano, el de la
+  entrega; los otros nueve idiomas, traducidos de ese castellano sin añadir
+  nada, con los nombres como ya los escribe la app («拉奥罗塔瓦», «Вилафлор»,
+  «Tenerife Sur» en polaco). Sin horarios ni precios.
+- **Comprobado aquí antes de aplicarlo**, no solo leído en la entrega:
+  - el municipio de los cuatro puntos, por el polígono del Cabildo
+    (`tools/municipio.py`): Los Realejos, La Orotava, Granadilla de Abona y
+    Vilaflor, lo que dicen las fichas. A la raya: 239, 1.663, 1.559 y
+    2.106 m. La entrega da 219, 1.709, 1.602 y 2.344; con el mismo
+    fichero de límites que cita salen las cifras de aquí, así que la
+    diferencia es de cómo mide, y no se sabe. No cambia nada: los cuatro
+    quedan lejos de la raya;
+  - los objetos de OSM, en el extracto del repositorio: la cueva
+    (node/313038499) y el Pino Gordo (node/313301148), a 0 m; el Pino de las
+    Dos Pernadas, a 136 m del Gordo; el punto de los Jardines, dentro de su
+    polígono (area/25092134);
+  - los cuatro caen en tierra y ninguno repite un lugar que ya estuviera.
+- **Las coordenadas**, con `tools/fijar_coordenada.py` (caja, tierra y cuánto
+  se mueve), que apunta las cuatro en `datos/verificado.json` con su fuente.
+- **Etiquetas**: cinco nuevas, traducidas en los nueve diccionarios (Siglo
+  XIX, Mausoleo, Santuario, Pino canario, Árbol monumental); tres declaradas
+  sin traducir con su motivo, en su sitio de la lista ordenada (Rambla de
+  Castro, sitio; TF-5, carretera; Santo Hermano Pedro, persona).
+- **Norte y Sur**, rehecho con `zonas_lugares.py`: el mirador y los Jardines,
+  Norte; la cueva y los pinos, Sur.
+- **La cifra**: 974 → 977 en `auditar_datos.js`, a mano y con su porqué, y en
+  las dos líneas del JSON-LD. Un comentario de `index.html` decía «los 974
+  lugares»; ahora dice «todos los lugares», que no caduca.
+
+Visto en un navegador: los cuatro globos en los diez idiomas (40) pintan la
+categoría, el texto y las etiquetas de sus ficheros, sin un error en la
+página. En verde: `auditar_municipio.js` (0 que no cuadran),
+`auditar_en_el_mar.py` (0 fuera de tierra), `auditar_datos.js`,
+`auditar_etiquetas.js`, `castellano_suelto.js`, `auditar_fuente_pl.js`,
+`auditar_cirilico.py`, `zonas_lugares.py --comprobar` y `barrido_idiomas.js`
+(3.039 filas: 6 más, dos textos por alta).
+
+`informe_lugares.js`: las cuatro no salen en ninguna de sus listas de cosas
+que mirar (coordenada a ojo, repetida o a menos de 25 m de otra). Pero el
+resumen del final no estaba contado: decía «787 de 787» con 977 en el mapa,
+y daba por mal cinco fichas que ya están corregidas. Se arregla aparte.
 
 ---
 

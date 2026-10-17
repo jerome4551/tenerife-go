@@ -1,0 +1,166 @@
+{
+ "_": [
+  "Entrega lanzamiento-lugares, 16/10/2026, preparada sobre el commit 9b0a4b7. Va con LANZAMIENTO-PLAY.md, apartado 1.8.",
+  "Se aplican: 1 correccion (mir-rambla-castro) y 3 altas. Lo de «pendiente_de_jerome» y «no_ahora» NO se aplica.",
+  "Coordenadas: en la correccion, UTM de la ficha oficial pasada a WGS84 con utm28_to_wgs84() de datos/osm-geofabrik/scripts/geo_utils.py. En las altas la fuente oficial da direccion, no coordenada: el punto es el del objeto OSM con el mismo nombre y un tipo compatible, comprobado contra esa direccion.",
+  "Municipio: punto en poligono contra datos/osm-geofabrik/municipios/municipios_tenerife.geojson (el completo, no el simplificado).",
+  "Textos: el castellano dice SOLO lo que dicen las fuentes citadas. Los otros nueve idiomas se traducen de ese castellano, sin anadir nada. Sin horarios ni precios: caducan.",
+  "Llevar esta entrega a Claude Code es el OK de Jerome para la correccion y las tres altas."
+ ],
+ "correcciones_coordenada": {
+  "mir-rambla-castro": {
+   "antes": {
+    "lat": 28.3948,
+    "lng": -16.5933
+   },
+   "despues": {
+    "lat": 28.395804,
+    "lng": -16.593971,
+    "municipio_del_poligono": "Los Realejos",
+    "a_la_raya_m": 219
+   },
+   "se_mueve_m": 130,
+   "fuente": "Turismo de Tenerife, ficha «Mirador de San Pedro»: «TF-5 Km pt. 41. Los Realejos», UTM 0343842/3142082.",
+   "url": "https://www.webtenerife.co.uk/what-see/lookout-points/mirador-san-pedro/",
+   "corroboracion": "OSM area/129728824 «Mirador de San Pedro» (viewpoint) a 6 m del punto oficial. La auditoria OSM de septiembre dejo esta ficha en sin_match: por el nombre no casaba con ningun mirador de OSM.",
+   "por_que_es_el_mismo_mirador": "Es el mirador con nombre mas cercano al pin actual: su objeto OSM esta a 128 m y el punto oficial a 130 m. Mas cerca solo hay merenderos sin nombre, el manantial «La Madre del Agua», un panel del Paisaje Protegido y dos locales que se llaman San Pedro (un bar a 103 m y el restaurante «Mirador San Pedro» a 116 m). La descripcion actual es generica y encaja con este mirador."
+  }
+ },
+ "modificaciones": {
+  "mir-rambla-castro": {
+   "id": "SIN CAMBIO. Los ids viajan en los favoritos, y «rambla-castro» sigue siendo cierto.",
+   "name": {
+    "antes": "Mirador Rambla de Castro (Norte)",
+    "despues": "Mirador de San Pedro (Los Realejos)",
+    "por_que_el_municipio": "Hay otro «Mirador de San Pedro» en Garachico (OSM area/192288741)."
+   },
+   "desc_es": {
+    "antes": "Mirador sobre la costa norte entre Puerto de la Cruz e Icod. Acantilados y zona protegida de gran belleza natural.",
+    "despues": "Mirador junto a la TF-5, a la altura del km 41, en Los Realejos. Se asoma a la costa norte y al Paisaje Protegido de la Rambla de Castro: palmeras, plataneras, la Hacienda de los Castro y la antigua estación elevadora de agua de La Gordejuela."
+   },
+   "cat_es": {
+    "antes": "Mirador · Costa Norte",
+    "despues": "Mirador · Rambla de Castro · Los Realejos"
+   },
+   "tags": {
+    "antes": ["Mirador", "Norte", "Costa", "Rambla Castro", "Puerto Cruz"],
+    "despues": ["Mirador", "Norte", "Costa", "Rambla de Castro", "Los Realejos", "TF-5"]
+   },
+   "quitado": [
+    "la etiqueta «Puerto Cruz»: el mirador esta en Los Realejos"
+   ]
+  }
+ },
+ "altas": {
+  "jardines-victoria-orotava": {
+   "category": "naturaleza",
+   "name": "Jardines Victoria (La Orotava)",
+   "emoji_sugerido": "🌿",
+   "color_sugerido": "#1b5e20",
+   "lat": 28.389434,
+   "lng": -16.522973,
+   "municipio_del_poligono": "La Orotava",
+   "a_la_raya_m": 1709,
+   "desc_es": "Jardines en terrazas del siglo XIX en el casco histórico de La Orotava, junto a la plaza de la Constitución. De estilo ecléctico, con fuentes y flores escalonadas, los diseñó un artista francés. Nacieron como mausoleo del marqués de la Quinta Roja, al que el obispado negaba la sepultura cristiana; al final se la concedieron y nunca fue enterrado aquí. Desde arriba se ve el casco antiguo de la villa.",
+   "cat_es": "Jardín · La Orotava · Siglo XIX",
+   "tags": ["Jardín", "La Orotava", "Casco histórico", "Siglo XIX", "Mausoleo", "Norte"],
+   "fuente": "Turismo de Tenerife, ficha «Victoria Gardens»: siglo XIX; artista francés; estilo ecléctico; terrazas escalonadas con fuentes y flores; vistas del casco antiguo desde arriba; mausoleo del marqués de la Quinta Roja, al que el obispado negó la sepultura cristiana; se la concedieron y nunca fue enterrado alli. Direccion: «C/ Tomás Pérez s/n - Plaza de la Constitución, s/n».",
+   "url": "https://www.webtenerife.co.uk/what-see/gardens-and-parks/jardines-victoria/",
+   "coordenada": "OSM area/25092134 «Jardines del marquesado de la Quinta Roja» (park), punto dentro del poligono.",
+   "cuadra_con_la_direccion": "A 85 m del Liceo de Taoro y a 125 m del «Kiosko La Constitución», los dos en la plaza de la Constitucion.",
+   "no_usado": [
+    "el nombre del artista y el nombre de pila del marques: la ficha en ingles los escribe de forma que no se puede confirmar",
+    "horario y precio: la ficha los da, pero caducan"
+   ]
+  },
+  "cueva-santo-hermano-pedro": {
+   "category": "cultura",
+   "name": "Cueva del Santo Hermano Pedro (Granadilla)",
+   "emoji_sugerido": "⛪",
+   "color_sugerido": "#7b1fa2",
+   "lat": 28.051482,
+   "lng": -16.55307,
+   "municipio_del_poligono": "Granadilla de Abona",
+   "a_la_raya_m": 1602,
+   "desc_es": "Santuario en una cueva cerca del aeropuerto Tenerife Sur, en Granadilla de Abona. Aquí descansaba de niño Pedro de San José Betancur, el Santo Hermano Pedro, mientras cuidaba el ganado de su familia. Nacido en Tenerife, en Guatemala se dedicó a cuidar a enfermos y pobres, y es el primer santo canario. Dentro hay una estructura de madera rodeada de ofrendas y de papeles con las peticiones de los devotos. Cada abril sale de Vilaflor una peregrinación hacia esta zona de El Médano.",
+   "cat_es": "Santuario · Granadilla de Abona · Sur",
+   "tags": ["Santo Hermano Pedro", "Santuario", "Cueva", "Peregrinación", "Granadilla de Abona", "El Médano", "Sur"],
+   "fuente": "Turismo de Tenerife, ficha de la cueva: cerca del aeropuerto Reina Sofía, «TF-643, 38600 Granadilla»; Pedro de San José Betancur, Santo Hermano Pedro, nacido en Tenerife; en Guatemala cuidaba de enfermos y pobres; de nino descansaba en la cueva mientras cuidaba el rebano familiar; dentro, una estructura de madera con ofrendas y papeles con peticiones. Ficha de la ruta: primer santo de Canarias; la peregrinacion sale en abril de la iglesia de San Pedro Apóstol de Vilaflor hacia la zona costera de El Médano, donde esta la cueva.",
+   "url": [
+    "https://www.webtenerife.co.uk/tenerife/the-island/municipalities/granadilla-abona/places-interest/cueva-santo-hermano-pedro/",
+    "https://www.webtenerife.co.uk/what-to-do/routes/themed/ruta-peregrinacion-hermano-pedro/"
+   ],
+   "coordenada": "OSM node/313038499 «Cueva del Santo Hermano Pedro» (cave_entrance, christian_catholic). Hay un segundo nodo con el mismo nombre a 12 m (node/3991059819).",
+   "cuadra_con_la_direccion": "A 2,1 km del aeropuerto Tenerife Sur, en Granadilla de Abona.",
+   "no_usado": [
+    "el pueblo natal y el ano de canonizacion: ninguna de las dos fichas los dice"
+   ]
+  },
+  "pino-gordo-vilaflor": {
+   "category": "naturaleza",
+   "name": "Pino Gordo y Pino de las Dos Pernadas (Vilaflor)",
+   "emoji_sugerido": "🌲",
+   "color_sugerido": "#2ecc71",
+   "lat": 28.165188,
+   "lng": -16.636851,
+   "municipio_del_poligono": "Vilaflor de Chasna",
+   "a_la_raya_m": 2344,
+   "desc_es": "Dos pinos canarios legendarios de Vilaflor de Chasna: el Pino Gordo, con 9 m de perímetro de tronco, y, muy cerca, el Pino de las Dos Pernadas, de 56 m de altura.",
+   "cat_es": "Árboles monumentales · Vilaflor · Sur",
+   "tags": ["Pino canario", "Árbol monumental", "Vilaflor", "Sur", "Naturaleza"],
+   "fuente": "Turismo de Tenerife, ficha «Árboles leyenda» (Vilaflor): dos pinos canarios enormes; el Pino Gordo mide 9 m de perimetro; el de las Dos Pernadas, 56 m de alto.",
+   "url": "https://www.webtenerife.co.uk/tenerife/the-island/municipalities/vilaflor/places-interest/arboles-leyenda/",
+   "coordenada": "OSM node/313301148 «Pino Gordo» (tree, attraction). A 10 m, el panel «Variables de Pino Gordo» (node/13481859675). El Pino de las Dos Pernadas (node/2319729054) esta a 136 m.",
+   "cuidado": "Tenerife ON lista un «Pino Gordo» en Arico. Esta ficha es la del Pino Gordo de Vilaflor, el de Turismo de Tenerife y el de OSM: no mezclar datos de uno con el otro.",
+   "no_usado": [
+    "la altura del Pino Gordo y la edad de los dos: la ficha no las da"
+   ]
+  }
+ },
+ "pendiente_de_jerome": {
+  "_": "NO se aplica. No encontre fuente oficial. Si Jerome da el OK con estas fuentes, o manda una oficial o una captura suya, pasa a «altas» tal cual.",
+  "castillo-san-miguel-garachico": {
+   "category": "cultura",
+   "name": "Castillo de San Miguel (Garachico)",
+   "emoji_sugerido": "🏯",
+   "color_sugerido": "#546e7a",
+   "lat": 28.373198,
+   "lng": -16.76608,
+   "municipio_del_poligono": "Garachico",
+   "coordenada": "OSM area/195580026 «Castillo de San Miguel» (fort, attraction). A 34 m de piscinas-garachico (El Caletón).",
+   "desc_es_si_entra": "Fortaleza de piedra junto a las piscinas de El Caletón, construida en 1575 con autorización de Felipe II para defender el puerto de piratas y corsarios. Sobrevivió a la erupción de 1706, cuya lava sepultó el puerto. Desde 1959 es del Ayuntamiento y alberga el Centro de Información Patrimonial.",
+   "fuentes_no_oficiales": [
+    "Diario de Avisos, 25/02/2026: construido en 1575 con autorizacion de Felipe II contra piratas y corsarios; quedo intacto en la erupcion de 1706, cuya lava sepulto el puerto; desde 1959, cuando el Ayuntamiento se lo compro al Ejercito, es el Centro de Informacion Patrimonial. https://diariodeavisos.elespanol.com/2026/02/secreto-castillo-mas-antiguo-tenerife-garachico-450-anos/",
+    "Los Pueblos Más Bonitos de España: siglo XVI, defensa de la costa, restaurado en el siglo XX, alberga el centro de informacion del patrimonio. https://lospueblosmasbonitosdeespana.org/patrimonio/garachico/castillo-de-san-miguel-siglo-xvi-restaurado-en-el-xx?lang=en"
+   ]
+  },
+  "mir-la-garanona": {
+   "category": "mirador",
+   "name": "Mirador de La Garañona (El Sauzal)",
+   "lat": 28.482232,
+   "lng": -16.434471,
+   "municipio_del_poligono": "El Sauzal",
+   "coordenada": "OSM area/496120712 «Mirador de La Garañona» (viewpoint), junto al parque «Parque La Garañona» (area/496120711).",
+   "desc_es_si_entra": "Parque y mirador sobre la costa de El Sauzal, con jardines, senderos y palmeras. No bajes a la playa: el acceso a la orilla no está permitido y el antiguo camino de pescadores está impracticable, con desprendimientos.",
+   "fuentes_no_oficiales": [
+    "Diario de Avisos, julio de 2026: el acceso a la orilla no esta permitido; el antiguo camino de pescadores esta impracticable y con desprendimientos; el parque-mirador tiene zonas ajardinadas, senderos y palmeras. https://diariodeavisos.elespanol.com/2026/07/playa-de-la-garanona-el-sauzal-tenerife-mirador-acantilado/"
+   ]
+  },
+  "mir-cherfe": {
+   "category": "mirador",
+   "name": "Mirador de Cherfe",
+   "lat": 28.299644,
+   "lng": -16.82402,
+   "municipio_del_poligono": "Buenavista del Norte, pero a 13 m de la raya con Santiago del Teide: NO se puede afirmar el municipio con este punto",
+   "coordenada": "OSM node/314031941 «Mirador Cherfe» (viewpoint).",
+   "desc_es_si_entra": "Mirador en la TF-436, en el macizo de Teno, en la carretera de Masca.",
+   "fuentes_no_oficiales": [
+    "Capture the Atlas, miradores de Tenerife: Parque Rural de Teno, se llega desde Masca por la TF-436. https://capturetheatlas.com/es/miradores-en-tenerife/"
+   ]
+  }
+ },
+ "no_ahora": {
+  "Mirador de La Centinela": "El Cabildo acepto en febrero de 2026 la propuesta de adjudicacion de su rehabilitacion (Diario de Avisos). Esperar a que termine la obra. https://diariodeavisos.elespanol.com/2026/02/cabildo-tenerife-festivo-2027-obras-mirador-centinela/",
+  "Sendero de Los Órganos": "La ruta oficial de esa zona, PR-TF 35, tiene un tramo cerrado por el incendio de 2023 y la ficha la da por cerrada tras la borrasca Emilia, sin fecha de reapertura (Tenerife ON). https://www.tenerifeon.es/en/routes/hiking/pr-tf-35-la-caldera-mamio-la-caldera"
+ }
+}
