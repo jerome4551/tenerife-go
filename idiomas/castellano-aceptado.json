@@ -54,13 +54,20 @@
    "bg": ["portal@es:portal B, local C", "local@es:portal B, local C"]
   },
   "palabras de ese idioma que se escriben igual que el castellano": {
-   "en": ["guanches", "buggies", "primates", "iguanas", "lianas", "barracudas", "hubbas", "cookies", "orcas"],
-   "fr": ["guanches", "pesetas", "visibles", "tigres", "rapaces", "tropicales", "subtropicales", "verticales", "locales",
+   "en": ["guanches", "buggies", "primates", "iguanas", "lianas", "barracudas", "hubbas", "cookies", "orcas",
+          "eclipses", "magnitudes", "variables"],
+   "fr": ["guanches", "pesetas", "tigres", "rapaces", "tropicales", "subtropicales", "verticales", "locales",
           "variables", "permanentes", "barracudas", "ocres", "coloniales", "patronales", "tomates", "originales", "navales",
-          "libres", "principales", "parapentes", "rurales", "patios", "potables", "primates", "hubbas", "cookies"],
+          "libres", "principales", "parapentes", "rurales", "patios", "potables", "primates", "hubbas", "cookies",
+          "brillantes", "magnitudes"],
    "de": ["cookies", "orcas", "hubbas"],
    "it": ["pesetas", "conquistadores"],
    "nl": ["guanches", "cookies", "vóór"]
+  },
+  "cielo de Tenerife, 17 de octubre de 2026 · nombres propios en alfabeto latino que no se traducen: la aplicacion «Spot the Station» de la NASA y la libreria «d3-celestial» de los creditos": {
+   "zh": ["the@es:Spot the Station", "celestial@es:d3-celestial"],
+   "zht": ["the@es:Spot the Station", "celestial@es:d3-celestial"],
+   "bg": ["the@es:Spot the Station", "celestial@es:d3-celestial"]
   },
   "finca: el aleman y el neerlandes la usan para la casa de campo española (Duden, Van Dale)": {
    "de": ["finca"],

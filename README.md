@@ -12,13 +12,15 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
 | Fichero | Qué es |
 |---|---|
-| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 17 de octubre de 2026: 34.188 líneas, 2,3 MB (715 kB con gzip). |
+| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 17 de octubre de 2026, ya con el panel del cielo: 34.500 líneas, 2,4 MB (723 kB con gzip). |
 | `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
+| `modulos/cielo.js` | El panel 🔭 «Cielo de Tenerife»: su código y sus textos en los diez idiomas. No se carga al arrancar: lo pide `index.html` la primera vez que alguien abre el panel. |
+| `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
 | `sw.js` | Service worker. Caché offline y notificaciones push. |
 | `manifest.webmanifest` | Manifiesto PWA: iconos, color de tema, `display: standalone`. |
 | `enviar-notificacion.js` | Script de Node que envía la notificación diaria. Corre en GitHub Actions, nunca en el navegador. |
 | `frases.json` | Las 365 frases de la notificación diaria, una por día del año. |
-| `vendor/` | Leaflet 1.9.4 y Leaflet.markercluster 1.5.3, alojados aquí en vez de en un CDN; las dos librerías del mapa sin conexión (`pmtiles.js` y `protomaps-leaflet.js`) y las tipografías. |
+| `vendor/` | Leaflet 1.9.4 y Leaflet.markercluster 1.5.3, alojados aquí en vez de en un CDN; las dos librerías del mapa sin conexión (`pmtiles.js` y `protomaps-leaflet.js`), las tipografías y Astronomy Engine (MIT), el motor de cálculo del panel del cielo. |
 | `supabase/*.sql` | Las tablas y sus políticas de seguridad, para poder recrear el proyecto. |
 | `.github/workflows/` | El cron de la notificación diaria. |
 | `tools/` | Los controles y las herramientas; `bash tools/auditar.sh` los pasa todos. Entre ellos, `verificar_red.js` (la red de guaguas), `extract_js.py`, `gtfs_red.py` y `auditar_readme.js`, que coteja las cifras de este fichero. |
@@ -26,9 +28,12 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
 Es un monolito a propósito, no un proyecto a medio modularizar. No hay
 build, ni dependencias que instalar, ni paso de compilación: se sirve
-`index.html` y funciona. La única pieza aparte es la red de guaguas, que son
+`index.html` y funciona. Las piezas aparte son dos. La red de guaguas, que son
 datos y no código: 1 MB que solo se usa con las guaguas y que dentro de la
-página había que leer y compilar en cada apertura.
+página había que leer y compilar en cada apertura. Y el panel del cielo
+(`modulos/cielo.js`, con su motor y su catálogo), que se pide solo cuando
+alguien lo abre: dentro de `index.html` habría sumado unos 100 kB comprimidos
+a la primera descarga de todo el mundo.
 
 ### Probarlo en local
 
@@ -156,6 +161,46 @@ pinta. Hoy no hay ningún número compartido por dos líneas.
 Las líneas se agrupan en el panel por `tipo`: `tranvia`, `norte`, `sur`,
 `aeropuerto`, `teide`, `municipal`, `nocturna` y `lanzadera`.
 
+### El cielo de Tenerife
+
+El panel 🔭 tiene cinco pestañas: **esta noche** (Sol, Luna, planetas, Vía
+Láctea y lo mejor para ver a simple vista, con prismáticos y con telescopio),
+el **calendario** (lluvias de estrellas, eclipses, oposiciones, conjunciones,
+equinoccios), el **catálogo** por instrumento, la **carta del cielo** y
+**dónde ir**. Tiene luz roja para la noche.
+
+**Todo lo que cambia se calcula en el móvil**, en hora de Canarias y para el
+Observatorio del Teide (la ficha `observatorio`, a 2.390 m): ninguna fecha
+está escrita en el fuente, así que el calendario de 2031 sale igual de bien
+que el de este año. Lo calcula Astronomy Engine (`vendor/`); las lluvias,
+desde la longitud solar de su máximo según la IMO. Las nubes de esta noche
+vienen de Open-Meteo, como el resto del tiempo, y si no hay dato la tarjeta
+no sale. Cometas y satélites no se predicen: cambian de un día para otro, y
+el panel lleva a la aplicación de la NASA para la Estación Espacial.
+
+**Lo fijo vive en `datos/cielo.json`**, que se rehace desde sus fuentes con
+commit fijado (HYG, OpenNGC, d3-celestial, Stellarium, el Bright Star
+Catalogue de Yale):
+
+```
+bash tools/cielo_fuentes.sh /tmp/fuentes-cielo
+node tools/cielo_construir.js /tmp/fuentes-cielo
+```
+
+El nivel de cada objeto —simple vista, prismáticos o telescopio— **no se
+escribe a mano**: sale de su magnitud y de la altura máxima a la que llega
+desde Tenerife.
+
+**Los textos van en `modulos/cielo.js`** (`CIELO_UI` y las tablas `CIELO_*`),
+con la misma forma que `UI_TX`; solo las siete filas que hacen falta antes de
+cargarlo (el botón, el título, «cargando») están en `index.html`. Lo que dicen
+de leyes, certificaciones y sitios lleva encima su fuente.
+`tools/auditar_cielo.js` comprueba los textos contra el código y el catálogo,
+abre las cinco pestañas en los diez idiomas, coteja los cálculos con el IMCCE,
+la IMO y otros, y abre el panel con el servidor apagado. Como el módulo no
+tiene etiqueta, se declara con un comentario `CARGA-PEREZOSA:` para que
+`tools/fuente.js` lo pegue al fuente y las herramientas de idiomas lo vean.
+
 ---
 
 ## Servicios externos
@@ -163,7 +208,7 @@ Las líneas se agrupan en el panel por `tipo`: `tranvia`, `norte`, `sur`,
 | Servicio | Para qué | Si falla |
 |---|---|---|
 | OpenStreetMap · ArcGIS | Teselas del mapa | El mapa se queda gris |
-| Open-Meteo | Clima y microclimas | No se muestra el tiempo |
+| Open-Meteo | Clima y microclimas, y las nubes de esta noche en el panel del cielo | No se muestra el tiempo; en el cielo, sin la tarjeta de nubes |
 | Marine Open-Meteo | Estado del mar en 7 costas | El panel 🌊 avisa de que no hay datos |
 | Nominatim | Búsqueda de direcciones | La búsqueda por texto no responde |
 | OSRM | Rutas A→B | No se calculan rutas |

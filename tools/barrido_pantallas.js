@@ -16,7 +16,7 @@
  *   · la barra del filtro decia «Mostrando» en italiano.
  *
  * COMO: abre la app en cada idioma, recorre 70 y pico paneles (categorias,
- * guaguas, rutas, mar, microclimas, fiestas, tienda, asistente, cuenta, el
+ * guaguas, rutas, mar, microclimas, fiestas, el cielo, asistente, cuenta, el
  * tour entero, «la gasolinera mas barata cerca de mi»...) y una ficha de cada
  * categoria, y apunta todo texto visible y todo title/aria-label/placeholder.
  * Quita los nombres propios (los de places[], sus direcciones, las lineas y
@@ -109,6 +109,13 @@ window.__estados = [
   ['microclimas', async () => { document.getElementById('mc-btn').click(); await espera(1500); }],
   ['avisos AEMET', async () => { await fetchWxAlerts(); toggleWxPanel(); }],
   ['fiestas', async () => { document.getElementById('fi-btn').click(); await espera(800); }],
+  /* El cielo de Tenerife (17 de octubre de 2026): sus cinco pestanas, con
+     el detalle de cada objeto abierto. El panel no esta hasta que se abre
+     (modulos/cielo.js): TG_CIELO.ver lo carga y espera. La noche, fija: la de
+     las Geminidas de 2026. */
+  ...['noche', 'calendario', 'catalogo', 'mapa', 'donde'].map(t => ['cielo:' + t, async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.ver(t, '2026-12-13'); await espera(t === 'mapa' ? 600 : 200);
+      document.querySelectorAll('#cielo-panel .cielo-item').forEach(i => i.classList.add('abierto')); }]),
   /* 'tienda' salio el 16 de octubre de 2026: la tienda no se ve
      (TIENDA_ACTIVA, LANZAMIENTO-PLAY.md 1.1). Que no se abra lo mira
      probar_play.js. */
@@ -137,7 +144,8 @@ window.__cierra = async () => {
   try { map.closePopup(); } catch (e) {}
   document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
   document.body.click();
-  for (const id of ['mar-panel','mc-panel','fi-panel','wx-panel']) { const e = document.getElementById(id); if (e) e.style.display = 'none'; }
+  try { window.TG_CIELO && TG_CIELO.cerrar(); } catch (e) {}
+  for (const id of ['mar-panel','mc-panel','fi-panel','wx-panel','cielo-panel']) { const e = document.getElementById(id); if (e) e.style.display = 'none'; }
   for (const s of ['#mar-close','#mc-close','#fi-close','.mar-close','.mc-close','.fi-close']) { const e = document.querySelector(s); if (e && e.offsetParent) try { e.click(); } catch (x) {} }
   try { clearAllFilters(); } catch (e) {}
   // lo que dejan los estados de rutas: la ruta, las paradas del dia, el itinerario

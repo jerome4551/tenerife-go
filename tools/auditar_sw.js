@@ -39,7 +39,10 @@ class CachesFalso {
   }
 }
 
-function cargarSW(fetchFalso) {
+/* `Peticion`: el Request con el que corre sw.js. El de Node no acepta rutas
+   relativas ('./datos/cielo.json'), y la instalacion pide el precache asi:
+   para probarla hace falta uno que las resuelva contra el sitio (9c). */
+function cargarSW(fetchFalso, Peticion = Request) {
   const cachesFalso = new CachesFalso();
   const manejadores = {};
   const self_ = {
@@ -49,7 +52,7 @@ function cargarSW(fetchFalso) {
   };
   const src = fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8');
   new Function('self', 'caches', 'fetch', 'Request', 'Response', 'URL', src)(
-    self_, cachesFalso, fetchFalso, Request, Response, URL);
+    self_, cachesFalso, fetchFalso, Peticion, Response, URL);
   return { manejadores, cachesFalso, self_ };
 }
 
@@ -237,6 +240,50 @@ function opaca() {
       const r3 = await pedir(sw, U);
       const t3 = r3 && await r3.text();
       ok(t3 === 'texto-2', pag + ': sin red, sale la ultima guardada', t3);
+    }
+  }
+
+  /* ── 9c. el cielo de Tenerife, en el Teide y sin cobertura ──
+
+     El panel (modulos/cielo.js), su motor de calculo y su catalogo no se
+     piden al arrancar la app: los pide el panel la primera vez que se abre
+     (17 de octubre de 2026). Donde se usan es en las Cañadas y en Izaña, que
+     es justo donde no hay cobertura, asi que:
+       · los tres tienen que entrar en el precache al INSTALAR, sin que nadie
+         haya abierto el panel antes;
+       · sin red, los tres salen del cache;
+       · el modulo y el catalogo, red primero (cambian con la app); el motor,
+         de vendor/, como las otras librerias. */
+  {
+    const src = fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8');
+    const core = (src.match(/const CORE = \[([\s\S]*?)\];/) || [, ''])[1];
+    const CIELO = ['modulos/cielo.js', 'vendor/astronomy.browser.min.js', 'datos/cielo.json'];
+    for (const f of CIELO) ok(core.includes("'./" + f + "'"), f + ' esta en el precache (CORE)');
+    const SITIO = 'https://jerome4551.github.io/tenerife-go/';
+    class Peticion extends Request {
+      constructor(u, o) { super(typeof u === 'string' ? new URL(u, SITIO).href : u, o); }
+    }
+    const basica = txt => { const r = new Response(txt, { status: 200 }); Object.defineProperty(r, 'type', { value: 'basic' }); return r; };
+    const espera = () => new Promise(r => setTimeout(r, 20));
+    let version = 'red-1', hayRed = true;
+    const sw = cargarSW(async () => { if (!hayRed) throw new Error('sin red'); return basica(version); }, Peticion);
+    const esperas = [];
+    for (const f of sw.manejadores.install) f({ waitUntil: p => esperas.push(p) });
+    await Promise.all(esperas);
+    const app = await sw.cachesFalso.open((src.match(/const CACHE = '([^']+)'/) || [])[1]);
+    for (const f of CIELO) ok(!!(await app.match(new Request(SITIO + f))), 'al instalar la app, ' + f + ' entra en el cache sin abrir el panel');
+    hayRed = false;
+    for (const f of CIELO) {
+      const r = await pedir(sw, SITIO + f);
+      ok(r && r.status === 200, 'sin red, ' + f + ' sale del cache', r && r.status);
+    }
+    hayRed = true;
+    for (const f of ['modulos/cielo.js', 'datos/cielo.json']) {
+      version = 'red-1'; await pedir(sw, SITIO + f); await espera();
+      version = 'red-2';
+      const r2 = await pedir(sw, SITIO + f); await espera();
+      const t2 = r2 && await r2.text();
+      ok(t2 === 'red-2', f + ': red primero, una version nueva llega aunque ya haya otra guardada', t2);
     }
   }
 

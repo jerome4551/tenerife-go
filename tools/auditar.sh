@@ -46,7 +46,9 @@ mal=0; for f in chk/*.js; do node --check "$f" >/dev/null 2>&1 || { mal=$((mal+1
 echo "  scripts en linea: $(ls chk/*.js 2>/dev/null | wc -l), con fallo: $mal"
 # datos/titsa.js: la red de guaguas, fuera de index.html desde el 9 de octubre
 # de 2026. extract_js.py solo saca los bloques en linea, asi que va aqui.
-for f in sw.js enviar-notificacion.js datos/titsa.js; do
+# Y modulos/cielo.js, el panel del cielo, que se carga al abrirlo (17 de
+# octubre de 2026).
+for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js; do
   if node --check "$f"; then echo "  $f ok"; else mal=$((mal+1)); fi
 done
 [ "$mal" != 0 ] && falla sintaxis
@@ -195,6 +197,11 @@ echo; echo "════════ el tour de bienvenida, entero, en los diez 
 # Desde el 11 de octubre de 2026: el tour lo recorre de verdad, paso a paso.
 # Sus textos estuvieron un mes en listas que ningun control leia.
 control auditar_tour.js node tools/auditar_tour.js "$PUERTO"
+echo; echo "════════ el cielo de Tenerife: textos, catalogo, calculos contra el IMCCE y la IMO, y sin conexion ════════"
+# Desde el 17 de octubre de 2026. El panel se carga al abrirlo
+# (modulos/cielo.js) y todo lo que ensena se calcula en el movil: ningun otro
+# control lo abre, y una hora mal calculada no da error, da una hora.
+control auditar_cielo.js node tools/auditar_cielo.js "$PUERTO"
 echo
 # Los rotos van PRIMERO y con su propio nombre: son los que no han mirado nada.
 [ "$rotos" = 0 ] || echo "*** $rotos control(es) QUE NO SE PUDIERON EJECUTAR (pip install -r tools/requisitos.txt) ***"

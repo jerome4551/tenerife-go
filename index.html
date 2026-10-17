@@ -9728,6 +9728,28 @@ Object.assign(UI_TX, {
   "shopCatOtro": {"es":"📋 Otro","en":"📋 Other","fr":"📋 Autre","de":"📋 Sonstiges","it":"📋 Altro","nl":"📋 Overig","zh":"📋 其他","zht":"📋 其他","bg":"📋 Друго", pl: "📋 Inne"}
 });
 
+
+
+
+
+
+
+
+/* ── CIELO DE TENERIFE: textos ── */
+/* PANEL «CIELO DE TENERIFE» (17 de octubre de 2026): las filas que necesita
+   el boton antes de cargar el panel. Las otras 250 van con el panel, en
+   modulos/cielo.js (CIELO_UI), y tools/auditar_cielo.js las mira todas. */
+Object.assign(UI_TX, {
+  "cieloBoton": {"es": "Cielo de Tenerife: estrellas, planetas y eclipses", "en": "Tenerife night sky: stars, planets and eclipses", "fr": "Ciel de Tenerife : étoiles, planètes et éclipses", "de": "Himmel über Teneriffa: Sterne, Planeten und Finsternisse", "it": "Cielo di Tenerife: stelle, pianeti ed eclissi", "nl": "Sterrenhemel van Tenerife: sterren, planeten en eclipsen", "zh": "特内里费星空：恒星、行星与日月食", "zht": "特內里費星空：恆星、行星與日月食", "bg": "Небето над Тенерифе: звезди, планети и затъмнения", "pl": "Niebo nad Teneryfą: gwiazdy, planety i zaćmienia"},
+  "cieloTitulo": {"es": "Cielo de Tenerife", "en": "Tenerife night sky", "fr": "Ciel de Tenerife", "de": "Himmel über Teneriffa", "it": "Cielo di Tenerife", "nl": "Sterrenhemel van Tenerife", "zh": "特内里费星空", "zht": "特內里費星空", "bg": "Небето над Тенерифе", "pl": "Niebo nad Teneryfą"},
+  "cieloRojo": {"es": "Luz roja", "en": "Red light", "fr": "Lumière rouge", "de": "Rotlicht", "it": "Luce rossa", "nl": "Rood licht", "zh": "红光模式", "zht": "紅光模式", "bg": "Червена светлина", "pl": "Czerwone światło"},
+  "cieloRojoAyuda": {"es": "Pantalla en rojo: no deslumbra y la vista sigue adaptada a la oscuridad", "en": "Red screen: no glare, and your eyes stay adapted to the dark", "fr": "Écran rouge : il n’éblouit pas et vos yeux restent habitués à l’obscurité", "de": "Roter Bildschirm: blendet nicht, und die Augen bleiben an die Dunkelheit gewöhnt", "it": "Schermo rosso: non abbaglia e gli occhi restano abituati al buio", "nl": "Rood scherm: verblindt niet en je ogen blijven aan het donker gewend", "zh": "红色屏幕：不刺眼，眼睛保持暗适应", "zht": "紅色螢幕：不刺眼，眼睛保持暗適應", "bg": "Червен екран: не заслепява и очите остават свикнали с тъмнината", "pl": "Czerwony ekran: nie oślepia, a oczy pozostają przyzwyczajone do ciemności"},
+  "cieloCargando": {"es": "Cargando el cielo…", "en": "Loading the sky…", "fr": "Chargement du ciel…", "de": "Himmel wird geladen…", "it": "Caricamento del cielo…", "nl": "Hemel laden…", "zh": "正在加载星空…", "zht": "正在載入星空…", "bg": "Зареждане на небето…", "pl": "Wczytywanie nieba…"},
+  "cieloErrorCarga": {"es": "No se pudo cargar el cielo. Comprueba la conexión e inténtalo de nuevo.", "en": "Couldn’t load the sky. Check your connection and try again.", "fr": "Impossible de charger le ciel. Vérifiez la connexion et réessayez.", "de": "Der Himmel konnte nicht geladen werden. Prüfe die Verbindung und versuche es erneut.", "it": "Impossibile caricare il cielo. Controlla la connessione e riprova.", "nl": "De hemel kon niet worden geladen. Controleer de verbinding en probeer het opnieuw.", "zh": "无法加载星空。请检查网络连接后重试。", "zht": "無法載入星空。請檢查網路連線後重試。", "bg": "Небето не можа да се зареди. Проверете връзката и опитайте отново.", "pl": "Nie udało się wczytać nieba. Sprawdź połączenie i spróbuj ponownie."},
+  "cieloReintentar": {"es": "Reintentar", "en": "Try again", "fr": "Réessayer", "de": "Erneut versuchen", "it": "Riprova", "nl": "Opnieuw proberen", "zh": "重试", "zht": "重試", "bg": "Опитай отново", "pl": "Spróbuj ponownie"}
+});
+/* ── fin CIELO DE TENERIFE: textos ── */
+
 /* CUANTAS FORMAS DE PLURAL TIENE CADA IDIOMA.
    La regla era `n === 1 ? singular : plural` para todos, y eso dejaba dos
    fallos a la vista:
@@ -23853,6 +23875,8 @@ window.addEventListener('hashchange', () => {
     "tourMarP": {"es": "El estado del mar en las {C} costas de la isla. Míralo antes de bañarte o de ir a una piscina natural.", "en": "Sea conditions on the island's {C} coasts. Check them before swimming or visiting a natural pool.", "fr": "L'état de la mer sur les {C} côtes de l'île. Consultez-le avant de vous baigner ou d'aller à une piscine naturelle.", "de": "Der Seegang an den {C} Küsten der Insel. Schau nach, bevor du baden gehst oder ein Naturschwimmbecken besuchst.", "it": "Lo stato del mare sulle {C} coste dell'isola. Controllalo prima di fare il bagno o di andare in una piscina naturale.", "nl": "De zeegang aan de {C} kusten van het eiland. Bekijk hem voordat je gaat zwemmen of naar een natuurlijk zwembad gaat.", "zh": "全岛{C}段海岸的海况。下海游泳或去天然泳池前先看一看。", "zht": "全島{C}段海岸的海況。下海游泳或去天然泳池前先看一看。", "bg": "Състоянието на морето по {C}-те брега на острова. Проверете го, преди да се къпете или да отидете до естествен басейн.", "pl": "Stan morza na {C} wybrzeżach wyspy. Sprawdź go przed kąpielą albo wyjściem na naturalny basen."},
     "tourFiestasT": {"es": "Fiestas y tradiciones", "en": "Fiestas and traditions", "fr": "Fêtes et traditions", "de": "Feste und Traditionen", "it": "Feste e tradizioni", "nl": "Feesten en tradities", "zh": "节庆与传统", "zht": "節慶與傳統", "bg": "Празници и традиции", "pl": "Święta i tradycje"},
     "tourFiestasP": {"es": "Romerías, carnavales y fiestas patronales, con sus fechas.", "en": "Pilgrimages, carnivals and patron saint festivals, with their dates.", "fr": "Pèlerinages, carnavals et fêtes patronales, avec leurs dates.", "de": "Wallfahrten, Karneval und Patronatsfeste, mit ihren Terminen.", "it": "Pellegrinaggi, carnevali e feste patronali, con le loro date.", "nl": "Bedevaarten, carnavals en patroonheiligenfeesten, met hun data.", "zh": "朝圣游行、狂欢节和主保圣人节，附有日期。", "zht": "朝聖遊行、狂歡節和主保聖人節，附有日期。", "bg": "Поклонения, карнавали и празници на светци покровители, с датите им.", "pl": "Pielgrzymki, karnawały i święta patronalne, z ich datami."},
+    "tourCieloT": {"es": "El cielo de Tenerife", "en": "Tenerife’s night sky", "fr": "Le ciel de Tenerife", "de": "Der Himmel über Teneriffa", "it": "Il cielo di Tenerife", "nl": "De sterrenhemel van Tenerife", "zh": "特内里费星空", "zht": "特內里費星空", "bg": "Небето над Тенерифе", "pl": "Niebo nad Teneryfą"},
+    "tourCieloP": {"es": "Qué se ve esta noche (Luna, planetas, Vía Láctea), las lluvias de estrellas y los eclipses que vienen, un catálogo según se vea a simple vista, con prismáticos o con telescopio, y la carta del cielo, con luz roja para la noche.", "en": "What’s up tonight (Moon, planets, Milky Way), upcoming meteor showers and eclipses, a catalog sorted by naked eye, binoculars or telescope, and a sky map, with red light for the night.", "fr": "Ce qu’on voit ce soir (Lune, planètes, Voie lactée), les étoiles filantes et les éclipses à venir, un catalogue classé œil nu, jumelles ou télescope, et la carte du ciel, avec une lumière rouge pour la nuit.", "de": "Was heute Nacht zu sehen ist (Mond, Planeten, Milchstraße), kommende Sternschnuppen und Finsternisse, ein Katalog nach bloßem Auge, Fernglas oder Teleskop und die Himmelskarte, mit Rotlicht für die Nacht.", "it": "Cosa si vede stanotte (Luna, pianeti, Via Lattea), le prossime stelle cadenti ed eclissi, un catalogo per occhio nudo, binocolo o telescopio e la mappa del cielo, con la luce rossa per la notte.", "nl": "Wat er vannacht te zien is (maan, planeten, Melkweg), komende meteorenzwermen en eclipsen, een catalogus voor het blote oog, de verrekijker of de telescoop en de hemelkaart, met rood licht voor de nacht.", "zh": "今晚能看到什么（月亮、行星、银河）、即将到来的流星雨和日月食、按肉眼、双筒望远镜或天文望远镜分类的星表，以及星图，还有夜间用的红光模式。", "zht": "今晚能看到什麼（月亮、行星、銀河）、即將到來的流星雨和日月食、按肉眼、雙筒望遠鏡或天文望遠鏡分類的星表，以及星圖，還有夜間用的紅光模式。", "bg": "Какво се вижда тази нощ (Луна, планети, Млечен път), предстоящите метеорни потоци и затъмнения, каталог по просто око, бинокъл или телескоп и карта на небето, с червена светлина за нощта.", "pl": "Co widać tej nocy (Księżyc, planety, Droga Mleczna), nadchodzące roje meteorów i zaćmienia, katalog według gołego oka, lornetki lub teleskopu oraz mapa nieba, z czerwonym światłem na noc."},
     "tourGuaguasT": {"es": "Guaguas", "en": "Buses", "fr": "Bus", "de": "Busse", "it": "Autobus", "nl": "Bussen", "zh": "公交", "zht": "公車", "bg": "Автобуси", "pl": "Autobusy"},
     "tourGuaguasP": {"es": "Las paradas cercanas y las líneas de TITSA, para moverte sin coche.", "en": "Nearby stops and TITSA lines, so you can get around without a car.", "fr": "Les arrêts proches et les lignes TITSA, pour vous déplacer sans voiture.", "de": "Haltestellen in der Nähe und TITSA-Linien, damit du ohne Auto unterwegs bist.", "it": "Le fermate vicine e le linee TITSA, per muoverti senz'auto.", "nl": "Haltes in de buurt en TITSA-lijnen, om je zonder auto te verplaatsen.", "zh": "附近的站点和TITSA线路，没有车也能出行。", "zht": "附近的站牌和TITSA路線，沒有車也能出門。", "bg": "Близките спирки и линиите на TITSA, за да се придвижвате без кола.", "pl": "Pobliskie przystanki i linie TITSA, żeby poruszać się bez samochodu."},
     "tourIdiomaT": {"es": "En tu idioma", "en": "In your language", "fr": "Dans votre langue", "de": "Deine Sprache", "it": "Nella tua lingua", "nl": "In jouw taal", "zh": "你的语言", "zht": "你的語言", "bg": "На вашия език", "pl": "W twoim języku"},
@@ -23883,6 +23907,7 @@ window.addEventListener('hashchange', () => {
     { sel: '#mc-btn',            r: 18, ico: '🌦️', k: 'tourMicro' },
     { sel: '#mar-btn',           r: 18, ico: '🌊', k: 'tourMar' },
     { sel: '#fi-btn',            r: 18, ico: '🎉', k: 'tourFiestas' },
+    { sel: '#cielo-btn',         r: 18, ico: '🔭', k: 'tourCielo', nuevo: true },
     { sel: '#bus-quick-btn',     r: 18, ico: '🚌', k: 'tourGuaguas' },
     { sel: '#lang-btn',          r: 18, ico: '🌐', k: 'tourIdioma' },
     { sel: '.v19-bottom-nav',    r: 20, pad: 5, ico: '🧳', k: 'tourBarra' },
@@ -34180,6 +34205,293 @@ function goToPlace(id){
 })();
 setTimeout(renderBanoHoy, 1200);
 </script>
+
+
+
+
+
+
+
+
+<!-- ══ CIELO DE TENERIFE ══ -->
+<!-- ════════════════════════════════════════════════════════════════
+     CIELO DE TENERIFE — lo que se ve esta noche, el calendario del cielo,
+     un catalogo por instrumento, la carta del cielo y donde mirar.
+     · Todo lo que cambia se CALCULA en el movil, en hora de Canarias y para
+       el Observatorio del Teide (Izaña): Sol, Luna, planetas, eclipses,
+       lluvias de estrellas, oposiciones... con Astronomy Engine (MIT,
+       vendor/astronomy.browser.min.js). Ninguna fecha esta escrita a mano.
+     · Lo fijo -estrellas, objetos, constelaciones, dobles, variables,
+       lluvias- sale de datos/cielo.json, que se rehace con
+       tools/cielo_construir.js desde fuentes con commit fijado
+       (tools/cielo_fuentes.sh). Los textos van con el panel, en
+       modulos/cielo.js (CIELO_UI y las tablas CIELO_*), menos las siete
+       filas del boton, que estan en UI_TX; tools/auditar_cielo.js los coteja
+       con el codigo y con el catalogo.
+     · Aqui solo va la cascara: el boton, el marco del panel y su cargador.
+       El panel (modulos/cielo.js), el motor y el catalogo se piden la
+       primera vez que se abre (no al arrancar la app) y el service worker
+       los precachea: en el Teide, sin cobertura, tambien abre.
+     · Las nubes: Open-Meteo, como el resto del tiempo; si no hay dato, la
+       tarjeta no sale. Render 100% createElement/textContent.
+════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── CIELO DE TENERIFE ─────────────────────────────────────────── */
+#cielo-btn {
+  background: var(--panel2); border: 1px solid var(--border);
+  color: var(--gold); font-size: 0.85rem; height: 32px; width: 32px;
+  border-radius: 50%; cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; padding: 0;
+}
+#cielo-btn:active { transform: scale(0.93); }
+@media (max-width: 480px) { #cielo-btn { width: 28px; height: 28px; font-size: 0.78rem; } }
+/* A 320 px la barra no daba para un boton mas: el de los dados se montaba
+   encima del logo. Por debajo de 340 px se aprietan los huecos de la barra
+   y este boton (26 px, por encima de los 24 del minimo tocable). */
+@media (max-width: 340px) {
+  .topbar-right { gap: 0.1rem; }
+  #cielo-btn { width: 26px; height: 26px; font-size: 0.72rem; }
+}
+@media (max-width: 360px) {
+  #cielo-panel { left: 6px; right: 6px; }
+  .cielo-pestanas { padding: 0 6px 8px; gap: 3px; }
+  .cielo-pestanas button { font-size: 0.56rem; }
+}
+#cielo-panel {
+  position: fixed; top: 66px; left: 12px; right: 12px; bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  z-index: 8797; width: auto; max-width: 560px; margin: 0 auto;
+  background: rgba(7,9,20,0.97); backdrop-filter: blur(16px);
+  border-radius: 16px; border: 1px solid rgba(212,175,55,0.22);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  display: none; flex-direction: column; overflow: hidden;
+  animation: wxpanelin .25s ease both; color: rgba(255,255,255,0.92);
+}
+.cielo-cab { display: flex; align-items: center; gap: 8px; padding: 12px 12px 8px 15px; flex-shrink: 0; }
+.cielo-titulo { font-size: 0.82rem; font-weight: 700; color: #F5C76B; flex: 1; min-width: 0; }
+.cielo-cab button {
+  background: none; border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.7);
+  font-size: 0.72rem; cursor: pointer; padding: 4px 8px; border-radius: 999px; line-height: 1.2;
+}
+.cielo-cab .cielo-cerrar { border: none; font-size: 1.1rem; color: rgba(255,255,255,0.4); padding: 0 4px; }
+.cielo-cab .cielo-rojo-btn[aria-pressed="true"] { background: rgba(190,30,30,0.35); border-color: rgba(255,80,80,0.55); color: #ffb3b3; }
+.cielo-pestanas {
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; padding: 0 8px 8px; flex-shrink: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.cielo-pestanas button {
+  min-width: 0; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.7); border-radius: 10px; padding: 5px 2px 6px; font-size: 0.6rem; line-height: 1.15;
+  font-weight: 600; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  overflow-wrap: break-word; text-align: center;
+}
+.cielo-pestanas .cielo-pes-ico { font-size: 0.95rem; line-height: 1.1; }
+.cielo-pestanas button[aria-selected="true"] { background: rgba(212,175,55,0.16); border-color: rgba(212,175,55,0.45); color: #F5C76B; }
+.cielo-cuerpo { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 10px 10px 16px; }
+.cielo-estado { padding: 26px 12px; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+.cielo-tarjeta {
+  background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; padding: 11px 12px; margin-bottom: 9px;
+}
+.cielo-tarjeta h3 { margin: 0 0 7px; font-size: 0.74rem; font-weight: 700; color: #F5C76B; letter-spacing: 0.01em; }
+.cielo-nota { font-size: 0.62rem; color: rgba(255,255,255,0.45); line-height: 1.45; margin-top: 6px; }
+.cielo-fila { display: flex; justify-content: space-between; gap: 10px; font-size: 0.7rem; padding: 3px 0; line-height: 1.35; }
+.cielo-fila > span:first-child { color: rgba(255,255,255,0.6); }
+.cielo-fila > span:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.cielo-fecha { display: flex; align-items: center; gap: 6px; margin-bottom: 9px; }
+.cielo-fecha button {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #F5C76B;
+  border-radius: 8px; padding: 5px 10px; font-size: 0.8rem; cursor: pointer; line-height: 1;
+}
+.cielo-fecha .cielo-fecha-txt { flex: 1; text-align: center; font-size: 0.74rem; font-weight: 700; }
+.cielo-fecha .cielo-hoy { font-size: 0.66rem; }
+.cielo-linea { position: relative; height: 26px; border-radius: 6px; overflow: hidden; margin: 6px 0 2px; background: #0b1230; }
+.cielo-linea div { position: absolute; top: 0; bottom: 0; }
+.cielo-linea .cl-crep { background: linear-gradient(90deg, rgba(60,80,160,0.55), rgba(20,30,80,0.35)); }
+.cielo-linea .cl-oscuro { background: #02040c; }
+.cielo-linea .cl-luna { background: rgba(230,225,190,0.22); border-left: 1px solid rgba(255,250,220,0.4); border-right: 1px solid rgba(255,250,220,0.4); }
+.cielo-ejes { position: relative; height: 13px; font-size: 0.55rem; color: rgba(255,255,255,0.45); font-variant-numeric: tabular-nums; }
+.cielo-ejes span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+.cielo-leyenda { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 0.58rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+.cielo-leyenda i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+.cielo-luna { display: flex; gap: 12px; align-items: center; }
+.cielo-luna-dibujo { width: 46px; height: 46px; flex-shrink: 0; }
+.cielo-luna-datos { flex: 1; min-width: 0; }
+.cielo-item {
+  display: flex; gap: 10px; padding: 9px 4px; border-top: 1px solid rgba(255,255,255,0.06);
+  align-items: flex-start; cursor: pointer;
+}
+.cielo-item:first-of-type { border-top: none; }
+.cielo-item-ico { font-size: 1.15rem; width: 26px; text-align: center; flex-shrink: 0; line-height: 1.25; }
+.cielo-item-txt { flex: 1; min-width: 0; }
+.cielo-item-nom { font-size: 0.74rem; font-weight: 700; line-height: 1.3; }
+.cielo-item-des { font-size: 0.6rem; color: #c9a84c; font-weight: 600; margin-left: 5px; }
+.cielo-item-sub { font-size: 0.64rem; color: rgba(255,255,255,0.58); margin-top: 2px; line-height: 1.4; }
+.cielo-item-mas { font-size: 0.64rem; color: rgba(255,255,255,0.72); margin-top: 6px; line-height: 1.5; display: none; }
+.cielo-item.abierto .cielo-item-mas { display: block; }
+.cielo-item-der { flex-shrink: 0; text-align: right; font-size: 0.62rem; color: rgba(255,255,255,0.6); }
+.cielo-niv { display: inline-block; font-size: 0.56rem; font-weight: 800; border-radius: 6px; padding: 2px 6px; white-space: nowrap; letter-spacing: 0.02em; }
+.cielo-niv1 { background: rgba(76,175,80,0.18); color: #9be29e; border: 1px solid rgba(76,175,80,0.4); }
+.cielo-niv2 { background: rgba(33,150,243,0.16); color: #9ccdfa; border: 1px solid rgba(33,150,243,0.4); }
+.cielo-niv3 { background: rgba(156,39,176,0.18); color: #e0a8ef; border: 1px solid rgba(156,39,176,0.42); }
+.cielo-meses { display: flex; gap: 2px; margin-top: 6px; }
+.cielo-meses span { flex: 1; text-align: center; font-size: 0.5rem; padding: 2px 0; border-radius: 3px; background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.32); }
+.cielo-meses span.si { background: rgba(212,175,55,0.22); color: #F5C76B; font-weight: 700; }
+.cielo-meses span.ahora { outline: 1px solid rgba(255,255,255,0.45); }
+.cielo-chips { display: flex; gap: 5px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; }
+.cielo-chips::-webkit-scrollbar { display: none; }
+.cielo-chips button {
+  flex-shrink: 0; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+  color: rgba(255,255,255,0.72); border-radius: 999px; padding: 5px 10px; font-size: 0.64rem; cursor: pointer; white-space: nowrap;
+}
+.cielo-chips button[aria-pressed="true"] { background: rgba(212,175,55,0.16); border-color: rgba(212,175,55,0.45); color: #F5C76B; }
+.cielo-busca {
+  width: 100%; box-sizing: border-box; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  color: #fff; border-radius: 10px; padding: 8px 10px; font-size: 0.74rem; margin-bottom: 7px;
+}
+.cielo-cuenta { font-size: 0.6rem; color: rgba(255,255,255,0.45); margin: 2px 2px 6px; }
+.cielo-mes-cab { font-size: 0.66rem; font-weight: 800; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; margin: 12px 4px 4px; }
+.cielo-mapa-caja { position: relative; width: 100%; max-width: 520px; margin: 0 auto; touch-action: none; }
+.cielo-mapa-caja canvas { width: 100%; display: block; border-radius: 12px; background: #02040c; }
+.cielo-mapa-ctl { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; margin: 8px 0 4px; }
+.cielo-mapa-ctl button {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);
+  border-radius: 8px; padding: 5px 9px; font-size: 0.66rem; cursor: pointer; min-width: 30px;
+}
+.cielo-mapa-ctl button[aria-pressed="true"] { background: rgba(212,175,55,0.16); border-color: rgba(212,175,55,0.45); color: #F5C76B; }
+.cielo-mapa-ctl input[type=range] { flex: 1; min-width: 120px; accent-color: #D4AF37; }
+.cielo-mapa-hora { font-size: 0.72rem; font-weight: 700; color: #F5C76B; font-variant-numeric: tabular-nums; min-width: 52px; text-align: center; }
+.cielo-sel { min-height: 34px; font-size: 0.68rem; color: rgba(255,255,255,0.75); padding: 6px 4px; line-height: 1.45; }
+.cielo-sel b { color: #F5C76B; }
+.cielo-boton {
+  display: inline-block; background: rgba(212,175,55,0.12); border: 1px solid rgba(212,175,55,0.35); color: #F5C76B;
+  border-radius: 9px; padding: 6px 10px; font-size: 0.66rem; font-weight: 700; cursor: pointer; margin: 6px 6px 0 0;
+}
+.cielo-enlaces { display: flex; flex-direction: column; gap: 6px; }
+.cielo-enlaces button {
+  text-align: left; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.85);
+  border-radius: 10px; padding: 8px 10px; font-size: 0.68rem; cursor: pointer; line-height: 1.35;
+}
+.cielo-enlaces button small { display: block; color: rgba(255,255,255,0.45); font-size: 0.58rem; margin-top: 2px; }
+.cielo-lista-p { margin: 4px 0 0; padding-left: 16px; font-size: 0.66rem; line-height: 1.55; color: rgba(255,255,255,0.78); }
+.cielo-p { font-size: 0.68rem; line-height: 1.55; color: rgba(255,255,255,0.8); margin: 0 0 6px; }
+.cielo-aviso { border-left: 3px solid #e57373; padding: 6px 9px; background: rgba(229,115,115,0.08); border-radius: 6px; font-size: 0.66rem; line-height: 1.5; margin: 6px 0; }
+.cielo-nubes { display: flex; gap: 2px; margin-top: 6px; }
+.cielo-nubes div { flex: 1; text-align: center; font-size: 0.5rem; color: rgba(255,255,255,0.5); }
+.cielo-nubes b { display: block; height: 22px; border-radius: 3px; margin-bottom: 2px; }
+/* El modo noche tiñe de rojo TODA la pantalla mientras el panel esta abierto:
+   multiplicar por rojo deja solo el canal rojo, asi que el blanco se vuelve
+   rojo y el negro sigue negro. La vista adaptada a la oscuridad no se pierde. */
+html.cielo-rojo body::after {
+  content: ''; position: fixed; inset: 0; z-index: 2147483000; pointer-events: none;
+  background: #ff1a1a; mix-blend-mode: multiply; opacity: 1;
+}
+html.cielo-rojo #cielo-panel { filter: brightness(0.82); }
+/* Y lo que queda alrededor del panel -el mapa, las barras- se apaga: una
+   franja de rojo vivo tambien deslumbra. Por debajo del panel, sin tapar el
+   dedo (pointer-events). */
+html.cielo-rojo body::before {
+  content: ''; position: fixed; inset: 0; z-index: 8796; pointer-events: none;
+  background: rgba(0,0,0,0.8);
+}
+</style>
+
+<button id="cielo-btn" type="button" data-tx-aria="cieloBoton" aria-label="Cielo de Tenerife: estrellas, planetas y eclipses" data-tx-title="cieloBoton" title="Cielo de Tenerife: estrellas, planetas y eclipses">🔭</button>
+
+<div id="cielo-panel" role="dialog" data-tx-aria="cieloTitulo" aria-label="Cielo de Tenerife">
+  <div class="cielo-cab">
+    <div class="cielo-titulo" id="cielo-titulo" data-tx="cieloTitulo">Cielo de Tenerife</div>
+    <button type="button" class="cielo-rojo-btn" id="cielo-rojo" hidden aria-pressed="false" data-tx="cieloRojo" data-tx-title="cieloRojoAyuda" title="Pantalla en rojo: no deslumbra y la vista sigue adaptada a la oscuridad">Luz roja</button>
+    <button type="button" class="cielo-cerrar" id="cielo-cerrar" data-tx-aria="ariaCerrar" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="cielo-pestanas" id="cielo-pestanas" role="tablist"></div>
+  <div class="cielo-cuerpo" id="cielo-cuerpo"></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  /* CARGA-PEREZOSA: modulos/cielo.js
+     El panel entero -su codigo, sus textos y sus tablas de nombres en los
+     diez idiomas- vive en modulos/cielo.js y se pide la primera vez que
+     alguien abre el panel. En index.html eran unos 100 kB comprimidos mas en
+     la primera descarga de todo el mundo, para algo que no se ve al
+     arrancar. El service worker lo precachea igual que el motor y el
+     catalogo, asi que sin cobertura tambien abre.
+     tools/fuente.js y tools/fuente.py leen esta linea y pegan el fichero al
+     final del fuente, como los <script src>: las herramientas que barren
+     textos, filas y codigo lo miran igual que si estuviera aqui. */
+  var MODULO = './modulos/cielo.js', carga = null;
+  function cargar() {
+    if (window.TG_CIELO) return Promise.resolve();
+    if (carga) return carga;
+    carga = new Promise(function (ok, mal) {
+      var s = document.createElement('script');
+      s.src = MODULO;
+      s.onload = function () { if (window.TG_CIELO) ok(); else mal(new Error('cielo')); };
+      s.onerror = function () { s.remove(); mal(new Error('cielo')); };
+      document.head.appendChild(s);
+    }).catch(function (e) { carga = null; throw e; });
+    return carga;
+  }
+  function panel() { return document.getElementById('cielo-panel'); }
+  function abierto() { var p = panel(); return !!p && p.style.display === 'flex'; }
+  function aviso(txt, reintentar) {
+    var c = document.getElementById('cielo-cuerpo');
+    if (!c) return;
+    c.textContent = '';
+    var d = document.createElement('div'); d.className = 'cielo-estado'; d.textContent = txt;
+    if (reintentar) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'cielo-boton';
+      b.textContent = tx('cieloReintentar');
+      b.addEventListener('click', abrir);
+      d.appendChild(document.createElement('br')); d.appendChild(b);
+    }
+    c.appendChild(d);
+  }
+  function abrir() {
+    if (window.TG_CIELO) { window.TG_CIELO.abrir(); return; }
+    var p = panel(); if (!p) return;
+    ['fi-panel', 'mc-panel', 'wx-panel', 'mar-panel'].forEach(function (id) { var x = document.getElementById(id); if (x) x.style.display = 'none'; });
+    p.style.display = 'flex';
+    aviso(tx('cieloCargando'));
+    cargar().then(function () { if (abierto()) window.TG_CIELO.abrir(); },
+                  function () { if (abierto()) aviso(tx('cieloErrorCarga'), true); });
+  }
+  function cerrar() {
+    if (window.TG_CIELO) window.TG_CIELO.cerrar();
+    else { var p = panel(); if (p) p.style.display = 'none'; }
+  }
+  function iniciar() {
+    var btn = document.getElementById('cielo-btn'), barra = document.querySelector('.topbar-right');
+    if (btn && barra) {
+      /* Al lado de las fiestas: el calendario de la isla y el del cielo */
+      var fi = document.getElementById('fi-btn');
+      if (fi && fi.parentNode === barra) barra.insertBefore(btn, fi.nextSibling);
+      else {
+        var bus = document.getElementById('bus-quick-btn');
+        if (bus && bus.parentNode === barra) barra.insertBefore(btn, bus); else barra.appendChild(btn);
+      }
+      btn.addEventListener('click', function (e) { e.stopPropagation(); if (abierto()) cerrar(); else abrir(); });
+      /* Otro boton de la barra abre su propio panel encima: el del cielo se
+         cierra para no quedarse debajo. Tocar fuera NO lo cierra, a
+         diferencia de las fiestas: se usa de noche, a oscuras y con el movil
+         en la mano, y un toque de mas no puede llevarse la carta del cielo. */
+      barra.addEventListener('click', function (e) {
+        var b = e.target && e.target.closest && e.target.closest('button');
+        if (b && b !== btn && abierto()) cerrar();
+      });
+    }
+    var x = document.getElementById('cielo-cerrar'); if (x) x.addEventListener('click', cerrar);
+    if (location.hash === '#cielo') setTimeout(abrir, 600);
+  }
+  /* Para las herramientas de tools/ */
+  window.TG_CIELO_CARGAR = cargar;
+  if (document.readyState !== 'loading') iniciar();
+  else document.addEventListener('DOMContentLoaded', iniciar);
+})();
+</script>
+<!-- ══ fin CIELO DE TENERIFE ══ -->
 
 <script>
 </script>

@@ -31,6 +31,8 @@ const FORMAS = [
    las quita al comparar, asi que «jezyk» o «securite plage» ahi son correctas
    (las escribe la gente sin acentos). Se miran solo los textos que se leen. */
 const ficheros = ['index.html', 'sw.js', 'datos/titsa.js']
+  /* y los modulos de carga perezosa (modulos/cielo.js): tools/fuente.js */
+  .concat(require('./fuente').perezosos().map(f => f.ruta))
   .concat(fs.readdirSync(path.join(RAIZ, 'idiomas')).filter(f => f.endsWith('.json')).map(f => 'idiomas/' + f))
   .concat(fs.readdirSync(path.join(RAIZ, 'idiomas', 'etiquetas')).filter(f => f.endsWith('.json')).map(f => 'idiomas/etiquetas/' + f));
 let fallos = 0, mirados = 0;
@@ -45,7 +47,7 @@ function mirar(nombre, txt) {
 }
 for (const f of ficheros) {
   let txt = fs.readFileSync(path.join(RAIZ, f), 'utf8');
-  if (f === 'index.html') {
+  if (f === 'index.html' || f.startsWith('modulos/')) {
     /* las claves de busqueda del nucleo del asistente y los comentarios no se leen */
     txt = txt.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/(^|[^:'"\\])\/\/[^\n]*/g, '$1');
   }

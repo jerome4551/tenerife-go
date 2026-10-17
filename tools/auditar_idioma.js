@@ -433,13 +433,19 @@ const IGUAL_UI = {
      Queda «Carnaval de Santa Cruz» en frances, que es frances.
      «Pets Friendly» salio del polaco por lo mismo: los otros siete idiomas
      lo traducen, y ahora el polaco tambien («Przyjazne zwierzętom»). */
-  en: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop'],
-  fr: ['Pack Tenerife Go', 'Carnaval de Santa Cruz'],
-  de: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop'],
-  it: ['Friendly Zone 🐾', 'Pack Tenerife Go'],
-  nl: ['Friendly Zone 🐾'],
+  /* LOS NOMBRES DEL CIELO (17 de octubre de 2026, modulos/cielo.js). El
+     nombre de la UAI de una estrella se escribe igual en estos idiomas que
+     en castellano («Kaus Australis»); el italiano y el polaco dicen «Alfa
+     Centauri», como el castellano, y el italiano escribe «Nebulosa
+     planetaria» y «Nebulosa oscura» igual. Salen de las traducciones de
+     Stellarium, no de un olvido. */
+  en: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Kaus Australis'],
+  fr: ['Pack Tenerife Go', 'Carnaval de Santa Cruz', 'Kaus Australis'],
+  de: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Kaus Australis'],
+  it: ['Friendly Zone 🐾', 'Pack Tenerife Go', 'Alfa Centauri', 'Nebulosa planetaria', 'Nebulosa oscura'],
+  nl: ['Friendly Zone 🐾', 'Kaus Australis'],
   zh: [], zht: [], bg: [],
-  pl: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop']
+  pl: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Alfa Centauri', 'Kaus Australis']
 };
 
 /* Los nombres de sitio no se declaran a mano: se sacan del propio catalogo.

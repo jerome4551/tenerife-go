@@ -27,7 +27,9 @@ const path = require('path');
 /* index.html Y los ficheros de datos que carga (datos/titsa.js): ver
    tools/fuente.js. Las notas de las lineas de guagua van en diez idiomas y
    viven en datos/titsa.js; al mudarlas, este barrido paso de 2.964 filas a
-   2.959 sin dejar de dar verde. */
+   2.959 sin dejar de dar verde. Y los modulos que se cargan al abrir su
+   panel (modulos/cielo.js, 17 de octubre de 2026), que fuente.js pega
+   detras. */
 const FUENTE = require('./fuente');
 const src = FUENTE.html();
 const IDI_BASE = ['es','en','fr','de','it','nl','zh','zht'];
@@ -203,7 +205,7 @@ for (const f of filas) {
   if (OBJ && f.v[OBJ] === undefined && !esExenta(f)) { por[z].sin++; huecos.push({ z, l: f.l, es: String(f.v.es).slice(0, 60) }); }
 }
 const P = (t, v) => console.log('  ' + String(t).padEnd(40, '.') + ' ' + v);
-console.log('=== filas de idioma en todo el fuente (index.html y ' + FUENTE.ficheros().map(f => f.ruta).join(', ') + ') ===');
+console.log('=== filas de idioma en todo el fuente (index.html y ' + FUENTE.ficheros().concat(FUENTE.perezosos()).map(f => f.ruta).join(', ') + ') ===');
 P('total', filas.length);
 /* Lo que antes no se veia: filas a las que les falta uno de los OCHO base.
    No es cosa del idioma nuevo; son huecos que llevaban ahi desde antes. */

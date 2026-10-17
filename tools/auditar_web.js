@@ -23,7 +23,10 @@ const PUERTO = process.argv[2] || 8766;
 const CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
 
-const src = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+/* El fuente entero, no solo index.html: los modulos de carga perezosa
+   (modulos/cielo.js, 17 de octubre de 2026) traen sus tablas y sus filas, y
+   en el navegador no estan hasta que alguien abre su panel. tools/fuente.js. */
+const src = require('./fuente').html();
 /* IDI sale de SUPPORTED_LANGS del fuente, no de una lista a mano: escrita
    aqui se queda vieja el dia que entre un idioma y el control da verde sobre
    lo que no ha mirado. IDI_BASE, en cambio, NO se toca (ver arriba).
@@ -238,8 +241,7 @@ function revisar(tablas, o) {
      hace que la cifra de al lado vuelva a significar algo. */
   let exentas = [];
   try {
-    const html = require('fs').readFileSync(require('path').join(__dirname, '..', 'index.html'), 'utf8');
-    exentas = [...html.matchAll(/SIN-TRADUCIR:\s*([A-Za-z_$][\w$]*)/g)].map(m => m[1]);
+    exentas = [...src.matchAll(/SIN-TRADUCIR:\s*([A-Za-z_$][\w$]*)/g)].map(m => m[1]);
   } catch (e) {}
   const esExenta = x => exentas.some(t => String(x).indexOf(t + '.') === 0);
   const huecos = r.incompletas.filter(x => !esExenta(x));

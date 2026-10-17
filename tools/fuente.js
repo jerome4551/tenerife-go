@@ -24,6 +24,16 @@
  * vendor/ son librerias de fuera (Leaflet...), no fuente de la app. Si
  * mañana sale otro fichero de datos, entra solo.
  *
+ * Y LOS MODULOS DE CARGA PEREZOSA (17 de octubre de 2026). El panel del cielo
+ * (modulos/cielo.js) no tiene etiqueta: lo pide su cargador cuando alguien
+ * abre el panel, para no sumar unos 100 kB comprimidos a la primera descarga. Sin
+ * etiqueta, ninguna herramienta lo veria, y lleva todos sus textos en diez
+ * idiomas.
+ * Se declara junto a su cargador con un comentario «CARGA-PEREZOSA: <ruta>»
+ * y entra aqui igual que los otros, detras de ellos. ficheros() sigue
+ * devolviendo solo lo que se carga al arrancar (peso_descarga.py cuenta eso);
+ * perezosos() devuelve estos.
+ *
  *     const F = require('./fuente');
  *     const src = F.html();        // en vez de leer index.html a pelo
  *     F.ficheros()                 // [{ ruta, texto }]
@@ -54,11 +64,23 @@ function cargar() {
     if (/<\/script/i.test(texto)) throw new Error(ruta + ' trae «</script»: no se puede pegar en linea');
     ficheros.push({ ruta, texto });
   }
+  /* los de carga perezosa, declarados en el fuente */
+  const perezosos = [];
+  for (const m2 of index.matchAll(/CARGA-PEREZOSA:\s*([\w./-]+\.js)\b/g)) {
+    const ruta = m2[1].replace(/^\.\//, '');
+    if (perezosos.some(f => f.ruta === ruta) || ficheros.some(f => f.ruta === ruta)) continue;
+    const abs = path.join(RAIZ, ruta);
+    if (!fs.existsSync(abs)) throw new Error('index.html declara la carga perezosa de ' + ruta + ' y no existe');
+    const texto = fs.readFileSync(abs, 'utf8');
+    if (/<\/script/i.test(texto)) throw new Error(ruta + ' trae «</script»: no se puede pegar en linea');
+    perezosos.push({ ruta, texto, perezoso: true });
+  }
   let html = index;
   const tramos = [];                     // [primera linea, ultima, ruta, desfase]
   let linea = index.split('\n').length;
-  for (const f of ficheros) {
-    const cabeza = '\n<script>\n/* ════ ' + f.ruta + ' · no esta en index.html: lo carga su etiqueta.' +
+  for (const f of ficheros.concat(perezosos)) {
+    const cabeza = '\n<script>\n/* ════ ' + f.ruta + ' · no esta en index.html: ' +
+                   (f.perezoso ? 'lo pide su cargador al abrir el panel.' : 'lo carga su etiqueta.') +
                    ' Se pega aqui solo para las herramientas (tools/fuente.js y .py). ════ */\n';
     html += cabeza;
     linea += cabeza.split('\n').length - 1;
@@ -67,7 +89,7 @@ function cargar() {
     html += f.texto + '\n</script>\n';
     linea += n + 1;
   }
-  _cache = { index, html, ficheros, tramos, lineasIndex: index.split('\n').length };
+  _cache = { index, html, ficheros, perezosos, tramos, lineasIndex: index.split('\n').length };
   return _cache;
 }
 
@@ -76,6 +98,7 @@ module.exports = {
   html: () => cargar().html,
   index: () => cargar().index,
   ficheros: () => cargar().ficheros.slice(),
+  perezosos: () => cargar().perezosos.slice(),
   /* 'index.html:N' o 'datos/titsa.js:N' para una linea de html() */
   donde(l) {
     const c = cargar();
@@ -88,5 +111,5 @@ module.exports = {
 if (require.main === module) {
   const c = cargar();
   console.log('index.html: ' + c.lineasIndex + ' lineas');
-  for (const f of c.ficheros) console.log(f.ruta + ': ' + f.texto.split('\n').length + ' lineas, ' + Buffer.byteLength(f.texto) + ' bytes');
+  for (const f of c.ficheros.concat(c.perezosos)) console.log(f.ruta + ': ' + f.texto.split('\n').length + ' lineas, ' + Buffer.byteLength(f.texto) + ' bytes' + (f.perezoso ? ' (carga perezosa)' : ''));
 }

@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **235** versionados (88 en `idiomas/`, 51 en `tools/`, 34 en `vendor/` —con las 21 fuentes—, 29 en `faq/`, 24 en la raíz, 4 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
-| Descarga | **946 kB** en castellano · **1.052 kB** en el peor caso (búlgaro) · 1.040 kB en polaco. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.012 kB** en castellano · **1.126 kB** en el peor caso (búlgaro) · 1.112 kB en polaco, el 17 de octubre (el panel del cielo suma 9 kB; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -156,6 +156,159 @@ emojis: 2.894, 250 distintos
 
 Los 2 NBSP son tipografía francesa (`Un tour rapide ?`) y los 8 ZWJ son la
 familia 👨‍👩‍👧.
+
+## El cielo de Tenerife · un panel nuevo, y todo lo que enseña se calcula (17 de octubre)
+
+Jerome pidió «todo lo que se puede observar desde Tenerife», con lluvias de
+estrellas, eclipses, cometas y satélites, a partir de una guía en PDF que él
+mismo describía como general, «no un inventario literal», y pidiendo un
+catálogo que distinga lo que se ve **a simple vista, con prismáticos y con
+telescopio**. Es el botón 🔭 de la barra, con cinco pestañas: esta noche, el
+calendario, el catálogo, la carta del cielo y dónde ir.
+
+**Nada de lo que caduca está escrito.** Sol, Luna, planetas, la Vía Láctea,
+eclipses, lluvias, oposiciones y conjunciones se calculan en el móvil, en hora
+de Canarias y para el Observatorio del Teide (la ficha `observatorio`, a
+2.390 m), con Astronomy Engine (MIT, `vendor/`). Las lluvias salen de la
+longitud solar de su máximo según la IMO, así que el calendario de 2031 sale
+igual que el de este año. Lo fijo —2.683 estrellas para la carta, 51 con
+nombre, 88 constelaciones, 200 objetos de cielo profundo que asoman, 28
+sistemas dobles, 14 variables y 11 lluvias— está en `datos/cielo.json`, que
+rehace `tools/cielo_construir.js` desde fuentes con commit fijado
+(`tools/cielo_fuentes.sh`). El nivel de cada objeto no se escribe a mano: sale
+de su magnitud corregida por la altura máxima a la que llega desde aquí.
+
+**Cometas y satélites no se predicen.** Un cometa se descubre, se apaga o se
+rompe de una semana a otra, y la Estación Espacial cambia de órbita: el panel
+lo dice y lleva a la aplicación de la NASA para verla. La web «Spot the
+Station» que citaba el PDF ya no existe: la NASA la cerró el 12 de junio de
+2025 y queda su aplicación.
+
+### Lo que decía el PDF y no es así
+
+**47 Tucanae no se ve desde Tenerife.** Con declinación −72° no pasa nunca de
+−10° bajo el horizonte de Izaña. El catálogo no la saca, y
+`auditar_cielo.js` lo vigila.
+
+### El peso: nada al arrancar, y sin conexión en el Teide
+
+El panel entero —código y textos en diez idiomas— va en `modulos/cielo.js` y
+se pide la primera vez que alguien lo abre. Dentro de `index.html` habrían
+sido unos 100 kB comprimidos más en la primera descarga de todo el mundo; lo
+que sí va en `index.html` (el botón, el marco del panel, el cargador y siete
+filas de texto) son 9 kB. El service worker precachea el módulo, el motor y el
+catálogo al instalar la app, sin que nadie haya abierto el panel: donde se usa
+es en Las Cañadas, que es donde no hay cobertura.
+
+```
+lo que se pide al abrir el panel       comprimido
+  modulos/cielo.js                     106 kB
+  vendor/astronomy.browser.min.js       47 kB
+  datos/cielo.json                      61 kB
+lo que suma index.html                   9 kB
+```
+
+Un módulo sin etiqueta no lo ve ninguna herramienta que lea `index.html`, y
+lleva 504 filas de texto. Se declara junto a su cargador con
+`CARGA-PEREZOSA: modulos/cielo.js` y `tools/fuente.js` y `fuente.py` lo pegan
+al fuente detrás de los demás (`perezosos()`); `ficheros()` sigue siendo solo
+lo que se carga al arrancar, que es lo que cuenta `peso_descarga.py`.
+`auditar_web.js` y `auditar_letras.js` pasan a leer el fuente entero.
+
+### Los cálculos, contra lo que publican otros
+
+Con el motor que lleva la app y el calendario del panel tal cual, desde un
+día fijo:
+
+| | Fuente | Lo publicado | La app |
+|---|---|---|---|
+| Eclipse de Sol, 2 ago. 2027, Güímar | snowy.es | 78,72 % · 07:32:53 · 08:33:40 · 09:41:36 UTC · Sol a 26,0° | 78,78 % · −6 s · −8 s · −10 s · 25,9° |
+| Eclipse total de Luna, 31 dic. 2028 | IMCCE | P1 14:03:54 … P4 19:40:12 UTC | los siete contactos entre −39 s y +13 s; en Izaña la Luna sale ya eclipsada |
+| Gemínidas 2026, máximo | IMO (Star Walk) | 14 dic., hacia las 14:00 UTC | 13:49 |
+| Cuadrántidas 2027, máximo | Star Walk | 4 ene., hacia las 3:30 UTC | 3:34 |
+| Marte y Júpiter | Sky Tonight | 1,193°, en Leo, 16 nov. 2026 | 1,194°, en Leo |
+
+snowy.es no publica la coordenada que usa para Güímar: se calcula en la de la
+ficha `ciudad-guimar`. El panel lo calcula en Izaña, a unos 10 km, y ahí da
+78,8 % con los contactos a 20 s o menos.
+
+### Textos con fuente
+
+Las descripciones del catálogo se reescribieron contra su fuente, que va
+encima de cada una en `modulos/cielo.js`. Cuatro decían más de lo que dice la
+fuente: Andrómeda «de lo más lejano que se ve a simple vista» (la NASA dice que
+se ve a simple vista desde un cielo oscuro, no eso), las Pléyades «decenas con
+prismáticos» (el Royal Observatory dice seis a simple vista y que los
+prismáticos abarcan el cúmulo entero), ω Centauri «el mayor de la Vía Láctea»
+(ESA/Hubble: «el más grande y brillante del cielo») y Albireo «el contraste más
+famoso» (Sky & Telescope: los colores son reales, no un efecto del contraste).
+Y la Doble Doble decía «con prismáticos se ven dos» cuando el catálogo la pone
+a simple vista: con buena vista se separa sin nada (BBC Sky at Night).
+
+Los nombres de estrellas y constelaciones salen de las traducciones de
+Stellarium; las designaciones (M35 · NGC 2168, β Mon) no se traducen y van
+marcadas con `data-sin-traducir`. `barrido_pantallas.js` las cantó en chino y
+en búlgaro (73 en cada uno) donde salían como nombre de algo sin nombre
+corriente; ahora van marcadas también ahí.
+
+### Lo que encontraron las capturas, y ningún control veía
+
+Antes de darlo por terminado se miraron las pantallas una a una, y salieron
+dos cosas que estaban bien escritas y decían algo falso:
+
+- **Las 51 estrellas «variaban».** Sirio decía «Su brillo varía entre mag.
+  0,9 y −0,3». Al cargar, el panel guarda en `.v` el vector de cada objeto,
+  y la variabilidad del catálogo venía en un campo que también se llamaba
+  `v`: se pisaba, y las cifras eran las componentes del vector. Solo siete
+  varían (Betelgeuse, Aldebarán, Antares, Alnilam, la Polar, Algol y Mira).
+  El campo se llama ahora `vr`, y dos controles nuevos lo vigilan: ningún
+  registro del catálogo trae un campo `v`, y **cada una de las 381 fichas
+  dice lo que dice `datos/cielo.json`** —altura, brillo, tamaño, periodo,
+  separación, estrellas de cada constelación—, leído en crudo.
+- **La noche sin Luna sumaba cinco minutos de más.** «6 h 15 min» para
+  00:39–06:49: se contaban muestras de cinco minutos. Y los tramos se
+  quedaban cortos en las puntas: el 13 de diciembre la Luna se pone a las
+  22:06 y el tramo empezaba a las 22:10. Ahora los bordes son los de verdad
+  —la hora exacta de la noche cerrada, y la salida o puesta de la Luna
+  interpolada entre dos muestras— y el total es la suma de los tramos que se
+  enseñan: 22:06–06:25, 8 h 19 min.
+
+Un `undefined` se ve; una cifra equivocada es un texto perfecto. Por eso los
+dos controles comparan con el dato, no con la forma.
+
+### Los controles, y las averías con las que se probaron
+
+- **`auditar_cielo.js`**, nuevo, en `auditar.sh`: el catálogo es el que sale
+  de las fuentes; el observador es el mismo en el módulo, el catálogo, el
+  constructor y la ficha; las 513 filas con los diez idiomas, sus
+  `{marcadores}` por forma de plural y el alfabeto de cada uno; cada fila que
+  pide el código existe y no sobra ninguna (también las que se arman en
+  tiempo de ejecución, por familias leídas del código); la carga perezosa; el
+  nivel de lo que cualquier guía da por sabido; los cálculos de la tabla de
+  arriba; las cinco pestañas con sus filtros en los diez idiomas a 320 y a
+  390 px (500 vistas); cada ficha del catálogo contra el dato; la noche sin
+  Luna contra sus tramos; la luz roja, la carta y el cambio de idioma con el
+  panel abierto; y el panel abierto **con el servidor apagado**.
+- **`auditar_sw.js` · 9c**: los tres ficheros entran en el precache al
+  instalar, salen del caché sin red, y el módulo y el catálogo van red
+  primero.
+- **`barrido_pantallas.js`**: las cinco pestañas, con el detalle de cada
+  objeto abierto.
+- `auditar.sh` compila también `modulos/cielo.js`.
+- El tour pasa a 18 pasos: el del 🔭, detrás del de las fiestas
+  (`auditar_tour.js` lo recorre en los diez idiomas y cuatro móviles).
+
+Cada control nuevo se vio fallar antes de darlo por bueno:
+
+| Avería | Lo que cantó |
+|---|---|
+| `datos/cielo.json` fuera del precache | `auditar_sw.js` 3 MAL; `auditar_cielo.js`: el caché no lo tiene y, con el servidor apagado, «Failed to fetch» |
+| `modulos/cielo.js` sin red primero | `auditar_sw.js`: la versión nueva no llega |
+| Las Gemínidas con la longitud solar 1° desplazada | el máximo sale el 15 a las 13:25; y `--comprobar`: el catálogo no es el que sale de las fuentes |
+| Una fila borrada (`cieloLuna`) | la cuenta del fuente y la del navegador, a 320 y a 390 px |
+| Un `{n}` suelto en una fila polaca | la fila, y «texto roto: {n}» en las vistas en polaco |
+| La variabilidad otra vez en `v` | «ningún registro trae un campo v», y las 51 fichas: «dice que varía y en el catálogo no varía» |
+| El total sin Luna contado por muestras | las cuatro noches de prueba, cinco minutos de más |
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
@@ -1998,7 +2151,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 33 tablas, 904 filas (y 3.045 filas, dentro y fuera del fuente)
+## Idiomas · 43 tablas, 1418 filas (y 3.559 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -2010,11 +2163,15 @@ cuatro tiempos fijos entre paradas y dos títulos que ya no usa nadie. Esa
 tarde, tres más: el título y el «atrás» del paso Norte o Sur, y el aviso de
 que en esa zona no hay más lugares. El 16, 21 menos: las de las siete
 tarjetas inventadas de la tienda y su hueco de AdSense, que se borraron. El
+17, el panel del cielo: 10 tablas y 514 filas más. Las de
+`modulos/cielo.js` (`CIELO_UI` con 250, las ocho tablas de nombres con 254 y
+`CIELO_LOCALE`), que `tools/fuente.js` pega al fuente, y en `UI_TX` las siete
+filas del botón y las dos del tour. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
-`barrido_idiomas.js`, contado el 16 de octubre; no la coteja
-nadie.)*
+`barrido_idiomas.js`, contado el 17 de octubre (3.045 antes del cielo); no
+la coteja nadie.)*
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una

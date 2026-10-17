@@ -11,6 +11,10 @@ Hace falta desde el 9 de octubre de 2026, cuando la red de guaguas salio a
 datos/titsa.js: con las herramientas sin tocar, auditar_cirilico.py paso de
 1.161 nombres en cirilico a 1.160 y siguio en verde. Ver tools/fuente.js.
 
+Y los modulos de carga perezosa (17 de octubre de 2026), declarados en el
+fuente con «CARGA-PEREZOSA: <ruta>»: entran en html() detras de los otros;
+ficheros() sigue siendo solo lo que se carga al arrancar. Ver tools/fuente.js.
+
     import fuente
     s = fuente.html()        # en vez de leer index.html a pelo
 """
@@ -41,12 +45,34 @@ def ficheros():
     return index, out
 
 
+def perezosos(index=None):
+    if index is None:
+        index = io.open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
+    _, fs = ficheros()
+    vistos = {r for r, _ in fs}
+    out = []
+    for m in re.finditer(r'CARGA-PEREZOSA:\s*([\w./-]+\.js)\b', index):
+        ruta = re.sub(r'^\./', '', m.group(1))
+        if ruta in vistos:
+            continue
+        vistos.add(ruta)
+        abs_ = os.path.join(RAIZ, ruta)
+        if not os.path.exists(abs_):
+            raise SystemExit('index.html declara la carga perezosa de %s y no existe' % ruta)
+        texto = io.open(abs_, encoding='utf-8').read()
+        if re.search(r'</script', texto, re.I):
+            raise SystemExit('%s trae «</script»: no se puede pegar en linea' % ruta)
+        out.append((ruta, texto))
+    return out
+
+
 def html():
     index, fs = ficheros()
     partes = [index]
-    for ruta, texto in fs:
-        partes.append('\n<script>\n/* ════ %s · no esta en index.html: lo carga su etiqueta.'
-                      ' Se pega aqui solo para las herramientas (tools/fuente.js y .py). ════ */\n' % ruta)
+    for ruta, texto, perezoso in [(r, t, False) for r, t in fs] + [(r, t, True) for r, t in perezosos(index)]:
+        partes.append('\n<script>\n/* ════ %s · no esta en index.html: %s'
+                      ' Se pega aqui solo para las herramientas (tools/fuente.js y .py). ════ */\n'
+                      % (ruta, 'lo pide su cargador al abrir el panel.' if perezoso else 'lo carga su etiqueta.'))
         partes.append(texto + '\n</script>\n')
     return ''.join(partes)
 
@@ -56,6 +82,8 @@ if __name__ == '__main__':
     print('index.html: %d lineas' % len(index.split('\n')))
     for ruta, texto in fs:
         print('%s: %d lineas, %d bytes' % (ruta, len(texto.split('\n')), len(texto.encode('utf-8'))))
+    for ruta, texto in perezosos(index):
+        print('%s: %d lineas, %d bytes (carga perezosa)' % (ruta, len(texto.split('\n')), len(texto.encode('utf-8'))))
     import subprocess, json
     js = subprocess.run(['node', '-e', "process.stdout.write(require('./tools/fuente').html())"],
                         cwd=RAIZ, stdout=subprocess.PIPE).stdout.decode('utf-8')
