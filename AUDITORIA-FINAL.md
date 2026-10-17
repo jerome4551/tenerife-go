@@ -5452,6 +5452,39 @@ que mirar (coordenada a ojo, repetida o a menos de 25 m de otra). Pero el
 resumen del final no estaba contado: decía «787 de 787» con 977 en el mapa,
 y daba por mal cinco fichas que ya están corregidas. Se arregla aparte.
 
+### Y de paso: `REVISION-LUGARES.md` contaba de memoria
+
+Lo que genera `tools/informe_lugares.js` llevaba cifras escritas a mano,
+algunas de cuando había 787 lugares:
+
+- el título y el resumen: «787 de 787» en la caja, en los ids y en los diez
+  idiomas, y «781» en tierra, con 977 lugares;
+- «0 de 112» zonas de baño sin orientación: hoy son 100 (y 0 sin ella);
+- cinco fichas dadas por mal que ya estaban corregidas
+  (`parque-tabaiba-baja`, `kayak-radazul`, `buceo-tabaiba`,
+  `casa-capitanes-generales` y `mercadillo-la-victoria`), con el método de
+  las paradas de TITSA, que `auditar_municipio.js` cambió por el polígono del
+  Cabildo;
+- «45» y «267» fichas sin municipio que comprobar, de aquel método;
+- «100», «88» y «12» de las orientaciones de playa (hoy coinciden, pero
+  estaban escritas).
+
+Ahora todo se cuenta al generarlo. Lo que mide otro control —la tierra,
+`auditar_en_el_mar.py`; el municipio, `auditar_municipio.js`— se lee de su
+salida, y si la línea no está el informe **para** en vez de poner otra cifra.
+Lo que es historia (de dónde salieron las 130 primeras verificadas, el 21 de
+septiembre) va con su fecha. Hoy: 977 de 977 en la caja, 968 en tierra y 9 en
+el agua a propósito, 977 con los diez idiomas, 0 de 162 referencias rotas en
+el planificador, 0 de 100 zonas de baño sin orientación. La tabla de las
+fuentes de septiembre tenía un párrafo metido en medio y se partía: entera.
+
+Control nuevo en `auditar.sh`: `informe_lugares.js --comprobar` para si
+`REVISION-LUGARES.md` no es lo que saldría ahora, fecha aparte. Probado en una
+copia: con el informe de antes, rojo; con solo la fecha cambiada, verde; con
+un lugar menos sin regenerar, rojo; y si `auditar_municipio.js` deja de
+escribir una de sus líneas, el informe para y lo dice. De paso, el rótulo
+«las 212 fichas de gasolinera» de `auditar.sh` pierde la cifra: son 211.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -5506,6 +5539,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/pagina_fija.py` | el armazón de las páginas fijas de la raíz: diez idiomas que se cambian sin JavaScript; lo común, en `idiomas/paginas/` |
 | `tools/generar_og_image.js` | `og-image.jpg`, la imagen para compartir: 1200×630, el logo sobre #0F1117 |
 | `tools/generar_privacidad.py` | la política: las filas de `UI_TX`, el panel de `index.html` y `privacidad.html`, de la misma pasada; con `--comprobar`, para si no están al día |
+| `tools/informe_lugares.js` | `REVISION-LUGARES.md`: lo que se puede comprobar de los lugares y lo que no, con cada cifra contada al generarlo; con `--comprobar`, para si no está al día |
 | `tools/zonas_lugares.py` | Norte o Sur de cada lugar por el polígono oficial de su municipio: lo escribe en `index.html` y con `--comprobar` lo rehace y lo compara; coteja también las listas Norte y Sur de «Ruta del día» |
 | `tools/auditar_claves_tx.js` | cada `tx('…')` con la clave escrita tiene su fila en `UI_TX` (`tx()` devuelve vacío sin avisar) |
 | `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: píldora, panel, líneas del tiempo y del mar, comprobación vieja, fichero que no llega |

@@ -1,15 +1,29 @@
 #!/usr/bin/env node
-/* informe_lugares.js — TODO lo que se puede comprobar de los 787 lugares,
- * y, dicho igual de claro, lo que NO.
+/* informe_lugares.js — TODO lo que se puede comprobar de los lugares, y,
+ * dicho igual de claro, lo que NO.
  *
  * Existe porque cada auditoria sacaba una lista nueva: los controles miraban
  * la FORMA del dato -cuantos decimales tiene, si cae en tierra- y no el dato
- * cruzado con el resto del repositorio. Esto barre los 787 enteros, no una
+ * cruzado con el resto del repositorio. Esto barre todos los lugares, no una
  * muestra, y separa las tres cosas que nunca hay que mezclar:
  *   lo comprobado y correcto · lo comprobado y mal · lo que no se puede
  *   comprobar desde aqui, con su motivo.
  *
  *     node tools/informe_lugares.js > REVISION-LUGARES.md
+ *     node tools/informe_lugares.js --comprobar   (lo corre auditar.sh)
+ *
+ * CADA CIFRA SE CUENTA AL GENERARLO (17 de octubre de 2026). Hasta hoy el
+ * titulo y el resumen del final llevaban cifras escritas a mano: «787 de
+ * 787» con 977 lugares en el mapa, «0 de 112» zonas de baño, y cinco fichas
+ * dadas por mal que ya estaban corregidas, con el metodo de las paradas que
+ * se cambio por el poligono del Cabildo. Lo que no se cuenta aqui se lee de
+ * la salida del control que lo mide, y si esa salida no trae la linea, el
+ * informe para: un informe que se inventa una cifra es peor que ninguno.
+ * Las cifras de la historia (de donde salieron las primeras verificadas)
+ * van con su fecha, porque son de ese dia.
+ *
+ * --comprobar no escribe: para si REVISION-LUGARES.md no es lo que saldria
+ * ahora, fecha aparte. Asi el informe no se queda viejo sin que se vea.
  */
 'use strict';
 const fs = require('fs');
@@ -18,6 +32,16 @@ const { PLACES, CAT, km } = require('./cargar');
 const src = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
 const O = [];
 const w = s => O.push(s);
+const { execSync } = require('child_process');
+/* Una cifra de la salida de otro control: «etiqueta.......... 454» o
+   «etiqueta: 454». Si la linea no esta, PARA: escribir otra cosa seria
+   inventarse la cifra. */
+const cifra = (salida, etiqueta, quien) => {
+  const esc = etiqueta.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const m = new RegExp('^\\s*' + esc + '[ .:]*(\\d+)\\s*$', 'm').exec(salida);
+  if (!m) throw new Error('la salida de ' + quien + ' no trae «' + etiqueta + '»: el informe no se inventa la cifra');
+  return Number(m[1]);
+};
 
 /* la coordenada tal y como esta ESCRITA, no como la parsea JavaScript:
    «28.3720» y «28.372» son el mismo numero y distinta cosa */
@@ -31,7 +55,7 @@ const muni = p => {
   return c.d <= 3000 ? c.m : '—';
 };
 
-w('# Revisión de los 787 lugares');
+w('# Revisión de los ' + PLACES.length + ' lugares');
 w('');
 /* La fecha NO se escribe a mano: es la del dia en que se genera. Escrita,
    el informe decia septiembre cuando ya era otro mes y lo de dentro era
@@ -41,7 +65,7 @@ const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
 const HOY = new Date();
 w('**' + HOY.getDate() + ' de ' + MESES[HOY.getMonth()] + ' de ' + HOY.getFullYear()
   + '.** Generado con `node tools/informe_lugares.js`.');
-w('Barre los 787, no una muestra. Lo que no se puede comprobar desde aquí sale');
+w('Barre los ' + PLACES.length + ', no una muestra. Lo que no se puede comprobar desde aquí sale');
 w('contado y listado, no callado.');
 w('');
 
@@ -162,7 +186,7 @@ w('Y no hace falta acordarse de apuntarlas: `tools/fijar_coordenada.py` escribe'
 w('el apunte solo cuando aplica una coordenada, con la fuente que se le pase');
 w('detrás de la `#`. Si no se le da fuente, avisa de que no la apunta.');
 w('');
-w('### De dónde salen las ' + nVer + '');
+w('### De dónde salieron las 130 primeras (21 de septiembre)');
 w('');
 w('No se han inventado: se han sacado de los ficheros de fuente que ya se');
 w('habían entregado y aplicado, y **se ha comprobado que la coordenada de hoy');
@@ -173,6 +197,10 @@ w('| fichero de origen | qué traía |');
 w('|---|---|');
 w('| `playastenerife.json` | 40 altas y 4 correcciones de coordenada, cada una con su campo `fuente`: Censo Nacional de Zonas de Aguas de Baño 2025 del Servicio Canario de la Salud, Bandera Azul 2026 y Google Places |');
 w('| `listasplayascharcos.md` | las tablas de playas y charcos con su coordenada, bajo la línea «**ninguna coordenada estimada**» |');
+w('| `parche2coordenadas.md` | las 4 de Anaga y Rambla de Castro que estaban corridas, con la comprobación cruzada contra `mir-rambla-castro` |');
+w('| el historial de git | las 14 corregidas a propósito, con el commit que dice por qué |');
+w('');
+w('Las que vinieron después llevan su fuente en la tabla de arriba, una a una.');
 w('');
 w('**Una precisión, para no decir más de lo que es.** `listasplayascharcos.md`');
 w('lista las playas por nombre y coordenada, no por id, así que el');
@@ -181,12 +209,18 @@ w('punto con una playa verificada —su webcam, su ficha de accesibilidad, el');
 w('spot de surf que está en esa misma arena— hereda la verificación **del');
 w('punto**. Lo verificado es que ese punto es el de esa playa; que la ficha');
 w('deba estar ahí es otra cosa y no se afirma.');
-w('| `parche2coordenadas.md` | las 4 de Anaga y Rambla de Castro que estaban corridas, con la comprobación cruzada contra `mir-rambla-castro` |');
-w('| el historial de git | las 14 corregidas a propósito, con el commit que dice por qué |');
 w('');
+const ORI = (() => {
+  let b = src.slice(src.indexOf('const PLAYAS_ORIENTACION'));
+  b = b.slice(0, b.indexOf('\n};'));
+  const filas = [...b.matchAll(/'([a-z0-9-]+)':\s*\{([^}]*)\}/g)];
+  if (!filas.length) throw new Error('no encuentro PLAYAS_ORIENTACION en index.html');
+  return { filas: filas.length, ded: filas.filter(m => /deducida/.test(m[2])).length,
+           ids: new Set(filas.map(m => m[1])) };
+})();
 w('### Una cosa que conviene saber: las orientaciones de playa');
 w('');
-w('De las **100** filas de `PLAYAS_ORIENTACION`, **88 son deducidas**, no');
+w('De las **' + ORI.filas + '** filas de `PLAYAS_ORIENTACION`, **' + ORI.ded + ' son deducidas**, no');
 w('verificadas. Lo dice el propio fichero que las trajo,');
 w('`orientaciones65.json`: *«las 65 las produjo un modelo de lenguaje');
 w('(Gemini). 11 tienen respaldo publicado que verifiqué abriendo la fuente, 1');
@@ -195,8 +229,8 @@ w('coherencia con las vecinas»*. Por eso van todas con `deducida:true`, que es'
 w('lo honesto.');
 w('');
 w('`ori` alimenta el cálculo de si una playa está resguardada del viento de');
-w('hoy. **No es un dato decorativo.** Las 12 escritas a mano sí están');
-w('comprobadas; de las otras 88, once tienen respaldo y el fichero no dice');
+w('hoy. **No es un dato decorativo.** Las ' + (ORI.filas - ORI.ded) + ' escritas a mano sí están');
+w('comprobadas; de las otras ' + ORI.ded + ', once tienen respaldo y el fichero no dice');
 w('cuáles, así que desde aquí no se pueden separar.');
 w('');
 w('### Lo que SÍ tiene fuente oficial dentro de la propia ficha');
@@ -206,13 +240,13 @@ w('|---|---|');
 w('| Calidad del agua del censo de zonas de baño, con su año | **' + PLACES.filter(p => p.aguaCalidad && p.aguaCalidadAnio).length + '** |');
 w('| Bandera Azul declarada | **' + PLACES.filter(p => p.blueFlag === true).length + '** |');
 w('| Socorrista declarado (sí o no, no «se desconoce») | **' + PLACES.filter(p => p.lifeguard === true || p.lifeguard === false).length + '** |');
-w('| Orientación de playa escrita a mano (las otras 88 son deducidas) | **12** |');
+w('| Orientación de playa escrita a mano (las otras ' + ORI.ded + ' son deducidas) | **' + (ORI.filas - ORI.ded) + '** |');
 w('');
 
 w('## 1 · Con cuánta precisión está escrita cada coordenada');
 w('');
 w('Decimales **significativos** —los ceros de la derecha no cuentan— del eje');
-w('menos preciso de cada ficha. Es la cuenta entera de los 787, no un umbral:');
+w('menos preciso de cada ficha. Es la cuenta entera de los ' + PLACES.length + ', no un umbral:');
 w('');
 w('| decimales | cuadrícula | fichas |');
 w('|---|---|---|');
@@ -311,36 +345,21 @@ for (const [d, a, b] of cer.sort((x, y) => x[0] - y[0]))
 w('');
 
 /* ── 4 · el municipio que dice la ficha contra donde cae ─────────────────── */
-const { execSync } = require('child_process');
 const salida = (() => { try {
   return execSync('node ' + path.join(__dirname, 'auditar_municipio.js'), { encoding: 'utf8' });
 } catch (e) { return e.stdout || ''; } })();
 w('## 4 · El municipio que dice la ficha, contra donde cae el punto');
 w('');
-w('Las 2.514 paradas de TITSA del repositorio traen municipio. Para cada ficha');
-w('que declara uno —en un tramo del `cat` o en el paréntesis del nombre— se');
-w('miran las paradas de alrededor. Si el municipio declarado no sale en');
-w('**ninguna**, el punto no está donde el texto dice.');
+w('Para cada ficha que declara un municipio —en un tramo del `cat` o en el');
+w('paréntesis del nombre— `tools/municipio.py` mira dentro de qué municipio');
+w('cae el punto, contra el polígono municipal del Cabildo. Si no es el que');
+w('dice la ficha, el punto no está donde el texto dice, o el texto se equivoca.');
 w('');
 w('Salida de `node tools/auditar_municipio.js`:');
 w('');
 w('```');
 salida.split('\n').forEach(l => w(l.replace(/\s+$/, '')));
 w('```');
-w('');
-w('**Ojo con estas:** son indicios fuertes, no sentencias. Un mirador en un');
-w('puerto de montaña o un sendero que cruza dos términos caen en el borde por');
-w('definición. Lo que sí es firme:');
-w('');
-w('- `parque-tabaiba-baja` tiene la parada «Tabaiba» a **11 m** y dice Santa');
-w('  Cruz; las ocho de alrededor son de El Rosario.');
-w('- `kayak-radazul` y `buceo-tabaiba`, lo mismo: Radazul y Tabaiba son de El');
-w('  Rosario y las dos fichas dicen Santa Cruz.');
-w('- `casa-capitanes-generales` **se contradice sola**: el nombre dice La');
-w('  Laguna y el `cat` dice Santa Cruz. Está en la Plaza del Adelantado, a');
-w('  116 m de la parada de ese nombre, en La Laguna.');
-w('- `mercadillo-la-victoria` está a **15 m de `ciudad-matanza`** (ver el');
-w('  apartado 3): lo que está mal no es el texto, es la coordenada.');
 w('');
 
 /* ── 5 · lo que no se puede comprobar ────────────────────────────────────── */
@@ -355,26 +374,89 @@ w('| **Que una coordenada sea la correcta** | sólo se comprueba que caiga en ti
 w('| **Que el sitio exista** | pasó con `charco-infierno-arafo` y con `montana-colorada`, que se dieron de baja. No hay forma de saberlo sin una fuente de fuera |');
 w('| **Horarios, precios y teléfonos** | cambian y no hay contra qué contrastarlos |');
 w('| **Lo que dice cada descripción** | que un pueblo sea «famoso por sus aguacates» no se puede verificar con lo que hay dentro del repositorio |');
-w('| **El municipio de ' + '45' + ' fichas** | están a más de 1,5 km de cualquier parada, o tienen menos de tres alrededor: el Teide, Teno, Anaga profundo |');
-w('| **El municipio de 267 fichas más** | no declaran ninguno en el `cat` ni en el nombre, así que no hay nada que contrastar |');
+w('| **El municipio de ' + cifra(salida, 'no declaran municipio', 'auditar_municipio.js') + ' fichas** | no declaran ninguno en el `cat` ni en el nombre, así que no hay nada que contrastar |');
+w('| **El de ' + cifra(salida, 'solo nombran una zona de varios municipios', 'auditar_municipio.js') + ' más** | solo nombran una zona que abarca varios municipios, no un municipio |');
+w('| **El de ' + cifra(salida, 'y con el punto en el agua: no cae en ningun municipio', 'auditar_municipio.js') + ' que sí lo nombran** | el punto cae en el agua, fuera de todos los polígonos: no hay con qué compararlo |');
 w('');
 w('**Las fuentes de fuera están bloqueadas** en este entorno: Wikipedia,');
 w('tenerife.es, webtenerife.com, eldia.es y los dos endpoints de Overpass dan');
 w('`000` o `403`. Todo lo de arriba sale de cruzar datos que ya estaban dentro');
 w('del repositorio.');
 w('');
-w('## 6 · Lo que sí queda comprobado sobre los 787');
+/* ── 6 · el resumen, contado ahora ─────────────────────────────────────── */
+const N = PLACES.length;
+/* la misma caja que tools/fijar_coordenada.py */
+const enCaja = PLACES.filter(p => p.lat >= 27.90 && p.lat <= 28.70 && p.lng >= -17.00 && p.lng <= -16.05).length;
+/* la tierra la mide auditar_en_el_mar.py, contra la capa earth del mapa */
+const mar = (() => { try {
+  return execSync('python3 ' + path.join(__dirname, 'auditar_en_el_mar.py'), { encoding: 'utf8' });
+} catch (e) { return e.stdout || ''; } })();
+let tierra;
+if (/no hay mapa\/tenerife-osm\.pmtiles/.test(mar)) {
+  tierra = 'no se ha podido medir: falta `mapa/tenerife-osm.pmtiles`';
+} else {
+  const medidos = cifra(mar, 'lugares medidos contra la capa earth de OSM.', 'auditar_en_el_mar.py');
+  const fuera = cifra(mar, 'de tierra y FUERA de tierra', 'auditar_en_el_mar.py');
+  /* la linea de los del agua solo sale si hay alguno */
+  const agua = /estan en el agua a proposito/.test(mar)
+    ? cifra(mar, 'puertos, marinas y charcos (estan en el agua a proposito)', 'auditar_en_el_mar.py') : 0;
+  tierra = '**' + (medidos - fuera - agua) + '** de ' + medidos + '; ' + agua
+    + ' en el agua a propósito, exentas con su motivo, y **' + fuera
+    + '** que tendrían que estar en tierra (`auditar_en_el_mar.py`)';
+}
+const vecesId = {};
+PLACES.forEach(p => vecesId[p.id] = (vecesId[p.id] || 0) + 1);
+const idsBien = PLACES.filter(p => /^[a-z0-9-]+$/.test(p.id) && vecesId[p.id] === 1).length;
+/* el castellano esta en index.html; los otros nueve, en idiomas/*.json (el
+   polaco tambien, montado desde idiomas/pl-lugares/) */
+const NUEVE = ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+const fueraTx = {};
+for (const L of NUEVE) fueraTx[L] = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'idiomas', L + '.json'), 'utf8'));
+const lleno = t => typeof t === 'string' && t.trim() !== '';
+const diezIdiomas = PLACES.filter(p => p.desc && p.cat && lleno(p.desc.es) && lleno(p.cat.es)
+  && NUEVE.every(L => fueraTx[L][p.id] && lleno(fueraTx[L][p.id].desc) && lleno(fueraTx[L][p.id].cat))).length;
+/* el catalogo del planificador, como lo mira auditar_datos.js */
+const refs = [];
+for (const b of src.matchAll(/suggestionIds:\s*\[([\s\S]*?)\]/g))
+  for (const m of b[1].matchAll(/'([a-z0-9-]+)'/g)) refs.push(m[1]);
+const vivos = new Set(PLACES.map(p => p.id));
+const banio = PLACES.filter(p => p.category === 'playa' || p.category === 'piscinas');
+const tiposWarn = (() => {
+  const t = (src.match(/WARN_I18N\s*=\s*\{[\s\S]*?\n  \};/) || [''])[0];
+  return new Set([...t.matchAll(/^\s{4}(\w+):\s*\{/gm)].map(m => m[1]));
+})();
+if (!tiposWarn.size) throw new Error('no encuentro WARN_I18N en index.html');
+const conWarn = PLACES.filter(p => p.warn);
+w('## 6 · Lo que sí queda comprobado sobre los ' + N);
 w('');
 w('| comprobación | resultado |');
 w('|---|---|');
-w('| Caen dentro de la caja de Tenerife | **787 de 787** |');
-w('| Caen en tierra (capa `earth` de OSM) | **781**; 6 en el agua, que son las del parche del mar |');
-w('| Ids únicos y con el formato `[a-z0-9-]` | **787** |');
-w('| Tienen `desc` y `cat` en los diez idiomas | **787** |');
-w('| Referencias huérfanas desde el planificador | **0** de 162 |');
-w('| Zonas de baño sin orientación | **0** de 112 |');
-w('| `lifeguard` con un valor que no sea true/false/null | **0** |');
-w('| Colores fuera de `#rrggbb` | **0** |');
-w('| Avisos `warn` cuyo tipo no existe | **0** |');
+w('| Caen dentro de la caja de Tenerife | **' + enCaja + ' de ' + N + '** |');
+w('| Caen en tierra (capa `earth` de OSM) | ' + tierra + ' |');
+w('| Ids únicos y con el formato `[a-z0-9-]` | **' + idsBien + '** de ' + N + ' |');
+w('| Tienen `desc` y `cat` en los diez idiomas | **' + diezIdiomas + '** de ' + N + ' |');
+w('| Referencias huérfanas desde el planificador | **' + refs.filter(id => !vivos.has(id)).length + '** de ' + refs.length + ' |');
+w('| Zonas de baño sin orientación | **' + banio.filter(p => !ORI.ids.has(p.id)).length + '** de ' + banio.length + ' |');
+w('| `lifeguard` con un valor que no sea true/false/null | **'
+  + PLACES.filter(p => 'lifeguard' in p && p.lifeguard !== true && p.lifeguard !== false && p.lifeguard !== null).length + '** |');
+w('| Colores fuera de `#rrggbb` | **' + PLACES.filter(p => !/^#[0-9a-fA-F]{6}$/.test(String(p.color || ''))).length + '** |');
+w('| Avisos `warn` cuyo tipo no existe | **' + conWarn.filter(p => !tiposWarn.has(p.warn)).length + '** de ' + conWarn.length + ' |');
 
-fs.writeSync(1, O.join('\n') + '\n');
+const texto = O.join('\n') + '\n';
+if (process.argv.includes('--comprobar')) {
+  /* la fecha es la del dia en que se genera: no cuenta */
+  const sinFecha = t => t.replace(/^\*\*\d{1,2} de [a-z]+ de \d{4}\.\*\* Generado con .*$/m, '');
+  const f = path.join(__dirname, '..', 'REVISION-LUGARES.md');
+  const hay = fs.existsSync(f) ? fs.readFileSync(f, 'utf8') : null;
+  if (hay === null || sinFecha(hay) !== sinFecha(texto)) {
+    const a = (hay === null ? [] : sinFecha(hay).split('\n')), b = sinFecha(texto).split('\n');
+    let i = 0; while (i < a.length && i < b.length && a[i] === b[i]) i++;
+    console.log('REVISION-LUGARES.md no esta al dia: node tools/informe_lugares.js > REVISION-LUGARES.md');
+    if (hay !== null) console.log('  primera linea distinta (' + (i + 1) + '):\n    hay:     ' + (a[i] || '(nada)').slice(0, 120)
+                                   + '\n    saldria: ' + (b[i] || '(nada)').slice(0, 120));
+    process.exit(1);
+  }
+  console.log('REVISION-LUGARES.md al dia: ' + PLACES.length + ' lugares, cada cifra contada');
+  process.exit(0);
+}
+fs.writeSync(1, texto);

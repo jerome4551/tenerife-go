@@ -89,9 +89,15 @@ echo "════════ el boton «la gasolinera mas barata cerca de mi»
 control auditar_gas_cerca.js node tools/auditar_gas_cerca.js "$PUERTO"
 echo; echo "════════ el municipio que dice cada ficha ════════"
 control auditar_municipio.js node tools/auditar_municipio.js
+# REVISION-LUGARES.md lo escribe informe_lugares.js y se quedaba viejo sin que
+# nadie lo viera: el 17 de octubre de 2026 decia «787 de 787» con 977 lugares.
+# Desde entonces cada cifra se cuenta al generarlo, y esto para si el fichero
+# no es lo que saldria ahora (la fecha aparte).
+echo; echo "════════ REVISION-LUGARES.md, al dia y con cada cifra contada ════════"
+control informe_lugares.js node tools/informe_lugares.js --comprobar
 echo; echo "════════ lo que se sale de la pantalla, y el popup ════════"
 control auditar_desborde.js node tools/auditar_desborde.js "$PUERTO"
-echo; echo "════════ las 212 fichas de gasolinera, en pantalla, en los diez idiomas ════════"
+echo; echo "════════ las fichas de gasolinera, en pantalla, en los diez idiomas ════════"
 control verificar_fichas_app.js node tools/verificar_fichas_app.js "$PUERTO"
 echo; echo "════════ texto de reserva en castellano ════════"
 control auditar_reservas.py python3 tools/auditar_reservas.py

@@ -1,7 +1,7 @@
-# Revisión de los 787 lugares
+# Revisión de los 977 lugares
 
-**13 de octubre de 2026.** Generado con `node tools/informe_lugares.js`.
-Barre los 787, no una muestra. Lo que no se puede comprobar desde aquí sale
+**17 de octubre de 2026.** Generado con `node tools/informe_lugares.js`.
+Barre los 977, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
 ## 0 · El estado de cada área, de un vistazo
@@ -21,7 +21,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 157 verificadas con su fuente · 817 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
+| `coordenadas` | abierto | 161 verificadas con su fuente · 816 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
 | `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
 | `avisos_aemet` | **cerrado** | tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un nav |
@@ -98,8 +98,8 @@ parecía que todo fallaba siempre.
 
 | | fichas |
 |---|---|
-| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **157** |
-| Coordenada nunca comprobada por nadie | **817** |
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **161** |
+| Coordenada nunca comprobada por nadie | **816** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
 todavía.** Son dos cosas distintas y este informe no las mezcla.
@@ -140,6 +140,7 @@ De dónde viene cada una:
 | `charco-roque` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
 | `charco-verde-guancha` | 2026-09-21 | El Dia + duenno del proyecto: 28°24'00"N 16°39'32"W. Municipio contrastado con las paradas de TITSA (4 de las 6 mas cercanas son de La Guancha, la mas proxima «Santa Catalina») |
 | `charco-viento` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `cueva-santo-hermano-pedro` | 2026-10-17 | OSM node/313038499 «Cueva del Santo Hermano Pedro» (cave_entrance); Turismo de Tenerife, ficha de la cueva: «TF-643, 38600 Granadilla», cerca del aeropuerto  [datos/entregas/lanzamiento-lugares.json] |
 | `cueva-viento` | 2026-09-27 | OSM del repositorio: «Cueva del Viento Centro de Visitantes» (attraction), a 2 m de la coordenada redonda anterior. Elemento unico con ese nombre en el extracto. |
 | `deporte-orotava-parque` | 2026-09-27 | OSM del repositorio: «Complejo Deportivo El Mayorazgo» (sports_centre), a 1 m del pin redondo: el punto ya estaba encima, lo que faltaba eran los decimales. Es el complejo deportivo municipal de La Orotava. |
 | `el-duque` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -153,6 +154,7 @@ De dónde viene cada una:
 | `golf-amarilla` | 2026-09-27 | OSM del repositorio: «Amarilla Golf» (golf_course), el UNICO con ese nombre en toda la isla, y cae en San Miguel de Abona, que es lo que dice la ficha (tools/municipio_raya.py: 13 de 14 paradas sin raya en medio, todas de San Miguel). El pin redondo estaba a 1.919 m. |
 | `golf-del-sur` | 2026-09-19 | OpenStreetMap, golf_course «Golf del Sur» |
 | `hiperdino-los-realejos` | 2026-09-29 | SuperDino, ficha de la propia empresa en Google: «SuperDino Los Realejos, Pl. Mencey Bencomo, s/n, 38410 Los Realejos», tel. 922 44 16 81. Captura de Jerome del 29 de septiembre de 2026. El elemento de OSM (node/8428054218) esta a 27 m de la Plaza Mencey Bencomo. |
+| `jardines-victoria-orotava` | 2026-10-17 | OSM area/25092134 «Jardines del marquesado de la Quinta Roja», punto dentro del poligono; Turismo de Tenerife, ficha «Victoria Gardens»: «C/ Tomás Pérez s/n - Plaza de la Constitución, s/n»  [datos/entregas/lanzamiento-lugares.json] |
 | `las-vistas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `lidl-granadilla` | 2026-09-29 | Lidl, ficha de la propia empresa en Google: «Av. de la Democracia, S/N, 38611 San Isidro». Captura de Jerome del 29 de septiembre de 2026. La descripcion de la ficha ya nombraba esa avenida, y el elemento de OSM (area/462719671) esta a 70 m de ella. |
 | `lidl-la-laguna` | 2026-09-29 | Lidl, ficha de la propia empresa en Google: «Calle Ntra. Sra. de la Ternura, 1, 38108 La Laguna». Captura de Jerome del 29 de septiembre de 2026. El elemento de OSM esta a 29 m de esa calle. |
@@ -161,6 +163,7 @@ De dónde viene cada una:
 | `mercadillo-la-victoria` | 2026-09-25 | Parche municipios-bloque1-B, metodo DERIVADO (no hay coordenada publicada). Punto medio entre «Casa de la Castana» (museo, OSM, 28.432695,-16.471387) y «Terrero Municipal de Lucha y Deportes» (OSM, 28.433360,-16.471129), separados 78 m, que es como el Ayuntamiento situa el mercadillo. Los tres pasos del parche se resolvieron con el OSM del propio repositorio (tools/osm_cerca.py) porque Overpass esta cerrado desde aqui: paso 1 exactamente 1 elemento, paso 2 ningun amenity=marketplace a 250 m (y 15 en toda la isla, asi que el extracto no los filtra), paso 3 exactamente 1. Se mueve 2.109 m. DERIVADO, no medido: si aparece la coordenada publicada, se cambia. |
 | `mercadona-granadilla` | 2026-09-27 | OSM del repositorio: «Mercadona» (supermarket), el unico de esa marca en 6 km, y cae en Granadilla de Abona como dice la ficha (14 paradas sin raya en medio, todas de Granadilla). El pin redondo estaba a 1.028 m. |
 | `mesa-mar` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `mir-rambla-castro` | 2026-10-17 | Turismo de Tenerife, ficha «Mirador de San Pedro»: «TF-5 Km pt. 41. Los Realejos», UTM 28N 0343842/3142082; OSM area/129728824 «Mirador de San Pedro» a 6 m  [datos/entregas/lanzamiento-lugares.json] |
 | `mirador-pico-ingles` | 2026-10-11 | Turismo de Tenerife, Mirador Pico del Inglés: UTM huso 28 X 376352 Y 3156846. Pasado a WGS84 con pyproj (EPSG:32628 y EPSG:4083 dan lo mismo): 28.5325194, -16.2637869. Aportada por Jerome el 11 de octubre de 2026. Sustituye al pico «Pico del Inglés» de OSM, que esta a 116 m. |
 | `montana-amarilla` | 2026-09-27 | OSM del repositorio: «Monumento Natural de Montaña Amarilla» (nature_reserve), a 71 m de la coordenada redonda anterior. Unico con ese nombre en el extracto. |
 | `montana-taco` | 2026-09-28 | Wikipedia en español, «Montaña de Taco (embalse)», coordenadas del articulo 28 22 26 N 16 50 01 O. Aportada por Jerome el 28 de septiembre de 2026. |
@@ -168,6 +171,7 @@ De dónde viene cada una:
 | `nucleo-los-gigantes` | 2026-09-19 | OpenStreetMap, neighbourhood «Los Gigantes» |
 | `nucleo-playa-san-juan` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `nucleo-san-andres` | 2026-09-19 | OpenStreetMap, locality «San Andres» |
+| `pino-gordo-vilaflor` | 2026-10-17 | OSM node/313301148 «Pino Gordo» (tree); Turismo de Tenerife, ficha «Árboles leyenda» (Vilaflor)  [datos/entregas/lanzamiento-lugares.json] |
 | `piscina-gigantes` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
 | `piscina-guimar` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
 | `piscina-hidalgo-norte` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
@@ -273,7 +277,7 @@ Y no hace falta acordarse de apuntarlas: `tools/fijar_coordenada.py` escribe
 el apunte solo cuando aplica una coordenada, con la fuente que se le pase
 detrás de la `#`. Si no se le da fuente, avisa de que no la apunta.
 
-### De dónde salen las 157
+### De dónde salieron las 130 primeras (21 de septiembre)
 
 No se han inventado: se han sacado de los ficheros de fuente que ya se
 habían entregado y aplicado, y **se ha comprobado que la coordenada de hoy
@@ -284,6 +288,10 @@ después y ninguna había desaparecido.
 |---|---|
 | `playastenerife.json` | 40 altas y 4 correcciones de coordenada, cada una con su campo `fuente`: Censo Nacional de Zonas de Aguas de Baño 2025 del Servicio Canario de la Salud, Bandera Azul 2026 y Google Places |
 | `listasplayascharcos.md` | las tablas de playas y charcos con su coordenada, bajo la línea «**ninguna coordenada estimada**» |
+| `parche2coordenadas.md` | las 4 de Anaga y Rambla de Castro que estaban corridas, con la comprobación cruzada contra `mir-rambla-castro` |
+| el historial de git | las 14 corregidas a propósito, con el commit que dice por qué |
+
+Las que vinieron después llevan su fuente en la tabla de arriba, una a una.
 
 **Una precisión, para no decir más de lo que es.** `listasplayascharcos.md`
 lista las playas por nombre y coordenada, no por id, así que el
@@ -292,8 +300,6 @@ punto con una playa verificada —su webcam, su ficha de accesibilidad, el
 spot de surf que está en esa misma arena— hereda la verificación **del
 punto**. Lo verificado es que ese punto es el de esa playa; que la ficha
 deba estar ahí es otra cosa y no se afirma.
-| `parche2coordenadas.md` | las 4 de Anaga y Rambla de Castro que estaban corridas, con la comprobación cruzada contra `mir-rambla-castro` |
-| el historial de git | las 14 corregidas a propósito, con el commit que dice por qué |
 
 ### Una cosa que conviene saber: las orientaciones de playa
 
@@ -322,16 +328,16 @@ cuáles, así que desde aquí no se pueden separar.
 ## 1 · Con cuánta precisión está escrita cada coordenada
 
 Decimales **significativos** —los ceros de la derecha no cuentan— del eje
-menos preciso de cada ficha. Es la cuenta entera de los 787, no un umbral:
+menos preciso de cada ficha. Es la cuenta entera de los 977, no un umbral:
 
 | decimales | cuadrícula | fichas |
 |---|---|---|
 | 1 | ~11 km | **2** |
 | 2 | ~1,1 km | **29** |
 | 3 | ~110 m | **139** |
-| 4 | ~11 m | **556** |
-| 5 | ~1 m | **39** |
-| 6 | ~10 cm | **183** |
+| 4 | ~11 m | **555** |
+| 5 | ~1 m | **40** |
+| 6 | ~10 cm | **186** |
 | 7 | ~1 cm | **25** |
 | 15 |  | **1** |
 
@@ -501,21 +507,21 @@ Puede ser correcto —dos cosas en el mismo sitio— o una coordenada copiada.
 
 ## 4 · El municipio que dice la ficha, contra donde cae el punto
 
-Las 2.514 paradas de TITSA del repositorio traen municipio. Para cada ficha
-que declara uno —en un tramo del `cat` o en el paréntesis del nombre— se
-miran las paradas de alrededor. Si el municipio declarado no sale en
-**ninguna**, el punto no está donde el texto dice.
+Para cada ficha que declara un municipio —en un tramo del `cat` o en el
+paréntesis del nombre— `tools/municipio.py` mira dentro de qué municipio
+cae el punto, contra el polígono municipal del Cabildo. Si no es el que
+dice la ficha, el punto no está donde el texto dice, o el texto se equivoca.
 
 Salida de `node tools/auditar_municipio.js`:
 
 ```
 === el municipio que dice la ficha, contra donde cae el punto ===
-  lugares....................................... 974
-    que nombran un municipio.................... 505
-    de esos, comprobados contra el POLIGONO del Cabildo 495
+  lugares....................................... 977
+    que nombran un municipio.................... 509
+    de esos, comprobados contra el POLIGONO del Cabildo 499
     y con el punto en el agua: no cae en ningun municipio 10
   solo nombran una zona de varios municipios.... 14
-  no declaran municipio......................... 455
+  no declaran municipio......................... 454
 
   nombran una ZONA, que no es un municipio: no hay nada que comprobar
       bici-alquiler-sur             dice «Las Américas»  ·  el poligono dice «Adeje»
@@ -543,20 +549,6 @@ ninguna ficha nombra un municipio que no le toque
 
 ```
 
-**Ojo con estas:** son indicios fuertes, no sentencias. Un mirador en un
-puerto de montaña o un sendero que cruza dos términos caen en el borde por
-definición. Lo que sí es firme:
-
-- `parque-tabaiba-baja` tiene la parada «Tabaiba» a **11 m** y dice Santa
-  Cruz; las ocho de alrededor son de El Rosario.
-- `kayak-radazul` y `buceo-tabaiba`, lo mismo: Radazul y Tabaiba son de El
-  Rosario y las dos fichas dicen Santa Cruz.
-- `casa-capitanes-generales` **se contradice sola**: el nombre dice La
-  Laguna y el `cat` dice Santa Cruz. Está en la Plaza del Adelantado, a
-  116 m de la parada de ese nombre, en La Laguna.
-- `mercadillo-la-victoria` está a **15 m de `ciudad-matanza`** (ver el
-  apartado 3): lo que está mal no es el texto, es la coordenada.
-
 ## 5 · Lo que NO se puede comprobar desde aquí, y por qué
 
 Esto es la parte que faltaba en las revisiones anteriores y la que hacía
@@ -568,24 +560,25 @@ que cada semana saliera una lista nueva.
 | **Que el sitio exista** | pasó con `charco-infierno-arafo` y con `montana-colorada`, que se dieron de baja. No hay forma de saberlo sin una fuente de fuera |
 | **Horarios, precios y teléfonos** | cambian y no hay contra qué contrastarlos |
 | **Lo que dice cada descripción** | que un pueblo sea «famoso por sus aguacates» no se puede verificar con lo que hay dentro del repositorio |
-| **El municipio de 45 fichas** | están a más de 1,5 km de cualquier parada, o tienen menos de tres alrededor: el Teide, Teno, Anaga profundo |
-| **El municipio de 267 fichas más** | no declaran ninguno en el `cat` ni en el nombre, así que no hay nada que contrastar |
+| **El municipio de 454 fichas** | no declaran ninguno en el `cat` ni en el nombre, así que no hay nada que contrastar |
+| **El de 14 más** | solo nombran una zona que abarca varios municipios, no un municipio |
+| **El de 10 que sí lo nombran** | el punto cae en el agua, fuera de todos los polígonos: no hay con qué compararlo |
 
 **Las fuentes de fuera están bloqueadas** en este entorno: Wikipedia,
 tenerife.es, webtenerife.com, eldia.es y los dos endpoints de Overpass dan
 `000` o `403`. Todo lo de arriba sale de cruzar datos que ya estaban dentro
 del repositorio.
 
-## 6 · Lo que sí queda comprobado sobre los 787
+## 6 · Lo que sí queda comprobado sobre los 977
 
 | comprobación | resultado |
 |---|---|
-| Caen dentro de la caja de Tenerife | **787 de 787** |
-| Caen en tierra (capa `earth` de OSM) | **781**; 6 en el agua, que son las del parche del mar |
-| Ids únicos y con el formato `[a-z0-9-]` | **787** |
-| Tienen `desc` y `cat` en los diez idiomas | **787** |
+| Caen dentro de la caja de Tenerife | **977 de 977** |
+| Caen en tierra (capa `earth` de OSM) | **968** de 977; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
+| Ids únicos y con el formato `[a-z0-9-]` | **977** de 977 |
+| Tienen `desc` y `cat` en los diez idiomas | **977** de 977 |
 | Referencias huérfanas desde el planificador | **0** de 162 |
-| Zonas de baño sin orientación | **0** de 112 |
+| Zonas de baño sin orientación | **0** de 100 |
 | `lifeguard` con un valor que no sea true/false/null | **0** |
 | Colores fuera de `#rrggbb` | **0** |
-| Avisos `warn` cuyo tipo no existe | **0** |
+| Avisos `warn` cuyo tipo no existe | **0** de 116 |
