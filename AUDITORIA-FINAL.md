@@ -27,11 +27,11 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 
 | | |
 |---|---|
-| Lugares | **787**, con descripción y categoría en 10 idiomas |
+| Lugares | **980**, con descripción y categoría en 10 idiomas (lo coteja `auditar_datos.js`) |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
-| Ficheros | **235** versionados (88 en `idiomas/`, 51 en `tools/`, 34 en `vendor/` —con las 21 fuentes—, 29 en `faq/`, 24 en la raíz, 4 en `supabase/`, 3 en `mapa/`, 2 en `.github/`) |
+| Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
 | Descarga | **1.012 kB** en castellano · **1.126 kB** en el peor caso (búlgaro) · 1.112 kB en polaco, el 17 de octubre (el panel del cielo suma 9 kB; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
@@ -309,6 +309,28 @@ Cada control nuevo se vio fallar antes de darlo por bueno:
 | Un `{n}` suelto en una fila polaca | la fila, y «texto roto: {n}» en las vistas en polaco |
 | La variabilidad otra vez en `v` | «ningún registro trae un campo v», y las 51 fichas: «dice que varía y en el catálogo no varía» |
 | El total sin Luna contado por muestras | las cuatro noches de prueba, cinco minutos de más |
+
+**Montado en `main` el 17 de octubre por Claude Code**, como pedía Jerome:
+
+- Las dos copias del cambio, con su huella: el parche
+  (`53d0d1373de6…0e44`) y el bundle (`fb3cf081527e…7d42`). El bundle trae el
+  commit original, `e93f3c9`; su diff y el del parche aplicado son el mismo,
+  byte a byte.
+- Aplicado sobre `main` en `0398d65` (un commit del robot de AEMET por
+  delante de `9ebc3e5`), limpio: queda como `7f90ab3`.
+- Antes de ejecutar nada: sin cambios en la CSP; el módulo se carga del propio
+  origen; lo único que pide fuera es la nubosidad a Open-Meteo, con las
+  coordenadas fijas de Izaña y no las de nadie; los enlaces, por
+  `bindExternalLink()`. `vendor/astronomy.browser.min.js` y su licencia,
+  idénticos byte a byte a los de cosinekitty/astronomy en `865d3da7`.
+- Con `tools/requisitos.txt` instalado, `auditar.sh` entero sobre `7f90ab3`:
+  **AUDITORIA EN VERDE**, ahora también con `auditar_ubicacion.py`,
+  `auditar_en_el_mar.py` e `informe_lugares.js`, que en la otra sesión no se
+  pudieron ejecutar. `auditar_cielo.js`, 49 controles en verde; el tour, 18
+  pasos en los diez idiomas y cuatro móviles.
+- GitHub Pages publicó `7f90ab3` sin errores. Desde este contenedor no se
+  llega a la web publicada; el panel se miró con los mismos ficheros en
+  local: las cinco pestañas en los diez idiomas, sin un error.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 

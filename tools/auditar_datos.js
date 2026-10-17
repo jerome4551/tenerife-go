@@ -185,6 +185,14 @@ console.log('\n=== lugares ===');
    Esta cifra subio una vez por sesion de gasolineras hasta la ultima alta, y se
    cambia A MANO a proposito: asi ningun lugar entra sin que nadie lo vea. */
 debe('lugares', PLACES.length, PLACES.length === 980);
+/* Y el resumen de arriba de AUDITORIA-FINAL.md («# 1 · Qué hay»): decia 787
+   con 980 en el mapa (17 de octubre de 2026). Ahora se coteja aqui. */
+{
+  const doc = require('fs').readFileSync(require('path').join(__dirname, '..', 'AUDITORIA-FINAL.md'), 'utf8');
+  const m = /^\| Lugares \| \*\*([\d.]+)\*\*/m.exec(doc);
+  const dice = m ? Number(m[1].replace(/\./g, '')) : null;
+  debe('lugares en el resumen de AUDITORIA-FINAL.md', dice === null ? 'no encuentro la fila' : dice, dice === PLACES.length);
+}
 ['id','name','emoji','color','lat','lng','desc','category'].forEach(c =>
   debe('sin ' + c, PLACES.filter(p => p[c] === undefined || p[c] === '').length, PLACES.every(p => p[c] !== undefined && p[c] !== '')));
 debe('ids que no cumplen [a-z0-9-]', PLACES.filter(p => !/^[a-z0-9-]+$/.test(p.id)).length, true);
