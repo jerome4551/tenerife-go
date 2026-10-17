@@ -5759,6 +5759,14 @@ Queda en manos de Jerome:
 Con todo esto, `auditar.sh` entero sobre `b1d3802`: **AUDITORIA EN VERDE**,
 con `informe_lugares.js --comprobar` y `auditar_readme.js` dentro.
 
+Y después, a «¿Quieres Cherfe también en el Sur de «Organiza tu día», como el
+Teide?»: «Si». **El Mirador de Cherfe va en las dos zonas**, en `LAS_DOS` de
+`tools/zonas_lugares.py` junto al Teide, con su respuesta y, al lado, el
+municipio que dice el polígono (Buenavista del Norte): si un día cambia, el
+guion para. El Sur pasa de 387 a 388 lugares. `probar_organiza.js` lo
+comprueba con el mismo filtro del itinerario, en la tarjeta de miradores y en
+los diez idiomas: 548 de 548.
+
 ---
 
 # 5 · Cómo se vuelve a medir

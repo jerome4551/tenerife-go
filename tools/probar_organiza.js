@@ -45,6 +45,8 @@
  *     y en el Sur; La Ruleta y Masca, solo en el Norte (Jerome: «el teid debe
  *     salir en sur y norte, igual por su teleférico, Roque garcia. El resto es
  *     norte»; y de la ficha con perro: «Es el mismo lugar que el teid»).
+ *     Y el Mirador de Cherfe, a 12 m de la raya con Santiago del Teide, en
+ *     las dos tambien (Jerome, 17 de octubre de 2026: «Si»).
  *
  * Y nunca dos paradas del mismo sitio (Jerome: «Hazlo y bien pensado»): se
  * mira aqui con su propio codigo, no con el de la app. Mismo sitio: la misma
@@ -318,13 +320,15 @@ const RECORRER = async () => {
     currentDayTripZone = null;
     out.zonas.sinZona = places.filter(p => !DP_ZONA_DE.norte.has(p.id) && !DP_ZONA_DE.sur.has(p.id)).map(p => p.id);
   }
-  /* el Teide, su teleferico y los Roques de Garcia, en las dos; lo demas de
+  /* el Teide, su teleferico, los Roques de Garcia y el Mirador de Cherfe (Jerome,
+     17 de octubre de 2026), en las dos; lo demas de
      Las Cañadas y Masca, solo en el Norte: con el mismo filtro que usa el
      itinerario y la tarjeta que los trae */
   {
     const entra = (zona, tarjeta, id) => { dpiZona = zona; const cats = DP_ZONES[tarjeta];
       return places.some(p => p.id === id && cats.includes(p.category) && dpiEnZona(p)); };
-    const dos = [['naturaleza', 'teide'], ['naturaleza', 'pico-teide-cumbre'], ['petfriendly', 'teide-petfriendly'], ['familia', 'teide-teleforico'], ['naturaleza', 'roques-garcia']];
+    const dos = [['naturaleza', 'teide'], ['naturaleza', 'pico-teide-cumbre'], ['petfriendly', 'teide-petfriendly'], ['familia', 'teide-teleforico'], ['naturaleza', 'roques-garcia'],
+                 ['mirador', 'mir-cherfe']];
     const norte = [['naturaleza', 'mirador-ruleta-canadas'], ['naturaleza', 'llano-ucanca'], ['naturaleza', 'masca'], ['naturaleza', 'acantilados-gigantes']];
     out.zonas.lasDos = {
       dos: dos.map(([t, id]) => [id, entra('norte', t, id), entra('sur', t, id)]),
@@ -443,7 +447,7 @@ const RECORRER = async () => {
         ms.hay.length > 0 && JSON.stringify(museosSur) === JSON.stringify(ms.hay.slice().sort()) && ms.aviso === ms.avisoFila && !!ms.aviso, JSON.stringify([museosSur, ms.hay, ms.aviso]));
       caso(`[${L}] Museos en el Norte: sin aviso, que hay ${mn.hay.length}`, !mn.aviso && mn.paradas.every(p => p.zonas.includes('norte')), JSON.stringify([mn.aviso, mn.paradas.map(p => p.id)]));
       const ld = d.zonas.lasDos;
-      caso(`[${L}] el Teide (sus tres fichas: volcan, cumbre y con perro), su teleferico y los Roques de Garcia salen en el Norte y en el Sur`, ld.dos.every(([, n, s]) => n && s), JSON.stringify(ld.dos));
+      caso(`[${L}] el Teide (sus tres fichas: volcan, cumbre y con perro), su teleferico, los Roques de Garcia y el Mirador de Cherfe salen en el Norte y en el Sur`, ld.dos.every(([, n, s]) => n && s), JSON.stringify(ld.dos));
       caso(`[${L}] La Ruleta, el Llano de Ucanca, Masca y los Acantilados de Los Gigantes, solo en el Norte`, ld.norte.every(([, n, s]) => n && !s), JSON.stringify(ld.norte));
     }
     if (d.zonas.azar) {

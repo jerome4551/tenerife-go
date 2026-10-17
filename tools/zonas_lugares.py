@@ -88,6 +88,11 @@ LAS_DOS = {
     'teide-petfriendly': 'La Orotava',   # Parque Nacional Teide 🐾
     'teide-teleforico': 'La Orotava',    # Teleférico del Teide
     'roques-garcia': 'La Orotava',       # Roques de García · Roque Cinchado
+    # El Mirador de Cherfe cae en Buenavista del Norte a 12 m de la raya con
+    # Santiago del Teide, en la carretera de Masca: se llega igual desde el sur.
+    # Jerome, 17 de octubre de 2026, a «¿Quieres Cherfe también en el Sur de
+    # «Organiza tu día», como el Teide?»: «Si».
+    'mir-cherfe': 'Buenavista del Norte',  # Mirador de Cherfe
 }
 
 # Fuera de todo poligono: el mas cercano, si esta a menos de esto...
@@ -160,9 +165,9 @@ def bloque(res):
     return (INI + ' · las escribe tools/zonas_lugares.py: NO SE TOCAN A MANO.\n'
             '   Norte o Sur de cada lugar, por el poligono oficial de su municipio\n'
             '   (Cabildo). Las usa «Organiza tu día»: Norte, Sur o «Me da igual».\n'
-            '   El Teide (sus tres fichas), su teleferico y los Roques de Garcia van\n'
-            '   en las dos (Jerome). Un lugar nuevo no tiene zona hasta que se vuelve\n'
-            '   a pasar el guion, y auditar.sh lo dice. */\n'
+            '   El Teide (sus tres fichas), su teleferico, los Roques de Garcia y el\n'
+            '   Mirador de Cherfe van en las dos (Jerome). Un lugar nuevo no tiene\n'
+            '   zona hasta que se vuelve a pasar el guion, y auditar.sh lo dice. */\n'
             'const DP_ZONA_LUGAR = {\n'
             '  norte: [\n' + lineas('norte') + '\n  ].join(\' \'),\n'
             '  sur: [\n' + lineas('sur') + '\n  ].join(\' \')\n'
@@ -201,7 +206,7 @@ def main():
     print('  lugares con zona, por el poligono de su municipio: %d' % len(res))
     print('    Norte (%d municipios)....................... %d' % (len(NORTE), n))
     print('    Sur (%d municipios)......................... %d' % (len(SUR), su))
-    print('    en las dos (Jerome: el Teide, su teleferico y los Roques de Garcia): %d (%s)' % (len(dos), ', '.join(dos)))
+    print('    en las dos (Jerome: el Teide, su teleferico, los Roques de Garcia y Cherfe): %d (%s)' % (len(dos), ', '.join(dos)))
     print('    fuera del poligono, con el mas cercano...... %d%s' % (
         len(fuera), (' (el mas lejos: %s, %s, a %.0f m)' % (fuera[-1][1], fuera[-1][2], fuera[-1][0])) if fuera else ''))
 
