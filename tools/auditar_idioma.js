@@ -402,6 +402,15 @@ const IGUAL_OK = {
      marina, skatepark- o no tienen ninguna, como guachinche */
   pl: ['Guachinche', 'Karting', 'Zoo', 'Marina', 'Skatepark']
 };
+/* «MTB Anaga» (17 de octubre de 2026). La etiqueta de la ruta MTB de Cruz
+   del Carmen era «MTB Anaga · Cruz del Carmen · ★ Top Tenerife»; la 1.5 de
+   LANZAMIENTO-PLAY.md le quito la nota de terceros y quedo igual que el
+   castellano en cinco idiomas, sin estar mal: MTB es como se escribe en
+   ingles, aleman, italiano, neerlandes y polaco, y Anaga es el nombre del
+   macizo. Ya decian «MTB Anaga» antes; solo cambio lo de alrededor. El
+   frances dice VTT y el chino y el bulgaro lo traducen: a ellos no se les
+   declara, y si un dia lo dejan en castellano, se canta. */
+for (const L of ['en', 'de', 'it', 'nl', 'pl']) IGUAL_OK[L].push('MTB Anaga');
 
 /* Barrios y sitios que solo salen en medio de la etiqueta y por eso no los
    pilla la cosecha automatica, que mira el ultimo trozo. Son nombres

@@ -5485,6 +5485,39 @@ un lugar menos sin regenerar, rojo; y si `auditar_municipio.js` deja de
 escribir una de sus líneas, el informe para y lo dice. De paso, el rótulo
 «las 212 fichas de gasolinera» de `auditar.sh` pierde la cifra: son 211.
 
+### Cierre de la Fase 1
+
+`auditar.sh` entero, sobre una copia de `HEAD` (`2b0c1f2`): todo en verde
+menos `auditar_idioma.js` en cinco idiomas (inglés, alemán, italiano,
+neerlandés y polaco), con el mismo hallazgo. Lo rompió la 1.5: la etiqueta
+de la ruta MTB de Cruz del Carmen era «MTB Anaga · Cruz del Carmen · ★ Top
+Tenerife» y, sin la nota de terceros, quedó igual que el castellano en esos
+cinco idiomas. Está bien así: MTB es como se escribe en esos idiomas y Anaga
+es el nombre del macizo; ya decían «MTB Anaga», solo cambió lo de alrededor.
+Se declara «MTB Anaga» en esos cinco, como «Farmacia» en italiano; el francés
+(VTT), el chino y el búlgaro no se declaran. Probado en una copia: con el
+francés en castellano, sigue en rojo. No lo vieron los controles que se
+pasaron al cerrar la 1.5, porque `auditar_idioma.js` no estaba entre ellos:
+por eso la auditoría entera va al final de cada fase.
+
+Lo que el documento pedía ver hoy, visto:
+
+- 33 scripts en línea, los 33 compilan.
+- 0 `eval` y 0 `console.log`.
+- `escapeHtml` y `escapeAttr`, definidas una vez cada una.
+
+Las pruebas de Google Play (`probar_play.js`), 213 de 213.
+
+Queda en manos de Jerome:
+
+- ejecutar `supabase/borrar-cuenta.sql` y probarlo con una cuenta de usar y
+  tirar (el fichero dice qué hacer si falla);
+- las preguntas de la 1.4 y la 1.5, y los tres lugares de
+  `pendiente_de_jerome`;
+- el mensaje que abre la Fase 2 («dominio activo: https://DOMINIO/»), los
+  tres datos de la Fase 3 y, para el aviso legal, nombre, domicilio, correo
+  y NIF.
+
 ---
 
 # 5 · Cómo se vuelve a medir
