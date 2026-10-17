@@ -5577,6 +5577,9 @@ Queda en manos de Jerome:
   Console (la huella de la clave de firma de Google), después de subir la
   primera versión. Primero el dominio y la Fase 2.
 
+Con todo esto, `auditar.sh` entero sobre `b1d3802`: **AUDITORIA EN VERDE**,
+con `informe_lugares.js --comprobar` y `auditar_readme.js` dentro.
+
 ---
 
 # 5 · Cómo se vuelve a medir
