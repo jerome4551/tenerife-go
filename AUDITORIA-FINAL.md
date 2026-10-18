@@ -2325,17 +2325,22 @@ no la secundaria**.
 | Ids de línea repetidos · números compartidos | **0 · 0** |
 | Ids de parada repetidos | **0** de 6.263 |
 | Referencias huérfanas al catálogo (paradas) | **0** |
-| Referencias huérfanas en `suggestionIds` (planificador de día) | **0** de 164 |
+| Referencias huérfanas en `suggestionIds` (planificador de día) | **0** de 162 |
 | Paradas o lugares fuera de Tenerife | **0** |
 | Parada repetida consecutiva en una línea | **0** |
 | `via` con punto mal formado | **0** de 26.593 |
-| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **786** |
-| Ids de lugar que cumplen `[a-z0-9-]` | **786** |
+| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **980** |
+| Ids de lugar que cumplen `[a-z0-9-]` | **980** |
 | Con calidad de agua, y su año | **46** · 46 |
 | Con alias de búsqueda, que los 3 filtros leen | **58** |
 | Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
 | De esos, `warn:"mar"` | **50** |
 | URLs de lugar sin cifrar | **0** de 16 |
+
+Cada cifra de esta tabla, y las dos del texto de abajo (los filtros del alias
+y las líneas con más de dos terminales), las coteja `auditar_datos.js`: si una
+cambia y la tabla no, se pone en rojo. Hasta el 18 de octubre decía «0 de 164»
+y «786» con 162 y 980.
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no
@@ -5766,6 +5771,17 @@ municipio que dice el polígono (Buenavista del Norte): si un día cambia, el
 guion para. El Sur pasa de 387 a 388 lugares. `probar_organiza.js` lo
 comprueba con el mismo filtro del itinerario, en la tarjeta de miradores y en
 los diez idiomas: 548 de 548.
+
+Y a «¿la recuento con un control, como hice con el README?», sobre la tabla
+«Integridad de datos»: «Si». Decía «0 de 164» referencias del planificador y
+«786» lugares completos e ids válidos, con 162 y 980. Recontada, y cada fila la
+coteja ahora `auditar_datos.js` con sus mismas cuentas, más las dos cifras del
+texto (los 3 filtros que leen el alias y las 7 líneas con más de dos
+terminales). Al contar a mano salieron primero 27 referencias huérfanas y 25
+paradas repetidas seguidas: eran las 27 paradas del tranvía, que van como
+objetos y no como claves del catálogo; con la regla de los controles, 0 y 0.
+Probado en copias: una fila borrada, «8 líneas», «4 filtros» y «45» en el
+agua: las cuatro, en rojo.
 
 ---
 

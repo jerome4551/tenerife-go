@@ -552,5 +552,64 @@ const pares = dup.filter(([, a]) => { let m = 0; for (let i = 0; i < a.length; i
   m = Math.max(m, km([CAT[a[i]].la, CAT[a[i]].lo], [CAT[a[j]].la, CAT[a[j]].lo])); return m < 0.08; });
 P('de esos, pares ida/vuelta a menos de 80 m', pares.length);
 
+/* ── la tabla «Integridad de datos» de AUDITORIA-FINAL.md ──────────────────
+   Decia «0 de 164» referencias del planificador y «786» lugares completos
+   cuando eran 162 y 980 (18 de octubre de 2026; Jerome: que se cuenten). Cada
+   fila se coteja con lo que cuentan los controles de arriba y con las mismas
+   reglas: las paradas del tranvia van como objetos, sin clave del catalogo, y
+   por eso no son huerfanas ni repetidas. Si una fila falta o cambia de nombre,
+   tambien en rojo: una cifra que nadie mira se queda vieja. */
+console.log('\n=== la tabla «Integridad de datos» de AUDITORIA-FINAL.md ===');
+{
+  const doc = fs_.readFileSync(require('path').join(__dirname, '..', 'AUDITORIA-FINAL.md'), 'utf8');
+  const ini = doc.indexOf('\n## Integridad de datos\n');
+  const sec = ini < 0 ? '' : doc.slice(ini, doc.indexOf('\n## ', ini + 5));
+  const fila = et => {
+    const l = sec.split('\n').find(x => x.startsWith('| ' + et + ' |'));
+    return l ? l.split('|')[2].replace(/\*\*/g, '').trim() : null;
+  };
+  const n = x => String(x).replace(/\B(?=(\d{3})+(?!\d))/g, '.');      // 6263 -> «6.263»
+  const sug = [];
+  for (const b of html.matchAll(/suggestionIds:\s*\[([\s\S]*?)\]/g)) for (const m of b[1].matchAll(/'([a-z0-9-]+)'/g)) sug.push(m[1]);
+  const vivos = new Set(PLACES.map(p => p.id));
+  const caja = (la, lo) => la >= 27.95 && la <= 28.62 && lo >= -16.98 && lo <= -16.05;
+  const COMPLETO = ['id', 'name', 'category', 'lat', 'lng', 'color', 'emoji'];
+  const tabla = {
+    'Ids de línea repetidos · números compartidos':
+      (ids.length - new Set(ids).size) + ' · ' + Object.values(nums).filter(a => a.length > 1).length,
+    'Ids de parada repetidos': (pid.length - new Set(pid).size) + ' de ' + n(pid.length),
+    'Referencias huérfanas al catálogo (paradas)':
+      String(LINES.flatMap(l => l.paradas).filter(p => p.stopId && !CAT[p.stopId]).length),
+    'Referencias huérfanas en `suggestionIds` (planificador de día)':
+      sug.filter(i => !vivos.has(i)).length + ' de ' + n(sug.length),
+    'Paradas o lugares fuera de Tenerife':
+      String(PLACES.filter(p => !caja(p.lat, p.lng)).length + Object.values(CAT).filter(p => !caja(p.la, p.lo)).length),
+    'Parada repetida consecutiva en una línea': String(rep),
+    '`via` con punto mal formado': malos + ' de ' + n(pts),
+    'Lugares completos (id, nombre, categoría, coordenada, color, emoji)':
+      String(PLACES.filter(p => COMPLETO.every(c => p[c] !== undefined && p[c] !== null && p[c] !== '')).length),
+    'Ids de lugar que cumplen `[a-z0-9-]`': String(PLACES.filter(p => /^[a-z0-9-]+$/.test(p.id)).length),
+    'Con calidad de agua, y su año': conAgua.length + ' · ' + conAgua.filter(p => p.aguaCalidadAnio).length,
+    'Con alias de búsqueda, que los 3 filtros leen': String(PLACES.filter(p => p.alias).length),
+    'Con aviso `warn`, y su tipo existe en `WARN_I18N`':
+      conWarn.length + ' · ' + conWarn.filter(p => !CONOCIDOS.includes(p.warn)).length + ' huérfanos',
+    'De esos, `warn:"mar"`': String(conWarn.filter(p => p.warn === 'mar').length),
+    'URLs de lugar sin cifrar': urls.filter(u => u.startsWith('http://')).length + ' de ' + urls.length,
+  };
+  for (const [et, cuenta] of Object.entries(tabla)) {
+    const dice = fila(et);
+    debe(et.replace(/`/g, '').slice(0, 44), (dice === null ? '(no esta la fila)' : dice) + '   contado: ' + cuenta, dice === cuenta);
+  }
+  /* y las dos cifras que van en el texto: los filtros que leen el alias y
+     las lineas con mas de dos paradas terminales */
+  const filtros = /que los (\d+) filtros leen/.exec(sec);
+  debe('filtros del buscador que leen el alias', (filtros ? filtros[1] : '(no esta)') + '   contado: ' + leenAlias,
+       !!filtros && Number(filtros[1]) === leenAlias);
+  const term = /\*\*(\d+) líneas marcan más de 2 paradas como\s+terminal\*\*/.exec(sec);
+  const nTerm = LINES.filter(l => l.paradas.filter(p => p.esTerminal).length > 2).length;
+  debe('lineas con mas de 2 paradas terminales', (term ? term[1] : '(no esta)') + '   contado: ' + nTerm,
+       !!term && Number(term[1]) === nTerm);
+}
+
 console.log('\n' + (fallos ? '*** ' + fallos + ' control(es) fuera de lo esperado ***' : 'todo dentro de lo esperado'));
 process.exit(fallos ? 1 : 0);
