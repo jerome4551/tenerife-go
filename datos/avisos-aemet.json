@@ -3,11 +3,11 @@
  "canal": "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAP6596_RSS.xml",
  "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos?p=6596",
  "aemet": {
-  "fichero": "Z_CAP_C_LEMM_20261018215001_AFAP6596.tar.gz",
-  "publicado": "2026-10-18T21:50:01+00:00",
+  "fichero": "Z_CAP_C_LEMM_20261019215001_AFAP6596.tar.gz",
+  "publicado": "2026-10-19T21:50:01+00:00",
   "titulo": "Estado completo de avisos para Tenerife. No hay avisos para Tenerife",
-  "alcance": "2026-10-21T23:59:59+01:00"
+  "alcance": "2026-10-22T23:59:59+01:00"
  },
- "consultado": "2026-10-19T20:12:50Z",
+ "consultado": "2026-10-19T22:38:26Z",
  "avisos": []
 }
