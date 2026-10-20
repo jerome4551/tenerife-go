@@ -5784,6 +5784,111 @@ Probado en copias: una fila borrada, «8 líneas», «4 filtros» y «45» en el
 agua: las cuatro, en rojo. Con las dos cosas, `auditar.sh` entero sobre
 `8c1b86f`: **AUDITORIA EN VERDE**.
 
+
+## El asistente: que no se quede nada atrás (20 de octubre)
+
+Jerome: «Verifica que cada nueva información sea integrada en el asistente y
+en todos los idiomas… Después verificaste que las notificaciones se envían en
+cada idioma seleccionado en cada perfil?… Reparte tu trabajo en bloque y no
+deja nada atrás». Por bloques: A, lo que el asistente sabe de cada lugar; B, lo
+que le falta saber; C y D, las notificaciones.
+
+### A · Cada lugar, por su nombre
+
+Se le preguntó al asistente por cada uno de los 980 lugares, con la frase del
+botón «¿Dónde está Masca?» de cada idioma y el nombre como se escribe de
+verdad, sin el paréntesis ni lo que va detrás de « — » («Farmacia Anaga» por
+«Farmacia Anaga (Santa Cruz)»). Encontraba 810 en castellano y en inglés, 824
+en búlgaro, 820 en polaco y **342 en chino**. Ningún control se lo preguntaba:
+`probar_faq.js` corre sin lugares y `probar_movil.js` hace 25 preguntas. Las
+causas eran del buscador, no de un idioma:
+
+- **Nombres hechos de palabras de categoría.** «Playa La Arena», «Golf del
+  Sur», «Hospital del Sur de Tenerife», «Playa Roque de las Bodegas»… (12).
+  Esas palabras se apartan como categoría, no quedaba ninguna de nombre y ni
+  se miraba si el nombre entero estaba escrito: salía la lista de la
+  categoría. Ahora el nombre entero se mira siempre; sin palabras de nombre
+  solo puede casar el nombre entero, así que «playas en el sur» sigue igual.
+- **El chino pegado.** «masca在哪里» era una sola palabra. Se parte entre el
+  ideograma y la letra latina, y queda igual que «Masca 在哪里»; lo chino se
+  sigue comparando sin espacios, así que sus claves no cambian. Y la palabra
+  de categoría pegada a otras («最便宜的加油站», las gasolineras más baratas)
+  cuenta como categoría.
+- **Nombres de cinco letras.** Adeje, Arona, Arico y Arafo no contaban como
+  nombre entero (desde seis), y por palabra suelta no se distinguían de las
+  decenas de lugares «(Arona)»: «¿Dónde está Arona?» no tenía respuesta.
+- **El principio del nombre.** «Castillo de San Miguel» empataba con dos campos
+  de golf de San Miguel de Abona y ganaba el primero del fichero. Si lo escrito
+  contiene seguido el principio del nombre de un solo lugar, con una palabra de
+  nombre —o de categoría unida por «de», «del», «la»: «Playa del Castillo»,
+  «Hospital del Norte»—, es ese lugar. Si lo llevan dos, no se elige por nadie;
+  si es una de las frases con que se pide la categoría («centro de salud»),
+  tampoco; y palabra por palabra, sin plurales: «farmacias en La Orotava» no es
+  «Farmacia La Orotava (Araucarias)».
+- **Los empates.** Se desempatan por las palabras de la categoría que lleva el
+  nombre («Farmacia Hernández»: la farmacia, no la playa de Diego Hernández),
+  por el nombre que empieza por lo escrito y por el pueblo («Vilaflor»:
+  Vilaflor de Chasna, no el GR-131). Y si de verdad empatan —tres «Playa del
+  Cabezo», la playa y el pueblo de «Playa San Juan»— se enseñan para elegir.
+
+Ahora, en los diez idiomas: **886 de 980 por el nombre corto, y 38 más entre
+los que se llaman igual, para elegir** (40 en búlgaro); en chino, de 342 a 924.
+Por el nombre entero, 980 de 980 en los diez, también en chino pegado. Los 56
+que quedan son nombres cortos que no dicen un lugar: «Parapente» son seis
+despegues y sale la categoría; «Ruta Norte», «Marina del Sur», «Guachinche La
+Bodega»…
+
+Al medirlo salieron más cosas, todas de antes:
+
+- **«Playas en Los Cristianos» abría la ficha del pueblo.** Si una palabra de
+  la categoría queda fuera del nombre encontrado y el lugar no es de esa
+  categoría, ahora sale la categoría alrededor de ese lugar: las playas de Los
+  Cristianos, los museos del Puerto de la Cruz, los guachinches de La Orotava.
+  «Playa La Arena» sigue siendo la playa: ahí la palabra es del nombre. Y la
+  respuesta de la base que casaba por el nombre del pueblo no se pega encima:
+  «webcams en Garachico» ya no lleva delante «qué ver en Garachico».
+- **La pregunta sobre el lugar.** «¿Cómo llego a Masca?» y los botones «¿Qué
+  ver en La Orotava?» y «¿Qué ver en Garachico?» abrían la ficha o una lista
+  genérica, y no su respuesta (los dos botones, en seis idiomas). Si lo que
+  casa de la base contiene el nombre del lugar y dice algo más, gana la base.
+  Al revés, si la clave es solo el nombre («Roques de García», «Barranco del
+  Infierno»), sale la ficha y la respuesta de la base va de primer botón.
+- **«icod»** se completaba a «icod de los vinos» también cuando ya lo estaba, y
+  ese «vinos» metía la gastronomía en cualquier pregunta sobre Icod.
+- **«Où est…», «Wo ist…», «Gdzie jest…»**: las palabras de la pregunta en los
+  otros ocho idiomas se quedaban como parte del nombre. Con la «cuesta» de
+  «Lidl La Laguna (La Cuesta-Taco)» parecía una pregunta de precio y salía la
+  respuesta de La Laguna; esa «cuesta», al ser del nombre, ya no pregunta
+  precio.
+- **«Cerca de mí» alrededor de un sitio cualquiera.** «Gasolineras más baratas
+  cerca de mí» ordenaba alrededor del parque de La Gesta (por un «más» de una
+  etiqueta), y «Veterinarios 24h» alrededor del Minimarket 24h: el rótulo de la
+  categoría solo se miraba si no había casado otra palabra antes, y el «24h»
+  se quedaba suelto como si fuera un nombre.
+
+Medido contra la versión anterior servida aparte, con las mismas preguntas:
+de las 1.220 preguntas de la base (los rótulos de sus botones, 122 por idioma)
+y sus 6.524 claves en los diez idiomas, **ninguna lleva ahora a una respuesta
+peor**: 59 llevan a la suya y antes no, y los botones que llevan a su
+respuesta pasan de 119 a 121 en seis idiomas (el que queda, «Ordena mis
+favoritos por distancia», no contesta: lo hace). De 3.945 preguntas de
+categoría, zona, «cerca de mí», pueblos y botones rápidos, cambian 1.726 y se
+miraron todas: 1.167 de la ficha o de la respuesta del pueblo a la categoría
+alrededor del pueblo, 387 alrededor de Arona en vez de un sendero de Vilaflor
+o de nada, 70 que no contestaban y ahora dan el lugar, 42 que ganan el botón
+con la respuesta de la base, 19 que dejan de ordenar alrededor de un sitio al
+azar, y 41 más, también para bien («Santa Cruz» es Santa Cruz y no el baño de
+Valleseco; «Masca», Masca).
+
+Control nuevo, `tools/probar_nombres.js`, en `auditar.sh`: la app entera en un
+navegador, cada lugar preguntado por su nombre entero con la frase del botón de
+cada idioma (en chino, también pegada): tiene que salir su ficha, o la lista
+para elegir si otro se llama igual. Por el nombre corto lo cuenta y lo dice,
+sin exigir. Probado al revés: con el buscador de antes, en rojo en los diez
+(por el nombre entero, 951 de 980 en castellano y 1.507 de 1.960 en chino).
+Espera a que llegue el `faq/<idioma>.json` de cada idioma: sin eso, en
+búlgaro preguntaba con la base del idioma anterior (salió así la primera vez).
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -5828,6 +5933,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_faq.js` | el asistente: cada respuesta en los diez idiomas, alcanzable por su botón, ninguna igual al castellano o al inglés, los botones que cita con su nombre de pantalla, y ninguna base fuera de `faq/` |
 | `tools/rotulos_app.js` | los rótulos de la app en los diez idiomas, sacados de `index.html` (lo usa `auditar_faq.js`) |
 | `tools/probar_faq.js` · `tools/probar_movil.js` | preguntas de prueba al asistente: en Node con el núcleo de verdad, y en un móvil con la app entera |
+| `tools/probar_nombres.js` | cada lugar preguntado al asistente por su nombre, en los diez idiomas y en chino pegado: sale su ficha o la lista para elegir; el nombre corto, contado |
 | `tools/auditar_letras.js` | palabras escritas sin sus letras («waehle», «carre avec fleche») |
 | `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json` (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, ficheros rotos, el latido de 3 horas |

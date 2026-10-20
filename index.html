@@ -9294,7 +9294,8 @@ const TG_FAQ = (function () {
         keys: e.k.concat([e.l]),
         answer: e.a,
         follow: (e.f || []).map(function (id) { return rotulo[id]; }).filter(Boolean),
-        showContact: e.c === 1
+        showContact: e.c === 1,
+        label: e.l
       };
     });
   }
@@ -26755,11 +26756,23 @@ var CHAT_STOP={de:1,la:1,el:1,los:1,las:1,del:1,en:1,al:1,un:1,una:1,unos:1,unas
    alemana no son letra mas acento, son otro caracter, y esas hay que
    doblarlas a mano o el polaco se queda sin la mitad de sus palabras. */
 var CHAT_TRAZO={'\u0142':'l','\u00f8':'o','\u0111':'d','\u00df':'ss','\u00e6':'ae','\u0153':'oe','\u00fe':'th','\u0131':'i'};
+/* \u00abmasca\u5728\u54ea\u91cc\u00bb era UN solo token: el chino no deja espacio, y la palabra
+   latina pegada al ideograma se quedaba dentro de la misma palabra. El nombre
+   del lugar no salia por ningun lado y el asistente no lo encontraba, cuando
+   \u00abMasca \u5728\u54ea\u91cc\u00bb, con espacio, si (20/10/2026: 342 de los 980 nombres
+   preguntados asi en chino). Se parte en la frontera entre un ideograma y una
+   letra o cifra de otro alfabeto, y las dos maneras de escribirlo quedan
+   iguales. Lo chino se sigue comparando sin espacios (chatSinEsp), asi que a
+   las claves chinas no les cambia nada. */
+var CHAT_CJK_ANTES=/([^\s\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])(?=[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])/g,
+    CHAT_CJK_DESPUES=/([\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])(?=[^\s\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])/g;
 function chatNorm(s){
   return String(s||'').toLowerCase()
     .replace(/[\u0142\u00f8\u0111\u00df\u00e6\u0153\u00fe\u0131]/g,function(c){return CHAT_TRAZO[c];})
     .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-    .replace(/[^\p{L}\p{N}\s]/gu,' ').replace(/\s+/g,' ').trim();
+    .replace(/[^\p{L}\p{N}\s]/gu,' ')
+    .replace(CHAT_CJK_ANTES,'$1 ').replace(CHAT_CJK_DESPUES,'$1 ')
+    .replace(/\s+/g,' ').trim();
 }
 /* El chino y el japones no separan las palabras con espacios: una pregunta
    entera es un solo token y una clave no es ni token ni frase entre
@@ -26889,21 +26902,106 @@ function chatBuildIndex(){
     for(var j=0;j<toks.length;j++){var t=toks[j];tokset[t]=1;if(!seen[t]){seen[t]=1;chatDF[t]=(chatDF[t]||0)+1;}}
     var tagset={};
     if(p.tags){for(var j2=0;j2<p.tags.length;j2++){var tt=chatTokens(chatNorm(p.tags[j2]));for(var k2=0;k2<tt.length;k2++)tagset[tt[k2]]=1;}}
-    chatIdx.push({p:p,n:' '+n+' ',tokset:tokset,tagset:tagset});
+    chatIdx.push({p:p,n:' '+n+' ',a:n.split(' '),tokset:tokset,tagset:tagset});
   }
 }
 function chatById(id){return chatIdMap?chatIdMap[id]:null;}
 
+/* EL PRINCIPIO DEL NOMBRE. Casi nadie escribe el nombre entero: «Farmacia
+   Anaga» por «Farmacia Anaga (Santa Cruz)», «Castillo de San Miguel» por
+   «Castillo de San Miguel (Garachico)». Las palabras sueltas no bastaban:
+   «farmacia» y «castillo» son palabras de categoria y no puntuan como
+   nombre, y «San Miguel» lo llevan tambien dos campos de golf, que salian
+   antes. Si lo escrito contiene, tal cual y seguido, el principio del nombre
+   de UN solo lugar, ese es el lugar. Con estas condiciones:
+     · que ese principio tenga al menos dos palabras con contenido;
+     · que una de ellas sea de nombre, no de categoria ni de zona, o que sea
+       un nombre hecho de palabras de categoria unidas por «de», «del», «la»...
+       («Playa del Castillo», «Hospital del Norte») y no una de las frases con
+       que se pide la categoria («centro de salud», «zona de acampada»):
+       «Playa Nudista de...» no puede quedarse con quien pide playas nudistas;
+     · que no lo lleve tambien otro lugar: entonces no se elige por nadie;
+     · y que no haya escrito un nombre entero mas largo, que gana siempre.
+   Se compara palabra por palabra y sin plurales: «farmacias en La Orotava»
+   no es el principio de «Farmacia La Orotava (Araucarias)», y sigue siendo
+   la lista de las farmacias de alli. */
+function chatFrasesDeCategoria(){
+  var f={},i,j;
+  for(i=0;i<CHAT_CATS.length;i++){
+    var c=CHAT_CATS[i],voc=c.w.concat(chatCatVocab(c.k));
+    for(j=0;j<voc.length;j++){var n=chatNorm(voc[j]);if(n)f[n]=1;}
+  }
+  return f;
+}
+function chatPrincipioUnico(paddedFull,sToks){
+  var nom={},i,j,e,frasesCat=null;
+  for(i=0;i<sToks.length;i++)nom[sToks[i]]=1;
+  var largoEntero=0;
+  for(i=0;i<chatIdx.length;i++){
+    e=chatIdx[i];
+    if(e.n.length>=7&&paddedFull.indexOf(e.n)>=0&&e.n.length>largoEntero)largoEntero=e.n.length;
+  }
+  var mejor=null,largo=0,repe=false;
+  for(i=0;i<chatIdx.length;i++){
+    e=chatIdx[i];
+    for(var k=e.a.length-1;k>=2;k--){
+      if(CHAT_STOP[e.a[k-1]])continue;
+      var f=' '+e.a.slice(0,k).join(' ')+' ';
+      if(paddedFull.indexOf(f)<0)continue;
+      // el principio mas largo que esta; si ese no vale, uno mas corto tampoco
+      var conTexto=0,nombra=0,union=false;
+      for(j=0;j<k;j++){
+        var w=e.a[j];
+        if(w.length>1&&!CHAT_STOP[w]){conTexto++;if(nom[w])nombra++;}
+        else if(j>0&&CHAT_STOP[w])union=true;
+      }
+      var vale=conTexto>=2&&nombra>0;
+      if(!vale&&conTexto>=2&&union){
+        if(!frasesCat)frasesCat=chatFrasesDeCategoria();
+        vale=!frasesCat[f.trim()];
+      }
+      if(vale){
+        if(f.length>largo){mejor={e:e,len:f.length,f:f};largo=f.length;repe=false;}
+        else if(f.length===largo&&mejor.e!==e)repe=true;
+      }
+      break;
+    }
+  }
+  if(!mejor||repe||largo<=largoEntero)return null;
+  return mejor;
+}
 /* Busqueda difusa por nombre. El indice se construye de places[], asi que
    tiene exactamente tantas entradas como lugares haya: aqui ponia 935, que
    no era el numero de entonces ni el de ahora. Una cifra en un comentario
    caduca sola; mejor no ponerla. */
-function chatFindByName(paddedFull,sToks,allowRev){
+/* LOS EMPATES. Entre dos lugares con los mismos puntos ganaba el que iba
+   antes en el fichero. Ahora se desempata, por este orden:
+     · extra, las palabras que la pregunta gasto en la categoria («castillo»,
+       «farmacia»): no puntuan como nombre, pero se prefiere el lugar que las
+       lleva en el suyo. «Castillo de San Miguel» empataba con «Amarilla Golf
+       (San Miguel de Abona)» y salia el golf;
+     · el nombre que EMPIEZA por lo escrito, y si sigue el empate, el pueblo:
+       «¿Dónde está Vilaflor?» empataba con los cuatro senderos que llevan
+       Vilaflor en el nombre y salia el GR-131, no Vilaflor de Chasna.
+
+   El nombre entero cuenta desde 5 letras (« arona » mide 7 con sus dos
+   espacios). Desde 6 se dejaban fuera Adeje, Arona, Arico y Arafo, y por
+   palabras sueltas no salian nunca: «arona» la llevan en el nombre decenas
+   de lugares de Arona, asi que no distinguia ninguno y «¿Dónde está Arona?»
+   no encontraba Arona. */
+function chatFindByName(paddedFull,sToks,allowRev,extra){
+  /* los nombres estan escritos en letra latina: una palabra china no puede
+     ser parte de ninguno, y metida entre las demas («disa avenida santa cruz
+     在哪里») rompia la frase que si es parte del nombre */
+  var lat=[];
+  for(var i0=0;i0<sToks.length;i0++){if(!CHAT_CJK.test(sToks[i0]))lat.push(sToks[i0]);}
+  sToks=lat;
   var paddedS=' '+sToks.join(' ')+' ';
-  var res=[];
+  var res=[],pri=chatPrincipioUnico(paddedFull,sToks);
   for(var i=0;i<chatIdx.length;i++){
-    var e=chatIdx[i],s=0,strong=false,anyRare=false;
-    if(e.n.length>=8&&paddedFull.indexOf(e.n)>=0){s+=100+e.n.length;strong=true;}
+    var e=chatIdx[i],s=0,strong=false,anyRare=false,entero=false;
+    if(e.n.length>=7&&paddedFull.indexOf(e.n)>=0){s+=100+e.n.length;strong=true;entero=true;}
+    else if(pri&&pri.e===e){s+=100+pri.len;strong=true;}
     else{
       for(var j=0;j<sToks.length;j++){
         var vars=chatTokVariants(sToks[j]),bestW=0,hitT=null;
@@ -26921,9 +27019,24 @@ function chatFindByName(paddedFull,sToks,allowRev){
       }
       if(allowRev&&sToks.length>0&&paddedS.length>=8&&e.n.indexOf(paddedS)>=0){s+=60;if(anyRare)strong=true;}
     }
-    if(s>0)res.push({p:e.p,s:s,strong:strong});
+    if(s>0){
+      var x=0;
+      for(var j4=0;extra&&j4<extra.length;j4++){
+        var vx=chatTokVariants(extra[j4]);
+        for(var v4=0;v4<vx.length;v4++){if(e.tokset[vx[v4]]){x++;break;}}
+      }
+      // el nombre entero escrito no se desempata: dos lugares que se llaman
+      // igual («Playa San Juan» la playa y el pueblo) son para elegir
+      var cat0=e.p.category,kk=0;
+      if(!entero){
+        if(cat0==='ciudad'||cat0==='pueblo'||cat0==='municipio')kk=1;
+        if(sToks.length&&e.n.indexOf(paddedS)===0)kk+=2;
+      }
+      // f: la frase del nombre que esta escrita, cuando es el nombre entero o su principio
+      res.push({p:e.p,s:s,strong:strong,x:x,k:kk,f:entero?e.n:(pri&&pri.e===e?pri.f:null)});
+    }
   }
-  res.sort(function(a,b){return b.s-a.s;});
+  res.sort(function(a,b){return (b.s-a.s)||(b.x-a.x)||(b.k-a.k);});
   return res.slice(0,8);
 }
 
@@ -26964,15 +27077,17 @@ function chatDetectCats(padded,tokset,qnc){
         if(padded.indexOf(' '+w+' ')>=0){hit=true;var pt=w.split(' ');for(var k=0;k<pt.length;k++)used[pt[k]]=1;}
       }else if(tokset[w]){hit=true;used[w]=1;}
     }
-    if(!hit){
-      var voc=chatCatVocab(c.k);
-      for(var v=0;v<voc.length;v++){
-        var vn=chatNorm(voc[v]);
-        if(!vn||!chatCoincide(vn,padded,tokset,qnc||''))continue;
-        hit=true;
-        var vp=vn.split(' ');
-        for(var vq=0;vq<vp.length;vq++)used[vp[vq]]=1;
-      }
+    /* El rotulo se mira siempre, tambien cuando ya ha casado una palabra de
+       arriba. «Veterinarios 24h» casaba por «veterinarios», el «24h» se
+       quedaba suelto como si fuera parte de un nombre, y la lista de
+       veterinarios salia ordenada alrededor del «Minimarket 24h». */
+    var voc=chatCatVocab(c.k);
+    for(var v=0;v<voc.length;v++){
+      var vn=chatNorm(voc[v]);
+      if(!vn||!chatCoincide(vn,padded,tokset,qnc||''))continue;
+      hit=true;
+      var vp=vn.split(' ');
+      for(var vq=0;vq<vp.length;vq++)used[vp[vq]]=1;
     }
     if(hit&&keys.indexOf(c.k)<0&&keys.length<2){keys.push(c.k);labels.push(chatNombreCat(c.k));}
   }
@@ -27061,6 +27176,25 @@ function chatMatchKB(padded,tokset,qn){
 var CHAT_ID_EMERGENCIA='sal-01';
 /* y la de como funciona la app: ver «AYUDA» A SECAS */
 var CHAT_ID_AYUDA_APP='app-01';
+/* Las palabras de las frases de intencion del idioma que estan escritas
+   («où est», «wo ist», «gdzie jest», «在哪里»). No son parte de ningun
+   nombre. Las de castellano e ingles ya las aparta CHAT_INTENT; las de los
+   otros ocho idiomas se quedaban como si lo fueran, y contaban como «algo
+   mas» que se pregunta sobre el lugar. */
+function chatPalabrasDeIntencion(padded,tokset,qnc){
+  var w={},tipos=['where','what','near','nearTok'];
+  for(var i=0;i<tipos.length;i++){
+    var l=TG_FAQ.intencion(tipos[i]);
+    for(var j=0;j<l.length;j++){
+      var kn=chatNorm(l[j]);
+      if(!kn||!chatCoincide(kn,padded,tokset,qnc))continue;
+      if(CHAT_CJK.test(kn)){w[chatSinEsp(kn)]=1;continue;}
+      var ps=kn.split(' ');
+      for(var k=0;k<ps.length;k++)w[ps[k]]=1;
+    }
+  }
+  return w;
+}
 /* ¿Es lo escrito, entero, una de estas frases? */
 function chatEsFrase(qn,lista){
   if(!lista)return false;
@@ -27071,8 +27205,11 @@ function chatResolve(question,pos){
   var qn=chatNorm(question);
   if(!qn)return {kind:'fallback'};
   var CHAT_ALIAS=[[' teid ',' teide '],[' sta cruz ',' santa cruz '],[' pto cruz ',' puerto de la cruz '],[' pto de la cruz ',' puerto de la cruz '],[' icod ',' icod de los vinos ']];
-  var qa=' '+qn+' ';
-  for(var al=0;al<CHAT_ALIAS.length;al++){ if(qa.indexOf(CHAT_ALIAS[al][0])>=0) qa=qa.split(CHAT_ALIAS[al][0]).join(CHAT_ALIAS[al][1]); }
+  var qa=' '+qn+' ',qn0=qn;
+  /* lo que ya viene entero no se vuelve a completar: «Icod de los Vinos —
+     Pista Multideporte» se quedaba en «icod de los vinos de los vinos pista
+     multideporte», que ya no era su nombre, y salia el pueblo */
+  for(var al=0;al<CHAT_ALIAS.length;al++){ if(qa.indexOf(CHAT_ALIAS[al][0])>=0&&qa.indexOf(CHAT_ALIAS[al][1])<0) qa=qa.split(CHAT_ALIAS[al][0]).join(CHAT_ALIAS[al][1]); }
   qn=qa.trim().replace(/\s+/g,' ');
   var padded=' '+qn+' ';
   var toks=chatTokens(qn),tokset={};
@@ -27112,7 +27249,19 @@ function chatResolve(question,pos){
     return pos?{kind:'favOrden',pos:pos}:{kind:'favOrdenGeo'};
   }
 
-  var cats=chatDetectCats(padded,tokset,qnc);
+  /* La categoria se busca en lo que se escribio, antes de completar los
+     nombres cortos. «icod» se completa a «icod de los vinos», y ese «vinos»,
+     que nadie habia escrito, metia la gastronomia en cualquier pregunta
+     sobre Icod: «playas en Icod» salia con playas y restaurantes, y la
+     gasolinera «Tgas · Carretera TF-5 Santa Cruz-Icod» parecia una pregunta
+     por restaurantes. */
+  var cats;
+  if(qn0===qn)cats=chatDetectCats(padded,tokset,qnc);
+  else{
+    var tk0=chatTokens(qn0),ts0={};
+    for(var i9=0;i9<tk0.length;i9++){var tv9=chatTokVariants(tk0[i9]);for(var v9=0;v9<tv9.length;v9++)ts0[tv9[v9]]=1;}
+    cats=chatDetectCats(' '+qn0+' ',ts0,chatSinEsp(qn0));
+  }
   var zone=null;
   for(var z1=0;z1<toks.length;z1++){var zk=CHAT_ZONE_W[toks[z1]];if(zk&&!(z1>0&&(toks[z1-1]==='aeropuerto'||toks[z1-1]==='airport'))){zone=zk;break;}}
   /* CHAT_ZONE_W solo sabe castellano e ingles, y la bienvenida de cada idioma
@@ -27141,19 +27290,43 @@ function chatResolve(question,pos){
   var whatWas=whatHit;
   if(whatHit&&cats.keys.length&&!zone)whatHit=false;
 
-  var sToks=[];
+  var sToks=[],deCat=[],intentW=chatPalabrasDeIntencion(padded,tokset,qnc);
   for(var s1=0;s1<toks.length;s1++){
     var tt=toks[s1];
-    if(CHAT_INTENT[tt]||CHAT_ZONE_W[tt]||CHAT_NEAR_TOK[tt])continue;
+    if(CHAT_INTENT[tt]||CHAT_ZONE_W[tt]||CHAT_NEAR_TOK[tt]||intentW[tt])continue;
     var tv1=chatTokVariants(tt),skipT=false;
     for(var v1=0;v1<tv1.length;v1++){if(cats.used[tv1[v1]]){skipT=true;break;}}
-    if(skipT)continue;
+    /* en chino la palabra de la categoria va pegada a otras («最便宜的加油站»,
+       las gasolineras mas baratas): la palabra entera no esta en used, pero
+       la lleva dentro */
+    if(!skipT&&CHAT_CJK.test(tt)){for(var uw in cats.used){if(CHAT_CJK.test(uw)&&tt.indexOf(uw)>=0){skipT=true;break;}}}
+    if(skipT){deCat.push(tt);continue;}
     sToks.push(tt);
   }
 
+  /* Se busca el nombre aunque no quede ninguna palabra de nombre. «Playa La
+     Arena», «Golf del Sur», «Hospital del Sur de Tenerife»: todas sus
+     palabras son de categoria o de zona, sToks se quedaba vacio y no se
+     llegaba a mirar si el nombre entero estaba escrito, asi que salia la
+     lista de playas, de golf o de hospitales y no el lugar (12 lugares asi
+     el 20/10/2026). Sin palabras de nombre solo puede casar el nombre
+     entero, asi que una pregunta de categoria («playas en el sur») sigue
+     igual. */
   var allowRev=!cats.keys.length&&!whatHit;
-  var matches=sToks.length?chatFindByName(padded,sToks,allowRev):[];
+  var matches=chatFindByName(padded,sToks,allowRev,deCat);
   var best=matches[0]||null,sec=matches[1]||null;
+  /* EMPATE DE VERDAD: dos o mas lugares que casan igual de bien y que nada
+     desempata. «Playa del Cabezo» son tres playas, en Guimar, en El Medano y
+     la de perros; ganaba la primera del fichero y quien buscaba la de El
+     Medano no sabia que habia otra. Se ensenan las que empatan y se elige. */
+  var empate=[];
+  if(best&&best.strong&&sec&&sec.strong&&sec.s===best.s&&sec.x===best.x&&sec.k===best.k){
+    for(var em=0;em<matches.length&&empate.length<4;em++){
+      var me1=matches[em];
+      if(me1.strong&&me1.s===best.s&&me1.x===best.x&&me1.k===best.k)empate.push(me1.p);
+    }
+  }
+  var elPoi=function(){return empate.length>1?{kind:'poiList',list:empate}:{kind:'poi',p:best.p,kb:kbDelLugar};};
 
   /* «SOCORRO» ES UNA PLAYA Y ES PEDIR AYUDA. Hasta el 12/10/2026 ganaba el
      nombre del sitio y abria la Playa El Socorro, tambien a quien lo escribia
@@ -27182,6 +27355,60 @@ function chatResolve(question,pos){
   if(best){
     var bset0=chatNorm(best.p.name).split(' ');
     for(var la=0;la<sToks.length;la++){if(bset0.indexOf(sToks[la])<0)leftoverAll++;}
+    /* la «cuesta» de «Lidl La Laguna (La Cuesta-Taco)» es parte del nombre,
+       no la pregunta de cuanto cuesta */
+    if(askInfo&&bigName){
+      askInfo=false;
+      for(var ai2=0;ai2<toks.length;ai2++){if(CHAT_ASKINFO[toks[ai2]]&&bset0.indexOf(toks[ai2])<0){askInfo=true;break;}}
+    }
+  }
+  /* «PLAYAS EN LOS CRISTIANOS». El nombre entero de Los Cristianos esta
+     escrito, y eso bastaba para abrir la ficha del pueblo; quien lo pregunta
+     quiere las playas de alli. Si una palabra de la categoria se queda FUERA
+     del nombre encontrado y el lugar no es de esa categoria, se contesta la
+     categoria alrededor de ese lugar. «Playa La Arena» no cambia: ahi la
+     palabra de la categoria es parte del nombre. */
+  var catFuera=false;
+  if(bigName&&cats.keys.length&&deCat.length){
+    var enSuCat=cats.keys.indexOf(best.p.category)>=0;
+    if(!enSuCat&&best.p.cats){for(var cf=0;cf<best.p.cats.length;cf++){if(cats.keys.indexOf(best.p.cats[cf])>=0){enSuCat=true;break;}}}
+    if(!enSuCat){
+      var nomF={},nf=chatTokens(chatNorm(best.p.name));
+      for(var f1=0;f1<nf.length;f1++){var vn1=chatTokVariants(nf[f1]);for(var f4=0;f4<vn1.length;f4++)nomF[vn1[f4]]=1;}
+      for(var f2=0;f2<deCat.length&&!catFuera;f2++){
+        var vf=chatTokVariants(deCat[f2]),dentroF=false;
+        for(var f3=0;f3<vf.length;f3++){if(nomF[vf[f3]]){dentroF=true;break;}}
+        if(!dentroF)catFuera=true;
+      }
+    }
+  }
+  /* LA PREGUNTA SOBRE EL LUGAR. «¿Cómo llego a Masca?» lleva el nombre
+     entero de Masca, y el nombre entero manda: abria la ficha del pueblo. Pero
+     esa pregunta esta escrita en la base, nombre incluido, y su respuesta es
+     la que vale (como se llega, en guagua o en coche, y donde aparcar). Si lo
+     que casa de la base CONTIENE el nombre encontrado y dice algo mas, gana la
+     base: se pregunta por el lugar, no se busca el lugar. Si la clave es solo
+     el nombre («barranco del infierno»), sigue ganando el lugar. */
+  var kbSobreLugar=false;
+  if(kbr&&bigName&&best.f){
+    var fn=best.f.trim();
+    for(var kq=0;kq<kbr.item.keys.length&&!kbSobreLugar;kq++){
+      var kn2=chatNorm(kbr.item.keys[kq]);
+      if(kn2.length>fn.length&&(' '+kn2+' ').indexOf(best.f)>=0&&chatCoincide(kn2,padded,tokset,qnc))kbSobreLugar=true;
+    }
+  }
+  if(kbSobreLugar&&!zone)return {kind:'kb',item:kbr.item};
+  /* Y al reves: la clave de la base es el nombre del lugar («roques de
+     garcia», «barranco del infierno»). Gana la ficha, que es lo que se ha
+     escrito; antes salia la lista de toda la categoria (montanas, senderos)
+     con la respuesta de la base encima. Esa respuesta no se pierde: va de
+     primer boton debajo de la ficha. */
+  var kbDelLugar=null;
+  if(kbr&&best&&best.f){
+    for(var kd=0;kd<kbr.item.keys.length&&!kbDelLugar;kd++){
+      var kn3=chatNorm(kbr.item.keys[kd]),kp3=' '+kn3+' ';
+      if(kn3&&(kp3.indexOf(best.f)>=0||best.f.indexOf(kp3)>=0)&&chatCoincide(kn3,padded,tokset,qnc))kbDelLugar=kbr.item;
+    }
   }
   if(whatWas&&bigName)return {kind:'what',anchor:{lat:best.p.lat,lng:best.p.lng,name:best.p.name,id:best.p.id}};
 
@@ -27191,18 +27418,18 @@ function chatResolve(question,pos){
   if(kbr&&askIdent&&!zone&&!bigName)return {kind:'kb',item:kbr.item};
   if(kbr&&askInfo&&kbGuard&&(!bigName||leftoverAll>0))return {kind:'kb',item:kbr.item};
 
-  if(whereHit&&best&&best.strong&&best.s>=6&&(!sec||best.s>=sec.s))return {kind:'poi',p:best.p};
+  if(whereHit&&best&&best.strong&&best.s>=6&&(!sec||best.s>=sec.s)&&!catFuera)return elPoi();
 
   var namePick=best&&best.strong&&best.s>=10&&(!sec||best.s>=sec.s+3||best.s>=25);
   var townPick=namePick&&(best.p.category==='pueblo'||best.p.category==='ciudad'||best.p.category==='municipio');
-  if(townPick&&kbr&&leftoverAll>0)return {kind:'kb',item:kbr.item};
+  if(townPick&&kbr&&leftoverAll>0&&!catFuera)return {kind:'kb',item:kbr.item};
 
-  if(namePick&&!whatHit&&!cats.keys.length)return {kind:'poi',p:best.p};
-  if(namePick&&!whatHit&&cats.keys.length&&bigName)return {kind:'poi',p:best.p};
+  if(namePick&&!whatHit&&!cats.keys.length)return elPoi();
+  if(namePick&&!whatHit&&cats.keys.length&&bigName&&!catFuera)return elPoi();
   if(!whatHit&&cats.keys.length&&best&&best.strong&&best.s>=12&&(!sec||best.s>=sec.s+3)){
     var inCat=cats.keys.indexOf(best.p.category)>=0;
     if(!inCat&&best.p.cats){for(var ic=0;ic<best.p.cats.length;ic++){if(cats.keys.indexOf(best.p.cats[ic])>=0){inCat=true;break;}}}
-    if(inCat)return {kind:'poi',p:best.p};
+    if(inCat)return {kind:'poi',p:best.p,kb:kbDelLugar};
   }
 
   var anchor=null;
@@ -27223,10 +27450,15 @@ function chatResolve(question,pos){
   }
 
   if(cats.keys.length){
-    if(nearHit&&!anchor&&best)anchor={lat:best.p.lat,lng:best.p.lng,name:best.p.name,id:best.p.id};
+    /* «cerca de» un lugar que se nombra; si lo que casa es una palabra suelta
+       que no dice ningun lugar («gasolineras mas baratas cerca de mi»: el
+       «mas» de una etiqueta), cerca es de quien pregunta, no de ese sitio */
+    if(nearHit&&!anchor&&best&&(best.strong||best.s>=3))anchor={lat:best.p.lat,lng:best.p.lng,name:best.p.name,id:best.p.id};
     if(nearHit&&!anchor&&!pos)return {kind:'needGeo'};
     var usePos=(nearHit&&!anchor)?pos:null;
-    return {kind:'cat',cats:cats,zone:zone,anchor:anchor,pos:usePos,kb:kbr?kbr.item:null};
+    // la respuesta de la base que casa por el nombre del lugar («garachico»)
+    // no es de la categoria: «webcams en Garachico» no lleva «que ver en Garachico»
+    return {kind:'cat',cats:cats,zone:zone,anchor:anchor,pos:usePos,kb:(kbr&&kbr.item!==kbDelLugar)?kbr.item:null};
   }
 
   if(kbr)return {kind:'kb',item:kbr.item};
@@ -27740,7 +27972,9 @@ function chatBuildReply(r){
       p=r.p;out.lastPoi=p.id;
       out.answer=(p.emoji?p.emoji+' ':'')+p.name+'\n'+chatTrim(localized(p.cat),60)+'\n\n'+(localized(p.desc)||'');
       out.actions=[{label:chatT('viewMap'),run:chatMakeFly(p.id)}];
-      out.follow=chatT('qrAfterPoi');break;
+      out.follow=chatT('qrAfterPoi');
+      if(r.kb&&r.kb.label)out.follow=[r.kb.label].concat(out.follow||[]);
+      break;
     case 'favOrden':
       (function(){
         var lista=chatFavLista();
