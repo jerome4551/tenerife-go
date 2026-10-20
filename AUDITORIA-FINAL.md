@@ -5781,7 +5781,8 @@ terminales). Al contar a mano salieron primero 27 referencias huérfanas y 25
 paradas repetidas seguidas: eran las 27 paradas del tranvía, que van como
 objetos y no como claves del catálogo; con la regla de los controles, 0 y 0.
 Probado en copias: una fila borrada, «8 líneas», «4 filtros» y «45» en el
-agua: las cuatro, en rojo.
+agua: las cuatro, en rojo. Con las dos cosas, `auditar.sh` entero sobre
+`8c1b86f`: **AUDITORIA EN VERDE**.
 
 ---
 
