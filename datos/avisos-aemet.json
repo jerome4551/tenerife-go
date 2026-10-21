@@ -6,9 +6,17 @@
   "fichero": "Z_CAP_C_LEMM_20261021092932_AFAP6596.tar.gz",
   "publicado": "2026-10-21T09:29:32+00:00",
   "titulo": "Estado completo de avisos para Tenerife",
-  "alcance": "2026-10-23T23:59:59+01:00"
+  "alcance": "2026-10-23T23:59:59+01:00",
+  "zonas_isla": [
+   "659601",
+   "659601C",
+   "659602",
+   "659602C",
+   "659603",
+   "659603C"
+  ]
  },
- "consultado": "2026-10-21T09:34:38Z",
+ "consultado": "2026-10-21T11:02:01Z",
  "avisos": [
   {
    "id": "2.49.0.0.724.0.ES.20261021092932.659601PRP122051792574972",
