@@ -249,8 +249,11 @@ Cadena completa, y los tres eslabones tienen que estar:
 
 1. **La app** pide permiso y suscribe el dispositivo
    (`pushManager.subscribe`), y guarda la suscripción llamando a
-   `guardar_push_sub()`. Solo se ofrece si la app está instalada en la
-   pantalla de inicio: en iOS es obligatorio y en Android es lo sensato.
+   `guardar_push_sub()`. La tarjeta que lo propone solo sale con la app
+   instalada en la pantalla de inicio: en iOS es obligatorio y en Android es
+   lo sensato. El botón «Activar notificaciones» de Cuenta está siempre, con
+   la sesión iniciada y sin cuenta (en «Continuar como invitado»): la
+   suscripción no va unida a ninguna cuenta.
 2. **El workflow** se lanza nueve veces, de las 00:07 a las 07:07 UTC,
    porque GitHub retrasa sus crons varias horas. Envía el primero que cae
    dentro de la ventana (de 7 a 16 h en Canarias): coge la frase del día de

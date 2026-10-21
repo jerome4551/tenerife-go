@@ -154,7 +154,68 @@ async function laApp() {
     ver(!r.fallos.length, 'los ' + r.claves + ' textos de PUSH_TX y las ' + r.filas + ' filas del boton de Cuenta, en los ' +
         IDIOMAS.length + ' idiomas y ninguno copiado del castellano', r.fallos.join(', '));
   }
+
+  /* EL BOTON SIN CUENTA (21 de octubre de 2026). Jerome: «4 si». Hasta
+     entonces «Activar notificaciones» solo estaba con la sesion iniciada, y
+     quien no tenia cuenta y contesto «Ahora no» a la tarjeta no tenia por
+     donde activarlas. Ahora tambien esta en «Continuar como invitado»: se
+     abre Cuenta sin sesion, se pasa a esa pestaña, el boton se ve con su
+     rotulo del idioma, y al tocarlo guarda la suscripcion con el idioma de
+     la app y lo dice debajo. */
+  for (const L of IDIOMAS) {
+    // cambiar de idioma ya vuelve a guardar la suscripcion (arriba): se espera a esa
+    const n0 = llamadas.length;
+    await pg.evaluate(l => setLang(l), L);
+    await espera(n0 + 1, 5000);
+    await pg.waitForTimeout(200);
+    // la linea que dejo la vuelta anterior, ya en el idioma nuevo
+    if (L !== IDIOMAS[0]) {
+      const m = await pg.evaluate(() => ({ t: document.getElementById('auth-push-msg-invitado').textContent, q: UI_TX.pushActivadas[currentLang] }));
+      ver(m.t === m.q, '[' + L + '] al cambiar de idioma, la linea de debajo del boton cambia con el', m.t === m.q ? '' : JSON.stringify(m));
+    }
+    const antes = llamadas.length;
+    const r = await pg.evaluate(() => {
+      openAuthModal();
+      document.getElementById('auth-tab-guest').click();
+      const b = document.getElementById('auth-push-btn-invitado');
+      const panel = document.getElementById('auth-form-guest');
+      const ve = !!b && !!b.offsetParent && panel.contains(b) && getComputedStyle(b).visibility !== 'hidden';
+      const rotulo = b ? b.textContent.trim() : null;
+      if (b) b.click();
+      return { ve, rotulo, quiere: UI_TX.pushBtnActivar[currentLang], ok: UI_TX.pushActivadas[currentLang],
+               pestana: document.getElementById('auth-tab-guest').textContent.trim() };
+    });
+    await espera(antes + 1, 5000);
+    const ultima = llamadas[llamadas.length - 1] || {};
+    await pg.waitForTimeout(150);
+    const msg = await pg.evaluate(() => (document.getElementById('auth-push-msg-invitado') || {}).textContent || '');
+    await pg.evaluate(() => closeAuthModal());
+    const ok = r.ve && r.rotulo === r.quiere && llamadas.length === antes + 1 && ultima.p_lang === L && msg === r.ok;
+    ver(ok, '[' + L + '] sin cuenta, «' + r.quiere + '» en «' + r.pestana + '»: guarda con «' + L + '» y lo dice',
+        ok ? '' : JSON.stringify({ r, llamadas: llamadas.length - antes, p_lang: ultima.p_lang, msg }));
+  }
   await nav.close();
+
+  /* Y donde no se puede (un navegador sin push): el boton sin cuenta sale
+     apagado y dice por que, como el de la sesion iniciada. */
+  const nav2 = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const pg2 = await (await nav2.newContext({ serviceWorkers: 'block', viewport: { width: 390, height: 844 } })).newPage();
+  await pg2.route('**/cdn.jsdelivr.net/**', r => r.abort());
+  await pg2.addInitScript(() => {
+    try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tenerife.welcome.seen', '1'); localStorage.setItem('tg_lang', 'de'); } catch (e) {}
+    try { delete window.PushManager; } catch (e) {}
+  });
+  await pg2.goto(BASE, { waitUntil: 'networkidle' });
+  const r2 = await pg2.evaluate(() => {
+    openAuthModal();
+    document.getElementById('auth-tab-guest').click();
+    const b = document.getElementById('auth-push-btn-invitado');
+    return { apagado: !!b && b.disabled, msg: (document.getElementById('auth-push-msg-invitado') || {}).textContent || '',
+             quiere: tx('pushNoNavegador'), lang: currentLang };
+  });
+  ver(r2.apagado && r2.msg === r2.quiere && r2.lang === 'de', '[de] sin push en el navegador: el boton sin cuenta, apagado y con el motivo',
+      JSON.stringify(r2));
+  await nav2.close();
 }
 
 async function elEnvio() {

@@ -4577,6 +4577,13 @@ window.onunhandledrejection = function(e) {
     font-weight: 500;
   }
   .auth-guest-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+  /* «Activar notificaciones»: con la sesion iniciada y, desde el 21 de
+     octubre de 2026, tambien en «Continuar como invitado» */
+  .auth-push-btn {
+    width: 100%; margin-top: 12px; padding: 12px; border: none; border-radius: 10px;
+    background: #D4AF37; color: #1a1a1a; font-weight: 600; cursor: pointer; font-family: inherit;
+  }
+  .auth-push-msg { margin-top: 8px; font-size: 13px; text-align: center; opacity: .9; color: #F5C76B; }
 
   /* Mensajes (éxito/error) */
   .auth-msg {
@@ -21733,6 +21740,11 @@ window.addEventListener('hashchange', () => {
     <div class="auth-form" id="auth-form-guest">
       <p class="auth-guest-hint" id="auth-guest-hint">Puedes usar la app igual. Tus favoritos se guardarán solo en este dispositivo.</p>
       <button type="button" class="auth-guest-btn" id="auth-guest-btn">Seguir sin cuenta</button>
+      <!-- La frase de cada mañana tambien sin cuenta (21 de octubre de 2026):
+           la suscripcion no va unida a ninguna cuenta (guardar_push_sub solo
+           recibe el endpoint, sus claves y el idioma). -->
+      <button type="button" class="auth-push-btn" id="auth-push-btn-invitado" data-tx="pushBtnActivar">Activar notificaciones</button>
+      <div class="auth-push-msg" id="auth-push-msg-invitado"></div>
     </div>
 
     <!-- Panel cuando ya hay sesión -->
@@ -21752,8 +21764,8 @@ window.addEventListener('hashchange', () => {
         <button type="button" class="auth-borrar-no" id="auth-borrar-no" data-tx="cuentaBorrarNo">Cancelar</button>
       </div>
       <div class="auth-msg" id="auth-borrar-msg" role="alert" aria-live="polite"></div>
-      <button type="button" id="auth-push-btn" style="width:100%;margin-top:12px;padding:12px;border:none;border-radius:10px;background:#D4AF37;color:#1a1a1a;font-weight:600;cursor:pointer;font-family:inherit;" data-tx="pushBtnActivar">Activar notificaciones</button>
-      <div id="auth-push-msg" style="margin-top:8px;font-size:13px;text-align:center;opacity:.9;color:#F5C76B;"></div>
+      <button type="button" class="auth-push-btn" id="auth-push-btn" data-tx="pushBtnActivar">Activar notificaciones</button>
+      <div class="auth-push-msg" id="auth-push-msg"></div>
       <!-- Solo para quien es administrador: lo dice la base de datos
            (es_admin), no el navegador. Vivia en la tienda hasta el 16 de
            octubre de 2026. -->
@@ -29608,11 +29620,11 @@ async function pushSuscribir() {
     if (!resp.ok && resp.status !== 409) throw new Error('HTTP ' + resp.status);
 
     pushToast(pushTx('ok'), true);
-    try { var _m = document.getElementById('auth-push-msg'); if (_m) _m.textContent = tx('pushActivadas'); } catch (_) {}
+    pushMensaje('pushActivadas');
     return true;
   } catch (e) {
     pushToast(pushTx('error'), false);
-    try { var _e = document.getElementById('auth-push-msg'); if (_e) _e.textContent = tx('noSePudoActivar') + (e && e.message ? e.message : 'error'); } catch (_) {}
+    pushMensaje('noSePudoActivar', (e && e.message ? e.message : 'error'));
     return false;
   }
 }
@@ -29754,23 +29766,42 @@ function pushMotivoNo() {
   return ('standalone' in navigator) ? 'pushHazInstalar' : 'pushNoNavegador';
 }
 
+/* Los dos botones «Activar notificaciones» de Cuenta, cada uno con su
+   linea debajo: el de la sesion iniciada y, desde el 21 de octubre de 2026,
+   el de «Continuar como invitado» (Jerome: «4 si»; antes, quien no tenia
+   cuenta y contesto «Ahora no» a la tarjeta no tenia por donde activarlas).
+   Lo que pasa se escribe en las dos lineas: solo se ve una pestaña a la vez,
+   y si despues se inicia sesion, la de la sesion ya lo dice. */
+var PUSH_BOTONES = [['auth-push-btn', 'auth-push-msg'], ['auth-push-btn-invitado', 'auth-push-msg-invitado']];
+/* La linea lleva su clave en data-tx para que, si se cambia de idioma con
+   ella escrita, applyUiTx la vuelva a escribir en el nuevo (antes se quedaba
+   en el de antes). La del fallo lleva detras el error, que no se traduce. */
+function pushMensaje(clave, extra) {
+  PUSH_BOTONES.forEach(function (par) {
+    var m = document.getElementById(par[1]);
+    if (!m) return;
+    if (extra) m.removeAttribute('data-tx'); else m.setAttribute('data-tx', clave);
+    m.textContent = tx(clave) + (extra || '');
+  });
+}
 function pushEngancharBoton() {
-  var b = document.getElementById('auth-push-btn');
-  if (!b || b._tgoHook) return;
-  b._tgoHook = true;
   var motivo = pushMotivoNo();
-  if (motivo) {
-    b.disabled = true;
-    b.style.opacity = '0.5';
-    b.style.cursor = 'default';
-    var m0 = document.getElementById('auth-push-msg');
-    if (m0) m0.textContent = tx(motivo);
-    return;
-  }
-  b.addEventListener('click', function () {
-    var el = document.getElementById('auth-push-msg');
-    if (el) el.textContent = tx('pushActivando');
-    pushSuscribir();
+  PUSH_BOTONES.forEach(function (par) {
+    var b = document.getElementById(par[0]);
+    if (!b || b._tgoHook) return;
+    b._tgoHook = true;
+    if (motivo) {
+      b.disabled = true;
+      b.style.opacity = '0.5';
+      b.style.cursor = 'default';
+      var m0 = document.getElementById(par[1]);
+      if (m0) { m0.setAttribute('data-tx', motivo); m0.textContent = tx(motivo); }
+      return;
+    }
+    b.addEventListener('click', function () {
+      pushMensaje('pushActivando');
+      pushSuscribir();
+    });
   });
 }
 /* Esconde en los dos selectores lo que IDIOMAS_INCOMPLETOS marque. Va por la

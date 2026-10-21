@@ -2173,7 +2173,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 43 tablas, 1419 filas (y 3.559 filas, dentro y fuera del fuente)
+## Idiomas · 43 tablas, 1419 filas (y 3.560 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -2194,7 +2194,7 @@ avisos, que ya no existe. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
-`barrido_idiomas.js`, contado el 17 de octubre (3.045 antes del cielo); no
+`barrido_idiomas.js`, contado el 21 de octubre (3.045 antes del cielo); no
 la coteja nadie.)*
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
@@ -6109,6 +6109,36 @@ Averías metidas a propósito, cada una en una copia de la app:
 | 3 | un costero sin contorno no cuenta para nada | canta: 2 |
 | 4 | un costero de mañana cuenta para hoy | canta: 1 |
 
+## «Activar notificaciones», también sin cuenta (21 de octubre)
+
+Jerome, a «El botón “Activar notificaciones” solo aparece con la sesión
+iniciada… ¿Lo pongo también para quien no tiene cuenta?»: «4 si». Sin cuenta,
+la app solo lo preguntaba una vez (la tarjeta, la tercera vez que se abre
+instalada), y quien contestó «Ahora no» no tenía por dónde activarlas.
+
+- **Dónde.** En la pestaña «Continuar como invitado» de Cuenta, debajo de
+  «Seguir sin cuenta», el mismo botón dorado (`pushBtnActivar`, ya en los
+  diez idiomas) con su línea de mensajes. La suscripción no va unida a
+  ninguna cuenta: `guardar_push_sub()` recibe el endpoint, sus dos claves y
+  el idioma, nada más; la política de privacidad ya lo cuenta así.
+- **Cómo.** `pushEngancharBoton()` engancha los dos botones; donde no hay
+  push (Safari sin instalar, un navegador sin `PushManager`), los dos salen
+  apagados y con el motivo. Lo que pasa se escribe en las dos líneas, y con
+  su clave en `data-tx`: si se cambia de idioma con el mensaje escrito, se
+  vuelve a escribir en el nuevo (antes se quedaba en el de antes; también en
+  el de la sesión iniciada).
+- **El asistente.** app-29, en los diez idiomas: «la activas cuando quieras en
+  «Cuenta», con «Activar notificaciones»: con la sesión iniciada, ahí mismo;
+  sin cuenta, en «Continuar como invitado»». Las 8.412 preguntas, como antes:
+  ninguna cambia de respuesta.
+- **Probado.** `tools/probar_notificacion_idioma.js`, con la app haciéndose
+  pasar por instalada y el push de mentira: en los diez idiomas, sin sesión,
+  el botón se ve en «Continuar como invitado» con su rótulo, al tocarlo
+  guarda la suscripción con el idioma de la app y lo dice debajo, y al cambiar
+  de idioma la línea cambia con él; en un navegador sin push, apagado y con
+  el motivo. `probar_play.js` (213 de 213, el panel de la sesión),
+  `auditar_faq.js` y `probar_faq.js`, en verde.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -6153,7 +6183,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_faq.js` | el asistente: cada respuesta en los diez idiomas, alcanzable por su botón, ninguna igual al castellano o al inglés, los botones que cita con su nombre de pantalla, y ninguna base fuera de `faq/` |
 | `tools/rotulos_app.js` | los rótulos de la app en los diez idiomas, sacados de `index.html` (lo usa `auditar_faq.js`) |
 | `tools/probar_faq.js` · `tools/probar_movil.js` | preguntas de prueba al asistente: en Node con el núcleo de verdad, y en un móvil con la app entera |
-| `tools/probar_notificacion_idioma.js` | la notificación diaria en el idioma de cada móvil: lo que la app manda a `guardar_push_sub()` al abrir y al cambiar de idioma, la tarjeta del permiso en los diez, y lo que el envío le manda a cada idioma |
+| `tools/probar_notificacion_idioma.js` | la notificación diaria en el idioma de cada móvil: lo que la app manda a `guardar_push_sub()` al abrir, al cambiar de idioma y desde el botón sin cuenta, la tarjeta del permiso en los diez, y lo que el envío le manda a cada idioma |
 | `tools/probar_nombres.js` | cada lugar preguntado al asistente por su nombre, en los diez idiomas y en chino pegado: sale su ficha o la lista para elegir; el nombre corto, contado; y cada categoría del menú por su rótulo, la lista de esa categoría |
 | `tools/auditar_letras.js` | palabras escritas sin sus letras («waehle», «carre avec fleche») |
 | `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json`, con el contorno oficial de cada zona (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
