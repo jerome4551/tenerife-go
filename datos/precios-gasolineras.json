@@ -6,23 +6,28 @@
   "La app no ensena estos precios si «fecha» tiene mas de 2 dias."
  ],
  "fuente": "Ministerio para la Transicion Ecologica y el Reto Demografico, Geoportal de Gasolineras",
- "fecha": "2026-10-20T14:23:10Z",
- "fecha_ministerio": "20/10/2026 16:23:10",
- "franja": "2026-10-20 15:00",
+ "fecha": "2026-10-21T06:05:56Z",
+ "fecha_ministerio": "21/10/2026 8:05:56",
+ "franja": "2026-10-21 07:00",
  "municipios": {
   "Adeje": {
    "gasolineras": 14,
    "cuantas": 2,
    "g95": [
     {
-     "id": "gas-7730-adeje",
-     "ideess": "7730",
-     "precio": 1.448
-    },
-    {
      "id": "gas-16015-adeje",
      "ideess": "16015",
      "precio": 1.457
+    },
+    {
+     "id": "gas-13639-adeje",
+     "ideess": "13639",
+     "precio": 1.459
+    },
+    {
+     "id": "gas-7730-adeje",
+     "ideess": "7730",
+     "precio": 1.459
     }
    ],
    "diesel": [
@@ -79,26 +84,41 @@
    "cuantas": 2,
    "g95": [
     {
-     "id": "gas-8280-arona",
-     "ideess": "8280",
-     "precio": 1.509
+     "id": "gas-12370-arona",
+     "ideess": "12370",
+     "precio": 1.549
     },
     {
-     "id": "gas-10543-arona",
-     "ideess": "10543",
-     "precio": 1.519
+     "id": "gas-8280-arona",
+     "ideess": "8280",
+     "precio": 1.549
     }
    ],
    "diesel": [
     {
+     "id": "gas-7780-arona",
+     "ideess": "7780",
+     "precio": 1.7
+    },
+    {
      "id": "gas-10543-arona",
      "ideess": "10543",
-     "precio": 1.669
+     "precio": 1.709
+    },
+    {
+     "id": "gas-12370-arona",
+     "ideess": "12370",
+     "precio": 1.709
     },
     {
      "id": "gas-8280-arona",
      "ideess": "8280",
-     "precio": 1.669
+     "precio": 1.709
+    },
+    {
+     "id": "gas-9947-arona",
+     "ideess": "9947",
+     "precio": 1.709
     }
    ]
   },
@@ -163,7 +183,7 @@
     {
      "id": "gas-7718-fasnia",
      "ideess": "7718",
-     "precio": 1.589
+     "precio": 1.579
     }
    ],
    "diesel": [
@@ -420,7 +440,7 @@
     {
      "id": "gas-11562-san-cristobal-de-la-laguna",
      "ideess": "11562",
-     "precio": 1.659
+     "precio": 1.679
     },
     {
      "id": "gas-9290-san-cristobal-de-la-laguna",
@@ -428,9 +448,9 @@
      "precio": 1.688
     },
     {
-     "id": "gas-7734-san-cristobal-de-la-laguna",
-     "ideess": "7734",
-     "precio": 1.689
+     "id": "gas-7725-san-cristobal-de-la-laguna",
+     "ideess": "7725",
+     "precio": 1.695
     }
    ]
   },
@@ -479,7 +499,7 @@
     {
      "id": "gas-7727-santa-cruz-de-tenerife",
      "ideess": "7727",
-     "precio": 1.398
+     "precio": 1.418
     },
     {
      "id": "gas-13966-santa-cruz-de-tenerife",
@@ -595,15 +615,15 @@
    "diesel": 1.719
   },
   "gas-10543-arona": {
-   "g95": 1.519,
-   "diesel": 1.669
+   "g95": 1.559,
+   "diesel": 1.709
   },
   "gas-10591-los-realejos": {
    "g95": 1.569,
    "diesel": 1.699
   },
   "gas-10633-san-miguel-de-abona": {
-   "g95": 1.599,
+   "g95": 1.589,
    "diesel": 1.729
   },
   "gas-10635-arafo": {
@@ -623,8 +643,8 @@
    "diesel": 1.738
   },
   "gas-10924-santa-cruz-de-tenerife": {
-   "g95": 1.469,
-   "diesel": 1.639
+   "g95": 1.569,
+   "diesel": 1.739
   },
   "gas-10950-fasnia": {
    "g95": 1.599,
@@ -647,7 +667,7 @@
    "diesel": 1.769
   },
   "gas-11394-santa-cruz-de-tenerife": {
-   "g95": 1.659,
+   "g95": 1.649,
    "diesel": 1.759
   },
   "gas-11525-adeje": {
@@ -655,8 +675,8 @@
    "diesel": 1.738
   },
   "gas-11562-san-cristobal-de-la-laguna": {
-   "g95": 1.522,
-   "diesel": 1.659
+   "g95": 1.539,
+   "diesel": 1.679
   },
   "gas-11566-la-guancha": {
    "g95": 1.509,
@@ -874,7 +894,7 @@
    "diesel": 1.739
   },
   "gas-7675-san-cristobal-de-la-laguna": {
-   "g95": 1.549,
+   "g95": 1.569,
    "diesel": 1.739
   },
   "gas-7676-san-miguel-de-abona": {
@@ -895,11 +915,11 @@
   },
   "gas-7683-san-juan-de-la-rambla": {
    "g95": 1.539,
-   "diesel": 1.679
+   "diesel": 1.689
   },
   "gas-7684-los-realejos": {
-   "g95": 1.515,
-   "diesel": 1.695
+   "g95": 1.565,
+   "diesel": 1.735
   },
   "gas-7685-los-realejos": {
    "g95": 1.568,
@@ -934,11 +954,11 @@
    "diesel": 1.719
   },
   "gas-7713-santa-cruz-de-tenerife": {
-   "g95": 1.589,
+   "g95": 1.599,
    "diesel": 1.749
   },
   "gas-7718-fasnia": {
-   "g95": 1.589,
+   "g95": 1.579,
    "diesel": 1.739
   },
   "gas-7719-candelaria": {
@@ -966,7 +986,7 @@
    "diesel": 1.695
   },
   "gas-7727-santa-cruz-de-tenerife": {
-   "g95": 1.398,
+   "g95": 1.418,
    "diesel": 1.576
   },
   "gas-7728-tegueste": {
@@ -974,7 +994,7 @@
    "diesel": 1.715
   },
   "gas-7730-adeje": {
-   "g95": 1.448,
+   "g95": 1.459,
    "diesel": 1.599
   },
   "gas-7731-granadilla-de-abona": {
@@ -986,8 +1006,8 @@
    "diesel": 1.698
   },
   "gas-7734-san-cristobal-de-la-laguna": {
-   "g95": 1.559,
-   "diesel": 1.689
+   "g95": 1.569,
+   "diesel": 1.699
   },
   "gas-7735-santiago-del-teide": {
    "g95": 1.629,
@@ -1054,8 +1074,8 @@
    "diesel": 1.739
   },
   "gas-7791-los-realejos": {
-   "g95": 1.503,
-   "diesel": 1.668
+   "g95": 1.518,
+   "diesel": 1.678
   },
   "gas-7815-santa-cruz-de-tenerife": {
    "g95": 1.589,
@@ -1067,7 +1087,7 @@
   },
   "gas-7817-san-cristobal-de-la-laguna": {
    "g95": 1.569,
-   "diesel": 1.749
+   "diesel": 1.739
   },
   "gas-7818-santa-cruz-de-tenerife": {
    "g95": 1.559,
@@ -1090,8 +1110,8 @@
    "diesel": 1.739
   },
   "gas-7834-candelaria": {
-   "g95": 1.489,
-   "diesel": 1.639
+   "g95": 1.579,
+   "diesel": 1.729
   },
   "gas-7840-santa-cruz-de-tenerife": {
    "g95": 1.649,
@@ -1210,8 +1230,8 @@
    "diesel": 1.72
   },
   "gas-8280-arona": {
-   "g95": 1.509,
-   "diesel": 1.669
+   "g95": 1.549,
+   "diesel": 1.709
   },
   "gas-8326-arafo": {
    "g95": 1.579,
@@ -1350,7 +1370,7 @@
    "diesel": 1.738
   },
   "gas-tf1-guimar": {
-   "g95": 1.589,
+   "g95": 1.579,
    "diesel": 1.739
   },
   "gas-tf2-lalaguna": {
@@ -1367,10 +1387,10 @@
   },
   "gas-tf5-el-sauzal": {
    "g95": 1.579,
-   "diesel": 1.749
+   "diesel": 1.739
   },
   "gas-tf5-lalaguna": {
-   "g95": 1.549,
+   "g95": 1.569,
    "diesel": 1.739
   },
   "gas-tf5-los-realejos": {
