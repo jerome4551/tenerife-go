@@ -7040,6 +7040,33 @@ y busca una manera de probarlo».
   en lo más alto al entrar en la sombra, a 37° hacia el noroeste, a las
   21:13:42 según la app (21:13:38 con el cilindro).
 
+## El tercer bloque del cielo (P3), junto con el `main` del 21 (21 de octubre, tarde)
+
+Jerome trajo `PARA-CLAUDE-CODE-5.md`, los cuatro parches y el bundle: la
+noche guiada, el sistema solar hoy, la luz roja completa y «sin red en el
+Teide». Las cinco huellas, las de la nota; los tres primeros parches son los
+que ya están en `main` (solo cambia el «n/4»): entra el cuarto.
+
+- **Repasado antes de ejecutar nada.** Ni `CNAME`, ni los workflows, ni
+  `sw.js`; ninguna dirección nueva más que la página de la JPL de donde sale
+  la tabla; lo único que el módulo no hacía antes es mirar, con
+  `caches.match`, qué hay guardado en el propio móvil («Antes de subir al
+  Teide»).
+- **Aplicado con `git am -3` sobre `main` (`9736dd3`).** Chocaron solo
+  cifras: la línea de `index.html` del README (35.149 líneas, 743 kB con
+  gzip, medidas ya juntas), la fila «Descarga» (1.034, 1.148 y 1.134 kB, de
+  `peso_descarga.py`) y la cabecera de idiomas (1.605 y 40 de este bloque,
+  **1.645 filas**; 3.786 en total). Comprobado contra el bundle: el fichero
+  que solo toca este bloque, idéntico; los 46 que solo cambió `main`,
+  idénticos; y en `modulos/cielo.js`, `auditar_cielo.js` (con el arreglo del
+  borde de la sombra), `index.html` y `barrido_pantallas.js`, lo que difiere
+  del bundle es exactamente lo de `main`.
+- **Auditoría entera** (con las fuentes del cielo y las de los satélites):
+  **«AUDITORIA EN VERDE»**, ningún bloque en rojo ni roto.
+  `auditar_cielo.js`, 175 de 175 (los 173 del bloque y los dos de
+  Wikipedia); `barrido_pantallas.js`, 100 pantallas y fichas por idioma, 0
+  textos sin traducir y 0 errores de página.
+
 ---
 
 # 5 · Cómo se vuelve a medir
