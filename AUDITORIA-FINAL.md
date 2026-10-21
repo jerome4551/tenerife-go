@@ -6139,6 +6139,18 @@ instalada), y quien contestó «Ahora no» no tenía por dónde activarlas.
   el motivo. `probar_play.js` (213 de 213, el panel de la sesión),
   `auditar_faq.js` y `probar_faq.js`, en verde.
 
+### Cierre del 21 de octubre: la auditoría entera
+
+`auditar.sh` entero, antes y después:
+
+- sobre `db3ab81` (antes de tocar nada): **dos bloques en rojo**,
+  `auditar_gas_cerca.js` y `auditar_desborde.js`, los de la píldora con el
+  aviso de lluvias de hoy;
+- sobre las dos partes (`d56a8dd` y `12fd55d` en `main`; corrió sobre ese
+  mismo código antes de traer el fichero de avisos de las 8:59, con tres
+  avisos amarillos de lluvias): **«AUDITORIA EN VERDE»**, ningún bloque en
+  rojo ni roto. Idiomas: 43 tablas y 1419 filas (una más), 3.560 en total.
+
 ---
 
 # 5 · Cómo se vuelve a medir
