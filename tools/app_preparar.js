@@ -307,6 +307,12 @@ function comprobar(montado) {
      && /NSPrivacyCollectedDataTypePreciseLocation/.test(priv) && /NSPrivacyCollectedDataTypeSearchHistory/.test(priv) && /NSPrivacyCollectedDataTypeProductInteraction/.test(priv)
      && !/NSPrivacyCollectedDataTypeTracking<\/key>\s*<true\/>/.test(priv),
      'PrivacyInfo.xcprivacy: sin rastreo, sin dominios de rastreo, y los datos que la politica dice que salen (correo, id de usuario, favoritos, coordenadas, busquedas, uso)');
+  /* Google Analytics (si index.html lo carga) recibe el pais aproximado y la IP, y
+     sus cookies llevan un identificador: Apple pide declararlos aunque los recoja
+     un tercero (app-privacy-details, 21-10-2026). */
+  const ga = /googletagmanager\.com\/gtag\/js/.test(index);
+  ok(!ga || (/NSPrivacyCollectedDataTypeCoarseLocation/.test(priv) && /NSPrivacyCollectedDataTypeDeviceID/.test(priv)),
+     'PrivacyInfo.xcprivacy: con Google Analytics en index.html, tambien la ubicacion aproximada y el identificador (analitica)');
   /* los dos plist bien formados: python3 los lee con plistlib */
   const { spawnSync } = require('child_process');
   for (const f of ['Info.plist.fragmento.plist', 'PrivacyInfo.xcprivacy']) {

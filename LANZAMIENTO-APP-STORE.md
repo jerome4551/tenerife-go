@@ -44,7 +44,7 @@ luz roja, los diez idiomas) es el mismo código y se comporta igual.
 | `app/capacitor.config.json`, `app/package.json`, `app/LEEME.md`, `.gitignore` | El proyecto de Capacitor (8.x; `app/www/`, `app/ios/App/` y `node_modules/` fuera de git). |
 | `app/ios/plantillas/Info.plist.fragmento.plist` | Lo que el `Info.plist` de Capacitor no trae: los tres permisos con las frases de la política (castellano), los diez idiomas (`CFBundleLocalizations`), `ITSAppUsesNonExemptEncryption = false` (solo HTTPS), las orientaciones. |
 | `app/ios/plantillas/<idioma>.lproj/InfoPlist.strings` | Las frases de la ubicación, los sensores y la cámara en los diez idiomas, **sacadas de `idiomas/privacidad/<idioma>.json`**: el permiso dice lo mismo que la política. Si la política cambia y no se vuelve a pasar el preparador, `auditar.sh` para. |
-| `app/ios/plantillas/PrivacyInfo.xcprivacy` | El manifiesto de privacidad: sin rastreo, sin dominios de rastreo, y los datos que la política dice que salen (correo e id de usuario ligados a la cuenta, los favoritos, las coordenadas de una ruta o del tiempo, el texto de una búsqueda, el uso solo con el aviso de cookies aceptado). |
+| `app/ios/plantillas/PrivacyInfo.xcprivacy` | El manifiesto de privacidad: sin rastreo, sin dominios de rastreo, y los datos que la política dice que salen (correo e id de usuario ligados a la cuenta, los favoritos, las coordenadas de una ruta o del tiempo, el texto de una búsqueda, y con el aviso de cookies aceptado el uso, el país aproximado y el identificador de Google Analytics). |
 | `app/ios/plantillas/AppIcon-1024.png`, `Splash-2732.png` | El icono a 1024 **ampliado del de 512** (§4) y el arranque cuadrado (el de 2048×2732 centrado sobre su fondo). |
 | `app/ios/plantillas/aplicar.sh` | Lo pone todo en el proyecto que genera `npx cap add ios` (PlistBuddy, copias). Comprobado en seco: aquí no hay Mac. |
 | `datos/app-store/ficha.json` | La ficha de la tienda en los diez idiomas: nombre, subtítulo, texto promocional, descripción, palabras clave, y las direcciones, el copyright y la categoría. Cada frase dice solo lo que la app hace. |
@@ -190,7 +190,16 @@ política ya dice (`idiomas/privacidad/es.json`), y es lo que declara
 | Precise Location | Sí (al pedir una ruta o el tiempo) | No | No | App Functionality | «Si pides una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas»; «Open-Meteo: las coordenadas del lugar o de la zona cuya previsión consultas» |
 | Search History | Sí (al buscar una dirección) | No | No | App Functionality | «Nominatim: el texto que escribes al buscar una dirección» |
 | Product Interaction | Sí, **solo si se acepta el aviso de cookies** | No | No | Analytics | «Google Analytics 4, y no se carga hasta que aceptas el aviso de cookies» |
-| Coarse Location, Device ID, Crash Data, Photos, Contacts, Purchases… | No | | | | la cámara y los sensores «no salen del móvil»; sin identificador del dispositivo; sin SDK de fallos |
+| Coarse Location | Sí, **solo si se acepta el aviso de cookies** | No | No | Analytics | «Google Analytics … recibe datos de navegación —pantallas vistas, idioma, país aproximado, tipo de dispositivo— y tu dirección IP». Apple: «Declare the relevant data types based on how you use IP address, such as precise location, coarse location, device ID» |
+| Device ID | Sí, **solo si se acepta el aviso de cookies** | No | No | Analytics | «Google Analytics instala sus propias cookies», y llevan un identificador (no el publicitario, el IDFA) |
+| Crash Data, Photos, Contacts, Purchases, Advertising Data… | No | | | | la cámara y los sensores «no salen del móvil»; sin el IDFA; sin SDK de fallos |
+
+Analytics va en tres filas porque Apple pide declarar también lo que recogen
+los terceros cuyo código va en la app («including the practices of
+third-party partners whose code you integrate into your app»), y la
+excepción de lo opcional no vale: Analytics recoge cada vez que se usa la
+app, no «only in infrequent cases» (developer.apple.com/app-store/app-privacy-details,
+leído el 21 de octubre de 2026).
 
 *Do you or your third-party partners use data for tracking?*: **No**
 (Consent Mode v2 con las señales publicitarias denegadas siempre; ninguna
