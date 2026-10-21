@@ -1858,6 +1858,35 @@ async function tercerBloque(b) {
      'el lienzo esta pintado (' + lienzo.claros + ' pixeles claros, 8 planetas tocables); Jupiter tocado: a ' + lienzo.distSol.toFixed(2) + ' UA del Sol, ' + lienzo.distTierra.toFixed(2) + ' de la Tierra (' + lienzo.minLuz + ' min de luz), a ' + lienzo.elong.toFixed(0) + '° del Sol, lo mismo que sale aparte', (lienzo.hoja || '').slice(0, 160));
   ok(Math.abs(lienzo.unMes - 30) < 0.01 && /2026|2027/.test(lienzo.fechaTxt) && lienzo.corrio > 5 && lienzo.corrio < 60 && lienzo.paro && lienzo.vistasDistintas && lienzo.hoy,
      '«+ 1 mes» mueve 30 dias, ▶ hace correr el tiempo (' + lienzo.corrio.toFixed(0) + ' dias en 0,6 s) y para, «Hasta Neptuno» cambia la escala, «Hoy» vuelve', JSON.stringify({ unMes: lienzo.unMes, corrio: lienzo.corrio, paro: lienzo.paro, vistas: lienzo.vistasDistintas, hoy: lienzo.hoy }));
+  /* los nombres del sistema solar no se pisan (21-10-2026: en la vista exterior
+     «Júpiter» caia encima de «Tierra» y «Saturno» de «Neptuno», y asi salia en las
+     capturas de la App Store): diez idiomas, dos anchos, 24 meses, las dos vistas;
+     ni entre ellos, ni sobre otro planeta, el Sol o Aries, ni fuera del lienzo */
+  const etq = await p.evaluate(() => {
+    const choca = (a, z) => a.l < z.r && z.l < a.r && a.t < z.d && z.t < a.d;
+    const antes = currentLang, S = TG_CIELO.estado, guarda = { t: S.sis.t, base: S.sis.base, vista: S.sis.vista };
+    const malos = []; let lienzos = 0, nombres = 0;
+    for (const L of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+      setLang(L);
+      for (const ancho of [300, 360]) {
+        const cv = document.createElement('canvas'); cv.style.width = ancho + 'px'; document.body.appendChild(cv);
+        for (let m = 0; m < 24; m++) for (const vista of ['int', 'ext']) {
+          const f = new Date(Date.UTC(2026, m, 13, 20)), x = TG_CIELO.lienzoSistema(cv, f, vista), e = x.etiquetas;
+          lienzos++; nombres += e.length;
+          const donde = L + ' ' + ancho + ' ' + f.toISOString().slice(0, 7) + ' ' + vista + ' ';
+          for (let i = 0; i < e.length; i++) {
+            if (e[i].l < 0 || e[i].r > x.lado || e[i].t < 0 || e[i].d > x.lado) malos.push(donde + e[i].b + ' fuera');
+            for (let j = i + 1; j < e.length; j++) if (choca(e[i], e[j])) malos.push(donde + e[i].b + '/' + e[j].b);
+            for (const o of x.obstaculos) if (o.b !== e[i].b && choca(e[i], o)) malos.push(donde + e[i].b + ' sobre ' + (o.b || 'el Sol o Aries'));
+          }
+        }
+        cv.remove();
+      }
+    }
+    setLang(antes); S.sis.t = guarda.t; S.sis.base = guarda.base; S.sis.vista = guarda.vista;
+    return { lienzos, nombres, malos };
+  });
+  ok(etq.lienzos === 960 && etq.nombres > 4000 && !etq.malos.length, 'los nombres del sistema solar no se pisan: ' + etq.nombres + ' en ' + etq.lienzos + ' lienzos (10 idiomas, 300 y 360 px, 24 meses, las dos vistas), ni entre ellos ni sobre otro planeta, el Sol o Aries', etq.malos.slice(0, 6).join(' · '));
   /* ── la luz roja completa: ya de noche (tres horas despues), con el panel recien abierto ── */
   await p.clock.setFixedTime(new Date(T0.getTime() + 3 * 3600000));
   const rojo = await p.evaluate(async () => {

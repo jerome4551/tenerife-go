@@ -5025,6 +5025,7 @@
     }
     /* los planetas */
     S.sis.dianas = [];
+    var nombres = [], bolas = [];
     SIS_CUERPOS.forEach(function (b) {
       var p = sis.cuerpos[b], x = px(p.x), y = py(p.y), r = SIS_RADIO[vista][b] * dpr;
       if (b === 'Saturn') { ctx.save(); ctx.strokeStyle = 'rgba(230,207,146,0.8)'; ctx.lineWidth = 1.2 * dpr; ctx.beginPath(); ctx.ellipse(x, y, r * 2.1, r * 0.75, -0.4, 0, 2 * Math.PI); ctx.stroke(); ctx.restore(); }
@@ -5037,16 +5038,54 @@
       }
       if (b === S.sis.sel) { ctx.strokeStyle = 'rgba(245,199,107,0.9)'; ctx.lineWidth = 1.2 * dpr; ctx.beginPath(); ctx.arc(x, y, r + 4 * dpr, 0, 2 * Math.PI); ctx.stroke(); }
       var conNombre = vista === 'int' ? ['Mercury', 'Venus', 'Earth', 'Mars'].indexOf(b) >= 0 : ['Earth', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'].indexOf(b) >= 0;
-      if (conNombre) {
-        /* el nombre a la derecha, salvo cerca del borde derecho, que va a la izquierda */
-        var der = x < w * 0.74;
-        ctx.font = (10 * dpr) + 'px system-ui, sans-serif'; ctx.fillStyle = 'rgba(255,255,255,0.82)'; ctx.textAlign = der ? 'left' : 'right';
-        ctx.fillText(nombreCuerpoSis(b), der ? x + r + 4 * dpr : x - r - 4 * dpr, y + 3.5 * dpr); ctx.textAlign = 'left';
-      }
+      if (conNombre) nombres.push({ b: b, x: x, y: y, r: r });
+      var ra = b === 'Saturn' ? r * 2.1 : r;   // Saturno, con su anillo
+      bolas.push({ b: b, l: x - ra, r: x + ra, t: y - ra, d: y + ra });
       S.sis.dianas.push({ b: b, x: x / dpr, y: y / dpr });
     });
     /* el punto Aries, para quien sepa leerlo */
     ctx.font = (9 * dpr) + 'px system-ui, sans-serif'; ctx.fillStyle = 'rgba(255,255,255,0.35)'; ctx.fillText('♈︎ →', w - 30 * dpr, c - 4 * dpr);
+    var fijos = [{ l: w - 30 * dpr, r: w - 30 * dpr + ctx.measureText('♈︎ →').width, t: c - 13 * dpr, d: c - 2 * dpr },
+      { l: c - rs, r: c + rs, t: c - rs, d: c + rs }];
+    /* los nombres, sin pisarse (21-10-2026: en la vista exterior Jupiter caia
+       encima de la Tierra, y Saturno de Neptuno): a la derecha, o a la
+       izquierda cerca del borde, como siempre; si ahi pisa otro nombre, otro
+       planeta, el Sol o Aries, arriba, abajo o al otro lado. La Tierra y el
+       elegido, los primeros. */
+    ctx.font = (10 * dpr) + 'px system-ui, sans-serif'; ctx.fillStyle = 'rgba(255,255,255,0.82)';
+    var choca = function (a, z) { return a.l < z.r && z.l < a.r && a.t < z.d && z.t < a.d; };
+    var puestas = [];
+    nombres.sort(function (a, z) { var pa = a.b === 'Earth' ? 0 : a.b === S.sis.sel ? 1 : 2, pz = z.b === 'Earth' ? 0 : z.b === S.sis.sel ? 1 : 2; return pa - pz; });
+    nombres.forEach(function (n) {
+      var txt = nombreCuerpoSis(n.b), ancho = ctx.measureText(txt).width, sep = n.r + 4 * dpr;
+      /* de cerca a lejos: su lado de siempre, arriba, abajo, el otro lado, y en diagonal */
+      var opciones = [];
+      [0, 7, 14, 21].forEach(function (mas) {
+        var s = sep + mas * dpr, dcha = [n.x + s, n.y + 3.5 * dpr, 'left'], izda = [n.x - s, n.y + 3.5 * dpr, 'right'];
+        var lados = n.x < w * 0.74 ? [dcha, izda] : [izda, dcha];
+        opciones.push(lados[0], [n.x, n.y - s, 'center'], [n.x, n.y + s + 8 * dpr, 'center'], lados[1],
+          [lados[0][0], n.y - s, lados[0][2]], [lados[0][0], n.y + s + 8 * dpr, lados[0][2]],
+          [lados[1][0], n.y - s, lados[1][2]], [lados[1][0], n.y + s + 8 * dpr, lados[1][2]]);
+      });
+      var caja = function (o) { var l = o[2] === 'left' ? o[0] : o[2] === 'right' ? o[0] - ancho : o[0] - ancho / 2; return { l: l, r: l + ancho, t: o[1] - 9 * dpr, d: o[1] + 3 * dpr }; };
+      /* lo que pisa cada sitio: nada es lo bueno; si no hay ninguno libre, el que menos */
+      var cruce = function (a, z) { return Math.max(0, Math.min(a.r, z.r) - Math.max(a.l, z.l)) * Math.max(0, Math.min(a.d, z.d) - Math.max(a.t, z.t)); };
+      var pisa = function (o) {
+        var k = caja(o), p = 0;
+        p += Math.max(0, -k.l) + Math.max(0, k.r - w) + Math.max(0, -k.t) + Math.max(0, k.d - w);
+        puestas.forEach(function (q) { p += cruce(k, q); });
+        bolas.forEach(function (q) { if (q.b !== n.b) p += cruce(k, q); });
+        fijos.forEach(function (q) { p += cruce(k, q); });
+        return p;
+      };
+      var o = opciones[0], menos = Infinity;
+      for (var i = 0; i < opciones.length && menos > 0; i++) { var pi = pisa(opciones[i]); if (pi < menos) { menos = pi; o = opciones[i]; } }
+      ctx.textAlign = o[2]; ctx.fillText(txt, o[0], o[1]);
+      var k = caja(o); k.b = n.b; puestas.push(k);
+    });
+    ctx.textAlign = 'left';
+    /* para tools/auditar_cielo.js: las cajas en pixeles del lienzo */
+    S.sis.etiquetas = puestas; S.sis.obstaculos = bolas.concat(fijos); S.sis.lado = w;
   }
   function hojaSistema(caja) {
     caja.textContent = '';
@@ -5285,6 +5324,13 @@
     guia: function (f) { return paradasGuia(calcularNoche(f || S.fecha)); },
     instanteGuia: function (f) { return instanteGuia(calcularNoche(f || S.fecha)); },
     sistema: function (fecha) { return sistemaEn(fecha || new Date()); },
+    /* pinta el sistema solar en un lienzo con la fecha y la vista que se le den, y
+       devuelve donde han ido los nombres (parte 12: que no se pisen) */
+    lienzoSistema: function (cv, fecha, vista) {
+      S.sis.base = S.fecha; S.sis.t = fecha.getTime(); if (vista) S.sis.vista = vista;
+      pintarSistema(cv);
+      return { etiquetas: S.sis.etiquetas, obstaculos: S.sis.obstaculos, lado: S.sis.lado };
+    },
     cacheListo: cacheListo, brillo: brilloGuardado, pista: pistaRoja, rojo: rojo
   };
 })();
