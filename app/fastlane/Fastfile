@@ -1,0 +1,125 @@
+# Tenerife Go para la App Store, sin Mac (LANZAMIENTO-APP-STORE.md §9).
+# Lo corre GitHub Actions en un runner macOS (.github/workflows/app-store.yml);
+# tambien vale en un Mac cualquiera con `bundle exec fastlane ios <carril>`.
+#
+# Secretos (variables de entorno) que hacen falta:
+#   ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8   la clave API de App Store Connect (Users and Access → Integrations)
+#   APPLE_TEAM_ID                           el Team ID (developer.apple.com/account → Membership details)
+#   MATCH_GIT_URL, MATCH_GIT_BASIC_AUTHORIZATION, MATCH_PASSWORD
+#                                           el repositorio privado donde match guarda el certificado y el perfil,
+#                                           cifrados; la autorizacion es base64("usuario:token") de un token de GitHub
+#   ASC_REVIEW_NAME, ASC_REVIEW_PHONE, ASC_REVIEW_EMAIL   (solo para `ficha`) el contacto de la revision
+#
+# Carriles:
+#   alta        crea el identificador y la ficha vacia de la app en App Store Connect (una vez)
+#   testflight  firma (match), archiva (gym) y sube a TestFlight (pilot)
+#   ficha       sube la ficha en las diez localizaciones y las capturas (deliver), sin el binario
+#
+# Nada aqui pulsa «Submit for Review»: eso lo hace Jerome en App Store Connect
+# (o `deliver` con submit_for_review, cuando el lo diga).
+
+default_platform(:ios)
+
+APP_ID   = ENV["TGO_APP_ID"] || "com.tenerifego.app"
+PROYECTO = "ios/App/App.xcodeproj"
+ESQUEMA  = "App"
+VERSION  = JSON.parse(File.read(File.expand_path("../package.json", __dir__)))["version"]
+
+def clave_api
+  app_store_connect_api_key(
+    key_id: ENV.fetch("ASC_KEY_ID"),
+    issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+    key_content: ENV.fetch("ASC_KEY_P8"),
+    is_key_content_base64: false,
+    duration: 1200,
+    in_house: false
+  )
+end
+
+platform :ios do
+  desc "Crea el identificador (developer.apple.com) y la ficha vacia (App Store Connect) de Tenerife Go. Una vez."
+  lane :alta do
+    api_key = clave_api
+    create_app_online(
+      api_key: api_key,
+      app_identifier: APP_ID,
+      app_name: "Tenerife Go",
+      app_version: VERSION,
+      language: "es-ES",
+      sku: "tenerife-go",
+      platforms: ["ios"]
+    )
+  end
+
+  desc "Firma, archiva y sube a TestFlight"
+  lane :testflight do
+    api_key = clave_api
+    # El certificado de distribucion y el perfil: match los crea la primera vez
+    # (con la clave API) y los guarda cifrados en MATCH_GIT_URL; despues, solo lee
+    # (MATCH_READONLY=1 en el workflow, una vez creados).
+    match(
+      type: "appstore",
+      app_identifier: APP_ID,
+      api_key: api_key,
+      git_url: ENV.fetch("MATCH_GIT_URL"),
+      git_basic_authorization: ENV.fetch("MATCH_GIT_BASIC_AUTHORIZATION"),
+      readonly: ENV["MATCH_READONLY"] == "1",
+      skip_docs: true
+    )
+    perfil = ENV.fetch("sigh_#{APP_ID}_appstore_profile-name")
+    update_code_signing_settings(
+      path: PROYECTO,
+      targets: ["App"],
+      use_automatic_signing: false,
+      team_id: ENV.fetch("APPLE_TEAM_ID"),
+      bundle_identifier: APP_ID,
+      code_sign_identity: "Apple Distribution",
+      profile_name: perfil
+    )
+    # La version, la de package.json; el numero de build, el de la ejecucion
+    # de GitHub Actions (siempre mayor que el anterior: Apple exige que suba).
+    # Van como ajustes de xcodebuild, sin tocar el proyecto (agvtool no hace falta).
+    build = ENV.fetch("GITHUB_RUN_NUMBER", Time.now.strftime("%Y%m%d%H%M"))
+    build_app(
+      project: PROYECTO,
+      scheme: ESQUEMA,
+      configuration: "Release",
+      export_method: "app-store",
+      export_options: { provisioningProfiles: { APP_ID => perfil }, signingStyle: "manual" },
+      xcargs: "MARKETING_VERSION=#{VERSION} CURRENT_PROJECT_VERSION=#{build}",
+      output_directory: "build",
+      output_name: "TenerifeGo.ipa",
+      clean: true
+    )
+    upload_to_testflight(
+      api_key: api_key,
+      app_identifier: APP_ID,
+      skip_waiting_for_build_processing: true
+    )
+  end
+
+  desc "Sube la ficha (diez localizaciones) y las capturas a App Store Connect, sin el binario"
+  lane :ficha do
+    api_key = clave_api
+    revision = {}
+    revision[:first_name]   = ENV["ASC_REVIEW_NAME"].split(" ").first if ENV["ASC_REVIEW_NAME"]
+    revision[:last_name]    = ENV["ASC_REVIEW_NAME"].split(" ")[1..].join(" ") if ENV["ASC_REVIEW_NAME"]
+    revision[:phone_number] = ENV["ASC_REVIEW_PHONE"] if ENV["ASC_REVIEW_PHONE"]
+    revision[:email_address] = ENV["ASC_REVIEW_EMAIL"] if ENV["ASC_REVIEW_EMAIL"]
+    deliver(
+      api_key: api_key,
+      app_identifier: APP_ID,
+      app_version: VERSION,
+      metadata_path: "fastlane/metadata",
+      screenshots_path: "fastlane/screenshots",
+      overwrite_screenshots: true,
+      skip_binary_upload: true,
+      skip_app_version_update: false,
+      force: true,
+      run_precheck_before_submit: false,
+      submit_for_review: false,
+      app_review_information: revision,
+      submission_information: { export_compliance_uses_encryption: false, add_id_info_uses_idfa: false }
+    )
+  end
+end

@@ -213,6 +213,9 @@ echo "════════ la app para las tiendas (App Store): app/www/ mon
 control app_preparar.js node tools/app_preparar.js --comprobar
 control probar_app.js node tools/probar_app.js "$PUERTO"
 control auditar_app_store.js node tools/auditar_app_store.js
+# La ficha en el formato de `fastlane deliver` (la App Store sin Mac): las diez
+# localizaciones, cada fichero dentro de su limite, las capturas si las hay.
+control app_store_metadata.js node tools/app_store_metadata.js --comprobar
 
 echo "════════ erratas al transliterar al cirilico ════════"
 control auditar_cirilico.py python3 tools/auditar_cirilico.py

@@ -53,9 +53,15 @@ for f in "$IOS"/Assets.xcassets/Splash.imageset/*.png; do
 done
 [ "$SPL" -gt 0 ] && echo "  arranque puesto ($SPL ficheros de Splash.imageset)" || aviso "no encuentro Splash.imageset: poner $P/Splash-2732.png a mano en Xcode (Splash)"
 
-echo "== 4. Lo que queda en Xcode (no se puede hacer desde aqui)"
-echo "  · Si los .lproj y PrivacyInfo.xcprivacy no salen en el navegador del proyecto: File > Add Files to «App»… (marcar el target App)."
-echo "  · Project > Info > Localizations: que esten los diez idiomas."
+echo "== 4. Meter los .lproj y PrivacyInfo.xcprivacy en el proyecto"
+if command -v bundle >/dev/null 2>&1 && bundle exec ruby -e 'require "xcodeproj"' >/dev/null 2>&1; then
+  bundle exec ruby "$P/incluir.rb" || aviso "incluir.rb no pudo meter los ficheros en el proyecto"
+else
+  echo "  (sin la gema xcodeproj -viene con fastlane: bundle install-: hacerlo en Xcode)"
+  echo "  · Si los .lproj y PrivacyInfo.xcprivacy no salen en el navegador del proyecto: File > Add Files to «App»… (marcar el target App)."
+  echo "  · Project > Info > Localizations: que esten los diez idiomas."
+fi
+echo "== 5. Lo que queda en Xcode (o lo hace el workflow, sin Mac)"
 echo "  · Target App > General: Team, el Bundle Identifier de capacitor.config.json, Minimum Deployments iOS 15.0."
 echo "  · Product > Archive, y en el organizador «Generate Privacy Report»: tiene que decir lo mismo que PrivacyInfo.xcprivacy."
 [ "$avisos" = 0 ] && echo "hecho" || echo "hecho, con $avisos aviso(s) arriba"

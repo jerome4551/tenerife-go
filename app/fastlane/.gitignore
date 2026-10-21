@@ -1,0 +1,6 @@
+# lo genera tools/app_store_metadata.js (de datos/app-store/ficha.json y capturas-app-store/) y fastlane
+metadata/
+screenshots/
+report.xml
+README.md
+Preview.html

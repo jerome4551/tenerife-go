@@ -1,0 +1,4 @@
+# Fastlane: la firma, el archivo, TestFlight y la ficha de App Store Connect sin
+# Mac (LANZAMIENTO-APP-STORE.md §9). Lo instala `bundle install` en el runner.
+source "https://rubygems.org"
+gem "fastlane"

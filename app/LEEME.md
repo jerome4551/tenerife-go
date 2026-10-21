@@ -21,8 +21,9 @@ con los de dentro de respaldo. En la web esa marca no existe y nada cambia.
 | Los pasos enteros, lo que hay que decidir y lo que falta | `../LANZAMIENTO-APP-STORE.md` |
 | La ficha de la tienda en los diez idiomas | `../datos/app-store/ficha.json` (`node ../tools/auditar_app_store.js` la coteja) |
 | Las capturas para la tienda | `node ../tools/capturas_app_store.js PUERTO` |
+| La App Store sin Mac | `../.github/workflows/app-store.yml` (una máquina macOS de GitHub), `fastlane/Fastfile` (match, gym, pilot, deliver), `Gemfile`, `ios/plantillas/incluir.rb`; la ficha y las capturas en el formato de `deliver`, con `node ../tools/app_store_metadata.js` |
 
-En un Mac con Xcode 26 y Node 22:
+Sin Mac: `LANZAMIENTO-APP-STORE.md` §9 (Actions → «App Store» → Run workflow). En un Mac con Xcode 26 y Node 22:
 
 ```
 cd app

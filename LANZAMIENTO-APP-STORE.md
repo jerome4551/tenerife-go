@@ -76,6 +76,9 @@ luz roja, los diez idiomas) es el mismo código y se comporta igual.
 4. **Los datos de contacto de la revisión** (nombre, correo, teléfono en
    formato internacional, `+34…`). El de la política (`privacidad.html`) ya
    es público: Jérôme Bourgeois · tenerife.go.app@gmail.com.
+   Y, para la vía sin Mac (§9): la clave API de App Store Connect, el Team
+   ID, un repositorio privado para la firma y los secretos en GitHub; todo
+   desde el móvil.
 5. **Si se quieren rótulos en las capturas** («Funciona sin conexión», «El
    cielo del Teide»…), en los diez idiomas, encima de las capturas de
    `capturas_app_store.js`. Sin rótulos también valen.
@@ -90,7 +93,7 @@ luz roja, los diez idiomas) es el mismo código y se comporta igual.
    responder con esa lista y, si insisten, añadir una pieza nativa (los
    avisos APNs del §8 serían la primera).
 
-## 4. En el Mac, paso a paso
+## 4. En el Mac, paso a paso (sin Mac: §9)
 
 Hace falta un Mac con **Xcode 26.0 o más** (Capacitor 8 lo exige; desde el
 28 de abril de 2026 Apple exige además que todo lo que se suba esté
@@ -305,8 +308,109 @@ IDFA).
 - **Sign in with Apple**: no se exige (§6); si algún día se añade Google
   Sign-In, entonces sí.
 
-## 9. Fuentes (leídas el 21 de octubre de 2026)
+## 9. Sin Mac: desde el móvil, con una máquina macOS prestada
 
+Todo el proyecto se ha llevado desde el móvil, y la App Store también se
+puede. El Mac solo hace falta para *abrir Xcode*; compilar, firmar y subir lo
+hace igual una máquina macOS en la nube, y GitHub la presta en los
+repositorios públicos sin coste («Use of the standard GitHub-hosted runners is
+free and unlimited on public repositories»; `tenerife-go` es público). El
+flujo `.github/workflows/app-store.yml` y `app/fastlane/Fastfile` hacen, paso
+a paso, lo del §4: montar `app/www/`, generar el proyecto de Capacitor,
+aplicar las plantillas (y meter los `.lproj` y el manifiesto en el proyecto
+con `incluir.rb`, lo que en Xcode sería «Add Files»), firmar, archivar y subir
+a TestFlight; y, desde Linux, subir la ficha en las diez localizaciones y las
+capturas con `deliver`. Se lanza a mano desde la pestaña Actions del
+repositorio (desde el móvil también), eligiendo `alta`, `testflight`, `ficha`
+o `todo`. Nada pulsa «Submit for Review».
+
+Lo que no vale sin Mac: Xcode Cloud («You need to configure your first Xcode
+Cloud workflow in Xcode»). Y lo que no se ha podido comprobar aquí: el
+flujo entero, porque esta sesión no tiene ni Mac ni npm; la primera
+ejecución en GitHub es la prueba, y sus registros dicen dónde para si para.
+
+### 9.1 Lo que hace Jerome, desde el móvil
+
+1. **El alta en el Apple Developer Program, desde el iPhone**, con la app
+   «Apple Developer» de la App Store: «An iPhone or iPad with Touch ID, Face
+   ID, or passcode enabled»; pide el Apple Account con verificación en dos
+   pasos, el nombre legal y una foto del DNI o del pasaporte; 99 USD al año
+   como suscripción. Apple tarda horas o días en aprobarlo.
+2. **La clave API de App Store Connect** (web, appstoreconnect.apple.com →
+   Users and Access → Integrations → App Store Connect API → «+», papel
+   *Admin*): se descarga **una sola vez** un fichero `AuthKey_XXXXXXXXXX.p8`;
+   apuntar el *Key ID* y el *Issuer ID*.
+3. **El Team ID**: developer.apple.com/account → Membership details.
+4. **Un repositorio privado vacío en GitHub** para el certificado y el perfil
+   cifrados (por ejemplo `tenerife-go-firma`), y un *token clásico* de
+   GitHub con permiso `repo` (Settings → Developer settings → Personal access
+   tokens).
+5. **Los secretos**, en `tenerife-go` → Settings → Secrets and variables →
+   Actions → New repository secret:
+
+| Secreto | Qué |
+|---|---|
+| `ASC_KEY_ID` | el Key ID de la clave API |
+| `ASC_ISSUER_ID` | el Issuer ID |
+| `ASC_KEY_P8` | el contenido entero del `.p8` (con las líneas BEGIN y END) |
+| `APPLE_TEAM_ID` | el Team ID |
+| `MATCH_GIT_URL` | `https://github.com/jerome4551/tenerife-go-firma.git` |
+| `MATCH_GIT_BASIC_AUTHORIZATION` | `base64("jerome4551:<token>")` (en el móvil, cualquier conversor base64; o `echo -n 'jerome4551:TOKEN' │ base64` en Claude Code, con la barra vertical) |
+| `MATCH_PASSWORD` | una contraseña larga inventada: con ella se cifra el certificado |
+| `ASC_REVIEW_NAME`, `ASC_REVIEW_PHONE`, `ASC_REVIEW_EMAIL` | el contacto de la revisión (`Jérôme Bourgeois`, `+34…`, el correo) |
+
+   Y una **variable** (no secreto) `MATCH_READONLY` que se pone a `1`
+   **después** de la primera ejecución de `testflight` (la primera crea el
+   certificado y el perfil; las siguientes solo los leen).
+
+6. En orden: Actions → «App Store» → Run workflow → `alta` (una vez: crea el
+   identificador y la ficha vacía); luego `testflight`; luego `ficha`. Cada
+   ejecución deja sus registros; si algo para, el registro lo dice y se
+   arregla en el repositorio.
+7. En el iPhone, la app **TestFlight**: instalar el build y pasar el §7.
+8. En App Store Connect (web): revisar la ficha que subió `deliver`
+   (textos, capturas), contestar *App Privacy* con la tabla del §5.4, la
+   clasificación por edades, *Content Rights*, el precio (gratis) y los
+   países, y pulsar **Submit for Review**.
+
+### 9.2 Lo que hace Claude Code (con npm)
+
+- `cd app && npm install` y **commitear `app/package-lock.json`** (así el
+  runner instala lo mismo cada vez).
+- `npx cap add ios` funciona también en Linux (el CLI de Capacitor no exige
+  Xcode ni macOS: solo pide CocoaPods si se elige CocoaPods, y solo en Mac):
+  si se quiere, generar `app/ios/App/` y commitearlo quitando `app/ios/App/`
+  de `.gitignore`; si no, el workflow lo genera en cada ejecución (y es lo
+  previsto).
+- Si la primera ejecución para en algo del proyecto de Xcode (el nombre del
+  esquema, la versión mínima de iOS, el grupo `App` que `incluir.rb` espera),
+  el registro del workflow dice qué; se corrige en `app/fastlane/Fastfile`,
+  `app/ios/plantillas/aplicar.sh` o `incluir.rb` y se vuelve a lanzar.
+
+### 9.3 Lo que hace el flujo, y de dónde sale cada pieza
+
+| Paso | Herramienta | Comprobado en |
+|---|---|---|
+| Máquina macOS con Xcode 26 | `runs-on: macos-26` (arm64, M1), gratis en repos públicos | docs.github.com, runners |
+| `app/www/`, proyecto, plantillas | `tools/app_preparar.js`, `npx cap add ios`, `aplicar.sh`, `incluir.rb` (gema `xcodeproj`, viene con fastlane) | aquí, en seco |
+| Certificado y perfil sin Mac | `fastlane match` con la clave API (crea el certificado de distribución y el perfil; «App Store Connect API key doesn't work» solo para los Developer ID, que no hacen falta) | docs.fastlane.tools/actions/match |
+| Archivo firmado | `build_app` (gym): `-exportMethod app-store`, firma manual con el perfil de match, versión de `package.json` y build = número de ejecución | docs.fastlane.tools |
+| TestFlight | `upload_to_testflight` (pilot) con la clave API | docs.fastlane.tools |
+| Ficha y capturas | `tools/app_store_metadata.js` escribe `fastlane/metadata/<loc>/*.txt` y `fastlane/screenshots/<loc>/`; `deliver` las sube (las diez localizaciones de §5.2; deliver conoce 1206×2622 y 2064×2752) | docs.fastlane.tools/actions/deliver; `app_screenshot.rb` |
+| Alta de la app | `create_app_online` (produce) con la clave API | docs.fastlane.tools |
+
+## 10. Fuentes (leídas el 21 de octubre de 2026)
+
+- GitHub Actions: runners macOS estándar gratis en repositorios públicos,
+  etiquetas `macos-26`/`macos-latest`: docs.github.com/en/actions/reference/runners/github-hosted-runners.
+- El alta desde el iPhone con la app Apple Developer: developer.apple.com/support/app-account.
+- Xcode Cloud exige Xcode para el primer workflow:
+  developer.apple.com/documentation/xcode/configuring-your-first-xcode-cloud-workflow.
+- fastlane match (certificados con la clave API, salvo Developer ID) y deliver
+  (carpetas de metadatos y capturas, localizaciones): docs.fastlane.tools/actions/match
+  y …/deliver; los tamaños que deliver reconoce: fastlane/deliver/lib/deliver/app_screenshot.rb.
+- `npx cap add ios` sin macOS: cli/src/tasks/add.ts y cli/src/ios/common.ts de
+  github.com/ionic-team/capacitor (CocoaPods solo si se elige, y solo en Mac).
 - Capacitor 8: Xcode 26.0+, Node 22+, SPM por defecto, iOS 15:
   capacitorjs.com/docs/getting-started/environment-setup y
   capacitorjs.com/docs/updating/8-0; iOS 15+ y WKWebView: capacitorjs.com/docs/ios.

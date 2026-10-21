@@ -23,7 +23,7 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 | `frases.json` | Las 365 frases de la notificación diaria, una por día del año. |
 | `vendor/` | Leaflet 1.9.4 y Leaflet.markercluster 1.5.3, alojados aquí en vez de en un CDN; las dos librerías del mapa sin conexión (`pmtiles.js` y `protomaps-leaflet.js`), las tipografías, Astronomy Engine (MIT), el motor de cálculo del panel del cielo, y satellite.js 7.1.0 (MIT), el SGP4 de los pasos de los satélites, compilado desde su fuente por `tools/satelites_construir.js` (se pide solo al abrir el panel). |
 | `supabase/*.sql` | Las tablas y sus políticas de seguridad, para poder recrear el proyecto. |
-| `.github/workflows/` | Los robots: la notificación diaria, los avisos de AEMET, los precios de las gasolineras, el mapa y los elementos orbitales de los satélites (`satelites.yml`, dos veces al día). |
+| `.github/workflows/` | Los robots: la notificación diaria, los avisos de AEMET, los precios de las gasolineras, el mapa y los elementos orbitales de los satélites (`satelites.yml`, dos veces al día). Y `app-store.yml`, que no es un robot: se lanza a mano y compila, firma y sube la app a TestFlight y su ficha a App Store Connect en una máquina macOS de GitHub (la App Store sin Mac). |
 | `tools/` | Los controles y las herramientas; `bash tools/auditar.sh` los pasa todos. Entre ellos, `verificar_red.js` (la red de guaguas), `extract_js.py`, `gtfs_red.py` y `auditar_readme.js`, que coteja las cifras de este fichero. |
 | `app/` | La misma aplicación para la App Store: el proyecto de Capacitor (`capacitor.config.json`, `package.json`), las plantillas de iOS (permisos en los diez idiomas, manifiesto de privacidad, icono, arranque) y `LEEME.md`. `tools/app_preparar.js` monta `app/www/` desde la raíz; `datos/app-store/ficha.json` es la ficha de la tienda en los diez idiomas. Los pasos, en `LANZAMIENTO-APP-STORE.md`. |
 | `AUDITORIA-FINAL.md` | Estado del proyecto, auditoría, lo que falta y las trampas conocidas. |
@@ -436,9 +436,13 @@ existe y nada cambia: `tools/probar_app.js` abre las dos en Chromium y lo
 comprueba. Las frases de los permisos de iOS salen de la política de
 privacidad de cada idioma, y `tools/auditar_app_store.js` coteja la ficha de
 la tienda con los límites de Apple, con las cifras de hoy y con el nombre
-que cada función lleva en la app. Lo que solo se
-puede hacer en un Mac (Xcode, TestFlight) y lo que Jerome tiene que decidir
-está en `LANZAMIENTO-APP-STORE.md`.
+que cada función lleva en la app. Compilar,
+firmar y subir no necesita un Mac en casa: `.github/workflows/app-store.yml`
+y `app/fastlane/Fastfile` lo hacen en una máquina macOS de GitHub (gratis en
+repositorios públicos), y `tools/app_store_metadata.js` pone la ficha y las
+capturas en el formato que `fastlane deliver` sube. Lo que Jerome tiene que
+decidir y hacer desde el móvil, y el paso a paso con Mac y sin él, está en
+`LANZAMIENTO-APP-STORE.md`.
 
 ---
 
