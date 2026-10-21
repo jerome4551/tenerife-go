@@ -283,7 +283,8 @@ const LATINA = /^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'’-]*$/;
    minuscula, y la regla del alfabeto latino en bulgaro y chino no salto nunca.
    Lo encontro la prueba de meter «mirador» a proposito en una ficha china. */
 const CODIGO = /^[A-Z0-9][A-Z0-9-]*$/;
-const UNIDAD = /^(?:km|min|cm|mm|kg|ml|ha|kw|kwh|cv|hp|uv|gps|wifi|wi-fi|pdf|gpx|app|apps|bus|wc|lat|lng)$/i;
+/* unidades y formatos de fichero (pdf, gpx; ics, el evento de calendario del panel del cielo, 21-10-2026): no son castellano */
+const UNIDAD = /^(?:km|min|cm|mm|kg|ml|ha|kw|kwh|cv|hp|uv|gps|wifi|wi-fi|pdf|gpx|ics|app|apps|bus|wc|lat|lng)$/i;
 /* el castellano pasado tal cual al cirilico, como lo pasaria quien no lo
    traduce: «romería» -> «ромерия», «cardonal» -> «кардонал». */
 function aCirilico(w) {

@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.017 kB** en castellano · **1.130 kB** en el peor caso (búlgaro) · 1.116 kB en polaco, el 20 de octubre (el panel del cielo suma 9 kB, con «Apunta al cielo» y la ficha; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.019 kB** en castellano · **1.133 kB** en el peor caso (búlgaro) · 1.119 kB en polaco, el 21 de octubre (el panel del cielo suma 10 kB, con «Apunta al cielo», la ficha y lo que piden las reseñas; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -504,6 +504,187 @@ sesión, como el 17, y no tocan nada de esto. `auditar_cielo.js`, 85 en verde;
 textos sin traducir y 0 errores; el tour, 18 pasos. Queda por hacer lo que
 ningún control puede: probarlo en un móvil de verdad, con sus sensores y su
 cámara (los pasos, en la nota para Claude Code).
+
+## Lo que piden las reseñas de las apps del cielo, y un error del día 20 (21 de octubre)
+
+Jerome, con el informe de las dos tiendas delante
+(`APPS-DEL-CIELO-COMPETENCIA.md`: 26 apps, las quejas de cada una, lo que la
+gente pide): «Revisa los bloques que me enviaste. Ajústalos con las nuevas
+informaciones que tenemos. Sin errores. Tú mismo viste las quejas. Pasaremos
+primero y gratis».
+
+### El error del día 20: la Luna llena dejaba el cielo a oscuras
+
+Al repasar la carta antes de tocar nada: la claridad que la Luna mete en el
+cielo (`lunaLuz`, que aclara el fondo, apaga la Vía Láctea y deja ver menos
+estrellas) se calculaba como `(1 − cos fase) / 2`, y el ángulo de fase del
+motor vale **0° con Luna llena** y 180° con nueva (comprobado con el motor:
+el 26 de octubre, llena, 4,6°; el 9 de noviembre, nueva, 175°). Así que la
+carta aclaraba el cielo con Luna nueva y lo dejaba negro con Luna llena, al
+revés. Las capturas del día 20 no lo cantaron porque esa noche la Luna
+estaba al 70 %: a medio camino, la cifra era parecida en los dos sentidos.
+Corregido a `(1 + cos fase) / 2`, y desde hoy un control pinta la misma
+vista con Luna llena alta y con Luna nueva y exige que la primera salga más
+clara (media del lienzo 35,6 frente a 24,2). El dibujo de la fase de la Luna
+(`pintarLuna`) ya iba bien: usa el mismo ángulo con la convención correcta.
+
+De paso: «esta noche» cambiaba a la noche siguiente a mediodía, así que
+quien abría el panel en el desayuno veía la noche pasada. Ahora cambia a las
+7 de la mañana (el Sol sale en Izaña entre las 7:01 y las 8:12 todo el año,
+calculado con el motor).
+
+### Lo que entra, ordenado por lo que más castigan las reseñas
+
+- **La brújula (queja número uno de todas, y ninguna la resuelve de cara a
+  quien mira).** La primera vez que se abre «Apunta al cielo» sale una guía
+  de 20 segundos: lejos de imanes y metal (la funda con imán, el coche, una
+  barandilla), el ocho en el aire (dos o tres veces: lo que pide Google Maps
+  en Android al calibrar la brújula; el magnetómetro gira por todos los
+  ejes), y comprobar con un astro; y
+  dice que la brújula marca el norte magnético, con la declinación de hoy
+  calculada (3,7° al oeste hoy), que Tenerife Go ya corrige. «Entendido» la
+  guarda vista (`tgo_cielo_guia`). El chip **«🎯 Comprobar la brújula»**
+  elige la referencia (el Sol si está a más de 8° —con el aviso de no
+  mirarlo—, la Luna si se ve, el planeta más brillante a más de 10°, o la
+  estrella más brillante a más de 15°), la señala con la flecha y pide
+  ponerla en el círculo y tocar «Ya»: entonces mide la diferencia en acimut
+  entre donde la brújula dice que se apunta y donde está el astro de verdad,
+  la suma al ajuste (el mismo que se arrastra a mano, guardado en el móvil)
+  y lo dice («Brújula corregida: iba 10° desviada»; «iba bien: solo 1° de
+  desvío»; a más de 25° del círculo, «acércalo más»; si la altura difiere
+  más de 6°, el móvil no está nivelado y lo dice). El chip de los sensores
+  lleva ✓ cuando se ha comprobado y, en iOS, la precisión que da el sistema
+  (`webkitCompassAccuracy`, «±15°»; Android no la da, por eso la
+  comprobación). Star Walk 2 no deja recalibrar; Sky Map «dejó de poder
+  calibrarse»; SkyView «apuntaba en la dirección contraria»: aquí un toque.
+- **Los avisos (lo que la gente no consigue apagar en Star Walk).** Ninguno
+  por defecto. En cada evento del calendario, **«📅 Añadir a mi calendario»**
+  crea un `.ics` (RFC 5545: líneas de 75 octetos plegadas con CRLF y espacio,
+  comas y puntos y coma escapados, fechas en UTC, `GEO` de Izaña, `VALARM`
+  un día antes con el título) y lo pasa a la hoja de compartir del sistema o
+  lo descarga: ese sí avisa, desde el calendario del móvil. **«🔔
+  Recordármelo en la app»** lo apunta en `localStorage` (`tgo_cielo_avisos_v1`,
+  solo el identificador y la hora) y los dos días de antes sale arriba del
+  todo en «Esta noche» con «¡Esta noche!» o «¡Mañana!»; «Mis avisos» en el
+  calendario los lista con «Quitar» y **«Quitar todos los avisos»**, que
+  los quita de verdad. Y se dice por qué nada despierta a nadie: una web sin
+  servidor no puede notificar sola, y Tenerife Go no tiene ninguno ni quiere
+  datos.
+- **El índice de la noche, con la fórmula a la vista** (Sky Tonight lo
+  esconde y se lo reprochan). 10 puntos por una noche cerrada entera sin
+  Luna; se descuenta la parte de la noche cerrada con la Luna arriba en
+  proporción a lo iluminada que esté (`min(1, 0,2 + iluminación)`: una Luna
+  al 20 % apenas molesta, una llena lo apaga todo), y la media prevista de
+  nubes medias y altas (Open-Meteo, la de la tarjeta de nubes) lo baja en esa
+  proporción; sin previsión no se cuentan y se dice. De 9 a 10 «excelente»,
+  7-8 «buena», 5-6 «regular», 3-4 «floja», 0-2 «mala». El 13 de diciembre
+  de 2026 (Gemínidas, Luna al 21 % un rato) sale 9; el 24 (llena) 0; el 9 de
+  noviembre (nueva) 10. **«📤 Compartir»** genera una imagen de 1080 × 1350
+  con la carta de esa noche (la misma, mirando al sur a media noche
+  cerrada), el índice, las tres líneas, «qué mirar» (el planeta más
+  brillante, dos objetos a simple vista, la Vía Láctea si se ve) y el pie de
+  Tenerife Go, y la pasa a la hoja de compartir o la descarga. Nada pasa por
+  ningún servidor.
+- **La fecha libre** (la pide todo el mundo en todas): 📅 junto a ‹ ›, en
+  «Esta noche» y en la carta, abre el selector de fecha del sistema
+  (`showPicker`; donde no lo haya, el campo queda a la vista). Cambiarla
+  deja la carta al empezar la noche cerrada de ese día.
+- **El recorrido del astro** (lo piden a Stellarium; lo tienen Sky Tonight y
+  SkyView): en la ficha, «🛤️ Ver su recorrido esta noche» pinta en la carta
+  —y en la vista— su camino de mediodía a mediodía, cada 10 minutos, con un
+  punto y la hora en cada hora en punto, hasta 3,5° bajo el horizonte.
+- **Capturar y compartir** (SkyView, Star Tracker, Sky Tonight): 📸 en la
+  carta y en la vista compone lo pintado (con la imagen de la cámara debajo
+  si está puesta) y un pie con lo que se mira, la fecha y la hora, y de
+  dónde sale; a la hoja de compartir o descarga.
+- **Las horas para fotos** (PhotoPills): hora dorada de la tarde y de la
+  mañana (centro del Sol entre 6° sobre el horizonte y 4° por debajo) y hora
+  azul (entre 4° y 6° por debajo), las definiciones de PhotoPills
+  (photopills.com/glossary), en alturas geométricas como los crepúsculos;
+  y la ventana de la Vía Láctea.
+- **Las fases del mes**: el filtro «🌙 Fases de la Luna» del calendario,
+  con las cuatro de cada mes a su hora de Canarias (van en su filtro: cuatro
+  al mes taparían lo demás en «Todo»).
+- **Los retrógrados** (Sky Tonight los añadió en julio de 2026): «Mercurio
+  empieza a retrogradar» y «vuelve a ir hacia delante», para Mercurio, Venus,
+  Marte, Júpiter y Saturno, por el cambio de signo de la velocidad en
+  longitud eclíptica geocéntrica (muestras diarias, bisección al minuto, con
+  160 días de margen para que cada principio sepa su final), con la
+  constelación y la explicación: es perspectiva, un planeta adelanta al otro.
+  Los 14 puntos estacionarios hasta octubre de 2027 coinciden a ±1,5 días
+  con las dos tablas publicadas que se encontraron (cafeastrology.com y
+  farmersalmanac.com, que coinciden entre sí).
+
+Lo que **no** entra, porque es lo que las reseñas castigan: suscripción,
+anuncios, cuenta, rastreo, avisos por defecto, descargas de cientos de
+megas, dibujos que tapan las estrellas, luz roja escondida, «IA» de pago.
+
+### Lo que se midió
+
+- `modulos/cielo.js` pasa de 151 a 182 kB comprimidos (67 filas de texto más
+  en diez idiomas, 396 en `CIELO_UI`, más el código y, desde hoy, las notas
+  de fuentes de cada fila dentro del módulo); se sigue pidiendo al abrir el
+  panel. `index.html`: 34.700 líneas, 731 kB con gzip (eran 726). Descarga:
+  1.019 kB en castellano (1.017), 1.133 en búlgaro (1.130): los estilos
+  nuevos.
+- La política de privacidad, en los diez idiomas: los avisos y la guía se
+  quedan en el móvil; los `.ics` y las imágenes se crean en el móvil y van
+  al calendario o a la hoja de compartir; la cámara solo entra en una
+  captura si se toca 📸.
+
+### Los controles
+
+- **`auditar_cielo.js`, parte 10** (116 controles en total con las fuentes
+  bajadas; eran 85): los 14 retrógrados contra las dos tablas; las fases, las
+  mismas que da `SearchMoonQuarter` aparte y la llena del 31-12-2028 a menos
+  de 2 h del máximo del eclipse del IMCCE (16:48 frente a 16:52); las horas
+  dorada y azul, con el centro del Sol calculado aparte a 6°, −4° y −6°
+  (±0,05°) en invierno y en verano; el índice recalculado aparte en tres
+  noches (creciente fina, llena y nueva) y su tarjeta; los dos `.ics`
+  (Gemínidas, eclipse de 2027) parseados: CRLF, 75 octetos, `DTSTART` y
+  `DTEND` en UTC donde toca, `VALARM`, escapes, `UID`; un aviso puesto, el
+  botón que pasa a «Quitar», `localStorage`, «Mis avisos», la víspera arriba
+  del todo con el reloj de la página puesto en el 12 de diciembre
+  (`page.clock`), y «Quitar todos» que vacía; la fecha libre (y una fecha
+  mal escrita que no cambia nada); el recorrido de Júpiter y de Betelgeuse,
+  cada punto a menos de 0,02° del motor aparte, y pintado (píxeles dorados
+  de más) y quitado; las capturas como PNG de verdad (la firma del fichero)
+  y la descarga con su nombre cuando no hay hoja de compartir, la imagen
+  del índice de 1080 × 1350; la guía (tres pasos, «Entendido», no vuelve a
+  salir); el chip «Comprobar la brújula»; **la comprobación con los
+  sensores simulados 10° desviados**: a 40° «Ya» no corrige y lo dice, con
+  la referencia en el círculo mide −10,0°, corrige el ajuste, lo guarda, lo
+  dice, el chip queda con ✓ y el círculo ya nombra al astro; la captura con
+  la cámara falsa debajo; la precisión de iOS en el chip; y la Luna llena
+  que aclara el cielo. En lo fijo: la privacidad en los diez idiomas, la
+  fórmula de `lunaLuz`, el corte de las 7, y las búsquedas del Sol a 6° y −4°.
+- **`barrido_pantallas.js`**: cuatro estados más en los diez idiomas: la guía,
+  la comprobación de la brújula, las fases y los avisos (la tarjeta «Mis
+  avisos» y los botones de cada evento). En total, 97 pantallas y fichas en los diez idiomas, 0 textos sin traducir y 0 errores de página.
+- `auditar_idioma.js` en los nueve idiomas, 0 hallazgos; `auditar_web.js`
+  coteja las 1.572 filas; `generar_privacidad.py --comprobar`, la política;
+  `auditar_readme.js`, las cifras del README.
+
+Averías con las que se vieron fallar los controles antes de darlos por
+buenos: la prueba del recorrido leía un lienzo que `TG_CIELO.ver('mapa')`
+había sustituido (siempre 137 píxeles: ahora lee el vivo); las horas para
+fotos se cotejaban con la altura refractada (6,14° en vez de 6°: el motor
+busca la geométrica, como los crepúsculos, y así se dice); la víspera de
+un aviso no se puede ver sin mover el reloj de la página; y
+`castellano_suelto.js` tomó «ics» por castellano dentro del chino y del
+búlgaro: es el formato del fichero, y va con `pdf` y `gpx` en su lista de
+unidades y formatos.
+
+`auditar.sh` entero sobre el árbol del commit, el 21 de octubre, dos veces
+(la segunda tras la última corrección): **cero bloques en rojo**. La línea
+«AUDITORIA EN VERDE» no la imprime porque los tres controles de `pmtiles`
+(`auditar_ubicacion`, `auditar_en_el_mar`, `informe_lugares`) no se pudieron
+ejecutar en esta sesión, como el 17 y el 20 (falta el módulo de Python; no
+tocan nada de esto): Claude Code tiene que verlos pasar con
+`pip install -r tools/requisitos.txt`. Queda lo que ningún control puede: el
+móvil de verdad (la brújula comprobada con la Luna, el `.ics` abriendo el
+calendario, la hoja de compartir de la captura); los pasos, en la nota para
+Claude Code.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
@@ -2346,7 +2527,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 43 tablas, 1508 filas (y 3.649 filas, dentro y fuera del fuente)
+## Idiomas · 43 tablas, 1575 filas (y 3.716 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -2364,15 +2545,16 @@ tarjetas inventadas de la tienda y su hueco de AdSense, que se borraron. El
 filas del botón y las dos del tour. El 20, «Apunta al cielo», la carta nueva
 y la ficha: 87 más (79 de `CIELO_UI`, que pasa a 329 y pierde una que ya no
 pedía nadie; las cuatro lunas de Júpiter en `CIELO_CUERPO`; y en la política
-de privacidad los sensores y la cámara, cuatro). El 21, una más: las dos de «Báñate hoy
-aquí» con un aviso costero de AEMET, y una menos, la de la ✕ de la píldora de
-avisos, que ya no existe; esa tarde, dos más: «Toda la isla» y «Toda la
-costa» en la línea de los avisos. El
+de privacidad los sensores y la cámara, cuatro). El 21, lo que piden las
+reseñas: 67 más en `CIELO_UI`, que pasa a 396; y, de los avisos de AEMET, una
+más: las dos de «Báñate hoy aquí» con un aviso costero, y una menos, la de la
+✕ de la píldora de avisos, que ya no existe; esa tarde, dos más: «Toda la
+isla» y «Toda la costa» en la línea de los avisos. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
-`barrido_idiomas.js`, contado el 21 de octubre (3.045 antes del cielo, 3.559 el 17); no
-la coteja nadie.)*
+`barrido_idiomas.js`, contado el 21 de octubre (3.045 antes del cielo, 3.559
+el 17); no la coteja nadie.)*
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una

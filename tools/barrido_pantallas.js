@@ -125,13 +125,29 @@ window.__estados = [
      grados arriba: la hoja de lo que haya en el circulo, y la busqueda. Lo
      que se ve se recoge del DOM (las designaciones van marcadas). */
   ['cielo:apunta', async () => {
-      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); TG_CIELO.vista({}); await espera(200);
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); TG_CIELO.vista({ sinGuia: true }); await espera(200);
       const ev = new Event('deviceorientationabsolute'); Object.assign(ev, { alpha: 180, beta: 130, gamma: 0, absolute: true }); window.dispatchEvent(ev);
       await espera(900);
       document.querySelector('#cielo-vista .cv-nombre').click(); await espera(500); }],
   ['cielo:apunta buscar', async () => {
-      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); TG_CIELO.vista({}); await espera(300);
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); TG_CIELO.vista({ sinGuia: true }); await espera(300);
       document.querySelectorAll('#cielo-vista .cv-btn')[2].click(); await espera(300); }],
+  /* Lo del 21 de octubre de 2026: la guia de la brujula, la comprobacion con
+     un astro (el chip y el cartel de «Ya»), las fases en el calendario y un
+     aviso puesto (la tarjeta «Mis avisos» y los botones de cada evento). */
+  ['cielo:apunta guia', async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); try { localStorage.removeItem('tgo_cielo_guia'); } catch (e) {}
+      TG_CIELO.vista({}); await espera(400); }],
+  ['cielo:apunta comprobar', async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); TG_CIELO.vista({ sinGuia: true }); await espera(200);
+      const ev = new Event('deviceorientationabsolute'); Object.assign(ev, { alpha: 180, beta: 130, gamma: 0, absolute: true }); window.dispatchEvent(ev);
+      await espera(500); TG_CIELO.comprobar(); await espera(400); }],
+  ['cielo:calendario fases', async () => {
+      await window.TG_CIELO_CARGAR(); TG_CIELO.estado.cal = 'luna'; await TG_CIELO.ver('calendario', '2026-12-13'); await espera(300); }],
+  ['cielo:calendario avisos', async () => {
+      await window.TG_CIELO_CARGAR(); TG_CIELO.estado.cal = 'todo'; await TG_CIELO.ver('calendario', '2026-12-13'); await espera(300);
+      const g = TG_CIELO.eventos().find(e => e.tipo === 'lluvia' && e.l.id === 'GEM'); if (g) TG_CIELO.ponerAviso(g);
+      await TG_CIELO.ver('calendario', '2026-12-13'); await espera(300); }],
   /* 'tienda' salio el 16 de octubre de 2026: la tienda no se ve
      (TIENDA_ACTIVA, LANZAMIENTO-PLAY.md 1.1). Que no se abra lo mira
      probar_play.js. */
@@ -161,6 +177,7 @@ window.__cierra = async () => {
   document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
   document.body.click();
   try { window.TG_CIELO && TG_CIELO.cerrar(); } catch (e) {}
+  try { if (window.TG_CIELO) { TG_CIELO.quitarAvisos(); TG_CIELO.estado.cal = 'todo'; TG_CIELO.estado.mapa.rastro = null; } } catch (e) {}
   for (const id of ['mar-panel','mc-panel','fi-panel','wx-panel','cielo-panel']) { const e = document.getElementById(id); if (e) e.style.display = 'none'; }
   for (const s of ['#mar-close','#mc-close','#fi-close','.mar-close','.mc-close','.fi-close']) { const e = document.querySelector(s); if (e && e.offsetParent) try { e.click(); } catch (x) {} }
   try { clearAllFilters(); } catch (e) {}

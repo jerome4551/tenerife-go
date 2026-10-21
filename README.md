@@ -12,7 +12,7 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
 | Fichero | Qué es |
 |---|---|
-| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 20 de octubre de 2026, con el panel del cielo y «Apunta al cielo»: 34.600 líneas, 2,4 MB (726 kB con gzip). |
+| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 21 de octubre de 2026, con el panel del cielo, «Apunta al cielo» y lo que piden las reseñas: 34.700 líneas, 2,4 MB (731 kB con gzip). |
 | `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
 | `modulos/cielo.js` | El panel 🔭 «Cielo de Tenerife»: su código y sus textos en los diez idiomas. No se carga al arrancar: lo pide `index.html` la primera vez que alguien abre el panel. |
 | `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
@@ -163,22 +163,26 @@ Las líneas se agrupan en el panel por `tipo`: `tranvia`, `norte`, `sur`,
 
 ### El cielo de Tenerife
 
-El panel 🔭 tiene cinco pestañas: **esta noche** (Sol, Luna, planetas, Vía
-Láctea y lo mejor para ver a simple vista, con prismáticos y con telescopio),
-el **calendario** (lluvias de estrellas, eclipses, oposiciones, conjunciones,
-equinoccios), el **catálogo** por instrumento, la **carta del cielo** y
-**dónde ir**. Tiene luz roja para la noche.
+El panel 🔭 tiene cinco pestañas: **esta noche** (el índice de la noche de
+0 a 10 con su fórmula a la vista, Sol, Luna, nubes, las horas dorada y azul,
+planetas, Vía Láctea y lo mejor para ver a simple vista, con prismáticos y
+con telescopio), el **calendario** (lluvias de estrellas, eclipses,
+oposiciones, conjunciones, retrógrados, equinoccios y las fases de cada mes,
+con «añadir a mi calendario» en cada evento), el **catálogo** por
+instrumento, la **carta del cielo** y **dónde ir**. Tiene luz roja para la
+noche, y cualquier noche se elige con 📅.
 
 **La carta** pinta el cielo como se ve: el color del crepúsculo hacia donde
 se puso el Sol, la Vía Láctea, cada estrella con el color de su temperatura
 (B−V, Ballesteros 2012) y apagándose hacia el horizonte (extinción de las
 cumbres canarias, 0,113 mag por masa de aire), la Luna con su fase bien
 girada y sus mares (Gazetteer de la UAI), el suelo y los puntos cardinales.
-Se arrastra, se pellizca, corre la noche con ▶ y, tocando cualquier astro,
-sale su **ficha**: dónde está ahora, cuándo sale y se pone, y lo que se sabe
-de él calculado de datos con fuente —la luz que ves salió hace N años, su
-clase y color, cuánto brilla en soles, las lunas de Júpiter ahora, los
-anillos de Saturno— más el resumen de Wikipedia en el idioma del lector
+Se arrastra, se pellizca, corre la noche con ▶, se guarda o comparte con 📸
+y, tocando cualquier astro, sale su **ficha**: dónde está ahora, cuándo sale
+y se pone, su recorrido de esa noche pintado en la carta si se pide, y lo
+que se sabe de él calculado de datos con fuente —la luz que ves salió hace N
+años, su clase y color, cuánto brilla en soles, las lunas de Júpiter ahora,
+los anillos de Saturno— más el resumen de Wikipedia en el idioma del lector
 (CC BY-SA), pedido al abrirla y guardado 30 días en el móvil.
 
 **«Apunta al cielo»** es la carta a pantalla completa orientada con los
@@ -188,9 +192,22 @@ centro dice cuál es. Con 📷 la imagen de la cámara va detrás; con 🔍 se
 busca un astro y una flecha lleva hasta él, y el móvil vibra al centrarlo.
 La brújula marca el norte magnético: se corrige con la declinación del
 WMM2025 en Izaña (`datos/cielo.json`, `declinacion`, calculada por
-`tools/cielo_wmm.js` y comprobada contra la tabla de prueba de la NOAA),
-y si aun así no cuadra se arrastra el cielo hasta que encaje. Nada de la
-cámara ni de los sensores sale del móvil (política de privacidad, 2).
+`tools/cielo_wmm.js` y comprobada contra la tabla de prueba de la NOAA).
+Como la brújula de cualquier móvil se descalibra sola —es la queja número
+uno de todas las apps del cielo—, la primera vez sale una guía de 20
+segundos (lejos de imanes, el ocho en el aire) y el chip «Comprobar la
+brújula» pone la Luna, el Sol, un planeta o la estrella más brillante en el
+círculo y, al tocar «Ya», mide cuánto se desvía y la corrige; en iOS el chip
+de los sensores lleva además la precisión que da el sistema (±N°). Si aun
+así no cuadra se arrastra el cielo hasta que encaje. Nada de la cámara ni de
+los sensores sale del móvil (política de privacidad, 2).
+
+**Los avisos no llegan solos y se quitan de verdad.** En cada evento del
+calendario, «Añadir a mi calendario» crea un `.ics` (RFC 5545, con alarma el
+día antes) que abre el calendario del móvil, y «Recordármelo en la app» lo
+apunta en el móvil para enseñarlo arriba del todo los dos días de antes.
+Nada por defecto, nada en ningún servidor, y «Quitar todos los avisos» los
+quita.
 
 **Todo lo que cambia se calcula en el móvil**, en hora de Canarias y para el
 Observatorio del Teide (la ficha `observatorio`, a 2.390 m): ninguna fecha

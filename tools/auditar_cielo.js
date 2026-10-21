@@ -55,6 +55,17 @@
  *      distancia, lunas de Jupiter); y Wikipedia, con una respuesta falsa:
  *      el resumen en el idioma del lector por los enlaces entre idiomas, la
  *      licencia y nada que no venga de la API.
+ *  10. lo que piden las reseñas de las apps del cielo (21 de octubre de
+ *      2026, APPS-DEL-CIELO-COMPETENCIA.md): los retrogrados contra dos
+ *      tablas publicadas; las fases contra el motor y contra el eclipse de
+ *      Luna del IMCCE; las horas dorada y azul con el Sol a 6, −4 y −6
+ *      grados, calculado aparte; el indice de la noche recalculado aparte
+ *      en tres noches; el .ics (RFC 5545: CRLF, 75 octetos, UTC, VALARM);
+ *      los avisos puestos, ensenados y quitados; la fecha libre; el
+ *      recorrido; las capturas (PNG, y la descarga de verdad); la guia; la
+ *      precision de iOS en el chip; la comprobacion de la brujula con los
+ *      sensores simulados 10 grados desviados (y que la corrige); y que la
+ *      Luna llena aclara el cielo mas que la nueva (lunaLuz iba al reves).
  *
  * Sale con 1 si algo falla.
  */
@@ -255,9 +266,11 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(index, '"' + k +
     /* la ficha: el color por letra espectral (claseMK: /[OBAFGKM]/) y la
        clase de luminosidad (I a V; VI se queda sin nombre) */
     Color: ['O', 'B', 'A', 'F', 'G', 'K', 'M'],
-    Lum: ['I', 'II', 'III', 'IV', 'V']
+    Lum: ['I', 'II', 'III', 'IV', 'V'],
+    /* el indice de la noche (21 de octubre): la palabra, de indiceNoche() */
+    Indice: [...(modulo.match(/valor >= 9 \? '(\w+)' : valor >= 7 \? '(\w+)' : valor >= 5 \? '(\w+)' : valor >= 3 \? '(\w+)' : '(\w+)'/) || []).slice(1)]
   };
-  ok(Object.values(FAMILIAS).every(v => v && v.length), 'las familias se leen del codigo (RUMBOS, FASES, PESTANAS)');
+  ok(Object.values(FAMILIAS).every(v => v && v.length) && FAMILIAS.Indice.length === 5, 'las familias se leen del codigo (RUMBOS, FASES, PESTANAS, las palabras del indice)');
   /* y si manana el codigo arma otra (T('Algo' + x)), que no pase sin mirar */
   const prefijos = [...new Set([...modulo.matchAll(/\bT\('([A-Za-z0-9]+)'\s*\+/g)].map(m => m[1]))];
   const sinFamilia = prefijos.filter(x => !FAMILIAS[x]);
@@ -328,6 +341,15 @@ titulo('4. la carga perezosa y lo que pide el navegador');
   const priv = JSON.parse(lee('idiomas/privacidad/es.json'));
   ok(/Apunta al cielo/.test(priv.ppDatosSensoresTxt || '') && /Apunta al cielo/.test(priv.ppDatosCamaraTxt || '') && /astro/.test(priv.ppTercWiki || ''),
      'la politica de privacidad habla de los sensores, de la camara y del resumen de Wikipedia del astro');
+  /* 21 de octubre: los avisos, los .ics y las capturas, en los diez idiomas */
+  const sinIcs = IDI.filter(L => { const j = JSON.parse(lee('idiomas/privacidad/' + L + '.json')); return !/\.ics/.test(j.ppDatosPrefTxt || '') || !/📸/.test(j.ppDatosCamaraTxt || ''); });
+  ok(!sinIcs.length, 'y de los avisos, los .ics y la captura 📸, en los ' + IDI.length + ' idiomas', sinIcs.join(', '));
+  ok(/lunaLuz = luna\.alt > -2 \? \(1 \+ Math\.cos\(luna\.fase \* RAD\)\) \/ 2/.test(modulo),
+     'la luz de la Luna en la carta es (1 + cos fase) / 2: 0 con Luna nueva y 1 con llena (el 20 de octubre iba al reves)');
+  ok(/function nocheDeHoy\(\) \{ var ahora = new Date\(\); return partes\(ahora\)\.hour < 7/.test(modulo),
+     '«esta noche» cambia a la noche que viene a las 7 de la manana, no a mediodia');
+  ok(/t0 = A\.MakeTime\(instanteLocal\(n\.fecha, 12, 0\)\)/.test(modulo) && /SearchAltitude\(S_, o, -1, t0, 1, 6\)/.test(modulo) && /SearchAltitude\(S_, o, -1, t0, 1, -4\)/.test(modulo),
+     'las horas para fotos buscan el Sol a 6° y a −4° con el motor (hora dorada y azul, definicion de PhotoPills)');
 }
 
 /* ════════ 5. los niveles ════════ */
@@ -370,6 +392,7 @@ async function navegador() {
     if (toca(7)) await pantallas(b);
     if (toca(8)) await sinConexion(b);
     if (toca(9)) await apunta(b);
+    if (toca(10)) await quejas(b);
   } finally { await b.close(); }
 }
 
@@ -894,7 +917,7 @@ async function apunta(b) {
     const magnetico = az => (az - dec + 360) % 360;                  // azimut verdadero -> rumbo de la brujula
     const evento = (az, alt) => { const ev = new Event('deviceorientationabsolute'); Object.assign(ev, { alpha: (360 - magnetico(az)) % 360, beta: 90 + alt, gamma: 0, absolute: true }); window.dispatchEvent(ev); };
     const espera = ms => new Promise(r => setTimeout(r, ms));
-    TG_CIELO.vista({});
+    TG_CIELO.vista({ sinGuia: true });
     await espera(200);
     const out = { nombre: c.nombre, h: c.h, dec };
     out.sinSensor = document.querySelector('#cielo-vista .cv-aviso').textContent;
@@ -954,7 +977,7 @@ async function apunta(b) {
     const espera = ms => new Promise(r => setTimeout(r, ms));
     /* Chromium tiene deviceorientationabsolute: se le pide al panel el
        camino de iOS (deviceorientation + webkitCompassHeading) */
-    TG_CIELO.vista({ evento: 'deviceorientation' }); await espera(150);
+    TG_CIELO.vista({ evento: 'deviceorientation', sinGuia: true }); await espera(150);
     const dec = TG_CIELO.declinacion(new Date());
     const ev = (alpha, beta, h) => { const e = new Event('deviceorientation'); Object.assign(e, { alpha, beta, gamma: 0, absolute: false, webkitCompassHeading: h, webkitCompassAccuracy: 10 }); window.dispatchEvent(e); };
     const H = (0 - dec + 360) % 360;                            // la brujula apuntando al norte verdadero
@@ -969,6 +992,257 @@ async function apunta(b) {
   });
   ok(ios.n === 2 && ios.abs === false && typeof ios.off === 'number' && Math.abs(ios.off - ios.esperado) < 0.5,
      'iOS: deviceorientation relativo + webkitCompassHeading: la diferencia con la brujula (' + (ios.off || 0).toFixed(1) + '°) se toma con el movil inclinado hacia delante y lleva al rumbo de la brujula', JSON.stringify(ios));
+  ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
+  await ctx.close();
+}
+
+/* ── 10. lo que piden las reseñas (21 de octubre de 2026) ─────────────────
+   Fuentes de fuera:
+     · Retrogrados (fechas de los puntos estacionarios, en hora del este de
+       EE. UU.): cafeastrology.com/retrogrades.html (Mercurio, Venus, Marte,
+       Jupiter y Saturno 2026-2027) y farmersalmanac.com/mercury-retrograde
+       (Mercurio 2026 y 2027): coinciden entre si. Aqui, a ±1,5 dias del
+       mediodia de esa fecha (la hora no la publican y hay 4-5 h de zona).
+     · Hora dorada y azul: photopills.com/glossary/g y /b: 6° a −4° y −4° a
+       −6° (centro del Sol).
+     · El eclipse total de Luna del 31-12-2028 (IMCCE, maximo 16:52:06 UTC):
+       la Luna llena del calendario tiene que caer cerca.
+     · RFC 5545 (iCalendar): lineas de 75 octetos plegadas con CRLF y un
+       espacio; comas, puntos y coma y barras escapados; DTSTART en UTC. */
+async function quejas(b) {
+  titulo('10. lo que piden las reseñas: retrogrados, fases, fotos, indice, .ics, avisos, fecha, recorrido, captura y brujula');
+  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera'], isMobile: true, hasTouch: true });
+  await p.evaluate(async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); setLang('es'); });
+  /* retrogrados */
+  const retro = await p.evaluate(() => TG_CIELO.eventos('2026-10-17').filter(e => e.tipo === 'retro').map(e => ({ p: e.p, ini: e.ini, t: e.t.toISOString(), otro: e.otro && e.otro.toISOString(), con: e.con })));
+  const TABLA = [['Mercury', true, '2026-10-24'], ['Mercury', false, '2026-11-13'], ['Venus', false, '2026-11-13'], ['Saturn', false, '2026-12-10'],
+                 ['Jupiter', true, '2026-12-12'], ['Mars', true, '2027-01-10'], ['Mercury', true, '2027-02-09'], ['Mercury', false, '2027-03-03'],
+                 ['Mars', false, '2027-04-01'], ['Jupiter', false, '2027-04-12'], ['Mercury', true, '2027-06-10'], ['Mercury', false, '2027-07-04'],
+                 ['Saturn', true, '2027-08-09'], ['Mercury', true, '2027-10-07']];
+  const cerca = (iso, dia) => Math.abs(new Date(iso) - new Date(dia + 'T12:00:00Z')) <= 1.5 * 864e5;
+  const faltan = TABLA.filter(([pl, ini, dia]) => !retro.some(r => r.p === pl && r.ini === ini && cerca(r.t, dia))).map(x => x.join(' '));
+  const sobran = retro.filter(r => !TABLA.some(([pl, ini, dia]) => r.p === pl && r.ini === ini && cerca(r.t, dia))).map(r => r.p + ' ' + r.ini + ' ' + r.t.slice(0, 10));
+  ok(!faltan.length && !sobran.length && retro.length === TABLA.length,
+     'retrogrados: los ' + TABLA.length + ' puntos estacionarios de Mercurio, Venus, Marte, Jupiter y Saturno hasta octubre de 2027, a ±1,5 dias de las dos tablas publicadas',
+     'faltan: ' + faltan.join(' · ') + ' | sobran: ' + sobran.join(' · '));
+  const pares = retro.filter(r => r.ini && r.otro).every(r => retro.some(q => q.p === r.p && !q.ini && q.t === r.otro) || new Date(r.otro) > new Date('2027-10-17'));
+  ok(pares && retro.every(r => r.otro && r.con), 'cada principio sabe su final y cada final su principio, y todos llevan constelacion', JSON.stringify(retro.filter(r => !r.otro || !r.con)));
+  /* fases: contra el motor aparte y contra el eclipse del IMCCE */
+  const fases = await p.evaluate(() => {
+    const A = Astronomy, ev = TG_CIELO.eventos('2028-12-01').filter(e => e.tipo === 'fase');
+    const aparte = []; let q = A.SearchMoonQuarter(new Date('2028-12-01T00:00:00Z'));
+    while (q && aparte.length < ev.length) { aparte.push({ q: q.quarter, t: q.time.date.toISOString() }); q = A.NextMoonQuarter(q); }
+    return { ev: ev.map(e => ({ q: e.q, t: e.t.toISOString() })), aparte, n26: TG_CIELO.eventos('2026-10-17').filter(e => e.tipo === 'fase').length };
+  });
+  const llena = fases.ev.find(e => e.q === 2 && e.t.startsWith('2028-12-31'));
+  ok(fases.ev.length >= 48 && fases.ev.every((e, i) => fases.aparte[i] && e.q === fases.aparte[i].q && e.t === fases.aparte[i].t) && fases.n26 >= 48,
+     'fases: las cuatro de cada mes, las mismas que da SearchMoonQuarter aparte (' + fases.ev.length + ' en 12 meses)');
+  ok(llena && Math.abs(new Date(llena.t) - new Date('2028-12-31T16:52:06Z')) <= 2 * 3600000,
+     'la Luna llena del 31-12-2028 (' + (llena ? llena.t.slice(11, 16) : '?') + ' UTC) cae a menos de 2 h del maximo del eclipse total del IMCCE (16:52)', JSON.stringify(llena));
+  /* horas para fotos: el Sol, calculado aparte, a 6, −4 y −6 grados */
+  const fotos = await p.evaluate(() => {
+    const A = Astronomy, D = TG_CIELO.estado.datos, o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h);
+    /* altura geometrica del centro del Sol, sin refraccion: la de los crepusculos (y la que busca SearchAltitude) */
+    const alt = t => { const eq = A.Equator(A.Body.Sun, t, o, true, true); return A.Horizon(t, o, eq.ra, eq.dec).altitude; };
+    const out = {};
+    for (const f of ['2026-12-13', '2027-06-21']) { const h = TG_CIELO.fotos(f); out[f] = {}; for (const k in h) out[f][k] = [alt(h[k][0]), alt(h[k][1]), h[k][0].date.toISOString(), h[k][1].date.toISOString()]; }
+    return out;
+  });
+  const ESP = { doradaT: [6, -4], azulT: [-4, -6], azulM: [-6, -4], doradaM: [-4, 6] };
+  const malF = [];
+  for (const f in fotos) for (const k in ESP) { const x = fotos[f][k]; if (!x || Math.abs(x[0] - ESP[k][0]) > 0.05 || Math.abs(x[1] - ESP[k][1]) > 0.05 || new Date(x[3]) <= new Date(x[2])) malF.push(f + ' ' + k + ': ' + JSON.stringify(x)); }
+  ok(!malF.length, 'horas dorada y azul (13-12-2026 y 21-6-2027): en cada borde el centro del Sol esta a 6°, −4° o −6° geometricos (±0,05°, calculado aparte) y van en orden', malF.join(' · '));
+  /* el indice, recalculado aparte en tres noches: con Luna creciente fina, llena y nueva */
+  const idx = await p.evaluate(() => ['2026-12-13', '2026-12-24', '2026-11-09'].map(f => { const n = TG_CIELO.noche(f), x = TG_CIELO.indice(f);
+    return { f, valor: x.valor, palabra: x.palabra, oscuro: (n.claro.ut - n.oscuro.ut) * 24, sinLuna: n.sinLuna, ilum: n.ilum, nubes: x.nubes }; }));
+  const aparte = x => { const frac = Math.min(x.sinLuna, x.oscuro) / x.oscuro; return Math.max(0, Math.min(10, Math.round(10 * (1 - (1 - frac) * Math.min(1, 0.2 + x.ilum))))); };
+  const malI = idx.filter(x => x.nubes !== null || x.valor !== aparte(x) || x.palabra !== (x.valor >= 9 ? 'Excelente' : x.valor >= 7 ? 'Buena' : x.valor >= 5 ? 'Regular' : x.valor >= 3 ? 'Floja' : 'Mala'));
+  ok(!malI.length && idx[2].valor === 10 && idx[1].valor <= 2 && idx[0].valor >= 8,
+     'indice de la noche: ' + idx.map(x => x.f + ' → ' + x.valor + ' (' + x.palabra + ')').join(', ') + ': el mismo que sale de la formula aparte; Luna nueva 10, llena 0-2, sin nubes porque no hay prevision', JSON.stringify(malI));
+  const tarjeta = await p.evaluate(async () => { await TG_CIELO.ver('noche', '2026-12-13'); const c = document.querySelector('.cielo-indice'); return c ? c.parentNode.innerText : ''; });
+  ok(/Índice de la noche/.test(tarjeta) && new RegExp('\\b' + idx[0].valor + '\\b').test(tarjeta) && /Excelente|Buena/.test(tarjeta) && /Cómo se calcula/.test(tarjeta) && /Compartir/.test(tarjeta),
+     'la tarjeta ensena el numero, la palabra, como se calcula y «Compartir»', tarjeta.slice(0, 160));
+  /* el .ics: dos eventos, parseados aqui */
+  const ics = await p.evaluate(() => { const ev = TG_CIELO.eventos('2026-10-17'); const g = ev.find(e => e.tipo === 'lluvia' && e.l.id === 'GEM'), s = TG_CIELO.eventos('2027-01-01').find(e => e.tipo === 'eclipseSol');
+    return { gem: TG_CIELO.ics(g), gemMejor: new Date(Astronomy.MakeTime(g.mejor.u).date).toISOString(), sol: TG_CIELO.ics(s), solC1: s.ini.time.date.toISOString(), solC4: s.fin.time.date.toISOString() }; });
+  const octetos = l => Buffer.byteLength(l, 'utf8');
+  const parsea = txt => { const lineas = txt.split('\r\n'); const des = []; for (const l of lineas) { if (l.startsWith(' ')) des[des.length - 1] += l.slice(1); else des.push(l); } return { lineas, des }; };
+  const fechaIcs = d => new Date(d).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  const revisa = (txt, nombre, ini, fin) => {
+    const { lineas, des } = parsea(txt), mal = [];
+    if (!/\r\n$/.test(txt) || /(^|[^\r])\n/.test(txt)) mal.push('saltos sin CRLF');
+    const largas = lineas.filter(l => octetos(l) > 75); if (largas.length) mal.push(largas.length + ' lineas de mas de 75 octetos');
+    for (const k of ['BEGIN:VCALENDAR', 'VERSION:2.0', 'BEGIN:VEVENT', 'END:VEVENT', 'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY', 'END:VALARM', 'END:VCALENDAR', 'GEO:28.2987;-16.5106']) if (!des.includes(k)) mal.push('falta ' + k);
+    const get = k => (des.find(l => l.startsWith(k + ':')) || '').slice(k.length + 1);
+    if (get('DTSTART') !== fechaIcs(ini)) mal.push('DTSTART ' + get('DTSTART') + ' y no ' + fechaIcs(ini));
+    if (get('DTEND') !== fechaIcs(fin)) mal.push('DTEND ' + get('DTEND') + ' y no ' + fechaIcs(fin));
+    if (!/^[A-Za-z0-9-]+@jerome4551\.github\.io$/.test(get('UID'))) mal.push('UID ' + get('UID'));
+    if (!/Hora de Canarias: \d\d:\d\d/.test(get('DESCRIPTION').replace(/\\n/g, '\n'))) mal.push('DESCRIPTION sin la hora de Canarias');
+    if (/[^\\][,;]/.test(get('LOCATION'))) mal.push('LOCATION sin escapar');
+    if (!get('SUMMARY')) mal.push('sin SUMMARY');
+    return mal.length ? nombre + ': ' + mal.join(', ') : '';
+  };
+  const malIcs = [revisa(ics.gem, 'Geminidas', new Date(new Date(ics.gemMejor).getTime() - 3600000), new Date(new Date(ics.gemMejor).getTime() + 3600000)), revisa(ics.sol, 'eclipse 2027', ics.solC1, ics.solC4)].filter(Boolean);
+  ok(!malIcs.length, '.ics de las Geminidas (una hora a cada lado del mejor momento) y del eclipse de 2027 (de C1 a C4): RFC 5545, CRLF, 75 octetos, UTC, VALARM −1 dia, escapes, UID', malIcs.join(' | '));
+  /* los avisos: ponerlo, verlo arriba en «esta noche» la vispera (con el
+     reloj de la pagina puesto en el 12 de diciembre), quitarlos todos */
+  await p.exposeFunction('__vispera', async () => { await p.clock.setFixedTime(new Date('2026-12-12T20:00:00Z')); });
+  const av = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    TG_CIELO.quitarAvisos();
+    const g = TG_CIELO.eventos().find(e => e.tipo === 'lluvia' && e.l.id === 'GEM');
+    await TG_CIELO.ver('calendario'); await espera(200);
+    const fila = [...document.querySelectorAll('#cielo-cuerpo .cielo-item')].find(x => /Gemínidas/.test(x.textContent));
+    const b = fila && fila.querySelectorAll('.cielo-aviso-btns button')[1];
+    const out = { botonAntes: b && b.textContent };
+    if (b) { b.click(); await espera(150); }
+    out.botonDespues = b && b.textContent; out.nota = b && (b.parentNode.querySelector('.cielo-nota-aviso') || {}).textContent;
+    out.guardados = TG_CIELO.avisos(); out.id = TG_CIELO.idEvento(g);
+    out.misAvisosCal = /Mis avisos/.test(document.querySelector('#cielo-cuerpo').innerText.slice(0, 400));
+    /* la vispera: el reloj de la pagina puesto en el 12 de diciembre (page.clock), «esta noche» lo ensena arriba del todo */
+    await window.__vispera(); await TG_CIELO.ver('noche', '2026-12-12'); await espera(200);
+    out.vispera = document.querySelector('#cielo-cuerpo').innerText.slice(0, 500);
+    const q = document.querySelector('#cielo-cuerpo .cielo-tarjeta .cielo-boton'); out.quitarTxt = q && q.textContent;
+    await TG_CIELO.ver('calendario'); await espera(200);
+    const todos = [...document.querySelectorAll('#cielo-cuerpo .cielo-boton')].find(x => /Quitar todos/.test(x.textContent));
+    if (todos) { todos.click(); await espera(150); }
+    out.trasQuitar = TG_CIELO.avisos().length; out.clave = localStorage.getItem('tgo_cielo_avisos_v1');
+    out.misAvisosTras = /Mis avisos/.test(document.querySelector('#cielo-cuerpo').innerText.slice(0, 400));
+    return out;
+  });
+  ok(/Recordármelo/.test(av.botonAntes || '') && /Quitar/.test(av.botonDespues || '') && /Guardado/.test(av.nota || '') && av.guardados.length === 1 && av.guardados[0].id === av.id && av.misAvisosCal,
+     'un aviso en las Geminidas: el boton pasa a «Quitar», se guarda en el movil (' + av.id + ') y sale en «Mis avisos»', JSON.stringify(av).slice(0, 300));
+  ok(/Mis avisos/.test(av.vispera) && /Gemínidas/.test(av.vispera) && /Quitar/.test(av.quitarTxt || ''), 'la vispera sale arriba del todo en «Esta noche», con su «Quitar»', av.vispera.slice(0, 200));
+  ok(av.trasQuitar === 0 && av.clave === null && !av.misAvisosTras, '«Quitar todos los avisos» los quita de verdad (localStorage vacio y la tarjeta fuera)', JSON.stringify({ n: av.trasQuitar, clave: av.clave }));
+  await p.clock.setSystemTime(new Date());        // el reloj, de vuelta a hoy
+  /* la fecha libre en la carta, y el recorrido */
+  const fecha = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    await TG_CIELO.ver('mapa', '2026-12-13'); await espera(400);
+    TG_CIELO.cambiarFecha('2027-08-02'); await espera(500);
+    const S = TG_CIELO.estado, n = TG_CIELO.noche('2027-08-02');
+    const out = { fecha: S.fecha, etiqueta: document.querySelector('.cielo-mapa-hora').textContent, input: document.querySelector('.cielo-fecha-input').value, t: S.mapa.t && S.mapa.t.toISOString(), oscuro: n.oscuro.date.toISOString() };
+    TG_CIELO.cambiarFecha('mañana'); out.malFecha = S.fecha;
+    return out;
+  });
+  ok(fecha.fecha === '2027-08-02' && fecha.input === '2027-08-02' && fecha.t === fecha.oscuro && /2 ago/.test(fecha.etiqueta) && fecha.malFecha === '2027-08-02',
+     'fecha libre: 2027-08-02 pone la carta al empezar la noche cerrada de ese dia (' + fecha.etiqueta + '); una fecha mal escrita no cambia nada', JSON.stringify(fecha));
+  const rec = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    const A = Astronomy, D = TG_CIELO.estado.datos, o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h);
+    TG_CIELO.cambiarFecha('2026-12-13'); await espera(300);
+    const t = new Date('2026-12-14T00:00:00Z'), bet = D.estrellas.find(e => e.n === 'Betelgeuse');
+    const jup = TG_CIELO.trayectoria({ planeta: 'Jupiter' }, t), est = TG_CIELO.trayectoria({ k: 'est', rec: bet, v: bet.v }, t);
+    /* cada punto de Jupiter, contra el motor aparte */
+    let peor = 0;
+    for (const q of jup) { const tt = A.MakeTime(q.u), eq = A.Equator(A.Body.Jupiter, tt, o, true, true), h = A.Horizon(tt, o, eq.ra, eq.dec, 'normal');
+      const alt = Math.asin(q.e[2]) * 180 / Math.PI, az = (Math.atan2(q.e[0], q.e[1]) * 180 / Math.PI + 360) % 360;
+      peor = Math.max(peor, Math.abs(alt - h.altitude), Math.abs(((az - h.azimuth + 540) % 360) - 180)); }
+    const S = TG_CIELO.estado;
+    /* el lienzo se lee cada vez: TG_CIELO.ver('mapa') lo crea de nuevo. Dorado: mas rojo que verde que azul, y rojo lejos del azul (la linea va al 62 %) */
+    const dorados = () => { const cv = S.mapa.canvas, d = cv.getContext('2d').getImageData(0, 0, cv.width, cv.height).data; let n = 0; for (let i = 0; i < d.length; i += 4) if (d[i] > 120 && d[i] > d[i + 1] && d[i + 1] > d[i + 2] && d[i] - d[i + 2] > 60) n++; return n; };
+    S.mapa.sel = { planeta: 'Jupiter' }; S.mapa.az = 110; S.mapa.alt = 30; S.mapa.fov = 110; await TG_CIELO.ver('mapa', '2026-12-13'); await espera(500);
+    const antes = dorados();
+    const b = [...document.querySelectorAll('.cielo-sel .cielo-boton')].find(x => /recorrido/.test(x.textContent)); if (b) b.click(); await espera(500);
+    const despues = dorados(), nota = (document.querySelector('.cielo-sel .cielo-nota') || {}).textContent || '';
+    const b2 = [...document.querySelectorAll('.cielo-sel .cielo-boton')].find(x => /Quitar el recorrido/.test(x.textContent)); if (b2) b2.click(); await espera(300);
+    return { n: jup.length, horas: jup.filter(x => x.hora).length, minAlt: Math.min(...jup.map(x => Math.asin(x.e[2]) * 180 / Math.PI)), peor, est: est.length, estHoras: est.filter(x => x.hora).length, boton: !!b, antes, despues, nota, quitado: !!b2, rastro: S.mapa.rastro };
+  });
+  ok(rec.n > 60 && rec.horas >= 12 && rec.minAlt >= -3.6 && rec.peor < 0.02 && rec.est > 60 && rec.estHoras >= 12,
+     'recorrido: Jupiter (' + rec.n + ' puntos, ' + rec.horas + ' horas en punto) y Betelgeuse (' + rec.est + '), cada punto a menos de 0,02° del motor aparte y nada mas de 3,5° bajo el horizonte', JSON.stringify(rec));
+  ok(rec.boton && rec.despues > rec.antes + 150 && /recorrido de Júpiter/.test(rec.nota) && rec.quitado && rec.rastro === null,
+     'en la ficha, «Ver su recorrido» lo pinta en la carta (' + (rec.despues - rec.antes) + ' pixeles dorados mas), la nota lo dice y «Quitar» lo quita', JSON.stringify({ antes: rec.antes, despues: rec.despues, nota: rec.nota }));
+  /* las capturas: PNG de verdad, y la descarga (sin Web Share en Chromium sin cabeza) */
+  const descargas = [];
+  p.on('download', d => { descargas.push(d.suggestedFilename()); d.cancel().catch(() => {}); });
+  const cap = await p.evaluate(async () => {
+    const b = await TG_CIELO.capturarMapa();
+    const buf = b ? new Uint8Array(await b.arrayBuffer()).slice(0, 8) : [];
+    return { type: b && b.type, size: b && b.size, png: Array.from(buf).join(',') === '137,80,78,71,13,10,26,10', share: typeof navigator.share };
+  });
+  await p.waitForTimeout(600);
+  ok(cap.png && cap.type === 'image/png' && cap.size > 20000, 'captura de la carta: un PNG de verdad (' + Math.round(cap.size / 1024) + ' kB)', JSON.stringify(cap));
+  ok(descargas.some(n => /^tenerife-go-cielo-2026-12-13\.png$/.test(n)), 'sin hoja de compartir (navigator.share ' + cap.share + '), se descarga con su nombre: ' + descargas.join(', '));
+  const capN = await p.evaluate(async () => { const c = TG_CIELO.imagenNoche('2026-12-13'); return { w: c.width, h: c.height }; });
+  ok(capN.w === 1080 && capN.h === 1350, 'la imagen del indice para compartir mide 1080 × 1350', JSON.stringify(capN));
+  /* la vista: guia, precision de iOS, comprobacion con la brujula 10 grados desviada, captura con la camara */
+  const vista = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    try { localStorage.removeItem('tgo_cielo_guia'); localStorage.removeItem('tgo_cielo_ajuste'); } catch (e) {}
+    const A = Astronomy, D = TG_CIELO.estado.datos, o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h), t = A.MakeTime(new Date()), out = {};
+    TG_CIELO.vista({}); await espera(300);
+    const guia = document.querySelector('#cielo-vista .cv-guia');
+    out.guia = !guia.hidden; out.guiaTxt = guia.innerText;
+    out.pasos = guia.querySelectorAll('.cv-guia-paso').length;
+    guia.querySelector('.cielo-boton').click(); await espera(100);
+    out.guiaCerrada = guia.hidden; out.guiaGuardada = localStorage.getItem('tgo_cielo_guia');
+    const dec = TG_CIELO.declinacion(new Date());
+    const magnetico = az => (az - dec + 360) % 360;
+    const evento = (az, alt) => { const ev = new Event('deviceorientationabsolute'); Object.assign(ev, { alpha: (360 - magnetico(az)) % 360, beta: 90 + alt, gamma: 0, absolute: true }); window.dispatchEvent(ev); };
+    evento(200, 40); await espera(500);
+    out.chipAntes = document.querySelectorAll('#cielo-vista .cv-chip')[1].textContent;
+    out.chipComprobar = [...document.querySelectorAll('#cielo-vista .cv-chip')].filter(x => !x.hidden).map(x => x.textContent).join(' | ');
+    const ref = TG_CIELO.comprobar(); await espera(200);
+    out.ref = ref && TG_CIELO.cosa(ref).nombre;
+    out.banner = document.querySelector('#cielo-vista .cv-comprobar').innerText;
+    let h;
+    if (ref.planeta) { const eq = A.Equator(A.Body[ref.planeta], t, o, true, true); const x = A.Horizon(t, o, eq.ra, eq.dec, 'normal'); h = { alt: x.altitude, az: x.azimuth }; }
+    else { const x = A.Horizon(t, o, ref.est[0] / 15, ref.est[1], 'normal'); h = { alt: x.altitude, az: x.azimuth }; }
+    /* lejos: 30 grados a un lado, «Ya» no corrige y lo dice */
+    evento(h.az + 40, h.alt); await espera(600);
+    out.lejos = TG_CIELO.comprobarYa(); out.lejosAviso = document.querySelector('#cielo-vista .cv-aviso').textContent; out.lejosAjuste = TG_CIELO.ajuste();
+    /* el movil apunta de verdad a la referencia; la brujula, 10 grados desviada, dice az+10 */
+    evento(h.az + 10, h.alt); await espera(700);
+    out.r = TG_CIELO.comprobarYa(); await espera(200);
+    out.ajuste = TG_CIELO.ajuste(); out.aviso = document.querySelector('#cielo-vista .cv-aviso').textContent;
+    out.chip = document.querySelectorAll('#cielo-vista .cv-chip')[1].textContent; out.bannerFuera = document.querySelector('#cielo-vista .cv-comprobar').hidden;
+    out.guardado = localStorage.getItem('tgo_cielo_ajuste');
+    await espera(700);
+    out.centro = document.querySelector('#cielo-vista .cv-nombre').innerText;
+    /* la captura con la camara falsa puesta */
+    document.querySelectorAll('#cielo-vista .cv-btn')[1].click(); await espera(1200);
+    const b = await TG_CIELO.capturarVista();
+    out.cap = { type: b && b.type, size: b && b.size, video: !document.querySelector('#cielo-vista video').hidden };
+    document.querySelectorAll('#cielo-vista .cv-btn')[1].click(); await espera(200);
+    TG_CIELO.cerrarVista(); await espera(100);
+    /* la segunda vez, sin guia; y la precision de iOS en el chip */
+    TG_CIELO.vista({ evento: 'deviceorientation' }); await espera(200);
+    out.guia2 = !document.querySelector('#cielo-vista .cv-guia').hidden;
+    const ev = new Event('deviceorientation'); Object.assign(ev, { alpha: 37, beta: 50, gamma: 0, absolute: false, webkitCompassHeading: 100, webkitCompassAccuracy: 15 }); window.dispatchEvent(ev);
+    await espera(900);
+    out.chipIOS = document.querySelectorAll('#cielo-vista .cv-chip')[1].textContent; out.chipTitulo = document.querySelectorAll('#cielo-vista .cv-chip')[1].title;
+    TG_CIELO.cerrarVista();
+    return out;
+  });
+  ok(vista.guia && vista.pasos === 3 && /Antes de apuntar/.test(vista.guiaTxt) && /imanes/.test(vista.guiaTxt) && /ocho/.test(vista.guiaTxt) && /Comprobar la brújula/.test(vista.guiaTxt) && /° al oeste/.test(vista.guiaTxt) && vista.guiaCerrada && vista.guiaGuardada === '1' && vista.guia2 === false,
+     'la guia de 20 segundos sale la primera vez (imanes, el ocho, comprobar, la declinacion), «Entendido» la cierra y no vuelve a salir', JSON.stringify({ guia: vista.guia, pasos: vista.pasos, cerrada: vista.guiaCerrada, g: vista.guiaGuardada, g2: vista.guia2 }));
+  ok(/Comprobar la brújula/.test(vista.chipComprobar) && vista.ref && /dentro del círculo y toca «Ya»/.test(vista.banner) && vista.banner.includes(vista.ref),
+     'con los sensores sale el chip «Comprobar la brújula»; al tocarlo pide poner ' + vista.ref + ' en el circulo', vista.banner);
+  ok(vista.lejos === undefined || vista.lejos === null, 'a 40 grados, «Ya» no corrige nada', JSON.stringify(vista.lejos));
+  ok(/queda a \d+° del círculo/.test(vista.lejosAviso) && Math.abs(vista.lejosAjuste) < 0.01, '…y lo dice: ' + vista.lejosAviso.slice(0, 70), JSON.stringify(vista.lejosAjuste));
+  ok(vista.r && Math.abs(vista.r.dAz + 10) < 0.3 && Math.abs(vista.r.dAlt) < 0.3 && Math.abs(vista.ajuste + 10) < 0.3 && Math.abs(parseFloat(vista.guardado) + 10) < 0.3,
+     'con la brujula 10° desviada y ' + vista.ref + ' en el circulo, «Ya» mide −10,0° y corrige el ajuste (guardado en el movil)', JSON.stringify({ r: vista.r, ajuste: vista.ajuste, guardado: vista.guardado }));
+  ok(/iba 10° desviada/.test(vista.aviso) && / ✓$/.test(vista.chip) && vista.bannerFuera && vista.centro.includes(vista.ref),
+     'lo dice («' + vista.aviso.slice(0, 40) + '…»), el chip queda «' + vista.chip + '» y el circulo ya nombra a ' + vista.ref, JSON.stringify({ aviso: vista.aviso, chip: vista.chip, centro: vista.centro }));
+  ok(vista.cap.video && vista.cap.type === 'image/png' && vista.cap.size > 20000, 'la captura de la vista con la camara (falsa) debajo es un PNG (' + Math.round(vista.cap.size / 1024) + ' kB)', JSON.stringify(vista.cap));
+  ok(/±15°/.test(vista.chipIOS) && /Precisión de la brújula: ±15°/.test(vista.chipTitulo), 'iOS: la precision de la brujula (webkitCompassAccuracy 15) sale en el chip: «' + vista.chipIOS + '»', vista.chipTitulo);
+  /* la Luna llena aclara el cielo: la misma vista (hacia la Luna, alta) con
+     Luna llena y con Luna nueva, y la media del lienzo tiene que ser mayor */
+  const luz = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    const A = Astronomy, D = TG_CIELO.estado.datos, o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h), S = TG_CIELO.estado;
+    const media = () => { const cv = S.mapa.canvas, d = cv.getContext('2d').getImageData(0, 0, cv.width, cv.height).data; let s = 0; for (let i = 0; i < d.length; i += 16) s += d[i] + d[i + 1] + d[i + 2]; return s / (d.length / 16) / 3; };
+    const out = {};
+    for (const [k, iso] of [['llena', '2026-12-24T02:00:00Z'], ['nueva', '2026-11-09T22:00:00Z']]) {
+      const t = A.MakeTime(new Date(iso)), eq = A.Equator(A.Body.Moon, t, o, true, true), h = A.Horizon(t, o, eq.ra, eq.dec, 'normal');
+      S.mapa.sel = null; S.mapa.rastro = null; S.mapa.cenital = false; S.mapa.az = h.azimuth; S.mapa.alt = 40; S.mapa.fov = 100;
+      await TG_CIELO.ver('mapa', iso.slice(0, 10)); S.mapa.t = new Date(iso); S.mapa.porDefecto = false; S.mapa.desfase = 0; await TG_CIELO.ver('mapa', iso.slice(0, 10)); await espera(500);
+      out[k] = { alt: h.altitude, ilum: A.Illumination(A.Body.Moon, t).phase_fraction, media: media() };
+    }
+    return out;
+  });
+  ok(luz.llena.alt > 30 && luz.llena.ilum > 0.98 && luz.nueva.ilum < 0.03 && luz.llena.media > luz.nueva.media * 1.2,
+     'la Luna llena (' + Math.round(luz.llena.ilum * 100) + ' %, a ' + luz.llena.alt.toFixed(0) + '°) aclara el cielo de la carta: media ' + luz.llena.media.toFixed(1) + ' frente a ' + luz.nueva.media.toFixed(1) + ' con Luna nueva', JSON.stringify(luz));
   ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
   await ctx.close();
 }

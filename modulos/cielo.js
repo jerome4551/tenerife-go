@@ -550,7 +550,7 @@
     "cieloMapaLineas": {"es": "Figuras", "en": "Lines", "fr": "Figures", "de": "Sternbildlinien", "it": "Figure", "nl": "Lijnen", "zh": "星座连线", "zht": "星座連線", "bg": "Фигури", "pl": "Linie"},
     "cieloMapaNombres": {"es": "Nombres", "en": "Names", "fr": "Noms", "de": "Namen", "it": "Nomi", "nl": "Namen", "zh": "名称", "zht": "名稱", "bg": "Имена", "pl": "Nazwy"},
     "cieloMapaProfundo": {"es": "Cielo profundo", "en": "Deep sky", "fr": "Ciel profond", "de": "Deep Sky", "it": "Cielo profondo", "nl": "Deep-sky", "zh": "深空天体", "zht": "深空天體", "bg": "Дълбок космос", "pl": "Głębokie niebo"},
-    "cieloMapaNota": {"es": "La carta mira hacia donde elijas, como desde el suelo; ◎ enseña todo el cielo (el cenit en el centro, el horizonte en el borde). Arrastra para girar, pellizca para acercar, ▶ hace correr la noche y toca un astro para ver qué es.", "en": "The chart looks where you choose, as from the ground; ◎ shows the whole sky (zenith in the middle, horizon at the edge). Drag to turn, pinch to zoom, ▶ plays the night and tap an object to see what it is.", "fr": "La carte regarde dans la direction choisie, comme depuis le sol ; ◎ montre tout le ciel (le zénith au centre, l’horizon sur le bord). Glissez pour tourner, pincez pour zoomer, ▶ fait défiler la nuit et touchez un astre pour savoir ce que c’est.", "de": "Die Karte blickt in die gewählte Richtung, wie vom Boden aus; ◎ zeigt den ganzen Himmel (Zenit in der Mitte, Horizont am Rand). Ziehen zum Drehen, mit zwei Fingern zoomen, ▶ lässt die Nacht ablaufen, und ein Objekt antippen zeigt, was es ist.", "it": "La carta guarda nella direzione scelta, come da terra; ◎ mostra tutto il cielo (lo zenit al centro, l’orizzonte sul bordo). Trascina per ruotare, pizzica per ingrandire, ▶ fa scorrere la notte e tocca un astro per sapere cos’è.", "nl": "De kaart kijkt waarheen je kiest, zoals vanaf de grond; ◎ toont de hele hemel (zenit in het midden, horizon aan de rand). Sleep om te draaien, knijp om te zoomen, ▶ laat de nacht lopen en tik op een object om te zien wat het is.", "zh": "星图朝向你选择的方向，如同站在地面仰望；◎切换为全天（天顶在中央，地平线在边缘）。拖动旋转，双指缩放，▶播放夜空变化，点击天体可查看名称。", "zht": "星圖朝向你選擇的方向，如同站在地面仰望；◎切換為全天（天頂在中央，地平線在邊緣）。拖曳旋轉，雙指縮放，▶播放夜空變化，點擊天體可查看名稱。", "bg": "Картата гледа накъдето избереш, както от земята; ◎ показва цялото небе (зенитът в средата, хоризонтът по ръба). Плъзни за завъртане, щипни за приближаване, ▶ пуска нощта, а докосни обект, за да видиш какво е.", "pl": "Mapa patrzy tam, gdzie wybierzesz, jak znad ziemi; ◎ pokazuje całe niebo (zenit na środku, horyzont na brzegu). Przeciągnij, by obrócić, uszczypnij, by przybliżyć, ▶ odtwarza noc, a dotknięcie obiektu pokazuje, co to jest."},
+    "cieloMapaNota": {"es": "La carta mira hacia donde elijas, como desde el suelo; ◎ enseña todo el cielo (el cenit en el centro, el horizonte en el borde). Arrastra para girar, pellizca para acercar, ▶ hace correr la noche, 📅 cambia de fecha y 📸 guarda la imagen. Toca un astro para ver qué es y, en su ficha, su recorrido de esa noche.", "en": "The chart looks where you choose, as from the ground; ◎ shows the whole sky (zenith in the middle, horizon at the edge). Drag to turn, pinch to zoom, ▶ plays the night, 📅 changes the date and 📸 saves the picture. Tap an object to see what it is and, on its card, its path that night.", "fr": "La carte regarde dans la direction choisie, comme depuis le sol ; ◎ montre tout le ciel (le zénith au centre, l’horizon sur le bord). Glissez pour tourner, pincez pour zoomer, ▶ fait défiler la nuit, 📅 change la date et 📸 enregistre l’image. Touchez un astre pour savoir ce que c’est et, sur sa fiche, voir sa trajectoire cette nuit-là.", "de": "Die Karte blickt in die gewählte Richtung, wie vom Boden aus; ◎ zeigt den ganzen Himmel (Zenit in der Mitte, Horizont am Rand). Ziehen zum Drehen, mit zwei Fingern zoomen, ▶ lässt die Nacht ablaufen, 📅 wechselt das Datum und 📸 speichert das Bild. Ein Objekt antippen zeigt, was es ist, und auf seiner Karte seine Bahn in dieser Nacht.", "it": "La carta guarda nella direzione scelta, come da terra; ◎ mostra tutto il cielo (lo zenit al centro, l’orizzonte sul bordo). Trascina per ruotare, pizzica per ingrandire, ▶ fa scorrere la notte, 📅 cambia data e 📸 salva l’immagine. Tocca un astro per sapere cos’è e, nella sua scheda, il suo percorso di quella notte.", "nl": "De kaart kijkt waarheen je kiest, zoals vanaf de grond; ◎ toont de hele hemel (zenit in het midden, horizon aan de rand). Sleep om te draaien, knijp om te zoomen, ▶ laat de nacht lopen, 📅 wisselt de datum en 📸 bewaart de afbeelding. Tik op een object om te zien wat het is en, op zijn kaart, zijn baan die nacht.", "zh": "星图朝向你选择的方向，如同站在地面仰望；◎切换为全天（天顶在中央，地平线在边缘）。拖动旋转，双指缩放，▶播放夜空变化，📅更换日期，📸保存图片。点击天体可查看名称，在其卡片中可看到它当晚的轨迹。", "zht": "星圖朝向你選擇的方向，如同站在地面仰望；◎切換為全天（天頂在中央，地平線在邊緣）。拖曳旋轉，雙指縮放，▶播放夜空變化，📅更換日期，📸儲存圖片。點擊天體可查看名稱，在其卡片中可看到它當晚的軌跡。", "bg": "Картата гледа накъдето избереш, както от земята; ◎ показва цялото небе (зенитът в средата, хоризонтът по ръба). Плъзни за завъртане, щипни за приближаване, ▶ пуска нощта, 📅 сменя датата, а 📸 запазва изображението. Докосни обект, за да видиш какво е, а в картата му – пътя му през тази нощ.", "pl": "Mapa patrzy tam, gdzie wybierzesz, jak znad ziemi; ◎ pokazuje całe niebo (zenit na środku, horyzont na brzegu). Przeciągnij, by obrócić, uszczypnij, by przybliżyć, ▶ odtwarza noc, 📅 zmienia datę, a 📸 zapisuje obraz. Dotknij obiektu, by zobaczyć, co to jest, a na jego karcie – jego drogę tej nocy."},
     "cieloMapaToca": {"es": "Toca una estrella, un planeta o un objeto para ver qué es.", "en": "Tap a star, planet or object to see what it is.", "fr": "Touchez une étoile, une planète ou un objet pour savoir ce que c’est.", "de": "Tippe auf einen Stern, Planeten oder ein Objekt, um zu sehen, was es ist.", "it": "Tocca una stella, un pianeta o un oggetto per sapere cos’è.", "nl": "Tik op een ster, planeet of object om te zien wat het is.", "zh": "点击恒星、行星或天体即可查看名称。", "zht": "點擊恆星、行星或天體即可查看名稱。", "bg": "Докоснете звезда, планета или обект, за да видите какво е.", "pl": "Dotknij gwiazdy, planety lub obiektu, aby zobaczyć, co to jest."},
     "cieloMapaDeDia": {"es": "Es de día: el Sol está sobre el horizonte. Mueve la hora a la noche.", "en": "It’s daytime: the Sun is up. Move the time to the night.", "fr": "Il fait jour : le Soleil est levé. Déplacez l’heure vers la nuit.", "de": "Es ist Tag: Die Sonne steht am Himmel. Schiebe die Uhrzeit in die Nacht.", "it": "È giorno: il Sole è sopra l’orizzonte. Sposta l’ora alla notte.", "nl": "Het is dag: de zon staat boven de horizon. Schuif de tijd naar de nacht.", "zh": "现在是白天：太阳在地平线以上。请把时间调到夜晚。", "zht": "現在是白天：太陽在地平線以上。請把時間調到夜晚。", "bg": "Ден е: Слънцето е над хоризонта. Преместете часа към нощта.", "pl": "Jest dzień: Słońce jest nad horyzontem. Przesuń godzinę na noc."},
     "cieloMapaCrepusculo": {"es": "Crepúsculo: solo se ven las estrellas más brillantes y los planetas.", "en": "Twilight: only the brightest stars and planets show.", "fr": "Crépuscule : seules les étoiles les plus brillantes et les planètes sont visibles.", "de": "Dämmerung: Nur die hellsten Sterne und die Planeten sind zu sehen.", "it": "Crepuscolo: si vedono solo le stelle più luminose e i pianeti.", "nl": "Schemering: alleen de helderste sterren en de planeten zijn te zien.", "zh": "暮光时分：只能看到最亮的恒星和行星。", "zht": "暮光時分：只能看到最亮的恆星和行星。", "bg": "Здрач: виждат се само най-ярките звезди и планетите.", "pl": "Zmierzch: widać tylko najjaśniejsze gwiazdy i planety."},
@@ -635,6 +635,25 @@
     "cieloCreditoD3": {"es": "Figuras y Vía Láctea: d3-celestial (GitHub)", "en": "Figures and Milky Way: d3-celestial (GitHub)", "fr": "Figures et Voie lactée : d3-celestial (GitHub)", "de": "Figuren und Milchstraße: d3-celestial (GitHub)", "it": "Figure e Via Lattea: d3-celestial (GitHub)", "nl": "Figuren en Melkweg: d3-celestial (GitHub)", "zh": "星座连线与银河：d3-celestial（GitHub）", "zht": "星座連線與銀河：d3-celestial（GitHub）", "bg": "Фигури и Млечен път: d3-celestial (GitHub)", "pl": "Figury i Droga Mleczna: d3-celestial (GitHub)"},
     "cieloCreditoMotor": {"es": "Motor de cálculo: Astronomy Engine (GitHub)", "en": "Calculation engine: Astronomy Engine (GitHub)", "fr": "Moteur de calcul : Astronomy Engine (GitHub)", "de": "Rechenkern: Astronomy Engine (GitHub)", "it": "Motore di calcolo: Astronomy Engine (GitHub)", "nl": "Rekenmotor: Astronomy Engine (GitHub)", "zh": "计算引擎：Astronomy Engine（GitHub）", "zht": "計算引擎：Astronomy Engine（GitHub）", "bg": "Изчислителен модул: Astronomy Engine (GitHub)", "pl": "Silnik obliczeń: Astronomy Engine (GitHub)"},
     "cieloCreditoStellarium": {"es": "Stellarium: nombres, variables y lluvias (GitHub)", "en": "Stellarium: names, variables and showers (GitHub)", "fr": "Stellarium : noms, variables et étoiles filantes (GitHub)", "de": "Stellarium: Namen, Veränderliche und Meteorströme (GitHub)", "it": "Stellarium: nomi, variabili e stelle cadenti (GitHub)", "nl": "Stellarium: namen, veranderlijke sterren en meteorenzwermen (GitHub)", "zh": "Stellarium：名称、变星与流星雨（GitHub）", "zht": "Stellarium：名稱、變星與流星雨（GitHub）", "bg": "Stellarium: имена, променливи звезди и метеорни потоци (GitHub)", "pl": "Stellarium: nazwy, gwiazdy zmienne i roje (GitHub)"},
+    /* «Apunta al cielo», la carta nueva y la ficha de cada astro (20-10-2026).
+       Fuentes de lo que afirman los textos:
+         · Los colores por clase espectral (O azul, B blanco azulado, A blanco,
+           F blanco amarillento, G amarillo, K naranja claro, M rojo anaranjado):
+           la tabla de la clasificacion de Harvard tal como la resume Wikipedia,
+           «Stellar classification» (y Morgan y Keenan para las clases de
+           luminosidad: Ia/Ib supergigante, II gigante luminosa, III gigante,
+           IV subgigante, V enana o de secuencia principal).
+         · La temperatura del color: formula de Ballesteros (EPL 97, 34008, 2012)
+           a partir de B−V; se redondea a la centena y se dice «unos».
+         · Las lunas de Galileo: Astronomy Engine las calcula (JupiterMoons).
+         · «La luz que ves salio hace N años»: un año luz es la distancia que la
+           luz recorre en un año (definicion de la UAI), asi que la distancia en
+           años luz ES el tiempo de viaje de la luz.
+         · La brujula del movil marca el norte magnetico: la API DeviceOrientation
+           (W3C) lo define asi, y la declinacion se corrige con el WMM2025 (NOAA).
+         · Licencia de los textos de Wikipedia: CC BY-SA 4.0 (Wikimedia Foundation,
+           Terms of Use).
+       ── la carta ────────────────────────────────────────────────────────── */
     "cieloMapaTodo": {"es": "Todo el cielo", "en": "Whole sky", "fr": "Tout le ciel", "de": "Ganzer Himmel", "it": "Tutto il cielo", "nl": "Hele hemel", "zh": "全天", "zht": "全天", "bg": "Цялото небе", "pl": "Całe niebo"},
     "cieloMapaHorizonte": {"es": "Vista desde el suelo", "en": "Horizon view", "fr": "Vue depuis le sol", "de": "Blick vom Boden", "it": "Vista da terra", "nl": "Zicht vanaf de grond", "zh": "地平线视角", "zht": "地平線視角", "bg": "Изглед от земята", "pl": "Widok znad horyzontu"},
     "cieloMapaCorre": {"es": "Hacer correr la noche", "en": "Play the night", "fr": "Faire défiler la nuit", "de": "Nacht ablaufen lassen", "it": "Far scorrere la notte", "nl": "De nacht laten lopen", "zh": "播放夜空变化", "zht": "播放夜空變化", "bg": "Пусни нощта", "pl": "Odtwórz noc"},
@@ -646,6 +665,7 @@
     "cieloTipoSol": {"es": "Nuestra estrella", "en": "Our star", "fr": "Notre étoile", "de": "Unser Stern", "it": "La nostra stella", "nl": "Onze ster", "zh": "我们的恒星", "zht": "我們的恆星", "bg": "Нашата звезда", "pl": "Nasza gwiazda"},
     "cieloEnCon": {"es": "en {c}", "en": "in {c}", "fr": "dans {c}", "de": "im Sternbild {c}", "it": "in {c}", "nl": "in {c}", "zh": "位于{c}", "zht": "位於{c}", "bg": "в {c}", "pl": "w gwiazdozbiorze {c}"},
     "cieloSinResultados": {"es": "Nada con ese nombre. Prueba con «Orión», «M42» o «Júpiter».", "en": "Nothing by that name. Try “Orion”, “M42” or “Jupiter”.", "fr": "Rien à ce nom. Essayez « Orion », « M42 » ou « Jupiter ».", "de": "Nichts unter diesem Namen. Versuche „Orion“, „M42“ oder „Jupiter“.", "it": "Niente con questo nome. Prova «Orione», «M42» o «Giove».", "nl": "Niets met die naam. Probeer ‘Orion’, ‘M42’ of ‘Jupiter’.", "zh": "没有这个名字。试试“猎户座”“M42”或“木星”。", "zht": "沒有這個名字。試試「獵戶座」「M42」或「木星」。", "bg": "Няма нищо с това име. Опитай „Орион“, „M42“ или „Юпитер“.", "pl": "Nic o tej nazwie. Spróbuj „Orion”, „M42” lub „Jowisz”."},
+    /* ── «Apunta al cielo» ────────────────────────────────────────────────── */
     "cieloApunta": {"es": "Apunta al cielo", "en": "Point at the sky", "fr": "Pointez vers le ciel", "de": "Auf den Himmel zeigen", "it": "Punta al cielo", "nl": "Richt op de hemel", "zh": "对准星空", "zht": "對準星空", "bg": "Насочи към небето", "pl": "Wyceluj w niebo"},
     "cieloApuntaSub": {"es": "Levanta el móvil hacia una estrella y te dice cuál es, con su ficha. Con cámara si quieres.", "en": "Hold your phone up to a star and it tells you which one it is, with its card. With the camera if you like.", "fr": "Levez le téléphone vers une étoile : il vous dit laquelle c’est, avec sa fiche. Avec la caméra si vous voulez.", "de": "Halte das Handy auf einen Stern, und es sagt dir, welcher es ist, mit Steckbrief. Auf Wunsch mit Kamera.", "it": "Alza il telefono verso una stella e ti dice qual è, con la sua scheda. Con la fotocamera, se vuoi.", "nl": "Richt je telefoon op een ster en hij vertelt je welke het is, met zijn kaart. Met camera als je wilt.", "zh": "把手机举向一颗星，它会告诉你那是什么，并显示资料卡。也可以打开相机。", "zht": "把手機舉向一顆星，它會告訴你那是什麼，並顯示資料卡。也可以打開相機。", "bg": "Вдигни телефона към някоя звезда и той ти казва коя е, с нейната карта. С камера, ако искаш.", "pl": "Unieś telefon ku gwieździe, a aplikacja powie ci, która to, i pokaże jej kartę. Z kamerą, jeśli chcesz."},
     "cieloApuntaAyuda": {"es": "Mueve el móvil: lo que quede en el círculo se nombra abajo. Toca un astro para ver su ficha, 🔍 para buscar uno.", "en": "Move the phone: whatever sits in the circle is named below. Tap an object for its card, 🔍 to search for one.", "fr": "Bougez le téléphone : ce qui entre dans le cercle est nommé en dessous. Touchez un astre pour sa fiche, 🔍 pour en chercher un.", "de": "Beweg das Handy: Was im Kreis liegt, wird darunter benannt. Tippe auf ein Objekt für seinen Steckbrief, 🔍 zum Suchen.", "it": "Muovi il telefono: ciò che resta nel cerchio è nominato sotto. Tocca un astro per la sua scheda, 🔍 per cercarne uno.", "nl": "Beweeg de telefoon: wat in de cirkel staat, wordt eronder genoemd. Tik op een object voor zijn kaart, 🔍 om er een te zoeken.", "zh": "转动手机：圆圈里的天体会显示在下方。点一下天体看资料卡，点🔍可搜索。", "zht": "轉動手機：圓圈裡的天體會顯示在下方。點一下天體看資料卡，點🔍可搜尋。", "bg": "Движи телефона: това, което попадне в кръга, се изписва отдолу. Докосни обект за картата му, 🔍 за търсене.", "pl": "Poruszaj telefonem: to, co znajdzie się w kółku, pojawia się poniżej. Dotknij obiektu, by zobaczyć jego kartę, 🔍 by wyszukać."},
@@ -670,6 +690,7 @@
     "cieloAGrados": {"es": "a {g}°: sigue la flecha", "en": "{g}° away: follow the arrow", "fr": "à {g}° : suivez la flèche", "de": "{g}° entfernt: dem Pfeil folgen", "it": "a {g}°: segui la freccia", "nl": "op {g}°: volg de pijl", "zh": "相距{g}°：跟着箭头", "zht": "相距{g}°：跟著箭頭", "bg": "на {g}°: следвай стрелката", "pl": "{g}° stąd: idź za strzałką"},
     "cieloAhiEsta": {"es": "¡Ahí está!", "en": "There it is!", "fr": "Le voilà !", "de": "Da ist es!", "it": "Eccolo!", "nl": "Daar is het!", "zh": "就是它！", "zht": "就是它！", "bg": "Ето го!", "pl": "Oto on!"},
     "cieloObjetivoBajo": {"es": "{c} está ahora bajo el horizonte: la flecha señala hacia donde está, aunque no se pueda ver.", "en": "{c} is below the horizon right now: the arrow points to where it is, even though it can’t be seen.", "fr": "{c} est sous l’horizon en ce moment : la flèche indique où il se trouve, même s’il ne se voit pas.", "de": "{c} ist gerade unter dem Horizont: Der Pfeil zeigt dorthin, wo es steht, auch wenn man es nicht sieht.", "it": "{c} ora è sotto l’orizzonte: la freccia indica dov’è, anche se non si vede.", "nl": "{c} staat nu onder de horizon: de pijl wijst naar waar het is, ook al is het niet te zien.", "zh": "{c}现在位于地平线以下：箭头指向它所在的方向，只是看不见。", "zht": "{c}現在位於地平線以下：箭頭指向它所在的方向，只是看不見。", "bg": "{c} сега е под хоризонта: стрелката сочи накъде е, макар да не се вижда.", "pl": "{c} jest teraz pod horyzontem: strzałka wskazuje, gdzie jest, choć go nie widać."},
+    /* ── la ficha ────────────────────────────────────────────────────────── */
     "cieloAhoraMismo": {"es": "Ahora mismo", "en": "Right now", "fr": "En ce moment", "de": "Jetzt gerade", "it": "In questo momento", "nl": "Op dit moment", "zh": "此刻", "zht": "此刻", "bg": "В момента", "pl": "W tej chwili"},
     "cieloFichaArriba": {"es": "{t}: a {alt}° de altura, {dir}", "en": "{t}: {alt}° high, {dir}", "fr": "{t} : à {alt}° de hauteur, {dir}", "de": "{t}: {alt}° hoch, {dir}", "it": "{t}: a {alt}° di altezza, {dir}", "nl": "{t}: {alt}° hoog, {dir}", "zh": "{t}：高度{alt}°，{dir}", "zht": "{t}：高度{alt}°，{dir}", "bg": "{t}: на {alt}° височина, {dir}", "pl": "{t}: {alt}° nad horyzontem, {dir}"},
     "cieloFichaAbajo": {"es": "{t}: bajo el horizonte", "en": "{t}: below the horizon", "fr": "{t} : sous l’horizon", "de": "{t}: unter dem Horizont", "it": "{t}: sotto l’orizzonte", "nl": "{t}: onder de horizon", "zh": "{t}：在地平线以下", "zht": "{t}：在地平線以下", "bg": "{t}: под хоризонта", "pl": "{t}: pod horyzontem"},
@@ -714,7 +735,103 @@
     "cieloWiki": {"es": "De Wikipedia", "en": "From Wikipedia", "fr": "D’après Wikipédia", "de": "Aus Wikipedia", "it": "Da Wikipedia", "nl": "Van Wikipedia", "zh": "来自维基百科", "zht": "來自維基百科", "bg": "От Уикипедия", "pl": "Z Wikipedii"},
     "cieloWikiIngles": {"es": "De Wikipedia (en inglés: no hay artículo en tu idioma)", "en": "From Wikipedia", "fr": "D’après Wikipédia (en anglais : pas d’article dans votre langue)", "de": "Aus Wikipedia (auf Englisch: kein Artikel in deiner Sprache)", "it": "Da Wikipedia (in inglese: non c’è una voce nella tua lingua)", "nl": "Van Wikipedia (in het Engels: geen artikel in jouw taal)", "zh": "来自维基百科（英文：没有你的语言的条目）", "zht": "來自維基百科（英文：沒有你的語言的條目）", "bg": "От Уикипедия (на английски: няма статия на твоя език)", "pl": "Z Wikipedii (po angielsku: nie ma artykułu w twoim języku)"},
     "cieloWikiLeer": {"es": "Leer el artículo entero", "en": "Read the full article", "fr": "Lire l’article entier", "de": "Ganzen Artikel lesen", "it": "Leggi la voce intera", "nl": "Lees het hele artikel", "zh": "阅读全文", "zht": "閱讀全文", "bg": "Прочети цялата статия", "pl": "Przeczytaj cały artykuł"},
-    "cieloWikiLicencia": {"es": "Texto de Wikipedia, licencia CC BY-SA 4.0.", "en": "Text from Wikipedia, licensed CC BY-SA 4.0.", "fr": "Texte de Wikipédia, licence CC BY-SA 4.0.", "de": "Text aus Wikipedia, Lizenz CC BY-SA 4.0.", "it": "Testo da Wikipedia, licenza CC BY-SA 4.0.", "nl": "Tekst van Wikipedia, licentie CC BY-SA 4.0.", "zh": "文字来自维基百科，采用 CC BY-SA 4.0 许可。", "zht": "文字來自維基百科，採用 CC BY-SA 4.0 授權。", "bg": "Текст от Уикипедия, лиценз CC BY-SA 4.0.", "pl": "Tekst z Wikipedii, licencja CC BY-SA 4.0."}
+    "cieloWikiLicencia": {"es": "Texto de Wikipedia, licencia CC BY-SA 4.0.", "en": "Text from Wikipedia, licensed CC BY-SA 4.0.", "fr": "Texte de Wikipédia, licence CC BY-SA 4.0.", "de": "Text aus Wikipedia, Lizenz CC BY-SA 4.0.", "it": "Testo da Wikipedia, licenza CC BY-SA 4.0.", "nl": "Tekst van Wikipedia, licentie CC BY-SA 4.0.", "zh": "文字来自维基百科，采用 CC BY-SA 4.0 许可。", "zht": "文字來自維基百科，採用 CC BY-SA 4.0 授權。", "bg": "Текст от Уикипедия, лиценз CC BY-SA 4.0.", "pl": "Tekst z Wikipedii, licencja CC BY-SA 4.0."},
+    /* Lo que piden las reseñas de las apps del cielo (21-10-2026): la brujula
+       guiada y comprobada, la fecha libre, el recorrido, la captura, las horas
+       para fotos, el indice de la noche, las fases, los retrogrados y los avisos.
+       Fuentes de lo que afirman los textos:
+         · Hora dorada: el centro del Sol entre 6° sobre el horizonte y 4° por
+           debajo; hora azul: entre 4° y 6° por debajo. Son las definiciones de
+           PhotoPills (photopills.com/glossary/g y /b), las de uso en fotografia.
+         · La brujula del movil marca el norte magnetico (API DeviceOrientation,
+           W3C); la declinacion en Tenerife, del WMM2025 (NOAA), va en {d} y se
+           calcula: no esta escrita. La precision ±N° es webkitCompassAccuracy
+           (Apple: «desviacion en grados entre el rumbo dado y el verdadero»).
+         · El ocho en el aire es lo que pide Google Maps en Android al calibrar
+           la brujula (el magnetometro gira por todos los ejes); los imanes y el
+           metal lo desvian.
+         · Los avisos: una web sin servidor no puede notificar sola (no hay
+           «Notification Triggers» en ningun navegador); el .ics con VALARM
+           (RFC 5545) es lo que si avisa, desde el calendario del movil.
+         · «Retrogradar»: el movimiento aparente hacia atras por la geometria de
+           las orbitas (perspectiva); no tiene ningun otro efecto.
+         · El indice de la noche es nuestro, y se explica en IndiceComo.
+       ── la brujula: guia, comprobacion y precision ───────────────────────── */
+    "cieloGuiaTitulo": {"es": "Antes de apuntar: 20 segundos", "en": "Before you point: 20 seconds", "fr": "Avant de viser : 20 secondes", "de": "Bevor du zielst: 20 Sekunden", "it": "Prima di puntare: 20 secondi", "nl": "Voor je richt: 20 seconden", "zh": "对准之前，先花20秒", "zht": "對準之前，先花20秒", "bg": "Преди да насочиш: 20 секунди", "pl": "Zanim wycelujesz: 20 sekund"},
+    "cieloGuiaImanes": {"es": "Aleja el móvil de imanes y de metal: la funda con imán, el coche, una barandilla. Desvían la brújula.", "en": "Keep the phone away from magnets and metal: a magnetic case, the car, a railing. They throw the compass off.", "fr": "Éloignez le téléphone des aimants et du métal : coque magnétique, voiture, rambarde. Ils faussent la boussole.", "de": "Halte das Handy fern von Magneten und Metall: Magnethülle, Auto, Geländer. Sie lenken den Kompass ab.", "it": "Tieni il telefono lontano da magneti e metallo: la cover magnetica, l’auto, una ringhiera. Sviano la bussola.", "nl": "Houd de telefoon weg van magneten en metaal: een magnetisch hoesje, de auto, een reling. Ze brengen het kompas van de wijs.", "zh": "让手机远离磁铁和金属：磁吸手机壳、汽车、栏杆都会干扰指南针。", "zht": "讓手機遠離磁鐵和金屬：磁吸手機殼、汽車、欄杆都會干擾指南針。", "bg": "Дръж телефона далеч от магнити и метал: калъф с магнит, колата, парапет. Те отклоняват компаса.", "pl": "Trzymaj telefon z dala od magnesów i metalu: etui z magnesem, samochód, barierka. Zakłócają kompas."},
+    "cieloGuiaOcho": {"es": "Mueve el móvil dibujando un ocho en el aire, dos o tres veces: así se calibra la brújula.", "en": "Wave the phone in a figure of eight, two or three times: that calibrates the compass.", "fr": "Dessinez un huit en l’air avec le téléphone, deux ou trois fois : c’est ainsi que la boussole se calibre.", "de": "Zeichne mit dem Handy zwei- oder dreimal eine Acht in die Luft: So kalibriert sich der Kompass.", "it": "Muovi il telefono disegnando un otto in aria, due o tre volte: così si calibra la bussola.", "nl": "Beweeg de telefoon twee of drie keer in een acht door de lucht: zo kalibreert het kompas.", "zh": "拿着手机在空中画两三次 8 字：指南针就是这样校准的。", "zht": "拿著手機在空中畫兩三次 8 字：指南針就是這樣校準的。", "bg": "Начертай с телефона осмица във въздуха, два-три пъти: така се калибрира компасът.", "pl": "Zakreśl telefonem w powietrzu ósemkę, dwa lub trzy razy: tak kalibruje się kompas."},
+    "cieloGuiaComprueba": {"es": "Luego apunta a la Luna, a un planeta o a la estrella más brillante y toca «Comprobar la brújula»: la app la corrige con ese astro.", "en": "Then point at the Moon, a planet or the brightest star and tap “Check the compass”: the app corrects it against that object.", "fr": "Ensuite, visez la Lune, une planète ou l’étoile la plus brillante et touchez « Vérifier la boussole » : l’appli la corrige grâce à cet astre.", "de": "Dann ziele auf den Mond, einen Planeten oder den hellsten Stern und tippe auf „Kompass prüfen“: Die App korrigiert ihn an diesem Objekt.", "it": "Poi punta la Luna, un pianeta o la stella più brillante e tocca «Verifica la bussola»: l’app la corregge con quell’astro.", "nl": "Richt daarna op de maan, een planeet of de helderste ster en tik op ‘Kompas controleren’: de app corrigeert het daarmee.", "zh": "然后对准月亮、某颗行星或最亮的星，点“校验指南针”：应用会据此修正指南针。", "zht": "然後對準月亮、某顆行星或最亮的星，點「校驗指南針」：應用程式會據此修正指南針。", "bg": "После насочи към Луната, планета или най-ярката звезда и докосни „Провери компаса“: приложението го коригира по това светило.", "pl": "Potem wyceluj w Księżyc, planetę albo najjaśniejszą gwiazdę i dotknij „Sprawdź kompas”: aplikacja poprawi go według tego obiektu."},
+    "cieloGuiaPorQue": {"es": "La brújula del móvil se descalibra sola y además marca el norte magnético, que en Tenerife queda {d}° al oeste del verdadero. Esa diferencia ya la corrige Tenerife Go.", "en": "The phone’s compass drifts out of calibration by itself, and it also points to magnetic north, which in Tenerife lies {d}° west of true north. Tenerife Go already corrects that difference.", "fr": "La boussole du téléphone se décalibre toute seule et indique en plus le nord magnétique, qui à Tenerife se trouve à {d}° à l’ouest du nord vrai. Cette différence, Tenerife Go la corrige déjà.", "de": "Der Kompass des Handys verliert von selbst seine Kalibrierung und zeigt außerdem zum magnetischen Norden, der auf Teneriffa {d}° westlich des wahren Nordens liegt. Diesen Unterschied korrigiert Tenerife Go bereits.", "it": "La bussola del telefono si scalibra da sola e inoltre indica il nord magnetico, che a Tenerife sta {d}° a ovest di quello vero. Questa differenza la corregge già Tenerife Go.", "nl": "Het kompas van de telefoon raakt vanzelf ontkalibreerd en wijst bovendien naar het magnetische noorden, dat op Tenerife {d}° ten westen van het ware noorden ligt. Dat verschil corrigeert Tenerife Go al.", "zh": "手机指南针会自行失准，而且指向的是磁北；在特内里费，磁北偏离真北 {d}°，这个偏差 Tenerife Go 已经自动修正。", "zht": "手機指南針會自行失準，而且指向的是磁北；在特內里費，磁北偏離真北 {d}°，這個偏差 Tenerife Go 已經自動修正。", "bg": "Компасът на телефона сам губи калибровката си и освен това сочи магнитния север, който на Тенерифе е на {d}° западно от истинския. Тази разлика Tenerife Go вече коригира.", "pl": "Kompas telefonu sam traci kalibrację, a do tego wskazuje północ magnetyczną, która na Teneryfie leży {d}° na zachód od prawdziwej. Tę różnicę Tenerife Go już poprawia."},
+    "cieloGuiaEntendido": {"es": "Entendido", "en": "Got it", "fr": "Compris", "de": "Verstanden", "it": "Capito", "nl": "Begrepen", "zh": "知道了", "zht": "知道了", "bg": "Разбрах", "pl": "Rozumiem"},
+    "cieloComprobar": {"es": "Comprobar la brújula", "en": "Check the compass", "fr": "Vérifier la boussole", "de": "Kompass prüfen", "it": "Verifica la bussola", "nl": "Kompas controleren", "zh": "校验指南针", "zht": "校驗指南針", "bg": "Провери компаса", "pl": "Sprawdź kompas"},
+    "cieloComprobarCon": {"es": "Pon {c} dentro del círculo y toca «Ya».", "en": "Put {c} inside the circle and tap “Done”.", "fr": "Placez {c} dans le cercle et touchez « Ça y est ».", "de": "Bring {c} in den Kreis und tippe auf „Fertig“.", "it": "Metti {c} dentro il cerchio e tocca «Fatto».", "nl": "Zet {c} in de cirkel en tik op ‘Klaar’.", "zh": "把{c}放进圆圈，然后点“好了”。", "zht": "把{c}放進圓圈，然後點「好了」。", "bg": "Постави {c} в кръга и докосни „Готово“.", "pl": "Umieść {c} w kółku i dotknij „Gotowe”."},
+    "cieloComprobarYa": {"es": "Ya", "en": "Done", "fr": "Ça y est", "de": "Fertig", "it": "Fatto", "nl": "Klaar", "zh": "好了", "zht": "好了", "bg": "Готово", "pl": "Gotowe"},
+    "cieloComprobarLejos": {"es": "{c} queda a {g}° del círculo: acércalo más y vuelve a tocar «Ya».", "en": "{c} is {g}° from the circle: bring it closer and tap “Done” again.", "fr": "{c} est à {g}° du cercle : rapprochez-le et touchez à nouveau « Ça y est ».", "de": "{c} ist {g}° vom Kreis entfernt: Bring es näher heran und tippe erneut auf „Fertig“.", "it": "{c} è a {g}° dal cerchio: avvicinalo e tocca di nuovo «Fatto».", "nl": "{c} staat {g}° van de cirkel: breng het dichterbij en tik opnieuw op ‘Klaar’.", "zh": "{c}离圆圈还有 {g}°：再靠近一些，然后再点“好了”。", "zht": "{c}離圓圈還有 {g}°：再靠近一些，然後再點「好了」。", "bg": "{c} е на {g}° от кръга: приближи го и докосни „Готово“ отново.", "pl": "{c} jest {g}° od kółka: przybliż go i dotknij „Gotowe” ponownie."},
+    "cieloComprobarBien": {"es": "La brújula iba bien: solo {g}° de desvío.", "en": "The compass was fine: only {g}° off.", "fr": "La boussole était bonne : seulement {g}° d’écart.", "de": "Der Kompass stimmte: nur {g}° Abweichung.", "it": "La bussola andava bene: solo {g}° di scarto.", "nl": "Het kompas zat goed: maar {g}° afwijking.", "zh": "指南针本来就准：只偏了 {g}°。", "zht": "指南針本來就準：只偏了 {g}°。", "bg": "Компасът беше точен: само {g}° отклонение.", "pl": "Kompas był dobry: tylko {g}° odchylenia."},
+    "cieloComprobarHecho": {"es": "Brújula corregida: iba {g}° desviada. Si cambias de sitio, vuelve a comprobarla.", "en": "Compass corrected: it was {g}° off. If you move somewhere else, check it again.", "fr": "Boussole corrigée : elle avait {g}° d’écart. Si vous changez d’endroit, vérifiez-la à nouveau.", "de": "Kompass korrigiert: Er war um {g}° daneben. Wenn du den Standort wechselst, prüfe ihn erneut.", "it": "Bussola corretta: era sviata di {g}°. Se cambi posto, verificala di nuovo.", "nl": "Kompas gecorrigeerd: het zat er {g}° naast. Als je van plek verandert, controleer het dan opnieuw.", "zh": "指南针已修正：原来偏了 {g}°。换了地方，请再校验一次。", "zht": "指南針已修正：原來偏了 {g}°。換了地方，請再校驗一次。", "bg": "Компасът е коригиран: беше отклонен с {g}°. Ако смениш мястото, провери го отново.", "pl": "Kompas poprawiony: był odchylony o {g}°. Jeśli zmienisz miejsce, sprawdź go ponownie."},
+    "cieloComprobarAltura": {"es": "En altura hay {g}° de diferencia: el móvil no está bien nivelado. Dibuja un ocho en el aire y comprueba otra vez.", "en": "There is a {g}° difference in altitude: the phone isn’t level. Wave it in a figure of eight and check again.", "fr": "Il y a {g}° d’écart en hauteur : le téléphone n’est pas bien à niveau. Dessinez un huit en l’air et vérifiez à nouveau.", "de": "In der Höhe gibt es {g}° Unterschied: Das Handy ist nicht richtig ausgerichtet. Zeichne eine Acht in die Luft und prüfe erneut.", "it": "In altezza c’è {g}° di differenza: il telefono non è ben livellato. Disegna un otto in aria e verifica di nuovo.", "nl": "In hoogte zit er {g}° verschil: de telefoon is niet goed waterpas. Maak een acht in de lucht en controleer opnieuw.", "zh": "高度上相差 {g}°：手机没有放平。在空中画个 8 字，再校验一次。", "zht": "高度上相差 {g}°：手機沒有放平。在空中畫個 8 字，再校驗一次。", "bg": "По височина има {g}° разлика: телефонът не е добре нивелиран. Начертай осмица във въздуха и провери отново.", "pl": "W wysokości jest {g}° różnicy: telefon nie jest wypoziomowany. Zakreśl ósemkę w powietrzu i sprawdź ponownie."},
+    "cieloComprobarAbajo": {"es": "Ahora mismo no hay nada brillante sobre el horizonte con lo que comprobar.", "en": "Right now there is nothing bright above the horizon to check against.", "fr": "En ce moment, il n’y a rien de brillant au-dessus de l’horizon pour vérifier.", "de": "Gerade ist nichts Helles über dem Horizont, womit sich prüfen ließe.", "it": "In questo momento non c’è niente di brillante sopra l’orizzonte con cui verificare.", "nl": "Op dit moment staat er niets helders boven de horizon om mee te controleren.", "zh": "此刻地平线上没有足够明亮的天体可供校验。", "zht": "此刻地平線上沒有足夠明亮的天體可供校驗。", "bg": "В момента няма нищо ярко над хоризонта, с което да се провери.", "pl": "W tej chwili nad horyzontem nie ma nic jasnego, według czego można sprawdzić."},
+    "cieloComprobada": {"es": "Brújula comprobada con un astro", "en": "Compass checked against an object", "fr": "Boussole vérifiée avec un astre", "de": "Kompass an einem Objekt geprüft", "it": "Bussola verificata con un astro", "nl": "Kompas gecontroleerd met een object", "zh": "指南针已用天体校验", "zht": "指南針已用天體校驗", "bg": "Компасът е проверен по светило", "pl": "Kompas sprawdzony według obiektu"},
+    "cieloPrecision": {"es": "Precisión de la brújula: ±{g}°", "en": "Compass accuracy: ±{g}°", "fr": "Précision de la boussole : ±{g}°", "de": "Kompassgenauigkeit: ±{g}°", "it": "Precisione della bussola: ±{g}°", "nl": "Nauwkeurigheid van het kompas: ±{g}°", "zh": "指南针精度：±{g}°", "zht": "指南針精度：±{g}°", "bg": "Точност на компаса: ±{g}°", "pl": "Dokładność kompasu: ±{g}°"},
+    /* ── la fecha libre ─────────────────────────────────────────────────── */
+    "cieloFechaElegir": {"es": "Elegir otra fecha", "en": "Choose another date", "fr": "Choisir une autre date", "de": "Anderes Datum wählen", "it": "Scegli un’altra data", "nl": "Een andere datum kiezen", "zh": "选择其他日期", "zht": "選擇其他日期", "bg": "Избери друга дата", "pl": "Wybierz inną datę"},
+    /* ── el recorrido ───────────────────────────────────────────────────── */
+    "cieloRecorrido": {"es": "Ver su recorrido esta noche", "en": "Show its path tonight", "fr": "Voir sa trajectoire cette nuit", "de": "Seine Bahn heute Nacht zeigen", "it": "Mostra il suo percorso stanotte", "nl": "Zijn baan vannacht tonen", "zh": "显示它今晚的轨迹", "zht": "顯示它今晚的軌跡", "bg": "Покажи пътя му тази нощ", "pl": "Pokaż jego drogę tej nocy"},
+    "cieloRecorridoQuitar": {"es": "Quitar el recorrido", "en": "Hide the path", "fr": "Masquer la trajectoire", "de": "Bahn ausblenden", "it": "Nascondi il percorso", "nl": "Baan verbergen", "zh": "隐藏轨迹", "zht": "隱藏軌跡", "bg": "Скрий пътя", "pl": "Ukryj drogę"},
+    "cieloRecorridoNota": {"es": "El recorrido de {c} de salida a puesta, con la hora en cada punto.", "en": "The path of {c} from rising to setting, with the time at each point.", "fr": "La trajectoire de {c} du lever au coucher, avec l’heure à chaque point.", "de": "Die Bahn von {c} vom Aufgang bis zum Untergang, mit der Uhrzeit an jedem Punkt.", "it": "Il percorso di {c} dal sorgere al tramonto, con l’ora in ogni punto.", "nl": "De baan van {c} van opkomst tot ondergang, met de tijd bij elk punt.", "zh": "{c}从升起到落下的轨迹，每个点标有时间。", "zht": "{c}從升起到落下的軌跡，每個點標有時間。", "bg": "Пътят на {c} от изгрева до залеза, с часа във всяка точка.", "pl": "Droga {c} od wschodu do zachodu, z godziną w każdym punkcie."},
+    /* ── la captura ─────────────────────────────────────────────────────── */
+    "cieloCapturar": {"es": "Guardar o compartir la imagen", "en": "Save or share the picture", "fr": "Enregistrer ou partager l’image", "de": "Bild speichern oder teilen", "it": "Salva o condividi l’immagine", "nl": "Afbeelding opslaan of delen", "zh": "保存或分享图片", "zht": "儲存或分享圖片", "bg": "Запази или сподели изображението", "pl": "Zapisz lub udostępnij obraz"},
+    "cieloCapturaNo": {"es": "No se pudo crear la imagen.", "en": "The picture could not be created.", "fr": "L’image n’a pas pu être créée.", "de": "Das Bild konnte nicht erstellt werden.", "it": "Non è stato possibile creare l’immagine.", "nl": "De afbeelding kon niet worden gemaakt.", "zh": "无法生成图片。", "zht": "無法產生圖片。", "bg": "Изображението не можа да се създаде.", "pl": "Nie udało się utworzyć obrazu."},
+    "cieloCapturaDesde": {"es": "desde el Observatorio del Teide, {f}", "en": "from the Teide Observatory, {f}", "fr": "depuis l’observatoire du Teide, {f}", "de": "vom Teide-Observatorium, {f}", "it": "dall’Osservatorio del Teide, {f}", "nl": "vanaf de Teide-sterrenwacht, {f}", "zh": "自泰德天文台，{f}", "zht": "自泰德天文台，{f}", "bg": "от обсерваторията Тейде, {f}", "pl": "z obserwatorium Teide, {f}"},
+    "cieloCapturaLista": {"es": "Imagen lista: se guarda o se comparte desde tu móvil, nada pasa por ningún servidor.", "en": "Picture ready: it is saved or shared from your phone; nothing goes through any server.", "fr": "Image prête : elle s’enregistre ou se partage depuis votre téléphone, rien ne passe par un serveur.", "de": "Bild fertig: Es wird von deinem Handy aus gespeichert oder geteilt, nichts läuft über einen Server.", "it": "Immagine pronta: si salva o si condivide dal tuo telefono, niente passa da un server.", "nl": "Afbeelding klaar: opslaan of delen gaat vanaf je telefoon, er komt geen server aan te pas.", "zh": "图片已生成：直接从你的手机保存或分享，不经过任何服务器。", "zht": "圖片已產生：直接從你的手機儲存或分享，不經過任何伺服器。", "bg": "Изображението е готово: запазва се или се споделя от телефона ти, нищо не минава през сървър.", "pl": "Obraz gotowy: zapisujesz lub udostępniasz go z telefonu, nic nie przechodzi przez żaden serwer."},
+    /* ── las horas para fotos ───────────────────────────────────────────── */
+    "cieloParaFotos": {"es": "Para fotos", "en": "For photos", "fr": "Pour les photos", "de": "Für Fotos", "it": "Per le foto", "nl": "Voor foto’s", "zh": "摄影时段", "zht": "攝影時段", "bg": "За снимки", "pl": "Dla fotografów"},
+    "cieloDoradaTarde": {"es": "Hora dorada de la tarde", "en": "Evening golden hour", "fr": "Heure dorée du soir", "de": "Goldene Stunde am Abend", "it": "Ora d’oro della sera", "nl": "Gouden uur ’s avonds", "zh": "傍晚黄金时刻", "zht": "傍晚黃金時刻", "bg": "Златен час вечер", "pl": "Złota godzina wieczorem"},
+    "cieloAzulTarde": {"es": "Hora azul de la tarde", "en": "Evening blue hour", "fr": "Heure bleue du soir", "de": "Blaue Stunde am Abend", "it": "Ora blu della sera", "nl": "Blauwe uur ’s avonds", "zh": "傍晚蓝调时刻", "zht": "傍晚藍調時刻", "bg": "Син час вечер", "pl": "Niebieska godzina wieczorem"},
+    "cieloAzulManana": {"es": "Hora azul de la mañana", "en": "Morning blue hour", "fr": "Heure bleue du matin", "de": "Blaue Stunde am Morgen", "it": "Ora blu del mattino", "nl": "Blauwe uur ’s ochtends", "zh": "清晨蓝调时刻", "zht": "清晨藍調時刻", "bg": "Син час сутрин", "pl": "Niebieska godzina rano"},
+    "cieloDoradaManana": {"es": "Hora dorada de la mañana", "en": "Morning golden hour", "fr": "Heure dorée du matin", "de": "Goldene Stunde am Morgen", "it": "Ora d’oro del mattino", "nl": "Gouden uur ’s ochtends", "zh": "清晨黄金时刻", "zht": "清晨黃金時刻", "bg": "Златен час сутрин", "pl": "Złota godzina rano"},
+    "cieloFotosNota": {"es": "Hora dorada: el Sol entre 6° sobre el horizonte y 4° por debajo; hora azul: entre 4° y 6° por debajo (definición de PhotoPills). La Vía Láctea tiene su tarjeta.", "en": "Golden hour: the Sun between 6° above the horizon and 4° below; blue hour: between 4° and 6° below (PhotoPills’ definition). The Milky Way has its own card.", "fr": "Heure dorée : le Soleil entre 6° au-dessus de l’horizon et 4° en dessous ; heure bleue : entre 4° et 6° en dessous (définition de PhotoPills). La Voie lactée a sa propre carte.", "de": "Goldene Stunde: die Sonne zwischen 6° über und 4° unter dem Horizont; blaue Stunde: zwischen 4° und 6° darunter (Definition von PhotoPills). Die Milchstraße hat ihre eigene Karte.", "it": "Ora d’oro: il Sole tra 6° sopra l’orizzonte e 4° sotto; ora blu: tra 4° e 6° sotto (definizione di PhotoPills). La Via Lattea ha la sua scheda.", "nl": "Gouden uur: de zon tussen 6° boven en 4° onder de horizon; blauwe uur: tussen 4° en 6° eronder (definitie van PhotoPills). De Melkweg heeft zijn eigen kaart.", "zh": "黄金时刻：太阳在地平线上 6° 至地平线下 4° 之间；蓝调时刻：地平线下 4° 至 6° 之间（PhotoPills 的定义）。银河见其专属卡片。", "zht": "黃金時刻：太陽在地平線上 6° 至地平線下 4° 之間；藍調時刻：地平線下 4° 至 6° 之間（PhotoPills 的定義）。銀河見其專屬卡片。", "bg": "Златен час: Слънцето между 6° над хоризонта и 4° под него; син час: между 4° и 6° под хоризонта (определение на PhotoPills). Млечният път има своя карта.", "pl": "Złota godzina: Słońce między 6° nad horyzontem a 4° pod nim; niebieska godzina: między 4° a 6° pod horyzontem (definicja PhotoPills). Droga Mleczna ma własną kartę."},
+    /* ── las fases del mes ──────────────────────────────────────────────── */
+    "cieloCalLuna": {"es": "Fases de la Luna", "en": "Moon phases", "fr": "Phases de la Lune", "de": "Mondphasen", "it": "Fasi lunari", "nl": "Maanfasen", "zh": "月相", "zht": "月相", "bg": "Лунни фази", "pl": "Fazy Księżyca"},
+    "cieloFaseDet": {"es": "A las {h}, hora de Canarias.", "en": "At {h}, Canary Islands time.", "fr": "À {h}, heure des Canaries.", "de": "Um {h} Uhr, kanarische Zeit.", "it": "Alle {h}, ora delle Canarie.", "nl": "Om {h}, Canarische tijd.", "zh": "{h}（加那利时间）。", "zht": "{h}（加那利時間）。", "bg": "В {h}, канарско време.", "pl": "O {h}, czasu kanaryjskiego."},
+    "cieloFasesNota": {"es": "La Luna nueva da las noches más oscuras, las mejores para el cielo profundo y la Vía Láctea; la llena, la mejor para mirarla a ella.", "en": "The new Moon gives the darkest nights, the best for deep sky and the Milky Way; the full Moon is the best for looking at the Moon itself.", "fr": "La nouvelle Lune donne les nuits les plus noires, les meilleures pour le ciel profond et la Voie lactée ; la pleine Lune est la meilleure pour l’observer elle-même.", "de": "Neumond bringt die dunkelsten Nächte, die besten für Deep-Sky und Milchstraße; Vollmond ist am besten, um den Mond selbst anzusehen.", "it": "La Luna nuova dà le notti più buie, le migliori per il cielo profondo e la Via Lattea; la Luna piena è la migliore per guardare lei.", "nl": "Nieuwe maan geeft de donkerste nachten, de beste voor deep-sky en de Melkweg; volle maan is het best om de maan zelf te bekijken.", "zh": "新月之夜最暗，最适合深空天体和银河；满月则最适合观赏月亮本身。", "zht": "新月之夜最暗，最適合深空天體和銀河；滿月則最適合觀賞月亮本身。", "bg": "Новолунието дава най-тъмните нощи, най-добрите за дълбокия космос и Млечния път; пълнолунието е най-доброто за гледане на самата Луна.", "pl": "Nów daje najciemniejsze noce, najlepsze dla głębokiego nieba i Drogi Mlecznej; pełnia jest najlepsza, by oglądać sam Księżyc."},
+    /* ── los retrogrados ────────────────────────────────────────────────── */
+    "cieloEvRetroIni": {"es": "{p} empieza a retrogradar", "en": "{p} starts moving retrograde", "fr": "{p} commence à rétrograder", "de": "{p} wird rückläufig", "it": "{p} inizia il moto retrogrado", "nl": "{p} wordt retrograde", "zh": "{p}开始逆行", "zht": "{p}開始逆行", "bg": "{p} започва ретроградно движение", "pl": "{p} zaczyna ruch wsteczny"},
+    "cieloEvRetroFin": {"es": "{p} vuelve a ir hacia delante", "en": "{p} resumes direct motion", "fr": "{p} reprend sa marche directe", "de": "{p} läuft wieder rechtläufig", "it": "{p} riprende il moto diretto", "nl": "{p} gaat weer vooruit", "zh": "{p}恢复顺行", "zht": "{p}恢復順行", "bg": "{p} отново се движи напред", "pl": "{p} wraca do ruchu prostego"},
+    "cieloRetroDet": {"es": "Hasta el {f} parece ir hacia atrás entre las estrellas, en {c}. No pasa nada raro: es perspectiva, un planeta adelanta al otro en su órbita.", "en": "Until {f} it seems to move backwards among the stars, in {c}. Nothing strange is happening: it is perspective, one planet overtaking the other in its orbit.", "fr": "Jusqu’au {f}, la planète semble reculer parmi les étoiles, dans {c}. Rien d’étrange : c’est un effet de perspective, une planète en dépasse une autre sur son orbite.", "de": "Bis zum {f} scheint der Planet zwischen den Sternen rückwärts zu laufen, im Sternbild {c}. Nichts Seltsames: Es ist Perspektive, ein Planet überholt den anderen auf seiner Bahn.", "it": "Fino al {f} il pianeta sembra andare all’indietro tra le stelle, in {c}. Niente di strano: è prospettiva, un pianeta sorpassa l’altro nella sua orbita.", "nl": "Tot {f} lijkt de planeet achteruit te bewegen tussen de sterren, in {c}. Niets vreemds: het is perspectief, de ene planeet haalt de andere in op zijn baan.", "zh": "到{f}为止，这颗行星看起来在{c}的群星间倒退。这并不奇怪：只是视角效应，一颗行星在轨道上超过了另一颗。", "zht": "到{f}為止，這顆行星看起來在{c}的群星間倒退。這並不奇怪：只是視角效應，一顆行星在軌道上超過了另一顆。", "bg": "До {f} планетата сякаш се движи назад сред звездите, в {c}. Нищо странно: това е перспектива, едната планета изпреварва другата по орбитата си.", "pl": "Do {f} planeta zdaje się cofać wśród gwiazd, w gwiazdozbiorze {c}. Nic dziwnego: to perspektywa, jedna planeta wyprzedza drugą na swojej orbicie."},
+    "cieloRetroDetSinFin": {"es": "Parece ir hacia atrás entre las estrellas, en {c}. No pasa nada raro: es perspectiva, un planeta adelanta al otro en su órbita.", "en": "It seems to move backwards among the stars, in {c}. Nothing strange is happening: it is perspective, one planet overtaking the other in its orbit.", "fr": "La planète semble reculer parmi les étoiles, dans {c}. Rien d’étrange : c’est un effet de perspective, une planète en dépasse une autre sur son orbite.", "de": "Der Planet scheint zwischen den Sternen rückwärts zu laufen, im Sternbild {c}. Nichts Seltsames: Es ist Perspektive, ein Planet überholt den anderen auf seiner Bahn.", "it": "Il pianeta sembra andare all’indietro tra le stelle, in {c}. Niente di strano: è prospettiva, un pianeta sorpassa l’altro nella sua orbita.", "nl": "De planeet lijkt achteruit te bewegen tussen de sterren, in {c}. Niets vreemds: het is perspectief, de ene planeet haalt de andere in op zijn baan.", "zh": "这颗行星看起来在{c}的群星间倒退。这并不奇怪：只是视角效应，一颗行星在轨道上超过了另一颗。", "zht": "這顆行星看起來在{c}的群星間倒退。這並不奇怪：只是視角效應，一顆行星在軌道上超過了另一顆。", "bg": "Планетата сякаш се движи назад сред звездите, в {c}. Нищо странно: това е перспектива, едната планета изпреварва другата по орбитата си.", "pl": "Planeta zdaje się cofać wśród gwiazd, w gwiazdozbiorze {c}. Nic dziwnego: to perspektywa, jedna planeta wyprzedza drugą na swojej orbicie."},
+    "cieloRetroFinDet": {"es": "Retrogradaba desde el {f}.", "en": "It had been retrograde since {f}.", "fr": "La planète rétrogradait depuis le {f}.", "de": "Der Planet war seit dem {f} rückläufig.", "it": "Il pianeta era retrogrado dal {f}.", "nl": "De planeet was retrograde sinds {f}.", "zh": "自{f}起一直逆行。", "zht": "自{f}起一直逆行。", "bg": "Планетата беше ретроградна от {f}.", "pl": "Planeta była w ruchu wstecznym od {f}."},
+    "cieloRetroFinDetSinIni": {"es": "Vuelve a avanzar entre las estrellas.", "en": "It moves forward among the stars again.", "fr": "La planète avance de nouveau parmi les étoiles.", "de": "Der Planet läuft wieder vorwärts zwischen den Sternen.", "it": "Il pianeta torna ad avanzare tra le stelle.", "nl": "De planeet beweegt weer vooruit tussen de sterren.", "zh": "这颗行星重新在群星间向前移动。", "zht": "這顆行星重新在群星間向前移動。", "bg": "Планетата отново се движи напред сред звездите.", "pl": "Planeta znów porusza się do przodu wśród gwiazd."},
+    /* ── el indice de la noche ──────────────────────────────────────────── */
+    "cieloIndice": {"es": "Índice de la noche", "en": "Night index", "fr": "Indice de la nuit", "de": "Nachtindex", "it": "Indice della notte", "nl": "Nachtindex", "zh": "今夜观星指数", "zht": "今夜觀星指數", "bg": "Индекс на нощта", "pl": "Indeks nocy"},
+    "cieloIndiceDe": {"es": "{n} de 10", "en": "{n} out of 10", "fr": "{n} sur 10", "de": "{n} von 10", "it": "{n} su 10", "nl": "{n} van 10", "zh": "{n} 分（满分 10）", "zht": "{n} 分（滿分 10）", "bg": "{n} от 10", "pl": "{n} na 10"},
+    "cieloIndiceExcelente": {"es": "Excelente", "en": "Excellent", "fr": "Excellente", "de": "Ausgezeichnet", "it": "Eccellente", "nl": "Uitstekend", "zh": "极佳", "zht": "極佳", "bg": "Отлична", "pl": "Doskonała"},
+    "cieloIndiceBuena": {"es": "Buena", "en": "Good", "fr": "Bonne", "de": "Gut", "it": "Buona", "nl": "Goed", "zh": "良好", "zht": "良好", "bg": "Добра", "pl": "Dobra"},
+    "cieloIndiceRegular": {"es": "Regular", "en": "Fair", "fr": "Moyenne", "de": "Mäßig", "it": "Discreta", "nl": "Matig", "zh": "一般", "zht": "一般", "bg": "Средна", "pl": "Przeciętna"},
+    "cieloIndiceFloja": {"es": "Floja", "en": "Poor", "fr": "Faible", "de": "Schwach", "it": "Scarsa", "nl": "Zwak", "zh": "较差", "zht": "較差", "bg": "Слаба", "pl": "Słaba"},
+    "cieloIndiceMala": {"es": "Mala", "en": "Bad", "fr": "Mauvaise", "de": "Schlecht", "it": "Pessima", "nl": "Slecht", "zh": "很差", "zht": "很差", "bg": "Лоша", "pl": "Zła"},
+    "cieloIndiceNoche": {"es": "Noche cerrada: {t}", "en": "Full darkness: {t}", "fr": "Nuit noire : {t}", "de": "Volle Dunkelheit: {t}", "it": "Buio completo: {t}", "nl": "Volledige duisternis: {t}", "zh": "天文黑夜：{t}", "zht": "天文黑夜：{t}", "bg": "Пълна тъмнина: {t}", "pl": "Pełna ciemność: {t}"},
+    "cieloIndiceSinLuna": {"es": "Sin Luna: {t} ({p} % de la noche)", "en": "Moonless: {t} ({p} % of the night)", "fr": "Sans Lune : {t} ({p} % de la nuit)", "de": "Ohne Mond: {t} ({p} % der Nacht)", "it": "Senza Luna: {t} ({p} % della notte)", "nl": "Zonder maan: {t} ({p} % van de nacht)", "zh": "无月：{t}（占夜晚的 {p}%）", "zht": "無月：{t}（佔夜晚的 {p}%）", "bg": "Без Луна: {t} ({p} % от нощта)", "pl": "Bez Księżyca: {t} ({p} % nocy)"},
+    "cieloIndiceLunaIlum": {"es": "Luna iluminada al {p} %", "en": "Moon {p} % lit", "fr": "Lune éclairée à {p} %", "de": "Mond zu {p} % beleuchtet", "it": "Luna illuminata al {p} %", "nl": "Maan {p} % verlicht", "zh": "月亮亮度 {p}%", "zht": "月亮亮度 {p}%", "bg": "Луната е осветена на {p} %", "pl": "Księżyc oświetlony w {p} %"},
+    "cieloIndiceNubes": {"es": "Nubes medias y altas previstas: {p} %", "en": "Forecast mid and high cloud: {p} %", "fr": "Nuages moyens et hauts prévus : {p} %", "de": "Vorhergesagte mittlere und hohe Wolken: {p} %", "it": "Nubi medie e alte previste: {p} %", "nl": "Verwachte middelhoge en hoge bewolking: {p} %", "zh": "预报中高云量：{p}%", "zht": "預報中高雲量：{p}%", "bg": "Прогнозирани средни и високи облаци: {p} %", "pl": "Prognozowane chmury średnie i wysokie: {p} %"},
+    "cieloIndiceSinNubes": {"es": "Sin previsión de nubes para esa noche: el índice no las cuenta.", "en": "No cloud forecast for that night: the index leaves them out.", "fr": "Pas de prévision de nuages pour cette nuit : l’indice n’en tient pas compte.", "de": "Keine Wolkenvorhersage für diese Nacht: Der Index lässt sie außen vor.", "it": "Nessuna previsione di nubi per quella notte: l’indice non le conta.", "nl": "Geen bewolkingsverwachting voor die nacht: de index laat ze buiten beschouwing.", "zh": "那晚没有云量预报：指数未计入云量。", "zht": "那晚沒有雲量預報：指數未計入雲量。", "bg": "Няма прогноза за облаци за тази нощ: индексът не ги брои.", "pl": "Brak prognozy chmur na tę noc: indeks ich nie uwzględnia."},
+    "cieloIndiceComo": {"es": "Cómo se calcula: 10 puntos por una noche cerrada entera sin Luna. Se descuenta el tiempo con la Luna arriba, en proporción a lo iluminada que esté, y la media de nubes medias y altas previstas (Open-Meteo) lo baja en esa proporción. Nada más: ni la contaminación lumínica ni el viento.", "en": "How it is calculated: 10 points for a whole dark night without the Moon. Time with the Moon up is taken off, in proportion to how lit it is, and the forecast average of mid and high cloud (Open-Meteo) lowers it by that share. Nothing else: neither light pollution nor wind.", "fr": "Comment il est calculé : 10 points pour une nuit noire entière sans Lune. On retire le temps où la Lune est levée, en proportion de son éclairement, et la moyenne des nuages moyens et hauts prévus (Open-Meteo) le réduit d’autant. Rien d’autre : ni la pollution lumineuse ni le vent.", "de": "So wird er berechnet: 10 Punkte für eine ganze dunkle Nacht ohne Mond. Die Zeit mit Mond am Himmel wird abgezogen, im Verhältnis zu seiner Beleuchtung, und der vorhergesagte Mittelwert der mittleren und hohen Wolken (Open-Meteo) senkt ihn um diesen Anteil. Sonst nichts: weder Lichtverschmutzung noch Wind.", "it": "Come si calcola: 10 punti per una notte di buio completo senza Luna. Si sottrae il tempo con la Luna alta, in proporzione a quanto è illuminata, e la media prevista di nubi medie e alte (Open-Meteo) lo abbassa in quella proporzione. Nient’altro: né l’inquinamento luminoso né il vento.", "nl": "Zo wordt hij berekend: 10 punten voor een hele donkere nacht zonder maan. De tijd dat de maan op is gaat eraf, naar rato van hoe verlicht hij is, en het verwachte gemiddelde van middelhoge en hoge bewolking (Open-Meteo) verlaagt hem met dat aandeel. Verder niets: geen lichtvervuiling en geen wind.", "zh": "计算方法：整夜天文黑夜且无月为 10 分。月亮在天上的时间按其亮度比例扣除；预报的中高云量平均值（Open-Meteo）再按比例降低。仅此而已：不计光污染和风。", "zht": "計算方法：整夜天文黑夜且無月為 10 分。月亮在天上的時間按其亮度比例扣除；預報的中高雲量平均值（Open-Meteo）再按比例降低。僅此而已：不計光污染和風。", "bg": "Как се изчислява: 10 точки за цяла тъмна нощ без Луна. Времето с Луна на небето се изважда пропорционално на осветеността ѝ, а прогнозираните средни и високи облаци (Open-Meteo) го намаляват в същата пропорция. Нищо друго: нито светлинно замърсяване, нито вятър.", "pl": "Jak się go liczy: 10 punktów za całą ciemną noc bez Księżyca. Odejmuje się czas z Księżycem nad horyzontem, proporcjonalnie do jego oświetlenia, a prognozowana średnia chmur średnich i wysokich (Open-Meteo) obniża go w tej proporcji. Nic więcej: ani zanieczyszczenia światłem, ani wiatru."},
+    "cieloCompartir": {"es": "Compartir", "en": "Share", "fr": "Partager", "de": "Teilen", "it": "Condividi", "nl": "Delen", "zh": "分享", "zht": "分享", "bg": "Сподели", "pl": "Udostępnij"},
+    "cieloImagenTitulo": {"es": "Esta noche en el Teide", "en": "Tonight over Teide", "fr": "Cette nuit au Teide", "de": "Heute Nacht am Teide", "it": "Stanotte sul Teide", "nl": "Vannacht boven de Teide", "zh": "今夜的泰德星空", "zht": "今夜的泰德星空", "bg": "Тази нощ над Тейде", "pl": "Tej nocy nad Teide"},
+    "cieloImagenMejor": {"es": "Qué mirar: {l}", "en": "What to look at: {l}", "fr": "À regarder : {l}", "de": "Was sich lohnt: {l}", "it": "Cosa guardare: {l}", "nl": "Wat te bekijken: {l}", "zh": "值得一看：{l}", "zht": "值得一看：{l}", "bg": "Какво да гледаш: {l}", "pl": "Na co patrzeć: {l}"},
+    /* ── los avisos ─────────────────────────────────────────────────────── */
+    "cieloAlCalendario": {"es": "Añadir a mi calendario", "en": "Add to my calendar", "fr": "Ajouter à mon calendrier", "de": "In meinen Kalender", "it": "Aggiungi al mio calendario", "nl": "Aan mijn agenda toevoegen", "zh": "添加到我的日历", "zht": "加入我的行事曆", "bg": "Добави в календара ми", "pl": "Dodaj do mojego kalendarza"},
+    "cieloAvisoAqui": {"es": "Recordármelo en la app", "en": "Remind me in the app", "fr": "Me le rappeler dans l’appli", "de": "In der App erinnern", "it": "Ricordamelo nell’app", "nl": "Herinner me in de app", "zh": "在应用内提醒我", "zht": "在應用程式內提醒我", "bg": "Напомни ми в приложението", "pl": "Przypomnij mi w aplikacji"},
+    "cieloAvisoPuesto": {"es": "Guardado. Al abrir la app los dos días de antes, lo verás arriba del todo.", "en": "Saved. When you open the app in the two days before, you will see it right at the top.", "fr": "Enregistré. En ouvrant l’appli les deux jours précédents, vous le verrez tout en haut.", "de": "Gespeichert. Wenn du die App in den zwei Tagen davor öffnest, siehst du es ganz oben.", "it": "Salvato. Aprendo l’app nei due giorni prima, lo vedrai in cima.", "nl": "Opgeslagen. Als je de app in de twee dagen ervoor opent, zie je het helemaal bovenaan.", "zh": "已保存。在前两天打开应用时，它会显示在最上方。", "zht": "已儲存。在前兩天打開應用程式時，它會顯示在最上方。", "bg": "Запазено. Когато отвориш приложението в двата дни преди това, ще го видиш най-отгоре.", "pl": "Zapisano. Gdy otworzysz aplikację w ciągu dwóch dni przed, zobaczysz to na samej górze."},
+    "cieloAvisoQuitar": {"es": "Quitar", "en": "Remove", "fr": "Retirer", "de": "Entfernen", "it": "Togli", "nl": "Verwijderen", "zh": "移除", "zht": "移除", "bg": "Премахни", "pl": "Usuń"},
+    "cieloAvisosQuitarTodos": {"es": "Quitar todos los avisos", "en": "Remove all reminders", "fr": "Retirer tous les rappels", "de": "Alle Erinnerungen entfernen", "it": "Togli tutti gli avvisi", "nl": "Alle herinneringen verwijderen", "zh": "移除所有提醒", "zht": "移除所有提醒", "bg": "Премахни всички напомняния", "pl": "Usuń wszystkie przypomnienia"},
+    "cieloMisAvisos": {"es": "Mis avisos", "en": "My reminders", "fr": "Mes rappels", "de": "Meine Erinnerungen", "it": "I miei avvisi", "nl": "Mijn herinneringen", "zh": "我的提醒", "zht": "我的提醒", "bg": "Моите напомняния", "pl": "Moje przypomnienia"},
+    "cieloAvisoHoy": {"es": "¡Esta noche!", "en": "Tonight!", "fr": "Cette nuit !", "de": "Heute Nacht!", "it": "Stanotte!", "nl": "Vannacht!", "zh": "就在今晚！", "zht": "就在今晚！", "bg": "Тази нощ!", "pl": "Dziś w nocy!"},
+    "cieloAvisoManana": {"es": "¡Mañana!", "en": "Tomorrow!", "fr": "Demain !", "de": "Morgen!", "it": "Domani!", "nl": "Morgen!", "zh": "就在明天！", "zht": "就在明天！", "bg": "Утре!", "pl": "Jutro!"},
+    "cieloAvisosNota": {"es": "Los avisos se guardan solo en este móvil y nada te despierta: una web no puede avisarte sola sin un servidor, y Tenerife Go no tiene ninguno ni quiere tus datos. Para un aviso de verdad, «Añadir a mi calendario»: tu calendario te avisará el día antes.", "en": "Reminders are stored only on this phone and nothing wakes you up: a website cannot alert you by itself without a server, and Tenerife Go has none and does not want your data. For a real alert, “Add to my calendar”: your calendar will alert you the day before.", "fr": "Les rappels sont gardés uniquement sur ce téléphone et rien ne vous réveille : un site web ne peut pas vous prévenir tout seul sans serveur, et Tenerife Go n’en a aucun et ne veut pas vos données. Pour une vraie alerte, « Ajouter à mon calendrier » : votre calendrier vous préviendra la veille.", "de": "Erinnerungen bleiben nur auf diesem Handy, und nichts weckt dich: Eine Website kann dich ohne Server nicht von selbst benachrichtigen, und Tenerife Go hat keinen und will deine Daten nicht. Für eine echte Benachrichtigung: „In meinen Kalender“, dann erinnert dich dein Kalender am Tag davor.", "it": "Gli avvisi restano solo su questo telefono e niente ti sveglia: un sito web non può avvisarti da solo senza un server, e Tenerife Go non ne ha e non vuole i tuoi dati. Per un avviso vero, «Aggiungi al mio calendario»: il tuo calendario ti avviserà il giorno prima.", "nl": "Herinneringen blijven alleen op deze telefoon en niets maakt je wakker: een website kan je zonder server niet uit zichzelf waarschuwen, en Tenerife Go heeft er geen en wil je gegevens niet. Voor een echte melding: ‘Aan mijn agenda toevoegen’, dan waarschuwt je agenda je de dag ervoor.", "zh": "提醒只保存在这部手机上，不会主动唤醒你：没有服务器，网页无法自行发出通知，而 Tenerife Go 没有服务器，也不要你的数据。想要真正的提醒，请“添加到我的日历”：你的日历会在前一天提醒你。", "zht": "提醒只儲存在這部手機上，不會主動喚醒你：沒有伺服器，網頁無法自行發出通知，而 Tenerife Go 沒有伺服器，也不要你的資料。想要真正的提醒，請「加入我的行事曆」：你的行事曆會在前一天提醒你。", "bg": "Напомнянията се пазят само на този телефон и нищо не те събужда: без сървър един сайт не може сам да те уведоми, а Tenerife Go няма такъв и не иска данните ти. За истинско напомняне – „Добави в календара ми“: календарът ти ще те предупреди ден по-рано.", "pl": "Przypomnienia są zapisywane tylko w tym telefonie i nic cię nie obudzi: strona internetowa nie może sama cię powiadomić bez serwera, a Tenerife Go go nie ma i nie chce twoich danych. Prawdziwe powiadomienie da „Dodaj do mojego kalendarza”: twój kalendarz przypomni ci dzień wcześniej."},
+    "cieloIcsHora": {"es": "Hora de Canarias: {h}", "en": "Canary Islands time: {h}", "fr": "Heure des Canaries : {h}", "de": "Kanarische Zeit: {h}", "it": "Ora delle Canarie: {h}", "nl": "Canarische tijd: {h}", "zh": "加那利时间：{h}", "zht": "加那利時間：{h}", "bg": "Канарско време: {h}", "pl": "Czas kanaryjski: {h}"},
+    "cieloIcsListo": {"es": "Evento listo (.ics): ábrelo y tu calendario lo añade, con un aviso el día antes.", "en": "Event ready (.ics): open it and your calendar adds it, with an alert the day before.", "fr": "Événement prêt (.ics) : ouvrez-le et votre calendrier l’ajoute, avec un rappel la veille.", "de": "Termin fertig (.ics): Öffne ihn, und dein Kalender trägt ihn ein, mit Erinnerung am Tag davor.", "it": "Evento pronto (.ics): aprilo e il tuo calendario lo aggiunge, con un avviso il giorno prima.", "nl": "Afspraak klaar (.ics): open hem en je agenda voegt hem toe, met een melding de dag ervoor.", "zh": "日程文件已生成（.ics）：打开它，日历就会添加，并在前一天提醒。", "zht": "行事曆檔案已產生（.ics）：打開它，行事曆就會加入，並在前一天提醒。", "bg": "Събитието е готово (.ics): отвори го и календарът ти ще го добави, с напомняне ден по-рано.", "pl": "Wydarzenie gotowe (.ics): otwórz je, a kalendarz je doda, z przypomnieniem dzień wcześniej."},
+    "cieloIcsAviso": {"es": "Mañana: {e}", "en": "Tomorrow: {e}", "fr": "Demain : {e}", "de": "Morgen: {e}", "it": "Domani: {e}", "nl": "Morgen: {e}", "zh": "明天：{e}", "zht": "明天：{e}", "bg": "Утре: {e}", "pl": "Jutro: {e}"}
   };
   Object.assign(UI_TX, CIELO_UI);
 
@@ -726,7 +843,7 @@
     eventos: null, eventosDia: null,
     cat: { tipo: 'todo', nivel: 0, estaNoche: false, busca: '' },
     cal: 'todo',
-    mapa: { desfase: 0, az: 180, alt: 40, fov: 105, cenital: false, sel: null, lineas: true, nombres: true, profundo: true, t: null, corre: false },
+    mapa: { desfase: 0, az: 180, alt: 40, fov: 105, cenital: false, sel: null, lineas: true, nombres: true, profundo: true, t: null, corre: false, rastro: null },
     nubes: null, nubesPidiendo: false,
     rojo: false
   };
@@ -796,8 +913,12 @@
     return new Date(base - desfaseMin(d) * 60000);
   }
   function sumarDias(fecha, n) { var a = fecha.split('-').map(Number); return new Date(Date.UTC(a[0], a[1] - 1, a[2] + n, 12)).toISOString().slice(0, 10); }
-  /* «Esta noche» a las dos de la madrugada es la que empezo ayer. */
-  function nocheDeHoy() { var ahora = new Date(); return partes(ahora).hour < 12 ? sumarDias(fechaLocal(ahora), -1) : fechaLocal(ahora); }
+  /* «Esta noche» a las dos de la madrugada es la que empezo ayer; a las
+     nueve de la manana, en cambio, ya es la que viene (hasta el 21 de
+     octubre el corte estaba a mediodia y en el desayuno salia la noche
+     pasada). El Sol sale en Izaña entre las 7:01 y las 8:12, hora local,
+     segun el dia del ano (calculado con el motor para 2026). */
+  function nocheDeHoy() { var ahora = new Date(); return partes(ahora).hour < 7 ? sumarDias(fechaLocal(ahora), -1) : fechaLocal(ahora); }
   var _fmt = {};
   function fmt(d, o) {
     var k = loc() + '|' + JSON.stringify(o);
@@ -1255,6 +1376,52 @@
     return out;
   }
 
+  /* Las cuatro fases de cada mes (el calendario lunar que piden las
+     reseñas), tal como las da el motor. */
+  function eventosFases(desde, hasta) {
+    var A = Astronomy, q = A.SearchMoonQuarter(desde), out = [];
+    while (q && q.time.date < hasta) { out.push({ tipo: 'fase', t: q.time.date, q: q.quarter }); q = A.NextMoonQuarter(q); }
+    return out;
+  }
+  /* ── RETROGRADOS ──────────────────────────────────────────────────
+     Un planeta «retrograda» cuando su longitud ecliptica geocentrica deja
+     de crecer y vuelve atras unas semanas: perspectiva, un planeta adelanta
+     al otro en su orbita. Los puntos estacionarios son donde la velocidad en
+     longitud cambia de signo: muestras diarias (cada dos dias los
+     exteriores, que van despacio) y biseccion hasta el minuto. Se mira con
+     margen a los dos lados para dar, de cada principio, su final, y de cada
+     final, su principio. Cotejado con dos tablas publicadas en
+     tools/auditar_cielo.js (parte 10). */
+  var RETRO = ['Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
+  function lonGeo(b, t) {
+    var A = Astronomy;
+    if (!_rotEcl) _rotEcl = A.Rotation_EQJ_ECL();
+    return A.SphereFromVector(A.RotateVector(_rotEcl, A.GeoVector(b, t, true))).lon;
+  }
+  function velLon(b, t) { var h = 0.05; return difAng(lonGeo(b, t.AddDays(h)), lonGeo(b, t.AddDays(-h))) / (2 * h); }
+  function eventosRetrogrados(desde, hasta) {
+    var A = Astronomy, out = [], margen = 160;
+    RETRO.forEach(function (p) {
+      var b = A.Body[p], t = A.MakeTime(desde).AddDays(-margen), fin = A.MakeTime(hasta).AddDays(margen);
+      var paso = p === 'Mercury' || p === 'Venus' ? 1 : 2, v0 = velLon(b, t), est = [];
+      while (t.ut < fin.ut) {
+        var t1 = t.AddDays(paso), v1 = velLon(b, t1);
+        if ((v0 < 0) !== (v1 < 0)) {
+          var a = t, c = t1, va = v0;
+          for (var k = 0; k < 22; k++) { var m = a.AddDays((c.ut - a.ut) / 2), vm = velLon(b, m); if ((vm < 0) === (va < 0)) { a = m; va = vm; } else c = m; }
+          est.push({ t: a.AddDays((c.ut - a.ut) / 2), ini: v1 < 0 });
+        }
+        t = t1; v0 = v1;
+      }
+      est.forEach(function (e, i) {
+        if (e.t.date < desde || e.t.date >= hasta) return;
+        var par = e.ini ? est[i + 1] : est[i - 1];
+        out.push({ tipo: 'retro', t: e.t.date, p: p, ini: e.ini, otro: par ? par.t.date : null, con: constelacionDe(b, e.t) });
+      });
+    });
+    return out;
+  }
+
   /* Doce meses desde hoy (los eclipses, tres anos). `fecha` (AAAA-MM-DD) es
      para las pruebas: tools/auditar_cielo.js pide el calendario desde un dia
      fijo para cotejarlo con el IGN, el IMCCE y la IMO; ese no se guarda. */
@@ -1263,7 +1430,8 @@
     if (!fecha && S.eventos && S.eventosDia === hoy) return S.eventos;
     var desde = instanteLocal(hoy, 0, 0), hasta = new Date(desde.getTime() + 366 * 864e5);
     var hastaEcl = new Date(desde.getTime() + 3 * 366 * 864e5);
-    var ev = [].concat(eventosLluvias(desde, hasta), eventosEclipses(desde, hastaEcl), eventosPlanetas(desde, hasta), eventosSolLuna(desde, hasta));
+    var ev = [].concat(eventosLluvias(desde, hasta), eventosEclipses(desde, hastaEcl), eventosPlanetas(desde, hasta), eventosSolLuna(desde, hasta),
+                       eventosFases(desde, hasta), eventosRetrogrados(desde, hasta));
     ev.sort(function (a, b) { return a.t - b.t; });
     if (fecha) return ev;
     S.eventosDia = hoy;
@@ -1361,6 +1529,16 @@
   }
 
   /* ── PESTANA «ESTA NOCHE» ──────────────────────────────────────── */
+  /* La noche que se mira, en «Esta noche» y en la carta: ‹ › dia a dia, 📅
+     cualquier fecha (quien planea el viaje desde Berlin quiere la de su
+     noche en el Teide). Cambiarla deja la carta a la hora en que empieza la
+     noche cerrada de esa fecha. */
+  function cambiarFecha(f) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(f || '')) return;
+    S.fecha = f;
+    var M = S.mapa; M.t = null; M.porDefecto = true; M.desfase = 0; M.ahora = false; M.corre = false;
+    pintar();
+  }
   function selectorFecha(c) {
     var f = el('div', 'cielo-fecha');
     var a = el('button', null, '‹'); a.type = 'button'; a.setAttribute('aria-label', T('NocheAnterior'));
@@ -1368,10 +1546,20 @@
     var hoy = nocheDeHoy();
     var txt = S.fecha === hoy ? T('EstaNoche') : T('NocheDel', { f: dia(instanteLocal(S.fecha, 12, 0)) });
     var m = el('div', 'cielo-fecha-txt', txt);
-    a.addEventListener('click', function () { S.fecha = sumarDias(S.fecha, -1); pintar(); });
-    b.addEventListener('click', function () { S.fecha = sumarDias(S.fecha, 1); pintar(); });
+    a.addEventListener('click', function () { cambiarFecha(sumarDias(S.fecha, -1)); });
+    b.addEventListener('click', function () { cambiarFecha(sumarDias(S.fecha, 1)); });
     f.appendChild(a); f.appendChild(m); f.appendChild(b);
-    if (S.fecha !== hoy) { var h = el('button', 'cielo-hoy', T('Hoy')); h.type = 'button'; h.addEventListener('click', function () { S.fecha = hoy; pintar(); }); f.appendChild(h); }
+    /* el calendario del sistema: el boton abre el selector nativo (showPicker)
+       y, donde no lo haya, deja a la vista el campo de fecha */
+    var inp = el('input', 'cielo-fecha-input'); inp.type = 'date'; inp.value = S.fecha; inp.setAttribute('aria-label', T('FechaElegir'));
+    inp.addEventListener('change', function () { cambiarFecha(inp.value); });
+    var bf = el('button', 'cielo-fecha-cal', '📅'); bf.type = 'button'; bf.setAttribute('aria-label', T('FechaElegir')); bf.title = T('FechaElegir');
+    bf.addEventListener('click', function () {
+      try { if (typeof inp.showPicker === 'function') { inp.showPicker(); return; } } catch (e) {}
+      inp.classList.add('visto'); try { inp.focus(); inp.click(); } catch (e2) {}
+    });
+    f.appendChild(bf); f.appendChild(inp);
+    if (S.fecha !== hoy) { var h = el('button', 'cielo-hoy', T('Hoy')); h.type = 'button'; h.addEventListener('click', function () { cambiarFecha(hoy); }); f.appendChild(h); }
     c.appendChild(f);
   }
   function lineaNoche(n) {
@@ -1404,6 +1592,9 @@
   function pintarNoche(c) {
     var n = noche();
     selectorFecha(c);
+    /* los avisos que caen en los dos dias de antes, y el indice de la noche */
+    c.appendChild(tarjetaAvisos({ pronto: true }));
+    c.appendChild(tarjetaIndice(n));
     /* Sol y oscuridad */
     var t1 = tarjeta(T('Oscuridad'));
     t1.appendChild(lineaNoche(n));
@@ -1439,6 +1630,8 @@
     c.appendChild(t2);
     /* Nubes (solo si hay prevision para esa noche) */
     var tn = tarjetaNubes(n); if (tn) c.appendChild(tn);
+    /* las horas para fotos: dorada, azul y la Via Lactea */
+    var tf = tarjetaFotos(n); if (tf) c.appendChild(tf);
     /* Planetas */
     var t3 = tarjeta(T('Planetas'));
     var pl = planetasNoche(n);
@@ -1573,7 +1766,8 @@
   }
 
   /* ── PESTANA «CALENDARIO» ──────────────────────────────────────── */
-  var FILTROS_CAL = [['todo', 'CalTodo'], ['lluvia', 'CalLluvias'], ['eclipse', 'CalEclipses'], ['planeta', 'CalPlanetas'], ['sol', 'CalSolLuna']];
+  var FILTROS_CAL = [['todo', 'CalTodo'], ['lluvia', 'CalLluvias'], ['eclipse', 'CalEclipses'], ['planeta', 'CalPlanetas'], ['sol', 'CalSolLuna'], ['luna', 'CalLuna']];
+  var FASES_Q = ['Nueva', 'CuartoCreciente', 'Llena', 'CuartoMenguante'];
   function tituloEvento(e) {
     switch (e.tipo) {
       case 'lluvia': return T('EvLluvia', { n: nom(CIELO_LLU, e.l.id) });
@@ -1584,13 +1778,21 @@
       case 'conjuncion': return T('EvConjuncion', { a: nom(CIELO_CUERPO, e.a), b: nom(CIELO_CUERPO, e.b) });
       case 'estacion': return T(e.k);
       case 'lunaCerca': return T('EvLunaCerca');
+      case 'fase': return T('Fase' + FASES_Q[e.q]);
+      case 'retro': return T(e.ini ? 'EvRetroIni' : 'EvRetroFin', { p: nom(CIELO_CUERPO, e.p) });
     }
     return '';
   }
-  var ICONO_EV = { lluvia: '☄️', eclipseSol: '🌒', eclipseLuna: '🌕', oposicion: '🪐', elongacion: '🌆', conjuncion: '💫', estacion: '🌍', lunaCerca: '🌕' };
+  var ICONO_EV = { lluvia: '☄️', eclipseSol: '🌒', eclipseLuna: '🌕', oposicion: '🪐', elongacion: '🌆', conjuncion: '💫', estacion: '🌍', lunaCerca: '🌕', retro: '↩️' };
+  var ICONO_FASE = ['🌑', '🌓', '🌕', '🌗'];
   function detalleEvento(e) {
     var A = Astronomy, d = [];
     switch (e.tipo) {
+      case 'fase': d.push(T('FaseDet', { h: hora(e.t) })); break;
+      case 'retro':
+        if (e.ini) d.push(e.otro ? T('RetroDet', { f: dia(e.otro), c: nombreCon(e.con) }) : T('RetroDetSinFin', { c: nombreCon(e.con) }));
+        else d.push(e.otro ? T('RetroFinDet', { f: dia(e.otro) }) : T('RetroFinDetSinIni'));
+        break;
       case 'lluvia':
         d.push(T('LluviaMax', { f: dia(e.t), h: hora(e.t) }));
         d.push(e.l.thz ? T('LluviaThz', { z: e.l.thz }) : T('LluviaThzVar'));
@@ -1618,12 +1820,13 @@
     }
     return d;
   }
-  function filaEvento(e) {
+  function filaEvento(e, opc) {
     var it = el('div', 'cielo-item');
-    it.appendChild(el('div', 'cielo-item-ico', ICONO_EV[e.tipo] || '✨'));
+    it.appendChild(el('div', 'cielo-item-ico', e.tipo === 'fase' ? ICONO_FASE[e.q] : (ICONO_EV[e.tipo] || '✨')));
     var tt = el('div', 'cielo-item-txt');
     tt.appendChild(el('div', 'cielo-item-nom', tituloEvento(e)));
     detalleEvento(e).forEach(function (x) { tt.appendChild(el('div', 'cielo-item-sub', x)); });
+    if (opc && opc.avisos) tt.appendChild(botonesAviso(e));
     it.appendChild(tt);
     var der = el('div', 'cielo-item-der', dia(e.t)); it.appendChild(der);
     return it;
@@ -1631,16 +1834,19 @@
   function pintarCalendario(c) {
     var chips = el('div', 'cielo-chips');
     FILTROS_CAL.forEach(function (f) {
-      var b = el('button', null, T(f[1])); b.type = 'button';
+      var b = el('button', null, (f[0] === 'luna' ? '🌙 ' : '') + T(f[1])); b.type = 'button';
       b.setAttribute('aria-pressed', S.cal === f[0] ? 'true' : 'false');
       b.addEventListener('click', function () { S.cal = f[0]; pintar(); });
       chips.appendChild(b);
     });
     c.appendChild(chips);
-    var grupo = { lluvia: 'lluvia', eclipseSol: 'eclipse', eclipseLuna: 'eclipse', oposicion: 'planeta', elongacion: 'planeta', conjuncion: 'planeta', estacion: 'sol', lunaCerca: 'sol' };
+    /* los avisos puestos, arriba del todo */
+    c.appendChild(tarjetaAvisos({}));
+    /* las fases van en su filtro: cuatro al mes taparian lo demas en «Todo» */
+    var grupo = { lluvia: 'lluvia', eclipseSol: 'eclipse', eclipseLuna: 'eclipse', oposicion: 'planeta', elongacion: 'planeta', conjuncion: 'planeta', retro: 'planeta', estacion: 'sol', lunaCerca: 'sol', fase: 'luna' };
     var ahora = new Date(), unAnio = new Date(ahora.getTime() + 366 * 864e5);
     var lista = eventos().filter(function (e) {
-      if (S.cal !== 'todo' && grupo[e.tipo] !== S.cal) return false;
+      if (S.cal === 'todo' ? e.tipo === 'fase' : grupo[e.tipo] !== S.cal) return false;
       if (e.t < new Date(ahora.getTime() - 2 * 864e5)) return false;
       return e.tipo === 'eclipseSol' || e.tipo === 'eclipseLuna' || e.t < unAnio;
     });
@@ -1649,8 +1855,9 @@
     lista.forEach(function (e) {
       var m = mesAnio(e.t);
       if (m !== mesAnt) { c.appendChild(el('div', 'cielo-mes-cab', m)); mesAnt = m; }
-      var t = el('div', 'cielo-tarjeta'); t.appendChild(filaEvento(e)); c.appendChild(t);
+      var t = el('div', 'cielo-tarjeta'); t.appendChild(filaEvento(e, { avisos: true })); c.appendChild(t);
     });
+    if (S.cal === 'luna') c.appendChild(el('div', 'cielo-nota', T('FasesNota')));
     var nota = tarjeta(T('CometasSatelites'));
     nota.appendChild(el('p', 'cielo-p', T('CometasTxt')));
     nota.appendChild(el('p', 'cielo-p', T('SatelitesTxt')));
@@ -2151,7 +2358,10 @@
     var W = V.W = cv.width, H = V.H = cv.height, dpr = V.dpr;
     var I = instante(fecha), rot = I.rot, sol = I.cu.Sun, luna = I.cu.Moon;
     var B = baseVista(V), esc = escalaVista(V), P = proyector(V, B, esc);
-    var lunaLuz = luna.alt > -2 ? (1 - Math.cos(luna.fase * RAD)) / 2 * suave(-2, 15, luna.alt) : 0;
+    /* la luz de la Luna: su fraccion iluminada (el angulo de fase del motor
+       es 0 con Luna llena y 180 con nueva: (1 + cos) / 2, no (1 − cos) / 2,
+       que la dejaba a oscuras en luna llena; corregido el 21-10-2026) */
+    var lunaLuz = luna.alt > -2 ? (1 + Math.cos(luna.fase * RAD)) / 2 * suave(-2, 15, luna.alt) : 0;
     /* hasta que magnitud: la que deja el cielo -noche, crepusculo, Luna- y
        un poco mas al acercarse */
     var oscuridad = suave(-2, -16, sol.alt);
@@ -2375,6 +2585,8 @@
       }
     }
     if (V.objetivo) flecha(ctx, V, P, I, dpr, reloj);
+    /* el recorrido de un astro esa noche, si se pidio en su ficha */
+    if (V.rastro) { try { pintarRastro(ctx, V, P, fecha, dpr, rotulo); } catch (e) { try { console.warn('cielo rastro:', e); } catch (_) {} V.rastro = null; } }
     /* 10. los rotulos, por importancia y sin pisarse */
     ctx.globalCompositeOperation = 'source-over';
     rotulos.sort(function (a, b) { return a.prio - b.prio; });
@@ -2542,13 +2754,14 @@
     if (!M.v) M.v = nuevaVista(null);
     var V = M.v;
     V.az = M.az; V.alt = M.alt; V.fov = M.cenital ? 184 : M.fov; V.cenital = M.cenital;
-    V.lineas = M.lineas; V.nombres = M.nombres; V.profundo = M.profundo; V.sel = M.sel;
+    V.lineas = M.lineas; V.nombres = M.nombres; V.profundo = M.profundo; V.sel = M.sel; V.rastro = M.rastro;
     V.quieto = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
     return V;
   }
   function pintarMapa(c) {
     horaPorDefecto();
     var M = S.mapa;
+    selectorFecha(c);
     var caja = el('div', 'cielo-mapa-caja');
     var cv = el('canvas');
     cv.setAttribute('role', 'img'); cv.setAttribute('aria-label', T('MapaAria'));
@@ -2560,6 +2773,9 @@
     der.appendChild(botonMapa(M.cenital ? '⌒' : '◎', null, function () { M.cenital = !M.cenital; pintar(); }, T(M.cenital ? 'MapaHorizonte' : 'MapaTodo'), 'cielo-hud-btn'));
     der.appendChild(botonMapa('−', null, function () { zoomMapa(1.4); }, T('Alejar'), 'cielo-hud-btn'));
     der.appendChild(botonMapa('+', null, function () { zoomMapa(1 / 1.4); }, T('Acercar'), 'cielo-hud-btn'));
+    /* 📸: la carta tal cual, con su pie, para guardarla o compartirla */
+    var bcap = botonMapa('📸', null, function () { capturarMapa(bcap); }, T('Capturar'), 'cielo-hud-btn');
+    der.appendChild(bcap);
     hud.appendChild(der);
     caja.appendChild(hud);
     c.appendChild(caja);
@@ -2723,8 +2939,21 @@
     c.textContent = '';
     var t = instanteMapa(), sol = cuerpoHorizonte(Astronomy.Body.Sun, Astronomy.MakeTime(t)).alt;
     if (sol > -6) c.appendChild(el('div', 'cielo-nota', T(sol > 0 ? 'MapaDeDia' : 'MapaCrepusculo')));
+    if (S.mapa.rastro) c.appendChild(el('div', 'cielo-nota', T('RecorridoNota', { c: cosaDe(S.mapa.rastro, t).nombre })));
     if (!S.mapa.sel) { c.appendChild(el('div', 'cielo-nota', T('MapaToca'))); return; }
-    c.appendChild(fichaCosa(cosaDe(S.mapa.sel), t, { buscar: true }));
+    c.appendChild(fichaCosa(cosaDe(S.mapa.sel), t, { buscar: true, recorridoActivo: mismoSel(S.mapa.rastro, S.mapa.sel),
+      recorrido: function (sel) { S.mapa.rastro = sel; dibujar(); pintarSeleccionMapa(); } }));
+  }
+  function capturarMapa(boton) {
+    var M = S.mapa, V = vistaMapa(), t = instanteMapa();
+    if (!M.canvas) return Promise.resolve(null);
+    V.cv = M.canvas; V.dpr = M.dpr || 1;
+    var c = M.sel ? cosaDe(M.sel, t) : null;
+    return capturarY(V, { fecha: t, titulo: c ? c.nombre : T('Titulo'), avisa: function (r) {
+      var k = M.caja; if (!k || (r !== 'descargado' && r !== 'fallo')) return;
+      var ant = k.querySelector('.cielo-nota-aviso'); if (ant) ant.remove();
+      k.insertBefore(el('div', 'cielo-nota cielo-nota-aviso', T(r === 'descargado' ? 'CapturaLista' : 'CapturaNo')), k.firstChild);
+    } });
   }
 
   /* ── «APUNTA AL CIELO» ─────────────────────────────────────────────
@@ -2787,11 +3016,16 @@
     var tit = el('div', 'cv-titulo', T('Apunta'));
     var bcam = botonMapa('📷', false, function () { camara(!VI.V.camara); }, T('Camara'), 'cv-btn');
     var bbus = botonMapa('🔍', null, function () { buscar(true); }, T('BuscarCielo'), 'cv-btn');
+    var bcap = botonMapa('📸', null, function () { capturarVista(); }, T('Capturar'), 'cv-btn');
     var broj = botonMapa('●', S.rojo, function () { rojo(!S.rojo); broj.setAttribute('aria-pressed', S.rojo ? 'true' : 'false'); }, T('Rojo'), 'cv-btn cv-btn-rojo');
-    [bx, tit, bcam, bbus, broj].forEach(function (x) { arriba.appendChild(x); });
+    [bx, tit, bcam, bbus, bcap, broj].forEach(function (x) { arriba.appendChild(x); });
     d.appendChild(arriba);
     var obj = el('div', 'cv-objetivo'); obj.hidden = true; d.appendChild(obj);
+    /* la comprobacion de la brujula: «pon la Luna en el circulo y toca Ya» */
+    var comp = el('div', 'cv-comprobar'); comp.hidden = true; d.appendChild(comp);
     var aviso = el('div', 'cv-aviso'); aviso.setAttribute('aria-live', 'polite'); d.appendChild(aviso);
+    /* la guia de 20 segundos, la primera vez */
+    var guia = el('div', 'cv-guia'); guia.hidden = true; guia.setAttribute('role', 'dialog'); guia.setAttribute('aria-label', T('GuiaTitulo')); d.appendChild(guia);
     var mira = el('div', 'cv-mira'); mira.setAttribute('aria-hidden', 'true'); d.appendChild(mira);
     var nombre = el('button', 'cv-nombre'); nombre.type = 'button';
     nombre.addEventListener('click', function () { if (VI.centro) abrirHoja(VI.centro); });
@@ -2799,9 +3033,11 @@
     var abajo = el('div', 'cv-abajo');
     var bhora = botonMapa('', null, function () { VI.tiempo.hidden = !VI.tiempo.hidden; }, T('MapaHora'), 'cv-chip');
     var bmodo = botonMapa('', null, function () { modoSensores(!VI.V.sensores); }, T('Sensores'), 'cv-chip');
-    var baj = botonMapa('', null, function () { VI.ajuste = 0; guardar('tgo_cielo_ajuste', 0); VI.cal = 1; guardar('tgo_cielo_cal', 1); pintarChips(); }, T('AjusteQuitar'), 'cv-chip');
+    var bcomp = botonMapa('', null, function () { comprobarBrujula(); }, T('Comprobar'), 'cv-chip');
+    bcomp.hidden = true;
+    var baj = botonMapa('', null, function () { VI.ajuste = 0; guardar('tgo_cielo_ajuste', 0); VI.cal = 1; guardar('tgo_cielo_cal', 1); VI.comprobada = null; pintarChips(); }, T('AjusteQuitar'), 'cv-chip');
     baj.hidden = true;
-    [bhora, bmodo, baj].forEach(function (x) { abajo.appendChild(x); });
+    [bhora, bmodo, bcomp, baj].forEach(function (x) { abajo.appendChild(x); });
     d.appendChild(abajo);
     /* la hora: «ahora» por defecto, que es el cielo que se tiene delante */
     var tiempo = el('div', 'cv-tiempo'); tiempo.hidden = true;
@@ -2818,10 +3054,14 @@
     V.az = S.mapa.az; V.alt = 35; V.fov = 70; V.suelo = 0.8; V.nombres = true; V.lineas = true; V.profundo = true;
     V.quieto = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
     VI = { d: d, V: V, video: video, cv: cv, tit: tit, bcam: bcam, nombre: nombre, aviso: aviso, obj: obj, bhora: bhora, bmodo: bmodo, baj: baj,
+           bcomp: bcomp, comp: comp, guia: guia, comprobando: null, comprobada: null, guiaAbierta: false, ayudaDada: false,
            tiempo: tiempo, rango: rg, bplay: bplay, hoja: hoja, bus: bus, desfase: 0, corre: false, centro: null, centroClave: null,
            ajuste: guardado('tgo_cielo_ajuste', 0), cal: guardado('tgo_cielo_cal', 1), anim: null, ant: performance.now(),
            historia: false, avisoT: null, vibro: false, evento: opc.evento || null };
     if (opc.objetivo) ponerObjetivo(opc.objetivo);
+    /* la guia, la primera vez (o si se pide); con un objetivo ya puesto, no
+       se interpone: se viene de «Encuentralo» y lo que se quiere es la flecha */
+    if (!opc.objetivo && !guardado('tgo_cielo_guia', 0) && !opc.sinGuia) mostrarGuia();
     /* el boton «atras» de Android cierra la vista, no la app */
     try { history.pushState({ tgCieloVista: 1 }, ''); VI.historia = true; } catch (e) {}
     document.addEventListener('visibilitychange', alVisibilidad);
@@ -2902,7 +3142,7 @@
     SEN.abs = e.type === 'deviceorientationabsolute' || e.absolute === true;
     SEN.ios = typeof e.webkitCompassHeading === 'number' && e.webkitCompassHeading >= 0 ? e.webkitCompassHeading : null;
     SEN.prec = typeof e.webkitCompassAccuracy === 'number' ? e.webkitCompassAccuracy : null;
-    if (SEN.n === 1) { clearTimeout(VI.espera); modoSensores(true); avisar(T('ApuntaAyuda'), 7000); }
+    if (SEN.n === 1) { clearTimeout(VI.espera); modoSensores(true); if (!VI.guiaAbierta && !VI.ayudaDada) { VI.ayudaDada = true; avisar(T('ApuntaAyuda'), 7000); } }
   }
   function sinSensores(motivo) {
     if (!VI) return;
@@ -3092,11 +3332,17 @@
     var f = new Date(Date.now() + VI.desfase * 60000);
     VI.bhora.textContent = '🕒 ' + hora(f) + (Math.abs(VI.desfase) >= 5 ? ' · ' + (VI.desfase > 0 ? '+' : '−') + duracion(Math.abs(VI.desfase)) : '');
     VI.bhora.classList.toggle('cv-chip-aviso', Math.abs(VI.desfase) >= 5);
+    /* el chip de los sensores lleva la precision que da iOS (grados de
+       error de la brujula) y una marca si se comprobo con un astro */
+    var prec = VI.V.sensores && typeof SEN.prec === 'number' && SEN.prec >= 0 ? Math.round(SEN.prec) : null;
+    var txtModo = VI.V.sensores ? '🧭 ' + T('Sensores') + (prec !== null ? ' ±' + prec + '°' : '') + (VI.comprobada ? ' ✓' : '') : '✋ ' + T('AMano');
+    if (VI.bmodo.textContent !== txtModo) { VI.bmodo.textContent = txtModo; VI.bmodo.title = prec !== null ? T('Precision', { g: prec }) + (VI.comprobada ? ' · ' + T('Comprobada') : '') : (VI.comprobada ? T('Comprobada') : T('Sensores')); }
     if (soloHora) return;
     VI.bplay.textContent = VI.corre ? '❚❚' : '▶';
     VI.bplay.setAttribute('aria-pressed', VI.corre ? 'true' : 'false');
-    VI.bmodo.textContent = VI.V.sensores ? '🧭 ' + T('Sensores') : '✋ ' + T('AMano');
     VI.bmodo.setAttribute('aria-pressed', VI.V.sensores ? 'true' : 'false');
+    VI.bcomp.textContent = '🎯 ' + T('Comprobar');
+    VI.bcomp.hidden = !(VI.V.sensores && !VI.comprobando);
     var aj = Math.round(VI.ajuste), cal = Math.abs(VI.cal - 1) > 0.02;
     VI.baj.hidden = !(VI.V.sensores && (aj || cal));
     VI.baj.textContent = '↺ ' + (aj ? (aj > 0 ? '+' : '−') + Math.abs(aj) + '°' : '') + (cal ? (aj ? ' · ' : '') + '×' + numero(VI.cal, 2) : '');
@@ -3116,7 +3362,8 @@
     cab.appendChild(botonMapa('✕', null, cerrarHoja, cerrarTxt(), 'cv-btn'));
     h.appendChild(cab);
     var f = new Date(Date.now() + VI.desfase * 60000);
-    h.appendChild(fichaCosa(cosaDe(sel), f, { guiar: true }));
+    h.appendChild(fichaCosa(cosaDe(sel), f, { guiar: true, recorridoActivo: mismoSel(VI.V.rastro, sel),
+      recorrido: function (s) { if (!VI) return; VI.V.rastro = s; cerrarHoja(); if (s) avisar(T('RecorridoNota', { c: cosaDe(s).nombre }), 6000); } }));
     h.hidden = false; h.scrollTop = 0;
     VI.V.sel = sel;
   }
@@ -3167,6 +3414,7 @@
   }
   function ponerObjetivo(sel) {
     if (!VI) return;
+    if (VI.comprobando) { VI.comprobando = null; pintarComprobar(); pintarChips(); }
     VI.V.objetivo = sel; VI.vibro = false; VI.gradosObjetivo = null;
     cerrarHoja();
     var I = instante(new Date(Date.now() + VI.desfase * 60000)), e = vectorSel(sel, I);
@@ -3177,7 +3425,7 @@
   function pintarObjetivo(cerca) {
     var o = VI.obj, s = VI.V.objetivo;
     o.textContent = '';
-    if (!s) { o.hidden = true; return; }
+    if (!s || VI.comprobando) { o.hidden = true; return; }       // comprobando la brujula, el chip es el de «Ya»
     var c = cosaDe(s);
     o.appendChild(el('span', null, '🎯 '));
     o.appendChild(c.des && c.nombre === c.des ? desig(c.nombre) : el('b', null, c.nombre));
@@ -3545,6 +3793,14 @@
       b2.addEventListener('click', function () { ponerObjetivo(c.sel); });
       bt.appendChild(b2);
     }
+    /* su recorrido de salida a puesta, pintado en la carta (lo piden a
+       Stellarium; lo tienen Sky Tonight y SkyView) */
+    if (opc.recorrido && c.tipo !== 'punto' && c.tipo !== 'constelacion' && (c.cuerpo || c.v)) {
+      var b3 = el('button', 'cielo-boton', (opc.recorridoActivo ? '✕ ' : '🛤️ ') + T(opc.recorridoActivo ? 'RecorridoQuitar' : 'Recorrido')); b3.type = 'button';
+      b3.setAttribute('aria-pressed', opc.recorridoActivo ? 'true' : 'false');
+      b3.addEventListener('click', function () { opc.recorrido(opc.recorridoActivo ? null : c.sel); });
+      bt.appendChild(b3);
+    }
     if (bt.childNodes.length) f.appendChild(bt);
     /* Wikipedia, al final y sin bloquear nada */
     if (c.wp && c.wp.length) {
@@ -3650,6 +3906,499 @@
     w.appendChild(el('div', 'cielo-wiki-lic', T('WikiLicencia')));
   }
 
+  /* ── LO QUE PIDEN LAS RESEÑAS (21 de octubre de 2026) ──────────────
+     De leer las quejas y las peticiones de las apps del cielo en las dos
+     tiendas (APPS-DEL-CIELO-COMPETENCIA.md): la brujula que no cuadra y que
+     ninguna deja comprobar, los avisos que no se apagan, un indice de la
+     noche que se esconde, el recorrido de un astro, la fecha libre, la
+     captura, las horas para fotos, las fases del mes y los retrogrados.
+     Todo se calcula aqui, en el movil, sin servidor y sin cuenta; lo que se
+     guarda (avisos, la guia ya vista) se queda en localStorage de este
+     movil, y las imagenes y los .ics salen por la hoja de compartir del
+     sistema o se descargan: no pasan por ningun sitio. */
+
+  /* ── EL INDICE DE LA NOCHE (0 a 10) ─────────────────────────────────
+     Lo que Sky Tonight ensena sin decir como. Aqui se dice: 10 puntos por
+     una noche cerrada entera sin Luna; se descuenta la parte de la noche
+     cerrada con la Luna arriba, en proporcion a lo iluminada que este (una
+     Luna al 20 % apenas molesta, una llena lo apaga todo); y la media de
+     nubes medias y altas previstas (Open-Meteo, como la tarjeta de nubes)
+     lo baja en esa proporcion. Sin prevision, no se cuentan y se dice. */
+  function nubesNoche(n) {
+    if (!S.nubes) return null;
+    var ini = n.oscuro.date.getTime(), fin = n.claro.date.getTime();
+    var h = S.nubes.filter(function (x) { return x.t >= ini - 1800000 && x.t <= fin; });
+    if (h.length < 3) return null;
+    return Math.round(h.reduce(function (s, x) { return s + Math.max(x.m, x.a); }, 0) / h.length);
+  }
+  function indiceNoche(n) {
+    var oscuro = (n.claro.ut - n.oscuro.ut) * 24;
+    var sinLuna = Math.max(0, Math.min(n.sinLuna, oscuro)), frac = oscuro > 0 ? sinLuna / oscuro : 0;
+    var luna = (1 - frac) * Math.min(1, 0.2 + n.ilum);
+    var nubes = nubesNoche(n);
+    var v = 10 * (1 - luna) * (nubes === null ? 1 : 1 - nubes / 100);
+    var valor = Math.max(0, Math.min(10, Math.round(v)));
+    return { valor: valor, palabra: valor >= 9 ? 'Excelente' : valor >= 7 ? 'Buena' : valor >= 5 ? 'Regular' : valor >= 3 ? 'Floja' : 'Mala',
+             oscuro: oscuro, sinLuna: sinLuna, frac: frac, ilum: n.ilum, nubes: nubes };
+  }
+  function colorIndice(v) { return v >= 7 ? '#9be29e' : v >= 5 ? '#F5C76B' : '#ff9a6a'; }
+  function tarjetaIndice(n) {
+    var x = indiceNoche(n), t = tarjeta(T('Indice'));
+    var caja = el('div', 'cielo-indice');
+    var aro = el('div', 'cielo-indice-aro');
+    aro.style.background = 'conic-gradient(' + colorIndice(x.valor) + ' ' + (x.valor * 36) + 'deg, rgba(255,255,255,0.08) 0)';
+    var num = el('div', 'cielo-indice-num'); num.appendChild(el('b', null, String(x.valor))); num.appendChild(el('small', null, '/10'));
+    aro.appendChild(num); aro.setAttribute('role', 'img'); aro.setAttribute('aria-label', T('IndiceDe', { n: x.valor }));
+    caja.appendChild(aro);
+    var txt = el('div', 'cielo-indice-txt');
+    var pal = el('div', 'cielo-indice-pal', T('Indice' + x.palabra)); pal.style.color = colorIndice(x.valor); txt.appendChild(pal);
+    txt.appendChild(el('div', 'cielo-item-sub', T('IndiceNoche', { t: duracion(x.oscuro * 60) })));
+    txt.appendChild(el('div', 'cielo-item-sub', T('IndiceSinLuna', { t: duracion(x.sinLuna * 60), p: numero(x.frac * 100, 0) }) +
+      (x.frac < 0.995 ? ' · ' + T('IndiceLunaIlum', { p: numero(x.ilum * 100, 0) }) : '')));
+    txt.appendChild(el('div', 'cielo-item-sub', x.nubes === null ? T('IndiceSinNubes') : T('IndiceNubes', { p: numero(x.nubes, 0) })));
+    caja.appendChild(txt); t.appendChild(caja);
+    var bt = el('button', 'cielo-boton', '📤 ' + T('Compartir')); bt.type = 'button';
+    bt.addEventListener('click', function () { compartirNoche(n, bt); });
+    t.appendChild(bt);
+    t.appendChild(el('div', 'cielo-nota', T('IndiceComo')));
+    return t;
+  }
+  /* La imagen que se comparte: el cielo de esa noche (la misma carta,
+     mirando al sur a media noche cerrada), el indice y lo mejor. 1080×1350. */
+  function imagenNoche(n) {
+    var W = 1080, H = 1350, HC = 640, c = document.createElement('canvas'); c.width = W; c.height = H;
+    var g = c.getContext('2d');
+    var cielo = document.createElement('canvas'); cielo.width = W; cielo.height = HC;
+    var V = nuevaVista(cielo); V.dpr = 2.4; V.az = 180; V.alt = 32; V.fov = 100; V.suelo = 0.93; V.quieto = true;
+    pintarCielo(V, Astronomy.MakeTime((n.oscuro.ut + n.claro.ut) / 2).date, 0);
+    g.drawImage(cielo, 0, 0);
+    var gr = g.createLinearGradient(0, HC - 120, 0, HC); gr.addColorStop(0, 'rgba(5,8,18,0)'); gr.addColorStop(1, 'rgba(5,8,18,1)');
+    g.fillStyle = gr; g.fillRect(0, HC - 120, W, 120);
+    g.fillStyle = '#05081a'; g.fillRect(0, HC, W, H - HC);
+    var x = indiceNoche(n), hoy = n.fecha === nocheDeHoy(), M = 56;
+    var F = function (peso, tam) { g.font = peso + ' ' + tam + 'px DM Sans, system-ui, sans-serif'; };
+    g.textBaseline = 'alphabetic'; g.textAlign = 'left';
+    g.fillStyle = '#F5C76B'; F(800, 54);
+    g.fillText(recortarTexto(g, hoy ? T('ImagenTitulo') : T('NocheDel', { f: dia(instanteLocal(n.fecha, 12, 0)) }) + ' · Teide', W - 2 * M), M, HC + 84);
+    g.fillStyle = 'rgba(255,255,255,0.72)'; F(500, 31);
+    g.fillText(recortarTexto(g, diaAnio(instanteLocal(n.fecha, 12, 0)) + ' · Observatorio del Teide, Izaña', W - 2 * M), M, HC + 130);
+    /* el aro del indice, y a su derecha la palabra y las tres lineas (envueltas) */
+    var cx = 150, cy = HC + 290, R = 90, X = 290;
+    g.lineWidth = 16; g.strokeStyle = 'rgba(255,255,255,0.08)'; g.beginPath(); g.arc(cx, cy, R, 0, 2 * Math.PI); g.stroke();
+    g.strokeStyle = colorIndice(x.valor); g.beginPath(); g.arc(cx, cy, R, -Math.PI / 2, -Math.PI / 2 + x.valor / 10 * 2 * Math.PI); g.stroke();
+    g.textAlign = 'center'; g.fillStyle = '#fff'; F(800, 82); g.fillText(String(x.valor), cx, cy + 29);
+    g.textAlign = 'left';
+    g.fillStyle = colorIndice(x.valor); F(800, 42); g.fillText(recortarTexto(g, T('Indice' + x.palabra) + ' · ' + T('IndiceDe', { n: x.valor }), W - X - M), X, HC + 236);
+    g.fillStyle = 'rgba(255,255,255,0.85)'; F(500, 29);
+    var y = HC + 286;
+    [T('IndiceNoche', { t: duracion(x.oscuro * 60) }),
+     T('IndiceSinLuna', { t: duracion(x.sinLuna * 60), p: numero(x.frac * 100, 0) }) + (x.frac < 0.995 ? ' · ' + T('IndiceLunaIlum', { p: numero(x.ilum * 100, 0) }) : ''),
+     x.nubes === null ? T('IndiceSinNubes') : T('IndiceNubes', { p: numero(x.nubes, 0) })].forEach(function (l) {
+      envolverTexto(g, l, W - X - M).slice(0, 3).forEach(function (s) { g.fillText(s, X, y); y += 38; });
+      y += 6;
+    });
+    /* lo mejor: el planeta mas brillante y dos objetos a simple vista */
+    var mejor = [], pl = planetasNoche(n), mj = mejoresNoche(n);
+    if (pl.length) mejor.push(nom(CIELO_CUERPO, pl[0].p));
+    mj[1].slice(0, 2).forEach(function (o) { mejor.push(o.k === 'dob' ? nombreDoble(o.o) : (nombreObjeto(o.o) || designacionObjeto(o.o))); });
+    var vl = viaLacteaNoche(n); if (vl.mejor) mejor.push(T('ViaLactea'));
+    y = Math.max(y, cy + R + 60);
+    if (mejor.length) {
+      g.fillStyle = '#F5C76B'; F(600, 32);
+      envolverTexto(g, T('ImagenMejor', { l: mejor.join(' · ') }), W - 2 * M).slice(0, 2).forEach(function (s) { g.fillText(s, M, y); y += 42; });
+    }
+    g.fillStyle = 'rgba(255,255,255,0.5)'; F(500, 27);
+    g.fillText('Tenerife Go · jerome4551.github.io/tenerife-go', M, H - 52);
+    g.textAlign = 'right'; g.fillText(T('Titulo'), W - M, H - 52); g.textAlign = 'left';
+    return c;
+  }
+  function recortarTexto(g, s, max) {
+    s = String(s);
+    if (g.measureText(s).width <= max) return s;
+    while (s.length > 1 && g.measureText(s + '…').width > max) s = s.slice(0, -1);
+    return s + '…';
+  }
+  /* en lineas que quepan: por espacios, y si una palabra (o el chino, sin
+     espacios) no cabe, por letras */
+  function envolverTexto(g, s, max) {
+    var out = [], linea = '';
+    String(s).split(' ').forEach(function (w) {
+      var prueba = linea ? linea + ' ' + w : w;
+      if (g.measureText(prueba).width <= max) { linea = prueba; return; }
+      if (linea) out.push(linea);
+      linea = '';
+      for (var i = 0; i < w.length; i++) {
+        if (g.measureText(linea + w[i]).width > max && linea) { out.push(linea); linea = ''; }
+        linea += w[i];
+      }
+    });
+    if (linea) out.push(linea);
+    return out;
+  }
+  function compartirNoche(n, boton) {
+    var c;
+    try { c = imagenNoche(n); } catch (e) { try { console.warn('cielo imagen:', e); } catch (_) {} notaBajo(boton, T('CapturaNo')); return Promise.resolve(null); }
+    return aBlob(c).then(function (b) {
+      return compartirFichero(b, 'tenerife-go-' + n.fecha + '.png', T('Titulo')).then(function (r) { if (r === 'descargado') notaBajo(boton, T('CapturaLista')); return b; });
+    }, function () { notaBajo(boton, T('CapturaNo')); return null; });
+  }
+  function aBlob(c) { return new Promise(function (ok, mal) { try { c.toBlob(function (b) { if (b) ok(b); else mal(new Error('blob')); }, 'image/png'); } catch (e) { mal(e); } }); }
+  /* una nota debajo de un boton, una sola vez */
+  function notaBajo(boton, txt) {
+    if (!boton || !boton.parentNode) return;
+    var s = boton.nextSibling;
+    if (s && s.className === 'cielo-nota cielo-nota-aviso') s.textContent = txt;
+    else boton.parentNode.insertBefore(el('div', 'cielo-nota cielo-nota-aviso', txt), boton.nextSibling);
+  }
+
+  /* ── COMPARTIR O GUARDAR UN FICHERO ─────────────────────────────────
+     La hoja de compartir del sistema si acepta ficheros (Android, iOS); si
+     no, se descarga. Nada pasa por ningun servidor. Devuelve que paso. */
+  function compartirFichero(blob, nombre, titulo) {
+    var f = null;
+    try { f = new File([blob], nombre, { type: blob.type }); } catch (e) { f = null; }
+    if (f && navigator.share && navigator.canShare) {
+      var puede = false; try { puede = navigator.canShare({ files: [f] }); } catch (e) { puede = false; }
+      if (puede) return navigator.share({ files: [f], title: titulo }).then(function () { return 'compartido'; },
+        function (e) { return e && e.name === 'AbortError' ? 'cancelado' : descargar(blob, nombre); });
+    }
+    return Promise.resolve(descargar(blob, nombre));
+  }
+  function descargar(blob, nombre) {
+    try {
+      var u = URL.createObjectURL(blob), a = document.createElement('a');
+      a.href = u; a.download = nombre; a.rel = 'noopener'; a.style.display = 'none';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { try { URL.revokeObjectURL(u); } catch (e) {} }, 60000);
+      return 'descargado';
+    } catch (e) { return 'fallo'; }
+  }
+
+  /* ── LA CAPTURA DE LA CARTA Y DE LA VISTA ───────────────────────────
+     Lo pintado tal cual (con la imagen de la camara debajo si esta puesta)
+     y un pie: que se mira, cuando, y de donde sale. Sin pasar por nada. */
+  function capturar(V, opc) {
+    var cv = V.cv;
+    if (!cv || !cv.width || !cv.height) return Promise.reject(new Error('lienzo'));
+    var dpr = V.dpr || 1, W = cv.width, H = cv.height, pie = Math.round(66 * dpr);
+    var c = document.createElement('canvas'); c.width = W; c.height = H + pie;
+    var g = c.getContext('2d');
+    g.fillStyle = '#02040c'; g.fillRect(0, 0, W, H + pie);
+    var vid = opc.video;
+    if (vid && vid.videoWidth && vid.videoHeight && !vid.hidden) {
+      var s = Math.max(W / vid.videoWidth, H / vid.videoHeight), vw = vid.videoWidth * s, vh = vid.videoHeight * s;
+      try { g.drawImage(vid, (W - vw) / 2, (H - vh) / 2, vw, vh); } catch (e) {}
+    }
+    g.drawImage(cv, 0, 0);
+    g.fillStyle = 'rgba(5,8,18,0.97)'; g.fillRect(0, H, W, pie);
+    var m = 12 * dpr, max = W - 2 * m;
+    g.textBaseline = 'middle'; g.textAlign = 'left';
+    g.fillStyle = '#F5C76B'; g.font = '700 ' + Math.round(14 * dpr) + 'px DM Sans, system-ui, sans-serif';
+    g.fillText(recortarTexto(g, opc.titulo || T('Titulo'), max), m, H + pie * 0.22);
+    g.fillStyle = 'rgba(255,255,255,0.8)'; g.font = Math.round(11 * dpr) + 'px DM Sans, system-ui, sans-serif';
+    g.fillText(recortarTexto(g, T('CapturaDesde', { f: dia(opc.fecha) + ' · ' + hora(opc.fecha) }), max), m, H + pie * 0.52);
+    g.fillStyle = 'rgba(255,255,255,0.5)';
+    g.fillText(recortarTexto(g, 'Tenerife Go · jerome4551.github.io/tenerife-go', max), m, H + pie * 0.8);
+    return aBlob(c);
+  }
+  function capturarY(V, opc, boton) {
+    return capturar(V, opc).then(function (b) {
+      return compartirFichero(b, 'tenerife-go-cielo-' + fechaLocal(opc.fecha) + '.png', T('Titulo')).then(function (r) { if (opc.avisa) opc.avisa(r); return b; });
+    }, function (e) { try { console.warn('cielo captura:', e); } catch (_) {} if (opc.avisa) opc.avisa('fallo'); return null; });
+  }
+
+  /* ── EL RECORRIDO DE UN ASTRO ESA NOCHE ─────────────────────────────
+     De mediodia a mediodia, cada 10 minutos, en este-norte-arriba; con la
+     hora en cada punto en punto. Lo pinta la carta (pintarRastro). */
+  function trayectoria(c, fecha) {
+    var A = Astronomy, t0 = noche24(fecha), pts = [], b = c.cuerpo ? A.Body[c.cuerpo] : null, v = c.v;
+    if (!b && !v) return pts;
+    for (var m = 0; m <= 1440; m += 10) {
+      var t = t0.AddDays(m / 1440), e;
+      if (b) { var h = cuerpoHorizonteB(b, t); e = enuDe(h.alt, h.az); }
+      else e = refractar(aEnu(rotacion(t), v, [0, 0, 0]));
+      if (e[2] < -0.06) continue;                       // mas de 3,5 grados bajo el horizonte: no se pinta
+      var p = partes(t.date);
+      pts.push({ e: e, u: t.ut, hora: p.minute === 0 ? hora(t.date) : null });
+    }
+    return pts;
+  }
+  function pintarRastro(ctx, V, P, fecha, dpr, rotulo) {
+    var c = cosaDe(V.rastro, fecha), clave = c.id + '|' + noche24(fecha).ut.toFixed(3);
+    if (!V._rastro || V._rastro.clave !== clave) V._rastro = { clave: clave, pts: trayectoria(c, fecha) };
+    var pts = V._rastro.pts, q = [0, 0, 0], ant = null;
+    if (!pts.length) return;
+    ctx.save();
+    ctx.strokeStyle = 'rgba(245,199,107,0.62)'; ctx.lineWidth = 1.4 * dpr; ctx.setLineDash([5 * dpr, 5 * dpr]);
+    ctx.beginPath();
+    pts.forEach(function (p) {
+      var ok_ = P(p.e, q) && Math.abs(q[0]) < 4 * V.W && Math.abs(q[1]) < 4 * V.H;
+      if (ok_ && ant && Math.abs(q[0] - ant[0]) < V.W && Math.abs(q[1] - ant[1]) < V.H) ctx.lineTo(q[0], q[1]);
+      else if (ok_) ctx.moveTo(q[0], q[1]);
+      ant = ok_ ? [q[0], q[1]] : null;
+    });
+    ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(245,199,107,0.9)';
+    pts.forEach(function (p) {
+      if (!p.hora || !P(p.e, q) || q[0] < 0 || q[1] < 0 || q[0] > V.W || q[1] > V.H) return;
+      ctx.beginPath(); ctx.arc(q[0], q[1], 2.2 * dpr, 0, 2 * Math.PI); ctx.fill();
+      rotulo(p.hora, q[0] + 5 * dpr, q[1] - 4 * dpr, 9, 'rgba(245,199,107,0.85)', 1, false, '600 ');
+    });
+    ctx.restore();
+  }
+  function mismoSel(a, b) { return !!a && !!b && cosaDe(a).id === cosaDe(b).id; }
+
+  /* ── LAS HORAS PARA FOTOS ────────────────────────────────────────────
+     Hora dorada: el centro del Sol entre 6 grados sobre el horizonte y 4
+     por debajo; hora azul: entre 4 y 6 por debajo. Son las definiciones de
+     PhotoPills (photopills.com/glossary), las que usan los fotografos. Se
+     calculan con el motor, como todo. */
+  function horasFotos(n) {
+    var A = Astronomy, o = obs(), S_ = A.Body.Sun, t0 = A.MakeTime(instanteLocal(n.fecha, 12, 0));
+    var t6 = A.SearchAltitude(S_, o, -1, t0, 1, 6), tm4 = A.SearchAltitude(S_, o, -1, t0, 1, -4);
+    var cm4 = A.SearchAltitude(S_, o, +1, n.oscuro, 1, -4), c6 = A.SearchAltitude(S_, o, +1, n.oscuro, 1, 6);
+    if (!t6 || !tm4 || !cm4 || !c6) return null;
+    return { doradaT: [t6, tm4], azulT: [tm4, n.civilT], azulM: [n.civilM, cm4], doradaM: [cm4, c6] };
+  }
+  function tarjetaFotos(n) {
+    var h = horasFotos(n); if (!h) return null;
+    var t = tarjeta('📷 ' + T('ParaFotos'));
+    var tramo = function (x) { return hora(x[0].date) + '–' + hora(x[1].date); };
+    t.appendChild(fila(T('DoradaTarde'), tramo(h.doradaT)));
+    t.appendChild(fila(T('AzulTarde'), tramo(h.azulT)));
+    var vl = viaLacteaNoche(n);
+    t.appendChild(fila(T('ViaLactea'), vl.mejor ? hora(Astronomy.MakeTime(vl.desde).date) + '–' + hora(Astronomy.MakeTime(vl.hasta).date) + ' · ' + hacia(vl.mejor.az) : '—'));
+    t.appendChild(fila(T('AzulManana'), tramo(h.azulM)));
+    t.appendChild(fila(T('DoradaManana'), tramo(h.doradaM)));
+    t.appendChild(el('div', 'cielo-nota', T('FotosNota')));
+    return t;
+  }
+
+  /* ── LOS AVISOS: SOLO EN ESTE MOVIL, Y QUE SE QUITAN ───────────────
+     Lo que las reseñas castigan: avisos que llegan sin pedirlos y que no se
+     apagan. Aqui no hay ninguno por defecto. «Añadir a mi calendario» crea
+     un .ics (RFC 5545, con alarma el dia antes) que abre el calendario del
+     movil: ese si avisa. «Recordarmelo en la app» lo apunta en localStorage
+     y, los dos dias de antes, sale arriba del todo al abrir el panel: una
+     web sin servidor no puede despertar a nadie, y se dice. */
+  var AVISOS_CLAVE = 'tgo_cielo_avisos_v1';
+  function idEvento(e) {
+    var que = e.l ? e.l.id : (e.p || e.k || (e.a ? e.a + '-' + e.b : '') || (e.q !== undefined ? 'q' + e.q : '') || (e.global || e.kind || ''));
+    return e.tipo + '|' + que + (e.ini !== undefined ? (e.ini ? '|ini' : '|fin') : '') + '|' + e.t.toISOString().slice(0, 13);
+  }
+  function avisos() { try { return JSON.parse(localStorage.getItem(AVISOS_CLAVE) || '[]') || []; } catch (e) { return []; } }
+  function guardarAvisos(l) { try { if (l.length) localStorage.setItem(AVISOS_CLAVE, JSON.stringify(l)); else localStorage.removeItem(AVISOS_CLAVE); } catch (e) {} }
+  function tieneAviso(e) { var id = idEvento(e); return avisos().some(function (a) { return a.id === id; }); }
+  function ponerAviso(e) {
+    var id = idEvento(e), l = avisos().filter(function (a) { return a.id !== id; });
+    l.push({ id: id, t: e.t.getTime() });
+    l.sort(function (a, b) { return a.t - b.t; });
+    guardarAvisos(l);
+  }
+  function quitarAviso(id) { guardarAvisos(avisos().filter(function (a) { return a.id !== id; })); }
+  function quitarAvisos() { guardarAvisos([]); }
+  /* los eventos avisados que siguen en el calendario (los pasados, fuera) */
+  function eventosAvisados() {
+    var l = avisos(), ahora = Date.now(), vivos = l.filter(function (a) { return a.t > ahora - 36 * 3600000; });
+    if (vivos.length !== l.length) guardarAvisos(vivos);
+    if (!vivos.length) return [];
+    var ids = {}; vivos.forEach(function (a) { ids[a.id] = true; });
+    return eventos().filter(function (e) { return ids[idEvento(e)]; });
+  }
+  function botonesAviso(e) {
+    var caja = el('div', 'cielo-aviso-btns');
+    var b1 = el('button', 'cielo-boton', '📅 ' + T('AlCalendario')); b1.type = 'button';
+    b1.addEventListener('click', function (ev) { ev.stopPropagation(); alCalendario(e, b1); });
+    var b2 = el('button', 'cielo-boton', ''); b2.type = 'button';
+    var pintarB2 = function () { var p = tieneAviso(e); b2.textContent = (p ? '✓ ' : '🔔 ') + T(p ? 'AvisoQuitar' : 'AvisoAqui'); b2.setAttribute('aria-pressed', p ? 'true' : 'false'); };
+    b2.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      if (tieneAviso(e)) { quitarAviso(idEvento(e)); var s = caja.querySelector('.cielo-nota-aviso'); if (s) s.remove(); }
+      else { ponerAviso(e); notaBajo(b2, T('AvisoPuesto')); }
+      pintarB2();
+      var c = S.avisosCaja; if (c) pintarMisAvisos(c, S.avisosOpc);
+    });
+    pintarB2();
+    caja.appendChild(b1); caja.appendChild(b2);
+    return caja;
+  }
+  function alCalendario(e, boton) {
+    var ics;
+    try { ics = icsEvento(e); } catch (x) { try { console.warn('cielo ics:', x); } catch (_) {} return Promise.resolve(null); }
+    var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    return compartirFichero(blob, 'cielo-tenerife-' + fechaLocal(e.t) + '.ics', tituloEvento(e)).then(function (r) { if (r === 'descargado') notaBajo(boton, T('IcsListo')); return ics; });
+  }
+  /* RFC 5545: lineas de 75 octetos como mucho, plegadas con CRLF y un
+     espacio; comas, puntos y coma y barras escapados; fechas en UTC. */
+  function icsTexto(s) { return String(s).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n'); }
+  function icsFecha(d) { return new Date(d).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); }
+  function icsPlegar(linea) {
+    var out = [], actual = '', bytes = 0;
+    for (var i = 0; i < linea.length; i++) {
+      var ch = linea[i], cp = linea.codePointAt(i);
+      if (cp > 0xffff) { ch = linea.slice(i, i + 2); i++; }
+      var b = cp < 0x80 ? 1 : cp < 0x800 ? 2 : cp < 0x10000 ? 3 : 4;
+      var tope = out.length ? 74 : 75;                 // las continuaciones llevan el espacio delante
+      if (bytes + b > tope) { out.push(actual); actual = ''; bytes = 0; tope = 74; }
+      actual += ch; bytes += b;
+    }
+    out.push(actual);
+    return out.map(function (l, i) { return i ? ' ' + l : l; }).join('\r\n');
+  }
+  function tramoEvento(e) {
+    var A = Astronomy, h = 3600000;
+    if (e.tipo === 'lluvia') { var m = A.MakeTime(e.mejor.u).date.getTime(); return [new Date(m - h), new Date(m + h)]; }
+    if (e.tipo === 'eclipseSol') return [e.ini.time.date, e.fin.time.date];
+    if (e.tipo === 'eclipseLuna') return [e.u1 || e.p1, e.u4 || e.p4];
+    return [e.t, new Date(e.t.getTime() + h)];
+  }
+  function icsEvento(e) {
+    var tr = tramoEvento(e), tit = tituloEvento(e);
+    var desc = detalleEvento(e).concat([T('IcsHora', { h: hora(e.t) }), 'Tenerife Go · https://jerome4551.github.io/tenerife-go/']).join('\n');
+    var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Tenerife Go//Cielo de Tenerife//' + lang().toUpperCase(), 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+             'BEGIN:VEVENT',
+             'UID:' + idEvento(e).replace(/[^A-Za-z0-9]+/g, '-') + '@jerome4551.github.io',
+             'DTSTAMP:' + icsFecha(new Date()), 'DTSTART:' + icsFecha(tr[0]), 'DTEND:' + icsFecha(tr[1]),
+             'SUMMARY:' + icsTexto(tit), 'DESCRIPTION:' + icsTexto(desc),
+             'LOCATION:' + icsTexto('Observatorio del Teide (Izaña), Tenerife'), 'GEO:' + OBS.lat + ';' + OBS.lon,
+             'URL:https://jerome4551.github.io/tenerife-go/',
+             'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:-P1D', 'DESCRIPTION:' + icsTexto(T('IcsAviso', { e: tit })), 'END:VALARM',
+             'END:VEVENT', 'END:VCALENDAR'];
+    return L.map(icsPlegar).join('\r\n') + '\r\n';
+  }
+  /* la tarjeta «Mis avisos»: en «Esta noche», solo los de los dos dias de
+     antes; en el calendario, todos, con «quitar» y «quitar todos» */
+  function pintarMisAvisos(c, opc) {
+    c.textContent = '';
+    var lista = eventosAvisados(), ahora = Date.now();
+    if (opc.pronto) lista = lista.filter(function (e) { return e.t.getTime() - ahora < 48 * 3600000; });
+    if (!lista.length) { c.hidden = true; return; }
+    c.hidden = false;
+    var t = tarjeta('🔔 ' + T('MisAvisos'));
+    var hoy = nocheDeHoy();
+    lista.forEach(function (e) {
+      var f = filaEvento(e), noche = partes(e.t).hour < 12 ? sumarDias(fechaLocal(e.t), -1) : fechaLocal(e.t);
+      var cuando = noche === hoy ? 'AvisoHoy' : noche === sumarDias(hoy, 1) ? 'AvisoManana' : null;
+      if (cuando) { var ch = el('span', 'cielo-aviso-pronto', T(cuando)); f.querySelector('.cielo-item-nom').appendChild(ch); }
+      var q = el('button', 'cielo-boton', T('AvisoQuitar')); q.type = 'button';
+      q.addEventListener('click', function (ev) { ev.stopPropagation(); quitarAviso(idEvento(e)); pintar(); });
+      f.querySelector('.cielo-item-txt').appendChild(q);
+      t.appendChild(f);
+    });
+    if (!opc.pronto) {
+      var bt = el('button', 'cielo-boton', T('AvisosQuitarTodos')); bt.type = 'button';
+      bt.addEventListener('click', function () { quitarAvisos(); pintar(); });
+      t.appendChild(bt);
+    }
+    t.appendChild(el('div', 'cielo-nota', T('AvisosNota')));
+    c.appendChild(t);
+  }
+  function tarjetaAvisos(opc) {
+    var c = el('div'); S.avisosCaja = c; S.avisosOpc = opc;
+    pintarMisAvisos(c, opc);
+    return c;
+  }
+
+  /* ── LA BRUJULA: GUIA, COMPROBACION Y PRECISION ─────────────────────
+     La queja numero uno de todas las apps del cielo es que el cielo no
+     cuadra con el de verdad, y ninguna lo resuelve de cara a quien mira.
+     Aqui: una guia de 20 segundos la primera vez (imanes, el ocho en el
+     aire, comprobar con un astro); «Comprobar la brujula»: se pone la Luna
+     (o el Sol, un planeta, la estrella mas brillante) en el circulo, se toca
+     «Ya» y la app mide cuanto se desvia la brujula y lo corrige; y la
+     precision que da iOS (webkitCompassAccuracy, grados de error) en el
+     chip de los sensores. Android no da precision: por eso la comprobacion. */
+  function mostrarGuia() {
+    if (!VI) return;
+    var g = VI.guia; g.textContent = '';
+    g.appendChild(el('div', 'cv-guia-tit', T('GuiaTitulo')));
+    [['🧲', 'GuiaImanes'], ['∞', 'GuiaOcho'], ['🌙', 'GuiaComprueba']].forEach(function (x) {
+      var f = el('div', 'cv-guia-paso');
+      f.appendChild(el('span', 'cv-guia-ico' + (x[0] === '∞' ? ' cv-guia-ocho' : ''), x[0]));
+      f.appendChild(el('span', null, T(x[1])));
+      g.appendChild(f);
+    });
+    g.appendChild(el('div', 'cielo-nota', T('GuiaPorQue', { d: numero(Math.abs(declinacionHoy(new Date())), 1) })));
+    var b = el('button', 'cielo-boton', T('GuiaEntendido')); b.type = 'button';
+    b.addEventListener('click', function () { cerrarGuia(true); });
+    g.appendChild(b);
+    g.hidden = false; VI.guiaAbierta = true;
+  }
+  function cerrarGuia(vista) {
+    if (!VI) return;
+    VI.guia.hidden = true; VI.guiaAbierta = false;
+    if (vista) guardar('tgo_cielo_guia', 1);
+    if (VI.V.sensores && !VI.ayudaDada) { VI.ayudaDada = true; avisar(T('ApuntaAyuda'), 7000); }
+  }
+  /* con que se comprueba: el Sol si esta alto (sin mirarlo: la app lo
+     dice), la Luna si se ve, el planeta mas brillante, la estrella mas
+     brillante que este a mas de 15 grados */
+  function referenciaBrujula(I) {
+    var cu = I.cu;
+    if (cu.Sun.alt > 8) return { planeta: 'Sun' };
+    if (cu.Moon.alt > 8 && (1 + Math.cos(cu.Moon.fase * RAD)) / 2 > 0.1) return { planeta: 'Moon' };
+    var pl = ['Venus', 'Jupiter', 'Mars', 'Saturn', 'Mercury'].filter(function (p) { return cu[p].alt > 10 && cu[p].mag < 1.5 && cu.Sun.alt < -3; });
+    pl.sort(function (a, b) { return cu[a].mag - cu[b].mag; });
+    if (pl.length) return { planeta: pl[0] };
+    if (cu.Sun.alt >= -3) return null;
+    var D = S.datos, mejor = null, e = [0, 0, 0];
+    for (var i = 0; i < D.est.length && i < 60; i++) {
+      var st = D.est[i]; aEnu(I.rot, st.v, e);
+      if (e[2] > Math.sin(15 * RAD) && (!mejor || st[2] < mejor[2])) mejor = st;
+    }
+    return mejor ? { est: mejor } : null;
+  }
+  function comprobarBrujula() {
+    if (!VI || !VI.V.sensores) return;
+    var fecha = new Date(Date.now() + VI.desfase * 60000), I = instante(fecha), ref = referenciaBrujula(I);
+    if (!ref) { avisar(T('ComprobarAbajo'), 7000); return; }
+    VI.comprobando = ref;
+    VI.V.objetivo = ref; VI.vibro = false; VI.gradosObjetivo = null;
+    cerrarHoja(); pintarComprobar(); pintarChips();
+  }
+  function pintarComprobar() {
+    var k = VI.comp; k.textContent = '';
+    if (!VI.comprobando) { k.hidden = true; pintarObjetivo(false); return; }
+    var c = cosaDe(VI.comprobando);
+    var txt = el('span', 'cv-comprobar-txt', T('ComprobarCon', { c: (c.ico ? c.ico + ' ' : '') + c.nombre }));
+    k.appendChild(txt);
+    if (c.tipo === 'sol') k.appendChild(el('span', 'cv-comprobar-sol', T('AvisoSol')));
+    var fila_ = el('div', 'cv-comprobar-btns');
+    var ya = el('button', 'cielo-boton cv-comprobar-ya', T('ComprobarYa')); ya.type = 'button';
+    ya.addEventListener('click', comprobarYa);
+    var ayuda = botonMapa('?', null, function () { mostrarGuia(); }, T('GuiaTitulo'), 'cv-btn cv-btn-mini');
+    var cerrar_ = botonMapa('✕', null, function () { VI.comprobando = null; VI.V.objetivo = null; pintarComprobar(); pintarChips(); }, cerrarTxt(), 'cv-btn cv-btn-mini');
+    fila_.appendChild(ya); fila_.appendChild(ayuda); fila_.appendChild(cerrar_);
+    k.appendChild(fila_);
+    k.hidden = false;
+    VI.obj.hidden = true;
+  }
+  function comprobarYa() {
+    if (!VI || !VI.comprobando) return;
+    var fecha = new Date(Date.now() + VI.desfase * 60000), I = instante(fecha), B = VI.V.base;
+    var e = vectorSel(VI.comprobando, I), c = cosaDe(VI.comprobando);
+    if (!e || !B) { avisar(T('SensoresEspera'), 5000); return; }
+    var hr = altAzDe(e), hc = altAzDe(B.f);
+    var sep = Math.acos(limitar(pto(e, B.f), -1, 1)) / RAD;
+    if (sep > 25) { avisar(T('ComprobarLejos', { c: c.nombre, g: numero(Math.round(sep), 0) }), 7000); return; }
+    var dAz = difAng(hr.az, hc.az), dAlt = hr.alt - hc.alt;
+    VI.ajuste = ((VI.ajuste + dAz + 540) % 360) - 180;
+    guardar('tgo_cielo_ajuste', VI.ajuste.toFixed(1));
+    VI.comprobada = Date.now(); VI.comprobando = null; VI.V.objetivo = null;
+    VI.ultimaComprobacion = { dAz: dAz, dAlt: dAlt, sep: sep, ref: c.id };
+    var g = numero(Math.round(Math.abs(dAz)), 0);
+    if (Math.abs(dAlt) > 6) avisar(T('ComprobarAltura', { g: numero(Math.round(Math.abs(dAlt)), 0) }), 9000);
+    else if (Math.abs(dAz) < 2) avisar(T('ComprobarBien', { g: g }), 7000);
+    else avisar(T('ComprobarHecho', { g: g }), 9000);
+    pintarComprobar(); pintarChips();
+  }
+  function capturarVista() {
+    if (!VI) return Promise.resolve(null);
+    var fecha = new Date(Date.now() + VI.desfase * 60000), c = VI.centro ? cosaDe(VI.centro, fecha) : null;
+    return capturarY(VI.V, { video: VI.V.camara ? VI.video : null, fecha: fecha, titulo: c ? c.nombre : T('Apunta'),
+      avisa: function (r) { if (r === 'descargado') avisar(T('CapturaLista'), 6000); else if (r === 'fallo') avisar(T('CapturaNo'), 6000); } });
+  }
+
   /* ── ABRIR Y CERRAR ────────────────────────────────────────────── */
   function rojo(si) {
     S.rojo = !!si;
@@ -3714,6 +4463,20 @@
     ficha: function (sel, fecha) { return fichaCosa(cosaDe(sel, fecha), fecha || new Date(), {}); },
     declinacion: function (fecha) { return declinacionHoy(fecha || new Date()); },
     lunasJupiter: function (fecha) { return lunasJupiter(fecha); },
-    kelvinBV: kelvinBV, rgbKelvin: rgbKelvin, claseMK: claseMK, masaAire: masaAire
+    kelvinBV: kelvinBV, rgbKelvin: rgbKelvin, claseMK: claseMK, masaAire: masaAire,
+    /* lo del 21 de octubre: indice, horas para fotos, recorrido, .ics, avisos,
+       capturas y la comprobacion de la brujula (tools/auditar_cielo.js, parte 10) */
+    indice: function (f) { return indiceNoche(calcularNoche(f)); },
+    fotos: function (f) { return horasFotos(calcularNoche(f)); },
+    trayectoria: function (sel, fecha) { return trayectoria(cosaDe(sel, fecha), fecha); },
+    ics: function (e) { return icsEvento(e); },
+    idEvento: idEvento, avisos: avisos, ponerAviso: ponerAviso, quitarAvisos: quitarAvisos,
+    imagenNoche: function (f) { return imagenNoche(calcularNoche(f)); },
+    capturarMapa: function () { return capturarMapa(null); },
+    capturarVista: function () { return capturarVista(); },
+    comprobar: function () { comprobarBrujula(); return VI && VI.comprobando; },
+    comprobarYa: function () { comprobarYa(); return VI && VI.ultimaComprobacion; },
+    ajuste: function () { return VI ? VI.ajuste : null; },
+    cambiarFecha: cambiarFecha
   };
 })();
