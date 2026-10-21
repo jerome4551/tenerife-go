@@ -170,6 +170,8 @@ echo; echo "════════ avisos de AEMET: el lector, con copias real
 # nunca y nadie lo vio: «no hay avisos» y «no funciona» se pintaban igual.
 control probar_avisos_aemet.py python3 tools/probar_avisos_aemet.py
 echo; echo "════════ avisos de AEMET en la app, en los diez idiomas ════════"
+# Desde el 21 de octubre de 2026 van en el boton del mar 🌊, y un costero quita
+# de «Báñate hoy aquí» las playas de su zona (contorno oficial de AEMET).
 control probar_avisos.js node tools/probar_avisos.js "$PUERTO"
 echo; echo "════════ rutas: guaguas a hora fija y lo que se ve al usarlas, en los diez idiomas ════════"
 # Desde el 12 de octubre de 2026. Ningun control pedia una ruta: de noche

@@ -144,6 +144,16 @@ const CASOS = [
   ['zht','通知',                           '開啟通知'],
   ['es', 'violencia de género',           '016'],
   ['en', 'domestic violence',             '016'],
+  /* Los avisos de AEMET, desde el 21 de octubre de 2026 en el boton del mar:
+     antes «avisos de AEMET» daba los avisos de seguridad de las fichas, y
+     «Wetterwarnung» o «code oranje», nada. */
+  ['es', 'avisos de AEMET',               'punto amarillo, naranja o rojo'],
+  ['es', '¿dónde me baño hoy?',           'Báñate hoy aquí'],
+  ['de', 'Wetterwarnung',                 'Heute hier baden'],
+  ['nl', 'code oranje',                   'kustverschijnselen'],
+  ['zh', '天气预警',                       '沿海风浪'],
+  ['bg', 'жълт код',                      'Днес се къпете тук'],
+  ['fr', 'calima',                        'poussière en suspension'],
 ];
 
 let malos = 0;

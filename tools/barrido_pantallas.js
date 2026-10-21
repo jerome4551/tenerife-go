@@ -63,8 +63,8 @@ execFileSync('python3', [path.join(RAIZ, 'tools', 'precios_gasolineras.py'), '--
   '--forzar', '--salida', path.join(TMP, 'precios.json')], { cwd: RAIZ });
 const PRECIOS = fs.readFileSync(path.join(TMP, 'precios.json'));
 /* los avisos de AEMET, con dos en pie (uno naranja en la costa y uno
-   amarillo de lluvias), para que la pildora, su panel y las lineas de los
-   paneles del tiempo y del mar salgan en cada idioma: tools/avisos_prueba.js */
+   amarillo de lluvias), para que el punto del 🌊, su panel y las lineas de
+   los paneles del tiempo y del mar salgan en cada idioma: tools/avisos_prueba.js */
 const AVISOS = JSON.stringify(require('./avisos_prueba').ficheros().conAvisos);
 fs.rmSync(TMP, { recursive: true, force: true });
 const ESTADOS = `

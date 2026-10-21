@@ -132,6 +132,45 @@ rc, sal, txt = correr(HAY, tar_con(('costa.xml', a_tenerife(AMARILLO, b'659603C'
 d = json.loads(txt) if txt else {}
 caso('zona costera 659603C: entra', rc == 0 and [z['codigo'] for a in d.get('avisos', []) for z in a['zonas']] == ['659603C'], sal)
 
+# 7b. El contorno de la zona, tal cual lo da AEMET. El <area> de la costa este,
+#     sur y oeste de Tenerife sale del mensaje real de costeros del 11 de octubre
+#     (el verde que va en el .tar.gz) y se pone en el aviso de Mallorca en lugar
+#     del suyo: zona, nombre y contorno son entonces los de AEMET para Tenerife.
+COSTEROS = next(datos for nombre, datos in verdes() if nombre.endswith('COCO1423.xml'))
+AREA_TF = re.search(rb'<area>(?:(?!</area>).)*?<value>659603C</value>(?:(?!</area>).)*?</area>', COSTEROS, re.S).group(0)
+POL_TF = re.search(rb'<polygon>([^<]*)</polygon>', AREA_TF).group(1).decode()
+
+
+def con_area(area):
+    return re.sub(rb'<area>.*?</area>', lambda m: area, AMARILLO, flags=re.S)
+
+
+rc, sal, txt = correr(HAY, tar_con(('costa.xml', con_area(AREA_TF))), '2026-10-12T15:00:00Z')
+d = json.loads(txt) if txt else {}
+zs = [z for a in d.get('avisos', []) for z in a['zonas']]
+caso('contorno: el de AEMET, tal cual, en su zona',
+     rc == 0 and len(zs) == 1 and zs[0].get('codigo') == '659603C' and zs[0].get('poligonos') == [POL_TF], (sal, zs))
+caso('contorno: es el de Tenerife (38 pares, cerrado)', len(POL_TF.split()) == 38 and POL_TF.split()[0] == POL_TF.split()[-1], POL_TF[:80])
+
+# 7c. Un contorno sin la forma de CAP 1.2 no se guarda (y el aviso si).
+for nombre, malo in (('abierto (sin el ultimo par)', POL_TF.rsplit(' ', 1)[0]),
+                     ('con letras', POL_TF.replace('28.27,-16.85', '28.27,oeste')),
+                     ('de tres pares', '28.1,-16.5 28.2,-16.6 28.1,-16.5'),
+                     ('fuera del planeta', POL_TF.replace('28.27,-16.85', '128.27,-16.85'))):
+    area = AREA_TF.replace(POL_TF.encode(), malo.encode())
+    rc, sal, txt = correr(HAY, tar_con(('costa.xml', con_area(area))), '2026-10-12T15:00:00Z')
+    d = json.loads(txt) if txt else {}
+    zs = [z for a in d.get('avisos', []) for z in a['zonas']]
+    caso(f'contorno {nombre}: el aviso entra sin contorno, y se dice',
+         rc == 0 and len(zs) == 1 and 'poligonos' not in zs[0] and 'AVISO: zona 659603C' in sal, (sal, zs))
+
+# 7d. Dos contornos y uno malo: ninguno, para que la zona no se quede corta.
+dos = AREA_TF.replace(b'</polygon>', b'</polygon>\n      <polygon>28.1,-16.5 28.2,x 28.1,-16.5 28.1,-16.5</polygon>', 1)
+rc, sal, txt = correr(HAY, tar_con(('costa.xml', con_area(dos))), '2026-10-12T15:00:00Z')
+d = json.loads(txt) if txt else {}
+zs = [z for a in d.get('avisos', []) for z in a['zonas']]
+caso('dos contornos y uno malo: no se guarda ninguno', rc == 0 and len(zs) == 1 and 'poligonos' not in zs[0], (sal, zs))
+
 # 8. AEMET dice «No hay avisos» y aqui sale uno: algo se ha leido mal, no se escribe.
 PREVIO = '{"consultado": "2026-10-12T10:00:00Z", "avisos": [], "marca": "previo"}\n'
 rc, sal, txt = correr(RSS, tar_con(('amarillo.xml', a_tenerife(AMARILLO))), '2026-10-12T15:00:00Z', PREVIO)

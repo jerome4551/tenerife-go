@@ -9471,7 +9471,6 @@ Object.assign(UI_TX, {
   "ariaIdioma": {"es":"Idioma","en":"Language","fr":"Langue","de":"Sprache","it":"Lingua","nl":"Taal","zh":"语言","zht":"語言","bg":"Език", pl: "Język"},
   "ariaBienvenida": {"es":"Bienvenido a Tenerife Go","en":"Welcome to Tenerife Go","fr":"Bienvenue sur Tenerife Go","de":"Willkommen bei Tenerife Go","it":"Benvenuto su Tenerife Go","nl":"Welkom bij Tenerife Go","zh":"欢迎使用 Tenerife Go","zht":"歡迎使用 Tenerife Go","bg":"Добре дошли в Tenerife Go", pl: "Witamy w Tenerife Go"},
   "ariaCerrarAlertas": {"es":"Cerrar alertas meteorológicas","en":"Close weather alerts","fr":"Fermer les alertes météo","de":"Wetterwarnungen schließen","it":"Chiudi gli avvisi meteo","nl":"Weerwaarschuwingen sluiten","zh":"关闭天气预警","zht":"關閉天氣預警","bg":"Затвори метеорологичните предупреждения", pl: "Zamknij ostrzeżenia pogodowe"},
-  "ariaCerrarAlerta": {"es":"Cerrar alerta","en":"Close alert","fr":"Fermer l'alerte","de":"Warnung schließen","it":"Chiudi l'avviso","nl":"Waarschuwing sluiten","zh":"关闭预警","zht":"關閉預警","bg":"Затвори предупреждението", pl: "Zamknij ostrzeżenie"},
   "phBuscarParada": {"es":"Buscar parada o línea...","en":"Search stop or line...","fr":"Rechercher un arrêt ou une ligne...","de":"Haltestelle oder Linie suchen...","it":"Cerca fermata o linea...","nl":"Zoek halte of lijn...","zh":"搜索站点或线路…","zht":"搜尋站點或路線…","bg":"Търсете спирка или линия...", pl: "Szukaj przystanku lub linii..."},
   "phChat": {"es":"Pregúntame sobre Tenerife...","en":"Ask me about Tenerife...","fr":"Posez-moi une question sur Tenerife...","de":"Frag mich über Teneriffa...","it":"Chiedimi di Tenerife...","nl":"Vraag me iets over Tenerife...","zh":"问我关于特内里费的事…","zht":"問我關於特內里費的事…","bg":"Попитайте ме за Тенерифе...", pl: "Zapytaj mnie o Teneryfę..."},
   "phNegocioDesc": {"es":"Descripción breve de tu negocio *","en":"Short description of your business *","fr":"Brève description de votre activité *","de":"Kurze Beschreibung Ihres Unternehmens *","it":"Breve descrizione della tua attività *","nl":"Korte beschrijving van je bedrijf *","zh":"您的业务简介 *","zht":"您的業務簡介 *","bg":"Кратко описание на бизнеса ви *", pl: "Krótki opis twojej firmy *"},
@@ -9614,7 +9613,13 @@ Object.assign(UI_TX, {
   "wxComprobado": {"es":"Comprobado: {h}","en":"Checked: {h}","fr":"Vérifié : {h}","de":"Geprüft: {h}","it":"Controllato: {h}","nl":"Gecontroleerd: {h}","zh":"核对时间：{h}","zht":"核對時間：{h}","bg":"Проверено: {h}", pl: "Sprawdzono: {h}"},
   "wxSinComprobar": {"es":"No se han podido comprobar los avisos desde {h}: puede haber cambios.","en":"Warnings could not be checked since {h}: there may be changes.","fr":"Les alertes n’ont pas pu être vérifiées depuis {h} : il peut y avoir du nouveau.","de":"Die Warnungen konnten seit {h} nicht geprüft werden – es kann Änderungen geben.","it":"Non è stato possibile controllare le allerte da {h}: potrebbero esserci novità.","nl":"De waarschuwingen konden sinds {h} niet worden gecontroleerd: er kan iets veranderd zijn.","zh":"自{h}起无法核对预警，情况可能已有变化。","zht":"自{h}起無法核對預警，情況可能已有變化。","bg":"Предупрежденията не са проверявани от {h}: възможно е да има промени.", pl: "Nie udało się sprawdzić ostrzeżeń od {h}: mogły zajść zmiany."},
   "wxNoDisponible": {"es":"No se han podido consultar los avisos de AEMET.","en":"AEMET warnings could not be loaded.","fr":"Impossible de consulter les alertes de l’AEMET.","de":"Die AEMET-Warnungen konnten nicht abgerufen werden.","it":"Non è stato possibile consultare le allerte AEMET.","nl":"De AEMET-waarschuwingen konden niet worden opgehaald.","zh":"无法获取 AEMET 的预警信息。","zht":"無法取得 AEMET 的預警資訊。","bg":"Предупрежденията на AEMET не можаха да бъдат заредени.", pl: "Nie udało się pobrać ostrzeżeń AEMET."},
-  "wxVerAemet": {"es":"Ver en aemet.es","en":"See aemet.es","fr":"Voir sur aemet.es","de":"Auf aemet.es ansehen","it":"Vedi su aemet.es","nl":"Bekijk op aemet.es","zh":"前往 aemet.es 查看","zht":"前往 aemet.es 查看","bg":"Виж в aemet.es", pl: "Zobacz na aemet.es"}
+  "wxVerAemet": {"es":"Ver en aemet.es","en":"See aemet.es","fr":"Voir sur aemet.es","de":"Auf aemet.es ansehen","it":"Vedi su aemet.es","nl":"Bekijk op aemet.es","zh":"前往 aemet.es 查看","zht":"前往 aemet.es 查看","bg":"Виж в aemet.es", pl: "Zobacz na aemet.es"},
+  /* «Báñate hoy aquí» con un aviso costero para hoy (21 de octubre de 2026):
+     las playas de su zona no salen, y se dice. Las palabras de cada idioma
+     son las de las filas de arriba (alerte, Warnung, allerta, 预警...) y las
+     de banoHoySub y banoHoyNinguna (écartées, ausgeschlossen, vallen af...). */
+  "banoHoyAemet": {"es":"⚠️ Quedan fuera las playas de las costas con aviso de AEMET para hoy.","en":"⚠️ Beaches on coasts with an AEMET warning for today are left out.","fr":"⚠️ Les plages des côtes en alerte AEMET aujourd’hui sont écartées.","de":"⚠️ Strände an Küsten mit AEMET-Warnung für heute werden ausgeschlossen.","it":"⚠️ Sono escluse le spiagge delle coste con un’allerta AEMET per oggi.","nl":"⚠️ Stranden aan kusten met een AEMET-waarschuwing voor vandaag vallen af.","zh":"⚠️ 已排除今天有 AEMET 预警的海岸上的海滩。","zht":"⚠️ 已排除今天有 AEMET 預警的海岸上的海灘。","bg":"⚠️ Плажовете по бреговете с предупреждение от AEMET за днес отпадат.", pl: "⚠️ Plaże na wybrzeżach z ostrzeżeniem AEMET na dziś są pomijane."},
+  "banoHoyNingunaAemet": {"es":"Hoy no hay ninguna playa que recomendar: donde el mar lo permite, AEMET tiene aviso en la costa.","en":"No beach to recommend today: where the sea allows it, AEMET has a warning for the coast.","fr":"Aucune plage à recommander aujourd’hui : là où la mer le permet, l’AEMET a une alerte en cours sur la côte.","de":"Heute ist kein Strand zu empfehlen: wo das Meer es zulässt, gilt eine AEMET-Warnung für die Küste.","it":"Oggi nessuna spiaggia da consigliare: dove il mare lo permette, c’è un’allerta AEMET sulla costa.","nl":"Vandaag geen strand aan te raden: waar de zee het toelaat, geldt een AEMET-waarschuwing voor de kust.","zh":"今天没有可推荐的海滩：海况允许的地方，AEMET 都对海岸发布了预警。","zht":"今天沒有可推薦的海灘：海況允許的地方，AEMET 都對海岸發布了預警。","bg":"Днес няма плаж за препоръчване: където морето позволява, има предупреждение от AEMET за крайбрежието.", pl: "Dziś nie ma plaży, którą można polecić: tam, gdzie pozwala morze, obowiązuje ostrzeżenie AEMET dla wybrzeża."}
 });
 
 /* Cuatro trozos que estaban dentro de una frase con <strong> y que hay que
@@ -23873,7 +23878,7 @@ window.addEventListener('hashchange', () => {
     "tourMicroT": {"es": "Microclimas", "en": "Microclimates", "fr": "Microclimats", "de": "Mikroklimas", "it": "Microclimi", "nl": "Microklimaten", "zh": "微气候", "zht": "微氣候", "bg": "Микроклимати", "pl": "Mikroklimaty"},
     "tourMicroP": {"es": "Puede llover en un pueblo y hacer sol en el de al lado. Aquí ves el tiempo en directo, zona por zona.", "en": "It can rain in one village and be sunny in the next. Here you see the live weather, area by area.", "fr": "Il peut pleuvoir dans un village et faire beau dans le suivant. Ici, la météo en direct, zone par zone.", "de": "In einem Dorf kann es regnen und im nächsten die Sonne scheinen. Hier siehst du das Wetter live, Zone für Zone.", "it": "Può piovere in un paese e splendere il sole in quello accanto. Qui vedi il meteo in diretta, zona per zona.", "nl": "Het kan regenen in het ene dorp en zonnig zijn in het volgende. Hier zie je het weer live, zone per zone.", "zh": "可能这个村子下雨，隔壁村子却阳光明媚。这里按区域显示实时天气。", "zht": "可能這個村子下雨，隔壁村子卻陽光普照。這裡依區域顯示即時天氣。", "bg": "В едно село може да вали, а в съседното да грее слънце. Тук виждате времето на живо, зона по зона.", "pl": "W jednej wsi może padać, a w sąsiedniej świecić słońce. Tu zobaczysz pogodę na żywo, strefa po strefie."},
     "tourMarT": {"es": "El mar hoy", "en": "The sea today", "fr": "La mer aujourd'hui", "de": "Das Meer heute", "it": "Il mare oggi", "nl": "De zee vandaag", "zh": "今日海况", "zht": "今日海況", "bg": "Морето днес", "pl": "Morze dzisiaj"},
-    "tourMarP": {"es": "El estado del mar en las {C} costas de la isla. Míralo antes de bañarte o de ir a una piscina natural.", "en": "Sea conditions on the island's {C} coasts. Check them before swimming or visiting a natural pool.", "fr": "L'état de la mer sur les {C} côtes de l'île. Consultez-le avant de vous baigner ou d'aller à une piscine naturelle.", "de": "Der Seegang an den {C} Küsten der Insel. Schau nach, bevor du baden gehst oder ein Naturschwimmbecken besuchst.", "it": "Lo stato del mare sulle {C} coste dell'isola. Controllalo prima di fare il bagno o di andare in una piscina naturale.", "nl": "De zeegang aan de {C} kusten van het eiland. Bekijk hem voordat je gaat zwemmen of naar een natuurlijk zwembad gaat.", "zh": "全岛{C}段海岸的海况。下海游泳或去天然泳池前先看一看。", "zht": "全島{C}段海岸的海況。下海游泳或去天然泳池前先看一看。", "bg": "Състоянието на морето по {C}-те брега на острова. Проверете го, преди да се къпете или да отидете до естествен басейн.", "pl": "Stan morza na {C} wybrzeżach wyspy. Sprawdź go przed kąpielą albo wyjściem na naturalny basen."},
+    "tourMarP": {"es": "El estado del mar en las {C} costas de la isla y dónde bañarte hoy. Si el botón lleva un punto amarillo, naranja o rojo, AEMET tiene avisos: al abrirlo, son lo primero.", "en": "Sea conditions on the island's {C} coasts and where to swim today. If the button has a yellow, orange or red dot, AEMET has warnings: they come first when you open it.", "fr": "L'état de la mer sur les {C} côtes de l'île et où vous baigner aujourd'hui. Si le bouton porte un point jaune, orange ou rouge, l'AEMET a émis des alertes : elles s'affichent en premier quand vous l'ouvrez.", "de": "Der Seegang an den {C} Küsten der Insel und wo du heute baden kannst. Hat der Knopf einen gelben, orangen oder roten Punkt, gibt es AEMET-Warnungen: Beim Öffnen stehen sie ganz oben.", "it": "Lo stato del mare sulle {C} coste dell'isola e dove fare il bagno oggi. Se il pulsante ha un punto giallo, arancione o rosso, l'AEMET ha emesso allerte: aprendolo, sono la prima cosa che vedi.", "nl": "De zeegang aan de {C} kusten van het eiland en waar je vandaag kunt zwemmen. Heeft de knop een gele, oranje of rode stip, dan heeft AEMET waarschuwingen: als je hem opent, staan ze bovenaan.", "zh": "全岛{C}段海岸的海况，以及今天去哪里游泳。按钮上有黄色、橙色或红色圆点，表示 AEMET 发布了预警：打开后最先看到。", "zht": "全島{C}段海岸的海況，以及今天去哪裡游泳。按鈕上有黃色、橙色或紅色圓點，表示 AEMET 發布了預警：打開後最先看到。", "bg": "Състоянието на морето по {C}-те брега на острова и къде да се къпете днес. Ако бутонът има жълта, оранжева или червена точка, AEMET има предупреждения: при отваряне са първото, което виждате.", "pl": "Stan morza na {C} wybrzeżach wyspy i gdzie się dziś wykąpać. Jeśli przycisk ma żółtą, pomarańczową albo czerwoną kropkę, są ostrzeżenia AEMET: po otwarciu zobaczysz je na samej górze."},
     "tourFiestasT": {"es": "Fiestas y tradiciones", "en": "Fiestas and traditions", "fr": "Fêtes et traditions", "de": "Feste und Traditionen", "it": "Feste e tradizioni", "nl": "Feesten en tradities", "zh": "节庆与传统", "zht": "節慶與傳統", "bg": "Празници и традиции", "pl": "Święta i tradycje"},
     "tourFiestasP": {"es": "Romerías, carnavales y fiestas patronales, con sus fechas.", "en": "Pilgrimages, carnivals and patron saint festivals, with their dates.", "fr": "Pèlerinages, carnavals et fêtes patronales, avec leurs dates.", "de": "Wallfahrten, Karneval und Patronatsfeste, mit ihren Terminen.", "it": "Pellegrinaggi, carnevali e feste patronali, con le loro date.", "nl": "Bedevaarten, carnavals en patroonheiligenfeesten, met hun data.", "zh": "朝圣游行、狂欢节和主保圣人节，附有日期。", "zht": "朝聖遊行、狂歡節和主保聖人節，附有日期。", "bg": "Поклонения, карнавали и празници на светци покровители, с датите им.", "pl": "Pielgrzymki, karnawały i święta patronalne, z ich datami."},
     "tourCieloT": {"es": "El cielo de Tenerife", "en": "Tenerife’s night sky", "fr": "Le ciel de Tenerife", "de": "Der Himmel über Teneriffa", "it": "Il cielo di Tenerife", "nl": "De sterrenhemel van Tenerife", "zh": "特内里费星空", "zht": "特內里費星空", "bg": "Небето над Тенерифе", "pl": "Niebo nad Teneryfą"},
@@ -28327,51 +28332,34 @@ function processUserMessage(text){
      Fuente: AEMET, Plan Meteoalerta, canal de la isla de Tenerife, que
      .github/workflows/avisos-aemet.yml copia cada hora en
      datos/avisos-aemet.json (aemet.es no deja leerlo desde el navegador).
-     Diseño: píldora discreta en la barra de arriba, expandible, solo cuando
-     hay avisos; y una línea en el panel del tiempo que dice si los hay y
-     cuándo se comprobó.
+     Diseño (21 de octubre de 2026): un punto del color del peor aviso en el
+     botón del mar 🌊, el de «Báñate hoy aquí», y los avisos arriba de su
+     panel; y una línea en el panel del tiempo que dice si los hay y cuándo
+     se comprobó.
 ════════════════════════════════════════════════════════════════════ -->
 <style>
-/* ── PÍLDORA ALERTA (estado colapsado) ──────────────────────── */
-/* ── BOTÓN ALERTA: icono en topbar con cruz para cerrar ── */
-#wx-pill {
-  display:none; /* inline-flex cuando hay alerta */
-  align-items:center; gap:5px;
-  cursor:pointer;
-  padding:4px 8px 4px 7px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,0.1);
-  background:rgba(255,255,255,0.04);
-  transition:all .2s;
-  position:relative;
-  flex-shrink:0;
+/* ── EL PUNTO DE AVISO, EN EL BOTÓN DEL MAR ─────────────────── */
+/* Hasta el 21 de octubre de 2026 los avisos tenian su propio boton en la
+   barra, una pildora con icono, punto y cruz, y en un movil de 320 a 360 px
+   no cabia: echaba el boton del idioma fuera de la pantalla. Jerome: «El
+   aviso AEMET puedes incluirlo en el botón donde bañarte. Deja micro clima
+   y temperatura. Cuadra con la AEMET». Ahora es un punto en la esquina del
+   🌊, del color del peor aviso en pie (los tres de AEMET), que no ocupa
+   sitio en la barra; el panel del mar los pone arriba del todo. */
+#mar-btn { position:relative; }
+.mar-btn-punto {
+  position:absolute; top:-3px; right:-3px;
+  width:11px; height:11px; border-radius:50%;
+  box-shadow:0 0 0 2px var(--panel);   /* un aro del color de la barra */
+  pointer-events:none;
 }
-#wx-pill:hover { background:rgba(255,255,255,0.09); }
-.wx-pill-dot {
-  width:8px; height:8px; border-radius:50%; flex-shrink:0;
-}
-.wx-amarillo .wx-pill-dot { background:#fde047; box-shadow:0 0 6px rgba(234,179,8,0.7); }
-.wx-naranja  .wx-pill-dot { background:#fb923c; box-shadow:0 0 6px rgba(249,115,22,0.7); }
-.wx-rojo     .wx-pill-dot { background:#f87171; box-shadow:0 0 8px rgba(239,68,68,0.9);
-  animation:wxpulse 2s infinite; }
+.mar-btn-punto[hidden] { display:none; }
+.mar-btn-punto.wx-amarillo { background:#fde047; }
+.mar-btn-punto.wx-naranja  { background:#fb923c; }
+.mar-btn-punto.wx-rojo     { background:#f87171; animation:wxpulse 2s infinite; }
 @keyframes wxpulse {
   0%,100%{ opacity:1; } 50%{ opacity:0.45; }
 }
-.wx-pill-icon { font-size:0.85rem; line-height:1; }
-.wx-pill-close {
-  font-size:0.7rem; color:rgba(255,255,255,0.35);
-  line-height:1; margin-left:1px;
-  background:none; border:none; cursor:pointer; padding:0;
-}
-.wx-pill-close:hover { color:rgba(255,255,255,0.8); }
-/* Clases de color para el contenedor */
-#wx-pill.wx-amarillo { border-color:rgba(234,179,8,0.35); }
-#wx-pill.wx-naranja  { border-color:rgba(249,115,22,0.35); }
-#wx-pill.wx-rojo     { border-color:rgba(239,68,68,0.45); }
-/* Chevron eliminado — sustituido por cruz */
-.wx-pill-chevron { display:none; }
-.wx-pill-label   { display:none; } /* sin texto, solo icono + punto */
-.wx-pill-inner   { display:contents; } /* wrapper transparente */
 
 /* ── PANEL EXPANDIDO ────────────────────────────────────────── */
 #wx-panel {
@@ -28473,7 +28461,18 @@ function processUserMessage(text){
 .wx-aemet-link:hover { text-decoration:underline; }
 /* la linea de avisos en los paneles del tiempo y del mar */
 .mc-avisos, .mar-avisos { padding:8px 14px 2px; font-size:0.72rem; line-height:1.45; color:rgba(255,255,255,0.7); }
-.mar-avisos { padding-bottom:6px; }
+/* en el del mar va lo primero, encima de «Báñate hoy aquí» y a su ancho */
+.mar-avisos { padding:2px 12px 0; }
+.wx-linea-cuando { display:block; font-size:0.66rem; font-weight:500; color:rgba(255,255,255,0.6); margin-top:2px; }
+/* el aviso costero en la fila de su costa, y la nota de «Báñate hoy aquí» */
+.mar-aemet {
+  margin-top:6px; padding:5px 8px; border-radius:8px;
+  font-size:0.7rem; line-height:1.35; font-weight:600; color:#fff;
+  background:rgba(234,179,8,0.10); border:1px solid rgba(234,179,8,0.35);
+}
+.mar-aemet.wx-naranja { background:rgba(249,115,22,0.12); border-color:rgba(249,115,22,0.45); }
+.mar-aemet.wx-rojo    { background:rgba(239,68,68,0.14); border-color:rgba(239,68,68,0.55); }
+.bano-hoy-aemet { font-size:0.66rem; line-height:1.35; color:#fde68a; margin:-4px 0 10px; }
 .wx-linea-btn {
   display:block; width:100%; text-align:left; cursor:pointer;
   padding:7px 10px; margin-bottom:5px; border-radius:9px;
@@ -28485,14 +28484,16 @@ function processUserMessage(text){
 .wx-linea-txt { color:rgba(255,255,255,0.78); }
 .wx-linea-hora { font-size:0.62rem; color:rgba(255,255,255,0.35); margin-top:2px; }
 .wx-linea-viejo { color:#fde68a; margin-top:3px; }
-
-/* Alerta integrada en topbar — sin ajuste del mapa */
 </style>
 
-<!-- BOTON Y PANEL DEL MAR (ocupan el hueco de la pildora de avisos) -->
-<button id="mar-btn" data-tx-aria="tEstadoMar" aria-label="Estado del mar" data-tx-title="tEstadoMar" title="Estado del mar">🌊</button>
+<!-- BOTON Y PANEL DEL MAR. El punto del boton y #mar-avisos son los avisos
+     de AEMET (los pinta renderWxAlerts); el nombre del boton lo pone el
+     idioma (data-tx-aria) y lo que dice el punto va en #mar-btn-avisos. -->
+<button id="mar-btn" data-tx-aria="tEstadoMar" aria-label="Estado del mar" data-tx-title="tEstadoMar" title="Estado del mar" aria-describedby="mar-btn-avisos">🌊<span class="mar-btn-punto" id="mar-btn-punto" hidden></span></button>
+<span id="mar-btn-avisos" hidden></span>
 
 <div id="mar-panel" role="dialog" data-tx-aria="ariaMarPanel" aria-label="Estado del mar en Tenerife">
+<div id="mar-avisos" class="mar-avisos" style="display:none"></div>
 <div id="bano-hoy-holder" class="bano-hoy-wrap" style="display:none"></div>
 
   <div class="mar-header">
@@ -28502,7 +28503,6 @@ function processUserMessage(text){
     </div>
     <button class="mar-close" id="mar-close" data-tx-aria="ariaCerrar" aria-label="Cerrar">✕</button>
   </div>
-  <div id="mar-avisos" class="mar-avisos" style="display:none"></div>
   <div id="mar-list"></div>
   <div class="mar-footer">
     <span class="mar-source" data-sin-traducir="credito de la fuente de datos">Open-Meteo · Atlantic/Canary</span>
@@ -28510,14 +28510,7 @@ function processUserMessage(text){
   </div>
 </div>
 
-<!-- PÍLDORA ALERTA (se inserta en topbar-right via JS) -->
-<div id="wx-pill" role="button" tabindex="0" data-tx-aria="wxLogo" aria-label="Avisos meteorológicos · Tenerife">
-  <div class="wx-pill-dot"></div>
-  <span class="wx-pill-icon" id="wx-pill-icon">⚠️</span>
-  <button class="wx-pill-close" id="wx-pill-close" data-tx-aria="ariaCerrarAlerta" aria-label="Cerrar alerta">✕</button>
-</div>
-
-<!-- PANEL EXPANDIDO -->
+<!-- PANEL CON CADA AVISO ENTERO (se abre desde los paneles del mar y del tiempo) -->
 <div id="wx-panel" role="dialog" data-tx-aria="wxLogo" aria-label="Avisos meteorológicos · Tenerife">
   <div class="wx-panel-header">
     <div class="wx-panel-logo" data-tx="wxLogo">Avisos meteorológicos · Tenerife</div>
@@ -28558,6 +28551,11 @@ function processUserMessage(text){
 //  castellano e ingles, que son los que da AEMET; los nombres se traducen
 //  aqui por su codigo con UI_TX (wxNivel_*, wxFen_*, wxPar_*, wxZona_*).
 //
+//  DONDE SE VEN (21 de octubre de 2026). Un punto del color del peor aviso
+//  en el boton del mar 🌊, cada aviso arriba de su panel, y una linea en el
+//  panel del tiempo 🌡️. Los costeros, ademas, quitan de «Báñate hoy aquí» y
+//  de «la costa más tranquila» lo que cae en su zona (TGO_AVISOS, abajo).
+//
 //  LO QUE NO HACE NUNCA:
 //   · decir «sin avisos» sin decir cuando se comprobo;
 //   · dar por buena una comprobacion de mas de 6 horas: entonces dice desde
@@ -28577,8 +28575,7 @@ const WX_PARAM = { P1:'wxPar_P1', P2:'wxPar_P2', NV:'wxPar_NV', RM:'wxPar_RM', T
 
 let wxDatos = null;            // el ultimo fichero bueno que llego
 let wxEstado = 'cargando';     // cargando · ok · viejo · error
-let wxCerrada = '';            // avisos cuya pildora cerro el usuario
-try { wxCerrada = sessionStorage.getItem('tgo_wx_cerrada') || ''; } catch (e) {}
+let wxFirmaCostera = '';       // los costeros de hoy con que se pinto el mar
 // la cache del sistema anterior, que guardaba listas vacias
 try { localStorage.removeItem('tgo_wx_cache'); } catch (e) {}
 
@@ -28696,27 +28693,43 @@ function wxTarjeta(a) {
   return c;
 }
 
+/* Debajo de los avisos, en los paneles del tiempo y del mar: si no hay
+   ninguno, hasta cuando lo dice AEMET; y cuando se comprobo, o desde cuando
+   no se ha podido. */
+function wxPieDeLinea(box, vig) {
+  if (!vig.length && wxEstado === 'ok') {
+    var alc = wxDatos.aemet && wxDatos.aemet.alcance;
+    box.appendChild(wxEl('span', 'wx-linea-txt', '✓ ' + ((alc && Date.parse(alc) > Date.now())
+      ? tx('wxSinAvisosHasta', { f: wxHora(alc, true) }) : tx('wxSinAvisos'))));
+  }
+  if (wxEstado === 'viejo') {
+    var v = wxEl('div', 'wx-linea-viejo', tx('wxSinComprobar', { h: wxHoraCorta(wxDatos.consultado) }) + ' ');
+    v.appendChild(wxEnlaceAemet());
+    box.appendChild(v);
+  } else {
+    box.appendChild(wxEl('div', 'wx-linea-hora', tx('wxComprobado', { h: wxHoraCorta(wxDatos.consultado) }) + ' · AEMET'));
+  }
+}
+function wxCuando(a) { return '🕐 ' + tx('wxDeA', { a: wxHoraCorta(a.inicio), b: wxHoraCorta(a.fin) }); }
+
 function renderWxAlerts() {
-  var pill = document.getElementById('wx-pill');
-  var pillIcon = document.getElementById('wx-pill-icon');
   var list = document.getElementById('wx-alerts-list');
   var estado = document.getElementById('wx-estado');
   var hora = document.getElementById('wx-comprobado');
   var enlace = document.getElementById('wx-aemet-link');
   var vig = wxVigentes();
-  var firma = vig.map(function (a) { return a.ids.join('+'); }).join(',');
 
-  // Pildora: solo con avisos en pie (amarillo, naranja o rojo), del color del peor.
-  if (pill) {
-    if (!vig.length || firma === wxCerrada) {
-      pill.style.display = 'none';
-    } else {
-      pill.style.display = 'inline-flex';
-      pill.classList.remove('wx-amarillo', 'wx-naranja', 'wx-rojo');
-      pill.classList.add(WX_LEVELS[vig[0].nivel]);
-      if (pillIcon) pillIcon.textContent = WX_ICONS[vig[0].fenomeno] || WX_ICONS.default;
-    }
+  /* El punto del 🌊: solo con avisos en pie (amarillo, naranja o rojo), del
+     color del peor; wxVigentes() los da del peor al menos malo. Lo que dice
+     el punto, para quien no lo ve, va en #mar-btn-avisos (aria-describedby
+     del boton): el nombre del boton es suyo y lo pone el idioma. */
+  var punto = document.getElementById('mar-btn-punto');
+  if (punto) {
+    punto.className = 'mar-btn-punto' + (vig.length ? ' ' + WX_LEVELS[vig[0].nivel] : '');
+    punto.hidden = !vig.length;
   }
+  var dice = document.getElementById('mar-btn-avisos');
+  if (dice) dice.textContent = vig.length ? tx('wxHayAvisos', { n: vig.length }) : '';
 
   if (estado) {
     estado.textContent = '';
@@ -28752,37 +28765,116 @@ function renderWxAlerts() {
           b.type = 'button';
           b.addEventListener('click', wxAbrirDesde);
           mc.appendChild(b);
-        } else if (wxEstado === 'ok') {
-          var alc = wxDatos.aemet && wxDatos.aemet.alcance;
-          mc.appendChild(wxEl('span', 'wx-linea-txt', '✓ ' + ((alc && Date.parse(alc) > Date.now())
-            ? tx('wxSinAvisosHasta', { f: wxHora(alc, true) }) : tx('wxSinAvisos'))));
         }
-        if (wxEstado === 'viejo') {
-          var v = wxEl('div', 'wx-linea-viejo', tx('wxSinComprobar', { h: wxHoraCorta(wxDatos.consultado) }) + ' ');
-          v.appendChild(wxEnlaceAemet());
-          mc.appendChild(v);
-        } else {
-          mc.appendChild(wxEl('div', 'wx-linea-hora', tx('wxComprobado', { h: wxHoraCorta(wxDatos.consultado) }) + ' · AEMET'));
-        }
+        wxPieDeLinea(mc, vig);
       }
     }
   }
 
-  // Y en el panel del mar, los avisos costeros, que son los del mar.
+  /* Y en el panel del mar, lo primero, encima de «Báñate hoy aquí»: cada
+     aviso en pie, de cualquier fenomeno, con su zona y su hora, porque el
+     punto que lleva a el es el del 🌊. Al tocar uno se abre entero. Sin
+     avisos, lo mismo que en el panel del tiempo. */
   var mar = document.getElementById('mar-avisos');
   if (mar) {
     mar.textContent = '';
-    var co = vig.filter(function (a) { return a.fenomeno === 'CO'; });
-    mar.style.display = co.length ? 'block' : 'none';
-    co.forEach(function (a) {
-      var b = wxEl('button', 'wx-linea-btn ' + WX_LEVELS[a.nivel],
-        WX_ICONS.CO + ' ' + tx('wxNivel_' + a.nivel) + ' · ' + a.zonas.map(wxNombreZona).join(' · '));
-      b.type = 'button';
-      b.addEventListener('click', wxAbrirDesde);
-      mar.appendChild(b);
-    });
+    if (wxEstado === 'cargando') { mar.style.display = 'none'; }
+    else {
+      mar.style.display = 'block';
+      if (wxEstado === 'error') {
+        mar.appendChild(wxEl('span', 'wx-linea-txt', '⚠️ ' + tx('wxNoDisponible') + ' '));
+        mar.appendChild(wxEnlaceAemet());
+      } else {
+        vig.forEach(function (a) {
+          var l = wxEl('button', 'wx-linea-btn ' + WX_LEVELS[a.nivel], (WX_ICONS[a.fenomeno] || WX_ICONS.default) + ' '
+            + [tx('wxNivel_' + a.nivel), wxNombreFen(a), a.zonas.map(wxNombreZona).join(' · ')].join(' · '));
+          l.type = 'button';
+          l.appendChild(wxEl('span', 'wx-linea-cuando', wxCuando(a)));
+          l.addEventListener('click', wxAbrirDesde);
+          mar.appendChild(l);
+        });
+        wxPieDeLinea(mar, vig);
+      }
+    }
+  }
+
+  /* Si cambian los costeros de hoy (llega el fichero, empieza o se acaba
+     uno) con el panel del mar abierto, sus costas y «Báñate hoy aquí» se
+     vuelven a pintar con ellos. Cerrado no hace falta: se pintan al abrirlo. */
+  var firma = wxCosterosHoy().map(function (a) { return a.ids.join('+'); }).join(',');
+  if (firma !== wxFirmaCostera) {
+    wxFirmaCostera = firma;
+    var mp = document.getElementById('mar-panel');
+    if (mp && mp.style.display === 'block') {
+      try { if (window.TGO_MAR && typeof window.TGO_MAR.repintar === 'function') window.TGO_MAR.repintar(); } catch (e) {}
+      try { if (typeof renderBanoHoy === 'function') renderBanoHoy(); } catch (e) {}
+    }
   }
 }
+
+/* ── LOS COSTEROS Y LAS PLAYAS ─────────────────────────────────
+   Jerome, 21 de octubre de 2026: «Cuadra con la AEMET». Con un aviso de
+   fenomenos costeros para hoy, el panel del mar no puede recomendar una
+   playa de esa costa en «Báñate hoy aquí» ni llamarla «la más tranquila».
+   Que playa cae dentro lo dice el contorno de la zona que AEMET manda con
+   cada aviso: tools/avisos_aemet.py lo guarda tal cual («poligonos»).
+     · Va con dos decimales, un kilometro arriba o abajo. Medido sobre los de
+       AEMET del 11 de octubre de 2026 (tools/pruebas/aemet/), de las 99
+       playas y charcos de «Báñate hoy aquí» ninguna queda a mas de 1 km del
+       de su zona. Por eso cuenta tambien lo que esta a menos de 2 km: en la
+       raya entre dos zonas, una playa cuenta para las dos.
+     · Un aviso que llegue sin contorno cuenta para toda la costa: nunca se
+       queda corto.
+     · «Hoy» es hasta la medianoche de Canarias: un costero que empieza esta
+       tarde ya cuenta; uno de mañana sale arriba con su hora y nada mas. */
+const WX_MARGEN_KM = 2;
+function wxCosterosHoy() {
+  var hoy = wxDia(new Date());
+  return wxVigentes().filter(function (a) { return a.fenomeno === 'CO' && wxDia(new Date(a.inicio)) <= hoy; });
+}
+// «lat,lon lat,lon …» de AEMET -> [[lat, lon], …], o null si no se puede leer
+function wxLeerContorno(s) {
+  var pts = String(s || '').trim().split(/\s+/).map(function (p) {
+    var c = p.split(',');
+    return [parseFloat(c[0]), parseFloat(c[1])];
+  });
+  return (pts.length >= 4 && pts.every(function (p) { return isFinite(p[0]) && isFinite(p[1]); })) ? pts : null;
+}
+function wxDentroDe(pts, lat, lng) {
+  var dentro = false;
+  for (var i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+    var yi = pts[i][0], xi = pts[i][1], yj = pts[j][0], xj = pts[j][1];
+    if ((yi > lat) !== (yj > lat) && lng < xi + (lat - yi) * (xj - xi) / (yj - yi)) dentro = !dentro;
+  }
+  return dentro;
+}
+// km del punto al borde del contorno, en plano: a la escala de una isla sobra
+function wxKmAlBorde(pts, lat, lng) {
+  var kx = 111.32 * Math.cos(lat * Math.PI / 180), ky = 111.32, min = Infinity;
+  for (var i = 0; i < pts.length; i++) {
+    var p = pts[i], q = pts[(i + 1) % pts.length];
+    var ax = (p[1] - lng) * kx, ay = (p[0] - lat) * ky, dx = (q[1] - p[1]) * kx, dy = (q[0] - p[0]) * ky;
+    var l2 = dx * dx + dy * dy, t = l2 ? Math.max(0, Math.min(1, -(ax * dx + ay * dy) / l2)) : 0;
+    min = Math.min(min, Math.hypot(ax + t * dx, ay + t * dy));
+  }
+  return min;
+}
+function wxAvisoEn(a, lat, lng) {
+  if (!isFinite(lat) || !isFinite(lng) || !(a.zonas || []).length) return true;
+  return a.zonas.some(function (z) {
+    var cs = (Array.isArray(z.poligonos) ? z.poligonos : []).map(wxLeerContorno);
+    if (!cs.length || cs.some(function (c) { return !c; })) return true;   // sin contorno: toda la costa
+    return cs.some(function (c) { return wxDentroDe(c, lat, lng) || wxKmAlBorde(c, lat, lng) <= WX_MARGEN_KM; });
+  });
+}
+/* La salida hacia el panel del mar y «Báñate hoy aquí», que viven en otros
+   <script>: los costeros de hoy que tocan un punto, y como se escriben. */
+window.TGO_AVISOS = {
+  costerosEn: function (lat, lng) { return wxCosterosHoy().filter(function (a) { return wxAvisoEn(a, lat, lng); }); },
+  linea: function (a) { return '⚠️ ' + tx('wxNivel_' + a.nivel) + ' · ' + wxNombreFen(a) + ' · AEMET'; },
+  cuando: wxCuando,
+  clase: function (a) { return WX_LEVELS[a.nivel] || ''; }
+};
 
 // ── ABRIR Y CERRAR ────────────────────────────────────────────
 function toggleWxPanel() {
@@ -28797,59 +28889,20 @@ function wxAbrirDesde(e) {
   var panel = document.getElementById('wx-panel');
   if (panel) panel.style.display = 'block';
 }
-// la cruz de la pildora la esconde hasta que cambien los avisos
-function dismissWxPill() {
-  wxCerrada = wxVigentes().map(function (a) { return a.ids.join('+'); }).join(',');
-  try { sessionStorage.setItem('tgo_wx_cerrada', wxCerrada); } catch (e) {}
-  document.getElementById('wx-pill').style.display = 'none';
-  const panel = document.getElementById('wx-panel');
-  if (panel) panel.style.display = 'none';
-}
 
-// Cerrar panel al tocar fuera
+// Cerrar panel al tocar fuera (las lineas que lo abren no dejan pasar su toque)
 document.addEventListener('click', function(e) {
   const panel = document.getElementById('wx-panel');
-  const pill  = document.getElementById('wx-pill');
-  if (panel && panel.style.display === 'block'
-      && !panel.contains(e.target) && !pill.contains(e.target)) {
+  if (panel && panel.style.display === 'block' && !panel.contains(e.target)) {
     panel.style.display = 'none';
   }
 });
-
-// ── INSERTAR PÍLDORA EN EL TOPBAR ────────────────────────────
-function insertWxPillInTopbar() {
-  const pill = document.getElementById('wx-pill');
-  const topbarRight = document.querySelector('.topbar-right');
-  if (!pill || !topbarRight || pill.parentNode === topbarRight) return;
-  // Insertar antes del lang-selector (último elemento)
-  const langSel = document.getElementById('lang-selector');
-  if (langSel && langSel.parentNode === topbarRight) {
-    topbarRight.insertBefore(pill, langSel);
-  } else {
-    topbarRight.insertBefore(pill, topbarRight.firstChild);
-  }
-  pill.addEventListener('click', function(e) {
-    if (e.target.id === 'wx-pill-close' || e.target.closest('#wx-pill-close')) return;
-    toggleWxPanel();
-  });
-  pill.addEventListener('keydown', function(e) {
-    if (e.target !== pill || (e.key !== 'Enter' && e.key !== ' ')) return;
-    e.preventDefault();
-    toggleWxPanel();
-  });
-  const closeBtn = document.getElementById('wx-pill-close');
-  if (closeBtn) closeBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    dismissWxPill();
-  });
-}
 
 // ── INICIALIZAR ───────────────────────────────────────────────
 let wxIniciado = false;
 function wxIniciar() {
   if (wxIniciado) return;
   wxIniciado = true;
-  insertWxPillInTopbar();
   setTimeout(fetchWxAlerts, 1200);
   setInterval(fetchWxAlerts, 30 * 60 * 1000);   // el fichero se renueva cada hora
   setInterval(renderWxAlerts, 5 * 60 * 1000);   // y lo que ya termino se quita solo
@@ -29203,6 +29256,14 @@ function marFetch(force, ligero) {
 
 // --- Pintado ----------------------------------------------------
 
+// Los avisos costeros de AEMET para hoy que tocan esta costa (TGO_AVISOS,
+// en el bloque de avisos). Sin ese bloque, ninguno: el panel sigue igual.
+function marAvisosEn(d) {
+  try {
+    return (window.TGO_AVISOS && d && d.costa) ? window.TGO_AVISOS.costerosEn(d.costa.lat, d.costa.lng) : [];
+  } catch (e) { return []; }
+}
+
 function marChip(nivel) {
   var s = document.createElement('span');
   s.className = 'mar-chip mar-' + nivel;
@@ -29237,6 +29298,20 @@ function marRow(d) {
   val.textContent = marTx('wave') + ' ' + h + '  \u00b7  ' + marTx('period') + ' ' + p;
 
   row.appendChild(top); row.appendChild(val);
+
+  /* El aviso oficial va antes que lo que dice el modelo: si AEMET tiene un
+     costero para hoy en esta costa, sale aqui, con su nivel y su hora. El
+     nivel de la ficha sigue siendo el de Open-Meteo, y lo dice abajo. */
+  marAvisosEn(d).forEach(function (a) {
+    var av = document.createElement('div');
+    av.className = 'mar-aemet ' + window.TGO_AVISOS.clase(a);
+    av.textContent = window.TGO_AVISOS.linea(a);
+    var cu = document.createElement('span');
+    cu.className = 'wx-linea-cuando';
+    cu.textContent = window.TGO_AVISOS.cuando(a);
+    av.appendChild(cu);
+    row.appendChild(av);
+  });
 
   // Aviso de mar de fondo: el mas importante del modulo
   if (marFondoLargo(d)) {
@@ -29318,9 +29393,12 @@ function marRender() {
     return;
   }
 
-  // Costa mas tranquila: lo primero que necesita saber un turista
+  // Costa mas tranquila: lo primero que necesita saber un turista. Una
+  // costa con aviso costero de AEMET para hoy no lo es, diga lo que diga
+  // el modelo; si lo tienen todas, no se nombra ninguna.
   var mejor = null;
   marData.forEach(function (d) {
+    if (marAvisosEn(d).length) return;
     var o = MAR_ORDEN[marNivel(d)];
     if (mejor === null || o < mejor.o) mejor = { o: o, d: d };
   });
@@ -29421,7 +29499,10 @@ window.TGO_MAR = {
   fondoLargo: marFondoLargo,
   estado:     marEstado,
   niveles:    MAR_NIVELES,
-  costas:     MAR_COSTAS
+  costas:     MAR_COSTAS,
+  /* para el bloque de avisos de AEMET, que vive fuera de este: cuando
+     cambian los costeros de hoy, las costas se vuelven a pintar con ellos */
+  repintar:   function () { if (marData) marRender(); }
 };
 
 /* --- NOTIFICACIONES DIARIAS --------------------------------------
@@ -34406,11 +34487,25 @@ async function renderBanoHoy(){
   // El filtro. "fuerte" y "peligroso" quedan fuera: sus propios textos
   // dicen que se eviten las rocas y que se elija otra costa.
   const RANGO = { calma:0, moderado:1 };
+  /* Y lo que diga AEMET va antes que el modelo (Jerome, 21 de octubre de
+     2026: \u00ABCuadra con la AEMET\u00BB): una playa dentro de un aviso de fenomenos
+     costeros para hoy no se recomienda, este como este el mar ahora. Cual
+     cae dentro lo decide el contorno oficial de la zona: TGO_AVISOS, en el
+     bloque de los avisos. datos no trae coordenadas: salen de ids. */
+  const donde = {};
+  ids.forEach(function(x){ donde[x.id] = x; });
+  const enAviso = function(d){
+    var p = donde[d.id];
+    try { return !!(window.TGO_AVISOS && p && window.TGO_AVISOS.costerosEn(p.lat, p.lng).length); }
+    catch(e){ return false; }
+  };
+  var quitadasAemet = 0;
   const aptas = datos.map(function(d){
     d.nivel = window.TGO_MAR.nivel({ waveH:d.waveH, waveP:d.waveP, swellH:d.swellH, swellP:d.swellP });
     d.score = scorePlaya(d, d.windDeg, d.windKmh);
     return d;
   }).filter(function(d){ return RANGO[d.nivel] !== undefined; })
+    .filter(function(d){ if(enAviso(d)){ quitadasAemet++; return false; } return true; })
     .sort(function(a,b){
       if(RANGO[a.nivel] !== RANGO[b.nivel]) return RANGO[a.nivel]-RANGO[b.nivel]; // mar primero
       if(b.score !== a.score)               return b.score-a.score;               // luego abrigo
@@ -34418,11 +34513,13 @@ async function renderBanoHoy(){
     }).slice(0,3);
 
   var cab = '<div class="bano-hoy-head">\u{1F3D6}\uFE0F '+escapeHtml(title)+'</div>'+
-            '<div class="bano-hoy-sub">'+escapeHtml(subTxt)+'</div>';
+            '<div class="bano-hoy-sub">'+escapeHtml(subTxt)+'</div>'+
+            (quitadasAemet && aptas.length ? '<div class="bano-hoy-aemet">'+escapeHtml(tx('banoHoyAemet'))+'</div>' : '');
 
   if(!aptas.length){
     // Que no haya ninguna es informacion util, no un fallo: hoy toca otra cosa.
-    holder.innerHTML = cab + '<div class="bano-hoy-nada">'+escapeHtml(nadaTxt)+'</div>';
+    // Si es por AEMET, se dice eso: el mar no esta movido en todas.
+    holder.innerHTML = cab + '<div class="bano-hoy-nada">'+escapeHtml(quitadasAemet ? tx('banoHoyNingunaAemet') : nadaTxt)+'</div>';
     holder.style.display='block';
     return;
   }

@@ -1394,7 +1394,16 @@
      "prevision del tiempo",
      "tiempo por zonas",
      "estado del mar",
-     "como esta el mar"
+     "como esta el mar",
+     "aemet",
+     "avisos aemet",
+     "alerta meteorologica",
+     "alertas meteorologicas",
+     "aviso amarillo",
+     "aviso naranja",
+     "aviso rojo",
+     "donde me bano hoy",
+     "banate hoy aqui"
     ],
     "en": [
      "weather today",
@@ -1404,7 +1413,17 @@
      "weather forecast",
      "weather by area",
      "sea conditions",
-     "how is the sea"
+     "how is the sea",
+     "aemet",
+     "aemet warning",
+     "aemet warnings",
+     "weather warning",
+     "weather warnings",
+     "weather alert",
+     "yellow warning",
+     "orange warning",
+     "red warning",
+     "swim here today"
     ],
     "de": [
      "wetter heute",
@@ -1413,7 +1432,16 @@
      "wettervorhersage",
      "wetter nach zonen",
      "seegang",
-     "wie ist das meer"
+     "wie ist das meer",
+     "aemet",
+     "aemet warnung",
+     "wetterwarnung",
+     "wetterwarnungen",
+     "unwetterwarnung",
+     "warnstufe gelb",
+     "warnstufe orange",
+     "warnstufe rot",
+     "heute hier baden"
     ],
     "fr": [
      "meteo du jour",
@@ -1421,7 +1449,16 @@
      "meteo maintenant",
      "previsions",
      "previsions meteo",
-     "etat de la mer"
+     "etat de la mer",
+     "aemet",
+     "alerte aemet",
+     "alertes aemet",
+     "alerte meteo",
+     "alertes meteo",
+     "alerte jaune",
+     "alerte orange",
+     "alerte rouge",
+     "baignez vous ici aujourd hui"
     ],
     "it": [
      "meteo di oggi",
@@ -1429,7 +1466,16 @@
      "meteo adesso",
      "previsioni",
      "previsioni meteo",
-     "stato del mare"
+     "stato del mare",
+     "aemet",
+     "allerta aemet",
+     "allerte aemet",
+     "allerta meteo",
+     "allerte meteo",
+     "allerta gialla",
+     "allerta arancione",
+     "allerta rossa",
+     "oggi fai il bagno qui"
     ],
     "nl": [
      "weer vandaag",
@@ -1437,7 +1483,15 @@
      "weerbericht",
      "weersverwachting",
      "weer per zone",
-     "zeegang"
+     "zeegang",
+     "aemet",
+     "aemet waarschuwing",
+     "weerwaarschuwing",
+     "weerwaarschuwingen",
+     "code geel",
+     "code oranje",
+     "code rood",
+     "zwem hier vandaag"
     ],
     "pl": [
      "pogoda dzisiaj",
@@ -1445,7 +1499,16 @@
      "prognoza",
      "prognoza pogody",
      "pogoda wedlug stref",
-     "stan morza"
+     "stan morza",
+     "aemet",
+     "ostrzezenie aemet",
+     "ostrzezenia aemet",
+     "ostrzezenie pogodowe",
+     "ostrzezenia pogodowe",
+     "ostrzezenie zolte",
+     "ostrzezenie pomaranczowe",
+     "ostrzezenie czerwone",
+     "wykap sie dzis tutaj"
     ],
     "zh": [
      "今天天气",
@@ -1453,7 +1516,14 @@
      "现在天气",
      "分区天气",
      "海况",
-     "海浪"
+     "海浪",
+     "aemet",
+     "天气预警",
+     "气象预警",
+     "黄色预警",
+     "橙色预警",
+     "红色预警",
+     "今天在这里游泳"
     ],
     "zht": [
      "今天天氣",
@@ -1461,26 +1531,33 @@
      "現在天氣",
      "分區天氣",
      "海況",
-     "海浪"
+     "海浪",
+     "aemet",
+     "天氣預警",
+     "氣象預警",
+     "黃色預警",
+     "橙色預警",
+     "紅色預警",
+     "今天在這裡游泳"
     ]
    },
    "a": {
-    "es": "🌡️ Arriba, el termómetro te da el tiempo en directo, zona por zona: aquí puede llover en un pueblo y hacer sol en el de al lado. La ola 🌊 te enseña el estado del mar por costas, y en el globo de cada lugar de costa tienes el del mar allí mismo. Si AEMET tiene avisos en vigor para Tenerife, arriba sale además un botón con un punto amarillo, naranja o rojo: tócalo para leerlos. Necesita conexión.",
-    "en": "🌡️ At the top, the thermometer gives you the live weather, area by area: here it can rain in one village and be sunny in the next. The wave 🌊 shows the sea conditions by coast, and the pop-up of every coastal place has the sea right there. If AEMET has warnings in force for Tenerife, a button with a yellow, orange or red dot also appears at the top: tap it to read them. It needs a connection.",
-    "de": "🌡️ Oben zeigt dir das Thermometer das Wetter live, Zone für Zone: Hier kann es in einem Dorf regnen und im nächsten die Sonne scheinen. Die Welle 🌊 zeigt den Seegang nach Küsten, und im Pop-up jedes Küstenortes siehst du das Meer genau dort. Hat AEMET für Teneriffa Warnungen in Kraft, erscheint oben außerdem ein Knopf mit einem gelben, orangen oder roten Punkt: Tippe darauf, um sie zu lesen. Dafür brauchst du Verbindung.",
-    "fr": "🌡️ En haut, le thermomètre te donne la météo en direct, zone par zone : ici il peut pleuvoir dans un village et faire beau dans le suivant. La vague 🌊 te montre l’état de la mer par côte, et la bulle de chaque lieu du littoral donne la mer à cet endroit précis. Si l’AEMET a des alertes en cours pour Tenerife, un bouton avec un point jaune, orange ou rouge apparaît aussi en haut : touche-le pour les lire. Il faut une connexion.",
-    "it": "🌡️ In alto, il termometro ti dà il meteo in diretta, zona per zona: qui può piovere in un paese e splendere il sole in quello accanto. L’onda 🌊 ti mostra lo stato del mare per costa, e nel fumetto di ogni luogo sulla costa hai il mare proprio lì. Se l’AEMET ha avvisi in vigore per Tenerife, in alto compare anche un pulsante con un punto giallo, arancione o rosso: toccalo per leggerli. Serve la connessione.",
-    "nl": "🌡️ Bovenaan geeft de thermometer je het weer live, zone per zone: hier kan het in het ene dorp regenen en in het volgende zonnig zijn. De golf 🌊 toont de zeegang per kust, en in de pop-up van elke kustplek zie je de zee precies daar. Heeft AEMET waarschuwingen van kracht voor Tenerife, dan verschijnt bovenaan ook een knop met een gele, oranje of rode stip: tik erop om ze te lezen. Daarvoor heb je verbinding nodig.",
-    "pl": "🌡️ Na górze termometr pokazuje pogodę na żywo, strefa po strefie: tu w jednej wsi może padać, a w sąsiedniej świecić słońce. Fala 🌊 pokazuje stan morza według wybrzeży, a w dymku każdego miejsca nad morzem masz morze dokładnie tam. Jeśli AEMET ma aktualne ostrzeżenia dla Teneryfy, na górze pojawia się też przycisk z żółtą, pomarańczową lub czerwoną kropką: dotknij go, żeby je przeczytać. Potrzebne jest połączenie.",
-    "zh": "🌡️ 顶部的温度计按区域显示实时天气：这里可能这个村子下雨，隔壁村子却阳光明媚。海浪按钮 🌊 按海岸显示海况，海边每个地点的信息框里也有当地的海况。如果 AEMET 对特内里费发布了生效中的预警，顶部还会出现一个带黄色、橙色或红色圆点的按钮：点按即可查看。需要联网。",
-    "zht": "🌡️ 頂部的溫度計依區域顯示即時天氣：這裡可能這個村子下雨，隔壁村子卻陽光普照。海浪按鈕 🌊 依海岸顯示海況，海邊每個地點的資訊框裡也有當地的海況。如果 AEMET 對特內里費發布了生效中的預警，頂部還會出現一個帶黃色、橙色或紅色圓點的按鈕：點按即可查看。需要連網。"
+    "es": "🌡️ Arriba, el termómetro te da el tiempo en directo, zona por zona: aquí puede llover en un pueblo y hacer sol en el de al lado. La ola 🌊 te enseña el estado del mar por costas y, en «Báñate hoy aquí», hasta tres playas según el mar y el viento de ahora; en el globo de cada lugar de costa tienes el mar allí mismo. Si AEMET tiene avisos en vigor para Tenerife, la ola lleva un punto amarillo, naranja o rojo y, al abrirla, son lo primero: toca uno para leerlo entero. Si el aviso es por fenómenos costeros, «Báñate hoy aquí» deja fuera las playas de esa costa. Necesita conexión.",
+    "en": "🌡️ At the top, the thermometer gives you the live weather, area by area: here it can rain in one village and be sunny in the next. The wave 🌊 shows the sea conditions by coast and, in «Swim here today», up to three beaches based on the current sea and wind; the pop-up of every coastal place has the sea right there. If AEMET has warnings in force for Tenerife, the wave has a yellow, orange or red dot and, when you open it, they come first: tap one to read it in full. If the warning is for coastal events, «Swim here today» leaves out the beaches on that coast. It needs a connection.",
+    "de": "🌡️ Oben zeigt dir das Thermometer das Wetter live, Zone für Zone: Hier kann es in einem Dorf regnen und im nächsten die Sonne scheinen. Die Welle 🌊 zeigt den Seegang nach Küsten und unter «Heute hier baden» bis zu drei Strände nach aktuellem Meer und Wind; im Pop-up jedes Küstenortes siehst du das Meer genau dort. Hat AEMET für Teneriffa Warnungen in Kraft, trägt die Welle einen gelben, orangen oder roten Punkt, und beim Öffnen stehen sie ganz oben: Tippe auf eine, um sie ganz zu lesen. Gilt die Warnung für Küstenereignisse, lässt «Heute hier baden» die Strände dieser Küste weg. Dafür brauchst du Verbindung.",
+    "fr": "🌡️ En haut, le thermomètre te donne la météo en direct, zone par zone : ici il peut pleuvoir dans un village et faire beau dans le suivant. La vague 🌊 te montre l’état de la mer par côte et, dans «Baignez-vous ici aujourd’hui», jusqu’à trois plages selon la mer et le vent du moment ; la bulle de chaque lieu du littoral donne la mer à cet endroit précis. Si l’AEMET a des alertes en cours pour Tenerife, la vague porte un point jaune, orange ou rouge et, quand tu l’ouvres, elles s’affichent en premier : touche-en une pour la lire en entier. Si l’alerte concerne les phénomènes côtiers, «Baignez-vous ici aujourd’hui» écarte les plages de cette côte. Il faut une connexion.",
+    "it": "🌡️ In alto, il termometro ti dà il meteo in diretta, zona per zona: qui può piovere in un paese e splendere il sole in quello accanto. L’onda 🌊 ti mostra lo stato del mare per costa e, in «Oggi fai il bagno qui», fino a tre spiagge in base al mare e al vento del momento; nel fumetto di ogni luogo sulla costa hai il mare proprio lì. Se l’AEMET ha avvisi in vigore per Tenerife, l’onda ha un punto giallo, arancione o rosso e, quando la apri, sono la prima cosa: toccane uno per leggerlo per intero. Se l’avviso è per fenomeni costieri, «Oggi fai il bagno qui» esclude le spiagge di quella costa. Serve la connessione.",
+    "nl": "🌡️ Bovenaan geeft de thermometer je het weer live, zone per zone: hier kan het in het ene dorp regenen en in het volgende zonnig zijn. De golf 🌊 toont de zeegang per kust en, bij «Zwem hier vandaag», tot drie stranden op basis van de zee en de wind van nu; in de pop-up van elke kustplek zie je de zee precies daar. Heeft AEMET waarschuwingen van kracht voor Tenerife, dan heeft de golf een gele, oranje of rode stip en staan ze bovenaan als je hem opent: tik op een waarschuwing om die helemaal te lezen. Gaat de waarschuwing over kustverschijnselen, dan laat «Zwem hier vandaag» de stranden van die kust weg. Daarvoor heb je verbinding nodig.",
+    "pl": "🌡️ Na górze termometr pokazuje pogodę na żywo, strefa po strefie: tu w jednej wsi może padać, a w sąsiedniej świecić słońce. Fala 🌊 pokazuje stan morza według wybrzeży, a w «Wykąp się dziś tutaj» do trzech plaż według aktualnego morza i wiatru; w dymku każdego miejsca nad morzem masz morze dokładnie tam. Jeśli AEMET ma aktualne ostrzeżenia dla Teneryfy, fala ma żółtą, pomarańczową lub czerwoną kropkę, a po jej otwarciu ostrzeżenia są na samej górze: dotknij jednego, żeby przeczytać je w całości. Jeśli ostrzeżenie dotyczy zjawisk przybrzeżnych, «Wykąp się dziś tutaj» pomija plaże tego wybrzeża. Potrzebne jest połączenie.",
+    "zh": "🌡️ 顶部的温度计按区域显示实时天气：这里可能这个村子下雨，隔壁村子却阳光明媚。海浪按钮 🌊 按海岸显示海况，并在「今天在这里游泳」中根据当前的海况和风力推荐最多三处海滩；海边每个地点的信息框里也有当地的海况。如果 AEMET 对特内里费发布了生效中的预警，海浪按钮上会出现黄色、橙色或红色圆点，打开后预警排在最前面：点按任意一条即可查看全文。如果是沿海风浪预警，「今天在这里游泳」会排除该海岸的海滩。需要联网。",
+    "zht": "🌡️ 頂部的溫度計依區域顯示即時天氣：這裡可能這個村子下雨，隔壁村子卻陽光普照。海浪按鈕 🌊 依海岸顯示海況，並在「今天在這裡游泳」中根據當前的海況和風力推薦最多三處海灘；海邊每個地點的資訊框裡也有當地的海況。如果 AEMET 對特內里費發布了生效中的預警，海浪按鈕上會出現黃色、橙色或紅色圓點，打開後預警排在最前面：點按任一則即可查看全文。如果是沿海風浪預警，「今天在這裡游泳」會排除該海岸的海灘。需要連網。"
    },
    "follow": [
     "pla-01",
     "sal-03",
     "app-06"
    ],
-   "comprobado": "mc-btn 🌡️ (microclimas: tiempo en directo por zonas, tourMicroP); mar-btn 🌊 (estado del mar por costas, tourMarP); seaBlock en el globo de COAST_CATS; open-meteo y marine-api en EN_VIVO (necesitan red) · 21/10/2026: avisos de AEMET (Meteoalerta, canal de Tenerife) en #wx-pill, solo cuando hay avisos, con punto wx-amarillo / wx-naranja / wx-rojo; al tocarlo se abre #wx-panel"
+   "comprobado": "mc-btn 🌡️ (microclimas: tiempo en directo por zonas, tourMicroP); mar-btn 🌊 (estado del mar por costas, tourMarP); seaBlock en el globo de COAST_CATS; open-meteo y marine-api en EN_VIVO (necesitan red) · 21/10/2026: avisos de AEMET (Meteoalerta, canal de Tenerife) en el boton del mar: punto .mar-btn-punto wx-amarillo / wx-naranja / wx-rojo del peor aviso en pie (renderWxAlerts), cada aviso arriba del panel (#mar-avisos, lo primero del panel) y al tocarlo #wx-panel con el texto entero; «Báñate hoy aquí» (banoHoyTitle, hasta 3 playas: slice(0,3), viento y mar de ahora: banoHoySub) deja fuera las playas dentro (o a menos de 2 km) del contorno de la zona de un aviso de fenomenos costeros (CO) para hoy: TGO_AVISOS.costerosEn, banoHoyAemet"
   },
   {
    "id": "app-14",

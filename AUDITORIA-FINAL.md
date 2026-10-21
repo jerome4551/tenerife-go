@@ -2173,7 +2173,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 43 tablas, 1418 filas (y 3.559 filas, dentro y fuera del fuente)
+## Idiomas · 43 tablas, 1419 filas (y 3.559 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -2188,7 +2188,9 @@ tarjetas inventadas de la tienda y su hueco de AdSense, que se borraron. El
 17, el panel del cielo: 10 tablas y 514 filas más. Las de
 `modulos/cielo.js` (`CIELO_UI` con 250, las ocho tablas de nombres con 254 y
 `CIELO_LOCALE`), que `tools/fuente.js` pega al fuente, y en `UI_TX` las siete
-filas del botón y las dos del tour. El
+filas del botón y las dos del tour. El 21, una más: las dos de «Báñate hoy
+aquí» con un aviso costero de AEMET, y una menos, la de la ✕ de la píldora de
+avisos, que ya no existe. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -6031,6 +6033,82 @@ de hoy (la última auditoría en verde, sobre `8c1b86f`, fue un día sin avisos)
 No se ha tocado: arreglarlo es cambiar cómo se ve el botón de los avisos en
 los móviles pequeños, y eso es para Jerome.
 
+## Los avisos de AEMET, en el botón del mar (21 de octubre)
+
+A la pregunta de cómo hacer sitio al botón de los avisos, Jerome: «El aviso
+AEMET puedes incluirlo en el botón donde bañarte. Deja micro clima y
+temperatura. Cuadra con la AEMET».
+
+| | antes | ahora |
+|---|---|---|
+| barra de arriba | con avisos en pie, una píldora (icono, punto y ✕) de 62 px que a 320–360 px echaba el idioma fuera de la pantalla | sin píldora: un punto del color del peor aviso en pie (amarillo, naranja o rojo) en la esquina del 🌊, que no ocupa sitio; y dicho para quien no lo ve (`aria-describedby`: «1 aviso de AEMET para Tenerife») |
+| panel del mar | solo los costeros, debajo del título | lo primero del panel, encima de «Báñate hoy aquí»: cada aviso en pie, de cualquier fenómeno, con nivel, fenómeno, zona y hora; al tocarlo, el aviso entero. Sin avisos, «Sin avisos de AEMET para Tenerife hasta…» y la hora de la comprobación, como en el del tiempo |
+| «Báñate hoy aquí» | solo el modelo de Open-Meteo | con un aviso de fenómenos costeros para hoy, deja fuera las playas de su zona y lo dice; si no queda ninguna, dice que es por AEMET |
+| costas del panel | solo el modelo | la costa con un costero para hoy lleva el aviso (nivel, fenómeno, hora) y no puede ser «la costa más tranquila» |
+| panel del tiempo 🌡️ y temperatura | — | igual que estaban |
+
+**Qué playa cae dentro de un aviso.** No se ha escrito a mano ninguna
+correspondencia: AEMET manda con cada aviso el contorno de su zona (el
+`<polygon>` del CAP), y `tools/avisos_aemet.py` lo guarda tal cual
+(«poligonos»), solo si tiene la forma de CAP 1.2 —cuatro pares como poco,
+cerrado—; si una zona trae uno malo, no se guarda ninguno. Medido con los
+contornos reales de Tenerife del 11 de octubre (`tools/pruebas/aemet/`): las
+99 playas y charcos de «Báñate hoy aquí» caen cada uno en una zona —30 en el
+Norte, 25 en el Área metropolitana, 44 en Este, sur y oeste— y ninguno a más de
+1 km del contorno costero de la suya (va con dos decimales). Por eso cuenta lo
+que está dentro o a menos de 2 km: en la raya entre dos zonas, una playa cuenta
+para las dos (Mesa del Mar, Playa de Candelaria, Chimisay y El Socorro de
+Güímar), y la costa «Oeste» del panel, la de Los Gigantes, que está dentro del
+contorno del norte y a 1 km del del sur, lleva el aviso de cualquiera de los
+dos. Un costero que llegue sin contorno cuenta para toda la costa. «Hoy» es
+hasta medianoche en Canarias: un costero de mañana sale arriba con su hora y
+no quita nada.
+
+Los avisos que hay ahora en `datos/avisos-aemet.json` no traen contorno: los
+traerán desde la primera pasada del flujo de cada hora con el lector nuevo. Hoy
+no hay ningún costero (solo uno amarillo de lluvias en el Área metropolitana),
+así que mientras tanto no cambia nada que se vea.
+
+**El asistente.** «avisos de AEMET», «aviso amarillo», «Wetterwarnung», «code
+oranje», «天气预警»… daban los avisos de seguridad de las fichas, otra respuesta
+o nada. Ahora llevan a «¿Dónde veo el tiempo de hoy?» (app-13), reescrita en
+los diez idiomas con el punto del 🌊, «Báñate hoy aquí» y los costeros, y con
+sus claves; la de la calima (sal-03) dice dónde sale un aviso de polvo en
+suspensión; el paso del 🌊 del tour, también. Comparadas las 8.412 preguntas
+de los diez idiomas (rótulos y claves) con la versión de antes: cambian las 85
+nuevas, todas a app-13, y ninguna otra.
+
+**Probado.**
+
+- `tools/probar_avisos_aemet.py`: **31 de 31**; 7 nuevos: el contorno de
+  659603C tal cual, abierto, con letras, de tres pares, fuera de rango, y dos
+  contornos con uno malo.
+- `tools/probar_avisos.js`: **127 de 127**, en un navegador, en los diez
+  idiomas, con Open-Meteo simulado (mar en calma y alisio flojo en toda la
+  isla) y los contornos reales: el punto del color del peor, y dicho; ninguna
+  píldora; los avisos lo primero del panel; con el costero del sur, las costas
+  Sureste, Sur y Oeste lo llevan y ninguna más; «la más tranquila» no es una de
+  ellas; las tres playas de «Báñate hoy aquí», fuera de su zona, y la nota; sin
+  el costero, alguna de las tres **sí** era de esa zona (si no, la prueba no
+  probaría nada); costeros en las tres costas, uno sin contorno y uno de mañana;
+  sin avisos, comprobación vieja, aviso terminado, sin fichero y cambio de
+  idioma.
+- `auditar_desborde.js` y `auditar_gas_cerca.js`, en rojo ayer por la píldora
+  con el aviso de hoy: en verde con el mismo aviso.
+- `auditar_tour.js` (el paso del 🌊, en los diez idiomas y cuatro tamaños),
+  `auditar_faq.js`, `probar_faq.js` (121; 7 nuevos), `castellano_suelto.js`,
+  `auditar_claves_tx.js`, `auditar_letras.js`, `auditar_sin_traducir.js` y
+  `auditar_idiomas_fuera.js`: en verde.
+
+Averías metidas a propósito, cada una en una copia de la app:
+
+| # | avería | `probar_avisos.js` |
+|---|---|---|
+| 1 | «Báñate hoy aquí» sin mirar los avisos | canta: 5 casos |
+| 2 | sin el margen de 2 km | canta: 4 (la costa Oeste pierde el aviso, y con costeros en las tres costas sigue saliendo alguna playa) |
+| 3 | un costero sin contorno no cuenta para nada | canta: 2 |
+| 4 | un costero de mañana cuenta para hoy | canta: 1 |
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -6078,8 +6156,8 @@ Y cada bloque por separado, si hace falta:
 | `tools/probar_notificacion_idioma.js` | la notificación diaria en el idioma de cada móvil: lo que la app manda a `guardar_push_sub()` al abrir y al cambiar de idioma, la tarjeta del permiso en los diez, y lo que el envío le manda a cada idioma |
 | `tools/probar_nombres.js` | cada lugar preguntado al asistente por su nombre, en los diez idiomas y en chino pegado: sale su ficha o la lista para elegir; el nombre corto, contado; y cada categoría del menú por su rótulo, la lista de esa categoría |
 | `tools/auditar_letras.js` | palabras escritas sin sus letras («waehle», «carre avec fleche») |
-| `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json` (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
-| `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, ficheros rotos, el latido de 3 horas |
+| `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json`, con el contorno oficial de cada zona (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
+| `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, contornos, ficheros rotos, el latido de 3 horas |
 | `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos, los kilómetros del coche y lo que se comparte del itinerario |
 | `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, Norte y Sur sin paradas de la otra zona (y «Otro» tampoco), nunca dos paradas del mismo sitio (comprobado con código propio), el aviso cuando no hay más, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano |
 | `tools/probar_play.js` | lo que pide Google Play (LANZAMIENTO-PLAY.md, Fase 1), en un navegador y con un Supabase falso: la tienda que no se ve ni se abre, el botón de administrador solo para quien lo es, borrar la cuenta (botón, confirmación, fallos y borrado) en los diez idiomas y `borrar-cuenta.html` sin JavaScript |
@@ -6091,7 +6169,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/informe_lugares.js` | `REVISION-LUGARES.md`: lo que se puede comprobar de los lugares y lo que no, con cada cifra contada al generarlo; con `--comprobar`, para si no está al día |
 | `tools/zonas_lugares.py` | Norte o Sur de cada lugar por el polígono oficial de su municipio: lo escribe en `index.html` y con `--comprobar` lo rehace y lo compara; coteja también las listas Norte y Sur de «Ruta del día» |
 | `tools/auditar_claves_tx.js` | cada `tx('…')` con la clave escrita tiene su fila en `UI_TX` (`tx()` devuelve vacío sin avisar) |
-| `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: píldora, panel, líneas del tiempo y del mar, comprobación vieja, fichero que no llega |
+| `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: el punto del 🌊, el panel, las líneas del tiempo y del mar, los costeros en las costas y en «Báñate hoy aquí» con los contornos reales de AEMET, comprobación vieja, fichero que no llega |
 | `tools/castellano_suelto.js` | el castellano que se queda **dentro** de cada idioma —letras, palabras corrientes, palabras copiadas, alfabeto latino en búlgaro y chino— y las frases que la traducción no tiene; lo que se queda a propósito, en `idiomas/castellano-aceptado.json` |
 | `tools/faltan_textos.js` | **cribado**, no veredicto: descripciones más cortas de lo esperado contra la mediana de ese idioma |
 | `tools/meter_descripcion.py` | mete descripciones rehechas comprobando que el texto es **de ese lugar** |

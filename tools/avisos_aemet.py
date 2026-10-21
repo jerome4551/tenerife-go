@@ -25,6 +25,12 @@ de 31-may-2022). Lo que se usa de ese anexo:
   · parametro: «PP;nombre;valor unidad» (RM rachas maximas 70 km/h...).
   · zona: geocode «AEMET-Meteoalerta zona». Tenerife: 659601 Norte, 659602
     Area metropolitana, 659603 Este, sur y oeste; con una C al final, su costa.
+  · contorno de la zona: <polygon> de su <area>, «lat,lon lat,lon ...»
+    (CAP 1.2: cuatro pares como poco, el ultimo igual al primero). Se guarda
+    tal cual, como «poligonos» de la zona, desde el 21 de octubre de 2026: con
+    el la app sabe que playas caen dentro de un aviso costero. Uno que no
+    tenga esa forma no se guarda, y la app trata entonces el aviso como si
+    fuera de toda la costa: nunca se queda corta.
   · un mensaje que caduca en el mismo instante en que se emite (expires igual
     a effective) NO es un aviso: es como AEMET retira los anteriores.
   · los mensajes que otro mensaje cita en <references> estan sustituidos.
@@ -189,13 +195,51 @@ def leer_cap(xml_bytes, nombre):
     }
 
 
+PAR = re.compile(r'(-?\d{1,3}(?:\.\d+)?),(-?\d{1,3}(?:\.\d+)?)')
+
+
+def poligono_limpio(s):
+    """El <polygon> de AEMET si tiene la forma de CAP 1.2; si no, None."""
+    pares = (s or '').split()
+    if len(pares) < 4:
+        return None
+    puntos = []
+    for p in pares:
+        m = PAR.fullmatch(p)
+        if not m:
+            return None
+        la, lo = float(m.group(1)), float(m.group(2))
+        if not (-90 <= la <= 90 and -180 <= lo <= 180):
+            return None
+        puntos.append((la, lo))
+    if puntos[0] != puntos[-1]:
+        return None
+    return ' '.join(pares)
+
+
 def zonas_de(info):
     out = []
     for a in info.findall(CAP + 'area'):
         for g in a.findall(CAP + 'geocode'):
             if (g.findtext(CAP + 'valueName') or '').strip() == 'AEMET-Meteoalerta zona':
-                out.append(((g.findtext(CAP + 'value') or '').strip(), (a.findtext(CAP + 'areaDesc') or '').strip()))
+                pols = [poligono_limpio(p.text) for p in a.findall(CAP + 'polygon')]
+                out.append(((g.findtext(CAP + 'value') or '').strip(), (a.findtext(CAP + 'areaDesc') or '').strip(),
+                            [p for p in pols if p], len(pols)))
     return out
+
+
+def zona_json(codigo, nombre, poligonos, leidos):
+    """Con todos sus contornos, o con ninguno: con uno de menos la zona se
+    quedaria corta y una playa de dentro pareceria de fuera."""
+    z = {'codigo': codigo, 'nombre_es': nombre}
+    if leidos and len(poligonos) == leidos:
+        z['poligonos'] = poligonos
+    elif leidos:
+        print(f'AVISO: zona {codigo}: {leidos - len(poligonos)} de {leidos} contornos sin la forma de CAP 1.2; '
+              'no se guarda ninguno y la app tratara el aviso como de toda la costa')
+    else:
+        print(f'AVISO: zona {codigo} sin contorno; la app tratara el aviso como de toda la costa')
+    return z
 
 
 def textos(info):
@@ -260,7 +304,7 @@ def construir(rss_bytes, tar_bytes, ahora):
             'parametro_es': par[1].strip() if len(par) >= 2 else '',
             'valor': par[2].strip() if len(par) >= 3 else '',
             'probabilidad': prob_limpia(param(es, 'AEMET-Meteoalerta probabilidad')),
-            'zonas': [{'codigo': c, 'nombre_es': n} for c, n in zonas],
+            'zonas': [zona_json(*z) for z in zonas],
             'inicio': inicio.isoformat(),
             'fin': fin.isoformat(),
             'emitido': m['enviado'].astimezone(dt.timezone.utc).isoformat().replace('+00:00', 'Z'),
