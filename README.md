@@ -12,7 +12,7 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
 | Fichero | Qué es |
 |---|---|
-| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 21 de octubre de 2026, con el panel del cielo, «Apunta al cielo» y lo que piden las reseñas: 35.100 líneas, 2,4 MB (742 kB con gzip). |
+| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 21 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites y la noche guiada: 35.100 líneas, 2,4 MB (743 kB con gzip). |
 | `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
 | `modulos/cielo.js` | El panel 🔭 «Cielo de Tenerife»: su código y sus textos en los diez idiomas. No se carga al arrancar: lo pide `index.html` la primera vez que alguien abre el panel. |
 | `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
@@ -203,6 +203,33 @@ círculo y, al tocar «Ya», mide cuánto se desvía y la corrige; en iOS el chi
 de los sensores lleva además la precisión que da el sistema (±N°). Si aun
 así no cuadra se arrastra el cielo hasta que encaje. Nada de la cámara ni de
 los sensores sale del móvil (política de privacidad, 2).
+
+**Tu noche guiada.** Arriba de «Esta noche», las paradas de la noche
+calculadas de lo que está en el cielo a esa hora (ahora, si ya es de noche;
+si no, media hora después de la noche cerrada): la Luna si está, los
+planetas más brillantes, tres estrellas con nombre, lo mejor a simple
+vista, la Vía Láctea si no hay Luna, el primer paso de satélite y la lluvia
+de estrellas activa; cada una con dónde está, qué es y «Llévame», que abre
+«Apunta al cielo» con la flecha puesta en ella. Es la respuesta a «los
+principiantes no saben dónde mirar», la queja que las reseñas repiten.
+
+**El sistema solar hoy**, al final de «Esta noche»: las órbitas y las
+posiciones reales vistas desde encima del polo norte del Sol (Astronomy
+Engine), «Hasta Marte» o «Hasta Neptuno», con la noche de la Tierra y
+Tenerife sobre ella; se toca un planeta y dice a cuánto está del Sol y de
+nosotros, cuánto tarda su luz, a cuántos grados del Sol se ve y dónde está
+ahora; el tiempo corre un mes por segundo. `tools/auditar_cielo.js` coteja
+cada posición con los elementos keplerianos de la JPL
+(`tools/elementos_planetas.json`) calculados aparte.
+
+**La luz roja** tiñe toda la pantalla (no solo el panel) y lleva un
+regulador de brillo, en el panel y en «Apunta al cielo»; la barra del
+sistema se pone en rojo oscuro; y si se abre el panel de noche con la luz
+blanca, una pista lo ofrece una vez. **Sin cobertura**, el panel sigue
+calculándolo todo: «Esta noche» dice qué falta sin red (las nubes y
+Wikipedia) y de cuándo son los elementos de los satélites, y «Dónde ir»
+comprueba antes de subir que los ficheros del panel están guardados en el
+móvil.
 
 **Los avisos no llegan solos y se quitan de verdad.** En cada evento del
 calendario, «Añadir a mi calendario» crea un `.ics` (RFC 5545, con alarma el

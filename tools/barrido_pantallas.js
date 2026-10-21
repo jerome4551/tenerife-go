@@ -155,6 +155,13 @@ window.__estados = [
       await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); await TG_CIELO.satelites().catch(function () {});
       await TG_CIELO.ver('mapa', '2026-12-13'); await espera(400);
       TG_CIELO.estado.mapa.sel = { sat: 'iss' }; await TG_CIELO.ver('mapa', '2026-12-13'); await espera(500); }],
+  /* El tercer bloque del 21 de octubre: la noche guiada y el sistema solar van
+     en 'cielo:noche'; aqui, el sistema solar «Hasta Neptuno» con la hoja de
+     Jupiter abierta, y «Donde ir» ya lleva «Antes de subir al Teide». */
+  ['cielo:sistema jupiter', async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar();
+      TG_CIELO.estado.sis.vista = 'ext'; TG_CIELO.estado.sis.sel = 'Jupiter'; await TG_CIELO.ver('noche', '2026-12-13'); await espera(500);
+      const h = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta h3')].find(x => /🪐/.test(x.textContent)); if (h) h.closest('.cielo-tarjeta').scrollIntoView(); await espera(200); }],
   ['cielo:calendario avisos', async () => {
       await window.TG_CIELO_CARGAR(); TG_CIELO.estado.cal = 'todo'; await TG_CIELO.ver('calendario', '2026-12-13'); await espera(300);
       const g = TG_CIELO.eventos().find(e => e.tipo === 'lluvia' && e.l.id === 'GEM'); if (g) TG_CIELO.ponerAviso(g);

@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.034 kB** en castellano · **1.148 kB** en el peor caso (búlgaro) · 1.134 kB en polaco, el 21 de octubre, con el cielo de `cielo-camara` y lo de `main` de ese día juntos (el panel del cielo suma 10 kB, con «Apunta al cielo», la ficha y lo que piden las reseñas; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.034 kB** en castellano · **1.148 kB** en el peor caso (búlgaro) · 1.134 kB en polaco, el 21 de octubre, con el cielo de `cielo-camara` y lo de `main` de ese día juntos (el panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -861,6 +861,146 @@ verlos pasar con `pip install -r tools/requisitos.txt`). Queda lo que ningún
 control puede: un paso de verdad, mirado desde el Teide, y la hora que da
 Spot the Station o Heavens-Above para el mismo paso; los pasos, en la nota
 para Claude Code.
+
+## La noche guiada, el sistema solar hoy, la luz roja completa y sin red en el Teide (21 de octubre, tercer bloque)
+
+Jerome: «P3». Lo que las reseñas de las apps del cielo piden después de la
+Estación (`APPS-DEL-CIELO-COMPETENCIA.md`, apartados 2.7, 2.8 y 4): «los
+principiantes no saben dónde mirar» y «no explica cómo se usa» (Stellarium,
+Sky Tonight, PhotoPills); una vista del sistema solar, «lo que más deja soñar
+a los niños»; la luz roja escondida o que deslumbra; y poder fiarse de la
+app sin cobertura, que es donde se usa. Sin datos nuevos: todo sale del
+motor y del catálogo que ya estaban.
+
+### Lo que entra
+
+- **Tu noche guiada**, arriba de «Esta noche». Las paradas se calculan de la
+  noche real a una hora de referencia: ahora, si ya es de noche (Sol bajo
+  −6°); si no, media hora después de empezar la noche cerrada (Sol bajo
+  −18°). En este orden, de lo más fácil a lo más fino: la Luna si está a
+  más de 5° y da algo de luz (fase e iluminación); los planetas a más de
+  10° y de magnitud 2 o más brillantes, por brillo; las tres estrellas con
+  nombre más brillantes por encima de 15° (con su constelación y «su luz
+  salió en…», de la ficha); lo mejor a simple vista que esté a más de 20°
+  (con la descripción del catálogo si la tiene); el centro de la Vía Láctea
+  a más de 10° sin Luna que moleste; el primer paso de satélite que quede
+  por venir; y la lluvia de estrellas activa (por la longitud solar, de la
+  tabla de la IMO), con el radiante a más de 10° ya o más tarde esa misma
+  noche (entonces la parada lleva su hora). Cada parada dice dónde está a
+  esa hora (altura y rumbo), qué es, y lleva «Llévame», que abre «Apunta al
+  cielo» con la flecha puesta en ella, y «Ver en el mapa del cielo». Las
+  frases de qué mirar en cada clase son hechos estables, con su fuente
+  encima de cada fila en `textos_ui8.py` (los cráteres junto al terminador,
+  los planetas que no centellean, las lunas de Júpiter con prismáticos, los
+  anillos con un telescopio pequeño, el radiante y por qué se mira a un
+  lado). Esta noche, 21 de octubre, desde las 21:19: la Luna (gibosa, 79 %),
+  Saturno, Vega, Altair, Fomalhaut, la galaxia de Andrómeda y las
+  Oriónidas, cuyo radiante sube más tarde.
+- **El sistema solar hoy**, al final de «Esta noche». Un lienzo con las
+  órbitas y las posiciones heliocéntricas de los ocho planetas, vistas desde
+  encima del polo norte del Sol: `HelioVector` de Astronomy Engine girado a
+  la eclíptica J2000 (`Rotation_EQJ_ECL`); las órbitas, muestreadas del
+  propio motor a lo largo de una vuelta (72 puntos; el periodo sideral de
+  cada planeta solo marca el tramo, y la auditoría lo coteja con la tercera
+  ley de Kepler). Dos escalas, «Hasta Marte» y «Hasta Neptuno»; la mitad
+  oscura de la Tierra es su noche y el punto dorado sobre ella, Tenerife
+  (`ObserverVector`: hacia el Sol a mediodía, al contrario a medianoche). Se
+  toca un planeta y la hoja dice a cuánto está del Sol y de la Tierra (en
+  UA, y cuánto tarda su luz, a c), a cuántos grados del Sol se ve (la
+  elongación) y dónde está ahora, con «Ver en el mapa del cielo» y
+  «Llévame»; «− 1 mes», «+ 1 mes», «Hoy» y ▶ (un mes por segundo). Los
+  tamaños no están a escala, y se dice.
+- **La luz roja completa.** Ya teñía toda la pantalla (multiplicar por
+  rojo); ahora lleva un **regulador de brillo** (0,25 a 1, guardado en el
+  móvil) al lado del botón, en el panel y en la fila de chips de «Apunta al
+  cielo»; la barra del sistema (`theme-color`) se pone en rojo oscuro
+  mientras el panel va en rojo y vuelve a su color al cerrar; y si se abre
+  el panel de noche con la luz blanca, una **pista** lo ofrece una vez
+  («Activar» / «No, gracias», y no vuelve a salir).
+- **Sin red en el Teide.** Sin conexión, «Esta noche» lleva arriba un aviso
+  con lo que sigue funcionando (todo lo que se calcula) y lo que no (las
+  nubes y Wikipedia), y de cuándo son los elementos de los satélites. Y en
+  «Dónde ir», **«Antes de subir al Teide»** comprueba en la caché del móvil
+  los seis ficheros del panel (`index.html`, el módulo, el motor, el
+  catálogo, satellite.js y los elementos: los mismos que precachea `sw.js`)
+  y dice «Guardado en el móvil», «Aún no está guardado: ábrelo una vez con
+  conexión» o «Este navegador no guarda la app».
+- 40 filas de texto nuevas en los diez idiomas (`CIELO_UI` pasa a 466).
+  Nada nuevo sale del móvil: la política de privacidad no cambia.
+
+### Lo que se midió
+
+- `modulos/cielo.js` pasa de 196 a 218 kB comprimidos (las 40 filas y el
+  código de la guía y del sistema solar); se sigue pidiendo al abrir el
+  panel. La primera descarga: 1.020 kB en castellano (1.019; los estilos
+  nuevos van en la cáscara), 1.133 en búlgaro. `index.html`: 34.705 líneas,
+  727 kB con gzip.
+- El sistema solar contra los elementos keplerianos de la JPL (Tabla 1 de
+  «Approximate Positions of the Planets», Standish, válida 1800–2050;
+  `tools/elementos_planetas.json`, con la página de donde sale), calculados
+  aparte en la auditoría con la ecuación de Kepler, en cuatro fechas de
+  2020 a 2031: longitud heliocéntrica a 0,076° como mucho (Saturno) y
+  distancia al 0,19 %; la propia JPL acota el error de esa tabla en menos
+  de medio grado en ese intervalo.
+
+### Los controles
+
+- **`auditar_cielo.js`, partes 12a y 12** (173 controles en total con las
+  fuentes bajadas; eran 148). Sin navegador: el fichero de elementos (los
+  ocho planetas con sus doce números y la página de la JPL; la Tierra entre
+  0,983 y 1,017 UA, Mercurio con e = 0,206), los periodos del módulo contra
+  la tercera ley de Kepler con la a de la JPL (0,5 %), que el módulo use
+  `HelioVector`, `Rotation_EQJ_ECL` y `ObserverVector`, lo que guarda la
+  luz roja y el filtro que lee, y que la comprobación de la caché mire los
+  seis ficheros que precachea `sw.js`. En el navegador, con el reloj de la
+  página a la noche siguiente a la época de los satélites: **cada parada
+  recalculada aparte** con el motor desde las coordenadas del catálogo
+  (altura y acimut a 0,3°, el umbral de su clase, el orden), los planetas
+  exactamente los de magnitud ≤ 2 por encima de 10° y por brillo, las tres
+  estrellas exactamente las más brillantes por encima de 15°, la Luna si
+  toca; la tarjeta (una fila por parada, dos botones, la hora, la nota);
+  «Llévame» con la flecha puesta en la primera parada y «Ver en el mapa» con
+  la última seleccionada; otras noches: la de las Perseidas (12-8-2026, Luna
+  nueva: la Vía Láctea y la lluvia con el radiante que sube a las 00:02) y
+  la de las Gemínidas, con el radiante recalculado aparte; **el sistema
+  solar contra la JPL** en cuatro fechas; Tenerife hacia el Sol al mediodía
+  solar (coseno 0,96) y al contrario a medianoche (−0,99); el lienzo pintado
+  (píxeles claros, ocho planetas tocables); Júpiter tocado, con la distancia
+  al Sol, la distancia a la Tierra, los minutos de luz y la elongación
+  iguales a los que salen aparte; «+ 1 mes» 30 días, ▶ que corre y para,
+  las dos escalas, «Hoy»; la luz roja: de noche con la luz blanca sale la
+  pista, «Activar» pone la clase, el `theme-color` a `#2a0000`, el
+  regulador a la vista, el brillo 0,5 aplicado (`brightness(0.5)`) y
+  guardado, el regulador también en la vista, al cerrar vuelve el color y al
+  reabrir la pista ya no sale, al apagar todo vuelve; de día no hay pista;
+  sin red: el aviso con la fecha de los elementos y, con conexión, fuera;
+  sin service worker «aún no está guardado»; y los diez idiomas. **Parte
+  8**, con el service worker instalado y el servidor apagado: «Antes de
+  subir al Teide» dice «Guardado en el móvil».
+- **`barrido_pantallas.js`**: un estado más (el sistema solar «Hasta
+  Neptuno» con la hoja de Júpiter); la guía y el sistema solar salen en
+  «Esta noche» y «Antes de subir al Teide» en «Dónde ir». En total, 100
+  pantallas y fichas en los diez idiomas, 0 textos sin traducir y 0 errores
+  de página.
+- `auditar_web.js` coteja las 1.642 filas; `barrido_idiomas.js`, 3.783
+  dentro y fuera; `castellano_suelto.js`, `auditar_claves_tx.js`,
+  `auditar_sw.js`, `auditar_readme.js`, `auditar_letras.js`,
+  `auditar_frases.js`, `auditar_cirilico.py` y `auditar_etiquetas.js`, en
+  verde.
+
+Averías con las que se vieron fallar los controles antes de darlos por
+buenos: la comprobación de las estrellas pasaba las coordenadas J2000 del
+catálogo a `Horizon()`, que espera coordenadas de la fecha, y Fomalhaut
+salía 0,4° desviada (la app estaba bien: gira el vector J2000 con la matriz
+de la fecha); y la pista de la luz roja se buscaba con el reloj de la página
+a las 19:00, con el Sol todavía arriba.
+
+`auditar.sh` entero sobre el árbol del commit, el 21 de octubre por la
+tarde: **cero bloques en rojo**; los tres controles de `pmtiles` siguen sin
+poder ejecutarse aquí (Claude Code tiene que verlos pasar con `pip install
+-r tools/requisitos.txt`). Queda lo que ningún control puede: una noche
+guiada de verdad, con el móvil en la mano y la flecha llevando a cada
+parada; los pasos, en la nota para Claude Code.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
@@ -2703,7 +2843,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 43 tablas, 1605 filas (y 3.746 filas, dentro y fuera del fuente)
+## Idiomas · 43 tablas, 1645 filas (y 3.786 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -2722,8 +2862,9 @@ filas del botón y las dos del tour. El 20, «Apunta al cielo», la carta nueva
 y la ficha: 87 más (79 de `CIELO_UI`, que pasa a 329 y pierde una que ya no
 pedía nadie; las cuatro lunas de Júpiter en `CIELO_CUERPO`; y en la política
 de privacidad los sensores y la cámara, cuatro). El 21, lo que piden las
-reseñas: 67 más en `CIELO_UI`, que pasa a 396, y esa tarde 30 más de los
-satélites, hasta 426; y, de los avisos de AEMET, una
+reseñas: 67 más en `CIELO_UI`, que pasa a 396; esa tarde, 30 más de los
+satélites, hasta 426, y 40 del tercer bloque (la noche guiada, el sistema
+solar, la luz roja, sin red), hasta 466; y, de los avisos de AEMET, una
 más: las dos de «Báñate hoy aquí» con un aviso costero, y una menos, la de la
 ✕ de la píldora de avisos, que ya no existe; esa tarde, dos más: «Toda la
 isla» y «Toda la costa» en la línea de los avisos. El

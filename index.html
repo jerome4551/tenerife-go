@@ -9770,7 +9770,7 @@ Object.assign(UI_TX, {
 
 /* ── CIELO DE TENERIFE: textos ── */
 /* PANEL «CIELO DE TENERIFE» (17 de octubre de 2026): las filas que necesita
-   el boton antes de cargar el panel. Las otras 426 van con el panel, en
+   el boton antes de cargar el panel. Las otras 466 van con el panel, en
    modulos/cielo.js (CIELO_UI), y tools/auditar_cielo.js las mira todas. */
 Object.assign(UI_TX, {
   "cieloBoton": {"es": "Cielo de Tenerife: estrellas, planetas y eclipses", "en": "Tenerife night sky: stars, planets and eclipses", "fr": "Ciel de Tenerife : étoiles, planètes et éclipses", "de": "Himmel über Teneriffa: Sterne, Planeten und Finsternisse", "it": "Cielo di Tenerife: stelle, pianeti ed eclissi", "nl": "Sterrenhemel van Tenerife: sterren, planeten en eclipsen", "zh": "特内里费星空：恒星、行星与日月食", "zht": "特內里費星空：恆星、行星與日月食", "bg": "Небето над Тенерифе: звезди, планети и затъмнения", "pl": "Niebo nad Teneryfą: gwiazdy, planety i zaćmienia"},
@@ -35008,7 +35008,7 @@ html.cielo-rojo body::after {
   content: ''; position: fixed; inset: 0; z-index: 2147483000; pointer-events: none;
   background: #ff1a1a; mix-blend-mode: multiply; opacity: 1;
 }
-html.cielo-rojo #cielo-panel, html.cielo-rojo #cielo-vista { filter: brightness(0.82); }
+html.cielo-rojo #cielo-panel, html.cielo-rojo #cielo-vista { filter: brightness(var(--cielo-brillo, 0.82)); }
 /* Y lo que queda alrededor del panel -el mapa, las barras- se apaga: una
    franja de rojo vivo tambien deslumbra. Por debajo del panel, sin tapar el
    dedo (pointer-events). */
@@ -35016,6 +35016,33 @@ html.cielo-rojo body::before {
   content: ''; position: fixed; inset: 0; z-index: 8796; pointer-events: none;
   background: rgba(0,0,0,0.8);
 }
+
+/* ── 21 de octubre, tercer bloque: la noche guiada, el sistema solar, la luz
+   roja completa y «sin red en el Teide» ─────────────────────────────── */
+.cielo-parada-n { font-size: 0.56rem; letter-spacing: 0.08em; text-transform: uppercase; color: #F5C76B; opacity: 0.85; margin-bottom: 1px; }
+.cielo-parada-que { color: rgba(255,255,255,0.86); margin-top: 3px; }
+.cielo-sistema { display: block; width: 100%; aspect-ratio: 1 / 1; border-radius: 12px; background: #04060f; border: 1px solid rgba(255,255,255,0.08); touch-action: manipulation; }
+.cielo-sis-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 8px; }
+.cielo-sis-chips .cielo-chip {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.8);
+  border-radius: 999px; padding: 5px 10px; font-size: 0.62rem; cursor: pointer; line-height: 1.2;
+}
+.cielo-sis-chips .cielo-chip[aria-pressed="true"] { background: rgba(212,175,55,0.16); border-color: rgba(212,175,55,0.45); color: #F5C76B; }
+.cielo-sis-fecha { font-size: 0.64rem; color: rgba(255,255,255,0.85); font-variant-numeric: tabular-nums; padding: 0 2px; }
+.cielo-sis-hoja { margin-top: 8px; padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
+/* el regulador de brillo, en la cabecera del panel y en la fila de chips de la vista */
+#cielo-brillo, .cv-brillo { width: 72px; accent-color: #ff6b6b; margin: 0; flex-shrink: 0; }
+#cielo-brillo[hidden], .cv-brillo[hidden] { display: none; }
+#cielo-vista .cv-brillo { width: 84px; align-self: center; }
+/* la pista de la luz roja, debajo de las pestanas */
+.cielo-pista { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 8px 12px; margin: 0 8px 6px; border-radius: 10px;
+  background: rgba(190,30,30,0.14); border: 1px solid rgba(255,80,80,0.35); font-size: 0.66rem; line-height: 1.45; color: rgba(255,255,255,0.9); flex-shrink: 0; }
+.cielo-pista span { flex: 1 1 100%; }
+.cielo-pista .cielo-boton { margin: 2px 0 0; padding: 5px 9px; }
+/* sin red: el aviso arriba de «Esta noche» y la comprobacion en «Donde ir» */
+.cielo-sinred { margin: 6px 0 0; }
+.cielo-offline-ok { color: #9be29e; }
+.cielo-offline-no { color: #ffd27f; }
 </style>
 
 <button id="cielo-btn" type="button" data-tx-aria="cieloBoton" aria-label="Cielo de Tenerife: estrellas, planetas y eclipses" data-tx-title="cieloBoton" title="Cielo de Tenerife: estrellas, planetas y eclipses">🔭</button>

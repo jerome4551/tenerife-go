@@ -83,6 +83,22 @@
  *      al satelite y lo encuentra la busqueda), la ficha, el .ics con la
  *      alarma a media hora, el aviso; con elementos de 10 dias, lo dice y no
  *      ensena pasos; y los diez idiomas sin texto roto ni palabras repetidas.
+ *  12. la noche guiada, el sistema solar hoy, la luz roja completa y «sin red
+ *      en el Teide» (21 de octubre de 2026, tercer bloque): cada parada de
+ *      la guia recalculada aparte (altura con el motor desde las coordenadas
+ *      del catalogo, los umbrales de cada clase, los planetas por brillo, las
+ *      tres estrellas mas brillantes), «Llevame» con la flecha, otras noches
+ *      (la Via Lactea sin Luna, las Perseidas con el radiante que sube mas
+ *      tarde, las Geminidas); el sistema solar contra los elementos
+ *      keplerianos de la JPL (tools/elementos_planetas.json, Standish)
+ *      calculados aqui aparte en cuatro fechas, Tenerife hacia el Sol a
+ *      mediodia y al contrario a medianoche, el lienzo pintado, la hoja de
+ *      Jupiter con la distancia y la elongacion recalculadas, las vistas, el
+ *      tiempo; la luz roja (la pista de noche y no de dia, «Activar», el
+ *      regulador en el panel y en la vista, theme-color puesto y devuelto);
+ *      sin red (el aviso con la fecha de los elementos, la comprobacion en
+ *      «Donde ir» y, en la parte 8, que con el service worker diga
+ *      «guardado»); y los diez idiomas.
  *
  * Sale con 1 si algo falla.
  */
@@ -483,8 +499,44 @@ titulo('11a. la Estacion Espacial y los satelites: el motor SGP4, los elementos 
   ok(/SAT_WP = \{ iss: \['International Space Station'\], tiangong: \['Tiangong space station'\], hubble: \['Hubble Space Telescope'\] \}/.test(modulo), 'la ficha pide a Wikipedia los articulos que son (International Space Station, Tiangong space station, Hubble Space Telescope)');
 }
 
+/* ════════ 12a. la noche guiada y el sistema solar, sin navegador ════════ */
+titulo('12a. la noche guiada y el sistema solar hoy: los elementos de la JPL y lo fijo del modulo');
+const ELEM = JSON.parse(lee('tools/elementos_planetas.json'));
+/* la posicion heliocentrica con los elementos keplerianos de la JPL (Standish), en la ecliptica J2000: lo que la pagina de la JPL explica, tal cual */
+function standish(nombre, fecha) {
+  const el = ELEM.cuerpos[nombre], RAD = Math.PI / 180, jd = fecha.getTime() / 864e5 + 2440587.5, T = (jd - 2451545.0) / 36525;
+  const a = el[0] + el[1] * T, e = el[2] + el[3] * T, I = el[4] + el[5] * T, L = el[6] + el[7] * T, wb = el[8] + el[9] * T, O = el[10] + el[11] * T;
+  const w = wb - O; const M = ((L - wb) % 360 + 540) % 360 - 180, es = e / RAD; let En = M + es * Math.sin(M * RAD);
+  for (let i = 0; i < 60; i++) { const dE = (M - (En - es * Math.sin(En * RAD))) / (1 - e * Math.cos(En * RAD)); En += dE; if (Math.abs(dE) < 1e-8) break; }
+  const xp = a * (Math.cos(En * RAD) - e), yp = a * Math.sqrt(1 - e * e) * Math.sin(En * RAD);
+  const cw = Math.cos(w * RAD), sw = Math.sin(w * RAD), cO = Math.cos(O * RAD), sO = Math.sin(O * RAD), cI = Math.cos(I * RAD), sI = Math.sin(I * RAD);
+  const x = (cw * cO - sw * sO * cI) * xp + (-sw * cO - cw * sO * cI) * yp, y = (cw * sO + sw * cO * cI) * xp + (-sw * sO + cw * cO * cI) * yp, z = sw * sI * xp + cw * sI * yp;
+  return { x, y, z, r: Math.hypot(x, y, z), lon: (Math.atan2(y, x) / RAD + 360) % 360 };
+}
+{
+  const cuerpos = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
+  ok(/ssd\.jpl\.nasa\.gov\/planets\/approx_pos/.test(ELEM.fuente || '') && cuerpos.every(b => Array.isArray(ELEM.cuerpos[b]) && ELEM.cuerpos[b].length === 12 && ELEM.cuerpos[b].every(Number.isFinite)) && ELEM.columnas.length === 12,
+     'tools/elementos_planetas.json: los ocho planetas con sus 12 numeros (Tabla 1 de la JPL, 1800-2050), con la pagina de donde salen');
+  /* la Tierra: afelio y perihelio de la tabla, 0,983 y 1,017 UA; y Mercurio excentrico (0,206) */
+  const tierra = ELEM.cuerpos.Earth, merc = ELEM.cuerpos.Mercury;
+  ok(Math.abs(tierra[0] * (1 - tierra[2]) - 0.9833) < 0.001 && Math.abs(tierra[0] * (1 + tierra[2]) - 1.0167) < 0.001 && Math.abs(merc[2] - 0.2056) < 0.001,
+     'y dicen lo que dice cualquier libro: la Tierra entre 0,983 y 1,017 UA del Sol, Mercurio con excentricidad 0,206');
+  /* los periodos con que el modulo muestrea cada orbita, contra la tercera ley de Kepler con la a de la JPL */
+  const per = literal(modulo, 'var SIS_PERIODO = {') || {};
+  const malP = cuerpos.filter(b => !per[b] || Math.abs(per[b] / (365.25636 * Math.pow(ELEM.cuerpos[b][0], 1.5)) - 1) > 0.005).map(b => b + ' ' + per[b]);
+  ok(!malP.length && Object.keys(per).length === 8, 'los periodos siderales del modulo (SIS_PERIODO) cumplen la tercera ley de Kepler con la a de la JPL a menos del 0,5 %', malP.join(', '));
+  ok(/A\.HelioVector\(A\.Body\[b\], t\)/.test(modulo) && /Rotation_EQJ_ECL\(\)/.test(modulo) && /A\.ObserverVector\(t, obs\(\), false\)/.test(modulo) && /SIS_CUERPOS = \['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'\]/.test(modulo),
+     'el modulo saca las posiciones de HelioVector giradas a la ecliptica J2000, y Tenerife de ObserverVector; los ocho planetas');
+  ok(/'tgo_cielo_brillo'/.test(modulo) && /'tgo_cielo_rojo_pista'/.test(modulo) && /setProperty\('--cielo-brillo'/.test(modulo) && /brightness\(var\(--cielo-brillo, 0\.82\)\)/.test(index) && /setAttribute\('content', '#2a0000'\)/.test(modulo),
+     'la luz roja: el brillo y la pista se guardan en el movil, el filtro lee --cielo-brillo y la barra del sistema se pone en rojo oscuro');
+  ok(/FICHEROS_PANEL = \['\.\/index\.html', '\.\/modulos\/cielo\.js', '\.\/vendor\/astronomy\.browser\.min\.js', '\.\/datos\/cielo\.json', '\.\/vendor\/satellite\.js', '\.\/datos\/satelites\.json'\]/.test(modulo),
+     'la comprobacion de la cache mira los seis ficheros del panel (los mismos que precachea sw.js)');
+  const CORE = (lee('sw.js').match(/const CORE = \[([\s\S]*?)\];/) || [, ''])[1];
+  ok(['./index.html', './modulos/cielo.js', './vendor/astronomy.browser.min.js', './datos/cielo.json', './vendor/satellite.js', './datos/satelites.json'].every(f => CORE.includes("'" + f + "'")), 'y los seis estan en el CORE de sw.js');
+}
+
 if (!PUERTO) {
-  nota('sin puerto: se salta todo lo que va en el navegador (6 a 11)');
+  nota('sin puerto: se salta todo lo que va en el navegador (6 a 12)');
   fin();
 } else {
   navegador().then(fin, e => { fallos++; console.log('  MAL el navegador no termino   -> ' + (e && e.stack || e)); fin(); });
@@ -508,6 +560,7 @@ async function navegador() {
     if (toca(9)) await apunta(b);
     if (toca(10)) await quejas(b);
     if (toca(11)) await satelites(b);
+    if (toca(12)) await tercerBloque(b);
   } finally { await b.close(); }
 }
 
@@ -840,7 +893,7 @@ async function sinConexion(b) {
     const listo = await p.evaluate(async () => {
       const reg = await navigator.serviceWorker.ready;
       for (let i = 0; i < 100; i++) {
-        const ya = await Promise.all(['./modulos/cielo.js', './vendor/astronomy.browser.min.js', './datos/cielo.json', './index.html'].map(u => caches.match(new URL(u, location.href).href)));
+        const ya = await Promise.all(['./modulos/cielo.js', './vendor/astronomy.browser.min.js', './datos/cielo.json', './index.html', './vendor/satellite.js', './datos/satelites.json'].map(u => caches.match(new URL(u, location.href).href)));
         if (ya.every(Boolean)) return { activo: !!reg.active };
         await new Promise(r => setTimeout(r, 200));
       }
@@ -858,6 +911,15 @@ async function sinConexion(b) {
                luna: txt.includes(UI_TX.cieloLuna ? UI_TX.cieloLuna.es : 'Luna'), error: txt.includes(UI_TX.cieloErrorCarga.es) };
     });
     ok(r.app && r.motor && r.datos && !r.fallo && r.luna && !r.error, 'con el servidor apagado, el panel abre: motor, catalogo y la noche calculada', JSON.stringify(r));
+    /* 21 de octubre, tercer bloque: «Antes de subir al Teide» tiene que decir que esta guardado */
+    const off = await p.evaluate(async () => {
+      const espera = ms => new Promise(r => setTimeout(r, ms));
+      const listo = await TG_CIELO.cacheListo();
+      await TG_CIELO.ver('donde'); await espera(800);
+      const e = document.querySelector('#cielo-cuerpo .cielo-offline');
+      return { listo, texto: e ? e.innerText : '', ok: !!(e && e.classList.contains('cielo-offline-ok')) };
+    });
+    ok(off.listo === true && off.ok && /Guardado en el móvil/.test(off.texto), '«Antes de subir al Teide» comprueba la cache del movil y dice que el panel esta guardado', JSON.stringify(off));
     ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina (fuera de los de red)', err.slice(0, 3).join(' · '));
     await ctx.close();
   } finally { try { srv.kill(); } catch (e) {} }
@@ -1636,4 +1698,241 @@ function pasosAparte(T0, pasos) {
   let n = 0;
   for (const m of mios) if (m.dur >= 60) { n++; if (!pasos.some(x => x.sat === m.sat && Math.abs(x.max - m.max) <= 10000)) mal.push(m.sat + ' ' + new Date(m.max).toISOString().slice(0, 16) + ' (' + Math.round(m.dur) + ' s, ' + m.altMax.toFixed(0) + '°) falta en la app'); }
   return { mal, n, peor, mios: mios.length };
+}
+
+/* ── 12. la noche guiada, el sistema solar, la luz roja completa y sin red ──
+   El reloj de la pagina, como en la 11: las 18:00 UTC del dia siguiente a la
+   epoca mas nueva de datos/satelites.json (asi la guia de esa noche puede
+   llevar el paso de un satelite). Cada parada se recalcula aqui con el motor
+   desde las coordenadas del catalogo; el sistema solar, en Node, con los
+   elementos de la JPL. */
+async function tercerBloque(b) {
+  titulo('12. la noche guiada, el sistema solar hoy, la luz roja completa y sin red en el Teide');
+  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera'], isMobile: true, hasTouch: true });
+  const epocaMax = Math.max(...SATJSON.sat.map(x => new Date(x.epoca).getTime()));
+  const e0 = new Date(epocaMax), T0 = new Date(Date.UTC(e0.getUTCFullYear(), e0.getUTCMonth(), e0.getUTCDate() + 1, 18, 0, 0));
+  await p.clock.setFixedTime(T0);
+  await p.evaluate(async () => {
+    try { localStorage.removeItem('tgo_cielo_rojo'); localStorage.removeItem('tgo_cielo_rojo_pista'); localStorage.removeItem('tgo_cielo_brillo'); } catch (e) {}
+    await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); setLang('es'); TG_CIELO.estado.fecha = null; TG_CIELO.estado.rojo = false; TG_CIELO.abrir(); await TG_CIELO.satelites();
+  });
+  nota('reloj de la pagina: ' + T0.toISOString());
+  /* ── la noche guiada ── */
+  const g = await p.evaluate(() => {
+    const A = Astronomy, S = TG_CIELO.estado, D = S.datos, o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h);
+    const tg = TG_CIELO.instanteGuia(), P = TG_CIELO.guia(), tm = A.MakeTime(tg), rot = A.Rotation_EQJ_HOR(tm, o);
+    /* coordenadas J2000 del catalogo: el vector girado al horizonte de la fecha (precesion y nutacion dentro), con refraccion */
+    const horV = (v, t) => { const r = A.RotateVector(t ? A.Rotation_EQJ_HOR(t, o) : rot, new A.Vector(v[0], v[1], v[2], tm)); const sph = A.HorizonFromVector(r, 'normal'); return { alt: sph.lat, az: sph.lon }; };
+    const unit = (ra, dec) => { const a = ra * Math.PI / 180, d = dec * Math.PI / 180; return [Math.cos(d) * Math.cos(a), Math.cos(d) * Math.sin(a), Math.sin(d)]; };
+    const hor = (ra, dec, t) => horV(unit(ra, dec), t);
+    const cuerpo = (b, t) => { const eq = A.Equator(A.Body[b], t || tm, o, true, true); const h = A.Horizon(t || tm, o, eq.ra, eq.dec, 'normal'); return { alt: h.altitude, az: h.azimuth }; };
+    const paradas = P.map(x => {
+      let ind = null, extra = {};
+      const t = x.t ? A.MakeTime(x.t) : tm;
+      if (x.sel.planeta) { ind = cuerpo(x.sel.planeta, t); extra.mag = x.sel.planeta === 'Moon' ? null : A.Illumination(A.Body[x.sel.planeta], tm).mag; }
+      else if (x.sel.k === 'est') { ind = hor(x.sel.rec.ra, x.sel.rec.dec, t); extra.hip = x.sel.rec.h; extra.m = x.sel.rec.m; }
+      else if (x.sel.k) { ind = hor(x.sel.rec.ra, x.sel.rec.dec, t); extra.niv = x.sel.rec.niv; }
+      else if (x.sel.con === 'Sgr') { ind = hor(266.405, -28.936, t); }
+      else if (x.sel.sat) { const d = TG_CIELO.dondeSat(x.sel.sat, x.t); ind = d && { alt: d.alt, az: d.az }; extra.sol = d && d.sol; }
+      else if (x.sel.v) { ind = horV(x.sel.v, t); }
+      return { clave: x.clave, nombre: x.nombre, des: x.des || '', sub: x.sub, que: x.que || '', alt: x.h.alt, az: x.h.az, t: x.t ? x.t.toISOString() : null, ind, extra };
+    });
+    /* lo que deberia salir, calculado aparte: planetas por brillo, las tres estrellas mas brillantes altas */
+    const pl = ['Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'].map(b => ({ b, h: cuerpo(b), mag: A.Illumination(A.Body[b], tm).mag })).filter(x => x.h.alt >= 10 && x.mag <= 2).sort((a, b) => a.mag - b.mag).map(x => x.b);
+    const es = D.estrellas.map(e => ({ h: e.h, m: e.m, alt: hor(e.ra, e.dec).alt })).filter(x => x.alt >= 15).sort((a, b) => a.m - b.m).slice(0, 3).map(x => x.h);
+    const luna = cuerpo('Moon'), ilum = A.Illumination(A.Body.Moon, tm).phase_fraction;
+    /* la tarjeta */
+    const h3 = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta h3')].find(x => /🌠/.test(x.textContent)), tarjeta = h3 && h3.closest('.cielo-tarjeta');
+    return { tg: tg.toISOString(), paradas, pl, es, luna, ilum, tarjeta: tarjeta ? { texto: tarjeta.innerText, filas: tarjeta.querySelectorAll('.cielo-parada').length, botones: tarjeta.querySelectorAll('.cielo-parada button').length } : null };
+  });
+  const horaCan = iso => new Intl.DateTimeFormat('es-ES', { timeZone: 'Atlantic/Canary', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date(iso));
+  ok(g.paradas.length >= 3 && g.paradas.length <= 8, g.paradas.length + ' paradas para la noche del ' + g.tg.slice(0, 10) + ' a las ' + horaCan(g.tg) + ' (' + g.paradas.map(x => x.clave + ':' + x.nombre).join(', ') + ')');
+  const ORDEN = ['luna', 'planeta', 'estrella', 'objeto', 'via', 'paso', 'lluvia'], UMBRAL = { luna: 5, planeta: 10, estrella: 15, objeto: 20, via: 10, paso: 10, lluvia: 10 };
+  const malG = [];
+  g.paradas.forEach((x, i) => {
+    if (i && ORDEN.indexOf(x.clave) < ORDEN.indexOf(g.paradas[i - 1].clave)) malG.push(x.nombre + ': fuera de orden');
+    if (!x.ind) malG.push(x.nombre + ': sin posicion aparte');
+    else { const dAz = Math.abs(((x.ind.az - x.az + 540) % 360) - 180); if (Math.abs(x.ind.alt - x.alt) > 0.3 || dAz * Math.cos(x.alt * Math.PI / 180) > 0.3) malG.push(x.nombre + ': la app dice ' + x.alt.toFixed(1) + '°/' + x.az.toFixed(1) + '° y aparte sale ' + x.ind.alt.toFixed(1) + '°/' + x.ind.az.toFixed(1) + '°'); }
+    if (x.alt < UMBRAL[x.clave] - 0.01) malG.push(x.nombre + ': a ' + x.alt.toFixed(1) + '°, bajo el umbral de ' + UMBRAL[x.clave]);
+    if (!x.que || !x.sub && x.clave !== 'lluvia') malG.push(x.nombre + ': sin texto');
+    if (x.clave === 'planeta' && x.extra.mag > 2) malG.push(x.nombre + ': magnitud ' + x.extra.mag);
+    if (x.clave === 'paso' && !x.extra.sol) malG.push(x.nombre + ': el satelite no esta al Sol en el maximo');
+  });
+  const plApp = g.paradas.filter(x => x.clave === 'planeta').map(x => x.sub && x.nombre), plEsp = g.pl;
+  const planetasApp = g.paradas.filter(x => x.clave === 'planeta');
+  if (planetasApp.length !== plEsp.length) malG.push('planetas: la app da ' + planetasApp.length + ' y aparte salen ' + plEsp.join(','));
+  const esApp = g.paradas.filter(x => x.clave === 'estrella').map(x => x.extra.hip);
+  if (JSON.stringify(esApp) !== JSON.stringify(g.es)) malG.push('estrellas: la app ' + esApp.join(',') + ' y aparte ' + g.es.join(','));
+  const conLuna = g.luna.alt > 5 && g.ilum > 0.05;
+  if (conLuna !== g.paradas.some(x => x.clave === 'luna')) malG.push('la Luna (' + g.luna.alt.toFixed(0) + '°, ' + Math.round(g.ilum * 100) + ' %) ' + (conLuna ? 'falta' : 'sobra'));
+  ok(!malG.length, 'cada parada, recalculada aparte con el motor desde el catalogo: su altura y acimut a 0,3°, por encima del umbral de su clase, en orden; los planetas por brillo (mag ≤ 2) y las tres estrellas con nombre mas brillantes por encima de 15°, exactamente las que salen aparte', malG.slice(0, 4).join(' · '));
+  ok(g.tarjeta && g.tarjeta.filas === g.paradas.length && g.tarjeta.botones === 2 * g.paradas.length && g.tarjeta.texto.includes(horaCan(g.tg)) && /Llévame/.test(g.tarjeta.texto) && /PARADA 1 DE|Parada 1 de/i.test(g.tarjeta.texto) && /Cambia la noche/.test(g.tarjeta.texto),
+     'la tarjeta «Tu noche guiada»: una fila por parada con «Llévame» y «Ver en el mapa del cielo», la hora de referencia y como se hace', g.tarjeta && JSON.stringify({ filas: g.tarjeta.filas, botones: g.tarjeta.botones }));
+  /* «Llevame» y «Ver en el mapa» */
+  const lleva = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    const h3 = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta h3')].find(x => /🌠/.test(x.textContent)), t = h3.closest('.cielo-tarjeta');
+    const filas = [...t.querySelectorAll('.cielo-parada')], out = {};
+    const nombre = filas[0].querySelector('.cielo-item-nom').childNodes[0].textContent;
+    filas[0].querySelectorAll('button')[0].click(); await espera(900);
+    const v = document.getElementById('cielo-vista');
+    out.vista = !!v; out.objetivo = v ? document.querySelector('#cielo-vista .cv-objetivo').innerText : ''; out.nombre = nombre;
+    TG_CIELO.cerrarVista(); await espera(200);
+    /* «Ver en el mapa» de la ultima parada */
+    const ult = filas[filas.length - 1], nomUlt = ult.querySelector('.cielo-item-nom').childNodes[0].textContent;
+    ult.querySelectorAll('button')[1].click(); await espera(800);
+    out.pestana = TG_CIELO.estado.pestana; out.sel = JSON.stringify(TG_CIELO.estado.mapa.sel || null).slice(0, 80); out.nomUlt = nomUlt;
+    out.ficha = document.querySelector('#cielo-panel .cielo-ficha') ? document.querySelector('#cielo-panel .cielo-ficha').innerText.slice(0, 120) : '';
+    await TG_CIELO.ver('noche'); await espera(300);
+    return out;
+  });
+  ok(lleva.vista && lleva.objetivo.includes(lleva.nombre) && lleva.pestana === 'mapa' && lleva.sel !== 'null' && lleva.ficha.includes(lleva.nomUlt),
+     '«Llévame» abre «Apunta al cielo» con la flecha puesta en ' + lleva.nombre + '; «Ver en el mapa del cielo» abre la carta con ' + lleva.nomUlt + ' seleccionado', JSON.stringify(lleva));
+  /* otras noches: las Perseidas con Luna nueva (12-8-2026: la Via Lactea y el radiante que sube mas tarde), las Geminidas (13-12-2026) */
+  const otras = await p.evaluate(() => {
+    const A = Astronomy, D = TG_CIELO.estado.datos, o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h);
+    const f = (fecha) => { const tg = TG_CIELO.instanteGuia(fecha), P = TG_CIELO.guia(fecha); return { tg: tg.toISOString(), claves: P.map(x => x.clave + ':' + (x.des || x.nombre) + (x.t ? '@' + x.t.toISOString().slice(11, 16) : '')),
+      lluvia: P.filter(x => x.clave === 'lluvia').map(x => { const t = A.MakeTime(x.t || tg); const l = D.lluvias.find(q => q.id === x.des); const a = l.ra * Math.PI / 180, d = l.dec * Math.PI / 180; const r = A.RotateVector(A.Rotation_EQJ_HOR(t, o), new A.Vector(Math.cos(d) * Math.cos(a), Math.cos(d) * Math.sin(a), Math.sin(d), t)); const hh = A.HorizonFromVector(r, 'normal'); return { id: x.des, alt: x.h.alt, aparte: hh.lat, t: x.t ? x.t.toISOString() : null, que: x.que.slice(0, 60) }; })[0] || null,
+      luna: (function () { const t = A.MakeTime(tg); const eq = A.Equator(A.Body.Moon, t, o, true, true); return { alt: A.Horizon(t, o, eq.ra, eq.dec, 'normal').altitude, ilum: A.Illumination(A.Body.Moon, t).phase_fraction }; })() }; };
+    return { per: f('2026-08-12'), gem: f('2026-12-13') };
+  });
+  ok(otras.per.claves.some(c => c.startsWith('via:')) && otras.per.lluvia && otras.per.lluvia.id === 'PER' && Math.abs(otras.per.lluvia.alt - otras.per.lluvia.aparte) < 0.3 && otras.per.lluvia.alt >= 10 && otras.per.luna.ilum < 0.05 && /Perseidas/.test(otras.per.lluvia.que),
+     'la noche de las Perseidas (12-8-2026, Luna nueva): la Via Lactea y la lluvia (radiante a ' + (otras.per.lluvia && otras.per.lluvia.alt.toFixed(0)) + '°' + (otras.per.lluvia && otras.per.lluvia.t ? ', que sube a las ' + horaCan(otras.per.lluvia.t) : '') + ') estan entre las paradas', JSON.stringify(otras.per));
+  ok(otras.gem.lluvia && otras.gem.lluvia.id === 'GEM' && Math.abs(otras.gem.lluvia.alt - otras.gem.lluvia.aparte) < 0.3 && otras.gem.lluvia.alt >= 10,
+     'la de las Geminidas (13-12-2026): la lluvia esta, con el radiante recalculado aparte', JSON.stringify(otras.gem));
+  /* ── el sistema solar ── */
+  const FECHAS = ['2026-10-21T20:30:00Z', '2027-06-01T00:00:00Z', '2031-01-01T00:00:00Z', '2020-03-15T00:00:00Z'];
+  const sis = await p.evaluate((FECHAS) => FECHAS.map(f => { const s = TG_CIELO.sistema(new Date(f)); const o = {}; Object.keys(s.cuerpos).forEach(k => { o[k] = { lon: s.cuerpos[k].lon, r: s.cuerpos[k].r, z: s.cuerpos[k].z }; }); return { f, cuerpos: o, obs: s.obs }; }), FECHAS);
+  const malS = []; let peorL = 0, peorR = 0;
+  sis.forEach(x => {
+    Object.keys(x.cuerpos).forEach(b => {
+      const st = standish(b, new Date(x.f)), dl = Math.abs(((st.lon - x.cuerpos[b].lon + 540) % 360) - 180), dr = Math.abs(st.r / x.cuerpos[b].r - 1);
+      peorL = Math.max(peorL, dl); peorR = Math.max(peorR, dr);
+      if (dl > 0.2 || dr > 0.005) malS.push(b + ' ' + x.f.slice(0, 10) + ': ' + dl.toFixed(3) + '° / ' + (dr * 100).toFixed(2) + ' %');
+    });
+  });
+  ok(!malS.length, 'las posiciones heliocentricas de los ocho planetas en cuatro fechas (2020 a 2031), contra los elementos keplerianos de la JPL calculados aqui aparte: longitud a ' + peorL.toFixed(3) + '° y distancia al ' + (peorR * 100).toFixed(2) + ' % (la propia tabla vale a menos de medio grado)', malS.slice(0, 3).join(' · '));
+  /* Tenerife sobre la Tierra: hacia el Sol a mediodia solar, al contrario a medianoche (el 21-10-2026 el mediodia solar en Izaña cae hacia las 12:51 UTC: 12:00 + 66 min de longitud - 15 min de ecuacion del tiempo) */
+  const ten = await p.evaluate(() => ['2026-10-21T12:51:00Z', '2026-10-22T00:51:00Z'].map(f => { const s = TG_CIELO.sistema(new Date(f)), E = s.cuerpos.Earth; return { f, hacia: -(s.obs.x * E.x + s.obs.y * E.y) / Math.hypot(s.obs.x, s.obs.y) / Math.hypot(E.x, E.y) }; }));
+  ok(ten[0].hacia > 0.9 && ten[1].hacia < -0.9, 'Tenerife sobre la Tierra: mira al Sol al mediodia solar (coseno ' + ten[0].hacia.toFixed(2) + ') y al lado contrario a medianoche (' + ten[1].hacia.toFixed(2) + ')', JSON.stringify(ten));
+  /* el lienzo y la hoja de Jupiter */
+  const lienzo = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    const A = Astronomy, S = TG_CIELO.estado, out = {};
+    await TG_CIELO.ver('noche'); await espera(400);
+    const h3 = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta h3')].find(x => /🪐/.test(x.textContent)), t = h3 && h3.closest('.cielo-tarjeta');
+    if (!t) return { sin: true };
+    t.scrollIntoView(); await espera(300);
+    const cv = t.querySelector('canvas.cielo-sistema'), g = cv.getContext('2d'), d = g.getImageData(0, 0, cv.width, cv.height).data;
+    let claros = 0; for (let i = 0; i < d.length; i += 4) if (d[i] + d[i + 1] + d[i + 2] > 300) claros++;
+    out.claros = claros; out.px = cv.width; out.dianas = (S.sis.dianas || []).length;
+    const fecha = new Date(S.sis.t); out.fecha = fecha.toISOString();
+    /* tocar Jupiter en la vista exterior */
+    [...t.querySelectorAll('.cielo-sis-chips .cielo-chip')].find(x => x.getAttribute('data-vista') === 'ext').click(); await espera(200);
+    const dInt = JSON.stringify(S.sis.dianas.map(q => [Math.round(q.x), Math.round(q.y)]));
+    const dj = S.sis.dianas.find(q => q.b === 'Jupiter'), r = cv.getBoundingClientRect();
+    cv.dispatchEvent(new MouseEvent('click', { clientX: r.left + dj.x, clientY: r.top + dj.y, bubbles: true })); await espera(300);
+    out.sel = S.sis.sel; out.hoja = t.querySelector('.cielo-sis-hoja').innerText;
+    const tm = A.MakeTime(fecha), gv = A.GeoVector(A.Body.Jupiter, tm, true), hv = A.HelioVector(A.Body.Jupiter, tm);
+    out.distTierra = Math.hypot(gv.x, gv.y, gv.z); out.distSol = Math.hypot(hv.x, hv.y, hv.z); out.elong = A.AngleFromSun(A.Body.Jupiter, tm);
+    out.minLuz = Math.round(out.distTierra * 499.004784 / 60);
+    /* un mes mas, y el tiempo corriendo */
+    const antes = S.sis.t; [...t.querySelectorAll('.cielo-sis-chips .cielo-chip')].find(x => /\+ 1/.test(x.textContent)).click(); await espera(150);
+    out.unMes = (S.sis.t - antes) / 864e5; out.fechaTxt = t.querySelector('.cielo-sis-fecha').textContent;
+    const bplay = [...t.querySelectorAll('.cielo-sis-chips .cielo-chip')].find(x => x.textContent === '▶' || x.textContent === '⏸');
+    const t1 = S.sis.t; bplay.click(); await espera(600); const t2 = S.sis.t; bplay.click(); await espera(200); const t3 = S.sis.t; await espera(300);
+    out.corrio = (t2 - t1) / 864e5; out.paro = S.sis.t === t3 && !S.sis.corre;
+    const dExt = JSON.stringify(S.sis.dianas.map(q => [Math.round(q.x), Math.round(q.y)]));
+    out.vistasDistintas = dInt !== dExt;
+    [...t.querySelectorAll('.cielo-sis-chips .cielo-chip')].find(x => /Hoy/.test(x.textContent)).click(); await espera(150);
+    out.hoy = Math.abs(S.sis.t - Date.now()) < 2000;
+    return out;
+  });
+  const num = s => { const m = s && s.match(/(\d+(?:[.,]\d+)?)/); return m ? parseFloat(m[1].replace(',', '.')) : NaN; };
+  const hojaL = (lienzo.hoja || '').split('\n');
+  const lineaSol = hojaL.find(l => /del Sol$/.test(l)) || '', lineaTierra = hojaL.find(l => /de la Tierra/.test(l)) || '', lineaElong = hojaL.find(l => /nuestro cielo/.test(l)) || '';
+  ok(!lienzo.sin && lienzo.claros > 200 && lienzo.dianas === 8 && lienzo.sel === 'Jupiter' && /Júpiter/.test(lienzo.hoja) && Math.abs(num(lineaSol) - lienzo.distSol) < 0.011 && Math.abs(num(lineaTierra) - lienzo.distTierra) < 0.011 && new RegExp('tarda ' + lienzo.minLuz + ' min').test(lineaTierra) && Math.abs(num(lineaElong) - lienzo.elong) < 0.51,
+     'el lienzo esta pintado (' + lienzo.claros + ' pixeles claros, 8 planetas tocables); Jupiter tocado: a ' + lienzo.distSol.toFixed(2) + ' UA del Sol, ' + lienzo.distTierra.toFixed(2) + ' de la Tierra (' + lienzo.minLuz + ' min de luz), a ' + lienzo.elong.toFixed(0) + '° del Sol, lo mismo que sale aparte', (lienzo.hoja || '').slice(0, 160));
+  ok(Math.abs(lienzo.unMes - 30) < 0.01 && /2026|2027/.test(lienzo.fechaTxt) && lienzo.corrio > 5 && lienzo.corrio < 60 && lienzo.paro && lienzo.vistasDistintas && lienzo.hoy,
+     '«+ 1 mes» mueve 30 dias, ▶ hace correr el tiempo (' + lienzo.corrio.toFixed(0) + ' dias en 0,6 s) y para, «Hasta Neptuno» cambia la escala, «Hoy» vuelve', JSON.stringify({ unMes: lienzo.unMes, corrio: lienzo.corrio, paro: lienzo.paro, vistas: lienzo.vistasDistintas, hoy: lienzo.hoy }));
+  /* ── la luz roja completa: ya de noche (tres horas despues), con el panel recien abierto ── */
+  await p.clock.setFixedTime(new Date(T0.getTime() + 3 * 3600000));
+  const rojo = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    const out = {}, meta = document.querySelector('meta[name="theme-color"]');
+    out.temaAntes = meta.getAttribute('content');
+    TG_CIELO.estado._pistaDada = false; TG_CIELO.cerrar(); TG_CIELO.abrir(); await espera(500);
+    const s = Astronomy.Equator(Astronomy.Body.Sun, Astronomy.MakeTime(new Date()), new Astronomy.Observer(28.2987, -16.5106, 2390), true, true);
+    out.sol = Astronomy.Horizon(Astronomy.MakeTime(new Date()), new Astronomy.Observer(28.2987, -16.5106, 2390), s.ra, s.dec, 'normal').altitude;
+    const barra = document.getElementById('cielo-pista'); out.pista = barra ? barra.innerText : null;
+    if (barra) { barra.querySelectorAll('button')[0].click(); await espera(200); }
+    out.clase = document.documentElement.classList.contains('cielo-rojo'); out.tema = meta.getAttribute('content');
+    const sl = document.getElementById('cielo-brillo'); out.slider = sl ? !sl.hidden : null;
+    if (sl) { sl.value = '0.5'; sl.dispatchEvent(new Event('input')); await espera(50); }
+    out.variable = getComputedStyle(document.documentElement).getPropertyValue('--cielo-brillo').trim();
+    out.filtro = getComputedStyle(document.getElementById('cielo-panel')).filter;
+    out.guardado = localStorage.getItem('tgo_cielo_brillo'); out.pistaGuardada = localStorage.getItem('tgo_cielo_rojo_pista'); out.rojoGuardado = localStorage.getItem('tgo_cielo_rojo');
+    TG_CIELO.vista({ sinGuia: true }); await espera(300);
+    const vb = document.querySelector('#cielo-vista .cv-brillo'); out.vistaSlider = vb ? !vb.hidden : null; out.vistaValor = vb && vb.value;
+    TG_CIELO.cerrarVista(); await espera(100);
+    TG_CIELO.cerrar(); await espera(100); out.temaCerrado = meta.getAttribute('content'); out.claseCerrado = document.documentElement.classList.contains('cielo-rojo');
+    TG_CIELO.abrir(); await espera(300); out.temaAbierto = meta.getAttribute('content'); out.pista2 = !!document.getElementById('cielo-pista');
+    TG_CIELO.rojo(false); await espera(50); out.sliderFuera = document.getElementById('cielo-brillo').hidden; out.temaApagado = meta.getAttribute('content');
+    return out;
+  });
+  ok(rojo.sol < -6 && rojo.pista && /Es de noche/.test(rojo.pista) && rojo.clase && rojo.tema === '#2a0000' && rojo.slider === true && rojo.variable === '0.5' && /brightness\(0\.5\)/.test(rojo.filtro) && rojo.guardado === '0.5' && rojo.pistaGuardada === '1' && rojo.rojoGuardado === '1',
+     'de noche (Sol a ' + rojo.sol.toFixed(0) + '°) y con la luz blanca sale la pista; «Activar» pone la pantalla en rojo, la barra del sistema en rojo oscuro, el regulador a la vista, y el brillo (0,5) se aplica y se guarda', JSON.stringify(rojo));
+  ok(rojo.vistaSlider === true && rojo.vistaValor === '0.5' && rojo.claseCerrado === false && rojo.temaCerrado === rojo.temaAntes && rojo.temaAbierto === '#2a0000' && rojo.pista2 === false && rojo.sliderFuera === true && rojo.temaApagado === rojo.temaAntes,
+     'el regulador esta tambien en «Apunta al cielo»; al cerrar el panel vuelve el color de la barra y al abrirlo la pista ya no sale; al apagar la luz roja, regulador fuera y barra devuelta', JSON.stringify(rojo));
+  /* de dia no hay pista */
+  await p.clock.setFixedTime(new Date(T0.getTime() - 6 * 3600000));
+  const dia = await p.evaluate(async () => { const espera = ms => new Promise(r => setTimeout(r, ms)); try { localStorage.removeItem('tgo_cielo_rojo_pista'); } catch (e) {} TG_CIELO.estado._pistaDada = false; TG_CIELO.cerrar(); TG_CIELO.abrir(); await espera(400); const s = Astronomy.Equator(Astronomy.Body.Sun, Astronomy.MakeTime(new Date()), new Astronomy.Observer(28.2987, -16.5106, 2390), true, true); return { pista: !!document.getElementById('cielo-pista'), sol: Astronomy.Horizon(Astronomy.MakeTime(new Date()), new Astronomy.Observer(28.2987, -16.5106, 2390), s.ra, s.dec, 'normal').altitude }; });
+  ok(dia.pista === false && dia.sol > -6, 'de dia (Sol a ' + dia.sol.toFixed(0) + '°) la pista no sale', JSON.stringify(dia));
+  await p.clock.setFixedTime(T0);
+  /* ── sin red ── */
+  await ctx.setOffline(true);
+  const red = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    await espera(300); await TG_CIELO.ver('noche'); await espera(300);
+    const chip = document.querySelector('#cielo-cuerpo .cielo-sinred');
+    await TG_CIELO.ver('donde'); await espera(800);
+    const off = document.querySelector('#cielo-cuerpo .cielo-offline');
+    return { onLine: navigator.onLine, chip: chip ? chip.innerText : null, offline: off ? off.innerText : null, offlineNo: !!(off && off.classList.contains('cielo-offline-no')), listo: await TG_CIELO.cacheListo() };
+  });
+  await ctx.setOffline(false);
+  const chipFuera = await p.evaluate(async () => { const espera = ms => new Promise(r => setTimeout(r, ms)); await espera(300); await TG_CIELO.ver('noche'); await espera(300); return !document.querySelector('#cielo-cuerpo .cielo-sinred'); });
+  const fElem = new Intl.DateTimeFormat('es-ES', { timeZone: 'Atlantic/Canary', day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(epocaMax));
+  ok(red.onLine === false && red.chip && /Sin conexión/.test(red.chip) && red.chip.includes(fElem) && /nubes y Wikipedia/.test(red.chip) && chipFuera,
+     'sin conexion, «Esta noche» dice que el cielo se calcula igual, que faltan las nubes y Wikipedia y de cuando son los elementos (' + fElem + '); con conexion, el aviso se va', JSON.stringify(red).slice(0, 200));
+  ok(red.listo === false && red.offlineNo && /Aún no está guardado/.test(red.offline || ''), 'sin service worker (como en esta prueba), «Antes de subir al Teide» dice que aun no esta guardado; con el, la parte 8 comprueba que diga «guardado»', JSON.stringify({ listo: red.listo, texto: red.offline }));
+  /* ── los diez idiomas ── */
+  const idiomas = await p.evaluate(async (IDI) => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    const S = TG_CIELO.estado, out = {}; S.sis.sel = 'Jupiter';
+    for (const L of IDI) {
+      setLang(L); await espera(50);
+      await TG_CIELO.ver('noche'); await espera(200);
+      const q = e => { const h = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta h3')].find(x => e.test(x.textContent)); return h ? h.closest('.cielo-tarjeta').innerText : ''; };
+      await espera(100);
+      const guia = q(/🌠/), sistema = q(/🪐/);
+      await TG_CIELO.ver('donde'); await espera(300);
+      const donde = q(/📶/);
+      out[L] = { guia, sistema, donde };
+    }
+    setLang('es');
+    return out;
+  }, IDI);
+  const malIdi = [];
+  for (const L of IDI) {
+    const t = idiomas[L], todo = [t.guia, t.sistema, t.donde].join('\n');
+    if (!t.guia || !t.sistema || !t.donde) malIdi.push(L + ': falta una tarjeta');
+    if (/undefined|NaN|\{[a-z]+\}|\[object/.test(todo)) malIdi.push(L + ': texto roto');
+    const rep = todo.match(/\b([^\s\d]{3,} [^\s\d]{3,}) \1\b/u); if (rep) malIdi.push(L + ': «' + rep[0] + '» repetido');
+    if (IDI.indexOf(L) && t.guia === idiomas[IDI[0]].guia) malIdi.push(L + ': la guia sale igual que en ' + IDI[0]);
+    if (!/Astronomy Engine/.test(t.sistema)) malIdi.push(L + ': el sistema solar no dice de donde sale');
+    if (!/\d/.test(t.sistema)) malIdi.push(L + ': la hoja de Jupiter sin cifras');
+  }
+  ok(!malIdi.length, 'en los ' + IDI.length + ' idiomas: la noche guiada, el sistema solar (con la hoja de Jupiter) y «Antes de subir al Teide» sin texto roto, sin palabras repetidas y cada uno en su idioma', malIdi.slice(0, 4).join(' · '));
+  ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
+  await ctx.close();
 }
