@@ -17,7 +17,7 @@
 "ppDatosPref":"Preferences and usage:",
 "ppDatosPrefTxt":"language, filters, active bus lines, cached weather and sea conditions, whether you have seen the tour, a visit counter and your answer to the cookie notice. All of this stays on your device and is not sent anywhere.",
 "ppDatosPush":"Notifications (optional):",
-"ppDatosPushTxt":"if you turn them on, the subscription your browser creates — a delivery address and two keys — is stored so the alert can reach you. Turning them off in the browser stops it being used.",
+"ppDatosPushTxt":"if you turn them on, the subscription your browser creates — a delivery address and two keys — is stored, together with the app’s language, so the alert can reach you in your language. Turning them off in the browser stops it being used.",
 "ppDatosStats":"Usage statistics:",
 "ppDatosStatsTxt":"only if you accept them. See the next section.",
 "ppStatsTitulo":"Statistics and cookies",

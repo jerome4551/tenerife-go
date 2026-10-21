@@ -17,7 +17,7 @@
 "ppDatosPref":"Einstellungen und Nutzung:",
 "ppDatosPrefTxt":"Sprache, Filter, aktive Buslinien, zwischengespeichertes Wetter und Seegang, ob du die Tour schon gesehen hast, ein Besuchszähler und deine Antwort auf den Cookie-Hinweis. Das alles bleibt auf deinem Gerät und wird nirgendwohin gesendet.",
 "ppDatosPush":"Benachrichtigungen (optional):",
-"ppDatosPushTxt":"wenn du sie einschaltest, wird das vom Browser erzeugte Abo — eine Zustelladresse und zwei Schlüssel — gespeichert, damit die Meldung dich erreichen kann. Schaltest du sie im Browser ab, wird es nicht mehr verwendet.",
+"ppDatosPushTxt":"wenn du sie einschaltest, wird das vom Browser erzeugte Abo — eine Zustelladresse und zwei Schlüssel — zusammen mit der Sprache der App gespeichert, damit die Meldung dich in deiner Sprache erreichen kann. Schaltest du sie im Browser ab, wird es nicht mehr verwendet.",
 "ppDatosStats":"Nutzungsstatistik:",
 "ppDatosStatsTxt":"nur wenn du zustimmst. Siehe den nächsten Abschnitt.",
 "ppStatsTitulo":"Statistik und Cookies",

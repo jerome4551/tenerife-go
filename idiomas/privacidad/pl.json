@@ -17,7 +17,7 @@
 "ppDatosPref":"Preferencje i użytkowanie:",
 "ppDatosPrefTxt":"język, filtry, włączone linie autobusowe, zapisana pogoda i stan morza, to, czy widziałeś już przewodnik, licznik wizyt oraz twoja odpowiedź na komunikat o ciasteczkach. Wszystko to zostaje na twoim urządzeniu i nigdzie nie jest wysyłane.",
 "ppDatosPush":"Powiadomienia (opcjonalnie):",
-"ppDatosPushTxt":"jeśli je włączysz, subskrypcja utworzona przez przeglądarkę — adres doręczenia i dwa klucze — zostaje zapisana, żeby powiadomienie mogło do ciebie dotrzeć. Po wyłączeniu ich w przeglądarce przestaje być używana.",
+"ppDatosPushTxt":"jeśli je włączysz, subskrypcja utworzona przez przeglądarkę — adres doręczenia i dwa klucze — zostaje zapisana razem z językiem aplikacji, żeby powiadomienie mogło do ciebie dotrzeć w twoim języku. Po wyłączeniu ich w przeglądarce przestaje być używana.",
 "ppDatosStats":"Statystyki użycia:",
 "ppDatosStatsTxt":"tylko jeśli je zaakceptujesz. Zobacz następną sekcję.",
 "ppStatsTitulo":"Statystyki i ciasteczka",

@@ -19,7 +19,7 @@
 "ppDatosPref":"Preferencias y uso:",
 "ppDatosPrefTxt":"idioma, filtros, líneas de guagua activas, caché del tiempo y del estado del mar, si ya viste el tour, un contador de visitas y tu respuesta al aviso de cookies. Todo esto se guarda en tu dispositivo y no se envía a ningún sitio.",
 "ppDatosPush":"Notificaciones (opcional):",
-"ppDatosPushTxt":"si las activas, la suscripción que crea tu navegador —una dirección de envío y dos claves— se guarda para poder mandarte el aviso. Al desactivarlas en el navegador, deja de usarse.",
+"ppDatosPushTxt":"si las activas, la suscripción que crea tu navegador —una dirección de envío y dos claves— se guarda, junto con el idioma de la app, para poder mandarte el aviso en tu idioma. Al desactivarlas en el navegador, deja de usarse.",
 "ppDatosStats":"Estadísticas de uso:",
 "ppDatosStatsTxt":"solo si las aceptas. Ver el apartado siguiente.",
 

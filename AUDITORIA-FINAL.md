@@ -6180,6 +6180,18 @@ AEMET ahí». Y: «recuerda que debe estar ergonómico y guapo».
   en los diez idiomas y la tarjeta con las tres; sin la lista, las nombra; los
   costeros en las tres costas, «Toda la costa».
 
+## La privacidad dice que con la suscripción se guarda el idioma (21 de octubre)
+
+Jerome: «3 si quiero». La política decía que de las notificaciones se guarda
+«una dirección de envío y dos claves», y también se guarda el idioma de la app
+(`p_lang` de `guardar_push_sub()`, para mandar la frase en ese idioma). Ahora lo
+dice, en los diez idiomas: `ppDatosPushTxt` en `idiomas/privacidad/*.json`, y
+`tools/generar_privacidad.py` lo lleva al panel de la app y a
+`privacidad.html` de la misma pasada. La respuesta del asistente sobre los
+datos (app-27) también, en los diez. `generar_privacidad.py --comprobar`,
+`probar_play.js` (213 de 213), `auditar_faq.js`, `probar_faq.js` y
+`castellano_suelto.js`, en verde.
+
 ---
 
 # 5 · Cómo se vuelve a medir
