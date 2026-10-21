@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-/* probar_nombres.js — el asistente encuentra cada lugar por su nombre, en los
- * diez idiomas.
+/* probar_nombres.js — el asistente encuentra cada lugar por su nombre y cada
+ * categoria por su rotulo, en los diez idiomas.
  *
  * EL HUECO QUE TAPA
  *   El 20 de octubre de 2026 se le pregunto al asistente por cada uno de los
@@ -15,6 +15,9 @@
  *       contar como nombre entero;
  *     · «Castillo de San Miguel»: empataba con dos campos de golf de San Miguel
  *       de Abona y ganaba el que iba antes en el fichero.
+ *   Y tres categorias del mapa -Parkings, Ayuda & Apoyo y Puertos
+ *   Comerciales- no las conocia: el asistente tenia su propia lista de
+ *   categorias, y al anadir una al mapa nadie la anadia alli.
  *
  * COMO
  *   La app entera en un navegador, como probar_movil.js. Para cada idioma, la
@@ -27,7 +30,10 @@
  *     · por el nombre CORTO, sin el parentesis ni lo que va detras de « — »
  *       («Farmacia Anaga» por «Farmacia Anaga (Santa Cruz)»), se cuenta y se
  *       dice, sin exigir: muchos cortos son de verdad de varios lugares
- *       («Parapente» son seis despegues) y entonces lo bueno es la lista.
+ *       («Parapente» son seis despegues) y entonces lo bueno es la lista;
+ *     · cada categoria del menu del mapa, pedida con su rotulo de ese idioma,
+ *       saca la lista de esa categoria («Gasolineras más baratas», que no
+ *       tiene lugares propios, la de las gasolineras: CHAT_CAT_TAMBIEN).
  *
  *     node tools/probar_nombres.js [puerto]
  */
@@ -83,20 +89,35 @@ const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
         if (a.kind === 'poi' && a.p && a.p.id === p.id) out.corto++;
         else if (sale(a, p.id)) out.cortoElegir++;
       }
+      /* las categorias del menu, por su rotulo */
+      const rot = (LANGS[currentLang] || {}).categories || {};
+      const destino = {};
+      const tambien = (typeof CHAT_CAT_TAMBIEN !== 'undefined') ? CHAT_CAT_TAMBIEN : {};
+      for (const k of Object.keys(tambien)) for (const k2 of tambien[k]) destino[k2] = k;
+      out.cats = Object.keys(categoriesBase).length; out.catsMal = [];
+      for (const k of Object.keys(categoriesBase)) {
+        chatPending = null;
+        const a = rot[k] ? chatResolve(rot[k]) : { kind: 'sin rotulo' };
+        const quiere = destino[k] || k;
+        if (!(a.kind === 'cat' && a.cats.keys.indexOf(quiere) >= 0))
+          out.catsMal.push(k + ' «' + (rot[k] || '') + '» → ' + a.kind + (a.cats ? ':' + a.cats.keys.join('+') : '') + (a.item ? ':' + a.item.id : '') + (a.p ? ':' + a.p.id : ''));
+      }
       return out;
     });
     if (r.error) { console.log('  MAL  [' + L + '] ' + r.error); mal++; continue; }
     const pedidas = r.total * r.plantillas.length;
-    const ok = r.entero === pedidas;
+    const ok = r.entero === pedidas && !r.catsMal.length;
     if (!ok) mal++;
     console.log((ok ? '  ok   ' : '  MAL  ') + ('[' + L + ']').padEnd(6) + ' nombre entero: ' + r.entero + ' de ' + pedidas +
       '  (' + r.plantillas.map(x => '«' + x + '»').join(' y ') + ')');
     console.log('        nombre corto, sin exigir: ' + r.corto + ' su ficha, ' + r.cortoElegir + ' para elegir entre los que se llaman igual, de ' + r.total);
     for (const f of r.fallan.slice(0, 12)) console.log('        no sale: ' + f);
     if (r.fallan.length > 12) console.log('        … y ' + (r.fallan.length - 12) + ' mas');
+    console.log('        categorias por su rotulo: ' + (r.cats - r.catsMal.length) + ' de ' + r.cats);
+    for (const f of r.catsMal) console.log('        no la saca: ' + f);
   }
   await nav.close();
-  console.log(mal ? '\n*** ' + mal + ' idioma(s) donde el asistente no encuentra algun lugar por su nombre ***'
-                  : '\nel asistente encuentra cada lugar por su nombre, en los diez idiomas');
+  console.log(mal ? '\n*** ' + mal + ' idioma(s) donde el asistente no encuentra algun lugar por su nombre o alguna categoria por su rotulo ***'
+                  : '\nel asistente encuentra cada lugar por su nombre y cada categoria por su rotulo, en los diez idiomas');
   process.exit(mal ? 1 : 0);
 })().catch(e => { console.error(e); process.exit(2); });

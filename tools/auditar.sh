@@ -156,9 +156,10 @@ if reventado "$salida"; then roto probar_faq.js
 else [ "$rc" = 0 ] || falla probar_faq.js; fi
 echo; echo "════════ el asistente en un movil de verdad, en su idioma ════════"
 control probar_movil.js node tools/probar_movil.js "$PUERTO"
-echo; echo "════════ cada lugar, preguntado al asistente por su nombre, en los diez idiomas ════════"
+echo; echo "════════ cada lugar por su nombre y cada categoria por su rotulo, preguntados al asistente en los diez idiomas ════════"
 # Desde el 20 de octubre de 2026: en castellano no encontraba 170 de los 980
 # lugares por su nombre, y en chino 638. Ningun control se lo preguntaba.
+# Y cada categoria del menu por su rotulo: tres no las conocia.
 control probar_nombres.js node tools/probar_nombres.js "$PUERTO"
 echo; echo "════════ avisos de AEMET: el lector, con copias reales de AEMET ════════"
 # Desde el 12 de octubre de 2026. La pildora de avisos estuvo meses sin salir

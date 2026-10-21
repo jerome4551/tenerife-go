@@ -5889,6 +5889,25 @@ sin exigir. Probado al revés: con el buscador de antes, en rojo en los diez
 Espera a que llegue el `faq/<idioma>.json` de cada idioma: sin eso, en
 búlgaro preguntaba con la base del idioma anterior (salió así la primera vez).
 
+
+### B · Lo que el asistente no sabía
+
+**Tres categorías del mapa.** El asistente tiene su propia lista de
+categorías (`CHAT_CATS`), y al añadir Parkings (43 lugares), Ayuda & Apoyo
+(19) y Puertos Comerciales (3) al mapa nadie las añadió allí: «Parkings»
+contestaba «¿Dónde aparco?» sin la lista, «Ayuda & Apoyo» contestaba cómo
+funciona la app, y «Car parks» o «Commercial Ports», que no había respuesta.
+Ahora están, con sus palabras en castellano e inglés; en los otros ocho
+idiomas casan por el rótulo de la categoría, como todas. En la de ayuda no va
+la palabra «ayuda» (a secas propone el 112 y la ayuda de la app), y su lista
+lleva delante la respuesta del 112, no la de la app. «Gasolineras más
+baratas», que es un filtro sin lugares propios, pide la lista de las
+gasolineras; en francés («Stations les moins chères») no la pedía.
+
+`probar_nombres.js` mira además cada una de las 43 categorías del menú con su
+rótulo de cada idioma: tiene que salir la lista de esa categoría. 43 de 43 en
+los diez; con la versión de antes, 39.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -5933,7 +5952,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_faq.js` | el asistente: cada respuesta en los diez idiomas, alcanzable por su botón, ninguna igual al castellano o al inglés, los botones que cita con su nombre de pantalla, y ninguna base fuera de `faq/` |
 | `tools/rotulos_app.js` | los rótulos de la app en los diez idiomas, sacados de `index.html` (lo usa `auditar_faq.js`) |
 | `tools/probar_faq.js` · `tools/probar_movil.js` | preguntas de prueba al asistente: en Node con el núcleo de verdad, y en un móvil con la app entera |
-| `tools/probar_nombres.js` | cada lugar preguntado al asistente por su nombre, en los diez idiomas y en chino pegado: sale su ficha o la lista para elegir; el nombre corto, contado |
+| `tools/probar_nombres.js` | cada lugar preguntado al asistente por su nombre, en los diez idiomas y en chino pegado: sale su ficha o la lista para elegir; el nombre corto, contado; y cada categoría del menú por su rótulo, la lista de esa categoría |
 | `tools/auditar_letras.js` | palabras escritas sin sus letras («waehle», «carre avec fleche») |
 | `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json` (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, ficheros rotos, el latido de 3 horas |

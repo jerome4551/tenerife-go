@@ -26848,7 +26848,15 @@ var CHAT_CATS=[
 {k:'oficina_turismo',w:['oficina de turismo','oficinas de turismo','tourist office','tourist information','informacion turistica']},
 {k:'camping',w:['camping','campings','acampar','campsite','campsites','zona de acampada']},
 {k:'webcam',w:['webcam','webcams','camara en directo','camaras en directo','live cam','en directo']},
-{k:'deporte_publico',w:['calistenia','gimnasio al aire libre','parque de calistenia']}
+{k:'deporte_publico',w:['calistenia','gimnasio al aire libre','parque de calistenia']},
+/* Las tres categorias del mapa que el asistente no conocia (20/10/2026):
+   «parkings en Santa Cruz» o «Ayuda & Apoyo» no sacaban la lista que el
+   filtro del mapa si enseña. En los otros ocho idiomas casan por el rotulo
+   de su categoria, como todas (chatCatVocab). En «ayuda» no va «ayuda»:
+   esa palabra a secas propone el 112 y la ayuda de la app (CHAT_AYUDA_W). */
+{k:'parking',w:['parking','parkings','aparcamiento','aparcamientos','car park','car parks','parking lot','parking lots']},
+{k:'ayuda',w:['apoyo','alcoholicos anonimos','narcoticos anonimos','adicciones','adiccion','support group','support groups','alcoholics anonymous','narcotics anonymous','addiction','addictions']},
+{k:'puerto_comercial',w:['puerto comercial','puertos comerciales','commercial port','commercial ports']}
 ];
 
 var CHAT_ZONE_W={norte:'norte',north:'norte',sur:'sur',south:'sur',este:'este',east:'este',oeste:'oeste',west:'oeste',centro:'centro',center:'centro',centre:'centro'};
@@ -27062,9 +27070,15 @@ function chatNombreCat(k){
    nuevo que mantener, y el dia que alguien corrija un rotulo la busqueda se
    corrige con el. Los sinonimos que el rotulo no cubre («沙滩», «nadar»)
    van en faq/<lang>.json, que es el fichero del idioma que ya se descarga. */
+/* «Gasolineras más baratas» es una categoria del menu sin lugares propios:
+   filtra las gasolineras. Su rotulo, en cada idioma, pide la lista de las
+   gasolineras. En frances no la pedia: «Stations les moins chères» no lleva
+   «Stations-service», y salia el «no tengo respuesta». */
+var CHAT_CAT_TAMBIEN={gasolinera:['gasolinera_barata']};
 function chatCatVocab(k){
   var t=(LANGS[currentLang]&&LANGS[currentLang].categories)||{};
-  var v=t[k]?[t[k]]:[],extra=TG_FAQ.categorias()[k];
+  var v=t[k]?[t[k]]:[],extra=TG_FAQ.categorias()[k],tb=CHAT_CAT_TAMBIEN[k]||[];
+  for(var i=0;i<tb.length;i++){if(t[tb[i]])v.push(t[tb[i]]);}
   return extra?v.concat(extra):v;
 }
 function chatDetectCats(padded,tokset,qnc){
@@ -27194,6 +27208,11 @@ function chatPalabrasDeIntencion(padded,tokset,qnc){
     }
   }
   return w;
+}
+function chatEntradaPorId(id){
+  var l=TG_FAQ.entradas();
+  for(var i=0;i<l.length;i++){if(l[i].id===id)return l[i];}
+  return null;
 }
 /* ¿Es lo escrito, entero, una de estas frases? */
 function chatEsFrase(qn,lista){
@@ -27458,7 +27477,12 @@ function chatResolve(question,pos){
     var usePos=(nearHit&&!anchor)?pos:null;
     // la respuesta de la base que casa por el nombre del lugar («garachico»)
     // no es de la categoria: «webcams en Garachico» no lleva «que ver en Garachico»
-    return {kind:'cat',cats:cats,zone:zone,anchor:anchor,pos:usePos,kb:(kbr&&kbr.item!==kbDelLugar)?kbr.item:null};
+    var kbCat=(kbr&&kbr.item!==kbDelLugar)?kbr.item:null;
+    /* «Ayuda & Apoyo» casaba por «ayuda» con la ayuda de la app («Tenerife GO,
+       en pocas palabras…») y esa iba encima de la lista de asociaciones y
+       servicios de apoyo. Delante va el 112, en todos los idiomas. */
+    if(cats.keys.indexOf('ayuda')>=0)kbCat=chatEntradaPorId(CHAT_ID_EMERGENCIA);
+    return {kind:'cat',cats:cats,zone:zone,anchor:anchor,pos:usePos,kb:kbCat};
   }
 
   if(kbr)return {kind:'kb',item:kbr.item};
@@ -28005,8 +28029,7 @@ function chatBuildReply(r){
       break;
     case 'elegirAyuda':
       (function(){
-        var porId=function(id){var l=TG_FAQ.entradas();for(var k=0;k<l.length;k++){if(l[k].id===id)return l[k];}return null;};
-        var emerg=porId(CHAT_ID_EMERGENCIA),appA=porId(CHAT_ID_AYUDA_APP);
+        var emerg=chatEntradaPorId(CHAT_ID_EMERGENCIA),appA=chatEntradaPorId(CHAT_ID_AYUDA_APP);
         out.answer=chatT('elegirAyudaIntro');
         out.actions=[{label:chatT('llamar112'),run:function(){window.location.href='tel:112';}}];
         if(emerg)out.actions.push({label:chatT('emergencia'),run:function(){chatEmit(chatBuildReply({kind:'kb',item:emerg}));}});
