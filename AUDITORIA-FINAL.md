@@ -6872,6 +6872,33 @@ tercero.
   descarga no cambian (1.034 y 1.148 kB): lo nuevo se pide al abrir el
   panel.
 
+## La prueba aparte de los pasos, en el borde de la sombra (21 de octubre, tarde)
+
+Subidos los satélites y lanzado el robot (elementos de CelesTrak del mismo
+día), `auditar_cielo.js` sacó un rojo: el recálculo aparte de un paso del
+Hubble del 27 de octubre daba 63,6° de máximo y la app 65,4°. Jerome: «Súbelo
+y busca una manera de probarlo».
+
+- **No era la app.** El máximo de ese paso es el instante en que entra en la
+  sombra de la Tierra, subiendo. La app usa la sombra de satellite.js (sale
+  de la penumbra a la umbra, `shadowFraction < 1`); el recálculo aparte, un
+  cilindro, que corta 4 s antes, y el satélite subía casi medio grado por
+  segundo. Con un tercer cálculo independiente (el SGP4 de referencia en C++
+  de Vallado, por el paquete `sgp4` de Python, con geometría y Sol propios):
+  en el instante en que corta la app, 65,3° frente a 65,4°.
+- **El arreglo, solo en la prueba.** Si el máximo es el borde de la sombra
+  (entra subiendo o sale bajando), no se compara la altura máxima: se
+  comparan la hora del borde (±10 s) y la posición en el mismo instante
+  (0,05°), que ya se comprobaban. Con él, 150 de 150.
+- **Que no se quede ciega, comprobado a propósito.** Con el satélite
+  calculado 15 s tarde, dos pruebas en rojo, el recálculo aparte entre
+  ellas. Con la posición bien y la sombra 30 s tarde, el recálculo aparte en
+  rojo por la hora del borde (Tiangong el 22: la app lo apagaba a las
+  19:17:48 y aquí a las 19:17:05). Cada vez, la app restaurada y comparada.
+- **Y en el cielo.** El paso de Tiangong de esa noche es este caso: se apaga
+  en lo más alto al entrar en la sombra, a 37° hacia el noroeste, a las
+  21:13:42 según la app (21:13:38 con el cilindro).
+
 ---
 
 # 5 · Cómo se vuelve a medir

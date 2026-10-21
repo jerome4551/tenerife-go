@@ -1619,7 +1619,15 @@ function pasosAparte(T0, pasos) {
   for (const x of pasos) {
     const m = mios.find(y => y.sat === x.sat && Math.abs(y.max - x.max) <= 10000);
     if (!m) { mal.push(x.sat + ' ' + new Date(x.max).toISOString().slice(0, 16) + ' no sale aqui'); continue; }
-    if (Math.abs(m.altMax - x.altMax) > 1.5 || Math.abs(m.ini - x.ini) > 10000 || Math.abs(m.fin - x.fin) > 10000) mal.push(x.sat + ' ' + new Date(x.max).toISOString().slice(0, 16) + ': aqui ' + m.altMax.toFixed(1) + '° ' + new Date(m.ini).toISOString().slice(11, 19) + '-' + new Date(m.fin).toISOString().slice(11, 19) + ' y en la app ' + x.altMax.toFixed(1) + '° ' + new Date(x.ini).toISOString().slice(11, 19) + '-' + new Date(x.fin).toISOString().slice(11, 19));
+    /* si el maximo es el borde de la sombra (entra en ella subiendo, o sale
+       bajando), su altura es la de ese instante, y aqui la sombra es un
+       cilindro y en la app la umbra de satellite.js: unos segundos de
+       diferencia, y el satelite sube medio grado por segundo (Hubble, 27 de
+       octubre de 2026: 63,6° aqui y 65,4° en la app, 4 s). Ahi lo que se
+       compara es la hora del borde (±10 s, abajo) y la posicion en el mismo
+       instante (`peor`, 0,05°), no la altura maxima. */
+    const enBorde = (x.aSombra && x.max === x.fin) || (x.desdeSombra && x.max === x.ini);
+    if ((!enBorde && Math.abs(m.altMax - x.altMax) > 1.5) || Math.abs(m.ini - x.ini) > 10000 || Math.abs(m.fin - x.fin) > 10000) mal.push(x.sat + ' ' + new Date(x.max).toISOString().slice(0, 16) + ': aqui ' + m.altMax.toFixed(1) + '° ' + new Date(m.ini).toISOString().slice(11, 19) + '-' + new Date(m.fin).toISOString().slice(11, 19) + ' y en la app ' + x.altMax.toFixed(1) + '° ' + new Date(x.ini).toISOString().slice(11, 19) + '-' + new Date(x.fin).toISOString().slice(11, 19));
     const rec = SAT.twoline2satrec(SATJSON.sat.find(s => s.clave === x.sat).l1, SATJSON.sat.find(s => s.clave === x.sat).l2), y = donde(rec, new Date(x.max));
     const dAz = Math.abs(((y.az - x.azMax + 540) % 360) - 180);
     peor = Math.max(peor, Math.abs(y.alt - x.altMax), dAz * Math.cos(x.altMax * RAD));
