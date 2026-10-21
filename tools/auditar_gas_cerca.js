@@ -428,7 +428,7 @@ function esperado(datos, places, pos, radio, comb) {
         comb: document.querySelector('.gas-cerca-comb').innerText, fecha: document.getElementById('gas-cerca-fecha').innerText };
     });
     console.log('idioma en vivo', JSON.stringify(r));
-    if (r.titulo !== 'Günstigste Tankstellen in Ihrer Nähe' || !r.radio.startsWith('Luftlinie') || !r.comb.includes('Benzin')) mal('cambio de idioma');
+    if (r.titulo !== 'Günstigste Tankstellen in deiner Nähe' || !r.radio.startsWith('Luftlinie') || !r.comb.includes('Benzin')) mal('cambio de idioma');
     await ctx.close();
   }
   console.log('  fallos ...................................... ' + fallos);
