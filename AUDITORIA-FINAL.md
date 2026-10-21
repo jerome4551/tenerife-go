@@ -6009,6 +6009,28 @@ sesión iniciada. Sin cuenta, la única forma de activarlas es la tarjeta que
 sale sola a la tercera vez que se abre la app instalada, y si se contestó
 «Ahora no», ya no vuelve. No se ha tocado: es para Jerome.
 
+
+### Cierre: la auditoría entera
+
+`auditar.sh` entero sobre `d9d46fe`, con `probar_nombres.js` y
+`probar_notificacion_idioma.js` dentro: **todo en verde menos dos bloques,
+`auditar_gas_cerca.js` y `auditar_desborde.js`, los dos por lo mismo y los dos
+de antes de este trabajo.** Hoy AEMET tiene un aviso en vigor para Tenerife, y
+su botón, que solo sale cuando hay avisos, ocupa 62 px en la barra de arriba:
+a 360 px de ancho la barra se pasa 2-4 px, y a 320 px mide 343 y el botón del
+idioma queda fuera de la pantalla, sin poder alcanzarlo (la barra no llega a
+desplazarse). A 375 px y más, cabe. Comprobado:
+
+- con la versión de antes de hoy (`a0f916a`) y el mismo fichero de avisos, los
+  dos controles dan exactamente los mismos fallos;
+- con esa misma versión y el fichero de avisos de un día sin avisos
+  (`834c8d6`), `auditar_desborde.js` sale en verde.
+
+O sea, ningún control nuevo en rojo, y estos dos ya lo estaban con los datos
+de hoy (la última auditoría en verde, sobre `8c1b86f`, fue un día sin avisos).
+No se ha tocado: arreglarlo es cambiar cómo se ve el botón de los avisos en
+los móviles pequeños, y eso es para Jerome.
+
 ---
 
 # 5 · Cómo se vuelve a medir
