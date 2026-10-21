@@ -6633,6 +6633,13 @@ tres huellas sha256 son las de la nota.
   1.148 en búlgaro y 1.134 en polaco (`peso_descarga.py`); la cabecera de
   este documento decía las del 17, y `main` ya pesaba 1.026 sin el cielo
   nuevo.
+- **Auditoría entera** (`bash tools/auditar.sh`, con las fuentes del cielo
+  bajadas), sobre la rama con sus cuatro commits, el de Wikipedia de abajo
+  incluido: **«AUDITORIA EN VERDE»**, ningún bloque en rojo ni roto. Aquí
+  corren también los tres de `pmtiles` que en la otra sesión no pudieron.
+  `auditar_cielo.js`, 118 de 118; `barrido_pantallas.js`, 97 pantallas y
+  fichas por idioma, 0 textos sin traducir y 0 errores de página;
+  `probar_play.js`, 213 de 213.
 
 ## El cielo: sin artículo de Wikipedia en tu idioma, la ficha lo dice (21 de octubre, noche)
 
