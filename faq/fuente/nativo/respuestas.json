@@ -1,0 +1,39 @@
+{
+ "_comentario": "Respuestas del asistente para la app de las tiendas (window.TGO_NATIVO). Dentro de ella no hay service worker ni Web Push, todo viaja en el paquete y no se instala desde el navegador: estas tres respuestas de la web no serian verdad ahi. generar_faq.py las mete como \"n\" en faq/<idioma>.json y el asistente las usa solo con la marca; en la web nada cambia. Van aparte, como el bulgaro y las claves, para que un bloque reenviado no las pierda. 21 de octubre de 2026.",
+ "app-06": {
+  "es": "📴 Sí, desde la primera vez que la abres. Sin red siguen funcionando los lugares y sus fichas, el buscador, las categorías, las guaguas con sus paradas, el cielo 🔭 y este asistente. En las capas del mapa tienes «Isla offline», un mapa de toda la isla que va dentro de la app; «Satélite» y «Topo» necesitan conexión. Lo que llega en directo, también: el tiempo, el estado del mar, la previsión de nubes del cielo, la ruta en coche y las webcams.",
+  "en": "📴 Yes, from the first time you open it. With no signal, the places and their details, search, the categories, the buses with their stops, the night sky 🔭 and this assistant all keep working. In the map layers you have «Island offline», a map of the whole island that comes inside the app; «Satellite» and «Topo» need a connection. So do the live things: the weather, the sea conditions, the cloud forecast for the night sky, the car route and the webcams.",
+  "fr": "📴 Oui, dès la première fois que tu l’ouvres. Sans réseau, les lieux et leurs fiches, la recherche, les catégories, les bus avec leurs arrêts, le ciel 🔭 et cet assistant continuent de marcher. Dans les fonds de carte tu as «Île hors ligne», une carte de toute l’île incluse dans l’appli ; «Satellite» et «Topo» ont besoin de connexion. Ce qui arrive en direct aussi : la météo, l’état de la mer, la prévision des nuages pour le ciel, l’itinéraire en voiture et les webcams.",
+  "de": "📴 Ja, schon beim ersten Öffnen. Ohne Netz funktionieren die Orte mit ihren Infos, die Suche, die Kategorien, die Busse mit ihren Haltestellen, der Sternenhimmel 🔭 und dieser Assistent weiter. Bei den Kartenebenen gibt es «Insel offline», eine Karte der ganzen Insel, die in der App steckt; «Satellit» und «Topo» brauchen Verbindung. Ebenso, was live kommt: das Wetter, der Seegang, die Wolkenvorhersage für den Sternenhimmel, die Autoroute und die Webcams.",
+  "it": "📴 Sì, fin dalla prima volta che la apri. Senza rete continuano a funzionare i luoghi con le loro schede, la ricerca, le categorie, gli autobus con le fermate, il cielo 🔭 e questo assistente. Tra i livelli della mappa hai «Isola offline», una mappa di tutta l’isola compresa nell’app; «Satellite» e «Topo» hanno bisogno di connessione. Come quello che arriva in diretta: il meteo, lo stato del mare, la previsione delle nuvole per il cielo, il percorso in auto e le webcam.",
+  "nl": "📴 Ja, vanaf de eerste keer dat je hem opent. Zonder netwerk blijven de plekken met hun info, zoeken, de categorieën, de bussen met hun haltes, de sterrenhemel 🔭 en deze assistent werken. Bij de kaartlagen heb je «Eiland offline», een kaart van het hele eiland die in de app zit; «Satelliet» en «Topo» hebben verbinding nodig. Net als wat live binnenkomt: het weer, de zeegang, de wolkenverwachting voor de sterrenhemel, de autoroute en de webcams.",
+  "pl": "📴 Tak, od pierwszego uruchomienia. Bez sieci dalej działają miejsca z opisami, wyszukiwarka, kategorie, autobusy z przystankami, niebo 🔭 i ten asystent. W warstwach mapy masz «Wyspa offline» — mapę całej wyspy wbudowaną w aplikację; «Satelita» i «Topo» wymagają połączenia. Tak samo to, co przychodzi na żywo: pogoda, stan morza, prognoza zachmurzenia dla nieba, trasa samochodem i kamery na żywo.",
+  "zh": "📴 可以，第一次打开就能用。没网时，地点和介绍、搜索、分类、公交线路和站点、星空 🔭，以及这个助手都能照常使用。地图图层里有「离线海岛图」，这是内置在应用里的全岛地图；「卫星」和「地形」图层需要联网。实时内容也需要联网：天气、海况、星空的云量预报、驾车路线和实时影像。",
+  "zht": "📴 可以，第一次打開就能用。沒網路時，地點和介紹、搜尋、分類、公車路線和站點、星空 🔭，以及這個助手都能照常使用。地圖圖層裡有「離線海島圖」，這是內建在應用程式裡的全島地圖；「衛星」和「地形」圖層需要連網。即時內容也需要連網：天氣、海況、星空的雲量預報、開車路線和即時影像。",
+  "bg": "📴 Да, още от първото отваряне. Без мрежа продължават да работят местата и описанията им, търсачката, категориите, автобусите със спирките, небето 🔭 и този асистент. В слоевете на картата имате «Островът офлайн» — карта на целия остров, вградена в приложението, а «Сателит» и «Топо» искат връзка. Както и това, което идва на живо: времето, състоянието на морето, прогнозата за облачност за небето, маршрутът с кола и уебкамерите."
+ },
+ "app-07": {
+  "es": "📲 Ya está instalada: es la app que tienes abierta. Se actualiza desde la tienda, como cualquier otra app, y lo que cambia cada día —los precios de las gasolineras, los avisos de la AEMET, los satélites— le llega solo cuando hay conexión.",
+  "en": "📲 It is already installed: it is the app you have open. It updates from the store like any other app, and what changes every day (petrol prices, AEMET warnings, satellites) comes in on its own whenever there is a connection.",
+  "fr": "📲 Elle est déjà installée : c’est l’appli que tu as ouverte. Elle se met à jour depuis la boutique d’applis, comme n’importe quelle autre, et ce qui change chaque jour (prix des carburants, alertes de l’AEMET, satellites) lui arrive tout seul dès qu’il y a une connexion.",
+  "de": "📲 Sie ist schon installiert: Es ist die App, die du gerade offen hast. Sie wird wie jede andere App über den Store aktualisiert, und was sich täglich ändert (Spritpreise, AEMET-Warnungen, Satelliten), kommt von selbst, sobald es Verbindung gibt.",
+  "it": "📲 È già installata: è l’app che hai aperto. Si aggiorna dallo store come qualsiasi altra app, e ciò che cambia ogni giorno (prezzi dei carburanti, avvisi dell’AEMET, satelliti) le arriva da solo quando c’è connessione.",
+  "nl": "📲 Hij is al geïnstalleerd: het is de app die je nu open hebt. Hij wordt via de appwinkel bijgewerkt, zoals elke andere app, en wat elke dag verandert (brandstofprijzen, waarschuwingen van AEMET, satellieten) komt vanzelf binnen zodra er verbinding is.",
+  "pl": "📲 Już jest zainstalowana: to aplikacja, którą masz otwartą. Aktualizuje się ze sklepu jak każda inna, a to, co zmienia się codziennie (ceny paliw, ostrzeżenia AEMET, satelity), przychodzi samo, gdy jest połączenie.",
+  "zh": "📲 已经装好了：就是你现在打开的这个应用。它和其他应用一样通过应用商店更新；每天变化的内容（油价、AEMET 预警、卫星数据）在有网络时会自动更新。",
+  "zht": "📲 已經裝好了：就是你現在打開的這個應用程式。它和其他應用程式一樣透過應用程式商店更新；每天變化的內容（油價、AEMET 警報、衛星資料）在有網路時會自動更新。",
+  "bg": "📲 Вече е инсталирано: това е приложението, което сте отворили. Обновява се от магазина като всяко друго приложение, а това, което се променя всеки ден (цените на горивата, предупрежденията на AEMET, сателитите), пристига само, щом има връзка."
+ },
+ "app-29": {
+  "es": "🔔 No: esta app no manda notificaciones.",
+  "en": "🔔 No: this app does not send notifications.",
+  "fr": "🔔 Non : cette appli n’envoie pas de notifications.",
+  "de": "🔔 Nein: Diese App verschickt keine Benachrichtigungen.",
+  "it": "🔔 No: quest’app non invia notifiche.",
+  "nl": "🔔 Nee: deze app stuurt geen meldingen.",
+  "pl": "🔔 Nie: ta aplikacja nie wysyła powiadomień.",
+  "zh": "🔔 不能：这个应用不会发送通知。",
+  "zht": "🔔 不能：這個應用程式不會發送通知。",
+  "bg": "🔔 Не: това приложение не изпраща известия."
+ }
+}

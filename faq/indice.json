@@ -484,13 +484,15 @@
     "LANGS.isla",
     "LANGS.satellite",
     "LANGS.topo"
-   ]
+   ],
+   "nativo": true
   },
   "app-07": {
    "cat": "app",
    "volatil": false,
    "bloque": "G1 · Usar la app",
-   "version": "1.0"
+   "version": "1.0",
+   "nativo": true
   },
   "app-08": {
    "cat": "app",
@@ -695,7 +697,8 @@
     "PUSH.no",
     "UI.navAccount",
     "UI.pushBtnActivar"
-   ]
+   ],
+   "nativo": true
   },
   "sal-01": {
    "cat": "seguridad",

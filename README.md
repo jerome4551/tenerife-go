@@ -426,11 +426,16 @@ ofrece instalarse, esconde los dos botones de avisos push, el de la cuenta
 y el de «Continuar como invitado» (WKWebView no tiene Web Push), y pide a
 la web viva los datos que cambian a diario —precios, avisos de AEMET,
 elementos de los satélites— con los de dentro de respaldo
-(`tgoFetchDatos`, en la cabecera de `index.html`). En la web la marca no
+(`tgoFetchDatos`, en la cabecera de `index.html`). Y dice lo que es verdad
+dentro de ella: el asistente lleva su propia respuesta en tres preguntas
+—sin conexión, instalar la app y la frase de cada mañana—
+(`faq/fuente/nativo/`), y el aviso del cielo sin permiso de cámara o de
+sensores no manda a los ajustes del navegador. En la web la marca no
 existe y nada cambia: `tools/probar_app.js` abre las dos en Chromium y lo
 comprueba. Las frases de los permisos de iOS salen de la política de
 privacidad de cada idioma, y `tools/auditar_app_store.js` coteja la ficha de
-la tienda con los límites de Apple y con las cifras de hoy. Lo que solo se
+la tienda con los límites de Apple, con las cifras de hoy y con el nombre
+que cada función lleva en la app. Lo que solo se
 puede hacer en un Mac (Xcode, TestFlight) y lo que Jerome tiene que decidir
 está en `LANZAMIENTO-APP-STORE.md`.
 

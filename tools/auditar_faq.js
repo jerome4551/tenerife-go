@@ -204,6 +204,52 @@ for (const e of (ficheros.es ? ficheros.es.e : [])) {
   }
 }
 
+/* ── 8. las respuestas de la app de las tiendas ───────────────────────
+   Dentro de la app (window.TGO_NATIVO) no hay Web Push ni service worker y
+   no se instala desde el navegador: app-06, app-07 y app-29 llevan alli su
+   propia respuesta ("n", de faq/fuente/nativo/respuestas.json). Que este en todos los
+   idiomas y en el suyo, distinta de la de la web, sin nombrar otras
+   plataformas (Apple, directriz 2.3.10: ni en la app ni en la ficha) y con
+   los rotulos de la pantalla. Y mas abajo, que con la marca el asistente
+   contesta con ella y sin la marca con la de la web. */
+const NATIVAS = Object.keys(indice).filter(id => indice[id].nativo);
+const OTRAS_PLATAFORMAS = /android|chrome|google play|play store|安卓|谷歌/i;
+for (const L of IDIOMAS) for (const x of ficheros[L].e)
+  if (x.n && NATIVAS.indexOf(x.id) < 0) mal(L + '/' + x.id + ': lleva respuesta de la app y faq/indice.json no lo dice');
+for (const id of NATIVAS) {
+  const es = porId('es').get(id), en = porId('en').get(id);
+  for (const L of IDIOMAS) {
+    const x = porId(L).get(id);
+    if (!x || !x.n || !x.n.trim()) { mal(L + '/' + id + ': sin respuesta de la app de las tiendas'); continue; }
+    if (x.n === x.a) mal(L + '/' + id + ': la respuesta de la app es la de la web');
+    if (ESCRITURA[L] && !ESCRITURA[L].test(x.n)) mal(L + '/' + id + ': la respuesta de la app no tiene ni un caracter de su alfabeto');
+    if (L !== 'es' && es && x.n === es.n) mal(L + '/' + id + ': la respuesta de la app es la del castellano');
+    if (L !== 'es' && L !== 'en' && en && x.n === en.n) mal(L + '/' + id + ': la respuesta de la app es la del ingles');
+    if (OTRAS_PLATAFORMAS.test(x.n)) mal(L + '/' + id + ': la respuesta de la app nombra otra plataforma: ' + x.n.match(OTRAS_PLATAFORMAS)[0]);
+  }
+  for (const m of String(es && es.n).matchAll(/«([^»]+)»/g)) {
+    const filas = ROT_ES.get(m[1].trim());
+    if (!filas) continue;
+    for (const L of IDIOMAS) {
+      if (L === 'es') continue;
+      const x = porId(L).get(id);
+      const buenos = [...new Set(filas.map(f => f[L]).filter(v => typeof v === 'string' && v.trim()))];
+      if (!x || !x.n || !buenos.length) continue;
+      citadosSueltos++;
+      if (!buenos.some(b => x.n.indexOf(b.trim()) >= 0))
+        mal(L + '/' + id + ': en la app cita «' + m[1] + '» y en pantalla se llama ' + buenos.map(b => '«' + b + '»').join(' o '));
+    }
+  }
+}
+const ctxN = { places: [], LANGS, currentLang: 'es', window: { TGO_NATIVO: true }, fetch: ctx.fetch };
+vm.createContext(ctxN);
+vm.runInContext(modulo + '\n' + core + '\nthis.TG_FAQ=TG_FAQ;this.chatNorm=chatNorm;this.chatTokens=chatTokens;this.chatMatchKB=chatMatchKB;', ctxN);
+function preguntarN(q) {
+  const qn = ctxN.chatNorm(q), toks = ctxN.chatTokens(qn), tokset = {};
+  for (const t of toks) { tokset[t] = 1; for (const v of [t.replace(/es$/, ''), t.replace(/s$/, '')]) tokset[v] = 1; }
+  return ctxN.chatMatchKB(' ' + qn + ' ', tokset, qn);
+}
+
 const otras = [];
 (async () => {
   let mirado = 0, perdidas = 0;
@@ -228,7 +274,20 @@ const otras = [];
       }
     }
   }
+  let nativas = 0;
+  for (const L of IDIOMAS) {
+    await ctxN.TG_FAQ.cambiarA(L);
+    ctxN.currentLang = L;
+    for (const id of NATIVAS) {
+      const x = porId(L).get(id);
+      if (!x) continue;
+      nativas++;
+      const r = preguntarN(x.l);
+      if (!r || r.item.answer !== x.n) mal(L + '/' + id + ': con la marca de la app, «' + x.l + '» no contesta con la respuesta de la app');
+    }
+  }
   console.log('  entradas.................. ' + ids.length + ' x ' + IDIOMAS.length + ' idiomas = ' + mirado);
+  console.log('  de la app de las tiendas.. ' + NATIVAS.length + ' x ' + IDIOMAS.length + ' idiomas = ' + nativas + ' (' + NATIVAS.join(' ') + ')');
   console.log('  idiomas................... ' + IDIOMAS.join(' '));
   console.log('  se llega a ellas.......... ' + (mirado - perdidas) + ' de ' + mirado);
   console.log('  su rotulo lleva a otra.... ' + otras.length + (otras.length ? '  (' + otras.slice(0, 4).join(' · ') + (otras.length > 4 ? ' …' : '') + ')' : ''));

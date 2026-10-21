@@ -28,6 +28,8 @@ pone al principio de `index.html`: `window.TGO_NATIVO = true`. Con ella:
 | Compartir un lugar | El enlace de la web | El enlace de la web viva (ya lo hacía con `capacitor://`). |
 | «Antes de subir al Teide» (el cielo, «Dónde ir») | Mira en la caché del móvil los seis ficheros del panel | «Guardado en el móvil» siempre: viajan en el paquete. |
 | La CSP | `connect-src 'self' …` | `connect-src` lleva además `https://jerome4551.github.io`, para esos datos. |
+| El asistente | Sus respuestas | En tres, la suya (`faq/fuente/nativo/respuestas.json`, diez idiomas): «¿Funciona sin conexión?» (desde la primera vez; «Satélite» y «Topo» con red), «¿Cómo instalo la app?» (ya está instalada: nada de navegador ni de otras plataformas, directriz 2.3.10) y «¿Puedo recibir una frase cada mañana?» (no manda notificaciones). |
+| Sin permiso para la cámara o los sensores | «Se puede dar en los ajustes del navegador» | Sin esa frase (`cieloCamaraPermisoApp`, `cieloSensoresPermisoApp`): dónde se vuelve a dar en iOS se mira en el iPhone (§7, 1). |
 
 Todo lo demás (el mapa, las 183 líneas, los 980 lugares, el cielo entero
 con «Apunta al cielo», los satélites, la noche guiada, el sistema solar, la
@@ -242,7 +244,9 @@ IDFA).
 1. **Permisos**: al abrir «Apunta al cielo», iOS pide los sensores y, con
    📷, la cámara, cada uno con la frase de la política en el idioma del
    móvil; al tocar «GPS», la ubicación. Rechazar y volver a aceptar en
-   Ajustes.
+   Ajustes. Si la cámara y los sensores se vuelven a dar ahí, el aviso de
+   la app puede decirlo (hoy, dentro de la app, solo dice que el cielo
+   funciona igual).
 2. **La cámara en «Apunta al cielo»** (`getUserMedia` existe en WKWebView
    desde iOS 14.3): las estrellas sobre la imagen, y 📸 compone la captura
    y la comparte.

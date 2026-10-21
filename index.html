@@ -9339,7 +9339,9 @@ const TG_FAQ = (function () {
       return {
         id: e.id,
         keys: e.k.concat([e.l]),
-        answer: e.a,
+        /* en la app de las tiendas, la suya si la tiene (faq/fuente/nativo/):
+           alli no hay Web Push ni se instala desde el navegador */
+        answer: (typeof window !== 'undefined' && window.TGO_NATIVO && e.n) ? e.n : e.a,
         follow: (e.f || []).map(function (id) { return rotulo[id]; }).filter(Boolean),
         showContact: e.c === 1,
         label: e.l

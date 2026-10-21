@@ -9,6 +9,10 @@ Entrada : faq/fuente/*.json             los bloques tal y como se redactaron
                                         «cerca de mi», «cuantos lugares»
           faq/fuente/claves/<idioma>.json claves de busqueda de mas para
                                         entradas que ya existen, por id
+          faq/fuente/nativo/respuestas.json la respuesta de la app de las tiendas
+                                        (window.TGO_NATIVO), por id y por
+                                        idioma, donde la de la web no seria
+                                        verdad dentro de ella; sale como "n"
 
 Salida  : faq/<idioma>.json  lo que descarga el movil, solo su idioma
           faq/indice.json    cat/volatil/bloque; solo lo leen los controles
@@ -90,6 +94,23 @@ def main():
                 print(f'claves/{L}.json: {id_} repite claves que la entrada ya tiene'); return 1
             porid[id_]['keys'][L] = ya + nuevas
 
+    # la respuesta de la app de las tiendas: dentro no hay Web Push ni service
+    # worker y no se instala desde el navegador. Un id que no existe o un
+    # idioma que falta es un error, como en las claves.
+    nativo = {}
+    fn = os.path.join(FUENTE, 'nativo', 'respuestas.json')
+    if os.path.exists(fn):
+        for id_, porL in json.load(open(fn, encoding='utf-8')).items():
+            if id_.startswith('_'): continue
+            if id_ not in porid:
+                print(f'nativo/respuestas.json: {id_} no es ninguna entrada'); return 1
+            faltan = [L for L in idiomas if not str(porL.get(L, '')).strip()]
+            sobran = sorted(set(porL) - set(idiomas))
+            if faltan or sobran:
+                print(f'nativo/respuestas.json: {id_} sin {faltan} o con idiomas que la app no tiene {sobran}'); return 1
+            nativo[id_] = porL
+            indice[id_]['nativo'] = True
+
     # ── controles antes de escribir nada ──────────────────────────────
     ids = [e['id'] for e in entradas]
     rep = [i for i, c in collections.Counter(ids).items() if c > 1]
@@ -126,6 +147,7 @@ def main():
                     'l': e['label'][L], 'a': e['a'][L],
                     'f': e.get('follow', [])}
             if e.get('contacto'): fila['c'] = 1
+            if e['id'] in nativo: fila['n'] = nativo[e['id']][L]
             filas.append(fila)
         salida = {'v': 1, 'lang': L, 'e': filas}
 

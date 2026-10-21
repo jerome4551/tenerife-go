@@ -17,6 +17,8 @@
  *   · los dos botones «Activar notificaciones» (el de la cuenta y el de
  *     «Continuar como invitado») y sus mensajes van hidden (WKWebView no
  *     tiene Web Push); en la web, no;
+ *   · el asistente contesta con las respuestas de la app (app-06, app-07,
+ *     app-29: faq/fuente/nativo/); en la web, con las suyas;
  *   · los datos que cambian a diario se piden PRIMERO a la web viva
  *     (https://jerome4551.github.io/tenerife-go/datos/…): los avisos de
  *     AEMET con dos avisos en la copia viva y ninguno en la de dentro ->
@@ -115,6 +117,18 @@ async function pagina(ctx, puerto, extra) {
        invitado», cada uno con su mensaje (PUSH_BOTONES en index.html) */
     const push = await p.evaluate(() => [['auth-push-btn', 'auth-push-msg'], ['auth-push-btn-invitado', 'auth-push-msg-invitado']].map(([bi, mi]) => { const b = document.getElementById(bi), m = document.getElementById(mi); return [bi, b ? b.hidden : 'no esta', m ? m.hidden : 'no esta']; }));
     ok(push.every(x => x[1] === true && x[2] === true), '«Activar notificaciones» (con cuenta y sin ella) y sus mensajes van hidden (WKWebView no tiene Web Push)', JSON.stringify(push));
+    /* el asistente (21-10-2026): en la app, las respuestas de faq/fuente/nativo/,
+       que no mandan a instalar desde el navegador ni prometen avisos */
+    const nativasDe = async (pg, raiz) => {
+      await pg.waitForFunction(() => typeof TG_FAQ !== 'undefined' && TG_FAQ.entradas().length > 0, null, { timeout: 15000 });
+      const lang = await pg.evaluate(() => currentLang);
+      const filas = JSON.parse(fs.readFileSync(path.join(raiz, 'faq', lang + '.json'), 'utf8')).e.filter(e => e.n);
+      const dadas = await pg.evaluate(ids => ids.map(id => (TG_FAQ.entradas().find(e => e.id === id) || {}).answer), filas.map(e => e.id));
+      return { lang, filas, dadas };
+    };
+    const fa = await nativasDe(p, WWW);
+    ok(fa.filas.length === 3 && fa.dadas.every((a, i) => a === fa.filas[i].n),
+       'el asistente da la respuesta de la app en ' + fa.filas.map(e => e.id).join(', ') + ' (' + fa.lang + '): nada de instalar desde el navegador ni de avisos', JSON.stringify(fa.dadas.map(a => String(a).slice(0, 50))));
     ok(errores.length === 0, 'sin errores de pagina', errores.join(' | '));
 
     /* los avisos de AEMET: vivos primero */
@@ -195,6 +209,8 @@ async function pagina(ctx, puerto, extra) {
     ok(!!(await w.$('.pwa-install-banner.show')), 'con User-Agent de iPhone, el banner de instalar sale a los 4 s (control)');
     const pushW = await w.evaluate(() => ['auth-push-btn', 'auth-push-btn-invitado'].map(i => { const b = document.getElementById(i); return b ? b.hidden : 'no esta'; }));
     ok(pushW.every(x => x === false), '«Activar notificaciones» (con cuenta y sin ella) no va hidden', JSON.stringify(pushW));
+    const fw = await nativasDe(w, RAIZ);
+    ok(fw.filas.length === 3 && fw.dadas.every((a, i) => a === fw.filas[i].a), 'el asistente da la respuesta de la web en ' + fw.filas.map(e => e.id).join(', ') + ' (' + fw.lang + ')', JSON.stringify(fw.dadas.map(a => String(a).slice(0, 50))));
     const propios = [];
     w.on('request', r => { if (/avisos-aemet\.json/.test(r.url())) propios.push(r.url()); });
     await w.evaluate(() => fetchWxAlerts());
