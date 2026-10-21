@@ -6192,6 +6192,52 @@ datos (app-27) también, en los diez. `generar_privacidad.py --comprobar`,
 `probar_play.js` (213 de 213), `auditar_faq.js`, `probar_faq.js` y
 `castellano_suelto.js`, en verde.
 
+## «⚠️ AEMET» en el globo, solo en la costa del aviso (21 de octubre, noche)
+
+Jerome temía que en las fichas fuera «mucha información» y pidió que fuera
+«ergonómico y guapo». Con la propuesta delante (las dos fichas, con aviso y
+sin él): «Si Perfecto».
+
+- **Lo que sale.** Solo cuando la costa de ese lugar tiene un aviso de
+  fenómenos costeros de AEMET para hoy: en «🌊 El mar aquí», una etiqueta
+  «⚠️ AEMET» del color del aviso. Al abrirlo, el aviso en una línea, lo
+  primero, con su hora; debajo, el mar de siempre. Los demás días, y en la
+  otra costa, el globo es el de siempre.
+- **El mismo criterio que «Báñate hoy aquí».** `TGO_AVISOS.costerosEn`:
+  dentro del contorno oficial de la zona costera o a menos de 2 km; un aviso
+  sin contorno cuenta para toda la costa; uno de mañana, no.
+- **Nada viejo.** El globo se fabrica al abrirlo y el mar se guarda media
+  hora (`SEA_CACHE`), pero el aviso se mira cada vez: si ya se ha acabado, ni
+  etiqueta ni línea, aunque el mar venga de la caché. Si Open-Meteo no
+  responde, el aviso oficial se sigue viendo.
+- **Idiomas.** «AEMET» es el nombre del organismo y va igual en los diez,
+  como AENA o Cabildo en `idiomas/etiquetas-sin-traducir.json`, y como ya iba
+  en las líneas de los avisos y en el asistente; la línea del aviso es la del
+  panel del mar (`wxLineas`), ya en los diez. Ninguna fila nueva de idioma. En
+  chino y búlgaro `barrido_pantallas.js` vio «⚠️ AEMET» igual que en los
+  idiomas latinos y se puso en rojo: va declarada en
+  `idiomas/pantalla-aceptado.json` con ese motivo, solo ese texto exacto (la
+  primera entrada del fichero). A 320 px, en alemán, búlgaro y polaco, cabe en
+  una línea.
+- **El asistente.** app-13, en los diez idiomas: en el globo de cada lugar de
+  esa costa, «El mar aquí» lleva «⚠️ AEMET». De las 8.412 preguntas del
+  asistente, ninguna cambia de respuesta.
+- **Probado.** `tools/probar_avisos.js`: **156 de 156**. Nuevo, con un costero
+  naranja de prueba en la costa sur (659603C, con su contorno de AEMET y sin
+  texto: entre las copias no hay ningún costero real de Tenerife): la Playa
+  del Duque, etiqueta naranja y el aviso lo primero, en castellano, alemán y
+  chino; la Playa Jardín, en el norte, el globo de siempre; al volver a
+  abrirlo con el mar de la caché, sigue; si el aviso ya no está, desaparece;
+  sin avisos, con uno de mañana o sin fichero, nada; un costero sin contorno,
+  sí. `auditar_xss.js`, `auditar_seguridad.py`, `auditar_faq.js`,
+  `probar_faq.js` (121), `castellano_suelto.js` y `probar_avisos_aemet.py`
+  (32), en verde.
+- **Auditoría entera** (`bash tools/auditar.sh`). La primera pasada, todo en
+  verde salvo `barrido_pantallas.js`, por «⚠️ AEMET» en chino y búlgaro (en
+  Idiomas, arriba). Con la declaración, otra vez entera: **«AUDITORIA EN
+  VERDE»**, ningún bloque en rojo ni roto. Y sin la declaración el barrido
+  vuelve a cantar: comprobado, para que no se quede mudo.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -6252,7 +6298,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/informe_lugares.js` | `REVISION-LUGARES.md`: lo que se puede comprobar de los lugares y lo que no, con cada cifra contada al generarlo; con `--comprobar`, para si no está al día |
 | `tools/zonas_lugares.py` | Norte o Sur de cada lugar por el polígono oficial de su municipio: lo escribe en `index.html` y con `--comprobar` lo rehace y lo compara; coteja también las listas Norte y Sur de «Ruta del día» |
 | `tools/auditar_claves_tx.js` | cada `tx('…')` con la clave escrita tiene su fila en `UI_TX` (`tx()` devuelve vacío sin avisar) |
-| `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: el punto del 🌊, el panel, las líneas del tiempo y del mar, los costeros en las costas y en «Báñate hoy aquí» con los contornos reales de AEMET, comprobación vieja, fichero que no llega |
+| `tools/probar_avisos.js` · `tools/avisos_prueba.js` | los avisos en la app, en un navegador y en los diez idiomas: el punto del 🌊, el panel, las líneas del tiempo y del mar, los costeros en las costas, en «Báñate hoy aquí» y en el globo de cada lugar de costa con los contornos reales de AEMET, comprobación vieja, fichero que no llega |
 | `tools/castellano_suelto.js` | el castellano que se queda **dentro** de cada idioma —letras, palabras corrientes, palabras copiadas, alfabeto latino en búlgaro y chino— y las frases que la traducción no tiene; lo que se queda a propósito, en `idiomas/castellano-aceptado.json` |
 | `tools/faltan_textos.js` | **cribado**, no veredicto: descripciones más cortas de lo esperado contra la mediana de ese idioma |
 | `tools/meter_descripcion.py` | mete descripciones rehechas comprobando que el texto es **de ese lugar** |

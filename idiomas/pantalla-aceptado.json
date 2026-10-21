@@ -2,5 +2,16 @@
  "_": [
   "Textos que tools/barrido_pantallas.js ve en pantalla y que NO son un hueco de traduccion.",
   "Cada uno con su motivo, por idioma. Solo texto exacto: si cambia, el control vuelve a mirarlo."
- ]
+ ],
+ "AEMET es el nombre del organismo (Agencia Estatal de Meteorologia), como AENA o Cabildo en idiomas/etiquetas-sin-traducir.json: se escribe igual en los diez idiomas, como en las lineas de los avisos y en el asistente. Es la etiqueta de «El mar aqui» en el globo cuando esa costa tiene un aviso costero para hoy (seaChipAemet, 21/10/2026); en chino y bulgaro el barrido la ve igual que en los idiomas latinos": {
+  "zh": [
+   "⚠️ AEMET"
+  ],
+  "zht": [
+   "⚠️ AEMET"
+  ],
+  "bg": [
+   "⚠️ AEMET"
+  ]
+ }
 }

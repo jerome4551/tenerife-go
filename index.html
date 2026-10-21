@@ -6224,6 +6224,13 @@ window.onunhandledrejection = function(e) {
 .popup-sea-wrap{margin-top:8px;}
 .popup-sea-toggle{width:100%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 6px;border-radius:9px;cursor:pointer;border:1px solid rgba(96,165,250,0.4);background:rgba(96,165,250,0.10);color:#93c5fd;font-size:13px;font-weight:600;}
 .popup-sea-toggle.open{background:rgba(96,165,250,0.18);}
+/* «⚠️ AEMET» en «El mar aquí»: solo si esa costa tiene un aviso costero de
+   AEMET para hoy (seaChipAemet), del color del aviso */
+.popup-sea-aemet{margin-left:2px;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;white-space:nowrap;}
+.popup-sea-aemet.wx-amarillo{background:rgba(234,179,8,0.20);color:#fde047;border:1px solid rgba(234,179,8,0.5);}
+.popup-sea-aemet.wx-naranja{background:rgba(249,115,22,0.22);color:#fdba74;border:1px solid rgba(249,115,22,0.5);}
+.popup-sea-aemet.wx-rojo{background:rgba(239,68,68,0.22);color:#fca5a5;border:1px solid rgba(239,68,68,0.55);}
+.popup-sea-details .popup-sea-aemet-linea{margin:0 0 8px;}
 .popup-sea-details{width:100%;box-sizing:border-box;margin-top:6px;padding:8px 10px;border:1px solid rgba(96,165,250,0.30);border-radius:10px;background:rgba(14,25,40,0.6);}
 .popup-sea-item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:3px 0;font-size:13px;min-width:0;}
 .popup-sea-k{color:#cbd5e1;white-space:nowrap;}
@@ -18091,12 +18098,36 @@ function seaBuildHtml(marine, weather, place) {
   }
   return html;
 }
+/* EL AVISO COSTERO DE AEMET EN EL GLOBO (21 de octubre de 2026). Jerome
+   temia que fuera «mucha información» en un globo que ya va lleno; con la
+   propuesta delante: «Si Perfecto». Asi que solo se ve cuando hace falta:
+   si esa costa tiene un aviso de fenomenos costeros para hoy (TGO_AVISOS,
+   el mismo criterio que «Báñate hoy aquí»), una etiqueta «⚠️ AEMET» del
+   color del aviso en «El mar aquí» y, al abrirlo, el aviso en una linea, lo
+   primero. Los demas dias el globo es el de siempre. El aviso se mira cada
+   vez: SEA_CACHE guarda el mar media hora, y un aviso puede acabarse antes. */
+function seaAvisosAemet(place) {
+  try { return (window.TGO_AVISOS && place) ? window.TGO_AVISOS.costerosEn(place.lat, place.lng) : []; }
+  catch (e) { return []; }
+}
+function seaChipAemet(place) {
+  var av = seaAvisosAemet(place);   // del peor al menos malo: el color, el del primero
+  return av.length ? ' <span class="popup-sea-aemet ' + escapeAttr(window.TGO_AVISOS.clase(av[0])) + '">⚠️ AEMET</span>' : '';
+}
+function seaLineasAemet(place) {
+  return seaAvisosAemet(place).map(function (a) {
+    return '<div class="mar-aemet popup-sea-aemet-linea ' + escapeAttr(window.TGO_AVISOS.clase(a)) + '">'
+      + escapeHtml(window.TGO_AVISOS.linea(a))
+      + '<span class="wx-linea-cuando">' + escapeHtml(window.TGO_AVISOS.cuando(a)) + '</span></div>';
+  }).join('');
+}
 function seaLoadInto(det, place) {
   if (det.dataset.loaded === 'done' || det.dataset.loaded === 'pending') return;
+  var aemet = seaLineasAemet(place);
   var c = SEA_CACHE[place.id];
-  if (c && (Date.now() - c.ts) < SEA_TTL) { det.innerHTML = c.html; det.dataset.loaded = 'done'; return; }
+  if (c && (Date.now() - c.ts) < SEA_TTL) { det.innerHTML = aemet + c.html; det.dataset.loaded = 'done'; return; }
   det.dataset.loaded = 'pending';
-  det.innerHTML = '<div class="popup-sea-loading">' + escapeHtml(seaTx().loading) + '</div>';
+  det.innerHTML = aemet + '<div class="popup-sea-loading">' + escapeHtml(seaTx().loading) + '</div>';
   /* Se piden tambien swell_wave_height y swell_wave_period. Sin esas dos
      la ficha no puede ver el mar de fondo, que es el estado que mas
      accidentes causa en el norte porque la ola se ve pequena y arrastra.
@@ -18114,15 +18145,16 @@ function seaLoadInto(det, place) {
     seaFetchJSON(mUrl).catch(function () { return null; }),
     seaFetchJSON(wUrl).catch(function () { return null; })
   ]).then(function (res) {
+    // sin Open-Meteo el aviso oficial se sigue viendo: no depende de el
     if (!res[0] && !res[1]) {
-      det.innerHTML = '<div class="popup-sea-err">' + escapeHtml(seaTx().error) + '</div>';
+      det.innerHTML = aemet + '<div class="popup-sea-err">' + escapeHtml(seaTx().error) + '</div>';
       det.dataset.loaded = ''; return;
     }
     var html = seaBuildHtml(res[0], res[1], place);
     SEA_CACHE[place.id] = { ts: Date.now(), html: html };
-    det.innerHTML = html; det.dataset.loaded = 'done';
+    det.innerHTML = aemet + html; det.dataset.loaded = 'done';
   }).catch(function () {
-    det.innerHTML = '<div class="popup-sea-err">' + escapeHtml(seaTx().error) + '</div>';
+    det.innerHTML = aemet + '<div class="popup-sea-err">' + escapeHtml(seaTx().error) + '</div>';
     det.dataset.loaded = '';
   });
 }
@@ -18492,7 +18524,7 @@ function htmlGlobo(place) {
     ? ('https://maps.apple.com/?daddr=' + _dirCoord + '&dirflg=d')
     : ('https://www.google.com/maps/dir/?api=1&destination=' + _dirCoord + '&travelmode=driving'));
   const seaBlock = COAST_CATS.includes(place.category)
-    ? `<div class="popup-sea-wrap" data-place-id="${safeId}"><button type="button" class="popup-sea-toggle">🌊 ${escapeHtml(seaTx().title)}</button><div class="popup-sea-details" hidden></div></div>`
+    ? `<div class="popup-sea-wrap" data-place-id="${safeId}"><button type="button" class="popup-sea-toggle">🌊 ${escapeHtml(seaTx().title)}${seaChipAemet(place)}</button><div class="popup-sea-details" hidden></div></div>`
     : '';
   const safeTags     = place.tags.map(tag => `<span class="popup-tag">${escapeHtml(TG_ETIQUETAS.de(tag))}</span>`).join('');
 

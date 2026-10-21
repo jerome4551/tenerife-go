@@ -22,6 +22,9 @@
  *     lo llevan, «la más tranquila» no es una de ellas, y «Báñate hoy aquí»
  *     no recomienda ninguna playa de esa zona y lo dice; sin el costero, si
  *     las recomendaba (si no, la prueba no probaria nada);
+ *   · el globo de una playa: «⚠️ AEMET» en «El mar aquí» y el aviso lo primero
+ *     al abrirlo, solo en la costa del aviso y solo mientras dura (aunque el
+ *     mar salga de la cache); los demas dias, el globo de siempre;
  *   · costeros en las tres costas: ninguna playa, y dice por que; uno sin
  *     contorno cuenta para toda la costa; uno de mañana sale arriba y no
  *     quita playas;
@@ -249,6 +252,64 @@ async function openMeteo(pg) {
     caso('[es] el punto del 🌊 si: el aviso esta en pie', pt.ve && /wx-naranja/.test(pt.cls), JSON.stringify(pt));
     caso('[es] ninguna costa con aviso para hoy, tres playas, sin nota', m.filas.every(f => !f.aemet) && m.playas.length === 3 && m.nota === '',
          JSON.stringify(m));
+    await pg.close();
+  }
+
+  /* El globo de un lugar de costa (Jerome, con la propuesta delante: «Si
+     Perfecto»): «⚠️ AEMET» en «El mar aquí» y el aviso lo primero al abrirlo,
+     solo si esa costa tiene un costero para hoy. */
+  async function globo(pg, id) {
+    await pg.evaluate(id => { const p = places.find(q => q.id === id); map.setView([p.lat, p.lng], 15, { animate: false }); }, id);
+    await pg.waitForTimeout(500);
+    await pg.evaluate(id => markerMap[id].openPopup(), id);
+    await pg.waitForFunction(id => !!document.querySelector('.popup-sea-wrap[data-place-id="' + id + '"] .popup-sea-toggle'), id, { timeout: 10000 });
+    const antes = await pg.evaluate(id => {
+      const b = document.querySelector('.popup-sea-wrap[data-place-id="' + id + '"] .popup-sea-toggle');
+      const chip = b.querySelector('.popup-sea-aemet');
+      return { chip: chip ? chip.textContent : null, clase: chip ? chip.className : '' };
+    }, id);
+    await pg.evaluate(id => document.querySelector('.popup-sea-wrap[data-place-id="' + id + '"] .popup-sea-toggle').click(), id);
+    await pg.waitForFunction(id => { const d = document.querySelector('.popup-sea-wrap[data-place-id="' + id + '"] .popup-sea-details'); return d && d.dataset.loaded === 'done'; }, id, { timeout: 10000 });
+    const det = await pg.evaluate(id => {
+      const d = document.querySelector('.popup-sea-wrap[data-place-id="' + id + '"] .popup-sea-details');
+      const l = d.firstElementChild;
+      return { primera: l && l.classList.contains('popup-sea-aemet-linea') ? l.textContent : null,
+               lineas: d.querySelectorAll('.popup-sea-aemet-linea').length, mar: !!d.querySelector('.popup-sea-item') };
+    }, id);
+    await pg.evaluate(() => map.closePopup());
+    return Object.assign(antes, det);
+  }
+  console.log('\n=== el globo de una playa: «⚠️ AEMET» solo en la costa del aviso ===');
+  for (const L of ['es', 'de', 'zh']) {
+    const { pg, errores } = await abrir(conAvisos, L);
+    const sur = await globo(pg, 'el-duque');
+    const norte = await globo(pg, 'playa-jardin');
+    const q = {};
+    for (const k of ['wxNivel_naranja', 'wxFen_CO', 'wxDeA']) q[k] = await T(pg, k, L);
+    caso(`[${L}] Playa del Duque (sur, con el costero): «⚠️ AEMET» naranja, y el aviso lo primero, con su hora`,
+         sur.chip === '⚠️ AEMET' && /wx-naranja/.test(sur.clase) && sur.lineas === 1 && sur.mar
+         && sur.primera.includes(q.wxNivel_naranja) && sur.primera.includes(q.wxFen_CO) && sur.primera.includes('AEMET')
+         && sur.primera.includes('🕐 ' + q.wxDeA.split('{a}')[0]), JSON.stringify(sur));
+    caso(`[${L}] Playa Jardín (norte): el globo de siempre`, norte.chip === null && norte.lineas === 0 && norte.mar, JSON.stringify(norte));
+    if (L !== 'es') caso(`[${L}] sin rotulos en castellano`, !/Aviso |Fenómenos|De \d/.test(sur.primera || ''), sur.primera);
+    caso(`[${L}] sin errores de pagina`, errores.length === 0, errores.join(' / '));
+    if (L === 'es') {
+      // el mar sale ya de SEA_CACHE; el aviso se mira cada vez: acabado, ya no esta
+      const otra = await globo(pg, 'el-duque');
+      await pg.evaluate(() => { wxDatos.avisos = wxDatos.avisos.filter(a => a.fenomeno !== 'CO'); renderWxAlerts(); });
+      const acabado = await globo(pg, 'el-duque');
+      caso('[es] al volver a abrirlo, con el mar de la cache, el aviso sigue', otra.chip === '⚠️ AEMET' && otra.lineas === 1, JSON.stringify(otra));
+      caso('[es] y cuando el aviso ya no esta, ni etiqueta ni linea, aunque el mar venga de la cache',
+           acabado.chip === null && acabado.lineas === 0 && acabado.mar, JSON.stringify(acabado));
+    }
+    await pg.close();
+  }
+  for (const [nombre, fich] of [['sin avisos', sinAvisos], ['un costero de mañana', deManana], ['sin fichero (404)', 404], ['un costero sin contorno', sinContorno]]) {
+    const { pg } = await abrir(fich, 'es');
+    const r = await globo(pg, 'el-duque');
+    const quiere = fich === sinContorno;   // sin contorno cuenta para toda la costa
+    caso(`[es] ${nombre}: ${quiere ? 'con' : 'sin'} «⚠️ AEMET» en la Playa del Duque`,
+         quiere ? (r.chip === '⚠️ AEMET' && r.lineas === 1) : (r.chip === null && r.lineas === 0 && r.mar), JSON.stringify(r));
     await pg.close();
   }
 
