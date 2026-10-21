@@ -67,6 +67,22 @@
  *      precision de iOS en el chip; la comprobacion de la brujula con los
  *      sensores simulados 10 grados desviados (y que la corrige); y que la
  *      Luna llena aclara el cielo mas que la nueva (lunaLuz iba al reves).
+ *  11. la Estacion Espacial y los satelites brillantes (21 de octubre de
+ *      2026): el motor SGP4 (vendor/satellite.js) contra los 33 casos de
+ *      verificacion oficiales (tools/sgp4_verificacion.json), y byte a byte
+ *      contra sus fuentes si estan bajadas (tools/satelites_fuentes.sh);
+ *      datos/satelites.json (tres objetos, lineas de 69 caracteres, sumas de
+ *      control, epocas); el robot sin red (no escribe con una linea mal ni
+ *      con elementos mas viejos, ni reescribe los mismos); el flujo y el
+ *      service worker. En el navegador, con el reloj de la pagina a la noche
+ *      siguiente a la epoca: cada paso cumple la regla (mas de 10 grados,
+ *      al Sol, cielo oscuro), y la lista entera se recalcula AQUI APARTE
+ *      (GMST y Sol de Astronomy Engine, ECEF y acimut/altura a mano, umbra
+ *      cilindrica) y tiene que salir la misma; la tarjeta, el filtro del
+ *      calendario, la carta (el punto pintado), «Apunta al cielo» (nombra
+ *      al satelite y lo encuentra la busqueda), la ficha, el .ics con la
+ *      alarma a media hora, el aviso; con elementos de 10 dias, lo dice y no
+ *      ensena pasos; y los diez idiomas sin texto roto ni palabras repetidas.
  *
  * Sale con 1 si algo falla.
  */
@@ -76,12 +92,14 @@ const RAIZ = path.dirname(__dirname);
 const args = process.argv.slice(2);
 const PUERTO = args.find(a => /^\d+$/.test(a));
 const FUENTES = (args.find(a => a.startsWith('--fuentes=')) || '').slice(10) || process.env.FUENTES_CIELO || '/tmp/fuentes-cielo';
+const FUENTES_SAT = (args.find(a => a.startsWith('--fuentes-satelites=')) || '').slice(20) || process.env.FUENTES_SATELITES || '/tmp/fuentes-satelites';
 /* --solo=6,8: solo esas partes del navegador (para probar a mano; auditar.sh las pasa todas) */
 const SOLO = (args.find(a => a.startsWith('--solo=')) || '').slice(7).split(',').filter(Boolean);
 const toca = n => !SOLO.length || SOLO.includes(String(n));
 const lee = f => fs.readFileSync(path.join(RAIZ, f), 'utf8');
 const index = lee('index.html'), modulo = lee('modulos/cielo.js');
 const D = JSON.parse(lee('datos/cielo.json'));
+const SATJSON = JSON.parse(lee('datos/satelites.json'));     // 11a y 11
 
 let fallos = 0, hechos = 0;
 function ok(cond, txt, detalle) {
@@ -269,7 +287,10 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(index, '"' + k +
     Color: ['O', 'B', 'A', 'F', 'G', 'K', 'M'],
     Lum: ['I', 'II', 'III', 'IV', 'V'],
     /* el indice de la noche (21 de octubre): la palabra, de indiceNoche() */
-    Indice: [...(modulo.match(/valor >= 9 \? '(\w+)' : valor >= 7 \? '(\w+)' : valor >= 5 \? '(\w+)' : valor >= 3 \? '(\w+)' : '(\w+)'/) || []).slice(1)]
+    Indice: [...(modulo.match(/valor >= 9 \? '(\w+)' : valor >= 7 \? '(\w+)' : valor >= 5 \? '(\w+)' : valor >= 3 \? '(\w+)' : '(\w+)'/) || []).slice(1)],
+    /* los satelites (21 de octubre): el nombre y el brillo de cada clave de datos/satelites.json */
+    SatNombre: SATJSON.sat.map(s => s.clave[0].toUpperCase() + s.clave.slice(1)),
+    SatBrillo: SATJSON.sat.map(s => s.clave[0].toUpperCase() + s.clave.slice(1))
   };
   ok(Object.values(FAMILIAS).every(v => v && v.length) && FAMILIAS.Indice.length === 5, 'las familias se leen del codigo (RUMBOS, FASES, PESTANAS, las palabras del indice)');
   /* y si manana el codigo arma otra (T('Algo' + x)), que no pase sin mirar */
@@ -314,7 +335,7 @@ titulo('4. la carga perezosa y lo que pide el navegador');
   let sintaxis = true; try { execFileSync('node', ['--check', path.join(RAIZ, 'modulos', 'cielo.js')], { stdio: 'pipe' }); } catch (e) { sintaxis = String(e.stderr || e).slice(0, 200); }
   ok(sintaxis === true, 'modulos/cielo.js es JavaScript valido', sintaxis);
   ok(!/<\/script/i.test(modulo), 'modulos/cielo.js no trae «</script» (tools/fuente.js lo pega en linea)');
-  for (const f of ['vendor/astronomy.browser.min.js', 'datos/cielo.json'])
+  for (const f of ['vendor/astronomy.browser.min.js', 'datos/cielo.json', 'vendor/satellite.js', 'datos/satelites.json'])
     ok(modulo.includes("'./" + f + "'") && fs.existsSync(path.join(RAIZ, f)), 'el panel pide ./' + f + ' y existe');
   const motor = lee('vendor/astronomy.browser.min.js');
   ok(!/\beval\s*\(|new Function\s*\(|\bFunction\s*\(\s*['"]/.test(motor), 'el motor no usa eval ni new Function: la CSP no lleva unsafe-eval');
@@ -326,7 +347,7 @@ titulo('4. la carga perezosa y lo que pide el navegador');
   const hosts = [...modulo.matchAll(/(?:fetch\(\s*|var url = )'https:\/\/([a-z0-9.-]+)\//g)].map(m => m[1]);
   const fetchs = [...modulo.matchAll(/\bfetch\(\s*([^)]{0,60})/g)].map(m => m[1].trim());
   ok(hosts.length > 0 && hosts.every(h => conecta.includes('https://' + h)), 'lo que el panel pide fuera (' + [...new Set(hosts)].join(', ') + ') esta en el connect-src de la CSP', conecta.join(' '));
-  ok(fetchs.every(x => /^'\.\/datos\/cielo\.json'|^url\b/.test(x)), 'y no pide nada mas: el catalogo, la nubosidad y Wikipedia (fetch: ' + fetchs.join(' · ') + ')');
+  ok(fetchs.every(x => /^'\.\/datos\/cielo\.json'|^'\.\/datos\/satelites\.json'|^url\b/.test(x)), 'y no pide nada mas: el catalogo, los elementos de los satelites, la nubosidad y Wikipedia (fetch: ' + fetchs.join(' · ') + ')');
   /* Wikipedia (20 de octubre de 2026): la ficha pide el resumen a
      <idioma>.wikipedia.org y los enlaces entre idiomas a en.wikipedia.org;
      la foto viene de upload.wikimedia.org (img-src https:). */
@@ -370,8 +391,100 @@ titulo('5. el instrumento de cada objeto, contra lo que dice cualquier guia');
   ok(tuc.id && tuc.niv === null && tuc.alt < 0, '47 Tucanae (C106) no sale en el catalogo: desde Izaña no asoma nunca (altura maxima ' + tuc.alt + '°)');
 }
 
+/* ════════ 11a. los satelites, sin navegador ════════ */
+titulo('11a. la Estacion Espacial y los satelites: el motor SGP4, los elementos orbitales, el robot y el flujo');
+{
+  const pines = {};
+  for (const m of lee('tools/satelites_fuentes.sh').matchAll(/^traer\s+(\w+)\s+\S+\s+([0-9a-f]{40})/gm)) pines[m[1]] = m[2];
+  const cab = lee('vendor/satellite.js').slice(0, 800);
+  ok(pines.satjs && cab.includes(pines.satjs) && /satellite\.js 7\.1\.0/.test(cab) && /MIT/.test(cab),
+     'vendor/satellite.js dice venir del commit que fija tools/satelites_fuentes.sh (' + (pines.satjs || '?').slice(0, 10) + '), satellite.js 7.1.0, MIT', cab.slice(0, 100));
+  ok(fs.existsSync(path.join(RAIZ, 'vendor', 'LICENSE-satellite.txt')) && /MIT License/.test(lee('vendor/LICENSE-satellite.txt')), 'y lleva su licencia, vendor/LICENSE-satellite.txt');
+  const SAT = require(path.join(RAIZ, 'vendor', 'satellite.js'));
+  ok(['twoline2satrec', 'propagate', 'sgp4', 'gstime', 'eciToEcf', 'ecfToLookAngles', 'eciToGeodetic', 'sunPos', 'shadowFraction', 'jday'].every(f => typeof SAT[f] === 'function') && SAT.version === '7.1.0',
+     'carga en Node y trae lo que usa el panel (twoline2satrec, propagate, gstime, eciToEcf, ecfToLookAngles, sunPos, shadowFraction…), version ' + SAT.version);
+  /* los 33 casos oficiales, con el motor del repositorio */
+  const VER = JSON.parse(lee('tools/sgp4_verificacion.json'));
+  ok(pines.pysgp4 && (VER.fuente || '').includes(pines.pysgp4) && VER.casos.length === 33 && VER.casos.filter(c => c.esperaError).length === 1,
+     'tools/sgp4_verificacion.json: los 33 casos de verificacion de SGP4 (uno espera el error 3), del commit de python-sgp4 que fija satelites_fuentes.sh');
+  let n = 0, peor = 0; const malos = [];
+  for (const c of VER.casos) {
+    const rec = SAT.twoline2satrec(c.l1, c.l2);
+    if (c.esperaError) { n++; const r = SAT.sgp4(rec, 0); if (rec.error !== c.esperaError && r !== null) malos.push(c.satnum + ': esperaba el error ' + c.esperaError + ' y da ' + rec.error); continue; }
+    for (const f of c.filas) {
+      const r = SAT.sgp4(rec, f[0]); n++;
+      if (!r || !r.position) { malos.push(c.satnum + ' @' + f[0] + ': sin resultado (error ' + rec.error + ')'); continue; }
+      const d = Math.max(Math.abs(r.position.x - f[1]), Math.abs(r.position.y - f[2]), Math.abs(r.position.z - f[3]));
+      const dv = Math.max(Math.abs(r.velocity.x - f[4]), Math.abs(r.velocity.y - f[5]), Math.abs(r.velocity.z - f[6]));
+      peor = Math.max(peor, d);
+      if (d > 1e-6 || dv > 1e-7) malos.push(c.satnum + ' @' + f[0] + ': ' + d.toExponential(2) + ' km, ' + dv.toExponential(2) + ' km/s');
+    }
+  }
+  ok(!malos.length && n === 97, 'el motor da los ' + n + ' vectores de verificacion (posicion y velocidad TEME) a 1e-6 km y 1e-7 km/s; desviacion maxima ' + peor.toExponential(1) + ' km', malos.slice(0, 3).join(' · '));
+  if (fs.existsSync(path.join(FUENTES_SAT, 'satjs', 'src', 'index.ts')) && fs.existsSync(path.join(FUENTES_SAT, 'pysgp4', 'sgp4', 'tcppver.out'))) {
+    let salida = '', rc = 0;
+    try { salida = execFileSync('node', [path.join(RAIZ, 'tools', 'satelites_construir.js'), FUENTES_SAT, '--comprobar'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }); }
+    catch (e) { rc = e.status || 1; salida = String(e.stdout || '') + String(e.stderr || ''); }
+    ok(rc === 0, 'vendor/satellite.js, su licencia y sgp4_verificacion.json son exactamente los que salen de las fuentes (satelites_construir.js --comprobar, todos los instantes de tcppver.out)', salida.trim().split('\n').slice(-3).join(' | '));
+  } else nota('sin las fuentes en ' + FUENTES_SAT + ': no se recompila el motor (bash tools/satelites_fuentes.sh ' + FUENTES_SAT + '; hace falta tsc)');
+  /* datos/satelites.json */
+  const suma = l => { let t = 0; for (const ch of l.slice(0, 68)) { if (/\d/.test(ch)) t += +ch; else if (ch === '-') t += 1; } return t % 10; };
+  const epocaTle = l1 => { const aa = +l1.slice(18, 20), anio = aa < 57 ? 2000 + aa : 1900 + aa, dias = parseFloat(l1.slice(20, 32)); return new Date(Date.UTC(anio, 0, 1) + (dias - 1) * 864e5); };
+  const ESPERADOS = [[25544, 'iss'], [48274, 'tiangong'], [20580, 'hubble']];
+  const malSat = [];
+  (SATJSON.sat || []).forEach(x => {
+    if (x.l1.length !== 69 || x.l2.length !== 69) malSat.push(x.clave + ': lineas de ' + x.l1.length + '/' + x.l2.length);
+    if (x.l1[0] !== '1' || x.l2[0] !== '2' || +x.l1.slice(2, 7) !== x.id || +x.l2.slice(2, 7) !== x.id) malSat.push(x.clave + ': numero de catalogo');
+    if (suma(x.l1) !== +x.l1[68] || suma(x.l2) !== +x.l2[68]) malSat.push(x.clave + ': suma de control');
+    if (Math.abs(epocaTle(x.l1) - new Date(x.epoca)) > 1000) malSat.push(x.clave + ': epoca ' + x.epoca + ' y la linea dice ' + epocaTle(x.l1).toISOString());
+    if (new Date(x.epoca) > new Date(SATJSON.obtenido)) malSat.push(x.clave + ': epoca posterior a «obtenido»');
+    const rec = SAT.twoline2satrec(x.l1, x.l2); if (rec.error) malSat.push(x.clave + ': el motor no lo traga (error ' + rec.error + ')');
+  });
+  ok(Array.isArray(SATJSON.sat) && SATJSON.sat.length === 3 && ESPERADOS.every(([id, k]) => SATJSON.sat.some(x => x.id === id && x.clave === k)) && SATJSON.maxDias === 7 && /celestrak/i.test(SATJSON.fuente || '') && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(SATJSON.obtenido || '') && !malSat.length,
+     'datos/satelites.json: la ISS (25544), Tiangong (48274) y el Hubble (20580), de CelesTrak, lineas de 69 caracteres con la suma de control, epoca la de la linea 1 (' + (SATJSON.sat || []).map(x => x.clave + ' ' + (x.epoca || '').slice(0, 16)).join(', ') + '), maxDias 7', malSat.join(' · '));
+  const edad = (Date.now() - Math.max(...(SATJSON.sat || []).map(x => new Date(x.epoca).getTime()))) / 864e5;
+  nota('los elementos del repositorio tienen ' + edad.toFixed(1) + ' dias' + (edad > 7 ? ': la app no ensenaria pasos con ellos hasta que el robot los renueve (.github/workflows/satelites.yml)' : ''));
+  /* el robot, sin red: lo mismo que hay (no reescribe), una linea mal (no escribe), elementos mas viejos (se quedan los de antes) */
+  {
+    const os = require('os'), tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tgo-sat-')), tle = path.join(tmp, 'a.tle'), out = path.join(tmp, 'salida.json');
+    const texto = SATJSON.sat.map(x => x.nombre + '\n' + x.l1 + '\n' + x.l2).join('\n') + '\n';
+    const corre = (argumentos) => { const r = require('child_process').spawnSync('python3', ['-I', path.join(RAIZ, 'tools', 'satelites_traer.py')].concat(argumentos), { encoding: 'utf8' }); return { rc: r.status, txt: String(r.stdout || '') + String(r.stderr || '') }; };
+    const ahora = new Date(new Date(SATJSON.obtenido).getTime() + 3600000).toISOString().replace(/\.\d{3}/, '');
+    fs.writeFileSync(tle, texto);
+    const r1 = corre(['--tle', tle, '--ahora', ahora, '--salida', out]);
+    const escrito = fs.existsSync(out) ? JSON.parse(fs.readFileSync(out, 'utf8')) : null;
+    ok(r1.rc === 0 && escrito && JSON.stringify(escrito.sat) === JSON.stringify(SATJSON.sat) && escrito.maxDias === 7 && escrito.obtenido === ahora,
+       'el robot (satelites_traer.py --tle) escribe con esas lineas exactamente los mismos elementos que hay en datos/satelites.json', r1.txt.slice(-200));
+    const r2 = corre(['--tle', tle, '--ahora', ahora, '--salida', out]);
+    ok(r2.rc === 0 && /sin elementos nuevos/.test(r2.txt) && JSON.parse(fs.readFileSync(out, 'utf8')).obtenido === ahora, 'con los mismos elementos no reescribe el fichero (el robot no deja commits vacios)', r2.txt.slice(-200));
+    const mala = texto.replace(SATJSON.sat[0].l2, SATJSON.sat[0].l2.slice(0, 20) + (SATJSON.sat[0].l2[20] === '5' ? '6' : '5') + SATJSON.sat[0].l2.slice(21));
+    fs.writeFileSync(tle, mala);
+    const antes = fs.readFileSync(out, 'utf8'), r3 = corre(['--tle', tle, '--ahora', ahora, '--salida', out]);
+    ok(r3.rc !== 0 && /suma de control/.test(r3.txt) && fs.readFileSync(out, 'utf8') === antes, 'con una cifra cambiada en una linea (la suma de control ya no cuadra) sale con error y no toca el fichero', r3.txt.slice(-200));
+    const vieja = texto.replace(SATJSON.sat[1].l1, SATJSON.sat[1].l1.slice(0, 20) + String(Math.max(1, parseInt(SATJSON.sat[1].l1.slice(20, 23), 10) - 3)).padStart(3, '0') + SATJSON.sat[1].l1.slice(23));
+    const arregla = l => { let t = 0; for (const ch of l.slice(0, 68)) { if (/\d/.test(ch)) t += +ch; else if (ch === '-') t += 1; } return l.slice(0, 68) + (t % 10); };
+    const viejaOk = vieja.split('\n').map(l => l.startsWith('1 ') || l.startsWith('2 ') ? arregla(l) : l).join('\n');
+    fs.writeFileSync(tle, viejaOk);
+    const r4 = corre(['--tle', tle, '--ahora', ahora, '--salida', out]);
+    const tras = JSON.parse(fs.readFileSync(out, 'utf8'));
+    ok(r4.rc === 0 && /mas viejos que los que hay/.test(r4.txt) && tras.sat[1].l1 === SATJSON.sat[1].l1, 'con elementos de tres dias antes para uno, avisa y se queda con los que habia', r4.txt.slice(-200));
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+  /* el flujo, el service worker y el modulo */
+  const wf = lee('.github/workflows/satelites.yml');
+  ok((wf.match(/^\s+- cron: '/gm) || []).length === 2 && /workflow_dispatch/.test(wf) && /python3 tools\/satelites_traer\.py/.test(wf) && /git add datos\/satelites\.json/.test(wf) && /contents: write/.test(wf) && /concurrency:/.test(wf),
+     '.github/workflows/satelites.yml: dos lineas de cron y a mano, corre el robot, guarda solo datos/satelites.json, con permiso de escritura y sin solaparse');
+  const sw = lee('sw.js');
+  ok(/'\.\/vendor\/satellite\.js'/.test(sw) && /'\.\/datos\/satelites\.json'/.test(sw) && /endsWith\('\/datos\/satelites\.json'\)/.test(sw),
+     'sw.js: el motor y los elementos van en el precache, y los elementos se piden primero a la red (si la hay) para tenerlos frescos');
+  ok(/var SAT_MIN_ALT = 10, SAT_SOL_BAJO = -6/.test(modulo) && /fetch\('\.\/datos\/satelites\.json'\)/.test(modulo) && /s\.src = '\.\/vendor\/satellite\.js'/.test(modulo) && !/https?:\/\/[^'"\s]*celestrak/i.test(modulo),
+     'el modulo: 10° y Sol a −6°, lee los elementos y el motor de su propio dominio y no llama a CelesTrak desde el movil');
+  ok(!/vendor\/satellite\.js/.test(index.replace(/<!--[\s\S]*?-->/g, '')), 'vendor/satellite.js no va en ninguna etiqueta de arranque de index.html (se pide al abrir el panel)');
+  ok(/SAT_WP = \{ iss: \['International Space Station'\], tiangong: \['Tiangong space station'\], hubble: \['Hubble Space Telescope'\] \}/.test(modulo), 'la ficha pide a Wikipedia los articulos que son (International Space Station, Tiangong space station, Hubble Space Telescope)');
+}
+
 if (!PUERTO) {
-  nota('sin puerto: se salta todo lo que va en el navegador (6, 7 y 8)');
+  nota('sin puerto: se salta todo lo que va en el navegador (6 a 11)');
   fin();
 } else {
   navegador().then(fin, e => { fallos++; console.log('  MAL el navegador no termino   -> ' + (e && e.stack || e)); fin(); });
@@ -394,6 +507,7 @@ async function navegador() {
     if (toca(8)) await sinConexion(b);
     if (toca(9)) await apunta(b);
     if (toca(10)) await quejas(b);
+    if (toca(11)) await satelites(b);
   } finally { await b.close(); }
 }
 
@@ -1255,4 +1369,263 @@ async function quejas(b) {
      'la Luna llena (' + Math.round(luz.llena.ilum * 100) + ' %, a ' + luz.llena.alt.toFixed(0) + '°) aclara el cielo de la carta: media ' + luz.llena.media.toFixed(1) + ' frente a ' + luz.nueva.media.toFixed(1) + ' con Luna nueva', JSON.stringify(luz));
   ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
   await ctx.close();
+}
+
+/* ── 11. la Estacion Espacial y los satelites, en el navegador ────────────
+   El reloj de la pagina se pone a las 18:00 UTC del dia siguiente a la epoca
+   mas nueva de datos/satelites.json: asi el control vale igual el dia que
+   se corre, con los elementos que haya. La lista de pasos se recalcula aqui
+   aparte (en Node): GMST y Sol de Astronomy Engine, ECEF y acimut/altura a
+   mano, umbra cilindrica; la propagacion SGP4 es la misma biblioteca, ya
+   cotejada en 11a con los vectores oficiales. */
+async function satelites(b) {
+  titulo('11. la Estacion Espacial y los satelites: pasos, tarjeta, calendario, carta, vista, ficha, .ics, avisos, idiomas');
+  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera'], isMobile: true, hasTouch: true });
+  const epocaMax = Math.max(...SATJSON.sat.map(x => new Date(x.epoca).getTime()));
+  const e = new Date(epocaMax), T0 = new Date(Date.UTC(e.getUTCFullYear(), e.getUTCMonth(), e.getUTCDate() + 1, 18, 0, 0));
+  await p.clock.setFixedTime(T0);
+  await p.evaluate(async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); setLang('es'); TG_CIELO.estado.fecha = null; TG_CIELO.abrir(); await TG_CIELO.satelites(); });
+  nota('reloj de la pagina: ' + T0.toISOString() + ' (epoca mas nueva ' + e.toISOString().slice(0, 16) + 'Z)');
+  const r = await p.evaluate(() => {
+    const S = TG_CIELO.estado, A = Astronomy, o = new A.Observer(S.datos.obs.lat, S.datos.obs.lon, S.datos.obs.h);
+    const solAlt = d => { const t = A.MakeTime(d), eq = A.Equator(A.Body.Sun, t, o, true, false); return A.Horizon(t, o, eq.ra, eq.dec, '').altitude; };
+    const pasos = TG_CIELO.pasosProximos().map(x => {
+      const enMax = TG_CIELO.dondeSat(x.s.clave, x.max.t), enIni = TG_CIELO.dondeSat(x.s.clave, x.ini.t), enFin = TG_CIELO.dondeSat(x.s.clave, x.fin.t);
+      return { sat: x.s.clave, ini: x.ini.t.getTime(), max: x.max.t.getTime(), fin: x.fin.t.getTime(), altIni: x.ini.alt, altMax: x.max.alt, altFin: x.fin.alt, azMax: x.max.az, dur: x.dur, desdeSombra: x.desdeSombra, aSombra: x.aSombra, crepIni: !!x.ini.crep, crepFin: !!x.fin.crep,
+               solMax: enMax.sol, sombraMax: enMax.sombra, solIni: enIni.sol, solFin: enFin.sol, solObsIni: solAlt(x.ini.t), solObsFin: solAlt(x.fin.t), solObsMax: solAlt(x.max.t) };
+    });
+    return { fecha: S.fecha, ahora: Date.now(), sats: S.sat.datos.sat.map(x => ({ clave: x.clave, epoca: x.epocaMs, error: x.rec.error })), pasos, hoy: TG_CIELO.pasos(S.fecha).length };
+  });
+  ok(r.sats.length === 3 && r.sats.every(x => !x.error), 'los tres satelites cargan en el panel (' + r.sats.map(x => x.clave).join(', ') + ')', JSON.stringify(r.sats));
+  ok(r.pasos.length >= 1, r.pasos.length + ' pasos visibles en las siete noches desde el ' + r.fecha + ' (' + r.hoy + ' esta noche)', 'ninguno: raro con tres satelites y siete noches');
+  const malPaso = [];
+  r.pasos.forEach((x, i) => {
+    const q = x.sat + ' ' + new Date(x.max).toISOString().slice(0, 16);
+    if (!(x.ini < x.max && x.max <= x.fin)) malPaso.push(q + ': orden de instantes');
+    if (!(x.dur >= 20 && Math.abs((x.fin - x.ini) / 1000 - x.dur) < 1.5)) malPaso.push(q + ': duracion ' + x.dur);
+    if (!(x.altMax >= 10 && x.altMax >= x.altIni - 0.01 && x.altMax >= x.altFin - 0.01)) malPaso.push(q + ': el maximo no es el maximo');
+    /* ya arriba al oscurecer (o aun arriba al amanecer): el paso empieza (acaba) con el Sol a −6° */
+    if (!x.desdeSombra && !x.crepIni && Math.abs(x.altIni - 10) > 0.3) malPaso.push(q + ': aparece a ' + x.altIni.toFixed(2) + '° y no a 10°');
+    if (!x.aSombra && !x.crepFin && Math.abs(x.altFin - 10) > 0.3) malPaso.push(q + ': se pierde a ' + x.altFin.toFixed(2) + '° y no a 10°');
+    if (x.crepIni && !(x.altIni >= 10 && Math.abs(x.solObsIni + 6) < 0.1)) malPaso.push(q + ': «ya arriba al oscurecer» sin el Sol a −6° (' + x.solObsIni.toFixed(2) + ')');
+    if (x.crepFin && !(x.altFin >= 10 && Math.abs(x.solObsFin + 6) < 0.1)) malPaso.push(q + ': «se pierde en el amanecer» sin el Sol a −6° (' + x.solObsFin.toFixed(2) + ')');
+    if (x.desdeSombra && !(x.altIni >= 10 && x.solIni)) malPaso.push(q + ': sale de la sombra pero no esta al Sol y arriba');
+    if (x.aSombra && !(x.altFin >= 10 && x.solFin)) malPaso.push(q + ': entra en la sombra pero no esta al Sol y arriba');
+    if (!(x.solMax && x.sombraMax < 1)) malPaso.push(q + ': en el maximo no esta al Sol');
+    if (!(x.solObsIni < -5.95 && x.solObsFin < -5.95 && x.solObsMax < -6)) malPaso.push(q + ': el Sol del observador no esta bajo −6°');
+    if (i && x.max < r.pasos[i - 1].max) malPaso.push(q + ': desordenado');
+    if (x.fin < r.ahora - 3600000) malPaso.push(q + ': ya pasado');
+  });
+  ok(!malPaso.length, 'cada paso cumple la regla: aparece y se pierde a 10° (o en la sombra de la Tierra), el maximo es el mas alto, el satelite al Sol y el Sol del Teide bajo −6°, en orden y por venir', malPaso.slice(0, 4).join(' · '));
+  /* la lista entera, recalculada aparte */
+  const cruce = pasosAparte(T0, r.pasos);
+  ok(!cruce.mal.length, 'recalculados aqui aparte (GMST y Sol de Astronomy Engine, ECEF y acimut/altura a mano, umbra cilindrica): los mismos ' + r.pasos.length + ' pasos a ±10 s y ±1,5° en el maximo (' + cruce.n + ' de los de aqui con mas de un minuto, todos en la app); acimut y altura en cada maximo a ' + cruce.peor.toFixed(3) + '°', cruce.mal.slice(0, 4).join(' · '));
+  /* la tarjeta de esta noche y el filtro del calendario */
+  const ui = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    const S = TG_CIELO.estado, out = {};
+    await TG_CIELO.ver('noche'); await espera(300);
+    const h = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta h3')].find(x => /🛰/.test(x.textContent)), t = h && h.closest('.cielo-tarjeta');
+    out.tarjeta = t ? { texto: t.innerText, filas: t.querySelectorAll('.cielo-item').length, botones: t.querySelectorAll('button').length } : null;
+    out.hoy = TG_CIELO.pasos(S.fecha).length;
+    S.cal = 'satelites'; await TG_CIELO.ver('calendario'); await espera(300);
+    const c = document.getElementById('cielo-cuerpo');
+    out.cal = { filas: c.querySelectorAll('.cielo-item').length, noches: c.querySelectorAll('.cielo-mes-cab').length, texto: c.innerText, chip: !!document.querySelector('#cielo-panel .cielo-filtro[aria-pressed="true"], #cielo-panel button[aria-pressed="true"]') };
+    out.n = TG_CIELO.pasosProximos().length;
+    /* la septima noche, de Sol a −6° a Sol a −6°, como la calcula el panel */
+    const A = Astronomy, o = new A.Observer(S.datos.obs.lat, S.datos.obs.lon, S.datos.obs.h);
+    const t0 = A.MakeTime(new Date(Date.parse(S.fecha + 'T12:00:00Z') + 6 * 864e5)), tarde = A.SearchAltitude(A.Body.Sun, o, -1, t0, 1, -6), manana = tarde && A.SearchAltitude(A.Body.Sun, o, +1, tarde, 1, -6);
+    out.ultimaFuera = !!manana && S.sat.datos.sat.some(s => Math.abs(manana.date.getTime() - s.epocaMs) > S.sat.datos.maxDias * 864e5);
+    return out;
+  });
+  ok(ui.tarjeta && ui.tarjeta.filas === ui.hoy && /La Estación Espacial y otros satélites/.test(ui.tarjeta.texto) && /CelesTrak/.test(ui.tarjeta.texto) && /SGP4/.test(ui.tarjeta.texto) && (ui.hoy ? ui.tarjeta.botones === 3 * ui.hoy && /Aparece a las|Sale de la sombra|Ya arriba/.test(ui.tarjeta.texto) && /Más alto a las \d\d:\d\d: \d+°/.test(ui.tarjeta.texto) : /no pasa ninguno/.test(ui.tarjeta.texto)),
+     'la tarjeta de «Esta noche»: ' + ui.hoy + ' paso(s) con sus tres botones, de donde salen los elementos y como se calcula', ui.tarjeta && ui.tarjeta.texto.slice(0, 200));
+  ok(ui.cal.filas === ui.n && ui.n === r.pasos.length && ui.cal.noches >= 1 && ui.cal.noches <= 7 && /NOCHE DEL/.test(ui.cal.texto) && (!ui.ultimaFuera || /solo se calculan hasta 7 días/.test(ui.cal.texto)),
+     'el calendario con el filtro «Satélites»: los ' + ui.n + ' pasos agrupados en ' + ui.cal.noches + ' noches' + (ui.ultimaFuera ? ', y dice que las ultimas noches se quedan sin elementos de menos de 7 dias' : ''), JSON.stringify({ filas: ui.cal.filas, n: ui.n, noches: ui.cal.noches }));
+  /* la carta en el maximo del primer paso, la vista, la busqueda y la ficha */
+  const primero = r.pasos[0];
+  if (primero) {
+    await p.clock.setFixedTime(new Date(primero.max));
+    const carta = await p.evaluate(async (q) => {
+      const espera = ms => new Promise(r => setTimeout(r, ms));
+      const S = TG_CIELO.estado, out = { sat: q.sat };
+      await TG_CIELO.ver('noche'); await espera(300);
+      const h = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta h3')].find(x => /🛰/.test(x.textContent));
+      const bt = h && [...h.closest('.cielo-tarjeta').querySelectorAll('button')].find(b => /🗺/.test(b.textContent));
+      if (!bt) return out; bt.click(); await espera(1200);
+      out.pestana = S.pestana; out.sel = S.mapa.sel; out.t = S.mapa.t && new Date(S.mapa.t).getTime();
+      const d = (S.mapa.dianas || []).find(x => x.sel && x.sel.sat === q.sat);
+      if (d) {
+        const cv = S.mapa.canvas, g = cv.getContext('2d'), im = g.getImageData(Math.max(0, Math.round(d.x) - 4), Math.max(0, Math.round(d.y) - 4), 9, 9).data;
+        let mx = 0; for (let i = 0; i < im.length; i += 4) mx = Math.max(mx, im[i], im[i + 1], im[i + 2]);
+        out.diana = { x: d.x, y: d.y, brillo: mx, dentro: d.x > 0 && d.y > 0 && d.x < cv.width && d.y < cv.height };
+      }
+      /* la ficha abierta en la carta */
+      out.ficha = document.querySelector('#cielo-panel .cielo-ficha, #cielo-panel .cielo-hoja') ? document.querySelector('#cielo-panel .cielo-ficha, #cielo-panel .cielo-hoja').innerText : '';
+      /* «Apunta al cielo»: los sensores al satelite */
+      const x = TG_CIELO.dondeSat(q.sat, new Date()), dec = TG_CIELO.declinacion(new Date());
+      TG_CIELO.vista({ sinGuia: true }); await espera(300);
+      const ev = new Event('deviceorientationabsolute'); Object.assign(ev, { alpha: (360 - ((x.az - dec + 360) % 360)) % 360, beta: 90 + x.alt, gamma: 0, absolute: true }); window.dispatchEvent(ev);
+      await espera(900);
+      out.centro = document.querySelector('#cielo-vista .cv-nombre').innerText;
+      out.donde = { alt: x.alt, az: x.az, sol: x.sol };
+      /* la busqueda encuentra al Hubble por su nombre y a la ISS por sus siglas */
+      document.querySelectorAll('#cielo-vista .cv-btn')[2].click(); await espera(200);
+      const inp = document.querySelector('#cielo-vista .cv-busqueda input');
+      inp.value = 'Hubble'; inp.dispatchEvent(new Event('input')); await espera(100);
+      out.buscaHubble = [...document.querySelectorAll('#cielo-vista .cv-busqueda-item')].map(x => x.textContent);
+      inp.value = 'ISS'; inp.dispatchEvent(new Event('input')); await espera(100);
+      const it = [...document.querySelectorAll('#cielo-vista .cv-busqueda-item')].find(x => /Estación Espacial Internacional/.test(x.textContent));
+      out.buscaIss = !!it; if (it) it.click(); await espera(500);
+      out.objetivo = document.querySelector('#cielo-vista .cv-objetivo') ? document.querySelector('#cielo-vista .cv-objetivo').innerText : '';
+      TG_CIELO.cerrarVista(); await espera(100);
+      /* la ficha de cada uno, con la hora del proximo paso */
+      out.fichas = {};
+      for (const s of S.sat.datos.sat) {
+        const f = TG_CIELO.ficha({ sat: s.clave }, new Date()); out.fichas[s.clave] = f.innerText || f.textContent;
+      }
+      out.proximos = {}; S.sat.datos.sat.forEach(s => { const pr = TG_CIELO.pasosProximos().filter(z => z.s === s && z.fin.t > new Date())[0]; out.proximos[s.clave] = pr ? { h: pr.ini.t.getTime(), alt: Math.round(pr.max.alt) } : null; });
+      return out;
+    }, primero);
+    const nom = { iss: 'Estación Espacial Internacional', tiangong: 'Estación espacial china Tiangong', hubble: 'Telescopio espacial Hubble' };
+    ok(carta.pestana === 'mapa' && carta.sel && carta.sel.sat === primero.sat && Math.abs(carta.t - primero.max) < 1000 && carta.diana && carta.diana.dentro && carta.diana.brillo > 150,
+       '«Ver en el mapa del cielo» abre la carta en el maximo del paso con ' + nom[primero.sat] + ' seleccionado y pintado (brillo ' + (carta.diana && carta.diana.brillo) + ')', JSON.stringify({ pestana: carta.pestana, sel: carta.sel, diana: carta.diana }));
+    ok(carta.donde && carta.donde.alt > 10 && carta.donde.sol && carta.centro.includes(nom[primero.sat]) && /Satélite artificial/.test(carta.centro),
+       '«Apunta al cielo» con los sensores hacia el satelite (' + carta.donde.alt.toFixed(0) + '° de altura) lo nombra en el circulo: «' + carta.centro.split('\n')[0] + '»', carta.centro);
+    ok(carta.buscaHubble.some(x => /Telescopio espacial Hubble/.test(x)) && carta.buscaIss && /Estación Espacial Internacional/.test(carta.objetivo),
+       'la busqueda encuentra «Hubble» y «ISS», y la flecha apunta a la Estacion', JSON.stringify({ h: carta.buscaHubble, iss: carta.buscaIss, obj: carta.objetivo.slice(0, 60) }));
+    const hora = ms => new Intl.DateTimeFormat('es-ES', { timeZone: 'Atlantic/Canary', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date(ms));
+    const malF = [];
+    for (const k of ['iss', 'tiangong', 'hubble']) {
+      const f = carta.fichas[k], pr = carta.proximos[k];
+      if (!f.includes(nom[k]) || !/Satélite artificial/.test(f) || !/A \d[\d.]* km de altura, a \d,\d km\/s/.test(f) || !/Elementos orbitales del/.test(f) || /undefined|NaN|\{/.test(f)) malF.push(k + ': ' + f.slice(0, 120));
+      if (pr ? !(f.includes('Próximo paso visible') && f.includes('aparece a las ' + hora(pr.h)) && f.includes('sube hasta ' + pr.alt + '°')) : !/Sin pasos visibles/.test(f)) malF.push(k + ' proximo paso: ' + f.slice(0, 200));
+    }
+    ok(!malF.length, 'la ficha de cada uno: nombre, «Satélite artificial», altura y velocidad, el proximo paso visible (o que no hay en siete noches) y la fecha de los elementos', malF.join(' | '));
+    /* el .ics y el aviso del primer paso */
+    const ics = await p.evaluate(() => { const x = TG_CIELO.pasosProximos()[0]; TG_CIELO.quitarAvisos(); TG_CIELO.ponerAviso(x); const av = TG_CIELO.avisos(); const id = TG_CIELO.idEvento(x); TG_CIELO.quitarAvisos(); return { txt: TG_CIELO.ics(x), ini: x.ini.t.toISOString(), fin: x.fin.t.toISOString(), nAvisos: av.length, avId: av[0] && av[0].id, id }; });
+    const des = []; for (const l of ics.txt.split('\r\n')) { if (l.startsWith(' ')) des[des.length - 1] += l.slice(1); else des.push(l); }
+    const get = k => (des.find(l => l.startsWith(k + ':')) || '').slice(k.length + 1);
+    const fechaIcs = d => new Date(d).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+    const malIcs = [];
+    if (!/\r\n$/.test(ics.txt) || ics.txt.split('\r\n').some(l => Buffer.byteLength(l, 'utf8') > 75)) malIcs.push('CRLF o 75 octetos');
+    if (get('DTSTART') !== fechaIcs(ics.ini) || get('DTEND') !== fechaIcs(ics.fin)) malIcs.push('DTSTART/DTEND ' + get('DTSTART') + ' ' + get('DTEND'));
+    if (!des.includes('TRIGGER:-PT30M') || !/Dentro de media hora/.test(get('DESCRIPTION') + des.join('\n'))) malIcs.push('alarma: ' + des.filter(l => /TRIGGER|media hora/.test(l)).join(' '));
+    if (!/paso visible/.test(get('SUMMARY')) || !new RegExp(nom[primero.sat]).test(get('SUMMARY'))) malIcs.push('SUMMARY ' + get('SUMMARY'));
+    if (!/Aparece a las|Sale de la sombra|Ya arriba/.test(get('DESCRIPTION').replace(/\\n/g, '\n')) || !/Más alto/.test(get('DESCRIPTION')) || /undefined/.test(ics.txt)) malIcs.push('DESCRIPTION ' + get('DESCRIPTION').slice(0, 80));
+    if (!/^paso-[a-z]+-\d{4}-\d\d-\d\dT\d\d@jerome4551\.github\.io$/.test(get('UID'))) malIcs.push('UID ' + get('UID'));
+    ok(!malIcs.length && ics.nAvisos === 1 && ics.avId === ics.id && /^paso\|[a-z]+\|\d{4}-\d\d-\d\dT\d\d$/.test(ics.id),
+       'el .ics del paso: de la aparicion a la desaparicion, alarma media hora antes, el nombre y el detalle; y el aviso en la app se pone y se quita (id ' + ics.id + ')', malIcs.join(' | ') + ' avisos ' + ics.nAvisos);
+  }
+  /* con elementos de diez dias: lo dice y no ensena pasos */
+  await p.clock.setFixedTime(new Date(epocaMax + 10 * 864e5));
+  const viejo = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    const S = TG_CIELO.estado; S.fecha = null; S.sat.pasos = {}; TG_CIELO.cerrar(); TG_CIELO.abrir(); await TG_CIELO.ver('noche'); await espera(300);
+    const h = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta h3')].find(x => /🛰/.test(x.textContent)), t = h && h.closest('.cielo-tarjeta');
+    const out = { tarjeta: t ? t.innerText : '', filas: t ? t.querySelectorAll('.cielo-item').length : -1, pasos: TG_CIELO.pasosProximos().length };
+    S.cal = 'satelites'; await TG_CIELO.ver('calendario'); await espera(300);
+    out.cal = document.getElementById('cielo-cuerpo').innerText; out.calFilas = document.querySelectorAll('#cielo-cuerpo .cielo-item').length;
+    out.ficha = TG_CIELO.ficha({ sat: 'iss' }, new Date()).innerText;
+    return out;
+  });
+  ok(viejo.filas === 0 && viejo.pasos === 0 && /solo se calculan hasta 7 días/.test(viejo.tarjeta) && viejo.calFilas === 0 && /solo se calculan hasta 7 días/.test(viejo.cal) && /Sin pasos visibles/.test(viejo.ficha) && !/km de altura/.test(viejo.ficha),
+     'diez dias despues de la epoca, sin elementos nuevos: la tarjeta, el calendario y la ficha dicen que los pasos solo se calculan hasta 7 dias, y no ensenan ninguno ni posicion', JSON.stringify({ filas: viejo.filas, pasos: viejo.pasos, t: viejo.tarjeta.slice(0, 100), cal: viejo.cal.slice(0, 80) }));
+  /* los diez idiomas: tarjeta, calendario, ficha y un paso en la carta, sin texto roto ni palabras repetidas */
+  await p.clock.setFixedTime(T0);
+  const idiomas = await p.evaluate(async (IDI) => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    const S = TG_CIELO.estado, out = {}; S.fecha = null; S.sat.pasos = {}; TG_CIELO.cerrar(); TG_CIELO.abrir();
+    const x = TG_CIELO.pasosProximos()[0];
+    for (const L of IDI) {
+      setLang(L); await espera(50);
+      await TG_CIELO.ver('noche'); await espera(150);
+      const h = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta h3')].find(y => /🛰/.test(y.textContent));
+      const tarjeta = h ? h.closest('.cielo-tarjeta').innerText : '';
+      S.cal = 'satelites'; await TG_CIELO.ver('calendario'); await espera(150);
+      const cal = document.getElementById('cielo-cuerpo').innerText;
+      const fichas = S.sat.datos.sat.map(s => TG_CIELO.ficha({ sat: s.clave }, new Date()).innerText).join('\n');
+      const ics = x ? TG_CIELO.ics(x) : '';
+      out[L] = { tarjeta, cal, fichas, ics, titulo: h ? h.textContent : '' };
+    }
+    setLang('es');
+    return out;
+  }, IDI);
+  const malIdi = [];
+  for (const L of IDI) {
+    const t = idiomas[L], todo = [t.tarjeta, t.cal, t.fichas, t.ics].join('\n');
+    if (!t.tarjeta || !t.cal || !t.fichas) malIdi.push(L + ': falta algo');
+    if (/undefined|NaN|\{[a-z]+\}|\[object/.test(todo)) malIdi.push(L + ': texto roto');
+    if (!/[^\x00-\x7F]/.test(t.titulo) && !['en', 'nl'].includes(L) && L !== 'it') { /* el titulo puede ser ASCII en algunos idiomas */ }
+    const rep = todo.match(/\b([^\s\d]{2,} [^\s\d]{2,}) \1\b/u); if (rep) malIdi.push(L + ': «' + rep[0] + '» repetido');
+    if (!/CelesTrak/.test(t.tarjeta) || !/SGP4/.test(t.tarjeta)) malIdi.push(L + ': la tarjeta no dice de donde salen los elementos');
+    if (IDI.indexOf(L) && t.tarjeta === idiomas[IDI[0]].tarjeta) malIdi.push(L + ': la tarjeta sale igual que en ' + IDI[0]);
+    if (!/TRIGGER:-PT30M/.test(t.ics)) malIdi.push(L + ': .ics sin la alarma de media hora');
+  }
+  ok(!malIdi.length, 'en los ' + IDI.length + ' idiomas: tarjeta, calendario, fichas y .ics sin texto roto, sin palabras repetidas (el rumbo lleva ya su preposicion) y cada uno en su idioma', malIdi.slice(0, 4).join(' · '));
+  ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
+  await ctx.close();
+}
+
+/* Los pasos recalculados aparte, en Node. Devuelve los fallos del cruce con
+   la lista de la app (pasos), cuantos de los de aqui duran mas de un minuto
+   y la peor diferencia de acimut/altura en los maximos de la app. */
+function pasosAparte(T0, pasos) {
+  const SAT = require(path.join(RAIZ, 'vendor', 'satellite.js')), A = require(path.join(RAIZ, 'vendor', 'astronomy.browser.min.js'));
+  const OBS = D.obs, RAD = Math.PI / 180, RT = 6378.137, F = 1 / 298.257223563, obs = new A.Observer(OBS.lat, OBS.lon, OBS.h);
+  const lat = OBS.lat * RAD, lon = OBS.lon * RAD, e2 = F * (2 - F), N = RT / Math.sqrt(1 - e2 * Math.sin(lat) ** 2), h = OBS.h / 1000;
+  const RO = [(N + h) * Math.cos(lat) * Math.cos(lon), (N + h) * Math.cos(lat) * Math.sin(lon), (N * (1 - e2) + h) * Math.sin(lat)];
+  const donde = (rec, d) => {
+    const pv = SAT.propagate(rec, d); if (!pv || !pv.position) return null;
+    const t = A.MakeTime(d), g = A.SiderealTime(t) * 15 * RAD, r = pv.position, c = Math.cos(g), s = Math.sin(g);
+    const ecef = [c * r.x + s * r.y, -s * r.x + c * r.y, r.z], d3 = [ecef[0] - RO[0], ecef[1] - RO[1], ecef[2] - RO[2]];
+    const ee = -Math.sin(lon) * d3[0] + Math.cos(lon) * d3[1];
+    const nn = -Math.sin(lat) * Math.cos(lon) * d3[0] - Math.sin(lat) * Math.sin(lon) * d3[1] + Math.cos(lat) * d3[2];
+    const uu = Math.cos(lat) * Math.cos(lon) * d3[0] + Math.cos(lat) * Math.sin(lon) * d3[1] + Math.sin(lat) * d3[2];
+    const dist = Math.hypot(ee, nn, uu), alt = Math.asin(uu / dist) / RAD, az = (Math.atan2(ee, nn) / RAD + 360) % 360;
+    const sv = A.RotateVector(A.Rotation_EQJ_EQD(t), A.GeoVector(A.Body.Sun, t, true)), sn = Math.hypot(sv.x, sv.y, sv.z), sh = [sv.x / sn, sv.y / sn, sv.z / sn];
+    const dot = r.x * sh[0] + r.y * sh[1] + r.z * sh[2], perp = Math.hypot(r.x - dot * sh[0], r.y - dot * sh[1], r.z - dot * sh[2]);
+    const eq = A.Equator(A.Body.Sun, t, obs, true, false), solAlt = A.Horizon(t, obs, eq.ra, eq.dec, '').altitude;
+    return { alt, az, sol: !(dot < 0 && perp < RT), solAlt };
+  };
+  /* las siete noches desde la de T0 (hora canaria), cada una de Sol a −6° a Sol a −6° */
+  const partes = new Intl.DateTimeFormat('en-GB', { timeZone: 'Atlantic/Canary', hour: 'numeric', hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(T0).reduce((o, x) => (o[x.type] = x.value, o), {});
+  let dia0 = Date.UTC(+partes.year, +partes.month - 1, +partes.day, 12); if (+partes.hour < 7) dia0 -= 864e5;
+  const noches = [];
+  for (let i = 0; i < 7; i++) {
+    const t0 = A.MakeTime(new Date(dia0 + i * 864e5)), tarde = A.SearchAltitude(A.Body.Sun, obs, -1, t0, 1, -6), manana = tarde && A.SearchAltitude(A.Body.Sun, obs, +1, tarde, 1, -6);
+    if (tarde && manana) noches.push([tarde.date.getTime(), manana.date.getTime()]);
+  }
+  const mios = [];
+  for (const s of SATJSON.sat) {
+    const rec = SAT.twoline2satrec(s.l1, s.l2), ep = new Date(s.epoca).getTime();
+    for (const [ini, fin] of noches) {
+      if (Math.abs(ini - ep) > SATJSON.maxDias * 864e5 || Math.abs(fin - ep) > SATJSON.maxDias * 864e5) continue;
+      const visible = ms => { const x = donde(rec, new Date(ms)); return !!x && x.alt >= 10 && x.sol && x.solAlt < -6; };
+      let tramo = [];
+      const cerrar = () => {
+        if (!tramo.length) return; const m = tramo; tramo = [];
+        let a = m[0], b = a - 10000; for (let i = 0; i < 20 && a - b > 500; i++) { const c = (a + b) / 2; if (visible(c)) a = c; else b = c; }
+        let a2 = m[m.length - 1], b2 = a2 + 10000; for (let i = 0; i < 20 && b2 - a2 > 500; i++) { const c = (a2 + b2) / 2; if (visible(c)) a2 = c; else b2 = c; }
+        let tMax = m[0], altMax = -99;
+        for (let u = Math.max(ini, a); u <= Math.min(fin, a2); u += 1000) { const y = donde(rec, new Date(u)); if (y && y.alt > altMax) { altMax = y.alt; tMax = u; } }
+        mios.push({ sat: s.clave, ini: Math.max(ini, a), max: tMax, altMax, fin: Math.min(fin, a2), dur: (Math.min(fin, a2) - Math.max(ini, a)) / 1000 });
+      };
+      for (let t = ini; t <= fin; t += 10000) { if (visible(t)) tramo.push(t); else cerrar(); }
+      cerrar();
+    }
+  }
+  const mal = []; let peor = 0;
+  for (const x of pasos) {
+    const m = mios.find(y => y.sat === x.sat && Math.abs(y.max - x.max) <= 10000);
+    if (!m) { mal.push(x.sat + ' ' + new Date(x.max).toISOString().slice(0, 16) + ' no sale aqui'); continue; }
+    if (Math.abs(m.altMax - x.altMax) > 1.5 || Math.abs(m.ini - x.ini) > 10000 || Math.abs(m.fin - x.fin) > 10000) mal.push(x.sat + ' ' + new Date(x.max).toISOString().slice(0, 16) + ': aqui ' + m.altMax.toFixed(1) + '° ' + new Date(m.ini).toISOString().slice(11, 19) + '-' + new Date(m.fin).toISOString().slice(11, 19) + ' y en la app ' + x.altMax.toFixed(1) + '° ' + new Date(x.ini).toISOString().slice(11, 19) + '-' + new Date(x.fin).toISOString().slice(11, 19));
+    const rec = SAT.twoline2satrec(SATJSON.sat.find(s => s.clave === x.sat).l1, SATJSON.sat.find(s => s.clave === x.sat).l2), y = donde(rec, new Date(x.max));
+    const dAz = Math.abs(((y.az - x.azMax + 540) % 360) - 180);
+    peor = Math.max(peor, Math.abs(y.alt - x.altMax), dAz * Math.cos(x.altMax * RAD));
+  }
+  if (peor > 0.05) mal.push('acimut/altura en los maximos a ' + peor.toFixed(3) + '° (mas de 0,05)');
+  let n = 0;
+  for (const m of mios) if (m.dur >= 60) { n++; if (!pasos.some(x => x.sat === m.sat && Math.abs(x.max - m.max) <= 10000)) mal.push(m.sat + ' ' + new Date(m.max).toISOString().slice(0, 16) + ' (' + Math.round(m.dur) + ' s, ' + m.altMax.toFixed(0) + '°) falta en la app'); }
+  return { mal, n, peor, mios: mios.length };
 }

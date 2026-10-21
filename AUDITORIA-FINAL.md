@@ -690,6 +690,178 @@ móvil de verdad (la brújula comprobada con la Luna, el `.ics` abriendo el
 calendario, la hoja de compartir de la captura); los pasos, en la nota para
 Claude Code.
 
+## La Estación Espacial y los satélites brillantes, calculados en el móvil (21 de octubre, por la tarde)
+
+Jerome: «Sigue». El bloque siguiente de la lista que salió del informe de
+las tiendas: «¿cuándo pasa la Estación?» es la pregunta más repetida de
+cualquier noche, y hasta hoy el panel la despachaba mandando a la aplicación
+de la NASA (cuyas reseñas son las de siempre: no abre, los avisos no llegan,
+pide cuenta). Ahora se calcula aquí, en el móvil, sin cuenta y sin red una
+vez abierto.
+
+### Lo que entra
+
+- **Los pasos visibles desde el Teide** de la Estación Espacial
+  Internacional, de la estación china Tiangong y del telescopio Hubble en
+  las próximas siete noches: una tarjeta en «Esta noche», el filtro «🛰️
+  Satélites» del calendario (agrupado por noche), «Ver en el mapa del
+  cielo» (la carta en el máximo del paso, con el satélite pintado, su estela
+  de un minuto y su nombre; apagado si está en la sombra de la Tierra),
+  «Apunta al cielo» (lo nombra en el círculo y lo encuentra la búsqueda,
+  por «Hubble» o por «ISS»), la ficha (a qué altura vuela y a qué
+  velocidad, a cuántos kilómetros está ahora, si está en la sombra, cómo
+  brilla, el próximo paso visible, la fecha de los elementos y Wikipedia),
+  «Añadir a mi calendario» con la alarma **media hora antes** (un paso dura
+  minutos; la víspera no sirve) y «Recordármelo en la app».
+- **Qué es un paso visible**: la regla de las tablas de pasos de siempre.
+  El satélite a más de 10° sobre el horizonte, iluminado por el Sol (fuera
+  de la umbra de la Tierra, con el modelo de umbra y penumbra del motor) y
+  el cielo ya oscuro (Sol a más de 6° bajo el horizonte): la noche va de
+  Sol −6° por la tarde a Sol −6° por la mañana. De cada paso: cuándo y por
+  dónde **aparece** (a 10°), o **sale de la sombra de la Tierra**, o **ya
+  está arriba al oscurecer**; **lo más alto** que sube, con su rumbo;
+  cuándo **se pierde** (a 10°), o **entra en la sombra**, o **se pierde en
+  el amanecer**; cuánto dura. Todo a un segundo: barrido cada 20 s y
+  bisección en los extremos. Lo que se dice del brillo es con palabras y
+  con fuente («el tercer objeto más brillante del cielo», que es como la
+  NASA describe la Estación en Spot the Station; Tiangong como las
+  estrellas más brillantes; el Hubble como una estrella corriente, y desde
+  Tenerife puede pasar casi por el cenit: su órbita está inclinada 28,47°
+  y el Teide a 28,30° de latitud).
+- **Los elementos orbitales** (`datos/satelites.json`): las dos líneas
+  (TLE) de cada uno con su época, de CelesTrak (el servicio público de
+  T. S. Kelso con el catálogo de la Fuerza Espacial de EE. UU.). Cambian
+  cada día por el rozamiento con la atmósfera, así que los renueva un robot
+  (`.github/workflows/satelites.yml`, `tools/satelites_traer.py`) dos veces
+  al día, tres peticiones por pasada (CelesTrak pide no abusar). Comprueba
+  cada línea —69 caracteres, el número de catálogo que toca, la suma de
+  control módulo 10— y, si algo no cuadra o la descarga falla, **no escribe
+  nada**: el fichero se queda con sus últimos elementos buenos; nunca
+  sustituye un elemento por otro de época anterior; y con los mismos
+  elementos no reescribe el fichero (el robot no deja commits vacíos). El
+  panel no enseña pasos con elementos de más de **7 días** (hacia atrás o
+  hacia delante de la época) y lo dice en la tarjeta, en el calendario y en
+  la ficha. El móvil lee el fichero de su propio dominio: CelesTrak no
+  manda cabeceras CORS para una web cualquiera y, aunque las mandara, no es
+  cosa de pedirle los elementos desde cada móvil. **Nada sale del móvil**,
+  así que la política de privacidad no cambia. El service worker precachea
+  el motor y los elementos, y los elementos los pide primero a la red para
+  tenerlos frescos.
+- **El motor**: SGP4/SDP4 de satellite.js 7.1.0 (MIT), con las
+  transformaciones TEME → ECF → acimut y altura, el Sol y la sombra de la
+  Tierra. El repositorio de satellite.js no trae ninguna versión compilada
+  y npm no llega a todas las máquinas donde se audita esto, así que
+  `tools/satelites_construir.js` lo compila desde el TypeScript del commit
+  fijado en `tools/satelites_fuentes.sh` (sin la parte WASM, que el panel
+  no usa) y lo junta en un fichero sin dependencias, `vendor/satellite.js`
+  (124 kB, 30 comprimidos), que se pide al abrir el panel. Se cotejó con
+  los **33 casos de verificación oficiales** de SGP4 (SGP4-VER.TLE y
+  tcppver.out, los de Vallado, Crawford, Hujsak y Kelso, AIAA 2006-6753,
+  tal como los distribuye python-sgp4, commit fijado): 667 instantes,
+  desviación máxima 1,15e-7 km (constantes WGS72 y modo «i», como los
+  vectores). Un extracto (tres instantes de cada caso) va en
+  `tools/sgp4_verificacion.json` para que cualquier máquina compruebe el
+  motor sin bajar nada.
+- **Esta semana, desde el Teide** (elementos del 20 de octubre; es lo que
+  sale en la app con el reloj puesto en el 21 a las 19:00): 10 pasos en 6
+  noches, 5 de Tiangong (el jueves 22 a las 20:14, hasta 84°, casi por el
+  cenit) y 5 del Hubble; **ninguno de la Estación Espacial**, y está bien
+  que no salga: recalculado aparte, sus pasos de estos días por encima de
+  10° caen entre la 1 y las 4 de la madrugada con la Estación dentro de la
+  sombra de la Tierra, o de día (entre las 9 y las 12). La séptima noche
+  (la del 27) no sale porque los elementos tendrían más de 7 días, y el
+  calendario lo dice; con el robot en marcha, los elementos son del día.
+- Starlink no está: son trenes de días que luego se dispersan, y dan más
+  quejas que alegrías. La nota del calendario sobre satélites se reescribe
+  (la app de la NASA queda para contrastar, no como única fuente).
+- 30 filas de texto nuevas en los diez idiomas (`CIELO_UI` pasa a 426). El
+  rumbo lleva ya su preposición en cada idioma («hacia el oeste», «in the
+  west», «im Westen»...), así que las frases de los pasos van «…a las
+  21:11, {rumbo}».
+
+### Lo que se midió
+
+- `modulos/cielo.js` pasa de 182 a 196 kB comprimidos (30 filas de texto y
+  el código de los pasos); `vendor/satellite.js` son 30 kB comprimidos más
+  y `datos/satelites.json`, 0,7; los tres se piden al abrir el panel. La
+  primera descarga no cambia: 1.019 kB en castellano, 1.133 en búlgaro
+  (`peso_descarga.py`).
+- Calcular los pasos de las siete noches (tres satélites, unas 6.000
+  posiciones) tarda 65 ms en el Chromium de la auditoría, tras hacer que
+  bajo los 9° solo se calcule la altura (eran 440 ms): en un móvil
+  corriente, menos de un segundo, una vez por sesión.
+
+### Los controles
+
+- **`auditar_cielo.js`, partes 11a y 11** (148 controles en total con las
+  fuentes bajadas; eran 116). Sin navegador: `vendor/satellite.js` dice
+  venir del commit fijado, con su licencia, y carga en Node; el motor da
+  los 97 vectores del extracto a 1e-6 km y 1e-7 km/s (desviación máxima
+  5e-9 km); con las fuentes bajadas (`bash tools/satelites_fuentes.sh`, y
+  hace falta `tsc`), el motor, la licencia y el extracto son byte a byte los
+  que salen de ellas y los 667 instantes pasan; `datos/satelites.json`
+  (los tres objetos, las líneas con su suma de control, la época la de la
+  línea 1, no posterior a «obtenido», y el motor los traga); el robot sin
+  red, cuatro veces: con las mismas líneas escribe lo mismo que hay, con
+  las mismas no reescribe, con una cifra cambiada sale con error y no toca
+  el fichero, con elementos de tres días antes avisa y se queda con los que
+  había; el flujo (dos crones, a mano, solo `datos/satelites.json`, permiso
+  de escritura, sin solaparse), el service worker, y que el módulo lea los
+  elementos y el motor de su propio dominio y no llame a CelesTrak. En el
+  navegador, con el reloj de la página a las 18:00 UTC del día siguiente a
+  la época más nueva (así el control vale el día que se corra, con los
+  elementos que haya): los tres cargan; hay pasos; **cada paso cumple la
+  regla** (aparece y se pierde a 10° o en la sombra o con el Sol a −6°, el
+  máximo es el más alto, al Sol en los tres instantes con la fracción de
+  sombra recalculada, el Sol del Teide bajo −6°, en orden, por venir); **la
+  lista entera recalculada aparte**, en Node, con otra geometría (GMST y
+  Sol de Astronomy Engine, ECEF y acimut/altura a mano, umbra cilíndrica):
+  los mismos 10 pasos a ±10 s y ±1,5° en el máximo, todos los de más de un
+  minuto de allí están en la app, y acimut y altura en cada máximo a
+  0,03°; la tarjeta (tantas filas como pasos esa noche, tres botones cada
+  una, de dónde salen los elementos y cómo se calcula); el calendario (los
+  10 agrupados en 6 noches, y la nota de las noches sin elementos de menos
+  de 7 días); «Ver en el mapa» (la pestaña, la selección, la hora del
+  máximo y el satélite pintado: píxeles a 255); «Apunta al cielo» con los
+  sensores simulados hacia el satélite (lo nombra en el círculo); la
+  búsqueda por «Hubble» y por «ISS» (y la flecha); la ficha de cada uno con
+  la hora del próximo paso; el `.ics` (`DTSTART` y `DTEND` de la aparición
+  a la desaparición, `TRIGGER:-PT30M` y su texto, `SUMMARY`, `UID`) y el
+  aviso puesto y quitado; diez días después de la época, sin elementos
+  nuevos, la tarjeta, el calendario y la ficha dicen que los pasos solo se
+  calculan hasta 7 días y no enseñan ninguno ni posición; y los diez
+  idiomas (tarjeta, calendario, fichas y `.ics`) sin texto roto, sin
+  palabras repetidas y cada uno en su idioma.
+- **`barrido_pantallas.js`**: dos estados más en los diez idiomas, el
+  calendario con el filtro «Satélites» y la ficha de la Estación en la
+  carta. En total, 99 pantallas y fichas en los diez idiomas, 0 textos sin
+  traducir y 0 errores de página.
+- `auditar_web.js` coteja las 1.602 filas; `barrido_idiomas.js`, 3.743
+  dentro y fuera; `castellano_suelto.js`, `auditar_claves_tx.js`,
+  `auditar_sw.js`, `auditar_readme.js`, `auditar_letras.js`,
+  `auditar_frases.js`, `auditar_cirilico.py`, `auditar_etiquetas.js`,
+  `auditar_fuente_pl.js`, `auditar_datos.js` y `auditar_seguridad.py`, en
+  verde.
+
+Averías con las que se vieron fallar los controles antes de darlos por
+buenos: la bisección de los extremos (`afinar`) solo afinaba hacia delante,
+así que la aparición salía hasta 20 s tarde (20:11:33 por 20:11:21: lo
+destapó la lista recalculada aparte); el máximo no miraba el extremo mismo
+cuando el paso acaba en la sombra subiendo; el rumbo salía dos veces
+(«hacia el hacia el oeste»); un paso que ya está en marcha cuando oscurece
+decía «aparece» a 43° (ahora «ya arriba al oscurecer»); «fiables» en
+francés, que `castellano_suelto.js` toma por castellano; la alarma del
+`.ics` a un día, para un paso de minutos; y el robot reescribía el fichero
+con los mismos elementos, un commit vacío cada doce horas.
+
+`auditar.sh` entero sobre el árbol del commit, el 21 de octubre por la
+tarde: **cero bloques en rojo**; los tres controles de `pmtiles` siguen sin
+poder ejecutarse aquí (falta el módulo de Python; Claude Code tiene que
+verlos pasar con `pip install -r tools/requisitos.txt`). Queda lo que ningún
+control puede: un paso de verdad, mirado desde el Teide, y la hora que da
+Spot the Station o Heavens-Above para el mismo paso; los pasos, en la nota
+para Claude Code.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -2531,7 +2703,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 43 tablas, 1575 filas (y 3.716 filas, dentro y fuera del fuente)
+## Idiomas · 43 tablas, 1605 filas (y 3.746 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -2550,7 +2722,8 @@ filas del botón y las dos del tour. El 20, «Apunta al cielo», la carta nueva
 y la ficha: 87 más (79 de `CIELO_UI`, que pasa a 329 y pierde una que ya no
 pedía nadie; las cuatro lunas de Júpiter en `CIELO_CUERPO`; y en la política
 de privacidad los sensores y la cámara, cuatro). El 21, lo que piden las
-reseñas: 67 más en `CIELO_UI`, que pasa a 396; y, de los avisos de AEMET, una
+reseñas: 67 más en `CIELO_UI`, que pasa a 396, y esa tarde 30 más de los
+satélites, hasta 426; y, de los avisos de AEMET, una
 más: las dos de «Báñate hoy aquí» con un aviso costero, y una menos, la de la
 ✕ de la píldora de avisos, que ya no existe; esa tarde, dos más: «Toda la
 isla» y «Toda la costa» en la línea de los avisos. El

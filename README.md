@@ -16,13 +16,14 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 | `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
 | `modulos/cielo.js` | El panel 🔭 «Cielo de Tenerife»: su código y sus textos en los diez idiomas. No se carga al arrancar: lo pide `index.html` la primera vez que alguien abre el panel. |
 | `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
+| `datos/satelites.json` | Los elementos orbitales (TLE) de la Estación Espacial Internacional, de Tiangong y del Hubble, de CelesTrak, con su época. Los renueva el robot `tools/satelites_traer.py` dos veces al día; el panel calcula con ellos los pasos visibles. |
 | `sw.js` | Service worker. Caché offline y notificaciones push. |
 | `manifest.webmanifest` | Manifiesto PWA: iconos, color de tema, `display: standalone`. |
 | `enviar-notificacion.js` | Script de Node que envía la notificación diaria. Corre en GitHub Actions, nunca en el navegador. |
 | `frases.json` | Las 365 frases de la notificación diaria, una por día del año. |
-| `vendor/` | Leaflet 1.9.4 y Leaflet.markercluster 1.5.3, alojados aquí en vez de en un CDN; las dos librerías del mapa sin conexión (`pmtiles.js` y `protomaps-leaflet.js`), las tipografías y Astronomy Engine (MIT), el motor de cálculo del panel del cielo. |
+| `vendor/` | Leaflet 1.9.4 y Leaflet.markercluster 1.5.3, alojados aquí en vez de en un CDN; las dos librerías del mapa sin conexión (`pmtiles.js` y `protomaps-leaflet.js`), las tipografías, Astronomy Engine (MIT), el motor de cálculo del panel del cielo, y satellite.js 7.1.0 (MIT), el SGP4 de los pasos de los satélites, compilado desde su fuente por `tools/satelites_construir.js` (se pide solo al abrir el panel). |
 | `supabase/*.sql` | Las tablas y sus políticas de seguridad, para poder recrear el proyecto. |
-| `.github/workflows/` | El cron de la notificación diaria. |
+| `.github/workflows/` | Los robots: la notificación diaria, los avisos de AEMET, los precios de las gasolineras, el mapa y los elementos orbitales de los satélites (`satelites.yml`, dos veces al día). |
 | `tools/` | Los controles y las herramientas; `bash tools/auditar.sh` los pasa todos. Entre ellos, `verificar_red.js` (la red de guaguas), `extract_js.py`, `gtfs_red.py` y `auditar_readme.js`, que coteja las cifras de este fichero. |
 | `AUDITORIA-FINAL.md` | Estado del proyecto, auditoría, lo que falta y las trampas conocidas. |
 
@@ -216,8 +217,27 @@ está escrita en el fuente, así que el calendario de 2031 sale igual de bien
 que el de este año. Lo calcula Astronomy Engine (`vendor/`); las lluvias,
 desde la longitud solar de su máximo según la IMO. Las nubes de esta noche
 vienen de Open-Meteo, como el resto del tiempo, y si no hay dato la tarjeta
-no sale. Cometas y satélites no se predicen: cambian de un día para otro, y
-el panel lleva a la aplicación de la NASA para la Estación Espacial.
+no sale. Los cometas no se predicen: cambian de un día para otro, y el panel
+lleva a las fuentes que los siguen.
+
+**La Estación Espacial y los satélites brillantes** sí: la tarjeta de esta
+noche y el filtro «🛰️ Satélites» del calendario dan los pasos visibles desde
+el Teide de la Estación Espacial Internacional, de la estación china Tiangong
+y del telescopio Hubble en las próximas siete noches —a qué hora y por dónde
+aparece, lo más alto que sube, dónde se pierde o entra en la sombra de la
+Tierra, cuánto dura y cómo brilla—, y cada paso se ve en la carta y en
+«Apunta al cielo», con su ficha, su `.ics` (alarma media hora antes) y su
+aviso. Un paso «visible» es el de siempre en las tablas de pasos: más de 10°
+sobre el horizonte, satélite al Sol y cielo ya oscuro (Sol a más de 6° bajo
+el horizonte). Lo calcula el móvil con SGP4 (`vendor/satellite.js`, MIT,
+compilado desde su fuente con commit fijado y cotejado con los 33 casos de
+verificación oficiales) a partir de los elementos orbitales de
+`datos/satelites.json`, que un robot (`.github/workflows/satelites.yml`,
+`tools/satelites_traer.py`) renueva dos veces al día de CelesTrak: comprueba
+cada línea (longitud, número de catálogo, suma de control) y, si algo no
+cuadra, no escribe nada. Con elementos de más de 7 días el panel no enseña
+pasos y dice por qué. Starlink no está: son trenes de días. Nada sale del
+móvil: lee el fichero de su propio dominio.
 
 **Lo fijo vive en `datos/cielo.json`**, que se rehace desde sus fuentes con
 commit fijado (HYG, OpenNGC, d3-celestial, Stellarium, el Bright Star

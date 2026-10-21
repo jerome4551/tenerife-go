@@ -484,7 +484,10 @@
     "cieloLunaCercaDet": {"es": "A {km} km de la Tierra: algo más grande y brillante que una Luna llena media, aunque a simple vista apenas se nota.", "en": "{km} km from Earth: a little bigger and brighter than an average full Moon, though hard to tell by eye.", "fr": "À {km} km de la Terre : un peu plus grande et brillante qu’une pleine Lune moyenne, même si à l’œil nu cela se remarque à peine.", "de": "{km} km von der Erde entfernt: etwas größer und heller als ein durchschnittlicher Vollmond, mit bloßem Auge aber kaum zu bemerken.", "it": "A {km} km dalla Terra: un po’ più grande e luminosa di una Luna piena media, anche se a occhio nudo si nota appena.", "nl": "Op {km} km van de aarde: iets groter en helderder dan een gemiddelde volle maan, al zie je dat met het blote oog nauwelijks.", "zh": "距地球{km}公里：比平均的满月略大略亮，但肉眼几乎看不出差别。", "zht": "距地球{km}公里：比平均的滿月略大略亮，但肉眼幾乎看不出差別。", "bg": "На {km} км от Земята: малко по-голяма и по-ярка от средното пълнолуние, макар че с просто око почти не се забелязва.", "pl": "{km} km od Ziemi: nieco większa i jaśniejsza od przeciętnej pełni, choć gołym okiem trudno to zauważyć."},
     "cieloCometasSatelites": {"es": "Cometas y satélites", "en": "Comets and satellites", "fr": "Comètes et satellites", "de": "Kometen und Satelliten", "it": "Comete e satelliti", "nl": "Kometen en satellieten", "zh": "彗星与人造卫星", "zht": "彗星與人造衛星", "bg": "Комети и спътници", "pl": "Komety i satelity"},
     "cieloCometasTxt": {"es": "Los cometas no se pueden poner en un calendario fijo: muchos se descubren solo meses antes y su brillo es difícil de prever. Para los que haya a la vista, consulta las fuentes de abajo.", "en": "Comets can’t be put on a fixed calendar: many are discovered only months ahead and their brightness is hard to predict. For any on view, check the sources below.", "fr": "Les comètes ne peuvent pas figurer dans un calendrier fixe : beaucoup ne sont découvertes que quelques mois avant et leur éclat est difficile à prévoir. Pour celles qui sont visibles, consultez les sources ci-dessous.", "de": "Kometen lassen sich nicht in einen festen Kalender eintragen: Viele werden erst Monate vorher entdeckt, und ihre Helligkeit ist schwer vorherzusagen. Welche gerade sichtbar sind, steht in den Quellen unten.", "it": "Le comete non si possono mettere in un calendario fisso: molte vengono scoperte solo pochi mesi prima e la loro luminosità è difficile da prevedere. Per quelle visibili, consulta le fonti qui sotto.", "nl": "Kometen passen niet in een vaste kalender: veel worden pas maanden vooraf ontdekt en hun helderheid is moeilijk te voorspellen. Welke er te zien zijn, staat bij de bronnen hieronder.", "zh": "彗星无法排进固定的日历：许多彗星只在几个月前才被发现，亮度也难以预测。当前可见的彗星请查看下方来源。", "zht": "彗星無法排進固定的日曆：許多彗星只在幾個月前才被發現，亮度也難以預測。當前可見的彗星請查看下方來源。", "bg": "Кометите не могат да се впишат в постоянен календар: много от тях се откриват само месеци по-рано, а яркостта им трудно се предвижда. За видимите в момента вижте източниците по-долу.", "pl": "Komet nie da się wpisać do stałego kalendarza: wiele odkrywa się zaledwie kilka miesięcy wcześniej, a ich jasność trudno przewidzieć. Te widoczne obecnie znajdziesz w źródłach poniżej."},
-    "cieloSatelitesTxt": {"es": "Los pasos de la Estación Espacial Internacional cambian cada día y según el lugar: la NASA los avisa en su aplicación «Spot the Station» (iOS y Android). Se ve como un punto muy brillante que cruza el cielo en pocos minutos, sin parpadear.", "en": "International Space Station passes change daily and by location: NASA announces them in its Spot the Station app (iOS and Android). It looks like a very bright dot crossing the sky in a few minutes, without blinking.", "fr": "Les passages de la Station spatiale internationale changent chaque jour et selon le lieu : la NASA les annonce dans son application « Spot the Station » (iOS et Android). Elle ressemble à un point très brillant qui traverse le ciel en quelques minutes, sans clignoter.", "de": "Die Überflüge der Internationalen Raumstation ändern sich täglich und je nach Ort: Die NASA kündigt sie in ihrer App „Spot the Station“ an (iOS und Android). Sie sieht aus wie ein sehr heller Punkt, der in wenigen Minuten über den Himmel zieht, ohne zu blinken.", "it": "I passaggi della Stazione spaziale internazionale cambiano ogni giorno e a seconda del luogo: la NASA li segnala nella sua app «Spot the Station» (iOS e Android). Appare come un punto molto luminoso che attraversa il cielo in pochi minuti, senza lampeggiare.", "nl": "De overkomsten van het Internationaal Ruimtestation veranderen elke dag en per plaats: NASA meldt ze in haar app Spot the Station (iOS en Android). Het lijkt een heel helder puntje dat in een paar minuten langs de hemel trekt, zonder te knipperen.", "zh": "国际空间站的过境时间每天都在变化，也因地点而异：NASA会在其应用“Spot the Station”（iOS和安卓）中发布提醒。它看起来像一个非常明亮的光点，几分钟内划过天空，不会闪烁。", "zht": "國際太空站的過境時間每天都在變化，也因地點而異：NASA會在其應用程式「Spot the Station」（iOS和Android）中發布提醒。它看起來像一個非常明亮的光點，幾分鐘內劃過天空，不會閃爍。", "bg": "Преминаванията на Международната космическа станция се менят всеки ден и според мястото: НАСА ги обявява в приложението си „Spot the Station“ (iOS и Android). Тя изглежда като много ярка точка, която прекосява небето за няколко минути, без да мига.", "pl": "Przeloty Międzynarodowej Stacji Kosmicznej zmieniają się codziennie i zależą od miejsca: NASA podaje je w swojej aplikacji „Spot the Station” (iOS i Android). Wygląda jak bardzo jasny punkt, który w kilka minut przecina niebo, nie migając."},
+    /* 21-10-2026: los pasos ya los calcula la aplicacion (tarjeta de «Esta noche» y
+       calendario «Satelites», textos_ui7.py); la aplicacion de la NASA queda como
+       contraste, no como unica fuente. */
+    "cieloSatelitesTxt": {"es": "Los pasos visibles de la Estación Espacial Internacional, de la estación china Tiangong y del telescopio Hubble están en la tarjeta de esta noche y en el calendario, en «Satélites»: se calculan en el móvil con los elementos orbitales que un robot renueva cada día. Para contrastar, la NASA avisa de los de la Estación en su aplicación «Spot the Station».", "en": "Visible passes of the International Space Station, the Chinese station Tiangong and the Hubble telescope are in tonight’s card and in the calendar, under “Satellites”: they are calculated on your phone from orbital elements a robot renews every day. To cross-check, NASA announces the Station’s passes in its Spot the Station app.", "fr": "Les passages visibles de la Station spatiale internationale, de la station chinoise Tiangong et du télescope Hubble figurent dans la carte de cette nuit et dans le calendrier, sous « Satellites » : ils sont calculés sur votre téléphone à partir d’éléments orbitaux qu’un robot renouvelle chaque jour. Pour vérifier, la NASA annonce ceux de la Station dans son application « Spot the Station ».", "de": "Die sichtbaren Überflüge der Internationalen Raumstation, der chinesischen Station Tiangong und des Hubble-Teleskops stehen in der Karte für heute Nacht und im Kalender unter „Satelliten“: Sie werden auf deinem Handy aus Bahnelementen berechnet, die ein Robot täglich erneuert. Zum Gegenprüfen kündigt die NASA die der Raumstation in ihrer App „Spot the Station“ an.", "it": "I passaggi visibili della Stazione spaziale internazionale, della stazione cinese Tiangong e del telescopio Hubble sono nella scheda di stanotte e nel calendario, in «Satelliti»: si calcolano sul telefono dagli elementi orbitali che un robot rinnova ogni giorno. Per un confronto, la NASA segnala quelli della Stazione nella sua app «Spot the Station».", "nl": "De zichtbare overkomsten van het Internationaal Ruimtestation, het Chinese station Tiangong en de Hubble-telescoop staan in de kaart van vannacht en in de kalender onder ‘Satellieten’: ze worden op je telefoon berekend uit baanelementen die een robot elke dag vernieuwt. Ter controle meldt NASA die van het ruimtestation in haar app Spot the Station.", "zh": "国际空间站、中国空间站天宫和哈勃望远镜的可见过境列在今晚的卡片和日历的“卫星”栏中：由手机根据机器人每天更新的轨道根数计算。作为对照，NASA 也在其应用“Spot the Station”中发布空间站的过境提醒。", "zht": "國際太空站、中國太空站天宮和哈伯望遠鏡的可見過境列在今晚的卡片和日曆的「衛星」欄中：由手機根據機器人每天更新的軌道根數計算。作為對照，NASA 也在其應用程式「Spot the Station」中發布太空站的過境提醒。", "bg": "Видимите преминавания на Международната космическа станция, на китайската станция Тянгун и на телескопа „Хъбъл“ са в картата за тази нощ и в календара, в „Спътници“: изчисляват се на телефона по орбитални елементи, които робот обновява всеки ден. За проверка НАСА обявява тези на станцията в приложението си „Spot the Station“.", "pl": "Widoczne przeloty Międzynarodowej Stacji Kosmicznej, chińskiej stacji Tiangong i teleskopu Hubble’a są w karcie tej nocy i w kalendarzu, w „Satelity”: liczone są w telefonie z elementów orbitalnych, które robot odnawia codziennie. Dla porównania NASA podaje przeloty stacji w swojej aplikacji „Spot the Station”."},
     "cieloNotaCalendario": {"es": "Todo se calcula en el móvil para Izaña, en hora de Canarias: las lluvias con la longitud solar de su máximo (lista de la IMO), los eclipses y los planetas con Astronomy Engine. La referencia oficial son el IGN y el IAC.", "en": "Everything is calculated on your phone for Izaña, in Canary Islands time: showers from the solar longitude of their peak (IMO list), eclipses and planets with Astronomy Engine. The official references are the IGN and the IAC.", "fr": "Tout est calculé sur votre téléphone pour Izaña, à l’heure des Canaries : les étoiles filantes d’après la longitude solaire de leur maximum (liste de l’IMO), les éclipses et les planètes avec Astronomy Engine. Les références officielles sont l’IGN et l’IAC.", "de": "Alles wird auf deinem Handy für Izaña berechnet, in kanarischer Zeit: Sternschnuppen aus der Sonnenlänge ihres Maximums (Liste der IMO), Finsternisse und Planeten mit Astronomy Engine. Offizielle Quellen sind das IGN und das IAC.", "it": "Tutto è calcolato sul telefono per Izaña, in ora delle Canarie: le stelle cadenti dalla longitudine solare del loro massimo (elenco dell’IMO), eclissi e pianeti con Astronomy Engine. Il riferimento ufficiale sono l’IGN e l’IAC.", "nl": "Alles wordt op je telefoon berekend voor Izaña, in Canarische tijd: meteorenzwermen uit de zonnelengte van hun maximum (lijst van de IMO), eclipsen en planeten met Astronomy Engine. De officiële bronnen zijn het IGN en het IAC.", "zh": "所有天象都在手机上按伊萨尼亚的位置、以加那利时间计算：流星雨依据其极大时的太阳黄经（IMO列表），日月食与行星使用Astronomy Engine计算。官方参考为IGN和IAC。", "zht": "所有天象都在手機上按伊薩尼亞的位置、以加那利時間計算：流星雨依據其極大時的太陽黃經（IMO列表），日月食與行星使用Astronomy Engine計算。官方參考為IGN和IAC。", "bg": "Всичко се изчислява на телефона за Исаня, в канарско време: метеорните потоци по слънчевата дължина на максимума им (списъка на IMO), затъмненията и планетите с Astronomy Engine. Официалните източници са IGN и IAC.", "pl": "Wszystko jest liczone w telefonie dla Izañi, w czasie kanaryjskim: roje według długości ekliptycznej Słońca w ich maksimum (lista IMO), zaćmienia i planety za pomocą Astronomy Engine. Oficjalnym źródłem są IGN i IAC."},
     "cieloEnlaceIss": {"es": "La aplicación de la NASA para ver la Estación Espacial", "en": "NASA’s app for spotting the Space Station", "fr": "L’application de la NASA pour voir la Station spatiale", "de": "Die NASA-App zum Sichten der Raumstation", "it": "L’app della NASA per vedere la Stazione spaziale", "nl": "De app van NASA om het ruimtestation te zien", "zh": "NASA的空间站观测应用", "zht": "NASA的太空站觀測應用程式", "bg": "Приложението на НАСА за наблюдение на станцията", "pl": "Aplikacja NASA do wypatrywania stacji kosmicznej"},
     "cieloEnlaceIacCal": {"es": "Calendarios astronómicos del IAC", "en": "IAC astronomical calendars", "fr": "Calendriers astronomiques de l’IAC", "de": "Astronomische Kalender des IAC", "it": "Calendari astronomici dell’IAC", "nl": "Astronomische kalenders van het IAC", "zh": "IAC天文历", "zht": "IAC天文曆", "bg": "Астрономически календари на IAC", "pl": "Kalendarze astronomiczne IAC"},
@@ -831,7 +834,58 @@
     "cieloAvisosNota": {"es": "Los avisos se guardan solo en este móvil y nada te despierta: una web no puede avisarte sola sin un servidor, y Tenerife Go no tiene ninguno ni quiere tus datos. Para un aviso de verdad, «Añadir a mi calendario»: tu calendario te avisará el día antes.", "en": "Reminders are stored only on this phone and nothing wakes you up: a website cannot alert you by itself without a server, and Tenerife Go has none and does not want your data. For a real alert, “Add to my calendar”: your calendar will alert you the day before.", "fr": "Les rappels sont gardés uniquement sur ce téléphone et rien ne vous réveille : un site web ne peut pas vous prévenir tout seul sans serveur, et Tenerife Go n’en a aucun et ne veut pas vos données. Pour une vraie alerte, « Ajouter à mon calendrier » : votre calendrier vous préviendra la veille.", "de": "Erinnerungen bleiben nur auf diesem Handy, und nichts weckt dich: Eine Website kann dich ohne Server nicht von selbst benachrichtigen, und Tenerife Go hat keinen und will deine Daten nicht. Für eine echte Benachrichtigung: „In meinen Kalender“, dann erinnert dich dein Kalender am Tag davor.", "it": "Gli avvisi restano solo su questo telefono e niente ti sveglia: un sito web non può avvisarti da solo senza un server, e Tenerife Go non ne ha e non vuole i tuoi dati. Per un avviso vero, «Aggiungi al mio calendario»: il tuo calendario ti avviserà il giorno prima.", "nl": "Herinneringen blijven alleen op deze telefoon en niets maakt je wakker: een website kan je zonder server niet uit zichzelf waarschuwen, en Tenerife Go heeft er geen en wil je gegevens niet. Voor een echte melding: ‘Aan mijn agenda toevoegen’, dan waarschuwt je agenda je de dag ervoor.", "zh": "提醒只保存在这部手机上，不会主动唤醒你：没有服务器，网页无法自行发出通知，而 Tenerife Go 没有服务器，也不要你的数据。想要真正的提醒，请“添加到我的日历”：你的日历会在前一天提醒你。", "zht": "提醒只儲存在這部手機上，不會主動喚醒你：沒有伺服器，網頁無法自行發出通知，而 Tenerife Go 沒有伺服器，也不要你的資料。想要真正的提醒，請「加入我的行事曆」：你的行事曆會在前一天提醒你。", "bg": "Напомнянията се пазят само на този телефон и нищо не те събужда: без сървър един сайт не може сам да те уведоми, а Tenerife Go няма такъв и не иска данните ти. За истинско напомняне – „Добави в календара ми“: календарът ти ще те предупреди ден по-рано.", "pl": "Przypomnienia są zapisywane tylko w tym telefonie i nic cię nie obudzi: strona internetowa nie może sama cię powiadomić bez serwera, a Tenerife Go go nie ma i nie chce twoich danych. Prawdziwe powiadomienie da „Dodaj do mojego kalendarza”: twój kalendarz przypomni ci dzień wcześniej."},
     "cieloIcsHora": {"es": "Hora de Canarias: {h}", "en": "Canary Islands time: {h}", "fr": "Heure des Canaries : {h}", "de": "Kanarische Zeit: {h}", "it": "Ora delle Canarie: {h}", "nl": "Canarische tijd: {h}", "zh": "加那利时间：{h}", "zht": "加那利時間：{h}", "bg": "Канарско време: {h}", "pl": "Czas kanaryjski: {h}"},
     "cieloIcsListo": {"es": "Evento listo (.ics): ábrelo y tu calendario lo añade, con un aviso el día antes.", "en": "Event ready (.ics): open it and your calendar adds it, with an alert the day before.", "fr": "Événement prêt (.ics) : ouvrez-le et votre calendrier l’ajoute, avec un rappel la veille.", "de": "Termin fertig (.ics): Öffne ihn, und dein Kalender trägt ihn ein, mit Erinnerung am Tag davor.", "it": "Evento pronto (.ics): aprilo e il tuo calendario lo aggiunge, con un avviso il giorno prima.", "nl": "Afspraak klaar (.ics): open hem en je agenda voegt hem toe, met een melding de dag ervoor.", "zh": "日程文件已生成（.ics）：打开它，日历就会添加，并在前一天提醒。", "zht": "行事曆檔案已產生（.ics）：打開它，行事曆就會加入，並在前一天提醒。", "bg": "Събитието е готово (.ics): отвори го и календарът ти ще го добави, с напомняне ден по-рано.", "pl": "Wydarzenie gotowe (.ics): otwórz je, a kalendarz je doda, z przypomnieniem dzień wcześniej."},
-    "cieloIcsAviso": {"es": "Mañana: {e}", "en": "Tomorrow: {e}", "fr": "Demain : {e}", "de": "Morgen: {e}", "it": "Domani: {e}", "nl": "Morgen: {e}", "zh": "明天：{e}", "zht": "明天：{e}", "bg": "Утре: {e}", "pl": "Jutro: {e}"}
+    "cieloIcsAviso": {"es": "Mañana: {e}", "en": "Tomorrow: {e}", "fr": "Demain : {e}", "de": "Morgen: {e}", "it": "Domani: {e}", "nl": "Morgen: {e}", "zh": "明天：{e}", "zht": "明天：{e}", "bg": "Утре: {e}", "pl": "Jutro: {e}"},
+    /* La Estacion Espacial y los satelites brillantes (21-10-2026).
+       Fuentes de lo que afirman los textos:
+         · «El tercer objeto mas brillante del cielo»: asi describe la NASA a la
+           Estacion Espacial Internacional en «Spot the Station» (preguntas
+           frecuentes), y que parece un avion muy alto que no parpadea.
+         · Tiangong brilla como las estrellas mas brillantes (en sus mejores
+           pasos llega a magnitud negativa, como Sirio); Hubble, como una estrella
+           corriente (magnitud 1 a 2 en los buenos pasos). Son ordenes de
+           magnitud de las tablas de pasos de siempre; por eso se dicen con
+           palabras y no con cifras.
+         · La orbita del Hubble esta inclinada 28,47 grados (su TLE) y el Teide a
+           28,30 de latitud: su traza llega justo hasta aqui, asi que puede pasar
+           casi por el cenit.
+         · Un paso «visible»: mas de 10 grados de altura, satelite al Sol, Sol a
+           mas de 6 grados bajo el horizonte (regla de las tablas de pasos; la
+           calcula codigo9.js).
+         · Los elementos los renueva un robot cada dia de CelesTrak
+           (tools/satelites_traer.py); con mas de 7 dias no se ensenan pasos. */
+    "cieloSatTitulo": {"es": "La Estación Espacial y otros satélites", "en": "The Space Station and other satellites", "fr": "La Station spatiale et d’autres satellites", "de": "Die Raumstation und andere Satelliten", "it": "La Stazione spaziale e altri satelliti", "nl": "Het ruimtestation en andere satellieten", "zh": "空间站与其他卫星", "zht": "太空站與其他衛星", "bg": "Космическата станция и други спътници", "pl": "Stacja kosmiczna i inne satelity"},
+    "cieloSatNombreIss": {"es": "Estación Espacial Internacional (ISS)", "en": "International Space Station (ISS)", "fr": "Station spatiale internationale (ISS)", "de": "Internationale Raumstation (ISS)", "it": "Stazione spaziale internazionale (ISS)", "nl": "Internationaal Ruimtestation (ISS)", "zh": "国际空间站（ISS）", "zht": "國際太空站（ISS）", "bg": "Международна космическа станция (ISS)", "pl": "Międzynarodowa Stacja Kosmiczna (ISS)"},
+    "cieloSatNombreTiangong": {"es": "Estación espacial china Tiangong", "en": "Chinese space station Tiangong", "fr": "Station spatiale chinoise Tiangong", "de": "Chinesische Raumstation Tiangong", "it": "Stazione spaziale cinese Tiangong", "nl": "Chinees ruimtestation Tiangong", "zh": "中国空间站天宫", "zht": "中國太空站天宮", "bg": "Китайска космическа станция Тянгун", "pl": "Chińska stacja kosmiczna Tiangong"},
+    "cieloSatNombreHubble": {"es": "Telescopio espacial Hubble", "en": "Hubble Space Telescope", "fr": "Télescope spatial Hubble", "de": "Hubble-Weltraumteleskop", "it": "Telescopio spaziale Hubble", "nl": "Hubble-ruimtetelescoop", "zh": "哈勃空间望远镜", "zht": "哈伯太空望遠鏡", "bg": "Космически телескоп „Хъбъл“", "pl": "Kosmiczny Teleskop Hubble’a"},
+    "cieloTipoSatelite": {"es": "Satélite artificial", "en": "Artificial satellite", "fr": "Satellite artificiel", "de": "Künstlicher Satellit", "it": "Satellite artificiale", "nl": "Kunstmaan", "zh": "人造卫星", "zht": "人造衛星", "bg": "Изкуствен спътник", "pl": "Sztuczny satelita"},
+    "cieloCalSatelites": {"es": "Satélites", "en": "Satellites", "fr": "Satellites", "de": "Satelliten", "it": "Satelliti", "nl": "Satellieten", "zh": "卫星", "zht": "衛星", "bg": "Спътници", "pl": "Satelity"},
+    "cieloEvPaso": {"es": "{s}: paso visible", "en": "{s}: visible pass", "fr": "{s} : passage visible", "de": "{s}: sichtbarer Überflug", "it": "{s}: passaggio visibile", "nl": "{s}: zichtbare overkomst", "zh": "{s}：可见过境", "zht": "{s}：可見過境", "bg": "{s}: видимо преминаване", "pl": "{s}: widoczny przelot"},
+    "cieloSatSale": {"es": "Aparece a las {h}, {r}", "en": "Appears at {h}, {r}", "fr": "Apparaît à {h}, {r}", "de": "Erscheint um {h} Uhr {r}", "it": "Appare alle {h}, {r}", "nl": "Verschijnt om {h} {r}", "zh": "{h}出现于{r}", "zht": "{h}出現於{r}", "bg": "Появява се в {h} {r}", "pl": "Pojawia się o {h} {r}"},
+    "cieloSatDesdeSombra": {"es": "Sale de la sombra de la Tierra a las {h}, {r}", "en": "Leaves the Earth’s shadow at {h}, {r}", "fr": "Sort de l’ombre de la Terre à {h}, {r}", "de": "Tritt um {h} Uhr {r} aus dem Erdschatten", "it": "Esce dall’ombra della Terra alle {h}, {r}", "nl": "Komt om {h} {r} uit de aardschaduw", "zh": "{h}于{r}离开地影", "zht": "{h}於{r}離開地影", "bg": "Излиза от сянката на Земята в {h} {r}", "pl": "Wychodzi z cienia Ziemi o {h} {r}"},
+    "cieloSatMax": {"es": "Más alto a las {h}: {alt}°, {r}", "en": "Highest at {h}: {alt}°, {r}", "fr": "Au plus haut à {h} : {alt}°, {r}", "de": "Am höchsten um {h} Uhr: {alt}° {r}", "it": "Più alto alle {h}: {alt}°, {r}", "nl": "Hoogst om {h}: {alt}° {r}", "zh": "{h}达到最高：{alt}°，位于{r}", "zht": "{h}達到最高：{alt}°，位於{r}", "bg": "Най-високо в {h}: {alt}° {r}", "pl": "Najwyżej o {h}: {alt}° {r}"},
+    "cieloSatFin": {"es": "Se pierde a las {h}, {r}", "en": "Disappears at {h}, {r}", "fr": "Disparaît à {h}, {r}", "de": "Verschwindet um {h} Uhr {r}", "it": "Scompare alle {h}, {r}", "nl": "Verdwijnt om {h} {r}", "zh": "{h}消失于{r}", "zht": "{h}消失於{r}", "bg": "Изчезва в {h} {r}", "pl": "Znika o {h} {r}"},
+    "cieloSatSombra": {"es": "Entra en la sombra de la Tierra a las {h}, {r}", "en": "Enters the Earth’s shadow at {h}, {r}", "fr": "Entre dans l’ombre de la Terre à {h}, {r}", "de": "Tritt um {h} Uhr {r} in den Erdschatten", "it": "Entra nell’ombra della Terra alle {h}, {r}", "nl": "Gaat om {h} {r} de aardschaduw in", "zh": "{h}于{r}进入地影", "zht": "{h}於{r}進入地影", "bg": "Влиза в сянката на Земята в {h} {r}", "pl": "Wchodzi w cień Ziemi o {h} {r}"},
+    "cieloSatDura": {"es": "Dura {n} min", "en": "Lasts {n} min", "fr": "Dure {n} min", "de": "Dauert {n} Min.", "it": "Dura {n} min", "nl": "Duurt {n} min", "zh": "持续{n}分钟", "zht": "持續{n}分鐘", "bg": "Трае {n} мин", "pl": "Trwa {n} min"},
+    "cieloSatBrilloIss": {"es": "Muy brillante: la NASA la describe como el tercer objeto más brillante del cielo. Un punto que cruza el cielo en unos minutos sin parpadear, como un avión muy alto.", "en": "Very bright: NASA describes it as the third brightest object in the sky. A point crossing the sky in a few minutes without blinking, like a very high aeroplane.", "fr": "Très brillante : la NASA la décrit comme le troisième objet le plus brillant du ciel. Un point qui traverse le ciel en quelques minutes sans clignoter, comme un avion très haut.", "de": "Sehr hell: Die NASA beschreibt sie als das dritthellste Objekt am Himmel. Ein Punkt, der in wenigen Minuten über den Himmel zieht, ohne zu blinken, wie ein sehr hohes Flugzeug.", "it": "Molto brillante: la NASA la descrive come il terzo oggetto più brillante del cielo. Un punto che attraversa il cielo in pochi minuti senza lampeggiare, come un aereo molto alto.", "nl": "Heel helder: NASA noemt het het op twee na helderste object aan de hemel. Een punt dat in een paar minuten langs de hemel trekt zonder te knipperen, als een heel hoog vliegtuig.", "zh": "非常明亮：NASA 称它是天空中第三亮的天体。一个光点在几分钟内划过天空，不闪烁，像一架飞得很高的飞机。", "zht": "非常明亮：NASA 稱它是天空中第三亮的天體。一個光點在幾分鐘內劃過天空，不閃爍，像一架飛得很高的飛機。", "bg": "Много ярка: НАСА я описва като третия най-ярък обект в небето. Точка, която прекосява небето за няколко минути, без да мига, като много висок самолет.", "pl": "Bardzo jasna: NASA opisuje ją jako trzeci najjaśniejszy obiekt na niebie. Punkt, który w kilka minut przecina niebo, nie migając, jak bardzo wysoko lecący samolot."},
+    "cieloSatBrilloTiangong": {"es": "Brillante, como una de las estrellas más brillantes del cielo; más pequeña que la ISS, pero se ve bien a simple vista.", "en": "Bright, like one of the brightest stars in the sky; smaller than the ISS, but easy to see with the naked eye.", "fr": "Brillante, comme l’une des étoiles les plus brillantes du ciel ; plus petite que l’ISS, mais bien visible à l’œil nu.", "de": "Hell, wie einer der hellsten Sterne am Himmel; kleiner als die ISS, aber gut mit bloßem Auge zu sehen.", "it": "Brillante, come una delle stelle più brillanti del cielo; più piccola della ISS, ma si vede bene a occhio nudo.", "nl": "Helder, als een van de helderste sterren aan de hemel; kleiner dan het ISS, maar goed met het blote oog te zien.", "zh": "明亮，如同天空中最亮的恒星之一；比国际空间站小，但肉眼清晰可见。", "zht": "明亮，如同天空中最亮的恆星之一；比國際太空站小，但肉眼清晰可見。", "bg": "Ярка, като една от най-ярките звезди в небето; по-малка от МКС, но се вижда добре с просто око.", "pl": "Jasna, jak jedna z najjaśniejszych gwiazd na niebie; mniejsza od ISS, ale dobrze widoczna gołym okiem."},
+    "cieloSatBrilloHubble": {"es": "Más débil, como una estrella corriente. Desde Tenerife puede pasar casi por el cenit: su órbita llega justo hasta esta latitud.", "en": "Fainter, like an ordinary star. From Tenerife it can pass almost overhead: its orbit reaches exactly this latitude.", "fr": "Plus faible, comme une étoile ordinaire. Depuis Tenerife, il peut passer presque au zénith : son orbite monte juste jusqu’à cette latitude.", "de": "Schwächer, wie ein gewöhnlicher Stern. Von Teneriffa aus kann es fast durch den Zenit ziehen: Seine Bahn reicht genau bis zu dieser Breite.", "it": "Più debole, come una stella comune. Da Tenerife può passare quasi allo zenit: la sua orbita arriva proprio fino a questa latitudine.", "nl": "Zwakker, als een gewone ster. Vanaf Tenerife kan hij bijna door het zenit gaan: zijn baan reikt precies tot deze breedtegraad.", "zh": "较暗，像一颗普通的恒星。从特内里费看，它几乎可以经过天顶：它的轨道恰好到达这个纬度。", "zht": "較暗，像一顆普通的恆星。從特內里費看，它幾乎可以經過天頂：它的軌道恰好到達這個緯度。", "bg": "По-слаб, като обикновена звезда. От Тенерифе може да мине почти през зенита: орбитата му стига точно до тази ширина.", "pl": "Słabszy, jak zwykła gwiazda. Z Teneryfy może przejść niemal przez zenit: jego orbita sięga dokładnie tej szerokości."},
+    "cieloSatNinguno": {"es": "Esta noche no pasa ninguno visible desde el Teide.", "en": "None passes visibly over Teide tonight.", "fr": "Aucun passage visible depuis le Teide cette nuit.", "de": "Heute Nacht zieht keiner sichtbar über den Teide.", "it": "Stanotte nessuno passa visibile dal Teide.", "nl": "Vannacht komt er geen zichtbaar over de Teide.", "zh": "今晚没有从泰德可见的过境。", "zht": "今晚沒有從泰德可見的過境。", "bg": "Тази нощ няма видимо преминаване над Тейде.", "pl": "Tej nocy żaden nie przeleci widocznie nad Teide."},
+    "cieloSatNingunoSemana": {"es": "Ningún paso visible desde el Teide en las próximas siete noches.", "en": "No visible pass over Teide in the next seven nights.", "fr": "Aucun passage visible depuis le Teide dans les sept prochaines nuits.", "de": "In den nächsten sieben Nächten kein sichtbarer Überflug über den Teide.", "it": "Nessun passaggio visibile dal Teide nelle prossime sette notti.", "nl": "Geen zichtbare overkomst boven de Teide in de komende zeven nachten.", "zh": "未来七个夜晚没有从泰德可见的过境。", "zht": "未來七個夜晚沒有從泰德可見的過境。", "bg": "Няма видимо преминаване над Тейде през следващите седем нощи.", "pl": "Brak widocznych przelotów nad Teide w ciągu najbliższych siedmiu nocy."},
+    "cieloSatSinDatos": {"es": "Sin elementos orbitales: hace falta conexión la primera vez.", "en": "No orbital elements: a connection is needed the first time.", "fr": "Pas d’éléments orbitaux : une connexion est nécessaire la première fois.", "de": "Keine Bahnelemente: Beim ersten Mal ist eine Verbindung nötig.", "it": "Nessun elemento orbitale: la prima volta serve la connessione.", "nl": "Geen baanelementen: de eerste keer is verbinding nodig.", "zh": "没有轨道根数：首次使用需要联网。", "zht": "沒有軌道根數：首次使用需要連線。", "bg": "Няма орбитални елементи: първия път е нужна връзка.", "pl": "Brak elementów orbitalnych: za pierwszym razem potrzebne jest połączenie."},
+    "cieloSatFuera": {"es": "Los pasos solo se calculan hasta 7 días desde los elementos orbitales ({f}): más allá dejan de ser fiables. Se renuevan cada día.", "en": "Passes are only calculated up to 7 days from the orbital elements ({f}): beyond that they stop being reliable. They are renewed every day.", "fr": "Les passages ne sont calculés que jusqu’à 7 jours après les éléments orbitaux ({f}) : au-delà, on ne peut plus s’y fier. Ils sont renouvelés chaque jour.", "de": "Überflüge werden nur bis 7 Tage nach den Bahnelementen ({f}) berechnet: Danach sind sie nicht mehr zuverlässig. Sie werden täglich erneuert.", "it": "I passaggi si calcolano solo fino a 7 giorni dagli elementi orbitali ({f}): oltre non sono più affidabili. Si rinnovano ogni giorno.", "nl": "Overkomsten worden maar tot 7 dagen na de baanelementen ({f}) berekend: daarna zijn ze niet meer betrouwbaar. Ze worden elke dag vernieuwd.", "zh": "过境只按轨道根数（{f}）后 7 天内计算：再往后就不可靠了。根数每天更新。", "zht": "過境只按軌道根數（{f}）後 7 天內計算：再往後就不可靠了。根數每天更新。", "bg": "Преминаванията се изчисляват само до 7 дни от орбиталните елементи ({f}): след това вече не са надеждни. Обновяват се всеки ден.", "pl": "Przeloty liczone są tylko do 7 dni od elementów orbitalnych ({f}): dalej przestają być wiarygodne. Są odnawiane codziennie."},
+    "cieloSatElementos": {"es": "Elementos orbitales del {f} (CelesTrak).", "en": "Orbital elements of {f} (CelesTrak).", "fr": "Éléments orbitaux du {f} (CelesTrak).", "de": "Bahnelemente vom {f} (CelesTrak).", "it": "Elementi orbitali del {f} (CelesTrak).", "nl": "Baanelementen van {f} (CelesTrak).", "zh": "轨道根数：{f}（CelesTrak）。", "zht": "軌道根數：{f}（CelesTrak）。", "bg": "Орбитални елементи от {f} (CelesTrak).", "pl": "Elementy orbitalne z {f} (CelesTrak)."},
+    "cieloSatNota": {"es": "Pasos de más de 10° sobre el horizonte, con el satélite iluminado por el Sol y el cielo ya oscuro (Sol a más de 6° bajo el horizonte), calculados en el móvil con SGP4 a partir de los elementos que un robot renueva cada día; los horarios pueden moverse unos segundos. Starlink no está: son trenes de días.", "en": "Passes higher than 10° above the horizon, with the satellite lit by the Sun and the sky already dark (Sun more than 6° below the horizon), calculated on the phone with SGP4 from elements a robot renews every day; times may shift by a few seconds. Starlink is not included: those are trains that last days.", "fr": "Passages à plus de 10° au-dessus de l’horizon, satellite éclairé par le Soleil et ciel déjà sombre (Soleil à plus de 6° sous l’horizon), calculés sur le téléphone avec SGP4 à partir d’éléments qu’un robot renouvelle chaque jour ; les horaires peuvent bouger de quelques secondes. Starlink n’y est pas : ce sont des trains de quelques jours.", "de": "Überflüge höher als 10° über dem Horizont, Satellit von der Sonne beleuchtet und Himmel schon dunkel (Sonne mehr als 6° unter dem Horizont), auf dem Handy mit SGP4 aus Bahnelementen berechnet, die ein Robot täglich erneuert; die Zeiten können um einige Sekunden abweichen. Starlink ist nicht dabei: Das sind Züge von wenigen Tagen.", "it": "Passaggi a più di 10° sopra l’orizzonte, con il satellite illuminato dal Sole e il cielo già buio (Sole a più di 6° sotto l’orizzonte), calcolati sul telefono con SGP4 dagli elementi che un robot rinnova ogni giorno; gli orari possono spostarsi di qualche secondo. Starlink non c’è: sono treni di pochi giorni.", "nl": "Overkomsten hoger dan 10° boven de horizon, met de satelliet door de zon beschenen en de hemel al donker (zon meer dan 6° onder de horizon), op de telefoon berekend met SGP4 uit baanelementen die een robot elke dag vernieuwt; tijden kunnen enkele seconden verschuiven. Starlink zit er niet bij: dat zijn treinen van een paar dagen.", "zh": "只计算地平高度超过 10°、卫星被太阳照亮且天空已暗（太阳位于地平线下 6° 以上）的过境，由手机用 SGP4 根据机器人每天更新的轨道根数计算；时间可能相差几秒。不含星链：那是只持续几天的卫星列车。", "zht": "只計算地平高度超過 10°、衛星被太陽照亮且天空已暗（太陽位於地平線下 6° 以上）的過境，由手機用 SGP4 根據機器人每天更新的軌道根數計算；時間可能相差幾秒。不含星鏈：那是只持續幾天的衛星列車。", "bg": "Преминавания на повече от 10° над хоризонта, със спътник, осветен от Слънцето, и вече тъмно небе (Слънце на повече от 6° под хоризонта), изчислени на телефона със SGP4 по елементи, които робот обновява всеки ден; часовете може да се разминат с няколко секунди. Starlink го няма: това са влакове за няколко дни.", "pl": "Przeloty wyżej niż 10° nad horyzontem, z satelitą oświetlonym przez Słońce i już ciemnym niebem (Słońce ponad 6° pod horyzontem), liczone w telefonie metodą SGP4 z elementów, które robot odnawia codziennie; czasy mogą przesunąć się o kilka sekund. Starlinka tu nie ma: to pociągi na kilka dni."},
+    "cieloSatEnSombra": {"es": "Ahora está en la sombra de la Tierra: no se ve.", "en": "It is in the Earth’s shadow right now: not visible.", "fr": "En ce moment, il est dans l’ombre de la Terre : invisible.", "de": "Gerade ist er im Erdschatten: nicht sichtbar.", "it": "In questo momento è nell’ombra della Terra: non si vede.", "nl": "Nu zit hij in de aardschaduw: niet zichtbaar.", "zh": "此刻位于地影中：看不见。", "zht": "此刻位於地影中：看不見。", "bg": "В момента е в сянката на Земята: не се вижда.", "pl": "Teraz jest w cieniu Ziemi: niewidoczny."},
+    "cieloFichaOrbita": {"es": "A {h} km de altura, a {v} km/s", "en": "{h} km up, at {v} km/s", "fr": "À {h} km d’altitude, à {v} km/s", "de": "In {h} km Höhe, mit {v} km/s", "it": "A {h} km di quota, a {v} km/s", "nl": "Op {h} km hoogte, met {v} km/s", "zh": "高度 {h} 公里，速度 {v} 公里/秒", "zht": "高度 {h} 公里，速度 {v} 公里/秒", "bg": "На {h} km височина, с {v} km/s", "pl": "Na wysokości {h} km, z prędkością {v} km/s"},
+    "cieloFichaDistSat": {"es": "Ahora a {d} km de ti", "en": "Now {d} km from you", "fr": "Maintenant à {d} km de vous", "de": "Jetzt {d} km von dir entfernt", "it": "Ora a {d} km da te", "nl": "Nu op {d} km van jou", "zh": "此刻距你 {d} 公里", "zht": "此刻距你 {d} 公里", "bg": "Сега на {d} km от теб", "pl": "Teraz {d} km od ciebie"},
+    "cieloFichaProximoPaso": {"es": "Próximo paso visible: {f}, aparece a las {h} y sube hasta {alt}°", "en": "Next visible pass: {f}, appears at {h} and climbs to {alt}°", "fr": "Prochain passage visible : {f}, apparaît à {h} et monte jusqu’à {alt}°", "de": "Nächster sichtbarer Überflug: {f}, erscheint um {h} Uhr und steigt bis {alt}°", "it": "Prossimo passaggio visibile: {f}, appare alle {h} e sale fino a {alt}°", "nl": "Volgende zichtbare overkomst: {f}, verschijnt om {h} en klimt tot {alt}°", "zh": "下次可见过境：{f}，{h}出现，最高 {alt}°", "zht": "下次可見過境：{f}，{h}出現，最高 {alt}°", "bg": "Следващо видимо преминаване: {f}, появява се в {h} и се издига до {alt}°", "pl": "Następny widoczny przelot: {f}, pojawia się o {h} i wznosi się do {alt}°"},
+    "cieloFichaSinPaso": {"es": "Sin pasos visibles desde el Teide en las próximas siete noches.", "en": "No visible passes over Teide in the next seven nights.", "fr": "Pas de passage visible depuis le Teide dans les sept prochaines nuits.", "de": "Keine sichtbaren Überflüge über den Teide in den nächsten sieben Nächten.", "it": "Nessun passaggio visibile dal Teide nelle prossime sette notti.", "nl": "Geen zichtbare overkomsten boven de Teide in de komende zeven nachten.", "zh": "未来七个夜晚没有从泰德可见的过境。", "zht": "未來七個夜晚沒有從泰德可見的過境。", "bg": "Няма видими преминавания над Тейде през следващите седем нощи.", "pl": "Brak widocznych przelotów nad Teide w ciągu najbliższych siedmiu nocy."},
+    /* la alarma del .ics de un paso: media hora antes (un paso dura minutos) */
+    "cieloIcsAvisoPaso": {"es": "Dentro de media hora: {e}", "en": "In half an hour: {e}", "fr": "Dans une demi-heure : {e}", "de": "In einer halben Stunde: {e}", "it": "Tra mezz’ora: {e}", "nl": "Over een half uur: {e}", "zh": "半小时后：{e}", "zht": "半小時後：{e}", "bg": "След половин час: {e}", "pl": "Za pół godziny: {e}"},
+    /* el paso que ya esta en marcha cuando el cielo se oscurece (Sol a -6), o que
+       sigue arriba cuando amanece: no «aparece» ni «se pierde» a 10 grados */
+    "cieloSatYaArriba": {"es": "Ya arriba al oscurecer, a las {h}: {alt}°, {r}", "en": "Already up as it gets dark, at {h}: {alt}°, {r}", "fr": "Déjà levé à la tombée de la nuit, à {h} : {alt}°, {r}", "de": "Bei Einbruch der Dunkelheit schon oben, um {h} Uhr: {alt}° {r}", "it": "Già alto quando fa buio, alle {h}: {alt}°, {r}", "nl": "Al hoog als het donker wordt, om {h}: {alt}° {r}", "zh": "{h}天黑时已在空中：{alt}°，位于{r}", "zht": "{h}天黑時已在空中：{alt}°，位於{r}", "bg": "Вече е горе, когато се стъмва, в {h}: {alt}° {r}", "pl": "Już wysoko, gdy robi się ciemno, o {h}: {alt}° {r}"},
+    "cieloSatAmanece": {"es": "Se pierde en el amanecer a las {h}, {r}", "en": "Fades into the dawn at {h}, {r}", "fr": "Se perd dans l’aube à {h}, {r}", "de": "Verblasst in der Morgendämmerung um {h} Uhr {r}", "it": "Si perde nell’alba alle {h}, {r}", "nl": "Verdwijnt in de ochtendschemering om {h} {r}", "zh": "{h}于{r}没入晨光", "zht": "{h}於{r}沒入晨光", "bg": "Губи се в зората в {h} {r}", "pl": "Znika o świcie o {h} {r}"}
   };
   Object.assign(UI_TX, CIELO_UI);
 
@@ -845,6 +899,7 @@
     cal: 'todo',
     mapa: { desfase: 0, az: 180, alt: 40, fov: 105, cenital: false, sel: null, lineas: true, nombres: true, profundo: true, t: null, corre: false, rastro: null },
     nubes: null, nubesPidiendo: false,
+    sat: { datos: null, carga: null, fallo: false, pasos: {}, porClave: null },   // la Estacion Espacial y los satelites brillantes (21-10-2026)
     rojo: false
   };
 
@@ -1656,6 +1711,8 @@
       t3.appendChild(it);
     });
     c.appendChild(t3);
+    /* la Estacion Espacial y los satelites brillantes */
+    c.appendChild(tarjetaSatelites(n));
     /* Via Lactea */
     var vl = viaLacteaNoche(n), t4 = tarjeta(T('ViaLactea'));
     if (vl.mejor) t4.appendChild(el('div', 'cielo-item-sub', T('ViaLacteaSi', { a: hora(Astronomy.MakeTime(vl.desde).date), b: hora(Astronomy.MakeTime(vl.hasta).date), dir: hacia(vl.mejor.az), alt: numero(vl.mejor.alt, 0) })));
@@ -1766,7 +1823,7 @@
   }
 
   /* ── PESTANA «CALENDARIO» ──────────────────────────────────────── */
-  var FILTROS_CAL = [['todo', 'CalTodo'], ['lluvia', 'CalLluvias'], ['eclipse', 'CalEclipses'], ['planeta', 'CalPlanetas'], ['sol', 'CalSolLuna'], ['luna', 'CalLuna']];
+  var FILTROS_CAL = [['todo', 'CalTodo'], ['lluvia', 'CalLluvias'], ['eclipse', 'CalEclipses'], ['planeta', 'CalPlanetas'], ['sol', 'CalSolLuna'], ['luna', 'CalLuna'], ['satelites', 'CalSatelites']];
   var FASES_Q = ['Nueva', 'CuartoCreciente', 'Llena', 'CuartoMenguante'];
   function tituloEvento(e) {
     switch (e.tipo) {
@@ -1780,15 +1837,17 @@
       case 'lunaCerca': return T('EvLunaCerca');
       case 'fase': return T('Fase' + FASES_Q[e.q]);
       case 'retro': return T(e.ini ? 'EvRetroIni' : 'EvRetroFin', { p: nom(CIELO_CUERPO, e.p) });
+      case 'paso': return T('EvPaso', { s: nombreSat(e.s) });
     }
     return '';
   }
-  var ICONO_EV = { lluvia: '☄️', eclipseSol: '🌒', eclipseLuna: '🌕', oposicion: '🪐', elongacion: '🌆', conjuncion: '💫', estacion: '🌍', lunaCerca: '🌕', retro: '↩️' };
+  var ICONO_EV = { lluvia: '☄️', eclipseSol: '🌒', eclipseLuna: '🌕', oposicion: '🪐', elongacion: '🌆', conjuncion: '💫', estacion: '🌍', lunaCerca: '🌕', retro: '↩️', paso: '🛰️' };
   var ICONO_FASE = ['🌑', '🌓', '🌕', '🌗'];
   function detalleEvento(e) {
     var A = Astronomy, d = [];
     switch (e.tipo) {
       case 'fase': d.push(T('FaseDet', { h: hora(e.t) })); break;
+      case 'paso': return textoPaso(e);
       case 'retro':
         if (e.ini) d.push(e.otro ? T('RetroDet', { f: dia(e.otro), c: nombreCon(e.con) }) : T('RetroDetSinFin', { c: nombreCon(e.con) }));
         else d.push(e.otro ? T('RetroFinDet', { f: dia(e.otro) }) : T('RetroFinDetSinIni'));
@@ -1834,7 +1893,7 @@
   function pintarCalendario(c) {
     var chips = el('div', 'cielo-chips');
     FILTROS_CAL.forEach(function (f) {
-      var b = el('button', null, (f[0] === 'luna' ? '🌙 ' : '') + T(f[1])); b.type = 'button';
+      var b = el('button', null, (f[0] === 'luna' ? '🌙 ' : f[0] === 'satelites' ? '🛰️ ' : '') + T(f[1])); b.type = 'button';
       b.setAttribute('aria-pressed', S.cal === f[0] ? 'true' : 'false');
       b.addEventListener('click', function () { S.cal = f[0]; pintar(); });
       chips.appendChild(b);
@@ -1842,6 +1901,9 @@
     c.appendChild(chips);
     /* los avisos puestos, arriba del todo */
     c.appendChild(tarjetaAvisos({}));
+    /* los satelites: los pasos de las siete noches que vienen, calculados
+       aqui con los elementos del dia (tarjetaSatelites los explica) */
+    if (S.cal === 'satelites') { pintarPasos(c); return; }
     /* las fases van en su filtro: cuatro al mes taparian lo demas en «Todo» */
     var grupo = { lluvia: 'lluvia', eclipseSol: 'eclipse', eclipseLuna: 'eclipse', oposicion: 'planeta', elongacion: 'planeta', conjuncion: 'planeta', retro: 'planeta', estacion: 'sol', lunaCerca: 'sol', fase: 'luna' };
     var ahora = new Date(), unAnio = new Date(ahora.getTime() + 366 * 864e5);
@@ -1867,6 +1929,25 @@
     ]));
     nota.appendChild(el('div', 'cielo-nota', T('NotaCalendario')));
     c.appendChild(nota);
+  }
+  function pintarPasos(c) {
+    if (!S.sat.datos) {
+      c.appendChild(el('div', 'cielo-estado', S.sat.fallo ? T('SatSinDatos') : T('Cargando')));
+      if (!S.sat.fallo) cargarSatelites().then(function () { if (S.abierto) pintar(); }, function () { if (S.abierto) pintar(); });
+      return;
+    }
+    var lista = pasosProximos(), epoca = epocaMasNueva();
+    if (!satelitesVivos(Date.now()).length) { c.appendChild(el('div', 'cielo-estado', T('SatFuera', { f: diaAnio(new Date(epoca)) }))); }
+    else if (!lista.length) c.appendChild(el('div', 'cielo-estado', T('SatNingunoSemana')));
+    var diaAnt = '';
+    lista.forEach(function (p) {
+      var noche = partes(p.max.t).hour < 12 ? sumarDias(fechaLocal(p.max.t), -1) : fechaLocal(p.max.t);
+      if (noche !== diaAnt) { c.appendChild(el('div', 'cielo-mes-cab', T('NocheDel', { f: dia(instanteLocal(noche, 12, 0)) }))); diaAnt = noche; }
+      var t = el('div', 'cielo-tarjeta'); t.appendChild(filaPaso(p, true)); c.appendChild(t);
+    });
+    var ultima = ventanaNoche(sumarDias(nocheDeHoy(), 6));
+    if (ultima && S.sat.datos.sat.some(function (s) { return !satSirve(s, ultima[1]); })) c.appendChild(el('div', 'cielo-nota', T('SatFuera', { f: diaAnio(new Date(epoca)) })));
+    c.appendChild(el('div', 'cielo-nota', T('SatElementos', { f: diaAnio(new Date(epoca)) }) + ' ' + T('SatNota')));
   }
   function enlaces(lista) {
     var caja = el('div', 'cielo-enlaces');
@@ -2526,6 +2607,8 @@
       rotulo(nom(CIELO_CUERPO, p), _q[0] + rad + 5 * dpr, _q[1] + 4 * dpr, 11, '#F5C76B', 0, false, '600 ');
       dianas.push({ x: _q[0], y: _q[1], r: rad, prio: 0, sel: { planeta: p } });
     });
+    /* 6b. la Estacion Espacial y los satelites brillantes, si hay elementos */
+    if (S.sat.datos) { try { pintarSatelites(ctx, V, P, fecha, dpr, rotulo, dianas); } catch (e) { try { console.warn('cielo satelites:', e); } catch (_) {} } }
     ctx.globalCompositeOperation = 'source-over';
     [['Sun', R_SOL], ['Moon', R_LUNA]].forEach(function (x) {
       var c = I.cu[x[0]];
@@ -2654,6 +2737,7 @@
   }
   function vectorSel(s, I) {
     if (s.planeta) return I.cu[s.planeta].e;
+    if (s.sat) { var st = satPorClave(s.sat), x = st && satSirve(st, I.t.date.getTime()) ? dondeSat(st, I.t.date) : null; return x ? enuDe(x.alt, x.az) : null; }
     var v = s.v || (s.est && s.est.v) || (s.obj && s.obj.v) || (s.rec && s.rec.v);
     if (!v && s.con && S.datos.con[s.con]) v = S.datos.con[s.con].etV[0];
     return v ? refractar(aEnu(I.rot, v, [0, 0, 0])) : null;
@@ -2726,7 +2810,7 @@
     S.mapa.t = o.t || null; S.mapa.porDefecto = !o.t; S.mapa.ahora = false;
     S.mapa.desfase = 0;
     horaPorDefecto();
-    var I = instante(instanteMapa()), sel = o.planeta ? { planeta: o.planeta } : { v: o.v, nombre: o.nombre, des: o.des, k: o.k, rec: o.rec };
+    var I = instante(instanteMapa()), sel = o.planeta ? { planeta: o.planeta } : o.sat ? { sat: o.sat } : { v: o.v, nombre: o.nombre, des: o.des, k: o.k, rec: o.rec };
     var e = vectorSel(sel, I);
     if (e) { var h = altAzDe(e); if (h.alt > -2) { S.mapa.az = h.az; S.mapa.alt = limitar(h.alt, 18, 70); S.mapa.fov = 80; S.mapa.cenital = false; } }
     S.mapa.sel = sel;
@@ -3059,6 +3143,8 @@
            ajuste: guardado('tgo_cielo_ajuste', 0), cal: guardado('tgo_cielo_cal', 1), anim: null, ant: performance.now(),
            historia: false, avisoT: null, vibro: false, evento: opc.evento || null };
     if (opc.objetivo) ponerObjetivo(opc.objetivo);
+    /* los satelites, por si pasan (sin bloquear nada) */
+    cargarSatelites().catch(function () {});
     /* la guia, la primera vez (o si se pide); con un objetivo ya puesto, no
        se interpone: se viene de «Encuentralo» y lo que se quiere es la flecha */
     if (!opc.objetivo && !guardado('tgo_cielo_guia', 0) && !opc.sinGuia) mostrarGuia();
@@ -3373,6 +3459,7 @@
   function buscables() {
     var L = [];
     CUERPOS.forEach(function (p) { L.push({ sel: { planeta: p }, nombre: nom(CIELO_CUERPO, p), des: '', ico: ICONO_PLANETA[p] }); });
+    buscablesSat().forEach(function (x) { L.push(x); });
     catalogo().forEach(function (x) {
       if (x.k === 'var' || x.k === 'dob') return;
       var sel = x.k === 'con' ? { con: x.ab } : { k: x.k, rec: x.o, v: x.o.v, nombre: x.nombre, des: x.des };
@@ -3460,6 +3547,7 @@
   function cosaDe(sel, fecha) {
     var D = S.datos;
     fecha = fecha || new Date();
+    if (sel.sat) return cosaSat(sel);
     if (sel.planeta) {
       var p = sel.planeta;
       return { id: 'p' + p, tipo: p === 'Moon' ? 'luna' : (p === 'Sun' ? 'sol' : 'planeta'), cuerpo: p, nombre: nom(CIELO_CUERPO, p), des: '',
@@ -3735,6 +3823,7 @@
     var L = [], extra = {};
     try {
       if (c.cuerpo) datosCuerpo(c, fecha, L, extra);
+      else if (c.tipo === 'satelite') datosSat(c, fecha, L);
       else if (c.tipo === 'estrella') datosEstrella(c, fecha, L);
       else if (c.tipo === 'doble') {
         var d = c.rec;
@@ -4190,8 +4279,8 @@
      web sin servidor no puede despertar a nadie, y se dice. */
   var AVISOS_CLAVE = 'tgo_cielo_avisos_v1';
   function idEvento(e) {
-    var que = e.l ? e.l.id : (e.p || e.k || (e.a ? e.a + '-' + e.b : '') || (e.q !== undefined ? 'q' + e.q : '') || (e.global || e.kind || ''));
-    return e.tipo + '|' + que + (e.ini !== undefined ? (e.ini ? '|ini' : '|fin') : '') + '|' + e.t.toISOString().slice(0, 13);
+    var que = e.s ? e.s.clave : e.l ? e.l.id : (e.p || e.k || (e.a ? e.a + '-' + e.b : '') || (e.q !== undefined ? 'q' + e.q : '') || (e.global || e.kind || ''));
+    return e.tipo + '|' + que + (e.tipo !== 'paso' && e.ini !== undefined ? (e.ini ? '|ini' : '|fin') : '') + '|' + e.t.toISOString().slice(0, 13);
   }
   function avisos() { try { return JSON.parse(localStorage.getItem(AVISOS_CLAVE) || '[]') || []; } catch (e) { return []; } }
   function guardarAvisos(l) { try { if (l.length) localStorage.setItem(AVISOS_CLAVE, JSON.stringify(l)); else localStorage.removeItem(AVISOS_CLAVE); } catch (e) {} }
@@ -4210,7 +4299,7 @@
     if (vivos.length !== l.length) guardarAvisos(vivos);
     if (!vivos.length) return [];
     var ids = {}; vivos.forEach(function (a) { ids[a.id] = true; });
-    return eventos().filter(function (e) { return ids[idEvento(e)]; });
+    return eventos().concat(pasosProximos()).filter(function (e) { return ids[idEvento(e)]; });
   }
   function botonesAviso(e) {
     var caja = el('div', 'cielo-aviso-btns');
@@ -4257,6 +4346,7 @@
     if (e.tipo === 'lluvia') { var m = A.MakeTime(e.mejor.u).date.getTime(); return [new Date(m - h), new Date(m + h)]; }
     if (e.tipo === 'eclipseSol') return [e.ini.time.date, e.fin.time.date];
     if (e.tipo === 'eclipseLuna') return [e.u1 || e.p1, e.u4 || e.p4];
+    if (e.tipo === 'paso') return [e.ini.t, e.fin.t];
     return [e.t, new Date(e.t.getTime() + h)];
   }
   function icsEvento(e) {
@@ -4269,7 +4359,8 @@
              'SUMMARY:' + icsTexto(tit), 'DESCRIPTION:' + icsTexto(desc),
              'LOCATION:' + icsTexto('Observatorio del Teide (Izaña), Tenerife'), 'GEO:' + OBS.lat + ';' + OBS.lon,
              'URL:https://jerome4551.github.io/tenerife-go/',
-             'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:-P1D', 'DESCRIPTION:' + icsTexto(T('IcsAviso', { e: tit })), 'END:VALARM',
+             /* un paso dura minutos: la alarma, media hora antes; lo demas, la vispera */
+             'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:' + (e.tipo === 'paso' ? '-PT30M' : '-P1D'), 'DESCRIPTION:' + icsTexto(T(e.tipo === 'paso' ? 'IcsAvisoPaso' : 'IcsAviso', { e: tit })), 'END:VALARM',
              'END:VEVENT', 'END:VCALENDAR'];
     return L.map(icsPlegar).join('\r\n') + '\r\n';
   }
@@ -4406,6 +4497,243 @@
       avisa: function (r) { if (r === 'descargado') avisar(T('CapturaLista'), 6000); else if (r === 'fallo') avisar(T('CapturaNo'), 6000); } });
   }
 
+  /* ── LA ESTACION ESPACIAL Y LOS SATELITES BRILLANTES (21-10-2026) ──
+     La pregunta mas repetida de cualquier noche es «¿cuando pasa la
+     Estacion?», y hasta hoy el panel mandaba a la aplicacion de la NASA.
+     Ahora se calcula aqui, en el movil:
+       · Los elementos orbitales (TLE) de la Estacion Espacial Internacional,
+         de la estacion china Tiangong y del telescopio Hubble los baja cada
+         dia un robot de GitHub de CelesTrak a datos/satelites.json
+         (tools/satelites_traer.py). Cambian a diario por el rozamiento con
+         la atmosfera: con elementos de mas de 7 dias no se ensena ningun
+         paso, y se dice.
+       · La posicion sale de SGP4 (vendor/satellite.js, MIT; comprobado
+         contra los 33 casos de verificacion oficiales, a 1e-7 km), la mirada
+         desde Izaña de sus transformaciones TEME → ECF → acimut y altura, y
+         si el satelite esta al Sol, de su sombra de la Tierra (cono de
+         umbra y penumbra).
+       · Un paso «visible» es un tramo con el satelite a mas de 10 grados
+         sobre el horizonte, iluminado por el Sol y con el cielo ya oscuro
+         (Sol a mas de 6 grados bajo el horizonte): la misma regla que usan
+         las tablas de pasos de siempre. Se dan la aparicion, el punto mas
+         alto y la desaparicion (o la entrada en la sombra de la Tierra), con
+         su rumbo, a un segundo.
+       · Nada de aqui se guarda ni se envia: el movil lee el fichero de su
+         propio dominio y calcula. Starlink no esta: son trenes de dias. */
+  var SAT_MIN_ALT = 10, SAT_SOL_BAJO = -6, SAT_PASO_MS = 20000;
+  var SAT_WP = { iss: ['International Space Station'], tiangong: ['Tiangong space station'], hubble: ['Hubble Space Telescope'] };
+  function cargarSatelites() {
+    if (S.sat.carga) return S.sat.carga;
+    var motor = new Promise(function (ok, mal) {
+      if (window.satellite && window.satellite.twoline2satrec) return ok();
+      var s = document.createElement('script');
+      s.src = './vendor/satellite.js';
+      s.onload = function () { if (window.satellite) ok(); else mal(new Error('satellite')); };
+      s.onerror = function () { mal(new Error('satellite')); };
+      document.head.appendChild(s);
+    });
+    var datos = fetch('./datos/satelites.json').then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+    S.sat.carga = Promise.all([motor, datos]).then(function (x) { prepararSatelites(x[1]); S.sat.fallo = false; },
+      function (e) { S.sat.carga = null; S.sat.fallo = true; throw e; });
+    return S.sat.carga;
+  }
+  function prepararSatelites(d) {
+    var lista = [];
+    (d.sat || []).forEach(function (s) {
+      try {
+        var rec = satellite.twoline2satrec(s.l1, s.l2);
+        if (rec.error) return;
+        s.rec = rec; s.epocaMs = Date.parse(s.epoca); lista.push(s);
+      } catch (e) {}
+    });
+    d.sat = lista; d.maxDias = d.maxDias || 7;
+    S.sat.datos = d; S.sat.pasos = {}; S.sat.porClave = {};
+    lista.forEach(function (s) { S.sat.porClave[s.clave] = s; });
+  }
+  function satPorClave(k) { return S.sat.porClave ? S.sat.porClave[k] : null; }
+  function nombreSat(s) { return T('SatNombre' + s.clave.charAt(0).toUpperCase() + s.clave.slice(1)) || s.nombre; }
+  var OBS_GD = null;
+  function observadorGd() { return OBS_GD || (OBS_GD = { latitude: OBS.lat * RAD, longitude: OBS.lon * RAD, height: OBS.h / 1000 }); }
+  /* donde esta un satelite en un instante: acimut, altura y distancia desde
+     Izaña, si esta al Sol (sombra 0: todo al Sol, 1: en la umbra), y su
+     altura sobre la Tierra y su velocidad */
+  function dondeSat(s, fecha, rapido) {
+    var pv;
+    try { pv = satellite.propagate(s.rec, fecha); } catch (e) { return null; }
+    if (!pv || !pv.position || typeof pv.position.x !== 'number' || isNaN(pv.position.x)) return null;
+    var gmst = satellite.gstime(fecha), ecf = satellite.eciToEcf(pv.position, gmst);
+    var mira = satellite.ecfToLookAngles(observadorGd(), ecf);
+    var x = { alt: mira.elevation / RAD, az: (mira.azimuth / RAD + 360) % 360, dist: mira.rangeSat, sol: null, sombra: null, altura: null, vel: null };
+    /* en el barrido de los pasos (rapido), bajo los 10 grados solo hace falta la altura */
+    if (rapido && x.alt < SAT_MIN_ALT - 1) return x;
+    var sombra = satellite.shadowFraction(satellite.sunPos(satellite.jday(fecha)).rsun, pv.position);
+    x.sol = sombra < 1; x.sombra = sombra;
+    if (rapido) return x;
+    var v = pv.velocity;
+    x.altura = satellite.eciToGeodetic(pv.position, gmst).height; x.vel = Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+    return x;
+  }
+  /* con elementos de mas de maxDias (hacia atras o hacia delante) no se
+     calcula nada: los pasos dejan de ser fiables */
+  function satSirve(s, ms) { return Math.abs(ms - s.epocaMs) <= S.sat.datos.maxDias * 864e5; }
+  function satelitesVivos(ms) { return S.sat.datos ? S.sat.datos.sat.filter(function (s) { return satSirve(s, ms); }) : []; }
+  /* la ventana de una noche en que el cielo esta oscuro (Sol bajo -6) */
+  function ventanaNoche(fecha) {
+    var A = Astronomy, o = obs(), t0 = A.MakeTime(instanteLocal(fecha, 12, 0));
+    var tarde = A.SearchAltitude(A.Body.Sun, o, -1, t0, 1, SAT_SOL_BAJO);
+    var manana = tarde ? A.SearchAltitude(A.Body.Sun, o, +1, tarde, 1, SAT_SOL_BAJO) : null;
+    return tarde && manana ? [tarde.date.getTime(), manana.date.getTime()] : null;
+  }
+  function pasosNoche(fecha) {
+    var D = S.sat.datos; if (!D) return [];
+    var k = fecha + '|' + D.obtenido;
+    if (S.sat.pasos[k]) return S.sat.pasos[k];
+    var v = ventanaNoche(fecha), out = [];
+    if (v) D.sat.forEach(function (s) { if (satSirve(s, v[0]) && satSirve(s, v[1])) out.push.apply(out, pasosSat(s, v[0], v[1])); });
+    out.sort(function (a, b) { return a.max.t - b.max.t; });
+    return (S.sat.pasos[k] = out);
+  }
+  /* el instante, a un segundo, en que `pred` cambia entre a (true) y b (false);
+     b puede estar antes o despues de a */
+  function afinar(a, b, pred) {
+    for (var i = 0; i < 16 && Math.abs(b - a) > 1000; i++) { var m = (a + b) / 2; if (pred(m)) a = m; else b = m; }
+    return a;
+  }
+  function pasosSat(s, ini, fin) {
+    var out = [], tramo = [], t, x;
+    var arriba = function (ms) { var y = dondeSat(s, new Date(ms), true); return !!y && y.alt >= SAT_MIN_ALT; };
+    var visible = function (ms) { var y = dondeSat(s, new Date(ms), true); return !!y && y.alt >= SAT_MIN_ALT && y.sol; };
+    function cerrar() {
+      var m = tramo; tramo = [];
+      var i0 = -1, i1 = -1;
+      for (var i = 0; i < m.length; i++) if (m[i].x.sol) { if (i0 < 0) i0 = i; i1 = i; }
+      if (i0 < 0) return;
+      var desdeSombra = i0 > 0, aSombra = i1 < m.length - 1;
+      var tIni = Math.max(ini, desdeSombra ? afinar(m[i0].t, m[i0 - 1].t, visible) : afinar(m[0].t, m[0].t - SAT_PASO_MS, arriba));
+      var tFin = Math.min(fin, aSombra ? afinar(m[i1].t, m[i1 + 1].t, visible) : afinar(m[m.length - 1].t, m[m.length - 1].t + SAT_PASO_MS, arriba));
+      /* el punto mas alto, a un segundo, alrededor de la muestra mas alta */
+      var mej = m[i0]; for (var j = i0; j <= i1; j++) if (m[j].x.alt > mej.x.alt) mej = m[j];
+      var tMax = mej.t, altMax = mej.x.alt;
+      for (var u = Math.max(tIni, mej.t - SAT_PASO_MS); u <= Math.min(tFin, mej.t + SAT_PASO_MS); u += 1000) { var y = dondeSat(s, new Date(u), true); if (y && y.alt > altMax) { altMax = y.alt; tMax = u; } }
+      [tIni, tFin].forEach(function (u) { var y = dondeSat(s, new Date(u), true); if (y && y.alt > altMax) { altMax = y.alt; tMax = u; } });   // el extremo mismo, si sube o baja hasta la sombra
+      var punto = function (ms) { var y = dondeSat(s, new Date(ms), true); return { t: new Date(ms), az: y ? y.az : 0, alt: y ? y.alt : 0, dist: y ? y.dist : 0 }; };
+      var p = { tipo: 'paso', s: s, t: new Date(tMax), ini: punto(tIni), max: punto(tMax), fin: punto(tFin), desdeSombra: desdeSombra, aSombra: aSombra, dur: (tFin - tIni) / 1000 };
+      /* si ya estaba arriba al oscurecer, o sigue arriba al amanecer, se dice asi */
+      p.ini.crep = !desdeSombra && tIni === ini; p.fin.crep = !aSombra && tFin === fin;
+      if (p.dur >= 20) out.push(p);
+    }
+    for (t = ini; t <= fin; t += SAT_PASO_MS) {
+      x = dondeSat(s, new Date(t), true);
+      if (x && x.alt >= SAT_MIN_ALT) tramo.push({ t: t, x: x });
+      else if (tramo.length) cerrar();
+    }
+    if (tramo.length) cerrar();
+    return out;
+  }
+  /* los pasos de las proximas siete noches, para el calendario y los avisos */
+  function pasosProximos() {
+    if (!S.sat.datos) return [];
+    var out = [], hoy = nocheDeHoy();
+    for (var i = 0; i < 7; i++) out.push.apply(out, pasosNoche(sumarDias(hoy, i)));
+    var limite = Date.now() - 3600000;
+    return out.filter(function (p) { return p.fin.t.getTime() > limite; });
+  }
+  function textoPaso(p) {
+    var L = [];
+    L.push(T(p.desdeSombra ? 'SatDesdeSombra' : p.ini.crep ? 'SatYaArriba' : 'SatSale', { h: hora(p.ini.t), r: hacia(p.ini.az), alt: numero(p.ini.alt, 0) }));
+    L.push(T('SatMax', { h: hora(p.max.t), alt: numero(p.max.alt, 0), r: hacia(p.max.az) }));
+    L.push(T(p.aSombra ? 'SatSombra' : p.fin.crep ? 'SatAmanece' : 'SatFin', { h: hora(p.fin.t), r: hacia(p.fin.az) }));
+    L.push(T('SatDura', { n: Math.max(1, Math.round(p.dur / 60)) }) + ' · ' + T('SatBrillo' + p.s.clave.charAt(0).toUpperCase() + p.s.clave.slice(1)));
+    return L;
+  }
+  /* la tarjeta de «Esta noche» */
+  function tarjetaSatelites(n) {
+    var t = tarjeta('🛰️ ' + T('SatTitulo'));
+    if (!S.sat.datos) {
+      if (S.sat.fallo) { t.appendChild(el('div', 'cielo-item-sub', T('SatSinDatos'))); }
+      else { t.appendChild(el('div', 'cielo-item-sub', T('Cargando'))); cargarSatelites().then(function () { if (S.abierto) pintar(); }, function () { if (S.abierto) pintar(); }); }
+      return t;
+    }
+    var v = ventanaNoche(n.fecha), vivos = v ? S.sat.datos.sat.filter(function (s) { return satSirve(s, v[0]) && satSirve(s, v[1]); }) : [];
+    var epoca = epocaMasNueva();
+    if (!vivos.length) { t.appendChild(el('div', 'cielo-item-sub', T('SatFuera', { f: diaAnio(new Date(epoca)) }))); return t; }
+    var lista = pasosNoche(n.fecha);
+    if (!lista.length) t.appendChild(el('div', 'cielo-item-sub', T('SatNinguno')));
+    lista.forEach(function (p) { t.appendChild(filaPaso(p, true)); });
+    t.appendChild(el('div', 'cielo-nota', T('SatElementos', { f: diaAnio(new Date(epoca)) }) + ' ' + T('SatNota')));
+    return t;
+  }
+  function epocaMasNueva() { return Math.max.apply(null, S.sat.datos.sat.map(function (s) { return s.epocaMs; })); }
+  function filaPaso(p, conMapa) {
+    var it = el('div', 'cielo-item');
+    it.appendChild(el('div', 'cielo-item-ico', '🛰️'));
+    var tt = el('div', 'cielo-item-txt');
+    var nm = el('div', 'cielo-item-nom', nombreSat(p.s)); nm.appendChild(desig(p.s.nombre)); tt.appendChild(nm);
+    textoPaso(p).forEach(function (x) { tt.appendChild(el('div', 'cielo-item-sub', x)); });
+    var caja = el('div');
+    if (conMapa) {
+      var bm = el('button', 'cielo-boton', '🗺️ ' + T('VerEnMapa')); bm.type = 'button';
+      bm.addEventListener('click', function (ev) { ev.stopPropagation(); irAlMapa({ sat: p.s.clave, t: p.max.t }); });
+      caja.appendChild(bm);
+    }
+    caja.appendChild(botonesAviso(p));
+    tt.appendChild(caja);
+    it.appendChild(tt);
+    var der = el('div', 'cielo-item-der', hora(p.max.t)); it.appendChild(der);
+    return it;
+  }
+  /* en la carta y en «Apunta al cielo»: el punto, su estela de un minuto y
+     el nombre; apagado si esta en la sombra de la Tierra (no se ve) */
+  function pintarSatelites(ctx, V, P, fecha, dpr, rotulo, dianas) {
+    var D = S.sat.datos; if (!D) return;
+    var ms = fecha.getTime(), q = [0, 0, 0], fuera = 40 * dpr;
+    D.sat.forEach(function (s) {
+      if (!satSirve(s, ms)) return;
+      var x = dondeSat(s, fecha); if (!x || x.alt < -0.5) return;
+      if (!P(enuDe(x.alt, x.az), q) || q[0] < -fuera || q[1] < -fuera || q[0] > V.W + fuera || q[1] > V.H + fuera) return;
+      var qx = q[0], qy = q[1], luz = x.sol ? 1 : 0.35;
+      /* la estela: los 60 segundos anteriores, cada 10 */
+      ctx.save(); ctx.globalCompositeOperation = 'source-over';
+      ctx.strokeStyle = 'rgba(170,235,255,' + (0.5 * luz).toFixed(2) + ')'; ctx.lineWidth = 1.2 * dpr;
+      ctx.beginPath(); var ant = null;
+      for (var k = 60; k >= 0; k -= 10) {
+        var y = dondeSat(s, new Date(ms - k * 1000), true); if (!y || y.alt < -1) { ant = null; continue; }
+        var r = [0, 0, 0]; if (!P(enuDe(y.alt, y.az), r)) { ant = null; continue; }
+        if (ant && Math.abs(r[0] - ant[0]) < V.W && Math.abs(r[1] - ant[1]) < V.H) ctx.lineTo(r[0], r[1]); else ctx.moveTo(r[0], r[1]);
+        ant = r;
+      }
+      ctx.stroke();
+      if (x.sol) { var gg = ctx.createRadialGradient(qx, qy, 0, qx, qy, 7 * dpr); gg.addColorStop(0, 'rgba(220,245,255,0.9)'); gg.addColorStop(1, 'rgba(220,245,255,0)'); ctx.fillStyle = gg; ctx.beginPath(); ctx.arc(qx, qy, 7 * dpr, 0, 2 * Math.PI); ctx.fill(); }
+      ctx.fillStyle = x.sol ? '#eafaff' : 'rgba(234,250,255,0.4)';
+      ctx.beginPath(); ctx.arc(qx, qy, 2.4 * dpr, 0, 2 * Math.PI); ctx.fill();
+      ctx.restore();
+      rotulo(nombreSat(s), qx + 7 * dpr, qy - 5 * dpr, 10, x.sol ? 'rgba(200,240,255,0.95)' : 'rgba(200,240,255,0.5)', 0.5, false, '600 ');
+      dianas.push({ x: qx, y: qy, r: 6 * dpr, prio: -0.5, sel: { sat: s.clave } });
+    });
+  }
+  /* la ficha de un satelite */
+  function cosaSat(sel) {
+    var s = satPorClave(sel.sat);
+    if (!s) return { id: 's' + sel.sat, tipo: 'punto', nombre: sel.sat, des: '', tipoTxt: '', con: null, ico: '🛰️', sel: sel, wp: [] };
+    return { id: 's' + s.clave, tipo: 'satelite', sat: s, nombre: nombreSat(s), des: s.nombre, tipoTxt: T('TipoSatelite'), con: null, ico: '🛰️', sel: sel, wp: SAT_WP[s.clave] || [] };
+  }
+  function datosSat(c, fecha, L) {
+    var s = c.sat, x = satSirve(s, fecha.getTime()) ? dondeSat(s, fecha) : null;
+    if (x) {
+      L.push(T('FichaOrbita', { h: numero(Math.round(x.altura), 0), v: numero(x.vel, 1) }));
+      if (x.alt > 0) L.push(T('FichaDistSat', { d: numero(Math.round(x.dist), 0) }));
+      if (x.alt > 0 && !x.sol) L.push(T('SatEnSombra'));
+    }
+    L.push(T('SatBrillo' + s.clave.charAt(0).toUpperCase() + s.clave.slice(1)));
+    var prox = pasosProximos().filter(function (p) { return p.s === s && p.fin.t > fecha; })[0];
+    L.push(prox ? T('FichaProximoPaso', { f: dia(prox.max.t), h: hora(prox.ini.t), alt: numero(prox.max.alt, 0) }) : T('FichaSinPaso'));
+    L.push(T('SatElementos', { f: diaAnio(new Date(s.epocaMs)) }));
+  }
+  function buscablesSat() {
+    if (!S.sat.datos) return [];
+    return satelitesVivos(Date.now()).map(function (s) { return { sel: { sat: s.clave }, nombre: nombreSat(s), des: s.nombre, ico: '🛰️' }; });
+  }
+
   /* ── ABRIR Y CERRAR ────────────────────────────────────────────── */
   function rojo(si) {
     S.rojo = !!si;
@@ -4422,7 +4750,7 @@
     if (!S.fecha) S.fecha = nocheDeHoy();
     document.documentElement.classList.toggle('cielo-rojo', S.rojo);
     pintar();
-    cargar().then(function () { pedirNubes(); pintar(); }, function () { pintar(); });
+    cargar().then(function () { pedirNubes(); pintar(); cargarSatelites().then(function () { if (S.abierto) pintar(); }, function () {}); }, function () { pintar(); });
   }
   function cerrar() {
     var p = document.getElementById('cielo-panel');
@@ -4484,6 +4812,11 @@
     comprobar: function () { comprobarBrujula(); return VI && VI.comprobando; },
     comprobarYa: function () { comprobarYa(); return VI && VI.ultimaComprobacion; },
     ajuste: function () { return VI ? VI.ajuste : null; },
-    cambiarFecha: cambiarFecha
+    cambiarFecha: cambiarFecha,
+    /* los satelites (21 de octubre): parte 11 de auditar_cielo.js */
+    satelites: function () { return cargarSatelites().then(function () { return S.sat.datos; }); },
+    pasos: function (f) { return pasosNoche(f); },
+    pasosProximos: pasosProximos,
+    dondeSat: function (clave, fecha) { var s = satPorClave(clave); return s ? dondeSat(s, fecha) : null; }
   };
 })();

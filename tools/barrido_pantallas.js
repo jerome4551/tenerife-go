@@ -144,6 +144,17 @@ window.__estados = [
       await espera(500); TG_CIELO.comprobar(); await espera(400); }],
   ['cielo:calendario fases', async () => {
       await window.TG_CIELO_CARGAR(); TG_CIELO.estado.cal = 'luna'; await TG_CIELO.ver('calendario', '2026-12-13'); await espera(300); }],
+  /* Los satelites (21 de octubre de 2026): el calendario con el filtro
+     «Satelites» (los pasos de las proximas siete noches, o el aviso de que
+     los elementos tienen mas de 7 dias: el texto que toque hoy), y la ficha
+     de la Estacion Espacial en la carta. La tarjeta va en 'cielo:noche'. */
+  ['cielo:calendario satelites', async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); await TG_CIELO.satelites().catch(function () {});
+      TG_CIELO.estado.cal = 'satelites'; await TG_CIELO.ver('calendario', '2026-12-13'); await espera(400); }],
+  ['cielo:ficha satelite', async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); await TG_CIELO.satelites().catch(function () {});
+      await TG_CIELO.ver('mapa', '2026-12-13'); await espera(400);
+      TG_CIELO.estado.mapa.sel = { sat: 'iss' }; await TG_CIELO.ver('mapa', '2026-12-13'); await espera(500); }],
   ['cielo:calendario avisos', async () => {
       await window.TG_CIELO_CARGAR(); TG_CIELO.estado.cal = 'todo'; await TG_CIELO.ver('calendario', '2026-12-13'); await espera(300);
       const g = TG_CIELO.eventos().find(e => e.tipo === 'lluvia' && e.l.id === 'GEM'); if (g) TG_CIELO.ponerAviso(g);

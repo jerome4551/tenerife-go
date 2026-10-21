@@ -36,6 +36,10 @@ const CORE = [
      de calculo y el catalogo no se piden al arrancar, pero tienen que estar
      sin conexion, porque donde se usan es en el Teide. */
   './modulos/cielo.js', './vendor/astronomy.browser.min.js', './datos/cielo.json',
+  /* Los satelites (21 de octubre de 2026): el motor SGP4 y los elementos
+     orbitales que renueva el robot cada dia. Los elementos van tambien «red
+     primero» abajo: cambian a diario. */
+  './vendor/satellite.js', './datos/satelites.json',
   // Leaflet y MarkerCluster ya no vienen de un CDN: viven en ./vendor/.
   // Al ser del propio origen se precachean aqui, asi el mapa tambien
   // arranca sin conexion.
@@ -298,6 +302,7 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/datos/titsa.js') ||
           url.pathname.endsWith('/modulos/cielo.js') ||
           url.pathname.endsWith('/datos/cielo.json') ||
+          url.pathname.endsWith('/datos/satelites.json') ||
           url.pathname.endsWith('/datos/precios-gasolineras.json') ||
           url.pathname.endsWith('/datos/gasolineras-municipio.json') ||
           url.pathname.endsWith('/datos/avisos-aemet.json') ||
