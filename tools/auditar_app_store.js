@@ -27,6 +27,9 @@
  *     lo dice);
  *   · que cada idioma este en su idioma (escritura y una palabra testigo) y
  *     no sea el castellano copiado;
+ *   · que las funciones que nombra («Apunta al cielo», «Organiza tu dia»,
+ *     «Como llegar») lleven el nombre de la app en ese idioma, y que no
+ *     prometa elegir la hora de la guagua ni el municipio de cada lugar;
  *   · que las direcciones apunten a paginas que existen y que la de soporte
  *     lleve el correo de contacto (privacidad.html lo tiene).
  *
@@ -65,6 +68,20 @@ const PROHIBIDO = [/android/i, /google play/i, /play store/i, /stellarium/i, /sk
   /#1\b/, /n[ºo°]\s*1\b/i, /número uno/i, /number one/i, /la mejor app/i, /the best app/i, /beste app/i, /migliore app/i, /meilleure app/i,
   /\bfotos?\b/i, /\bphotos?\b/i, /\bnotificaciones push\b/i, /push notifications/i, /\bsin anuncios\b/i, /\bno ads\b/i, /ad-free/i, /sans publicité\b/i, /werbefrei/i];
 const FUENTES = ['OpenStreetMap', 'TITSA', 'AEMET', 'Open-Meteo', 'CelesTrak'];
+/* Las funciones que la ficha nombra, con el nombre que llevan en la app: quien
+   lee «Pointez le ciel» en la tienda busca eso en la app, y la app dice
+   «Pointez vers le ciel». Paso el 21 de octubre: asi en frances, «Punta il
+   cielo» en italiano (la app, «Punta al cielo»), «安排一天» en chino (la app,
+   «规划你的一天») y «怎么去» por «如何前往». */
+const FUNCIONES = ['UI.cieloApunta', 'UI.dpTitulo', 'UI.ariaComoLlegar'];
+/* Y dos promesas que la app no cumple, con las que salio la ficha: el
+   planificador de guaguas calcula con la hora de ahora en Canarias
+   (horaCanaria() en index.html; no hay donde elegir otra), y la ficha de un
+   lugar no ensena su municipio (321 de los 980 no lo llevan ni en las
+   etiquetas). */
+const PROMESAS = [/a la hora que quieras/i, /at the time you choose/i, /à l'heure de votre choix/i, /zur gewünschten Uhrzeit/i, /all'ora che vuoi/i,
+  /op het tijdstip dat jij kiest/i, /指定时间/, /指定時間/, /в избран от вас час/i, /o wybranej godzinie/i,
+  /su municipio/i, /its municipality/i, /sa commune/i, /\bGemeinde\b/, /il comune/i, /\bgemeente\b/i, /所属市镇/, /所屬市鎮/, /община/i, /\bgmin[aąyęi]/i];   // sin \b detras: en JS \b no ve la «а» cirilica ni la «ą»
 
 console.log('=== la ficha de la App Store, en los diez idiomas ===');
 ok(Object.keys(F.idiomas).length === IDIOMAS.length && IDIOMAS.every(l => F.idiomas[l]), 'los idiomas de la ficha son los de la app (' + IDIOMAS.join(' ') + ')', Object.keys(F.idiomas).join(' '));
@@ -95,6 +112,9 @@ for (const l of IDIOMAS) {
   if (claves.some(k => k.length <= 2)) fallos.push('palabra clave de dos letras o menos');
   if (new Set(claves.map(k => k.toLowerCase())).size !== claves.length) fallos.push('palabra clave repetida');
   if (claves.some(k => /^(tenerife|go)$/i.test(k))) fallos.push('el nombre de la app en las palabras clave');
+  /* ni empresas ni apps de otros (directriz 2.3.7): las fuentes que la ficha cita, y TITSA tiene app propia */
+  const ajenas = claves.filter(k => FUENTES.concat(['Metrotenerife']).some(f => f.toLowerCase().replace(/[^a-z]/g, '') === k.toLowerCase().replace(/[^a-z]/g, '')));
+  if (ajenas.length) fallos.push('empresas en las palabras clave: ' + ajenas.join(' '));
   if (x.novedades.length > 4000) fallos.push('novedades ' + x.novedades.length);
   ok(fallos.length === 0, l + ': dentro de los limites de Apple (nombre ' + x.nombre.length + ', subtitulo ' + x.subtitulo.length + ', promocion ' + x.promocion.length
      + ', descripcion ' + x.descripcion.length + ', palabras clave ' + bytes(x.palabrasClave) + ' bytes)', fallos.join('; '));
@@ -107,6 +127,11 @@ for (const l of IDIOMAS) {
   if (!(IDIOMAS.length === 10 && DIEZ[l].test(x.descripcion))) cifras.push('idiomas ' + IDIOMAS.length);
   ok(cifras.length === 0, l + ': las cifras son las de hoy (' + PLACES.length + ' lugares, ' + LINES.length + ' lineas, ' + MAR_COSTAS.length + ' costas, ' + IDIOMAS.length + ' idiomas)', cifras.join('; '));
   ok(FUENTES.every(f => x.descripcion.includes(f)), l + ': nombra las fuentes del README (' + FUENTES.join(', ') + ')');
+  const nombres = FUNCIONES.map(k => R.valor(k, l));
+  const faltan = nombres.filter(n => !n || !x.descripcion.toLowerCase().includes(n.toLowerCase()));
+  ok(faltan.length === 0, l + ': las funciones con el nombre que llevan en la app («' + nombres.join('», «') + '»)', 'no estan: ' + faltan.join(' · '));
+  const promete = PROMESAS.filter(re => re.test(todo)).map(String);
+  ok(promete.length === 0, l + ': sin elegir la hora de la guagua ni el municipio de cada lugar (la app no los tiene)', promete.join(' '));
   const suyo = TESTIGO[l].test(x.descripcion) && (!ESCRITURA[l] || (x.descripcion.match(ESCRITURA[l]) || []).length > 100)
     && (l === 'es' || !/\bguaguas\b/.test(x.descripcion)) && (l === 'zh' || !/公交/.test(x.descripcion)) && (l === 'zht' || !/公車/.test(x.descripcion));
   ok(suyo && !vistas.has(x.descripcion), l + ': en su idioma (escritura y palabra testigo) y distinto de los demas');
