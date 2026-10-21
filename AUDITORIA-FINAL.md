@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.019 kB** en castellano · **1.133 kB** en el peor caso (búlgaro) · 1.119 kB en polaco, el 21 de octubre (el panel del cielo suma 10 kB, con «Apunta al cielo», la ficha y lo que piden las reseñas; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.034 kB** en castellano · **1.148 kB** en el peor caso (búlgaro) · 1.134 kB en polaco, el 21 de octubre, con el cielo de `cielo-camara` y lo de `main` de ese día juntos (el panel del cielo suma 10 kB, con «Apunta al cielo», la ficha y lo que piden las reseñas; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -626,7 +626,8 @@ megas, dibujos que tapan las estrellas, luz roja escondida, «IA» de pago.
   de fuentes de cada fila dentro del módulo); se sigue pidiendo al abrir el
   panel. `index.html`: 34.700 líneas, 731 kB con gzip (eran 726). Descarga:
   1.019 kB en castellano (1.017), 1.133 en búlgaro (1.130): los estilos
-  nuevos.
+  nuevos. (Medido en su rama, sobre el `main` del 18. Junto con el `main`
+  del 21: 35.100 líneas y 742 kB con gzip; descarga 1.034 y 1.148 kB.)
 - La política de privacidad, en los diez idiomas: los avisos y la guía se
   quedan en el móvil; los `.ics` y las imágenes se crean en el móvil y van
   al calendario o a la hoja de compartir; la cámara solo entra en una
@@ -6595,6 +6596,40 @@ sin él): «Si Perfecto».
   Idiomas, arriba). Con la declaración, otra vez entera: **«AUDITORIA EN
   VERDE»**, ningún bloque en rojo ni roto. Y sin la declaración el barrido
   vuelve a cantar: comprobado, para que no se quede mudo.
+
+## La rama `cielo-camara`, junta con el `main` de hoy (21 de octubre, noche)
+
+Jerome trajo `PARA-CLAUDE-CODE-3.md`, los dos parches y el bundle de la otra
+sesión: el cielo del 20 («Apunta al cielo», la carta, la ficha) y lo del 21
+(lo que piden las reseñas y la Luna llena que dejaba el cielo a oscuras). Las
+tres huellas sha256 son las de la nota.
+
+- **Repasado antes de ejecutar nada.** Ni `CNAME`, ni los workflows, ni
+  `sw.js`. Lo único nuevo que sale a la red es Wikipedia, que ya estaba en la
+  CSP: lo que llega entra como texto, y sus enlaces y fotos se validan (la
+  propia prueba mete un `<script>` y un `javascript:`). La cámara se pide sin
+  audio y el micrófono sigue en `()`. `tools/cielo_fuentes.sh` solo baja
+  datos de commits fijos de GitHub; el nuevo, el WMM2025 de la NOAA.
+- **Aplicado con `git am -3` sobre `main` (`96c51ed`).** La otra sesión partía
+  de `4e5da10`, del 18. Chocó lo que la nota decía que podía chocar: la
+  política de privacidad, que en sus fuentes se queda con las dos cosas (el
+  idioma de la suscripción, de hoy, y los sensores, la cámara, los avisos y
+  la guía del cielo), y lo que se genera de ella (`index.html` y
+  `privacidad.html`, rehechos con `generar_privacidad.py`); y las cifras de
+  idiomas de este documento: 1.418 de base, 3 más de AEMET, 87 del 20 y 67
+  del 21, **1.575 filas**, y 3.716 en total, contadas otra vez con
+  `barrido_idiomas.js`.
+- **Comprobado contra el bundle.** Los 9 ficheros que solo toca el cielo son
+  idénticos a los del bundle; los 34 que solo cambió `main` desde el 18,
+  idénticos a `main`; y en `index.html`, `README.md` y
+  `barrido_pantallas.js`, lo que difiere del bundle es exactamente lo que
+  cambió `main`. `datos/cielo.json` sale tal cual de las fuentes
+  (`cielo_construir.js --comprobar`).
+- **Recontado.** `index.html`, ya junto: 35.121 líneas, 2,4 MB, 742 kB con
+  gzip (el README decía las del 17). La descarga: 1.034 kB en castellano,
+  1.148 en búlgaro y 1.134 en polaco (`peso_descarga.py`); la cabecera de
+  este documento decía las del 17, y `main` ya pesaba 1.026 sin el cielo
+  nuevo.
 
 ---
 
