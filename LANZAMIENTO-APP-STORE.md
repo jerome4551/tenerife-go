@@ -22,7 +22,7 @@ pone al principio de `index.html`: `window.TGO_NATIVO = true`. Con ella:
 | Caché sin conexión | El service worker (`sw.js`) guarda `index.html`, el módulo del cielo, el mapa de la isla… | No hay service worker: todo viaja dentro del paquete (24,5 MB, 94 ficheros). WKWebView no registra service workers en el esquema `capacitor://`. |
 | Datos que cambian a diario (precios, avisos de AEMET, elementos de los satélites) | Red primero, caché de respaldo (el service worker) | `tgoFetchDatos()`: primero la copia viva de `https://jerome4551.github.io/tenerife-go/datos/…` con 8 s de plazo; si no llega, no responde o se corta, la copia que viaja dentro (la del día en que se montó la app). |
 | «Instalar la app», botón flotante de la PWA | Salen | No salen: ya está instalada. |
-| Avisos push | Web Push con `sw.js` | WKWebView no tiene Web Push: el botón «Activar notificaciones» y su mensaje van ocultos. Los avisos nativos (APNs) son otro trabajo (§8). |
+| Avisos push | Web Push con `sw.js` | WKWebView no tiene Web Push: los dos botones «Activar notificaciones» (el de la cuenta y el de «Continuar como invitado») y sus mensajes van ocultos. Los avisos nativos (APNs) son otro trabajo (§8). |
 | El mapa detallado (`tenerife-osm.pmtiles`, 12 MB) | Se descarga desde la app y se guarda en Cache Storage | Viaja dentro: «nada que descargar ni borrar». |
 | Confirmar el correo de la cuenta | Supabase vuelve a la web | Vuelve a la web viva (`capacitor://localhost` no es una dirección a la que volver). |
 | Compartir un lugar | El enlace de la web | El enlace de la web viva (ya lo hacía con `capacitor://`). |

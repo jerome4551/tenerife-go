@@ -14,8 +14,9 @@
  *   · con el User-Agent de un iPhone, pasados los 4 s el banner de instalar
  *     NO sale (en la web, con el mismo UA, sale: control);
  *   · el boton flotante de la PWA (.pwa-fab) no se ensena;
- *   · el boton «Activar notificaciones» y su mensaje van hidden (WKWebView
- *     no tiene Web Push); en la web, no;
+ *   · los dos botones «Activar notificaciones» (el de la cuenta y el de
+ *     «Continuar como invitado») y sus mensajes van hidden (WKWebView no
+ *     tiene Web Push); en la web, no;
  *   · los datos que cambian a diario se piden PRIMERO a la web viva
  *     (https://jerome4551.github.io/tenerife-go/datos/…): los avisos de
  *     AEMET con dos avisos en la copia viva y ninguno en la de dentro ->
@@ -110,8 +111,10 @@ async function pagina(ctx, puerto, extra) {
     await p.waitForTimeout(4500);
     ok(!(await p.$('.pwa-install-banner.show')), 'con User-Agent de iPhone, pasados 4 s no sale el banner de instalar');
     ok(!(await p.$('.pwa-fab.visible')), 'el boton flotante de la PWA no se ensena');
-    const push = await p.evaluate(() => { const b = document.getElementById('auth-push-btn'), m = document.getElementById('auth-push-msg'); return [b && b.hidden, m && m.hidden]; });
-    ok(push[0] === true && push[1] === true, '«Activar notificaciones» y su mensaje van hidden (WKWebView no tiene Web Push)');
+    /* los dos botones (21-10-2026): el de la cuenta y el de «Continuar como
+       invitado», cada uno con su mensaje (PUSH_BOTONES en index.html) */
+    const push = await p.evaluate(() => [['auth-push-btn', 'auth-push-msg'], ['auth-push-btn-invitado', 'auth-push-msg-invitado']].map(([bi, mi]) => { const b = document.getElementById(bi), m = document.getElementById(mi); return [bi, b ? b.hidden : 'no esta', m ? m.hidden : 'no esta']; }));
+    ok(push.every(x => x[1] === true && x[2] === true), '«Activar notificaciones» (con cuenta y sin ella) y sus mensajes van hidden (WKWebView no tiene Web Push)', JSON.stringify(push));
     ok(errores.length === 0, 'sin errores de pagina', errores.join(' | '));
 
     /* los avisos de AEMET: vivos primero */
@@ -190,8 +193,8 @@ async function pagina(ctx, puerto, extra) {
     ok(await w.evaluate(() => window.TGO_NATIVO === false), 'window.TGO_NATIVO es false');
     await w.waitForTimeout(4500);
     ok(!!(await w.$('.pwa-install-banner.show')), 'con User-Agent de iPhone, el banner de instalar sale a los 4 s (control)');
-    const pushW = await w.evaluate(() => { const b = document.getElementById('auth-push-btn'); return b && b.hidden; });
-    ok(pushW === false, '«Activar notificaciones» no va hidden');
+    const pushW = await w.evaluate(() => ['auth-push-btn', 'auth-push-btn-invitado'].map(i => { const b = document.getElementById(i); return b ? b.hidden : 'no esta'; }));
+    ok(pushW.every(x => x === false), '«Activar notificaciones» (con cuenta y sin ella) no va hidden', JSON.stringify(pushW));
     const propios = [];
     w.on('request', r => { if (/avisos-aemet\.json/.test(r.url())) propios.push(r.url()); });
     await w.evaluate(() => fetchWxAlerts());

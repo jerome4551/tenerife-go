@@ -4,8 +4,9 @@ La misma aplicación que `../index.html`, dentro de un envoltorio nativo
 (Capacitor 8) para la App Store. No hay otra app: `tools/app_preparar.js`
 copia aquí (`www/`) lo que viaja en el móvil y le pone a `index.html` una
 sola línea, `window.TGO_NATIVO = true`. Con ella la app no registra service
-worker (todo va dentro del paquete), no ofrece instalarse, esconde el botón
-de avisos push (WKWebView no tiene Web Push) y pide a la web viva los datos
+worker (todo va dentro del paquete), no ofrece instalarse, esconde los dos
+botones de avisos push, el de la cuenta y el de «Continuar como invitado»
+(WKWebView no tiene Web Push), y pide a la web viva los datos
 que cambian a diario (precios, avisos de AEMET, elementos de los satélites),
 con los de dentro de respaldo. En la web esa marca no existe y nada cambia.
 

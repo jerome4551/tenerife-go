@@ -18,8 +18,9 @@
  *      los controles.
  *   2. A index.html le pone, justo encima del bloque TGO-NATIVO (la
  *      cabecera), la linea «window.TGO_NATIVO = true»: con ella la app no
- *      registra service worker, no ofrece instalarse, esconde el boton de
- *      avisos push y pide los datos que cambian a diario a la web viva, con
+ *      registra service worker, no ofrece instalarse, esconde los dos
+ *      botones de avisos push (el de la cuenta y el de «Continuar como
+ *      invitado») y pide los datos que cambian a diario a la web viva, con
  *      los de dentro de respaldo. Es la UNICA diferencia con la web.
  *   3. Escribe app/ios/plantillas/<idioma>.lproj/InfoPlist.strings, los
  *      textos de los permisos de iOS (camara, ubicacion, sensores) en los
@@ -274,7 +275,9 @@ function comprobar(montado) {
   ok(/if \(window\.TGO_NATIVO\) return;\s*\n\s*\/\/ Registrar tras 'load'/.test(index), 'sin service worker con la marca');
   ok(/if \(window\.TGO_NATIVO\) return true;\s*\/\/ TGO-NATIVO/.test(index) && /!window\.TGO_NATIVO && \(isStandalone\(\) \|\| \('serviceWorker' in navigator\)\)/.test(index),
      'con la marca cuenta como instalada (ni banner de instalar ni boton flotante)');
-  ok(/if \(window\.TGO_NATIVO\) \{ b\.hidden = true; var mN = document\.getElementById\('auth-push-msg'\)/.test(index), 'el boton de avisos push se esconde con la marca');
+  ok(/var PUSH_BOTONES = \[\['auth-push-btn', 'auth-push-msg'\], \['auth-push-btn-invitado', 'auth-push-msg-invitado'\]\];/.test(index)
+     && /if \(window\.TGO_NATIVO\) \{ b\.hidden = true; var mN = document\.getElementById\(par\[1\]\); if \(mN\) mN\.hidden = true; return; \}/.test(index),
+     'los dos botones de avisos push (el de la cuenta y el de «Continuar como invitado») y sus mensajes se esconden con la marca');
   ok(/if \(window\.TGO_NATIVO\) return fetch\(DETALLE_URL\)/.test(index) && /if \(window\.TGO_NATIVO\) return Promise\.resolve\(null\);/.test(index),
      'el mapa detallado: con la marca viaja dentro (nada que descargar ni borrar)');
   ok(/emailRedirectTo: window\.TGO_NATIVO \? TGO_BASE_VIVA :/.test(index), 'el correo de confirmacion de la cuenta vuelve a la web viva, no a capacitor://');
