@@ -3,3 +3,10 @@ __pycache__/
 
 # volcado de trabajo de tools/lugares_idioma.js: sale de index.html
 idiomas/es-lugares*.json
+
+# la app para las tiendas (Capacitor): lo montado y lo generado en el Mac salen de la raiz
+app/www/
+app/ios/App/
+app/node_modules/
+app/package-lock.json
+capturas-app-store/

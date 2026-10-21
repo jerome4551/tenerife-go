@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.034 kB** en castellano · **1.148 kB** en el peor caso (búlgaro) · 1.134 kB en polaco, el 21 de octubre, con el cielo de `cielo-camara` y lo de `main` de ese día juntos (el panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.036 kB** en castellano · **1.149 kB** en el peor caso (búlgaro) · 1.135 kB en polaco, el 21 de octubre por la noche, con el cielo de `cielo-camara` y lo de `main` de ese día juntos (el panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada; el modo nativo de la App Store, 1 kB; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -1001,6 +1001,158 @@ poder ejecutarse aquí (Claude Code tiene que verlos pasar con `pip install
 -r tools/requisitos.txt`). Queda lo que ningún control puede: una noche
 guiada de verdad, con el móvil en la mano y la flecha llevando a cada
 parada; los pasos, en la nota para Claude Code.
+
+## La App Store: la misma app dentro de Capacitor, la ficha y lo que queda para el Mac (21 de octubre, cuarto bloque)
+
+Jerome: «P4. Quiero competir en lo mejor». Las apps del cielo con las que se
+compite están en la App Store; Tenerife Go tiene que estar donde la gente
+busca al bajar del avión. Aquí no hay Mac ni Xcode, así que el bloque se
+parte en dos: lo que se puede hacer y comprobar en este repositorio (la app
+en modo nativo, el paquete, las plantillas de iOS, la ficha de la tienda, las
+capturas, los controles) y lo que solo se puede hacer en un Mac con la
+cuenta de Apple, que va paso a paso en `LANZAMIENTO-APP-STORE.md`.
+
+### Lo que entra
+
+- **Una sola app.** `app/www/` es `index.html` y lo que pide en el móvil,
+  copiado tal cual por `tools/app_preparar.js` (lista cerrada: la página,
+  el manifiesto, los iconos y los once arranques, `privacidad.html` y
+  `borrar-cuenta.html`, los nueve `idiomas/<l>.json` y las etiquetas, las
+  diez `faq/<l>.json`, los seis ficheros de `datos/` que lee la app, el
+  módulo del cielo, `vendor/` con las fuentes, las imágenes de Leaflet y
+  las licencias, y los dos `.pmtiles`; ni `sw.js`, ni carpetas de trabajo,
+  ni controles). La única diferencia con la web es una línea delante del
+  bloque `TGO-NATIVO` de la cabecera: `window.TGO_NATIVO = true`.
+- **Con esa marca** (`index.html`): no se registra el service worker (todo
+  viaja dentro; WKWebView no lo registra en `capacitor://`); la app cuenta
+  como instalada (ni banner de instalar ni botón flotante); el botón
+  «Activar notificaciones» y su mensaje van ocultos (WKWebView no tiene
+  Web Push); el mapa detallado «viaja dentro» (`detalleEnServidor` dice que
+  no hay nada que descargar y `detalleGuardado` devuelve el fichero del
+  paquete); el correo de confirmación de la cuenta vuelve a la web viva, no
+  a `capacitor://localhost`; y el enlace de compartir un lugar es el de la
+  web; y en el panel del cielo, «Antes de subir al Teide» dice «guardado
+  en el móvil» sin mirar ninguna caché (`cacheListo()` da `true`: los seis
+  ficheros viajan en el paquete). **Sin la marca, nada cambia.**
+- **Los datos que cambian a diario**, red viva primero: `tgoFetchDatos(ruta,
+  opc)` pide primero `https://jerome4551.github.io/tenerife-go/<ruta>` con
+  8 segundos de plazo (o la señal de quien llama) y, si no llega, no
+  responde bien o se corta, la copia que viaja dentro (sin la señal de
+  quien llama, que ya estaría abortada). Lo usan los precios de las
+  gasolineras, el fichero de municipios, los avisos de AEMET (`WX_URL`) y,
+  en `modulos/cielo.js`, los elementos de los satélites (`pedir`). En la
+  web `tgoFetchDatos` es `fetch` tal cual. La CSP deja `connect-src
+  https://jerome4551.github.io`.
+- **El proyecto de Capacitor** (`app/`): `capacitor.config.json` (`appId`
+  `com.tenerifego.app`, a decidir antes de publicar: no se cambia
+  después), `package.json` (Capacitor 8.x: Xcode 26, Node 22, SPM),
+  `LEEME.md`; `app/www/`, `app/ios/App/` y `node_modules/` fuera de git.
+- **Las plantillas de iOS** (`app/ios/plantillas/`), lo que el proyecto que
+  genera `npx cap add ios` no trae: el fragmento del `Info.plist` (los tres
+  permisos, los diez idiomas en `CFBundleLocalizations`,
+  `ITSAppUsesNonExemptEncryption = false`, las orientaciones); un
+  `<idioma>.lproj/InfoPlist.strings` por idioma con las frases de la
+  ubicación, los sensores y la cámara **sacadas de
+  `idiomas/privacidad/<l>.json`** (el permiso dice lo que dice la política,
+  y si la política cambia el control para); `PrivacyInfo.xcprivacy` (sin
+  rastreo, y los seis datos que la política dice que salen); el icono a
+  1024 (ampliado del de 512: el original a 1024 queda pendiente de Jerome)
+  y el arranque de 2732×2732 (el de 2048×2732 centrado sobre su fondo); y
+  `aplicar.sh`, que lo pone todo en el proyecto con PlistBuddy, comprobado
+  en seco.
+- **La ficha de la tienda** (`datos/app-store/ficha.json`) en los diez
+  idiomas: nombre, subtítulo (≤ 30), texto promocional (≤ 170), descripción
+  (≤ 4000, texto plano) y palabras clave (≤ 100 bytes), más las
+  direcciones de soporte, marketing y privacidad, el copyright y la
+  categoría. Cada frase dice solo lo que la app hace, y las cifras se
+  cotejan con los datos. App Store Connect no tiene localización en
+  búlgaro: la ficha en búlgaro se guarda (en Bulgaria la tienda enseña la
+  inglesa; la app, dentro, va en búlgaro).
+- **Las capturas** (`tools/capturas_app_store.js`): siete por aparato, de
+  la app de verdad en Chromium, en los dos tamaños obligatorios (iPhone con
+  Dynamic Island mediana, 1206×2622; iPad de 13", 2064×2752): el mapa de la
+  isla, una ficha, las paradas cerca, «Organiza tu día», «Esta noche»,
+  «Apunta al cielo» y el sistema solar. Sin rótulos.
+- `LANZAMIENTO-APP-STORE.md`: qué es la app de la tienda, lo que está
+  hecho, lo que Jerome tiene que decidir (la cuenta, 99 USD al año; el
+  identificador; el icono a 1024; el contacto de la revisión; el riesgo de
+  la directriz 4.2), el Mac paso a paso, App Store Connect campo a campo
+  (App Privacy con la frase de la política de donde sale cada respuesta,
+  las notas para el revisor), las pruebas en un iPhone de verdad y lo que
+  es otro trabajo (APNs, enlaces universales). Con las páginas de Apple y
+  de Capacitor de donde sale cada regla, leídas el 21 de octubre.
+
+### Lo que se midió
+
+- `app/www/`: 94 ficheros, 24,5 MB (los dos mapas son 13 MB; `index.html`,
+  2,3). `index.html` pasa a 34.747 líneas y 733 kB con gzip (eran 727: el
+  bloque `TGO-NATIVO` y las puertas). Descarga de la web: 1.021 kB en
+  castellano, 1.135 en búlgaro, 1.121 en polaco (`peso_descarga.py`).
+- La ficha: las descripciones van de 812 caracteres (chino) a 2.576
+  (francés); las palabras clave, de 92 a 98 bytes.
+- En Chromium, con la copia viva colgada, los avisos de AEMET tardan 8,0 s
+  en caer a la copia de dentro (el plazo).
+
+### Los controles
+
+- **`tools/app_preparar.js --comprobar`** (37 controles): todo lo que
+  `index.html`, `privacidad.html`, `borrar-cuenta.html` y `sw.js` (CORE y
+  red-primero) piden está en `app/www/`, y los idiomas de `SUPPORTED_LANGS`
+  (idiomas, etiquetas, faq); nada más (ni `sw.js`, ni carpetas de trabajo);
+  `www/index.html` es el de la raíz más esa única línea; las ocho puertas
+  de la marca, las tres llamadas a `tgoFetchDatos` y la CSP en
+  `index.html`, y `pedir` en el módulo; el
+  fragmento del `Info.plist` y los diez `InfoPlist.strings` son los que
+  salen hoy de la política; `PrivacyInfo.xcprivacy` sin rastreo y con los
+  seis datos; los dos plist bien formados (`plistlib`); el icono 1024×1024
+  RGB y el arranque 2732×2732; `capacitor.config.json`, `package.json`,
+  `aplicar.sh`; `.gitignore`.
+- **`tools/probar_app.js`** (25 controles): `app/www/` servido aparte y
+  abierto con User-Agent de iPhone: `TGO_NATIVO` true, ningún service
+  worker registrado, sin banner a los 4 s, sin botón flotante, el botón de
+  push y su mensaje `hidden`; los avisos de AEMET pedidos a la web viva
+  primero (dos avisos de la copia viva frente a ninguno en la de dentro;
+  la petición llega a la ruta interceptada, luego la CSP la deja), y la
+  copia de dentro con la red cortada, con HTTP 500 y con la viva colgada
+  (a los 8 s); los precios a la web viva primero; el mapa detallado «nada
+  que descargar» y el fichero de dentro; el panel del cielo abre y calcula
+  sin service worker con los elementos de la copia viva, «Antes de subir
+  al Teide» dice «guardado» sin caché, y en otra página sin red los
+  elementos de dentro; el enlace de compartir a la web viva; sin errores
+  de página. Y la raíz sin la marca: `TGO_NATIVO` false, el banner sale a
+  los 4 s con el mismo User-Agent, el botón de push a la vista, los avisos
+  pedidos al propio origen y a ningún otro sitio.
+- **`tools/auditar_app_store.js`** (68 controles): los idiomas de la ficha
+  son los de la app; las localizaciones existen en App Store Connect y no
+  se repiten, el búlgaro sin localización y dicho; el copyright con el año,
+  las direcciones (y `privacidad.html` con el correo de contacto: vale como
+  Support URL), la categoría; por idioma, los límites de Apple, nada de
+  otras plataformas ni otras apps ni «número uno» ni promesas que la app no
+  cumple (fotos, avisos push, «sin anuncios»), las cifras de hoy (980
+  lugares, 183 líneas, siete costas, diez idiomas, cada numeral en su
+  idioma), las cinco fuentes del README, y que cada ficha está en su
+  idioma (escritura y una palabra testigo) y es distinta de las demás.
+- En `auditar.sh`, los tres, antes del cirílico. `auditar_cielo.js`: la
+  parte 4 admite `pedir(` además de `fetch(` y comprueba `tgoFetchDatos`
+  en `index.html` (un control más: 174 con las fuentes bajadas); la 11a
+  mira `pedir('./datos/satelites.json')`. `barrido_pantallas.js`: las
+  mismas 100 pantallas y fichas por idioma, 0 textos sin traducir.
+
+Averías con las que se vieron fallar los controles antes de darlos por
+buenos: la copia de dentro se pedía con la señal de quien llama, que tras
+el plazo de 8 s ya estaba abortada, y la caída a la copia de dentro fallaba
+justo cuando hacía falta (se pide sin señal); el control de los recursos
+enlazados tomaba `src="' + LOGO_URI + '"` por una ruta; la cuenta de
+`window.TGO_NATIVO = true` daba dos porque el comentario de la cabecera lo
+cita; las capturas volvían a la bienvenida tras cada recarga y el mapa salía
+sin teselas (las de OSM no llegan desde aquí): cada estado arranca de una
+página nueva con el mapa de la isla, que es el que se ve sin red.
+
+`auditar.sh` entero sobre el árbol del commit, el 21 de octubre por la
+noche: **cero bloques en rojo**; los tres controles de `pmtiles` siguen sin
+poder ejecutarse aquí. Lo que queda es lo del Mac y lo de Jerome
+(`LANZAMIENTO-APP-STORE.md`, §3 y §4), y las pruebas en un iPhone de verdad
+(§7).
 
 ## La política de privacidad · lo que decía y lo que la app hace
 

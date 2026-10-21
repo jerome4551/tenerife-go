@@ -1,0 +1,5 @@
+/* Tenerife Go · fr · generado por tools/app_preparar.js de idiomas/privacidad/fr.json: no editar a mano */
+"CFBundleDisplayName" = "Tenerife Go";
+"NSLocationWhenInUseUsageDescription" = "Géolocalisation : uniquement quand vous l’activez. Elle n’est enregistrée sur aucun serveur. Si vous demandez un itinéraire en voiture, les coordonnées de départ et d’arrivée sont envoyées au service de calcul d’itinéraires.";
+"NSMotionUsageDescription" = "Orientation du téléphone (facultatif) : seulement pendant que vous utilisez « Pointez vers le ciel » : la boussole, le gyroscope et l’accéléromètre indiquent où vous visez, pour nommer ce que vous avez devant vous. C’est utilisé sur l’appareil, ni enregistré ni envoyé.";
+"NSCameraUsageDescription" = "Caméra (facultatif) : seulement si vous l’activez dans « Pointez vers le ciel », pour dessiner les étoiles sur l’image. L’image n’est ni enregistrée, ni analysée, et ne quitte pas le téléphone ; ce n’est que si vous touchez 📸 qu’une capture est composée avec les étoiles par-dessus, enregistrée ou partagée depuis votre téléphone sans passer par aucun serveur.";

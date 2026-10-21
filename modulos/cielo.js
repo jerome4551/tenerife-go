@@ -4605,7 +4605,9 @@
       s.onerror = function () { mal(new Error('satellite')); };
       document.head.appendChild(s);
     });
-    var datos = fetch('./datos/satelites.json').then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+    /* en la aplicacion de las tiendas (TGO-NATIVO) los elementos se piden primero a la web viva: tgoFetchDatos, en index.html */
+    var pedir = typeof tgoFetchDatos === 'function' ? tgoFetchDatos : fetch;
+    var datos = pedir('./datos/satelites.json').then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
     S.sat.carga = Promise.all([motor, datos]).then(function (x) { prepararSatelites(x[1]); S.sat.fallo = false; },
       function (e) { S.sat.carga = null; S.sat.fallo = true; throw e; });
     return S.sat.carga;
@@ -5158,6 +5160,9 @@
   var FICHEROS_PANEL = ['./index.html', './modulos/cielo.js', './vendor/astronomy.browser.min.js', './datos/cielo.json', './vendor/satellite.js', './datos/satelites.json'];
   /* true: todo guardado; false: falta algo; null: este navegador no guarda */
   function cacheListo() {
+    /* en la aplicacion de las tiendas (TGO-NATIVO, index.html) los seis
+       ficheros viajan dentro del paquete: guardado siempre, sin cache */
+    if (window.TGO_NATIVO) return Promise.resolve(true);
     try { if (!('caches' in window) || !('serviceWorker' in navigator) || location.protocol === 'file:') return Promise.resolve(null); } catch (e) { return Promise.resolve(null); }
     return Promise.all(FICHEROS_PANEL.map(function (f) {
       var u = new URL(f, location.href).href;

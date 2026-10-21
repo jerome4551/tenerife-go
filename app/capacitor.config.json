@@ -1,0 +1,10 @@
+{
+  "appId": "com.tenerifego.app",
+  "appName": "Tenerife Go",
+  "webDir": "www",
+  "loggingBehavior": "none",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#0F1117"
+  }
+}

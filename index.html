@@ -38,6 +38,34 @@
 <meta name="copyright" content="Copyright (c) 2026 Jerome B - Todos los derechos reservados">
 <meta name="rights" content="https://jerome4551.github.io/tenerife-go">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<!-- TGO-NATIVO: la misma app dentro de la aplicacion de las tiendas
+     (Capacitor, 21 de octubre de 2026). tools/app_preparar.js copia este
+     fichero a app/www/ y mete justo encima de este bloque
+     «window.TGO_NATIVO = true». Con esa marca: no hay service worker (todo
+     viaja dentro de la app), ni banner de instalar, ni boton de avisos
+     push (WKWebView no los tiene), y los datos que cambian a diario -los
+     precios, los avisos de AEMET, los elementos de los satelites- se piden
+     primero a la web viva y, sin red, se usan los que vienen dentro. En la
+     web, TGO_NATIVO no existe y nada de esto actua. -->
+<script>
+window.TGO_NATIVO = window.TGO_NATIVO === true;
+var TGO_BASE_VIVA = 'https://jerome4551.github.io/tenerife-go/';
+/* Un fichero de datos: en la web, tal cual (el service worker lo sirve red
+   primero); en la app nativa, la copia viva con 8 segundos de plazo y, si
+   no llega o no responde bien, la copia que viaja dentro. */
+function tgoFetchDatos(ruta, opc) {
+  if (!window.TGO_NATIVO) return fetch(ruta, opc);
+  var viva = TGO_BASE_VIVA + String(ruta).replace(/^\.\//, '');
+  var o = Object.assign({}, opc || {}), ctrl = null, temporizador = null;
+  if (!o.signal && typeof AbortController === 'function') { ctrl = new AbortController(); o.signal = ctrl.signal; temporizador = setTimeout(function () { ctrl.abort(); }, 8000); }
+  /* la copia de dentro se pide sin la senal de quien llama: si la viva se
+     corto por su plazo, esa senal ya esta abortada y la de dentro fallaria */
+  var dentro = Object.assign({}, opc || {}); delete dentro.signal;
+  return fetch(viva, o)
+    .then(function (r) { if (temporizador) clearTimeout(temporizador); if (!r.ok) throw new Error('HTTP ' + r.status); return r; })
+    .catch(function () { if (temporizador) clearTimeout(temporizador); return fetch(ruta, dentro); });
+}
+</script>
 <!-- Captura global de errores: evita "Uncaught Error: Script error." visible
      en pantalla. Los errores de scripts cross-origin en file:// son inevitables
      pero no críticos — la app sigue funcionando si hay conexión. -->
@@ -121,7 +149,7 @@ window.onunhandledrejection = function(e) {
 </script>
 
 <title>Tenerife Go — Mapa Interactivo</title>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://energia.serviciosmin.gob.es https://sedeaplicaciones.minetur.gob.es https://nominatim.openstreetmap.org https://router.project-osrm.org https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://jerome4551.github.io https://*.supabase.co wss://*.supabase.co https://energia.serviciosmin.gob.es https://sedeaplicaciones.minetur.gob.es https://nominatim.openstreetmap.org https://router.project-osrm.org https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
 <!-- Google tag (gtag.js) — GA4 · Consent Mode v2 (básico) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -16186,6 +16214,8 @@ const DETALLE_URL = 'mapa/tenerife-osm.pmtiles';
 const DETALLE_CACHE = 'tgo-mapa-osm-v1';
 
 function detalleGuardado() {
+  /* TGO-NATIVO: el mapa detallado viaja dentro de la aplicacion de las tiendas */
+  if (window.TGO_NATIVO) return fetch(DETALLE_URL).then(function (r) { return r.ok ? r.blob() : null; }).catch(function () { return null; });
   if (!window.caches) return Promise.resolve(null);
   /* has() antes que open(): caches.open() CREA el cache si no existe, asi que
      el simple hecho de mirar si hay mapa detallado dejaba un cache vacio en
@@ -16203,6 +16233,7 @@ function detalleGuardado() {
    descargar. Un HEAD basta y no gasta datos. Si da 404 -que es lo que pasa
    mientras el fichero no exista- se devuelve null y la seccion no aparece. */
 function detalleEnServidor() {
+  if (window.TGO_NATIVO) return Promise.resolve(null);   // TGO-NATIVO: ya viene dentro, no hay nada que descargar
   return fetch(DETALLE_URL, { method: 'HEAD' })
     .then(function (r) {
       if (!r.ok) return null;
@@ -16977,7 +17008,7 @@ function aplicarPreciosGas(d, fuente) {
 }
 
 function cargarPreciosGas() {
-  fetch('datos/precios-gasolineras.json', { cache: 'no-cache' })
+  tgoFetchDatos('datos/precios-gasolineras.json', { cache: 'no-cache' })
     .then(r => r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)))
     .then(d => aplicarPreciosGas(d, 'fichero'))
     .catch(() => { if (!PRECIOS_GAS.datos) PRECIOS_GAS.estado = 'sin'; });
@@ -17107,7 +17138,7 @@ function preciosGasEnVivo() {
   if (location.protocol === 'file:') return Promise.resolve(false);
   _gasVivo.intento = ahora;
   const municipio = _gasVivo.mu ? Promise.resolve(_gasVivo.mu)
-    : fetch('datos/gasolineras-municipio.json', { cache: 'no-cache' })
+    : tgoFetchDatos('datos/gasolineras-municipio.json', { cache: 'no-cache' })
         .then(r => r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)))
         .then(j => (_gasVivo.mu = j.municipios));
   const bajar = i => {
@@ -20266,7 +20297,7 @@ function buildShareData(place) {
   // 1. Enlace de la app — usa la URL actual + hash con id
   // Si está en http(s), usa la URL real; si es file://, usa solo el hash relativo
   // file:// y capacitor:// → usar URL pública de producción
-  const isNative = location.protocol === 'file:' || location.protocol === 'capacitor:' || location.protocol === 'ionic:';
+  const isNative = window.TGO_NATIVO === true || location.protocol === 'file:' || location.protocol === 'capacitor:' || location.protocol === 'ionic:';
   const baseUrl = isNative
     ? 'https://jerome4551.github.io/tenerife-go/#lugar=' + place.id
     : (location.origin + location.pathname + '#lugar=' + place.id);
@@ -22242,8 +22273,10 @@ window.addEventListener('hashchange', () => {
       email,
       password,
       options: {
-        // Tras confirmar el email, Supabase redirige aquí
-        emailRedirectTo: window.location.origin + window.location.pathname
+        // Tras confirmar el email, Supabase redirige aquí. TGO-NATIVO: dentro
+        // de la aplicacion de las tiendas el origen es capacitor://localhost,
+        // que no es una direccion a la que Supabase pueda volver: la web viva.
+        emailRedirectTo: window.TGO_NATIVO ? TGO_BASE_VIVA : window.location.origin + window.location.pathname
       }
     });
     if (error) throw error;
@@ -22524,6 +22557,9 @@ window.addEventListener('hashchange', () => {
   if (!('serviceWorker' in navigator)) {
     return;
   }
+  /* TGO-NATIVO: dentro de la aplicacion de las tiendas todo viaja en el
+     paquete y WKWebView no registra service workers en su esquema propio */
+  if (window.TGO_NATIVO) return;
 
   // Registrar tras 'load' para no bloquear la carga inicial del mapa
   window.addEventListener('load', function() {
@@ -22921,6 +22957,7 @@ window.addEventListener('hashchange', () => {
   // Detección del entorno (con tolerancia a fallos)
   // ───────────────────────────────────────────────────────────────────
   function isStandalone() {
+    if (window.TGO_NATIVO) return true;   // TGO-NATIVO: la aplicacion de las tiendas ya esta instalada
     try {
       // Android/Chrome
       if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) return true;
@@ -23375,8 +23412,9 @@ window.addEventListener('hashchange', () => {
       fabEl.setAttribute('aria-label', ptx('infoApp'));
       fabEl.title = ptx('infoApp');
     }); } catch (e) {}
-    // Mostrar solo si la app está instalada o si el navegador soporta SW
-    if (isStandalone() || ('serviceWorker' in navigator)) {
+    // Mostrar solo si la app está instalada o si el navegador soporta SW.
+    // TGO-NATIVO: en la aplicacion de las tiendas no hay caches que ensenar ni version que recargar.
+    if (!window.TGO_NATIVO && (isStandalone() || ('serviceWorker' in navigator))) {
       el.classList.add('visible');
     }
     return el;
@@ -28687,7 +28725,7 @@ async function fetchWxAlerts() {
   try {
     var op = { cache: 'no-cache' };
     if (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) op.signal = AbortSignal.timeout(8000);
-    var res = await fetch(WX_URL, op);
+    var res = await tgoFetchDatos(WX_URL, op);
     if (!res.ok) throw new Error('HTTP ' + res.status);
     var d = await res.json();
     if (!d || !Array.isArray(d.avisos) || isNaN(Date.parse(d.consultado))) throw new Error('fichero sin la forma esperada');
@@ -29835,6 +29873,11 @@ function pushEngancharBoton() {
     var b = document.getElementById(par[0]);
     if (!b || b._tgoHook) return;
     b._tgoHook = true;
+    /* TGO-NATIVO: WKWebView no tiene Web Push; los botones y sus avisos se
+       esconden, los dos (el de la cuenta y el de «Continuar como invitado»).
+       Los avisos nativos, con APNs, son otro trabajo y asi consta en
+       LANZAMIENTO-APP-STORE.md. */
+    if (window.TGO_NATIVO) { b.hidden = true; var mN = document.getElementById(par[1]); if (mN) mN.hidden = true; return; }
     if (motivo) {
       b.disabled = true;
       b.style.opacity = '0.5';

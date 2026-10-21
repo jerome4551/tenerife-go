@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Tenerife Go · lo que se anade al Info.plist de la app de Capacitor.
+     Generado por tools/app_preparar.js (las frases, de idiomas/privacidad/es.json): no editar a mano.
+     Se aplica con ios/plantillas/aplicar.sh (PlistBuddy Merge) despues de «npx cap add ios». -->
+<plist version="1.0">
+<dict>
+  <!-- el idioma base y los diez de la app; cada uno lleva su .lproj/InfoPlist.strings -->
+  <key>CFBundleDevelopmentRegion</key>
+  <string>es</string>
+  <key>CFBundleLocalizations</key>
+  <array>
+    <string>es</string>
+    <string>en</string>
+    <string>fr</string>
+    <string>de</string>
+    <string>it</string>
+    <string>nl</string>
+    <string>zh-Hans</string>
+    <string>zh-Hant</string>
+    <string>bg</string>
+    <string>pl</string>
+  </array>
+  <!-- los permisos, con lo que dice la politica de privacidad -->
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Geolocalización: solo cuando la activas. No se guarda en ningún servidor. Si pides una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas para calcularla.</string>
+  <key>NSMotionUsageDescription</key>
+  <string>Orientación del móvil (opcional): solo mientras usas «Apunta al cielo»: la brújula, el giroscopio y el acelerómetro dicen hacia dónde apuntas, para nombrar lo que tienes delante. Se usa en el dispositivo y no se guarda ni se envía.</string>
+  <key>NSCameraUsageDescription</key>
+  <string>Cámara (opcional): solo si la activas en «Apunta al cielo», para pintar las estrellas sobre la imagen. La imagen no se guarda, no se analiza y no sale del móvil; solo si tocas 📸 se compone una captura con las estrellas encima, que se guarda o se comparte desde tu móvil sin pasar por ningún servidor.</string>
+  <!-- la app solo usa HTTPS (cifrado exento): asi App Store Connect no pregunta por el cifrado en cada subida -->
+  <key>ITSAppUsesNonExemptEncryption</key>
+  <false/>
+  <!-- vertical y apaisado, en iPhone y en iPad, como la web -->
+  <key>UISupportedInterfaceOrientations</key>
+  <array>
+    <string>UIInterfaceOrientationPortrait</string>
+    <string>UIInterfaceOrientationLandscapeLeft</string>
+    <string>UIInterfaceOrientationLandscapeRight</string>
+  </array>
+  <key>UISupportedInterfaceOrientations~ipad</key>
+  <array>
+    <string>UIInterfaceOrientationPortrait</string>
+    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+    <string>UIInterfaceOrientationLandscapeLeft</string>
+    <string>UIInterfaceOrientationLandscapeRight</string>
+  </array>
+</dict>
+</plist>

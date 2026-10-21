@@ -196,6 +196,19 @@ echo "════════ la politica de privacidad: el panel y privacidad.
 # app; si alguno cambia y no se vuelve a generar, para aqui.
 control generar_privacidad.py python3 tools/generar_privacidad.py --comprobar
 
+echo "════════ la app para las tiendas (App Store): app/www/ montado, el modo nativo en un navegador y la ficha ════════"
+# Desde el 21 de octubre de 2026 («P4»): la misma PWA dentro de Capacitor.
+# app_preparar.js monta app/www/ y coteja que lleva todo lo que la app pide
+# y que las plantillas de iOS (permisos en los diez idiomas, privacidad,
+# icono, arranque) son las de hoy; probar_app.js abre app/www/ con la marca
+# TGO_NATIVO en Chromium (sin service worker, sin banner, sin push, datos
+# vivos primero y los de dentro sin red) y la raiz sin ella (nada cambia);
+# auditar_app_store.js coteja la ficha de la tienda con los limites de Apple
+# y con las cifras de hoy. probar_app.js sirve app/www/ en PUERTO+1.
+control app_preparar.js node tools/app_preparar.js --comprobar
+control probar_app.js node tools/probar_app.js "$PUERTO"
+control auditar_app_store.js node tools/auditar_app_store.js
+
 echo "════════ erratas al transliterar al cirilico ════════"
 control auditar_cirilico.py python3 tools/auditar_cirilico.py
 echo; echo "════════ texto que se queda en el idioma de arranque ════════"

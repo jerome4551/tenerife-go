@@ -1,0 +1,23 @@
+{
+  "name": "tenerife-go-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Tenerife Go para las tiendas: la misma PWA (../index.html) dentro de Capacitor. Ver LEEME.md y ../LANZAMIENTO-APP-STORE.md.",
+  "scripts": {
+    "preparar": "node ../tools/app_preparar.js",
+    "comprobar": "node ../tools/app_preparar.js --comprobar",
+    "ios:anadir": "npx cap add ios && bash ios/plantillas/aplicar.sh",
+    "ios:sync": "node ../tools/app_preparar.js && npx cap sync ios",
+    "ios:abrir": "npx cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/ios": "^8.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

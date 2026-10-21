@@ -361,9 +361,12 @@ titulo('4. la carga perezosa y lo que pide el navegador');
   const conecta = (csp.match(/connect-src ([^;]+)/) || [, ''])[1].split(/\s+/);
   /* lo que se PIDE (fetch), no los enlaces que se ensenan para abrir fuera */
   const hosts = [...modulo.matchAll(/(?:fetch\(\s*|var url = )'https:\/\/([a-z0-9.-]+)\//g)].map(m => m[1]);
-  const fetchs = [...modulo.matchAll(/\bfetch\(\s*([^)]{0,60})/g)].map(m => m[1].trim());
+  /* `pedir` es fetch o, dentro de la aplicacion de las tiendas, tgoFetchDatos (index.html): la copia viva primero y la de dentro si no llega */
+  const fetchs = [...modulo.matchAll(/\b(?:fetch|pedir)\(\s*([^)]{0,60})/g)].map(m => m[1].trim());
   ok(hosts.length > 0 && hosts.every(h => conecta.includes('https://' + h)), 'lo que el panel pide fuera (' + [...new Set(hosts)].join(', ') + ') esta en el connect-src de la CSP', conecta.join(' '));
-  ok(fetchs.every(x => /^'\.\/datos\/cielo\.json'|^'\.\/datos\/satelites\.json'|^url\b/.test(x)), 'y no pide nada mas: el catalogo, los elementos de los satelites, la nubosidad y Wikipedia (fetch: ' + fetchs.join(' · ') + ')');
+  ok(fetchs.length >= 4 && fetchs.every(x => /^'\.\/datos\/cielo\.json'|^'\.\/datos\/satelites\.json'|^url\b/.test(x)), 'y no pide nada mas: el catalogo, los elementos de los satelites, la nubosidad y Wikipedia (fetch: ' + fetchs.join(' · ') + ')');
+  ok(/var pedir = typeof tgoFetchDatos === 'function' \? tgoFetchDatos : fetch;/.test(modulo) && /function tgoFetchDatos\(ruta, opc\)/.test(index) && /if \(!window\.TGO_NATIVO\) return fetch\(ruta, opc\);/.test(index),
+     'los elementos de los satelites se piden con tgoFetchDatos (index.html): en la web es fetch tal cual; en la aplicacion de las tiendas, la copia viva primero');
   /* Wikipedia (20 de octubre de 2026): la ficha pide el resumen a
      <idioma>.wikipedia.org y los enlaces entre idiomas a en.wikipedia.org;
      la foto viene de upload.wikimedia.org (img-src https:). */
@@ -493,7 +496,7 @@ titulo('11a. la Estacion Espacial y los satelites: el motor SGP4, los elementos 
   const sw = lee('sw.js');
   ok(/'\.\/vendor\/satellite\.js'/.test(sw) && /'\.\/datos\/satelites\.json'/.test(sw) && /endsWith\('\/datos\/satelites\.json'\)/.test(sw),
      'sw.js: el motor y los elementos van en el precache, y los elementos se piden primero a la red (si la hay) para tenerlos frescos');
-  ok(/var SAT_MIN_ALT = 10, SAT_SOL_BAJO = -6/.test(modulo) && /fetch\('\.\/datos\/satelites\.json'\)/.test(modulo) && /s\.src = '\.\/vendor\/satellite\.js'/.test(modulo) && !/https?:\/\/[^'"\s]*celestrak/i.test(modulo),
+  ok(/var SAT_MIN_ALT = 10, SAT_SOL_BAJO = -6/.test(modulo) && /pedir\('\.\/datos\/satelites\.json'\)/.test(modulo) && /s\.src = '\.\/vendor\/satellite\.js'/.test(modulo) && !/https?:\/\/[^'"\s]*celestrak/i.test(modulo),
      'el modulo: 10° y Sol a −6°, lee los elementos y el motor de su propio dominio y no llama a CelesTrak desde el movil');
   ok(!/vendor\/satellite\.js/.test(index.replace(/<!--[\s\S]*?-->/g, '')), 'vendor/satellite.js no va en ninguna etiqueta de arranque de index.html (se pide al abrir el panel)');
   ok(/SAT_WP = \{ iss: \['International Space Station'\], tiangong: \['Tiangong space station'\], hubble: \['Hubble Space Telescope'\] \}/.test(modulo), 'la ficha pide a Wikipedia los articulos que son (International Space Station, Tiangong space station, Hubble Space Telescope)');
