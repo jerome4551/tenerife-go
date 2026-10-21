@@ -71,9 +71,22 @@ const FUENTES = ['OpenStreetMap', 'TITSA', 'AEMET', 'Open-Meteo', 'CelesTrak'];
 /* Las funciones que la ficha nombra, con el nombre que llevan en la app: quien
    lee «Pointez le ciel» en la tienda busca eso en la app, y la app dice
    «Pointez vers le ciel». Paso el 21 de octubre: asi en frances, «Punta il
-   cielo» en italiano (la app, «Punta al cielo»), «安排一天» en chino (la app,
-   «规划你的一天») y «怎么去» por «如何前往». */
-const FUNCIONES = ['UI.cieloApunta', 'UI.dpTitulo', 'UI.ariaComoLlegar'];
+   cielo» en italiano (la app, «Punta al cielo») y «安排一天» en chino (la app,
+   «规划你的一天»). */
+const FUNCIONES = ['UI.cieloApunta', 'UI.dpTitulo'];
+/* Y todo lo que la ficha pone entre comillas tiene que ser algo que se lee en
+   la app, en ese idioma: un rotulo, o un trozo de uno. Los aria-* no cuentan
+   (no se ven): el mismo 21 se tomo «Route hierheen», que solo lo lee el lector
+   de pantalla, por el «Cómo llegar» que se ve. */
+const ROTULOS_DE = {};
+for (const l of IDIOMAS) {
+  const r = [];
+  for (const [k, v] of Object.entries(R.UI)) if (!/^aria/.test(k) && v && typeof v[l] === 'string') r.push(v[l]);
+  for (const [k, v] of Object.entries(R.LANGS[l] || {})) if (!/^aria/.test(k) && typeof v === 'string') r.push(v);
+  for (const t of ['TTS', 'VIS', 'PWA', 'PUSH']) for (const v of Object.values(R.TABLAS[t] || {})) if (v && typeof v[l] === 'string') r.push(v[l]);
+  ROTULOS_DE[l] = r.map(s => s.toLowerCase());
+}
+const CITAS = /«\s?([^»]{2,60}?)\s?»|„([^“”]{2,60})[“”]|“([^”]{2,60})”|"([^"]{2,60})"|「([^」]{1,30})」|(?:^|\s)'([^'\n]{2,40})'(?=[\s.,;:!?)]|$)/g;
 /* Y dos promesas que la app no cumple, con las que salio la ficha: el
    planificador de guaguas calcula con la hora de ahora en Canarias
    (horaCanaria() en index.html; no hay donde elegir otra), y la ficha de un
@@ -127,6 +140,9 @@ for (const l of IDIOMAS) {
   if (!(IDIOMAS.length === 10 && DIEZ[l].test(x.descripcion))) cifras.push('idiomas ' + IDIOMAS.length);
   ok(cifras.length === 0, l + ': las cifras son las de hoy (' + PLACES.length + ' lugares, ' + LINES.length + ' lineas, ' + MAR_COSTAS.length + ' costas, ' + IDIOMAS.length + ' idiomas)', cifras.join('; '));
   ok(FUENTES.every(f => x.descripcion.includes(f)), l + ': nombra las fuentes del README (' + FUENTES.join(', ') + ')');
+  const citas = [...x.descripcion.matchAll(CITAS)].map(m => (m.slice(1).find(Boolean) || '').trim());
+  const noSeVen = citas.filter(c => !ROTULOS_DE[l].some(s => s.includes(c.toLowerCase())));
+  ok(citas.length > 0 && noSeVen.length === 0, l + ': lo que va entre comillas se lee asi en la app (' + citas.join(' · ') + ')', 'no esta en la app: ' + noSeVen.join(' · '));
   const nombres = FUNCIONES.map(k => R.valor(k, l));
   const faltan = nombres.filter(n => !n || !x.descripcion.toLowerCase().includes(n.toLowerCase()));
   ok(faltan.length === 0, l + ': las funciones con el nombre que llevan en la app («' + nombres.join('», «') + '»)', 'no estan: ' + faltan.join(' · '));
