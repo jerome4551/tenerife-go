@@ -3,37 +3,91 @@
  "canal": "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAP6596_RSS.xml",
  "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos?p=6596",
  "aemet": {
-  "fichero": "Z_CAP_C_LEMM_20261020215001_AFAP6596.tar.gz",
-  "publicado": "2026-10-20T21:50:01+00:00",
+  "fichero": "Z_CAP_C_LEMM_20261021063904_AFAP6596.tar.gz",
+  "publicado": "2026-10-21T06:39:04+00:00",
   "titulo": "Estado completo de avisos para Tenerife",
   "alcance": "2026-10-23T23:59:59+01:00"
  },
- "consultado": "2026-10-21T05:18:38Z",
+ "consultado": "2026-10-21T07:59:30Z",
  "avisos": [
   {
-   "id": "2.49.0.0.724.0.ES.20261020164410.659602PRP121211792514650",
+   "id": "2.49.0.0.724.0.ES.20261021063904.659601PRP121231792564744",
    "nivel": "amarillo",
    "fenomeno": "PR",
    "fenomeno_es": "Lluvias",
    "parametro": "P1",
    "parametro_es": "Precipitación acumulada en una hora",
    "valor": "15 mm",
-   "probabilidad": "10%-40%",
+   "probabilidad": "40%-70%",
+   "zonas": [
+    {
+     "codigo": "659601",
+     "nombre_es": "Norte de Tenerife"
+    }
+   ],
+   "inicio": "2026-10-21T07:00:00+01:00",
+   "fin": "2026-10-21T23:59:59+01:00",
+   "emitido": "2026-10-21T06:39:04Z",
+   "es": {
+    "descripcion": "Precipitación acumulada en una hora: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas.",
+    "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
+   },
+   "en": {
+    "descripcion": "One-hour accumulated precipitation: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas.",
+    "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
+   }
+  },
+  {
+   "id": "2.49.0.0.724.0.ES.20261021063904.659602PRP121231792564744",
+   "nivel": "amarillo",
+   "fenomeno": "PR",
+   "fenomeno_es": "Lluvias",
+   "parametro": "P1",
+   "parametro_es": "Precipitación acumulada en una hora",
+   "valor": "15 mm",
+   "probabilidad": "40%-70%",
    "zonas": [
     {
      "codigo": "659602",
      "nombre_es": "Área metropolitana de Tenerife"
     }
    ],
-   "inicio": "2026-10-21T15:00:00+01:00",
-   "fin": "2026-10-21T21:59:59+01:00",
-   "emitido": "2026-10-20T16:44:10Z",
+   "inicio": "2026-10-21T07:00:00+01:00",
+   "fin": "2026-10-21T23:59:59+01:00",
+   "emitido": "2026-10-21T06:39:04Z",
    "es": {
-    "descripcion": "Precipitación acumulada en una hora: 15 mm. Chubascos fuertes que pueden ir acompañados de tormenta.",
+    "descripcion": "Precipitación acumulada en una hora: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
    },
    "en": {
-    "descripcion": "One-hour accumulated precipitation: 15 mm. Chubascos fuertes que pueden ir acompañados de tormenta.",
+    "descripcion": "One-hour accumulated precipitation: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas.",
+    "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
+   }
+  },
+  {
+   "id": "2.49.0.0.724.0.ES.20261021063904.659603PRP121231792564744",
+   "nivel": "amarillo",
+   "fenomeno": "PR",
+   "fenomeno_es": "Lluvias",
+   "parametro": "P1",
+   "parametro_es": "Precipitación acumulada en una hora",
+   "valor": "15 mm",
+   "probabilidad": "40%-70%",
+   "zonas": [
+    {
+     "codigo": "659603",
+     "nombre_es": "Este, sur y oeste de Tenerife"
+    }
+   ],
+   "inicio": "2026-10-21T07:00:00+01:00",
+   "fin": "2026-10-21T23:59:59+01:00",
+   "emitido": "2026-10-21T06:39:04Z",
+   "es": {
+    "descripcion": "Precipitación acumulada en una hora: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas.",
+    "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
+   },
+   "en": {
+    "descripcion": "One-hour accumulated precipitation: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas.",
     "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
    }
   }
