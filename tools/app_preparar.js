@@ -315,8 +315,16 @@ function comprobar(montado) {
   }
   /* el icono y el arranque */
   const png = f => {
-    const r = spawnSync('python3', ['-c', 'from PIL import Image; import sys; im=Image.open(sys.argv[1]); print(im.size[0], im.size[1], im.mode)', path.join(PLANTILLAS, f)]);
-    return r.status === 0 ? String(r.stdout).trim().split(' ') : null;
+    /* im.load(): Image.open solo lee la cabecera, y un PNG cortado a la mitad
+       pasaba con su tamano y su modo; asi se descodifica entero */
+    const r = spawnSync('python3', ['-c', 'from PIL import Image; import sys; im=Image.open(sys.argv[1]); im.load(); print(im.size[0], im.size[1], im.mode)', path.join(PLANTILLAS, f)]);
+    if (r.status === 0) return String(r.stdout).trim().split(' ');
+    /* sin Pillow no se ha mirado nada, y eso no es un hallazgo: la linea de
+       python sale tal cual, a principio de linea, y auditar.sh lo cuenta como
+       control roto (pip install -r tools/requisitos.txt), no como rojo */
+    const err = String(r.stderr).trim().split('\n').pop();
+    if (/^ModuleNotFoundError/.test(err)) console.log(err);
+    return [err];
   };
   const ic = png('AppIcon-1024.png');
   ok(ic && ic[0] === '1024' && ic[1] === '1024' && ic[2] === 'RGB', 'AppIcon-1024.png: 1024×1024 sin transparencia (lo que pide App Store Connect)', ic && ic.join(' '));

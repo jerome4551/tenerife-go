@@ -20,7 +20,14 @@
 #                                hace falta para REGENERAR ese fichero; el .gz ya
 #                                esta en el repositorio y municipio.py lo lee sin
 #                                nada instalado.
+#   Pillow                       tools/app_preparar.js --comprobar abre con PIL el
+#                                icono y el arranque de la app de la tienda
+#                                (app/ios/plantillas/AppIcon-1024.png, 1024x1024
+#                                RGB sin transparencia; Splash-2732.png,
+#                                2732x2732). Sin Pillow esos dos controles no
+#                                miran nada.
 pmtiles
 mapbox_vector_tile
 pyshp
 pyproj
+Pillow
