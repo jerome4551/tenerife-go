@@ -428,7 +428,9 @@ pedía lo que se ve desde Tenerife.
   nombre a secas a veces a otra cosa; «Messier 42», «NGC 7000», los nombres
   de OpenNGC— y comprobando que sea de astronomía (su descripción corta); de
   ahí, por los enlaces entre idiomas (`prop=langlinks`), al del idioma de
-  quien lee, y si no lo hay sale el inglés y se dice. Texto plano
+  quien lee; si Wikipedia dice que no lo hay, la ficha lo dice en ese idioma
+  y no enseña nada en inglés (desde la noche del 21, por Jerome; abajo), y
+  si falla la red no dice nada. Texto plano
   (`textContent`), cada URL validada con `isSafeWikiUrl`, la foto por
   `img-src https:`, la licencia CC BY-SA 4.0 al pie, y lo leído se guarda 30
   días en el móvil (`tgo_cielo_wiki_v1`, hasta 80 resúmenes): en el Teide,
@@ -468,7 +470,8 @@ pedía lo que se ve desde Tenerife.
   fichas en los diez idiomas con los mismos datos; Wikipedia con una
   respuesta falsa: el resumen en alemán por los enlaces entre idiomas, un
   `<script>` en el texto que sale como texto, una foto con URL `javascript:`
-  rechazada, el francés sin artículo que cae al inglés y lo dice, una
+  rechazada, el francés sin artículo que lo dice en francés (antes caía al
+  inglés), el italiano sin red que no dice nada, una
   desambiguación y un homónimo que no es de astronomía que no salen, y que
   solo se pidió el resumen y los enlaces; **los sensores simulados** con los
   eventos de la API apuntando al planeta más brillante que esté arriba (el
@@ -636,7 +639,7 @@ megas, dibujos que tapan las estrellas, luz roja escondida, «IA» de pago.
 ### Los controles
 
 - **`auditar_cielo.js`, parte 10** (116 controles en total con las fuentes
-  bajadas; eran 85): los 14 retrógrados contra las dos tablas; las fases, las
+  bajadas; eran 85; 118 desde el cambio de Wikipedia de esa noche): los 14 retrógrados contra las dos tablas; las fases, las
   mismas que da `SearchMoonQuarter` aparte y la llena del 31-12-2028 a menos
   de 2 h del máximo del eclipse del IMCCE (16:48 frente a 16:52); las horas
   dorada y azul, con el centro del Sol calculado aparte a 6°, −4° y −6°
@@ -6630,6 +6633,31 @@ tres huellas sha256 son las de la nota.
   1.148 en búlgaro y 1.134 en polaco (`peso_descarga.py`); la cabecera de
   este documento decía las del 17, y `main` ya pesaba 1.026 sin el cielo
   nuevo.
+
+## El cielo: sin artículo de Wikipedia en tu idioma, la ficha lo dice (21 de octubre, noche)
+
+La ficha de un astro, cuando la Wikipedia del idioma de quien lee no tenía el
+artículo, enseñaba el resumen en inglés, avisando. Jerome: «Se podrían
+encontrar una manera que si no tiene artículo salta en el idioma
+seleccionado que no tienen artículo?». Ahora sí:
+
+- **Lo que se ve.** La cabecera de siempre («W De Wikipedia») y debajo, en
+  el idioma de la app, «No hay artículo en tu idioma.». Nada en inglés: ni
+  el texto, ni la foto, ni el enlace, ni la licencia (no hay texto que
+  licenciar). Las diez frases son las que ya llevaba el aviso de antes («en
+  inglés: no hay artículo en tu idioma»), sin la parte del inglés: la fila
+  `cieloWikiIngles` se cambia por `cieloWikiNo`, así que `CIELO_UI` sigue en
+  396 filas y las de idioma en 1.575.
+- **Solo cuando se sabe.** Se dice cuando Wikipedia lo confirma: el
+  artículo inglés del astro no tiene enlace a ese idioma (`langlinks`). Si
+  la red falla (el Teide sin cobertura), no se sabe, y no se dice nada; se
+  vuelve a mirar la próxima vez. Lo confirmado se recuerda 30 días, como los
+  resúmenes: sin cobertura se sigue diciendo.
+- **Probado.** `auditar_cielo.js`, **118 de 118** (dos más): el francés sin
+  enlace lo dice en francés y no trae nada en inglés, y queda recordado así;
+  el italiano con la red cortada no dice nada ni guarda nada. Y al revés,
+  con el inglés de antes y con «no hay» sin red metidos a propósito, esas
+  tres pruebas saltan: comprobado.
 
 ---
 

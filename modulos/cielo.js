@@ -733,7 +733,7 @@
     "cieloFichaLunasJ": {"es": "Sus cuatro lunas grandes ahora, como se ven con prismáticos (norte arriba, este a la izquierda)", "en": "Its four big moons right now, as seen through binoculars (north up, east left)", "fr": "Ses quatre grandes lunes en ce moment, comme aux jumelles (nord en haut, est à gauche)", "de": "Seine vier großen Monde jetzt, wie im Fernglas (Norden oben, Osten links)", "it": "Le sue quattro lune grandi adesso, come si vedono col binocolo (nord in alto, est a sinistra)", "nl": "Zijn vier grote manen nu, zoals door een verrekijker (noorden boven, oosten links)", "zh": "它的四颗大卫星此刻的位置，如双筒望远镜所见（上北左东）", "zht": "它的四顆大衛星此刻的位置，如雙筒望遠鏡所見（上北左東）", "bg": "Четирите му големи луни сега, както се виждат с бинокъл (север горе, изток вляво)", "pl": "Jego cztery duże księżyce teraz, jak przez lornetkę (północ u góry, wschód po lewej)"},
     "cieloFichaLunaDetras": {"es": "Ahora mismo no se ve: {l}, detrás del planeta", "en": "Hidden right now: {l}, behind the planet", "fr": "Invisible en ce moment : {l}, derrière la planète", "de": "Gerade nicht zu sehen: {l}, hinter dem Planeten", "it": "Ora non si vede: {l}, dietro il pianeta", "nl": "Nu niet te zien: {l}, achter de planeet", "zh": "此刻看不见：{l}，在行星后面", "zht": "此刻看不見：{l}，在行星後面", "bg": "Сега не се вижда: {l}, зад планетата", "pl": "Teraz niewidoczny: {l}, za planetą"},
     "cieloWiki": {"es": "De Wikipedia", "en": "From Wikipedia", "fr": "D’après Wikipédia", "de": "Aus Wikipedia", "it": "Da Wikipedia", "nl": "Van Wikipedia", "zh": "来自维基百科", "zht": "來自維基百科", "bg": "От Уикипедия", "pl": "Z Wikipedii"},
-    "cieloWikiIngles": {"es": "De Wikipedia (en inglés: no hay artículo en tu idioma)", "en": "From Wikipedia", "fr": "D’après Wikipédia (en anglais : pas d’article dans votre langue)", "de": "Aus Wikipedia (auf Englisch: kein Artikel in deiner Sprache)", "it": "Da Wikipedia (in inglese: non c’è una voce nella tua lingua)", "nl": "Van Wikipedia (in het Engels: geen artikel in jouw taal)", "zh": "来自维基百科（英文：没有你的语言的条目）", "zht": "來自維基百科（英文：沒有你的語言的條目）", "bg": "От Уикипедия (на английски: няма статия на твоя език)", "pl": "Z Wikipedii (po angielsku: nie ma artykułu w twoim języku)"},
+    "cieloWikiNo": {"es": "No hay artículo en tu idioma.", "en": "No article in your language.", "fr": "Pas d’article dans votre langue.", "de": "Kein Artikel in deiner Sprache.", "it": "Non c’è una voce nella tua lingua.", "nl": "Geen artikel in jouw taal.", "zh": "没有你的语言的条目。", "zht": "沒有你的語言的條目。", "bg": "Няма статия на твоя език.", "pl": "Nie ma artykułu w twoim języku."},
     "cieloWikiLeer": {"es": "Leer el artículo entero", "en": "Read the full article", "fr": "Lire l’article entier", "de": "Ganzen Artikel lesen", "it": "Leggi la voce intera", "nl": "Lees het hele artikel", "zh": "阅读全文", "zht": "閱讀全文", "bg": "Прочети цялата статия", "pl": "Przeczytaj cały artykuł"},
     "cieloWikiLicencia": {"es": "Texto de Wikipedia, licencia CC BY-SA 4.0.", "en": "Text from Wikipedia, licensed CC BY-SA 4.0.", "fr": "Texte de Wikipédia, licence CC BY-SA 4.0.", "de": "Text aus Wikipedia, Lizenz CC BY-SA 4.0.", "it": "Testo da Wikipedia, licenza CC BY-SA 4.0.", "nl": "Tekst van Wikipedia, licentie CC BY-SA 4.0.", "zh": "文字来自维基百科，采用 CC BY-SA 4.0 许可。", "zht": "文字來自維基百科，採用 CC BY-SA 4.0 授權。", "bg": "Текст от Уикипедия, лиценз CC BY-SA 4.0.", "pl": "Tekst z Wikipedii, licencja CC BY-SA 4.0."},
     /* Lo que piden las reseñas de las apps del cielo (21-10-2026): la brujula
@@ -3817,9 +3817,13 @@
      los titulos de wp[] (y se comprueba que el articulo sea de astronomia:
      su descripcion corta tiene que hablar de estrellas, nebulosas...), y de
      ahi, por los enlaces entre idiomas (langlinks), al del idioma de quien
-     lee. Se recuerda en este movil 30 dias: en el Teide, sin cobertura, lo ya
-     visto sigue saliendo. Todo va como texto (textContent), y las URL se
-     validan con isSafeWikiUrl, como las fotos de los lugares. */
+     lee. Si Wikipedia dice que no lo hay (langlinks sin ese idioma), la ficha
+     lo dice en el idioma de quien lee y no ensena nada en ingles (Jerome,
+     21-10-2026: «si no tiene articulo salta en el idioma seleccionado que no
+     tienen articulo»). Si falla la red no se sabe, y no se dice nada. Se
+     recuerda en este movil 30 dias: en el Teide, sin cobertura, lo ya visto
+     sigue saliendo. Todo va como texto (textContent), y las URL se validan
+     con isSafeWikiUrl, como las fotos de los lugares. */
   var WIKI_MEM = {}, WIKI_CLAVE = 'tgo_cielo_wiki_v1', WIKI_DIAS = 30;
   var ES_ASTRO = /\b(star|stars|stellar|nebula|cluster|galaxy|galaxies|constellation|planet|satellite|supernova|remnant|asterism|binary|variable|giant|dwarf|supergiant|system)\b/i;
   function wikiCache() { try { return JSON.parse(localStorage.getItem(WIKI_CLAVE) || '{}') || {}; } catch (e) { return {}; } }
@@ -3868,11 +3872,13 @@
       var titulo = (en.titles && en.titles.canonical) || en.title;
       return pedirJSON('https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&prop=langlinks&lllang=' + encodeURIComponent(dom) + '&titles=' + encodeURIComponent(titulo))
         .then(function (q) {
-          var pg = q && q.query && q.query.pages && q.query.pages[0], ll = pg && pg.langlinks && pg.langlinks[0];
-          if (!ll || !ll.title) return empaquetar(en, 'en');
-          return resumen(dom, ll.title, cab).then(function (j) { return j && j.type === 'standard' && j.extract ? empaquetar(j, dom) : empaquetar(en, 'en'); },
-                                                   function () { return empaquetar(en, 'en'); });
-        }, function () { return empaquetar(en, 'en'); });
+          var pg = q && q.query && q.query.pages && q.query.pages[0];
+          if (!pg || pg.missing) return null;
+          var ll = pg.langlinks && pg.langlinks[0];
+          if (!ll || !ll.title) return { sin: true, idioma: dom };
+          return resumen(dom, ll.title, cab).then(function (j) { return j && j.type === 'standard' && j.extract ? empaquetar(j, dom) : null; },
+                                                   function () { return null; });
+        }, function () { return null; });
     }).then(function (r) { if (r) wikiGuardar(k, { ts: Date.now(), r: r }); return r; }, function () { return null; });
     WIKI_MEM[k] = p;
     p.then(function (r) { if (!r) delete WIKI_MEM[k]; });
@@ -3886,11 +3892,12 @@
   }
   function pintarWiki(w, r) {
     w.textContent = '';
-    if (!r.texto) return;
+    if (!r.texto && !r.sin) return;
     var cab = el('div', 'cielo-wiki-cab');
     cab.appendChild(el('span', 'cielo-wiki-w', 'W'));
-    cab.appendChild(el('span', null, T(r.idioma === 'en' && lang() !== 'en' ? 'WikiIngles' : 'Wiki')));
+    cab.appendChild(el('span', null, T('Wiki')));
     w.appendChild(cab);
+    if (r.sin) { w.appendChild(el('p', 'cielo-wiki-no', T('WikiNo'))); return; }
     if (r.img) {
       var im = el('img', 'cielo-wiki-img'); im.alt = ''; im.loading = 'lazy'; im.decoding = 'async';
       try { im.referrerPolicy = 'no-referrer'; } catch (e) {}

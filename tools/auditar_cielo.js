@@ -54,7 +54,8 @@
  *      cifra calculada aqui aparte (temperatura de Ballesteros, luminosidad,
  *      distancia, lunas de Jupiter); y Wikipedia, con una respuesta falsa:
  *      el resumen en el idioma del lector por los enlaces entre idiomas, la
- *      licencia y nada que no venga de la API.
+ *      licencia y nada que no venga de la API; sin articulo en su idioma, lo
+ *      dice en su idioma y nada en ingles; sin red, no dice nada.
  *  10. lo que piden las reseñas de las apps del cielo (21 de octubre de
  *      2026, APPS-DEL-CIELO-COMPETENCIA.md): los retrogrados contra dos
  *      tablas publicadas; las fases contra el motor y contra el eclipse de
@@ -759,7 +760,10 @@ async function sinConexion(b) {
    magnetico A − D. La camara es la falsa de Chromium (un video de prueba).
    Wikipedia se responde aqui con JSON falso, con un titulo en aleman por
    los enlaces entre idiomas, una foto con URL no segura (tiene que
-   rechazarse) y texto con <script> (tiene que salir como texto). */
+   rechazarse) y texto con <script> (tiene que salir como texto). En
+   frances no hay enlace: la ficha lo dice en frances, sin nada en ingles
+   (Jerome, 21-10-2026). Y los enlaces al italiano no llegan (la red se
+   corta): no se sabe, asi que no se dice nada ni se guarda. */
 async function apunta(b) {
   titulo('9. «Apunta al cielo», la ficha y Wikipedia');
   const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera'], isMobile: true, hasTouch: true });
@@ -789,6 +793,7 @@ async function apunta(b) {
     }
     if (u.pathname === '/w/api.php' && u.searchParams.get('prop') === 'langlinks') {
       const t = u.searchParams.get('titles'), l = u.searchParams.get('lllang');
+      if (l === 'it') return r.abort('internetdisconnected');
       const ll = t === 'Betelgeuse' && l === 'de' ? [{ lang: 'de', title: 'Beteigeuze' }] : [];
       return r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ batchcomplete: true, query: { pages: [{ title: t, langlinks: ll }] } }) });
     }
@@ -874,10 +879,10 @@ async function apunta(b) {
   const w = await p.evaluate(async () => {
     const D = TG_CIELO.estado.datos, t = new Date('2026-12-13T22:00:00Z'), out = {};
     const bet = D.estrellas.find(e => e.n === 'Betelgeuse'), vega = D.estrellas.find(e => e.n === 'Vega'), castor = D.estrellas.find(e => e.n === 'Castor');
-    const espera = async (e, ms) => { for (let i = 0; i < ms / 50; i++) { if (e.querySelector('.cielo-wiki-txt') || e.__sin) return; await new Promise(r => setTimeout(r, 50)); } };
+    const espera = async (e, ms) => { for (let i = 0; i < ms / 50; i++) { if (e.querySelector('.cielo-wiki-txt, .cielo-wiki-no') || e.__sin) return; await new Promise(r => setTimeout(r, 50)); } };
     const mira = e => { const w = e.querySelector('.cielo-wiki'); if (!w || !w.children.length) return null;
       const img = w.querySelector('img'), a = w.querySelector('a'), p = w.querySelector('.cielo-wiki-txt');
-      return { txt: p ? p.textContent : '', lang: p ? p.getAttribute('lang') : null, img: img ? img.getAttribute('src') : null, href: a ? a.href : null, lic: (w.querySelector('.cielo-wiki-lic') || {}).textContent || '', scripts: w.querySelectorAll('script').length, cab: (w.querySelector('.cielo-wiki-cab') || {}).textContent || '' }; };
+      return { txt: p ? p.textContent : '', lang: p ? p.getAttribute('lang') : null, img: img ? img.getAttribute('src') : null, href: a ? a.href : null, lic: (w.querySelector('.cielo-wiki-lic') || {}).textContent || '', scripts: w.querySelectorAll('script').length, cab: (w.querySelector('.cielo-wiki-cab') || {}).textContent || '', no: (w.querySelector('.cielo-wiki-no') || {}).textContent || '' }; };
     setLang('de');
     let e = TG_CIELO.ficha({ k: 'est', rec: bet, v: bet.v }, t); document.body.appendChild(e); await espera(e, 4000); out.de = mira(e); e.remove();
     setLang('en');
@@ -887,8 +892,10 @@ async function apunta(b) {
     e = TG_CIELO.ficha({ k: 'est', rec: castor, v: castor.v }, t); document.body.appendChild(e); await espera(e, 4000); out.castor = mira(e); e.remove();
     setLang('fr');
     e = TG_CIELO.ficha({ k: 'est', rec: bet, v: bet.v }, t); document.body.appendChild(e); await espera(e, 4000); out.fr = mira(e); e.remove();
+    setLang('it');
+    e = TG_CIELO.ficha({ k: 'est', rec: bet, v: bet.v }, t); document.body.appendChild(e); await new Promise(r => setTimeout(r, 1500)); out.it = mira(e); e.remove();
     setLang('es');
-    try { out.cache = Object.keys(JSON.parse(localStorage.getItem('tgo_cielo_wiki_v1') || '{}')); } catch (x) { out.cache = []; }
+    try { const c = JSON.parse(localStorage.getItem('tgo_cielo_wiki_v1') || '{}'); out.cache = Object.keys(c); out.cacheFr = (c['h27989|fr'] || {}).r || null; } catch (x) { out.cache = []; }
     return out;
   });
   ok(w.de && /Beteigeuze ist ein Roter Überriese/.test(w.de.txt) && w.de.txt.includes('<script>alert(1)</script>') && w.de.scripts === 0 && w.de.lang === 'de' &&
@@ -896,10 +903,13 @@ async function apunta(b) {
      'en aleman: el resumen de de.wikipedia por los enlaces entre idiomas, el <script> como texto, la foto con URL no segura rechazada, el enlace y la licencia', JSON.stringify(w.de));
   ok(w.en && /red supergiant/.test(w.en.txt) && w.en.img === WIKI['en/Alpha_Orionis'].thumbnail.source && w.en.href === 'https://en.m.wikipedia.org/wiki/Betelgeuse',
      'en ingles: el resumen, la foto (upload.wikimedia.org) y el enlace', JSON.stringify(w.en));
-  ok(w.fr && /red supergiant/.test(w.fr.txt) && w.fr.lang === 'en' && /anglais/.test(w.fr.cab), 'en frances, sin articulo en frances: el ingles, y se dice', JSON.stringify(w.fr));
+  ok(w.fr && w.fr.no === 'Pas d’article dans votre langue.' && /Wikipédia/.test(w.fr.cab) && !w.fr.txt && w.fr.img === null && w.fr.href === null && !w.fr.lic && !/supergiant|anglais/i.test(JSON.stringify(w.fr)),
+     'en frances, sin articulo en frances: lo dice en frances, y nada en ingles (ni texto, ni foto, ni enlace)', JSON.stringify(w.fr));
+  ok(w.it === null && !w.cache.includes('h27989|it'), 'en italiano, sin red para los enlaces entre idiomas: no se sabe si hay articulo, asi que no se dice nada ni se guarda', JSON.stringify(w.it));
   ok(w.jup && /fifth planet/.test(w.jup.txt), 'Jupiter: el articulo del planeta', JSON.stringify(w.jup));
   ok(w.vega === null, 'Vega: «Alpha Lyrae» es una desambiguacion y «Vega» no es de astronomia en la respuesta falsa: no sale nada', JSON.stringify(w.vega));
   ok(w.castor && /sextuple star/.test(w.castor.txt), 'Castor: «Alpha Geminorum» lleva a la estrella', JSON.stringify(w.castor));
+  ok(w.cacheFr && w.cacheFr.sin === true && !w.cacheFr.texto, 'y «no hay articulo en francés» se recuerda como tal (en el Teide, sin cobertura, se sigue diciendo), sin texto en ingles guardado', JSON.stringify(w.cacheFr));
   ok(w.cache.includes('h27989|de') && w.cache.includes('h27989|en') && w.cache.every(k => new RegExp('\\|(' + IDI.join('|') + ')$').test(k)),
      'lo leido se guarda en el movil 30 dias (tgo_cielo_wiki_v1: ' + w.cache.length + ' resumenes, por astro e idioma)', w.cache.join(', '));
   const pedidasMal = pedidas.filter(x => !/^(en|de|fr)\.wikipedia\.org\/(api\/rest_v1\/page\/summary\/|w\/api\.php\?)/.test(x));

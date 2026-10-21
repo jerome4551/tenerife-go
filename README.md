@@ -183,7 +183,8 @@ y se pone, su recorrido de esa noche pintado en la carta si se pide, y lo
 que se sabe de él calculado de datos con fuente —la luz que ves salió hace N
 años, su clase y color, cuánto brilla en soles, las lunas de Júpiter ahora,
 los anillos de Saturno— más el resumen de Wikipedia en el idioma del lector
-(CC BY-SA), pedido al abrirla y guardado 30 días en el móvil.
+(CC BY-SA) o, si no hay artículo en ese idioma, el aviso de que no lo hay,
+pedido al abrirla y guardado 30 días en el móvil.
 
 **«Apunta al cielo»** es la carta a pantalla completa orientada con los
 sensores del móvil (brújula, giroscopio, acelerómetro; en iOS pide permiso
