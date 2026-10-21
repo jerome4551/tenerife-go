@@ -14,7 +14,7 @@
    "zh",
    "zht"
   ],
-  "entradas": 23,
+  "entradas": 29,
   "origen": "Redactado el 12/10/2026 a partir de las entradas de CHAT_KB, que solo estaban en castellano; cada dato, comprobado antes de traducirlo, y lo que no se pudo comprobar, fuera (ver AUDITORIA-FINAL.md).",
   "politica_datos": "Cada afirmacion sobre la app comprobada en el codigo de index.html y sw.js el 12/10/2026 (ver «nota» de cada entrada). Los rotulos entre comillas son los de la propia app en cada idioma y estan listados en «rotulos»: tools/auditar_faq.js comprueba que siguen siendo los de la pantalla. Sin cifras escritas a mano: {N} lugares y {L} idiomas los cuenta la app al contestar."
  },
@@ -127,15 +127,15 @@
     ]
    },
    "a": {
-    "es": "ℹ️ Tenerife GO, en pocas palabras:\n• El mapa: toca un pin y verás qué es, su horario si lo tiene y cómo llegar en coche o en guagua; en la costa, también el estado del mar\n• Arriba: el dado 🎲, la gasolinera más barata cerca de ti ⛽, las capas del mapa, el tiempo por zonas, el mar, las fiestas, las guaguas y el idioma\n• A los lados: el buscador 🔍 y las categorías\n• Abajo: Favoritos, Rutas, este Asistente y tu Cuenta\n• El tour de la app está siempre en la leyenda del mapa: «Ver el tour»\nPregúntame por cualquier función y te la explico.",
-    "en": "ℹ️ Tenerife GO in a nutshell:\n• The map: tap a marker to see what it is, its opening hours if it has them and how to get there by car or bus; on the coast, the sea conditions too\n• At the top: the dice 🎲, the cheapest petrol station near you ⛽, the map layers, the weather by area, the sea, the fiestas, the buses and the language\n• On the sides: search 🔍 and the categories\n• At the bottom: Favorites, Routes, this Assistant and your Account\n• The app tour is always in the map legend: «Take the tour»\nAsk me about any feature and I will explain it.",
-    "de": "ℹ️ Tenerife GO auf einen Blick:\n• Die Karte: Tippe auf einen Marker und du siehst, was es ist, die Öffnungszeiten, falls es welche gibt, und wie du mit dem Auto oder Bus hinkommst; an der Küste auch den Seegang\n• Oben: der Würfel 🎲, die günstigste Tankstelle in deiner Nähe ⛽, die Kartenebenen, das Wetter nach Zonen, das Meer, die Feste, die Busse und die Sprache\n• An den Seiten: die Suche 🔍 und die Kategorien\n• Unten: Favoriten, Routen, dieser Assistent und dein Konto\n• Die Tour durch die App ist immer in der Kartenlegende: «Tour starten»\nFrag mich nach jeder Funktion, und ich erkläre sie dir.",
-    "fr": "ℹ️ Tenerife GO en bref :\n• La carte : touche un marqueur pour voir ce que c’est, ses horaires s’il en a et comment y aller en voiture ou en bus ; sur la côte, l’état de la mer aussi\n• En haut : le dé 🎲, la station-service la moins chère près de toi ⛽, les fonds de carte, la météo par zone, la mer, les fêtes, les bus et la langue\n• Sur les côtés : la recherche 🔍 et les catégories\n• En bas : Favoris, Itinéraires, cet Assistant et ton Compte\n• La visite de l’appli est toujours dans la légende de la carte : «Voir le tour»\nDemande-moi n’importe quelle fonction et je te l’explique.",
-    "it": "ℹ️ Tenerife GO in breve:\n• La mappa: tocca un marcatore e vedi cos’è, l’orario se ce l’ha e come arrivarci in auto o in autobus; sulla costa, anche lo stato del mare\n• In alto: il dado 🎲, il distributore più economico vicino a te ⛽, i livelli della mappa, il meteo per zone, il mare, le feste, gli autobus e la lingua\n• Ai lati: la ricerca 🔍 e le categorie\n• In basso: Preferiti, Percorsi, questo Assistente e il tuo Account\n• Il tour dell’app è sempre nella legenda della mappa: «Fai il tour»\nChiedimi qualsiasi funzione e te la spiego.",
-    "nl": "ℹ️ Tenerife GO in het kort:\n• De kaart: tik op een marker en je ziet wat het is, de openingstijden als die er zijn en hoe je er met de auto of de bus komt; aan de kust ook de zeegang\n• Bovenaan: de dobbelsteen 🎲, het goedkoopste tankstation bij jou in de buurt ⛽, de kaartlagen, het weer per zone, de zee, de feesten, de bussen en de taal\n• Aan de zijkanten: zoeken 🔍 en de categorieën\n• Onderaan: Favorieten, Routes, deze Assistent en je Account\n• De tour door de app staat altijd in de legenda van de kaart: «Start de tour»\nVraag me naar elke functie en ik leg het je uit.",
-    "pl": "ℹ️ Tenerife GO w skrócie:\n• Mapa: dotknij znacznika, a zobaczysz, co to za miejsce, w jakich godzinach jest otwarte, jeśli ma godziny, i jak dojechać samochodem lub autobusem; na wybrzeżu także stan morza\n• Na górze: kostka 🎲, najtańsza stacja paliw w pobliżu ⛽, warstwy mapy, pogoda według stref, morze, święta, autobusy i język\n• Po bokach: wyszukiwarka 🔍 i kategorie\n• Na dole: Ulubione, Trasy, ten Asystent i twoje Konto\n• Przewodnik po aplikacji jest zawsze w legendzie mapy: «Zobacz przewodnik»\nZapytaj mnie o dowolną funkcję, a ci ją wyjaśnię.",
-    "zh": "ℹ️ Tenerife GO 简介：\n• 地图：点按地图标记，就能看到这是什么地方、营业时间（如有）以及开车或乘公交怎么去；海边的地点还会显示海况\n• 顶部：骰子 🎲、你附近最便宜的加油站 ⛽、地图图层、分区天气、海况、节庆、公交和语言\n• 两侧：搜索 🔍 和分类\n• 底部：收藏、路线、本助手和你的账户\n• 应用导览随时可以在地图图例中找到：「开始导览」\n想了解任何功能，尽管问我。",
-    "zht": "ℹ️ Tenerife GO 簡介：\n• 地圖：點按地圖標記，就能看到這是什麼地方、營業時間（如有）以及開車或搭公車怎麼去；海邊的地點還會顯示海況\n• 頂部：骰子 🎲、你附近最便宜的加油站 ⛽、地圖圖層、分區天氣、海況、節慶、公車和語言\n• 兩側：搜尋 🔍 和分類\n• 底部：收藏、路線、本助手和你的帳戶\n• 應用程式導覽隨時可以在地圖圖例中找到：「開始導覽」\n想了解任何功能，儘管問我。"
+    "es": "ℹ️ Tenerife GO, en pocas palabras:\n• El mapa: toca un pin y verás qué es, su horario si lo tiene y cómo llegar en coche o en guagua; en la costa, también el estado del mar\n• Arriba: el dado 🎲, la gasolinera más barata cerca de ti ⛽, las capas del mapa, el tiempo por zonas, el mar, las fiestas, el cielo 🔭, las guaguas y el idioma\n• A los lados: el buscador 🔍 y las categorías\n• Abajo: Favoritos, Rutas, este Asistente y tu Cuenta\n• El tour de la app está siempre en la leyenda del mapa: «Ver el tour»\nPregúntame por cualquier función y te la explico.",
+    "en": "ℹ️ Tenerife GO in a nutshell:\n• The map: tap a marker to see what it is, its opening hours if it has them and how to get there by car or bus; on the coast, the sea conditions too\n• At the top: the dice 🎲, the cheapest petrol station near you ⛽, the map layers, the weather by area, the sea, the fiestas, the night sky 🔭, the buses and the language\n• On the sides: search 🔍 and the categories\n• At the bottom: Favorites, Routes, this Assistant and your Account\n• The app tour is always in the map legend: «Take the tour»\nAsk me about any feature and I will explain it.",
+    "de": "ℹ️ Tenerife GO auf einen Blick:\n• Die Karte: Tippe auf einen Marker und du siehst, was es ist, die Öffnungszeiten, falls es welche gibt, und wie du mit dem Auto oder Bus hinkommst; an der Küste auch den Seegang\n• Oben: der Würfel 🎲, die günstigste Tankstelle in deiner Nähe ⛽, die Kartenebenen, das Wetter nach Zonen, das Meer, die Feste, der Sternenhimmel 🔭, die Busse und die Sprache\n• An den Seiten: die Suche 🔍 und die Kategorien\n• Unten: Favoriten, Routen, dieser Assistent und dein Konto\n• Die Tour durch die App ist immer in der Kartenlegende: «Tour starten»\nFrag mich nach jeder Funktion, und ich erkläre sie dir.",
+    "fr": "ℹ️ Tenerife GO en bref :\n• La carte : touche un marqueur pour voir ce que c’est, ses horaires s’il en a et comment y aller en voiture ou en bus ; sur la côte, l’état de la mer aussi\n• En haut : le dé 🎲, la station-service la moins chère près de toi ⛽, les fonds de carte, la météo par zone, la mer, les fêtes, le ciel 🔭, les bus et la langue\n• Sur les côtés : la recherche 🔍 et les catégories\n• En bas : Favoris, Itinéraires, cet Assistant et ton Compte\n• La visite de l’appli est toujours dans la légende de la carte : «Voir le tour»\nDemande-moi n’importe quelle fonction et je te l’explique.",
+    "it": "ℹ️ Tenerife GO in breve:\n• La mappa: tocca un marcatore e vedi cos’è, l’orario se ce l’ha e come arrivarci in auto o in autobus; sulla costa, anche lo stato del mare\n• In alto: il dado 🎲, il distributore più economico vicino a te ⛽, i livelli della mappa, il meteo per zone, il mare, le feste, il cielo 🔭, gli autobus e la lingua\n• Ai lati: la ricerca 🔍 e le categorie\n• In basso: Preferiti, Percorsi, questo Assistente e il tuo Account\n• Il tour dell’app è sempre nella legenda della mappa: «Fai il tour»\nChiedimi qualsiasi funzione e te la spiego.",
+    "nl": "ℹ️ Tenerife GO in het kort:\n• De kaart: tik op een marker en je ziet wat het is, de openingstijden als die er zijn en hoe je er met de auto of de bus komt; aan de kust ook de zeegang\n• Bovenaan: de dobbelsteen 🎲, het goedkoopste tankstation bij jou in de buurt ⛽, de kaartlagen, het weer per zone, de zee, de feesten, de sterrenhemel 🔭, de bussen en de taal\n• Aan de zijkanten: zoeken 🔍 en de categorieën\n• Onderaan: Favorieten, Routes, deze Assistent en je Account\n• De tour door de app staat altijd in de legenda van de kaart: «Start de tour»\nVraag me naar elke functie en ik leg het je uit.",
+    "pl": "ℹ️ Tenerife GO w skrócie:\n• Mapa: dotknij znacznika, a zobaczysz, co to za miejsce, w jakich godzinach jest otwarte, jeśli ma godziny, i jak dojechać samochodem lub autobusem; na wybrzeżu także stan morza\n• Na górze: kostka 🎲, najtańsza stacja paliw w pobliżu ⛽, warstwy mapy, pogoda według stref, morze, święta, niebo 🔭, autobusy i język\n• Po bokach: wyszukiwarka 🔍 i kategorie\n• Na dole: Ulubione, Trasy, ten Asystent i twoje Konto\n• Przewodnik po aplikacji jest zawsze w legendzie mapy: «Zobacz przewodnik»\nZapytaj mnie o dowolną funkcję, a ci ją wyjaśnię.",
+    "zh": "ℹ️ Tenerife GO 简介：\n• 地图：点按地图标记，就能看到这是什么地方、营业时间（如有）以及开车或乘公交怎么去；海边的地点还会显示海况\n• 顶部：骰子 🎲、你附近最便宜的加油站 ⛽、地图图层、分区天气、海况、节庆、星空 🔭、公交和语言\n• 两侧：搜索 🔍 和分类\n• 底部：收藏、路线、本助手和你的账户\n• 应用导览随时可以在地图图例中找到：「开始导览」\n想了解任何功能，尽管问我。",
+    "zht": "ℹ️ Tenerife GO 簡介：\n• 地圖：點按地圖標記，就能看到這是什麼地方、營業時間（如有）以及開車或搭公車怎麼去；海邊的地點還會顯示海況\n• 頂部：骰子 🎲、你附近最便宜的加油站 ⛽、地圖圖層、分區天氣、海況、節慶、星空 🔭、公車和語言\n• 兩側：搜尋 🔍 和分類\n• 底部：收藏、路線、本助手和你的帳戶\n• 應用程式導覽隨時可以在地圖圖例中找到：「開始導覽」\n想了解任何功能，儘管問我。"
    },
    "follow": [
     "app-02",
@@ -149,7 +149,7 @@
     "UI.navAccount",
     "UI.tourVer"
    ],
-   "comprobado": "htmlGlobo (horario solo si tiene fuente, mar en COAST_CATS), barra superior (dado, gas-top-btn, capas, mc-btn, mar-btn, fi-btn, bus, idioma), buscador a la izquierda y category-btn a la derecha (capturas del tour), barra inferior v19, tourVer en la leyenda"
+   "comprobado": "htmlGlobo (horario solo si tiene fuente, mar en COAST_CATS), barra superior (dado, gas-top-btn, capas, mc-btn, mar-btn, fi-btn, bus, idioma), buscador a la izquierda y category-btn a la derecha (capturas del tour), barra inferior v19, tourVer en la leyenda · 21/10/2026: cielo-btn 🔭 va justo detras de fi-btn (modulos/cielo.js, iniciar())"
   },
   {
    "id": "app-02",
@@ -659,15 +659,15 @@
     ]
    },
    "a": {
-    "es": "📴 Sí, una vez que la hayas abierto con conexión. Sin red siguen funcionando los lugares y sus fichas, el buscador, las categorías, las guaguas con sus paradas y este asistente. En las capas del mapa tienes «Isla offline», un mapa de toda la isla que va dentro de la app; «Satélite» y «Topo» guardan además las zonas que ya has mirado. Lo que llega en directo sí necesita conexión: el tiempo, el estado del mar, la ruta en coche y las webcams.",
-    "en": "📴 Yes, once you have opened it with a connection. With no signal, the places and their details, search, the categories, the buses with their stops and this assistant all keep working. In the map layers you have «Island offline», a map of the whole island that comes inside the app; «Satellite» and «Topo» also keep the areas you have already looked at. Live things do need a connection: the weather, the sea conditions, the car route and the webcams.",
-    "de": "📴 Ja, sobald du sie einmal mit Verbindung geöffnet hast. Ohne Netz funktionieren die Orte mit ihren Infos, die Suche, die Kategorien, die Busse mit ihren Haltestellen und dieser Assistent weiter. Bei den Kartenebenen gibt es «Insel offline», eine Karte der ganzen Insel, die in der App steckt; «Satellit» und «Topo» behalten außerdem die Gegenden, die du schon angesehen hast. Was live kommt, braucht Verbindung: das Wetter, der Seegang, die Autoroute und die Webcams.",
-    "fr": "📴 Oui, une fois que tu l’as ouverte avec une connexion. Sans réseau, les lieux et leurs fiches, la recherche, les catégories, les bus avec leurs arrêts et cet assistant continuent de marcher. Dans les fonds de carte tu as «Île hors ligne», une carte de toute l’île incluse dans l’appli ; «Satellite» et «Topo» gardent aussi les zones que tu as déjà regardées. Ce qui arrive en direct a besoin de connexion : la météo, l’état de la mer, l’itinéraire en voiture et les webcams.",
-    "it": "📴 Sì, dopo che l’hai aperta almeno una volta con la connessione. Senza rete continuano a funzionare i luoghi con le loro schede, la ricerca, le categorie, gli autobus con le fermate e questo assistente. Tra i livelli della mappa hai «Isola offline», una mappa di tutta l’isola compresa nell’app; «Satellite» e «Topo» conservano anche le zone che hai già guardato. Quello che arriva in diretta ha bisogno di connessione: il meteo, lo stato del mare, il percorso in auto e le webcam.",
-    "nl": "📴 Ja, zodra je hem één keer met verbinding hebt geopend. Zonder netwerk blijven de plekken met hun info, zoeken, de categorieën, de bussen met hun haltes en deze assistent werken. Bij de kaartlagen heb je «Eiland offline», een kaart van het hele eiland die in de app zit; «Satelliet» en «Topo» onthouden ook de gebieden die je al hebt bekeken. Wat live binnenkomt heeft wel verbinding nodig: het weer, de zeegang, de autoroute en de webcams.",
-    "pl": "📴 Tak, jeśli raz otworzysz ją z połączeniem. Bez sieci dalej działają miejsca z opisami, wyszukiwarka, kategorie, autobusy z przystankami i ten asystent. W warstwach mapy masz «Wyspa offline» — mapę całej wyspy wbudowaną w aplikację; «Satelita» i «Topo» zachowują też obszary, które już oglądałeś. To, co przychodzi na żywo, wymaga połączenia: pogoda, stan morza, trasa samochodem i kamery na żywo.",
-    "zh": "📴 可以，只要你先联网打开过一次。没网时，地点和介绍、搜索、分类、公交线路和站点，以及这个助手都能照常使用。地图图层里有「离线海岛图」，这是内置在应用里的全岛地图；「卫星」和「地形」图层也会保留你看过的区域。实时内容则需要联网：天气、海况、驾车路线和实时影像。",
-    "zht": "📴 可以，只要你先連網打開過一次。沒網路時，地點和介紹、搜尋、分類、公車路線和站點，以及這個助手都能照常使用。地圖圖層裡有「離線海島圖」，這是內建在應用程式裡的全島地圖；「衛星」和「地形」圖層也會保留你看過的區域。即時內容則需要連網：天氣、海況、開車路線和即時影像。"
+    "es": "📴 Sí, una vez que la hayas abierto con conexión. Sin red siguen funcionando los lugares y sus fichas, el buscador, las categorías, las guaguas con sus paradas, el cielo 🔭 y este asistente. En las capas del mapa tienes «Isla offline», un mapa de toda la isla que va dentro de la app; «Satélite» y «Topo» guardan además las zonas que ya has mirado. Lo que llega en directo sí necesita conexión: el tiempo, el estado del mar, la previsión de nubes del cielo, la ruta en coche y las webcams.",
+    "en": "📴 Yes, once you have opened it with a connection. With no signal, the places and their details, search, the categories, the buses with their stops, the night sky 🔭 and this assistant all keep working. In the map layers you have «Island offline», a map of the whole island that comes inside the app; «Satellite» and «Topo» also keep the areas you have already looked at. Live things do need a connection: the weather, the sea conditions, the cloud forecast for the night sky, the car route and the webcams.",
+    "de": "📴 Ja, sobald du sie einmal mit Verbindung geöffnet hast. Ohne Netz funktionieren die Orte mit ihren Infos, die Suche, die Kategorien, die Busse mit ihren Haltestellen, der Sternenhimmel 🔭 und dieser Assistent weiter. Bei den Kartenebenen gibt es «Insel offline», eine Karte der ganzen Insel, die in der App steckt; «Satellit» und «Topo» behalten außerdem die Gegenden, die du schon angesehen hast. Was live kommt, braucht Verbindung: das Wetter, der Seegang, die Wolkenvorhersage für den Sternenhimmel, die Autoroute und die Webcams.",
+    "fr": "📴 Oui, une fois que tu l’as ouverte avec une connexion. Sans réseau, les lieux et leurs fiches, la recherche, les catégories, les bus avec leurs arrêts, le ciel 🔭 et cet assistant continuent de marcher. Dans les fonds de carte tu as «Île hors ligne», une carte de toute l’île incluse dans l’appli ; «Satellite» et «Topo» gardent aussi les zones que tu as déjà regardées. Ce qui arrive en direct a besoin de connexion : la météo, l’état de la mer, la prévision des nuages pour le ciel, l’itinéraire en voiture et les webcams.",
+    "it": "📴 Sì, dopo che l’hai aperta almeno una volta con la connessione. Senza rete continuano a funzionare i luoghi con le loro schede, la ricerca, le categorie, gli autobus con le fermate, il cielo 🔭 e questo assistente. Tra i livelli della mappa hai «Isola offline», una mappa di tutta l’isola compresa nell’app; «Satellite» e «Topo» conservano anche le zone che hai già guardato. Quello che arriva in diretta ha bisogno di connessione: il meteo, lo stato del mare, la previsione delle nuvole per il cielo, il percorso in auto e le webcam.",
+    "nl": "📴 Ja, zodra je hem één keer met verbinding hebt geopend. Zonder netwerk blijven de plekken met hun info, zoeken, de categorieën, de bussen met hun haltes, de sterrenhemel 🔭 en deze assistent werken. Bij de kaartlagen heb je «Eiland offline», een kaart van het hele eiland die in de app zit; «Satelliet» en «Topo» onthouden ook de gebieden die je al hebt bekeken. Wat live binnenkomt heeft wel verbinding nodig: het weer, de zeegang, de wolkenverwachting voor de sterrenhemel, de autoroute en de webcams.",
+    "pl": "📴 Tak, jeśli raz otworzysz ją z połączeniem. Bez sieci dalej działają miejsca z opisami, wyszukiwarka, kategorie, autobusy z przystankami, niebo 🔭 i ten asystent. W warstwach mapy masz «Wyspa offline» — mapę całej wyspy wbudowaną w aplikację; «Satelita» i «Topo» zachowują też obszary, które już oglądałeś. To, co przychodzi na żywo, wymaga połączenia: pogoda, stan morza, prognoza zachmurzenia dla nieba, trasa samochodem i kamery na żywo.",
+    "zh": "📴 可以，只要你先联网打开过一次。没网时，地点和介绍、搜索、分类、公交线路和站点、星空 🔭，以及这个助手都能照常使用。地图图层里有「离线海岛图」，这是内置在应用里的全岛地图；「卫星」和「地形」图层也会保留你看过的区域。实时内容则需要联网：天气、海况、星空的云量预报、驾车路线和实时影像。",
+    "zht": "📴 可以，只要你先連網打開過一次。沒網路時，地點和介紹、搜尋、分類、公車路線和站點、星空 🔭，以及這個助手都能照常使用。地圖圖層裡有「離線海島圖」，這是內建在應用程式裡的全島地圖；「衛星」和「地形」圖層也會保留你看過的區域。即時內容則需要連網：天氣、海況、星空的雲量預報、開車路線和即時影像。"
    },
    "follow": [
     "app-07",
@@ -679,7 +679,7 @@
     "LANGS.satellite",
     "LANGS.topo"
    ],
-   "comprobado": "sw.js: CORE precachea index.html, datos/titsa.js y mapa/tenerife-base.pmtiles; idiomas/ y faq/ red primero con cache; capa isla (LANGS.isla) e irAIslaSinRed; TESELAS guarda lo mirado de Esri (satellite y topo); las teselas de OSM (streets), solo red: su politica no permite usarlas sin conexion (LANZAMIENTO-PLAY.md 1.6, 16/10/2026); EN_VIVO sin cache: open-meteo (tiempo y mar), OSRM (ruta en coche); webcams son enlaces externos"
+   "comprobado": "sw.js: CORE precachea index.html, datos/titsa.js y mapa/tenerife-base.pmtiles; idiomas/ y faq/ red primero con cache; capa isla (LANGS.isla) e irAIslaSinRed; TESELAS guarda lo mirado de Esri (satellite y topo); las teselas de OSM (streets), solo red: su politica no permite usarlas sin conexion (LANZAMIENTO-PLAY.md 1.6, 16/10/2026); EN_VIVO sin cache: open-meteo (tiempo y mar), OSRM (ruta en coche); webcams son enlaces externos · 21/10/2026: sw.js precachea modulos/cielo.js, vendor/astronomy.browser.min.js y datos/cielo.json; la prevision de nubes del cielo es open-meteo (EN_VIVO)"
   },
   {
    "id": "app-07",
@@ -1465,22 +1465,22 @@
     ]
    },
    "a": {
-    "es": "🌡️ Arriba, el termómetro te da el tiempo en directo, zona por zona: aquí puede llover en un pueblo y hacer sol en el de al lado. La ola 🌊 te enseña el estado del mar por costas, y en el globo de cada lugar de costa tienes el del mar allí mismo. Necesita conexión.",
-    "en": "🌡️ At the top, the thermometer gives you the live weather, area by area: here it can rain in one village and be sunny in the next. The wave 🌊 shows the sea conditions by coast, and the pop-up of every coastal place has the sea right there. It needs a connection.",
-    "de": "🌡️ Oben zeigt dir das Thermometer das Wetter live, Zone für Zone: Hier kann es in einem Dorf regnen und im nächsten die Sonne scheinen. Die Welle 🌊 zeigt den Seegang nach Küsten, und im Pop-up jedes Küstenortes siehst du das Meer genau dort. Dafür brauchst du Verbindung.",
-    "fr": "🌡️ En haut, le thermomètre te donne la météo en direct, zone par zone : ici il peut pleuvoir dans un village et faire beau dans le suivant. La vague 🌊 te montre l’état de la mer par côte, et la bulle de chaque lieu du littoral donne la mer à cet endroit précis. Il faut une connexion.",
-    "it": "🌡️ In alto, il termometro ti dà il meteo in diretta, zona per zona: qui può piovere in un paese e splendere il sole in quello accanto. L’onda 🌊 ti mostra lo stato del mare per costa, e nel fumetto di ogni luogo sulla costa hai il mare proprio lì. Serve la connessione.",
-    "nl": "🌡️ Bovenaan geeft de thermometer je het weer live, zone per zone: hier kan het in het ene dorp regenen en in het volgende zonnig zijn. De golf 🌊 toont de zeegang per kust, en in de pop-up van elke kustplek zie je de zee precies daar. Daarvoor heb je verbinding nodig.",
-    "pl": "🌡️ Na górze termometr pokazuje pogodę na żywo, strefa po strefie: tu w jednej wsi może padać, a w sąsiedniej świecić słońce. Fala 🌊 pokazuje stan morza według wybrzeży, a w dymku każdego miejsca nad morzem masz morze dokładnie tam. Potrzebne jest połączenie.",
-    "zh": "🌡️ 顶部的温度计按区域显示实时天气：这里可能这个村子下雨，隔壁村子却阳光明媚。海浪按钮 🌊 按海岸显示海况，海边每个地点的信息框里也有当地的海况。需要联网。",
-    "zht": "🌡️ 頂部的溫度計依區域顯示即時天氣：這裡可能這個村子下雨，隔壁村子卻陽光普照。海浪按鈕 🌊 依海岸顯示海況，海邊每個地點的資訊框裡也有當地的海況。需要連網。"
+    "es": "🌡️ Arriba, el termómetro te da el tiempo en directo, zona por zona: aquí puede llover en un pueblo y hacer sol en el de al lado. La ola 🌊 te enseña el estado del mar por costas, y en el globo de cada lugar de costa tienes el del mar allí mismo. Si AEMET tiene avisos en vigor para Tenerife, arriba sale además un botón con un punto amarillo, naranja o rojo: tócalo para leerlos. Necesita conexión.",
+    "en": "🌡️ At the top, the thermometer gives you the live weather, area by area: here it can rain in one village and be sunny in the next. The wave 🌊 shows the sea conditions by coast, and the pop-up of every coastal place has the sea right there. If AEMET has warnings in force for Tenerife, a button with a yellow, orange or red dot also appears at the top: tap it to read them. It needs a connection.",
+    "de": "🌡️ Oben zeigt dir das Thermometer das Wetter live, Zone für Zone: Hier kann es in einem Dorf regnen und im nächsten die Sonne scheinen. Die Welle 🌊 zeigt den Seegang nach Küsten, und im Pop-up jedes Küstenortes siehst du das Meer genau dort. Hat AEMET für Teneriffa Warnungen in Kraft, erscheint oben außerdem ein Knopf mit einem gelben, orangen oder roten Punkt: Tippe darauf, um sie zu lesen. Dafür brauchst du Verbindung.",
+    "fr": "🌡️ En haut, le thermomètre te donne la météo en direct, zone par zone : ici il peut pleuvoir dans un village et faire beau dans le suivant. La vague 🌊 te montre l’état de la mer par côte, et la bulle de chaque lieu du littoral donne la mer à cet endroit précis. Si l’AEMET a des alertes en cours pour Tenerife, un bouton avec un point jaune, orange ou rouge apparaît aussi en haut : touche-le pour les lire. Il faut une connexion.",
+    "it": "🌡️ In alto, il termometro ti dà il meteo in diretta, zona per zona: qui può piovere in un paese e splendere il sole in quello accanto. L’onda 🌊 ti mostra lo stato del mare per costa, e nel fumetto di ogni luogo sulla costa hai il mare proprio lì. Se l’AEMET ha avvisi in vigore per Tenerife, in alto compare anche un pulsante con un punto giallo, arancione o rosso: toccalo per leggerli. Serve la connessione.",
+    "nl": "🌡️ Bovenaan geeft de thermometer je het weer live, zone per zone: hier kan het in het ene dorp regenen en in het volgende zonnig zijn. De golf 🌊 toont de zeegang per kust, en in de pop-up van elke kustplek zie je de zee precies daar. Heeft AEMET waarschuwingen van kracht voor Tenerife, dan verschijnt bovenaan ook een knop met een gele, oranje of rode stip: tik erop om ze te lezen. Daarvoor heb je verbinding nodig.",
+    "pl": "🌡️ Na górze termometr pokazuje pogodę na żywo, strefa po strefie: tu w jednej wsi może padać, a w sąsiedniej świecić słońce. Fala 🌊 pokazuje stan morza według wybrzeży, a w dymku każdego miejsca nad morzem masz morze dokładnie tam. Jeśli AEMET ma aktualne ostrzeżenia dla Teneryfy, na górze pojawia się też przycisk z żółtą, pomarańczową lub czerwoną kropką: dotknij go, żeby je przeczytać. Potrzebne jest połączenie.",
+    "zh": "🌡️ 顶部的温度计按区域显示实时天气：这里可能这个村子下雨，隔壁村子却阳光明媚。海浪按钮 🌊 按海岸显示海况，海边每个地点的信息框里也有当地的海况。如果 AEMET 对特内里费发布了生效中的预警，顶部还会出现一个带黄色、橙色或红色圆点的按钮：点按即可查看。需要联网。",
+    "zht": "🌡️ 頂部的溫度計依區域顯示即時天氣：這裡可能這個村子下雨，隔壁村子卻陽光普照。海浪按鈕 🌊 依海岸顯示海況，海邊每個地點的資訊框裡也有當地的海況。如果 AEMET 對特內里費發布了生效中的預警，頂部還會出現一個帶黃色、橙色或紅色圓點的按鈕：點按即可查看。需要連網。"
    },
    "follow": [
     "pla-01",
     "sal-03",
     "app-06"
    ],
-   "comprobado": "mc-btn 🌡️ (microclimas: tiempo en directo por zonas, tourMicroP); mar-btn 🌊 (estado del mar por costas, tourMarP); seaBlock en el globo de COAST_CATS; open-meteo y marine-api en EN_VIVO (necesitan red)"
+   "comprobado": "mc-btn 🌡️ (microclimas: tiempo en directo por zonas, tourMicroP); mar-btn 🌊 (estado del mar por costas, tourMarP); seaBlock en el globo de COAST_CATS; open-meteo y marine-api en EN_VIVO (necesitan red) · 21/10/2026: avisos de AEMET (Meteoalerta, canal de Tenerife) en #wx-pill, solo cuando hay avisos, con punto wx-amarillo / wx-naranja / wx-rojo; al tocarlo se abre #wx-panel"
   },
   {
    "id": "app-14",
@@ -2588,6 +2588,755 @@
     "app-03"
    ],
    "comprobado": "Comprobado en index.html el 12/10/2026: chatResolve (palabra de favoritos y de ordenar, distancia, ruta o «cerca de mi»); chatOrdenCercania (desde la posicion, o sin ella desde el favorito mas lejano del centro de todos; cada vez el mas cercano de los que quedan y despues 2-opt: se da la vuelta a un tramo si acorta el recorrido, asi que el recorrido no se cruza); chatDistKm (linea recta). Si el navegador no contesta a la ubicacion, a los 8 segundos se ordena sin ella. Lo prometia exc-03; lo pidio Jerome el 12/10/2026."
+  },
+  {
+   "id": "app-24",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué se ve esta noche en el cielo?",
+    "en": "What can I see in the sky tonight?",
+    "de": "Was ist heute Nacht am Himmel zu sehen?",
+    "fr": "Qu’est-ce qu’on voit ce soir dans le ciel ?",
+    "it": "Cosa si vede stanotte in cielo?",
+    "nl": "Wat is er vannacht aan de hemel te zien?",
+    "pl": "Co widać dziś w nocy na niebie?",
+    "zh": "今晚天上能看到什么？",
+    "zht": "今晚天上能看到什麼？"
+   },
+   "keys": {
+    "es": [
+     "telescopio",
+     "cielo de tenerife",
+     "que se ve esta noche",
+     "cielo esta noche",
+     "planetas",
+     "fase de la luna",
+     "luna llena",
+     "mapa del cielo",
+     "carta del cielo",
+     "constelaciones",
+     "luz roja",
+     "noche cerrada"
+    ],
+    "en": [
+     "telescope",
+     "sky tonight",
+     "what can i see tonight",
+     "planets",
+     "moon phase",
+     "full moon",
+     "sky map",
+     "star map",
+     "constellations",
+     "red light"
+    ],
+    "de": [
+     "teleskop",
+     "himmel uber teneriffa",
+     "himmel heute nacht",
+     "was sieht man heute nacht",
+     "planeten",
+     "mondphase",
+     "vollmond",
+     "himmelskarte",
+     "sternkarte",
+     "sternbilder",
+     "rotlicht"
+    ],
+    "fr": [
+     "telescope",
+     "ciel de tenerife",
+     "ciel ce soir",
+     "que voir ce soir dans le ciel",
+     "planetes",
+     "phase de la lune",
+     "pleine lune",
+     "carte du ciel",
+     "constellations",
+     "lumiere rouge"
+    ],
+    "it": [
+     "telescopio",
+     "cielo di tenerife",
+     "cielo stanotte",
+     "cosa si vede stanotte",
+     "pianeti",
+     "fase lunare",
+     "luna piena",
+     "mappa del cielo",
+     "costellazioni",
+     "luce rossa"
+    ],
+    "nl": [
+     "telescoop",
+     "sterrenhemel van tenerife",
+     "hemel vannacht",
+     "wat zie je vannacht",
+     "planeten",
+     "maanfase",
+     "volle maan",
+     "hemelkaart",
+     "sterrenkaart",
+     "sterrenbeelden",
+     "rood licht"
+    ],
+    "pl": [
+     "teleskop",
+     "niebo nad teneryfa",
+     "niebo dzis w nocy",
+     "co widac w nocy",
+     "planety",
+     "faza ksiezyca",
+     "pelnia",
+     "mapa nieba",
+     "gwiazdozbiory",
+     "czerwone swiatlo"
+    ],
+    "zh": [
+     "望远镜",
+     "特内里费星空",
+     "今晚的星空",
+     "今晚能看到什么",
+     "行星",
+     "月相",
+     "满月",
+     "星图",
+     "星座",
+     "红光模式"
+    ],
+    "zht": [
+     "望遠鏡",
+     "特內里費星空",
+     "今晚的星空",
+     "今晚能看到什麼",
+     "行星",
+     "月相",
+     "滿月",
+     "星圖",
+     "星座",
+     "紅光模式"
+    ]
+   },
+   "a": {
+    "es": "🔭 Arriba, el telescopio abre «Cielo de Tenerife». En «Esta noche» tienes a qué hora se hace noche cerrada, la Luna, los planetas que se ven y si sube la Vía Láctea, con la previsión de nubes; en «Calendario», las lluvias de estrellas y los eclipses que vienen; en «Catálogo», estrellas, cúmulos y galaxias según se vean a simple vista, con prismáticos o con telescopio; en «Mapa», el cielo a la hora que elijas, y en «Dónde ir», los sitios para mirar. Se calcula en el móvil y funciona sin conexión, menos las nubes. «Luz roja» tiñe la pantalla para no deslumbrarte.",
+    "en": "🔭 At the top, the telescope opens «Tenerife night sky». In «Tonight» you get when full darkness begins, the Moon, the planets you can see and whether the Milky Way rises, with the cloud forecast; in «Calendar», the coming meteor showers and eclipses; in «Catalog», stars, clusters and galaxies by whether you see them with the naked eye, binoculars or a telescope; in «Sky map», the sky at the time you choose; and in «Where to go», the places to watch from. It is calculated on your phone and works offline, except the clouds. «Red light» tints the screen so it does not dazzle you.",
+    "de": "🔭 Oben öffnet das Teleskop «Himmel über Teneriffa». Unter «Heute Nacht» siehst du, wann es richtig dunkel wird, den Mond, die sichtbaren Planeten und ob die Milchstraße aufgeht, mit der Wolkenvorhersage; unter «Kalender» die kommenden Sternschnuppen und Finsternisse; im «Katalog» Sterne, Sternhaufen und Galaxien danach, ob man sie mit bloßem Auge, mit dem Fernglas oder mit dem Teleskop sieht; unter «Karte» den Himmel zur gewählten Uhrzeit, und unter «Wohin» die Orte zum Beobachten. Es wird auf dem Handy berechnet und funktioniert ohne Verbindung, außer den Wolken. «Rotlicht» färbt den Bildschirm rot, damit er dich nicht blendet.",
+    "fr": "🔭 En haut, le télescope ouvre «Ciel de Tenerife». Dans «Ce soir», tu as l’heure de la nuit noire, la Lune, les planètes visibles et si la Voie lactée se lève, avec la prévision des nuages ; dans «Calendrier», les étoiles filantes et les éclipses à venir ; dans «Catalogue», étoiles, amas et galaxies selon qu’on les voit à l’œil nu, aux jumelles ou au télescope ; dans «Carte», le ciel à l’heure que tu choisis ; et dans «Où aller», les endroits d’où observer. Tout est calculé sur le téléphone et marche sans connexion, sauf les nuages. «Lumière rouge» teinte l’écran pour ne pas t’éblouir.",
+    "it": "🔭 In alto, il telescopio apre «Cielo di Tenerife». In «Stanotte» trovi a che ora fa buio pieno, la Luna, i pianeti visibili e se sorge la Via Lattea, con la previsione delle nuvole; in «Calendario», le prossime stelle cadenti ed eclissi; in «Catalogo», stelle, ammassi e galassie a seconda che si vedano a occhio nudo, con il binocolo o con il telescopio; in «Mappa», il cielo all’ora che scegli; e in «Dove andare», i posti da cui guardare. Si calcola sul telefono e funziona senza connessione, tranne le nuvole. «Luce rossa» tinge lo schermo per non abbagliarti.",
+    "nl": "🔭 Bovenaan opent de telescoop «Sterrenhemel van Tenerife». Bij «Vannacht» zie je wanneer het echt donker wordt, de maan, de zichtbare planeten en of de Melkweg opkomt, met de wolkenverwachting; bij «Kalender» de komende meteorenzwermen en eclipsen; in de «Catalogus» sterren, sterrenhopen en sterrenstelsels naargelang je ze met het blote oog, een verrekijker of een telescoop ziet; bij «Kaart» de hemel op het tijdstip dat je kiest, en bij «Waarheen» de plekken om te kijken. Het wordt op je telefoon berekend en werkt zonder verbinding, behalve de wolken. «Rood licht» kleurt het scherm rood, zodat het je niet verblindt.",
+    "pl": "🔭 Na górze teleskop otwiera «Niebo nad Teneryfą». W zakładce «Dziś w nocy» masz godzinę, o której robi się całkiem ciemno, Księżyc, widoczne planety i to, czy wschodzi Droga Mleczna, z prognozą zachmurzenia; w zakładce «Kalendarz» nadchodzące roje meteorów i zaćmienia; w zakładce «Katalog» gwiazdy, gromady i galaktyki według tego, czy widać je gołym okiem, przez lornetkę czy przez teleskop; w zakładce «Mapa» niebo o wybranej godzinie, a w zakładce «Gdzie» miejsca do obserwacji. Wszystko liczy się w telefonie i działa bez połączenia, poza chmurami. «Czerwone światło» barwi ekran na czerwono, żeby cię nie oślepiał.",
+    "zh": "🔭 顶部的望远镜打开「特内里费星空」。「今晚」里有几点天完全黑下来、月亮、能看到的行星、银河是否升起，以及云量预报；「天象日历」里是即将到来的流星雨和日月食；「星表」按肉眼、双筒望远镜或天文望远镜能否看到，列出恒星、星团和星系；「星图」显示你选定时刻的星空；「观星地点」介绍适合观星的地方。一切都在手机上计算，没网也能用，只有云量预报需要联网。「红光模式」会把屏幕调成红色，以免刺眼。",
+    "zht": "🔭 頂部的望遠鏡打開「特內里費星空」。「今晚」裡有幾點天完全黑下來、月亮、能看到的行星、銀河是否升起，以及雲量預報；「天象日曆」裡是即將到來的流星雨和日月食；「星表」按肉眼、雙筒望遠鏡或天文望遠鏡能否看到，列出恆星、星團和星系；「星圖」顯示你選定時刻的星空；「觀星地點」介紹適合觀星的地方。一切都在手機上計算，沒網路也能用，只有雲量預報需要連網。「紅光模式」會把螢幕調成紅色，以免刺眼。"
+   },
+   "follow": [
+    "app-25",
+    "tei-13",
+    "app-06"
+   ],
+   "rotulos": [
+    "UI.cieloTitulo",
+    "UI.cieloPesNoche",
+    "UI.cieloPesCalendario",
+    "UI.cieloPesCatalogo",
+    "UI.cieloPesMapa",
+    "UI.cieloPesDonde",
+    "UI.cieloRojo"
+   ],
+   "comprobado": "modulos/cielo.js (17/10/2026): PESTANAS noche, calendario, catalogo, mapa y donde (cieloPes*); «Esta noche»: Sol y oscuridad (noche cerrada, Sol a -18°), Luna, Planetas, Via Lactea y prevision de nubes de Open-Meteo para Izaña; «Calendario»: lluvias, eclipses, planetas, Sol y Luna; «Catalogo»: niveles a simple vista / prismaticos / telescopio; «Mapa»: el cielo en el instante elegido; «Donde ir»: sitios de Turismo de Tenerife, consejos y que llevar. cieloNotaCalendario: todo se calcula en el movil para Izaña. sw.js precachea el modulo, el motor y el catalogo; open-meteo, solo red. cieloRojo / cieloRojoAyuda."
+  },
+  {
+   "id": "app-25",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Cuándo hay lluvias de estrellas o eclipses?",
+    "en": "When are the meteor showers and eclipses?",
+    "de": "Wann gibt es Sternschnuppen oder Finsternisse?",
+    "fr": "Quand y a-t-il des étoiles filantes ou des éclipses ?",
+    "it": "Quando ci sono stelle cadenti o eclissi?",
+    "nl": "Wanneer zijn er meteorenzwermen of eclipsen?",
+    "pl": "Kiedy są roje meteorów albo zaćmienia?",
+    "zh": "什么时候有流星雨或日月食？",
+    "zht": "什麼時候有流星雨或日月食？"
+   },
+   "keys": {
+    "es": [
+     "eclipse",
+     "eclipses",
+     "proximo eclipse",
+     "eclipse de sol",
+     "eclipse de luna",
+     "lluvia de estrellas",
+     "lluvias de estrellas",
+     "estrellas fugaces",
+     "perseidas",
+     "geminidas",
+     "meteoros"
+    ],
+    "en": [
+     "eclipse",
+     "eclipses",
+     "next eclipse",
+     "solar eclipse",
+     "lunar eclipse",
+     "meteor shower",
+     "meteor showers",
+     "shooting stars",
+     "perseids",
+     "geminids",
+     "meteors"
+    ],
+    "de": [
+     "finsternis",
+     "finsternisse",
+     "sonnenfinsternis",
+     "mondfinsternis",
+     "nachste finsternis",
+     "sternschnuppen",
+     "meteorstrom",
+     "perseiden",
+     "geminiden",
+     "meteore"
+    ],
+    "fr": [
+     "eclipse",
+     "eclipses",
+     "prochaine eclipse",
+     "eclipse de soleil",
+     "eclipse de lune",
+     "etoiles filantes",
+     "pluie d etoiles filantes",
+     "perseides",
+     "geminides",
+     "meteores"
+    ],
+    "it": [
+     "eclissi",
+     "prossima eclissi",
+     "eclissi di sole",
+     "eclissi di luna",
+     "stelle cadenti",
+     "sciame meteorico",
+     "perseidi",
+     "geminidi",
+     "meteore"
+    ],
+    "nl": [
+     "eclips",
+     "eclipsen",
+     "zonsverduistering",
+     "maansverduistering",
+     "volgende eclips",
+     "meteorenzwerm",
+     "vallende sterren",
+     "perseiden",
+     "geminiden",
+     "meteoren"
+    ],
+    "pl": [
+     "zacmienie",
+     "zacmienia",
+     "zacmienie slonca",
+     "zacmienie ksiezyca",
+     "najblizsze zacmienie",
+     "roj meteorow",
+     "roje meteorow",
+     "spadajace gwiazdy",
+     "perseidy",
+     "geminidy"
+    ],
+    "zh": [
+     "日食",
+     "月食",
+     "日月食",
+     "下一次日食",
+     "流星雨",
+     "流星",
+     "英仙座流星雨",
+     "双子座流星雨"
+    ],
+    "zht": [
+     "日食",
+     "月食",
+     "日月食",
+     "下一次日食",
+     "流星雨",
+     "流星",
+     "英仙座流星雨",
+     "雙子座流星雨"
+    ]
+   },
+   "a": {
+    "es": "📅 En el 🔭 de arriba, pestaña «Calendario»: las lluvias de estrellas con la noche de su máximo y cómo estará la Luna, y los eclipses de Sol y de Luna con lo que se verá desde Tenerife y a qué hora. Está calculado para Izaña, en hora de Canarias. A un eclipse de Sol, nunca sin gafas homologadas ISO 12312-2 o un filtro solar delante del objetivo.",
+    "en": "📅 In the 🔭 at the top, «Calendar» tab: the meteor showers with the night of their peak and how the Moon will be, and the solar and lunar eclipses with what will be visible from Tenerife and at what time. It is calculated for Izaña, in Canary Islands time. For a solar eclipse, never without certified ISO 12312-2 glasses or a solar filter in front of the lens.",
+    "de": "📅 Im 🔭 oben, Reiter «Kalender»: die Sternschnuppen mit der Nacht ihres Maximums und wie der Mond dann steht, und die Sonnen- und Mondfinsternisse mit dem, was man von Teneriffa aus sieht, und zu welcher Uhrzeit. Berechnet für Izaña, in kanarischer Zeit. Eine Sonnenfinsternis nie ohne zertifizierte Brille nach ISO 12312-2 oder einen Sonnenfilter vor dem Objektiv ansehen.",
+    "fr": "📅 Dans le 🔭 en haut, onglet «Calendrier» : les étoiles filantes avec la nuit de leur maximum et l’état de la Lune, et les éclipses de Soleil et de Lune avec ce qu’on verra depuis Tenerife et à quelle heure. C’est calculé pour Izaña, à l’heure des Canaries. Une éclipse de Soleil, jamais sans lunettes certifiées ISO 12312-2 ou un filtre solaire devant l’objectif.",
+    "it": "📅 Nel 🔭 in alto, scheda «Calendario»: le stelle cadenti con la notte del loro massimo e come sarà la Luna, e le eclissi di Sole e di Luna con quello che si vedrà da Tenerife e a che ora. È calcolato per Izaña, in ora delle Canarie. Un’eclissi di Sole, mai senza occhiali certificati ISO 12312-2 o un filtro solare davanti all’obiettivo.",
+    "nl": "📅 In de 🔭 bovenaan, tabblad «Kalender»: de meteorenzwermen met de nacht van hun maximum en hoe de maan dan staat, en de zons- en maansverduisteringen met wat je vanaf Tenerife ziet en hoe laat. Berekend voor Izaña, in Canarische tijd. Een zonsverduistering nooit zonder gecertificeerde ISO 12312-2-bril of een zonnefilter vóór het objectief.",
+    "pl": "📅 W 🔭 na górze, zakładka «Kalendarz»: roje meteorów z nocą ich maksimum i tym, jak będzie wyglądał Księżyc, oraz zaćmienia Słońca i Księżyca z tym, co będzie widać z Teneryfy i o której. Obliczone dla Izañi, w czasie kanaryjskim. Na zaćmienie Słońca nigdy bez certyfikowanych okularów ISO 12312-2 albo filtra słonecznego przed obiektywem.",
+    "zh": "📅 在顶部的 🔭 里，「天象日历」：流星雨及其极大的那一晚、届时的月相，日食和月食在特内里费能看到什么、几点开始。按伊萨尼亚的位置、以加那利时间计算。看日食时，务必使用符合 ISO 12312-2 标准的观测眼镜，或在镜头前加装太阳滤镜。",
+    "zht": "📅 在頂部的 🔭 裡，「天象日曆」：流星雨及其極大的那一晚、屆時的月相，日食和月食在特內里費能看到什麼、幾點開始。按伊薩尼亞的位置、以加那利時間計算。看日食時，務必使用符合 ISO 12312-2 標準的觀測眼鏡，或在鏡頭前加裝太陽濾鏡。"
+   },
+   "follow": [
+    "app-24",
+    "tei-13"
+   ],
+   "rotulos": [
+    "UI.cieloPesCalendario"
+   ],
+   "comprobado": "modulos/cielo.js: pestaña calendario (cieloCalLluvias, cieloCalEclipses); lluvias con cieloLluviaMax y cieloLluviaLuna; eclipses con cieloEclSolTenerife / cieloEclSolLocalTotal / cieloEclSolHoras y cieloEclLuna*; cieloNotaCalendario (Izaña, hora de Canarias); cieloEclSolAviso (ISO 12312-2). Sin fechas escritas a mano: las calcula la app."
+  },
+  {
+   "id": "app-26",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Cómo borro mi cuenta?",
+    "en": "How do I delete my account?",
+    "de": "Wie lösche ich mein Konto?",
+    "fr": "Comment supprimer mon compte ?",
+    "it": "Come elimino il mio account?",
+    "nl": "Hoe verwijder ik mijn account?",
+    "pl": "Jak usunąć konto?",
+    "zh": "怎么删除我的账户？",
+    "zht": "怎麼刪除我的帳戶？"
+   },
+   "keys": {
+    "es": [
+     "borrar cuenta",
+     "borrar mi cuenta",
+     "eliminar cuenta",
+     "eliminar mi cuenta",
+     "darme de baja",
+     "dar de baja la cuenta",
+     "borrar mis datos",
+     "cerrar mi cuenta"
+    ],
+    "en": [
+     "delete account",
+     "delete my account",
+     "remove my account",
+     "close my account",
+     "erase my data",
+     "delete my data"
+    ],
+    "de": [
+     "konto loschen",
+     "mein konto loschen",
+     "konto entfernen",
+     "meine daten loschen",
+     "abmelden vom konto"
+    ],
+    "fr": [
+     "supprimer le compte",
+     "supprimer mon compte",
+     "effacer mon compte",
+     "effacer mes donnees",
+     "fermer mon compte"
+    ],
+    "it": [
+     "elimina account",
+     "eliminare il mio account",
+     "cancellare account",
+     "cancellare i miei dati",
+     "chiudere account"
+    ],
+    "nl": [
+     "account verwijderen",
+     "mijn account verwijderen",
+     "account opzeggen",
+     "mijn gegevens wissen"
+    ],
+    "pl": [
+     "usun konto",
+     "usunac konto",
+     "usuniecie konta",
+     "skasowac konto",
+     "usunac moje dane"
+    ],
+    "zh": [
+     "删除账户",
+     "删除我的账户",
+     "注销账户",
+     "删除我的数据"
+    ],
+    "zht": [
+     "刪除帳戶",
+     "刪除我的帳戶",
+     "註銷帳戶",
+     "刪除我的資料"
+    ]
+   },
+   "a": {
+    "es": "🗑️ En «Cuenta», abajo, con la sesión iniciada: debajo de «Cerrar sesión», toca «Eliminar cuenta» y confírmalo con «Sí, eliminar mi cuenta». Se borran tu correo, tu contraseña y los favoritos guardados en la nube, y no se puede deshacer. Si no puedes desde la app, escribe a tenerife.go.app@gmail.com desde el correo de tu cuenta con el asunto «Borrar mi cuenta»: se borra en un mes como máximo. Las notificaciones no van con la cuenta: se apagan en el navegador o en los ajustes del móvil.",
+    "en": "🗑️ In «Account», at the bottom, signed in: below «Log out», tap «Delete account» and confirm with «Yes, delete my account». Your email address, your password and the favourites saved in the cloud are deleted, and it cannot be undone. If you cannot do it from the app, write to tenerife.go.app@gmail.com from your account’s email address with the subject «Delete my account»: it is deleted within one month at the latest. Notifications are not part of the account: you turn them off in your browser or in your phone’s settings.",
+    "de": "🗑️ Unter «Konto», unten, angemeldet: unter «Abmelden» auf «Konto löschen» tippen und mit «Ja, mein Konto löschen» bestätigen. Gelöscht werden deine E-Mail-Adresse, dein Passwort und die in der Cloud gespeicherten Favoriten, und das lässt sich nicht rückgängig machen. Geht es in der App nicht, schreib an tenerife.go.app@gmail.com von der E-Mail-Adresse deines Kontos mit dem Betreff «Mein Konto löschen»: Es wird spätestens nach einem Monat gelöscht. Benachrichtigungen gehören nicht zum Konto: Du schaltest sie im Browser oder in den Einstellungen deines Handys aus.",
+    "fr": "🗑️ Dans «Compte», en bas, connecté : sous «Se déconnecter», touche «Supprimer le compte» et confirme avec «Oui, supprimer mon compte». Ton adresse e-mail, ton mot de passe et les favoris enregistrés dans le cloud sont effacés, et c’est définitif. Si tu n’y arrives pas depuis l’appli, écris à tenerife.go.app@gmail.com depuis l’adresse e-mail de ton compte, avec l’objet «Supprimer mon compte» : il est supprimé dans un délai d’un mois au plus. Les notifications ne font pas partie du compte : elles se désactivent dans le navigateur ou dans les réglages du téléphone.",
+    "it": "🗑️ In «Account», in basso, con l’accesso fatto: sotto «Esci», tocca «Elimina account» e conferma con «Sì, elimina il mio account». Vengono cancellati il tuo indirizzo e-mail, la tua password e i preferiti salvati nel cloud, e non si può annullare. Se dall’app non ci riesci, scrivi a tenerife.go.app@gmail.com dall’indirizzo e-mail del tuo account con oggetto «Elimina il mio account»: viene eliminato entro un mese al massimo. Le notifiche non fanno parte dell’account: si disattivano nel browser o nelle impostazioni del telefono.",
+    "nl": "🗑️ Bij «Account», onderaan, ingelogd: tik onder «Uitloggen» op «Account verwijderen» en bevestig met «Ja, verwijder mijn account». Je e-mailadres, je wachtwoord en de favorieten in de cloud worden gewist, en dat kan niet ongedaan worden gemaakt. Lukt het niet in de app, schrijf dan naar tenerife.go.app@gmail.com vanaf het e-mailadres van je account, met als onderwerp «Mijn account verwijderen»: het wordt uiterlijk binnen een maand verwijderd. Meldingen horen niet bij het account: die zet je uit in je browser of in de instellingen van je telefoon.",
+    "pl": "🗑️ W sekcji «Konto», na dole, po zalogowaniu: pod «Wyloguj się» dotknij «Usuń konto» i potwierdź przyciskiem «Tak, usuń moje konto». Usuwane są twój adres e-mail, hasło i ulubione zapisane w chmurze, i nie można tego cofnąć. Jeśli w aplikacji się nie da, napisz na tenerife.go.app@gmail.com z adresu e-mail swojego konta, z tematem «Usuń moje konto»: zostanie usunięte najpóźniej w ciągu miesiąca. Powiadomienia nie należą do konta: wyłącza się je w przeglądarce albo w ustawieniach telefonu.",
+    "zh": "🗑️ 登录后，点底部的「账户」：在「退出登录」下方点按「删除账户」，再点「确定删除我的账户」确认。你的电子邮箱、密码和保存在云端的收藏都会被删除，且无法撤销。如果在应用里删不了，请用账户的电子邮箱发邮件到 tenerife.go.app@gmail.com，主题写「删除我的账户」：最迟一个月内删除。通知不属于账户：请在浏览器或手机设置中关闭。",
+    "zht": "🗑️ 登入後，點底部的「帳戶」：在「登出」下方點按「刪除帳戶」，再點「確定刪除我的帳戶」確認。你的電子郵件地址、密碼和儲存在雲端的收藏都會被刪除，且無法復原。如果在應用程式裡刪不了，請用帳戶的電子郵件地址寄信到 tenerife.go.app@gmail.com，主旨寫「刪除我的帳戶」：最遲一個月內刪除。通知不屬於帳戶：請在瀏覽器或手機設定中關閉。"
+   },
+   "follow": [
+    "app-18",
+    "app-27"
+   ],
+   "rotulos": [
+    "UI.navAccount",
+    "LANGS.authLogoutBtn",
+    "UI.cuentaBorrarBtn",
+    "UI.cuentaBorrarSi"
+   ],
+   "comprobado": "auth-form-logged: auth-logout-btn y debajo auth-borrar-btn (cuentaBorrarBtn) -> auth-borrar-confirm (cuentaBorrarAviso, cuentaBorrarSi) -> rpc borrar_mi_cuenta (supabase/borrar-cuenta.sql); si falla, enlace a borrar-cuenta.html. Lo que se borra, el correo y el plazo: idiomas/borrar-cuenta/<lang>.json (borraTxt, correoTxt, asunto, noPush), la pagina que pide Google Play (1.2)."
+  },
+  {
+   "id": "app-27",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué datos guarda la app?",
+    "en": "What data does the app keep?",
+    "de": "Welche Daten speichert die App?",
+    "fr": "Quelles données l’appli garde-t-elle ?",
+    "it": "Quali dati conserva l’app?",
+    "nl": "Welke gegevens bewaart de app?",
+    "pl": "Jakie dane przechowuje aplikacja?",
+    "zh": "应用会保存哪些数据？",
+    "zht": "應用程式會儲存哪些資料？"
+   },
+   "keys": {
+    "es": [
+     "privacidad",
+     "politica de privacidad",
+     "rgpd",
+     "mis datos",
+     "datos personales",
+     "proteccion de datos",
+     "cookies",
+     "que datos guardais"
+    ],
+    "en": [
+     "privacy",
+     "privacy policy",
+     "gdpr",
+     "my data",
+     "personal data",
+     "data protection",
+     "cookies"
+    ],
+    "de": [
+     "datenschutz",
+     "datenschutzerklarung",
+     "dsgvo",
+     "meine daten",
+     "personenbezogene daten",
+     "cookies"
+    ],
+    "fr": [
+     "confidentialite",
+     "politique de confidentialite",
+     "rgpd",
+     "mes donnees",
+     "donnees personnelles",
+     "cookies"
+    ],
+    "it": [
+     "privacy",
+     "informativa sulla privacy",
+     "gdpr",
+     "i miei dati",
+     "dati personali",
+     "cookie"
+    ],
+    "nl": [
+     "privacy",
+     "privacybeleid",
+     "avg",
+     "mijn gegevens",
+     "persoonsgegevens",
+     "cookies"
+    ],
+    "pl": [
+     "prywatnosc",
+     "polityka prywatnosci",
+     "rodo",
+     "moje dane",
+     "dane osobowe",
+     "ciasteczka",
+     "cookies"
+    ],
+    "zh": [
+     "隐私",
+     "隐私政策",
+     "个人数据",
+     "我的数据",
+     "数据保护",
+     "cookie"
+    ],
+    "zht": [
+     "隱私",
+     "隱私權政策",
+     "我的資料",
+     "資料保護",
+     "cookie"
+    ]
+   },
+   "a": {
+    "es": "🔒 Está todo en «Privacidad · RGPD», abajo en el mapa, y en la web, en «Versión web». Tu ubicación, solo cuando la activas, y no se guarda en ningún servidor; tu correo y tu contraseña, si creas cuenta; tus favoritos, en la nube solo con cuenta; y si activas las notificaciones, la suscripción de tu navegador. Las estadísticas de uso, solo si aceptas el aviso de cookies. Para borrar la cuenta, «Borrar tu cuenta», al lado.",
+    "en": "🔒 It is all in «Privacy · GDPR», at the bottom of the map, and on the web in «Web version». Your location, only when you turn it on, and it is not stored on any server; your email address and password, if you create an account; your favourites, in the cloud only with an account; and, if you turn on notifications, your browser’s subscription. Usage statistics, only if you accept the cookie notice. To delete your account, «Delete your account», right next to it.",
+    "de": "🔒 Alles steht unter «Datenschutz · DSGVO», unten auf der Karte, und im Web unter «Webversion». Dein Standort nur, wenn du ihn einschaltest, und er wird auf keinem Server gespeichert; deine E-Mail-Adresse und dein Passwort, wenn du ein Konto anlegst; deine Favoriten, in der Cloud nur mit Konto; und wenn du Benachrichtigungen einschaltest, das Abo deines Browsers. Nutzungsstatistiken nur, wenn du dem Cookie-Hinweis zustimmst. Zum Löschen des Kontos: «Dein Konto löschen», gleich daneben.",
+    "fr": "🔒 Tout est dans «Confidentialité · RGPD», en bas de la carte, et sur le web, dans «Version web». Ta position, seulement quand tu l’actives, et elle n’est gardée sur aucun serveur ; ton adresse e-mail et ton mot de passe, si tu crées un compte ; tes favoris, dans le cloud seulement avec un compte ; et si tu actives les notifications, l’abonnement de ton navigateur. Les statistiques d’usage, seulement si tu acceptes le bandeau des cookies. Pour supprimer ton compte, «Supprimer votre compte», juste à côté.",
+    "it": "🔒 È tutto in «Privacy · GDPR», in basso sulla mappa, e sul web in «Versione web». La tua posizione, solo quando la attivi, e non viene salvata su nessun server; il tuo indirizzo e-mail e la password, se crei un account; i tuoi preferiti, nel cloud solo con un account; e se attivi le notifiche, l’iscrizione del tuo browser. Le statistiche d’uso, solo se accetti l’avviso dei cookie. Per eliminare l’account, «Eliminare il tuo account», lì accanto.",
+    "nl": "🔒 Alles staat in «Privacy · AVG», onderaan op de kaart, en op het web in «Webversie». Je locatie alleen als je die aanzet, en die wordt op geen enkele server bewaard; je e-mailadres en wachtwoord als je een account maakt; je favorieten, in de cloud alleen met een account; en als je meldingen aanzet, het abonnement van je browser. Gebruiksstatistieken alleen als je de cookiemelding accepteert. Om je account te verwijderen: «Je account verwijderen», ernaast.",
+    "pl": "🔒 Wszystko jest w «Prywatność · RODO», na dole mapy, a w sieci w «Wersja www». Twoja lokalizacja tylko wtedy, gdy ją włączysz, i nie jest zapisywana na żadnym serwerze; twój adres e-mail i hasło, jeśli założysz konto; ulubione, w chmurze tylko z kontem; a jeśli włączysz powiadomienia, subskrypcja twojej przeglądarki. Statystyki użycia tylko wtedy, gdy zaakceptujesz komunikat o ciasteczkach. Żeby usunąć konto: «Usuwanie konta», tuż obok.",
+    "zh": "🔒 详细内容都在地图下方的「隐私 · GDPR」里，网页上则在「网页版」。你的位置只在你开启时使用，不会保存到任何服务器；创建账户时会保存你的电子邮箱和密码；收藏只有登录后才存到云端；开启通知时，会保存浏览器的订阅。使用统计只在你接受 Cookie 提示后才收集。要删除账户，就在旁边的「删除您的账户」。",
+    "zht": "🔒 詳細內容都在地圖下方的「隱私 · GDPR」裡，網頁上則在「網頁版」。你的位置只在你開啟時使用，不會儲存到任何伺服器；建立帳戶時會儲存你的電子郵件地址和密碼；收藏只有登入後才存到雲端；開啟通知時，會儲存瀏覽器的訂閱。使用統計只在你接受 Cookie 提示後才收集。要刪除帳戶，就在旁邊的「刪除您的帳戶」。"
+   },
+   "follow": [
+    "app-26",
+    "app-29",
+    "app-18"
+   ],
+   "rotulos": [
+    "UI.ppEnlace",
+    "UI.ppEnlaceWeb",
+    "UI.cuentaBorrarPagina"
+   ],
+   "comprobado": "pp-pie (abajo en el mapa): boton ppEnlace -> openPrivacyPanel(); al lado, pp-enlace-web (ppEnlaceWeb, privacidad.html) y pp-enlace-borrar (cuentaBorrarPagina, borrar-cuenta.html). Lo que dice cada dato, de la politica: ppDatosGeoTxt, ppDatosCuentaTxt, ppDatosFavTxt, ppDatosPushTxt, ppDatosStatsTxt y ppStatsAntes (Google Analytics solo tras aceptar las cookies)."
+  },
+  {
+   "id": "app-28",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué significa «Patrocinado»?",
+    "en": "What does «Sponsored» mean?",
+    "de": "Was bedeutet «Anzeige»?",
+    "fr": "Que veut dire «Sponsorisé» ?",
+    "it": "Che cosa significa «Sponsorizzato»?",
+    "nl": "Wat betekent «Gesponsord»?",
+    "pl": "Co oznacza «Sponsorowane»?",
+    "zh": "「赞助」是什么意思？",
+    "zht": "「贊助」是什麼意思？"
+   },
+   "keys": {
+    "es": [
+     "patrocinado",
+     "patrocinados",
+     "patrocinio",
+     "publicidad",
+     "anuncio",
+     "anuncios",
+     "promocionado",
+     "negocios destacados"
+    ],
+    "en": [
+     "sponsored",
+     "sponsor",
+     "advert",
+     "adverts",
+     "ads",
+     "advertising",
+     "promoted"
+    ],
+    "de": [
+     "anzeige",
+     "anzeigen",
+     "werbung",
+     "gesponsert",
+     "sponsor",
+     "beworben"
+    ],
+    "fr": [
+     "sponsorise",
+     "sponsorises",
+     "publicite",
+     "annonce",
+     "annonces",
+     "pub",
+     "promu"
+    ],
+    "it": [
+     "sponsorizzato",
+     "sponsorizzati",
+     "pubblicita",
+     "annuncio",
+     "annunci",
+     "promosso"
+    ],
+    "nl": [
+     "gesponsord",
+     "sponsor",
+     "advertentie",
+     "advertenties",
+     "reclame",
+     "gepromoot"
+    ],
+    "pl": [
+     "sponsorowane",
+     "sponsor",
+     "reklama",
+     "reklamy",
+     "promowane",
+     "ogloszenie"
+    ],
+    "zh": [
+     "赞助",
+     "广告",
+     "推广",
+     "付费推广"
+    ],
+    "zht": [
+     "贊助",
+     "廣告",
+     "推廣",
+     "付費推廣"
+    ]
+   },
+   "a": {
+    "es": "💼 Son negocios que pagan un plan de promoción mensual para salir en el mapa: lo pone en su globo, «Patrocinado». Se enseñan igual a todo el mundo, sin usar tus datos ni cookies publicitarias, y no cambian el resto del contenido.",
+    "en": "💼 They are businesses that pay a monthly promotion plan to appear on the map: their pop-up says so, «Sponsored». Everyone sees them the same way, without using your data or advertising cookies, and they do not change the rest of the content.",
+    "de": "💼 Das sind Betriebe, die einen monatlichen Werbeplan zahlen, um auf der Karte zu erscheinen: In ihrem Pop-up steht «Anzeige». Alle sehen sie gleich, ohne deine Daten oder Werbecookies zu nutzen, und sie verändern die übrigen Inhalte nicht.",
+    "fr": "💼 Ce sont des commerces qui paient un forfait de promotion mensuel pour apparaître sur la carte : leur bulle l’indique, «Sponsorisé». Tout le monde les voit de la même façon, sans utiliser tes données ni de cookies publicitaires, et ils ne modifient pas le reste du contenu.",
+    "it": "💼 Sono attività che pagano un piano di promozione mensile per comparire sulla mappa: lo dice il loro fumetto, «Sponsorizzato». Le vedono tutti allo stesso modo, senza usare i tuoi dati né cookie pubblicitari, e non cambiano il resto dei contenuti.",
+    "nl": "💼 Dat zijn bedrijven die een maandelijks promotieplan betalen om op de kaart te staan: hun pop-up zegt het, «Gesponsord». Iedereen ziet ze op dezelfde manier, zonder jouw gegevens of advertentiecookies te gebruiken, en ze veranderen de rest van de inhoud niet.",
+    "pl": "💼 To firmy, które płacą za miesięczny plan promocyjny, żeby pojawiać się na mapie: mówi to ich dymek, «Sponsorowane». Wszyscy widzą je tak samo, bez używania twoich danych ani ciasteczek reklamowych, i nie zmieniają reszty treści.",
+    "zh": "💼 这些是付费按月推广、出现在地图上的商家：它们的信息框里会标明「赞助」。所有人看到的都一样，不使用你的数据，也没有广告 Cookie，不会改变其余内容。",
+    "zht": "💼 這些是付費按月推廣、出現在地圖上的商家：它們的資訊框裡會標明「贊助」。所有人看到的都一樣，不使用你的資料，也沒有廣告 Cookie，不會改變其餘內容。"
+   },
+   "follow": [
+    "app-12",
+    "app-27"
+   ],
+   "rotulos": [
+    "UI.adRecommend"
+   ],
+   "comprobado": "globo de los pines de anuncios: popup-cat con tx(adRecommend) (LANZAMIENTO-PLAY.md 1.4, LSSI art. 20.1). Lo que son y que no usan datos: la politica, ppPubQue y ppPubNoDatos."
+  },
+  {
+   "id": "app-29",
+   "cat": "app",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Puedo recibir una frase cada mañana?",
+    "en": "Can I get a message every morning?",
+    "de": "Kann ich jeden Morgen eine Nachricht bekommen?",
+    "fr": "Puis-je recevoir un message chaque matin ?",
+    "it": "Posso ricevere un messaggio ogni mattina?",
+    "nl": "Kan ik elke ochtend een bericht krijgen?",
+    "pl": "Czy mogę dostawać wiadomość każdego ranka?",
+    "zh": "可以每天早上收到一句话吗？",
+    "zht": "可以每天早上收到一句話嗎？"
+   },
+   "keys": {
+    "es": [
+     "notificaciones",
+     "notificacion",
+     "activar notificaciones",
+     "frase del dia",
+     "aviso diario",
+     "frase cada manana",
+     "quitar notificaciones",
+     "desactivar notificaciones"
+    ],
+    "en": [
+     "notifications",
+     "notification",
+     "turn on notifications",
+     "daily message",
+     "message every morning",
+     "turn off notifications",
+     "push notifications"
+    ],
+    "de": [
+     "benachrichtigungen",
+     "benachrichtigung",
+     "benachrichtigungen aktivieren",
+     "tagliche nachricht",
+     "benachrichtigungen ausschalten",
+     "push nachrichten"
+    ],
+    "fr": [
+     "notifications",
+     "notification",
+     "activer les notifications",
+     "message du jour",
+     "message chaque matin",
+     "desactiver les notifications"
+    ],
+    "it": [
+     "notifiche",
+     "notifica",
+     "attivare le notifiche",
+     "messaggio del giorno",
+     "messaggio ogni mattina",
+     "disattivare le notifiche"
+    ],
+    "nl": [
+     "meldingen",
+     "melding",
+     "meldingen aanzetten",
+     "dagelijks bericht",
+     "bericht elke ochtend",
+     "meldingen uitzetten",
+     "pushmeldingen"
+    ],
+    "pl": [
+     "powiadomienia",
+     "powiadomienie",
+     "wlaczyc powiadomienia",
+     "wiadomosc dnia",
+     "wiadomosc kazdego ranka",
+     "wylaczyc powiadomienia"
+    ],
+    "zh": [
+     "通知",
+     "开启通知",
+     "每日一句",
+     "早安推送",
+     "关闭通知",
+     "推送通知"
+    ],
+    "zht": [
+     "通知",
+     "開啟通知",
+     "每日一句",
+     "早安推播",
+     "關閉通知",
+     "推播通知"
+    ]
+   },
+   "a": {
+    "es": "🔔 Sí, con la app instalada en la pantalla de inicio: a la tercera vez que la abres te pregunta «¿Un empujón cada mañana?», una frase para empezar el día, sin publicidad. Si contestaste «Ahora no», ya no vuelve a preguntar; con la sesión iniciada la activas en «Cuenta», con «Activar notificaciones». En iPhone, primero añádela a la pantalla de inicio desde Safari. Para quitarlas, en los ajustes de notificaciones del móvil.",
+    "en": "🔔 Yes, with the app installed on your home screen: the third time you open it, it asks «A little nudge each morning?», a line to start the day, with no ads. If you answered «Not now», it does not ask again; signed in, you turn them on in «Account», with «Turn on notifications». On iPhone, first add it to your home screen from Safari. To stop them, go to your phone’s notification settings.",
+    "de": "🔔 Ja, wenn die App auf deinem Home-Bildschirm installiert ist: Beim dritten Öffnen fragt sie «Jeden Morgen ein Anstoß?», ein Satz für den Start in den Tag, ohne Werbung. Hast du «Später» geantwortet, fragt sie nicht mehr; angemeldet schaltest du sie unter «Konto» mit «Benachrichtigungen aktivieren» ein. Auf dem iPhone füge sie zuerst in Safari zum Home-Bildschirm hinzu. Abschalten kannst du sie in den Mitteilungseinstellungen deines Handys.",
+    "fr": "🔔 Oui, avec l’appli installée sur l’écran d’accueil : à la troisième ouverture, elle te demande «Un petit mot chaque matin ?», une phrase pour commencer la journée, sans publicité. Si tu as répondu «Plus tard», elle ne redemande plus ; connecté, tu les actives dans «Compte», avec «Activer les notifications». Sur iPhone, ajoute-la d’abord à l’écran d’accueil depuis Safari. Pour les arrêter, va dans les réglages de notifications du téléphone.",
+    "it": "🔔 Sì, con l’app installata nella schermata Home: la terza volta che la apri ti chiede «Una spinta ogni mattina?», una frase per iniziare la giornata, senza pubblicità. Se hai risposto «Non ora», non te lo chiede più; con l’accesso fatto le attivi in «Account», con «Attiva le notifiche». Su iPhone, prima aggiungila alla schermata Home da Safari. Per toglierle, vai nelle impostazioni delle notifiche del telefono.",
+    "nl": "🔔 Ja, met de app op je beginscherm geïnstalleerd: de derde keer dat je hem opent, vraagt hij «Elke ochtend een zetje?», een zin om de dag mee te beginnen, zonder reclame. Heb je «Nu niet» geantwoord, dan vraagt hij het niet meer; ingelogd zet je ze aan bij «Account», met «Meldingen inschakelen». Op een iPhone zet je de app eerst via Safari op je beginscherm. Uitzetten doe je in de meldingsinstellingen van je telefoon.",
+    "pl": "🔔 Tak, gdy aplikacja jest zainstalowana na ekranie początkowym: przy trzecim otwarciu zapyta «Mały impuls każdego ranka?», jedno zdanie na początek dnia, bez reklam. Jeśli odpowiedziałeś «Nie teraz», nie zapyta ponownie; po zalogowaniu włączysz je w sekcji «Konto», przyciskiem «Włącz powiadomienia». Na iPhonie najpierw dodaj ją do ekranu początkowego z Safari. Żeby je wyłączyć, wejdź w ustawienia powiadomień telefonu.",
+    "zh": "🔔 可以，前提是把应用安装到主屏幕：第三次打开时，它会问你「每天早上来点灵感？」——每天一句开启一天的话，没有广告。如果你点了「暂不」，它就不会再问；登录后可以在「账户」里点「开启通知」。在 iPhone 上，请先用 Safari 把它添加到主屏幕。要关闭，请到手机的通知设置里。",
+    "zht": "🔔 可以，前提是把應用程式安裝到主畫面：第三次打開時，它會問你「每天早上來點靈感？」——每天一句開啟一天的話，沒有廣告。如果你點了「暫不」，它就不會再問；登入後可以在「帳戶」裡點「開啟通知」。在 iPhone 上，請先用 Safari 把它加入主畫面。要關閉，請到手機的通知設定裡。"
+   },
+   "follow": [
+    "app-07",
+    "app-27",
+    "app-08"
+   ],
+   "rotulos": [
+    "PUSH.titulo",
+    "PUSH.no",
+    "UI.navAccount",
+    "UI.pushBtnActivar"
+   ],
+   "comprobado": "pushInit: solo con la app instalada (pushInstalada) y el permiso sin decidir; cuenta las visitas y a la tercera (visitas < 3 sale) pregunta con pushPedir a los 6 s; «Ahora no» guarda tgo_push_asked y ya no se vuelve a preguntar. auth-push-btn (pushBtnActivar) esta en auth-form-logged: solo con la sesion iniciada. En iPhone, pushHazInstalar. Lo que llega: el titulo y la frase del dia de frases.json. Para quitarlas, los ajustes del movil (idiomas/borrar-cuenta noPush; PUSH_TX denegado)."
   }
  ]
 }

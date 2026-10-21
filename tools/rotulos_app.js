@@ -3,7 +3,9 @@
  * se pintan: LANGS (con AUTH_STRINGS y el chino tradicional encima del
  * simplificado, igual que en la pagina), UI_TX entera (sus once trozos) y las
  * tablas de los modulos que llevan su propio texto (escuchar, visitado,
- * glosario, aviso de version nueva).
+ * glosario, aviso de version nueva, la tarjeta que pide el permiso de las
+ * notificaciones). Y los de modulos/cielo.js, que al cargarse mete los suyos
+ * en UI_TX (CIELO_UI): sus pestañas tambien se citan.
  *
  * Lo usa auditar_faq.js: las respuestas del asistente sobre la app citan
  * botones entre comillas, y si un boton cambia de nombre la respuesta tiene
@@ -13,13 +15,16 @@
  */
 'use strict';
 const fs = require('fs'), path = require('path');
-const src = fs.readFileSync(path.join(path.dirname(__dirname), 'index.html'), 'utf8');
+const RAIZ = path.dirname(__dirname);
+const SRC = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
 
 /* El literal que empieza tras `decl`, entero, respetando comillas y
-   comentarios. Si `decl` acaba en «(» son los argumentos de un Object.assign. */
-function grab(decl, desde) {
+   comentarios. Si `decl` acaba en «(» son los argumentos de un Object.assign.
+   Por defecto en index.html; `texto`, otro fichero. */
+function grab(decl, desde, texto) {
+  const src = texto || SRC;
   const i = src.indexOf(decl, desde || 0);
-  if (i < 0) throw new Error('no esta en index.html: ' + decl);
+  if (i < 0) throw new Error('no esta en ' + (texto ? 'el fichero pedido' : 'index.html') + ': ' + decl);
   const ult = decl.trim().slice(-1);
   const abre = src.indexOf(ult === '[' || ult === '(' ? ult : '{', i + decl.length - 1);
   const ch = src[abre], cierra = ch === '[' ? ']' : ch === '(' ? ')' : '}';
@@ -45,20 +50,22 @@ if (AUTH.zht) Object.assign(LANGS.zht, AUTH.zht);
 
 const UI = Object.assign({}, grab('const UI_TX = Object.assign('));
 for (let pos = 0; ;) {
-  const i = src.indexOf('Object.assign(UI_TX, {', pos);
+  const i = SRC.indexOf('Object.assign(UI_TX, {', pos);
   if (i < 0) break;
   Object.assign(UI, grab('Object.assign(UI_TX, {', i));
   pos = i + 10;
 }
+Object.assign(UI, grab('var CIELO_UI = {', 0, fs.readFileSync(path.join(RAIZ, 'modulos', 'cielo.js'), 'utf8')));
 const TABLAS = {
   LANGS: null, UI,
   TTS: grab('var TTS_I18N = {'),
   VIS: grab('var VIS_I18N = {'),
   PWA: grab('var PWA_TX = {'),
+  PUSH: grab('var PUSH_TX = {'),
   GLT: grab('var GL_T = {')
 };
 
-/* 'LANGS.addFav' · 'UI.tourVer' · 'TTS.play' · 'VIS.mark' · 'PWA.recargar' · 'GLT' */
+/* 'LANGS.addFav' · 'UI.tourVer' · 'TTS.play' · 'VIS.mark' · 'PWA.recargar' · 'PUSH.titulo' · 'GLT' */
 function valor(clave, L) {
   const [t, k] = clave.split('.');
   if (t === 'LANGS') return (LANGS[L] || {})[k];
@@ -67,4 +74,4 @@ function valor(clave, L) {
   if (!tabla) throw new Error('tabla de rotulos desconocida: ' + clave);
   return (tabla[k] || {})[L];
 }
-module.exports = { valor, LANGS, UI, grab };
+module.exports = { valor, LANGS, UI, TABLAS, grab };

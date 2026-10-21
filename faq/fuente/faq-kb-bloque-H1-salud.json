@@ -14,7 +14,7 @@
    "zh",
    "zht"
   ],
-  "entradas": 7,
+  "entradas": 8,
   "origen": "Redactado el 12/10/2026 a partir de las entradas de CHAT_KB, que solo estaban en castellano; cada dato, comprobado antes de traducirlo, y lo que no se pudo comprobar, fuera (ver AUDITORIA-FINAL.md).",
   "politica_datos": "Solo fuente oficial: Gobierno de Canarias (112, Sanidad, Salud Publica), Proteccion Civil (leyenda de banderas de la app), Centro Europeo del Consumidor (Tarjeta Sanitaria Europea), AEMET. Sin horarios de farmacias ni telefonos: cambian y estan en el mapa."
  },
@@ -872,6 +872,125 @@
     "sal-05"
    ],
    "comprobado": "Centro Europeo del Consumidor en Espana (cec.consumo.gob.es, nota 14/08/2024): la Tarjeta Sanitaria Europea da la atencion medica necesaria durante una estancia temporal en la sanidad publica en las mismas condiciones que los asegurados del pais; valida en la UE, Islandia, Liechtenstein, Noruega, Suiza y Reino Unido; no cubre la privada ni la repatriacion y no sustituye a un seguro de viaje. Hospitales del mapa: HUC, Candelaria y Hospital del Sur con «Urgencias 24h» en su ficha"
+  },
+  {
+   "id": "sal-08",
+   "cat": "salud",
+   "prio": 1,
+   "volatil": false,
+   "label": {
+    "es": "¿Dónde pido ayuda si sufro violencia?",
+    "en": "Where can I get help if I suffer violence?",
+    "de": "Wo bekomme ich Hilfe bei Gewalt?",
+    "fr": "Où demander de l’aide en cas de violences ?",
+    "it": "Dove chiedo aiuto se subisco violenza?",
+    "nl": "Waar vraag ik hulp bij geweld?",
+    "pl": "Gdzie szukać pomocy w razie przemocy?",
+    "zh": "遭受暴力时去哪里求助？",
+    "zht": "遭受暴力時去哪裡求助？"
+   },
+   "keys": {
+    "es": [
+     "violencia de genero",
+     "violencia machista",
+     "violencia sexual",
+     "agresion sexual",
+     "maltrato",
+     "me maltrata",
+     "acoso sexual",
+     "016"
+    ],
+    "en": [
+     "gender violence",
+     "domestic violence",
+     "sexual violence",
+     "sexual assault",
+     "abuse",
+     "abusive partner",
+     "harassment",
+     "016"
+    ],
+    "de": [
+     "geschlechtsspezifische gewalt",
+     "hausliche gewalt",
+     "sexuelle gewalt",
+     "sexueller ubergriff",
+     "misshandlung",
+     "belastigung",
+     "016"
+    ],
+    "fr": [
+     "violences conjugales",
+     "violence de genre",
+     "violences sexuelles",
+     "agression sexuelle",
+     "maltraitance",
+     "harcelement",
+     "016"
+    ],
+    "it": [
+     "violenza di genere",
+     "violenza domestica",
+     "violenza sessuale",
+     "aggressione sessuale",
+     "maltrattamento",
+     "molestie",
+     "016"
+    ],
+    "nl": [
+     "huiselijk geweld",
+     "gendergeweld",
+     "seksueel geweld",
+     "aanranding",
+     "mishandeling",
+     "intimidatie",
+     "016"
+    ],
+    "pl": [
+     "przemoc domowa",
+     "przemoc wobec kobiet",
+     "przemoc seksualna",
+     "napasc seksualna",
+     "znecanie sie",
+     "molestowanie",
+     "016"
+    ],
+    "zh": [
+     "家庭暴力",
+     "性别暴力",
+     "性暴力",
+     "性侵",
+     "虐待",
+     "性骚扰",
+     "016"
+    ],
+    "zht": [
+     "家庭暴力",
+     "性別暴力",
+     "性暴力",
+     "性侵",
+     "虐待",
+     "性騷擾",
+     "016"
+    ]
+   },
+   "a": {
+    "es": "🆘 Si estás en peligro, llama al 112. El 016 atiende a mujeres las 24 horas. En Tenerife, el Centro de Crisis 24h para víctimas de violencia sexual atiende gratis y de forma confidencial a mujeres mayores de 16 años, también sin denunciar, y el SIAM del Cabildo da apoyo psicológico, jurídico y social a mujeres víctimas de violencia de género, con cita previa. Los tienes en el mapa, en la categoría «Ayuda & Apoyo».",
+    "en": "🆘 If you are in danger, call 112. 016 helps women 24 hours a day. In Tenerife, the 24-hour Crisis Centre for victims of sexual violence helps women over 16, free of charge and confidentially, also without reporting it, and the Cabildo’s SIAM gives psychological, legal and social support to women who are victims of gender violence, by appointment. You have them on the map, in the «Help & Support» category.",
+    "de": "🆘 Wenn du in Gefahr bist, ruf die 112 an. Die 016 ist rund um die Uhr für Frauen da. Auf Teneriffa hilft das 24-Stunden-Krisenzentrum für Opfer sexueller Gewalt Frauen ab 16 Jahren kostenlos und vertraulich, auch ohne Anzeige, und das SIAM des Cabildo bietet Frauen, die Opfer geschlechtsspezifischer Gewalt sind, psychologische, rechtliche und soziale Unterstützung, mit Termin. Du findest sie auf der Karte in der Kategorie «Hilfe & Unterstützung».",
+    "fr": "🆘 Si tu es en danger, appelle le 112. Le 016 répond aux femmes 24 heures sur 24. À Tenerife, le Centre de crise 24h pour les victimes de violences sexuelles aide gratuitement et en toute confidentialité les femmes de plus de 16 ans, même sans porter plainte, et le SIAM du Cabildo apporte un soutien psychologique, juridique et social aux femmes victimes de violences de genre, sur rendez-vous. Tu les as sur la carte, dans la catégorie «Aide & Soutien».",
+    "it": "🆘 Se sei in pericolo, chiama il 112. Il 016 risponde alle donne 24 ore su 24. A Tenerife, il Centro di crisi 24h per le vittime di violenza sessuale assiste gratis e in modo riservato le donne con più di 16 anni, anche senza denuncia, e il SIAM del Cabildo offre sostegno psicologico, legale e sociale alle donne vittime di violenza di genere, su appuntamento. Li trovi sulla mappa, nella categoria «Aiuto & Supporto».",
+    "nl": "🆘 Ben je in gevaar, bel dan 112. Het 016 staat 24 uur per dag klaar voor vrouwen. Op Tenerife helpt het 24-uurs crisiscentrum voor slachtoffers van seksueel geweld vrouwen vanaf 16 jaar gratis en vertrouwelijk, ook zonder aangifte, en het SIAM van het Cabildo geeft psychologische, juridische en sociale steun aan vrouwen die slachtoffer zijn van gendergeweld, op afspraak. Je vindt ze op de kaart, in de categorie «Hulp & Steun».",
+    "pl": "🆘 Jeśli jesteś w niebezpieczeństwie, dzwoń pod 112. Numer 016 przyjmuje kobiety przez całą dobę. Na Teneryfie całodobowe Centrum Kryzysowe dla ofiar przemocy seksualnej pomaga bezpłatnie i poufnie kobietom powyżej 16 lat, także bez zgłaszania sprawy, a SIAM Cabildo udziela kobietom, ofiarom przemocy ze względu na płeć, wsparcia psychologicznego, prawnego i socjalnego, po umówieniu wizyty. Znajdziesz je na mapie, w kategorii «Pomoc i wsparcie».",
+    "zh": "🆘 如果你身处危险，请拨打 112。016 全天 24 小时为女性提供帮助。在特内里费，性暴力受害者 24 小时危机中心免费、保密地为 16 岁以上女性提供帮助，不报案也可以；岛议会（Cabildo）的 SIAM 为遭受性别暴力的女性提供心理、法律和社会支持，需要预约。它们都在地图上的「帮助与支持」分类里。",
+    "zht": "🆘 如果你身處危險，請撥打 112。016 全天 24 小時為女性提供協助。在特內里費，性暴力受害者 24 小時危機中心免費、保密地為 16 歲以上女性提供協助，不報案也可以；島議會（Cabildo）的 SIAM 為遭受性別暴力的女性提供心理、法律和社會支持，需要預約。它們都在地圖上的「幫助與支持」分類裡。"
+   },
+   "follow": [
+    "sal-01",
+    "sal-07"
+   ],
+   "rotulos": [],
+   "comprobado": "De las fichas del mapa, categoria ayuda: violencia-sexual-24h-tenerife (Centro de Crisis 24h del Instituto Canario de Igualdad: gratuito, confidencial, 24 h todos los dias, mujeres mayores de 16 anos, no hace falta denunciar) y siam-mujeres-santacruz (SIAM del Cabildo: apoyo psicologico, juridico y social, gratuito y confidencial, con cita previa; «Para emergencias 112; atencion a mujeres 24h, 016»). El rotulo de la categoria, LANGS.categories.ayuda de cada idioma."
   }
  ]
 }

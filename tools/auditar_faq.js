@@ -177,6 +177,15 @@ const ROT_ES = new Map();
   const mete = (es, fila) => { if (typeof es === 'string' && es.trim().length > 1) { const k = es.trim(); if (!ROT_ES.has(k)) ROT_ES.set(k, []); ROT_ES.get(k).push(fila); } };
   for (const k in ROT.UI) { const r = ROT.UI[k]; if (r && typeof r === 'object') mete(r.es, r); }
   for (const k in ROT.LANGS.es) { const fila = {}; for (const L in ROT.LANGS) fila[L] = (ROT.LANGS[L] || {})[k]; mete(ROT.LANGS.es[k], fila); }
+  /* y las tablas de los modulos con texto propio: la tarjeta de las
+     notificaciones dice «Ahora no» con su propia traduccion (PUSH_TX), que
+     no es la del «Ahora no» del tour. PWA_TX no: su «Instalar aplicación»
+     es el boton de la app, y app-07 cita con esas mismas palabras la opcion
+     del menu de Chrome, que en cada idioma se llama como Chrome la llame. */
+  for (const t of ['PUSH', 'TTS', 'VIS']) {
+    const tabla = (ROT.TABLAS || {})[t] || {};
+    for (const k in tabla) { const r = tabla[k]; if (r && typeof r === 'object') mete(r.es, r); }
+  }
 }
 let citadosSueltos = 0;
 for (const e of (ficheros.es ? ficheros.es.e : [])) {

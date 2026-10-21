@@ -128,6 +128,22 @@ const CASOS = [
   ['es', 'la gomera',                   'Los Cristianos'],
   ['es', 'ballena',                     'Barco Azul'],
   ['es', 'no funciona',                 'Recargar'],
+  /* Lo nuevo de la app que el asistente no sabia (21 de octubre de 2026):
+     el panel del cielo, borrar la cuenta, la privacidad, «Patrocinado», la
+     frase de cada mañana y a quien pedir ayuda si se sufre violencia. Una
+     pregunta por entrada, repartidas por los diez idiomas. */
+  ['es', '¿qué se ve esta noche en el cielo?', 'Esta noche'],
+  ['zh', '今晚能看到什么',                 '星图'],
+  ['de', 'Sternschnuppen',                'Kalender'],
+  ['it', 'eclissi',                       'ISO 12312-2'],
+  ['bg', 'как да изтрия профила си',      'Изтриване на профила'],
+  ['en', 'delete my account',             'Yes, delete my account'],
+  ['nl', 'privacy',                       'Privacy · AVG'],
+  ['fr', 'que veut dire sponsorise',      'Sponsorisé'],
+  ['pl', 'powiadomienia',                 'Włącz powiadomienia'],
+  ['zht','通知',                           '開啟通知'],
+  ['es', 'violencia de género',           '016'],
+  ['en', 'domestic violence',             '016'],
 ];
 
 let malos = 0;

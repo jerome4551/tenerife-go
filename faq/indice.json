@@ -629,6 +629,74 @@
    "bloque": "G1 · Usar la app",
    "version": "1.0"
   },
+  "app-24": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.cieloTitulo",
+    "UI.cieloPesNoche",
+    "UI.cieloPesCalendario",
+    "UI.cieloPesCatalogo",
+    "UI.cieloPesMapa",
+    "UI.cieloPesDonde",
+    "UI.cieloRojo"
+   ]
+  },
+  "app-25": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.cieloPesCalendario"
+   ]
+  },
+  "app-26": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.navAccount",
+    "LANGS.authLogoutBtn",
+    "UI.cuentaBorrarBtn",
+    "UI.cuentaBorrarSi"
+   ]
+  },
+  "app-27": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.ppEnlace",
+    "UI.ppEnlaceWeb",
+    "UI.cuentaBorrarPagina"
+   ]
+  },
+  "app-28": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.adRecommend"
+   ]
+  },
+  "app-29": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "PUSH.titulo",
+    "PUSH.no",
+    "UI.navAccount",
+    "UI.pushBtnActivar"
+   ]
+  },
   "sal-01": {
    "cat": "seguridad",
    "volatil": false,
@@ -669,6 +737,12 @@
    "version": "1.0"
   },
   "sal-07": {
+   "cat": "salud",
+   "volatil": false,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0"
+  },
+  "sal-08": {
    "cat": "salud",
    "volatil": false,
    "bloque": "H1 · Seguridad y salud",

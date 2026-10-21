@@ -5909,6 +5909,54 @@ rótulo de cada idioma: tiene que salir la lista de esa categoría. 43 de 43 en
 los diez; con la versión de antes, 39.
 
 
+
+**Lo nuevo de la app, que el asistente no sabía contar.** Preguntado por cada
+cosa que ha entrado desde que se escribió la base (12 de octubre): «¿Qué se ve
+esta noche en el cielo?», «eclipse», «notificaciones» y «política de
+privacidad» no tenían respuesta; «¿Cómo borro mi cuenta?» contestaba que no
+hace falta cuenta; «¿Qué significa patrocinado?», el glosario canario;
+«lluvia de estrellas», dónde ver estrellas, sin el panel; y «violencia de
+género» daba dos fichas de violencia sexual, y «domestic violence», nada.
+Siete entradas nuevas en los diez idiomas, cada dato sacado del código o de
+un texto de la app que ya dice lo mismo:
+
+- **app-24, el panel del cielo** («Cielo de Tenerife» y sus cinco pestañas,
+  con sus nombres de pantalla), y **app-25, lluvias de estrellas y
+  eclipses**, que manda a «Calendario» y repite el aviso del filtro ISO
+  12312-2 del propio panel. Sin una fecha escrita a mano: las calcula la app.
+- **app-26, borrar la cuenta**: los botones como se llaman en Cuenta, lo que
+  se borra, el correo y el plazo de `borrar-cuenta.html`, y que las
+  notificaciones no van con la cuenta.
+- **app-27, qué datos guarda la app**: lo que dice la política, y dónde está
+  («Privacidad · RGPD», «Versión web» y «Borrar tu cuenta», abajo en el mapa).
+- **app-28, «Patrocinado»**: lo que dice la política de los negocios que pagan
+  y de que no usan tus datos.
+- **app-29, la frase de cada mañana**: con la app instalada, a la tercera vez
+  que se abre; si se dijo «Ahora no», ya no se pregunta, y queda el botón de
+  Cuenta con la sesión iniciada; en iPhone, primero la pantalla de inicio.
+  Que llega en el idioma de la app no se dice todavía: no es cierto del todo
+  hasta que se ejecute `supabase/push-idioma.sql` (apartado C).
+- **sal-08, ayuda si se sufre violencia**: el 112, el 016 y los dos servicios
+  de Tenerife que ya tienen ficha (el Centro de Crisis 24h para víctimas de
+  violencia sexual y el SIAM del Cabildo), con lo que dicen sus fichas, y la
+  categoría «Ayuda & Apoyo».
+
+Y cinco que se quedaban cortas: **app-01** nombra el 🔭 en la barra de arriba;
+**app-06**, que el panel del cielo funciona sin conexión y su previsión de
+nubes no; **app-13**, el botón de los avisos de AEMET, que solo sale cuando los
+hay; **tei-13** («¿Dónde veo las estrellas?») lleva al panel y lo tiene de
+primer botón; **mov-19** («¿Dónde reposto?»), el ⛽ con las más baratas a 5, 10
+o 20 km y el precio oficial del Ministerio.
+
+`rotulos_app.js` lee ahora también los textos de `modulos/cielo.js` y los de la
+tarjeta de las notificaciones, así que `auditar_faq.js` comprueba en cada idioma
+los nombres de las pestañas del cielo y el «Ahora no» de esa tarjeta (que no es
+el del tour). 129 entradas por idioma, todas alcanzables por su botón;
+`probar_faq.js`, 114 preguntas (doce nuevas, una por entrada nueva, repartidas
+por los diez idiomas). En la app entera, las siete nuevas llegan a su respuesta
+por su rótulo y por cada una de sus claves en los diez idiomas, y ninguna
+pregunta de las de antes lleva a una respuesta peor.
+
 ### C y D · La notificación diaria, en el idioma de cada perfil
 
 Leído entero, de la suscripción al móvil:
