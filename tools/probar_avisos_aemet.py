@@ -84,6 +84,11 @@ caso('estado real: alcance 2026-10-14T23:59:59+01:00', d.get('aemet', {}).get('a
 caso('estado real: hora de comprobacion = la de la ejecucion', d.get('consultado') == '2026-10-12T15:00:00Z', d.get('consultado'))
 caso('estado real: fuente y canal oficiales',
      d.get('canal', '').endswith('/CAP_AFAP6596_RSS.xml') and d.get('fuente', '').startswith('AEMET'), d.get('canal'))
+# Las zonas de la isla salen de los mensajes de sin aviso, que las traen todas:
+# tres de tierra y sus tres costas (las del fichero real del 11 de octubre).
+caso('estado real: las seis zonas de la isla',
+     d.get('aemet', {}).get('zonas_isla') == ['659601', '659601C', '659602', '659602C', '659603', '659603C'],
+     d.get('aemet', {}).get('zonas_isla'))
 
 # 2. Un aviso amarillo real (Mallorca) puesto en el Norte de Tenerife.
 rc, sal, txt = correr(HAY, tar_con(('amarillo.xml', a_tenerife(AMARILLO))), '2026-10-12T15:00:00Z')

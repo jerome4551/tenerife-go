@@ -23,20 +23,32 @@ const H = 3600 * 1000;
    comprimir son cabeceras de 512 bytes: nombre en 0..100, tamano en octal
    en 124..136, y los datos detras, rellenos hasta 512). */
 const TAR = path.join(__dirname, 'pruebas', 'aemet', 'Z_CAP_C_LEMM_20261011215001_AFAP6596.tar.gz');
-function contorno(codigo) {
-  const tar = zlib.gunzipSync(fs.readFileSync(TAR));
+function mensajes() {
+  const tar = zlib.gunzipSync(fs.readFileSync(TAR)), out = [];
   for (let o = 0; o + 512 <= tar.length;) {
     const nombre = tar.toString('utf8', o, o + 100).split('\0')[0];
     if (!nombre) break;
     const tam = parseInt(tar.toString('utf8', o + 124, o + 136).split('\0')[0].trim(), 8) || 0;
-    const xml = tar.toString('utf8', o + 512, o + 512 + tam);
+    out.push({ nombre, xml: tar.toString('utf8', o + 512, o + 512 + tam) });
     o += 512 + Math.ceil(tam / 512) * 512;
+  }
+  return out;
+}
+function contorno(codigo) {
+  for (const { nombre, xml } of mensajes()) {
     if (!/COCO\d*\.xml$/.test(nombre)) continue;
     const area = xml.split('<area>').find(a => a.includes('<value>' + codigo + '</value>'));
     const m = area && area.match(/<polygon>([^<]+)<\/polygon>/);
     if (m) return m[1].trim();
   }
   throw new Error('no esta el contorno de ' + codigo + ' en ' + TAR);
+}
+/* las zonas de la isla, como las saca tools/avisos_aemet.py (aemet.zonas_isla):
+   las de todos los mensajes, que en los de sin aviso son todas */
+function zonasIsla() {
+  const z = new Set();
+  for (const { xml } of mensajes()) for (const m of xml.matchAll(/<value>(6596\d\dC?)<\/value>/g)) z.add(m[1]);
+  return [...z].sort();
 }
 const COSTAS = {
   '659601C': 'Costa - Norte de Tenerife',
@@ -66,7 +78,7 @@ function ficheros(ahora = Date.now()) {
   }, cambios || {});
   const naranjaCosta = costero('659603C');
   const base = Object.assign({}, real, { consultado: iso(ahora - 10 * 60 * 1000),
-    aemet: Object.assign({}, real.aemet, { alcance: iso(ahora + 48 * H) }) });
+    aemet: Object.assign({}, real.aemet, { alcance: iso(ahora + 48 * H), zonas_isla: zonasIsla() }) });
   const sinAvisos = Object.assign({}, base, { avisos: [] });
   const con = avisos => Object.assign({}, base, { avisos });
   return {
@@ -81,7 +93,15 @@ function ficheros(ahora = Date.now()) {
     sinContorno: con([costero('659603C', { zonas: [{ codigo: '659603C', nombre_es: COSTAS['659603C'] }] })]),
     // el del sur, pero de mañana: de 30 a 36 horas desde ahora, nunca hoy
     deManana: con([costero('659603C', { inicio: iso(ahora + 30 * H), fin: iso(ahora + 36 * H) })]),
+    /* lluvias en las tres zonas de tierra, un mensaje por zona, como el 21 de
+       octubre de 2026: la linea dice «Toda la isla»; y lo mismo sin la lista
+       de zonas de la isla (un fichero de antes), que las nombra */
+    lluviaIsla: con(['659601', '659602', '659603'].map(c => Object.assign({}, amarillo,
+      { id: amarillo.id.replace('659601', c), zonas: [{ codigo: c, nombre_es: c }] }))),
+    lluviaIslaSinLista: Object.assign(con(['659601', '659602', '659603'].map(c => Object.assign({}, amarillo,
+      { id: amarillo.id.replace('659601', c), zonas: [{ codigo: c, nombre_es: c }] }))),
+      { aemet: Object.assign({}, real.aemet, { alcance: iso(ahora + 48 * H), zonas_isla: undefined }) }),
   };
 }
 
-module.exports = { ficheros, contorno };
+module.exports = { ficheros, contorno, zonasIsla };

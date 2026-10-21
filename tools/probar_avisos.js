@@ -13,9 +13,11 @@
  *
  *   · con avisos: el punto del 🌊 del color del peor (y dicho para quien no
  *     lo ve), arriba del panel del mar cada aviso con su nivel, fenomeno,
- *     zona y hora, tarjetas con el parametro y el texto oficial en ingles o
- *     en castellano (y dicho), linea en el panel del tiempo; en ningun sitio
- *     la pildora de antes;
+ *     zona y hora, y lo mismo en el panel del tiempo; tarjetas con el
+ *     parametro y el texto oficial en ingles o en castellano (y dicho); en
+ *     ningun sitio la pildora de antes;
+ *   · un aviso en las tres zonas de la isla, en una linea: «Toda la isla»
+ *     (la tarjeta las nombra); sin la lista de zonas, las nombra;
  *   · con un costero en el sur (contorno real de AEMET): las costas del sur
  *     lo llevan, «la más tranquila» no es una de ellas, y «Báñate hoy aquí»
  *     no recomienda ninguna playa de esa zona y lo dice; sin el costero, si
@@ -164,7 +166,9 @@ async function openMeteo(pg) {
     caso(`[${L}] el punto del 🌊, naranja, y dicho: «2 avisos»; sin pildora`,
          pt.ve && pt.dentro && /wx-naranja/.test(pt.cls) && dosAvisos(pt.dice) && !pt.pildora, JSON.stringify(pt));
     caso(`[${L}] dos tarjetas en su idioma`, okTarjetas, JSON.stringify({ tarjetas, esperado }).slice(0, 900));
-    caso(`[${L}] linea del panel del tiempo: «2 avisos»`, dosAvisos(linea), linea);
+    /* el panel del tiempo, con los avisos enteros como el del mar (Jerome, 21
+       de octubre: «quiero la AEMET ahí», con una captura de ese panel) */
+    const lineasTiempo = await pg.evaluate(() => [...document.querySelectorAll('#mc-avisos .wx-linea-btn')].map(b => b.textContent));
 
     const m = await panelMar(pg);
     const deA = esperado.wxDeA.split('{a}')[0];
@@ -175,6 +179,9 @@ async function openMeteo(pg) {
          && m.arriba[1].includes(esperado.wxNivel_amarillo) && m.arriba[1].includes(esperado.wxFen_PR)
          && m.arriba[1].includes(esperado.wxZona_659601) && m.arriba.every(a => a.includes('🕐 ' + deA)),
          JSON.stringify({ primero: m.primero, arriba: m.arriba }));
+    caso(`[${L}] panel del tiempo: los mismos dos avisos, enteros`,
+         lineasTiempo.length === 2 && JSON.stringify(lineasTiempo) === JSON.stringify(m.arriba) && !dosAvisos(linea),
+         JSON.stringify({ lineasTiempo, linea }));
     const conAviso = m.filas.filter(f => f.aemet).map(f => f.nombre).sort();
     caso(`[${L}] el costero del sur en sus costas (${COSTAS_SUR.join(', ')}) y en ninguna otra`,
          JSON.stringify(conAviso) === JSON.stringify(m.nombresSur.slice().sort())
@@ -186,7 +193,7 @@ async function openMeteo(pg) {
          JSON.stringify({ playas: m.playas, nota: m.nota }));
     // ningun rotulo de la app en castellano fuera del castellano
     if (L !== 'es') {
-      const app = [tarjetas.map(t => t.app).join(' | '), linea, m.arriba.join(' | '), pt.dice,
+      const app = [tarjetas.map(t => t.app).join(' | '), linea, lineasTiempo.join(' | '), m.arriba.join(' | '), pt.dice,
                    m.filas.map(f => f.aemet).join(' | '), m.nota].join(' | ');
       const cast = ['Aviso ', 'Lluvias', 'Costeros', 'Fenómenos', 'Norte de Tenerife', 'Probabilidad', 'hora de Canarias',
                     'Texto de AEMET', 'Comprobado', 'Quedan fuera', ' De ']
@@ -242,6 +249,38 @@ async function openMeteo(pg) {
     caso('[es] el punto del 🌊 si: el aviso esta en pie', pt.ve && /wx-naranja/.test(pt.cls), JSON.stringify(pt));
     caso('[es] ninguna costa con aviso para hoy, tres playas, sin nota', m.filas.every(f => !f.aemet) && m.playas.length === 3 && m.nota === '',
          JSON.stringify(m));
+    await pg.close();
+  }
+
+  console.log('\n=== lluvias en las tres zonas, como el 21 de octubre: «Toda la isla» ===');
+  for (const L of IDIOMAS) {
+    const { pg } = await abrir(F.lluviaIsla, L);
+    const r = await pg.evaluate(() => ({
+      tiempo: [...document.querySelectorAll('#mc-avisos .wx-linea-btn')].map(b => b.textContent),
+      mar: [...document.querySelectorAll('#mar-avisos .wx-linea-btn')].map(b => b.textContent),
+    }));
+    await pg.evaluate(() => toggleWxPanel());
+    const zonasTarjeta = await txt(pg, '#wx-alerts-list .wx-alert-zonas');
+    const isla = await T(pg, 'wxZonaIsla', L), nombres = [];
+    for (const c of ['659601', '659602', '659603']) nombres.push(await T(pg, 'wxZona_' + c, L));
+    caso(`[${L}] una linea, «${isla}», en los dos paneles; la tarjeta nombra las tres`,
+         r.tiempo.length === 1 && r.mar.length === 1 && r.tiempo[0] === r.mar[0] && r.tiempo[0].includes(' · ' + isla)
+         && !nombres.some(n => r.tiempo[0].includes(n)) && nombres.every(n => (zonasTarjeta || '').includes(n)),
+         JSON.stringify({ r, zonasTarjeta }));
+    await pg.close();
+  }
+  {
+    const { pg } = await abrir(F.lluviaIslaSinLista, 'es');
+    const l = await pg.evaluate(() => (document.querySelector('#mc-avisos .wx-linea-btn') || {}).textContent || '');
+    caso('[es] un fichero sin la lista de zonas de la isla: las nombra, no dice «Toda la isla»',
+         l.includes('Norte de Tenerife') && l.includes('Este, sur y oeste de Tenerife') && !l.includes('Toda la isla'), l);
+    await pg.close();
+  }
+  {
+    const { pg } = await abrir(tresCostas, 'de');
+    const l = await pg.evaluate(() => (document.querySelector('#mar-avisos .wx-linea-btn') || {}).textContent || '');
+    const costa = await T(pg, 'wxZonaCostaIsla', 'de');
+    caso('[de] costeros en las tres costas: «' + costa + '»', l.includes(' · ' + costa), l);
     await pg.close();
   }
 
@@ -306,7 +345,8 @@ async function openMeteo(pg) {
     const linea = await txt(pg, '#mc-avisos');
     const mar = await txt(pg, '#mar-avisos');
     const pt = await punto(pg);
-    caso('al pasar a frances, la linea del tiempo se vuelve a pintar en frances', fr.split('|').some(f => linea.includes(f.replace('{n}', '2'))), linea);
+    caso('al pasar a frances, el panel del tiempo se vuelve a pintar en frances',
+         linea.includes(await T(pg, 'wxNivel_naranja', 'fr')) && !linea.includes('Aviso naranja'), linea);
     caso('y lo de arriba del panel del mar', mar.includes(await T(pg, 'wxNivel_naranja', 'fr')) && !mar.includes('Aviso naranja'), mar);
     caso('y lo que dice el punto', fr.split('|').some(f => pt.dice === f.replace('{n}', '2')), pt.dice);
     await pg.close();

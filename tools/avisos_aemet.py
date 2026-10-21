@@ -31,6 +31,10 @@ de 31-may-2022). Lo que se usa de ese anexo:
     el la app sabe que playas caen dentro de un aviso costero. Uno que no
     tenga esa forma no se guarda, y la app trata entonces el aviso como si
     fuera de toda la costa: nunca se queda corta.
+  · las zonas de la isla: las de todos los mensajes del fichero, tambien los
+    de sin aviso, que traen todas («zonas_isla», desde el 21 de octubre de
+    2026). Con ellas la app escribe «Toda la isla» cuando un aviso las tiene
+    todas, en lugar de nombrarlas una a una.
   · un mensaje que caduca en el mismo instante en que se emite (expires igual
     a effective) NO es un aviso: es como AEMET retira los anteriores.
   · los mensajes que otro mensaje cita en <references> estan sustituidos.
@@ -263,7 +267,7 @@ def construir(rss_bytes, tar_bytes, ahora):
     mensajes = [leer_cap(tf.extractfile(m).read(), m.name) for m in miembros]
 
     sustituidos = {r for m in mensajes for r in m['refs']}
-    avisos, alcance, verdes_tf = [], None, 0
+    avisos, alcance, verdes_tf, zonas_isla = [], None, 0, set()
     for m in mensajes:
         if m['estado'] != 'Actual' or m['id'] in sustituidos:
             continue
@@ -273,6 +277,7 @@ def construir(rss_bytes, tar_bytes, ahora):
         zonas = [z for z in zonas_de(es) if z[0].startswith(ISLA)]
         if not zonas:
             continue
+        zonas_isla.update(z[0] for z in zonas)
         inicio = fecha(es.findtext(CAP + 'onset'))
         fin = fecha(es.findtext(CAP + 'expires'))
         efectivo = fecha(es.findtext(CAP + 'effective'))
@@ -334,6 +339,7 @@ def construir(rss_bytes, tar_bytes, ahora):
             'publicado': canal['publicado'],
             'titulo': canal['titulo'],
             'alcance': alcance.isoformat() if alcance else None,
+            'zonas_isla': sorted(zonas_isla),
         },
         'consultado': ahora.astimezone(dt.timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z'),
         'avisos': avisos,

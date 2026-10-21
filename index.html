@@ -9610,6 +9610,10 @@ Object.assign(UI_TX, {
   "wxZona_659602": {"es":"Área metropolitana de Tenerife","en":"Tenerife metropolitan area","fr":"Aire métropolitaine de Tenerife","de":"Ballungsraum Teneriffa","it":"Area metropolitana di Tenerife","nl":"Metropoolgebied van Tenerife","zh":"特内里费都市区","zht":"特內里費都會區","bg":"Метрополен район на Тенерифе", pl: "Obszar metropolitalny Teneryfy"},
   "wxZona_659603": {"es":"Este, sur y oeste de Tenerife","en":"East, south and west of Tenerife","fr":"Est, sud et ouest de Tenerife","de":"Osten, Süden und Westen von Teneriffa","it":"Est, sud e ovest di Tenerife","nl":"Oosten, zuiden en westen van Tenerife","zh":"特内里费东部、南部和西部","zht":"特內里費東部、南部和西部","bg":"Изток, юг и запад на Тенерифе", pl: "Wschód, południe i zachód Teneryfy"},
   "wxCosta": {"es":"Costa – {z}","en":"Coast – {z}","fr":"Côte – {z}","de":"Küste – {z}","it":"Litorale – {z}","nl":"Kust – {z}","zh":"沿海 – {z}","zht":"沿海 – {z}","bg":"Крайбрежие – {z}", pl: "Wybrzeże – {z}"},
+  /* un aviso que tiene todas las zonas de la isla, o todas sus costas, en la
+     linea de los paneles del tiempo y del mar (wxZonasEnLinea) */
+  "wxZonaIsla": {"es":"Toda la isla","en":"Whole island","fr":"Toute l’île","de":"Ganze Insel","it":"Tutta l’isola","nl":"Hele eiland","zh":"全岛","zht":"全島","bg":"Целият остров", pl: "Cała wyspa"},
+  "wxZonaCostaIsla": {"es":"Toda la costa","en":"Whole coast","fr":"Toute la côte","de":"Ganze Küste","it":"Tutta la costa","nl":"Hele kust","zh":"全岛沿海","zht":"全島沿海","bg":"Цялото крайбрежие", pl: "Całe wybrzeże"},
   "wxDeA": {"es":"De {a} a {b}","en":"From {a} to {b}","fr":"Du {a} au {b}","de":"Von {a} bis {b}","it":"Da {a} a {b}","nl":"Van {a} tot {b}","zh":"{a} 至 {b}","zht":"{a} 至 {b}","bg":"От {a} до {b}", pl: "Od {a} do {b}"},
   "wxHoraCanarias": {"es":"hora de Canarias","en":"Canary Islands time","fr":"heure des Canaries","de":"Kanarenzeit","it":"ora delle Canarie","nl":"Canarische tijd","zh":"加那利群岛时间","zht":"加那利群島時間","bg":"канарско време", pl: "czas na Wyspach Kanaryjskich"},
   "wxProb": {"es":"Probabilidad: {p}","en":"Probability: {p}","fr":"Probabilité : {p}","de":"Wahrscheinlichkeit: {p}","it":"Probabilità: {p}","nl":"Kans: {p}","zh":"概率：{p}","zht":"機率：{p}","bg":"Вероятност: {p}", pl: "Prawdopodobieństwo: {p}"},
@@ -28723,6 +28727,37 @@ function wxPieDeLinea(box, vig) {
   }
 }
 function wxCuando(a) { return '🕐 ' + tx('wxDeA', { a: wxHoraCorta(a.inicio), b: wxHoraCorta(a.fin) }); }
+/* Las zonas de un aviso, para una linea. Si las tiene todas las de la isla,
+   «Toda la isla» (o «Toda la costa»): AEMET suele poner el mismo aviso en las
+   tres zonas de Tenerife, y nombrarlas ocupaba tres renglones. Cuales son
+   todas lo dice el propio fichero (aemet.zonas_isla, de los mensajes de sin
+   aviso, que las traen todas); sin esa lista, se nombran una a una. La
+   tarjeta del aviso entero las nombra siempre. */
+function wxZonasEnLinea(a) {
+  var isla = (wxDatos && wxDatos.aemet && Array.isArray(wxDatos.aemet.zonas_isla)) ? wxDatos.aemet.zonas_isla : [];
+  var suyas = a.zonas.map(function (z) { return String(z.codigo); });
+  var son = function (lista) {
+    return lista.length > 1 && lista.every(function (c) { return suyas.indexOf(c) >= 0; })
+      && suyas.every(function (c) { return lista.indexOf(c) >= 0; });
+  };
+  if (son(isla.filter(function (c) { return !/C$/.test(c); }))) return tx('wxZonaIsla');
+  if (son(isla.filter(function (c) { return /C$/.test(c); }))) return tx('wxZonaCostaIsla');
+  return a.zonas.map(wxNombreZona).join(' · ');
+}
+/* Cada aviso en pie en una linea de su color, con su hora debajo; al tocarla,
+   el aviso entero. Lo mismo en el panel del mar y en el del tiempo: es la
+   misma AEMET. Sin avisos, wxPieDeLinea dice hasta cuando no los hay. */
+function wxLineas(box, vig) {
+  vig.forEach(function (a) {
+    var l = wxEl('button', 'wx-linea-btn ' + WX_LEVELS[a.nivel], (WX_ICONS[a.fenomeno] || WX_ICONS.default) + ' '
+      + [tx('wxNivel_' + a.nivel), wxNombreFen(a), wxZonasEnLinea(a)].join(' · '));
+    l.type = 'button';
+    l.appendChild(wxEl('span', 'wx-linea-cuando', wxCuando(a)));
+    l.addEventListener('click', wxAbrirDesde);
+    box.appendChild(l);
+  });
+  wxPieDeLinea(box, vig);
+}
 
 function renderWxAlerts() {
   var list = document.getElementById('wx-alerts-list');
@@ -28760,55 +28795,24 @@ function renderWxAlerts() {
   if (hora) hora.textContent = wxDatos ? tx('wxComprobado', { h: wxHoraCorta(wxDatos.consultado) }) : '';
   if (enlace) enlace.href = 'https://www.aemet.es/' + (wxLang() === 'en' ? 'en' : 'es') + '/eltiempo/prediccion/avisos?p=6596';
 
-  /* Una linea en el panel del tiempo (🌡️): ahi se ve que esto funciona
-     tambien cuando no hay avisos, y desde cuando no se ha podido mirar. */
-  var mc = document.getElementById('mc-avisos');
-  if (mc) {
-    mc.textContent = '';
-    if (wxEstado === 'cargando') { mc.style.display = 'none'; }
-    else {
-      mc.style.display = 'block';
-      if (wxEstado === 'error') {
-        mc.appendChild(wxEl('span', 'wx-linea-txt', '⚠️ ' + tx('wxNoDisponible') + ' '));
-        mc.appendChild(wxEnlaceAemet());
-      } else {
-        if (vig.length) {
-          var b = wxEl('button', 'wx-linea-btn ' + WX_LEVELS[vig[0].nivel], '⚠️ ' + tx('wxHayAvisos', { n: vig.length }));
-          b.type = 'button';
-          b.addEventListener('click', wxAbrirDesde);
-          mc.appendChild(b);
-        }
-        wxPieDeLinea(mc, vig);
-      }
-    }
-  }
-
-  /* Y en el panel del mar, lo primero, encima de «Báñate hoy aquí»: cada
-     aviso en pie, de cualquier fenomeno, con su zona y su hora, porque el
-     punto que lleva a el es el del 🌊. Al tocar uno se abre entero. Sin
-     avisos, lo mismo que en el panel del tiempo. */
-  var mar = document.getElementById('mar-avisos');
-  if (mar) {
-    mar.textContent = '';
-    if (wxEstado === 'cargando') { mar.style.display = 'none'; }
-    else {
-      mar.style.display = 'block';
-      if (wxEstado === 'error') {
-        mar.appendChild(wxEl('span', 'wx-linea-txt', '⚠️ ' + tx('wxNoDisponible') + ' '));
-        mar.appendChild(wxEnlaceAemet());
-      } else {
-        vig.forEach(function (a) {
-          var l = wxEl('button', 'wx-linea-btn ' + WX_LEVELS[a.nivel], (WX_ICONS[a.fenomeno] || WX_ICONS.default) + ' '
-            + [tx('wxNivel_' + a.nivel), wxNombreFen(a), a.zonas.map(wxNombreZona).join(' · ')].join(' · '));
-          l.type = 'button';
-          l.appendChild(wxEl('span', 'wx-linea-cuando', wxCuando(a)));
-          l.addEventListener('click', wxAbrirDesde);
-          mar.appendChild(l);
-        });
-        wxPieDeLinea(mar, vig);
-      }
-    }
-  }
+  /* Los avisos, en el panel del tiempo (🌡️), abajo, y en el del mar, lo
+     primero, encima de «Báñate hoy aquí» (el punto que lleva a ellos es el
+     del 🌊): cada uno entero en su linea, con su zona y su hora. Hasta el 21
+     de octubre de 2026 el del tiempo solo decia «1 aviso de AEMET para
+     Tenerife»; Jerome, con una captura de ese panel: «quiero la AEMET ahí».
+     Sin avisos, hasta cuando no los hay; sin fichero, que no se ha podido
+     mirar, con el enlace a aemet.es. */
+  ['mc-avisos', 'mar-avisos'].forEach(function (id) {
+    var box = document.getElementById(id);
+    if (!box) return;
+    box.textContent = '';
+    if (wxEstado === 'cargando') { box.style.display = 'none'; return; }
+    box.style.display = 'block';
+    if (wxEstado === 'error') {
+      box.appendChild(wxEl('span', 'wx-linea-txt', '⚠️ ' + tx('wxNoDisponible') + ' '));
+      box.appendChild(wxEnlaceAemet());
+    } else wxLineas(box, vig);
+  });
 
   /* Si cambian los costeros de hoy (llega el fichero, empieza o se acaba
      uno) con el panel del mar abierto, sus costas y «Báñate hoy aquí» se

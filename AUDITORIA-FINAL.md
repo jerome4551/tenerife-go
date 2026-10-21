@@ -2173,7 +2173,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 43 tablas, 1419 filas (y 3.560 filas, dentro y fuera del fuente)
+## Idiomas · 43 tablas, 1421 filas (y 3.562 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -2190,7 +2190,8 @@ tarjetas inventadas de la tienda y su hueco de AdSense, que se borraron. El
 `CIELO_LOCALE`), que `tools/fuente.js` pega al fuente, y en `UI_TX` las siete
 filas del botón y las dos del tour. El 21, una más: las dos de «Báñate hoy
 aquí» con un aviso costero de AEMET, y una menos, la de la ✕ de la píldora de
-avisos, que ya no existe. El
+avisos, que ya no existe; esa tarde, dos más: «Toda la isla» y «Toda la
+costa» en la línea de los avisos. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -6151,6 +6152,34 @@ instalada), y quien contestó «Ahora no» no tenía por dónde activarlas.
   avisos amarillos de lluvias): **«AUDITORIA EN VERDE»**, ningún bloque en
   rojo ni roto. Idiomas: 43 tablas y 1419 filas (una más), 3.560 en total.
 
+## Los avisos de AEMET, enteros, también en el panel del tiempo (21 de octubre, tarde)
+
+Jerome, con una captura del panel del termómetro 🌡️ («¿Dónde hace sol
+ahora?»), que abajo solo decía «⚠️ 1 aviso de AEMET para Tenerife»: «quiero la
+AEMET ahí». Y: «recuerda que debe estar ergonómico y guapo».
+
+- **Lo que sale ahora, en el mismo sitio.** Cada aviso en su línea, del color
+  de su nivel y con su hora debajo, como arriba del panel del mar: «🌧️ Aviso
+  amarillo · Lluvias · Toda la isla — 🕐 De 10:00 a jue 22, 05:59». Al
+  tocarlo, el aviso entero. Las dos listas salen de la misma función
+  (`wxLineas`), así que no pueden decir cosas distintas.
+- **«Toda la isla».** AEMET suele poner el mismo aviso en las tres zonas de
+  Tenerife (hoy, las lluvias), y nombrarlas ocupaba tres renglones. Cuando un
+  aviso las tiene todas, la línea dice «Toda la isla» (o «Toda la costa», con
+  las tres costas); la tarjeta del aviso entero las nombra siempre. Cuáles
+  son todas no se escribe a mano: `tools/avisos_aemet.py` guarda las zonas de
+  todos los mensajes del fichero de AEMET, también los de sin aviso, que las
+  traen todas (`aemet.zonas_isla`: 659601, 659602 y 659603, y sus costas). Un
+  fichero sin esa lista nombra las zonas una a una.
+- **El asistente.** app-13, en los diez idiomas: los avisos también están
+  abajo en el termómetro.
+- **Probado.** `tools/probar_avisos_aemet.py`: **32 de 32** (nuevo: las seis
+  zonas de la isla del fichero real). `tools/probar_avisos.js`: **139 de 139**:
+  el panel del tiempo con los mismos avisos que el del mar en los diez
+  idiomas; las lluvias en las tres zonas, «Toda la isla» en los dos paneles
+  en los diez idiomas y la tarjeta con las tres; sin la lista, las nombra; los
+  costeros en las tres costas, «Toda la costa».
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -6198,7 +6227,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/probar_notificacion_idioma.js` | la notificación diaria en el idioma de cada móvil: lo que la app manda a `guardar_push_sub()` al abrir, al cambiar de idioma y desde el botón sin cuenta, la tarjeta del permiso en los diez, y lo que el envío le manda a cada idioma |
 | `tools/probar_nombres.js` | cada lugar preguntado al asistente por su nombre, en los diez idiomas y en chino pegado: sale su ficha o la lista para elegir; el nombre corto, contado; y cada categoría del menú por su rótulo, la lista de esa categoría |
 | `tools/auditar_letras.js` | palabras escritas sin sus letras («waehle», «carre avec fleche») |
-| `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json`, con el contorno oficial de cada zona (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
+| `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json`, con el contorno oficial de cada zona y las zonas de la isla (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, contornos, ficheros rotos, el latido de 3 horas |
 | `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos, los kilómetros del coche y lo que se comparte del itinerario |
 | `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, Norte y Sur sin paradas de la otra zona (y «Otro» tampoco), nunca dos paradas del mismo sitio (comprobado con código propio), el aviso cuando no hay más, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano |
