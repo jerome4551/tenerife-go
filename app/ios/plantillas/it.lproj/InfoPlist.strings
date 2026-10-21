@@ -1,5 +1,5 @@
 /* Tenerife Go · it · generado por tools/app_preparar.js de idiomas/privacidad/it.json: no editar a mano */
 "CFBundleDisplayName" = "Tenerife Go";
-"NSLocationWhenInUseUsageDescription" = "Geolocalizzazione: solo quando la attivi. Non viene salvata su nessun server. Se chiedi un percorso in auto, le coordinate di partenza e arrivo vengono inviate al servizio di calcolo percorsi.";
+"NSLocationWhenInUseUsageDescription" = "Geolocalizzazione: solo quando la attivi, per mostrarti dove sei sulla mappa, cosa hai vicino e il percorso fino a un luogo. Non viene salvata su nessun server. Se chiedi un percorso in auto, le coordinate di partenza e arrivo vengono inviate al servizio di calcolo percorsi.";
 "NSMotionUsageDescription" = "Orientamento del telefono (facoltativo): solo mentre usi «Punta al cielo»: bussola, giroscopio e accelerometro dicono dove stai puntando, per dare un nome a ciò che hai davanti. Si usa sul dispositivo e non viene né salvato né inviato.";
 "NSCameraUsageDescription" = "Fotocamera (facoltativa): solo se la attivi in «Punta al cielo», per disegnare le stelle sopra l’immagine. L’immagine non viene salvata né analizzata e non esce dal telefono; solo se tocchi 📸 si compone una cattura con le stelle sopra, che si salva o si condivide dal tuo telefono senza passare da alcun server.";

@@ -145,8 +145,12 @@ function frasesDe(l) {
   const out = {};
   for (const [clave, [etq, txt]] of Object.entries(CLAVES_USO)) {
     if (!pol[etq] || !pol[txt]) throw new Error('idiomas/privacidad/' + l + '.json: falta ' + etq + ' o ' + txt);
-    /* «Geolocalización: solo cuando la activas. …» -> sin los dos puntos finales de la etiqueta */
-    out[clave] = (String(pol[etq]).replace(/[:：]\s*$/, '') + ': ' + String(pol[txt]).trim()).replace(/\s+/g, ' ');
+    /* «Geolocalización: solo cuando la activas. …», con los dos puntos de la
+       etiqueta tal y como los escribe su idioma: «Géolocalisation :», y en
+       chino los de ancho completo sin espacio detras («定位：»). Antes se
+       quitaban y se ponian los latinos en todos, y en chino salia «定位: ». */
+    const etiqueta = /[:：]\s*$/.test(String(pol[etq])) ? String(pol[etq]).trim() : String(pol[etq]).trim() + ':';
+    out[clave] = (etiqueta + (/：$/.test(etiqueta) ? '' : ' ') + String(pol[txt]).trim()).replace(/\s+/g, ' ');
   }
   return out;
 }

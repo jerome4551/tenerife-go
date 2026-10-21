@@ -1,5 +1,5 @@
 /* Tenerife Go · pl · generado por tools/app_preparar.js de idiomas/privacidad/pl.json: no editar a mano */
 "CFBundleDisplayName" = "Tenerife Go";
-"NSLocationWhenInUseUsageDescription" = "Lokalizacja: tylko wtedy, gdy ją włączysz. Nie jest zapisywana na żadnym serwerze. Jeśli poprosisz o trasę samochodem, współrzędne początku i celu trafiają do usługi wyznaczania tras, żeby ją obliczyć.";
+"NSLocationWhenInUseUsageDescription" = "Lokalizacja: tylko wtedy, gdy ją włączysz, żeby pokazać na mapie, gdzie jesteś, co jest w pobliżu, i trasę do wybranego miejsca. Nie jest zapisywana na żadnym serwerze. Jeśli poprosisz o trasę samochodem, współrzędne początku i celu trafiają do usługi wyznaczania tras, żeby ją obliczyć.";
 "NSMotionUsageDescription" = "Położenie telefonu (opcjonalnie): tylko gdy używasz „Wyceluj w niebo”: kompas, żyroskop i akcelerometr mówią, dokąd celujesz, by nazwać to, co masz przed sobą. Jest używane na urządzeniu, nie jest zapisywane ani wysyłane.";
 "NSCameraUsageDescription" = "Kamera (opcjonalnie): tylko jeśli włączysz ją w „Wyceluj w niebo”, by narysować gwiazdy na obrazie. Obraz nie jest zapisywany, analizowany ani nie opuszcza telefonu; tylko gdy dotkniesz 📸, powstaje zrzut z gwiazdami na wierzchu, zapisywany lub udostępniany z twojego telefonu bez udziału żadnego serwera.";

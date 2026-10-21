@@ -23,7 +23,7 @@
   </array>
   <!-- los permisos, con lo que dice la politica de privacidad -->
   <key>NSLocationWhenInUseUsageDescription</key>
-  <string>Geolocalización: solo cuando la activas. No se guarda en ningún servidor. Si pides una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas para calcularla.</string>
+  <string>Geolocalización: solo cuando la activas, para enseñarte dónde estás en el mapa, lo que tienes cerca y la ruta hasta un lugar. No se guarda en ningún servidor. Si pides una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas para calcularla.</string>
   <key>NSMotionUsageDescription</key>
   <string>Orientación del móvil (opcional): solo mientras usas «Apunta al cielo»: la brújula, el giroscopio y el acelerómetro dicen hacia dónde apuntas, para nombrar lo que tienes delante. Se usa en el dispositivo y no se guarda ni se envía.</string>
   <key>NSCameraUsageDescription</key>

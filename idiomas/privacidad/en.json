@@ -8,7 +8,7 @@
 "ppRespDir":"· Tenerife, Canary Islands, Spain.",
 "ppDatosTitulo":"What data is processed",
 "ppDatosGeo":"Location:",
-"ppDatosGeoTxt":"only when you turn it on. It is not stored on any server. If you ask for a driving route, the start and end coordinates are sent to the routing service to work it out.",
+"ppDatosGeoTxt":"only when you turn it on, to show you where you are on the map, what is near you and the route to a place. It is not stored on any server. If you ask for a driving route, the start and end coordinates are sent to the routing service to work it out.",
 "ppDatosCuenta":"Account (optional):",
 "ppDatosCuentaTxt":"email address and password. They are handled by",
 "ppDatosRls":", which stores the password encrypted; we never see it.",

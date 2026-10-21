@@ -8,7 +8,7 @@
 "ppRespDir":"· Tenerife, Îles Canaries, Espagne.",
 "ppDatosTitulo":"Quelles données sont traitées",
 "ppDatosGeo":"Géolocalisation :",
-"ppDatosGeoTxt":"uniquement quand vous l’activez. Elle n’est enregistrée sur aucun serveur. Si vous demandez un itinéraire en voiture, les coordonnées de départ et d’arrivée sont envoyées au service de calcul d’itinéraires.",
+"ppDatosGeoTxt":"uniquement quand vous l’activez, pour vous montrer où vous êtes sur la carte, ce qu’il y a près de vous et l’itinéraire jusqu’à un lieu. Elle n’est enregistrée sur aucun serveur. Si vous demandez un itinéraire en voiture, les coordonnées de départ et d’arrivée sont envoyées au service de calcul d’itinéraires.",
 "ppDatosCuenta":"Compte (facultatif) :",
 "ppDatosCuentaTxt":"adresse e-mail et mot de passe. Ils sont gérés par",
 "ppDatosRls":", qui conserve le mot de passe chiffré ; nous ne le voyons jamais.",

@@ -10,7 +10,7 @@
 
 "ppDatosTitulo":"Qué datos se tratan",
 "ppDatosGeo":"Geolocalización:",
-"ppDatosGeoTxt":"solo cuando la activas. No se guarda en ningún servidor. Si pides una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas para calcularla.",
+"ppDatosGeoTxt":"solo cuando la activas, para enseñarte dónde estás en el mapa, lo que tienes cerca y la ruta hasta un lugar. No se guarda en ningún servidor. Si pides una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas para calcularla.",
 "ppDatosCuenta":"Cuenta (opcional):",
 "ppDatosCuentaTxt":"correo electrónico y contraseña. Los gestiona",
 "ppDatosRls":", que guarda la contraseña cifrada; nosotros no la vemos.",

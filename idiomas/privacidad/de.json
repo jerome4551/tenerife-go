@@ -8,7 +8,7 @@
 "ppRespDir":"· Teneriffa, Kanarische Inseln, Spanien.",
 "ppDatosTitulo":"Welche Daten verarbeitet werden",
 "ppDatosGeo":"Standort:",
-"ppDatosGeoTxt":"nur wenn du ihn einschaltest. Er wird auf keinem Server gespeichert. Wenn du eine Autoroute anforderst, gehen Start- und Zielkoordinaten an den Routendienst, der sie berechnet.",
+"ppDatosGeoTxt":"nur wenn du ihn einschaltest, um dir auf der Karte zu zeigen, wo du bist, was in deiner Nähe liegt und wie du zu einem Ort kommst. Er wird auf keinem Server gespeichert. Wenn du eine Autoroute anforderst, gehen Start- und Zielkoordinaten an den Routendienst, der sie berechnet.",
 "ppDatosCuenta":"Konto (optional):",
 "ppDatosCuentaTxt":"E-Mail-Adresse und Passwort. Verwaltet werden sie von",
 "ppDatosRls":", das das Passwort verschlüsselt speichert; wir sehen es nie.",
