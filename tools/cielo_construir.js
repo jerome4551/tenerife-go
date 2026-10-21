@@ -22,6 +22,7 @@
  *   dobles                      Yale Bright Star Catalogue 5 (1991)
  *   variables                   GCVS 5.1 (extracto de Stellarium, 2026-07-20)
  *   lluvias de estrellas        IMO (ver LLUVIAS, abajo)
+ *   declinacion magnetica       WMM2025 (NOAA y BGS, dominio publico)
  * Por ser derivado de HYG y OpenNGC, el fichero va con CC BY-SA 4.0.
  *
  * EL NIVEL (1 simple vista, 2 prismaticos, 3 telescopio) NO SE ESCRIBE A MANO:
@@ -157,13 +158,6 @@ const hyg = csv(fs.readFileSync(path.join(F, 'hyg/hyg/CURRENT/hygdata_v41.csv'),
 const porHip = new Map();
 for (const s of hyg) if (s.hip) porHip.set(+s.hip, s);
 const MAG_MAPA = 5.5;
-const estrellasMapa = [];
-for (const s of hyg) {
-  const m = num(s.mag), dec = num(s.dec);
-  if (s.id === '0' || m === null || m > MAG_MAPA || dec < DEC_MIN - 1) continue;
-  estrellasMapa.push([red(num(s.ra) * 15, 2), red(dec, 2), red(m, 1), num(s.ci) === null ? null : red(num(s.ci), 1), s.hip ? +s.hip : 0]);
-}
-estrellasMapa.sort((a, b) => a[2] - b[2] || a[0] - b[0] || a[1] - b[1]);
 
 /* Las estrellas del catalogo: las de nombre propio (IAU) de magnitud 2,0 o
    menos que asoman desde Tenerife, y unas cuantas mas por lo que tienen que
@@ -203,6 +197,25 @@ const gcvs = new Map();
 const bscPorHD = new Map();
 for (const b of JSON.parse(fs.readFileSync(path.join(F, 'bsc/bsc5-all.json'), 'utf8'))) if (b.HD) bscPorHD.set(String(+b.HD), b);
 const espectro = s => { const b = s.hd ? bscPorHD.get(String(+s.hd)) : null; return (b && b.SpType && b.SpType.trim()) || s.spect || null; };
+/* HYG da la distancia en parsecs; 100000 es «sin paralaje fiable» */
+const anosLuz = s => { const d = num(s.dist); return d && d < 100000 ? red(d * 3.261564, d * 3.26 < 100 ? 1 : 0) : null; };
+/* Dos cifras significativas: la luminosidad sale de la distancia, y la del
+   Hipparcos tiene un 10-30 % de error en las lejanas (ver distancia() en el
+   panel). */
+const dosCifras = x => { if (!x || !isFinite(x)) return null; const p = Math.pow(10, Math.floor(Math.log10(x)) - 1); return Number((Math.round(x / p) * p).toPrecision(2)); };
+
+/* Las estrellas de la carta, hasta la 5,5: [ra, dec, mag, B-V, HIP, anos luz,
+   designacion de Bayer o Flamsteed, tipo espectral]. Las tres ultimas son lo
+   que dice la ficha al tocar una estrella sin nombre («η Ori · B1V+B2:e ·
+   unos 900 anos luz»). */
+const estrellasMapa = [];
+for (const s of hyg) {
+  const m = num(s.mag), dec = num(s.dec);
+  if (s.id === '0' || m === null || m > MAG_MAPA || dec < DEC_MIN - 1) continue;
+  estrellasMapa.push([red(num(s.ra) * 15, 2), red(dec, 2), red(m, 1), num(s.ci) === null ? null : red(num(s.ci), 1), s.hip ? +s.hip : 0,
+                      anosLuz(s), bayer(s.bayer, s.flam, s.con), espectro(s)]);
+}
+estrellasMapa.sort((a, b) => a[2] - b[2] || a[0] - b[0] || a[1] - b[1]);
 const catEstrellas = nombradas.map(s => {
   const dec = num(s.dec), ra = num(s.ra) * 15;
   const dist = num(s.dist);
@@ -210,8 +223,11 @@ const catEstrellas = nombradas.map(s => {
   return {
     h: +s.hip, n: s.proper, b: bayer(s.bayer, s.flam, s.con), c: s.con,
     m: red(num(s.mag), 2), bv: red(num(s.ci), 2), sp: espectro(s),
-    /* HYG da la distancia en parsecs; 100000 es «sin paralaje fiable» */
-    al: dist && dist < 100000 ? red(dist * 3.261564, dist * 3.26 < 100 ? 1 : 0) : null,
+    al: anosLuz(s),
+    /* lum: la luminosidad VISUAL (banda V) en soles, la de HYG (de la
+       magnitud absoluta, que sale de la distancia). No es la total: una
+       supergigante roja echa casi todo en infrarrojo. */
+    lum: dist && dist < 100000 ? dosCifras(num(s.lum)) : null,
     ra: red(ra, 3), dec: red(dec, 3), alt: red(altMax(dec), 1), mes: meses(ra, dec),
     /* solo si de verdad cambia a la vista: rango con magnitudes (marca 0) de
        al menos una decima. «vr» y no «v»: el panel le pone a cada objeto su
@@ -232,7 +248,10 @@ for (const c of conF) {
   const id = c.id;
   const [lon, lat] = c.geometry.coordinates;
   /* n: el nombre latino de la UAI, que no se traduce (como una designacion) */
-  const e = con[id] || (con[id] = { n: id === 'Ser' ? 'Serpens' : c.properties.name, ra: red(ra360(lon), 2), dec: red(lat, 2), dmin: 90, dmax: -90, et: [] });
+  /* gen: el genitivo latino («Orionis»), con el que se escriben las
+     designaciones en Wikipedia («Alpha Orionis»): la ficha lo usa para
+     encontrar el articulo */
+  const e = con[id] || (con[id] = { n: id === 'Ser' ? 'Serpens' : c.properties.name, gen: c.properties.gen, ra: red(ra360(lon), 2), dec: red(lat, 2), dmin: 90, dmax: -90, et: [] });
   if (con[id].et.length) e.et.push([red(ra360(lon), 2), red(lat, 2)]);   // Serpens: dos etiquetas
   else e.et.push([red(ra360(lon), 2), red(lat, 2)]);
 }
@@ -515,8 +534,26 @@ const lluvias = Object.keys(THZ_IMO).map(id => {
 });
 
 /* ════════════════ SALIDA ════════════════ */
+/* Los nombres propios de la UAI de las estrellas de la carta que no estan en
+   el catalogo (Mintaka, Alcyone, Thuban...): los da HYG. Van por HIP. */
+const enCatalogo = new Set(catEstrellas.map(e => e.h));
+const nombresIAU = {};
+for (const e of estrellasMapa) { const s = porHip.get(e[4]); if (e[4] && s && s.proper && !enCatalogo.has(e[4])) nombresIAU[e[4]] = s.proper; }
+
+/* ════════════════ DECLINACION MAGNETICA (WMM2025) ════════════════
+   Para «Apunta al cielo»: la brujula del movil marca el norte magnetico. En
+   Izana, el 1 de enero de cada ano de 2025 a 2030 (el modelo vale hasta 2030;
+   el panel interpola). En la isla cambia menos de 0,3 grados de un extremo a
+   otro (Anaga -3,45, Buenavista -3,70 a finales de 2026). */
+const WMM = require('./cielo_wmm.js');
+const cof = WMM.leerCOF(fs.readFileSync(path.join(F, 'wmm/pygeomag/wmm/WMM_2025.COF'), 'utf8'));
+const malWMM = WMM.comprobar(cof);
+if (malWMM.length) { console.log('MAL: el WMM no da la tabla de prueba de la NOAA:\n  ' + malWMM.join('\n  ')); process.exit(1); }
+const declinacion = { modelo: cof.modelo, anios: [] };
+for (let y = 2025; y <= 2030; y++) declinacion.anios.push([y, red(WMM.campo(cof, OBS.lat, OBS.lon, OBS.h / 1000, y).D, 3)]);
+
 const fuentes = {};
-for (const d of ['hyg', 'openngc', 'd3c', 'stel', 'astro', 'bsc']) {
+for (const d of ['hyg', 'openngc', 'd3c', 'stel', 'astro', 'bsc', 'wmm']) {
   try { fuentes[d] = require('child_process').execSync('git -C ' + JSON.stringify(path.join(F, d)) + ' rev-parse HEAD').toString().trim(); }
   catch (e) { fuentes[d] = null; }
 }
@@ -531,6 +568,8 @@ const salida = {
   via,
   con,
   estrellas: catEstrellas,
+  nombresIAU,
+  declinacion,
   objetos: objetos.map(({ on, ...o }) => o),
   dobles,
   variables,
@@ -548,6 +587,8 @@ const vis = objetos.filter(o => o.niv !== null);
 console.log('cielo profundo: ' + objetos.length + ' (Messier ' + objetos.filter(o => o.M).length + ', Caldwell ' + objetos.filter(o => o.C).length +
             ') · visibles (>=5 grados): ' + vis.length + ' · nivel 1/2/3: ' + [1, 2, 3].map(n => vis.filter(o => o.niv === n).length).join('/'));
 console.log('dobles: ' + dobles.length + ' · variables: ' + variables.length + ' · lluvias: ' + lluvias.length);
+console.log('nombres IAU en la carta (fuera del catalogo): ' + Object.keys(nombresIAU).length +
+            ' · declinacion en Izana (' + declinacion.modelo + '): ' + declinacion.anios.map(a => a[0] + ' ' + a[1]).join(', '));
 console.log('datos/cielo.json: ' + Buffer.byteLength(texto) + ' bytes, ' + require('zlib').gzipSync(texto).length + ' comprimidos');
 if (COMPROBAR) {
   const hay = fs.existsSync(destino) ? fs.readFileSync(destino, 'utf8') : '';

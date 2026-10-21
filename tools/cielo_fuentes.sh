@@ -27,6 +27,8 @@
 #   Yale Bright Star Catalogue 5       estrellas dobles: separacion, diferencia
 #     (JSON de brettonw, MIT)          de brillo y notas de cada sistema
 #   Astronomy Engine (MIT)             el calculo: va en vendor/ tal cual
+#   WMM2025 (NOAA/BGS, dominio publico) la declinacion magnetica en Izana,
+#     coeficientes via pygeomag (MIT)  ano a ano de 2025 a 2030
 set -eu
 DEST=${1:-/tmp/fuentes-cielo}
 mkdir -p "$DEST"
@@ -71,4 +73,11 @@ traer astro    cosinekitty/astronomy     865d3da7d8112bbc7911238052c6af4aaf87718
 # separacion y la diferencia de brillo de las estrellas dobles, con sus notas.
 traer bsc      brettonw/YaleBrightStarCatalog abffb3b7223ae37e879b0a3ff5b49ad06aed5576 \
   /bsc5-all.json /LICENSE
+# El World Magnetic Model 2025 (NOAA y British Geological Survey, dominio
+# publico): sus coeficientes, para la declinacion magnetica de «Apunta al
+# cielo» (la brujula del movil marca el norte magnetico). pygeomag (MIT) los
+# copia tal cual de la NOAA; tools/cielo_wmm.js comprueba el calculo con la
+# tabla de prueba oficial (WMM2025testvalues.pdf).
+traer wmm      boxpet/pygeomag           2b8ac57f08bc100ee1f103dbca4e1a8de65ff5e8 \
+  /pygeomag/wmm/WMM_2025.COF /LICENSE
 echo "Hecho."

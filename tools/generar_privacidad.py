@@ -116,6 +116,8 @@ TERCEROS = [
     # el dispositivo. Los avisos los baja GitHub (.github/workflows/avisos-aemet.yml)
     # y la app los lee de su propio dominio, asi que AEMET no recibe ni la IP.
     ('Ministerio para la Transición Ecológica y el Reto Demográfico', 'https://geoportalgasolineras.es/', 'ppTercCarburantes'),
+    # Wikipedia: las fotos de los lugares y, desde el 20/10/2026, el resumen
+    # del astro que se abre en el panel del cielo (modulos/cielo.js, wikiResumen).
     ('Wikipedia · Wikimedia', 'https://foundation.wikimedia.org/wiki/Policy:Privacy_policy', 'ppTercWiki'),
     # Las tipografias viven en vendor/fuentes/ desde hace tiempo: Google
     # Fonts no recibe nada. jsDelivr sirve la libreria de Supabase
@@ -204,8 +206,11 @@ def cuerpo(L, panel):
               else f'<strong>{e("ppDatosCuenta")}</strong>')
     m.append(f'{sangria(6)}<li>{fuerte} {t("ppDatosCuentaTxt")} '
              f'{fuera("https://supabase.com/privacy", "Supabase", "nombre del proveedor")}{t("ppDatosRls")}</li>')
+    # Los sensores y la camara (20 de octubre de 2026): «Apunta al cielo» del
+    # panel del cielo los usa en el dispositivo y nada sale de el.
     for a, b in (('ppDatosFav', 'ppDatosFavTxt'), ('ppDatosPref', 'ppDatosPrefTxt'),
-                 ('ppDatosPush', 'ppDatosPushTxt'), ('ppDatosStats', 'ppDatosStatsTxt')):
+                 ('ppDatosPush', 'ppDatosPushTxt'), ('ppDatosSensores', 'ppDatosSensoresTxt'),
+                 ('ppDatosCamara', 'ppDatosCamaraTxt'), ('ppDatosStats', 'ppDatosStatsTxt')):
         m.append(li(a, b))
     m += [f'{sangria(4)}</ul>', '']
     m += [h(3, 'ppStatsTitulo')] + [par(k) for k in ('ppStatsAntes', 'ppStatsSi', 'ppStatsConsent', 'ppStatsGuarda')] + ['']

@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.012 kB** en castellano · **1.126 kB** en el peor caso (búlgaro) · 1.112 kB en polaco, el 17 de octubre (el panel del cielo suma 9 kB; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.017 kB** en castellano · **1.130 kB** en el peor caso (búlgaro) · 1.116 kB en polaco, el 20 de octubre (el panel del cielo suma 9 kB, con «Apunta al cielo» y la ficha; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -331,6 +331,179 @@ Cada control nuevo se vio fallar antes de darlo por bueno:
 - GitHub Pages publicó `7f90ab3` sin errores. Desde este contenedor no se
   llega a la web publicada; el panel se miró con los mismos ficheros en
   local: las cinco pestañas en los diez idiomas, sin un error.
+
+## «Apunta al cielo», la carta nueva y la ficha de cada astro (20 de octubre)
+
+Jerome, con el panel ya montado: «mira las app disponibles para tener
+información estelares como Stellarium y mucho más. Son mucho más detalladas.
+Busca un poco en todas las app disponibles las funciones útiles y modos más
+creativos y reales. Como ejemplo ahora estoy en mi terraza, veo una estrella,
+abro la app, cámara y me dice cuál es, con toda su información y hechos
+interesantes. También el mapa es horrible pero horrible. Algo guapo que deja
+soñar como las estrellas».
+
+### Lo que hacen las otras, y lo que entra
+
+Se miraron las fichas de Stellarium Mobile, Star Walk 2, Sky Guide, SkyView,
+SkySafari y Night Sky. Lo que todas tienen y la gente usa: la vista que sigue
+al móvil (sensores), la cámara detrás como realidad aumentada, la búsqueda con
+una flecha que lleva hasta el astro, el cielo pintado con atmósfera y Vía
+Láctea, el tiempo que corre, la ficha con datos y una explicación, y la luz
+roja. Lo que no entra, y por qué: satélites y la Estación (órbitas que cambian
+cada semana: el panel sigue llevando a la aplicación de la NASA), el cielo de
+otros planetas, los paquetes de pago (más estrellas, más objetos, 3D) y la
+cuenta de usuario. Tenerife Go es gratis y sin cuenta, y el PDF de partida
+pedía lo que se ve desde Tenerife.
+
+### Lo que entra, y de dónde sale cada cosa
+
+- **La carta, pintada como se ve.** Proyección estereográfica (la de
+  Stellarium) centrada en donde se mira; el color del cielo según la altura
+  del Sol y con el crepúsculo encendido hacia donde se puso; la Vía Láctea de
+  d3-celestial como niebla, más densa y cálida hacia Sagitario; cada estrella
+  con el color de su temperatura (B−V → kelvin, Ballesteros 2012; kelvin →
+  color, cuerpo negro por las funciones de la CIE 1931 en la aproximación de
+  Wyman, Sloan y Shirley 2013, matriz sRGB), con halo, centelleo y apagándose
+  hacia el horizonte con la extinción de las cumbres canarias (0,113 mag por
+  masa de aire, mediana de 2.850 noches: Guerrero et al. 1998; masa de aire de
+  Kasten y Young 1989); la Luna con su fase bien girada —el lado iluminado
+  hacia el Sol, su norte hacia el polo de la eclíptica— y sus mares (centro y
+  diámetro del Gazetteer of Planetary Nomenclature de la UAI/USGS, consultado
+  el 18 de octubre; Mare Frigoris no, porque es una franja y como mancha
+  redonda sería falsa); el suelo con bruma y los puntos cardinales. Se
+  arrastra, se pellizca, corre con ▶ (20 minutos de cielo por segundo) y
+  «todo el cielo» es el planisferio de antes. El centelleo se para si el
+  móvil pide menos movimiento (`prefers-reduced-motion`).
+- **«Apunta al cielo».** La carta a pantalla completa, orientada con la API
+  DeviceOrientation (W3C): en Android `deviceorientationabsolute`, en iOS
+  `deviceorientation` más `webkitCompassHeading`, con el permiso pedido en el
+  mismo toque del botón, como exige iOS. El círculo del centro nombra lo que
+  hay (lo más brillante a menos de 4°; si no hay nada, la constelación), y
+  tocando el nombre o cualquier astro sale su ficha en una hoja. 🔍 busca
+  cualquier cosa del catálogo y una flecha en el borde dice a cuántos grados
+  queda; al centrarlo, el móvil vibra. 📷 pone la imagen de la cámara de
+  atrás debajo (proyección gnomónica, la de un objetivo, partiendo de los
+  26 mm equivalentes de la cámara principal de casi todos los móviles y
+  ajustable con dos dedos, que se recuerda). Sin sensores (un ordenador, o
+  sin permiso) funciona a mano y lo dice. La pantalla no se apaga (Wake
+  Lock), el botón «atrás» del móvil cierra la vista y no la app, y con la
+  app en segundo plano la cámara se apaga.
+- **La brújula marca el norte magnético.** Apple lo documenta así para
+  `webkitCompassHeading` («relative to magnetic north») y Chrome en Android
+  da lo mismo. En Izaña la diferencia son unos 3,6° al oeste: la distancia
+  entre dos estrellas, así que sin corregirla la app nombraría la de al lado.
+  Se corrige con el World Magnetic Model 2025 (NOAA y BGS, dominio público):
+  `tools/cielo_wmm.js` implementa el cálculo del informe técnico del WMM
+  (geodésica a geocéntrica, Legendre seminormalizadas de Schmidt hasta grado
+  12, armónicos esféricos), se comprueba contra la tabla de valores de prueba
+  que publica la NOAA (12 filas, a 0,01° y 0,1 nT; y contra las 100 de
+  pygeomag, a 0,005°) y escribe en `datos/cielo.json` la declinación en Izaña
+  el 1 de enero de cada año de 2025 a 2030 (−3,87° a −3,08°), que el panel
+  interpola. Los coeficientes, `WMM_2025.COF`, los baja `cielo_fuentes.sh` con
+  commit fijado (de pygeomag, MIT, que los copia tal cual de la NOAA). Un móvil
+  sin calibrar o con hierros cerca se arregla arrastrando el cielo hasta que
+  cuadre, y el ajuste se recuerda. El IGN tiene la tabla del observatorio de
+  Güímar, pero termina en 1992 (TEN-TABLA1A.pdf) y su mapa de declinaciones
+  de 2020 no cubre Canarias: no sirven.
+- **La ficha.** Dónde está ahora, cuándo sale, culmina y se pone esta noche
+  (o «nunca se pone desde Tenerife»), y lo que se sabe de él, calculado de
+  datos con fuente: la distancia en años luz y el año en que salió la luz
+  que se ve (HYG), la clase de luminosidad y el color del tipo espectral
+  (sistema MK; la tabla de colores de Harvard), la temperatura del color
+  (Ballesteros 2012, redondeada a la centena y dicha como «unos»), cuánto
+  brilla en soles (la luminosidad visual de HYG, dos cifras), si es la más
+  brillante de su constelación y cuánto varía; para la Luna la fase, su edad
+  desde la última luna nueva, la distancia y lo que tarda su luz; para los
+  planetas la distancia, lo que tarda la luz, la elongación y la fase de
+  Mercurio y Venus, la inclinación de los anillos de Saturno y **las cuatro
+  lunas de Júpiter como se ven ahora con prismáticos** (Astronomy Engine,
+  teoría L1.2 de Lieske, con el tiempo que tarda la luz), dibujadas y con las
+  que quedan detrás del planeta dichas aparte. Las 2.683 estrellas de la carta
+  llevan ahora su distancia, su designación de Bayer o Flamsteed y su tipo
+  espectral, y 274 su nombre de la UAI: tocar una estrella sin nombre
+  corriente («7 Cet») da también su ficha.
+- **Wikipedia, en el idioma del lector.** Al abrir la ficha se pide el
+  resumen (API REST, `page/summary`) partiendo del artículo en inglés —la
+  designación en latín («Alpha Orionis») lleva siempre a la estrella, el
+  nombre a secas a veces a otra cosa; «Messier 42», «NGC 7000», los nombres
+  de OpenNGC— y comprobando que sea de astronomía (su descripción corta); de
+  ahí, por los enlaces entre idiomas (`prop=langlinks`), al del idioma de
+  quien lee, y si no lo hay sale el inglés y se dice. Texto plano
+  (`textContent`), cada URL validada con `isSafeWikiUrl`, la foto por
+  `img-src https:`, la licencia CC BY-SA 4.0 al pie, y lo leído se guarda 30
+  días en el móvil (`tgo_cielo_wiki_v1`, hasta 80 resúmenes): en el Teide,
+  sin cobertura, lo ya visto sigue saliendo. Nada del catálogo depende de
+  ello: sin red, la ficha sale entera menos ese bloque.
+- **Privacidad.** `Permissions-Policy` pasa `camera`, `accelerometer`,
+  `gyroscope` y `magnetometer` de `()` a `(self)` (el micrófono sigue en
+  `()`); la política, en los diez idiomas, dice en «Qué datos se tratan» que
+  la orientación del móvil y la cámara se usan solo en «Apunta al cielo», en
+  el dispositivo, sin guardar ni enviar nada, que Wikipedia recibe el título
+  del astro, y que la luz roja, el ajuste de la brújula y los resúmenes se
+  quedan en el móvil. Para Google Play: la app pide permiso de cámara y de
+  sensores de movimiento cuando se usa esa función; en «Seguridad de los
+  datos» no hay nada nuevo que declarar, porque nada sale del dispositivo.
+
+### Lo que se midió
+
+- `modulos/cielo.js` pasa de 106 a 151 kB comprimidos (79 filas de texto
+  más en diez idiomas, 329 en `CIELO_UI`) y `datos/cielo.json` de 61 a 86 kB
+  (los tres campos nuevos de cada estrella de la carta). Los dos se piden al
+  abrir el panel, no al arrancar; lo que suma `index.html` siguen siendo
+  9 kB. Descarga: 1.017 kB en castellano, 1.130 en búlgaro.
+- La vista con sensores pinta a 60 cuadros, a 30 con la cámara; el color del
+  cielo y la Vía Láctea se calculan en baja resolución y se escalan, y las
+  estrellas son 27 «manchas» pintadas una vez (una por color).
+
+### Los controles
+
+- **`auditar_cielo.js`, parte 9** (85 controles en total con las fuentes bajadas, 81 sin ellas; eran 51 y 49): la
+  declinación del catálogo es WMM-2025 de 2025 a 2030 y el panel la
+  interpola; `cielo_wmm.js` da la tabla de la NOAA; cada estrella de la carta
+  trae sus ocho campos y 274 nombres de la UAI; **la ficha dice lo que dan el
+  catálogo y el motor**, calculado aquí aparte (la temperatura con la misma
+  fórmula, la luminosidad y la distancia con dos cifras, la distancia de la
+  Luna y de Júpiter con el motor, las cuatro lunas con su geometría), para
+  Betelgeuse, Sirio, la Luna, el Sol, Júpiter, M42, Orión y 7 Cet, y las seis
+  fichas en los diez idiomas con los mismos datos; Wikipedia con una
+  respuesta falsa: el resumen en alemán por los enlaces entre idiomas, un
+  `<script>` en el texto que sale como texto, una foto con URL `javascript:`
+  rechazada, el francés sin artículo que cae al inglés y lo dice, una
+  desambiguación y un homónimo que no es de astronomía que no salen, y que
+  solo se pidió el resumen y los enlaces; **los sensores simulados** con los
+  eventos de la API apuntando al planeta más brillante que esté arriba (el
+  rumbo magnético, con la declinación): el círculo lo nombra, 60° a un lado
+  ya no, buscado en 🔍 la flecha dice a cuántos grados queda (contra la
+  separación angular calculada aquí, ±3°) y al volver «¡Ahí está!»; la
+  cámara falsa de Chromium arranca detrás, se sigue pintando encima y se
+  apaga; la hoja con la ficha; pasar a mano; cerrar. Y el camino de iOS:
+  con `deviceorientation` relativo y `webkitCompassHeading`, la diferencia se
+  toma con el móvil inclinado hacia delante y lleva al rumbo de la brújula.
+  En lo fijo: `Permissions-Policy`, la cámara sin audio, la política de
+  privacidad, lo que se pide fuera contra la CSP, `origin=*`, `seguraWiki()`
+  y ningún `innerHTML`.
+- **`barrido_pantallas.js`**: cuatro estados más en los diez idiomas: la
+  ficha de una estrella, de la Luna y de un objeto en la carta, y «Apunta al
+  cielo» con los sensores simulados, la búsqueda y la hoja.
+- `auditar_web.js` coteja las 1.505 filas; `auditar_readme.js`, las cifras
+  del README; `generar_privacidad.py --comprobar`, la política.
+
+Averías con las que se vieron fallar antes de darlos por buenos: el
+`[hidden]` que `display: flex` pisaba (la hora, la hoja y la búsqueda salían
+siempre: lo cantó la captura, y ahora `#cielo-vista [hidden]` manda); la
+prueba de los sensores con `beta` 50 en vez de 130 (la cámara mira al suelo:
+«bajo el horizonte»); «Betelgeuse es la más brillante de Orión» (es Rigel, y
+el control lo dice ahora al revés); el aviso y el objetivo pisándose arriba;
+y los botones de rumbo de la carta que se quedaban en «S» al arrastrar.
+
+`auditar.sh` entero sobre el árbol del commit, el 21 de octubre: **AUDITORIA
+EN VERDE**, cero bloques en rojo; los tres de `pmtiles` (`auditar_ubicacion`,
+`auditar_en_el_mar`, `informe_lugares`) no se pudieron ejecutar en esta
+sesión, como el 17, y no tocan nada de esto. `auditar_cielo.js`, 85 en verde;
+`barrido_pantallas.js`, 93 pantallas y fichas en los diez idiomas con 0
+textos sin traducir y 0 errores; el tour, 18 pasos. Queda por hacer lo que
+ningún control puede: probarlo en un móvil de verdad, con sus sensores y su
+cámara (los pasos, en la nota para Claude Code).
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
@@ -2173,7 +2346,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 43 tablas, 1421 filas (y 3.562 filas, dentro y fuera del fuente)
+## Idiomas · 43 tablas, 1508 filas (y 3.649 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -2188,14 +2361,17 @@ tarjetas inventadas de la tienda y su hueco de AdSense, que se borraron. El
 17, el panel del cielo: 10 tablas y 514 filas más. Las de
 `modulos/cielo.js` (`CIELO_UI` con 250, las ocho tablas de nombres con 254 y
 `CIELO_LOCALE`), que `tools/fuente.js` pega al fuente, y en `UI_TX` las siete
-filas del botón y las dos del tour. El 21, una más: las dos de «Báñate hoy
+filas del botón y las dos del tour. El 20, «Apunta al cielo», la carta nueva
+y la ficha: 87 más (79 de `CIELO_UI`, que pasa a 329 y pierde una que ya no
+pedía nadie; las cuatro lunas de Júpiter en `CIELO_CUERPO`; y en la política
+de privacidad los sensores y la cámara, cuatro). El 21, una más: las dos de «Báñate hoy
 aquí» con un aviso costero de AEMET, y una menos, la de la ✕ de la píldora de
 avisos, que ya no existe; esa tarde, dos más: «Toda la isla» y «Toda la
 costa» en la línea de los avisos. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
-`barrido_idiomas.js`, contado el 21 de octubre (3.045 antes del cielo); no
+`barrido_idiomas.js`, contado el 21 de octubre (3.045 antes del cielo, 3.559 el 17); no
 la coteja nadie.)*
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que

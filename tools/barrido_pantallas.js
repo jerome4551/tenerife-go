@@ -116,6 +116,22 @@ window.__estados = [
   ...['noche', 'calendario', 'catalogo', 'mapa', 'donde'].map(t => ['cielo:' + t, async () => {
       await window.TG_CIELO_CARGAR(); await TG_CIELO.ver(t, '2026-12-13'); await espera(t === 'mapa' ? 600 : 200);
       document.querySelectorAll('#cielo-panel .cielo-item').forEach(i => i.classList.add('abierto')); }]),
+  /* La ficha de un astro en la carta (20 de octubre de 2026): una estrella
+     con nombre, la Luna y un objeto. Wikipedia no se pide (sin red de fuera). */
+  ...[['estrella', D => ({ est: D.est.find(e => e[4] === 27989) })], ['luna', () => ({ planeta: 'Moon' })], ['objeto', D => ({ obj: D.objetos.find(o => o.id === 'M42') })]].map(([n, f]) => ['cielo:ficha ' + n, async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.ver('mapa', '2026-12-13'); await espera(400);
+      TG_CIELO.estado.mapa.sel = f(TG_CIELO.estado.datos); await TG_CIELO.ver('mapa', '2026-12-13'); await espera(500); }]),
+  /* «Apunta al cielo», con los sensores simulados apuntando al sur y 40
+     grados arriba: la hoja de lo que haya en el circulo, y la busqueda. Lo
+     que se ve se recoge del DOM (las designaciones van marcadas). */
+  ['cielo:apunta', async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); TG_CIELO.vista({}); await espera(200);
+      const ev = new Event('deviceorientationabsolute'); Object.assign(ev, { alpha: 180, beta: 130, gamma: 0, absolute: true }); window.dispatchEvent(ev);
+      await espera(900);
+      document.querySelector('#cielo-vista .cv-nombre').click(); await espera(500); }],
+  ['cielo:apunta buscar', async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); TG_CIELO.vista({}); await espera(300);
+      document.querySelectorAll('#cielo-vista .cv-btn')[2].click(); await espera(300); }],
   /* 'tienda' salio el 16 de octubre de 2026: la tienda no se ve
      (TIENDA_ACTIVA, LANZAMIENTO-PLAY.md 1.1). Que no se abra lo mira
      probar_play.js. */

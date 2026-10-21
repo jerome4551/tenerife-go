@@ -44,6 +44,17 @@
  *      cifra equivocada no es un texto roto, es un texto perfecto.
  *   8. sin conexion de verdad: con un servidor propio que se apaga despues de
  *      que el service worker haya instalado la app, el panel tiene que abrir.
+ *   9. «Apunta al cielo» y la ficha (20 de octubre de 2026): la declinacion
+ *      magnetica del WMM2025 contra la tabla de prueba de la NOAA y contra
+ *      el calculo de tools/cielo_wmm.js; los sensores, simulados (la
+ *      orientacion que la API DeviceOrientation daria apuntando a Jupiter),
+ *      tienen que nombrar a Jupiter en el circulo; la busqueda, la flecha y
+ *      el «ahi esta»; la camara falsa de Chromium detras del cielo; la ficha
+ *      de cada clase de astro en los diez idiomas sin texto roto, con cada
+ *      cifra calculada aqui aparte (temperatura de Ballesteros, luminosidad,
+ *      distancia, lunas de Jupiter); y Wikipedia, con una respuesta falsa:
+ *      el resumen en el idioma del lector por los enlaces entre idiomas, la
+ *      licencia y nada que no venga de la API.
  *
  * Sale con 1 si algo falla.
  */
@@ -129,6 +140,32 @@ titulo('1. el catalogo (datos/cielo.json)');
   for (const col of ['estrellas', 'objetos', 'dobles', 'variables']) (D[col] || []).forEach(x => { if ('v' in x) pisados.push(col + ' ' + (x.id || x.h)); });
   Object.entries(D.con || {}).forEach(([k, c]) => { if ('v' in c) pisados.push('con ' + k); });
   ok(!pisados.length, 'ningun registro trae un campo «v»: el panel guarda ahi el vector de cada objeto', pisados.slice(0, 5).join(', '));
+  /* Lo que entro el 20 de octubre de 2026 para la ficha y «Apunta al cielo» */
+  const est8 = D.est.filter(e => e.length !== 8 || (e[5] !== null && !(e[5] > 0)) || (e[7] !== null && typeof e[7] !== 'string'));
+  ok(D.est.length > 2000 && !est8.length, 'cada estrella de la carta trae [ra, dec, mag, B−V, HIP, años luz, designacion, tipo espectral] (' + D.est.length + ')', JSON.stringify(est8.slice(0, 2)));
+  const conDes = D.est.filter(e => e[6]).length, conSp = D.est.filter(e => e[7]).length;
+  ok(conDes > 1800 && conSp > 2600, 'y casi todas con designacion (' + conDes + ') y tipo espectral (' + conSp + ')');
+  const iau = D.nombresIAU || {};
+  const enCat = new Set(D.estrellas.map(e => e.h));
+  const mal = Object.keys(iau).filter(h => enCat.has(+h) || !D.est.some(e => e[4] === +h) || typeof iau[h] !== 'string' || !iau[h]);
+  ok(Object.keys(iau).length > 200 && !mal.length, 'nombresIAU: ' + Object.keys(iau).length + ' nombres de la UAI de estrellas de la carta que no estan en el catalogo', mal.slice(0, 5).join(', '));
+  ok(D.estrellas.every(e => e.lum === null || e.lum > 0) && D.estrellas.filter(e => e.lum).length >= 45, 'las estrellas con nombre traen su luminosidad en soles (HYG)');
+  const sinGen = Object.entries(D.con).filter(([k, c]) => !c.gen).map(([k]) => k);
+  ok(!sinGen.length && D.con.Ori.gen === 'Orionis', 'cada constelacion trae su genitivo latino (Ori: «' + D.con.Ori.gen + '»)', sinGen.join(', '));
+  /* La declinacion magnetica: el WMM2025, contra la tabla de prueba de la
+     NOAA (WMM2025testvalues.pdf) y en Izaña contra el calculo aqui. */
+  const W = require(path.join(RAIZ, 'tools', 'cielo_wmm.js'));
+  const cof = fs.existsSync(path.join(FUENTES, 'wmm', 'pygeomag', 'wmm', 'WMM_2025.COF')) ? W.leerCOF(fs.readFileSync(path.join(FUENTES, 'wmm', 'pygeomag', 'wmm', 'WMM_2025.COF'), 'utf8')) : null;
+  const dec = D.declinacion || {};
+  ok(dec.modelo === 'WMM-2025' && Array.isArray(dec.anios) && dec.anios.length === 6 && dec.anios[0][0] === 2025 && dec.anios[5][0] === 2030 &&
+     dec.anios.every(a => a[1] < -2 && a[1] > -5) && dec.anios.every((a, i) => !i || a[1] > dec.anios[i - 1][1]),
+     'la declinacion magnetica en Izaña: WMM-2025, de 2025 a 2030, unos ' + (dec.anios ? dec.anios[0][1] : '?') + '° (oeste) y acercandose a cero', JSON.stringify(dec));
+  if (cof) {
+    const malNOAA = W.comprobar(cof);
+    ok(!malNOAA.length, 'tools/cielo_wmm.js da los ' + W.PRUEBAS_NOAA.length + ' valores de prueba de la NOAA a 0,01° y 0,1 nT', malNOAA.slice(0, 2).join(' · '));
+    const d26 = W.campo(cof, D.obs.lat, D.obs.lon, D.obs.h / 1000, 2026).D;
+    ok(Math.abs(d26 - dec.anios[1][1]) < 0.002, 'y en Izaña a 1-1-2026 lo mismo que el catalogo (' + d26.toFixed(3) + '°)');
+  } else nota('sin ' + FUENTES + '/wmm: la tabla de la NOAA se pasa al rehacer el catalogo (cielo_construir.js)');
 }
 
 /* ════════ 2. el observatorio ════════ */
@@ -214,7 +251,11 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(index, '"' + k +
     Cond: ['Buenas', 'Regulares', 'Malas'],
     Var: ['EA', 'EB', 'DCEP', 'M', 'SR', 'GCAS', 'RCB', 'RV', 'NR', 'Otra'],
     EvEclipseSol: ['Total', 'Anular', 'Hibrido', 'Parcial'],
-    EvEclipseLuna: ['Total', 'Parcial', 'Penumbral']
+    EvEclipseLuna: ['Total', 'Parcial', 'Penumbral'],
+    /* la ficha: el color por letra espectral (claseMK: /[OBAFGKM]/) y la
+       clase de luminosidad (I a V; VI se queda sin nombre) */
+    Color: ['O', 'B', 'A', 'F', 'G', 'K', 'M'],
+    Lum: ['I', 'II', 'III', 'IV', 'V']
   };
   ok(Object.values(FAMILIAS).every(v => v && v.length), 'las familias se leen del codigo (RUMBOS, FASES, PESTANAS)');
   /* y si manana el codigo arma otra (T('Algo' + x)), que no pase sin mirar */
@@ -244,6 +285,7 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(index, '"' + k +
     if (!(ids.has(k) || (k.startsWith('d-') && dob.has(k.slice(2))) || (/^h\d+$/.test(k) && D.estrellas.some(e => 'h' + e.h === k)))) m.push('CIELO_DESC.' + k + ' sin objeto');
   const cuerpos = ['Sun', 'Moon'].concat(arr('PLANETAS') || []);
   for (const c of cuerpos) if (!T.CIELO_CUERPO[c]) m.push('cuerpo ' + c);
+  for (const l of ['Io', 'Europa', 'Ganymede', 'Callisto']) if (!T.CIELO_CUERPO[l]) m.push('luna de Jupiter ' + l);
   ok(!m.length, 'el catalogo tiene nombre para todo lo que ensena: ' + Object.keys(D.con).length + ' constelaciones, ' + D.estrellas.length +
      ' estrellas, ' + llu.size + ' lluvias, ' + Object.keys(T.CIELO_TIPO).length + ' tipos, ' + cuerpos.length + ' cuerpos', m.slice(0, 8).join(' · '));
 }
@@ -270,7 +312,22 @@ titulo('4. la carga perezosa y lo que pide el navegador');
   const hosts = [...modulo.matchAll(/(?:fetch\(\s*|var url = )'https:\/\/([a-z0-9.-]+)\//g)].map(m => m[1]);
   const fetchs = [...modulo.matchAll(/\bfetch\(\s*([^)]{0,60})/g)].map(m => m[1].trim());
   ok(hosts.length > 0 && hosts.every(h => conecta.includes('https://' + h)), 'lo que el panel pide fuera (' + [...new Set(hosts)].join(', ') + ') esta en el connect-src de la CSP', conecta.join(' '));
-  ok(fetchs.every(x => /^'\.\/datos\/cielo\.json'|^url\b/.test(x)), 'y no pide nada mas: el catalogo y la nubosidad (fetch: ' + fetchs.join(' · ') + ')');
+  ok(fetchs.every(x => /^'\.\/datos\/cielo\.json'|^url\b/.test(x)), 'y no pide nada mas: el catalogo, la nubosidad y Wikipedia (fetch: ' + fetchs.join(' · ') + ')');
+  /* Wikipedia (20 de octubre de 2026): la ficha pide el resumen a
+     <idioma>.wikipedia.org y los enlaces entre idiomas a en.wikipedia.org;
+     la foto viene de upload.wikimedia.org (img-src https:). */
+  const imgs = (csp.match(/img-src ([^;]+)/) || [, ''])[1].split(/\s+/);
+  ok(modulo.includes(".wikipedia.org/api/rest_v1/page/summary/") && modulo.includes("en.wikipedia.org/w/api.php?action=query") &&
+     conecta.includes('https://*.wikipedia.org') && imgs.includes('https:'), 'Wikipedia: el resumen y los enlaces entre idiomas van a *.wikipedia.org (connect-src) y la foto por img-src https:');
+  ok(/origin=\*/.test(modulo) && /seguraWiki\(/.test(modulo) && !/innerHTML/.test(modulo), 'la API se pide con origin=* (CORS), cada URL pasa por seguraWiki() y el modulo no usa innerHTML');
+  /* la camara y los sensores: Permissions-Policy los deja para el propio origen */
+  const pp = (index.match(/http-equiv="Permissions-Policy" content="([^"]+)"/) || [, ''])[1];
+  ok(/camera=\(self\)/.test(pp) && /accelerometer=\(self\)/.test(pp) && /gyroscope=\(self\)/.test(pp) && /magnetometer=\(self\)/.test(pp) && /microphone=\(\)/.test(pp),
+     'Permissions-Policy: camera, accelerometer, gyroscope y magnetometer en (self); el microfono sigue en ()', pp);
+  ok(/getUserMedia\(\{ video: \{ facingMode/.test(modulo) && !/audio: true/.test(modulo), 'la camara se pide sin audio y la de atras (facingMode environment)');
+  const priv = JSON.parse(lee('idiomas/privacidad/es.json'));
+  ok(/Apunta al cielo/.test(priv.ppDatosSensoresTxt || '') && /Apunta al cielo/.test(priv.ppDatosCamaraTxt || '') && /astro/.test(priv.ppTercWiki || ''),
+     'la politica de privacidad habla de los sensores, de la camara y del resumen de Wikipedia del astro');
 }
 
 /* ════════ 5. los niveles ════════ */
@@ -305,19 +362,22 @@ function fin() {
 /* ════════ 6, 7 y 8: en el navegador ════════ */
 async function navegador() {
   const { chromium } = require('/opt/node22/lib/node_modules/playwright');
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-proxy-server', '--no-sandbox'] });
+  /* la camara falsa de Chromium: un video de prueba, sin pedir permiso, para la parte 9 */
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+    args: ['--no-proxy-server', '--no-sandbox', '--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'] });
   try {
     if (toca(6)) await calculos(b);
     if (toca(7)) await pantallas(b);
     if (toca(8)) await sinConexion(b);
+    if (toca(9)) await apunta(b);
   } finally { await b.close(); }
 }
 
 /* La app abierta y el panel cargado. La bienvenida se pasa como lo hace
    barrido_pantallas.js; las nubes (Open-Meteo) no se piden: sin red de
    fuera, la tarjeta no sale, que es lo que tiene que pasar. */
-async function abrirApp(b, ancho, alto, puerto, sw) {
-  const ctx = await b.newContext({ viewport: { width: ancho, height: alto }, serviceWorkers: sw ? 'allow' : 'block' });
+async function abrirApp(b, ancho, alto, puerto, sw, opc) {
+  const ctx = await b.newContext(Object.assign({ viewport: { width: ancho, height: alto }, serviceWorkers: sw ? 'allow' : 'block' }, opc || {}));
   const p = await ctx.newPage();
   const err = [];
   p.on('pageerror', e => err.push(e.message));
@@ -663,4 +723,252 @@ async function sinConexion(b) {
     ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina (fuera de los de red)', err.slice(0, 3).join(' · '));
     await ctx.close();
   } finally { try { srv.kill(); } catch (e) {} }
+}
+
+/* ── 9. «Apunta al cielo» y la ficha ──────────────────────────────────────
+   Los sensores se simulan con los eventos que la API DeviceOrientation (W3C)
+   daria: alpha es el rumbo (a la izquierda, 360 − az) respecto al norte
+   MAGNETICO -asi lo da Chrome en Android (deviceorientationabsolute) y
+   webkitCompassHeading en iOS («relative to magnetic north», Apple)-, y
+   beta la inclinacion: 90 es de pie, mas de 90 es la camara mirando al
+   cielo. El panel corrige la declinacion del WMM2025 (datos/cielo.json), asi
+   que para apuntar a un astro con azimut verdadero A se simula el rumbo
+   magnetico A − D. La camara es la falsa de Chromium (un video de prueba).
+   Wikipedia se responde aqui con JSON falso, con un titulo en aleman por
+   los enlaces entre idiomas, una foto con URL no segura (tiene que
+   rechazarse) y texto con <script> (tiene que salir como texto). */
+async function apunta(b) {
+  titulo('9. «Apunta al cielo», la ficha y Wikipedia');
+  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera'], isMobile: true, hasTouch: true });
+  const WIKI = {
+    'en/Alpha_Orionis': { type: 'standard', title: 'Betelgeuse', titles: { canonical: 'Betelgeuse' }, description: 'Red supergiant star in the constellation Orion',
+      extract: 'Betelgeuse is a red supergiant star of spectral type M1-2 and one of the largest stars visible to the naked eye.',
+      thumbnail: { source: 'https://upload.wikimedia.org/wikipedia/commons/thumb/x/Betelgeuse.jpg/320px-Betelgeuse.jpg' },
+      content_urls: { desktop: { page: 'https://en.wikipedia.org/wiki/Betelgeuse' }, mobile: { page: 'https://en.m.wikipedia.org/wiki/Betelgeuse' } } },
+    'de/Beteigeuze': { type: 'standard', title: 'Beteigeuze', description: 'Stern im Sternbild Orion',
+      extract: 'Beteigeuze ist ein Roter Überriese im Sternbild Orion. <script>alert(1)</script> Er ist einer der größten bekannten Sterne.',
+      thumbnail: { source: 'javascript:alert(1)' }, content_urls: { mobile: { page: 'https://de.m.wikipedia.org/wiki/Beteigeuze' } } },
+    'en/Jupiter': { type: 'standard', title: 'Jupiter', titles: { canonical: 'Jupiter' }, description: 'Fifth planet from the Sun', extract: 'Jupiter is the fifth planet from the Sun and the largest in the Solar System.',
+      content_urls: { mobile: { page: 'https://en.m.wikipedia.org/wiki/Jupiter' } } },
+    'en/Castor_(star)': { type: 'standard', title: 'Castor (star)', description: 'Star system in the constellation Gemini', extract: 'Castor is a sextuple star system in the constellation Gemini.', content_urls: { mobile: { page: 'https://en.m.wikipedia.org/wiki/Castor_(star)' } } },
+    'en/Alpha_Geminorum': { type: 'standard', title: 'Castor (star)', description: 'Star system in the constellation Gemini', extract: 'Castor is a sextuple star system in the constellation Gemini.', content_urls: { mobile: { page: 'https://en.m.wikipedia.org/wiki/Castor_(star)' } } },
+    'en/Messier_42': { type: 'standard', title: 'Orion Nebula', description: 'Diffuse nebula in the constellation Orion', extract: 'The Orion Nebula is a diffuse nebula situated in the Milky Way.', content_urls: { mobile: { page: 'https://en.m.wikipedia.org/wiki/Orion_Nebula' } } },
+    'en/Vega': { type: 'standard', title: 'Vega', description: 'Brand of electric vehicles', extract: 'Vega is a brand.', content_urls: { mobile: { page: 'https://en.m.wikipedia.org/wiki/Vega' } } },
+    'en/Alpha_Lyrae': { type: 'disambiguation', title: 'Alpha Lyrae', description: 'Topics referred to by the same term', extract: 'Alpha Lyrae may refer to:', content_urls: { mobile: { page: 'https://en.m.wikipedia.org/wiki/Alpha_Lyrae' } } },
+  };
+  const pedidas = [];
+  await p.route(/wikipedia\.org/, r => {
+    const u = new URL(r.request().url()); pedidas.push(u.host + u.pathname + u.search);
+    let m = u.pathname.match(/^\/api\/rest_v1\/page\/summary\/(.+)$/);
+    if (m) {
+      const k = u.host.split('.')[0] + '/' + decodeURIComponent(m[1]);
+      return WIKI[k] ? r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(WIKI[k]) }) : r.fulfill({ status: 404, contentType: 'application/json', body: '{"type":"https://mediawiki.org/wiki/HyperSwitch/errors/not_found"}' });
+    }
+    if (u.pathname === '/w/api.php' && u.searchParams.get('prop') === 'langlinks') {
+      const t = u.searchParams.get('titles'), l = u.searchParams.get('lllang');
+      const ll = t === 'Betelgeuse' && l === 'de' ? [{ lang: 'de', title: 'Beteigeuze' }] : [];
+      return r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ batchcomplete: true, query: { pages: [{ title: t, langlinks: ll }] } }) });
+    }
+    return r.abort();
+  });
+  await p.evaluate(async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); });
+  /* la declinacion que usa el panel: la del catalogo, interpolada */
+  const dec = await p.evaluate(() => ({ hoy: TG_CIELO.declinacion(new Date()), a: TG_CIELO.declinacion(new Date('2026-01-01T00:00:00Z')), m: TG_CIELO.declinacion(new Date('2026-07-02T12:00:00Z')), fin: TG_CIELO.declinacion(new Date('2035-01-01T00:00:00Z')) }));
+  const an = D.declinacion.anios;
+  ok(Math.abs(dec.a - an[1][1]) < 1e-9 && Math.abs(dec.m - (an[1][1] + an[2][1]) / 2) < 0.002 && dec.fin === an[5][1],
+     'el panel interpola la declinacion del catalogo (1-1-2026: ' + dec.a + '°, mitad de 2026: ' + dec.m.toFixed(3) + '°, pasado 2030 se queda en ' + dec.fin + '°)', JSON.stringify(dec));
+  /* la ficha, en castellano, con las cifras calculadas aqui aparte */
+  const f = await p.evaluate(() => {
+    setLang('es');
+    const D = TG_CIELO.estado.datos, A = Astronomy, t = new Date('2026-12-13T22:00:00Z');
+    const txt = sel => TG_CIELO.ficha(sel, t).innerText;
+    const bet = D.estrellas.find(e => e.n === 'Betelgeuse'), sir = D.estrellas.find(e => e.n === 'Sirius');
+    const m42 = D.objetos.find(o => o.id === 'M42');
+    const lj = TG_CIELO.lunasJupiter(t);
+    const g = A.GeoVector(A.Body.Moon, A.MakeTime(t), true), dLuna = Math.sqrt(g.x * g.x + g.y * g.y + g.z * g.z) * A.KM_PER_AU;
+    const gj = A.GeoVector(A.Body.Jupiter, A.MakeTime(t), true), dJup = Math.sqrt(gj.x * gj.x + gj.y * gj.y + gj.z * gj.z) * A.KM_PER_AU;
+    const fichaJ = TG_CIELO.ficha({ planeta: 'Jupiter' }, t);
+    return { bet: txt({ k: 'est', rec: bet, v: bet.v }), sir: txt({ k: 'est', rec: sir, v: sir.v }), luna: txt({ planeta: 'Moon' }), sol: txt({ planeta: 'Sun' }),
+             jup: fichaJ.innerText, jupCirculos: fichaJ.querySelectorAll('svg.cielo-lunas-j circle').length, m42: txt({ k: 'obj', rec: m42, v: m42.v }), ori: txt({ con: 'Ori' }),
+             betK: TG_CIELO.kelvinBV(bet.bv), betClase: TG_CIELO.claseMK(bet.sp), lj: lj.lunas.map(l => [l.k, l.e, l.n, l.atras]), dLuna, dJup,
+             carta7: txt({ est: D.est.find(e => e[6] === '7 Cet') }), anio: new Date().getFullYear() };
+  });
+  const bet = D.estrellas.find(e => e.n === 'Betelgeuse'), sir = D.estrellas.find(e => e.n === 'Sirius');
+  const kelvin = bv => 4600 * (1 / (0.92 * bv + 1.7) + 1 / (0.92 * bv + 0.62));       // Ballesteros 2012
+  const num = (x, d) => Number(x).toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const dos = x => { const q = Math.pow(10, Math.floor(Math.log10(x)) - 1); return Math.round(x / q) * q; };
+  const pide = (donde, txt, frase, lista) => { if (!txt.includes(frase)) lista.push(donde + ': falta «' + frase + '»'); };
+  const mal = [];
+  pide('Betelgeuse', f.bet, 'Tipo espectral: ' + bet.sp, mal);
+  pide('Betelgeuse', f.bet, 'Clase: supergigante', mal);
+  pide('Betelgeuse', f.bet, 'Color: rojo anaranjado, con una temperatura de unos ' + num(Math.round(kelvin(bet.bv) / 100) * 100, 0) + ' K', mal);
+  pide('Betelgeuse', f.bet, 'Está a unos ' + num(dos(bet.al), 0) + ' años luz: la luz que ves salió de ella hace unos ' + num(dos(bet.al), 0) + ' años', mal);
+  pide('Betelgeuse', f.bet, 'Brilla como unos ' + num(dos(bet.lum), 0) + ' soles', mal);
+  pide('Betelgeuse', f.bet, 'Su brillo varía entre mag. ' + num(bet.vr[1], 1) + ' y ' + num(bet.vr[2], 1), mal);
+  pide('Betelgeuse', f.bet, 'Altura máxima desde Tenerife: ' + num(bet.alt, 0) + '°', mal);
+  pide('Betelgeuse', f.bet, 'Esta noche', mal); pide('Betelgeuse', f.bet, 'sale a las ', mal); pide('Betelgeuse', f.bet, 'se pone a las ', mal);
+  pide('Sirio', f.sir, 'Está a ' + num(sir.al, 1) + ' años luz: la luz que ves salió de ella en ' + (f.anio - Math.round(sir.al)), mal);
+  pide('Sirio', f.sir, 'Brilla como unos ' + num(dos(sir.lum), 0) + ' soles', mal);
+  pide('Sirio', f.sir, 'Clase: enana, como el Sol', mal);
+  pide('Sirio', f.sir, 'Es la estrella más brillante de Can Mayor', mal);
+  if (/más brillante/.test(f.bet)) mal.push('Betelgeuse: dice que es la mas brillante de Orion, y es Rigel (HYG)');
+  if (/varía/.test(f.sir)) mal.push('Sirio: dice que varía');
+  pide('Luna', f.luna, 'A ' + num(Math.round(f.dLuna / 100) * 100, 0) + ' km: su luz tarda ' + num(f.dLuna / 299792.458, 2) + ' segundos', mal);
+  pide('Luna', f.luna, 'Edad de la Luna: ', mal); pide('Luna', f.luna, '% iluminada', mal);
+  pide('Sol', f.sol, 'Nunca mires el Sol', mal);
+  pide('Júpiter', f.jup, 'A ' + num(f.dJup / 1e6, 0) + ' millones de km de la Tierra', mal);
+  pide('Júpiter', f.jup, 'Sus cuatro lunas grandes ahora', mal);
+  /* Calisto llega a unos 26 radios de Jupiter (unos 10 minutos de arco); el
+     eje de las lunas se ve inclinado respecto al ecuador celeste hasta unos
+     23 grados (la eclíptica), asi que el norte-sur llega a un tercio del
+     este-oeste */
+  if (f.jupCirculos !== 4 || f.lj.length !== 4 || f.lj.some(l => !isFinite(l[1]) || !isFinite(l[2]) || Math.abs(l[1]) > 700 || Math.abs(l[2]) > 0.45 * Math.abs(l[1]) + 40)) mal.push('lunas de Jupiter: ' + JSON.stringify(f.lj) + ' / ' + f.jupCirculos + ' circulos');
+  pide('M42', f.m42, 'mag. ' + num(D.objetos.find(o => o.id === 'M42').m, 1), mal); pide('M42', f.m42, 'Tamaño aparente: ', mal); pide('M42', f.m42, 'Nebulosa', mal);
+  pide('Orión', f.ori, 'Estrellas a simple vista (hasta mag. 6) que salen sobre el horizonte: ' + D.con.Ori.n6v, mal);
+  pide('7 Cet', f.carta7, 'Tipo espectral: ' + D.est.find(e => e[6] === '7 Cet')[7], mal);
+  const roto = [f.bet, f.sir, f.luna, f.sol, f.jup, f.m42, f.ori, f.carta7].join('\n').match(/undefined|NaN|\[object|\{[a-z]+\}/g);
+  if (roto) mal.push('texto roto: ' + roto.join(', '));
+  ok(!mal.length, 'la ficha dice lo que dan el catalogo y el motor: Betelgeuse, Sirio, la Luna, el Sol, Jupiter y sus lunas, M42, Orion y una estrella de la carta (7 Cet)', mal.slice(0, 6).join(' · '));
+  /* en los diez idiomas: sin texto roto, y los mismos datos (mismo numero de lineas) */
+  const porIdioma = await p.evaluate(IDI => {
+    const D = TG_CIELO.estado.datos, t = new Date('2026-12-13T22:00:00Z'), out = {};
+    const bet = D.estrellas.find(e => e.n === 'Betelgeuse'), m42 = D.objetos.find(o => o.id === 'M42');
+    for (const L of IDI) {
+      setLang(L);
+      out[L] = [{ k: 'est', rec: bet, v: bet.v }, { planeta: 'Moon' }, { planeta: 'Jupiter' }, { k: 'obj', rec: m42, v: m42.v }, { con: 'Ori' }, { est: D.est.find(e => e[6] === '7 Cet') }]
+        .map(sel => { const e = TG_CIELO.ficha(sel, t); return { li: e.querySelectorAll('li').length, txt: e.innerText }; });
+    }
+    setLang('es');
+    return out;
+  }, IDI);
+  const malL = [];
+  for (const L of IDI) porIdioma[L].forEach((x, i) => {
+    const r = x.txt.match(/undefined|NaN|\[object|\{[a-z]+\}/g); if (r) malL.push(L + ' ficha ' + i + ': ' + r.join(','));
+    if (x.li !== porIdioma.es[i].li) malL.push(L + ' ficha ' + i + ': ' + x.li + ' datos y en castellano ' + porIdioma.es[i].li);
+  });
+  ok(!malL.length, 'las seis fichas en los ' + IDI.length + ' idiomas: sin texto roto y con los mismos datos que en castellano', malL.slice(0, 6).join(' · '));
+  /* Wikipedia: en aleman por los enlaces entre idiomas; lo no seguro, fuera */
+  const w = await p.evaluate(async () => {
+    const D = TG_CIELO.estado.datos, t = new Date('2026-12-13T22:00:00Z'), out = {};
+    const bet = D.estrellas.find(e => e.n === 'Betelgeuse'), vega = D.estrellas.find(e => e.n === 'Vega'), castor = D.estrellas.find(e => e.n === 'Castor');
+    const espera = async (e, ms) => { for (let i = 0; i < ms / 50; i++) { if (e.querySelector('.cielo-wiki-txt') || e.__sin) return; await new Promise(r => setTimeout(r, 50)); } };
+    const mira = e => { const w = e.querySelector('.cielo-wiki'); if (!w || !w.children.length) return null;
+      const img = w.querySelector('img'), a = w.querySelector('a'), p = w.querySelector('.cielo-wiki-txt');
+      return { txt: p ? p.textContent : '', lang: p ? p.getAttribute('lang') : null, img: img ? img.getAttribute('src') : null, href: a ? a.href : null, lic: (w.querySelector('.cielo-wiki-lic') || {}).textContent || '', scripts: w.querySelectorAll('script').length, cab: (w.querySelector('.cielo-wiki-cab') || {}).textContent || '' }; };
+    setLang('de');
+    let e = TG_CIELO.ficha({ k: 'est', rec: bet, v: bet.v }, t); document.body.appendChild(e); await espera(e, 4000); out.de = mira(e); e.remove();
+    setLang('en');
+    e = TG_CIELO.ficha({ k: 'est', rec: bet, v: bet.v }, t); document.body.appendChild(e); await espera(e, 4000); out.en = mira(e); e.remove();
+    e = TG_CIELO.ficha({ planeta: 'Jupiter' }, t); document.body.appendChild(e); await espera(e, 4000); out.jup = mira(e); e.remove();
+    e = TG_CIELO.ficha({ k: 'est', rec: vega, v: vega.v }, t); document.body.appendChild(e); await new Promise(r => setTimeout(r, 1500)); out.vega = mira(e); e.remove();
+    e = TG_CIELO.ficha({ k: 'est', rec: castor, v: castor.v }, t); document.body.appendChild(e); await espera(e, 4000); out.castor = mira(e); e.remove();
+    setLang('fr');
+    e = TG_CIELO.ficha({ k: 'est', rec: bet, v: bet.v }, t); document.body.appendChild(e); await espera(e, 4000); out.fr = mira(e); e.remove();
+    setLang('es');
+    try { out.cache = Object.keys(JSON.parse(localStorage.getItem('tgo_cielo_wiki_v1') || '{}')); } catch (x) { out.cache = []; }
+    return out;
+  });
+  ok(w.de && /Beteigeuze ist ein Roter Überriese/.test(w.de.txt) && w.de.txt.includes('<script>alert(1)</script>') && w.de.scripts === 0 && w.de.lang === 'de' &&
+     w.de.img === null && w.de.href === 'https://de.m.wikipedia.org/wiki/Beteigeuze' && /CC BY-SA 4\.0/.test(w.de.lic) && !/englisch/i.test(w.de.cab),
+     'en aleman: el resumen de de.wikipedia por los enlaces entre idiomas, el <script> como texto, la foto con URL no segura rechazada, el enlace y la licencia', JSON.stringify(w.de));
+  ok(w.en && /red supergiant/.test(w.en.txt) && w.en.img === WIKI['en/Alpha_Orionis'].thumbnail.source && w.en.href === 'https://en.m.wikipedia.org/wiki/Betelgeuse',
+     'en ingles: el resumen, la foto (upload.wikimedia.org) y el enlace', JSON.stringify(w.en));
+  ok(w.fr && /red supergiant/.test(w.fr.txt) && w.fr.lang === 'en' && /anglais/.test(w.fr.cab), 'en frances, sin articulo en frances: el ingles, y se dice', JSON.stringify(w.fr));
+  ok(w.jup && /fifth planet/.test(w.jup.txt), 'Jupiter: el articulo del planeta', JSON.stringify(w.jup));
+  ok(w.vega === null, 'Vega: «Alpha Lyrae» es una desambiguacion y «Vega» no es de astronomia en la respuesta falsa: no sale nada', JSON.stringify(w.vega));
+  ok(w.castor && /sextuple star/.test(w.castor.txt), 'Castor: «Alpha Geminorum» lleva a la estrella', JSON.stringify(w.castor));
+  ok(w.cache.includes('h27989|de') && w.cache.includes('h27989|en') && w.cache.every(k => new RegExp('\\|(' + IDI.join('|') + ')$').test(k)),
+     'lo leido se guarda en el movil 30 dias (tgo_cielo_wiki_v1: ' + w.cache.length + ' resumenes, por astro e idioma)', w.cache.join(', '));
+  const pedidasMal = pedidas.filter(x => !/^(en|de|fr)\.wikipedia\.org\/(api\/rest_v1\/page\/summary\/|w\/api\.php\?)/.test(x));
+  ok(pedidas.length > 0 && !pedidasMal.length, 'solo se pidio el resumen y los enlaces entre idiomas (' + pedidas.length + ' peticiones)', pedidasMal.join(' · '));
+  /* «Apunta al cielo» con los sensores simulados: a lo mas brillante que este arriba */
+  const v = await p.evaluate(async () => {
+    const A = Astronomy, D = TG_CIELO.estado.datos, o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h), t = A.MakeTime(new Date());
+    const horiz = (ra, dec) => { const h = A.Horizon(t, o, ra, dec, 'normal'); return { alt: h.altitude, az: h.azimuth }; };
+    const cand = [];
+    setLang('es');
+    for (const pl of ['Jupiter', 'Venus', 'Saturn', 'Mars', 'Moon']) { const eq = A.Equator(A.Body[pl], t, o, true, true); const h = horiz(eq.ra, eq.dec); if (h.alt > 12) cand.push({ sel: { planeta: pl }, nombre: TG_CIELO.cosa({ planeta: pl }).nombre, h }); }
+    if (!cand.length) for (const e of D.estrellas.slice(0, 12)) { const h = horiz(e.ra / 15, e.dec); if (h.alt > 12) { const sel = { k: 'est', rec: e, v: e.v }; cand.push({ sel, nombre: TG_CIELO.cosa(sel).nombre, h }); break; } }
+    if (!cand.length) return { nada: true };
+    const c = cand[0], dec = TG_CIELO.declinacion(new Date());
+    const magnetico = az => (az - dec + 360) % 360;                  // azimut verdadero -> rumbo de la brujula
+    const evento = (az, alt) => { const ev = new Event('deviceorientationabsolute'); Object.assign(ev, { alpha: (360 - magnetico(az)) % 360, beta: 90 + alt, gamma: 0, absolute: true }); window.dispatchEvent(ev); };
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    TG_CIELO.vista({});
+    await espera(200);
+    const out = { nombre: c.nombre, h: c.h, dec };
+    out.sinSensor = document.querySelector('#cielo-vista .cv-aviso').textContent;
+    evento(c.h.az, c.h.alt); await espera(700);
+    out.centro = document.querySelector('#cielo-vista .cv-nombre').innerText;
+    out.sensores = document.querySelector('#cielo-vista .cv-chip[aria-pressed="true"]') ? document.querySelector('#cielo-vista .cv-chip[aria-pressed="true"]').textContent : '';
+    /* 60 grados a un lado: ya no esta en el circulo; se busca, y la flecha dice cuanto falta */
+    evento(c.h.az + 60, c.h.alt); await espera(500);
+    out.centroLejos = document.querySelector('#cielo-vista .cv-nombre').innerText;
+    document.querySelectorAll('#cielo-vista .cv-btn')[2].click(); await espera(200);
+    out.busqueda = !document.querySelector('#cielo-vista .cv-busqueda').hidden;
+    const inp = document.querySelector('#cielo-vista .cv-busqueda input'); inp.value = c.nombre.slice(0, 4); inp.dispatchEvent(new Event('input')); await espera(100);
+    const it = [...document.querySelectorAll('#cielo-vista .cv-busqueda-item')].find(x => x.textContent.includes(c.nombre));
+    out.encontrado = !!it; if (it) it.click();
+    await espera(600);
+    out.objetivo = document.querySelector('#cielo-vista .cv-objetivo').innerText;
+    const a = c.h.alt * Math.PI / 180, dAz = 60 * Math.PI / 180;
+    out.separacion = Math.acos(Math.sin(a) * Math.sin(a) + Math.cos(a) * Math.cos(a) * Math.cos(dAz)) * 180 / Math.PI;
+    evento(c.h.az, c.h.alt); await espera(700);
+    out.objetivoCerca = document.querySelector('#cielo-vista .cv-objetivo').innerText;
+    out.cerca = document.querySelector('#cielo-vista .cv-objetivo').classList.contains('cerca');
+    /* la camara falsa */
+    document.querySelectorAll('#cielo-vista .cv-btn')[1].click(); await espera(1500);
+    out.camara = { video: !document.querySelector('#cielo-vista video').hidden, avisa: document.querySelector('#cielo-vista .cv-aviso').textContent.slice(0, 40) };
+    const cv = document.querySelector('#cielo-vista canvas'), g = cv.getContext('2d'), d = g.getImageData(0, 0, cv.width, cv.height).data;
+    let claros = 0; for (let i = 0; i < d.length; i += 4) if (d[i] + d[i + 1] + d[i + 2] > 450) claros++;
+    out.camara.pintado = claros;
+    document.querySelectorAll('#cielo-vista .cv-btn')[1].click(); await espera(300);
+    out.camaraFuera = document.querySelector('#cielo-vista video').hidden;
+    /* la hoja con la ficha, tocando el nombre */
+    document.querySelector('#cielo-vista .cv-nombre').click(); await espera(600);
+    const hoja = document.querySelector('#cielo-vista .cv-hoja');
+    out.hoja = hoja.hidden ? null : hoja.innerText.slice(0, 200);
+    /* a mano, sin sensores: el cielo sigue al dedo */
+    document.querySelectorAll('#cielo-vista .cv-chip')[1].click(); await espera(100);
+    out.aMano = document.querySelectorAll('#cielo-vista .cv-chip')[1].textContent;
+    TG_CIELO.cerrarVista();
+    out.cerrada = !document.getElementById('cielo-vista');
+    return out;
+  });
+  if (v.nada) nota('ahora mismo no hay planeta ni estrella brillante a mas de 12 grados: se salta la prueba de los sensores');
+  else {
+    ok(v.centro.includes(v.nombre), 'apuntando a ' + v.nombre + ' (az ' + v.h.az.toFixed(0) + '°, alt ' + v.h.alt.toFixed(0) + '°, brujula corregida ' + v.dec.toFixed(2) + '°), el circulo lo nombra', v.centro);
+    ok(/Sensores/.test(v.sensores), 'y la vista pasa sola a los sensores al recibir el primer dato', v.sensores);
+    ok(!v.centroLejos.includes(v.nombre), '60 grados a un lado ya no esta en el circulo', v.centroLejos);
+    const g = (v.objetivo.match(/(\d+)°/) || [])[1];
+    ok(v.busqueda && v.encontrado && g && Math.abs(+g - v.separacion) <= 3, 'buscado en 🔍, la flecha dice a cuantos grados queda (' + g + '°, calculado aqui ' + v.separacion.toFixed(1) + '°)', v.objetivo);
+    ok(v.cerca && /Ahí está/.test(v.objetivoCerca), 'y al volver a apuntarle: «¡Ahí está!»', v.objetivoCerca);
+    ok(v.camara.video && v.camara.pintado > 50 && v.camaraFuera, 'la camara (falsa) arranca detras del cielo, se sigue pintando encima (' + v.camara.pintado + ' pixeles claros) y se apaga al quitarla', JSON.stringify(v.camara));
+    ok(v.hoja && v.hoja.includes(v.nombre), 'tocando el nombre sale su ficha en la hoja de abajo', v.hoja);
+    ok(/A mano/.test(v.aMano) && v.cerrada, 'se puede pasar a mano, y la vista se cierra', v.aMano);
+  }
+  /* iOS: deviceorientation relativo + webkitCompassHeading. El rumbo que
+     vale es el de la brujula: con un alpha cualquiera, apuntar al norte
+     verdadero es un heading de −D (D negativa: unos 3,7° al este). */
+  const ios = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    /* Chromium tiene deviceorientationabsolute: se le pide al panel el
+       camino de iOS (deviceorientation + webkitCompassHeading) */
+    TG_CIELO.vista({ evento: 'deviceorientation' }); await espera(150);
+    const dec = TG_CIELO.declinacion(new Date());
+    const ev = (alpha, beta, h) => { const e = new Event('deviceorientation'); Object.assign(e, { alpha, beta, gamma: 0, absolute: false, webkitCompassHeading: h, webkitCompassAccuracy: 10 }); window.dispatchEvent(e); };
+    const H = (0 - dec + 360) % 360;                            // la brujula apuntando al norte verdadero
+    ev(37, 50, H); await espera(300);                           // inclinado hacia delante: se toma la diferencia
+    ev(37, 130, H); await espera(600);                          // la camara 40 grados arriba, mismo rumbo
+    const s = TG_CIELO.sensores();
+    /* con alpha 37 el rumbo del movil en su marco es 360 − 37 = 323; la
+       diferencia esperada es H − 323 */
+    const out = { n: s.n, ios: s.ios, off: s.offIOS, abs: s.abs, esperado: ((H - 323) + 540) % 360 - 180 };
+    TG_CIELO.cerrarVista();
+    return out;
+  });
+  ok(ios.n === 2 && ios.abs === false && typeof ios.off === 'number' && Math.abs(ios.off - ios.esperado) < 0.5,
+     'iOS: deviceorientation relativo + webkitCompassHeading: la diferencia con la brujula (' + (ios.off || 0).toFixed(1) + '°) se toma con el movil inclinado hacia delante y lleva al rumbo de la brujula', JSON.stringify(ios));
+  ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
+  await ctx.close();
 }

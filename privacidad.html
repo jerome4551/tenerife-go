@@ -45,8 +45,10 @@ a { color: #c9a84c; }
 <li><strong>Location:</strong> only when you turn it on. It is not stored on any server. If you ask for a driving route, the start and end coordinates are sent to the routing service to work it out.</li>
 <li><strong>Account (optional):</strong> email address and password. They are handled by <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase</a>, which stores the password encrypted; we never see it.</li>
 <li><strong>Favourites:</strong> the identifiers of the places you save. With an account they sync; without one they stay on your device.</li>
-<li><strong>Preferences and usage:</strong> language, filters, active bus lines, cached weather and sea conditions, whether you have seen the tour, a visit counter and your answer to the cookie notice. All of this stays on your device and is not sent anywhere.</li>
+<li><strong>Preferences and usage:</strong> language, filters, active bus lines, cached weather and sea conditions, whether you have seen the tour, a visit counter, your answer to the cookie notice and, for the sky, the red light, the compass adjustment and the Wikipedia summaries of the objects you have already opened. All of this stays on your device and is not sent anywhere.</li>
 <li><strong>Notifications (optional):</strong> if you turn them on, the subscription your browser creates — a delivery address and two keys — is stored, together with the app’s language, so the alert can reach you in your language. Turning them off in the browser stops it being used.</li>
+<li><strong>Phone orientation (optional):</strong> only while you use “Point at the sky”: the compass, gyroscope and accelerometer say where you are pointing, to name what is in front of you. It is used on the device and is neither stored nor sent.</li>
+<li><strong>Camera (optional):</strong> only if you turn it on in “Point at the sky”, to draw the stars over the picture. The picture is not stored, not analysed and never leaves the phone.</li>
 <li><strong>Usage statistics:</strong> only if you accept them. See the next section.</li>
 </ul>
 <h2>3. Statistics and cookies</h2>
@@ -66,7 +68,7 @@ a { color: #c9a84c; }
 <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">Nominatim</a> — the text you type when searching for an address.</li>
 <li><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener">Open-Meteo</a> — the coordinates of the place or area whose forecast you are checking.</li>
 <li><a href="https://geoportalgasolineras.es/" target="_blank" rel="noopener">Ministerio para la Transición Ecológica y el Reto Demográfico</a> — the official petrol station prices for the province, when you look at them; nothing of yours is sent to it.</li>
-<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — the article title of the place you open.</li>
+<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — the article title of the place or object you open.</li>
 <li><a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener">jsDelivr</a> — serves the Supabase library the app uses; nothing of yours is sent to it.</li>
 <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Analytics</a> — only if you accept the cookie notice.</li>
 </ul>
@@ -98,8 +100,10 @@ a { color: #c9a84c; }
 <li><strong>Géolocalisation :</strong> uniquement quand vous l’activez. Elle n’est enregistrée sur aucun serveur. Si vous demandez un itinéraire en voiture, les coordonnées de départ et d’arrivée sont envoyées au service de calcul d’itinéraires.</li>
 <li><strong>Compte (facultatif) :</strong> adresse e-mail et mot de passe. Ils sont gérés par <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase</a>, qui conserve le mot de passe chiffré ; nous ne le voyons jamais.</li>
 <li><strong>Favoris :</strong> les identifiants des lieux que vous enregistrez. Avec un compte ils se synchronisent ; sans compte ils restent sur votre appareil.</li>
-<li><strong>Préférences et usage :</strong> langue, filtres, lignes de bus actives, cache de la météo et de l’état de la mer, si vous avez déjà vu le tour, un compteur de visites et votre réponse à l’avis sur les cookies. Tout cela reste sur votre appareil et n’est envoyé nulle part.</li>
+<li><strong>Préférences et usage :</strong> langue, filtres, lignes de bus actives, cache de la météo et de l’état de la mer, si vous avez déjà vu le tour, un compteur de visites, votre réponse à l’avis sur les cookies et, pour le ciel, la lumière rouge, le réglage de la boussole et les résumés Wikipédia des astres que vous avez déjà ouverts. Tout cela reste sur votre appareil et n’est envoyé nulle part.</li>
 <li><strong>Notifications (facultatif) :</strong> si vous les activez, l’abonnement créé par votre navigateur — une adresse d’envoi et deux clés — est conservé, avec la langue de l’application, pour pouvoir vous envoyer l’alerte dans votre langue. En les désactivant dans le navigateur, il cesse d’être utilisé.</li>
+<li><strong>Orientation du téléphone (facultatif) :</strong> seulement pendant que vous utilisez « Pointez vers le ciel » : la boussole, le gyroscope et l’accéléromètre indiquent où vous visez, pour nommer ce que vous avez devant vous. C’est utilisé sur l’appareil, ni enregistré ni envoyé.</li>
+<li><strong>Caméra (facultatif) :</strong> seulement si vous l’activez dans « Pointez vers le ciel », pour dessiner les étoiles sur l’image. L’image n’est ni enregistrée, ni analysée, et ne quitte pas le téléphone.</li>
 <li><strong>Statistiques d’usage :</strong> uniquement si vous les acceptez. Voir la section suivante.</li>
 </ul>
 <h2>3. Statistiques et cookies</h2>
@@ -119,7 +123,7 @@ a { color: #c9a84c; }
 <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">Nominatim</a> — le texte que vous saisissez en cherchant une adresse.</li>
 <li><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener">Open-Meteo</a> — les coordonnées du lieu ou de la zone dont vous consultez les prévisions.</li>
 <li><a href="https://geoportalgasolineras.es/" target="_blank" rel="noopener">Ministerio para la Transición Ecológica y el Reto Demográfico</a> — les prix officiels des stations-service de la province, quand vous les consultez ; rien de vous ne lui est envoyé.</li>
-<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — le titre de l’article du lieu que vous ouvrez.</li>
+<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — le titre de l’article du lieu ou de l’astre que vous ouvrez.</li>
 <li><a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener">jsDelivr</a> — fournit la bibliothèque Supabase qu’utilise l’app ; rien de vous ne lui est envoyé.</li>
 <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Analytics</a> — uniquement si vous acceptez l’avis sur les cookies.</li>
 </ul>
@@ -151,8 +155,10 @@ a { color: #c9a84c; }
 <li><strong>Standort:</strong> nur wenn du ihn einschaltest. Er wird auf keinem Server gespeichert. Wenn du eine Autoroute anforderst, gehen Start- und Zielkoordinaten an den Routendienst, der sie berechnet.</li>
 <li><strong>Konto (optional):</strong> E-Mail-Adresse und Passwort. Verwaltet werden sie von <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase</a>, das das Passwort verschlüsselt speichert; wir sehen es nie.</li>
 <li><strong>Favoriten:</strong> die Kennungen der Orte, die du speicherst. Mit Konto werden sie synchronisiert, ohne Konto bleiben sie auf deinem Gerät.</li>
-<li><strong>Einstellungen und Nutzung:</strong> Sprache, Filter, aktive Buslinien, zwischengespeichertes Wetter und Seegang, ob du die Tour schon gesehen hast, ein Besuchszähler und deine Antwort auf den Cookie-Hinweis. Das alles bleibt auf deinem Gerät und wird nirgendwohin gesendet.</li>
+<li><strong>Einstellungen und Nutzung:</strong> Sprache, Filter, aktive Buslinien, zwischengespeichertes Wetter und Seegang, ob du die Tour schon gesehen hast, ein Besuchszähler, deine Antwort auf den Cookie-Hinweis und, für den Himmel, das rote Licht, die Kompassanpassung und die Wikipedia-Zusammenfassungen der Objekte, die du schon geöffnet hast. Das alles bleibt auf deinem Gerät und wird nirgendwohin gesendet.</li>
 <li><strong>Benachrichtigungen (optional):</strong> wenn du sie einschaltest, wird das vom Browser erzeugte Abo — eine Zustelladresse und zwei Schlüssel — zusammen mit der Sprache der App gespeichert, damit die Meldung dich in deiner Sprache erreichen kann. Schaltest du sie im Browser ab, wird es nicht mehr verwendet.</li>
+<li><strong>Ausrichtung des Handys (optional):</strong> nur solange du „Auf den Himmel zeigen“ benutzt: Kompass, Gyroskop und Beschleunigungssensor sagen, wohin du zielst, um zu benennen, was vor dir liegt. Das wird auf dem Gerät verwendet und weder gespeichert noch gesendet.</li>
+<li><strong>Kamera (optional):</strong> nur wenn du sie in „Auf den Himmel zeigen“ einschaltest, um die Sterne über das Bild zu zeichnen. Das Bild wird weder gespeichert noch ausgewertet und verlässt das Handy nicht.</li>
 <li><strong>Nutzungsstatistik:</strong> nur wenn du zustimmst. Siehe den nächsten Abschnitt.</li>
 </ul>
 <h2>3. Statistik und Cookies</h2>
@@ -172,7 +178,7 @@ a { color: #c9a84c; }
 <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">Nominatim</a> — den Text, den du bei der Adresssuche eingibst.</li>
 <li><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener">Open-Meteo</a> — die Koordinaten des Ortes oder Gebiets, dessen Vorhersage du abrufst.</li>
 <li><a href="https://geoportalgasolineras.es/" target="_blank" rel="noopener">Ministerio para la Transición Ecológica y el Reto Demográfico</a> — die amtlichen Tankstellenpreise der Provinz, wenn du sie ansiehst; von dir wird nichts übermittelt.</li>
-<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — den Artikeltitel des Ortes, den du öffnest.</li>
+<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — den Artikeltitel des Ortes oder Himmelsobjekts, das du öffnest.</li>
 <li><a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener">jsDelivr</a> — liefert die Supabase-Bibliothek, die die App nutzt; von dir wird nichts übermittelt.</li>
 <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Analytics</a> — nur wenn du dem Cookie-Hinweis zustimmst.</li>
 </ul>
@@ -204,8 +210,10 @@ a { color: #c9a84c; }
 <li><strong>Geolocalizzazione:</strong> solo quando la attivi. Non viene salvata su nessun server. Se chiedi un percorso in auto, le coordinate di partenza e arrivo vengono inviate al servizio di calcolo percorsi.</li>
 <li><strong>Account (facoltativo):</strong> indirizzo e-mail e password. Sono gestiti da <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase</a>, che conserva la password cifrata; noi non la vediamo mai.</li>
 <li><strong>Preferiti:</strong> gli identificativi dei luoghi che salvi. Con un account si sincronizzano; senza, restano sul tuo dispositivo.</li>
-<li><strong>Preferenze e utilizzo:</strong> lingua, filtri, linee di autobus attive, cache del meteo e dello stato del mare, se hai già visto il tour, un contatore di visite e la tua risposta all’avviso sui cookie. Tutto questo resta sul tuo dispositivo e non viene inviato da nessuna parte.</li>
+<li><strong>Preferenze e utilizzo:</strong> lingua, filtri, linee di autobus attive, cache del meteo e dello stato del mare, se hai già visto il tour, un contatore di visite, la tua risposta all’avviso sui cookie e, per il cielo, la luce rossa, la regolazione della bussola e i riassunti di Wikipedia degli astri che hai già aperto. Tutto questo resta sul tuo dispositivo e non viene inviato da nessuna parte.</li>
 <li><strong>Notifiche (facoltative):</strong> se le attivi, l’iscrizione creata dal browser — un indirizzo di recapito e due chiavi — viene conservata, insieme alla lingua dell’app, per poterti mandare l’avviso nella tua lingua. Disattivandole nel browser smette di essere usata.</li>
+<li><strong>Orientamento del telefono (facoltativo):</strong> solo mentre usi «Punta al cielo»: bussola, giroscopio e accelerometro dicono dove stai puntando, per dare un nome a ciò che hai davanti. Si usa sul dispositivo e non viene né salvato né inviato.</li>
+<li><strong>Fotocamera (facoltativa):</strong> solo se la attivi in «Punta al cielo», per disegnare le stelle sopra l’immagine. L’immagine non viene salvata né analizzata e non esce dal telefono.</li>
 <li><strong>Statistiche d’uso:</strong> solo se le accetti. Vedi la sezione seguente.</li>
 </ul>
 <h2>3. Statistiche e cookie</h2>
@@ -225,7 +233,7 @@ a { color: #c9a84c; }
 <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">Nominatim</a> — il testo che scrivi cercando un indirizzo.</li>
 <li><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener">Open-Meteo</a> — le coordinate del luogo o della zona di cui consulti le previsioni.</li>
 <li><a href="https://geoportalgasolineras.es/" target="_blank" rel="noopener">Ministerio para la Transición Ecológica y el Reto Demográfico</a> — i prezzi ufficiali dei distributori della provincia, quando li consulti; non gli viene inviato nulla di tuo.</li>
-<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — il titolo dell’articolo del luogo che apri.</li>
+<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — il titolo della voce del luogo o dell’astro che apri.</li>
 <li><a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener">jsDelivr</a> — fornisce la libreria di Supabase che usa l’app; non gli viene inviato nulla di tuo.</li>
 <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Analytics</a> — solo se accetti l’avviso sui cookie.</li>
 </ul>
@@ -257,8 +265,10 @@ a { color: #c9a84c; }
 <li><strong>Locatie:</strong> alleen als je die aanzet. Ze wordt op geen enkele server bewaard. Vraag je een autoroute, dan gaan de start- en eindcoördinaten naar de routedienst die hem berekent.</li>
 <li><strong>Account (optioneel):</strong> e-mailadres en wachtwoord. Ze worden beheerd door <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase</a>, dat het wachtwoord versleuteld bewaart; wij zien het nooit.</li>
 <li><strong>Favorieten:</strong> de identificatoren van de plekken die je opslaat. Met een account synchroniseren ze; zonder blijven ze op je toestel.</li>
-<li><strong>Voorkeuren en gebruik:</strong> taal, filters, actieve buslijnen, gecachet weer en zeegang, of je de tour al zag, een bezoekteller en je antwoord op de cookiemelding. Dit alles blijft op je toestel en gaat nergens heen.</li>
+<li><strong>Voorkeuren en gebruik:</strong> taal, filters, actieve buslijnen, gecachet weer en zeegang, of je de tour al zag, een bezoekteller, je antwoord op de cookiemelding en, voor de hemel, het rode licht, de kompasaanpassing en de Wikipedia-samenvattingen van de objecten die je al opende. Dit alles blijft op je toestel en gaat nergens heen.</li>
 <li><strong>Meldingen (optioneel):</strong> zet je ze aan, dan wordt het abonnement dat je browser aanmaakt — een afleveradres en twee sleutels — samen met de taal van de app bewaard om je de melding in je eigen taal te kunnen sturen. Zet je ze uit in de browser, dan wordt het niet meer gebruikt.</li>
+<li><strong>Stand van de telefoon (optioneel):</strong> alleen terwijl je ‘Richt op de hemel’ gebruikt: kompas, gyroscoop en versnellingsmeter zeggen waar je op richt, om te benoemen wat voor je staat. Het wordt op het toestel gebruikt en niet opgeslagen of verzonden.</li>
+<li><strong>Camera (optioneel):</strong> alleen als je die aanzet in ‘Richt op de hemel’, om de sterren over het beeld te tekenen. Het beeld wordt niet opgeslagen, niet geanalyseerd en verlaat de telefoon niet.</li>
 <li><strong>Gebruiksstatistieken:</strong> alleen als je ze accepteert. Zie het volgende onderdeel.</li>
 </ul>
 <h2>3. Statistieken en cookies</h2>
@@ -278,7 +288,7 @@ a { color: #c9a84c; }
 <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">Nominatim</a> — de tekst die je typt bij het zoeken van een adres.</li>
 <li><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener">Open-Meteo</a> — de coördinaten van de plek of het gebied waarvan je de verwachting opvraagt.</li>
 <li><a href="https://geoportalgasolineras.es/" target="_blank" rel="noopener">Ministerio para la Transición Ecológica y el Reto Demográfico</a> — de officiële prijzen van de tankstations in de provincie, wanneer je ze bekijkt; er gaat niets van jou naartoe.</li>
-<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — de artikeltitel van de plek die je opent.</li>
+<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — de artikeltitel van de plek of het hemelobject dat je opent.</li>
 <li><a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener">jsDelivr</a> — levert de Supabase-bibliotheek die de app gebruikt; er gaat niets van jou naartoe.</li>
 <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Analytics</a> — alleen als je de cookiemelding accepteert.</li>
 </ul>
@@ -310,8 +320,10 @@ a { color: #c9a84c; }
 <li><strong>定位：</strong> 仅在你开启时使用。不会保存在任何服务器上。如果你请求驾车路线，起点和终点坐标会发给路线服务来计算。</li>
 <li><strong>账户（可选）：</strong> 电子邮箱和密码。由 <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase</a>管理，密码以加密方式存储；我们从不查看。</li>
 <li><strong>收藏：</strong> 你保存的地点标识。登录后会同步；未登录则只留在你的设备上。</li>
-<li><strong>偏好与使用：</strong> 语言、筛选条件、已开启的公交线路、天气与海况缓存、是否看过导览、访问计数，以及你对 Cookie 提示的回答。这些全部保存在你的设备上，不会发送到任何地方。</li>
+<li><strong>偏好与使用：</strong> 语言、筛选条件、已开启的公交线路、天气与海况缓存、是否看过导览、访问计数、你对 Cookie 提示的回答，以及星空功能中的红光、指南针校正和你已打开过的天体的维基百科摘要。这些全部保存在你的设备上，不会发送到任何地方。</li>
 <li><strong>通知（可选）：</strong> 若你开启，浏览器生成的订阅——一个推送地址和两把密钥——会连同应用的语言一起保存，以便用你的语言把提醒送到你手上。在浏览器中关闭后即不再使用。</li>
+<li><strong>手机方向（可选）：</strong> 仅在使用“对准星空”时：指南针、陀螺仪和加速度计用来判断你指向哪里，以说出你面前的天体。只在设备上使用，不保存也不发送。</li>
+<li><strong>相机（可选）：</strong> 仅当你在“对准星空”中打开时，用于把星星叠加在画面上。画面不保存、不分析，也不会离开手机。</li>
 <li><strong>使用统计：</strong> 仅在你同意时。见下一节。</li>
 </ul>
 <h2>3. 统计与 Cookie</h2>
@@ -331,7 +343,7 @@ a { color: #c9a84c; }
 <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">Nominatim</a> — 你搜索地址时输入的文字。</li>
 <li><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener">Open-Meteo</a> — 你查询预报的地点或区域的坐标。</li>
 <li><a href="https://geoportalgasolineras.es/" target="_blank" rel="noopener">Ministerio para la Transición Ecológica y el Reto Demográfico</a> — 你查看时获取本省加油站的官方价格；不会向其发送任何属于你的信息。</li>
-<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — 你打开的地点对应的条目标题。</li>
+<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — 你打开的地点或天体对应的条目标题。</li>
 <li><a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener">jsDelivr</a> — 提供应用所用的 Supabase 程序库；不会向其发送任何属于你的信息。</li>
 <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Analytics</a> — 仅在你接受 Cookie 提示时。</li>
 </ul>
@@ -363,8 +375,10 @@ a { color: #c9a84c; }
 <li><strong>定位：</strong> 僅在你開啟時使用。不會儲存在任何伺服器上。若你要求開車路線，起點與終點座標會送往路線服務進行計算。</li>
 <li><strong>帳戶（選用）：</strong> 電子郵件與密碼。由 <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase</a>管理，密碼以加密方式儲存；我們從不查看。</li>
 <li><strong>收藏：</strong> 你儲存地點的識別碼。登入後會同步；未登入則只留在你的裝置上。</li>
-<li><strong>偏好與使用：</strong> 語言、篩選條件、已開啟的公車路線、天氣與海況快取、是否看過導覽、造訪次數，以及你對 Cookie 提示的回答。這些全部保存在你的裝置上，不會傳送到任何地方。</li>
+<li><strong>偏好與使用：</strong> 語言、篩選條件、已開啟的公車路線、天氣與海況快取、是否看過導覽、造訪次數、你對 Cookie 提示的回答，以及星空功能中的紅光、指南針校正和你已開啟過的天體的維基百科摘要。這些全部保存在你的裝置上，不會傳送到任何地方。</li>
 <li><strong>通知（選用）：</strong> 若你開啟，瀏覽器產生的訂閱——一個推送位址與兩把金鑰——會連同應用程式的語言一起保存，以便用你的語言把提醒送到你手上。在瀏覽器中關閉後即不再使用。</li>
+<li><strong>手機方向（選用）：</strong> 僅在使用「對準星空」時：指南針、陀螺儀和加速度計用來判斷你指向哪裡，以說出你面前的天體。只在裝置上使用，不儲存也不傳送。</li>
+<li><strong>相機（選用）：</strong> 僅當你在「對準星空」中開啟時，用於把星星疊加在畫面上。畫面不儲存、不分析，也不會離開手機。</li>
 <li><strong>使用統計：</strong> 僅在你同意時。見下一節。</li>
 </ul>
 <h2>3. 統計與 Cookie</h2>
@@ -384,7 +398,7 @@ a { color: #c9a84c; }
 <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">Nominatim</a> — 你搜尋地址時輸入的文字。</li>
 <li><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener">Open-Meteo</a> — 你查詢預報的地點或區域的座標。</li>
 <li><a href="https://geoportalgasolineras.es/" target="_blank" rel="noopener">Ministerio para la Transición Ecológica y el Reto Demográfico</a> — 你查看時取得本省加油站的官方價格；不會向其傳送任何屬於你的資訊。</li>
-<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — 你開啟的地點對應的條目標題。</li>
+<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — 你開啟的地點或天體對應的條目標題。</li>
 <li><a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener">jsDelivr</a> — 提供應用程式所用的 Supabase 程式庫；不會向其傳送任何屬於你的資訊。</li>
 <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Analytics</a> — 僅在你接受 Cookie 提示時。</li>
 </ul>
@@ -416,8 +430,10 @@ a { color: #c9a84c; }
 <li><strong>Местоположение:</strong> само когато го включите. Не се запазва на никакъв сървър. Ако поискате маршрут с кола, координатите на началото и целта се изпращат на услугата за маршрути, за да го изчисли.</li>
 <li><strong>Профил (по желание):</strong> имейл адрес и парола. Управляват се от <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase</a>, който пази паролата криптирана; ние никога не я виждаме.</li>
 <li><strong>Любими:</strong> идентификаторите на местата, които запазвате. С профил се синхронизират; без профил остават на устройството ви.</li>
-<li><strong>Предпочитания и употреба:</strong> език, филтри, включени автобусни линии, кеш на времето и на състоянието на морето, дали вече сте видели обиколката, брояч на посещенията и отговорът ви на съобщението за бисквитките. Всичко това остава на устройството ви и не се изпраща никъде.</li>
+<li><strong>Предпочитания и употреба:</strong> език, филтри, включени автобусни линии, кеш на времето и на състоянието на морето, дали вече сте видели обиколката, брояч на посещенията, отговорът ви на съобщението за бисквитките и, за небето, червената светлина, настройката на компаса и резюметата от Уикипедия на обектите, които вече сте отваряли. Всичко това остава на устройството ви и не се изпраща никъде.</li>
 <li><strong>Известия (по желание):</strong> ако ги включите, абонаментът, който браузърът създава — адрес за доставка и два ключа — се запазва заедно с езика на приложението, за да може известието да стигне до вас на вашия език. Изключите ли ги в браузъра, той повече не се използва.</li>
+<li><strong>Ориентация на телефона (по желание):</strong> само докато използвате „Насочи към небето“: компасът, жироскопът и акселерометърът казват накъде сочите, за да се назове това, което е пред вас. Използва се на устройството и не се записва, нито се изпраща.</li>
+<li><strong>Камера (по желание):</strong> само ако я включите в „Насочи към небето“, за да се нарисуват звездите върху картината. Картината не се записва, не се анализира и не напуска телефона.</li>
 <li><strong>Статистика за употребата:</strong> само ако я приемете. Вижте следващия раздел.</li>
 </ul>
 <h2>3. Статистика и бисквитки</h2>
@@ -437,7 +453,7 @@ a { color: #c9a84c; }
 <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">Nominatim</a> — текста, който пишете при търсене на адрес.</li>
 <li><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener">Open-Meteo</a> — координатите на мястото или зоната, чиято прогноза проверявате.</li>
 <li><a href="https://geoportalgasolineras.es/" target="_blank" rel="noopener">Ministerio para la Transición Ecológica y el Reto Demográfico</a> — официалните цени на бензиностанциите в провинцията, когато ги разглеждате; нищо ваше не се изпраща натам.</li>
-<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — заглавието на статията за мястото, което отваряте.</li>
+<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — заглавието на статията за мястото или небесния обект, който отваряте.</li>
 <li><a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener">jsDelivr</a> — доставя библиотеката на Supabase, която приложението използва; нищо ваше не се изпраща натам.</li>
 <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Analytics</a> — само ако приемете съобщението за бисквитките.</li>
 </ul>
@@ -469,8 +485,10 @@ a { color: #c9a84c; }
 <li><strong>Lokalizacja:</strong> tylko wtedy, gdy ją włączysz. Nie jest zapisywana na żadnym serwerze. Jeśli poprosisz o trasę samochodem, współrzędne początku i celu trafiają do usługi wyznaczania tras, żeby ją obliczyć.</li>
 <li><strong>Konto (opcjonalnie):</strong> adres e-mail i hasło. Obsługuje je <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase</a>, które przechowuje hasło zaszyfrowane; my go nigdy nie widzimy.</li>
 <li><strong>Ulubione:</strong> identyfikatory miejsc, które zapisujesz. Z kontem się synchronizują; bez konta zostają na twoim urządzeniu.</li>
-<li><strong>Preferencje i użytkowanie:</strong> język, filtry, włączone linie autobusowe, zapisana pogoda i stan morza, to, czy widziałeś już przewodnik, licznik wizyt oraz twoja odpowiedź na komunikat o ciasteczkach. Wszystko to zostaje na twoim urządzeniu i nigdzie nie jest wysyłane.</li>
+<li><strong>Preferencje i użytkowanie:</strong> język, filtry, włączone linie autobusowe, zapisana pogoda i stan morza, to, czy widziałeś już przewodnik, licznik wizyt, twoja odpowiedź na komunikat o ciasteczkach oraz, dla nieba, czerwone światło, korekta kompasu i streszczenia z Wikipedii obiektów, które już otworzyłeś. Wszystko to zostaje na twoim urządzeniu i nigdzie nie jest wysyłane.</li>
 <li><strong>Powiadomienia (opcjonalnie):</strong> jeśli je włączysz, subskrypcja utworzona przez przeglądarkę — adres doręczenia i dwa klucze — zostaje zapisana razem z językiem aplikacji, żeby powiadomienie mogło do ciebie dotrzeć w twoim języku. Po wyłączeniu ich w przeglądarce przestaje być używana.</li>
+<li><strong>Położenie telefonu (opcjonalnie):</strong> tylko gdy używasz „Wyceluj w niebo”: kompas, żyroskop i akcelerometr mówią, dokąd celujesz, by nazwać to, co masz przed sobą. Jest używane na urządzeniu, nie jest zapisywane ani wysyłane.</li>
+<li><strong>Kamera (opcjonalnie):</strong> tylko jeśli włączysz ją w „Wyceluj w niebo”, by narysować gwiazdy na obrazie. Obraz nie jest zapisywany, analizowany ani nie opuszcza telefonu.</li>
 <li><strong>Statystyki użycia:</strong> tylko jeśli je zaakceptujesz. Zobacz następną sekcję.</li>
 </ul>
 <h2>3. Statystyki i ciasteczka</h2>
@@ -490,7 +508,7 @@ a { color: #c9a84c; }
 <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">Nominatim</a> — tekst, który wpisujesz, szukając adresu.</li>
 <li><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener">Open-Meteo</a> — współrzędne miejsca albo strefy, której prognozę sprawdzasz.</li>
 <li><a href="https://geoportalgasolineras.es/" target="_blank" rel="noopener">Ministerio para la Transición Ecológica y el Reto Demográfico</a> — oficjalne ceny stacji paliw w prowincji, kiedy je przeglądasz; nic twojego tam nie trafia.</li>
-<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — tytuł artykułu o miejscu, które otwierasz.</li>
+<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — tytuł artykułu o miejscu lub obiekcie na niebie, który otwierasz.</li>
 <li><a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener">jsDelivr</a> — dostarcza bibliotekę Supabase, z której korzysta aplikacja; nic twojego tam nie trafia.</li>
 <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Analytics</a> — tylko jeśli zaakceptujesz komunikat o ciasteczkach.</li>
 </ul>
@@ -522,8 +540,10 @@ a { color: #c9a84c; }
 <li><strong>Geolocalización:</strong> solo cuando la activas. No se guarda en ningún servidor. Si pides una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas para calcularla.</li>
 <li><strong>Cuenta (opcional):</strong> correo electrónico y contraseña. Los gestiona <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase</a>, que guarda la contraseña cifrada; nosotros no la vemos.</li>
 <li><strong>Favoritos:</strong> los identificadores de los lugares que guardas. Con cuenta se sincronizan; sin cuenta se quedan en tu dispositivo.</li>
-<li><strong>Preferencias y uso:</strong> idioma, filtros, líneas de guagua activas, caché del tiempo y del estado del mar, si ya viste el tour, un contador de visitas y tu respuesta al aviso de cookies. Todo esto se guarda en tu dispositivo y no se envía a ningún sitio.</li>
+<li><strong>Preferencias y uso:</strong> idioma, filtros, líneas de guagua activas, caché del tiempo y del estado del mar, si ya viste el tour, un contador de visitas, tu respuesta al aviso de cookies y, del cielo, la luz roja, el ajuste de la brújula y los resúmenes de Wikipedia de los astros que ya has abierto. Todo esto se guarda en tu dispositivo y no se envía a ningún sitio.</li>
 <li><strong>Notificaciones (opcional):</strong> si las activas, la suscripción que crea tu navegador —una dirección de envío y dos claves— se guarda, junto con el idioma de la app, para poder mandarte el aviso en tu idioma. Al desactivarlas en el navegador, deja de usarse.</li>
+<li><strong>Orientación del móvil (opcional):</strong> solo mientras usas «Apunta al cielo»: la brújula, el giroscopio y el acelerómetro dicen hacia dónde apuntas, para nombrar lo que tienes delante. Se usa en el dispositivo y no se guarda ni se envía.</li>
+<li><strong>Cámara (opcional):</strong> solo si la activas en «Apunta al cielo», para pintar las estrellas sobre la imagen. La imagen no se guarda, no se analiza y no sale del móvil.</li>
 <li><strong>Estadísticas de uso:</strong> solo si las aceptas. Ver el apartado siguiente.</li>
 </ul>
 <h2>3. Estadísticas y cookies</h2>
@@ -543,7 +563,7 @@ a { color: #c9a84c; }
 <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">Nominatim</a> — el texto que escribes al buscar una dirección.</li>
 <li><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener">Open-Meteo</a> — las coordenadas del lugar o de la zona cuya previsión consultas.</li>
 <li><a href="https://geoportalgasolineras.es/" target="_blank" rel="noopener">Ministerio para la Transición Ecológica y el Reto Demográfico</a> — los precios oficiales de las gasolineras de la provincia, cuando los miras; no se le manda nada tuyo.</li>
-<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — el título del artículo del lugar que abres.</li>
+<li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikipedia · Wikimedia</a> — el título del artículo del lugar o del astro que abres.</li>
 <li><a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener">jsDelivr</a> — sirve la librería de Supabase que usa la app; no se le manda nada tuyo.</li>
 <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Analytics</a> — solo si aceptas el aviso de cookies.</li>
 </ul>

@@ -442,7 +442,8 @@ const IGUAL_UI = {
   en: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Kaus Australis'],
   fr: ['Pack Tenerife Go', 'Carnaval de Santa Cruz', 'Kaus Australis'],
   de: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Kaus Australis'],
-  it: ['Friendly Zone 🐾', 'Pack Tenerife Go', 'Alfa Centauri', 'Nebulosa planetaria', 'Nebulosa oscura'],
+  /* y la ficha (20 de octubre): «supergigante» es la palabra italiana */
+  it: ['Friendly Zone 🐾', 'Pack Tenerife Go', 'Alfa Centauri', 'Nebulosa planetaria', 'Nebulosa oscura', 'supergigante'],
   nl: ['Friendly Zone 🐾', 'Kaus Australis'],
   zh: [], zht: [], bg: [],
   pl: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Alfa Centauri', 'Kaus Australis']
