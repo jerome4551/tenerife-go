@@ -1377,8 +1377,12 @@ async function quejas(b) {
     let h;
     if (ref.planeta) { const eq = A.Equator(A.Body[ref.planeta], t, o, true, true); const x = A.Horizon(t, o, eq.ra, eq.dec, 'normal'); h = { alt: x.altitude, az: x.azimuth }; }
     else { const x = A.Horizon(t, o, ref.est[0] / 15, ref.est[1], 'normal'); h = { alt: x.altitude, az: x.azimuth }; }
-    /* lejos: 30 grados a un lado, «Ya» no corrige y lo dice */
-    evento(h.az + 40, h.alt); await espera(600);
+    /* lejos: 40 grados de cielo de verdad, «Ya» no corrige y lo dice. En altura y
+       no en rumbo: 40 grados de rumbo son menos de cielo cuanto mas alta esta la
+       referencia, y el 21-10-2026 a las 22:40, con la Luna a unos 52 grados,
+       quedaban 24,6, dentro de los 25 que la app acepta: la app corrigio, como
+       debe, y la prueba salio en rojo por la hora a la que se paso */
+    evento(h.az, h.alt >= 0 ? h.alt - 40 : h.alt + 40); await espera(600);
     out.lejos = TG_CIELO.comprobarYa(); out.lejosAviso = document.querySelector('#cielo-vista .cv-aviso').textContent; out.lejosAjuste = TG_CIELO.ajuste();
     /* el movil apunta de verdad a la referencia; la brujula, 10 grados desviada, dice az+10 */
     evento(h.az + 10, h.alt); await espera(700);
