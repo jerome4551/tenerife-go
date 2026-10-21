@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.036 kB** en castellano · **1.149 kB** en el peor caso (búlgaro) · 1.135 kB en polaco, el 21 de octubre por la noche, con el cielo de `cielo-camara` y lo de `main` de ese día juntos (el panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada; el modo nativo de la App Store, 1 kB; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.036 kB** en castellano · **1.150 kB** en el peor caso (búlgaro) · 1.136 kB en polaco, el 21 de octubre por la noche, con el cielo de `cielo-camara` y lo de `main` de ese día juntos (el panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada; el modo nativo de la App Store, 1 kB; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -2995,7 +2995,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 43 tablas, 1645 filas (y 3.786 filas, dentro y fuera del fuente)
+## Idiomas · 43 tablas, 1647 filas (y 3.788 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -3019,7 +3019,10 @@ satélites, hasta 426, y 40 del tercer bloque (la noche guiada, el sistema
 solar, la luz roja, sin red), hasta 466; y, de los avisos de AEMET, una
 más: las dos de «Báñate hoy aquí» con un aviso costero, y una menos, la de la
 ✕ de la píldora de avisos, que ya no existe; esa tarde, dos más: «Toda la
-isla» y «Toda la costa» en la línea de los avisos. El
+isla» y «Toda la costa» en la línea de los avisos; y esa noche, al repasar
+la App Store, dos más en `CIELO_UI`, hasta 468: el aviso sin permiso de
+cámara o de sensores dentro de la app, que no manda a los ajustes del
+navegador. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -7218,6 +7221,111 @@ que ya están en `main` (solo cambia el «n/4»): entra el cuarto.
   `auditar_cielo.js`, 175 de 175 (los 173 del bloque y los dos de
   Wikipedia); `barrido_pantallas.js`, 100 pantallas y fichas por idioma, 0
   textos sin traducir y 0 errores de página.
+
+## La App Store (P4), junta con el `main` del 21 y repasada en los diez idiomas (21 de octubre, noche)
+
+Jerome trajo `PARA-CLAUDE-CODE-6.md`, `LANZAMIENTO-APP-STORE.md`, la ficha
+de la tienda, los cinco parches y el bundle, y después: «Auditoría completa
+en los 10 idiomas. Todo lo nuevo debe estar revisado y más que bien. No
+quiero fallos». Las seis huellas, las de la nota; los cuatro primeros
+parches son los de la nota anterior (solo cambia el «n/5») y ya están en
+`main`: entra el quinto.
+
+### Al juntarlo
+
+- **Repasado antes de ejecutar nada.** Ni `CNAME`, ni los workflows, ni
+  `sw.js`; la única dirección nueva es la propia web
+  (`https://jerome4551.github.io/tenerife-go/`, en `TGO_BASE_VIVA` y en
+  `connect-src`); sin la marca `TGO_NATIVO`, que en la web no existe, nada
+  cambia.
+- **Aplicado con `git am -3` sobre `main` (`3e15b89`).** El parche escondía
+  el botón de avisos con la función de antes, de un solo botón, y en `main`
+  hay dos desde el 21 (el de la cuenta y el de «Continuar como invitado»,
+  `PUSH_BOTONES`): la puerta va dentro del bucle y esconde los dos con sus
+  mensajes, y `probar_app.js` y `app_preparar.js --comprobar` miran los dos.
+- **Comprobado contra el bundle** (su árbol, `1c1e2d7e…`, el de la nota): de
+  los 31 ficheros del quinto commit, 21 idénticos, los dos PNG incluidos; en
+  los otros diez, lo que la rama añadía sobre `main` era exactamente el
+  quinto commit, salvo lo de los dos botones y las cifras.
+- **Pillow**, que aquí no estaba: sin él, los dos controles del icono y del
+  arranque salían en rojo sin decir por qué. Va en `tools/requisitos.txt`;
+  si falta, `auditar.sh` lo cuenta como roto y no como hallazgo; y el PNG se
+  descodifica entero (`im.load()`): con la cabecera sola, un icono cortado a
+  la mitad pasaba.
+
+### Lo que el repaso encontró, y está arreglado
+
+- **La ficha de la tienda**, frase a frase contra el código y los datos, en
+  los diez idiomas: prometía «una ruta de A a B a la hora que quieras» (el
+  planificador calcula con la hora de ahora, `horaCanaria()`) y «cada lugar
+  con su municipio» (321 de los 980 no lo enseñan); «Apunta al cielo» no se
+  llamaba como en la app en francés ni en italiano, ni «Organiza tu día» en
+  italiano, chino y búlgaro; el chino simplificado llevaba comillas rectas;
+  y «titsa» iba en las palabras clave (una empresa con app propia, directriz
+  2.3.7). «Cómo llegar» se cotejó primero con `ariaComoLlegar`, que solo lo
+  lee el lector de pantalla, y así entraron «Route hierheen» y «如何前往»,
+  que no se ven: lo que se ve es «Cómo llegar en bus / en coche» y, en el
+  itinerario, «怎么去», y en alemán, neerlandés y chino la ficha lo dice ya
+  con las palabras del tour. `auditar_app_store.js`: 98 controles (30 más;
+  entre ellos, que todo lo que va entre comillas se lea así en la app).
+- **App Privacy.** De Google Analytics solo se declaraba el uso, y la
+  política dice que recibe el país aproximado y la IP y que sus cookies
+  llevan un identificador. Apple pide declarar lo que recogen los terceros
+  y, de la IP, «coarse location, device ID»: el manifiesto y §5.4 los
+  declaran, sin ligar, sin rastreo y solo con las cookies aceptadas. El
+  preparador, un control más: 38.
+- **El permiso de la ubicación** decía cuándo y cómo, no para qué. La
+  política dice ahora, en los diez idiomas, «para enseñarte dónde estás en
+  el mapa, lo que tienes cerca y la ruta hasta un lugar» (lo que hacen
+  `toggleGPS`, `abrirGasCerca`, `chatGetPosition` y `dpiNavigateTo`), y de
+  ahí salen los diez `InfoPlist.strings`. En chino los dos puntos de la
+  etiqueta salían latinos («定位: »); ahora los suyos.
+- **Dentro de la app, tres respuestas del asistente no eran verdad.**
+  «¿Cómo instalo la app?» decía que no está en las tiendas y nombraba
+  Android y Chrome (directriz 2.3.10); también «¿Puedo recibir una frase
+  cada mañana?» y «¿Funciona sin conexión?». Llevan su respuesta de la app
+  en los diez idiomas (`faq/fuente/nativo/respuestas.json`), que el
+  asistente usa solo con la marca. Y el aviso del cielo sin permiso de
+  cámara o de sensores ya no manda, dentro de la app, a los ajustes del
+  navegador. `auditar_faq.js` mira esas 30 respuestas y que con la marca se
+  den; `probar_app.js` lo mismo en Chromium: 27.
+- **Lo que enseñaron las capturas**, de la web también. Con un filtro
+  puesto, la píldora «Mostrando… lugares» quedaba debajo de «Versión web ·
+  Borrar tu cuenta» en los diez idiomas y en los cinco anchos medidos (50
+  de 50): ahora va a 158 px y sin llegar al trofeo ni al zoom (0 de 50), y
+  `probar_play.js` lo mira con la playa filtrada (233). En «El sistema solar
+  hoy» los nombres se pisaban («Júpiter» sobre «Tierra», «Saturno» sobre
+  «Neptuno»): ahora buscan sitio libre, y `auditar_cielo.js` lo mira en
+  4.320 nombres (diez idiomas, dos anchos, 24 meses, las dos vistas): 177.
+  Y en chino el contador decía «显示 74 共 980 个地点», que no se dice:
+  ahora «显示 74 / 980 个地点».
+- **El alemán**, buscado entero después de verlo en las capturas: cinco
+  frases trataban de usted en una app que tutea; «von 980 Orte» (dativo:
+  «Orten»); la Luna y las estrellas con el género cambiado («Sein Licht»,
+  «Er ist der hellste Stern»); y «Robot», que no es alemán: «Roboter».
+
+### Lo que se midió
+
+- `index.html`: 35.201 líneas (35.200 en el README), 2,4 MB, 745 kB con
+  gzip. Descarga: 1.036 kB en castellano, 1.150 en búlgaro, 1.136 en
+  polaco. Idiomas: 1.647 filas (las dos nuevas de `CIELO_UI`) y 3.788 en
+  total. `app/www/`: 94 ficheros, 24,6 MB.
+- La app con la marca, servida desde `app/www/`, en `barrido_pantallas.js`:
+  100 pantallas y fichas por idioma en los diez, 0 textos sin traducir, 0
+  errores de página. Y las 140 capturas de la tienda (siete por aparato e
+  idioma), de la app con la marca, miradas en mosaico idioma a idioma.
+- **Auditoría entera** (con las fuentes del cielo y las de los satélites),
+  sobre la rama terminada: todos los bloques en verde menos uno,
+  `auditar_cielo.js`, con 4 de 177 en rojo, los cuatro de «Comprobar la
+  brújula». La prueba giraba el móvil 40° de rumbo y esperaba que «Ya» no
+  corrigiera; a las 22:40, con la Luna a unos 52°, eso eran 24,6° de cielo,
+  dentro de los 25 que la app acepta, y la app corrigió, como debe. La prueba
+  se aleja ahora 40° en altura: `auditar_cielo.js`, 177 de 177. Antes, en la
+  pasada de la tarde, `auditar_gas_cerca.js` esperaba el título alemán de
+  antes («in Ihrer Nähe»): va corregido con el alemán. Ningún control roto.
+
+Queda lo que ningún control puede: el Mac, la cuenta de Apple y el iPhone
+de verdad (`LANZAMIENTO-APP-STORE.md`, §3, §4 y §7).
 
 ---
 

@@ -19,7 +19,7 @@ pone al principio de `index.html`: `window.TGO_NATIVO = true`. Con ella:
 
 | Qué | En la web | En la app de la tienda |
 |---|---|---|
-| Caché sin conexión | El service worker (`sw.js`) guarda `index.html`, el módulo del cielo, el mapa de la isla… | No hay service worker: todo viaja dentro del paquete (24,5 MB, 94 ficheros). WKWebView no registra service workers en el esquema `capacitor://`. |
+| Caché sin conexión | El service worker (`sw.js`) guarda `index.html`, el módulo del cielo, el mapa de la isla… | No hay service worker: todo viaja dentro del paquete (24,6 MB, 94 ficheros). WKWebView no registra service workers en el esquema `capacitor://`. |
 | Datos que cambian a diario (precios, avisos de AEMET, elementos de los satélites) | Red primero, caché de respaldo (el service worker) | `tgoFetchDatos()`: primero la copia viva de `https://jerome4551.github.io/tenerife-go/datos/…` con 8 s de plazo; si no llega, no responde o se corta, la copia que viaja dentro (la del día en que se montó la app). |
 | «Instalar la app», botón flotante de la PWA | Salen | No salen: ya está instalada. |
 | Avisos push | Web Push con `sw.js` | WKWebView no tiene Web Push: los dos botones «Activar notificaciones» (el de la cuenta y el de «Continuar como invitado») y sus mensajes van ocultos. Los avisos nativos (APNs) son otro trabajo (§8). |
@@ -96,7 +96,7 @@ metida en Xcode (Settings → Accounts).
 ```
 git clone https://github.com/jerome4551/tenerife-go && cd tenerife-go/app
 npm install                              # @capacitor/core, cli e ios 8.x
-node ../tools/app_preparar.js            # monta www/ (94 ficheros, 24,5 MB)
+node ../tools/app_preparar.js            # monta www/ (94 ficheros, 24,6 MB)
 npx cap add ios                          # genera ios/App/ (Swift Package Manager; CocoaPods: --packagemanager CocoaPods)
 bash ios/plantillas/aplicar.sh           # permisos, idiomas, privacidad, icono, arranque
 npx cap open ios                         # Xcode

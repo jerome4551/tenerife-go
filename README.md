@@ -12,7 +12,7 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
 | Fichero | Qué es |
 |---|---|
-| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 21 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada y el modo nativo de la App Store: 35.200 líneas, 2,4 MB (744 kB con gzip). |
+| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 21 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada y el modo nativo de la App Store: 35.200 líneas, 2,4 MB (745 kB con gzip). |
 | `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
 | `modulos/cielo.js` | El panel 🔭 «Cielo de Tenerife»: su código y sus textos en los diez idiomas. No se carga al arrancar: lo pide `index.html` la primera vez que alguien abre el panel. |
 | `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
@@ -419,7 +419,7 @@ Conocido y sin resolver:
 Desde el 21 de octubre de 2026 la misma PWA se empaqueta para la App Store
 con Capacitor (`app/`, `LANZAMIENTO-APP-STORE.md`). No hay una segunda app:
 `tools/app_preparar.js` copia a `app/www/` lo que `index.html` pide en el
-móvil (medido el 21 de octubre de 2026: 94 ficheros, 24,5 MB, con los dos
+móvil (medido el 21 de octubre de 2026: 94 ficheros, 24,6 MB, con los dos
 mapas) y le pone a `index.html` una sola línea, `window.TGO_NATIVO = true`.
 Con esa marca la app no registra service worker (todo viaja dentro), no
 ofrece instalarse, esconde los dos botones de avisos push, el de la cuenta
