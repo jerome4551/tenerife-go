@@ -314,6 +314,11 @@ Conocido y sin resolver:
   INSERT y ninguna de SELECT, pero el cuerpo exacto no está volcado en
   `supabase/favorites.sql`. Las dos consultas para completarlo están
   escritas al final de ese fichero.
+- **El idioma de la notificación diaria**: la app vuelve a mandar la
+  suscripción cuando se cambia de idioma, pero `guardar_push_sub()` no toca
+  una que ya existe, y la frase sigue llegando en el idioma con que se
+  activó. Lo arregla `supabase/push-idioma.sql` (probado en un PostgreSQL
+  16), que hay que ejecutar una vez en Supabase.
 
 ---
 

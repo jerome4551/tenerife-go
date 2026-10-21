@@ -142,6 +142,10 @@ echo; echo "════════ palabras escritas sin sus letras (waehle, c
 control auditar_letras.js node tools/auditar_letras.js
 echo; echo "════════ la frase diaria, en los diez idiomas ════════"
 control auditar_frases.js node tools/auditar_frases.js
+echo; echo "════════ la notificacion diaria llega a cada movil en su idioma, y lo sigue si se cambia ════════"
+# Desde el 21 de octubre de 2026: al cambiar de idioma no se le decia al
+# servidor, y la frase seguia llegando en el idioma con que se activo.
+control probar_notificacion_idioma.js node tools/probar_notificacion_idioma.js "$PUERTO"
 echo; echo "════════ filas que el codigo pide con tx() y no existen ════════"
 # Desde el 12 de octubre de 2026: tx() devuelve '' sin avisar si falta la fila.
 control auditar_claves_tx.js node tools/auditar_claves_tx.js

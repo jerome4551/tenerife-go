@@ -5908,6 +5908,59 @@ gasolineras; en francés («Stations les moins chères») no la pedía.
 rótulo de cada idioma: tiene que salir la lista de esa categoría. 43 de 43 en
 los diez; con la versión de antes, 39.
 
+
+### C y D · La notificación diaria, en el idioma de cada perfil
+
+Leído entero, de la suscripción al móvil:
+
+- **Al activarla**, la app guarda la suscripción con su idioma de ese momento
+  (`pushSuscribir`, `p_lang`). El idioma ya está puesto antes de eso: se lee
+  de `tg_lang` al arrancar, antes que nada.
+- **Al enviarla**, `enviar-notificacion.js` le manda a cada suscripción el
+  título y la frase del día de su idioma, y la castellana solo si su idioma
+  no estuviera. El service worker enseña lo que llega, con su idioma.
+- **Los textos** están en los diez: el título y las 365 frases de
+  `frases.json` (`auditar_frases.js` lo mira día a día, también el 366 de un
+  bisiesto), los siete de la tarjeta que pide el permiso (`PUSH_TX`) y las
+  seis filas del botón «Activar notificaciones» de Cuenta y de sus avisos.
+  Ninguno igual al castellano.
+- **Lo que fallaba: el cambio de idioma.** Al cambiar de idioma no se le
+  decía nada al servidor, y al volver a abrir la app sí se le mandaba la
+  suscripción con el idioma nuevo, pero `guardar_push_sub()` no toca una que
+  ya existe (la app da por bueno su 409). Quien la activó en inglés y pasó al
+  alemán seguía recibiendo la frase en inglés, todos los días.
+
+Arreglado en dos partes. En la app, al cambiar de idioma se vuelve a mandar
+la suscripción en ese momento, sin preguntar ni pintar nada (elegir el mismo
+idioma no manda nada). En Supabase, `supabase/push-idioma.sql`: la función pone
+el idioma nuevo en la suscripción que ya existía —solo el idioma, las claves de
+una existente no se tocan desde el cliente—, acepta los diez idiomas (otro se
+guarda como `es`, que es lo que se le mandaría igual) y valida lo que recibe.
+Si la tabla tuviera una restricción de idioma de cuando había ocho, sin el
+búlgaro ni el polaco, la cambia por una con los diez; si no la tiene, no crea
+ninguna. **Hay que ejecutarlo una vez en Supabase**: desde aquí no se llega a
+la base. Probado antes en un PostgreSQL 16 de verdad, con una tabla como la
+de la app (único en el `endpoint`, RLS, la política de alta y una restricción
+de ocho idiomas) y la función vieja: con la vieja, cambiar de idioma revienta
+y el búlgaro se rechaza; con la nueva, el idioma se actualiza y las claves no,
+entran el búlgaro y el polaco, `xx` queda en `es`, un `http://` se rechaza,
+`anon` sigue sin poder leer la tabla, y el guion se puede ejecutar dos veces.
+También sin restricción, sin único y sin función previa.
+
+Control nuevo, `tools/probar_notificacion_idioma.js`, en `auditar.sh`. La app
+en un navegador, haciéndose pasar por instalada y con el permiso dado: al
+abrir guarda con su idioma, al pasar a cada uno de los otros nueve guarda con
+el nuevo, la tarjeta del permiso y los textos, en cada idioma. Y el envío, con
+Supabase y web-push de mentira: diez suscripciones, una por idioma, y dos
+raras; cada una recibe el título y la frase del día de su idioma, sacados de
+`frases.json` por cuenta propia, y las raras la castellana. Con la app de
+antes, en rojo: al cambiar de idioma, ninguna llamada.
+
+Visto de paso: el botón «Activar notificaciones» solo está en Cuenta con la
+sesión iniciada. Sin cuenta, la única forma de activarlas es la tarjeta que
+sale sola a la tercera vez que se abre la app instalada, y si se contestó
+«Ahora no», ya no vuelve. No se ha tocado: es para Jerome.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -5952,6 +6005,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_faq.js` | el asistente: cada respuesta en los diez idiomas, alcanzable por su botón, ninguna igual al castellano o al inglés, los botones que cita con su nombre de pantalla, y ninguna base fuera de `faq/` |
 | `tools/rotulos_app.js` | los rótulos de la app en los diez idiomas, sacados de `index.html` (lo usa `auditar_faq.js`) |
 | `tools/probar_faq.js` · `tools/probar_movil.js` | preguntas de prueba al asistente: en Node con el núcleo de verdad, y en un móvil con la app entera |
+| `tools/probar_notificacion_idioma.js` | la notificación diaria en el idioma de cada móvil: lo que la app manda a `guardar_push_sub()` al abrir y al cambiar de idioma, la tarjeta del permiso en los diez, y lo que el envío le manda a cada idioma |
 | `tools/probar_nombres.js` | cada lugar preguntado al asistente por su nombre, en los diez idiomas y en chino pegado: sale su ficha o la lista para elegir; el nombre corto, contado; y cada categoría del menú por su rótulo, la lista de esa categoría |
 | `tools/auditar_letras.js` | palabras escritas sin sus letras («waehle», «carre avec fleche») |
 | `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json` (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |

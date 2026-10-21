@@ -29637,6 +29637,28 @@ function pushInit() {
 }
 
 window.pushSuscribir = pushSuscribir;
+/* Para las herramientas de tools/ (probar_notificacion_idioma.js): la
+   tarjeta que pide el permiso y sus textos viven dentro de esta funcion. */
+window.TG_PUSH = { pedir: pushPedir, textos: PUSH_TX };
+/* EL IDIOMA DE LA NOTIFICACION SIGUE AL DE LA APP (21 de octubre de 2026).
+   La suscripcion se guarda con el idioma del momento de activarla, y al
+   cambiar de idioma no se le decia a nadie: quien la activo en ingles y paso
+   al aleman seguia recibiendo la frase en ingles. Ahora, al cambiar, se
+   vuelve a mandar con el idioma nuevo (pushReSync: no pregunta ni pinta
+   nada), y tambien cada vez que se abre la app, como ya pasaba. Para que el
+   servidor lo apunte, guardar_push_sub() tiene que poner el idioma nuevo en
+   una suscripcion que ya existia: supabase/push-idioma.sql. */
+if (typeof window.setLang === 'function' && !window.__tgoPushLangHook) {
+  window.__tgoPushLangHook = true;
+  (function () {
+    var _orig = window.setLang;
+    window.setLang = function (lang) {
+      var antes = currentLang;
+      _orig.call(this, lang);
+      try { if (currentLang !== antes && pushSoportado() && pushInstalada()) pushReSync(); } catch (e) {}
+    };
+  })();
+}
 /* Por que no se puede, cuando no se puede.
    El boton "Activar notificaciones" esta SIEMPRE visible, pero pushSoportado()
    puede ser falso, y entonces pushSuscribir revienta en la primera linea
