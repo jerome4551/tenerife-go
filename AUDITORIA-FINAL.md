@@ -6839,6 +6839,39 @@ seleccionado que no tienen artículo?». Ahora sí:
   con el inglés de antes y con «no hay» sin red metidos a propósito, esas
   tres pruebas saltan: comprobado.
 
+## Los satélites (bloque P2), juntos con el `main` del 21 (21 de octubre, tarde)
+
+Jerome trajo `PARA-CLAUDE-CODE-4.md`, los tres parches y el bundle. Las
+cuatro huellas sha256 son las de la nota, y los dos primeros parches son los
+que ya están en `main` (solo cambia el «1/3» de la cabecera): entra el
+tercero.
+
+- **Repasado antes de ejecutar nada.** El robot nuevo (`satelites.yml`) solo
+  escribe `datos/satelites.json`, con `contents: write` y
+  `actions/checkout@v5`, como los de AEMET y gasolineras, y su script solo
+  habla con CelesTrak. El móvil no se conecta a nada de fuera: el motor y
+  los elementos son del propio dominio. En `vendor/satellite.js`, ni
+  `eval`, ni red, ni acceso a la página; las direcciones, solo en
+  comentarios.
+- **Aplicado con `git am -3` sobre `main` (`3d07f22`).** Solo chocó la
+  cabecera de idiomas: 1.575 y 30 de los satélites, **1.605 filas** (3.746
+  en total, contadas otra vez con `barrido_idiomas.js`). Comprobado contra
+  el bundle: los 9 ficheros que solo toca este bloque, idénticos; los 45 que
+  solo cambió `main` desde la base del bundle, idénticos; y en
+  `modulos/cielo.js`, `auditar_cielo.js`, `index.html`, `README.md` y
+  `barrido_pantallas.js`, lo que difiere del bundle es exactamente lo de
+  `main` (entre otras cosas, «No hay artículo en tu idioma»).
+- **El motor, recompilado aquí** con `tsc` 6.0.2 desde las fuentes fijadas:
+  `vendor/satellite.js` sale idéntico byte a byte y cuadra con los 33 casos
+  oficiales (667 instantes, desviación máxima 1,15e-7 km).
+- **Auditoría entera** (`bash tools/auditar.sh`, con las fuentes del cielo y
+  las de los satélites): **«AUDITORIA EN VERDE»**, ningún bloque en rojo ni
+  roto. `auditar_cielo.js`, 150 de 150 (los 148 del bloque y los dos de
+  Wikipedia); `barrido_pantallas.js`, 99 pantallas y fichas por idioma, 0
+  textos sin traducir y 0 errores de página. Las cifras del README y de la
+  descarga no cambian (1.034 y 1.148 kB): lo nuevo se pide al abrir el
+  panel.
+
 ---
 
 # 5 · Cómo se vuelve a medir
