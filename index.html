@@ -4210,7 +4210,14 @@ window.onunhandledrejection = function(e) {
 
   .filter-status {
     position: absolute;
-    bottom: calc(120px + env(safe-area-inset-bottom, 0px));
+    /* encima de los enlaces legales (.pp-pie, a 90 px: «Versión web · Borrar tu
+       cuenta» y «Privacidad · RGPD», hasta 59 px de alto en dos lineas). A 120 px
+       los enlaces la pisaban con cualquier filtro puesto, en los diez idiomas y
+       en todos los anchos (21-10-2026, visto en las capturas de la App Store);
+       y sin llegar al trofeo ni al zoom, como la gasolinera de encima. Lo
+       vigila probar_play.js. */
+    bottom: calc(158px + env(safe-area-inset-bottom, 0px));
+    max-width: calc(100vw - 112px);
     left: 50%;
     transform: translateX(-50%);
     background: rgba(27,35,48,0.92);

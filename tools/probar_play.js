@@ -453,6 +453,27 @@ function supabaseFalso(cfg) {
         r.pildora.texto === r.pildora.fila && r.web.href === 'privacidad.html' && r.borrar.href === 'borrar-cuenta.html' &&
         r.web.blank && r.borrar.blank && r.choques.length === 0 && r.fuera.length === 0 && r.comoCastellano.length === 0,
         JSON.stringify({ web: r.web, borrar: r.borrar, pildora: r.pildora, choques: r.choques, fuera: r.fuera, comoCastellano: r.comoCastellano }));
+      /* y con un filtro puesto (21-10-2026): la pildora «Mostrando… lugares» iba a
+         120 px y los enlaces de arriba la pisaban en los diez idiomas y en todos
+         los anchos; aqui no se veia porque se miraba sin filtro */
+      const rf = await pg.evaluate(async () => {
+        setCategory('playa');
+        await new Promise(res => setTimeout(res, 300));
+        const caja = el => { const b = el.getBoundingClientRect(); return { l: b.left, t: b.top, r: b.right, b: b.bottom }; };
+        const vis = el => !!el && getComputedStyle(el).display !== 'none' && getComputedStyle(el).visibility !== 'hidden' && el.getBoundingClientRect().width > 0;
+        const choca = (a, b) => a.l < b.r && b.l < a.r && a.t < b.b && b.t < a.b;
+        const pild = document.getElementById('filter-status');
+        const otros = [['version web', '#pp-enlace-web'], ['borrar tu cuenta', '#pp-enlace-borrar'], ['Privacidad · RGPD', '.pp-pie > button.pp-link'],
+          ['la leyenda', '#map-legend-toggle'], ['el zoom', '.leaflet-control-zoom'], ['el trofeo', '.tg-trophy-fab'], ['el boton de informacion', '.pwa-fab'],
+          ['el credito del mapa', '.leaflet-control-attribution'], ['la barra de abajo', '.v19-bottom-nav']]
+          .map(([n, s]) => [n, document.querySelector(s)]).filter(([, el]) => vis(el));
+        const out = { vis: vis(pild), texto: pild.textContent.trim().slice(0, 60), choques: otros.filter(([, el]) => choca(caja(pild), caja(el))).map(([n]) => n) };
+        clearAllFilters();
+        await new Promise(res => setTimeout(res, 200));
+        return out;
+      });
+      caso(`[${L} ${ancho}] con un filtro puesto, la pildora «${rf.texto}» no pisa los enlaces ni los botones de alrededor`,
+        rf.vis && rf.choques.length === 0, JSON.stringify(rf));
       if (ancho !== 390) continue;
       textoPanel[L] = r.texto;
       caso(`[${L}] el panel: la frase de la AEPD, con el enlace dentro y en su sitio («${(r.der || '').trim()}»)`,
