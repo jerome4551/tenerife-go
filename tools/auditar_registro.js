@@ -44,7 +44,7 @@ const TODOS_F = TODOS ? process.argv[process.argv.indexOf('--todos') + 2] : null
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 
 /* Los idiomas ya pasados a usted. Cada parte del cambio anade el suyo. */
-const HECHOS = ['es', 'zh', 'zht', 'de'];
+const HECHOS = ['es', 'zh', 'zht', 'de', 'nl'];
 
 /* ── las marcas del tuteo, idioma a idioma ─────────────────────────────── */
 const L_ = 'A-Za-zÀ-ÖØ-öø-ɏЀ-ӿ';
@@ -159,7 +159,7 @@ const MARCAS = {
          'Seleziona', 'Segui', 'Accedi', 'Respira', 'Ascolta', 'Immagina', 'Sorridi', 'Prendi', 'Fai', 'Vai', 'Vieni', 'Di', 'Metti', 'Bevi', 'Mangia', 'Lascia',
          'Ricorda', 'Esplora', 'Pianifica', 'Organizza', 'Visita', 'Concediti', 'Regalati', 'Fermati', 'Ricordati'),
        palI('puoi', 'vuoi', 'hai', 'sei', 'vai', 'fai', 'vedi', 'sai', 'devi', 'trovi', 'scopri', 'senti', 'arrivi', 'entri', 'esci', 'parti', 'resti')],
-  nl: [palI('je', 'jij', 'jou', 'jouw', 'jezelf')],
+  nl: [palI('je', 'jij', 'jou', 'jouw', 'jouwe', 'jezelf', 'jullie')],
   bg: [palI('ти', 'теб', 'тебе', 'твой', 'твоя', 'твоят', 'твоята', 'твоето', 'твоите'),
        inicio('Докосни', 'Избери', 'Отвори', 'Виж', 'Потърси', 'Опитай', 'Открий', 'Включи', 'Приеми', 'Създай', 'Запази', 'Добави', 'Премахни', 'Промени', 'Върни',
          'Насочи', 'Вдигни', 'Нарисувай', 'Провери', 'Изтрий', 'Затвори', 'Сподели', 'Изтегли', 'Инсталирай', 'Натисни', 'Плъзни', 'Въведи', 'Влез', 'Следвай',
@@ -190,6 +190,9 @@ const EXENTOS = [
   ['de', 'Hilfst du mir, den Tag zu planen?', 'la pregunta de quien usa la app al asistente, como «¿Me ayuda a organizar el día?»'],
   ['de', 'Zeige', '«Zeige 74 von 980 Orten»: habla la app en primera persona, no es un imperativo'],
   ['de', 'Suche löschen', '«Suche» es el nombre (la busqueda): «borrar la busqueda»'],
+  /* el neerlandes (22 de octubre de 2026) */
+  ['nl', '"Hé jij!" — vriendelijke aanspreekvorm.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
+  ['nl', 'Help je me mijn dag te plannen?', 'la pregunta de quien usa la app al asistente, como «¿Me ayudas a organizar el día?»'],
 ];
 
 function exento(l, t) {

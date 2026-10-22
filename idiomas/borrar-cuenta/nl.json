@@ -1,13 +1,13 @@
 {
- "intro": "Heb je in Tenerife Go een account aangemaakt, dan kun je het verwijderen wanneer je wilt: in de app of per e-mail.",
+ "intro": "Heeft u in Tenerife Go een account aangemaakt, dan kunt u het verwijderen wanneer u wilt: in de app of per e-mail.",
  "appTitulo": "In de app",
- "appTxt": "Tik op «{cuenta}» (log in als daarom gevraagd wordt) en tik daarna, onder «{cerrar}», op «{eliminar}». De app vraagt je te bevestigen met «{confirmar}», en het account wordt meteen verwijderd.",
+ "appTxt": "Tik op «{cuenta}» (log in als daarom gevraagd wordt) en tik daarna, onder «{cerrar}», op «{eliminar}». De app vraagt u te bevestigen met «{confirmar}», en het account wordt meteen verwijderd.",
  "correoTitulo": "Zonder de app",
- "correoTxt": "Schrijf ons op {correo} vanaf het e-mailadres van je account, met als onderwerp «{asunto}». We verwijderen het uiterlijk een maand nadat we je e-mail hebben ontvangen (AVG, artikel 12, lid 3).",
+ "correoTxt": "Schrijf ons op {correo} vanaf het e-mailadres van uw account, met als onderwerp «{asunto}». We verwijderen het uiterlijk een maand nadat we uw e-mail hebben ontvangen (AVG, artikel 12, lid 3).",
  "asunto": "Mijn account verwijderen",
  "borraTitulo": "Wat er wordt verwijderd",
- "borraTxt": "Je e-mailadres, je wachtwoord (versleuteld bewaard) en de favorieten die je in de cloud hebt opgeslagen.",
+ "borraTxt": "Uw e-mailadres, uw wachtwoord (versleuteld bewaard) en de favorieten die u in de cloud heeft opgeslagen.",
  "noTitulo": "Wat niet met het account wordt verwijderd",
- "noPush": "Meldingen: die zet je uit in je browser of in de instellingen van je telefoon.",
- "noDispositivo": "Wat op je toestel staat, zoals de taal of je favorieten: dat verdwijnt als je de sitegegevens in je browser wist of de app verwijdert."
+ "noPush": "Meldingen: die zet u uit in uw browser of in de instellingen van uw telefoon.",
+ "noDispositivo": "Wat op uw toestel staat, zoals de taal of uw favorieten: dat verdwijnt als u de sitegegevens in uw browser wist of de app verwijdert."
 }
