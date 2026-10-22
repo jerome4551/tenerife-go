@@ -210,7 +210,9 @@ const MARCAS = {
          'muoverti', 'sentirti', 'presentarti', 'lasciarti', 'riempirti', 'ricordarti', 'mostrarti', 'aiutarti', 'cambiarti', 'accompagnarti', 'avvisarti', 'portarti',
          'farti', 'darti', 'dirti', 'guidarti', 'consigliarti', 'proteggerti', 'prepararti', 'fermarti', 'perderti', 'goderti', 'abbagliarti', 'registrarti',
          'prenderti', 'metterti', 'sorprenderti', 'spiegarti', 'chiederti', 'scriverti')],
-  nl: [palI('je', 'jij', 'jou', 'jouw', 'jouwe', 'jezelf', 'jullie')],
+  /* y la cortesia de je, que va pegada en una palabra: «alsjeblieft», «dankjewel»
+     (la de u: «alstublieft», «dank u wel») (22 de octubre) */
+  nl: [palI('je', 'jij', 'jou', 'jouw', 'jouwe', 'jezelf', 'jullie', 'alsjeblieft', 'alsjeblief', 'dankjewel')],
   bg: [palI('ти', 'теб', 'тебе', 'твой', 'твоя', 'твоят', 'твоята', 'твоето', 'твоите'),
        inicio('Докосни', 'Избери', 'Отвори', 'Виж', 'Потърси', 'Опитай', 'Открий', 'Включи', 'Приеми', 'Създай', 'Запази', 'Добави', 'Премахни', 'Промени', 'Върни',
          'Вдигни', 'Нарисувай', 'Провери', 'Изтрий', 'Затвори', 'Сподели', 'Изтегли', 'Инсталирай', 'Натисни', 'Плъзни', 'Въведи', 'Влез', 'Следвай',
