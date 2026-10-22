@@ -138,6 +138,11 @@ echo; echo "════════ castellano que se queda dentro de cada idio
 # y fichas resumidas. Los nueve de una vez: lo aceptado «para todos» solo se
 # puede dar por sobrante si se han mirado todos.
 control castellano_suelto.js node tools/castellano_suelto.js
+echo; echo "════════ el trato de usted, en los diez idiomas ════════"
+# Jerome, 21 de octubre de 2026: «Usted en toda la app. Son usuarios no
+# amigos». Cada idioma pasado a usted (HECHOS en el control) sale a cero; los
+# demas se cuentan como pendientes.
+control auditar_registro.js node tools/auditar_registro.js "$PUERTO"
 echo; echo "════════ palabras escritas sin sus letras (waehle, carre avec fleche) ════════"
 control auditar_letras.js node tools/auditar_letras.js
 echo; echo "════════ la frase diaria, en los diez idiomas ════════"
