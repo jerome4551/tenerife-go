@@ -9805,7 +9805,7 @@ socorrista o si está».
   Lei, u, 您, вие y, en polaco, impersonal. `auditar_registro.js` lee
   también `modulos/emergencias.js` (lo de «ES-Alert» en francés, abajo, en
   «Encima del main del 23 de octubre»).
-- **Cuatro robots, apagados** (commit aparte). Tres le dan al panel lo que
+- **Cuatro robots** (commit aparte). Tres le dan al panel lo que
   pasa: los terremotos del IGN cerca de Tenerife, el semáforo del boletín
   de INVOLCAN y las alertas del Gobierno de Canarias (el canal de su
   categoría «Alertas»). Con ellos encendidos, el panel enseña cada dato con
@@ -9823,10 +9823,14 @@ socorrista o si está».
   tres veces seguidas, abre una incidencia en GitHub, «SOS: revisar el
   panel de emergencias», para que una persona lo lea y cambie el panel si
   hace falta. Es lo que pidió Jerome: «si entra nuevo planes de
-  evacuación». Solo se lanzan a mano hasta comprobarlos;
-  `probar_emergencias.js` ya prueba lo que enseña el panel con datos de
-  prueba; encenderlos es la rama `sos-encender` (el bloque 3 de
-  `PARA-CLAUDE-CODE-SOS.md`).
+  evacuación». `probar_emergencias.js` prueba lo que enseña el panel con
+  datos de prueba. **Encendidos** con la rama `sos-encender` (el bloque 3
+  de `PARA-CLAUDE-CODE-SOS.md`), que se aplica solo después de lanzar cada
+  flujo a mano y comprobar lo que escribe: la hora UTC del canal del IGN,
+  el color y la fecha del primer boletín, los titulares de las alertas con
+  su hora y su enlace; el vigía, la primera vez, solo apunta. Desde
+  entonces `window.SOS_DATOS` lleva los tres ficheros y
+  `auditar_emergencias.js` comprueba que cada uno tenga su robot encendido.
 
 `tools/auditar_emergencias.js` (en Node: las filas, las fuentes de cada
 guía, los grupos, los «Vea también», las banderas, los teléfonos, los
@@ -10015,10 +10019,10 @@ Y cada bloque por separado, si hace falta:
 | `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql` y, como Supabase, da como mucho 1.000 filas por consulta), la nube con más filas de las que caben en una consulta, las visitas comprobadas en el mapa, el selector de los 47 sets (el país del navegador primero, «Todos los países» y su buscador), los 235 avatares y sus nombres sin cortar, y los diez idiomas a 360, 390 y 430 px |
 | `tools/auditar_emergencias.js` | el panel de emergencias (SOS) en Node: cada fila en los diez idiomas y pedida por el código, las ocho del armazón en `UI_TX`, las fuentes de cada guía, los grupos y los «Vea también», las banderas y los teléfonos, los enlaces (https y de los dominios oficiales), el armazón con el 112 y el rótulo «SOS», el service worker (en `CORE`, con su rama y fuera de «red primero»), el atajo del manifiesto, que cada fichero de `window.SOS_DATOS` tenga su robot encendido, y ninguno encendido sin él, y que lo que escriben los robots vaya en «red primero» |
 | `tools/probar_emergencias.js` | el panel de emergencias en un navegador: la barra de abajo con el SOS a 320 y 360 px y el panel a 360, 390 y 430 en los diez idiomas, las veinticinco guías con sus fuentes y «atrás», los teléfonos de la tarjeta del 112, las coordenadas, el cambio de idioma, los hospitales, los avisos de AEMET y la franja del resumen, lo que enseña con los datos de los robots (frescos, viejos y rotos), el módulo que no llega, `#sos` y sin conexión |
-| `tools/sismos_ign.py` | baja del IGN los terremotos de los últimos diez días cerca de Tenerife y escribe `datos/sismos-ign.json` (lo lanza `.github/workflows/sismos-ign.yml`, por ahora solo a mano); si algo no cuadra, no escribe; con `--probar`, contra un canal de prueba |
-| `tools/semaforo_involcan.py` | lee el semáforo y la fecha del boletín semanal de INVOLCAN de Tenerife y escribe `datos/semaforo-involcan.json` (`.github/workflows/semaforo-involcan.yml`, por ahora solo a mano); si algo no cuadra, no escribe; con `--probar`, contra un texto de prueba |
-| `tools/alertas_canarias.py` | lee el canal de la categoría «Alertas» de las noticias del Gobierno de Canarias y escribe `datos/alertas-canarias.json` con los titulares de los últimos 30 días, su fecha y su enlace (`.github/workflows/alertas-canarias.yml`, por ahora solo a mano); solo enlaces de `www3.gobiernodecanarias.org/noticias/`; si el canal no es el del Gobierno o algo no cuadra, no escribe; con `--probar`, contra un canal de prueba |
-| `tools/vigia_sos.py` | el vigía del panel SOS: mira las páginas oficiales de las que sale lo que dice el panel (las de `SOS_FUENTES` de los organismos, más el índice de consejos del Gobierno de Canarias) y escribe un informe si alguna cambia o deja de responder tres veces seguidas; guarda sus huellas en `tools/datos/vigia-sos.json`; respeta el `robots.txt` de cada sitio (`.github/workflows/vigia-sos.yml`, por ahora solo a mano: con el informe, abre una incidencia en GitHub o comenta la abierta); con `--probar`, sin red |
+| `tools/sismos_ign.py` | baja del IGN los terremotos de los últimos diez días cerca de Tenerife y escribe `datos/sismos-ign.json` (lo lanza `.github/workflows/sismos-ign.yml`, cada hora); si algo no cuadra, no escribe; con `--probar`, contra un canal de prueba |
+| `tools/semaforo_involcan.py` | lee el semáforo y la fecha del boletín semanal de INVOLCAN de Tenerife y escribe `datos/semaforo-involcan.json` (`.github/workflows/semaforo-involcan.yml`, cuatro veces al día); si algo no cuadra, no escribe; con `--probar`, contra un texto de prueba |
+| `tools/alertas_canarias.py` | lee el canal de la categoría «Alertas» de las noticias del Gobierno de Canarias y escribe `datos/alertas-canarias.json` con los titulares de los últimos 30 días, su fecha y su enlace (`.github/workflows/alertas-canarias.yml`, cada hora); solo enlaces de `www3.gobiernodecanarias.org/noticias/`; si el canal no es el del Gobierno o algo no cuadra, no escribe; con `--probar`, contra un canal de prueba |
+| `tools/vigia_sos.py` | el vigía del panel SOS: mira las páginas oficiales de las que sale lo que dice el panel (las de `SOS_FUENTES` de los organismos, más el índice de consejos del Gobierno de Canarias) y escribe un informe si alguna cambia o deja de responder tres veces seguidas; guarda sus huellas en `tools/datos/vigia-sos.json`; respeta el `robots.txt` de cada sitio (`.github/workflows/vigia-sos.yml`, los lunes: con el informe, abre una incidencia en GitHub o comenta la abierta); con `--probar`, sin red |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con

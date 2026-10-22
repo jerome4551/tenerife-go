@@ -25,32 +25,33 @@
 name: Terremotos IGN Tenerife
 
 on:
-  # ENCENDER: quitar el # de las 24 lineas de cron cuando la hora este comprobada.
-  # schedule:
-  #   - cron: '17 0 * * *'
-  #   - cron: '17 1 * * *'
-  #   - cron: '17 2 * * *'
-  #   - cron: '17 3 * * *'
-  #   - cron: '17 4 * * *'
-  #   - cron: '17 5 * * *'
-  #   - cron: '17 6 * * *'
-  #   - cron: '17 7 * * *'
-  #   - cron: '17 8 * * *'
-  #   - cron: '17 9 * * *'
-  #   - cron: '17 10 * * *'
-  #   - cron: '17 11 * * *'
-  #   - cron: '17 12 * * *'
-  #   - cron: '17 13 * * *'
-  #   - cron: '17 14 * * *'
-  #   - cron: '17 15 * * *'
-  #   - cron: '17 16 * * *'
-  #   - cron: '17 17 * * *'
-  #   - cron: '17 18 * * *'
-  #   - cron: '17 19 * * *'
-  #   - cron: '17 20 * * *'
-  #   - cron: '17 21 * * *'
-  #   - cron: '17 22 * * *'
-  #   - cron: '17 23 * * *'
+  # Encendido (bloque 3 de PARA-CLAUDE-CODE-SOS), despues de comprobar a mano
+  # que la hora del canal es UTC.
+  schedule:
+    - cron: '17 0 * * *'
+    - cron: '17 1 * * *'
+    - cron: '17 2 * * *'
+    - cron: '17 3 * * *'
+    - cron: '17 4 * * *'
+    - cron: '17 5 * * *'
+    - cron: '17 6 * * *'
+    - cron: '17 7 * * *'
+    - cron: '17 8 * * *'
+    - cron: '17 9 * * *'
+    - cron: '17 10 * * *'
+    - cron: '17 11 * * *'
+    - cron: '17 12 * * *'
+    - cron: '17 13 * * *'
+    - cron: '17 14 * * *'
+    - cron: '17 15 * * *'
+    - cron: '17 16 * * *'
+    - cron: '17 17 * * *'
+    - cron: '17 18 * * *'
+    - cron: '17 19 * * *'
+    - cron: '17 20 * * *'
+    - cron: '17 21 * * *'
+    - cron: '17 22 * * *'
+    - cron: '17 23 * * *'
   workflow_dispatch:
 
 permissions:

@@ -20,12 +20,13 @@
 name: Semaforo INVOLCAN Tenerife
 
 on:
-  # ENCENDER: quitar el # de estas lineas cuando la primera pasada a mano cuadre.
-  # schedule:
-  #   - cron: '29 5 * * *'
-  #   - cron: '29 11 * * *'
-  #   - cron: '29 17 * * *'
-  #   - cron: '29 23 * * *'
+  # Encendido (bloque 3 de PARA-CLAUDE-CODE-SOS), despues de comprobar a mano
+  # el color y la fecha del primer boletin.
+  schedule:
+    - cron: '29 5 * * *'
+    - cron: '29 11 * * *'
+    - cron: '29 17 * * *'
+    - cron: '29 23 * * *'
   workflow_dispatch:
 
 permissions:

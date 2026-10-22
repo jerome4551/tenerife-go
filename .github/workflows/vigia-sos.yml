@@ -19,9 +19,10 @@
 name: Vigia SOS
 
 on:
-  # ENCENDER: quitar el # de estas dos lineas despues de la primera pasada a mano.
-  # schedule:
-  #   - cron: '47 6 * * 1'
+  # Encendido (bloque 3 de PARA-CLAUDE-CODE-SOS), despues de la primera pasada
+  # a mano, que solo apunta las huellas.
+  schedule:
+    - cron: '47 6 * * 1'
   workflow_dispatch:
 
 permissions:

@@ -35582,7 +35582,8 @@ html.cielo-rojo body::before {
        el panel y que el service worker precachea: sin red tambien abre.
      · La app no dice si hay peligro ni en que color esta el semaforo: eso lo
        dicen el 112, el Gobierno de Canarias y ES-Alert. SOS_DATOS lista los
-       ficheros de los robots que esten encendidos (ninguno de momento); el
+       ficheros de los robots que esten encendidos (los terremotos del IGN,
+       el semaforo de INVOLCAN y las alertas del Gobierno de Canarias); el
        modulo ensena lo que traen con su fecha y deja de hacerlo si es viejo.
 ════════════════════════════════════════════════════════════════════ -->
 <style>
@@ -35680,8 +35681,10 @@ html.sos-abierto, html.sos-abierto body { overflow: hidden; }
      final del fuente, como los <script src>. */
   var MODULO = './modulos/emergencias.js', carga = null;
   /* Los ficheros de los robots que esten encendidos. Vacio: el panel solo
-     ensena enlaces oficiales. Cada robot que se encienda anade el suyo. */
-  window.SOS_DATOS = [];
+     ensena enlaces oficiales. Cada robot que se encienda anade el suyo.
+     Encendidos los tres (bloque 3 de PARA-CLAUDE-CODE-SOS), despues de
+     lanzar cada flujo a mano y comprobar lo que escribe. */
+  window.SOS_DATOS = ['./datos/sismos-ign.json', './datos/semaforo-involcan.json', './datos/alertas-canarias.json'];
   function cargar() {
     if (window.TG_SOS) return Promise.resolve();
     if (carga) return carga;

@@ -12,7 +12,7 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
 | Fichero | Qué es |
 |---|---|
-| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 24 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada, el modo nativo de la App Store, el perfil y el botón SOS: 35.782 líneas, 2,5 MB (763 kB con gzip). |
+| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 24 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada, el modo nativo de la App Store, el perfil y el botón SOS con sus robots encendidos: 35.785 líneas, 2,5 MB (763 kB con gzip). |
 | `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
 | `modulos/cielo.js` | El panel 🔭 «Cielo de Tenerife»: su código y sus textos en los diez idiomas. No se carga al arrancar: lo pide `index.html` la primera vez que alguien abre el panel. |
 | `modulos/perfil.js` | La pantalla «Su perfil», la que abre «Cuenta»: el avatar y el nombre, los datos con el IMC, la evolución del peso y de los kilómetros que anota la persona, su isla con los logros, y la cuenta, con la nube solo con permiso. Su código, sus estilos y sus textos en los diez idiomas. Se pide la primera vez que alguien toca «Cuenta». |
@@ -29,7 +29,7 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 | `frases.json` | Las 365 frases de la notificación diaria, una por día del año. |
 | `vendor/` | Leaflet 1.9.4 y Leaflet.markercluster 1.5.3, alojados aquí en vez de en un CDN; las dos librerías del mapa sin conexión (`pmtiles.js` y `protomaps-leaflet.js`), las tipografías, Astronomy Engine (MIT), el motor de cálculo del panel del cielo, y satellite.js 7.1.0 (MIT), el SGP4 de los pasos de los satélites, compilado desde su fuente por `tools/satelites_construir.js` (se pide solo al abrir el panel). |
 | `supabase/*.sql` | Las tablas y sus políticas de seguridad, para poder recrear el proyecto. |
-| `.github/workflows/` | Los robots: la notificación diaria, los avisos de AEMET, los precios de las gasolineras, el mapa y los elementos orbitales de los satélites (`satelites.yml`, dos veces al día); y, apagados hasta comprobarlos, los cuatro del panel de emergencias: los terremotos del IGN cerca de Tenerife (`sismos-ign.yml`), el semáforo del boletín semanal de INVOLCAN (`semaforo-involcan.yml`), las alertas del Gobierno de Canarias (`alertas-canarias.yml`) y el vigía de las páginas oficiales del panel (`vigia-sos.yml`), que hoy solo se lanzan a mano. Y `app-store.yml`, que no es un robot: se lanza a mano y compila, firma y sube la app a TestFlight y su ficha a App Store Connect en una máquina macOS de GitHub (la App Store sin Mac). |
+| `.github/workflows/` | Los robots: la notificación diaria, los avisos de AEMET, los precios de las gasolineras, el mapa y los elementos orbitales de los satélites (`satelites.yml`, dos veces al día); y los cuatro del panel de emergencias: los terremotos del IGN cerca de Tenerife (`sismos-ign.yml`, cada hora), el semáforo del boletín semanal de INVOLCAN (`semaforo-involcan.yml`, cuatro veces al día), las alertas del Gobierno de Canarias (`alertas-canarias.yml`, cada hora) y el vigía de las páginas oficiales del panel (`vigia-sos.yml`, los lunes). Y `app-store.yml`, que no es un robot: se lanza a mano y compila, firma y sube la app a TestFlight y su ficha a App Store Connect en una máquina macOS de GitHub (la App Store sin Mac). |
 | `tools/` | Los controles y las herramientas; `bash tools/auditar.sh` los pasa todos. Entre ellos, `verificar_red.js` (la red de guaguas), `extract_js.py`, `gtfs_red.py` y `auditar_readme.js`, que coteja las cifras de este fichero. |
 | `app/` | La misma aplicación para la App Store: el proyecto de Capacitor (`capacitor.config.json`, `package.json`), las plantillas de iOS (permisos en los diez idiomas, manifiesto de privacidad, icono, arranque) y `LEEME.md`. `tools/app_preparar.js` monta `app/www/` desde la raíz; `datos/app-store/ficha.json` es la ficha de la tienda en los diez idiomas. Los pasos, en `LANZAMIENTO-APP-STORE.md`. |
 | `AUDITORIA-FINAL.md` | Estado del proyecto, auditoría, lo que falta y las trampas conocidas. |
@@ -455,8 +455,8 @@ notificaciones push.
   las alertas del Gobierno se enseñan como los da él, en castellano, y en
   los otros idiomas una línea lo dice.
 
-Cuatro robots, **apagados** hasta comprobarlos, lo tienen al día. Tres le
-dan al panel lo que pasa: los terremotos de los últimos diez días cerca de
+Cuatro robots lo tienen al día (se encendieron después de lanzar cada uno a
+mano y comprobar lo que escribe). Tres le dan al panel lo que pasa: los terremotos de los últimos diez días cerca de
 Tenerife, del canal del IGN (`tools/sismos_ign.py`); el semáforo del
 boletín semanal de INVOLCAN (`tools/semaforo_involcan.py`); y las alertas
 del Gobierno de Canarias, del canal de su categoría «Alertas»

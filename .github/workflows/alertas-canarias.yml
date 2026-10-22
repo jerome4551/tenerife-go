@@ -28,32 +28,33 @@
 name: Alertas Gobierno de Canarias
 
 on:
-  # ENCENDER: quitar el # de las 24 lineas de cron cuando la primera pasada a mano cuadre.
-  # schedule:
-  #   - cron: '53 0 * * *'
-  #   - cron: '53 1 * * *'
-  #   - cron: '53 2 * * *'
-  #   - cron: '53 3 * * *'
-  #   - cron: '53 4 * * *'
-  #   - cron: '53 5 * * *'
-  #   - cron: '53 6 * * *'
-  #   - cron: '53 7 * * *'
-  #   - cron: '53 8 * * *'
-  #   - cron: '53 9 * * *'
-  #   - cron: '53 10 * * *'
-  #   - cron: '53 11 * * *'
-  #   - cron: '53 12 * * *'
-  #   - cron: '53 13 * * *'
-  #   - cron: '53 14 * * *'
-  #   - cron: '53 15 * * *'
-  #   - cron: '53 16 * * *'
-  #   - cron: '53 17 * * *'
-  #   - cron: '53 18 * * *'
-  #   - cron: '53 19 * * *'
-  #   - cron: '53 20 * * *'
-  #   - cron: '53 21 * * *'
-  #   - cron: '53 22 * * *'
-  #   - cron: '53 23 * * *'
+  # Encendido (bloque 3 de PARA-CLAUDE-CODE-SOS), despues de comprobar a mano
+  # los titulares, su hora y sus enlaces.
+  schedule:
+    - cron: '53 0 * * *'
+    - cron: '53 1 * * *'
+    - cron: '53 2 * * *'
+    - cron: '53 3 * * *'
+    - cron: '53 4 * * *'
+    - cron: '53 5 * * *'
+    - cron: '53 6 * * *'
+    - cron: '53 7 * * *'
+    - cron: '53 8 * * *'
+    - cron: '53 9 * * *'
+    - cron: '53 10 * * *'
+    - cron: '53 11 * * *'
+    - cron: '53 12 * * *'
+    - cron: '53 13 * * *'
+    - cron: '53 14 * * *'
+    - cron: '53 15 * * *'
+    - cron: '53 16 * * *'
+    - cron: '53 17 * * *'
+    - cron: '53 18 * * *'
+    - cron: '53 19 * * *'
+    - cron: '53 20 * * *'
+    - cron: '53 21 * * *'
+    - cron: '53 22 * * *'
+    - cron: '53 23 * * *'
   workflow_dispatch:
 
 permissions:
