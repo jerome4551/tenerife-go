@@ -6,7 +6,7 @@
  "correoTxt": "Schreiben Sie uns an {correo} von der E-Mail-Adresse Ihres Kontos, mit dem Betreff «{asunto}». Wir löschen es spätestens einen Monat nach Eingang Ihrer E-Mail (DSGVO, Artikel 12 Absatz 3).",
  "asunto": "Mein Konto löschen",
  "borraTitulo": "Was gelöscht wird",
- "borraTxt": "Ihre E-Mail-Adresse, Ihr Passwort (verschlüsselt gespeichert) und die Favoriten, die Sie in der Cloud gespeichert haben.",
+ "borraTxt": "Ihre E-Mail-Adresse, Ihr Passwort (verschlüsselt gespeichert), die Favoriten in der Cloud und, falls in Ihrem Konto gespeichert, Ihr Profil und Ihre Fortschritte.",
  "noTitulo": "Was nicht mit dem Konto gelöscht wird",
  "noPush": "Benachrichtigungen: Sie schalten sie im Browser oder in den Einstellungen Ihres Handys aus.",
  "noDispositivo": "Was auf Ihrem Gerät liegt, zum Beispiel die Sprache oder Ihre Favoriten: Es verschwindet, wenn Sie die Websitedaten im Browser löschen oder die App deinstallieren."

@@ -1,5 +1,5 @@
 /* Tenerife Go · zh · generado por tools/app_preparar.js de idiomas/privacidad/zh.json: no editar a mano */
 "CFBundleDisplayName" = "Tenerife Go";
-"NSLocationWhenInUseUsageDescription" = "定位：仅在您开启时使用，用来在地图上显示您的位置、您附近有什么，以及前往某个地点的路线。不会保存在任何服务器上。如果您请求驾车路线，起点和终点坐标会发给路线服务来计算。";
+"NSLocationWhenInUseUsageDescription" = "定位：仅在您开启时使用，用来在地图上显示您的位置、您附近有什么、前往某个地点的路线，以及确认您确实在您标记为已访问的地点。不会保存在任何服务器上。如果您请求驾车路线，起点和终点坐标会发给路线服务来计算。";
 "NSMotionUsageDescription" = "手机方向（可选）：仅在使用“对准星空”时：指南针、陀螺仪和加速度计用来判断您指向哪里，以说出您面前的天体。只在设备上使用，不保存也不发送。";
 "NSCameraUsageDescription" = "相机（可选）：仅当您在“对准星空”中打开时，用于把星星叠加在画面上。画面不保存、不分析，也不会离开手机；只有当您点 📸 时，才会合成一张叠加星星的截图，直接从您的手机保存或分享，不经过任何服务器。";
