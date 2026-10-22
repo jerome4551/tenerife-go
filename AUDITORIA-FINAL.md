@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.038 kB** en castellano · **1.152 kB** en el peor caso (búlgaro) · 1.138 kB en polaco, el 22 de octubre, con el quinto, el sexto y el séptimo bloque del cielo encima del `main` de ese día, que da 1.037, 1.151 y 1.137: el kB de más son comentarios de `index.html` (el panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades, lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.039 kB** en castellano · **1.153 kB** en el peor caso (búlgaro) · 1.139 kB en polaco, el 22 de octubre por la noche, con el quinto, el sexto y el séptimo bloque del cielo y el trato de usted, que suma 1 kB (2 en alemán). El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -8572,6 +8572,105 @@ código fuera de los dos fijos; `probar_faq.js`, 0 fallos de 121; y
 de ajustar `probar_movil.js`, dio ese bloque en rojo: esperaba en dos
 respuestas del asistente el polaco de antes («Potrzebujesz pomocy…», «Nie
 wiem, gdzie jesteś»). El ajuste va dentro del commit del polaco.
+
+## El trato de usted, encima del cielo nuevo (22 de octubre, noche)
+
+Los catorce commits del trato de usted iban encima del séptimo commit de
+`cielo-camara`, que no llegó a `main`. Las notas 10 y 11 lo sustituyen
+(arriba, «Los bloques quinto, sexto y séptimo del cielo, traídos y
+repasados»), así que los catorce se han vuelto a poner encima del cielo
+nuevo, uno a uno y en el mismo orden. Cada uno hace lo mismo que entonces,
+salvo donde el cielo nuevo ya lo traía hecho (abajo), pero cambian sus
+hashes. Las dos secciones de arriba nombran los de entonces, y sus
+auditorías se pasaron sobre ellos. Los de hoy son estos:
+
+| Commit | Entonces | Hoy |
+|---|---|---|
+| El chino | `07df8dd` | `12f9e00` |
+| El alemán | `4abb842` | `9782a7c` |
+| Lo que quedaba del castellano | `26e4e16` | `b177c1a` |
+| El neerlandés | `9f3a014` | `74c30f8` |
+| El francés | `0598526` | `f92e3e2` |
+| El italiano | `6a26cbf` | `a3bd773` |
+| Lo que el código escribía a mano en castellano | `c578c67` | `d215f28` |
+| `AUDITORIA-FINAL.md`, del chino al italiano | `ec04ca0` | `73866b8` |
+| El búlgaro | `e344b6c` | `c727160` |
+| El polaco | `3b0fa93` | `6491f4e` |
+| El neerlandés, lo que quedaba | `76e7f1a` | `c16fb82` |
+| Las pestañas de Rutas en un móvil estrecho | `64be5d2` | `8ae12eb` |
+| La frase de la tienda que pide iniciar sesión | `38b9c0f` | `d469a33` |
+| `AUDITORIA-FINAL.md`, el búlgaro y el polaco | `4cb1bca` | `ad8e1f1` |
+
+**Dónde chocaba, y cómo se juntó.** Los dos lados tocan las mismas filas de
+`modulos/cielo.js`: el cielo nuevo corrigió lo que dicen contra su fuente, y
+el usted, el trato. Cada fila se juntó idioma por idioma contra la de antes
+de cada commit. Si un texto lo había cambiado un solo lado, se quedó ese
+cambio. Si lo habían cambiado los dos, y de forma distinta, se juntó a mano,
+con lo que dice el cielo nuevo y el trato de usted. Fueron quince textos, en
+cuatro idiomas:
+
+- en alemán, la luz zodiacal de la tarde y de la mañana («schauen Sie»,
+  «Vermutlich ist es Sonnenlicht») y la lluvia de la guía, que en el cielo
+  nuevo ya era de Sie;
+- en neerlandés, las Dracónidas («u ziet ze het best na zonsondergang»), las
+  Úrsidas («A. Bečvář», «dat u binnen 12 uur») y la descripción de C80, que
+  los dos ponían de u, con «u heeft» o «u hebt»: se queda la del cielo;
+- en italiano, la luz zodiacal («guardi a ovest», «Si pensa che sia luce
+  del Sole»);
+- en polaco, la luz zodiacal («na zachodzie widać słabą smugę światła»,
+  «Uważa się, że to światło słoneczne») y cinco filas que el cielo nuevo ya
+  traía en impersonal y con las cifras como etiqueta: `cieloFichaLuzAnio`,
+  `cieloFichaLuzUnos`, `cieloGuiaIntro`, `cieloGuiaMarte` y
+  `cieloGuiaLluvia`. Se quedan como las trae.
+
+Otros diecinueve los habían cambiado los dos igual. Y ningún cambio del
+usted se perdió. De los 8.030 textos de `modulos/cielo.js` (803 filas en
+diez idiomas), los 7.734 que el usted no tocaba son los del cielo nuevo, y
+los 262 que solo tocaba el usted, los suyos. Los 34 que tocaban los dos son
+estos quince y los diecinueve iguales. En este documento chocaban las cifras
+de idiomas: se volvieron a contar.
+
+**Lo que el cielo nuevo traía de tú** (`f0e8a62`). Las 88
+curiosidades no estaban cuando se hizo el usted. Tres en neerlandés
+hablaban de tú, con el «je» genérico donde el castellano dice «se»:
+Andrómeda, la Liebre y Orión. Pasan a impersonal sin cambiar lo que dicen
+(«het verste wat met het blote oog te zien is»). Otras dos no tutean, pero
+el control las confundía, y van a `EXENTOS` con su motivo: en italiano, el
+auriga «porta una capra», en tercera persona; en polaco, «a ci zmienili ją
+w klacz», donde «ci» es el demostrativo.
+
+**Lo que el control no leía** (`4c04745`). `auditar_registro.js` leía las
+filas de `modulos/cielo.js` solo si la clave era de letras, cifras y guion
+bajo. Cinco llevan guion: los nombres y las descripciones de Mizar y Alcor y
+de la Doble Doble, y la descripción de Albireo. Sus 50 textos no los leía
+nadie, y por eso el usted de antes no vio dos descripciones que tuteaban en
+neerlandés («twee sterren die je met het blote oog uit elkaar ziet»). El
+cielo nuevo ya las trae de u. Ahora el control las lee, y con la frase de
+antes sale en rojo.
+
+**Lo que las marcas no ven.** Además, se leyeron aparte los 1.184 textos
+del cielo que el repaso del usted no había visto: lo que el cielo nuevo trae
+o cambia y el usted no tocó, con las 880 curiosidades. Se buscó con patrones
+de segunda persona más anchos que los del control, en cualquier sitio de la
+frase. Salieron 54 coincidencias, y se leyeron una a una. Ninguna tutea: son
+terceras personas («Gira», «on pense»), nombres («Mira», «la punta»),
+números («sei stelle») y el imperativo neerlandés «Kijk», que es el mismo
+con u.
+
+**La descarga.** Con el usted encima del cielo nuevo son 1.039 kB en
+castellano, 1.153 en búlgaro y 1.139 en polaco: 1 kB más que el cielo solo
+(2 en alemán). La fila de arriba lo dice.
+
+**La auditoría entera**, con las fuentes del cielo y las de los satélites,
+sobre `4c04745`: **«AUDITORIA EN VERDE»**, ningún
+bloque en rojo ni roto. `auditar_registro.js`, 65.846 textos: los nueve
+idiomas que distinguen el trato, todos de usted. `auditar_cielo.js`, 283 de
+283; `auditar_web.js`, 44 tablas y 1.821 filas; `barrido_idiomas.js`,
+3.962, y este documento dice lo mismo; `barrido_pantallas.js`, 106
+pantallas y fichas por idioma y 0 textos sin traducir; `auditar_idioma.js`,
+0 hallazgos en los diez; el cirílico, 1.904 nombres y 0 variantes
+sospechosas; `probar_faq.js`, 0 fallos de 121; `probar_movil.js`, las 25
+preguntas en su idioma; `probar_play.js`, 233 de 233.
 
 ---
 
