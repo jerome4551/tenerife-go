@@ -2912,6 +2912,15 @@ window.onunhandledrejection = function(e) {
     box-shadow: 0 0 0 1px rgba(74,222,128,0.1);
   }
   .route-tab-icon { font-size: 0.9rem; }
+  /* En un movil de 320 a 360 px la palabra mas larga de una pestaña llegaba
+     al borde: «Planowanie», «Подредете», «Tagesroute», y «A→B» en todos los
+     idiomas. Aqui la fila recoge sus margenes, el icono se acerca al texto y
+     las letras van sin espaciado: queda aire a los dos lados, y en ingles la
+     fila baja de tres lineas a dos (22 de octubre de 2026). */
+  @media (max-width: 360px) {
+    .route-tabs { padding-left: 0.5rem; padding-right: 0.5rem; gap: 3px; }
+    .route-tab { gap: var(--space-1); letter-spacing: 0; }
+  }
 
   /* ── Contenido de pestañas ── */
   .route-tab-content {
