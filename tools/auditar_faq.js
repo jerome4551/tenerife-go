@@ -205,9 +205,10 @@ for (const e of (ficheros.es ? ficheros.es.e : [])) {
 }
 
 /* ── 8. las respuestas de la app de las tiendas ───────────────────────
-   Dentro de la app (window.TGO_NATIVO) no hay Web Push ni service worker y
-   no se instala desde el navegador: app-06, app-07 y app-29 llevan alli su
-   propia respuesta ("n", de faq/fuente/nativo/respuestas.json). Que este en todos los
+   Dentro de la app (window.TGO_NATIVO) no hay Web Push ni service worker,
+   no se instala desde el navegador y, desde el 22-10-2026, no hay Google
+   Analytics: app-06, app-07, app-27 y app-29 llevan alli su propia
+   respuesta ("n", de faq/fuente/nativo/respuestas.json). Que este en todos los
    idiomas y en el suyo, distinta de la de la web, sin nombrar otras
    plataformas (Apple, directriz 2.3.10: ni en la app ni en la ficha) y con
    los rotulos de la pantalla. Y mas abajo, que con la marca el asistente

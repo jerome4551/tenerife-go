@@ -676,7 +676,8 @@
     "UI.ppEnlace",
     "UI.ppEnlaceWeb",
     "UI.cuentaBorrarPagina"
-   ]
+   ],
+   "nativo": true
   },
   "app-28": {
    "cat": "app",

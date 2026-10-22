@@ -25,13 +25,14 @@
 "ppDatosCamara":"Cámara (opcional):",
 "ppDatosCamaraTxt":"solo si la activas en «Apunta al cielo», para pintar las estrellas sobre la imagen. La imagen no se guarda, no se analiza y no sale del móvil; solo si tocas 📸 se compone una captura con las estrellas encima, que se guarda o se comparte desde tu móvil sin pasar por ningún servidor.",
 "ppDatosStats":"Estadísticas de uso:",
-"ppDatosStatsTxt":"solo si las aceptas. Ver el apartado siguiente.",
+"ppDatosStatsTxt":"solo en la web y si las aceptas. Ver el apartado siguiente.",
 
 "ppStatsTitulo":"Estadísticas y cookies",
-"ppStatsAntes":"La app usa Google Analytics 4, y no se carga hasta que aceptas el aviso de cookies: hasta entonces no sale nada hacia Google desde la app.",
+"ppStatsAntes":"En la web, la app usa Google Analytics 4, y no se carga hasta que aceptas el aviso de cookies: hasta entonces no sale nada hacia Google desde la app.",
 "ppStatsSi":"Si aceptas, Google Analytics instala sus propias cookies y recibe datos de navegación —pantallas vistas, idioma, país aproximado, tipo de dispositivo— y tu dirección IP.",
 "ppStatsConsent":"Está configurado con Consent Mode v2 y las señales publicitarias quedan denegadas siempre, así que esos datos no se usan para personalizar anuncios. Si rechazas, no se carga nada.",
 "ppStatsGuarda":"Tu respuesta se guarda 180 días en tu dispositivo; después se vuelve a preguntar. Para cambiarla antes, borra los datos del sitio en tu navegador.",
+"ppStatsTienda":"La aplicación de la App Store no usa Google Analytics: no lo carga nunca y no enseña el aviso de cookies.",
 
 "ppPubTitulo":"Publicidad y contenidos promocionados",
 "ppPubQue":"El mapa muestra negocios que pagan un plan de promoción mensual. Van marcados con la etiqueta «{patrocinado}» y no alteran el resto del contenido.",
@@ -47,7 +48,7 @@
 "ppTercCarburantes":"los precios oficiales de las gasolineras de la provincia, cuando los miras; no se le manda nada tuyo.",
 "ppTercWiki":"el título del artículo del lugar o del astro que abres.",
 "ppTercCdn":"sirve la librería de Supabase que usa la app; no se le manda nada tuyo.",
-"ppTercGa":"solo si aceptas el aviso de cookies.",
+"ppTercGa":"solo en la web, si aceptas el aviso de cookies.",
 "ppTercNoVenta":"Ninguno de estos datos se vende ni se cede con fines comerciales.",
 
 "ppBaseTitulo":"Finalidad y base legal",

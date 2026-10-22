@@ -8,15 +8,12 @@
        · Geolocalizacion: las coordenadas de origen y destino van
          al servicio de rutas; las del lugar, al del tiempo        -> ubicacion precisa (sin ligar a nadie)
        · Nominatim: el texto que escribes al buscar una direccion  -> historial de busqueda (sin ligar)
-       · Google Analytics 4, solo si se acepta el aviso de cookies -> interaccion con el producto, ubicacion aproximada
-         (recibe «pais aproximado» y la IP) e identificador del
-         dispositivo (sus cookies llevan uno), sin ligar, analitica
-     Apple: «Declare the relevant data types based on how you use IP
-     address, such as precise location, coarse location, device ID», y lo
-     que recogen los terceros cuyo codigo va en la app tambien se declara
-     (developer.apple.com/app-store/app-privacy-details, 21-10-2026).
-     Sin rastreo (NSPrivacyTracking false): Consent Mode v2 con las senales
-     publicitarias siempre denegadas, ninguna red publicitaria, sin el
+     Google Analytics no va en la app (22 de octubre de 2026): con la marca
+     TGO_NATIVO, index.html ni lo configura ni lo carga, y el aviso de
+     cookies no sale (lo miran app_preparar.js y probar_app.js); la politica
+     lo dice (ppStatsTienda). Solo esta en la web, asi que aqui no hay
+     analitica: ni uso, ni ubicacion aproximada, ni identificador.
+     Sin rastreo (NSPrivacyTracking false): ninguna red publicitaria, sin el
      identificador publicitario (IDFA). La camara y los sensores no salen del
      movil (la politica lo dice), asi que no son datos recogidos.
      Los avisos push de la web no existen dentro de la app (WKWebView).
@@ -91,42 +88,6 @@
       <key>NSPrivacyCollectedDataTypePurposes</key>
       <array>
         <string>NSPrivacyCollectedDataTypePurposeAppFunctionality</string>
-      </array>
-    </dict>
-    <dict>
-      <key>NSPrivacyCollectedDataType</key>
-      <string>NSPrivacyCollectedDataTypeProductInteraction</string>
-      <key>NSPrivacyCollectedDataTypeLinked</key>
-      <false/>
-      <key>NSPrivacyCollectedDataTypeTracking</key>
-      <false/>
-      <key>NSPrivacyCollectedDataTypePurposes</key>
-      <array>
-        <string>NSPrivacyCollectedDataTypePurposeAnalytics</string>
-      </array>
-    </dict>
-    <dict>
-      <key>NSPrivacyCollectedDataType</key>
-      <string>NSPrivacyCollectedDataTypeCoarseLocation</string>
-      <key>NSPrivacyCollectedDataTypeLinked</key>
-      <false/>
-      <key>NSPrivacyCollectedDataTypeTracking</key>
-      <false/>
-      <key>NSPrivacyCollectedDataTypePurposes</key>
-      <array>
-        <string>NSPrivacyCollectedDataTypePurposeAnalytics</string>
-      </array>
-    </dict>
-    <dict>
-      <key>NSPrivacyCollectedDataType</key>
-      <string>NSPrivacyCollectedDataTypeDeviceID</string>
-      <key>NSPrivacyCollectedDataTypeLinked</key>
-      <false/>
-      <key>NSPrivacyCollectedDataTypeTracking</key>
-      <false/>
-      <key>NSPrivacyCollectedDataTypePurposes</key>
-      <array>
-        <string>NSPrivacyCollectedDataTypePurposeAnalytics</string>
       </array>
     </dict>
   </array>

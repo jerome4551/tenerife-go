@@ -18,7 +18,12 @@
  *     «Continuar como invitado») y sus mensajes van hidden (WKWebView no
  *     tiene Web Push); en la web, no;
  *   · el asistente contesta con las respuestas de la app (app-06, app-07,
- *     app-29: faq/fuente/nativo/); en la web, con las suyas;
+ *     app-27, app-29: faq/fuente/nativo/); en la web, con las suyas;
+ *   · Google Analytics (22-10-2026): sin respuesta guardada al aviso de
+ *     cookies, el aviso no sale y gtag no se configura (dataLayer vacio);
+ *     llamando a tgoLoadGA(), o con «aceptado» guardado de antes, no entra
+ *     ningun script ni sale nada hacia Google; en la web, el aviso sale y
+ *     al aceptar se pide gtag.js (control);
  *   · los datos que cambian a diario se piden PRIMERO a la web viva
  *     (https://jerome4551.github.io/tenerife-go/datos/…): los avisos de
  *     AEMET con dos avisos en la copia viva y ninguno en la de dentro ->
@@ -127,8 +132,8 @@ async function pagina(ctx, puerto, extra) {
       return { lang, filas, dadas };
     };
     const fa = await nativasDe(p, WWW);
-    ok(fa.filas.length === 3 && fa.dadas.every((a, i) => a === fa.filas[i].n),
-       'el asistente da la respuesta de la app en ' + fa.filas.map(e => e.id).join(', ') + ' (' + fa.lang + '): nada de instalar desde el navegador ni de avisos', JSON.stringify(fa.dadas.map(a => String(a).slice(0, 50))));
+    ok(fa.filas.length === 4 && fa.dadas.every((a, i) => a === fa.filas[i].n),
+       'el asistente da la respuesta de la app en ' + fa.filas.map(e => e.id).join(', ') + ' (' + fa.lang + '): nada de instalar desde el navegador, ni de avisos, ni de estadisticas', JSON.stringify(fa.dadas.map(a => String(a).slice(0, 50))));
     ok(errores.length === 0, 'sin errores de pagina', errores.join(' | '));
 
     /* los avisos de AEMET: vivos primero */
@@ -195,6 +200,41 @@ async function pagina(ctx, puerto, extra) {
     ok(sat2 === satDentro.fuente, 'sin red hacia fuera, los elementos de los satelites son los de dentro', sat2);
     ok(e2.length === 0, 'sin errores de pagina', e2.join(' | '));
     await p2.close();
+
+    /* Google Analytics (22-10-2026): en la app no hay. Paginas SIN la
+       respuesta al aviso guardada (pagina() guarda «rechazado» para que el
+       aviso no tape nada): con la marca el aviso no sale y gtag no se
+       configura, y ni llamando a tgoLoadGA() ni con «aceptado» guardado de
+       antes se pide nada a Google. Lo que se pida a Google se apunta y se
+       corta. */
+    const google = [];
+    const sinAviso = async (cx, puerto, guardado) => {
+      const pg = await cx.newPage();
+      const errs = []; pg.on('pageerror', e => errs.push(e.message));
+      await pg.route(/googletagmanager\.com|google-analytics\.com/, r => { google.push(r.request().url()); return r.abort(); });
+      await pg.route(VIVA + '**', r => r.abort());
+      await pg.route('**/router.project-osrm.org/**', r => r.abort());
+      await pg.route('**/nominatim.openstreetmap.org/**', r => r.abort());
+      /* el contexto comparte localStorage con las paginas de antes, que
+         guardaron «rechazado»: sin `guardado`, se borra antes de que corra nada */
+      await pg.addInitScript(v => { try { if (v) localStorage.setItem('tgo_consent', JSON.stringify({ v: v, t: Date.now() })); else localStorage.removeItem('tgo_consent'); } catch (e) {} }, guardado || '');
+      await pg.goto('http://127.0.0.1:' + puerto + '/index.html', { waitUntil: 'networkidle' });
+      await pg.waitForTimeout(800);
+      return { pg, errs };
+    };
+    const scriptsGa = pg => pg.evaluate(() => [...document.scripts].filter(s => /googletagmanager/.test(s.src)).length);
+    const n1 = await sinAviso(ctx, PUERTO_APP, null);
+    const ga1 = await n1.pg.evaluate(() => { const b = document.getElementById('consent-banner'); return { oculto: !b || b.hidden, capa: (window.dataLayer || []).length, ga: !!window.__tgoGA }; });
+    ok(ga1.oculto && ga1.capa === 0 && !ga1.ga, 'Google Analytics: sin respuesta guardada, el aviso de cookies no sale y gtag no se configura (dataLayer vacio)', JSON.stringify(ga1));
+    await n1.pg.evaluate(() => tgoLoadGA()); await n1.pg.waitForTimeout(500);
+    const s1 = await scriptsGa(n1.pg);
+    ok(s1 === 0 && !(await n1.pg.evaluate(() => !!window.__tgoGA)) && google.length === 0, 'y llamando a tgoLoadGA() no entra ningun script ni sale nada hacia Google', JSON.stringify([s1, google]));
+    ok(n1.errs.length === 0, 'sin errores de pagina', n1.errs.join(' | '));
+    await n1.pg.close();
+    const n2 = await sinAviso(ctx, PUERTO_APP, 'granted');
+    const s2 = await scriptsGa(n2.pg);
+    ok(s2 === 0 && google.length === 0, 'con «aceptado» guardado de antes, tampoco: ningun script y nada hacia Google', JSON.stringify([s2, google]));
+    await n2.pg.close();
     await ctx.close();
 
     console.log('=== sin la marca (la raiz, la web): nada cambia ===');
@@ -210,13 +250,21 @@ async function pagina(ctx, puerto, extra) {
     const pushW = await w.evaluate(() => ['auth-push-btn', 'auth-push-btn-invitado'].map(i => { const b = document.getElementById(i); return b ? b.hidden : 'no esta'; }));
     ok(pushW.every(x => x === false), '«Activar notificaciones» (con cuenta y sin ella) no va hidden', JSON.stringify(pushW));
     const fw = await nativasDe(w, RAIZ);
-    ok(fw.filas.length === 3 && fw.dadas.every((a, i) => a === fw.filas[i].a), 'el asistente da la respuesta de la web en ' + fw.filas.map(e => e.id).join(', ') + ' (' + fw.lang + ')', JSON.stringify(fw.dadas.map(a => String(a).slice(0, 50))));
+    ok(fw.filas.length === 4 && fw.dadas.every((a, i) => a === fw.filas[i].a), 'el asistente da la respuesta de la web en ' + fw.filas.map(e => e.id).join(', ') + ' (' + fw.lang + ')', JSON.stringify(fw.dadas.map(a => String(a).slice(0, 50))));
     const propios = [];
     w.on('request', r => { if (/avisos-aemet\.json/.test(r.url())) propios.push(r.url()); });
     await w.evaluate(() => fetchWxAlerts());
     ok(propios.length === 1 && propios[0].startsWith('http://127.0.0.1:' + PUERTO + '/') && fuera.length === 0,
        'los avisos se piden al propio origen y a ningun otro sitio', JSON.stringify([propios, fuera]));
     ok(ew.length === 0, 'sin errores de pagina', ew.join(' | '));
+    /* Google Analytics en la web (control): el aviso sale y, al aceptar, se pide gtag.js */
+    const w1 = await sinAviso(ctx2, PUERTO, null);
+    const gw = await w1.pg.evaluate(() => { const b = document.getElementById('consent-banner'); return { visible: !!b && !b.hidden, capa: (window.dataLayer || []).length }; });
+    ok(gw.visible && gw.capa >= 3, 'Google Analytics: sin respuesta guardada, el aviso de cookies sale y gtag esta configurado (control)', JSON.stringify(gw));
+    await w1.pg.evaluate(() => document.getElementById('consent-accept').click()); await w1.pg.waitForTimeout(800);
+    ok(google.some(u => /googletagmanager\.com\/gtag\/js\?id=G-/.test(u)), 'y al aceptar se pide gtag.js a Google (control; aqui la ruta lo corta)', JSON.stringify(google));
+    ok(w1.errs.length === 0, 'sin errores de pagina', w1.errs.join(' | '));
+    await w1.pg.close();
     await ctx2.close();
   } finally {
     await browser.close();

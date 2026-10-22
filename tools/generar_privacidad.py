@@ -213,7 +213,9 @@ def cuerpo(L, panel):
                  ('ppDatosCamara', 'ppDatosCamaraTxt'), ('ppDatosStats', 'ppDatosStatsTxt')):
         m.append(li(a, b))
     m += [f'{sangria(4)}</ul>', '']
-    m += [h(3, 'ppStatsTitulo')] + [par(k) for k in ('ppStatsAntes', 'ppStatsSi', 'ppStatsConsent', 'ppStatsGuarda')] + ['']
+    # ppStatsTienda (22 de octubre de 2026): la app de la App Store no lleva
+    # Google Analytics (index.html, con la marca TGO_NATIVO); solo la web.
+    m += [h(3, 'ppStatsTitulo')] + [par(k) for k in ('ppStatsAntes', 'ppStatsSi', 'ppStatsConsent', 'ppStatsGuarda', 'ppStatsTienda')] + ['']
     m += [h(4, 'ppPubTitulo')] + [par(k) for k in ('ppPubQue', 'ppPubNoDatos')] + ['']
     m += [h(5, 'ppTercTitulo'), par('ppTercIntro'), f'{sangria(4)}<ul>']
     for nombre, url, k in TERCEROS:

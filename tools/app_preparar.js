@@ -20,7 +20,8 @@
  *      cabecera), la linea «window.TGO_NATIVO = true»: con ella la app no
  *      registra service worker, no ofrece instalarse, esconde los dos
  *      botones de avisos push (el de la cuenta y el de «Continuar como
- *      invitado») y pide los datos que cambian a diario a la web viva, con
+ *      invitado»), no carga Google Analytics ni ensena su aviso de cookies
+ *      (22-10-2026) y pide los datos que cambian a diario a la web viva, con
  *      los de dentro de respaldo. Es la UNICA diferencia con la web.
  *   3. Escribe app/ios/plantillas/<idioma>.lproj/InfoPlist.strings, los
  *      textos de los permisos de iOS (camara, ubicacion, sensores) en los
@@ -308,15 +309,24 @@ function comprobar(montado) {
   const priv = fs.existsSync(path.join(PLANTILLAS, 'PrivacyInfo.xcprivacy')) ? fs.readFileSync(path.join(PLANTILLAS, 'PrivacyInfo.xcprivacy'), 'utf8') : '';
   ok(/<key>NSPrivacyTracking<\/key>\s*<false\/>/.test(priv) && /<key>NSPrivacyTrackingDomains<\/key>\s*<array\/>/.test(priv)
      && /NSPrivacyCollectedDataTypeEmailAddress/.test(priv) && /NSPrivacyCollectedDataTypeUserID/.test(priv) && /NSPrivacyCollectedDataTypeOtherUserContent/.test(priv)
-     && /NSPrivacyCollectedDataTypePreciseLocation/.test(priv) && /NSPrivacyCollectedDataTypeSearchHistory/.test(priv) && /NSPrivacyCollectedDataTypeProductInteraction/.test(priv)
+     && /NSPrivacyCollectedDataTypePreciseLocation/.test(priv) && /NSPrivacyCollectedDataTypeSearchHistory/.test(priv)
      && !/NSPrivacyCollectedDataTypeTracking<\/key>\s*<true\/>/.test(priv),
-     'PrivacyInfo.xcprivacy: sin rastreo, sin dominios de rastreo, y los datos que la politica dice que salen (correo, id de usuario, favoritos, coordenadas, busquedas, uso)');
-  /* Google Analytics (si index.html lo carga) recibe el pais aproximado y la IP, y
-     sus cookies llevan un identificador: Apple pide declararlos aunque los recoja
-     un tercero (app-privacy-details, 21-10-2026). */
-  const ga = /googletagmanager\.com\/gtag\/js/.test(index);
-  ok(!ga || (/NSPrivacyCollectedDataTypeCoarseLocation/.test(priv) && /NSPrivacyCollectedDataTypeDeviceID/.test(priv)),
-     'PrivacyInfo.xcprivacy: con Google Analytics en index.html, tambien la ubicacion aproximada y el identificador (analitica)');
+     'PrivacyInfo.xcprivacy: sin rastreo, sin dominios de rastreo, y los datos que la politica dice que salen (correo, id de usuario, favoritos, coordenadas, busquedas)');
+  /* Google Analytics (22-10-2026): solo en la web. Con la marca, gtag no se
+     configura, tgoLoadGA() vuelve sin cargar nada y el bloque del aviso de
+     cookies sale antes de nada; asi que el manifiesto no declara analitica
+     (ni uso, ni ubicacion aproximada, ni identificador). Si alguien quita
+     una de las tres puertas, o vuelve a declarar analitica sin ellas, para
+     aqui; probar_app.js lo mira ademas en el navegador. */
+  ok(/if \(!window\.TGO_NATIVO\) \{\s*gtag\('consent', 'default'/.test(index)
+     && /function tgoLoadGA\(\)\{\s*if \(window\.TGO_NATIVO \|\| window\.__tgoGA\) return;/.test(index)
+     && /\(function\(\)\{\s*if \(window\.TGO_NATIVO\) return;[^\n]*\n\s*var KEY = 'tgo_consent'/.test(index),
+     'Google Analytics solo en la web: con la marca no se configura, tgoLoadGA() no carga nada y el aviso de cookies no sale');
+  ok(!/NSPrivacyCollectedDataTypePurposeAnalytics|NSPrivacyCollectedDataType(?:ProductInteraction|CoarseLocation|DeviceID)</.test(priv),
+     'PrivacyInfo.xcprivacy: sin analitica (ni uso, ni ubicacion aproximada, ni identificador), porque en la app no hay Google Analytics');
+  const polEs = JSON.parse(lee('idiomas/privacidad/es.json'));
+  ok(/App Store/.test(polEs.ppStatsTienda || '') && /Google Analytics/.test(polEs.ppStatsTienda || ''),
+     'la politica lo dice (ppStatsTienda): la aplicacion de la App Store no usa Google Analytics', polEs.ppStatsTienda);
   /* los dos plist bien formados: python3 los lee con plistlib */
   const { spawnSync } = require('child_process');
   for (const f of ['Info.plist.fragmento.plist', 'PrivacyInfo.xcprivacy']) {
