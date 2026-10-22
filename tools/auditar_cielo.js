@@ -99,6 +99,21 @@
  *      sin red (el aviso con la fecha de los elementos, la comprobacion en
  *      «Donde ir» y, en la parte 8, que con el service worker diga
  *      «guardado»); y los diez idiomas.
+ *  13. las curiosidades y la ficha del planeta (22 de octubre de 2026, quinto
+ *      bloque): la copia de datos/planetas.json que lleva el modulo
+ *      (CIELO_PLANETAS) igual al JSON; los periodos orbitales de la NASA
+ *      contra la tercera ley de Kepler con la a de la JPL; que cada frase
+ *      que compara («el mas pequeño», «menos denso que el agua», «gira al
+ *      reves», «el mas frio», «las mas lentas de esta lista») se cumpla en
+ *      los numeros de donde sale; el cuerpo padre de cada lluvia (cometa o
+ *      asteroide) como lo dicen la NASA y la IMO; en el navegador, las
+ *      fichas de Jupiter (la hoja de la NASA), la Luna (perigeo y apogeo
+ *      cotejados con la distancia del motor), el Sol, Canopus y la Polar
+ *      (la geometria de la latitud), Omega Centauri, la ISS, las once
+ *      lluvias en el calendario (plegadas, con su fuente como enlace), la
+ *      luz zodiacal en su temporada y no fuera de ella (y la Luna recalculada
+ *      aparte), la sombra del Teide con la hora de la puesta; y los diez
+ *      idiomas sin texto roto.
  *
  * Sale con 1 si algo falla.
  */
@@ -341,7 +356,12 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(index, '"' + k +
     Indice: [...(modulo.match(/valor >= 9 \? '(\w+)' : valor >= 7 \? '(\w+)' : valor >= 5 \? '(\w+)' : valor >= 3 \? '(\w+)' : '(\w+)'/) || []).slice(1)],
     /* los satelites (21 de octubre): el nombre y el brillo de cada clave de datos/satelites.json */
     SatNombre: SATJSON.sat.map(s => s.clave[0].toUpperCase() + s.clave.slice(1)),
-    SatBrillo: SATJSON.sat.map(s => s.clave[0].toUpperCase() + s.clave.slice(1))
+    SatBrillo: SATJSON.sat.map(s => s.clave[0].toUpperCase() + s.clave.slice(1)),
+    /* las curiosidades (22 de octubre, quinto bloque): por cuerpo (los de
+       CIELO_PLANETAS mas el Sol), por satelite y por lluvia del catalogo;
+       CurSur y CurPolar se piden sueltas */
+    Cur: Object.keys(JSON.parse((modulo.match(/var CIELO_PLANETAS = (\{.*\});\n/) || [, '{"cuerpos":{}}'])[1]).cuerpos).concat(['Sun'])
+      .concat(SATJSON.sat.map(s => s.clave[0].toUpperCase() + s.clave.slice(1))).concat(D.lluvias.map(l => l.id))
   };
   ok(Object.values(FAMILIAS).every(v => v && v.length) && FAMILIAS.Indice.length === 5, 'las familias se leen del codigo (RUMBOS, FASES, PESTANAS, las palabras del indice)');
   /* y si manana el codigo arma otra (T('Algo' + x)), que no pase sin mirar */
@@ -575,8 +595,74 @@ function standish(nombre, fecha) {
   ok(['./index.html', './modulos/cielo.js', './vendor/astronomy.browser.min.js', './datos/cielo.json', './vendor/satellite.js', './datos/satelites.json'].every(f => CORE.includes("'" + f + "'")), 'y los seis estan en el CORE de sw.js');
 }
 
+/* ════════ 13a. las curiosidades: las cifras de la NASA y lo que dicen las frases ════════ */
+titulo('13a. las curiosidades y la ficha del planeta: datos/planetas.json, su copia en el modulo y las frases');
+const PLJ = JSON.parse(lee('datos/planetas.json'));
+{
+  const m = modulo.match(/var CIELO_PLANETAS = (\{.*\});\n/);
+  let copia = null; try { copia = m && JSON.parse(m[1]); } catch (e) {}
+  ok(copia && JSON.stringify(copia.cuerpos) === JSON.stringify(PLJ.cuerpos) && JSON.stringify(copia.sol) === JSON.stringify(PLJ.sol) && copia.fecha === PLJ.fecha,
+     'CIELO_PLANETAS (modulos/cielo.js) es la copia exacta de datos/planetas.json (los nueve cuerpos y el Sol, con su fecha)');
+  ok(/nssdc\.gsfc\.nasa\.gov\/planetary\/factsheet\/index\.html/.test(PLJ.url) && /^\d{4}-\d{2}-\d{2}$/.test(PLJ.fecha) && /sunfact\.html/.test(PLJ.sol.url) && /^\d{4}-\d{2}-\d{2}$/.test(PLJ.sol.fecha) && /^\d{4}-\d{2}-\d{2}$/.test(PLJ.leido),
+     'el JSON dice de donde sale cada tabla (Planetary Fact Sheet y Sun Fact Sheet de la NSSDCA), de cuando es y cuando se leyo: ' + PLJ.fecha + ' / ' + PLJ.sol.fecha + ', leido el ' + PLJ.leido);
+  const C = PLJ.cuerpos, PLANETAS = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
+  const campos = ['diametro_km', 'gravedad_ms2', 'rotacion_h', 'dia_h', 'periodo_d', 'periodo_sideral_d', 'temp_c', 'oblicuidad_deg', 'lunas', 'anillos', 'velocidad_kms', 'masa_e24kg', 'densidad_kgm3'];
+  const faltan = PLANETAS.filter(b => !C[b] || campos.some(k => C[b][k] === undefined || C[b][k] === null)).concat(!C.Moon || campos.filter(k => k !== 'periodo_sideral_d').some(k => C.Moon[k] === undefined || C.Moon[k] === null) ? ['Moon'] : []);
+  ok(!faltan.length, 'los ocho planetas y la Luna con los campos que usan la ficha y las curiosidades', faltan.join(', '));
+  /* los periodos orbitales de la NASA contra Kepler con la a de la JPL (elementos_planetas.json): P = 365,25636 · a^1,5 */
+  const malK = PLANETAS.filter(b => !C[b].periodo_sideral_d || Math.abs(C[b].periodo_sideral_d / (365.25636 * Math.pow(ELEM.cuerpos[b][0], 1.5)) - 1) > 0.002).map(b => b + ' ' + C[b].periodo_sideral_d);
+  ok(!malK.length, 'los ocho periodos siderales de la NASA (hoja de cada planeta) cumplen la tercera ley de Kepler con la a de la JPL a menos del 0,2 % (dos fuentes distintas, la misma fisica)', malK.join(', '));
+  const malTrop = PLANETAS.filter(b => { const q = C[b].periodo_d / C[b].periodo_sideral_d; return !(q > 0.99 && q < 1.001); }).map(b => b + ' ' + C[b].periodo_d + '/' + C[b].periodo_sideral_d);
+  ok(!malTrop.length && /anioDe\(p\)/.test(modulo) && /periodo_sideral_d \|\| p\.periodo_d/.test(modulo), 'la tabla resumen trae el periodo tropico (igual o algo menor, Neptuno 59.800 frente a 60.189); la app enseña como «un año» el sideral', malTrop.join(', '));
+  /* la distancia media al Sol de la NASA contra la a de la JPL (menos del 1 %) */
+  const malD = PLANETAS.filter(b => Math.abs(C[b].dist_sol_mkm / (ELEM.cuerpos[b][0] * 149.597870) - 1) > 0.01).map(b => b + ' ' + C[b].dist_sol_mkm);
+  ok(!malD.length, 'y la distancia media al Sol de la NASA coincide con la a de la JPL a menos del 1 %', malD.join(', '));
+  /* lo que afirma cada frase, en los numeros de los que sale */
+  const min = k => PLANETAS.reduce((a, b) => C[b][k] < C[a][k] ? b : a), max = k => PLANETAS.reduce((a, b) => C[b][k] > C[a][k] ? b : a);
+  const afirma = [
+    [min('diametro_km') === 'Mercury' && max('velocidad_kms') === 'Mercury', 'Mercurio «el mas pequeño y el mas rapido»'],
+    [Math.abs(C.Mercury.dia_h / 24 / C.Mercury.periodo_d - 2) < 0.05, 'el dia solar de Mercurio dura «casi dos de sus años» (' + (C.Mercury.dia_h / 24 / C.Mercury.periodo_d).toFixed(2) + ')'],
+    [C.Venus.rotacion_h < 0 && C.Venus.oblicuidad_deg > 170 && Math.abs(C.Venus.rotacion_h) / 24 > C.Venus.periodo_d && max('temp_c') === 'Venus' && C.Venus.temp_c > C.Mercury.temp_c && C.Venus.presion_bar > 50,
+     'Venus «gira al reves», su vuelta dura mas que su año, «el mas caliente, mas que Mercurio», 92 bares'],
+    [Math.abs(C.Mars.dia_h - 24) < 1 && C.Mars.lunas === 2, 'Marte: dia «casi como el nuestro», dos lunas'],
+    [max('diametro_km') === 'Jupiter' && min('dia_h') === 'Jupiter', 'Jupiter «el mayor» y «el que mas deprisa gira»'],
+    [C.Saturn.densidad_kgm3 < 1000 && max('lunas') === 'Saturn', 'Saturno «menos denso que el agua» y con mas lunas que ninguno'],
+    [C.Uranus.oblicuidad_deg > 90 && C.Uranus.oblicuidad_deg < 100 && Math.abs(C.Earth.oblicuidad_deg - 23.4) < 0.1, 'Urano «tumbado» (97,8°) frente a los 23° de la Tierra'],
+    [max('dist_sol_mkm') === 'Neptune' && min('temp_c') === 'Neptune' && Math.abs(C.Neptune.dist_sol_mkm * 1e6 / 299792.458 / 3600 - 4.18) < 0.05, 'Neptuno «el mas lejano» y «el mas frio»; su luz tarda 4 h 11 min'],
+    [Math.abs(C.Moon.rotacion_h / 24 - C.Moon.periodo_d) < 0.05, 'la Luna: rotacion igual a su periodo orbital («la misma cara»)'],
+    [Math.abs(C.Earth.velocidad_kms * 4 - 119) < 5, 'la Tierra recorre «mas de cien kilometros» en los segundos de leer una frase (29,8 km/s)'],
+    [Math.abs(PLJ.sol.radio_x_tierra - 109.2) < 0.01 && PLJ.sol.masa_x_tierra === 332900 && Math.abs(PLJ.sol.rotacion_h / 24 - 25.4) < 0.05 && Math.abs(PLJ.sol.temp_k - 273.15 - 5500) < 60,
+     'el Sol: 109 radios terrestres, 332.900 masas, 25,4 dias de rotacion, unos 5.500 °C'],
+    [PLJ.sol.masa_e24kg / (PLJ.sol.masa_e24kg + PLANETAS.reduce((a, b) => a + C[b].masa_e24kg, 0)) > 0.99, 'y «mas del 99 %» de la masa del sistema solar (Sol frente a Sol + ocho planetas)']
+  ];
+  const malA = afirma.filter(x => !x[0]).map(x => x[1]);
+  ok(!malA.length, 'las ' + afirma.length + ' comparaciones de las curiosidades se cumplen en las cifras de la NASA de las que salen', malA.join(' · '));
+  /* las lluvias: el cuerpo padre del catalogo (IMO) y lo que dicen las frases */
+  const LL = {}; D.lluvias.forEach(l => { LL[l.id] = l; });
+  const padre = id => (LL[id].padre || [])[0] || '';
+  const esCometa = p => /^(\d+P|[PCDXI])\//.test(p);
+  const malLl = [];
+  if (esCometa(padre('QUA')) || !/2003 EH1/.test(padre('QUA'))) malLl.push('QUA: ' + padre('QUA'));
+  if (esCometa(padre('GEM')) || !/3200/.test(padre('GEM'))) malLl.push('GEM: ' + padre('GEM'));
+  ['LYR', 'ETA', 'SDA', 'CAP', 'PER', 'DRA', 'ORI', 'LEO', 'URS'].forEach(id => { if (!esCometa(padre(id))) malLl.push(id + ': ' + padre(id)); });
+  ['ETA', 'ORI'].forEach(id => { if (!/1P\/Halley/.test(padre(id))) malLl.push(id + ' no es de Halley'); });
+  if (!/109P/.test(padre('PER')) || !/55P/.test(padre('LEO')) || !/21P/.test(padre('DRA')) || !/8P\/Tuttle/.test(padre('URS')) || !/96P/.test(padre('SDA')) || !/C\/1861 G1/.test(padre('LYR')) || !/169P/.test(padre('CAP'))) malLl.push('un cuerpo padre no es el de la NASA/IMO');
+  ok(!malLl.length, 'el cuerpo padre de las once lluvias (lista de la IMO, en el catalogo) es el que dice la NASA: dos asteroides (2003 EH1, Faeton) y nueve cometas, Halley dos veces', malLl.join(' · '));
+  const vmin = D.lluvias.reduce((a, l) => l.v < a.v ? l : a), vmax = D.lluvias.reduce((a, l) => l.v > a.v ? l : a);
+  ok(vmin.id === 'DRA' && vmax.id === 'LEO' && LL.ETA.v >= 60 && LL.ORI.v >= 60, 'las Draconidas son «las mas lentas de esta lista» (' + vmin.v + ' km/s), las Leonidas «las mas rapidas de todas» (' + vmax.v + '), Eta Acuaridas y Orionidas a 60 o mas');
+  /* las fuentes de cada curiosidad, en el modulo: https, y una por lluvia */
+  const urls = (modulo.match(/FUENTES_LLU = \{([\s\S]*?)\n  \};/) || [, ''])[1];
+  const sinFuente = D.lluvias.map(l => l.id).filter(id => !new RegExp('\\n    ' + id + ': \\[').test(urls));
+  ok(!sinFuente.length && !/http:\/\//.test(urls), 'las once lluvias tienen su fuente (NASA, AMS, Wikipedia, UCM), todas https', sinFuente.join(', '));
+  const txt = tablaModulo('CIELO_UI') || {};
+  const cur = Object.keys(txt).filter(k => /^cieloCur(?!Fuente)[A-Z]/.test(k));
+  ok(cur.length === 26, '26 curiosidades en CIELO_UI (Sol, Luna, ocho planetas, tres satelites, once lluvias, el sur y la Polar)', cur.length + ': ' + cur.join(' '));
+  ok(/'Cur' \+ c\.cuerpo/.test(modulo) && /'Cur' \+ l\.id/.test(modulo) && /SearchLunarApsis/.test(modulo) && /NextLunarApsis/.test(modulo) && /DEC_SUR = -40/.test(modulo) && /HIP_POLAR = 11767/.test(modulo),
+     'el modulo saca la curiosidad del cuerpo y de la lluvia por su clave, el perigeo y el apogeo del motor, y el sur desde -40° de declinacion; la Polar por su HIP');
+}
+
 if (!PUERTO) {
-  nota('sin puerto: se salta todo lo que va en el navegador (6 a 12)');
+  nota('sin puerto: se salta todo lo que va en el navegador (6 a 13)');
   fin();
 } else {
   navegador().then(fin, e => { fallos++; console.log('  MAL el navegador no termino   -> ' + (e && e.stack || e)); fin(); });
@@ -601,6 +687,7 @@ async function navegador() {
     if (toca(10)) await quejas(b);
     if (toca(11)) await satelites(b);
     if (toca(12)) await tercerBloque(b);
+    if (toca(13)) await quintoBloque(b);
   } finally { await b.close(); }
 }
 
@@ -2044,6 +2131,159 @@ async function tercerBloque(b) {
     if (!/\d/.test(t.sistema)) malIdi.push(L + ': la hoja de Jupiter sin cifras');
   }
   ok(!malIdi.length, 'en los ' + IDI.length + ' idiomas: la noche guiada, el sistema solar (con la hoja de Jupiter) y «Antes de subir al Teide» sin texto roto, sin palabras repetidas y cada uno en su idioma', malIdi.slice(0, 4).join(' · '));
+  ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
+  await ctx.close();
+}
+
+/* ── 13. las curiosidades, en la pantalla ────────────────────────────── */
+async function quintoBloque(b) {
+  titulo('13. las curiosidades y la ficha del planeta, en la pantalla');
+  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { isMobile: true, hasTouch: true });
+  const T0 = new Date(Date.UTC(2026, 9, 22, 20, 0, 0));          // 22-10-2026, 20:00 UTC: Luna gibosa creciente, de noche en Izaña
+  await p.clock.setFixedTime(T0);
+  const r = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); setLang('es'); TG_CIELO.estado.fecha = null; TG_CIELO.abrir(); await TG_CIELO.satelites().catch(() => {});
+    const A = Astronomy, D = TG_CIELO.estado.datos, out = {}, ahora = new Date();
+    const ficha = sel => TG_CIELO.ficha(sel, ahora);
+    const txt = e => e ? e.innerText : '';
+    const canopus = D.estrellas.find(e => e.h === 30438), polar = D.estrellas.find(e => e.h === 11767), omega = D.objetos.find(o => o.C === 80);
+    /* Jupiter: la hoja de la NASA y la curiosidad */
+    const fj = ficha({ planeta: 'Jupiter' });
+    out.jupiter = { hoja: txt(fj.querySelector('.cielo-ficha-pl')), li: fj.querySelectorAll('.cielo-ficha-pl li').length, curio: txt(fj.querySelector('.cielo-curio')), fuentes: [...fj.querySelectorAll('.cielo-fuente button')].map(x => x.textContent) };
+    /* la Luna: perigeo y apogeo, y la distancia del motor en esas fechas y un dia antes y despues */
+    const fl = ficha({ planeta: 'Moon' });
+    const ap = A.SearchLunarApsis(A.MakeTime(ahora)), ap2 = A.NextLunarApsis(ap);
+    const dist = t => { const v = A.GeoVector(A.Body.Moon, t, true); return Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z) * A.KM_PER_AU; };
+    out.luna = { texto: txt(fl), curio: txt(fl.querySelector('.cielo-curio')),
+      apsides: [ap, ap2].map(a => ({ kind: a.kind, km: a.dist_km, d: dist(a.time), antes: dist(a.time.AddDays(-1)), despues: dist(a.time.AddDays(1)), dias: a.time.ut - A.MakeTime(ahora).ut })) };
+    out.sol = txt(ficha({ planeta: 'Sun' }).querySelector('.cielo-curio'));
+    out.venus = txt(ficha({ planeta: 'Venus' }).querySelector('.cielo-curio'));
+    out.canopus = { curio: txt(ficha({ k: 'est', rec: canopus }).querySelector('.cielo-curio')), dec: canopus.dec, alt: canopus.alt };
+    out.polar = { curio: txt(ficha({ k: 'est', rec: polar }).querySelector('.cielo-curio')), lat: D.obs.lat };
+    out.omega = { curio: txt(ficha({ k: 'obj', rec: omega }).querySelector('.cielo-curio')), dec: omega.dec, alt: omega.alt };
+    out.betelgeuse = !!ficha({ k: 'est', rec: D.estrellas.find(e => e.h === 27989) }).querySelector('.cielo-curio');
+    out.sat = {}; ['iss', 'tiangong', 'hubble'].forEach(k => { const f = ficha({ sat: k }); out.sat[k] = { curio: txt(f.querySelector('.cielo-curio')), fuentes: [...f.querySelectorAll('.cielo-fuente button')].map(x => x.textContent) }; });
+    /* las lluvias */
+    out.lluvias = D.lluvias.map(l => ({ id: l.id, v: l.v, padre: TG_CIELO.lluviaPadre(l.id), curio: TG_CIELO.curiosidadLluvia(l.id).txt, fuentes: TG_CIELO.curiosidadLluvia(l.id).fuentes.map(x => x[0]) }));
+    /* el calendario: plegadas, se abren, con su fuente */
+    TG_CIELO.estado.cal = 'lluvia'; await TG_CIELO.ver('calendario', '2026-10-22'); await espera(300);
+    const bts = [...document.querySelectorAll('#cielo-panel .cielo-curio-cab button')];
+    out.cal = { filas: document.querySelectorAll('#cielo-panel .cielo-item').length, botones: bts.length, cerradas: document.querySelectorAll('#cielo-panel .cielo-curio-cuerpo[hidden]').length };
+    bts.forEach(x => x.click()); await espera(100);
+    out.cal.abiertas = document.querySelectorAll('#cielo-panel .cielo-curio-cuerpo:not([hidden])').length;
+    out.cal.fuentes = document.querySelectorAll('#cielo-panel .cielo-fuente button').length;
+    out.cal.padres = [...document.querySelectorAll('#cielo-panel .cielo-item-sub')].filter(x => /restos del/.test(x.textContent)).length;
+    /* el panel se repinta solo (satelites, fecha): las abiertas siguen abiertas */
+    await TG_CIELO.ver('calendario', '2026-10-22'); await espera(300);
+    out.cal.trasPintar = document.querySelectorAll('#cielo-panel .cielo-curio-cuerpo:not([hidden])').length;
+    document.querySelectorAll('#cielo-panel .cielo-curio-cab button').forEach(x => x.click()); await espera(100);
+    out.cal.cerradasOtraVez = document.querySelectorAll('#cielo-panel .cielo-curio-cuerpo[hidden]').length;
+    /* la luz zodiacal: en su temporada y no fuera; la Luna recalculada aparte */
+    const o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h);
+    const lunaMolesta = (f, tarde) => {
+      const n = TG_CIELO.noche(f), t = tarde ? n.oscuro.AddDays(0.75 / 24) : n.claro.AddDays(-0.75 / 24);
+      const eq = A.Equator(A.Body.Moon, t, o, true, true), h = A.Horizon(t, o, eq.ra, eq.dec, 'normal');
+      return h.altitude > 0 && A.Illumination(A.Body.Moon, t).phase_fraction > 0.25;
+    };
+    out.zod = {};
+    for (const [f, tarde] of [['2027-02-20', true], ['2027-03-10', true], ['2027-09-20', false], ['2027-10-15', false], ['2026-10-22', false]]) {
+      const z = TG_CIELO.zodiacal(f); out.zod[f] = { txt: txt(z), molesta: lunaMolesta(f, tarde) };
+    }
+    out.zodFuera = ['2027-01-20', '2027-04-05', '2027-06-20', '2027-08-15', '2027-11-20', '2026-12-13'].map(f => f + ':' + (TG_CIELO.zodiacal(f) ? 'si' : 'no'));
+    /* la sombra del Teide con la hora de la puesta del dia */
+    const n22 = TG_CIELO.noche('2026-10-22');
+    const hh = new Intl.DateTimeFormat('es-ES', { timeZone: 'Atlantic/Canary', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(n22.ocaso.date);
+    out.sombra = { txt: txt(TG_CIELO.sombra('2026-10-22')), ocaso: hh };
+    /* la tarjeta «Para fotos» de una noche de febrero: zodiacal y sombra dentro */
+    await TG_CIELO.ver('noche', '2027-02-20'); await espera(300);
+    const hf = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta h3')].find(x => /📷/.test(x.textContent));
+    out.fotos = hf ? hf.closest('.cielo-tarjeta').querySelectorAll('.cielo-curio').length : -1;
+    /* el sistema solar: la hoja de la Tierra (que no tiene ficha) y la de Jupiter con su curiosidad plegada */
+    TG_CIELO.estado.sis.vista = 'ext'; TG_CIELO.estado.sis.sel = 'Earth'; await TG_CIELO.ver('noche', '2026-10-22'); await espera(400);
+    const hojaT = document.querySelector('#cielo-panel .cielo-sis-hoja');
+    out.sistema = { tierra: hojaT ? (hojaT.querySelector('.cielo-curio-txt') || {}).textContent || '' : null, plegada: hojaT ? !!hojaT.querySelector('.cielo-curio-cuerpo[hidden]') : null };
+    TG_CIELO.estado.sis.sel = 'Jupiter'; await TG_CIELO.ver('noche', '2026-10-22'); await espera(400);
+    const hojaJ = document.querySelector('#cielo-panel .cielo-sis-hoja');
+    out.sistema.jupiter = hojaJ ? (hojaJ.querySelector('.cielo-curio-txt') || {}).textContent || '' : null;
+    TG_CIELO.estado.sis.sel = null;
+    /* el catalogo: Canopus con su curiosidad dentro del detalle */
+    await TG_CIELO.ver('catalogo', '2026-10-22'); await espera(300);
+    const bus = document.querySelector('#cielo-panel input[type="search"], #cielo-panel .cielo-busca input, #cielo-panel input');
+    if (bus) { bus.value = 'Canop'; bus.dispatchEvent(new Event('input', { bubbles: true })); await espera(300); }
+    const it = [...document.querySelectorAll('#cielo-panel .cielo-item')].find(x => /Canop/.test(x.textContent));
+    out.catalogo = it ? { curio: txt(it.querySelector('.cielo-curio')), oculta: !it.classList.contains('abierto') } : null;
+    return out;
+  });
+  const J = r.jupiter;
+  ok(J.li === 7 && /142\.984/.test(J.hoja) && /11,2/.test(J.hoja) && /9,9 h/.test(J.hoja) && /11,9 años/.test(J.hoja) && /95/.test(J.hoja) && /−110/.test(J.hoja) && /23,1/.test(J.hoja) && /anillos/i.test(J.hoja) && /2025/.test(J.hoja),
+     'la ficha de Jupiter lleva la hoja de la NASA: siete lineas (142.984 km = 11,2 Tierras, 9,9 h, 11,9 años, 95 lunas, −110 °C, 23,1 m/s², anillos) y la fecha de la tabla', J.hoja);
+  ok(/11,2/.test(J.curio) && /9,9 h/.test(J.curio) && /95/.test(J.curio) && J.fuentes.some(f => /Planetary Fact Sheet/.test(f)) && J.fuentes.length >= 2, 'y la curiosidad («el mayor», «el que mas deprisa gira») con la misma fuente como enlace', J.curio + ' | ' + J.fuentes.join(', '));
+  const L = r.luna, apsOK = L.apsides.every(a => a.d < a.antes && a.d < a.despues ? a.kind === 0 : (a.d > a.antes && a.d > a.despues && a.kind === 1)) && L.apsides.every(a => a.dias > 0 && a.dias < 29) && L.apsides.some(a => a.kind === 0) && L.apsides.some(a => a.kind === 1);
+  ok(apsOK && /perigeo/.test(L.texto) && /apogeo/.test(L.texto) && L.apsides.every(a => new RegExp(Math.round(a.km / 100) * 100 >= 1e5 ? String(Math.round(a.km / 100) * 100).replace(/(\d{3})$/, '.$1') : '').test(L.texto)),
+     'la Luna: perigeo y apogeo que vienen (' + L.apsides.map(a => (a.kind ? 'apogeo ' : 'perigeo ') + Math.round(a.km) + ' km en ' + a.dias.toFixed(1) + ' d').join(', ') + '), cada uno un minimo o maximo de la distancia del motor y en la ficha con sus km', L.texto.slice(0, 200));
+  ok(/27,3 días/.test(L.curio) && /3,8 cm/.test(L.curio) && /Apolo/.test(L.curio), 'y su curiosidad: la misma cara (27,3 dias), 3,8 cm al año, las huellas del Apolo', L.curio);
+  ok(/109/.test(r.sol) && /332\.900/.test(r.sol) && /5500/.test(r.sol) && /25,4 días/.test(r.sol) && /99 %/.test(r.sol), 'el Sol: 109 radios, 332.900 masas, 5500 °C, 25,4 dias, mas del 99 % (Sun Fact Sheet)', r.sol);
+  ok(/243 días/.test(r.venus) && /224,7 días/.test(r.venus) && /464 °C/.test(r.venus) && /92 bares/.test(r.venus), 'Venus: 243 dias de vuelta, 224,7 de año, 464 °C, 92 bares', r.venus);
+  const lim = d => Math.round(90 - Math.abs(d)), culm = d => Math.round(90 - 28.2987 + d);
+  ok(new RegExp('\\b' + lim(r.canopus.dec) + '°').test(r.canopus.curio) && new RegExp('\\b' + culm(r.canopus.dec) + '°').test(r.canopus.curio) && Math.abs(culm(r.canopus.dec) - r.canopus.alt) < 1 && /40°/.test(r.canopus.curio) && /49°/.test(r.canopus.curio),
+     'Canopus (dec ' + r.canopus.dec.toFixed(1) + '°): «nunca sale al norte de los ' + lim(r.canopus.dec) + '°», culmina a ' + culm(r.canopus.dec) + '° (la altura maxima del catalogo: ' + r.canopus.alt + '°), con Madrid y Paris', r.canopus.curio);
+  ok(new RegExp('\\b' + lim(r.omega.dec) + '°').test(r.omega.curio) && new RegExp('\\b' + culm(r.omega.dec) + '°').test(r.omega.curio) && Math.abs(culm(r.omega.dec) - r.omega.alt) < 1, 'Omega Centauri (objeto, dec ' + r.omega.dec.toFixed(1) + '°): lo mismo, ' + lim(r.omega.dec) + '° y ' + culm(r.omega.dec) + '°', r.omega.curio);
+  ok(/\b28°/.test(r.polar.curio) && Math.round(r.polar.lat) === 28 && /navegantes/.test(r.polar.curio) && !r.betelgeuse, 'la Polar: su altura es la latitud (28°), los navegantes; Betelgeuse (dec +7°) no lleva curiosidad', r.polar.curio);
+  const S_ = r.sat;
+  ok(/8 km\/s/.test(S_.iss.curio) && /90 minutos/.test(S_.iss.curio) && /16/.test(S_.iss.curio) && /109 m/.test(S_.iss.curio) && /2000/.test(S_.iss.curio) && S_.iss.fuentes.join() === 'NASA ↗',
+     'la ISS: 8 km/s, 90 minutos, 16 amaneceres, 109 m, desde 2000, fuente NASA', S_.iss.curio);
+  ok(/palacio celestial/.test(S_.tiangong.curio) && /29 de abril de 2021/.test(S_.tiangong.curio) && /tres módulos/.test(S_.tiangong.curio) && /un tercio/.test(S_.tiangong.curio) && /seis meses/.test(S_.tiangong.curio) && S_.tiangong.fuentes.length === 2,
+     'Tiangong: «palacio celestial», 29-4-2021, tres modulos, un tercio de la ISS, seis meses; Wikipedia y The Planetary Society', S_.tiangong.curio);
+  ok(/Discovery/.test(S_.hubble.curio) && /24 de abril de 1990/.test(S_.hubble.curio) && /610 km/.test(S_.hubble.curio) && /13 m/.test(S_.hubble.curio) && /1,2 millones/.test(S_.hubble.curio) && S_.hubble.fuentes.length === 2,
+     'el Hubble: Discovery, 24-4-1990, 610 km, 13 m, 1,2 millones de observaciones; dos paginas de la NASA', S_.hubble.curio);
+  const malLl = r.lluvias.filter(l => !l.curio || /\{[a-z]+\}|undefined|NaN/.test(l.curio) || !l.padre || !l.fuentes.length || (l.curio.indexOf('{v}') < 0 && /km\/s/.test(l.curio) && !new RegExp('\\b' + l.v + ' km/s').test(l.curio))).map(l => l.id);
+  ok(!malLl.length && r.lluvias.length === 11, 'las once lluvias: cuerpo padre, curiosidad con la velocidad del catalogo y fuente', malLl.join(', '));
+  const qua = r.lluvias.find(l => l.id === 'QUA'), gem = r.lluvias.find(l => l.id === 'GEM'), per = r.lluvias.find(l => l.id === 'PER');
+  ok(/asteroide 2003 EH1/.test(qua.padre) && /asteroide \(3200\) Phaethon/.test(gem.padre) && /cometa 109P\/Swift-Tuttle/.test(per.padre) && /San Lorenzo/.test(per.curio) && /133 años/.test(per.curio) && /59 km\/s/.test(per.curio),
+     'Cuadrantidas y Geminidas «restos del asteroide», Perseidas «del cometa 109P/Swift-Tuttle», con San Lorenzo, 133 años y 59 km/s', [qua.padre, gem.padre, per.padre].join(' | '));
+  ok(r.cal.filas >= 11 && r.cal.botones === r.cal.filas && r.cal.cerradas === r.cal.botones && r.cal.abiertas === r.cal.botones && r.cal.fuentes >= r.cal.botones && r.cal.padres === r.cal.filas,
+     'el calendario de lluvias: ' + r.cal.filas + ' filas, cada una con el cuerpo padre y «¿Sabias que...?» plegado, que se abre y enseña su fuente', JSON.stringify(r.cal));
+  ok(r.cal.trasPintar === r.cal.botones && r.cal.cerradasOtraVez === r.cal.botones, 'las abiertas siguen abiertas cuando el panel se vuelve a pintar, y se cierran al tocar otra vez', JSON.stringify(r.cal));
+  const malZ = Object.keys(r.zod).filter(f => !r.zod[f].txt || (r.zod[f].molesta ? !/la tapa con su luz/.test(r.zod[f].txt) : !/no molesta/.test(r.zod[f].txt)));
+  ok(!malZ.length && /oeste/.test(r.zod['2027-02-20'].txt) && /oeste/.test(r.zod['2027-03-10'].txt) && /este/.test(r.zod['2027-09-20'].txt) && /este/.test(r.zod['2027-10-15'].txt) && /Britannica/.test(r.zod['2027-02-20'].txt),
+     'la luz zodiacal: al oeste en febrero-marzo, al este en septiembre-octubre, y si la Luna molesta coincide con la Luna recalculada aparte en las cinco noches (' + Object.keys(r.zod).map(f => f + (r.zod[f].molesta ? ' tapa' : ' libre')).join(', ') + ')', malZ.join(', '));
+  ok(r.zodFuera.every(x => /:no$/.test(x)), 'y fuera de temporada (enero, abril, junio, agosto, noviembre, diciembre) no sale', r.zodFuera.join(' '));
+  ok(new RegExp(r.sombra.ocaso.replace(':', '[:.]')).test(r.sombra.txt) && /triangular/.test(r.sombra.txt) && /perspectiva/.test(r.sombra.txt) && /cinturón de Venus/.test(r.sombra.txt) && /TWAN/.test(r.sombra.txt) && /APOD/.test(r.sombra.txt) && /Atmospheric Optics/.test(r.sombra.txt),
+     'las sombras del atardecer: la del Teide con la puesta de sol del dia (' + r.sombra.ocaso + '), triangular por perspectiva (TWAN, APOD), y la de la Tierra con el cinturon de Venus (Atmospheric Optics)', r.sombra.txt);
+  ok(r.fotos === 2, 'la tarjeta «Para fotos» del 20 de febrero lleva la luz zodiacal y la sombra', String(r.fotos));
+  ok(r.catalogo && /37°/.test(r.catalogo.curio) && r.catalogo.oculta, 'en el catalogo, Canopus lleva la curiosidad dentro de su detalle (plegado hasta tocar)', JSON.stringify(r.catalogo));
+  ok(r.sistema && /29,8 km\/s/.test(r.sistema.tierra) && /107\.280/.test(r.sistema.tierra) && r.sistema.plegada && /11,2/.test(r.sistema.jupiter), 'en el sistema solar, la hoja de la Tierra lleva su curiosidad (29,8 km/s, 107.280 km/h) y la de Jupiter la suya, plegadas', JSON.stringify(r.sistema));
+  /* los diez idiomas: las fichas de Jupiter, la Luna, el Sol, Canopus y la ISS, y una lluvia */
+  const idiomas = await p.evaluate(async (IDI) => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    const D = TG_CIELO.estado.datos, out = {}, ahora = new Date(), canopus = D.estrellas.find(e => e.h === 30438);
+    for (const L of IDI) {
+      setLang(L); await espera(30);
+      const f = sel => TG_CIELO.ficha(sel, ahora);
+      const t = {};
+      const fj = f({ planeta: 'Jupiter' }); t.hoja = fj.querySelector('.cielo-ficha-pl').innerText; t.jup = fj.querySelector('.cielo-curio').innerText;
+      t.luna = f({ planeta: 'Moon' }).innerText; t.sol = f({ planeta: 'Sun' }).querySelector('.cielo-curio').innerText;
+      t.canopus = f({ k: 'est', rec: canopus }).querySelector('.cielo-curio').innerText; t.iss = f({ sat: 'iss' }).querySelector('.cielo-curio').innerText;
+      t.per = TG_CIELO.curiosidadLluvia('PER').txt + ' ' + TG_CIELO.lluviaPadre('PER'); t.zod = TG_CIELO.zodiacal('2027-02-20').innerText; t.sombra = TG_CIELO.sombra('2026-10-22').innerText;
+      out[L] = t;
+    }
+    setLang('es');
+    return out;
+  }, IDI);
+  const malIdi = [];
+  for (const L of IDI) {
+    const t = idiomas[L], todo = Object.values(t).join('\n');
+    if (/undefined|NaN|\{[a-z]+\}|\[object/.test(todo)) malIdi.push(L + ': texto roto');
+    if (Object.values(t).some(x => !x || x.length < 20)) malIdi.push(L + ': falta un bloque');
+    const rep = todo.match(/\b([^\s\d]{3,} [^\s\d]{3,}) \1\b/u); if (rep) malIdi.push(L + ': «' + rep[0] + '» repetido');
+    if (IDI.indexOf(L) && t.jup === idiomas[IDI[0]].jup) malIdi.push(L + ': Jupiter sale igual que en ' + IDI[0]);
+    if (!/142[.,\s\u00a0\u202f]?984/.test(t.hoja)) malIdi.push(L + ': la hoja de Jupiter sin el diametro');
+    if (!/59/.test(t.per) || !/133/.test(t.per) || !/109P/.test(t.per)) malIdi.push(L + ': las Perseidas sin 59 km/s, 133 años o 109P');
+    if (!/28/.test(t.zod)) malIdi.push(L + ': la luz zodiacal sin los 28° de Tenerife');
+    if (!/↗/.test(t.jup) || !/↗/.test(t.iss)) malIdi.push(L + ': sin el enlace de la fuente');
+  }
+  ok(!malIdi.length, 'en los ' + IDI.length + ' idiomas: la hoja y la curiosidad de Jupiter, la Luna, el Sol, Canopus, la ISS, las Perseidas, la luz zodiacal y la sombra sin texto roto ni repeticiones, cada uno en su idioma', malIdi.slice(0, 5).join(' · '));
   ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
   await ctx.close();
 }

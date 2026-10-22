@@ -17,6 +17,7 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 | `modulos/cielo.js` | El panel 🔭 «Cielo de Tenerife»: su código y sus textos en los diez idiomas. No se carga al arrancar: lo pide `index.html` la primera vez que alguien abre el panel. |
 | `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
 | `datos/satelites.json` | Los elementos orbitales (TLE) de la Estación Espacial Internacional, de Tiangong y del Hubble, de CelesTrak, con su época. Los renueva el robot `tools/satelites_traer.py` dos veces al día; el panel calcula con ellos los pasos visibles. |
+| `datos/planetas.json` | Las cifras de la NASA (NSSDCA) de los ocho planetas, la Luna y el Sol —diámetro, día, año sideral, lunas, temperatura, gravedad, anillos, masa, densidad—, con la fecha de cada tabla. El panel del cielo lleva una copia (`CIELO_PLANETAS`) para la ficha del planeta y las curiosidades. |
 | `sw.js` | Service worker. Caché offline y notificaciones push. |
 | `manifest.webmanifest` | Manifiesto PWA: iconos, color de tema, `display: standalone`. |
 | `enviar-notificacion.js` | Script de Node que envía la notificación diaria. Corre en GitHub Actions, nunca en el navegador. |
@@ -238,6 +239,31 @@ día antes) que abre el calendario del móvil, y «Recordármelo en la app» lo
 apunta en el móvil para enseñarlo arriba del todo los dos días de antes.
 Nada por defecto, nada en ningún servidor, y «Quitar todos los avisos» los
 quita.
+
+**«¿Sabías que…?», con su fuente.** Cada ficha lleva una curiosidad y, al
+final, de dónde sale, como enlace: la de cada planeta trae además la hoja de
+la NASA (diámetro en Tierras, cuánto dura su día y su año, lunas conocidas,
+temperatura, gravedad, anillos; `datos/planetas.json`, de la Planetary Fact
+Sheet de la NSSDCA) y una frase que solo combina esas cifras —Venus gira al
+revés y tarda más en dar una vuelta sobre sí mismo que al Sol, Saturno
+flotaría, Urano rueda tumbado, la luz tarda 4 h 11 min en llegar a
+Neptuno—; la Luna, el perigeo y el apogeo que vienen, la misma cara, los
+3,8 cm al año y las huellas del Apolo; el Sol, la Sun Fact Sheet (y en «El
+sistema solar hoy», la hoja de cada planeta, la Tierra incluida, lleva la
+suya plegada); las estrellas y objetos del sur (Canopus, Omega Centauri…), al norte de qué
+latitud ya no salen y a qué altura culminan aquí, y la Polar, que su altura
+es la latitud; la Estación Espacial, Tiangong y el Hubble, lo que dicen la
+NASA, Wikipedia y The Planetary Society; cada lluvia del calendario, de qué
+cometa o asteroide son restos (lista de la IMO) y su historia (NASA, AMS,
+Wikipedia; las Perseidas, «lágrimas de San Lorenzo», UCM), plegada tras
+«¿Sabías que…?». «Para fotos» añade la luz zodiacal en su temporada
+(febrero-marzo al anochecer, septiembre-octubre de madrugada, con si la Luna
+molesta esa noche; Britannica) y la sombra triangular del Teide con la hora
+de la puesta (TWAN, APOD). `tools/auditar_cielo.js` (parte 13) comprueba que
+la copia es la del JSON, que los períodos cumplen la tercera ley de Kepler
+con la *a* de la JPL, que cada comparación de las frases se cumple en sus
+cifras, el perigeo contra la distancia del motor, la geometría del sur y la
+luz zodiacal con la Luna recalculada aparte.
 
 **Todo lo que cambia se calcula en el móvil**, en hora de Canarias y para el
 Observatorio del Teide (la ficha `observatorio`, a 2.390 m): ninguna fecha

@@ -9832,7 +9832,7 @@ Object.assign(UI_TX, {
 
 /* ── CIELO DE TENERIFE: textos ── */
 /* PANEL «CIELO DE TENERIFE» (17 de octubre de 2026): las filas que necesita
-   el boton antes de cargar el panel. Las otras 466 van con el panel, en
+   el boton antes de cargar el panel. Las otras 522 van con el panel, en
    modulos/cielo.js (CIELO_UI), y tools/auditar_cielo.js las mira todas. */
 Object.assign(UI_TX, {
   "cieloBoton": {"es": "Cielo de Tenerife: estrellas, planetas y eclipses", "en": "Tenerife night sky: stars, planets and eclipses", "fr": "Ciel de Tenerife : étoiles, planètes et éclipses", "de": "Himmel über Teneriffa: Sterne, Planeten und Finsternisse", "it": "Cielo di Tenerife: stelle, pianeti ed eclissi", "nl": "Sterrenhemel van Tenerife: sterren, planeten en eclipsen", "zh": "特内里费星空：恒星、行星与日月食", "zht": "特內里費星空：恆星、行星與日月食", "bg": "Небето над Тенерифе: звезди, планети и затъмнения", "pl": "Niebo nad Teneryfą: gwiazdy, planety i zaćmienia"},
@@ -34940,6 +34940,18 @@ setTimeout(renderBanoHoy, 1200);
 .cielo-ficha-bloque { margin-top: 8px; }
 .cielo-lunas-j { width: 100%; max-width: 320px; height: auto; display: block; background: rgba(0,0,0,0.3); border-radius: 8px; }
 .cielo-ficha-botones { margin-top: 2px; }
+/* ¿sabias que...? (22-10-2026): la curiosidad con su fuente, abierta en las
+   fichas y plegada tras su titulo en las listas; la ficha del planeta */
+.cielo-curio { margin-top: 8px; padding: 7px 9px; border-radius: 8px; background: rgba(156,205,250,0.07); border: 1px solid rgba(156,205,250,0.2); font-size: 0.66rem; line-height: 1.5; color: rgba(255,255,255,0.85); }
+.cielo-curio-cab { font-size: 0.6rem; font-weight: 800; color: #9ccdfa; text-transform: uppercase; letter-spacing: 0.06em; }
+.cielo-curio-cab button { background: none; border: 0; padding: 0; margin: 0; font: inherit; color: inherit; text-transform: inherit; letter-spacing: inherit; cursor: pointer; text-align: left; }
+.cielo-curio-cab button::after { content: ' ▾'; opacity: 0.7; }
+.cielo-curio-cab button[aria-expanded="true"]::after { content: ' ▴'; }
+.cielo-curio-txt { margin: 4px 0 0; }
+.cielo-curio-cuerpo[hidden] { display: none; }
+.cielo-fuente { margin-top: 4px; font-size: 0.56rem; color: rgba(255,255,255,0.42); line-height: 1.5; }
+.cielo-fuente button { background: none; border: 0; padding: 0; margin: 0; font: inherit; color: #9ccdfa; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 2px; }
+.cielo-item-mas .cielo-curio { margin-top: 6px; }
 .cielo-wiki { margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.08); }
 .cielo-wiki:empty { display: none; }
 .cielo-wiki-cab { display: flex; align-items: center; gap: 6px; font-size: 0.6rem; color: rgba(255,255,255,0.5); margin-bottom: 5px; }

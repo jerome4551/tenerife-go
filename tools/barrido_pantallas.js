@@ -162,6 +162,24 @@ window.__estados = [
       await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar();
       TG_CIELO.estado.sis.vista = 'ext'; TG_CIELO.estado.sis.sel = 'Jupiter'; await TG_CIELO.ver('noche', '2026-12-13'); await espera(500);
       const h = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta h3')].find(x => /🪐/.test(x.textContent)); if (h) h.closest('.cielo-tarjeta').scrollIntoView(); await espera(200); }],
+  /* El quinto bloque del 22 de octubre: la hoja de la NASA y «¿Sabias que...?»
+     en la ficha de Jupiter, la curiosidad del sur en la de Canopus, las once
+     lluvias del calendario con su curiosidad abierta y la fuente, y «Para
+     fotos» en febrero con la luz zodiacal y la sombra del Teide. */
+  ['cielo:ficha jupiter', async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.ver('mapa', '2026-12-13'); await espera(400);
+      TG_CIELO.estado.mapa.sel = { planeta: 'Jupiter' }; await TG_CIELO.ver('mapa', '2026-12-13'); await espera(500);
+      const f = document.querySelector('#cielo-panel .cielo-ficha-pl'); if (f) f.scrollIntoView(); await espera(200); }],
+  ['cielo:ficha canopus', async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.ver('mapa', '2026-12-13'); await espera(400);
+      TG_CIELO.estado.mapa.sel = { est: TG_CIELO.estado.datos.est.find(e => e[4] === 30438) }; await TG_CIELO.ver('mapa', '2026-12-13'); await espera(500);
+      const f = document.querySelector('#cielo-panel .cielo-curio'); if (f) f.scrollIntoView(); await espera(200); }],
+  ['cielo:calendario lluvias', async () => {
+      await window.TG_CIELO_CARGAR(); TG_CIELO.estado.cal = 'lluvia'; await TG_CIELO.ver('calendario', '2026-12-13'); await espera(300);
+      document.querySelectorAll('#cielo-panel .cielo-curio-cab button').forEach(b => b.click()); await espera(200); }],
+  ['cielo:noche febrero', async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.ver('noche', '2027-02-20'); await espera(400);
+      const h = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta h3')].find(x => /📷/.test(x.textContent)); if (h) h.closest('.cielo-tarjeta').scrollIntoView(); await espera(200); }],
   ['cielo:calendario avisos', async () => {
       await window.TG_CIELO_CARGAR(); TG_CIELO.estado.cal = 'todo'; await TG_CIELO.ver('calendario', '2026-12-13'); await espera(300);
       const g = TG_CIELO.eventos().find(e => e.tipo === 'lluvia' && e.l.id === 'GEM'); if (g) TG_CIELO.ponerAviso(g);
@@ -327,7 +345,8 @@ const FUERTES = new Set(('más muy hoy horario abierto abierta cerrado cerrada p
      lista (12 de octubre de 2026) */
   'toca marcador origen').split(' '));
 /* las que tambien son palabra de ese idioma */
-const CHOCA = { it: ['marzo', 'agosto'], nl: ['ver'], pl: ['parada'] };
+/* «lunes» es el plural frances de luna (las de Jupiter), no el dia de la semana (22-10-2026) */
+const CHOCA = { it: ['marzo', 'agosto'], nl: ['ver'], pl: ['parada'], fr: ['lunes'] };
 const LATINOS = IDI.filter(l => !['zh', 'zht', 'bg'].includes(l));
 
 (async () => {

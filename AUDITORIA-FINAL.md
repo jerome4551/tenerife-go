@@ -1154,6 +1154,197 @@ poder ejecutarse aquí. Lo que queda es lo del Mac y lo de Jerome
 (`LANZAMIENTO-APP-STORE.md`, §3 y §4), y las pruebas en un iPhone de verdad
 (§7).
 
+## «¿Sabías que…?»: cada dato del cielo verificado en su web, y las curiosidades con fuente (22 de octubre, quinto bloque)
+
+Jerome: «Verifica que no falta información en ninguna categoría que
+preparamos, sobre todo el sistema estelar, satelital, etc. Verifica cada
+web, cada información real. Busca fun facts. Sé creativo y minucioso. Que no
+te olvides de nada». Dos trabajos: comprobar lo que ya decía el panel y
+añadir lo que faltaba, con la regla de siempre: nada escrito a ojo, y la
+fuente en la pantalla.
+
+### Lo que se comprobó
+
+- Cada web que el panel cita o enlaza (IGN, IAC, Fundación Starlight, IMO,
+  HYG, OpenNGC, d3-celestial, Astronomy Engine, Stellarium, CelesTrak, las
+  fuentes de cada frase de `CIELO_DESC` y de las tarjetas de «Dónde ir») se
+  abrió el 22 de octubre de 2026 y se cotejó con lo que dice el texto; lo
+  que no cuadraba se corrigió (abajo, «lo que se corrigió»).
+- Las lluvias: el cuerpo padre de las once (lista de la IMO que lleva el
+  catálogo) contra las páginas de la NASA y el calendario de la AMS: dos
+  asteroides (2003 EH1 y Faetón) y nueve cometas, Halley dos veces (Eta
+  Acuáridas y Oriónidas). Y lo que cada página dice de cada lluvia, frase a
+  frase (el agente de verificación guardó las citas literales).
+- Los satélites: las cifras de la NASA para la Estación (8 km/s, 90 min,
+  16 amaneceres, 109 m, habitada desde noviembre de 2000), de Wikipedia y
+  The Planetary Society para Tiangong (Tianhe el 29 de abril de 2021, tres
+  módulos en 2022, un tercio del volumen de la ISS, tres astronautas seis
+  meses), de la NASA para el Hubble (Discovery, 24 de abril de 1990, órbita
+  de 380 millas al desplegarlo, 13,3 m, más de 1,2 millones de
+  observaciones).
+- Los planetas y la Luna: la Planetary Fact Sheet de la NSSDCA (actualizada
+  el 18 de marzo de 2025), copiada entera en `datos/planetas.json`, y la
+  hoja de cada planeta para el período sideral (la tabla resumen trae el
+  trópico: Neptuno 59.800 días frente a 60.189); el Sol, la Sun Fact Sheet
+  (9 de mayo de 2024). Los períodos cumplen la tercera ley de Kepler con la
+  *a* de la JPL (`tools/elementos_planetas.json`) a menos del 0,2 %: dos
+  fuentes distintas, la misma física.
+
+### Lo que se añadió
+
+- **La ficha del planeta**, en cada ficha de planeta: diámetro (y cuántas
+  Tierras), un día de mediodía a mediodía, un año, lunas conocidas,
+  temperatura media, gravedad (y cuántas Tierras), anillos; con la fecha de
+  la tabla y el enlace.
+- **«¿Sabías que…?»** en las fichas: el Sol (109 radios terrestres, 332.900
+  masas, más del 99 % de la masa del sistema solar, 5.500 °C, 25,4 días de
+  rotación), la Luna (la misma cara porque gira en lo que tarda en dar la
+  vuelta, 27,3 días; se aleja 3,8 cm al año; las huellas del Apolo), los
+  ocho planetas (Mercurio el más pequeño y el más rápido, y su día de 176
+  días, casi dos de sus años; Venus al revés, 243 días de vuelta frente a
+  224,7 de año, el más caliente, 92 bares; la Tierra a 29,8 km/s; Marte;
+  Júpiter el mayor y el que más deprisa gira; Saturno menos denso que el
+  agua y con 274 lunas; Urano tumbado a 97,8°; Neptuno a 4 h 11 min de luz
+  y el más frío), la Estación Espacial, Tiangong y el Hubble, Canopus, Omega
+  Centauri y lo demás del sur (dec ≤ −40°: al norte de qué latitud ya no
+  salen, con Madrid y París, y a qué altura culminan aquí: geometría, 90° −
+  |dec| y 90° − lat + dec), y la Polar (su altura es la latitud: así
+  navegaban). Cada frase solo combina cifras de su fuente, y la fuente va
+  debajo como enlace (`bindExternalLink`, como los demás enlaces del panel).
+- **La Luna**: el perigeo y el apogeo que vienen, con la fecha y los km
+  (`SearchLunarApsis` / `NextLunarApsis`).
+- **Las lluvias**, en cada fila del calendario: «Son restos del cometa
+  109P/Swift-Tuttle» (o «del asteroide»), y «¿Sabías que…?» plegado con la
+  historia de cada una: las Cuadrántidas y su constelación desaparecida, las
+  Líridas vistas por los chinos en el 687 a. C., las Eta Acuáridas y
+  Oriónidas de Halley (el tapiz de Bayeux, 2061), las Delta Acuáridas que no
+  se ven con Luna, las Alfa Capricórnidas y sus bólidos (y el siglo XXIV),
+  las Perseidas (lágrimas de San Lorenzo, Swift-Tuttle de 26 km, 133 años,
+  Schiaparelli), las Dracónidas y sus tormentas de 1933 y 1946, las Leónidas
+  cada 33 años (1966, 2002, las más rápidas), las Gemínidas de Faetón, las
+  Úrsidas de Kochab y Bečvář. La velocidad de cada frase es la del catálogo
+  (`{v}`), para que texto y ficha no puedan discrepar.
+- **La luz zodiacal**, en «Para fotos», solo en su temporada (febrero-marzo
+  al anochecer, al oeste; septiembre-octubre de madrugada, al este;
+  Britannica), con si la Luna la tapa esa noche (sobre el horizonte y más de
+  un cuarto iluminada en la hora y media que sigue a la noche cerrada o
+  precede al alba) y la nota de los trópicos (Tenerife a 28°).
+- **La sombra del Teide**, en «Para fotos», con la hora de la puesta de ese
+  día: triangular por perspectiva, hasta el horizonte (TWAN, APOD).
+- En el catálogo, la misma curiosidad del sur y de la Polar dentro del
+  detalle de cada objeto; en «El sistema solar hoy», la hoja de cada
+  planeta (la Tierra incluida, que no tiene ficha: va a 29,8 km/s, 107.280
+  km/h) lleva la suya plegada. Las plegadas que alguien abre siguen
+  abiertas cuando el panel se vuelve a pintar solo (al llegar los
+  satélites, al cambiar de fecha).
+- La Ley del Cielo ya estaba en «Por qué aquí» y no se repite.
+
+### Cómo se comprueba
+
+`tools/auditar_cielo.js`, parte 13a (sin navegador): la copia del módulo
+(`CIELO_PLANETAS`) igual al JSON; los períodos siderales contra Kepler con la
+*a* de la JPL; la distancia media al Sol contra la *a*; que cada comparación
+de las frases («el más pequeño», «menos denso que el agua», «gira al
+revés», «el más frío», «casi dos de sus años», «más del 99 %»…) se cumpla
+en las cifras; el cuerpo padre de las once lluvias (dos asteroides, nueve
+cometas, Halley dos veces) y que las Dracónidas sean las más lentas y las
+Leónidas las más rápidas, como dicen sus frases; las fuentes https de cada
+lluvia; las 26 filas `Cur*`. Parte 13 (navegador, 390×844, reloj fijo el
+22-10-2026): la ficha de Júpiter con sus siete líneas y la curiosidad; la
+Luna con perigeo y apogeo, cada uno un mínimo o un máximo de la distancia
+del motor en ±1 día; el Sol; Venus; Canopus y Omega Centauri con la latitud
+límite y la culminación (igual a la altura máxima del catálogo); la Polar;
+Betelgeuse sin curiosidad; la ISS, Tiangong y el Hubble; las once lluvias en
+el calendario (plegadas, se abren, siguen abiertas al repintar, con su
+fuente y su cuerpo padre); la hoja de la Tierra y la de Júpiter en el
+sistema solar; la luz zodiacal en cinco noches con la Luna recalculada aparte, y ausente en seis
+meses fuera de temporada; la sombra con la hora de la puesta; «Para fotos»
+del 20 de febrero con las dos; Canopus en el catálogo; y los diez idiomas
+sin texto roto. `tools/barrido_pantallas.js` suma cuatro pantallas (la ficha
+de Júpiter, la de Canopus, el calendario de lluvias abierto y la noche de
+febrero), 104 por idioma.
+
+### Lo que se corrigió al verificar
+
+Todo lo que el panel ya decía resistió la comprobación: las seis
+certificaciones y fechas de Starlight (el listado de julio de 2026 dice lo
+mismo), los seis sitios de Turismo de Tenerife frase por frase (Guajara
+2.715 m, Mascart y el Halley de 1910, los restos del refugio, la hora más
+hora y media de subida), el Museo (La Laguna, el planetario con entrada
+aparte, el IAC con el Cabildo), las visitas al Observatorio (guiadas y con
+reserva, en la web del IAC), la Ley del Cielo (31/1988, R.D. 243/1992
+modificado en 2017, La Palma y la parte de Tenerife que la ve), la capa de
+inversión y los 2.390 m, el atlas 2026 del IGN para Canarias, los
+calendarios 2026 del IAC, Albireo (S&T: colores de verdad, un telescopio de
+2 pulgadas a 25×), ε Lyrae (Sky at Night: a simple vista con buena vista),
+las Pléyades (RMG: 100 millones de años, seis a simple vista), M42 (S&T),
+Mizar y Alcor (S&T: la prueba de vista de los árabes), M31 (NASA: 2,5
+millones de años luz, a simple vista desde un sitio oscuro), ω Centauri (ESA/
+Hubble: el mayor y más brillante), la ISS «tercer objeto más brillante»
+(NASA, 2017) y las once lluvias contra la lista que publica Wikipedia a
+partir de la IMO (longitud solar, velocidad, ZHR y cuerpo padre iguales; las
+Delta Acuáridas y las Alfa Capricórnidas a 127° en Stellarium/IMO y 128° en
+esa tabla, la misma noche del 30 al 31 de julio). Lo que sí cambió:
+
+- **El período orbital.** La tabla resumen de la NASA trae el período
+  *trópico* (Neptuno 59.800 días) y no el sideral (60.189): la primera
+  versión de la ficha decía «163,7 años» donde cualquier libro dice 164,8.
+  Se leyó la hoja detallada de cada planeta y la app enseña el sideral
+  (`periodo_sideral_d`); el control de Kepler lo habría cazado (0,65 % en
+  Neptuno con la tolerancia del 0,5 %), y de hecho lo cazó.
+- **La velocidad de la ISS.** La NASA dice «cinco millas por segundo» (8
+  km/s) y la ficha, con los elementos del día, 7,7 km/s: en la misma
+  pantalla se leían las dos. La curiosidad dice ahora «unos 8 km/s».
+- **Las Delta Acuáridas.** La IMO (vía Stellarium) y la NASA dan el cometa
+  96P/Machholz como cuerpo padre, la NASA como «sospechado» y la tabla de
+  Wikipedia pone P/2008 Y12 (SOHO): la frase dice «el cometa del que se cree
+  que vienen».
+- **La IMO** está «mudándose de infraestructura»: imo.net responde, el
+  calendario que ofrece ya es el de 2027 (PDF) y el de 2026 no está en
+  línea. El enlace del panel (imo.net) sigue bien; los valores de las
+  lluvias del catálogo vienen de la lista de Stellarium con commit fijado,
+  que `cielo_construir.js` rehace, no de la web.
+- **Y lo que cazaron los controles de los diez idiomas en los textos
+  nuevos**, antes de que lo viera nadie: el inglés decía «mid-1800s» donde
+  el castellano dice «siglo XIX» (el control de cifras lee el romano); el
+  francés «L’astronome» detrás de «km/s.» se leía como un 50 romano, y
+  «dizaine» / «decina» perdían el 10 del castellano; el polaco «setką»
+  perdía el 100; el chino «1.5 亿» no cuadraba con «150 millones» (la
+  distancia al Sol ya la da la ficha: fuera de la frase), «120 多万» no se
+  leía como 1,2 millones (ahora «120 万多») y «数千» doblaba el 1.000 de la
+  definición de tormenta (fuera la definición, en los diez); y «fiables» en
+  francés, que es francés, saltó como castellano copiado («régulières»). El
+  italiano «Temperatura media» se declaró igual a propósito.
+- Lo que no se pudo abrir desde aquí (el proxy corta `iac.es`,
+  `fundacionstarlight.org` y `imo.net` para `curl`; `WebFetch` sí llegó a
+  todas menos a `iac.es/es/…/visitas`, que se comprobó por su versión
+  inglesa y su subpágina): ninguna URL muerta.
+
+### El resultado
+
+`auditar.sh` entero sobre el árbol del commit, el 22 de octubre de 2026 de
+madrugada: **cero bloques en rojo** (los tres controles de `pmtiles` siguen
+sin poder ejecutarse aquí). `auditar_cielo.js`: 210 controles con las
+fuentes (174 + 36 de la parte 13); `barrido_pantallas.js`: 104 pantallas y
+fichas por idioma, 0 textos sin traducir; `auditar_idioma.js`: 0 hallazgos
+en los diez; `auditar_web.js`: 43 tablas, 1695 filas. Antes de llegar al
+verde, el propio `auditar.sh` paró tres veces en lo nuevo (las cifras de
+los idiomas, «fiables», «lunes» y «Dalim», arriba): eso es lo que tiene que
+hacer. Lo que queda es lo de siempre: lo de Jerome en
+`LANZAMIENTO-APP-STORE.md` (§3 y §9) y las pruebas en un iPhone de verdad.
+Y una idea para otro día, si Jerome la quiere: una curiosidad por
+constelación (88 × 10 idiomas, con su fuente cada una).
+
+Eso fue en la rama `cielo-camara`, sobre el main del 18. Esa tarde el
+bloque se llevó encima del main del 22 (`ac10788`), que ya tenía los seis
+primeros commits del cielo con los arreglos de Claude Code (el usted, los
+nombres de la UAI en chino y búlgaro): siete frases nuevas pasaron a usted
+(«mire al oeste», «mire al este» dos veces, «mire al lado contrario del
+Sol», «no mire al radiante», «mientras lee esta frase», «arriba tiene la
+altura de hoy»), `CIELO_UI` llega allí a 522 filas y los idiomas, a 43
+tablas y 1701 filas. La auditoría entera de lo rebasado va con el sexto
+bloque, abajo.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -2995,7 +3186,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 43 tablas, 1648 filas (y 3.789 filas, dentro y fuera del fuente)
+## Idiomas · 43 tablas, 1701 filas (y 3.842 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -3028,12 +3219,13 @@ Analytics; y otra en `CIELO_UI`, hasta 469: `cieloIcsListoPaso`, la nota
 del calendario en los pasos de satélites (avisa media hora antes). El 22
 por la mañana, una menos: `ppTercCdn`, la fila de jsDelivr en la política,
 que ya no recibe nada porque la librería de la cuenta va dentro
-(`vendor/supabase.js`). El
+(`vendor/supabase.js`). Y ese día, las curiosidades del quinto bloque: 53
+más en `CIELO_UI`, hasta 522. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
 `barrido_idiomas.js`, contado el 21 de octubre (3.045 antes del cielo, 3.559
-el 17); no la coteja nadie.)*
+el 17); desde el 22 la coteja el propio `barrido_idiomas.js`.)*
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
