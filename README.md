@@ -15,6 +15,8 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 | `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 21 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada y el modo nativo de la App Store: 35.200 líneas, 2,4 MB (745 kB con gzip). |
 | `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
 | `modulos/cielo.js` | El panel 🔭 «Cielo de Tenerife»: su código y sus textos en los diez idiomas. No se carga al arrancar: lo pide `index.html` la primera vez que alguien abre el panel. |
+| `modulos/perfil.js` | La pantalla «Su perfil», la que abre «Cuenta»: el avatar y el nombre, los datos con el IMC, la evolución del peso y de los kilómetros que anota la persona, su isla con los logros, y la cuenta, con la nube solo con permiso. Su código, sus estilos y sus textos en los diez idiomas. Se pide la primera vez que alguien toca «Cuenta». |
+| `modulos/avatares.js` | Los 55 avatares del perfil, dibujos SVG propios: cinco por cada idioma de la app y cinco de Tenerife, que se abren con 10 visitas comprobadas. Se pide al abrir el perfil, o al arrancar si ya hay uno elegido, para el botón de la cuenta. |
 | `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
 | `datos/satelites.json` | Los elementos orbitales (TLE) de la Estación Espacial Internacional, de Tiangong y del Hubble, de CelesTrak, con su época. Los renueva el robot `tools/satelites_traer.py` dos veces al día; el panel calcula con ellos los pasos visibles. |
 | `datos/planetas.json` | Las cifras de la NASA (NSSDCA) de los ocho planetas, la Luna y el Sol —diámetro, día, año sideral, lunas, temperatura, gravedad, anillos, masa, densidad—, con la fecha de cada tabla. El panel del cielo lleva una copia (`CIELO_PLANETAS`) para la ficha del planeta y las curiosidades. |
@@ -33,12 +35,14 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
 Es un monolito a propósito, no un proyecto a medio modularizar. No hay
 build, ni dependencias que instalar, ni paso de compilación: se sirve
-`index.html` y funciona. Las piezas aparte son dos. La red de guaguas, que son
+`index.html` y funciona. Las piezas aparte son tres. La red de guaguas, que son
 datos y no código: 1 MB que solo se usa con las guaguas y que dentro de la
-página había que leer y compilar en cada apertura. Y el panel del cielo
+página había que leer y compilar en cada apertura. El panel del cielo
 (`modulos/cielo.js`, con su motor y su catálogo), que se pide solo cuando
 alguien lo abre: dentro de `index.html` habría sumado unos 100 kB comprimidos
-a la primera descarga de todo el mundo.
+a la primera descarga de todo el mundo. Y el perfil (`modulos/perfil.js` y
+sus avatares, `modulos/avatares.js`), que se pide la primera vez que alguien
+toca «Cuenta», por lo mismo.
 
 ### Probarlo en local
 
@@ -411,9 +415,10 @@ Cadena completa, y los tres eslabones tienen que estar:
    (`pushManager.subscribe`), y guarda la suscripción llamando a
    `guardar_push_sub()`. La tarjeta que lo propone solo sale con la app
    instalada en la pantalla de inicio: en iOS es obligatorio y en Android es
-   lo sensato. El botón «Activar notificaciones» de Cuenta está siempre, con
-   la sesión iniciada y sin cuenta (en «Continuar como invitado»): la
-   suscripción no va unida a ninguna cuenta.
+   lo sensato. El botón «Activar notificaciones» está siempre: en el perfil
+   (lo que abre «Cuenta»), con sesión y sin ella, y en la ficha de la cuenta
+   (con la sesión iniciada y en «Continuar como invitado»). La suscripción no
+   va unida a ninguna cuenta.
 2. **El workflow** se lanza nueve veces, de las 00:07 a las 07:07 UTC,
    porque GitHub retrasa sus crons varias horas. Envía el primero que cae
    dentro de la ventana (de 7 a 16 h en Canarias): coge la frase del día de

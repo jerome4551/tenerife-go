@@ -599,6 +599,8 @@
     var n = $('tgp-name');
     n.textContent = st.nombre || tx('perfilNombrePlaceholder');
     n.classList.toggle('is-empty', !st.nombre);
+    /* el nombre lo escribe la persona: no se traduce, y los controles de idioma lo saltan */
+    if (st.nombre) n.setAttribute('data-sin-traducir', 'lo escribe la persona'); else n.removeAttribute('data-sin-traducir');
     var meta = $('tgp-meta'); meta.textContent = '';
     var c1 = el('span', 'tgp-chip set'); c1.appendChild(el('span', 'flag', s.bandera)); c1.appendChild(el('span', '', nombreAvatar(a.id))); meta.appendChild(c1);
     var c2 = el('span', 'tgp-chip'); c2.appendChild(el('span', 'muted', tx('perfilViajeroDesde', { fecha: fmtFecha(st.creado, { month: 'short', year: 'numeric' }) }))); meta.appendChild(c2);
@@ -888,7 +890,7 @@
     if (!montado()) return;
     var who = $('tgp-cuenta-who'), btns = $('tgp-cuenta-btns'); who.textContent = ''; btns.textContent = '';
     var u = sesion();
-    if (u) { who.appendChild(el('div', 'tgp-eyebrow', txCuenta('authLoggedAs'))); who.appendChild(el('div', 'email', u.email || '')); }
+    if (u) { who.appendChild(el('div', 'tgp-eyebrow', txCuenta('authLoggedAs'))); var correo = el('div', 'email', u.email || ''); correo.setAttribute('data-sin-traducir', 'el correo de la cuenta'); who.appendChild(correo); }
     else { who.appendChild(el('div', 'tgp-eyebrow', tx('perfilCuenta'))); who.appendChild(el('div', 'email', tx('perfilInvitado'))); }
     /* El interruptor de la nube: solo con sesion, apagado de entrada. */
     var caja = $('tgp-nube-box'); caja.textContent = ''; caja.hidden = !u;
@@ -1615,7 +1617,7 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
   </section>
 
   <section class="tgp-card" id="tgp-isla">
-    <div class="tgp-card-head"><h2>Su isla</h2><span class="tgp-eyebrow">Tenerife Go</span></div>
+    <div class="tgp-card-head"><h2>Su isla</h2><span class="tgp-eyebrow" data-sin-traducir="marca">Tenerife Go</span></div>
     <div class="tgp-isla-tiles" id="tgp-isla-tiles"></div>
     <div class="tgp-progress" id="tgp-progress"><div class="bar"><div class="fill" id="tgp-progress-fill"></div></div><div class="txt" id="tgp-progress-txt"></div></div>
     <div class="tgp-eyebrow tgp-sellos-titulo">Sus sellos</div>

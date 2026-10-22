@@ -15,9 +15,10 @@
  *     aleman, en italiano, neerlandes, chino, bulgaro y polaco;
  *   · la barra del filtro decia «Mostrando» en italiano.
  *
- * COMO: abre la app en cada idioma, recorre 70 y pico paneles (categorias,
+ * COMO: abre la app en cada idioma, recorre cien y pico paneles (categorias,
  * guaguas, rutas, mar, microclimas, fiestas, el cielo, asistente, cuenta, el
- * tour entero, «la gasolinera mas barata cerca de mi»...) y una ficha de cada
+ * perfil y sus once pestañas de avatares, el tour entero, «la gasolinera mas
+ * barata cerca de mi»...) y una ficha de cada
  * categoria, y apunta todo texto visible y todo title/aria-label/placeholder.
  * Quita los nombres propios (los de places[], sus direcciones, las lineas y
  * paradas de TITSA y las etiquetas declaradas en
@@ -203,6 +204,13 @@ window.__estados = [
      probar_play.js. */
   ['asistente', async () => { openChatPanel(); await espera(800); }],
   ['cuenta', async () => { openAuthModal(); }],
+  /* La pantalla «Su perfil» (22 de octubre de 2026): entera, con datos en todas
+     sus partes (solo en este navegador), y cada una de sus 11 pestañas de
+     avatares; la de Tenerife, abierta con 10 visitas comprobadas. */
+  ['perfil', async () => { __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); await espera(700); }],
+  ...Array.from({ length: 11 }, (_, i) => ['perfil:avatares ' + (i + 1), async () => {
+      __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); await espera(300);
+      const b = document.querySelectorAll('#perfil-panel .tgp-set')[i]; if (b) b.click(); await espera(300); }]),
   ['favoritos', async () => { document.getElementById('v19-nav-fav').click(); }],
   ['nav rutas', async () => { document.getElementById('v19-nav-routes').click(); }],
   ['leyenda', async () => { const b = document.getElementById('map-legend-toggle'); if (b) b.click(); }],
@@ -211,6 +219,17 @@ window.__estados = [
       window.__extra = t; }],
 ];
 window.espera = ms => new Promise(r => setTimeout(r, ms));
+/* los datos del perfil para su estado: 12 lugares marcados (10 comprobados, para
+   que el set Tenerife se abra), pesos y caminatas; solo si aun no hay perfil */
+window.__perfilDatos = () => {
+  const d = n => { const x = new Date(); x.setDate(x.getDate() - n); return x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0') + '-' + String(x.getDate()).padStart(2, '0'); };
+  const ids = places.slice(0, 12).map(p => p.id);
+  localStorage.setItem('tenerife.visited', JSON.stringify(ids));
+  localStorage.setItem('tenerife.visitas', JSON.stringify(ids.slice(0, 10).map(id => ({ id, d: d(0) }))));
+  if (!localStorage.getItem('tenerife.perfil')) localStorage.setItem('tenerife.perfil', JSON.stringify({ v: 1, nombre: 'Alex', avatar: '', unidades: 'metric',
+    altura_cm: 178, nacimiento: 1990, objetivo_kg: 78, medidas: [40, 30, 20, 10, 2].map((n, i) => ({ d: d(n), kg: Math.round((82 - i * 0.6) * 10) / 10 })),
+    km: [{ id: 'barrido-caminata-1', d: d(0), km: 4.2 }, { id: 'barrido-caminata-2', d: d(3), km: 7.8 }], creado: d(45) }));
+};
 /* una ruta A→B entre dos lugares a una hora de Canarias fija (la del
    planificador de guaguas depende de la hora: sin fijarla, el barrido veria
    cosas distintas segun cuando se pase) */
@@ -227,6 +246,7 @@ window.__cierra = async () => {
   document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
   document.body.click();
   try { window.TG_CIELO && TG_CIELO.cerrar(); } catch (e) {}
+  try { window.TG_PERFIL && TG_PERFIL.cerrar(); } catch (e) {}
   try { if (window.TG_CIELO) { TG_CIELO.quitarAvisos(); TG_CIELO.estado.cal = 'todo'; TG_CIELO.estado.mapa.rastro = null; } } catch (e) {}
   for (const id of ['mar-panel','mc-panel','fi-panel','wx-panel','cielo-panel']) { const e = document.getElementById(id); if (e) e.style.display = 'none'; }
   for (const s of ['#mar-close','#mc-close','#fi-close','.mar-close','.mc-close','.fi-close']) { const e = document.querySelector(s); if (e && e.offsetParent) try { e.click(); } catch (x) {} }

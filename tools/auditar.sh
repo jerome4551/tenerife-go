@@ -239,8 +239,12 @@ echo; echo "════════ el perfil y los avatares ══════
 # Desde el 22 de octubre de 2026. Los 55 avatares son SVG escritos a mano que
 # la app pinta con innerHTML: ninguno puede llevar nada que se ejecute, y
 # ningun otro control abre el catalogo. Y las 144 filas de la pantalla, sus
-# enganches con la app y lo que nunca puede hacer (sin navegador).
+# enganches con la app y lo que nunca puede hacer (sin navegador). Y la
+# pantalla usada de verdad: las regresiones, la nube con permiso (contra una
+# nube de mentira que se porta como supabase/perfil.sql), las visitas
+# comprobadas en el mapa, los 55 avatares y los diez idiomas a tres anchos.
 control auditar_perfil.js node tools/auditar_perfil.js
+control probar_perfil.js node tools/probar_perfil.js "$PUERTO"
 echo
 # Los rotos van PRIMERO y con su propio nombre: son los que no han mirado nada.
 [ "$rotos" = 0 ] || echo "*** $rotos control(es) QUE NO SE PUDIERON EJECUTAR (pip install -r tools/requisitos.txt) ***"
