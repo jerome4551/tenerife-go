@@ -318,8 +318,9 @@ function comprobar(montado) {
   ok(/<key>NSPrivacyTracking<\/key>\s*<false\/>/.test(priv) && /<key>NSPrivacyTrackingDomains<\/key>\s*<array\/>/.test(priv)
      && /NSPrivacyCollectedDataTypeEmailAddress/.test(priv) && /NSPrivacyCollectedDataTypeUserID/.test(priv) && /NSPrivacyCollectedDataTypeOtherUserContent/.test(priv)
      && /NSPrivacyCollectedDataTypePreciseLocation/.test(priv) && /NSPrivacyCollectedDataTypeSearchHistory/.test(priv)
+     && /NSPrivacyCollectedDataTypeName</.test(priv) && /NSPrivacyCollectedDataTypeHealth</.test(priv) && /NSPrivacyCollectedDataTypeFitness</.test(priv)
      && !/NSPrivacyCollectedDataTypeTracking<\/key>\s*<true\/>/.test(priv),
-     'PrivacyInfo.xcprivacy: sin rastreo, sin dominios de rastreo, y los datos que la politica dice que salen (correo, id de usuario, favoritos, coordenadas, busquedas)');
+     'PrivacyInfo.xcprivacy: sin rastreo, sin dominios de rastreo, y los datos que la politica dice que salen (correo, id de usuario, favoritos, coordenadas, busquedas y, con permiso, el perfil: nombre, salud y forma fisica)');
   /* Google Analytics (22-10-2026): solo en la web. Con la marca, gtag no se
      configura, tgoLoadGA() vuelve sin cargar nada y el bloque del aviso de
      cookies sale antes de nada; asi que el manifiesto no declara analitica

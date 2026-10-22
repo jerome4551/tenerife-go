@@ -8,6 +8,13 @@
        · Geolocalizacion: las coordenadas de origen y destino van
          al servicio de rutas; las del lugar, al del tiempo        -> ubicacion precisa (sin ligar a nadie)
        · Nominatim: el texto que escribes al buscar una direccion  -> historial de busqueda (sin ligar)
+       · El perfil en la cuenta (opcional, solo con el permiso
+         expreso de «Acepto», 22 de octubre de 2026):
+           el nombre o apodo                                      -> nombre (ligado a la cuenta)
+           la altura, el peso objetivo y los pesos                -> salud (ligada a la cuenta)
+           los kilometros que se anotan                           -> forma fisica (ligada a la cuenta)
+           el avatar y las unidades                               -> «otro contenido del usuario» (ya arriba)
+         Las visitas comprobadas no salen del movil: no se declaran.
      Google Analytics no va en la app (22 de octubre de 2026): con la marca
      TGO_NATIVO, index.html ni lo configura ni lo carga, y el aviso de
      cookies no sale (lo miran app_preparar.js y probar_app.js); la politica
@@ -57,6 +64,42 @@
     <dict>
       <key>NSPrivacyCollectedDataType</key>
       <string>NSPrivacyCollectedDataTypeOtherUserContent</string>
+      <key>NSPrivacyCollectedDataTypeLinked</key>
+      <true/>
+      <key>NSPrivacyCollectedDataTypeTracking</key>
+      <false/>
+      <key>NSPrivacyCollectedDataTypePurposes</key>
+      <array>
+        <string>NSPrivacyCollectedDataTypePurposeAppFunctionality</string>
+      </array>
+    </dict>
+    <dict>
+      <key>NSPrivacyCollectedDataType</key>
+      <string>NSPrivacyCollectedDataTypeName</string>
+      <key>NSPrivacyCollectedDataTypeLinked</key>
+      <true/>
+      <key>NSPrivacyCollectedDataTypeTracking</key>
+      <false/>
+      <key>NSPrivacyCollectedDataTypePurposes</key>
+      <array>
+        <string>NSPrivacyCollectedDataTypePurposeAppFunctionality</string>
+      </array>
+    </dict>
+    <dict>
+      <key>NSPrivacyCollectedDataType</key>
+      <string>NSPrivacyCollectedDataTypeHealth</string>
+      <key>NSPrivacyCollectedDataTypeLinked</key>
+      <true/>
+      <key>NSPrivacyCollectedDataTypeTracking</key>
+      <false/>
+      <key>NSPrivacyCollectedDataTypePurposes</key>
+      <array>
+        <string>NSPrivacyCollectedDataTypePurposeAppFunctionality</string>
+      </array>
+    </dict>
+    <dict>
+      <key>NSPrivacyCollectedDataType</key>
+      <string>NSPrivacyCollectedDataTypeFitness</string>
       <key>NSPrivacyCollectedDataTypeLinked</key>
       <true/>
       <key>NSPrivacyCollectedDataTypeTracking</key>
