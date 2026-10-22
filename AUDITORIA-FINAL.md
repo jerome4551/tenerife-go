@@ -7551,6 +7551,91 @@ búlgaro (las 60 de `CIELO_EST` sí, de las traducciones de Stellarium): 191
 de ellas, de magnitud 4 o más brillantes. No se ha tocado: sin fuente no se
 traduce, y cómo hacerlo lo decide Jerome.
 
+## Lo que Jerome contestó, y hecho (22 de octubre, mañana)
+
+A las seis preguntas del informe de la madrugada: «1 déjalo así, 2 déjalo y
+debe verse bien, 3 quítalo, 4 impersonal, 5 si es verificado sí, 6 sí», y
+«Si está en verde puedes seguir y publicar».
+
+- **Los rótulos en la voz de quien usa la app** («Llévame», «Sí, avísame»,
+  «Sorpréndeme»…): se quedan así.
+- **El lema, «Somos parte de ti»**: se queda. Y «debe verse bien»: en el
+  móvil no se ve. La marca pide 97 px y el lema 109, y a 390 px le quedan
+  37, porque los nueve botones de la barra ocupan 298: sale «TE… / SOM…».
+  En una fila no caben las dos cosas sin quitar botones. La propuesta, con
+  capturas, es la marca entera arriba y los botones debajo, más anchos;
+  eso baja 32 px la barra y obliga a mover los doce paneles que cuelgan de
+  ella. Va a Jerome antes de tocarlo.
+- **El minigolf VIVO**: fuera el «5% de descuento» de la reserva en línea,
+  en los diez idiomas y en la fuente del polaco (`4b929c9`).
+- **El polaco formal**: impersonal, cuando le toque al polaco en el trato
+  de usted.
+- **Las estrellas con nombre de la UAI en chino y en búlgaro** (`7b60659`):
+  - De las 274 estrellas de la carta con nombre de la UAI, 265 no tenían
+    forma en esos idiomas. `CIELO_UAI` (`modulos/cielo.js`) se la da,
+    sacada de las traducciones de Stellarium que ya baja
+    `tools/cielo_fuentes.sh`, con la regla de `CIELO_EST`. La escribe y la
+    coteja `tools/cielo_uai.js`.
+  - Con nombre: chino 249, chino tradicional 245 y búlgaro 256.
+  - El chino y el tradicional tienen que decir lo mismo (OpenCC). Los 56
+    que la cultura celeste china de Stellarium nombra por su HIP salen
+    iguales.
+  - Seis erratas de las traducciones, resueltas con esa cultura: Suhail
+    天记, Jabbah 键闭, Rasalhague 候, Kochab 帝; y en el tradicional, Xuange
+    玄戈 y Wasat 天樽二.
+  - Lo que Stellarium no traduce se queda con el nombre de la UAI (16, 20
+    y 9), aceptado en `idiomas/pantalla-aceptado.json` con su motivo.
+  - Era el rojo de la auditoría de la madrugada: «Dalim». Con el reloj de
+    la página a las 02:30, `main` decía «Dalim» y ahora sale 天苑增三 y
+    Далим.
+- **La librería de la cuenta, dentro** (`2aac66d`):
+  - `vendor/supabase.js`: la misma versión y la misma huella que venía de
+    jsDelivr. `index.html` la pide ahí; la CSP ya no deja jsDelivr; el
+    service worker la precarga y `app/www/` la lleva (96 ficheros, 26,0 MB).
+  - jsDelivr sale de la política en los diez idiomas, porque ya no recibe
+    nada. Idiomas: 1.648 filas.
+  - Las pruebas que dejaban fuera el SDK de verdad cortan ahora
+    `vendor/supabase.js`.
+
+Y una prueba que dependía de la hora (`961816b`). Pasada al amanecer, la
+parte de «Comprobar la brújula» de `auditar_cielo.js` se cayó y se llevó
+el resto del navegador. Con el Sol entre −3 y 8 grados no hay nada
+brillante con lo que comprobar, y la app lo dice. Ahora la prueba lo mira y
+sigue con el reloj de la página dos horas movido.
+
+**La auditoría entera** (con las fuentes del cielo y las de los
+satélites), sobre la rama con todo esto (`961816b`): todos los bloques en
+verde menos uno, nuevo y de esta tanda. `auditar_cirilico.py` cantó tres de
+los nombres búlgaros nuevos, cada uno a una letra de una palabra frecuente
+de las fichas: Мейса (Meissa) y «Меса» (Mesa del Mar, Mesa de Tejina),
+Нашира (Nashira) y «Намира» («Намира се», se encuentra), Полис (Polis) y
+«Порис» (Porís de Abona). Son los de Stellarium tal cual, no erratas: van a
+la lista `CIRILICO-OK` de `index.html` con su motivo (`8f79fba`), y el
+control vuelve a 0 sospechosas de 1.670 nombres. Lo demás:
+`auditar_registro.js`, 64.016 textos, el castellano todo de usted y
+pendientes francés 419, alemán 560, italiano 582, neerlandés 534, chino 301
+y 301, búlgaro 227 y polaco 484; `barrido_pantallas.js`, 100 pantallas y
+fichas por idioma y 0 textos sin traducir; `auditar_cielo.js`, 182 de 182
+(dos más que de madrugada: `CIELO_UAI` y su cotejo con Stellarium);
+`auditar_web.js`, 43 tablas y 1.648 filas; `app_preparar.js --comprobar`,
+40; `probar_app.js`, 49; `auditar_app_store.js`, 99;
+`app_store_metadata.js --comprobar`, 15.
+
+Y sobre la rama ya fusionada con los tres commits de los robots de esta
+mañana (`4ea4e00`: los avisos de AEMET y los precios de las gasolineras de
+las 07:00), otra vez lo que depende de esos datos o de `index.html`: la
+sintaxis, `app/www/` montado y cotejado, la seguridad, el cirílico, los
+datos, las gasolineras (el registro, los precios, el botón de la más barata
+cerca y las fichas en pantalla), el municipio, `REVISION-LUGARES.md`, las
+cifras del README, los avisos de AEMET (el lector y la app en los diez
+idiomas) y la app de la tienda: todo en verde.
+
+Y una cifra que se había quedado atrás, la de este documento: el título de
+«Idiomas» lleva dos, y la segunda (las filas de idioma dentro y fuera del
+fuente) decía 3.788 desde la madrugada, cuando `barrido_idiomas.js` cuenta
+3.789; la primera la coteja `auditar_web.js`, la segunda no la cotejaba
+nadie. Corregida, y ahora `barrido_idiomas.js` la coteja (`c405dfd`).
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -7622,6 +7707,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_app_store.js` | la ficha de la App Store contra los límites de Apple, las directrices y lo que hay, en los diez idiomas y en la variante en-US |
 | `tools/capturas_app_store.js` | las capturas de la tienda (iPhone 1206×2622, iPad 2064×2752), de `app/www/` servido aparte; para si la página no lleva la marca o un estado no llega a lo que dice |
 | `tools/app_store_metadata.js` | la ficha y las capturas en el formato de `fastlane deliver` (`app/fastlane/metadata/`, `…/screenshots/`); con `--comprobar`, las diez localizaciones, los límites y los tamaños |
+| `tools/cielo_uai.js` | los nombres de la UAI de la carta del cielo en chino, chino tradicional y búlgaro (`CIELO_UAI`, en `modulos/cielo.js`), de las traducciones de Stellarium que baja `cielo_fuentes.sh`; los coteja con la cultura celeste china y entre sí; con `--comprobar`, para si lo escrito no es lo que sale de las fuentes (lo pasa `auditar_cielo.js`) |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con
