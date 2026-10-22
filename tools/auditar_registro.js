@@ -261,7 +261,7 @@ const EXENTOS = [
   /* el aleman (22 de octubre de 2026) */
   ['de', '„Hey du!" — freundliche Anrede.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
   ['de', 'Überrasch mich', 'la voz de quien usa la app, como «Sorpréndeme» (Jerome: esos rotulos se quedan asi)'],
-  ['de', 'Hilfst du mir, den Tag zu planen?', 'la pregunta de quien usa la app al asistente, como «¿Me ayuda a organizar el día?»'],
+  ['de', 'Hilfst du mir, den Tag zu planen?', 'la pregunta de quien usa la app al asistente, como «¿Me ayudas a organizar el día?»'],
   ['de', 'Zeige', '«Zeige 74 von 980 Orten»: habla la app en primera persona, no es un imperativo'],
   ['de', 'Suche löschen', '«Suche» es el nombre (la busqueda): «borrar la busqueda»'],
   /* el neerlandes (22 de octubre de 2026) */

@@ -8367,6 +8367,123 @@ fuente) decía 3.788 desde la madrugada, cuando `barrido_idiomas.js` cuenta
 3.789; la primera la coteja `auditar_web.js`, la segunda no la cotejaba
 nadie. Corregida, y ahora `barrido_idiomas.js` la coteja (`c405dfd`).
 
+## El trato de usted: el chino, el alemán, el neerlandés, el francés y el italiano (22 de octubre, tarde)
+
+Las partes tercera, cuarta y quinta de las seis, encima del séptimo commit
+(sus textos nuevos entran ya de usted). Un commit por idioma, y uno más por
+lo que salió al mirarlo en pantalla.
+
+- **El chino** (`07df8dd`): 您 donde decía 你, 1.074 veces, en zh y zht:
+  la interfaz y el asistente, también los 34 escritos como escape `你`
+  en las tablas del asistente y de «Organice su día» (grep no los veía; el
+  control, que lee la página en un navegador, sí); las fichas, las frases
+  del día, el cielo, la política, la ficha de la tienda y los permisos de
+  iOS. Se quedan 迷你 («mini», el minigolf) y las palabras clave del
+  asistente, que son lo que escribe la gente: la de 你 sigue y se añade la
+  de 您 (10), para que entienda las dos.
+- **El alemán** (`4abb842`): Sie, Ihnen e Ihr donde decía du, dich, dir y
+  dein, y el imperativo de Sie («Tippen Sie», «Wählen Sie»), en 633 textos:
+  los 561 que marcaba el control, 50 más al enseñarle el imperativo corto
+  («Ruh heute», «Such ihn»), 308 de esos 611 frases del día, y 22 que no
+  marcaba. Ese imperativo sin pronombre («Fahr langsam», «Gib den Namen
+  ein», «Tippe einen Marker…») no lo ve un control de marcas: salió
+  repasando a mano, con `--todos de`, cada frase que empieza por la raíz de
+  un verbo del propio texto (también tras un emoji, tras «bitte» y con «es»
+  detrás). El control lleva ahora esas formas. La pestaña «Planen Sie
+  Ihren Tag» ocupaba tres líneas en un móvil de 320 px y la tarjeta del tour
+  tapaba su botón: ahora «Tag planen», el infinitivo de las apps alemanas,
+  y así la citan el tour, el asistente y la ficha de la tienda; y el paso
+  del tour que la explica, un poco más corto. Y `auditar_gas_cerca.js`, que
+  esperaba «in deiner Nähe» en el título de las gasolineras, espera ahora
+  «in Ihrer Nähe».
+- **El neerlandés** (`9f3a014`): u, uw y uzelf donde decía je, jij, jou,
+  jouw y jezelf, en 538 textos (207 de ellos, frases del día), con el verbo
+  que va con u («Kunt u», «u heeft», «Voelt u zich»). El imperativo es el
+  mismo de tú que de usted («Tik op…», «Kies…») y se queda. «Plan je dag» es
+  «Plan uw dag», con el mismo largo. Las preguntas de los botones del
+  asistente que hablaban en general («Kun je omhoog lopen?») van en primera
+  persona, como en inglés («Kan ik omhoog lopen?»). Y lo coloquial que no es
+  pronombre: «Tuurlijk!» → «Natuurlijk!», «Hoi!» → «Hallo!», «hou» →
+  «houd»; el correo de ejemplo, «naam@email.com», como en castellano y
+  alemán. `auditar_app_store.js` reconoce la promesa que la ficha no puede
+  hacer también con u («op het tijdstip dat u kiest»).
+- **Lo que quedaba del castellano** (`26e4e16`): con el mismo repaso a
+  mano, tres imperativos de tú que también son tercera persona, así que el
+  control no podía separarlos solos: «lleva agua y protección solar» (Los
+  Escurriales), «lleva ropa de abrigo» (el punto de agua de La Esperanza) y
+  el botón del glosario, «📚 Habla como un canario» → «📚 Hable como un
+  canario», con la respuesta del asistente que lo cita. El control lleva
+  ahora esos giros.
+- **El francés** (`0598526`): vous, votre y vos donde decía tu, te, toi,
+  ton, ta y tes, y el imperativo de vous («Touchez», «Choisissez»,
+  «Reposez-vous»), en 457 textos: los 394 que marcaba el control (265 frases
+  del día, 95 respuestas del asistente, 33 textos de la interfaz y una
+  ficha) y 63 que solo salieron repasando a mano: 48 frases del día con el
+  imperativo sin pronombre («Sois patient», «Marche vers la mer»), las
+  instrucciones de instalar la app, el saludo del asistente («Salut ! 👋
+  Demande-moi…» → «Bonjour ! 👋 Demandez-moi…»), varias respuestas y un
+  aviso de aparcamiento. El control deja de cantar lo que no es tuteo («Je
+  veux…», los dominios «.es»), y las palabras que también son nombre
+  («Garde tournante», «Bois de fayas», «Ferme canarienne», «Pointe nord»)
+  solo cuentan en su giro de imperativo.
+- **El italiano** (`6a26cbf`): Lei, con la mayúscula de cortesía (La, Le,
+  Suo, Sua…; el reflexivo, en minúscula: «Si prenda cura di sé»), en 678
+  textos: 310 frases del día, 148 de la interfaz, 108 del asistente, 57 del
+  cielo, 27 de la política, 22 fichas, 5 de la página de borrar la cuenta y
+  la ficha de la tienda. 117 de ellos no los veía el control: salieron
+  repasando a mano y cruzando con el castellano, texto a texto (cada uno
+  cuyo castellano pasó a usted y cuyo italiano seguía igual), también dentro
+  de las tablas de una sola línea: el imperativo sin pronombre del
+  asistente («controlla l’orario su titsa.com»), del cielo («guarda a
+  ovest», «Non guardare mai il Sole»), de las fichas, de la ventana de
+  instalar la app, de los avisos («Riprova più tardi»), de la privacidad
+  («se accetti l’avviso sui cookie») y del planificador («Che tipo di
+  giornata cerchi?»). Los rótulos de botón se quedan en imperativo
+  («Chiudi», «Cerca», «Condividi», «Accedi», «Punta al cielo»): en italiano
+  el botón se escribe así también en las apps que tratan de Lei, y es lo
+  que en castellano es el infinitivo («Cerrar», «Buscar»); van en
+  `ROTULOS_IT`, con su motivo, y su cita entre comillas no cuenta. Donde el
+  castellano pasó el botón a usted porque exhorta («📚 Hable como un
+  canario»), el italiano también («📚 Parli come un canario»).
+  `auditar_app_store.js` reconoce la promesa prohibida también de Lei
+  («all'ora che vuole»).
+- **Lo que el código escribía a mano en castellano** (`c578c67`): al mirar
+  el planificador en italiano a 320 px salió que su cabecera ponía
+  «Tenerife GO · Planificador» y, al elegir el tiempo, «Mañana (2–3h)», en
+  los diez idiomas; y que el panel de administración escribía sus avisos a
+  mano en castellano («Inicia sesión con tu cuenta de administrador»,
+  además de tu). Ahora salen de sus filas: las del planificador ya
+  existían; las del panel son seis nuevas en `UI_TX`, en los diez idiomas.
+  `auditar_reservas.py` mira ahora también el texto que el código escribe a
+  mano: con el código de antes, 8 y rojo; con este, 0. Dos se quedan fijos,
+  con su motivo: «Abrir Tenerife Go», el enlace que sale si otra web mete la
+  app en un marco (corre antes que la app y sus tablas), y «📡 GPS».
+- **Se quedan**, como dijo Jerome de los rótulos que dice quien usa la app:
+  «Überrasch mich», «Bring mich hin», «Führe mich hin», «Hilfst du mir, den
+  Tag zu planen?», «Help je me mijn dag te plannen?», «Surprends-moi»,
+  «Emmène-moi», «Tu m’aides à organiser ma journée ?», «Sorprendimi»,
+  «Portami», «Ricordamelo nell’app» y «Sì, avvisami», como «Sorpréndeme»,
+  «Llévame» y «¿Me ayudas a organizar el día?». Y los ejemplos del glosario
+  canario, «Hey du!», «Hé jij!», « Hé toi ! » y «Ehi tu!», como «¡Oye,
+  tú!»: van en `EXENTOS`, con su motivo.
+- **Dónde queda el control**: castellano, chino, chino tradicional, alemán,
+  neerlandés, francés e italiano, todo de usted; pendientes el búlgaro (227
+  textos) y el polaco (486), la sexta parte.
+
+**La auditoría entera** (con las fuentes del cielo y las de los
+satélites), sobre la rama con todo esto (`c578c67`): **«AUDITORIA EN
+VERDE»**, ningún bloque en rojo ni roto. `auditar_registro.js`, 64.676
+textos: el castellano, el chino, el chino tradicional, el alemán, el
+neerlandés, el francés y el italiano, todo de usted; el búlgaro (227) y el
+polaco (486), pendientes. `auditar_cielo.js`, 219 de 219; `auditar_web.js`,
+43 tablas y 1.708 filas; `barrido_idiomas.js`, 3.849 filas dentro y fuera
+del fuente, y este documento dice lo mismo; `barrido_pantallas.js`, 104
+pantallas y fichas por idioma y 0 textos sin traducir;
+`auditar_cirilico.py`, 0 sospechosas de 1.706 nombres; `auditar_reservas.py`,
+ningún texto escrito a mano desde el código fuera de los dos fijos;
+`probar_faq.js`, 0 fallos de 121; y `auditar_gas_cerca.js`, con el título
+de Sie («in Ihrer Nähe»), 0 fallos.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -8414,6 +8531,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/probar_notificacion_idioma.js` | la notificación diaria en el idioma de cada móvil: lo que la app manda a `guardar_push_sub()` al abrir, al cambiar de idioma y desde el botón sin cuenta, la tarjeta del permiso en los diez, y lo que el envío le manda a cada idioma |
 | `tools/probar_nombres.js` | cada lugar preguntado al asistente por su nombre, en los diez idiomas y en chino pegado: sale su ficha o la lista para elegir; el nombre corto, contado; y cada categoría del menú por su rótulo, la lista de esa categoría |
 | `tools/auditar_letras.js` | palabras escritas sin sus letras («waehle», «carre avec fleche») |
+| `tools/auditar_reservas.py` | el texto de reserva en castellano (`L.clave \|\| '…'`): la clave, en los diez idiomas; y el texto que el código escribe a mano en la página (`textContent = '…'`), fuera de lo fijo con su motivo |
 | `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json`, con el contorno oficial de cada zona y las zonas de la isla (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, contornos, ficheros rotos, el latido de 3 horas |
 | `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos, los kilómetros del coche y lo que se comparte del itinerario |
@@ -8432,7 +8550,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/faltan_textos.js` | **cribado**, no veredicto: descripciones más cortas de lo esperado contra la mediana de ese idioma |
 | `tools/meter_descripcion.py` | mete descripciones rehechas comprobando que el texto es **de ese lugar** |
 | `tools/completar_cat.js` | devuelve a las etiquetas `cat` los trozos que perdieron, con el glosario del propio catálogo |
-| `tools/auditar_registro.js` | el trato de usted: las marcas del tuteo de cada idioma en todo lo que se ve (la app, las tablas, las fichas, la política, el asistente, el cielo, la ficha de la tienda, las frases de cada mañana); los idiomas hechos, en rojo con cualquiera; los demás, contados como pendientes; con `--lista <idioma> <fichero>`, sus textos |
+| `tools/auditar_registro.js` | el trato de usted: las marcas del tuteo de cada idioma en todo lo que se ve (la app, las tablas, las fichas, la política, el asistente, el cielo, la ficha de la tienda, las frases de cada mañana); los idiomas hechos, en rojo con cualquiera; los demás, contados como pendientes; con `--lista <idioma> <fichero>`, sus textos con marcas, y con `--todos <idioma> <fichero>`, todos, para repasar a mano lo que las marcas no ven (el imperativo sin pronombre); los rótulos de botón del italiano, en `ROTULOS_IT` |
 | `tools/app_preparar.js` | monta `app/www/`, la app de la App Store (la de la raíz con la marca `TGO_NATIVO`), y escribe las plantillas de iOS que salen de la política; con `--comprobar`, que no falte nada de lo que la app pide, que no viaje nada de la lista de lo que nunca viaja y que las plantillas sean las de hoy |
 | `tools/probar_app.js` | la app con la marca en Chromium (sin service worker, los datos del día con su copia de dentro, sin Google Analytics, los diez idiomas) y la web sin ella |
 | `tools/auditar_app_store.js` | la ficha de la App Store contra los límites de Apple, las directrices y lo que hay, en los diez idiomas y en la variante en-US |
