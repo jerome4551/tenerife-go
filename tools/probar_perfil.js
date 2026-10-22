@@ -15,6 +15,11 @@
  *      se porta como supabase/perfil.sql (RLS, 23503, cascade, check, columnas):
  *      tools/perfil_nube_de_prueba.js, la demo-nube.js del encargo, que solo en
  *      esta prueba hace de window.AppAuth;
+ *   2b. la nube con mucho dato (23 de octubre de 2026): Supabase devuelve como
+ *      mucho 1.000 filas por consulta, y la nube de mentira hace lo mismo; con
+ *      1.500 pesos y 1.200 caminatas en la cuenta, un movil nuevo los recibe
+ *      todos, la vuelta siguiente no quita ninguno, y con un tope mas bajo
+ *      tambien llegan;
  *   3. las visitas comprobadas en el mapa (pruebas/probar_visitas.py, 11);
  *   4. lo de la nota: los 55 avatares pintados; uno de cada set, en el heroe y en
  *      el boton de la cuenta; los dos botones de «Cuenta» abren el perfil; cada
@@ -371,6 +376,50 @@ async function nube(b) {
   await ctx.close();
 }
 
+/* ── 2b. la nube con mucho dato ───────────────────────────────────────── */
+async function volumen(b) {
+  console.log('\n=== 2b. la nube con mucho dato: mas filas de las que Supabase da en una consulta ===');
+  const ctx = await contexto(b), pg = await ctx.newPage(), errs = errores(pg);
+  const vacio = Object.assign(ejemplo(), { medidas: [], km: [] });
+  await ctx.addInitScript(d => { try { if (!sessionStorage.getItem('perfil-sembrado')) { localStorage.setItem('tenerife.perfil', d); sessionStorage.setItem('perfil-sembrado', '1'); } } catch (e) {} }, JSON.stringify(vacio));
+  await abrirApp(pg, 'es');
+  await conNube(pg); await pg.evaluate(() => TGP_DEMO_NUBE.reiniciar());
+  const E = f => pg.evaluate(f);
+  const [U1] = await E('TGP_DEMO_NUBE.uids');
+  /* tres años de pesos diarios y casi otros tantos de caminatas, puestos «desde otro movil» con su permiso */
+  const ayer = new Date(Date.now() - 86400000).toISOString();
+  const pesos = [], caminatas = [];
+  for (let n = 1; n <= 1500; n++) pesos.push({ user_id: U1, fecha: dia(n), kg: Math.round((70 + (n % 40) / 4) * 10) / 10 });
+  for (let n = 1; n <= 1200; n++) caminatas.push({ user_id: U1, id: 'vol-caminata-' + String(n).padStart(5, '0'), fecha: dia(n), km: Math.round((2 + n % 15) * 10) / 10 });
+  await pg.evaluate(([U1, ayer, d1600, pesos, caminatas]) => {
+    TGP_DEMO_NUBE.poner('perfiles', [{ user_id: U1, consentido_en: ayer, nombre: 'Muchos datos', avatar: null, unidades: 'metric', altura_cm: 175, nacimiento: 1980, objetivo_kg: 75, creado: d1600, updated_at: ayer }]);
+    TGP_DEMO_NUBE.poner('pesos', pesos); TGP_DEMO_NUBE.poner('caminatas', caminatas);
+  }, [U1, ayer, dia(1600), pesos, caminatas]);
+  await abrirPerfilYa(pg);
+  const st = () => E('JSON.parse(JSON.stringify(TG_PERFIL.estado()))');
+  const enNube = async t => (await E(`TGP_DEMO_NUBE.tabla('${t}')`)).filter(f => f.user_id === U1);
+  const colaVacia = () => pg.waitForFunction(() => !Object.keys(TG_PERFIL.estado().colas).length, null, { timeout: 30000 });
+  let r = await E('TG_PERFIL.sincronizar()'); await colaVacia();
+  let s1 = await st();
+  const iguales = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]);
+  const fechas = s => s.medidas.map(m => m.d + ' ' + m.kg).sort(), ids = s => s.km.map(k => k.id).sort();
+  ok(r === 'ok' && s1.medidas.length === 1500 && s1.km.length === 1200 && iguales(fechas(s1), pesos.map(f => f.fecha + ' ' + f.kg).sort()) && iguales(ids(s1), caminatas.map(f => f.id).sort()),
+    'v1 un movil nuevo recibe los 1.500 pesos y las 1.200 caminatas de la cuenta (Supabase da 1.000 por consulta)', { r, pesos: s1.medidas.length, caminatas: s1.km.length });
+  r = await E('TG_PERFIL.sincronizar()'); await colaVacia();
+  const s2 = await st();
+  ok(r === 'ok' && s2.medidas.length === 1500 && s2.km.length === 1200 && (await enNube('pesos')).length === 1500 && (await enNube('caminatas')).length === 1200,
+    'v2 la vuelta siguiente no quita nada, ni aqui ni en la nube', { r, aqui: [s2.medidas.length, s2.km.length], nube: [(await enNube('pesos')).length, (await enNube('caminatas')).length] });
+  await E('TGP_DEMO_NUBE.maxFilas(300)');
+  await pg.evaluate(([U1, f]) => TGP_DEMO_NUBE.poner('pesos', TGP_DEMO_NUBE.tabla('pesos').concat([{ user_id: U1, fecha: f, kg: 71.1 }])), [U1, dia(1501)]);
+  r = await E('TG_PERFIL.sincronizar()'); await colaVacia();
+  const s3 = await st();
+  ok(r === 'ok' && s3.medidas.length === 1501 && s3.medidas.some(m => m.d === dia(1501) && m.kg === 71.1) && s3.km.length === 1200 && (await enNube('pesos')).length === 1501,
+    'v3 con un tope mas bajo en el proyecto (300 por consulta) llegan igual, y lo nuevo de otro movil tambien', { r, pesos: s3.medidas.length, caminatas: s3.km.length });
+  await E('TGP_DEMO_NUBE.maxFilas(1000)');
+  ok(!errs.length, 'v4 sin errores JS ni de consola', errs);
+  await ctx.close();
+}
+
 /* ── 3. las visitas comprobadas ───────────────────────────────────────── */
 async function visitas(b) {
   console.log('\n=== 3. las visitas comprobadas, en el mapa (probar_visitas.py) ===');
@@ -511,6 +560,7 @@ async function pantalla(b) {
   try {
     await regresiones(b);
     await nube(b);
+    await volumen(b);
     await visitas(b);
     await pantalla(b);
   } finally { await b.close(); }

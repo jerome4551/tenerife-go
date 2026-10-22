@@ -13,9 +13,13 @@
      insert (23505);
    · sin red, cada petición devuelve lo que devuelve supabase-js cuando no hay
      conexión: { data: null, error: { message: 'TypeError: Failed to fetch' } }.
+   · como Supabase, una consulta devuelve como mucho 1.000 filas (Max rows del
+     proyecto; TGP_DEMO_NUBE.maxFilas() lo cambia), en el orden de order() y con
+     range() y la cuenta de select(cols, { count: 'exact' }) (23 de octubre de 2026:
+     sin esto, las pruebas no veian lo que pasa con mas de 1.000 pesos).
    Las llamadas son las mismas que usa perfil.js con supabase-js 2:
-   from().select().eq().maybeSingle(), insert(), upsert(filas, { onConflict }),
-   update().eq().select(), delete().eq().in(). */
+   from().select().eq().maybeSingle(), select(cols, { count }).eq().order().range(),
+   insert(), upsert(filas, { onConflict }), update().eq().select(), delete().eq().in(). */
 (function () {
   'use strict';
   var KEY = 'tgp.demo-nube';
@@ -29,7 +33,7 @@
     pesos: ['user_id', 'fecha', 'kg'],
     caminatas: ['user_id', 'id', 'fecha', 'km']
   };
-  function nuevo() { return { sesion: true, cuenta: 0, admin: false, red: true, t: { perfiles: [], pesos: [], caminatas: [] } }; }
+  function nuevo() { return { sesion: true, cuenta: 0, admin: false, red: true, maxFilas: 1000, t: { perfiles: [], pesos: [], caminatas: [] } }; }
   function cargar() {
     try { var s = JSON.parse(localStorage.getItem(KEY)); if (s && s.t && s.t.perfiles && s.t.pesos && s.t.caminatas) return s; } catch (e) {}
     return nuevo();
@@ -61,8 +65,10 @@
     if (!cols || cols === '*') return Object.assign({}, f);
     var o = {}; cols.split(',').forEach(function (c) { c = c.trim(); o[c] = f[c] === undefined ? null : f[c]; }); return o;
   }
-  function Consulta(t) { this.t = t; this.op = 'select'; this.filtros = []; this.cols = null; this.devolver = false; this.una = false; }
-  Consulta.prototype.select = function (cols) { if (this.op === 'select') this.cols = cols; else { this.devolver = true; this.cols = cols; } return this; };
+  function Consulta(t) { this.t = t; this.op = 'select'; this.filtros = []; this.cols = null; this.devolver = false; this.una = false; this.orden = null; this.rango = null; this.contar = false; }
+  Consulta.prototype.select = function (cols, o) { if (this.op === 'select') { this.cols = cols; this.contar = !!(o && o.count); } else { this.devolver = true; this.cols = cols; } return this; };
+  Consulta.prototype.order = function (c, o) { this.orden = { c: c, asc: !(o && o.ascending === false) }; return this; };
+  Consulta.prototype.range = function (a, b) { this.rango = [a, b]; return this; };
   Consulta.prototype.insert = function (v) { this.op = 'insert'; this.v = v; return this; };
   Consulta.prototype.upsert = function (v, o) { this.op = 'upsert'; this.v = v; this.o = o || {}; return this; };
   Consulta.prototype.update = function (v) { this.op = 'update'; this.v = v; return this; };
@@ -85,9 +91,15 @@
     var raras = cols.concat.apply(cols, escritas.map(Object.keys)).filter(function (c) { return COLUMNAS[q.t].indexOf(c) < 0; });
     if (raras.length) return fallo('PGRST204', "Could not find the '" + raras[0] + "' column of '" + q.t + "' in the schema cache");
     if (q.op === 'select') {
-      var filas = tabla.filter(pasa).map(function (f) { return proyectar(f, q.cols); });
+      var todas = tabla.filter(pasa);
+      if (q.orden) { var oc = q.orden.c, sg = q.orden.asc ? 1 : -1; todas.sort(function (a, b) { return a[oc] < b[oc] ? -sg : a[oc] > b[oc] ? sg : 0; }); }
+      var filas = todas.map(function (f) { return proyectar(f, q.cols); });
       if (q.una) return filas.length > 1 ? fallo('PGRST116', 'JSON object requested, multiple rows returned') : { data: filas[0] || null, error: null, status: 200 };
-      return { data: filas, error: null, status: 200 };
+      /* lo que hace PostgREST: el trozo de range(), y nunca mas de Max rows */
+      var desde = q.rango ? q.rango[0] : 0, hasta = q.rango ? q.rango[1] : Infinity;
+      var tope = Math.max(1, s.maxFilas || 1000);
+      var trozo = filas.slice(desde, Math.min(hasta + 1, desde + tope));
+      return { data: trozo, count: q.contar ? filas.length : null, error: null, status: 200 };
     }
     if (q.op === 'insert' || q.op === 'upsert') {
       var nuevas = Array.isArray(q.v) ? q.v : [q.v], copia = tabla.slice(), hechas = [];
@@ -165,6 +177,7 @@
     red: function (b, sinAviso) { s.red = !!b; guardar(); if (s.red && !sinAviso) window.dispatchEvent(new Event('online')); },
     sesion: function (b) { s.sesion = !!b; guardar(); avisar(); },
     cuenta: function (i) { s.cuenta = i === 1 ? 1 : 0; guardar(); avisar(); },
+    maxFilas: function (n) { s.maxFilas = n > 0 ? n : 1000; guardar(); return s.maxFilas; },
     reiniciar: function () { try { localStorage.removeItem(KEY); } catch (e) {} s = nuevo(); guardar(); }
   };
 })();
