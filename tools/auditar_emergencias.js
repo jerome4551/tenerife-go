@@ -207,6 +207,12 @@ ok(/'\.\/modulos\/emergencias\.js'/.test(sw.slice(sw.indexOf('const CORE'), sw.i
 ok(/url\.pathname\.endsWith\('\/modulos\/emergencias\.js'\)\)\s*\{\s*const red = fetch/.test(sw), 'sw.js lo sirve de la cache al instante, con la red por detras');
 const redPrimero = sw.slice(sw.indexOf("if (req.url.endsWith('index.html')"), sw.indexOf('return fetch(req).then(res => {', sw.indexOf("if (req.url.endsWith('index.html')")));
 ok(!redPrimero.includes('emergencias'), 'y NO esta en la lista «red primero» (no espera a una red saturada)');
+/* Lo que traen los robots, al reves: con `cached || fetch` el primer fichero
+   que entrase se quedaria para siempre. Los de los robots que hay, y los de
+   SOS_DATOS, en «red primero». */
+const robotsHay = Object.keys(ROBOTS).filter(j => flujo(ROBOTS[j]) !== null).map(j => './datos/' + j);
+const sinRed = Array.from(new Set(robotsHay.concat(datosLista))).filter(u => !redPrimero.includes("url.pathname.endsWith('" + u.slice(1) + "')"));
+ok(!sinRed.length, 'los ficheros de los robots (' + (robotsHay.length || 'ninguno') + '), en «red primero»', sinRed.join(', '));
 let man = {}; try { man = JSON.parse(fs.readFileSync(path.join(RAIZ, 'manifest.webmanifest'), 'utf8')); } catch (e) {}
 ok((man.shortcuts || []).some(s => s.url === './index.html#sos'), 'el manifiesto lleva el atajo SOS');
 

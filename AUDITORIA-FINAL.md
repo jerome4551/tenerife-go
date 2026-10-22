@@ -9805,6 +9805,28 @@ socorrista o si está».
   Lei, u, 您, вие y, en polaco, impersonal. `auditar_registro.js` lee
   también `modulos/emergencias.js` (lo de «ES-Alert» en francés, abajo, en
   «Encima del main del 23 de octubre»).
+- **Cuatro robots, apagados** (commit aparte). Tres le dan al panel lo que
+  pasa: los terremotos del IGN cerca de Tenerife, el semáforo del boletín
+  de INVOLCAN y las alertas del Gobierno de Canarias (el canal de su
+  categoría «Alertas»). Con ellos encendidos, el panel enseña cada dato con
+  su fecha y su fuente, lo esconde cuando envejece (6 horas los terremotos
+  y las alertas, 8 días el boletín) y el botón lleva un punto solo con un
+  boletín que no sea verde o con un terremoto de magnitud 3 o más en las
+  últimas 24 horas. El cuarto, el vigía, no toca la app: una vez por
+  semana mira las páginas oficiales de las que sale lo que dice el panel
+  (65 hoy: los consejos y los planes del Gobierno de Canarias, 112
+  Canarias, el IGN, el BOE, Sanidad, Transportes, Protección Civil, la
+  IVHHN, el Consejo Europeo de Resucitación, el ILCOR, el NHS, la
+  Asociación Española de Pediatría, la Comunidad de Madrid, el Servicio de
+  Información Toxicológica y «Tu Europa»; no la prensa, las noticias ni
+  Tenerife ON, que cambian a diario) y, si una cambia o deja de responder
+  tres veces seguidas, abre una incidencia en GitHub, «SOS: revisar el
+  panel de emergencias», para que una persona lo lea y cambie el panel si
+  hace falta. Es lo que pidió Jerome: «si entra nuevo planes de
+  evacuación». Solo se lanzan a mano hasta comprobarlos;
+  `probar_emergencias.js` ya prueba lo que enseña el panel con datos de
+  prueba; encenderlos es la rama `sos-encender` (el bloque 3 de
+  `PARA-CLAUDE-CODE-SOS.md`).
 
 `tools/auditar_emergencias.js` (en Node: las filas, las fuentes de cada
 guía, los grupos, los «Vea también», las banderas, los teléfonos, los
@@ -9896,8 +9918,12 @@ Y cada bloque por separado, si hace falta:
 | `tools/cielo_uai.js` | los nombres de la UAI de la carta del cielo en chino, chino tradicional y búlgaro (`CIELO_UAI`, en `modulos/cielo.js`), de las traducciones de Stellarium que baja `cielo_fuentes.sh`; los coteja con la cultura celeste china y entre sí; con `--comprobar`, para si lo escrito no es lo que sale de las fuentes (lo pasa `auditar_cielo.js`) |
 | `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 235 avatares en 47 sets (SVG sin nada que se ejecute, solo con etiquetas de dibujo y 2.200 bytes como mucho, ids con la forma que pide `perfil.sql`, los 36 países de Europa ni uno más ni uno menos, la bandera de cada set), las 363 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas y rangos) |
 | `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql` y, como Supabase, da como mucho 1.000 filas por consulta), la nube con más filas de las que caben en una consulta, las visitas comprobadas en el mapa, el selector de los 47 sets (el país del navegador primero, «Todos los países» y su buscador), los 235 avatares y sus nombres sin cortar, y los diez idiomas a 360, 390 y 430 px |
-| `tools/auditar_emergencias.js` | el panel de emergencias (SOS) en Node: cada fila en los diez idiomas y pedida por el código, las ocho del armazón en `UI_TX`, las fuentes de cada guía, los grupos y los «Vea también», las banderas y los teléfonos, los enlaces (https y de los dominios oficiales), el armazón con el 112 y el rótulo «SOS», el service worker (en `CORE`, con su rama y fuera de «red primero»), el atajo del manifiesto y que cada fichero de `window.SOS_DATOS` tenga su robot encendido, y ninguno encendido sin él |
+| `tools/auditar_emergencias.js` | el panel de emergencias (SOS) en Node: cada fila en los diez idiomas y pedida por el código, las ocho del armazón en `UI_TX`, las fuentes de cada guía, los grupos y los «Vea también», las banderas y los teléfonos, los enlaces (https y de los dominios oficiales), el armazón con el 112 y el rótulo «SOS», el service worker (en `CORE`, con su rama y fuera de «red primero»), el atajo del manifiesto, que cada fichero de `window.SOS_DATOS` tenga su robot encendido, y ninguno encendido sin él, y que lo que escriben los robots vaya en «red primero» |
 | `tools/probar_emergencias.js` | el panel de emergencias en un navegador: la barra de abajo con el SOS a 320 y 360 px y el panel a 360, 390 y 430 en los diez idiomas, las veinticinco guías con sus fuentes y «atrás», los teléfonos de la tarjeta del 112, las coordenadas, el cambio de idioma, los hospitales, los avisos de AEMET y la franja del resumen, lo que enseña con los datos de los robots (frescos, viejos y rotos), el módulo que no llega, `#sos` y sin conexión |
+| `tools/sismos_ign.py` | baja del IGN los terremotos de los últimos diez días cerca de Tenerife y escribe `datos/sismos-ign.json` (lo lanza `.github/workflows/sismos-ign.yml`, por ahora solo a mano); si algo no cuadra, no escribe; con `--probar`, contra un canal de prueba |
+| `tools/semaforo_involcan.py` | lee el semáforo y la fecha del boletín semanal de INVOLCAN de Tenerife y escribe `datos/semaforo-involcan.json` (`.github/workflows/semaforo-involcan.yml`, por ahora solo a mano); si algo no cuadra, no escribe; con `--probar`, contra un texto de prueba |
+| `tools/alertas_canarias.py` | lee el canal de la categoría «Alertas» de las noticias del Gobierno de Canarias y escribe `datos/alertas-canarias.json` con los titulares de los últimos 30 días, su fecha y su enlace (`.github/workflows/alertas-canarias.yml`, por ahora solo a mano); solo enlaces de `www3.gobiernodecanarias.org/noticias/`; si el canal no es el del Gobierno o algo no cuadra, no escribe; con `--probar`, contra un canal de prueba |
+| `tools/vigia_sos.py` | el vigía del panel SOS: mira las páginas oficiales de las que sale lo que dice el panel (las de `SOS_FUENTES` de los organismos, más el índice de consejos del Gobierno de Canarias) y escribe un informe si alguna cambia o deja de responder tres veces seguidas; guarda sus huellas en `tools/datos/vigia-sos.json`; respeta el `robots.txt` de cada sitio (`.github/workflows/vigia-sos.yml`, por ahora solo a mano: con el informe, abre una incidencia en GitHub o comenta la abierta); con `--probar`, sin red |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con

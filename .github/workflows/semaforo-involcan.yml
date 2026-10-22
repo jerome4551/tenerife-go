@@ -1,0 +1,71 @@
+# El semaforo volcanico de Tenerife segun el boletin semanal de INVOLCAN
+# (22 de octubre de 2026), para el panel SOS.
+#
+# INVOLCAN publica cada semana el informativo «Guayota» de Tenerife, que dice
+# en que posicion esta el semaforo del PEVOLCA. Este flujo lo baja, lee la
+# frase del semaforo y la fecha del informe y los deja en
+# datos/semaforo-involcan.json. Todo lo que hace y por que esta en
+# tools/semaforo_involcan.py.
+#
+# ANTES DE ENCENDERLO: lanzarlo a mano una vez (Run workflow) y mirar en el
+# registro que dice «Escrito ... boletin del <fecha de la semana>, semaforo
+# <color>» con lo mismo que se lee en el PDF. Hasta entonces, solo a mano.
+#
+# NO ES UN AVISO: el boletin es semanal. La app ensena el color con la fecha
+# del boletin, recuerda que los cambios los anuncian antes el 112 y ES-Alert, y
+# deja de ensenarlo a los 8 dias. Si no puede leer el PDF, no escribe nada.
+#
+# CUATRO VECES AL DIA, minuto :29 (lejos de :07, :17, :23, :41 y del :00).
+
+name: Semaforo INVOLCAN Tenerife
+
+on:
+  # ENCENDER: quitar el # de estas lineas cuando la primera pasada a mano cuadre.
+  # schedule:
+  #   - cron: '29 5 * * *'
+  #   - cron: '29 11 * * *'
+  #   - cron: '29 17 * * *'
+  #   - cron: '29 23 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: semaforo-involcan
+  cancel-in-progress: false
+
+jobs:
+  semaforo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Instalar pypdf, para leer el PDF
+        run: python3 -m pip install --quiet pypdf==5.9.0
+
+      - name: Leer el boletin de INVOLCAN
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python3 tools/semaforo_involcan.py
+
+      - name: Guardar en el repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add datos/semaforo-involcan.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+            exit 0
+          fi
+          M=$(python3 -c "import json;d=json.load(open('datos/semaforo-involcan.json'));print(d['boletin'] + ' ' + d['color'])")
+          git commit -m "Boletin INVOLCAN Tenerife: $M"
+          for i in 1 2 3 4; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              exit 0
+            fi
+            sleep $((i * 10))
+          done
+          echo "::error::No se pudo subir el fichero del boletin"
+          exit 1

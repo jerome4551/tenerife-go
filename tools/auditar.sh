@@ -253,6 +253,13 @@ echo; echo "════════ emergencias (SOS): textos, fuentes, enlaces
 # aunque el modulo no llegue. Ninguna guia sin sus fuentes.
 control auditar_emergencias.js node tools/auditar_emergencias.js
 control probar_emergencias.js node tools/probar_emergencias.js "$PUERTO"
+# Y sus cuatro robots, apagados hasta comprobarlos (la nota PARA-CLAUDE-CODE-SOS,
+# bloque 3): cada uno contra su canal de prueba, sin red. Si algo no cuadra,
+# no escriben. El vigia no escribe en la app: avisa con una incidencia.
+control sismos_ign.py python3 tools/sismos_ign.py --probar
+control semaforo_involcan.py python3 tools/semaforo_involcan.py --probar
+control alertas_canarias.py python3 tools/alertas_canarias.py --probar
+control vigia_sos.py python3 tools/vigia_sos.py --probar
 echo
 # Los rotos van PRIMERO y con su propio nombre: son los que no han mirado nada.
 [ "$rotos" = 0 ] || echo "*** $rotos control(es) QUE NO SE PUDIERON EJECUTAR (pip install -r tools/requisitos.txt) ***"

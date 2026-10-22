@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Canal de PRUEBA para las pruebas de tools/alertas_canarias.py (opcion probar). Tiene la forma del
+     canal «Alertas» del Portal de Noticias del Gobierno de Canarias (RSS 2.0,
+     WordPress), con notas INVENTADAS del ano 2099: ninguna es real. -->
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+	<title>Alertas &#8211; Portal de Noticias del Gobierno de Canarias</title>
+	<link>https://www3.gobiernodecanarias.org/noticias</link>
+	<description>Gobierno de Canarias</description>
+	<lastBuildDate>Fri, 20 Mar 2099 09:31:00 +0000</lastBuildDate>
+	<language>es</language>
+	<item>
+		<title>PRUEBA · El Gobierno de Canarias declara la prealerta por lluvias en Tenerife</title>
+		<link>https://www3.gobiernodecanarias.org/noticias/prueba-prealerta-lluvias-tenerife-2099/</link>
+		<pubDate>Fri, 20 Mar 2099 10:30:00 +0100</pubDate>
+		<category><![CDATA[Alertas]]></category>
+		<description><![CDATA[Nota de prueba.]]></description>
+	</item>
+	<item>
+		<title>PRUEBA &#8211; El Gobierno actualiza la situación: &#171;Alerta máxima&#187; por viento &amp;#8230;</title>
+		<link>https://www3.gobiernodecanarias.org/noticias/prueba-alerta-maxima-viento-2099/</link>
+		<pubDate>Thu, 19 Mar 2099 18:00:00 +0000</pubDate>
+		<category><![CDATA[Alertas]]></category>
+	</item>
+	<item>
+		<title>PRUEBA · El Gobierno de Canarias finaliza la prealerta por fenómenos costeros</title>
+		<link>https://www3.gobiernodecanarias.org/noticias/prueba-fin-prealerta-costeros-2099/</link>
+		<pubDate>Mon, 16 Mar 2099 08:00:00 +0000</pubDate>
+	</item>
+	<item>
+		<title>PRUEBA · El Gobierno de Canarias finaliza la prealerta por fenómenos costeros</title>
+		<link>https://www3.gobiernodecanarias.org/noticias/prueba-fin-prealerta-costeros-2099/</link>
+		<pubDate>Mon, 16 Mar 2099 08:00:00 +0000</pubDate>
+	</item>
+	<item>
+		<title>PRUEBA · Una nota con el enlace a otra web</title>
+		<link>https://example.org/prueba-2099/</link>
+		<pubDate>Wed, 18 Mar 2099 08:00:00 +0000</pubDate>
+	</item>
+	<item>
+		<title>PRUEBA · Una nota sin fecha</title>
+		<link>https://www3.gobiernodecanarias.org/noticias/prueba-sin-fecha-2099/</link>
+	</item>
+	<item>
+		<title>PRUEBA · Una nota con la hora del futuro</title>
+		<link>https://www3.gobiernodecanarias.org/noticias/prueba-futuro-2099/</link>
+		<pubDate>Sat, 21 Mar 2099 12:00:00 +0000</pubDate>
+	</item>
+	<item>
+		<title>PRUEBA · Una alerta de enero, de hace mas de 30 dias</title>
+		<link>https://www3.gobiernodecanarias.org/noticias/prueba-enero-2099/</link>
+		<pubDate>Mon, 05 Jan 2099 08:00:00 +0000</pubDate>
+	</item>
+</channel>
+</rss>

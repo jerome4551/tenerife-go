@@ -1,0 +1,94 @@
+# Terremotos del IGN cerca de Tenerife, para el panel SOS (22 de octubre de 2026).
+#
+# La app no puede pedirselos al IGN: es otro dominio. Este flujo los baja aqui,
+# del canal GeoRSS del IGN (los ultimos diez dias de toda Espana), se queda con
+# los de la caja de Tenerife y los deja en datos/sismos-ign.json, que la app lee
+# de su propio dominio. Todo lo que hace y por que esta en tools/sismos_ign.py.
+#
+# ANTES DE ENCENDERLO: comprobar una vez que la hora del canal es UTC (un
+# terremoto del canal contra su ficha del IGN; ver tools/sismos_ign.py, «LA
+# HORA»). Hasta entonces, este flujo solo se lanza a mano.
+#
+# SI NO PUEDE: tools/sismos_ign.py no escribe nada cuando la descarga o la
+# lectura fallan. El fichero se queda con su ultima comprobacion buena y su
+# hora («consultado»), y la app, al ver esa hora vieja (mas de 6 horas), dice
+# que no ha podido comprobar desde entonces y manda a la web del IGN.
+#
+# CADA HORA, CON VEINTICUATRO LINEAS (como avisos-aemet.yml: el programador de
+# GitHub lanza cada linea mas o menos una vez al dia y tarde). Minuto :17,
+# lejos del :07 de la notificacion, del :23 de las gasolineras, del :41 de
+# AEMET y del :00. Sin cambios solo se guarda cada 3 horas, para renovar la
+# hora de comprobacion; con cambios, en cuanto se ven.
+#
+# Uso a mano: pestana Actions -> "Terremotos IGN Tenerife" -> Run workflow.
+
+name: Terremotos IGN Tenerife
+
+on:
+  # ENCENDER: quitar el # de las 24 lineas de cron cuando la hora este comprobada.
+  # schedule:
+  #   - cron: '17 0 * * *'
+  #   - cron: '17 1 * * *'
+  #   - cron: '17 2 * * *'
+  #   - cron: '17 3 * * *'
+  #   - cron: '17 4 * * *'
+  #   - cron: '17 5 * * *'
+  #   - cron: '17 6 * * *'
+  #   - cron: '17 7 * * *'
+  #   - cron: '17 8 * * *'
+  #   - cron: '17 9 * * *'
+  #   - cron: '17 10 * * *'
+  #   - cron: '17 11 * * *'
+  #   - cron: '17 12 * * *'
+  #   - cron: '17 13 * * *'
+  #   - cron: '17 14 * * *'
+  #   - cron: '17 15 * * *'
+  #   - cron: '17 16 * * *'
+  #   - cron: '17 17 * * *'
+  #   - cron: '17 18 * * *'
+  #   - cron: '17 19 * * *'
+  #   - cron: '17 20 * * *'
+  #   - cron: '17 21 * * *'
+  #   - cron: '17 22 * * *'
+  #   - cron: '17 23 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sismos-ign
+  cancel-in-progress: false
+
+jobs:
+  sismos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Bajar los terremotos del IGN cerca de Tenerife
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python3 tools/sismos_ign.py
+
+      - name: Guardar en el repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add datos/sismos-ign.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+            exit 0
+          fi
+          N=$(python3 -c "import json;print(len(json.load(open('datos/sismos-ign.json'))['sismos']))")
+          if [ "$N" = "0" ]; then MSG="Terremotos IGN cerca de Tenerife: ninguno"; else MSG="Terremotos IGN cerca de Tenerife: $N en 10 dias"; fi
+          git commit -m "$MSG"
+          for i in 1 2 3 4; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              exit 0
+            fi
+            sleep $((i * 10))
+          done
+          echo "::error::No se pudo subir el fichero de terremotos"
+          exit 1

@@ -1,0 +1,4 @@
+PRUEBA para tools/semaforo_involcan.py: las dos frases que el robot busca en el informativo semanal «Guayota» de Tenerife de INVOLCAN, con la forma que tenian el 16 de octubre de 2026, y los codigos de sus estaciones.
+Según el PEVOLCA se informa que en la actualidad el semáforo volcánico se encuentra en posición VERDE.
+Este informe está actualizado a las 00:00 del 16 octubre 2026.
+TFE12 TFT12 TEIT

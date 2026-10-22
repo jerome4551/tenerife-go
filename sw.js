@@ -324,6 +324,13 @@ self.addEventListener('fetch', e => {
          para siempre, que es justo lo que no puede pasar con un aviso. Sin
          red sale el ultimo, con su hora, y la app dice desde cuando no se ha
          podido comprobar. */
+      /* Y los tres robots del panel de EMERGENCIAS (22 de octubre de 2026):
+         los terremotos del IGN cerca de Tenerife y las alertas del Gobierno
+         de Canarias, que se rehacen cada hora, y el semaforo del boletin
+         semanal de INVOLCAN. Con `cached || fetch` el primero que entrase se
+         quedaria para siempre. Sin red sale el ultimo, con su hora, y el
+         panel lo dice o lo esconde. Mientras esten apagados
+         (window.SOS_DATOS vacio) nadie los pide. */
       /* Y las dos paginas fijas que pide Google Play (16 de octubre de 2026,
          LANZAMIENTO-PLAY.md 1.2 y 1.3): borrar-cuenta.html y privacidad.html.
          Son texto legal; con `cached || fetch` el primer texto que entrase
@@ -340,6 +347,9 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/datos/precios-gasolineras.json') ||
           url.pathname.endsWith('/datos/gasolineras-municipio.json') ||
           url.pathname.endsWith('/datos/avisos-aemet.json') ||
+          url.pathname.endsWith('/datos/sismos-ign.json') ||
+          url.pathname.endsWith('/datos/semaforo-involcan.json') ||
+          url.pathname.endsWith('/datos/alertas-canarias.json') ||
           /\/(idiomas\/(etiquetas\/|cielo\/)?|faq\/)[a-z]{2,3}\.json$/.test(url.pathname)) {
         return fetch(req).then(res => {
           if (guardableShell(res)) guardar(req, res);

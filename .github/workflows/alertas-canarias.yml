@@ -1,0 +1,97 @@
+# Las alertas que declara el Gobierno de Canarias, para el panel SOS
+# (22 de octubre de 2026).
+#
+# Cada prealerta, alerta o emergencia que declara el Gobierno de Canarias (y su
+# fin) sale como nota en su portal de noticias, categoria «Alertas», que tiene
+# canal RSS. La app no puede leerlo desde el navegador (otro dominio): este
+# flujo lo baja y deja los titulares, con su hora y su enlace, en
+# datos/alertas-canarias.json, que la app lee de su propio dominio. Todo lo que
+# hace y por que esta en tools/alertas_canarias.py.
+#
+# ANTES DE ENCENDERLO: lanzarlo a mano una vez (Run workflow) y comprobar que
+# los titulares del fichero son los de
+# https://www3.gobiernodecanarias.org/noticias/category/alertas/ con su hora.
+# Hasta entonces, solo a mano.
+#
+# NO ES UN AVISO DE LA APP: el panel ensena los titulares oficiales, en
+# castellano, con su hora y su enlace, sin decidir a quien tocan. Si no puede
+# leer el canal, no escribe nada; a las 6 horas la app dice que no ha podido
+# comprobar.
+#
+# CADA HORA, CON VEINTICUATRO LINEAS (como avisos-aemet.yml: el programador de
+# GitHub lanza cada linea mas o menos una vez al dia y tarde). Minuto :53,
+# lejos de :07, :17, :23, :29, :37, :41 y del :00. Sin cambios solo se guarda
+# cada 3 horas, para renovar la hora de comprobacion.
+#
+# Uso a mano: pestana Actions -> "Alertas Gobierno de Canarias" -> Run workflow.
+
+name: Alertas Gobierno de Canarias
+
+on:
+  # ENCENDER: quitar el # de las 24 lineas de cron cuando la primera pasada a mano cuadre.
+  # schedule:
+  #   - cron: '53 0 * * *'
+  #   - cron: '53 1 * * *'
+  #   - cron: '53 2 * * *'
+  #   - cron: '53 3 * * *'
+  #   - cron: '53 4 * * *'
+  #   - cron: '53 5 * * *'
+  #   - cron: '53 6 * * *'
+  #   - cron: '53 7 * * *'
+  #   - cron: '53 8 * * *'
+  #   - cron: '53 9 * * *'
+  #   - cron: '53 10 * * *'
+  #   - cron: '53 11 * * *'
+  #   - cron: '53 12 * * *'
+  #   - cron: '53 13 * * *'
+  #   - cron: '53 14 * * *'
+  #   - cron: '53 15 * * *'
+  #   - cron: '53 16 * * *'
+  #   - cron: '53 17 * * *'
+  #   - cron: '53 18 * * *'
+  #   - cron: '53 19 * * *'
+  #   - cron: '53 20 * * *'
+  #   - cron: '53 21 * * *'
+  #   - cron: '53 22 * * *'
+  #   - cron: '53 23 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: alertas-canarias
+  cancel-in-progress: false
+
+jobs:
+  alertas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Bajar las alertas del Gobierno de Canarias
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python3 tools/alertas_canarias.py
+
+      - name: Guardar en el repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add datos/alertas-canarias.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+            exit 0
+          fi
+          N=$(python3 -c "import json;print(len(json.load(open('datos/alertas-canarias.json'))['alertas']))")
+          if [ "$N" = "0" ]; then MSG="Alertas Gobierno de Canarias: ninguna en 30 dias"; else MSG="Alertas Gobierno de Canarias: $N en 30 dias"; fi
+          git commit -m "$MSG"
+          for i in 1 2 3 4; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              exit 0
+            fi
+            sleep $((i * 10))
+          done
+          echo "::error::No se pudo subir el fichero de alertas"
+          exit 1

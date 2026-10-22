@@ -1,0 +1,86 @@
+# El vigia del panel SOS (22 de octubre de 2026): avisa cuando cambia una de
+# las paginas oficiales de las que sale lo que dice el panel (consejos,
+# planes de emergencias, el 112, el IGN, Sanidad, Salvamento Maritimo).
+#
+# Jerome: «También si entra nuevo planes de evacuación. Siempre atentos». Un
+# texto de la app no cambia solo: lo cambia una persona tras leer la fuente.
+# Este flujo se da cuenta y avisa: abre una incidencia en GitHub con lo que ha
+# cambiado (o comenta la que ya este abierta). No toca la app. Todo lo que
+# hace y por que esta en tools/vigia_sos.py.
+#
+# ANTES DE ENCENDERLO: lanzarlo a mano una vez (Run workflow). La primera vez
+# solo apunta las huellas en tools/datos/vigia-sos.json; desde la segunda,
+# avisa de lo que cambie.
+#
+# UNA VEZ POR SEMANA, el lunes a las 06:47 UTC (lejos de los otros robots).
+#
+# Uso a mano: pestana Actions -> "Vigia SOS" -> Run workflow.
+
+name: Vigia SOS
+
+on:
+  # ENCENDER: quitar el # de estas dos lineas despues de la primera pasada a mano.
+  # schedule:
+  #   - cron: '47 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: vigia-sos
+  cancel-in-progress: false
+
+jobs:
+  vigia:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Mirar las paginas oficiales
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python3 tools/vigia_sos.py --informe "$RUNNER_TEMP/vigia.md"
+
+      # Primero el aviso y despues las huellas: si el aviso falla (por
+      # ejemplo, con las incidencias desactivadas), el flujo sale en rojo, las
+      # huellas no se guardan y la semana siguiente vuelve a avisar. Un cambio
+      # no se pierde nunca sin que alguien lo vea.
+      - name: Avisar con una incidencia si algo ha cambiado
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          INFORME="$RUNNER_TEMP/vigia.md"
+          if [ ! -s "$INFORME" ]; then
+            echo "Nada que revisar"
+            exit 0
+          fi
+          cat "$INFORME" >> "$GITHUB_STEP_SUMMARY"
+          TITULO="SOS: revisar el panel de emergencias"
+          N=$(gh issue list --state open --search "in:title \"$TITULO\"" --json number --jq '.[0].number // empty' || true)
+          if [ -n "$N" ]; then
+            gh issue comment "$N" --body-file "$INFORME"
+          else
+            gh issue create --title "$TITULO" --body-file "$INFORME"
+          fi
+
+      - name: Guardar las huellas en el repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/datos/vigia-sos.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios en las huellas"
+            exit 0
+          fi
+          git commit -m "Vigia SOS: huellas de las fuentes oficiales"
+          for i in 1 2 3 4; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              exit 0
+            fi
+            sleep $((i * 10))
+          done
+          echo "::error::No se pudieron subir las huellas"
+          exit 1

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Canal de PRUEBA con la forma del GeoRSS de sismologia del IGN
+     (https://www.ign.es/ign/RssTools/sismologia.xml). Los terremotos son
+     INVENTADOS (ano 2099, identificadores es2099…): solo sirven para los
+     controles de tools/sismos_ign.py (la opcion probar). -->
+<rss xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:georss="http://www.georss.org/georss" version="2.0">
+  <channel>
+    <title>GeoRSS Sismología IGN</title>
+    <link>http://www.ign.es/ign/rss</link>
+    <description>Canal de prueba con la forma del de los terremotos de los ultimos diez dias.</description>
+    <language>es</language>
+    <item>
+      <title>-Info.terremoto: 19/03/2099 08:00:00</title>
+      <link>http://www.ign.es/web/ign/portal/sis-catalogo-terremotos/-/catalogo-terremotos/detailTerremoto?evid=es2099aaaaa</link>
+      <description>Se ha producido un terremoto de magnitud 1.8 en LAS CAÑADAS DEL TEIDE.ITF en la fecha 19/03/2099 08:00:00 en la siguiente localización: 28.27,-16.64</description>
+      <guid>http://www.ign.es/web/ign/portal/sis-catalogo-terremotos/-/catalogo-terremotos/detailTerremoto?evid=es2099aaaaa</guid>
+      <geo:lat>28.27</geo:lat>
+      <geo:long>-16.64</geo:long>
+    </item>
+    <item>
+      <title>-Info.terremoto: 19/03/2099 23:05:10</title>
+      <link>http://www.ign.es/web/ign/portal/sis-catalogo-terremotos/-/catalogo-terremotos/detailTerremoto?evid=es2099aaaab</link>
+      <description>Se ha producido un terremoto de magnitud 3.1 en ATLÁNTICO-CANARIAS en la fecha 19/03/2099 23:05:10 en la siguiente localización: 28.60,-16.05</description>
+      <guid>http://www.ign.es/web/ign/portal/sis-catalogo-terremotos/-/catalogo-terremotos/detailTerremoto?evid=es2099aaaab</guid>
+      <geo:lat>28.60</geo:lat>
+      <geo:long>-16.05</geo:long>
+    </item>
+    <item>
+      <title>-Info.terremoto: 18/03/2099 19:34:55</title>
+      <link>http://www.ign.es/web/ign/portal/sis-catalogo-terremotos/-/catalogo-terremotos/detailTerremoto?evid=es2099aaaac</link>
+      <description>Se ha producido un terremoto de magnitud 2.5 en SW EL PINAR DE EL HIERRO.IHI en la fecha 18/03/2099 19:34:55 en la siguiente localización: 27.62,-18.0859</description>
+      <guid>http://www.ign.es/web/ign/portal/sis-catalogo-terremotos/-/catalogo-terremotos/detailTerremoto?evid=es2099aaaac</guid>
+      <geo:lat>27.62</geo:lat>
+      <geo:long>-18.0859</geo:long>
+    </item>
+    <item>
+      <title>-Info.terremoto: 17/03/2099 03:10:00</title>
+      <link>http://www.ign.es/web/ign/portal/sis-catalogo-terremotos/-/catalogo-terremotos/detailTerremoto?evid=es2099aaaad</link>
+      <description>Se ha producido un terremoto de magnitud 2.0 en ATLÁNTICO-GRAN CANARIA en la fecha 17/03/2099 03:10:00 en la siguiente localización: 27.95,-15.60</description>
+      <guid>http://www.ign.es/web/ign/portal/sis-catalogo-terremotos/-/catalogo-terremotos/detailTerremoto?evid=es2099aaaad</guid>
+      <geo:lat>27.95</geo:lat>
+      <geo:long>-15.60</geo:long>
+    </item>
+    <item>
+      <title>-Info.terremoto: NO DATE</title>
+      <link>http://www.ign.es/web/ign/portal/sis-catalogo-terremotos/-/catalogo-terremotos/detailTerremoto?evid=es2099aaaae</link>
+      <description>DESCRIPTION MISSING MAGNITUDE AND REGION</description>
+      <guid>ITEM_ID</guid>
+      <geo:lat>28.30</geo:lat>
+      <geo:long>-16.50</geo:long>
+    </item>
+    <item>
+      <title>-Info.terremoto: 16/03/2099 10:00:00</title>
+      <link>http://www.ign.es/web/ign/portal/sis-catalogo-terremotos/-/catalogo-terremotos/detailTerremoto?evid=es2099aaaaf</link>
+      <description>Se ha producido un terremoto de magnitud 1.1 en GUÍA DE ISORA.ITF en la fecha 16/03/2099 10:00:00 en la siguiente localización: sin dato</description>
+      <guid>http://www.ign.es/web/ign/portal/sis-catalogo-terremotos/-/catalogo-terremotos/detailTerremoto?evid=es2099aaaaf</guid>
+    </item>
+  </channel>
+</rss>
