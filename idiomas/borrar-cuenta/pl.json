@@ -6,7 +6,7 @@
  "correoTxt": "Wystarczy napisać do nas na {correo} z adresu e-mail konta, z tematem «{asunto}». Usuwamy je najpóźniej w ciągu miesiąca od otrzymania wiadomości (RODO, art. 12 ust. 3).",
  "asunto": "Usuń moje konto",
  "borraTitulo": "Co zostanie usunięte",
- "borraTxt": "Adres e-mail, hasło (przechowywane w postaci zaszyfrowanej) i ulubione zapisane w chmurze.",
+ "borraTxt": "Adres e-mail, hasło (przechowywane w postaci zaszyfrowanej), ulubione zapisane w chmurze oraz – jeśli zostały zapisane na koncie – profil i postępy.",
  "noTitulo": "Czego nie usuwa się razem z kontem",
  "noPush": "Powiadomienia: wyłącza się je w przeglądarce albo w ustawieniach telefonu.",
  "noDispositivo": "To, co zapisane na urządzeniu, na przykład język albo ulubione: znika po wyczyszczeniu danych witryny w przeglądarce albo odinstalowaniu aplikacji."

@@ -207,7 +207,7 @@ def cuerpo(L, panel):
              f'{fuera("https://supabase.com/privacy", "Supabase", "nombre del proveedor")}{t("ppDatosRls")}</li>')
     # Los sensores y la camara (20 de octubre de 2026): «Apunta al cielo» del
     # panel del cielo los usa en el dispositivo y nada sale de el.
-    for a, b in (('ppDatosFav', 'ppDatosFavTxt'), ('ppDatosPref', 'ppDatosPrefTxt'),
+    for a, b in (('ppDatosFav', 'ppDatosFavTxt'), ('ppDatosPerfil', 'ppDatosPerfilTxt'), ('ppDatosPref', 'ppDatosPrefTxt'),
                  ('ppDatosPush', 'ppDatosPushTxt'), ('ppDatosSensores', 'ppDatosSensoresTxt'),
                  ('ppDatosCamara', 'ppDatosCamaraTxt'), ('ppDatosStats', 'ppDatosStatsTxt')):
         m.append(li(a, b))

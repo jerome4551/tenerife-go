@@ -6,7 +6,7 @@
  "correoTxt": "Write to {correo} from your account’s email address, with the subject «{asunto}». We delete it no later than one month after receiving your email (GDPR, Article 12(3)).",
  "asunto": "Delete my account",
  "borraTitulo": "What is deleted",
- "borraTxt": "Your email address, your password (stored encrypted) and the favourites you have saved in the cloud.",
+ "borraTxt": "Your email address, your password (stored encrypted), the favourites you have saved in the cloud and, if you saved them to your account, your profile and progress.",
  "noTitulo": "What is not deleted with the account",
  "noPush": "Notifications: you turn them off in your browser or in your phone’s settings.",
  "noDispositivo": "What is saved on your device, such as the language or your favourites: it disappears when you clear the site data in your browser or uninstall the app."
