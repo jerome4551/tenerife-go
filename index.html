@@ -4466,6 +4466,14 @@ window.onunhandledrejection = function(e) {
   .auth-btn:hover { border-color: var(--gold); background: rgba(212,175,55,0.1); }
   .auth-btn svg { width: 18px; height: 18px; }
   .auth-btn.is-logged { border-color: var(--gold); background: rgba(212,175,55,0.15); color: var(--gold-light); }
+  /* El avatar del perfil en lugar del icono (22 de octubre de 2026): llena el
+     circulo del boton; el punto verde de la sesion sigue encima */
+  .tg-avatar-cuenta { display: block; border-radius: 50%; overflow: hidden; pointer-events: none; }
+  .tg-avatar-cuenta svg { display: block; width: 100%; height: 100%; }
+  .con-avatar > svg { display: none; }
+  .auth-btn.con-avatar { padding: 0; overflow: visible; }
+  .auth-btn .tg-avatar-cuenta { width: 100%; height: 100%; }
+  .auth-btn .tg-avatar-cuenta svg { width: 100%; height: 100%; }
   /* Punto verde indicador de sesión activa */
   .auth-dot {
     position: absolute;
@@ -6387,7 +6395,7 @@ window.onunhandledrejection = function(e) {
       <span class="fav-badge hidden" id="fav-badge">0</span>
     </button>
     <!-- BOTÓN CUENTA / AUTH -->
-    <button class="auth-btn" id="auth-btn" onclick="openAuthModal()" title="Cuenta" aria-label="Cuenta">
+    <button class="auth-btn" id="auth-btn" onclick="openAuthModal()" title="Cuenta" aria-label="Cuenta" data-avatar-cuenta>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
         <circle cx="12" cy="7" r="4"/>
@@ -35315,6 +35323,69 @@ html.cielo-rojo body::before {
 })();
 </script>
 <!-- ══ fin CIELO DE TENERIFE ══ -->
+
+<!-- ══ PERFIL: el avatar en el boton de la cuenta ══ -->
+<script>
+(function () {
+  'use strict';
+  /* CARGA-PEREZOSA: modulos/avatares.js
+     El catalogo de avatares del perfil (22 de octubre de 2026): 55 dibujos
+     SVG propios, unos 60 kB. No se pide al arrancar: solo si la persona ya
+     eligio uno (para pintarlo en el boton de la cuenta, cuando el movil esta
+     libre) y al abrir el perfil. El service worker lo precarga, asi que sin
+     cobertura tambien sale. tools/fuente.js y tools/fuente.py leen esta
+     linea y lo pegan al fuente, como los <script src>. */
+  var MODULO = './modulos/avatares.js', carga = null;
+  function cargar() {
+    if (window.TG_AVATARES) return Promise.resolve();
+    if (carga) return carga;
+    carga = new Promise(function (ok, mal) {
+      var s = document.createElement('script');
+      s.src = MODULO;
+      s.onload = function () { if (window.TG_AVATARES) ok(); else mal(new Error('avatares')); };
+      s.onerror = function () { s.remove(); mal(new Error('avatares')); };
+      document.head.appendChild(s);
+    }).catch(function (e) { carga = null; throw e; });
+    return carga;
+  }
+  /* El avatar elegido, del perfil guardado en el dispositivo (lo que no sea
+     un id del catalogo lo descarta pintar()) */
+  function elegido() {
+    try { var p = JSON.parse(localStorage.getItem('tenerife.perfil')); return p && typeof p.avatar === 'string' ? p.avatar : ''; }
+    catch (e) { return ''; }
+  }
+  /* En cada boton marcado con data-avatar-cuenta, el avatar en lugar del
+     icono; sin un avatar valido, el boton se queda como esta. El dibujo va
+     oculto al lector de pantalla: el boton ya dice lo que es. */
+  function pintar() {
+    var id = elegido(), AV = window.TG_AVATARES;
+    var valido = !!(id && AV && AV.porId(id));
+    document.querySelectorAll('[data-avatar-cuenta]').forEach(function (b) {
+      var caja = b.querySelector('.tg-avatar-cuenta');
+      if (!valido) { if (caja) caja.remove(); b.classList.remove('con-avatar'); return; }
+      if (!caja) { caja = document.createElement('span'); caja.className = 'tg-avatar-cuenta'; b.insertBefore(caja, b.firstChild); }
+      if (caja.dataset.id !== id) { caja.innerHTML = AV.svg(id); caja.dataset.id = id; }
+      b.classList.add('con-avatar');
+    });
+  }
+  /* Lo llama tambien el perfil al elegir otro avatar o al borrar sus datos */
+  function avatarCuenta() {
+    if (elegido()) return cargar().then(pintar, function () {});
+    pintar(); return Promise.resolve();
+  }
+  window.TG_AVATARES_CARGAR = cargar;
+  window.TG_AVATAR_CUENTA = avatarCuenta;
+  /* Al arrancar, solo con un avatar elegido y cuando el movil esta libre: el
+     mapa y la barra van antes */
+  function iniciar() {
+    if (!elegido()) return;
+    if ('requestIdleCallback' in window) requestIdleCallback(avatarCuenta, { timeout: 4000 });
+    else setTimeout(avatarCuenta, 1500);
+  }
+  if (document.readyState !== 'loading') iniciar();
+  else document.addEventListener('DOMContentLoaded', iniciar);
+})();
+</script>
 
 <script>
 </script>

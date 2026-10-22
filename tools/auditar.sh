@@ -47,8 +47,9 @@ echo "  scripts en linea: $(ls chk/*.js 2>/dev/null | wc -l), con fallo: $mal"
 # datos/titsa.js: la red de guaguas, fuera de index.html desde el 9 de octubre
 # de 2026. extract_js.py solo saca los bloques en linea, asi que va aqui.
 # Y modulos/cielo.js, el panel del cielo, que se carga al abrirlo (17 de
+# octubre de 2026). Y modulos/avatares.js, el catalogo del perfil (22 de
 # octubre de 2026).
-for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js; do
+for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js; do
   if node --check "$f"; then echo "  $f ok"; else mal=$((mal+1)); fi
 done
 [ "$mal" != 0 ] && falla sintaxis
@@ -234,6 +235,11 @@ echo; echo "════════ el cielo de Tenerife: textos, catalogo, cal
 # (modulos/cielo.js) y todo lo que ensena se calcula en el movil: ningun otro
 # control lo abre, y una hora mal calculada no da error, da una hora.
 control auditar_cielo.js node tools/auditar_cielo.js "$PUERTO"
+echo; echo "════════ el perfil y los avatares ════════"
+# Desde el 22 de octubre de 2026. Los 55 avatares son SVG escritos a mano que
+# la app pinta con innerHTML: ninguno puede llevar nada que se ejecute, y
+# ningun otro control abre el catalogo.
+control auditar_perfil.js node tools/auditar_perfil.js
 echo
 # Los rotos van PRIMERO y con su propio nombre: son los que no han mirado nada.
 [ "$rotos" = 0 ] || echo "*** $rotos control(es) QUE NO SE PUDIERON EJECUTAR (pip install -r tools/requisitos.txt) ***"

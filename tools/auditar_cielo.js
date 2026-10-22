@@ -469,7 +469,9 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(index, '"' + k +
 titulo('4. la carga perezosa y lo que pide el navegador');
 {
   const decl = [...index.matchAll(/CARGA-PEREZOSA:\s*([\w./-]+\.js)/g)].map(m => m[1]);
-  ok(decl.length === 1 && decl[0] === 'modulos/cielo.js', 'index.html declara CARGA-PEREZOSA: modulos/cielo.js (tools/fuente.js lo pega al fuente)', decl.join(', '));
+  /* el cielo ya no es la unica carga perezosa (el perfil trae otras, 22 de
+     octubre de 2026): basta con que la suya este declarada */
+  ok(decl.includes('modulos/cielo.js'), 'index.html declara CARGA-PEREZOSA: modulos/cielo.js (tools/fuente.js lo pega al fuente)', decl.join(', '));
   ok(/var MODULO = '\.\/modulos\/cielo\.js'/.test(cascaraSrc), 'el cargador pide ese mismo fichero');
   ok(!/<script[^>]+src=["'](?:\.\/)?modulos\/cielo\.js/.test(index), 'y no va en una etiqueta de arranque: si fuera, la carga perezosa no serviria de nada');
   let sintaxis = true; try { execFileSync('node', ['--check', path.join(RAIZ, 'modulos', 'cielo.js')], { stdio: 'pipe' }); } catch (e) { sintaxis = String(e.stderr || e).slice(0, 200); }
