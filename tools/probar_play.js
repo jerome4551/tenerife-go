@@ -166,7 +166,8 @@ function supabaseFalso(cfg) {
       };
     });
     caso(`[${L}] la barra de abajo, sin la tienda: ${r.visibles.length} botones dentro y con su rotulo entero (${r.rotulos.join(' · ')})`,
-      !r.tienda && r.visibles.length === 5 && !r.visibles.includes('v19-nav-shop') && r.cortados.length === 0 && !r.desborda,
+      /* seis desde el 22 de octubre de 2026: el SOS (el panel de emergencias) */
+      !r.tienda && r.visibles.length === 6 && r.visibles.includes('v19-nav-sos') && !r.visibles.includes('v19-nav-shop') && r.cortados.length === 0 && !r.desborda,
       JSON.stringify(r));
     caso(`[${L}] el boton de administrador, con su rotulo en el idioma («${r.admRotulo}»)`, !!r.admRotulo && r.admRotulo === r.admFila, JSON.stringify([r.admRotulo, r.admFila]));
     caso(`[${L}] sin errores de pagina`, errores.length === 0, errores.join(' / '));

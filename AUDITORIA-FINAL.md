@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.050 kB** en castellano · **1.164 kB** en el peor caso (búlgaro) · 1.150 kB en polaco, el 23 de octubre, con los bloques quinto a octavo del cielo, el trato de usted y el perfil. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.054 kB** en castellano · **1.169 kB** en el peor caso (búlgaro) · 1.155 kB en polaco, el 24 de octubre, con los bloques quinto a octavo del cielo, el trato de usted, el perfil y el botón SOS. El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -4120,7 +4120,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 45 tablas, 2200 filas (y 4.341 filas, dentro y fuera del fuente)
+## Idiomas · 47 tablas, 2797 filas (y 4.938 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -4185,7 +4185,11 @@ Visita comprobada»): 45 tablas, 1981 filas y 4.122. Y el 23, los 36 países
 de Europa en el perfil: 216 filas más en `PERFIL_UI`, los nombres de sus 36
 sets y de sus 180 avatares, hasta 360: 2197 filas y 4.338; y las tres del
 selector, «Todos los países», su buscador y su aviso, hasta 363: 2200 filas
-y 4.341. El
+y 4.341. Y el 24, el panel de emergencias (el botón SOS): 2 tablas y 597
+filas más, `EMERG_UI` con 588 y `SOS_LOCALE` en `modulos/emergencias.js`,
+que `tools/fuente.js` pega al fuente, y en `UI_TX` las ocho que hacen falta
+antes de cargarlo (el botón, el título, la barra del 112, «cargando», el
+error, «reintentar» y «volver»): 47 tablas, 2797 filas y 4.938. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -9691,6 +9695,132 @@ mismas cifras que sobre `270c301`:
   su idioma; `probar_play.js`, 233 de 233.
 - `auditar_perfil.js`, 58 de 58; `probar_perfil.js`, 112 de 112.
 
+## Emergencias (SOS): el botón y el panel (22 de octubre, tarde)
+
+Jerome, el 22, con el ES-Alert del simulacro VOLCANEX en el móvil («semáforo
+volcánico naranja», simulado): «casi nadie sabe las reglas que seguir en caso
+que explota el volcán. Dónde ir, cómo evacuar, quién llamar? (…) preparar un
+botón o categoría, aviso». Y esa misma tarde, visto el primer panel: sin
+notificaciones push, pero «guardamos la app atenta para si se puede tener las
+informaciones adecuadas y reales (…) También si entra nuevo planes de
+evacuación (…) Existe planes para tsunami o otras catástrofe? Podríamos
+ponerlas también pero de nuevo si es material verificado. Problema en el mar
+también: qué hacer, primeros auxilios o a quién llamar si no está el
+socorrista o si está».
+
+- **El botón**: «SOS» en la barra de abajo, entre Rutas y Asistente. Arriba
+  no cabe (la barra de arriba ya no deja sitio al lema a 390 px); abajo
+  caben los seis a 320 px en los diez idiomas, sin botones fuera ni rótulos
+  cortados (lo mide `probar_emergencias.js`). `#sos` abre el panel
+  directamente, `#sos-<guía>` una guía, y en Android el icono tiene el
+  atajo «SOS» (`manifest.webmanifest`).
+- **El 112 no depende del módulo.** La barra roja «Llamar al 112»
+  (`tel:112`), el título, «cargando», el error y «reintentar» están en
+  `index.html` con sus ocho filas de `UI_TX`. Si `modulos/emergencias.js` no
+  llega, el panel lo dice, ofrece reintentar y el 112 sigue ahí.
+- **Sin conexión desde el primer día y sin esperar a la red**: el módulo va
+  en `CORE` y el service worker lo sirve de la caché al instante, con la red
+  por detrás. «Red primero» esperaría a que una red saturada fallase, sin
+  plazo; `cached || fetch` no traería nunca una versión nueva. La caché no
+  cambia de nombre, como con el cielo y los satélites: el service worker
+  nuevo lo precarga al instalarse. El módulo pesa 236 kB comprimido (624 kB
+  sin comprimir), con los textos de los diez idiomas; no entra en la
+  primera descarga.
+- **Lo que dice: veinticinco guías.** «Qué hacer si…», diecinueve en
+  siete grupos: si se lo piden las autoridades (evacuar, no salir de casa),
+  si alguien se encuentra mal (primeros auxilios), en el mar (alguien en
+  apuros en el agua, las picaduras, la playa y sus banderas), el volcán (el
+  semáforo, la ceniza, los gases), el terremoto y el maremoto, el incendio,
+  el tiempo y la montaña (incendio, lluvias e inundaciones, viento y
+  tormentas, calor y calima, montaña), y en el edificio y en la calle (fuego
+  en un edificio, apagón, fiestas y aglomeraciones). Seis de preparación: la
+  mochila, el plan familiar, si está de visita, ES-Alert, los planes
+  oficiales y los canales oficiales. Y «Hospitales en el mapa».
+- **De dónde: 90 fuentes**, debajo de cada guía las suyas. El PEVOLCA
+  (Decreto 112/2018), su página y sus recomendaciones de 2021; las
+  directrices básicas de riesgo volcánico y de terremotos (Órdenes
+  INT/1071/2026 e INT/1069/2026, BOE del 10 de octubre); la guía de
+  Protección Civil para las familias (2025); el plan estatal de maremotos
+  (BOE, 2021, y su edición comentada del IGN), las hojas del IGN (2020) y la
+  guía de tsunamis de Protección Civil; los consejos del Gobierno de
+  Canarias para cada riesgo (también incendios urbanos, espectáculos y
+  Carnaval), el anexo V del INFOCA y el Decreto 180/2025; 112 Canarias
+  (el servicio y sus idiomas, ES-Alert, la App 112, SOMU), el 012, INVOLCAN,
+  el IGN, la IVHHN, Tenerife ON y AEMET; el Ministerio de Sanidad (el calor
+  y su plan de 2026, las medusas, los accidentes en el agua); las guías de
+  2025 del Consejo Europeo de Resucitación (la versión para el público y
+  sus traducciones oficiales), el Resuscitation Council UK, el NHS y el
+  ILCOR; la Asociación Española de Pediatría y la SEUP; Salvamento Marítimo
+  (Ministerio de Transportes); el Decreto 116/2018 y la Orden de 22 de julio
+  de 2022 de las playas de Canarias (BOC); la AESAN y el Servicio de
+  Información Toxicológica. Lo que no se pudo comprobar en una fuente
+  oficial vigente no está: la aspirina (las dosis no coinciden entre
+  guías), lo que puede costar un rescate. El pie dice que la app no es un
+  canal oficial y la fecha de la revisión.
+- **Verificado línea a línea** (22 de octubre, noche; Jerome: «No quiero
+  nada inventado. Ni que no sea de actualidad más»). Seis verificaciones
+  independientes, cada línea contra su fuente oficial vigente y con su
+  cita: de 264, 232 bien, 31 corregidas y una sin comprobar (el visor de
+  riesgos, que dio error del servidor). Se quitó lo que no tenía apoyo (el
+  marco de la puerta en un terremoto, la «prealerta» del verde, «no es
+  momento de fotos», «avise a quien tenga cerca»…) y se puso al día lo
+  antiguo (los idiomas del 112, el 012 desde un móvil extranjero, la guía
+  de Protección Civil de 2025 en vez de la de 2004, las direcciones de
+  Sanidad y del BOC).
+- **El mar.** Con socorrista, avisarle y seguir lo que diga; sin él, el 112,
+  no tirarse al agua sin saber rescatar y lanzar algo que flote. Fuera del
+  agua, lo del ERC de 2025: el altavoz del móvil, 5 insuflaciones y luego 30
+  compresiones y 2 insuflaciones (o solo compresiones), el desfibrilador con
+  el pecho seco, no intentar sacarle el agua, y de lado solo si no pudo
+  golpearse. En una embarcación, el canal 16 de VHF o el 900 202 202 de
+  Salvamento Marítimo, que tiene su botón junto al 112, como el 012 (por su
+  número largo, que vale desde un móvil extranjero) y el Servicio de
+  Información Toxicológica. Las banderas, las siete de la Orden de 2022:
+  verde, amarilla, roja, púrpura (fauna marina, siempre con otra), la de
+  cuadros de los deportes náuticos, dos rojas a los lados de un peligro y
+  la bicolor de zona segura. Las medusas: ni vinagre ni amoniaco; para el
+  dolor, agua caliente o frío.
+- **La app no decide nunca si hay peligro ni de qué color está el
+  semáforo.** «Qué pasa ahora» enseña lo oficial con su fecha: los avisos de
+  AEMET para Tenerife que la app ya baja (`wxVigentes()` y `wxLineas()`, los
+  mismos del panel del tiempo; si fallan, lo dice y enlaza AEMET) y, cuando
+  sus robots estén encendidos, las alertas del Gobierno de Canarias (los
+  titulares de los últimos 7 días, 3 como mucho, en castellano y declarados
+  sin traducir; solo enlaces de `www3.gobiernodecanarias.org/noticias/`),
+  el semáforo del boletín de INVOLCAN y los terremotos del IGN. Debajo, los
+  enlaces a cada fuente. Si hay algo, una franja arriba del panel lo
+  resume (los avisos de AEMET, un semáforo que no sea verde, las alertas de
+  las últimas 24 horas, un terremoto de magnitud 3 o más) y lleva a ello.
+  El punto del botón SOS sigue siendo solo para el semáforo y los
+  terremotos: las alertas y AEMET no lo encienden, y AEMET ya tiene el suyo.
+- **Las coordenadas**, para dictárselas al 112: una sola lectura del GPS, con
+  cinco decimales, la precisión y la hora, y un botón de copiar. No se
+  guardan ni se envían. Están en la tarjeta del 112 y en las guías del mar y
+  de la montaña.
+- **La mochila**: quince cosas que se marcan, las de la guía de Protección
+  Civil de 2025 (con el agua por persona y día, la batería externa y el
+  silbato); se guardan solo en el móvil (`tenerife.mochila`, validado al
+  leer).
+- **De usted en los diez idiomas**, como el resto de la app: vous, Sie,
+  Lei, u, 您, вие y, en polaco, impersonal. `auditar_registro.js` lee
+  también `modulos/emergencias.js` (lo de «ES-Alert» en francés, abajo, en
+  «Encima del main del 23 de octubre»).
+
+`tools/auditar_emergencias.js` (en Node: las filas, las fuentes de cada
+guía, los grupos, los «Vea también», las banderas, los teléfonos, los
+enlaces, el armazón, el service worker, el manifiesto y que cada fichero de
+`window.SOS_DATOS` tenga su robot encendido) y `tools/probar_emergencias.js`
+(en Chromium: la barra de abajo a 320 y 360 px y el panel a 360, 390 y 430
+en los diez idiomas, las veinticinco guías, atrás, las coordenadas, el cambio
+de idioma con el panel abierto, los hospitales, los avisos de AEMET y la
+franja del resumen, lo que enseña con los datos de los robots —frescos,
+viejos y rotos, servidos por la propia prueba—, el módulo que no llega,
+`#sos` y sin conexión). Idiomas: dos tablas y 597 filas más (`EMERG_UI`,
+588, y `SOS_LOCALE`, en el módulo; las ocho del armazón en `UI_TX`).
+«SOS», «X (Twitter)», «Instagram», las siglas de los planes, los titulares
+de las alertas y la línea de cada terremoto («M 3,2 · lugar del IGN») no
+son filas: van declarados sin traducir.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -9766,6 +9896,8 @@ Y cada bloque por separado, si hace falta:
 | `tools/cielo_uai.js` | los nombres de la UAI de la carta del cielo en chino, chino tradicional y búlgaro (`CIELO_UAI`, en `modulos/cielo.js`), de las traducciones de Stellarium que baja `cielo_fuentes.sh`; los coteja con la cultura celeste china y entre sí; con `--comprobar`, para si lo escrito no es lo que sale de las fuentes (lo pasa `auditar_cielo.js`) |
 | `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 235 avatares en 47 sets (SVG sin nada que se ejecute, solo con etiquetas de dibujo y 2.200 bytes como mucho, ids con la forma que pide `perfil.sql`, los 36 países de Europa ni uno más ni uno menos, la bandera de cada set), las 363 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas y rangos) |
 | `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql` y, como Supabase, da como mucho 1.000 filas por consulta), la nube con más filas de las que caben en una consulta, las visitas comprobadas en el mapa, el selector de los 47 sets (el país del navegador primero, «Todos los países» y su buscador), los 235 avatares y sus nombres sin cortar, y los diez idiomas a 360, 390 y 430 px |
+| `tools/auditar_emergencias.js` | el panel de emergencias (SOS) en Node: cada fila en los diez idiomas y pedida por el código, las ocho del armazón en `UI_TX`, las fuentes de cada guía, los grupos y los «Vea también», las banderas y los teléfonos, los enlaces (https y de los dominios oficiales), el armazón con el 112 y el rótulo «SOS», el service worker (en `CORE`, con su rama y fuera de «red primero»), el atajo del manifiesto y que cada fichero de `window.SOS_DATOS` tenga su robot encendido, y ninguno encendido sin él |
+| `tools/probar_emergencias.js` | el panel de emergencias en un navegador: la barra de abajo con el SOS a 320 y 360 px y el panel a 360, 390 y 430 en los diez idiomas, las veinticinco guías con sus fuentes y «atrás», los teléfonos de la tarjeta del 112, las coordenadas, el cambio de idioma, los hospitales, los avisos de AEMET y la franja del resumen, lo que enseña con los datos de los robots (frescos, viejos y rotos), el módulo que no llega, `#sos` y sin conexión |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con

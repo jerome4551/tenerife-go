@@ -220,6 +220,26 @@ window.__estados = [
       const p = document.querySelector('#tgp-paises-grid .tgp-pais[data-set="' + s + '"]'); if (p) p.click(); await espera(300); }]),
   ['favoritos', async () => { document.getElementById('v19-nav-fav').click(); }],
   ['nav rutas', async () => { document.getElementById('v19-nav-routes').click(); }],
+  /* Emergencias (22 de octubre de 2026): el inicio del panel SOS, sus 25
+     guias y lo que ensena con los datos de los robots (puestos a mano en
+     su estado: sin red, y aunque los robots esten apagados). Los avisos de
+     AEMET del inicio son los de prueba que este barrido sirve en todas las
+     pantallas. El panel no esta hasta que se abre (modulos/emergencias.js):
+     TG_SOS_CARGAR lo carga. Va detras de «nav rutas», lejos de las
+     pantallas del cielo, que crecen por su lado. */
+  ['sos:inicio', async () => { await window.TG_SOS_CARGAR(); TG_SOS.abrir(); await espera(300); }],
+  ...['evacuar', 'confinar', 'auxilios', 'rescate', 'picaduras', 'playa', 'semaforo', 'ceniza', 'gases', 'sismo', 'maremoto', 'incendio',
+      'lluvias', 'viento', 'calor', 'montana', 'edificio', 'apagon', 'multitud', 'mochila', 'plan', 'visita', 'esalert', 'planes',
+      'canales'].map(g => ['sos:' + g, async () => {
+      await window.TG_SOS_CARGAR(); TG_SOS.abrir(g); await espera(200); }]),
+  ['sos:con robots', async () => {
+      await window.TG_SOS_CARGAR();
+      const ahora = Date.now(), iso = ms => new Date(ms).toISOString();
+      Object.assign(TG_SOS.estado, { vivoPedido: ahora,
+        semaforo: { color: 'amarillo', boletin: iso(ahora - 2 * 86400000).slice(0, 10), consultado: iso(ahora) },
+        sismos: { consultado: iso(ahora - 1800000), web: '', sismos: [{ t: iso(ahora - 7200000), lat: 28.27, lon: -16.64, m: 3.2, lugar: 'TENERIFE' }] },
+        alertas: { consultado: iso(ahora - 1200000), alertas: [{ t: iso(ahora - 3 * 3600000), titulo: 'PRUEBA · El Gobierno de Canarias declara la prealerta por lluvias', enlace: 'https://www3.gobiernodecanarias.org/noticias/category/alertas/' }] } });
+      TG_SOS.abrir(); await espera(300); }],
   ['leyenda', async () => { const b = document.getElementById('map-legend-toggle'); if (b) b.click(); }],
   ['tour', async () => { window.v19StartTour(); await espera(500);
       const t = []; for (let i = 0; i < 14; i++) { t.push(document.getElementById('v19-tour').innerText); const n = document.querySelector('#v19-tour .v19t-next'); if (!n || !document.getElementById('v19-tour').classList.contains('open')) break; n.click(); await espera(250); }
@@ -248,6 +268,9 @@ window.__ruta = async (a, b, min) => {
   try { await calculateRoute(); } finally { window.horaCanaria = h; }
 };
 window.__cierra = async () => {
+  /* el panel SOS, sin tocar el historial: con Escape y su history.go a la
+     vez se iria de la pagina */
+  try { if (window.TG_SOS && TG_SOS.estado.abierto) { TG_SOS.estado.historia = 0; TG_SOS.cerrar(); } } catch (e) {}
   for (const f of ['closeDetailSheet','closeCategorySheet','cerrarGasCerca','closeNearbyStops','closeRoutePanel','closeBusPanel','closeShopPanel','closeChatPanel','closeAuthModal']) { try { window[f] && window[f](); } catch (e) {} }
   try { map.closePopup(); } catch (e) {}
   document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));

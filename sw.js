@@ -43,6 +43,10 @@ const CORE = [
      nombre de la cache, el service worker nuevo los precarga al instalarse
      con cache: 'reload'. */
   './modulos/avatares.js', './modulos/perfil.js',
+  /* El panel de EMERGENCIAS (22 de octubre de 2026): tiene que estar sin
+     conexion desde el primer dia, y no esperar a la red: va abajo con su
+     propia estrategia (cache al instante, red por detras). */
+  './modulos/emergencias.js',
   /* Los satelites (21 de octubre de 2026): el motor SGP4 y los elementos
      orbitales que renueva el robot cada dia. Los elementos van tambien «red
      primero» abajo: cambian a diario. */
@@ -276,6 +280,20 @@ self.addEventListener('fetch', e => {
 
   e.respondWith(
     caches.match(req).then(cached => {
+      /* El panel de EMERGENCIAS (22 de octubre de 2026): de la cache al
+         instante y la red por detras. En una emergencia la red puede ir
+         saturada: con «red primero» el panel esperaria a que la peticion
+         fallase, sin plazo, y con `cached || fetch` una version nueva no
+         llegaria nunca. Asi abre ya con lo que tenga y la siguiente vez
+         trae lo nuevo. Sin copia, a la red como cualquier otro. */
+      if (url.pathname.endsWith('/modulos/emergencias.js')) {
+        const red = fetch(req).then(res => {
+          if (guardableShell(res)) guardar(req, res);
+          return res;
+        });
+        if (cached) { e.waitUntil(red.catch(() => {})); return cached; }
+        return red.catch(() => Response.error());
+      }
       /* Las curiosidades de las 88 constelaciones (idiomas/cielo/<lang>.json,
          22 de octubre de 2026) van igual: una por idioma, la de quien mira,
          que el panel del cielo pide al abrirse y que tiene que estar en el

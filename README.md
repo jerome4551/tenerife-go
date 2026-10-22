@@ -12,11 +12,12 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
 | Fichero | Qué es |
 |---|---|
-| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 21 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada y el modo nativo de la App Store: 35.200 líneas, 2,4 MB (745 kB con gzip). |
+| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares. Medido el 24 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada, el modo nativo de la App Store, el perfil y el botón SOS: 35.782 líneas, 2,5 MB (763 kB con gzip). |
 | `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
 | `modulos/cielo.js` | El panel 🔭 «Cielo de Tenerife»: su código y sus textos en los diez idiomas. No se carga al arrancar: lo pide `index.html` la primera vez que alguien abre el panel. |
 | `modulos/perfil.js` | La pantalla «Su perfil», la que abre «Cuenta»: el avatar y el nombre, los datos con el IMC, la evolución del peso y de los kilómetros que anota la persona, su isla con los logros, y la cuenta, con la nube solo con permiso. Su código, sus estilos y sus textos en los diez idiomas. Se pide la primera vez que alguien toca «Cuenta». |
 | `modulos/avatares.js` | Los 235 avatares del perfil, dibujos SVG propios en 47 sets de cinco: uno por cada idioma de la app, el de Tenerife, que se abre con 10 visitas comprobadas, y uno por cada uno de 36 países de Europa. Se pide al abrir el perfil, o al arrancar si ya hay uno elegido, para el botón de la cuenta. |
+| `modulos/emergencias.js` | El panel «Emergencias» del botón SOS: qué hacer ante una erupción, un terremoto u otra emergencia en Tenerife y a quién llamar, con sus fuentes oficiales y sus textos en los diez idiomas. Se pide al abrirlo y el service worker lo guarda desde el primer día; la barra del 112 está en `index.html` y llama aunque el módulo no llegue. |
 | `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
 | `datos/satelites.json` | Los elementos orbitales (TLE) de la Estación Espacial Internacional, de Tiangong y del Hubble, de CelesTrak, con su época. Los renueva el robot `tools/satelites_traer.py` dos veces al día; el panel calcula con ellos los pasos visibles. |
 | `datos/planetas.json` | Las cifras de la NASA (NSSDCA) de los ocho planetas, la Luna y el Sol —diámetro, día, año sideral, lunas, temperatura, gravedad, anillos, masa, densidad—, con la fecha de cada tabla. El panel del cielo lleva una copia (`CIELO_PLANETAS`) para la ficha del planeta y las curiosidades. |
@@ -35,14 +36,17 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 
 Es un monolito a propósito, no un proyecto a medio modularizar. No hay
 build, ni dependencias que instalar, ni paso de compilación: se sirve
-`index.html` y funciona. Las piezas aparte son tres. La red de guaguas, que son
+`index.html` y funciona. Las piezas aparte son cuatro. La red de guaguas, que son
 datos y no código: 1 MB que solo se usa con las guaguas y que dentro de la
 página había que leer y compilar en cada apertura. El panel del cielo
 (`modulos/cielo.js`, con su motor y su catálogo), que se pide solo cuando
 alguien lo abre: dentro de `index.html` habría sumado unos 100 kB comprimidos
-a la primera descarga de todo el mundo. Y el perfil (`modulos/perfil.js` y
+a la primera descarga de todo el mundo. El perfil (`modulos/perfil.js` y
 sus avatares, `modulos/avatares.js`), que se pide la primera vez que alguien
-toca «Cuenta», por lo mismo.
+toca «Cuenta», por lo mismo. Y el panel de emergencias
+(`modulos/emergencias.js`, 236 kB comprimidos, con sus textos en los diez
+idiomas), que el service worker guarda desde el primer día para que abra sin
+conexión.
 
 ### Probarlo en local
 
@@ -379,6 +383,82 @@ abre las cinco pestañas en los diez idiomas, coteja los cálculos con el IMCCE,
 la IMO y otros, y abre el panel con el servidor apagado. Como el módulo no
 tiene etiqueta, se declara con un comentario `CARGA-PEREZOSA:` para que
 `tools/fuente.js` lo pegue al fuente y las herramientas de idiomas lo vean.
+
+### Emergencias (SOS)
+
+El botón **SOS** de la barra de abajo, entre Rutas y Asistente, abre qué hacer
+ante una emergencia en Tenerife —volcán, terremoto, maremoto, incendio,
+temporal o un problema en el mar— y a quién llamar. Se hizo el 22 de octubre
+de 2026, el día del simulacro VOLCANEX, que mandó a los móviles de la isla un
+ES-Alert con un semáforo naranja simulado; esa misma tarde se le sumaron el
+maremoto y los otros riesgos, el mar y «la app atenta»; y por la noche, todo
+verificado línea a línea contra su fuente oficial vigente («No quiero nada
+inventado. Ni que no sea de actualidad más»), los primeros auxilios, el fuego
+en un edificio, el apagón y las aglomeraciones.
+
+**La app no decide nunca si hay peligro ni de qué color está el semáforo.**
+«Qué pasa ahora» enseña lo oficial, con su fecha y su fuente: los avisos de
+AEMET para Tenerife (los mismos que la app ya baja; tocar uno abre el
+panel de los avisos) y, con sus robots encendidos, las alertas del Gobierno de
+Canarias, el semáforo del último boletín de INVOLCAN y los terremotos del IGN.
+Debajo, siempre, los enlaces a cada fuente, y el recordatorio de que si hay
+una emergencia en la zona llega un ES-Alert. Si hay algo, una franja arriba
+del panel lo resume: los avisos de AEMET, un semáforo que no sea verde, las
+alertas de las últimas 24 horas o un terremoto de magnitud 3 o más. No hay
+notificaciones push.
+
+- **El 112 no depende del módulo.** La barra roja «Llamar al 112» (`tel:112`)
+  y las ocho filas de texto que hacen falta antes de cargarlo están en
+  `index.html`. Si `modulos/emergencias.js` no llega, el panel lo dice,
+  ofrece reintentar y el 112 sigue ahí.
+- **Sin conexión desde el primer día**: el módulo va en `CORE` y el service
+  worker lo sirve de la caché al instante, con la red por detrás. En una
+  emergencia la red puede ir saturada y el panel no puede esperarla.
+- **Veinticinco guías.** «Qué hacer si…», diecinueve en siete grupos: si se
+  lo piden las autoridades (evacuar, no salir de casa), si alguien se
+  encuentra mal (primeros auxilios: la reanimación, el atragantamiento, el
+  infarto, el ictus, una hemorragia, las quemaduras), en el mar (alguien en
+  apuros en el agua, con socorrista y sin él; las picaduras; la playa y sus
+  siete banderas), el volcán (el semáforo, la ceniza, los gases), el
+  terremoto y el maremoto, el incendio, el tiempo y la montaña (incendio,
+  lluvias e inundaciones, viento y tormentas, calor y calima, montaña), y en
+  el edificio y en la calle (fuego en un edificio, apagón, fiestas y
+  aglomeraciones). Y seis para prepararse: la mochila (quince cosas que se
+  marcan y se guardan solo en el móvil), el plan familiar, si está de
+  visita, ES-Alert, los planes oficiales y los canales oficiales; además,
+  «Hospitales en el mapa».
+- **Los planes oficiales**: los nueve del Gobierno de Canarias (PLATECA,
+  PEVOLCA, PESICAN, INFOCA, PEFMA, PEINCA, PEMERCA, RISQCAN y RADICAN), el
+  plan estatal de maremotos (BOE, 2021), el plan insular del Cabildo (PEIN) y
+  los de los ayuntamientos, con sus puntos de encuentro; y las directrices
+  estatales de riesgo volcánico y de terremotos de octubre de 2026.
+- **Cada guía lleva debajo sus fuentes, 90 en total, comprobadas línea a
+  línea el 22 de octubre de 2026**: el PEVOLCA, las directrices básicas de
+  riesgo volcánico y de terremotos (Órdenes INT/1071/2026 e INT/1069/2026),
+  la guía de Protección Civil para las familias (2025), el plan estatal de
+  maremotos, los consejos del Gobierno de Canarias, 112 Canarias, INVOLCAN,
+  el IGN, la IVHHN, el Ministerio de Sanidad, las guías de 2025 del Consejo
+  Europeo de Resucitación, el NHS, la Asociación Española de Pediatría,
+  Salvamento Marítimo, la norma canaria de las playas, Tenerife ON, la AESAN
+  y el Servicio de Información Toxicológica. Lo que no se pudo comprobar en
+  una fuente oficial vigente no está.
+- **A quién llamar**: con el 112, las coordenadas del GPS para leérselas
+  (no se guardan ni se envían); el 012 para informarse, por su número largo
+  (+34 922 470 012), que vale también desde un móvil extranjero; el
+  900 202 202 de Salvamento Marítimo (en el mar, también el canal 16 de
+  VHF); y el Servicio de Información Toxicológica (+34 91 562 04 20).
+- `#sos` abre el panel, `#sos-<guía>` una guía (`#sos-maremoto`), y en Android
+  el icono tiene el atajo «SOS».
+- Los textos, de usted en los diez idiomas, van en `modulos/emergencias.js`
+  (`EMERG_UI`); se declara con `CARGA-PEREZOSA:` para que `tools/fuente.js`
+  lo pegue al fuente y las herramientas de idiomas lo vean. Los titulares de
+  las alertas del Gobierno se enseñan como los da él, en castellano, y en
+  los otros idiomas una línea lo dice.
+
+`tools/auditar_emergencias.js` comprueba en Node las filas, las fuentes de
+cada guía, los enlaces, el armazón, el service worker y el manifiesto;
+`tools/probar_emergencias.js` abre el panel en un navegador en los diez
+idiomas, sin el módulo y sin conexión.
 
 ---
 

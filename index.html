@@ -9875,6 +9875,23 @@ Object.assign(UI_TX, {
 });
 /* ── fin CIELO DE TENERIFE: textos ── */
 
+/* ── EMERGENCIAS: textos ── */
+/* PANEL «EMERGENCIAS» (22 de octubre de 2026): las filas que necesitan el
+   boton SOS y el armazon del panel antes de cargar el modulo. Las otras
+   588 van con el panel, en modulos/emergencias.js (EMERG_UI), y
+   tools/auditar_emergencias.js las mira todas. */
+Object.assign(UI_TX, {
+  "sosNavAria": {"es": "Emergencias: qué hacer y a quién llamar", "en": "Emergencies: what to do and who to call", "fr": "Urgences : que faire et qui appeler", "de": "Notfälle: was tun und wen anrufen", "it": "Emergenze: cosa fare e chi chiamare", "nl": "Noodgevallen: wat te doen en wie te bellen", "zh": "紧急情况：该做什么、打给谁", "zht": "緊急情況：該做什麼、打給誰", "bg": "Спешни случаи: какво да правите и на кого да се обадите", "pl": "Nagłe wypadki: co robić i gdzie dzwonić"},
+  "sosTitulo": {"es": "Emergencias", "en": "Emergencies", "fr": "Urgences", "de": "Notfälle", "it": "Emergenze", "nl": "Noodgevallen", "zh": "紧急情况", "zht": "緊急情況", "bg": "Спешни случаи", "pl": "Nagłe wypadki"},
+  "sosLlamar": {"es": "Llamar al 112", "en": "Call 112", "fr": "Appeler le 112", "de": "112 anrufen", "it": "Chiamare il 112", "nl": "Bel 112", "zh": "拨打 112", "zht": "撥打 112", "bg": "Обадете се на 112", "pl": "Zadzwonić pod 112"},
+  "sosLlamarSub": {"es": "Gratis y las 24 horas. Atienden en muchos idiomas.", "en": "Free, 24 hours a day. Help in many languages.", "fr": "Gratuit, 24 heures par jour, en de nombreuses langues.", "de": "Kostenlos, 24 Stunden am Tag. Hilfe in vielen Sprachen.", "it": "Gratuito, 24 ore al giorno. Assistenza in molte lingue.", "nl": "Gratis, 24 uur per dag. Hulp in veel talen.", "zh": "免费，24 小时服务。支持多种语言。", "zht": "免費，24 小時服務。支援多種語言。", "bg": "Безплатно, 24 часа в денонощието. Помощ на много езици.", "pl": "Bezpłatnie, 24 godziny na dobę. Pomoc w wielu językach."},
+  "sosCargando": {"es": "Cargando…", "en": "Loading…", "fr": "Chargement…", "de": "Wird geladen…", "it": "Caricamento…", "nl": "Laden…", "zh": "正在加载…", "zht": "正在載入…", "bg": "Зареждане…", "pl": "Wczytywanie…"},
+  "sosErrorCarga": {"es": "No se pudo abrir esta sección. Si es una emergencia, llame al 112.", "en": "This section couldn’t open. If it is an emergency, call 112.", "fr": "Impossible d’ouvrir cette section. En cas d’urgence, appelez le 112.", "de": "Dieser Bereich ließ sich nicht öffnen. Rufen Sie im Notfall die 112 an.", "it": "Non è stato possibile aprire questa sezione. Se è un’emergenza, chiami il 112.", "nl": "Dit onderdeel kon niet worden geopend. Bel 112 als het een noodgeval is.", "zh": "无法打开此部分。如遇紧急情况，请拨打 112。", "zht": "無法開啟此部分。如遇緊急情況，請撥打 112。", "bg": "Този раздел не можа да се отвори. При спешен случай се обадете на 112.", "pl": "Nie udało się otworzyć tej części. W nagłym wypadku należy dzwonić pod 112."},
+  "sosReintentar": {"es": "Reintentar", "en": "Try again", "fr": "Réessayer", "de": "Erneut versuchen", "it": "Riprovare", "nl": "Opnieuw proberen", "zh": "重试", "zht": "重試", "bg": "Опитайте отново", "pl": "Spróbować ponownie"},
+  "sosVolver": {"es": "Volver", "en": "Back", "fr": "Retour", "de": "Zurück", "it": "Indietro", "nl": "Terug", "zh": "返回", "zht": "返回", "bg": "Назад", "pl": "Wstecz"}
+});
+/* ── fin EMERGENCIAS: textos ── */
+
 /* CUANTAS FORMAS DE PLURAL TIENE CADA IDIOMA.
    La regla era `n === 1 ? singular : plural` para todos, y eso dejaba dos
    fallos a la vista:
@@ -23554,6 +23571,14 @@ window.addEventListener('hashchange', () => {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
     <span id="nav-lbl-routes">Rutas</span>
   </button>
+  <!-- SOS (22 de octubre de 2026): siempre a mano, tambien sin cobertura.
+       Abre el panel de EMERGENCIAS (abajo, bloque EMERGENCIAS). «SOS» se
+       entiende en los diez idiomas; la etiqueta accesible si se traduce. -->
+  <button class="v19-nav-item v19-nav-sos" id="v19-nav-sos" type="button" data-tx-aria="sosNavAria" aria-label="Emergencias: qué hacer y a quién llamar" onclick="abrirSOS()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.6"/><path d="M5.7 5.7l3.8 3.8M14.5 14.5l3.8 3.8M18.3 5.7l-3.8 3.8M9.5 14.5l-3.8 3.8"/></svg>
+    <span id="nav-lbl-sos" data-sin-traducir="sigla internacional">SOS</span>
+    <span class="v19-sos-punto" id="v19-nav-sos-punto" hidden></span>
+  </button>
   <button class="v19-nav-item" id="v19-nav-shop" type="button" data-tx-aria="ariaTienda" aria-label="Tienda" onclick="openShopPanel()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
     <span id="nav-lbl-shop">Tienda</span>
@@ -35534,6 +35559,221 @@ html.cielo-rojo body::before {
   else document.addEventListener('DOMContentLoaded', iniciar);
 })();
 </script>
+
+<!-- ══ EMERGENCIAS ══ -->
+<!-- ════════════════════════════════════════════════════════════════
+     EMERGENCIAS (22 de octubre de 2026) — que hacer ante una erupcion, un
+     terremoto u otra emergencia en Tenerife, y a quien llamar.
+     Jerome, el dia del simulacro VOLCANEX: «casi nadie sabe las reglas que
+     seguir en caso de que explote el volcan. Donde ir, como evacuar, a quien
+     llamar». El boton SOS de la barra de abajo abre este panel.
+     Esa misma tarde, lo que pidio despues: los maremotos y los otros riesgos
+     (incendio, lluvias, viento, calor y calima, la montana), el mar (que
+     hacer si hay socorrista y si no, primeros auxilios, picaduras, banderas),
+     los planes oficiales y «la app atenta»: en «Que pasa ahora», los avisos
+     de AEMET que la app ya baja y lo que traigan los robots, con su fecha.
+     Y por la noche, todo verificado linea a linea contra su fuente oficial
+     vigente («No quiero nada inventado»), con cuatro guias mas: primeros
+     auxilios, fuego en un edificio, apagon y aglomeraciones.
+     · El 112 esta AQUI, en el armazon, no en el modulo: el boton rojo llama
+       aunque modulos/emergencias.js no haya llegado a cargar.
+     · Lo demas -las guias, la mochila, los canales oficiales y sus fuentes en
+       los diez idiomas- vive en modulos/emergencias.js, que se pide al abrir
+       el panel y que el service worker precachea: sin red tambien abre.
+     · La app no dice si hay peligro ni en que color esta el semaforo: eso lo
+       dicen el 112, el Gobierno de Canarias y ES-Alert. SOS_DATOS lista los
+       ficheros de los robots que esten encendidos (ninguno de momento); el
+       modulo ensena lo que traen con su fecha y deja de hacerlo si es viejo.
+════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── EMERGENCIAS: el boton de la barra y el armazon del panel ──────── */
+.v19-nav-sos svg { color: #f87171; }
+.v19-nav-sos.active svg, .v19-nav-sos:hover svg { color: #fca5a5; }
+.v19-sos-punto {
+  position: absolute; top: 7px; right: calc(50% - 17px); width: 10px; height: 10px; border-radius: 50%;
+  background: var(--gold, #D4AF37); box-shadow: 0 0 0 2px var(--dark, #0F1117); pointer-events: none;
+}
+.v19-sos-punto[hidden] { display: none; }
+.v19-sos-punto.sos-punto-amarillo { background: #fde047; }
+.v19-sos-punto.sos-punto-naranja { background: #fb923c; }
+.v19-sos-punto.sos-punto-rojo { background: #f87171; }
+
+#sos-panel {
+  position: fixed; inset: 0; z-index: 9700; display: flex; flex-direction: column;
+  background: var(--dark, #0F1117); color: var(--text, #f0ece4);
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+#sos-panel[hidden] { display: none; }
+html.sos-abierto, html.sos-abierto body { overflow: hidden; }
+.sos-cab {
+  flex: 0 0 auto; display: flex; align-items: center; gap: 8px;
+  padding: calc(8px + env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) 8px max(12px, env(safe-area-inset-left, 0px));
+  border-bottom: 1px solid var(--border, rgba(212,175,55,0.2)); background: var(--dark, #0F1117);
+}
+#sos-titulo {
+  flex: 1 1 auto; min-width: 0; margin: 0; outline: none;
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; font-weight: 700;
+  font-size: 1.42rem; line-height: 1.12; letter-spacing: 0.01em; color: var(--text, #f0ece4); text-wrap: balance;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; overflow-wrap: anywhere;
+}
+.sos-ico-btn {
+  width: 40px; height: 40px; flex: 0 0 auto; border-radius: 50%; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; padding: 0;
+  border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05); color: var(--text, #f0ece4);
+}
+.sos-ico-btn[hidden] { display: none; }
+.sos-ico-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sos-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+#sos-cuerpo {
+  max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px;
+  padding: 14px max(16px, env(safe-area-inset-right, 0px)) 20px max(16px, env(safe-area-inset-left, 0px));
+}
+.sos-estado { padding: 28px 4px; color: var(--muted, rgba(240,236,228,0.6)); text-align: center; line-height: 1.5; }
+.sos-estado button {
+  margin-top: 10px; min-height: 40px; padding: 8px 16px; border-radius: 999px; cursor: pointer; font: inherit;
+  border: 1px solid rgba(212,175,55,0.5); background: rgba(212,175,55,0.12); color: var(--gold-light, #F5C76B);
+}
+/* El 112, siempre abajo, del ancho de la pantalla */
+.sos-112 {
+  flex: 0 0 auto; display: block; text-decoration: none; color: #fff; background: #dc2626;
+  padding: 12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.35);
+}
+.sos-112:active { background: #b91c1c; }
+.sos-112-in { max-width: 640px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+.sos-112-ico { width: 46px; height: 46px; flex: 0 0 auto; border-radius: 50%; background: rgba(255,255,255,0.18); display: inline-flex; align-items: center; justify-content: center; }
+.sos-112-ico svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sos-112-txt { display: flex; flex-direction: column; min-width: 0; }
+.sos-112-t { font-weight: 800; font-size: 1.18rem; line-height: 1.2; letter-spacing: 0.01em; }
+.sos-112-s { font-size: 0.8rem; line-height: 1.3; opacity: 0.94; }
+.sos-112:focus-visible, .sos-ico-btn:focus-visible { outline: 3px solid #fde047; outline-offset: -3px; }
+</style>
+
+<div id="sos-panel" role="dialog" aria-modal="true" aria-labelledby="sos-titulo" hidden>
+  <div class="sos-cab">
+    <button type="button" class="sos-ico-btn" id="sos-atras" hidden data-tx-aria="sosVolver" aria-label="Volver"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <h2 id="sos-titulo" data-tx="sosTitulo">Emergencias</h2>
+    <button type="button" class="sos-ico-btn" id="sos-cerrar" data-tx-aria="ariaCerrar" aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="sos-scroll" id="sos-scroll"><div id="sos-cuerpo"></div></div>
+  <a class="sos-112" id="sos-112" href="tel:112">
+    <span class="sos-112-in">
+      <span class="sos-112-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h2.6l1.4 4-2 1.4a12 12 0 0 0 6.5 6.5l1.4-2 4 1.4v2.6a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg></span>
+      <span class="sos-112-txt">
+        <span class="sos-112-t" data-tx="sosLlamar">Llamar al 112</span>
+        <span class="sos-112-s" data-tx="sosLlamarSub">Gratis y las 24 horas. Atienden en español, inglés y alemán.</span>
+      </span>
+    </span>
+  </a>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  /* CARGA-PEREZOSA: modulos/emergencias.js
+     El cuerpo del panel -sus guias, la mochila, los canales oficiales y los
+     textos en los diez idiomas- vive en modulos/emergencias.js y se pide la
+     primera vez que alguien abre el panel. El service worker lo precachea y
+     lo sirve de la cache (cambia con la version del service worker): en una
+     emergencia la red puede ir saturada y el panel no puede esperarla.
+     tools/fuente.js y tools/fuente.py leen esta linea y pegan el fichero al
+     final del fuente, como los <script src>. */
+  var MODULO = './modulos/emergencias.js', carga = null;
+  /* Los ficheros de los robots que esten encendidos. Vacio: el panel solo
+     ensena enlaces oficiales. Cada robot que se encienda anade el suyo. */
+  window.SOS_DATOS = [];
+  function cargar() {
+    if (window.TG_SOS) return Promise.resolve();
+    if (carga) return carga;
+    carga = new Promise(function (ok, mal) {
+      var s = document.createElement('script');
+      s.src = MODULO;
+      s.onload = function () { if (window.TG_SOS) ok(); else mal(new Error('sos')); };
+      s.onerror = function () { s.remove(); mal(new Error('sos')); };
+      document.head.appendChild(s);
+    }).catch(function (e) { carga = null; throw e; });
+    return carga;
+  }
+  function panel() { return document.getElementById('sos-panel'); }
+  function estado(txt, reintentar) {
+    var c = document.getElementById('sos-cuerpo');
+    if (!c) return;
+    c.textContent = '';
+    var d = document.createElement('div'); d.className = 'sos-estado'; d.textContent = txt;
+    if (reintentar) {
+      var b = document.createElement('button'); b.type = 'button';
+      b.textContent = tx('sosReintentar');
+      b.addEventListener('click', function () { abrir(); });
+      d.appendChild(document.createElement('br')); d.appendChild(b);
+    }
+    c.appendChild(d);
+  }
+  function abrir(vista) {
+    if (window.TG_SOS) { window.TG_SOS.abrir(vista); return; }
+    var p = panel(); if (!p) return;
+    p.hidden = false;
+    document.documentElement.classList.add('sos-abierto');
+    estado(tx('sosCargando'));
+    cargar().then(function () { if (!p.hidden) window.TG_SOS.abrir(vista); },
+                  function () { if (!p.hidden) estado(tx('sosErrorCarga'), true); });
+  }
+  function cerrar() {
+    if (window.TG_SOS) { window.TG_SOS.cerrar(); return; }
+    var p = panel(); if (p) p.hidden = true;
+    document.documentElement.classList.remove('sos-abierto');
+  }
+  /* El punto del boton: solo con robots encendidos y datos frescos.
+     Color del semaforo si no es verde (boletin de 8 dias como mucho), y si no,
+     dorado si el IGN dio un terremoto de magnitud 3 o mas cerca de Tenerife
+     en las ultimas 24 horas. Sin datos, sin punto: no se avisa de nada. */
+  var puntoVisto = 0;
+  function comprobarPunto() {
+    var urls = window.SOS_DATOS || [];
+    if (!urls.length || typeof fetch !== 'function') return;
+    puntoVisto = Date.now();
+    var punto = document.getElementById('v19-nav-sos-punto');
+    if (!punto) return;
+    var op = { cache: 'no-cache' };
+    try { if (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) op.signal = AbortSignal.timeout(8000); } catch (e) {}
+    var pide = function (u) {
+      var f = (typeof tgoFetchDatos === 'function') ? tgoFetchDatos(u, op) : fetch(u, op);
+      return f.then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+    };
+    Promise.all(urls.map(pide)).then(function (ds) {
+      var ahora = Date.now(), color = null, sismo = false;
+      ds.forEach(function (d) {
+        if (!d) return;
+        if (d.color && /^(amarillo|naranja|rojo)$/.test(d.color) && /^\d{4}-\d{2}-\d{2}$/.test(d.boletin || '') &&
+            ahora - Date.parse(d.boletin + 'T12:00:00Z') <= 8 * 86400000) color = d.color;
+        if (Array.isArray(d.sismos) && ahora - Date.parse(d.consultado) <= 6 * 3600000) {
+          d.sismos.forEach(function (s) { if (s && s.m >= 3 && ahora - Date.parse(s.t) <= 86400000) sismo = true; });
+        }
+      });
+      punto.className = 'v19-sos-punto' + (color ? ' sos-punto-' + color : '');
+      punto.hidden = !(color || sismo);
+    });
+  }
+  function iniciar() {
+    var x = document.getElementById('sos-cerrar'); if (x) x.addEventListener('click', cerrar);
+    if (/^#sos(-[a-z]+)?$/.test(location.hash)) setTimeout(function () { abrir(location.hash.slice(5) || null); }, 600);
+    var luego = window.requestIdleCallback || function (f) { return setTimeout(f, 2500); };
+    luego(comprobarPunto);
+    /* Con la app abierta horas: al volver a ella, otra vez si hace mas de
+       30 minutos de la ultima. */
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible' && Date.now() - puntoVisto > 30 * 60000) comprobarPunto();
+    });
+  }
+  window.abrirSOS = abrir;
+  window.cerrarSOS = cerrar;
+  /* Para las herramientas de tools/ */
+  window.TG_SOS_CARGAR = cargar;
+  window.TG_SOS_PUNTO = comprobarPunto;
+  if (document.readyState !== 'loading') iniciar();
+  else document.addEventListener('DOMContentLoaded', iniciar);
+})();
+</script>
+<!-- ══ fin EMERGENCIAS ══ -->
 
 <script>
 </script>

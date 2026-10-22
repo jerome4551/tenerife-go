@@ -40,6 +40,14 @@
   "Listán: la variedad de uva (Listán Negro, Listán Blanco); es su nombre": {
    "todos": ["listán"]
   },
+  "el panel SOS (22 de octubre de 2026): palabras de ese idioma que se escriben igual que el castellano. Van aparte de la lista general de abajo para no tocar su linea": {
+   "en": ["gases", "fiestas@es:En conciertos, fiestas", "rallies@es:En los rallies"],
+   "fr": ["graves@es:heridos graves"],
+   "it": ["casco@es:con casco"]
+  },
+  "el panel SOS (22 de octubre de 2026, noche): @112canarias es la cuenta del 112 en las redes, y se escribe asi en todos los idiomas": {
+   "todos": ["canarias@es:@112canarias"]
+  },
   "en chino, la palabra castellana entre parentesis DESPUES de traducirla, para reconocerla en los carteles": {
    "zh": ["malpaís", "baile@es:baile mago", "mago@es:baile mago"],
    "zht": ["malpaís", "baile@es:baile mago", "mago@es:baile mago"]

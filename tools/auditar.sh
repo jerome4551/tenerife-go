@@ -48,8 +48,9 @@ echo "  scripts en linea: $(ls chk/*.js 2>/dev/null | wc -l), con fallo: $mal"
 # de 2026. extract_js.py solo saca los bloques en linea, asi que va aqui.
 # Y modulos/cielo.js, el panel del cielo, que se carga al abrirlo (17 de
 # octubre de 2026). Y modulos/avatares.js y modulos/perfil.js, el catalogo y
-# la pantalla del perfil (22 de octubre de 2026).
-for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js; do
+# la pantalla del perfil (22 de octubre de 2026), y modulos/emergencias.js, el
+# panel SOS (22 de octubre de 2026).
+for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js; do
   if node --check "$f"; then echo "  $f ok"; else mal=$((mal+1)); fi
 done
 [ "$mal" != 0 ] && falla sintaxis
@@ -246,6 +247,12 @@ echo; echo "════════ el perfil y los avatares ══════
 # comprobadas en el mapa, los 235 avatares y los diez idiomas a tres anchos.
 control auditar_perfil.js node tools/auditar_perfil.js
 control probar_perfil.js node tools/probar_perfil.js "$PUERTO"
+echo; echo "════════ emergencias (SOS): textos, fuentes, enlaces, y el panel de verdad en los diez idiomas y sin conexion ════════"
+# Desde el 22 de octubre de 2026. El panel se carga al abrirlo
+# (modulos/emergencias.js); el 112 vive en el armazon y tiene que llamar
+# aunque el modulo no llegue. Ninguna guia sin sus fuentes.
+control auditar_emergencias.js node tools/auditar_emergencias.js
+control probar_emergencias.js node tools/probar_emergencias.js "$PUERTO"
 echo
 # Los rotos van PRIMERO y con su propio nombre: son los que no han mirado nada.
 [ "$rotos" = 0 ] || echo "*** $rotos control(es) QUE NO SE PUDIERON EJECUTAR (pip install -r tools/requisitos.txt) ***"
