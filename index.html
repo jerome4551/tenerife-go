@@ -33953,12 +33953,103 @@ function closePrivacyPanel() {
     btn.setAttribute('aria-pressed', visited ? 'true' : 'false');
   }
 
+  /* Las visitas comprobadas (22 de octubre de 2026, el perfil). Jerome: «No
+     quiero que abre con 10 lugares si no están visitados». «Marcar visitado»
+     se puede tocar desde casa; una visita COMPROBADA es la de un lugar marcado
+     estando allí: el móvil lo mira con su ubicación, aquí mismo. Se guarda solo
+     el id del lugar y el día (tenerife.visitas); la posición ni se guarda ni se
+     envía. El perfil abre el set de avatares de Tenerife con 10 comprobadas
+     (AppLogros.comprobadas()). Los logros siguen como estaban: cuentan los
+     marcados. */
+
+  var KEY_C = 'tenerife.visitas';
+  var RADIO_VISITA_M = 500;     /* a cuánto del punto del lugar cuenta como «allí» */
+  var PRECISION_MAX_M = 200;    /* una lectura peor que esto no comprueba nada */
+
+  function hoyLocal() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  /* Lo que viene de localStorage se valida: id de un lugar que existe, día con
+     forma de fecha y no futuro, sin repetidos. Lo demás se descarta. */
+  function getComprobadas() {
+    ensureValidIds();
+    var out = [], visto = {}, hoy = hoyLocal(), arr = [];
+    try { arr = JSON.parse(localStorage.getItem(KEY_C) || '[]'); } catch (e) { arr = []; }
+    if (!Array.isArray(arr)) return out;
+    for (var i = 0; i < arr.length; i++) {
+      var v = arr[i];
+      if (!v || typeof v.id !== 'string' || visto[v.id]) continue;
+      if (validIds && !validIds[v.id]) continue;
+      if (typeof v.d !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(v.d) || v.d > hoy) continue;
+      visto[v.id] = 1; out.push({ id: v.id, d: v.d });
+    }
+    return out;
+  }
+  function saveComprobadas(arr) {
+    try { localStorage.setItem(KEY_C, JSON.stringify(arr)); } catch (e) {}
+  }
+  function quitarComprobada(pid) {
+    saveComprobadas(getComprobadas().filter(function (v) { return v.id !== pid; }));
+  }
+  /* pedir = true al marcar: el navegador puede preguntar por el permiso, en
+     contexto (la frase de iOS sale de ppDatosGeoTxt, que ya lo dice).
+     pedir = false al abrir la ficha de un lugar ya marcado: solo si el permiso
+     ya está dado; nunca se pregunta por esto. */
+  function comprobarVisita(pid, pedir) {
+    if (!navigator.geolocation || typeof haversineMeters !== 'function') return;
+    var pl = (typeof places !== 'undefined') ? places.find(function (q) { return q.id === pid; }) : null;
+    if (!pl || typeof pl.lat !== 'number' || typeof pl.lng !== 'number') return;
+    if (getComprobadas().some(function (v) { return v.id === pid; })) return;
+    function leer() {
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        var c = pos && pos.coords;
+        if (!c || !(c.accuracy <= PRECISION_MAX_M)) return;
+        if (haversineMeters(c.latitude, c.longitude, pl.lat, pl.lng) > RADIO_VISITA_M) return;
+        if (getVisited().indexOf(pid) < 0) return;            /* lo desmarcaron mientras tanto */
+        var arr = getComprobadas();
+        if (arr.some(function (v) { return v.id === pid; })) return;
+        arr.push({ id: pid, d: hoyLocal() });
+        saveComprobadas(arr);
+        /* VIS_I18N.ok lo pone el bloque 5 (aplicar_textos_app.py); mientras, «Visitado» */
+        showToast('✓ ' + (VIS_I18N.ok || VIS_I18N.done)[visLang()]);
+      /* maximumAge 0: una posición guardada de hace un rato puede ser de otro sitio
+         (comprobado: con 2 minutos, Chromium devolvía la de antes de llegar) */
+      }, function () {}, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
+    }
+    if (pedir) { leer(); return; }
+    try {
+      if (navigator.permissions && navigator.permissions.query) {
+        navigator.permissions.query({ name: 'geolocation' }).then(function (r) {
+          if (r && r.state === 'granted') leer();
+        }, function () {});
+      }
+    } catch (e) {}
+  }
+
+  /* Lo que lee el perfil (modulos/perfil.js): los marcados, los comprobados
+     que siguen marcados y los logros. Sin copiar VIS_BADGES. */
+  window.AppLogros = {
+    visitados: function () { return getVisited().slice(); },
+    comprobadas: function () {
+      var v = getVisited();
+      return getComprobadas().filter(function (c) { return v.indexOf(c.id) >= 0; }).map(function (c) { return c.id; });
+    },
+    lista: function () { return VIS_BADGES.concat([SUMMIT]); },
+    conseguidos: function () { return loadArr(KEY_B); }
+  };
+
   if (typeof map !== 'undefined' && map && typeof map.on === 'function') {
     map.on('popupopen', function (e) {
       var root = (e && e.popup && typeof e.popup.getElement === 'function') ? e.popup.getElement() : null;
       if (!root) return;
       var inner = root.querySelector('.popup-inner');
-      if (!inner || inner.querySelector('.popup-visit-btn')) return;
+      if (!inner) return;
+      /* Leaflet reutiliza la ficha: al volver a abrir un lugar ya marcado se
+         comprueba aqui, antes de salir porque el boton ya esta */
+      var pidAbierto = inner.getAttribute('data-place-id');
+      if (pidAbierto && getVisited().indexOf(pidAbierto) >= 0) comprobarVisita(pidAbierto, false);
+      if (inner.querySelector('.popup-visit-btn')) return;
       var actions = inner.querySelector('.popup-actions');
       if (!actions || !actions.querySelector('[data-action=fav]')) return;
       var pid = inner.getAttribute('data-place-id');
@@ -33975,12 +34066,14 @@ function closePrivacyPanel() {
         if (idx >= 0) {
           visited.splice(idx, 1);
           saveArr(KEY_V, visited);
+          quitarComprobada(pid);
           setVisitBtn(btn, false);
         } else {
           visited.push(pid);
           saveArr(KEY_V, visited);
           setVisitBtn(btn, true);
           checkBadges(visited, pid);
+          comprobarVisita(pid, true);
         }
       });
       var anchorEl = inner.querySelector('.popup-tts-btn') || inner.querySelector('.popup-web-btn') || actions;
