@@ -44,7 +44,7 @@ const TODOS_F = TODOS ? process.argv[process.argv.indexOf('--todos') + 2] : null
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 
 /* Los idiomas ya pasados a usted. Cada parte del cambio anade el suyo. */
-const HECHOS = ['es', 'zh', 'zht', 'de', 'nl', 'fr', 'it'];
+const HECHOS = ['es', 'zh', 'zht', 'de', 'nl', 'fr', 'it', 'bg'];
 
 /* ── las marcas del tuteo, idioma a idioma ─────────────────────────────── */
 const L_ = 'A-Za-zÀ-ÖØ-öø-ɏЀ-ӿ';
@@ -213,11 +213,27 @@ const MARCAS = {
   nl: [palI('je', 'jij', 'jou', 'jouw', 'jouwe', 'jezelf', 'jullie')],
   bg: [palI('ти', 'теб', 'тебе', 'твой', 'твоя', 'твоят', 'твоята', 'твоето', 'твоите'),
        inicio('Докосни', 'Избери', 'Отвори', 'Виж', 'Потърси', 'Опитай', 'Открий', 'Включи', 'Приеми', 'Създай', 'Запази', 'Добави', 'Премахни', 'Промени', 'Върни',
-         'Насочи', 'Вдигни', 'Нарисувай', 'Провери', 'Изтрий', 'Затвори', 'Сподели', 'Изтегли', 'Инсталирай', 'Натисни', 'Плъзни', 'Въведи', 'Влез', 'Следвай',
+         'Вдигни', 'Нарисувай', 'Провери', 'Изтрий', 'Затвори', 'Сподели', 'Изтегли', 'Инсталирай', 'Натисни', 'Плъзни', 'Въведи', 'Влез', 'Следвай',
          'Използвай', 'Разгледай', 'Свържи', 'Дишай', 'Слушай', 'Представи', 'Усмихни', 'Вземи', 'Направи', 'Иди', 'Ела', 'Кажи', 'Сложи', 'Пий', 'Яж', 'Остави',
-         'Спомни', 'Планирай', 'Организирай', 'Посети', 'Насладѝ', 'Наслади', 'Почини', 'Подари'),
-       palI('можеш', 'искаш', 'имаш', 'знаеш', 'трябва да\\s+\\S+ш', 'видиш', 'видя', 'отидеш', 'дойдеш', 'намериш', 'стигнеш', 'влезеш', 'излезеш', 'останеш', 'чуеш',
-         'видиш', 'пожелаеш', 'решиш', 'включиш', 'приемеш', 'създадеш', 'запазиш', 'добавиш', 'изтриеш', 'отвориш', 'докоснеш', 'избереш', 'ползваш', 'използваш')],
+         'Спомни', 'Планирай', 'Организирай', 'Посети', 'Насладѝ', 'Наслади', 'Почини', 'Подари',
+         /* los que solo vio el repaso a mano (22 de octubre): el imperativo de ти de
+            las frases del dia y del cielo. Los que tambien son nombre, adjetivo o
+            tercera persona, solo en su giro: «Пази» («Островът пази кътче»),
+            «Брой» («Брой места»), «Прости» («прости ястия»), «Позволи» (aoristo) */
+         'Бъди', 'Излез', 'Повърви', 'Пусни (?:онова|изискванията|вчерашното)', 'Послушай', 'Задай', 'Отпразнувай', 'Почивай', 'Поеми', 'Заслужи',
+         'Остани', 'Поискай', 'Грижи се', 'Назови', 'Раздвижи се', 'Размърдай', 'Изследвай', 'Превземи', 'Прости си', 'Върни', 'Пази (?:съня|се|мира)',
+         'Поразгледай', 'Помни', 'Разглеждай', 'Учи се', 'Имай', 'Брой днешната', 'Позволи си', 'Изненадай се', 'Уважавай', 'Уважи', 'Забележи',
+         'Почети', 'Продължавай', 'Пускай', 'Подиши', 'Погледай', 'Погледни', 'Движи (?:се|телефона|тялото)', 'Щипни', 'Дръж', 'Начертай',
+         'Постави', 'Приближи', 'Следвай', 'Гледай (?:морето|встрани|хоризонта)', 'Опитай(?! отново)', 'Насочи към звезда'),
+       palI('можеш', 'искаш', 'имаш', 'знаеш', 'трябва да\\s+\\S+ш', 'видиш', 'отидеш', 'дойдеш', 'намериш', 'стигнеш', 'влезеш', 'излезеш', 'останеш', 'чуеш',
+         'видиш', 'пожелаеш', 'решиш', 'включиш', 'приемеш', 'създадеш', 'запазиш', 'добавиш', 'изтриеш', 'отвориш', 'докоснеш', 'избереш', 'ползваш', 'използваш'),
+       /* la segunda persona del presente acaba en -ш (можеш, виждаш, отвориш), y la de
+          вие en -те: toda palabra en -аш, -яш, -еш, -иш es de ти, salvo las que no son
+          verbo («сякаш», «бакшиш», «наш», «ваш», «душ») (22 de octubre) */
+       new RegExp('(?<![' + L_ + '])(?!(?:сякаш|бакшиш|наш|ваш|душ|кеш|мишмаш|гуляш|финиш)(?![' + L_ + ']))[а-яё]+(?:аш|яш|еш|иш)(?![' + L_ + '])', 'iu'),
+       /* «те» de complemento («те чака», «те води»): «те» es tambien «ellos» («те се
+          номерират»), asi que solo con los verbos que lo llevan en la app */
+       palI('те (?:чака|води|събужда|предупреди|радва|пазят|приема|гледа|успокоява|прави|връща|приближава|учи|изненада|докосне|проветри|придружи|подреди|успокои|вика)')],
   pl: [palI('ty', 'ci', 'cię', 'ciebie', 'tobie', 'tobą', 'twój', 'twoja', 'twoje', 'twoich', 'twoim', 'twoją', 'twojej', 'twojego', 'twoi', 'twoimi', 'twym', 'twych', 'twe'),
        inicio('Dotknij', 'Wybierz', 'Wpisz', 'Użyj', 'Otwórz', 'Zobacz', 'Szukaj', 'Spróbuj', 'Odkryj', 'Włącz', 'Zaakceptuj', 'Utwórz', 'Zapisz', 'Dodaj', 'Usuń',
          'Zmień', 'Wróć', 'Skieruj', 'Podnieś', 'Narysuj', 'Sprawdź', 'Zamknij', 'Udostępnij', 'Pobierz', 'Zainstaluj', 'Naciśnij', 'Przeciągnij', 'Przesuń', 'Zaloguj',
@@ -253,6 +269,23 @@ const ROTULOS_IT = new Set([
   'Aggiungi a Home', 'Installa app',
 ]);
 
+/* Los del bulgaro (22 de octubre de 2026): el boton en imperativo («Затвори»,
+   «Сподели», «Премахни»), como en las apps en bulgaro tambien cuando tratan de
+   вие; las frases que hablan a quien usa la app, de вие. */
+const ROTULOS_BG = new Set([
+  'Затвори', 'Затвори асистента', 'Затвори близките спирки', 'Затвори кошницата', 'Затвори легендата', 'Затвори магазина',
+  'Затвори метеорологичните предупреждения', 'Затвори панела за транспорт', 'Затвори панела с маршрути', 'Затвори планера', 'Затвори съобщението',
+  'Сподели', 'Сподели маршрута', 'Сподели мястото', '📤 Сподели', 'Премахни', 'Премахни всички', 'Премахни всички напомняния', 'Премахни крайната точка',
+  'Премахни началната точка', 'Премахни от любими', 'Премахни от маршрута', 'Премахни ръчната настройка', 'Запази в любими',
+  'Запази в маршрута за деня', 'Запази или сподели изображението', 'Виж в aemet.es', 'Виж информация', 'Виж обиколката', 'Виж пълното описание',
+  'Отвори в Google Maps', 'Отвори легендата', 'Добави в любими', 'Добави към маршрута', 'Добави в календара ми', '✓ Добави в количката',
+  'Изтрий ЦЕЛИЯ кеш', 'Изтрий подробната карта', 'Инсталирай', 'Инсталирай Tenerife', 'Инсталирай приложението', 'Включи', 'Включи известията', 'Влез',
+  'Свържи се', 'Опитай отново', 'Създай маршрут с {n} вида →', 'Създай маршрут →', 'Създай нов маршрут', 'Използвай като начало на маршрут', 'Слушай',
+  'Провери компаса', 'Избери друга дата', 'Насочи към небето', 'Приближи',
+  /* los del sistema, que la app cita tal cual: el menu de Safari */
+  'Добави към начален екран',
+]);
+
 /* Lo que parece tuteo y no lo es: [idioma, texto exacto o RegExp, motivo]. */
 const EXENTOS = [
   ['es', '"¡Oye, tú!" — para llamar a alguien con cariño.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
@@ -273,6 +306,9 @@ const EXENTOS = [
   /* el italiano (22 de octubre de 2026) */
   ['it', '"Ehi tu!" — modo amichevole di chiamare.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
   ...[...ROTULOS_IT].map(t => ['it', t, 'rotulo de boton: en italiano el boton va en imperativo, como en castellano el infinitivo (ROTULOS_IT)']),
+  /* el bulgaro (22 de octubre de 2026) */
+  ['bg', '«Ей, ти!» — приятелско обръщение.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
+  ...[...ROTULOS_BG].map(t => ['bg', t, 'rotulo de boton: en bulgaro el boton va en imperativo, como en castellano el infinitivo (ROTULOS_BG)']),
 ];
 
 function exento(l, t) {
@@ -282,6 +318,7 @@ function marca(l, t) {
   if (!MARCAS[l] || exento(l, t)) return null;
   /* el rotulo de un boton citado entre comillas no cuenta: «tocchi «Condividi»» */
   if (l === 'it') t = t.replace(/«([^»]+)»/g, (q, x) => ROTULOS_IT.has(x) ? ' ' : q);
+  if (l === 'bg') t = t.replace(/[«„“]([^»“”]+)[»“”]/g, (q, x) => ROTULOS_BG.has(x) ? ' ' : q);
   /* los marcadores {dir}, {d}… no se ven: «{dir}» no es «dir» (22 de octubre) */
   t = t.replace(/\{\w+\}/g, ' ');
   for (const re of MARCAS[l]) { const m = t.match(re); if (m) return m[0].trim(); }
