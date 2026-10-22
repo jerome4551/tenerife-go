@@ -33558,15 +33558,20 @@ function closePrivacyPanel() {
 
   function normLang(s) { return String(s || '').replace('_', '-').toLowerCase(); }
 
-  function pickVoice(locale) {
+  /* soloLocal: solo las voces instaladas en el dispositivo (localService);
+     las de red (las «Google …» de Chrome en el ordenador) no leen sin
+     cobertura y mandan el texto fuera. Lo pide la noche guiada del cielo. */
+  function pickVoice(locale, soloLocal) {
     if (!voices.length) return null;
     var want = normLang(locale);
     var pre2 = want.slice(0, 2);
     var i;
     for (i = 0; i < voices.length; i++) {
+      if (soloLocal && voices[i].localService === false) continue;
       if (normLang(voices[i].lang) === want) return voices[i];
     }
     for (i = 0; i < voices.length; i++) {
+      if (soloLocal && voices[i].localService === false) continue;
       if (normLang(voices[i].lang).indexOf(pre2) === 0) return voices[i];
     }
     return null;
@@ -33651,6 +33656,17 @@ function closePrivacyPanel() {
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) ttsStop();
   });
+
+  /* La noche guiada del cielo (modulos/cielo.js, 22-10-2026) lee sus paradas
+     con este mismo lector: el codigo de idioma de cada idioma de la app, si
+     el navegador ya ha dicho que voces tiene, la voz instalada que le toca a
+     un idioma (solo las del dispositivo) y parar lo que este leyendo aqui. */
+  window.TG_VOZ = {
+    locale: function (lg) { return TTS_LOCALE[lg] || TTS_LOCALE[ttsLang()]; },
+    hayVoces: function () { loadVoices(); return voices.length > 0; },
+    vozLocal: function (lg) { loadVoices(); return pickVoice(TTS_LOCALE[lg] || TTS_LOCALE[ttsLang()], true); },
+    parar: ttsStop
+  };
 })();
 </script>
 
@@ -35118,6 +35134,12 @@ html.cielo-rojo body::before {
    roja completa y «sin red en el Teide» ─────────────────────────────── */
 .cielo-parada-n { font-size: 0.56rem; letter-spacing: 0.08em; text-transform: uppercase; color: #F5C76B; opacity: 0.85; margin-bottom: 1px; }
 .cielo-parada-que { color: rgba(255,255,255,0.86); margin-top: 3px; }
+/* 22 de octubre, septimo bloque: la noche guiada en voz alta (los botones y la parada que se lee) */
+.cielo-voz { margin: 0 0 6px; }
+.cielo-voz-btns { display: flex; flex-wrap: wrap; gap: 6px; }
+.cielo-voz-btns .cielo-boton { margin: 0; }
+.cielo-voz-estado { font-size: 0.64rem; color: #F5C76B; margin-top: 6px; line-height: 1.45; font-variant-numeric: tabular-nums; }
+.cielo-parada-activa { background: rgba(212,175,55,0.08); box-shadow: inset 3px 0 0 #D4AF37; border-radius: 8px; }
 .cielo-sistema { display: block; width: 100%; aspect-ratio: 1 / 1; border-radius: 12px; background: #04060f; border: 1px solid rgba(255,255,255,0.08); touch-action: manipulation; }
 .cielo-sis-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 8px; }
 .cielo-sis-chips .cielo-chip {

@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.038 kB** en castellano · **1.152 kB** en el peor caso (búlgaro) · 1.138 kB en polaco, el 22 de octubre, con el quinto y el sexto bloque del cielo encima del `main` de ese día, que da 1.037, 1.151 y 1.137: el kB de más son comentarios de `index.html` (el panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades, lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.038 kB** en castellano · **1.152 kB** en el peor caso (búlgaro) · 1.138 kB en polaco, el 22 de octubre, con el quinto, el sexto y el séptimo bloque del cielo encima del `main` de ese día, que da 1.037, 1.151 y 1.137: el kB de más son comentarios de `index.html` (el panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades, lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -1625,6 +1625,198 @@ estaba:
 1801 filas; `barrido_idiomas.js`: 3.942; el cirílico, 1.898 nombres y 0
 variantes sospechosas. Lo que queda es lo de siempre: lo de Jerome en
 `LANZAMIENTO-APP-STORE.md` (§3 y §9) y las pruebas en un iPhone de verdad.
+
+## La noche guiada en voz alta (22 de octubre, séptimo bloque)
+
+La idea del final del sexto bloque —«la noche guiada en voz alta: el móvil
+lee cada parada con las voces del propio teléfono… así se mira el cielo y no
+la pantalla… funciona sin red, en los idiomas que tengan una voz
+instalada»—, y Jerome: «Me encanta prepara todo !». No hay datos nuevos: se
+lee lo que ya pone la tarjeta «Su noche guiada», verificado en los bloques
+de antes.
+
+### Lo que entra
+
+- **«Leer en voz alta»** en la tarjeta «Su noche guiada» (`modulos/cielo.js`,
+  «LA NOCHE GUIADA EN VOZ ALTA»). Lee la entrada («Noche guiada: 8 paradas,
+  de lo más fácil a lo más fino. Hora de referencia: 20:00…»), cada parada
+  («Parada 2 de 8. Saturno. Planeta, en Ballena. Mire hacia el este, a 18
+  grados sobre el horizonte. Con un telescopio pequeño se ven los anillos.»)
+  y «Fin de la noche guiada.». Tras cada parada, 30 segundos para buscarla,
+  con la cuenta atrás en pantalla; «Pausa» la detiene, «Seguir» vuelve a leer
+  la parada en la que se paró, «Siguiente» no espera y «Parar» lo deja. La
+  parada que se lee va marcada en la tarjeta, y mientras se lee la tarjeta
+  enseña las paradas del momento en que se tocó el botón, aunque el panel se
+  repinte (llegan los satélites, por ejemplo).
+- **Lo que se oye es lo que pone la tarjeta**: la parada, el nombre, la
+  clase («Planeta, en Ballena»), la dirección y la altura de la línea «hora:
+  altura, dirección», y lo que se ve. Cuatro filas solo se oyen:
+  `cieloVozIntro`, `cieloVozHoraParada` (las paradas con hora propia: el paso
+  de un satélite y la lluvia cuyo radiante sube más tarde), `cieloVozDonde`
+  («Mire hacia el este, a 18 grados sobre el horizonte») y `cieloVozFin`. El
+  paso de un satélite no lee su franja de horas: ya va, con las dos
+  direcciones, en lo que se ve.
+- **Las voces del propio móvil**, las de la audioguía de los lugares: el
+  lector de `index.html` (AUDIO-GUIA) presta al cielo `window.TG_VOZ` —su
+  código de idioma (`TTS_LOCALE`), si el navegador ya ha dicho qué voces
+  tiene, la voz que le toca a cada idioma y su «parar»—, y `pickVoice` acepta
+  ahora `soloLocal`. El cielo **solo usa voces instaladas en el dispositivo**
+  (`localService`): las de red (las «Google …» de Chrome en el ordenador) no
+  leen sin cobertura y mandan el texto fuera. Sin ninguna para el idioma, la
+  tarjeta no enseña el botón sino la nota «Este dispositivo no tiene una voz
+  para este idioma. Si instala una en sus ajustes, podrá escuchar aquí la
+  noche guiada.». Si el navegador aún no ha dicho qué voces tiene (Safari las
+  da tarde), el botón sale y se lee con el idioma puesto.
+- **Cuándo se para y cuándo espera.** Se para al cerrar el panel y al cambiar
+  de noche o de idioma; se queda en pausa al abrir «Apunte al cielo»
+  («Llévame»), al salir de «Esta noche», si la página deja de verse (otra
+  app, la pantalla bloqueada: el móvil deja de leer) y si el lector de los
+  lugares corta la frase. Mientras lee, la pantalla no se apaga (Wake Lock,
+  como en «Apunte al cielo»): con la pantalla apagada el móvil deja de leer;
+  la luz roja y el regulador de brillo siguen valiendo. Una voz que falla, o
+  que en 10 segundos no ha empezado, se para con «La voz del dispositivo no
+  ha podido leer el texto. Pruebe otra vez.». No guarda nada: la política de
+  privacidad no cambia.
+- **14 filas** en `CIELO_UI` (548): los cinco botones, la cuenta atrás, la
+  pausa, la nota, sin voz, el fallo y las cuatro que solo se oyen. En
+  castellano, de usted («Mire hacia…», «Pruebe otra vez»); en los demás, ya
+  con el trato que pidió Jerome el 21 («Usted en toda la app»), como el
+  perfil: vous, Sie, Lei, u, вие, 您 y el impersonal en polaco; los botones,
+  con nombre o infinitivo («Laut vorlesen», «Lettura ad alta voce»,
+  «Четене на глас», «Czytanie na głos»). Y el CSS de los botones y de la
+  parada marcada en `index.html`.
+
+### Lo que se decidió, y por qué
+
+- **La hora, como etiqueta**: «Hora de referencia: 21:40», «Hora de esta
+  parada: 00:40», y no «a las»: a la una sería «a las 01:10» (y en italiano,
+  «alle 01:10»). En pantalla sigue «a partir de las 21:40», como estaba.
+- **Los grados, con su plural**: «Mire hacia el sur, a 1 grado…» y «a 35
+  grados…»; en polaco, tres formas («1 stopień», «32 stopnie», «35
+  stopni»); en alemán, «Grad» no cambia; en chino, una.
+- **Seguir vuelve a leer la parada**: quien pausa suele haber perdido el
+  hilo.
+- **La primera frase sale dentro del toque**: en iOS, la primera vez solo se
+  puede empezar a leer ahí. Justo después de cortar una frase («Siguiente» mientras lee), la nueva
+  espera 150 ms: hablar en el mismo instante del `cancel()` puede perderse.
+- **La dirección va como `{r}` y no `{dir}`** en la fila nueva:
+  `auditar_registro.js` busca el «dir» del tuteo alemán y lo encuentra
+  dentro del hueco (`{dir}`, como en `cieloGuiaVia`); con `{r}`, como en
+  `cieloGuiaPaso`, la fila nueva no suma una pendiente que no es.
+
+### Lo que se corrigió al oírlo
+
+Leído en voz alta se oye lo que pone la pantalla, y lo que estaba mal se oye
+peor. Cambian 18 filas de siempre (38 textos) y cinco descripciones; el
+castellano y el inglés, no:
+
+- **El polaco y las cifras** (12 filas). El plural polaco tiene tres formas
+  (1 · 2-4 salvo 12-14 · el resto) y con decimales pide el genitivo
+  singular. Con las cifras de hoy salía mal: «8,6 lat świetlnych» (Syriusz;
+  es «8,6 roku świetlnego»), «34 lat świetlnych» (Polluks; «34 lata»),
+  «około 23 Słońc» (Syriusz; «23 Słońca»), «594 stopni kwadratowych»
+  (Orion; «594 stopnie»), «92 barów» (Wenus; «92 bary»), la edad de la
+  Luna y el tiempo de la luz de la Luna, que siempre llevan decimales
+  («{d} dni», «{s} sekund»), y la entrada de la noche guiada con 3 o 4 paradas
+  («3 przystanków»). La nota del catálogo, la tasa de las lluvias y la
+  órbita de las dobles concordaban con las cifras de hoy (109, 88, 28 y 14;
+  de 5 a 150 por hora; de 60 a 1.509 años), pero no con otras. Las cifras
+  que cambian van ahora como etiqueta, sin sustantivo detrás
+  («Odległość w latach świetlnych: 8,6», «Wiek Księżyca w dniach od
+  ostatniego nowiu: {d}», «Rozmiar w stopniach kwadratowych: 594»,
+  «Zawiera: obiekty Messiera (109)…», «Teoretyczna liczba meteorów na
+  godzinę (ZHR): 150», «Jasność w świetle widzialnym, w jednostkach jasności Słońca:
+  około 23», «Okres obiegu pary w latach: około 60»); la luz de la Luna, con
+  sus dos decimales, «sekundy»; la presión de Venus, con el símbolo
+  («92 bar»); y la entrada de la noche guiada, en sus tres formas
+  («3 przystanki», «5 przystanków»). «jakieś {n} lat temu» se queda: de 100
+  años luz para arriba la distancia va a dos cifras y acaba en 0, y eso es
+  siempre «lat» (comprobado con las 2.323 distancias del catálogo). Las que
+  se rehicieron dejan además el tú («widzisz», «Dotknij», «cię»).
+- **El chino**: los nombres de las lluvias ya acaban en «流星雨», y
+  `cieloGuiaLluvia` decía «今晚猎户座流星雨流星雨活跃»; ahora «今晚猎户座流星雨活跃».
+- **El francés**: «les météores semblent venir de Orion» pedía «d’Orion»;
+  ahora «de la constellation Orion». Lo mismo en dos filas que no se oyen:
+  «C’est l’étoile la plus brillante de sa constellation, Orion» y «Jupiter :
+  la trajectoire du lever au coucher…».
+- **El polaco y los casos**: «z Orion» y «Droga Jowisz» pedían genitivo;
+  ahora «z gwiazdozbioru Orion», como «w gwiazdozbiorze Orion», y «Jowisz:
+  droga od wschodu do zachodu…». Y «aktywny jest rój Orionidy», que pedía
+  «Orionidów», ahora «Tej nocy aktywne są Orionidy»: las once lluvias son
+  plurales en polaco.
+- **Lo que se oye, de usted en los diez idiomas.** Jerome lo pidió el 21
+  («Usted en toda la app»): el castellano ya lo estaba, y cada uno de los
+  demás idiomas iba a pasar con su parte. Pero en una misma parada la voz
+  pasaba del usted de las filas nuevas al tú de las de siempre («Das Licht,
+  das du siehst…»), así que lo que se lee ya va de usted en todos: la luz
+  «que ve» (alemán, italiano, neerlandés, búlgaro, chino y chino
+  tradicional), «Mire a un lado de ese punto… y espere» de la lluvia
+  (alemán, italiano y búlgaro; en polaco, impersonal), la Luna, Júpiter y
+  Marte en neerlandés, Marte en polaco («Można go rozpoznać…») y cinco
+  descripciones en neerlandés (M31, M42, ω Centauri, Mizar y Alcor, ε
+  Lyrae). Las pendientes de `auditar_registro.js` bajan: alemán 558,
+  italiano 587, neerlandés 535, chino y chino tradicional 301; el búlgaro y
+  el polaco no cambian de número porque ese control no ve estas formas
+  («виждаш», «Poznasz»).
+
+### Una segunda mirada
+
+Las filas nuevas y las cambiadas las revisó después un agente que no las
+había escrito, con las reglas del trato de cada idioma. Además del tú de lo
+que se oye y de «rój Orionidy» (arriba), encontró, y se cambió: en polaco,
+la tasa de las lluvias sin decir qué se cuenta («Teoretyczna liczba meteorów
+na godzinę (ZHR): {z}») y la luz de la Luna sin «en llegar» («jego światło
+dociera do nas w {s} sekundy»); y la hora de la entrada en alemán,
+neerlandés, búlgaro y polaco, que decía «Uhrzeit: 20:30» a secas: de día es
+la de media hora después de la noche cerrada, no la que es, así que ahora va
+como en castellano, «Hora de referencia»: «Berechnet für 20:30», «Berekend
+voor…», «Изчислено за…», «Godzina odniesienia: …». El francés, el italiano,
+el chino, el inglés y el castellano, sin nada que cambiar.
+
+### Cómo se comprueba
+
+`tools/auditar_cielo.js`, parte **15a** (sin navegador): `TTS_LOCALE` con los
+diez códigos; `window.TG_VOZ` y `pickVoice` con `soloLocal` en sus dos
+pasadas; el bloque de la voz sin nada que vaya a la red y sin más voz que la
+de `vozLocal`; la pausa (30 s) que dice la nota; dónde se para y dónde se
+queda en pausa; la regla de plural de la app contra la de CLDR
+(`Intl.PluralRules`) de 0 a 230; lo que se oye concordando con el número en
+los diez idiomas; la hora como etiqueta; el polaco de las cifras (la
+comprobación pilla las doce filas de antes, y ninguna de ahora); lo que se
+oye, de usted en los diez idiomas (las 20 filas que lee la voz y las 12
+descripciones: pilla las 27 marcas del tú de antes); y «jakieś {n} lat
+temu» con las distancias del catálogo. Parte **15** (en el
+navegador), con una `speechSynthesis` falsa que apunta cada frase y un Wake
+Lock que cuenta: la noche de la parte 12, a la primera hora en que la guía
+lleva un paso de satélite (el 22 de octubre, 8 paradas: la Luna, Saturno,
+Vega, Altair, Antares, la galaxia de Andrómeda, Tiangong y las Oriónidas); la entrada en el
+acto, con la voz del dispositivo y no con la de red que va antes en la
+lista; cada parada con lo que pone su tarjeta y en orden; la parada marcada,
+la cuenta atrás, «Pausa», «Seguir», «Siguiente» y el final; el Wake Lock
+pedido y soltado; las paradas y las pausas de arriba; sin voz para el
+idioma, la nota; las voces sin cargar; una voz que falla y otra que no
+empieza; y los diez idiomas, cada uno con su voz, la entrada con sus
+paradas y su hora y las dos primeras paradas con lo que pone su tarjeta,
+sin texto roto.
+
+Lo que una voz falsa no puede comprobar se mira en el móvil: que se oiga
+(también con el interruptor de silencio del iPhone), la voz de cada idioma
+en Android y en iOS, que la pantalla no se apague mientras lee y que, sin
+red, lea igual.
+
+### El resultado
+
+Sobre el árbol final (los tres commits encima de `ac10788`), el 22 de
+octubre de 2026 por la noche, los controles de lo que cambia, en verde:
+`auditar_cielo.js` sin navegador, 115 controles (con la parte 15a), y la
+parte 15 en el navegador, 18 más; `auditar_idioma.js`, 0 hallazgos en los
+diez; `castellano_suelto.js` y `auditar_registro.js` (el castellano, todo de
+usted; pendientes: francés 419, alemán 558, italiano 587, neerlandés 535,
+chino y chino tradicional 301, búlgaro 227, polaco 486); el cirílico, 1.900
+nombres y 0 variantes sospechosas; `auditar_web.js`, 44 tablas y 1815 filas;
+`barrido_idiomas.js`, 3.956; la descarga, la misma (1.038 kB en castellano,
+1.152 en búlgaro, 1.138 en polaco). `auditar.sh` entero se pasa antes de
+subir (nota 11).
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
@@ -3467,7 +3659,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 44 tablas, 1801 filas (y 3.942 filas, dentro y fuera del fuente)
+## Idiomas · 44 tablas, 1815 filas (y 3.956 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -3506,7 +3698,10 @@ hasta 622 (las 88 curiosidades, el origen en siete formas y su rótulo, el
 tamaño, las dos etiquetas de las fuentes y «Fuentes:» en plural). Esa
 tarde, las 88 curiosidades de las constelaciones salieron de `CIELO_UI`
 (que se queda en 534) a un fichero por idioma, y `tools/fuente.js` las junta
-en una tabla más, `IDIOMAS_CIELO`: 44 tablas y las mismas 1801 filas. El
+en una tabla más, `IDIOMAS_CIELO`: 44 tablas y las mismas 1801 filas. Y esa
+noche, la noche guiada en voz alta (séptimo bloque): 14 más en `CIELO_UI`,
+hasta 548 —los cinco botones, la cuenta atrás, la pausa, la nota, sin voz,
+el fallo y las cuatro que solo se oyen—: 1815 filas y 3.956. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de

@@ -135,6 +135,25 @@
  *      cargador, el service worker y tools/fuente.js; en el navegador, que
  *      se pide solo el del idioma, que sin el no sale la de otro idioma, y
  *      (parte 8) que abierto una vez con conexion queda para el Teide.
+ *  15. la noche guiada en voz alta (22 de octubre de 2026, septimo bloque):
+ *      sin navegador, que el lector de los lugares presta al cielo sus
+ *      codigos de idioma y solo voces del dispositivo (localService), que el
+ *      bloque de la voz no pide nada a la red, la pausa que dice la nota,
+ *      donde se para y donde se queda en pausa, la regla de plural de la app
+ *      contra la de CLDR y lo que se oye concordando con el numero en los
+ *      diez idiomas («1 grado», «32 stopnie», «5 przystanków»), y el polaco
+ *      de las cifras de la ficha. En el navegador, con una voz falsa que
+ *      apunta cada frase: la intro, cada parada (lo que dice es lo que pone
+ *      la tarjeta: el nombre, la clase, la hora si es otra, la direccion y
+ *      la altura, lo que se ve) y el final; la voz del dispositivo y no la de
+ *      red; la parada que se lee, marcada; la cuenta atras; «Pausa», «Seguir»
+ *      (vuelve a leer la parada), «Siguiente» y «Parar»; la pantalla
+ *      encendida solo mientras lee; que se para al cerrar el panel, al
+ *      cambiar de noche o de idioma, y se queda en pausa con «Llévame», en
+ *      otra pestaña, con la pagina oculta o si el lector de los lugares la
+ *      corta; sin voz para el idioma, la nota y no el boton; con las voces
+ *      sin cargar, se intenta; una voz que falla o que no empieza, el aviso;
+ *      y los diez idiomas, cada uno con su voz y sin texto roto.
  *
  * Sale con 1 si algo falla.
  */
@@ -804,8 +823,110 @@ titulo('14a. las 88 constelaciones: datos/constelaciones.json, su copia en el mo
      'la ficha y el catalogo llevan el origen y el tamaño, y la curiosidad sale por la abreviatura');
 }
 
+/* ════════ 15a. la noche guiada en voz alta, sin navegador ════════ */
+titulo('15a. la noche guiada en voz alta: el lector de index.html, las voces del dispositivo y el plural de lo que se oye');
+{
+  /* el lector de los lugares (AUDIO-GUIA) es el que presta las voces */
+  const LOCALE = literal(index, 'var TTS_LOCALE = {') || {};
+  const ESPERA = { es: 'es-ES', en: 'en-GB', fr: 'fr-FR', de: 'de-DE', it: 'it-IT', nl: 'nl-NL', zh: 'zh-CN', zht: 'zh-TW', bg: 'bg-BG', pl: 'pl-PL' };
+  ok(IDI.every(l => LOCALE[l] === ESPERA[l]) && Object.keys(LOCALE).length === IDI.length,
+     'TTS_LOCALE (index.html): un codigo de voz por idioma de la app, los diez (' + IDI.map(l => LOCALE[l]).join(', ') + ')', JSON.stringify(LOCALE));
+  const tts = index.slice(index.indexOf('AUDIO-GUIA TTS'), index.indexOf('BOTON WEBCAM URL'));
+  ok(/window\.TG_VOZ = \{\s*locale: function \(lg\) \{ return TTS_LOCALE\[lg\] \|\| TTS_LOCALE\[ttsLang\(\)\]; \},\s*hayVoces: function \(\) \{ loadVoices\(\); return voices\.length > 0; \},\s*vozLocal: function \(lg\) \{ loadVoices\(\); return pickVoice\(TTS_LOCALE\[lg\] \|\| TTS_LOCALE\[ttsLang\(\)\], true\); \},\s*parar: ttsStop\s*\};/.test(tts)
+     && (tts.match(/if \(soloLocal && voices\[i\]\.localService === false\) continue;/g) || []).length === 2 && /function pickVoice\(locale, soloLocal\)/.test(tts),
+     'el lector de los lugares presta al cielo su codigo de idioma, sus voces y su «parar» (window.TG_VOZ); vozLocal solo da voces del dispositivo (localService), en las dos pasadas de pickVoice');
+  /* el bloque de la voz en el modulo: sin red, solo voces del dispositivo */
+  const vozSrc = modulo.slice(modulo.indexOf('/* ── LA NOCHE GUIADA EN VOZ ALTA'), modulo.indexOf('/* ── EL SISTEMA SOLAR HOY'));
+  const red = ['fetch(', 'XMLHttpRequest', 'sendBeacon', 'WebSocket', 'import(', 'getVoices'].filter(x => vozSrc.includes(x));
+  ok(vozSrc.length > 3000 && !red.length && /V\.vozLocal\(VOZ\.lang\)/.test(vozSrc) && /u\.lang = V\.locale\(VOZ\.lang\)/.test(vozSrc) && !/\.voice = (?!v;)/.test(vozSrc),
+     'el modulo no pide nada a la red para leer y la unica voz que pone es la que da vozLocal (las del dispositivo)', red.join(', '));
+  const pausa = Number((vozSrc.match(/var VOZ_PAUSA = (\d+)/) || [])[1]);
+  ok(pausa === 30 && /T\('VozNota', \{ s: VOZ_PAUSA \}\)/.test(vozSrc) && /VOZ\.cuenta = VOZ_PAUSA/.test(vozSrc) && /\{s\} segundos/.test((CIELO_UI.cieloVozNota || {}).es || ''),
+     'la pausa entre paradas (' + pausa + ' s) es la que dice la nota de debajo del boton');
+  /* donde se para y donde se queda en pausa */
+  const cuerpo = n => { const i = modulo.indexOf(n); return i < 0 ? '' : modulo.slice(i, modulo.indexOf('\n  }\n', i)); };
+  const sitios = {
+    'cerrar el panel → parar': /vozParar\(\);/.test(cuerpo('  function cerrar() {\n    var p = document.getElementById(\'cielo-panel\');')),
+    'cambiar de noche → parar': /vozParar\(\);/.test(cuerpo('  function cambiarFecha(f) {')),
+    'cambiar de idioma → parar': /TG_IDIOMA\.registrar\('cielo de Tenerife', function \(\) \{ vozParar\(\);/.test(modulo),
+    '«Apunte al cielo» → pausa': /vozPausar\(\);/.test(cuerpo('  function abrirVista(opc) {')),
+    'salir de «Esta noche» → pausa': /if \(S\.pestana !== 'noche'\) vozPausar\(\);/.test(cuerpo('  function pintar() {')),
+    'la pagina oculta → pausa': /addEventListener\('visibilitychange', function \(\) \{ if \(document\.hidden\) vozPausar\(\); \}\)/.test(modulo),
+    'otro lector corta la frase → pausa': /if \(er === 'interrupted' \|\| er === 'canceled'\) vozPausar\(\); else vozFallo\(\);/.test(vozSrc)
+  };
+  ok(Object.values(sitios).every(Boolean), 'se para al cerrar el panel, al cambiar de noche o de idioma; se queda en pausa al abrir «Apunte al cielo», al salir de «Esta noche», con la pagina oculta o si otro lector la corta',
+     Object.entries(sitios).filter(([, v]) => !v).map(([k]) => k).join(' · '));
+  ok(/\.cielo-voz-btns \{ display: flex;/.test(index) && /\.cielo-parada-activa \{/.test(index) && /navigator\.wakeLock\.request\('screen'\)/.test(vozSrc),
+     'los botones y la parada que se lee tienen su estilo (index.html), y la pantalla no se apaga mientras lee (Wake Lock)');
+  /* el plural de lo que se oye, en cada idioma, con la regla de CLDR
+     (Intl.PluralRules) y con la de la app (PLURAL_FORMA de index.html) */
+  const pfSrc = index.slice(index.indexOf('var PLURAL_FORMA = {'), index.indexOf('function plural(clave, n)'));
+  const ctxPF = { currentLang: 'es' }; require('vm').runInNewContext(pfSrc, ctxPF);
+  const formaApp = (l, n) => { ctxPF.currentLang = l; return ctxPF.pluralIdx(n, 3); };
+  const malPF = [];
+  for (let n = 0; n <= 230; n++) {
+    const cat = new Intl.PluralRules('pl').select(n), esp = cat === 'one' ? 0 : cat === 'few' ? 1 : 2;
+    if (formaApp('pl', n) !== esp) malPF.push('pl ' + n + ': ' + formaApp('pl', n) + ' y CLDR ' + cat);
+    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'bg']) { const e2 = n === 1 ? 0 : 1; if (formaApp(l, n) !== e2) malPF.push(l + ' ' + n); }
+  }
+  ok(!malPF.length, 'la regla de plural de la app (PLURAL_FORMA) es la de CLDR en polaco de 0 a 230 (1 · 2-4 salvo 12-14 · el resto) y la de dos formas en los demas', malPF.slice(0, 5).join(', '));
+  const forma = (k, l, n) => { const v = (CIELO_UI[k] || {})[l] || '', f = v.split('|'); return f[Math.min(formaApp(l, n), f.length - 1)].split('{n}').join(String(n)); };
+  const PALABRA = {
+    cieloVozDonde: { es: ['1 grado ', '35 grados '], en: ['1 degree ', '35 degrees '], fr: ['1 degré ', '35 degrés '], de: ['1 Grad ', '35 Grad '], it: ['1 grado ', '35 gradi '],
+                     nl: ['1 graad ', '35 graden '], zh: ['1度', '35度'], zht: ['1度', '35度'], bg: ['1 градус ', '35 градуса '], pl: ['1 stopień ', '35 stopni ', '32 stopnie ', '12 stopni ', '22 stopnie '] },
+    cieloVozIntro: { es: ['1 parada.', '8 paradas,'], en: ['1 stop.', '8 stops,'], fr: ['1 étape.', '8 étapes,'], de: ['1 Station.', '8 Stationen,'], it: ['1 tappa.', '8 tappe,'],
+                     nl: ['1 halte.', '8 haltes,'], zh: ['共1站', '共8站'], zht: ['共1站', '共8站'], bg: ['1 спирка.', '8 спирки,'], pl: ['1 przystanek.', '8 przystanków,', '3 przystanki,', '4 przystanki,', '5 przystanków,'] },
+    cieloGuiaIntro: { pl: ['1 przystanek ', '8 przystanków ', '3 przystanki ', '4 przystanki ', '5 przystanków '] }
+  };
+  const malPal = [];
+  for (const [k, porIdioma] of Object.entries(PALABRA)) for (const [l, lista] of Object.entries(porIdioma)) for (const esp of lista) {
+    const n = Number(esp.match(/\d+/)[0]), t = forma(k, l, n);
+    if (!t.includes(esp)) malPal.push(k + '.' + l + ' n=' + n + ': «' + t.slice(0, 70) + '» sin «' + esp.trim() + '»');
+  }
+  ok(!malPal.length, 'lo que se oye concuerda con el numero: «1 grado», «35 grados»; en polaco «1 stopień», «32 stopnie», «12 stopni», «3 przystanki», «5 przystanków» (VozDonde, VozIntro y la entrada de la tarjeta)', malPal.slice(0, 4).join(' · '));
+  /* la hora va como etiqueta: «a las 01:10» seria «a la una» */
+  const horaMal = ['cieloVozIntro', 'cieloVozHoraParada'].filter(k => /(?:las|la) \{t\}/.test((CIELO_UI[k] || {}).es || ''));
+  ok(!horaMal.length && /Hora de referencia: \{t\}/.test((CIELO_UI.cieloVozIntro || {}).es || ''), 'la hora que se oye va como etiqueta («Hora de referencia: 21:40»), sin «a las»', horaMal.join(', '));
+  /* el polaco que ya no concuerda mal (22-10-2026, septimo bloque): ningun
+     numero que cambia lleva detras un sustantivo que tenga que concordar */
+  const PL_MAL = /\{[a-z]+\}\s+(?:lat\b(?! temu)|Słońc\b|obiektów|gwiazd\b|gwiazdozbiorów|meteorów|stopni kwadratowych|dni\b|sekund\b|barów)/;
+  const plMal = ['cieloFichaLuzAnio', 'cieloFichaLuzUnos', 'cieloFichaLum', 'cieloFichaEdadLuna', 'cieloOrbitaRapida', 'cieloDistancia', 'cieloNotaMessier', 'cieloLluviaThz', 'cieloConArea', 'cieloFichaDistLuna', 'cieloCurVenus', 'cieloGuiaIntro']
+    .filter(k => PL_MAL.test((CIELO_UI[k] || {}).pl || '') || /widzisz|Dotknij|cię\b/.test((CIELO_UI[k] || {}).pl || '')
+      || (k === 'cieloGuiaIntro' && ((CIELO_UI[k] || {}).pl || '').split('|').length !== 3));
+  ok(!plMal.length, 'el polaco de las cifras: «Odległość w latach świetlnych: 8,6», «Zawiera: obiekty Messiera (109)…», la entrada de la noche guiada en tres formas; sin «8,6 lat» ni «594 stopni»', plMal.join(', '));
+  /* lo que se oye, de usted en los diez idiomas (Jerome, 21-10-2026: «Usted en
+     toda la app»): la voz no puede pasar del usted de las filas nuevas al tu
+     de las de siempre en la misma parada. Las filas que se leen y las
+     descripciones de CIELO_DESC (la parada de un objeto); los huecos ({dir})
+     no cuentan. */
+  const HABLADAS = ['cieloGuiaParada', 'cieloVozIntro', 'cieloVozDonde', 'cieloVozHoraParada', 'cieloVozFin', 'cieloGuiaLuna', 'cieloGuiaVenus', 'cieloGuiaMarte',
+    'cieloGuiaJupiter', 'cieloGuiaSaturno', 'cieloGuiaMercurio', 'cieloGuiaPlanetaLuz', 'cieloGuiaObjeto', 'cieloGuiaVia', 'cieloGuiaPaso', 'cieloGuiaLluvia',
+    'cieloFichaLuzAnio', 'cieloFichaLuzUnos', 'cieloIluminada', 'cieloEnCon'];
+  const TU = {
+    es: /(?<![\p{L}])(?:tú|ves|puedes|mira|espera|busca)(?![\p{L}])/iu, fr: /(?<![\p{L}])(?:tu|te|toi|ton|ta|tes|vois|regarde|attends)(?![\p{L}])/iu,
+    de: /(?<![\p{L}])(?:du|dich|dir|dein\w*|schau|warte|siehst)(?![\p{L}])/iu, it: /(?<![\p{L}])(?:tu|ti|tuo|tua|vedi|puoi|guarda|aspetta)(?![\p{L}])/iu,
+    nl: /(?<![\p{L}])(?:je|jij|jou|jouw)(?![\p{L}])/iu, bg: /(?<![\p{L}])(?:ти|теб|твой|твоя|виждаш|можеш|гледай|чакай)(?![\p{L}])/iu,
+    pl: /(?<![\p{L}])(?:ty|ci|cię|twój|twoja|widzisz|poznasz|zobaczysz|patrz|czekaj|dotknij)(?![\p{L}])/iu, zh: /你/u, zht: /你/u
+  };
+  const DESC = tablaModulo('CIELO_DESC') || {};
+  const tuMal = [];
+  for (const [k, f] of HABLADAS.map(k => [k, CIELO_UI[k] || {}]).concat(Object.entries(DESC).map(([k, f]) => ['CIELO_DESC.' + k, f])))
+    for (const [l, re] of Object.entries(TU)) { const t = String(f[l] || '').replace(/\{[a-z0-9]+\}/gi, ''); const m = t.match(re); if (m) tuMal.push(k + '.' + l + ': «' + m[0] + '»'); }
+  ok(HABLADAS.every(k => CIELO_UI[k]) && Object.keys(DESC).length >= 12 && !tuMal.length,
+     'lo que se oye va de usted en los diez idiomas: las ' + HABLADAS.length + ' filas que lee la voz y las ' + Object.keys(DESC).length + ' descripciones de CIELO_DESC, sin las marcas del tu', tuMal.slice(0, 6).join(' · '));
+  /* «jakieś {n} lat temu» (FichaLuzUnos, de 100 años luz para arriba): la
+     distancia va a dos cifras (distancia()), asi que acaba en 0 y en polaco
+     es siempre «lat»; y la luz de la Luna, con dos decimales: «1,28 sekundy» */
+  const fDist = (modulo.match(/function distancia\(al\) \{[\s\S]*?\n  \}/) || [''])[0];
+  const distancia = new Function('numero', fDist + '; return distancia;')((x, d) => Number(x).toLocaleString('pl-PL', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }));
+  const alts = D.estrellas.map(e => e.al).concat(D.est.map(e => e[5])).filter(a => a >= 100);
+  const noLat = [...new Set(alts.map(a => distancia(a)))].filter(v => new Intl.PluralRules('pl').select(Number(v.replace(/\D/g, ''))) !== 'many');
+  ok(alts.length > 500 && !noLat.length && /T\('FichaLuzUnos', \{ n: distancia\(e\.al\) \}\)/.test(modulo) && /s: numero\(dk \/ C, 2\)/.test(modulo) && / sekundy/.test((CIELO_UI.cieloFichaDistLuna || {}).pl || ''),
+     'y «jakieś {n} lat temu» sale bien con las ' + alts.length + ' distancias del catalogo de 100 años luz para arriba (todas a dos cifras, acaban en 0: «lat»); la luz de la Luna va con dos decimales: «sekundy»', noLat.slice(0, 5).join(', '));
+}
+
 if (!PUERTO) {
-  nota('sin puerto: se salta todo lo que va en el navegador (6 a 14)');
+  nota('sin puerto: se salta todo lo que va en el navegador (6 a 15)');
   fin();
 } else {
   navegador().then(fin, e => { fallos++; console.log('  MAL el navegador no termino   -> ' + (e && e.stack || e)); fin(); });
@@ -832,18 +953,20 @@ async function navegador() {
     if (toca(12)) await tercerBloque(b);
     if (toca(13)) await quintoBloque(b);
     if (toca(14)) await sextoBloque(b);
+    if (toca(15)) await vozAlta(b);
   } finally { await b.close(); }
 }
 
 /* La app abierta y el panel cargado. La bienvenida se pasa como lo hace
    barrido_pantallas.js; las nubes (Open-Meteo) no se piden: sin red de
    fuera, la tarjeta no sale, que es lo que tiene que pasar. */
-async function abrirApp(b, ancho, alto, puerto, sw, opc) {
+async function abrirApp(b, ancho, alto, puerto, sw, opc, init) {
   const ctx = await b.newContext(Object.assign({ viewport: { width: ancho, height: alto }, serviceWorkers: sw ? 'allow' : 'block' }, opc || {}));
   const p = await ctx.newPage();
   const err = [];
   p.on('pageerror', e => err.push(e.message));
   await p.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
+  if (init) await p.addInitScript(init);          // lo que la pagina tiene que encontrar ya puesto (la voz falsa de la parte 15)
   if (!sw) await p.route(/^https?:\/\/(?!127\.0\.0\.1)/, r => r.abort());
   await p.goto('http://127.0.0.1:' + (puerto || PUERTO) + '/index.html', { waitUntil: 'load', timeout: 60000 });
   await p.waitForTimeout(800);
@@ -2538,4 +2661,277 @@ async function sextoBloque(b) {
   ok(!r2.de.curio && /Herkunft/.test(r2.de.texto) && !/Sabías|Did you know|Le saviez|你知道/.test(r2.de.texto),
      'sin el fichero del aleman (404), la ficha de Orion sale en aleman sin curiosidad: nunca la de otro idioma', r2.de.texto.slice(0, 200));
   await n2.ctx.close();
+}
+
+/* ── 15. la noche guiada en voz alta, en la pantalla ─────────────────────
+   Chromium sin cabeza no tiene voces: la pagina recibe, antes de cargar, una
+   speechSynthesis falsa que apunta cada frase (texto, idioma, voz, velocidad)
+   y la «dice» en unos milisegundos, con voces de los diez idiomas (y dos de
+   red, que no se tienen que usar), y un Wake Lock que cuenta lo que se pide
+   y lo que se suelta. La noche es la de la parte 12, con los satelites. */
+const VOZ_FALSA = () => {
+  const reg = { dichos: [], cortes: 0, pedidos: 0, soltados: 0, modo: 'normal', ms: 120 };
+  reg.todas = [
+    { name: 'Google español', lang: 'es-ES', localService: false, default: false, voiceURI: 'red-es' },
+    { name: 'Mónica', lang: 'es-ES', localService: true, default: true, voiceURI: 'es' },
+    { name: 'Daniel', lang: 'en-GB', localService: true, voiceURI: 'en' },
+    { name: 'Thomas', lang: 'fr-FR', localService: true, voiceURI: 'fr' },
+    { name: 'Anna', lang: 'de-DE', localService: true, voiceURI: 'de' },
+    { name: 'Alice', lang: 'it-IT', localService: true, voiceURI: 'it' },
+    { name: 'Xander', lang: 'nl_NL', localService: true, voiceURI: 'nl' },          // con guion bajo, como algunos Android
+    { name: 'Tingting', lang: 'zh-CN', localService: true, voiceURI: 'zh' },
+    { name: 'Meijia', lang: 'zh-TW', localService: true, voiceURI: 'zht' },
+    { name: 'Daria', lang: 'bg-BG', localService: true, voiceURI: 'bg' },
+    { name: 'Zosia', lang: 'pl-PL', localService: true, voiceURI: 'pl' },
+    { name: 'Google Nederlands', lang: 'nl-NL', localService: false, voiceURI: 'red-nl' }
+  ];
+  reg.voces = reg.todas.slice();
+  let cola = [], actual = null;
+  const S = {
+    speaking: false, pending: false, paused: false,
+    getVoices: () => reg.voces.slice(),
+    speak(u) { reg.dichos.push({ text: u.text, lang: u.lang, voz: u.voice ? u.voice.name : null, rate: u.rate }); cola.push(u); S.pending = true; sig(); },
+    cancel() {
+      reg.cortes++;
+      const v = [actual].concat(cola).filter(Boolean); cola = []; actual = null; S.speaking = false; S.pending = false;
+      v.forEach(u => setTimeout(() => u.onerror && u.onerror({ error: 'interrupted' }), 0));
+    },
+    pause() {}, resume() {}, addEventListener() {}, removeEventListener() {}
+  };
+  function sig() {
+    if (actual || !cola.length) { S.pending = cola.length > 0; return; }
+    actual = cola.shift(); S.pending = cola.length > 0;
+    const u = actual;
+    if (reg.modo === 'mudo') return;                     // no empieza nunca
+    S.speaking = true;
+    if (reg.modo === 'error') { setTimeout(() => { if (actual !== u) return; actual = null; S.speaking = false; if (u.onerror) u.onerror({ error: 'synthesis-failed' }); sig(); }, 20); return; }
+    setTimeout(() => { if (actual === u && u.onstart) u.onstart({}); }, 5);
+    setTimeout(() => { if (actual !== u) return; actual = null; S.speaking = false; if (u.onend) u.onend({}); sig(); }, reg.ms);
+  }
+  Object.defineProperty(window, 'speechSynthesis', { value: S, configurable: true, writable: true });
+  window.SpeechSynthesisUtterance = function (t) { this.text = t; this.lang = ''; this.voice = null; this.rate = 1; };
+  const lock = { request: () => { reg.pedidos++; const sen = { released: false, release: () => { if (!sen.released) { sen.released = true; reg.soltados++; } return Promise.resolve(); } }; return Promise.resolve(sen); } };
+  try { Object.defineProperty(navigator, 'wakeLock', { value: lock, configurable: true }); } catch (e) {}
+  window.__voz = reg;
+};
+async function vozAlta(b) {
+  titulo('15. la noche guiada en voz alta, en la pantalla');
+  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { isMobile: true, hasTouch: true }, VOZ_FALSA);
+  const epocaMax = Math.max(...SATJSON.sat.map(x => new Date(x.epoca).getTime()));
+  const e0 = new Date(epocaMax), T0 = new Date(Date.UTC(e0.getUTCFullYear(), e0.getUTCMonth(), e0.getUTCDate() + 1, 18, 0, 0));
+  await p.clock.setFixedTime(T0);
+  await p.evaluate(async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); setLang('es'); TG_CIELO.estado.fecha = null; TG_CIELO.abrir(); await TG_CIELO.satelites(); });
+  /* la primera hora, de 20 en 20 minutos y de esa noche a dos mas tarde, en
+     que la guia lleva un paso de satelite por venir: asi se oye tambien el
+     paso. Hay noches sin ninguno; si en tres no sale, se informa. */
+  const fechaCan = t => new Intl.DateTimeFormat('en-CA', { timeZone: 'Atlantic/Canary', year: 'numeric', month: '2-digit', day: '2-digit' }).format(t);
+  let T1 = null;
+  for (let d = 0; d <= 2 && !T1; d++) for (let k = 0; k <= 15 && !T1; k++) {
+    const t = new Date(T0.getTime() + d * 864e5 + k * 20 * 60000);
+    await p.clock.setFixedTime(t);
+    if (await p.evaluate(f => TG_CIELO.guia(f).some(x => x.clave === 'paso'), fechaCan(t))) T1 = t;
+  }
+  const conPaso = !!T1; T1 = T1 || T0;
+  await p.clock.setFixedTime(T1);
+  await p.evaluate(async f => { await TG_CIELO.ver('noche', f); }, fechaCan(T1));
+  nota('reloj de la pagina: ' + T1.toISOString() + (conPaso ? ' (desde la noche de la parte 12, la primera hora con un paso de satelite en la guia)' : ' (la noche de la parte 12: en tres noches ninguna hora con un paso de satelite en la guia)'));
+  /* en la pagina: esperar, leer la tarjeta y lo que deberia decir cada parada */
+  const AYUDA = () => {
+    window.__a = {
+      espera: ms => new Promise(r => setTimeout(r, ms)),
+      hasta: async (f, ms) => { const t = performance.now(); while (!f()) { if (performance.now() - t > (ms || 8000)) return false; await new Promise(r => setTimeout(r, 25)); } return true; },
+      caja: () => { const c = document.getElementById('cielo-voz'); return c ? c.innerText.replace(/\s+/g, ' ').trim() : null; },
+      boton: q => document.querySelector('#cielo-voz [data-voz="' + q + '"]'),
+      /* cada parada como la pinta la tarjeta: el nombre, la clase, la linea
+         «hora: altura, direccion» y lo que se ve; y la hora de referencia */
+      tarjeta: () => {
+        const g = document.getElementById('cielo-guia');
+        const ref = (g.querySelector('.cielo-p').textContent.match(/(\d\d:\d\d)/) || [])[1];
+        const paradas = [...g.querySelectorAll('.cielo-parada')].map(it => {
+          const subs = [...it.querySelectorAll('.cielo-item-sub')].filter(x => !x.classList.contains('cielo-parada-que')).map(x => x.textContent);
+          const arriba = subs[subs.length - 1], sub = subs.length > 1 ? subs[0] : '';
+          const q = it.querySelector('.cielo-parada-que');
+          return { n: it.getAttribute('data-parada'), ico: it.querySelector('.cielo-item-ico').textContent, nombre: it.querySelector('.cielo-item-nom').childNodes[0].textContent,
+                   sub, arriba, hora: (arriba.match(/^(\d\d:\d\d)/) || [])[1], alt: Number((arriba.match(/(\d+)°/) || [])[1]), dir: arriba.split(/, |，/).pop(), que: q ? q.textContent : '' };
+        });
+        return { ref, paradas, activa: [...g.querySelectorAll('.cielo-parada-activa')].map(x => x.getAttribute('data-parada')) };
+      },
+      /* lo que tiene que contener la frase de una parada, de lo que pinta la tarjeta */
+      espero: (x, i, total, ref) => {
+        const piezas = [tx('cieloGuiaParada', { i: i + 1, n: total }), x.nombre];
+        if (!/🛰/u.test(x.ico) && x.sub) piezas.push(x.sub.replace(/\s*·\s*/g, currentLang.startsWith('zh') ? '，' : ', '));
+        if (x.hora !== ref) piezas.push(tx('cieloVozHoraParada', { t: x.hora }));
+        piezas.push(tx('cieloVozDonde', { r: x.dir, n: x.alt }));
+        if (x.que) piezas.push(x.que);
+        return piezas;
+      },
+      contiene: (t, piezas) => { let desde = 0; const faltan = []; piezas.forEach(pz => { const k = t.toLocaleLowerCase().indexOf(pz.toLocaleLowerCase().replace(/[.。]$/, ''), desde); if (k < 0) faltan.push(pz); else desde = k; }); return faltan; }
+    };
+  };
+  await p.evaluate(AYUDA);
+  /* ── una noche entera, en castellano ── */
+  const r = await p.evaluate(async () => {
+    const A = window.__a, V = window.__voz, out = {};
+    out.antes = { caja: A.caja(), dentro: !!document.querySelector('#cielo-guia #cielo-voz'), estado: TG_CIELO.voz().estado, tg: typeof window.TG_VOZ };
+    const tj = A.tarjeta(); out.tarjeta = tj;
+    TG_CIELO.vozTiempos(2, 3000); V.ms = 1000;      // cada frase dura 1 s: da tiempo a mirar mientras lee
+    A.boton('leer').click();
+    out.alTocar = { dichos: V.dichos.length, estado: TG_CIELO.voz().estado };          // la intro sale dentro del toque
+    await A.hasta(() => V.dichos.length >= 2);
+    await A.espera(150);
+    out.parada1 = { estado: TG_CIELO.voz(), activa: A.tarjeta().activa, caja: A.caja(), pedidos: V.pedidos, soltados: V.soltados };
+    await A.hasta(() => TG_CIELO.voz().estado === 'esperando'); await A.espera(100);
+    out.espera = { estado: TG_CIELO.voz(), caja: A.caja() };
+    await A.hasta(() => V.dichos.length >= 3); await A.espera(100);
+    const n3 = V.dichos.length, cortes = V.cortes;
+    A.boton('pausa').click(); await A.espera(100);
+    out.pausa = { estado: TG_CIELO.voz(), caja: A.caja(), cortes: V.cortes - cortes, pedidos: V.pedidos, soltados: V.soltados, seguir: !!A.boton('seguir') };
+    await A.espera(2600);
+    out.pausa.nuevas = V.dichos.length - n3;
+    A.boton('seguir').click(); await A.hasta(() => V.dichos.length > n3); await A.espera(100);
+    out.seguir = { igual: V.dichos[V.dichos.length - 1].text === V.dichos[n3 - 1].text, estado: TG_CIELO.voz() };
+    const n4 = V.dichos.length, c4 = V.cortes;
+    A.boton('siguiente').click();
+    await A.hasta(() => V.dichos.length > n4, 1500);
+    out.siguiente = { cortes: V.cortes - c4, i: TG_CIELO.voz().i, nuevo: V.dichos.length > n4 ? V.dichos[V.dichos.length - 1].text.slice(0, 40) : null };
+    TG_CIELO.vozTiempos(1, 1500); V.ms = 40;
+    await A.hasta(() => TG_CIELO.voz().estado === 'parado', 60000);
+    out.fin = { estado: TG_CIELO.voz(), caja: A.caja(), activa: A.tarjeta().activa, pedidos: V.pedidos, soltados: V.soltados };
+    out.dichos = V.dichos.slice();
+    return out;
+  });
+  const P = r.tarjeta.paradas, N = P.length;
+  ok(r.antes.tg === 'object' && r.antes.dentro && r.antes.estado === 'parado' && /^🔊 Leer en voz alta Lo leen las voces instaladas en el dispositivo, sin red: así puede mirar al cielo y no a la pantalla\. Tras cada parada hay 30 segundos para buscarla/.test(r.antes.caja),
+     'la tarjeta «Su noche guiada» lleva el boton «Leer en voz alta» y la nota (las voces del dispositivo, sin red, 30 segundos por parada)', r.antes.caja);
+  const intro = r.dichos[0] || {};
+  ok(r.alTocar.dichos === 1 && intro.text === 'Noche guiada: ' + N + ' paradas, de lo más fácil a lo más fino. Hora de referencia: ' + r.tarjeta.ref + '. Tras cada una, una pausa para buscarla en el cielo.'
+     && intro.lang === 'es-ES' && intro.voz === 'Mónica' && intro.rate === 0.95,
+     'al tocar, en el acto: «Noche guiada: ' + N + ' paradas… Hora de referencia: ' + r.tarjeta.ref + '…», en es-ES con la voz del dispositivo (Mónica) y no con la de red que va antes en la lista', JSON.stringify(intro));
+  /* cada parada dice lo que pone la tarjeta, en orden */
+  const malP = [];
+  const paradasDichas = r.dichos.slice(1).map(d => d.text).filter(t => /^Parada \d+ de \d+\./.test(t));
+  const espero = await p.evaluate(({ P, N, ref }) => P.map((x, i) => window.__a.espero(x, i, N, ref)), { P, N, ref: r.tarjeta.ref });
+  const orden = paradasDichas.map(t => Number(t.match(/^Parada (\d+)/)[1]));
+  P.forEach((x, i) => {
+    const t = paradasDichas.find(s => s.startsWith('Parada ' + (i + 1) + ' de ' + N + '.'));
+    if (!t) { malP.push('falta la parada ' + (i + 1)); return; }
+    const piezas = espero[i];
+    let desde = 0; const faltan = [];
+    piezas.forEach(pz => { const k = t.toLocaleLowerCase('es').indexOf(pz.toLocaleLowerCase('es').replace(/\.$/, ''), desde); if (k < 0) faltan.push(pz); else desde = k; });
+    if (faltan.length) malP.push((i + 1) + ': falta «' + faltan.join('» «') + '» en «' + t.slice(0, 120) + '»');
+    if (/[·{}]|undefined|NaN|\s{2}|\p{Extended_Pictographic}/u.test(t)) malP.push((i + 1) + ': texto roto «' + t.slice(0, 80) + '»');
+    if (/🛰/u.test(x.ico) && x.sub && t.includes(x.sub)) malP.push((i + 1) + ': el paso lee su franja de horas');
+  });
+  ok(!malP.length && paradasDichas.length >= N && orden.slice(0, 4).join() === '1,2,2,3' && orden.includes(N) && orden.slice(3).every((k, i, a) => !i || k === a[i - 1] + 1),
+     'las ' + N + ' paradas, cada una con lo que pone su tarjeta y en ese orden: «Parada k de ' + N + '», el nombre, la clase, la hora si no es la de referencia, «Mire hacia…, a … grados sobre el horizonte» con la altura y la direccion de la tarjeta, y lo que se ve',
+     malP.slice(0, 3).join(' · ') + ' · orden ' + orden.join(','));
+  const conHora = P.filter(x => x.hora !== r.tarjeta.ref).map(x => x.nombre);
+  nota('paradas: ' + P.map(x => x.ico + ' ' + x.nombre + ' (' + x.alt + '°, ' + x.dir + (x.hora !== r.tarjeta.ref ? ', a las ' + x.hora : '') + ')').join(' · '));
+  if (conPaso) ok(conHora.length >= 1 && P.some(x => /🛰/u.test(x.ico)), 'esa noche hay un paso de satelite (no lee su franja de horas: ya va en lo que se ve) y ' + conHora.length + ' parada(s) con su propia hora («Hora de esta parada: …»)', conHora.join(', '));
+  else nota('sin paso de satelite en la guia: lo del paso no se oye esta vez (' + conHora.length + ' parada(s) con su propia hora)');
+  ok(r.parada1.estado.estado === 'hablando' && r.parada1.estado.i === 0 && r.parada1.activa.join() === '0' && /^⏸️ Pausa ⏭️ Siguiente ⏹️ Parar 🔊 Parada 1 de /.test(r.parada1.caja) && r.parada1.pedidos === 1 && r.parada1.soltados === 0,
+     'mientras lee la primera: la tarjeta la marca (y solo a ella), «Pausa · Siguiente · Parar», «🔊 Parada 1 de ' + N + '» y la pantalla encendida (Wake Lock pedido)', JSON.stringify(r.parada1));
+  ok(r.espera.estado.estado === 'esperando' && /⏳ Siguiente parada en [12] s$/.test(r.espera.caja), 'entre parada y parada, la cuenta atras («Siguiente parada en 2 s»)', r.espera.caja);
+  ok(r.pausa.estado.estado === 'pausa' && r.pausa.cortes >= 1 && r.pausa.nuevas === 0 && r.pausa.seguir && /⏸️ En pausa\. «Seguir» vuelve a leer esta parada\.$/.test(r.pausa.caja) && r.pausa.soltados === r.pausa.pedidos,
+     '«Pausa» corta la frase, no lee nada mas en 2,6 s, ofrece «Seguir» y deja apagarse la pantalla', JSON.stringify(r.pausa));
+  ok(r.seguir.igual && r.seguir.estado.estado === 'hablando', '«Seguir» vuelve a leer la misma parada', JSON.stringify(r.seguir));
+  ok(r.siguiente.cortes >= 1 && r.siguiente.nuevo && r.siguiente.nuevo.startsWith('Parada ' + (r.seguir.estado.i + 2) + ' de'), '«Siguiente» corta la que lee y pasa a la otra', JSON.stringify(r.siguiente));
+  const ult = r.dichos[r.dichos.length - 1] || {};
+  ok(ult.text === 'Fin de la noche guiada.' && r.fin.estado.estado === 'parado' && !r.fin.activa.length && /^🔊 Leer en voz alta/.test(r.fin.caja) && r.fin.pedidos >= 2 && r.fin.soltados === r.fin.pedidos,
+     'al acabar: «Fin de la noche guiada.», vuelve el boton, ninguna parada marcada y la pantalla otra vez libre (' + r.fin.pedidos + ' Wake Lock pedidos, ' + r.fin.soltados + ' soltados)', JSON.stringify({ ult: ult.text, fin: r.fin }));
+  /* ── lo que la para y lo que la deja en pausa ── */
+  const cortes = await p.evaluate(async () => {
+    const A = window.__a, V = window.__voz, out = {};
+    TG_CIELO.vozTiempos(30, 1500); V.ms = 4000;
+    const empezar = async () => {
+      await TG_CIELO.ver('noche'); await A.espera(150);
+      if (TG_CIELO.voz().estado !== 'parado') { A.boton('parar').click(); await A.espera(50); }
+      const n0 = V.dichos.length;
+      A.boton('leer').click(); await A.hasta(() => TG_CIELO.voz().estado === 'hablando' && V.dichos.length > n0);
+    };
+    await empezar(); TG_CIELO.cerrar(); await A.espera(100);
+    out.cerrar = TG_CIELO.voz().estado;
+    await empezar(); const f0 = TG_CIELO.estado.fecha; TG_CIELO.cambiarFecha('2026-12-13'); await A.espera(100);
+    out.fecha = TG_CIELO.voz().estado; TG_CIELO.cambiarFecha(f0);
+    await empezar(); document.querySelector('#cielo-guia .cielo-parada button').click(); await A.espera(400);
+    out.llevame = { estado: TG_CIELO.voz().estado, vista: !!document.getElementById('cielo-vista') }; TG_CIELO.cerrarVista(); await A.espera(200);
+    await empezar(); const pes = [...document.querySelectorAll('#cielo-pestanas button')].find(x => x.getAttribute('aria-selected') !== 'true'); pes.click(); await A.espera(200);
+    out.pestana = { estado: TG_CIELO.voz().estado, pestana: TG_CIELO.estado.pestana };
+    await empezar();
+    Object.defineProperty(document, 'hidden', { value: true, configurable: true }); Object.defineProperty(document, 'visibilityState', { value: 'hidden', configurable: true });
+    document.dispatchEvent(new Event('visibilitychange')); await A.espera(100);
+    out.oculta = TG_CIELO.voz().estado;
+    delete document.hidden; delete document.visibilityState;
+    await empezar(); window.TG_VOZ.parar(); await A.espera(150);
+    out.otroLector = TG_CIELO.voz().estado;
+    await empezar(); setLang('fr'); await A.espera(400);
+    out.idioma = { estado: TG_CIELO.voz().estado, caja: A.caja() }; setLang('es'); await A.espera(300);
+    TG_CIELO.vozTiempos(2, 1500); V.ms = 120;
+    return out;
+  });
+  ok(cortes.cerrar === 'parado' && cortes.fecha === 'parado' && cortes.idioma.estado === 'parado' && /^🔊 Lecture à voix haute/.test(cortes.idioma.caja),
+     'se para al cerrar el panel, al cambiar de noche y al cambiar de idioma (y el boton sale en el idioma nuevo: «Lecture à voix haute»)', JSON.stringify(cortes));
+  ok(cortes.llevame.estado === 'pausa' && cortes.llevame.vista && cortes.pestana.estado === 'pausa' && cortes.pestana.pestana !== 'noche' && cortes.oculta === 'pausa' && cortes.otroLector === 'pausa',
+     'y se queda en pausa con «Llévame» (abre «Apunte al cielo»), en otra pestaña, con la pagina oculta y si el lector de los lugares corta la frase', JSON.stringify(cortes));
+  /* ── sin voz, voces que llegan tarde, una voz que falla ── */
+  const voces = await p.evaluate(async () => {
+    const A = window.__a, V = window.__voz, out = {};
+    V.voces = V.todas.filter(v => !(v.voiceURI === 'nl'));                      // en neerlandes, solo la de red
+    setLang('nl'); await A.espera(300); await TG_CIELO.ver('noche'); await A.espera(150);
+    out.nl = { caja: A.caja(), boton: !!A.boton('leer') };
+    V.voces = []; setLang('es'); await A.espera(300); await TG_CIELO.ver('noche'); await A.espera(150);
+    out.vacias = { boton: !!A.boton('leer') };
+    const n0 = V.dichos.length; A.boton('leer').click(); await A.hasta(() => V.dichos.length > n0);
+    out.vacias.dicho = V.dichos[V.dichos.length - 1]; out.vacias.dicho = { lang: out.vacias.dicho.lang, voz: out.vacias.dicho.voz };
+    A.boton('parar').click(); await A.espera(100);
+    V.voces = V.todas.slice();
+    V.modo = 'error'; A.boton('leer').click(); await A.hasta(() => TG_CIELO.voz().estado === 'parado'); await A.espera(100);
+    out.error = { estado: TG_CIELO.voz(), caja: A.caja() };
+    V.modo = 'mudo'; TG_CIELO.vozTiempos(2, 1200); A.boton('leer').click(); await A.espera(300);
+    out.mudo = { antes: TG_CIELO.voz().estado };
+    await A.hasta(() => TG_CIELO.voz().estado === 'parado', 4000); await A.espera(100);
+    out.mudo.despues = TG_CIELO.voz(); out.mudo.caja = A.caja();
+    V.modo = 'normal'; window.speechSynthesis.cancel();
+    return out;
+  });
+  ok(!voces.nl.boton && /^🔇 Dit apparaat heeft geen stem voor deze taal\./.test(voces.nl.caja || ''), 'sin voz del dispositivo para el idioma (en neerlandes solo hay una de red): la nota de como instalarla y ningun boton', JSON.stringify(voces.nl));
+  ok(voces.vacias.boton && voces.vacias.dicho.lang === 'es-ES' && voces.vacias.dicho.voz === null, 'si el navegador aun no ha dicho que voces tiene (Safari las da tarde), el boton esta y lee con el idioma puesto (es-ES)', JSON.stringify(voces.vacias));
+  ok(voces.error.estado.estado === 'parado' && voces.error.estado.fallo && /⚠️ La voz del dispositivo no ha podido leer el texto\. Pruebe otra vez\./.test(voces.error.caja),
+     'una voz que falla (synthesis-failed): se para y lo dice', voces.error.caja);
+  ok(voces.mudo.antes === 'hablando' && voces.mudo.despues.estado === 'parado' && voces.mudo.despues.fallo && /⚠️ La voz del dispositivo no ha podido leer/.test(voces.mudo.caja),
+     'una voz que no llega a empezar: a los ' + (voces.mudo.despues.vigia / 1000) + ' s se para con el mismo aviso, no se queda colgada', JSON.stringify(voces.mudo));
+  /* ── los diez idiomas ── */
+  const LOCALE = literal(index, 'var TTS_LOCALE = {') || {};
+  const VOZ_DE = { es: 'Mónica', en: 'Daniel', fr: 'Thomas', de: 'Anna', it: 'Alice', nl: 'Xander', zh: 'Tingting', zht: 'Meijia', bg: 'Daria', pl: 'Zosia' };
+  const malI = [], resumen = [];
+  for (const l of IDI) {
+    const x = await p.evaluate(async (l) => {
+      const A = window.__a, V = window.__voz;
+      TG_CIELO.vozTiempos(1, 1500); V.ms = 60;
+      setLang(l); await A.espera(300); await TG_CIELO.ver('noche'); await A.espera(150);
+      const tj = A.tarjeta(), n0 = V.dichos.length;
+      A.boton('leer').click();
+      await A.hasta(() => V.dichos.length >= n0 + 3, 10000);
+      const caja = A.caja();
+      A.boton('parar').click(); await A.espera(100);
+      const d = V.dichos.slice(n0, n0 + 3);
+      return { tj, d, caja, espero: A.espero(tj.paradas[0], 0, tj.paradas.length, tj.ref), espero2: A.espero(tj.paradas[1], 1, tj.paradas.length, tj.ref), estado: TG_CIELO.voz().estado };
+    }, l);
+    const zh = l === 'zh' || l === 'zht';
+    const roto = t => /[·{}|]|undefined|NaN|\s{2}|\p{Extended_Pictographic}/u.test(t) || (zh && /\. /.test(t));
+    const falta = (t, piezas) => { let desde = 0; return piezas.filter(pz => { const k = t.toLocaleLowerCase().indexOf(pz.toLocaleLowerCase().replace(/[.。]$/, ''), desde); if (k < 0) return true; desde = k; return false; }); };
+    if (x.d.length < 3) { malI.push(l + ': ' + x.d.length + ' frases'); continue; }
+    if (x.d.some(d => d.lang !== LOCALE[l] || d.voz !== VOZ_DE[l] || d.rate !== 0.95)) malI.push(l + ': voz ' + x.d.map(d => d.lang + '/' + d.voz).join(','));
+    if (x.d.some(d => roto(d.text))) malI.push(l + ': texto roto «' + x.d.find(d => roto(d.text)).text.slice(0, 80) + '»');
+    if (!x.d[0].text.includes(String(x.tj.paradas.length)) || !x.d[0].text.includes(x.tj.ref)) malI.push(l + ': la intro sin ' + x.tj.paradas.length + ' paradas o sin ' + x.tj.ref + ': «' + x.d[0].text.slice(0, 80) + '»');
+    const f1 = falta(x.d[1].text, x.espero), f2 = falta(x.d[2].text, x.espero2);
+    if (f1.length || f2.length) malI.push(l + ': falta «' + f1.concat(f2).join('» «').slice(0, 120) + '»');
+    if (zh && !x.d[1].text.includes('。')) malI.push(l + ': sin «。»');
+    if (x.estado !== 'parado') malI.push(l + ': «Parar» no para');
+    resumen.push(l + ' «' + x.d[1].text.slice(0, 48) + '…»');
+  }
+  ok(!malI.length, 'en los diez idiomas: su voz (' + IDI.map(l => LOCALE[l]).join(', ') + '), la intro con las paradas y la hora, las dos primeras paradas con lo que pone su tarjeta, sin texto roto (en chino, con «。»)', malI.slice(0, 4).join(' · '));
+  nota(resumen.slice(0, 4).join(' · '));
+  ok(!err.length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
+  await ctx.close();
 }

@@ -217,6 +217,25 @@ de estrellas activa; cada una con dónde está, qué es y «Llévame», que abre
 «Apunta al cielo» con la flecha puesta en ella. Es la respuesta a «los
 principiantes no saben dónde mirar», la queja que las reseñas repiten.
 
+**Y en voz alta.** «Leer en voz alta» lee la noche guiada parada a parada
+con las voces del propio móvil, las mismas de la audioguía de los lugares
+(`speechSynthesis`): «Parada 2 de 8. Saturno. Planeta, en Ballena. Mire
+hacia el este, a 18 grados sobre el horizonte…», y deja 30 segundos para
+buscarla antes de la siguiente; «Pausa» la detiene, «Seguir» la vuelve a
+leer y «Siguiente» no espera. Así se mira el cielo y no la pantalla. Lo que
+se oye es lo que pone la tarjeta, más la entrada, la hora de las paradas que
+tienen la suya (un paso de satélite, una lluvia cuyo radiante sube más
+tarde), «Mire hacia…, a … grados» y «Fin de la noche guiada». Solo usa voces
+instaladas en el dispositivo (`localService`), así que lee sin red y el
+texto no sale del móvil; si no hay ninguna para el idioma, lo dice y explica
+que se puede instalar en los ajustes. Mientras lee, la pantalla no se apaga
+(con ella apagada el móvil deja de leer); se para al cerrar el panel o al
+cambiar de noche o de idioma, y se queda en pausa al abrir «Apunta al
+cielo», al salir de «Esta noche» o si la página deja de verse. No guarda
+nada. `tools/auditar_cielo.js` (parte 15) lo comprueba con una voz falsa
+que apunta cada frase, en los diez idiomas, y que lo que se oye concuerda
+con el número («1 grado», «32 stopnie», «5 przystanków»).
+
 **El sistema solar hoy**, al final de «Esta noche»: las órbitas y las
 posiciones reales vistas desde encima del polo norte del Sol (Astronomy
 Engine), «Hasta Marte» o «Hasta Neptuno», con la noche de la Tierra y
