@@ -8672,6 +8672,51 @@ pantallas y fichas por idioma y 0 textos sin traducir; `auditar_idioma.js`,
 sospechosas; `probar_faq.js`, 0 fallos de 121; `probar_movil.js`, las 25
 preguntas en su idioma; `probar_play.js`, 233 de 233.
 
+## Mucho dato, y los topes de Supabase (23 de octubre, madrugada)
+
+Jerome, al cerrar el día: «Mira que no se pone lenta con más volumen de
+información y de modos nuevos» y «La seguridad completa de la app más que
+importante por proteger los usuarios!». Lo que salió al mirarlo en lo que ya
+está en `main` (lo del perfil, en su sección, abajo):
+
+- **La notificación diaria no llegaba a nadie a partir del suscrito mil y
+  uno** (`bcf3be2`). Supabase devuelve como mucho 1.000 filas por consulta
+  (Max rows, lo que trae cada proyecto; la service_role no se lo salta), y
+  `enviar-notificacion.js` leía las suscripciones de una vez: el registro
+  del envío decía «Suscripciones: 1000» sin ningún aviso. Ahora las lee por
+  páginas, en orden, hasta una vacía. `tools/probar_notificacion_idioma.js`
+  lo prueba con 2.345 suscripciones detrás de una Supabase de mentira que da
+  1.000 por petición. Con el envío de antes llegaban 1.000 de 2.345; ahora
+  llegan las 2.345, una a cada una.
+- **Nadie puede llenar la base de datos** (`a53b065`). La RLS no deja tocar
+  lo de otra cuenta, pero con una cuenta cualquiera, a mano contra la API,
+  se podían meter millones de favoritos, con un `place_id` tan largo como
+  cupiera. Y `guardar_push_sub()`, que llama cualquiera, también sin cuenta,
+  daba de alta tantas suscripciones inventadas como se quisiera. Con la base
+  de datos llena, la nube se para para todo el mundo. Ahora:
+  - `favorites.sql`: el `place_id`, de 1 a 80 caracteres (los de la app van
+    de 3 a 43), y como mucho 1.000 favoritos por cuenta (la app tiene 980
+    lugares y los lee de una vez);
+  - `push-idioma.sql`: como mucho 50.000 suscripciones, unos 60 MB en el
+    peor caso. Poner al día el idioma de una que ya está, siempre.
+
+  Los favoritos se cuentan una vez por subida, al acabar, y volver a subir
+  lo que ya está no suma. Probado en el PostgreSQL 16 local, con los
+  permisos que da Supabase: los dos ficheros, dos veces seguidas, sin
+  errores; la prueba de los topes, 31 de 31, con los del perfil.
+
+**En Supabase** (Jerome, SQL Editor): ejecutar otra vez `favorites.sql` y
+`push-idioma.sql`. Hasta entonces la app funciona igual, pero sin los topes.
+
+**Lo comprobado sobre `a53b065`**, lo que tocan estos dos commits:
+`probar_notificacion_idioma.js`, 58 comprobaciones en verde, con las
+2.345 suscripciones; `auditar_seguridad.py`, en verde; los controles que
+leen las cifras de este documento (`auditar_web.js`, 44 tablas y 1.821
+filas; `barrido_idiomas.js`, 3.962; `auditar_readme.js`), en verde; y la
+descarga, la misma (1.039 kB en castellano, 1.153 en búlgaro). La
+auditoría entera va sobre la cadena con el perfil (en su sección, abajo),
+que lleva estos dos commits dentro.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -8716,7 +8761,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_faq.js` | el asistente: cada respuesta en los diez idiomas, alcanzable por su botón, ninguna igual al castellano o al inglés, los botones que cita con su nombre de pantalla, y ninguna base fuera de `faq/` |
 | `tools/rotulos_app.js` | los rótulos de la app en los diez idiomas, sacados de `index.html` (lo usa `auditar_faq.js`) |
 | `tools/probar_faq.js` · `tools/probar_movil.js` | preguntas de prueba al asistente: en Node con el núcleo de verdad, y en un móvil con la app entera |
-| `tools/probar_notificacion_idioma.js` | la notificación diaria en el idioma de cada móvil: lo que la app manda a `guardar_push_sub()` al abrir, al cambiar de idioma y desde el botón sin cuenta, la tarjeta del permiso en los diez, y lo que el envío le manda a cada idioma |
+| `tools/probar_notificacion_idioma.js` | la notificación diaria en el idioma de cada móvil: lo que la app manda a `guardar_push_sub()` al abrir, al cambiar de idioma y desde el botón sin cuenta, la tarjeta del permiso en los diez, y lo que el envío le manda a cada idioma; y con 2.345 suscripciones detrás de una Supabase que da 1.000 filas por consulta, que a cada una le llega una |
 | `tools/probar_nombres.js` | cada lugar preguntado al asistente por su nombre, en los diez idiomas y en chino pegado: sale su ficha o la lista para elegir; el nombre corto, contado; y cada categoría del menú por su rótulo, la lista de esa categoría |
 | `tools/auditar_letras.js` | palabras escritas sin sus letras («waehle», «carre avec fleche») |
 | `tools/auditar_reservas.py` | el texto de reserva en castellano (`L.clave \|\| '…'`): la clave, en los diez idiomas; y el texto que el código escribe a mano en la página (`textContent = '…'`), fuera de lo fijo con su motivo |
@@ -8758,10 +8803,15 @@ Y cada bloque por separado, si hace falta:
   o escribir los favoritos de otros.
 - **`push_subs` debe ser insert-only.** Si esa policy no existe, la lista de
   endpoints push es descargable.
-- **El panel admin no es un control de seguridad.** El hash vive en el
-  `localStorage` del propio dispositivo y todo el gate es cliente. No pasa nada
-  mientras los datos sigan siendo locales, pero no debe convertirse en la puerta
-  de nada que viva en el servidor.
+- **El panel de administración lo decide el servidor.** Desde la Fase 1 (16 de
+  octubre) no hay ningún hash en el dispositivo: el botón sale si `es_admin()`
+  (anuncios.sql) dice que sí, y escribir en anuncios, souvenirs y excursiones
+  lo deciden sus policies con `es_admin()`. Forzar el botón no deja escribir
+  nada.
+- **Los topes** (23 de octubre): `favorites.sql` y `push-idioma.sql` hay que
+  ejecutarlos otra vez (SQL Editor; los dos se pueden ejecutar las veces que
+  haga falta). Sin eso, la app funciona igual, pero con una cuenta (o sin
+  ella, las suscripciones) se puede llenar la base de datos.
 - **Privacidad**: las coordenadas GPS exactas del usuario se envían a
   `router.project-osrm.org` (servidor de demostración público) y a
   `nominatim.openstreetmap.org`, cuya política pide un User-Agent identificable.
