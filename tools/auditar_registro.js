@@ -44,7 +44,7 @@ const TODOS_F = TODOS ? process.argv[process.argv.indexOf('--todos') + 2] : null
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 
 /* Los idiomas ya pasados a usted. Cada parte del cambio anade el suyo. */
-const HECHOS = ['es', 'zh', 'zht', 'de', 'nl', 'fr'];
+const HECHOS = ['es', 'zh', 'zht', 'de', 'nl', 'fr', 'it'];
 
 /* ── las marcas del tuteo, idioma a idioma ─────────────────────────────── */
 const L_ = 'A-Za-zÀ-ÖØ-öø-ɏЀ-ӿ';
@@ -173,11 +173,43 @@ const MARCAS = {
        /* «Bitte fülle…», «bitte gib…»: tras «bitte», el imperativo de du (el de Sie es «Bitte füllen Sie») */
        new RegExp('(?<![' + L_ + '])[Bb]itte\\s+(?:fülle|füll|gib|wähle|wähl|tippe|tipp|gehe|geh|versuche|versuch|prüfe|prüf|öffne|schau|sieh|nimm|lies|komm|warte|melde|gib)(?![' + L_ + '])', 'u')],
   it: [palI('tu', 'ti', 'te', 'tuo', 'tua', 'tuoi', 'tue'),
-       inicio('Tocca', 'Scegli', 'Scrivi', 'Usa', 'Apri', 'Guarda', 'Prova', 'Cerca', 'Scopri', 'Goditi', 'Attiva', 'Accetta', 'Crea', 'Salva', 'Aggiungi', 'Consulta',
-         'Togli', 'Cambia', 'Torna', 'Punta', 'Alza', 'Disegna', 'Controlla', 'Cancella', 'Chiudi', 'Condividi', 'Scarica', 'Installa', 'Premi', 'Trascina', 'Muovi',
-         'Seleziona', 'Segui', 'Accedi', 'Respira', 'Ascolta', 'Immagina', 'Sorridi', 'Prendi', 'Fai', 'Vai', 'Vieni', 'Di', 'Metti', 'Bevi', 'Mangia', 'Lascia',
-         'Ricorda', 'Esplora', 'Pianifica', 'Organizza', 'Visita', 'Concediti', 'Regalati', 'Fermati', 'Ricordati'),
-       palI('puoi', 'vuoi', 'hai', 'sei', 'vai', 'fai', 'vedi', 'sai', 'devi', 'trovi', 'scopri', 'senti', 'arrivi', 'entri', 'esci', 'parti', 'resti')],
+       inicio('Tocca', 'Scegli', 'Scrivi', 'Usa', 'Apri', 'Guarda', 'Prova', 'Cerca', 'Scopri', 'Goditi', 'Attiva', 'Crea', 'Salva', 'Aggiungi', 'Consulta',
+         'Togli', 'Alza', 'Disegna', 'Controlla', 'Cancella', 'Chiudi', 'Condividi', 'Scarica', 'Installa', 'Premi', 'Trascina', 'Muovi',
+         'Seleziona', 'Segui', 'Accedi', 'Respira', 'Ascolta', 'Immagina', 'Sorridi', 'Prendi', 'Fai', 'Vai', 'Vieni', 'Metti', 'Bevi', 'Mangia', 'Lascia',
+         'Ricorda', 'Esplora', 'Pianifica', 'Organizza', 'Concediti', 'Regalati', 'Fermati', 'Ricordati',
+         /* «Di'» (di' = di': dica) lleva su apostrofo: «Di» solo es «Di solito», «Di fronte», «Di turno» */
+         "Di['’]",
+         /* los que tambien son nombre o tercera persona, solo en su giro de imperativo
+            (22 de octubre): en las fichas estan «Punta de Teno», «Punta di roccia»,
+            «Visita ai vigneti», «Accetta assicurazioni internazionali», en las
+            frases «Cambia il giorno da dentro» (el sol lo cambia) y «Cammina il Suo
+            tratto», y en el cielo «Torna visibile dalla notte del…» */
+         "Punta (?:il|lo|la|i|gli|le|l['’][a-zà-ÿ]+|verso)", "Visita (?:il|lo|la|i|gli|le|l['’][a-zà-ÿ]+)", 'Accetta(?:ne|lo|la|li|le)', 'Accetta (?:ciò|che|questo|questa)',
+         'Cambia (?:lingua|la lingua|tappe|le tappe|data|zona|posto)',
+         /* y los que solo vio el repaso a mano (22 de octubre): el imperativo de tu sin
+            pronombre de las frases del dia, del asistente, del cielo y de las fichas */
+         'Sii', 'Abbi', 'Cammina (?:verso|dieci|piano|senza)', 'Cammina,', 'Torna (?:qui|indietro|a casa)', 'Riposa', 'Ringrazia', 'Festeggia', 'Perdonati', 'Muoviti', 'Prenditi', 'Fidati', 'Chiediti', 'Ascoltati', 'Trattati',
+         'Filtra', 'Tira', 'Riprova', 'Inserisci', 'Compila', 'Spegni', 'Tieni', 'Scendi', 'Sali', 'Sposta', 'Parcheggia',
+         'Porta (?:una|un|qualcosa|comunque|scarpette|acqua)', 'Evita (?:di|il|la|le|i|gli|piscine)', 'Verifica (?:stato|le|il|lo|la|i|gli|sul)', 'Calcola prima',
+         'Paga all', 'Segna i', 'Leggilo', 'Toccane', 'Chiedimi', 'Scrivigli', 'Copriti', 'Collegati', 'Esegui',
+         'Non (?:guardare|guardarla|scendere|uscire|pretendere|lasciarlo|definirti|misurarti|giudicarti|paragonare|correre|contarci)'),
+       /* y en medio de la frase, en minuscula: «Prima di salire, controlla…», «… e scegli…»,
+          «finito il crepuscolo, guarda a ovest». Sin «attraversa»: en las fichas es el
+          sendero el que atraviesa («… e attraversa boschi di laurisilva») */
+       new RegExp('(?:[,:;—–→·]\\s*|\\s(?:e|o|oppure|poi|quindi)\\s+)(?:tocca|scegli|apri|cerca l|guarda (?:a|nel|nella|dalla|verso)|controlla|verifica|verificala|verificali|porta (?:una|un|qualcosa|comunque)|usa (?:il|la|le|i|gli)|evita (?:il|la|di)|prova (?:un|una|a|con)|scrivi|consulta|segui|trascina|pizzica|disegna|lascia che|tieni|spegni|scendi|sali piano|prenota|conferma|confermali|cercala|toccala|copriti|aspettati|portane|portalo|aprilo|leggilo|avvicinalo|travestiti|collegati|concorda|riprova|inserisci|compila|mantieni|sorveglia|guida con|parcheggia|aspetta che)(?![' + L_ + '])', 'u'),
+       /* la segunda persona, en las formas que solo son de tu (la de Lei es otra: «può»,
+          «vuole», «preferisce»…). «sei» es tambien el numero, y va solo en sus giros;
+          «arrivi», «entri», «resti», «trovi», «parti» se quitan: son tambien el Lei
+          («arrivi prima delle dieci», «non entri in acqua») o un nombre («i resti») */
+       palI('puoi', 'vuoi', 'hai', 'vai', 'fai', 'vedi', 'sai', 'devi', 'scopri', 'senti', 'esci', 'stai', 'preferisci', 'dipendi', 'intendi', 'conosci', 'riesci',
+         'capisci', 'finisci', 'vieni', 'tieni', 'rimani', 'prendi', 'metti', 'leggi', 'scrivi', 'chiedi', 'credi', 'dormi', 'apri', 'sapevi', 'conoscevi',
+         'guarderai', 'vedrai', 'troverai', 'sarai', 'potrai', 'dovrai', 'avrai', 'farai', 'andrai', 'arriverai',
+         '(?:non|se|dove|ci|come|quando|tu) sei', 'sei (?:già|qui|lì|sicur[oa]|pront[oa]|arrivat[oa]|sol[oa]|stanc[oa]|liber[oa]|proprio|giusto|abbastanza|viv[oa]|rott[oa]|indietro)',
+         'se accetti', 'se rifiuti', 'finché non accetti', 'quando calcoli', 'che scrivi', 'che apri', 'cui consulti', 'mentre leggi', 'se capiti', 'cosa cerchi', 'cerchi\\?', 'ovunque dormi',
+         /* el infinitivo con «ti» pegado: «per muoverti», «senza sentirti» (el de Lei es «muoversi», «sentirsi») */
+         'muoverti', 'sentirti', 'presentarti', 'lasciarti', 'riempirti', 'ricordarti', 'mostrarti', 'aiutarti', 'cambiarti', 'accompagnarti', 'avvisarti', 'portarti',
+         'farti', 'darti', 'dirti', 'guidarti', 'consigliarti', 'proteggerti', 'prepararti', 'fermarti', 'perderti', 'goderti', 'abbagliarti', 'registrarti',
+         'prenderti', 'metterti', 'sorprenderti', 'spiegarti', 'chiederti', 'scriverti')],
   nl: [palI('je', 'jij', 'jou', 'jouw', 'jouwe', 'jezelf', 'jullie')],
   bg: [palI('ти', 'теб', 'тебе', 'твой', 'твоя', 'твоят', 'твоята', 'твоето', 'твоите'),
        inicio('Докосни', 'Избери', 'Отвори', 'Виж', 'Потърси', 'Опитай', 'Открий', 'Включи', 'Приеми', 'Създай', 'Запази', 'Добави', 'Премахни', 'Промени', 'Върни',
@@ -198,6 +230,29 @@ const MARCAS = {
   zht: [/(?<!迷)你/u],
 };
 
+/* Los rotulos de boton del italiano (22 de octubre de 2026). En italiano el
+   boton va en imperativo («Chiudi», «Cerca», «Condividi», «Accedi»), tambien en
+   las apps que tratan de Lei: es lo que en castellano es el infinitivo («Cerrar»,
+   «Buscar», «Compartir»). Se quedan asi, y lo que habla a quien usa la app va de
+   Lei. Cuando una frase cita el boton entre comillas («tocchi «Condividi»»), la
+   cita es el rotulo y tampoco cuenta. La voz de quien usa la app («Portami»,
+   «Sorprendimi», «Ricordamelo nell’app») se queda como en castellano. */
+const ROTULOS_IT = new Set([
+  'Accedi', 'Ascolta', 'Attiva', 'Attiva le notifiche', 'Cambia lingua', 'Cancella', 'Cancella TUTTA la cache', 'Cancella il dettaglio', 'Cancella il percorso',
+  'Cancella la ricerca', 'Cerca', 'Cerca destinazione', 'Cerca fermata o linea...', 'Cerca partenza', 'Cerca un astro', 'Cerca un luogo...', 'Cerca: Orione, M42, Vega…',
+  'Chiudi', 'Chiudi amministrazione', 'Chiudi gli avvisi meteo', 'Chiudi il carrello', 'Chiudi il negozio', 'Chiudi il pannello percorsi',
+  'Chiudi il pannello trasporti', 'Chiudi il pianificatore', "Chiudi l'assistente", "Chiudi l'avviso", 'Chiudi la legenda', 'Chiudi le fermate vicine',
+  'Condividi', 'Condividi il luogo', "Condividi l'itinerario", 'Crea account', 'Crea itinerario con {n} tipi →', 'Crea itinerario →', 'Esci', 'Fai il tour', 'Filtra',
+  'Guarda in diretta', 'Installa', 'Installa Tenerife', 'Installa l’app', 'Leggi la voce intera', 'Riprova', 'Salva nei preferiti', 'Salva nel percorso del giorno',
+  'Salva o condividi l’immagine', 'Scarica il dettaglio ({mb} MB)', 'Scegli un’altra data', 'Togli', 'Togli dall’itinerario', 'Togli tutti gli avvisi',
+  'Torna a Tenerife Go', 'Torna al luogo', 'Torna indietro', 'Usa come punto di partenza', 'Usa la mia posizione GPS', 'Vedi il calendario', 'Vedi il tour',
+  'Vedi info', 'Vedi la descrizione completa', 'Vedi su aemet.es', 'Vedi sulla mappa', 'Vedi sulla mappa del cielo', '📍 Vedi sulla mappa',
+  '🔗 Vedi orari su titsa.com', '🗺️ Vedi tutti sulla mappa', 'Verifica la bussola', 'Aggiungi ai preferiti', 'Aggiungi al mio calendario', 'Aggiungi al negozio',
+  'Aggiungi al percorso', 'Aggiungi escursione', '⭐ I consigli di Jérôme — Aggiungi attività', 'Apri in Google Maps', 'Apri la legenda',
+  /* los del sistema, que la app cita tal cual: el menu de Safari y el de Chrome */
+  'Aggiungi a Home', 'Installa app',
+]);
+
 /* Lo que parece tuteo y no lo es: [idioma, texto exacto o RegExp, motivo]. */
 const EXENTOS = [
   ['es', '"¡Oye, tú!" — para llamar a alguien con cariño.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
@@ -215,6 +270,9 @@ const EXENTOS = [
   /* el frances (22 de octubre de 2026) */
   ['fr', "« Hé toi ! » — façon amicale d'interpeller.", 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
   ['fr', 'Tu m’aides à organiser ma journée ?', 'la pregunta de quien usa la app al asistente, como «¿Me ayudas a organizar el día?»'],
+  /* el italiano (22 de octubre de 2026) */
+  ['it', '"Ehi tu!" — modo amichevole di chiamare.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
+  ...[...ROTULOS_IT].map(t => ['it', t, 'rotulo de boton: en italiano el boton va en imperativo, como en castellano el infinitivo (ROTULOS_IT)']),
 ];
 
 function exento(l, t) {
@@ -222,6 +280,8 @@ function exento(l, t) {
 }
 function marca(l, t) {
   if (!MARCAS[l] || exento(l, t)) return null;
+  /* el rotulo de un boton citado entre comillas no cuenta: «tocchi «Condividi»» */
+  if (l === 'it') t = t.replace(/«([^»]+)»/g, (q, x) => ROTULOS_IT.has(x) ? ' ' : q);
   /* los marcadores {dir}, {d}… no se ven: «{dir}» no es «dir» (22 de octubre) */
   t = t.replace(/\{\w+\}/g, ' ');
   for (const re of MARCAS[l]) { const m = t.match(re); if (m) return m[0].trim(); }

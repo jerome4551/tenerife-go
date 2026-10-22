@@ -101,7 +101,7 @@ const CITAS = /«\s?([^»]{2,60}?)\s?»|„([^“”]{2,60})[“”]|“([^”]{
    (horaCanaria() en index.html; no hay donde elegir otra), y la ficha de un
    lugar no ensena su municipio (321 de los 980 no lo llevan ni en las
    etiquetas). */
-const PROMESAS = [/a la hora que quieras?/i, /at the time you choose/i, /à l'heure de votre choix/i, /zur gewünschten Uhrzeit/i, /all'ora che vuoi/i,
+const PROMESAS = [/a la hora que quieras?/i, /at the time you choose/i, /à l'heure de votre choix/i, /zur gewünschten Uhrzeit/i, /all'ora che (?:vuoi|vuole)/i,
   /op het tijdstip dat (?:jij|je|u) kiest/i, /指定时间/, /指定時間/, /в избран от вас час/i, /o wybranej godzinie/i,
   /su municipio/i, /its municipality/i, /sa commune/i, /\bGemeinde\b/, /il comune/i, /\bgemeente\b/i, /所属市镇/, /所屬市鎮/, /община/i, /\bgmin[aąyęi]/i];   // sin \b detras: en JS \b no ve la «а» cirilica ni la «ą»
 
