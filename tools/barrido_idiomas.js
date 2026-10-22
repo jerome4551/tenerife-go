@@ -254,10 +254,22 @@ let fuera = 0, sinFichero = [];
   if (sinFichero.length) P('FICHEROS DE IDIOMA QUE FALTAN', sinFichero.join(' '));
   P('total mirado, dentro y fuera', filas.length + fuera);
 }
+/* La misma cifra esta escrita en el titulo de «Idiomas» de AUDITORIA-FINAL.md
+   («(y N filas, dentro y fuera del fuente)»), y auditar_web.js solo coteja la
+   primera de las dos: la segunda decia 3.788 cuando eran 3.789, y nada lo
+   vio (22 de octubre de 2026). Se coteja aqui. */
+let docMal = false;
+try {
+  const doc = fs.readFileSync(path.join(__dirname, '..', 'AUDITORIA-FINAL.md'), 'utf8');
+  const d = doc.match(/## Idiomas · \d+ tablas, \d+ filas \(y ([\d.]+) filas, dentro y fuera del fuente\)/);
+  docMal = !d || Number(d[1].replace(/\./g, '')) !== filas.length + fuera;
+  P('AUDITORIA-FINAL.md dice lo mismo', docMal ? 'NO: dice ' + (d ? d[1] : '(no lo encuentra)') : 'si');
+} catch (e) { P('AUDITORIA-FINAL.md', 'no se pudo leer'); docMal = true; }
+if (docMal) process.exitCode = 1;
 
 if (OBJ) {
   const sin = por['interfaz'].sin + por['places[]'].sin;
   P('completas en ' + OBJ, filas.length - sin + fuera);
   if (LISTA) huecos.forEach(h => console.log('   ' + h.z.padEnd(9) + ' ' + FUENTE.donde(h.l).padEnd(22) + '  ' + h.es));
-  process.exitCode = (por['interfaz'].sin || cojas.length || sinFichero.length) ? 1 : 0;
+  process.exitCode = (por['interfaz'].sin || cojas.length || sinFichero.length || docMal) ? 1 : 0;
 }
