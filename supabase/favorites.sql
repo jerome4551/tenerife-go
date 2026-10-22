@@ -58,6 +58,41 @@ create policy favorites_own_delete on public.favorites
 
 grant select, insert, update, delete on public.favorites to authenticated;
 
+-- Los topes (23 de octubre de 2026). La RLS no deja tocar los favoritos de otra cuenta, pero
+-- con una cuenta cualquiera se podían meter en los propios tantos como se quisiera, a mano,
+-- contra la API, y con un place_id tan largo como cupiera, hasta llenar la base de datos del
+-- proyecto. Ahora:
+--   · place_id, de 1 a 80 caracteres (los de la app van de 3 a 43);
+--   · como mucho 1.000 favoritos por cuenta (la app tiene 980 lugares, y lee los favoritos
+--     de una vez: Supabase da como mucho 1.000 filas por consulta).
+-- El check va con NOT VALID: no repasa las filas que ya hay, solo las nuevas y las cambiadas.
+-- El tope se cuenta una vez por subida, al acabar (con las filas que entraron, en «nuevas»).
+-- Lo que ya está se puede volver a subir (la app sube con upsert, y eso no suma filas).
+alter table public.favorites drop constraint if exists favorites_place_id_largo;
+alter table public.favorites add constraint favorites_place_id_largo
+  check (char_length(place_id) between 1 and 80) not valid;
+
+create or replace function public.favoritos_tope() returns trigger
+language plpgsql
+set search_path = public
+as '
+begin
+  if exists (select 1 from public.favorites f
+              where f.user_id in (select n.user_id from nuevas n)
+              group by f.user_id having count(*) > 1000) then
+    raise exception ''demasiados favoritos en esta cuenta'' using errcode = ''54000'';
+  end if;
+  return null;
+end';
+
+-- Es de disparador: nadie la llama a mano, y nadie más que el disparador puede.
+revoke execute on function public.favoritos_tope() from public, anon, authenticated;
+
+drop trigger if exists favorites_tope on public.favorites;
+create trigger favorites_tope after insert on public.favorites
+  referencing new table as nuevas
+  for each statement execute function public.favoritos_tope();
+
 
 -- ═══════════════════════════════════════════════════════════════════
 --  push_subs — PENDIENTE DE VOLCAR

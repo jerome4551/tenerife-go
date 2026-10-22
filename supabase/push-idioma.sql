@@ -81,7 +81,11 @@ begin
   end loop;
 end';
 
--- 3 · La nueva: alta, o el idioma al dia si ya estaba
+-- 3 · La nueva: alta, o el idioma al dia si ya estaba.
+--     Y un tope (23 de octubre de 2026): la llama cualquiera, tambien sin cuenta
+--     (la clave anon), asi que se podian dar de alta millones de suscripciones
+--     inventadas hasta llenar la base de datos del proyecto. Como mucho 50.000:
+--     unos 60 MB en el peor caso. Al dia al idioma, una que ya esta, siempre.
 create function public.guardar_push_sub(p_endpoint text, p_p256dh text, p_auth text, p_lang text)
 returns void
 language plpgsql
@@ -97,6 +101,10 @@ begin
      or coalesce(length(p_p256dh), 0) = 0 or length(p_p256dh) > 200
      or coalesce(length(p_auth), 0) = 0 or length(p_auth) > 100 then
     raise exception ''suscripcion no valida'' using errcode = ''22023'';
+  end if;
+  if not exists (select 1 from public.push_subs where endpoint = p_endpoint)
+     and (select count(*) from public.push_subs) >= 50000 then
+    raise exception ''demasiadas suscripciones'' using errcode = ''54000'';
   end if;
   update public.push_subs set lang = l where endpoint = p_endpoint;
   if not found then
