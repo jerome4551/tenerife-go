@@ -371,7 +371,7 @@ tiene etiqueta, se declara con un comentario `CARGA-PEREZOSA:` para que
 | Nominatim | Búsqueda de direcciones | La búsqueda por texto no responde |
 | OSRM | Rutas A→B | No se calculan rutas |
 | Wikipedia | Fotos de los lugares; en el cielo, el resumen del astro que se abre | Las fichas salen sin foto; la del astro, sin resumen (lo ya leído se guarda 30 días) |
-| Supabase | Cuentas y favoritos, anuncios, panel admin, suscripciones push (la tienda está oculta: `TIENDA_ACTIVA = false`) | Esas secciones quedan vacías |
+| Supabase | Cuentas y favoritos, el perfil en la cuenta (solo con permiso), anuncios, panel admin, suscripciones push (la tienda está oculta: `TIENDA_ACTIVA = false`) | Esas secciones quedan vacías; el perfil sigue en el dispositivo y se sube cuando vuelve |
 
 Los dos paneles que dependen del tiempo —el del mar y el de «Báñate aquí
 hoy»— **se ocultan si no hay dato real**. Es deliberado: una
@@ -381,7 +381,7 @@ recomendación inventada manda a alguien al agua.
 
 ## Supabase
 
-Siete tablas. El esquema y las políticas están en `supabase/`.
+Diez tablas. El esquema y las políticas están en `supabase/`.
 
 | Tabla | Quién puede leer | Quién puede escribir |
 |---|---|---|
@@ -389,6 +389,8 @@ Siete tablas. El esquema y las políticas están en `supabase/`.
 | `anuncios_privado` | solo admin (datos de facturación) | solo admin |
 | `souvenirs`, `excursiones` | cualquiera, si `visible = true` | solo admin |
 | `favorites` | cada usuario los suyos | cada usuario los suyos |
+| `perfiles` | cada usuario el suyo | cada usuario el suyo; la fila es su permiso: la crea «Acepto» y retirarlo la borra (`perfil.sql`) |
+| `pesos`, `caminatas` | cada usuario los suyos | cada usuario los suyos, y solo con su fila de `perfiles`: caen con ella |
 | `push_subs` | **nadie desde el cliente** | alta mediante función |
 | `admins` | RLS activa sin políticas: nadie | nadie |
 

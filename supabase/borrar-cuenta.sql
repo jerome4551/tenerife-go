@@ -8,10 +8,11 @@
 --  esta funcion desde Cuenta → «Eliminar cuenta».
 --
 --  Que se borra: la fila de auth.users de QUIEN LLAMA, y nada mas por
---  nombre. Lo que cuelga de ella cae solo, porque las dos tablas que la
+--  nombre. Lo que cuelga de ella cae solo, porque las tres tablas que la
 --  apuntan lo hacen con «on delete cascade»:
 --    · public.favorites (favorites.sql)
 --    · public.admins    (anuncios.sql)
+--    · public.perfiles  (perfil.sql), y detras pesos y caminatas
 --  push_subs no va con la cuenta: guardar_push_sub() da de alta la
 --  suscripcion con la clave anon, sin id de usuario.
 --  Supabase no deja borrar a un usuario dueño de objetos de Storage; la

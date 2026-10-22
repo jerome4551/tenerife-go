@@ -47,6 +47,18 @@
  *      pide «red primero»; AppAuth.logout y el evento tg-sesion al entrar y
  *      al salir; el boton de notificaciones, un par mas (TG_PUSH.anadirBoton);
  *      y nada del prototipo (selector de idioma, «Ejemplo», «Demo»).
+ *
+ * QUE MIRA (parte 3, la nube: supabase/perfil.sql)
+ *  10. sin «$» (al pegarlo desde el movil llega con una barra delante y
+ *      rompe el SQL); RLS en las tres tablas, cada policy solo para
+ *      authenticated y con auth.uid() = user_id, ninguna para anon; y los
+ *      permisos justos: revoke all y grant de las cuatro operaciones (sin
+ *      TRUNCATE, que no pasa por la RLS).
+ *  11. las cascadas: perfiles cuelga de auth.users, pesos y caminatas de
+ *      perfiles (retirar el permiso o borrar la cuenta se lo lleva todo); y
+ *      borrar-cuenta.sql lo cuenta.
+ *  12. el modulo y el SQL dicen lo mismo: las columnas que pide el modulo
+ *      existen, y los rangos de los check son los de RANGO.
  */
 'use strict';
 const fs = require('fs');
@@ -278,6 +290,44 @@ ok(/window\.dispatchEvent\(new Event\('tg-sesion'\)\);\n  \}$/.test(fin('handleS
 ok(/window\.TG_PUSH = \{ pedir: pushPedir, textos: PUSH_TX, anadirBoton: pushAnadirBoton \};/.test(index) && /function pushAnadirBoton\(boton, mensaje\)/.test(index) && /P\.anadirBoton\('tgp-push', 'tgp-push-msg'\)/.test(MOD),
   'el boton de notificaciones del perfil es un par mas de los de la cuenta (TG_PUSH.anadirBoton): se esconde igual en la app de la tienda');
 ok(/TG_IDIOMA\.registrar\('perfil'/.test(MOD), 'el perfil se apunta al cambio de idioma (TG_IDIOMA)');
+
+/* ── parte 3: la nube (supabase/perfil.sql) ──────────────────────────── */
+console.log('\n=== el perfil: la nube (supabase/perfil.sql) ===');
+const SQL = fs.existsSync(path.join(RAIZ, 'supabase/perfil.sql')) ? lee('supabase/perfil.sql') : '';
+ok(SQL.length > 1000, 'supabase/perfil.sql esta en el repositorio');
+ok(!SQL.includes('$'), 'sin «$» en el SQL (al pegarlo desde el movil llega con una barra delante)');
+const TABLAS = ['perfiles', 'pesos', 'caminatas'];
+ok(TABLAS.every(tb => new RegExp('alter table public\\.' + tb + '\\s+enable row level security;').test(SQL)), 'RLS en perfiles, pesos y caminatas');
+const policies = [...SQL.matchAll(/create policy (\w+) on public\.(\w+)\s+for (\w+) to (\w+)\s+((?:using|with check)[\s\S]*?);/g)];
+const polMal = policies.filter(m => m[4] !== 'authenticated' || !/auth\.uid\(\) = user_id/.test(m[5]) || ((m[3] === 'insert' || m[3] === 'update') && !/with check \(auth\.uid\(\) = user_id\)/.test(m[5])));
+ok(policies.length === 12 && !polMal.length && !/to anon|to public\b/i.test(SQL), '12 policies (4 por tabla), todas para authenticated con auth.uid() = user_id; ninguna para anon', policies.length + ' ' + polMal.map(m => m[1]).join(','));
+ok(/revoke all on public\.perfiles, public\.pesos, public\.caminatas from anon, authenticated;/.test(SQL)
+   && /grant select, insert, update, delete on public\.perfiles, public\.pesos, public\.caminatas to authenticated;/.test(SQL)
+   && !/grant[^;]*(truncate|all)[^;]*;/i.test(SQL), 'los permisos, justos: revoke all y solo select, insert, update y delete para authenticated (sin TRUNCATE)');
+ok(/user_id\s+uuid primary key references auth\.users\(id\) on delete cascade/.test(SQL)
+   && (SQL.match(/references public\.perfiles\(user_id\) on delete cascade/g) || []).length === 2, 'las cascadas: perfiles de auth.users, y pesos y caminatas de perfiles');
+ok(/public\.perfiles\s+\(perfil\.sql\), y detras pesos y caminatas/.test(lee('supabase/borrar-cuenta.sql')) && /las tres tablas que la/.test(lee('supabase/borrar-cuenta.sql')), 'borrar-cuenta.sql cuenta las tres tablas que caen con la cuenta');
+/* las columnas que el modulo lee o escribe, en su tabla */
+const cols = tb => { const m = SQL.match(new RegExp('create table if not exists public\\.' + tb + ' \\(([\\s\\S]*?)\\n\\);')); return m ? [...m[1].matchAll(/^\s{2}(\w+)\s+(?:uuid|text|numeric|integer|date|timestamptz)/gm)].map(x => x[1]) : []; };
+const pide = {
+  perfiles: (CODIGO.match(/from\('perfiles'\)\.select\('([^']+)'\)/) || [, ''])[1].split(',').map(x => x.trim()).concat(['user_id', 'consentido_en'], (CODIGO.match(/function camposPerfil\(\) \{\s*return \{([^}]*)\}/) || [, ''])[1].match(/(\w+):/g).map(x => x.slice(0, -1))),
+  pesos: (CODIGO.match(/from\('pesos'\)\.select\('([^']+)'\)/) || [, ''])[1].split(',').map(x => x.trim()).concat(['user_id']),
+  caminatas: (CODIGO.match(/from\('caminatas'\)\.select\('([^']+)'\)/) || [, ''])[1].split(',').map(x => x.trim()).concat(['user_id'])
+};
+const faltanCols = TABLAS.flatMap(tb => pide[tb].filter(c => c && !cols(tb).includes(c)).map(c => tb + '.' + c));
+ok(pide.perfiles.length > 8 && !faltanCols.length, 'cada columna que el modulo lee o escribe existe en perfil.sql', faltanCols.join(', '));
+/* los rangos: los mismos en el modulo (RANGO) y en los check del SQL */
+const R = (CODIGO.match(/var RANGO = (\{[^;]*\});/) || [, '{}'])[1];
+let RANGO = {}; try { RANGO = vm.runInNewContext('(' + R + ')'); } catch (e) {}
+const chk = re => (SQL.match(re) || []).slice(1).map(Number);
+const rangosMal = [];
+if (JSON.stringify(chk(/altura_cm between (\d+) and (\d+)/)) !== JSON.stringify(RANGO.cm)) rangosMal.push('altura ' + chk(/altura_cm between (\d+) and (\d+)/) + ' / ' + RANGO.cm);
+if (JSON.stringify(chk(/objetivo_kg between (\d+) and (\d+)/)) !== JSON.stringify(RANGO.kg)) rangosMal.push('objetivo');
+if (JSON.stringify(chk(/kg between (\d+) and (\d+)\)/)) !== JSON.stringify(RANGO.kg)) rangosMal.push('pesos');
+if (JSON.stringify(chk(/km between ([\d.]+) and (\d+)/)) !== JSON.stringify(RANGO.km)) rangosMal.push('km');
+if (!/char_length\(nombre\) <= 24/.test(SQL) || !/slice\(0, 24\)/.test(CODIGO)) rangosMal.push('nombre 24');
+if (!/char_length\(id\) between 8 and 64/.test(SQL) || !/s\.length >= 8 && s\.length <= 64/.test(CODIGO)) rangosMal.push('id de caminata 8-64');
+ok(!rangosMal.length, 'los check del SQL son los rangos del modulo (altura, objetivo, pesos, km, nombre, id de caminata)', rangosMal.join(' · '));
 
 console.log('\n  ' + cuenta + ' controles, ' + (fallos ? fallos + ' con fallo' : 'todos en verde'));
 process.exit(fallos ? 1 : 0);

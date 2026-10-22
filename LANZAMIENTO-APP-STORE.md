@@ -204,7 +204,10 @@ política ya dice (`idiomas/privacidad/es.json`), y es lo que declara
 |---|---|---|---|---|---|
 | Email Address | Sí (cuenta opcional) | Sí | No | App Functionality | «Cuenta (opcional): correo electrónico y contraseña. Los gestiona Supabase» |
 | User ID | Sí (cuenta opcional) | Sí | No | App Functionality | la cuenta de Supabase |
-| Other User Content (favoritos) | Sí (con cuenta) | Sí | No | App Functionality | «Favoritos: los identificadores de los lugares que guardas. Con cuenta se sincronizan» |
+| Other User Content (favoritos; y del perfil, el avatar y las unidades) | Sí (con cuenta) | Sí | No | App Functionality | «Favoritos: los identificadores de los lugares que guardas. Con cuenta se sincronizan» |
+| Name (Contact Info: «Such as first or last name») | Sí (el nombre o apodo del perfil, en la cuenta solo con permiso) | Sí | No | App Functionality | el perfil (`ppDatosPerfil`, bloque 5 del perfil): se guarda en la cuenta solo si la persona lo activa y toca «Acepto» |
+| Health («any other user provided health or medical data») | Sí (la altura, el peso objetivo y los pesos del perfil, en la cuenta solo con permiso) | Sí | No | App Functionality | lo mismo; el permiso dice que el peso y la altura son datos de salud y que se da expresamente |
+| Fitness («exercise data») | Sí (los kilómetros que se anotan, en la cuenta solo con permiso) | Sí | No | App Functionality | lo mismo |
 | Precise Location | Sí (al pedir una ruta o el tiempo) | No | No | App Functionality | «Si pides una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas»; «Open-Meteo: las coordenadas del lugar o de la zona cuya previsión consultas» |
 | Search History | Sí (al buscar una dirección) | No | No | App Functionality | «Nominatim: el texto que escribes al buscar una dirección» |
 | Product Interaction, Coarse Location, Device ID, Crash Data, Photos, Contacts, Purchases, Advertising Data… | No | | | | «La aplicación de la App Store no usa Google Analytics» (`ppStatsTienda`); la cámara y los sensores «no salen del móvil»; sin el IDFA; sin SDK de fallos |
@@ -220,6 +223,13 @@ the practices of third-party partners whose code you integrate into your
 app»), y la excepción de lo opcional no vale para algo que recoge cada vez
 que se usa la app (developer.apple.com/app-store/app-privacy-details,
 leído el 21 de octubre de 2026).
+
+Las tres del perfil (Name, Health, Fitness) solo salen del móvil si la
+persona lo pide en «Cuenta» y toca «Acepto» (`supabase/perfil.sql`; la
+fila de `perfiles` es ese permiso). Apple las define en
+developer.apple.com/documentation/bundleresources/app-privacy-configuration/nsprivacycollecteddatatypes/nsprivacycollecteddatatype
+(leído el 22 de octubre de 2026); las visitas comprobadas no salen del
+móvil y no se declaran.
 
 *Do you or your third-party partners use data for tracking?*: **No** (ni
 analítica ni ninguna red publicitaria dentro de la app). Apple dice que el manifiesto del propio paquete no tiene
@@ -289,6 +299,9 @@ IDFA).
 7. **La cuenta**: crear una, el correo de confirmación vuelve a la web viva
    (abre Safari); entrar en la app; un favorito sincroniza; «Eliminar
    cuenta» la borra.
+   **El perfil**: «Cuenta» abre «Su perfil»; «Descargar datos del perfil»
+   abre la hoja de compartir con `tenerife-go-perfil.json`, como 📸 en el
+   cielo (en WKWebView no se ha podido probar desde aquí).
 8. **La barra de estado y el borde inferior** en un iPhone con Dynamic
    Island y en un iPad: nada tapado (la cabecera ya respeta
    `env(safe-area-inset-top)`), y la luz roja pone en rojo lo que se ve.
