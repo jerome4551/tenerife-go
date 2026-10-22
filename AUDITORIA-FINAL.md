@@ -1818,6 +1818,57 @@ nombres y 0 variantes sospechosas; `auditar_web.js`, 44 tablas y 1815 filas;
 1.152 en búlgaro, 1.138 en polaco). `auditar.sh` entero se pasa antes de
 subir (nota 11).
 
+## Los bloques quinto, sexto y séptimo del cielo, traídos y repasados (22 de octubre, noche)
+
+Jerome los mandó con las notas `PARA-CLAUDE-CODE-10.md` y `-11.md` y los
+tres parches. Lo que aquí se comprobó antes de juntarlo con nada:
+
+- **Las huellas y el árbol.** Los tres parches dan las huellas de la nota 11
+  (`7ca2b035…`, `86b49970…` y `ed706b1a…`). Con `git am` a secas, sin `-3`,
+  sobre `ac10788`, entran limpios y dejan el árbol de la nota
+  (`4ac2224e1c2c302f750e13158dc7995dbf69f090`). `datos/planetas.json` es el
+  mismo que traía el séptimo commit de `cielo-camara`.
+- **Lo que sustituyen.** El quinto bloque rehecho ocupa el sitio del séptimo
+  commit de `cielo-camara` y de los tres arreglos que se le hicieron aquí,
+  que no llegaron a `main`. Ya trae siete de las ocho frases de usted y Venus
+  «como Urano».
+- **Lo que faltaba, y vuelve tal cual** (`d787f71`):
+  - El rótulo de cada curiosidad tuteaba en castellano («¿Sabías que…?»).
+    Ahora dice «¿Sabía que…?», y `auditar_registro.js` vuelve a contar
+    «sabías», «lees» y «mira al» tras coma.
+  - Las Delta Acuáridas: «Se cree que son restos del cometa 96P/Machholz»,
+    en los diez idiomas (`cieloLluviaPadreCreeCometa`). La NASA lo da como
+    sospechado («suspected») y así lo dice su curiosidad. La parte 13 de
+    `auditar_cielo.js` lo comprueba.
+  - El comentario de `index.html` contaba 534 filas en `CIELO_UI`. Con la
+    noche en voz alta son 548; con esta, 549 (637 con las 88 curiosidades).
+- **Una nota que sigue valiendo.** Los comentarios del módulo dicen que
+  `genera.py` copia `datos/planetas.json` en `CIELO_PLANETAS` y
+  `datos/constelaciones.json` en `CIELO_CONS`. Ese guion es de la otra
+  sesión y no está en el repositorio. Si un día cambia uno de los dos JSON,
+  su línea se rehace desde él, y las partes 13a y 14a de `auditar_cielo.js`
+  dicen si quedó igual.
+
+**La auditoría entera**, con las fuentes del cielo y las de los satélites,
+dos veces:
+
+- Sobre el árbol de la nota (los tres parches encima de `ac10788`):
+  **«AUDITORIA EN VERDE»**, ningún bloque en rojo ni roto, con las cifras
+  que dio la otra sesión. `auditar_cielo.js`, 282 de 282;
+  `barrido_pantallas.js`, 106 pantallas y fichas por idioma y 0 textos sin
+  traducir; `auditar_idioma.js`, 0 hallazgos en los diez; `auditar_web.js`,
+  44 tablas y 1.815 filas; `barrido_idiomas.js`, 3.956;
+  `auditar_registro.js`, 65.686 textos y el castellano todo de usted (en
+  los demás, las pendientes que dice la nota 11); el cirílico, 1.900
+  nombres y 0 variantes sospechosas; `probar_faq.js`, 0 fallos de 121;
+  `probar_play.js`, 233 de 233.
+- Sobre `d787f71`, con el arreglo y encima del `main` de hoy (`6f88594`,
+  con los datos de los robots de la tarde): **«AUDITORIA EN VERDE»**
+  también, ningún bloque en rojo ni roto. `auditar_cielo.js`, 283 de 283
+  (el de más es el de las Delta Acuáridas); `auditar_web.js`, 44 tablas y
+  1.816 filas; `barrido_idiomas.js`, 3.957, y este documento dice lo mismo;
+  `auditar_registro.js`, 65.696 textos. Lo demás, como arriba.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
