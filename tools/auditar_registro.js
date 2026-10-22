@@ -385,6 +385,9 @@ const EXENTOS = [
   ['pl', '«Hej, ty!» — żeby zawołać kogoś serdecznie.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
   ...[...ROTULOS_PL].map(t => ['pl', t, 'rotulo de boton: en polaco el boton va en imperativo, como en castellano el infinitivo (ROTULOS_PL)']),
   ...[...VOZ_PL].map(t => ['pl', t, 'la voz de quien usa la app, como «Sorpréndeme» y «Llévame» (VOZ_PL)']),
+  /* las curiosidades de las constelaciones (idiomas/cielo/, 22 de octubre de 2026) */
+  ['it', /perché sia così carico di bestiame: porta una capra/, 'el auriga «porta una capra», «lleva una cabra»: tercera persona, no el imperativo (cieloCurConAur)'],
+  ['pl', /błagała bogów o pomoc, a ci zmienili ją w klacz/, '«a ci zmienili»: «ci» es el demostrativo, «y estos la convirtieron», no «a ti» (cieloCurConEqu)'],
 ];
 
 function exento(l, t) {
