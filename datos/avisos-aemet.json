@@ -3,8 +3,8 @@
  "canal": "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAP6596_RSS.xml",
  "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos?p=6596",
  "aemet": {
-  "fichero": "Z_CAP_C_LEMM_20261021215001_AFAP6596.tar.gz",
-  "publicado": "2026-10-21T21:50:01+00:00",
+  "fichero": "Z_CAP_C_LEMM_20261022003734_AFAP6596.tar.gz",
+  "publicado": "2026-10-22T00:37:34+00:00",
   "titulo": "Estado completo de avisos para Tenerife",
   "alcance": "2026-10-24T23:59:59+01:00",
   "zonas_isla": [
@@ -16,10 +16,10 @@
    "659603C"
   ]
  },
- "consultado": "2026-10-21T21:59:04Z",
+ "consultado": "2026-10-22T00:52:19Z",
  "avisos": [
   {
-   "id": "2.49.0.0.724.0.ES.20261021092932.659601PRP122051792574972",
+   "id": "2.49.0.0.724.0.ES.20261022003734.659601PRP122051792629454",
    "nivel": "amarillo",
    "fenomeno": "PR",
    "fenomeno_es": "Lluvias",
@@ -36,20 +36,20 @@
      ]
     }
    ],
-   "inicio": "2026-10-21T10:00:00+01:00",
+   "inicio": "2026-10-22T01:00:00+01:00",
    "fin": "2026-10-22T05:59:59+01:00",
-   "emitido": "2026-10-21T09:29:32Z",
+   "emitido": "2026-10-22T00:37:34Z",
    "es": {
-    "descripcion": "Precipitación acumulada en una hora: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas.",
+    "descripcion": "Precipitación acumulada en una hora: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas. Afectando a la vertiente E de GC.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
    },
    "en": {
-    "descripcion": "One-hour accumulated precipitation: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas.",
+    "descripcion": "One-hour accumulated precipitation: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas. Afectando a la vertiente E de GC.",
     "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261021092932.659602PRP122051792574972",
+   "id": "2.49.0.0.724.0.ES.20261022003734.659602PRP122051792629454",
    "nivel": "amarillo",
    "fenomeno": "PR",
    "fenomeno_es": "Lluvias",
@@ -66,20 +66,20 @@
      ]
     }
    ],
-   "inicio": "2026-10-21T10:00:00+01:00",
+   "inicio": "2026-10-22T01:00:00+01:00",
    "fin": "2026-10-22T05:59:59+01:00",
-   "emitido": "2026-10-21T09:29:32Z",
+   "emitido": "2026-10-22T00:37:34Z",
    "es": {
-    "descripcion": "Precipitación acumulada en una hora: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas.",
+    "descripcion": "Precipitación acumulada en una hora: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas. Afectando a la vertiente E de GC.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
    },
    "en": {
-    "descripcion": "One-hour accumulated precipitation: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas.",
+    "descripcion": "One-hour accumulated precipitation: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas. Afectando a la vertiente E de GC.",
     "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261021092932.659603PRP122051792574972",
+   "id": "2.49.0.0.724.0.ES.20261022003734.659603PRP122051792629454",
    "nivel": "amarillo",
    "fenomeno": "PR",
    "fenomeno_es": "Lluvias",
@@ -96,15 +96,15 @@
      ]
     }
    ],
-   "inicio": "2026-10-21T10:00:00+01:00",
+   "inicio": "2026-10-22T01:00:00+01:00",
    "fin": "2026-10-22T05:59:59+01:00",
-   "emitido": "2026-10-21T09:29:32Z",
+   "emitido": "2026-10-22T00:37:34Z",
    "es": {
-    "descripcion": "Precipitación acumulada en una hora: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas.",
+    "descripcion": "Precipitación acumulada en una hora: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas. Afectando a la vertiente E de GC.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
    },
    "en": {
-    "descripcion": "One-hour accumulated precipitation: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas.",
+    "descripcion": "One-hour accumulated precipitation: 15 mm. Chubascos fuertes que pueden ir acompañados de tormentas. Afectando a la vertiente E de GC.",
     "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
    }
   }
