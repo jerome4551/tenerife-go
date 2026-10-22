@@ -8484,6 +8484,95 @@ ningún texto escrito a mano desde el código fuera de los dos fijos;
 `probar_faq.js`, 0 fallos de 121; y `auditar_gas_cerca.js`, con el título
 de Sie («in Ihrer Nähe»), 0 fallos.
 
+## El trato de usted: el búlgaro y el polaco, y la parte sexta cerrada (22 de octubre, noche)
+
+La sexta parte de las seis, encima de la quinta. Un commit por idioma, y
+uno más por cada cosa que salió al mirarlo en pantalla.
+
+- **El búlgaro** (`e344b6c`): вие donde decía ти, en 377 textos: 322
+  frases del día, 41 del cielo, 7 de la interfaz, 4 fichas, 2 respuestas
+  del asistente y la ficha de la tienda; el resto ya trataba de вие. Ти,
+  теб, твой y твоят pasan a ви, вас, ваш y вашият, en minúscula a media
+  frase, como ya lo escribía la app, y el imperativo, al de вие
+  («Докоснете», «Изберете»), con el plural en adjetivos y participios
+  («Бъдете търпеливи»). 217 de esos textos no los veía el control: salieron
+  repasando a mano y cruzando con el castellano. Siete frases del día
+  calcaban el castellano y no eran búlgaro («Излез вятърът да те проветри»,
+  de «Sal a que el viento te despeje»): ahora «Излезте, за да ви проветри
+  вятърът»; a otra le faltaba el verbo. La pestaña «Organice su día» es
+  «Подредете деня си»: «Организирайте деня си», de вие, no cabía ni en
+  375 px.
+- **El polaco** (`3b0fa93`): como acordó Jerome, impersonal y sin género,
+  no «Pan/Pani». 711 textos: 306 frases del día, 180 de la interfaz, 115
+  respuestas del asistente, 61 del cielo, 41 fichas, 27 de la política (de
+  ahí salen también los permisos de iOS), 5 de la página de borrar la
+  cuenta, la ficha de la tienda y una etiqueta. Un aviso o un error lleva
+  «Proszę» con el infinitivo («Proszę wybrać datę»); lo que se puede hacer,
+  «Można…»; un consejo, «Warto…» o «Lepiej…»; lo que hace falta,
+  «Trzeba…» o «Należy…»; los pasos y los avisos, en infinitivo, como un
+  cartel («1. Dotknąć…», «Nie schodzić na plażę»); y nada de «dobry/dobra»,
+  «sam/sama» ni «-łeś/-łaś». La pestaña pasa de «Zaplanuj dzień» a
+  «Planowanie dnia», y el asistente la entiende por ese nombre. Por el
+  camino salieron cosas que no eran de trato: «Wybierz datę» era el aviso
+  de cuando falta la fecha, no un botón («Proszę wybrać datę»); la frase
+  144, «Trzeba zrobić sobie dobrze», se lee en polaco con doble sentido
+  («Trzeba o siebie dbać», como «Hace falta tratarse bien»); y cuatro
+  textos ya impersonales daban género a quien lee («trzeba być dobrym
+  pływakiem», «być obecnym», «jest się bardziej zmęczonym»): ahora «trzeba
+  dobrze pływać», «być tu i teraz» y «zmęczenie jest większe».
+  `probar_movil.js`, que esperaba las respuestas del asistente en el polaco
+  de antes, espera las de ahora.
+- **El neerlandés, lo que quedaba** (`76e7f1a`): el aviso de la fecha
+  decía «Kies alsjeblieft een datum»; «alsjeblieft» es el «por favor» de
+  je, y el control no lo veía porque va pegado. Ahora «alstublieft», y el
+  control busca también «alsjeblieft» y «dankjewel».
+- **Las pestañas de Rutas en un móvil estrecho** (`64be5d2`): a 320 px la
+  palabra más larga de una pestaña llegaba al borde: «Planowanie» y
+  «Tagesroute» lo pisaban, y «Подредете» y «A→B» (este, en los diez
+  idiomas) se quedaban a menos de un píxel. Hasta 360 px la fila recoge
+  sus márgenes, el icono se acerca al texto y las letras van sin
+  espaciado. Medido en los diez idiomas a 320, 340, 360, 375 y 414 px: a
+  320 queda al menos 3,9 px de aire (el polaco), y desde 340, más de 7.
+  Además, en inglés la fila baja de tres líneas a dos.
+- **La frase de la tienda que pide iniciar sesión** (`38b9c0f`; la tienda
+  sigue oculta): se componía de tres trozos fijos, «Necesita» + «iniciar
+  sesión» + «para completar la reserva», y en cuatro idiomas no salía bien.
+  El alemán decía «Sie müssen sich anmelden anmelden, um…» y al neerlandés
+  le sobraba el «te» («U moet in te loggen om…»). Al búlgaro le faltaba la
+  coma antes de «за да», y el chino llevaba espacios en medio de la frase.
+  Ahora es una fila con `{enlace}`, el mismo mecanismo (`data-tx-hueco`)
+  que ya usa la política.
+- **Se quedan.** Los rótulos de botón en imperativo, como en italiano: es
+  lo que en castellano es el infinitivo. En búlgaro, «Затвори», «Сподели»,
+  «Насочи към небето», en `ROTULOS_BG`; en polaco, «Zamknij», «Udostępnij»,
+  «Wyceluj w niebo», los 139 en `ROTULOS_PL`, comprobados uno a uno contra
+  su castellano. También la voz de quien usa la app («Изненадай ме»,
+  «Заведи ме», «Zaskocz mnie», «Zaprowadź mnie», «Pomożesz mi zaplanować
+  dzień?»; la del polaco, en `VOZ_PL`) y los ejemplos del glosario, «Ей,
+  ти!» y «Hej, ty!» (en `EXENTOS`). Una cita del botón entre comillas, o
+  en `<b>` en las instrucciones de instalar del polaco, no cuenta.
+- **Dónde queda el control**: el castellano, el chino, el chino
+  tradicional, el alemán, el neerlandés, el francés, el italiano, el
+  búlgaro y el polaco, todo de usted. Ya no queda ningún idioma pendiente:
+  el inglés no distingue. Sobre los textos de antes, el control de hoy marca
+  706 de los 711 polacos cambiados; los otros cinco no son de trato: la
+  frase 144, la frase de la tienda y tres de los que daban género.
+
+**La auditoría entera** (con las fuentes del cielo y las de los
+satélites), sobre la rama con todo esto (`38b9c0f`): **«AUDITORIA EN
+VERDE»**, ningún bloque en rojo ni roto. `auditar_registro.js`, 64.656
+textos: los nueve idiomas que distinguen el trato, todo de usted.
+`auditar_cielo.js`, 219 de 219; `auditar_web.js`, 43 tablas y 1.707 filas;
+`barrido_idiomas.js`, 3.848 filas dentro y fuera del fuente, y este
+documento dice lo mismo; `barrido_pantallas.js`, 104 pantallas y fichas por
+idioma y 0 textos sin traducir; `auditar_cirilico.py`, 0 sospechosas de
+1.710 nombres; `auditar_reservas.py`, ningún texto escrito a mano desde el
+código fuera de los dos fijos; `probar_faq.js`, 0 fallos de 121; y
+`probar_movil.js`, las 25 preguntas en su idioma. La primera pasada, antes
+de ajustar `probar_movil.js`, dio ese bloque en rojo: esperaba en dos
+respuestas del asistente el polaco de antes («Potrzebujesz pomocy…», «Nie
+wiem, gdzie jesteś»). El ajuste va dentro del commit del polaco.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -8550,7 +8639,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/faltan_textos.js` | **cribado**, no veredicto: descripciones más cortas de lo esperado contra la mediana de ese idioma |
 | `tools/meter_descripcion.py` | mete descripciones rehechas comprobando que el texto es **de ese lugar** |
 | `tools/completar_cat.js` | devuelve a las etiquetas `cat` los trozos que perdieron, con el glosario del propio catálogo |
-| `tools/auditar_registro.js` | el trato de usted: las marcas del tuteo de cada idioma en todo lo que se ve (la app, las tablas, las fichas, la política, el asistente, el cielo, la ficha de la tienda, las frases de cada mañana); los idiomas hechos, en rojo con cualquiera; los demás, contados como pendientes; con `--lista <idioma> <fichero>`, sus textos con marcas, y con `--todos <idioma> <fichero>`, todos, para repasar a mano lo que las marcas no ven (el imperativo sin pronombre); los rótulos de botón del italiano, en `ROTULOS_IT` |
+| `tools/auditar_registro.js` | el trato de usted: las marcas del tuteo de cada idioma en todo lo que se ve (la app, las tablas, las fichas, la política, el asistente, el cielo, la ficha de la tienda, las frases de cada mañana); los idiomas hechos, en rojo con cualquiera; los demás, contados como pendientes; con `--lista <idioma> <fichero>`, sus textos con marcas, y con `--todos <idioma> <fichero>`, todos, para repasar a mano lo que las marcas no ven (el imperativo sin pronombre); los rótulos de botón que van en imperativo, en `ROTULOS_IT`, `ROTULOS_BG` y `ROTULOS_PL`, y la voz de quien usa la app en polaco, en `VOZ_PL` (su cita entre comillas, o en `<b>` en polaco, tampoco cuenta) |
 | `tools/app_preparar.js` | monta `app/www/`, la app de la App Store (la de la raíz con la marca `TGO_NATIVO`), y escribe las plantillas de iOS que salen de la política; con `--comprobar`, que no falte nada de lo que la app pide, que no viaje nada de la lista de lo que nunca viaja y que las plantillas sean las de hoy |
 | `tools/probar_app.js` | la app con la marca en Chromium (sin service worker, los datos del día con su copia de dentro, sin Google Analytics, los diez idiomas) y la web sin ella |
 | `tools/auditar_app_store.js` | la ficha de la App Store contra los límites de Apple, las directrices y lo que hay, en los diez idiomas y en la variante en-US |
