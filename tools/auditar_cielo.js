@@ -280,6 +280,21 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(index, '"' + k +
   const nFilas = Object.keys(CIELO_UI).length + Object.keys(CASCARA).length + 2 + TABLAS.reduce((a, n) => a + Object.keys(T[n]).length, 0);
   ok(!mal.length, nFilas + ' filas: diez idiomas, {marcadores} por forma de plural, alfabeto de cada uno', mal.slice(0, 8).join(' · ') + (mal.length > 8 ? ' · y ' + (mal.length - 8) + ' mas' : ''));
   ok(tour.tourCieloT && tour.tourCieloP && /\{ sel: '#cielo-btn',[^}]*k: 'tourCielo'/.test(index), 'el tour tiene su paso (#cielo-btn) y sus dos filas');
+  /* El calendario y los avisos dicen lo que hacen (22-10-2026). El .ics de un
+     paso avisa media hora antes y el de lo demas, el dia antes: la nota de
+     cada uno y la de «Mis avisos» tienen que decir eso. Y ninguna que
+     Tenerife Go no tiene servidor: lo tiene (la notificacion diaria,
+     .github/workflows/notificacion-diaria.yml). */
+  {
+    const trig = (modulo.match(/'TRIGGER:' \+ \(e\.tipo === 'paso' \? '(-PT\d+M)' : '(-P\d+D)'\)/) || []).slice(1);
+    const usaPaso = /T\(e\.tipo === 'paso' \? 'IcsListoPaso' : 'IcsListo'\)/.test(modulo);
+    const u = k => (CIELO_UI[k] || {}).es || '';
+    const servidor = fs.existsSync(path.join(RAIZ, '.github', 'workflows', 'notificacion-diaria.yml'));
+    ok(trig[0] === '-PT30M' && trig[1] === '-P1D' && usaPaso && /media hora antes/.test(u('cieloIcsListoPaso')) && /el día antes/.test(u('cieloIcsListo'))
+       && /el día antes/.test(u('cieloAvisosNota')) && /media hora antes/.test(u('cieloAvisosNota')) && !(servidor && /no tiene ningun|sin un servidor/i.test(u('cieloAvisosNota'))),
+       'el calendario dice cuando avisa: los pasos media hora antes (' + trig[0] + '), lo demas el dia antes (' + trig[1] + '), en la nota de cada uno y en «Mis avisos»; y ningun texto dice que Tenerife Go no tiene servidor',
+       JSON.stringify({ trig, usaPaso, paso: u('cieloIcsListoPaso'), nota: u('cieloAvisosNota') }));
+  }
 
   /* Las filas que pide el codigo. T('Clave') es tx('cieloClave'), y tx()
      devuelve '' si no hay fila, sin avisar: el texto desaparece. Las que se
@@ -1286,6 +1301,12 @@ async function quejas(b) {
     const out = { botonAntes: b && b.textContent };
     if (b) { b.click(); await espera(150); }
     out.botonDespues = b && b.textContent; out.nota = b && (b.parentNode.querySelector('.cielo-nota-aviso') || {}).textContent;
+    /* «Añadir a mi calendario» (22-10-2026): aqui no hay hoja de compartir,
+       se descarga, y la nota de debajo dice cuando avisa (−1 dia) */
+    const bc = fila && fila.querySelectorAll('.cielo-aviso-btns button')[0];
+    out.calTxt = bc && bc.textContent;
+    if (bc) { bc.click(); await espera(300); }
+    out.notaCal = bc && bc.nextSibling && bc.nextSibling.classList && bc.nextSibling.classList.contains('cielo-nota-aviso') ? bc.nextSibling.textContent : null;
     out.guardados = TG_CIELO.avisos(); out.id = TG_CIELO.idEvento(g);
     out.misAvisosCal = /Mis avisos/.test(document.querySelector('#cielo-cuerpo').innerText.slice(0, 400));
     /* la vispera: el reloj de la pagina puesto en el 12 de diciembre (page.clock), «esta noche» lo ensena arriba del todo */
@@ -1301,6 +1322,8 @@ async function quejas(b) {
   });
   ok(/Recordármelo/.test(av.botonAntes || '') && /Quitar/.test(av.botonDespues || '') && /Guardado/.test(av.nota || '') && av.guardados.length === 1 && av.guardados[0].id === av.id && av.misAvisosCal,
      'un aviso en las Geminidas: el boton pasa a «Quitar», se guarda en el movil (' + av.id + ') y sale en «Mis avisos»', JSON.stringify(av).slice(0, 300));
+  ok(/Añadir a mi calendario/.test(av.calTxt || '') && /el día antes/.test(av.notaCal || '') && !/media hora/.test(av.notaCal || ''),
+     '«Añadir a mi calendario» en las Geminidas: la nota dice que el calendario avisa el dia antes, que es su alarma (−1 dia)', av.notaCal);
   ok(/Mis avisos/.test(av.vispera) && /Gemínidas/.test(av.vispera) && /Quitar/.test(av.quitarTxt || ''), 'la vispera sale arriba del todo en «Esta noche», con su «Quitar»', av.vispera.slice(0, 200));
   ok(av.trasQuitar === 0 && av.clave === null && !av.misAvisosTras, '«Quitar todos los avisos» los quita de verdad (localStorage vacio y la tarjeta fuera)', JSON.stringify({ n: av.trasQuitar, clave: av.clave }));
   await p.clock.setSystemTime(new Date());        // el reloj, de vuelta a hoy
@@ -1585,6 +1608,16 @@ async function satelites(b) {
     if (!/^paso-[a-z]+-\d{4}-\d\d-\d\dT\d\d@jerome4551\.github\.io$/.test(get('UID'))) malIcs.push('UID ' + get('UID'));
     ok(!malIcs.length && ics.nAvisos === 1 && ics.avId === ics.id && /^paso\|[a-z]+\|\d{4}-\d\d-\d\dT\d\d$/.test(ics.id),
        'el .ics del paso: de la aparicion a la desaparicion, alarma media hora antes, el nombre y el detalle; y el aviso en la app se pone y se quita (id ' + ics.id + ')', malIcs.join(' | ') + ' avisos ' + ics.nAvisos);
+    /* la nota al descargar el .ics de un paso (22-10-2026): decia «con un
+       aviso el dia antes», y su alarma es media hora antes */
+    const notaPaso = await p.evaluate(async () => {
+      const espera = ms => new Promise(r => setTimeout(r, ms));
+      TG_CIELO.estado.cal = 'satelites'; await TG_CIELO.ver('calendario'); await espera(300);
+      const bc = [...document.querySelectorAll('#cielo-cuerpo .cielo-aviso-btns button')].find(x => /📅/.test(x.textContent));
+      if (bc) { bc.click(); await espera(300); }
+      return bc && bc.nextSibling && bc.nextSibling.classList && bc.nextSibling.classList.contains('cielo-nota-aviso') ? bc.nextSibling.textContent : null;
+    });
+    ok(/media hora antes/.test(notaPaso || '') && !/el día antes/.test(notaPaso || ''), '«Añadir a mi calendario» en un paso: la nota dice que el calendario avisa media hora antes, que es la alarma del .ics', notaPaso);
   }
   /* con elementos de diez dias: lo dice y no ensena pasos */
   await p.clock.setFixedTime(new Date(epocaMax + 10 * 864e5));
