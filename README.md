@@ -274,7 +274,14 @@ Catalogue de Yale, los coeficientes del WMM2025):
 ```
 bash tools/cielo_fuentes.sh /tmp/fuentes-cielo
 node tools/cielo_construir.js /tmp/fuentes-cielo
+node tools/cielo_uai.js /tmp/fuentes-cielo
 ```
+
+`tools/cielo_uai.js` escribe en `modulos/cielo.js` la tabla `CIELO_UAI`: el
+nombre en chino, chino tradicional y búlgaro de las estrellas de la carta con
+nombre de la UAI que no están en el catálogo, sacado de las traducciones de
+Stellarium, con la misma regla que `CIELO_EST`. Lo que Stellarium no traduce
+se queda con el nombre de la UAI (y va en `idiomas/pantalla-aceptado.json`).
 
 El nivel de cada objeto —simple vista, prismáticos o telescopio— **no se
 escribe a mano**: sale de su magnitud y de la altura máxima a la que llega

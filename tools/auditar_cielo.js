@@ -195,6 +195,26 @@ titulo('1. el catalogo (datos/cielo.json)');
   const enCat = new Set(D.estrellas.map(e => e.h));
   const mal = Object.keys(iau).filter(h => enCat.has(+h) || !D.est.some(e => e[4] === +h) || typeof iau[h] !== 'string' || !iau[h]);
   ok(Object.keys(iau).length > 200 && !mal.length, 'nombresIAU: ' + Object.keys(iau).length + ' nombres de la UAI de estrellas de la carta que no estan en el catalogo', mal.slice(0, 5).join(', '));
+  /* Esos nombres, en chino, chino tradicional y bulgaro (22 de octubre de
+     2026): CIELO_UAI, de las traducciones de Stellarium. Siempre, que cada
+     uno sea de una estrella de nombresIAU y este en su escritura; con las
+     fuentes, que la tabla sea exactamente la que sale de ellas (la regla,
+     las erratas y el cotejo con la cultura china: tools/cielo_uai.js). */
+  const UAI = tablaModulo('CIELO_UAI') || {};
+  const uaiMal = [];
+  for (const [l, t] of Object.entries(UAI)) for (const [h, v] of Object.entries(t)) {
+    const escritura = l === 'bg' ? /^[А-Яа-я][А-Яа-я\- ]*$/ : /^[\u3400-\u9fff\uf900-\ufaff]+[A-Z]?$/;
+    if (!iau[h] || !escritura.test(v)) uaiMal.push(l + ' ' + h + ' ' + v);
+  }
+  ok(['zh', 'zht', 'bg'].every(l => Object.keys(UAI[l] || {}).length > 200) && !uaiMal.length,
+     'CIELO_UAI: los nombres de la UAI en chino (' + Object.keys(UAI.zh || {}).length + '), chino tradicional (' + Object.keys(UAI.zht || {}).length
+     + ') y bulgaro (' + Object.keys(UAI.bg || {}).length + '), cada uno de una estrella de nombresIAU y en su escritura', uaiMal.slice(0, 5).join(', '));
+  if (fs.existsSync(path.join(FUENTES, 'stel', 'po', 'stellarium-sky', 'zh_CN.po'))) {
+    let salida = '', rc = 0;
+    try { salida = execFileSync('node', [path.join(RAIZ, 'tools', 'cielo_uai.js'), FUENTES, '--comprobar'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }); }
+    catch (e) { rc = e.status || 1; salida = String(e.stdout || '') + String(e.stderr || ''); }
+    ok(rc === 0, 'y es exactamente la que sale de las traducciones de Stellarium, con sus erratas cotejadas (cielo_uai.js --comprobar)', salida.trim().split('\n').slice(-3).join(' | '));
+  } else nota('sin ' + FUENTES + '/stel: CIELO_UAI no se coteja con Stellarium (bash tools/cielo_fuentes.sh ' + FUENTES + ')');
   ok(D.estrellas.every(e => e.lum === null || e.lum > 0) && D.estrellas.filter(e => e.lum).length >= 45, 'las estrellas con nombre traen su luminosidad en soles (HYG)');
   const sinGen = Object.entries(D.con).filter(([k, c]) => !c.gen).map(([k]) => k);
   ok(!sinGen.length && D.con.Ori.gen === 'Orionis', 'cada constelacion trae su genitivo latino (Ori: «' + D.con.Ori.gen + '»)', sinGen.join(', '));

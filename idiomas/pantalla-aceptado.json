@@ -13,5 +13,58 @@
   "bg": [
    "⚠️ AEMET"
   ]
+ },
+ "Nombres de estrellas de la UAI (datos/cielo.json, nombresIAU) que Stellarium no traduce a ese idioma (po/stellarium-sky, common_star_names.fab: la entrada trae solo el nombre latino, viene vacia o no existe): sin fuente no se traducen y se quedan como los escribe la UAI, como los de los idiomas latinos. Los demas van en CIELO_UAI (modulos/cielo.js), que escribe y coteja tools/cielo_uai.js con esta misma lista (22/10/2026)": {
+  "zh": [
+   "Castula",
+   "Cih",
+   "82 G. Eri",
+   "Atik",
+   "Prima Hyadum",
+   "Beemim",
+   "Theemin",
+   "Haedus",
+   "Asellus Borealis",
+   "Ras Elased Australis",
+   "Felis",
+   "Minelauva",
+   "Toliman",
+   "Acrab B",
+   "Alya B",
+   "Albireo B"
+  ],
+  "zht": [
+   "Cih",
+   "Torcular",
+   "82 G. Eri",
+   "Haedus",
+   "Nganurganity",
+   "Asellus Borealis",
+   "Intercrus",
+   "Ras Elased Australis",
+   "Felis",
+   "Ginan",
+   "La Superba",
+   "Khambalia",
+   "Toliman",
+   "Acrab B",
+   "Dziban",
+   "Cervantes",
+   "Alya B",
+   "Meridiana",
+   "Albireo B",
+   "Alshat"
+  ],
+  "bg": [
+   "Cih",
+   "82 G. Eri",
+   "Nganurganity",
+   "Asellus Borealis",
+   "Ras Elased Australis",
+   "Khambalia",
+   "Acrab B",
+   "Alya B",
+   "Albireo B"
+  ]
  }
 }
