@@ -148,7 +148,7 @@ const CASOS = [
      antes «avisos de AEMET» daba los avisos de seguridad de las fichas, y
      «Wetterwarnung» o «code oranje», nada. */
   ['es', 'avisos de AEMET',               'punto amarillo, naranja o rojo'],
-  ['es', '¿dónde me baño hoy?',           'Báñate hoy aquí'],
+  ['es', '¿dónde me baño hoy?',           'Báñese hoy aquí'],
   ['de', 'Wetterwarnung',                 'Heute hier baden'],
   ['nl', 'code oranje',                   'kustverschijnselen'],
   ['zh', '天气预警',                       '沿海风浪'],

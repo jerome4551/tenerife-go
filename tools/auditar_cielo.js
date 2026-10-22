@@ -395,8 +395,10 @@ titulo('4. la carga perezosa y lo que pide el navegador');
      'Permissions-Policy: camera, accelerometer, gyroscope y magnetometer en (self); el microfono sigue en ()', pp);
   ok(/getUserMedia\(\{ video: \{ facingMode/.test(modulo) && !/audio: true/.test(modulo), 'la camara se pide sin audio y la de atras (facingMode environment)');
   const priv = JSON.parse(lee('idiomas/privacidad/es.json'));
-  ok(/Apunta al cielo/.test(priv.ppDatosSensoresTxt || '') && /Apunta al cielo/.test(priv.ppDatosCamaraTxt || '') && /astro/.test(priv.ppTercWiki || ''),
-     'la politica de privacidad habla de los sensores, de la camara y del resumen de Wikipedia del astro');
+  /* el nombre de la funcion, el de la app (desde el 22-10-2026, de usted: «Apunte al cielo») */
+  const apuntaEs = (CIELO_UI.cieloApunta || {}).es || '\u0000';
+  ok((priv.ppDatosSensoresTxt || '').includes('«' + apuntaEs + '»') && (priv.ppDatosCamaraTxt || '').includes('«' + apuntaEs + '»') && /astro/.test(priv.ppTercWiki || ''),
+     'la politica de privacidad habla de los sensores y de la camara de «' + apuntaEs + '» (el rotulo de la app) y del resumen de Wikipedia del astro');
   /* 21 de octubre: los avisos, los .ics y las capturas, en los diez idiomas */
   const sinIcs = IDI.filter(L => { const j = JSON.parse(lee('idiomas/privacidad/' + L + '.json')); return !/\.ics/.test(j.ppDatosPrefTxt || '') || !/📸/.test(j.ppDatosCamaraTxt || ''); });
   ok(!sinIcs.length, 'y de los avisos, los .ics y la captura 📸, en los ' + IDI.length + ' idiomas', sinIcs.join(', '));
@@ -959,7 +961,7 @@ async function sinConexion(b) {
    (Jerome, 21-10-2026). Y los enlaces al italiano no llegan (la red se
    corta): no se sabe, asi que no se dice nada ni se guarda. */
 async function apunta(b) {
-  titulo('9. «Apunta al cielo», la ficha y Wikipedia');
+  titulo('9. «Apunte al cielo», la ficha y Wikipedia');
   const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera'], isMobile: true, hasTouch: true });
   const WIKI = {
     'en/Alpha_Orionis': { type: 'standard', title: 'Betelgeuse', titles: { canonical: 'Betelgeuse' }, description: 'Red supergiant star in the constellation Orion',
@@ -1024,12 +1026,12 @@ async function apunta(b) {
   pide('Betelgeuse', f.bet, 'Tipo espectral: ' + bet.sp, mal);
   pide('Betelgeuse', f.bet, 'Clase: supergigante', mal);
   pide('Betelgeuse', f.bet, 'Color: rojo anaranjado, con una temperatura de unos ' + num(Math.round(kelvin(bet.bv) / 100) * 100, 0) + ' K', mal);
-  pide('Betelgeuse', f.bet, 'Está a unos ' + num(dos(bet.al), 0) + ' años luz: la luz que ves salió de ella hace unos ' + num(dos(bet.al), 0) + ' años', mal);
+  pide('Betelgeuse', f.bet, 'Está a unos ' + num(dos(bet.al), 0) + ' años luz: la luz que ve salió de ella hace unos ' + num(dos(bet.al), 0) + ' años', mal);
   pide('Betelgeuse', f.bet, 'Brilla como unos ' + num(dos(bet.lum), 0) + ' soles', mal);
   pide('Betelgeuse', f.bet, 'Su brillo varía entre mag. ' + num(bet.vr[1], 1) + ' y ' + num(bet.vr[2], 1), mal);
   pide('Betelgeuse', f.bet, 'Altura máxima desde Tenerife: ' + num(bet.alt, 0) + '°', mal);
   pide('Betelgeuse', f.bet, 'Esta noche', mal); pide('Betelgeuse', f.bet, 'sale a las ', mal); pide('Betelgeuse', f.bet, 'se pone a las ', mal);
-  pide('Sirio', f.sir, 'Está a ' + num(sir.al, 1) + ' años luz: la luz que ves salió de ella en ' + (f.anio - Math.round(sir.al)), mal);
+  pide('Sirio', f.sir, 'Está a ' + num(sir.al, 1) + ' años luz: la luz que ve salió de ella en ' + (f.anio - Math.round(sir.al)), mal);
   pide('Sirio', f.sir, 'Brilla como unos ' + num(dos(sir.lum), 0) + ' soles', mal);
   pide('Sirio', f.sir, 'Clase: enana, como el Sol', mal);
   pide('Sirio', f.sir, 'Es la estrella más brillante de Can Mayor', mal);
@@ -1037,7 +1039,7 @@ async function apunta(b) {
   if (/varía/.test(f.sir)) mal.push('Sirio: dice que varía');
   pide('Luna', f.luna, 'A ' + num(Math.round(f.dLuna / 100) * 100, 0) + ' km: su luz tarda ' + num(f.dLuna / 299792.458, 2) + ' segundos', mal);
   pide('Luna', f.luna, 'Edad de la Luna: ', mal); pide('Luna', f.luna, '% iluminada', mal);
-  pide('Sol', f.sol, 'Nunca mires el Sol', mal);
+  pide('Sol', f.sol, 'Nunca mire el Sol', mal);
   pide('Júpiter', f.jup, 'A ' + num(f.dJup / 1e6, 0) + ' millones de km de la Tierra', mal);
   pide('Júpiter', f.jup, 'Sus cuatro lunas grandes ahora', mal);
   /* Calisto llega a unos 26 radios de Jupiter (unos 10 minutos de arco); el
@@ -1432,7 +1434,7 @@ async function quejas(b) {
   });
   ok(vista.guia && vista.pasos === 3 && /Antes de apuntar/.test(vista.guiaTxt) && /imanes/.test(vista.guiaTxt) && /ocho/.test(vista.guiaTxt) && /Comprobar la brújula/.test(vista.guiaTxt) && /° al oeste/.test(vista.guiaTxt) && vista.guiaCerrada && vista.guiaGuardada === '1' && vista.guia2 === false,
      'la guia de 20 segundos sale la primera vez (imanes, el ocho, comprobar, la declinacion), «Entendido» la cierra y no vuelve a salir', JSON.stringify({ guia: vista.guia, pasos: vista.pasos, cerrada: vista.guiaCerrada, g: vista.guiaGuardada, g2: vista.guia2 }));
-  ok(/Comprobar la brújula/.test(vista.chipComprobar) && vista.ref && /dentro del círculo y toca «Ya»/.test(vista.banner) && vista.banner.includes(vista.ref),
+  ok(/Comprobar la brújula/.test(vista.chipComprobar) && vista.ref && /dentro del círculo y toque «Ya»/.test(vista.banner) && vista.banner.includes(vista.ref),
      'con los sensores sale el chip «Comprobar la brújula»; al tocarlo pide poner ' + vista.ref + ' en el circulo', vista.banner);
   ok(vista.lejos === undefined || vista.lejos === null, 'a 40 grados, «Ya» no corrige nada', JSON.stringify(vista.lejos));
   ok(/queda a \d+° del círculo/.test(vista.lejosAviso) && Math.abs(vista.lejosAjuste) < 0.01, '…y lo dice: ' + vista.lejosAviso.slice(0, 70), JSON.stringify(vista.lejosAjuste));
@@ -1583,7 +1585,7 @@ async function satelites(b) {
     ok(carta.pestana === 'mapa' && carta.sel && carta.sel.sat === primero.sat && Math.abs(carta.t - primero.max) < 1000 && carta.diana && carta.diana.dentro && carta.diana.brillo > 150,
        '«Ver en el mapa del cielo» abre la carta en el maximo del paso con ' + nom[primero.sat] + ' seleccionado y pintado (brillo ' + (carta.diana && carta.diana.brillo) + ')', JSON.stringify({ pestana: carta.pestana, sel: carta.sel, diana: carta.diana }));
     ok(carta.donde && carta.donde.alt > 10 && carta.donde.sol && carta.centro.includes(nom[primero.sat]) && /Satélite artificial/.test(carta.centro),
-       '«Apunta al cielo» con los sensores hacia el satelite (' + carta.donde.alt.toFixed(0) + '° de altura) lo nombra en el circulo: «' + carta.centro.split('\n')[0] + '»', carta.centro);
+       '«Apunte al cielo» con los sensores hacia el satelite (' + carta.donde.alt.toFixed(0) + '° de altura) lo nombra en el circulo: «' + carta.centro.split('\n')[0] + '»', carta.centro);
     ok(carta.buscaHubble.some(x => /Telescopio espacial Hubble/.test(x)) && carta.buscaIss && /Estación Espacial Internacional/.test(carta.objetivo),
        'la busqueda encuentra «Hubble» y «ISS», y la flecha apunta a la Estacion', JSON.stringify({ h: carta.buscaHubble, iss: carta.buscaIss, obj: carta.objetivo.slice(0, 60) }));
     const hora = ms => new Intl.DateTimeFormat('es-ES', { timeZone: 'Atlantic/Canary', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date(ms));
@@ -1806,8 +1808,8 @@ async function tercerBloque(b) {
   const conLuna = g.luna.alt > 5 && g.ilum > 0.05;
   if (conLuna !== g.paradas.some(x => x.clave === 'luna')) malG.push('la Luna (' + g.luna.alt.toFixed(0) + '°, ' + Math.round(g.ilum * 100) + ' %) ' + (conLuna ? 'falta' : 'sobra'));
   ok(!malG.length, 'cada parada, recalculada aparte con el motor desde el catalogo: su altura y acimut a 0,3°, por encima del umbral de su clase, en orden; los planetas por brillo (mag ≤ 2) y las tres estrellas con nombre mas brillantes por encima de 15°, exactamente las que salen aparte', malG.slice(0, 4).join(' · '));
-  ok(g.tarjeta && g.tarjeta.filas === g.paradas.length && g.tarjeta.botones === 2 * g.paradas.length && g.tarjeta.texto.includes(horaCan(g.tg)) && /Llévame/.test(g.tarjeta.texto) && /PARADA 1 DE|Parada 1 de/i.test(g.tarjeta.texto) && /Cambia la noche/.test(g.tarjeta.texto),
-     'la tarjeta «Tu noche guiada»: una fila por parada con «Llévame» y «Ver en el mapa del cielo», la hora de referencia y como se hace', g.tarjeta && JSON.stringify({ filas: g.tarjeta.filas, botones: g.tarjeta.botones }));
+  ok(g.tarjeta && g.tarjeta.filas === g.paradas.length && g.tarjeta.botones === 2 * g.paradas.length && g.tarjeta.texto.includes(horaCan(g.tg)) && /Llévame/.test(g.tarjeta.texto) && /PARADA 1 DE|Parada 1 de/i.test(g.tarjeta.texto) && /Cambie la noche/.test(g.tarjeta.texto),
+     'la tarjeta «Su noche guiada»: una fila por parada con «Llévame» y «Ver en el mapa del cielo», la hora de referencia y como se hace', g.tarjeta && JSON.stringify({ filas: g.tarjeta.filas, botones: g.tarjeta.botones }));
   /* «Llevame» y «Ver en el mapa» */
   const lleva = await p.evaluate(async () => {
     const espera = ms => new Promise(r => setTimeout(r, ms));
@@ -1827,7 +1829,7 @@ async function tercerBloque(b) {
     return out;
   });
   ok(lleva.vista && lleva.objetivo.includes(lleva.nombre) && lleva.pestana === 'mapa' && lleva.sel !== 'null' && lleva.ficha.includes(lleva.nomUlt),
-     '«Llévame» abre «Apunta al cielo» con la flecha puesta en ' + lleva.nombre + '; «Ver en el mapa del cielo» abre la carta con ' + lleva.nomUlt + ' seleccionado', JSON.stringify(lleva));
+     '«Llévame» abre «Apunte al cielo» con la flecha puesta en ' + lleva.nombre + '; «Ver en el mapa del cielo» abre la carta con ' + lleva.nomUlt + ' seleccionado', JSON.stringify(lleva));
   /* otras noches: las Perseidas con Luna nueva (12-8-2026: la Via Lactea y el radiante que sube mas tarde), las Geminidas (13-12-2026) */
   const otras = await p.evaluate(() => {
     const A = Astronomy, D = TG_CIELO.estado.datos, o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h);
@@ -1952,7 +1954,7 @@ async function tercerBloque(b) {
   ok(rojo.sol < -6 && rojo.pista && /Es de noche/.test(rojo.pista) && rojo.clase && rojo.tema === '#2a0000' && rojo.slider === true && rojo.variable === '0.5' && /brightness\(0\.5\)/.test(rojo.filtro) && rojo.guardado === '0.5' && rojo.pistaGuardada === '1' && rojo.rojoGuardado === '1',
      'de noche (Sol a ' + rojo.sol.toFixed(0) + '°) y con la luz blanca sale la pista; «Activar» pone la pantalla en rojo, la barra del sistema en rojo oscuro, el regulador a la vista, y el brillo (0,5) se aplica y se guarda', JSON.stringify(rojo));
   ok(rojo.vistaSlider === true && rojo.vistaValor === '0.5' && rojo.claseCerrado === false && rojo.temaCerrado === rojo.temaAntes && rojo.temaAbierto === '#2a0000' && rojo.pista2 === false && rojo.sliderFuera === true && rojo.temaApagado === rojo.temaAntes,
-     'el regulador esta tambien en «Apunta al cielo»; al cerrar el panel vuelve el color de la barra y al abrirlo la pista ya no sale; al apagar la luz roja, regulador fuera y barra devuelta', JSON.stringify(rojo));
+     'el regulador esta tambien en «Apunte al cielo»; al cerrar el panel vuelve el color de la barra y al abrirlo la pista ya no sale; al apagar la luz roja, regulador fuera y barra devuelta', JSON.stringify(rojo));
   /* de dia no hay pista */
   await p.clock.setFixedTime(new Date(T0.getTime() - 6 * 3600000));
   const dia = await p.evaluate(async () => { const espera = ms => new Promise(r => setTimeout(r, ms)); try { localStorage.removeItem('tgo_cielo_rojo_pista'); } catch (e) {} TG_CIELO.estado._pistaDada = false; TG_CIELO.cerrar(); TG_CIELO.abrir(); await espera(400); const s = Astronomy.Equator(Astronomy.Body.Sun, Astronomy.MakeTime(new Date()), new Astronomy.Observer(28.2987, -16.5106, 2390), true, true); return { pista: !!document.getElementById('cielo-pista'), sol: Astronomy.Horizon(Astronomy.MakeTime(new Date()), new Astronomy.Observer(28.2987, -16.5106, 2390), s.ra, s.dec, 'normal').altitude }; });

@@ -408,7 +408,7 @@ function supabaseFalso(cfg) {
         const choca = (a, b) => a.l < b.r && b.l < a.r && a.t < b.b && b.t < a.b;
         const web = document.getElementById('pp-enlace-web'), borrar = document.getElementById('pp-enlace-borrar');
         const pildora = document.querySelector('.pp-pie > button.pp-link');
-        const mios = [['version web', web], ['borrar tu cuenta', borrar], ['Privacidad · RGPD', pildora]];
+        const mios = [['version web', web], ['borrar su cuenta', borrar], ['Privacidad · RGPD', pildora]];
         const vecinos = [['la leyenda', '#map-legend-toggle'], ['el zoom', '.leaflet-control-zoom'], ['el boton de informacion', '.pwa-fab'],
                          ['el credito del mapa', '.leaflet-control-attribution'], ['la barra de abajo', '.v19-bottom-nav']]
           .map(([n, sel]) => [n, document.querySelector(sel)]).filter(([, el]) => vis(el));
@@ -463,7 +463,7 @@ function supabaseFalso(cfg) {
         const vis = el => !!el && getComputedStyle(el).display !== 'none' && getComputedStyle(el).visibility !== 'hidden' && el.getBoundingClientRect().width > 0;
         const choca = (a, b) => a.l < b.r && b.l < a.r && a.t < b.b && b.t < a.b;
         const pild = document.getElementById('filter-status');
-        const otros = [['version web', '#pp-enlace-web'], ['borrar tu cuenta', '#pp-enlace-borrar'], ['Privacidad · RGPD', '.pp-pie > button.pp-link'],
+        const otros = [['version web', '#pp-enlace-web'], ['borrar su cuenta', '#pp-enlace-borrar'], ['Privacidad · RGPD', '.pp-pie > button.pp-link'],
           ['la leyenda', '#map-legend-toggle'], ['el zoom', '.leaflet-control-zoom'], ['el trofeo', '.tg-trophy-fab'], ['el boton de informacion', '.pwa-fab'],
           ['el credito del mapa', '.leaflet-control-attribution'], ['la barra de abajo', '.v19-bottom-nav']]
           .map(([n, s]) => [n, document.querySelector(s)]).filter(([, el]) => vis(el));

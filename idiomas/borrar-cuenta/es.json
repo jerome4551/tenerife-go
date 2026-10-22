@@ -1,13 +1,13 @@
 {
- "intro": "Si creaste una cuenta en Tenerife Go, puedes borrarla cuando quieras: desde la app o por correo.",
+ "intro": "Si creó una cuenta en Tenerife Go, puede borrarla cuando quiera: desde la app o por correo.",
  "appTitulo": "Desde la app",
- "appTxt": "Toca «{cuenta}» (inicia sesión si te lo pide) y, debajo de «{cerrar}», toca «{eliminar}». La app te pide que lo confirmes con «{confirmar}», y la cuenta se borra en ese momento.",
+ "appTxt": "Toque «{cuenta}» (inicie sesión si se lo pide) y, debajo de «{cerrar}», toque «{eliminar}». La app le pide que lo confirme con «{confirmar}», y la cuenta se borra en ese momento.",
  "correoTitulo": "Sin la app",
- "correoTxt": "Escríbenos a {correo} desde el correo de tu cuenta, con el asunto «{asunto}». La borramos en un mes como máximo desde que nos llega el correo (RGPD, artículo 12.3).",
+ "correoTxt": "Escríbanos a {correo} desde el correo de su cuenta, con el asunto «{asunto}». La borramos en un mes como máximo desde que nos llega el correo (RGPD, artículo 12.3).",
  "asunto": "Borrar mi cuenta",
  "borraTitulo": "Qué se borra",
- "borraTxt": "Tu correo, tu contraseña (que se guarda cifrada) y los favoritos que tengas guardados en la nube.",
+ "borraTxt": "Su correo, su contraseña (que se guarda cifrada) y los favoritos que tenga guardados en la nube.",
  "noTitulo": "Lo que no se borra con la cuenta",
  "noPush": "Las notificaciones: se apagan en el navegador o en los ajustes del móvil.",
- "noDispositivo": "Lo guardado en tu dispositivo, como el idioma o tus favoritos: desaparece al borrar los datos del sitio en el navegador o al desinstalar la app."
+ "noDispositivo": "Lo guardado en su dispositivo, como el idioma o sus favoritos: desaparece al borrar los datos del sitio en el navegador o al desinstalar la app."
 }

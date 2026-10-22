@@ -176,14 +176,14 @@ echo; echo "════════ avisos de AEMET: el lector, con copias real
 control probar_avisos_aemet.py python3 tools/probar_avisos_aemet.py
 echo; echo "════════ avisos de AEMET en la app, en los diez idiomas ════════"
 # Desde el 21 de octubre de 2026 van en el boton del mar 🌊, y un costero quita
-# de «Báñate hoy aquí» las playas de su zona (contorno oficial de AEMET).
+# de «Báñese hoy aquí» las playas de su zona (contorno oficial de AEMET).
 control probar_avisos.js node tools/probar_avisos.js "$PUERTO"
 echo; echo "════════ rutas: guaguas a hora fija y lo que se ve al usarlas, en los diez idiomas ════════"
 # Desde el 12 de octubre de 2026. Ningun control pedia una ruta: de noche
 # «A→B» decia que no habia guagua entre La Laguna y el Puerto de la Cruz, con
 # la frase de la guagua del Teide, y varios textos salian en castellano.
 control probar_rutas.js node tools/probar_rutas.js "$PUERTO"
-echo; echo "════════ «Organiza tu día» entero, en los diez idiomas, con los tramos calculados ════════"
+echo; echo "════════ «Organice su día» entero, en los diez idiomas, con los tramos calculados ════════"
 # Desde el 13 de octubre de 2026: el tiempo entre paradas era un rotulo fijo
 # («En guagua ~25 min» para cualquier tramo) y varios titulos salian sin traducir.
 control probar_organiza.js node tools/probar_organiza.js "$PUERTO"

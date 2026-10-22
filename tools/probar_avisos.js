@@ -8,7 +8,7 @@
  * tools/avisos_aemet.py (el texto de los avisos es el de un aviso real de
  * AEMET; los contornos de las costas, los de AEMET; las horas se ponen
  * alrededor de ahora para que esten en pie), y en lugar de Open-Meteo un mar
- * en calma y alisio flojo en toda la isla, para que «Báñate hoy aquí» tenga
+ * en calma y alisio flojo en toda la isla, para que «Báñese hoy aquí» tenga
  * playas que recomendar. Y mira lo que sale en pantalla:
  *
  *   · con avisos: el punto del 🌊 del color del peor (y dicho para quien no
@@ -19,7 +19,7 @@
  *   · un aviso en las tres zonas de la isla, en una linea: «Toda la isla»
  *     (la tarjeta las nombra); sin la lista de zonas, las nombra;
  *   · con un costero en el sur (contorno real de AEMET): las costas del sur
- *     lo llevan, «la más tranquila» no es una de ellas, y «Báñate hoy aquí»
+ *     lo llevan, «la más tranquila» no es una de ellas, y «Báñese hoy aquí»
  *     no recomienda ninguna playa de esa zona y lo dice; sin el costero, si
  *     las recomendaba (si no, la prueba no probaria nada);
  *   · el globo de una playa: «⚠️ AEMET» en «El mar aquí» y el aviso lo primero
@@ -90,7 +90,7 @@ async function openMeteo(pg) {
     const pg = await ctx.newPage();
     const errores = [];
     pg.on('pageerror', e => errores.push(e.message));
-    // las caches del mar y de «Báñate hoy aquí» son del contexto: fuera, que cada pagina pida lo suyo
+    // las caches del mar y de «Báñese hoy aquí» son del contexto: fuera, que cada pagina pida lo suyo
     await pg.addInitScript(() => { try { localStorage.removeItem('tgo_mar_cache_v1'); localStorage.removeItem('tgo_bano_cache_v2'); } catch (e) {} });
     await openMeteo(pg);
     await pg.route('**/datos/avisos-aemet.json', r => fichero === 404
@@ -111,7 +111,7 @@ async function openMeteo(pg) {
     return { ve: !p.hidden && getComputedStyle(p).display !== 'none', cls: p.className, dice: d ? d.textContent : null,
              dentro: b.contains(p), pildora: !!document.getElementById('wx-pill') };
   });
-  // abre el panel del mar y espera a que esten sus costas y «Báñate hoy aquí»
+  // abre el panel del mar y espera a que esten sus costas y «Báñese hoy aquí»
   async function panelMar(pg) {
     await pg.evaluate(() => { const p = document.getElementById('mar-panel'); if (p.style.display !== 'block') document.getElementById('mar-btn').click(); });
     await pg.waitForFunction(() => document.querySelectorAll('#mar-list .mar-row').length > 0, null, { timeout: 15000 });
@@ -191,7 +191,7 @@ async function openMeteo(pg) {
          && m.filas.filter(f => f.aemet).every(f => f.aemet.includes(esperado.wxNivel_naranja) && f.aemet.includes('AEMET')),
          JSON.stringify(m.filas));
     caso(`[${L}] «la costa más tranquila» no es una con aviso`, !!m.best && !m.nombresSur.includes(m.best), m.best);
-    caso(`[${L}] «Báñate hoy aquí»: tres playas, ninguna en la zona del aviso, y lo dice`,
+    caso(`[${L}] «Báñese hoy aquí»: tres playas, ninguna en la zona del aviso, y lo dice`,
          m.playas.length === 3 && m.playas.every(p => !p.enAviso) && m.nota === esperado.banoHoyAemet,
          JSON.stringify({ playas: m.playas, nota: m.nota }));
     // ningun rotulo de la app en castellano fuera del castellano
@@ -207,7 +207,7 @@ async function openMeteo(pg) {
     await pg.close();
   }
 
-  console.log('\n=== sin el costero, «Báñate hoy aquí» SI recomendaba playas de esa zona ===');
+  console.log('\n=== sin el costero, «Báñese hoy aquí» SI recomendaba playas de esa zona ===');
   {
     const { pg } = await abrir(soloLluvia, 'es');
     const m = await panelMar(pg);

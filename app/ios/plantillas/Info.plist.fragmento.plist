@@ -23,11 +23,11 @@
   </array>
   <!-- los permisos, con lo que dice la politica de privacidad -->
   <key>NSLocationWhenInUseUsageDescription</key>
-  <string>Geolocalización: solo cuando la activas, para enseñarte dónde estás en el mapa, lo que tienes cerca y la ruta hasta un lugar. No se guarda en ningún servidor. Si pides una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas para calcularla.</string>
+  <string>Geolocalización: solo cuando la activa, para enseñarle dónde está en el mapa, lo que tiene cerca y la ruta hasta un lugar. No se guarda en ningún servidor. Si pide una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas para calcularla.</string>
   <key>NSMotionUsageDescription</key>
-  <string>Orientación del móvil (opcional): solo mientras usas «Apunta al cielo»: la brújula, el giroscopio y el acelerómetro dicen hacia dónde apuntas, para nombrar lo que tienes delante. Se usa en el dispositivo y no se guarda ni se envía.</string>
+  <string>Orientación del móvil (opcional): solo mientras usa «Apunte al cielo»: la brújula, el giroscopio y el acelerómetro dicen hacia dónde apunta, para nombrar lo que tiene delante. Se usa en el dispositivo y no se guarda ni se envía.</string>
   <key>NSCameraUsageDescription</key>
-  <string>Cámara (opcional): solo si la activas en «Apunta al cielo», para pintar las estrellas sobre la imagen. La imagen no se guarda, no se analiza y no sale del móvil; solo si tocas 📸 se compone una captura con las estrellas encima, que se guarda o se comparte desde tu móvil sin pasar por ningún servidor.</string>
+  <string>Cámara (opcional): solo si la activa en «Apunte al cielo», para pintar las estrellas sobre la imagen. La imagen no se guarda, no se analiza y no sale del móvil; solo si toca 📸 se compone una captura con las estrellas encima, que se guarda o se comparte desde su móvil sin pasar por ningún servidor.</string>
   <!-- la app solo usa HTTPS (cifrado exento): asi App Store Connect no pregunta por el cifrado en cada subida -->
   <key>ITSAppUsesNonExemptEncryption</key>
   <false/>

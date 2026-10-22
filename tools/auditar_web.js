@@ -796,7 +796,7 @@ function revisar(tablas, o) {
       const sep = c.querySelector('.dp-sep-text');
       if (sep && LATIN(sep.textContent)) o.mal.push(donde + ' transito: ' + sep.textContent.trim());
     };
-    mira('organiza tu dia', 'dpi-result-title', 'dpi-itinerary');
+    mira('organice su dia', 'dpi-result-title', 'dpi-itinerary');
     dpZone = 'mix';
     renderItinerary(places.filter(x => x.desc && x.name).slice(0, 4));
     await esperar(400);
@@ -816,7 +816,7 @@ function revisar(tablas, o) {
     setLang('es');
     return o;
   }).catch(e => ({ mal: ['(no se pudo generar: ' + String(e).slice(0, 90) + ')'] }));
-  console.log('\n=== el itinerario de «organiza tu dia» ===');
+  console.log('\n=== el itinerario de «organice su dia» ===');
   const okIt = itin.mal.length === 0;
   console.log('  ' + (okIt ? 'OK ' : 'MAL') + ' titulo, descripcion, botones y transito salen en el idioma de quien mira');
   itin.mal.forEach(m => console.log('      <--  ' + m));

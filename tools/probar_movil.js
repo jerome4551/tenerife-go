@@ -38,7 +38,7 @@ const CONSULTAS = [
        estricto que la realidad -la respuesta lleva cifras y puntuacion
        dentro- y suspendia una respuesta correcta. */
     debe: [/海滩/],
-    noDebe: [/playas/i, /Puedo enseñarte/i, /lugares/i],
+    noDebe: [/playas/i, /Puedo enseñar(te|le)/i, /lugares/i],
     conLista: true, botones: /[一-鿿]/ },
 
   { que: 'guaguas en polaco', lang: 'pl', q: 'autobusy',
@@ -55,7 +55,7 @@ const CONSULTAS = [
   { que: 'el boton «Meilleures plages», en frances', lang: 'fr', boton: /Meilleures plages/,
     /* el boton manda por dentro «mejores playas»: antes caia en la respuesta
        castellana de CHAT_KB («Según lo que busques…») */
-    debe: [/Plages/], noDebe: [/Según lo que busques/i, /Arena negra/i], conLista: true },
+    debe: [/Plages/], noDebe: [/Según lo que busques?/i, /Arena negra/i], conLista: true },
 
   /* «help» a secas: desde el 12/10/2026 propone 112, emergencia y ayuda de
      la app (Jerome, para «ayuda»; lo mismo en los diez idiomas). El de
@@ -66,7 +66,7 @@ const CONSULTAS = [
     acciones: [/Llamar al 112/, /Emergencia/, /Ayuda con la app/], pulsar: /Ayuda con la app/, trasPulsar: [/en pocas palabras/] },
   { que: '«Hilfe» en aleman', lang: 'de', q: 'Hilfe', debe: [/Notfall/], noDebe: [/emergencia/i],
     acciones: [/112 anrufen/, /Notfall/, /Hilfe zur App/] },
-  { que: '«pedir ayuda» no es ambiguo: el 112 directo', lang: 'es', q: 'pedir ayuda', debe: [/llama al 112/], noDebe: [], sinAcciones: true },
+  { que: '«pedir ayuda» no es ambiguo: el 112 directo', lang: 'es', q: 'pedir ayuda', debe: [/llame al 112/], noDebe: [], sinAcciones: true },
 
   { que: 'la app sin conexion, en neerlandes', lang: 'nl', q: 'werkt het offline',
     debe: [/Eiland offline/], noDebe: [/sin conexión/i] },
@@ -83,17 +83,17 @@ const CONSULTAS = [
      tiene que dar la respuesta del 112. */
   { que: '«socorro»: 112, emergencia y la playa, para elegir', lang: 'es', q: 'socorro',
     debe: [/ayuda/], noDebe: [/Los Realejos/], acciones: [/112/, /Emergencia/, /Playa El Socorro/],
-    pulsar: /Emergencia/, trasPulsar: [/llama al 112/] },
+    pulsar: /Emergencia/, trasPulsar: [/llame al 112/] },
   { que: '«socorro» en aleman: los botones en aleman', lang: 'de', q: 'socorro',
     debe: [/Hilfe/], noDebe: [/Emergencia/], acciones: [/112 anrufen/, /Notfall/, /Playa El Socorro/],
     pulsar: /Playa El Socorro/, trasPulsarLista: 3 },
   { que: '«socorro» en polaco', lang: 'pl', q: 'socorro',
     debe: [/pomocy/], noDebe: [/Emergencia/], acciones: [/Zadzwoń pod 112/, /Nagły wypadek/, /Playa El Socorro/] },
   { que: '«pedir socorro» no es ambiguo: el 112 directo', lang: 'es', q: 'pedir socorro',
-    debe: [/llama al 112/], noDebe: [], sinAcciones: true },
-  { que: '«auxilio»: el 112 directo', lang: 'es', q: 'auxilio', debe: [/llama al 112/], noDebe: [] },
-  { que: '«emergencia» sigue llevando al 112', lang: 'es', q: 'emergencia', debe: [/llama al 112/], noDebe: [] },
-  { que: '«Polizei», en aleman: el 112', lang: 'de', q: 'Polizei', debe: [/112/], noDebe: [/llama/] },
+    debe: [/llame al 112/], noDebe: [], sinAcciones: true },
+  { que: '«auxilio»: el 112 directo', lang: 'es', q: 'auxilio', debe: [/llame al 112/], noDebe: [] },
+  { que: '«emergencia» sigue llevando al 112', lang: 'es', q: 'emergencia', debe: [/llame al 112/], noDebe: [] },
+  { que: '«Polizei», en aleman: el 112', lang: 'de', q: 'Polizei', debe: [/112/], noDebe: [/llam[ae]/] },
 
   /* «Ordena mis favoritos por distancia» (12/10/2026): exc-03 lo prometia y
      el asistente no sabia hacerlo. Con la ubicacion, el orden tiene que ser
@@ -115,7 +115,7 @@ const CONSULTAS = [
   { que: 'favoritos sin ubicacion, en polaco: empieza por un extremo y lo dice', lang: 'pl', q: 'posortuj moje ulubione',
     favs: ['teide', 'anaga', 'playa-socorro'], debe: [/Nie wiem, gdzie jesteś/], noDebe: [/No sé/], listaDe: 3 },
   { que: 'sin favoritos: el boton con su rotulo de la pantalla', lang: 'es', q: 'ordena mis favoritos',
-    favs: [], debe: [/Aún no tienes favoritos/], noDebe: [], rotuloAddFav: true },
+    favs: [], debe: [/Aún no tiene favoritos/], noDebe: [], rotuloAddFav: true },
   { que: 'el boton «Ordena mis favoritos por distancia» de app-02 lo hace', lang: 'es', q: '¿Cómo guardo un lugar en favoritos?',
     favs: ['teide', 'anaga'], pulsarChip: /Ordena mis favoritos/, debe: [/Añadir a favoritos/], noDebe: [], trasChip: [/línea recta/], trasChipLista: 2 },
 ];
