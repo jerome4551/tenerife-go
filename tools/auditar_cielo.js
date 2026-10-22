@@ -1403,7 +1403,8 @@ async function quejas(b) {
   const vista = await p.evaluate(async () => {
     const espera = ms => new Promise(r => setTimeout(r, ms));
     try { localStorage.removeItem('tgo_cielo_guia'); localStorage.removeItem('tgo_cielo_ajuste'); } catch (e) {}
-    const A = Astronomy, D = TG_CIELO.estado.datos, o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h), t = A.MakeTime(new Date()), out = {};
+    const A = Astronomy, D = TG_CIELO.estado.datos, o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h), out = {};
+    let t = A.MakeTime(new Date());
     TG_CIELO.vista({}); await espera(300);
     const guia = document.querySelector('#cielo-vista .cv-guia');
     out.guia = !guia.hidden; out.guiaTxt = guia.innerText;
@@ -1416,7 +1417,23 @@ async function quejas(b) {
     evento(200, 40); await espera(500);
     out.chipAntes = document.querySelectorAll('#cielo-vista .cv-chip')[1].textContent;
     out.chipComprobar = [...document.querySelectorAll('#cielo-vista .cv-chip')].filter(x => !x.hidden).map(x => x.textContent).join(' | ');
-    const ref = TG_CIELO.comprobar(); await espera(200);
+    let ref = TG_CIELO.comprobar(); await espera(200);
+    /* Con el Sol entre −3 y 8 grados (al amanecer y al atardecer) no hay con
+       que comprobar, y la app lo dice. La prueba lo mira y sigue con el reloj
+       de la pagina dos horas despues (o antes), con el Sol ya alto o la noche
+       cerrada: si no, la parte entera dependia de la hora a la que se pasara
+       (el 22 de octubre de 2026, al amanecer, se cayo leyendo ref.planeta). */
+    const ahoraDeVerdad = Date.now;
+    out.sinReferencia = null; out.relojMovido = 0;
+    if (!ref) {
+      out.sinReferencia = document.querySelector('#cielo-vista .cv-aviso').textContent;
+      for (const m of [120, -120, 240, -240]) {
+        Date.now = () => ahoraDeVerdad.call(Date) + m * 60000;
+        ref = TG_CIELO.comprobar(); await espera(200);
+        if (ref) { out.relojMovido = m; break; }
+      }
+      t = A.MakeTime(new Date(Date.now()));
+    }
     out.ref = ref && TG_CIELO.cosa(ref).nombre;
     out.banner = document.querySelector('#cielo-vista .cv-comprobar').innerText;
     let h;
@@ -1437,6 +1454,7 @@ async function quejas(b) {
     out.guardado = localStorage.getItem('tgo_cielo_ajuste');
     await espera(700);
     out.centro = document.querySelector('#cielo-vista .cv-nombre').innerText;
+    Date.now = ahoraDeVerdad;
     /* la captura con la camara falsa puesta */
     document.querySelectorAll('#cielo-vista .cv-btn')[1].click(); await espera(1200);
     const b = await TG_CIELO.capturarVista();
@@ -1454,6 +1472,8 @@ async function quejas(b) {
   });
   ok(vista.guia && vista.pasos === 3 && /Antes de apuntar/.test(vista.guiaTxt) && /imanes/.test(vista.guiaTxt) && /ocho/.test(vista.guiaTxt) && /Comprobar la brújula/.test(vista.guiaTxt) && /° al oeste/.test(vista.guiaTxt) && vista.guiaCerrada && vista.guiaGuardada === '1' && vista.guia2 === false,
      'la guia de 20 segundos sale la primera vez (imanes, el ocho, comprobar, la declinacion), «Entendido» la cierra y no vuelve a salir', JSON.stringify({ guia: vista.guia, pasos: vista.pasos, cerrada: vista.guiaCerrada, g: vista.guiaGuardada, g2: vista.guia2 }));
+  if (vista.sinReferencia !== null) ok(/no hay nada brillante sobre el horizonte/.test(vista.sinReferencia) && vista.relojMovido !== 0,
+     'con el Sol bajo no hay con que comprobar y la app lo dice («' + vista.sinReferencia.slice(0, 60) + '…»); la prueba sigue con el reloj ' + (vista.relojMovido / 60) + ' h movido', vista.sinReferencia);
   ok(/Comprobar la brújula/.test(vista.chipComprobar) && vista.ref && /dentro del círculo y toque «Ya»/.test(vista.banner) && vista.banner.includes(vista.ref),
      'con los sensores sale el chip «Comprobar la brújula»; al tocarlo pide poner ' + vista.ref + ' en el circulo', vista.banner);
   ok(vista.lejos === undefined || vista.lejos === null, 'a 40 grados, «Ya» no corrige nada', JSON.stringify(vista.lejos));
