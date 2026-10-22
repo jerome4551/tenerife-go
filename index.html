@@ -9593,8 +9593,10 @@ Object.assign(UI_TX, {
   "bookConfirmar": {"es":"Confirmar reserva","en":"Confirm booking","fr":"Confirmer la réservation","de":"Buchung bestätigen","it":"Conferma la prenotazione","nl":"Boeking bevestigen","zh":"确认预订","zht":"確認預訂","bg":"Потвърди резервацията", pl: "Potwierdź rezerwację"},
   "bookFormTitulo": {"es":"📅 Hacer reserva","en":"📅 Book now","fr":"📅 Réserver","de":"📅 Buchen","it":"📅 Prenota","nl":"📅 Boeken","zh":"📅 立即预订","zht":"📅 立即預訂","bg":"📅 Резервирай", pl: "📅 Zarezerwuj"},
   "bookDetalle": {"es":"Detalle","en":"Details","fr":"Détail","de":"Details","it":"Dettaglio","nl":"Details","zh":"详情","zht":"詳情","bg":"Подробности", pl: "Szczegóły"},
-  "bookNecesitas": {"es":"Necesita","en":"You need to","fr":"Vous devez","de":"Sie müssen sich","it":"Deve","nl":"U moet","zh":"您需要","zht":"您需要","bg":"Трябва да", pl: "Trzeba"},
-  "bookParaCompletar": {"es":"para completar la reserva.","en":"to complete the booking.","fr":"pour finaliser la réservation.","de":"anmelden, um die Buchung abzuschließen.","it":"per completare la prenotazione.","nl":"om de boeking af te ronden.","zh":"才能完成预订。","zht":"才能完成預訂。","bg":"за да завършите резервацията.", pl: "przed dokończeniem rezerwacji."},
+  /* La frase entera, con {enlace} donde va «iniciar sesión»: en tres trozos
+     fijos el aleman decia «anmelden anmelden», al neerlandes le sobraba el
+     «te», al bulgaro le faltaba la coma y el chino llevaba espacios. */
+  "bookLoginFrase": {"es":"Necesita {enlace} para completar la reserva.","en":"You need to {enlace} to complete the booking.","fr":"Vous devez {enlace} pour finaliser la réservation.","de":"Sie müssen sich {enlace}, um die Buchung abzuschließen.","it":"Deve {enlace} per completare la prenotazione.","nl":"U moet {enlace} om de boeking af te ronden.","zh":"您需要{enlace}才能完成预订。","zht":"您需要{enlace}才能完成預訂。","bg":"Трябва да {enlace}, за да завършите резервацията.", pl: "Trzeba {enlace} przed dokończeniem rezerwacji."},
   "bookPersonas": {"es":"Personas","en":"People","fr":"Personnes","de":"Personen","it":"Persone","nl":"Personen","zh":"人数","zht":"人數","bg":"Брой хора", pl: "Osoby"},
   "bookDescripcion": {"es":"Descripción","en":"Description","fr":"Description","de":"Beschreibung","it":"Descrizione","nl":"Beschrijving","zh":"简介","zht":"簡介","bg":"Описание", pl: "Opis"},
   "bookIncluye": {"es":"Incluye","en":"Includes","fr":"Comprend","de":"Enthalten","it":"Include","nl":"Inbegrepen","zh":"包含","zht":"包含","bg":"Включва", pl: "Zawiera"},
@@ -9731,7 +9733,7 @@ Object.assign(UI_TX, {
   "routeGuiaTitulo": {"es":"✏️ Planificador de Rutas","en":"✏️ Route planner","fr":"✏️ Planificateur d'itinéraires","de":"✏️ Routenplaner","it":"✏️ Pianificatore di percorsi","nl":"✏️ Routeplanner","zh":"✏️ 路线规划","zht":"✏️ 路線規劃","bg":"✏️ Планер на маршрути", pl: "✏️ Planer tras"},
   "routeGuiaCalcular": {"es":"Calcular","en":"Calculate","fr":"Calculer","de":"Berechnen","it":"Calcola","nl":"Berekenen","zh":"计算","zht":"計算","bg":"Изчисли", pl: "Oblicz"},
   "multifilterTres": {"es":"+3 categorías","en":"3+ categories","fr":"+3 catégories","de":"3+ Kategorien","it":"+3 categorie","nl":"3+ categorieën","zh":"3 个以上类别","zht":"3 個以上類別","bg":"над 3 категории", pl: "+3 kategorie"},
-  "authTabLoginEnlace": {"es":"iniciar sesión","en":"log in","fr":"vous connecter","de":"anmelden","it":"accedere","nl":"in te loggen","zh":"登录","zht":"登入","bg":"влезете", pl: "zalogować się"}
+  "authTabLoginEnlace": {"es":"iniciar sesión","en":"log in","fr":"vous connecter","de":"anmelden","it":"accedere","nl":"inloggen","zh":"登录","zht":"登入","bg":"влезете", pl: "zalogować się"}
 });
 
 /* Las unidades del resumen del calculador: en chino no son "min" ni "km". */
@@ -24750,7 +24752,7 @@ document.addEventListener('DOMContentLoaded', function() {
           Confirmar reserva
         </button>
         <div class="booking-login-notice" id="booking-login-notice" style="display:none">
-          <span data-tx="bookNecesitas">Necesita</span> <strong onclick="closeBookingPanel(); closeShopPanel(); openAuthModal();" data-tx="authTabLoginEnlace">iniciar sesión</strong> <span data-tx="bookParaCompletar">para completar la reserva.</span>
+          <span data-tx-hueco="bookLoginFrase">Necesita <strong data-hueco="enlace" onclick="closeBookingPanel(); closeShopPanel(); openAuthModal();" data-tx="authTabLoginEnlace">iniciar sesión</strong> para completar la reserva.</span>
         </div>
       </div>
     </div>
