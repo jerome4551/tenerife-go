@@ -3710,7 +3710,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 44 tablas, 1816 filas (y 3.957 filas, dentro y fuera del fuente)
+## Idiomas · 44 tablas, 1822 filas (y 3.963 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -3755,7 +3755,11 @@ hasta 548 —los cinco botones, la cuenta atrás, la pausa, la nota, sin voz,
 el fallo y las cuatro que solo se oyen—: 1815 filas y 3.956. Y una más,
 `cieloLluviaPadreCreeCometa`, hasta 549: las Delta Acuáridas, «se cree que
 son restos del cometa 96P/Machholz», que ya tenía el séptimo commit de
-`cielo-camara` y el quinto bloque rehecho no traía: 1816 filas y 3.957. El
+`cielo-camara` y el quinto bloque rehecho no traía: 1816 filas y 3.957. Y los seis
+avisos del panel de administración que el código escribía a mano, en
+`UI_TX` y en los diez idiomas (`admComprobando`, `admPanelSinRed`,
+`admIniciaSesion`, `admSinPermisoCuenta`, `admPublicando` y `admSubiendo`):
+1822 filas y 3.963. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de

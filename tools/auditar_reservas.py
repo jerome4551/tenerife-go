@@ -16,12 +16,29 @@ QUE MIRA
   Cada `<objeto>.clave || '…'` del fuente cuya clave pertenezca a los objetos de
   idioma: la clave tiene que estar definida en los DIEZ. Una clave que no esta
   en ninguno tambien es fallo: es exactamente el caso de favAdd.
+
+  Y el texto que el codigo escribe A MANO en la pagina (22 de octubre de 2026):
+  `el.textContent = 'Tenerife GO · Planificador'` no pasa por ninguna tabla de
+  idioma, asi que ningun control lo veia. Asi salian en castellano, en los diez
+  idiomas, la cabecera del planificador («Tenerife GO · Planificador», «Mañana
+  (2–3h)») y los avisos del panel de administracion («Inicia sesión con tu
+  cuenta de administrador», ademas de tu). Toda asignacion de un texto con
+  letras a textContent, innerText, title, placeholder o ariaLabel, en
+  index.html y en los modulos, es fallo salvo que este en LITERALES_FIJOS con
+  su motivo.
 """
 import os
 import re
 import sys
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Lo que el codigo escribe a mano y se queda asi, con su motivo.
+LITERALES_FIJOS = {
+    'Abrir Tenerife Go': 'el enlace que sale si otra web mete la app en un marco: corre antes '
+                         'que la app y sus tablas de idioma (index.html, al principio)',
+    '📡 GPS': 'el boton de posicion del panel de administracion: GPS se dice igual en los diez idiomas',
+}
 
 
 def main():
@@ -48,7 +65,26 @@ def main():
     print('  FALTAN EN ALGUN IDIOMA ................. %d' % len(mal))
     for k in sorted(mal):
         print('    %-22s en %d de 10 · sale «%s»' % (k, mal[k], ' / '.join(sorted(usos[k]))))
-    return 1 if mal else 0
+
+    fuentes = [('index.html', s)] + [
+        (os.path.join('modulos', f), open(os.path.join(RAIZ, 'modulos', f), encoding='utf-8').read())
+        for f in sorted(os.listdir(os.path.join(RAIZ, 'modulos'))) if f.endswith('.js')]
+    literales, fijos = [], 0
+    for nombre, txt in fuentes:
+        for m in re.finditer(r"\.(textContent|innerText|title|placeholder|ariaLabel)\s*=\s*(['\"`])((?:(?!\2)[^\\\n]|\\.)*?)\2", txt):
+            t = m.group(3)
+            if m.group(2) == '`' and '${' in t:
+                continue    # una plantilla que compone partes ya traducidas
+            if not re.search(r'[^\W\d_]{3,}', re.sub(r'\\u[0-9a-fA-F]{4}', '', t)):
+                continue    # un emoji o un signo, sin palabras
+            if t in LITERALES_FIJOS:
+                fijos += 1
+                continue
+            literales.append('%s:%d  %s = «%s»' % (nombre, txt.count('\n', 0, m.start()) + 1, m.group(1), t[:80]))
+    print('  texto escrito a mano desde el codigo ... %d (fijos con su motivo: %d)' % (len(literales), fijos))
+    for x in literales:
+        print('    ' + x)
+    return 1 if (mal or literales) else 0
 
 
 if __name__ == '__main__':
