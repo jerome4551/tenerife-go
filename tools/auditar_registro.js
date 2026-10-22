@@ -476,7 +476,7 @@ async function textos() {
   }
   for (const t of etiq) mete('etiquetas (tags[])', t, 'es', t);
   const mod = lee('modulos/cielo.js');
-  for (const m of mod.matchAll(/^\s*"?([A-Za-z0-9_]+)"?: (\{"es": .*\}),?\s*$/gm)) {
+  for (const m of mod.matchAll(/^\s*"?([A-Za-z0-9_-]+)"?: (\{"es": .*\}),?\s*$/gm)) {
     let d; try { d = JSON.parse(m[2]); } catch (e) { continue; }
     for (const l of IDI) mete('modulos/cielo.js', m[1], l, d[l]);
   }
