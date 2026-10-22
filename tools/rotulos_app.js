@@ -4,8 +4,9 @@
  * simplificado, igual que en la pagina), UI_TX entera (sus once trozos) y las
  * tablas de los modulos que llevan su propio texto (escuchar, visitado,
  * glosario, aviso de version nueva, la tarjeta que pide el permiso de las
- * notificaciones). Y los de modulos/cielo.js, que al cargarse mete los suyos
- * en UI_TX (CIELO_UI): sus pestañas tambien se citan.
+ * notificaciones). Y los de modulos/cielo.js y modulos/perfil.js, que al
+ * cargarse meten los suyos en UI_TX (CIELO_UI, PERFIL_UI): sus pestañas y sus
+ * botones tambien se citan.
  *
  * Lo usa auditar_faq.js: las respuestas del asistente sobre la app citan
  * botones entre comillas, y si un boton cambia de nombre la respuesta tiene
@@ -56,6 +57,7 @@ for (let pos = 0; ;) {
   pos = i + 10;
 }
 Object.assign(UI, grab('var CIELO_UI = {', 0, fs.readFileSync(path.join(RAIZ, 'modulos', 'cielo.js'), 'utf8')));
+Object.assign(UI, grab('var PERFIL_UI = {', 0, fs.readFileSync(path.join(RAIZ, 'modulos', 'perfil.js'), 'utf8')));
 const TABLAS = {
   LANGS: null, UI,
   TTS: grab('var TTS_I18N = {'),

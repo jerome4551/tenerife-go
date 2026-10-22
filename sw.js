@@ -38,10 +38,11 @@ const CORE = [
   './modulos/cielo.js', './vendor/astronomy.browser.min.js', './datos/cielo.json',
   /* El perfil (22 de octubre de 2026): el catalogo de avatares se pide al
      arrancar si hay uno elegido, para pintarlo en el boton de la cuenta, y al
-     abrir el perfil. Sin conexion tiene que estar. Va tambien «red primero»
-     abajo, como el cielo: sin subir el nombre de la cache, el service worker
-     nuevo lo precarga al instalarse con cache: 'reload'. */
-  './modulos/avatares.js',
+     abrir el perfil; la pantalla, al tocar «Cuenta». Sin conexion tienen que
+     estar. Van tambien «red primero» abajo, como el cielo: sin subir el
+     nombre de la cache, el service worker nuevo los precarga al instalarse
+     con cache: 'reload'. */
+  './modulos/avatares.js', './modulos/perfil.js',
   /* Los satelites (21 de octubre de 2026): el motor SGP4 y los elementos
      orbitales que renueva el robot cada dia. Los elementos van tambien «red
      primero» abajo: cambian a diario. */
@@ -315,6 +316,7 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/datos/titsa.js') ||
           url.pathname.endsWith('/modulos/cielo.js') ||
           url.pathname.endsWith('/modulos/avatares.js') ||
+          url.pathname.endsWith('/modulos/perfil.js') ||
           url.pathname.endsWith('/datos/cielo.json') ||
           url.pathname.endsWith('/datos/satelites.json') ||
           url.pathname.endsWith('/datos/precios-gasolineras.json') ||

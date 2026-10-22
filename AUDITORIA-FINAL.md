@@ -3710,7 +3710,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 44 tablas, 1821 filas (y 3.962 filas, dentro y fuera del fuente)
+## Idiomas · 45 tablas, 1965 filas (y 4.106 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -3759,12 +3759,16 @@ son restos del cometa 96P/Machholz», que ya tenía el séptimo commit de
 avisos del panel de administración que el código escribía a mano, en
 `UI_TX` y en los diez idiomas (`admComprobando`, `admPanelSinRed`,
 `admIniciaSesion`, `admSinPermisoCuenta`, `admPublicando` y `admSubiendo`):
-1822 filas y 3.963. El
+1822 filas y 3.963. Y esa noche, la pantalla «Su perfil»: una tabla más,
+`PERFIL_UI` en `modulos/perfil.js`, con 144 filas (78 de la pantalla, 11 de
+los sets de avatares y 55 de los avatares), que `tools/fuente.js` pega al
+fuente: 45 tablas, 1965 filas y 4.106. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
 `barrido_idiomas.js`, contado el 21 de octubre (3.045 antes del cielo, 3.559
-el 17); desde el 22 la coteja el propio `barrido_idiomas.js`.)*
+el 17, 3.962 antes del perfil); desde el 22 la coteja el propio
+`barrido_idiomas.js`.)*
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
