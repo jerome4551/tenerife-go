@@ -7330,6 +7330,224 @@ parches son los de la nota anterior (solo cambia el «n/5») y ya están en
 Queda lo que ningún control puede: el Mac, la cuenta de Apple y el iPhone
 de verdad (`LANZAMIENTO-APP-STORE.md`, §3, §4 y §7).
 
+## La app de la App Store, sin Google Analytics (22 de octubre, madrugada)
+
+Jerome, el 21: «Google los más conveniente». Lo más conveniente es quitarlo
+solo de la app de la tienda: App Store Connect tiene su propia analítica
+(*App Analytics*), la ficha de privacidad de Apple queda más corta y dentro
+de la app no sale el aviso de cookies. En la web no cambia nada.
+
+- Con la marca `TGO_NATIVO`, `gtag` no se configura, `tgoLoadGA()` vuelve
+  sin cargar nada y el bloque del aviso de cookies sale antes de nada.
+- La política, en los diez idiomas: lo de Google Analytics dice «en la
+  web», y una frase nueva, `ppStatsTienda`: la aplicación de la App Store no
+  lo usa, no lo carga nunca y no enseña el aviso. El panel de `index.html` y
+  `privacidad.html`, regenerados.
+- El asistente: «¿Qué datos guarda la app?» lleva su respuesta de la app en
+  los diez idiomas, sin notificaciones ni estadísticas.
+- `PrivacyInfo.xcprivacy`: fuera *Product Interaction*, *Coarse Location* y
+  *Device ID*. Lo que el apartado de la App Store (P4) cuenta de esas tres
+  declaraciones valía aquella noche; desde esta, la app no las necesita.
+- `app_preparar.js` mira las tres puertas, el manifiesto sin analítica y la
+  frase de la política; `probar_app.js`, en el navegador: con la marca no
+  sale el aviso, `dataLayer` queda vacío y ni `tgoLoadGA()` ni un
+  «aceptado» guardado piden nada a Google; sin la marca, el aviso sale y al
+  aceptar se pide `gtag.js`. Los dos se ponen en rojo con las puertas
+  quitadas o con analítica en el manifiesto.
+
+## El calendario de los pasos avisa media hora antes (22 de octubre)
+
+Preparando la prueba de Tiangong del jueves salieron dos frases falsas:
+
+- Al bajar el `.ics` de un paso de satélite, la nota decía «con un aviso el
+  día antes», y su alarma es media hora antes (`TRIGGER:-PT30M`). Fila
+  nueva, `cieloIcsListoPaso`, en los diez idiomas; lo demás sigue con la de
+  siempre (un día antes).
+- «Mis avisos» decía que una web no puede avisar sin servidor «y Tenerife Go
+  no tiene ninguno». Lo tiene: la notificación diaria sale de
+  `.github/workflows/notificacion-diaria.yml` con Supabase. Ahora dice lo
+  que pasa, en los diez idiomas. Y el polaco «w ciągu dwóch dni przed» se
+  quedaba cojo: «… przed wydarzeniem».
+
+`auditar_cielo.js` (180): las alarmas del código contra las tres frases y
+ninguna diciendo que no hay servidor; y en el navegador, la nota de «Añadir
+a mi calendario» en las Gemínidas (el día antes) y en un paso (media hora
+antes).
+
+## El trato de usted: el control y el castellano (22 de octubre)
+
+Jerome, el 21: «Usted en toda la app. Son usuarios no amigos». Seis partes:
+el control; el castellano; el chino; el alemán y el neerlandés; el francés y
+el italiano; el búlgaro y el polaco. Hechas las dos primeras.
+
+- **El control**, `tools/auditar_registro.js` (en `auditar.sh`), lee todo
+  lo que se ve en cada idioma: la app (`UI_TX`, `LANGS`), las tablas por
+  idioma de `index.html`, las fichas de los lugares, la política, la página
+  de borrar la cuenta, la ficha de la App Store, las frases de cada mañana,
+  el asistente (`faq/<l>.json`), el panel del cielo y las etiquetas de las
+  fichas. En cada texto busca las marcas del tuteo de su idioma: pronombres
+  y posesivos, formas de segunda persona, el imperativo de tú al principio
+  de la frase, en medio de ella («En Safari, toca el botón… y elige…») o
+  tras un emoji («😕 Prueba con otra zona»), y el infinitivo con «te»
+  («Puedo ayudarte»). Lo que lo parece y no lo es va en `EXENTOS`, con su
+  motivo: el «¡Oye, tú!» del glosario canario, la estrella Mira, la calle
+  Esteban de Ponte. Los idiomas de `HECHOS` fallan con cualquier marca; los
+  demás se cuentan como pendientes.
+- **El castellano**: 633 textos tuteaban, ahora ninguno. Cambian 689 textos
+  distintos: los menús, avisos, el tour, la cuenta, las rutas, «Organice su
+  día», los favoritos; el asistente («Soy su asistente… Pregúnteme», 113
+  respuestas); las fichas que hablaban a quien lee (Bollullo: «extreme la
+  precaución al bañarse»); la política (27 frases) y la página de borrar la
+  cuenta (5), con los permisos de iOS regenerados; el panel del cielo (54
+  filas: «Apunte al cielo», «Su noche guiada»); la ficha de la App Store; y
+  311 de las 365 frases de cada mañana. Además de las marcas del control,
+  cuatro repasos sin lista (contra el inglés, contra el alemán, los verbos
+  coordinados y las terminaciones de tú), y de ahí tres frases del día con
+  el tú escondido en una forma que también es de tercera persona: «Cuenta
+  el paso de hoy», dos veces, y «Ordena el día». Ningún otro idioma cambia
+  (comparado texto a texto con el commit anterior).
+- **Se quedan como están, a la espera de Jerome**: los rótulos que dice
+  quien usa la app («Llévame», «Sí, avísame», «Sorpréndeme», «Recordármelo
+  en la app», «Registrarme», «Ordena mis favoritos por distancia», «¿Me
+  ayudas a organizar el día?») y el lema del logotipo, «Somos parte de ti».
+
+## La App Store sin Mac (P5), verificada antes de aplicarla (22 de octubre)
+
+Jerome, la noche del 21: «Verifica antes de aplicar», y que Claude Code
+haga `npm install` en `app/` y suba `package-lock.json`. La entrega trae
+seis commits sobre `4e5da10`. Las siete huellas cuadran (los seis parches y
+el bundle), y los seis parches dan el mismo árbol que el bundle
+(`41d6cec4…`). Los cuatro primeros son los de siempre, iguales byte a byte
+salvo el «n/6». El quinto, `76673f5`, sustituye al `6914dc7` que ya estaba
+en `main`: es lo que corrigió una revisión independiente. El sexto,
+`0d52de1`, es la App Store sin Mac. Entra en cuatro commits: lo de la
+revisión, el de Jerome tal cual, el `package-lock.json` y lo que encontró la
+verificación, aparte, para que se vea qué es de la entrega y qué no.
+
+**De la revisión (`76673f5`) entra lo que `main` no tenía:**
+
+- `tgoFetchDatos` lee entera la copia viva y, si es `.json`, comprueba que
+  se pueda leer. Así cae a la de dentro también con un portal cautivo o con
+  un corte a mitad del fichero.
+- `pushInit()` no pregunta con la marca.
+- Las capturas: en el iPad, el lugar va en su globo, porque la hoja no
+  existe a 768 px o más (la captura «ficha» del iPad era el mapa);
+  `--solo`; y para si un estado no llega a lo que dice.
+- `app_preparar.js`: cada fichero de `app/www/` contra la lista de lo que
+  nunca viaja, y los MB, de a mil (`app/www/`: 94 ficheros, 25,8 MB).
+- `auditar_app_store.js`: ningún nombre de otra empresa o app en las
+  palabras clave, lo prohibido en los diez idiomas, la variante en-US y las
+  50 localizaciones: 99 controles (98 antes). El nombre de «Apunta al cielo»
+  ya lo miraba el nuestro, con el de «Organiza tu día»: no se mira dos
+  veces.
+- `probar_app.js`: el portal cautivo, los precios sin red y la app con la
+  marca en los diez idiomas: 49 controles (34 antes).
+- La ficha: «en muchas playas» (la calidad del agua sale en 38 de las 74,
+  contadas con `tools/cargar.js`); en chino, el agua de mar (海水) y
+  «西班牙政府部门»; en búlgaro, el teleférico; sus palabras clave; y la
+  variante en-US.
+
+**Se queda lo de `main`**, que ya lo resolvía por su cuenta: los dos puntos
+del chino en los permisos, la brújula «lejos», «titsa» fuera de las palabras
+clave y «a la hora que quieras». Y no entra lo que ya no vale desde que la
+app de la tienda no lleva Google Analytics: sus tres datos en el manifiesto
+y en §5.4.
+
+**Lo que la revisión decía y no era así**, corregido al juntarlo: las notas
+para el revisor de Apple decían que GA se carga al aceptar el aviso (en la
+app no hay) y que lo de fuera solo se pide cuando alguien lo toca (el
+tiempo y el mar de Open-Meteo se piden solos, a los 4 s de abrir, para el
+aviso del botón 🌊); «de fuera solo vienen la librería de la cuenta y los
+datos del día»: de lo que es la app, solo la librería de la cuenta, de
+jsDelivr, y sin ella «modo invitado» (así lo dice `index.html`); los dos
+botones de avisos push siguen ocultos, no uno; y las puertas que miran la
+marca son trece, no nueve.
+
+**La App Store sin Mac (`0d52de1`)**: `.github/workflows/app-store.yml`, a
+mano, con tres trabajos —`alta` (Linux), `testflight` (macOS 26 con Xcode
+26: monta `app/www/`, genera el proyecto, aplica las plantillas, las mete
+en el proyecto con `incluir.rb`, firma con match, archiva y sube) y `ficha`
+(Linux: las 140 capturas, la ficha en el formato de `deliver` y la subida
+sin binario)—; nunca pulsa «Submit for Review». `app/fastlane/Fastfile`,
+`Appfile` y `Gemfile`; `app/ios/plantillas/incluir.rb`;
+`tools/app_store_metadata.js` (15 controles en `auditar.sh`); y
+`LANZAMIENTO-APP-STORE.md` §9, lo que Jerome hace desde el móvil.
+
+**Probado aquí** (esta sesión sí tiene npm y RubyGems). Tres cosas no
+habrían arrancado en la primera ejecución:
+
+1. `npx cap add ios` para si ya existe `app/ios/` («ios platform already
+   exists», `dist/tasks/add.js` de @capacitor/cli 8.5.3), y ahí viven las
+   plantillas. Ahora se apartan a una carpeta temporal, en el flujo y en
+   `npm run ios:anadir`; probado: genera el proyecto, devuelve las
+   plantillas y no deja nada; la segunda vez dice que ya está.
+2. `incluir.rb` buscaba el proyecto un nivel por encima
+   (`app/App/App.xcodeproj`). Con la ruta buena, contra el proyecto que
+   genera Capacitor 8.5.3 (xcodeproj 1.28.1): el manifiesto y los diez
+   `InfoPlist.strings` en el target y `knownRegions` con los diez (15
+   cambios); la segunda vez no cambia nada.
+3. `create_app_online` (produce) no tiene `api_key` en fastlane 2.241.1:
+   entra con Apple ID y verificación en dos pasos. `alta` crea ahora el
+   Bundle ID con la clave API y comprueba la ficha; la ficha («New App») la
+   crea Jerome a mano una vez, porque la API de App Store Connect no deja
+   crearla.
+
+Y una habría salido mal sin pararse: el trabajo `ficha` hacía las capturas
+de la raíz, que es la web, con el mapa simplificado (el detallado no viaja
+en la web) y el botón flotante de la PWA (ⓘ, «Información de la app»), que
+en la app no sale. Ahora monta `app/www/` y sirve eso, como las 140 de P4, y
+`capturas_app_store.js` para si la página no lleva la marca (probado con
+las dos).
+
+Además: el token del repositorio de la firma va tal cual en el secreto
+`MATCH_GIT_TOKEN`, y uno *fine-grained* solo para ese repositorio; el base64
+que pide match lo hace el paso y lo tapa en los registros, y así el token no
+pasa por un conversor de internet ni por un chat (comprobado igual que
+`Base64.strict_encode64` de Ruby). `setup_ci`, un llavero temporal, con
+`MATCH_READONLY` leído antes porque `setup_ci` lo pone a «true». El carril
+`testflight` pasa a `subir_testflight` («testflight» es una acción de
+fastlane y lo avisa en rojo). El Xcode 26 más alto que no sea beta. UTF-8
+para fastlane. `.gitignore`: todo `app/ios/` salvo las plantillas. Y
+`app/package-lock.json` en git: Capacitor 8.5.3, 98 paquetes, todos de
+registry.npmjs.org y con su integridad.
+
+**Comprobado contra el código de fastlane 2.241.1**: el Fastfile carga con
+sus tres carriles; cada parámetro de `match`, `update_code_signing_settings`,
+`build_app`, `upload_to_testflight` y `deliver` existe; match deja la
+variable `sigh_<app>_appstore_profile-name`; deliver conoce 1206×2622 y
+2064×2752, y «Travel» y «Navigation». Apple pide hoy «al menos una captura
+de iPhone con Dynamic Island (pantalla mediana)»: 1206×2622 vale. Y el
+`dist/umd/supabase.js` de `@supabase/supabase-js@2.111.0` en npm tiene la
+misma huella que el SRI de `index.html`, para cuando se quiera la librería
+dentro (`LANZAMIENTO-APP-STORE.md` §8).
+
+**Lo que no se puede probar desde aquí:** la firma, el archivo y las
+subidas. Aquí no hay Mac, y el proxy de esta sesión no deja llegar a la API
+de App Store Connect: el carril `alta`, con una clave inventada, llega hasta
+la primera petición a Apple y ahí lo para el proxy. La primera ejecución en
+GitHub es la prueba.
+
+**La auditoría entera** (con las fuentes del cielo y las de los
+satélites), sobre la rama con todo lo de este día (`8f90958`), de
+madrugada: todos los bloques en verde menos uno. `auditar_registro.js`:
+64.046 textos; el castellano, todo de usted; pendientes, francés 419,
+alemán 561, italiano 583, neerlandés 535, chino 302 y 302, búlgaro 227 y
+polaco 485. `auditar_cielo.js`, 180 de 180; `auditar_web.js`, 43 tablas y
+1.649 filas; `app_preparar.js --comprobar`, 40; `probar_app.js`, 49;
+`auditar_app_store.js`, 99; `app_store_metadata.js --comprobar`, 15.
+
+El que sale en rojo es `barrido_pantallas.js`, con un texto en tres
+idiomas: «Dalim», en latín, en chino, en chino tradicional y en búlgaro, en
+la búsqueda y en la guía de «Apunte al cielo». No es de esta tanda: `main`
+(`48f7c9f`) lo enseña igual a la misma hora. Es un hueco que ya estaba y
+que solo se ve según la hora: «Apunte al cielo» lista lo que hay en el
+cielo en ese momento, y a las 02:30 está α Fornacis, que solo tiene su
+nombre de la UAI. En la carta hay 274 estrellas con nombre de la UAI
+(`nombresIAU`, de HYG v4.1), y 265 no tienen forma propia en chino ni en
+búlgaro (las 60 de `CIELO_EST` sí, de las traducciones de Stellarium): 191
+de ellas, de magnitud 4 o más brillantes. No se ha tocado: sin fuente no se
+traduce, y cómo hacerlo lo decide Jerome.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -7395,6 +7613,12 @@ Y cada bloque por separado, si hace falta:
 | `tools/faltan_textos.js` | **cribado**, no veredicto: descripciones más cortas de lo esperado contra la mediana de ese idioma |
 | `tools/meter_descripcion.py` | mete descripciones rehechas comprobando que el texto es **de ese lugar** |
 | `tools/completar_cat.js` | devuelve a las etiquetas `cat` los trozos que perdieron, con el glosario del propio catálogo |
+| `tools/auditar_registro.js` | el trato de usted: las marcas del tuteo de cada idioma en todo lo que se ve (la app, las tablas, las fichas, la política, el asistente, el cielo, la ficha de la tienda, las frases de cada mañana); los idiomas hechos, en rojo con cualquiera; los demás, contados como pendientes; con `--lista <idioma> <fichero>`, sus textos |
+| `tools/app_preparar.js` | monta `app/www/`, la app de la App Store (la de la raíz con la marca `TGO_NATIVO`), y escribe las plantillas de iOS que salen de la política; con `--comprobar`, que no falte nada de lo que la app pide, que no viaje nada de la lista de lo que nunca viaja y que las plantillas sean las de hoy |
+| `tools/probar_app.js` | la app con la marca en Chromium (sin service worker, los datos del día con su copia de dentro, sin Google Analytics, los diez idiomas) y la web sin ella |
+| `tools/auditar_app_store.js` | la ficha de la App Store contra los límites de Apple, las directrices y lo que hay, en los diez idiomas y en la variante en-US |
+| `tools/capturas_app_store.js` | las capturas de la tienda (iPhone 1206×2622, iPad 2064×2752), de `app/www/` servido aparte; para si la página no lleva la marca o un estado no llega a lo que dice |
+| `tools/app_store_metadata.js` | la ficha y las capturas en el formato de `fastlane deliver` (`app/fastlane/metadata/`, `…/screenshots/`); con `--comprobar`, las diez localizaciones, los límites y los tamaños |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con
