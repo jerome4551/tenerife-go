@@ -12,6 +12,10 @@
  * para que las capturas sean las mismas en cada pasada; los avisos de AEMET
  * y los precios salen de las copias de prueba, como en barrido_pantallas.js.
  *
+ * El puerto sirve app/www/ (la app de la tienda, con la marca), no la raiz,
+ * que es la web: sin el mapa detallado dentro y con el boton flotante de la
+ * PWA (ⓘ, «Informacion de la app»). Si la pagina no lleva la marca, para.
+ *     node tools/app_preparar.js && python3 -m http.server 8766 --directory app/www &
  *     node tools/capturas_app_store.js 8766                 es y en
  *     node tools/capturas_app_store.js 8766 --idiomas=todos  los diez
  *     node tools/capturas_app_store.js 8766 --idiomas=fr,de
@@ -85,6 +89,11 @@ window.espera = ms => new Promise(r => setTimeout(r, ms));`;
            se ve sin red, y es un rasgo de la app) */
         const arrancar = async () => {
           await p.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'networkidle' });
+          if (!(await p.evaluate(() => window.TGO_NATIVO === true))) {
+            console.error('  el puerto ' + PUERTO + ' no sirve app/www/ (la app con la marca): las capturas serian de la web. '
+              + 'node tools/app_preparar.js y servir app/www/');
+            process.exit(1);
+          }
           await p.waitForTimeout(600);
           await p.click('.v19-w-lang[data-lang="' + L + '"]'); await p.waitForTimeout(300);
           await p.click('#v19-welcome-start'); await p.waitForTimeout(3000);

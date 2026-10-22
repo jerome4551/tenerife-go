@@ -7,6 +7,9 @@ idiomas/es-lugares*.json
 # la app para las tiendas (Capacitor): lo montado y lo generado en el Mac salen de la raiz
 app/www/
 app/ios/App/
+# y todo lo demas que genera «npx cap add ios» en app/ios/: solo las plantillas van a git
+app/ios/*
+!app/ios/plantillas/
 app/node_modules/
 app/build/
 capturas-app-store/

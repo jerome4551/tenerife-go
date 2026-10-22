@@ -104,10 +104,14 @@ metida en Xcode (Settings → Accounts).
 git clone https://github.com/jerome4551/tenerife-go && cd tenerife-go/app
 npm install                              # @capacitor/core, cli e ios 8.x
 node ../tools/app_preparar.js            # monta www/ (94 ficheros, 25,8 MB)
-npx cap add ios                          # genera ios/App/ (Swift Package Manager; CocoaPods: --packagemanager CocoaPods)
-bash ios/plantillas/aplicar.sh           # permisos, idiomas, privacidad, icono, arranque
+npm run ios:anadir                       # «npx cap add ios» (Swift Package Manager) y aplicar.sh: permisos, idiomas, privacidad, icono, arranque
 npx cap open ios                         # Xcode
 ```
+
+`npx cap add ios` a secas no arranca: Capacitor para si ya existe la carpeta
+`ios/` («ios platform already exists»), y en ella viven las plantillas.
+`npm run ios:anadir` las aparta un momento, genera el proyecto, las devuelve y
+pasa `aplicar.sh` (comprobado el 22 de octubre de 2026 con Capacitor 8.5.3).
 
 En Xcode, una vez:
 
@@ -175,6 +179,10 @@ la primera versión.
 
 ### 5.3 Las capturas
 
+Con `app/www/` servido en el 8766 (`node tools/app_preparar.js` y
+`python3 -m http.server 8766 --directory app/www`: la app de la tienda, con
+la marca; la raíz es la web, sin el mapa detallado dentro y con el botón
+flotante de la PWA, ⓘ, y la herramienta para si no ve la marca),
 `node tools/capturas_app_store.js 8766 --idiomas=todos` (`--solo=ficha` rehace
 solo un estado) deja en `capturas-app-store/<idioma>/` siete capturas de
 iPhone (1206×2622, la
@@ -294,8 +302,11 @@ IDFA).
   botón va oculto en la app.
 - **La librería de Supabase en `vendor/`** (como Leaflet): hoy viene de
   jsDelivr en cada arranque, con SRI; vendorizada, la cuenta también
-  arrancaría sin red y «todo viaja dentro» sería literal. Desde aquí no se
-  pudo bajar (sin acceso a npm ni al CDN).
+  arrancaría sin red y «todo viaja dentro» sería literal. Comprobado el 22
+  de octubre: el `dist/umd/supabase.js` del paquete de npm
+  `@supabase/supabase-js@2.111.0` tiene la misma huella que el SRI de
+  `index.html` (sha384), así que se puede traer de npm y comprobar contra
+  esa huella. Queda para cuando Jerome lo pida.
 - **Enlaces universales** (`https://jerome4551.github.io/tenerife-go/#lugar=…`
   abriendo la app en vez de Safari): `apple-app-site-association` en la
   raíz del **dominio**, es decir, en el repositorio de usuario
@@ -325,9 +336,18 @@ repositorio (desde el móvil también), eligiendo `alta`, `testflight`, `ficha`
 o `todo`. Nada pulsa «Submit for Review».
 
 Lo que no vale sin Mac: Xcode Cloud («You need to configure your first Xcode
-Cloud workflow in Xcode»). Y lo que no se ha podido comprobar aquí: el
-flujo entero, porque esta sesión no tiene ni Mac ni npm; la primera
-ejecución en GitHub es la prueba, y sus registros dicen dónde para si para.
+Cloud workflow in Xcode»). Lo comprobado el 22 de octubre, en una sesión con
+npm y RubyGems: `npm install` (Capacitor 8.5.3), `npm run ios:anadir` (genera
+el proyecto en Linux y devuelve las plantillas), `incluir.rb` contra el
+proyecto que genera y el Fastfile con fastlane 2.241.1, parámetro a
+parámetro (`AUDITORIA-FINAL.md`). Tres cosas no habrían arrancado y están
+corregidas: `cap add` con la carpeta `ios/` ya creada, la ruta del proyecto
+en `incluir.rb` y el alta con la clave API (abajo, el paso 6). Y una habría
+salido mal sin pararse: las capturas se hacían de la web, no de la app de la
+tienda (sin el mapa detallado, con el botón flotante de la PWA); ahora salen de
+`app/www/`, y la herramienta para si no ve la marca. Lo que solo se ve en
+GitHub: la firma, el archivo y las subidas; la primera ejecución es la
+prueba, y sus registros dicen dónde para si para.
 
 ### 9.1 Lo que hace Jerome, desde el móvil
 
@@ -342,9 +362,15 @@ ejecución en GitHub es la prueba, y sus registros dicen dónde para si para.
    apuntar el *Key ID* y el *Issuer ID*.
 3. **El Team ID**: developer.apple.com/account → Membership details.
 4. **Un repositorio privado vacío en GitHub** para el certificado y el perfil
-   cifrados (por ejemplo `tenerife-go-firma`), y un *token clásico* de
-   GitHub con permiso `repo` (Settings → Developer settings → Personal access
-   tokens).
+   cifrados (por ejemplo `tenerife-go-firma`), y un token de GitHub
+   *fine-grained* solo para ese repositorio: Settings → Developer settings →
+   Personal access tokens → Fine-grained tokens → *Only select
+   repositories*: `tenerife-go-firma`; *Repository permissions* →
+   *Contents*: «Read and write». Uno clásico con permiso `repo` también
+   vale, pero abre todos los repositorios de la cuenta. El token va tal
+   cual en el secreto `MATCH_GIT_TOKEN`, sin convertirlo en nada: el flujo
+   hace con él lo que pide match. Caduca: entonces se genera otro y se
+   cambia el secreto.
 5. **Los secretos**, en `tenerife-go` → Settings → Secrets and variables →
    Actions → New repository secret:
 
@@ -355,7 +381,7 @@ ejecución en GitHub es la prueba, y sus registros dicen dónde para si para.
 | `ASC_KEY_P8` | el contenido entero del `.p8` (con las líneas BEGIN y END) |
 | `APPLE_TEAM_ID` | el Team ID |
 | `MATCH_GIT_URL` | `https://github.com/jerome4551/tenerife-go-firma.git` |
-| `MATCH_GIT_BASIC_AUTHORIZATION` | `base64("jerome4551:<token>")` (en el móvil, cualquier conversor base64; o `echo -n 'jerome4551:TOKEN' │ base64` en Claude Code, con la barra vertical) |
+| `MATCH_GIT_TOKEN` | el token del punto 4, tal cual. La autorización que pide match (base64 de «jerome4551:token») la calcula el flujo y la tapa en los registros: el token no pasa por ningún conversor, ni por un chat |
 | `MATCH_PASSWORD` | una contraseña larga inventada: con ella se cifra el certificado |
 | `ASC_REVIEW_NAME`, `ASC_REVIEW_PHONE`, `ASC_REVIEW_EMAIL` | el contacto de la revisión (`Jérôme Bourgeois`, `+34…`, el correo) |
 
@@ -363,8 +389,15 @@ ejecución en GitHub es la prueba, y sus registros dicen dónde para si para.
    **después** de la primera ejecución de `testflight` (la primera crea el
    certificado y el perfil; las siguientes solo los leen).
 
-6. En orden: Actions → «App Store» → Run workflow → `alta` (una vez: crea el
-   identificador y la ficha vacía); luego `testflight`; luego `ficha`. Cada
+6. En orden: Actions → «App Store» → Run workflow → `alta`: crea el
+   identificador (el Bundle ID) y mira si existe la ficha. La primera vez
+   acaba en rojo diciendo que falta la ficha, y es lo esperado. Entonces,
+   una sola vez, en App Store Connect (la web): Apps → «+» → *New App*: iOS,
+   nombre «Tenerife Go», idioma Spanish (Spain), el Bundle ID
+   `com.tenerifego.app`, SKU `tenerife-go`, acceso completo. La API de
+   Apple no deja crear la ficha, y fastlane solo podría entrando con el
+   Apple ID y la verificación en dos pasos, que un runner no tiene. Otra vez
+   `alta` (ahora en verde); luego `testflight`; luego `ficha`. Cada
    ejecución deja sus registros; si algo para, el registro lo dice y se
    arregla en el repositorio.
 7. En el iPhone, la app **TestFlight**: instalar el build y pasar el §7.
@@ -375,13 +408,12 @@ ejecución en GitHub es la prueba, y sus registros dicen dónde para si para.
 
 ### 9.2 Lo que hace Claude Code (con npm)
 
-- `cd app && npm install` y **commitear `app/package-lock.json`** (así el
-  runner instala lo mismo cada vez).
-- `npx cap add ios` funciona también en Linux (el CLI de Capacitor no exige
-  Xcode ni macOS: solo pide CocoaPods si se elige CocoaPods, y solo en Mac):
-  si se quiere, generar `app/ios/App/` y commitearlo quitando `app/ios/App/`
-  de `.gitignore`; si no, el workflow lo genera en cada ejecución (y es lo
-  previsto).
+- Hecho el 22 de octubre: `npm install` en `app/` y **`app/package-lock.json`
+  en git** (Capacitor 8.5.3, 98 paquetes): el runner instala lo mismo cada
+  vez.
+- `npx cap add ios` funciona también en Linux (el CLI no exige Xcode ni
+  macOS), con las plantillas apartadas (§4). El workflow genera el proyecto
+  en cada ejecución, y `app/ios/`, salvo las plantillas, queda fuera de git.
 - Si la primera ejecución para en algo del proyecto de Xcode (el nombre del
   esquema, la versión mínima de iOS, el grupo `App` que `incluir.rb` espera),
   el registro del workflow dice qué; se corrige en `app/fastlane/Fastfile`,
@@ -391,13 +423,13 @@ ejecución en GitHub es la prueba, y sus registros dicen dónde para si para.
 
 | Paso | Herramienta | Comprobado en |
 |---|---|---|
-| Máquina macOS con Xcode 26 | `runs-on: macos-26` (arm64, M1), gratis en repos públicos | docs.github.com, runners |
-| `app/www/`, proyecto, plantillas | `tools/app_preparar.js`, `npx cap add ios`, `aplicar.sh`, `incluir.rb` (gema `xcodeproj`, viene con fastlane) | aquí, en seco |
-| Certificado y perfil sin Mac | `fastlane match` con la clave API (crea el certificado de distribución y el perfil; «App Store Connect API key doesn't work» solo para los Developer ID, que no hacen falta) | docs.fastlane.tools/actions/match |
+| Máquina macOS con Xcode 26 | `runs-on: macos-26` (arm64, M1), gratis en repos públicos; el Xcode 26 más alto que no sea beta (Apple no acepta binarios de un Xcode beta) | docs.github.com, runners |
+| `app/www/`, proyecto, plantillas | `tools/app_preparar.js`, `npx cap add ios` (con las plantillas apartadas), `aplicar.sh`, `incluir.rb` (gema `xcodeproj`, viene con fastlane) | aquí, el 22 de octubre: Capacitor 8.5.3 en Linux e `incluir.rb` (xcodeproj 1.28.1) contra el proyecto que genera; `aplicar.sh`, en seco (PlistBuddy solo lo hay en un Mac) |
+| Certificado y perfil sin Mac | `fastlane match` con la clave API (crea el certificado de distribución y el perfil; «App Store Connect API key doesn't work» solo para los Developer ID, que no hacen falta); `setup_ci`, un llavero temporal en el runner; el token del repositorio de la firma, tal cual en un secreto | docs.fastlane.tools/actions/match |
 | Archivo firmado | `build_app` (gym): `-exportMethod app-store`, firma manual con el perfil de match, versión de `package.json` y build = número de ejecución | docs.fastlane.tools |
 | TestFlight | `upload_to_testflight` (pilot) con la clave API | docs.fastlane.tools |
-| Ficha y capturas | `tools/app_store_metadata.js` escribe `fastlane/metadata/<loc>/*.txt` y `fastlane/screenshots/<loc>/`; `deliver` las sube (las diez localizaciones de §5.2; deliver conoce 1206×2622 y 2064×2752) | docs.fastlane.tools/actions/deliver; `app_screenshot.rb` |
-| Alta de la app | `create_app_online` (produce) con la clave API | docs.fastlane.tools |
+| Ficha y capturas | las capturas, de `app/www/` (la app de la tienda, con la marca); `tools/app_store_metadata.js` escribe `fastlane/metadata/<loc>/*.txt` y `fastlane/screenshots/<loc>/`; `deliver` las sube (las diez localizaciones de §5.2; deliver conoce 1206×2622 y 2064×2752) | docs.fastlane.tools/actions/deliver; `app_screenshot.rb` |
+| El identificador | el Bundle ID con la clave API (Spaceship, la API oficial de App Store Connect); la ficha, a mano una vez (§9.1, paso 6) | fastlane 2.241.1: `create_app_online` no tiene `api_key` (produce entra con el Apple ID) |
 
 ## 10. Fuentes (leídas el 21 de octubre de 2026)
 
@@ -409,6 +441,13 @@ ejecución en GitHub es la prueba, y sus registros dicen dónde para si para.
 - fastlane match (certificados con la clave API, salvo Developer ID) y deliver
   (carpetas de metadatos y capturas, localizaciones): docs.fastlane.tools/actions/match
   y …/deliver; los tamaños que deliver reconoce: fastlane/deliver/lib/deliver/app_screenshot.rb.
+- Comprobado el 22 de octubre en el código instalado: fastlane 2.241.1
+  (produce entra con `Spaceship::ConnectAPI.login`; `setup_ci` crea el
+  llavero y pone `MATCH_READONLY`; match deja
+  `sigh_<app>_appstore_profile-name`; deliver conoce 1206×2622 y 2064×2752 y
+  traduce «Travel» y «Navigation»), y @capacitor/cli 8.5.3
+  (`dist/tasks/add.js`: `cap add` para si ya existe la carpeta de la
+  plataforma).
 - `npx cap add ios` sin macOS: cli/src/tasks/add.ts y cli/src/ios/common.ts de
   github.com/ionic-team/capacitor (CocoaPods solo si se elige, y solo en Mac).
 - Capacitor 8: Xcode 26.0+, Node 22+, SPM por defecto, iOS 15:

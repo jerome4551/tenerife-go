@@ -8,11 +8,16 @@
 #   MATCH_GIT_URL, MATCH_GIT_BASIC_AUTHORIZATION, MATCH_PASSWORD
 #                                           el repositorio privado donde match guarda el certificado y el perfil,
 #                                           cifrados; la autorizacion es base64("usuario:token") de un token de GitHub
+#                                           (en el workflow la calcula el paso, del secreto MATCH_GIT_TOKEN tal cual)
 #   ASC_REVIEW_NAME, ASC_REVIEW_PHONE, ASC_REVIEW_EMAIL   (solo para `ficha`) el contacto de la revision
 #
 # Carriles:
-#   alta        crea el identificador y la ficha vacia de la app en App Store Connect (una vez)
-#   testflight  firma (match), archiva (gym) y sube a TestFlight (pilot)
+#   alta              crea el identificador de la app (Bundle ID) con la clave API y comprueba
+#                     que la ficha existe en App Store Connect. La ficha («New App») la crea
+#                     Jerome a mano una vez: la API de Apple no deja crearla, y produce
+#                     (create_app_online) solo entra con Apple ID y verificacion en dos pasos.
+#   subir_testflight  firma (match), archiva (gym) y sube a TestFlight (pilot). No se llama
+#                     «testflight»: es el nombre de una accion de fastlane y lo avisa en rojo.
 #   ficha       sube la ficha en las diez localizaciones y las capturas (deliver), sin el binario
 #
 # Nada aqui pulsa «Submit for Review»: eso lo hace Jerome en App Store Connect
@@ -37,33 +42,48 @@ def clave_api
 end
 
 platform :ios do
-  desc "Crea el identificador (developer.apple.com) y la ficha vacia (App Store Connect) de Tenerife Go. Una vez."
+  desc "Crea el identificador de Tenerife Go (Bundle ID) y comprueba que su ficha existe en App Store Connect. Una vez."
   lane :alta do
-    api_key = clave_api
-    create_app_online(
-      api_key: api_key,
-      app_identifier: APP_ID,
-      app_name: "Tenerife Go",
-      app_version: VERSION,
-      language: "es-ES",
-      sku: "tenerife-go",
-      platforms: ["ios"]
-    )
+    # Con la clave API, la API oficial de App Store Connect: el Bundle ID si se
+    # puede crear (bundleIds); la app no (no hay forma de crearla por la API, y
+    # create_app_online entra con Apple ID, que un runner no tiene).
+    Spaceship::ConnectAPI.token = Spaceship::ConnectAPI::Token.from(hash: clave_api)
+    id = Spaceship::ConnectAPI::BundleId.find(APP_ID)
+    if id
+      UI.success("El identificador #{APP_ID} ya existe (#{id.name})")
+    else
+      id = Spaceship::ConnectAPI::BundleId.create(name: "Tenerife Go", platform: Spaceship::ConnectAPI::Platform::IOS, identifier: APP_ID)
+      UI.success("Identificador creado: #{id.identifier}")
+    end
+    app = Spaceship::ConnectAPI::App.find(APP_ID)
+    if app
+      UI.success("La ficha de App Store Connect existe: «#{app.name}» (#{app.id}). Ya se puede lanzar «testflight».")
+    else
+      UI.user_error!("Falta la ficha en App Store Connect. Una vez, en appstoreconnect.apple.com → Apps → «+» → New App: " \
+                     "iOS, nombre «Tenerife Go», Spanish (Spain), el Bundle ID #{APP_ID}, SKU «tenerife-go», acceso completo. " \
+                     "Luego, otra vez «alta» para comprobarla (LANZAMIENTO-APP-STORE.md §9.1).")
+    end
   end
 
   desc "Firma, archiva y sube a TestFlight"
-  lane :testflight do
+  lane :subir_testflight do
     api_key = clave_api
     # El certificado de distribucion y el perfil: match los crea la primera vez
     # (con la clave API) y los guarda cifrados en MATCH_GIT_URL; despues, solo lee
-    # (MATCH_READONLY=1 en el workflow, una vez creados).
+    # (MATCH_READONLY=1 en el workflow, una vez creados). Se lee ANTES de
+    # setup_ci, que lo pone a «true» por su cuenta.
+    solo_leer = ENV["MATCH_READONLY"] == "1"
+    # En CI (GitHub Actions pone CI=true), un llavero temporal para el
+    # certificado: sin el, match y codesign pueden quedarse esperando al del
+    # usuario. Fuera de CI no hace nada.
+    setup_ci
     match(
       type: "appstore",
       app_identifier: APP_ID,
       api_key: api_key,
       git_url: ENV.fetch("MATCH_GIT_URL"),
       git_basic_authorization: ENV.fetch("MATCH_GIT_BASIC_AUTHORIZATION"),
-      readonly: ENV["MATCH_READONLY"] == "1",
+      readonly: solo_leer,
       skip_docs: true
     )
     perfil = ENV.fetch("sigh_#{APP_ID}_appstore_profile-name")

@@ -14,11 +14,11 @@
 # lo que hay en la carpeta ya entra solo: entonces no toca nada y lo dice.
 require 'xcodeproj'
 
-RUTA = File.expand_path('../../App/App.xcodeproj', __dir__)
+RUTA = File.expand_path('../App/App.xcodeproj', __dir__)   # app/ios/App/App.xcodeproj
 abort "No encuentro #{RUTA}: antes, «npx cap add ios»" unless File.directory?(RUTA)
 proyecto = Xcodeproj::Project.open(RUTA)
 target = proyecto.targets.find { |t| t.name == 'App' } or abort 'No hay target App'
-carpeta = File.expand_path('../../App/App', __dir__)
+carpeta = File.expand_path('../App/App', __dir__)             # app/ios/App/App
 grupo = proyecto.main_group['App'] or abort 'No hay grupo App en el proyecto'
 
 if grupo.class.name.include?('Synchronized')

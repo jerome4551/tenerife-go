@@ -6,7 +6,7 @@
   "scripts": {
     "preparar": "node ../tools/app_preparar.js",
     "comprobar": "node ../tools/app_preparar.js --comprobar",
-    "ios:anadir": "npx cap add ios && bash ios/plantillas/aplicar.sh",
+    "ios:anadir": "if [ -d ios/App ]; then echo 'ios/App ya existe: no se genera otra vez (para volver a poner las plantillas: bash ios/plantillas/aplicar.sh)'; exit 0; fi; T=$(mktemp -d) && mv ios/plantillas \"$T\"/ && rm -rf ios && { npx cap add ios; r=$?; mkdir -p ios; mv \"$T\"/plantillas ios/; rmdir \"$T\"; [ $r = 0 ] || exit $r; } && bash ios/plantillas/aplicar.sh",
     "ios:sync": "node ../tools/app_preparar.js && npx cap sync ios",
     "ios:abrir": "npx cap open ios"
   },
