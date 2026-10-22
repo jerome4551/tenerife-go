@@ -139,3 +139,51 @@ create policy caminatas_own_delete on public.caminatas
 -- dice sobre qué filas). anon, nada: aunque un día se apagase la RLS, no podría tocarlas.
 revoke all on public.perfiles, public.pesos, public.caminatas from anon, authenticated;
 grant select, insert, update, delete on public.perfiles, public.pesos, public.caminatas to authenticated;
+
+-- Los topes (23 de octubre de 2026). La RLS no deja tocar lo de otra cuenta, pero con una
+-- cuenta cualquiera se podía meter en lo propio tanto como se quisiera, a mano, contra la API:
+-- millones de pesos (una fecha cualquiera, un peso por fecha) o de caminatas (un id cualquiera),
+-- hasta llenar la base de datos del proyecto, y con ella la nube de todo el mundo. Ahora, como
+-- mucho 20.000 pesos y 20.000 caminatas por cuenta: más de cincuenta años de un peso y una
+-- caminata al día. Se cuenta una vez por subida, al acabar (con las filas que entraron, en
+-- «nuevas»), y no una vez por fila: subir 1.095 pesos de golpe cuesta lo mismo que uno. Lo que
+-- ya está se puede volver a subir (la app sube con upsert, y eso no suma filas); lo que pasa del
+-- tope deshace la subida entera con el error 54000, y la app lo reintenta como cualquier otro.
+create or replace function public.pesos_tope() returns trigger
+language plpgsql
+set search_path = public
+as '
+begin
+  if exists (select 1 from public.pesos p
+              where p.user_id in (select n.user_id from nuevas n)
+              group by p.user_id having count(*) > 20000) then
+    raise exception ''demasiados pesos en esta cuenta'' using errcode = ''54000'';
+  end if;
+  return null;
+end';
+
+create or replace function public.caminatas_tope() returns trigger
+language plpgsql
+set search_path = public
+as '
+begin
+  if exists (select 1 from public.caminatas c
+              where c.user_id in (select n.user_id from nuevas n)
+              group by c.user_id having count(*) > 20000) then
+    raise exception ''demasiadas caminatas en esta cuenta'' using errcode = ''54000'';
+  end if;
+  return null;
+end';
+
+-- Las dos son de disparador: nadie las llama a mano, y nadie más que el disparador puede.
+revoke execute on function public.pesos_tope(), public.caminatas_tope() from public, anon, authenticated;
+
+drop trigger if exists pesos_tope on public.pesos;
+create trigger pesos_tope after insert on public.pesos
+  referencing new table as nuevas
+  for each statement execute function public.pesos_tope();
+
+drop trigger if exists caminatas_tope on public.caminatas;
+create trigger caminatas_tope after insert on public.caminatas
+  referencing new table as nuevas
+  for each statement execute function public.caminatas_tope();
