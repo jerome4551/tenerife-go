@@ -9029,7 +9029,11 @@ const IDIOMAS_INCOMPLETOS = [];
                             anterior; "Намира" es el verbo de "Намира се"
                             (se encuentra), al abrir frase
    CIRILICO-OK: Полис       Polis (HIP 89341), de Stellarium como las
-                            anteriores; no es "Порис", el de Poris de Abona */
+                            anteriores; no es "Порис", el de Poris de Abona
+   CIRILICO-OK: Джан        HIP 48356, de Stellarium como las anteriores
+                            (en chino, 张宿一); no es "Джон", el John de
+                            John Herschel y otros en las curiosidades de
+                            las constelaciones, que lo hicieron frecuente */
 
 /* REGISTRO DE REPINTADO POR IDIOMA.
    Medido, no supuesto: con el navegador en aleman y pidiendo espanol, el
@@ -9832,8 +9836,10 @@ Object.assign(UI_TX, {
 
 /* ── CIELO DE TENERIFE: textos ── */
 /* PANEL «CIELO DE TENERIFE» (17 de octubre de 2026): las filas que necesita
-   el boton antes de cargar el panel. Las otras 522 van con el panel, en
-   modulos/cielo.js (CIELO_UI), y tools/auditar_cielo.js las mira todas. */
+   el boton antes de cargar el panel. Las otras 622 van con el panel: 534 en
+   modulos/cielo.js (CIELO_UI) y las 88 curiosidades de las constelaciones en
+   idiomas/cielo/<idioma>.json, que el modulo junta con las demas al cargar
+   las del idioma de quien mira. tools/auditar_cielo.js las mira todas. */
 Object.assign(UI_TX, {
   "cieloBoton": {"es": "Cielo de Tenerife: estrellas, planetas y eclipses", "en": "Tenerife night sky: stars, planets and eclipses", "fr": "Ciel de Tenerife : étoiles, planètes et éclipses", "de": "Himmel über Teneriffa: Sterne, Planeten und Finsternisse", "it": "Cielo di Tenerife: stelle, pianeti ed eclissi", "nl": "Sterrenhemel van Tenerife: sterren, planeten en eclipsen", "zh": "特内里费星空：恒星、行星与日月食", "zht": "特內里費星空：恆星、行星與日月食", "bg": "Небето над Тенерифе: звезди, планети и затъмнения", "pl": "Niebo nad Teneryfą: gwiazdy, planety i zaćmienia"},
   "cieloTitulo": {"es": "Cielo de Tenerife", "en": "Tenerife night sky", "fr": "Ciel de Tenerife", "de": "Himmel über Teneriffa", "it": "Cielo di Tenerife", "nl": "Sterrenhemel van Tenerife", "zh": "特内里费星空", "zht": "特內里費星空", "bg": "Небето над Тенерифе", "pl": "Niebo nad Teneryfą"},
@@ -35160,7 +35166,13 @@ html.cielo-rojo body::before {
      catalogo, asi que sin cobertura tambien abre.
      tools/fuente.js y tools/fuente.py leen esta linea y pegan el fichero al
      final del fuente, como los <script src>: las herramientas que barren
-     textos, filas y codigo lo miran igual que si estuviera aqui. */
+     textos, filas y codigo lo miran igual que si estuviera aqui.
+     IDIOMAS-PEREZOSOS: idiomas/cielo
+     Las curiosidades de las 88 constelaciones van aparte, un fichero por
+     idioma (idiomas/cielo/<idioma>.json): el modulo pide solo el del idioma
+     de quien mira (22 de octubre de 2026). tools/fuente.js y fuente.py
+     juntan los diez en filas de diez idiomas al final del fuente, para que
+     las herramientas las sigan viendo como antes. */
   var MODULO = './modulos/cielo.js', carga = null;
   function cargar() {
     if (window.TG_CIELO) return Promise.resolve();

@@ -55,19 +55,27 @@
   },
   "palabras de ese idioma que se escriben igual que el castellano": {
    "en": ["guanches", "buggies", "primates", "iguanas", "lianas", "barracudas", "hubbas", "cookies", "orcas",
-          "eclipses", "magnitudes", "variables"],
+          "magnitudes", "variables", "atlas", "latitudes"],
    "fr": ["guanches", "pesetas", "tigres", "rapaces", "tropicales", "subtropicales", "verticales", "locales",
           "variables", "permanentes", "barracudas", "ocres", "coloniales", "patronales", "tomates", "originales", "navales",
           "libres", "principales", "parapentes", "rurales", "patios", "potables", "primates", "hubbas", "cookies",
-          "brillantes", "magnitudes"],
-   "de": ["cookies", "orcas", "hubbas"],
+          "brillantes", "magnitudes", "latitudes"],
+   "de": ["cookies", "orcas", "hubbas", "atlas"],
    "it": ["pesetas", "conquistadores"],
-   "nl": ["guanches", "cookies", "vóór"]
+   "nl": ["guanches", "cookies", "vóór", "atlas"]
   },
   "cielo de Tenerife, 17 de octubre de 2026 · nombres propios en alfabeto latino que no se traducen: la aplicacion «Spot the Station» de la NASA y la libreria «d3-celestial» de los creditos": {
    "zh": ["the@es:Spot the Station", "celestial@es:d3-celestial"],
    "zht": ["the@es:Spot the Station", "celestial@es:d3-celestial"],
    "bg": ["the@es:Spot the Station", "celestial@es:d3-celestial"]
+  },
+  "cielo de Tenerife, 22 de octubre de 2026 · palabras que la curiosidad de una constelacion cita en su lengua, igual que el castellano: cynosure (la palabra inglesa que viene de Cinosura), mahi-mahi (el otro nombre del dorado); y en chino, «dauphin», con lo que quiere decir, porque el juego de palabras de «delfin» (heredero y delfin) no existe en chino": {
+   "zh": ["cynosure@es:la palabra inglesa cynosure", "mahi-mahi@es:llaman mahi-mahi", "dauphin@es:en honor de su «delfín»"],
+   "zht": ["cynosure@es:la palabra inglesa cynosure", "mahi-mahi@es:llaman mahi-mahi", "dauphin@es:en honor de su «delfín»"],
+   "bg": ["cynosure@es:la palabra inglesa cynosure"]
+  },
+  "atlas: en frances es la misma palabra (Reticulum: «dans son atlas de 1835»)": {
+   "fr": ["atlas@es:en su atlas de 1835"]
   },
   "finca: el aleman y el neerlandes la usan para la casa de campo española (Duden, Van Dale)": {
    "de": ["finca"],

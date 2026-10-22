@@ -180,6 +180,20 @@ window.__estados = [
   ['cielo:noche febrero', async () => {
       await window.TG_CIELO_CARGAR(); await TG_CIELO.ver('noche', '2027-02-20'); await espera(400);
       const h = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta h3')].find(x => /📷/.test(x.textContent)); if (h) h.closest('.cielo-tarjeta').scrollIntoView(); await espera(200); }],
+  /* El sexto bloque del 22 de octubre: las 88 constelaciones con su origen,
+     su tamaño y su curiosidad. Orion en la carta (la de Wikipedia, con las
+     Tres Marias y las Orionidas) y, en el catalogo de constelaciones,
+     Lupus abierto (Uridim, con la pagina de su estrella como fuente). */
+  ['cielo:ficha orion', async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.curiosidades(); await TG_CIELO.ver('mapa', '2026-12-13'); await espera(400);
+      TG_CIELO.estado.mapa.sel = { con: 'Ori' }; await TG_CIELO.ver('mapa', '2026-12-13'); await espera(500);
+      const f = document.querySelector('#cielo-panel .cielo-curio'); if (f) f.scrollIntoView(); await espera(200); }],
+  ['cielo:catalogo lupus', async () => {
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.curiosidades(); TG_CIELO.estado.cat.tipo = 'constelaciones'; TG_CIELO.estado.cat.busca = 'Lup';
+      await TG_CIELO.ver('catalogo', '2026-12-13'); await espera(300);
+      document.querySelectorAll('#cielo-panel .cielo-item').forEach(i => i.classList.add('abierto'));
+      document.querySelectorAll('#cielo-panel .cielo-curio-cab button').forEach(b => { if (b.getAttribute('aria-expanded') !== 'true') b.click(); });
+      await espera(200); TG_CIELO.estado.cat.tipo = 'todo'; TG_CIELO.estado.cat.busca = ''; }],
   ['cielo:calendario avisos', async () => {
       await window.TG_CIELO_CARGAR(); TG_CIELO.estado.cal = 'todo'; await TG_CIELO.ver('calendario', '2026-12-13'); await espera(300);
       const g = TG_CIELO.eventos().find(e => e.tipo === 'lluvia' && e.l.id === 'GEM'); if (g) TG_CIELO.ponerAviso(g);

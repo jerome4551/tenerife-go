@@ -269,6 +269,10 @@ self.addEventListener('fetch', e => {
 
   e.respondWith(
     caches.match(req).then(cached => {
+      /* Las curiosidades de las 88 constelaciones (idiomas/cielo/<lang>.json,
+         22 de octubre de 2026) van igual: una por idioma, la de quien mira,
+         que el panel del cielo pide al abrirse y que tiene que estar en el
+         Teide. */
       /* Los idiomas de los lugares van con index.html, no por su cuenta.
          idiomas/<lang>.json lleva las descripciones de los 804 lugares en ese
          idioma, y idiomas/etiquetas/<lang>.json los chips del globo, en ese
@@ -309,7 +313,7 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/datos/precios-gasolineras.json') ||
           url.pathname.endsWith('/datos/gasolineras-municipio.json') ||
           url.pathname.endsWith('/datos/avisos-aemet.json') ||
-          /\/(idiomas\/(etiquetas\/)?|faq\/)[a-z]{2,3}\.json$/.test(url.pathname)) {
+          /\/(idiomas\/(etiquetas\/|cielo\/)?|faq\/)[a-z]{2,3}\.json$/.test(url.pathname)) {
         return fetch(req).then(res => {
           if (guardableShell(res)) guardar(req, res);
           return res;

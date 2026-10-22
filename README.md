@@ -18,6 +18,8 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 | `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
 | `datos/satelites.json` | Los elementos orbitales (TLE) de la Estación Espacial Internacional, de Tiangong y del Hubble, de CelesTrak, con su época. Los renueva el robot `tools/satelites_traer.py` dos veces al día; el panel calcula con ellos los pasos visibles. |
 | `datos/planetas.json` | Las cifras de la NASA (NSSDCA) de los ocho planetas, la Luna y el Sol —diámetro, día, año sideral, lunas, temperatura, gravedad, anillos, masa, densidad—, con la fecha de cada tabla. El panel del cielo lleva una copia (`CIELO_PLANETAS`) para la ficha del planeta y las curiosidades. |
+| `datos/constelaciones.json` | Las 88 constelaciones de la UAI: área y puesto por tamaño, origen y estrella más brillante (las dos tablas de la UAI en Wikipedia), la página de donde sale la curiosidad de cada una (Star Tales de Ian Ridpath; Orión, Wikipedia) y lo que dice esa página, entre «» (`cita`). El panel del cielo lleva una copia sin las citas (`CIELO_CONS`). |
+| `idiomas/cielo/<idioma>.json` | Las curiosidades de las 88 constelaciones, un fichero por idioma (de 16 a 19 kB comprimido): el panel del cielo pide solo el del idioma de quien mira. |
 | `sw.js` | Service worker. Caché offline y notificaciones push. |
 | `manifest.webmanifest` | Manifiesto PWA: iconos, color de tema, `display: standalone`. |
 | `enviar-notificacion.js` | Script de Node que envía la notificación diaria. Corre en GitHub Actions, nunca en el navegador. |
@@ -264,6 +266,21 @@ la copia es la del JSON, que los períodos cumplen la tercera ley de Kepler
 con la *a* de la JPL, que cada comparación de las frases se cumple en sus
 cifras, el perigeo contra la distancia del motor, la geometría del sur y la
 luz zodiacal con la Luna recalculada aparte.
+
+**Las 88 constelaciones, con su historia.** La ficha de cada constelación
+dice de dónde viene («una de las 48 constelaciones de Ptolomeo», «dibujada
+por los navegantes Keyser y De Houtman», «introducida por Lacaille desde el
+cabo de Buena Esperanza»…) y cuánto ocupa («594 grados cuadrados, la n.º 26
+de 88»), de las dos tablas de la UAI en Wikipedia (`datos/constelaciones.json`),
+y «¿Sabías que…?» con una curiosidad de cada una en los diez idiomas —quién
+la puso en el cielo, su mito, lo que merece la pena mirar—, escrita a partir
+de su página en Star Tales de Ian Ridpath (Orión, de Wikipedia), con las
+fuentes como enlace. Van un fichero por idioma (`idiomas/cielo/`), y cada
+móvil baja solo el suyo; lo que dice cada página, entre «», queda en la
+`cita` de `datos/constelaciones.json`. `tools/auditar_cielo.js` (parte 14) coteja la copia,
+que las áreas sumen la esfera, el origen y la estrella más brillante con el
+catálogo, los nombres que la UAI ha aprobado después de Star Tales (Uridim,
+Alaybasan) y lo que cuatro de ellas dicen de Tenerife con la latitud.
 
 **Todo lo que cambia se calcula en el móvil**, en hora de Canarias y para el
 Observatorio del Teide (la ficha `observatorio`, a 2.390 m): ninguna fecha

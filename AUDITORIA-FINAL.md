@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.036 kB** en castellano · **1.150 kB** en el peor caso (búlgaro) · 1.136 kB en polaco, el 21 de octubre por la noche, con el cielo de `cielo-camara` y lo de `main` de ese día juntos (el panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada; el modo nativo de la App Store, 1 kB; lo demás lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.038 kB** en castellano · **1.152 kB** en el peor caso (búlgaro) · 1.138 kB en polaco, el 22 de octubre, con el quinto y el sexto bloque del cielo encima del `main` de ese día, que da 1.037, 1.151 y 1.137: el kB de más son comentarios de `index.html` (el panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades, lo pide al abrirlo). Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -1332,8 +1332,6 @@ verde, el propio `auditar.sh` paró tres veces en lo nuevo (las cifras de
 los idiomas, «fiables», «lunes» y «Dalim», arriba): eso es lo que tiene que
 hacer. Lo que queda es lo de siempre: lo de Jerome en
 `LANZAMIENTO-APP-STORE.md` (§3 y §9) y las pruebas en un iPhone de verdad.
-Y una idea para otro día, si Jerome la quiere: una curiosidad por
-constelación (88 × 10 idiomas, con su fuente cada una).
 
 Eso fue en la rama `cielo-camara`, sobre el main del 18. Esa tarde el
 bloque se llevó encima del main del 22 (`ac10788`), que ya tenía los seis
@@ -1344,6 +1342,289 @@ Sol», «no mire al radiante», «mientras lee esta frase», «arriba tiene la
 altura de hoy»), `CIELO_UI` llega allí a 522 filas y los idiomas, a 43
 tablas y 1701 filas. La auditoría entera de lo rebasado va con el sexto
 bloque, abajo.
+
+Y una idea para otro día, si Jerome la quiere: una curiosidad por
+constelación (88 × 10 idiomas, con su fuente cada una). Jerome la quiso: es
+el sexto bloque, justo debajo. Y esa tarde se volvió a cotejar todo, frase
+por frase, con su fuente: lo que cambió aquí está al final del sexto bloque.
+
+## Las 88 constelaciones, cada una con su curiosidad y su fuente (22 de octubre, sexto bloque)
+
+Jerome, a la idea del final del quinto bloque —«una curiosidad por
+constelación (88 × 10 idiomas, cada una con fuente)»—: «Si quiero». Con la
+regla de siempre: nada escrito a ojo, y la fuente en la pantalla.
+
+### Lo que se añadió
+
+- **`datos/constelaciones.json`** (nuevo): las 88 de la UAI con su área en
+  grados cuadrados y su puesto por tamaño (Wikipedia, «IAU designated
+  constellations by solid angle»: las 88 suman 41.252,98, la esfera entera,
+  4π sr = 41.252,96), su origen (Wikipedia, «IAU designated
+  constellations»: 47 de Ptolomeo y las tres de Argo Navis que Lacaille
+  separó en 1756; 12 de Keyser y De Houtman; 4 de Plancius —Crux 1589,
+  Columba 1592, Camelopardalis y Monoceros 1613—; 7 de Hevelius; 14 de
+  Lacaille; Coma Berenices, de Vopel en 1536), su estrella más brillante y
+  la página de donde sale su curiosidad. El módulo lleva la copia
+  (`CIELO_CONS`), que rehace `genera.py`.
+- En la **ficha de cada constelación** (la carta, «Apunta al cielo» y el
+  catálogo): «Origen: una de las 48 constelaciones de Ptolomeo (Almagesto,
+  siglo II)», «Tamaño: 594 grados cuadrados, la n.º 26 de 88», y «¿Sabías
+  que…?» con la curiosidad y, debajo, sus fuentes como enlace: su página de
+  Star Tales (Ian Ridpath) —o de Wikipedia— y las dos tablas de la UAI
+  («Wikipedia: origen», «Wikipedia: tamaño»). Con más de una fuente, la
+  etiqueta va en plural («Fuentes:»), también en las curiosidades del quinto
+  bloque que tienen dos.
+- **88 curiosidades en diez idiomas** (hoy en `idiomas/cielo/<idioma>.json`,
+  un fichero por idioma: abajo), cada una escrita a partir de la página de
+  esa constelación en Star Tales, leída el 22 de octubre, con lo que dice la
+  página, entre «», en la `cita` de cada una en `datos/constelaciones.json`
+  (al principio iba en el comentario de encima de cada fila): quién la puso
+  en el cielo, su mito, lo que merece la pena mirar y la rareza que tenga.
+  Lyra y Orfeo, que miró atrás; Mensa, la montaña de la Mesa de Ciudad del
+  Cabo, con su «mantel» de nube;
+  Octans, sin Polar del sur y con la α más débil del cielo; Delphinus, con
+  Sualocin y Rotanev, que leídas al revés dicen Nicolaus Venator; Fornax y
+  Lavoisier, que tenía 13 años; Columba y los excrementos del retrete chino
+  de la Liebre; Scutum, la única constelación política que sigue en uso;
+  Vulpecula, que se quedó sin el ganso; la Osa Mayor y su cola estirada…
+- **Orión sale de Wikipedia** («Orion (constellation)»): su página de Star
+  Tales no se dejó leer de ninguna forma. Lleva el mito de Gea y el
+  escorpión (por eso Orión y Escorpio nunca están a la vez en el cielo),
+  Sah y Osiris, las Tres Marías, la nebulosa que a simple vista ya no
+  parece una estrella y las Oriónidas de Halley hacia el 20 de octubre.
+- Lo que cuatro de ellas dicen de **Tenerife** sale del catálogo (latitud
+  del observatorio, 28,3°): Canopus culmina a 9°; Alfa Centauri a 0,9°
+  («apenas roza el horizonte») y Omega Centauri a 14,2°; de la Cruz del Sur
+  asoman tres estrellas, a menos de 5°, y Acrux no sale; del Carro se ponen
+  seis de sus siete estrellas, aunque desde las latitudes medias del norte
+  «la osa nunca se pone».
+
+### Lo que se corrigió al verificar
+
+- **Dos nombres nuevos de la UAI.** Star Tales dice que ninguna estrella de
+  Lupus tiene nombre y que β Trianguli no lo tiene; la lista de la UAI que
+  lleva el JSON da Uridim y Alaybasan, y la página de cada estrella en
+  Wikipedia lo confirma: el Grupo de Trabajo de Nombres de Estrellas los
+  aprobó el 12 de septiembre de 2024 y el 7 de noviembre de 2025. Las dos
+  filas lo cuentan así, con esa página como fuente de más (`mas` en el
+  JSON), y la parte 14a cruza ahora cualquier «no tiene nombre» con la
+  lista: Hydrus, Norma, Sculptor y Sextans la dan con letra griega.
+- **Omega Centauri no «roza» el horizonte.** La primera versión de
+  Centaurus decía que Alfa y Omega Centauri «rozan el horizonte sur»: Alfa
+  sí (0,9°), Omega culmina a 14,2°. La frase da ahora las dos alturas, y la
+  parte 14a las coteja.
+- **Coma Berenices.** La línea del origen decía que Ptolomeo la describe
+  como «la melena de Leo»; el Almagesto la llama «el rizo», junto a la
+  cola (Star Tales). Corregido en los diez idiomas.
+- **Auriga, Boötes y Canis Minor** salieron primero de Wikipedia, porque el
+  servidor de Star Tales no dejaba leerlas con `www`; se leyeron sin `www`
+  (es el mismo sitio) y se rehicieron con Star Tales, que cuenta más: el
+  auriga sin carro, los Lebreles quizá nacidos de una mala traducción del
+  árabe («el cayado» leído «los perros»), Mera, el perro de Icario.
+- Lo que repetía la ficha: «desde Tenerife no se ve» en Chamaeleon, Mensa y
+  Octans, y «apenas asoma» en Pictor, ya lo dice la línea de visibilidad de
+  cada constelación («Nunca sale desde Tenerife», «Visible en parte»):
+  fuera de las curiosidades.
+- **Los idiomas.** Antes de pasar los controles se quitaron las
+  transliteraciones árabes en minúscula (al-faras, al-nasr al-tā’ir,
+  al-nasr al-wāqi‘: alfabeto latino suelto en chino y búlgaro, «copiadas del
+  castellano» en los demás): cada fila da el significado («del árabe, “el
+  caballo”»); lo mismo «praesepe», «apous», «avis» y «les Burins» en chino y
+  búlgaro, «vóór» en neerlandés y el italiano «tredicesimo», que habría
+  perdido el 13. Y los controles cazaron lo que quedaba: el alemán «um das
+  Jahr 2100 am nächsten» se leía como una hora («00 am»); «atlas» y
+  «latitudes», que también son inglés, alemán, neerlandés y francés, se
+  declararon en `idiomas/castellano-aceptado.json`, y «eclipses», que ya no
+  hacía falta (el inglés la usa ahora en Perseo, donde el castellano dice
+  otra cosa), salió de la lista, como manda la regla de las entradas que
+  sobran. El barrido de pantallas cazó el italiano «mostrando» (italiano, y
+  también castellano) en el Potro, ahora «lasciando vedere»; y
+  `auditar_cirilico.py`, dos nombres búlgaros que se parecen a otros:
+  «Конон» (el astrónomo Conón, no Colón) y «Хела» (Hele, la hermana de
+  Frixo, no Hera), los dos bien escritos y declarados con `CIRILICO-OK`
+  encima de su fila.
+
+### Cómo se comprueba
+
+`tools/auditar_cielo.js`, parte 14a (sin navegador): la copia del módulo
+igual al JSON; las 88 abreviaturas, las del catálogo; las áreas suman la
+esfera; los puestos, del 1 (Hydra) al 88 (Crux) en el orden de las áreas;
+el origen de cada una en su categoría y con su año; la estrella más
+brillante de la lista, la misma que la del catálogo en las 51 que el
+catálogo nombra (Casiopea, Libra y Centaurus, explicadas); la página de
+cada curiosidad (Star Tales en 87, con Corvus y Crater en la misma;
+Wikipedia en Orión); las dos tablas de la UAI; Lupus y Triangulum con su
+fuente de más; las 88 filas; las que dicen que sus estrellas no tienen
+nombre, contra la lista; y lo que dicen de Tenerife, contra la latitud y
+el catálogo (una frase nueva que nombre Tenerife sin entrar en esa tabla
+sale en rojo). La parte 3 conoce las dos familias nuevas (`ConOrigen` y
+`CurCon`), y la 13a deja de contarlas entre las 26 curiosidades del quinto
+bloque. Parte 14 (navegador, 390×844): las fichas de Orión, Hydra, Crux,
+Camelopardalis, Coma Berenices, Puppis y la Osa Mayor con su origen, su
+tamaño y sus tres fuentes; Orión en el catálogo; Orión, Crux y Lacerta en
+los diez idiomas. `tools/barrido_pantallas.js` suma dos pantallas: la ficha
+de Orión y Lupus abierto en el catálogo de constelaciones.
+
+### Lo que pesa
+
+En la rama `cielo-camara`, `modulos/cielo.js` pasaba de 268 a 478 kB
+comprimidos (`gzip -9`) con las 88 curiosidades dentro: en los diez idiomas
+son unos 168 kB (de 15,7 a 18,8 cada idioma); lo demás, las citas de encima
+de cada fila, `CIELO_CONS` y el código. Lo que baja el móvil al arrancar no
+cambiaba: 1.022 kB en castellano, 1.135 en búlgaro y 1.122 en polaco
+(`peso_descarga.py` en esa rama; el polaco pasó de 1.121 a 1.122 con el
+quinto bloque y la cabecera no se puso al día). El panel se pide al
+abrirlo, pero el service worker lo guarda al instalar, para que funcione
+sin red en el Teide: esos 210 kB de más los bajaba todo el mundo, en
+segundo plano. Se propuso llevar las curiosidades a un fichero por idioma,
+para que cada uno bajara solo las suyas, y es lo que se hizo esa tarde
+(abajo).
+
+### El resultado
+
+`auditar.sh` entero sobre el árbol del commit de la rama `cielo-camara`,
+el 22 de octubre de 2026: **cero bloques en rojo** (los tres controles de
+`pmtiles` siguen sin poder ejecutarse aquí). `auditar_cielo.js`: 233 controles con las fuentes (los
+210 de antes, 14 de la parte 14a y 9 de la 14); `barrido_pantallas.js`: 106
+pantallas y fichas por idioma, 0 textos sin traducir; `auditar_idioma.js`:
+0 hallazgos en los diez; `auditar_web.js`: 43 tablas, 1795 filas. La
+primera pasada paró en `auditar_cirilico.py` (Conón y Hele, arriba), que es
+lo que tiene que hacer; la segunda salió sin nada en rojo. Lo que queda es
+lo de siempre: lo de Jerome en `LANZAMIENTO-APP-STORE.md` (§3 y §9) y las
+pruebas en un iPhone de verdad.
+
+### Un fichero por idioma (22 de octubre, tarde)
+
+Jerome: «poner las curiosidades en un fichero por idioma, así cada móvil
+baja solo las suyas y se ahorran unos 165 kB».
+
+- **`idiomas/cielo/<idioma>.json`**: las 88 curiosidades de cada idioma
+  (`cieloCurCon<Abr>`), diez ficheros de 38 a 66 kB; comprimidos, de 15,7 kB
+  (inglés) a 18,8 (búlgaro). El módulo pide al abrir el panel solo el del
+  idioma de quien mira, y el nuevo si cambia de idioma con el panel
+  abierto; mientras no llega, la ficha sale sin curiosidad, nunca con la de
+  otro idioma.
+- **Las citas** (lo que dice cada página, entre «») pasan del comentario de
+  encima de cada fila a la `cita` de cada constelación en
+  `datos/constelaciones.json`, que la app no pide; la copia del módulo
+  (`CIELO_CONS`) va sin ellas.
+- **Sin red**: el service worker las sirve red primero y las guarda, como
+  `idiomas/<idioma>.json`. El fichero del idioma se guarda la primera vez
+  que se abre el panel con conexión, y «Antes de subir al Teide» lo cuenta
+  entre lo que tiene que estar guardado («abra el panel una vez con
+  conexión y se guarda solo»).
+- **Las herramientas** lo siguen viendo todo: `index.html` declara
+  `IDIOMAS-PEREZOSOS: idiomas/cielo`, y `tools/fuente.js` y `fuente.py`
+  juntan los diez ficheros en filas de diez idiomas (`IDIOMAS_CIELO`) al
+  final del fuente: `auditar_web.js` cuenta 44 tablas y las mismas 1801
+  filas, y `castellano_suelto.js`, `auditar_idioma.js`, el registro y el
+  barrido leen las curiosidades como antes.
+- **Lo que pesa**: sobre el `main` del 22, `modulos/cielo.js` pesaba 276 kB
+  comprimidos con el quinto bloque y 486 con el sexto; ahora, 286, y cada
+  móvil baja además las de su idioma: unos 180 kB menos por móvil, más de
+  lo calculado, porque las citas ya no viajan. Lo que baja al arrancar no
+  cambia: 1.038 kB en castellano, 1.152 en búlgaro y 1.138 en polaco.
+- **Cómo se comprueba** (`auditar_cielo.js`): en la parte 14a, que los diez
+  ficheros tengan las 88 filas y nada más, que no quede ninguna en el
+  módulo, que la copia del módulo vaya sin citas, que el módulo pida solo
+  el fichero de su idioma y que el service worker lo sirva; en la 4, que
+  el módulo no pida nada más; en la 8, con el servidor apagado, que quede
+  guardado el fichero del idioma (y solo ese) y que la ficha de Orión salga
+  con su curiosidad; en la 14, que en francés salga el texto francés y que
+  sin el fichero no se caiga nada.
+
+### Todo, otra vez contra su fuente (22 de octubre, tarde)
+
+Jerome: «Verifica que todo está ahí y que nada fue inventado en camino, que
+no sería la primera vez». Se volvió a leer cada frase contra su página, con
+verificadores que no habían escrito los textos, y se corrigió lo que no
+estaba:
+
+- **Las curiosidades de las 65 constelaciones cuya página de Star Tales se
+  dejó leer** (ocho verificadores): las citas literales de cada `cita`
+  estaban todas en su página; los textos, no tanto. En 30 había algo que la
+  página no dice: sobre todo adornos («durante siglos», «a simple vista»,
+  «para rellenar el cielo», «se suele decir» donde la página dice «a
+  veces»), y algunos errores: en Canis Major quien lleva al perro tras la
+  zorra es Céfalo (Zeus se lo había regalado a Europa); el Solarium de
+  Reticulum sí lo copió alguien (Elijah Burritt, 1835); lo de la izquierda y
+  la derecha de Crater era del ala del Cuervo; que Croto sea hijo de Pan lo
+  añade Higino, no Eratóstenes; Calisto no fue seducida: «despite
+  Callisto's struggles»; y la página de Mensa no dice que sea «la única
+  constelación que es un lugar de la Tierra».
+- **Las 23 cuya página ya no se dejó leer** (Aur, Boo, CMi, Col, Cyg, Dor,
+  Gem, Her, Hor, Hyi, Leo, Lep, Lyn, Mic, Mus, Pav, Phe, Sco, Tel, Tri, Tuc,
+  Vol y Vul): cuenta como prueba lo que la cita lleva entre «», copiado en
+  la primera lectura, y lo demás se cotejó con Wikipedia en inglés (tres
+  verificadores). Fuera lo que no estaba en ninguna de las dos, en 13 de
+  ellas: el nido de canela e incienso del fénix y que muriera en él; la
+  etimología griega de Albireo; Halley en el pez espada de Dorado; el
+  «pomposo» nombre de Horologium; el año de Baily en Lynx; el «porque» de
+  los camaleones de Musca y que Bayer no supiera qué insecto era; la
+  cazuela de los marineros de Volans; que Mera corriera aullando. Y los
+  matices: «la mayor parte» de la Gran Nube, no «casi toda»; «quizá» lo
+  inventó Keyser; β Trianguli no tuvo nombre «oficial» hasta 2025 (uno
+  tradicional, Mizan, sí); Hydrus pasaba por el polo sur «celeste»; las
+  serpientes que los holandeses «debieron de ver»; que el auriga sea
+  Erictonio es lo «más común», no lo único.
+- **Las traducciones**, contra el castellano (cuatro verificadores): en 18
+  constelaciones más había algo de más o de menos en algún idioma (el chino
+  añadía «el dios del vino», «ciénaga» o «grande»; al alemán le faltaba «y
+  Bode la escribía Wega»; «a menudo» donde el castellano dice «a veces»…).
+  En total cambiaron 466 de los 880 textos de las curiosidades, y el
+  castellano de 43 de las 88.
+- **El quinto bloque** (las 26 curiosidades y la luz zodiacal, contra cada
+  web; un verificador para el castellano y otro para los idiomas): el día
+  de Mercurio dura «dos de sus años» justos, no «casi»; Venus gira al revés,
+  pero no es la única: también Urano; que Urano «rueda por su órbita» no
+  está en la fuente; el Sol no gira de una pieza (los 25,4 días de la
+  hoja son a 16° del ecuador), y la hoja no dice que sea «como las de la
+  noche»; lo de los navegantes y la Polar no tenía fuente; el tercio de la
+  ISS de Tiangong es del volumen presurizado; las Líridas no suelen dejar
+  estelas largas y luminosas (no «casi nunca dejan estela»); las Dracónidas
+  se ven mejor tras la puesta de sol, sin «al contrario que las demás»; las
+  Leónidas son las más rápidas «de esta lista», «pueden» tener colores, y la
+  NASA no dice que las tormentas vengan con el cometa; las Úrsidas, «A.
+  Bečvář» (la fuente no da su nombre de pila) y «para ver muchas»; la luz
+  zodiacal es lo que «se cree» (Britannica), y sus meses son los de las
+  latitudes medias del norte. En polaco, «274 znanych księżyców» no
+  concordaba: la frase de las lunas va ahora sin concordancia. En los
+  comentarios del módulo, dos citas que no eran literales (la de la Luna y
+  la de la Britannica) y tres datos: Neptuno no es el más frío de la tabla
+  (está Plutón), su año es de 164,8 años, no 163,7, y Venus no gira al revés
+  sola.
+- **Los datos** (`datos/constelaciones.json` y `datos/planetas.json`, 673
+  campos): cero diferencias con sus tablas.
+- **Los controles**: las partes 13a y 13 de `auditar_cielo.js` comprueban
+  ahora los «dos años» de Mercurio con el año sideral, que en la tabla solo
+  Venus y Urano giran al revés, el periodo del Sol «a 16° del ecuador», la
+  Polar sin los navegantes y el tercio de Tiangong del volumen presurizado.
+  `castellano_suelto.js` cazó tres palabras en alfabeto latino que las
+  curiosidades dejan a propósito, como el castellano: *cynosure*,
+  *mahi-mahi* y, en chino, *dauphin* (el juego de palabras de «delfín» no
+  existe en chino), y el francés *atlas*; van declaradas en
+  `idiomas/castellano-aceptado.json`. Y `auditar_idioma.js` paró en una
+  primera versión del polaco de las lunas, con tres formas de plural: cuenta
+  las cifras de cada forma, y «1000» salía tres veces. Las dos cosas son lo
+  que tienen que hacer.
+- **Que nada se perdió ni se coló al partir**: cada uno de los 880 textos
+  de hoy es el de antes de partir más exactamente las correcciones
+  registradas; lo mismo las 88 citas (el comentario de encima de cada fila,
+  más las suyas) y las 534 filas que se quedan en el módulo; y los demás
+  campos de `datos/constelaciones.json`, iguales (salvo las páginas de Star
+  Tales, ahora por `https`).
+
+### El resultado, encima del `main` del 22
+
+`auditar.sh` entero sobre el árbol final (los dos commits encima de
+`ac10788`), el 22 de octubre de 2026 por la tarde: **cero bloques en rojo**
+(los tres controles de `pmtiles` siguen sin poder ejecutarse aquí).
+`auditar_cielo.js`: 252 controles con las fuentes; `barrido_pantallas.js`:
+106 pantallas y fichas por idioma, 0 textos sin traducir;
+`auditar_idioma.js`: 0 hallazgos en los diez; `auditar_web.js`: 44 tablas,
+1801 filas; `barrido_idiomas.js`: 3.942; el cirílico, 1.898 nombres y 0
+variantes sospechosas. Lo que queda es lo de siempre: lo de Jerome en
+`LANZAMIENTO-APP-STORE.md` (§3 y §9) y las pruebas en un iPhone de verdad.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
@@ -3186,7 +3467,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 43 tablas, 1701 filas (y 3.842 filas, dentro y fuera del fuente)
+## Idiomas · 44 tablas, 1801 filas (y 3.942 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -3220,7 +3501,12 @@ del calendario en los pasos de satélites (avisa media hora antes). El 22
 por la mañana, una menos: `ppTercCdn`, la fila de jsDelivr en la política,
 que ya no recibe nada porque la librería de la cuenta va dentro
 (`vendor/supabase.js`). Y ese día, las curiosidades del quinto bloque: 53
-más en `CIELO_UI`, hasta 522. El
+más en `CIELO_UI`, hasta 522, y las 88 constelaciones del sexto, 100 más,
+hasta 622 (las 88 curiosidades, el origen en siete formas y su rótulo, el
+tamaño, las dos etiquetas de las fuentes y «Fuentes:» en plural). Esa
+tarde, las 88 curiosidades de las constelaciones salieron de `CIELO_UI`
+(que se queda en 534) a un fichero por idioma, y `tools/fuente.js` las junta
+en una tabla más, `IDIOMAS_CIELO`: 44 tablas y las mismas 1801 filas. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de

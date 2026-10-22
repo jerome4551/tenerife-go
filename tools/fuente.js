@@ -34,6 +34,17 @@
  * devolviendo solo lo que se carga al arrancar (peso_descarga.py cuenta eso);
  * perezosos() devuelve estos.
  *
+ * Y LOS TEXTOS QUE VAN UN FICHERO POR IDIOMA (22 de octubre de 2026). Las
+ * curiosidades de las 88 constelaciones salieron de modulos/cielo.js a
+ * idiomas/cielo/<idioma>.json, para que cada movil baje solo las suyas. Sin
+ * mas, ninguna herramienta las veria: se declaran con «IDIOMAS-PEREZOSOS:
+ * <carpeta>» y aqui se juntan los ficheros de esa carpeta (uno por idioma de
+ * SUPPORTED_LANGS) en una tabla de filas de diez idiomas,
+ * var IDIOMAS_<CARPETA> = { "clave": {"es": "…", "en": "…", …}, … },
+ * pegada detras de los modulos: las herramientas las miran como miraban las
+ * filas de CIELO_UI. Una carpeta declarada que no existe, un idioma sin su
+ * fichero o una clave que no esta en todos revientan aqui.
+ *
  *     const F = require('./fuente');
  *     const src = F.html();        // en vez de leer index.html a pelo
  *     F.ficheros()                 // [{ ruta, texto }]
@@ -75,12 +86,36 @@ function cargar() {
     if (/<\/script/i.test(texto)) throw new Error(ruta + ' trae «</script»: no se puede pegar en linea');
     perezosos.push({ ruta, texto, perezoso: true });
   }
+  /* los de un fichero por idioma, declarados en el fuente: una tabla por carpeta */
+  const langs = ((index.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1].match(/[a-z]+/g)) || [];
+  const porIdioma = [];
+  for (const m3 of index.matchAll(/IDIOMAS-PEREZOSOS:\s*([\w./-]+)/g)) {
+    const dir = m3[1].replace(/^\.\//, '').replace(/\/$/, '');
+    if (porIdioma.some(f => f.ruta === dir)) continue;
+    if (!langs.length) throw new Error('IDIOMAS-PEREZOSOS: ' + dir + ', y no encuentro SUPPORTED_LANGS en index.html');
+    const filas = {};
+    let claves = null;
+    for (const l of langs) {
+      const abs = path.join(RAIZ, dir, l + '.json');
+      if (!fs.existsSync(abs)) throw new Error('index.html declara ' + dir + ' y falta ' + dir + '/' + l + '.json');
+      const d = JSON.parse(fs.readFileSync(abs, 'utf8'));
+      const ks = Object.keys(d);
+      if (claves === null) claves = ks;
+      else if (ks.join('\n') !== claves.join('\n')) throw new Error(dir + '/' + l + '.json no tiene las mismas claves, en el mismo orden, que ' + dir + '/' + langs[0] + '.json');
+      for (const k of ks) { if (typeof d[k] !== 'string') throw new Error(dir + '/' + l + '.json: ' + k + ' no es un texto'); (filas[k] = filas[k] || {})[l] = d[k]; }
+    }
+    const nombre = 'IDIOMAS_' + dir.split('/').pop().toUpperCase().replace(/[^A-Z0-9]/g, '_');
+    const texto = 'var ' + nombre + ' = {\n' + claves.map(k => '    ' + JSON.stringify(k) + ': {' +
+      langs.map(l => JSON.stringify(l) + ': ' + JSON.stringify(filas[k][l])).join(', ') + '}').join(',\n') + '\n};';
+    porIdioma.push({ ruta: dir, texto, porIdioma: true, nombre });
+  }
   let html = index;
   const tramos = [];                     // [primera linea, ultima, ruta, desfase]
   let linea = index.split('\n').length;
-  for (const f of ficheros.concat(perezosos)) {
-    const cabeza = '\n<script>\n/* ════ ' + f.ruta + ' · no esta en index.html: ' +
-                   (f.perezoso ? 'lo pide su cargador al abrir el panel.' : 'lo carga su etiqueta.') +
+  for (const f of ficheros.concat(perezosos, porIdioma)) {
+    const cabeza = '\n<script>\n/* ════ ' + (f.porIdioma ? f.ruta + '/<idioma>.json' : f.ruta) + ' · no esta en index.html: ' +
+                   (f.porIdioma ? 'el modulo pide solo el del idioma de quien mira; aqui van los de todos juntos, fila a fila.' :
+                    f.perezoso ? 'lo pide su cargador al abrir el panel.' : 'lo carga su etiqueta.') +
                    ' Se pega aqui solo para las herramientas (tools/fuente.js y .py). ════ */\n';
     html += cabeza;
     linea += cabeza.split('\n').length - 1;
@@ -89,7 +124,7 @@ function cargar() {
     html += f.texto + '\n</script>\n';
     linea += n + 1;
   }
-  _cache = { index, html, ficheros, perezosos, tramos, lineasIndex: index.split('\n').length };
+  _cache = { index, html, ficheros, perezosos, porIdioma, tramos, lineasIndex: index.split('\n').length };
   return _cache;
 }
 
@@ -99,6 +134,7 @@ module.exports = {
   index: () => cargar().index,
   ficheros: () => cargar().ficheros.slice(),
   perezosos: () => cargar().perezosos.slice(),
+  porIdioma: () => cargar().porIdioma.slice(),
   /* 'index.html:N' o 'datos/titsa.js:N' para una linea de html() */
   donde(l) {
     const c = cargar();
@@ -112,4 +148,5 @@ if (require.main === module) {
   const c = cargar();
   console.log('index.html: ' + c.lineasIndex + ' lineas');
   for (const f of c.ficheros.concat(c.perezosos)) console.log(f.ruta + ': ' + f.texto.split('\n').length + ' lineas, ' + Buffer.byteLength(f.texto) + ' bytes' + (f.perezoso ? ' (carga perezosa)' : ''));
+  for (const f of c.porIdioma) console.log(f.ruta + '/<idioma>.json: ' + (f.texto.split('\n').length - 2) + ' filas de diez idiomas, juntas en ' + f.nombre);
 }

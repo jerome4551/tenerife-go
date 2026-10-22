@@ -83,6 +83,7 @@ const DATOS = ['titsa.js', 'cielo.json', 'satelites.json', 'precios-gasolineras.
 const CARPETAS = [
   ['idiomas', f => IDIOMAS.includes(f.replace(/\.json$/, '')) && /\.json$/.test(f)],
   ['idiomas/etiquetas', f => /\.json$/.test(f)],
+  ['idiomas/cielo', f => IDIOMAS.includes(f.replace(/\.json$/, '')) && /\.json$/.test(f)],
   ['faq', f => IDIOMAS.includes(f.replace(/\.json$/, '')) && /\.json$/.test(f)],
   ['datos', f => DATOS.includes(f)],
   ['modulos', f => /\.js$/.test(f)],
@@ -261,6 +262,7 @@ function comprobar(montado) {
     if (l !== 'es' && !enWww('idiomas/' + l + '.json')) faltan.add('idiomas/' + l + '.json');
     if (l !== 'es' && !enWww('idiomas/etiquetas/' + l + '.json')) faltan.add('idiomas/etiquetas/' + l + '.json');
     if (!enWww('faq/' + l + '.json')) faltan.add('faq/' + l + '.json');
+    if (!enWww('idiomas/cielo/' + l + '.json')) faltan.add('idiomas/cielo/' + l + '.json');
   }
   ok(faltan.size === 0, 'todo lo que la app pide en el movil esta en app/www/ (' + montado.copiados.length + ' ficheros, '
      + (montado.bytes / 1e6).toFixed(1) + ' MB)', [...faltan].join(', '));

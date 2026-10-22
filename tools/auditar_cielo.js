@@ -114,6 +114,27 @@
  *      luz zodiacal en su temporada y no fuera de ella (y la Luna recalculada
  *      aparte), la sombra del Teide con la hora de la puesta; y los diez
  *      idiomas sin texto roto.
+ *  14. las 88 constelaciones (22 de octubre de 2026, sexto bloque): la copia
+ *      de datos/constelaciones.json que lleva el modulo (CIELO_CONS) igual
+ *      al JSON; las 88 areas suman la esfera entera (41.253 grados
+ *      cuadrados) y los puestos van del 1 al 88 en el orden de las areas; el
+ *      origen de cada una es una de las siete categorias y el año cuadra con
+ *      ella (47 de Ptolomeo + 3 de Argo, 12 de Keyser, 4 de Plancius, 7 de
+ *      Hevelius, 14 de Lacaille, Coma Berenices); la estrella mas brillante
+ *      de la lista de la UAI es la misma que la del catalogo (HYG) cuando el
+ *      catalogo la nombra; 88 filas cieloCurCon*, cada una con la pagina de
+ *      donde sale (Star Tales de Ian Ridpath en 87, Wikipedia en Orion) y
+ *      las dos tablas de la UAI; lo que cuatro de ellas dicen de Tenerife
+ *      (Canopus, Alfa y Omega Centauri, la Cruz del Sur, el Carro), contra la
+ *      latitud del observatorio y el catalogo; en el navegador, las fichas
+ *      de Orion, Hydra, Crux, Camelopardalis, Coma Berenices, Puppis y la
+ *      Osa Mayor (origen, tamaño, curiosidad y sus tres fuentes), el
+ *      catalogo, y los diez idiomas. Y desde la tarde del 22, un fichero por
+ *      idioma (idiomas/cielo/<l>.json): las 88 claves en los diez, ninguna
+ *      en el modulo, la cita de cada una en datos/constelaciones.json, el
+ *      cargador, el service worker y tools/fuente.js; en el navegador, que
+ *      se pide solo el del idioma, que sin el no sale la de otro idioma, y
+ *      (parte 8) que abierto una vez con conexion queda para el Teide.
  *
  * Sale con 1 si algo falla.
  */
@@ -267,6 +288,16 @@ titulo('2. el observador: el Observatorio del Teide, el mismo en los cuatro siti
 /* ════════ 3. los textos ════════ */
 titulo('3. los textos, en los ' + IDI.length + ' idiomas');
 const CIELO_UI = tablaModulo('CIELO_UI') || {};
+/* Las 88 curiosidades de las constelaciones van un fichero por idioma
+   (idiomas/cielo/<l>.json, 22-10-2026): se juntan aqui con CIELO_UI, fila a
+   fila, para que las partes 3 y 14a las miren como antes. */
+const CUR_IDIOMAS = {};
+for (const l of IDI) {
+  let d = {}; try { d = JSON.parse(lee('idiomas/cielo/' + l + '.json')); } catch (e) {}
+  for (const [k, v] of Object.entries(d)) (CUR_IDIOMAS[k] = CUR_IDIOMAS[k] || {})[l] = v;
+}
+const FILAS_EN_MODULO = Object.keys(CIELO_UI).length;
+Object.assign(CIELO_UI, CUR_IDIOMAS);
 const INI = '/* ── CIELO DE TENERIFE: textos ── */', FIN = '/* ── fin CIELO DE TENERIFE: textos ── */';
 const bloqueTx = index.includes(INI) ? index.slice(index.indexOf(INI), index.indexOf(FIN)) : '';
 const CASCARA = literal(bloqueTx, 'Object.assign(UI_TX, {') || {};
@@ -361,7 +392,12 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(index, '"' + k +
        CIELO_PLANETAS mas el Sol), por satelite y por lluvia del catalogo;
        CurSur y CurPolar se piden sueltas */
     Cur: Object.keys(JSON.parse((modulo.match(/var CIELO_PLANETAS = (\{.*\});\n/) || [, '{"cuerpos":{}}'])[1]).cuerpos).concat(['Sun'])
-      .concat(SATJSON.sat.map(s => s.clave[0].toUpperCase() + s.clave.slice(1))).concat(D.lluvias.map(l => l.id))
+      .concat(SATJSON.sat.map(s => s.clave[0].toUpperCase() + s.clave.slice(1))).concat(D.lluvias.map(l => l.id)),
+    /* las 88 constelaciones (22 de octubre, sexto bloque): el origen por su
+       categoria (ORIGEN_FILA del codigo) y la curiosidad por la abreviatura
+       del catalogo */
+    ConOrigen: [...((modulo.match(/var ORIGEN_FILA = \{([^}]*)\}/) || [, ''])[1]).matchAll(/'(\w+)'/g)].map(x => x[1]),
+    CurCon: Object.keys(D.con)
   };
   ok(Object.values(FAMILIAS).every(v => v && v.length) && FAMILIAS.Indice.length === 5, 'las familias se leen del codigo (RUMBOS, FASES, PESTANAS, las palabras del indice)');
   /* y si manana el codigo arma otra (T('Algo' + x)), que no pase sin mirar */
@@ -419,7 +455,7 @@ titulo('4. la carga perezosa y lo que pide el navegador');
   /* `pedir` es fetch o, dentro de la aplicacion de las tiendas, tgoFetchDatos (index.html): la copia viva primero y la de dentro si no llega */
   const fetchs = [...modulo.matchAll(/\b(?:fetch|pedir)\(\s*([^)]{0,60})/g)].map(m => m[1].trim());
   ok(hosts.length > 0 && hosts.every(h => conecta.includes('https://' + h)), 'lo que el panel pide fuera (' + [...new Set(hosts)].join(', ') + ') esta en el connect-src de la CSP', conecta.join(' '));
-  ok(fetchs.length >= 4 && fetchs.every(x => /^'\.\/datos\/cielo\.json'|^'\.\/datos\/satelites\.json'|^url\b/.test(x)), 'y no pide nada mas: el catalogo, los elementos de los satelites, la nubosidad y Wikipedia (fetch: ' + fetchs.join(' · ') + ')');
+  ok(fetchs.length >= 5 && fetchs.every(x => /^'\.\/datos\/cielo\.json'|^'\.\/datos\/satelites\.json'|^url\b|^rutaCurCon\(l\)?$/.test(x)), 'y no pide nada mas: el catalogo, los elementos de los satelites, la nubosidad, Wikipedia y las curiosidades de las constelaciones en su idioma (fetch: ' + fetchs.join(' · ') + ')');
   ok(/var pedir = typeof tgoFetchDatos === 'function' \? tgoFetchDatos : fetch;/.test(modulo) && /function tgoFetchDatos\(ruta, opc\)/.test(index) && /if \(!window\.TGO_NATIVO\) return fetch\(ruta, opc\);/.test(index),
      'los elementos de los satelites se piden con tgoFetchDatos (index.html): en la web es fetch tal cual; en la aplicacion de las tiendas, la copia viva primero');
   /* Wikipedia (20 de octubre de 2026): la ficha pide el resumen a
@@ -621,9 +657,9 @@ const PLJ = JSON.parse(lee('datos/planetas.json'));
   const min = k => PLANETAS.reduce((a, b) => C[b][k] < C[a][k] ? b : a), max = k => PLANETAS.reduce((a, b) => C[b][k] > C[a][k] ? b : a);
   const afirma = [
     [min('diametro_km') === 'Mercury' && max('velocidad_kms') === 'Mercury', 'Mercurio «el mas pequeño y el mas rapido»'],
-    [Math.abs(C.Mercury.dia_h / 24 / C.Mercury.periodo_d - 2) < 0.05, 'el dia solar de Mercurio dura «casi dos de sus años» (' + (C.Mercury.dia_h / 24 / C.Mercury.periodo_d).toFixed(2) + ')'],
-    [C.Venus.rotacion_h < 0 && C.Venus.oblicuidad_deg > 170 && Math.abs(C.Venus.rotacion_h) / 24 > C.Venus.periodo_d && max('temp_c') === 'Venus' && C.Venus.temp_c > C.Mercury.temp_c && C.Venus.presion_bar > 50,
-     'Venus «gira al reves», su vuelta dura mas que su año, «el mas caliente, mas que Mercurio», 92 bares'],
+    [Math.abs(C.Mercury.dia_h / 24 / C.Mercury.periodo_sideral_d - 2) < 0.005, 'el dia solar de Mercurio dura «dos de sus años», justos con el año sideral que enseña la app (' + (C.Mercury.dia_h / 24 / C.Mercury.periodo_sideral_d).toFixed(3) + ')'],
+    [C.Venus.rotacion_h < 0 && C.Venus.oblicuidad_deg > 170 && PLANETAS.filter(b => C[b].rotacion_h < 0).join() === 'Venus,Uranus' && Math.abs(C.Venus.rotacion_h) / 24 > C.Venus.periodo_d && max('temp_c') === 'Venus' && C.Venus.temp_c > C.Mercury.temp_c && C.Venus.presion_bar > 50,
+     'Venus «gira al reves, como Urano» (en la tabla solo ellos dos rotan en negativo), su vuelta dura mas que su año, «el mas caliente, mas que Mercurio», 92 bares'],
     [Math.abs(C.Mars.dia_h - 24) < 1 && C.Mars.lunas === 2, 'Marte: dia «casi como el nuestro», dos lunas'],
     [max('diametro_km') === 'Jupiter' && min('dia_h') === 'Jupiter', 'Jupiter «el mayor» y «el que mas deprisa gira»'],
     [C.Saturn.densidad_kgm3 < 1000 && max('lunas') === 'Saturn', 'Saturno «menos denso que el agua» y con mas lunas que ninguno'],
@@ -649,20 +685,127 @@ const PLJ = JSON.parse(lee('datos/planetas.json'));
   if (!/109P/.test(padre('PER')) || !/55P/.test(padre('LEO')) || !/21P/.test(padre('DRA')) || !/8P\/Tuttle/.test(padre('URS')) || !/96P/.test(padre('SDA')) || !/C\/1861 G1/.test(padre('LYR')) || !/169P/.test(padre('CAP'))) malLl.push('un cuerpo padre no es el de la NASA/IMO');
   ok(!malLl.length, 'el cuerpo padre de las once lluvias (lista de la IMO, en el catalogo) es el que dice la NASA: dos asteroides (2003 EH1, Faeton) y nueve cometas, Halley dos veces', malLl.join(' · '));
   const vmin = D.lluvias.reduce((a, l) => l.v < a.v ? l : a), vmax = D.lluvias.reduce((a, l) => l.v > a.v ? l : a);
-  ok(vmin.id === 'DRA' && vmax.id === 'LEO' && LL.ETA.v >= 60 && LL.ORI.v >= 60, 'las Draconidas son «las mas lentas de esta lista» (' + vmin.v + ' km/s), las Leonidas «las mas rapidas de todas» (' + vmax.v + '), Eta Acuaridas y Orionidas a 60 o mas');
+  ok(vmin.id === 'DRA' && vmax.id === 'LEO' && LL.ETA.v >= 60 && LL.ORI.v >= 60, 'las Draconidas son «las mas lentas de esta lista» (' + vmin.v + ' km/s), las Leonidas «las mas rapidas de esta lista» (' + vmax.v + '), Eta Acuaridas y Orionidas a 60 o mas');
   /* las fuentes de cada curiosidad, en el modulo: https, y una por lluvia */
   const urls = (modulo.match(/FUENTES_LLU = \{([\s\S]*?)\n  \};/) || [, ''])[1];
   const sinFuente = D.lluvias.map(l => l.id).filter(id => !new RegExp('\\n    ' + id + ': \\[').test(urls));
   ok(!sinFuente.length && !/http:\/\//.test(urls), 'las once lluvias tienen su fuente (NASA, AMS, Wikipedia, UCM), todas https', sinFuente.join(', '));
   const txt = tablaModulo('CIELO_UI') || {};
-  const cur = Object.keys(txt).filter(k => /^cieloCur(?!Fuente)[A-Z]/.test(k));
+  const cur = Object.keys(txt).filter(k => /^cieloCur(?!Fuente|Con[A-Z])[A-Z]/.test(k));   // las 88 de las constelaciones (cieloCurCon*) van en la parte 14a
   ok(cur.length === 26, '26 curiosidades en CIELO_UI (Sol, Luna, ocho planetas, tres satelites, once lluvias, el sur y la Polar)', cur.length + ': ' + cur.join(' '));
   ok(/'Cur' \+ c\.cuerpo/.test(modulo) && /'Cur' \+ l\.id/.test(modulo) && /SearchLunarApsis/.test(modulo) && /NextLunarApsis/.test(modulo) && /DEC_SUR = -40/.test(modulo) && /HIP_POLAR = 11767/.test(modulo),
      'el modulo saca la curiosidad del cuerpo y de la lluvia por su clave, el perigeo y el apogeo del motor, y el sur desde -40° de declinacion; la Polar por su HIP');
 }
 
+/* ════════ 14a. las 88 constelaciones: el JSON, su copia y lo que dicen las filas ════════ */
+titulo('14a. las 88 constelaciones: datos/constelaciones.json, su copia en el modulo, las areas, los origenes');
+{
+  const CJ = JSON.parse(lee('datos/constelaciones.json'));
+  const m = modulo.match(/var CIELO_CONS = (\{.*\});\n/);
+  let copia = null; try { copia = m && JSON.parse(m[1]); } catch (e) {}
+  const sinCitas = o => { const r = {}; for (const [a, c] of Object.entries(o)) { const x = Object.assign({}, c); delete x.cita; r[a] = x; } return r; };
+  ok(copia && JSON.stringify(copia.con) === JSON.stringify(sinCitas(CJ.con)) && copia.leido === CJ.leido, 'CIELO_CONS (modulos/cielo.js) es la copia exacta de datos/constelaciones.json sin las citas (88 constelaciones)');
+  const abs = Object.keys(CJ.con), cat = Object.keys(D.con);
+  ok(abs.length === 88 && abs.every(a => D.con[a]) && cat.every(a => CJ.con[a]), 'las 88 abreviaturas son las del catalogo (datos/cielo.json)');
+  const suma = abs.reduce((t, a) => t + CJ.con[a].area, 0);
+  ok(Math.abs(suma - 41252.96) < 0.1, 'las 88 areas suman la esfera entera: ' + suma.toFixed(3) + ' grados cuadrados (4π sr = 41.252,96)');
+  const porArea = abs.slice().sort((a, b) => CJ.con[b].area - CJ.con[a].area);
+  const malR = porArea.filter((a, i) => CJ.con[a].rango !== i + 1);
+  ok(!malR.length && CJ.con.Hya.rango === 1 && CJ.con.Cru.rango === 88, 'los puestos van del 1 (Hydra, ' + CJ.con.Hya.area + ') al 88 (Crux, ' + CJ.con.Cru.area + ') en el orden de las areas', malR.join(', '));
+  const ORI = { ptolomeo: [47, null], keyser: [12, 1598], plancius: [4, null], hevelius: [7, 1690], lacaille: [14, 1756], argo: [3, 1756], vopel: [1, 1536] };
+  const cuenta = {}; abs.forEach(a => { cuenta[CJ.con[a].origen] = (cuenta[CJ.con[a].origen] || 0) + 1; });
+  const malO = abs.filter(a => { const c = CJ.con[a], o = ORI[c.origen]; return !o || (o[1] !== null && c.anio !== o[1]) || (c.origen === 'ptolomeo' && c.anio !== null) || (c.origen === 'plancius' && ![1589, 1592, 1613].includes(c.anio)); });
+  ok(!malO.length && Object.keys(ORI).every(k => cuenta[k] === ORI[k][0]), 'el origen de cada una es una de siete categorias y el año cuadra: ' + Object.entries(cuenta).map(x => x.join(' ')).join(', '), malO.join(', '));
+  ok(['Pup', 'Vel', 'Car'].every(a => CJ.con[a].origen === 'argo') && CJ.con.Com.origen === 'vopel' && CJ.con.Cru.anio === 1589 && CJ.con.Col.anio === 1592 && CJ.con.Cam.anio === 1613 && CJ.con.Mon.anio === 1613,
+     'Puppis, Vela y Carina vienen de Argo Navis; Coma Berenices de Vopel; Crux 1589, Columba 1592, Camelopardalis y Monoceros 1613 (Plancius)');
+  /* la estrella mas brillante de la lista de la UAI contra la del catalogo (HYG): el mismo nombre cuando el catalogo lo tiene */
+  const iau = {}; for (const [h, n] of Object.entries(D.nombresIAU || {})) iau[Number(h)] = n;
+  const est = {}; D.estrellas.forEach(e => { est[e.h] = e.n; });
+  const norm = x => String(x).toLowerCase().replace(/[^a-z]/g, '');
+  const excep = { Cas: 'γ Cas (variable, mag. 2,15 en HYG) frente a Schedar (2,24): las dos valen', Lib: 'Zubeneschamali (UAI) / Zubeneschemali (la tabla): la misma estrella',
+                  Cen: 'Alpha Centauri (la tabla nombra el sistema) / Rigil Kentaurus (UAI, su estrella principal, α¹ Cen): la misma' };
+  const malB = [], comparadas = [];
+  for (const a of abs) {
+    const b = CJ.con[a].brillante, alfa = D.con[a].alfa, n = iau[alfa] || est[alfa];
+    if (/^[α-ω]/.test(b) || !n) continue;
+    comparadas.push(a);
+    if (norm(n) !== norm(b) && !excep[a]) malB.push(a + ': ' + b + ' / ' + n);
+  }
+  /* 51 comparadas: de las 88, 24 dan la mas brillante con letra griega y 13
+     con un nombre que el catalogo no lleva (no salen desde Tenerife o la UAI
+     las nombro en 2023-2025: Paradys, Xami, Uridim, Alaybasan...) */
+  ok(!malB.length && comparadas.length >= 50, 'la estrella mas brillante de la lista de la UAI es la del catalogo en las ' + comparadas.length + ' que el catalogo nombra (salvo ' + Object.keys(excep).join(', ') + ', explicadas)', malB.join(' · '));
+  /* de donde sale cada curiosidad: la pagina de Star Tales (Ian Ridpath) que se
+     leyo; Corvus y Crater comparten una; Orion, cuya pagina no se dejo leer,
+     sale de Wikipedia (ridpath null, wiki) */
+  const pag = a => CJ.con[a].ridpath || CJ.con[a].wiki;
+  const malU = abs.filter(a => { const c = CJ.con[a]; return c.ridpath ? (!/^https:\/\/www\.ianridpath\.com\/startales\/[a-z]+\.html?$/.test(c.ridpath) || !!c.wiki) : !/^https:\/\/en\.wikipedia\.org\/wiki\/\S+$/.test(c.wiki || ''); });
+  ok(!malU.length && abs.filter(a => !CJ.con[a].ridpath).join() === 'Ori' && CJ.con.Crv.ridpath === CJ.con.Crt.ridpath && new Set(abs.map(pag)).size === 87,
+     'cada una con la pagina de su curiosidad: Star Tales (Ian Ridpath) en 87 (Corvus y Crater comparten la suya) y Wikipedia en Orion: 87 paginas', malU.join(', '));
+  ok(CJ.fuentes && /\/IAU_designated_constellations$/.test(CJ.fuentes.origen) && /\/IAU_designated_constellations_by_solid_angle$/.test(CJ.fuentes.area),
+     'las dos tablas de la UAI en Wikipedia (el origen y el tamaño) estan en el JSON, y la ficha las enlaza');
+  /* las fuentes de mas: la pagina de Wikipedia de una estrella cuya curiosidad
+     corrige a Star Tales con un nombre que la UAI aprobo despues */
+  const conMas = abs.filter(a => CJ.con[a].mas);
+  const malMas = conMas.filter(a => !CJ.con[a].mas.every(f => Array.isArray(f) && f.length === 2 && /^Wikipedia: /.test(f[0]) && /^https:\/\/en\.wikipedia\.org\/wiki\/\S+$/.test(f[1])));
+  ok(!malMas.length && conMas.join() === 'Lup,Tri', 'Lupus y Triangulum llevan ademas la pagina de su estrella mas brillante (Uridim, 2024; Alaybasan, 2025)', malMas.join(', ') + ' / ' + conMas.join(', '));
+  const txt = CIELO_UI;
+  const sinFila = abs.filter(a => !txt['cieloCurCon' + a] || IDI.some(l => !txt['cieloCurCon' + a][l]));
+  ok(!sinFila.length, 'las 88 filas cieloCurCon* existen en los ' + IDI.length + ' idiomas (y la parte 3 ya miro sus diez idiomas)', sinFila.join(', '));
+  /* un fichero por idioma (22-10-2026, tarde): las 88 van ahi y solo ahi */
+  const claves88 = abs.map(a => 'cieloCurCon' + a);
+  const malIdi = IDI.filter(l => { let d = null; try { d = JSON.parse(lee('idiomas/cielo/' + l + '.json')); } catch (e) {}
+    return !d || Object.keys(d).join() !== claves88.join() || Object.values(d).some(v => typeof v !== 'string' || !v.trim() || /[<>]/.test(v)); });
+  ok(!malIdi.length, 'idiomas/cielo/<l>.json en los ' + IDI.length + ' idiomas: las 88 claves en el orden de CIELO_CONS, cada una un texto sin etiquetas', malIdi.join(', '));
+  const quedan = (modulo.match(/^\s*"cieloCurCon[A-Za-z]+"\s*:/gm) || []).length;
+  ok(quedan === 0 && FILAS_EN_MODULO + 88 === Object.keys(CIELO_UI).length, 'y ninguna se queda en modulos/cielo.js: nadie las baja dos veces (CIELO_UI, ' + FILAS_EN_MODULO + ' filas)', quedan + ' filas cieloCurCon en el modulo');
+  const sinCita = abs.filter(a => typeof CJ.con[a].cita !== 'string' || CJ.con[a].cita.length < 40 || !/«[^»]+»/.test(CJ.con[a].cita) || !/^(Star Tales, |Orion: )/.test(CJ.con[a].cita));
+  ok(!sinCita.length && copia && abs.every(a => copia.con[a] && copia.con[a].cita === undefined), 'cada una con su cita en datos/constelaciones.json (lo que dice su pagina, entre «»), y la copia del modulo sin las citas', sinCita.join(', '));
+  ok(/function rutaCurCon\(l\) \{ return '\.\/idiomas\/cielo\/' \+ l \+ '\.json'; \}/.test(modulo) && /var t = CUR_CON\[lang\(\)\];\s*if \(!t\) \{ S\.conFalta = true; cargarCurCon\(\); return null; \}/.test(modulo) && /cargarCurCon\(\);\n  \}\n  function cerrar\(\)/.test(modulo),
+     'el modulo pide idiomas/cielo/<idioma de quien mira>.json al abrir el panel y, mientras no llega, la ficha sale sin curiosidad: nunca la de otro idioma');
+  ok(/FICHEROS_PANEL\.concat\(\[rutaCurCon\(lang\(\)\)\]\)/.test(modulo), '«Antes de subir al Teide» cuenta tambien el fichero de las curiosidades del idioma');
+  const RE_SW = '/\\/(idiomas\\/(etiquetas\\/|cielo\\/)?|faq\\/)[a-z]{2,3}\\.json$/';
+  const reSw = /\/(idiomas\/(etiquetas\/|cielo\/)?|faq\/)[a-z]{2,3}\.json$/;
+  ok(lee('sw.js').includes(RE_SW) && IDI.every(l => reSw.test('/tenerife-go/idiomas/cielo/' + l + '.json')) && !reSw.test('/tenerife-go/idiomas/cielo/fuentes.json'),
+     'el service worker las sirve red primero y las guarda, como idiomas/<l>.json: en el Teide estan');
+  const F = require('./fuente'), pi = F.porIdioma();
+  ok(pi.length === 1 && pi[0].nombre === 'IDIOMAS_CIELO' && (pi[0].texto.match(/^    "cieloCurCon/gm) || []).length === 88 && F.html().includes('var IDIOMAS_CIELO = {'),
+     'tools/fuente.js las junta en IDIOMAS_CIELO, 88 filas de diez idiomas, para las herramientas que barren el fuente');
+  /* lo que las curiosidades dicen de Tenerife, contra el catalogo: la latitud
+     del observatorio (datos/cielo.json, obs) y la declinacion de cada estrella.
+     Culminacion al sur: 90 - lat + dec; paso por debajo del polo: dec - (90 - lat).
+     Una frase nueva que nombre Tenerife sin entrar en esta tabla, sale en rojo. */
+  const LAT = D.obs.lat, culm = dec => 90 - LAT + dec, bajo = dec => dec - (90 - LAT);
+  const est1 = n => (D.estrellas.find(e => e.n === n) || {}).dec;
+  const bay = b => (D.est.find(e => e[6] === b) || [])[1];
+  const c80 = (D.objetos.find(o => o.id === 'C80') || {}).dec;
+  const cruz = [].concat(...(D.lin.Cru || [])).map(q => culm(q[1])).sort((x, y) => x - y);
+  const carro = ['α UMa', 'β UMa', 'γ UMa', 'δ UMa', 'ε UMa', 'ζ UMa', 'η UMa'].map(bay);
+  const TF = {
+    Car: [culm(est1('Canopus')) > 3 && culm(est1('Canopus')) < 15, 'Canopus culmina a ' + culm(est1('Canopus')).toFixed(1) + '° («asoma unos grados»)'],
+    Cen: [culm(est1('Rigil Kentaurus')) > 0 && culm(est1('Rigil Kentaurus')) < 2 && Math.round(culm(c80)) === 14,
+          'Rigil Kentaurus a ' + culm(est1('Rigil Kentaurus')).toFixed(1) + '° («apenas roza») y Omega Centauri a ' + culm(c80).toFixed(1) + '° («unos 14°»)'],
+    Cru: [cruz.length === 4 && cruz[0] < 0 && cruz.slice(1).every(x => x > 0 && x < 5), 'la Cruz culmina a ' + cruz.map(x => x.toFixed(1)).join(', ') + '°: asoman tres, a menos de 5°, y Acrux no sale'],
+    UMa: [carro.every(d => typeof d === 'number') && carro.some(d => bajo(d) < 0), 'del Carro se ponen ' + carro.filter(d => bajo(d) < 0).length + ' de sus 7 estrellas («una parte se esconde»)']
+  };
+  /* «ninguna tiene nombre»: solo si la lista de la UAI da su estrella mas
+     brillante con letra griega (sin nombre propio). Star Tales es de antes de
+     los nombres de 2022-2025, y asi salieron Uridim (Lupus) y Alaybasan
+     (Triangulum), que la fila decia sin nombre. */
+  const SIN_NOMBRE = /ninguna (?:de sus estrellas )?tiene nombre|no tiene nombre/;
+  const dicenSin = abs.filter(a => SIN_NOMBRE.test((txt['cieloCurCon' + a] || {}).es || ''));
+  const malSin = dicenSin.filter(a => !/^[α-ω]/.test(CJ.con[a].brillante));
+  ok(!malSin.length && dicenSin.length >= 3, 'las ' + dicenSin.length + ' que dicen que sus estrellas no tienen nombre (' + dicenSin.join(', ') + ') tienen la mas brillante con letra griega en la lista de la UAI', malSin.map(a => a + ': ' + CJ.con[a].brillante).join(', '));
+  const conTF = abs.filter(a => /Tenerife/.test((txt['cieloCurCon' + a] || {}).es || ''));
+  const malTF = conTF.filter(a => !TF[a] || !TF[a][0]);
+  ok(!malTF.length && conTF.join() === Object.keys(TF).join() && /14°/.test((txt.cieloCurConCen || {}).es || ''),
+     'lo que dicen de Tenerife lo confirma el catalogo (latitud ' + LAT + '): ' + Object.values(TF).map(x => x[1]).join(' · '), 'mal: ' + malTF.join(', ') + ' · nombran Tenerife: ' + conTF.join(', '));
+  ok(/datosConstelacion\(c\.ab, L\)/.test(modulo) && /datosConstelacion\(x\.ab, d\)/.test(modulo) && /curiosidadConstelacion\(c\.ab\)/.test(modulo),
+     'la ficha y el catalogo llevan el origen y el tamaño, y la curiosidad sale por la abreviatura');
+}
+
 if (!PUERTO) {
-  nota('sin puerto: se salta todo lo que va en el navegador (6 a 13)');
+  nota('sin puerto: se salta todo lo que va en el navegador (6 a 14)');
   fin();
 } else {
   navegador().then(fin, e => { fallos++; console.log('  MAL el navegador no termino   -> ' + (e && e.stack || e)); fin(); });
@@ -688,6 +831,7 @@ async function navegador() {
     if (toca(11)) await satelites(b);
     if (toca(12)) await tercerBloque(b);
     if (toca(13)) await quintoBloque(b);
+    if (toca(14)) await sextoBloque(b);
   } finally { await b.close(); }
 }
 
@@ -1027,6 +1171,18 @@ async function sinConexion(b) {
       return { activo: !!reg.active, falta: true };
     });
     ok(listo.activo && !listo.falta, 'el service worker instala la app y deja el panel en el cache sin abrirlo', JSON.stringify(listo));
+    /* las curiosidades de las constelaciones van un fichero por idioma: se
+       guardan la primera vez que se abre el panel con conexion («abra el
+       panel una vez con conexion y se guarda solo») */
+    const cur = await p.evaluate(async () => {
+      for (let i = 0; i < 50 && !navigator.serviceWorker.controller; i++) await new Promise(r => setTimeout(r, 100));
+      await window.TG_CIELO_CARGAR(); TG_CIELO.abrir(); await TG_CIELO.curiosidades();
+      const u = new URL('./idiomas/cielo/es.json', location.href).href;
+      for (let i = 0; i < 50; i++) { if (await caches.match(u)) break; await new Promise(r => setTimeout(r, 100)); }
+      TG_CIELO.cerrar();
+      return { guardado: !!(await caches.match(u)), otro: !!(await caches.match(new URL('./idiomas/cielo/en.json', location.href).href)) };
+    });
+    ok(cur.guardado && !cur.otro, 'abierto una vez con conexion, el fichero de las curiosidades del idioma queda guardado (y solo el suyo)', JSON.stringify(cur));
     srv.kill(); await new Promise(r => setTimeout(r, 300));
     await p.reload({ waitUntil: 'load' });
     await p.waitForTimeout(1500);
@@ -1034,10 +1190,14 @@ async function sinConexion(b) {
       if (typeof TG_CIELO_CARGAR !== 'function') return { app: false };
       try { await window.TG_CIELO_CARGAR(); await TG_CIELO.ver('noche', '2026-12-13'); } catch (e) { return { app: true, error: String(e) }; }
       const txt = document.getElementById('cielo-panel').innerText;
+      await TG_CIELO.curiosidades();
+      const ori = TG_CIELO.ficha({ con: 'Ori' }, new Date()).querySelector('.cielo-curio-txt');
       return { app: true, motor: typeof Astronomy !== 'undefined', datos: !!TG_CIELO.estado.datos, fallo: TG_CIELO.estado.fallo,
-               luna: txt.includes(UI_TX.cieloLuna ? UI_TX.cieloLuna.es : 'Luna'), error: txt.includes(UI_TX.cieloErrorCarga.es) };
+               luna: txt.includes(UI_TX.cieloLuna ? UI_TX.cieloLuna.es : 'Luna'), error: txt.includes(UI_TX.cieloErrorCarga.es),
+               curiosidad: ori ? ori.innerText.length : 0 };
     });
     ok(r.app && r.motor && r.datos && !r.fallo && r.luna && !r.error, 'con el servidor apagado, el panel abre: motor, catalogo y la noche calculada', JSON.stringify(r));
+    ok(r.curiosidad > 60, 'y la ficha de Orion lleva su curiosidad, sacada de lo guardado', JSON.stringify(r));
     /* 21 de octubre, tercer bloque: «Antes de subir al Teide» tiene que decir que esta guardado */
     const off = await p.evaluate(async () => {
       const espera = ms => new Promise(r => setTimeout(r, ms));
@@ -2223,18 +2383,18 @@ async function quintoBloque(b) {
   ok(apsOK && /perigeo/.test(L.texto) && /apogeo/.test(L.texto) && L.apsides.every(a => new RegExp(Math.round(a.km / 100) * 100 >= 1e5 ? String(Math.round(a.km / 100) * 100).replace(/(\d{3})$/, '.$1') : '').test(L.texto)),
      'la Luna: perigeo y apogeo que vienen (' + L.apsides.map(a => (a.kind ? 'apogeo ' : 'perigeo ') + Math.round(a.km) + ' km en ' + a.dias.toFixed(1) + ' d').join(', ') + '), cada uno un minimo o maximo de la distancia del motor y en la ficha con sus km', L.texto.slice(0, 200));
   ok(/27,3 días/.test(L.curio) && /3,8 cm/.test(L.curio) && /Apolo/.test(L.curio), 'y su curiosidad: la misma cara (27,3 dias), 3,8 cm al año, las huellas del Apolo', L.curio);
-  ok(/109/.test(r.sol) && /332\.900/.test(r.sol) && /5500/.test(r.sol) && /25,4 días/.test(r.sol) && /99 %/.test(r.sol), 'el Sol: 109 radios, 332.900 masas, 5500 °C, 25,4 dias, mas del 99 % (Sun Fact Sheet)', r.sol);
+  ok(/109/.test(r.sol) && /332\.900/.test(r.sol) && /5500/.test(r.sol) && /16° del ecuador da una vuelta en 25,4 días/.test(r.sol) && /99 %/.test(r.sol), 'el Sol: 109 radios, 332.900 masas, 5500 °C, 25,4 dias a 16° del ecuador (el periodo de la hoja), mas del 99 % (Sun Fact Sheet)', r.sol);
   ok(/243 días/.test(r.venus) && /224,7 días/.test(r.venus) && /464 °C/.test(r.venus) && /92 bares/.test(r.venus), 'Venus: 243 dias de vuelta, 224,7 de año, 464 °C, 92 bares', r.venus);
   const lim = d => Math.round(90 - Math.abs(d)), culm = d => Math.round(90 - 28.2987 + d);
   ok(new RegExp('\\b' + lim(r.canopus.dec) + '°').test(r.canopus.curio) && new RegExp('\\b' + culm(r.canopus.dec) + '°').test(r.canopus.curio) && Math.abs(culm(r.canopus.dec) - r.canopus.alt) < 1 && /40°/.test(r.canopus.curio) && /49°/.test(r.canopus.curio),
      'Canopus (dec ' + r.canopus.dec.toFixed(1) + '°): «nunca sale al norte de los ' + lim(r.canopus.dec) + '°», culmina a ' + culm(r.canopus.dec) + '° (la altura maxima del catalogo: ' + r.canopus.alt + '°), con Madrid y Paris', r.canopus.curio);
   ok(new RegExp('\\b' + lim(r.omega.dec) + '°').test(r.omega.curio) && new RegExp('\\b' + culm(r.omega.dec) + '°').test(r.omega.curio) && Math.abs(culm(r.omega.dec) - r.omega.alt) < 1, 'Omega Centauri (objeto, dec ' + r.omega.dec.toFixed(1) + '°): lo mismo, ' + lim(r.omega.dec) + '° y ' + culm(r.omega.dec) + '°', r.omega.curio);
-  ok(/\b28°/.test(r.polar.curio) && Math.round(r.polar.lat) === 28 && /navegantes/.test(r.polar.curio) && !r.betelgeuse, 'la Polar: su altura es la latitud (28°), los navegantes; Betelgeuse (dec +7°) no lleva curiosidad', r.polar.curio);
+  ok(/\b28°/.test(r.polar.curio) && Math.round(r.polar.lat) === 28 && /es la latitud del lugar/.test(r.polar.curio) && !/navegantes/.test(r.polar.curio) && !r.betelgeuse, 'la Polar: su altura es la latitud (28°), sin lo de los navegantes, que no tiene fuente; Betelgeuse (dec +7°) no lleva curiosidad', r.polar.curio);
   const S_ = r.sat;
   ok(/8 km\/s/.test(S_.iss.curio) && /90 minutos/.test(S_.iss.curio) && /16/.test(S_.iss.curio) && /109 m/.test(S_.iss.curio) && /2000/.test(S_.iss.curio) && S_.iss.fuentes.join() === 'NASA ↗',
      'la ISS: 8 km/s, 90 minutos, 16 amaneceres, 109 m, desde 2000, fuente NASA', S_.iss.curio);
-  ok(/palacio celestial/.test(S_.tiangong.curio) && /29 de abril de 2021/.test(S_.tiangong.curio) && /tres módulos/.test(S_.tiangong.curio) && /un tercio/.test(S_.tiangong.curio) && /seis meses/.test(S_.tiangong.curio) && S_.tiangong.fuentes.length === 2,
-     'Tiangong: «palacio celestial», 29-4-2021, tres modulos, un tercio de la ISS, seis meses; Wikipedia y The Planetary Society', S_.tiangong.curio);
+  ok(/palacio celestial/.test(S_.tiangong.curio) && /29 de abril de 2021/.test(S_.tiangong.curio) && /tres módulos/.test(S_.tiangong.curio) && /volumen presurizado es poco más de un tercio/.test(S_.tiangong.curio) && /seis meses/.test(S_.tiangong.curio) && S_.tiangong.fuentes.length === 2,
+     'Tiangong: «palacio celestial», 29-4-2021, tres modulos, un tercio del volumen presurizado de la ISS, seis meses; Wikipedia y The Planetary Society', S_.tiangong.curio);
   ok(/Discovery/.test(S_.hubble.curio) && /24 de abril de 1990/.test(S_.hubble.curio) && /610 km/.test(S_.hubble.curio) && /13 m/.test(S_.hubble.curio) && /1,2 millones/.test(S_.hubble.curio) && S_.hubble.fuentes.length === 2,
      'el Hubble: Discovery, 24-4-1990, 610 km, 13 m, 1,2 millones de observaciones; dos paginas de la NASA', S_.hubble.curio);
   const malLl = r.lluvias.filter(l => !l.curio || /\{[a-z]+\}|undefined|NaN/.test(l.curio) || !l.padre || !l.fuentes.length || (l.curio.indexOf('{v}') < 0 && /km\/s/.test(l.curio) && !new RegExp('\\b' + l.v + ' km/s').test(l.curio))).map(l => l.id);
@@ -2286,4 +2446,96 @@ async function quintoBloque(b) {
   ok(!malIdi.length, 'en los ' + IDI.length + ' idiomas: la hoja y la curiosidad de Jupiter, la Luna, el Sol, Canopus, la ISS, las Perseidas, la luz zodiacal y la sombra sin texto roto ni repeticiones, cada uno en su idioma', malIdi.slice(0, 5).join(' · '));
   ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
   await ctx.close();
+}
+
+/* ── 14. las constelaciones, en la pantalla ─────────────────────────────── */
+async function sextoBloque(b) {
+  titulo('14. las 88 constelaciones, en la pantalla');
+  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { isMobile: true, hasTouch: true });
+  await p.clock.setFixedTime(new Date(Date.UTC(2026, 9, 22, 20, 0, 0)));
+  const r = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); setLang('es'); TG_CIELO.estado.fecha = null; TG_CIELO.abrir();
+    await TG_CIELO.curiosidades('es');
+    const out = {}, ahora = new Date();
+    const txt = e => e ? e.innerText : '';
+    for (const ab of ['Ori', 'Hya', 'Cru', 'Cam', 'Com', 'Pup', 'UMa']) {
+      const f = TG_CIELO.ficha({ con: ab }, ahora);
+      out[ab] = { datos: [...f.querySelectorAll('.cielo-ficha-datos li')].map(x => x.textContent), curio: txt(f.querySelector('.cielo-curio-txt')), fuentes: [...f.querySelectorAll('.cielo-fuente button')].map(x => x.textContent) };
+    }
+    /* el catalogo: Orion en «constelaciones» con el detalle */
+    TG_CIELO.estado.cat.tipo = 'constelaciones'; TG_CIELO.estado.cat.busca = 'Ori';
+    await TG_CIELO.ver('catalogo', '2026-10-22'); await espera(300);
+    const it = [...document.querySelectorAll('#cielo-panel .cielo-item')].find(x => /Ori/.test(x.textContent) && /✳️/.test(x.textContent));
+    TG_CIELO.estado.cat.tipo = 'todo'; TG_CIELO.estado.cat.busca = '';
+    out.catalogo = it ? { mas: txt(it.querySelector('.cielo-item-mas')), curio: txt(it.querySelector('.cielo-curio')) } : null;
+    return out;
+  });
+  const O = r.Ori;
+  ok(O.datos.some(x => /Ptolomeo/.test(x) && /siglo II/.test(x)) && O.datos.some(x => /594 grados cuadrados/.test(x) && /n\.º 26 de 88/.test(x)), 'Orion: «una de las 48 de Ptolomeo», 594 grados cuadrados, la n.º 26 de 88', O.datos.join(' | '));
+  ok(O.curio.length > 60 && O.fuentes.length === 3 && /^Wikipedia ↗/.test(O.fuentes[0]) && /origen/.test(O.fuentes[1]) && /tamaño/.test(O.fuentes[2]),
+     'y su curiosidad con sus tres fuentes: Wikipedia (la pagina de Orion en Star Tales no se dejo leer), y las tablas de la UAI del origen y del tamaño', O.curio + ' | ' + O.fuentes.join(', '));
+  ok(['Hya', 'Cru', 'Cam', 'Com', 'Pup', 'UMa'].every(a => r[a].fuentes.length === 3 && /^Star Tales \(Ian Ridpath\) ↗/.test(r[a].fuentes[0])),
+     'las otras seis, con Star Tales (Ian Ridpath) delante', ['Hya', 'Cru', 'Cam', 'Com', 'Pup', 'UMa'].map(a => a + ': ' + r[a].fuentes.join(', ')).join(' // ').slice(0, 300));
+  ok(r.Hya.datos.some(x => /1303 grados/.test(x) && /n\.º 1 de 88/.test(x)) && r.Cru.datos.some(x => /68 grados/.test(x) && /n\.º 88 de 88/.test(x)), 'Hydra la n.º 1 (1303) y Crux la n.º 88 (68)', r.Hya.datos.join(' | ') + ' // ' + r.Cru.datos.join(' | '));
+  ok(r.Cam.datos.some(x => /Plancius en 1613/.test(x)) && r.Com.datos.some(x => /Vopel \(1536\)/.test(x)) && r.Pup.datos.some(x => /Argo Navis/.test(x) && /1756/.test(x)) && r.UMa.datos.some(x => /Ptolomeo/.test(x)),
+     'Camelopardalis (Plancius, 1613), Coma Berenices (Vopel, 1536), Puppis (Argo Navis, Lacaille 1756), la Osa Mayor (Ptolomeo)', [r.Cam.datos, r.Com.datos, r.Pup.datos].map(x => x.join(' | ')).join(' // '));
+  ok(['Ori', 'Hya', 'Cru', 'Cam', 'Com', 'Pup', 'UMa'].every(a => r[a].curio && !/\{[a-z]+\}|undefined/.test(r[a].curio)), 'las siete fichas con curiosidad y sin texto roto');
+  ok(r.catalogo && /Ptolomeo/.test(r.catalogo.mas) && /594/.test(r.catalogo.mas) && r.catalogo.curio.length > 60, 'en el catalogo, Orion lleva origen, tamaño y curiosidad en su detalle', JSON.stringify(r.catalogo).slice(0, 200));
+  /* los diez idiomas: tres constelaciones */
+  const idiomas = await p.evaluate(async (IDI) => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    const out = {}, ahora = new Date();
+    for (const L of IDI) {
+      setLang(L); await TG_CIELO.curiosidades(L); await espera(30);
+      out[L] = {};
+      for (const ab of ['Ori', 'Cru', 'Lac']) { const f = TG_CIELO.ficha({ con: ab }, ahora); out[L][ab] = f.innerText; }
+    }
+    setLang('es');
+    return out;
+  }, IDI);
+  const malIdi = [];
+  for (const L of IDI) {
+    const t = idiomas[L], todo = Object.values(t).join('\n');
+    if (/undefined|NaN|\{[a-z]+\}|\[object/.test(todo)) malIdi.push(L + ': texto roto');
+    const rep = todo.match(/\b([^\s\d]{3,} [^\s\d]{3,}) \1\b/u); if (rep) malIdi.push(L + ': «' + rep[0] + '» repetido');
+    if (IDI.indexOf(L) && t.Ori === idiomas[IDI[0]].Ori) malIdi.push(L + ': Orion sale igual que en ' + IDI[0]);
+    if (!/594/.test(t.Ori) || !/26/.test(t.Ori) || !/88/.test(t.Ori)) malIdi.push(L + ': Orion sin su tamaño');
+    if (!/1690/.test(t.Lac)) malIdi.push(L + ': Lacerta sin el 1690 de Hevelius');
+    if (!/↗/.test(t.Cru)) malIdi.push(L + ': Crux sin el enlace de la fuente');
+  }
+  ok(!malIdi.length, 'en los ' + IDI.length + ' idiomas: Orion, Crux y Lacerta con origen, tamaño y curiosidad, cada una en su idioma', malIdi.slice(0, 5).join(' · '));
+  ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
+  await ctx.close();
+  /* Un fichero por idioma (22-10-2026, tarde): en una pagina nueva, que el
+     panel pida solo el del idioma de quien mira; que al cambiar de idioma
+     pida el nuevo; y que si un idioma no llega (aqui, el aleman con 404) la
+     ficha salga sin curiosidad, no con la de otro idioma. */
+  const n2 = await abrirApp(b, 390, 844, null, false, { isMobile: true, hasTouch: true });
+  const pedidos = [];
+  n2.p.on('request', q => { const m = q.url().match(/\/idiomas\/cielo\/([a-z]+)\.json/); if (m) pedidos.push(m[1]); });
+  await n2.p.route(/\/idiomas\/cielo\/de\.json$/, r => r.fulfill({ status: 404, body: '' }));
+  const r2 = await n2.p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    setLang('fr'); await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); TG_CIELO.abrir();
+    for (let i = 0; i < 50 && !TG_CIELO.ficha({ con: 'Ori' }, new Date()).querySelector('.cielo-curio-txt'); i++) await espera(100);
+    const fr = TG_CIELO.ficha({ con: 'Ori' }, new Date());
+    const out = { fr: fr.querySelector('.cielo-curio-txt') ? fr.querySelector('.cielo-curio-txt').innerText : '' };
+    setLang('bg'); await espera(100);
+    for (let i = 0; i < 50 && !TG_CIELO.ficha({ con: 'Ori' }, new Date()).querySelector('.cielo-curio-txt'); i++) await espera(100);
+    const bg = TG_CIELO.ficha({ con: 'Ori' }, new Date());
+    out.bg = bg.querySelector('.cielo-curio-txt') ? bg.querySelector('.cielo-curio-txt').innerText : '';
+    setLang('de'); await TG_CIELO.curiosidades('de'); await espera(300);
+    const de = TG_CIELO.ficha({ con: 'Ori' }, new Date());
+    out.de = { curio: !!de.querySelector('.cielo-curio'), texto: de.innerText };
+    TG_CIELO.cerrar(); setLang('es');
+    return out;
+  });
+  const vistos = [...new Set(pedidos)];
+  const esperado = l => (JSON.parse(lee('idiomas/cielo/' + l + '.json')).cieloCurConOri || '\u0000').trim();
+  ok(vistos.join() === 'fr,bg,de' && r2.fr.trim() === esperado('fr') && r2.bg.trim() === esperado('bg'),
+     'el panel pide solo el fichero del idioma de quien mira (frances; al pasar a bulgaro, el bulgaro): ' + vistos.join(', '), JSON.stringify({ vistos, fr: r2.fr.slice(0, 60), bg: r2.bg.slice(0, 60) }));
+  ok(!r2.de.curio && /Herkunft/.test(r2.de.texto) && !/Sabías|Did you know|Le saviez|你知道/.test(r2.de.texto),
+     'sin el fichero del aleman (404), la ficha de Orion sale en aleman sin curiosidad: nunca la de otro idioma', r2.de.texto.slice(0, 200));
+  await n2.ctx.close();
 }

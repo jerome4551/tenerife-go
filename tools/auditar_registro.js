@@ -14,7 +14,8 @@
  *     (idiomas/borrar-cuenta/), la ficha de la App Store
  *     (datos/app-store/ficha.json), las frases de cada manana (frases.json),
  *     el asistente (faq/<l>.json, con las respuestas de la app), el panel
- *     del cielo (modulos/cielo.js) y las etiquetas de las fichas (tags[] de
+ *     del cielo (modulos/cielo.js, y las curiosidades de las constelaciones,
+ *     un fichero por idioma: idiomas/cielo/<l>.json) y las etiquetas de las fichas (tags[] de
  *     index.html e idiomas/etiquetas/<l>.json).
  *
  * Los idiomas de HECHOS ya estan pasados a usted: cualquier marca es un
@@ -237,6 +238,11 @@ async function textos() {
   for (const m of mod.matchAll(/^\s*"?([A-Za-z0-9_]+)"?: (\{"es": .*\}),?\s*$/gm)) {
     let d; try { d = JSON.parse(m[2]); } catch (e) { continue; }
     for (const l of IDI) mete('modulos/cielo.js', m[1], l, d[l]);
+  }
+  /* las 88 curiosidades de las constelaciones, un fichero por idioma desde el 22 */
+  for (const l of IDI) {
+    const f = 'idiomas/cielo/' + l + '.json';
+    if (fs.existsSync(path.join(RAIZ, f))) for (const [k, t] of Object.entries(json(f))) mete(f, k, l, t);
   }
   return out;
 }
