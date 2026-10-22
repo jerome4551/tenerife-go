@@ -40,7 +40,9 @@
  *      hacer»): ni type="number"; innerHTML solo con los dibujos del catalogo,
  *      su propio cuerpo y el degradado de la grafica; ni la ubicacion ni las
  *      visitas comprobadas cerca de la nube; en la nube, solo las tablas de
- *      perfil.sql; y la fila del permiso solo la crea «Acepto».
+ *      perfil.sql; la fila del permiso solo la crea «Acepto»; y el cuerpo, sin
+ *      marcas de idioma en la cadena (auditar_seguridad.py no deja ninguna
+ *      dentro de un <script>).
  *   9. los enganches con la app: los dos botones de «Cuenta» abren el perfil;
  *      el cargador declara los dos modulos y pide avatares.js antes;
  *      tenerife.perfil es la misma clave en los dos; sw.js los precarga y los
@@ -240,6 +242,7 @@ ok(!choca.length, 'ninguna clave de PERFIL_UI choca con una de la app (UI_TX, CI
 const CUERPO = (MOD.match(/var CUERPO = `([\s\S]*?)`;/) || [, ''])[1];
 const ESTILOS = (MOD.match(/var ESTILOS = `([\s\S]*?)`;/) || [, ''])[1];
 ok(CUERPO.length > 5000 && ESTILOS.length > 15000, 'el cuerpo y los estilos van dentro del modulo, como cadenas', CUERPO.length + ' / ' + ESTILOS.length);
+ok(!/data-tx/.test(CUERPO), 'el cuerpo no lleva marcas de idioma en la cadena: sus claves van en TEXTOS (fuente.py pega el modulo en un <script>, y auditar_seguridad.py no deja ninguna ahi)');
 const pedidasTx = new Set([...CODIGO.matchAll(/\btx\('([A-Za-z0-9_]+)'(?!\s*\+)/g)].map(m => m[1]));
 /* las claves de los textos fijos del cuerpo van en TEXTOS, no en la cadena (ver modulos/perfil.js) */
 const TEXTOS = (MOD.match(/var TEXTOS = \[([\s\S]*?)\n  \];/) || [, ''])[1];

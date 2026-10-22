@@ -66,5 +66,25 @@
    "Alya B",
    "Albireo B"
   ]
+ },
+ "El avatar «tf-guagua» del set de Tenerife (modulos/perfil.js, perfilAv_tf_guagua): «guagua» es como se dice autobus en Canarias, y el nombre del avatar la da con su traduccion entre parentesis, como el bulgaro («Гуагуа (автобус)»); en chino va solo la traduccion (22/10/2026)": {
+  "en": [
+   "Guagua (bus)"
+  ],
+  "fr": [
+   "Guagua (bus)"
+  ],
+  "de": [
+   "Guagua (Bus)"
+  ],
+  "it": [
+   "Guagua (bus)"
+  ],
+  "nl": [
+   "Guagua (bus)"
+  ],
+  "pl": [
+   "Guagua (autobus)"
+  ]
  }
 }

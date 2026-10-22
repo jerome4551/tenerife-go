@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.041 kB** en castellano · **1.156 kB** en el peor caso (búlgaro) · 1.141 kB en polaco, el 23 de octubre, con los bloques quinto a octavo del cielo y el trato de usted. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.050 kB** en castellano · **1.164 kB** en el peor caso (búlgaro) · 1.150 kB en polaco, el 23 de octubre, con los bloques quinto a octavo del cielo, el trato de usted y el perfil. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -9140,6 +9140,184 @@ descarga, la misma (1.039 kB en castellano, 1.153 en búlgaro). La
 auditoría entera va sobre la cadena con el perfil (en su sección, abajo),
 que lleva estos dos commits dentro.
 
+## «Su perfil»: el avatar, los datos, la isla y la nube con permiso (22 de octubre, noche)
+
+El encargo de Jerome (`PARA-CLAUDE-CODE-PERFIL.md`, con `perfil-avatares.zip`):
+«Cuenta» abre ahora «Su perfil», con el avatar y el nombre, los datos con el
+IMC, la evolución del peso y de los kilómetros que anota la persona, su isla
+con los logros y la cuenta. Todo se queda en el móvil; a la cuenta solo sube
+con el interruptor de la nube encendido, después de «Acepto». En la rama
+`perfil`, encima del trato de usted, un commit por bloque. El 3 va antes que
+el 2 porque la pantalla lee lo que trae el 3: así cada commit funciona solo.
+
+- **Bloque 1, los avatares** (`adb198f`): `modulos/avatares.js` tal cual
+  llegó (SHA-256 `56597a43…`, la de la nota). Son 11 sets, uno por idioma de
+  la app y el de Tenerife, y 55 dibujos SVG propios, sin fotos, sin fuentes y
+  sin red. No se pide al arrancar: solo si hay un avatar elegido, para
+  pintarlo en el botón de la cuenta.
+- **Bloque 3, las visitas comprobadas** (`7df5d97`): un lugar marcado como
+  visitado estando allí, a 500 m o menos; con una lectura peor de 200 m no
+  se comprueba nada. Se guardan el lugar y el día, en el móvil; la posición
+  ni se guarda ni se envía. El set de Tenerife se abre con 10.
+- **Bloque 2, la pantalla** (`5f40925`): `modulos/perfil.js`, como el
+  cielo. Se pide la primera vez que alguien toca «Cuenta» y lleva dentro sus
+  estilos y sus 144 filas de texto (`PERFIL_UI`, que se funden en `UI_TX`).
+  Si no llega (sin red y sin haberlo guardado nunca), se abre la ficha de la
+  cuenta de siempre. Atrás del móvil y Escape lo cierran. Al probarlo
+  salieron dos cosas, corregidas en el mismo commit:
+  - con un móvil bajo o en horizontal, la pantalla bajaba sola al abrir
+    (48 px a 320×568, 156 px a 740×360);
+  - con el permiso de las notificaciones denegado, la línea del botón se
+    quedaba en «Activando…».
+- **Bloque 2b, el búlgaro** (`4901ef8`): la cuenta pasa de «профил» a
+  «акаунт» donde significa la cuenta. Así «Вашият профил» no llama igual a
+  las dos cosas.
+- **Bloque 4, la nube** (`1381789`): `supabase/perfil.sql` tal cual llegó.
+  Tiene tres tablas: `perfiles`, cuya fila es el permiso, y `pesos` y
+  `caminatas`, que cuelgan de ella en cascada. Lleva RLS en las tres, cada
+  policy solo para `authenticated` y ninguna para `anon`. Y se declara lo que
+  se guarda: Name, Health y Fitness, en `PrivacyInfo.xcprivacy` y en
+  `LANZAMIENTO-APP-STORE.md`.
+- **Bloque 5, los textos** (`d85b9fc`): la política, con el apartado nuevo
+  «Perfil (opcional)»; la página de borrar la cuenta; la frase del permiso
+  de ubicación de iOS; «✓ Visita comprobada», y la respuesta del asistente
+  «¿Qué datos guarda la app?». En los diez idiomas y de usted.
+- **Bloque 6, las pruebas** (este): `tools/probar_perfil.js`, nuevo, dentro
+  de `auditar.sh`. Además, el barrido de pantallas recorre el perfil y sus
+  once pestañas de avatares.
+
+Lo que se probó:
+
+- **`tools/auditar_perfil.js`**, 57 controles sin navegador:
+  - el catálogo y las 144 filas en los diez idiomas;
+  - lo que la pantalla no hace nunca: `type="number"`, `innerHTML` con datos
+    de la persona, la ubicación, otras tablas o crear el permiso fuera de
+    «Acepto»;
+  - los enganches con la app;
+  - que el cuerpo no lleve marcas de idioma dentro de la cadena;
+  - `perfil.sql` contra el módulo.
+- **`tools/probar_perfil.js`**, 96 controles en Chromium, con la app
+  entera:
+  - las 32 regresiones de la verificación del encargo (`regresiones.py`);
+  - las 33 de la nube (`nube.py`), contra una nube de mentira que se porta
+    como `perfil.sql`: `tools/perfil_nube_de_prueba.js`, la `demo-nube.js`
+    del encargo, que imita la RLS, el 23503, la cascada, los check y las
+    columnas;
+  - las 11 de las visitas comprobadas en el mapa (`probar_visitas.py`);
+  - la pantalla: «Cuenta» y `#auth-btn` abren el perfil, cada texto fijo da
+    con su elemento, los 55 avatares se pintan y se elige uno de cada set. En
+    los diez idiomas, a 360, 390 y 430 px, ninguna palabra partida, nada
+    fuera de la pantalla, ningún texto vacío, nada en castellano fuera del
+    castellano y ningún error.
+
+  La primera pasada dio 94. «Teneriffa-Legende» y «Tenerife-legende»
+  bajaban de línea por su guion, que es donde debe ser. Ahora el control
+  parte las palabras por el guion.
+- **`perfil.sql` en un PostgreSQL 16 de verdad** (16.13, en local, fuera
+  del repositorio). La prueba SQL del encargo dio 13 de 13. Otra más dura
+  dio 163 de 163, con los permisos que Supabase da por defecto a las tablas
+  nuevas (todos, también TRUNCATE, para `anon` y `authenticated`):
+  - `perfil.sql` corre dos veces sin un error, así que repetirlo no rompe
+    nada;
+  - `anon` no tiene ningún permiso; `authenticated` tiene las cuatro
+    operaciones, sin TRUNCATE, y las 12 policies son solo para él;
+  - los 55 avatares del catálogo caben en su check, y nueve ids raros no;
+  - cada límite se probó en el borde y fuera;
+  - otra cuenta no ve, no cambia ni borra nada de la primera, ni escribe a
+    su nombre, ni apaga la RLS, ni quita ni pone policies;
+  - retirar el permiso se lleva detrás los pesos y las caminatas;
+  - `borrar_mi_cuenta()` (`borrar-cuenta.sql`) se lleva la cuenta, el
+    perfil, los pesos, las caminatas y los favoritos. Con un administrador
+    devuelve false y no borra nada.
+- **El barrido de pantallas**, con el perfil dentro: 116 pantallas y fichas
+  por idioma. Encontró 18 textos, y ninguno era un hueco de traducción:
+  - el nombre que escribe la persona («Alex», el del barrido) y la marca
+    «Tenerife Go» salían en chino y en búlgaro igual que en los idiomas
+    latinos. Ahora llevan `data-sin-traducir`, como el «TENERIFE GO» de la
+    cabecera, y el correo de la cuenta también;
+  - el avatar «Guagua (bus)»: «guagua» es como se dice autobús en Canarias, y
+    el nombre la da con su traducción, como el búlgaro («Гуагуа (автобус)»).
+    Va en `idiomas/pantalla-aceptado.json`, con su motivo.
+
+  Con eso, el barrido da 0 textos sin traducir y 0 errores de página.
+
+La auditoría entera encontró un rojo, y era mío, del bloque 2.
+`auditar_seguridad.py` no deja ninguna marca `data-tx` dentro de un
+`<script>`, y la plantilla del perfil llevaba 42 (`fuente.py` pega el
+módulo en uno). La nota pedía `perfil.html` dentro del módulo como cadena,
+con sus marcas, y al cerrar el bloque 2 no pasé ese control. Ahora las
+marcas salen de la cadena: sus claves van en `TEXTOS`, una lista de
+selector y clave, y `montar()` las pone con `setAttribute`, como ya hacía
+con el botón de las notificaciones. En pantalla no cambia nada. El arreglo
+va dentro del commit del bloque 2. `auditar_perfil.js` mira que el cuerpo
+no lleve ninguna marca, y `probar_perfil.js`, que cada selector dé con un
+solo elemento y con su clave.
+
+Lo que no se ha podido probar aquí:
+
+- **El Supabase de verdad.** `perfil.sql` lo ejecuta Jerome, y tiene que ser
+  antes de que esto llegue a `main`. Si no, «Acepto» no puede guardar nada.
+  Probado con la nube contestando lo que contesta PostgREST cuando la tabla
+  no existe (PGRST205):
+  - la app avisa «No se ha podido guardar en la nube…»;
+  - lo reintenta sola a los 30 s, y luego cada vez más espaciado;
+  - no pierde nada del móvil;
+  - pero el interruptor queda encendido, y la línea de la cuenta dice «Sus
+    favoritos, su perfil y sus progresos se guardan en su cuenta».
+- **La hoja de compartir de «Descargar datos del perfil» en un iPhone.**
+  Queda en las pruebas del iPhone de `LANZAMIENTO-APP-STORE.md`.
+
+La nube de punta a punta (PostgREST, supabase-js 2.111.0 y PostgreSQL 16)
+la pasó quien preparó el encargo: 33 de 33, dos veces seguidas
+(`pruebas/e2e/LEEME.md`, que no va al repositorio). El código de la nube es
+el mismo.
+
+Pendiente de Jerome, además de lo suyo fuera del código (`perfil.sql`, Play
+Console, App Store Connect y el RGPD):
+
+- **El avatar en la barra de abajo.** El botón marcado, `#auth-btn`, está
+  oculto en el diseño v19; la cuenta vive en «Cuenta», abajo. Pintarlo allí
+  es poner el atributo.
+- **Tres respuestas del asistente que «Cuenta» ha dejado viejas.** app-18
+  y app-29 mandan a «Continuar como invitado», que ahora está detrás del
+  perfil. app-26 no nombra la copia del perfil entre lo que se borra con la
+  cuenta.
+- **Los botones del perfil en italiano, polaco y búlgaro.** Vienen con un
+  nombre o en infinitivo («Registrazione o accesso», «Zapisać»,
+  «Регистрация или вход»), y justo al lado va el de las notificaciones con el
+  imperativo de la app («Attiva le notifiche», «Włącz powiadomienia»,
+  «Включи известията», en `ROTULOS_IT`, `ROTULOS_PL` y `ROTULOS_BG`).
+- **El año de nacimiento en las tiendas**, que hoy no está declarado en
+  ninguna. Google pone la fecha de nacimiento de ejemplo en «Personal info →
+  Other info» («Any other personal information. For example, a user's date
+  of birth…», developer.android.com). Apple no tiene un tipo para la edad, y
+  lo que no tiene tipo va en «Other Data Types» («Any other data types not
+  mentioned», developer.apple.com). Con su OK, se declara así en
+  `PrivacyInfo.xcprivacy` y en `LANZAMIENTO-APP-STORE.md`.
+- **Los dos valores por defecto**: la nube desde los 14 años, y un móvil
+  nuevo que junta solo sus datos con los de la cuenta.
+
+**La auditoría entera** (con las fuentes del cielo y las de los satélites),
+sobre `49f2c06`, que es este bloque sin este párrafo: **«AUDITORIA EN
+VERDE»**, ningún bloque en rojo ni roto.
+- `auditar_registro.js`, 66.166 textos: los nueve idiomas que distinguen
+  el trato, todo de usted, con las 1.440 del perfil dentro.
+- `auditar_cielo.js`, 219 de 219.
+- `auditar_web.js`, 44 tablas y 1.854 filas; `barrido_idiomas.js`, 3.995
+  filas dentro y fuera del fuente, y este documento dice lo mismo.
+- `barrido_pantallas.js`, 116 pantallas y fichas por idioma y 0 textos sin
+  traducir.
+- `auditar_cirilico.py`, 0 sospechosas de 1.768 nombres;
+  `auditar_seguridad.py`, ninguna marca de idioma dentro de un `<script>`;
+  `auditar_reservas.py`, ningún texto escrito a mano desde el código fuera
+  de los fijos.
+- `probar_faq.js`, 0 fallos de 122; `probar_movil.js`, las 25 preguntas en
+  su idioma; `probar_play.js`, 233 de 233, sin tocarlo.
+- `auditar_perfil.js`, 57 de 57; `probar_perfil.js`, 96 de 96.
+
+La primera pasada, sobre la versión de antes del arreglo, dio en rojo
+`auditar_seguridad.py` (arriba).
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -9178,7 +9356,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/partir_idiomas.js` | la mudanza de los ocho idiomas de `places[]` a `idiomas/*.json` |
 | `tools/auditar_idiomas_fuera.js` | que lo mudado esté entero y el navegador lo pegue antes de montar el mapa |
 | `tools/auditar_etiquetas.js` | los chips del globo: traducidos o declarados con motivo (desde el 7 de octubre, sin la vía «nombre de sitio»), y el mismo chip dos veces en una ficha |
-| `tools/barrido_pantallas.js` | lo que **se ve**: 82 paneles y fichas abiertos en los diez idiomas (Rutas usadas, no solo abiertas), buscando castellano que no sea nombre propio, y botones con el mismo emoji dos veces |
+| `tools/barrido_pantallas.js` | lo que **se ve**: los paneles y fichas abiertos en los diez idiomas (116 por idioma el 22 de octubre de 2026, con el perfil y sus once pestañas de avatares; Rutas usadas, no solo abiertas), buscando castellano que no sea nombre propio, y botones con el mismo emoji dos veces |
 | `tools/auditar_tour.js` | el tour de bienvenida **recorrido de verdad**: los diez idiomas, cuatro tamaños de móvil, cada paso con su botón enfocado, la tarjeta dentro de la pantalla, las cifras contadas y nada igual al castellano ni al inglés |
 | `tools/auditar_idioma.js` | un idioma entero contra el castellano: cifras, horarios, teléfonos, trozos de etiqueta, alfabeto |
 | `tools/auditar_faq.js` | el asistente: cada respuesta en los diez idiomas, alcanzable por su botón, ninguna igual al castellano o al inglés, los botones que cita con su nombre de pantalla, y ninguna base fuera de `faq/` |
@@ -9213,6 +9391,8 @@ Y cada bloque por separado, si hace falta:
 | `tools/capturas_app_store.js` | las capturas de la tienda (iPhone 1206×2622, iPad 2064×2752), de `app/www/` servido aparte; para si la página no lleva la marca o un estado no llega a lo que dice |
 | `tools/app_store_metadata.js` | la ficha y las capturas en el formato de `fastlane deliver` (`app/fastlane/metadata/`, `…/screenshots/`); con `--comprobar`, las diez localizaciones, los límites y los tamaños |
 | `tools/cielo_uai.js` | los nombres de la UAI de la carta del cielo en chino, chino tradicional y búlgaro (`CIELO_UAI`, en `modulos/cielo.js`), de las traducciones de Stellarium que baja `cielo_fuentes.sh`; los coteja con la cultura celeste china y entre sí; con `--comprobar`, para si lo escrito no es lo que sale de las fuentes (lo pasa `auditar_cielo.js`) |
+| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 55 avatares (SVG sin nada que se ejecute, ids con la forma que pide `perfil.sql`, la bandera de cada set), las 144 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas y rangos) |
+| `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql`), las visitas comprobadas en el mapa, los 55 avatares y los diez idiomas a 360, 390 y 430 px |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con
@@ -9224,6 +9404,11 @@ Y cada bloque por separado, si hace falta:
   mismo. Sin una policy `auth.uid() = user_id` en INSERT, UPDATE, DELETE **y**
   SELECT, cualquiera con la clave `anon` —que es pública por diseño— puede leer
   o escribir los favoritos de otros.
+- **`perfiles`, `pesos` y `caminatas` solo existen después de `perfil.sql`**,
+  y, como en `favorites`, la RLS es su única defensa, con datos de salud
+  dentro. Se ejecuta una vez, antes de que el perfil llegue a `main`. Está
+  probado en un PostgreSQL 16 local con los permisos que Supabase da por
+  defecto (la sección «Su perfil», arriba).
 - **`push_subs` debe ser insert-only.** Si esa policy no existe, la lista de
   endpoints push es descargable.
 - **El panel de administración lo decide el servidor.** Desde la Fase 1 (16 de
