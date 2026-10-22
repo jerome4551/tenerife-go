@@ -6395,7 +6395,7 @@ window.onunhandledrejection = function(e) {
       <span class="fav-badge hidden" id="fav-badge">0</span>
     </button>
     <!-- BOTÓN CUENTA / AUTH -->
-    <button class="auth-btn" id="auth-btn" onclick="openAuthModal()" title="Cuenta" aria-label="Cuenta" data-avatar-cuenta>
+    <button class="auth-btn" id="auth-btn" onclick="abrirPerfil()" title="Cuenta" aria-label="Cuenta" data-avatar-cuenta>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
         <circle cx="12" cy="7" r="4"/>
@@ -21969,6 +21969,8 @@ window.addEventListener('hashchange', () => {
     // pregunta). Se expone el cliente ya autenticado en vez de crear
     // otro suelto, que iria como anonimo.
     getClient:     () => sbClient,
+    // «Cerrar sesión» del perfil (modulos/perfil.js), el mismo de la ficha
+    logout:        () => doLogout(),
     openLogin:     () => { try { openAuthModal(); } catch (_) {} }
   };
 
@@ -22041,6 +22043,8 @@ window.addEventListener('hashchange', () => {
     } catch (err) {
       console.warn('[AUTH] Error sincronizando favoritos:', err);
     }
+    // el perfil (modulos/perfil.js), si esta cargado, repinta la cuenta
+    window.dispatchEvent(new Event('tg-sesion'));
   }
 
   function handleSignedOut() {
@@ -22049,6 +22053,7 @@ window.addEventListener('hashchange', () => {
     updateAuthBtn();
     // Al cerrar sesión NO borramos los favoritos locales:
     // el usuario sigue viendo los suyos como invitado.
+    window.dispatchEvent(new Event('tg-sesion'));
   }
 
   // ─────────────────────────────────────────────────────────────────
@@ -23556,7 +23561,7 @@ window.addEventListener('hashchange', () => {
     <span id="nav-lbl-chat">Asistente</span>
     <span class="v19-nav-badge hidden" id="chat-nav-badge" style="background:#c9a84c;color:#000">!</span>
   </button>
-  <button class="v19-nav-item" id="v19-nav-account" type="button" aria-label="Cuenta" onclick="openAuthModal()">
+  <button class="v19-nav-item" id="v19-nav-account" type="button" aria-label="Cuenta" onclick="abrirPerfil()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     <span id="nav-lbl-account">Cuenta</span>
     <span class="auth-dot" id="v19-nav-account-dot" aria-hidden="true" style="position:absolute;top:6px;right:calc(50% - 18px);width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 2px var(--dark);opacity:0;transition:opacity 0.2s;pointer-events:none;"></span>
@@ -29728,7 +29733,14 @@ function pushToast(txt, ok) {
 async function pushSuscribir() {
   try {
     var permiso = await Notification.requestPermission();
-    if (permiso !== 'granted') { pushToast(pushTx('denegado'), false); return false; }
+    if (permiso !== 'granted') {
+      pushToast(pushTx('denegado'), false);
+      /* y en la linea de cada boton: el aviso sale por debajo de la ficha de
+         la cuenta y del perfil, que lo tapan, y la linea se quedaba en
+         «Activando…» (22 de octubre de 2026) */
+      pushMensaje(null, pushTx('denegado'));
+      return false;
+    }
 
     var reg = await navigator.serviceWorker.ready;
     var sub = await reg.pushManager.getSubscription();
@@ -29877,7 +29889,7 @@ function pushInit() {
 window.pushSuscribir = pushSuscribir;
 /* Para las herramientas de tools/ (probar_notificacion_idioma.js): la
    tarjeta que pide el permiso y sus textos viven dentro de esta funcion. */
-window.TG_PUSH = { pedir: pushPedir, textos: PUSH_TX };
+window.TG_PUSH = { pedir: pushPedir, textos: PUSH_TX, anadirBoton: pushAnadirBoton };
 /* EL IDIOMA DE LA NOTIFICACION SIGUE AL DE LA APP (21 de octubre de 2026).
    La suscripcion se guarda con el idioma del momento de activarla, y al
    cambiar de idioma no se le decia a nadie: quien la activo en ingles y paso
@@ -29926,8 +29938,16 @@ function pushMensaje(clave, extra) {
     var m = document.getElementById(par[1]);
     if (!m) return;
     if (extra) m.removeAttribute('data-tx'); else m.setAttribute('data-tx', clave);
-    m.textContent = tx(clave) + (extra || '');
+    m.textContent = (clave ? tx(clave) : '') + (extra || '');
   });
+}
+/* El boton «Activar notificaciones» del perfil (modulos/perfil.js, 22 de
+   octubre de 2026), con su linea debajo: se apunta como un par mas y se
+   engancha igual que estos dos (oculto en la app de la tienda, apagado y con
+   el motivo si el navegador no puede, y lo que pase, en su linea). */
+function pushAnadirBoton(boton, mensaje) {
+  if (!PUSH_BOTONES.some(function (par) { return par[0] === boton; })) PUSH_BOTONES.push([boton, mensaje]);
+  pushEngancharBoton();
 }
 function pushEngancharBoton() {
   var motivo = pushMotivoNo();
@@ -35417,7 +35437,7 @@ html.cielo-rojo body::before {
 </script>
 <!-- ══ fin CIELO DE TENERIFE ══ -->
 
-<!-- ══ PERFIL: el avatar en el boton de la cuenta ══ -->
+<!-- ══ PERFIL: el avatar en el boton de la cuenta y la pantalla «Su perfil» ══ -->
 <script>
 (function () {
   'use strict';
@@ -35468,6 +35488,35 @@ html.cielo-rojo body::before {
   }
   window.TG_AVATARES_CARGAR = cargar;
   window.TG_AVATAR_CUENTA = avatarCuenta;
+
+  /* CARGA-PEREZOSA: modulos/perfil.js
+     La pantalla «Su perfil» (22 de octubre de 2026): su codigo, sus estilos,
+     su cuerpo y sus textos en los diez idiomas, unos 165 kB. Se pide la
+     primera vez que alguien toca «Cuenta», despues del catalogo de avatares,
+     que perfil.js lee en cuanto corre (por eso van encadenados). El service
+     worker lo precarga. Si no llega (sin red y sin haberlo guardado nunca),
+     se abre la ficha de la cuenta, que es lo que abrian estos botones antes. */
+  var MODULO_PERFIL = './modulos/perfil.js', cargaPerfil = null;
+  function cargarPerfil() {
+    if (window.TG_PERFIL) return Promise.resolve();
+    if (cargaPerfil) return cargaPerfil;
+    cargaPerfil = cargar().then(function () {
+      return new Promise(function (ok, mal) {
+        var s = document.createElement('script');
+        s.src = MODULO_PERFIL;
+        s.onload = function () { if (window.TG_PERFIL) ok(); else mal(new Error('perfil')); };
+        s.onerror = function () { s.remove(); mal(new Error('perfil')); };
+        document.head.appendChild(s);
+      });
+    }).catch(function (e) { cargaPerfil = null; throw e; });
+    return cargaPerfil;
+  }
+  function abrirPerfil() {
+    cargarPerfil().then(function () { window.TG_PERFIL.abrir(); },
+      function () { if (typeof openAuthModal === 'function') openAuthModal(); });
+  }
+  window.TG_PERFIL_CARGAR = cargarPerfil;
+  window.abrirPerfil = abrirPerfil;
   /* Al arrancar, solo con un avatar elegido y cuando el movil esta libre: el
      mapa y la barra van antes */
   function iniciar() {

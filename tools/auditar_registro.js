@@ -15,8 +15,9 @@
  *     (datos/app-store/ficha.json), las frases de cada manana (frases.json),
  *     el asistente (faq/<l>.json, con las respuestas de la app), el panel
  *     del cielo (modulos/cielo.js, y las curiosidades de las constelaciones,
- *     un fichero por idioma: idiomas/cielo/<l>.json) y las etiquetas de las fichas (tags[] de
- *     index.html e idiomas/etiquetas/<l>.json).
+ *     un fichero por idioma: idiomas/cielo/<l>.json), la pantalla del perfil
+ *     (modulos/perfil.js) y las etiquetas de las fichas (tags[] de index.html
+ *     e idiomas/etiquetas/<l>.json).
  *
  * Los idiomas de HECHOS ya estan pasados a usted: cualquier marca es un
  * fallo y se lista. Los demas se cuentan como pendientes (no fallan), para
@@ -484,10 +485,12 @@ async function textos() {
     if (fs.existsSync(path.join(RAIZ, ef))) for (const [k, t] of Object.entries(json(ef))) { etiq.add(k); mete(ef, k, l, t); }
   }
   for (const t of etiq) mete('etiquetas (tags[])', t, 'es', t);
-  const mod = lee('modulos/cielo.js');
-  for (const m of mod.matchAll(/^\s*"?([A-Za-z0-9_-]+)"?: (\{"es": .*\}),?\s*$/gm)) {
-    let d; try { d = JSON.parse(m[2]); } catch (e) { continue; }
-    for (const l of IDI) mete('modulos/cielo.js', m[1], l, d[l]);
+  /* las filas de los modulos de carga perezosa (CIELO_UI, PERFIL_UI), una por linea */
+  for (const f of ['modulos/cielo.js', 'modulos/perfil.js']) {
+    for (const m of lee(f).matchAll(/^\s*"?([A-Za-z0-9_-]+)"?: (\{"es": .*\}),?\s*$/gm)) {
+      let d; try { d = JSON.parse(m[2]); } catch (e) { continue; }
+      for (const l of IDI) mete(f, m[1], l, d[l]);
+    }
   }
   /* las 88 curiosidades de las constelaciones, un fichero por idioma desde el 22 */
   for (const l of IDI) {

@@ -4120,7 +4120,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 44 tablas, 1834 filas (y 3.975 filas, dentro y fuera del fuente)
+## Idiomas · 45 tablas, 1978 filas (y 4.119 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -4176,12 +4176,16 @@ octavo bloque, encima del usted: 13 más en `CIELO_UI`, hasta 562 —el brillo
 del cielo del IAC, la ruta de los paneles, las normas del Parque (el título,
 cuatro frases y su fuente), tres enlaces (BOC, AEMET e IAC) y las dos
 condiciones de las lluvias con la Luna arriba parte de la noche—: 1834
-filas y 3.975. El
+filas y 3.975. Y encima, la pantalla «Su
+perfil»: una tabla más, `PERFIL_UI` en `modulos/perfil.js`, con 144 filas
+(78 de la pantalla, 11 de los sets de avatares y 55 de los avatares), que
+`tools/fuente.js` pega al fuente: 45 tablas, 1978 filas y 4.119. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
 `barrido_idiomas.js`, contado el 21 de octubre (3.045 antes del cielo, 3.559
-el 17); desde el 22 la coteja el propio `barrido_idiomas.js`.)*
+el 17, 3.975 antes del perfil); desde el 22 la coteja el propio
+`barrido_idiomas.js`.)*
 
 Las tablas se declaran con `const`, así que **no están en `window`**: hay que
 alcanzarlas por nombre desde el ámbito global, y las que viven dentro de una
