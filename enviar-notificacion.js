@@ -147,12 +147,22 @@ async function main() {
   console.log(`Frase del dia #${idx}: "${fraseHoy.es}"`);
 
   // --- Leer suscripciones (service_role ignora RLS) ---
-  const resp = await fetch(
-    SUPABASE_URL + '/rest/v1/push_subs?select=endpoint,p256dh,auth,lang',
-    { headers: sbHeaders }
-  );
-  if (!resp.ok) fail(`No pude leer las suscripciones (HTTP ${resp.status}). ${await resp.text()}`);
-  const subs = await resp.json();
+  /* Supabase devuelve como mucho unas cuantas filas por peticion (Max rows:
+     1.000 en cada proyecto, si nadie lo cambia), y la service_role no se lo
+     salta. Leidas de una vez, a partir de la mil y una nadie recibia la
+     notificacion, sin ningun aviso (23 de octubre de 2026). Se leen por
+     paginas, en orden, hasta una vacia: vale con cualquier tope. */
+  const subs = [];
+  for (;;) {
+    const resp = await fetch(
+      SUPABASE_URL + '/rest/v1/push_subs?select=endpoint,p256dh,auth,lang&order=endpoint&offset=' + subs.length + '&limit=1000',
+      { headers: sbHeaders }
+    );
+    if (!resp.ok) fail(`No pude leer las suscripciones (HTTP ${resp.status}). ${await resp.text()}`);
+    const pagina = await resp.json();
+    if (!Array.isArray(pagina) || !pagina.length) break;
+    subs.push(...pagina);
+  }
   console.log(`Suscripciones: ${subs.length}`);
   if (!subs.length) { console.log('Nadie suscrito todavia. Nada que enviar.'); return; }
 

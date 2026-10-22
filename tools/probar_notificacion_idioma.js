@@ -28,6 +28,10 @@
  *      otra sin idioma. Cada una tiene que recibir el titulo y la frase del
  *      dia de SU idioma, sacados de frases.json por cuenta propia; las dos
  *      raras, la castellana. Nada sale de la maquina.
+ *   3. el envio con 2.345 suscripciones, detras de una Supabase de mentira que
+ *      da como mucho 1.000 filas por peticion, como la de verdad (Max rows):
+ *      a cada una le llega una, y solo una (23 de octubre de 2026: leidas de
+ *      una vez, a partir de la mil y una no le llegaba a nadie).
  *
  *   Lo que esto no puede ver es la base de datos real: que guardar_push_sub()
  *   apunte el idioma nuevo depende de supabase/push-idioma.sql, que se
@@ -218,6 +222,16 @@ async function laApp() {
   await nav2.close();
 }
 
+/* lo que hace PostgREST con ?order=…&offset=…&limit=…: el trozo pedido, y nunca
+   mas de Max rows (1.000 en cada proyecto de Supabase) */
+const MAX_FILAS = 1000;
+function pagina(lista, u) {
+  const q = new URL(u).searchParams, orden = (q.get('order') || '').split('.')[0];
+  const l = orden ? lista.slice().sort((a, b) => a[orden] < b[orden] ? -1 : a[orden] > b[orden] ? 1 : 0) : lista;
+  const desde = Number(q.get('offset') || 0), cuantas = Math.min(Number(q.get('limit') || Infinity), MAX_FILAS);
+  return l.slice(desde, desde + cuantas);
+}
+
 async function elEnvio() {
   console.log('\n=== 2 · el envio: que frase le llega a cada idioma ===');
   // web-push de mentira: apunta lo que se enviaria
@@ -244,7 +258,7 @@ async function elEnvio() {
     const u = String(url);
     if (u.includes('push_sends?select')) return { ok: true, status: 200, json: async () => [{ sent_date: '2026-10-19' }] };
     if (u.includes('push_sends')) return { ok: true, status: 201, text: async () => '' };
-    if (u.includes('push_subs')) return { ok: true, status: 200, json: async () => subs };
+    if (u.includes('push_subs')) return { ok: true, status: 200, json: async () => pagina(subs, u) };
     return { ok: false, status: 500, text: async () => 'peticion no esperada: ' + u };
   };
   Object.assign(process.env, { SUPABASE_URL: 'https://ejemplo.supabase.invalid', SUPABASE_SERVICE_KEY: 'simulada',
@@ -271,9 +285,47 @@ async function elEnvio() {
   if (mal) console.log('   (lo que dijo el envio: ' + lineas.join(' · ') + ')');
 }
 
+async function muchos() {
+  console.log('\n=== 3 · el envio con mas suscripciones de las que Supabase da en una peticion ===');
+  const enviados = [];
+  const cargar = Module._load;
+  Module._load = function (pedido, ...resto) {
+    if (pedido === 'web-push') return {
+      setVapidDetails() {},
+      sendNotification: async (sub, payload) => { enviados.push(sub.endpoint); }
+    };
+    return cargar.call(this, pedido, ...resto);
+  };
+  const subs = [];
+  for (let i = 0; i < 2345; i++) subs.push({ endpoint: 'https://push.prueba.invalid/m' + String(i).padStart(5, '0'), p256dh: 'k', auth: 'a', lang: IDIOMAS[i % IDIOMAS.length] });
+  let peticiones = 0;
+  global.fetch = async (url) => {
+    const u = String(url);
+    if (u.includes('push_sends?select')) return { ok: true, status: 200, json: async () => [{ sent_date: '2026-10-19' }] };
+    if (u.includes('push_sends')) return { ok: true, status: 201, text: async () => '' };
+    if (u.includes('push_subs')) { peticiones++; return { ok: true, status: 200, json: async () => pagina(subs, u) }; }
+    return { ok: false, status: 500, text: async () => 'peticion no esperada: ' + u };
+  };
+  const log = console.log; const lineas = [];
+  console.log = (...a) => lineas.push(a.join(' '));
+  delete require.cache[require.resolve(path.join(RAIZ, 'enviar-notificacion.js'))];
+  require(path.join(RAIZ, 'enviar-notificacion.js'));
+  /* Date sigue parado en el martes de la prueba 2: el plazo, con el reloj de verdad */
+  const t = performance.now() + 20000;
+  while (enviados.length < subs.length && performance.now() < t) await new Promise(r => setTimeout(r, 20));
+  await new Promise(r => setTimeout(r, 100));
+  console.log = log;
+  const unicos = new Set(enviados);
+  ver(enviados.length === subs.length && unicos.size === subs.length && subs.every(x => unicos.has(x.endpoint)),
+      'a cada una de las 2.345 le llega una, y solo una', '(' + enviados.length + ' envios, ' + unicos.size + ' distintas, en ' + peticiones + ' peticiones de lectura)');
+  ver(lineas.some(l => l.includes('Suscripciones: 2345')), 'y el registro del envio dice las 2.345', lineas.find(l => l.includes('Suscripciones')) || '');
+  if (mal) console.log('   (lo que dijo el envio: ' + lineas.slice(0, 6).join(' · ') + ')');
+}
+
 (async () => {
   await laApp();
   await elEnvio();
+  await muchos();
   console.log(mal ? '\n*** ' + mal + ' comprobacion(es) de la notificacion en su idioma, en rojo ***'
                   : '\ncada movil recibe la notificacion en su idioma, y la sigue si lo cambia');
   process.exit(mal ? 1 : 0);
