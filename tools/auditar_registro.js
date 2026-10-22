@@ -40,7 +40,7 @@ const LISTA_F = LISTA ? process.argv[process.argv.indexOf('--lista') + 2] : null
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 
 /* Los idiomas ya pasados a usted. Cada parte del cambio anade el suyo. */
-const HECHOS = ['es'];
+const HECHOS = ['es', 'zh', 'zht'];
 
 /* ── las marcas del tuteo, idioma a idioma ─────────────────────────────── */
 const L_ = 'A-Za-zÀ-ÖØ-öø-ɏЀ-ӿ';
@@ -150,8 +150,8 @@ const MARCAS = {
        palI('możesz', 'masz', 'chcesz', 'zobaczysz', 'jesteś', 'wiesz', 'musisz', 'znajdziesz', 'dojdziesz', 'dojedziesz', 'wejdziesz', 'wyjdziesz', 'zostaniesz',
          'usłyszysz', 'zechcesz', 'zdecydujesz', 'włączysz', 'zaakceptujesz', 'założysz', 'zapiszesz', 'dodasz', 'usuniesz', 'otworzysz', 'dotkniesz', 'wybierzesz',
          'korzystasz', 'używasz', 'potrzebujesz', 'szukasz', 'przyjedziesz', 'pojedziesz', 'zapłacisz', 'płacisz', 'wpiszesz', 'dostaniesz', 'będziesz', 'byłeś', 'byłaś')],
-  zh: [/你/u],
-  zht: [/你/u],
+  zh: [/(?<!迷)你/u],
+  zht: [/(?<!迷)你/u],
 };
 
 /* Lo que parece tuteo y no lo es: [idioma, texto exacto o RegExp, motivo]. */

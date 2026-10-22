@@ -114,7 +114,8 @@
      "教程",
      "你会什么",
      "应用指南",
-     "这个应用怎么用"
+     "这个应用怎么用",
+     "您会什么"
     ],
     "zht": [
      "幫助",
@@ -123,7 +124,8 @@
      "教學",
      "你會什麼",
      "應用程式指南",
-     "這個應用程式怎麼用"
+     "這個應用程式怎麼用",
+     "您會什麼"
     ]
    },
    "a": {
@@ -134,8 +136,8 @@
     "it": "ℹ️ Tenerife GO in breve:\n• La mappa: tocca un marcatore e vedi cos’è, l’orario se ce l’ha e come arrivarci in auto o in autobus; sulla costa, anche lo stato del mare\n• In alto: il dado 🎲, il distributore più economico vicino a te ⛽, i livelli della mappa, il meteo per zone, il mare, le feste, il cielo 🔭, gli autobus e la lingua\n• Ai lati: la ricerca 🔍 e le categorie\n• In basso: Preferiti, Percorsi, questo Assistente e il tuo Account\n• Il tour dell’app è sempre nella legenda della mappa: «Fai il tour»\nChiedimi qualsiasi funzione e te la spiego.",
     "nl": "ℹ️ Tenerife GO in het kort:\n• De kaart: tik op een marker en je ziet wat het is, de openingstijden als die er zijn en hoe je er met de auto of de bus komt; aan de kust ook de zeegang\n• Bovenaan: de dobbelsteen 🎲, het goedkoopste tankstation bij jou in de buurt ⛽, de kaartlagen, het weer per zone, de zee, de feesten, de sterrenhemel 🔭, de bussen en de taal\n• Aan de zijkanten: zoeken 🔍 en de categorieën\n• Onderaan: Favorieten, Routes, deze Assistent en je Account\n• De tour door de app staat altijd in de legenda van de kaart: «Start de tour»\nVraag me naar elke functie en ik leg het je uit.",
     "pl": "ℹ️ Tenerife GO w skrócie:\n• Mapa: dotknij znacznika, a zobaczysz, co to za miejsce, w jakich godzinach jest otwarte, jeśli ma godziny, i jak dojechać samochodem lub autobusem; na wybrzeżu także stan morza\n• Na górze: kostka 🎲, najtańsza stacja paliw w pobliżu ⛽, warstwy mapy, pogoda według stref, morze, święta, niebo 🔭, autobusy i język\n• Po bokach: wyszukiwarka 🔍 i kategorie\n• Na dole: Ulubione, Trasy, ten Asystent i twoje Konto\n• Przewodnik po aplikacji jest zawsze w legendzie mapy: «Zobacz przewodnik»\nZapytaj mnie o dowolną funkcję, a ci ją wyjaśnię.",
-    "zh": "ℹ️ Tenerife GO 简介：\n• 地图：点按地图标记，就能看到这是什么地方、营业时间（如有）以及开车或乘公交怎么去；海边的地点还会显示海况\n• 顶部：骰子 🎲、你附近最便宜的加油站 ⛽、地图图层、分区天气、海况、节庆、星空 🔭、公交和语言\n• 两侧：搜索 🔍 和分类\n• 底部：收藏、路线、本助手和你的账户\n• 应用导览随时可以在地图图例中找到：「开始导览」\n想了解任何功能，尽管问我。",
-    "zht": "ℹ️ Tenerife GO 簡介：\n• 地圖：點按地圖標記，就能看到這是什麼地方、營業時間（如有）以及開車或搭公車怎麼去；海邊的地點還會顯示海況\n• 頂部：骰子 🎲、你附近最便宜的加油站 ⛽、地圖圖層、分區天氣、海況、節慶、星空 🔭、公車和語言\n• 兩側：搜尋 🔍 和分類\n• 底部：收藏、路線、本助手和你的帳戶\n• 應用程式導覽隨時可以在地圖圖例中找到：「開始導覽」\n想了解任何功能，儘管問我。"
+    "zh": "ℹ️ Tenerife GO 简介：\n• 地图：点按地图标记，就能看到这是什么地方、营业时间（如有）以及开车或乘公交怎么去；海边的地点还会显示海况\n• 顶部：骰子 🎲、您附近最便宜的加油站 ⛽、地图图层、分区天气、海况、节庆、星空 🔭、公交和语言\n• 两侧：搜索 🔍 和分类\n• 底部：收藏、路线、本助手和您的账户\n• 应用导览随时可以在地图图例中找到：「开始导览」\n想了解任何功能，尽管问我。",
+    "zht": "ℹ️ Tenerife GO 簡介：\n• 地圖：點按地圖標記，就能看到這是什麼地方、營業時間（如有）以及開車或搭公車怎麼去；海邊的地點還會顯示海況\n• 頂部：骰子 🎲、您附近最便宜的加油站 ⛽、地圖圖層、分區天氣、海況、節慶、星空 🔭、公車和語言\n• 兩側：搜尋 🔍 和分類\n• 底部：收藏、路線、本助手和您的帳戶\n• 應用程式導覽隨時可以在地圖圖例中找到：「開始導覽」\n想了解任何功能，儘管問我。"
    },
    "follow": [
     "app-02",
@@ -248,8 +250,8 @@
     "it": "⭐ Nel fumetto di qualsiasi luogo, tocca «Aggiungi ai preferiti». In basso, Preferiti ti mostra sulla mappa solo quelli che hai salvato, con un contatore. Senza account restano su questo telefono; se accedi, vengono salvati anche nel cloud e li ritrovi su qualsiasi dispositivo.",
     "nl": "⭐ Tik in de pop-up van een plek op «Toevoegen aan favorieten». Onderaan toont Favorieten op de kaart alleen de plekken die je hebt bewaard, met een teller. Zonder account blijven ze op deze telefoon; als je inlogt, worden ze ook in de cloud bewaard en heb je ze op elk apparaat.",
     "pl": "⭐ W dymku dowolnego miejsca dotknij «Dodaj do ulubionych». Na dole Ulubione pokazują na mapie tylko zapisane przez ciebie miejsca, z licznikiem. Bez konta zostają w tym telefonie; jeśli się zalogujesz, zapiszą się też w chmurze i będziesz je mieć na każdym urządzeniu.",
-    "zh": "⭐ 在任一地点的信息框里点「加入收藏」。底部的「收藏」会在地图上只显示你收藏的地点，并带计数。不登录时只保存在这部手机上；登录后还会同步到云端，换设备也不会丢。",
-    "zht": "⭐ 在任一地點的資訊框裡點「加入收藏」。底部的「收藏」會在地圖上只顯示你收藏的地點，並附計數。不登入時只儲存在這支手機上；登入後還會同步到雲端，換裝置也不會不見。"
+    "zh": "⭐ 在任一地点的信息框里点「加入收藏」。底部的「收藏」会在地图上只显示您收藏的地点，并带计数。不登录时只保存在这部手机上；登录后还会同步到云端，换设备也不会丢。",
+    "zht": "⭐ 在任一地點的資訊框裡點「加入收藏」。底部的「收藏」會在地圖上只顯示您收藏的地點，並附計數。不登入時只儲存在這支手機上；登入後還會同步到雲端，換裝置也不會不見。"
    },
    "follow": [
     "app-23",
@@ -349,8 +351,8 @@
     "it": "✅ Nel fumetto di ogni luogo c’è «○ Segna visitato»: toccalo e diventa «✓ Visitato». Conta per i tuoi traguardi 🏆 e resta salvato su questo telefono.",
     "nl": "✅ In de pop-up van elke plek staat «○ Markeer bezocht»: tik erop en het wordt «✓ Bezocht». Het telt mee voor je prestaties 🏆 en wordt op deze telefoon bewaard.",
     "pl": "✅ W dymku każdego miejsca jest «○ Oznacz jako odwiedzone»: dotknij, a zmieni się na «✓ Odwiedzone». Liczy się do twoich osiągnięć 🏆 i zapisuje w tym telefonie.",
-    "zh": "✅ 每个地点的信息框里都有「○ 标记已访问」：点一下就变成「✓ 已访问」。它会计入你的成就 🏆，并保存在这部手机上。",
-    "zht": "✅ 每個地點的資訊框裡都有「○ 標記已造訪」：點一下就變成「✓ 已造訪」。它會計入你的成就 🏆，並儲存在這支手機上。"
+    "zh": "✅ 每个地点的信息框里都有「○ 标记已访问」：点一下就变成「✓ 已访问」。它会计入您的成就 🏆，并保存在这部手机上。",
+    "zht": "✅ 每個地點的資訊框裡都有「○ 標記已造訪」：點一下就變成「✓ 已造訪」。它會計入您的成就 🏆，並儲存在這支手機上。"
    },
    "follow": [
     "app-04",
@@ -451,8 +453,8 @@
     "it": "🏆 I traguardi si sbloccano segnando i luoghi come visitati: più ne segni, più ne ottieni, e ce n’è uno speciale per la vetta del Teide. Tocca il trofeo 🏆, a destra della mappa, per vedere quelli che hai e quanti luoghi hai visitato.",
     "nl": "🏆 Prestaties ontgrendel je door plekken als bezocht te markeren: hoe meer je markeert, hoe meer je er haalt, en er is een speciale voor de top van de Teide. Tik op de trofee 🏆 rechts op de kaart om te zien welke je hebt en hoeveel plekken je hebt bezocht.",
     "pl": "🏆 Osiągnięcia odblokowujesz, oznaczając miejsca jako odwiedzone: im więcej oznaczysz, tym więcej zdobędziesz, a za szczyt Teide jest specjalne. Dotknij pucharu 🏆 po prawej stronie mapy, żeby zobaczyć, które już masz i ile miejsc odwiedziłeś.",
-    "zh": "🏆 把地点标记为已访问就能解锁成就：标记得越多，解锁得越多；登上泰德峰顶还有一个特别成就。点地图右侧的奖杯 🏆，就能看到已获得的成就和你去过的地点数量。",
-    "zht": "🏆 把地點標記為已造訪就能解鎖成就：標記得越多，解鎖得越多；登上泰德峰頂還有一個特別成就。點地圖右側的獎盃 🏆，就能看到已獲得的成就和你去過的地點數量。"
+    "zh": "🏆 把地点标记为已访问就能解锁成就：标记得越多，解锁得越多；登上泰德峰顶还有一个特别成就。点地图右侧的奖杯 🏆，就能看到已获得的成就和您去过的地点数量。",
+    "zht": "🏆 把地點標記為已造訪就能解鎖成就：標記得越多，解鎖得越多；登上泰德峰頂還有一個特別成就。點地圖右側的獎盃 🏆，就能看到已獲得的成就和您去過的地點數量。"
    },
    "follow": [
     "app-03",
@@ -553,8 +555,8 @@
     "it": "🔊 Sì. Nel fumetto di ogni luogo, «▶ Ascolta» legge ad alta voce il nome e la descrizione, nella lingua impostata e con la voce del tuo telefono. Se il telefono non ha una voce per quella lingua, il pulsante non compare; se non senti niente, alza il volume.",
     "nl": "🔊 Ja. In de pop-up van elke plek leest «▶ Luisteren» de naam en de beschrijving voor, in de taal die je hebt ingesteld en met de stem van je telefoon. Heeft je telefoon geen stem voor die taal, dan verschijnt de knop niet; hoor je niets, zet het volume hoger.",
     "pl": "🔊 Tak. W dymku każdego miejsca «▶ Słuchaj» czyta na głos nazwę i opis, w wybranym języku i głosem twojego telefonu. Jeśli telefon nie ma głosu dla tego języka, przycisk się nie pojawia; jeśli nic nie słyszysz, podgłośnij.",
-    "zh": "🔊 可以。每个地点的信息框里，「▶ 朗读」会用你当前的语言、以手机自带的语音读出名称和介绍。如果手机没有这种语言的语音，就不会出现这个按钮；如果听不到声音，请调高音量。",
-    "zht": "🔊 可以。每個地點的資訊框裡，「▶ 朗讀」會用你目前的語言、以手機內建的語音唸出名稱和介紹。如果手機沒有這種語言的語音，就不會出現這個按鈕；如果聽不到聲音，請調高音量。"
+    "zh": "🔊 可以。每个地点的信息框里，「▶ 朗读」会用您当前的语言、以手机自带的语音读出名称和介绍。如果手机没有这种语言的语音，就不会出现这个按钮；如果听不到声音，请调高音量。",
+    "zht": "🔊 可以。每個地點的資訊框裡，「▶ 朗讀」會用您目前的語言、以手機內建的語音唸出名稱和介紹。如果手機沒有這種語言的語音，就不會出現這個按鈕；如果聽不到聲音，請調高音量。"
    },
    "follow": [
     "app-08",
@@ -666,8 +668,8 @@
     "it": "📴 Sì, dopo che l’hai aperta almeno una volta con la connessione. Senza rete continuano a funzionare i luoghi con le loro schede, la ricerca, le categorie, gli autobus con le fermate, il cielo 🔭 e questo assistente. Tra i livelli della mappa hai «Isola offline», una mappa di tutta l’isola compresa nell’app; «Satellite» e «Topo» conservano anche le zone che hai già guardato. Quello che arriva in diretta ha bisogno di connessione: il meteo, lo stato del mare, la previsione delle nuvole per il cielo, il percorso in auto e le webcam.",
     "nl": "📴 Ja, zodra je hem één keer met verbinding hebt geopend. Zonder netwerk blijven de plekken met hun info, zoeken, de categorieën, de bussen met hun haltes, de sterrenhemel 🔭 en deze assistent werken. Bij de kaartlagen heb je «Eiland offline», een kaart van het hele eiland die in de app zit; «Satelliet» en «Topo» onthouden ook de gebieden die je al hebt bekeken. Wat live binnenkomt heeft wel verbinding nodig: het weer, de zeegang, de wolkenverwachting voor de sterrenhemel, de autoroute en de webcams.",
     "pl": "📴 Tak, jeśli raz otworzysz ją z połączeniem. Bez sieci dalej działają miejsca z opisami, wyszukiwarka, kategorie, autobusy z przystankami, niebo 🔭 i ten asystent. W warstwach mapy masz «Wyspa offline» — mapę całej wyspy wbudowaną w aplikację; «Satelita» i «Topo» zachowują też obszary, które już oglądałeś. To, co przychodzi na żywo, wymaga połączenia: pogoda, stan morza, prognoza zachmurzenia dla nieba, trasa samochodem i kamery na żywo.",
-    "zh": "📴 可以，只要你先联网打开过一次。没网时，地点和介绍、搜索、分类、公交线路和站点、星空 🔭，以及这个助手都能照常使用。地图图层里有「离线海岛图」，这是内置在应用里的全岛地图；「卫星」和「地形」图层也会保留你看过的区域。实时内容则需要联网：天气、海况、星空的云量预报、驾车路线和实时影像。",
-    "zht": "📴 可以，只要你先連網打開過一次。沒網路時，地點和介紹、搜尋、分類、公車路線和站點、星空 🔭，以及這個助手都能照常使用。地圖圖層裡有「離線海島圖」，這是內建在應用程式裡的全島地圖；「衛星」和「地形」圖層也會保留你看過的區域。即時內容則需要連網：天氣、海況、星空的雲量預報、開車路線和即時影像。"
+    "zh": "📴 可以，只要您先联网打开过一次。没网时，地点和介绍、搜索、分类、公交线路和站点、星空 🔭，以及这个助手都能照常使用。地图图层里有「离线海岛图」，这是内置在应用里的全岛地图；「卫星」和「地形」图层也会保留您看过的区域。实时内容则需要联网：天气、海况、星空的云量预报、驾车路线和实时影像。",
+    "zht": "📴 可以，只要您先連網打開過一次。沒網路時，地點和介紹、搜尋、分類、公車路線和站點、星空 🔭，以及這個助手都能照常使用。地圖圖層裡有「離線海島圖」，這是內建在應用程式裡的全島地圖；「衛星」和「地形」圖層也會保留您看過的區域。即時內容則需要連網：天氣、海況、星空的雲量預報、開車路線和即時影像。"
    },
    "follow": [
     "app-07",
@@ -791,8 +793,8 @@
     "it": "📲 Non è negli store: si installa dal browser.\n• iPhone: in Safari, tocca Condividi (quadrato con freccia) e scegli «Aggiungi a Home»\n• Android: in Chrome, apri il menu ⋮ e scegli «Installa app»\nResta nella schermata Home come qualsiasi altra app.",
     "nl": "📲 Hij staat niet in de appwinkels: je installeert hem vanuit de browser.\n• iPhone: tik in Safari op Deel (vierkant met pijl) en kies «Zet op beginscherm»\n• Android: open in Chrome het menu ⋮ en kies «App installeren»\nDaarna staat hij op je beginscherm zoals elke andere app.",
     "pl": "📲 Nie ma jej w sklepach z aplikacjami: instaluje się ją z przeglądarki.\n• iPhone: w Safari dotknij przycisku Udostępnij (kwadrat ze strzałką) i wybierz «Do ekranu początkowego»\n• Android: w Chrome otwórz menu ⋮ i wybierz «Zainstaluj aplikację»\nPotem jest na ekranie początkowym jak każda inna aplikacja.",
-    "zh": "📲 应用商店里没有它：直接从浏览器安装。\n• iPhone：在 Safari 中点分享按钮（带箭头的方块），选择「添加到主屏幕」\n• Android：在 Chrome 中打开⋮菜单，选择「安装应用」\n之后它就像普通应用一样待在你的主屏幕上。",
-    "zht": "📲 應用程式商店裡沒有它：直接從瀏覽器安裝。\n• iPhone：在 Safari 中點分享按鈕（帶箭頭的方塊），選擇「加入主畫面」\n• Android：在 Chrome 中打開⋮選單，選擇「安裝應用程式」\n之後它就像一般應用程式一樣待在你的主畫面上。"
+    "zh": "📲 应用商店里没有它：直接从浏览器安装。\n• iPhone：在 Safari 中点分享按钮（带箭头的方块），选择「添加到主屏幕」\n• Android：在 Chrome 中打开⋮菜单，选择「安装应用」\n之后它就像普通应用一样待在您的主屏幕上。",
+    "zht": "📲 應用程式商店裡沒有它：直接從瀏覽器安裝。\n• iPhone：在 Safari 中點分享按鈕（帶箭頭的方塊），選擇「加入主畫面」\n• Android：在 Chrome 中打開⋮選單，選擇「安裝應用程式」\n之後它就像一般應用程式一樣待在您的主畫面上。"
    },
    "follow": [
     "app-06",
@@ -931,8 +933,8 @@
     "it": "🌐 Tocca la bandiera, l’ultimo pulsante della barra in alto, e scegli la tua lingua: l’app è disponibile in {L} lingue. Cambiano l’interfaccia, le schede dei {N} luoghi, la voce di «Ascolta» e le mie risposte.",
     "nl": "🌐 Tik op de vlag, de laatste knop in de bovenste balk, en kies je taal: de app is er in {L} talen. De interface, de info over de {N} plekken, de stem van «Luisteren» en mijn antwoorden veranderen mee.",
     "pl": "🌐 Dotknij flagi, ostatniego przycisku na górnym pasku, i wybierz swój język: aplikacja jest dostępna w {L} językach. Zmieniają się interfejs, opisy miejsc na mapie, głos funkcji «Słuchaj» i moje odpowiedzi.",
-    "zh": "🌐 点顶部栏最后一个按钮（国旗），选择你的语言：应用共支持 {L} 种语言。界面、{N} 个地点的介绍、「朗读」的语音和我的回答都会随之切换。",
-    "zht": "🌐 點頂部列最後一個按鈕（國旗），選擇你的語言：應用程式共支援 {L} 種語言。介面、{N} 個地點的介紹、「朗讀」的語音和我的回答都會隨之切換。"
+    "zh": "🌐 点顶部栏最后一个按钮（国旗），选择您的语言：应用共支持 {L} 种语言。界面、{N} 个地点的介绍、「朗读」的语音和我的回答都会随之切换。",
+    "zht": "🌐 點頂部列最後一個按鈕（國旗），選擇您的語言：應用程式共支援 {L} 種語言。介面、{N} 個地點的介紹、「朗讀」的語音和我的回答都會隨之切換。"
    },
    "follow": [
     "app-05",
@@ -1033,8 +1035,8 @@
     "it": "🔍 Tocca la lente, a sinistra della mappa, e scrivi il nome del luogo o una categoria, con o senza accenti. Mentre scrivi compaiono dei suggerimenti e la mappa mostra solo ciò che corrisponde; se premi Invio e c’è un solo risultato, ti ci porta e apre il suo fumetto. La ✕ cancella tutto. Puoi chiederlo anche a me: «dov’è il Drago Milenario?».",
     "nl": "🔍 Tik op het vergrootglas links op de kaart en typ de naam van de plek of een categorie, met of zonder accenten. Terwijl je typt verschijnen suggesties en toont de kaart alleen wat overeenkomt; druk je op Enter en is er maar één resultaat, dan gaat de kaart erheen en opent de pop-up. Het ✕ wist alles. Je kunt het ook aan mij vragen: «waar is de Drago Milenario?».",
     "pl": "🔍 Dotknij lupy po lewej stronie mapy i wpisz nazwę miejsca albo kategorię, z akcentami lub bez. Podczas pisania pojawiają się podpowiedzi, a mapa pokazuje tylko pasujące miejsca; jeśli naciśniesz Enter i wynik jest jeden, mapa cię tam przeniesie i otworzy jego dymek. ✕ wszystko czyści. Możesz też zapytać mnie: «gdzie jest Drago Milenario?».",
-    "zh": "🔍 点地图左侧的放大镜，输入地点名称或类别，带不带重音符号都行。输入时会出现建议，地图也只显示符合的地点；按回车时如果只有一个结果，就会直接带你过去并打开它的信息框。点 ✕ 可以清除。你也可以直接问我：「Drago Milenario 在哪里」。",
-    "zht": "🔍 點地圖左側的放大鏡，輸入地點名稱或類別，有沒有重音符號都行。輸入時會出現建議，地圖也只顯示符合的地點；按 Enter 時如果只有一個結果，就會直接帶你過去並打開它的資訊框。點 ✕ 可以清除。你也可以直接問我：「Drago Milenario 在哪裡」。"
+    "zh": "🔍 点地图左侧的放大镜，输入地点名称或类别，带不带重音符号都行。输入时会出现建议，地图也只显示符合的地点；按回车时如果只有一个结果，就会直接带您过去并打开它的信息框。点 ✕ 可以清除。您也可以直接问我：「Drago Milenario 在哪里」。",
+    "zht": "🔍 點地圖左側的放大鏡，輸入地點名稱或類別，有沒有重音符號都行。輸入時會出現建議，地圖也只顯示符合的地點；按 Enter 時如果只有一個結果，就會直接帶您過去並打開它的資訊框。點 ✕ 可以清除。您也可以直接問我：「Drago Milenario 在哪裡」。"
    },
    "follow": [
     "app-10",
@@ -1241,8 +1243,8 @@
     "it": "🎲 Ti porta in un luogo a caso e apre il suo fumetto. Se hai scelto delle categorie, la sorpresa esce da quelle: con «Punti panoramici» attivo, ti tocca un punto panoramico.",
     "nl": "🎲 Hij brengt je naar een willekeurige plek en opent de pop-up. Heb je categorieën gekozen, dan komt de verrassing daaruit: met «Uitzichtpunten» aan krijg je een uitzichtpunt.",
     "pl": "🎲 Przenosi cię w losowe miejsce i otwiera jego dymek. Jeśli masz wybrane kategorie, niespodzianka pochodzi z nich: z włączonymi «Punkty widokowe» trafisz na punkt widokowy.",
-    "zh": "🎲 它会随机带你去一个地点，并打开它的信息框。如果你选了类别，惊喜就从这些类别里出：选了「观景台」，就会随机到一个观景台。",
-    "zht": "🎲 它會隨機帶你去一個地點，並打開它的資訊框。如果你選了類別，驚喜就從這些類別裡出：選了「觀景台」，就會隨機到一個觀景台。"
+    "zh": "🎲 它会随机带您去一个地点，并打开它的信息框。如果您选了类别，惊喜就从这些类别里出：选了「观景台」，就会随机到一个观景台。",
+    "zht": "🎲 它會隨機帶您去一個地點，並打開它的資訊框。如果您選了類別，驚喜就從這些類別裡出：選了「觀景台」，就會隨機到一個觀景台。"
    },
    "follow": [
     "app-10",
@@ -1350,8 +1352,8 @@
     "it": "📍 Toccando un marcatore si apre il suo fumetto: cos’è e la descrizione nella tua lingua, l’orario e il telefono se ci sono, gli avvisi ⚠️ se ce ne sono e, sulla costa, lo stato del mare. Sotto trovi «Aggiungi ai preferiti», «Condividi», «▶ Ascolta», «○ Segna visitato», «🚏 Come arrivare in bus» e «🚗 Arrivare in auto». «Vedi la descrizione completa» apre la scheda intera.",
     "nl": "📍 Als je op een marker tikt, opent de pop-up: wat het is en de beschrijving in jouw taal, openingstijden en telefoonnummer als die er zijn, waarschuwingen ⚠️ als die er zijn en, aan de kust, de zeegang. Daaronder: «Toevoegen aan favorieten», «Delen», «▶ Luisteren», «○ Markeer bezocht», «🚏 Hoe te komen met de bus» en «🚗 Ernaartoe met de auto». «Volledige beschrijving bekijken» opent alle info.",
     "pl": "📍 Po dotknięciu znacznika otwiera się jego dymek: co to za miejsce i opis w twoim języku, godziny otwarcia i telefon, jeśli są, ostrzeżenia ⚠️, jeśli są, a na wybrzeżu także stan morza. Pod spodem masz «Dodaj do ulubionych», «Udostępnij», «▶ Słuchaj», «○ Oznacz jako odwiedzone», «🚏 Jak dojechać autobusem» i «🚗 Jak dojechać samochodem». «Zobacz pełny opis» otwiera wszystkie informacje.",
-    "zh": "📍 点按地图标记会打开它的信息框：这是什么地方、你所用语言的介绍、营业时间和电话（如有）、安全提示 ⚠️（如有），海边的地点还有海况。下面有「加入收藏」「分享」「▶ 朗读」「○ 标记已访问」「🚏 如何乘公交前往」和「🚗 驾车前往」。点「查看完整介绍」可打开完整信息。",
-    "zht": "📍 點按地圖標記會打開它的資訊框：這是什麼地方、你所用語言的介紹、營業時間和電話（如有）、安全提示 ⚠️（如有），海邊的地點還有海況。下面有「加入收藏」「分享」「▶ 朗讀」「○ 標記已造訪」「🚏 如何搭公車前往」和「🚗 開車前往」。點「查看完整介紹」可打開完整資訊。"
+    "zh": "📍 点按地图标记会打开它的信息框：这是什么地方、您所用语言的介绍、营业时间和电话（如有）、安全提示 ⚠️（如有），海边的地点还有海况。下面有「加入收藏」「分享」「▶ 朗读」「○ 标记已访问」「🚏 如何乘公交前往」和「🚗 驾车前往」。点「查看完整介绍」可打开完整信息。",
+    "zht": "📍 點按地圖標記會打開它的資訊框：這是什麼地方、您所用語言的介紹、營業時間和電話（如有）、安全提示 ⚠️（如有），海邊的地點還有海況。下面有「加入收藏」「分享」「▶ 朗讀」「○ 標記已造訪」「🚏 如何搭公車前往」和「🚗 開車前往」。點「查看完整介紹」可打開完整資訊。"
    },
    "follow": [
     "app-05",
@@ -1861,8 +1863,8 @@
     "it": "✨ In Percorsi, in basso, scheda «Organizza la tua giornata»: dici quanto tempo hai, cosa ti va (natura, spiaggia, cultura, gastronomia… uno o più), se preferisci il nord o il sud (o se non importa) e come ti sposti (auto, autobus, a piedi o in bici), e ti prepara un itinerario. Puoi rifarlo, salvarlo in «Itinerario del giorno» o nei Preferiti e condividerlo.",
     "nl": "✨ In Routes, onderaan, tabblad «Plan je dag»: je zegt hoeveel tijd je hebt, waar je zin in hebt (natuur, strand, cultuur, eten… één of meer), of je liever naar het noorden of het zuiden gaat (of dat het niet uitmaakt) en hoe je je verplaatst (auto, bus, te voet of fiets), en hij stelt een plan voor je samen. Je kunt het opnieuw laten maken, bewaren in «Route van de dag» of bij Favorieten, en delen.",
     "pl": "✨ W zakładce «Trasy», na dole, otwórz «Zaplanuj dzień»: mówisz, ile masz czasu, na co masz ochotę (przyroda, plaża, kultura, jedzenie… jedno albo kilka), czy wolisz północ, czy południe (albo wszystko jedno) i czym się poruszasz (samochód, autobus, pieszo albo rowerem), a aplikacja układa ci plan. Możesz go przygotować od nowa, zapisać w «Trasa dnia» albo w «Ulubione» i udostępnić.",
-    "zh": "✨ 在底部的「路线」里选「规划你的一天」页：说出你有多少时间、想做什么（自然、海滩、文化、美食……可多选）、想去北部还是南部（或者都可以），以及怎么出行（开车、公交、步行或骑车），它就会为你排好行程。你可以重新生成，保存到「今日路线」或「收藏」，也可以分享。",
-    "zht": "✨ 在底部的「路線」裡選「規劃你的一天」頁：說出你有多少時間、想做什麼（自然、海灘、文化、美食……可複選）、想去北部還是南部（或者都可以），以及怎麼出行（開車、公車、步行或騎車），它就會為你排好行程。你可以重新產生，儲存到「今日路線」或「收藏」，也可以分享。"
+    "zh": "✨ 在底部的「路线」里选「规划您的一天」页：说出您有多少时间、想做什么（自然、海滩、文化、美食……可多选）、想去北部还是南部（或者都可以），以及怎么出行（开车、公交、步行或骑车），它就会为您排好行程。您可以重新生成，保存到「今日路线」或「收藏」，也可以分享。",
+    "zht": "✨ 在底部的「路線」裡選「規劃您的一天」頁：說出您有多少時間、想做什麼（自然、海灘、文化、美食……可複選）、想去北部還是南部（或者都可以），以及怎麼出行（開車、公車、步行或騎車），它就會為您排好行程。您可以重新產生，儲存到「今日路線」或「收藏」，也可以分享。"
    },
    "follow": [
     "app-15",
@@ -2100,8 +2102,8 @@
     "it": "👤 No: l’app è uguale anche senza account. In Account, in basso, puoi «Continua come ospite». Se ti registri con email e password, i tuoi preferiti vengono salvati anche nel cloud e li ritrovi su un altro dispositivo; senza account restano su questo telefono.",
     "nl": "👤 Nee: de app is zonder account precies hetzelfde. In Account, onderaan, kun je «Doorgaan als gast». Als je je registreert met e-mail en wachtwoord, worden je favorieten ook in de cloud bewaard en heb je ze terug op een ander apparaat; zonder account blijven ze op deze telefoon.",
     "pl": "👤 Nie: aplikacja działa tak samo bez konta. W zakładce «Konto», na dole, możesz wybrać «Kontynuuj jako gość». Jeśli zarejestrujesz się e-mailem i hasłem, twoje ulubione zapiszą się też w chmurze i odzyskasz je na innym urządzeniu; bez konta zostają w tym telefonie.",
-    "zh": "👤 不需要：不注册也能使用全部功能。在底部的「账户」里可以选「以访客身份继续」。用邮箱和密码注册后，你的收藏还会保存到云端，换设备也能找回；不注册的话，收藏只保存在这部手机上。",
-    "zht": "👤 不需要：不註冊也能使用全部功能。在底部的「帳戶」裡可以選「以訪客身分繼續」。用電子郵件和密碼註冊後，你的收藏還會儲存到雲端，換裝置也能找回；不註冊的話，收藏只儲存在這支手機上。"
+    "zh": "👤 不需要：不注册也能使用全部功能。在底部的「账户」里可以选「以访客身份继续」。用邮箱和密码注册后，您的收藏还会保存到云端，换设备也能找回；不注册的话，收藏只保存在这部手机上。",
+    "zht": "👤 不需要：不註冊也能使用全部功能。在底部的「帳戶」裡可以選「以訪客身分繼續」。用電子郵件和密碼註冊後，您的收藏還會儲存到雲端，換裝置也能找回；不註冊的話，收藏只儲存在這支手機上。"
    },
    "follow": [
     "app-02",
@@ -2551,8 +2553,8 @@
     "it": "🛍️ Il negozio per ora non è disponibile. Se hai un’attività a Tenerife e vuoi comparire nell’app, scrivi a tenerife.go.app@gmail.com.",
     "nl": "🛍️ De winkel is op dit moment niet beschikbaar. Heb je een bedrijf op Tenerife en wil je in de app verschijnen, schrijf dan naar tenerife.go.app@gmail.com.",
     "pl": "🛍️ Sklep jest na razie niedostępny. Jeśli masz firmę na Teneryfie i chcesz pojawić się w aplikacji, napisz na tenerife.go.app@gmail.com.",
-    "zh": "🛍️ 商店暂时无法使用。如果你在特内里费岛有生意，想出现在应用里，请写信至 tenerife.go.app@gmail.com。",
-    "zht": "🛍️ 商店暫時無法使用。如果你在特內里費島有生意，想出現在應用程式裡，請寫信至 tenerife.go.app@gmail.com。"
+    "zh": "🛍️ 商店暂时无法使用。如果您在特内里费岛有生意，想出现在应用里，请写信至 tenerife.go.app@gmail.com。",
+    "zht": "🛍️ 商店暫時無法使用。如果您在特內里費島有生意，想出現在應用程式裡，請寫信至 tenerife.go.app@gmail.com。"
    },
    "follow": [
     "cul-11",
@@ -2658,8 +2660,8 @@
     "it": "📍 Chiedimelo così: «ordina i miei preferiti per distanza». Li metto in ordine da dove ti trovi e senza andare avanti e indietro, così non attraversi l’isola due volte. Se non mi lasci sapere dove sei, comincio da quello a un’estremità. Le distanze sono in linea d’aria, non su strada.",
     "nl": "📍 Vraag het me zo: «sorteer mijn favorieten op afstand». Ik zet ze op volgorde vanaf waar je bent en zonder heen en weer te gaan, zodat je het eiland niet twee keer oversteekt. Als je me niet laat weten waar je bent, begin ik bij de plek aan één uiteinde. De afstanden zijn in vogelvlucht, niet over de weg.",
     "pl": "📍 Poproś mnie tak: «posortuj moje ulubione według odległości». Ustawię je w kolejności od miejsca, w którym jesteś, bez krążenia tam i z powrotem, żeby nie przejeżdżać wyspy dwa razy. Jeśli nie dasz mi znać, gdzie jesteś, zacznę od miejsca na jednym z końców. Odległości są w linii prostej, nie po drodze.",
-    "zh": "📍 这样问我：「按距离排列我的收藏」。我会从你所在的位置出发排好顺序，不走回头路，这样就不用两次横穿全岛。如果你不让我知道你在哪里，我就从位于一端的那个开始。距离是直线距离，不是道路距离。",
-    "zht": "📍 這樣問我：「按距離排列我的收藏」。我會從你所在的位置出發排好順序，不走回頭路，這樣就不用兩次橫穿全島。如果你不讓我知道你在哪裡，我就從位於一端的那個開始。距離是直線距離，不是道路距離。"
+    "zh": "📍 这样问我：「按距离排列我的收藏」。我会从您所在的位置出发排好顺序，不走回头路，这样就不用两次横穿全岛。如果您不让我知道您在哪里，我就从位于一端的那个开始。距离是直线距离，不是道路距离。",
+    "zht": "📍 這樣問我：「按距離排列我的收藏」。我會從您所在的位置出發排好順序，不走回頭路，這樣就不用兩次橫穿全島。如果您不讓我知道您在哪裡，我就從位於一端的那個開始。距離是直線距離，不是道路距離。"
    },
    "follow": [
     "app-02",
@@ -2806,8 +2808,8 @@
     "it": "🔭 In alto, il telescopio apre «Cielo di Tenerife». In «Stanotte» trovi a che ora fa buio pieno, la Luna, i pianeti visibili e se sorge la Via Lattea, con la previsione delle nuvole; in «Calendario», le prossime stelle cadenti ed eclissi; in «Catalogo», stelle, ammassi e galassie a seconda che si vedano a occhio nudo, con il binocolo o con il telescopio; in «Mappa», il cielo all’ora che scegli; e in «Dove andare», i posti da cui guardare. Si calcola sul telefono e funziona senza connessione, tranne le nuvole. «Luce rossa» tinge lo schermo per non abbagliarti.",
     "nl": "🔭 Bovenaan opent de telescoop «Sterrenhemel van Tenerife». Bij «Vannacht» zie je wanneer het echt donker wordt, de maan, de zichtbare planeten en of de Melkweg opkomt, met de wolkenverwachting; bij «Kalender» de komende meteorenzwermen en eclipsen; in de «Catalogus» sterren, sterrenhopen en sterrenstelsels naargelang je ze met het blote oog, een verrekijker of een telescoop ziet; bij «Kaart» de hemel op het tijdstip dat je kiest, en bij «Waarheen» de plekken om te kijken. Het wordt op je telefoon berekend en werkt zonder verbinding, behalve de wolken. «Rood licht» kleurt het scherm rood, zodat het je niet verblindt.",
     "pl": "🔭 Na górze teleskop otwiera «Niebo nad Teneryfą». W zakładce «Dziś w nocy» masz godzinę, o której robi się całkiem ciemno, Księżyc, widoczne planety i to, czy wschodzi Droga Mleczna, z prognozą zachmurzenia; w zakładce «Kalendarz» nadchodzące roje meteorów i zaćmienia; w zakładce «Katalog» gwiazdy, gromady i galaktyki według tego, czy widać je gołym okiem, przez lornetkę czy przez teleskop; w zakładce «Mapa» niebo o wybranej godzinie, a w zakładce «Gdzie» miejsca do obserwacji. Wszystko liczy się w telefonie i działa bez połączenia, poza chmurami. «Czerwone światło» barwi ekran na czerwono, żeby cię nie oślepiał.",
-    "zh": "🔭 顶部的望远镜打开「特内里费星空」。「今晚」里有几点天完全黑下来、月亮、能看到的行星、银河是否升起，以及云量预报；「天象日历」里是即将到来的流星雨和日月食；「星表」按肉眼、双筒望远镜或天文望远镜能否看到，列出恒星、星团和星系；「星图」显示你选定时刻的星空；「观星地点」介绍适合观星的地方。一切都在手机上计算，没网也能用，只有云量预报需要联网。「红光模式」会把屏幕调成红色，以免刺眼。",
-    "zht": "🔭 頂部的望遠鏡打開「特內里費星空」。「今晚」裡有幾點天完全黑下來、月亮、能看到的行星、銀河是否升起，以及雲量預報；「天象日曆」裡是即將到來的流星雨和日月食；「星表」按肉眼、雙筒望遠鏡或天文望遠鏡能否看到，列出恆星、星團和星系；「星圖」顯示你選定時刻的星空；「觀星地點」介紹適合觀星的地方。一切都在手機上計算，沒網路也能用，只有雲量預報需要連網。「紅光模式」會把螢幕調成紅色，以免刺眼。"
+    "zh": "🔭 顶部的望远镜打开「特内里费星空」。「今晚」里有几点天完全黑下来、月亮、能看到的行星、银河是否升起，以及云量预报；「天象日历」里是即将到来的流星雨和日月食；「星表」按肉眼、双筒望远镜或天文望远镜能否看到，列出恒星、星团和星系；「星图」显示您选定时刻的星空；「观星地点」介绍适合观星的地方。一切都在手机上计算，没网也能用，只有云量预报需要联网。「红光模式」会把屏幕调成红色，以免刺眼。",
+    "zht": "🔭 頂部的望遠鏡打開「特內里費星空」。「今晚」裡有幾點天完全黑下來、月亮、能看到的行星、銀河是否升起，以及雲量預報；「天象日曆」裡是即將到來的流星雨和日月食；「星表」按肉眼、雙筒望遠鏡或天文望遠鏡能否看到，列出恆星、星團和星系；「星圖」顯示您選定時刻的星空；「觀星地點」介紹適合觀星的地方。一切都在手機上計算，沒網路也能用，只有雲量預報需要連網。「紅光模式」會把螢幕調成紅色，以免刺眼。"
    },
    "follow": [
     "app-25",
@@ -3058,8 +3060,8 @@
     "it": "🗑️ In «Account», in basso, con l’accesso fatto: sotto «Esci», tocca «Elimina account» e conferma con «Sì, elimina il mio account». Vengono cancellati il tuo indirizzo e-mail, la tua password e i preferiti salvati nel cloud, e non si può annullare. Se dall’app non ci riesci, scrivi a tenerife.go.app@gmail.com dall’indirizzo e-mail del tuo account con oggetto «Elimina il mio account»: viene eliminato entro un mese al massimo. Le notifiche non fanno parte dell’account: si disattivano nel browser o nelle impostazioni del telefono.",
     "nl": "🗑️ Bij «Account», onderaan, ingelogd: tik onder «Uitloggen» op «Account verwijderen» en bevestig met «Ja, verwijder mijn account». Je e-mailadres, je wachtwoord en de favorieten in de cloud worden gewist, en dat kan niet ongedaan worden gemaakt. Lukt het niet in de app, schrijf dan naar tenerife.go.app@gmail.com vanaf het e-mailadres van je account, met als onderwerp «Mijn account verwijderen»: het wordt uiterlijk binnen een maand verwijderd. Meldingen horen niet bij het account: die zet je uit in je browser of in de instellingen van je telefoon.",
     "pl": "🗑️ W sekcji «Konto», na dole, po zalogowaniu: pod «Wyloguj się» dotknij «Usuń konto» i potwierdź przyciskiem «Tak, usuń moje konto». Usuwane są twój adres e-mail, hasło i ulubione zapisane w chmurze, i nie można tego cofnąć. Jeśli w aplikacji się nie da, napisz na tenerife.go.app@gmail.com z adresu e-mail swojego konta, z tematem «Usuń moje konto»: zostanie usunięte najpóźniej w ciągu miesiąca. Powiadomienia nie należą do konta: wyłącza się je w przeglądarce albo w ustawieniach telefonu.",
-    "zh": "🗑️ 登录后，点底部的「账户」：在「退出登录」下方点按「删除账户」，再点「确定删除我的账户」确认。你的电子邮箱、密码和保存在云端的收藏都会被删除，且无法撤销。如果在应用里删不了，请用账户的电子邮箱发邮件到 tenerife.go.app@gmail.com，主题写「删除我的账户」：最迟一个月内删除。通知不属于账户：请在浏览器或手机设置中关闭。",
-    "zht": "🗑️ 登入後，點底部的「帳戶」：在「登出」下方點按「刪除帳戶」，再點「確定刪除我的帳戶」確認。你的電子郵件地址、密碼和儲存在雲端的收藏都會被刪除，且無法復原。如果在應用程式裡刪不了，請用帳戶的電子郵件地址寄信到 tenerife.go.app@gmail.com，主旨寫「刪除我的帳戶」：最遲一個月內刪除。通知不屬於帳戶：請在瀏覽器或手機設定中關閉。"
+    "zh": "🗑️ 登录后，点底部的「账户」：在「退出登录」下方点按「删除账户」，再点「确定删除我的账户」确认。您的电子邮箱、密码和保存在云端的收藏都会被删除，且无法撤销。如果在应用里删不了，请用账户的电子邮箱发邮件到 tenerife.go.app@gmail.com，主题写「删除我的账户」：最迟一个月内删除。通知不属于账户：请在浏览器或手机设置中关闭。",
+    "zht": "🗑️ 登入後，點底部的「帳戶」：在「登出」下方點按「刪除帳戶」，再點「確定刪除我的帳戶」確認。您的電子郵件地址、密碼和儲存在雲端的收藏都會被刪除，且無法復原。如果在應用程式裡刪不了，請用帳戶的電子郵件地址寄信到 tenerife.go.app@gmail.com，主旨寫「刪除我的帳戶」：最遲一個月內刪除。通知不屬於帳戶：請在瀏覽器或手機設定中關閉。"
    },
    "follow": [
     "app-18",
@@ -3174,8 +3176,8 @@
     "it": "🔒 È tutto in «Privacy · GDPR», in basso sulla mappa, e sul web in «Versione web». La tua posizione, solo quando la attivi, e non viene salvata su nessun server; il tuo indirizzo e-mail e la password, se crei un account; i tuoi preferiti, nel cloud solo con un account; e se attivi le notifiche, l’iscrizione del tuo browser, con la lingua dell’app. Le statistiche d’uso, solo se accetti l’avviso dei cookie. Per eliminare l’account, «Eliminare il tuo account», lì accanto.",
     "nl": "🔒 Alles staat in «Privacy · AVG», onderaan op de kaart, en op het web in «Webversie». Je locatie alleen als je die aanzet, en die wordt op geen enkele server bewaard; je e-mailadres en wachtwoord als je een account maakt; je favorieten, in de cloud alleen met een account; en als je meldingen aanzet, het abonnement van je browser, met de taal van de app. Gebruiksstatistieken alleen als je de cookiemelding accepteert. Om je account te verwijderen: «Je account verwijderen», ernaast.",
     "pl": "🔒 Wszystko jest w «Prywatność · RODO», na dole mapy, a w sieci w «Wersja www». Twoja lokalizacja tylko wtedy, gdy ją włączysz, i nie jest zapisywana na żadnym serwerze; twój adres e-mail i hasło, jeśli założysz konto; ulubione, w chmurze tylko z kontem; a jeśli włączysz powiadomienia, subskrypcja twojej przeglądarki wraz z językiem aplikacji. Statystyki użycia tylko wtedy, gdy zaakceptujesz komunikat o ciasteczkach. Żeby usunąć konto: «Usuwanie konta», tuż obok.",
-    "zh": "🔒 详细内容都在地图下方的「隐私 · GDPR」里，网页上则在「网页版」。你的位置只在你开启时使用，不会保存到任何服务器；创建账户时会保存你的电子邮箱和密码；收藏只有登录后才存到云端；开启通知时，会保存浏览器的订阅和应用的语言。使用统计只在你接受 Cookie 提示后才收集。要删除账户，就在旁边的「删除您的账户」。",
-    "zht": "🔒 詳細內容都在地圖下方的「隱私 · GDPR」裡，網頁上則在「網頁版」。你的位置只在你開啟時使用，不會儲存到任何伺服器；建立帳戶時會儲存你的電子郵件地址和密碼；收藏只有登入後才存到雲端；開啟通知時，會儲存瀏覽器的訂閱和應用程式的語言。使用統計只在你接受 Cookie 提示後才收集。要刪除帳戶，就在旁邊的「刪除您的帳戶」。"
+    "zh": "🔒 详细内容都在地图下方的「隐私 · GDPR」里，网页上则在「网页版」。您的位置只在您开启时使用，不会保存到任何服务器；创建账户时会保存您的电子邮箱和密码；收藏只有登录后才存到云端；开启通知时，会保存浏览器的订阅和应用的语言。使用统计只在您接受 Cookie 提示后才收集。要删除账户，就在旁边的「删除您的账户」。",
+    "zht": "🔒 詳細內容都在地圖下方的「隱私 · GDPR」裡，網頁上則在「網頁版」。您的位置只在您開啟時使用，不會儲存到任何伺服器；建立帳戶時會儲存您的電子郵件地址和密碼；收藏只有登入後才存到雲端；開啟通知時，會儲存瀏覽器的訂閱和應用程式的語言。使用統計只在您接受 Cookie 提示後才收集。要刪除帳戶，就在旁邊的「刪除您的帳戶」。"
    },
    "follow": [
     "app-26",
@@ -3287,8 +3289,8 @@
     "it": "💼 Sono attività che pagano un piano di promozione mensile per comparire sulla mappa: lo dice il loro fumetto, «Sponsorizzato». Le vedono tutti allo stesso modo, senza usare i tuoi dati né cookie pubblicitari, e non cambiano il resto dei contenuti.",
     "nl": "💼 Dat zijn bedrijven die een maandelijks promotieplan betalen om op de kaart te staan: hun pop-up zegt het, «Gesponsord». Iedereen ziet ze op dezelfde manier, zonder jouw gegevens of advertentiecookies te gebruiken, en ze veranderen de rest van de inhoud niet.",
     "pl": "💼 To firmy, które płacą za miesięczny plan promocyjny, żeby pojawiać się na mapie: mówi to ich dymek, «Sponsorowane». Wszyscy widzą je tak samo, bez używania twoich danych ani ciasteczek reklamowych, i nie zmieniają reszty treści.",
-    "zh": "💼 这些是付费按月推广、出现在地图上的商家：它们的信息框里会标明「赞助」。所有人看到的都一样，不使用你的数据，也没有广告 Cookie，不会改变其余内容。",
-    "zht": "💼 這些是付費按月推廣、出現在地圖上的商家：它們的資訊框裡會標明「贊助」。所有人看到的都一樣，不使用你的資料，也沒有廣告 Cookie，不會改變其餘內容。"
+    "zh": "💼 这些是付费按月推广、出现在地图上的商家：它们的信息框里会标明「赞助」。所有人看到的都一样，不使用您的数据，也没有广告 Cookie，不会改变其余内容。",
+    "zht": "💼 這些是付費按月推廣、出現在地圖上的商家：它們的資訊框裡會標明「贊助」。所有人看到的都一樣，不使用您的資料，也沒有廣告 Cookie，不會改變其餘內容。"
    },
    "follow": [
     "app-12",
@@ -3401,8 +3403,8 @@
     "it": "🔔 Sì, con l’app installata nella schermata Home: la terza volta che la apri ti chiede «Una spinta ogni mattina?», una frase per iniziare la giornata, senza pubblicità. Se hai risposto «Non ora», non te lo chiede più, ma puoi attivarle quando vuoi in «Account», con «Attiva le notifiche»: con l’accesso fatto, proprio lì; senza account, in «Continua come ospite». Su iPhone, prima aggiungila alla schermata Home da Safari. Per toglierle, vai nelle impostazioni delle notifiche del telefono.",
     "nl": "🔔 Ja, met de app op je beginscherm geïnstalleerd: de derde keer dat je hem opent, vraagt hij «Elke ochtend een zetje?», een zin om de dag mee te beginnen, zonder reclame. Heb je «Nu niet» geantwoord, dan vraagt hij het niet meer, maar je zet ze aan wanneer je wilt bij «Account», met «Meldingen inschakelen»: ingelogd meteen daar, zonder account onder «Doorgaan als gast». Op een iPhone zet je de app eerst via Safari op je beginscherm. Uitzetten doe je in de meldingsinstellingen van je telefoon.",
     "pl": "🔔 Tak, gdy aplikacja jest zainstalowana na ekranie początkowym: przy trzecim otwarciu zapyta «Mały impuls każdego ranka?», jedno zdanie na początek dnia, bez reklam. Jeśli odpowiedziałeś «Nie teraz», nie zapyta ponownie, ale możesz je włączyć w każdej chwili w sekcji «Konto», przyciskiem «Włącz powiadomienia»: po zalogowaniu od razu tam, bez konta w zakładce «Kontynuuj jako gość». Na iPhonie najpierw dodaj ją do ekranu początkowego z Safari. Żeby je wyłączyć, wejdź w ustawienia powiadomień telefonu.",
-    "zh": "🔔 可以，前提是把应用安装到主屏幕：第三次打开时，它会问你「每天早上来点灵感？」——每天一句开启一天的话，没有广告。如果你点了「暂不」，它就不会再问，但你随时可以在「账户」里点「开启通知」：登录后就在那里；没有账户的话，在「以访客身份继续」里。在 iPhone 上，请先用 Safari 把它添加到主屏幕。要关闭，请到手机的通知设置里。",
-    "zht": "🔔 可以，前提是把應用程式安裝到主畫面：第三次打開時，它會問你「每天早上來點靈感？」——每天一句開啟一天的話，沒有廣告。如果你點了「暫不」，它就不會再問，但你隨時可以在「帳戶」裡點「開啟通知」：登入後就在那裡；沒有帳戶的話，在「以訪客身分繼續」裡。在 iPhone 上，請先用 Safari 把它加入主畫面。要關閉，請到手機的通知設定裡。"
+    "zh": "🔔 可以，前提是把应用安装到主屏幕：第三次打开时，它会问您「每天早上来点灵感？」——每天一句开启一天的话，没有广告。如果您点了「暂不」，它就不会再问，但您随时可以在「账户」里点「开启通知」：登录后就在那里；没有账户的话，在「以访客身份继续」里。在 iPhone 上，请先用 Safari 把它添加到主屏幕。要关闭，请到手机的通知设置里。",
+    "zht": "🔔 可以，前提是把應用程式安裝到主畫面：第三次打開時，它會問您「每天早上來點靈感？」——每天一句開啟一天的話，沒有廣告。如果您點了「暫不」，它就不會再問，但您隨時可以在「帳戶」裡點「開啟通知」：登入後就在那裡；沒有帳戶的話，在「以訪客身分繼續」裡。在 iPhone 上，請先用 Safari 把它加入主畫面。要關閉，請到手機的通知設定裡。"
    },
    "follow": [
     "app-07",
