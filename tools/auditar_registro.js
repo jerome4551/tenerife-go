@@ -26,6 +26,8 @@
  *
  *     node tools/auditar_registro.js 8766              (auditar.sh)
  *     node tools/auditar_registro.js 8766 --lista es f.json   los textos con tuteo de un idioma
+ *     node tools/auditar_registro.js 8766 --todos de f.json   todos los textos de un idioma, para
+ *         repasar a mano lo que las marcas no ven (el imperativo sin pronombre)
  */
 'use strict';
 const fs = require('fs');
@@ -37,10 +39,12 @@ const RAIZ = path.join(__dirname, '..');
 const PUERTO = Number(process.argv[2] || 8766);
 const LISTA = process.argv.indexOf('--lista') > 0 ? process.argv[process.argv.indexOf('--lista') + 1] : null;
 const LISTA_F = LISTA ? process.argv[process.argv.indexOf('--lista') + 2] : null;
+const TODOS = process.argv.indexOf('--todos') > 0 ? process.argv[process.argv.indexOf('--todos') + 1] : null;
+const TODOS_F = TODOS ? process.argv[process.argv.indexOf('--todos') + 2] : null;
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 
 /* Los idiomas ya pasados a usted. Cada parte del cambio anade el suyo. */
-const HECHOS = ['es', 'zh', 'zht'];
+const HECHOS = ['es', 'zh', 'zht', 'de'];
 
 /* ── las marcas del tuteo, idioma a idioma ─────────────────────────────── */
 const L_ = 'A-Za-zÀ-ÖØ-öø-ɏЀ-ӿ';
@@ -124,10 +128,27 @@ const MARCAS = {
          'Consulte', 'Enlève', 'Retire', 'Reviens', 'Pointe', 'Lève', 'Dessine', 'Vérifie', 'Efface', 'Ferme', 'Partage', 'Télécharge', 'Installe', 'Appuie', 'Glisse',
          'Bouge', 'Tape', 'Écris', 'Sélectionne', 'Suis', 'Respire', 'Écoute', 'Imagine', 'Souris', 'Prends', 'Fais', 'Va', 'Viens', 'Dis', 'Mets', 'Bois', 'Mange'),
        palI('peux', 'veux', 'as', 'vas', 'fais', 'sais', 'dois', 'vois', 'es')],
-  de: [palI('du', 'dich', 'dir', 'dein', 'deine', 'deinen', 'deinem', 'deiner', 'deines', 'dein\\w+'),
-       inicio('Tippe', 'Wähle', 'Öffne', 'Schau', 'Nutze', 'Melde', 'Suche', 'Probier\\w*', 'Entdecke', 'Genieße', 'Aktiviere', 'Akzeptiere', 'Erstelle', 'Speichere',
-         'Füge', 'Lösche', 'Schließe', 'Teile', 'Lade', 'Installiere', 'Drücke', 'Wische', 'Bewege', 'Zeige', 'Halte', 'Gib', 'Nimm', 'Sieh', 'Lies', 'Atme', 'Hör\\w*',
-         'Stell\\w*', 'Mach\\w*', 'Geh\\w*', 'Komm\\w*', 'Trink', 'Iss', 'Lass', 'Sei', 'Denk\\w*', 'Gönn\\w*', 'Vergiss', 'Plane', 'Folge', 'Richte', 'Hebe', 'Zeichne', 'Prüfe')],
+  de: [palI('du', 'dich', 'dir', 'dein', 'deine', 'deinen', 'deinem', 'deiner', 'deines', 'dein(?!stall)\\w+'),
+       inicio('Tippe', 'Wähle', 'Öffne', 'Schau', 'Nutze', 'Melde', 'Suche', 'Probier', 'Probiere(?! ich)', 'Entdecke', 'Genieße', 'Aktiviere', 'Akzeptiere', 'Erstelle', 'Speichere',
+         'Füge', 'Lösche', 'Schließe', 'Teile', 'Lade', 'Installiere', 'Drücke', 'Wische', 'Bewege', 'Zeige', 'Halte', 'Gib', 'Nimm', 'Sieh', 'Lies', 'Atme', 'Hör', 'Höre(?! ich)',
+         /* el imperativo exacto, no la raiz: «Geh\\w*» se llevaba «Geht um {h} auf» y,
+            con el aleman de Sie, se llevaria «Gehen Sie» (22 de octubre) */
+         'Stell', 'Stelle(?! ich)', 'Mach', 'Mache(?! ich)', 'Geh', 'Gehe(?! ich)', 'Komm', 'Komme(?! ich)', 'Trink', 'Iss', 'Lass', 'Sei', 'Denk', 'Denke(?! ich)', 'Gönn', 'Gönne(?! ich)', 'Vergiss', 'Plane', 'Folge', 'Richte', 'Hebe', 'Zeichne', 'Prüfe',
+         /* los que salieron al pasar el aleman a Sie (22 de octubre): el
+            imperativo corto sin pronombre, «Ruh heute», «Such ihn», «Erkunde in Ruhe».
+            Los que tambien son nombre, solo en su giro: «Beginn mit…», «Versuch, …» */
+         'Such', 'Ruh', 'Wähl', 'Erkunde', 'Pfleg', 'Zähl', 'Bleib', 'Genieß', 'Verbring', 'Lern', 'Füg', 'Bemerk', 'Hab', 'Vertrau', 'Verzeih',
+         'Verlang', 'Verdien', 'Vergleich', 'Miss', 'Beweg', 'Behandle', 'Feiere', 'Ehre', 'Achte', 'Hüte', 'Erkenn', 'Verurteil', 'Definier',
+         'Entdeck', 'Sorg', 'Leg', 'Nenn', 'Renn(?!-)', 'Frag', 'Tu', 'Sag', 'Grüß', 'Füll', 'Streck', 'Verdien', 'Dank',
+         'Beginn mit', 'Beginn dort', 'Beginn bei', 'Versuch auch', 'Versuch,',
+         /* y los que solo vio el repaso a mano, frase a frase (22 de octubre) */
+         'Würfle', 'Fahr', 'Prüf', 'Berechne', 'Versuche es', 'Versuch eine', 'Versuch es', 'Sprich', 'Schreib', 'Park nie'),
+       /* tras un emoji: «👋 Frag mich…», «😕 Versuch eine andere Gegend» */
+       trasEmoji('Frag', 'Versuch', 'Versuche', 'Probier', 'Probiere', 'Tippe', 'Tipp', 'Wähle', 'Wähl', 'Schau', 'Gib', 'Sieh', 'Geh', 'Komm', 'Such', 'Öffne', 'Sprich'),
+       /* y en medio de la frase, en minuscula, tras dos puntos, coma o «und»: «Heute: geh langsam», «wähl eins und geh» */
+       new RegExp('(?:[,:;—–]\\s*|\\sund\\s+)(?:geh|wähl|probier|schau|frag|such|atme|bleib|lass|nimm|gib|sieh|hör|tu|komm|denk|ruh|tipp|öffne|wähle|tippe)(?![' + L_ + '])', 'u'),
+       /* «Bitte fülle…», «bitte gib…»: tras «bitte», el imperativo de du (el de Sie es «Bitte füllen Sie») */
+       new RegExp('(?<![' + L_ + '])[Bb]itte\\s+(?:fülle|füll|gib|wähle|wähl|tippe|tipp|gehe|geh|versuche|versuch|prüfe|prüf|öffne|schau|sieh|nimm|lies|komm|warte|melde|gib)(?![' + L_ + '])', 'u')],
   it: [palI('tu', 'ti', 'te', 'tuo', 'tua', 'tuoi', 'tue'),
        inicio('Tocca', 'Scegli', 'Scrivi', 'Usa', 'Apri', 'Guarda', 'Prova', 'Cerca', 'Scopri', 'Goditi', 'Attiva', 'Accetta', 'Crea', 'Salva', 'Aggiungi', 'Consulta',
          'Togli', 'Cambia', 'Torna', 'Punta', 'Alza', 'Disegna', 'Controlla', 'Cancella', 'Chiudi', 'Condividi', 'Scarica', 'Installa', 'Premi', 'Trascina', 'Muovi',
@@ -159,6 +180,12 @@ const EXENTOS = [
   ['es', '"¡Oye, tú!" — para llamar a alguien con cariño.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
   ['es', 'Mira', 'la estrella Mira (ο Ceti): nombre propio'],
   ['es', /Calle Esteban de Ponte/, 'Ponte es el apellido de la calle Esteban de Ponte'],
+  /* el aleman (22 de octubre de 2026) */
+  ['de', '„Hey du!" — freundliche Anrede.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
+  ['de', 'Überrasch mich', 'la voz de quien usa la app, como «Sorpréndeme» (Jerome: esos rotulos se quedan asi)'],
+  ['de', 'Hilfst du mir, den Tag zu planen?', 'la pregunta de quien usa la app al asistente, como «¿Me ayuda a organizar el día?»'],
+  ['de', 'Zeige', '«Zeige 74 von 980 Orten»: habla la app en primera persona, no es un imperativo'],
+  ['de', 'Suche löschen', '«Suche» es el nombre (la busqueda): «borrar la busqueda»'],
 ];
 
 function exento(l, t) {
@@ -166,6 +193,8 @@ function exento(l, t) {
 }
 function marca(l, t) {
   if (!MARCAS[l] || exento(l, t)) return null;
+  /* los marcadores {dir}, {d}… no se ven: «{dir}» no es «dir» (22 de octubre) */
+  t = t.replace(/\{\w+\}/g, ' ');
   for (const re of MARCAS[l]) { const m = t.match(re); if (m) return m[0].trim(); }
   return null;
 }
@@ -253,6 +282,7 @@ async function textos() {
 
 (async () => {
   const todos = await textos();
+  if (TODOS && TODOS_F) fs.writeFileSync(TODOS_F, JSON.stringify(todos.filter(y => y.l === TODOS), null, 1));
   console.log('=== el trato de usted, en los ' + IDI.length + ' idiomas ===');
   console.log('  textos leidos: ' + todos.length);
   let mal = 0;

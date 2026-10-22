@@ -1,13 +1,13 @@
 {
- "intro": "Wenn du bei Tenerife Go ein Konto angelegt hast, kannst du es jederzeit löschen: in der App oder per E-Mail.",
+ "intro": "Wenn Sie bei Tenerife Go ein Konto angelegt haben, können Sie es jederzeit löschen: in der App oder per E-Mail.",
  "appTitulo": "In der App",
- "appTxt": "Tippe auf «{cuenta}» (melde dich an, falls du danach gefragt wirst) und dann unter «{cerrar}» auf «{eliminar}». Die App bittet dich, mit «{confirmar}» zu bestätigen, und das Konto wird sofort gelöscht.",
+ "appTxt": "Tippen Sie auf «{cuenta}» (melden Sie sich an, falls Sie danach gefragt werden) und dann unter «{cerrar}» auf «{eliminar}». Die App bittet Sie, mit «{confirmar}» zu bestätigen, und das Konto wird sofort gelöscht.",
  "correoTitulo": "Ohne die App",
- "correoTxt": "Schreib uns an {correo} von der E-Mail-Adresse deines Kontos, mit dem Betreff «{asunto}». Wir löschen es spätestens einen Monat nach Eingang deiner E-Mail (DSGVO, Artikel 12 Absatz 3).",
+ "correoTxt": "Schreiben Sie uns an {correo} von der E-Mail-Adresse Ihres Kontos, mit dem Betreff «{asunto}». Wir löschen es spätestens einen Monat nach Eingang Ihrer E-Mail (DSGVO, Artikel 12 Absatz 3).",
  "asunto": "Mein Konto löschen",
  "borraTitulo": "Was gelöscht wird",
- "borraTxt": "Deine E-Mail-Adresse, dein Passwort (verschlüsselt gespeichert) und die Favoriten, die du in der Cloud gespeichert hast.",
+ "borraTxt": "Ihre E-Mail-Adresse, Ihr Passwort (verschlüsselt gespeichert) und die Favoriten, die Sie in der Cloud gespeichert haben.",
  "noTitulo": "Was nicht mit dem Konto gelöscht wird",
- "noPush": "Benachrichtigungen: Du schaltest sie im Browser oder in den Einstellungen deines Handys aus.",
- "noDispositivo": "Was auf deinem Gerät liegt, zum Beispiel die Sprache oder deine Favoriten: Es verschwindet, wenn du die Websitedaten im Browser löschst oder die App deinstallierst."
+ "noPush": "Benachrichtigungen: Sie schalten sie im Browser oder in den Einstellungen Ihres Handys aus.",
+ "noDispositivo": "Was auf Ihrem Gerät liegt, zum Beispiel die Sprache oder Ihre Favoriten: Es verschwindet, wenn Sie die Websitedaten im Browser löschen oder die App deinstallieren."
 }
