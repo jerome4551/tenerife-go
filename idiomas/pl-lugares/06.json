@@ -93,7 +93,7 @@
   "cat": "Park wodny dostępny · Adeje"
  },
  "acc-teide-portillo": {
-  "desc": "Park Narodowy Teide na wózku inwalidzkim: Centrum dla Zwiedzających El Portillo jest w pełni dostępne (rampy, przystosowane toalety, interaktywne wystawy), z przystosowanymi punktami widokowymi i krótkimi dostępnymi szlakami po wulkanicznym krajobrazie. Kolejka linowa ma przystosowane zaplecze u podstawy; sprawdź warunki przed wjazdem.",
+  "desc": "Park Narodowy Teide na wózku inwalidzkim: Centrum dla Zwiedzających El Portillo jest w pełni dostępne (rampy, przystosowane toalety, interaktywne wystawy), z przystosowanymi punktami widokowymi i krótkimi dostępnymi szlakami po wulkanicznym krajobrazie. Kolejka linowa ma przystosowane zaplecze u podstawy; przed wjazdem warto sprawdzić warunki.",
   "cat": "Przyroda dostępna · Teide"
  },
  "acc-paseo-cristianos": {
@@ -121,7 +121,7 @@
   "cat": "Wybieg dla psów · La Laguna"
  },
  "teide-petfriendly": {
-  "desc": "⚠️ Z psem można chodzić tylko po oficjalnych szlakach i zawsze na smyczy: to chroniony obszar przyrodniczy z wrażliwą endemiczną fauną; naruszenia są karane. Park Narodowy Teide pozwala na psy na smyczy w strefach wolnego dostępu i na drogach parku. Nie są dozwolone na chronionych szlakach ani w kolejce linowej. Koniecznie zabierz wodę dla zwierzaka ze względu na wysokość i upał.",
+  "desc": "⚠️ Z psem można chodzić tylko po oficjalnych szlakach i zawsze na smyczy: to chroniony obszar przyrodniczy z wrażliwą endemiczną fauną; naruszenia są karane. Park Narodowy Teide pozwala na psy na smyczy w strefach wolnego dostępu i na drogach parku. Nie są dozwolone na chronionych szlakach ani w kolejce linowej. Koniecznie trzeba zabrać wodę dla zwierzaka ze względu na wysokość i upał.",
   "cat": "Park narodowy pet friendly · Teide"
  },
  "parque-canino-ana-bautista": {
@@ -189,7 +189,7 @@
   "cat": "Punkt widokowy · Rambla de Castro · Los Realejos"
  },
  "mir-la-garanona": {
-  "desc": "Park i punkt widokowy nad wybrzeżem El Sauzal, z ogrodami, ścieżkami i palmami. Nie schodź na plażę: dostęp do brzegu jest niedozwolony, a dawna ścieżka rybaków jest nie do przejścia i zdarzają się na niej obrywy skalne.",
+  "desc": "Park i punkt widokowy nad wybrzeżem El Sauzal, z ogrodami, ścieżkami i palmami. Nie schodzić na plażę: dostęp do brzegu jest niedozwolony, a dawna ścieżka rybaków jest nie do przejścia i zdarzają się na niej obrywy skalne.",
   "cat": "Punkt widokowy · Park · El Sauzal"
  },
  "mercadillo-tegueste": {
@@ -281,7 +281,7 @@
   "cat": "Punkt widokowy · Punta del Hidalgo · Północ"
  },
  "mir-aguaide": {
-  "desc": "Spektakularny punkt widokowy w Parku Wiejskim Anaga, dostępny z przysiółka Chinamada (10 min pieszo). Zawrotne widoki na Atlantyk i na Punta del Hidalgo. Krawędź jest odgrodzona z powodu szczelin w skale, które mogą się osunąć — podziwiaj z bezpiecznej strefy. Uwaga: tylko dla doświadczonych piechurów. Dojście z Punta del Hidalgo to około 5 km pieszo.",
+  "desc": "Spektakularny punkt widokowy w Parku Wiejskim Anaga, dostępny z przysiółka Chinamada (10 min pieszo). Zawrotne widoki na Atlantyk i na Punta del Hidalgo. Krawędź jest odgrodzona z powodu szczelin w skale, które mogą się osunąć — podziwiać tylko z bezpiecznej strefy. Uwaga: tylko dla doświadczonych piechurów. Dojście z Punta del Hidalgo to około 5 km pieszo.",
   "cat": "Punkt widokowy · Anaga · Tylko pieszo · Dla doświadczonych"
  },
  "mir-chivisaya": {
@@ -301,7 +301,7 @@
   "cat": "Punkt widokowy · Nosy Teide · 2661 m · TF-38"
  },
  "mir-rambleta-teide": {
-  "desc": "La Rambleta to górna stacja kolejki linowej na Teide, na 3555 metrach n.p.m. — najwyżej położony punkt widokowy Hiszpanii dostępny bez wędrówki. Widoki 360° na Park Narodowy: Teide górujący ponad chmurami, Pico Viejo, Las Cañadas, kaldera, a w pogodne dni siedem Wysp Kanaryjskich naraz. Dojazd kolejką (~14€ w obie strony) ze stacji dolnej na 2356 m. Stąd prowadzi szlak Telesforo Bravo na szczyt Teide (45 min, pozwolenie obowiązkowe). Średnia temperatura: 5-10°C latem, poniżej zera zimą. Zawsze zabieraj ciepłe ubranie. Kolejki w sezonie wysokim bywają długie — kup bilet online.",
+  "desc": "La Rambleta to górna stacja kolejki linowej na Teide, na 3555 metrach n.p.m. — najwyżej położony punkt widokowy Hiszpanii dostępny bez wędrówki. Widoki 360° na Park Narodowy: Teide górujący ponad chmurami, Pico Viejo, Las Cañadas, kaldera, a w pogodne dni siedem Wysp Kanaryjskich naraz. Dojazd kolejką (~14€ w obie strony) ze stacji dolnej na 2356 m. Stąd prowadzi szlak Telesforo Bravo na szczyt Teide (45 min, pozwolenie obowiązkowe). Średnia temperatura: 5-10°C latem, poniżej zera zimą. Zawsze trzeba mieć ciepłe ubranie. Kolejki w sezonie wysokim bywają długie — lepiej kupić bilet online.",
   "cat": "Punkt widokowy · Teide · 3555 m · Kolejka · 360°"
  },
  "surf-las-americas": {

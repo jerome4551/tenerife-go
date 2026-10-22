@@ -119,7 +119,7 @@
     "fr": "🍽️ Ce que vous ne pouvez pas quitter l’île sans goûter : papas arrugadas avec mojo rouge et vert, gofio, fromage de l’île, poisson frais, viande de chèvre et conejo en salmorejo (lapin mariné), et en dessert bienmesabe ou quesillo. À boire, du vin local ou un barraquito. Sur la carte, la catégorie Gastronomie.",
     "it": "🍽️ Quello che non può andare via senza assaggiare: papas arrugadas con mojo rosso e verde, gofio, formaggio dell’isola, pesce fresco, carne di capra e conejo en salmorejo (coniglio marinato), e per dolce bienmesabe o quesillo. Da bere, vino dell’isola o un barraquito. Sulla mappa, la categoria Gastronomia.",
     "nl": "🍽️ Wat u niet mag missen: papas arrugadas met rode en groene mojo, gofio, kaas van het eiland, verse vis, geitenvlees en conejo en salmorejo (konijn in pittige marinade), en als toetje bienmesabe of quesillo. Om te drinken: wijn van het eiland of een barraquito. Op de kaart: de categorie Gastronomie.",
-    "pl": "🍽️ Tego nie możesz nie spróbować: papas arrugadas z czerwonym i zielonym mojo, gofio, ser z wyspy, świeże ryby, mięso kozie i conejo en salmorejo (królik w ostrej marynacie), a na deser bienmesabe albo quesillo. Do picia miejscowe wino albo barraquito. Na mapie: kategoria Gastronomia.",
+    "pl": "🍽️ Tego nie można nie spróbować: papas arrugadas z czerwonym i zielonym mojo, gofio, ser z wyspy, świeże ryby, mięso kozie i conejo en salmorejo (królik w ostrej marynacie), a na deser bienmesabe albo quesillo. Do picia miejscowe wino albo barraquito. Na mapie: kategoria Gastronomia.",
     "zh": "🍽️ 来了一定要尝的：配红、绿两种 mojo 酱的皱皮土豆（papas arrugadas）、gofio（烤谷物粉）、本岛奶酪、新鲜鱼、山羊肉和腌兔肉（conejo en salmorejo），甜点有 bienmesabe 或 quesillo。饮品可以选本地葡萄酒或一杯 barraquito 咖啡。地图上请看「美食」类别。",
     "zht": "🍽️ 來了一定要嚐的：配紅、綠兩種 mojo 醬的皺皮馬鈴薯（papas arrugadas）、gofio（烤穀物粉）、本島起司、新鮮魚、山羊肉和醃兔肉（conejo en salmorejo），甜點有 bienmesabe 或 quesillo。飲品可以選本地葡萄酒或一杯 barraquito 咖啡。地圖上請看「美食」類別。"
    },
@@ -211,7 +211,7 @@
     "fr": "🍷 Un guachinche est un lieu où le vigneron vend le vin de sa propre récolte, accompagné de quelques plats traditionnels. C’est réglementé par le gouvernement des Canaries : il ne peut ouvrir que quelques mois par an et ferme quand le vin est épuisé, donc celui qui vous a plu peut être fermé. Sur la carte, ils sont dans Gastronomie, et la plupart dans le nord.",
     "it": "🍷 Un guachinche è un locale dove il viticoltore vende il vino del proprio raccolto, insieme a pochi piatti tradizionali. Lo regola il governo delle Canarie: può aprire solo alcuni mesi all’anno e chiude quando il vino finisce, quindi quello che Le è piaciuto potrebbe essere chiuso. Sulla mappa sono in Gastronomia, e la maggior parte al nord.",
     "nl": "🍷 Een guachinche is een plek waar de wijnboer wijn van zijn eigen oogst verkoopt, met een paar traditionele gerechten erbij. De Canarische regering regelt het: hij mag maar een paar maanden per jaar open en sluit als de wijn op is, dus die ene waar u zo van genoot, kan dicht zijn. Op de kaart staan ze onder Gastronomie, de meeste in het noorden.",
-    "pl": "🍷 Guachinche to lokal, w którym winiarz sprzedaje wino z własnych zbiorów z kilkoma tradycyjnymi daniami. Reguluje to rząd Wysp Kanaryjskich: może działać tylko kilka miesięcy w roku i zamyka się, gdy skończy się wino, więc ten, który ci smakował, może być zamknięty. Na mapie są w kategorii Gastronomia, a większość na północy.",
+    "pl": "🍷 Guachinche to lokal, w którym winiarz sprzedaje wino z własnych zbiorów z kilkoma tradycyjnymi daniami. Reguluje to rząd Wysp Kanaryjskich: może działać tylko kilka miesięcy w roku i zamyka się, gdy skończy się wino, więc ten, który smakował poprzednio, może być zamknięty. Na mapie są w kategorii Gastronomia, a większość na północy.",
     "zh": "🍷 Guachinche 是葡萄种植者出售自家酿的葡萄酒、搭配几道传统菜的地方。它受加那利群岛政府监管：每年只能开几个月，酒卖完就关门，所以您喜欢的那家可能没在营业。地图上它们在「美食」类别里，大多数在北部。",
     "zht": "🍷 Guachinche 是葡萄農出售自家釀的葡萄酒、搭配幾道傳統菜的地方。它受加那利群島政府規範：每年只能開幾個月，酒賣完就關門，所以您喜歡的那家可能沒在營業。地圖上它們在「美食」類別裡，大多數在北部。"
    },
@@ -476,7 +476,7 @@
     "fr": "☕ Le café de l’île, servi en verre et par couches : lait concentré, liqueur, café, lait mousseux, cannelle et zeste de citron. Si vous ne voulez pas d’alcool, demandez-le sans liqueur.",
     "it": "☕ Il caffè dell’isola, servito nel bicchiere e a strati: latte condensato, liquore, caffè, latte montato, cannella e scorza di limone. Se non vuole alcol, lo chieda senza liquore.",
     "nl": "☕ De koffie van het eiland, in een glas en in laagjes: gecondenseerde melk, likeur, koffie, opgeschuimde melk, kaneel en citroenschil. Wilt u geen alcohol, vraag hem dan zonder likeur.",
-    "pl": "☕ Kawa wyspy, podawana w szklance warstwami: mleko skondensowane, likier, kawa, spienione mleko, cynamon i skórka cytryny. Jeśli nie chcesz alkoholu, poproś bez likieru.",
+    "pl": "☕ Kawa wyspy, podawana w szklance warstwami: mleko skondensowane, likier, kawa, spienione mleko, cynamon i skórka cytryny. Wersja bez alkoholu: wystarczy poprosić bez likieru.",
     "zh": "☕ 本岛的招牌咖啡，用玻璃杯分层装：炼乳、利口酒、咖啡、奶泡、肉桂和柠檬皮。不想喝酒的话，点不加利口酒的。",
     "zht": "☕ 本島的招牌咖啡，用玻璃杯分層裝：煉乳、利口酒、咖啡、奶泡、肉桂和檸檬皮。不想喝酒的話，點不加利口酒的。"
    },
@@ -696,7 +696,7 @@
     "fr": "🧀 Sur l’île, c’est le fromage de chèvre qui règne : frais, demi-affiné, affiné ou fumé. Vous le verrez grillé avec du mojo ou du miel de palme. Les fromages d’ici se trouvent sur les marchés de producteurs.",
     "it": "🧀 Sull’isola comanda il formaggio di capra: fresco, semistagionato, stagionato o affumicato. Lo troverà alla griglia con mojo o con miele di palma. I formaggi locali si trovano nei mercati contadini.",
     "nl": "🧀 Op het eiland is geitenkaas de baas: vers, halfbelegen, belegen of gerookt. U ziet hem gegrild met mojo of met palmhoning. Kaas van hier vindt u op de boerenmarkten.",
-    "pl": "🧀 Na wyspie króluje ser kozi: świeży, półdojrzały, dojrzały albo wędzony. Zobaczysz go z grilla z mojo albo z miodem palmowym. Tutejsze sery kupisz na targach rolniczych.",
+    "pl": "🧀 Na wyspie króluje ser kozi: świeży, półdojrzały, dojrzały albo wędzony. Podaje się go z grilla z mojo albo z miodem palmowym. Tutejsze sery można kupić na targach rolniczych.",
     "zh": "🧀 岛上的主角是山羊奶酪：新鲜的、半熟成、熟成或烟熏的。您会看到它烤着吃，配 mojo 酱或棕榈蜜。本地奶酪可以在农夫市集买到。",
     "zht": "🧀 島上的主角是山羊起司：新鮮的、半熟成、熟成或煙燻的。您會看到它烤著吃，配 mojo 醬或棕櫚蜜。本地起司可以在農夫市集買到。"
    },

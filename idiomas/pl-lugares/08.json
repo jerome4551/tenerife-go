@@ -20,11 +20,11 @@
   "cat": "Plaża · Los Gigantes · Czarny piasek"
  },
  "playa-antequera": {
-  "desc": "Jedna z najbardziej odludnych i dziewiczych plaż Teneryfy. Dostępna wyłącznie pieszo wąwozem Antequera (~2 h z Taganany) albo łodzią z San Andrés. Czarny wulkaniczny piasek między zielonymi klifami Anagi. Bez żadnej infrastruktury. Krystaliczna woda. Koniecznie zabierz wodę, jedzenie i buty trekkingowe.",
+  "desc": "Jedna z najbardziej odludnych i dziewiczych plaż Teneryfy. Dostępna wyłącznie pieszo wąwozem Antequera (~2 h z Taganany) albo łodzią z San Andrés. Czarny wulkaniczny piasek między zielonymi klifami Anagi. Bez żadnej infrastruktury. Krystaliczna woda. Koniecznie trzeba zabrać wodę, jedzenie i buty trekkingowe.",
   "cat": "Dzika plaża · Anaga · Tylko pieszo lub łodzią"
  },
  "playa-barqueros-buenavista": {
-  "desc": "Plaża z czarnego wulkanicznego piasku w Buenavista del Norte, 16 min pieszo z centrum miasteczka. Mała i zaciszna, z całkowicie lokalną atmosferą i bez tłumów. Otoczona klifami i palmami. Bez infrastruktury. Woda bywa wzburzona — pływaj ostrożnie. Autentyczny zakątek północno-zachodniej Teneryfy.",
+  "desc": "Plaża z czarnego wulkanicznego piasku w Buenavista del Norte, 16 min pieszo z centrum miasteczka. Mała i zaciszna, z całkowicie lokalną atmosferą i bez tłumów. Otoczona klifami i palmami. Bez infrastruktury. Woda bywa wzburzona — pływać ostrożnie. Autentyczny zakątek północno-zachodniej Teneryfy.",
   "cat": "Plaża · Buenavista del Norte · Czarny piasek · Lokalna"
  },
  "playa-la-caleta-adeje": {
@@ -32,7 +32,7 @@
   "cat": "Plaża · La Caleta · Adeje · Autentyczna"
  },
  "playa-igueste-san-andres": {
-  "desc": "Mała plaża z otoczaków i czarnego piasku w wiosce Igueste de San Andrés, w Parku Wiejskim Anaga. Spokojny i bardzo lokalny zakątek, z dala od masowej turystyki. Dojazd drogą TF-127 z San Andrés. Woda czysta, ale występują prądy — pływaj ostrożnie. Dobry punkt startowy tras po Anadze.",
+  "desc": "Mała plaża z otoczaków i czarnego piasku w wiosce Igueste de San Andrés, w Parku Wiejskim Anaga. Spokojny i bardzo lokalny zakątek, z dala od masowej turystyki. Dojazd drogą TF-127 z San Andrés. Woda czysta, ale występują prądy — pływać ostrożnie. Dobry punkt startowy tras po Anadze.",
   "cat": "Plaża · Igueste de San Andrés · Anaga"
  },
  "wc-teide-parque": {
@@ -111,7 +111,7 @@
  "pk-intercambiador-sc": {
   "desc": "Parking podziemny centralnego dworca autobusowego i tramwajowego, zarządzany przez TITSA. Wjazdy z autostrady TF-1 i Avenida Tres de Mayo.",
   "cat": "Parking płatny",
-  "aviso": "Bezpłatnie do 4 h, jeśli skasujesz kartą ten+ przejazd w obie strony autobusem lub tramwajem."
+  "aviso": "Bezpłatnie do 4 h po skasowaniu kartą ten+ przejazdu w obie strony autobusem lub tramwajem."
  },
  "pk-palmetum": {
   "desc": "Duży bezpłatny plac zewnętrzny nad morzem, wspólny dla Parku Morskiego César Manrique i Palmetum. Wjazd z ronda przy Avenida de la Constitución.",
@@ -221,7 +221,7 @@
  "pk-cruz-carmen-anaga": {
   "desc": "Oficjalny parking zewnętrzny w środku lasu wawrzynowego, obok centrum informacyjnego. Dojazd drogą grzbietową Anagi (TF-12).",
   "cat": "Parking bezpłatny",
-  "aviso": "Zapełnia się przed 10:00. Przyjeżdżając później, przygotuj się na krążenie albo parkowanie daleko."
+  "aviso": "Zapełnia się przed 10:00. Później trzeba liczyć się z krążeniem albo parkowaniem daleko."
  },
  "pk-tegueste": {
   "desc": "Miejski plac naziemny zarządzany przez gminę, obsługujący targowisko i starówkę. Wjazd od Calle Preste Juan, obok Plaza de San Marcos.",
@@ -311,7 +311,7 @@
   "cat": "Naturalne rozlewisko · Buenavista"
  },
  "piscina-gigantes": {
-  "desc": "Rozlewisko z wodą morską u stóp Los Gigantes, osłonięte betonowym murem. To niebezpieczne miejsce: skała na krawędzi jest bardzo śliska, a fale porywały kąpiących się na otwarte morze, z ofiarami śmiertelnymi w ostatnich latach. Nie siadaj ani nie chodź po krawędzi muru. Przed wyjściem zawsze sprawdź stan morza i komunikaty urzędu miasta.",
+  "desc": "Rozlewisko z wodą morską u stóp Los Gigantes, osłonięte betonowym murem. To niebezpieczne miejsce: skała na krawędzi jest bardzo śliska, a fale porywały kąpiących się na otwarte morze, z ofiarami śmiertelnymi w ostatnich latach. Nie siadać ani nie chodzić po krawędzi muru. Przed wyjściem zawsze sprawdzić stan morza i komunikaty urzędu miasta.",
   "cat": "Basen naturalny · Santiago del Teide"
  },
  "piscina-guimar": {
@@ -343,7 +343,7 @@
   "cat": "Plaża wietrzna · Granadilla"
  },
  "playa-caleton-sauzal": {
-  "desc": "Dawna osada rybacka w La Matanza de Acentejo, z domami w grotach i małym pomostem. Bez infrastruktury poza sezonowym barem. Zjeżdża się wąską, krętą drogą bez barierek, a do wody wchodzi po skale. Przy wzburzonym morzu trzeba być dobrym pływakiem.",
+  "desc": "Dawna osada rybacka w La Matanza de Acentejo, z domami w grotach i małym pomostem. Bez infrastruktury poza sezonowym barem. Zjeżdża się wąską, krętą drogą bez barierek, a do wody wchodzi po skale. Przy wzburzonym morzu trzeba dobrze pływać.",
   "cat": "Osada i kąpielisko · La Matanza"
  },
  "playa-candelaria": {

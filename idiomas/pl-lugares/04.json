@@ -296,11 +296,11 @@
   "cat": "MTB Anaga · Cruz del Carmen"
  },
  "bici-chinyero-ruta": {
-  "desc": "Wyjątkowa trasa MTB przez Rezerwat Przyrody Chinyero w Corona Forestal. Drogi wśród sosen po szarym wulkanicznym podłożu — doznanie wizualne niepowtarzalne w świecie. Blisko Teide. Poziom umiarkowany do wysokiego. Dojazd z Santiago del Teide. Nieodpowiednia przy deszczu (śliskie podłoże). Pobierz mapę przed wyjazdem.",
+  "desc": "Wyjątkowa trasa MTB przez Rezerwat Przyrody Chinyero w Corona Forestal. Drogi wśród sosen po szarym wulkanicznym podłożu — doznanie wizualne niepowtarzalne w świecie. Blisko Teide. Poziom umiarkowany do wysokiego. Dojazd z Santiago del Teide. Nieodpowiednia przy deszczu (śliskie podłoże). Przed wyjazdem warto pobrać mapę.",
   "cat": "MTB wulkaniczna · Chinyero · Północny zachód"
  },
  "bici-alquiler-sur": {
-  "desc": "Największe skupisko wypożyczalni rowerów na Teneryfie: szosowe, MTB i elektryczne. Wiele oferuje przewodnika, mapy i naprawy. Sprawdź Bike Experience Tenerife (bikeexperiencetenerife.com) i Cycling in Tenerife (cyclingintenerife.com). W sezonie wysokim rezerwuj z wyprzedzeniem.",
+  "desc": "Największe skupisko wypożyczalni rowerów na Teneryfie: szosowe, MTB i elektryczne. Wiele oferuje przewodnika, mapy i naprawy. Warto sprawdzić Bike Experience Tenerife (bikeexperiencetenerife.com) i Cycling in Tenerife (cyclingintenerife.com). W sezonie wysokim lepiej rezerwować z wyprzedzeniem.",
   "cat": "Wypożyczalnia rowerów · Las Américas · Południe"
  },
  "bici-alquiler-norte": {
@@ -308,7 +308,7 @@
   "cat": "Wypożyczalnia rowerów · Puerto de la Cruz · Północ"
  },
  "bici-agua-la-esperanza": {
-  "desc": "Kluczowy punkt dla rowerzystów na północy. Źródła wody pitnej, stoły piknikowe i toalety w samym borze na 1000 m. Częsty start albo postój na BC-1 i na podjeździe na Teide. Bezpłatny parking. Dojazd drogą TF-24. Chłodna temperatura — zabierz ciepłe ubranie.",
+  "desc": "Kluczowy punkt dla rowerzystów na północy. Źródła wody pitnej, stoły piknikowe i toalety w samym borze na 1000 m. Częsty start albo postój na BC-1 i na podjeździe na Teide. Bezpłatny parking. Dojazd drogą TF-24. Chłodna temperatura — przyda się ciepłe ubranie.",
   "cat": "Woda i odpoczynek · Rowerzyści · 1000 m"
  },
  "bici-agua-vilaflor": {
@@ -356,7 +356,7 @@
   "cat": "MTB · Arico · Krajobraz wulkaniczny · Południe"
  },
  "bici-puerto-bailadero": {
-  "desc": "Jedna z najbardziej znanych i najpiękniejszych przełęczy górskich Teneryfy. Podjazd 11 km z San Andrés (poziom morza) na 677 m drogami TF-12 i TF-123. Przewyższenie: 660 m. Średnie nachylenie: stałe 6%. Serpentyny ze spektakularnym widokiem na masyw Anagi i na wioskę Taganana. Roślinność zmienia się dramatycznie: ze strefy nadmorskiej w las wawrzynowy. Uwaga: na całym podjeździe nie ma punktów z wodą — zabierz dość. Szczyt przy punkcie widokowym El Bailadero.",
+  "desc": "Jedna z najbardziej znanych i najpiękniejszych przełęczy górskich Teneryfy. Podjazd 11 km z San Andrés (poziom morza) na 677 m drogami TF-12 i TF-123. Przewyższenie: 660 m. Średnie nachylenie: stałe 6%. Serpentyny ze spektakularnym widokiem na masyw Anagi i na wioskę Taganana. Roślinność zmienia się dramatycznie: ze strefy nadmorskiej w las wawrzynowy. Uwaga: na całym podjeździe nie ma punktów z wodą — trzeba zabrać jej dość. Szczyt przy punkcie widokowym El Bailadero.",
   "cat": "Przełęcz górska · Anaga · 11 km · 660 m ↑"
  },
  "bici-puerto-pico-ingles": {

@@ -44,7 +44,7 @@ const TODOS_F = TODOS ? process.argv[process.argv.indexOf('--todos') + 2] : null
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 
 /* Los idiomas ya pasados a usted. Cada parte del cambio anade el suyo. */
-const HECHOS = ['es', 'zh', 'zht', 'de', 'nl', 'fr', 'it', 'bg'];
+const HECHOS = ['es', 'zh', 'zht', 'de', 'nl', 'fr', 'it', 'bg', 'pl'];
 
 /* ── las marcas del tuteo, idioma a idioma ─────────────────────────────── */
 const L_ = 'A-Za-zÀ-ÖØ-öø-ɏЀ-ӿ';
@@ -234,14 +234,44 @@ const MARCAS = {
        /* «те» de complemento («те чака», «те води»): «те» es tambien «ellos» («те се
           номерират»), asi que solo con los verbos que lo llevan en la app */
        palI('те (?:чака|води|събужда|предупреди|радва|пазят|приема|гледа|успокоява|прави|връща|приближава|учи|изненада|докосне|проветри|придружи|подреди|успокои|вика)')],
-  pl: [palI('ty', 'ci', 'cię', 'ciebie', 'tobie', 'tobą', 'twój', 'twoja', 'twoje', 'twoich', 'twoim', 'twoją', 'twojej', 'twojego', 'twoi', 'twoimi', 'twym', 'twych', 'twe'),
+  pl: [palI('ty', 'ci', 'cię', 'ciebie', 'tobie', 'tobą', 'twój', 'twoja', 'twoje', 'twoich', 'twoim', 'twoją', 'twojej', 'twojego', 'twoi', 'twoimi', 'twym', 'twych', 'twe', 'twoj'),
        inicio('Dotknij', 'Wybierz', 'Wpisz', 'Użyj', 'Otwórz', 'Zobacz', 'Szukaj', 'Spróbuj', 'Odkryj', 'Włącz', 'Zaakceptuj', 'Utwórz', 'Zapisz', 'Dodaj', 'Usuń',
          'Zmień', 'Wróć', 'Skieruj', 'Podnieś', 'Narysuj', 'Sprawdź', 'Zamknij', 'Udostępnij', 'Pobierz', 'Zainstaluj', 'Naciśnij', 'Przeciągnij', 'Przesuń', 'Zaloguj',
          'Przejrzyj', 'Zareklamuj', 'Korzystaj', 'Kliknij', 'Oddychaj', 'Słuchaj', 'Wyobraź', 'Uśmiechnij', 'Weź', 'Zrób', 'Idź', 'Chodź', 'Powiedz', 'Połóż', 'Pij', 'Jedz',
-         'Zostaw', 'Pamiętaj', 'Zaplanuj', 'Zorganizuj', 'Odwiedź', 'Ciesz', 'Odpocznij', 'Podaruj', 'Pozwól'),
+         'Zostaw', 'Pamiętaj', 'Zaplanuj', 'Zorganizuj', 'Odwiedź', 'Ciesz', 'Odpocznij', 'Podaruj', 'Pozwól',
+         /* los que solo vio el repaso a mano (22 de octubre): el imperativo de ty de
+            las frases del dia, las fichas, el asistente y el cielo */
+         'Bądź', 'Wyjdź', 'Wejdź', 'Zejdź', 'Przejdź', 'Przyjdź', 'Jedź', 'Zjedź', 'Daj', 'Zadaj', 'Podaj', 'Dorzuć', 'Rzuć', 'Zabierz', 'Kup', 'Zarezerwuj',
+         'Rezerwuj', 'Zapytaj', 'Poproś', 'Napisz', 'Zadzwoń', 'Dzwoń', 'Poszukaj', 'Spójrz', 'Patrz', 'Popatrz', 'Posłuchaj', 'Wysłuchaj', 'Wsłuchaj',
+         'Odetchnij', 'Pooddychaj', 'Poruszaj', 'Porusz', 'Ruszaj', 'Rozciągnij', 'Dbaj', 'Zadbaj', 'Uważaj', 'Pilnuj', 'Zachowaj', 'Przestrzegaj', 'Unikaj',
+         'Licz', 'Odpuść', 'Odpoczywaj', 'Zostań', 'Zwiedzaj', 'Odkrywaj', 'Poeksploruj', 'Pobłądź', 'Zauważ', 'Doceń', 'Podziękuj', 'Świętuj', 'Szanuj',
+         'Uszanuj', 'Wybacz', 'Potraktuj', 'Zacznij', 'Ucz', 'Wymień', 'Odbierz', 'Przyjmij', 'Odłóż', 'Odwzajemnij', 'Zasłuż', 'Zaprowadź', 'Pokaż',
+         'Przeczytaj', 'Trzymaj', 'Zgaś', 'Unieś', 'Umieść', 'Przybliż', 'Uszczypnij', 'Przytrzymaj', 'Skopiuj', 'Kąp', 'Wykąp', 'Pływaj', 'Płyń', 'Unoś',
+         'Wzywaj', 'Wchodź', 'Schodź', 'Ubierz', 'Przebierz', 'Przenocuj', 'Wynajmij', 'Wykup', 'Wyruszaj', 'Przygotuj', 'Zatankuj', 'Parkuj', 'Zjeżdżaj',
+         'Podziwiaj', 'Cofnij', 'Czekaj', 'Poczekaj', 'Poczuj', 'Pisz', 'Skorzystaj', 'Używaj', 'Zaznaczaj', 'Odblokowuj', 'Zmieniaj', 'Podgłośnij',
+         'Wyszukaj', 'Przyłóż', 'Dotykaj', 'Odśwież', 'Wyślij', 'Miej',
+         /* y los del repaso a mano del polaco (22 de octubre, tarde), con los verbos de
+            los rotulos: un rotulo es imperativo y va en ROTULOS_PL; si la misma forma
+            aparece en una frase, es que le habla de ty a quien lee */
+         'Mów', 'Reklamuj', 'Wypełnij', 'Zakreśl', 'Definiuj', 'Mierz', 'Oceniaj', 'Omijaj', 'Potwierdź', 'Przegap', 'Uzupełniaj', 'Wyznacz',
+         'Zdobądź', 'Porównuj', 'Wymagaj', 'Biegnij', 'Zjedz', 'Ustal', 'Ufaj', 'Traktuj', 'Ryzykuj', 'Przyjeżdżaj', 'Podchodź', 'Załóż', 'Wybieraj',
+         'Zatrzymuj', 'Zaskocz', 'Przypomnij', 'Zarejestruj', 'Posortuj', 'Połącz', 'Odrzuć', 'Powiadamiaj', 'Edytuj', 'Filtruj', 'Wygeneruj',
+         'Wyloguj', 'Kontynuuj', 'Wyczyść', 'Wyłącz', 'Wyśrodkuj', 'Opublikuj', 'Oznacz', 'Zatrzymaj', 'Anuluj', 'Pomiń', 'Zresetuj', 'Zapłać',
+         'Odtwórz', 'Ukryj', 'Znajdź', 'Wyceluj', 'Uruchom'),
        palI('możesz', 'masz', 'chcesz', 'zobaczysz', 'jesteś', 'wiesz', 'musisz', 'znajdziesz', 'dojdziesz', 'dojedziesz', 'wejdziesz', 'wyjdziesz', 'zostaniesz',
          'usłyszysz', 'zechcesz', 'zdecydujesz', 'włączysz', 'zaakceptujesz', 'założysz', 'zapiszesz', 'dodasz', 'usuniesz', 'otworzysz', 'dotkniesz', 'wybierzesz',
-         'korzystasz', 'używasz', 'potrzebujesz', 'szukasz', 'przyjedziesz', 'pojedziesz', 'zapłacisz', 'płacisz', 'wpiszesz', 'dostaniesz', 'będziesz', 'byłeś', 'byłaś')],
+         'korzystasz', 'używasz', 'potrzebujesz', 'szukasz', 'przyjedziesz', 'pojedziesz', 'zapłacisz', 'płacisz', 'wpiszesz', 'dostaniesz', 'będziesz', 'byłeś', 'byłaś'),
+       /* y en cualquier sitio de la frase: en polaco el imperativo casi no coincide
+          con otra palabra, y aparece tambien tras un complemento («W weekend
+          zarezerwuj stolik», «Przed kąpielą sprawdź…», «Morze wzburzone — nie
+          kąp się») (22 de octubre) */
+       new RegExp('(?<![' + L_ + '])(?:przestrzegaj|odwzajemnij|poeksploruj|powiadamiaj|przeciągnij|przyjeżdżaj|przytrzymaj|zarejestruj|odblokowuj|odpoczywaj|podgłośnij|pooddychaj|przeczytaj|przypomnij|rozciągnij|skorzystaj|udostępnij|uszczypnij|uzupełniaj|uśmiechnij|zaakceptuj|zainstaluj|zareklamuj|zarezerwuj|zorganizuj|kontynuuj|korzystaj|odetchnij|odpocznij|opublikuj|podziwiaj|podziękuj|posłuchaj|potraktuj|potwierdź|przebierz|przejrzyj|przenocuj|przygotuj|wygeneruj|wysłuchaj|wyśrodkuj|zaprowadź|zatrzymaj|zatrzymuj|zaznaczaj|definiuj|naciśnij|oddychaj|odkrywaj|pamiętaj|poczekaj|podchodź|poruszaj|porównuj|posortuj|poszukaj|przybliż|przyjmij|reklamuj|rezerwuj|wsłuchaj|wybieraj|wynajmij|wypełnij|wyruszaj|wyszukaj|zachowaj|zaplanuj|zatankuj|zjeżdżaj|zmieniaj|zresetuj|zwiedzaj|biegnij|dotknij|dotykaj|filtruj|kliknij|narysuj|oceniaj|odbierz|odtwórz|odwiedź|odśwież|pobierz|pobłądź|podaruj|podnieś|popatrz|powiedz|przegap|przejdź|przesuń|przyjdź|przyłóż|ryzykuj|skieruj|skopiuj|sprawdź|spróbuj|słuchaj|traktuj|trzymaj|uruchom|uszanuj|wybierz|wyceluj|wyczyść|wyloguj|wymagaj|wyobraź|wyznacz|zabierz|zacznij|zadzwoń|zakreśl|zaloguj|zamknij|zapytaj|zaskocz|zdobądź|świętuj|anuluj|cofnij|czekaj|dorzuć|edytuj|napisz|odkryj|odpuść|odrzuć|omijaj|otwórz|oznacz|parkuj|pilnuj|poczuj|poproś|porusz|pozwól|połącz|pływaj|ruszaj|schodź|spójrz|szanuj|szukaj|ubierz|umieść|unikaj|utwórz|uważaj|używaj|wchodź|wybacz|wymień|wyłącz|wyślij|wzywaj|zadbaj|zapisz|zapłać|zasłuż|zauważ|znajdź|zobacz|zostaw|zostań|chodź|ciesz|doceń|dodaj|dzwoń|mierz|odłóż|patrz|podaj|pokaż|pomiń|połóż|ukryj|unieś|ustal|wejdź|wpisz|wyjdź|wykup|wykąp|włącz|zadaj|załóż|zejdź|zjedz|zjedź|zmień|bądź|dbaj|jedz|jedź|licz|miej|pisz|płyń|rzuć|ufaj|unoś|usuń|użyj|wróć|zgaś|zrób|daj|idź|kup|kąp|mów|pij|ucz|weź)(?![' + L_ + '])', 'iu'),
+       /* la segunda persona del presente y del futuro acaba en -sz (masz, możesz,
+          zobaczysz), el pasado en -łeś/-łaś (zrobiłeś) y el condicional en -byś
+          (gdybyś): toda palabra asi es de ty, salvo las que no son verbo
+          («nasz», «Jowisz», «kapelusz», «dziś», «coś») (22 de octubre) */
+       new RegExp('(?<![' + L_ + '])(?!(?:nasz|wasz|jowisz|klawisz|mysz|gulasz|afisz|łukasz|tomasz)(?![' + L_ + ']))[a-ząćęłńóśźż]+(?:asz|esz|isz|ysz)(?![' + L_ + '])', 'iu'),
+       palI('jesteś', '[a-ząćęłńóśźż]+łeś', '[a-ząćęłńóśźż]+łaś', '[a-ząćęłńóśźż]*byś')],
   zh: [/(?<!迷)你/u],
   zht: [/(?<!迷)你/u],
 };
@@ -286,6 +316,46 @@ const ROTULOS_BG = new Set([
   'Добави към начален екран',
 ]);
 
+/* Los del polaco (22 de octubre de 2026): el boton en imperativo («Zamknij»,
+   «Udostępnij», «Usuń»), como en las apps en polaco; lo que habla a quien usa la
+   app va en impersonal y sin genero («Można…», «Warto…», «Proszę» con el
+   infinitivo, el infinitivo en los pasos y los avisos). Una cita del boton
+   entre comillas o en <b> («dotknąć «Udostępnij»», «<b>Zainstaluj</b>») es el
+   rotulo y tampoco cuenta. */
+const ROTULOS_PL = new Set([
+  'Anuluj', '✓ Dodaj do koszyka', 'Dodaj do mojego kalendarza', 'Dodaj do mojej trasy', 'Dodaj do sklepu', 'Dodaj do ulubionych', '➕ Dodaj pamiątkę',
+  'Dodaj wycieczkę', '➕ Dodaj wycieczkę', 'Edytuj trasę', '✏️ Edytuj trasę', 'Filtruj', 'Kontynuuj jako gość', 'Kup', "Napisz do Jérôme'a",
+  'Nie, odrzuć', 'Odtwórz noc', 'Odśwież', '✅ Opublikuj na mapie', 'Otwórz legendę', 'Otwórz w Mapach Google', 'Oznacz jako odwiedzone',
+  '○ Oznacz jako odwiedzone', 'Pobierz szczegóły ({mb} MB)', '📥 Pobierz trasę dnia (GPX)', 'Pokaż jego drogę tej nocy',
+  '✈️ Pokaż linie na lotnisko południowe', '✈️ Pokaż linie na lotnisko północne', 'Pokaż na mapie', 'Pokaż na mapie nieba', 'Pokaż tylko ulubione',
+  'Pokaż wszystkie', "⭐ Polecenia Jérôme'a — dodaj firmę", 'Pomiń', 'Potwierdź rezerwację', 'Przeczytaj cały artykuł', 'Przybliż', 'Rezerwuj',
+  '💊 Sprawdź dyżurną aptekę na dziś', '💊 Sprawdź dyżurną aptekę na dziś (oficjalne)', 'Sprawdź kompas', 'Spróbuj ponownie', 'Szukaj', 'Szukaj celu',
+  'Szukaj miejsca...', 'Szukaj obiektu', 'Szukaj początku', 'Szukaj przystanku lub linii...', 'Szukaj: Orion, M42, Wega…', 'Słuchaj', '▶ Słuchaj',
+  'Tak, połącz', 'Udostępnij', '📤 Udostępnij', 'Udostępnij miejsce', 'Udostępnij plan', 'Ukryj drogę',
+  'Uruchom czas (miesiąc na sekundę)', 'Usuń', 'Usuń CAŁĄ pamięć podręczną',
+  'Usuń cel', 'Usuń konto', 'Usuń początek', 'Usuń ręczną korektę', 'Usuń szczegóły', 'Usuń wszystkie', 'Usuń wszystkie dane sklepu',
+  'Usuń wszystkie przypomnienia', 'Usuń z planu', 'Usuń z ulubionych', 'Utwórz plan z {n} rodzajami →', 'Utwórz plan →',
+  'Użyj jako punktu początkowego trasy', 'Użyj mojej lokalizacji GPS', 'Wejdź', 'Wróć', 'Wróć do miejsca', 'Wróć do Tenerife Go', 'Wróć wstecz',
+  'Wybierz inną datę', 'Wyceluj w niebo', 'Wyczyść', 'Wyczyść pamięć podręczną mapy', 'Wyczyść trasę', 'Wyczyść wyszukiwanie',
+  'Wygeneruj nowy plan', 'Wygeneruj ponownie', 'Wyloguj się', 'Wyznacz trasę', 'Wyłącz filtry kategorii', 'Wyślij', 'Wyślij do chmury',
+  'Wyślij zgłoszenie', 'Wyśrodkuj na mapie', 'Włącz', 'Włącz powiadomienia', '📞 Zadzwoń pod 112', 'Zainstaluj', 'Zainstaluj aplikację',
+  'Zainstaluj Tenerife', 'Zaloguj się', 'Zamknij', '✕ Zamknij', 'Zamknij administrację', 'Zamknij asystenta', 'Zamknij komunikat', 'Zamknij koszyk',
+  'Zamknij legendę', 'Zamknij ostrzeżenia pogodowe', 'Zamknij panel transportu', 'Zamknij panel tras', 'Zamknij planer',
+  'Zamknij przystanki w pobliżu', 'Zamknij sklep', 'Zapisz lub udostępnij obraz', 'Zapisz w Trasie dnia', 'Zapisz w Ulubionych',
+  'Zapisz w ulubionych', '💳 Zapłać — wkrótce', '🔒 Zapłać — Wkrótce', '📅 Zarezerwuj', 'Zatrzymaj', 'Załóż konto', '‹ Zmień czas',
+  '‹ Zmień część wyspy', 'Zmień język', 'Zmień to miejsce', '‹ Zmień zajęcia', 'Znajdź go na niebie', 'Zobacz informacje', 'Zobacz kalendarz',
+  'Zobacz na aemet.es', '📍 Zobacz na mapie', 'Zobacz na żywo', 'Zobacz pełny opis', 'Zobacz przewodnik', '🔗 Zobacz rozkład na titsa.com',
+  '🗺️ Zobacz wszystkie na mapie', 'Zresetuj planer',
+]);
+/* la voz de quien usa la app («Zaskocz mnie», «Zaprowadź mnie», «Przypomnij mi w
+   aplikacji», lo que se escribe al asistente), como «Sorpréndeme» y «Llévame»
+   (Jerome: esos rotulos se quedan asi) */
+const VOZ_PL = new Set([
+  'Pomożesz mi zaplanować dzień?', 'Posortuj moje ulubione według odległości', 'posortuj moje ulubione według odległości',
+  'Przypomnij mi w aplikacji', 'Tak, powiadamiaj mnie', 'Tak, usuń moje konto', 'Usuń moje konto', 'Zaprowadź mnie', 'Zaprowadź mnie do niego',
+  'Zarejestruj mnie', 'Zaskocz mnie',
+]);
+
 /* Lo que parece tuteo y no lo es: [idioma, texto exacto o RegExp, motivo]. */
 const EXENTOS = [
   ['es', '"¡Oye, tú!" — para llamar a alguien con cariño.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
@@ -309,6 +379,10 @@ const EXENTOS = [
   /* el bulgaro (22 de octubre de 2026) */
   ['bg', '«Ей, ти!» — приятелско обръщение.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
   ...[...ROTULOS_BG].map(t => ['bg', t, 'rotulo de boton: en bulgaro el boton va en imperativo, como en castellano el infinitivo (ROTULOS_BG)']),
+  /* el polaco (22 de octubre de 2026) */
+  ['pl', '«Hej, ty!» — żeby zawołać kogoś serdecznie.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
+  ...[...ROTULOS_PL].map(t => ['pl', t, 'rotulo de boton: en polaco el boton va en imperativo, como en castellano el infinitivo (ROTULOS_PL)']),
+  ...[...VOZ_PL].map(t => ['pl', t, 'la voz de quien usa la app, como «Sorpréndeme» y «Llévame» (VOZ_PL)']),
 ];
 
 function exento(l, t) {
@@ -319,6 +393,9 @@ function marca(l, t) {
   /* el rotulo de un boton citado entre comillas no cuenta: «tocchi «Condividi»» */
   if (l === 'it') t = t.replace(/«([^»]+)»/g, (q, x) => ROTULOS_IT.has(x) ? ' ' : q);
   if (l === 'bg') t = t.replace(/[«„“]([^»“”]+)[»“”]/g, (q, x) => ROTULOS_BG.has(x) ? ' ' : q);
+  /* y en polaco tambien en <b>: «wybrać <b>Zainstaluj aplikację</b>» */
+  if (l === 'pl') t = t.replace(/[«„“]([^»“”]+)[»“”]/g, (q, x) => ROTULOS_PL.has(x) || VOZ_PL.has(x) ? ' ' : q)
+    .replace(/<b>([^<]+)<\/b>/g, (q, x) => ROTULOS_PL.has(x) ? ' ' : q);
   /* los marcadores {dir}, {d}… no se ven: «{dir}» no es «dir» (22 de octubre) */
   t = t.replace(/\{\w+\}/g, ' ');
   for (const re of MARCAS[l]) { const m = t.match(re); if (m) return m[0].trim(); }
