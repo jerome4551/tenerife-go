@@ -103,7 +103,7 @@ const MARCAS = {
       'Consulta la', 'Consulta las', 'Consulta también', 'Consulta estado', 'Lleva agua', 'Lleva algo', 'Lleva calzado', 'Lleva frontal', 'Lleva abrigo',
       'Baja despacio', 'Sube despacio', 'Cierra la app', 'Reserva el', 'Reserva ida', 'Reserva con', 'Abre Google', 'Abre el', 'Pide ayuda',
       'Pide precio', 'Bebe agua', 'Entra el', 'Cambia paradas', 'Marca los', 'Visita la', 'Acepta lo', 'Cuida tu', 'Mueve el', 'Calcula primero',
-      'Crea primero', 'Sube la app', 'Abre el menú', 'Aprovecha', 'Contacta con', 'Reposta', 'Paga al', 'Paga en'),
+      'Crea primero', 'Sube la app', 'Abre el menú', 'Aprovecha', 'Contacta con', 'Reposta', 'Paga al', 'Paga en', 'Habla como', 'Lleva ropa', 'Lleva protección'),
     /* el infinitivo con «te» pegado: «Puedo ayudarte», «al bañarte» (el de
        usted es «ayudarle», «bañarse») */
     palI('ayudarte', 'avisarte', 'decirte', 'llevarte', 'mostrarte', 'enseñarte', 'recomendarte', 'guiarte', 'orientarte', 'contarte', 'darte', 'verte',
@@ -119,9 +119,13 @@ const MARCAS = {
       'calcula primero', 'crea primero', 'sube la app', 'prueba con', 'comprueba', 'consulta', 'instala', 'mira el', 'mira la', 'mira los', 'mira las',
       'mira cómo', 'mira hacia', 'disfruta', 'aprovecha', 'contacta con', 'escríbenos', 'avísanos', 'vuelve a intentarlo', 'extrema la precaución',
       /* «al acabar el crepúsculo, mira al oeste» (22 de octubre) */
-      'mira al'),
+      'mira al',
+      /* «Solana sin sombra: lleva agua…», «Temperatura fresca — lleva ropa de abrigo» (22 de octubre) */
+      'lleva agua', 'lleva ropa', 'lleva calzado', 'lleva protección', 'lleva abrigo', 'lleva frontal'),
     trasEmoji('Prueba con', 'Toca', 'Pulsa', 'Elige', 'Mira el', 'Mira la', 'Mira los', 'Mira las', 'Mira mis', 'Mira cómo', 'Mira hacia', 'Revisa',
-      'Consulta el', 'Consulta la', 'Consulta las', 'Consulta los', 'Disfruta', 'Descubre', 'Aprovecha', 'Ven', 'Pide', 'Evita', 'Explora'),
+      'Consulta el', 'Consulta la', 'Consulta las', 'Consulta los', 'Disfruta', 'Descubre', 'Aprovecha', 'Ven', 'Pide', 'Evita', 'Explora',
+      /* el boton del glosario canario, «📚 Habla como un canario» (22 de octubre) */
+      'Habla como'),
   ],
   fr: [palI('tu', 'te', 'toi', 'ton', 'ta', 'tes', 'tien', 'tienne', 'tiens', 'tiennes'), /(?<![A-Za-zÀ-ÿ])t['’](?=[aeéèêiîouyhAEÉÈÊIÎOUYH])/u,
        inicio('Touche', 'Choisis', 'Saisis', 'Utilise', 'Ouvre', 'Regarde', 'Cherche', 'Essaie', 'Découvre', 'Profite', 'Active', 'Accepte', 'Crée', 'Garde', 'Ajoute',
