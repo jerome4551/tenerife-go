@@ -44,7 +44,7 @@ const TODOS_F = TODOS ? process.argv[process.argv.indexOf('--todos') + 2] : null
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 
 /* Los idiomas ya pasados a usted. Cada parte del cambio anade el suyo. */
-const HECHOS = ['es', 'zh', 'zht', 'de', 'nl'];
+const HECHOS = ['es', 'zh', 'zht', 'de', 'nl', 'fr'];
 
 /* ── las marcas del tuteo, idioma a idioma ─────────────────────────────── */
 const L_ = 'A-Za-zÀ-ÖØ-öø-ɏЀ-ӿ';
@@ -128,10 +128,29 @@ const MARCAS = {
       'Habla como'),
   ],
   fr: [palI('tu', 'te', 'toi', 'ton', 'ta', 'tes', 'tien', 'tienne', 'tiens', 'tiennes'), /(?<![A-Za-zÀ-ÿ])t['’](?=[aeéèêiîouyhAEÉÈÊIÎOUYH])/u,
-       inicio('Touche', 'Choisis', 'Saisis', 'Utilise', 'Ouvre', 'Regarde', 'Cherche', 'Essaie', 'Découvre', 'Profite', 'Active', 'Accepte', 'Crée', 'Garde', 'Ajoute',
-         'Consulte', 'Enlève', 'Retire', 'Reviens', 'Pointe', 'Lève', 'Dessine', 'Vérifie', 'Efface', 'Ferme', 'Partage', 'Télécharge', 'Installe', 'Appuie', 'Glisse',
-         'Bouge', 'Tape', 'Écris', 'Sélectionne', 'Suis', 'Respire', 'Écoute', 'Imagine', 'Souris', 'Prends', 'Fais', 'Va', 'Viens', 'Dis', 'Mets', 'Bois', 'Mange'),
-       palI('peux', 'veux', 'as', 'vas', 'fais', 'sais', 'dois', 'vois', 'es')],
+       inicio('Touche', 'Choisis', 'Saisis', 'Utilise', 'Ouvre', 'Regarde', 'Cherche', 'Essaie', 'Découvre', 'Profite', 'Active', 'Crée', 'Ajoute',
+         'Consulte', 'Enlève', 'Retire', 'Reviens', 'Lève', 'Dessine', 'Vérifie', 'Efface', 'Télécharge', 'Installe', 'Appuie', 'Glisse',
+         'Bouge', 'Tape', 'Écris', 'Sélectionne', 'Respire', 'Écoute', 'Imagine', 'Souris', 'Prends', 'Fais', 'Va', 'Viens', 'Dis', 'Mets', 'Mange',
+         /* los que tambien son nombre o tercera persona, solo en su giro de
+            imperativo, con lo que manda detras (22 de octubre): en las fichas
+            estan «Garde tournante» (la farmacia de guardia), «Garde la tradition»,
+            «Bois de fayas», «Ferme canarienne», «Ferme avec ânes», «Pointe nord»,
+            «Partage ses installations», «Accepte les assurances» */
+         "Garde (?:ton|ta|tes|le|les|un|une|du|de l|quand|toujours|en)", "Bois (?:de l|un|une|beaucoup|assez|lentement|plus)",
+         "Ferme (?:la|le|l[’'][a-zà-ÿ]+|les|ton|ta|tes|un|une)", "Pointe (?:ton|ta|le|la|les|l[’'][a-zà-ÿ]+|vers)", "Partage (?:ton|ta|tes|le|la|les)",
+         "Accepte (?:ce|ton|ta|tes|que|la|le)",
+         /* los que solo vio el repaso a mano (22 de octubre): el imperativo de tu
+            sin pronombre de las frases del dia («Sois patient», «Marche vers la
+            mer», «Aie sa patience») y del asistente («Lis-le avant d'y aller») */
+         'Sois', 'Explore', 'Soigne', 'Sors', 'Aie', 'Apprends', 'Profites', 'Lis', 'Évite', 'Marche (?:vers|dix|doucement)', 'Marche,',
+         'Reste pour', 'Commence par', 'Compte le pas', 'Remarque le', 'Célèbre de'),
+       trasEmoji('Demande-moi', 'Touche', 'Choisis', 'Essaie', 'Regarde', 'Cherche', 'Va'),
+       /* y en medio de la frase, en minuscula: «Dans Safari, touche… et choisis…», «: vérifie avant de…» */
+       new RegExp('(?:[,:;—–]\\s*|\\set\\s+|\\sou\\s+)(?:va|vas-y|choisis|choisis-en|sois|vérifie|consulte|prends|mets|mets-le|touche|touche-la|cherche|cherche-la|lis|essaie|respire|regarde|demande|donne-lui)(?![' + L_ + '])', 'u'),
+       /* «tu» ya caza «tu peux», «as-tu», «peux-tu»: «peux», «veux», «fais»… solos
+          se llevaban «Je veux promouvoir mon activité», y «es» los dominios
+          («aemet.es», «tenerifeon.es»). Quedan las dos que solo son de tu */
+       palI('as', 'vas')],
   de: [palI('du', 'dich', 'dir', 'dein', 'deine', 'deinen', 'deinem', 'deiner', 'deines', 'dein(?!stall)\\w+'),
        inicio('Tippe', 'Wähle', 'Öffne', 'Schau', 'Nutze', 'Melde', 'Suche', 'Probier', 'Probiere(?! ich)', 'Entdecke', 'Genieße', 'Aktiviere', 'Akzeptiere', 'Erstelle', 'Speichere',
          'Füge', 'Lösche', 'Schließe', 'Teile', 'Lade', 'Installiere', 'Drücke', 'Wische', 'Bewege', 'Zeige', 'Halte', 'Gib', 'Nimm', 'Sieh', 'Lies', 'Atme', 'Hör', 'Höre(?! ich)',
@@ -193,6 +212,9 @@ const EXENTOS = [
   /* el neerlandes (22 de octubre de 2026) */
   ['nl', '"Hé jij!" — vriendelijke aanspreekvorm.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
   ['nl', 'Help je me mijn dag te plannen?', 'la pregunta de quien usa la app al asistente, como «¿Me ayudas a organizar el día?»'],
+  /* el frances (22 de octubre de 2026) */
+  ['fr', "« Hé toi ! » — façon amicale d'interpeller.", 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
+  ['fr', 'Tu m’aides à organiser ma journée ?', 'la pregunta de quien usa la app al asistente, como «¿Me ayudas a organizar el día?»'],
 ];
 
 function exento(l, t) {
