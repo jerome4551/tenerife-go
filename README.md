@@ -383,8 +383,9 @@ Al escribir HTML:
 
 **Leaflet y MarkerCluster están alojados aquí**, no en un CDN: al ser
 del mismo origen los cubre `script-src 'self'`, y el mapa arranca aunque
-el CDN esté caído. El SDK de Supabase, que es el único script que
-queda de un CDN, viene de jsDelivr con versión exacta y `integrity`.
+el CDN esté caído. El SDK de Supabase también, desde el 22 de octubre de
+2026 (`vendor/supabase.js`, la versión exacta con su `integrity`): ningún
+script viene ya de un CDN.
 
 Estas cabeceras **no** funcionan dentro de un `<meta>` y el navegador
 las ignora: `X-Content-Type-Options`, `Permissions-Policy` y
@@ -419,10 +420,10 @@ Conocido y sin resolver:
 Desde el 21 de octubre de 2026 la misma PWA se empaqueta para la App Store
 con Capacitor (`app/`, `LANZAMIENTO-APP-STORE.md`). No hay una segunda app:
 `tools/app_preparar.js` copia a `app/www/` lo que `index.html` pide en el
-móvil (medido el 22 de octubre de 2026: 94 ficheros, 25,8 MB, con los dos
+móvil (medido el 22 de octubre de 2026: 96 ficheros, 26,0 MB, con los dos
 mapas) y le pone a `index.html` una sola línea, `window.TGO_NATIVO = true`.
-Con esa marca la app no registra service worker (todo viaja dentro, salvo
-la librería de la cuenta, que viene de jsDelivr), no ofrece instalarse,
+Con esa marca la app no registra service worker (todo viaja dentro, también
+la librería de la cuenta), no ofrece instalarse,
 esconde los dos botones de avisos push, el de la cuenta y el de
 «Continuar como invitado» (WKWebView no tiene Web Push), y pide a
 la web viva los datos que cambian a diario —precios, avisos de AEMET,

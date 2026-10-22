@@ -47,7 +47,6 @@
 "ppTercMeteo":"las coordenadas del lugar o de la zona cuya previsión consulta.",
 "ppTercCarburantes":"los precios oficiales de las gasolineras de la provincia, cuando los mira; no se le manda nada suyo.",
 "ppTercWiki":"el título del artículo del lugar o del astro que abre.",
-"ppTercCdn":"sirve la librería de Supabase que usa la app; no se le manda nada suyo.",
 "ppTercGa":"solo en la web, si acepta el aviso de cookies.",
 "ppTercNoVenta":"Ninguno de estos datos se vende ni se cede con fines comerciales.",
 

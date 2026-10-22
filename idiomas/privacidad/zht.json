@@ -42,7 +42,6 @@
 "ppTercMeteo":"你查詢預報的地點或區域的座標。",
 "ppTercCarburantes":"你查看時取得本省加油站的官方價格；不會向其傳送任何屬於你的資訊。",
 "ppTercWiki":"你開啟的地點或天體對應的條目標題。",
-"ppTercCdn":"提供應用程式所用的 Supabase 程式庫；不會向其傳送任何屬於你的資訊。",
 "ppTercGa":"僅在網站上，且你接受 Cookie 提示時。",
 "ppTercNoVenta":"這些資料都不會出售，也不會為商業目的轉讓。",
 "ppBaseTitulo":"目的與法律依據",

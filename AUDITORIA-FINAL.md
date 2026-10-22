@@ -2995,7 +2995,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 43 tablas, 1649 filas (y 3.788 filas, dentro y fuera del fuente)
+## Idiomas · 43 tablas, 1648 filas (y 3.788 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -3025,7 +3025,10 @@ cámara o de sensores dentro de la app, que no manda a los ajustes del
 navegador. Y esa misma noche, una más en `UI_TX`: `ppStatsTienda`, la
 frase de la política que dice que la app de la App Store no usa Google
 Analytics; y otra en `CIELO_UI`, hasta 469: `cieloIcsListoPaso`, la nota
-del calendario en los pasos de satélites (avisa media hora antes). El
+del calendario en los pasos de satélites (avisa media hora antes). El 22
+por la mañana, una menos: `ppTercCdn`, la fila de jsDelivr en la política,
+que ya no recibe nada porque la librería de la cuenta va dentro
+(`vendor/supabase.js`). El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de

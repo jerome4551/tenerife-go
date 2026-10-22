@@ -19,7 +19,7 @@ pone al principio de `index.html`: `window.TGO_NATIVO = true`. Con ella:
 
 | Qué | En la web | En la app de la tienda |
 |---|---|---|
-| Caché sin conexión | El service worker (`sw.js`) guarda `index.html`, el módulo del cielo, el mapa de la isla… | No hay service worker: todo lo de la app viaja dentro del paquete (25,8 MB, 94 ficheros): el mapa, los lugares, las guaguas, el cielo entero, los idiomas. WKWebView no registra service workers en el esquema `capacitor://`. De la app en sí, lo único que sigue viniendo de fuera al arrancar es la librería de Supabase (jsDelivr, con SRI), para la cuenta opcional: sin red queda en «modo invitado» y lo demás funciona; vendorizarla es un trabajo aparte (§8). |
+| Caché sin conexión | El service worker (`sw.js`) guarda `index.html`, el módulo del cielo, el mapa de la isla… | No hay service worker: todo lo de la app viaja dentro del paquete (26,0 MB, 96 ficheros): el mapa, los lugares, las guaguas, el cielo entero, los idiomas y, desde el 22 de octubre, la librería de la cuenta (`vendor/supabase.js`, la misma versión y la misma huella que antes venía de jsDelivr). WKWebView no registra service workers en el esquema `capacitor://`. |
 | Datos que cambian a diario (precios, avisos de AEMET, elementos de los satélites) | Red primero, caché de respaldo (el service worker) | `tgoFetchDatos()`: primero la copia viva de `https://jerome4551.github.io/tenerife-go/datos/…` con 8 s de plazo, leída entera y comprobada (que sea JSON); si no llega, no responde bien, se corta a medias o no es JSON (un portal cautivo), la copia que viaja dentro (la del día en que se montó la app). |
 | «Instalar la app», botón flotante de la PWA | Salen | No salen: ya está instalada. |
 | Avisos push | Web Push con `sw.js` | WKWebView no tiene Web Push: los dos botones «Activar notificaciones» (el de la cuenta y el de «Continuar como invitado») y sus mensajes van ocultos, y `pushInit()` no pregunta nunca. Los avisos nativos (APNs) son otro trabajo (§8). |
@@ -86,8 +86,8 @@ luz roja, los diez idiomas) es el mismo código y se comporta igual.
    que ir «más allá de una web reempaquetada»). Tenerife Go no carga su
    contenido de fuera: el mapa, los lugares, las guaguas y el cielo viajan
    dentro y funcionan sin red; usa la cámara, la brújula y los sensores y
-   calcula el cielo en el móvil. De fuera vienen la librería de la cuenta,
-   los datos del día y lo que se consulta en vivo (el tiempo y el mar; y,
+   calcula el cielo en el móvil. De fuera vienen los datos del día y lo
+   que se consulta en vivo (el tiempo y el mar; y,
    al pedirlo, las rutas, las direcciones, los precios del Ministerio y
    Wikipedia). Eso es lo que se le dice al revisor en las notas (§5.5). Si aun así la rechazan por 4.2, el camino es
    responder con esa lista y, si insisten, añadir una pieza nativa (los
@@ -103,7 +103,7 @@ metida en Xcode (Settings → Accounts).
 ```
 git clone https://github.com/jerome4551/tenerife-go && cd tenerife-go/app
 npm install                              # @capacitor/core, cli e ios 8.x
-node ../tools/app_preparar.js            # monta www/ (94 ficheros, 25,8 MB)
+node ../tools/app_preparar.js            # monta www/ (96 ficheros, 26,0 MB)
 npm run ios:anadir                       # «npx cap add ios» (Swift Package Manager) y aplicar.sh: permisos, idiomas, privacidad, icono, arranque
 npx cap open ios                         # Xcode
 ```
@@ -233,7 +233,7 @@ que cubrir los SDK de terceros: Capacitor trae el suyo.
 - *Contact*: los del punto 3.4.
 - *Notes* (hasta 4000 bytes, en el idioma que sea). Propuesta, en inglés:
 
-> Tenerife Go is a free travel guide for the island of Tenerife. All of its content ships inside the app and works offline: the island map (vector tiles bundled), 980 places, the 183 bus and tram lines, and a night-sky module computed on the device (Astronomy Engine) with an AR view that uses the camera, compass and motion sensors. The app does not load its interface from a remote web view. What it does fetch over the network: small daily data files (fuel prices, weather warnings, satellite orbital elements) from our site, with bundled copies as fallback; the Supabase client library (jsDelivr, subresource integrity) for the optional account; weather and sea forecasts (Open-Meteo); and, when the user asks for them, live fuel prices (Spanish Ministry open data), driving routes (OSRM), address search (Nominatim) and Wikipedia summaries.
+> Tenerife Go is a free travel guide for the island of Tenerife. All of its content ships inside the app and works offline: the island map (vector tiles bundled), 980 places, the 183 bus and tram lines, and a night-sky module computed on the device (Astronomy Engine) with an AR view that uses the camera, compass and motion sensors. The app does not load its interface from a remote web view. What it does fetch over the network: small daily data files (fuel prices, weather warnings, satellite orbital elements) from our site, with bundled copies as fallback; weather and sea forecasts (Open-Meteo); and, when the user asks for them, live fuel prices (Spanish Ministry open data), driving routes (OSRM), address search (Nominatim) and Wikipedia summaries.
 > Permissions are optional and asked in context: location (map and routes), camera and motion (only inside "Point at the sky"). The account is optional (email + password, our own system) and can be deleted from inside the app (Account → Delete account). No in-app purchases, no subscriptions, no third-party ad networks; a few local businesses are labelled as sponsored. Privacy policy: https://jerome4551.github.io/tenerife-go/privacidad.html
 
 ### 5.6 Antes de pulsar *Submit for Review*
@@ -300,13 +300,6 @@ IDFA).
   llega hoy por Web Push a la web; en la app harían falta `@capacitor/push-notifications`,
   la clave APNs en la cuenta de Apple y un envío aparte. Hasta entonces, el
   botón va oculto en la app.
-- **La librería de Supabase en `vendor/`** (como Leaflet): hoy viene de
-  jsDelivr en cada arranque, con SRI; vendorizada, la cuenta también
-  arrancaría sin red y «todo viaja dentro» sería literal. Comprobado el 22
-  de octubre: el `dist/umd/supabase.js` del paquete de npm
-  `@supabase/supabase-js@2.111.0` tiene la misma huella que el SRI de
-  `index.html` (sha384), así que se puede traer de npm y comprobar contra
-  esa huella. Queda para cuando Jerome lo pida.
 - **Enlaces universales** (`https://jerome4551.github.io/tenerife-go/#lugar=…`
   abriendo la app en vez de Safari): `apple-app-site-association` en la
   raíz del **dominio**, es decir, en el repositorio de usuario

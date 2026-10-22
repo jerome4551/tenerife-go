@@ -119,10 +119,9 @@ TERCEROS = [
     # Wikipedia: las fotos de los lugares y, desde el 20/10/2026, el resumen
     # del astro que se abre en el panel del cielo (modulos/cielo.js, wikiResumen).
     ('Wikipedia · Wikimedia', 'https://foundation.wikimedia.org/wiki/Policy:Privacy_policy', 'ppTercWiki'),
-    # Las tipografias viven en vendor/fuentes/ desde hace tiempo: Google
-    # Fonts no recibe nada. jsDelivr sirve la libreria de Supabase
-    # (index.html, el <script> de supabase-js). LANZAMIENTO-PLAY.md 1.3.
-    ('jsDelivr', 'https://www.jsdelivr.com/terms/privacy-policy', 'ppTercCdn'),
+    # Las tipografias viven en vendor/fuentes/ desde hace tiempo, y la
+    # libreria de Supabase en vendor/supabase.js desde el 22/10/2026: ni
+    # Google Fonts ni jsDelivr reciben nada, y salen de la lista.
     ('Google Analytics', 'https://policies.google.com/privacy', 'ppTercGa'),
 ]
 

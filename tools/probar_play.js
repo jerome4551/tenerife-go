@@ -129,7 +129,7 @@ function supabaseFalso(cfg) {
     const errores = [];
     pg.on('pageerror', e => errores.push(e.message));
     // el SDK de verdad no entra: se queda el falso
-    await pg.route('**/cdn.jsdelivr.net/**', r => r.abort());
+    await pg.route('**/vendor/supabase.js', r => r.abort());
     await pg.route('**/router.project-osrm.org/**', r => r.abort());
     await pg.addInitScript(supabaseFalso, cfg);
     await pg.goto(BASE, { waitUntil: 'networkidle' });
@@ -392,7 +392,7 @@ function supabaseFalso(cfg) {
     const pg = await ctx.newPage();
     const errores = [];
     pg.on('pageerror', e => errores.push(e.message));
-    await pg.route('**/cdn.jsdelivr.net/**', r => r.abort());
+    await pg.route('**/vendor/supabase.js', r => r.abort());
     await pg.addInitScript(supabaseFalso, { user: null });
     await pg.goto(BASE, { waitUntil: 'networkidle' });
     await pg.waitForFunction(() => window.AppAuth && window.AppAuth.isReady(), null, { timeout: 30000 });
@@ -418,7 +418,7 @@ function supabaseFalso(cfg) {
           if (choca(caja(mios[i][1]), caja(mios[j][1]))) choques.push(mios[i][0] + ' encima de ' + mios[j][0]);
         const W = document.documentElement.clientWidth;
         const fuera = mios.filter(([, m]) => { const c = caja(m); return c.l < 0 || c.r > W; }).map(([n]) => n);
-        const comoCastellano = ['ppEnlaceWeb', 'cuentaBorrarPagina', 'ppEnlace', 'ppDerReclamar', 'ppBaseLi1', 'ppTercCdn', 'ppPubQue']
+        const comoCastellano = ['ppEnlaceWeb', 'cuentaBorrarPagina', 'ppEnlace', 'ppDerReclamar', 'ppBaseLi1', 'ppPubQue']
           .filter(k => currentLang !== 'es' && tx(k) === UI_TX[k].es);
         openPrivacyPanel();
         const hoja = document.querySelector('#privacy-panel .pp-sheet').cloneNode(true);
@@ -426,7 +426,6 @@ function supabaseFalso(cfg) {
         const der = document.querySelector('#privacy-panel [data-tx-hueco="ppDerReclamar"]');
         const base = document.querySelector('#privacy-panel [data-tx-hueco="ppBaseLi1"]');
         const pub = document.querySelector('#privacy-panel [data-tx="ppPubQue"]');
-        const cdn = document.querySelector('#privacy-panel [data-tx="ppTercCdn"]');
         const out = {
           web: { texto: web.textContent.trim(), fila: tx('ppEnlaceWeb'), href: web.getAttribute('href'), blank: web.target === '_blank', vis: vis(web) },
           borrar: { texto: borrar.textContent.trim(), fila: tx('cuentaBorrarPagina'), href: borrar.getAttribute('href'), blank: borrar.target === '_blank', vis: vis(borrar) },
@@ -440,8 +439,9 @@ function supabaseFalso(cfg) {
           baseEsperado: tx('ppBaseLi1').replace('{interes}', tx('ppBaseInteres')).replace('{contrato}', tx('ppBaseContrato')),
           baseEm: base ? base.querySelectorAll('em').length : 0,
           pub: pub ? pub.textContent : '', etiqueta: tx('adRecommend'),
-          cdnProveedor: cdn ? cdn.parentElement.querySelector('a').textContent : null,
-          cdnUrl: cdn ? cdn.parentElement.querySelector('a').getAttribute('href') : null,
+          /* ni jsDelivr ni Google Fonts: la libreria de Supabase y las
+             tipografias viven en vendor/ y no reciben nada (22-10-2026) */
+          jsdelivr: /jsDelivr/i.test(document.getElementById('privacy-panel').textContent),
           google: /Google Fonts/.test(document.getElementById('privacy-panel').textContent)
         };
         closePrivacyPanel();
@@ -482,9 +482,8 @@ function supabaseFalso(cfg) {
         r.base === r.baseEsperado && r.baseEm === 2, JSON.stringify([r.base, r.baseEsperado, r.baseEm]));
       caso(`[${L}] el panel: la publicidad cita la etiqueta que se ve en el mapa (${q[0]}${r.etiqueta}${q[1]})`,
         !!r.etiqueta && r.pub.includes(q[0] + r.etiqueta + q[1]), JSON.stringify([r.pub, r.etiqueta]));
-      caso(`[${L}] el panel: jsDelivr, con su politica; Google Fonts ya no`,
-        r.cdnProveedor === 'jsDelivr' && r.cdnUrl === 'https://www.jsdelivr.com/terms/privacy-policy' && !r.google,
-        JSON.stringify([r.cdnProveedor, r.cdnUrl, r.google]));
+      caso(`[${L}] el panel: ni jsDelivr ni Google Fonts (la libreria de la cuenta y las tipografias van dentro)`,
+        !r.jsdelivr && !r.google, JSON.stringify([r.jsdelivr, r.google]));
     }
     caso(`sin errores de pagina (politica, ${ancho})`, errores.length === 0, errores.join(' / '));
     await ctx.close();
@@ -539,7 +538,7 @@ function supabaseFalso(cfg) {
     const pg = await ctx.newPage();
     const errores = [];
     pg.on('pageerror', e => errores.push(e.message));
-    await pg.route('**/cdn.jsdelivr.net/**', r => r.abort());
+    await pg.route('**/vendor/supabase.js', r => r.abort());
     await pg.addInitScript(supabaseFalso, { user: null });
     await pg.goto(BASE, { waitUntil: 'networkidle' });
     await pg.waitForFunction(() => window.AppAuth && window.AppAuth.isReady(), null, { timeout: 30000 });
@@ -576,7 +575,7 @@ function supabaseFalso(cfg) {
     const pg = await ctx.newPage();
     const errores = [];
     pg.on('pageerror', e => errores.push(e.message));
-    await pg.route('**/cdn.jsdelivr.net/**', r => r.abort());
+    await pg.route('**/vendor/supabase.js', r => r.abort());
     /* Desde aqui no se llega a tile.openstreetmap.org: sin esto las teselas
        fallarian y la app pasaria sola a la isla. Se le da una imagen local. */
     const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', 'base64');

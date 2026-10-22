@@ -42,7 +42,6 @@
 "ppTercMeteo":"le coordinate del luogo o della zona di cui consulti le previsioni.",
 "ppTercCarburantes":"i prezzi ufficiali dei distributori della provincia, quando li consulti; non gli viene inviato nulla di tuo.",
 "ppTercWiki":"il titolo della voce del luogo o dell’astro che apri.",
-"ppTercCdn":"fornisce la libreria di Supabase che usa l’app; non gli viene inviato nulla di tuo.",
 "ppTercGa":"solo sul sito web, se accetti l’avviso sui cookie.",
 "ppTercNoVenta":"Nessuno di questi dati viene venduto né ceduto a fini commerciali.",
 "ppBaseTitulo":"Finalità e base giuridica",

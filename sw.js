@@ -48,6 +48,9 @@ const CORE = [
   // El motor del mapa vectorial. Va aqui desde el primer momento para que
   // cuando haga falta ya este: sin conexion no se puede ir a buscarlo.
   './vendor/pmtiles.js', './vendor/protomaps-leaflet.js',
+  // La libreria de la cuenta (Supabase), alojada aqui desde el 22 de octubre
+  // de 2026: sin conexion, la cuenta tambien arranca.
+  './vendor/supabase.js',
   /* El mapa base de la isla: 1,1 MB de costa, red viaria y nucleos, hecho
      con datos que ya estaban en el repositorio. Va en el precache a
      proposito, no en una descarga aparte: quien se pierde en el monte no

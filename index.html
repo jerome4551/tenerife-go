@@ -162,7 +162,7 @@ window.onunhandledrejection = function(e) {
 </script>
 
 <title>Tenerife Go — Mapa Interactivo</title>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://jerome4551.github.io https://*.supabase.co wss://*.supabase.co https://energia.serviciosmin.gob.es https://sedeaplicaciones.minetur.gob.es https://nominatim.openstreetmap.org https://router.project-osrm.org https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://jerome4551.github.io https://*.supabase.co wss://*.supabase.co https://energia.serviciosmin.gob.es https://sedeaplicaciones.minetur.gob.es https://nominatim.openstreetmap.org https://router.project-osrm.org https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
 <!-- Google tag (gtag.js) — GA4 · Consent Mode v2 (básico) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -327,23 +327,20 @@ window.onunhandledrejection = function(e) {
   onerror="console.warn('[INIT] pmtiles no cargó — sin mapa offline')"></script>
 <script src="./vendor/protomaps-leaflet.js"
   onerror="console.warn('[INIT] protomaps-leaflet no cargó — sin mapa offline')"></script>
-<!-- Supabase SDK (auth + base de datos)
-     Version EXACTA + integrity (SRI). Antes ponia "@2", que es un rango:
-     jsDelivr servia la ultima 2.x publicada, asi que cualquier release
-     nueva (o comprometida) entraba sola en la app de todos los usuarios
-     sin pasar por este repo. Con la version fija + el hash, el navegador
-     rechaza el script si sus bytes no son exactamente los esperados.
-     Se apunta a dist/umd/supabase.js (fichero real del paquete npm) y no
-     a supabase.min.js, que jsDelivr genera al vuelo y cuyo hash no es
-     reproducible. Al subir de version hay que recalcular el hash:
+<!-- Supabase SDK (auth + base de datos), alojado aqui desde el 22 de octubre
+     de 2026, como Leaflet: vendor/supabase.js es el dist/umd/supabase.js del
+     paquete npm @supabase/supabase-js@2.111.0, la misma version EXACTA que
+     antes venia de jsDelivr, con la misma huella (integrity, SRI): si sus
+     bytes no son exactamente esos, el navegador no lo ejecuta y la app sigue
+     en modo invitado. Asi la cuenta tambien arranca sin red y ya no se pide
+     nada a un CDN. Al subir de version, el fichero y el hash, juntos:
        npm pack @supabase/supabase-js@X.Y.Z
        tar xzf ... && openssl dgst -sha384 -binary package/dist/umd/supabase.js | openssl base64 -A -->
-<!-- defer: sin el, esta etiqueta PARA el parseo del HTML hasta que jsDelivr
-     conteste. En un movil son DNS + TLS + 120 kB antes de que el navegador
-     siga leyendo el documento. Con defer se descarga en paralelo y se
-     ejecuta al terminar de parsear, todavia ANTES de DOMContentLoaded, que
-     es cuando initSupabase() lo busca: nada llega tarde. -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0/dist/umd/supabase.js"
+<!-- defer: sin el, esta etiqueta PARA el parseo del HTML hasta que llegue
+     el fichero. Con defer se descarga en paralelo y se ejecuta al terminar
+     de parsear, todavia ANTES de DOMContentLoaded, que es cuando
+     initSupabase() lo busca: nada llega tarde. -->
+<script src="./vendor/supabase.js"
   defer
   integrity="sha384-faMlYZUtkJj+Sh6Bmu/L0GzPcraRWN6CW+9RH3GUrK/Z0WS9tgaNNt0tHiLxsbdb"
   crossorigin="anonymous"
@@ -9783,7 +9780,6 @@ Object.assign(UI_TX, {
   "ppTercMeteo": {"es":"las coordenadas del lugar o de la zona cuya previsión consulta.", "en":"the coordinates of the place or area whose forecast you are checking.", "fr":"les coordonnées du lieu ou de la zone dont vous consultez les prévisions.", "de":"die Koordinaten des Ortes oder Gebiets, dessen Vorhersage du abrufst.", "it":"le coordinate del luogo o della zona di cui consulti le previsioni.", "nl":"de coördinaten van de plek of het gebied waarvan je de verwachting opvraagt.", "zh":"你查询预报的地点或区域的坐标。", "zht":"你查詢預報的地點或區域的座標。", "bg":"координатите на мястото или зоната, чиято прогноза проверявате.", "pl":"współrzędne miejsca albo strefy, której prognozę sprawdzasz."},
   "ppTercCarburantes": {"es":"los precios oficiales de las gasolineras de la provincia, cuando los mira; no se le manda nada suyo.", "en":"the official petrol station prices for the province, when you look at them; nothing of yours is sent to it.", "fr":"les prix officiels des stations-service de la province, quand vous les consultez ; rien de vous ne lui est envoyé.", "de":"die amtlichen Tankstellenpreise der Provinz, wenn du sie ansiehst; von dir wird nichts übermittelt.", "it":"i prezzi ufficiali dei distributori della provincia, quando li consulti; non gli viene inviato nulla di tuo.", "nl":"de officiële prijzen van de tankstations in de provincie, wanneer je ze bekijkt; er gaat niets van jou naartoe.", "zh":"你查看时获取本省加油站的官方价格；不会向其发送任何属于你的信息。", "zht":"你查看時取得本省加油站的官方價格；不會向其傳送任何屬於你的資訊。", "bg":"официалните цени на бензиностанциите в провинцията, когато ги разглеждате; нищо ваше не се изпраща натам.", "pl":"oficjalne ceny stacji paliw w prowincji, kiedy je przeglądasz; nic twojego tam nie trafia."},
   "ppTercWiki": {"es":"el título del artículo del lugar o del astro que abre.", "en":"the article title of the place or object you open.", "fr":"le titre de l’article du lieu ou de l’astre que vous ouvrez.", "de":"den Artikeltitel des Ortes oder Himmelsobjekts, das du öffnest.", "it":"il titolo della voce del luogo o dell’astro che apri.", "nl":"de artikeltitel van de plek of het hemelobject dat je opent.", "zh":"你打开的地点或天体对应的条目标题。", "zht":"你開啟的地點或天體對應的條目標題。", "bg":"заглавието на статията за мястото или небесния обект, който отваряте.", "pl":"tytuł artykułu o miejscu lub obiekcie na niebie, który otwierasz."},
-  "ppTercCdn": {"es":"sirve la librería de Supabase que usa la app; no se le manda nada suyo.", "en":"serves the Supabase library the app uses; nothing of yours is sent to it.", "fr":"fournit la bibliothèque Supabase qu’utilise l’app ; rien de vous ne lui est envoyé.", "de":"liefert die Supabase-Bibliothek, die die App nutzt; von dir wird nichts übermittelt.", "it":"fornisce la libreria di Supabase che usa l’app; non gli viene inviato nulla di tuo.", "nl":"levert de Supabase-bibliotheek die de app gebruikt; er gaat niets van jou naartoe.", "zh":"提供应用所用的 Supabase 程序库；不会向其发送任何属于你的信息。", "zht":"提供應用程式所用的 Supabase 程式庫；不會向其傳送任何屬於你的資訊。", "bg":"доставя библиотеката на Supabase, която приложението използва; нищо ваше не се изпраща натам.", "pl":"dostarcza bibliotekę Supabase, z której korzysta aplikacja; nic twojego tam nie trafia."},
   "ppTercGa": {"es":"solo en la web, si acepta el aviso de cookies.", "en":"only on the website, if you accept the cookie notice.", "fr":"uniquement sur le site web, si vous acceptez l’avis sur les cookies.", "de":"nur auf der Website, wenn du dem Cookie-Hinweis zustimmst.", "it":"solo sul sito web, se accetti l’avviso sui cookie.", "nl":"alleen op de website, als je de cookiemelding accepteert.", "zh":"仅在网站上，且你接受 Cookie 提示时。", "zht":"僅在網站上，且你接受 Cookie 提示時。", "bg":"само на уебсайта, ако приемете съобщението за бисквитките.", "pl":"tylko na stronie internetowej, jeśli zaakceptujesz komunikat o ciasteczkach."},
   "ppTercNoVenta": {"es":"Ninguno de estos datos se vende ni se cede con fines comerciales.", "en":"None of this data is sold or passed on for commercial purposes.", "fr":"Aucune de ces données n’est vendue ni cédée à des fins commerciales.", "de":"Nichts davon wird verkauft oder zu kommerziellen Zwecken weitergegeben.", "it":"Nessuno di questi dati viene venduto né ceduto a fini commerciali.", "nl":"Niets hiervan wordt verkocht of voor commerciële doeleinden doorgegeven.", "zh":"这些数据都不会出售，也不会为商业目的转让。", "zht":"這些資料都不會出售，也不會為商業目的轉讓。", "bg":"Нищо от тези данни не се продава и не се предоставя с търговска цел.", "pl":"Żadne z tych danych nie są sprzedawane ani przekazywane w celach handlowych."},
   "ppBaseTitulo": {"es":"Finalidad y base legal", "en":"Purpose and legal basis", "fr":"Finalité et base légale", "de":"Zweck und Rechtsgrundlage", "it":"Finalità e base giuridica", "nl":"Doel en rechtsgrond", "zh":"目的与法律依据", "zht":"目的與法律依據", "bg":"Цел и правно основание", "pl":"Cel i podstawa prawna"},
@@ -33390,7 +33386,6 @@ function closePrivacyPanel() {
       <li><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Open-Meteo</a> — <span data-tx="ppTercMeteo">las coordenadas del lugar o de la zona cuya previsión consulta.</span></li>
       <li><a href="https://geoportalgasolineras.es/" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Ministerio para la Transición Ecológica y el Reto Demográfico</a> — <span data-tx="ppTercCarburantes">los precios oficiales de las gasolineras de la provincia, cuando los mira; no se le manda nada suyo.</span></li>
       <li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Wikipedia · Wikimedia</a> — <span data-tx="ppTercWiki">el título del artículo del lugar o del astro que abre.</span></li>
-      <li><a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">jsDelivr</a> — <span data-tx="ppTercCdn">sirve la librería de Supabase que usa la app; no se le manda nada suyo.</span></li>
       <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Google Analytics</a> — <span data-tx="ppTercGa">solo en la web, si acepta el aviso de cookies.</span></li>
     </ul>
     <p data-tx="ppTercNoVenta">Ninguno de estos datos se vende ni se cede con fines comerciales.</p>

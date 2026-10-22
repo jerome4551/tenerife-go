@@ -42,7 +42,6 @@
 "ppTercMeteo":"współrzędne miejsca albo strefy, której prognozę sprawdzasz.",
 "ppTercCarburantes":"oficjalne ceny stacji paliw w prowincji, kiedy je przeglądasz; nic twojego tam nie trafia.",
 "ppTercWiki":"tytuł artykułu o miejscu lub obiekcie na niebie, który otwierasz.",
-"ppTercCdn":"dostarcza bibliotekę Supabase, z której korzysta aplikacja; nic twojego tam nie trafia.",
 "ppTercGa":"tylko na stronie internetowej, jeśli zaakceptujesz komunikat o ciasteczkach.",
 "ppTercNoVenta":"Żadne z tych danych nie są sprzedawane ani przekazywane w celach handlowych.",
 "ppBaseTitulo":"Cel i podstawa prawna",

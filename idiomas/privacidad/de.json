@@ -42,7 +42,6 @@
 "ppTercMeteo":"die Koordinaten des Ortes oder Gebiets, dessen Vorhersage du abrufst.",
 "ppTercCarburantes":"die amtlichen Tankstellenpreise der Provinz, wenn du sie ansiehst; von dir wird nichts übermittelt.",
 "ppTercWiki":"den Artikeltitel des Ortes oder Himmelsobjekts, das du öffnest.",
-"ppTercCdn":"liefert die Supabase-Bibliothek, die die App nutzt; von dir wird nichts übermittelt.",
 "ppTercGa":"nur auf der Website, wenn du dem Cookie-Hinweis zustimmst.",
 "ppTercNoVenta":"Nichts davon wird verkauft oder zu kommerziellen Zwecken weitergegeben.",
 "ppBaseTitulo":"Zweck und Rechtsgrundlage",

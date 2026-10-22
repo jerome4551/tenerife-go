@@ -42,7 +42,6 @@
 "ppTercMeteo":"the coordinates of the place or area whose forecast you are checking.",
 "ppTercCarburantes":"the official petrol station prices for the province, when you look at them; nothing of yours is sent to it.",
 "ppTercWiki":"the article title of the place or object you open.",
-"ppTercCdn":"serves the Supabase library the app uses; nothing of yours is sent to it.",
 "ppTercGa":"only on the website, if you accept the cookie notice.",
 "ppTercNoVenta":"None of this data is sold or passed on for commercial purposes.",
 "ppBaseTitulo":"Purpose and legal basis",

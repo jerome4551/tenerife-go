@@ -48,7 +48,7 @@ const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 (async () => {
   const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
   const pg = await (await nav.newContext({ serviceWorkers: 'block' })).newPage();
-  await pg.route('**/cdn.jsdelivr.net/**', r => r.abort());
+  await pg.route('**/vendor/supabase.js', r => r.abort());
   await pg.addInitScript(() => {
     try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tenerife.welcome.seen', '1'); } catch (e) {}
   });
