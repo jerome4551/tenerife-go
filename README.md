@@ -261,7 +261,7 @@ apunta en el móvil para enseñarlo arriba del todo los dos días de antes.
 Nada por defecto, nada en ningún servidor, y «Quitar todos los avisos» los
 quita.
 
-**«¿Sabías que…?», con su fuente.** Cada ficha lleva una curiosidad y, al
+**«¿Sabía que…?», con su fuente.** Cada ficha lleva una curiosidad y, al
 final, de dónde sale, como enlace: la de cada planeta trae además la hoja de
 la NASA (diámetro en Tierras, cuánto dura su día y su año, lunas conocidas,
 temperatura, gravedad, anillos; `datos/planetas.json`, de la Planetary Fact
@@ -277,7 +277,7 @@ es la latitud; la Estación Espacial, Tiangong y el Hubble, lo que dicen la
 NASA, Wikipedia y The Planetary Society; cada lluvia del calendario, de qué
 cometa o asteroide son restos (lista de la IMO) y su historia (NASA, AMS,
 Wikipedia; las Perseidas, «lágrimas de San Lorenzo», UCM), plegada tras
-«¿Sabías que…?». «Para fotos» añade la luz zodiacal en su temporada
+«¿Sabía que…?». «Para fotos» añade la luz zodiacal en su temporada
 (febrero-marzo al anochecer, septiembre-octubre de madrugada, con si la Luna
 molesta esa noche; Britannica) y la sombra triangular del Teide con la hora
 de la puesta (TWAN, APOD). `tools/auditar_cielo.js` (parte 13) comprueba que
@@ -291,7 +291,7 @@ dice de dónde viene («una de las 48 constelaciones de Ptolomeo», «dibujada
 por los navegantes Keyser y De Houtman», «introducida por Lacaille desde el
 cabo de Buena Esperanza»…) y cuánto ocupa («594 grados cuadrados, la n.º 26
 de 88»), de las dos tablas de la UAI en Wikipedia (`datos/constelaciones.json`),
-y «¿Sabías que…?» con una curiosidad de cada una en los diez idiomas —quién
+y «¿Sabía que…?» con una curiosidad de cada una en los diez idiomas —quién
 la puso en el cielo, su mito, lo que merece la pena mirar—, escrita a partir
 de su página en Star Tales de Ian Ridpath (Orión, de Wikipedia), con las
 fuentes como enlace. Van un fichero por idioma (`idiomas/cielo/`), y cada

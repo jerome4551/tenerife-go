@@ -68,7 +68,9 @@ const MARCAS = {
       'dejes', 'tocas', 'madrugas', 'apures', 'apuntas', 'dices', 'crees', 'ahorras', 'compartes', 'pulsas', 'acabas', 'oyes', 'deslumbras',
       'sigues', 'aparques', 'inicias', 'hayas', 'podrás', 'dudes', 'centras', 'definas', 'sabes', 'sientes', 'quitas', 'eres',
       'tendrás', 'harás', 'sabrás', 'querrás', 'saldrás', 'vendrás', 'pondrás', 'dirás', 'irás', 'estarás', 'serás', 'encontrarás', 'llegues', 'tomes', 'uses',
-      'entres', 'pases', 'pruebes', 'olvides', 'subas', 'quedas', 'entras', 'vuelves', 'vuelvas', 'sueles', 'prefieras', 'quieras'),
+      'entres', 'pases', 'pruebes', 'olvides', 'subas', 'quedas', 'entras', 'vuelves', 'vuelvas', 'sueles', 'prefieras', 'quieras',
+      /* las del 22 de octubre (las curiosidades del cielo): «¿Sabías que…?», «mientras lees» */
+      'sabías', 'lees'),
     /* el imperativo de tu con pronombre pegado. El de usted lleva las mismas
        letras cambiadas de sitio (inténtalo / inténtelo, ábrelo / ábralo), asi
        que no hay regla que los separe: van las formas de tu que han salido en
@@ -111,7 +113,9 @@ const MARCAS = {
        persona («cierra a las 13:00», «reserva previa» no entran) */
     tras('toca', 'elige', 'pulsa', 'selecciona', 'desliza', 'arrastra', 'pellizca', 'abre el menú', 'busca el icono', 'evita el baño', 'revisa', 'reposta',
       'calcula primero', 'crea primero', 'sube la app', 'prueba con', 'comprueba', 'consulta', 'instala', 'mira el', 'mira la', 'mira los', 'mira las',
-      'mira cómo', 'mira hacia', 'disfruta', 'aprovecha', 'contacta con', 'escríbenos', 'avísanos', 'vuelve a intentarlo', 'extrema la precaución'),
+      'mira cómo', 'mira hacia', 'disfruta', 'aprovecha', 'contacta con', 'escríbenos', 'avísanos', 'vuelve a intentarlo', 'extrema la precaución',
+      /* «al acabar el crepúsculo, mira al oeste» (22 de octubre) */
+      'mira al'),
     trasEmoji('Prueba con', 'Toca', 'Pulsa', 'Elige', 'Mira el', 'Mira la', 'Mira los', 'Mira las', 'Mira mis', 'Mira cómo', 'Mira hacia', 'Revisa',
       'Consulta el', 'Consulta la', 'Consulta las', 'Consulta los', 'Disfruta', 'Descubre', 'Aprovecha', 'Ven', 'Pide', 'Evita', 'Explora'),
   ],

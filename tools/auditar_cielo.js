@@ -2523,6 +2523,9 @@ async function quintoBloque(b) {
   const malLl = r.lluvias.filter(l => !l.curio || /\{[a-z]+\}|undefined|NaN/.test(l.curio) || !l.padre || !l.fuentes.length || (l.curio.indexOf('{v}') < 0 && /km\/s/.test(l.curio) && !new RegExp('\\b' + l.v + ' km/s').test(l.curio))).map(l => l.id);
   ok(!malLl.length && r.lluvias.length === 11, 'las once lluvias: cuerpo padre, curiosidad con la velocidad del catalogo y fuente', malLl.join(', '));
   const qua = r.lluvias.find(l => l.id === 'QUA'), gem = r.lluvias.find(l => l.id === 'GEM'), per = r.lluvias.find(l => l.id === 'PER');
+  const sda = r.lluvias.find(l => l.id === 'SDA');
+  ok(/^Se cree que son restos del cometa 96P\/Machholz/.test(sda.padre) && /se cree/.test(sda.curio) && r.lluvias.filter(l => /^Se cree/.test(l.padre)).length === 1,
+     'las Delta Acuaridas, «se cree que son restos del cometa 96P/Machholz», como su curiosidad (la NASA lo da como sospechado); las otras diez, sin el «se cree»', sda.padre);
   ok(/asteroide 2003 EH1/.test(qua.padre) && /asteroide \(3200\) Phaethon/.test(gem.padre) && /cometa 109P\/Swift-Tuttle/.test(per.padre) && /San Lorenzo/.test(per.curio) && /133 años/.test(per.curio) && /59 km\/s/.test(per.curio),
      'Cuadrantidas y Geminidas «restos del asteroide», Perseidas «del cometa 109P/Swift-Tuttle», con San Lorenzo, 133 años y 59 km/s', [qua.padre, gem.padre, per.padre].join(' | '));
   ok(r.cal.filas >= 11 && r.cal.botones === r.cal.filas && r.cal.cerradas === r.cal.botones && r.cal.abiertas === r.cal.botones && r.cal.fuentes >= r.cal.botones && r.cal.padres === r.cal.filas,
