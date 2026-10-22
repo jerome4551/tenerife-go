@@ -419,11 +419,12 @@ Conocido y sin resolver:
 Desde el 21 de octubre de 2026 la misma PWA se empaqueta para la App Store
 con Capacitor (`app/`, `LANZAMIENTO-APP-STORE.md`). No hay una segunda app:
 `tools/app_preparar.js` copia a `app/www/` lo que `index.html` pide en el
-móvil (medido el 21 de octubre de 2026: 94 ficheros, 24,6 MB, con los dos
+móvil (medido el 22 de octubre de 2026: 94 ficheros, 25,8 MB, con los dos
 mapas) y le pone a `index.html` una sola línea, `window.TGO_NATIVO = true`.
-Con esa marca la app no registra service worker (todo viaja dentro), no
-ofrece instalarse, esconde los dos botones de avisos push, el de la cuenta
-y el de «Continuar como invitado» (WKWebView no tiene Web Push), y pide a
+Con esa marca la app no registra service worker (todo viaja dentro, salvo
+la librería de la cuenta, que viene de jsDelivr), no ofrece instalarse,
+esconde los dos botones de avisos push, el de la cuenta y el de
+«Continuar como invitado» (WKWebView no tiene Web Push), y pide a
 la web viva los datos que cambian a diario —precios, avisos de AEMET,
 elementos de los satélites— con los de dentro de respaldo
 (`tgoFetchDatos`, en la cabecera de `index.html`). Y dice lo que es verdad

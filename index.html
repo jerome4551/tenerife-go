@@ -53,7 +53,10 @@ window.TGO_NATIVO = window.TGO_NATIVO === true;
 var TGO_BASE_VIVA = 'https://jerome4551.github.io/tenerife-go/';
 /* Un fichero de datos: en la web, tal cual (el service worker lo sirve red
    primero); en la app nativa, la copia viva con 8 segundos de plazo y, si
-   no llega o no responde bien, la copia que viaja dentro. */
+   no llega, no responde bien, se corta a medias o no es JSON, la copia que
+   viaja dentro. La viva se lee ENTERA aqui (y se comprueba que parsea, si
+   es .json) antes de darla por buena: asi un corte durante el cuerpo
+   tambien cae dentro, y quien llama recibe una Response normal. */
 function tgoFetchDatos(ruta, opc) {
   if (!window.TGO_NATIVO) return fetch(ruta, opc);
   var viva = TGO_BASE_VIVA + String(ruta).replace(/^\.\//, '');
@@ -62,9 +65,18 @@ function tgoFetchDatos(ruta, opc) {
   /* la copia de dentro se pide sin la senal de quien llama: si la viva se
      corto por su plazo, esa senal ya esta abortada y la de dentro fallaria */
   var dentro = Object.assign({}, opc || {}); delete dentro.signal;
+  var fin = function () { if (temporizador) clearTimeout(temporizador); };
   return fetch(viva, o)
-    .then(function (r) { if (temporizador) clearTimeout(temporizador); if (!r.ok) throw new Error('HTTP ' + r.status); return r; })
-    .catch(function () { if (temporizador) clearTimeout(temporizador); return fetch(ruta, dentro); });
+    .then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      var tipo = r.headers.get('Content-Type') || 'application/json';
+      return r.text().then(function (t) {
+        if (/\.json(\?|$)/.test(viva)) JSON.parse(t);   // si no parsea, lanza y se cae dentro
+        fin();
+        return new Response(t, { status: 200, headers: { 'Content-Type': tipo } });
+      });
+    })
+    .catch(function () { fin(); return fetch(ruta, dentro); });
 }
 </script>
 <!-- Captura global de errores: evita "Uncaught Error: Script error." visible
@@ -29810,6 +29822,7 @@ async function pushReSync() {
 }
 
 function pushInit() {
+  if (window.TGO_NATIVO) return;                        // TGO-NATIVO: en la aplicacion de las tiendas no hay Web Push (el boton va oculto)
   if (!pushSoportado() || !pushInstalada()) return;   // navegador suelto: ni preguntar
 
   // Si ya concedio el permiso, re-asegurar el guardado (idempotente) y salir.

@@ -8,5 +8,4 @@ idiomas/es-lugares*.json
 app/www/
 app/ios/App/
 app/node_modules/
-app/package-lock.json
 capturas-app-store/

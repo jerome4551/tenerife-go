@@ -29,9 +29,11 @@
  *     AEMET con dos avisos en la copia viva y ninguno en la de dentro ->
  *     wxDatos trae dos; si la viva no responde (red cortada), da HTTP 500 o
  *     se cuelga mas de 8 s -> la copia de dentro (ninguno, con la fecha del
- *     fichero de app/www/); los precios de las gasolineras, igual; y los
- *     elementos de los satelites del panel del cielo (modulos/cielo.js),
- *     igual: vivos primero y, sin red, los de dentro;
+ *     fichero de app/www/), y tambien si responde 200 con algo que no es
+ *     JSON (un portal cautivo); los precios de las gasolineras, igual (y
+ *     sin senal de quien llama: el plazo de 8 s es el del propio shim); y
+ *     los elementos de los satelites del panel del cielo (modulos/cielo.js):
+ *     vivos primero y, sin red, los de dentro;
  *   · la CSP deja esas peticiones (si no las dejara, no llegarian a la
  *     ruta interceptada: eso es lo que se cuenta);
  *   · el mapa detallado: detalleEnServidor() dice null (nada que
@@ -40,6 +42,13 @@
  *     satelites: la app entera sin service worker;
  *   · el enlace de compartir un lugar apunta a la web viva (eso ya lo hacia
  *     el codigo con capacitor://; aqui se comprueba con la marca).
+ *
+ * LOS DIEZ IDIOMAS, CON LA MARCA: la app arranca en cada idioma de
+ *   SUPPORTED_LANGS (la bienvenida), sin service worker y con el boton de
+ *   push oculto; el panel del cielo abre «Esta noche» y «Donde ir», y
+ *   «Antes de subir al Teide» dice «guardado» en ese idioma; ninguna
+ *   peticion al paquete da 404 (si faltara un fichero en app/www/, aqui se
+ *   ve); sin errores de pagina.
  *
  * SIN LA MARCA (la raiz, la web): TGO_NATIVO es false, el banner sale con el
  * UA de iPhone, el boton de push esta a la vista, los avisos se piden a
@@ -60,6 +69,8 @@ const WWW = path.join(RAIZ, 'app', 'www');
 const VIVA = 'https://jerome4551.github.io/tenerife-go/';
 const AVISOS = require('./avisos_prueba').ficheros();
 const UA_IPHONE = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1';
+const IDIOMAS = ((fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8').match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1])
+  .split(',').map(x => x.trim().replace(/['"]/g, '')).filter(Boolean);
 
 let mal = 0;
 const ok = (c, que, detalle) => {
@@ -69,24 +80,27 @@ const ok = (c, que, detalle) => {
 };
 const espera = ms => new Promise(r => setTimeout(r, ms));
 
-async function pagina(ctx, puerto, extra) {
+async function pagina(ctx, puerto, extra, idioma) {
   const p = await ctx.newPage();
   const errores = []; p.on('pageerror', e => errores.push(e.message));
+  /* lo que el paquete no tiene: un 404 del servidor de app/www/ es un fichero que falta */
+  const faltan = []; p.on('response', r => { if (r.status() === 404 && r.url().startsWith('http://127.0.0.1:' + puerto + '/')) faltan.push(r.url().slice(('http://127.0.0.1:' + puerto + '/').length)); });
   await p.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
   await p.route('**/router.project-osrm.org/**', r => r.abort());
   await p.route('**/nominatim.openstreetmap.org/**', r => r.abort());
   if (extra) await extra(p);
   await p.goto('http://127.0.0.1:' + puerto + '/index.html', { waitUntil: 'networkidle' });
   await p.waitForTimeout(500);
-  await p.click('.v19-w-lang[data-lang="es"]'); await p.waitForTimeout(200);
+  await p.click('.v19-w-lang[data-lang="' + (idioma || 'es') + '"]'); await p.waitForTimeout(200);
   await p.click('#v19-welcome-start'); await p.waitForTimeout(2500);
-  return { p, errores };
+  return { p, errores, faltan };
 }
 
 (async () => {
-  /* app/www/ montado hoy, y servido aparte */
-  const prep = require('child_process').spawnSync('node', [path.join(RAIZ, 'tools', 'app_preparar.js')], { encoding: 'utf8' });
-  ok(prep.status === 0 && fs.existsSync(path.join(WWW, 'index.html')), 'app/www/ montado con tools/app_preparar.js', prep.stdout + prep.stderr);
+  /* app/www/ montado hoy (--comprobar: monta y coteja, y NO reescribe las
+     plantillas versionadas; si estan desfasadas, para aqui), y servido aparte */
+  const prep = require('child_process').spawnSync('node', [path.join(RAIZ, 'tools', 'app_preparar.js'), '--comprobar'], { encoding: 'utf8' });
+  ok(prep.status === 0 && fs.existsSync(path.join(WWW, 'index.html')), 'app/www/ montado y cotejado con tools/app_preparar.js --comprobar', (prep.stdout + prep.stderr).split('\n').filter(l => /MAL|\*\*\*/.test(l)).join(' | '));
   const srv = spawn('python3', ['-m', 'http.server', String(PUERTO_APP), '--bind', '127.0.0.1'], { cwd: WWW, stdio: 'ignore' });
   await espera(1500);
   const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-proxy-server'] });
@@ -97,16 +111,17 @@ async function pagina(ctx, puerto, extra) {
     const dentro = JSON.parse(fs.readFileSync(path.join(WWW, 'datos', 'avisos-aemet.json'), 'utf8'));
     const satDentro = JSON.parse(fs.readFileSync(path.join(WWW, 'datos', 'satelites.json'), 'utf8'));
     const satVivo = Object.assign({}, satDentro, { fuente: 'COPIA VIVA DE PRUEBA' });
-    let modo = 'vivo';   // vivo | corte | error500 | cuelgue
+    let modo = 'vivo';   // vivo | corte | error500 | cuelgue | basura (200 con un cuerpo que no es JSON)
     const rutaViva = async r => {
       const u = r.request().url();
       vivos.push(u.slice(VIVA.length));
       if (modo === 'corte') return r.abort('failed');
       if (modo === 'error500') return r.fulfill({ status: 500, body: 'no' });
+      if (modo === 'basura') return r.fulfill({ status: 200, contentType: 'application/json', body: '<html>portal cautivo</html>' });
       if (modo === 'cuelgue') { await espera(9500); return r.abort('timedout'); }
       if (/avisos-aemet\.json$/.test(u)) return r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(AVISOS.conAvisos) });
       if (/satelites\.json$/.test(u)) return r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(satVivo) });
-      if (/precios-gasolineras\.json$/.test(u)) return r.fulfill({ status: 200, contentType: 'application/json', body: fs.readFileSync(path.join(WWW, 'datos', 'precios-gasolineras.json')) });
+      if (/precios-gasolineras\.json$/.test(u)) return r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(Object.assign(JSON.parse(fs.readFileSync(path.join(WWW, 'datos', 'precios-gasolineras.json'), 'utf8')), { franja: 'COPIA VIVA DE PRUEBA' })) });
       return r.fulfill({ status: 404, body: '' });
     };
     const { p, errores } = await pagina(ctx, PUERTO_APP, async p => { await p.route(VIVA + '**', rutaViva); });
@@ -159,13 +174,33 @@ async function pagina(ctx, puerto, extra) {
     wx = await p.evaluate(() => ({ n: wxDatos && wxDatos.avisos.length, c: wxDatos && wxDatos.consultado }));
     ok(wx.n === dentro.avisos.length && wx.c === dentro.consultado && tardo >= 7500 && tardo < 12000,
        'la viva se cuelga: a los 8 s, la copia de dentro (tardo ' + (tardo / 1000).toFixed(1) + ' s)', JSON.stringify(wx));
+    modo = 'basura';
+    await p.evaluate(() => fetchWxAlerts());
+    wx = await p.evaluate(() => ({ n: wxDatos && wxDatos.avisos.length, c: wxDatos && wxDatos.consultado }));
+    ok(wx.n === dentro.avisos.length && wx.c === dentro.consultado, 'la viva responde 200 con algo que no es JSON (un portal cautivo): la copia de dentro', JSON.stringify(wx));
     modo = 'vivo';
 
-    /* los precios de las gasolineras */
+    /* los precios de las gasolineras: sin senal de quien llama, asi que el
+       plazo de 8 s lo pone el propio shim. La copia viva de prueba lleva
+       otra franja, para saber cual se ha aplicado. */
+    const preciosDentro = JSON.parse(fs.readFileSync(path.join(WWW, 'datos', 'precios-gasolineras.json'), 'utf8'));
+    const franjaDe = () => p.evaluate(() => PRECIOS_GAS.datos && PRECIOS_GAS.datos.franja);
     vivos.length = 0;
     await p.evaluate(() => cargarPreciosGas());
     await p.waitForTimeout(800);
-    ok(vivos.includes('datos/precios-gasolineras.json'), 'los precios de las gasolineras se piden a la web viva primero', vivos.join(','));
+    ok(vivos.includes('datos/precios-gasolineras.json') && (await franjaDe()) === 'COPIA VIVA DE PRUEBA', 'los precios de las gasolineras se piden a la web viva primero (la franja de la copia viva)', vivos.join(',') + ' ' + (await franjaDe()));
+    for (const m of ['corte', 'error500', 'basura']) {
+      modo = m;
+      await p.evaluate(() => { PRECIOS_GAS.datos = null; cargarPreciosGas(); });
+      await p.waitForTimeout(800);
+      ok((await franjaDe()) === preciosDentro.franja, 'precios, la viva en ' + m + ': la copia de dentro (franja ' + preciosDentro.franja + ')', String(await franjaDe()));
+    }
+    modo = 'cuelgue';
+    const t1 = Date.now();
+    await p.evaluate(() => { PRECIOS_GAS.datos = null; return new Promise(res => { cargarPreciosGas(); const i = setInterval(() => { if (PRECIOS_GAS.datos) { clearInterval(i); res(); } }, 100); setTimeout(() => { clearInterval(i); res(); }, 15000); }); });
+    const tardo2 = Date.now() - t1;
+    ok((await franjaDe()) === preciosDentro.franja && tardo2 >= 7500 && tardo2 < 12000, 'precios, la viva colgada: a los 8 s del temporizador propio del shim, la copia de dentro (tardo ' + (tardo2 / 1000).toFixed(1) + ' s)', (await franjaDe()) + ' ' + tardo2);
+    modo = 'vivo';
 
     /* el mapa detallado */
     const det = await p.evaluate(async () => [await detalleEnServidor(), await detalleGuardado().then(b => b && b.size)]);
@@ -236,6 +271,30 @@ async function pagina(ctx, puerto, extra) {
     ok(s2 === 0 && google.length === 0, 'con «aceptado» guardado de antes, tampoco: ningun script y nada hacia Google', JSON.stringify([s2, google]));
     await n2.pg.close();
     await ctx.close();
+
+    console.log('=== los diez idiomas, con la marca ===');
+    modo = 'corte';   // sin red hacia fuera: todo lo que se ve tiene que salir del paquete
+    const ctx3 = await browser.newContext({ viewport: { width: 390, height: 844 }, userAgent: UA_IPHONE, hasTouch: true,
+      geolocation: { latitude: 28.4636, longitude: -16.2518 }, permissions: ['geolocation'] });
+    for (const L of IDIOMAS) {
+      const { p: q, errores: eq, faltan } = await pagina(ctx3, PUERTO_APP, async p => { await p.route(VIVA + '**', rutaViva); }, L);
+      const r = await q.evaluate(async () => {
+        const regs = navigator.serviceWorker ? await navigator.serviceWorker.getRegistrations().then(x => x.length) : -1;
+        const b = document.getElementById('auth-push-btn');
+        await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); await TG_CIELO.satelites().catch(function () {});
+        await TG_CIELO.ver('noche', '2026-12-13'); await new Promise(r => setTimeout(r, 500));
+        const tarjetas = document.querySelectorAll('#cielo-panel .cielo-tarjeta').length;
+        await TG_CIELO.ver('donde', '2026-12-13'); await new Promise(r => setTimeout(r, 700));
+        const e = document.querySelector('#cielo-panel .cielo-offline');
+        return { nativo: window.TGO_NATIVO === true, regs, push: b && b.hidden, tarjetas, teide: e ? [e.className, e.textContent.slice(0, 40)] : null, lang: document.documentElement.lang };
+      });
+      ok(r.nativo && r.regs === 0 && r.push === true && r.tarjetas > 3 && r.teide && /cielo-offline-ok/.test(r.teide[0]) && /^✓ /.test(r.teide[1]) && faltan.length === 0 && eq.length === 0,
+         L + ': arranca con la marca, sin service worker, push oculto, «Esta noche» (' + r.tarjetas + ' tarjetas) y «Antes de subir al Teide» guardado («' + (r.teide ? r.teide[1].slice(2, 30) : '') + '…»), sin 404 ni errores',
+         JSON.stringify({ r, faltan: faltan.slice(0, 5), errores: eq.slice(0, 3) }));
+      await q.close();
+    }
+    await ctx3.close();
+    modo = 'vivo';
 
     console.log('=== sin la marca (la raiz, la web): nada cambia ===');
     const ctx2 = await browser.newContext({ viewport: { width: 390, height: 844 }, userAgent: UA_IPHONE, hasTouch: true, serviceWorkers: 'block',

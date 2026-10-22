@@ -263,9 +263,15 @@ function comprobar(montado) {
     if (!enWww('faq/' + l + '.json')) faltan.add('faq/' + l + '.json');
   }
   ok(faltan.size === 0, 'todo lo que la app pide en el movil esta en app/www/ (' + montado.copiados.length + ' ficheros, '
-     + (montado.bytes / 1048576).toFixed(1) + ' MB)', [...faltan].join(', '));
-  ok(!enWww('sw.js') && !enWww('datos/osm-geofabrik') && !enWww('idiomas/pl-fuente') && !enWww('faq/fuente') && !enWww('tools'),
-     'y nada mas: ni sw.js, ni carpetas de trabajo, ni controles');
+     + (montado.bytes / 1e6).toFixed(1) + ' MB)', [...faltan].join(', '));
+  /* y nada mas: cada fichero copiado, contra lo que nunca puede viajar (el
+     service worker, los controles, los robots, las carpetas de trabajo y
+     las fuentes de los idiomas, los documentos, los registros, las tablas
+     de Supabase, las claves de nadie) */
+  const NUNCA = /^(sw\.js|tools\/|\.github\/|supabase\/|registro\/|chk\/|app\/|capturas-app-store\/|datos\/(osm-geofabrik|auditoria-osm|entregas|gasolineras\/|verificado\.json|app-store)|idiomas\/(pl-fuente|pl-lugares|glosario-cat|paginas|privacidad|borrar-cuenta|castellano-aceptado|pantalla-aceptado|etiquetas-sin-traducir)|faq\/(fuente|indice\.json)|frases\.json|enviar-notificacion\.js|consulta-overpass|og-image|.*\.(md|py|sh|sql|overpassql|env|pem|key)$)/;
+  const sobran = montado.copiados.filter(f => NUNCA.test(f));
+  ok(sobran.length === 0 && montado.copiados.length >= 80 && !fs.existsSync(path.join(WWW, 'sw.js')) && !fs.existsSync(path.join(WWW, 'tools')),
+     'y nada mas: ni sw.js, ni controles, ni robots, ni carpetas de trabajo, ni documentos, ni claves (' + montado.copiados.length + ' ficheros cotejados contra la lista de lo que nunca viaja)', sobran.join(', '));
 
   /* index.html: el de la raiz mas la marca */
   const w = fs.readFileSync(path.join(WWW, 'index.html'), 'utf8');
@@ -363,7 +369,7 @@ function comprobar(montado) {
 console.log('=== app/www/: la app para las tiendas, montada de la raiz ===');
 const montado = montar();
 const strings = escribirStrings();
-console.log('  ' + montado.copiados.length + ' ficheros, ' + (montado.bytes / 1048576).toFixed(1) + ' MB en app/www/'
+console.log('  ' + montado.copiados.length + ' ficheros, ' + (montado.bytes / 1e6).toFixed(1) + ' MB en app/www/'
   + (COMPROBAR ? '' : '; InfoPlist.strings en ' + Object.keys(strings).length + ' idiomas'));
 if (COMPROBAR) comprobar(montado);
 if (mal) { console.log('\n*** ' + mal + ' cosa(s) mal ***'); process.exit(1); }

@@ -19,10 +19,10 @@ pone al principio de `index.html`: `window.TGO_NATIVO = true`. Con ella:
 
 | Qué | En la web | En la app de la tienda |
 |---|---|---|
-| Caché sin conexión | El service worker (`sw.js`) guarda `index.html`, el módulo del cielo, el mapa de la isla… | No hay service worker: todo viaja dentro del paquete (24,6 MB, 94 ficheros). WKWebView no registra service workers en el esquema `capacitor://`. |
-| Datos que cambian a diario (precios, avisos de AEMET, elementos de los satélites) | Red primero, caché de respaldo (el service worker) | `tgoFetchDatos()`: primero la copia viva de `https://jerome4551.github.io/tenerife-go/datos/…` con 8 s de plazo; si no llega, no responde o se corta, la copia que viaja dentro (la del día en que se montó la app). |
+| Caché sin conexión | El service worker (`sw.js`) guarda `index.html`, el módulo del cielo, el mapa de la isla… | No hay service worker: todo lo de la app viaja dentro del paquete (25,8 MB, 94 ficheros): el mapa, los lugares, las guaguas, el cielo entero, los idiomas. WKWebView no registra service workers en el esquema `capacitor://`. De la app en sí, lo único que sigue viniendo de fuera al arrancar es la librería de Supabase (jsDelivr, con SRI), para la cuenta opcional: sin red queda en «modo invitado» y lo demás funciona; vendorizarla es un trabajo aparte (§8). |
+| Datos que cambian a diario (precios, avisos de AEMET, elementos de los satélites) | Red primero, caché de respaldo (el service worker) | `tgoFetchDatos()`: primero la copia viva de `https://jerome4551.github.io/tenerife-go/datos/…` con 8 s de plazo, leída entera y comprobada (que sea JSON); si no llega, no responde bien, se corta a medias o no es JSON (un portal cautivo), la copia que viaja dentro (la del día en que se montó la app). |
 | «Instalar la app», botón flotante de la PWA | Salen | No salen: ya está instalada. |
-| Avisos push | Web Push con `sw.js` | WKWebView no tiene Web Push: los dos botones «Activar notificaciones» (el de la cuenta y el de «Continuar como invitado») y sus mensajes van ocultos. Los avisos nativos (APNs) son otro trabajo (§8). |
+| Avisos push | Web Push con `sw.js` | WKWebView no tiene Web Push: los dos botones «Activar notificaciones» (el de la cuenta y el de «Continuar como invitado») y sus mensajes van ocultos, y `pushInit()` no pregunta nunca. Los avisos nativos (APNs) son otro trabajo (§8). |
 | Google Analytics y el aviso de cookies | Solo si se acepta el aviso: entonces se carga GA4 (Consent Mode v2, señales publicitarias denegadas) | No hay (22 de octubre de 2026): `gtag` no se configura, `tgoLoadGA()` no carga nada y el aviso de cookies no sale. La política lo dice («La aplicación de la App Store no usa Google Analytics», `ppStatsTienda`). Para saber cuánto se usa, App Store Connect tiene su propia analítica (*App Analytics*). |
 | El mapa detallado (`tenerife-osm.pmtiles`, 12 MB) | Se descarga desde la app y se guarda en Cache Storage | Viaja dentro: «nada que descargar ni borrar». |
 | Confirmar el correo de la cuenta | Supabase vuelve a la web | Vuelve a la web viva (`capacitor://localhost` no es una dirección a la que volver). |
@@ -41,18 +41,18 @@ luz roja, los diez idiomas) es el mismo código y se comporta igual.
 
 | Fichero | Qué |
 |---|---|
-| `index.html` | El bloque `TGO-NATIVO` de la cabecera (`TGO_NATIVO`, `TGO_BASE_VIVA`, `tgoFetchDatos`) y las doce puertas que miran la marca (service worker, «instalada» —que quita el banner—, botón flotante, push, mapa detallado ×2, correo de confirmación, enlace de compartir, las respuestas del asistente, y Google Analytics ×3: su configuración, `tgoLoadGA()` y el aviso de cookies); `connect-src`. En la web nada cambia (`probar_app.js` lo mira). |
+| `index.html` | El bloque `TGO-NATIVO` de la cabecera (`TGO_NATIVO`, `TGO_BASE_VIVA`, `tgoFetchDatos`) y las trece puertas que miran la marca (service worker, «instalada» —que quita el banner—, botón flotante, el botón de push y `pushInit`, mapa detallado ×2, correo de confirmación, enlace de compartir, las respuestas del asistente, y Google Analytics ×3: su configuración, `tgoLoadGA()` y el aviso de cookies); `connect-src`. En la web nada cambia (`probar_app.js` lo mira). |
 | `modulos/cielo.js` | Los elementos de los satélites se piden con `tgoFetchDatos` si existe (`pedir`); `cacheListo()` da «guardado» con la marca. |
 | `tools/app_preparar.js` | Monta `app/www/` (lista cerrada de lo que viaja; nada de carpetas de trabajo ni controles) y escribe las plantillas de iOS que salen de la política de privacidad; `--comprobar` coteja que no falta nada de lo que `index.html`, las dos páginas fijas y `sw.js` piden, que `www/index.html` es el de la raíz más esa línea, y que las plantillas son las de hoy. |
 | `app/capacitor.config.json`, `app/package.json`, `app/LEEME.md`, `.gitignore` | El proyecto de Capacitor (8.x; `app/www/`, `app/ios/App/` y `node_modules/` fuera de git). |
 | `app/ios/plantillas/Info.plist.fragmento.plist` | Lo que el `Info.plist` de Capacitor no trae: los tres permisos con las frases de la política (castellano), los diez idiomas (`CFBundleLocalizations`), `ITSAppUsesNonExemptEncryption = false` (solo HTTPS), las orientaciones. |
 | `app/ios/plantillas/<idioma>.lproj/InfoPlist.strings` | Las frases de la ubicación, los sensores y la cámara en los diez idiomas, **sacadas de `idiomas/privacidad/<idioma>.json`**: el permiso dice lo mismo que la política. Si la política cambia y no se vuelve a pasar el preparador, `auditar.sh` para. |
 | `app/ios/plantillas/PrivacyInfo.xcprivacy` | El manifiesto de privacidad: sin rastreo, sin dominios de rastreo, y los datos que la política dice que salen (correo e id de usuario ligados a la cuenta, los favoritos, las coordenadas de una ruta o del tiempo y el texto de una búsqueda); sin analítica, porque en la app no hay Google Analytics. |
-| `app/ios/plantillas/AppIcon-1024.png`, `Splash-2732.png` | El icono a 1024 **ampliado del de 512** (§4) y el arranque cuadrado (el de 2048×2732 centrado sobre su fondo). |
+| `app/ios/plantillas/AppIcon-1024.png`, `Splash-2732.png` | El icono a 1024 **ampliado del de 512** (§3, punto 3) y el arranque cuadrado (el de 2048×2732 centrado sobre su fondo). |
 | `app/ios/plantillas/aplicar.sh` | Lo pone todo en el proyecto que genera `npx cap add ios` (PlistBuddy, copias). Comprobado en seco: aquí no hay Mac. |
 | `datos/app-store/ficha.json` | La ficha de la tienda en los diez idiomas: nombre, subtítulo, texto promocional, descripción, palabras clave, y las direcciones, el copyright y la categoría. Cada frase dice solo lo que la app hace. |
-| `tools/auditar_app_store.js` | La ficha contra los límites de Apple (30/30/170/4000 caracteres, 100 bytes de palabras clave), contra las directrices (ni otras plataformas, ni otras apps, ni «número uno», ni promesas que la app no cumple: fotos, push, «sin anuncios») y contra lo que hay (980 lugares, 183 líneas, siete costas, diez idiomas, las fuentes del README), en cada idioma y en su idioma. |
-| `tools/capturas_app_store.js` | Las capturas en los tamaños obligatorios (iPhone 1206×2622, iPad 2064×2752), siete por aparato, de la app de verdad: el mapa de la isla, una ficha, las paradas cerca, «Organiza tu día», «Esta noche», «Apunta al cielo» y el sistema solar. Sin rótulos: si Jerome los quiere, se ponen encima. |
+| `tools/auditar_app_store.js` | La ficha contra los límites de Apple (30/30/170/4000 caracteres, 100 bytes de palabras clave, ninguna de dos letras, ningún nombre de otra empresa o app en ellas), contra las directrices (ni otras plataformas, ni otras apps, ni «número uno», ni promesas que la app no cumple: fotos, push, «sin anuncios», en los diez idiomas) y contra lo que hay (980 lugares, 183 líneas, siete costas, diez idiomas, las fuentes del README, los nombres de «Apunta al cielo» y de «Organiza tu día» tal como los dice la app en cada idioma, sin prometer la hora de la guagua ni el municipio de cada lugar), en cada idioma y en su idioma; y la variante en-US. |
+| `tools/capturas_app_store.js` | Las capturas en los tamaños obligatorios (iPhone 1206×2622, iPad 2064×2752), siete por aparato, de la app de verdad: el mapa de la isla, un lugar (la hoja en el iPhone, el globo en el iPad), las paradas cerca, «Organiza tu día», «Esta noche», «Apunta al cielo» y el sistema solar; si un estado no llega a lo que dice, para. Sin rótulos: si Jerome los quiere, se ponen encima. |
 | `tools/probar_app.js` | El modo nativo en Chromium (§1) y la web sin la marca. |
 | `tools/auditar.sh` | Los tres controles nuevos. |
 
@@ -80,10 +80,13 @@ luz roja, los diez idiomas) es el mismo código y se comporta igual.
    cielo del Teide»…), en los diez idiomas, encima de las capturas de
    `capturas_app_store.js`. Sin rótulos también valen.
 6. **El riesgo de la directriz 4.2** («Minimum Functionality»: la app tiene
-   que ir «más allá de una web reempaquetada»). Tenerife Go no carga nada de
-   fuera: todo viaja dentro, funciona sin red, usa la cámara, la brújula y
-   los sensores, calcula el cielo en el móvil. Eso es lo que se le dice al
-   revisor en las notas (§5.5). Si aun así la rechazan por 4.2, el camino es
+   que ir «más allá de una web reempaquetada»). Tenerife Go no carga su
+   contenido de fuera: el mapa, los lugares, las guaguas y el cielo viajan
+   dentro y funcionan sin red; usa la cámara, la brújula y los sensores y
+   calcula el cielo en el móvil. De fuera vienen la librería de la cuenta,
+   los datos del día y lo que se consulta en vivo (el tiempo y el mar; y,
+   al pedirlo, las rutas, las direcciones, los precios del Ministerio y
+   Wikipedia). Eso es lo que se le dice al revisor en las notas (§5.5). Si aun así la rechazan por 4.2, el camino es
    responder con esa lista y, si insisten, añadir una pieza nativa (los
    avisos APNs del §8 serían la primera).
 
@@ -97,7 +100,7 @@ metida en Xcode (Settings → Accounts).
 ```
 git clone https://github.com/jerome4551/tenerife-go && cd tenerife-go/app
 npm install                              # @capacitor/core, cli e ios 8.x
-node ../tools/app_preparar.js            # monta www/ (94 ficheros, 24,6 MB)
+node ../tools/app_preparar.js            # monta www/ (94 ficheros, 25,8 MB)
 npx cap add ios                          # genera ios/App/ (Swift Package Manager; CocoaPods: --packagemanager CocoaPods)
 bash ios/plantillas/aplicar.sh           # permisos, idiomas, privacidad, icono, arranque
 npx cap open ios                         # Xcode
@@ -169,8 +172,9 @@ la primera versión.
 
 ### 5.3 Las capturas
 
-`node tools/capturas_app_store.js 8766 --idiomas=todos` deja en
-`capturas-app-store/<idioma>/` siete capturas de iPhone (1206×2622, la
+`node tools/capturas_app_store.js 8766 --idiomas=todos` (`--solo=ficha` rehace
+solo un estado) deja en `capturas-app-store/<idioma>/` siete capturas de
+iPhone (1206×2622, la
 pantalla «con Dynamic Island, mediana», la obligatoria) y siete de iPad
 (2064×2752, la de 13", obligatoria si la app va en iPad). PNG sin
 transparencia, hasta diez por tamaño; Apple escala las demás pantallas desde
@@ -218,7 +222,7 @@ que cubrir los SDK de terceros: Capacitor trae el suyo.
 - *Contact*: los del punto 3.4.
 - *Notes* (hasta 4000 bytes, en el idioma que sea). Propuesta, en inglés:
 
-> Tenerife Go is a free travel guide for the island of Tenerife. Everything ships inside the app and works offline: the island map (vector tiles bundled), 980 places, the 183 bus and tram lines, and a night-sky module computed on the device (Astronomy Engine) with an AR view that uses the camera, compass and motion sensors. No content is loaded from a remote web view; only small daily data files (fuel prices, weather warnings, satellite orbital elements) are refreshed from our site when online, with bundled copies as fallback.
+> Tenerife Go is a free travel guide for the island of Tenerife. All of its content ships inside the app and works offline: the island map (vector tiles bundled), 980 places, the 183 bus and tram lines, and a night-sky module computed on the device (Astronomy Engine) with an AR view that uses the camera, compass and motion sensors. The app does not load its interface from a remote web view. What it does fetch over the network: small daily data files (fuel prices, weather warnings, satellite orbital elements) from our site, with bundled copies as fallback; the Supabase client library (jsDelivr, subresource integrity) for the optional account; weather and sea forecasts (Open-Meteo); and, when the user asks for them, live fuel prices (Spanish Ministry open data), driving routes (OSRM), address search (Nominatim) and Wikipedia summaries.
 > Permissions are optional and asked in context: location (map and routes), camera and motion (only inside "Point at the sky"). The account is optional (email + password, our own system) and can be deleted from inside the app (Account → Delete account). No in-app purchases, no subscriptions, no third-party ad networks; a few local businesses are labelled as sponsored. Privacy policy: https://jerome4551.github.io/tenerife-go/privacidad.html
 
 ### 5.6 Antes de pulsar *Submit for Review*
@@ -243,9 +247,11 @@ IDFA).
 
 ## 7. Probar en un iPhone de verdad (TestFlight), lo que ningún control puede
 
-1. **Permisos**: al abrir «Apunta al cielo», iOS pide los sensores y, con
-   📷, la cámara, cada uno con la frase de la política en el idioma del
-   móvil; al tocar «GPS», la ubicación. Rechazar y volver a aceptar en
+1. **Permisos**: al abrir «Apunta al cielo», los sensores (WebKit los pide
+   con su propio aviso, o Capacitor los concede; comprobar cuál de los dos
+   pasa) y, con 📷, la cámara; al tocar «GPS», la ubicación. La cámara y la
+   ubicación tienen que salir con la frase de la política en el idioma del
+   móvil (las de `InfoPlist.strings`). Rechazar y volver a aceptar en
    Ajustes. Si la cámara y los sensores se vuelven a dar ahí, el aviso de
    la app puede decirlo (hoy, dentro de la app, solo dice que el cielo
    funciona igual).
@@ -259,7 +265,12 @@ IDFA).
    satélites (los elementos de dentro, con su fecha en el aviso), la noche
    guiada, el sistema solar. «Dónde ir» → «Antes de subir al Teide».
 5. **Con red**: los precios y los avisos de AEMET son los de hoy (los pide a
-   la web viva), no los del día en que se montó la app.
+   la web viva), no los del día en que se montó la app. Es la única
+   comprobación real de que GitHub Pages deja esa petición desde
+   `capacitor://localhost` (responde `Access-Control-Allow-Origin: *` en los
+   sitios públicos; desde aquí no se ha podido comprobar y ningún control
+   automático lo cubre: Playwright no aplica CORS). Si no la dejara, la app
+   no se rompería: caería a la copia de dentro, sin avisar.
 6. **Enlaces de fuera** (Wikipedia, «Cómo llegar en coche», TITSA, la
    política): se abren en Safari, no dentro de la app sin forma de volver.
    `tel:112` llama. Compartir un lugar: la hoja de iOS, con el enlace de la
@@ -278,10 +289,16 @@ IDFA).
   llega hoy por Web Push a la web; en la app harían falta `@capacitor/push-notifications`,
   la clave APNs en la cuenta de Apple y un envío aparte. Hasta entonces, el
   botón va oculto en la app.
+- **La librería de Supabase en `vendor/`** (como Leaflet): hoy viene de
+  jsDelivr en cada arranque, con SRI; vendorizada, la cuenta también
+  arrancaría sin red y «todo viaja dentro» sería literal. Desde aquí no se
+  pudo bajar (sin acceso a npm ni al CDN).
 - **Enlaces universales** (`https://jerome4551.github.io/tenerife-go/#lugar=…`
   abriendo la app en vez de Safari): `apple-app-site-association` en la
-  raíz del dominio, que GitHub Pages sirve si se mete en `.well-known/`;
-  entra con la Fase 2 (dominio propio) del documento de Google Play.
+  raíz del **dominio**, es decir, en el repositorio de usuario
+  `jerome4551.github.io` (no en el del proyecto), dentro de `.well-known/`
+  (con Jekyll hay que incluir la carpeta a mano); entra con la Fase 2
+  (dominio propio) del documento de Google Play.
 - **Google Play**: el TWA de PWABuilder (el documento de Jerome «De la
   PWA a Google Play», tres fases; la Fase 1 está en `AUDITORIA-FINAL.md`),
   que no necesita nada de esto: la PWA tal cual.
@@ -293,8 +310,9 @@ IDFA).
 - Capacitor 8: Xcode 26.0+, Node 22+, SPM por defecto, iOS 15:
   capacitorjs.com/docs/getting-started/environment-setup y
   capacitorjs.com/docs/updating/8-0; iOS 15+ y WKWebView: capacitorjs.com/docs/ios.
-- Xcode 26 obligatorio desde el 28 de abril de 2026:
-  capawesome.io/blog/xcode-26-requirement-for-capacitor-apps.
+- Xcode 26 y el SDK de iOS 26 obligatorios desde el 28 de abril de 2026:
+  developer.apple.com/news/upcoming-requirements («SDK minimum
+  requirements», «Since April 28, 2026»); y capawesome.io/blog/xcode-26-requirement-for-capacitor-apps.
 - Apple Developer Program, 99 USD al año: developer.apple.com/support/compare-memberships.
 - Localizaciones de App Store Connect (sin búlgaro):
   developer.apple.com/help/app-store-connect/reference/app-store-localizations.

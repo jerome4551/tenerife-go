@@ -8,7 +8,9 @@
  *   · nombre de 2 a 30 caracteres; subtitulo hasta 30; texto promocional
  *     hasta 170; descripcion hasta 4000, en texto plano (sin HTML);
  *     palabras clave hasta 100 BYTES, cada una de mas de dos caracteres,
- *     sin repetir el nombre de la app ni nombres de otras apps o empresas;
+ *     sin repetir el nombre de la app ni nombres de otras apps o empresas
+ *     («Names of other apps or companies aren't allowed»: ni TITSA, ni
+ *     Google, ni nadie: se coteja contra una lista de nombres);
  *     «novedades» hasta 4000 (vacio en la primera version);
  *   · las localizaciones que existen (el bulgaro no esta: la ficha en
  *     bulgaro se guarda y en Bulgaria la tienda ensena la de en-GB);
@@ -30,6 +32,8 @@
  *   · que las funciones que nombra («Apunta al cielo», «Organiza tu dia»,
  *     «Como llegar») lleven el nombre de la app en ese idioma, y que no
  *     prometa elegir la hora de la guagua ni el municipio de cada lugar;
+ *   · la variante en-US (ortografia y lexico de EE. UU.) con los mismos
+ *     limites que la inglesa;
  *   · que las direcciones apunten a paginas que existen y que la de soporte
  *     lleve el correo de contacto (privacidad.html lo tiene).
  *
@@ -56,7 +60,9 @@ const bytes = s => Buffer.byteLength(String(s), 'utf8');
 
 /* Las localizaciones de App Store Connect (developer.apple.com/help/app-store-connect/reference/app-store-localizations/, 21-10-2026),
    con el codigo que usa la API de App Store Connect. */
-const LOCALIZACIONES = ['ar-SA', 'ca', 'zh-Hans', 'zh-Hant', 'hr', 'cs', 'da', 'nl-NL', 'en-AU', 'en-CA', 'en-GB', 'en-US', 'fi', 'fr-FR', 'fr-CA', 'de-DE', 'el', 'he', 'hi', 'hu', 'id', 'it', 'ja', 'ko', 'ms', 'no', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'es-MX', 'es-ES', 'sv', 'th', 'tr', 'uk', 'vi'];
+const LOCALIZACIONES = ['ar-SA', 'bn', 'ca', 'zh-Hans', 'zh-Hant', 'hr', 'cs', 'da', 'nl-NL', 'en-AU', 'en-CA', 'en-GB', 'en-US', 'fi', 'fr-FR', 'fr-CA', 'de-DE', 'el', 'gu', 'he', 'hi', 'hu', 'id', 'it', 'ja', 'kn', 'ko', 'ms', 'ml', 'mr', 'no', 'or', 'pl', 'pt-BR', 'pt-PT', 'pa', 'ro', 'ru', 'sk', 'sl', 'es-MX', 'es-ES', 'sv', 'ta', 'te', 'th', 'tr', 'uk', 'ur', 'vi'];   // 50, las de la pagina de Apple
+/* nombres de otras apps y empresas que no pueden ir en las palabras clave (Apple) */
+const EMPRESAS = /\b(titsa|google|apple|supabase|wikipedia|openstreetmap|tripadvisor|booking|airbnb|uber|aemet|fred\.? ?olsen|armas|binter|ryanair|stellarium|photopills)\b/i;
 /* la escritura y una palabra testigo de cada idioma: que cada ficha este en el suyo */
 const TESTIGO = { es: /\bguaguas\b/, en: /\bbuses\b/, fr: /\bhors ligne\b/, de: /\bBusse\b/, it: /\bautobus\b/, nl: /\bbussen\b/, zh: /公交/, zht: /公車/, bg: /автобуси/, pl: /\bautobusy\b/ };
 const ESCRITURA = { zh: /[一-鿿]/g, zht: /[一-鿿]/g, bg: /[Ѐ-ӿ]/g };
@@ -65,8 +71,11 @@ const SIETE = { es: /siete costas/, en: /seven coasts/, fr: /sept côtes/, de: /
 const DIEZ = { es: /diez idiomas/i, en: /ten languages/i, fr: /dix langues/i, de: /zehn sprachen/i, it: /dieci lingue/i, nl: /tien talen/i, zh: /十种语言/, zht: /十種語言/, bg: /десет езика/i, pl: /dziesięć języków/i };
 /* lo que no puede decir: otras plataformas y apps (directrices 2.3), y promesas que la app no cumple */
 const PROHIBIDO = [/android/i, /google play/i, /play store/i, /stellarium/i, /skyview/i, /sky tonight/i, /photopills/i, /star walk/i, /sky guide/i,
-  /#1\b/, /n[ºo°]\s*1\b/i, /número uno/i, /number one/i, /la mejor app/i, /the best app/i, /beste app/i, /migliore app/i, /meilleure app/i,
-  /\bfotos?\b/i, /\bphotos?\b/i, /\bnotificaciones push\b/i, /push notifications/i, /\bsin anuncios\b/i, /\bno ads\b/i, /ad-free/i, /sans publicité\b/i, /werbefrei/i];
+  /#1\b/, /n[ºo°]\s*1\b/i, /número uno/i, /number one/i, /la mejor app/i, /the best app/i, /beste app/i, /migliore app/i, /meilleure app/i, /najlepsza aplikacja/i, /най-доброто приложение/i, /最好的应用/, /最好的應用/,
+  /* fotos (no las hay), avisos push (no en la app) y «sin anuncios» (hay patrocinados), en los diez idiomas */
+  /\bfotos?\b/i, /\bphotos?\b/i, /\bfoto'?s\b/i, /\bzdjęci[ae]\b/i, /\bсним[ка]и?\b/i, /照片|相片/,
+  /\bnotificaciones push\b/i, /push notifications/i, /notifications push/i, /push-benachrichtigungen/i, /notifiche push/i, /pushmeldingen/i, /powiadomienia push/i, /push известия/i, /推送通知/,
+  /\bsin anuncios\b/i, /\bsin publicidad\b/i, /\bno ads\b/i, /ad-free/i, /sans publicité\b/i, /werbefrei/i, /ohne werbung/i, /senza pubblicità/i, /zonder advertenties/i, /zonder reclame/i, /bez reklam/i, /без реклами/i, /无广告|沒有廣告|無廣告/];
 const FUENTES = ['OpenStreetMap', 'TITSA', 'AEMET', 'Open-Meteo', 'CelesTrak'];
 /* Las funciones que la ficha nombra, con el nombre que llevan en la app: quien
    lee «Pointez le ciel» en la tienda busca eso en la app, y la app dice
@@ -128,6 +137,7 @@ for (const l of IDIOMAS) {
   /* ni empresas ni apps de otros (directriz 2.3.7): las fuentes que la ficha cita, y TITSA tiene app propia */
   const ajenas = claves.filter(k => FUENTES.concat(['Metrotenerife']).some(f => f.toLowerCase().replace(/[^a-z]/g, '') === k.toLowerCase().replace(/[^a-z]/g, '')));
   if (ajenas.length) fallos.push('empresas en las palabras clave: ' + ajenas.join(' '));
+  if (claves.some(k => EMPRESAS.test(k))) fallos.push('nombre de otra empresa o app en las palabras clave: ' + claves.filter(k => EMPRESAS.test(k)).join(', '));
   if (x.novedades.length > 4000) fallos.push('novedades ' + x.novedades.length);
   ok(fallos.length === 0, l + ': dentro de los limites de Apple (nombre ' + x.nombre.length + ', subtitulo ' + x.subtitulo.length + ', promocion ' + x.promocion.length
      + ', descripcion ' + x.descripcion.length + ', palabras clave ' + bytes(x.palabrasClave) + ' bytes)', fallos.join('; '));
@@ -153,6 +163,19 @@ for (const l of IDIOMAS) {
   ok(suyo && !vistas.has(x.descripcion), l + ': en su idioma (escritura y palabra testigo) y distinto de los demas');
   vistas.add(x.descripcion);
   ok(x.nombre === 'Tenerife Go', l + ': el nombre es «Tenerife Go» (el de manifest.webmanifest)');
+  for (const [v, y] of Object.entries(x.variantes || {})) {
+    const f2 = [];
+    if (!LOCALIZACIONES.includes(v) || !(F.tienda[l] || []).includes(v)) f2.push('variante ' + v + ' que no es una localizacion de este idioma');
+    if (y.subtitulo.length > 30) f2.push('subtitulo ' + y.subtitulo.length);
+    if (y.promocion.length > 170) f2.push('promocion ' + y.promocion.length);
+    if (!(y.descripcion.length >= 500 && y.descripcion.length <= 4000) || /<[a-z][^>]*>/i.test(y.descripcion)) f2.push('descripcion ' + y.descripcion.length);
+    if (bytes(y.palabrasClave) > 100 || y.palabrasClave.split(',').some(k => k.trim().length <= 2 || EMPRESAS.test(k) || /^(tenerife|go)$/i.test(k.trim()))) f2.push('palabras clave');
+    const t2 = [y.subtitulo, y.promocion, y.descripcion, y.palabrasClave].join('\n');
+    PROHIBIDO.filter(re => re.test(t2)).forEach(re => f2.push('prohibido ' + re));
+    if (!new RegExp('(^|[^\\d.])' + PLACES.length + '([^\\d]|$)').test(y.descripcion) || !new RegExp('(^|[^\\d.])' + LINES.length + '([^\\d]|$)').test(y.descripcion)) f2.push('cifras');
+    if (y.descripcion === x.descripcion) f2.push('identica a la principal (entonces sobra)');
+    ok(f2.length === 0, l + ' · variante ' + v + ': los mismos limites y reglas, y distinta de la principal', f2.join('; '));
+  }
 }
 const man = JSON.parse(fs.readFileSync(path.join(RAIZ, 'manifest.webmanifest'), 'utf8'));
 ok(man.name === 'Tenerife Go', 'manifest.webmanifest: name «Tenerife Go»');

@@ -15,6 +15,7 @@
  *     node tools/capturas_app_store.js 8766                 es y en
  *     node tools/capturas_app_store.js 8766 --idiomas=todos  los diez
  *     node tools/capturas_app_store.js 8766 --idiomas=fr,de
+ *     node tools/capturas_app_store.js 8766 --idiomas=todos --solo=ficha   solo ese estado (el numero se conserva)
  *
  * Deja capturas-app-store/<idioma>/<aparato>-<n>-<estado>.png (fuera de git).
  */
@@ -30,6 +31,7 @@ const html = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
 const TODOS = ((html.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1]).split(',').map(x => x.trim().replace(/['"]/g, '')).filter(Boolean);
 const arg = (process.argv.find(a => a.startsWith('--idiomas=')) || '').slice(10);
 const IDIOMAS = !arg ? ['es', 'en'] : arg === 'todos' ? TODOS : arg.split(',');
+const SOLO = (process.argv.find(a => a.startsWith('--solo=')) || '').slice(7).split(',').filter(Boolean);
 const AVISOS = JSON.stringify(require('./avisos_prueba').ficheros().conAvisos);
 
 const APARATOS = [
@@ -39,7 +41,13 @@ const APARATOS = [
 /* los estados: lo que mejor cuenta la app, en el orden en que la tienda los ensena */
 const ESTADOS = `window.__capturas = [
   ['mapa', async () => { setCategory('playa'); await espera(800); try { map.setView([28.29, -16.55], 10, { animate: false }); } catch (e) {} await espera(1200); }],
-  ['ficha', async () => { openDetailSheet('teresitas'); await espera(800); }],
+  /* la ficha: en el movil, la hoja; en el iPad (>= 768 px) openDetailSheet no
+     hace nada y lo que se ve es el globo del lugar: goToPlace abre lo que toque */
+  ['ficha', async () => { setCategory('playa'); updateMarkers({ immediate: true });
+      if (window.innerWidth < 768) openDetailSheet('teresitas'); else goToPlace('teresitas');
+      await espera(1800);
+      const hoja = document.getElementById('detail-sheet'), globo = document.querySelector('.leaflet-popup');
+      if (!((hoja && hoja.getBoundingClientRect().height > 100 && /Teresitas/.test(hoja.innerText)) || (globo && /Teresitas/.test(globo.innerText)))) throw new Error('la ficha de Las Teresitas no esta a la vista'); }],
   ['guaguas', async () => { showNearbyStops(28.4636, -16.2518); await espera(1500); }],
   ['organiza', async () => { toggleRoutePanel(); switchRouteTab('planner'); dpiSelectTime('fullday');
       document.querySelectorAll('#dpi-zone-grid .dp-zone-card').forEach(c => { if (['naturaleza', 'playa'].includes(c.dataset.zone)) dpiToggleZone(c); });
@@ -88,15 +96,20 @@ window.espera = ms => new Promise(r => setTimeout(r, ms));`;
         await arrancar();
         const dir = path.join(SALIDA, L); fs.mkdirSync(dir, { recursive: true });
         const cuantos = await p.evaluate(() => __capturas.length);
+        let primero = true;
         for (let i = 0; i < cuantos; i++) {
-          if (i > 0) await arrancar();
-          const nombre = await p.evaluate(async i => { const [nom, f] = __capturas[i]; await f(); return nom; }, i);
+          if (SOLO.length && !SOLO.includes(await p.evaluate(i => __capturas[i][0], i))) continue;
+          if (!primero) await arrancar();
+          primero = false;
+          /* si un estado no llega a lo que dice (p. ej. la ficha no se abre), se para: una captura con otro nombre no vale */
+          const nombre = await p.evaluate(async i => { const [nom, f] = __capturas[i]; await f(); return nom; }, i)
+            .catch(e => { console.error('  ' + L + ' ' + ap.nombre + ': el estado ' + (i + 1) + ' falla: ' + e.message); process.exit(1); });
           const f = path.join(dir, ap.nombre + '-' + (i + 1) + '-' + nombre + '.png');
           await p.screenshot({ path: f, type: 'png' });
           n++;
         }
         await ctx.close();
-        console.log('  ' + L + ' ' + ap.nombre + ': ' + cuantos + ' capturas (' + ap.viewport.width * ap.escala + '×' + ap.viewport.height * ap.escala + ')');
+        console.log('  ' + L + ' ' + ap.nombre + ': ' + (SOLO.length ? SOLO.length : cuantos) + ' capturas (' + ap.viewport.width * ap.escala + '×' + ap.viewport.height * ap.escala + ')');
       }
     }
   } finally { await browser.close(); }
