@@ -419,6 +419,24 @@
         function (e) { clearTimeout(tope); res({ data: null, error: { message: String((e && e.message) || e) } }); });
     });
   }
+  /* Todas las filas de una tabla de esta cuenta. Supabase devuelve como mucho unas
+     cuantas por consulta (Max rows: 1.000 en cada proyecto, si nadie lo cambia), y
+     con tres años de pesos diarios ya son mas: lo que no llegara se tomaria por
+     borrado en otro movil, y desapareceria de este. Se leen por paginas, en orden
+     y con la cuenta de cuantas hay, hasta tenerlas todas o hasta una pagina vacia:
+     vale con cualquier tope que tenga el proyecto, y con pocas es una consulta. */
+  var PAGINA = 1000;
+  async function todasLasFilas(sb, tabla, cols, orden, uid) {
+    var filas = [], total = null;
+    for (;;) {
+      var r = await pedir(sb.from(tabla).select(cols, { count: 'exact' }).eq('user_id', uid).order(orden).range(filas.length, filas.length + PAGINA - 1));
+      if (r.error) return r;
+      var d = r.data || [];
+      if (typeof r.count === 'number') total = r.count;
+      filas = filas.concat(d);
+      if (!d.length || (total !== null && filas.length >= total)) return { data: filas, error: null };
+    }
+  }
   function esFK(e) { return !!(e && e.code === '23503'); }   /* pesos o caminatas sin su fila de perfiles */
   function camposPerfil() {
     return { nombre: st.nombre || null, avatar: st.avatar || null, unidades: st.unidades, altura_cm: st.altura_cm,
@@ -465,8 +483,8 @@
       guardar();
     } else {
       /* Hay permiso para esta cuenta (dado aqui o en otro movil): se juntan los dos lados. */
-      var rp = await pedir(sb.from('pesos').select('fecha, kg').eq('user_id', uid));
-      var rk = await pedir(sb.from('caminatas').select('id, fecha, km').eq('user_id', uid));
+      var rp = await todasLasFilas(sb, 'pesos', 'fecha, kg', 'fecha', uid);
+      var rk = await todasLasFilas(sb, 'caminatas', 'id, fecha, km', 'id', uid);
       if (rp.error || rk.error) return 'error';
       if (st.colas[uid] && st.colas[uid].baja) return 'error';
       fusionar(uid, fila, rp.data || [], rk.data || []);
