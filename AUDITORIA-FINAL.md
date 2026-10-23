@@ -8901,6 +8901,164 @@ VERDE»**, ningún bloque en rojo ni roto.
 La primera pasada, sobre la versión de antes del arreglo, dio en rojo
 `auditar_seguridad.py` (arriba).
 
+### Encima del cielo nuevo (22 de octubre, noche)
+
+Los siete commits del perfil iban detrás del usted de entonces. Ahora van
+detrás del usted de hoy y de los topes de Supabase (arriba, «El trato de
+usted, encima del cielo nuevo» y «Mucho dato, y los topes de Supabase»), en
+el mismo orden. En el código solo chocaba `tools/auditar_registro.js`, que
+amplían tres commits: el cielo nuevo le añade las curiosidades de las
+constelaciones, el perfil le añade `modulos/perfil.js`, y el usted de hoy le
+deja leer las claves con guion. Se quedan las tres cosas. En este documento
+chocaban las cifras de idiomas y de descarga, y se volvieron a contar: 45
+tablas, 1.968 filas y 4.109 dentro y fuera del fuente; 1.048 kB en
+castellano, 1.162 en búlgaro y 1.148 en polaco, 9 kB más que sin el perfil
+en los tres. Lo que hace cada bloque es lo mismo. Los hashes de hoy son
+estos:
+
+| Bloque | Entonces | Hoy |
+|---|---|---|
+| Bloque 1, los avatares | `adb198f` | `8a67964` |
+| Bloque 3, las visitas comprobadas | `7df5d97` | `80abf94` |
+| Bloque 2, la pantalla | `5f40925` | `49cdc5c` |
+| Bloque 2b, el búlgaro | `4901ef8` | `9f092b9` |
+| Bloque 4, la nube | `1381789` | `6c060a4` |
+| Bloque 5, los textos | `d85b9fc` | `690a3b7` |
+| Bloque 6, las pruebas y la documentación | `2615829` | `d2bef30` |
+
+La auditoría del párrafo de arriba se pasó sobre `49f2c06`, el bloque 6 de
+entonces sin ese párrafo.
+
+### Con mucho dato, y los topes (23 de octubre)
+
+Al mirar el volumen y la seguridad (Jerome: «Mira que no se pone lenta con
+más volumen de información y de modos nuevos», «La seguridad completa de la
+app más que importante por proteger los usuarios!»):
+
+- **La nube se lee por páginas** (`9648f97`). Supabase devuelve como
+  mucho 1.000 filas por consulta, y `perfil.js` leía los pesos y las
+  caminatas de una vez. Con más de 1.000 (tres años pesándose a diario), lo
+  que no llegaba se tomaba por borrado en otro móvil, y desaparecía de este.
+  La nube de mentira de las pruebas ahora hace lo mismo que Supabase, y lo
+  enseñó: con 1.500 pesos y 1.200 caminatas en la cuenta, un móvil nuevo se
+  quedaba con 1.000 y 1.000; con un tope de 300, con 300. Ahora
+  `todasLasFilas()` las lee por páginas, en orden y con la cuenta exacta,
+  hasta tenerlas todas: vale con cualquier tope, y con pocas filas sigue
+  siendo una consulta. `probar_perfil.js`, «2b. la nube con mucho dato» (v1
+  a v4), lo comprueba; con el `perfil.js` de antes, v1, v2 y v3 salen en
+  rojo.
+- **Como mucho 20.000 pesos y 20.000 caminatas por cuenta** (`33ccd12`),
+  en `perfil.sql`: con una cuenta cualquiera se podían meter, a mano contra
+  la API, millones, hasta llenar la base de datos del proyecto. Dos
+  disparadores que cuentan una vez por subida, al acabar. Contando una vez
+  por fila, 19.999 pesos de golpe tardaban 17,4 s; por subida, 0,14 s, y
+  tres años de pesos (1.095), 9 ms.
+- **La tendencia del peso, sin mirar todos los registros por cada uno**
+  (`5675579`). Con tres años de pesos diarios (1.096), en un móvil lento,
+  abrir el perfil tardaba 6,2 s, volver a abrirlo 4,5 y cambiar de idioma
+  con él abierto 4,7. El perfilador de Chromium lo ponía en `tendencia()`,
+  con el 82 % del tiempo: para cada peso miraba todos los demás, y en cada
+  mirada leía dos fechas, 2.402.432 en total. Los pesos llegan por fecha,
+  así que los siete días que acaban en cada uno son registros seguidos:
+  ahora la ventana se corre de uno al siguiente y cada fecha se lee una
+  vez. Suma en el mismo orden que antes, y da lo mismo hasta el último
+  decimal. `auditar_perfil.js` (9b) lo compara con la cuenta de antes, tal
+  cual estaba: 2.201 valores, bit a bit, con tres años diarios en la zona
+  de la isla y, en cinco zonas (cuatro con cambio de hora, una de ellas de
+  media hora, y la de Samoa, que se saltó un día en 2011), pesos salteados,
+  los bordes de la semana y fechas repetidas. Con el `perfil.js` de antes sale en rojo.
+  Fuera del repositorio, en 15 zonas horarias: 27.908 valores, todos
+  iguales.
+
+`perfil.sql` sigue siendo uno, y es el que hay que ejecutar en Supabase
+antes de que el perfil llegue a `main`. En el PostgreSQL 16 local, dos veces
+seguidas y sin errores: la prueba dura de siempre, 163 de 163; la de los
+topes, 31 de 31. `probar_perfil.js`, 100 de 100; `auditar_perfil.js`, 58 de
+58.
+
+### Lo que tarda, frente a `main` (23 de octubre)
+
+La cadena entera (el cielo nuevo, el usted, los topes y el perfil) contra
+`main`, en un móvil lento de mentira: Chromium con la CPU cuatro veces más
+lenta, 390 × 844, sin service worker y sin red de fuera, con las dos copias
+servidas igual y medidas por turnos (`main`, hoy, `main`, hoy…), para que
+el ruido de la máquina caiga igual en las dos. Son medianas: del arranque,
+14 de cada; del calendario, 8; del resto, 3, salvo lo que se indica.
+
+| Qué | `main` | Hoy |
+|---|---|---|
+| Arranque, hasta el mapa con sus lugares | 2.336 ms | 2.438 ms |
+| El mismo arranque, la media | 2.372 ms | 2.389 ms |
+| Bloqueo del hilo principal al arrancar | 881 ms | 905 ms |
+| Arranque con 177 kB guardados (980 lugares visitados y comprobados, 980 favoritos y tres años de perfil) | 2.368 ms | 2.424 ms |
+| Nueve cambios de idioma, en total | 4.043 ms | 3.722 ms |
+| Abrir una ficha (de treinta distintas) | 17 ms | 17 ms |
+| El cielo, la primera vez | 3.486 ms | 3.640 ms |
+| La luz roja | 53 ms | 44 ms |
+| El cielo, cerrarlo y abrirlo (20 veces) | 358 ms | 371 ms |
+| El calendario del cielo, la primera vez | 131 ms | 168 ms |
+| Cincuenta cambios de pestaña del cielo (dos tiradas) | 152 y 148 ms | 147 y 168 ms |
+| El perfil con tres años de datos, la primera vez | — | 1.040 ms (antes del arreglo, 6.204) |
+| El perfil, cerrarlo y abrirlo (20 veces) | — | 243 ms (4.504) |
+| Cambiar de idioma con el perfil abierto | — | 517 ms (4.691) |
+| Errores de página | 0 | 0 |
+
+Lo de antes del arreglo es de una tirada. Lo que dicen:
+
+- **El arranque es el mismo.** La mediana de hoy sale 102 ms más alta,
+  pero la media solo 17 ms (el 0,7 %), y las dos tandas se solapan: la
+  prueba de Mann-Whitney no ve diferencia (p = 0,49). Es el ruido de la
+  máquina: los catorce arranques de `main` van de 2.125 a 2.673 ms. Con
+  mucho dato guardado, 56 ms más en la mediana, también dentro del ruido:
+  las tres de `main` van de 2.279 a 2.592 ms, y las de hoy, de 2.289 a
+  2.504.
+- **Los idiomas, las fichas y la luz roja, igual o mejor. El cielo, la
+  primera vez, dentro del ruido**: las tres de hoy van de 3.168 a 4.188 ms,
+  y las de `main`, de 3.480 a 3.595.
+- **El calendario del cielo tarda 37 ms más porque enseña más**: las doce
+  lluvias de estrellas dicen ahora de qué cometa o asteroide vienen, y
+  traen su «¿Sabía que…?» con la fuente (100 nodos más).
+- **Nada se queda en memoria.** Abrir y cerrar el cielo veinte veces deja
+  los mismos oyentes (946) y la misma memoria, más o menos una décima de
+  MB; cincuenta cambios de pestaña, los mismos nodos y oyentes, y 0,4 MB
+  más (0,3 en `main`); abrir y cerrar el perfil veinte veces, los mismos
+  983 oyentes, y de 15,9 a 16 MB. Al acabar, hoy hay 1.072 nodos más que
+  en `main`: 1.015 son el panel del perfil, que se queda hecho después de
+  abrirlo, como el del cielo, y 57, lo que el cielo enseña de más.
+- **Lo único lento era el perfil con mucho dato**, y ya no lo es (arriba).
+
+**La auditoría entera** de la cadena, con las fuentes del cielo y las de
+los satélites, sobre `5675579`: **«AUDITORIA EN VERDE»**, ningún control en
+rojo ni roto. Pero su barrido de codificación contaba, sin pararlo, un
+guion blando (U+00AD) escondido entre «saloni» y «kach», en el panel «Cómo
+moverse» en polaco (la tarjeta Ten+), desde el 18 de septiembre
+(`58164fd`). Ya no está (`33c0bc0`), y desde ahora `auditar_seguridad.py`
+pone en rojo un guion blando, un espacio de ancho cero o una marca BOM
+dentro de un texto, en el fuente, en `idiomas/<idioma>.json` y en
+`faq/<idioma>.json`: con el texto de antes sale en rojo. En todos los
+ficheros de texto del repositorio era el único.
+
+**La auditoría entera, otra vez**, sobre `33c0bc0`: **«AUDITORIA EN
+VERDE»**, ningún control en rojo ni roto, y lo demás, igual que sobre
+`5675579`:
+
+- `auditar_registro.js`, 67.356 textos: los nueve idiomas que distinguen
+  el trato, todo de usted.
+- `auditar_cielo.js`, 283 de 283.
+- `auditar_web.js`, 45 tablas y 1.968 filas; `barrido_idiomas.js`, 4.109
+  filas dentro y fuera del fuente, y este documento dice lo mismo.
+- `barrido_pantallas.js`, 118 pantallas y fichas por idioma y 0 textos sin
+  traducir.
+- `auditar_cirilico.py`, 0 sospechosas de 1.960 nombres;
+  `auditar_seguridad.py`, ningún guion blando, ancho cero ni BOM, y
+  ninguna marca de idioma dentro de un `<script>`; `auditar_reservas.py`,
+  ningún texto escrito a mano desde el código fuera de los fijos.
+- `probar_notificacion_idioma.js`: de las 2.345 suscripciones, a cada una
+  le llega una.
+- `probar_faq.js`, 0 fallos de 122; `probar_movil.js`, las 25 preguntas en
+  su idioma; `probar_play.js`, 233 de 233.
+- `auditar_perfil.js`, 58 de 58; `probar_perfil.js`, 100 de 100.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -8916,7 +9074,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/cargar.js` | cargador comun: devuelve la red **ya hidratada** |
 | `tools/verificar_red.js` | los controles de la red |
 | `tools/auditar_datos.js` | catálogo, líneas, trazado y lugares |
-| `tools/auditar_seguridad.py` | inyección, CSP, codificación, textos fijos y tipografía china |
+| `tools/auditar_seguridad.py` | inyección, CSP, codificación (un guion blando, un espacio de ancho cero o una marca BOM dentro de un texto, en rojo), textos fijos y tipografía china |
 | `tools/auditar_xss.js` | regresión con datos hostiles, en navegador |
 | `tools/auditar_web.js` | idiomas, arranque y rendimiento, en navegador; que el mapa no se rehaga de más |
 | `tools/extract_js.py` | extrae los `<script>` para `node --check` |
@@ -8974,8 +9132,8 @@ Y cada bloque por separado, si hace falta:
 | `tools/capturas_app_store.js` | las capturas de la tienda (iPhone 1206×2622, iPad 2064×2752), de `app/www/` servido aparte; para si la página no lleva la marca o un estado no llega a lo que dice |
 | `tools/app_store_metadata.js` | la ficha y las capturas en el formato de `fastlane deliver` (`app/fastlane/metadata/`, `…/screenshots/`); con `--comprobar`, las diez localizaciones, los límites y los tamaños |
 | `tools/cielo_uai.js` | los nombres de la UAI de la carta del cielo en chino, chino tradicional y búlgaro (`CIELO_UAI`, en `modulos/cielo.js`), de las traducciones de Stellarium que baja `cielo_fuentes.sh`; los coteja con la cultura celeste china y entre sí; con `--comprobar`, para si lo escrito no es lo que sale de las fuentes (lo pasa `auditar_cielo.js`) |
-| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 55 avatares (SVG sin nada que se ejecute, ids con la forma que pide `perfil.sql`, la bandera de cada set), las 144 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas y rangos) |
-| `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql`), las visitas comprobadas en el mapa, los 55 avatares y los diez idiomas a 360, 390 y 430 px |
+| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 55 avatares (SVG sin nada que se ejecute, ids con la forma que pide `perfil.sql`, la bandera de cada set), las 144 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas y rangos) |
+| `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql` y, como Supabase, da como mucho 1.000 filas por consulta), la nube con más filas de las que caben en una consulta, las visitas comprobadas en el mapa, los 55 avatares y los diez idiomas a 360, 390 y 430 px |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con
