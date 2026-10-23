@@ -9634,6 +9634,63 @@ control en rojo ni roto:
 - Si quiere quitar o añadir algún país (Kosovo, el Vaticano, Turquía…):
   cada uno son 5 dibujos, 6 filas por idioma y su revisión.
 
+## La tarifa del sendero del pico, con la fuente oficial (23 de octubre, noche)
+
+Jerome comprobó en las fuentes oficiales lo que la nota 12 solo había
+podido leer en guías y en una noticia de RTVC (arriba, «Lo que no se pudo
+abrir desde aquí»):
+
+- **El teleférico** (Volcano Teide): 42 € ida y vuelta el adulto no
+  residente y 10,50 € el residente canario (21 € y 5,25 € los niños).
+  Coincide con la ficha de La Rambleta.
+- **El sendero del pico** (Tenerife ON): desde el 19 de enero de 2026 se
+  paga entre las 9:00 y las 17:00: 15 € los visitantes de fuera, 6 € los
+  residentes en otras islas, y es gratis para los residentes en Tenerife y
+  los menores de 14.
+- **Lo nuevo:** una resolución del Cabildo del 14 de octubre redujo los
+  turnos del Telesforo Bravo de dos horas a 90 minutos y añadió al sistema
+  de reservas tres senderos más, sin tarifa. Ningún texto de la app habla
+  de turnos de dos horas: el asistente dice que el permiso vale para ese
+  tramo, ese día y esa franja horaria, sin decir cuánto dura la franja.
+- **El Decreto 182/2025** no fija ningún importe. Ningún texto de la app le
+  atribuye la tarifa: solo lo cita la tarjeta de las normas del cielo.
+
+Lo que se cambió:
+
+| Commit | Qué |
+|---|---|
+| `cbf2911` | La ficha de la cumbre (`pico-teide-cumbre`) decía que se paga «en las horas del teleférico», sin decir cuáles; Tenerife ON da la franja exacta, de 9:00 a 17:00. Ahora: «entre las 9:00 y las 17:00», en los diez idiomas y en la fuente del polaco (`idiomas/pl-lugares/02.json`). Jerome: «3 si». |
+| `7ebea90` | El asistente, «¿El permiso es gratis?» (`tei-03`), decía que no pagan «los residentes en Tenerife y los menores». Un chico de 15 años de fuera paga: ahora «los menores de 14 años», en los diez idiomas (en chino, «未满14岁», porque «14岁以下» puede incluir los 14). En italiano, además, «(9:00 alle 17:00)» pasa a «(dalle 9:00 alle 17:00)». |
+| `b27fa15` | Lo de los robots de `main` encima de `22847ce`: el aviso de AEMET (`143a64d`) y los satélites (`0f0eb2b`). Sin choques. |
+
+La ficha sigue sin importes (cambian, y se ven al reservar), y el
+asistente tampoco los da.
+
+**Supabase.** Esa misma noche Jerome ejecutó en el SQL Editor
+`favorites.sql`, `push-idioma.sql` y `perfil.sql` (189 líneas): los tres,
+«Success». Con `push-idioma.sql` salió el aviso de que una tabla no tenía
+RLS. Era una falsa alarma: ese fichero no crea ninguna tabla, y
+`push_subs` tiene RLS desde julio (anotado en `favorites.sql`). Se pulsó
+«Run and enable RLS», que no cambia nada.
+
+**La auditoría entera**, sobre `b27fa15` (esta documentación aparte, como
+siempre): **«AUDITORIA EN VERDE»**, ningún control en rojo ni roto. Las
+mismas cifras que sobre `270c301`:
+
+- `auditar_registro.js`, 69.676 textos: los nueve idiomas que distinguen
+  el trato, todo de usted.
+- `auditar_cielo.js`, 302 de 302.
+- `auditar_web.js`, 45 tablas y 2.200 filas; `barrido_idiomas.js`, 4.341
+  filas dentro y fuera del fuente, y este documento dice lo mismo.
+- `barrido_pantallas.js`, 155 pantallas y fichas por idioma: 0 textos sin
+  traducir y 0 errores de página.
+- `auditar_cirilico.py`, 0 sospechosas de 2.170 nombres.
+- `probar_notificacion_idioma.js`: de las 2.345 suscripciones, a cada una
+  le llega una.
+- `probar_faq.js`, 0 fallos de 122; `probar_movil.js`, las 25 preguntas en
+  su idioma; `probar_play.js`, 233 de 233.
+- `auditar_perfil.js`, 58 de 58; `probar_perfil.js`, 112 de 112.
+
 ---
 
 # 5 · Cómo se vuelve a medir
