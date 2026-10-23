@@ -9480,6 +9480,160 @@ VERDE»**, ningún control en rojo ni roto, y lo demás, igual que sobre
   su idioma; `probar_play.js`, 233 de 233.
 - `auditar_perfil.js`, 58 de 58; `probar_perfil.js`, 100 de 100.
 
+### Los 36 países de Europa (23 de octubre)
+
+El encargo del 23: la nota `PARA-CLAUDE-CODE-PERFIL.md` nueva y su
+`perfil-avatares.zip`, la segunda entrega (la que acaba en `…4539`; la
+primera tenía una cifra mal en la nota). Las 37 huellas SHA-256 de la nota,
+comprobadas una a una. Jerome eligió toda Europa: los Estados de la ONU en
+Europa y Chipre, 36 países más (sin Kosovo, que España no reconoce, ni el
+Vaticano), y de Rusia y Bielorrusia, «Sí, como los demás». Son 180 avatares
+nuevos: 235 en 47 sets.
+
+**Antes de meter nada:**
+
+- Los 55 avatares de antes y las 144 filas de antes no cambian, byte a
+  byte, y el catálogo se usa igual (`TG_AVATARES`).
+- Los 36 nombres de país, contra CLDR (`Intl.DisplayNames` de Node 22) en
+  los diez idiomas: iguales, salvo el inglés «Bosnia and Herzegovina», que
+  CLDR da con «&». La nota ya lo decía.
+- Los 180 nombres nuevos, leídos en los diez idiomas. Las dudas que me
+  salieron ya las resolvían, con su fuente, los informes de los revisores
+  (`revision/nombres-*.md`): «Ледникът Вахтнайокутъл» es el título de la
+  Wikipedia búlgara; «Penisola curlandese», el que da la italiana; «Serce
+  licitar», el uso polaco.
+- Los 180 dibujos, en hojas a 96 y a 32 px: ninguna cruz, letra, bandera,
+  persona ni marca, y sin iglesias ni minaretes en Bled, Kotor, Mostar o
+  Jajce.
+- `validar_catalogo.py`, `validar_i18n.py` y `validar_svg.py` del encargo,
+  sobre sus ficheros: en verde. Siete dibujos pasan de 1.500 bytes (el
+  aviso) y ninguno de 2.200 (el tope).
+- Los 235 ids, contra el check de `perfiles.avatar` de `perfil.sql` en un
+  PostgreSQL 16: pasan los 235.
+
+**Cómo se juntó.** La rama del perfil se rehízo encima del `main` de hoy,
+que ya trae el octavo bloque del cielo (`22847ce`). En el código no chocó
+nada; en este documento, las cifras de idiomas y de descarga, que se
+volvieron a contar. Fuera de este documento, lo que cambia frente a la rama
+guardada (`perfil-pendiente`, `fd79fcb`) es exactamente lo que trajo `main`.
+Lo que hace cada commit es lo mismo; las cifras de sus mensajes son las de
+cuando se hicieron, salvo el del bloque 5, que se recontaron. Europa va
+encima, en tres commits, uno por bloque:
+
+| | En `perfil-pendiente` | Hoy |
+|---|---|---|
+| Bloque 1, los avatares | `8a67964` | `2811bb2` |
+| Bloque 3, las visitas comprobadas | `80abf94` | `94fa8a3` |
+| Bloque 2, la pantalla | `49cdc5c` | `8a3994e` |
+| Bloque 2b, el búlgaro | `9f092b9` | `a52ef88` |
+| Bloque 4, la nube | `6c060a4` | `b82b218` |
+| Bloque 5, los textos | `690a3b7` | `870f946` |
+| Bloque 6, las pruebas | `d2bef30` | `be90cfc` |
+| La nube, por páginas | `9648f97` | `f206b46` |
+| Los topes de `perfil.sql` | `33ccd12` | `e5c1e27` |
+| La tendencia del peso | `5675579` | `b379373` |
+| El guion blando del polaco | `33c0bc0` | `b451dd2` |
+| La documentación de entonces | `fd79fcb` | `adfc524` |
+| Europa, bloque 1: el catálogo y sus nombres | — | `d21f8c4` |
+| Europa, bloque 2: el selector | — | `15cf8e6` |
+| Europa, bloque 6: las pruebas | — | `270c301` |
+
+- **Bloque 1** (`d21f8c4`): `modulos/avatares.js` tal cual llegó
+  (`47cfa17a…`) y, en `PERFIL_UI`, los nombres de los 36 sets y de los 180
+  avatares, 216 filas: el catálogo y sus nombres llegan juntos. Lo que
+  miraban `validar_catalogo.py` y `validar_svg.py` va en
+  `auditar_perfil.js`: los 36 países, ni uno más ni uno menos; la bandera
+  de cada país, sus dos letras regionales; y cada dibujo, solo con
+  etiquetas de dibujo, sin `id`, `class`, `style` ni comillas simples y de
+  2.200 bytes como mucho. Probado con un catálogo estropeado a propósito:
+  salta en cada fallo.
+- **Bloque 2** (`15cf8e6`): el selector. Pocas pestañas, en filas (el país
+  del navegador, el idioma de la app, el avatar elegido, el que se acaba de
+  abrir y Tenerife), y «🌍 Todos los países»: la lista de los 47, en el
+  orden de cada idioma, con un buscador que no distingue tildes y vale
+  también en inglés. El país sale de `navigator.languages`: se lee en el
+  móvil y no se guarda ni se envía. Tres filas más, hasta 363.
+- **Bloque 6** (`270c301`): las pruebas, abajo.
+
+**Lo que dijeron los controles de la app, y está resuelto:**
+
+- `auditar_idioma.js`: diez nombres que en en, fr, de, it, nl o pl se
+  escriben como en castellano («Liechtenstein», «Casa de la Vall», «Pastel
+  de nata»…). Van en `IGUAL_UI`, con el bloque de la nota: de 5 a 8
+  hallazgos por idioma, a 0.
+- `auditar_registro.js`: su regla búlgara de la segunda persona en -ш
+  marcaba «Датски сладкиш», «Гулаш», «Папанаш» y «Замъкът Пелеш». Son
+  nombres, no verbos: van con las excepciones que ya tenía («бакшиш»,
+  «гуляш», «финиш»).
+- `barrido_pantallas.js`: «Péckvillchen», «Svíčková» y «Kriváň» se escriben
+  igual en todos los idiomas de letra latina, con sus tildes. Van en
+  `idiomas/pantalla-aceptado.json`, con su motivo.
+
+**Lo que encontraron las pruebas nuevas, y está arreglado.** Las de
+`regresiones.py` y `cortes_nombres.py` del encargo, pasadas a
+`probar_perfil.js`, miden con las letras de la app, y el prototipo no lo
+vio:
+
+- Con columnas de 132 px, a 390 y a 430 px la lista de países iba en dos y
+  partía a mitad de palabra «Nordmazedonien» y cinco nombres búlgaros. El
+  más largo, «Великобритания», pide 174 px con la bandera y los márgenes:
+  la columna es ahora de 176, una en el móvil y dos en una tableta.
+- «Астрономически» (101 px) y «Братиславският» (98) no cabían en las
+  etiquetas de la tira, de 96: ahora son de 102.
+
+Los dos arreglos van en «solo en la app», en los estilos del módulo, con
+las medidas; `perfil.css` sigue dentro tal cual llegó. Y uno de la prueba:
+en chino se puede pasar de línea entre dos caracteres cualesquiera, y el
+control lo tomaba por una palabra partida.
+
+**Lo que pesa.** `modulos/avatares.js`, 295 kB (78 kB comprimido; antes,
+53 y 14); `modulos/perfil.js`, 236 kB (74 comprimido; antes, 171).
+Ninguno cuenta en la primera descarga: el perfil se pide al tocar
+«Cuenta», y los avatares al abrirlo o, si ya hay uno elegido, cuando el
+móvil está libre después de arrancar. En el móvil lento de mentira de siempre (la CPU cuatro veces más lenta,
+390 × 844, sin service worker ni red de fuera, por turnos), con un avatar
+elegido, que obliga a leer el catálogo al arrancar, ocho arranques con el
+catálogo de 55 y ocho con el de 235: el mapa con sus lugares, 3.234 y 3.229
+ms; el bloqueo del hilo principal en los 6 s siguientes, 1.359 y 1.412 ms.
+Esos 53 ms son el catálogo grande, que se lee cuando el mapa ya está. Contra
+`main`, que no tiene perfil, 3.179 y 3.282 ms, con las dos tandas
+solapadas. Abrir el perfil la primera vez, sin datos, tarda lo mismo que
+antes de Europa (de 412 a 444 ms, en dos tandas de cinco); abrir «Todos los
+países», 103 ms; cada letra del buscador, 30; elegir un país, de 61 a 76; y
+cambiar de idioma con el perfil y la lista abiertos, de 518 a 528 ms (de
+613 a 618 antes de Europa, sin la lista y con las once pestañas). Sin
+errores de página.
+
+**La auditoría entera**, sobre `270c301` (esta documentación aparte, como
+siempre): **«AUDITORIA EN VERDE»**, ningún
+control en rojo ni roto:
+
+- `auditar_registro.js`, 69.676 textos: los nueve idiomas que distinguen
+  el trato, todo de usted.
+- `auditar_cielo.js`, 302 de 302.
+- `auditar_web.js`, 45 tablas y 2.200 filas; `barrido_idiomas.js`, 4.341
+  filas dentro y fuera del fuente, y este documento dice lo mismo.
+- `barrido_pantallas.js`, 155 pantallas y fichas por idioma, con «Todos los
+  países» y los 47 sets: 0 textos sin traducir y 0 errores de página.
+- `auditar_cirilico.py`, 0 sospechosas de 2.170 nombres;
+  `auditar_seguridad.py`, ningún guion blando, ancho cero ni BOM.
+- `probar_notificacion_idioma.js`: de las 2.345 suscripciones, a cada una
+  le llega una.
+- `probar_faq.js`, 0 fallos de 122; `probar_movil.js`, las 25 preguntas en
+  su idioma; `probar_play.js`, 233 de 233.
+- `auditar_perfil.js`, 58 de 58; `probar_perfil.js`, 112 de 112.
+
+**Lo que queda para Jerome:**
+
+- Ejecutar `perfil.sql` en Supabase antes de subir, como antes. No cambia
+  con Europa: su check de `perfiles.avatar` ya admite los 235.
+- Que alguien de cada país mire ocho monumentos que se dibujaron a partir
+  de descripciones, sin foto: Trakai, Mir, la Casa de la Vall, la Casa Roja
+  de Vaduz, el Museo Oceanográfico, Soroca, Kamianets y Peleș. La nota lo
+  pide antes de subir.
+- Si quiere quitar o añadir algún país (Kosovo, el Vaticano, Turquía…):
+  cada uno son 5 dibujos, 6 filas por idioma y su revisión.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -9518,7 +9672,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/partir_idiomas.js` | la mudanza de los ocho idiomas de `places[]` a `idiomas/*.json` |
 | `tools/auditar_idiomas_fuera.js` | que lo mudado esté entero y el navegador lo pegue antes de montar el mapa |
 | `tools/auditar_etiquetas.js` | los chips del globo: traducidos o declarados con motivo (desde el 7 de octubre, sin la vía «nombre de sitio»), y el mismo chip dos veces en una ficha |
-| `tools/barrido_pantallas.js` | lo que **se ve**: los paneles y fichas abiertos en los diez idiomas (116 por idioma el 22 de octubre de 2026, con el perfil y sus once pestañas de avatares; Rutas usadas, no solo abiertas), buscando castellano que no sea nombre propio, y botones con el mismo emoji dos veces |
+| `tools/barrido_pantallas.js` | lo que **se ve**: los paneles y fichas abiertos en los diez idiomas (155 por idioma el 23 de octubre de 2026, con el perfil, «Todos los países» y sus 47 sets de avatares; Rutas usadas, no solo abiertas), buscando castellano que no sea nombre propio, y botones con el mismo emoji dos veces |
 | `tools/auditar_tour.js` | el tour de bienvenida **recorrido de verdad**: los diez idiomas, cuatro tamaños de móvil, cada paso con su botón enfocado, la tarjeta dentro de la pantalla, las cifras contadas y nada igual al castellano ni al inglés |
 | `tools/auditar_idioma.js` | un idioma entero contra el castellano: cifras, horarios, teléfonos, trozos de etiqueta, alfabeto |
 | `tools/auditar_faq.js` | el asistente: cada respuesta en los diez idiomas, alcanzable por su botón, ninguna igual al castellano o al inglés, los botones que cita con su nombre de pantalla, y ninguna base fuera de `faq/` |
@@ -9553,8 +9707,8 @@ Y cada bloque por separado, si hace falta:
 | `tools/capturas_app_store.js` | las capturas de la tienda (iPhone 1206×2622, iPad 2064×2752), de `app/www/` servido aparte; para si la página no lleva la marca o un estado no llega a lo que dice |
 | `tools/app_store_metadata.js` | la ficha y las capturas en el formato de `fastlane deliver` (`app/fastlane/metadata/`, `…/screenshots/`); con `--comprobar`, las diez localizaciones, los límites y los tamaños |
 | `tools/cielo_uai.js` | los nombres de la UAI de la carta del cielo en chino, chino tradicional y búlgaro (`CIELO_UAI`, en `modulos/cielo.js`), de las traducciones de Stellarium que baja `cielo_fuentes.sh`; los coteja con la cultura celeste china y entre sí; con `--comprobar`, para si lo escrito no es lo que sale de las fuentes (lo pasa `auditar_cielo.js`) |
-| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 55 avatares (SVG sin nada que se ejecute, ids con la forma que pide `perfil.sql`, la bandera de cada set), las 144 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas y rangos) |
-| `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql` y, como Supabase, da como mucho 1.000 filas por consulta), la nube con más filas de las que caben en una consulta, las visitas comprobadas en el mapa, los 55 avatares y los diez idiomas a 360, 390 y 430 px |
+| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 235 avatares en 47 sets (SVG sin nada que se ejecute, solo con etiquetas de dibujo y 2.200 bytes como mucho, ids con la forma que pide `perfil.sql`, los 36 países de Europa ni uno más ni uno menos, la bandera de cada set), las 363 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas y rangos) |
+| `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql` y, como Supabase, da como mucho 1.000 filas por consulta), la nube con más filas de las que caben en una consulta, las visitas comprobadas en el mapa, el selector de los 47 sets (el país del navegador primero, «Todos los países» y su buscador), los 235 avatares y sus nombres sin cortar, y los diez idiomas a 360, 390 y 430 px |
 
 `tools/gtfs_red.py` regenera la red desde un GTFS completo. Necesita
 `routes.txt`, `trips.txt`, `stops.txt`, `stop_times.txt` y `shapes.txt`; con
