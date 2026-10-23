@@ -32,7 +32,7 @@
  *      sin fondo y sin recorte (comprobado en Chromium al verificar el encargo).
  *
  * QUE MIRA (parte 2, la pantalla: modulos/perfil.js)
- *   6. las 360 filas de PERFIL_UI (78 de la pantalla, 47 de sets, 235 de
+ *   6. las 363 filas de PERFIL_UI (81 de la pantalla, 47 de sets, 235 de
  *      avatares), con lo que comprobaba validar_i18n.py del encargo: los diez
  *      idiomas y ninguno en blanco; los mismos {marcadores} que el castellano;
  *      ni comillas dobles ASCII ni guiones blandos u otros invisibles; los
@@ -210,8 +210,8 @@ console.log('\n=== el perfil: la pantalla (modulos/perfil.js) ===');
 let PUI = {};
 try { PUI = ROT.grab('var PERFIL_UI = {', 0, MOD); } catch (e) { PUI = {}; }
 const claves = Object.keys(PUI);
-ok(claves.length === 360, 'PERFIL_UI: 360 filas', claves.length);
-ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 235, '47 filas de sets y 235 de avatares (y 78 de la pantalla)');
+ok(claves.length === 363, 'PERFIL_UI: 363 filas', claves.length);
+ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 235, '47 filas de sets y 235 de avatares (y 81 de la pantalla)');
 ok(/\n  Object\.assign\(UI_TX, PERFIL_UI\);\n/.test(MOD), 'se funden en UI_TX con Object.assign(UI_TX, PERFIL_UI), como CIELO_UI');
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 ok(JSON.stringify(IDI) === JSON.stringify(LENGUAS), 'los diez idiomas son los de SUPPORTED_LANGS', LENGUAS.join(','));

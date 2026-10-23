@@ -37,7 +37,7 @@
 (function () {
   'use strict';
 
-  /* Los textos de la pantalla (78), de los sets (47) y de los avatares (235),
+  /* Los textos de la pantalla (81), de los sets (47) y de los avatares (235),
      en los diez idiomas. El trato, de usted (Jerome, 21 de octubre). Se
      quedan como estan, porque son la voz de quien usa la app: «Sorpréndeme»,
      los titulos chinos con 我的 y «Acepto». */
@@ -50,6 +50,9 @@
     "perfilEditarNombre": {"es": "Editar nombre", "en": "Edit name", "fr": "Modifier le nom", "de": "Namen bearbeiten", "it": "Modifica nome", "nl": "Naam bewerken", "zh": "编辑名字", "zht": "編輯名字", "bg": "Промяна на името", "pl": "Zmiana imienia"},
     "perfilElegirAvatar": {"es": "Elija su avatar", "en": "Choose your avatar", "fr": "Choisissez votre avatar", "de": "Wählen Sie Ihren Avatar", "it": "Scelta dell’avatar", "nl": "Kies uw avatar", "zh": "选择头像", "zht": "選擇頭像", "bg": "Изберете аватар", "pl": "Wybór awatara"},
     "perfilSorprendeme": {"es": "Sorpréndeme", "en": "Surprise me", "fr": "Surprenez-moi", "de": "Überrasch mich", "it": "Sorprendimi", "nl": "Verras me", "zh": "随机一个", "zht": "隨機一個", "bg": "Изненадай ме", "pl": "Zaskocz mnie"},
+    "perfilTodosPaises": {"es": "Todos los países", "en": "All countries", "fr": "Tous les pays", "de": "Alle Länder", "it": "Tutti i paesi", "nl": "Alle landen", "zh": "所有国家", "zht": "所有國家", "bg": "Всички държави", "pl": "Wszystkie kraje"},
+    "perfilBuscarPais": {"es": "Buscar un país", "en": "Search for a country", "fr": "Rechercher un pays", "de": "Land suchen", "it": "Cercare un paese", "nl": "Land zoeken", "zh": "搜索国家", "zht": "搜尋國家", "bg": "Търсене на държава", "pl": "Wyszukiwanie kraju"},
+    "perfilPaisNinguno": {"es": "Ningún país con ese nombre.", "en": "No country by that name.", "fr": "Aucun pays de ce nom.", "de": "Kein Land mit diesem Namen.", "it": "Nessun paese con questo nome.", "nl": "Geen land met die naam.", "zh": "没有匹配的国家。", "zht": "沒有符合的國家。", "bg": "Няма държава с това име.", "pl": "Brak kraju o tej nazwie."},
     "perfilAvatarGuardado": {"es": "Avatar guardado", "en": "Avatar saved", "fr": "Avatar enregistré", "de": "Avatar gespeichert", "it": "Avatar salvato", "nl": "Avatar opgeslagen", "zh": "头像已保存", "zht": "頭像已儲存", "bg": "Аватарът е запазен", "pl": "Awatar zapisany"},
     "perfilBloqueado": {"es": "Se desbloquea con {n} visita comprobada ({v} de {n})|Se desbloquea con {n} visitas comprobadas ({v} de {n})", "en": "Unlocks after {n} verified visit ({v} of {n})|Unlocks after {n} verified visits ({v} of {n})", "fr": "Se débloque après {n} visite vérifiée ({v} sur {n})|Se débloque après {n} visites vérifiées ({v} sur {n})", "de": "Wird nach {n} bestätigten Besuch freigeschaltet ({v} von {n})|Wird nach {n} bestätigten Besuchen freigeschaltet ({v} von {n})", "it": "Si sblocca con {n} visita verificata ({v} su {n})|Si sblocca con {n} visite verificate ({v} su {n})", "nl": "Wordt ontgrendeld na {n} bevestigd bezoek ({v} van {n})|Wordt ontgrendeld na {n} bevestigde bezoeken ({v} van {n})", "zh": "确认到访{n}个地点后解锁（{v}/{n}）", "zht": "確認到訪{n}個地點後解鎖（{v}/{n}）", "bg": "Отключва се след {n} потвърдено посещение ({v} от {n})|Отключва се след {n} потвърдени посещения ({v} от {n})", "pl": "Odblokowuje się po {n} potwierdzonej wizycie ({v} z {n})|Odblokowuje się po {n} potwierdzonych wizytach ({v} z {n})|Odblokowuje się po {n} potwierdzonych wizytach ({v} z {n})"},
     "perfilDatos": {"es": "Sus datos", "en": "Your details", "fr": "Vos données", "de": "Ihre Daten", "it": "Dati personali", "nl": "Uw gegevens", "zh": "我的数据", "zht": "我的資料", "bg": "Вашите данни", "pl": "Dane osobowe"},
@@ -804,12 +807,36 @@
   function ordenadas() { return st.medidas.slice().sort(function (a, b) { return a.d < b.d ? -1 : 1; }); }
   function pesoActual() { var m = ordenadas(); return m.length ? m[m.length - 1].kg : null; }
   function edad() { return st.nacimiento ? new Date().getFullYear() - st.nacimiento : null; }
-  /* Sin avatar elegido, el primero del set del idioma de la app (el set Tenerife empieza cerrado) */
+  /* El pais de quien mira, por los idiomas del navegador (navigator.languages,
+     que se lee en el movil y no se envia): «sv-SE» -> Suecia, «de-AT» -> Austria,
+     «nl-BE» -> Belgica. Solo decide que set sale primero; no se guarda.
+     Primero la region de la etiqueta (la que haya en el catalogo); si ninguna
+     la trae, la lengua, solo cuando es de un pais (sv, da, cs…): «ru», «pt»,
+     «sr» o «el» se hablan en varios, y adivinar mal molestaria. */
+  var REGION_SET = { gb: 'en', uk: 'en', cn: 'zh', tw: 'zht', hk: 'zht', mo: 'zht' };   /* «UK» no es ISO, pero hay sistemas que lo ponen */
+  var LENGUA_SET = { sv: 'se', da: 'dk', nb: 'no', nn: 'no', no: 'no', fi: 'fi', is: 'is', et: 'ee', lv: 'lv', lt: 'lt', cs: 'cz', sk: 'sk', hu: 'hu', sl: 'si', hr: 'hr', mt: 'mt', mk: 'mk', uk: 'ua', be: 'by', ga: 'ie', lb: 'lu', bs: 'ba' };
+  function setDelNavegador() {
+    var tags = [];
+    try { tags = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language]; } catch (e) {}
+    var partes = [], i, j;
+    for (i = 0; i < tags.length; i++) partes.push(String(tags[i] || '').toLowerCase().split(/[-_]/));
+    for (i = 0; i < partes.length; i++) for (j = 1; j < partes[i].length; j++) {
+      if (!/^[a-z]{2}$/.test(partes[i][j])) continue;           /* «hant», «419»… no son regiones de dos letras */
+      var r = REGION_SET[partes[i][j]] || partes[i][j];
+      if (r !== 'tf' && AV.set(r)) return r;                    /* TF es una region ISO, no Tenerife */
+      break;
+    }
+    for (i = 0; i < partes.length; i++) if (LENGUA_SET[partes[i][0]]) return LENGUA_SET[partes[i][0]];
+    return null;
+  }
+  /* Sin avatar elegido, el primero del set del pais del navegador o, si no lo hay,
+     del idioma de la app (el set Tenerife empieza cerrado) */
+  function setInicial() { var n = setDelNavegador(); return n || (AV.set(lengua()) ? lengua() : AV.sets[0].id); }
   function avatarActual() {
     if (st.avatar && AV.porId(st.avatar)) return AV.porId(st.avatar);
-    var s = AV.set(lengua()) || AV.sets[0]; return s.avatares[0];
+    return AV.set(setInicial()).avatares[0];
   }
-  var setAbierto = null;
+  var setAbierto = null, paisesAbierto = false;
   /* Lo que la persona ha tocado en el formulario desde que se pinto: solo eso se guarda.
      Asi «Guardar» sin tocar el peso no inventa un registro de hoy, y cambiar de
      unidades no reescribe la altura redondeada (176 cm pasaba a 175). */
@@ -846,26 +873,65 @@
   }
 
   /* ── sets y carrusel ── */
+  /* Los sets que se enseñan como pestañas: el del navegador, el del idioma, el
+     del avatar elegido, el que se acaba de abrir en la lista y Tenerife. Los
+     demas, en «Todos los paises». */
+  function setsAMano() {
+    var ids = [];
+    function poner(id) { if (id && AV.set(id) && ids.indexOf(id) < 0) ids.push(id); }
+    poner(setDelNavegador()); poner(lengua()); poner(avatarActual().set); poner(setAbierto); poner('tf');
+    return ids;
+  }
   function renderSets() {
-    var box = $('tgp-sets'); box.textContent = '';
+    var box = $('tgp-sets'), mas = $('tgp-paises-btn');
+    box.querySelectorAll('.tgp-set').forEach(function (n) { n.remove(); });
     if (!setAbierto) setAbierto = avatarActual().set;
-    AV.sets.forEach(function (s) {
-      var b = el('button', 'tgp-set'); b.type = 'button'; b.setAttribute('role', 'tab'); b.dataset.set = s.id;
+    setsAMano().map(AV.set).forEach(function (s) {
+      var b = el('button', 'tgp-set'); b.type = 'button'; b.dataset.set = s.id;
       b.style.setProperty('--set-color', s.color);
       b.appendChild(el('span', 'flag', s.bandera)); b.appendChild(el('span', '', nombreSet(s.id)));
       if (!setDesbloqueado(s)) { b.classList.add('is-locked'); b.appendChild(el('span', '', '🔒')); }
-      var on = s.id === setAbierto; b.classList.toggle('is-on', on); b.setAttribute('aria-selected', on ? 'true' : 'false');
-      box.appendChild(b);
+      var on = s.id === setAbierto; b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      box.insertBefore(b, mas);
     });
-    /* El set elegido, a la vista dentro de su fila, y solo de lado: con
-       scrollIntoView la pantalla entera bajaba al abrirla en un movil bajo o
+    /* Las pestañas van en filas y se ven todas: no hay nada que desplazar. Y sin
+       scrollIntoView, que bajaba la pantalla entera al abrirla en un movil bajo o
        en horizontal (48 px a 320x568, 156 px a 740x360). */
-    var on = box.querySelector('.is-on');
-    if (on) {
-      var rb = box.getBoundingClientRect(), ro = on.getBoundingClientRect();
-      if (ro.left < rb.left) box.scrollLeft += ro.left - rb.left; else if (ro.right > rb.right) box.scrollLeft += ro.right - rb.right;
-    }
+    if (paisesAbierto) renderPaises();
     renderStrip(false);
+  }
+  /* «Todos los paises»: los 47 sets por orden alfabetico del idioma de la app
+     (Tenerife, el primero), con un buscador que vale en ese idioma y en ingles
+     y no distingue tildes («belgica» encuentra «Bélgica»). */
+  function sinTildes(s) { return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
+  function nombreSetIngles(id) { var f = PERFIL_UI['perfilSet_' + id]; return f ? f.en : ''; }
+  function renderPaises() {
+    var grid = $('tgp-paises-grid'), q = sinTildes($('tgp-buscar').value.trim()), n = 0;
+    var orden = new Intl.Collator(locale());
+    grid.textContent = '';
+    function antes(a, b) {
+      if (a.id === 'tf' || b.id === 'tf') return a.id === b.id ? 0 : (a.id === 'tf' ? -1 : 1);
+      return orden.compare(nombreSet(a.id), nombreSet(b.id));
+    }
+    AV.sets.slice().sort(antes).forEach(function (s) {
+      if (q && sinTildes(nombreSet(s.id)).indexOf(q) < 0 && sinTildes(nombreSetIngles(s.id)).indexOf(q) < 0) return;
+      var b = el('button', 'tgp-pais'); b.type = 'button'; b.dataset.set = s.id;
+      b.style.setProperty('--set-color', s.color);
+      b.appendChild(el('span', 'flag', s.bandera)); b.appendChild(el('span', 'name', nombreSet(s.id)));
+      if (!setDesbloqueado(s)) { b.classList.add('is-locked'); b.appendChild(el('span', '', '🔒')); }
+      if (s.id === setAbierto) { b.classList.add('is-on'); b.setAttribute('aria-current', 'true'); }
+      grid.appendChild(b); n++;
+    });
+    $('tgp-paises-nada').hidden = n > 0;
+  }
+  function abrirPaises(si) {
+    paisesAbierto = si;
+    $('tgp-paises').hidden = !si;
+    $('tgp-paises-btn').setAttribute('aria-expanded', si ? 'true' : 'false');
+    if (!si) return;
+    $('tgp-buscar').value = ''; renderPaises();
+    /* Con el dedo, no: el teclado taparia la lista. */
+    if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) $('tgp-buscar').focus();
   }
   function renderStrip(animar) {
     var s = AV.set(setAbierto), box = $('tgp-strip'); box.textContent = '';
@@ -1288,6 +1354,18 @@
   function enganchar() {
     $('tgp-back').addEventListener('click', function () { cerrar(); });
     $('tgp-sets').addEventListener('click', function (e) { var b = e.target.closest('.tgp-set'); if (!b) return; setAbierto = b.dataset.set; renderSets(); renderStrip(true); });
+    /* «Todos los paises»: la lista se abre y se cierra con su boton; elegir un pais lo
+       pone en las pestañas, abre su tira y cierra la lista */
+    $('tgp-paises-btn').addEventListener('click', function () { abrirPaises(!paisesAbierto); });
+    $('tgp-buscar').addEventListener('input', renderPaises);
+    $('tgp-paises-grid').addEventListener('click', function (e) {
+      var b = e.target.closest('.tgp-pais'); if (!b) return;
+      setAbierto = b.dataset.set; abrirPaises(false); renderSets(); renderStrip(true);
+      var chip = $('tgp-sets').querySelector('.tgp-set.is-on'); if (chip) chip.focus({ preventScroll: true });
+      $('tgp-avatares').scrollIntoView({ block: 'nearest', behavior: reducido ? 'auto' : 'smooth' });
+    });
+    /* Escape cierra la lista y no la pantalla entera (el Escape del perfil, abajo, la deja pasar) */
+    $('tgp-paises').addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.stopPropagation(); abrirPaises(false); $('tgp-paises-btn').focus(); } });
     $('tgp-strip').addEventListener('click', function (e) { var b = e.target.closest('.tgp-av'); if (b && !b.disabled) elegirAvatar(b.dataset.id); });
     $('tgp-random').addEventListener('click', function () {
       var pool = []; AV.sets.forEach(function (s) { if (setDesbloqueado(s)) pool = pool.concat(s.avatares); });
@@ -1417,11 +1495,13 @@
   });
   /* Escape cierra el perfil si es lo de arriba. Va en la fase de captura para
      mirar antes que la ficha de la cuenta, que se cierra con su propio Escape;
-     y no sale de un campo que se esta escribiendo. */
+     no sale de un campo que se esta escribiendo; y dentro de la lista de
+     paises la cierra ella (enganchar()), no la pantalla entera. */
   window.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape' || !abierto || fichaEncima()) return;
     var c = e.target;
     if (c && c.closest && c.closest('input, textarea, select') && panel.contains(c)) return;
+    if (paisesAbierto && c && c.closest && c.closest('#tgp-paises')) return;
     e.stopPropagation();
     cerrar();
   }, true);
@@ -1430,8 +1510,9 @@
      al final de handleSignedIn y de handleSignedOut. */
   window.addEventListener('tg-sesion', function () { renderCuenta(); if (sesion()) sincronizar(); });
   window.addEventListener('online', function () { var u = sesion(); if (u && (st.colas[u.id] || nubeEncendida())) sincronizar(); });
-  /* Al cambiar de idioma se rehace lo que esta abierto. Sin avatar elegido, el
-     que se enseña es el primero del set del idioma: el set abierto vuelve a ese. */
+  /* Al cambiar de idioma se rehace lo que esta abierto (la lista de paises, en el
+     orden del idioma nuevo). Sin avatar elegido, el que se enseña es el primero
+     del set del pais del navegador o del idioma: el set abierto vuelve a ese. */
   try {
     TG_IDIOMA.registrar('perfil', function () { if (!st.avatar) setAbierto = null; if (abierto) renderTodo(); });
   } catch (e) {}
@@ -1539,12 +1620,26 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 .tgp-note { margin: 0 0 12px; color: var(--muted); font-size: .85rem; }
 
 /* sets y carrusel */
-.tgp-sets { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 8px; scrollbar-width: none; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; }
-.tgp-sets::-webkit-scrollbar { display: none; }
-.tgp-set { flex: 0 0 auto; scroll-snap-align: start; display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--panel2); color: var(--text); font-size: .86rem; white-space: nowrap; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out), transform var(--t-normal) var(--ease-bounce); }
+/* Pocos sets a mano (su país, su idioma, el de su avatar, Tenerife) y «Todos los países»
+   detrás: 47 sets no caben en una fila; la lista completa se abre debajo, con buscador. */
+.tgp-sets { display: flex; flex-wrap: wrap; gap: 8px; padding: 2px 2px 6px; }
+.tgp-set { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--panel2); color: var(--text); font-size: .86rem; white-space: nowrap; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out), transform var(--t-normal) var(--ease-bounce); }
 .tgp-set .flag { font-size: 1.05rem; line-height: 1; }
 .tgp-set.is-on { border-color: var(--set-color, var(--gold)); background: rgba(212,175,55,0.16); background: color-mix(in srgb, var(--set-color, var(--gold)) 22%, var(--panel2)); transform: scale(1.04); }
 .tgp-set.is-locked { opacity: .6; }
+.tgp-mas { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 999px; border: 1px dashed var(--gold); background: transparent; color: var(--gold-light); font-size: .86rem; white-space: nowrap; transition: background var(--t-fast) var(--ease-out); }
+.tgp-mas .flag { font-size: 1.05rem; line-height: 1; }
+.tgp-mas[aria-expanded="true"] { border-style: solid; background: rgba(212,175,55,0.16); }
+.tgp-paises { margin: 4px 0 8px; padding: 10px; border: 1px solid var(--border); border-radius: 14px; background: rgba(255,255,255,0.03); animation: tgp-in var(--t-normal) var(--ease-out) both; }
+.tgp-buscar { padding-right: 12px; font-size: 1rem; }
+.tgp-paises-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 6px; margin-top: 10px; max-height: min(58vh, 520px); overflow-y: auto; overscroll-behavior: contain; padding: 2px; }
+.tgp-pais { display: flex; align-items: center; gap: 8px; min-height: 42px; padding: 7px 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--panel2); color: var(--text); font-size: .86rem; line-height: 1.2; text-align: start; transition: border-color var(--t-fast) var(--ease-out); }
+.tgp-pais:hover { border-color: var(--set-color, var(--gold)); }
+.tgp-pais .flag { flex: 0 0 auto; font-size: 1.15rem; line-height: 1; }
+.tgp-pais .name { flex: 1 1 auto; min-width: 0; overflow-wrap: break-word; -webkit-hyphens: auto; hyphens: auto; }
+.tgp-pais.is-on { border-color: var(--set-color, var(--gold)); background: rgba(212,175,55,0.16); background: color-mix(in srgb, var(--set-color, var(--gold)) 22%, var(--panel2)); }
+.tgp-pais.is-locked { opacity: .7; }
+.tgp-paises-nada { margin: 10px 0 2px; }
 .tgp-strip { display: flex; gap: 8px; overflow-x: auto; padding: 12px 2px 6px; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .tgp-strip::-webkit-scrollbar { display: none; }
 .tgp-av { flex: 0 0 auto; width: 88px; scroll-snap-align: center; display: grid; justify-items: center; gap: 6px; padding: 6px 2px; border: 0; background: none; color: var(--muted); font-size: .72rem; line-height: 1.15; text-align: center;
@@ -1702,8 +1797,10 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 .tgp-isla-tiles .tgp-tile .k { font-size: .68rem; }
 .tgp-stamp { padding: 6px; }
 .tgp-stamp .nm { font-size: .72rem; overflow-wrap: break-word; -webkit-hyphens: auto; hyphens: auto; }
-.tgp-av { width: 92px; }
-.tgp-av .name { max-width: 90px; }
+/* Y los 235 nombres de avatar (23 de octubre, con los de Europa): la palabra más
+   larga que no se puede partir es «océanographique» o «Астрономически», 96 px. */
+.tgp-av { width: 98px; }
+.tgp-av .name { max-width: 96px; }
 /* Los botones a todo lo ancho parten línea: «Borrar los datos del perfil de este dispositivo» no cabe en una a 360 px. */
 .tgp-btn.wide { white-space: normal; text-align: center; line-height: 1.25; padding-top: 10px; padding-bottom: 10px; }
 
@@ -1768,8 +1865,15 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
   </section>
 
   <section class="tgp-card" id="tgp-avatares">
-    <div class="tgp-card-head"><h2>Elija su avatar</h2></div>
-    <div class="tgp-sets" id="tgp-sets" role="tablist"></div>
+    <div class="tgp-card-head"><h2 id="tgp-avatares-h">Elija su avatar</h2></div>
+    <div class="tgp-sets" id="tgp-sets" role="group" aria-labelledby="tgp-avatares-h">
+      <button type="button" class="tgp-mas" id="tgp-paises-btn" aria-expanded="false" aria-controls="tgp-paises"><span class="flag" aria-hidden="true">🌍</span><span>Todos los países</span></button>
+    </div>
+    <div class="tgp-paises" id="tgp-paises" hidden>
+      <input class="tgp-input tgp-buscar" id="tgp-buscar" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">
+      <div class="tgp-paises-grid" id="tgp-paises-grid"></div>
+      <p class="tgp-note tgp-paises-nada" id="tgp-paises-nada" hidden>Ningún país con ese nombre.</p>
+    </div>
     <div class="tgp-strip" id="tgp-strip"></div>
     <div class="tgp-strip-foot">
       <div><div class="pick" id="tgp-pick"></div><div class="tgp-lock-note" id="tgp-lock-note"></div></div>
@@ -1918,6 +2022,10 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
     ['#tgp-name-edit', 'aria', 'perfilEditarNombre'],
     ['#tgp-hero .tgp-lema', 'tx', 'perfilLema'],
     ['#tgp-avatares h2', 'tx', 'perfilElegirAvatar'],
+    ['#tgp-paises-btn span + span', 'tx', 'perfilTodosPaises'],
+    ['#tgp-buscar', 'ph', 'perfilBuscarPais'],
+    ['#tgp-buscar', 'aria', 'perfilBuscarPais'],
+    ['#tgp-paises-nada', 'tx', 'perfilPaisNinguno'],
     ['#tgp-random span', 'tx', 'perfilSorprendeme'],
     ['#tgp-lock-why', 'tx', 'perfilVisitaVerdad'],
     ['#tgp-datos h2', 'tx', 'perfilDatos'],
