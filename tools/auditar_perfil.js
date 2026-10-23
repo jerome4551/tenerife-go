@@ -49,6 +49,11 @@
  *      pide «red primero»; AppAuth.logout y el evento tg-sesion al entrar y
  *      al salir; el boton de notificaciones, un par mas (TG_PUSH.anadirBoton);
  *      y nada del prototipo (selector de idioma, «Ejemplo», «Demo»).
+ *  9b. con mucho dato, la tendencia del peso (la media de los 7 dias que
+ *      acaban en cada registro) da lo mismo que la cuenta de siempre, bit a
+ *      bit, tambien en zonas con cambio de hora, y lee cada fecha una vez
+ *      (23 de octubre de 2026: con tres años de pesos diarios eran 2,4
+ *      millones de lecturas, y abrir el perfil tardaba segundos).
  *
  * QUE MIRA (parte 3, la nube: supabase/perfil.sql)
  *  10. sin «$» (al pegarlo desde el movil llega con una barra delante y
@@ -293,6 +298,51 @@ ok(/window\.dispatchEvent\(new Event\('tg-sesion'\)\);\n  \}$/.test(fin('handleS
 ok(/window\.TG_PUSH = \{ pedir: pushPedir, textos: PUSH_TX, anadirBoton: pushAnadirBoton \};/.test(index) && /function pushAnadirBoton\(boton, mensaje\)/.test(index) && /P\.anadirBoton\('tgp-push', 'tgp-push-msg'\)/.test(MOD),
   'el boton de notificaciones del perfil es un par mas de los de la cuenta (TG_PUSH.anadirBoton): se esconde igual en la app de la tienda');
 ok(/TG_IDIOMA\.registrar\('perfil'/.test(MOD), 'el perfil se apunta al cambio de idioma (TG_IDIOMA)');
+
+/* 9b. con mucho dato: la tendencia del peso, la media de los 7 dias que acaban en cada
+   registro. Antes se miraban todos los registros por cada uno, y con tres años de pesos
+   diarios abrir el perfil tardaba segundos en un movil lento (23 de octubre de 2026). Se
+   compara con aquella cuenta, tal cual estaba, valor a valor y bit a bit: en la zona de la
+   isla con tres años diarios, y en cinco zonas (cuatro con cambio de hora, una de ellas de
+   media hora, y la de Samoa, que se salto el 30 de diciembre de 2011) con pesos salteados,
+   los bordes de la semana y fechas repetidas. Y cada fecha se lee una vez. */
+const unaLinea = f => (CODIGO.match(new RegExp('\\n  function ' + f + '\\([^)]*\\) \\{[^\\n]*\\}\\n')) || [''])[0];
+const TEND = (CODIGO.match(/\n  function tendencia\(ms\) \{[\s\S]*?\n  \}\n/) || [''])[0];
+const DE_SIEMPRE = 'function deSiempre(ms) { return ms.map(function (m) { var v = ms.filter(function (o) { var d = dias(o.d, m.d); return d >= 0 && d <= 6; }); return v.reduce(function (s, o) { return s + o.kg; }, 0) / v.length; }); }';
+const miles = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const tendMal = [], ctxT = { leidas: 0 }, tzAntes = process.env.TZ;
+let comparados = 0, leidasAntes = 0, leidasAhora = 0;
+try {
+  vm.createContext(ctxT);
+  vm.runInContext(unaLinea('fecha') + unaLinea('dias') + TEND + DE_SIEMPRE + '\nvar deVerdad = fecha; fecha = function (s) { leidas++; return deVerdad(s); };', ctxT, { filename: 'modulos/perfil.js (fecha, dias, tendencia)' });
+  const dia = n => new Date(Date.UTC(2023, 9, 23 + n)).toISOString().slice(0, 10);
+  const diarios = []; for (let n = 0; n <= 1095; n++) diarios.push({ d: dia(n), kg: Math.round((88 - n * 0.008 + Math.sin(n / 9)) * 10) / 10 });
+  let semilla = 11; const azar = () => (semilla = (semilla * 9301 + 49297) % 233280) / 233280;
+  const salteados = []; for (let n = 0, d = 0; n < 200; n++) { d += 1 + Math.floor(azar() * 9); salteados.push({ d: dia(d), kg: Math.round((60 + azar() * 50) * 10) / 10 }); }
+  const juegos = {
+    salteados, uno: [{ d: '2026-03-29', kg: 70.3 }],
+    bordes: [['2026-03-22', 80], ['2026-03-28', 81.1], ['2026-03-29', 79.9], ['2026-04-04', 80.7], ['2026-04-05', 80.2], ['2026-10-24', 78.8], ['2026-10-25', 78.1], ['2026-11-01', 77.7]].map(([d, kg]) => ({ d, kg })),
+    samoa: [['2011-12-28', 90], ['2011-12-29', 90.4], ['2011-12-30', 90.1], ['2011-12-31', 89.7], ['2012-01-01', 89.9], ['2012-01-05', 89.3]].map(([d, kg]) => ({ d, kg })),
+    repetidos: [['2026-01-01', 70], ['2026-01-01', 71.3], ['2026-01-03', 70.1], ['2026-01-08', 69.9], ['2026-01-08', 70.4], ['2026-01-09', 70.2]].map(([d, kg]) => ({ d, kg }))
+  };
+  const comparar = (zona, nombre, ms) => {
+    ctxT.leidas = 0; const a = ctxT.deSiempre(ms), la = ctxT.leidas;
+    ctxT.leidas = 0; const b = ctxT.tendencia(ms), lb = ctxT.leidas;
+    const i = a.findIndex((x, k) => !Object.is(x, b[k]));
+    comparados += a.length;
+    if (a.length !== b.length || i >= 0) tendMal.push(zona + ' ' + nombre + ' [' + i + '] ' + a[i] + ' / ' + b[i]);
+    if (lb !== ms.length) tendMal.push(zona + ' ' + nombre + ': ' + lb + ' fechas leidas para ' + ms.length + ' registros');
+    return [la, lb];
+  };
+  process.env.TZ = 'Atlantic/Canary';
+  [leidasAntes, leidasAhora] = comparar('Atlantic/Canary', 'tres años diarios', diarios);
+  for (const zona of ['Atlantic/Canary', 'Pacific/Auckland', 'Australia/Lord_Howe', 'America/Santiago', 'Pacific/Apia']) {
+    process.env.TZ = zona;
+    for (const [nombre, ms] of Object.entries(juegos)) comparar(zona, nombre, ms);
+  }
+} catch (e) { tendMal.push('no se pudo probar: ' + e.message); }
+if (tzAntes === undefined) delete process.env.TZ; else process.env.TZ = tzAntes;
+ok(TEND && comparados > 1300 && !tendMal.length, 'con mucho dato, la tendencia del peso da lo mismo que la cuenta de siempre (' + miles(comparados) + ' valores, bit a bit, en cinco zonas horarias: cuatro con cambio de hora y la de Samoa, que se salto un dia) y lee cada fecha una vez: con tres años de pesos diarios, ' + miles(leidasAhora) + ' lecturas en lugar de ' + miles(leidasAntes), tendMal.slice(0, 4).join(' · '));
 
 /* ── parte 3: la nube (supabase/perfil.sql) ──────────────────────────── */
 console.log('\n=== el perfil: la nube (supabase/perfil.sql) ===');
