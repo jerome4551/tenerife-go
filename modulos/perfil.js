@@ -768,7 +768,18 @@
 
   /* ── evolucion: peso ── */
   function tendencia(ms) { /* por cada registro, la media de los suyos de los 7 dias que acaban en el */
-    return ms.map(function (m) { var v = ms.filter(function (o) { var d = dias(o.d, m.d); return d >= 0 && d <= 6; }); return v.reduce(function (s, o) { return s + o.kg; }, 0) / v.length; });
+    /* ms va por fecha (sale de ordenadas()), asi que esos 7 dias son registros seguidos: la
+       ventana se corre de uno al siguiente, y cada fecha se lee una vez. Mirando todos los
+       registros por cada uno, tres años de pesos diarios eran 2,4 millones de fechas leidas,
+       y abrir el perfil tardaba segundos en un movil lento. Se suma en el mismo orden que
+       antes: da lo mismo, hasta el ultimo decimal (tools/auditar_perfil.js lo comprueba). */
+    var t = ms.map(function (m) { return fecha(m.d).getTime(); }), ini = 0, fin = 0;
+    return ms.map(function (m, i) {
+      while (fin < ms.length && Math.round((t[i] - t[fin]) / 86400000) >= 0) fin++;
+      while (Math.round((t[i] - t[ini]) / 86400000) > 6) ini++;
+      for (var s = 0, j = ini; j < fin; j++) s += ms[j].kg;
+      return s / (fin - ini);
+    });
   }
   function enRango(ms) { var h = hoy(); return ms.filter(function (m) { return dias(m.d, h) <= st.rango; }); }
   function pesoMostrar(kg) { return imperial() ? fmt(kg * KG_LB, 1) + ' lb' : fmt(kg, 1) + ' kg'; }
