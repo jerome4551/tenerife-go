@@ -1023,8 +1023,12 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
   };
   const DONDE = Object.keys(CIELO_UI).filter(k => /^cielo(PorQue|LeyCielo|BrilloCielo|Starlight|Sitio|Sitios|VerEnElMapa|VerEnMapa|Recorrido|RutaPaneles|Consejo|AvisoSol|Normas?|Equipo|CreditosTxt|CondBuenas)/.test(k));
   const tuD = [];
-  for (const k of DONDE) for (const [l, re] of Object.entries(TU)) { const t = String(CIELO_UI[k][l] || '').replace(/\{[a-z0-9]+\}/gi, ''); const m = t.match(re); if (m) tuD.push(k + '.' + l + ': «' + m[0] + '»'); }
-  ok(DONDE.length >= 40 && !tuD.length, 'las ' + DONDE.length + ' filas de «Donde ir» (con los botones de la ficha, «Ver en el mapa del cielo» y el recorrido, y la Luna de las lluvias), de usted en los diez idiomas', tuD.slice(0, 6).join(' · '));
+  /* los botones («Ver en el mapa», el recorrido) son rotulos: en italiano, bulgaro y polaco van en
+     imperativo, como el resto de los botones de la app, y los mira tools/auditar_registro.js con
+     ROTULOS_IT, ROTULOS_BG y ROTULOS_PL (23 de octubre de 2026, al juntar el octavo bloque) */
+  const BOTON = /^cielo(VerEnElMapa|VerEnMapa|Recorrido)/;
+  for (const k of DONDE) if (!BOTON.test(k)) for (const [l, re] of Object.entries(TU)) { const t = String(CIELO_UI[k][l] || '').replace(/\{[a-z0-9]+\}/gi, ''); const m = t.match(re); if (m) tuD.push(k + '.' + l + ': «' + m[0] + '»'); }
+  ok(DONDE.length >= 40 && !tuD.length, 'las ' + DONDE.filter(k => !BOTON.test(k)).length + ' filas de «Donde ir» (con la Luna de las lluvias), de usted en los diez idiomas; los botones de la ficha, «Ver en el mapa del cielo» y el recorrido, en imperativo como los demas rotulos (auditar_registro.js)', tuD.slice(0, 6).join(' · '));
 }
 
 if (!PUERTO) {
