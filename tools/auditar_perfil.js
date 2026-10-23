@@ -3,28 +3,36 @@
  *
  *     node tools/auditar_perfil.js
  *
- * POR QUE EXISTE. Los avatares son dibujos SVG escritos a mano (55, en
+ * POR QUE EXISTE. Los avatares son dibujos SVG escritos a mano (235, en
  * modulos/avatares.js) y la app los pinta con innerHTML: un motivo con un
  * <script>, un atributo on… o un enlace seria codigo ajeno dentro de la app,
  * y uno mal cerrado romperia el boton de la cuenta. Ninguno de los controles
  * que recorren la app abre el catalogo, asi que se mira aqui, sin navegador.
  *
  * QUE MIRA (parte 1, el catalogo)
- *   1. 11 sets y 55 avatares, 5 por set: uno por idioma de la app
- *      (SUPPORTED_LANGS) y el de Tenerife («tf»), que se abre con 10 visitas
- *      comprobadas.
+ *   1. 47 sets y 235 avatares, 5 por set: uno por idioma de la app
+ *      (SUPPORTED_LANGS), el de Tenerife («tf»), que se abre con 10 visitas
+ *      comprobadas, y uno por cada uno de los 36 paises de Europa que decidio
+ *      Jerome (22 de octubre: los Estados de la ONU en Europa y Chipre, sin
+ *      Kosovo ni el Vaticano), con su codigo ISO 3166-1. Ni uno mas ni uno
+ *      menos: un pais nuevo pasa antes por su revision (la nota del encargo).
  *   2. los ids, unicos y con la forma de un id del catalogo (la misma que
  *      exigen perfil.js al leer y perfil.sql en la nube).
- *   3. la bandera de cada set, la misma que la del menu de idiomas.
+ *   3. la bandera de cada set, la misma que la del menu de idiomas; la de un
+ *      pais, sus dos letras regionales.
  *   4. cada motivo, SVG bien cerrado y sin nada que ejecute ni pida nada:
  *      ni <script>, ni atributos on…, ni href, ni <image>, <text>, <use> o
- *      <foreignObject>, ni url(…) (el recorte y el degradado los pone svg()).
+ *      <foreignObject>, ni url(…) (el recorte y el degradado los pone svg());
+ *      y, como validar_catalogo.py y validar_svg.py del encargo, solo
+ *      etiquetas de dibujo (g, path, circle, ellipse, rect, polygon,
+ *      polyline, line), sin id, class ni style, sin comillas simples y de
+ *      2.200 bytes como mucho.
  *   5. dos llamadas a svg() del mismo avatar dan ids distintos: con el mismo
  *      id, si la primera copia esta dentro de algo oculto, la segunda se pinta
  *      sin fondo y sin recorte (comprobado en Chromium al verificar el encargo).
  *
  * QUE MIRA (parte 2, la pantalla: modulos/perfil.js)
- *   6. las 144 filas de PERFIL_UI (78 de la pantalla, 11 de sets, 55 de
+ *   6. las 360 filas de PERFIL_UI (78 de la pantalla, 47 de sets, 235 de
  *      avatares), con lo que comprobaba validar_i18n.py del encargo: los diez
  *      idiomas y ninguno en blanco; los mismos {marcadores} que el castellano;
  *      ni comillas dobles ASCII ni guiones blandos u otros invisibles; los
@@ -117,21 +125,28 @@ console.log('=== el perfil: el catalogo de avatares ===');
 ok(AV && Array.isArray(AV.sets), 'modulos/avatares.js expone window.TG_AVATARES con sus sets');
 const sets = AV.sets, ids = [];
 sets.forEach(s => s.avatares.forEach(a => ids.push(a.id)));
-ok(sets.length === 11, '11 sets', sets.length);
-ok(ids.length === 55 && AV.total === 55, '55 avatares (TG_AVATARES.total lo dice igual)', ids.length + ' / ' + AV.total);
+ok(sets.length === 47, '47 sets', sets.length);
+ok(ids.length === 235 && AV.total === 235, '235 avatares (TG_AVATARES.total lo dice igual)', ids.length + ' / ' + AV.total);
 ok(sets.every(s => s.avatares.length === 5), '5 avatares por set', sets.filter(s => s.avatares.length !== 5).map(s => s.id + ':' + s.avatares.length).join(', '));
 ok(new Set(ids).size === ids.length, 'ningun id repetido');
 const FORMA = /^[a-z]{2,3}-[a-z]+(-[a-z]+)*$/;
 ok(ids.every(i => FORMA.test(i) && i.length >= 4 && i.length <= 24), 'cada id con la forma de un id del catalogo (la de perfil.sql: 4 a 24 letras y guiones)', ids.filter(i => !FORMA.test(i)).join(', '));
 ok(sets.every(s => s.avatares.every(a => a.id.startsWith(s.id + '-'))), 'cada id empieza por el de su set');
 const idsSet = sets.map(s => s.id);
-ok(LENGUAS.length === 10 && LENGUAS.every(l => idsSet.includes(l)) && idsSet.every(i => i === 'tf' || LENGUAS.includes(i)),
-  'un set por idioma de la app (SUPPORTED_LANGS) y el de Tenerife', idsSet.join(','));
+/* Los 36 paises de Europa (Jerome, 22 de octubre de 2026): los Estados de la ONU en Europa y
+   Chipre, sin Kosovo (Espana no lo reconoce) ni el Vaticano. Sus codigos ISO 3166-1, como en
+   validar_catalogo.py del encargo. */
+const EUROPA = 'ie dk se no fi is ee lv lt at be ch lu li mc pt gr mt hr si ba rs me mk al ad sm cy cz sk hu ro md ua by ru'.split(' ');
+ok(LENGUAS.length === 10 && LENGUAS.every(l => idsSet.includes(l)) && EUROPA.every(c => idsSet.includes(c)) && idsSet.every(i => i === 'tf' || LENGUAS.includes(i) || EUROPA.includes(i)),
+  'un set por idioma de la app (SUPPORTED_LANGS), el de Tenerife y uno por cada uno de los 36 paises de Europa, ninguno mas', idsSet.filter(i => i !== 'tf' && !LENGUAS.includes(i) && !EUROPA.includes(i)).concat(EUROPA.filter(c => !idsSet.includes(c)).map(c => 'falta ' + c)).join(','));
 const tf = AV.set('tf');
 ok(tf && tf.desbloqueo === 10 && sets.filter(s => s.desbloqueo).length === 1, 'solo el set de Tenerife se desbloquea, con 10 visitas comprobadas (Jerome, 22 de octubre)', tf && tf.desbloqueo);
 ok(Object.keys(MENU).length === 10, 'el menu de idiomas tiene sus diez banderas', Object.keys(MENU).join(','));
-const malBandera = sets.filter(s => s.id !== 'tf' && MENU[s.id] !== s.bandera).map(s => s.id + ' ' + s.bandera + ' / menu ' + MENU[s.id]);
-ok(!malBandera.length, 'la bandera de cada set es la del menu de idiomas (🌏 para el chino tradicional)', malBandera.join(' · '));
+/* la de un pais, sus dos letras regionales: «ie» -> 🇮🇪 (U+1F1EE U+1F1EA) */
+const regional = c => String.fromCodePoint(...[...c.toUpperCase()].map(l => 0x1F1E6 + l.charCodeAt(0) - 65));
+const malBandera = sets.filter(s => s.id !== 'tf' && (LENGUAS.includes(s.id) ? MENU[s.id] : regional(s.id)) !== s.bandera)
+  .map(s => s.id + ' ' + s.bandera + ' / ' + (LENGUAS.includes(s.id) ? 'menu ' + MENU[s.id] : 'letras ' + regional(s.id)));
+ok(!malBandera.length && tf && tf.bandera === '🌋', 'la bandera de cada set es la del menu de idiomas (🌏 para el chino tradicional); la de un pais, sus dos letras regionales; Tenerife, 🌋', malBandera.join(' · '));
 const HEX = /^#[0-9A-Fa-f]{6}$/;
 ok(sets.every(s => HEX.test(s.color)) && sets.every(s => s.avatares.every(a => Array.isArray(a.g) && a.g.length === 2 && a.g.every(c => HEX.test(c)))),
   'colores de set y degradados en #RRGGBB');
@@ -141,12 +156,22 @@ const PROHIBIDO = [
   [/<text\b/i, '<text>'], [/<use\b/i, '<use>'], [/<foreignObject/i, '<foreignObject>'], [/url\s*\(/i, 'url(…)'],
   [/javascript:/i, 'javascript:'], [/<style/i, '<style>'], [/<!\[CDATA|<!--|<!/i, 'comentario o CDATA']
 ];
+/* lo que mira validar_svg.py del encargo antes de meter un dibujo: solo estas etiquetas, sin
+   id, class ni style (los ids los pone svg(), distintos en cada copia), sin comillas simples
+   (el motivo va entre comillas simples en el JS) y 2.200 bytes como mucho, para que el
+   catalogo no engorde */
+const DIBUJO = new Set(['g', 'path', 'circle', 'ellipse', 'rect', 'polygon', 'polyline', 'line']);
 const malMotivo = [];
 sets.forEach(s => s.avatares.forEach(a => {
   for (const [re, que] of PROHIBIDO) if (re.test(a.m)) malMotivo.push(a.id + ': ' + que);
   const e = bienCerrado(a.m); if (e) malMotivo.push(a.id + ': ' + e);
+  const otras = [...new Set([...a.m.matchAll(/<([a-zA-Z][\w:-]*)/g)].map(m => m[1]))].filter(x => !DIBUJO.has(x));
+  if (otras.length) malMotivo.push(a.id + ': <' + otras.join('>, <') + '>');
+  if (/\s(id|class|style)\s*=/.test(a.m)) malMotivo.push(a.id + ': id, class o style');
+  if (a.m.includes("'")) malMotivo.push(a.id + ': comilla simple');
+  const bytes = Buffer.byteLength(a.m, 'utf8'); if (bytes > 2200) malMotivo.push(a.id + ': ' + bytes + ' bytes');
 }));
-ok(!malMotivo.length, 'los 55 motivos, SVG bien cerrado y sin nada que ejecute ni pida nada', malMotivo.join(' · '));
+ok(!malMotivo.length, 'los 235 motivos, SVG bien cerrado y sin nada que ejecute ni pida nada: solo etiquetas de dibujo, sin id, class, style ni comillas simples, y 2.200 bytes como mucho', malMotivo.join(' · '));
 
 const malSvg = [];
 for (const i of ids) {
@@ -185,8 +210,8 @@ console.log('\n=== el perfil: la pantalla (modulos/perfil.js) ===');
 let PUI = {};
 try { PUI = ROT.grab('var PERFIL_UI = {', 0, MOD); } catch (e) { PUI = {}; }
 const claves = Object.keys(PUI);
-ok(claves.length === 144, 'PERFIL_UI: 144 filas', claves.length);
-ok(claves.filter(k => k.startsWith('perfilSet_')).length === 11 && claves.filter(k => k.startsWith('perfilAv_')).length === 55, '11 filas de sets y 55 de avatares (y 78 de la pantalla)');
+ok(claves.length === 360, 'PERFIL_UI: 360 filas', claves.length);
+ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 235, '47 filas de sets y 235 de avatares (y 78 de la pantalla)');
 ok(/\n  Object\.assign\(UI_TX, PERFIL_UI\);\n/.test(MOD), 'se funden en UI_TX con Object.assign(UI_TX, PERFIL_UI), como CIELO_UI');
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 ok(JSON.stringify(IDI) === JSON.stringify(LENGUAS), 'los diez idiomas son los de SUPPORTED_LANGS', LENGUAS.join(','));
@@ -201,7 +226,10 @@ const PAREJAS = '们們这這个個为為说說时時国國会會对對来來发
   '酱醬鱼魚绿綠蓝藍红紅黄黃紫紫银銀钻鑽宝寶轮輪桥橋楼樓馆館厅廳传傳统統单單双雙叶葉华華丝絲绣繡纸紙剪剪伞傘杯杯壶壺饺餃';
 const SOLO_S = new Set(), SOLO_T = new Set();
 for (let i = 0; i < [...PAREJAS].length; i += 2) { const a = [...PAREJAS][i], c = [...PAREJAS][i + 1]; if (a !== c) { SOLO_S.add(a); SOLO_T.add(c); } }
-const IGUAL_ACEPTADO = new Set(['Teide', 'Paella', 'Croissant', 'Pizza', 'Gelato', 'Corgi', 'Panda', 'Lavanda', 'Pierogi', 'Martenitsa', 'Jiaozi', 'Dim sum', 'Bubble tea', 'Guagua', 'Macarons', 'Kilómetros']);
+/* nombres que se escriben igual en todos los idiomas de letra latina (los de Europa, con
+   validar_i18n.py del encargo del 23 de octubre: Péckvillchen, Svíčková y Kriváň) */
+const IGUAL_ACEPTADO = new Set(['Teide', 'Paella', 'Croissant', 'Pizza', 'Gelato', 'Corgi', 'Panda', 'Lavanda', 'Pierogi', 'Martenitsa', 'Jiaozi', 'Dim sum', 'Bubble tea', 'Guagua', 'Macarons', 'Kilómetros',
+  'Péckvillchen', 'Svíčková', 'Kriváň']);
 const marcadores = t => [...new Set((t.match(/\{[a-z]+\}/g) || []))].sort().join(',');
 const malFilas = [];
 for (const k of claves) {
@@ -228,7 +256,7 @@ for (const k of claves) {
     if (l !== 'es' && t === es && /[áéíóúñ¿¡]/i.test(es) && !IGUAL_ACEPTADO.has(es)) malFilas.push(k + '.' + l + ': igual que el castellano «' + t + '»');
   }
 }
-ok(!malFilas.length, 'las 144 filas: diez idiomas, marcadores, sin comillas dobles ni invisibles, plurales, chino de cada escritura, bulgaro sin letras latinas, nada copiado del castellano', malFilas.slice(0, 6).join(' · '));
+ok(!malFilas.length, 'las ' + claves.length + ' filas: diez idiomas, marcadores, sin comillas dobles ni invisibles, plurales, chino de cada escritura, bulgaro sin letras latinas, nada copiado del castellano', malFilas.slice(0, 6).join(' · '));
 const permiso = PUI.perfilNubeConsentimiento || {}, acepto = PUI.perfilNubeAcepto || {};
 const sinAcepto = IDI.filter(l => !String(permiso[l] || '').includes('«' + acepto[l] + '»') && !String(permiso[l] || '').includes('「' + acepto[l] + '」'));
 ok(acepto.es && !sinAcepto.length, 'el texto del permiso nombra el boton «Acepto» tal cual en cada idioma', sinAcepto.join(','));

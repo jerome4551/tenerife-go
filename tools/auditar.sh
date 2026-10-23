@@ -236,13 +236,14 @@ echo; echo "════════ el cielo de Tenerife: textos, catalogo, cal
 # control lo abre, y una hora mal calculada no da error, da una hora.
 control auditar_cielo.js node tools/auditar_cielo.js "$PUERTO"
 echo; echo "════════ el perfil y los avatares ════════"
-# Desde el 22 de octubre de 2026. Los 55 avatares son SVG escritos a mano que
-# la app pinta con innerHTML: ninguno puede llevar nada que se ejecute, y
-# ningun otro control abre el catalogo. Y las 144 filas de la pantalla, sus
+# Desde el 22 de octubre de 2026. Los avatares (235 desde el 23, con los 36
+# paises de Europa) son SVG escritos a mano que la app pinta con innerHTML:
+# ninguno puede llevar nada que se ejecute, y ningun otro control abre el
+# catalogo. Y las filas de la pantalla (360 desde el 23), sus
 # enganches con la app y lo que nunca puede hacer (sin navegador). Y la
 # pantalla usada de verdad: las regresiones, la nube con permiso (contra una
 # nube de mentira que se porta como supabase/perfil.sql), las visitas
-# comprobadas en el mapa, los 55 avatares y los diez idiomas a tres anchos.
+# comprobadas en el mapa, los 235 avatares y los diez idiomas a tres anchos.
 control auditar_perfil.js node tools/auditar_perfil.js
 control probar_perfil.js node tools/probar_perfil.js "$PUERTO"
 echo

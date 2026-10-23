@@ -449,6 +449,18 @@ const IGUAL_UI = {
   zh: [], zht: [], bg: [],
   pl: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Alfa Centauri', 'Kaus Australis']
 };
+/* LOS AVATARES DE EUROPA (23 de octubre de 2026, modulos/perfil.js). Nombres
+   propios que en estos idiomas se escriben igual que en castellano: un pais
+   (Liechtenstein), un edificio (Casa de la Vall) y cosas que se llaman como en
+   su lengua (Pastel de nata, Sklandrausis, Péckvillchen, Kelb tal-Fenek), mas
+   cuatro que ese idioma escribe asi. Los miraron los revisores de cada idioma;
+   si un dia alguien deja otro nombre en castellano, se canta. */
+for (const L of ['en', 'fr', 'de', 'it', 'nl', 'pl'])
+  IGUAL_UI[L].push('Liechtenstein', 'Casa de la Vall', 'Sklandrausis', 'Péckvillchen', 'Kelb tal-Fenek');
+for (const L of ['en', 'fr', 'it', 'nl', 'pl']) IGUAL_UI[L].push('Pastel de nata');
+IGUAL_UI.fr.push('Art nouveau de Riga');
+IGUAL_UI.it.push('Valle del Madriu', 'Fougasse monegasca');
+IGUAL_UI.pl.push('Bosanski lonac');
 
 /* Los nombres de sitio no se declaran a mano: se sacan del propio catalogo.
    El ultimo trozo de cada `cat` en castellano es siempre el municipio o el
