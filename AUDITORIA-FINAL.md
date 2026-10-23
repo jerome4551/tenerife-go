@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.039 kB** en castellano · **1.153 kB** en el peor caso (búlgaro) · 1.139 kB en polaco, el 22 de octubre por la noche, con el quinto, el sexto y el séptimo bloque del cielo y el trato de usted, que suma 1 kB (2 en alemán). El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.041 kB** en castellano · **1.156 kB** en el peor caso (búlgaro) · 1.141 kB en polaco, el 23 de octubre, con los bloques quinto a octavo del cielo y el trato de usted. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -2219,6 +2219,66 @@ castellano, todo de usted; pendientes: francés 411, alemán 552, italiano
 3.969; la descarga, 1.040 kB en castellano, 1.154 en búlgaro y 1.140 en
 polaco. `auditar.sh` entero, en la nota 12.
 
+### Encima del main de hoy (23 de octubre)
+
+El parche llegó con la nota 12 (`PARA-CLAUDE-CODE-12.md`). Lo que se
+comprobó antes de juntarlo:
+
+- **Las huellas y el árbol.** Las de los cuatro parches cuadran con la
+  nota (`0004`, `291f0f99…`). Con `git am` a secas, sobre `ac10788` y los
+  tres de la nota 11, deja el árbol de la nota (`1ec3124…`).
+- **Lo que no se pudo abrir desde aquí.** La red de este entorno no deja
+  llegar a Tenerife ON, a Volcano Teide, al BOC, a AEMET, al IAC ni a
+  Turismo de Tenerife. Un buscador, sí. El teleférico, desde 42 € ida y
+  vuelta el adulto no residente y desde 10,50 € el residente; y la tarifa
+  del PNT 10 desde el 19 de enero de 2026, en las horas del teleférico, que
+  se paga al reservar en Tenerife ON. Las dos cosas las dicen guías de
+  viaje y una noticia de RTVC, no la fuente oficial. El articulado del
+  Decreto 182/2025 no se pudo cotejar: queda lo que leyó la otra sesión en
+  la copia de la Xunta (las páginas, en la nota 12).
+- **El precio del teleférico** en la ficha de La Rambleta, con su fecha y
+  su fuente, contra la regla de no poner precios en la app. Jerome: «Con
+  el precio y su fecha».
+
+Al juntarlo encima del main de hoy (`824987e`, con el usted y los topes),
+chocaban nueve ficheros:
+
+- las fichas del Teide en `idiomas/nl.json`, `idiomas/pl.json` y los tres
+  bloques de `idiomas/pl-lugares/`: las seis de 0004. Las tres del polaco
+  que el usted también había tocado ya venían en impersonal. El resto de
+  las líneas, las del usted;
+- `modulos/cielo.js`: las 13 filas nuevas y lo que cambia de contenido,
+  de 0004. El consejo 1, con la predicción de AEMET, también en alemán,
+  italiano, neerlandés y polaco. Donde los dos lados solo cambiaron el
+  trato, el del usted (nueve textos);
+- `datos/app-store/ficha.json`: la del usted. 0004 citaba entre comillas
+  los nombres de antes de los botones («Plane deinen Tag», 「规划你的一天」…),
+  que con el usted ya no son los de la app;
+- `tools/auditar_registro.js`: lo de los dos, es decir, las listas del
+  usted, y las direcciones fuera y «Покажи»;
+- este documento: las dos secciones, una detrás de otra, y las cifras
+  recontadas. El README entró sin chocar.
+
+Y un commit más (`604c0da`). 0004 pasaba cuatro botones del cielo a
+infinitivo o a nombre en italiano, búlgaro y polaco: «Vedere sulla mappa»,
+«Показване на картата», «Pokazać na mapie» y los dos del recorrido. El
+resto de los botones de la app va en imperativo, que es lo normal en esos
+idiomas también cuando la app trata de usted, y `auditar_registro.js` los
+tiene en sus listas de rótulos. Se quedan en imperativo (Jerome:
+«Imperativo, como el resto»), con «Покажи всички» y los cuatro búlgaros
+en `ROTULOS_BG`. La parte 16a mira aparte los botones.
+
+Las cifras, recontadas:
+
+- 44 tablas, 1.834 filas y 3.975 dentro y fuera del fuente, 13 más que el
+  main de hoy;
+- `CIELO_UI`, 562 filas;
+- la descarga, 1.041 kB en castellano, 1.156 en búlgaro y 1.141 en polaco.
+
+Al recontar salió una cosa de antes: el párrafo de las cifras de idiomas
+(en «Idiomas», abajo) se había quedado en 1.822 filas cuando la frase de la
+tienda pasó a una fila. El título sí decía 1.821. Ya lo cuenta.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -4060,7 +4120,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 44 tablas, 1821 filas (y 3.962 filas, dentro y fuera del fuente)
+## Idiomas · 44 tablas, 1834 filas (y 3.975 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -4109,7 +4169,14 @@ son restos del cometa 96P/Machholz», que ya tenía el séptimo commit de
 avisos del panel de administración que el código escribía a mano, en
 `UI_TX` y en los diez idiomas (`admComprobando`, `admPanelSinRed`,
 `admIniciaSesion`, `admSinPermisoCuenta`, `admPublicando` y `admSubiendo`):
-1822 filas y 3.963. El
+1822 filas y 3.963. Y la frase de la tienda que pide iniciar sesión, entera
+en una fila (`bookLoginFrase`, en lugar de `bookNecesitas` y
+`bookParaCompletar`): 1821 filas y 3.962. Y después, la revisión del
+octavo bloque, encima del usted: 13 más en `CIELO_UI`, hasta 562 —el brillo
+del cielo del IAC, la ruta de los paneles, las normas del Parque (el título,
+cuatro frases y su fuente), tres enlaces (BOC, AEMET e IAC) y las dos
+condiciones de las lluvias con la Luna arriba parte de la noche—: 1834
+filas y 3.975. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
