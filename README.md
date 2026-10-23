@@ -254,6 +254,20 @@ Wikipedia) y de cuándo son los elementos de los satélites, y «Dónde ir»
 comprueba antes de subir que los ficheros del panel están guardados en el
 móvil.
 
+**«Dónde ir», con las normas del Parque.** Los cinco sitios que recomienda
+Turismo de Tenerife, Izaña (el Observatorio se visita de día y con reserva;
+de noche, no) y el Museo de la Ciencia y el Cosmos; el brillo del cielo que
+mide el IAC en el Observatorio del Teide (21,20 magnitudes por segundo de
+arco cuadrado) y la ruta de paneles entre El Portillo y Chío. Y las normas
+del Parque Nacional para la noche, del Plan Rector de Uso y Gestión
+(Decreto 182/2025): dónde se puede montar un telescopio, qué luces se
+permiten (el láser, solo en las observaciones guiadas), que no se acampa ni
+se duerme en el coche y que el vivac se reserva antes en Tenerife ON. El
+consejo de antes de subir enlaza la predicción de AEMET para el Teide. Toda
+la letra del panel va a 11 px como mínimo, lo que pide Apple para iOS.
+`tools/auditar_cielo.js` (partes 16a y 16) lo coteja con sus fuentes y lo
+mide en la pantalla, en los diez idiomas.
+
 **Los avisos no llegan solos y se quitan de verdad.** En cada evento del
 calendario, «Añadir a mi calendario» crea un `.ics` (RFC 5545, con alarma el
 día antes) que abre el calendario del móvil, y «Recordármelo en la app» lo
@@ -305,7 +319,10 @@ Alaybasan) y lo que cuatro de ellas dicen de Tenerife con la latitud.
 Observatorio del Teide (la ficha `observatorio`, a 2.390 m): ninguna fecha
 está escrita en el fuente, así que el calendario de 2031 sale igual de bien
 que el de este año. Lo calcula Astronomy Engine (`vendor/`); las lluvias,
-desde la longitud solar de su máximo según la IMO. Las nubes de esta noche
+desde la longitud solar de su máximo según la IMO, y si la Luna (a más del
+30 %) está arriba parte de la noche, se dice desde cuándo o hasta cuándo hay
+cielo oscuro: las Perseidas de 2027, «Buenas condiciones desde que se pone
+la Luna (03:58)». Las nubes de esta noche
 vienen de Open-Meteo, como el resto del tiempo, y si no hay dato la tarjeta
 no sale. Los cometas no se predicen: cambian de un día para otro, y el panel
 lleva a las fuentes que los siguen.

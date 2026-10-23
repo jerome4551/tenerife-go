@@ -154,6 +154,20 @@
  *      corta; sin voz para el idioma, la nota y no el boton; con las voces
  *      sin cargar, se intenta; una voz que falla o que no empieza, el aviso;
  *      y los diez idiomas, cada uno con su voz y sin texto roto.
+ *  16. la revision del 22 de octubre de 2026 (octavo bloque, REVISION-22-10-
+ *      2026.md): «Donde ir» contra sus fuentes (el «por lo general» del IAC, la
+ *      Ley del Cielo y su reglamento, los cinco sitios de Turismo de
+ *      Tenerife, el Observatorio de dia), las normas del Parque Nacional para
+ *      la noche (Decreto 182/2025: telescopio, luces, dormir, excursiones), los
+ *      enlaces nuevos (BOC, AEMET, IAC) y los que cambian (HYG en Codeberg, el
+ *      IGN), el brillo del cielo del IAC, las seis fichas del Teide sin el
+ *      permiso «gratuito», el teleferico a «~14 €», Pico Viejo «sin permiso» ni
+ *      el «astroturismo nocturno»; las lluvias con la Luna arriba parte de la
+ *      noche (las Leonidas de 2026 y las Perseidas de 2027: «desde que se pone
+ *      la Luna (03:58)»; las Draconidas de 2028: «hasta que sale»), la
+ *      letra del panel a 11 px como minimo y el trato de usted en las tarjetas
+ *      de «Donde ir». Sin navegador (16a) y en la pantalla, en los diez
+ *      idiomas (16).
  *
  * Sale con 1 si algo falla.
  */
@@ -925,8 +939,96 @@ titulo('15a. la noche guiada en voz alta: el lector de index.html, las voces del
      'y «jakieś {n} lat temu» sale bien con las ' + alts.length + ' distancias del catalogo de 100 años luz para arriba (todas a dos cifras, acaban en 0: «lat»); la luz de la Luna va con dos decimales: «sekundy»', noLat.slice(0, 5).join(', '));
 }
 
+/* ════════ 16a. la revision del 22 de octubre, sin navegador ════════ */
+titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, las fichas del Teide, la Luna en las lluvias y la letra');
+{
+  const es = k => (CIELO_UI[k] || {}).es || '';
+  /* los textos, contra lo que dicen sus fuentes (REVISION-22-10-2026.md, 2.2) */
+  ok(/queda por lo general muy por debajo de las cumbres/.test(es('cieloPorQueTxt')) && !/quedan por encima de la capa de inversión/.test(es('cieloPorQueTxt')),
+     '«Por que»: la capa de inversion queda «por lo general» por debajo de las cumbres (el folleto del IAC: «generally remains well below the mountain peaks»)', es('cieloPorQueTxt').slice(0, 80));
+  ok(/^La Ley del Cielo \(Ley 31\/1988\) y su reglamento protegen/.test(es('cieloLeyCielo')) && /El alumbrado exterior solo se regula en La Palma/.test(es('cieloLeyCielo')) && !/contaminación lumínica/.test(es('cieloLeyCielo')),
+     'la Ley del Cielo: las rutas aereas van con su reglamento (R. D. 243/1992, art. 25) y el alumbrado solo se regula en La Palma y en la parte de Tenerife que se ve desde alli (la ley, en Tenerife, «excepto en lo concerniente a la iluminación de exteriores»)', es('cieloLeyCielo').slice(0, 90));
+  const sit = [...((modulo.match(/var SITIOS = \[([\s\S]*?)\];/) || [, ''])[1]).matchAll(/'(Sitio\w+)'/g)].map(m => m[1]);
+  ok(sit.slice(0, 5).join() === 'SitioUcanca,SitioRuleta,SitioParador,SitioGuajara,SitioTabonal' && /^Los cinco primeros/.test(es('cieloSitiosFuente')),
+     'los cinco primeros sitios son los que recomienda Turismo de Tenerife en julio de 2023 (Guajara, el Parador, Ucanca, el Tabonal Negro y La Ruleta), y la nota dice «cinco»', sit.join(', '));
+  ok(/^A 2\.390 m\./.test(es('cieloSitioIzanaTxt')) && /Las visitas son de día; de noche no se visita, y no se admiten menores de 8 años\./.test(es('cieloSitioIzanaTxt'))
+     && / hay que reservar antes la zona de vivac en Tenerife ON\.$/.test(es('cieloSitioGuajaraTxt')) && / Tiene acreditación Starlight desde 2015\.$/.test(es('cieloSitioParadorTxt')),
+     'Izaña a 2.390 m y de dia (Volcano Teide: «El observatorio no se puede visitar en horario nocturno.», «no admite menores de 8 años»); Guajara, con la zona de vivac reservada en Tenerife ON; el Parador, acreditado Starlight en 2015');
+  /* las filas nuevas, en los diez idiomas y con sus cifras */
+  const NUEVAS = ['cieloBrilloCielo', 'cieloRutaPaneles', 'cieloNormas', 'cieloNorma1', 'cieloNorma2', 'cieloNorma3', 'cieloNorma4', 'cieloNormasFuente',
+                  'cieloEnlacePrug', 'cieloEnlaceAemetTeide', 'cieloEnlaceBrillo', 'cieloCondBuenasDesde', 'cieloCondBuenasHasta'];
+  const faltaN = NUEVAS.filter(k => !CIELO_UI[k] || IDI.some(l => !String(CIELO_UI[k][l] || '').trim()));
+  ok(!faltaN.length, 'las ' + NUEVAS.length + ' filas nuevas estan en los diez idiomas', faltaN.join(', '));
+  const cifra = (k, re) => IDI.filter(l => !re.test(String((CIELO_UI[k] || {})[l] || '')));
+  const malC = [].concat(cifra('cieloBrilloCielo', /21[,.]20[\s\S]*21[,.]70/).map(l => 'BrilloCielo.' + l), cifra('cieloNorma4', /\b30\b/).map(l => 'Norma4.' + l),
+    cifra('cieloNorma1', /TF-21/).map(l => 'Norma1.' + l), cifra('cieloNormasFuente', /182\/2025[\s\S]*240[\s\S]*6\.2\.1[\s\S]*6\.2\.5[\s\S]*6\.3\.2\.5[\s\S]*6\.3\.2\.7[\s\S]*6\.3\.3/).map(l => 'NormasFuente.' + l));
+  ok(!malC.length, 'y con sus cifras en los diez: el brillo del IAC (21,20 y 21,70), los 30 de un grupo, la TF-21 y el decreto con sus apartados', malC.join(', '));
+  /* las normas, contra el decreto */
+  const n1 = es('cieloNorma1');
+  const sitiosTel = ['La Ruleta', 'Parador', 'Cañada Blanca', 'TF-21', 'estación base', 'Altavista', 'Minas de San José', 'Portillo Alto'];
+  ok(sitiosTel.every(s => n1.includes(s)) && !/Ucanca|Tabonal|Guajara/.test(n1),
+     'el telescopio, solo donde dice el 6.3.2.5 (' + sitiosTel.join(', ') + '); ni Ucanca, ni el Tabonal, ni Guajara', n1.slice(0, 120));
+  ok(/linternas de mano y los frontales\. Los punteros láser, solo en las observaciones guiadas\./.test(es('cieloNorma2'))
+     && /No se puede acampar ni dormir en el coche o la autocaravana\./.test(es('cieloNorma3')) && /zonas de vivac, con reserva previa en Tenerife ON/.test(es('cieloNorma3')) && !/permiso/.test(es('cieloNorma3') + es('cieloSitioGuajaraTxt'))
+     && /grupos de 30 personas como máximo y guía acreditado/.test(es('cieloNorma4')),
+     'las luces (6.2.5: linternas, frontales y laser solo guiado), dormir (6.2.1: ni acampada ni pernoctacion en vehiculos; el vivac, 6.3.2.7, con comunicacion previa: la reserva de Tenerife ON, no un «permiso») y las excursiones (6.3.3: grupos de 30 como maximo con guia acreditado)');
+  /* la pestana pinta las normas, el brillo y la ruta, con sus enlaces */
+  const donde = (modulo.match(/function pintarDonde\(c\) \{[\s\S]*?\n  \}\n/) || [''])[0];
+  const URLS = {
+    URL_PRUG: 'https://www.gobiernodecanarias.org/boc/2025/240/4148.html',
+    URL_AEMET_TEIDE: 'https://www.aemet.es/documentos/es/eltiempo/prediccion/montana/boletin_montana/BM_Teide.pdf'
+  };
+  ok(Object.entries(URLS).every(([k, u]) => modulo.includes("var " + k + " = '" + u + "';"))
+     && /var tn = tarjeta\(T\('Normas'\)\);/.test(donde) && /\['Norma1', 'Norma2', 'Norma3', 'Norma4'\]/.test(donde) && /T\('NormasFuente'\)/.test(donde)
+     && /enlaces\(\[\['EnlacePrug', URL_PRUG\]\]\)/.test(donde) && /enlaces\(\[\['EnlaceAemetTeide', URL_AEMET_TEIDE\]\]\)/.test(donde)
+     && /T\('BrilloCielo'\)/.test(donde) && /T\('RutaPaneles'\)/.test(donde),
+     '«Donde ir» pinta la tarjeta de las normas (con el BOC), el enlace a la prediccion de AEMET bajo los consejos, el brillo del cielo y la ruta de los paneles');
+  ok(donde.includes("['EnlaceBrillo', 'https://iac.es/en/observatorios-de-canarias/sky-quality/sky-quality-parameters/night-sky-background']")
+     && donde.includes("['EnlaceEclipsesIgn', 'https://astronomia.ign.es/eclipses-de-sol-y-luna']") && donde.includes("['CreditoHyg', 'https://codeberg.org/astronexus/hyg']")
+     && !/github\.com\/astronexus|web\/guest\/eclipses/.test(donde),
+     'los enlaces: el brillo del cielo del IAC, los eclipses del IGN en su direccion de ahora y HYG en Codeberg (el GitHub esta archivado)');
+  /* las seis fichas del Teide (index.html y los nueve idiomas), sin lo que la revision vio mal */
+  const FT = ['pico-teide-cumbre', 'montana-blanca', 'mir-rambleta-teide', 'ruta-pico-viejo', 'sendero-pico-viejo', 'observatorio'];
+  const descEs = id => (index.match(new RegExp('\\{ id:"' + id + '",[^\\n]*\\n\\s*desc:\\{ es:"((?:[^"\\\\]|\\\\.)*)" \\}')) || [, ''])[1];
+  const MAL_ES = /Permiso gratuito|~\s?14\s?€|No requiere permiso|astroturismo nocturno|Mejor observatorio solar|Sendero 10 \(TF-6\)|mucho agua/;
+  const malT = FT.filter(id => !descEs(id) || MAL_ES.test(descEs(id)) || (id !== 'observatorio' && !/Tenerife ON/.test(descEs(id))));
+  ok(!malT.length && /de noche no se visita/.test(descEs('observatorio')) && /desde 42 € no residente y desde 10,50 € residente/.test(descEs('mir-rambleta-teide')),
+     'las seis fichas del Teide, en castellano: la autorizacion en Tenerife ON (no «permiso gratuito»), el teleferico desde 42 € y desde 10,50 € (no «~14 €»; volcanoteide.com: «Price FROM»), Pico Viejo con reserva y el Observatorio de dia', malT.join(', '));
+  const MAL_OTRO = /~\s?14\s?€|€\s?14\b|14\s?€\s|14 ?欧元|14 ?歐元|TF-6/;
+  const malTi = [];
+  for (const l of IDI.filter(l => l !== 'es')) {
+    const J = JSON.parse(lee('idiomas/' + l + '.json'));
+    for (const id of FT) { const t = (J[id] || {}).desc || ''; if (!t || MAL_OTRO.test(t) || (id !== 'observatorio' && !/Tenerife ON/.test(t)) || (id === 'observatorio' && !/volcanoteide\.com/.test(t))) malTi.push(l + '.' + id); }
+  }
+  ok(!malTi.length, 'y en los otros nueve idiomas (idiomas/<l>.json): Tenerife ON, sin el teleferico a 14 € ni el «TF-6»', malTi.join(', '));
+  /* las lluvias con la Luna arriba parte de la noche */
+  ok(/if \(lunaAlt < 0 && luz >= 0\.3\) \{\s*var po = A\.SearchRiseSet\(A\.Body\.Moon, obs\(\), -1, n\.oscuro, n\.claro\.ut - n\.oscuro\.ut\);\s*if \(po && po\.ut < mejor\.u\) lunaPone = po\.date;/.test(modulo)
+     && /T\('CondBuenasDesde', \{ h: hora\(e\.lunaPone\) \}\)/.test(modulo) && /T\('CondBuenasHasta', \{ h: hora\(e\.lunaSale\) \}\)/.test(modulo)
+     && ['cieloCondBuenasDesde', 'cieloCondBuenasHasta'].every(k => IDI.every(l => /\{h\}/.test((CIELO_UI[k] || {})[l] || ''))) && !/ las \{h\}/.test(es('cieloCondBuenasDesde') + es('cieloCondBuenasHasta')),
+     'lluvias: con la Luna a mas del 30 % y bajo el horizonte en el mejor momento, se dice desde que se pone o hasta que sale, con su hora entre parentesis (sin «a las», que con la 01:xx seria «a la»)');
+  /* la letra: el bloque del final, a 11 px, y el contraste */
+  const css = (index.match(/\/\* 22 de octubre, octavo bloque: ningun texto del panel por debajo de 11 px[\s\S]*?<\/style>/) || [''])[0];
+  ok(/#cielo-panel \.cielo-pestanas button, #cielo-panel \.cielo-nota,[\s\S]*?\{ font-size: 0\.6875rem; \}/.test(css) && /#cielo-panel \.cielo-nota:not\(\.cielo-nota-aviso\),[\s\S]*?\{ color: rgba\(255,255,255,0\.62\); \}/.test(css)
+     && /#cielo-panel \.cielo-enlaces button small \{ overflow-wrap: anywhere; \}/.test(css),
+     'la letra del panel, a 0.6875rem (11 px) como minimo, lo que pide Apple para iOS («11 pt»); las notas, fuentes y direcciones, a 4,5:1; y las direcciones largas, cortadas dentro del boton (la medida, en la parte 16)');
+  /* el trato de usted en las tarjetas de «Donde ir» */
+  const TU = {
+    fr: /(?<![\p{L}])(?:tu|te|toi|ton|ta|tes)(?![\p{L}])/iu,
+    de: /(?<![\p{L}])(?:du|dich|dir|dein\w*|schau|nimm|prüfe|parke|bleib|fahr|schalte|nutze)(?![\p{L}])/iu,
+    it: /(?<![\p{L}])(?:tu|ti|tuo|tua|vedi|porta|spegni|usa|parcheggia|esci|scendi|controlla|guarda|mostra|nascondi)(?![\p{L}])|di’/iu,
+    nl: /(?<![\p{L}])(?:je|jij|jou|jouw)(?![\p{L}])/iu,
+    bg: /(?<![\p{L}])(?:ти|теб|твой|твоя|виждаш|можеш|покажи|скрий|виж|вземи|изключи|паркирай|провери|гледай|чакай)(?![\p{L}])/iu,
+    pl: /(?<![\p{L}])(?:ty|ci|cię|twój|twoja|twoim|weź|zgaś|parkuj|zjeżdżaj|sprawdź|patrz|pokaż|ukryj)(?![\p{L}])/iu,
+    zh: /你/u, zht: /你/u
+  };
+  const DONDE = Object.keys(CIELO_UI).filter(k => /^cielo(PorQue|LeyCielo|BrilloCielo|Starlight|Sitio|Sitios|VerEnElMapa|VerEnMapa|Recorrido|RutaPaneles|Consejo|AvisoSol|Normas?|Equipo|CreditosTxt|CondBuenas)/.test(k));
+  const tuD = [];
+  for (const k of DONDE) for (const [l, re] of Object.entries(TU)) { const t = String(CIELO_UI[k][l] || '').replace(/\{[a-z0-9]+\}/gi, ''); const m = t.match(re); if (m) tuD.push(k + '.' + l + ': «' + m[0] + '»'); }
+  ok(DONDE.length >= 40 && !tuD.length, 'las ' + DONDE.length + ' filas de «Donde ir» (con los botones de la ficha, «Ver en el mapa del cielo» y el recorrido, y la Luna de las lluvias), de usted en los diez idiomas', tuD.slice(0, 6).join(' · '));
+}
+
 if (!PUERTO) {
-  nota('sin puerto: se salta todo lo que va en el navegador (6 a 15)');
+  nota('sin puerto: se salta todo lo que va en el navegador (6 a 16)');
   fin();
 } else {
   navegador().then(fin, e => { fallos++; console.log('  MAL el navegador no termino   -> ' + (e && e.stack || e)); fin(); });
@@ -954,7 +1056,83 @@ async function navegador() {
     if (toca(13)) await quintoBloque(b);
     if (toca(14)) await sextoBloque(b);
     if (toca(15)) await vozAlta(b);
+    if (toca(16)) await octavoBloque(b);
   } finally { await b.close(); }
+}
+
+/* ── 16. la revision del 22 de octubre, en la pantalla ─────────────────────
+   «Donde ir» en los diez idiomas: la tarjeta de las normas con sus cuatro
+   frases y el enlace al BOC, los enlaces nuevos y los cambiados, sin texto
+   roto, ningun texto por debajo de 11 px (tambien en «Esta noche») y ninguna
+   direccion que se salga de su boton. Y las Perseidas de 2027 en el .ics de
+   cada idioma: la Luna (86 %) se pone a las 03:58, hora de Canarias, y se
+   dice «desde que se pone la Luna (03:58)»; las Cuadrantidas de 2027 (11 %),
+   como antes. */
+async function octavoBloque(b) {
+  titulo('16. la revision del 22 de octubre en la pantalla: «Donde ir», la letra y la Luna de las lluvias, en los diez idiomas');
+  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { isMobile: true, hasTouch: true });
+  await p.clock.setFixedTime(new Date('2026-10-22T21:00:00Z'));
+  await p.evaluate(async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); });
+  const DIRS = ['www.gobiernodecanarias.org/boc/2025/240/4148.html', 'www.aemet.es/documentos/es/eltiempo/prediccion/montana/boletin_montana/BM_Teide.pdf',
+                'iac.es/en/observatorios-de-canarias/sky-quality/sky-quality-parameters/night-sky-background', 'codeberg.org/astronexus/hyg', 'astronomia.ign.es/eclipses-de-sol-y-luna'];
+  const malP = [], malL = [], resumen = [];
+  for (const l of IDI) {
+    const x = await p.evaluate(async ({ l, normas }) => {
+      setLang(l); await TG_CIELO.ver('donde'); await new Promise(r => setTimeout(r, 300));
+      const cuerpo = document.getElementById('cielo-cuerpo'), panel = document.getElementById('cielo-panel');
+      const tarjetas = [...cuerpo.querySelectorAll('.cielo-tarjeta')];
+      const tn = tarjetas.find(t => (t.querySelector('h3, .cielo-tarjeta-tit, .cielo-h') || t.firstElementChild || {}).textContent === normas) || tarjetas.find(t => t.textContent.indexOf(normas) === 0);
+      const dirs = [...cuerpo.querySelectorAll('.cielo-enlaces button small')].map(s => s.textContent);
+      const salen = [...cuerpo.querySelectorAll('.cielo-enlaces button')].filter(bt => bt.scrollWidth > bt.clientWidth + 1).map(bt => bt.textContent.slice(0, 40));
+      const minimo = vista => { let m = 99, q = ''; const w = document.createTreeWalker(vista, NodeFilter.SHOW_TEXT); let n;
+        while ((n = w.nextNode())) { if (!n.textContent.trim()) continue; const e = n.parentElement; const r = e.getBoundingClientRect(); if (!r.width || !r.height) continue;
+          const px = parseFloat(getComputedStyle(e).fontSize); if (px < m) { m = px; q = e.className + ' «' + n.textContent.trim().slice(0, 20) + '»'; } } return { m, q }; };
+      const enDonde = minimo(panel);
+      await TG_CIELO.ver('noche'); await new Promise(r => setTimeout(r, 300));
+      const enNoche = minimo(panel);
+      await TG_CIELO.ver('donde'); await new Promise(r => setTimeout(r, 200));
+      return { normas: !!tn, li: tn ? tn.querySelectorAll('li').length : 0, texto: cuerpo.innerText, dirs, salen, enDonde, enNoche };
+    }, { l, normas: (CIELO_UI.cieloNormas || {})[l] });
+    if (!x.normas || x.li !== 4) malP.push(l + ': la tarjeta de las normas (' + x.li + ' frases)');
+    const faltan = DIRS.filter(d => !x.dirs.includes(d));
+    if (faltan.length) malP.push(l + ': faltan los enlaces ' + faltan.join(', '));
+    if (/\{[a-z]+\}|undefined|NaN/.test(x.texto)) malP.push(l + ': texto roto');
+    for (const k of ['cieloNorma1', 'cieloNorma2', 'cieloNorma3', 'cieloNorma4', 'cieloNormasFuente', 'cieloBrilloCielo', 'cieloRutaPaneles'])
+      if (!x.texto.includes(CIELO_UI[k][l])) malP.push(l + ': no se ve ' + k);
+    if (x.salen.length) malP.push(l + ': se sale del boton: ' + x.salen.join(' · '));
+    if (x.enDonde.m < 10.99 || x.enNoche.m < 10.99) malL.push(l + ': ' + Math.min(x.enDonde.m, x.enNoche.m) + ' px (' + (x.enDonde.m < x.enNoche.m ? x.enDonde.q : x.enNoche.q) + ')');
+    resumen.push(l + ' ' + x.enDonde.m + '/' + x.enNoche.m + ' px');
+  }
+  ok(!malP.length, '«Donde ir» en los diez idiomas: las normas del Parque (cuatro frases y su fuente), el brillo del cielo, la ruta de los paneles, los enlaces al BOC, a AEMET, al IAC, a Codeberg y al IGN, sin texto roto y sin direcciones que se salgan del boton', malP.slice(0, 4).join(' · '));
+  ok(!malL.length, 'ningun texto del panel por debajo de 11 px, en «Donde ir» y en «Esta noche», en los diez idiomas (' + resumen.slice(0, 3).join(', ') + '…)', malL.slice(0, 4).join(' · '));
+  /* las lluvias con la Luna arriba parte de la noche, en el .ics de cada idioma: las Leonidas
+     de 2026 (la Luna al 58 % se pone a la 01:09) y las Perseidas de 2027 (al 86 %, a las 03:58),
+     «desde que se pone»; las Draconidas de 2028 (al 77 %, sale a las 22:49), «hasta que sale»,
+     la unica rama que no sale en el calendario de ahora; y las Cuadrantidas de 2027 (al 11 %),
+     «Buenas condiciones» a secas. Las horas, del motor de la app (hora de Canarias). */
+  const malI = [];
+  for (const l of IDI) {
+    const r = await p.evaluate((l) => {
+      setLang(l);
+      const ev = TG_CIELO.eventos('2027-06-01').concat(TG_CIELO.eventos('2026-11-01'));
+      const ev28 = TG_CIELO.eventos('2028-07-01');
+      const una = (lista, id, y) => lista.find(e => e.tipo === 'lluvia' && e.l.id === id && e.t.getUTCFullYear() === y);
+      const des = e => { const m = /DESCRIPTION:([\s\S]*?)\r?\n[A-Z-]+[:;]/.exec(TG_CIELO.ics(e)); return m ? m[1].replace(/\r?\n /g, '').replace(/\\n/g, '\n').replace(/\\([,;\\])/g, '$1') : ''; };
+      const de = e => e ? { pone: e.lunaPone && e.lunaPone.toISOString(), sale: e.lunaSale && e.lunaSale.toISOString(), d: des(e) } : null;
+      return { leo: de(una(ev, 'LEO', 2026)), per: de(una(ev, 'PER', 2027)), dra: de(una(ev28, 'DRA', 2028)), qua: de(una(ev, 'QUA', 2027)) };
+    }, l);
+    const fila = (k, h) => (CIELO_UI[k] || {})[l].replace('{h}', h), buenas = (CIELO_UI.cieloCondBuenas || {})[l];
+    for (const [n, x, pone, sale, texto] of [['las Leonidas de 2026', r.leo, '2026-11-18T01:09', null, fila('cieloCondBuenasDesde', '01:09')],
+                                             ['las Perseidas de 2027', r.per, '2027-08-13T02:58', null, fila('cieloCondBuenasDesde', '03:58')],
+                                             ['las Draconidas de 2028', r.dra, null, '2028-10-08T21:49', fila('cieloCondBuenasHasta', '22:49')]]) {
+      if (!x || (pone ? !(x.pone || '').startsWith(pone) || x.sale : x.pone || !(x.sale || '').startsWith(sale))) malI.push(l + ': ' + n + ', la Luna ' + JSON.stringify(x && { pone: x.pone, sale: x.sale }));
+      else if (!x.d.includes(texto)) malI.push(l + ': ' + n + ' no dicen «' + texto + '»');
+    }
+    if (!r.qua || r.qua.pone || r.qua.sale || !r.qua.d.includes(buenas)) malI.push(l + ': las Cuadrantidas no dicen «' + buenas + '» a secas');
+  }
+  ok(!malI.length, 'las lluvias con la Luna arriba parte de la noche, en el .ics de los diez idiomas: las Leonidas de 2026 y las Perseidas de 2027, «' + (CIELO_UI.cieloCondBuenasDesde || {}).es.replace('{h}', '03:58') + '» (la 01:09 y las 03:58, hora de Canarias); las Draconidas de 2028, «' + (CIELO_UI.cieloCondBuenasHasta || {}).es.replace('{h}', '22:49') + '»; las Cuadrantidas de 2027 (Luna al 11 %), «Buenas condiciones» a secas', malI.slice(0, 4).join(' · '));
+  ok(!err.length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
+  await ctx.close();
 }
 
 /* La app abierta y el panel cargado. La bienvenida se pasa como lo hace

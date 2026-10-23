@@ -1869,6 +1869,356 @@ dos veces:
   1.816 filas; `barrido_idiomas.js`, 3.957, y este documento dice lo mismo;
   `auditar_registro.js`, 65.696 textos. Lo demás, como arriba.
 
+## Las fichas del Teide, las normas del Parque para la noche y la letra del panel (22 de octubre, octavo bloque)
+
+Jerome, antes de subir: «Aprovecha para verificar lo que tenemos si es
+bueno. Si falta algo o si podemos añadir algo más. Recuerda no inventar
+cosas.». La revisión (`REVISION-22-10-2026.md`, en el proyecto) cotejó el
+calendario del cielo de noviembre de 2026 a diciembre de 2027 con la IMO,
+EclipseWise, la NASA, el IGN, Espenak y el NAOJ, y estaba bien. Lo que
+estaba mal estaba fuera del cielo, en las fichas del Teide. Y Jerome:
+«Prepara todo para claude code». Entra lo que tiene fuente; lo que pide una
+decisión o un dato que no se ha podido confirmar se queda fuera, y se dice
+abajo.
+
+### Lo que se corrigió
+
+- **Las seis fichas del Teide** (`index.html` e `idiomas/<l>.json`, en los
+  diez idiomas). Decían lo contrario que el asistente (`tei-01` a `tei-09`,
+  que ya estaban bien), y cuestan dinero o una multa:
+  - `pico-teide-cumbre` decía «Permiso gratuito obligatorio — resérvelo en
+    la web del Parque Nacional del Teide con meses de antelación» y «45 min».
+    Ahora: el sendero Telesforo Bravo (PNT 10), unos 55 min, de dificultad
+    media, con pendientes de hasta el 60 %; autorización previa en Tenerife
+    ON, con tarifa para los visitantes en las horas del teleférico («el
+    importe se ve al reservar»); las plazas, cada lunes a las 07:00 (hora de
+    Canarias) para las ocho semanas siguientes; y el equipo obligatorio.
+    Tenerife ON, ficha del
+    PNT 10: «Difficulty Medium», «0 h 55 m», «gradients of up to 60%»,
+    «Every Monday at 07:00 (Canary Islands time) the available places for
+    the following 56 days are released», «a fee may apply» solo en las
+    franjas que coinciden con las horas del teleférico, y «suitable mountain
+    footwear», «long trousers (worn or carried in your rucksack), fleece or
+    warm clothing». La ficha no pone las tarifas (hoy, gratis para quien
+    reside en Tenerife, 6 € para el resto de Canarias y 15 € para los
+    demás): cambian, y se ven al reservar.
+  - `montana-blanca` decía «Sendero 10 (TF-6)» y «Permiso gratuito
+    obligatorio para los últimos 200 m». Ahora: el PNT 07 Montaña
+    Blanca–La Rambleta, desde la TF-21 (km 40,2), y el último tramo, el
+    PNT 10, con autorización previa en Tenerife ON. Para el PNT 07, sin
+    cifra («algunas franjas tienen tarifa»): el aviso de Tenerife ON de
+    enero de 2026 le pone tarifa en algunas franjas y su ficha dice «Free
+    access for all visitors, no reservation required».
+  - `mir-rambleta-teide` decía «~14€ ida y vuelta». Ahora: desde 42 € el
+    adulto no residente y desde 10,50 € el residente, con la fuente y el mes
+    (volcanoteide.com: «All prices in the following table refer to a return
+    day ticket», «Adult, non-resident | €42.00», «Adult, resident | €10.50»,
+    como «Price FROM»); y el Telesforo Bravo, 55 min, con la autorización de
+    Tenerife ON, que no va en el billete («The Mount Teide cable car ticket
+    price does not include the permit for accessing the crater»).
+  - `ruta-pico-viejo` decía «Ruta circular por el borde del cráter… No
+    requiere permiso especial.». Ahora: el PNT 09 rodea Pico Viejo por el
+    sur, por debajo del borde del cráter (Tenerife ON: «skirts the southern
+    side of Pico Viejo and continues under the rim of its crater»), con
+    reserva obligatoria, como el PNT 23 («Booking is mandatory…», «…may be
+    subject to a penalty»).
+  - `sendero-pico-viejo` no decía nada del permiso: ahora, la reserva de los
+    PNT 09 y 23. Y «mucho agua» pasa a «mucha agua».
+  - `observatorio` decía «Mejor observatorio solar del mundo. Visitas
+    diurnas y astroturismo nocturno. Starlight.». Ahora: del IAC, en Izaña, a
+    2.390 m; se visita de día, con guía y reserva previa; de noche, no; y no
+    se admiten menores de 8 años (Volcano Teide, la reserva a la que enlaza
+    el IAC: «El observatorio no se puede visitar en horario nocturno.», «La
+    visita al Observatorio del Teide no admite menores de 8 años.»). Lo de
+    «mejor del mundo» no tiene fuente, y el Observatorio no está en los
+    listados de Starlight (lo que es Reserva Starlight son las «Cumbres de
+    Tenerife»).
+- **Tres textos de «Dónde ir»** (diez idiomas):
+  - `cieloPorQueTxt` recupera el «por lo general» del folleto del IAC
+    («generally remains well below the mountain peaks»);
+  - `cieloLeyCielo` ya no atribuye a la Ley 31/1988 las rutas aéreas (son de
+    su reglamento, el R. D. 243/1992, art. 25) ni dice que proteja de la luz
+    los observatorios de Tenerife: aquí la ley se aplica «excepto en lo
+    concerniente a la iluminación de exteriores» (disposición adicional
+    primera), y el reglamento solo regula el alumbrado de La Palma y de la
+    parte de Tenerife que se ve desde La Palma (art. 3.2);
+  - `cieloSitiosFuente`, «Los cinco primeros» (decía seis): el artículo de
+    Turismo de Tenerife de julio de 2023 recomienda cinco —Guajara, el
+    Parador, Ucanca, el Tabonal Negro y La Ruleta— y ya no Izaña.
+- **Dos enlaces**: HYG, a Codeberg (el repositorio de GitHub está archivado
+  desde el 14 de febrero de 2025); los eclipses del IGN, a la dirección de
+  ahora (`astronomia.ign.es/eclipses-de-sol-y-luna`; la de antes, con
+  `/web/guest/`, todavía abre).
+- **De usted, lo que quedaba de tú en «Dónde ir»**: los consejos 2 a 6 y el
+  aviso del Sol («Schauen Sie nie…», «Non guardi mai…», «Kijk nooit… uw
+  ogen», «Nigdy nie wolno patrzeć…»), «Ver en el mapa» en italiano, búlgaro
+  y polaco, «A simple vista» y el título de los sitios en neerlandés, y los
+  créditos («auf Ihrem eigenen Handy», «op uw eigen telefoon», «在您的手机上»).
+  Y los tres botones de la ficha de cada astro («Ver en el mapa del cielo»,
+  «Ver su recorrido esta noche», «Quitar el recorrido») en italiano, búlgaro
+  y polaco, como los de la voz del séptimo bloque: en infinitivo en italiano
+  y polaco («Vedere sulla mappa del cielo», «Pokazać jego drogę tej nocy»,
+  «Ukryć drogę») y con el nombre del verbo en búlgaro («Показване на картата
+  на небето», «Скриване на пътя»).
+  En Guajara, en italiano, «restano i resti» pasa a «si vedono ancora le
+  rovine» (el control tomaba «resti» por «tú restas»).
+- **La ficha de la App Store** (`datos/app-store/ficha.json`), de usted en
+  alemán, italiano, neerlandés, polaco, chino y chino tradicional («in Ihrer
+  Tasche», «che si scarica all'arrivo», «die u bij aankomst downloadt»,
+  «który pobiera się po wylądowaniu», «在您的手机上»). Los nombres de las
+  funciones que cita van entre comillas tal como los lleva la app
+  („Plane deinen Tag“, «Organizza la tua giornata», 'Plan je dag',
+  „Zaplanuj dzień”, 「规划你的一天」, „Организирай деня си“):
+  `auditar_app_store.js` pide que la ficha nombre cada función como la app,
+  así que cambian cuando cambie la app.
+- **`auditar_registro.js` contaba como tuteo francés el «es» de las
+  direcciones** (`aemet.es`, `tenerifeon.es`, `aesa.gob.es`…): ocho textos
+  de los 419 pendientes del francés, y la ficha nueva del pico habría sido el
+  noveno. Ahora quita las direcciones antes de buscar: el francés queda en
+  411, los mismos que antes de este bloque con el control arreglado. Y no
+  tenía «Покажи» ni «Pokaż» entre los imperativos de principio de frase:
+  ahora sí, y suman como pendientes los que quedan fuera del cielo
+  («Покажи всички», «Pokaż wszystkie», «Pokaż tylko ulubione»).
+
+### Lo que entra
+
+- **«Normas del Parque Nacional para la noche»**, una tarjeta nueva en
+  «Dónde ir», después de los consejos: cuatro frases del Plan Rector de Uso
+  y Gestión del Parque Nacional del Teide (Decreto 182/2025, de 1 de
+  diciembre, BOC n.º 240, de 3 de diciembre de 2025), con su fuente y el
+  enlace al BOC:
+  - el telescopio, solo en La Ruleta, junto al Parador y al centro de
+    visitantes de Cañada Blanca, en los aparcamientos del teleférico (el de
+    la TF-21 y el de la estación base), fuera del refugio de Altavista, en
+    los aparcamientos de Minas de San José y en Portillo Alto (6.3.2.5: «los
+    miradores y la zona peatonal de La Ruleta, en el entorno del Parador y
+    centro de visitantes de Cañada Blanca, el aparcamiento en la carretera
+    TF-21 junto a la vía que da acceso al teleférico y en el de la estación
+    inferior, el exterior del Refugio de Altavista, los aparcamientos de
+    Minas de San José y en la zona de uso especial del Portillo Alto»).
+    Ucanca, el Tabonal Negro y Guajara no están;
+  - las luces: solo las de los coches en marcha, las linternas de mano y los
+    frontales; los punteros láser, solo en las observaciones guiadas (6.2.5:
+    «La iluminación y emisión de destellos luminosos, salvo las luces de los
+    vehículos en tránsito, el uso de punteros láser en las actividades
+    guiadas de observación astronómica, linternas de mano o frontales…»);
+  - dormir: ni acampar ni dormir en el coche o la autocaravana (6.2.1: «La
+    acampada.», «La pernoctación en vehículos.»); para pasar la noche
+    arriba, las zonas de vivac, con reserva previa en Tenerife ON, como la
+    de Guajara (6.3.2.7: «en las zonas establecidas por encima de 2.500
+    msnm», con comunicación previa; Tenerife ON reserva la zona: no es un
+    «permiso»);
+  - las excursiones de estrellas: grupos de 30 como máximo y guía
+    acreditado (6.3.3: «en grupos organizados de no más de 30 componentes
+    con guía con acreditación»).
+
+  El PDF del BOC no se deja leer desde aquí (su `robots.txt` lo cierra, y la
+  versión en HTML solo trae el decreto, sin el Plan). El articulado se leyó
+  en la copia del PDF que guarda la Xunta de Galicia, que lleva en cada
+  página la cabecera del BOC n.º 240 y su identificador
+  (`boc-a-2025-240-4148`): páginas 49349 (6.2.1), 49352 (6.2.5), 49361
+  (6.3.2.5 y 6.3.2.7) y 49363 (6.3.3).
+- **En Guajara**, «Para pasar allí la noche hay que reservar antes la zona
+  de vivac en Tenerife ON.»; **en «Qué llevar»**, el telescopio: «En el
+  Parque Nacional, solo se monta donde dicen sus normas (más arriba).».
+- **La predicción de AEMET para el Teide.** El consejo 1 decía «mire la
+  previsión de montaña» sin decir dónde. Ahora: «Antes de subir, mire la
+  previsión de AEMET para el Teide (cielo, viento y temperatura en el Teide
+  e Izaña) y el estado de las carreteras.», con el enlace al PDF que AEMET
+  rehace cada día en la misma dirección («Predicción para el Teide»,
+  `BM_Teide.pdf`) debajo de los consejos y en «Fuentes oficiales». AEMET:
+  «autorizado el uso de la información y su reproducción citando AEMET como
+  autora de la misma».
+- **El Observatorio, de día** (`cieloSitioIzanaTxt`): «Las visitas son de
+  día; de noche no se visita, y no se admiten menores de 8 años.». **El
+  Parador**, con acreditación Starlight desde 2015 (Fundación Starlight,
+  «Acreditaciones Starlight (octubre 2026)»: «Parador Las Cañadas del Teide
+  (Tenerife) - 2015»).
+- **El brillo del cielo**, en «Por qué el cielo de Tenerife»: según el IAC,
+  21,20 magnitudes por segundo de arco cuadrado en banda V en el
+  Observatorio del Teide y 21,70 en el Roque de los Muchachos, «measured in a
+  moonless and clear night at high galactic latitude, high ecliptic latitude
+  and at sun spot minimun» (Sky-team TMT Report, 2018): en la app, «lejos
+  del plano de la Vía Láctea y de la eclíptica». Con el enlace en «Fuentes
+  oficiales».
+- **La ruta de los paneles**: entre El Portillo y Chío, la ruta autoguiada de
+  Turismo de Tenerife («seven observation points», «in order, from El
+  Portillo to Chío»): dos en el mirador de Minas de San José y uno en el
+  Tabonal Negro, los Roques de García, Los Azulejos, el Llano de Ucanca y el
+  aparcamiento del Museo Juan Évora.
+- **Las lluvias, con la Luna arriba parte de la noche.** La app miraba la
+  Luna solo en el mejor momento: si a esa hora estaba bajo el horizonte,
+  «Buenas condiciones», aunque hubiera estado arriba media noche. En las
+  Perseidas de 2027 («Luna iluminada al 86 % (bajo el horizonte a esa
+  hora) · Buenas condiciones») la IMO dice otra cosa: «moonlight will
+  affect visibility for several other showers, including the Perseids».
+  Ahora, con la Luna a más del 30 % y bajo el horizonte en el mejor momento,
+  el motor busca si se pone después de que oscurezca y antes de ese momento,
+  o si sale después y antes del alba, y lo dice: «Buenas condiciones desde
+  que se pone la Luna (03:58)» (las Perseidas de 2027) y «… (01:09)» (las
+  Leónidas de 2026); «Buenas condiciones hasta que sale la Luna (22:49)», las
+  Dracónidas de 2028 (en el calendario de ahora no hay ninguna así). Sin
+  datos nuevos: sale del cálculo. La hora va entre paréntesis y no «a las»:
+  a la 01:09 sería «a la».
+- **La letra, a 11 px como mínimo.** Apple: «Follow the recommended default
+  and minimum text sizes for each platform»; para iOS, «17 pt» por defecto y
+  «11 pt» como mínimo. Medido en el panel a escala 1 (1 px CSS es 1 pt):
+  «Esta noche», 170 de 245 textos por debajo de 11 px; el calendario, el
+  74 %; el catálogo, el 64 %; «Dónde ir», el 71 %. Y en la app de la App
+  Store no se puede ampliar con los dedos: WKWebView respeta el
+  `user-scalable=no` («The default value is false, which means that
+  WKWebView content will allow the content to block zooming»). Un bloque de
+  CSS al final de `index.html` sube a 0.6875rem (11 px) lo del panel, la
+  ficha y «Apunte al cielo» que iba por debajo, y aclara a 4,5:1 por lo
+  menos (WCAG 2.2, 1.4.3) lo más tenue: «Fuente:» (iba a 4,0:1), las
+  direcciones de los enlaces (4,44:1), las notas y la cuenta del catálogo
+  (4,49:1). Las direcciones largas, como la de AEMET, cortan dentro del
+  botón. A 320 px, con la letra a 11 px, «Calendario» no cabía en su
+  pestaña (54 px en 50; la parte 7 de `auditar_cielo.js` lo vio en la
+  auditoría entera): por debajo de 360 px el panel se acerca al borde, las
+  pestañas pierden el relleno de los lados y la letra va algo menos gruesa,
+  sin bajar de 11 px («Calendario», 53 px en 58). Medido después, en las
+  cinco pestañas: 0 textos por debajo de 11 px, 0 por debajo de 4,5:1 y
+  ningún botón sin nombre.
+- **13 filas** en `CIELO_UI` (561): el brillo, la ruta, la tarjeta de las
+  normas (el título, cuatro frases y su fuente), tres enlaces y las dos
+  condiciones de las lluvias. Cambian 22 filas de siempre (134 textos).
+
+### Lo que no entra, y por qué
+
+- **La licencia de Open-Meteo.** «You may only use the free API services for
+  non-commercial purposes», y cuentan como comerciales las apps que
+  «display advertisements». La app llama a la API gratuita (el tiempo, el
+  mar, «¿Dónde me baño hoy?» y las nubes del cielo) y enseña negocios
+  «Patrocinado». Hace falta un plan de pago o cambiar de fuente (la FAQ de
+  MET Norway permite el uso comercial: «This includes paid-for apps or
+  services, including advertising revenue.»). Lo decide Jerome.
+- **El zoom con los dedos** (`user-scalable=no`): quitarlo cambia toda la
+  app, no solo el panel, y hay que probarlo antes en un iPhone. Con la
+  letra del panel a 11 px, se deja para decidirlo aparte.
+- **La calima prevista (CAMS)**: depende de lo de Open-Meteo, y no se ha
+  probado con una llamada de verdad.
+- **Planetas junto a estrellas brillantes**: en dos de sus entradas el motor
+  y Espenak no cuadran; antes hay que contrastarlo con JPL Horizons, y desde
+  aquí no se ha podido.
+- **Los días despejados de Izaña** (AEMET, 1981–2010): AEMET no dice qué
+  cuenta como despejado, y enero sale sin dato.
+- **Un mapa de luz artificial**: la radiancia de VIIRS no es el brillo del
+  cielo y la capa pesa; lightpollutionmap.info pide permiso a su autor.
+- **El resto de los idiomas, de usted** (las pendientes de
+  `auditar_registro.js`): va con su parte, como hasta ahora.
+- **Lo de siempre de las seis fichas que esta revisión no cotejó.** Se
+  comprobaron el «tercer volcán más alto del mundo desde su base oceánica»
+  (UNESCO: «Rising 7,500 m above the ocean floor, it is regarded as the
+  world's third-tallest volcanic structure») y «el más alto de cualquier
+  isla del Atlántico» (Wikipedia: «the highest volcano in the Atlantic Ocean
+  islands»). Quedan sin cotejar: «el mirador más alto de España accesible
+  sin senderismo» y los 5-10 °C de La Rambleta en verano; los 20 km, las 7-8
+  horas, la salida del Sanatorio y «Mejor abril-junio» del sendero de Pico
+  Viejo; las 5 a 7 horas de Montaña Blanca; y «Una de las mejores rutas».
+
+### Una segunda mirada
+
+Las filas nuevas y cambiadas, las seis fichas y la ficha de la tienda las
+revisó después un agente que no las había escrito, con las fuentes y las
+reglas del trato de cada idioma. Encontró, y se cambió:
+
+- **Lo que cambiaba un dato o una norma.** En `sendero-pico-viejo`, el
+  francés perdía el «Solo» («Réservé aux randonneurs expérimentés…»).
+  Altavista iba «delante» del refugio en francés, alemán, búlgaro y polaco, y
+  el 6.3.2.5 dice «el exterior del Refugio» («à l’extérieur», «im
+  Außenbereich», «извън», «na zewnątrz»). La caldera de Las Cañadas era un
+  «cráter» en alemán y en chino («die Caldera», «破火山口»). En italiano,
+  «più in alto» se leía como «más arriba en la montaña»: ahora «(qui
+  sopra)». Y «Ver en el mapa» seguía de tú en búlgaro («Покажи»), como los
+  botones de la ficha en italiano, búlgaro y polaco («Vedi», «Mostra»,
+  «Nascondi», «Покажи», «Скрий», «Pokaż», «Ukryj»), que pasan a la forma de
+  los botones de la voz (arriba). El agente proponía en polaco «Na mapie»;
+  se queda el infinitivo, que es lo que llevan los botones del panel desde
+  el séptimo bloque.
+- **Más cerca de la fuente, en los diez idiomas.** El vivac no es un
+  «permiso»: el Plan pide comunicación previa y Tenerife ON reserva la zona
+  («con reserva previa en Tenerife ON», «hay que reservar antes la zona de
+  vivac»). El brillo del cielo, «lejos del plano de la Vía Láctea y de la
+  eclíptica», al pie de la letra del IAC («high galactic latitude, high
+  ecliptic latitude»; decía «de la luz zodiacal»). Las plazas del pico, «a las
+  07:00 (hora de Canarias)», como Tenerife ON («07:00 (Canary Islands
+  time)»). Y el teleférico, «desde» 42 € y 10,50 €, que es como lo da
+  volcanoteide.com («Price FROM»).
+- **Nombres y términos.** «Льяно де Уканка», como en el sitio de Ucanca;
+  Pico Viejo en chino, «旧峰», como en el resto de la app; Altavista,
+  «Altavista山屋», como el asistente; los apartados del decreto, «节» y no
+  «条» (artículos).
+- **La lengua.** En castellano, «Menos concurrido» (el sujeto ya no es «la
+  ruta») y «comprar el billete del teleférico en línea» (decía «telebillete
+  online»). En alemán, «Der vollständige Aufstieg…», «die Luft darüber ist
+  stabil», «vor Funkstörungen und Luftverschmutzung», «eine selbst geführte
+  Route», «Der Zwillingskrater des Teide» y la norma de las excursiones en
+  una frase; en neerlandés, «met voorafgaande toestemming», «telkens één»,
+  «De zusterkrater van de Teide», la norma de las excursiones y, en la
+  tienda, «en u kunt het in de app zelf verwijderen»; en italiano, «sul bordo
+  di Las Cañadas» y, en la tienda, «l'app indica gli orari»; en polaco,
+  «Miejsca są udostępniane… i szybko się wyczerpują» y, en Guajara, «Aby tam
+  nocować…» (decía «na szczycie»); en búlgaro, «далеч под върховете» y
+  «трудно преживяване». Y los millares con el separador de cada idioma: en
+  francés, «3 715 m», con un espacio que no se parte; en búlgaro, «3555
+  метра».
+- **Dos controles que no lo veían**: `auditar_registro.js`, sin «Покажи» ni
+  «Pokaż» (arriba); y la parte 16a, que ahora mira también los botones de la
+  ficha (con «Ver en el mapa del cielo» y el recorrido, 49 filas).
+
+Y comprobó en las páginas de hoy lo que la revisión no citaba, y está bien:
+«ida y vuelta» y «no va incluida en el billete» (volcanoteide.com), los
+2.390 m y el aire «estable» de Izaña (el folleto del IAC), y que la ruta de
+los paneles es autoguiada y habla del cielo y de los planetas (Turismo de
+Tenerife: «self-guided tour», «the stars and the planets»).
+
+### Cómo se comprueba
+
+`tools/auditar_cielo.js`, parte **16a** (sin navegador): el «por lo
+general»; la ley con su reglamento; los cinco primeros sitios y la nota que
+dice «cinco»; Izaña, Guajara y el Parador; las 13 filas nuevas en los diez
+idiomas y con sus cifras (21,20 y 21,70, los 30 de un grupo, la TF-21 y el
+decreto con sus apartados); el telescopio solo donde dice el 6.3.2.5, y ni
+Ucanca, ni el Tabonal, ni Guajara; las luces, dormir y las excursiones;
+que «Dónde ir» pinte la tarjeta, el enlace de AEMET, el brillo y la ruta;
+los enlaces nuevos y los que cambian (y que no quede `github.com/astronexus`
+ni `/web/guest/`); las seis fichas del Teide en castellano, sin «Permiso
+gratuito», «~14 €», «No requiere permiso», «astroturismo nocturno», «Mejor
+observatorio solar» ni «Sendero 10 (TF-6)»; y en los otros nueve, con
+Tenerife ON y sin el teleférico a 14 € ni la TF-6; el código de las lluvias;
+el bloque de CSS; y las 49 filas de «Dónde ir» y de los botones de la
+ficha, de usted en los diez idiomas. Parte **16** (en el navegador): «Dónde ir» en los diez idiomas,
+con la tarjeta de las normas y sus cuatro frases, el brillo, la ruta y los
+cinco enlaces, sin texto roto y sin direcciones que se salgan del botón;
+ningún texto por debajo de 11 px en «Dónde ir» ni en «Esta noche»; y las
+lluvias en el `.ics` de los diez idiomas: las Leónidas de 2026 y las
+Perseidas de 2027, «desde que se pone la Luna» (la 01:09 y las 03:58), las
+Dracónidas de 2028, «hasta que sale la Luna (22:49)», y las Cuadrantidas de
+2027, «Buenas condiciones» a secas. Con la rama de «hasta que sale» rota a
+propósito, la parte 16 se pone en rojo. Las fichas en polaco, también en
+`idiomas/pl-lugares/` (la fuente de `pl.json`, que coteja
+`auditar_fuente_pl.js`); y «frontales», en francés, entre las palabras que se
+escriben igual que en castellano (`idiomas/castellano-aceptado.json`):
+«lampes frontales».
+
+Lo que no se puede medir aquí se mira en el móvil: que la letra a 11 px se
+lea bien en un iPhone y en un Android, y que la tarjeta de las normas y los
+enlaces nuevos se vean enteros.
+
+### El resultado
+
+Sobre el árbol final (los cuatro commits encima de `ac10788`), el 22 de
+octubre de 2026 por la noche: `auditar_cielo.js` sin navegador, 136
+controles con las fuentes bajadas (130 sin ellas), con la parte 16a, y la
+parte 16 en el navegador, 4 más; `auditar_idioma.js`, 0 hallazgos en los
+nueve; `castellano_suelto.js` y `auditar_registro.js` en verde (el
+castellano, todo de usted; pendientes: francés 411, alemán 552, italiano
+581, neerlandés 527, chino y chino tradicional 299, búlgaro 229, polaco
+486); `auditar_web.js`, 44 tablas y 1828 filas; `barrido_idiomas.js`,
+3.969; la descarga, 1.040 kB en castellano, 1.154 en búlgaro y 1.140 en
+polaco. `auditar.sh` entero, en la nota 12.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:

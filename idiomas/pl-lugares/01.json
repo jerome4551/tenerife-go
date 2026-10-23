@@ -146,7 +146,7 @@
   "aviso": "Ograniczona liczba miejsc wzdłuż drogi, ze ścisłym ograniczeniem: maksymalnie 2 godziny między 08:00 a 14:00, pod groźbą mandatu."
  },
  "observatorio": {
-  "desc": "Najlepsze obserwatorium słoneczne na świecie. Wizyty dzienne i astroturystyka nocna. Starlight.",
+  "desc": "Obserwatorium Instytutu Astrofizyki Wysp Kanaryjskich (IAC) w Izañi, na wysokości 2390 m. Zwiedza się je w dzień, z przewodnikiem i po wcześniejszej rezerwacji (volcanoteide.com, link na stronie IAC); nocą nie można go zwiedzać. Dzieci poniżej 8 lat nie są wpuszczane.",
   "cat": "Astronomia"
  },
  "roques-garcia": {
@@ -154,11 +154,11 @@
   "cat": "Wulkaniczny"
  },
  "montana-blanca": {
-  "desc": "Oficjalny punkt startowy pieszego wejścia na Pico del Teide (3715 m). Szlak 10 (TF-6) od 2350 m. Bezpłatne, obowiązkowe pozwolenie na ostatnie 200 m. Całe wejście trwa od 5 do 7 godzin. Przeżycie imponujące i wymagające.",
+  "desc": "Punkt startowy pieszego wejścia na Pico del Teide (3715 m): szlak PNT 07 Montaña Blanca–La Rambleta, który zaczyna się przy TF-21 (km 40,2), na wysokości około 2350 m. Ostatni odcinek, z La Rambleta do krateru, to PNT 10 i wymaga wcześniejszego pozwolenia z Tenerife ON. Warunki danego dnia warto sprawdzić właśnie tam: niektóre przedziały godzin są płatne. Całe wejście trwa od 5 do 7 godzin. Przeżycie imponujące i wymagające.",
   "cat": "Szlaki piesze · Szczyt Teide"
  },
  "ruta-pico-viejo": {
-  "desc": "Bliźniaczy krater Teide, 3135 m. Trasa pętlą po krawędzi krateru z niepowtarzalnymi widokami. Mniej uczęszczana niż Teide. Nie wymaga specjalnego pozwolenia. Jedna z najlepszych tras Parku Narodowego.",
+  "desc": "Bliźniaczy krater Teide, 3135 m. Szlak PNT 09 (Teide–Pico Viejo–Mirador de Las Narices del Teide) obchodzi Pico Viejo od południa, poniżej krawędzi krateru. Mniej uczęszczany niż Teide. Rezerwacja w Tenerife ON jest obowiązkowa, także na PNT 23, który prowadzi na przełęcz Pico Viejo: bez rezerwacji grozi kara. Jedna z najlepszych tras Parku Narodowego.",
   "cat": "Krater · Park narodowy"
  },
  "cumbre-dorsal": {
@@ -194,7 +194,7 @@
   "cat": "Szczyt · Cañadas (Trudny · 11 km · 5h)"
  },
  "sendero-pico-viejo": {
-  "desc": "Jedna z najbardziej wymagających tras na Teide. 20 km w obie strony, 7-8 godzin. Start na parkingu El Sanatorio. Podchodzi do krateru Pico Viejo (3135 m), z księżycowymi krajobrazami czarnych i czerwonych law. Bez kolejki, wszystko pieszo. Tylko dla doświadczonych piechurów w dobrej formie. Najlepiej od kwietnia do czerwca. Trzeba zabrać dużo wody, jedzenie i ciepłe ubranie oraz wyruszyć bardzo wcześnie.",
+  "desc": "Jedna z najbardziej wymagających tras na Teide. 20 km w obie strony, 7-8 godzin. Start na parkingu El Sanatorio. Podchodzi do krateru Pico Viejo (3135 m), z księżycowymi krajobrazami czarnych i czerwonych law. Bez kolejki, wszystko pieszo. Tylko dla doświadczonych piechurów w dobrej formie. Najlepiej od kwietnia do czerwca. Oficjalne szlaki na Pico Viejo (PNT 09 i PNT 23) wymagają wcześniejszej rezerwacji w Tenerife ON: bez niej grozi kara. Warto zabrać dużo wody, jedzenie i ciepłe ubranie i wyruszyć bardzo wcześnie.",
   "cat": "Krater · Teide (Bardzo trudny · 20 km · 7-8h)"
  },
  "sendero-teno-baracan": {

@@ -217,7 +217,7 @@ const MARCAS = {
        inicio('Докосни', 'Избери', 'Отвори', 'Виж', 'Потърси', 'Опитай', 'Открий', 'Включи', 'Приеми', 'Създай', 'Запази', 'Добави', 'Премахни', 'Промени', 'Върни',
          'Вдигни', 'Нарисувай', 'Провери', 'Изтрий', 'Затвори', 'Сподели', 'Изтегли', 'Инсталирай', 'Натисни', 'Плъзни', 'Въведи', 'Влез', 'Следвай',
          'Използвай', 'Разгледай', 'Свържи', 'Дишай', 'Слушай', 'Представи', 'Усмихни', 'Вземи', 'Направи', 'Иди', 'Ела', 'Кажи', 'Сложи', 'Пий', 'Яж', 'Остави',
-         'Спомни', 'Планирай', 'Организирай', 'Посети', 'Насладѝ', 'Наслади', 'Почини', 'Подари',
+         'Спомни', 'Планирай', 'Организирай', 'Посети', 'Насладѝ', 'Наслади', 'Почини', 'Подари', 'Покажи',
          /* los que solo vio el repaso a mano (22 de octubre): el imperativo de ти de
             las frases del dia y del cielo. Los que tambien son nombre, adjetivo o
             tercera persona, solo en su giro: «Пази» («Островът пази кътче»),
@@ -393,6 +393,12 @@ const EXENTOS = [
 function exento(l, t) {
   return EXENTOS.some(([le, x]) => le === l && (x instanceof RegExp ? x.test(t) : x === t));
 }
+/* Una direccion no habla a nadie: el «es» de «tenerifeon.es» o de
+   «aemet.es» no es el «tu es» del frances. El 22 de octubre de 2026 diez
+   textos en frances contaban como pendientes solo por eso (las fichas de
+   los senderos con Tenerife ON, AEMET, AESA…). Se quitan las direcciones
+   antes de buscar; lo demas del texto se mira igual. */
+const DIRECCION = /(?:https?:\/\/)?(?:[A-Za-z0-9-]+\.)+(?:es|com|org|net|eu|gal|info)\b(?:\/[^\s)»"”]*)?/gi;
 function marca(l, t) {
   if (!MARCAS[l] || exento(l, t)) return null;
   /* el rotulo de un boton citado entre comillas no cuenta: «tocchi «Condividi»» */
@@ -403,6 +409,8 @@ function marca(l, t) {
     .replace(/<b>([^<]+)<\/b>/g, (q, x) => ROTULOS_PL.has(x) ? ' ' : q);
   /* los marcadores {dir}, {d}… no se ven: «{dir}» no es «dir» (22 de octubre) */
   t = t.replace(/\{\w+\}/g, ' ');
+  /* ni las direcciones: el «es» de «tenerifeon.es» no es el «tu es» del frances (ver DIRECCION) */
+  t = t.replace(DIRECCION, ' ');
   for (const re of MARCAS[l]) { const m = t.match(re); if (m) return m[0].trim(); }
   return null;
 }
