@@ -139,6 +139,17 @@ const shellMal = SHELL.filter(k => {
   try { const f = JSON.parse(m[1]); return LANGS.some(l => !f[l]); } catch (e) { return true; }
 });
 ok(!shellMal.length, 'las ' + SHELL.length + ' filas del armazon estan en UI_TX con sus diez lenguas', shellMal.join(', '));
+/* Lo que el HTML del armazon trae escrito antes de traducirse tiene que ser
+   el castellano de su fila (24 de octubre de 2026): la barra del 112 seguia
+   diciendo «Atienden en español, inglés y alemán» cuando la fila ya decia
+   «en muchos idiomas». Antes de pintarse, o sin JavaScript, se veria el dato
+   viejo. */
+const filaEs = k => { const m = idx.match(new RegExp('"' + k + '"\\s*:\\s*(\\{[^}]*\\})')); try { return m ? JSON.parse(m[1]).es : null; } catch (e) { return null; } };
+const armazon = idx.slice(idx.indexOf('<!-- ══ EMERGENCIAS ══ -->'), idx.indexOf('<!-- ══ fin EMERGENCIAS ══ -->'));
+const textoMal = [];
+for (const m of armazon.matchAll(/<(\w+)[^>]*\sdata-tx="(\w+)"[^>]*>([^<]*)<\/\1>/g)) if (SHELL.includes(m[2]) && m[3] !== filaEs(m[2])) textoMal.push(m[2] + ': «' + m[3] + '»');
+for (const m of idx.matchAll(/\sdata-tx-aria="(sos\w+)"[^>]*\saria-label="([^"]*)"/g)) if (m[2] !== filaEs(m[1])) textoMal.push(m[1] + ' (aria): «' + m[2] + '»');
+ok(!textoMal.length, 'lo que el armazon trae escrito antes de traducirse es el castellano de su fila', textoMal.join(' · '));
 
 /* ── 3. fuentes y enlaces ── */
 console.log('— fuentes y enlaces');
