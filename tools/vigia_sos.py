@@ -192,6 +192,20 @@ def vigilar(urls, estado, ahora, bajar_fn=bajar, permitido_fn=permitido):
     return nuevo, cambios, rotos
 
 
+def citar(t):
+    """El trozo de la pagina, como codigo: ahi GitHub no convierte las
+    @cuentas en menciones (una pagina del 112 que diga «@112canarias» avisaria
+    a quien se llame asi en GitHub), ni los #numeros en enlaces a incidencias,
+    ni las direcciones en enlaces. El delimitador, una comilla invertida mas
+    que la tira mas larga del texto."""
+    t = t.replace('\n', ' ')
+    tira = max([len(x) for x in re.findall(r'`+', t)] or [0])
+    v = '`' * (tira + 1)
+    if t.startswith('`') or t.endswith('`'):
+        t = ' ' + t + ' '
+    return v + t + v
+
+
 def informe(cambios, rotos, ahora):
     if not cambios and not rotos:
         return ''
@@ -208,7 +222,7 @@ def informe(cambios, rotos, ahora):
         for clave, url, t in cambios:
             l.append('- **%s**: %s' % (clave, url))
             if t:
-                l.append('  > ' + t.replace('\n', ' '))
+                l.append('  > ' + citar(t))
         l.append('')
     if rotos:
         l += ['## No responden (%d veces seguidas)' % ROTO_TRAS, '']
@@ -271,6 +285,9 @@ def probar():
     e3, c3, r3 = vigilar(urls, e2, '2099-01-15', red(nueva), permitido_fn=lambda u: True)
     ok([c[0] for c in c3] == ['a'] and 'Nuevo plan' in c3[0][2], 'un cambio en el texto salta, con su trozo: %s' % c3)
     ok('Nuevo plan' in informe(c3, r3, '2099-01-15') and 'https://ejemplo.gob/a' in informe(c3, r3, '2099-01-15'), 'el informe lo cuenta con el enlace')
+    inf = informe([('a', 'https://ejemplo.gob/a', 'Siga a @112canarias y la nota #12 en `x`')], [], '2099-01-15')
+    ok('> `` Siga a @112canarias y la nota #12 en `x` ``' in inf and inf.count('@112canarias') == 1,
+       'el trozo va como codigo: las @cuentas no son menciones ni los #numeros enlaces')
     pdf2 = dict(nueva, b=b'%PDF-1.4 prueba 2')
     e4, c4, r4 = vigilar(urls, e3, '2099-01-22', red(pdf2), permitido_fn=lambda u: True)
     ok([c[0] for c in c4] == ['b'], 'un PDF que cambia salta')
