@@ -3,7 +3,7 @@
 """Barrido de seguridad y codificacion. Solo lee.
     python3 tools/auditar_seguridad.py
 Marca con <-- lo que hay que mirar a mano: no todo lo marcado es un fallo."""
-import io, re, os, sys, unicodedata, collections
+import io, re, os, sys, unicodedata, collections, glob
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # index.html Y los ficheros de datos que carga (datos/titsa.js, desde el 9 de
@@ -26,6 +26,25 @@ print('  tabuladores                  : %d' % s.count('\t'))
 INV = {0x00A0:'NBSP', 0x200B:'ZWSP', 0x200D:'ZWJ', 0xFEFF:'BOM', 0x00AD:'SHY', 0x202F:'NNBSP'}
 inv = ['U+%04X %s x%d' % (c, n, s.count(chr(c))) for c, n in sorted(INV.items()) if s.count(chr(c))]
 print('  invisibles                   : %s' % (', '.join(inv) or 'ninguno'))
+# Estos tres no tienen sitio en un texto: no se ven y no hacen falta (los NBSP de la
+# tipografia francesa y los ZWJ de los emojis compuestos, si). El 23 de octubre de 2026
+# quedaba uno, un guion blando dentro de «salonikach», en polaco, desde septiembre, y
+# nada lo paraba. Se mira el fuente entero y los textos que la app lee aparte
+# (idiomas/<idioma>.json y faq/<idioma>.json). Este SI tumba la auditoria.
+NUNCA = {0x00AD: 'SHY', 0x200B: 'ZWSP', 0xFEFF: 'BOM'}
+_re_nunca = re.compile('[%s]' % ''.join(chr(c) for c in NUNCA))
+_textos = [('el fuente', s)] + [(os.path.relpath(f, RAIZ), io.open(f, encoding='utf8').read())
+           for f in sorted(glob.glob(os.path.join(RAIZ, 'idiomas', '*.json')) + glob.glob(os.path.join(RAIZ, 'faq', '*.json')))]
+sueltos = []
+for _n, _t in _textos:
+    for _m in _re_nunca.finditer(_t):
+        _ctx = _t[max(0, _m.start() - 30):_m.start() + 15].replace('\n', ' ')
+        for _c, _nom in NUNCA.items():
+            _ctx = _ctx.replace(chr(_c), '[' + _nom + ']')
+        sueltos.append('%s, linea %d: %s' % (_n, _t.count('\n', 0, _m.start()) + 1, _ctx))
+print('  guion blando, ancho cero o BOM: %d%s' % (len(sueltos), '   <-- en rojo' if sueltos else ''))
+for _x in sueltos[:10]:
+    print('    <--  ' + _x)
 print('  mojibake (Ã©, Ã±, â€)         : %d' % sum(s.count(x) for x in ('Ã©','Ã±','â€','Ã¡','Ã³')))
 
 print('\n=== inyeccion ===')
@@ -206,7 +225,7 @@ for ln, t in fijos[:12]:
     print('    <--  linea %-6d %s' % (ln, t))
 # Este control SI tumba la auditoria. Un aviso que solo se imprime acaba
 # ignorandose, y esto es justo lo que se cuela sin que nadie lo vea.
-CON_FALLO = bool(fijos)
+CON_FALLO = bool(fijos) or bool(sueltos)
 
 print('\n=== marcas data-tx fuera de sitio ===')
 # El marcado masivo de data-tx busca un texto y le pega el atributo al
