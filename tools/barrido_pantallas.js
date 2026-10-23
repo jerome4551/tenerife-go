@@ -205,12 +205,19 @@ window.__estados = [
   ['asistente', async () => { openChatPanel(); await espera(800); }],
   ['cuenta', async () => { openAuthModal(); }],
   /* La pantalla «Su perfil» (22 de octubre de 2026): entera, con datos en todas
-     sus partes (solo en este navegador), y cada una de sus 11 pestañas de
-     avatares; la de Tenerife, abierta con 10 visitas comprobadas. */
+     sus partes (solo en este navegador); «Todos los paises» abierto, con los 47
+     sets; y cada uno de los 47 sets de avatares (23 de octubre: los diez idiomas,
+     Tenerife y 36 paises de Europa), abierto desde esa lista, como lo haria
+     quien la usa; el de Tenerife, abierto con 10 visitas comprobadas. */
   ['perfil', async () => { __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); await espera(700); }],
-  ...Array.from({ length: 11 }, (_, i) => ['perfil:avatares ' + (i + 1), async () => {
+  ['perfil:todos los paises', async () => {
       __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); await espera(300);
-      const b = document.querySelectorAll('#perfil-panel .tgp-set')[i]; if (b) b.click(); await espera(300); }]),
+      const b = document.getElementById('tgp-paises-btn'); if (b && b.getAttribute('aria-expanded') !== 'true') b.click(); await espera(300); }],
+  ...['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'tf', 'ie', 'dk', 'se', 'no', 'fi', 'is', 'ee', 'lv', 'lt', 'at', 'be', 'ch', 'lu', 'li', 'mc',
+      'pt', 'gr', 'mt', 'hr', 'si', 'ba', 'rs', 'me', 'mk', 'al', 'ad', 'sm', 'cy', 'cz', 'sk', 'hu', 'ro', 'md', 'ua', 'by', 'ru'].map(s => ['perfil:avatares ' + s, async () => {
+      __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); await espera(300);
+      const b = document.getElementById('tgp-paises-btn'); if (b && b.getAttribute('aria-expanded') !== 'true') b.click(); await espera(150);
+      const p = document.querySelector('#tgp-paises-grid .tgp-pais[data-set="' + s + '"]'); if (p) p.click(); await espera(300); }]),
   ['favoritos', async () => { document.getElementById('v19-nav-fav').click(); }],
   ['nav rutas', async () => { document.getElementById('v19-nav-routes').click(); }],
   ['leyenda', async () => { const b = document.getElementById('map-legend-toggle'); if (b) b.click(); }],

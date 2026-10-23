@@ -86,5 +86,36 @@
   "pl": [
    "Guagua (autobus)"
   ]
+ },
+ "Tres nombres propios de los avatares de Europa (modulos/perfil.js: perfilAv_lu_peckvillchen, perfilAv_cz_svickova y perfilAv_sk_krivan) que se escriben igual en todos los idiomas de letra latina, con sus letras: el silbato de ceramica con forma de pajaro del mercado de Pascua de Luxemburgo («Péckvillchen»), el plato checo («Svíčková») y el monte eslovaco («Kriváň»; en polaco, «Krywań»). Los miraron los revisores de cada idioma del encargo, y validar_i18n.py los da por buenos (23/10/2026)": {
+  "en": [
+   "Péckvillchen",
+   "Svíčková",
+   "Kriváň"
+  ],
+  "fr": [
+   "Péckvillchen",
+   "Svíčková",
+   "Kriváň"
+  ],
+  "de": [
+   "Péckvillchen",
+   "Svíčková",
+   "Kriváň"
+  ],
+  "it": [
+   "Péckvillchen",
+   "Svíčková",
+   "Kriváň"
+  ],
+  "nl": [
+   "Péckvillchen",
+   "Svíčková",
+   "Kriváň"
+  ],
+  "pl": [
+   "Péckvillchen",
+   "Svíčková"
+  ]
  }
 }

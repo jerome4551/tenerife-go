@@ -7,10 +7,17 @@
  * usa la pantalla de verdad, dentro de la app, como la usaria alguien. Son las
  * pruebas con las que se verifico el encargo (PARA-CLAUDE-CODE-PERFIL.md), que
  * venian para el prototipo, pasadas a la app, y lo que pide la nota encima:
- *   1. las regresiones de la verificacion (pruebas/regresiones.py, 32): «Guardar»
+ *   1. las regresiones de la verificacion (pruebas/regresiones.py, 41): «Guardar»
  *      no inventa un peso, 176 cm ida y vuelta, el IMC y su categoria, la nota de
  *      menos de 20 años, «81,5» y «815», los plurales, borrar un km, la descarga,
  *      borrar los datos con confirmacion, el set Tenerife y el interruptor;
+ *   1b. el selector de los 47 sets (las 9 del 23 de octubre, de la 28 a la 36): el
+ *      pais del navegador primero, «Todos los paises» en orden, el buscador sin
+ *      tildes y en ingles, elegir un pais, un avatar de Europa que vuelve al abrir,
+ *      Escape, el cambio de idioma con la lista abierta, «Sorpréndeme» y nada
+ *      fuera de sitio a 360 px; y los cortes de los nombres (cortes_nombres.py):
+ *      los 235 de avatar y los 47 de set, en los diez idiomas, ninguna palabra mas
+ *      ancha que su caja y, en la tira, dos lineas como mucho;
  *   2. la nube con permiso (pruebas/nube.py, 33), contra una nube de mentira que
  *      se porta como supabase/perfil.sql (RLS, 23503, cascade, check, columnas):
  *      tools/perfil_nube_de_prueba.js, la demo-nube.js del encargo, que solo en
@@ -21,7 +28,7 @@
  *      todos, la vuelta siguiente no quita ninguno, y con un tope mas bajo
  *      tambien llegan;
  *   3. las visitas comprobadas en el mapa (pruebas/probar_visitas.py, 11);
- *   4. lo de la nota: los 55 avatares pintados; uno de cada set, en el heroe y en
+ *   4. lo de la nota: los 235 avatares pintados; uno de cada set, en el heroe y en
  *      el boton de la cuenta; los dos botones de «Cuenta» abren el perfil; cada
  *      texto fijo del cuerpo (TEXTOS) da con su elemento y su clave; y en los
  *      diez idiomas, a 360, 390 y 430 px: ningun rotulo con una palabra partida,
@@ -205,6 +212,139 @@ async function regresiones(b) {
   await E('TGP_DEMO_NUBE.red(true)');
   ok(!errs.length, '13 sin errores', errs);
   await ctx.close();
+}
+
+/* ── 1b. el selector de los 47 sets (23 de octubre de 2026) ─────────────── */
+async function selector(b) {
+  console.log('\n=== 1b. el selector de los 47 sets: el pais del navegador y «Todos los paises» (regresiones.py, 28-36) ===');
+  /* 28. Con la region de la etiqueta del navegador, su set; sin ella, la lengua cuando es de un
+     solo pais (uk, cs, nb); y si no, el del idioma de la app. Uno por uno, en un movil nuevo. */
+  const vistos = {}, malos28 = [];
+  for (const [loc, esperado] of [['sv-SE', 'se'], ['de-AT', 'at'], ['nl-BE', 'be'], ['fr-CH', 'ch'], ['en-IE', 'ie'], ['pt-PT', 'pt'], ['el-CY', 'cy'],
+    ['ro-MD', 'md'], ['ru-RU', 'ru'], ['en-GB', 'en'], ['zh-TW', 'zht'], ['uk', 'ua'], ['cs', 'cz'], ['nb', 'no'],
+    ['ru', null], ['pt-BR', null], ['en-US', null], ['sr', null], ['el', null]]) {
+    const ctx = await contexto(b, { locale: loc }), pg = await ctx.newPage(), errs = errores(pg);
+    await abrirApp(pg, null);
+    await abrirPerfilYa(pg);
+    const r = await pg.evaluate(() => ({
+      nav: navigator.languages.join(','), lang: currentLang, avatar: TG_PERFIL.estado().avatar,
+      primero: (document.querySelector('#tgp-sets .tgp-set') || { dataset: {} }).dataset.set,
+      heroe: (document.querySelector('#tgp-meta .tgp-chip.set .flag') || {}).textContent
+    }));
+    const esp = esperado || (r.lang && await pg.evaluate(l => !!TG_AVATARES.set(l), r.lang) ? r.lang : 'es');
+    const bandera = await pg.evaluate(s => TG_AVATARES.set(s).bandera, esp);
+    vistos[loc] = r.primero + (r.heroe === bandera ? '' : ' heroe ' + r.heroe);
+    if (r.primero !== esp || r.heroe !== bandera || r.avatar || errs.length) malos28.push({ loc, esp, r, errs });
+    await ctx.close();
+  }
+  ok(!malos28.length, '28 el set del navegador va primero, y su primer avatar en el heroe (sin region que lo diga, el del idioma de la app); no se guarda nada', malos28.length ? malos28 : vistos);
+
+  const ctx = await contexto(b), pg = await ctx.newPage(), errs = errores(pg);
+  await abrirApp(pg, 'es');
+  await pg.evaluate(() => { localStorage.removeItem('tenerife.perfil'); localStorage.removeItem('tenerife.visitas'); });
+  await abrirPerfilYa(pg);
+  const E = f => pg.evaluate(f);
+  /* 29 */
+  await pg.click('#tgp-paises-btn'); await pg.waitForTimeout(200);
+  const nombres = await E(`[...document.querySelectorAll('#tgp-paises-grid .tgp-pais')].map(b => [b.dataset.set, b.querySelector('.name').textContent])`);
+  const orden = await E(`(l => { const c = new Intl.Collator(PRECIOS_GAS_LOCALE.es); const r = l.slice(1).map(x => x[1]); return r.every((x, i) => i === 0 || c.compare(r[i - 1], x) <= 0); })(${JSON.stringify(nombres)})`);
+  ok(nombres.length === 47 && nombres[0][0] === 'tf' && orden && await E('TG_AVATARES.total') === 235 && await pg.getAttribute('#tgp-paises-btn', 'aria-expanded') === 'true',
+    '29 «Todos los paises»: los 47, Tenerife primero y los demas por orden alfabetico del idioma', [nombres.length, nombres.slice(0, 3), orden]);
+  /* 30 */
+  const res = {};
+  for (const q of ['belgica', 'BÉLG', 'switz', 'zzz']) {
+    await pg.fill('#tgp-buscar', q); await pg.waitForTimeout(80);
+    res[q] = [await E(`[...document.querySelectorAll('#tgp-paises-grid .tgp-pais')].map(b => b.dataset.set).join(',')`), await E(`getComputedStyle(document.getElementById('tgp-paises-nada')).display`)];
+  }
+  ok(res.belgica[0] === 'be' && res['BÉLG'][0] === 'be' && res.switz[0] === 'ch' && res.zzz[0] === '' && res.zzz[1] !== 'none' && res.belgica[1] === 'none',
+    '30 el buscador no distingue tildes ni mayusculas, vale en ingles y dice si no hay ninguno', res);
+  /* 31 */
+  await pg.fill('#tgp-buscar', ''); await pg.waitForTimeout(80);
+  await pg.click('#tgp-paises-grid .tgp-pais[data-set="pt"]'); await pg.waitForTimeout(300);
+  const chips = await E(`[...document.querySelectorAll('#tgp-sets .tgp-set')].map(b => b.dataset.set + (b.getAttribute('aria-pressed') === 'true' ? '*' : ''))`);
+  const tira = await E(`[...document.querySelectorAll('#tgp-strip .tgp-av')].map(b => b.dataset.id)`);
+  ok(chips.includes('pt*') && tira.length === 5 && tira.every(x => x.startsWith('pt-')) && await E(`document.getElementById('tgp-paises').hidden`) && await pg.getAttribute('#tgp-paises-btn', 'aria-expanded') === 'false',
+    '31 elegir un pais lo pone en las pestañas, abre su tira y cierra la lista', [chips, tira]);
+  /* 32: elegido, y la app entera vuelve a abrirse */
+  await pg.click('#tgp-strip .tgp-av >> nth=2'); await pg.waitForTimeout(300);
+  await abrirApp(pg, 'es');
+  await pg.waitForFunction(() => document.querySelector('#auth-btn .tg-avatar-cuenta'), null, { timeout: 15000 }).catch(() => {});
+  const boton = await E(`(document.querySelector('#auth-btn .tg-avatar-cuenta') || { dataset: {} }).dataset.id`);
+  await abrirPerfilYa(pg);
+  ok(await E('TG_PERFIL.estado().avatar') === 'pt-tranvia' && (await pg.innerText('#tgp-meta')).includes('Tranvía de Lisboa') && boton === 'pt-tranvia'
+    && (await E(`[...document.querySelectorAll('#tgp-sets .tgp-set')].map(b => b.dataset.set)`)).filter(x => x === 'pt').length === 1,
+    '32 un avatar de Europa se guarda y vuelve al abrir la app: en el boton de la cuenta, en el heroe y en las pestañas', [await E('TG_PERFIL.estado().avatar'), boton, await pg.innerText('#tgp-meta')]);
+  /* 33: Escape en el buscador y en un pais de la lista cierra la lista, no el perfil; fuera de ella, el perfil */
+  await pg.click('#tgp-paises-btn'); await pg.waitForTimeout(150); await pg.focus('#tgp-buscar'); await pg.keyboard.press('Escape'); await pg.waitForTimeout(150);
+  const a33 = [await E(`document.getElementById('tgp-paises').hidden`), await E('document.activeElement.id'), await E(`!document.getElementById('perfil-panel').hidden`)];
+  await pg.click('#tgp-paises-btn'); await pg.waitForTimeout(150); await pg.focus('#tgp-paises-grid .tgp-pais[data-set="ie"]'); await pg.keyboard.press('Escape'); await pg.waitForTimeout(150);
+  const b33 = [await E(`document.getElementById('tgp-paises').hidden`), await E('document.activeElement.id'), await E(`!document.getElementById('perfil-panel').hidden`)];
+  ok(a33.join() === 'true,tgp-paises-btn,true' && b33.join() === 'true,tgp-paises-btn,true', '33 Escape cierra la lista y no el perfil (desde el buscador y desde un pais), y el foco vuelve al boton', { buscador: a33, pais: b33 });
+  await pg.keyboard.press('Escape'); await pg.waitForTimeout(250);
+  ok(await E(`document.getElementById('perfil-panel').hidden`), '33b con la lista cerrada, Escape cierra el perfil como siempre');
+  await abrirPerfilYa(pg);
+  /* 34 */
+  await pg.click('#tgp-paises-btn'); await pg.waitForTimeout(150); await E(`setLang('de')`); await pg.waitForTimeout(300);
+  const de = await E(`[...document.querySelectorAll('#tgp-paises-grid .tgp-pais .name')].map(n => n.textContent)`);
+  const deUi = [await pg.innerText('#tgp-paises-btn'), await pg.getAttribute('#tgp-buscar', 'placeholder')];
+  ok(!await E(`document.getElementById('tgp-paises').hidden`) && de.includes('Schweiz') && de.includes('Österreich') && !de.includes('Suiza') && /Alle Länder/.test(deUi[0]) && deUi[1] === 'Land suchen',
+    '34 con la lista abierta, cambiar de idioma la repinta (los paises, el boton y el buscador)', [de.slice(0, 5), deUi]);
+  /* 35 */
+  await E(`setLang('es')`); await pg.waitForTimeout(200); await pg.click('#tgp-paises-btn'); await pg.waitForTimeout(100);
+  const sets = new Set();
+  for (let i = 0; i < 30; i++) { await pg.click('#tgp-random'); await pg.waitForTimeout(30); sets.add(await E('TG_AVATARES.porId(TG_PERFIL.estado().avatar).set')); }
+  const LENG10 = ['es', 'en', 'de', 'fr', 'it', 'nl', 'pl', 'bg', 'zh', 'zht'];
+  ok(!sets.has('tf') && [...sets].some(s => !LENG10.includes(s)), '35 «Sorpréndeme» elige tambien entre los de Europa, nunca del set cerrado', [...sets].sort());
+  ok(!errs.length, '35b sin errores', errs);
+  await ctx.close();
+
+  /* 36 y los cortes de los nombres (cortes_nombres.py), a 360 px y en los diez idiomas */
+  const fuera36 = {}, cortes = {};
+  const c2 = await contexto(b, { viewport: { width: 360, height: 800 } }), p2 = await c2.newPage(), e2 = errores(p2);
+  await abrirApp(p2, 'es');
+  await abrirPerfilYa(p2);
+  const MIDE = sel => p2.evaluate(sel => {
+    const cv = document.createElement('canvas').getContext('2d'), out = [];
+    document.querySelectorAll(sel).forEach(e => {
+      const cs = getComputedStyle(e); cv.font = cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+      const ancho = e.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      e.textContent.trim().split(/\s+/).flatMap(w => w.split(/(?<=-)/)).forEach(w => {
+        const m = /[　-鿿]/.test(w) ? 0 : cv.measureText(w).width;
+        if (m > ancho + 0.5) out.push(w + ' ' + m.toFixed(0) + '>' + ancho.toFixed(0));
+      });
+      if (e.classList.contains('name') && e.closest('.tgp-av')) {
+        const r = document.createRange(); r.selectNodeContents(e);
+        const filas = new Set([...r.getClientRects()].map(x => Math.round(x.top)));
+        if (filas.size > 2) out.push(filas.size + ' lineas: ' + e.textContent);
+      }
+    });
+    return out;
+  }, sel);
+  const ids = await p2.evaluate(() => TG_AVATARES.sets.map(s => s.id));
+  for (const L of LENG) {
+    await p2.evaluate(l => setLang(l), L); await p2.waitForTimeout(300);
+    await p2.click('#tgp-paises-btn'); await p2.waitForTimeout(200);
+    const m = await p2.evaluate(() => {
+      const r = [];
+      if (document.documentElement.scrollWidth > innerWidth) r.push('pagina ' + document.documentElement.scrollWidth);
+      document.querySelectorAll('#tgp-paises-grid .tgp-pais .name, #tgp-sets .tgp-set, #tgp-paises-btn').forEach(n => { if (n.scrollWidth > n.clientWidth + 1) r.push(n.textContent); });
+      const g = document.getElementById('tgp-paises-grid').getBoundingClientRect(), k = document.getElementById('tgp-avatares').getBoundingClientRect();
+      if (g.right > k.right + 0.5) r.push('lista fuera de la tarjeta');
+      return r;
+    });
+    if (m.length) fuera36[L] = m;
+    const malos = (await MIDE('#tgp-paises-grid .tgp-pais .name')).map(x => 'lista: ' + x);
+    await p2.click('#tgp-paises-btn'); await p2.waitForTimeout(80);
+    for (const s of ids) {
+      await p2.click('#tgp-paises-btn'); await p2.waitForTimeout(60);
+      await p2.click('#tgp-paises-grid .tgp-pais[data-set="' + s + '"]'); await p2.waitForTimeout(60);
+      (await MIDE('#tgp-strip .tgp-av .name')).forEach(x => malos.push(s + ': ' + x));
+    }
+    if (malos.length) cortes[L] = malos;
+  }
+  ok(!Object.keys(fuera36).length && !e2.length, '36 a 360 px, en los diez idiomas, nada se sale (la lista, las pestañas y el boton)', [fuera36, e2]);
+  ok(!Object.keys(cortes).length, '36b los 235 nombres de avatar y los 47 de set, en los diez idiomas a 360 px: ninguna palabra mas ancha que su caja, y en la tira dos lineas como mucho', cortes);
+  await c2.close();
 }
 
 /* ── 2. la nube con permiso ───────────────────────────────────────────── */
@@ -481,11 +621,12 @@ async function pantalla(b) {
     return n.length !== 1 || n[0].getAttribute(como === 'tx' ? 'data-tx' : 'data-tx-' + como) !== clave;
   }).map(t => t[0]), TEXTOS);
   ok(TEXTOS.length > 30 && !textosMal.length, 'p2b los ' + TEXTOS.length + ' textos fijos del cuerpo (TEXTOS): cada selector da con un solo elemento, y lleva su clave', textosMal);
-  /* los 55 avatares, set a set, pintados de verdad */
+  /* los 235 avatares, set a set, pintados de verdad: cada set se abre desde «Todos los paises» */
   const sets = await pg.evaluate(() => TG_AVATARES.sets.map(s => s.id));
   const pintados = [], elegidos = [];
   for (const s of sets) {
-    await pg.click('.tgp-set[data-set="' + s + '"]'); await pg.waitForTimeout(150);
+    await pg.click('#tgp-paises-btn'); await pg.waitForTimeout(80);
+    await pg.click('#tgp-paises-grid .tgp-pais[data-set="' + s + '"]'); await pg.waitForTimeout(150);
     const r = await pg.evaluate(() => [...document.querySelectorAll('#tgp-strip .tgp-av')].map(b => { const sv = b.querySelector('svg.tg-avatar'), q = sv && sv.getBoundingClientRect(); return { id: b.dataset.id, ok: !!(q && q.width > 30 && q.height > 30 && sv.querySelector('clipPath') && sv.querySelector('linearGradient')), libre: !b.disabled }; }));
     r.forEach(x => { if (x.ok) pintados.push(x.id); });
     const primero = r[0];
@@ -500,18 +641,20 @@ async function pantalla(b) {
       if (e.estado === primero.id && e.heroe && e.boton === primero.id && e.guardado === primero.id) elegidos.push(s); else elegidos.push(s + ':MAL ' + JSON.stringify(e));
     } else elegidos.push(s + ':cerrado');
   }
-  ok(pintados.length === 55 && new Set(pintados).size === 55, 'p3 los 55 avatares se pintan en la tira, cada uno con su recorte y su degradado', pintados.length);
-  ok(elegidos.length === 11 && elegidos.every(x => !x.includes(':')), 'p4 uno de cada set (Tenerife incluido, con 10 visitas comprobadas): queda elegido, en el heroe, guardado y en el boton de la cuenta', elegidos.filter(x => x.includes(':')));
+  ok(pintados.length === 235 && new Set(pintados).size === 235, 'p3 los 235 avatares se pintan en la tira, cada uno con su recorte y su degradado', pintados.length);
+  ok(elegidos.length === 47 && elegidos.every(x => !x.includes(':')), 'p4 uno de cada uno de los 47 sets (Tenerife incluido, con 10 visitas comprobadas): queda elegido, en el heroe, guardado y en el boton de la cuenta', elegidos.filter(x => x.includes(':')));
   await ctx.close();
 
   /* los diez idiomas, a tres anchos, con datos en cada parte */
-  const ROTULOS = '.tgp-tile .k, .tgp-tile .v, .tgp-stamp .nm, .tgp-stamp .th, .tgp-set, .tgp-btn, .tgp-chip, .tgp-card h2, .tgp-top h1, .tgp-field label, .tgp-seg button, .tgp-ranges button, .tgp-legend span, .tgp-lema, .tgp-eyebrow';
+  const ROTULOS = '.tgp-tile .k, .tgp-tile .v, .tgp-stamp .nm, .tgp-stamp .th, .tgp-set, .tgp-mas, .tgp-pais .name, .tgp-btn, .tgp-chip, .tgp-card h2, .tgp-top h1, .tgp-field label, .tgp-seg button, .tgp-ranges button, .tgp-legend span, .tgp-lema, .tgp-eyebrow';
   for (const ancho of [360, 390, 430]) {
     const c2 = await contexto(b, { viewport: { width: ancho, height: 900 } }), p2 = await c2.newPage(), e2 = errores(p2);
     await c2.addInitScript(d => { try { localStorage.setItem('tenerife.perfil', d); } catch (e) {} }, JSON.stringify(ejemplo()));
     await abrirApp(p2, 'es');
     await p2.evaluate(hoy => { const ids = places.slice(0, 12).map(p => p.id); localStorage.setItem('tenerife.visited', JSON.stringify(ids)); localStorage.setItem('tenerife.visitas', JSON.stringify(ids.slice(0, 3).map(id => ({ id, d: hoy })))); localStorage.setItem('tenerife.badges', JSON.stringify(['primer', 'explorador'])); }, HOY);
     await abrirPerfilYa(p2);
+    /* con «Todos los paises» abierto: sus 47 nombres, en cada idioma, tambien se miran */
+    await p2.click('#tgp-paises-btn'); await p2.waitForTimeout(200);
     let es = null; const partidas = [], fuera = [], vacios = [], castellano = [];
     for (const L of LENG) {
       await p2.evaluate(l => setLang(l), L); await p2.waitForTimeout(450);
@@ -519,11 +662,13 @@ async function pantalla(b) {
         const panel = document.getElementById('perfil-panel'), out = { partidas: [], fuera: [], vacios: [], textos: [] };
         /* una palabra de un rotulo que acaba en dos lineas. Cortar en el guion de un
            compuesto es correcto («Teneriffa-/Legende»): se mira cada trozo entre
-           espacios y guiones; lo que no puede pasar es un corte sin guion. */
+           espacios y guiones; lo que no puede pasar es un corte sin guion. En chino
+           se puede pasar de linea entre dos caracteres cualesquiera: cada uno es un
+           trozo («波斯尼亚和黑塞哥维那», en la lista de paises). */
         panel.querySelectorAll(sel).forEach(el => {
           const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); let n;
           while ((n = w.nextNode())) {
-            const re = /[^\s\-\u2010]+/g; let m;
+            const re = /[\u3000-\u9fff\uf900-\ufaff]|[^\s\-\u2010\u3000-\u9fff\uf900-\ufaff]+/g; let m;
             while ((m = re.exec(n.data))) {
               const rg = document.createRange(); rg.setStart(n, m.index); rg.setEnd(n, m.index + m[0].length);
               const tops = new Set([...rg.getClientRects()].filter(q => q.width > 0).map(q => Math.round(q.top)));
@@ -534,7 +679,7 @@ async function pantalla(b) {
         /* nada se sale por los lados (las filas que se desplazan de lado y lo decorativo, aparte) */
         if (panel.scrollWidth > innerWidth + 1) out.fuera.push('scrollWidth ' + panel.scrollWidth);
         panel.querySelectorAll('*').forEach(e => {
-          if (e.closest('.tgp-sets, .tgp-strip, .tgp-hero, .tgp-toast, .tgp-tip') || e.closest('[hidden]')) return;
+          if (e.closest('.tgp-strip, .tgp-hero, .tgp-toast, .tgp-tip') || e.closest('[hidden]')) return;
           const q = e.getBoundingClientRect(); if (q.width && (q.right > innerWidth + 1 || q.left < -1)) out.fuera.push((e.className && e.className.baseVal === undefined ? e.className : e.tagName) + ' ' + Math.round(q.left) + '-' + Math.round(q.right));
         });
         panel.querySelectorAll('[data-tx]').forEach(e => { if (!e.textContent.trim() && !e.closest('[hidden]')) out.vacios.push(e.getAttribute('data-tx')); });
@@ -559,6 +704,7 @@ async function pantalla(b) {
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-proxy-server'] });
   try {
     await regresiones(b);
+    await selector(b);
     await nube(b);
     await volumen(b);
     await visitas(b);

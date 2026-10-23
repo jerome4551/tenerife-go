@@ -1828,6 +1828,14 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 /* la linea de «Activar notificaciones», que escribe el codigo de las notificaciones: vacia, no ocupa */
 .tgp-push-msg { text-align: center; min-height: 0; }
 .tgp-push-msg:empty { display: none; }
+/* Medido en la app, con sus letras (23 de octubre): la palabra mas larga que no se puede
+   partir es, en la lista de paises, «Великобритания» (121 px; con la bandera y los margenes,
+   174) y «Nordmazedonien» (109), y en la tira, «Астрономически» (101). Con columnas de
+   132 px, a 390 y 430 px la lista iba en dos y partia esos nombres a mitad de palabra: con
+   176 va en una en el movil y en dos en una tableta. Y las etiquetas de la tira, de 96 a 102. */
+.tgp-paises-grid { grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); }
+.tgp-av { width: 104px; }
+.tgp-av .name { max-width: 102px; }
 `;
   /* CUERPO es perfil.html del encargo sin el selector de idioma, la etiqueta
      «Ejemplo» ni el pie «Demo», y sin sus marcas de idioma: las claves van en
