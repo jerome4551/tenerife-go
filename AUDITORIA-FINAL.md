@@ -9843,6 +9843,98 @@ viejos y rotos, servidos por la propia prueba—, el módulo que no llega,
 de las alertas y la línea de cada terremoto («M 3,2 · lugar del IGN») no
 son filas: van declarados sin traducir.
 
+### Encima del main del 23 de octubre (24 de octubre, madrugada)
+
+La tercera entrega (`emergencias-sos-3.zip` y `PARA-CLAUDE-CODE-SOS.md`, que
+sustituye a las dos anteriores) llegó el 23 por la noche. Jerome: «Termina y
+después empieza con estos. Como siempre verifica todo». Lo que se comprobó
+antes de juntarla:
+
+- **Las huellas y los árboles.** Las 30 de la nota cuadran con los ficheros
+  y con `SHA256SUMS`. El bundle y los tres parches, sobre `6f88594`, dan los
+  árboles de la nota: `2b5ce22…` la rama `sos` y `f46972b…` `sos-encender`.
+- **El código, línea a línea.** Las 1.214 líneas de código del módulo (sin
+  sus 588 filas), el armazón de `index.html`, el service worker, el
+  manifiesto, las herramientas, los cuatro robots y sus flujos. Todo se
+  pinta con `textContent`; `innerHTML` solo para los iconos del propio
+  fichero. Lo que traigan los robots se valida, y los enlaces de las
+  alertas solo pueden ser de `www3.gobiernodecanarias.org/noticias/`. La
+  mochila se guarda solo en el móvil y se valida al leerla; las
+  coordenadas no se guardan ni se envían. Los flujos, solo a mano y con el
+  permiso justo (escribir el fichero de datos; el vigía, además, abrir
+  incidencias). Las 588 filas del módulo son, una a una, las de
+  `fuente/i18n/` de la entrega, y el código, el de su plantilla.
+- **Lo que dice.** Las 588 filas leídas en castellano. Las cifras de cada
+  fila, iguales en los diez idiomas (las únicas diferencias son los meses
+  con número en chino y un «6» en cifra en italiano). Los consejos que más
+  importan (la reanimación, el atragantamiento, el ahogado, las quemaduras,
+  el terremoto y el maremoto) leídos en los diez. Contra la fuente oficial,
+  lo que se pudo abrir desde aquí: el Servicio de Información Toxicológica
+  (91 562 04 20, las 24 horas) y el 012 (castellano y 16 idiomas más, las
+  24 horas). Lo demás, con las citas de los informes de `verificacion/` de
+  la entrega: los idiomas del 112 (su página, actualizada el 20-1-2025), el
+  canal de WhatsApp oficial del 112, el litro y medio de agua por persona y
+  día de la guía de 2025, las Órdenes INT/1071/2026 e INT/1069/2026 (BOE del
+  10 de octubre), los 100 metros de profundidad del IGN para un barco, el
+  «no le dé nada de beber» de Sanidad en el golpe de calor. Sin comprobar,
+  como dice la nota: el visor de riesgos de GRAFCAN.
+
+**Al juntarlo** encima de `cbf6ad2` (con el cielo, el trato de usted en los
+diez idiomas y el perfil) chocaban ocho ficheros, y en todos se quedan las
+dos cosas: en `index.html`, el bloque del perfil y detrás el de EMERGENCIAS;
+en `sw.js`, los módulos del perfil y el del SOS en `CORE`, y los ficheros de
+los robots junto a la regla de idiomas de main (con `idiomas/cielo/`);
+`auditar.sh`, `auditar_cielo.js` (la carga del cielo, una vez),
+`auditar_registro.js` (el cielo, el perfil y el SOS) y
+`pantalla-aceptado.json`, con lo de los dos. `README.md` y este documento,
+los de main con lo del SOS encima y las cifras recontadas.
+
+**Lo que encontró el repaso, y está arreglado** (un commit cada uno):
+
+- `800a1cf`: la barra del 112 traía escrito en el HTML «Atienden en
+  español, inglés y alemán», el texto de antes de la verificación, aunque
+  la fila ya decía «en muchos idiomas». Se veía solo antes de pintarse la
+  página, pero era un dato desfasado. Y `auditar_emergencias.js` gana un
+  control: lo que el armazón trae escrito es el castellano de su fila.
+- `a54cac1`: el vigía copiaba en la incidencia de GitHub un trozo de la
+  página que cambió, tal cual. Ahí GitHub convierte «@112canarias» en una
+  mención (avisaría a quien se llame así) y «#12» en un enlace. Ahora va
+  como código, y su `--probar` lo comprueba.
+
+**Lo que cambió en main desde la entrega y no hizo falta tocar.** El francés
+ya está de usted, pero su marca ya no es «es», así que «ES-Alert» no salta:
+`auditar_registro.js`, todo de usted en los diez idiomas, con el panel
+dentro: 75.716 textos (69.676 en main). Con el perfil, la barra de
+abajo cabe a 320 y 390 px también con un avatar elegido; con «Cuenta»
+abierta la barra queda tapada, como con los otros paneles a pantalla
+entera, y el SOS se abre desde la pantalla principal. `#sos` abre el panel
+por encima de todo, también en la primera visita, por encima de la
+bienvenida (z-index 9700 frente a 9000).
+
+**El bloque 3** (los robots encendidos) queda preparado en la rama
+`sos-encender` (`d58d178`), encima de esta. No se sube hasta que Jerome lo
+diga y cada robot se haya lanzado a mano y comprobado.
+
+**La auditoría entera**, sobre `a54cac1` (esta documentación aparte, como
+siempre): **«AUDITORIA EN VERDE»**, ningún control en rojo ni roto:
+
+- `auditar_registro.js`, 75.716 textos: los nueve idiomas que distinguen
+  el trato, todo de usted.
+- `auditar_emergencias.js`, 37 de 37; `probar_emergencias.js`, 257 de 257
+  (las 25 guías en los diez idiomas, la barra a 320 y 360 px, sin
+  conexión); los cuatro robots con `--probar`, en verde.
+- `auditar_web.js`, 47 tablas y 2.797 filas; `barrido_idiomas.js`, 4.938
+  dentro y fuera, y este documento dice lo mismo.
+- `barrido_pantallas.js`, 182 pantallas y fichas por idioma (155 sin el
+  SOS): 0 textos sin traducir y 0 errores de página.
+- `auditar_cielo.js`, 302 de 302; `auditar_perfil.js`, 58 de 58;
+  `probar_perfil.js`, 112 de 112.
+- `auditar_cirilico.py`, 0 sospechosas de 2.193 nombres.
+- `probar_notificacion_idioma.js`: de las 2.345 suscripciones, a cada una
+  le llega una.
+- `probar_faq.js`, 0 fallos de 122; `probar_movil.js`, las 25 preguntas en
+  su idioma; `probar_play.js`, 233 de 233, con la barra de seis botones.
+
 ---
 
 # 5 · Cómo se vuelve a medir
