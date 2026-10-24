@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.056 kB** en castellano · **1.170 kB** en el peor caso (búlgaro) · 1.156 kB en polaco, el 24 de octubre por la tarde, con los bloques quinto a octavo del cielo, el trato de usted, el perfil con los de oro y el botón SOS con sus avisos. Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.060 kB** en castellano · **1.174 kB** en el peor caso (búlgaro) · 1.160 kB en polaco, el 24 de octubre por la noche, con los bloques quinto a décimo del cielo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos y el Carnaval de 2027. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -2622,6 +2622,125 @@ sospechosas; `auditar_web.js`, 44 tablas y 1828 filas; `barrido_idiomas.js`,
 3.969; la descarga, 1.044 kB en castellano, 1.158 en búlgaro y 1.144 en
 polaco. Los tres controles que leen los `.pmtiles` desde Python siguen sin
 poder correr aquí, como en el noveno bloque.
+
+### Encima del main de hoy, con el Carnaval de 2027 (24 de octubre, noche)
+
+Los dos parches llegaron con las notas 13 y 14 (`PARA-CLAUDE-CODE-13.md` y
+`PARA-CLAUDE-CODE-14.md`), encima de los cuatro de la nota 12. Lo que se
+comprobó antes de juntarlos:
+
+- **Las huellas y el árbol.** Las seis huellas de la nota 14 cuadran, y los
+  seis parches, aplicados a secas sobre `ac10788`, dan su árbol exacto
+  (`65c3db1…`; los cinco primeros, el de la nota 13, `b0654f3…`).
+- **El código del noveno bloque.** El fondo de la isla nunca descarga nada:
+  en la web lee lo que ya guardó el service worker y, en la app de las
+  tiendas, el fichero que va dentro; si no está, no hay fondo y el mapa va
+  como antes. No pide teselas de OpenStreetMap, no toca datos de la persona
+  ni `innerHTML`.
+- **El código del décimo bloque.** El `_onTouchEnd` sustituido es el de la
+  Leaflet 1.9.4 de `vendor/` (la cadena exacta sale una vez), con los dos
+  cambios que dice. Con P el punto del pellizco y C el centro, en píxeles del
+  zoom de los dedos, el centro nuevo P − (P − C) / escala deja P en el mismo
+  sitio de la pantalla; y con `noUpdate` en `false` las capas piden las
+  teselas al empezar la animación, como con los botones de zoom. El medio
+  nivel (`zoomSnap: 0.5`) se queda, y a mitad del gesto no se pide nada.
+- **Las fichas, otra vez contra sus fuentes**, dato a dato:
+  - el PNT 16 Sanatorio, en Tenerife ON: 4,58 km, 1 h 45 min, dificultad
+    media, de 2.294,71 a 2.196,59 m, sin reserva, el aviso del control del
+    muflón, las colmenas de miel de retama y las formas de la lava del domo
+    de Montaña Blanca. La guía del Parque (MITECO) le da dificultad baja; la
+    ficha dice de quién es la suya;
+  - el PNT 07: reserva obligatoria en Tenerife ON, sanción sin ella, y
+    tarifa de 09:00 a 17:00 para quien no reside en Tenerife;
+  - el cráter de Pico Viejo: su borde a 3.100 m y unos 800 m de diámetro
+    (Tenerife ON, PNT 09); 200 m de hondo (Parques Nacionales);
+  - el PNT 12: 0,72 km según la ficha técnica de Tenerife ON (MITECO da
+    781 m, y su guía de miradores 731), y sin autorización;
+  - las islas: la web del teleférico dice que en días claros se ven La
+    Gomera, El Hierro, La Palma y Gran Canaria; las tres del oeste, también
+    desde el mirador de Pico Viejo;
+  - La Rambleta: «la Caldera de las Cañadas en su totalidad, así como la
+    zona sur de la isla de Tenerife y, a lo lejos, la isla de Gran Canaria»
+    («Asómese al Parque Nacional del Teide», MITECO);
+  - más de 10 °C entre la base y la cumbre, y el billete solo en línea: el
+    operador del teleférico.
+- **El Sanatorio.** Jerome: «Si no existe bóralo si existe guárdalo y hazlo
+  correcto». El sendero de 20 km del Sanatorio a Pico Viejo no existe; el
+  PNT 16 sí, y es el que cuenta la ficha. El id se queda, por los favoritos.
+  Con la nota 14, Jerome: «déjalo así».
+
+**Cómo se juntó** (`44a4fda` y `14c21e9`, con los mensajes de los parches). Encima
+de `main` chocó la ficha de la cumbre, en `index.html`, en los nueve idiomas
+y en la fuente del polaco: `main` ya decía «entre las 9:00 y las 17:00» para
+la tarifa del PNT 10, y el noveno bloque cambia las siete islas por las
+cuatro. Se juntaron palabra a palabra contra su base (en chino, carácter a
+carácter), con un guion que para si los dos lados tocan la misma palabra: no
+paró. En neerlandés chocaban además Las Narices y La Rambleta, y en polaco el
+Sanatorio, Afur–Taganana y Guajara; las dos últimas solo las había cambiado
+`main`, al pasar el polaco a la forma impersonal, y se quedan así. El décimo
+bloque entró sin choques en el código; en este documento chocó solo la fila
+de la descarga, que se recontó, y su sección va detrás de la del noveno.
+Aquí sí corren los tres controles que leen los `.pmtiles` desde Python, y
+uno salió en rojo: `REVISION-LUGARES.md` se había quedado viejo con el punto
+nuevo del Sanatorio, que tiene seis decimales (la fila de cuatro pasa de 555
+a 554, y la de seis, de 187 a 188). Se generó otra vez con
+`node tools/informe_lugares.js`, dentro del commit del noveno bloque.
+
+**El Carnaval de 2027** (`647eec8`). El botón de fiestas calcula el martes
+de Carnaval como la Pascua menos 47 días, y para 2027 decía el 9 de
+febrero. Santa Cruz lo pasó al 23: el Pleno lo aprobó como festivo local
+(Diario de Avisos y RTVC, marzo de 2026), y La Laguna movió el suyo a ese
+día. Ahora `FI_DATA` admite el año que no sigue la regla, con su fecha
+oficial (`exc`), y `auditar_perfil.js` mira que el martes del botón sea el
+último día del avatar de oro del Carnaval, cada año de 2026 a 2045: con el
+`index.html` de `main`, en rojo. Jerome: «información reales, verificadas
+[…] por eso tenemos el botón fiesta». Y fuera del repositorio, dos tareas
+programadas, que preparan los cambios en una rama y no suben nada sin
+Jerome: las fiestas del mes siguiente, el día 20 de cada mes, y las fechas
+del Carnaval del año siguiente, cada 15 de abril.
+
+**Open-Meteo.** Jerome no quiere el plan de pago: «Lo de open meteo está
+buscando una solución gratis que no quiero pagar el coste este». La vía
+gratis es la de la sección del décimo bloque, y es lo siguiente: el robot de
+la nota 14, que arranca cada hora el servidor de Open-Meteo con sus datos
+abiertos. La app no cambia hasta que el robot pase su primera prueba en
+GitHub y se compare una vez con la API pública.
+
+**El resultado.** Sobre la rama, con el décimo bloque encima del `main` de
+esa tarde (árbol `940def1…`), el 24 de octubre de 2026 por la noche:
+**`auditar.sh` entero en verde**, sin un control en rojo y sin ninguno que no pudiera correr.
+`auditar_mapa.js`, 98 controles, con los bloques 6 y 7: al soltar fuera del
+centro, el punto no se mueve y la primera tesela sale a los 5 ms; con el
+`_onTouchEnd` original de Leaflet, el punto se mueve 8 px y la tesela espera
+261 ms. `auditar_cielo.js`, 303 controles; `auditar_perfil.js`, 73, con el
+del Carnaval; el perfil en el navegador, 129; el SOS, 37 en el fuente y 261
+en el panel. Lo que se ve en pantalla: 183 pantallas y fichas por idioma y 0
+textos sin traducir. El trato de usted, en verde en los nueve idiomas que lo
+distinguen (76.427 textos leídos). El cirílico: 2.217 nombres y 0 variantes
+sospechosas. Las tablas de idioma: 47, con 2.868 filas, y a ninguna le falta
+un idioma. Aquí sí corren los tres controles que leen los `.pmtiles` desde
+Python: las 100 playas y charcos, a una mediana de 22 m del agua y ninguno a
+más de 800 m; de los 980 lugares, ninguno de tierra cae en el mar (los nueve
+que están en el agua son puertos, marinas y charcos); y `REVISION-LUGARES.md`,
+al día. Al subir, la rama va encima de cuatro commits más de los robots, que
+solo cambian `datos/`: los avisos de AEMET, las alertas de Canarias, los
+terremotos y los elementos de los satélites.
+
+**En el móvil, antes de subir** (de las notas 13 y 14):
+
+- Pellizcar fuera del centro (por ejemplo, sobre Puerto de la Cruz con el
+  mapa centrado en La Orotava) y soltar: el sitio que estaba entre los dedos
+  no se mueve; solo se ajusta un poco el tamaño.
+- El pellizco, en un iPhone y en un Android, con las calles, con «Isla sin
+  conexión» y con el satélite: alejar de un barrio a la isla entera y soltar;
+  nada en blanco, y lo borroso, poco rato. Acercar deprisa. En un móvil
+  viejo, que el gesto no dé tirones.
+- Después de un salto: abrir una ficha desde la lista y alejar enseguida.
+- La primera vez, recién instalada la web: el fondo no está hasta que el
+  service worker guarda la isla, y el mapa va como antes.
+- Las fichas de Montaña Blanca, La Rambleta y el Sanatorio (el punto, junto
+  al teleférico), en castellano y en otro idioma; y el botón de fiestas,
+  con el Carnaval de 2027 el 23 de febrero.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
@@ -10644,7 +10763,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/gtfs_red.py` | regenera la red desde un GTFS completo |
 | `tools/orientacion.py` | deduce orientación de playa desde la costa · **suspendido por su propio control** |
 | `tools/auditar_sw.js` | el service worker en un ámbito falso: mapa sin conexión, tope y actualizaciones; y las notificaciones: cada una con su tag, y al tocarla, su guía, también con la app abierta |
-| `tools/auditar_mapa.js` | el mapa sin conexión, bloque a bloque |
+| `tools/auditar_mapa.js` | el mapa sin conexión, bloque a bloque; el pellizco con un gesto de verdad en un móvil emulado (bloque 6): todo pintado al soltar, sin saltos, y el fondo de la isla con sus 16 teselas; y al soltarlo (bloque 7): el punto que estaba entre los dedos, quieto, ninguna tesela pedida a mitad del gesto y la primera enseguida, con la Leaflet de `vendor/` que se sustituye |
 | `tools/mapa_base.py` | genera `mapa/tenerife-base.pmtiles` desde los datos del propio repositorio |
 | `tools/mapa_prueba_osm.py` | banco de pruebas con el esquema de Protomaps, para poder probar el bloque 4 |
 | `tools/verificar_osm.py` | revisa un `.pmtiles` de OSM antes de subirlo · 7 pasos |
@@ -10694,7 +10813,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/capturas_app_store.js` | las capturas de la tienda (iPhone 1206×2622, iPad 2064×2752), de `app/www/` servido aparte; para si la página no lleva la marca o un estado no llega a lo que dice |
 | `tools/app_store_metadata.js` | la ficha y las capturas en el formato de `fastlane deliver` (`app/fastlane/metadata/`, `…/screenshots/`); con `--comprobar`, las diez localizaciones, los límites y los tamaños |
 | `tools/cielo_uai.js` | los nombres de la UAI de la carta del cielo en chino, chino tradicional y búlgaro (`CIELO_UAI`, en `modulos/cielo.js`), de las traducciones de Stellarium que baja `cielo_fuentes.sh`; los coteja con la cultura celeste china y entre sí; con `--comprobar`, para si lo escrito no es lo que sale de las fuentes (lo pasa `auditar_cielo.js`) |
-| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 235 avatares en 47 sets y sus 49 de oro (SVG sin nada que se ejecute, solo con etiquetas de dibujo y 2.200 bytes como mucho, «class» solo en las piezas que se mueven y nunca con `transform`, ids con la forma que pide `perfil.sql`, los 36 países de Europa ni uno más ni uno menos, la bandera de cada set, cada avatar con una de las nueve animaciones; los de oro, uno por set y tres en Tenerife, detrás de los cinco, con la regla de su fiesta y una ventana cada año de 2026 a 2045), las 425 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app, que cada animación tenga su regla y nada se mueva con «reducir movimiento», que «Sorpréndeme» nunca dé uno de oro y que la lista de los de oro conseguidos no suba a la nube, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas, rangos, fechas de 1900 a 2100 y el tope de 2.000 pesos y 2.000 caminatas, la misma cifra que la app) |
+| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 235 avatares en 47 sets y sus 49 de oro (SVG sin nada que se ejecute, solo con etiquetas de dibujo y 2.200 bytes como mucho, «class» solo en las piezas que se mueven y nunca con `transform`, ids con la forma que pide `perfil.sql`, los 36 países de Europa ni uno más ni uno menos, la bandera de cada set, cada avatar con una de las nueve animaciones; los de oro, uno por set y tres en Tenerife, detrás de los cinco, con la regla de su fiesta y una ventana cada año de 2026 a 2045), las 425 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app, que cada animación tenga su regla y nada se mueva con «reducir movimiento», que «Sorpréndeme» nunca dé uno de oro y que la lista de los de oro conseguidos no suba a la nube, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas, rangos, fechas de 1900 a 2100 y el tope de 2.000 pesos y 2.000 caminatas, la misma cifra que la app); y que el martes de Carnaval del botón de fiestas sea el último día del avatar de oro del Carnaval, cada año de 2026 a 2045 |
 | `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql`, con sus fechas y su tope de 2.000, y, como Supabase, da como mucho 1.000 filas por consulta), la nube con más filas de las que caben en una consulta, el tope lleno, las visitas comprobadas en el mapa, el selector de los 47 sets (el país del navegador primero, «Todos los países» y su buscador), los de oro con la fecha cambiada en el reloj del navegador (fuera de su día, en su fiesta, después, «De oro», «Sorpréndeme» y la descarga) y el movimiento al tocar, nada con «reducir movimiento», los 284 avatares y sus nombres sin cortar, y los diez idiomas a 360, 390 y 430 px, también los de oro en cinco estados (150 pantallas) |
 | `tools/probar_fechas_oro.js` | las fechas de los de oro, sin navegador: el motor de `modulos/avatares.js` con una regla de ejemplo de cada tipo (la Pascua y la ortodoxa, un día fijo que se adelanta si cae en domingo, un día de la semana entre dos fechas, el enésimo día de la semana de un mes y el último, una tabla de fechas, una fiesta de dos días que cruza el año, el Carnaval de sábado a martes y una excepción, como la de Santa Cruz en 2027): 51 casos, con sus Pascuas y sus días de la semana comprobados aparte |
 | `tools/auditar_emergencias.js` | el panel de emergencias (SOS) en Node: cada fila en los diez idiomas y pedida por el código, las ocho del armazón en `UI_TX`, las fuentes de cada guía, los grupos y los «Vea también», las banderas y los teléfonos, los enlaces (https y de los dominios oficiales), el armazón con el 112 y el rótulo «SOS», el service worker (en `CORE`, con su rama y fuera de «red primero»), el atajo del manifiesto, que cada fichero de `window.SOS_DATOS` tenga su robot encendido, y ninguno encendido sin él, y que lo que escriben los robots vaya en «red primero» |
