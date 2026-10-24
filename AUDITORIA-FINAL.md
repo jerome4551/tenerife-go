@@ -4120,7 +4120,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 47 tablas, 2797 filas (y 4.938 filas, dentro y fuera del fuente)
+## Idiomas · 47 tablas, 2806 filas (y 4.947 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -4189,7 +4189,9 @@ y 4.341. Y el 24, el panel de emergencias (el botón SOS): 2 tablas y 597
 filas más, `EMERG_UI` con 588 y `SOS_LOCALE` en `modulos/emergencias.js`,
 que `tools/fuente.js` pega al fuente, y en `UI_TX` las ocho que hacen falta
 antes de cargarlo (el botón, el título, la barra del 112, «cargando», el
-error, «reintentar» y «volver»): 47 tablas, 2797 filas y 4.938. El
+error, «reintentar» y «volver»): 47 tablas, 2797 filas y 4.938. Y ese
+mismo día, «Para evitar un incendio» en «Fuego en un edificio»: nueve filas
+más en `EMERG_UI`, que llega a 597, hasta 2806 filas y 4.947. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
