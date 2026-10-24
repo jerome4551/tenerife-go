@@ -182,9 +182,22 @@ const ROT_ES = new Map();
      no es la del «Ahora no» del tour. PWA_TX no: su «Instalar aplicación»
      es el boton de la app, y app-07 cita con esas mismas palabras la opcion
      del menu de Chrome, que en cada idioma se llama como Chrome la llame. */
-  for (const t of ['PUSH', 'TTS', 'VIS']) {
+  for (const t of ['PUSH', 'TTS', 'VIS', 'DP', 'EMERG']) {
     const tabla = (ROT.TABLAS || {})[t] || {};
     for (const k in tabla) { const r = tabla[k]; if (r && typeof r === 'object') mete(r.es, r); }
+  }
+  /* Y las que van por idioma (23-10-2026): la leyenda, el GPX, «¿Donde
+     hace sol ahora?», las fiestas y «Como moverse». El «Ver el tour» de la
+     leyenda no es el del aviso del tour (UI_TX.tourVer): en aleman uno dice
+     «Tour ansehen» y el otro «Tour starten». Con las dos filas, la respuesta
+     tiene que decir una de las dos, la que de verdad nombra. */
+  for (const t of ROT.POR_IDIOMA || []) {
+    const tabla = (ROT.TABLAS || {})[t] || {};
+    for (const k in tabla.es || {}) {
+      if (typeof tabla.es[k] !== 'string') continue;
+      const fila = {}; for (const L in tabla) fila[L] = (tabla[L] || {})[k];
+      mete(tabla.es[k], fila);
+    }
   }
 }
 let citadosSueltos = 0;

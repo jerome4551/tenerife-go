@@ -214,6 +214,12 @@ async function regresiones(b) {
   await pg.waitForTimeout(150);
   const sw = () => pg.locator('#tgp-nube').getAttribute('aria-checked');
   ok(await pg.locator('#tgp-nube').count() === 1 && await sw() === 'false', '21 con sesion, el interruptor de la nube sale apagado');
+  /* 24/10/2026: sin año de nacimiento no se puede dar el permiso (y con menos de 16, tampoco: n22) */
+  const dis0 = await E(`document.getElementById('tgp-nube').disabled`), sub0 = await pg.innerText('#tgp-nube-box .sub');
+  await pg.click('#tgp-nube', { force: true }); await pg.waitForTimeout(100);
+  ok(dis0 && sub0.includes('año de nacimiento') && sub0.includes('16 años') && await E(`getComputedStyle(document.getElementById('tgp-nube-confirm')).display`) === 'none',
+    '21b sin año de nacimiento el interruptor no se enciende y pide el año', [dis0, sub0]);
+  await pg.fill('#tgp-nac', '1990'); await pg.click('#tgp-save'); await pg.waitForTimeout(200);
   await pg.click('#tgp-nube'); await pg.waitForTimeout(120);
   const vis = await E(`getComputedStyle(document.getElementById('tgp-nube-confirm')).display`);
   await pg.click('#tgp-nube-no'); await pg.waitForTimeout(120);
@@ -576,7 +582,8 @@ async function nube(b) {
   await pg.click('#tgp-borrar-local'); const aviso = await pg.innerText('#tgp-borrar-texto'); await pg.click('#tgp-borrar-si'); await pg.waitForTimeout(900);
   ok(aviso.includes('y de su cuenta') && !(await nubeDe('perfiles')).length && !(await nubeDe('pesos')).length && !(await st()).medidas.length && (await st()).nube === null && await sw() === 'false' && (await toast()).includes('y de su cuenta'),
     'n17 borrar el perfil con la nube: de aqui y de la cuenta', { aviso, toast: await toast() });
-  /* otra cuenta en el mismo movil */
+  /* otra cuenta en el mismo movil (antes, el año de nacimiento, que se fue con el perfil) */
+  await pg.fill('#tgp-nac', '1990'); await pg.click('#tgp-save'); await pg.waitForTimeout(150);
   await pg.fill('#tgp-peso-nuevo', '70'); await pg.click('#tgp-add-peso button[type=submit]'); await pg.waitForTimeout(150);
   await pg.click('#tgp-nube'); await pg.click('#tgp-nube-si'); await colaVacia();
   await E('TGP_DEMO_NUBE.cuenta(1)'); await pg.waitForTimeout(700);
@@ -613,7 +620,7 @@ async function nube(b) {
   await pg.fill('#tgp-nac', String(new Date().getFullYear() - 10)); await pg.click('#tgp-save'); await pg.waitForTimeout(200);
   const dis = await E(`document.getElementById('tgp-nube').disabled`), sub = await pg.innerText('#tgp-nube-box .sub');
   await pg.click('#tgp-nube', { force: true }); await pg.waitForTimeout(100);
-  ok(dis && sub.includes('a partir de los 14 años') && await E(`getComputedStyle(document.getElementById('tgp-nube-confirm')).display`) === 'none', 'n22 con 10 años: el interruptor no se puede encender y dice por que', [dis, sub]);
+  ok(dis && sub.includes('a partir de los 16 años') && await E(`getComputedStyle(document.getElementById('tgp-nube-confirm')).display`) === 'none', 'n22 con 10 años: el interruptor no se puede encender y dice por que', [dis, sub]);
   await pg.fill('#tgp-nac', '1990'); await pg.click('#tgp-save'); await pg.waitForTimeout(200);
   ok(!(await E(`document.getElementById('tgp-nube').disabled`)) && (await pg.innerText('#tgp-nube-box .sub')).includes('perderlos'), 'n23 con un año adulto vuelve a poder encenderse');
   await pg.click('#tgp-nube'); await pg.click('#tgp-nube-si'); await colaVacia();

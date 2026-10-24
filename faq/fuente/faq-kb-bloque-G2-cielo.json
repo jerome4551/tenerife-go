@@ -1,0 +1,1534 @@
+{
+ "meta": {
+  "bloque": "G2 · El cielo de Tenerife",
+  "version": "1.0",
+  "fecha": "2026-10-23",
+  "idiomas": [
+   "es",
+   "en",
+   "de",
+   "fr",
+   "it",
+   "nl",
+   "pl",
+   "zh",
+   "zht"
+  ],
+  "entradas": 11,
+  "origen": "Redactado el 23/10/2026 sobre modulos/cielo.js tal como esta en main (bloques primero a octavo del cielo, del 17 al 23 de octubre de 2026): lo que el panel hace y app-24 y app-25 no contaban. Cada afirmacion, comprobada en el codigo (ver «comprobado»); los rotulos entre comillas son los de la app en cada idioma (CIELO_UI) y estan en «rotulos», que tools/auditar_faq.js coteja con la pantalla.",
+  "politica_datos": "Nada se calcula aqui: todo lo que cambia (horas, fases, pasos de satelites, el indice) lo calcula el panel en el movil, y la respuesta dice donde mirarlo. Las cifras fijas son las de la app (20 segundos de guia, 30 segundos de la voz, 7 noches de pasos, 30 dias de Wikipedia, 0 a 10 del indice). Las normas del Parque, del Decreto 182/2025 (PRUG del Parque Nacional del Teide), cotejadas el 23/10/2026 en la copia del BOC n.º 240 y con Tenerife ON; van volatil: true."
+ },
+ "entradas": [
+  {
+   "id": "cie-01",
+   "cat": "cielo",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué estrella es esa?",
+    "en": "Which star is that?",
+    "de": "Welcher Stern ist das?",
+    "fr": "Quelle est cette étoile ?",
+    "it": "Che stella è quella?",
+    "nl": "Welke ster is dat?",
+    "pl": "Co to za gwiazda?",
+    "zh": "那是哪颗星？",
+    "zht": "那是哪顆星？"
+   },
+   "keys": {
+    "es": [
+     "que estrella es esa",
+     "que estrella es",
+     "identificar estrellas",
+     "reconocer estrellas",
+     "apunte al cielo",
+     "apuntar al cielo",
+     "apuntar el movil al cielo",
+     "brujula",
+     "calibrar la brujula",
+     "camara del cielo",
+     "encontrar un planeta"
+    ],
+    "en": [
+     "which star is that",
+     "what star is that",
+     "identify stars",
+     "recognise stars",
+     "point at the sky",
+     "point my phone at the sky",
+     "compass",
+     "calibrate the compass",
+     "sky camera",
+     "find a planet"
+    ],
+    "de": [
+     "welcher stern ist das",
+     "sterne erkennen",
+     "sterne bestimmen",
+     "auf den himmel zeigen",
+     "handy auf den himmel richten",
+     "kompass",
+     "kompass kalibrieren",
+     "himmelskamera",
+     "planeten finden"
+    ],
+    "fr": [
+     "quelle est cette etoile",
+     "quelle etoile est ce",
+     "identifier les etoiles",
+     "reconnaitre les etoiles",
+     "pointez vers le ciel",
+     "pointer le telephone vers le ciel",
+     "boussole",
+     "calibrer la boussole",
+     "camera du ciel",
+     "trouver une planete"
+    ],
+    "it": [
+     "che stella e quella",
+     "che stella e",
+     "riconoscere le stelle",
+     "identificare le stelle",
+     "punta al cielo",
+     "puntare il telefono al cielo",
+     "bussola",
+     "calibrare la bussola",
+     "fotocamera del cielo",
+     "trovare un pianeta"
+    ],
+    "nl": [
+     "welke ster is dat",
+     "sterren herkennen",
+     "sterren bepalen",
+     "richt op de hemel",
+     "telefoon op de hemel richten",
+     "kompas",
+     "kompas kalibreren",
+     "hemelcamera",
+     "planeet vinden"
+    ],
+    "pl": [
+     "co to za gwiazda",
+     "jaka to gwiazda",
+     "rozpoznac gwiazdy",
+     "rozpoznawanie gwiazd",
+     "wyceluj w niebo",
+     "skieruj telefon w niebo",
+     "kompas",
+     "kalibracja kompasu",
+     "kamera nieba",
+     "znalezc planete"
+    ],
+    "zh": [
+     "那是哪颗星",
+     "这是什么星",
+     "识别星星",
+     "认星",
+     "对准星空",
+     "用手机对准天空",
+     "指南针",
+     "校准指南针",
+     "星空相机",
+     "找行星"
+    ],
+    "zht": [
+     "那是哪顆星",
+     "這是什麼星",
+     "辨識星星",
+     "認星",
+     "對準星空",
+     "用手機對準天空",
+     "指南針",
+     "校準指南針",
+     "星空相機",
+     "找行星"
+    ]
+   },
+   "a": {
+    "es": "📱 En el 🔭, pestaña «Mapa», toque «Apunte al cielo» y levante el móvil hacia la estrella: lo que queda dentro del círculo del centro se nombra abajo, y al tocarlo sale su ficha. Con 📷 la imagen de la cámara va detrás, y con 🔍 busca un astro y una flecha le lleva hasta él. La brújula del móvil se descalibra sola: la primera vez sale una guía de 20 segundos, y «Comprobar la brújula» la corrige con la Luna, un planeta o la estrella más brillante. Si no da permiso a los sensores, el cielo se mueve con el dedo. Nada de la cámara ni de los sensores sale del móvil.",
+    "en": "📱 In the 🔭, «Sky map» tab, tap «Point at the sky» and hold your phone up to the star: whatever sits inside the central circle is named below, and tapping it opens its card. With 📷 the camera image shows in the background, and with 🔍 you search for an object and an arrow leads you to it. A phone compass drifts out of calibration on its own: the first time, a 20-second guide appears, and «Check the compass» corrects it using the Moon, a planet or the brightest star. If you do not allow the motion sensors, you move the sky with your finger. Nothing from the camera or the sensors leaves your phone.",
+    "de": "📱 Tippen Sie im 🔭, Reiter «Karte», auf «Auf den Himmel zeigen» und halten Sie das Handy zum Stern: Was im Kreis in der Mitte liegt, wird unten benannt, und wenn Sie es antippen, öffnet sich sein Steckbrief. Mit 📷 liegt das Kamerabild dahinter, und mit 🔍 suchen Sie ein Objekt, und ein Pfeil führt Sie hin. Der Kompass eines Handys verstellt sich von selbst: Beim ersten Mal erscheint eine Anleitung von 20 Sekunden, und «Kompass prüfen» korrigiert ihn mit dem Mond, einem Planeten oder dem hellsten Stern. Wenn Sie die Bewegungssensoren nicht erlauben, bewegen Sie den Himmel mit dem Finger. Nichts von der Kamera oder den Sensoren verlässt das Handy.",
+    "fr": "📱 Dans le 🔭, onglet «Carte», touchez «Pointez vers le ciel» et levez le téléphone vers l’étoile : ce qui se trouve dans le cercle du centre est nommé en bas, et en le touchant vous ouvrez sa fiche. Avec 📷 l’image de la caméra passe derrière, et avec 🔍 vous cherchez un astre et une flèche vous y mène. La boussole du téléphone se dérègle toute seule : la première fois, un guide de 20 secondes s’affiche, et «Vérifier la boussole» la corrige avec la Lune, une planète ou l’étoile la plus brillante. Si vous n’autorisez pas les capteurs de mouvement, le ciel se déplace avec le doigt. Rien de la caméra ni des capteurs ne quitte le téléphone.",
+    "it": "📱 Nel 🔭, scheda «Mappa», tocchi «Punta al cielo» e alzi il telefono verso la stella: ciò che sta nel cerchio al centro viene nominato in basso, e toccandolo si apre la sua scheda. Con 📷 l’immagine della fotocamera va dietro, e con 🔍 cerca un astro e una freccia La porta fino a lì. La bussola del telefono si scalibra da sola: la prima volta appare una guida di 20 secondi, e «Verifica la bussola» la corregge con la Luna, un pianeta o la stella più luminosa. Se non dà il permesso ai sensori di movimento, il cielo si muove con il dito. Niente della fotocamera né dei sensori esce dal telefono.",
+    "nl": "📱 Tik in de 🔭, tabblad «Kaart», op «Richt op de hemel» en houd uw telefoon naar de ster: wat in de cirkel in het midden valt, wordt onderaan genoemd, en als u erop tikt, gaat zijn infokaart open. Met 📷 komt het camerabeeld erachter, en met 🔍 zoekt u een object en brengt een pijl u erheen. Het kompas van een telefoon raakt vanzelf ontregeld: de eerste keer verschijnt een uitleg van 20 seconden, en «Kompas controleren» corrigeert het met de maan, een planeet of de helderste ster. Geeft u de bewegingssensoren geen toestemming, dan beweegt u de hemel met uw vinger. Niets van de camera of de sensoren verlaat uw telefoon.",
+    "pl": "📱 W 🔭, w zakładce «Mapa», wystarczy dotknąć «Wyceluj w niebo» i unieść telefon w stronę gwiazdy: to, co znajdzie się w kółku pośrodku, zostaje nazwane na dole, a po dotknięciu otwiera się karta obiektu. Z 📷 w tle widać obraz z kamery, a 🔍 pozwala wyszukać obiekt, do którego prowadzi strzałka. Kompas w telefonie sam się rozkalibrowuje: za pierwszym razem pojawia się 20-sekundowa instrukcja, a «Sprawdź kompas» koryguje go według Księżyca, planety albo najjaśniejszej gwiazdy. Bez zgody na czujniki ruchu niebo przesuwa się palcem. Nic z kamery ani z czujników nie opuszcza telefonu.",
+    "zh": "📱 在 🔭 的「星图」页点「对准星空」，把手机举向那颗星：中央圆圈里的天体会在下方显示名字，点一下就能打开它的资料卡。打开 📷，相机画面会显示在后面；用 🔍 搜索天体，箭头会带您找到它。手机的指南针会自己跑偏：第一次使用时会出现 20 秒的引导，「校验指南针」会用月亮、行星或最亮的恒星帮它校正。如果不允许使用运动传感器，可以用手指拖动星空。相机和传感器的数据都不会离开您的手机。",
+    "zht": "📱 在 🔭 的「星圖」頁點「對準星空」，把手機舉向那顆星：中央圓圈裡的天體會在下方顯示名字，點一下就能打開它的資料卡。打開 📷，相機畫面會顯示在後面；用 🔍 搜尋天體，箭頭會帶您找到它。手機的指南針會自己跑偏：第一次使用時會出現 20 秒的引導，「校驗指南針」會用月亮、行星或最亮的恆星幫它校正。如果不允許使用動作感測器，可以用手指拖動星空。相機和感測器的資料都不會離開您的手機。"
+   },
+   "follow": [
+    "cie-04",
+    "cie-02",
+    "cie-06"
+   ],
+   "rotulos": [
+    "UI.cieloPesMapa",
+    "UI.cieloApunta",
+    "UI.cieloComprobar"
+   ],
+   "comprobado": "modulos/cielo.js (23/10/2026): pintarMapa pone el boton cielo-apunta (cieloApunta, cieloApuntaSub) debajo de la carta; abrirVista pide el permiso de orientacion en el mismo toque (DeviceOrientationEvent.requestPermission) y, sin el, sinSensores(«permiso»): cieloSensoresPermiso / cieloSensoresPermisoApp, «el cielo se mueve con el dedo». Botones cv-btn 📷 (cieloCamara), 🔍 (cieloBuscarCielo, flecha cieloAGrados, «Llevame hasta el») y 📸; chips de modo (Sensores / A mano) y 🎯 cieloComprobar (comprobarBrujula con la Luna, el Sol, un planeta o la estrella mas brillante: cieloComprobarCon, «Ya»); la guia de 20 segundos la primera vez (cieloGuiaTitulo, Imanes, Ocho, Comprueba); cieloApuntaAyuda: lo que queda en el circulo se nombra abajo y al tocarlo sale su ficha. Nada de la camara ni de los sensores sale del movil (cieloCamaraAyuda, politica 2). Valido tambien en la app de las tiendas: el aviso sin permiso cambia (…App), la respuesta no."
+  },
+  {
+   "id": "cie-02",
+   "cat": "cielo",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué miro esta noche, paso a paso?",
+    "en": "What should I look at tonight, step by step?",
+    "de": "Was schaue ich mir heute Nacht an, Schritt für Schritt?",
+    "fr": "Que regarder ce soir, étape par étape ?",
+    "it": "Cosa guardo stanotte, passo dopo passo?",
+    "nl": "Waar kijk ik vannacht naar, stap voor stap?",
+    "pl": "Na co patrzeć dziś w nocy, krok po kroku?",
+    "zh": "今晚该按什么顺序看星空？",
+    "zht": "今晚該按什麼順序看星空？"
+   },
+   "keys": {
+    "es": [
+     "noche guiada",
+     "su noche guiada",
+     "que miro esta noche",
+     "paso a paso",
+     "por donde empiezo a mirar",
+     "que mirar en el cielo",
+     "guia del cielo",
+     "noche guiada en voz alta",
+     "escuchar la noche guiada"
+    ],
+    "en": [
+     "guided night",
+     "your guided night",
+     "what should i look at tonight",
+     "step by step",
+     "where do i start looking",
+     "what to look at in the sky",
+     "sky guide",
+     "guided night read aloud",
+     "listen to the guided night"
+    ],
+    "de": [
+     "gefuhrte nacht",
+     "ihre gefuhrte nacht",
+     "was schaue ich heute nacht an",
+     "schritt fur schritt",
+     "wo fange ich an zu schauen",
+     "himmelsfuhrer",
+     "gefuhrte nacht vorlesen",
+     "gefuhrte nacht anhoren"
+    ],
+    "fr": [
+     "nuit guidee",
+     "votre nuit guidee",
+     "que regarder ce soir",
+     "etape par etape",
+     "par ou commencer a regarder",
+     "guide du ciel",
+     "nuit guidee a voix haute",
+     "ecouter la nuit guidee"
+    ],
+    "it": [
+     "notte guidata",
+     "la sua notte guidata",
+     "cosa guardo stanotte",
+     "passo dopo passo",
+     "da dove comincio a guardare",
+     "guida del cielo",
+     "notte guidata ad alta voce",
+     "ascoltare la notte guidata"
+    ],
+    "nl": [
+     "begeleide nacht",
+     "uw begeleide nacht",
+     "waar kijk ik vannacht naar",
+     "stap voor stap",
+     "waar begin ik met kijken",
+     "hemelgids",
+     "begeleide nacht voorlezen",
+     "begeleide nacht beluisteren"
+    ],
+    "pl": [
+     "noc z przewodnikiem",
+     "na co patrzec dzis w nocy",
+     "krok po kroku",
+     "od czego zaczac patrzenie",
+     "przewodnik po niebie",
+     "noc z przewodnikiem na glos",
+     "posluchac nocy z przewodnikiem"
+    ],
+    "zh": [
+     "今晚导览",
+     "今晚该看什么",
+     "一步一步",
+     "从哪里开始看",
+     "观星向导",
+     "朗读今晚导览",
+     "听今晚导览"
+    ],
+    "zht": [
+     "今晚導覽",
+     "今晚該看什麼",
+     "一步一步",
+     "從哪裡開始看",
+     "觀星嚮導",
+     "朗讀今晚導覽",
+     "聽今晚導覽"
+    ]
+   },
+   "a": {
+    "es": "🧭 En el 🔭, arriba de «Esta noche», «Su noche guiada» le prepara las paradas de esa noche, de lo más fácil a lo más fino: la Luna si está, los planetas más brillantes, estrellas con nombre, lo mejor a simple vista, la Vía Láctea si no hay Luna, un paso de satélite y la lluvia de estrellas activa. En cada una le dice dónde mirar, y «Llévame» abre «Apunte al cielo» con la flecha puesta en ella. «Leer en voz alta» se las lee una a una con las voces del móvil, sin conexión, y le deja 30 segundos para buscar cada una; «Pausa», «Seguir» y «Siguiente» la manejan.",
+    "en": "🧭 In the 🔭, at the top of «Tonight», «Your guided night» lines up that night’s stops, from the easiest to the most subtle: the Moon if it is up, the brightest planets, named stars, the best naked-eye sights, the Milky Way if there is no Moon, a satellite pass and the active meteor shower. For each one it tells you where to look, and «Take me there» opens «Point at the sky» with the arrow on it. «Read aloud» reads them out one by one with your phone’s voices, offline, and leaves you 30 seconds to find each one; «Pause», «Resume» and «Next» control it.",
+    "de": "🧭 Im 🔭 stellt «Ihre geführte Nacht», ganz oben unter «Heute Nacht», die Stationen dieser Nacht zusammen, vom Leichtesten bis zum Feinsten: den Mond, wenn er da ist, die hellsten Planeten, Sterne mit Namen, das Beste mit bloßem Auge, die Milchstraße, wenn kein Mond scheint, einen Satellitenüberflug und den aktiven Meteorstrom. Bei jeder Station steht, wohin Sie schauen müssen, und «Bring mich hin» öffnet «Auf den Himmel zeigen» mit dem Pfeil darauf. «Laut vorlesen» liest sie Ihnen eine nach der anderen mit den Stimmen des Handys vor, ohne Netz, und lässt Ihnen 30 Sekunden, um jede zu finden; «Pause», «Fortsetzen» und «Nächste» steuern das.",
+    "fr": "🧭 Dans le 🔭, en haut de «Ce soir», «Votre nuit guidée» vous prépare les étapes de la nuit, de la plus facile à la plus fine : la Lune si elle est là, les planètes les plus brillantes, des étoiles qui ont un nom, le meilleur à l’œil nu, la Voie lactée s’il n’y a pas de Lune, un passage de satellite et l’essaim d’étoiles filantes en cours. Pour chacune, elle vous dit où regarder, et «Emmène-moi» ouvre «Pointez vers le ciel» avec la flèche dessus. «Lecture à voix haute» vous les lit une à une avec les voix du téléphone, sans connexion, et vous laisse 30 secondes pour trouver chacune ; «Pause», «Reprendre» et «Suivante» la pilotent.",
+    "it": "🧭 Nel 🔭, in cima a «Stanotte», «La Sua notte guidata» Le prepara le tappe della notte, dalla più facile alla più fine: la Luna se c’è, i pianeti più luminosi, stelle con un nome, il meglio a occhio nudo, la Via Lattea se non c’è la Luna, un passaggio di satellite e lo sciame di meteore in corso. Per ognuna Le dice dove guardare, e «Portami» apre «Punta al cielo» con la freccia puntata lì. «Lettura ad alta voce» Le legge le tappe una per una con le voci del telefono, senza connessione, e Le lascia 30 secondi per trovare ciascuna; «Pausa», «Riprendere» e «Successiva» la comandano.",
+    "nl": "🧭 In de 🔭, bovenaan «Vannacht», zet «Uw begeleide nacht» de stops van die nacht voor u klaar, van het makkelijkste tot het fijnste: de maan als die op is, de helderste planeten, sterren met een naam, het mooiste met het blote oog, de Melkweg als er geen maan is, een satellietpassage en de actieve meteorenzwerm. Bij elke stop staat waar u moet kijken, en «Breng me erheen» opent «Richt op de hemel» met de pijl erop. «Hardop voorlezen» leest ze een voor een voor met de stemmen van uw telefoon, zonder verbinding, en geeft u 30 seconden om elke stop te vinden; «Pauze», «Hervatten» en «Volgende» bedienen het.",
+    "pl": "🧭 W 🔭, na górze zakładki «Dziś w nocy», «Noc z przewodnikiem» przygotowuje przystanki tej nocy, od najłatwiejszego do najtrudniejszego: Księżyc, jeśli jest na niebie, najjaśniejsze planety, gwiazdy z nazwą, to, co najlepsze gołym okiem, Drogę Mleczną, gdy nie ma Księżyca, przelot satelity i aktywny rój meteorów. Przy każdym podaje, gdzie patrzeć, a «Zaprowadź mnie» otwiera «Wyceluj w niebo» ze strzałką ustawioną na nim. «Czytanie na głos» odczytuje je po kolei głosami telefonu, bez połączenia, i zostawia 30 sekund na odnalezienie każdego; sterują tym «Pauza», «Wznowić» i «Następny».",
+    "zh": "🧭 在 🔭 的「今晚」页顶部，「今晚导览」会为您排好当晚要看的几站，从最容易到最细致：有月亮就看月亮，然后是最亮的行星、有名字的恒星、肉眼可见的精华、没有月亮时的银河、一次卫星过境和正在活跃的流星雨。每一站都告诉您往哪里看，点「带我去」会打开「对准星空」，箭头直接指向它。「朗读」会用手机自带的语音逐站读出来，不需要联网，每站之后留 30 秒让您去找；用「暂停」「继续」和「下一站」控制。",
+    "zht": "🧭 在 🔭 的「今晚」頁頂部，「今晚導覽」會為您排好當晚要看的幾站，從最容易到最細緻：有月亮就看月亮，然後是最亮的行星、有名字的恆星、肉眼可見的精華、沒有月亮時的銀河、一次衛星過境和正在活躍的流星雨。每一站都告訴您往哪裡看，點「帶我去」會打開「對準星空」，箭頭直接指向它。「朗讀」會用手機內建的語音逐站讀出來，不需要連網，每站之後留 30 秒讓您去找；用「暫停」「繼續」和「下一站」控制。"
+   },
+   "follow": [
+    "cie-01",
+    "cie-07",
+    "app-24"
+   ],
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloGuiaNoche",
+    "UI.cieloGuiaLlevame",
+    "UI.cieloApunta",
+    "UI.cieloVozLeer",
+    "UI.cieloVozPausa",
+    "UI.cieloVozSeguir",
+    "UI.cieloVozSiguiente"
+   ],
+   "comprobado": "modulos/cielo.js (23/10/2026): pintarNoche pone, por este orden, los avisos de los dos dias de antes, tarjetaIndice y tarjetaGuia, arriba del todo de «Esta noche»; cieloGuiaIntro («de lo mas facil a lo mas fino») y cieloGuiaNota: la Luna si esta, los planetas mas brillantes, tres estrellas con nombre, lo mejor a simple vista, la Via Lactea si no hay Luna, el paso de un satelite y la lluvia activa; cada parada con donde esta y el boton cieloGuiaLlevame, que abre abrirVista con la flecha puesta. La voz (septimo bloque): cieloVozLeer, Pausa, Seguir, Siguiente; cieloVozNota: voces instaladas en el dispositivo, sin red, {s} segundos (30, README) para buscar cada parada."
+  },
+  {
+   "id": "cie-03",
+   "cat": "cielo",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Cuándo puedo ver la Estación Espacial?",
+    "en": "When can I see the Space Station?",
+    "de": "Wann kann ich die Raumstation sehen?",
+    "fr": "Quand puis-je voir la Station spatiale ?",
+    "it": "Quando posso vedere la Stazione spaziale?",
+    "nl": "Wanneer kan ik het ruimtestation zien?",
+    "pl": "Kiedy można zobaczyć stację kosmiczną?",
+    "zh": "什么时候能看到空间站？",
+    "zht": "什麼時候能看到太空站？"
+   },
+   "keys": {
+    "es": [
+     "estacion espacial",
+     "ver la estacion espacial",
+     "iss",
+     "tiangong",
+     "hubble",
+     "satelites",
+     "pasos de satelites",
+     "satelite brillante",
+     "punto que cruza el cielo"
+    ],
+    "en": [
+     "space station",
+     "see the space station",
+     "iss",
+     "tiangong",
+     "hubble",
+     "satellites",
+     "satellite passes",
+     "bright satellite",
+     "dot crossing the sky"
+    ],
+    "de": [
+     "raumstation",
+     "raumstation sehen",
+     "iss",
+     "tiangong",
+     "hubble",
+     "satelliten",
+     "satellitenuberfluge",
+     "heller satellit",
+     "punkt der uber den himmel zieht"
+    ],
+    "fr": [
+     "station spatiale",
+     "voir la station spatiale",
+     "iss",
+     "tiangong",
+     "hubble",
+     "satellites",
+     "passages de satellites",
+     "satellite brillant",
+     "point qui traverse le ciel"
+    ],
+    "it": [
+     "stazione spaziale",
+     "vedere la stazione spaziale",
+     "iss",
+     "tiangong",
+     "hubble",
+     "satelliti",
+     "passaggi dei satelliti",
+     "satellite luminoso",
+     "punto che attraversa il cielo"
+    ],
+    "nl": [
+     "ruimtestation",
+     "ruimtestation zien",
+     "iss",
+     "tiangong",
+     "hubble",
+     "satellieten",
+     "satellietpassages",
+     "heldere satelliet",
+     "stip die over de hemel trekt"
+    ],
+    "pl": [
+     "stacja kosmiczna",
+     "zobaczyc stacje kosmiczna",
+     "iss",
+     "tiangong",
+     "hubble",
+     "satelity",
+     "przeloty satelitow",
+     "jasny satelita",
+     "punkt przecinajacy niebo"
+    ],
+    "zh": [
+     "空间站",
+     "看空间站",
+     "国际空间站",
+     "iss",
+     "天宫",
+     "哈勃",
+     "卫星",
+     "卫星过境",
+     "亮的卫星"
+    ],
+    "zht": [
+     "太空站",
+     "看太空站",
+     "國際太空站",
+     "iss",
+     "天宮",
+     "哈伯",
+     "衛星",
+     "衛星過境",
+     "亮的衛星"
+    ]
+   },
+   "a": {
+    "es": "🛰️ En el 🔭, «Esta noche» trae la tarjeta «La Estación Espacial y otros satélites», y el «Calendario», el filtro «Satélites»: los pasos visibles desde el Teide de la Estación Espacial Internacional, de la estación china Tiangong y del telescopio Hubble en las próximas siete noches, con la hora a la que aparece, por dónde, lo alto que sube, cuánto dura y cómo brilla. Se ve como un punto brillante que cruza el cielo sin parpadear. Cada paso sale en la carta y en «Apunte al cielo», y con «Añadir a mi calendario» su calendario le avisa media hora antes. Lo calcula el móvil con datos que se renuevan cada día; Starlink no está.",
+    "en": "🛰️ In the 🔭, «Tonight» has a card, «The Space Station and other satellites», and the «Calendar» has the «Satellites» filter: the passes of the International Space Station, the Chinese Tiangong station and the Hubble telescope visible from Teide over the next seven nights, with the time it appears, where, how high it climbs, how long it lasts and how bright it is. It looks like a bright dot crossing the sky without twinkling. Each pass shows up on the sky map and in «Point at the sky», and with «Add to my calendar» your calendar reminds you half an hour before. Your phone works it out with data renewed every day; Starlink is not included.",
+    "de": "🛰️ Im 🔭 hat «Heute Nacht» den Abschnitt «Die Raumstation und andere Satelliten» und der «Kalender» den Filter «Satelliten»: die vom Teide aus sichtbaren Überflüge der Internationalen Raumstation, der chinesischen Station Tiangong und des Hubble-Teleskops in den nächsten sieben Nächten, mit Uhrzeit, Richtung, größter Höhe, Dauer und Helligkeit. Man sieht sie als hellen Punkt, der, ohne zu funkeln, über den Himmel zieht. Jeder Überflug erscheint auf der Himmelskarte und in «Auf den Himmel zeigen», und mit «In meinen Kalender» erinnert Ihr Kalender Sie eine halbe Stunde vorher. Das Handy rechnet es mit Daten aus, die jeden Tag erneuert werden; Starlink ist nicht dabei.",
+    "fr": "🛰️ Dans le 🔭, «Ce soir» a la rubrique «La Station spatiale et d’autres satellites», et le «Calendrier» le filtre «Satellites» : les passages visibles depuis le Teide de la Station spatiale internationale, de la station chinoise Tiangong et du télescope Hubble pendant les sept prochaines nuits, avec l’heure d’apparition, la direction, la hauteur maximale, la durée et l’éclat. On la voit comme un point brillant qui traverse le ciel sans scintiller. Chaque passage apparaît sur la carte et dans «Pointez vers le ciel», et avec «Ajouter à mon calendrier» votre calendrier vous prévient une demi-heure avant. Le téléphone fait le calcul avec des données renouvelées chaque jour ; Starlink n’y est pas.",
+    "it": "🛰️ Nel 🔭, «Stanotte» ha la sezione «La Stazione spaziale e altri satelliti», e il «Calendario» il filtro «Satelliti»: i passaggi visibili dal Teide della Stazione spaziale internazionale, della stazione cinese Tiangong e del telescopio Hubble nelle prossime sette notti, con l’ora in cui appare, da dove, quanto sale, quanto dura e quanto brilla. Si vede come un punto luminoso che attraversa il cielo senza scintillare. Ogni passaggio compare sulla mappa del cielo e in «Punta al cielo», e con «Aggiungi al mio calendario» il Suo calendario La avvisa mezz’ora prima. Lo calcola il telefono con dati rinnovati ogni giorno; Starlink non c’è.",
+    "nl": "🛰️ In de 🔭 heeft «Vannacht» het blok «Het ruimtestation en andere satellieten», en de «Kalender» het filter «Satellieten»: de passages die vanaf de Teide te zien zijn van het Internationaal Ruimtestation, het Chinese station Tiangong en de Hubble-telescoop in de komende zeven nachten, met het tijdstip waarop hij verschijnt, waar, hoe hoog hij komt, hoe lang het duurt en hoe helder hij is. Hij ziet eruit als een heldere stip die zonder te twinkelen over de hemel trekt. Elke passage staat op de hemelkaart en in «Richt op de hemel», en met «Aan mijn agenda toevoegen» waarschuwt uw agenda u een halfuur van tevoren. Uw telefoon rekent het uit met gegevens die elke dag worden vernieuwd; Starlink zit er niet bij.",
+    "pl": "🛰️ W 🔭 zakładka «Dziś w nocy» ma sekcję «Stacja kosmiczna i inne satelity», a «Kalendarz» – filtr «Satelity»: widoczne z Teide przeloty Międzynarodowej Stacji Kosmicznej, chińskiej stacji Tiangong i teleskopu Hubble’a w najbliższych siedmiu nocach, z godziną pojawienia się, kierunkiem, największą wysokością, czasem trwania i jasnością. Wygląda jak jasny punkt, który przecina niebo bez migotania. Każdy przelot widać na mapie nieba i w «Wyceluj w niebo», a po użyciu «Dodaj do mojego kalendarza» kalendarz przypomni o nim pół godziny wcześniej. Telefon liczy to z danych odnawianych codziennie; Starlinka tu nie ma.",
+    "zh": "🛰️ 在 🔭 里，「今晚」有「空间站与其他卫星」一栏，「天象日历」里有「卫星」筛选：未来七个晚上从泰德峰能看到的国际空间站、中国天宫空间站和哈勃望远镜的过境，包括出现时间、方位、最高仰角、持续多久和亮度。它看起来像一个不闪烁、划过天空的亮点。每次过境都能在星图和「对准星空」里看到，点「添加到我的日历」后，您的日历会提前半小时提醒您。由手机根据每天更新的数据计算；不包括星链。",
+    "zht": "🛰️ 在 🔭 裡，「今晚」有「太空站與其他衛星」一欄，「天象日曆」裡有「衛星」篩選：未來七個晚上從泰德峰能看到的國際太空站、中國天宮太空站和哈伯望遠鏡的過境，包括出現時間、方位、最高仰角、持續多久和亮度。它看起來像一個不閃爍、劃過天空的亮點。每次過境都能在星圖和「對準星空」裡看到，點「加入我的行事曆」後，您的行事曆會提前半小時提醒您。由手機根據每天更新的資料計算；不包括星鏈。"
+   },
+   "follow": [
+    "app-25",
+    "cie-01",
+    "cie-02"
+   ],
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloSatTitulo",
+    "UI.cieloPesCalendario",
+    "UI.cieloCalSatelites",
+    "UI.cieloApunta",
+    "UI.cieloAlCalendario"
+   ],
+   "comprobado": "modulos/cielo.js (23/10/2026): tarjetaSatelites en «Esta noche» (cieloSatTitulo) y el filtro «Satelites» del calendario (cieloCalSatelites, pintarPasos): Estacion Espacial Internacional, Tiangong y Hubble (cieloSatNombre*); cada paso con cieloSatSale (aparece, rumbo), cieloSatMax (lo mas alto), cieloSatFin / cieloSatSombra, cieloSatDura y cieloSatBrillo*; siete noches (cieloSatNingunoSemana, cieloSatFuera); cieloSatNota: pasos de mas de 10°, satelite al Sol y cielo oscuro, SGP4 en el movil con elementos que un robot renueva cada dia; «Starlink no esta». El paso se ve en la carta y en «Apunte al cielo» (README) y su .ics avisa media hora antes (cieloIcsListoPaso, cieloIcsAvisoPaso)."
+  },
+  {
+   "id": "cie-04",
+   "cat": "cielo",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué cuenta la ficha de cada estrella o planeta?",
+    "en": "What does the card of each star or planet tell me?",
+    "de": "Was steht im Steckbrief jedes Sterns oder Planeten?",
+    "fr": "Que dit la fiche de chaque étoile ou planète ?",
+    "it": "Cosa dice la scheda di ogni stella o pianeta?",
+    "nl": "Wat staat er op de kaart van elke ster of planeet?",
+    "pl": "Co mówi karta każdej gwiazdy lub planety?",
+    "zh": "每颗星或行星的资料卡上有什么？",
+    "zht": "每顆星或行星的資料卡上有什麼？"
+   },
+   "keys": {
+    "es": [
+     "ficha del astro",
+     "ficha de la estrella",
+     "ficha del planeta",
+     "wikipedia",
+     "sabia que",
+     "curiosidades del cielo",
+     "recorrido de un planeta",
+     "historia de las constelaciones",
+     "origen de las constelaciones",
+     "datos de la nasa"
+    ],
+    "en": [
+     "object card",
+     "star card",
+     "planet card",
+     "wikipedia",
+     "did you know",
+     "sky facts",
+     "path of a planet",
+     "history of the constellations",
+     "origin of the constellations",
+     "nasa data"
+    ],
+    "de": [
+     "steckbrief",
+     "steckbrief des sterns",
+     "steckbrief des planeten",
+     "wikipedia",
+     "schon gewusst",
+     "himmelsfakten",
+     "bahn eines planeten",
+     "geschichte der sternbilder",
+     "herkunft der sternbilder",
+     "nasa daten"
+    ],
+    "fr": [
+     "fiche de l astre",
+     "fiche de l etoile",
+     "fiche de la planete",
+     "wikipedia",
+     "le saviez vous",
+     "curiosites du ciel",
+     "trajectoire d une planete",
+     "histoire des constellations",
+     "origine des constellations",
+     "donnees de la nasa"
+    ],
+    "it": [
+     "scheda dell astro",
+     "scheda della stella",
+     "scheda del pianeta",
+     "wikipedia",
+     "lo sapeva",
+     "curiosita del cielo",
+     "percorso di un pianeta",
+     "storia delle costellazioni",
+     "origine delle costellazioni",
+     "dati della nasa"
+    ],
+    "nl": [
+     "kaart van een ster",
+     "kaart van de planeet",
+     "objectkaart",
+     "wikipedia",
+     "wist u dat",
+     "weetjes over de hemel",
+     "baan van een planeet",
+     "geschiedenis van de sterrenbeelden",
+     "herkomst van de sterrenbeelden",
+     "nasa gegevens"
+    ],
+    "pl": [
+     "karta obiektu",
+     "karta gwiazdy",
+     "karta planety",
+     "wikipedia",
+     "ciekawostka",
+     "ciekawostki o niebie",
+     "droga planety",
+     "historia gwiazdozbiorow",
+     "pochodzenie gwiazdozbiorow",
+     "dane nasa"
+    ],
+    "zh": [
+     "天体资料卡",
+     "星星资料卡",
+     "行星档案",
+     "维基百科",
+     "您知道吗",
+     "星空趣闻",
+     "行星的轨迹",
+     "星座的来历",
+     "星座的历史",
+     "nasa数据"
+    ],
+    "zht": [
+     "天體資料卡",
+     "星星資料卡",
+     "行星檔案",
+     "維基百科",
+     "您知道嗎",
+     "星空趣聞",
+     "行星的軌跡",
+     "星座的來歷",
+     "星座的歷史",
+     "nasa資料"
+    ]
+   },
+   "a": {
+    "es": "✨ En el 🔭, toque cualquier astro en la carta, en «Apunte al cielo» o en las listas y se abre su ficha: dónde está en ese momento; lo que se sabe de él, calculado de datos con fuente —a cuántos años luz está, su color, cuánto brilla—, y en cada planeta, las cifras de la NASA; a qué hora sale, culmina y se pone esta noche; «¿Sabía que…?», una curiosidad con su fuente, y «Ver su recorrido esta noche», que dibuja su camino en la carta o en «Apunte al cielo». Al final, el resumen de Wikipedia en su idioma, que se guarda 30 días en el móvil. Cada una de las 88 constelaciones dice además de dónde viene y cuánto ocupa.",
+    "en": "✨ In the 🔭, tap any object on the sky map, in «Point at the sky» or in the lists and its card opens: where it is at that moment; what is known about it, worked out from sourced data (how many light years away it is, its colour, how bright it is), and for each planet the NASA figures; when it rises, culminates and sets tonight; «Did you know?», a curious fact with its source, and «Show its path tonight», which draws its path on the sky map or in «Point at the sky». Last comes the Wikipedia summary in your language, kept on your phone for 30 days. Each of the 88 constellations also shows where it comes from and how much sky it covers.",
+    "de": "✨ Tippen Sie im 🔭 auf ein beliebiges Objekt auf der Himmelskarte, in «Auf den Himmel zeigen» oder in den Listen, und sein Steckbrief öffnet sich: wo es zu diesem Zeitpunkt steht; was man darüber weiß, aus belegten Daten berechnet (wie viele Lichtjahre entfernt, seine Farbe, wie hell es leuchtet), bei jedem Planeten die Zahlen der NASA; wann es heute Nacht aufgeht, am höchsten steht und untergeht; «Schon gewusst?», eine Kuriosität mit Quelle, und «Seine Bahn heute Nacht zeigen», das seine Bahn in die Himmelskarte oder in «Auf den Himmel zeigen» zeichnet. Ganz am Ende die Wikipedia-Zusammenfassung in Ihrer Sprache, die 30 Tage auf dem Handy bleibt. Jedes der 88 Sternbilder zeigt außerdem seine Herkunft und seine Größe.",
+    "fr": "✨ Dans le 🔭, touchez n’importe quel astre sur la carte, dans «Pointez vers le ciel» ou dans les listes, et sa fiche s’ouvre : où il se trouve à ce moment-là ; ce que l’on sait de lui, calculé à partir de données sourcées (à combien d’années-lumière il se trouve, sa couleur, son éclat), et pour chaque planète les chiffres de la NASA ; à quelle heure il se lève, culmine et se couche cette nuit ; «Le saviez-vous ?», une curiosité avec sa source, et «Voir sa trajectoire cette nuit», qui dessine son trajet sur la carte ou dans «Pointez vers le ciel». Tout à la fin, le résumé de Wikipédia dans votre langue, gardé 30 jours sur le téléphone. Chacune des 88 constellations indique en plus son origine et sa taille.",
+    "it": "✨ Nel 🔭, tocchi un astro qualsiasi sulla mappa, in «Punta al cielo» o negli elenchi e si apre la sua scheda: dove si trova in quel momento; quello che se ne sa, calcolato da dati con fonte (a quanti anni luce si trova, il suo colore, quanto brilla), e per ogni pianeta le cifre della NASA; a che ora sorge, culmina e tramonta stanotte; «Lo sapeva?», una curiosità con la sua fonte, e «Mostra il suo percorso stanotte», che disegna il suo percorso sulla mappa o in «Punta al cielo». In fondo, il riassunto di Wikipedia nella Sua lingua, che resta 30 giorni sul telefono. Ognuna delle 88 costellazioni dice anche da dove viene e quanto è grande.",
+    "nl": "✨ Tik in de 🔭 op een willekeurig object op de hemelkaart, in «Richt op de hemel» of in de lijsten en zijn infokaart gaat open: waar het op dat moment staat; wat erover bekend is, berekend uit gegevens met bron (hoeveel lichtjaar het weg is, zijn kleur, hoe helder het is), en bij elke planeet de cijfers van de NASA; wanneer het vannacht opkomt, het hoogst staat en ondergaat; «Wist u dat?», een weetje met zijn bron, en «Zijn baan vannacht tonen», dat zijn baan op de hemelkaart of in «Richt op de hemel» tekent. Helemaal onderaan de samenvatting van Wikipedia in uw taal, die 30 dagen op uw telefoon blijft. Elk van de 88 sterrenbeelden vermeldt ook zijn herkomst en grootte.",
+    "pl": "✨ W 🔭 po dotknięciu dowolnego obiektu na mapie, w «Wyceluj w niebo» albo na listach otwiera się jego karta: gdzie jest w danej chwili; to, co o nim wiadomo, wyliczone z danych ze źródłem (ile lat świetlnych jest od nas, jaki ma kolor, jak jasno świeci), a przy planetach dane NASA; o której tej nocy wschodzi, góruje i zachodzi; «Ciekawostka» ze źródłem i «Pokaż jego drogę tej nocy», które rysuje jego drogę na mapie albo w «Wyceluj w niebo». Na samym końcu streszczenie z Wikipedii w wybranym języku, przechowywane w telefonie przez 30 dni. Każdy z 88 gwiazdozbiorów ma też opisane pochodzenie i wielkość.",
+    "zh": "✨ 在 🔭 里，在星图、「对准星空」或列表中点任何一个天体，就会打开它的资料卡：先是它在那一刻的位置；然后是根据有出处的数据算出的信息（离我们多少光年、颜色、有多亮），行星还附有 NASA 的数据；今晚几点升起、上中天和落下；「您知道吗？」，一条注明出处的趣闻；以及「显示它今晚的轨迹」，它会在星图或「对准星空」中画出天体的轨迹。最后是您所用语言的维基百科摘要（在手机上保存 30 天）。88 个星座还各有来历和面积。",
+    "zht": "✨ 在 🔭 裡，在星圖、「對準星空」或列表中點任何一個天體，就會打開它的資料卡：先是它在那一刻的位置；然後是根據有出處的資料算出的資訊（離我們多少光年、顏色、有多亮），行星還附有 NASA 的資料；今晚幾點升起、上中天和落下；「您知道嗎？」，一則註明出處的趣聞；以及「顯示它今晚的軌跡」，它會在星圖或「對準星空」中畫出天體的軌跡。最後是您所用語言的維基百科摘要（在手機上保存 30 天）。88 個星座還各有來歷和面積。"
+   },
+   "follow": [
+    "cie-01",
+    "cie-05",
+    "app-24"
+   ],
+   "rotulos": [
+    "UI.cieloApunta",
+    "UI.cieloRecorrido",
+    "UI.cieloCuriosidad"
+   ],
+   "comprobado": "modulos/cielo.js (24/10/2026), fichaCosa, en este orden: donde esta en el instante de la carta (cieloFichaArriba / FichaAbajo: en el instante de la carta, «ahora mismo» si es el de ahora); los datos con fuente (cieloFichaLuzAnio / LuzUnos, cieloFichaColorK, cieloFichaLum; de las 88 constelaciones, datosConstelacion: origen y area, datos/constelaciones.json e idiomas/cielo/); la ficha del planeta con las cifras de la NASA (fichaPlaneta, datos/planetas.json); «Esta noche» (cieloFichaEstaNoche: sale, culmina, se pone); la descripcion del catalogo; cieloCuriosidad con su fuente; los botones (cieloEncuentralo, cieloGuiame y cieloRecorrido, que pinta el recorrido en la carta o, abierta desde «Apunte al cielo», en esa vista: VI.V.rastro); y Wikipedia al final (cieloWiki, en el idioma de quien mira, 30 dias: WIKI_DIAS). Se toca en la carta, en «Apunte al cielo» o en las listas (irAlMapa). La revision de hechos encontro el orden de la respuesta del 23 cambiado y el recorrido «en la carta» solo."
+  },
+  {
+   "id": "cie-05",
+   "cat": "cielo",
+   "prio": 3,
+   "volatil": false,
+   "label": {
+    "es": "¿Dónde están hoy los planetas?",
+    "en": "Where are the planets today?",
+    "de": "Wo stehen heute die Planeten?",
+    "fr": "Où sont les planètes aujourd’hui ?",
+    "it": "Dove sono oggi i pianeti?",
+    "nl": "Waar staan de planeten vandaag?",
+    "pl": "Gdzie są dziś planety?",
+    "zh": "今天各大行星在哪里？",
+    "zht": "今天各大行星在哪裡？"
+   },
+   "keys": {
+    "es": [
+     "sistema solar",
+     "el sistema solar hoy",
+     "donde estan los planetas",
+     "orbitas de los planetas",
+     "posicion de los planetas",
+     "distancia a marte",
+     "a que distancia esta marte"
+    ],
+    "en": [
+     "solar system",
+     "the solar system today",
+     "where are the planets",
+     "planet orbits",
+     "position of the planets",
+     "distance to mars",
+     "how far is mars"
+    ],
+    "de": [
+     "sonnensystem",
+     "das sonnensystem heute",
+     "wo stehen die planeten",
+     "umlaufbahnen der planeten",
+     "position der planeten",
+     "entfernung zum mars",
+     "wie weit ist der mars"
+    ],
+    "fr": [
+     "systeme solaire",
+     "le systeme solaire aujourd hui",
+     "ou sont les planetes",
+     "orbites des planetes",
+     "position des planetes",
+     "distance de mars",
+     "a quelle distance est mars"
+    ],
+    "it": [
+     "sistema solare",
+     "il sistema solare oggi",
+     "dove sono i pianeti",
+     "orbite dei pianeti",
+     "posizione dei pianeti",
+     "distanza da marte",
+     "quanto dista marte"
+    ],
+    "nl": [
+     "zonnestelsel",
+     "het zonnestelsel vandaag",
+     "waar staan de planeten",
+     "banen van de planeten",
+     "positie van de planeten",
+     "afstand tot mars",
+     "hoe ver is mars"
+    ],
+    "pl": [
+     "uklad sloneczny",
+     "uklad sloneczny dzisiaj",
+     "gdzie sa planety",
+     "orbity planet",
+     "polozenie planet",
+     "odleglosc do marsa",
+     "jak daleko jest mars"
+    ],
+    "zh": [
+     "太阳系",
+     "今天的太阳系",
+     "行星在哪里",
+     "行星的轨道",
+     "行星的位置",
+     "火星有多远",
+     "离火星多远"
+    ],
+    "zht": [
+     "太陽系",
+     "今天的太陽系",
+     "行星在哪裡",
+     "行星的軌道",
+     "行星的位置",
+     "火星有多遠",
+     "離火星多遠"
+    ]
+   },
+   "a": {
+    "es": "🪐 En el 🔭, casi al final de «Esta noche», «El sistema solar hoy» dibuja las órbitas y dónde está cada planeta hoy, vistos desde encima del Sol, con la Tierra y Tenerife; elija «Hasta Marte» o «Hasta Neptuno». Toque un planeta y le dice a cuánto está del Sol y de nosotros, cuánto tarda su luz en llegar y a cuántos grados del Sol se ve; ▶ hace correr el tiempo, un mes por segundo. Para verlos esta noche, la tarjeta «Planetas», más arriba.",
+    "en": "🪐 In the 🔭, near the end of «Tonight», «The solar system today» draws the orbits and where each planet is today, seen from above the Sun, with the Earth and Tenerife; choose «Out to Mars» or «Out to Neptune». Tap a planet and it tells you how far it is from the Sun and from us, how long its light takes to reach us and how many degrees from the Sun it appears; ▶ runs time at a month per second. To see them tonight, use the «Planets» card further up.",
+    "de": "🪐 Im 🔭, fast am Ende von «Heute Nacht», zeichnet «Das Sonnensystem heute» die Umlaufbahnen und wo jeder Planet heute steht, von oberhalb der Sonne gesehen, mit der Erde und Teneriffa; wählen Sie «Bis zum Mars» oder «Bis zum Neptun». Tippen Sie auf einen Planeten, und Sie sehen, wie weit er von der Sonne und von uns entfernt ist, wie lange sein Licht bis zu uns braucht und wie viele Grad von der Sonne entfernt er erscheint; ▶ lässt die Zeit laufen, ein Monat pro Sekunde. Um sie heute Nacht zu sehen: der Abschnitt «Planeten» weiter oben.",
+    "fr": "🪐 Dans le 🔭, presque à la fin de «Ce soir», «Le Système solaire aujourd’hui» dessine les orbites et la position de chaque planète aujourd’hui, vues d’au-dessus du Soleil, avec la Terre et Tenerife ; choisissez «Jusqu’à Mars» ou «Jusqu’à Neptune». Touchez une planète et vous verrez à quelle distance elle est du Soleil et de nous, combien de temps sa lumière met à arriver et à combien de degrés du Soleil on la voit ; ▶ fait défiler le temps, un mois par seconde. Pour les voir ce soir, la rubrique «Planètes», plus haut.",
+    "it": "🪐 Nel 🔭, quasi in fondo a «Stanotte», «Il sistema solare oggi» disegna le orbite e dove si trova oggi ogni pianeta, visti da sopra il Sole, con la Terra e Tenerife; scelga «Fino a Marte» o «Fino a Nettuno». Tocchi un pianeta e Le dice quanto dista dal Sole e da noi, quanto ci mette la sua luce ad arrivare e a quanti gradi dal Sole si vede; ▶ fa scorrere il tempo, un mese al secondo. Per vederli stanotte, la sezione «Pianeti», più in alto.",
+    "nl": "🪐 In de 🔭, bijna onderaan «Vannacht», tekent «Het zonnestelsel vandaag» de banen en waar elke planeet vandaag staat, gezien van boven de zon, met de aarde en Tenerife; kies «Tot Mars» of «Tot Neptunus». Tik op een planeet en u ziet hoe ver hij van de zon en van ons staat, hoe lang zijn licht onderweg is en op hoeveel graden van de zon hij te zien is; ▶ laat de tijd lopen, een maand per seconde. Om ze vannacht te zien: het blok «Planeten», hogerop.",
+    "pl": "🪐 W 🔭, niemal na końcu zakładki «Dziś w nocy», «Układ Słoneczny dzisiaj» rysuje orbity i to, gdzie dziś jest każda planeta, widziane z góry nad Słońcem, z Ziemią i Teneryfą; do wyboru «Do Marsa» albo «Do Neptuna». Po dotknięciu planety widać, jak daleko jest od Słońca i od nas, ile leci jej światło i pod jakim kątem od Słońca ją widać; ▶ puszcza czas, miesiąc na sekundę. Żeby zobaczyć je tej nocy, jest sekcja «Planety» wyżej.",
+    "zh": "🪐 在 🔭 的「今晚」页靠近底部的地方，「今天的太阳系」画出各行星的轨道和它们今天的位置，视角在太阳上方，也标出地球和特内里费；可选「到火星」或「到海王星」。点一颗行星，就能看到它离太阳和离我们多远、它的光要多久才能到达，以及在天空中离太阳多少度；点 ▶ 让时间流动，每秒一个月。想今晚看它们，请看上方的「行星」一栏。",
+    "zht": "🪐 在 🔭 的「今晚」頁靠近底部的地方，「今天的太陽系」畫出各行星的軌道和它們今天的位置，視角在太陽上方，也標出地球和特內里費；可選「到火星」或「到海王星」。點一顆行星，就能看到它離太陽和離我們多遠、它的光要多久才能到達，以及在天空中離太陽多少度；點 ▶ 讓時間流動，每秒一個月。想今晚看它們，請看上方的「行星」一欄。"
+   },
+   "follow": [
+    "app-24",
+    "cie-04",
+    "cie-07"
+   ],
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloSistemaTitulo",
+    "UI.cieloSistemaInterior",
+    "UI.cieloSistemaExterior",
+    "UI.cieloPlanetas"
+   ],
+   "comprobado": "modulos/cielo.js (23/10/2026): tarjetaSistema, al final de pintarNoche (antes de «Lo proximo»): canvas con las orbitas y las posiciones de hoy vistas desde encima del polo norte del Sol (cieloSistemaNota), la Tierra con su noche y Tenerife; chips cieloSistemaInterior / cieloSistemaExterior, − 1 mes, Hoy, + 1 mes y ▶ (title cieloSistemaCorre, «un mes por segundo»); al tocar un planeta: cieloSistemaDeSol (UA del Sol), cieloSistemaDeTierra (de la Tierra y lo que tarda su luz) y cieloSistemaElong (grados del Sol). La tarjeta «Planetas» (cieloPlanetas) va mas arriba en «Esta noche». · 24/10/2026: casi al final, no al final: detras de la tarjeta va «Lo proximo en el calendario» siempre que viene una lluvia de estrellas o un eclipse (pintarNoche, cielo.js:2301-2312), que es casi siempre."
+  },
+  {
+   "id": "cie-06",
+   "cat": "cielo",
+   "prio": 3,
+   "volatil": false,
+   "label": {
+    "es": "¿Para qué sirve la luz roja?",
+    "en": "What is the red light for?",
+    "de": "Wozu dient das Rotlicht?",
+    "fr": "À quoi sert la lumière rouge ?",
+    "it": "A cosa serve la luce rossa?",
+    "nl": "Waar dient het rode licht voor?",
+    "pl": "Do czego służy czerwone światło?",
+    "zh": "红光模式有什么用？",
+    "zht": "紅光模式有什麼用？"
+   },
+   "keys": {
+    "es": [
+     "luz roja",
+     "modo rojo",
+     "pantalla roja",
+     "modo nocturno",
+     "no deslumbrarme",
+     "brillo de la pantalla",
+     "vision nocturna"
+    ],
+    "en": [
+     "red light",
+     "red mode",
+     "red screen",
+     "night mode",
+     "not dazzled",
+     "screen brightness",
+     "night vision"
+    ],
+    "de": [
+     "rotlicht",
+     "rotmodus",
+     "roter bildschirm",
+     "nachtmodus",
+     "nicht geblendet",
+     "bildschirmhelligkeit",
+     "nachtsicht"
+    ],
+    "fr": [
+     "lumiere rouge",
+     "mode rouge",
+     "ecran rouge",
+     "mode nuit",
+     "ne pas etre ebloui",
+     "luminosite de l ecran",
+     "vision nocturne"
+    ],
+    "it": [
+     "luce rossa",
+     "modalita rossa",
+     "schermo rosso",
+     "modalita notte",
+     "non abbagliare",
+     "luminosita dello schermo",
+     "visione notturna"
+    ],
+    "nl": [
+     "rood licht",
+     "rode modus",
+     "rood scherm",
+     "nachtmodus",
+     "niet verblind",
+     "schermhelderheid",
+     "nachtzicht"
+    ],
+    "pl": [
+     "czerwone swiatlo",
+     "tryb czerwony",
+     "czerwony ekran",
+     "tryb nocny",
+     "zeby nie oslepialo",
+     "jasnosc ekranu",
+     "widzenie w ciemnosci"
+    ],
+    "zh": [
+     "红光模式",
+     "红光",
+     "红色屏幕",
+     "夜间模式",
+     "不刺眼",
+     "屏幕亮度",
+     "夜视"
+    ],
+    "zht": [
+     "紅光模式",
+     "紅光",
+     "紅色螢幕",
+     "夜間模式",
+     "不刺眼",
+     "螢幕亮度",
+     "夜視"
+    ]
+   },
+   "a": {
+    "es": "🔴 En el 🔭, «Luz roja» tiñe de rojo toda la pantalla, no solo el panel, para que no se deslumbre y siga viendo las estrellas; mientras está puesta, un regulador al lado del botón baja todavía más el brillo, también en «Apunte al cielo». Si abre el panel de noche con la luz blanca, la app se lo ofrece una vez. Al llegar a un sitio oscuro, apague las luces blancas y deje que la vista se adapte unos 20 minutos.",
+    "en": "🔴 In the 🔭, «Red light» tints the whole screen red, not just the panel, so you are not dazzled and keep seeing the stars; while it is on, a slider next to the button turns the brightness down even further, in «Point at the sky» too. If you open the panel at night with white light, the app offers it once. When you reach a dark spot, switch off white lights and let your eyes adapt for about 20 minutes.",
+    "de": "🔴 Im 🔭 färbt «Rotlicht» den ganzen Bildschirm rot, nicht nur das Panel, damit Sie nicht geblendet werden und die Sterne weiter sehen; solange es an ist, dimmt ihn ein Regler neben dem Knopf noch weiter, auch in «Auf den Himmel zeigen». Wenn Sie das Panel nachts mit weißem Licht öffnen, bietet die App es Ihnen einmal an. Schalten Sie an einem dunklen Ort weiße Lichter aus und lassen Sie die Augen sich etwa 20 Minuten anpassen.",
+    "fr": "🔴 Dans le 🔭, «Lumière rouge» teinte tout l’écran en rouge, pas seulement le panneau, pour que vous ne soyez pas ébloui et continuiez à voir les étoiles ; tant qu’elle est active, un curseur à côté du bouton baisse encore la luminosité, aussi dans «Pointez vers le ciel». Si vous ouvrez le panneau la nuit en lumière blanche, l’appli vous la propose une fois. Dans un endroit sombre, éteignez les lumières blanches et laissez vos yeux s’adapter une vingtaine de minutes.",
+    "it": "🔴 Nel 🔭, «Luce rossa» tinge di rosso tutto lo schermo, non solo il pannello, perché non resti abbagliato e continui a vedere le stelle; mentre è attiva, un cursore accanto al pulsante abbassa ancora la luminosità, anche in «Punta al cielo». Se apre il pannello di notte con la luce bianca, l’app la propone una volta. Arrivato in un posto buio, spenga le luci bianche e lasci che la vista si adatti per una ventina di minuti.",
+    "nl": "🔴 In de 🔭 kleurt «Rood licht» het hele scherm rood, niet alleen het paneel, zodat u niet verblind wordt en de sterren blijft zien; zolang het aanstaat, verlaagt een schuifje naast de knop de helderheid nog verder, ook in «Richt op de hemel». Opent u het paneel ’s nachts met wit licht, dan stelt de app het één keer voor. Doe op een donkere plek de witte lampen uit en laat uw ogen zo’n 20 minuten wennen.",
+    "pl": "🔴 W 🔭 «Czerwone światło» barwi na czerwono cały ekran, nie tylko panel, żeby nie oślepiał i żeby dalej było widać gwiazdy; gdy jest włączone, suwak obok przycisku przyciemnia ekran jeszcze bardziej, także w «Wyceluj w niebo». Jeśli panel zostanie otwarty w nocy przy białym świetle, aplikacja raz to zaproponuje. Po dotarciu w ciemne miejsce warto zgasić białe światła i dać oczom około 20 minut na przyzwyczajenie się.",
+    "zh": "🔴 在 🔭 里，「红光模式」会把整个屏幕调成红色，不只是这个面板，这样不刺眼，也能继续看清星星；开启后，按钮旁会出现一个滑块，可以把亮度再调低，在「对准星空」里也一样。如果晚上用白光打开面板，应用会提示一次。到了暗处，请关掉白光，让眼睛适应 20 分钟左右。",
+    "zht": "🔴 在 🔭 裡，「紅光模式」會把整個螢幕調成紅色，不只是這個面板，這樣不刺眼，也能繼續看清星星；開啟後，按鈕旁會出現一個滑桿，可以把亮度再調低，在「對準星空」裡也一樣。如果晚上用白光打開面板，應用程式會提示一次。到了暗處，請關掉白光，讓眼睛適應 20 分鐘左右。"
+   },
+   "follow": [
+    "app-24",
+    "cie-01",
+    "cie-10"
+   ],
+   "rotulos": [
+    "UI.cieloRojo",
+    "UI.cieloApunta"
+   ],
+   "comprobado": "modulos/cielo.js (23/10/2026) y README («La luz roja tine toda la pantalla (no solo el panel) y lleva un regulador de brillo, en el panel y en «Apunta al cielo»…; y si se abre el panel de noche con la luz blanca, una pista lo ofrece una vez»): boton cielo-rojo (cieloRojo), regulador cielo-brillo (cieloRojoBrillo), pista cieloRojoPista («con la luz roja no se deslumbra y sigue viendo las estrellas») con cieloRojoActivar / cieloRojoNo; cieloConsejo3: apagar las luces blancas y dejar que la vista se adapte unos 20 minutos. La clave «luz roja» (y la de cada idioma) pasa de app-24 a esta entrada. · 24/10/2026: «Brillo de la pantalla» (cieloRojoBrillo) no es un texto que se vea: es el title y la etiqueta para lectores de pantalla del regulador, que sale junto al boton de la luz roja (montarBrillo) y en «Apunte al cielo» (cv-brillo), y solo con la luz roja puesta (pintarBrillo: hidden = !S.rojo). La respuesta ya no lo cita."
+  },
+  {
+   "id": "cie-07",
+   "cat": "cielo",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Es buena noche para ver estrellas?",
+    "en": "Is it a good night for stargazing?",
+    "de": "Ist heute eine gute Nacht zum Sternegucken?",
+    "fr": "C’est une bonne nuit pour voir les étoiles ?",
+    "it": "È una buona notte per vedere le stelle?",
+    "nl": "Is het een goede nacht om naar de sterren te kijken?",
+    "pl": "Czy to dobra noc na oglądanie gwiazd?",
+    "zh": "今晚适合看星星吗？",
+    "zht": "今晚適合看星星嗎？"
+   },
+   "keys": {
+    "es": [
+     "indice de la noche",
+     "buena noche para ver estrellas",
+     "es buena noche",
+     "calidad del cielo",
+     "noche despejada",
+     "nota de la noche",
+     "nubes esta noche"
+    ],
+    "en": [
+     "night index",
+     "good night for stargazing",
+     "is it a good night",
+     "sky quality",
+     "clear night",
+     "night score",
+     "clouds tonight"
+    ],
+    "de": [
+     "nachtindex",
+     "gute nacht zum sternegucken",
+     "ist es eine gute nacht",
+     "himmelsqualitat",
+     "klare nacht",
+     "note der nacht",
+     "wolken heute nacht"
+    ],
+    "fr": [
+     "indice de la nuit",
+     "bonne nuit pour voir les etoiles",
+     "est ce une bonne nuit",
+     "qualite du ciel",
+     "nuit degagee",
+     "note de la nuit",
+     "nuages cette nuit"
+    ],
+    "it": [
+     "indice della notte",
+     "buona notte per vedere le stelle",
+     "e una buona notte",
+     "qualita del cielo",
+     "notte serena",
+     "voto della notte",
+     "nuvole stanotte"
+    ],
+    "nl": [
+     "nachtindex",
+     "goede nacht om naar de sterren te kijken",
+     "is het een goede nacht",
+     "kwaliteit van de hemel",
+     "heldere nacht",
+     "cijfer voor de nacht",
+     "wolken vannacht"
+    ],
+    "pl": [
+     "indeks nocy",
+     "dobra noc na ogladanie gwiazd",
+     "czy to dobra noc",
+     "jakosc nieba",
+     "pogodna noc",
+     "ocena nocy",
+     "chmury tej nocy"
+    ],
+    "zh": [
+     "今夜观星指数",
+     "观星指数",
+     "适合看星星",
+     "适合观星",
+     "天空质量",
+     "晴朗的夜晚",
+     "今晚有云吗"
+    ],
+    "zht": [
+     "今夜觀星指數",
+     "觀星指數",
+     "適合看星星",
+     "適合觀星",
+     "天空品質",
+     "晴朗的夜晚",
+     "今晚有雲嗎"
+    ]
+   },
+   "a": {
+    "es": "⭐ En el 🔭, arriba de «Esta noche», el «Índice de la noche» le da una nota de 0 a 10, con la cuenta a la vista: 10 puntos por una noche cerrada entera sin Luna; se descuenta el tiempo con la Luna arriba, según lo iluminada que esté, y lo bajan las nubes medias y altas que prevé Open-Meteo. No cuenta la contaminación lumínica ni el viento. Con «Compartir» lo manda como imagen, y con 📅 lo mira para cualquier otra noche.",
+    "en": "⭐ In the 🔭, at the top of «Tonight», the «Night index» gives a score from 0 to 10, showing how it is worked out: 10 points for a whole dark night without the Moon; time with the Moon up is deducted, depending on how full it is, and the medium and high cloud forecast by Open-Meteo lowers it. It does not count light pollution or wind. «Share» sends it as a picture, and with 📅 you can check it for any other night.",
+    "de": "⭐ Im 🔭, ganz oben unter «Heute Nacht», gibt der «Nachtindex» eine Note von 0 bis 10, mit sichtbarer Berechnung: 10 Punkte für eine ganze dunkle Nacht ohne Mond; abgezogen wird die Zeit, in der der Mond am Himmel steht, je nachdem, wie voll er ist, und die von Open-Meteo vorhergesagten mittleren und hohen Wolken senken ihn. Lichtverschmutzung und Wind zählen nicht. Mit «Teilen» schicken Sie ihn als Bild, und mit 📅 sehen Sie ihn für jede andere Nacht.",
+    "fr": "⭐ Dans le 🔭, en haut de «Ce soir», l’«Indice de la nuit» donne une note de 0 à 10, calcul à l’appui : 10 points pour une nuit noire entière sans Lune ; on retire le temps où la Lune est levée, selon son éclairement, et les nuages moyens et hauts prévus par Open-Meteo la font baisser. Elle ne tient compte ni de la pollution lumineuse ni du vent. «Partager» l’envoie en image, et 📅 permet de la voir pour n’importe quelle autre nuit.",
+    "it": "⭐ Nel 🔭, in cima a «Stanotte», l’«Indice della notte» Le dà un voto da 0 a 10, con il calcolo in vista: 10 punti per un’intera notte buia senza Luna; si sottrae il tempo con la Luna sopra l’orizzonte, a seconda di quanto è illuminata, e lo abbassano le nuvole medie e alte previste da Open-Meteo. Non contano l’inquinamento luminoso né il vento. Con «Condividi» lo invia come immagine, e con 📅 lo vede per qualsiasi altra notte.",
+    "nl": "⭐ In de 🔭, bovenaan «Vannacht», geeft de «Nachtindex» een cijfer van 0 tot 10, met de berekening erbij: 10 punten voor een hele donkere nacht zonder maan; de tijd met de maan op gaat eraf, afhankelijk van hoe vol hij is, en de middelhoge en hoge bewolking die Open-Meteo voorspelt, verlaagt het. Lichtvervuiling en wind tellen niet mee. Met «Delen» stuurt u het als afbeelding, en met 📅 ziet u het voor elke andere nacht.",
+    "pl": "⭐ W 🔭, na górze zakładki «Dziś w nocy», «Indeks nocy» daje ocenę od 0 do 10, z widocznym wyliczeniem: 10 punktów za całą ciemną noc bez Księżyca; odejmuje się czas, gdy Księżyc jest na niebie, zależnie od tego, jak bardzo jest oświetlony, a obniżają ją średnie i wysokie chmury z prognozy Open-Meteo. Nie liczy się zanieczyszczenie światłem ani wiatr. «Udostępnij» wysyła ją jako obraz, a 📅 pozwala sprawdzić każdą inną noc.",
+    "zh": "⭐ 在 🔭 的「今晚」页顶部，「今夜观星指数」给出 0 到 10 的分数，并列出计算方法：整晚天黑且没有月亮记 10 分；月亮在天上的时间按月亮的亮度扣分，Open-Meteo 预报的中高云也会拉低分数。不计入光污染和风。点「分享」可以把它作为图片发出去，点 📅 可以查看其他任何一个晚上。",
+    "zht": "⭐ 在 🔭 的「今晚」頁頂部，「今夜觀星指數」給出 0 到 10 的分數，並列出計算方法：整晚天黑且沒有月亮記 10 分；月亮在天上的時間按月亮的亮度扣分，Open-Meteo 預報的中高雲也會拉低分數。不計入光害和風。點「分享」可以把它作為圖片傳出去，點 📅 可以查看其他任何一個晚上。"
+   },
+   "follow": [
+    "cie-02",
+    "cie-08",
+    "app-24"
+   ],
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloIndice",
+    "UI.cieloCompartir"
+   ],
+   "comprobado": "modulos/cielo.js (23/10/2026): tarjetaIndice, la segunda de «Esta noche» (detras de los avisos): cieloIndiceDe («{n} de 10»), las notas Excelente a Mala y cieloIndiceComo: «10 puntos por una noche cerrada entera sin Luna. Se descuenta el tiempo con la Luna arriba, en proporcion a lo iluminada que este, y la media de nubes medias y altas previstas (Open-Meteo) lo baja en esa proporcion. Nada mas: ni la contaminacion luminica ni el viento.»; boton «📤 Compartir» (cieloCompartir, compartirNoche: imagen «Esta noche en el Teide»); selectorFecha (‹ › y 📅) arriba de la pestana cambia la noche."
+  },
+  {
+   "id": "cie-08",
+   "cat": "cielo",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Cuándo es la próxima luna llena?",
+    "en": "When is the next full moon?",
+    "de": "Wann ist der nächste Vollmond?",
+    "fr": "Quand est la prochaine pleine lune ?",
+    "it": "Quando c’è la prossima luna piena?",
+    "nl": "Wanneer is de volgende volle maan?",
+    "pl": "Kiedy jest następna pełnia?",
+    "zh": "下一次满月是什么时候？",
+    "zht": "下一次滿月是什麼時候？"
+   },
+   "keys": {
+    "es": [
+     "luna llena",
+     "proxima luna llena",
+     "fase de la luna",
+     "fases de la luna",
+     "luna nueva",
+     "a que hora sale la luna",
+     "salida de la luna",
+     "calendario lunar"
+    ],
+    "en": [
+     "full moon",
+     "next full moon",
+     "moon phase",
+     "moon phases",
+     "new moon",
+     "what time does the moon rise",
+     "moonrise",
+     "lunar calendar"
+    ],
+    "de": [
+     "vollmond",
+     "nachster vollmond",
+     "mondphase",
+     "mondphasen",
+     "neumond",
+     "wann geht der mond auf",
+     "mondaufgang",
+     "mondkalender"
+    ],
+    "fr": [
+     "pleine lune",
+     "prochaine pleine lune",
+     "phase de la lune",
+     "phases de la lune",
+     "nouvelle lune",
+     "a quelle heure se leve la lune",
+     "lever de la lune",
+     "calendrier lunaire"
+    ],
+    "it": [
+     "luna piena",
+     "prossima luna piena",
+     "fase lunare",
+     "fasi lunari",
+     "luna nuova",
+     "a che ora sorge la luna",
+     "sorgere della luna",
+     "calendario lunare"
+    ],
+    "nl": [
+     "volle maan",
+     "volgende volle maan",
+     "maanfase",
+     "maanfasen",
+     "nieuwe maan",
+     "hoe laat komt de maan op",
+     "maansopkomst",
+     "maankalender"
+    ],
+    "pl": [
+     "pelnia",
+     "nastepna pelnia",
+     "faza ksiezyca",
+     "fazy ksiezyca",
+     "now ksiezyca",
+     "o ktorej wschodzi ksiezyc",
+     "wschod ksiezyca",
+     "kalendarz ksiezycowy"
+    ],
+    "zh": [
+     "满月",
+     "下一次满月",
+     "月相",
+     "新月",
+     "月亮几点升起",
+     "月出",
+     "月历"
+    ],
+    "zht": [
+     "滿月",
+     "下一次滿月",
+     "月相",
+     "新月",
+     "月亮幾點升起",
+     "月出",
+     "月曆"
+    ]
+   },
+   "a": {
+    "es": "🌕 En el 🔭, «Esta noche», la tarjeta «Luna»: su fase y lo iluminada que está, a qué hora sale y se pone, en qué constelación está y las fechas de la próxima luna nueva y de la próxima llena. En el «Calendario», el filtro «Fases de la Luna» las tiene todas, con su hora. La luna nueva da las noches más oscuras, las mejores para la Vía Láctea; la llena, la mejor para mirarla a ella.",
+    "en": "🌕 In the 🔭, «Tonight», the «Moon» card: its phase and how lit it is, when it rises and sets, which constellation it is in, and the dates of the next new moon and the next full moon. In the «Calendar», the «Moon phases» filter has all of them, with their time. New moon gives the darkest nights, the best for the Milky Way; full moon is the best for looking at the Moon itself.",
+    "de": "🌕 Im 🔭, «Heute Nacht», der Abschnitt «Mond»: seine Phase und wie stark er beleuchtet ist, wann er auf- und untergeht, in welchem Sternbild er steht und die Daten des nächsten Neumonds und des nächsten Vollmonds. Im «Kalender» hat der Filter «Mondphasen» alle, mit Uhrzeit. Neumond bringt die dunkelsten Nächte, die besten für die Milchstraße; Vollmond ist am besten, um den Mond selbst anzuschauen.",
+    "fr": "🌕 Dans le 🔭, «Ce soir», la rubrique «Lune» : sa phase et son éclairement, l’heure de son lever et de son coucher, la constellation où elle se trouve et les dates de la prochaine nouvelle lune et de la prochaine pleine lune. Dans le «Calendrier», le filtre «Phases de la Lune» les a toutes, avec leur heure. La nouvelle lune donne les nuits les plus noires, les meilleures pour la Voie lactée ; la pleine lune, la meilleure pour observer la Lune elle-même.",
+    "it": "🌕 Nel 🔭, «Stanotte», la sezione «Luna»: la sua fase e quanto è illuminata, a che ora sorge e tramonta, in quale costellazione si trova e le date della prossima luna nuova e della prossima luna piena. Nel «Calendario», il filtro «Fasi lunari» le ha tutte, con l’ora. La luna nuova dà le notti più buie, le migliori per la Via Lattea; la piena è la migliore per guardare lei.",
+    "nl": "🌕 In de 🔭, «Vannacht», het blok «Maan»: zijn fase en hoeveel ervan verlicht is, wanneer hij opkomt en ondergaat, in welk sterrenbeeld hij staat en de data van de volgende nieuwe maan en de volgende volle maan. In de «Kalender» heeft het filter «Maanfasen» ze allemaal, met hun tijd. Nieuwe maan geeft de donkerste nachten, de beste voor de Melkweg; volle maan is het mooist om de maan zelf te bekijken.",
+    "pl": "🌕 W 🔭, w zakładce «Dziś w nocy», sekcja «Księżyc»: jego faza i oświetlenie, godzina wschodu i zachodu, gwiazdozbiór, w którym jest, oraz daty najbliższego nowiu i najbliższej pełni. W zakładce «Kalendarz» filtr «Fazy Księżyca» ma je wszystkie, z godziną. Nów daje najciemniejsze noce, najlepsze dla Drogi Mlecznej; pełnia jest najlepsza, żeby oglądać sam Księżyc.",
+    "zh": "🌕 在 🔭 的「今晚」页，「月亮」一栏有月相和被照亮的比例、几点升起和落下、位于哪个星座，以及下一次新月和满月的日期。在「天象日历」里，「月相」筛选列出所有月相和时间。新月时夜晚最暗，最适合看银河；满月最适合观赏月亮本身。",
+    "zht": "🌕 在 🔭 的「今晚」頁，「月亮」一欄有月相和被照亮的比例、幾點升起和落下、位於哪個星座，以及下一次新月和滿月的日期。在「天象日曆」裡，「月相」篩選列出所有月相和時間。新月時夜晚最暗，最適合看銀河；滿月最適合觀賞月亮本身。"
+   },
+   "follow": [
+    "cie-07",
+    "app-25",
+    "cie-09"
+   ],
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloLuna",
+    "UI.cieloPesCalendario",
+    "UI.cieloCalLuna"
+   ],
+   "comprobado": "modulos/cielo.js (23/10/2026): en pintarNoche, la tarjeta cieloLuna: dibujo de la fase, nombre de la fase y cieloIluminada, cieloLunaSale / cieloLunaPone (o toda la noche / no sale), cieloEnConstelacion y, al pie, proximasFases: cieloProxNueva y cieloProxLlena; en el calendario, el filtro cieloCalLuna (eventosFases, cieloFaseDet: hora de Canarias) y cieloFasesNota («la Luna nueva da las noches mas oscuras… la llena, la mejor para mirarla a ella»). Las claves de la Luna (fase de la luna, luna llena y las de cada idioma) pasan de app-24 a esta entrada."
+  },
+  {
+   "id": "cie-09",
+   "cat": "cielo",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Cuándo se ve la Vía Láctea?",
+    "en": "When can I see the Milky Way?",
+    "de": "Wann sieht man die Milchstraße?",
+    "fr": "Quand voit-on la Voie lactée ?",
+    "it": "Quando si vede la Via Lattea?",
+    "nl": "Wanneer is de Melkweg te zien?",
+    "pl": "Kiedy widać Drogę Mleczną?",
+    "zh": "什么时候能看到银河？",
+    "zht": "什麼時候能看到銀河？"
+   },
+   "keys": {
+    "es": [
+     "via lactea",
+     "ver la via lactea",
+     "cuando se ve la via lactea",
+     "hora dorada",
+     "hora azul",
+     "fotos de noche",
+     "fotografia nocturna",
+     "luz zodiacal",
+     "sombra del teide"
+    ],
+    "en": [
+     "milky way",
+     "see the milky way",
+     "when can i see the milky way",
+     "golden hour",
+     "blue hour",
+     "night photos",
+     "night photography",
+     "zodiacal light",
+     "shadow of teide"
+    ],
+    "de": [
+     "milchstrasse",
+     "die milchstrasse sehen",
+     "wann sieht man die milchstrasse",
+     "goldene stunde",
+     "blaue stunde",
+     "nachtfotos",
+     "nachtfotografie",
+     "zodiakallicht",
+     "schatten des teide"
+    ],
+    "fr": [
+     "voie lactee",
+     "voir la voie lactee",
+     "quand voit on la voie lactee",
+     "heure doree",
+     "heure bleue",
+     "photos de nuit",
+     "photographie nocturne",
+     "lumiere zodiacale",
+     "ombre du teide"
+    ],
+    "it": [
+     "via lattea",
+     "vedere la via lattea",
+     "quando si vede la via lattea",
+     "ora d oro",
+     "ora blu",
+     "foto notturne",
+     "fotografia notturna",
+     "luce zodiacale",
+     "ombra del teide"
+    ],
+    "nl": [
+     "melkweg",
+     "de melkweg zien",
+     "wanneer is de melkweg te zien",
+     "gouden uur",
+     "blauwe uur",
+     "nachtfotos",
+     "nachtfotografie",
+     "zodiakaal licht",
+     "schaduw van de teide"
+    ],
+    "pl": [
+     "droga mleczna",
+     "zobaczyc droge mleczna",
+     "kiedy widac droge mleczna",
+     "zlota godzina",
+     "niebieska godzina",
+     "zdjecia nocne",
+     "fotografia nocna",
+     "swiatlo zodiakalne",
+     "cien teide"
+    ],
+    "zh": [
+     "银河",
+     "看银河",
+     "什么时候能看到银河",
+     "黄金时刻",
+     "蓝调时刻",
+     "夜景摄影",
+     "拍星空",
+     "黄道光",
+     "泰德峰的影子"
+    ],
+    "zht": [
+     "銀河",
+     "看銀河",
+     "什麼時候能看到銀河",
+     "黃金時刻",
+     "藍調時刻",
+     "夜景攝影",
+     "拍星空",
+     "黃道光",
+     "泰德峰的影子"
+    ]
+   },
+   "a": {
+    "es": "🌌 En el 🔭, «Esta noche», la tarjeta «Vía Láctea» le dice de qué hora a qué hora se ve su parte más brillante y lo alto que sube, o desde qué noche vuelve a verse; hace falta un sitio lejos de las luces, sin Luna, y al menos 20 minutos para que la vista se adapte. La tarjeta «Para fotos» trae las horas dorada y azul de la tarde y de la mañana, la luz zodiacal cuando es su época y la sombra triangular del Teide al amanecer y al atardecer.",
+    "en": "🌌 In the 🔭, «Tonight», the «Milky Way» card tells you from what time to what time its brightest part is visible and how high it climbs, or from which night it comes back; you need a spot far from lights, no Moon, and at least 20 minutes for your eyes to adapt. The «For photos» card gives the golden and blue hours in the evening and morning, the zodiacal light in its season and Teide’s triangular shadow at sunrise and sunset.",
+    "de": "🌌 Im 🔭, «Heute Nacht», sagt Ihnen der Abschnitt «Milchstraße», von wann bis wann ihr hellster Teil zu sehen ist und wie hoch sie steigt, oder ab welcher Nacht sie wieder zu sehen ist; man braucht einen Ort fern von Lichtern, eine mondlose Nacht und mindestens 20 Minuten, bis sich die Augen angepasst haben. Der Abschnitt «Für Fotos» hat die goldene und die blaue Stunde am Abend und am Morgen, das Zodiakallicht in seiner Saison und den dreieckigen Schatten des Teide bei Sonnenaufgang und Sonnenuntergang.",
+    "fr": "🌌 Dans le 🔭, «Ce soir», la rubrique «Voie lactée» vous dit de quelle heure à quelle heure on voit sa partie la plus brillante et à quelle hauteur elle monte, ou à partir de quelle nuit elle revient ; il faut un endroit loin des lumières, sans Lune, et au moins 20 minutes pour que les yeux s’adaptent. La rubrique «Pour les photos» donne les heures dorée et bleue du soir et du matin, la lumière zodiacale à sa saison et l’ombre triangulaire du Teide au lever et au coucher du soleil.",
+    "it": "🌌 Nel 🔭, «Stanotte», la sezione «Via Lattea» Le dice da che ora a che ora si vede la sua parte più luminosa e quanto sale, o da quale notte torna a vedersi; serve un posto lontano dalle luci, senza Luna, e almeno 20 minuti perché la vista si adatti. La sezione «Per le foto» dà l’ora d’oro e l’ora blu della sera e del mattino, la luce zodiacale nella sua stagione e l’ombra triangolare del Teide all’alba e al tramonto.",
+    "nl": "🌌 In de 🔭, «Vannacht», vertelt het blok «Melkweg» van hoe laat tot hoe laat het helderste deel te zien is en hoe hoog het komt, of vanaf welke nacht het weer te zien is; u heeft een plek ver van de lichten nodig, een nacht zonder maan en minstens 20 minuten om uw ogen te laten wennen. Het blok «Voor foto’s» geeft het gouden en het blauwe uur ’s avonds en ’s ochtends, het zodiakaal licht in zijn seizoen en de driehoekige schaduw van de Teide bij zonsopkomst en zonsondergang.",
+    "pl": "🌌 W 🔭, w zakładce «Dziś w nocy», sekcja «Droga Mleczna» podaje, od której do której widać jej najjaśniejszą część i jak wysoko się wznosi, albo od której nocy znów będzie widoczna; potrzebne jest miejsce z dala od świateł, bez Księżyca, i co najmniej 20 minut, żeby oczy przywykły. Sekcja «Dla fotografów» podaje złotą i niebieską godzinę wieczorem i rano, światło zodiakalne w jego sezonie i trójkątny cień Teide o wschodzie i zachodzie słońca.",
+    "zh": "🌌 在 🔭 的「今晚」页，「银河」一栏告诉您银河最亮的部分几点到几点能看到、能升到多高，或者从哪天晚上起会再出现；需要远离灯光、没有月亮的地方，并让眼睛至少适应 20 分钟。「摄影时段」一栏列出傍晚和清晨的黄金时刻与蓝调时刻、当季的黄道光，以及日出和日落时泰德峰的三角形影子。",
+    "zht": "🌌 在 🔭 的「今晚」頁，「銀河」一欄告訴您銀河最亮的部分幾點到幾點能看到、能升到多高，或者從哪天晚上起會再出現；需要遠離燈光、沒有月亮的地方，並讓眼睛至少適應 20 分鐘。「攝影時段」一欄列出傍晚和清晨的黃金時刻與藍調時刻、當季的黃道光，以及日出和日落時泰德峰的三角形影子。"
+   },
+   "follow": [
+    "cie-08",
+    "cie-07",
+    "tei-13"
+   ],
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloViaLactea",
+    "UI.cieloParaFotos"
+   ],
+   "comprobado": "modulos/cielo.js (23/10/2026): tarjeta cieloViaLactea en pintarNoche: cieloViaLacteaSi (de que hora a que hora se ve su parte mas brillante y lo mas alto que sube), cieloViaLacteaLuna, cieloViaLacteaNo + cieloViaLacteaVuelve (desde que noche vuelve), cieloViaLacteaNota («lejos de las luces, sin Luna y tras al menos 20 minutos»); tarjetaFotos (cieloParaFotos): horas dorada y azul de la tarde y de la manana (cieloDorada*/cieloAzul*, definicion de PhotoPills), la luz zodiacal en su temporada (cieloZodiacal*) y la sombra triangular del Teide con la hora de la puesta (cieloSombraTeide). La clave «via lactea» (y la de cada idioma) pasa de tei-13 a esta entrada."
+  },
+  {
+   "id": "cie-10",
+   "cat": "normas",
+   "prio": 2,
+   "volatil": true,
+   "label": {
+    "es": "¿Dónde puedo montar el telescopio de noche?",
+    "en": "Where can I set up a telescope at night?",
+    "de": "Wo darf ich nachts ein Teleskop aufstellen?",
+    "fr": "Où puis-je installer un télescope la nuit ?",
+    "it": "Dove posso montare il telescopio di notte?",
+    "nl": "Waar mag ik ’s nachts een telescoop opstellen?",
+    "pl": "Gdzie można rozstawić teleskop w nocy?",
+    "zh": "晚上可以在哪里架天文望远镜？",
+    "zht": "晚上可以在哪裡架天文望遠鏡？"
+   },
+   "keys": {
+    "es": [
+     "montar el telescopio",
+     "donde montar el telescopio",
+     "telescopio en el parque",
+     "normas de noche",
+     "normas del parque nacional",
+     "poner el telescopio",
+     "monto el telescopio",
+     "telescopio en el teide",
+     "telescopio teide",
+     "puntero laser",
+     "excursion de estrellas"
+    ],
+    "en": [
+     "set up a telescope",
+     "where to set up a telescope",
+     "telescope in the park",
+     "rules at night",
+     "national park rules",
+     "put up a telescope",
+     "telescope on teide",
+     "telescope teide",
+     "laser pointer",
+     "stargazing tour"
+    ],
+    "de": [
+     "teleskop aufstellen",
+     "wo darf ich ein teleskop aufstellen",
+     "teleskop im park",
+     "regeln fur die nacht",
+     "regeln des nationalparks",
+     "teleskop am teide",
+     "teleskop teide",
+     "laserpointer",
+     "sternenfuhrung"
+    ],
+    "fr": [
+     "installer un telescope",
+     "ou installer le telescope",
+     "telescope dans le parc",
+     "regles la nuit",
+     "regles du parc national",
+     "mettre le telescope",
+     "telescope au teide",
+     "telescope teide",
+     "pointeur laser",
+     "sortie etoiles"
+    ],
+    "it": [
+     "montare il telescopio",
+     "dove montare il telescopio",
+     "telescopio nel parco",
+     "norme di notte",
+     "norme del parco nazionale",
+     "mettere il telescopio",
+     "telescopio sul teide",
+     "telescopio teide",
+     "puntatore laser",
+     "escursione per le stelle"
+    ],
+    "nl": [
+     "telescoop opstellen",
+     "waar mag ik een telescoop opstellen",
+     "telescoop in het park",
+     "regels voor de nacht",
+     "regels van het nationaal park",
+     "telescoop op de teide",
+     "telescoop teide",
+     "laserpointer",
+     "sterrenexcursie"
+    ],
+    "pl": [
+     "rozstawic teleskop",
+     "gdzie rozstawic teleskop",
+     "teleskop w parku",
+     "przepisy na noc",
+     "przepisy parku narodowego",
+     "teleskop na teide",
+     "teleskop teide",
+     "wskaznik laserowy",
+     "wycieczka do gwiazd"
+    ],
+    "zh": [
+     "架望远镜",
+     "在哪里架望远镜",
+     "公园里的望远镜",
+     "夜间规定",
+     "国家公园的规定",
+     "泰德峰架望远镜",
+     "激光笔",
+     "观星团"
+    ],
+    "zht": [
+     "架望遠鏡",
+     "在哪裡架望遠鏡",
+     "公園裡的望遠鏡",
+     "夜間規定",
+     "國家公園的規定",
+     "泰德峰架望遠鏡",
+     "雷射筆",
+     "觀星團"
+    ]
+   },
+   "a": {
+    "es": "🔭 En el Parque Nacional del Teide, el Plan Rector de Uso y Gestión (Decreto 182/2025) solo deja montar el telescopio en los miradores y la zona peatonal de La Ruleta, junto al Parador y al centro de visitantes de Cañada Blanca; en los aparcamientos del teleférico (el de la TF-21 y el de la estación base); fuera del refugio de Altavista; en los aparcamientos de Minas de San José y en Portillo Alto. De noche no se permiten más luces que las de los coches en marcha, las linternas de mano y los frontales, y los punteros láser, solo en las observaciones guiadas. No se puede acampar, dormir en el vehículo ni aparcar autocaravanas, caravanas o campers, salvo los de actividades autorizadas en zonas de uso especial; para pasar la noche hay zonas de vivac, con reserva previa en Tenerife ON, como la de Guajara. Las excursiones de estrellas, en grupos de 30 como máximo y con guía acreditado. En la app: 🔭, «Dónde ir», «Normas del Parque Nacional para la noche».",
+    "en": "🔭 In Teide National Park, the Master Plan for Use and Management (Decree 182/2025) only allows telescopes to be set up at the viewpoints and pedestrian area of La Ruleta, by the Parador and the Cañada Blanca visitor centre; in the cable-car car parks (the one on the TF-21 and the one at the base station); outside the Altavista refuge; in the Minas de San José car parks and at Portillo Alto. At night the only lights allowed are those of moving cars, hand torches and head torches, and laser pointers only on guided observations. Camping, sleeping in a vehicle and parking motorhomes, caravans or campervans are not allowed, except those linked to authorised activities in special-use zones; to spend the night up there, there are bivouac areas that must be booked in advance on Tenerife ON, such as the one on Guajara. Stargazing tours: groups of 30 at most, with an accredited guide. In the app: 🔭, «Where to go», «National Park rules for the night».",
+    "de": "🔭 Im Nationalpark Teide erlaubt der Nutzungs- und Verwaltungsplan (Dekret 182/2025) ein Teleskop nur an den Aussichtspunkten und im Fußgängerbereich von La Ruleta, beim Parador und dem Besucherzentrum Cañada Blanca; auf den Parkplätzen der Seilbahn (an der TF-21 und an der Talstation); im Außenbereich der Altavista-Hütte; auf den Parkplätzen von Minas de San José und in Portillo Alto. Nachts sind nur die Lichter fahrender Autos, Taschenlampen und Stirnlampen erlaubt, Laserpointer nur bei geführten Beobachtungen. Zelten, im Fahrzeug übernachten und Wohnmobile, Wohnwagen oder Campervans abstellen ist verboten, außer solchen für genehmigte Aktivitäten in Sondernutzungszonen; zum Übernachten gibt es Biwakzonen, die man vorher bei Tenerife ON reserviert, etwa auf dem Guajara. Sternenführungen: Gruppen von höchstens 30 Personen mit akkreditiertem Guide. In der App: 🔭, «Wohin», «Die Regeln des Nationalparks für die Nacht».",
+    "fr": "🔭 Dans le parc national du Teide, le plan directeur d’usage et de gestion (décret 182/2025) n’autorise le télescope que sur les belvédères et la zone piétonne de La Ruleta, près du Parador et du centre d’accueil de Cañada Blanca ; sur les parkings du téléphérique (celui de la TF-21 et celui de la station de départ) ; à l’extérieur du refuge d’Altavista ; sur les parkings de Minas de San José et à Portillo Alto. La nuit, seules sont permises les lumières des voitures qui circulent, les lampes de poche et les lampes frontales, et les pointeurs laser uniquement lors des observations guidées. Il est interdit de camper, de dormir dans un véhicule et de garer camping-cars, caravanes ou vans aménagés, sauf ceux liés à des activités autorisées dans les zones d’usage spécial ; pour passer la nuit, il existe des zones de bivouac, à réserver à l’avance sur Tenerife ON, comme celle de Guajara. Les sorties d’observation des étoiles : groupes de 30 personnes au plus, avec un guide accrédité. Dans l’appli : 🔭, «Où aller», «Les règles du parc national, la nuit».",
+    "it": "🔭 Nel Parco Nazionale del Teide, il Piano di uso e gestione (decreto 182/2025) permette il telescopio solo nei belvedere e nella zona pedonale di La Ruleta, vicino al Parador e al centro visitatori di Cañada Blanca; nei parcheggi della funivia (quello sulla TF-21 e quello della stazione a valle); all’esterno del rifugio di Altavista; nei parcheggi di Minas de San José e a Portillo Alto. Di notte sono ammesse solo le luci delle auto in movimento, le torce a mano e le frontali, e i puntatori laser solo nelle osservazioni guidate. Non si può campeggiare, dormire nel veicolo né parcheggiare camper, roulotte o van camperizzati, salvo quelli legati ad attività autorizzate nelle zone di uso speciale; per passare la notte ci sono zone di bivacco, da prenotare prima su Tenerife ON, come quella del Guajara. Le escursioni per vedere le stelle: gruppi di 30 persone al massimo, con guida accreditata. Nell’app: 🔭, «Dove andare», «Le norme del Parco Nazionale per la notte».",
+    "nl": "🔭 In Nationaal Park Teide staat het beheers- en gebruiksplan (decreet 182/2025) een telescoop alleen toe bij de uitkijkpunten en het voetgangersgebied van La Ruleta, bij de Parador en het bezoekerscentrum Cañada Blanca; op de parkeerplaatsen van de kabelbaan (die aan de TF-21 en die bij het dalstation); buiten de berghut Altavista; op de parkeerplaatsen van Minas de San José en in Portillo Alto. ’s Nachts zijn alleen de lichten van rijdende auto’s, zaklampen en hoofdlampen toegestaan, en laserpointers alleen bij begeleide waarnemingen. Kamperen, in een voertuig overnachten en campers, caravans of kampeerbusjes parkeren is verboden, behalve voertuigen voor toegestane activiteiten in zones voor bijzonder gebruik; om te overnachten zijn er bivakzones, die u vooraf reserveert bij Tenerife ON, zoals die op de Guajara. Sterrenexcursies: groepen van hoogstens 30 personen, met een geaccrediteerde gids. In de app: 🔭, «Waarheen», «De regels van het nationaal park voor de nacht».",
+    "pl": "🔭 W Parku Narodowym Teide Plan użytkowania i zarządzania (dekret 182/2025) pozwala rozstawić teleskop tylko na punktach widokowych i w strefie pieszej La Ruleta, przy Paradorze i centrum dla odwiedzających Cañada Blanca; na parkingach kolejki (przy TF-21 i przy stacji dolnej); na zewnątrz schroniska Altavista; na parkingach Minas de San José i w Portillo Alto. W nocy dozwolone są tylko światła jadących samochodów, latarki ręczne i czołówki, a wskaźniki laserowe – tylko podczas obserwacji z przewodnikiem. Nie wolno rozbijać namiotu, nocować w pojeździe ani parkować kamperów, przyczep kempingowych czy busów kempingowych, z wyjątkiem pojazdów związanych z zatwierdzonymi działaniami w strefach użytkowania specjalnego; na nocleg są strefy biwakowe, które trzeba wcześniej zarezerwować w Tenerife ON, na przykład na Guajarze. Wycieczki do obserwacji gwiazd: grupy najwyżej 30 osób z akredytowanym przewodnikiem. W aplikacji: 🔭, «Gdzie», «Przepisy parku narodowego na noc».",
+    "zh": "🔭 在泰德国家公园，《使用与管理总体规划》（第182/2025号法令）只允许把天文望远镜架设在拉鲁莱塔的观景台和步行区（国营旅馆与卡尼亚达布兰卡游客中心附近）、缆车停车场（TF-21公路旁的停车场和缆车下站停车场）、Altavista山屋外、米纳斯德圣何塞停车场以及上波蒂略（Portillo Alto）。夜间除行驶中车辆的车灯、手电筒和头灯外，禁止使用其他灯光，激光笔只可在有导览的观测活动中使用。禁止露营、在车内过夜，也不得停放房车、拖挂房车或露营车，在特殊用途区开展经批准活动所用的车辆除外；若想在高处过夜，可事先在 Tenerife ON 预约露宿区，例如瓜哈拉山的露宿区。观星团每团最多 30 人，并由持证导览员带领。应用里：🔭 →「观星地点」→「国家公园夜间规定」。",
+    "zht": "🔭 在泰德國家公園，《使用與管理總體規劃》（第182/2025號法令）只允許把天文望遠鏡架設在拉魯萊塔的觀景台和步行區（國營旅館與卡尼亞達布蘭卡遊客中心附近）、纜車停車場（TF-21公路旁的停車場和纜車下站停車場）、Altavista山屋外、米納斯德聖何塞停車場以及上波蒂略（Portillo Alto）。夜間除行駛中車輛的車燈、手電筒和頭燈外，禁止使用其他燈光，雷射筆只可在有導覽的觀測活動中使用。禁止露營、在車內過夜，也不得停放露營車、拖掛式露營車或改裝露營車，在特殊用途區進行經核准活動所用的車輛除外；若想在高處過夜，可事先在 Tenerife ON 預約露宿區，例如瓜哈拉山的露宿區。觀星團每團最多 30 人，並由持證導覽員帶領。應用程式裡：🔭 →「觀星地點」→「國家公園夜間規定」。"
+   },
+   "follow": [
+    "tei-13",
+    "tei-12",
+    "pla-11"
+   ],
+   "rotulos": [
+    "UI.cieloPesDonde",
+    "UI.cieloNormas"
+   ],
+   "comprobado": "Decreto 182/2025, de 1 de diciembre, PRUG del Parque Nacional del Teide (BOC n.º 240, 3-12-2025), cotejado el 23/10/2026 en la copia integra del PDF del BOC (identificador boc-a-2025-240-4148): 6.3.2.5, pagina 49361 («los miradores y la zona peatonal de La Ruleta, en el entorno del Parador y centro de visitantes de Canada Blanca, el aparcamiento en la carretera TF-21 junto a la via que da acceso al teleferico y en el de la estacion inferior, el exterior del Refugio de Altavista, los aparcamientos de Minas de San Jose y en la zona de uso especial del Portillo Alto»: el aparcamiento de La Ruleta NO esta, de ahi «los miradores y la zona peatonal»); 6.2.5 a), pagina 49352 (las luces); 6.2.1 l), m) y n), pagina 49350 (acampada, pernoctacion en vehiculos y estacionamiento de autocaravanas, caravanas y campers, salvo actividades autorizadas); 6.3.2.7, pagina 49361 (vivac por encima de 2.500 m, con comunicacion previa; Tenerife ON reserva la zona de Guajara); 6.3.3, pagina 49363 (grupos de 30 como maximo con guia acreditado). En la app, la tarjeta cieloNormas de «Donde ir» (octavo bloque, 23/10/2026). Nombres de lugar como los escribe esa tarjeta en cada idioma (cieloNorma1-3). · 24/10/2026: Decreto 182/2025, 6.2.1 l) y m) (BOC n.º 240, pagina 49349: «La acampada.», «La pernoctación en vehículos.») y n) (pagina 49350: «El estacionamiento de vehículos camperizados, caravanas y autocaravanas, excepto aquellos vinculados a actividades autorizadas en zonas de uso especial»), releidos el 24/10/2026 en la copia del PDF del BOC que guarda la Xunta de Galicia (gaia.xunta.gal); 6.3.2.7, pagina 49361 (vivac por encima de 2.500 msnm, con comunicacion previa, una noche por area). La revision de hechos no pudo abrir el BOC: la excepcion, que el 23 decia «salvo actividades autorizadas», va ahora con sus palabras."
+  },
+  {
+   "id": "cie-11",
+   "cat": "cielo",
+   "prio": 3,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué veo con prismáticos o con telescopio?",
+    "en": "What can I see with binoculars or a telescope?",
+    "de": "Was sehe ich mit Fernglas oder Teleskop?",
+    "fr": "Que voit-on aux jumelles ou au télescope ?",
+    "it": "Cosa vedo con il binocolo o con il telescopio?",
+    "nl": "Wat zie ik met een verrekijker of telescoop?",
+    "pl": "Co widać przez lornetkę albo teleskop?",
+    "zh": "用双筒望远镜或天文望远镜能看到什么？",
+    "zht": "用雙筒望遠鏡或天文望遠鏡能看到什麼？"
+   },
+   "keys": {
+    "es": [
+     "prismaticos",
+     "con prismaticos",
+     "que ver con prismaticos",
+     "que ver con telescopio",
+     "que veo con el telescopio",
+     "que se ve a simple vista",
+     "cielo profundo",
+     "galaxias",
+     "nebulosas",
+     "cumulos",
+     "messier"
+    ],
+    "en": [
+     "binoculars",
+     "with binoculars",
+     "what to see with binoculars",
+     "what to see with a telescope",
+     "what can i see with a telescope",
+     "naked eye",
+     "deep sky",
+     "galaxies",
+     "nebulae",
+     "star clusters",
+     "messier"
+    ],
+    "de": [
+     "fernglas",
+     "mit dem fernglas",
+     "was sieht man mit dem fernglas",
+     "was sieht man mit dem teleskop",
+     "mit blossem auge",
+     "deep sky",
+     "galaxien",
+     "gasnebel",
+     "sternhaufen",
+     "messier"
+    ],
+    "fr": [
+     "jumelles",
+     "aux jumelles",
+     "que voir aux jumelles",
+     "que voir au telescope",
+     "que voit on au telescope",
+     "a l oeil nu",
+     "ciel profond",
+     "galaxies",
+     "nebuleuses",
+     "amas",
+     "messier"
+    ],
+    "it": [
+     "binocolo",
+     "con il binocolo",
+     "cosa vedere con il binocolo",
+     "cosa vedere con il telescopio",
+     "cosa si vede con il telescopio",
+     "a occhio nudo",
+     "cielo profondo",
+     "galassie",
+     "nebulose",
+     "ammassi",
+     "messier"
+    ],
+    "nl": [
+     "verrekijker",
+     "met een verrekijker",
+     "wat zie ik met een verrekijker",
+     "wat zie ik met een telescoop",
+     "met het blote oog",
+     "deep sky",
+     "sterrenstelsels",
+     "nevels",
+     "sterrenhopen",
+     "messier"
+    ],
+    "pl": [
+     "lornetka",
+     "przez lornetke",
+     "co widac przez lornetke",
+     "co widac przez teleskop",
+     "golym okiem",
+     "gleboki kosmos",
+     "galaktyki",
+     "mglawice",
+     "gromady gwiazd",
+     "messier"
+    ],
+    "zh": [
+     "双筒望远镜",
+     "用双筒望远镜看",
+     "天文望远镜能看到什么",
+     "肉眼可见",
+     "深空天体",
+     "星系",
+     "星云",
+     "星团",
+     "梅西耶"
+    ],
+    "zht": [
+     "雙筒望遠鏡",
+     "用雙筒望遠鏡看",
+     "天文望遠鏡能看到什麼",
+     "肉眼可見",
+     "深空天體",
+     "星系",
+     "星雲",
+     "星團",
+     "梅西耶"
+    ]
+   },
+   "a": {
+    "es": "🔭 En el 🔭, «Esta noche», «Lo mejor de la noche» lo separa por instrumento —«A simple vista», «Prismáticos» y «Telescopio»—, con la hora y la dirección a la que mirar. El «Catálogo» tiene estrellas, estrellas dobles, variables, cúmulos, nebulosas, galaxias y constelaciones, con buscador y el filtro «Altos esta noche»; el nivel de cada objeto sale de su brillo y de lo alto que sube desde Tenerife. Con prismáticos (7×50 o 10×50) se ven las Pléyades, la galaxia de Andrómeda o las lunas de Júpiter; con telescopio, los cráteres de la Luna, los anillos de Saturno o los cúmulos globulares. En «Dónde ir», «Qué llevar para mirar».",
+    "en": "🔭 In the 🔭, «Tonight», «Best of the night» sorts it by instrument («Naked eye», «Binoculars» and «Telescope»), with the time and the direction to look. The «Catalog» has stars, double stars, variables, clusters, nebulae, galaxies and constellations, with a search box and the «High tonight» filter; each object’s level comes from its brightness and how high it climbs from Tenerife. With binoculars (7×50 or 10×50) you can see the Pleiades, the Andromeda Galaxy or Jupiter’s moons; with a telescope, the craters of the Moon, Saturn’s rings or globular clusters. In «Where to go», «What to bring».",
+    "de": "🔭 Im 🔭, «Heute Nacht», ordnet «Das Beste der Nacht» alles nach Instrument («Bloßes Auge», «Fernglas» und «Teleskop»), mit Uhrzeit und Blickrichtung. Der «Katalog» hat Sterne, Doppelsterne, Veränderliche, Sternhaufen, Nebel, Galaxien und Sternbilder, mit Suche und dem Filter «Heute Nacht hoch»; die Stufe jedes Objekts ergibt sich aus seiner Helligkeit und daraus, wie hoch es von Teneriffa aus steigt. Mit dem Fernglas (7×50 oder 10×50) sieht man die Plejaden, die Andromedagalaxie oder die Jupitermonde; mit dem Teleskop die Mondkrater, die Saturnringe oder Kugelsternhaufen. Unter «Wohin»: «Welche Ausrüstung».",
+    "fr": "🔭 Dans le 🔭, «Ce soir», «Le meilleur de la nuit» classe tout par instrument («À l’œil nu», «Jumelles» et «Télescope»), avec l’heure et la direction où regarder. Le «Catalogue» contient étoiles, étoiles doubles, variables, amas, nébuleuses, galaxies et constellations, avec une recherche et le filtre «Hauts cette nuit» ; le niveau de chaque objet vient de son éclat et de la hauteur qu’il atteint depuis Tenerife. Aux jumelles (7×50 ou 10×50), on voit les Pléiades, la galaxie d’Andromède ou les lunes de Jupiter ; au télescope, les cratères de la Lune, les anneaux de Saturne ou les amas globulaires. Dans «Où aller», «Quel matériel».",
+    "it": "🔭 Nel 🔭, «Stanotte», «Il meglio della notte» divide tutto per strumento («A occhio nudo», «Binocolo» e «Telescopio»), con l’ora e la direzione in cui guardare. Il «Catalogo» ha stelle, stelle doppie, variabili, ammassi, nebulose, galassie e costellazioni, con una ricerca e il filtro «Alti stanotte»; il livello di ogni oggetto dipende dalla sua luminosità e da quanto sale visto da Tenerife. Con il binocolo (7×50 o 10×50) si vedono le Pleiadi, la galassia di Andromeda o le lune di Giove; con il telescopio, i crateri della Luna, gli anelli di Saturno o gli ammassi globulari. In «Dove andare», «Cosa portare».",
+    "nl": "🔭 In de 🔭, «Vannacht», deelt «Het mooiste van de nacht» alles in per instrument («Blote oog», «Verrekijker» en «Telescoop»), met het tijdstip en de richting om te kijken. De «Catalogus» heeft sterren, dubbelsterren, veranderlijken, sterrenhopen, nevels, sterrenstelsels en sterrenbeelden, met een zoekfunctie en het filter «Vannacht hoog»; het niveau van elk object volgt uit zijn helderheid en hoe hoog het vanaf Tenerife komt. Met een verrekijker (7×50 of 10×50) ziet u de Pleiaden, het Andromedastelsel of de manen van Jupiter; met een telescoop de kraters van de maan, de ringen van Saturnus of bolhopen. In «Waarheen»: «Wat mee te nemen».",
+    "pl": "🔭 W 🔭, w zakładce «Dziś w nocy», «Najlepsze tej nocy» dzieli wszystko według przyrządu («Gołym okiem», «Lornetka» i «Teleskop»), z godziną i kierunkiem patrzenia. «Katalog» ma gwiazdy, gwiazdy podwójne, zmienne, gromady, mgławice, galaktyki i gwiazdozbiory, z wyszukiwarką i filtrem «Wysoko tej nocy»; poziom każdego obiektu wynika z jego jasności i z tego, jak wysoko wznosi się nad Teneryfą. Przez lornetkę (7×50 lub 10×50) widać Plejady, Galaktykę Andromedy albo księżyce Jowisza; przez teleskop – kratery Księżyca, pierścienie Saturna albo gromady kuliste. W zakładce «Gdzie»: «Co zabrać».",
+    "zh": "🔭 在 🔭 的「今晚」页，「夜空精选」按器材分类（「肉眼」「双筒望远镜」「天文望远镜」），并注明几点看、往哪个方向看。「星表」收录恒星、双星、变星、星团、星云、星系和星座，可以搜索，也有「今夜高悬」筛选；每个天体的观测等级由它的亮度和在特内里费能升到的高度决定。用双筒望远镜（7×50 或 10×50）能看到昴星团、仙女座星系或木星的卫星；用天文望远镜能看到月球环形山、土星环或球状星团。「观星地点」里有「观测器材」。",
+    "zht": "🔭 在 🔭 的「今晚」頁，「夜空精選」依器材分類（「肉眼」「雙筒望遠鏡」「天文望遠鏡」），並註明幾點看、往哪個方向看。「星表」收錄恆星、雙星、變星、星團、星雲、星系和星座，可以搜尋，也有「今夜高懸」篩選；每個天體的觀測等級由它的亮度和在特內里費能升到的高度決定。用雙筒望遠鏡（7×50 或 10×50）能看到昴星團、仙女座星系或木星的衛星；用天文望遠鏡能看到月球環形山、土星環或球狀星團。「觀星地點」裡有「觀測器材」。"
+   },
+   "follow": [
+    "app-24",
+    "cie-10",
+    "cie-04"
+   ],
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloMejores",
+    "UI.cieloNiv1",
+    "UI.cieloNiv2",
+    "UI.cieloNiv3",
+    "UI.cieloPesCatalogo",
+    "UI.cieloCatEstaNoche",
+    "UI.cieloPesDonde",
+    "UI.cieloEquipo"
+   ],
+   "comprobado": "modulos/cielo.js (23/10/2026): «Lo mejor de la noche» (cieloMejores, mejoresNoche) por niveles 1-3 (cieloNiv1-3, nivelChip) con la hora y la direccion (cieloMejorA); pintarCatalogo: buscador (cieloBuscar), tipos Estrellas, Sistemas estelares, Variables, Constelaciones, Cumulos, Nebulosas, Galaxias (cieloCat*), instrumento y cieloCatEstaNoche; cieloNotaNiveles: el nivel sale del brillo corregido por la atmosfera a la altura maxima desde Tenerife; en «Donde ir», cieloEquipo con cieloEquipoPrismaticos (7×50 o 10×50: Pleyades, galaxia de Andromeda, Doble Cumulo de Perseo, satelites de Jupiter) y cieloEquipoTelescopio (crateres de la Luna, anillos de Saturno, cumulos globulares…)."
+  }
+ ]
+}

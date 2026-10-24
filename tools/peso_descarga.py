@@ -15,9 +15,10 @@ Se cuenta lo que el navegador pide de verdad para ensenar la app:
     datos/titsa.js                  siempre: la red de guaguas, que salio de
                                     index.html el 9 de octubre de 2026 y se
                                     pide al arrancar igual que antes
-    idiomas/<lang>.json             los textos de los 804 lugares
+    idiomas/<lang>.json             los textos de los lugares
     idiomas/etiquetas/<lang>.json   los chips del globo
-    faq/<lang>.json                 las 122 respuestas del asistente
+    faq/<lang>.json                 las respuestas del asistente (156 el
+                                    24 de octubre de 2026)
 
 El castellano no tiene idiomas/es.json ni etiquetas porque viven dentro de
 index.html: por eso es el mas barato, y por eso su cifra no sale de restarle

@@ -329,6 +329,11 @@ const cifras = s => {
      1,024 en ingles y 1 024 -con espacio- en frances y bulgaro. Se quitan
      los tres, o "1 024" se leia como el numero 024 y no casaba con nada. */
   s = s.replace(/(?<=\d)[\s  ](?=\d{3}(?!\d))/g, '');
+  /* Y una fecha escrita a la manera de cada idioma (25/4/2024, 25.4.2024,
+     25-4-2024) son tres numeros: sin esto, el «25.4.2024» del aleman y del
+     bulgaro se leia como 2542024 al quitar los puntos (24/10/2026, la nota de
+     las banderas del SOS, que copia la de la leyenda de cada playa). */
+  s = s.replace(/(?<!\d)(\d{1,2})[./-](\d{1,2})[./-](\d{4})(?!\d)/g, '$1 $2 $3');
   s = s.replace(/[.,]/g, '');
   return (s.match(/\d{2,}/g) || []).sort();
 };

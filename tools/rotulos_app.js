@@ -6,7 +6,8 @@
  * glosario, aviso de version nueva, la tarjeta que pide el permiso de las
  * notificaciones). Y los de modulos/cielo.js y modulos/perfil.js, que al
  * cargarse meten los suyos en UI_TX (CIELO_UI, PERFIL_UI): sus pestañas y sus
- * botones tambien se citan.
+ * botones tambien se citan. Y los del panel de emergencias
+ * (modulos/emergencias.js, EMERG_UI), que van en su propia tabla.
  *
  * Lo usa auditar_faq.js: las respuestas del asistente sobre la app citan
  * botones entre comillas, y si un boton cambia de nombre la respuesta tiene
@@ -64,16 +65,36 @@ const TABLAS = {
   VIS: grab('var VIS_I18N = {'),
   PWA: grab('var PWA_TX = {'),
   PUSH: grab('var PUSH_TX = {'),
-  GLT: grab('var GL_T = {')
+  GLT: grab('var GL_T = {'),
+  /* 23-10-2026: los modulos que el asistente cita desde ese dia. La
+     leyenda (su «Ver el tour» no es el de UI_TX: en aleman, italiano,
+     neerlandes y chino dice otra cosa), el GPX, «¿Donde hace sol ahora?»,
+     «Fiestas y tradiciones», «Como moverse» y el planificador. Las cinco
+     primeras van por idioma (LEG_I18N.de.tour), como LANGS; DP_UI, por
+     clave, como UI_TX. */
+  LEG: grab('var LEG_I18N = {'),
+  GPX: grab('var GPX_T = {'),
+  MC: grab('var MC_T = {'),
+  FI: grab('var FI_T = {'),
+  HM: grab('var HM_T = {'),
+  DP: grab('const DP_UI = {'),
+  /* 24-10-2026: el panel de emergencias (SOS). EMERG_UI vive en
+     modulos/emergencias.js y no se funde en UI_TX (el modulo la lee con su
+     propio T()), asi que va aparte, por clave como UI_TX. Las ocho filas del
+     armazon (el titulo, «Llamar al 112»…) siguen en UI_TX. */
+  EMERG: grab('var EMERG_UI = {', 0, fs.readFileSync(path.join(RAIZ, 'modulos', 'emergencias.js'), 'utf8'))
 };
+const POR_IDIOMA = ['LEG', 'GPX', 'MC', 'FI', 'HM'];
 
-/* 'LANGS.addFav' · 'UI.tourVer' · 'TTS.play' · 'VIS.mark' · 'PWA.recargar' · 'PUSH.titulo' · 'GLT' */
+/* 'LANGS.addFav' · 'UI.tourVer' · 'TTS.play' · 'VIS.mark' · 'PWA.recargar' · 'PUSH.titulo' · 'GLT'
+   · 'LEG.tour' · 'GPX.btn' · 'MC.title' · 'FI.title' · 'HM.label' · 'DP.otroLugar' · 'EMERG.sosQueHacer' */
 function valor(clave, L) {
   const [t, k] = clave.split('.');
   if (t === 'LANGS') return (LANGS[L] || {})[k];
   if (t === 'GLT') return TABLAS.GLT[L];
   const tabla = TABLAS[t];
   if (!tabla) throw new Error('tabla de rotulos desconocida: ' + clave);
+  if (POR_IDIOMA.indexOf(t) >= 0) return (tabla[L] || {})[k];
   return (tabla[k] || {})[L];
 }
-module.exports = { valor, LANGS, UI, TABLAS, grab };
+module.exports = { valor, LANGS, UI, TABLAS, POR_IDIOMA, grab };

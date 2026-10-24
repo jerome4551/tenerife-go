@@ -140,6 +140,7 @@
     "perfilNubeQuitarPendiente": {"es": "La copia guardada en su cuenta se borrará en cuanto haya conexión.", "en": "The copy in the cloud will be deleted as soon as there is a connection.", "fr": "La copie dans le cloud sera effacée dès que la connexion sera rétablie.", "de": "Die Kopie in der Cloud wird gelöscht, sobald eine Verbindung besteht.", "it": "La copia nel cloud verrà cancellata non appena ci sarà una connessione.", "nl": "De kopie in de cloud wordt gewist zodra er verbinding is.", "zh": "联网后将删除云端的副本。", "zht": "連線後將刪除雲端的副本。", "bg": "Копието в облака ще бъде изтрито, веднага щом има връзка.", "pl": "Kopia w chmurze zostanie usunięta, gdy tylko pojawi się połączenie."},
     "perfilBorradoNube": {"es": "Datos del perfil borrados de este dispositivo y de su cuenta", "en": "Profile data deleted from this device and from your account", "fr": "Données du profil effacées de cet appareil et de votre compte", "de": "Profildaten von diesem Gerät und aus Ihrem Konto gelöscht", "it": "Dati del profilo cancellati da questo dispositivo e dall’account", "nl": "Profielgegevens van dit apparaat en uit uw account gewist", "zh": "已从本设备和您的账户中删除个人资料数据", "zht": "已從此裝置和您的帳戶中刪除個人檔案資料", "bg": "Данните от профила са изтрити от това устройство и от акаунта ви", "pl": "Dane profilu usunięte z tego urządzenia i z konta"},
     "perfilNubeEdad": {"es": "Disponible a partir de los {n} años.", "en": "Available from age {n}.", "fr": "Disponible à partir de {n} ans.", "de": "Ab {n} Jahren verfügbar.", "it": "Disponibile a partire dai {n} anni.", "nl": "Beschikbaar vanaf {n} jaar.", "zh": "年满{n}岁方可使用。", "zht": "年滿{n}歲方可使用。", "bg": "Достъпно от {n}-годишна възраст.", "pl": "Dostępne po ukończeniu {n} lat."},
+    "perfilNubePideEdad": {"es": "Ponga antes su año de nacimiento en «Sus datos»: disponible a partir de los {n} años.", "en": "First enter your birth year in «Your details»: available from age {n}.", "fr": "Indiquez d’abord votre année de naissance dans «Vos données» : disponible à partir de {n} ans.", "de": "Tragen Sie zuerst Ihr Geburtsjahr unter «Ihre Daten» ein: ab {n} Jahren verfügbar.", "it": "Indichi prima il Suo anno di nascita in «Dati personali»: disponibile a partire dai {n} anni.", "nl": "Vul eerst uw geboortejaar in bij «Uw gegevens»: beschikbaar vanaf {n} jaar.", "zh": "请先在「我的数据」中填写出生年份：年满{n}岁方可使用。", "zht": "請先在「我的資料」中填寫出生年份：年滿{n}歲方可使用。", "bg": "Първо въведете годината си на раждане във «Вашите данни»: достъпно от {n}-годишна възраст.", "pl": "Najpierw trzeba podać rok urodzenia w sekcji «Dane osobowe»: dostępne po ukończeniu {n} lat."},
     "perfilSet_es": {"es": "España", "en": "Spain", "fr": "Espagne", "de": "Spanien", "it": "Spagna", "nl": "Spanje", "zh": "西班牙", "zht": "西班牙", "bg": "Испания", "pl": "Hiszpania"},
     "perfilSet_en": {"es": "Reino Unido", "en": "United Kingdom", "fr": "Royaume-Uni", "de": "Vereinigtes Königreich", "it": "Regno Unito", "nl": "Verenigd Koninkrijk", "zh": "英国", "zht": "英國", "bg": "Великобритания", "pl": "Wielka Brytania"},
     "perfilSet_de": {"es": "Alemania", "en": "Germany", "fr": "Allemagne", "de": "Deutschland", "it": "Germania", "nl": "Duitsland", "zh": "德国", "zht": "德國", "bg": "Германия", "pl": "Niemcy"},
@@ -725,9 +726,15 @@
      · Las visitas comprobadas no suben nunca.
      · st.colas[uid]: lo que falta por subir (1) o borrar (0), clave a clave; cada
        marca lleva un numero que crece, para no perder lo que se toca mientras sube.
-     · Por debajo de EDAD_NUBE (segun el año de nacimiento) no se ofrece encenderla;
-       apagarla, siempre. */
-  var EDAD_NUBE = 14;          /* LOPDGDD, art. 7: desde los 14 años se consiente solo */
+     · Por debajo de EDAD_NUBE (segun el año de nacimiento) no se ofrece encenderla,
+       y sin año de nacimiento tampoco: antes se pide (perfilNubePideEdad). Apagarla,
+       siempre. Lo que ya estaba encendido sigue encendido: el permiso se dio con la
+       regla de entonces. */
+  /* Jerome, 24/10/2026: «Antes de 16 no es recomendable usar mucho el móvil. Mucho
+     país ya obligan a definir su edad antes de usarlas. Como Francia hace poco».
+     Desde los 16 y con el año de nacimiento puesto. (La LOPDGDD, art. 7, deja
+     consentir desde los 14; la app pide 16.) */
+  var EDAD_NUBE = 16;
   var NUBE_ESPERA = 1500;      /* ms entre el ultimo cambio y la subida */
   var NUBE_PLAZO = 15000;      /* una peticion que tarda mas cuenta como fallida (y se reintenta) */
   var NUBE_PAGINA = 1000;      /* Supabase da como mucho 1.000 filas por consulta («Max rows»): se lee por paginas */
@@ -735,6 +742,9 @@
   function clienteNube() { var A = window.AppAuth; try { return A && A.getClient ? A.getClient() : null; } catch (e) { return null; } }
   function nubeEncendida() { var u = sesion(); return !!(u && st.nube && st.nube.uid === u.id); }
   function menorParaNube() { var e = edad(); return e !== null && e < EDAD_NUBE; }
+  function sinEdadParaNube() { return edad() === null; }
+  /* lo que impide dar el permiso: no haber puesto el año de nacimiento o no llegar a EDAD_NUBE */
+  function nubeVetada() { return sinEdadParaNube() || menorParaNube(); }
   function colaDe(uid) {
     if (!st.colas[uid]) st.colas[uid] = { uid: uid, n: 0, alta: false, baja: false, perfil: 0, pesos: {}, km: {} };
     return st.colas[uid];
@@ -1396,7 +1406,7 @@
       sw.appendChild(el('span', 'knob'));
       sw.addEventListener('click', function () {
         var on = nubeEncendida();
-        if (!on && menorParaNube()) return;
+        if (!on && nubeVetada()) return;
         $(on ? 'tgp-nube-quitar' : 'tgp-nube-confirm').hidden = false; $(on ? 'tgp-nube-confirm' : 'tgp-nube-quitar').hidden = true;
       });
       caja.appendChild(txt); caja.appendChild(sw);
@@ -1426,18 +1436,19 @@
      cierra la confirmacion que alguien esta leyendo. */
   function estadoNube() {
     if (!montado()) return;
-    var u = sesion(), on = nubeEncendida(), menor = !on && menorParaNube();
+    var u = sesion(), on = nubeEncendida(), veto = !on && nubeVetada();
     var status = $('tgp-cuenta-status');
     status.className = 'tgp-status ' + (u ? 'cloud' : 'local');
     status.textContent = (u ? '☁️ ' : '📱 ') + tx(u ? (on ? 'perfilNubeSi' : 'perfilNube') : 'perfilSoloDispositivo');
     var sw = $('tgp-nube');
     if (sw) {
       sw.setAttribute('aria-checked', on ? 'true' : 'false');
-      sw.disabled = menor;
+      sw.disabled = veto;
       var sub = sw.parentNode.querySelector('.sub');
-      if (sub) sub.textContent = menor ? tx('perfilNubeEdad', { n: EDAD_NUBE }) : tx('perfilNubeExplica');
+      if (sub) sub.textContent = !veto ? tx('perfilNubeExplica')
+        : tx(sinEdadParaNube() ? 'perfilNubePideEdad' : 'perfilNubeEdad', { n: EDAD_NUBE });
     }
-    if (menor || !u) $('tgp-nube-confirm').hidden = true;
+    if (veto || !u) $('tgp-nube-confirm').hidden = true;
     if (!u) $('tgp-nube-quitar').hidden = true;
     /* Con la nube encendida, borrar el perfil lo borra tambien de la cuenta (si no, volveria al sincronizar). */
     $('tgp-borrar-texto').textContent = tx(on ? 'perfilBorrarLocalAvisoNube' : 'perfilBorrarLocalAviso');
@@ -1482,7 +1493,7 @@
      perfiles (el consentimiento, con su fecha) se crea en cuanto se pueda. */
   function nubeEncender() {
     var u = sesion(); $('tgp-nube-confirm').hidden = true;
-    if (!u || menorParaNube()) return;
+    if (!u || nubeVetada()) return;
     st.nube = { uid: u.id, desde: new Date().toISOString(), ok: false };
     var c = colaDe(u.id); c.baja = false; c.alta = true;
     guardar(); estadoNube();

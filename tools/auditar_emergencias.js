@@ -171,10 +171,13 @@ const vacios = SUBS.filter(s => !SOS.guias.some(g => g.grupo === 'hacer' && g.su
 ok(!vacios.length, 'ningun grupo vacio', vacios.join(', '));
 const idsGuias = new Set(SOS.guias.map(g => g.id));
 ok(idsGuias.size === SOS.guias.length && [...idsGuias].every(id => /^[a-z]+$/.test(id)), 'los ids de las guias, unicos y en minusculas (#sos-<guia>)');
-/* las banderas del Decreto 116/2018 y de la Orden de 22 de julio de 2022
-   (anexo III): las cuatro de colores, la de cuadros de los deportes
-   nauticos, dos rojas a los lados de un peligro y la bicolor de zona segura */
-const BANDERAS = ['verde', 'amarilla', 'roja', 'purpura', 'ajedrez', 'dosrojas', 'segura'];
+/* las banderas: las seis que se usan hoy en las playas de Canarias, las de
+   la leyenda del globo de cada playa (index.html). NO las del Decreto
+   116/2018 ni las de la Orden de 22/7/2022, que cambiaba sus anexos: el
+   Decreto lo anulo el Tribunal Supremo (BOC 82, 25/4/2024). Esta guia lo
+   cito hasta el 24/10/2026 (la trampa 21 de AUDITORIA-FINAL.md); abajo se
+   coteja cada fila con la de la leyenda, en los diez idiomas. */
+const BANDERAS = ['verde', 'amarilla', 'roja', 'negra', 'naranja', 'morada'];
 const irMal = [], banMal = [], telMal = [];
 SOS.guias.forEach(g => g.b.forEach(b => {
   if (b.ir && (!idsGuias.has(b.ir) || b.ir === g.id)) irMal.push(g.id + '→' + b.ir);
@@ -183,6 +186,22 @@ SOS.guias.forEach(g => g.b.forEach(b => {
 }));
 ok(!irMal.length, 'cada «Vea también» lleva a otra guia que existe', irMal.join(', '));
 ok(!banMal.length, 'las banderas son las de las playas de Canarias (' + BANDERAS.join(', ') + ')', banMal.join(', '));
+/* y con el mismo texto que la leyenda del globo de cada playa (LANGS de
+   index.html): las seis filas y la nota de la fuente, en los diez idiomas.
+   Ninguna fuente de ninguna guia puede ser el Decreto anulado ni su Orden. */
+{
+  const ROT = require(path.join(RAIZ, 'tools', 'rotulos_app.js'));
+  const PARES = { sosBanVerde: 'banderasVerde', sosBanAmarilla: 'banderasAmarilla', sosBanRoja: 'banderasRoja',
+    sosBanNegra: 'banderasNegra', sosBanNaranja: 'banderasNaranja', sosBanMorada: 'banderasMorada', sosBanFuente: 'banderasFuente' };
+  const distintas = [];
+  for (const k in PARES) for (const l of LANGS) {
+    const a = (UI[k] || {})[l], b = (ROT.LANGS[l] || {})[PARES[k]];
+    if (!a || a !== b) distintas.push(k + '.' + l);
+  }
+  ok(!distintas.length, 'las banderas del SOS dicen lo mismo que la leyenda del globo de cada playa, en los diez idiomas', distintas.slice(0, 8).join(', '));
+  const anuladas = Object.keys(SOS.fuentes || {}).filter(k => /boc\/2018\/152\/|boc\/2022\/148\//.test((SOS.fuentes[k] || {}).url || ''));
+  ok(!anuladas.length, 'ninguna fuente es el Decreto 116/2018 (anulado) ni la Orden de 2022 que cambiaba sus anexos', anuladas.join(', '));
+}
 ok(!telMal.length && /^\d{9}$/.test(SOS.telSalvamento || ''), 'los telefonos que se marcan, solo cifras (Salvamento Maritimo, ' + SOS.telSalvamento + ')', telMal.join(', '));
 /* los de la tarjeta del 112: el 012 por su numero largo (el corto no vale
    desde un movil extranjero) y el Servicio de Informacion Toxicologica */

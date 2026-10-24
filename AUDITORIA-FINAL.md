@@ -16,7 +16,7 @@ idiomas/     9 ficheros de lugares · 2.489.750 bytes · 76 a 95 kB comprimidos
              + glosario-cat/ · 7, y no hacen falta los diez: no se cargan en la
                app, los lee tools/completar_cat.js al construir
              + pl-lugares/ y pl-fuente/ · el polaco por bloques, revisable
-faq/         10 ficheros · 122 respuestas del asistente en cada idioma
+faq/         10 ficheros · 156 respuestas del asistente en cada idioma
              el móvil baja solo el suyo
              + fuente/ · los bloques tal y como llegaron, y el bulgaro aparte
 ```
@@ -4120,7 +4120,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 47 tablas, 2868 filas (y 5.009 filas, dentro y fuera del fuente)
+## Idiomas · 47 tablas, 2867 filas (y 5.008 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -4194,7 +4194,11 @@ mismo día, «Para evitar un incendio» en «Fuego en un edificio»: nueve filas
 más en `EMERG_UI`, que llega a 597, hasta 2806 filas y 4.947. Y esa
 tarde, los de oro del perfil: `PERFIL_UI` pasa de 363 a 425, con 91 filas
 nuevas (13 de la pantalla, los 29 avatares que entran y los 49 de oro) y 29
-menos, las de los avatares que se van: 2868 filas y 5.009. El
+menos, las de los avatares que se van: 2868 filas y 5.009. Y por la
+tarde, las banderas del SOS pasan a ser las seis de la leyenda de cada
+playa (fuera las cuatro del Decreto anulado y las filas de sus dos fuentes:
+595 en `EMERG_UI`) y la nube del perfil pide antes el año de nacimiento (una
+fila más, 426 en `PERFIL_UI`): 2867 filas y 5.008. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -10277,6 +10281,312 @@ ni roto:
   su idioma; `probar_play.js`, 233 de 233; `auditar_cirilico.py`, 0
   sospechosas de 2.195 nombres.
 
+## El asistente, al día con todo lo de octubre (23 y 24 de octubre)
+
+Jerome: «Tenemos que preparar el asistente a todas las nuevas funciones de la
+app y en cada idioma. No deja nada atrás: verifica lo que está y lo que vamos
+a poner». El 23, sobre el `main` de ese día (`0f0eb2b`), se cotejaron las 129
+respuestas que había con el código y con las fuentes del Parque Nacional, y
+cada función de la app con lo que el asistente sabía contar de ella. Mientras
+tanto entraron en `main` el SOS y el perfil. El 24 todo se rehízo encima del
+`main` de hoy, primero `2ebfe85`, luego `90834c1`, con los robots del SOS
+encendidos, y al final `6e9094e`, con las dos notificaciones nuevas (arriba,
+«Dos notificaciones, la fuente de Madrid y cómo evitar un incendio»); se
+añadió lo de esas cosas y se aplicó lo que encontraron las revisiones.
+Quedan **156** respuestas, en los diez idiomas.
+
+**Lo que no sabía: 27 respuestas nuevas.**
+
+- En **G1 · Usar la app**, de app-30 a app-36: las capas del mapa, que cambian
+  con cada toque del botón («Calles», «Satélite», «Topo», «Isla offline»);
+  «Ruta del día» con «Mi ruta», que dura mientras la app está abierta; ver una
+  línea de guagua en el mapa («Transporte Público», los botones de los dos
+  aeropuertos, «Cómo moverse»); dónde estoy (el GPS de Rutas y lo que trae su
+  punto azul); «Solo accesibles en bus» (a menos de 500 m de una parada de las
+  líneas encendidas); el GPX, en «A→B» y en «Organice su día»; y los círculos
+  con números y la leyenda.
+- En G1 también, de app-37 a app-39, **«Su perfil»**: lo que tiene (el avatar,
+  sus datos con el IMC orientativo, su evolución con los pesos y los
+  kilómetros que anota la persona, su isla con los sellos y la cuenta); el
+  avatar (235 en 47 colecciones; la de Tenerife, con 10 visitas comprobadas);
+  y la nube con permiso (solo con «Acepto», desde los 16 años y con el año de
+  nacimiento puesto, sin las visitas comprobadas, y cómo descargar y borrar
+  los datos).
+- En **H1 · Seguridad y salud**, de sal-09 a sal-14, **el SOS**: lo que tiene
+  el panel; el volcán (los colores del semáforo del PEVOLCA, que solo se
+  evacúa cuando lo dicen las autoridades, y las guías de evacuar, quedarse en
+  casa, la ceniza y los gases); el terremoto y el maremoto; los primeros
+  auxilios (las pautas de 2025 del Consejo Europeo de Resucitación); la
+  mochila de emergencia (las quince cosas del panel, sacadas de la guía de
+  Protección Civil para las familias y de las recomendaciones oficiales ante
+  una erupción) y el plan familiar; y ES-Alert. Dichas con las filas del panel, que su
+  entrega verificó una a una contra la fuente oficial, y en cada idioma con
+  las palabras de esas filas. Y con los robots que `main` encendió ese mismo
+  día (`f5b59bc`, «Los robots, encendidos», arriba): sal-09, sal-10 y sal-11
+  cuentan lo que enseña ahora «Qué pasa ahora» (hasta tres alertas del
+  Gobierno de Canarias de los últimos 7 días, el color del último boletín de
+  INVOLCAN y los terremotos del IGN de los últimos 10 días, todo con su
+  fecha), el resumen de arriba y el punto del botón SOS, sin dar nunca un
+  color ni una cifra, que cambian cada hora. Marcadas `volatil`, y sal-11
+  también desde hoy.
+- Un bloque nuevo, **G2 · El cielo de Tenerife**, de cie-01 a cie-11:
+  «Apunte al cielo» y la brújula; la noche guiada y su voz; la Estación
+  Espacial, Tiangong y el Hubble; la ficha de cada astro; el sistema solar
+  hoy; la luz roja; el índice de la noche; la Luna; la Vía Láctea y las horas
+  para fotos; las normas del Parque para la noche; y qué se ve a simple vista,
+  con prismáticos o con telescopio.
+
+**Lo que estaba y ya no era verdad, o se quedaba corto: 28 puestas al día.**
+
+- **El Teide**, con la resolución del Cabildo de 14 de octubre de 2026: se
+  reservan también el PNT 23 (Los Regatones Negros) y el PNT 28 (Chafarí);
+  solo pagan el PNT 10 y el PNT 07, de 9:00 a 17:00, y no pagan los menores
+  de 14 (como ya decía `main`); del PNT 10 no hay permisos de 22:00 a 6:00; y
+  la devolución si cierra el sendero o no funciona el teleférico (tei-01,
+  tei-03, tei-08). Fumar está prohibido en todo el Parque, también vapear
+  (Tenerife ON); decía «en los espacios abiertos», que no está en ninguna
+  fuente (tei-08). El vivac por encima de 2.500 m y que en el Parque no se
+  duerme en el vehículo ni se aparcan autocaravanas, salvo las de
+  actividades autorizadas en zonas de uso especial (tei-12, pla-11). El
+  Observatorio, de día, con guía y reserva, y sin menores de 8 (tei-13).
+- **La barra de abajo y la cuenta.** app-01, con la barra de hoy (Inicio,
+  Favoritos, Rutas, SOS, Asistente y Cuenta, que abre el perfil) y con el tour
+  de la leyenda, que en alemán, italiano, neerlandés y chino no se llama como
+  el botón del aviso del tour. app-03 (la visita comprobada: marcada a 500 m
+  o menos; con 10 se abren los avatares de Tenerife), app-04 («Su isla»),
+  app-18 («Cuenta» abre el perfil, que funciona sin cuenta), app-26 (borrar la
+  cuenta se lleva el perfil y los progresos si estaban en ella; lo del móvil
+  se queda) y app-29 (el botón de las notificaciones, en el perfil). Son las
+  tres que este documento dejaba pendientes («Tres respuestas del asistente
+  que “Cuenta” ha dejado viejas») y dos más.
+- **El 112**: atiende en español, inglés, alemán, francés e italiano, y con
+  traductor en más de 40 idiomas (112 Canarias, página del 20/01/2025); sal-01
+  decía «español, inglés y alemán», el mismo dato viejo que el panel SOS ya
+  corrigió (`800a1cf`). Y lo del panel: «Ver mis coordenadas», la App 112
+  Canarias y el 012, que no es gratuito. sal-02 (el mar), sal-03 (calor y
+  calima), sal-04 (la montaña) y sal-07 (los hospitales) mandan a su guía del
+  SOS.
+- **app-06**: sin conexión funcionan también el SOS y, desde la segunda vez
+  que se abre la app con conexión, el asistente; los satélites, mientras sus
+  datos no pasen de 7 días. **app-24** (el panel del cielo entero, y los
+  satélites a 7 días), **app-25** (el calendario, con «Añadir a mi
+  calendario» y «Recordármelo en la app»), **app-27** (la cámara y la
+  orientación del móvil no salen de él), **app-13** («☀️ ¿Dónde hace sol
+  ahora?»), **app-15** (la guagua paso a paso y el GPX), **app-16** (por
+  cercanía, la pausa para comer, «🔄 Otro», 🔀 y el GPX), **app-17** (desde el
+  punto azul del GPS), **cul-06** y **cul-07** (el panel 🎉; «la agenda del
+  mes» que citaban no existe) y **mov-07** (la categoría Parkings, sin plazas
+  libres en directo). En la app de las tiendas, app-06 y app-27 con lo mismo.
+- De paso, cuatro tuteos que `auditar_registro.js` no veía: en alemán «komm»
+  (mov-07) y «prüf» (pla-11); en francés, «Touches-en une» y «Réessaie avec
+  d’autres mots» del asistente y «Réessaie plus tard» de la tarjeta de las
+  notificaciones. Corregidos, y el control los caza ahora.
+
+**Lo que encontraron las revisiones.** Lo del 23 lo leyeron tres revisores
+por separado: uno el francés, el alemán, el italiano, el neerlandés y el
+polaco; otro el inglés, los dos chinos y el búlgaro; y otro los hechos, contra
+el código de hoy y las fuentes.
+
+- **55 arreglos de idioma**, todos aplicados. Por ejemplo: «eine mondlose
+  Nacht» y «een nacht zonder maan», donde decía que no hace falta Luna
+  (cie-09); «Luna sopra l’orizzonte» por «Luna alta» (cie-07); el 改裝車 de
+  Taiwán, que es un coche tuneado, por 改裝露營車; «бусове» (cualquier
+  furgoneta) por «кемпер бусове»; y el «en altitude» que añadían cinco idiomas
+  a «para pasar la noche» (cie-10).
+- **Los hechos**: el botón de las capas no abre ningún menú, rota (app-30); la
+  ficha de un astro va en otro orden, y el recorrido se pinta también en
+  «Apunte al cielo» (cie-04); el sistema solar va casi al final de «Esta
+  noche» (cie-05); «Brillo de la pantalla» no es un rótulo que se vea, sino un
+  regulador que sale con la luz roja (cie-06); abajo del panel de la guagua
+  hay un solo enlace, a titsa.com (app-32); los satélites sin red, que
+  necesitan datos recientes (app-06, app-24); faltaba «Inicio» en la barra (app-01); fumar
+  (tei-08); y la excepción exacta de las autocaravanas, que el revisor no
+  pudo leer en el BOC: se volvió a leer el 6.2.1 n) en la copia del PDF que
+  guarda la Xunta (página 49350: «excepto aquellos vinculados a actividades
+  autorizadas en zonas de uso especial»). Y la altitud del refugio de
+  Altavista, 3.260 m, con Turismo de Tenerife y RTVC.
+- **Los millares en francés y en polaco**: el asistente escribía «3.715 m»,
+  que es castellano. Ahora «3 715 m» (con un espacio que no se parte, como en
+  `idiomas/fr.json`) y «3715 m»: 20 cifras.
+- Lo nuevo del 24, las 9 del SOS y del perfil y las 22 cambiadas ese día, lo
+  volvieron a leer otros tres revisores, repartidos igual.
+  - **De idioma, 73 de los 75 arreglos que se vieron, y doce más.** En
+    francés, alemán, italiano, neerlandés y polaco, los 36; por ejemplo
+    «nell’SOS» (se lee esse-o-esse), «Se la terra trema», «Trillerpfeife»
+    por «Pfeife» y que la tarjeta sanitaria europea da derecho a la
+    asistencia. En inglés, los dos chinos y el búlgaro, 37 de 39:
+    «Евакуирайте се», que se leía como si se evacuara el semáforo; «в
+    странично положение» por «настрани» («aparte»); «описание» por «карта»,
+    que al lado de la pestaña «Карта» se leía «su mapa»; y «лагеруване» en
+    las tres que decían «къмпингуване». Los dos que no: «Favourites» (el
+    botón dice «Favorites» y app-01 lo cita) y «the summit of Teide» (las
+    respuestas en inglés dicen «the Teide» en otros trece sitios). Los doce
+    de más son el mismo fallo en los idiomas que también lo tenían: lo de la
+    tarjeta sanitaria en castellano, inglés y búlgaro; «connecté :» e
+    «ingelogd:» sueltos en app-26; los «charcos» en francés y alemán
+    («piscines naturelles», «Naturbecken»); lo que seguía a dos imperativos
+    en sal-12, en alemán y neerlandés; y el «Glie-» de cortesía con
+    mayúscula, como «La», «Le» y «Suo», en tres respuestas de antes.
+  - **De hechos, once cosas.** sal-02 ya no cuenta banderas: el SOS da
+    siete, del Decreto 116/2018, y la leyenda de cada playa dice que ese
+    Decreto está anulado y da seis (abajo: Jerome pidió cambiar la guía, y
+    ya está). app-37 dice qué se
+    guarda dónde: el nombre, el avatar, sus datos y su evolución, en el móvil
+    y en la cuenta solo con el permiso; los visitados y los logros, nunca en
+    la cuenta. app-26: borrar la cuenta deja lo del móvil; el botón del
+    perfil borra solo lo del perfil, y los favoritos se van al borrar los
+    datos del sitio o al desinstalar. sal-07: el botón del SOS enseña los
+    hospitales; los centros de salud son otra categoría. sal-13: las quince
+    cosas de la mochila salen de varias fuentes, no solo de la guía de las
+    familias (las gafas cerradas y los papeles de las mascotas no están en
+    ella). sal-12: «si respira con normalidad», como el panel. app-06 y
+    app-24: los satélites, con datos de 7 días como mucho, como dice el
+    panel. cie-04: la ficha da dónde está el astro en el momento de la
+    carta. sal-10: fuera «si cambia entre dos boletines…», una fila que solo
+    sale con el robot del volcán encendido. tei-08: la tarifa, de 9:00 a
+    17:00 en los dos senderos, se volvió a leer en el «Tercero» de la
+    resolución (la prensa da otras horas), y fumar en todo el Parque, también
+    según RTVC (19/06/2026). app-39 y cie-10 dicen lo que dicen la app y el
+    Decreto: lo que la app hace distinto va abajo.
+  - **Y una última lectura**, de otro revisor, de todo lo que cambió después
+    de esas dos revisiones (162 trozos en 132 respuestas: sus arreglos y los
+    hechos nuevos, que nadie había leído aún): cuatro cosas, arregladas, y la
+    de cie-10 también en tei-12. «quand vous effacez» en vez de un gerundio
+    suelto (app-26); «ce qu’il faut faire» (sal-02); en polaco, «daje prawo
+    do», que es lo que da la tarjeta sanitaria (sal-07); y en inglés, que hay
+    que reservar todas las zonas de vivac, no solo la de Guajara (cie-10,
+    tei-12).
+
+**Y lo que trajo `main` el 24 por la tarde** (`6e9094e`, arriba, «Dos
+notificaciones, la fuente de Madrid y cómo evitar un incendio»). app-29 dice
+ya el consejo de los domingos y el aviso del semáforo con el texto de esa
+entrega, y dónde está el botón con el de esta; y contesta también «consejo
+del domingo», «Sonntagstipp», «周日小贴士»… en los diez idiomas. sal-10 dice
+que, con las notificaciones activadas, llega además un aviso cuando el
+semáforo cambia de color (`enviar-notificacion.js --semaforo-enviar`, a
+todas las suscripciones, con `#sos-semaforo`). Esa frase, en los diez
+idiomas, y cómo casan en app-29 las dos entregas, lo leyó otro revisor:
+nada que cambiar. «Para evitar un incendio» y la fuente de Madrid no cambian
+ninguna respuesta: el asistente no cuenta lo que hay dentro de la guía del
+fuego, y sal-09 ya la nombra.
+
+**Cómo se comprobó.**
+
+- `tools/rotulos_app.js` lee también la leyenda, el GPX, «¿Dónde hace sol
+  ahora?», las fiestas, «Cómo moverse», el planificador y el panel SOS
+  (`EMERG_UI`), y `auditar_faq.js` coteja con ellas lo que el castellano cita
+  entre «»: 1.683 citas miradas en los otros nueve idiomas, antes 450. Las
+  respuestas nuevas se escriben con el rótulo de la pantalla puesto por su
+  clave, no copiado a mano.
+- Las claves que cambian de respuesta: la Luna y la luz roja, de app-24 a
+  cie-08 y cie-06; la Vía Láctea, de tei-13 a cie-09; la ruta del día, de
+  app-16 a app-31; dormir en el coche o en la autocaravana, a pla-11; «perfil»
+  (y la de cada idioma), de app-18 a app-37, porque ahora es esa pantalla; y
+  en chino, «急救» (primeros auxilios), de sal-01 a sal-12. Ningún choque,
+  tampoco normalizadas como las normaliza el buscador.
+- `probar_faq.js`: 53 preguntas nuevas, una por respuesta nueva o cambiada,
+  seis por lo de los robots, dos por la edad de la nube y tres por las dos
+  notificaciones, repartidas por los diez idiomas; la del italiano espera ya
+  «Vedi il tour», y la de la luz roja, «cursore».
+- Además, cada uno de los 1.560 rótulos, que son también los botones de
+  seguimiento, pasado por `chatResolve` entero con los 980 lugares cargados:
+  todos contestan su propia respuesta, menos app-23, que ordena los favoritos
+  (es lo que hace). Igual que antes de tocar nada.
+- Y 194 preguntas escritas como las escribiría alguien, sobre lo nuevo y en
+  los diez idiomas («¿qué estrella es esa?», «vivac», «Erdbeben», «怎么换头像»,
+  «аварийна раница», «¿de qué color está el semáforo volcánico?», «save my
+  profile to the cloud»…), por `chatResolve` con los lugares (fuera del
+  repositorio): con el asistente de `main` contestaba la respuesta que toca
+  en 26; ahora, en 190. Las otras cuatro van adonde deben: «carnaval» y
+  «observatorio», a la ficha del lugar que se llama así; «Teide», a lo general
+  del Teide; y «помощ» («ayuda»), a la pregunta de si es una emergencia o la
+  ayuda de la app.
+- `auditar_faq.js` en verde (1.560 de 1.560), `probar_faq.js` 0 fallos de
+  175, `auditar_registro.js` todo de usted (76.336 textos). La descarga sube
+  10 kB en castellano, 12 en búlgaro y 11 en polaco (arriba, en «Qué hay»).
+- Y lo que lee el asistente, otra vez con el texto final: `auditar_letras.js`,
+  `castellano_suelto.js`, `auditar_seguridad.py`, `auditar_readme.js`,
+  `app_preparar.js --comprobar`, y en un navegador `probar_movil.js` (las 25
+  preguntas en su idioma), `probar_nombres.js` (cada lugar por su nombre y
+  las 43 categorías por su rótulo) y `probar_app.js`: en verde.
+- `auditar.sh` entero, sobre `2ebfe85` con todo esto: ningún control en rojo
+  hasta «lo que se ve en pantalla», donde lo paró el tiempo de este
+  contenedor. Tres no se pudieron ejecutar aquí, los de la ubicación y del
+  mar de los lugares (`auditar_ubicacion.py`, `auditar_en_el_mar.py` y
+  `informe_lugares.js`, que sale de ellos): les falta `pmtiles` y este
+  contenedor no llega a PyPI. No miran nada de lo que cambia aquí.
+- Y otra vez al final, encima de `6e9094e` y con los dos cambios de abajo
+  dentro: `auditar_emergencias.js` (39 controles), `probar_emergencias.js`
+  (261), `probar_notificacion_idioma.js`, `auditar_sw.js` (48),
+  `auditar_perfil.js` (59), `probar_perfil.js` (113), `auditar_registro.js`,
+  `probar_movil.js`, `probar_nombres.js`, `probar_app.js`, `auditar_web.js`
+  (47 tablas y 2.805 filas), `auditar_tour.js`, `auditar_arranque.js`,
+  `auditar_sin_traducir.js`, `castellano_suelto.js` y
+  `generar_privacidad.py --comprobar`, en verde; `barrido_pantallas.js`,
+  182 pantallas y fichas por idioma y nada sin traducir;
+  `barrido_idiomas.js`, las 4.946 filas, completas; y `auditar_idioma.js`,
+  0 hallazgos en los nueve idiomas, después de enseñarle a leer una fecha
+  como tres números: la nota de las banderas dice «25.4.2024» en alemán y
+  en búlgaro, y sin los puntos se leía 2542024 (en `main` da lo mismo que
+  antes, 0). `auditar_cielo.js` no termina en este contenedor: 195
+  controles y 5 en rojo, los mismos y con lo mismo en `main` sin tocar
+  (`90834c1`: los sensores de «Apunte al cielo» y un navegador que no
+  acaba); nada de esto toca el panel del cielo.
+
+**Y dos cambios en la app, que pidió Jerome al verlos** (24 por la tarde):
+
+- **Las banderas del SOS, las de la leyenda de cada playa.** La guía
+  «Bañarse con seguridad» daba siete banderas y citaba el Decreto 116/2018 y
+  la Orden de 22/7/2022, que cambiaba sus anexos: la trampa 21 otra vez (el
+  Decreto lo anuló el Tribunal Supremo, BOC 82, 25/4/2024, y la leyenda del
+  globo de cada playa ya lo dice desde el 12 de agosto, `261fb94`, con lo que
+  confirmó por escrito la Subdirección de Protección Civil y Emergencias).
+  Jerome: «Las banderas el decreto fue anulado […] mira bien que lo usamos».
+  Ahora la guía da las seis de la leyenda, con su mismo texto y su misma nota
+  de la fuente en los diez idiomas (verde, amarilla, roja, negra, naranja y
+  morada o blanca con una medusa); la nota de las picaduras habla de esa
+  morada; fuera las filas y las fuentes del Decreto y de la Orden, también de
+  la guía del rescate. `auditar_emergencias.js` coteja cada fila con la de la
+  leyenda y que ninguna fuente sea esa norma. El vigía deja de mirar esas
+  dos páginas en su próxima vuelta: su estado se rehace con las fuentes que
+  hay. sal-02 sigue mandando a la guía, que ya dice lo mismo que el globo.
+- **La nube del perfil, desde los 16 y con el año de nacimiento puesto.**
+  Jerome: «Antes de 16 no es recomendable usar mucho el móvil. Mucho país ya
+  obligan a definir su edad antes de usarlas. Como Francia hace poco», y
+  eligió «Nube desde 16 y año obligatorio». `EDAD_NUBE` pasa de 14 a 16, y
+  sin año de nacimiento el interruptor no se enciende: debajo dice «Ponga
+  antes su año de nacimiento en «Sus datos»: disponible a partir de los 16
+  años.» (fila nueva, `perfilNubePideEdad`, en los diez idiomas). «Acepto»
+  tampoco da el permiso así (`nubeVetada`). Lo que ya estaba encendido sigue
+  encendido: aquel permiso se dio con la regla de entonces. La política de
+  privacidad lo dice en los diez idiomas (`ppDatosPerfilTxt`, y
+  `privacidad.html` rehecha con `generar_privacidad.py`) y el asistente
+  también (app-39). La edad se cuenta como antes, con el año solo (año de hoy
+  menos año de nacimiento): quien cumple 16 en diciembre cuenta como de 16
+  desde enero.
+
+**Lo que la app hace y el asistente ya no promete** (para decidir):
+
+- En la app de las tiendas, el fichero de los satélites que baja
+  `tgoFetchDatos` no se guarda: sin red sale el del paquete, que deja de valer
+  7 días después de la versión. Y `cieloOfflineListo` dice que los satélites
+  funcionan sin conexión, sin ese límite.
+- En la web, `faq/<idioma>.json` y los textos de los lugares de cada idioma
+  no van en el precache: la primera visita no los guarda (el service worker se
+  registra después de pedirlos). El asistente lo dice como es.
+- Con «Solo accesibles en bus» y ninguna línea encendida, el mapa se queda
+  vacío y el aviso, «🚏 Activa una línea de bus», está escrito a mano en
+  castellano, de tú, para los diez idiomas.
+- «Mi ruta», la de la pestaña «Ruta del día», no se guarda: se pierde al
+  cerrar la app. El asistente lo dice y manda a Favoritos.
+- La tarjeta de las normas del cielo dice «La Ruleta» a secas (el Decreto:
+  «los miradores y la zona peatonal») y no dice lo de aparcar autocaravanas.
+  El asistente sí.
+- El bloque «Parking cercano» de la ficha completa no sale nunca: usa
+  `PARKINGS` y `fetchParkingTeresitas()`, que no existen, y el `try` lo calla.
+  Si algún día sale, pone «plazas» en castellano y «Tiempo real» sin dato en
+  directo.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -10317,7 +10627,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_etiquetas.js` | los chips del globo: traducidos o declarados con motivo (desde el 7 de octubre, sin la vía «nombre de sitio»), y el mismo chip dos veces en una ficha |
 | `tools/barrido_pantallas.js` | lo que **se ve**: los paneles y fichas abiertos en los diez idiomas (183 por idioma el 24 de octubre de 2026, con el perfil, «Todos los países», sus 47 sets de avatares y «De oro», y el panel SOS; Rutas usadas, no solo abiertas), buscando castellano que no sea nombre propio, y botones con el mismo emoji dos veces |
 | `tools/auditar_tour.js` | el tour de bienvenida **recorrido de verdad**: los diez idiomas, cuatro tamaños de móvil, cada paso con su botón enfocado, la tarjeta dentro de la pantalla, las cifras contadas y nada igual al castellano ni al inglés |
-| `tools/auditar_idioma.js` | un idioma entero contra el castellano: cifras, horarios, teléfonos, trozos de etiqueta, alfabeto |
+| `tools/auditar_idioma.js` | un idioma entero contra el castellano: cifras (una fecha, «25/4/2024» o «25.4.2024», son tres), horarios, teléfonos, trozos de etiqueta, alfabeto |
 | `tools/auditar_faq.js` | el asistente: cada respuesta en los diez idiomas, alcanzable por su botón, ninguna igual al castellano o al inglés, los botones que cita con su nombre de pantalla, y ninguna base fuera de `faq/` |
 | `tools/rotulos_app.js` | los rótulos de la app en los diez idiomas, sacados de `index.html` (lo usa `auditar_faq.js`) |
 | `tools/probar_faq.js` · `tools/probar_movil.js` | preguntas de prueba al asistente: en Node con el núcleo de verdad, y en un móvil con la app entera |
@@ -10350,7 +10660,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/capturas_app_store.js` | las capturas de la tienda (iPhone 1206×2622, iPad 2064×2752), de `app/www/` servido aparte; para si la página no lleva la marca o un estado no llega a lo que dice |
 | `tools/app_store_metadata.js` | la ficha y las capturas en el formato de `fastlane deliver` (`app/fastlane/metadata/`, `…/screenshots/`); con `--comprobar`, las diez localizaciones, los límites y los tamaños |
 | `tools/cielo_uai.js` | los nombres de la UAI de la carta del cielo en chino, chino tradicional y búlgaro (`CIELO_UAI`, en `modulos/cielo.js`), de las traducciones de Stellarium que baja `cielo_fuentes.sh`; los coteja con la cultura celeste china y entre sí; con `--comprobar`, para si lo escrito no es lo que sale de las fuentes (lo pasa `auditar_cielo.js`) |
-| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 235 avatares en 47 sets y sus 49 de oro (SVG sin nada que se ejecute, solo con etiquetas de dibujo y 2.200 bytes como mucho, «class» solo en las piezas que se mueven y nunca con `transform`, ids con la forma que pide `perfil.sql`, los 36 países de Europa ni uno más ni uno menos, la bandera de cada set, cada avatar con una de las nueve animaciones; los de oro, uno por set y tres en Tenerife, detrás de los cinco, con la regla de su fiesta y una ventana cada año de 2026 a 2045), las 425 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app, que cada animación tenga su regla y nada se mueva con «reducir movimiento», que «Sorpréndeme» nunca dé uno de oro y que la lista de los de oro conseguidos no suba a la nube, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas, rangos, fechas de 1900 a 2100 y el tope de 2.000 pesos y 2.000 caminatas, la misma cifra que la app) |
+| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 235 avatares en 47 sets y sus 49 de oro (SVG sin nada que se ejecute, solo con etiquetas de dibujo y 2.200 bytes como mucho, «class» solo en las piezas que se mueven y nunca con `transform`, ids con la forma que pide `perfil.sql`, los 36 países de Europa ni uno más ni uno menos, la bandera de cada set, cada avatar con una de las nueve animaciones; los de oro, uno por set y tres en Tenerife, detrás de los cinco, con la regla de su fiesta y una ventana cada año de 2026 a 2045), las 426 filas de `PERFIL_UI` en los diez idiomas, la edad de la nube (16, y sin año de nacimiento no se enciende), lo que la pantalla nunca hace, sus enganches con la app, que cada animación tenga su regla y nada se mueva con «reducir movimiento», que «Sorpréndeme» nunca dé uno de oro y que la lista de los de oro conseguidos no suba a la nube, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas, rangos, fechas de 1900 a 2100 y el tope de 2.000 pesos y 2.000 caminatas, la misma cifra que la app) |
 | `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql`, con sus fechas y su tope de 2.000, y, como Supabase, da como mucho 1.000 filas por consulta), la nube con más filas de las que caben en una consulta, el tope lleno, las visitas comprobadas en el mapa, el selector de los 47 sets (el país del navegador primero, «Todos los países» y su buscador), los de oro con la fecha cambiada en el reloj del navegador (fuera de su día, en su fiesta, después, «De oro», «Sorpréndeme» y la descarga) y el movimiento al tocar, nada con «reducir movimiento», los 284 avatares y sus nombres sin cortar, y los diez idiomas a 360, 390 y 430 px, también los de oro en cinco estados (150 pantallas) |
 | `tools/probar_fechas_oro.js` | las fechas de los de oro, sin navegador: el motor de `modulos/avatares.js` con una regla de ejemplo de cada tipo (la Pascua y la ortodoxa, un día fijo que se adelanta si cae en domingo, un día de la semana entre dos fechas, el enésimo día de la semana de un mes y el último, una tabla de fechas, una fiesta de dos días que cruza el año, el Carnaval de sábado a martes y una excepción, como la de Santa Cruz en 2027): 51 casos, con sus Pascuas y sus días de la semana comprobados aparte |
 | `tools/auditar_emergencias.js` | el panel de emergencias (SOS) en Node: cada fila en los diez idiomas y pedida por el código, las ocho del armazón en `UI_TX`, las fuentes de cada guía, los grupos y los «Vea también», las banderas y los teléfonos, los enlaces (https y de los dominios oficiales), el armazón con el 112 y el rótulo «SOS», el service worker (en `CORE`, con su rama y fuera de «red primero»), el atajo del manifiesto, que cada fichero de `window.SOS_DATOS` tenga su robot encendido, y ninguno encendido sin él, y que lo que escriben los robots vaya en «red primero» |

@@ -15,7 +15,8 @@
       "zht"
     ],
     "entradas": 11,
-    "nota_diseno": "Claves escritas evitando a proposito las que ya usan mov-05 (sin coche) y mov-11 (la gomera, ferry): exc-11 usa «excursiones sin coche» y exc-04 usa «la gomera en un dia»."
+    "nota_diseno": "Claves escritas evitando a proposito las que ya usan mov-05 (sin coche) y mov-11 (la gomera, ferry): exc-11 usa «excursiones sin coche» y exc-04 usa «la gomera en un dia».",
+    "revisado": "24/10/2026: exc-03, solo el idioma (ver AUDITORIA-FINAL.md)."
   },
   "entradas": [
     {
@@ -291,7 +292,7 @@
         "en": "🗺️ With three days: the Teide, Anaga and a day on the south coast. With five, add Teno with Masca and Garachico, plus a day on the northern beaches. With seven, fit in La Gomera by ferry and one unplanned day in La Laguna or Santa Cruz. Save the places to favourites and I will sort them by distance so you do not cross the island twice.",
         "de": "🗺️ Mit drei Tagen: Teide, Anaga und ein Tag an der Südküste. Mit fünf kommen Teno mit Masca und Garachico dazu, plus ein Tag an den Nordstränden. Mit sieben nehmen Sie La Gomera per Fähre und einen Tag ohne Plan in La Laguna oder Santa Cruz. Speichern Sie die Orte in den Favoriten, dann sortiere ich sie nach Entfernung, damit Sie die Insel nicht zweimal queren.",
         "fr": "🗺️ Avec trois jours : le Teide, Anaga et une journée sur la côte sud. Avec cinq, ajoutez Teno avec Masca et Garachico, plus une journée sur les plages du nord. Avec sept, calez La Gomera en ferry et une journée sans programme à La Laguna ou Santa Cruz. Mettez les lieux en favoris et je vous les classe par distance pour ne pas traverser l’île deux fois.",
-        "it": "🗺️ Con tre giorni: Teide, Anaga e una giornata sulla costa sud. Con cinque aggiunga Teno con Masca e Garachico, più un giorno sulle spiagge del nord. Con sette infili La Gomera in traghetto e una giornata senza programma a La Laguna o Santa Cruz. Salvi i posti nei preferiti e glieli ordino per distanza, così non attraversa l’isola due volte.",
+        "it": "🗺️ Con tre giorni: Teide, Anaga e una giornata sulla costa sud. Con cinque aggiunga Teno con Masca e Garachico, più un giorno sulle spiagge del nord. Con sette infili La Gomera in traghetto e una giornata senza programma a La Laguna o Santa Cruz. Salvi i posti nei preferiti e Glieli ordino per distanza, così non attraversa l’isola due volte.",
         "nl": "🗺️ Met drie dagen: de Teide, Anaga en een dag aan de zuidkust. Met vijf komen Teno met Masca en Garachico erbij, plus een dag aan de noordelijke stranden. Met zeven pas La Gomera met de veerboot erin en een dag zonder plan in La Laguna of Santa Cruz. Zet de plekken in favorieten, dan sorteer ik ze op afstand zodat u het eiland niet twee keer oversteekt.",
         "pl": "🗺️ Przy trzech dniach: Teide, Anaga i dzień na południowym wybrzeżu. Przy pięciu warto dołożyć Teno z Masca i Garachico oraz dzień na plażach północy. Przy siedmiu zmieści się La Gomera promem i jeden dzień bez planu w La Laguna albo Santa Cruz. Po zapisaniu miejsc w ulubionych uszereguję je według odległości, żeby nie przejeżdżać wyspy dwa razy.",
         "zh": "🗺️ 三天：泰德、Anaga，再加一天南岸。五天：加上 Teno（含 Masca）和 Garachico，以及一天北部海滩。七天：安排搭渡轮去 La Gomera，再留一天不做计划，泡在 La Laguna 或 Santa Cruz。把地点加入收藏，我按距离排好，免得您来回横穿全岛两趟。",

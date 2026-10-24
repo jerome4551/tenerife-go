@@ -116,7 +116,7 @@ const CASOS = [
   ['fr', 'calima',                      'Sahara'],
   ['pl', 'guachinche',                  'winiarz'],
   ['bg', 'гофио',                        'брашно'],
-  ['it', 'come funziona l app',         'Fai il tour'],
+  ['it', 'come funziona l app',         'Vedi il tour'],
   ['de', 'funktioniert die app offline','Insel offline'],
   ['en', 'how do i install the app',    'Add to Home Screen'],
   ['zh', '怎么分享',                      '分享'],
@@ -155,6 +155,75 @@ const CASOS = [
   ['zh', '天气预警',                       '沿海风浪'],
   ['bg', 'жълт код',                      'Днес се къпете тук'],
   ['fr', 'calima',                        'poussière en suspension'],
+  /* Lo nuevo del 23 de octubre de 2026: lo que la app hace desde el 17 de
+     octubre y el asistente no sabia (app-30 a app-36), el panel del cielo
+     entero (cie-01 a cie-11) y lo que cambia del Teide con la resolucion del
+     Cabildo de 14/10/2026 y el Decreto 182/2025. Una pregunta por entrada,
+     repartidas por los diez idiomas, con un trozo que solo esta en la
+     respuesta que toca. */
+  ['de', 'Satellitenansicht',             'Straßen'],
+  ['es', '¿cómo hago mi ruta del día?',   'Cumbre'],
+  ['en', 'bus lines',                     'TFS South'],
+  ['bg', 'къде съм на картата',           'синя точка'],
+  ['it', 'solo raggiungibili in autobus', '500 m'],
+  ['nl', 'route als gpx',                 'Organic Maps'],
+  ['zh', '地图上带数字的圆圈',              '地点组'],
+  ['es', '¿qué estrella es esa?',         'Comprobar la brújula'],
+  ['de', 'geführte Nacht',                'Laut vorlesen'],
+  ['en', 'when does the ISS pass',        'Tiangong'],
+  ['fr', 'le saviez-vous',                'NASA'],
+  ['pl', 'układ słoneczny',               'Do Neptuna'],
+  ['it', 'luce rossa',                    'cursore'],
+  ['nl', 'is het een goede nacht',        'Open-Meteo'],
+  ['zht','下一次滿月',                      '新月時夜晚最暗'],
+  ['bg', 'млечния път',                   'зодиакалната'],
+  ['es', '¿dónde puedo montar el telescopio?', 'zona peatonal de La Ruleta'],
+  ['en', 'what can I see with binoculars', 'Pleiades'],
+  ['es', 'permiso teide',                 'PNT 28'],
+  ['en', 'is the permit free',            'refund'],
+  ['it', 'ricordamelo nell app',          'Ricordamelo'],
+  ['de', 'im Wohnmobil schlafen',         'Biwakzonen'],
+  ['fr', 'fêtes et traditions',           'Bientôt'],
+  ['pl', 'gdzie zaparkować',              'Wolnych miejsc'],
+  ['es', '¿dónde hace sol?',              '¿Dónde hace sol ahora?'],
+  ['zh', '隐私',                           '相机'],
+  /* Lo que entro en main mientras tanto (24 de octubre de 2026): el panel
+     de emergencias (SOS) y «Su perfil», y lo que cambio en las respuestas
+     que ya habia (la barra de abajo, la visita comprobada, la cuenta, el 112
+     en muchos idiomas, las capas que rotan, fumar en el Parque). */
+  ['es', '¿qué hay en el botón sos?',     'Qué pasa ahora'],
+  ['en', 'volcanic eruption',             'PEVOLCA'],
+  ['de', 'Erdbeben',                      'Grollen'],
+  ['fr', 'premiers secours',              '100 à 120'],
+  ['it', 'zaino di emergenza',            '1,5 litri'],
+  ['nl', 'es alert',                      'SIMULACRO'],
+  ['pl', 'mój profil',                    'BMI'],
+  ['zh', '头像',                           '235'],
+  ['bg', 'профил в облака',                'Приемам'],
+  ['zht','緊急情況怎麼辦',                  '撥打 112'],
+  ['es', 'número de emergencias',         'más de 40 idiomas'],
+  ['en', 'mark as visited',               'Visit verified'],
+  ['es', '¿necesito crear una cuenta?',   'Crear cuenta o entrar'],
+  ['de', 'Konto löschen',                 'Profildaten von diesem Gerät löschen'],
+  ['pl', 'warstwy mapy',                  'przy każdym dotknięciu'],
+  ['fr', 'entrée du parc',                'vapoteuse'],
+  /* Y los robots del SOS, encendidos ese mismo dia: lo que ensena «Que pasa
+     ahora», el resumen de arriba y el punto del boton. */
+  ['es', '¿de qué color está el semáforo volcánico?', 'último boletín semanal de INVOLCAN'],
+  ['en', 'what colour is the volcano traffic light', 'latest weekly bulletin'],
+  ['es', 'alertas del gobierno de canarias', 'hasta tres de los últimos 7 días'],
+  ['fr', 'pourquoi il y a un point sur le bouton SOS', 'un point s’allume aussi sur le bouton SOS'],
+  ['de', 'Gab es Erdbeben bei Teneriffa?',   'in den letzten 10 Tagen bei Teneriffa registriert'],
+  ['bg', 'какъв е цветът на вулканичния светофар', 'последния седмичен бюлетин на INVOLCAN'],
+  /* y la nube del perfil desde los 16, con el año de nacimiento puesto
+     (Jerome, 24 de octubre de 2026) */
+  ['es', '¿desde qué edad puedo guardar mi perfil en la nube?', 'a partir de los 16 años'],
+  ['en', 'save my profile to the cloud',     'from age 16'],
+  /* y las dos notificaciones que entraron en main esa tarde: el aviso del
+     semaforo volcanico cuando cambia de color y el consejo de los domingos */
+  ['es', '¿me avisa la app si cambia el semáforo volcánico?', 'cuando el semáforo cambia de color'],
+  ['es', 'consejo del domingo',              'Los domingos, en vez de la frase'],
+  ['de', 'Sonntagstipp',                     'Sonntags kommt statt des Satzes'],
 ];
 
 let malos = 0;
