@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.054 kB** en castellano · **1.169 kB** en el peor caso (búlgaro) · 1.155 kB en polaco, el 24 de octubre, con los bloques quinto a octavo del cielo, el trato de usted, el perfil y el botón SOS. El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.056 kB** en castellano · **1.170 kB** en el peor caso (búlgaro) · 1.156 kB en polaco, el 24 de octubre por la tarde, con los bloques quinto a octavo del cielo, el trato de usted, el perfil con los de oro y el botón SOS con sus avisos. Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -4120,7 +4120,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 47 tablas, 2806 filas (y 4.947 filas, dentro y fuera del fuente)
+## Idiomas · 47 tablas, 2868 filas (y 5.009 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -4191,7 +4191,10 @@ que `tools/fuente.js` pega al fuente, y en `UI_TX` las ocho que hacen falta
 antes de cargarlo (el botón, el título, la barra del 112, «cargando», el
 error, «reintentar» y «volver»): 47 tablas, 2797 filas y 4.938. Y ese
 mismo día, «Para evitar un incendio» en «Fuego en un edificio»: nueve filas
-más en `EMERG_UI`, que llega a 597, hasta 2806 filas y 4.947. El
+más en `EMERG_UI`, que llega a 597, hasta 2806 filas y 4.947. Y esa
+tarde, los de oro del perfil: `PERFIL_UI` pasa de 363 a 425, con 91 filas
+nuevas (13 de la pantalla, los 29 avatares que entran y los 49 de oro) y 29
+menos, las de los avatares que se van: 2868 filas y 5.009. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -9640,6 +9643,172 @@ control en rojo ni roto:
 - Si quiere quitar o añadir algún país (Kosovo, el Vaticano, Turquía…):
   cada uno son 5 dibujos, 6 filas por idioma y su revisión.
 
+### Los de oro, más típicos y que se mueven (24 de octubre, tarde)
+
+Jerome, el 23 por la tarde: «Mucho de ellos no parecen como típicos de cada
+país. Intenta algo más auténtico. Interactivo? Algunos que pueden salir en
+momento particular o eventos del país como de oro». La entrega que lo trae
+es la nota `PARA-CLAUDE-CODE-PERFIL.md` nueva y su `perfil-avatares.zip`: sus
+45 huellas SHA-256, comprobadas una a una antes de usar nada.
+
+**Lo que trae**, por bloques, un commit cada uno, encima de los avisos del
+SOS (`6e9094e`) y de los commits de los robots que llegaron después:
+
+| Bloque | Commit | Qué |
+|---|---|---|
+| 1, el catálogo | `981801f` | `modulos/avatares.js` tal cual (`38716270…41da`): 29 avatares más típicos (los monumentos religiosos famosos, dibujados como edificio; los símbolos nacionales a nuestra manera; los platos que se comparten), 24 redibujados y 49 de oro, uno por set y tres en Tenerife; cada uno con su animación |
+| 2, la pantalla | `f86ee23` | los de oro en la tira y en «🏅 De oro», el movimiento al tocar, «Sorpréndeme» sin los de oro, el tope de 2.000 en la app, `leerTodas()` y las 425 filas |
+| 2b, el búlgaro | `9b993cb` | «Изтрий акаунта» (Jerome: «Eso lo quiero como el resto de la app») |
+| 4, la nube | `3b454f0` | `perfil.sql`: 2.000 pesos y 2.000 caminatas por cuenta, y fechas de 1900 a 2100 |
+| 5, los textos | `9b787ae` | nueve textos de la política y de la página de borrar la cuenta, de usted como los dejó `main` |
+| 6, las pruebas | `cac9d9b` | los controles nuevos y los cambiados |
+| La tira, una vez | `185cbd6` | al tocar una pestaña, la tira se pintaba dos veces, ya en `main`; con los 49 de «De oro», en el móvil lento el clic tardaba el doble (abajo) |
+
+El bloque 3 (las visitas comprobadas) no cambia: `visitas-comprobadas.js` es
+el mismo de la entrega de Europa, byte a byte.
+
+**Cómo se juntó.** La entrega partía de la de Europa, que ya está en `main`,
+y su `perfil.js` es el del prototipo. Se juntó con el de `main` tomando el
+de Europa como base, cambio a cambio: nueve choques en el código, uno en
+los estilos y uno en el cuerpo, resueltos a mano y con un guion que para si
+un lado no trae lo que se espera. De `main` se queda lo que se arregló
+después de Europa: la tendencia del peso con la ventana que se corre (9b),
+la descarga como fichero de verdad, los eventos al montar el cuerpo, las
+claves de `TEXTOS`, las pestañas sin `scrollIntoView` y los estilos «solo en
+la app», que van los últimos. De la entrega, lo nuevo. Del prototipo, nada:
+ni la fecha simulada de los de oro (`hoyOro()`, en la app `hoy()`), ni el
+pie «Demo». El cuerpo de la pantalla no cambia: lo único nuevo era ese pie.
+Y en `index.html`, los comentarios de los dos cargadores, con lo que pesan
+ahora (abajo).
+
+**Lo que se miró aparte, antes de meterlo:**
+
+- Las filas: de las 363 de `main` se van 29, los nombres de los 29 avatares
+  sustituidos; de las 334 que se quedan, 324 iguales y 10 que cambian, todas
+  rótulos de botón o del buscador en italiano, búlgaro y polaco que pasan a
+  imperativo, como los demás botones de la app (29 textos); y entran 91: 13
+  de la pantalla (12 de los de oro y la del tope), los 29 avatares nuevos y
+  los 49 de oro. Son 425.
+- Las fechas de las 49 fiestas que calcula el catálogo en 2026, 2027 y
+  2028, contra la tabla de `AVATARES-ORO.md`: 147 de 147 iguales. Los martes
+  de Carnaval de 2026 a 2045, contra una Pascua calculada aparte (Gauss): 20
+  de 20. El Carnaval de Santa Cruz de 2027 va dos semanas más tarde: el
+  Ayuntamiento fijó el martes de Carnaval el 23 de febrero (RTVC, 27 de marzo
+  de 2026; Diario de Avisos), y la excepción del catálogo va del 21 al 23.
+- Las fechas que espera `probar_fechas_oro.js`, también aparte: sus 26
+  Pascuas, la de Occidente y la ortodoxa, con otro cálculo (el gregoriano
+  anónimo y el juliano de Meeus); y el día de la semana de las demás (los
+  Midsommar en viernes, el 27 de abril de 2025 y de 2031 en domingo, el
+  tercer jueves de mayo, el último miércoles de agosto): iguales.
+- `perfil.sql`, en un PostgreSQL 16 local con lo mínimo de Supabase: en una
+  base vacía, dos veces, y sus 20 pruebas, cada una como dice; y encima del
+  `perfil.sql` de `main` con 1.000 pesos dentro, sin perder nada.
+- Los textos de la entrega, uno a uno contra los de `main`: 81 iguales y 9
+  distintos. Los nueve los había escrito la entrega de Europa por su cuenta,
+  de usted también, antes de que `main` tuviera de usted el italiano, el
+  neerlandés, el alemán y el polaco, y al montarla sustituyeron la
+  redacción de `main`. La entrega nueva parte de la de `main`.
+- Lo que se mueve: solo al tocar, un segundo, y se para; con «reducir
+  movimiento», nada. Lo único que se repite es la etiqueta «¡es hoy!» de un
+  avatar de oro en su día, y solo con el perfil abierto.
+
+**Los 29 que se van.** Quien eligió en `main` uno de ellos (la cabina
+británica era uno, por ser marca registrada) ve en el perfil el avatar con
+el que empieza todo el mundo, el primero del set de su país o de su idioma,
+y puede elegir otro; el botón de la cuenta vuelve a su icono. Su id ya no
+está en el catálogo, y la app lo descarta, como cualquier id que no conoce,
+también si llega de la nube. Allí se queda en su fila hasta que la cuenta
+suba el perfil otra vez: sin avatar, sube vacío (`null`, que el check de
+`perfiles.avatar` admite). Jerome: «No pasa van a elegir de nuevo con más
+elección».
+
+**Los controles** (bloque 6):
+
+- `auditar_perfil.js`, 72 en verde: los de oro en el catálogo (uno
+  por set, tres en Tenerife, detrás de los cinco, `<set>-oro-…`), las nueve
+  animaciones y las diez piezas, las clases del dibujo, la medalla, la regla
+  de cada fiesta y su ventana de 2026 a 2045; en el módulo, las animaciones
+  con su regla, nada con «reducir movimiento», «Sorpréndeme», que la lista
+  de los de oro no suba; y en `perfil.sql`, las fechas y el tope, la misma
+  cifra que la app. Con el `perfil.js` de `main`, nueve en rojo; con el
+  `perfil.sql` de `main`, dos; con un dibujo con una clase en un elemento
+  con `transform` o una animación que no existe, tres.
+- `probar_fechas_oro.js` (nuevo, `pruebas/fechas.test.js` de la entrega): 51
+  de 51.
+- `probar_perfil.js`, 129 en verde: las diez de los de oro (37 a 46), con
+  la fecha cambiada en el reloj del navegador; el tope en la nube (n34 a
+  n37); los cortes de los 284 nombres y de la fecha de los de oro; y el
+  barrido de los de oro: diez idiomas, tres anchos y cinco estados, 150
+  pantallas.
+- `auditar_registro.js`: los botones del perfil en `ROTULOS_IT`,
+  `ROTULOS_BG` y `ROTULOS_PL`, y en la regla búlgara del -ш, «фиш» («Фиш
+  енд чипс») y «Марамуреш». `auditar_idioma.js`: los nombres que se escriben
+  igual que en castellano, con los de ahora (sin el bloque, «Falles de Sant
+  Joan» en cinco idiomas). `idiomas/pantalla-aceptado.json`:
+  «Hallgrímskirkja» y, en neerlandés, «Día de Canarias». `barrido_pantallas.js`:
+  «De oro» abierto, y lo aceptado en un idioma vale también dentro de un
+  texto más largo de ese idioma, y el resto se sigue mirando: en neerlandés,
+  la etiqueta del avatar para el lector de pantalla, «Día de Canarias,
+  gouden avatar, op 30 mei», cantaba «día» (la única que encontró el barrido
+  entero).
+
+**Lo que pesa.** `modulos/avatares.js`, 410 kB (112 kB comprimido; antes,
+295 y 78); `modulos/perfil.js`, 275 kB (85 comprimido; antes, 236 y 74).
+Ninguno cuenta en la primera descarga: el perfil se pide al tocar «Cuenta»,
+y los avatares al abrirlo o, si ya hay uno elegido, cuando el móvil está
+libre después de arrancar; `index.html` crece 249 bytes comprimido (arriba,
+«Descarga»). En el móvil lento de mentira de siempre (la CPU cuatro veces
+más lenta, 390 × 844, sin service worker ni red de fuera), contra `main` y
+por turnos:
+
+- Con un avatar elegido, que obliga a leer el catálogo al arrancar, ocho
+  arranques de cada uno: el mapa con sus lugares, 2.873 ms con los de oro y
+  3.154 en `main`; el bloqueo del hilo principal en los 6 s siguientes,
+  1.167 y 1.269 ms. Las dos tandas se solapan: no se nota.
+- Abrir el perfil la primera vez, con los dos módulos por pedir, 482 ms (en
+  `main`, 387); elegir un país, 88 (72); cambiar de idioma con lo último
+  abierto, 613 con «De oro» (469 con un país). Medianas de cinco.
+- Abrir «De oro», con sus 49, 586 ms. Ahí se vio que la tira se pintaba dos
+  veces: con el arreglo, el código del clic pasa de 454 ms a 211, y lo demás
+  es pintar las 49 medallas.
+
+Sin errores de página.
+
+**La auditoría entera**, sobre «La tira, una vez» antes de ponerla encima de
+los últimos commits de los robots, que solo cambian sus ficheros de datos
+(`b5c1251`; esta documentación aparte, como siempre): **«AUDITORIA EN
+VERDE»**, ningún control en rojo ni roto:
+
+- `auditar_perfil.js`, 72 de 72; `probar_fechas_oro.js`, 51 de 51;
+  `probar_perfil.js`, 129 de 129, con las 150 pantallas de los de oro.
+- `auditar_registro.js`, 76.426 textos: los nueve idiomas que distinguen el
+  trato, todo de usted.
+- `auditar_web.js`, 47 tablas y 2.868 filas; `barrido_idiomas.js`, 5.009
+  filas dentro y fuera del fuente, y este documento dice lo mismo.
+- `barrido_pantallas.js`, 183 pantallas y fichas por idioma, con «De oro»:
+  0 textos sin traducir y 0 errores de página.
+- `auditar_cirilico.py`, 0 sospechosas de 2.219 nombres;
+  `auditar_seguridad.py`, ningún guion blando, ancho cero ni BOM.
+- `auditar_cielo.js`, 302 de 302; `probar_emergencias.js`, 261 de 261;
+  `auditar_emergencias.js`, 37 de 37; `auditar_sw.js`, 48 de 48;
+  `probar_notificacion_idioma.js`, 96 en verde.
+- `probar_faq.js`, 0 fallos de 122; `probar_movil.js`, las 25 preguntas en
+  su idioma; `probar_play.js`, 233 de 233.
+
+**Lo que queda para Jerome:**
+
+- Volver a ejecutar `perfil.sql` en Supabase (SQL Editor → New query →
+  pegar → Run), una vez: los topes de 2.000 y las fechas. Hasta entonces la
+  app funciona igual: no deja anotar más de 2.000, y la nube de ahora admite
+  20.000.
+- Mirar los dibujos a 32 px, el tamaño del botón de la cuenta: la nota dice
+  que quedan flojos el tocado islandés, los ćevapi, el loukoumi, los blinis
+  y el monte Lovćen, y que varios monumentos se dibujaron sin ver una foto.
+- Cada primavera, las fechas del Carnaval de Santa Cruz del año siguiente:
+  si no son las de la regla, se añade el año en `excepciones`, como 2027.
+- Las declaraciones de las tiendas no cambian: la lista de los de oro
+  conseguidos no sale del dispositivo.
+
 ## La tarifa del sendero del pico, con la fuente oficial (23 de octubre, noche)
 
 Jerome comprobó en las fuentes oficiales lo que la nota 12 solo había
@@ -9983,7 +10152,8 @@ Lo que escribieron, contra su fuente:
   incidencia. El de Madrid se cambia aparte por su página nueva.
 
 **La auditoría entera**, sobre `c416627` (los robots encendidos encima de
-`d63473a`): todo en verde menos `probar_app.js`, diez controles en rojo,
+`d63473a`; en `main` es `f5b59bc`, encima del robot de los satélites,
+`473ff94`, que solo cambia `datos/satelites.json`): todo en verde menos `probar_app.js`, diez controles en rojo,
 uno por idioma. La app de las tiendas, con los robots encendidos, pedía los
 tres ficheros de los robots y no los llevaba dentro: sin conexión, tres
 404. `tools/app_preparar.js` los mete ahora en `app/www/` como los demás
@@ -10021,7 +10191,7 @@ terremotos por notificación, que no: «Lo entiendo es delicado mejor seguir
 tu recomendación». GitHub lanza los robots con retraso, una alerta que
 llega tarde hace daño, y para eso está ES-Alert.
 
-- **Los domingos, un consejo** (`6525f3c`). La notificación de la mañana
+- **Los domingos, un consejo** (`f49eeb9`). La notificación de la mañana
   trae, en lugar de la frase del día, una fila del panel SOS debajo del
   título de su guía, con el «Buenos días ☀️» de siempre, y al tocarla se
   abre esa guía (`#sos-<guía>`). Es la misma notificación: ese día no sale
@@ -10037,7 +10207,7 @@ llega tarde hace daño, y para eso está ES-Alert.
   encuentro, los idiomas del 112, no llamar al 112 para preguntar, la
   mochila, ES-Alert en un móvil extranjero, decir a alguien la ruta, si el
   aviso es real y que ES-Alert nunca pide datos.
-- **El aviso del semáforo volcánico** (`cfe78dc`), solo cuando cambia de
+- **El aviso del semáforo volcánico** (`61ecc55`), solo cuando cambia de
   color, y con lo oficial nada más: «Boletín de INVOLCAN del … : semáforo …
   en Tenerife.» y lo que pide ese color, con las filas del panel en el
   idioma de cada móvil; al tocarlo, la guía del semáforo. Sale una vez y
@@ -10052,23 +10222,23 @@ llega tarde hace daño, y para eso está ES-Alert.
   Enviar usa los Secrets de la notificación diaria: no hay que añadir
   ninguno. Con el boletín de hoy, decidir dice «Sigue verde (boletin del
   2026-10-23): nada que avisar».
-- **Al tocarlas, su guía, también con la app abierta** (`ce2af62`):
+- **Al tocarlas, su guía, también con la app abierta** (`05e151d`):
   `sw.js` le manda la guía a la ventana abierta, y el panel solo acepta
   `#sos` o `#sos-<guía>`.
-- **Lo que dice la tarjeta del permiso** (`56425d7`), que ya no sería verdad
+- **Lo que dice la tarjeta del permiso** (`f749fe3`), que ya no sería verdad
   con lo nuevo: «Una frase para empezar el día y una idea de plan. Los
   domingos, un consejo para saber qué hacer en una emergencia, y un aviso
   si cambia el semáforo volcánico de Tenerife. Sin publicidad y sin
   agobiar.» En los diez idiomas, con las palabras del panel, y el asistente
   lo dice igual (app-29).
-- **La fuente de Madrid** (`55f018d`). El díptico «Cómo actuar en caso de
+- **La fuente de Madrid** (`54e2e45`). El díptico «Cómo actuar en caso de
   incendio en casa» de la Comunidad de Madrid daba 404 al vigía y a Jerome
   en su móvil. Lo mismo lo publica ahora ASEM 112 en su página «Incendios
   domésticos»: desde aquí no se abre, y cada consejo de «Fuego en un
   edificio» se cotejó, frase a frase, con las capturas de la página entera
   que mandó Jerome (24 de octubre, 11:44–11:46). Cambian el enlace y el
   nombre de la fuente, en los diez idiomas; lo que dice la guía, no.
-- **«Para evitar un incendio»** (`e44fa62`). Jerome: «Prevención y estas
+- **«Para evitar un incendio»** (`b37f373`). Jerome: «Prevención y estas
   informaciones no las tenemos?». No: la guía decía qué hacer con fuego, no
   cómo evitarlo. Ocho consejos, de «Consejos incendios urbanos» de la
   Dirección General de Emergencias del Gobierno de Canarias, que ya era
@@ -10077,12 +10247,14 @@ llega tarde hace daño, y para eso está ES-Alert.
   `tools/datos/vigia-sos.json`, y cada fila es una frase suya, de usted.
   Nueve filas nuevas, el título y las ocho, en los diez idiomas: 47 tablas
   y 2.806 filas, y 4.947 dentro y fuera del fuente.
-- **El francés** (`73e1e73`): dos «Réessaie» que tuteaban (el asistente
+- **El francés** (`81d5f35`): dos «Réessaie» que tuteaban (el asistente
   cuando algo falla y la tarjeta de las notificaciones) pasan a
   «Réessayez», y `auditar_registro.js` vigila esa forma.
 
-**La auditoría entera**, sobre `e44fa62`: **«AUDITORIA EN VERDE»**, ningún
-control en rojo ni roto:
+**La auditoría entera**, sobre `e44fa62`, que en `main` es `b37f373`: allí va
+encima del robot de AEMET (`ddf9c5a`), que solo cambia
+`datos/avisos-aemet.json`. **«AUDITORIA EN VERDE»**, ningún control en rojo
+ni roto:
 
 - `probar_notificacion_idioma.js`, 96 en verde: los doce domingos y el
   decimotercero en los diez idiomas, cada consejo con su guía y sus dos
@@ -10143,7 +10315,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/partir_idiomas.js` | la mudanza de los ocho idiomas de `places[]` a `idiomas/*.json` |
 | `tools/auditar_idiomas_fuera.js` | que lo mudado esté entero y el navegador lo pegue antes de montar el mapa |
 | `tools/auditar_etiquetas.js` | los chips del globo: traducidos o declarados con motivo (desde el 7 de octubre, sin la vía «nombre de sitio»), y el mismo chip dos veces en una ficha |
-| `tools/barrido_pantallas.js` | lo que **se ve**: los paneles y fichas abiertos en los diez idiomas (155 por idioma el 23 de octubre de 2026, con el perfil, «Todos los países» y sus 47 sets de avatares; Rutas usadas, no solo abiertas), buscando castellano que no sea nombre propio, y botones con el mismo emoji dos veces |
+| `tools/barrido_pantallas.js` | lo que **se ve**: los paneles y fichas abiertos en los diez idiomas (183 por idioma el 24 de octubre de 2026, con el perfil, «Todos los países», sus 47 sets de avatares y «De oro», y el panel SOS; Rutas usadas, no solo abiertas), buscando castellano que no sea nombre propio, y botones con el mismo emoji dos veces |
 | `tools/auditar_tour.js` | el tour de bienvenida **recorrido de verdad**: los diez idiomas, cuatro tamaños de móvil, cada paso con su botón enfocado, la tarjeta dentro de la pantalla, las cifras contadas y nada igual al castellano ni al inglés |
 | `tools/auditar_idioma.js` | un idioma entero contra el castellano: cifras, horarios, teléfonos, trozos de etiqueta, alfabeto |
 | `tools/auditar_faq.js` | el asistente: cada respuesta en los diez idiomas, alcanzable por su botón, ninguna igual al castellano o al inglés, los botones que cita con su nombre de pantalla, y ninguna base fuera de `faq/` |
@@ -10178,8 +10350,9 @@ Y cada bloque por separado, si hace falta:
 | `tools/capturas_app_store.js` | las capturas de la tienda (iPhone 1206×2622, iPad 2064×2752), de `app/www/` servido aparte; para si la página no lleva la marca o un estado no llega a lo que dice |
 | `tools/app_store_metadata.js` | la ficha y las capturas en el formato de `fastlane deliver` (`app/fastlane/metadata/`, `…/screenshots/`); con `--comprobar`, las diez localizaciones, los límites y los tamaños |
 | `tools/cielo_uai.js` | los nombres de la UAI de la carta del cielo en chino, chino tradicional y búlgaro (`CIELO_UAI`, en `modulos/cielo.js`), de las traducciones de Stellarium que baja `cielo_fuentes.sh`; los coteja con la cultura celeste china y entre sí; con `--comprobar`, para si lo escrito no es lo que sale de las fuentes (lo pasa `auditar_cielo.js`) |
-| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 235 avatares en 47 sets (SVG sin nada que se ejecute, solo con etiquetas de dibujo y 2.200 bytes como mucho, ids con la forma que pide `perfil.sql`, los 36 países de Europa ni uno más ni uno menos, la bandera de cada set), las 363 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas y rangos) |
-| `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql` y, como Supabase, da como mucho 1.000 filas por consulta), la nube con más filas de las que caben en una consulta, las visitas comprobadas en el mapa, el selector de los 47 sets (el país del navegador primero, «Todos los países» y su buscador), los 235 avatares y sus nombres sin cortar, y los diez idiomas a 360, 390 y 430 px |
+| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 235 avatares en 47 sets y sus 49 de oro (SVG sin nada que se ejecute, solo con etiquetas de dibujo y 2.200 bytes como mucho, «class» solo en las piezas que se mueven y nunca con `transform`, ids con la forma que pide `perfil.sql`, los 36 países de Europa ni uno más ni uno menos, la bandera de cada set, cada avatar con una de las nueve animaciones; los de oro, uno por set y tres en Tenerife, detrás de los cinco, con la regla de su fiesta y una ventana cada año de 2026 a 2045), las 425 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app, que cada animación tenga su regla y nada se mueva con «reducir movimiento», que «Sorpréndeme» nunca dé uno de oro y que la lista de los de oro conseguidos no suba a la nube, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas, rangos, fechas de 1900 a 2100 y el tope de 2.000 pesos y 2.000 caminatas, la misma cifra que la app) |
+| `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql`, con sus fechas y su tope de 2.000, y, como Supabase, da como mucho 1.000 filas por consulta), la nube con más filas de las que caben en una consulta, el tope lleno, las visitas comprobadas en el mapa, el selector de los 47 sets (el país del navegador primero, «Todos los países» y su buscador), los de oro con la fecha cambiada en el reloj del navegador (fuera de su día, en su fiesta, después, «De oro», «Sorpréndeme» y la descarga) y el movimiento al tocar, nada con «reducir movimiento», los 284 avatares y sus nombres sin cortar, y los diez idiomas a 360, 390 y 430 px, también los de oro en cinco estados (150 pantallas) |
+| `tools/probar_fechas_oro.js` | las fechas de los de oro, sin navegador: el motor de `modulos/avatares.js` con una regla de ejemplo de cada tipo (la Pascua y la ortodoxa, un día fijo que se adelanta si cae en domingo, un día de la semana entre dos fechas, el enésimo día de la semana de un mes y el último, una tabla de fechas, una fiesta de dos días que cruza el año, el Carnaval de sábado a martes y una excepción, como la de Santa Cruz en 2027): 51 casos, con sus Pascuas y sus días de la semana comprobados aparte |
 | `tools/auditar_emergencias.js` | el panel de emergencias (SOS) en Node: cada fila en los diez idiomas y pedida por el código, las ocho del armazón en `UI_TX`, las fuentes de cada guía, los grupos y los «Vea también», las banderas y los teléfonos, los enlaces (https y de los dominios oficiales), el armazón con el 112 y el rótulo «SOS», el service worker (en `CORE`, con su rama y fuera de «red primero»), el atajo del manifiesto, que cada fichero de `window.SOS_DATOS` tenga su robot encendido, y ninguno encendido sin él, y que lo que escriben los robots vaya en «red primero» |
 | `tools/probar_emergencias.js` | el panel de emergencias en un navegador: la barra de abajo con el SOS a 320 y 360 px y el panel a 360, 390 y 430 en los diez idiomas, las veinticinco guías con sus fuentes y «atrás», los teléfonos de la tarjeta del 112, las coordenadas, el cambio de idioma, los hospitales, los avisos de AEMET y la franja del resumen, lo que enseña con los datos de los robots (frescos, viejos y rotos), el módulo que no llega, `#sos` y sin conexión |
 | `tools/sismos_ign.py` | baja del IGN los terremotos de los últimos diez días cerca de Tenerife y escribe `datos/sismos-ign.json` (lo lanza `.github/workflows/sismos-ign.yml`, cada hora); si algo no cuadra, no escribe; con `--probar`, contra un canal de prueba |
@@ -10213,6 +10386,10 @@ Y cada bloque por separado, si hace falta:
   ejecutarlos otra vez (SQL Editor; los dos se pueden ejecutar las veces que
   haga falta). Sin eso, la app funciona igual, pero con una cuenta (o sin
   ella, las suscripciones) se puede llenar la base de datos.
+- **`perfil.sql`, otra vez** (24 de octubre, los de oro): 2.000 pesos y
+  2.000 caminatas por cuenta, en lugar de 20.000, y cada fecha de 1900 a
+  2100. Se puede ejecutar las veces que haga falta. Sin eso, la app funciona
+  igual: no deja anotar más de 2.000, y la nube de ahora admite más.
 - **Privacidad**: las coordenadas GPS exactas del usuario se envían a
   `router.project-osrm.org` (servidor de demostración público) y a
   `nominatim.openstreetmap.org`, cuya política pide un User-Agent identificable.
