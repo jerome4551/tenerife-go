@@ -77,9 +77,16 @@ if (IDIOMAS.length < 2) { console.log('MAL: no encuentro SUPPORTED_LANGS en inde
 const SUELTOS = ['index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png',
   'icon-maskable-512.png', 'apple-touch-icon.png', 'privacidad.html', 'borrar-cuenta.html']
   .concat([...new Set([...index.matchAll(/href="(splash-[\dx]+\.png)"/g)].map(m => m[1]))]);
-/* Carpetas, con el filtro de lo que entra de cada una. */
+/* Carpetas, con el filtro de lo que entra de cada una.
+   Los datos que cambian a diario viajan tambien, de respaldo: la app los pide
+   a la web viva (tgoFetchDatos) y, sin conexion, usa la copia de dentro, que
+   cada panel ensena con su fecha y esconde cuando es vieja. Los tres de los
+   robots del panel SOS (window.SOS_DATOS), desde que se encendieron (24 de
+   octubre de 2026): sin ellos aqui, la app de las tiendas sin conexion pedia
+   tres ficheros que no llevaba. */
 const DATOS = ['titsa.js', 'cielo.json', 'satelites.json', 'precios-gasolineras.json',
-  'gasolineras-municipio.json', 'avisos-aemet.json'];
+  'gasolineras-municipio.json', 'avisos-aemet.json',
+  'sismos-ign.json', 'semaforo-involcan.json', 'alertas-canarias.json'];
 const CARPETAS = [
   ['idiomas', f => IDIOMAS.includes(f.replace(/\.json$/, '')) && /\.json$/.test(f)],
   ['idiomas/etiquetas', f => /\.json$/.test(f)],
@@ -250,6 +257,11 @@ function comprobar(montado) {
       if (!enWww(limpia(m[1]))) faltan.add(f + ' → ' + m[1]);
     }
   }
+  /* los ficheros de los robots que esten encendidos (window.SOS_DATOS): el
+     panel SOS los pide con tgoFetchDatos, y sin conexion, los de dentro */
+  const sosDatos = (((index.match(/window\.SOS_DATOS = \[([^\]]*)\]/) || [, ''])[1]).match(/'[^']+'/g) || [])
+    .map(x => limpia(x.slice(1, -1)));
+  for (const rel of sosDatos) if (!enWww(rel)) faltan.add('window.SOS_DATOS → ' + rel);
   /* sw.js: CORE y red-primero, menos el propio sw.js */
   const sw = lee('sw.js');
   for (const m of sw.matchAll(/'\.\/([^']+)'/g)) {
