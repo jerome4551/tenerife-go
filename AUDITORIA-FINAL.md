@@ -10010,6 +10010,101 @@ nuevos de los satélites (sin las carpetas de las fuentes aquí, sus seis
 controles de rehacer el catálogo y el motor se saltan; en la auditoría
 entera, 302 de 302).
 
+### Dos notificaciones, la fuente de Madrid y cómo evitar un incendio (24 de octubre, mediodía)
+
+Jerome, con los robots ya encendidos: «no es malo preparar la gente de
+veces cuando para que se queda informada», y después: «que no sea una
+alarma que asuste a la gente, más un consejo de quedarse informados de que
+hacer en tal caso. Que las alertas asustaron a algunas gente por no estar
+informadas». Al aviso del semáforo, «2 sí perfecto». A las alertas y los
+terremotos por notificación, que no: «Lo entiendo es delicado mejor seguir
+tu recomendación». GitHub lanza los robots con retraso, una alerta que
+llega tarde hace daño, y para eso está ES-Alert.
+
+- **Los domingos, un consejo** (`6525f3c`). La notificación de la mañana
+  trae, en lugar de la frase del día, una fila del panel SOS debajo del
+  título de su guía, con el «Buenos días ☀️» de siempre, y al tocarla se
+  abre esa guía (`#sos-<guía>`). Es la misma notificación: ese día no sale
+  otra ni pide ningún permiso nuevo. No lleva ningún texto nuevo:
+  `enviar-notificacion.js` lee las filas de `modulos/emergencias.js`, las
+  verificadas contra su fuente, en los diez idiomas y de usted, y antes de
+  enviar compone el consejo en los diez; si falta una fila, ese domingo va
+  la frase de siempre, con un aviso en el registro. Doce consejos que
+  informan sin asustar, uno cada domingo desde el 25 de octubre y cada uno
+  vuelve a los tres meses: qué hacer si llega un ES-Alert que dice
+  SIMULACRO o PRUEBA, preguntar en el hotel o el apartamento qué hacer en
+  una emergencia, qué es ES-Alert, qué es el semáforo volcánico, un punto de
+  encuentro, los idiomas del 112, no llamar al 112 para preguntar, la
+  mochila, ES-Alert en un móvil extranjero, decir a alguien la ruta, si el
+  aviso es real y que ES-Alert nunca pide datos.
+- **El aviso del semáforo volcánico** (`cfe78dc`), solo cuando cambia de
+  color, y con lo oficial nada más: «Boletín de INVOLCAN del … : semáforo …
+  en Tenerife.» y lo que pide ese color, con las filas del panel en el
+  idioma de cada móvil; al tocarlo, la guía del semáforo. Sale una vez y
+  solo una: el flujo del semáforo decide (`enviar-notificacion.js
+  --semaforo-decidir`, contra lo último avisado en
+  `tools/datos/aviso-semaforo.json`), sube ese apunte al repositorio y solo
+  si lo sube envía (`--semaforo-enviar`). La primera vez solo apunta, y el
+  fichero empieza con el boletín del 23 de octubre, verde, el leído y
+  comprobado esa mañana: encenderlo no avisa de nada. Avisa también cuando
+  vuelve a verde; un boletín de más de 8 días no avisa; y de 8 a 21 h en
+  Canarias: un cambio leído de noche sale en la primera vuelta del día.
+  Enviar usa los Secrets de la notificación diaria: no hay que añadir
+  ninguno. Con el boletín de hoy, decidir dice «Sigue verde (boletin del
+  2026-10-23): nada que avisar».
+- **Al tocarlas, su guía, también con la app abierta** (`ce2af62`):
+  `sw.js` le manda la guía a la ventana abierta, y el panel solo acepta
+  `#sos` o `#sos-<guía>`.
+- **Lo que dice la tarjeta del permiso** (`56425d7`), que ya no sería verdad
+  con lo nuevo: «Una frase para empezar el día y una idea de plan. Los
+  domingos, un consejo para saber qué hacer en una emergencia, y un aviso
+  si cambia el semáforo volcánico de Tenerife. Sin publicidad y sin
+  agobiar.» En los diez idiomas, con las palabras del panel, y el asistente
+  lo dice igual (app-29).
+- **La fuente de Madrid** (`55f018d`). El díptico «Cómo actuar en caso de
+  incendio en casa» de la Comunidad de Madrid daba 404 al vigía y a Jerome
+  en su móvil. Lo mismo lo publica ahora ASEM 112 en su página «Incendios
+  domésticos»: desde aquí no se abre, y cada consejo de «Fuego en un
+  edificio» se cotejó, frase a frase, con las capturas de la página entera
+  que mandó Jerome (24 de octubre, 11:44–11:46). Cambian el enlace y el
+  nombre de la fuente, en los diez idiomas; lo que dice la guía, no.
+- **«Para evitar un incendio»** (`e44fa62`). Jerome: «Prevención y estas
+  informaciones no las tenemos?». No: la guía decía qué hacer con fuego, no
+  cómo evitarlo. Ocho consejos, de «Consejos incendios urbanos» de la
+  Dirección General de Emergencias del Gobierno de Canarias, que ya era
+  fuente de la guía y que el vigía mira: su texto, leído de la página
+  oficial por el vigía el 24 de octubre a las 09:24 UTC, está en
+  `tools/datos/vigia-sos.json`, y cada fila es una frase suya, de usted.
+  Nueve filas nuevas, el título y las ocho, en los diez idiomas: 47 tablas
+  y 2.806 filas, y 4.947 dentro y fuera del fuente.
+- **El francés** (`73e1e73`): dos «Réessaie» que tuteaban (el asistente
+  cuando algo falla y la tarjeta de las notificaciones) pasan a
+  «Réessayez», y `auditar_registro.js` vigila esa forma.
+
+**La auditoría entera**, sobre `e44fa62`: **«AUDITORIA EN VERDE»**, ningún
+control en rojo ni roto:
+
+- `probar_notificacion_idioma.js`, 96 en verde: los doce domingos y el
+  decimotercero en los diez idiomas, cada consejo con su guía y sus dos
+  filas; nueve casos de cuándo avisa el semáforo y cuándo no; lo que le
+  llega a cada idioma con amarillo y con verde, contra las filas del módulo
+  leídas por su cuenta; y con 1.500 suscripciones, a cada una le llega el
+  aviso una vez.
+- `auditar_sw.js`, 48 de 48, con los dos tags y el toque con la app
+  abierta, cerrada o con una ventana de otro sitio;
+  `probar_emergencias.js`, 261 de 261; `auditar_emergencias.js`, 37 de 37.
+- `auditar_registro.js`, 75.806 textos: los nueve idiomas que distinguen el
+  trato, todo de usted.
+- `auditar_web.js`, 47 tablas y 2.806 filas; `barrido_idiomas.js`, 4.947
+  filas dentro y fuera del fuente, y este documento dice lo mismo.
+- `barrido_pantallas.js`, 182 pantallas y fichas por idioma: 0 textos sin
+  traducir y 0 errores de página.
+- `auditar_cielo.js`, 302 de 302; `auditar_perfil.js`, 58 de 58;
+  `probar_perfil.js`, 112 de 112.
+- `probar_faq.js`, 0 fallos de 122; `probar_movil.js`, las 25 preguntas en
+  su idioma; `probar_play.js`, 233 de 233; `auditar_cirilico.py`, 0
+  sospechosas de 2.195 nombres.
+
 ---
 
 # 5 · Cómo se vuelve a medir
@@ -10032,7 +10127,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/fuente.js` · `tools/fuente.py` | el fuente entero para barrerlo: `index.html` y los ficheros propios que carga (`datos/titsa.js`) |
 | `tools/gtfs_red.py` | regenera la red desde un GTFS completo |
 | `tools/orientacion.py` | deduce orientación de playa desde la costa · **suspendido por su propio control** |
-| `tools/auditar_sw.js` | el service worker en un ámbito falso: mapa sin conexión, tope y actualizaciones |
+| `tools/auditar_sw.js` | el service worker en un ámbito falso: mapa sin conexión, tope y actualizaciones; y las notificaciones: cada una con su tag, y al tocarla, su guía, también con la app abierta |
 | `tools/auditar_mapa.js` | el mapa sin conexión, bloque a bloque |
 | `tools/mapa_base.py` | genera `mapa/tenerife-base.pmtiles` desde los datos del propio repositorio |
 | `tools/mapa_prueba_osm.py` | banco de pruebas con el esquema de Protomaps, para poder probar el bloque 4 |
@@ -10054,7 +10149,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/auditar_faq.js` | el asistente: cada respuesta en los diez idiomas, alcanzable por su botón, ninguna igual al castellano o al inglés, los botones que cita con su nombre de pantalla, y ninguna base fuera de `faq/` |
 | `tools/rotulos_app.js` | los rótulos de la app en los diez idiomas, sacados de `index.html` (lo usa `auditar_faq.js`) |
 | `tools/probar_faq.js` · `tools/probar_movil.js` | preguntas de prueba al asistente: en Node con el núcleo de verdad, y en un móvil con la app entera |
-| `tools/probar_notificacion_idioma.js` | la notificación diaria en el idioma de cada móvil: lo que la app manda a `guardar_push_sub()` al abrir, al cambiar de idioma y desde el botón sin cuenta, la tarjeta del permiso en los diez, y lo que el envío le manda a cada idioma; y con 2.345 suscripciones detrás de una Supabase que da 1.000 filas por consulta, que a cada una le llega una |
+| `tools/probar_notificacion_idioma.js` | la notificación diaria en el idioma de cada móvil: lo que la app manda a `guardar_push_sub()` al abrir, al cambiar de idioma y desde el botón sin cuenta, la tarjeta del permiso en los diez, y lo que el envío le manda a cada idioma; y con 2.345 suscripciones detrás de una Supabase que da 1.000 filas por consulta, que a cada una le llega una; el consejo de los domingos (doce, de las filas del panel SOS) y el aviso del semáforo volcánico: cuándo sale y cuándo no, y lo que le llega a cada idioma |
 | `tools/probar_nombres.js` | cada lugar preguntado al asistente por su nombre, en los diez idiomas y en chino pegado: sale su ficha o la lista para elegir; el nombre corto, contado; y cada categoría del menú por su rótulo, la lista de esa categoría |
 | `tools/auditar_letras.js` | palabras escritas sin sus letras («waehle», «carre avec fleche») |
 | `tools/auditar_reservas.py` | el texto de reserva en castellano (`L.clave \|\| '…'`): la clave, en los diez idiomas; y el texto que el código escribe a mano en la página (`textContent = '…'`), fuera de lo fijo con su motivo |
