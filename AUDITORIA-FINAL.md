@@ -9918,9 +9918,9 @@ entera, y el SOS se abre desde la pantalla principal. `#sos` abre el panel
 por encima de todo, también en la primera visita, por encima de la
 bienvenida (z-index 9700 frente a 9000).
 
-**El bloque 3** (los robots encendidos) queda preparado en la rama
-`sos-encender` (`d58d178`), encima de esta. No se sube hasta que Jerome lo
-diga y cada robot se haya lanzado a mano y comprobado.
+**El bloque 3** (los robots encendidos) se subió después, el 24 por la
+mañana, cuando Jerome lo dijo y cada robot se había lanzado a mano y
+comprobado: abajo, en «Los robots, encendidos».
 
 **La auditoría entera**, sobre `a54cac1` (esta documentación aparte, como
 siempre): **«AUDITORIA EN VERDE»**, ningún control en rojo ni roto:
@@ -9941,6 +9941,72 @@ siempre): **«AUDITORIA EN VERDE»**, ningún control en rojo ni roto:
   le llega una.
 - `probar_faq.js`, 0 fallos de 122; `probar_movil.js`, las 25 preguntas en
   su idioma; `probar_play.js`, 233 de 233, con la barra de seis botones.
+
+### Los robots, encendidos (24 de octubre, mañana)
+
+Jerome, con el SOS ya en `main`: «los robots activos», y «termina
+instalarlas que es lo que quiero». El bloque 3 de la nota, paso a paso.
+
+**Lanzados a mano en `main`**, el 24 a las 09:24 UTC, los cuatro en verde.
+Lo que escribieron, contra su fuente:
+
+- **Terremotos (IGN).** Uno en diez días cerca de Tenerife: `es2026upyqc`,
+  magnitud 3,0, el 21 de octubre a las 06:41:11, «ATLÁNTICO-CANARIAS».
+  Diario de Avisos, citando al IGN, lo da a las «07.41 hora canaria»: el
+  canal va en UTC y `HORA_DEL_CANAL` se queda como está.
+- **Semáforo (INVOLCAN).** El boletín del 23 de octubre de 2026, verde. Su
+  PDF no se abre desde aquí: el robot copia el color de la frase «el
+  semáforo volcánico se encuentra en posición …» y la fecha de «actualizado
+  a las 00:00 del …», no de la leyenda de los cuatro colores, y si no las
+  encuentra no escribe. Cuadra con lo publicado: el PEVOLCA dejó el semáforo
+  de Tenerife sin cambios en agosto, y el naranja del 22 de octubre fue el
+  del simulacro VOLCANEX, con su ES-Alert.
+- **Alertas (Gobierno de Canarias).** Doce titulares de los últimos 30
+  días, del 8 al 22 de octubre. Los primeros, con sus enlaces, son los del
+  portal de noticias del Gobierno: «El Gobierno de Canarias finaliza la
+  situación de alerta por lluvias en El Hierro, La Palma y La Gomera» (22 de
+  octubre, 18:03 UTC; la nota dice «a partir de las 07:00 horas de mañana,
+  viernes 23 de octubre»), la alerta declarada el 21 y la prealerta de esa
+  mañana. Las horas son las del canal (RSS, en +0000).
+- **Vigía.** Las incidencias del repo están activadas. La primera vuelta
+  (`e71c259`) apuntó 57 páginas; la segunda (`d63473a`): «57 paginas
+  miradas; 0 cambiadas; 0 sin responder 3 veces seguidas». No mira las 8
+  que su `robots.txt` cierra (ercEsResumen, ercLego, ivhhnGases,
+  ivhhnMascarilla, ivhhnPrep, ivhhnSalud, planMaremotos, transportes). Tres
+  no responden: la guía de tsunamis de Protección Civil (403: la web de
+  Interior no deja entrar al robot), el Plan Estatal de Maremotos del IGN
+  (pesa más de los 15 MB que baja el vigía) y el PDF de la Comunidad de
+  Madrid de «Fuego en un edificio» (404: ya no está, y a Jerome le dio lo
+  mismo en su móvil). A la tercera, el lunes 27, el vigía abre su
+  incidencia. El de Madrid se cambia aparte por su página nueva.
+
+**La auditoría entera**, sobre `c416627` (los robots encendidos encima de
+`d63473a`): todo en verde menos `probar_app.js`, diez controles en rojo,
+uno por idioma. La app de las tiendas, con los robots encendidos, pedía los
+tres ficheros de los robots y no los llevaba dentro: sin conexión, tres
+404. `tools/app_preparar.js` los mete ahora en `app/www/` como los demás
+datos que cambian a diario (la app los pide a la web viva con
+`tgoFetchDatos` y, sin conexión, usa la copia de dentro, que el panel
+enseña con su fecha), y `--comprobar` mira que cada fichero de
+`window.SOS_DATOS` vaya dentro: con la lista de antes, en rojo.
+
+Lo demás, igual que en `a54cac1`: `auditar_registro.js` (75.716 textos, de
+usted), `auditar_emergencias.js` 37 de 37 (con cada fichero de
+`window.SOS_DATOS` y su robot encendido), `probar_emergencias.js` 257 de
+257, los cuatro robots con `--probar`, `auditar_web.js` (47 tablas, 2.797
+filas), `barrido_idiomas.js` (4.938), `barrido_pantallas.js` (182 pantallas
+y fichas por idioma, 0 sin traducir), `auditar_cielo.js` 302 de 302,
+`auditar_perfil.js` 58 de 58, `probar_perfil.js` 112 de 112, las 2.345
+suscripciones, `probar_faq.js` 0 de 122, `probar_movil.js` las 25 en su
+idioma y `probar_play.js` 233 de 233.
+
+**Encima de `main`** (`473ff94`, un commit más del robot de los satélites),
+con el arreglo (`cfc7100`): `app_preparar.js --comprobar` en verde;
+`auditar_emergencias.js`, 37 de 37; `probar_app.js`, 49 de 49 (los diez
+idiomas, sin un 404); `auditar_cielo.js`, 296 de 296 con los elementos
+nuevos de los satélites (sin las carpetas de las fuentes aquí, sus seis
+controles de rehacer el catálogo y el motor se saltan; en la auditoría
+entera, 302 de 302).
 
 ---
 
