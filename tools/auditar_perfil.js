@@ -265,6 +265,28 @@ for (const a of oros) {
 }
 ok(!malOro.length, 'la regla de cada fiesta de oro, de un tipo conocido y con sus campos, da una ventana todos los años de 2026 a 2045 que empieza en su año (las fechas, en probar_fechas_oro.js)', malOro.join(' · '));
 ok(AV.ventana(normales[0].id, 2027) === null && AV.disponible(normales[0].id, '2027-01-01') === false, 'un avatar que no es de oro no tiene ventana');
+/* El martes de Carnaval: el boton de fiestas (FI_DATA, en index.html) y el avatar de oro del
+   Carnaval tienen que decir el mismo dia cada año, tambien cuando Santa Cruz se aparta de la regla
+   (en 2027, el 23 de febrero, y no el 9). Las funciones del boton se corren aqui tal cual. */
+function funcionDe(src, nombre) {
+  const i = src.indexOf('  function ' + nombre + '('); if (i < 0) return '';
+  let k = src.indexOf('{', i), prof = 0;
+  for (; k < src.length; k++) { if (src[k] === '{') prof++; else if (src[k] === '}' && --prof === 0) break; }
+  return src.slice(i, k + 1);
+}
+const fiCod = ['fiEaster', 'fiAddDays', 'fiDateForYear'].map(n => funcionDe(index, n));
+const fiCarn = (index.match(/\{ emoji:'🎭', date:(\{ type:'easter', off:-?\d+(?:, exc:\{[^}]*\})? \}), lat:28\.4682/) || [])[1];
+const carnMal = [];
+try {
+  const caja = {}; vm.runInNewContext(fiCod.join('\n') + '\nthis.f = fiDateForYear;', caja);
+  const spec = vm.runInNewContext('(' + fiCarn + ')');
+  const dia = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  for (let y = 2026; y <= 2045; y++) {
+    const boton = dia(caja.f(spec, y)), oro = (AV.ventana('tf-oro-carnaval', y) || {}).hasta;
+    if (boton !== oro) carnMal.push(y + ': el boton dice ' + boton + ' y el avatar ' + oro);
+  }
+} catch (e) { carnMal.push(String(e)); }
+ok(fiCod.every(Boolean) && fiCarn && !carnMal.length, 'el martes de Carnaval del boton de fiestas (FI_DATA de index.html) es el ultimo dia del avatar de oro del Carnaval, cada año de 2026 a 2045 (en 2027, el 23 de febrero, como lo fijo el Ayuntamiento)', carnMal.join(' · '));
 ok(AV.svg('no-existe') === '' && AV.porId('no-existe') === null, 'un id que no esta en el catalogo no pinta nada');
 ok(!/<\/script/i.test(src), 'modulos/avatares.js no trae «</script» (tools/fuente.js lo pega en linea)');
 

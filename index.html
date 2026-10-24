@@ -30799,7 +30799,8 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
      100% offline: contenido estático + fechas móviles calculadas
      con el algoritmo gregoriano de la Pascua (Computus), validado
      contra 2024-2027. Carnaval, Semana Santa, Corpus y romerías
-     se actualizan solas cada año, para siempre.
+     se calculan solas cada año; el año que una no sigue la regla
+     (el Carnaval de Santa Cruz de 2027) lleva su fecha oficial.
      Render: createElement/textContent · sin red · sin librerías.
 ════════════════════════════════════════════════════════════════════ -->
 <!-- ════════════════════════════════════════════════════════════════
@@ -30898,6 +30899,7 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
   var FI_LOCALE = { es:'es-ES', en:'en-GB', fr:'fr-FR', de:'de-DE', it:'it-IT', nl:'nl-NL', zh:'zh-CN', zht:'zh-TW', bg:'bg-BG', pl: "pl-PL" };
 
   // ── Calendario: fechas fijas y móviles ─────────────────────
+  // exc: {año: 'MM-DD'}, el año en que no vale la regla, con su fecha oficial ·
   // type: 'fixed' {m,d} · 'easter' {off} (días desde Pascua) ·
   //       'nthsun' {m,n} (n-ésimo domingo del mes) · 'month' {m}
   var FI_DATA = [
@@ -30911,7 +30913,12 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
              nl:'Driekoningenoptochten in alle gemeenten; die van Santa Cruz en Garachico (met kamelen) zijn het spectaculairst.',
              zh:'全岛各市镇都有三王节巡游；圣克鲁斯和加拉奇科（有骆驼）的最为壮观。',
              zht:'全島各市鎮都有三王節遊行；聖克魯斯與加拉奇科（有駱駝）的最為壯觀。', bg:'Кавалкади във всички общини; тези в Санта Крус и Гарачико (с камили) са най-зрелищните.', pl: "Orszaki we wszystkich gminach; te w Santa Cruz i Garachico (z wielbłądami) są najbardziej widowiskowe." } },
-    { emoji:'🎭', date:{ type:'easter', off:-47 }, lat:28.4682, lng:-16.2475,
+    /* El martes de Carnaval. En 2027, Santa Cruz lo pasó al 23 de febrero (la regla
+       daria el 9): festivo local aprobado por el Pleno del Ayuntamiento (Diario de
+       Avisos y RTVC, marzo de 2026). La misma excepcion lleva el avatar de oro del
+       Carnaval (modulos/avatares.js, tf-oro-carnaval), y auditar_perfil.js mira que
+       los dos digan lo mismo cada año. */
+    { emoji:'🎭', date:{ type:'easter', off:-47, exc:{ 2027:'02-23' } }, lat:28.4682, lng:-16.2475,
       name:{ es:"Carnaval de Santa Cruz", en:"Santa Cruz Carnival", fr:"Carnaval de Santa Cruz", de:"Karneval von Santa Cruz", it:"Carnevale di Santa Cruz", nl:"Carnaval van Santa Cruz", zh:"圣克鲁斯狂欢节", zht:"聖克魯斯嘉年華", bg:"Карнавалът в Санта Крус", pl: "Karnawał w Santa Cruz" }, place:'Santa Cruz de Tenerife',
       desc:{ es:'Fiesta de Interés Turístico Internacional y uno de los mayores carnavales del mundo: Gala de la Reina, coso y Entierro de la Sardina.',
              en:'Of International Tourist Interest and one of the world’s biggest carnivals: Queen’s Gala, main parade and the Burial of the Sardine.',
@@ -31107,6 +31114,7 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
     return new Date(y, m-1, last.getDate() - last.getDay());
   }
   function fiDateForYear(spec, y) {
+    if (spec.exc && spec.exc[y]) { var p = spec.exc[y].split('-'); return new Date(y, +p[0]-1, +p[1]); }
     if (spec.type === 'fixed')   return new Date(y, spec.m-1, spec.d);
     if (spec.type === 'easter')  return fiAddDays(fiEaster(y), spec.off);
     if (spec.type === 'nthsun')  return fiNthSunday(y, spec.m, spec.n);
