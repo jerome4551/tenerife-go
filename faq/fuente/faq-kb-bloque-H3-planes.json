@@ -16,7 +16,8 @@
   ],
   "entradas": 16,
   "origen": "Redactado el 12/10/2026 a partir de las entradas de CHAT_KB, que solo estaban en castellano; cada dato, comprobado antes de traducirlo, y lo que no se pudo comprobar, fuera (ver AUDITORIA-FINAL.md).",
-  "politica_datos": "Lo de cada lugar sale de su ficha en el mapa; lo del Teide, del bloque B1. Ninguna tarifa, horario de salida ni frecuencia (la misma politica que C1). Van volatil:true las que dependen de una regulacion que cambia: drones, acampada, la 111, Teno y el Barranco del Infierno."
+  "politica_datos": "Lo de cada lugar sale de su ficha en el mapa; lo del Teide, del bloque B1. Ninguna tarifa, horario de salida ni frecuencia (la misma politica que C1). Van volatil:true las que dependen de una regulacion que cambia: drones, acampada, la 111, Teno y el Barranco del Infierno.",
+  "revisado": "24/10/2026: pla-11 puestas al dia con la app y sus fuentes; pla-13, solo el idioma (ver AUDITORIA-FINAL.md)."
  },
  "entradas": [
   {
@@ -1128,7 +1129,11 @@
      "camping",
      "camping libre",
      "dormir en tienda",
-     "tienda de campana"
+     "tienda de campana",
+     "dormir en el coche",
+     "dormir en la autocaravana",
+     "autocaravana",
+     "camper"
     ],
     "en": [
      "camping",
@@ -1136,7 +1141,11 @@
      "wild camping",
      "campsite",
      "tent",
-     "where to camp"
+     "where to camp",
+     "sleep in the car",
+     "sleep in a campervan",
+     "campervan",
+     "motorhome"
     ],
     "de": [
      "zelten",
@@ -1144,7 +1153,10 @@
      "wildcampen",
      "zeltplatz",
      "zelt",
-     "wo zelten"
+     "wo zelten",
+     "im auto schlafen",
+     "im wohnmobil schlafen",
+     "wohnmobil"
     ],
     "fr": [
      "camper",
@@ -1152,21 +1164,30 @@
      "camping sauvage",
      "bivouac",
      "tente",
-     "ou camper"
+     "ou camper",
+     "dormir dans la voiture",
+     "dormir dans le camping car",
+     "camping car"
     ],
     "it": [
      "campeggiare",
      "campeggio",
      "campeggio libero",
      "tenda",
-     "dove campeggiare"
+     "dove campeggiare",
+     "dormire in auto",
+     "dormire in camper",
+     "camper"
     ],
     "nl": [
      "kamperen",
      "camping",
      "wildkamperen",
      "tent",
-     "waar kamperen"
+     "waar kamperen",
+     "in de auto slapen",
+     "in de camper slapen",
+     "camper"
     ],
     "pl": [
      "biwak",
@@ -1174,38 +1195,47 @@
      "biwakowanie",
      "namiot",
      "gdzie biwakowac",
-     "dziki kemping"
+     "dziki kemping",
+     "spanie w samochodzie",
+     "spanie w kamperze",
+     "kamper"
     ],
     "zh": [
      "露营",
      "野营",
      "搭帐篷",
-     "露营地"
+     "露营地",
+     "在车里睡觉",
+     "房车过夜",
+     "房车"
     ],
     "zht": [
      "露營",
      "野營",
      "搭帳篷",
-     "露營地"
+     "露營地",
+     "在車裡睡覺",
+     "露營車過夜",
+     "露營車"
     ]
    },
    "a": {
-    "es": "🏕️ Solo en zonas autorizadas: acampar fuera de ellas está prohibido y se denuncia. El Cabildo tiene zonas de acampada en el monte, gratis con autorización previa. En el mapa están en la categoría Campings. En época de riesgo de incendio pueden cerrarse, así que mire su estado antes de ir.",
-    "en": "🏕️ Only in authorised areas: camping outside them is forbidden and fined. The Cabildo has camping areas in the hills, free with prior authorisation. On the map they are in the Campsites category. They can close when there is a fire risk, so check their status before you go.",
-    "de": "🏕️ Nur auf genehmigten Plätzen: Zelten außerhalb ist verboten und wird bestraft. Der Cabildo hat Zeltplätze in den Bergen, kostenlos mit vorheriger Genehmigung. Auf der Karte stehen sie in der Kategorie Campingplätze. Bei Brandgefahr können sie geschlossen werden, also prüf vorher ihren Status.",
-    "fr": "🏕️ Seulement dans les zones autorisées : camper en dehors est interdit et verbalisé. Le Cabildo a des aires de camping en montagne, gratuites avec autorisation préalable. Sur la carte, elles sont dans la catégorie Campings. En période de risque d’incendie, elles peuvent fermer : vérifiez leur état avant d’y aller.",
-    "it": "🏕️ Solo nelle aree autorizzate: campeggiare fuori è vietato e sanzionato. Il Cabildo ha aree di campeggio in montagna, gratuite con autorizzazione preventiva. Sulla mappa sono nella categoria Campeggi. Nei periodi a rischio incendio possono chiudere, quindi controlli il loro stato prima di andare.",
-    "nl": "🏕️ Alleen op toegestane plekken: daarbuiten kamperen is verboden en wordt beboet. De Cabildo heeft kampeerplekken in de bergen, gratis met vooraf een vergunning. Op de kaart staan ze in de categorie Campings. Bij brandgevaar kunnen ze dicht, dus check de status voordat u gaat.",
-    "pl": "🏕️ Tylko w wyznaczonych miejscach: biwakowanie poza nimi jest zabronione i karane. Cabildo ma pola biwakowe w górach, bezpłatne po wcześniejszym uzyskaniu zezwolenia. Na mapie są w kategorii Kempingi. W okresie zagrożenia pożarowego mogą być zamknięte, więc przed wyjazdem warto sprawdzić ich stan.",
-    "zh": "🏕️ 只能在获准的营地露营：在其他地方露营是禁止的，会被罚款。岛政府（Cabildo）在山里设有露营区，免费，但要事先申请许可。地图上它们在「露营地」类别里。火灾风险高的时期可能关闭，出发前请查看开放状态。",
-    "zht": "🏕️ 只能在核准的營地露營：在其他地方露營是禁止的，會被罰款。島政府（Cabildo）在山裡設有露營區，免費，但要事先申請許可。地圖上它們在「露營地」類別裡。火災風險高的時期可能關閉，出發前請查看開放狀態。"
+    "es": "🏕️ Solo en zonas autorizadas: acampar fuera de ellas está prohibido y se denuncia. El Cabildo tiene zonas de acampada en el monte, gratis con autorización previa. En el mapa están en la categoría Campings. En época de riesgo de incendio pueden cerrarse, así que mire su estado antes de ir. En el Parque Nacional del Teide, además, no se puede acampar, dormir en el vehículo ni aparcar autocaravanas, caravanas o campers, salvo los de actividades autorizadas en zonas de uso especial; para pasar la noche arriba hay zonas de vivac, con reserva previa en Tenerife ON, y el refugio de Altavista.",
+    "en": "🏕️ Only in authorised areas: camping outside them is forbidden and punishable by a fine. The Cabildo has camping areas in the hills, free with prior authorisation. On the map they are in the Campsites category. They can close when there is a fire risk, so check their status before you go. In Teide National Park, camping, sleeping in a vehicle and parking motorhomes, caravans or campervans are not allowed either, except those linked to authorised activities in special-use zones; to spend the night up there, there are bivouac areas, which must be booked in advance on Tenerife ON, and the Altavista refuge.",
+    "de": "🏕️ Nur auf genehmigten Plätzen: Zelten außerhalb ist verboten und wird bestraft. Der Cabildo hat Zeltplätze in den Bergen, kostenlos mit vorheriger Genehmigung. Auf der Karte stehen sie in der Kategorie Campingplätze. Bei Brandgefahr können sie geschlossen werden, prüfen Sie also vorher ihren Status. Im Nationalpark Teide ist es außerdem verboten, zu zelten, im Fahrzeug zu übernachten und Wohnmobile, Wohnwagen oder Campervans abzustellen, außer solchen für genehmigte Aktivitäten in Sondernutzungszonen; zum Übernachten oben gibt es Biwakzonen, die man vorher bei Tenerife ON reserviert, und die Altavista-Hütte.",
+    "fr": "🏕️ Seulement dans les zones autorisées : camper en dehors est interdit et verbalisé. Le Cabildo a des aires de camping en montagne, gratuites avec autorisation préalable. Sur la carte, elles sont dans la catégorie Campings. En période de risque d’incendie, elles peuvent fermer : vérifiez leur état avant d’y aller. Dans le parc national du Teide, il est en outre interdit de camper, de dormir dans un véhicule et de garer camping-cars, caravanes ou vans aménagés, sauf ceux liés à des activités autorisées dans les zones d’usage spécial ; pour passer la nuit en altitude, il y a des zones de bivouac, à réserver à l’avance sur Tenerife ON, et le refuge d’Altavista.",
+    "it": "🏕️ Solo nelle aree autorizzate: campeggiare fuori è vietato e sanzionato. Il Cabildo ha aree di campeggio in montagna, gratuite con autorizzazione preventiva. Sulla mappa sono nella categoria Campeggi. Nei periodi a rischio incendio possono chiudere, quindi controlli il loro stato prima di andare. Nel Parco Nazionale del Teide, inoltre, non si può campeggiare, dormire nel veicolo né parcheggiare camper, roulotte o van camperizzati, salvo quelli legati ad attività autorizzate nelle zone di uso speciale; per passare la notte in quota ci sono zone di bivacco, da prenotare prima su Tenerife ON, e il rifugio Altavista.",
+    "nl": "🏕️ Alleen op toegestane plekken: daarbuiten kamperen is verboden en wordt beboet. De Cabildo heeft kampeerplekken in de bergen, gratis met een vergunning vooraf. Op de kaart staan ze in de categorie Campings. Bij brandgevaar kunnen ze dicht, dus check de status voordat u gaat. In Nationaal Park Teide mag u bovendien niet kamperen, niet in een voertuig overnachten en geen campers, caravans of kampeerbusjes parkeren, behalve voertuigen voor toegestane activiteiten in zones voor bijzonder gebruik; om boven te overnachten zijn er bivakzones, die u vooraf reserveert bij Tenerife ON, en de berghut Altavista.",
+    "pl": "🏕️ Tylko w wyznaczonych miejscach: biwakowanie poza nimi jest zabronione i karane. Cabildo ma pola biwakowe w górach, bezpłatne po wcześniejszym uzyskaniu zezwolenia. Na mapie są w kategorii Kempingi. W okresie zagrożenia pożarowego mogą być zamknięte, więc przed wyjazdem warto sprawdzić ich stan. W Parku Narodowym Teide nie wolno też rozbijać namiotu, nocować w pojeździe ani parkować kamperów, przyczep kempingowych czy busów kempingowych, z wyjątkiem pojazdów związanych z zatwierdzonymi działaniami w strefach użytkowania specjalnego; na nocleg wysoko w górach są strefy biwakowe, które trzeba wcześniej zarezerwować w Tenerife ON, oraz schronisko Altavista.",
+    "zh": "🏕️ 只能在获准的营地露营：在其他地方露营是禁止的，会被罚款。岛政府（Cabildo）在山里设有露营区，免费，但要事先申请许可。地图上它们在「露营地」类别里。火灾风险高的时期可能关闭，出发前请查看开放状态。在泰德国家公园内，还禁止露营、在车内过夜，也不得停放房车、拖挂房车或露营车，在特殊用途区开展经批准活动所用的车辆除外；想在高处过夜，可以去事先在 Tenerife ON 预约的露宿区，或住 Altavista 山屋。",
+    "zht": "🏕️ 只能在核准的營地露營：在其他地方露營是禁止的，會被罰款。島政府（Cabildo）在山裡設有露營區，免費，但要事先申請許可。地圖上它們在「露營地」類別裡。火災風險高的時期可能關閉，出發前請查看開放狀態。在泰德國家公園內，還禁止露營、在車內過夜，也不得停放露營車、拖掛式露營車或改裝露營車，在特殊用途區進行經核准活動所用的車輛除外；想在高處過夜，可以去事先在 Tenerife ON 預約的露宿區，或住 Altavista 山屋。"
    },
    "follow": [
     "pla-08",
     "sal-04",
     "app-14"
    ],
-   "comprobado": "Cabildo de Tenerife: acampada solo en zonas de servicio publico autorizadas, con autorizacion previa gratuita (documentos de centralreservas.tenerife.es; ficha camping-la-caldera: «Acampada gratuita con permiso previo»); «no acampar bajo ningun concepto en zonas no autorizadas» y operaciones con denuncias (RTVC 01/04/2026); cierres por riesgo de incendio (Cabildo, tenerifeon.es)"
+   "comprobado": "Cabildo de Tenerife: acampada solo en zonas de servicio publico autorizadas, con autorizacion previa gratuita (documentos de centralreservas.tenerife.es; ficha camping-la-caldera: «Acampada gratuita con permiso previo»); «no acampar bajo ningun concepto en zonas no autorizadas» y operaciones con denuncias (RTVC 01/04/2026); cierres por riesgo de incendio (Cabildo, tenerifeon.es) · 24/10/2026: Decreto 182/2025 (PRUG del Parque Nacional del Teide), 6.2.1 l), m) y n): prohibido acampar, pernoctar en vehiculos y estacionar autocaravanas, caravanas o campers, salvo actividades autorizadas; 6.3.2.7: vivac por encima de 2.500 m (Tenerife ON reserva la zona de Guajara). Cotejado el 23/10/2026. De paso, el aleman tuteaba («prüf»). · 24/10/2026: Decreto 182/2025, 6.2.1 l) y m) (BOC n.º 240, pagina 49349: «La acampada.», «La pernoctación en vehículos.») y n) (pagina 49350: «El estacionamiento de vehículos camperizados, caravanas y autocaravanas, excepto aquellos vinculados a actividades autorizadas en zonas de uso especial»), releidos el 24/10/2026 en la copia del PDF del BOC que guarda la Xunta de Galicia (gaia.xunta.gal); 6.3.2.7, pagina 49361 (vivac por encima de 2.500 msnm, con comunicacion previa, una noche por area). La revision de hechos no pudo abrir el BOC: la excepcion, que el 23 decia «salvo actividades autorizadas», va ahora con sus palabras."
   },
   {
    "id": "pla-12",
@@ -1382,10 +1412,10 @@
     "es": "🌋 El Teide, con 3.715 m, es el punto más alto de España, y al Parque Nacional se entra gratis. El teleférico sube hasta La Rambleta, a unos 3.555 m, sin permiso; el último tramo hasta el cráter necesita una autorización previa que se reserva en Tenerife ON y no va incluida en el billete. Arriba hace frío y hay menos oxígeno: abríguese y suba despacio. Sin coche, llegan las guaguas 342 y 348.",
     "en": "🌋 At 3,715 m the Teide is the highest point in Spain, and entry to the National Park is free. The cable car goes up to La Rambleta, at about 3,555 m, with no permit; the last stretch to the crater needs a prior authorisation, booked on Tenerife ON and not included in the ticket. Up there it is cold and there is less oxygen: wrap up and go slowly. Without a car, buses 342 and 348 get you there.",
     "de": "🌋 Mit 3.715 m ist der Teide der höchste Punkt Spaniens, und der Nationalpark kostet keinen Eintritt. Die Seilbahn fährt ohne Genehmigung bis La Rambleta, auf etwa 3.555 m; für das letzte Stück zum Krater braucht man eine vorherige Genehmigung, die man bei Tenerife ON reserviert und die nicht im Ticket enthalten ist. Oben ist es kalt und die Luft dünner: ziehen Sie sich warm an und gehen Sie langsam. Ohne Auto kommen Sie mit den Bussen 342 und 348 hin.",
-    "fr": "🌋 Avec ses 3.715 m, le Teide est le point culminant de l’Espagne, et l’entrée du parc national est gratuite. Le téléphérique monte jusqu’à La Rambleta, vers 3.555 m, sans autorisation ; le dernier tronçon jusqu’au cratère exige une autorisation préalable, à réserver sur Tenerife ON et non incluse dans le billet. Là-haut il fait froid et il y a moins d’oxygène : couvrez-vous et montez doucement. Sans voiture, les bus 342 et 348 y vont.",
+    "fr": "🌋 Avec ses 3 715 m, le Teide est le point culminant de l’Espagne, et l’entrée du parc national est gratuite. Le téléphérique monte jusqu’à La Rambleta, vers 3 555 m, sans autorisation ; le dernier tronçon jusqu’au cratère exige une autorisation préalable, à réserver sur Tenerife ON et non incluse dans le billet. Là-haut il fait froid et il y a moins d’oxygène : couvrez-vous et montez doucement. Sans voiture, les bus 342 et 348 y vont.",
     "it": "🌋 Con i suoi 3.715 m, il Teide è il punto più alto della Spagna, e al Parco Nazionale si entra gratis. La funivia sale fino a La Rambleta, a circa 3.555 m, senza permesso; l’ultimo tratto fino al cratere richiede un’autorizzazione preventiva, da prenotare su Tenerife ON e non inclusa nel biglietto. Lassù fa freddo e c’è meno ossigeno: si copra bene e salga piano. Senza auto, ci arrivano gli autobus 342 e 348.",
     "nl": "🌋 Met 3.715 m is de Teide het hoogste punt van Spanje, en het Nationaal Park is gratis toegankelijk. De kabelbaan gaat zonder vergunning tot La Rambleta, op zo’n 3.555 m; voor het laatste stuk naar de krater heeft u vooraf een vergunning nodig, te reserveren via Tenerife ON en niet inbegrepen in het kaartje. Boven is het koud en is er minder zuurstof: kleed u warm aan en ga rustig. Zonder auto brengen bus 342 en 348 u erheen.",
-    "pl": "🌋 Teide, mierzący 3.715 m, to najwyższy punkt Hiszpanii, a wstęp do Parku Narodowego jest bezpłatny. Kolejka wjeżdża bez pozwolenia na La Rambletę, na około 3.555 m; ostatni odcinek do krateru wymaga wcześniejszego pozwolenia, rezerwowanego w Tenerife ON i nieobjętego biletem. Na górze jest zimno i mniej tlenu: trzeba się ciepło ubrać i iść powoli. Bez samochodu dojeżdża się autobusami 342 i 348.",
+    "pl": "🌋 Teide, mierzący 3715 m, to najwyższy punkt Hiszpanii, a wstęp do Parku Narodowego jest bezpłatny. Kolejka wjeżdża bez pozwolenia na La Rambletę, na około 3555 m; ostatni odcinek do krateru wymaga wcześniejszego pozwolenia, rezerwowanego w Tenerife ON i nieobjętego biletem. Na górze jest zimno i mniej tlenu: trzeba się ciepło ubrać i iść powoli. Bez samochodu dojeżdża się autobusami 342 i 348.",
     "zh": "🌋 泰德峰海拔 3,715 米，是西班牙的最高点，进入国家公园免费。缆车不需许可就能上到约 3,555 米的 La Rambleta；从那里到火山口的最后一段需要事先申请许可，在 Tenerife ON 预约，缆车票不包含。山顶很冷、氧气更少：穿暖和，慢慢走。没有车的话，可以坐 342 和 348 路公交上山。",
     "zht": "🌋 泰德峰海拔 3,715 公尺，是西班牙的最高點，進入國家公園免費。纜車不需許可就能上到約 3,555 公尺的 La Rambleta；從那裡到火山口的最後一段需要事先申請許可，在 Tenerife ON 預約，纜車票不包含。山頂很冷、氧氣更少：穿暖和，慢慢走。沒有車的話，可以搭 342 和 348 路公車上山。"
    },

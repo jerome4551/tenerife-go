@@ -27,6 +27,7 @@ Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
 | `manifest.webmanifest` | Manifiesto PWA: iconos, color de tema, `display: standalone`. |
 | `enviar-notificacion.js` | Script de Node que envía la notificación diaria. Corre en GitHub Actions, nunca en el navegador. |
 | `frases.json` | Las 365 frases de la notificación diaria, una por día del año. |
+| `faq/<idioma>.json` | El asistente: sus respuestas en cada idioma, con las palabras con las que se llega a cada una. Las hace `tools/generar_faq.py` desde `faq/fuente/`, un bloque por tema (el Teide, moverse, usar la app, el cielo…), con el búlgaro, las claves de más y la respuesta de la app de las tiendas aparte. `tools/auditar_faq.js` comprueba que a cada respuesta se llega con su propia pregunta y que cita cada botón con el nombre que tiene en pantalla, en los diez idiomas. |
 | `vendor/` | Leaflet 1.9.4 y Leaflet.markercluster 1.5.3, alojados aquí en vez de en un CDN; las dos librerías del mapa sin conexión (`pmtiles.js` y `protomaps-leaflet.js`), las tipografías, Astronomy Engine (MIT), el motor de cálculo del panel del cielo, y satellite.js 7.1.0 (MIT), el SGP4 de los pasos de los satélites, compilado desde su fuente por `tools/satelites_construir.js` (se pide solo al abrir el panel). |
 | `supabase/*.sql` | Las tablas y sus políticas de seguridad, para poder recrear el proyecto. |
 | `.github/workflows/` | Los robots: la notificación diaria, los avisos de AEMET, los precios de las gasolineras, el mapa y los elementos orbitales de los satélites (`satelites.yml`, dos veces al día); y, apagados hasta comprobarlos, los cuatro del panel de emergencias: los terremotos del IGN cerca de Tenerife (`sismos-ign.yml`), el semáforo del boletín semanal de INVOLCAN (`semaforo-involcan.yml`), las alertas del Gobierno de Canarias (`alertas-canarias.yml`) y el vigía de las páginas oficiales del panel (`vigia-sos.yml`), que hoy solo se lanzan a mano. Y `app-store.yml`, que no es un robot: se lanza a mano y compila, firma y sube la app a TestFlight y su ficha a App Store Connect en una máquina macOS de GitHub (la App Store sin Mac). |
@@ -617,9 +618,10 @@ esconde los dos botones de avisos push, el de la cuenta y el de
 la web viva los datos que cambian a diario —precios, avisos de AEMET,
 elementos de los satélites— con los de dentro de respaldo
 (`tgoFetchDatos`, en la cabecera de `index.html`). Y dice lo que es verdad
-dentro de ella: el asistente lleva su propia respuesta en tres preguntas
-—sin conexión, instalar la app y la frase de cada mañana—
-(`faq/fuente/nativo/`), y el aviso del cielo sin permiso de cámara o de
+dentro de ella: el asistente lleva su propia respuesta en cuatro preguntas
+—sin conexión, instalar la app, la frase de cada mañana y qué datos guarda,
+porque dentro no hay Google Analytics— (`faq/fuente/nativo/`), y el aviso
+del cielo sin permiso de cámara o de
 sensores no manda a los ajustes del navegador. En la web la marca no
 existe y nada cambia: `tools/probar_app.js` abre las dos en Chromium y lo
 comprueba. Las frases de los permisos de iOS salen de la política de

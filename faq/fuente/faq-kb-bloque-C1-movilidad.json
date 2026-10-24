@@ -16,7 +16,8 @@
     ],
     "entradas": 19,
     "politica_datos": "Ninguna respuesta lleva tarifas, horarios de salida ni frecuencias. Los numeros de linea si aparecen porque salen del feed GTFS oficial que ya usa la app, pero siempre con la instruccion de confirmar el horario del dia en titsa.com.",
-    "fuente_verificada": "caminobarrancodemasca.com y Ayuntamiento de Buenavista del Norte (consultados 13/09/2026) para mov-13: traslado obligatorio en la linea 355 desde Santiago del Teide desde diciembre de 2025, prohibido el acceso al inicio en vehiculo privado, aparcamiento en el cementerio de Santiago del Teide."
+    "fuente_verificada": "caminobarrancodemasca.com y Ayuntamiento de Buenavista del Norte (consultados 13/09/2026) para mov-13: traslado obligatorio en la linea 355 desde Santiago del Teide desde diciembre de 2025, prohibido el acceso al inicio en vehiculo privado, aparcamiento en el cementerio de Santiago del Teide.",
+    "revisado": "24/10/2026: mov-07 puestas al dia con la app y sus fuentes (ver AUDITORIA-FINAL.md)."
   },
   "entradas": [
     {
@@ -680,21 +681,22 @@
         ]
       },
       "a": {
-        "es": "🅿️ En las ciudades hay zona azul de pago entre semana y aparcamientos públicos en el centro. En los pueblos y miradores famosos, llegue antes de las diez o vaya al atardecer: a media mañana no queda hueco. Nunca aparque en línea amarilla ni en las curvas de los miradores, que la grúa va rápido.",
-        "en": "🅿️ In the cities there is paid blue-zone parking on weekdays and public car parks in the centre. In the well-known villages and viewpoints, arrive before ten or go at sunset: by mid-morning there is nothing left. Never park on a yellow line or on the bends by the viewpoints, the tow truck is quick.",
-        "de": "🅿️ In den Städten gibt es werktags die gebührenpflichtige blaue Zone und öffentliche Parkhäuser im Zentrum. In den bekannten Dörfern und an Aussichtspunkten komm vor zehn oder gegen Sonnenuntergang: am späten Vormittag ist nichts mehr frei. Parken Sie nie auf gelber Linie oder in den Kurven an den Aussichtspunkten, der Abschleppwagen ist schnell.",
-        "fr": "🅿️ En ville, zone bleue payante en semaine et parkings publics au centre. Dans les villages et aux points de vue connus, arrivez avant dix heures ou allez-y au coucher du soleil : en milieu de matinée il n’y a plus rien. Ne vous garez jamais sur une ligne jaune ni dans les virages des belvédères, la fourrière est rapide.",
-        "it": "🅿️ In città c’è la zona blu a pagamento nei giorni feriali e parcheggi pubblici in centro. Nei paesi e nei punti panoramici famosi arrivi prima delle dieci o vada al tramonto: a metà mattina non resta un posto. Non parcheggi mai sulla linea gialla né nelle curve dei belvedere, il carro attrezzi è veloce.",
-        "nl": "🅿️ In de steden is er doordeweeks betaalde blauwe zone en zijn er openbare parkeergarages in het centrum. In de bekende dorpen en bij uitzichtpunten: kom voor tienen of ga bij zonsondergang, halverwege de ochtend is er niets meer vrij. Parkeer nooit op een gele streep of in de bochten bij de uitzichtpunten, de sleepwagen is er snel bij.",
-        "pl": "🅿️ W miastach w dni robocze obowiązuje płatna strefa niebieska, a w centrum są parkingi publiczne. W znanych wioskach i przy punktach widokowych najlepiej być przed dziesiątą albo o zachodzie: w połowie przedpołudnia nie ma już miejsc. Nigdy nie parkować na żółtej linii ani na zakrętach przy punktach widokowych, laweta działa szybko.",
-        "zh": "🅿️ 城市里工作日有收费蓝区，市中心也有公共停车场。热门村镇和观景台请在十点前到，或傍晚再去：上午过半就没位置了。绝对不要停在黄线上或观景台的弯道边，拖车来得很快。",
-        "zht": "🅿️ 城市裡平日有收費藍區，市中心也有公共停車場。熱門村鎮和觀景台請在十點前到，或傍晚再去：上午過半就沒位置了。絕對不要停在黃線上或觀景台的彎道邊，拖吊來得很快。"
+        "es": "🅿️ En las ciudades hay zona azul de pago entre semana y aparcamientos públicos en el centro. En los pueblos y miradores famosos, llegue antes de las diez o vaya al atardecer: a media mañana no queda hueco. Nunca aparque en línea amarilla ni en las curvas de los miradores, que la grúa va rápido. En el mapa, la categoría Parkings tiene aparcamientos de la isla: en su globo verá si son gratis o, aproximado, cuánto cuesta la hora, con la fecha del precio. Las plazas libres en directo no las da.",
+        "en": "🅿️ In the cities there is paid blue-zone parking on weekdays and public car parks in the centre. In the well-known villages and viewpoints, arrive before ten or go at sunset: by mid-morning there is nothing left. Never park on a yellow line or on the bends by the viewpoints: the tow truck is quick. On the map, the Car parks category has car parks around the island: their pop-up tells you whether they are free or roughly what an hour costs, with the date of the price. It does not show free spaces live.",
+        "de": "🅿️ In den Städten gibt es werktags die gebührenpflichtige blaue Zone und öffentliche Parkhäuser im Zentrum. In den bekannten Dörfern und an Aussichtspunkten kommen Sie am besten vor zehn oder gegen Sonnenuntergang: Am späten Vormittag ist nichts mehr frei. Parken Sie nie auf gelber Linie oder in den Kurven an den Aussichtspunkten, der Abschleppwagen ist schnell. Auf der Karte stehen in der Kategorie Parkplätze Parkmöglichkeiten der Insel: Das jeweilige Pop-up zeigt, ob sie kostenlos sind oder was eine Stunde ungefähr kostet, mit dem Datum des Preises. Freie Plätze in Echtzeit zeigt die App nicht.",
+        "fr": "🅿️ En ville, zone bleue payante en semaine et parkings publics au centre. Dans les villages et aux points de vue connus, arrivez avant dix heures ou allez-y au coucher du soleil : en milieu de matinée il n’y a plus rien. Ne vous garez jamais sur une ligne jaune ni dans les virages des belvédères, la fourrière est rapide. Sur la carte, la catégorie Parkings regroupe des parkings de l’île : leur bulle indique s’ils sont gratuits ou, à peu près, combien coûte l’heure, avec la date du tarif. Les places libres en temps réel, elle ne les donne pas.",
+        "it": "🅿️ In città c’è la zona blu a pagamento nei giorni feriali e parcheggi pubblici in centro. Nei paesi e nei punti panoramici famosi arrivi prima delle dieci o vada al tramonto: a metà mattina non resta un posto. Non parcheggi mai sulla linea gialla né nelle curve dei belvedere, il carro attrezzi è veloce. Sulla mappa, la categoria Parcheggi raccoglie parcheggi dell’isola: nel loro fumetto vede se sono gratuiti o, più o meno, quanto costa un’ora, con la data del prezzo. I posti liberi in tempo reale non li dà.",
+        "nl": "🅿️ In de steden is er doordeweeks betaalde blauwe zone en zijn er openbare parkeergarages in het centrum. In de bekende dorpen en bij uitzichtpunten: kom voor tienen of ga bij zonsondergang, halverwege de ochtend is er niets meer vrij. Parkeer nooit op een gele streep of in de bochten bij de uitzichtpunten, de sleepwagen is er snel bij. Op de kaart staan in de categorie Parkeerplaatsen parkeerterreinen op het eiland: in hun pop-up ziet u of ze gratis zijn of wat een uur ongeveer kost, met de datum van de prijs. Vrije plaatsen in realtime geeft de app niet.",
+        "pl": "🅿️ W miastach w dni robocze obowiązuje płatna strefa niebieska, a w centrum są parkingi publiczne. W znanych wioskach i przy punktach widokowych najlepiej być przed dziesiątą albo o zachodzie: w połowie przedpołudnia nie ma już miejsc. Nigdy nie parkować na żółtej linii ani na zakrętach przy punktach widokowych, laweta działa szybko. Na mapie kategoria Parkingi zawiera parkingi na wyspie: w ich dymku widać, czy są bezpłatne albo ile mniej więcej kosztuje godzina, z datą ceny. Wolnych miejsc na żywo aplikacja nie podaje.",
+        "zh": "🅿️ 城市里工作日有收费蓝区，市中心也有公共停车场。热门村镇和观景台请在十点前到，或傍晚再去：上午过半就没位置了。绝对不要停在黄线上或观景台的弯道边，拖车来得很快。地图上的「停车场」类别列出了岛上的停车场：信息框里写着是否免费，或每小时大约多少钱，并注明价格的日期。应用不显示实时空位。",
+        "zht": "🅿️ 城市裡平日有收費藍區，市中心也有公共停車場。熱門村鎮和觀景台請在十點前到，或傍晚再去：上午過半就沒位置了。絕對不要停在黃線上或觀景台的彎道邊，拖吊來得很快。地圖上的「停車場」類別列出了島上的停車場：資訊框裡寫著是否免費，或每小時大約多少錢，並註明價格的日期。應用程式不顯示即時空位。"
       },
       "follow": [
         "mov-06",
         "mov-08",
         "mov-05"
-      ]
+      ],
+      "comprobado": "24/10/2026: los 43 lugares de la categoria parking llevan place.parking: 25 gratis (parkingFreeOfCharge) y 17 con precio por hora aproximado y su fecha (parkingApprox, parkingMaxDay, parkingPriceDate); la ocupacion en vivo no se pinta (ninguna fuente publica la da: comentario de la ficha de parking). De paso, el aleman tuteaba («komm»)."
     },
     {
       "id": "mov-08",

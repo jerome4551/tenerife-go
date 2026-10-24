@@ -57,7 +57,7 @@
   },
   "tei-08": {
    "cat": "teide",
-   "volatil": false,
+   "volatil": true,
    "bloque": "B1 · Teide y Parque Nacional",
    "version": "1.0"
   },
@@ -433,11 +433,12 @@
    "bloque": "G1 · Usar la app",
    "version": "1.0",
    "rotulos": [
+    "UI.navHome",
     "UI.navFav",
     "UI.navRoutes",
     "UI.navChat",
     "UI.navAccount",
-    "UI.tourVer"
+    "LEG.tour"
    ]
   },
   "app-02": {
@@ -457,14 +458,18 @@
    "version": "1.0",
    "rotulos": [
     "VIS.mark",
-    "VIS.done"
+    "VIS.done",
+    "VIS.ok"
    ]
   },
   "app-04": {
    "cat": "app",
    "volatil": false,
    "bloque": "G1 · Usar la app",
-   "version": "1.0"
+   "version": "1.0",
+   "rotulos": [
+    "UI.perfilIsla"
+   ]
   },
   "app-05": {
    "cat": "app",
@@ -483,7 +488,10 @@
    "rotulos": [
     "LANGS.isla",
     "LANGS.satellite",
-    "LANGS.topo"
+    "LANGS.topo",
+    "UI.cieloApunta",
+    "UI.cieloPesDonde",
+    "UI.cieloOfflineTitulo"
    ],
    "nativo": true
   },
@@ -556,7 +564,8 @@
    "rotulos": [
     "UI.navRoutes",
     "UI.routeCalcular",
-    "LANGS.directionsBtn"
+    "LANGS.directionsBtn",
+    "GPX.btn"
    ]
   },
   "app-16": {
@@ -568,7 +577,9 @@
     "UI.navRoutes",
     "UI.dpTitulo",
     "LANGS.daytripTitle",
-    "UI.navFav"
+    "UI.navFav",
+    "DP.otroLugar",
+    "GPX.btnDay"
    ]
   },
   "app-17": {
@@ -587,7 +598,7 @@
    "version": "1.0",
    "rotulos": [
     "UI.navAccount",
-    "LANGS.authTabGuest"
+    "UI.perfilCrearCuenta"
    ]
   },
   "app-19": {
@@ -643,7 +654,8 @@
     "UI.cieloPesCatalogo",
     "UI.cieloPesMapa",
     "UI.cieloPesDonde",
-    "UI.cieloRojo"
+    "UI.cieloRojo",
+    "UI.cieloApunta"
    ]
   },
   "app-25": {
@@ -652,7 +664,10 @@
    "bloque": "G1 · Usar la app",
    "version": "1.0",
    "rotulos": [
-    "UI.cieloPesCalendario"
+    "UI.cieloPesCalendario",
+    "UI.cieloAlCalendario",
+    "UI.cieloAvisoAqui",
+    "UI.cieloPesNoche"
    ]
   },
   "app-26": {
@@ -664,7 +679,8 @@
     "UI.navAccount",
     "LANGS.authLogoutBtn",
     "UI.cuentaBorrarBtn",
-    "UI.cuentaBorrarSi"
+    "UI.cuentaBorrarSi",
+    "UI.perfilBorrarLocal"
    ]
   },
   "app-27": {
@@ -675,7 +691,8 @@
    "rotulos": [
     "UI.ppEnlace",
     "UI.ppEnlaceWeb",
-    "UI.cuentaBorrarPagina"
+    "UI.cuentaBorrarPagina",
+    "UI.cieloApunta"
    ],
    "nativo": true
   },
@@ -701,11 +718,265 @@
    ],
    "nativo": true
   },
+  "app-30": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "LANGS.streets",
+    "LANGS.satellite",
+    "LANGS.topo",
+    "LANGS.isla"
+   ]
+  },
+  "app-31": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.navRoutes",
+    "LANGS.daytripTitle",
+    "LANGS.daytripZoneNorth",
+    "LANGS.daytripZoneSouth",
+    "LANGS.daytripZoneCenter",
+    "LANGS.daytripMyRoute",
+    "UI.dpTitulo"
+   ]
+  },
+  "app-32": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.busPanelTitulo",
+    "UI.busTfs",
+    "UI.busTfn"
+   ]
+  },
+  "app-33": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "LANGS.gpsUseAsOrigin",
+    "LANGS.nearbyHowToBtn"
+   ]
+  },
+  "app-34": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.catSoloBus"
+   ]
+  },
+  "app-35": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.dpTitulo",
+    "GPX.btn",
+    "GPX.btnDay"
+   ]
+  },
+  "app-36": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "LEG.btn",
+    "LEG.tour"
+   ]
+  },
+  "app-37": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.navAccount",
+    "UI.perfilTitulo",
+    "UI.perfilDatos",
+    "UI.perfilEvolucion",
+    "UI.perfilIsla"
+   ]
+  },
+  "app-38": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.perfilTitulo",
+    "UI.perfilElegirAvatar",
+    "UI.perfilTodosPaises"
+   ]
+  },
+  "app-39": {
+   "cat": "app",
+   "volatil": false,
+   "bloque": "G1 · Usar la app",
+   "version": "1.0",
+   "rotulos": [
+    "UI.perfilTitulo",
+    "UI.perfilNubeInterruptor",
+    "UI.perfilNubeAcepto",
+    "UI.perfilExportar",
+    "UI.perfilBorrarLocal"
+   ]
+  },
+  "cie-01": {
+   "cat": "cielo",
+   "volatil": false,
+   "bloque": "G2 · El cielo de Tenerife",
+   "version": "1.0",
+   "rotulos": [
+    "UI.cieloPesMapa",
+    "UI.cieloApunta",
+    "UI.cieloComprobar"
+   ]
+  },
+  "cie-02": {
+   "cat": "cielo",
+   "volatil": false,
+   "bloque": "G2 · El cielo de Tenerife",
+   "version": "1.0",
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloGuiaNoche",
+    "UI.cieloGuiaLlevame",
+    "UI.cieloApunta",
+    "UI.cieloVozLeer",
+    "UI.cieloVozPausa",
+    "UI.cieloVozSeguir",
+    "UI.cieloVozSiguiente"
+   ]
+  },
+  "cie-03": {
+   "cat": "cielo",
+   "volatil": false,
+   "bloque": "G2 · El cielo de Tenerife",
+   "version": "1.0",
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloSatTitulo",
+    "UI.cieloPesCalendario",
+    "UI.cieloCalSatelites",
+    "UI.cieloApunta",
+    "UI.cieloAlCalendario"
+   ]
+  },
+  "cie-04": {
+   "cat": "cielo",
+   "volatil": false,
+   "bloque": "G2 · El cielo de Tenerife",
+   "version": "1.0",
+   "rotulos": [
+    "UI.cieloApunta",
+    "UI.cieloRecorrido",
+    "UI.cieloCuriosidad"
+   ]
+  },
+  "cie-05": {
+   "cat": "cielo",
+   "volatil": false,
+   "bloque": "G2 · El cielo de Tenerife",
+   "version": "1.0",
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloSistemaTitulo",
+    "UI.cieloSistemaInterior",
+    "UI.cieloSistemaExterior",
+    "UI.cieloPlanetas"
+   ]
+  },
+  "cie-06": {
+   "cat": "cielo",
+   "volatil": false,
+   "bloque": "G2 · El cielo de Tenerife",
+   "version": "1.0",
+   "rotulos": [
+    "UI.cieloRojo",
+    "UI.cieloApunta"
+   ]
+  },
+  "cie-07": {
+   "cat": "cielo",
+   "volatil": false,
+   "bloque": "G2 · El cielo de Tenerife",
+   "version": "1.0",
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloIndice",
+    "UI.cieloCompartir"
+   ]
+  },
+  "cie-08": {
+   "cat": "cielo",
+   "volatil": false,
+   "bloque": "G2 · El cielo de Tenerife",
+   "version": "1.0",
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloLuna",
+    "UI.cieloPesCalendario",
+    "UI.cieloCalLuna"
+   ]
+  },
+  "cie-09": {
+   "cat": "cielo",
+   "volatil": false,
+   "bloque": "G2 · El cielo de Tenerife",
+   "version": "1.0",
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloViaLactea",
+    "UI.cieloParaFotos"
+   ]
+  },
+  "cie-10": {
+   "cat": "normas",
+   "volatil": true,
+   "bloque": "G2 · El cielo de Tenerife",
+   "version": "1.0",
+   "rotulos": [
+    "UI.cieloPesDonde",
+    "UI.cieloNormas"
+   ]
+  },
+  "cie-11": {
+   "cat": "cielo",
+   "volatil": false,
+   "bloque": "G2 · El cielo de Tenerife",
+   "version": "1.0",
+   "rotulos": [
+    "UI.cieloPesNoche",
+    "UI.cieloMejores",
+    "UI.cieloNiv1",
+    "UI.cieloNiv2",
+    "UI.cieloNiv3",
+    "UI.cieloPesCatalogo",
+    "UI.cieloCatEstaNoche",
+    "UI.cieloPesDonde",
+    "UI.cieloEquipo"
+   ]
+  },
   "sal-01": {
    "cat": "seguridad",
    "volatil": false,
    "bloque": "H1 · Seguridad y salud",
-   "version": "1.0"
+   "version": "1.0",
+   "rotulos": [
+    "EMERG.sosCoordsBtn"
+   ]
   },
   "sal-02": {
    "cat": "seguridad",
@@ -713,20 +984,29 @@
    "bloque": "H1 · Seguridad y salud",
    "version": "1.0",
    "rotulos": [
-    "LANGS.banderasTitulo"
+    "LANGS.banderasTitulo",
+    "EMERG.sosGuiaPlaya",
+    "EMERG.sosGuiaRescate",
+    "EMERG.sosGuiaPicaduras"
    ]
   },
   "sal-03": {
    "cat": "seguridad",
    "volatil": false,
    "bloque": "H1 · Seguridad y salud",
-   "version": "1.0"
+   "version": "1.0",
+   "rotulos": [
+    "EMERG.sosGuiaCalor"
+   ]
   },
   "sal-04": {
    "cat": "seguridad",
    "volatil": false,
    "bloque": "H1 · Seguridad y salud",
-   "version": "1.0"
+   "version": "1.0",
+   "rotulos": [
+    "EMERG.sosGuiaMontana"
+   ]
   },
   "sal-05": {
    "cat": "seguridad",
@@ -744,13 +1024,85 @@
    "cat": "salud",
    "volatil": false,
    "bloque": "H1 · Seguridad y salud",
-   "version": "1.0"
+   "version": "1.0",
+   "rotulos": [
+    "EMERG.sosHospitales"
+   ]
   },
   "sal-08": {
    "cat": "salud",
    "volatil": false,
    "bloque": "H1 · Seguridad y salud",
    "version": "1.0"
+  },
+  "sal-09": {
+   "cat": "seguridad",
+   "volatil": true,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0",
+   "rotulos": [
+    "UI.sosTitulo",
+    "EMERG.sosQueHacer",
+    "EMERG.sosEstadoTitulo",
+    "EMERG.sosPrepararse",
+    "EMERG.sosHospitales",
+    "UI.sosLlamar"
+   ]
+  },
+  "sal-10": {
+   "cat": "seguridad",
+   "volatil": true,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0",
+   "rotulos": [
+    "EMERG.sosGuiaSemaforo",
+    "EMERG.sosGuiaEvacuar",
+    "EMERG.sosGuiaConfinar",
+    "EMERG.sosGuiaCeniza",
+    "EMERG.sosGuiaGases",
+    "EMERG.sosEstadoTitulo"
+   ]
+  },
+  "sal-11": {
+   "cat": "seguridad",
+   "volatil": false,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0",
+   "rotulos": [
+    "EMERG.sosGuiaSismo",
+    "EMERG.sosGuiaMaremoto"
+   ]
+  },
+  "sal-12": {
+   "cat": "salud",
+   "volatil": false,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0",
+   "rotulos": [
+    "EMERG.sosGuiaAuxilios",
+    "EMERG.sosGuiaRescate",
+    "EMERG.sosGuiaCalor"
+   ]
+  },
+  "sal-13": {
+   "cat": "seguridad",
+   "volatil": false,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0",
+   "rotulos": [
+    "EMERG.sosPrepararse",
+    "EMERG.sosGuiaMochila",
+    "EMERG.sosGuiaPlan"
+   ]
+  },
+  "sal-14": {
+   "cat": "seguridad",
+   "volatil": false,
+   "bloque": "H1 · Seguridad y salud",
+   "version": "1.0",
+   "rotulos": [
+    "EMERG.sosGuiaEsAlert"
+   ]
   },
   "com-01": {
    "cat": "gastronomia",

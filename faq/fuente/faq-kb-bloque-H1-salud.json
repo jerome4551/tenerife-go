@@ -2,7 +2,7 @@
  "meta": {
   "bloque": "H1 · Seguridad y salud",
   "version": "1.0",
-  "fecha": "2026-10-12",
+  "fecha": "2026-10-24",
   "idiomas": [
    "es",
    "en",
@@ -14,9 +14,10 @@
    "zh",
    "zht"
   ],
-  "entradas": 8,
-  "origen": "Redactado el 12/10/2026 a partir de las entradas de CHAT_KB, que solo estaban en castellano; cada dato, comprobado antes de traducirlo, y lo que no se pudo comprobar, fuera (ver AUDITORIA-FINAL.md).",
-  "politica_datos": "Solo fuente oficial: Gobierno de Canarias (112, Sanidad, Salud Publica), Proteccion Civil (leyenda de banderas de la app), Centro Europeo del Consumidor (Tarjeta Sanitaria Europea), AEMET. Sin horarios de farmacias ni telefonos: cambian y estan en el mapa."
+  "entradas": 14,
+  "origen": "Redactado el 12/10/2026 a partir de las entradas de CHAT_KB, que solo estaban en castellano; cada dato, comprobado antes de traducirlo, y lo que no se pudo comprobar, fuera (ver AUDITORIA-FINAL.md). Ampliado el 24/10/2026 con sal-09 a sal-14: el panel de emergencias (SOS) de la app, el volcan, el terremoto y el maremoto, los primeros auxilios, la mochila y ES-Alert, contados con las filas del panel, que su entrega verifico una a una contra la fuente oficial (ver AUDITORIA-FINAL.md).",
+  "politica_datos": "Solo fuente oficial: Gobierno de Canarias (112, Sanidad, Salud Publica), Proteccion Civil (leyenda de banderas de la app), Centro Europeo del Consumidor (Tarjeta Sanitaria Europea), AEMET. Sin horarios de farmacias ni telefonos: cambian y estan en el mapa. Desde el 24/10/2026, tambien lo que dice el panel SOS (modulos/emergencias.js), con sus fuentes: PEVOLCA, 112 Canarias, Proteccion Civil, el Consejo Europeo de Resucitacion; la app no dice si hay peligro ni de que color esta el semaforo.",
+  "revisado": "24/10/2026: sal-01, sal-02, sal-03, sal-04, sal-07 puestas al dia con la app y sus fuentes (ver AUDITORIA-FINAL.md)."
  },
  "entradas": [
   {
@@ -117,7 +118,6 @@
     ],
     "zh": [
      "紧急",
-     "急救",
      "112",
      "救命",
      "救护车",
@@ -126,7 +126,6 @@
     ],
     "zht": [
      "緊急",
-     "急救",
      "112",
      "救命",
      "救護車",
@@ -135,22 +134,25 @@
     ]
    },
    "a": {
-    "es": "🚨 Para cualquier emergencia, llame al 112: es gratis, funciona las 24 horas y le atienden en español, inglés y alemán. Si está en el monte o en la costa, diga dónde está con la mayor precisión posible: el nombre del sendero o de la playa y algo que vea cerca.",
-    "en": "🚨 For any emergency, call 112: it is free, works 24 hours a day and they answer in Spanish, English and German. If you are in the mountains or on the coast, say where you are as precisely as you can: the name of the trail or the beach and something you can see nearby.",
-    "de": "🚨 Rufen Sie bei jedem Notfall die 112 an: kostenlos, rund um die Uhr, und man spricht Spanisch, Englisch und Deutsch. Sind Sie in den Bergen oder an der Küste, sagen Sie so genau wie möglich, wo Sie sind: den Namen des Wanderwegs oder des Strandes und etwas, das Sie in der Nähe sehen.",
-    "fr": "🚨 Pour toute urgence, appelez le 112 : c’est gratuit, ça fonctionne 24 h sur 24 et on vous répond en espagnol, en anglais et en allemand. Si vous êtes en montagne ou sur la côte, dites où vous êtes le plus précisément possible : le nom du sentier ou de la plage et quelque chose que vous voyez autour.",
-    "it": "🚨 Per qualsiasi emergenza chiami il 112: è gratuito, funziona 24 ore su 24 e rispondono in spagnolo, inglese e tedesco. Se è in montagna o sulla costa, dica dove si trova nel modo più preciso possibile: il nome del sentiero o della spiaggia e qualcosa che vede vicino.",
-    "nl": "🚨 Bel bij elk noodgeval 112: het is gratis, werkt 24 uur per dag en ze spreken Spaans, Engels en Duits. Bent u in de bergen of aan de kust, zeg dan zo precies mogelijk waar u bent: de naam van het pad of het strand en iets wat u in de buurt ziet.",
-    "pl": "🚨 W każdej nagłej sytuacji należy dzwonić pod 112: to bezpłatne, działa całą dobę, a dyżurni mówią po hiszpańsku, angielsku i niemiecku. W górach albo na wybrzeżu trzeba jak najdokładniej podać miejsce: nazwę szlaku albo plaży i coś, co widać w pobliżu.",
-    "zh": "🚨 遇到任何紧急情况，请拨打 112：免费、24 小时服务，接线员会说西班牙语、英语和德语。如果您在山里或海边，请尽量准确地说明位置：步道或海滩的名称，以及附近能看到的东西。",
-    "zht": "🚨 遇到任何緊急情況，請撥打 112：免費、24 小時服務，接線員會說西班牙語、英語和德語。如果您在山裡或海邊，請盡量準確地說明位置：步道或海灘的名稱，以及附近能看到的東西。"
+    "es": "🚨 Para cualquier emergencia, llame al 112: es gratis, funciona las 24 horas y le atienden en español, inglés, alemán, francés e italiano, y con traductor en más de 40 idiomas. Diga dónde está con la mayor precisión posible: el nombre del sendero o de la playa y algo que vea cerca. Si no sabe explicarlo, en el SOS de abajo, «Ver mis coordenadas» le da su posición para leérsela, y la App 112 Canarias la envía sola. Para informarse sin una emergencia, el 012 (+34 922 470 012), que no es gratuito.",
+    "en": "🚨 For any emergency, call 112: it is free, works 24 hours a day and answers in Spanish, English, German, French and Italian, and with an interpreter in more than 40 languages. Say where you are as precisely as you can: the name of the trail or the beach and something you can see nearby. If you cannot explain it, in the SOS panel at the bottom, «Show my coordinates» gives you your position to read out, and the 112 Canarias app sends it automatically. For information when it is not an emergency, call 012 (+34 922 470 012), which is not free.",
+    "de": "🚨 Rufen Sie bei jedem Notfall die 112 an: kostenlos, rund um die Uhr, und man spricht Spanisch, Englisch, Deutsch, Französisch und Italienisch, mit Dolmetscher mehr als 40 Sprachen. Sagen Sie so genau wie möglich, wo Sie sind: den Namen des Wanderwegs oder des Strandes und etwas, das Sie in der Nähe sehen. Können Sie es nicht erklären, gibt Ihnen im SOS-Panel unten «Meine Koordinaten zeigen» Ihre Position zum Vorlesen, und die App 112 Canarias übermittelt sie automatisch. Für Auskünfte ohne Notfall gibt es die 012 (+34 922 470 012), die nicht kostenlos ist.",
+    "fr": "🚨 Pour toute urgence, appelez le 112 : c’est gratuit, ça fonctionne 24 h sur 24 et on vous répond en espagnol, en anglais, en allemand, en français et en italien, et avec un interprète dans plus de 40 langues. Dites où vous êtes le plus précisément possible : le nom du sentier ou de la plage et quelque chose que vous voyez autour. Si vous ne savez pas l’expliquer, dans le SOS en bas, «Voir mes coordonnées» vous donne votre position à lire, et l’App 112 Canarias l’envoie automatiquement. Pour vous informer hors urgence, le 012 (+34 922 470 012), qui n’est pas gratuit.",
+    "it": "🚨 Per qualsiasi emergenza chiami il 112: è gratuito, funziona 24 ore su 24 e rispondono in spagnolo, inglese, tedesco, francese e italiano, e con un interprete in più di 40 lingue. Dica dove si trova nel modo più preciso possibile: il nome del sentiero o della spiaggia e qualcosa che vede vicino. Se non sa spiegarlo, nell’SOS in basso «Le mie coordinate» Le dà la Sua posizione da leggere, e l’App 112 Canarias la invia automaticamente. Per informarsi senza un’emergenza, il 012 (+34 922 470 012), che non è gratuito.",
+    "nl": "🚨 Bel bij elk noodgeval 112: het is gratis, werkt 24 uur per dag en u wordt geholpen in het Spaans, Engels, Duits, Frans en Italiaans, en via een tolk in meer dan 40 talen. Zeg zo precies mogelijk waar u bent: de naam van het pad of het strand en iets wat u in de buurt ziet. Kunt u het niet uitleggen, dan geeft «Mijn coördinaten tonen» in het SOS-paneel onderaan uw positie om voor te lezen, en de App 112 Canarias stuurt die automatisch mee. Voor informatie zonder noodgeval is er 012 (+34 922 470 012), dat niet gratis is.",
+    "pl": "🚨 W każdej nagłej sytuacji należy dzwonić pod 112: to bezpłatne, działa całą dobę, a dyżurni rozmawiają po hiszpańsku, angielsku, niemiecku, francusku i włosku, a z pomocą tłumacza w ponad 40 językach. Trzeba jak najdokładniej podać miejsce: nazwę szlaku albo plaży i coś, co widać w pobliżu. Gdy trudno to opisać, w SOS na dole «Moje współrzędne» podaje pozycję do odczytania, a aplikacja 112 Canarias wysyła ją automatycznie. Informacji poza nagłymi sytuacjami udziela 012 (+34 922 470 012), który nie jest bezpłatny.",
+    "zh": "🚨 遇到任何紧急情况，请拨打 112：免费、24 小时服务，接线员会说西班牙语、英语、德语、法语和意大利语，还可通过翻译提供 40 多种语言的服务。请尽量准确地说明位置：步道或海滩的名称，以及附近能看到的东西。如果说不清楚，底部 SOS 里的「查看我的坐标」会给出您的坐标，可以念给接线员听；用 112 Canarias 应用拨打则会自动发送位置。不是紧急情况、只想了解信息，请拨 012（+34 922 470 012），这个电话不免费。",
+    "zht": "🚨 遇到任何緊急情況，請撥打 112：免費、24 小時服務，接線員會說西班牙語、英語、德語、法語和義大利語，還可透過翻譯提供 40 多種語言的服務。請盡量準確地說明位置：步道或海灘的名稱，以及附近能看到的東西。如果說不清楚，底部 SOS 裡的「查看我的座標」會給出您的座標，可以唸給接線員聽；用 112 Canarias 應用程式撥打則會自動傳送位置。不是緊急情況、只想了解資訊，請撥 012（+34 922 470 012），這支電話不免費。"
    },
    "follow": [
-    "sal-07",
-    "sal-06",
-    "sal-02"
+    "sal-09",
+    "sal-12",
+    "sal-07"
    ],
-   "comprobado": "Gobierno de Canarias, Centro Coordinador 112 (gobiernodecanarias.org/emergencias/centro-coordinador-112) y Cabildo de Tenerife (tenerife.es, el centro coordinador de emergencias 112): numero gratuito, cobertura regional, 24 horas, personal en espanol, ingles y aleman"
+   "comprobado": "24/10/2026: 112 Canarias, «Servicio de emergencias» (112canarias.com, actualizada el 20/01/2025): «Es un teléfono gratuito», «las 24 horas del día de los 365 del año», sus operadores «atienden en inglés, alemán, francés, italiano» y un sistema externo de traducción «permite atender en más de 40 idiomas»; el Centro Coordinador 112 del Gobierno de Canarias dice «español, inglés, alemán, francés o italiano». La respuesta de antes decia «español, inglés y alemán», el dato que el panel SOS ya corrigio (sosVis3; 800a1cf). En el SOS (modulos/emergencias.js): sosCoordsBtn (una lectura del GPS, sin guardarla ni enviarla), sosCoordsAyuda, sosApp112 y sosInfo012 / sosInfo012Nota (+34 922 470 012; no es gratuito).",
+   "rotulos": [
+    "EMERG.sosCoordsBtn"
+   ]
   },
   {
    "id": "sal-02",
@@ -281,15 +283,15 @@
     ]
    },
    "a": {
-    "es": "🌊 Aquí el Atlántico manda. Mire siempre la bandera: verde, baño seguro; amarilla, baño con precaución; roja, prohibido el baño. Las demás las tiene en el globo de cada playa, en «¿Qué significa cada bandera?». Donde no hay socorrista, extreme el cuidado, y con mar movido no se acerque al borde de las rocas ni de los charcos. Si le arrastra una corriente, no nade contra ella: nade en paralelo a la orilla o flote, y pida ayuda agitando los brazos. Emergencias: 112.",
-    "en": "🌊 Here the Atlantic is in charge. Always check the flag: green, safe to swim; yellow, swim with caution; red, no swimming. The others are in the pop-up of every beach, under «What does each flag mean?». Where there is no lifeguard, take extra care, and in rough seas stay away from the edge of rocks and rock pools. If a current pulls you, do not swim against it: swim parallel to the shore or float, and call for help by waving your arms. Emergencies: 112.",
-    "de": "🌊 Hier hat der Atlantik das Sagen. Achten Sie immer auf die Flagge: grün, Baden sicher; gelb, Baden mit Vorsicht; rot, Baden verboten. Die übrigen finden Sie im Pop-up jedes Strandes unter «Was bedeutet welche Flagge?». Wo kein Rettungsschwimmer ist, seien Sie besonders vorsichtig, und bei bewegter See halten Sie sich vom Rand der Felsen und Becken fern. Zieht Sie eine Strömung mit, schwimmen Sie nicht dagegen an: Schwimmen Sie parallel zum Ufer oder lassen Sie sich treiben und rufen Sie um Hilfe, indem Sie mit den Armen winken. Notruf: 112.",
-    "fr": "🌊 Ici, c’est l’Atlantique qui commande. Regardez toujours le drapeau : vert, baignade sûre ; jaune, baignade avec prudence ; rouge, baignade interdite. Les autres sont dans la bulle de chaque plage, sous «Que signifie chaque drapeau ?». Là où il n’y a pas de sauveteur, redoublez de prudence, et par mer agitée ne vous approchez pas du bord des rochers ni des bassins. Si un courant vous emporte, ne nagez pas contre lui : nagez parallèlement au rivage ou faites la planche, et appelez à l’aide en agitant les bras. Urgences : 112.",
-    "it": "🌊 Qui comanda l’Atlantico. Guardi sempre la bandiera: verde, balneazione sicura; gialla, balneazione con prudenza; rossa, divieto di balneazione. Le altre le trova nel fumetto di ogni spiaggia, in «Che cosa significa ogni bandiera?». Dove non c’è bagnino, faccia ancora più attenzione, e con il mare mosso non si avvicini al bordo degli scogli né delle piscine naturali. Se una corrente La trascina, non le nuoti contro: nuoti parallelo alla riva o resti a galla, e chieda aiuto agitando le braccia. Emergenze: 112.",
-    "nl": "🌊 Hier is de Atlantische Oceaan de baas. Kijk altijd naar de vlag: groen, veilig zwemmen; geel, zwemmen met voorzichtigheid; rood, zwemmen verboden. De andere vindt u in de pop-up van elk strand, onder «Wat betekent elke vlag?». Waar geen strandwacht is, bent u extra voorzichtig, en bij woelige zee blijft u weg van de rand van rotsen en zeebaden. Neemt een stroming u mee, zwem er dan niet tegenin: zwem evenwijdig aan de kust of blijf drijven, en roep om hulp door met uw armen te zwaaien. Noodnummer: 112.",
-    "pl": "🌊 Tu rządzi Atlantyk. Zawsze trzeba patrzeć na flagę: zielona — kąpiel bezpieczna; żółta — kąpiel z zachowaniem ostrożności; czerwona — kąpiel zabroniona. Pozostałe są w dymku każdej plaży, w «Co oznacza każda flaga?». Tam, gdzie nie ma ratownika, potrzebna jest podwójna ostrożność, a przy wzburzonym morzu nie podchodzić do krawędzi skał ani naturalnych basenów. W razie porwania przez prąd nie płynąć pod prąd: płynąć równolegle do brzegu albo unosić się na wodzie i wzywać pomocy, machając rękami. Numer alarmowy: 112.",
-    "zh": "🌊 这里的大西洋说了算。一定要看旗帜：绿旗，可安全下水；黄旗，下水需谨慎；红旗，禁止下水。其他旗帜的含义在每个海滩的信息框里，点「每种旗帜是什么意思？」即可查看。没有救生员的地方要格外小心；海浪大时别靠近礁石和天然泳池的边缘。如果被离岸流带走，不要逆流硬游：平行于岸边游，或浮在水面上，挥动手臂呼救。紧急电话：112。",
-    "zht": "🌊 這裡的大西洋說了算。一定要看旗幟：綠旗，可安全下水；黃旗，下水需謹慎；紅旗，禁止下水。其他旗幟的含義在每個海灘的資訊框裡，點「每種旗幟是什麼意思？」即可查看。沒有救生員的地方要格外小心；海浪大時別靠近礁石和天然泳池的邊緣。如果被離岸流帶走，不要逆流硬游：平行於岸邊游，或浮在水面上，揮動手臂求救。緊急電話：112。"
+    "es": "🌊 Aquí el Atlántico manda. Mire siempre la bandera: verde, baño seguro; amarilla, baño con precaución; roja, prohibido el baño. Las demás las tiene en el globo de cada playa, en «¿Qué significa cada bandera?». Donde no hay socorrista, extreme el cuidado, y con mar movido no se acerque al borde de las rocas ni de los charcos. Si le arrastra una corriente, no nade contra ella: nade en paralelo a la orilla o flote, y pida ayuda agitando los brazos. Emergencias: 112. En el SOS, «Bañarse con seguridad», «Alguien en apuros en el agua» y «Picaduras en el mar» le dicen qué hacer.",
+    "en": "🌊 Here the Atlantic is in charge. Always check the flag: green, safe to swim; yellow, swim with caution; red, no swimming. The others are in the pop-up of every beach, under «What does each flag mean?». Where there is no lifeguard, take extra care, and in rough seas stay away from the edge of rocks and rock pools. If a current pulls you, do not swim against it: swim parallel to the shore or float, and call for help by waving your arms. Emergencies: 112. In the SOS panel, «Swimming safely», «Someone in trouble in the water» and «Stings at sea» tell you what to do.",
+    "de": "🌊 Hier hat der Atlantik das Sagen. Achten Sie immer auf die Flagge: grün, Baden sicher; gelb, Baden mit Vorsicht; rot, Baden verboten. Die übrigen finden Sie im Pop-up jedes Strandes unter «Was bedeutet welche Flagge?». Wo kein Rettungsschwimmer ist, seien Sie besonders vorsichtig, und bei bewegter See halten Sie sich vom Rand der Felsen und Naturbecken fern. Zieht Sie eine Strömung mit, schwimmen Sie nicht dagegen an: Schwimmen Sie parallel zum Ufer oder lassen Sie sich treiben und rufen Sie um Hilfe, indem Sie mit den Armen winken. Notruf: 112. Im SOS-Panel sagen «Sicher baden», «Jemand in Not im Wasser» und «Stiche im Meer», was zu tun ist.",
+    "fr": "🌊 Ici, c’est l’Atlantique qui commande. Regardez toujours le drapeau : vert, baignade sûre ; jaune, baignade avec prudence ; rouge, baignade interdite. Les autres sont dans la bulle de chaque plage, sous «Que signifie chaque drapeau ?». Là où il n’y a pas de sauveteur, redoublez de prudence, et par mer agitée ne vous approchez pas du bord des rochers ni des piscines naturelles. Si un courant vous emporte, ne nagez pas contre lui : nagez parallèlement au rivage ou faites la planche, et appelez à l’aide en agitant les bras. Urgences : 112. Dans le SOS, «Se baigner en sécurité», «Quelqu’un en difficulté dans l’eau» et «Piqûres en mer» vous expliquent ce qu’il faut faire.",
+    "it": "🌊 Qui comanda l’Atlantico. Guardi sempre la bandiera: verde, balneazione sicura; gialla, balneazione con prudenza; rossa, divieto di balneazione. Le altre le trova nel fumetto di ogni spiaggia, in «Che cosa significa ogni bandiera?». Dove non c’è bagnino, faccia ancora più attenzione, e con il mare mosso non si avvicini al bordo degli scogli né delle piscine naturali. Se una corrente La trascina, non le nuoti contro: nuoti parallelo alla riva o resti a galla, e chieda aiuto agitando le braccia. Emergenze: 112. Nell’SOS, «Fare il bagno in sicurezza», «Qualcuno in difficoltà in acqua» e «Punture in mare» Le dicono cosa fare.",
+    "nl": "🌊 Hier is de Atlantische Oceaan de baas. Kijk altijd naar de vlag: groen, veilig zwemmen; geel, zwemmen met voorzichtigheid; rood, zwemmen verboden. De andere vindt u in de pop-up van elk strand, onder «Wat betekent elke vlag?». Waar geen strandwacht is, bent u extra voorzichtig, en bij woelige zee blijft u weg van de rand van rotsen en natuurlijke zwembaden. Neemt een stroming u mee, zwem er dan niet tegenin: zwem evenwijdig aan de kust of blijf drijven, en roep om hulp door met uw armen te zwaaien. Noodnummer: 112. In het SOS-paneel staat in «Veilig zwemmen», «Iemand in nood in het water» en «Steken in zee» wat u moet doen.",
+    "pl": "🌊 Tu rządzi Atlantyk. Zawsze trzeba patrzeć na flagę: zielona — kąpiel bezpieczna; żółta — kąpiel z zachowaniem ostrożności; czerwona — kąpiel zabroniona. Pozostałe są w dymku każdej plaży, w «Co oznacza każda flaga?». Tam, gdzie nie ma ratownika, potrzebna jest podwójna ostrożność, a przy wzburzonym morzu nie podchodzić do krawędzi skał ani naturalnych basenów. W razie porwania przez prąd nie płynąć pod prąd: płynąć równolegle do brzegu albo unosić się na wodzie i wzywać pomocy, machając rękami. Numer alarmowy: 112. W SOS «Bezpieczna kąpiel», «Ktoś w niebezpieczeństwie w wodzie» i «Oparzenia i użądlenia w morzu» podpowiadają, co robić.",
+    "zh": "🌊 这里的大西洋说了算。一定要看旗帜：绿旗，可安全下水；黄旗，下水需谨慎；红旗，禁止下水。其他旗帜的含义在每个海滩的信息框里，点「每种旗帜是什么意思？」即可查看。没有救生员的地方要格外小心；海浪大时别靠近礁石和天然泳池的边缘。如果被离岸流带走，不要逆流硬游：平行于岸边游，或浮在水面上，挥动手臂呼救。紧急电话：112。SOS 里的「安全游泳」「有人在水中遇险」和「海中蜇伤」会告诉您该怎么做。",
+    "zht": "🌊 這裡的大西洋說了算。一定要看旗幟：綠旗，可安全下水；黃旗，下水需謹慎；紅旗，禁止下水。其他旗幟的含義在每個海灘的資訊框裡，點「每種旗幟是什麼意思？」即可查看。沒有救生員的地方要格外小心；海浪大時別靠近礁石和天然泳池的邊緣。如果被離岸流帶走，不要逆流硬游：平行於岸邊游，或浮在水面上，揮動手臂求救。緊急電話：112。SOS 裡的「安全游泳」「有人在水中遇險」和「海中螫傷」會告訴您該怎麼做。"
    },
    "follow": [
     "sal-01",
@@ -297,9 +299,12 @@
     "pla-04"
    ],
    "rotulos": [
-    "LANGS.banderasTitulo"
+    "LANGS.banderasTitulo",
+    "EMERG.sosGuiaPlaya",
+    "EMERG.sosGuiaRescate",
+    "EMERG.sosGuiaPicaduras"
    ],
-   "comprobado": "Banderas: la leyenda de la propia app en el globo de cada playa (LANGS.banderas*, fuente: Proteccion Civil del Gobierno de Canarias, Infoplayas; Decreto 116/2018 anulado, BOC 82 de 25/4/2024). Corrientes: Cruz Roja (no nadar contra la corriente, nadar en paralelo a la orilla o flotar, pedir ayuda agitando los brazos)"
+   "comprobado": "Banderas: la leyenda de la propia app en el globo de cada playa (LANGS.banderas*, fuente: Proteccion Civil del Gobierno de Canarias, Infoplayas; Decreto 116/2018 anulado, BOC 82 de 25/4/2024). Corrientes: Cruz Roja (no nadar contra la corriente, nadar en paralelo a la orilla o flotar, pedir ayuda agitando los brazos) · 24/10/2026: el SOS (modulos/emergencias.js) trae las guias playa, rescate y picaduras, y la respuesta manda a ellas. No cuenta las banderas del SOS: su guia playa da siete, del Decreto 116/2018 y de la Orden de 22/7/2022 (BANDERAS), y la leyenda del globo de cada playa (index.html, banderasFuente) dice que ese Decreto lo anulo el Tribunal Supremo (BOC 82, 25/4/2024) y da las seis que se usan hoy. Lo vio la segunda revision; va en el informe."
   },
   {
    "id": "sal-03",
@@ -385,22 +390,25 @@
     ]
    },
    "a": {
-    "es": "🌫️ La calima es polvo del Sáhara en suspensión: el cielo se vuelve amarillento y empeora la calidad del aire. La Consejería de Sanidad del Gobierno de Canarias recomienda beber agua, no hacer esfuerzos al aire libre, no pasar mucho tiempo fuera y cerrar las ventanas; si tiene asma u otra enfermedad respiratoria o del corazón, y con niños y mayores, extreme las precauciones. Si AEMET da aviso por polvo en suspensión, lo ve en la app: un punto de color en la ola 🌊 y el aviso arriba del todo al abrirla. También en la web de AEMET.",
-    "en": "🌫️ Calima is Saharan dust hanging in the air: the sky turns yellowish and air quality gets worse. The Canary Islands Health Department advises drinking water, avoiding physical effort outdoors, not spending long outside and keeping windows closed; if you have asthma or another respiratory or heart condition, and with children and older people, take extra care. If AEMET issues a suspended dust warning, you see it in the app: a coloured dot on the wave 🌊 and the warning at the very top when you open it. Also on the AEMET website.",
-    "de": "🌫️ Calima ist Saharastaub in der Luft: Der Himmel wird gelblich und die Luftqualität schlechter. Das Gesundheitsministerium der Kanaren rät, viel Wasser zu trinken, keine körperlichen Anstrengungen im Freien, nicht lange draußen zu bleiben und die Fenster geschlossen zu halten; bei Asthma oder anderen Atemwegs- oder Herzkrankheiten, und mit Kindern und älteren Menschen, besonders vorsichtig sein. Gibt die AEMET eine Warnung wegen Schwebstaub aus, sehen Sie sie in der App: ein farbiger Punkt auf der Welle 🌊 und die Warnung ganz oben, wenn Sie sie öffnen. Außerdem auf der Website der AEMET.",
-    "fr": "🌫️ La calima, c’est de la poussière du Sahara en suspension : le ciel jaunit et la qualité de l’air se dégrade. La Consejería de Sanidad du gouvernement des Canaries recommande de boire de l’eau, d’éviter les efforts en plein air, de ne pas rester longtemps dehors et de fermer les fenêtres ; si vous avez de l’asthme ou une autre maladie respiratoire ou cardiaque, et avec les enfants et les personnes âgées, redoublez de précautions. Si l’AEMET émet une alerte poussière en suspension, vous la voyez dans l’appli : un point de couleur sur la vague 🌊 et l’alerte tout en haut quand vous l’ouvrez. Aussi sur le site de l’AEMET.",
-    "it": "🌫️ La calima è polvere del Sahara sospesa nell’aria: il cielo diventa giallastro e la qualità dell’aria peggiora. L’assessorato alla Sanità del governo delle Canarie consiglia di bere acqua, evitare sforzi all’aperto, non stare a lungo fuori e tenere le finestre chiuse; se ha l’asma o un’altra malattia respiratoria o cardiaca, e con bambini e anziani, faccia ancora più attenzione. Se l’AEMET emette un avviso per polvere in sospensione, lo vede nell’app: un punto colorato sull’onda 🌊 e l’avviso in cima quando la apre. Anche sul sito dell’AEMET.",
-    "nl": "🌫️ Calima is stof uit de Sahara dat in de lucht hangt: de lucht wordt geelachtig en de luchtkwaliteit slechter. Het gezondheidsdepartement van de Canarische regering raadt aan water te drinken, geen inspanning in de buitenlucht te leveren, niet lang buiten te blijven en de ramen dicht te houden; heeft u astma of een andere aandoening aan luchtwegen of hart, en met kinderen en ouderen, wees dan extra voorzichtig. Geeft AEMET een waarschuwing voor stof in de lucht, dan ziet u die in de app: een gekleurde stip op de golf 🌊 en de waarschuwing bovenaan als u hem opent. Ook op de website van AEMET.",
-    "pl": "🌫️ Calima to pył z Sahary unoszący się w powietrzu: niebo żółknie, a jakość powietrza się pogarsza. Departament Zdrowia rządu Wysp Kanaryjskich zaleca pić wodę, unikać wysiłku na świeżym powietrzu, nie przebywać długo na zewnątrz i trzymać zamknięte okna; przy astmie albo innej chorobie układu oddechowego lub serca, a także przy dzieciach i osobach starszych, potrzebna jest szczególna ostrożność. Jeśli AEMET wyda ostrzeżenie przed pyłem zawieszonym, pojawi się ono w aplikacji: kolorowa kropka na fali 🌊 i ostrzeżenie na samej górze po jej otwarciu. Także na stronie AEMET.",
-    "zh": "🌫️ Calima 是悬浮在空中的撒哈拉沙尘：天空发黄，空气质量变差。加那利群岛政府卫生厅建议：多喝水，不要在户外剧烈运动，尽量少在外面久待，关好窗户；如果您有哮喘或其他呼吸道、心脏疾病，或带着孩子和老人，更要格外小心。如果 AEMET 发布浮尘预警，在应用里就能看到：海浪按钮 🌊 上有彩色圆点，打开后预警排在最上方。AEMET 网站上也有。",
-    "zht": "🌫️ Calima 是懸浮在空中的撒哈拉沙塵：天空發黃，空氣品質變差。加那利群島政府衛生廳建議：多喝水，不要在戶外劇烈運動，盡量少在外面久待，關好窗戶；如果您有氣喘或其他呼吸道、心臟疾病，或帶著孩子和長者，更要格外小心。如果 AEMET 發布浮塵預警，在應用程式裡就能看到：海浪按鈕 🌊 上有彩色圓點，打開後預警排在最上方。AEMET 網站上也有。"
+    "es": "🌫️ La calima es polvo del Sáhara en suspensión: el cielo se vuelve amarillento y empeora la calidad del aire. La Consejería de Sanidad del Gobierno de Canarias recomienda beber agua, no hacer esfuerzos al aire libre, no pasar mucho tiempo fuera y cerrar las ventanas; si tiene asma u otra enfermedad respiratoria o del corazón, y con niños y mayores, extreme las precauciones. Si AEMET da aviso por polvo en suspensión, lo ve en la app: un punto de color en la ola 🌊 y el aviso arriba del todo al abrirla. También en la web de AEMET. Y en el SOS, «Calor y calima».",
+    "en": "🌫️ Calima is Saharan dust hanging in the air: the sky turns yellowish and air quality gets worse. The Canary Islands Health Department advises drinking water, avoiding physical effort outdoors, not spending long outside and keeping windows closed; if you have asthma or another respiratory or heart condition, and with children and older people, take extra care. If AEMET issues a warning for suspended dust, you will see it in the app: a coloured dot on the wave 🌊 and the warning at the very top when you open it. Also on the AEMET website. And in the SOS panel, «Heat and dust haze».",
+    "de": "🌫️ Calima ist Saharastaub in der Luft: Der Himmel wird gelblich und die Luftqualität schlechter. Das Gesundheitsministerium der Kanaren rät, Wasser zu trinken, keine körperlichen Anstrengungen im Freien zu unternehmen, nicht lange draußen zu bleiben und die Fenster geschlossen zu halten; bei Asthma oder anderen Atemwegs- oder Herzkrankheiten, und mit Kindern und älteren Menschen, seien Sie besonders vorsichtig. Gibt die AEMET eine Warnung wegen Schwebstaub aus, sehen Sie sie in der App: ein farbiger Punkt auf der Welle 🌊 und die Warnung ganz oben, wenn Sie sie öffnen. Außerdem auf der Website der AEMET. Und im SOS-Panel: «Hitze und Saharastaub».",
+    "fr": "🌫️ La calima, c’est de la poussière du Sahara en suspension : le ciel jaunit et la qualité de l’air se dégrade. La Consejería de Sanidad du gouvernement des Canaries recommande de boire de l’eau, d’éviter les efforts en plein air, de ne pas rester longtemps dehors et de fermer les fenêtres ; si vous avez de l’asthme ou une autre maladie respiratoire ou cardiaque, et avec les enfants et les personnes âgées, redoublez de précautions. Si l’AEMET émet une alerte poussière en suspension, vous la voyez dans l’appli : un point de couleur sur la vague 🌊 et l’alerte tout en haut quand vous l’ouvrez. Également sur le site de l’AEMET. Et dans le SOS, «Chaleur et poussière du Sahara».",
+    "it": "🌫️ La calima è polvere del Sahara sospesa nell’aria: il cielo diventa giallastro e la qualità dell’aria peggiora. L’assessorato alla Sanità del governo delle Canarie consiglia di bere acqua, evitare sforzi all’aperto, non stare a lungo fuori e tenere le finestre chiuse; se ha l’asma o un’altra malattia respiratoria o cardiaca, e con bambini e anziani, faccia ancora più attenzione. Se l’AEMET emette un avviso per polvere in sospensione, lo vede nell’app: un punto colorato sull’onda 🌊 e l’avviso in cima quando la apre. Anche sul sito dell’AEMET. E nell’SOS, «Caldo e polvere del Sahara».",
+    "nl": "🌫️ Calima is stof uit de Sahara dat in de lucht hangt: de lucht wordt geelachtig en de luchtkwaliteit slechter. Het gezondheidsdepartement van de Canarische regering raadt aan water te drinken, geen inspanning in de buitenlucht te leveren, niet lang buiten te blijven en de ramen dicht te houden; heeft u astma of een andere aandoening aan luchtwegen of hart, en met kinderen en ouderen, wees dan extra voorzichtig. Geeft AEMET een waarschuwing voor stof in de lucht, dan ziet u die in de app: een gekleurde stip op de golf 🌊 en de waarschuwing bovenaan als u hem opent. Ook op de website van AEMET. En in het SOS-paneel: «Hitte en Saharastof».",
+    "pl": "🌫️ Calima to pył z Sahary unoszący się w powietrzu: niebo żółknie, a jakość powietrza się pogarsza. Departament Zdrowia rządu Wysp Kanaryjskich zaleca pić wodę, unikać wysiłku na świeżym powietrzu, nie przebywać długo na zewnątrz i trzymać zamknięte okna; przy astmie albo innej chorobie układu oddechowego lub serca, a także przy dzieciach i osobach starszych, potrzebna jest szczególna ostrożność. Jeśli AEMET wyda ostrzeżenie przed pyłem zawieszonym, pojawi się ono w aplikacji: kolorowa kropka na fali 🌊 i ostrzeżenie na samej górze po jej otwarciu. Także na stronie AEMET. A w SOS: «Upał i pył znad Sahary».",
+    "zh": "🌫️ Calima 是悬浮在空中的撒哈拉沙尘：天空发黄，空气质量变差。加那利群岛政府卫生厅建议：多喝水，不要在户外剧烈运动，尽量少在外面久待，关好窗户；如果您有哮喘或其他呼吸道、心脏疾病，或带着孩子和老人，更要格外小心。如果 AEMET 发布浮尘预警，在应用里就能看到：海浪按钮 🌊 上有彩色圆点，打开后预警排在最上方。AEMET 网站上也有。SOS 里还有「高温和撒哈拉沙尘」。",
+    "zht": "🌫️ Calima 是懸浮在空中的撒哈拉沙塵：天空發黃，空氣品質變差。加那利群島政府衛生廳建議：多喝水，不要在戶外劇烈運動，盡量少在外面久待，關好窗戶；如果您有氣喘或其他呼吸道、心臟疾病，或帶著孩子和長者，更要格外小心。如果 AEMET 發布浮塵預警，在應用程式裡就能看到：海浪按鈕 🌊 上有彩色圓點，打開後預警排在最上方。AEMET 網站上也有。SOS 裡還有「高溫和撒哈拉沙塵」。"
    },
    "follow": [
     "app-13",
     "pla-01",
     "sal-07"
    ],
-   "comprobado": "Consejeria de Sanidad del Gobierno de Canarias, Direccion General de Salud Publica (notas de prensa de los episodios de calima, gobiernodecanarias.org/noticias): hidratarse, evitar la exposicion prolongada al aire exterior, ventanas cerradas, no hacer esfuerzos fisicos al aire libre; precauciones extremas para ninos, mayores y personas con enfermedades respiratorias o cardiovasculares. Avisos: AEMET · 21/10/2026: un aviso de AEMET de polvo en suspension (fenomeno VS, wxFen_VS) sale como cualquier otro: punto en el boton del mar y arriba de su panel"
+   "comprobado": "Consejeria de Sanidad del Gobierno de Canarias, Direccion General de Salud Publica (notas de prensa de los episodios de calima, gobiernodecanarias.org/noticias): hidratarse, evitar la exposicion prolongada al aire exterior, ventanas cerradas, no hacer esfuerzos fisicos al aire libre; precauciones extremas para ninos, mayores y personas con enfermedades respiratorias o cardiovasculares. Avisos: AEMET · 21/10/2026: un aviso de AEMET de polvo en suspension (fenomeno VS, wxFen_VS) sale como cualquier otro: punto en el boton del mar y arriba de su panel · 24/10/2026: el SOS trae la guia calor, «Calor y calima» (sosCal1-8, sosCalGolpe…), con las fuentes de Sanidad y del Gobierno de Canarias.",
+   "rotulos": [
+    "EMERG.sosGuiaCalor"
+   ]
   },
   {
    "id": "sal-04",
@@ -493,22 +501,25 @@
     ]
    },
    "a": {
-    "es": "🥾 En el monte el tiempo cambia rápido con la altura. Lleve agua de sobra, gorra, protección solar y algo de abrigo; diga a alguien su ruta y a qué hora piensa volver; no se salga del sendero marcado y no se meta en un barranco si llueve o va a llover. Antes de salir, lea el aviso ⚠️ del globo si lo tiene y mire cierres y reservas en tenerifeon.es. Si pasa algo: 112.",
-    "en": "🥾 In the mountains the weather changes fast with altitude. Take plenty of water, a cap, sun protection and something warm; tell someone your route and when you plan to be back; stay on the marked trail and do not go into a ravine if it is raining or about to rain. Before you set off, read the ⚠️ note in the pop-up if there is one and check closures and bookings on tenerifeon.es. If something happens: 112.",
-    "de": "🥾 In den Bergen ändert sich das Wetter mit der Höhe schnell. Nehmen Sie reichlich Wasser, eine Mütze, Sonnenschutz und etwas Warmes mit; sagen Sie jemandem Ihre Route und wann Sie zurück sein wollen; bleiben Sie auf dem markierten Weg und gehen Sie nicht in eine Schlucht, wenn es regnet oder Regen droht. Lesen Sie vor dem Start den ⚠️-Hinweis im Pop-up, falls es einen gibt, und prüfen Sie Sperrungen und Reservierungen auf tenerifeon.es. Wenn etwas passiert: 112.",
-    "fr": "🥾 En montagne, le temps change vite avec l’altitude. Emportez beaucoup d’eau, une casquette, de la protection solaire et de quoi vous couvrir ; dites à quelqu’un votre itinéraire et votre heure de retour prévue ; ne quittez pas le sentier balisé et ne vous engagez pas dans un ravin s’il pleut ou s’il va pleuvoir. Avant de partir, lisez l’avertissement ⚠️ de la bulle s’il y en a un et vérifiez fermetures et réservations sur tenerifeon.es. En cas de problème : 112.",
-    "it": "🥾 In montagna il tempo cambia in fretta con la quota. Porti acqua in abbondanza, un cappellino, protezione solare e qualcosa di caldo; dica a qualcuno il Suo percorso e a che ora pensa di tornare; non esca dal sentiero segnato e non entri in un burrone se piove o sta per piovere. Prima di partire legga l’avviso ⚠️ del fumetto, se c’è, e controlli chiusure e prenotazioni su tenerifeon.es. Se succede qualcosa: 112.",
-    "nl": "🥾 In de bergen verandert het weer snel met de hoogte. Neem ruim water, een pet, zonnebescherming en iets warms mee; vertel iemand uw route en hoe laat u terug denkt te zijn; blijf op het gemarkeerde pad en ga geen kloof in als het regent of gaat regenen. Lees voor vertrek de ⚠️-waarschuwing in de pop-up als die er is en check afsluitingen en reserveringen op tenerifeon.es. Gebeurt er iets: 112.",
-    "pl": "🥾 W górach pogoda zmienia się szybko wraz z wysokością. Trzeba zabrać dużo wody, czapkę, ochronę przed słońcem i coś ciepłego; powiedzieć komuś, jaką trasą się idzie i o której planowany jest powrót; nie schodzić z oznakowanego szlaku i nie wchodzić do wąwozu, gdy pada albo zanosi się na deszcz. Przed wyjściem warto przeczytać ostrzeżenie ⚠️ w dymku, jeśli jest, i sprawdzić zamknięcia i rezerwacje na tenerifeon.es. Gdy coś się stanie: 112.",
-    "zh": "🥾 山里的天气会随海拔迅速变化。多带水、帽子、防晒用品和保暖衣物；把路线和预计返回时间告诉别人；不要离开有标记的步道，下雨或快下雨时不要进入峡谷。出发前先看看信息框里的 ⚠️ 提示（如有），并在 tenerifeon.es 查询封闭和预约信息。遇到意外：112。",
-    "zht": "🥾 山裡的天氣會隨海拔迅速變化。多帶水、帽子、防曬用品和保暖衣物；把路線和預計回來的時間告訴別人；不要離開有標記的步道，下雨或快下雨時不要進入峽谷。出發前先看看資訊框裡的 ⚠️ 提示（如有），並在 tenerifeon.es 查詢封閉和預約資訊。遇到意外：112。"
+    "es": "🥾 En el monte el tiempo cambia rápido con la altura. Lleve agua de sobra, gorra, protección solar y algo de abrigo; diga a alguien su ruta y a qué hora piensa volver; no se salga del sendero marcado y no se meta en un barranco si llueve o va a llover. Antes de salir, lea el aviso ⚠️ del globo si lo tiene y mire cierres y reservas en tenerifeon.es. Si pasa algo: 112. En el SOS, «En la montaña» le dice qué hacer si hay un accidente o se pierde.",
+    "en": "🥾 In the mountains the weather changes fast with altitude. Take plenty of water, a cap, sun protection and something warm; tell someone your route and when you plan to be back; stay on the marked trail and do not go into a ravine if it is raining or about to rain. Before you set off, read the ⚠️ note in the pop-up if there is one and check closures and bookings on tenerifeon.es. If something happens: 112. In the SOS panel, «In the mountains» tells you what to do if there is an accident or you get lost.",
+    "de": "🥾 In den Bergen ändert sich das Wetter mit der Höhe schnell. Nehmen Sie reichlich Wasser, eine Mütze, Sonnenschutz und etwas Warmes mit; sagen Sie jemandem Ihre Route und wann Sie zurück sein wollen; bleiben Sie auf dem markierten Weg und gehen Sie nicht in eine Schlucht, wenn es regnet oder Regen droht. Lesen Sie vor dem Start den ⚠️-Hinweis im Pop-up, falls es einen gibt, und prüfen Sie Sperrungen und Reservierungen auf tenerifeon.es. Wenn etwas passiert: 112. Im SOS-Panel sagt «In den Bergen», was bei einem Unfall zu tun ist oder wenn Sie sich verlaufen.",
+    "fr": "🥾 En montagne, le temps change vite avec l’altitude. Emportez beaucoup d’eau, une casquette, de la protection solaire et de quoi vous couvrir ; dites à quelqu’un votre itinéraire et votre heure de retour prévue ; ne quittez pas le sentier balisé et ne vous engagez pas dans un ravin s’il pleut ou s’il va pleuvoir. Avant de partir, lisez l’avertissement ⚠️ de la bulle s’il y en a un et vérifiez fermetures et réservations sur tenerifeon.es. En cas de problème : 112. Dans le SOS, «En montagne» vous dit quoi faire en cas d’accident ou si vous vous perdez.",
+    "it": "🥾 In montagna il tempo cambia in fretta con la quota. Porti acqua in abbondanza, un cappellino, protezione solare e qualcosa di caldo; dica a qualcuno il Suo percorso e a che ora pensa di tornare; non esca dal sentiero segnato e non entri in un burrone se piove o sta per piovere. Prima di partire legga l’avviso ⚠️ del fumetto, se c’è, e controlli chiusure e prenotazioni su tenerifeon.es. Se succede qualcosa: 112. Nell’SOS, «In montagna» Le dice cosa fare in caso di incidente o se si perde.",
+    "nl": "🥾 In de bergen verandert het weer snel met de hoogte. Neem ruim water, een pet, zonnebescherming en iets warms mee; vertel iemand uw route en hoe laat u terug denkt te zijn; blijf op het gemarkeerde pad en ga geen kloof in als het regent of gaat regenen. Lees voor vertrek de ⚠️-waarschuwing in de pop-up als die er is en check afsluitingen en reserveringen op tenerifeon.es. Gebeurt er iets: 112. In het SOS-paneel vertelt «In de bergen» wat u doet bij een ongeluk of als u verdwaalt.",
+    "pl": "🥾 W górach pogoda zmienia się szybko wraz z wysokością. Trzeba zabrać dużo wody, czapkę, ochronę przed słońcem i coś ciepłego; powiedzieć komuś, jaką trasą się idzie i o której planowany jest powrót; nie schodzić z oznakowanego szlaku i nie wchodzić do wąwozu, gdy pada albo zanosi się na deszcz. Przed wyjściem warto przeczytać ostrzeżenie ⚠️ w dymku, jeśli jest, i sprawdzić zamknięcia i rezerwacje na tenerifeon.es. Gdy coś się stanie: 112. W SOS «W górach» podpowiada, co robić po wypadku albo po zgubieniu drogi.",
+    "zh": "🥾 山里的天气会随海拔迅速变化。多带水、帽子、防晒用品和保暖衣物；把路线和预计返回时间告诉别人；不要离开有标记的步道，下雨或快下雨时不要进入峡谷。出发前先看看信息框里的 ⚠️ 提示（如有），并在 tenerifeon.es 查询封闭和预约信息。遇到意外：112。SOS 里的「在山区」告诉您发生事故或迷路时该怎么做。",
+    "zht": "🥾 山裡的天氣會隨海拔迅速變化。多帶水、帽子、防曬用品和保暖衣物；把路線和預計回來的時間告訴別人；不要離開有標記的步道，下雨或快下雨時不要進入峽谷。出發前先看看資訊框裡的 ⚠️ 提示（如有），並在 tenerifeon.es 查詢封閉和預約資訊。遇到意外：112。SOS 裡的「在山區」告訴您發生事故或迷路時該怎麼做。"
    },
    "follow": [
     "sal-01",
     "pla-09",
     "app-14"
    ],
-   "comprobado": "Consejos de prudencia generales; tenerifeon.es es la plataforma oficial del Cabildo (tei-02) y la que citan las fichas para cierres y reservas (Paisaje Lunar, aviso «sendero» de WARN_I18N); aviso ⚠️ del globo (modulo AVISOS); 112 (sal-01)"
+   "comprobado": "Consejos de prudencia generales; tenerifeon.es es la plataforma oficial del Cabildo (tei-02) y la que citan las fichas para cierres y reservas (Paisaje Lunar, aviso «sendero» de WARN_I18N); aviso ⚠️ del globo (modulo AVISOS); 112 (sal-01) · 24/10/2026: el SOS trae la guia montana (sosMonAntes, sosMonRuta, sosMonAccidente, sosMonNieve) y sus coordenadas para el 112.",
+   "rotulos": [
+    "EMERG.sosGuiaMontana"
+   ]
   },
   {
    "id": "sal-05",
@@ -856,22 +867,25 @@
     ]
    },
    "a": {
-    "es": "🏥 Si viene de la UE, de Islandia, Liechtenstein, Noruega, Suiza o el Reino Unido, la Tarjeta Sanitaria Europea le da la atención médica necesaria en la sanidad pública, en las mismas condiciones que a los residentes. No cubre la privada ni la repatriación, así que un seguro de viaje sigue siendo buena idea; si viene de otro país, contrátelo. En el mapa tiene los hospitales con urgencias 24 horas y los centros de salud. Si es grave, 112.",
-    "en": "🏥 If you come from the EU, Iceland, Liechtenstein, Norway, Switzerland or the United Kingdom, the European Health Insurance Card gives you the necessary medical care in the public health system, on the same terms as residents. It does not cover private care or repatriation, so travel insurance is still a good idea; if you come from another country, get one. The map shows the hospitals with 24-hour emergency departments and the health centres. If it is serious, 112.",
-    "de": "🏥 Kommen Sie aus der EU, aus Island, Liechtenstein, Norwegen, der Schweiz oder dem Vereinigten Königreich, bekommen Sie mit der Europäischen Krankenversicherungskarte die notwendige ärztliche Versorgung im öffentlichen Gesundheitssystem, zu denselben Bedingungen wie Einheimische. Private Versorgung und Rücktransport deckt sie nicht ab, deshalb ist eine Reiseversicherung trotzdem sinnvoll; kommen Sie aus einem anderen Land, schließen Sie eine ab. Auf der Karte finden Sie die Krankenhäuser mit 24-Stunden-Notaufnahme und die Gesundheitszentren. Wenn es ernst ist: 112.",
-    "fr": "🏥 Si vous venez de l’UE, d’Islande, du Liechtenstein, de Norvège, de Suisse ou du Royaume-Uni, la carte européenne d’assurance maladie vous donne les soins médicaux nécessaires dans le système public, aux mêmes conditions que les résidents. Elle ne couvre ni le privé ni le rapatriement, donc une assurance voyage reste une bonne idée ; si vous venez d’un autre pays, prenez-en une. Sur la carte, vous avez les hôpitaux avec urgences 24 h/24 et les centres de santé. Si c’est grave, 112.",
-    "it": "🏥 Se arriva dall’UE, dall’Islanda, dal Liechtenstein, dalla Norvegia, dalla Svizzera o dal Regno Unito, la tessera europea di assicurazione malattia Le dà le cure mediche necessarie nella sanità pubblica, alle stesse condizioni dei residenti. Non copre la sanità privata né il rimpatrio, quindi un’assicurazione di viaggio resta una buona idea; se arriva da un altro paese, la stipuli. Sulla mappa trova gli ospedali con pronto soccorso 24 ore su 24 e i centri sanitari. Se è grave, 112.",
-    "nl": "🏥 Komt u uit de EU, IJsland, Liechtenstein, Noorwegen, Zwitserland of het Verenigd Koninkrijk, dan geeft de Europese ziekteverzekeringskaart u de noodzakelijke medische zorg in de openbare gezondheidszorg, onder dezelfde voorwaarden als inwoners. Particuliere zorg en repatriëring vallen er niet onder, dus een reisverzekering blijft verstandig; komt u uit een ander land, sluit er dan een af. Op de kaart staan de ziekenhuizen met 24-uurs spoedeisende hulp en de gezondheidscentra. Is het ernstig: 112.",
-    "pl": "🏥 Osobom przyjeżdżającym z UE, Islandii, Liechtensteinu, Norwegii, Szwajcarii albo Wielkiej Brytanii Europejska Karta Ubezpieczenia Zdrowotnego daje niezbędną opiekę medyczną w publicznej służbie zdrowia, na tych samych warunkach co mieszkańcom. Nie obejmuje leczenia prywatnego ani transportu do kraju, więc ubezpieczenie podróżne nadal jest dobrym pomysłem; przy przyjeździe z innego kraju trzeba je wykupić. Na mapie są szpitale z całodobową izbą przyjęć i ośrodki zdrowia. Jeśli to coś poważnego, 112.",
-    "zh": "🏥 如果您来自欧盟、冰岛、列支敦士登、挪威、瑞士或英国，凭欧洲健康保险卡（EHIC）可以在公立医疗系统获得必要的医疗服务，条件与当地居民相同。它不包括私立医疗和遣返回国，所以仍然建议买旅行保险；如果您来自其他国家，请务必投保。地图上标有设有 24 小时急诊的医院和医疗中心。情况严重请拨 112。",
-    "zht": "🏥 如果您來自歐盟、冰島、列支敦斯登、挪威、瑞士或英國，憑歐洲健康保險卡（EHIC）可以在公立醫療體系獲得必要的醫療服務，條件與當地居民相同。它不包括私立醫療和送返回國，所以仍然建議買旅遊保險；如果您來自其他國家，請務必投保。地圖上標有設有 24 小時急診的醫院和醫療中心。情況嚴重請撥 112。"
+    "es": "🏥 Si viene de la UE, de Islandia, Liechtenstein, Noruega, Suiza o el Reino Unido, la Tarjeta Sanitaria Europea le da derecho a la atención médica necesaria en la sanidad pública, en las mismas condiciones que a los residentes. No cubre la privada ni la repatriación, así que un seguro de viaje sigue siendo buena idea; si viene de otro país, contrátelo. En el mapa tiene los hospitales con urgencias 24 horas y los centros de salud; desde el SOS, «Hospitales en el mapa» le enseña los hospitales de un toque. Si es grave, 112.",
+    "en": "🏥 If you come from the EU, Iceland, Liechtenstein, Norway, Switzerland or the United Kingdom, the European Health Insurance Card entitles you to the necessary medical care in the public health system, on the same terms as residents. It does not cover private care or repatriation, so travel insurance is still a good idea; if you come from another country, be sure to take out a policy. The map shows the hospitals with 24-hour emergency departments and the health centres; from the SOS panel, «Hospitals on the map» shows the hospitals in one tap. If it is serious, 112.",
+    "de": "🏥 Kommen Sie aus der EU, aus Island, Liechtenstein, Norwegen, der Schweiz oder dem Vereinigten Königreich, bekommen Sie mit der Europäischen Krankenversicherungskarte die notwendige ärztliche Versorgung im öffentlichen Gesundheitssystem, zu denselben Bedingungen wie Einheimische. Private Versorgung und Rücktransport deckt sie nicht ab, deshalb ist eine Reiseversicherung trotzdem sinnvoll; kommen Sie aus einem anderen Land, schließen Sie eine ab. Auf der Karte finden Sie die Krankenhäuser mit 24-Stunden-Notaufnahme und die Gesundheitszentren; im SOS-Panel zeigt «Krankenhäuser auf der Karte» die Krankenhäuser mit einem Tippen. Wenn es ernst ist: 112.",
+    "fr": "🏥 Si vous venez de l’UE, d’Islande, du Liechtenstein, de Norvège, de Suisse ou du Royaume-Uni, la carte européenne d’assurance maladie vous donne droit aux soins médicaux nécessaires dans le système public, aux mêmes conditions que les résidents. Elle ne couvre ni le privé ni le rapatriement, donc une assurance voyage reste une bonne idée ; si vous venez d’un autre pays, prenez-en une. Sur la carte, vous avez les hôpitaux avec urgences 24 h/24 et les centres de santé ; depuis le SOS, «Hôpitaux sur la carte» vous montre les hôpitaux d’un toucher. Si c’est grave, 112.",
+    "it": "🏥 Se arriva dall’UE, dall’Islanda, dal Liechtenstein, dalla Norvegia, dalla Svizzera o dal Regno Unito, la tessera europea di assicurazione malattia Le dà diritto alle cure mediche necessarie nella sanità pubblica, alle stesse condizioni dei residenti. Non copre la sanità privata né il rimpatrio, quindi un’assicurazione di viaggio resta una buona idea; se arriva da un altro paese, la stipuli. Sulla mappa trova gli ospedali con pronto soccorso 24 ore su 24 e i centri sanitari; dall’SOS, «Ospedali sulla mappa» mostra gli ospedali con un tocco. Se è grave, 112.",
+    "nl": "🏥 Komt u uit de EU, IJsland, Liechtenstein, Noorwegen, Zwitserland of het Verenigd Koninkrijk, dan geeft de Europese ziekteverzekeringskaart u recht op de noodzakelijke medische zorg in de openbare gezondheidszorg, onder dezelfde voorwaarden als inwoners. Particuliere zorg en repatriëring vallen er niet onder, dus een reisverzekering blijft verstandig; komt u uit een ander land, sluit er dan een af. Op de kaart staan de ziekenhuizen met 24-uurs spoedeisende hulp en de gezondheidscentra; vanuit het SOS-paneel toont «Ziekenhuizen op de kaart» de ziekenhuizen met één tik. Is het ernstig: 112.",
+    "pl": "🏥 Osobom przyjeżdżającym z UE, Islandii, Liechtensteinu, Norwegii, Szwajcarii albo Wielkiej Brytanii Europejska Karta Ubezpieczenia Zdrowotnego daje prawo do niezbędnej opieki medycznej w publicznej służbie zdrowia, na tych samych warunkach co mieszkańcom. Nie obejmuje leczenia prywatnego ani transportu do kraju, więc ubezpieczenie podróżne nadal jest dobrym pomysłem; przy przyjeździe z innego kraju trzeba je wykupić. Na mapie są szpitale z całodobową izbą przyjęć i ośrodki zdrowia; z SOS «Szpitale na mapie» pokazuje szpitale jednym dotknięciem. Jeśli to coś poważnego, 112.",
+    "zh": "🏥 如果您来自欧盟、冰岛、列支敦士登、挪威、瑞士或英国，凭欧洲健康保险卡（EHIC）可以在公立医疗系统获得必要的医疗服务，条件与当地居民相同。它不包括私立医疗和送返回国，所以仍然建议买旅行保险；如果您来自其他国家，请务必投保。地图上标有设有 24 小时急诊的医院和医疗中心；在 SOS 里点「地图上的医院」，一下就能显示医院。情况严重请拨 112。",
+    "zht": "🏥 如果您來自歐盟、冰島、列支敦斯登、挪威、瑞士或英國，憑歐洲健康保險卡（EHIC）可以在公立醫療體系獲得必要的醫療服務，條件與當地居民相同。它不包括私立醫療和送返回國，所以仍然建議買旅遊保險；如果您來自其他國家，請務必投保。地圖上標有設有 24 小時急診的醫院和醫療中心；在 SOS 裡點「地圖上的醫院」，一下就能顯示醫院。情況嚴重請撥 112。"
    },
    "follow": [
     "sal-06",
     "sal-01",
     "sal-05"
    ],
-   "comprobado": "Centro Europeo del Consumidor en Espana (cec.consumo.gob.es, nota 14/08/2024): la Tarjeta Sanitaria Europea da la atencion medica necesaria durante una estancia temporal en la sanidad publica en las mismas condiciones que los asegurados del pais; valida en la UE, Islandia, Liechtenstein, Noruega, Suiza y Reino Unido; no cubre la privada ni la repatriacion y no sustituye a un seguro de viaje. Hospitales del mapa: HUC, Candelaria y Hospital del Sur con «Urgencias 24h» en su ficha"
+   "comprobado": "Centro Europeo del Consumidor en Espana (cec.consumo.gob.es, nota 14/08/2024): la Tarjeta Sanitaria Europea da la atencion medica necesaria durante una estancia temporal en la sanidad publica en las mismas condiciones que los asegurados del pais; valida en la UE, Islandia, Liechtenstein, Noruega, Suiza y Reino Unido; no cubre la privada ni la repatriacion y no sustituye a un seguro de viaje. Hospitales del mapa: HUC, Candelaria y Hospital del Sur con «Urgencias 24h» en su ficha · 24/10/2026: en el SOS, «Hospitales en el mapa» (verHospitales) cierra el panel y pone la categoria hospital del mapa (setCategory); los centros de salud son otra categoria (csalud), asi que la respuesta dice que enseña los hospitales.",
+   "rotulos": [
+    "EMERG.sosHospitales"
+   ]
   },
   {
    "id": "sal-08",
@@ -991,6 +1005,878 @@
    ],
    "rotulos": [],
    "comprobado": "De las fichas del mapa, categoria ayuda: violencia-sexual-24h-tenerife (Centro de Crisis 24h del Instituto Canario de Igualdad: gratuito, confidencial, 24 h todos los dias, mujeres mayores de 16 anos, no hace falta denunciar) y siam-mujeres-santacruz (SIAM del Cabildo: apoyo psicologico, juridico y social, gratuito y confidencial, con cita previa; «Para emergencias 112; atencion a mujeres 24h, 016»). El rotulo de la categoria, LANGS.categories.ayuda de cada idioma."
+  },
+  {
+   "id": "sal-09",
+   "cat": "seguridad",
+   "prio": 2,
+   "volatil": true,
+   "label": {
+    "es": "¿Qué hay en el botón SOS?",
+    "en": "What does the SOS button open?",
+    "de": "Was steckt hinter dem SOS-Knopf?",
+    "fr": "Que trouve-t-on dans le bouton SOS ?",
+    "it": "Cosa c’è nel pulsante SOS?",
+    "nl": "Wat zit er achter de SOS-knop?",
+    "pl": "Co jest pod przyciskiem SOS?",
+    "zh": "SOS 按钮里有什么？",
+    "zht": "SOS 按鈕裡有什麼？"
+   },
+   "keys": {
+    "es": [
+     "boton sos",
+     "panel sos",
+     "el sos",
+     "panel de emergencias",
+     "emergencias en la app",
+     "que hacer en una emergencia",
+     "guia de emergencias",
+     "catastrofe",
+     "desastre natural",
+     "proteccion civil"
+    ],
+    "en": [
+     "sos button",
+     "sos panel",
+     "emergency panel",
+     "emergency guide",
+     "what to do in an emergency",
+     "disaster",
+     "natural disaster",
+     "civil protection"
+    ],
+    "de": [
+     "sos knopf",
+     "sos taste",
+     "sos panel",
+     "notfall panel",
+     "notfallhilfe",
+     "was tun im notfall",
+     "katastrophe",
+     "naturkatastrophe",
+     "katastrophenschutz",
+     "zivilschutz"
+    ],
+    "fr": [
+     "bouton sos",
+     "panneau sos",
+     "panneau des urgences",
+     "guide des urgences",
+     "que faire en cas d urgence",
+     "catastrophe",
+     "catastrophe naturelle",
+     "protection civile"
+    ],
+    "it": [
+     "pulsante sos",
+     "pannello sos",
+     "pannello emergenze",
+     "guida emergenze",
+     "cosa fare in caso di emergenza",
+     "catastrofe",
+     "disastro naturale",
+     "protezione civile"
+    ],
+    "nl": [
+     "sos knop",
+     "sos paneel",
+     "paneel noodgevallen",
+     "wat te doen bij nood",
+     "ramp",
+     "natuurramp",
+     "civiele bescherming"
+    ],
+    "pl": [
+     "przycisk sos",
+     "panel sos",
+     "panel nagle wypadki",
+     "co robic w naglym wypadku",
+     "katastrofa",
+     "kleska zywiolowa",
+     "obrona cywilna"
+    ],
+    "zh": [
+     "sos按钮",
+     "sos面板",
+     "紧急情况面板",
+     "应急指南",
+     "紧急情况怎么办",
+     "灾害",
+     "自然灾害",
+     "民防"
+    ],
+    "zht": [
+     "sos按鈕",
+     "sos面板",
+     "緊急情況面板",
+     "應變指南",
+     "緊急情況怎麼辦",
+     "災害",
+     "自然災害",
+     "民防"
+    ]
+   },
+   "a": {
+    "es": "🆘 Abajo, entre Rutas y el Asistente, «SOS» abre «Emergencias»: qué hacer ante un volcán, un terremoto, un maremoto, un incendio, un temporal o un problema en el mar. En «Qué hacer si…» están las guías, por grupos: si se lo piden las autoridades, si alguien se encuentra mal, en el mar, el volcán, el terremoto y el maremoto, el incendio, el tiempo y la montaña, y en el edificio y en la calle. En «Qué pasa ahora», los avisos de AEMET para Tenerife, si los hay, y los enlaces a la situación oficial; en «Prepárese», la mochila, el plan familiar, lo que conviene saber si está de visita, ES-Alert, los planes y los canales oficiales, y «Hospitales en el mapa». Abajo del todo, siempre, «Llamar al 112». Funciona sin conexión. La app no decide si hay peligro: eso lo dicen el 112 y las autoridades.",
+    "en": "🆘 At the bottom, between Routes and the Assistant, «SOS» opens «Emergencies»: what to do in a volcanic eruption, an earthquake, a tsunami, a fire, a storm or trouble at sea. «What to do if…» has the guides, in groups: if the authorities tell you to act, if someone is taken ill, at sea, the volcano, earthquakes and tsunamis, fire, weather and mountains, and in buildings and on the street. «What is happening now» shows AEMET’s warnings for Tenerife, if there are any, and links to official updates on the situation; «Get ready» has the emergency bag, the family plan, what to know if you are visiting, ES-Alert, the official plans and channels, and «Hospitals on the map». At the very bottom, always, «Call 112». It works offline. The app does not decide whether there is danger: 112 and the authorities do.",
+    "de": "🆘 Unten, zwischen Routen und dem Assistenten, öffnet «SOS» das Panel «Notfälle»: was bei einem Vulkanausbruch, einem Erdbeben, einem Tsunami, einem Brand, einem Unwetter oder einem Problem auf dem Meer zu tun ist. Unter «Was tun?» stehen die Anleitungen, nach Gruppen: wenn die Behörden es anordnen, wenn sich jemand schlecht fühlt, auf dem Meer, der Vulkan, Erdbeben und Tsunami, Brand, Wetter und Berge sowie im Gebäude und auf der Straße. «Was gerade passiert» zeigt die Warnungen der AEMET für Teneriffa, falls es welche gibt, und die Links zur offiziellen Lage; «Vorsorge» den Notfallrucksack, den Familienplan, was Besucher wissen sollten, ES-Alert, die offiziellen Pläne und Kanäle sowie «Krankenhäuser auf der Karte». Ganz unten, immer: «112 anrufen». Das funktioniert ohne Netz. Die App entscheidet nicht, ob Gefahr besteht: Das sagen die 112 und die Behörden.",
+    "fr": "🆘 En bas, entre Itinéraires et l’Assistant, «SOS» ouvre «Urgences» : que faire face à une éruption, un séisme, un tsunami, un incendie, une tempête ou un problème en mer. «Que faire si…» réunit les guides, par groupes : si les autorités vous le demandent, si quelqu’un se sent mal, en mer, le volcan, le séisme et le tsunami, l’incendie, la météo et la montagne, et dans un bâtiment ou dans la rue. «Ce qui se passe maintenant» affiche les alertes de l’AEMET pour Tenerife, s’il y en a, et les liens vers la situation officielle ; «Préparez-vous», le sac d’urgence, le plan familial, ce qu’il faut savoir si vous êtes de passage, ES-Alert, les plans et les canaux officiels, et «Hôpitaux sur la carte». Tout en bas, toujours, «Appeler le 112». Ça marche sans connexion. L’appli ne décide pas s’il y a un danger : ce sont le 112 et les autorités qui le disent.",
+    "it": "🆘 In basso, tra Percorsi e l’Assistente, «SOS» apre «Emergenze»: cosa fare in caso di eruzione, terremoto, maremoto, incendio, maltempo o un problema in mare. In «Cosa fare se…» ci sono le guide, per gruppi: se lo chiedono le autorità, se qualcuno si sente male, in mare, il vulcano, il terremoto e il maremoto, l’incendio, il tempo e la montagna, e negli edifici e per strada. «Cosa succede adesso» mostra gli avvisi dell’AEMET per Tenerife, se ce ne sono, e i link alla situazione ufficiale; «Prepararsi», lo zaino di emergenza, il piano familiare, cosa sapere se è in visita, ES-Alert, i piani e i canali ufficiali, e «Ospedali sulla mappa». In fondo, sempre, «Chiamare il 112». Funziona anche senza connessione. L’app non decide se c’è pericolo: lo dicono il 112 e le autorità.",
+    "nl": "🆘 Onderaan, tussen Routes en de Assistent, opent «SOS» het paneel «Noodgevallen»: wat te doen bij een vulkaanuitbarsting, een aardbeving, een tsunami, een brand, noodweer of een probleem op zee. Onder «Wat te doen?» staan de gidsen, per groep: als de autoriteiten erom vragen, als iemand onwel wordt, op zee, de vulkaan, aardbeving en tsunami, brand, weer en bergen, en in gebouwen en op straat. «Wat er nu gebeurt» toont de waarschuwingen van AEMET voor Tenerife, als die er zijn, en de links naar de officiële situatie; «Voorbereiding» de noodrugzak, het gezinsplan, wat u als bezoeker moet weten, ES-Alert, de officiële plannen en kanalen, en «Ziekenhuizen op de kaart». Helemaal onderaan, altijd: «Bel 112». Het werkt zonder verbinding. De app beslist niet of er gevaar is: dat zeggen 112 en de autoriteiten.",
+    "pl": "🆘 Na dole, między Trasami a Asystentem, «SOS» otwiera «Nagłe wypadki»: co robić przy erupcji wulkanu, trzęsieniu ziemi, tsunami, pożarze, nawałnicy albo problemie na morzu. W «Co robić, gdy…» są poradniki, w grupach: gdy wymagają tego władze, gdy ktoś źle się czuje, na morzu, wulkan, trzęsienie ziemi i tsunami, pożar, pogoda i góry oraz w budynku i na ulicy. «Co się teraz dzieje» pokazuje ostrzeżenia AEMET dla Teneryfy, jeśli są, i linki do oficjalnych informacji; «Przygotowanie» – plecak ewakuacyjny, plan rodzinny, co warto wiedzieć jako turysta, ES-Alert, oficjalne plany i kanały oraz «Szpitale na mapie». Na samym dole, zawsze: «Zadzwonić pod 112». Działa bez połączenia. Aplikacja nie ocenia, czy jest zagrożenie: mówią o tym 112 i władze.",
+    "zh": "🆘 底部的「SOS」在路线和助手之间，会打开「紧急情况」：遇到火山喷发、地震、海啸、火灾、恶劣天气或海上险情时该怎么做。「遇到以下情况怎么办」里是分组的指南：当局要求时、有人身体不适、在海上、火山、地震和海啸、火灾、天气和山区，以及在建筑物内和街上。「现在的情况」显示 AEMET 对特内里费发布的预警（如有）和官方信息的链接；「提前准备」里有应急背包、家庭计划、游客须知、ES-Alert、官方预案和渠道，以及「地图上的医院」。最下方始终有「拨打 112」。没有网络也能用。应用不会判断是否有危险：这要听 112 和当局的。",
+    "zht": "🆘 底部的「SOS」在路線和助手之間，會打開「緊急情況」：遇到火山噴發、地震、海嘯、火災、惡劣天氣或海上險情時該怎麼做。「遇到以下情況怎麼辦」裡是分組的指南：當局要求時、有人身體不適、在海上、火山、地震和海嘯、火災、天氣和山區，以及在建築物內和街上。「現在的情況」顯示 AEMET 對特內里費發布的預警（如有）和官方資訊的連結；「事先準備」裡有緊急避難包、家庭計畫、遊客須知、ES-Alert、官方應變計畫和管道，以及「地圖上的醫院」。最下方始終有「撥打 112」。沒有網路也能用。應用程式不會判斷是否有危險：這要聽 112 和當局的。"
+   },
+   "follow": [
+    "sal-01",
+    "sal-10",
+    "sal-13"
+   ],
+   "rotulos": [
+    "UI.sosTitulo",
+    "EMERG.sosQueHacer",
+    "EMERG.sosEstadoTitulo",
+    "EMERG.sosPrepararse",
+    "EMERG.sosHospitales",
+    "UI.sosLlamar"
+   ],
+   "comprobado": "index.html y modulos/emergencias.js (main 2ebfe85, 24/10/2026): boton v19-nav-sos («SOS», sin traducir) en la barra de abajo, entre Rutas y Asistente (Tienda oculta: TIENDA_ACTIVA = false); abrirSOS() abre sos-panel (sosTitulo). pintarInicio, en este orden: sosSubtitulo; la franja del resumen (solo si hay algo); sosQueHacer con los SUBGRUPOS ordenes, salud, mar, volcan, tierra, tiempo y ciudad; sosEstadoTitulo con sosEstadoTxt («Esta app no decide si hay peligro»), los avisos de AEMET para Tenerife (wxVigentes, si los hay) y los enlaces (alertas del Gobierno de Canarias, AEMET, el semaforo de INVOLCAN, los terremotos del IGN y el Cabildo); la tarjeta del 112 (coordenadas, 012, Salvamento Maritimo, Informacion Toxicologica, App 112 Canarias, SOMU); sosPrepararse (mochila, plan, visita, ES-Alert, planes y canales) y sosHospitales; el pie (sosNoOficial). La barra roja «Llamar al 112» (tel:112) esta en el armazon de index.html. El modulo va en CORE de sw.js: sin conexion desde el primer dia. window.SOS_DATOS esta vacio: los robots del semaforo, los terremotos y las alertas siguen apagados, asi que la respuesta no promete esos datos (volatil: cuando se enciendan, hay que contarlo)."
+  },
+  {
+   "id": "sal-10",
+   "cat": "seguridad",
+   "prio": 2,
+   "volatil": true,
+   "label": {
+    "es": "¿Qué hago si hay una erupción volcánica?",
+    "en": "What do I do if there is a volcanic eruption?",
+    "de": "Was tue ich bei einem Vulkanausbruch?",
+    "fr": "Que faire en cas d’éruption volcanique ?",
+    "it": "Cosa faccio in caso di eruzione vulcanica?",
+    "nl": "Wat doe ik bij een vulkaanuitbarsting?",
+    "pl": "Co robić w razie erupcji wulkanu?",
+    "zh": "火山喷发怎么办？",
+    "zht": "火山噴發怎麼辦？"
+   },
+   "keys": {
+    "es": [
+     "erupcion",
+     "erupcion volcanica",
+     "volcan en erupcion",
+     "si explota el volcan",
+     "semaforo volcanico",
+     "alerta volcanica",
+     "riesgo volcanico",
+     "pevolca",
+     "involcan",
+     "evacuacion",
+     "evacuar",
+     "plan de evacuacion",
+     "ceniza volcanica",
+     "gases volcanicos"
+    ],
+    "en": [
+     "eruption",
+     "volcanic eruption",
+     "volcano erupting",
+     "if the volcano erupts",
+     "volcanic traffic light",
+     "volcano alert",
+     "volcanic risk",
+     "pevolca",
+     "involcan",
+     "evacuation",
+     "evacuate",
+     "evacuation plan",
+     "volcanic ash",
+     "volcanic gases"
+    ],
+    "de": [
+     "vulkanausbruch",
+     "ausbruch",
+     "eruption",
+     "wenn der vulkan ausbricht",
+     "vulkan ampel",
+     "vulkanwarnung",
+     "vulkanrisiko",
+     "pevolca",
+     "involcan",
+     "evakuierung",
+     "evakuieren",
+     "evakuierungsplan",
+     "vulkanasche",
+     "vulkanische gase"
+    ],
+    "fr": [
+     "eruption",
+     "eruption volcanique",
+     "volcan en eruption",
+     "si le volcan entre en eruption",
+     "feu volcanique",
+     "alerte volcanique",
+     "risque volcanique",
+     "pevolca",
+     "involcan",
+     "evacuation",
+     "evacuer",
+     "plan d evacuation",
+     "cendre volcanique",
+     "gaz volcaniques"
+    ],
+    "it": [
+     "eruzione",
+     "eruzione vulcanica",
+     "vulcano in eruzione",
+     "se il vulcano erutta",
+     "semaforo vulcanico",
+     "allerta vulcanica",
+     "rischio vulcanico",
+     "pevolca",
+     "involcan",
+     "evacuazione",
+     "evacuare",
+     "piano di evacuazione",
+     "cenere vulcanica",
+     "gas vulcanici"
+    ],
+    "nl": [
+     "vulkaanuitbarsting",
+     "uitbarsting",
+     "als de vulkaan uitbarst",
+     "vulkaanstoplicht",
+     "vulkaanalarm",
+     "vulkanisch risico",
+     "pevolca",
+     "involcan",
+     "evacuatie",
+     "evacueren",
+     "evacuatieplan",
+     "vulkanische as",
+     "vulkanische gassen"
+    ],
+    "pl": [
+     "erupcja",
+     "erupcja wulkanu",
+     "wybuch wulkanu",
+     "wulkaniczna sygnalizacja",
+     "alarm wulkaniczny",
+     "zagrozenie wulkaniczne",
+     "pevolca",
+     "involcan",
+     "ewakuacja",
+     "ewakuowac sie",
+     "plan ewakuacji",
+     "popiol wulkaniczny",
+     "gazy wulkaniczne"
+    ],
+    "zh": [
+     "火山喷发",
+     "火山爆发",
+     "喷发",
+     "火山信号灯",
+     "火山警报",
+     "火山风险",
+     "pevolca",
+     "involcan",
+     "撤离",
+     "疏散",
+     "撤离计划",
+     "火山灰",
+     "火山气体"
+    ],
+    "zht": [
+     "火山噴發",
+     "火山爆發",
+     "噴發",
+     "火山信號燈",
+     "火山警報",
+     "火山風險",
+     "pevolca",
+     "involcan",
+     "撤離",
+     "疏散",
+     "撤離計畫",
+     "火山灰",
+     "火山氣體"
+    ]
+   },
+   "a": {
+    "es": "🌋 En el SOS, «El semáforo volcánico» explica los cuatro colores del plan de riesgo volcánico de Canarias (PEVOLCA): verde, actividad normal; amarillo, alerta; naranja, alerta máxima; y rojo, emergencia. Puede ser distinto en cada municipio. Solo se evacúa cuando lo indican las autoridades: su Ayuntamiento comunica las rutas y el punto de reunión, y los avisos llegan por ES-Alert, megafonía, la radio, la televisión y las redes oficiales. Qué hacer, en «Le piden evacuar», «Le piden no salir de casa», «Cae ceniza» y «Hay gases volcánicos». El color vigente sale en el boletín semanal de INVOLCAN, enlazado en «Qué pasa ahora».",
+    "en": "🌋 In the SOS panel, «The volcanic traffic light» explains the four colours of the Canary Islands volcanic risk plan (PEVOLCA): green, normal activity; yellow, alert; orange, maximum alert; and red, emergency. It can be different in each municipality. People only evacuate when the authorities say so: your town hall announces the routes and the meeting point, and warnings come by ES-Alert, loudspeakers, radio, TV and official social media. What to do is in «You are told to evacuate», «You are told to stay indoors», «Ash is falling» and «There are volcanic gases». The current colour is in INVOLCAN’s weekly bulletin, linked under «What is happening now».",
+    "de": "🌋 Im SOS-Panel erklärt «Die Vulkan-Ampel» die vier Farben des Vulkanrisiko-Plans der Kanaren (PEVOLCA): Grün, normale Aktivität; Gelb, Warnung; Orange, höchste Warnstufe; Rot, Notfall. Die Ampel kann in jeder Gemeinde anders sein. Evakuiert wird nur, wenn die Behörden es anordnen: Ihre Gemeinde gibt die Fluchtwege und den Sammelpunkt bekannt, und die Warnungen kommen über ES-Alert, Lautsprecherdurchsagen, Radio, Fernsehen und die offiziellen sozialen Netzwerke. Was zu tun ist, steht unter «Evakuierung», «Im Haus bleiben», «Ascheregen» und «Vulkanische Gase». Die geltende Farbe steht im Wochenbericht von INVOLCAN, verlinkt unter «Was gerade passiert».",
+    "fr": "🌋 Dans le SOS, «Le feu volcanique» explique les quatre couleurs du plan de risque volcanique des Canaries (PEVOLCA) : vert, activité normale ; jaune, alerte ; orange, alerte maximale ; et rouge, urgence. Il peut être différent dans chaque commune. On n’évacue que sur indication des autorités : votre mairie communique les itinéraires et le point de rassemblement, et les alertes arrivent par ES-Alert, haut-parleurs, radio, télévision et réseaux officiels. Que faire : «On vous demande d’évacuer», «On vous demande de rester chez vous», «Il tombe de la cendre» et «Il y a des gaz volcaniques». La couleur en vigueur figure dans le bulletin hebdomadaire de l’INVOLCAN, en lien dans «Ce qui se passe maintenant».",
+    "it": "🌋 Nell’SOS, «Il semaforo vulcanico» spiega i quattro colori del piano per il rischio vulcanico delle Canarie (PEVOLCA): verde, attività normale; giallo, allerta; arancione, allerta massima; e rosso, emergenza. Può essere diverso in ogni comune. Si evacua solo quando lo indicano le autorità: il Suo Comune comunica i percorsi e il punto di raccolta, e gli avvisi arrivano con ES-Alert, altoparlanti, radio, televisione e canali social ufficiali. Cosa fare, in «Le chiedono di evacuare», «Le chiedono di restare in casa», «Cade cenere» e «Ci sono gas vulcanici». Il colore in vigore è nel bollettino settimanale dell’INVOLCAN, con il link in «Cosa succede adesso».",
+    "nl": "🌋 In het SOS-paneel legt «Het vulkaanstoplicht» de vier kleuren uit van het vulkaanrisicoplan van de Canarische Eilanden (PEVOLCA): groen, normale activiteit; geel, alarm; oranje, hoogste alarm; en rood, noodsituatie. Het kan per gemeente verschillen. Er wordt alleen geëvacueerd als de autoriteiten dat zeggen: uw gemeente maakt de routes en het verzamelpunt bekend, en de waarschuwingen komen via ES-Alert, luidsprekers, radio, televisie en de officiële sociale media. Wat u moet doen, staat in «Evacuatie», «Binnen blijven», «Asregen» en «Vulkanische gassen». De geldende kleur staat in het wekelijkse bulletin van INVOLCAN, gelinkt onder «Wat er nu gebeurt».",
+    "pl": "🌋 W SOS «Wulkaniczna sygnalizacja» wyjaśnia cztery kolory planu na wypadek zagrożenia wulkanicznego na Wyspach Kanaryjskich (PEVOLCA): zielony – normalna aktywność; żółty – alert; pomarańczowy – najwyższy alert; czerwony – stan zagrożenia. W poszczególnych gminach sygnalizacja może być inna. Ewakuuje się tylko na polecenie władz: trasy i punkt zbiórki podaje gmina, a ostrzeżenia przychodzą przez ES-Alert, megafony, radio, telewizję i oficjalne media społecznościowe. Co robić – w «Jest nakaz ewakuacji», «Jest nakaz pozostania w domu», «Pada popiół» i «Są gazy wulkaniczne». Obowiązujący kolor podaje cotygodniowy biuletyn INVOLCAN, z linkiem w «Co się teraz dzieje».",
+    "zh": "🌋 在 SOS 里，「火山信号灯」解释了加那利群岛火山风险计划（PEVOLCA）的四种颜色：绿色，活动正常；黄色，警戒；橙色，最高警戒；红色，紧急状态。各个市的信号灯可能不同。只有当局下令时才撤离：当地市政府会公布撤离路线和集合点，通知会通过 ES-Alert、扩音器、广播、电视和官方社交媒体发布。具体怎么做，请看「要求撤离」「要求待在室内」「火山灰飘落」和「出现火山气体」。当前的颜色见 INVOLCAN 的每周公报，链接在「现在的情况」里。",
+    "zht": "🌋 在 SOS 裡，「火山信號燈」解釋了加那利群島火山風險計畫（PEVOLCA）的四種顏色：綠色，活動正常；黃色，警戒；橙色，最高警戒；紅色，緊急狀態。各個市的信號燈可能不同。只有當局下令時才撤離：當地市政府會公布撤離路線和集合點，通知會透過 ES-Alert、擴音器、廣播、電視和官方社群媒體發布。具體怎麼做，請看「要求撤離」「要求待在室內」「火山灰飄落」和「出現火山氣體」。目前的顏色見 INVOLCAN 的每週公報，連結在「現在的情況」裡。"
+   },
+   "follow": [
+    "sal-11",
+    "sal-14",
+    "sal-13"
+   ],
+   "rotulos": [
+    "EMERG.sosGuiaSemaforo",
+    "EMERG.sosGuiaEvacuar",
+    "EMERG.sosGuiaConfinar",
+    "EMERG.sosGuiaCeniza",
+    "EMERG.sosGuiaGases",
+    "EMERG.sosEstadoTitulo"
+   ],
+   "comprobado": "modulos/emergencias.js (24/10/2026), guias semaforo, evacuar, confinar, ceniza y gases: sosSemIntro (el PEVOLCA avisa con un semaforo de cuatro colores; lo fija la direccion del plan, con su comite cientifico, y puede ser distinto en cada municipio), sosSemVerdeT / AmarilloT / NaranjaT / RojoT, sosEvaIntro (solo se evacua cuando lo indican las autoridades; el Ayuntamiento comunica las rutas y el punto de reunion), sosEvaAvisos (ES-Alert, megafonia, radio, television y redes oficiales), sosSemaforoNota (si cambia entre dos boletines, lo anuncian antes el Gobierno de Canarias y el 112 Canarias) y sosEstadoSemaforo, el enlace al boletin semanal de INVOLCAN en «Que pasa ahora». Fuentes del panel: PEVOLCA (Decreto 112/2018) y sus recomendaciones de 2021, la directriz basica de riesgo volcanico (Orden INT/1071/2026). Volatil: el semaforo lo cambia la autoridad y el robot de INVOLCAN esta apagado."
+  },
+  {
+   "id": "sal-11",
+   "cat": "seguridad",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué hago si hay un terremoto o un maremoto?",
+    "en": "What do I do in an earthquake or a tsunami?",
+    "de": "Was tue ich bei einem Erdbeben oder Tsunami?",
+    "fr": "Que faire en cas de séisme ou de tsunami ?",
+    "it": "Cosa faccio in caso di terremoto o maremoto?",
+    "nl": "Wat doe ik bij een aardbeving of tsunami?",
+    "pl": "Co robić podczas trzęsienia ziemi albo tsunami?",
+    "zh": "发生地震或海啸怎么办？",
+    "zht": "發生地震或海嘯怎麼辦？"
+   },
+   "keys": {
+    "es": [
+     "terremoto",
+     "terremotos",
+     "sismo",
+     "seismo",
+     "temblor",
+     "temblores",
+     "tiembla la tierra",
+     "maremoto",
+     "tsunami",
+     "ola gigante"
+    ],
+    "en": [
+     "earthquake",
+     "earthquakes",
+     "tremor",
+     "the ground shakes",
+     "seismic",
+     "tsunami",
+     "tidal wave",
+     "giant wave"
+    ],
+    "de": [
+     "erdbeben",
+     "beben",
+     "die erde bebt",
+     "erdstoss",
+     "tsunami",
+     "flutwelle",
+     "riesenwelle"
+    ],
+    "fr": [
+     "seisme",
+     "seismes",
+     "tremblement de terre",
+     "la terre tremble",
+     "secousse",
+     "tsunami",
+     "raz de maree",
+     "vague geante"
+    ],
+    "it": [
+     "terremoto",
+     "terremoti",
+     "sisma",
+     "scossa",
+     "la terra trema",
+     "maremoto",
+     "tsunami",
+     "onda anomala"
+    ],
+    "nl": [
+     "aardbeving",
+     "aardbevingen",
+     "beving",
+     "de aarde beeft",
+     "tsunami",
+     "vloedgolf",
+     "reuzengolf"
+    ],
+    "pl": [
+     "trzesienie ziemi",
+     "trzesienia ziemi",
+     "wstrzas",
+     "wstrzasy",
+     "trzesie sie ziemia",
+     "tsunami",
+     "fala tsunami"
+    ],
+    "zh": [
+     "地震",
+     "震感",
+     "余震",
+     "海啸",
+     "海啸预警"
+    ],
+    "zht": [
+     "地震",
+     "震感",
+     "餘震",
+     "海嘯",
+     "海嘯預警"
+    ]
+   },
+   "a": {
+    "es": "🌊 En el SOS, «Tiembla la tierra» y «Maremoto (tsunami)». Si tiembla y está dentro, agáchese, cúbrase bajo una mesa sólida y agárrese a ella, lejos de ventanas y de lo que pueda caer, y no use el ascensor; fuera, aléjese de edificios altos, postes y vallas, y cerca del mar, de la orilla. Aléjese de la costa enseguida si hay un aviso oficial, si cerca del mar nota un terremoto fuerte o largo, si el mar se retira de golpe o si oye un rugido como de tren: vaya a pie hacia lo más alto y lo más lejos del mar que pueda, y no vuelva hasta que lo digan las autoridades. Que haya más terremotos no significa que vaya a haber una erupción.",
+    "en": "🌊 In the SOS panel, «The ground shakes» and «Tsunami». If the ground shakes while you are indoors, drop down, take cover under a sturdy table and hold on to it, away from windows and anything that could fall, and do not use the lift; outdoors, move away from tall buildings, power poles and billboards, and near the sea, away from the shore. Leave the coast straight away if there is an official warning, if you feel a strong or long earthquake near the sea, if the sea pulls back suddenly or if you hear a roar like a train: go on foot as high and as far from the sea as you can, and only go back when the authorities say so. More earthquakes do not mean there will be an eruption.",
+    "de": "🌊 Im SOS-Panel: «Erdbeben» und «Tsunami». Bebt die Erde, während Sie drinnen sind: Ducken Sie sich, gehen Sie unter einem stabilen Tisch in Deckung und halten Sie sich daran fest, weg von Fenstern und allem, was herunterfallen kann, und nehmen Sie nicht den Aufzug; draußen halten Sie Abstand zu hohen Gebäuden, Strommasten und Werbetafeln und am Meer zum Ufer. Verlassen Sie die Küste sofort, wenn es eine offizielle Warnung gibt, wenn Sie in Meeresnähe ein starkes oder langes Erdbeben spüren, wenn sich das Meer plötzlich zurückzieht oder wenn Sie ein Grollen wie von einem Zug hören: zu Fuß so hoch und so weit vom Meer weg wie möglich, und kehren Sie erst zurück, wenn die Behörden es sagen. Mehr Erdbeben bedeuten nicht, dass es einen Ausbruch geben wird.",
+    "fr": "🌊 Dans le SOS, «La terre tremble» et «Tsunami». Si ça tremble et que vous êtes à l’intérieur, baissez-vous, abritez-vous sous une table solide et agrippez-vous à elle, loin des fenêtres et de ce qui peut tomber, et ne prenez pas l’ascenseur ; dehors, éloignez-vous des immeubles hauts, des poteaux et des panneaux, et près de la mer, du rivage. Éloignez-vous tout de suite de la côte s’il y a une alerte officielle, si vous sentez près de la mer un séisme fort ou long, si la mer se retire d’un coup ou si vous entendez un grondement comme celui d’un train : partez à pied vers l’endroit le plus haut et le plus éloigné de la mer possible, et ne revenez que lorsque les autorités le disent. Une augmentation des séismes ne signifie pas qu’il va y avoir une éruption.",
+    "it": "🌊 Nell’SOS, «La terra trema» e «Maremoto». Se la terra trema mentre è al chiuso, si abbassi, si ripari sotto un tavolo solido e si aggrappi a esso, lontano dalle finestre e da ciò che può cadere, e non usi l’ascensore; all’aperto, si allontani da edifici alti, pali della luce e cartelloni, e vicino al mare, dalla riva. Si allontani subito dalla costa se c’è un avviso ufficiale, se vicino al mare avverte un terremoto forte o lungo, se il mare si ritira all’improvviso o se sente un boato simile a quello di un treno: vada a piedi verso il punto più alto e più lontano dal mare che può, e torni solo quando lo dicono le autorità. Il fatto che ci siano più terremoti non significa che ci sarà un’eruzione.",
+    "nl": "🌊 In het SOS-paneel: «Aardbeving» en «Tsunami». Beeft de aarde terwijl u binnen bent: buk, schuil onder een stevige tafel en houd u eraan vast, weg van ramen en alles wat kan vallen, en neem de lift niet; buiten blijft u uit de buurt van hoge gebouwen, elektriciteitspalen en reclameborden, en bij de zee weg van de kust. Ga meteen weg van de kust als er een officiële waarschuwing is, als u dicht bij zee een sterke of lange aardbeving voelt, als de zee zich plotseling terugtrekt of als u een gerommel hoort als van een trein: te voet zo hoog en zo ver van zee als u kunt, en ga pas terug als de autoriteiten het zeggen. Dat er meer aardbevingen zijn, betekent niet dat er een uitbarsting komt.",
+    "pl": "🌊 W SOS: «Trzęsie się ziemia» i «Tsunami». Gdy trzęsie się w budynku, trzeba przykucnąć, schować się pod solidnym stołem i trzymać się go, z dala od okien i rzeczy, które mogą spaść, i nie korzystać z windy; na zewnątrz odejść od wysokich budynków, słupów i billboardów, a nad morzem – od brzegu. Od wybrzeża należy odejść natychmiast, jeśli jest oficjalne ostrzeżenie, jeśli blisko morza czuć silne lub długie trzęsienie, jeśli morze nagle się cofa albo słychać huk podobny do pociągu: pieszo jak najwyżej i jak najdalej od morza, a wracać dopiero, gdy pozwolą władze. Większa liczba trzęsień ziemi nie oznacza, że dojdzie do erupcji.",
+    "zh": "🌊 在 SOS 里看「发生地震」和「海啸」。在室内感到地震时，请蹲下，躲到结实的桌子下面并抓牢，远离窗户和可能掉落的东西，不要乘电梯；在户外，远离高楼、电线杆和广告牌，在海边则远离海岸。如果有官方预警、在海边感到强烈或持续时间长的地震、海水突然后退，或听到类似火车的轰鸣声，请立即离开海岸：步行往尽量高、尽量远离海的地方去，等当局说可以了再回来。地震增多并不意味着会发生火山喷发。",
+    "zht": "🌊 在 SOS 裡看「發生地震」和「海嘯」。在室內感到地震時，請蹲下，躲到堅固的桌子下面並抓牢，遠離窗戶和可能掉落的東西，不要搭電梯；在戶外，遠離高樓、電線桿和廣告看板，在海邊則遠離海岸。如果有官方預警、在海邊感到強烈或持續時間長的地震、海水突然退去，或聽到類似火車的轟鳴聲，請立即離開海岸：步行往盡量高、盡量遠離海的地方去，等當局說可以了再回來。地震增多並不意味著會發生火山噴發。"
+   },
+   "follow": [
+    "sal-10",
+    "sal-14",
+    "sal-01"
+   ],
+   "rotulos": [
+    "EMERG.sosGuiaSismo",
+    "EMERG.sosGuiaMaremoto"
+   ],
+   "comprobado": "modulos/emergencias.js (24/10/2026), guias sismo y maremoto: sosSis2 (dentro, agacharse, cubrirse bajo una mesa solida y agarrarse; lejos de ventanas, lamparas y muebles), sosSis3 (no usar el ascensor), sosSis4 (fuera, lejos de edificios altos, postes y vallas), sosSis5 (cerca del mar, lejos de la orilla), sosTsuSen1-4 (las cuatro senales para alejarse de la costa), sosTsu1 (a pie, a lo mas alto y lejos del mar), sosTsu7 (volver cuando lo digan las autoridades) y sosSisIntro (mas terremotos no significa erupcion). Fuentes del panel: la directriz basica de terremotos (Orden INT/1069/2026), el plan estatal de maremotos (2021) y la guia de tsunamis de Proteccion Civil, el IGN."
+  },
+  {
+   "id": "sal-12",
+   "cat": "salud",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué hago si alguien se encuentra mal?",
+    "en": "What do I do if someone is taken ill?",
+    "de": "Was tue ich, wenn sich jemand schlecht fühlt?",
+    "fr": "Que faire si quelqu’un se sent mal ?",
+    "it": "Cosa faccio se qualcuno si sente male?",
+    "nl": "Wat doe ik als iemand onwel wordt?",
+    "pl": "Co robić, gdy ktoś źle się czuje?",
+    "zh": "有人身体不适怎么办？",
+    "zht": "有人身體不適怎麼辦？"
+   },
+   "keys": {
+    "es": [
+     "primeros auxilios",
+     "reanimacion",
+     "rcp",
+     "masaje cardiaco",
+     "desfibrilador",
+     "atragantamiento",
+     "se atraganta",
+     "infarto",
+     "ictus",
+     "desmayo",
+     "se ha desmayado",
+     "se encuentra mal",
+     "no respira",
+     "inconsciente"
+    ],
+    "en": [
+     "first aid",
+     "cpr",
+     "resuscitation",
+     "chest compressions",
+     "defibrillator",
+     "aed",
+     "choking",
+     "heart attack",
+     "stroke",
+     "fainted",
+     "unconscious",
+     "not breathing",
+     "someone is ill"
+    ],
+    "de": [
+     "erste hilfe",
+     "wiederbelebung",
+     "herzdruckmassage",
+     "defibrillator",
+     "verschlucken",
+     "erstickt",
+     "herzinfarkt",
+     "schlaganfall",
+     "ohnmacht",
+     "bewusstlos",
+     "atmet nicht",
+     "jemandem geht es schlecht"
+    ],
+    "fr": [
+     "premiers secours",
+     "reanimation",
+     "massage cardiaque",
+     "defibrillateur",
+     "etouffement",
+     "s etouffe",
+     "crise cardiaque",
+     "infarctus",
+     "avc",
+     "malaise",
+     "evanoui",
+     "inconscient",
+     "ne respire plus"
+    ],
+    "it": [
+     "primo soccorso",
+     "rianimazione",
+     "massaggio cardiaco",
+     "defibrillatore",
+     "soffocamento",
+     "si e soffocato",
+     "infarto",
+     "ictus",
+     "svenimento",
+     "e svenuto",
+     "incosciente",
+     "non respira",
+     "qualcuno sta male"
+    ],
+    "nl": [
+     "eerste hulp",
+     "reanimatie",
+     "hartmassage",
+     "defibrillator",
+     "aed",
+     "verslikken",
+     "stikken",
+     "hartaanval",
+     "beroerte",
+     "flauwgevallen",
+     "bewusteloos",
+     "ademt niet",
+     "iemand is onwel"
+    ],
+    "pl": [
+     "pierwsza pomoc",
+     "resuscytacja",
+     "masaz serca",
+     "defibrylator",
+     "aed",
+     "zadlawienie",
+     "zakrztusil sie",
+     "zawal",
+     "udar",
+     "omdlenie",
+     "zemdlal",
+     "nieprzytomny",
+     "nie oddycha",
+     "ktos zle sie czuje"
+    ],
+    "zh": [
+     "急救",
+     "心肺复苏",
+     "胸外按压",
+     "除颤器",
+     "噎住",
+     "窒息",
+     "心脏病发作",
+     "心梗",
+     "中风",
+     "晕倒",
+     "昏迷",
+     "没有呼吸",
+     "有人不舒服"
+    ],
+    "zht": [
+     "急救",
+     "心肺復甦",
+     "胸外按壓",
+     "電擊器",
+     "噎住",
+     "窒息",
+     "心臟病發作",
+     "心肌梗塞",
+     "中風",
+     "昏倒",
+     "昏迷",
+     "沒有呼吸",
+     "有人不舒服"
+    ]
+   },
+   "a": {
+    "es": "⛑️ Llame al 112 y ponga el altavoz del móvil: le dirán qué hacer hasta que llegue la ayuda. En el SOS, «Primeros auxilios» le guía con las pautas de 2025 del Consejo Europeo de Resucitación: si no responde y no respira con normalidad, compresiones fuertes y rápidas en el centro del pecho, de 100 a 120 por minuto, y el desfibrilador si hay uno; si respira con normalidad, de lado, salvo que se haya caído desde altura o dado un golpe fuerte; y qué hacer si alguien se atraganta, sangra mucho, puede tener un infarto o un ictus, o se ha quemado. En el mar, «Alguien en apuros en el agua»; con calor, «Calor y calima».",
+    "en": "⛑️ Call 112 and put your phone on speaker: they will tell you what to do until help arrives. In the SOS panel, «First aid» guides you with the 2025 guidelines of the European Resuscitation Council: if the person does not respond and is not breathing normally, push hard and fast in the centre of the chest, 100 to 120 times a minute, and use a defibrillator if there is one; if they are breathing normally, turn them on their side, unless they have fallen from a height or taken a hard blow; it also covers what to do if someone is choking, bleeding heavily, may be having a heart attack or a stroke, or has been burnt. At sea, «Someone in trouble in the water»; in the heat, «Heat and dust haze».",
+    "de": "⛑️ Rufen Sie die 112 an und schalten Sie den Lautsprecher des Handys ein: Man sagt Ihnen, was zu tun ist, bis Hilfe eintrifft. Im SOS-Panel führt Sie «Erste Hilfe» nach den Leitlinien 2025 des Europäischen Rats für Wiederbelebung: Reagiert die Person nicht und atmet nicht normal, drücken Sie fest und schnell auf die Mitte des Brustkorbs, 100 bis 120 Mal pro Minute, und nehmen Sie einen Defibrillator, wenn einer da ist; atmet sie normal, legen Sie sie auf die Seite, außer sie ist aus der Höhe gestürzt oder hat einen heftigen Schlag abbekommen; außerdem steht dort, was zu tun ist, wenn sich jemand verschluckt, stark blutet, vielleicht einen Herzinfarkt oder Schlaganfall hat oder sich verbrannt hat. Auf dem Meer: «Jemand in Not im Wasser»; bei Hitze: «Hitze und Saharastaub».",
+    "fr": "⛑️ Appelez le 112 et mettez le haut-parleur du téléphone : on vous dira quoi faire jusqu’à l’arrivée des secours. Dans le SOS, «Premiers secours» vous guide avec les recommandations 2025 du Conseil européen de réanimation : si la personne ne répond pas et ne respire pas normalement, compressions fortes et rapides au centre de la poitrine, de 100 à 120 par minute, et le défibrillateur s’il y en a un ; si elle respire normalement, sur le côté, sauf si elle est tombée de haut ou a reçu un coup violent ; et que faire si quelqu’un s’étouffe, saigne beaucoup, fait peut-être un infarctus ou un AVC, ou s’est brûlé. En mer, «Quelqu’un en difficulté dans l’eau» ; par forte chaleur, «Chaleur et poussière du Sahara».",
+    "it": "⛑️ Chiami il 112 e metta il vivavoce del telefono: Le diranno cosa fare fino all’arrivo dei soccorsi. Nell’SOS, «Primo soccorso» La guida con le linee guida 2025 del Consiglio europeo di rianimazione: se la persona non risponde e non respira normalmente, compressioni forti e veloci al centro del torace, da 100 a 120 al minuto, e il defibrillatore se ce n’è uno; se respira normalmente, su un fianco, a meno che non sia caduta dall’alto o abbia preso un colpo forte; e cosa fare se qualcuno soffoca, perde molto sangue, può avere un infarto o un ictus, o si è ustionato. In mare, «Qualcuno in difficoltà in acqua»; con il caldo, «Caldo e polvere del Sahara».",
+    "nl": "⛑️ Bel 112 en zet de luidspreker van uw telefoon aan: ze vertellen u wat u moet doen tot de hulp er is. In het SOS-paneel helpt «Eerste hulp» u met de richtlijnen 2025 van de Europese Reanimatieraad: reageert iemand niet en ademt hij niet normaal, druk dan hard en snel op het midden van de borst, 100 tot 120 keer per minuut, en gebruik een AED als die er is; ademt hij normaal, leg hem dan op zijn zij, tenzij hij van hoogte is gevallen of een harde klap heeft gehad; ook staat erin wat u doet als iemand zich verslikt, hevig bloedt, misschien een hartaanval of beroerte heeft, of zich heeft verbrand. Op zee: «Iemand in nood in het water»; bij hitte: «Hitte en Saharastof».",
+    "pl": "⛑️ Trzeba zadzwonić pod 112 i włączyć głośnik w telefonie: dyspozytor powie, co robić do czasu przybycia pomocy. W SOS «Pierwsza pomoc» prowadzi według wytycznych Europejskiej Rady Resuscytacji z 2025 roku: jeśli ktoś nie reaguje i nie oddycha prawidłowo – mocne i szybkie uciskanie środka klatki piersiowej, od 100 do 120 razy na minutę, i defibrylator, jeśli jest w pobliżu; jeśli oddycha prawidłowo – ułożenie na boku, chyba że spadł z wysokości albo doznał silnego uderzenia; a także co robić, gdy ktoś się zadławi, mocno krwawi, może mieć zawał lub udar albo się poparzył. Na morzu: «Ktoś w niebezpieczeństwie w wodzie»; w upale: «Upał i pył znad Sahary».",
+    "zh": "⛑️ 请拨打 112 并打开手机免提：接线员会告诉您在救援到达之前该怎么做。在 SOS 里，「急救」按照欧洲复苏委员会 2025 年的指南一步步指导您：如果对方没有反应、呼吸也不正常，就在胸部正中用力快速按压，每分钟 100 至 120 次，附近有除颤器就用上；如果呼吸正常，让其侧卧，但从高处坠落或受到猛烈撞击的人除外；还有噎住、大量出血、可能心脏病发作或中风、烧烫伤时该怎么做。在海上请看「有人在水中遇险」，天热时请看「高温和撒哈拉沙尘」。",
+    "zht": "⛑️ 請撥打 112 並打開手機擴音：接線員會告訴您在救援到達之前該怎麼做。在 SOS 裡，「急救」依照歐洲復甦委員會 2025 年的指引一步步指導您：如果對方沒有反應、呼吸也不正常，就在胸部正中用力快速按壓，每分鐘 100 至 120 次，附近有電擊器就用上；如果呼吸正常，讓其側躺，但從高處墜落或受到猛烈撞擊的人除外；還有噎住、大量出血、可能心臟病發作或中風、燒燙傷時該怎麼做。在海上請看「有人在水中遇險」，天熱時請看「高溫和撒哈拉沙塵」。"
+   },
+   "follow": [
+    "sal-01",
+    "sal-07",
+    "sal-09"
+   ],
+   "rotulos": [
+    "EMERG.sosGuiaAuxilios",
+    "EMERG.sosGuiaRescate",
+    "EMERG.sosGuiaCalor"
+   ],
+   "comprobado": "modulos/emergencias.js (24/10/2026), guia auxilios: sosAuxIntro (llamar al 112 y poner el altavoz), sosAux2 (compresiones en el centro del pecho, de 5 a 6 cm, de 100 a 120 por minuto), sosAux4 (el desfibrilador), sosAux5 y sosAux6 (de lado si respira, salvo caida desde altura, tirarse de cabeza, accidente o golpe fuerte) y los apartados sosAuxAtragT y sosAuxOtrosT (hemorragia, infarto, ictus, quemadura); al final, «Vea tambien» rescate y calor. Fuentes del panel: las guias de 2025 del Consejo Europeo de Resucitacion (version para el publico), el Resuscitation Council UK, el NHS y el ILCOR. Las claves de quemaduras del sol y del golpe de calor siguen en sal-05."
+  },
+  {
+   "id": "sal-13",
+   "cat": "seguridad",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué llevo en una mochila de emergencia?",
+    "en": "What goes in an emergency bag?",
+    "de": "Was gehört in einen Notfallrucksack?",
+    "fr": "Que mettre dans un sac d’urgence ?",
+    "it": "Cosa metto nello zaino di emergenza?",
+    "nl": "Wat hoort er in een noodrugzak?",
+    "pl": "Co spakować do plecaka ewakuacyjnego?",
+    "zh": "应急背包里要放什么？",
+    "zht": "緊急避難包裡要放什麼？"
+   },
+   "keys": {
+    "es": [
+     "mochila de emergencia",
+     "kit de emergencia",
+     "bolsa de emergencia",
+     "que llevar en una emergencia",
+     "kit de supervivencia",
+     "plan familiar de emergencia",
+     "prepararse para una emergencia"
+    ],
+    "en": [
+     "emergency bag",
+     "emergency kit",
+     "go bag",
+     "grab bag",
+     "what to pack for an emergency",
+     "survival kit",
+     "family plan",
+     "emergency preparedness"
+    ],
+    "de": [
+     "notfallrucksack",
+     "notfallgepack",
+     "notfallset",
+     "was packe ich fur den notfall",
+     "notvorrat",
+     "familienplan",
+     "auf den notfall vorbereiten"
+    ],
+    "fr": [
+     "sac d urgence",
+     "kit d urgence",
+     "trousse d urgence",
+     "que prendre en cas d urgence",
+     "kit de survie",
+     "plan familial",
+     "se preparer a une urgence"
+    ],
+    "it": [
+     "zaino di emergenza",
+     "kit di emergenza",
+     "borsa di emergenza",
+     "cosa portare in caso di emergenza",
+     "kit di sopravvivenza",
+     "piano familiare",
+     "prepararsi a un emergenza"
+    ],
+    "nl": [
+     "noodrugzak",
+     "noodpakket",
+     "noodtas",
+     "wat neem ik mee bij nood",
+     "overlevingspakket",
+     "gezinsplan",
+     "voorbereid zijn op een noodgeval"
+    ],
+    "pl": [
+     "plecak ewakuacyjny",
+     "zestaw awaryjny",
+     "torba ewakuacyjna",
+     "co zabrac na wypadek zagrozenia",
+     "zestaw przetrwania",
+     "plan rodzinny",
+     "przygotowanie na wypadek zagrozenia"
+    ],
+    "zh": [
+     "应急背包",
+     "应急包",
+     "应急物资",
+     "紧急情况带什么",
+     "求生包",
+     "家庭计划",
+     "应急准备"
+    ],
+    "zht": [
+     "緊急避難包",
+     "避難包",
+     "應急包",
+     "緊急情況帶什麼",
+     "求生包",
+     "家庭計畫",
+     "防災準備"
+    ]
+   },
+   "a": {
+    "es": "🎒 En el SOS, en «Prepárese», «La mochila de emergencia» trae quince cosas, sacadas de la guía de Protección Civil para las familias y de las recomendaciones oficiales ante una erupción: la documentación, las medicinas, el móvil con su cargador y una batería externa, una radio de pilas, una linterna, un silbato, agua (al menos 1,5 litros por persona y día, para 3 días), comida que no se estropee, mascarillas y gafas cerradas, un botiquín, ropa de abrigo y de recambio, algo de efectivo y llaves de repuesto, y lo de los niños y las mascotas. Puede marcar lo que ya tiene: se guarda solo en este móvil. Revísela cada seis meses. Al lado, «El plan familiar»: un punto de encuentro, una persona de contacto y una casa fuera de las zonas de riesgo.",
+    "en": "🎒 In the SOS panel, under «Get ready», «The emergency bag» lists fifteen items, taken from the Civil Protection guide for families and the official advice for a volcanic eruption: documents, medicines, your phone with its charger and a power bank, a battery radio, a torch, a whistle, water (at least 1.5 litres per person per day, for 3 days), food that keeps, masks and sealed goggles, a first-aid kit, warm clothes and a change of clothes, some cash and spare keys, and things for children and pets. You can tick what you already have: it is saved only on this phone. Check it every six months. Next to it, «The family plan»: a meeting point, a contact person and a house outside the risk areas.",
+    "de": "🎒 Im SOS-Panel, unter «Vorsorge», listet «Der Notfallrucksack» fünfzehn Dinge aus dem Familienleitfaden des Katastrophenschutzes und den offiziellen Empfehlungen für einen Vulkanausbruch auf: Ausweise, Medikamente, das Handy mit Ladegerät und eine Powerbank, ein Batterieradio, eine Taschenlampe, eine Trillerpfeife, Wasser (mindestens 1,5 Liter pro Person und Tag, für 3 Tage), haltbare Lebensmittel, Masken und dicht schließende Brillen, ein Erste-Hilfe-Set, warme Kleidung und Wechselkleidung, etwas Bargeld und Ersatzschlüssel sowie das, was Kinder und Haustiere brauchen. Sie können abhaken, was Sie schon haben: Es wird nur auf diesem Handy gespeichert. Kontrollieren Sie ihn alle sechs Monate. Daneben «Der Familienplan»: ein Treffpunkt, eine Kontaktperson und eine Unterkunft außerhalb der Risikogebiete.",
+    "fr": "🎒 Dans le SOS, sous «Préparez-vous», «Le sac d’urgence» donne quinze choses, tirées du guide de la Protection civile pour les familles et des recommandations officielles en cas d’éruption : les papiers, les médicaments, le téléphone avec son chargeur et une batterie externe, une radio à piles, une lampe de poche, un sifflet, de l’eau (au moins 1,5 litre par personne et par jour, pour 3 jours), de la nourriture qui se conserve, des masques et des lunettes étanches, une trousse de secours, des vêtements chauds et de rechange, un peu d’argent liquide et des clés de rechange, et ce qu’il faut pour les enfants et les animaux. Vous pouvez cocher ce que vous avez déjà : c’est enregistré seulement sur ce téléphone. Vérifiez-le tous les six mois. À côté, «Le plan familial» : un point de rendez-vous, une personne de contact et une maison hors des zones à risque.",
+    "it": "🎒 Nell’SOS, in «Prepararsi», «Lo zaino di emergenza» elenca quindici cose, prese dalla guida della Protezione civile per le famiglie e dalle raccomandazioni ufficiali in caso di eruzione: i documenti, le medicine, il telefono con il caricatore e una batteria esterna, una radio a pile, una torcia, un fischietto, acqua (almeno 1,5 litri a persona al giorno, per 3 giorni), cibo che non si deteriora, mascherine e occhiali a tenuta, un kit di pronto soccorso, vestiti pesanti e di ricambio, un po’ di contanti e chiavi di riserva, e ciò che serve a bambini e animali. Può segnare ciò che ha già: si salva solo su questo telefono. Lo controlli ogni sei mesi. Accanto, «Il piano familiare»: un punto di ritrovo, una persona di riferimento e una casa fuori dalle zone a rischio.",
+    "nl": "🎒 In het SOS-paneel, onder «Voorbereiding», noemt «De noodrugzak» vijftien dingen uit de gezinsgids van de civiele bescherming en de officiële adviezen bij een vulkaanuitbarsting: papieren, medicijnen, de telefoon met oplader en een powerbank, een radio op batterijen, een zaklamp, een fluitje, water (minstens 1,5 liter per persoon per dag, voor 3 dagen), houdbaar eten, mondkapjes en een afsluitende bril, een verbandtrommel, warme kleren en reservekleding, wat contant geld en reservesleutels, en wat kinderen en huisdieren nodig hebben. U kunt aanvinken wat u al hebt: het wordt alleen op deze telefoon bewaard. Controleer hem elke zes maanden. Ernaast staat «Het gezinsplan»: een ontmoetingsplek, een contactpersoon en een huis buiten de risicogebieden.",
+    "pl": "🎒 W SOS, w «Przygotowanie», «Plecak ewakuacyjny» wymienia piętnaście rzeczy z poradnika Obrony Cywilnej dla rodzin i z oficjalnych zaleceń na wypadek erupcji: dokumenty, leki, telefon z ładowarką i powerbank, radio na baterie, latarkę, gwizdek, wodę (co najmniej 1,5 litra na osobę dziennie, na 3 dni), jedzenie, które się nie psuje, maseczki i szczelne gogle, apteczkę, ciepłe ubranie i ubranie na zmianę, trochę gotówki i zapasowe klucze oraz rzeczy dla dzieci i zwierząt. Można zaznaczyć to, co już jest: zapisuje się tylko na tym telefonie. Plecak warto sprawdzać co sześć miesięcy. Obok jest «Plan rodzinny»: miejsce spotkania, osoba kontaktowa i dom poza strefami zagrożenia.",
+    "zh": "🎒 在 SOS 的「提前准备」里，「应急背包」列出了十五样东西，取自民防部门的家庭指南和火山喷发时的官方建议：证件、药品、手机连同充电器和充电宝、电池收音机、手电筒、哨子、水（每人每天至少 1.5 升，备足 3 天）、不易变质的食物、口罩和密封护目镜、急救包、保暖衣物和换洗衣物、一些现金和备用钥匙，以及孩子和宠物需要的东西。可以勾选已经备好的物品：只保存在这部手机上。每六个月检查一次。旁边是「家庭计划」：一个集合点、一位联系人，以及风险区以外的一处住所。",
+    "zht": "🎒 在 SOS 的「事先準備」裡，「緊急避難包」列出了十五樣東西，取自民防部門的家庭指南和火山噴發時的官方建議：證件、藥品、手機連同充電器和行動電源、電池收音機、手電筒、哨子、水（每人每天至少 1.5 公升，備足 3 天）、不易變質的食物、口罩和密封護目鏡、急救包、保暖衣物和換洗衣物、一些現金和備用鑰匙，以及孩子和寵物需要的東西。可以勾選已經備好的物品：只儲存在這支手機上。每六個月檢查一次。旁邊是「家庭計畫」：一個集合點、一位聯絡人，以及風險區以外的一處住所。"
+   },
+   "follow": [
+    "sal-10",
+    "sal-14",
+    "sal-09"
+   ],
+   "rotulos": [
+    "EMERG.sosPrepararse",
+    "EMERG.sosGuiaMochila",
+    "EMERG.sosGuiaPlan"
+   ],
+   "comprobado": "modulos/emergencias.js (24/10/2026), guias mochila y plan: MOCHILA, quince cosas (sosMoc_doc, med, movil, radio, linterna, silbato, agua —al menos 1,5 litros por persona y dia, para 3 dias—, comida, mascarilla, botiquin, abrigo, ropa, dinero, ninos, mascotas), con las fuentes de la guia: la directriz basica de riesgo volcanico (BOE, 10/10/2026), la guia de Proteccion Civil para las familias, las recomendaciones del PEVOLCA de 2021 y del comite cientifico, RTVC y la IVHHN (la segunda revision vio que las gafas cerradas y los papeles de las mascotas no estan en la guia de las familias: salen de las otras); sosMocIntro (marcar lo que se tiene: se guarda solo en el movil, tenerife.mochila), sosMocRevisar (cada seis meses) y sosPlan1-3 (punto de encuentro, persona de contacto, casa fuera de las zonas de riesgo)."
+  },
+  {
+   "id": "sal-14",
+   "cat": "seguridad",
+   "prio": 2,
+   "volatil": false,
+   "label": {
+    "es": "¿Qué es ES-Alert?",
+    "en": "What is ES-Alert?",
+    "de": "Was ist ES-Alert?",
+    "fr": "Qu’est-ce qu’ES-Alert ?",
+    "it": "Che cos’è ES-Alert?",
+    "nl": "Wat is ES-Alert?",
+    "pl": "Co to jest ES-Alert?",
+    "zh": "ES-Alert 是什么？",
+    "zht": "ES-Alert 是什麼？"
+   },
+   "keys": {
+    "es": [
+     "es alert",
+     "esalert",
+     "alerta en el movil",
+     "mensaje de alerta",
+     "alerta de proteccion civil",
+     "simulacro",
+     "me ha llegado una alerta",
+     "alarma en el movil"
+    ],
+    "en": [
+     "es alert",
+     "esalert",
+     "alert on my phone",
+     "emergency alert",
+     "civil protection alert",
+     "phone alarm",
+     "i got an alert",
+     "drill message"
+    ],
+    "de": [
+     "es alert",
+     "esalert",
+     "warnung auf dem handy",
+     "warnmeldung",
+     "warnung des katastrophenschutzes",
+     "alarm auf dem handy",
+     "ich habe eine warnung bekommen",
+     "probealarm"
+    ],
+    "fr": [
+     "es alert",
+     "esalert",
+     "alerte sur le telephone",
+     "message d alerte",
+     "alerte de la protection civile",
+     "alarme sur le telephone",
+     "j ai recu une alerte",
+     "exercice d alerte"
+    ],
+    "it": [
+     "es alert",
+     "esalert",
+     "allerta sul telefono",
+     "messaggio di allerta",
+     "allerta della protezione civile",
+     "allarme sul telefono",
+     "mi e arrivato un allarme",
+     "esercitazione"
+    ],
+    "nl": [
+     "es alert",
+     "esalert",
+     "waarschuwing op mijn telefoon",
+     "alarmbericht",
+     "waarschuwing civiele bescherming",
+     "alarm op de telefoon",
+     "ik kreeg een waarschuwing",
+     "oefenalarm"
+    ],
+    "pl": [
+     "es alert",
+     "esalert",
+     "alert w telefonie",
+     "wiadomosc alarmowa",
+     "alert obrony cywilnej",
+     "alarm w telefonie",
+     "dostalem alert",
+     "cwiczenia alarmowe"
+    ],
+    "zh": [
+     "es alert",
+     "esalert",
+     "手机警报",
+     "紧急警报",
+     "民防警报",
+     "收到警报",
+     "警报短信",
+     "演习警报"
+    ],
+    "zht": [
+     "es alert",
+     "esalert",
+     "手機警報",
+     "緊急警報",
+     "民防警報",
+     "收到警報",
+     "警報簡訊",
+     "演習警報"
+    ]
+   },
+   "a": {
+    "es": "📲 Es el sistema de alertas de Protección Civil: llega a los móviles encendidos y con cobertura de la zona afectada, sin app ni registro, y suena aunque estén en silencio; en modo avión no llega. Si dice SIMULACRO o PRUEBA, es un ensayo: léalo y no llame al 112. Si es real, léalo entero y siga sus instrucciones; si va conduciendo, aparque antes en un sitio seguro. No llame al 112 para preguntar: infórmese en las redes del 112 Canarias, en la radio, en la televisión o en el 012. Llega también a móviles extranjeros bien configurados, en castellano y a veces en otro idioma, y nunca le pedirá datos personales. Lo tiene en el SOS, «Los avisos ES-Alert».",
+    "en": "📲 It is the Civil Protection alert system: it reaches phones that are switched on and have coverage in the affected area, with no app or sign-up, and it sounds even on silent; in aeroplane mode it does not arrive. If it says SIMULACRO or PRUEBA (drill or test), it is an exercise: read it and do not call 112. If it is real, read it all and follow its instructions; if you are driving, park somewhere safe first. Do not call 112 to ask questions: get information from 112 Canarias on social media, from the radio or TV, or by calling 012. It also reaches foreign phones that are set up correctly, in Spanish and sometimes in another language, and it will never ask you for personal details. It is in the SOS panel, «ES-Alert messages».",
+    "de": "📲 Das ist das Warnsystem des Katastrophenschutzes: Es erreicht eingeschaltete Handys mit Empfang im betroffenen Gebiet, ohne App oder Anmeldung, und ertönt auch im Stummmodus; im Flugmodus kommt es nicht an. Steht SIMULACRO oder PRUEBA (Übung oder Test) darin, ist es eine Übung: Lesen Sie die Nachricht und rufen Sie nicht die 112 an. Ist es ernst, lesen Sie sie ganz und folgen Sie den Anweisungen; wenn Sie fahren, parken Sie vorher an einer sicheren Stelle. Rufen Sie nicht die 112 an, um etwas zu fragen: Informieren Sie sich bei 112 Canarias in den sozialen Netzwerken, im Radio, im Fernsehen oder unter der 012. Es erreicht auch ausländische Handys, wenn sie richtig eingestellt sind, auf Spanisch und manchmal in einer weiteren Sprache, und es fragt Sie nie nach persönlichen Daten. Im SOS-Panel: «ES-Alert-Warnungen».",
+    "fr": "📲 C’est le système d’alerte de la Protection civile : il arrive sur les téléphones allumés et ayant du réseau dans la zone touchée, sans appli ni inscription, et sonne même en silencieux ; en mode avion, il n’arrive pas. S’il est écrit SIMULACRO ou PRUEBA (exercice ou essai), c’est un exercice : lisez-le et n’appelez pas le 112. S’il est réel, lisez-le en entier et suivez ses instructions ; si vous conduisez, garez-vous d’abord dans un endroit sûr. N’appelez pas le 112 pour poser des questions : informez-vous sur les réseaux du 112 Canarias, à la radio, à la télévision ou au 012. Il arrive aussi sur les téléphones étrangers bien configurés, en espagnol et parfois dans une autre langue, et ne vous demandera jamais de données personnelles. Il est dans le SOS, «Les alertes ES-Alert».",
+    "it": "📲 È il sistema di allerta della Protezione civile: arriva sui telefoni accesi e con copertura nella zona colpita, senza app né registrazione, e suona anche in silenzioso; in modalità aereo non arriva. Se c’è scritto SIMULACRO o PRUEBA (esercitazione o prova), è un’esercitazione: lo legga e non chiami il 112. Se è reale, lo legga tutto e segua le istruzioni; se sta guidando, prima parcheggi in un posto sicuro. Non chiami il 112 per chiedere informazioni: si informi sui social del 112 Canarias, alla radio, in televisione o al 012. Arriva anche ai telefoni stranieri configurati correttamente, in spagnolo e a volte in un’altra lingua, e non Le chiederà mai dati personali. Lo trova nell’SOS, «Gli avvisi ES-Alert».",
+    "nl": "📲 Het is het waarschuwingssysteem van de civiele bescherming: het komt binnen op telefoons die aanstaan en bereik hebben in het getroffen gebied, zonder app of registratie, en het klinkt ook op stil; in vliegtuigmodus komt het niet aan. Staat er SIMULACRO of PRUEBA (oefening of test), dan is het een oefening: lees het en bel 112 niet. Is het echt, lees het dan helemaal en volg de instructies; rijdt u, parkeer dan eerst op een veilige plek. Bel 112 niet om iets te vragen: informeer via de sociale media van 112 Canarias, de radio, de televisie of 012. Het bereikt ook buitenlandse telefoons die goed zijn ingesteld, in het Spaans en soms in een andere taal, en het zal u nooit om persoonlijke gegevens vragen. In het SOS-paneel: «ES-Alert-berichten».",
+    "pl": "📲 To system ostrzegania Obrony Cywilnej: dociera do włączonych telefonów z zasięgiem w zagrożonej strefie, bez aplikacji i rejestracji, i dzwoni nawet w trybie wyciszonym; w trybie samolotowym nie dociera. Jeśli jest w nim słowo SIMULACRO lub PRUEBA (ćwiczenia lub test), to ćwiczenia: wystarczy go przeczytać i nie dzwonić pod 112. Jeśli jest prawdziwy, trzeba przeczytać go w całości i stosować się do instrukcji; za kierownicą najpierw zaparkować w bezpiecznym miejscu. Nie należy dzwonić pod 112, żeby o coś zapytać: informacje są w mediach społecznościowych 112 Canarias, w radiu, w telewizji i pod numerem 012. Dociera też do zagranicznych telefonów, jeśli są dobrze ustawione, po hiszpańsku i czasem w innym języku, i nigdy nie poprosi o dane osobowe. Jest w SOS: «Ostrzeżenia ES-Alert».",
+    "zh": "📲 这是民防部门的警报系统：它会发到受影响地区内开着机、有信号的手机上，无需应用或注册，静音时也会响铃；飞行模式下收不到。如果写着 SIMULACRO 或 PRUEBA（演习或测试），那就是演练：读一下就好，不要拨打 112。如果是真的，请完整阅读并按指示去做；正在开车的话，先在安全的地方停车。不要为了询问情况拨打 112：请关注 112 Canarias 的社交媒体，或通过广播、电视或拨打 012 了解情况。设置正确的外国手机也能收到，信息为西班牙语，有时附带另一种语言；它绝不会向您索要个人信息。详见 SOS 里的「ES-Alert 警报」。",
+    "zht": "📲 這是民防部門的警報系統：它會發送到受影響地區內開著機、有訊號的手機上，無需應用程式或註冊，靜音時也會響鈴；飛航模式下收不到。如果寫著 SIMULACRO 或 PRUEBA（演習或測試），那就是演練：讀一下就好，不要撥打 112。如果是真的，請完整閱讀並依指示去做；正在開車的話，先在安全的地方停車。不要為了詢問情況撥打 112：請關注 112 Canarias 的社群媒體，或透過廣播、電視或撥打 012 了解情況。設定正確的外國手機也能收到，訊息為西班牙語，有時附帶另一種語言；它絕不會向您索取個人資料。詳見 SOS 裡的「ES-Alert 警報」。"
+   },
+   "follow": [
+    "sal-10",
+    "sal-01",
+    "sal-09"
+   ],
+   "rotulos": [
+    "EMERG.sosGuiaEsAlert"
+   ],
+   "comprobado": "modulos/emergencias.js (24/10/2026), guia esalert: sosEsa1 (sistema de alertas de Proteccion Civil; moviles encendidos y con cobertura en la zona, sin app ni registro, suena en silencio; en modo avion no llega), sosEsa2 (SIMULACRO o PRUEBA: no llamar al 112), sosEsa3, sosEsa4 (aparcar antes de leerlo), sosEsa5 (no llamar al 112 para preguntar; redes del 112 Canarias, radio, television o 012), sosEsa8 (nunca pide datos personales) y sosVis4 (llega tambien a moviles extranjeros bien configurados; en castellano y puede traer otro idioma). Fuentes del panel: 112 Canarias (el sistema ES-Alert), el triptico y la cartela de ES-Alert, el INCIBE y el aviso del simulacro VOLCANEX (22/10/2026)."
   }
  ]
 }

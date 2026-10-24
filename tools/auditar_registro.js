@@ -145,8 +145,12 @@ const MARCAS = {
             sin pronombre de las frases del dia («Sois patient», «Marche vers la
             mer», «Aie sa patience») y del asistente («Lis-le avant d'y aller») */
          'Sois', 'Explore', 'Soigne', 'Sors', 'Aie', 'Apprends', 'Profites', 'Lis', 'Évite', 'Marche (?:vers|dix|doucement)', 'Marche,',
-         'Reste pour', 'Commence par', 'Compte le pas', 'Remarque le', 'Célèbre de'),
-       trasEmoji('Demande-moi', 'Touche', 'Choisis', 'Essaie', 'Regarde', 'Cherche', 'Va'),
+         'Reste pour', 'Commence par', 'Compte le pas', 'Remarque le', 'Célèbre de',
+         /* los que se le escapaban al asistente y a la tarjeta de las
+            notificaciones (23 de octubre de 2026): «Touches-en une pour la
+            voir», «Réessaie avec d’autres mots», «Réessaie plus tard» */
+         'Touches-en', 'Réessaie'),
+       trasEmoji('Demande-moi', 'Touche', 'Choisis', 'Essaie', 'Réessaie', 'Regarde', 'Cherche', 'Va'),
        /* y en medio de la frase, en minuscula: «Dans Safari, touche… et choisis…», «: vérifie avant de…» */
        new RegExp('(?:[,:;—–]\\s*|\\set\\s+|\\sou\\s+)(?:va|vas-y|choisis|choisis-en|sois|vérifie|consulte|prends|mets|mets-le|touche|touche-la|cherche|cherche-la|lis|essaie|respire|regarde|demande|donne-lui)(?![' + L_ + '])', 'u'),
        /* «tu» ya caza «tu peux», «as-tu», «peux-tu»: «peux», «veux», «fais»… solos
@@ -172,6 +176,12 @@ const MARCAS = {
        trasEmoji('Frag', 'Versuch', 'Versuche', 'Probier', 'Probiere', 'Tippe', 'Tipp', 'Wähle', 'Wähl', 'Schau', 'Gib', 'Sieh', 'Geh', 'Komm', 'Such', 'Öffne', 'Sprich'),
        /* y en medio de la frase, en minuscula, tras dos puntos, coma o «und»: «Heute: geh langsam», «wähl eins und geh» */
        new RegExp('(?:[,:;—–]\\s*|\\sund\\s+)(?:geh|wähl|probier|schau|frag|such|atme|bleib|lass|nimm|gib|sieh|hör|tu|komm|denk|ruh|tipp|öffne|wähle|tippe)(?![' + L_ + '])', 'u'),
+       /* y en cualquier sitio de la frase, «komm» y «prüf» en minuscula, que no
+          son nada mas que el imperativo de du: el asistente decia «an
+          Aussichtspunkten komm vor zehn» (mov-07) y «also prüf vorher ihren
+          Status» (pla-11), y ni el principio de frase ni la coma los veian
+          (23 de octubre de 2026) */
+       pal('komm', 'prüf'),
        /* «Bitte fülle…», «bitte gib…»: tras «bitte», el imperativo de du (el de Sie es «Bitte füllen Sie») */
        new RegExp('(?<![' + L_ + '])[Bb]itte\\s+(?:fülle|füll|gib|wähle|wähl|tippe|tipp|gehe|geh|versuche|versuch|prüfe|prüf|öffne|schau|sieh|nimm|lies|komm|warte|melde|gib)(?![' + L_ + '])', 'u')],
   it: [palI('tu', 'ti', 'te', 'tuo', 'tua', 'tuoi', 'tue'),
