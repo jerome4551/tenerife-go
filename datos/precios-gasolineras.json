@@ -6,9 +6,9 @@
   "La app no ensena estos precios si «fecha» tiene mas de 2 dias."
  ],
  "fuente": "Ministerio para la Transicion Ecologica y el Reto Demografico, Geoportal de Gasolineras",
- "fecha": "2026-10-24T07:27:14Z",
- "fecha_ministerio": "24/10/2026 9:27:14",
- "franja": "2026-10-24 07:00",
+ "fecha": "2026-10-24T14:02:50Z",
+ "fecha_ministerio": "24/10/2026 16:02:50",
+ "franja": "2026-10-24 15:00",
  "municipios": {
   "Adeje": {
    "gasolineras": 14,
@@ -370,6 +370,11 @@
    "cuantas": 2,
    "g95": [
     {
+     "id": "gas-10970-los-realejos",
+     "ideess": "10970",
+     "precio": 1.459
+    },
+    {
      "id": "gas-14769-los-realejos",
      "ideess": "14769",
      "precio": 1.459
@@ -381,6 +386,11 @@
     }
    ],
    "diesel": [
+    {
+     "id": "gas-10970-los-realejos",
+     "ideess": "10970",
+     "precio": 1.616
+    },
     {
      "id": "gas-14769-los-realejos",
      "ideess": "14769",
@@ -456,34 +466,34 @@
     {
      "id": "gas-13292-san-miguel-de-abona",
      "ideess": "13292",
-     "precio": 1.419
+     "precio": 1.409
     },
     {
      "id": "gas-15913-san-miguel-de-abona",
      "ideess": "15913",
-     "precio": 1.419
+     "precio": 1.409
     },
     {
      "id": "gas-16520-san-miguel-de-abona",
      "ideess": "16520",
-     "precio": 1.419
+     "precio": 1.409
     }
    ],
    "diesel": [
     {
      "id": "gas-13292-san-miguel-de-abona",
      "ideess": "13292",
-     "precio": 1.569
+     "precio": 1.559
     },
     {
      "id": "gas-15913-san-miguel-de-abona",
      "ideess": "15913",
-     "precio": 1.569
+     "precio": 1.559
     },
     {
      "id": "gas-16520-san-miguel-de-abona",
      "ideess": "16520",
-     "precio": 1.569
+     "precio": 1.559
     }
    ]
   },
@@ -627,7 +637,7 @@
    "diesel": 1.699
   },
   "gas-10633-san-miguel-de-abona": {
-   "g95": 1.599,
+   "g95": 1.609,
    "diesel": 1.729
   },
   "gas-10635-arafo": {
@@ -659,8 +669,8 @@
    "diesel": 1.739
   },
   "gas-10970-los-realejos": {
-   "g95": 1.479,
-   "diesel": 1.657
+   "g95": 1.459,
+   "diesel": 1.616
   },
   "gas-10990-los-realejos": {
    "g95": 1.529,
@@ -718,7 +728,7 @@
    "diesel": 1.739
   },
   "gas-12630-arafo": {
-   "g95": 1.569,
+   "g95": 1.579,
    "diesel": 1.729
   },
   "gas-12776-adeje": {
@@ -730,16 +740,16 @@
    "diesel": 1.738
   },
   "gas-13201-san-miguel-de-abona": {
-   "g95": 1.498,
-   "diesel": 1.698
+   "g95": 1.419,
+   "diesel": 1.569
   },
   "gas-13228-adeje": {
    "g95": 1.599,
    "diesel": 1.739
   },
   "gas-13292-san-miguel-de-abona": {
-   "g95": 1.419,
-   "diesel": 1.569
+   "g95": 1.409,
+   "diesel": 1.559
   },
   "gas-13353-san-cristobal-de-la-laguna": {
    "g95": 1.566,
@@ -826,8 +836,8 @@
    "diesel": 1.619
   },
   "gas-15913-san-miguel-de-abona": {
-   "g95": 1.419,
-   "diesel": 1.569
+   "g95": 1.409,
+   "diesel": 1.559
   },
   "gas-16015-adeje": {
    "g95": 1.469,
@@ -854,8 +864,8 @@
    "diesel": 1.699
   },
   "gas-16520-san-miguel-de-abona": {
-   "g95": 1.419,
-   "diesel": 1.569
+   "g95": 1.409,
+   "diesel": 1.559
   },
   "gas-7616-granadilla-de-abona": {
    "g95": 1.569,
