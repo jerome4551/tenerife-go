@@ -9876,8 +9876,11 @@ antes de juntarla:
   canal de WhatsApp oficial del 112, el litro y medio de agua por persona y
   día de la guía de 2025, las Órdenes INT/1071/2026 e INT/1069/2026 (BOE del
   10 de octubre), los 100 metros de profundidad del IGN para un barco, el
-  «no le dé nada de beber» de Sanidad en el golpe de calor. Sin comprobar,
-  como dice la nota: el visor de riesgos de GRAFCAN.
+  «no le dé nada de beber» de Sanidad en el golpe de calor. El visor de
+  riesgos de GRAFCAN, que aquí no se pudo abrir, lo abrió Jerome en su
+  móvil el 24 por la mañana (captura): carga y enseña las capas de los
+  planes especiales de protección civil (PEVOLCA, PESICAN, RADICAN y
+  PEINCA).
 
 **Al juntarlo** encima de `cbf6ad2` (con el cielo, el trato de usted en los
 diez idiomas y el perfil) chocaban ocho ficheros, y en todos se quedan las
