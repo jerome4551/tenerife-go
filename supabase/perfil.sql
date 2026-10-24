@@ -17,8 +17,9 @@
 --  nombre de 24 letras como mucho, avatar con forma de id del catálogo,
 --  unidades, altura de 80 a 250 cm, año de nacimiento, objetivo de 20 a
 --  400 kg; pesos de 20 a 400 kg, uno por día; caminatas de 0,1 a 200 km,
---  con su id. Las visitas comprobadas NO suben: son lugares y fechas, y se
---  quedan en el móvil.
+--  con su id; y como mucho 2.000 pesos y 2.000 caminatas por cuenta (los
+--  topes, al final). Las visitas comprobadas NO suben: son lugares y fechas,
+--  y se quedan en el móvil.
 --
 --  Igual que en favorites.sql: la condición va en «using» para leer y
 --  borrar y en «with check» para insertar y actualizar; ninguna policy para
@@ -140,15 +141,23 @@ create policy caminatas_own_delete on public.caminatas
 revoke all on public.perfiles, public.pesos, public.caminatas from anon, authenticated;
 grant select, insert, update, delete on public.perfiles, public.pesos, public.caminatas to authenticated;
 
--- Los topes (23 de octubre de 2026). La RLS no deja tocar lo de otra cuenta, pero con una
--- cuenta cualquiera se podía meter en lo propio tanto como se quisiera, a mano, contra la API:
--- millones de pesos (una fecha cualquiera, un peso por fecha) o de caminatas (un id cualquiera),
--- hasta llenar la base de datos del proyecto, y con ella la nube de todo el mundo. Ahora, como
--- mucho 20.000 pesos y 20.000 caminatas por cuenta: más de cincuenta años de un peso y una
--- caminata al día. Se cuenta una vez por subida, al acabar (con las filas que entraron, en
--- «nuevas»), y no una vez por fila: subir 1.095 pesos de golpe cuesta lo mismo que uno. Lo que
--- ya está se puede volver a subir (la app sube con upsert, y eso no suma filas); lo que pasa del
--- tope deshace la subida entera con el error 54000, y la app lo reintenta como cualquier otro.
+-- Los topes (23 de octubre de 2026, como los de favorites.sql). La RLS no deja tocar lo de
+-- otra cuenta, pero con una cuenta cualquiera se podían meter en las propias tantos pesos y
+-- caminatas como se quisiera, a mano, contra la API, hasta llenar la base de datos del
+-- proyecto. Ahora:
+--   · cada peso y cada caminata, con una fecha entre 1900 y 2100;
+--   · como mucho 2.000 pesos y 2.000 caminatas por cuenta (un peso al día son más de cinco
+--     años). La app tampoco deja anotar más, y los lee por páginas: Supabase da como mucho
+--     1.000 filas por consulta.
+-- El tope se cuenta una vez por subida, al acabar (con las filas que entraron, en «nuevas»).
+-- Lo que ya está se puede volver a subir (la app sube con upsert, y eso no suma filas).
+alter table public.pesos drop constraint if exists pesos_fecha;
+alter table public.pesos add constraint pesos_fecha
+  check (fecha between date '1900-01-01' and date '2100-12-31');
+alter table public.caminatas drop constraint if exists caminatas_fecha;
+alter table public.caminatas add constraint caminatas_fecha
+  check (fecha between date '1900-01-01' and date '2100-12-31');
+
 create or replace function public.pesos_tope() returns trigger
 language plpgsql
 set search_path = public
@@ -156,7 +165,7 @@ as '
 begin
   if exists (select 1 from public.pesos p
               where p.user_id in (select n.user_id from nuevas n)
-              group by p.user_id having count(*) > 20000) then
+              group by p.user_id having count(*) > 2000) then
     raise exception ''demasiados pesos en esta cuenta'' using errcode = ''54000'';
   end if;
   return null;
@@ -169,14 +178,15 @@ as '
 begin
   if exists (select 1 from public.caminatas c
               where c.user_id in (select n.user_id from nuevas n)
-              group by c.user_id having count(*) > 20000) then
+              group by c.user_id having count(*) > 2000) then
     raise exception ''demasiadas caminatas en esta cuenta'' using errcode = ''54000'';
   end if;
   return null;
 end';
 
--- Las dos son de disparador: nadie las llama a mano, y nadie más que el disparador puede.
-revoke execute on function public.pesos_tope(), public.caminatas_tope() from public, anon, authenticated;
+-- Son de disparador: nadie las llama a mano, y nadie más que el disparador puede.
+revoke execute on function public.pesos_tope() from public, anon, authenticated;
+revoke execute on function public.caminatas_tope() from public, anon, authenticated;
 
 drop trigger if exists pesos_tope on public.pesos;
 create trigger pesos_tope after insert on public.pesos
