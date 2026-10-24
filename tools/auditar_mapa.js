@@ -704,6 +704,92 @@ function ok(cond, txt, detalle) {
     }
   }
 
+  /* ── BLOQUE 7 · al soltar el pellizco: preciso y sin esperar (24 de octubre de 2026, tarde) ──
+
+     Jerome: «El zoom se puede hacer mejor todavía, trabájalo más y preciso». Al soltar, Leaflet
+     lleva el zoom al medio nivel mas cercano con una animacion de 250 ms. Lo hacia alrededor del
+     centro del mapa (el punto que estaba entre los dedos se movia) y no pedia las teselas hasta
+     el final. La app cambia el _onTouchEnd de Leaflet: el ajuste, alrededor del punto del
+     pellizco, y las teselas, pedidas al empezar. Y las tres capas de teselas no piden nada a
+     mitad del gesto (updateWhenZooming: false). Aqui: que la Leaflet de vendor/ sigue siendo la
+     que se sustituye; y, con un pellizco de verdad fuera del centro, que el punto no se mueve,
+     que a mitad del gesto no se pide ninguna tesela y que al soltar se piden enseguida. Y, con
+     el _onTouchEnd original de Leaflet, el mismo gesto mueve el punto y espera: la medida sabe
+     ponerse en rojo. */
+  console.log('\n════════ el mapa · bloque 7, al soltar el pellizco ════════\n');
+  {
+    const html = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+    const leafletV = fs.readFileSync(path.join(RAIZ, 'vendor', 'leaflet.js'), 'utf8');
+    const ORIGINAL = '_onTouchEnd:function(){this._moved&&this._zooming?(this._zooming=!1,r(this._animRequest),k(document,"touchmove",this._onTouchMove,this),k(document,"touchend touchcancel",this._onTouchEnd,this),this._map.options.zoomAnimation?this._map._animateZoom(this._center,this._map._limitZoom(this._zoom),!0,this._map.options.zoomSnap):this._map._resetView(this._center,this._map._limitZoom(this._zoom))):this._zooming=!1}';
+    ok(leafletV.includes(ORIGINAL) && leafletV.includes('this._center=e.unproject(e.project(this._pinchStartLatLng,this._zoom).subtract(i),this._zoom)'),
+       'la Leaflet de vendor/ trae el _onTouchEnd que la app sustituye, y el pellizco mantiene _pinchStartLatLng bajo los dedos');
+    const fin = (html.match(/L\.Map\.TouchZoom\.prototype\._onTouchEnd = function \(\) \{[\s\S]*?\n\};\n/) || [''])[0];
+    ok(/c = m\.unproject\(P\.subtract\(P\.subtract\(C\)\.divideBy\(s\)\), this\._zoom\);/.test(fin) && /m\._animateZoom\(c, z, true, false\)/.test(fin) && html.indexOf(fin) < html.indexOf("map = L.map('map', {"),
+       'la app ajusta el zoom alrededor del punto del pellizco y pide las teselas al empezar la animacion (antes de crear el mapa)');
+    const capasT = (html.match(/const tileOptions = \{[^\n]*\};\nconst layers = \{[\s\S]*?\n\};/) || [''])[0];
+    ok(/const tileOptions = \{ bounds: tileBounds, maxZoom: 19, updateWhenZooming: false \};/.test(capasT) && /streets: L\.tileLayer\([^\n]*\.\.\.tileOptions/.test(capasT)
+       && (capasT.match(/detectRetina: true, updateWhenZooming: false \}/g) || []).length === 2,
+       'las tres capas de teselas (calles, satelite y relieve) no piden nada a mitad del gesto');
+
+    const PNG = fs.readFileSync(path.join(RAIZ, 'icon-192.png'));
+    const browser7 = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-proxy-server', '--no-sandbox'] });
+    try {
+      const ctx = await browser7.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
+      const page = await ctx.newPage();
+      const errores = []; page.on('pageerror', e => errores.push(e.message));
+      const pedidas = [];
+      let n = 0;
+      await page.route(/tile\.openstreetmap\.org/, async r => { pedidas.push(Date.now()); n++; await new Promise(z => setTimeout(z, 150 + (n * 37) % 100)); r.fulfill({ status: 200, contentType: 'image/png', body: PNG }); });
+      await page.route(/^https?:\/\/(?!127\.0\.0\.1)(?!.*tile\.openstreetmap\.org)/, r => r.abort());
+      await page.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
+      await page.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'load' });
+      if (await page.$('.v19-w-lang[data-lang="es"]')) { await page.click('.v19-w-lang[data-lang="es"]'); await page.waitForTimeout(200); await page.click('#v19-welcome-start'); }
+      /* al empezar la animacion del ajuste (zoomanim), donde esta en la pantalla el punto del
+         pellizco; al acabar (zoomend), cuanto se ha movido */
+      await page.evaluate(() => {
+        map.on('zoomanim', () => { const ll = map.touchZoom._pinchStartLatLng; window.__soltar = { t: Date.now(), p: ll && map.latLngToContainerPoint(ll), ll: ll, z: map.getZoom() }; });
+        map.on('zoomend', () => { const s = window.__soltar; if (s && s.ll && s.d == null) s.d = map.latLngToContainerPoint(s.ll).distanceTo(s.p); });
+        /* el _onTouchEnd de Leaflet 1.9.4 tal cual, para comparar */
+        window.__original = function () {
+          if (!(this._moved && this._zooming)) { this._zooming = false; return; }
+          this._zooming = false;
+          L.Util.cancelAnimFrame(this._animRequest);
+          L.DomEvent.off(document, 'touchmove', this._onTouchMove, this);
+          L.DomEvent.off(document, 'touchend touchcancel', this._onTouchEnd, this);
+          if (this._map.options.zoomAnimation) this._map._animateZoom(this._center, this._map._limitZoom(this._zoom), true, this._map.options.zoomSnap);
+          else this._map._resetView(this._center, this._map._limitZoom(this._zoom));
+        };
+      });
+      const cdp = await ctx.newCDPSession(page);
+      /* un pellizco fuera del centro (90, 230): alejar de 14 hacia 12,6; cada vez en otro sitio,
+         para que las teselas no esten ya en la cache del navegador */
+      const gesto = async (centro, original) => {
+        await page.evaluate(([c, o]) => { map.setView(c, 14, { animate: false }); if (o) map.touchZoom._onTouchEnd = window.__original; else delete map.touchZoom._onTouchEnd; window.__soltar = null; }, [centro, original]);
+        await page.waitForTimeout(2500);
+        const t0 = Date.now();
+        await cdp.send('Input.synthesizePinchGesture', { x: 90, y: 230, scaleFactor: 0.4, relativeSpeed: 600, gestureSourceType: 'touch' });
+        await page.waitForTimeout(900);
+        const s = await page.evaluate(() => window.__soltar && { t: window.__soltar.t, d: window.__soltar.d, z: window.__soltar.z, zf: map.getZoom() });
+        const durante = pedidas.filter(t => t >= t0 && t < s.t).length;
+        const primera = pedidas.filter(t => t >= s.t).sort((a, b) => a - b)[0];
+        return { d: s.d, z: s.z, zf: s.zf, durante, primera: primera ? primera - s.t : null };
+      };
+      const app = await gesto([28.405, -16.54], false);
+      ok(app.d != null && app.d <= 1 && Math.abs(app.zf - app.z) > 0.01,
+         'al soltar fuera del centro (de 14 a ' + app.z.toFixed(2) + ', ajustado a ' + app.zf + '), el punto que estaba entre los dedos no se mueve', app.d != null ? app.d.toFixed(1) + ' px' : 'sin medida');
+      ok(app.durante === 0 && app.primera != null && app.primera < 150,
+         'a mitad del gesto no se pide ninguna tesela, y al soltar la primera sale a los ' + app.primera + ' ms (antes de que acabe la animacion de 250 ms)', JSON.stringify(app));
+      const leaflet = await gesto([28.10, -16.70], true);
+      ok(leaflet.d != null && leaflet.d > 5 && leaflet.primera != null && leaflet.primera >= 240,
+         'y con el _onTouchEnd original de Leaflet, el mismo gesto mueve el punto (' + (leaflet.d != null ? leaflet.d.toFixed(0) : '?') + ' px) y espera ' + leaflet.primera + ' ms para pedir: la medida sabe ponerse en rojo', JSON.stringify(leaflet));
+      await page.evaluate(() => { delete map.touchZoom._onTouchEnd; });
+      ok(errores.length === 0, 'sin errores de pagina', errores.slice(0, 3).join(' | '));
+      await ctx.close();
+    } finally {
+      await browser7.close();
+    }
+  }
+
   console.log('\n  ' + (fallos ? fallos + ' MAL de ' + hechos : hechos + ' controles, todos en verde') + '\n');
   process.exit(fallos ? 1 : 0);
 })();

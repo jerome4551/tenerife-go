@@ -16176,6 +16176,37 @@ function toggleFavoritesView() {
 // ══════════════════════════════════════════════════════════
 // Bounds para navegación — más amplios que la isla para ver el océano alrededor
 const tenerifeBounds = L.latLngBounds(L.latLng(27.90, -16.98), L.latLng(28.65, -16.08));
+
+/* ── AL SOLTAR EL PELLIZCO (24 de octubre de 2026, tarde) ──────────────────────────────────
+   Jerome: «El zoom se puede hacer mejor todavía, trabájalo más y preciso». Medido con un
+   pellizco de verdad en un móvil emulado (tools/auditar_mapa.js, bloque 7). Al soltar, Leaflet
+   lleva el zoom al medio nivel más cercano (zoomSnap 0.5) con una animación de 250 ms, y eso
+   tenía dos fallos:
+   · el ajuste se hacía alrededor del CENTRO del mapa, así que el punto que estaba entre los
+     dedos se movía: de 8 a 34 px pellizcando fuera del centro. Ahora se hace alrededor de ese
+     punto, que se queda quieto (0 px);
+   · y no se pedían las teselas del nivel nuevo hasta que acababa la animación (Leaflet pasa
+     zoomSnap como «noUpdate»). Ahora se piden al empezarla, como con los botones de zoom: al
+     alejar, el mapa queda nítido unos 250 ms antes (de 662 a 417 ms con las calles).
+   Es el _onTouchEnd de Leaflet 1.9.4 (vendor/leaflet.js) con esos dos cambios; la auditoría del
+   mapa comprueba que el de vendor/ sigue siendo el que se sustituye. */
+L.Map.TouchZoom.prototype._onTouchEnd = function () {
+  if (!(this._moved && this._zooming)) { this._zooming = false; return; }
+  this._zooming = false;
+  L.Util.cancelAnimFrame(this._animRequest);
+  L.DomEvent.off(document, 'touchmove', this._onTouchMove, this);
+  L.DomEvent.off(document, 'touchend touchcancel', this._onTouchEnd, this);
+  const m = this._map, z = m._limitZoom(this._zoom);
+  let c = this._center;
+  /* el punto del pellizco (_pinchStartLatLng, que Leaflet mantiene bajo los dedos) se queda en
+     su sitio: en pixeles del zoom actual, el centro nuevo es P - (P - C) / escala */
+  if (m.options.touchZoom !== 'center' && this._pinchStartLatLng && z !== this._zoom) {
+    const P = m.project(this._pinchStartLatLng, this._zoom), C = m.project(c, this._zoom), s = m.getZoomScale(z, this._zoom);
+    c = m.unproject(P.subtract(P.subtract(C).divideBy(s)), this._zoom);
+  }
+  if (m.options.zoomAnimation) m._animateZoom(c, z, true, false); else m._resetView(c, z);
+};
+
 map = L.map('map', {
   maxBounds: tenerifeBounds,
   maxBoundsViscosity: 0.7,  // suave — permite ver algo de océano pero vuelve sola
@@ -16255,17 +16286,22 @@ map.on('click', () => {
    alrededor es ligero y se cachea bien. maxBounds (donde puede moverse el
    usuario) NO cambia: sigue anclado a Tenerife. */
 const tileBounds = L.latLngBounds(L.latLng(27.35, -17.65), L.latLng(29.20, -15.40));
-const tileOptions = { bounds: tileBounds, maxZoom: 19 };
+/* updateWhenZooming: false en las tres capas de teselas (24 de octubre de 2026, tarde): a mitad
+   del pellizco Leaflet cambiaba de nivel y pedía teselas que, en un movil lento, hacian ir el
+   gesto a saltos (fotogramas de 83 a 150 ms con la CPU x4; ahora de 33 ms) y que muchas veces
+   ya no se miraban al soltar. Ahora se piden al soltar (ver _onTouchEnd), con el fondo de la
+   isla debajo mientras llegan. */
+const tileOptions = { bounds: tileBounds, maxZoom: 19, updateWhenZooming: false };
 const layers = {
   /* El credito de OSM, con enlace a su pagina de derechos de autor y
      licencia, como pide la guia de atribucion de la OSMF (16 de octubre de
      2026, LANZAMIENTO-PLAY.md 1.6): «© OpenStreetMap» suelto no nombraba la
      licencia en ningun sitio visible. */
   streets: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { ...tileOptions, subdomains: ['a','b','c'], attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>' }),
-  satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, maxNativeZoom: 18, attribution: '© Esri', crossOrigin: false, detectRetina: true }),
+  satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, maxNativeZoom: 18, attribution: '© Esri', crossOrigin: false, detectRetina: true, updateWhenZooming: false }),
   // Topo: Esri World_Topo_Map — mismo CDN fiable que el satélite.
   // (OpenTopoMap aplica rate-limiting y fallaba en móvil: caché fría → 429/503.)
-  topo: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, maxNativeZoom: 18, attribution: '© Esri', crossOrigin: false, detectRetina: true })
+  topo: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, maxNativeZoom: 18, attribution: '© Esri', crossOrigin: false, detectRetina: true, updateWhenZooming: false })
 };
 layers.streets.addTo(map);
 let currentLayer = 'streets';

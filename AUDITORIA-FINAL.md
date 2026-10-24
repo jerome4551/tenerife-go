@@ -2487,6 +2487,142 @@ leen los `.pmtiles` desde Python (`auditar_ubicacion.py`,
 `auditar_en_el_mar.py` e `informe_lugares.js`): les falta el módulo
 `pmtiles`, que no se puede instalar sin PyPI.
 
+## Al soltar el pellizco, preciso; y Open-Meteo sin pagar (24 de octubre, tarde, décimo bloque)
+
+Jerome, a las 15:07: «El zoom se puede hacer mejor todavía, trabájalo más y
+preciso, el mejor posible»; y de Open-Meteo: «¿podemos tenerlo gratis con la
+API que creamos pronto? […] No queremos estos precios. ¿Cómo podemos hacerlo
+nosotros directo sin coste?».
+
+### El pellizco, otra vez medido
+
+Se midió lo que queda después de soltar, con el mismo móvil emulado que en el
+noveno bloque: cuándo queda **nítido** el mapa (todas las teselas del nivel
+final pintadas, no solo el fondo borroso), cuánto se mueve el punto que
+estaba entre los dedos y los fotogramas del gesto. Un perfil del hilo
+principal con la CPU ×4 dice que en las calles el JavaScript es poco (unos
+270 ms de Leaflet y del agrupador de marcadores en dos pellizcos): el resto
+es pintar y componer la página. Encontró tres cosas:
+
+- **Al soltar, el mapa daba un saltito.** Leaflet lleva el zoom al medio
+  nivel más cercano (`zoomSnap: 0.5`) con una animación de 250 ms, y la hacía
+  alrededor del centro del mapa: pellizcando fuera del centro, el punto que
+  estaba entre los dedos se movía de 8 a 34 px.
+- **Y no pedía las teselas hasta acabar esa animación** (pasa `zoomSnap` como
+  `noUpdate`): 250 ms de espera en cada pellizco.
+- **Las calles cambiaban de nivel a mitad del gesto** y pedían teselas que a
+  menudo ya no se miraban al soltar: en un móvil lento, fotogramas de 83 a 150
+  ms mientras se pellizcaba.
+
+Lo que cambia, en `index.html`:
+
+- **`_onTouchEnd` propio** (`L.Map.TouchZoom.prototype`, antes de crear el
+  mapa): el de Leaflet 1.9.4 con dos cambios. El ajuste se hace alrededor del
+  punto del pellizco (`_pinchStartLatLng`, que Leaflet mantiene bajo los
+  dedos: en píxeles del zoom actual, el centro nuevo es P − (P − C) / escala),
+  y las teselas se piden al empezar la animación, como con los botones de
+  zoom.
+- **Las tres capas de teselas** (calles, satélite y relieve), con
+  `updateWhenZooming: false`, como las dos de la isla: nada a mitad del gesto;
+  el fondo de la isla cubre lo que entra mientras llegan.
+
+Antes y ahora, medianas de seis y de dos pasadas, con las teselas de las
+calles servidas con 120 a 250 ms de red:
+
+| | esta mañana | ahora |
+|---|---|---|
+| el punto entre los dedos, al soltar fuera del centro | se mueve de 8 a 34 px | 0 px |
+| calles, nítido después de alejar | 0,66 s | 0,40 s |
+| calles, nítido después de acercar | 0,28 s | 0,41 s |
+| isla, nítido después de alejar | 0,60 s | 0,40 s |
+| isla, nítido después de acercar | 0,48 s | 0,30 s |
+| móvil lento (CPU ×4), calles: peor fotograma del gesto | 50 a 117 ms | 33 ms |
+| móvil lento, isla: nítido después de alejar | 1,48 s | 1,04 s |
+
+Lo que cuesta: al acercar con las calles, nítido 0,13 s más tarde, porque ya
+no se piden teselas a mitad del gesto. Con ellas (se probó: el `_onTouchEnd`
+nuevo con las calles pidiendo a mitad del gesto) quedaba nítido a los 0,28 s,
+pero en el móvil lento volvían los fotogramas de 117 a 150 ms. Se queda el
+gesto sin tirones, que además pide menos teselas a OpenStreetMap. El medio
+nivel (`zoomSnap: 0.5`) se queda: sin él, la mitad de las veces las teselas
+de las calles se ven estiradas hasta un 41 % y borrosas; con él, nunca se
+estiran.
+
+### Open-Meteo, sin pagar y con los mismos datos
+
+Lo de la mañana (el plan de pago, 29 € al mes o 319 € al año) ya no hace
+falta. Open-Meteo es de código abierto y publica su base de datos entera en
+AWS:
+
+- **Se puede, también para uso comercial.** «Self-hosting is available for
+  non-commercial and commercial use. Weather data is provided under
+  CC-BY-4.0, which requires attribution.» (su guía de instalación). Y en sus
+  precios: «While you are permitted to utilise and distribute the data,
+  including for commercial purposes, attribution is a requirement under this
+  licence.»
+- **Los mismos datos.** El servidor es el mismo («An HTTP API server, which
+  provides the same API as available on open-meteo.com»), con la misma
+  elección de modelos por defecto. Para Tenerife, el tiempo sale del IFS HRES
+  de ECMWF a 9 km, con ICON y GFS (el índice UV, del GFS); el mar, de
+  Météo-France (olas MFWAM, temperatura del agua y mareas SMOC). Lee la base
+  de datos a distancia, sin bajarse los modelos enteros: «The API can access
+  the public Open-Meteo database remotely and cache requested data locally».
+- **Cómo:** el robot de GitHub, cada hora, arranca la imagen oficial
+  (`ghcr.io/open-meteo/open-meteo`) con
+  `REMOTE_DATA_DIRECTORY=https://openmeteo.s3.amazonaws.com/data/`, le hace
+  las dos peticiones que hoy hace cada móvil (los 144 puntos de mar y los 144
+  de tiempo) y deja `datos/tiempo.json`. Sin clave y sin secreto. Hoy casi
+  todo se pide como «ahora» (`current`), que la API calcula para el cuarto de
+  hora de la petición: el fichero lleva las series de los días que se usan (2
+  el mar y las mareas, 3 las nubes del cielo), y la app toma el tramo en curso
+  con su reloj.
+- **Lo que cuesta: nada, con el repositorio público.** «GitHub Actions usage
+  is free for self-hosted runners and for public repositories that use
+  standard GitHub-hosted runners.» Y GitHub Pages en la cuenta gratuita solo
+  publica repositorios públicos.
+- **La licencia AGPL** del servidor deja ejecutarlo sin modificar sin ningún
+  límite («This License explicitly affirms your unlimited permission to run
+  the unmodified Program»); el robot no lo cambia ni lo ofrece por la red.
+- **Lo que falta, con cualquier camino:** junto a cada dato, «Weather data by
+  Open-Meteo.com» con su enlace y el enlace a la licencia CC BY 4.0; y en el
+  mar, «E.U. Copernicus Marine Service Information», de donde vienen las
+  olas, la temperatura del agua y las mareas de Météo-France.
+- **No se ha podido probar aquí** (el entorno no llega a AWS ni tiene
+  Docker): que la imagen arranque en los ejecutores de GitHub (Open-Meteo pide
+  AVX2), cuánto tarda y cuánto baja cada pasada con 144 puntos, y una
+  comparación, una sola vez, de las respuestas del robot con la API pública
+  («Use the free tier for evaluation and prototyping»).
+
+El detalle, con cada cita y sus enlaces, en el proyecto
+(`claude/OPEN-METEO-24-10-2026.md`).
+
+### Cómo se comprueba
+
+`tools/auditar_mapa.js`, **bloque 7**, 7 controles. Sin navegador: que la
+Leaflet de `vendor/` trae el `_onTouchEnd` que la app sustituye, y que el
+pellizco mantiene `_pinchStartLatLng` bajo los dedos; que la app ajusta
+alrededor de ese punto y pide las teselas al empezar la animación, antes de
+crear el mapa; y que las tres capas de teselas no piden nada a mitad del
+gesto. En el navegador, con un pellizco de verdad fuera del centro: el punto
+no se mueve (0 px); a mitad del gesto, ninguna petición de teselas, y al
+soltar la primera sale a los pocos milisegundos (14 ms); y con el
+`_onTouchEnd` original de Leaflet, el mismo gesto mueve el punto (8 px) y
+espera 262 ms para pedir, para que se vea que la medida sabe ponerse en rojo.
+
+### El resultado
+
+Sobre el árbol final (los seis commits encima de `ac10788`), el 24 de
+octubre de 2026 por la tarde: `auditar.sh` entero sin un solo fallo.
+`auditar_mapa.js`, 98 controles, con los bloques 6 y 7; `auditar_cielo.js`,
+302; `barrido_pantallas.js`, 106 pantallas y fichas por idioma y 0 textos sin
+traducir; `auditar_etiquetas.js`, 0 sin traducir ni declarar;
+`auditar_registro.js`, el castellano todo de usted (pendientes, los mismos
+que en el noveno bloque); el cirílico, 1.903 nombres y 0 variantes
+sospechosas; `auditar_web.js`, 44 tablas y 1828 filas; `barrido_idiomas.js`,
+3.969; la descarga, 1.044 kB en castellano, 1.158 en búlgaro y 1.144 en
+polaco. Los tres controles que leen los `.pmtiles` desde Python siguen sin
+poder correr aquí, como en el noveno bloque.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
