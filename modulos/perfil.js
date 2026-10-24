@@ -2,7 +2,9 @@
 
    QUE ES. El avatar (235, de modulos/avatares.js: cinco por cada idioma
    de la app, cinco de Tenerife y, desde el 23 de octubre, cinco por cada
-   uno de 36 paises de Europa), el nombre o apodo, los datos (altura, peso
+   uno de 36 paises de Europa; y 49 de oro, que solo se cogen el dia de su
+   fiesta y se quedan; al tocarlos, se mueven un segundo), el nombre o
+   apodo, los datos (altura, peso
    y año de nacimiento, con el IMC y su
    categoria de la OMS solo para adultos), su evolucion (el peso y los
    kilometros que anota la persona: ninguno sale de las fichas), su isla
@@ -33,11 +35,13 @@
    LO QUE SE GUARDA. En el dispositivo, tenerife.perfil, validado campo a
    campo al leerlo. En la cuenta, solo con el permiso expreso de esa cuenta
    («Acepto»), en las tablas de supabase/perfil.sql: apartado «la nube, con
-   permiso». Las visitas comprobadas (tenerife.visitas) no suben nunca. */
+   permiso». Las visitas comprobadas (tenerife.visitas) no suben nunca, ni
+   la lista de los de oro conseguidos (st.oro): sube el avatar elegido. */
 (function () {
   'use strict';
 
-  /* Los textos de la pantalla (81), de los sets (47) y de los avatares (235),
+  /* Los textos de la pantalla (94), de los sets (47) y de los avatares (284:
+     235 y 49 de oro, que se llaman como su fiesta),
      en los diez idiomas. El trato, de usted (Jerome, 21 de octubre). Se
      quedan como estan, porque son la voz de quien usa la app: «Sorpréndeme»,
      los titulos chinos con 我的 y «Acepto». */
@@ -47,12 +51,24 @@
     "perfilNombrePlaceholder": {"es": "Su nombre o apodo", "en": "Your name or nickname", "fr": "Votre prénom ou pseudo", "de": "Ihr Name oder Spitzname", "it": "Nome o soprannome", "nl": "Uw naam of bijnaam", "zh": "名字或昵称", "zht": "名字或暱稱", "bg": "Вашето име или прякор", "pl": "Imię lub pseudonim"},
     "perfilBienvenida": {"es": "¡Hola, {nombre}!", "en": "Hi, {nombre}!", "fr": "Bonjour, {nombre} !", "de": "Hallo, {nombre}!", "it": "Salve, {nombre}!", "nl": "Hallo {nombre}!", "zh": "您好，{nombre}！", "zht": "您好，{nombre}！", "bg": "Здравейте, {nombre}!", "pl": "Witamy, {nombre}!"},
     "perfilViajeroDesde": {"es": "Viajero desde {fecha}", "en": "Traveller since {fecha}", "fr": "Voyageur depuis {fecha}", "de": "Reisender seit {fecha}", "it": "Viaggiatore da {fecha}", "nl": "Reiziger sinds {fecha}", "zh": "旅行始于{fecha}", "zht": "旅行始於{fecha}", "bg": "Пътешественик от {fecha}", "pl": "Podróżnik od {fecha}"},
-    "perfilEditarNombre": {"es": "Editar nombre", "en": "Edit name", "fr": "Modifier le nom", "de": "Namen bearbeiten", "it": "Modifica nome", "nl": "Naam bewerken", "zh": "编辑名字", "zht": "編輯名字", "bg": "Промяна на името", "pl": "Zmiana imienia"},
+    "perfilEditarNombre": {"es": "Editar nombre", "en": "Edit name", "fr": "Modifier le nom", "de": "Namen bearbeiten", "it": "Modifica il nome", "nl": "Naam bewerken", "zh": "编辑名字", "zht": "編輯名字", "bg": "Промени името", "pl": "Zmień imię"},
     "perfilElegirAvatar": {"es": "Elija su avatar", "en": "Choose your avatar", "fr": "Choisissez votre avatar", "de": "Wählen Sie Ihren Avatar", "it": "Scelta dell’avatar", "nl": "Kies uw avatar", "zh": "选择头像", "zht": "選擇頭像", "bg": "Изберете аватар", "pl": "Wybór awatara"},
     "perfilSorprendeme": {"es": "Sorpréndeme", "en": "Surprise me", "fr": "Surprenez-moi", "de": "Überrasch mich", "it": "Sorprendimi", "nl": "Verras me", "zh": "随机一个", "zht": "隨機一個", "bg": "Изненадай ме", "pl": "Zaskocz mnie"},
     "perfilTodosPaises": {"es": "Todos los países", "en": "All countries", "fr": "Tous les pays", "de": "Alle Länder", "it": "Tutti i paesi", "nl": "Alle landen", "zh": "所有国家", "zht": "所有國家", "bg": "Всички държави", "pl": "Wszystkie kraje"},
-    "perfilBuscarPais": {"es": "Buscar un país", "en": "Search for a country", "fr": "Rechercher un pays", "de": "Land suchen", "it": "Cercare un paese", "nl": "Land zoeken", "zh": "搜索国家", "zht": "搜尋國家", "bg": "Търсене на държава", "pl": "Wyszukiwanie kraju"},
+    "perfilBuscarPais": {"es": "Buscar un país", "en": "Search for a country", "fr": "Rechercher un pays", "de": "Land suchen", "it": "Cerca un paese", "nl": "Land zoeken", "zh": "搜索国家", "zht": "搜尋國家", "bg": "Търсене на държава", "pl": "Szukaj kraju"},
     "perfilPaisNinguno": {"es": "Ningún país con ese nombre.", "en": "No country by that name.", "fr": "Aucun pays de ce nom.", "de": "Kein Land mit diesem Namen.", "it": "Nessun paese con questo nome.", "nl": "Geen land met die naam.", "zh": "没有匹配的国家。", "zht": "沒有符合的國家。", "bg": "Няма държава с това име.", "pl": "Brak kraju o tej nazwie."},
+    "perfilOroSet": {"es": "De oro", "en": "Golden", "fr": "Dorés", "de": "Goldene", "it": "D’oro", "nl": "Gouden", "zh": "金色", "zht": "金色", "bg": "Златни", "pl": "Złote"},
+    "perfilOroHoy": {"es": "Hoy", "en": "Today", "fr": "Aujourd’hui", "de": "Heute", "it": "Oggi", "nl": "Vandaag", "zh": "今天", "zht": "今天", "bg": "Днес", "pl": "Dziś"},
+    "perfilAvatarOro": {"es": "avatar de oro", "en": "gold avatar", "fr": "avatar doré", "de": "goldener Avatar", "it": "avatar d’oro", "nl": "gouden avatar", "zh": "金色头像", "zht": "金色頭像", "bg": "златен аватар", "pl": "złoty awatar"},
+    "perfilOroEl": {"es": "el {fecha}", "en": "on {fecha}", "fr": "le {fecha}", "de": "am {fecha}", "it": "il {fecha}", "nl": "op {fecha}", "zh": "{fecha}当天", "zht": "{fecha}當天", "bg": "на {fecha}", "pl": "{fecha}"},
+    "perfilOroDelAl": {"es": "del {desde} al {hasta}", "en": "from {desde} to {hasta}", "fr": "du {desde} au {hasta}", "de": "vom {desde} bis {hasta}", "it": "dal {desde} al {hasta}", "nl": "van {desde} tot {hasta}", "zh": "{desde}至{hasta}", "zht": "{desde}至{hasta}", "bg": "от {desde} до {hasta}", "pl": "od {desde} do {hasta}"},
+    "perfilOroNota": {"es": "Avatar de oro: {fiesta}, {cuando}.", "en": "Gold avatar: {fiesta}, {cuando}.", "fr": "Avatar doré : {fiesta}, {cuando}.", "de": "Goldener Avatar: {fiesta}, {cuando}.", "it": "Avatar d’oro: {fiesta}, {cuando}.", "nl": "Gouden avatar: {fiesta}, {cuando}.", "zh": "金色头像：{fiesta}，{cuando}。", "zht": "金色頭像：{fiesta}，{cuando}。", "bg": "Златен аватар: {fiesta}, {cuando}.", "pl": "Złoty awatar: {fiesta}, {cuando}."},
+    "perfilOroNotaHoy": {"es": "{fiesta}: ¡es hoy! Toque el avatar de oro y será suyo.", "en": "{fiesta}: it’s today! Tap the gold avatar to keep it.", "fr": "{fiesta} : c’est aujourd’hui ! Touchez l’avatar doré pour le garder.", "de": "{fiesta}: heute ist es so weit! Tippen Sie auf den goldenen Avatar, dann gehört er Ihnen.", "it": "{fiesta}: è oggi! Basta toccare l’avatar d’oro per tenerlo.", "nl": "{fiesta}: het is vandaag! Tik op de gouden avatar om hem te houden.", "zh": "{fiesta}：就是今天！轻触金色头像即可永久保留。", "zht": "{fiesta}：就是今天！輕觸金色頭像即可永久保留。", "bg": "{fiesta}: днес е! Докоснете златния аватар, за да го запазите.", "pl": "{fiesta}: to dziś! Wystarczy dotknąć złotego awatara, aby go zachować."},
+    "perfilOroTuyo": {"es": "{fiesta}: avatar de oro conseguido.", "en": "{fiesta}: gold avatar collected.", "fr": "{fiesta} : avatar doré obtenu.", "de": "{fiesta}: goldener Avatar erhalten.", "it": "{fiesta}: avatar d’oro ottenuto.", "nl": "{fiesta}: gouden avatar behaald.", "zh": "{fiesta}：已获得金色头像。", "zht": "{fiesta}：已獲得金色頭像。", "bg": "{fiesta}: златният аватар е получен.", "pl": "{fiesta}: złoty awatar zdobyty."},
+    "perfilOroConseguido": {"es": "¡Avatar de oro conseguido! Es suyo para siempre.", "en": "Gold avatar collected! It’s yours to keep.", "fr": "Avatar doré obtenu ! Il est à vous pour toujours.", "de": "Goldener Avatar erhalten! Er gehört Ihnen für immer.", "it": "Avatar d’oro ottenuto! Resta per sempre.", "nl": "Gouden avatar behaald! Hij is voor altijd van u.", "zh": "已获得金色头像！永久归您所有。", "zht": "已獲得金色頭像！永久歸您所有。", "bg": "Получихте златен аватар! Остава ваш завинаги.", "pl": "Złoty awatar zdobyty! Zostaje na zawsze."},
+    "perfilOroBloqueado": {"es": "{fiesta}: este avatar de oro solo se consigue {cuando}.", "en": "{fiesta}: this gold avatar can only be collected {cuando}.", "fr": "{fiesta} : cet avatar doré ne s’obtient que {cuando}.", "de": "{fiesta}: Diesen goldenen Avatar gibt es nur {cuando}.", "it": "{fiesta}: questo avatar d’oro si ottiene solo {cuando}.", "nl": "{fiesta}: deze gouden avatar krijgt u alleen {cuando}.", "zh": "{fiesta}：此金色头像仅在{cuando}可获得。", "zht": "{fiesta}：此金色頭像僅在{cuando}可獲得。", "bg": "{fiesta}: този златен аватар се получава само {cuando}.", "pl": "{fiesta}: ten złoty awatar można zdobyć tylko {cuando}."},
+    "perfilOroCuenta": {"es": "Avatares de oro: {n} de {total}.", "en": "Gold avatars: {n} of {total}.", "fr": "Avatars dorés : {n} sur {total}.", "de": "Goldene Avatare: {n} von {total}.", "it": "Avatar d’oro: {n} su {total}.", "nl": "Gouden avatars: {n} van {total}.", "zh": "金色头像：{n}/{total}。", "zht": "金色頭像：{n}/{total}。", "bg": "Златни аватари: {n} от {total}.", "pl": "Złote awatary: {n} z {total}."},
+    "perfilOroRegla": {"es": "Cada uno se consigue solo el día de su fiesta, y es suyo para siempre.", "en": "Each one can only be collected on its festival day, and then it’s yours to keep.", "fr": "Chacun ne s’obtient que le jour de sa fête, et il est à vous pour toujours.", "de": "Jeden gibt es nur am Tag seines Festes, und dann gehört er Ihnen für immer.", "it": "Ognuno si ottiene solo nel giorno della sua festa e resta per sempre.", "nl": "Elke avatar krijgt u alleen op de dag van zijn feest, en dan is hij voor altijd van u.", "zh": "每个头像仅在其节日当天可获得，获得后永久保留。", "zht": "每個頭像僅在其節日當天可獲得，獲得後永久保留。", "bg": "Всеки се получава само в деня на своя празник и остава ваш завинаги.", "pl": "Każdy można zdobyć tylko w dniu jego święta i zostaje na zawsze."},
     "perfilAvatarGuardado": {"es": "Avatar guardado", "en": "Avatar saved", "fr": "Avatar enregistré", "de": "Avatar gespeichert", "it": "Avatar salvato", "nl": "Avatar opgeslagen", "zh": "头像已保存", "zht": "頭像已儲存", "bg": "Аватарът е запазен", "pl": "Awatar zapisany"},
     "perfilBloqueado": {"es": "Se desbloquea con {n} visita comprobada ({v} de {n})|Se desbloquea con {n} visitas comprobadas ({v} de {n})", "en": "Unlocks after {n} verified visit ({v} of {n})|Unlocks after {n} verified visits ({v} of {n})", "fr": "Se débloque après {n} visite vérifiée ({v} sur {n})|Se débloque après {n} visites vérifiées ({v} sur {n})", "de": "Wird nach {n} bestätigten Besuch freigeschaltet ({v} von {n})|Wird nach {n} bestätigten Besuchen freigeschaltet ({v} von {n})", "it": "Si sblocca con {n} visita verificata ({v} su {n})|Si sblocca con {n} visite verificate ({v} su {n})", "nl": "Wordt ontgrendeld na {n} bevestigd bezoek ({v} van {n})|Wordt ontgrendeld na {n} bevestigde bezoeken ({v} van {n})", "zh": "确认到访{n}个地点后解锁（{v}/{n}）", "zht": "確認到訪{n}個地點後解鎖（{v}/{n}）", "bg": "Отключва се след {n} потвърдено посещение ({v} от {n})|Отключва се след {n} потвърдени посещения ({v} от {n})", "pl": "Odblokowuje się po {n} potwierdzonej wizycie ({v} z {n})|Odblokowuje się po {n} potwierdzonych wizytach ({v} z {n})|Odblokowuje się po {n} potwierdzonych wizytach ({v} z {n})"},
     "perfilDatos": {"es": "Sus datos", "en": "Your details", "fr": "Vos données", "de": "Ihre Daten", "it": "Dati personali", "nl": "Uw gegevens", "zh": "我的数据", "zht": "我的資料", "bg": "Вашите данни", "pl": "Dane osobowe"},
@@ -62,7 +78,7 @@
     "perfilNacimiento": {"es": "Año de nacimiento", "en": "Birth year", "fr": "Année de naissance", "de": "Geburtsjahr", "it": "Anno di nascita", "nl": "Geboortejaar", "zh": "出生年份", "zht": "出生年份", "bg": "Година на раждане", "pl": "Rok urodzenia"},
     "perfilAnios": {"es": "{n} año|{n} años", "en": "{n} year old|{n} years old", "fr": "{n} an|{n} ans", "de": "{n} Jahr|{n} Jahre", "it": "{n} anno|{n} anni", "nl": "{n} jaar|{n} jaar", "zh": "{n}岁", "zht": "{n}歲", "bg": "{n} година|{n} години", "pl": "{n} rok|{n} lata|{n} lat"},
     "perfilUnidades": {"es": "Unidades", "en": "Units", "fr": "Unités", "de": "Einheiten", "it": "Unità", "nl": "Eenheden", "zh": "单位", "zht": "單位", "bg": "Мерни единици", "pl": "Jednostki"},
-    "perfilGuardar": {"es": "Guardar", "en": "Save", "fr": "Enregistrer", "de": "Speichern", "it": "Salvare", "nl": "Opslaan", "zh": "保存", "zht": "儲存", "bg": "Запазване", "pl": "Zapisać"},
+    "perfilGuardar": {"es": "Guardar", "en": "Save", "fr": "Enregistrer", "de": "Speichern", "it": "Salva", "nl": "Opslaan", "zh": "保存", "zht": "儲存", "bg": "Запази", "pl": "Zapisz"},
     "perfilGuardado": {"es": "Guardado ✓", "en": "Saved ✓", "fr": "Enregistré ✓", "de": "Gespeichert ✓", "it": "Salvato ✓", "nl": "Opgeslagen ✓", "zh": "已保存 ✓", "zht": "已儲存 ✓", "bg": "Запазено ✓", "pl": "Zapisano ✓"},
     "perfilImc": {"es": "IMC", "en": "BMI", "fr": "IMC", "de": "BMI", "it": "IMC", "nl": "BMI", "zh": "BMI指数", "zht": "BMI指數", "bg": "ИТМ", "pl": "BMI"},
     "perfilImcNota": {"es": "Orientativo. Categorías de la OMS para adultos", "en": "For guidance only. WHO adult categories", "fr": "À titre indicatif. Catégories de l’OMS pour les adultes", "de": "Nur zur Orientierung. WHO-Kategorien für Erwachsene", "it": "Indicativo. Categorie dell’OMS per adulti", "nl": "Ter indicatie. WHO-categorieën voor volwassenen", "zh": "仅供参考：世卫组织成人分类", "zht": "僅供參考：世衛組織成人分類", "bg": "Ориентировъчно. Категории на СЗО за възрастни", "pl": "Orientacyjnie. Kategorie WHO dla dorosłych"},
@@ -83,7 +99,7 @@
     "perfilRangoAnio": {"es": "1 año", "en": "1 year", "fr": "1 an", "de": "1 Jahr", "it": "1 anno", "nl": "1 jaar", "zh": "1年", "zht": "1年", "bg": "1 година", "pl": "1 rok"},
     "perfilTotalCaminado": {"es": "Total caminado", "en": "Total walked", "fr": "Total parcouru", "de": "Insgesamt gelaufen", "it": "Totale a piedi", "nl": "Totaal gelopen", "zh": "累计步行", "zht": "累計步行", "bg": "Общо изминато", "pl": "Łączny dystans"},
     "perfilHoy": {"es": "Hoy", "en": "Today", "fr": "Aujourd’hui", "de": "Heute", "it": "Oggi", "nl": "Vandaag", "zh": "今天", "zht": "今天", "bg": "Днес", "pl": "Dziś"},
-    "perfilBorrarRegistro": {"es": "Borrar", "en": "Delete", "fr": "Supprimer", "de": "Löschen", "it": "Eliminare", "nl": "Verwijderen", "zh": "删除", "zht": "刪除", "bg": "Изтриване", "pl": "Usunąć"},
+    "perfilBorrarRegistro": {"es": "Borrar", "en": "Delete", "fr": "Supprimer", "de": "Löschen", "it": "Elimina", "nl": "Verwijderen", "zh": "删除", "zht": "刪除", "bg": "Изтрий", "pl": "Usuń"},
     "perfilIsla": {"es": "Su isla", "en": "Your island", "fr": "Votre île", "de": "Ihre Insel", "it": "Sull’isola", "nl": "Uw eiland", "zh": "我的岛屿", "zht": "我的島嶼", "bg": "Вашият остров", "pl": "Na wyspie"},
     "perfilFavoritos": {"es": "Favoritos", "en": "Favourites", "fr": "Favoris", "de": "Favoriten", "it": "Preferiti", "nl": "Favorieten", "zh": "收藏", "zht": "收藏", "bg": "Любими", "pl": "Ulubione"},
     "perfilVisitados": {"es": "Visitados", "en": "Visited", "fr": "Visités", "de": "Besucht", "it": "Visitati", "nl": "Bezocht", "zh": "已访问", "zht": "已造訪", "bg": "Посетени", "pl": "Odwiedzone"},
@@ -94,19 +110,20 @@
     "perfilCuenta": {"es": "Cuenta", "en": "Account", "fr": "Compte", "de": "Konto", "it": "Account", "nl": "Account", "zh": "账户", "zht": "帳戶", "bg": "Акаунт", "pl": "Konto"},
     "perfilNube": {"es": "Sus favoritos se guardan en su cuenta; su perfil y sus medidas, solo en este dispositivo.", "en": "Your favourites are saved to your account; your profile and measurements stay on this device.", "fr": "Vos favoris sont enregistrés dans votre compte ; votre profil et vos mesures restent sur cet appareil.", "de": "Ihre Favoriten werden in Ihrem Konto gespeichert, Ihr Profil und Ihre Messwerte nur auf diesem Gerät.", "it": "I preferiti vengono salvati nell’account; profilo e misure restano su questo dispositivo.", "nl": "Uw favorieten worden in uw account opgeslagen; uw profiel en metingen blijven op dit apparaat.", "zh": "您的收藏保存在账户中；个人资料和身高体重等数据只保存在本设备上。", "zht": "您的收藏會儲存在帳戶中；個人檔案和身高體重等資料只儲存在此裝置上。", "bg": "Любимите ви се пазят в акаунта ви; профилът и измерванията ви остават само на това устройство.", "pl": "Ulubione zapisują się na koncie; profil i pomiary zostają tylko na tym urządzeniu."},
     "perfilSoloDispositivo": {"es": "Sin cuenta: todo se guarda solo en este dispositivo", "en": "No account: everything stays on this device only", "fr": "Sans compte : tout est enregistré uniquement sur cet appareil", "de": "Ohne Konto: Alles wird nur auf diesem Gerät gespeichert", "it": "Senza account: tutto resta solo su questo dispositivo", "nl": "Zonder account: alles wordt alleen op dit apparaat opgeslagen", "zh": "未登录：所有内容仅保存在本设备", "zht": "未登入：所有內容僅儲存在此裝置上", "bg": "Без акаунт: всичко се пази само на това устройство", "pl": "Bez konta: wszystko zostaje tylko na tym urządzeniu"},
-    "perfilCrearCuenta": {"es": "Crear cuenta o entrar", "en": "Sign up or log in", "fr": "Créer un compte ou se connecter", "de": "Konto erstellen oder anmelden", "it": "Registrazione o accesso", "nl": "Account aanmaken of inloggen", "zh": "注册或登录", "zht": "註冊或登入", "bg": "Регистрация или вход", "pl": "Rejestracja lub logowanie"},
+    "perfilCrearCuenta": {"es": "Crear cuenta o entrar", "en": "Sign up or log in", "fr": "Créer un compte ou se connecter", "de": "Konto erstellen oder anmelden", "it": "Crea account o accedi", "nl": "Account aanmaken of inloggen", "zh": "注册或登录", "zht": "註冊或登入", "bg": "Регистрирай се или влез", "pl": "Załóż konto lub zaloguj się"},
     "perfilInvitado": {"es": "Invitado", "en": "Guest", "fr": "Invité", "de": "Gast", "it": "Ospite", "nl": "Gast", "zh": "访客", "zht": "訪客", "bg": "Гост", "pl": "Gość"},
-    "perfilExportar": {"es": "Descargar datos del perfil", "en": "Download profile data", "fr": "Télécharger les données du profil", "de": "Profildaten herunterladen", "it": "Download dei dati del profilo", "nl": "Profielgegevens downloaden", "zh": "下载个人资料数据", "zht": "下載個人檔案資料", "bg": "Изтегляне на данните от профила", "pl": "Eksport danych profilu"},
-    "perfilAnadir": {"es": "Añadir", "en": "Add", "fr": "Ajouter", "de": "Hinzufügen", "it": "Aggiungere", "nl": "Toevoegen", "zh": "添加", "zht": "新增", "bg": "Добавяне", "pl": "Dodać"},
+    "perfilExportar": {"es": "Descargar datos del perfil", "en": "Download profile data", "fr": "Télécharger les données du profil", "de": "Profildaten herunterladen", "it": "Scarica i dati del profilo", "nl": "Profielgegevens downloaden", "zh": "下载个人资料数据", "zht": "下載個人檔案資料", "bg": "Изтегли данните на профила", "pl": "Pobierz dane profilu"},
+    "perfilAnadir": {"es": "Añadir", "en": "Add", "fr": "Ajouter", "de": "Hinzufügen", "it": "Aggiungi", "nl": "Toevoegen", "zh": "添加", "zht": "新增", "bg": "Добави", "pl": "Dodaj"},
     "perfilDistancia": {"es": "Distancia", "en": "Distance", "fr": "Distance", "de": "Strecke", "it": "Distanza", "nl": "Afstand", "zh": "距离", "zht": "距離", "bg": "Разстояние", "pl": "Dystans"},
     "perfilUltimos7": {"es": "Últimos 7 días", "en": "Last 7 days", "fr": "7 derniers jours", "de": "Letzte 7 Tage", "it": "Ultimi 7 giorni", "nl": "Laatste 7 dagen", "zh": "最近7天", "zht": "最近7天", "bg": "Последните 7 дни", "pl": "Ostatnie 7 dni"},
     "perfilFecha": {"es": "Fecha", "en": "Date", "fr": "Date", "de": "Datum", "it": "Data", "nl": "Datum", "zh": "日期", "zht": "日期", "bg": "Дата", "pl": "Data"},
     "perfilRango": {"es": "Entre {min} y {max}", "en": "Between {min} and {max}", "fr": "Entre {min} et {max}", "de": "Zwischen {min} und {max}", "it": "Tra {min} e {max}", "nl": "Tussen {min} en {max}", "zh": "须在{min}到{max}之间", "zht": "須在{min}到{max}之間", "bg": "Между {min} и {max}", "pl": "Od {min} do {max}"},
     "perfilFechaFutura": {"es": "La fecha no puede ser posterior a hoy", "en": "The date can’t be later than today", "fr": "La date ne peut pas être postérieure à aujourd’hui", "de": "Das Datum darf nicht nach heute liegen", "it": "La data non può essere successiva a oggi", "nl": "De datum mag niet later zijn dan vandaag", "zh": "日期不能晚于今天", "zht": "日期不能晚於今天", "bg": "Датата не може да е след днес", "pl": "Data nie może być późniejsza niż dzisiaj"},
+    "perfilTope": {"es": "Ya tiene {n} registros, el máximo. Borre uno para añadir otro.", "en": "You already have {n} entries, the maximum. Delete one to add another.", "fr": "Vous avez déjà {n} entrées, le maximum. Supprimez-en une pour en ajouter une autre.", "de": "Sie haben bereits {n} Einträge, das Maximum. Löschen Sie einen, um einen neuen hinzuzufügen.", "it": "Ha già {n} dati, il massimo. Ne elimini uno per aggiungerne un altro.", "nl": "U heeft al {n} metingen, het maximum. Verwijder er een om een nieuwe toe te voegen.", "zh": "已有{n}条记录，达到上限。请删除一条后再添加。", "zht": "已有{n}筆紀錄，達到上限。請刪除一筆後再新增。", "bg": "Вече имате {n} записа – максимумът. Изтрийте един, за да добавите нов.", "pl": "Osiągnięto limit {n} wpisów. Aby dodać nowy, trzeba usunąć jeden z nich."},
     "perfilImcJoven": {"es": "Por debajo de 20 años, la OMS usa tablas por edad y sexo", "en": "Under 20, the WHO uses age- and sex-specific charts", "fr": "Avant 20 ans, l’OMS utilise des courbes selon l’âge et le sexe", "de": "Unter 20 Jahren nutzt die WHO Kurven nach Alter und Geschlecht", "it": "Sotto i 20 anni l’OMS usa curve per età e sesso", "nl": "Onder de 20 jaar gebruikt de WHO curves naar leeftijd en geslacht", "zh": "20岁以下，世卫组织采用按年龄和性别划分的标准", "zht": "20歲以下，世衛組織採用依年齡和性別區分的標準", "bg": "Под 20 години СЗО използва таблици по възраст и пол", "pl": "Poniżej 20 lat WHO stosuje siatki centylowe według wieku i płci"},
-    "perfilBorrarLocal": {"es": "Borrar los datos del perfil de este dispositivo", "en": "Delete profile data from this device", "fr": "Effacer les données du profil de cet appareil", "de": "Profildaten von diesem Gerät löschen", "it": "Cancellazione dei dati del profilo da questo dispositivo", "nl": "Profielgegevens van dit apparaat wissen", "zh": "删除本设备上的个人资料数据", "zht": "刪除此裝置上的個人檔案資料", "bg": "Изтриване на данните от профила на това устройство", "pl": "Usunięcie danych profilu z tego urządzenia"},
+    "perfilBorrarLocal": {"es": "Borrar los datos del perfil de este dispositivo", "en": "Delete profile data from this device", "fr": "Effacer les données du profil de cet appareil", "de": "Profildaten von diesem Gerät löschen", "it": "Elimina i dati del profilo da questo dispositivo", "nl": "Profielgegevens van dit apparaat wissen", "zh": "删除本设备上的个人资料数据", "zht": "刪除此裝置上的個人檔案資料", "bg": "Изтрий данните на профила от това устройство", "pl": "Usuń dane profilu z tego urządzenia"},
     "perfilBorrarLocalAviso": {"es": "Se borrarán de este dispositivo su nombre, su avatar, sus medidas y sus kilómetros. Los favoritos no se tocan. No se puede deshacer.", "en": "Your name, avatar, measurements and kilometres will be deleted from this device. Favourites are not affected. This cannot be undone.", "fr": "Votre nom, votre avatar, vos mesures et vos kilomètres seront effacés de cet appareil. Les favoris ne sont pas touchés. C’est définitif.", "de": "Ihr Name, Ihr Avatar, Ihre Messwerte und Kilometer werden von diesem Gerät gelöscht. Favoriten bleiben erhalten. Das lässt sich nicht rückgängig machen.", "it": "Nome, avatar, misure e chilometri verranno cancellati da questo dispositivo. I preferiti restano. Non si può annullare.", "nl": "Uw naam, avatar, metingen en kilometers worden van dit apparaat gewist. Uw favorieten blijven bewaard. Dit kan niet ongedaan worden gemaakt.", "zh": "将从本设备删除您的名字、头像、身高体重等数据和公里数，收藏不受影响。此操作无法撤销。", "zht": "將從此裝置刪除您的名字、頭像、身高體重等資料和公里數，收藏不受影響。此操作無法復原。", "bg": "Името, аватарът, измерванията и километрите ви ще бъдат изтрити от това устройство. Любимите остават. Това не може да бъде отменено.", "pl": "Imię, awatar, pomiary i kilometry zostaną usunięte z tego urządzenia. Ulubione pozostaną bez zmian. Tej operacji nie można cofnąć."},
-    "perfilBorrarLocalSi": {"es": "Sí, borrar", "en": "Yes, delete", "fr": "Oui, effacer", "de": "Ja, löschen", "it": "Sì, cancellare", "nl": "Ja, wissen", "zh": "确定删除", "zht": "確定刪除", "bg": "Изтриване", "pl": "Tak, usunąć"},
+    "perfilBorrarLocalSi": {"es": "Sí, borrar", "en": "Yes, delete", "fr": "Oui, effacer", "de": "Ja, löschen", "it": "Sì, elimina", "nl": "Ja, wissen", "zh": "确定删除", "zht": "確定刪除", "bg": "Да, изтрий", "pl": "Tak, usuń"},
     "perfilBorrado": {"es": "Datos del perfil borrados de este dispositivo", "en": "Profile data deleted from this device", "fr": "Données du profil effacées de cet appareil", "de": "Profildaten von diesem Gerät gelöscht", "it": "Dati del profilo cancellati da questo dispositivo", "nl": "Profielgegevens van dit apparaat gewist", "zh": "已从本设备删除个人资料数据", "zht": "已從此裝置刪除個人檔案資料", "bg": "Данните от профила са изтрити от това устройство", "pl": "Dane profilu usunięte z tego urządzenia"},
     "perfilVisitaVerdad": {"es": "Una visita queda comprobada si marca el lugar como visitado estando allí. Lo comprueba el móvil con su ubicación, que para ello no se envía a ningún sitio.", "en": "A visit is verified when you mark the place as visited while you are there. Your phone checks this with its location, which isn’t sent anywhere in the process.", "fr": "Une visite est vérifiée si vous marquez le lieu comme visité sur place. Votre téléphone le vérifie grâce à sa position, qui n’est envoyée nulle part pour cela.", "de": "Ein Besuch gilt als bestätigt, wenn Sie den Ort als besucht markieren, während Sie dort sind. Das Gerät prüft das anhand seines Standorts, der dafür nirgendwohin gesendet wird.", "it": "Una visita è verificata se il luogo viene segnato come visitato mentre ci si trova lì. Lo verifica il dispositivo con la posizione, che a tale scopo non viene inviata da nessuna parte.", "nl": "Een bezoek geldt als bevestigd wanneer u de plek als bezocht markeert terwijl u er bent. Het apparaat controleert dat aan de hand van zijn locatie, die hiervoor nergens naartoe wordt gestuurd.", "zh": "在现场将地点标记为已访问，即视为确认到访。由本设备根据定位确认，定位信息不会为此发送到任何地方。", "zht": "在現場將地點標記為已造訪，即視為確認到訪。由此裝置根據定位確認，定位資訊不會為此傳送到任何地方。", "bg": "Посещението е потвърдено, ако отбележите мястото като посетено, докато сте там. Устройството проверява това по местоположението си, което за целта не се изпраща никъде.", "pl": "Wizyta jest potwierdzona, jeśli miejsce zostanie oznaczone jako odwiedzone podczas pobytu w nim. Urządzenie sprawdza to na podstawie lokalizacji, która w tym celu nie jest nigdzie wysyłana."},
     "perfilNubeInterruptor": {"es": "Guardar el perfil y los progresos en su cuenta", "en": "Save profile and progress to your account", "fr": "Enregistrer le profil et les progrès dans votre compte", "de": "Profil und Fortschritte in Ihrem Konto speichern", "it": "Salvare profilo e progressi nell’account", "nl": "Profiel en voortgang in uw account opslaan", "zh": "将个人资料和进展保存到您的账户", "zht": "將個人檔案和進展儲存到您的帳戶", "bg": "Запазване на профила и напредъка в акаунта ви", "pl": "Zapisywanie profilu i postępów na koncie"},
@@ -114,7 +131,7 @@
     "perfilNubeConsentimiento": {"es": "Se guardarán en su cuenta su nombre o apodo, su avatar, sus unidades, su altura, su año de nacimiento, la fecha de alta del perfil, su peso objetivo y los pesos y kilómetros que anote, con la fecha de cada uno. El peso y la altura son datos de salud: al tocar «Acepto» da su permiso expreso para guardarlos. Las visitas comprobadas no se suben: se quedan solo en este dispositivo. Puede retirar el permiso cuando quiera con este interruptor: se borra la copia guardada en su cuenta y todo sigue en este dispositivo.", "en": "Your name or nickname, avatar, units, height, year of birth, profile start date, goal weight, and the weights and kilometres you log, each with its date, will be saved to your account. Weight and height are health data: by tapping «I agree» you give your explicit permission to save them. Verified visits are not uploaded: they stay on this device only. You can withdraw your permission at any time with this switch: the copy saved in your account is then deleted, and everything stays on this device.", "fr": "Seront enregistrés dans votre compte : votre prénom ou pseudo, votre avatar, vos unités, votre taille, votre année de naissance, la date de création du profil, votre poids cible, ainsi que les poids et les kilomètres que vous notez, chacun avec sa date. Le poids et la taille sont des données de santé : en appuyant sur «J’accepte», vous donnez votre consentement explicite à leur enregistrement. Les visites vérifiées ne sont pas envoyées : elles restent uniquement sur cet appareil. Vous pouvez retirer votre consentement à tout moment avec cet interrupteur : la copie enregistrée dans votre compte est alors effacée, et tout reste sur cet appareil.", "de": "In Ihrem Konto werden gespeichert: Ihr Name oder Spitzname, Ihr Avatar, Ihre Einheiten, Ihre Größe, Ihr Geburtsjahr, das Erstellungsdatum des Profils, Ihr Zielgewicht sowie Ihre Gewichts- und Kilometereinträge, jeweils mit Datum. Gewicht und Größe sind Gesundheitsdaten: Wenn Sie auf «Ich stimme zu» tippen, willigen Sie ausdrücklich in ihre Speicherung ein. Bestätigte Besuche werden nicht hochgeladen, sie bleiben nur auf diesem Gerät. Sie können Ihre Einwilligung jederzeit mit diesem Schalter widerrufen: Dann wird die in Ihrem Konto gespeicherte Kopie gelöscht, und auf diesem Gerät bleibt alles erhalten.", "it": "Nell’account verranno salvati nome o soprannome, avatar, unità, altezza, anno di nascita, data di creazione del profilo, peso obiettivo, nonché i pesi e i chilometri annotati, ciascuno con la sua data. Peso e altezza sono dati relativi alla salute: toccando «Acconsento» si esprime il consenso esplicito al loro salvataggio. Le visite verificate non vengono caricate: restano solo su questo dispositivo. Il consenso si può revocare in qualsiasi momento con questo interruttore: la copia salvata nell’account viene allora cancellata e su questo dispositivo resta tutto.", "nl": "In uw account worden opgeslagen: uw naam of bijnaam, avatar, eenheden, lengte, geboortejaar, de startdatum van het profiel, uw streefgewicht en de gewichten en kilometers die u noteert, elk met datum. Gewicht en lengte zijn gezondheidsgegevens: door op «Ik ga akkoord» te tikken geeft u uitdrukkelijk toestemming om ze op te slaan. Bevestigde bezoeken worden niet geüpload: ze blijven alleen op dit apparaat. U kunt uw toestemming altijd intrekken met deze schakelaar: dan wordt de kopie in uw account gewist en blijft alles op dit apparaat.", "zh": "您的名字或昵称、头像、单位、身高、出生年份、个人资料的创建日期、目标体重，以及您记录的体重和公里数（各附日期）将保存到您的账户。体重和身高属于健康数据：点按「我同意」即表示您明确同意保存这些数据。已确认的到访不会上传，只保留在本设备上。您可以随时通过此开关撤回同意：届时您账户中的副本会被删除，本设备上的数据仍会保留。", "zht": "您的名字或暱稱、頭像、單位、身高、出生年份、個人檔案的建立日期、目標體重，以及您記錄的體重和公里數（各附日期）將儲存到您的帳戶。體重和身高屬於健康資料：點按「我同意」即表示您明確同意儲存這些資料。已確認的到訪不會上傳，只保留在此裝置上。您可以隨時透過此開關撤回同意：屆時您帳戶中的副本會被刪除，此裝置上的資料仍會保留。", "bg": "В акаунта ви ще се запазят името или прякорът ви, аватарът, мерните единици, ръстът, годината на раждане, датата на създаване на профила, целевото тегло, както и теглата и километрите, които записвате, всеки запис с датата си. Теглото и ръстът са данни за здравословното състояние: като докоснете «Приемам», давате изричното си съгласие да бъдат запазени. Потвърдените посещения не се качват: остават само на това устройство. Можете да оттеглите съгласието си по всяко време с този превключвател: тогава копието в акаунта ви се изтрива и всичко остава на това устройство.", "pl": "Na koncie zostaną zapisane: imię lub pseudonim, awatar, jednostki, wzrost, rok urodzenia, data utworzenia profilu, waga docelowa oraz wpisane wagi i kilometry, każdy wpis z datą. Waga i wzrost to dane dotyczące zdrowia: dotknięcie przycisku «Wyrażam zgodę» jest równoznaczne z wyraźną zgodą na ich zapisanie. Potwierdzone wizyty nie są wysyłane: pozostają tylko na tym urządzeniu. Zgodę można w każdej chwili wycofać tym przełącznikiem: kopia zapisana na koncie zostanie wtedy usunięta, a na tym urządzeniu wszystko pozostanie."},
     "perfilNubeAcepto": {"es": "Acepto", "en": "I agree", "fr": "J’accepte", "de": "Ich stimme zu", "it": "Acconsento", "nl": "Ik ga akkoord", "zh": "我同意", "zht": "我同意", "bg": "Приемам", "pl": "Wyrażam zgodę"},
     "perfilNubeQuitarAviso": {"es": "Se borrará la copia guardada en su cuenta. En este dispositivo se queda todo.", "en": "The copy in your account will be deleted. Everything stays on this device.", "fr": "La copie enregistrée dans votre compte sera effacée. Tout reste sur cet appareil.", "de": "Die in Ihrem Konto gespeicherte Kopie wird gelöscht. Auf diesem Gerät bleibt alles erhalten.", "it": "La copia salvata nell’account verrà cancellata. Su questo dispositivo resta tutto.", "nl": "De kopie in uw account wordt gewist. Op dit apparaat blijft alles bewaard.", "zh": "将删除您账户中的副本，本设备上的内容全部保留。", "zht": "將刪除您帳戶中的副本，此裝置上的內容全部保留。", "bg": "Копието в акаунта ви ще бъде изтрито. На това устройство всичко остава.", "pl": "Kopia zapisana na koncie zostanie usunięta. Na tym urządzeniu wszystko pozostanie."},
-    "perfilNubeQuitarSi": {"es": "Borrar de la nube", "en": "Delete from the cloud", "fr": "Effacer du cloud", "de": "Aus der Cloud löschen", "it": "Cancellare dal cloud", "nl": "Uit de cloud wissen", "zh": "从云端删除", "zht": "從雲端刪除", "bg": "Изтриване от облака", "pl": "Usunąć z chmury"},
+    "perfilNubeQuitarSi": {"es": "Borrar de la nube", "en": "Delete from the cloud", "fr": "Effacer du cloud", "de": "Aus der Cloud löschen", "it": "Elimina dal cloud", "nl": "Uit de cloud wissen", "zh": "从云端删除", "zht": "從雲端刪除", "bg": "Изтрий от облака", "pl": "Usuń z chmury"},
     "perfilNubeSi": {"es": "Sus favoritos, su perfil y sus progresos se guardan en su cuenta.", "en": "Your favourites, profile and progress are saved to your account.", "fr": "Vos favoris, votre profil et vos progrès sont enregistrés dans votre compte.", "de": "Ihre Favoriten, Ihr Profil und Ihre Fortschritte werden in Ihrem Konto gespeichert.", "it": "Preferiti, profilo e progressi vengono salvati nell’account.", "nl": "Uw favorieten, profiel en voortgang worden in uw account opgeslagen.", "zh": "您的收藏、个人资料和进展都保存在账户中。", "zht": "您的收藏、個人檔案和進展都會儲存在帳戶中。", "bg": "Любимите, профилът и напредъкът ви се пазят в акаунта ви.", "pl": "Ulubione, profil i postępy zapisują się na koncie."},
     "perfilNubeGuardado": {"es": "Guardado en su cuenta ✓", "en": "Saved to your account ✓", "fr": "Enregistré dans votre compte ✓", "de": "In Ihrem Konto gespeichert ✓", "it": "Salvato nell’account ✓", "nl": "In uw account opgeslagen ✓", "zh": "已保存到您的账户 ✓", "zht": "已儲存到您的帳戶 ✓", "bg": "Запазено в акаунта ви ✓", "pl": "Zapisano na koncie ✓"},
     "perfilNubeQuitado": {"es": "Borrado de la nube. En este dispositivo sigue todo.", "en": "Deleted from the cloud. Everything is still on this device.", "fr": "Effacé du cloud. Tout reste sur cet appareil.", "de": "Aus der Cloud gelöscht. Auf diesem Gerät ist alles noch da.", "it": "Cancellato dal cloud. Su questo dispositivo resta tutto.", "nl": "Uit de cloud gewist. Op dit apparaat staat alles nog.", "zh": "已从云端删除，本设备上的内容全部保留。", "zht": "已從雲端刪除，此裝置上的內容全部保留。", "bg": "Изтрито от облака. На това устройство всичко остава.", "pl": "Usunięto z chmury. Na tym urządzeniu wszystko pozostało."},
@@ -175,236 +192,285 @@
     "perfilAv_es_molino": {"es": "Molino manchego", "en": "La Mancha windmill", "fr": "Moulin à vent", "de": "Windmühle", "it": "Mulino a vento", "nl": "Spaanse molen", "zh": "风车", "zht": "風車", "bg": "Вятърна мелница", "pl": "Wiatrak"},
     "perfilAv_es_abanico": {"es": "Abanico", "en": "Spanish fan", "fr": "Éventail", "de": "Fächer", "it": "Ventaglio", "nl": "Waaier", "zh": "折扇", "zht": "摺扇", "bg": "Ветрило", "pl": "Wachlarz"},
     "perfilAv_es_paella": {"es": "Paella", "en": "Paella", "fr": "Paella", "de": "Paella", "it": "Paella", "nl": "Paella", "zh": "海鲜饭", "zht": "海鮮飯", "bg": "Паеля", "pl": "Paella"},
-    "perfilAv_en_cabina": {"es": "Cabina telefónica", "en": "Phone box", "fr": "Cabine téléphonique", "de": "Telefonzelle", "it": "Cabina telefonica", "nl": "Telefooncel", "zh": "红色电话亭", "zht": "紅色電話亭", "bg": "Телефонна кабина", "pl": "Budka telefoniczna"},
+    "perfilAv_es_oro_uvas": {"es": "Nochevieja", "en": "New Year’s Eve", "fr": "Saint-Sylvestre", "de": "Silvester", "it": "San Silvestro", "nl": "Oudejaarsavond", "zh": "跨年夜", "zht": "跨年夜", "bg": "Новогодишна нощ", "pl": "Sylwester"},
+    "perfilAv_en_bigben": {"es": "Big Ben", "en": "Big Ben", "fr": "Big Ben", "de": "Big Ben", "it": "Big Ben", "nl": "Big Ben", "zh": "大本钟", "zht": "大笨鐘", "bg": "Биг Бен", "pl": "Big Ben"},
     "perfilAv_en_bus": {"es": "Autobús de dos pisos", "en": "Double-decker", "fr": "Bus à impériale", "de": "Doppeldecker", "it": "Bus a due piani", "nl": "Dubbeldekker", "zh": "双层巴士", "zht": "雙層巴士", "bg": "Двуетажен автобус", "pl": "Piętrowy autobus"},
     "perfilAv_en_te": {"es": "Taza de té", "en": "Cup of tea", "fr": "Tasse de thé", "de": "Tasse Tee", "it": "Tazza di tè", "nl": "Kopje thee", "zh": "一杯茶", "zht": "一杯茶", "bg": "Чаша чай", "pl": "Filiżanka herbaty"},
     "perfilAv_en_corgi": {"es": "Corgi", "en": "Corgi", "fr": "Corgi", "de": "Corgi", "it": "Corgi", "nl": "Corgi", "zh": "柯基", "zht": "柯基", "bg": "Корги", "pl": "Corgi"},
-    "perfilAv_en_paraguas": {"es": "Paraguas", "en": "Umbrella", "fr": "Parapluie", "de": "Regenschirm", "it": "Ombrello", "nl": "Paraplu", "zh": "雨伞", "zht": "雨傘", "bg": "Чадър", "pl": "Parasol"},
+    "perfilAv_en_fish_chips": {"es": "Fish and chips", "en": "Fish and chips", "fr": "Fish and chips", "de": "Fish and Chips", "it": "Fish and chips", "nl": "Fish and chips", "zh": "炸鱼薯条", "zht": "炸魚薯條", "bg": "Фиш енд чипс", "pl": "Fish and chips"},
+    "perfilAv_en_oro_tortitas": {"es": "Día de las Tortitas", "en": "Pancake Day", "fr": "Pancake Day", "de": "Pancake Day", "it": "Pancake Day", "nl": "Pancake Day", "zh": "忏悔星期二", "zht": "懺悔星期二", "bg": "Ден на палачинките", "pl": "Pancake Day"},
     "perfilAv_de_brezel": {"es": "Pretzel", "en": "Pretzel", "fr": "Bretzel", "de": "Brezel", "it": "Brezel", "nl": "Pretzel", "zh": "碱水面包", "zht": "德國結", "bg": "Брецел", "pl": "Precel"},
     "perfilAv_de_oso": {"es": "Oso de Berlín", "en": "Berlin bear", "fr": "Ours de Berlin", "de": "Berliner Bär", "it": "Orso di Berlino", "nl": "Berlijnse beer", "zh": "柏林熊", "zht": "柏林熊", "bg": "Берлинска мечка", "pl": "Berliński niedźwiedź"},
     "perfilAv_de_cuco": {"es": "Reloj de cuco", "en": "Cuckoo clock", "fr": "Horloge à coucou", "de": "Kuckucksuhr", "it": "Orologio a cucù", "nl": "Koekoeksklok", "zh": "布谷鸟钟", "zht": "咕咕鐘", "bg": "Часовник с кукувица", "pl": "Zegar z kukułką"},
     "perfilAv_de_castillo": {"es": "Castillo", "en": "Castle", "fr": "Château", "de": "Schloss", "it": "Castello", "nl": "Kasteel", "zh": "城堡", "zht": "城堡", "bg": "Замък", "pl": "Zamek"},
     "perfilAv_de_gnomo": {"es": "Gnomo de jardín", "en": "Garden gnome", "fr": "Nain de jardin", "de": "Gartenzwerg", "it": "Nano da giardino", "nl": "Tuinkabouter", "zh": "花园小矮人", "zht": "花園小矮人", "bg": "Градинско джудже", "pl": "Krasnal ogrodowy"},
+    "perfilAv_de_oro_unidad": {"es": "Día de la Unidad Alemana", "en": "German Unity Day", "fr": "Jour de l’Unité allemande", "de": "Tag der Einheit", "it": "Giorno dell’unità tedesca", "nl": "Dag van de Duitse Eenheid", "zh": "德国统一日", "zht": "德國統一日", "bg": "Ден на единството", "pl": "Dzień Jedności Niemiec"},
     "perfilAv_fr_torre": {"es": "Torre Eiffel", "en": "Eiffel Tower", "fr": "Tour Eiffel", "de": "Eiffelturm", "it": "Torre Eiffel", "nl": "Eiffeltoren", "zh": "埃菲尔铁塔", "zht": "艾菲爾鐵塔", "bg": "Айфелова кула", "pl": "Wieża Eiffla"},
     "perfilAv_fr_croissant": {"es": "Croissant", "en": "Croissant", "fr": "Croissant", "de": "Croissant", "it": "Croissant", "nl": "Croissant", "zh": "牛角包", "zht": "可頌", "bg": "Кроасан", "pl": "Croissant"},
     "perfilAv_fr_gallo": {"es": "Gallo", "en": "Cockerel", "fr": "Coq", "de": "Hahn", "it": "Gallo", "nl": "Haan", "zh": "公鸡", "zht": "公雞", "bg": "Петел", "pl": "Kogut"},
     "perfilAv_fr_lavanda": {"es": "Lavanda", "en": "Lavender", "fr": "Lavande", "de": "Lavendel", "it": "Lavanda", "nl": "Lavendel", "zh": "薰衣草", "zht": "薰衣草", "bg": "Лавандула", "pl": "Lawenda"},
     "perfilAv_fr_macaron": {"es": "Macarons", "en": "Macarons", "fr": "Macarons", "de": "Macarons", "it": "Macaron", "nl": "Macarons", "zh": "马卡龙", "zht": "馬卡龍", "bg": "Френски макарони", "pl": "Makaroniki"},
+    "perfilAv_fr_oro_julio": {"es": "Día de la Bastilla", "en": "Bastille Day", "fr": "Fête nationale", "de": "Nationalfeiertag Frankreichs", "it": "Festa nazionale francese", "nl": "Franse nationale feestdag", "zh": "法国国庆日", "zht": "法國國慶日", "bg": "Ден на Бастилията", "pl": "Dzień Bastylii"},
     "perfilAv_it_coliseo": {"es": "Coliseo", "en": "Colosseum", "fr": "Colisée", "de": "Kolosseum", "it": "Colosseo", "nl": "Colosseum", "zh": "罗马斗兽场", "zht": "羅馬競技場", "bg": "Колизеум", "pl": "Koloseum"},
     "perfilAv_it_pizza": {"es": "Pizza", "en": "Pizza", "fr": "Pizza", "de": "Pizza", "it": "Pizza", "nl": "Pizza", "zh": "披萨", "zht": "披薩", "bg": "Пица", "pl": "Pizza"},
     "perfilAv_it_gondola": {"es": "Góndola", "en": "Gondola", "fr": "Gondole", "de": "Gondel", "it": "Gondola", "nl": "Gondel", "zh": "贡多拉", "zht": "貢多拉", "bg": "Гондола", "pl": "Gondola"},
     "perfilAv_it_pisa": {"es": "Torre de Pisa", "en": "Leaning Tower of Pisa", "fr": "Tour de Pise", "de": "Schiefer Turm", "it": "Torre di Pisa", "nl": "Toren van Pisa", "zh": "比萨斜塔", "zht": "比薩斜塔", "bg": "Пизанската кула", "pl": "Krzywa Wieża"},
     "perfilAv_it_helado": {"es": "Helado italiano", "en": "Gelato", "fr": "Gelato", "de": "Gelato", "it": "Gelato", "nl": "Gelato", "zh": "意式冰淇淋", "zht": "義式冰淇淋", "bg": "Джелато", "pl": "Gelato"},
+    "perfilAv_it_oro_republica": {"es": "Fiesta de la República", "en": "Festa della Repubblica", "fr": "Fête de la République", "de": "Festa della Repubblica", "it": "Festa della Repubblica", "nl": "Festa della Repubblica", "zh": "意大利共和国日", "zht": "義大利共和國日", "bg": "Празник на републиката", "pl": "Święto Republiki"},
     "perfilAv_nl_tulipan": {"es": "Tulipán", "en": "Tulip", "fr": "Tulipe", "de": "Tulpe", "it": "Tulipano", "nl": "Tulp", "zh": "郁金香", "zht": "鬱金香", "bg": "Лале", "pl": "Tulipan"},
     "perfilAv_nl_molino": {"es": "Molino holandés", "en": "Dutch windmill", "fr": "Moulin hollandais", "de": "Holländische Windmühle", "it": "Mulino olandese", "nl": "Hollandse molen", "zh": "荷兰风车", "zht": "荷蘭風車", "bg": "Холандска мелница", "pl": "Holenderski wiatrak"},
     "perfilAv_nl_bici": {"es": "Bicicleta", "en": "Bicycle", "fr": "Vélo", "de": "Fahrrad", "it": "Bicicletta", "nl": "Fiets", "zh": "自行车", "zht": "腳踏車", "bg": "Велосипед", "pl": "Rower"},
     "perfilAv_nl_zuecos": {"es": "Zueco con tulipán", "en": "Clog with a tulip", "fr": "Sabot et tulipe", "de": "Holzschuh mit Tulpe", "it": "Zoccolo con tulipano", "nl": "Klomp met tulp", "zh": "木鞋与郁金香", "zht": "木鞋與鬱金香", "bg": "Дървена обувка с лале", "pl": "Chodak z tulipanem"},
     "perfilAv_nl_queso": {"es": "Queso", "en": "Cheese", "fr": "Fromage", "de": "Käse", "it": "Formaggio", "nl": "Kaas", "zh": "奶酪", "zht": "起司", "bg": "Кашкавал", "pl": "Ser"},
+    "perfilAv_nl_oro_rey": {"es": "Día del Rey", "en": "King’s Day", "fr": "Fête du Roi", "de": "Koningsdag", "it": "Koningsdag", "nl": "Koningsdag", "zh": "国王节", "zht": "國王節", "bg": "Ден на краля", "pl": "Dzień Króla"},
     "perfilAv_pl_pierogi": {"es": "Pierogi", "en": "Pierogi", "fr": "Pierogi", "de": "Piroggen", "it": "Pierogi", "nl": "Pierogi", "zh": "波兰饺子", "zht": "波蘭餃子", "bg": "Пьероги", "pl": "Pierogi"},
     "perfilAv_pl_zubr": {"es": "Bisonte europeo", "en": "European bison", "fr": "Bison", "de": "Wisent", "it": "Bisonte", "nl": "Wisent", "zh": "欧洲野牛", "zht": "歐洲野牛", "bg": "Зубър", "pl": "Żubr"},
     "perfilAv_pl_ciguena": {"es": "Cigüeña", "en": "Stork", "fr": "Cigogne", "de": "Storch", "it": "Cicogna", "nl": "Ooievaar", "zh": "白鹳", "zht": "白鸛", "bg": "Щъркел", "pl": "Bocian"},
     "perfilAv_pl_ambar": {"es": "Ámbar", "en": "Amber", "fr": "Ambre", "de": "Bernstein", "it": "Ambra", "nl": "Barnsteen", "zh": "琥珀", "zht": "琥珀", "bg": "Кехлибар", "pl": "Bursztyn"},
-    "perfilAv_pl_flor": {"es": "Flor recortada", "en": "Paper-cut flower", "fr": "Fleur en papier", "de": "Papierblume", "it": "Fiore di carta", "nl": "Papieren bloem", "zh": "剪纸花", "zht": "剪紙花", "bg": "Хартиено цвете", "pl": "Wycinanka"},
+    "perfilAv_pl_wawel": {"es": "Castillo de Wawel", "en": "Wawel Castle", "fr": "Wawel", "de": "Wawel", "it": "Wawel", "nl": "Wawel", "zh": "瓦维尔城堡", "zht": "瓦維爾城堡", "bg": "Вавел", "pl": "Wawel"},
+    "perfilAv_pl_oro_mayo": {"es": "Fiesta del 3 de Mayo", "en": "3 May Constitution Day", "fr": "Fête du 3 Mai", "de": "Verfassungstag 3. Mai", "it": "Festa del 3 maggio", "nl": "Grondwetsdag 3 mei", "zh": "五三宪法日", "zht": "五三憲法日", "bg": "Ден на 3 май", "pl": "Święto 3 Maja"},
     "perfilAv_bg_rosa": {"es": "Rosa", "en": "Rose", "fr": "Rose", "de": "Rose", "it": "Rosa", "nl": "Roos", "zh": "玫瑰", "zht": "玫瑰", "bg": "Българска роза", "pl": "Róża"},
     "perfilAv_bg_martenitsa": {"es": "Martenitsa", "en": "Martenitsa", "fr": "Martenitsa", "de": "Marteniza", "it": "Martenitsa", "nl": "Martenitsa", "zh": "玛尔泰尼察", "zht": "瑪爾泰尼察", "bg": "Мартеница", "pl": "Marteniczka"},
     "perfilAv_bg_shopska": {"es": "Ensalada shopska", "en": "Shopska salad", "fr": "Salade chopska", "de": "Schopska-Salat", "it": "Insalata shopska", "nl": "Shopskasalade", "zh": "肖普斯卡沙拉", "zht": "肖普斯卡沙拉", "bg": "Шопска салата", "pl": "Sałatka szopska"},
-    "perfilAv_bg_shevitsa": {"es": "Bordado", "en": "Embroidery", "fr": "Broderie", "de": "Stickerei", "it": "Ricamo", "nl": "Borduurwerk", "zh": "刺绣", "zht": "刺繡", "bg": "Шевица", "pl": "Haft"},
+    "perfilAv_bg_rila": {"es": "Monasterio de Rila", "en": "Rila Monastery", "fr": "Monastère de Rila", "de": "Rila-Kloster", "it": "Monastero di Rila", "nl": "Rilaklooster", "zh": "里拉修道院", "zht": "里拉修道院", "bg": "Рилският манастир", "pl": "Monaster Rylski"},
     "perfilAv_bg_yogur": {"es": "Yogur", "en": "Yogurt", "fr": "Yaourt", "de": "Joghurt", "it": "Yogurt", "nl": "Yoghurt", "zh": "酸奶", "zht": "優格", "bg": "Кисело мляко", "pl": "Jogurt"},
+    "perfilAv_bg_oro_marta": {"es": "Baba Marta", "en": "Baba Marta Day", "fr": "Baba Marta", "de": "Baba Marta", "it": "Baba Marta", "nl": "Baba Marta", "zh": "三月奶奶节", "zht": "三月奶奶節", "bg": "Баба Марта", "pl": "Baba Marta"},
     "perfilAv_zh_panda": {"es": "Panda", "en": "Panda", "fr": "Panda", "de": "Panda", "it": "Panda", "nl": "Panda", "zh": "熊猫", "zht": "熊貓", "bg": "Панда", "pl": "Panda"},
     "perfilAv_zh_farol": {"es": "Farolillo", "en": "Lantern", "fr": "Lanterne", "de": "Laterne", "it": "Lanterna", "nl": "Lantaarn", "zh": "红灯笼", "zht": "紅燈籠", "bg": "Фенер", "pl": "Lampion"},
     "perfilAv_zh_jiaozi": {"es": "Empanadilla china", "en": "Dumpling", "fr": "Ravioli chinois", "de": "Jiaozi", "it": "Ravioli cinesi", "nl": "Dumpling", "zh": "饺子", "zht": "餃子", "bg": "Китайски пелмени", "pl": "Chińskie pierożki"},
     "perfilAv_zh_muralla": {"es": "Gran Muralla", "en": "Great Wall", "fr": "Grande Muraille", "de": "Chinesische Mauer", "it": "Grande Muraglia", "nl": "Chinese Muur", "zh": "长城", "zht": "長城", "bg": "Великата стена", "pl": "Wielki Mur"},
     "perfilAv_zh_tetera": {"es": "Tetera", "en": "Teapot", "fr": "Théière", "de": "Teekanne", "it": "Teiera", "nl": "Theepot", "zh": "茶壶", "zht": "茶壺", "bg": "Чайник", "pl": "Czajniczek"},
+    "perfilAv_zh_oro_chunjie": {"es": "Año Nuevo chino", "en": "Chinese New Year", "fr": "Nouvel An chinois", "de": "Chinesisches Neujahr", "it": "Capodanno cinese", "nl": "Chinees Nieuwjaar", "zh": "春节", "zht": "春節", "bg": "Китайска нова година", "pl": "Chiński Nowy Rok"},
     "perfilAv_zht_bubble": {"es": "Bubble tea", "en": "Bubble tea", "fr": "Bubble tea", "de": "Bubble Tea", "it": "Bubble tea", "nl": "Bubble tea", "zh": "珍珠奶茶", "zht": "珍珠奶茶", "bg": "Чай с тапиока", "pl": "Bubble tea"},
     "perfilAv_zht_dimsum": {"es": "Dim sum", "en": "Dim sum", "fr": "Dim sum", "de": "Dim Sum", "it": "Dim sum", "nl": "Dimsum", "zh": "点心", "zht": "點心", "bg": "Дим сум", "pl": "Dim sum"},
     "perfilAv_zht_junco": {"es": "Junco chino", "en": "Junk boat", "fr": "Jonque", "de": "Dschunke", "it": "Giunca", "nl": "Jonk", "zh": "中式帆船", "zht": "中式帆船", "bg": "Джонка", "pl": "Dżonka"},
     "perfilAv_zht_oso": {"es": "Oso negro asiático", "en": "Asian black bear", "fr": "Ours à collier", "de": "Kragenbär", "it": "Orso dal collare", "nl": "Kraagbeer", "zh": "黑熊", "zht": "黑熊", "bg": "Хималайска мечка", "pl": "Niedźwiedź himalajski"},
     "perfilAv_zht_farol_cielo": {"es": "Farolillo volador", "en": "Sky lantern", "fr": "Lanterne céleste", "de": "Himmelslaterne", "it": "Lanterna volante", "nl": "Wensballon", "zh": "天灯", "zht": "天燈", "bg": "Небесен фенер", "pl": "Lampion szczęścia"},
+    "perfilAv_zht_oro_zhongqiu": {"es": "Fiesta del Medio Otoño", "en": "Mid-Autumn Festival", "fr": "Fête de la mi-automne", "de": "Mondfest", "it": "Festa di metà autunno", "nl": "Midherfstfestival", "zh": "中秋节", "zht": "中秋節", "bg": "Средата на есента", "pl": "Święto Środka Jesieni"},
     "perfilAv_tf_teide": {"es": "Teide", "en": "Teide", "fr": "Teide", "de": "Teide", "it": "Teide", "nl": "Teide", "zh": "泰德峰", "zht": "泰德峰", "bg": "Тейде", "pl": "Teide"},
     "perfilAv_tf_lagarto": {"es": "Lagarto tizón", "en": "Tenerife lizard", "fr": "Lézard de Tenerife", "de": "Westkanaren-Eidechse", "it": "Lucertola di Tenerife", "nl": "Tenerife-hagedis", "zh": "特内里费蜥蜴", "zht": "特內里費蜥蜴", "bg": "Тенерифски гущер", "pl": "Jaszczurka z Teneryfy"},
     "perfilAv_tf_guagua": {"es": "Guagua", "en": "Guagua (bus)", "fr": "Guagua (bus)", "de": "Guagua (Bus)", "it": "Guagua (bus)", "nl": "Guagua (bus)", "zh": "公交车", "zht": "公車", "bg": "Гуагуа (автобус)", "pl": "Guagua (autobus)"},
     "perfilAv_tf_drago": {"es": "Drago", "en": "Dragon tree", "fr": "Dragonnier", "de": "Drachenbaum", "it": "Albero del drago", "nl": "Drakenboom", "zh": "龙血树", "zht": "龍血樹", "bg": "Драконово дърво", "pl": "Smocze drzewo"},
     "perfilAv_tf_calderon": {"es": "Calderón", "en": "Pilot whale", "fr": "Globicéphale", "de": "Grindwal", "it": "Globicefalo", "nl": "Griend", "zh": "领航鲸", "zht": "領航鯨", "bg": "Гринда", "pl": "Grindwal"},
+    "perfilAv_tf_oro_carnaval": {"es": "Carnaval de Santa Cruz", "en": "Santa Cruz Carnival", "fr": "Carnaval de Santa Cruz", "de": "Karneval in Santa Cruz", "it": "Carnevale di Santa Cruz", "nl": "Carnaval in Santa Cruz", "zh": "圣克鲁斯狂欢节", "zht": "聖克魯斯嘉年華", "bg": "Карнавал в Санта Крус", "pl": "Karnawał w Santa Cruz"},
+    "perfilAv_tf_oro_canarias": {"es": "Día de Canarias", "en": "Canary Islands Day", "fr": "Jour des îles Canaries", "de": "Tag der Kanaren", "it": "Giorno delle Canarie", "nl": "Día de Canarias", "zh": "加那利群岛日", "zht": "加那利群島日", "bg": "Ден на Канарите", "pl": "Dzień Wysp Kanaryjskich"},
+    "perfilAv_tf_oro_sanjuan": {"es": "Noche de San Juan", "en": "St John’s Eve", "fr": "Nuit de la Saint-Jean", "de": "Johannisnacht", "it": "Notte di San Giovanni", "nl": "Sint-Jansnacht", "zh": "圣约翰之夜", "zht": "聖約翰之夜", "bg": "Нощ на Сан Хуан", "pl": "Noc San Juan"},
     "perfilAv_ie_trebol": {"es": "Trébol", "en": "Shamrock", "fr": "Trèfle", "de": "Kleeblatt", "it": "Trifoglio", "nl": "Klaver", "zh": "三叶草", "zht": "三葉草", "bg": "Детелина", "pl": "Koniczyna"},
-    "perfilAv_ie_hurling": {"es": "Hurling", "en": "Hurling", "fr": "Hurling", "de": "Hurling", "it": "Hurling", "nl": "Hurling", "zh": "爱尔兰式曲棍球", "zht": "愛爾蘭式曲棍球", "bg": "Хърлинг", "pl": "Hurling"},
+    "perfilAv_ie_arpa": {"es": "Arpa irlandesa", "en": "Irish harp", "fr": "Harpe irlandaise", "de": "Irische Harfe", "it": "Arpa irlandese", "nl": "Ierse harp", "zh": "爱尔兰竖琴", "zht": "愛爾蘭豎琴", "bg": "Ирландска арфа", "pl": "Harfa irlandzka"},
     "perfilAv_ie_moher": {"es": "Acantilados de Moher", "en": "Cliffs of Moher", "fr": "Falaises de Moher", "de": "Cliffs of Moher", "it": "Scogliere di Moher", "nl": "Kliffen van Moher", "zh": "莫赫悬崖", "zht": "莫赫懸崖", "bg": "Скалите Мохер", "pl": "Klify Moher"},
     "perfilAv_ie_lobero": {"es": "Lebrel irlandés", "en": "Irish wolfhound", "fr": "Lévrier irlandais", "de": "Irischer Wolfshund", "it": "Levriero irlandese", "nl": "Ierse wolfshond", "zh": "爱尔兰猎狼犬", "zht": "愛爾蘭獵狼犬", "bg": "Ирландски вълкодав", "pl": "Wilczarz irlandzki"},
     "perfilAv_ie_pan_soda": {"es": "Pan de soda", "en": "Soda bread", "fr": "Pain au bicarbonate", "de": "Sodabrot", "it": "Soda bread", "nl": "Sodabrood", "zh": "苏打面包", "zht": "蘇打麵包", "bg": "Содов хляб", "pl": "Chleb sodowy"},
+    "perfilAv_ie_oro_patricio": {"es": "San Patricio", "en": "St Patrick’s Day", "fr": "Saint-Patrick", "de": "St. Patrick’s Day", "it": "San Patrizio", "nl": "Saint Patrick’s Day", "zh": "圣帕特里克节", "zht": "聖派翠克節", "bg": "Ден на свети Патрик", "pl": "Dzień Świętego Patryka"},
     "perfilAv_dk_nyhavn": {"es": "Nyhavn", "en": "Nyhavn", "fr": "Nyhavn", "de": "Nyhavn", "it": "Nyhavn", "nl": "Nyhavn", "zh": "新港", "zht": "新港", "bg": "Нюхавн", "pl": "Nyhavn"},
-    "perfilAv_dk_cisne": {"es": "Cisne", "en": "Swan", "fr": "Cygne", "de": "Schwan", "it": "Cigno", "nl": "Zwaan", "zh": "天鹅", "zht": "天鵝", "bg": "Лебед", "pl": "Łabędź"},
-    "perfilAv_dk_smorrebrod": {"es": "Smørrebrød", "en": "Smørrebrød", "fr": "Smørrebrød", "de": "Smørrebrød", "it": "Smørrebrød", "nl": "Smørrebrød", "zh": "开放式三明治", "zht": "開放式三明治", "bg": "Датски сандвич", "pl": "Smørrebrød"},
     "perfilAv_dk_wienerbrod": {"es": "Pastel danés", "en": "Danish pastry", "fr": "Viennoiserie danoise", "de": "Plundergebäck", "it": "Pasta danese", "nl": "Deens gebak", "zh": "丹麦酥", "zht": "丹麥酥", "bg": "Датски сладкиш", "pl": "Duńska drożdżówka"},
+    "perfilAv_dk_smorrebrod": {"es": "Smørrebrød", "en": "Smørrebrød", "fr": "Smørrebrød", "de": "Smørrebrød", "it": "Smørrebrød", "nl": "Smørrebrød", "zh": "开放式三明治", "zht": "開放式三明治", "bg": "Датски сандвич", "pl": "Smørrebrød"},
     "perfilAv_dk_kronborg": {"es": "Castillo de Kronborg", "en": "Kronborg Castle", "fr": "Château de Kronborg", "de": "Schloss Kronborg", "it": "Castello di Kronborg", "nl": "Kasteel Kronborg", "zh": "克伦堡宫", "zht": "克倫堡宮", "bg": "Замъкът Кронборг", "pl": "Zamek Kronborg"},
+    "perfilAv_dk_polse": {"es": "Perrito caliente danés", "en": "Danish hot dog", "fr": "Hot-dog danois", "de": "Dänischer Hotdog", "it": "Hot dog danese", "nl": "Deense hotdog", "zh": "丹麦热狗", "zht": "丹麥熱狗", "bg": "Датски хотдог", "pl": "Duński hot dog"},
+    "perfilAv_dk_oro_fastelavn": {"es": "Carnaval danés", "en": "Fastelavn", "fr": "Carnaval danois", "de": "Fastelavn", "it": "Carnevale danese", "nl": "Fastelavn", "zh": "丹麦狂欢节", "zht": "丹麥嘉年華", "bg": "Фастелавн", "pl": "Fastelavn"},
     "perfilAv_se_caballito": {"es": "Caballito de Dalarna", "en": "Dala horse", "fr": "Cheval de Dalécarlie", "de": "Dalapferd", "it": "Cavallino di Dalarna", "nl": "Dalapaardje", "zh": "达拉木马", "zht": "達拉木馬", "bg": "Конче от Даларна", "pl": "Konik z Dalarny"},
     "perfilAv_se_alce": {"es": "Alce", "en": "Elk", "fr": "Élan", "de": "Elch", "it": "Alce", "nl": "Eland", "zh": "驼鹿", "zht": "駝鹿", "bg": "Лос", "pl": "Łoś"},
     "perfilAv_se_casita": {"es": "Casita roja", "en": "Red cottage", "fr": "Maisonnette rouge", "de": "Rotes Holzhaus", "it": "Casetta rossa", "nl": "Rood huisje", "zh": "红色木屋", "zht": "紅色木屋", "bg": "Червена къщичка", "pl": "Czerwony domek"},
     "perfilAv_se_albondigas": {"es": "Albóndigas suecas", "en": "Swedish meatballs", "fr": "Boulettes suédoises", "de": "Köttbullar", "it": "Polpette svedesi", "nl": "Zweedse gehaktballetjes", "zh": "瑞典肉丸", "zht": "瑞典肉丸", "bg": "Шведски кюфтета", "pl": "Szwedzkie klopsiki"},
     "perfilAv_se_canela": {"es": "Bollo de canela", "en": "Cinnamon bun", "fr": "Roulé à la cannelle", "de": "Zimtschnecke", "it": "Girella alla cannella", "nl": "Kaneelbroodje", "zh": "肉桂卷", "zht": "肉桂捲", "bg": "Кифла с канела", "pl": "Bułeczka cynamonowa"},
+    "perfilAv_se_oro_midsommar": {"es": "Midsommar", "en": "Midsommar", "fr": "Midsommar", "de": "Midsommar", "it": "Midsommar", "nl": "Midsommar", "zh": "仲夏节", "zht": "仲夏節", "bg": "Мидсомар", "pl": "Midsommar"},
     "perfilAv_no_fiordo": {"es": "Fiordo", "en": "Fjord", "fr": "Fjord", "de": "Fjord", "it": "Fiordo", "nl": "Fjord", "zh": "峡湾", "zht": "峽灣", "bg": "Фиорд", "pl": "Fiord"},
     "perfilAv_no_vikingo": {"es": "Barco vikingo", "en": "Viking ship", "fr": "Navire viking", "de": "Wikingerschiff", "it": "Nave vichinga", "nl": "Vikingschip", "zh": "维京船", "zht": "維京船", "bg": "Викингски кораб", "pl": "Łódź wikingów"},
+    "perfilAv_no_stavkirke": {"es": "Iglesia de madera", "en": "Stave church", "fr": "Église en bois debout", "de": "Stabkirche", "it": "Chiesa di legno", "nl": "Staafkerk", "zh": "木板教堂", "zht": "木板教堂", "bg": "Дървена църква", "pl": "Kościół klepkowy"},
     "perfilAv_no_brunost": {"es": "Queso marrón", "en": "Brown cheese", "fr": "Fromage brun", "de": "Braunkäse", "it": "Formaggio bruno", "nl": "Bruine kaas", "zh": "挪威棕奶酪", "zht": "挪威棕起司", "bg": "Кафяво сирене", "pl": "Brązowy ser"},
-    "perfilAv_no_salmon": {"es": "Salmón", "en": "Salmon", "fr": "Saumon", "de": "Lachs", "it": "Salmone", "nl": "Zalm", "zh": "三文鱼", "zht": "鮭魚", "bg": "Сьомга", "pl": "Łosoś"},
     "perfilAv_no_esquis": {"es": "Esquís", "en": "Skis", "fr": "Skis", "de": "Skier", "it": "Sci", "nl": "Ski’s", "zh": "滑雪板", "zht": "滑雪板", "bg": "Ски", "pl": "Narty"},
+    "perfilAv_no_oro_syttende": {"es": "Día de Noruega", "en": "Syttende Mai", "fr": "Fête nationale norvégienne", "de": "Nationalfeiertag Norwegens", "it": "Festa nazionale norvegese", "nl": "Dag van Noorwegen", "zh": "挪威宪法日", "zht": "挪威憲法日", "bg": "Ден на Норвегия", "pl": "Dzień Norwegii"},
     "perfilAv_fi_sauna": {"es": "Sauna", "en": "Sauna", "fr": "Sauna", "de": "Sauna", "it": "Sauna", "nl": "Sauna", "zh": "桑拿", "zht": "三溫暖", "bg": "Сауна", "pl": "Sauna"},
     "perfilAv_fi_reno": {"es": "Reno", "en": "Reindeer", "fr": "Renne", "de": "Rentier", "it": "Renna", "nl": "Rendier", "zh": "驯鹿", "zht": "馴鹿", "bg": "Северен елен", "pl": "Renifer"},
     "perfilAv_fi_aurora": {"es": "Aurora boreal", "en": "Northern lights", "fr": "Aurore boréale", "de": "Nordlicht", "it": "Aurora boreale", "nl": "Noorderlicht", "zh": "北极光", "zht": "北極光", "bg": "Северно сияние", "pl": "Zorza polarna"},
+    "perfilAv_fi_catedral": {"es": "Catedral de Helsinki", "en": "Helsinki Cathedral", "fr": "Cathédrale d’Helsinki", "de": "Dom von Helsinki", "it": "Cattedrale di Helsinki", "nl": "Kathedraal van Helsinki", "zh": "赫尔辛基大教堂", "zht": "赫爾辛基大教堂", "bg": "Катедралата в Хелзинки", "pl": "Katedra w Helsinkach"},
     "perfilAv_fi_carelia": {"es": "Pastel de Carelia", "en": "Karelian pie", "fr": "Tarte carélienne", "de": "Karelische Pirogge", "it": "Tortino careliano", "nl": "Karelisch pasteitje", "zh": "卡累利阿馅饼", "zht": "卡累利阿餡餅", "bg": "Карелска баничка", "pl": "Pieróg karelski"},
-    "perfilAv_fi_kantele": {"es": "Kantele", "en": "Kantele", "fr": "Kantele", "de": "Kantele", "it": "Kantele", "nl": "Kantele", "zh": "康特勒琴", "zht": "康特勒琴", "bg": "Кантеле", "pl": "Kantele"},
+    "perfilAv_fi_oro_independencia": {"es": "Día de Finlandia", "en": "Independence Day", "fr": "Fête nationale finlandaise", "de": "Nationalfeiertag Finnlands", "it": "Giorno dell’indipendenza", "nl": "Finse nationale feestdag", "zh": "芬兰独立日", "zht": "芬蘭獨立日", "bg": "Ден на независимостта", "pl": "Dzień Niepodległości"},
     "perfilAv_is_frailecillo": {"es": "Frailecillo", "en": "Puffin", "fr": "Macareux", "de": "Papageitaucher", "it": "Pulcinella di mare", "nl": "Papegaaiduiker", "zh": "海鹦", "zht": "海鸚", "bg": "Тупик", "pl": "Maskonur"},
     "perfilAv_is_geiser": {"es": "Géiser", "en": "Geyser", "fr": "Geyser", "de": "Geysir", "it": "Geyser", "nl": "Geiser", "zh": "间歇泉", "zht": "間歇泉", "bg": "Гейзер", "pl": "Gejzer"},
+    "perfilAv_is_hallgrimskirkja": {"es": "Hallgrímskirkja", "en": "Hallgrímskirkja", "fr": "Hallgrímskirkja", "de": "Hallgrímskirkja", "it": "Hallgrímskirkja", "nl": "Hallgrímskirkja", "zh": "哈尔格林姆教堂", "zht": "哈爾格林姆教堂", "bg": "Халгримскиркя", "pl": "Hallgrímskirkja"},
     "perfilAv_is_caballo": {"es": "Caballo islandés", "en": "Icelandic horse", "fr": "Cheval islandais", "de": "Islandpferd", "it": "Cavallo islandese", "nl": "IJslands paard", "zh": "冰岛马", "zht": "冰島馬", "bg": "Исландски кон", "pl": "Koń islandzki"},
     "perfilAv_is_glaciar": {"es": "Glaciar Vatnajökull", "en": "Vatnajökull glacier", "fr": "Glacier Vatnajökull", "de": "Vatnajökull-Gletscher", "it": "Ghiacciaio Vatnajökull", "nl": "Vatnajökull-gletsjer", "zh": "瓦特纳冰川", "zht": "瓦特納冰河", "bg": "Ледникът Вахтнайокутъл", "pl": "Lodowiec Vatnajökull"},
-    "perfilAv_is_basalto": {"es": "Columnas de basalto", "en": "Basalt columns", "fr": "Orgues basaltiques", "de": "Basaltsäulen", "it": "Colonne di basalto", "nl": "Basaltzuilen", "zh": "玄武岩柱", "zht": "玄武岩柱", "bg": "Базалтови колони", "pl": "Kolumny bazaltowe"},
+    "perfilAv_is_oro_thjodhatid": {"es": "Día de Islandia", "en": "Icelandic National Day", "fr": "Fête nationale islandaise", "de": "Nationalfeiertag Islands", "it": "Festa nazionale islandese", "nl": "Dag van IJsland", "zh": "冰岛国庆日", "zht": "冰島國慶日", "bg": "Ден на Исландия", "pl": "Dzień Islandii"},
     "perfilAv_ee_tallin": {"es": "Murallas de Tallin", "en": "Tallinn city walls", "fr": "Remparts de Tallinn", "de": "Stadtmauer von Tallinn", "it": "Mura di Tallinn", "nl": "Stadsmuur van Tallinn", "zh": "塔林城墙", "zht": "塔林城牆", "bg": "Стените на Талин", "pl": "Mury Tallinna"},
     "perfilAv_ee_golondrina": {"es": "Golondrina", "en": "Swallow", "fr": "Hirondelle", "de": "Rauchschwalbe", "it": "Rondine", "nl": "Boerenzwaluw", "zh": "家燕", "zht": "家燕", "bg": "Лястовица", "pl": "Jaskółka"},
     "perfilAv_ee_aciano": {"es": "Aciano", "en": "Cornflower", "fr": "Bleuet", "de": "Kornblume", "it": "Fiordaliso", "nl": "Korenbloem", "zh": "矢车菊", "zht": "矢車菊", "bg": "Метличина", "pl": "Chaber bławatek"},
     "perfilAv_ee_pan": {"es": "Pan negro", "en": "Black rye bread", "fr": "Pain noir de seigle", "de": "Schwarzbrot", "it": "Pane nero di segale", "nl": "Roggebrood", "zh": "黑麦面包", "zht": "黑麥麵包", "bg": "Черен ръжен хляб", "pl": "Czarny chleb żytni"},
-    "perfilAv_ee_lobo": {"es": "Lobo", "en": "Wolf", "fr": "Loup", "de": "Wolf", "it": "Lupo", "nl": "Wolf", "zh": "狼", "zht": "狼", "bg": "Вълк", "pl": "Wilk"},
-    "perfilAv_lv_lavandera": {"es": "Lavandera blanca", "en": "White wagtail", "fr": "Bergeronnette grise", "de": "Bachstelze", "it": "Ballerina bianca", "nl": "Witte kwikstaart", "zh": "白鹡鸰", "zht": "白鶺鴒", "bg": "Бяла стърчиопашка", "pl": "Pliszka siwa"},
-    "perfilAv_lv_sklandrausis": {"es": "Sklandrausis", "en": "Sklandrausis", "fr": "Sklandrausis", "de": "Sklandrausis", "it": "Sklandrausis", "nl": "Sklandrausis", "zh": "拉脱维亚胡萝卜挞", "zht": "拉脫維亞胡蘿蔔塔", "bg": "Скландраусис", "pl": "Sklandrausis"},
-    "perfilAv_lv_espadines": {"es": "Espadines de Riga", "en": "Riga sprats", "fr": "Sprats de Riga", "de": "Rigaer Sprotten", "it": "Spratti di Riga", "nl": "Sprot uit Riga", "zh": "里加熏鲱鱼", "zht": "里加燻鯡魚", "bg": "Рижки шпроти", "pl": "Szproty ryskie"},
+    "perfilAv_ee_raba": {"es": "Turbera", "en": "Estonian bog", "fr": "Tourbière", "de": "Hochmoor", "it": "Torbiera", "nl": "Hoogveen", "zh": "泥炭沼泽", "zht": "泥炭沼澤", "bg": "Торфено блато", "pl": "Torfowisko"},
+    "perfilAv_ee_oro_jaanipaev": {"es": "San Juan estonio", "en": "Jaanipäev", "fr": "Saint-Jean estonienne", "de": "Jaanipäev", "it": "San Giovanni estone", "nl": "Jaanipäev", "zh": "爱沙尼亚仲夏节", "zht": "愛沙尼亞仲夏節", "bg": "Яанипяев", "pl": "Jaanipäev"},
+    "perfilAv_lv_silueta": {"es": "Torres de Riga", "en": "Riga skyline", "fr": "Clochers de Riga", "de": "Türme von Riga", "it": "Campanili di Riga", "nl": "Torens van Riga", "zh": "里加老城", "zht": "里加老城", "bg": "Кулите на Рига", "pl": "Wieże Rygi"},
     "perfilAv_lv_modernismo": {"es": "Art nouveau de Riga", "en": "Riga Art Nouveau", "fr": "Art nouveau de Riga", "de": "Jugendstil in Riga", "it": "Liberty di Riga", "nl": "Art nouveau in Riga", "zh": "里加新艺术建筑", "zht": "里加新藝術建築", "bg": "Сецесион в Рига", "pl": "Secesja w Rydze"},
+    "perfilAv_lv_espadines": {"es": "Espadines de Riga", "en": "Riga sprats", "fr": "Sprats de Riga", "de": "Rigaer Sprotten", "it": "Spratti di Riga", "nl": "Sprot uit Riga", "zh": "里加熏鲱鱼", "zht": "里加燻鯡魚", "bg": "Рижки шпроти", "pl": "Szproty ryskie"},
+    "perfilAv_lv_turaida": {"es": "Castillo de Turaida", "en": "Turaida Castle", "fr": "Château de Turaida", "de": "Burg Turaida", "it": "Castello di Turaida", "nl": "Kasteel van Turaida", "zh": "图拉伊达城堡", "zht": "圖拉伊達城堡", "bg": "Замъкът Турайда", "pl": "Zamek w Turaidzie"},
     "perfilAv_lv_corona": {"es": "Corona de roble", "en": "Oak wreath", "fr": "Couronne de chêne", "de": "Eichenkranz", "it": "Corona di quercia", "nl": "Eikenkrans", "zh": "橡叶花环", "zht": "橡葉花環", "bg": "Дъбов венец", "pl": "Wieniec dębowy"},
-    "perfilAv_lt_cepelinai": {"es": "Cepelinai", "en": "Cepelinai", "fr": "Cepelinai", "de": "Cepelinai", "it": "Cepelinai", "nl": "Cepelinai", "zh": "立陶宛土豆饺", "zht": "立陶宛馬鈴薯餃", "bg": "Цепелини", "pl": "Cepeliny"},
-    "perfilAv_lt_sakotis": {"es": "Šakotis", "en": "Šakotis", "fr": "Šakotis", "de": "Šakotis", "it": "Šakotis", "nl": "Šakotis", "zh": "树蛋糕", "zht": "樹蛋糕", "bg": "Шакотис", "pl": "Sękacz"},
+    "perfilAv_lv_oro_jani": {"es": "San Juan letón", "en": "Jāņi", "fr": "Jāņi", "de": "Jāņi", "it": "Jāņi", "nl": "Jāņi", "zh": "亚尼节", "zht": "亞尼節", "bg": "Лиго", "pl": "Jāņi"},
     "perfilAv_lt_trakai": {"es": "Castillo de Trakai", "en": "Trakai Castle", "fr": "Château de Trakai", "de": "Burg Trakai", "it": "Castello di Trakai", "nl": "Kasteel van Trakai", "zh": "特拉凯城堡", "zht": "特拉凱城堡", "bg": "Замъкът Тракай", "pl": "Zamek w Trokach"},
-    "perfilAv_lt_dunas": {"es": "Istmo de Curlandia", "en": "Curonian Spit", "fr": "Isthme de Courlande", "de": "Kurische Nehrung", "it": "Penisola curlandese", "nl": "Koerse Schoorwal", "zh": "库尔斯沙嘴", "zht": "庫爾斯沙嘴", "bg": "Куршската коса", "pl": "Mierzeja Kurońska"},
+    "perfilAv_lt_cepelinai": {"es": "Cepelinai", "en": "Cepelinai", "fr": "Cepelinai", "de": "Cepelinai", "it": "Cepelinai", "nl": "Cepelinai", "zh": "立陶宛土豆饺", "zht": "立陶宛馬鈴薯餃", "bg": "Цепелини", "pl": "Cepeliny"},
     "perfilAv_lt_baloncesto": {"es": "Baloncesto", "en": "Basketball", "fr": "Basket-ball", "de": "Basketball", "it": "Pallacanestro", "nl": "Basketbal", "zh": "篮球", "zht": "籃球", "bg": "Баскетбол", "pl": "Koszykówka"},
+    "perfilAv_lt_sakotis": {"es": "Šakotis", "en": "Šakotis", "fr": "Šakotis", "de": "Šakotis", "it": "Šakotis", "nl": "Šakotis", "zh": "树蛋糕", "zht": "樹蛋糕", "bg": "Шакотис", "pl": "Sękacz"},
+    "perfilAv_lt_dunas": {"es": "Istmo de Curlandia", "en": "Curonian Spit", "fr": "Isthme de Courlande", "de": "Kurische Nehrung", "it": "Penisola curlandese", "nl": "Koerse Schoorwal", "zh": "库尔斯沙嘴", "zht": "庫爾斯沙嘴", "bg": "Куршската коса", "pl": "Mierzeja Kurońska"},
+    "perfilAv_lt_oro_uzgavenes": {"es": "Carnaval lituano", "en": "Užgavėnės", "fr": "Carnaval lituanien", "de": "Užgavėnės", "it": "Carnevale lituano", "nl": "Užgavėnės", "zh": "立陶宛狂欢节", "zht": "立陶宛嘉年華", "bg": "Ужгавенес", "pl": "Užgavėnės"},
     "perfilAv_at_escalope": {"es": "Escalope vienés", "en": "Wiener schnitzel", "fr": "Escalope viennoise", "de": "Wiener Schnitzel", "it": "Cotoletta alla viennese", "nl": "Wienerschnitzel", "zh": "维也纳炸肉排", "zht": "維也納炸肉排", "bg": "Виенски шницел", "pl": "Sznycel wiedeński"},
-    "perfilAv_at_strudel": {"es": "Strudel de manzana", "en": "Apple strudel", "fr": "Strudel aux pommes", "de": "Apfelstrudel", "it": "Strudel di mele", "nl": "Appelstrudel", "zh": "苹果卷", "zht": "蘋果捲", "bg": "Щрудел с ябълки", "pl": "Strudel jabłkowy"},
     "perfilAv_at_noria": {"es": "Noria del Prater", "en": "Prater Ferris wheel", "fr": "Grande roue du Prater", "de": "Wiener Riesenrad", "it": "Ruota panoramica", "nl": "Weens Reuzenrad", "zh": "普拉特摩天轮", "zht": "普拉特摩天輪", "bg": "Колелото в Пратер", "pl": "Diabelski młyn w Praterze"},
-    "perfilAv_at_cafe": {"es": "Café vienés", "en": "Viennese coffee", "fr": "Café viennois", "de": "Wiener Kaffee", "it": "Caffè viennese", "nl": "Weense koffie", "zh": "维也纳咖啡", "zht": "維也納咖啡", "bg": "Виенско кафе", "pl": "Kawa po wiedeńsku"},
     "perfilAv_at_schonbrunn": {"es": "Palacio de Schönbrunn", "en": "Schönbrunn Palace", "fr": "Château de Schönbrunn", "de": "Schloss Schönbrunn", "it": "Reggia di Schönbrunn", "nl": "Paleis Schönbrunn", "zh": "美泉宫", "zht": "美泉宮", "bg": "Дворецът Шьонбрун", "pl": "Pałac Schönbrunn"},
+    "perfilAv_at_strudel": {"es": "Strudel de manzana", "en": "Apple strudel", "fr": "Strudel aux pommes", "de": "Apfelstrudel", "it": "Strudel di mele", "nl": "Appelstrudel", "zh": "苹果卷", "zht": "蘋果捲", "bg": "Щрудел с ябълки", "pl": "Strudel jabłkowy"},
+    "perfilAv_at_cafe": {"es": "Café vienés", "en": "Viennese coffee", "fr": "Café viennois", "de": "Wiener Kaffee", "it": "Caffè viennese", "nl": "Weense koffie", "zh": "维也纳咖啡", "zht": "維也納咖啡", "bg": "Виенско кафе", "pl": "Kawa po wiedeńsku"},
+    "perfilAv_at_oro_neujahr": {"es": "Concierto de Año Nuevo", "en": "New Year’s Concert", "fr": "Concert du nouvel an", "de": "Neujahrskonzert", "it": "Concerto di Capodanno", "nl": "Neujahrskonzert", "zh": "维也纳新年音乐会", "zht": "維也納新年音樂會", "bg": "Новогодишен концерт", "pl": "Koncert Noworoczny"},
     "perfilAv_be_gofre": {"es": "Gofre", "en": "Belgian waffle", "fr": "Gaufre", "de": "Belgische Waffel", "it": "Waffle belga", "nl": "Brusselse wafel", "zh": "比利时华夫饼", "zht": "比利時鬆餅", "bg": "Белгийска гофрета", "pl": "Gofr belgijski"},
     "perfilAv_be_patatas": {"es": "Patatas fritas", "en": "Chips", "fr": "Frites", "de": "Pommes frites", "it": "Patatine fritte", "nl": "Frieten", "zh": "炸薯条", "zht": "炸薯條", "bg": "Пържени картофки", "pl": "Frytki"},
     "perfilAv_be_bombones": {"es": "Bombones", "en": "Chocolates", "fr": "Pralines", "de": "Pralinen", "it": "Cioccolatini", "nl": "Pralines", "zh": "比利时巧克力", "zht": "比利時巧克力", "bg": "Шоколадови бонбони", "pl": "Praliny"},
     "perfilAv_be_grand_place": {"es": "Grand-Place", "en": "Grand-Place", "fr": "Grand-Place", "de": "Grand-Place", "it": "Grand-Place", "nl": "Grote Markt", "zh": "布鲁塞尔大广场", "zht": "布魯塞爾大廣場", "bg": "Гран Плас", "pl": "Grand-Place"},
-    "perfilAv_be_saxofon": {"es": "Saxofón", "en": "Saxophone", "fr": "Saxophone", "de": "Saxofon", "it": "Sassofono", "nl": "Saxofoon", "zh": "萨克斯管", "zht": "薩克斯風", "bg": "Саксофон", "pl": "Saksofon"},
+    "perfilAv_be_belfort": {"es": "Campanario de Brujas", "en": "Belfry of Bruges", "fr": "Beffroi de Bruges", "de": "Belfried von Brügge", "it": "Campanile di Bruges", "nl": "Belfort van Brugge", "zh": "布鲁日钟楼", "zht": "布魯日鐘樓", "bg": "Камбанарията в Брюж", "pl": "Dzwonnica w Brugii"},
+    "perfilAv_be_oro_binche": {"es": "Carnaval de Binche", "en": "Carnival of Binche", "fr": "Carnaval de Binche", "de": "Karneval von Binche", "it": "Carnevale di Binche", "nl": "Carnaval van Binche", "zh": "班什狂欢节", "zht": "班什嘉年華", "bg": "Карнавал в Банш", "pl": "Karnawał w Binche"},
     "perfilAv_ch_cervino": {"es": "Cervino", "en": "Matterhorn", "fr": "Cervin", "de": "Matterhorn", "it": "Cervino", "nl": "Matterhorn", "zh": "马特洪峰", "zht": "馬特洪峰", "bg": "Матерхорн", "pl": "Matterhorn"},
     "perfilAv_ch_fondue": {"es": "Fondue", "en": "Fondue", "fr": "Fondue", "de": "Fondue", "it": "Fondue", "nl": "Kaasfondue", "zh": "奶酪火锅", "zht": "起司火鍋", "bg": "Фондю", "pl": "Fondue"},
     "perfilAv_ch_sanbernardo": {"es": "San bernardo", "en": "St Bernard", "fr": "Saint-bernard", "de": "Bernhardiner", "it": "San Bernardo", "nl": "Sint-bernard", "zh": "圣伯纳犬", "zht": "聖伯納犬", "bg": "Санбернар", "pl": "Bernardyn"},
     "perfilAv_ch_vaca": {"es": "Vaca con cencerro", "en": "Cow with a bell", "fr": "Vache et sa cloche", "de": "Kuh mit Glocke", "it": "Mucca con campanaccio", "nl": "Koe met bel", "zh": "戴铃铛的奶牛", "zht": "戴鈴鐺的乳牛", "bg": "Крава с хлопка", "pl": "Krowa z dzwonkiem"},
     "perfilAv_ch_trompa": {"es": "Trompa alpina", "en": "Alphorn", "fr": "Cor des Alpes", "de": "Alphorn", "it": "Corno delle Alpi", "nl": "Alpenhoorn", "zh": "阿尔卑斯长号", "zht": "阿爾卑斯長號", "bg": "Алпийски рог", "pl": "Róg alpejski"},
+    "perfilAv_ch_oro_agosto": {"es": "Día de Suiza", "en": "Swiss National Day", "fr": "Fête nationale suisse", "de": "Schweizer Bundesfeiertag", "it": "Festa nazionale svizzera", "nl": "Dag van Zwitserland", "zh": "瑞士国庆日", "zht": "瑞士國慶日", "bg": "Ден на Швейцария", "pl": "Dzień Szwajcarii"},
     "perfilAv_lu_puente": {"es": "Puente Adolfo", "en": "Adolphe Bridge", "fr": "Pont Adolphe", "de": "Adolphe-Brücke", "it": "Ponte Adolfo", "nl": "Adolphebrug", "zh": "阿道夫桥", "zht": "阿道夫橋", "bg": "Мостът Адолф", "pl": "Most Adolfa"},
+    "perfilAv_lu_vianden": {"es": "Castillo de Vianden", "en": "Vianden Castle", "fr": "Château de Vianden", "de": "Burg Vianden", "it": "Castello di Vianden", "nl": "Kasteel van Vianden", "zh": "菲安登城堡", "zht": "菲安登城堡", "bg": "Замъкът Вианден", "pl": "Zamek Vianden"},
     "perfilAv_lu_casamatas": {"es": "Casamatas del Bock", "en": "Bock Casemates", "fr": "Casemates du Bock", "de": "Bockkasematten", "it": "Casematte del Bock", "nl": "Bock-kazematten", "zh": "博克炮台", "zht": "博克砲臺", "bg": "Казематите Бок", "pl": "Kazamaty Bock"},
     "perfilAv_lu_tarta": {"es": "Tarta de ciruelas", "en": "Plum tart", "fr": "Tarte aux quetsches", "de": "Quetschentaart", "it": "Crostata di prugne", "nl": "Pruimentaart", "zh": "李子挞", "zht": "李子塔", "bg": "Тарт със сливи", "pl": "Tarta ze śliwkami"},
     "perfilAv_lu_peckvillchen": {"es": "Péckvillchen", "en": "Péckvillchen", "fr": "Péckvillchen", "de": "Péckvillchen", "it": "Péckvillchen", "nl": "Péckvillchen", "zh": "鸟形陶哨", "zht": "鳥形陶哨", "bg": "Пеквилхен", "pl": "Péckvillchen"},
-    "perfilAv_lu_mullerthal": {"es": "Cascada del Mullerthal", "en": "Mullerthal waterfall", "fr": "Cascade du Mullerthal", "de": "Wasserfall im Müllerthal", "it": "Cascata del Mullerthal", "nl": "Waterval in het Mullerthal", "zh": "米勒塔尔瀑布", "zht": "米勒塔爾瀑布", "bg": "Водопадът в Мюлертал", "pl": "Wodospad w Mullerthalu"},
+    "perfilAv_lu_oro_nacional": {"es": "Día de Luxemburgo", "en": "Luxembourg National Day", "fr": "Fête nationale luxembourgeoise", "de": "Nationalfeiertag Luxemburgs", "it": "Festa del Lussemburgo", "nl": "Dag van Luxemburg", "zh": "卢森堡国庆日", "zht": "盧森堡國慶日", "bg": "Ден на Люксембург", "pl": "Dzień Luksemburga"},
     "perfilAv_li_vaduz": {"es": "Castillo de Vaduz", "en": "Vaduz Castle", "fr": "Château de Vaduz", "de": "Schloss Vaduz", "it": "Castello di Vaduz", "nl": "Kasteel van Vaduz", "zh": "瓦杜兹城堡", "zht": "瓦都茲城堡", "bg": "Замъкът Вадуц", "pl": "Zamek Vaduz"},
     "perfilAv_li_sello": {"es": "Sello de correos", "en": "Postage stamp", "fr": "Timbre-poste", "de": "Briefmarke", "it": "Francobollo", "nl": "Postzegel", "zh": "邮票", "zht": "郵票", "bg": "Пощенска марка", "pl": "Znaczek pocztowy"},
     "perfilAv_li_knopfle": {"es": "Käsknöpfle", "en": "Käsknöpfle", "fr": "Käsknöpfle", "de": "Käsknöpfle", "it": "Käsknöpfle", "nl": "Käsknöpfle", "zh": "奶酪面疙瘩", "zht": "起司麵疙瘩", "bg": "Кескньопфле", "pl": "Käsknöpfle"},
-    "perfilAv_li_puente_rin": {"es": "Puente viejo del Rin", "en": "Old Rhine Bridge", "fr": "Vieux pont du Rhin", "de": "Alte Rheinbrücke", "it": "Vecchio ponte sul Reno", "nl": "Oude Rijnbrug", "zh": "莱茵河老桥", "zht": "萊茵河老橋", "bg": "Старият мост на Рейн", "pl": "Stary most na Renie"},
     "perfilAv_li_casa_roja": {"es": "Casa Roja", "en": "Red House", "fr": "Maison rouge", "de": "Rotes Haus", "it": "Casa Rossa", "nl": "Rode Huis", "zh": "红屋", "zht": "紅屋", "bg": "Червената къща", "pl": "Czerwony Dom"},
+    "perfilAv_li_puente_rin": {"es": "Puente viejo del Rin", "en": "Old Rhine Bridge", "fr": "Vieux pont du Rhin", "de": "Alte Rheinbrücke", "it": "Vecchio ponte sul Reno", "nl": "Oude Rijnbrug", "zh": "莱茵河老桥", "zht": "萊茵河老橋", "bg": "Старият мост на Рейн", "pl": "Stary most na Renie"},
+    "perfilAv_li_oro_nacional": {"es": "Día de Liechtenstein", "en": "Liechtenstein National Day", "fr": "Fête nationale du Liechtenstein", "de": "Staatsfeiertag", "it": "Festa nazionale del Liechtenstein", "nl": "Dag van Liechtenstein", "zh": "列支敦士登国庆日", "zht": "列支敦斯登國慶日", "bg": "Ден на Лихтенщайн", "pl": "Dzień Liechtensteinu"},
     "perfilAv_mc_coche": {"es": "Coche de carreras", "en": "Racing car", "fr": "Voiture de course", "de": "Rennwagen", "it": "Auto da corsa", "nl": "Raceauto", "zh": "赛车", "zht": "賽車", "bg": "Състезателна кола", "pl": "Bolid"},
-    "perfilAv_mc_fougasse": {"es": "Fougasse monegasca", "en": "Monégasque fougasse", "fr": "Fougasse monégasque", "de": "Monegassische Fougasse", "it": "Fougasse monegasca", "nl": "Monegaskische fougasse", "zh": "摩纳哥茴香甜饼", "zht": "摩納哥茴香甜餅", "bg": "Монакска питка", "pl": "Fougasse monakijska"},
     "perfilAv_mc_oceanografico": {"es": "Museo Oceanográfico", "en": "Oceanographic Museum", "fr": "Musée océanographique", "de": "Meeresmuseum", "it": "Museo oceanografico", "nl": "Oceanografisch Museum", "zh": "海洋博物馆", "zht": "海洋博物館", "bg": "Океанографски музей", "pl": "Muzeum Oceanograficzne"},
+    "perfilAv_mc_palacio": {"es": "Palacio del Príncipe", "en": "Prince’s Palace", "fr": "Palais princier", "de": "Fürstenpalast", "it": "Palazzo dei Principi", "nl": "Prinselijk Paleis", "zh": "摩纳哥亲王宫", "zht": "摩納哥親王宮", "bg": "Княжеският дворец", "pl": "Pałac Książęcy"},
     "perfilAv_mc_barbagiuan": {"es": "Barbagiuan", "en": "Barbagiuan", "fr": "Barbajuan", "de": "Barbagiuan", "it": "Barbagiuan", "nl": "Barbagiuan", "zh": "摩纳哥炸饺", "zht": "摩納哥炸餃", "bg": "Барбажуан", "pl": "Barbagiuan"},
     "perfilAv_mc_jardin": {"es": "Jardín Exótico", "en": "Exotic Garden", "fr": "Jardin exotique", "de": "Exotischer Garten", "it": "Giardino esotico", "nl": "Exotische tuin", "zh": "异国花园", "zht": "異國花園", "bg": "Екзотична градина", "pl": "Ogród Egzotyczny"},
+    "perfilAv_mc_oro_nacional": {"es": "Día de Mónaco", "en": "Monaco National Day", "fr": "Fête du Prince", "de": "Nationalfeiertag Monacos", "it": "Festa nazionale monegasca", "nl": "Dag van Monaco", "zh": "摩纳哥国庆日", "zht": "摩納哥國慶日", "bg": "Ден на Монако", "pl": "Dzień Monako"},
     "perfilAv_pt_nata": {"es": "Pastel de nata", "en": "Pastel de nata", "fr": "Pastel de nata", "de": "Pastel de Nata", "it": "Pastel de nata", "nl": "Pastel de nata", "zh": "葡式蛋挞", "zht": "葡式蛋塔", "bg": "Пастел де ната", "pl": "Pastel de nata"},
     "perfilAv_pt_azulejo": {"es": "Azulejo", "en": "Azulejo tile", "fr": "Azulejo", "de": "Azulejo", "it": "Azulejo", "nl": "Azulejo", "zh": "葡萄牙瓷砖", "zht": "葡萄牙磁磚", "bg": "Азулежу", "pl": "Azulejo"},
     "perfilAv_pt_tranvia": {"es": "Tranvía de Lisboa", "en": "Lisbon tram", "fr": "Tramway de Lisbonne", "de": "Straßenbahn in Lissabon", "it": "Tram di Lisbona", "nl": "Tram van Lissabon", "zh": "里斯本电车", "zht": "里斯本電車", "bg": "Трамвай в Лисабон", "pl": "Tramwaj lizboński"},
     "perfilAv_pt_gallo": {"es": "Gallo de Barcelos", "en": "Barcelos cockerel", "fr": "Coq de Barcelos", "de": "Hahn von Barcelos", "it": "Gallo di Barcelos", "nl": "Haan van Barcelos", "zh": "巴塞罗斯公鸡", "zht": "巴塞羅斯公雞", "bg": "Петелът от Барселуш", "pl": "Kogut z Barcelos"},
     "perfilAv_pt_sardinas": {"es": "Sardinas", "en": "Sardines", "fr": "Sardines", "de": "Sardinen", "it": "Sardine", "nl": "Sardines", "zh": "沙丁鱼", "zht": "沙丁魚", "bg": "Сардини", "pl": "Sardynki"},
+    "perfilAv_pt_oro_antonio": {"es": "Noche de San Antonio", "en": "St Anthony’s Night", "fr": "Nuit de la Saint-Antoine", "de": "Antoniusnacht", "it": "Notte di Sant’Antonio", "nl": "Sint-Antoniusnacht", "zh": "圣安东尼节", "zht": "聖安東尼節", "bg": "Нощ на свети Антоний", "pl": "Noc Świętego Antoniego"},
     "perfilAv_gr_partenon": {"es": "Partenón", "en": "Parthenon", "fr": "Parthénon", "de": "Parthenon", "it": "Partenone", "nl": "Parthenon", "zh": "帕特农神庙", "zht": "帕德嫩神殿", "bg": "Партенон", "pl": "Partenon"},
     "perfilAv_gr_cicladas": {"es": "Casas de las Cícladas", "en": "Cycladic houses", "fr": "Maisons des Cyclades", "de": "Kykladenhäuser", "it": "Case delle Cicladi", "nl": "Cycladische huizen", "zh": "基克拉泽斯白屋", "zht": "基克拉澤斯白屋", "bg": "Къщи на Цикладите", "pl": "Domy na Cykladach"},
+    "perfilAv_gr_gyros": {"es": "Gyros", "en": "Gyros", "fr": "Gyros", "de": "Gyros", "it": "Gyros", "nl": "Gyros", "zh": "希腊烤肉卷", "zht": "希臘烤肉捲", "bg": "Гирос", "pl": "Gyros"},
     "perfilAv_gr_olivo": {"es": "Rama de olivo", "en": "Olive branch", "fr": "Rameau d’olivier", "de": "Olivenzweig", "it": "Ramo d’ulivo", "nl": "Olijftak", "zh": "橄榄枝", "zht": "橄欖枝", "bg": "Маслинова клонка", "pl": "Gałązka oliwna"},
     "perfilAv_gr_mochuelo": {"es": "Mochuelo", "en": "Little owl", "fr": "Chevêche d’Athéna", "de": "Steinkauz", "it": "Civetta", "nl": "Steenuil", "zh": "小鸮", "zht": "小鴞", "bg": "Кукумявка", "pl": "Pójdźka"},
-    "perfilAv_gr_gyros": {"es": "Gyros", "en": "Gyros", "fr": "Gyros", "de": "Gyros", "it": "Gyros", "nl": "Gyros", "zh": "希腊烤肉卷", "zht": "希臘烤肉捲", "bg": "Гирос", "pl": "Gyros"},
+    "perfilAv_gr_oro_kathara": {"es": "Lunes Limpio", "en": "Clean Monday", "fr": "Lundi pur", "de": "Kathara Deftera", "it": "Lunedì puro", "nl": "Schone Maandag", "zh": "洁净星期一", "zht": "潔淨星期一", "bg": "Чист понеделник", "pl": "Czysty Poniedziałek"},
     "perfilAv_mt_luzzu": {"es": "Luzzu", "en": "Luzzu", "fr": "Luzzu", "de": "Luzzu", "it": "Luzzu", "nl": "Luzzu", "zh": "马耳他彩船", "zht": "馬爾他彩船", "bg": "Луцу", "pl": "Luzzu"},
-    "perfilAv_mt_kelb_tal_fenek": {"es": "Kelb tal-Fenek", "en": "Kelb tal-Fenek", "fr": "Kelb tal-Fenek", "de": "Kelb tal-Fenek", "it": "Kelb tal-Fenek", "nl": "Kelb tal-Fenek", "zh": "法老王猎犬", "zht": "法老王獵犬", "bg": "Келб тал-фенек", "pl": "Kelb tal-Fenek"},
-    "perfilAv_mt_pastizzi": {"es": "Pastizzi", "en": "Pastizzi", "fr": "Pastizzi", "de": "Pastizzi", "it": "Pastizzi", "nl": "Pastizzi", "zh": "马耳他酥饼", "zht": "馬爾他酥餅", "bg": "Пастици", "pl": "Pastizzi"},
+    "perfilAv_mt_cruz": {"es": "Cruz de Malta", "en": "Maltese cross", "fr": "Croix de Malte", "de": "Malteserkreuz", "it": "Croce di Malta", "nl": "Maltezer kruis", "zh": "马耳他十字", "zht": "馬爾他十字", "bg": "Малтийски кръст", "pl": "Krzyż maltański"},
     "perfilAv_mt_balcones": {"es": "Balcones de La Valeta", "en": "Valletta balconies", "fr": "Balcons de La Valette", "de": "Balkone von Valletta", "it": "Balconi di La Valletta", "nl": "Balkons van Valletta", "zh": "瓦莱塔阳台", "zht": "瓦勒他陽台", "bg": "Балконите на Валета", "pl": "Balkony Valletty"},
+    "perfilAv_mt_pastizzi": {"es": "Pastizzi", "en": "Pastizzi", "fr": "Pastizzi", "de": "Pastizzi", "it": "Pastizzi", "nl": "Pastizzi", "zh": "马耳他酥饼", "zht": "馬爾他酥餅", "bg": "Пастици", "pl": "Pastizzi"},
     "perfilAv_mt_templo": {"es": "Templo megalítico", "en": "Megalithic temple", "fr": "Temple mégalithique", "de": "Megalithtempel", "it": "Tempio megalitico", "nl": "Megalithische tempel", "zh": "巨石神庙", "zht": "巨石神殿", "bg": "Мегалитен храм", "pl": "Świątynia megalityczna"},
-    "perfilAv_hr_dalmata": {"es": "Dálmata", "en": "Dalmatian", "fr": "Dalmatien", "de": "Dalmatiner", "it": "Dalmata", "nl": "Dalmatiër", "zh": "大麦町犬", "zht": "大麥町", "bg": "Далматинец", "pl": "Dalmatyńczyk"},
+    "perfilAv_mt_oro_carnaval": {"es": "Carnaval de Malta", "en": "Maltese Carnival", "fr": "Carnaval de Malte", "de": "Karneval auf Malta", "it": "Carnevale di Malta", "nl": "Carnaval op Malta", "zh": "马耳他狂欢节", "zht": "馬爾他嘉年華", "bg": "Карнавал в Малта", "pl": "Karnawał na Malcie"},
     "perfilAv_hr_dubrovnik": {"es": "Dubrovnik", "en": "Dubrovnik", "fr": "Dubrovnik", "de": "Dubrovnik", "it": "Dubrovnik", "nl": "Dubrovnik", "zh": "杜布罗夫尼克", "zht": "杜布羅夫尼克", "bg": "Дубровник", "pl": "Dubrownik"},
-    "perfilAv_hr_licitar": {"es": "Corazón de licitar", "en": "Licitar heart", "fr": "Cœur de licitar", "de": "Licitarherz", "it": "Cuore di licitar", "nl": "Licitarhart", "zh": "克罗地亚姜饼心", "zht": "克羅埃西亞薑餅心", "bg": "Лицитарско сърце", "pl": "Serce licitar"},
+    "perfilAv_hr_dalmata": {"es": "Dálmata", "en": "Dalmatian", "fr": "Dalmatien", "de": "Dalmatiner", "it": "Dalmata", "nl": "Dalmatiër", "zh": "大麦町犬", "zht": "大麥町", "bg": "Далматинец", "pl": "Dalmatyńczyk"},
     "perfilAv_hr_plitvice": {"es": "Lagos de Plitvice", "en": "Plitvice Lakes", "fr": "Lacs de Plitvice", "de": "Plitvicer Seen", "it": "Laghi di Plitvice", "nl": "Plitvicemeren", "zh": "十六湖", "zht": "十六湖", "bg": "Плитвишките езера", "pl": "Jeziora Plitwickie"},
+    "perfilAv_hr_licitar": {"es": "Corazón de licitar", "en": "Licitar heart", "fr": "Cœur de licitar", "de": "Licitarherz", "it": "Cuore di licitar", "nl": "Licitarhart", "zh": "克罗地亚姜饼心", "zht": "克羅埃西亞薑餅心", "bg": "Лицитарско сърце", "pl": "Serce licitar"},
     "perfilAv_hr_corbata": {"es": "Corbata", "en": "Tie", "fr": "Cravate", "de": "Krawatte", "it": "Cravatta", "nl": "Stropdas", "zh": "领带", "zht": "領帶", "bg": "Вратовръзка", "pl": "Krawat"},
+    "perfilAv_hr_oro_carnaval": {"es": "Carnaval de Rijeka", "en": "Rijeka Carnival", "fr": "Carnaval de Rijeka", "de": "Karneval in Rijeka", "it": "Carnevale di Fiume", "nl": "Carnaval in Rijeka", "zh": "里耶卡狂欢节", "zht": "里耶卡嘉年華", "bg": "Карнавал в Риека", "pl": "Karnawał w Rijece"},
     "perfilAv_si_bled": {"es": "Lago de Bled", "en": "Lake Bled", "fr": "Lac de Bled", "de": "Bleder See", "it": "Lago di Bled", "nl": "Meer van Bled", "zh": "布莱德湖", "zht": "布萊德湖", "bg": "Езерото Блед", "pl": "Jezioro Bled"},
     "perfilAv_si_triglav": {"es": "Triglav", "en": "Triglav", "fr": "Triglav", "de": "Triglav", "it": "Tricorno", "nl": "Triglav", "zh": "特里格拉夫峰", "zht": "特里格拉夫峰", "bg": "Триглав", "pl": "Triglav"},
     "perfilAv_si_potica": {"es": "Potica", "en": "Potica", "fr": "Potica", "de": "Potica", "it": "Potica", "nl": "Potica", "zh": "斯洛文尼亚核桃卷", "zht": "斯洛維尼亞核桃捲", "bg": "Потица", "pl": "Potica"},
     "perfilAv_si_proteo": {"es": "Proteo", "en": "Olm", "fr": "Protée", "de": "Grottenolm", "it": "Proteo", "nl": "Olm", "zh": "洞螈", "zht": "洞螈", "bg": "Протей", "pl": "Odmieniec jaskiniowy"},
     "perfilAv_si_colmena": {"es": "Colmena pintada", "en": "Painted beehive", "fr": "Ruche peinte", "de": "Bemalter Bienenstock", "it": "Alveare dipinto", "nl": "Beschilderde bijenkast", "zh": "彩绘蜂箱", "zht": "彩繪蜂箱", "bg": "Рисуван кошер", "pl": "Malowany ul"},
+    "perfilAv_si_oro_estado": {"es": "Día de Eslovenia", "en": "Slovenian Statehood Day", "fr": "Fête nationale slovène", "de": "Nationalfeiertag Sloweniens", "it": "Festa nazionale slovena", "nl": "Dag van Slovenië", "zh": "斯洛文尼亚建国日", "zht": "斯洛維尼亞建國日", "bg": "Ден на Словения", "pl": "Dzień Słowenii"},
     "perfilAv_ba_mostar": {"es": "Puente de Mostar", "en": "Mostar Bridge", "fr": "Pont de Mostar", "de": "Brücke von Mostar", "it": "Ponte di Mostar", "nl": "Brug van Mostar", "zh": "莫斯塔尔古桥", "zht": "莫斯塔爾古橋", "bg": "Мостът в Мостар", "pl": "Most w Mostarze"},
-    "perfilAv_ba_lonac": {"es": "Bosanski lonac", "en": "Bosnian pot", "fr": "Marmite bosnienne", "de": "Bosnischer Topf", "it": "Pentola bosniaca", "nl": "Bosnische stoofpot", "zh": "波斯尼亚炖锅", "zht": "波士尼亞燉鍋", "bg": "Босненски лонец", "pl": "Bosanski lonac"},
+    "perfilAv_ba_cevapi": {"es": "Ćevapi", "en": "Ćevapi", "fr": "Ćevapi", "de": "Ćevapčići", "it": "Ćevapi", "nl": "Ćevapčići", "zh": "波斯尼亚烤肉肠", "zht": "波士尼亞烤肉腸", "bg": "Чевапи", "pl": "Ćevapi"},
     "perfilAv_ba_cafe": {"es": "Café bosnio", "en": "Bosnian coffee", "fr": "Café bosnien", "de": "Bosnischer Kaffee", "it": "Caffè bosniaco", "nl": "Bosnische koffie", "zh": "波斯尼亚咖啡", "zht": "波士尼亞咖啡", "bg": "Босненско кафе", "pl": "Kawa bośniacka"},
-    "perfilAv_ba_molinos": {"es": "Molinos del Pliva", "en": "Pliva watermills", "fr": "Moulins de la Pliva", "de": "Wassermühlen an der Pliva", "it": "Mulini sul Pliva", "nl": "Watermolens aan de Pliva", "zh": "普利瓦河水磨坊", "zht": "普利瓦河水磨坊", "bg": "Воденичките на Плива", "pl": "Młyny nad Plivą"},
+    "perfilAv_ba_sebilj": {"es": "Sebilj", "en": "Sebilj", "fr": "Sebilj", "de": "Sebilj", "it": "Sebilj", "nl": "Sebilj", "zh": "塞比利喷泉", "zht": "塞比利噴泉", "bg": "Себил", "pl": "Sebilj"},
     "perfilAv_ba_jajce": {"es": "Cascada de Jajce", "en": "Jajce waterfall", "fr": "Cascade de Jajce", "de": "Wasserfall von Jajce", "it": "Cascata di Jajce", "nl": "Waterval van Jajce", "zh": "亚伊采瀑布", "zht": "亞伊采瀑布", "bg": "Водопадът в Яйце", "pl": "Wodospad w Jajcach"},
-    "perfilAv_rs_frambuesas": {"es": "Frambuesas", "en": "Raspberries", "fr": "Framboises", "de": "Himbeeren", "it": "Lamponi", "nl": "Frambozen", "zh": "覆盆子", "zht": "覆盆子", "bg": "Малини", "pl": "Maliny"},
-    "perfilAv_rs_pljeskavica": {"es": "Pljeskavica", "en": "Pljeskavica", "fr": "Pljeskavica", "de": "Pljeskavica", "it": "Pljeskavica", "nl": "Pljeskavica", "zh": "塞尔维亚肉饼", "zht": "塞爾維亞肉餅", "bg": "Плескавица", "pl": "Pljeskavica"},
-    "perfilAv_rs_uvac": {"es": "Meandros del Uvac", "en": "Uvac meanders", "fr": "Méandres de l’Uvac", "de": "Mäander des Uvac", "it": "Meandri dell’Uvac", "nl": "Meanders van de Uvac", "zh": "乌瓦茨河曲流", "zht": "烏瓦茨河曲流", "bg": "Меандрите на Увац", "pl": "Meandry Uvacu"},
+    "perfilAv_ba_oro_mayo": {"es": "Primero de Mayo", "en": "May Day", "fr": "Fête du Travail", "de": "Erster Mai", "it": "Primo maggio", "nl": "Dag van de Arbeid", "zh": "五一劳动节", "zht": "五一勞動節", "bg": "Първи май", "pl": "Święto Pracy"},
     "perfilAv_rs_golubac": {"es": "Fortaleza de Golubac", "en": "Golubac Fortress", "fr": "Forteresse de Golubac", "de": "Festung Golubac", "it": "Fortezza di Golubac", "nl": "Vesting Golubac", "zh": "戈卢巴茨要塞", "zht": "戈盧巴茨要塞", "bg": "Крепостта Голубац", "pl": "Twierdza Golubac"},
-    "perfilAv_rs_sargan": {"es": "Tren de Šargan", "en": "Šargan Eight railway", "fr": "Train de Šargan", "de": "Šargan-Bahn", "it": "Treno di Šargan", "nl": "Šargantrein", "zh": "沙尔甘八字铁路", "zht": "沙爾甘八字鐵路", "bg": "Шарганската осмица", "pl": "Kolej Šargan"},
+    "perfilAv_rs_pljeskavica": {"es": "Pljeskavica", "en": "Pljeskavica", "fr": "Pljeskavica", "de": "Pljeskavica", "it": "Pljeskavica", "nl": "Pljeskavica", "zh": "塞尔维亚肉饼", "zht": "塞爾維亞肉餅", "bg": "Плескавица", "pl": "Pljeskavica"},
+    "perfilAv_rs_frambuesas": {"es": "Frambuesas", "en": "Raspberries", "fr": "Framboises", "de": "Himbeeren", "it": "Lamponi", "nl": "Frambozen", "zh": "覆盆子", "zht": "覆盆子", "bg": "Малини", "pl": "Maliny"},
+    "perfilAv_rs_petrovaradin": {"es": "Reloj de Petrovaradin", "en": "Petrovaradin clock tower", "fr": "Horloge de Petrovaradin", "de": "Uhrturm von Petrovaradin", "it": "Orologio di Petrovaradin", "nl": "Klokkentoren van Petrovaradin", "zh": "彼得罗瓦拉丁钟楼", "zht": "彼得羅瓦拉丁鐘樓", "bg": "Часовникът в Петроварадин", "pl": "Zegar w Petrowaradynie"},
+    "perfilAv_rs_opanci": {"es": "Opanci", "en": "Opanci", "fr": "Opanci", "de": "Opanken", "it": "Opanci", "nl": "Opanci", "zh": "塞尔维亚翘头鞋", "zht": "塞爾維亞翹頭鞋", "bg": "Цървули", "pl": "Opanki"},
+    "perfilAv_rs_oro_djurdjevdan": {"es": "San Jorge", "en": "Đurđevdan", "fr": "Saint-Georges", "de": "Georgstag", "it": "San Giorgio", "nl": "Sint-Jorisdag", "zh": "圣乔治日", "zht": "聖喬治日", "bg": "Гергьовден", "pl": "Dzień Świętego Jerzego"},
     "perfilAv_me_kotor": {"es": "Bahía de Kotor", "en": "Bay of Kotor", "fr": "Bouches de Kotor", "de": "Bucht von Kotor", "it": "Bocche di Cattaro", "nl": "Baai van Kotor", "zh": "科托尔湾", "zht": "科托灣", "bg": "Которският залив", "pl": "Zatoka Kotorska"},
-    "perfilAv_me_mimosa": {"es": "Mimosa", "en": "Mimosa", "fr": "Mimosa", "de": "Mimose", "it": "Mimosa", "nl": "Mimosa", "zh": "银荆花", "zht": "銀荊花", "bg": "Мимоза", "pl": "Mimoza"},
-    "perfilAv_me_tara": {"es": "Cañón del Tara", "en": "Tara Canyon", "fr": "Canyon de la Tara", "de": "Tara-Schlucht", "it": "Canyon del Tara", "nl": "Tarakloof", "zh": "塔拉河峡谷", "zht": "塔拉河峽谷", "bg": "Каньонът на Тара", "pl": "Kanion Tary"},
-    "perfilAv_me_prsut": {"es": "Jamón de Njeguši", "en": "Njeguši ham", "fr": "Jambon de Njeguši", "de": "Njeguši-Schinken", "it": "Prosciutto di Njeguši", "nl": "Ham uit Njeguši", "zh": "涅古什火腿", "zht": "涅古什火腿", "bg": "Негушки пършут", "pl": "Szynka z Njeguši"},
+    "perfilAv_me_sveti_stefan": {"es": "Sveti Stefan", "en": "Sveti Stefan", "fr": "Sveti Stefan", "de": "Sveti Stefan", "it": "Sveti Stefan", "nl": "Sveti Stefan", "zh": "圣斯特凡岛", "zht": "聖斯特凡島", "bg": "Свети Стефан", "pl": "Sveti Stefan"},
     "perfilAv_me_durmitor": {"es": "Durmitor", "en": "Durmitor", "fr": "Durmitor", "de": "Durmitor", "it": "Durmitor", "nl": "Durmitor", "zh": "杜米托尔山", "zht": "杜米托爾山", "bg": "Дурмитор", "pl": "Durmitor"},
+    "perfilAv_me_mimosa": {"es": "Mimosa", "en": "Mimosa", "fr": "Mimosa", "de": "Mimose", "it": "Mimosa", "nl": "Mimosa", "zh": "银荆花", "zht": "銀荊花", "bg": "Мимоза", "pl": "Mimoza"},
+    "perfilAv_me_prsut": {"es": "Jamón de Njeguši", "en": "Njeguši ham", "fr": "Jambon de Njeguši", "de": "Njeguši-Schinken", "it": "Prosciutto di Njeguši", "nl": "Ham uit Njeguši", "zh": "涅古什火腿", "zht": "涅古什火腿", "bg": "Негушки пършут", "pl": "Szynka z Njeguši"},
+    "perfilAv_me_oro_estado": {"es": "Día de Montenegro", "en": "Montenegrin Statehood Day", "fr": "Fête nationale du Monténégro", "de": "Nationalfeiertag Montenegros", "it": "Festa nazionale del Montenegro", "nl": "Dag van Montenegro", "zh": "黑山建国日", "zht": "蒙特內哥羅建國日", "bg": "Ден на Черна гора", "pl": "Dzień Czarnogóry"},
     "perfilAv_mk_ohrid": {"es": "Lago de Ohrid", "en": "Lake Ohrid", "fr": "Lac d’Ohrid", "de": "Ohridsee", "it": "Lago di Ocrida", "nl": "Meer van Ohrid", "zh": "奥赫里德湖", "zht": "奧赫里德湖", "bg": "Охридското езеро", "pl": "Jezioro Ochrydzkie"},
     "perfilAv_mk_perlas": {"es": "Perlas de Ohrid", "en": "Ohrid pearls", "fr": "Perles d’Ohrid", "de": "Ohrider Perlen", "it": "Perle di Ocrida", "nl": "Parels van Ohrid", "zh": "奥赫里德珍珠", "zht": "奧赫里德珍珠", "bg": "Охридски бисери", "pl": "Perły ochrydzkie"},
     "perfilAv_mk_tavce": {"es": "Tavče gravče", "en": "Tavče gravče", "fr": "Tavče gravče", "de": "Tavče Gravče", "it": "Tavče gravče", "nl": "Tavče gravče", "zh": "陶锅焗豆", "zht": "陶鍋焗豆", "bg": "Тавче гравче", "pl": "Tavče gravče"},
-    "perfilAv_mk_lince": {"es": "Lince balcánico", "en": "Balkan lynx", "fr": "Lynx des Balkans", "de": "Balkanluchs", "it": "Lince balcanica", "nl": "Balkanlynx", "zh": "巴尔干猞猁", "zht": "巴爾幹猞猁", "bg": "Балкански рис", "pl": "Ryś bałkański"},
     "perfilAv_mk_puente": {"es": "Puente de Skopje", "en": "Skopje Stone Bridge", "fr": "Pont de Skopje", "de": "Brücke von Skopje", "it": "Ponte di Skopje", "nl": "Stenen Brug van Skopje", "zh": "斯科普里石桥", "zht": "斯科普里石橋", "bg": "Каменният мост в Скопие", "pl": "Kamienny Most w Skopju"},
-    "perfilAv_al_aguila": {"es": "Águila real", "en": "Golden eagle", "fr": "Aigle royal", "de": "Steinadler", "it": "Aquila reale", "nl": "Steenarend", "zh": "金雕", "zht": "金鵰", "bg": "Скален орел", "pl": "Orzeł przedni"},
+    "perfilAv_mk_lince": {"es": "Lince balcánico", "en": "Balkan lynx", "fr": "Lynx des Balkans", "de": "Balkanluchs", "it": "Lince balcanica", "nl": "Balkanlynx", "zh": "巴尔干猞猁", "zht": "巴爾幹猞猁", "bg": "Балкански рис", "pl": "Ryś bałkański"},
+    "perfilAv_mk_oro_independencia": {"es": "Día de la Independencia", "en": "North Macedonia Day", "fr": "Jour de l’Indépendance", "de": "Tag der Unabhängigkeit", "it": "Festa nazionale nordmacedone", "nl": "Dag van Noord-Macedonië", "zh": "北马其顿独立日", "zht": "北馬其頓獨立日", "bg": "Ден на Северна Македония", "pl": "Dzień Macedonii Północnej"},
+    "perfilAv_al_aguila_bicefala": {"es": "Águila bicéfala", "en": "Double-headed eagle", "fr": "Aigle à deux têtes", "de": "Doppeladler", "it": "Aquila bicipite", "nl": "Dubbelkoppige adelaar", "zh": "双头鹰", "zht": "雙頭鷹", "bg": "Двуглав орел", "pl": "Orzeł dwugłowy"},
     "perfilAv_al_berat": {"es": "Berat", "en": "Berat", "fr": "Berat", "de": "Berat", "it": "Berat", "nl": "Berat", "zh": "培拉特", "zht": "培拉特", "bg": "Берат", "pl": "Berat"},
     "perfilAv_al_byrek": {"es": "Byrek", "en": "Byrek", "fr": "Byrek", "de": "Byrek", "it": "Byrek", "nl": "Byrek", "zh": "阿尔巴尼亚馅饼", "zht": "阿爾巴尼亞餡餅", "bg": "Бюрек", "pl": "Byrek"},
     "perfilAv_al_ksamil": {"es": "Islas de Ksamil", "en": "Ksamil islands", "fr": "Îles de Ksamil", "de": "Inseln von Ksamil", "it": "Isole di Ksamil", "nl": "Eilanden van Ksamil", "zh": "克萨米尔群岛", "zht": "克薩米爾群島", "bg": "Островите на Ксамил", "pl": "Wyspy Ksamil"},
     "perfilAv_al_cifteli": {"es": "Çifteli", "en": "Çifteli", "fr": "Çifteli", "de": "Çifteli", "it": "Çifteli", "nl": "Çifteli", "zh": "阿尔巴尼亚双弦琴", "zht": "阿爾巴尼亞雙弦琴", "bg": "Чифтели", "pl": "Çifteli"},
+    "perfilAv_al_oro_verano": {"es": "Día del Verano", "en": "Summer Day", "fr": "Jour de l’été", "de": "Dita e Verës", "it": "Giorno dell’estate", "nl": "Dita e Verës", "zh": "夏日节", "zht": "夏日節", "bg": "Ден на лятото", "pl": "Dzień Lata"},
+    "perfilAv_ad_santa_coloma": {"es": "Iglesia de Santa Coloma", "en": "Church of Santa Coloma", "fr": "Santa Coloma", "de": "Kirche Santa Coloma", "it": "Santa Coloma", "nl": "Kerk van Santa Coloma", "zh": "圣科洛马教堂", "zht": "聖科洛馬教堂", "bg": "Санта Колома", "pl": "Santa Coloma"},
+    "perfilAv_ad_casa_vall": {"es": "Casa de la Vall", "en": "Casa de la Vall", "fr": "Casa de la Vall", "de": "Casa de la Vall", "it": "Casa de la Vall", "nl": "Casa de la Vall", "zh": "谷地之家", "zht": "谷地之家", "bg": "Каса де ла Вал", "pl": "Casa de la Vall"},
     "perfilAv_ad_sarrio": {"es": "Sarrio", "en": "Pyrenean chamois", "fr": "Isard", "de": "Pyrenäen-Gämse", "it": "Camoscio dei Pirenei", "nl": "Pyrenese gems", "zh": "比利牛斯岩羚羊", "zht": "庇里牛斯岩羚羊", "bg": "Пиренейска дива коза", "pl": "Kozica pirenejska"},
     "perfilAv_ad_trinxat": {"es": "Trinxat", "en": "Trinxat", "fr": "Trinxat", "de": "Trinxat", "it": "Trinxat", "nl": "Trinxat", "zh": "土豆卷心菜饼", "zht": "馬鈴薯高麗菜餅", "bg": "Тринчат", "pl": "Trinxat"},
-    "perfilAv_ad_telesilla": {"es": "Telesilla", "en": "Chairlift", "fr": "Télésiège", "de": "Sessellift", "it": "Seggiovia", "nl": "Stoeltjeslift", "zh": "吊椅索道", "zht": "纜椅", "bg": "Седалков лифт", "pl": "Wyciąg krzesełkowy"},
-    "perfilAv_ad_casa_vall": {"es": "Casa de la Vall", "en": "Casa de la Vall", "fr": "Casa de la Vall", "de": "Casa de la Vall", "it": "Casa de la Vall", "nl": "Casa de la Vall", "zh": "谷地之家", "zht": "谷地之家", "bg": "Каса де ла Вал", "pl": "Casa de la Vall"},
     "perfilAv_ad_madriu": {"es": "Valle del Madriu", "en": "Madriu Valley", "fr": "Vallée du Madriu", "de": "Madriu-Tal", "it": "Valle del Madriu", "nl": "Madriudal", "zh": "马德留谷", "zht": "馬德留谷", "bg": "Долината Мадриу", "pl": "Dolina Madriu"},
+    "perfilAv_ad_oro_falles": {"es": "Falles de Sant Joan", "en": "Falles de Sant Joan", "fr": "Falles de Sant Joan", "de": "Falles de Sant Joan", "it": "Falles de Sant Joan", "nl": "Falles de Sant Joan", "zh": "夏至火节", "zht": "夏至火節", "bg": "Фалес де Сант Жоан", "pl": "Falles de Sant Joan"},
     "perfilAv_sm_torres": {"es": "Tres Torres", "en": "Three Towers", "fr": "Trois tours", "de": "Drei Türme", "it": "Tre Torri", "nl": "Drie Torens", "zh": "三塔", "zht": "三塔", "bg": "Трите кули", "pl": "Trzy Wieże"},
-    "perfilAv_sm_teleferico": {"es": "Teleférico", "en": "Cable car", "fr": "Téléphérique", "de": "Seilbahn", "it": "Funivia", "nl": "Kabelbaan", "zh": "缆车", "zht": "纜車", "bg": "Въжена линия", "pl": "Kolejka linowa"},
-    "perfilAv_sm_piadina": {"es": "Piadina", "en": "Piadina", "fr": "Piadina", "de": "Piadina", "it": "Piadina", "nl": "Piadina", "zh": "皮亚迪纳饼", "zht": "皮亞迪納餅", "bg": "Пиадина", "pl": "Piadina"},
-    "perfilAv_sm_bustrengo": {"es": "Bustrengo", "en": "Bustrengo", "fr": "Bustrengo", "de": "Bustrengo", "it": "Bustrengo", "nl": "Bustrengo", "zh": "圣马力诺蛋糕", "zht": "聖馬利諾蛋糕", "bg": "Бустренго", "pl": "Bustrengo"},
     "perfilAv_sm_palacio": {"es": "Palacio Público", "en": "Palazzo Pubblico", "fr": "Palazzo Pubblico", "de": "Palazzo Pubblico", "it": "Palazzo Pubblico", "nl": "Palazzo Pubblico", "zh": "政府宫", "zht": "政府宮", "bg": "Палацо Публико", "pl": "Palazzo Pubblico"},
+    "perfilAv_sm_piadina": {"es": "Piadina", "en": "Piadina", "fr": "Piadina", "de": "Piadina", "it": "Piadina", "nl": "Piadina", "zh": "皮亚迪纳饼", "zht": "皮亞迪納餅", "bg": "Пиадина", "pl": "Piadina"},
+    "perfilAv_sm_teleferico": {"es": "Teleférico", "en": "Cable car", "fr": "Téléphérique", "de": "Seilbahn", "it": "Funivia", "nl": "Kabelbaan", "zh": "缆车", "zht": "纜車", "bg": "Въжена линия", "pl": "Kolejka linowa"},
+    "perfilAv_sm_bustrengo": {"es": "Bustrengo", "en": "Bustrengo", "fr": "Bustrengo", "de": "Bustrengo", "it": "Bustrengo", "nl": "Bustrengo", "zh": "圣马力诺蛋糕", "zht": "聖馬利諾蛋糕", "bg": "Бустренго", "pl": "Bustrengo"},
+    "perfilAv_sm_oro_fundacion": {"es": "Fiesta de San Marino", "en": "Feast of St Marinus", "fr": "Fête de Saint-Marin", "de": "Festa di San Marino", "it": "Festa di San Marino", "nl": "Festa di San Marino", "zh": "圣马力诺建国日", "zht": "聖馬利諾建國日", "bg": "Празник на Сан Марино", "pl": "Święto San Marino"},
     "perfilAv_cy_halloumi": {"es": "Halloumi", "en": "Halloumi", "fr": "Halloumi", "de": "Halloumi", "it": "Halloumi", "nl": "Halloumi", "zh": "哈罗米奶酪", "zht": "哈羅米起司", "bg": "Халуми", "pl": "Halloumi"},
-    "perfilAv_cy_muflon": {"es": "Muflón", "en": "Cyprus mouflon", "fr": "Mouflon de Chypre", "de": "Zypern-Mufflon", "it": "Muflone di Cipro", "nl": "Cyprische moeflon", "zh": "塞浦路斯盘羊", "zht": "賽普勒斯盤羊", "bg": "Кипърски муфлон", "pl": "Muflon cypryjski"},
     "perfilAv_cy_afrodita": {"es": "Roca de Afrodita", "en": "Aphrodite’s Rock", "fr": "Rocher d’Aphrodite", "de": "Aphrodite-Felsen", "it": "Scoglio di Afrodite", "nl": "Rots van Aphrodite", "zh": "阿佛洛狄忒岩", "zht": "阿芙蘿黛蒂岩", "bg": "Скалата на Афродита", "pl": "Skała Afrodyty"},
+    "perfilAv_cy_muflon": {"es": "Muflón", "en": "Cyprus mouflon", "fr": "Mouflon de Chypre", "de": "Zypern-Mufflon", "it": "Muflone di Cipro", "nl": "Cyprische moeflon", "zh": "塞浦路斯盘羊", "zht": "賽普勒斯盤羊", "bg": "Кипърски муфлон", "pl": "Muflon cypryjski"},
+    "perfilAv_cy_loukoumi_geroskipou": {"es": "Loukoumi", "en": "Loukoumi", "fr": "Loukoum", "de": "Loukoumi", "it": "Loukoumi", "nl": "Loukoumi", "zh": "塞浦路斯软糖", "zht": "賽普勒斯軟糖", "bg": "Локум", "pl": "Loukoumi"},
     "perfilAv_cy_encaje": {"es": "Encaje de Lefkara", "en": "Lefkara lace", "fr": "Dentelle de Lefkara", "de": "Lefkara-Spitze", "it": "Merletto di Lefkara", "nl": "Kant uit Lefkara", "zh": "莱夫卡拉蕾丝", "zht": "雷夫卡拉蕾絲", "bg": "Дантела от Лефкара", "pl": "Koronka z Lefkary"},
-    "perfilAv_cy_ciclamen": {"es": "Ciclamen de Chipre", "en": "Cyprus cyclamen", "fr": "Cyclamen de Chypre", "de": "Zypern-Alpenveilchen", "it": "Ciclamino di Cipro", "nl": "Cyprische cyclaam", "zh": "塞浦路斯仙客来", "zht": "賽普勒斯仙客來", "bg": "Кипърска циклама", "pl": "Cyklamen cypryjski"},
+    "perfilAv_cy_oro_kataklysmos": {"es": "Fiesta del Diluvio", "en": "Kataklysmos", "fr": "Fête du Déluge", "de": "Kataklysmos", "it": "Festa del Diluvio", "nl": "Kataklysmos", "zh": "洪水节", "zht": "洪水節", "bg": "Празник на потопа", "pl": "Święto Potopu"},
     "perfilAv_cz_reloj": {"es": "Reloj astronómico", "en": "Astronomical clock", "fr": "Horloge astronomique", "de": "Astronomische Uhr", "it": "Orologio astronomico", "nl": "Astronomisch uurwerk", "zh": "布拉格天文钟", "zht": "布拉格天文鐘", "bg": "Астрономически часовник", "pl": "Zegar astronomiczny"},
     "perfilAv_cz_puente_carlos": {"es": "Puente de Carlos", "en": "Charles Bridge", "fr": "Pont Charles", "de": "Karlsbrücke", "it": "Ponte Carlo", "nl": "Karelsbrug", "zh": "查理大桥", "zht": "查理大橋", "bg": "Карлов мост", "pl": "Most Karola"},
+    "perfilAv_cz_krumlov": {"es": "Český Krumlov", "en": "Český Krumlov", "fr": "Český Krumlov", "de": "Český Krumlov", "it": "Český Krumlov", "nl": "Český Krumlov", "zh": "捷克克鲁姆洛夫", "zht": "捷克克倫洛夫", "bg": "Чески Крумлов", "pl": "Czeski Krumlow"},
     "perfilAv_cz_svickova": {"es": "Svíčková", "en": "Svíčková", "fr": "Svíčková", "de": "Svíčková", "it": "Svíčková", "nl": "Svíčková", "zh": "捷克奶油牛肉", "zht": "捷克奶油牛肉", "bg": "Свичкова", "pl": "Svíčková"},
     "perfilAv_cz_cristal": {"es": "Cristal de Bohemia", "en": "Bohemian glass", "fr": "Cristal de Bohême", "de": "Böhmisches Glas", "it": "Cristallo di Boemia", "nl": "Boheems kristal", "zh": "波西米亚玻璃", "zht": "波希米亞玻璃", "bg": "Бохемско стъкло", "pl": "Szkło czeskie"},
-    "perfilAv_cz_pravcice": {"es": "Puerta de Pravčice", "en": "Pravčice Gate", "fr": "Porte de Pravčice", "de": "Prebischtor", "it": "Porta di Pravčice", "nl": "Poort van Pravčice", "zh": "普拉夫奇采门", "zht": "普拉夫奇采門", "bg": "Правчицката порта", "pl": "Brama Pravčicka"},
+    "perfilAv_cz_oro_walpurgis": {"es": "Noche de Walpurgis", "en": "Walpurgis Night", "fr": "Nuit de Walpurgis", "de": "Walpurgisnacht", "it": "Notte di Valpurga", "nl": "Walpurgisnacht", "zh": "瓦尔普吉斯之夜", "zht": "瓦爾普吉斯之夜", "bg": "Валпургиева нощ", "pl": "Noc Walpurgii"},
+    "perfilAv_sk_bratislava": {"es": "Castillo de Bratislava", "en": "Bratislava Castle", "fr": "Château de Bratislava", "de": "Burg Bratislava", "it": "Castello di Bratislava", "nl": "Burcht van Bratislava", "zh": "布拉迪斯拉发城堡", "zht": "布拉提斯拉瓦城堡", "bg": "Братиславският замък", "pl": "Zamek w Bratysławie"},
     "perfilAv_sk_krivan": {"es": "Kriváň", "en": "Kriváň", "fr": "Kriváň", "de": "Kriváň", "it": "Kriváň", "nl": "Kriváň", "zh": "克里万峰", "zht": "克里萬峰", "bg": "Криван", "pl": "Krywań"},
     "perfilAv_sk_halusky": {"es": "Halušky", "en": "Halušky", "fr": "Halušky", "de": "Halušky", "it": "Halušky", "nl": "Halušky", "zh": "羊奶酪面疙瘩", "zht": "羊起司麵疙瘩", "bg": "Халушки", "pl": "Haluszki"},
-    "perfilAv_sk_bratislava": {"es": "Castillo de Bratislava", "en": "Bratislava Castle", "fr": "Château de Bratislava", "de": "Burg Bratislava", "it": "Castello di Bratislava", "nl": "Burcht van Bratislava", "zh": "布拉迪斯拉发城堡", "zht": "布拉提斯拉瓦城堡", "bg": "Братиславският замък", "pl": "Zamek w Bratysławie"},
-    "perfilAv_sk_fujara": {"es": "Fujara", "en": "Fujara", "fr": "Fujara", "de": "Fujara", "it": "Fujara", "nl": "Fujara", "zh": "富吉拉笛", "zht": "富吉拉笛", "bg": "Фуяра", "pl": "Fujara"},
     "perfilAv_sk_cicmany": {"es": "Casas de Čičmany", "en": "Čičmany houses", "fr": "Maisons de Čičmany", "de": "Häuser von Čičmany", "it": "Case di Čičmany", "nl": "Huizen van Čičmany", "zh": "契奇曼尼木屋", "zht": "契奇曼尼木屋", "bg": "Къщите в Чичмани", "pl": "Domy w Čičmanach"},
+    "perfilAv_sk_fujara": {"es": "Fujara", "en": "Fujara", "fr": "Fujara", "de": "Fujara", "it": "Fujara", "nl": "Fujara", "zh": "富吉拉笛", "zht": "富吉拉笛", "bg": "Фуяра", "pl": "Fujara"},
+    "perfilAv_sk_oro_fasiangy": {"es": "Carnaval eslovaco", "en": "Fašiangy", "fr": "Carnaval slovaque", "de": "Fašiangy", "it": "Carnevale slovacco", "nl": "Fašiangy", "zh": "斯洛伐克狂欢节", "zht": "斯洛伐克嘉年華", "bg": "Фашианги", "pl": "Fašiangy"},
     "perfilAv_hu_parlamento": {"es": "Parlamento", "en": "Parliament", "fr": "Parlement", "de": "Parlament", "it": "Parlamento", "nl": "Parlement", "zh": "匈牙利国会大厦", "zht": "匈牙利國會大廈", "bg": "Парламентът", "pl": "Parlament"},
     "perfilAv_hu_paprika": {"es": "Pimentón", "en": "Paprika", "fr": "Paprika", "de": "Paprika", "it": "Paprika", "nl": "Paprika", "zh": "匈牙利红椒", "zht": "匈牙利紅椒", "bg": "Червен пипер", "pl": "Papryka"},
     "perfilAv_hu_gulash": {"es": "Goulash", "en": "Goulash", "fr": "Goulasch", "de": "Gulasch", "it": "Gulasch", "nl": "Goulash", "zh": "匈牙利牛肉汤", "zht": "匈牙利牛肉湯", "bg": "Гулаш", "pl": "Gulasz"},
     "perfilAv_hu_puli": {"es": "Puli", "en": "Puli", "fr": "Puli", "de": "Puli", "it": "Puli", "nl": "Puli", "zh": "波利犬", "zht": "波利犬", "bg": "Пули", "pl": "Puli"},
     "perfilAv_hu_termas": {"es": "Baños termales", "en": "Thermal baths", "fr": "Bains thermaux", "de": "Thermalbad", "it": "Terme", "nl": "Thermale baden", "zh": "温泉浴场", "zht": "溫泉浴場", "bg": "Термални бани", "pl": "Łaźnie termalne"},
-    "perfilAv_ro_sarmale": {"es": "Sarmale", "en": "Sarmale", "fr": "Sarmale", "de": "Sarmale", "it": "Sarmale", "nl": "Sarmale", "zh": "罗马尼亚菜卷", "zht": "羅馬尼亞菜捲", "bg": "Сарми", "pl": "Sarmale"},
-    "perfilAv_ro_papanasi": {"es": "Papanași", "en": "Papanași", "fr": "Papanași", "de": "Papanași", "it": "Papanași", "nl": "Papanași", "zh": "罗马尼亚甜甜圈", "zht": "羅馬尼亞甜甜圈", "bg": "Папанаш", "pl": "Papanași"},
-    "perfilAv_ro_pelicano": {"es": "Pelícano", "en": "Pelican", "fr": "Pélican", "de": "Pelikan", "it": "Pellicano", "nl": "Pelikaan", "zh": "鹈鹕", "zht": "鵜鶘", "bg": "Пеликан", "pl": "Pelikan"},
+    "perfilAv_hu_oro_esteban": {"es": "San Esteban", "en": "St Stephen’s Day", "fr": "Fête de saint Étienne", "de": "Tag der Staatsgründung", "it": "Santo Stefano d’Ungheria", "nl": "Sint-Stefansdag", "zh": "圣伊什特万日", "zht": "聖伊什特萬日", "bg": "Ден на свети Ищван", "pl": "Dzień Świętego Stefana"},
     "perfilAv_ro_peles": {"es": "Castillo de Peleș", "en": "Peleș Castle", "fr": "Château de Peleș", "de": "Schloss Peleș", "it": "Castello di Peleș", "nl": "Kasteel Peleș", "zh": "佩莱什城堡", "zht": "佩萊什城堡", "bg": "Замъкът Пелеш", "pl": "Zamek Peleș"},
+    "perfilAv_ro_sarmale": {"es": "Sarmale", "en": "Sarmale", "fr": "Sarmale", "de": "Sarmale", "it": "Sarmale", "nl": "Sarmale", "zh": "罗马尼亚菜卷", "zht": "羅馬尼亞菜捲", "bg": "Сарми", "pl": "Sarmale"},
+    "perfilAv_ro_maramures": {"es": "Iglesia de Maramureș", "en": "Maramureș church", "fr": "Église du Maramureș", "de": "Holzkirche der Maramureș", "it": "Chiesa del Maramureș", "nl": "Houten kerk van Maramureș", "zh": "马拉穆列什木教堂", "zht": "馬拉穆列什木教堂", "bg": "Църква в Марамуреш", "pl": "Cerkiew w Marmaroszu"},
     "perfilAv_ro_horezu": {"es": "Cerámica de Horezu", "en": "Horezu pottery", "fr": "Céramique de Horezu", "de": "Horezu-Keramik", "it": "Ceramica di Horezu", "nl": "Aardewerk uit Horezu", "zh": "霍雷祖陶器", "zht": "霍雷祖陶器", "bg": "Керамика от Хорезу", "pl": "Ceramika z Horezu"},
-    "perfilAv_md_uvas": {"es": "Uvas", "en": "Grapes", "fr": "Raisin", "de": "Trauben", "it": "Uva", "nl": "Druiven", "zh": "葡萄", "zht": "葡萄", "bg": "Грозде", "pl": "Winogrona"},
-    "perfilAv_md_placinta": {"es": "Plăcintă", "en": "Plăcintă", "fr": "Plăcintă", "de": "Plăcintă", "it": "Plăcintă", "nl": "Plăcintă", "zh": "摩尔多瓦馅饼", "zht": "摩爾多瓦餡餅", "bg": "Плачинта", "pl": "Plăcintă"},
+    "perfilAv_ro_papanasi": {"es": "Papanași", "en": "Papanași", "fr": "Papanași", "de": "Papanași", "it": "Papanași", "nl": "Papanași", "zh": "罗马尼亚甜甜圈", "zht": "羅馬尼亞甜甜圈", "bg": "Папанаш", "pl": "Papanași"},
+    "perfilAv_ro_oro_martisor": {"es": "Mărțișor", "en": "Mărțișor", "fr": "Mărțișor", "de": "Mărțișor", "it": "Mărțișor", "nl": "Mărțișor", "zh": "三月花节", "zht": "三月花節", "bg": "Мърцишор", "pl": "Mărțișor"},
+    "perfilAv_md_orheiul_vechi": {"es": "Orheiul Vechi", "en": "Orheiul Vechi", "fr": "Orheiul Vechi", "de": "Orheiul Vechi", "it": "Orheiul Vechi", "nl": "Orheiul Vechi", "zh": "老奥尔海伊", "zht": "老奧爾海伊", "bg": "Старият Орхей", "pl": "Stary Orgiejów"},
     "perfilAv_md_mamaliga": {"es": "Mămăligă", "en": "Mămăligă", "fr": "Mămăligă", "de": "Mămăligă", "it": "Mămăligă", "nl": "Mămăligă", "zh": "玉米糊", "zht": "玉米糊", "bg": "Мамалига", "pl": "Mamałyga"},
-    "perfilAv_md_alfombra": {"es": "Alfombra moldava", "en": "Moldovan carpet", "fr": "Tapis moldave", "de": "Moldauischer Teppich", "it": "Tappeto moldavo", "nl": "Moldavisch tapijt", "zh": "摩尔多瓦挂毯", "zht": "摩爾多瓦掛毯", "bg": "Молдовски килим", "pl": "Kilim mołdawski"},
+    "perfilAv_md_placinta": {"es": "Plăcintă", "en": "Plăcintă", "fr": "Plăcintă", "de": "Plăcintă", "it": "Plăcintă", "nl": "Plăcintă", "zh": "摩尔多瓦馅饼", "zht": "摩爾多瓦餡餅", "bg": "Плачинта", "pl": "Plăcintă"},
     "perfilAv_md_soroca": {"es": "Fortaleza de Soroca", "en": "Soroca Fortress", "fr": "Forteresse de Soroca", "de": "Festung Soroca", "it": "Fortezza di Soroca", "nl": "Vesting Soroca", "zh": "索罗卡要塞", "zht": "索羅卡要塞", "bg": "Крепостта Сорока", "pl": "Twierdza w Sorokach"},
+    "perfilAv_md_alfombra": {"es": "Alfombra moldava", "en": "Moldovan carpet", "fr": "Tapis moldave", "de": "Moldauischer Teppich", "it": "Tappeto moldavo", "nl": "Moldavisch tapijt", "zh": "摩尔多瓦挂毯", "zht": "摩爾多瓦掛毯", "bg": "Молдовски килим", "pl": "Kilim mołdawski"},
+    "perfilAv_md_oro_martisor": {"es": "Mărțișor", "en": "Mărțișor", "fr": "Mărțișor", "de": "Mărțișor", "it": "Mărțișor", "nl": "Mărțișor", "zh": "三月花节", "zht": "三月花節", "bg": "Мърцишор", "pl": "Mărțișor"},
     "perfilAv_ua_girasol": {"es": "Girasol", "en": "Sunflower", "fr": "Tournesol", "de": "Sonnenblume", "it": "Girasole", "nl": "Zonnebloem", "zh": "向日葵", "zht": "向日葵", "bg": "Слънчоглед", "pl": "Słonecznik"},
+    "perfilAv_ua_borshch": {"es": "Borsch", "en": "Borscht", "fr": "Bortsch", "de": "Borschtsch", "it": "Boršč", "nl": "Borsjtsj", "zh": "罗宋汤", "zht": "羅宋湯", "bg": "Украински борш", "pl": "Barszcz ukraiński"},
     "perfilAv_ua_kamianets": {"es": "Castillo de Kamianets", "en": "Kamianets Castle", "fr": "Château de Kamianets", "de": "Festung Kamjanez", "it": "Castello di Kamianets", "nl": "Kasteel van Kamjanets", "zh": "卡缅涅茨城堡", "zht": "卡緬涅茨城堡", "bg": "Крепостта Каменец", "pl": "Zamek w Kamieńcu"},
-    "perfilAv_ua_bandura": {"es": "Bandura", "en": "Bandura", "fr": "Bandoura", "de": "Bandura", "it": "Bandura", "nl": "Bandoera", "zh": "班杜拉琴", "zht": "班杜拉琴", "bg": "Бандура", "pl": "Bandura"},
-    "perfilAv_ua_kalyna": {"es": "Viburno", "en": "Guelder rose", "fr": "Viorne obier", "de": "Gewöhnlicher Schneeball", "it": "Viburno", "nl": "Gelderse roos", "zh": "欧洲荚蒾", "zht": "歐洲莢蒾", "bg": "Калина", "pl": "Kalina"},
     "perfilAv_ua_petrykivka": {"es": "Pintura de Petrykivka", "en": "Petrykivka painting", "fr": "Peinture de Petrykivka", "de": "Petrykiwka-Malerei", "it": "Pittura di Petrykivka", "nl": "Petrykivka-schilderkunst", "zh": "彼得里基夫卡彩绘", "zht": "彼得里基夫卡彩繪", "bg": "Петриковска живопис", "pl": "Malarstwo petrykiwskie"},
+    "perfilAv_ua_bandura": {"es": "Bandura", "en": "Bandura", "fr": "Bandoura", "de": "Bandura", "it": "Bandura", "nl": "Bandoera", "zh": "班杜拉琴", "zht": "班杜拉琴", "bg": "Бандура", "pl": "Bandura"},
+    "perfilAv_ua_oro_vyshyvanka": {"es": "Día de la Vyshyvanka", "en": "Vyshyvanka Day", "fr": "Journée de la vychyvanka", "de": "Tag der Wyschywanka", "it": "Giornata della Vyšyvanka", "nl": "Vysjyvankadag", "zh": "刺绣衬衫日", "zht": "刺繡襯衫日", "bg": "Ден на вишиванката", "pl": "Dzień Wyszywanki"},
+    "perfilAv_by_mir": {"es": "Castillo de Mir", "en": "Mir Castle", "fr": "Château de Mir", "de": "Schloss Mir", "it": "Castello di Mir", "nl": "Kasteel van Mir", "zh": "米尔城堡", "zht": "米爾城堡", "bg": "Мирският замък", "pl": "Zamek w Mirze"},
     "perfilAv_by_draniki": {"es": "Draniki", "en": "Draniki", "fr": "Draniki", "de": "Draniki", "it": "Draniki", "nl": "Draniki", "zh": "白俄罗斯土豆饼", "zht": "白俄羅斯馬鈴薯餅", "bg": "Драники", "pl": "Draniki"},
     "perfilAv_by_lino": {"es": "Flor de lino", "en": "Flax flower", "fr": "Fleur de lin", "de": "Leinblüte", "it": "Fiore di lino", "nl": "Vlasbloem", "zh": "亚麻花", "zht": "亞麻花", "bg": "Ленен цвят", "pl": "Kwiat lnu"},
-    "perfilAv_by_mir": {"es": "Castillo de Mir", "en": "Mir Castle", "fr": "Château de Mir", "de": "Schloss Mir", "it": "Castello di Mir", "nl": "Kasteel van Mir", "zh": "米尔城堡", "zht": "米爾城堡", "bg": "Мирският замък", "pl": "Zamek w Mirze"},
     "perfilAv_by_paja": {"es": "Muñeca de paja", "en": "Straw doll", "fr": "Poupée de paille", "de": "Strohpuppe", "it": "Bambola di paglia", "nl": "Strooien pop", "zh": "草编娃娃", "zht": "草編娃娃", "bg": "Сламена кукла", "pl": "Słomiana lalka"},
     "perfilAv_by_machanka": {"es": "Machanka", "en": "Machanka", "fr": "Machanka", "de": "Matschanka", "it": "Machanka", "nl": "Machanka", "zh": "白俄罗斯炖肉", "zht": "白俄羅斯燉肉", "bg": "Мачанка", "pl": "Maczanka"},
+    "perfilAv_by_oro_kupalle": {"es": "Noche de Kupala", "en": "Kupala Night", "fr": "Nuit de Kupala", "de": "Iwan-Kupala-Tag", "it": "Notte di Kupala", "nl": "Koepalanacht", "zh": "库帕拉节", "zht": "庫帕拉節", "bg": "Нощ на Купала", "pl": "Noc Kupały"},
     "perfilAv_ru_matrioska": {"es": "Matrioska", "en": "Matryoshka", "fr": "Matriochka", "de": "Matrjoschka", "it": "Matrioska", "nl": "Matroesjka", "zh": "俄罗斯套娃", "zht": "俄羅斯娃娃", "bg": "Матрьошка", "pl": "Matrioszka"},
+    "perfilAv_ru_san_basilio": {"es": "San Basilio", "en": "St Basil’s Cathedral", "fr": "Saint-Basile", "de": "Basilius-Kathedrale", "it": "San Basilio", "nl": "Sint-Basilius", "zh": "圣瓦西里大教堂", "zht": "聖瓦西里大教堂", "bg": "Василий Блажени", "pl": "Wasyl Błogosławiony"},
     "perfilAv_ru_samovar": {"es": "Samovar", "en": "Samovar", "fr": "Samovar", "de": "Samowar", "it": "Samovar", "nl": "Samovar", "zh": "茶炊", "zht": "茶炊", "bg": "Самовар", "pl": "Samowar"},
     "perfilAv_ru_balalaika": {"es": "Balalaica", "en": "Balalaika", "fr": "Balalaïka", "de": "Balalaika", "it": "Balalaica", "nl": "Balalaika", "zh": "巴拉莱卡琴", "zht": "巴拉萊卡琴", "bg": "Балалайка", "pl": "Bałałajka"},
     "perfilAv_ru_blinis": {"es": "Blinis", "en": "Blini", "fr": "Blinis", "de": "Blini", "it": "Blini", "nl": "Blini", "zh": "俄式薄饼", "zht": "俄式薄餅", "bg": "Блини", "pl": "Bliny"},
-    "perfilAv_ru_pajaro_fuego": {"es": "Pájaro de fuego", "en": "Firebird", "fr": "Oiseau de feu", "de": "Feuervogel", "it": "Uccello di fuoco", "nl": "Vuurvogel", "zh": "火鸟", "zht": "火鳥", "bg": "Жар-птица", "pl": "Żar-ptak"}
+    "perfilAv_ru_oro_maslenitsa": {"es": "Máslenitsa", "en": "Maslenitsa", "fr": "Maslenitsa", "de": "Masleniza", "it": "Maslenica", "nl": "Maslenitsa", "zh": "谢肉节", "zht": "謝肉節", "bg": "Масленица", "pl": "Maslenica"}
   };
   Object.assign(UI_TX, PERFIL_UI);
 
@@ -419,8 +485,14 @@
   /* Rangos admitidos: los mismos al escribir, al leer del dispositivo, al leer
      de la nube y en los check de perfil.sql. */
   var RANGO = { cm: [80, 250], pulgadas: [32, 98], kg: [20, 400], lb: [45, 880], km: [0.1, 200] };
+  /* Como mucho 2.000 pesos y 2.000 caminatas: el tope de perfil.sql por cuenta (un peso al
+     dia son mas de cinco años). Cambiar el peso de un dia que ya lo tiene, siempre. */
+  var TOPE_REGISTROS = 2000;
   var EDAD_ADULTO = 20;   /* OMS: de 5 a 19 años se usa el IMC para la edad, no estas categorias */
   var reducido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Nombres en bulgaro que se parecen a otros de la app y estan bien (tools/auditar_cirilico.py):
+     CIRILICO-OK: Баба      «Баба Марта», la fiesta bulgara del 1 de marzo (avatar de oro bg-oro-marta); no es «Баха» */
 
   /* ── utilidades ── */
   function $(id) { return document.getElementById(id); }
@@ -494,7 +566,7 @@
        nube: null o { uid, desde, ok }: el permiso de ESA cuenta (desde = cuando se dio;
        ok = este movil ya se junto con la nube). colas: lo que falta por subir, por cuenta. */
     return { v: 1, nombre: '', avatar: '', unidades: 'metric', altura_cm: null, nacimiento: null, objetivo_kg: null,
-      medidas: [], km: [], creado: hoy(), rango: 30, tab: 'peso', editado: null, nube: null, colas: {} };
+      medidas: [], km: [], creado: hoy(), rango: 30, tab: 'peso', editado: null, nube: null, colas: {}, oro: {} };
   }
   function leerNube(n) { return (n && typeof n === 'object' && esUid(n.uid) && esInstante(n.desde)) ? { uid: n.uid, desde: n.desde, ok: n.ok === true } : null; }
   function leerColas(cs) {
@@ -537,7 +609,15 @@
     d.colas = leerColas(s.colas);
     d.rango = [30, 90, 365].indexOf(s.rango) >= 0 ? s.rango : 30;
     d.tab = s.tab === 'km' ? 'km' : 'peso';
+    /* los de oro: solo ids de oro del catalogo; el avatar elegido, si es de oro, es suyo */
+    d.oro = leerOro(s.oro);
+    if (d.avatar && AV.esOro(d.avatar) && !Object.prototype.hasOwnProperty.call(d.oro, d.avatar)) d.oro[d.avatar] = '';
     return d;
+  }
+  function leerOro(o) {
+    var out = {}; if (!o || typeof o !== 'object' || Array.isArray(o)) return out;
+    Object.keys(o).slice(0, 200).forEach(function (id) { if (AV.esOro(id)) out[id] = esFecha(o[id]) ? o[id] : ''; });
+    return out;
   }
   var st = cargar(), avatarCuenta = st.avatar;
 
@@ -557,6 +637,65 @@
     return listaLogros().filter(function (b) { return tiene.indexOf(b.key) >= 0; }).map(function (b) { return b.key; });
   }
   function setDesbloqueado(set) { return !set.desbloqueo || comprobadas() >= set.desbloqueo; }
+
+  /* ── los de oro (Jerome, 23-10-2026: «Algunos que pueden salir en momento particular o
+     eventos del pais como de oro»). Cada uno se coge solo el dia de su fiesta (la regla
+     esta en avatares.js) y quien lo coge se lo queda: st.oro = { id: 'AAAA-MM-DD' }, la
+     fecha en que lo cogio ('' si llego de la nube como avatar elegido). Fuera de fecha se
+     ve con candado y con la fecha. No dependen del desbloqueo de su set: los tres de
+     Tenerife se cogen en su fiesta aunque falten visitas. ── */
+  function esOro(a) { return !!(a && a.oro); }
+  function tieneOro(id) { return Object.prototype.hasOwnProperty.call(st.oro, id); }
+  function oroHoy(a) { return AV.disponible(a.id, hoy()); }
+  function avatarLibre(a) { return esOro(a) ? (tieneOro(a.id) || oroHoy(a)) : setDesbloqueado(AV.set(a.set)); }
+  /* «el 17 de marzo» o «del 14 al 17 de febrero» (en chino, las dos fechas enteras) */
+  function cuandoOro(v) {
+    if (!v) return '';
+    var op = { day: 'numeric', month: 'long' };
+    if (v.desde === v.hasta) return tx('perfilOroEl', { fecha: fmtFecha(v.desde, op) });
+    var mismoMes = v.desde.slice(0, 7) === v.hasta.slice(0, 7) && lengua() !== 'zh' && lengua() !== 'zht';
+    return tx('perfilOroDelAl', { desde: fmtFecha(v.desde, mismoMes ? { day: 'numeric' } : op), hasta: fmtFecha(v.hasta, op) });
+  }
+  /* debajo del avatar: «17 mar» o «14–17 feb»; en chino, las de varios dias en numeros
+     («12/31–1/1»), porque «12月31日–1月1日» no cabe en el boton */
+  function fechaCortaOro(v) {
+    if (!v) return '';
+    if (v.desde === v.hasta) return fmtFecha(v.desde);
+    if (lengua() === 'zh' || lengua() === 'zht') return fmtFecha(v.desde, { month: 'numeric', day: 'numeric' }) + '–' + fmtFecha(v.hasta, { month: 'numeric', day: 'numeric' });
+    var mismoMes = v.desde.slice(0, 7) === v.hasta.slice(0, 7);
+    return fmtFecha(v.desde, mismoMes ? { day: 'numeric' } : undefined) + '–' + fmtFecha(v.hasta);
+  }
+  /* «De oro»: primero los de hoy que aun no tiene, luego los demas por fecha, y al final los suyos. */
+  function orosOrdenados() {
+    var h = hoy();
+    function clave(a) { var v = AV.proxima(a.id, h); return [tieneOro(a.id) ? 2 : (oroHoy(a) ? 0 : 1), v ? v.desde : '9999-99-99']; }
+    return AV.oros.slice().sort(function (a, b) { var x = clave(a), y = clave(b); return x[0] - y[0] || (x[1] < y[1] ? -1 : (x[1] > y[1] ? 1 : 0)); });
+  }
+  /* La linea del pie en un set: su avatar de oro (en Tenerife, el mas proximo de los tres). */
+  function notaOro(s) {
+    var h = hoy(), oros = s.avatares.filter(esOro), hoyNo, pend, mio;
+    if (!oros.length) return '';
+    hoyNo = oros.filter(function (a) { return oroHoy(a) && !tieneOro(a.id); })[0];
+    if (hoyNo) return tx('perfilOroNotaHoy', { fiesta: nombreAvatar(hoyNo.id) });
+    pend = oros.filter(function (a) { return !tieneOro(a.id) && AV.proxima(a.id, h); })
+      .sort(function (a, b) { return AV.proxima(a.id, h).desde < AV.proxima(b.id, h).desde ? -1 : 1; })[0];
+    if (pend) return tx('perfilOroNota', { fiesta: nombreAvatar(pend.id), cuando: cuandoOro(AV.proxima(pend.id, h)) });
+    mio = oros.filter(function (a) { return tieneOro(a.id); })[0];
+    return mio ? tx('perfilOroTuyo', { fiesta: nombreAvatar(mio.id) }) : '';
+  }
+  /* Tocar un avatar lo mueve un segundo (Jerome, 23-10-2026: «Interactivo?»): la clase
+     tga-play en lo que lo contiene; perfil.css hace el resto. Nada con «reducir movimiento». */
+  function jugar(n) {
+    if (!n || reducido) return;
+    n.classList.remove('tga-play'); void n.offsetWidth; n.classList.add('tga-play');
+    clearTimeout(n.tgaT); n.tgaT = setTimeout(function () { n.classList.remove('tga-play'); }, 1400);
+  }
+  /* Un avatar de oro fuera de su dia: dice cuando y hace «no» con la cabeza. */
+  function avisoOro(a, b) {
+    var v = AV.proxima(a.id, hoy());
+    toast(v ? tx('perfilOroBloqueado', { fiesta: nombreAvatar(a.id), cuando: cuandoOro(v) }) : nombreAvatar(a.id));
+    if (b && !reducido) { b.classList.remove('tga-no'); void b.offsetWidth; b.classList.add('tga-no'); clearTimeout(b.tgaN); b.tgaN = setTimeout(function () { b.classList.remove('tga-no'); }, 600); }
+  }
 
   /* ── la cuenta (window.AppAuth, el puente de index.html) ── */
   function sesion() {
@@ -591,6 +730,7 @@
   var EDAD_NUBE = 14;          /* LOPDGDD, art. 7: desde los 14 años se consiente solo */
   var NUBE_ESPERA = 1500;      /* ms entre el ultimo cambio y la subida */
   var NUBE_PLAZO = 15000;      /* una peticion que tarda mas cuenta como fallida (y se reintenta) */
+  var NUBE_PAGINA = 1000;      /* Supabase da como mucho 1.000 filas por consulta («Max rows»): se lee por paginas */
   var nubeT = null, nubeCadena = Promise.resolve(), reintentoT = null, reintentoMs = 0;
   function clienteNube() { var A = window.AppAuth; try { return A && A.getClient ? A.getClient() : null; } catch (e) { return null; } }
   function nubeEncendida() { var u = sesion(); return !!(u && st.nube && st.nube.uid === u.id); }
@@ -640,23 +780,21 @@
         function (e) { clearTimeout(tope); res({ data: null, error: { message: String((e && e.message) || e) } }); });
     });
   }
-  /* Todas las filas de una tabla de esta cuenta. Supabase devuelve como mucho unas
-     cuantas por consulta (Max rows: 1.000 en cada proyecto, si nadie lo cambia), y
-     con tres años de pesos diarios ya son mas: lo que no llegara se tomaria por
-     borrado en otro movil, y desapareceria de este. Se leen por paginas, en orden
-     y con la cuenta de cuantas hay, hasta tenerlas todas o hasta una pagina vacia:
-     vale con cualquier tope que tenga el proyecto, y con pocas es una consulta. */
-  var PAGINA = 1000;
-  async function todasLasFilas(sb, tabla, cols, orden, uid) {
-    var filas = [], total = null;
-    for (;;) {
-      var r = await pedir(sb.from(tabla).select(cols, { count: 'exact' }).eq('user_id', uid).order(orden).range(filas.length, filas.length + PAGINA - 1));
+  /* Todas las filas de esta cuenta en una tabla, por paginas y en orden de su clave: con
+     una sola consulta llegarian 1.000 como mucho, y lo que faltase se tomaria por borrado
+     en otro movil. count: 'exact' dice cuantas hay; si no lo dijera, se sigue hasta una
+     pagina vacia. */
+  async function leerTodas(sb, tabla, campos, orden, uid) {
+    var filas = [], total = null, r, d;
+    for (var vuelta = 0; vuelta < 50; vuelta++) {
+      r = await pedir(sb.from(tabla).select(campos, { count: 'exact' }).eq('user_id', uid).order(orden).range(filas.length, filas.length + NUBE_PAGINA - 1));
       if (r.error) return r;
-      var d = r.data || [];
-      if (typeof r.count === 'number') total = r.count;
+      d = r.data || [];
+      if (total === null && typeof r.count === 'number') total = r.count;
       filas = filas.concat(d);
       if (!d.length || (total !== null && filas.length >= total)) return { data: filas, error: null };
     }
+    return { data: null, error: { message: 'demasiadas páginas' } };
   }
   function esFK(e) { return !!(e && e.code === '23503'); }   /* pesos o caminatas sin su fila de perfiles */
   function camposPerfil() {
@@ -704,8 +842,8 @@
       guardar();
     } else {
       /* Hay permiso para esta cuenta (dado aqui o en otro movil): se juntan los dos lados. */
-      var rp = await todasLasFilas(sb, 'pesos', 'fecha, kg', 'fecha', uid);
-      var rk = await todasLasFilas(sb, 'caminatas', 'id, fecha, km', 'id', uid);
+      var rp = await leerTodas(sb, 'pesos', 'fecha, kg', 'fecha', uid);
+      var rk = await leerTodas(sb, 'caminatas', 'id, fecha, km', 'id', uid);
       if (rp.error || rk.error) return 'error';
       if (st.colas[uid] && st.colas[uid].baja) return 'error';
       fusionar(uid, fila, rp.data || [], rk.data || []);
@@ -797,6 +935,7 @@
       else if (primera) { if (!vacio(st[k])) subir = true; }   /* la nube no lo tiene: sube lo de aqui */
       else st[k] = (k === 'nombre' || k === 'avatar') ? '' : null;   /* lo vaciaron en otro movil */
     });
+    if (st.avatar && AV.esOro(st.avatar) && !tieneOro(st.avatar)) st.oro[st.avatar] = '';   /* lo cogio en otro movil */
     if (nb.creado && nb.creado < st.creado) st.creado = nb.creado; else if (primera && nb.creado !== st.creado) subir = true;
     if (subir && !c.perfil) { c.n++; c.perfil = c.n; }
     st.nube.ok = true;
@@ -865,7 +1004,9 @@
     /* el nombre lo escribe la persona: no se traduce, y los controles de idioma lo saltan */
     if (st.nombre) n.setAttribute('data-sin-traducir', 'lo escribe la persona'); else n.removeAttribute('data-sin-traducir');
     var meta = $('tgp-meta'); meta.textContent = '';
-    var c1 = el('span', 'tgp-chip set'); c1.appendChild(el('span', 'flag', s.bandera)); c1.appendChild(el('span', '', nombreAvatar(a.id))); meta.appendChild(c1);
+    var c1 = el('span', 'tgp-chip set'); c1.appendChild(el('span', 'flag', s.bandera));
+    if (esOro(a)) c1.appendChild(el('span', 'flag', '🏅'));
+    c1.appendChild(el('span', '', nombreAvatar(a.id))); meta.appendChild(c1);
     var c2 = el('span', 'tgp-chip'); c2.appendChild(el('span', 'muted', tx('perfilViajeroDesde', { fecha: fmtFecha(st.creado, { month: 'short', year: 'numeric' }) }))); meta.appendChild(c2);
     var v = visitados(), tiene = logrosConseguidos(), ultimo = null;
     listaLogros().forEach(function (b) { if (b.min && tiene.indexOf(b.key) >= 0) ultimo = b; });
@@ -894,6 +1035,15 @@
       var on = s.id === setAbierto; b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
       box.insertBefore(b, mas);
     });
+    /* «De oro»: todos los de oro, con su fecha; un punto si hoy hay uno por coger */
+    var bo = el('button', 'tgp-set tgp-set-oro'); bo.type = 'button'; bo.dataset.set = 'oro';
+    bo.appendChild(el('span', 'flag', '🏅')); bo.appendChild(el('span', '', tx('perfilOroSet')));
+    if (AV.oros.some(function (a) { return oroHoy(a) && !tieneOro(a.id); })) {
+      bo.classList.add('is-hoy'); bo.appendChild(el('span', 'tgp-oro-punto'));
+      bo.setAttribute('aria-label', tx('perfilOroSet') + ', ' + tx('perfilOroHoy'));
+    }
+    var onO = setAbierto === 'oro'; bo.classList.toggle('is-on', onO); bo.setAttribute('aria-pressed', onO ? 'true' : 'false');
+    box.insertBefore(bo, mas);
     /* Las pestañas van en filas y se ven todas: no hay nada que desplazar. Y sin
        scrollIntoView, que bajaba la pantalla entera al abrirla en un movil bajo o
        en horizontal (48 px a 320x568, 156 px a 740x360). */
@@ -933,43 +1083,68 @@
     /* Con el dedo, no: el teclado taparia la lista. */
     if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) $('tgp-buscar').focus();
   }
+  /* La tira: los cinco del set y su avatar de oro (en Tenerife, tres), o en «De oro»
+     todos los de oro con la bandera de su set. */
   function renderStrip(animar) {
-    var s = AV.set(setAbierto), box = $('tgp-strip'); box.textContent = '';
-    var libre = setDesbloqueado(s), actual = avatarActual().id;
-    s.avatares.forEach(function (a, i) {
+    var box = $('tgp-strip'); box.textContent = '';
+    var enOro = setAbierto === 'oro', s = enOro ? null : AV.set(setAbierto), h = hoy();
+    var lista = enOro ? orosOrdenados() : s.avatares, actual = avatarActual().id;
+    lista.forEach(function (a, i) {
       var b = el('button', 'tgp-av'); b.type = 'button'; b.dataset.id = a.id; b.style.setProperty('--i', animar ? i : 0);
       if (!animar) b.style.animation = 'none';
       b.innerHTML = AV.svg(a.id);
-      b.appendChild(el('span', 'name', nombreAvatar(a.id)));
-      b.setAttribute('aria-label', nombreAvatar(a.id));
+      var aria = nombreAvatar(a.id);
+      b.appendChild(el('span', 'name', aria));
+      if (esOro(a)) {
+        var v = AV.proxima(a.id, h), mio = tieneOro(a.id), hoyEs = oroHoy(a);
+        b.classList.add('is-oro'); aria += ', ' + tx('perfilAvatarOro');
+        if (hoyEs && !mio) { b.appendChild(el('span', 'tgp-oro-hoy', tx('perfilOroHoy'))); aria += ', ' + tx('perfilOroHoy'); }
+        if (enOro) b.appendChild(el('span', 'tgp-oro-bandera', AV.set(a.set).bandera));   /* en «De oro», de que set es */
+        var pie = mio ? '✓' : (hoyEs ? '' : fechaCortaOro(v));
+        if (pie) b.appendChild(el('span', 'tgp-oro-fecha', pie));
+        if (!mio && !hoyEs) {
+          b.classList.add('is-cerrado');   /* sin aria-disabled: tocarlo dice cuando se consigue */
+          b.appendChild(el('span', 'tgp-oro-candado', '🔒'));
+          if (v) aria += ', ' + cuandoOro(v);
+        }
+      } else if (!avatarLibre(a)) { b.classList.add('is-locked'); b.disabled = true; }
+      b.setAttribute('aria-label', aria);
       b.setAttribute('aria-pressed', a.id === actual ? 'true' : 'false');
       if (a.id === actual) b.classList.add('is-on');
-      if (!libre) { b.classList.add('is-locked'); b.disabled = true; }
       box.appendChild(b);
     });
     $('tgp-pick').textContent = nombreAvatar(actual);
-    $('tgp-lock-note').textContent = libre ? '' : tx('perfilBloqueado', { n: s.desbloqueo, v: Math.min(comprobadas(), s.desbloqueo) });
-    $('tgp-lock-why').hidden = libre;
+    var nota = '', porque = false;
+    if (enOro) nota = tx('perfilOroCuenta', { n: AV.oros.filter(function (a) { return tieneOro(a.id); }).length, total: AV.oros.length }) + ' ' + tx('perfilOroRegla');
+    /* en Tenerife sin las 10 visitas, la nota de las visitas; salvo que hoy haya uno de oro por coger, que corre mas prisa */
+    else if (!setDesbloqueado(s) && !s.avatares.some(function (a) { return esOro(a) && oroHoy(a) && !tieneOro(a.id); })) { nota = tx('perfilBloqueado', { n: s.desbloqueo, v: Math.min(comprobadas(), s.desbloqueo) }); porque = true; }
+    else nota = notaOro(s);
+    $('tgp-lock-note').textContent = nota;
+    $('tgp-lock-why').hidden = !porque;
     var on = box.querySelector('.is-on'); if (on && animar) on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reducido ? 'auto' : 'smooth' });
   }
+  var ORO_CONFETI = ['#F4CD52', '#FFF6C9', '#D4A020', '#FFFFFF'];
   function elegirAvatar(id) {
-    var a = AV.porId(id); if (!a || !setDesbloqueado(AV.set(a.set))) return;
+    var a = AV.porId(id); if (!a || !avatarLibre(a)) return;
+    var nuevoOro = esOro(a) && !tieneOro(a.id);
+    if (nuevoOro) st.oro[a.id] = hoy();
     if (st.avatar !== id) { st.avatar = id; marcar('perfil'); }
     guardar();
     renderHero(true); renderSets(); renderStrip(false);
-    confeti(AV.set(a.set));
-    toast(tx('perfilAvatarGuardado'));
+    jugar($('tgp-ava-big'));
+    var b = $('tgp-strip').querySelector('.tgp-av[data-id="' + id + '"]'); if (b) jugar(b);
+    confeti(nuevoOro ? ORO_CONFETI : [AV.set(a.set).color, '#D4AF37', '#F5C76B', '#FFFFFF']);
+    toast(tx(nuevoOro ? 'perfilOroConseguido' : 'perfilAvatarGuardado'));
   }
 
   /* ── confeti (canvas del heroe) ── */
-  function confeti(set) {
+  function confeti(cols) {
     if (reducido) return;
     var cv = $('tgp-confeti'), hero = $('tgp-hero'); var r = hero.getBoundingClientRect();
     cv.width = r.width * 2; cv.height = r.height * 2;
     var ctx = cv.getContext('2d'); ctx.scale(2, 2);
     var ring = panel.querySelector('.tgp-ring').getBoundingClientRect();
     var cx = ring.left - r.left + ring.width / 2, cy = ring.top - r.top + ring.height / 2;
-    var cols = [set.color, '#D4AF37', '#F5C76B', '#FFFFFF'];
     var ps = [];
     for (var i = 0; i < 70; i++) { var ang = Math.random() * Math.PI * 2, sp = 4 + Math.random() * 6;
       ps.push({ x: cx, y: cy, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 3, w: 4 + Math.random() * 5, h: 3 + Math.random() * 4, rot: Math.random() * 6, vr: (Math.random() - .5) * .3, c: cols[i % cols.length], vida: 1 }); }
@@ -1039,6 +1214,7 @@
     if (hv === undefined) { $('tgp-altura').focus(); return; }
     if (pv === undefined) { $('tgp-peso').focus(); return; }
     if (n === undefined) { ayudas(); $('tgp-nac').focus(); return; }
+    if (tocado.peso && pv !== null && pesoNoCabe(hoy())) { avisoTope('tgp-peso-h'); $('tgp-peso').focus(); return; }
     if (tocado.altura) st.altura_cm = hv === null ? null : aCm(hv);
     if (tocado.nac) st.nacimiento = n;
     if (tocado.altura || tocado.nac) marcar('perfil');
@@ -1049,6 +1225,9 @@
   function anotarPeso(d, kg) {
     st.medidas = st.medidas.filter(function (m) { return m.d !== d; }); st.medidas.push({ d: d, kg: kg }); marcar('pesos', d, 1);
   }
+  /* El tope: un peso de un dia nuevo o una caminata mas ya no caben; lo dice debajo del campo. */
+  function pesoNoCabe(d) { return st.medidas.length >= TOPE_REGISTROS && !st.medidas.some(function (m) { return m.d === d; }); }
+  function avisoTope(ayudaId) { var a = $(ayudaId); a.classList.add('error'); a.textContent = tx('perfilTope', { n: fmt(TOPE_REGISTROS, 0) }); }
 
   /* ── evolucion: peso ── */
   function tendencia(ms) { /* por cada registro, la media de los suyos de los 7 dias que acaban en el */
@@ -1320,7 +1499,7 @@
      v: la version del formato, la misma que lleva tenerife.perfil; con el id de
      cada caminata, que es su clave en la nube. */
   function exportar() {
-    var datos = { v: 1, perfil: { nombre: st.nombre, avatar: avatarActual().id, altura_cm: st.altura_cm, nacimiento: st.nacimiento, objetivo_kg: st.objetivo_kg, unidades: st.unidades, creado: st.creado }, pesos: ordenadas(), caminatas: st.km.map(function (k) { return { id: k.id, d: k.d, km: k.km }; }) };
+    var datos = { v: 1, perfil: { nombre: st.nombre, avatar: avatarActual().id, altura_cm: st.altura_cm, nacimiento: st.nacimiento, objetivo_kg: st.objetivo_kg, unidades: st.unidades, creado: st.creado }, pesos: ordenadas(), caminatas: st.km.map(function (k) { return { id: k.id, d: k.d, km: k.km }; }), avatares_oro: st.oro };
     var blob = new Blob([JSON.stringify(datos, null, 2) + '\n'], { type: 'application/json' });
     return compartirFichero(blob, 'tenerife-go-perfil.json', tx('perfilExportar'));
   }
@@ -1366,9 +1545,18 @@
     });
     /* Escape cierra la lista y no la pantalla entera (el Escape del perfil, abajo, la deja pasar) */
     $('tgp-paises').addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.stopPropagation(); abrirPaises(false); $('tgp-paises-btn').focus(); } });
-    $('tgp-strip').addEventListener('click', function (e) { var b = e.target.closest('.tgp-av'); if (b && !b.disabled) elegirAvatar(b.dataset.id); });
+    /* Tocar: el que ya lleva solo se mueve; uno de oro fuera de su dia dice cuando; los demas se eligen. */
+    $('tgp-strip').addEventListener('click', function (e) {
+      var b = e.target.closest('.tgp-av'); if (!b || b.disabled) return;
+      var a = AV.porId(b.dataset.id); if (!a) return;
+      if (!avatarLibre(a)) { avisoOro(a, b); return; }
+      if (st.avatar === a.id) { jugar(b); jugar($('tgp-ava-big')); return; }
+      elegirAvatar(a.id);
+    });
+    $('tgp-ava-big').addEventListener('click', function () { jugar(this); });
+    /* Sorprendeme: solo entre los de los sets abiertos; los de oro, nunca (son de su fiesta). */
     $('tgp-random').addEventListener('click', function () {
-      var pool = []; AV.sets.forEach(function (s) { if (setDesbloqueado(s)) pool = pool.concat(s.avatares); });
+      var pool = []; AV.sets.forEach(function (s) { if (setDesbloqueado(s)) pool = pool.concat(s.avatares.filter(function (a) { return !esOro(a); })); });
       var a = pool[Math.floor(Math.random() * pool.length)]; setAbierto = a.set; elegirAvatar(a.id); renderStrip(true);
     });
     $('tgp-name-edit').addEventListener('click', function () {
@@ -1398,12 +1586,14 @@
       e.preventDefault(); var a = $('tgp-peso-nuevo-h'); a.textContent = ''; a.classList.remove('error');
       var v = campo('tgp-peso-nuevo', rPeso(), 'tgp-peso-nuevo-h'); if (v === undefined || v === null) return;
       var d = fechaValida('tgp-peso-fecha', 'tgp-peso-nuevo-h'); if (!d) return;
+      if (pesoNoCabe(d)) { avisoTope('tgp-peso-nuevo-h'); return; }
       anotarPeso(d, aKg(v)); guardar(); $('tgp-peso-nuevo').value = ''; renderDatos(); renderEvo(); toast(tx('perfilGuardado'));
     });
     $('tgp-add-km').addEventListener('submit', function (e) {
       e.preventDefault(); var a = $('tgp-km-nuevo-h'); a.textContent = ''; a.classList.remove('error');
       var v = campo('tgp-km-nuevo', RANGO.km, 'tgp-km-nuevo-h'); if (v === undefined || v === null) return;
       var d = fechaValida('tgp-km-fecha', 'tgp-km-nuevo-h'); if (!d) return;
+      if (st.km.length >= TOPE_REGISTROS) { avisoTope('tgp-km-nuevo-h'); return; }
       var id = nuevoId(); st.km.push({ id: id, d: d, km: Math.round(v * 10) / 10 }); marcar('km', id, 1);
       guardar(); $('tgp-km-nuevo').value = ''; renderEvo(); toast(tx('perfilGuardado'));
     });
@@ -1819,6 +2009,73 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 .tgp-switch:disabled { opacity: .45; cursor: not-allowed; }
 .tgp-confirm.ok { border-color: rgba(212,175,55,0.45); background: rgba(212,175,55,0.08); }
 @media (prefers-reduced-motion: reduce) { .tgp-switch, .tgp-switch .knob { transition: none; } }
+
+/* ── los avatares se mueven al tocarlos (Jerome, 23-10-2026: «Interactivo?») ──
+   avatares.js pone cada motivo en <g class="tga-m tga-<animación>"> y marca las
+   piezas que se mueven solas (tga-girar, tga-humo…). Al tocar, perfil.js pone
+   «tga-play» en el botón o en el héroe durante 1,4 s. transform-box: fill-box hace
+   que cada pieza gire o se estire desde su propio centro o su base, sin
+   coordenadas. Con «reducir movimiento», perfil.js no lo pone y el bloque de
+   arriba deja cualquier animación en nada. */
+.tg-avatar .tga-m, .tg-avatar [class*="tga-"] { transform-box: fill-box; }
+.tga-play .tga-m.tga-bote { transform-origin: 50% 100%; animation: tga-bote .9s cubic-bezier(.3,.7,.4,1); }
+.tga-play .tga-m.tga-salto { transform-origin: 50% 100%; animation: tga-salto 1s ease-out; }
+.tga-play .tga-m.tga-balanceo { transform-origin: 50% 100%; animation: tga-balanceo 1.1s ease-in-out; }
+.tga-play .tga-m.tga-colgado { transform-origin: 50% 0; animation: tga-balanceo 1.1s ease-in-out; }
+.tga-play .tga-m.tga-latido { transform-origin: 50% 50%; animation: tga-latido .9s ease-in-out; }
+.tga-play .tga-m.tga-vaiven { transform-origin: 50% 80%; animation: tga-vaiven 1.2s ease-in-out; }
+.tga-play .tga-m.tga-avance { animation: tga-avance 1.1s cubic-bezier(.5,0,.3,1); }
+.tga-play .tga-m.tga-giro { transform-origin: 50% 50%; animation: tga-giro 1s cubic-bezier(.5,0,.3,1); }
+.tga-play .tga-m.tga-brillo { transform-origin: 50% 50%; animation: tga-brillo 1s ease-in-out; }
+.tga-play .tga-luz { animation: tga-luz 1s ease-in-out; }
+.tga-play .tga-girar { transform-origin: 50% 50%; animation: tga-girar 1.3s cubic-bezier(.45,.05,.3,1); }
+.tga-play .tga-humo { animation: tga-humo 1.3s ease-out; }
+.tga-play .tga-chorro { transform-origin: 50% 100%; animation: tga-chorro 1.2s ease-out; }
+.tga-play .tga-ala { transform-origin: 50% 100%; animation: tga-ala .32s ease-in-out 3; }
+.tga-play .tga-cola { transform-origin: 0 50%; animation: tga-cola .5s ease-in-out 2; }
+.tga-play .tga-cola-d { transform-origin: 100% 50%; animation: tga-cola .5s ease-in-out 2; }
+.tga-play .tga-brilla { animation: tga-brilla 1s ease-in-out; }
+.tga-play .tga-ola { animation: tga-ola 1.2s ease-in-out; }
+.tga-play .tga-onda { transform-origin: 50% 100%; animation: tga-onda 1.2s ease-in-out; }
+.tga-play .tga-sube { animation: tga-sube 1.2s ease-out; }
+.tga-play .tga-chispas { transform-origin: 50% 50%; animation: tga-chispas 1.1s ease-in-out; }
+.tga-no .tga-m { animation: tga-no .45s ease-in-out; }
+@keyframes tga-bote { 0%, 100% { transform: none; } 18% { transform: scale(1.06, .9); } 45% { transform: translateY(-10px) scale(.96, 1.05); } 70% { transform: scale(1.03, .97); } 85% { transform: translateY(-2px); } }
+@keyframes tga-salto { 0%, 40%, 80%, 100% { transform: none; } 20% { transform: translateY(-9px) rotate(-4deg); } 60% { transform: translateY(-6px) rotate(3deg); } }
+@keyframes tga-balanceo { 0%, 100% { transform: none; } 20% { transform: rotate(-9deg); } 45% { transform: rotate(7deg); } 70% { transform: rotate(-4deg); } 88% { transform: rotate(2deg); } }
+@keyframes tga-latido { 0%, 100% { transform: none; } 25% { transform: scale(1.13); } 45% { transform: scale(.96); } 65% { transform: scale(1.07); } }
+@keyframes tga-vaiven { 0%, 100% { transform: none; } 25% { transform: translateY(-3px) rotate(-6deg); } 55% { transform: translateY(1px) rotate(5deg); } 80% { transform: translateY(-1px) rotate(-2deg); } }
+@keyframes tga-avance { 0%, 100% { transform: none; } 15% { transform: translateX(-3px); } 50% { transform: translateX(9px); } 75% { transform: translateX(-2px); } }
+@keyframes tga-giro { from { transform: none; } to { transform: rotate(360deg); } }
+@keyframes tga-brillo { 0%, 100% { transform: none; } 40% { transform: scale(1.04); } }
+@keyframes tga-luz { from { transform: none; } to { transform: translateX(160px); } }
+@keyframes tga-girar { from { transform: none; } to { transform: rotate(360deg); } }
+@keyframes tga-humo { 0%, 100% { transform: none; opacity: 1; } 60% { transform: translateY(-8px); opacity: 0; } 61% { transform: translateY(4px); opacity: 0; } }
+@keyframes tga-chorro { 0%, 100% { transform: none; } 15% { transform: scaleY(.3); } 50% { transform: scaleY(1.25); } 75% { transform: scaleY(.9); } }
+@keyframes tga-ala { 0%, 100% { transform: none; } 50% { transform: scaleY(.45); } }
+@keyframes tga-cola { 0%, 100% { transform: none; } 25% { transform: rotate(-14deg); } 75% { transform: rotate(14deg); } }
+@keyframes tga-brilla { 0%, 50%, 100% { opacity: 1; } 25% { opacity: .15; } 75% { opacity: .3; } }
+@keyframes tga-ola { 0%, 100% { transform: none; } 30% { transform: translateX(-4px); } 65% { transform: translateX(4px); } }
+@keyframes tga-onda { 0%, 100% { transform: none; } 30% { transform: skewX(-10deg) scaleY(1.08); } 65% { transform: skewX(8deg) scaleY(.95); } }
+@keyframes tga-sube { 0%, 100% { transform: none; } 45% { transform: translateY(-7px); } }
+@keyframes tga-chispas { 0%, 100% { transform: none; opacity: 1; } 30% { transform: scale(1.12) rotate(8deg); opacity: .4; } 60% { transform: scale(.96); } }
+@keyframes tga-no { 0%, 100% { transform: none; } 20% { transform: translateX(-4px); } 40% { transform: translateX(4px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(2px); } }
+.tgp-ava-big { cursor: pointer; }
+
+/* ── los de oro ── */
+.tgp-av.is-oro { position: relative; }
+.tgp-av.is-oro .tg-avatar { box-shadow: 0 0 0 1px rgba(255,236,160,.35), 0 6px 18px rgba(212,160,32,.32); }
+.tgp-av.is-oro.is-on .tg-avatar { box-shadow: 0 0 0 3px var(--panel), 0 0 0 6px var(--gold), 0 10px 24px rgba(212,160,32,.45); }
+.tgp-av.is-cerrado .tg-avatar { filter: saturate(.3) brightness(.78); }
+.tgp-av.is-cerrado .name { color: var(--muted); }
+.tgp-oro-fecha { font-size: .7rem; line-height: 1.1; color: var(--gold-light); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tgp-oro-candado { position: absolute; top: 46px; left: 50%; transform: translateX(-50%); font-size: .95rem; line-height: 1; filter: drop-shadow(0 1px 2px rgba(0,0,0,.6)); pointer-events: none; }
+.tgp-oro-bandera { position: absolute; top: 2px; left: 6px; font-size: .95rem; line-height: 1; filter: drop-shadow(0 1px 2px rgba(0,0,0,.55)); pointer-events: none; }
+.tgp-oro-hoy { position: absolute; top: 0; right: 4px; padding: 2px 7px; border-radius: 999px; background: var(--gold); color: #1a1407; font-size: .66rem; font-weight: 700; line-height: 1.3; box-shadow: 0 2px 8px rgba(0,0,0,.35); animation: tgp-oro-late 1.6s ease-in-out infinite; pointer-events: none; }
+@keyframes tgp-oro-late { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+.tgp-set-oro { position: relative; border-color: rgba(212,175,55,0.55); }
+.tgp-set-oro.is-on { border-color: var(--gold); background: rgba(212,175,55,0.2); }
+.tgp-oro-punto { position: absolute; top: 3px; right: 3px; width: 9px; height: 9px; border-radius: 50%; background: var(--gold-light); box-shadow: 0 0 0 2px var(--panel); }
 
 /* ── solo en la app ── */
 /* cerrado, no se ve (la app no tiene una regla global para [hidden]) */
