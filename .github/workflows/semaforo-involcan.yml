@@ -11,9 +11,19 @@
 # registro que dice «Escrito ... boletin del <fecha de la semana>, semaforo
 # <color>» con lo mismo que se lee en el PDF. Hasta entonces, solo a mano.
 #
-# NO ES UN AVISO: el boletin es semanal. La app ensena el color con la fecha
-# del boletin, recuerda que los cambios los anuncian antes el 112 y ES-Alert, y
-# deja de ensenarlo a los 8 dias. Si no puede leer el PDF, no escribe nada.
+# NO ES UN AVISO DE EMERGENCIA: el boletin es semanal. La app ensena el color
+# con la fecha del boletin, recuerda que los cambios los anuncian antes el 112
+# y ES-Alert, y deja de ensenarlo a los 8 dias. Si no puede leer el PDF, no
+# escribe nada.
+#
+# CUANDO CAMBIA DE COLOR, UNA NOTIFICACION (24 de octubre de 2026; Jerome:
+# «2 sí perfecto»). Con el boletin, su fecha y lo que pide ese color, en el
+# idioma de cada movil y con las filas del panel SOS; nada mas. Sale una vez y
+# solo una: enviar-notificacion.js --semaforo-decidir apunta el color avisado
+# en tools/datos/aviso-semaforo.json, ese apunte se sube al repo, y solo si
+# sube se envia. La primera vez solo apunta. De 8 a 21 h en Canarias: un
+# cambio leido de noche sale en la primera vuelta del dia. Usa los mismos
+# Secrets que la notificacion diaria.
 #
 # CUATRO VECES AL DIA, minuto :29 (lejos de :07, :17, :23, :41 y del :00).
 
@@ -70,3 +80,47 @@ jobs:
           done
           echo "::error::No se pudo subir el fichero del boletin"
           exit 1
+
+      - name: Preparar Node, para el aviso
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Ha cambiado de color? (decide sin enviar nada)
+        run: node enviar-notificacion.js --semaforo-decidir "$RUNNER_TEMP/aviso-semaforo.json"
+
+      - name: Apuntar en el repo lo avisado, antes de enviar
+        run: |
+          git add tools/datos/aviso-semaforo.json
+          if git diff --cached --quiet; then
+            echo "Nada que apuntar"
+            exit 0
+          fi
+          M=$(python3 -c "import json;d=json.load(open('tools/datos/aviso-semaforo.json'));print(d['boletin'] + ' ' + d['color'])")
+          git commit -m "Aviso del semaforo INVOLCAN: $M"
+          for i in 1 2 3 4; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              exit 0
+            fi
+            sleep $((i * 10))
+          done
+          # Sin el apunte en el repo no se envia: la vuelta siguiente lo intenta otra vez.
+          rm -f "$RUNNER_TEMP/aviso-semaforo.json"
+          echo "::error::No se pudo apuntar el aviso del semaforo: no se envia"
+          exit 1
+
+      - name: Enviar el aviso
+        env:
+          SUPABASE_URL:         ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          VAPID_PUBLIC:         ${{ secrets.VAPID_PUBLIC }}
+          VAPID_PRIVATE:        ${{ secrets.VAPID_PRIVATE }}
+          VAPID_SUBJECT:        'mailto:tenerife.go.app@gmail.com'
+          APP_URL:              'https://jerome4551.github.io/tenerife-go/'
+        run: |
+          if [ ! -s "$RUNNER_TEMP/aviso-semaforo.json" ]; then
+            echo "Nada que avisar"
+            exit 0
+          fi
+          npm install --no-audit --no-fund web-push@3.6.7
+          node enviar-notificacion.js --semaforo-enviar "$RUNNER_TEMP/aviso-semaforo.json"

@@ -5,6 +5,10 @@
    y envia a cada dispositivo la frase del dia en su idioma. Los domingos,
    en vez de la frase, un consejo del panel SOS (CONSEJOS, mas abajo).
 
+   Y el aviso del semaforo volcanico cuando cambia de color, con
+   --semaforo-decidir y --semaforo-enviar (mas abajo): lo lanza el flujo del
+   semaforo, .github/workflows/semaforo-involcan.yml.
+
    Variables de entorno (se ponen como Secrets del repo en GitHub):
      SUPABASE_URL          https://aupjvdrubjytryzqirdn.supabase.co
      SUPABASE_SERVICE_KEY  clave service_role (SECRETA, solo servidor)
@@ -46,8 +50,12 @@ const FORCE                = process.env.FORCE === '1';
 
 function fail(msg) { console.error('✗ ' + msg); process.exit(1); }
 
-if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) fail('Falta SUPABASE_URL o SUPABASE_SERVICE_KEY.');
-if (!VAPID_PUBLIC || !VAPID_PRIVATE)        fail('Falta VAPID_PUBLIC o VAPID_PRIVATE.');
+/* Las claves hacen falta para enviar. Decidir si hay que avisar del semaforo
+   no envia nada, y corre sin ellas. */
+function comprobarSecretos() {
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) fail('Falta SUPABASE_URL o SUPABASE_SERVICE_KEY.');
+  if (!VAPID_PUBLIC || !VAPID_PRIVATE)        fail('Falta VAPID_PUBLIC o VAPID_PRIVATE.');
+}
 
 // --- Fecha y hora en Canarias (maneja el cambio de hora automaticamente) ---
 function canaryParts() {
@@ -73,7 +81,7 @@ function dayOfYear(y, m, d) {
 }
 
 /* --- Las filas del panel SOS (modulos/emergencias.js) ---
-   El consejo del domingo no trae textos propios: son
+   El consejo del domingo y el aviso del semaforo no traen textos propios: son
    filas del panel, las mismas que se leen en la app, verificadas contra su
    fuente oficial, en los diez idiomas y de usted. Se leen del modulo, sin
    copiarlas aqui: si el panel cambia una fila, la notificacion dice lo mismo
@@ -163,6 +171,7 @@ async function diasSinEnviar(hoy) {
 }
 
 async function main() {
+  comprobarSecretos();
   const now = canaryParts();
   console.log(`Hora Canarias: ${now.date} ${String(now.hour).padStart(2, '0')}h`);
 
@@ -296,4 +305,101 @@ async function enviarATodos(componer, ttl) {
 
 }
 
-main().catch(e => fail(e && e.message ? e.message : String(e)));
+/* --- El aviso del semaforo volcanico ---
+   Jerome, 24 de octubre de 2026: «2 sí perfecto», al aviso «solo cuando cambie
+   de color». No es un aviso de emergencia (esos no: llegarian tarde, y para
+   eso esta ES-Alert): es lo oficial y nada mas, el boletin de INVOLCAN con su
+   fecha y su color, y lo que pide ese color, con las filas del panel. Ni la
+   app ni este guion deciden si hay peligro.
+   Lo lanza el flujo del semaforo despues de leer el boletin, en dos pasos,
+   para que salga una vez y solo una:
+     --semaforo-decidir <fichero>  mira datos/semaforo-involcan.json contra lo
+        ultimo avisado (tools/datos/aviso-semaforo.json). Si hay que avisar,
+        apunta ahi el color nuevo y deja el aviso en <fichero>. El flujo sube
+        ese apunte al repo ANTES de enviar: si no puede subirlo, no envia, y
+        la vuelta siguiente lo intenta otra vez.
+     --semaforo-enviar <fichero>   lo envia a todas las suscripciones.
+   · La primera vez solo apunta el color: encenderlo no avisa de nada.
+   · Avisa en los dos sentidos: tambien cuando vuelve a verde.
+   · Un boletin de hace mas de 8 dias no avisa: el panel ya no lo ensena.
+   · De 8 a 21 h en Canarias: un cambio leido de noche se avisa en la primera
+     vuelta del dia (el flujo corre cuatro veces al dia). */
+const SEMAFORO_JSON = process.env.SEMAFORO_JSON || path.join(__dirname, 'datos', 'semaforo-involcan.json');
+const AVISO_ESTADO  = process.env.AVISO_ESTADO  || path.join(__dirname, 'tools', 'datos', 'aviso-semaforo.json');
+const COLORES = ['verde', 'amarillo', 'naranja', 'rojo'];
+const HORAS_AVISO = [8, 21];
+
+function semaforoValido(s) {
+  return !!s && COLORES.indexOf(s.color) >= 0 && /^\d{4}-\d{2}-\d{2}$/.test(s.boletin || '') &&
+    isFinite(Date.parse(s.boletin + 'T12:00:00Z'));
+}
+function decidirSemaforo(actual, antes, ahoraMs, hora) {
+  if (!semaforoValido(actual)) return { motivo: 'El fichero del semaforo no trae un color y una fecha que se entiendan: no se avisa de nada.' };
+  const nuevo = { boletin: actual.boletin, color: actual.color };
+  if (!semaforoValido(antes)) return { estado: nuevo, motivo: `Primera vez: se apunta el semaforo ${actual.color} del boletin del ${actual.boletin}, sin avisar.` };
+  if (actual.color === antes.color) return { motivo: `Sigue ${actual.color} (boletin del ${actual.boletin}): nada que avisar.` };
+  if (actual.boletin < antes.boletin) return { motivo: `El boletin leido (${actual.boletin}) es anterior al ya avisado (${antes.boletin}): no se avisa.` };
+  if (ahoraMs - Date.parse(actual.boletin + 'T12:00:00Z') > 8 * 86400000)
+    return { estado: nuevo, motivo: `De ${antes.color} a ${actual.color}, pero el boletin (${actual.boletin}) tiene mas de 8 dias: se apunta sin avisar.` };
+  if (hora < HORAS_AVISO[0] || hora > HORAS_AVISO[1])
+    return { motivo: `De ${antes.color} a ${actual.color}, pero son las ${hora} h en Canarias: se avisa en la primera vuelta del dia.` };
+  return { estado: nuevo, aviso: { boletin: actual.boletin, color: actual.color, antes: antes.color },
+           motivo: `De ${antes.color} a ${actual.color} (boletin del ${actual.boletin}): se avisa.` };
+}
+
+/* Titulo: «El semaforo volcanico». Cuerpo: la linea del panel («Boletin de
+   INVOLCAN del 30 de octubre de 2026: semaforo amarillo en Tenerife.») y
+   debajo lo que pide ese color («Atencion a lo que digan las autoridades.»),
+   con la fecha escrita como la escribe el panel. */
+function textoSemaforo(panel, aviso, lang) {
+  const fecha = new Intl.DateTimeFormat(panel.locale[lang] || 'es-ES',
+    { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Atlantic/Canary' })
+    .format(new Date(Date.parse(aviso.boletin + 'T12:00:00Z')));
+  const linea = filaSOS(panel, 'sosSemaforoBoletin', lang)
+    .replace('{f}', fecha).replace('{c}', filaSOS(panel, 'sosColor_' + aviso.color, lang));
+  const pide = filaSOS(panel, 'sosSem' + aviso.color.charAt(0).toUpperCase() + aviso.color.slice(1) + 'Q', lang);
+  return { title: filaSOS(panel, 'sosGuiaSemaforo', lang), body: linea + '\n' + pide };
+}
+
+async function semaforoDecidir(salida) {
+  if (!salida) fail('Falta el fichero del aviso: --semaforo-decidir <fichero>');
+  try { fs.unlinkSync(salida); } catch (e) { /* no habia */ }
+  let actual = null, antes = null;
+  try { actual = JSON.parse(fs.readFileSync(SEMAFORO_JSON, 'utf8')); }
+  catch (e) { fail('No puedo leer ' + SEMAFORO_JSON + ': ' + e.message); }
+  try { antes = JSON.parse(fs.readFileSync(AVISO_ESTADO, 'utf8')); } catch (e) { antes = null; }
+  const d = decidirSemaforo(actual, antes, Date.now(), canaryParts().hour);
+  console.log(d.motivo);
+  /* El aviso, compuesto en los diez idiomas ANTES de apuntarlo como avisado:
+     si falta una fila, no se apunta nada y el flujo sale en rojo. */
+  if (d.aviso) { const panel = leerPanelSOS(); for (const l of IDIOMAS_SOS) textoSemaforo(panel, d.aviso, l); }
+  if (d.estado) {
+    fs.mkdirSync(path.dirname(AVISO_ESTADO), { recursive: true });
+    fs.writeFileSync(AVISO_ESTADO, JSON.stringify(d.estado, null, 1) + '\n');
+  }
+  if (d.aviso) fs.writeFileSync(salida, JSON.stringify(d.aviso) + '\n');
+}
+
+async function semaforoEnviar(fichero) {
+  comprobarSecretos();
+  let aviso = null;
+  try { aviso = JSON.parse(fs.readFileSync(fichero, 'utf8')); }
+  catch (e) { fail('No puedo leer el aviso ' + fichero + ': ' + e.message); }
+  if (!semaforoValido(aviso)) fail('El aviso no se entiende: ' + JSON.stringify(aviso));
+  const panel = leerPanelSOS(), textos = {};
+  for (const l of IDIOMAS_SOS) textos[l] = textoSemaforo(panel, aviso, l);
+  console.log(`Aviso del semaforo: ${textos.es.title} · ${textos.es.body.replace('\n', ' · ')}`);
+  /* 24 horas para llegar a un movil apagado: el boletin vale una semana. */
+  await enviarATodos(sLang => {
+    const l = textos[sLang] ? sLang : 'es';
+    return { title: textos[l].title, body: textos[l].body, url: APP_URL + '#sos-semaforo', lang: l, tag: 'tgo-semaforo' };
+  }, 24 * 3600);
+}
+
+/*   node enviar-notificacion.js                       la notificacion de cada manana
+     node enviar-notificacion.js --semaforo-decidir F  ¿hay que avisar del semaforo? (sin claves)
+     node enviar-notificacion.js --semaforo-enviar F   enviar ese aviso */
+const MODO = process.argv[2];
+(MODO === '--semaforo-decidir' ? semaforoDecidir(process.argv[3])
+  : MODO === '--semaforo-enviar' ? semaforoEnviar(process.argv[3])
+  : main()).catch(e => fail(e && e.message ? e.message : String(e)));

@@ -322,14 +322,15 @@ async function muchos() {
   if (mal) console.log('   (lo que dijo el envio: ' + lineas.slice(0, 6).join(' · ') + ')');
 }
 
-/* ── 4 · el consejo del domingo (24 de octubre de 2026). Sale de las filas
-   del panel SOS: aqui se leen por cuenta propia, del modulo, y se compara lo
-   que le llega a cada idioma. ── */
+/* ── 4, 5 y 6 · el consejo del domingo y el aviso del semaforo (24 de octubre
+   de 2026). Los dos salen de las filas del panel SOS: aqui se leen por cuenta
+   propia, del modulo, y se compara lo que le llega a cada idioma. ── */
 const SOS_SRC = fs.readFileSync(path.join(RAIZ, 'modulos', 'emergencias.js'), 'utf8');
 const FSOS = {};
 for (const m of SOS_SRC.matchAll(/^\s*"(\w+)"\s*:\s*(\{"es":.*\})\s*,?\s*$/gm)) { try { FSOS[m[1]] = JSON.parse(m[2]); } catch (e) { /* no es una fila */ } }
 const SOS_LOC = JSON.parse(/var SOS_LOCALE = (\{[^}]*\});/.exec(SOS_SRC)[1]);
 const APP = 'https://jerome4551.github.io/tenerife-go/';
+const os = require('os');
 
 /* Corre enviar-notificacion.js con el reloj parado en `ahora`, Supabase y
    web-push de mentira y los argumentos de `modo`; devuelve lo que se envio. */
@@ -424,6 +425,70 @@ async function elDomingo() {
   }
 }
 
+async function elSemaforoDecide() {
+  console.log('\n=== 5 · el semaforo: cuando se avisa y cuando no ===');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tgo-aviso-'));
+  const SEM = path.join(dir, 'semaforo.json'), EST = path.join(dir, 'estado.json'), AV = path.join(dir, 'aviso.json');
+  const caso = async (que, actual, antes, ahora, quiereEstado, quiereAviso) => {
+    fs.writeFileSync(SEM, JSON.stringify(actual));
+    if (antes) fs.writeFileSync(EST, JSON.stringify(antes)); else { try { fs.unlinkSync(EST); } catch (e) {} }
+    const { lineas } = await correr(['--semaforo-decidir', AV], ahora, [], { SEMAFORO_JSON: SEM, AVISO_ESTADO: EST });
+    const estado = fs.existsSync(EST) ? JSON.parse(fs.readFileSync(EST, 'utf8')) : null;
+    const aviso = fs.existsSync(AV) ? JSON.parse(fs.readFileSync(AV, 'utf8')) : null;
+    const bien = JSON.stringify(estado) === JSON.stringify(quiereEstado) && JSON.stringify(aviso) === JSON.stringify(quiereAviso);
+    ok2(bien, que, bien ? '«' + (lineas[0] || '') + '»' : JSON.stringify({ estado, aviso, lineas }));
+  };
+  const V23 = { boletin: '2026-10-23', color: 'verde' }, A30 = { boletin: '2026-10-30', color: 'amarillo' };
+  await caso('la primera vez solo apunta el color: encenderlo no avisa', V23, null, '2026-10-24T10:00:00Z', V23, null);
+  await caso('sigue verde con un boletin nuevo: nada', { boletin: '2026-10-30', color: 'verde' }, V23, '2026-10-30T10:00:00Z', V23, null);
+  await caso('de verde a amarillo, de dia: se apunta y se avisa', A30, V23, '2026-10-30T10:00:00Z', A30, { boletin: '2026-10-30', color: 'amarillo', antes: 'verde' });
+  await caso('de verde a amarillo a las 23 h de Canarias: espera a la primera vuelta del dia', A30, V23, '2026-10-30T23:30:00Z', V23, null);
+  await caso('de verde a amarillo a las 7 h: tambien espera', A30, V23, '2026-10-31T07:10:00Z', V23, null);
+  await caso('un boletin de hace mas de 8 dias no avisa (se apunta)', { boletin: '2026-10-10', color: 'amarillo' }, { boletin: '2026-10-02', color: 'verde' }, '2026-10-30T10:00:00Z', { boletin: '2026-10-10', color: 'amarillo' }, null);
+  await caso('de amarillo a verde: tambien se avisa', { boletin: '2026-11-06', color: 'verde' }, A30, '2026-11-06T09:00:00Z', { boletin: '2026-11-06', color: 'verde' }, { boletin: '2026-11-06', color: 'verde', antes: 'amarillo' });
+  await caso('un boletin anterior al ya avisado no avisa', V23, A30, '2026-10-31T10:00:00Z', A30, null);
+  await caso('un fichero que no se entiende no avisa ni apunta', { boletin: '2026-10-30', color: 'morado' }, V23, '2026-10-30T10:00:00Z', V23, null);
+  fs.rmSync(dir, { recursive: true, force: true });
+}
+
+async function elSemaforoEnvia() {
+  console.log('\n=== 6 · el aviso del semaforo: que le llega a cada idioma ===');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tgo-aviso-'));
+  const AV = path.join(dir, 'aviso.json');
+  for (const color of ['amarillo', 'verde']) {
+    const aviso = { boletin: '2026-10-30', color, antes: color === 'verde' ? 'amarillo' : 'verde' };
+    fs.writeFileSync(AV, JSON.stringify(aviso));
+    const subs = subsIdiomas('s-' + color + '-');
+    const { enviados, lineas } = await correr(['--semaforo-enviar', AV], '2026-10-30T10:00:00Z', subs, {});
+    const C = color.charAt(0).toUpperCase() + color.slice(1);
+    const malos = [];
+    for (const s of subs) {
+      const l = IDIOMAS.indexOf(s.lang) >= 0 ? s.lang : 'es';
+      const fecha = new Intl.DateTimeFormat(SOS_LOC[l], { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Atlantic/Canary' }).format(new Date(Date.UTC(2026, 9, 30, 12)));
+      const quiere = { title: FSOS.sosGuiaSemaforo[l],
+        body: FSOS.sosSemaforoBoletin[l].replace('{f}', fecha).replace('{c}', FSOS['sosColor_' + color][l]) + '\n' + FSOS['sosSem' + C + 'Q'][l],
+        url: APP + '#sos-semaforo', lang: l, tag: 'tgo-semaforo' };
+      const e = enviados.find(x => x.endpoint === s.endpoint);
+      if (!e || JSON.stringify(e.p) !== JSON.stringify(quiere) || e.op.TTL !== 24 * 3600 || /[{}]/.test(e.p.body)) malos.push(s.lang + ': ' + JSON.stringify(e && e.p));
+    }
+    ok2(enviados.length === subs.length && !malos.length, 'semaforo ' + color + ': a cada idioma, «' + FSOS.sosGuiaSemaforo.es + '», la linea del boletin con su fecha y lo que pide el color, y lleva a #sos-semaforo',
+        malos.slice(0, 2).join(' | ') + (enviados.length !== subs.length ? ' (' + enviados.length + ' envios) ' + lineas.join(' · ') : ''));
+    if (color === 'amarillo') {
+      const es = enviados.find(x => x.p.lang === 'es');
+      console.log('         es: ' + (es ? es.p.title + ' · ' + es.p.body.replace('\n', ' · ') : '-'));
+    }
+  }
+  // con mas suscripciones de las que Supabase da en una peticion
+  {
+    fs.writeFileSync(AV, JSON.stringify({ boletin: '2026-10-30', color: 'amarillo', antes: 'verde' }));
+    const subs = [];
+    for (let i = 0; i < 1500; i++) subs.push({ endpoint: 'https://push.prueba.invalid/sm' + String(i).padStart(5, '0'), p256dh: 'k', auth: 'a', lang: IDIOMAS[i % IDIOMAS.length] });
+    const { enviados } = await correr(['--semaforo-enviar', AV], '2026-10-30T10:00:00Z', subs, {});
+    const unicos = new Set(enviados.map(e => e.endpoint));
+    ok2(enviados.length === 1500 && unicos.size === 1500, 'con 1.500 suscripciones, a cada una le llega el aviso una vez', enviados.length + ' envios, ' + unicos.size + ' distintas');
+  }
+  fs.rmSync(dir, { recursive: true, force: true });
+}
 const ok2 = (cond, que, detalle) => ver(cond, que, cond ? (detalle && detalle.startsWith('«') ? detalle : '') : detalle);
 
 (async () => {
@@ -431,6 +496,8 @@ const ok2 = (cond, que, detalle) => ver(cond, que, cond ? (detalle && detalle.st
   await elEnvio();
   await muchos();
   await elDomingo();
+  await elSemaforoDecide();
+  await elSemaforoEnvia();
   console.log(mal ? '\n*** ' + mal + ' comprobacion(es) de la notificacion en su idioma, en rojo ***'
                   : '\ncada movil recibe la notificacion en su idioma, y la sigue si lo cambia');
   process.exit(mal ? 1 : 0);
