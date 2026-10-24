@@ -130,7 +130,7 @@ const MARCAS = {
       'Habla como'),
   ],
   fr: [palI('tu', 'te', 'toi', 'ton', 'ta', 'tes', 'tien', 'tienne', 'tiens', 'tiennes'), /(?<![A-Za-zÀ-ÿ])t['’](?=[aeéèêiîouyhAEÉÈÊIÎOUYH])/u,
-       inicio('Touche', 'Choisis', 'Saisis', 'Utilise', 'Ouvre', 'Regarde', 'Cherche', 'Essaie', 'Découvre', 'Profite', 'Active', 'Crée', 'Ajoute',
+       inicio('Touche', 'Choisis', 'Saisis', 'Utilise', 'Ouvre', 'Regarde', 'Cherche', 'Essaie', 'Réessaie', 'Découvre', 'Profite', 'Active', 'Crée', 'Ajoute',
          'Consulte', 'Enlève', 'Retire', 'Reviens', 'Lève', 'Dessine', 'Vérifie', 'Efface', 'Télécharge', 'Installe', 'Appuie', 'Glisse',
          'Bouge', 'Tape', 'Écris', 'Sélectionne', 'Respire', 'Écoute', 'Imagine', 'Souris', 'Prends', 'Fais', 'Va', 'Viens', 'Dis', 'Mets', 'Mange',
          /* los que tambien son nombre o tercera persona, solo en su giro de
@@ -146,7 +146,7 @@ const MARCAS = {
             mer», «Aie sa patience») y del asistente («Lis-le avant d'y aller») */
          'Sois', 'Explore', 'Soigne', 'Sors', 'Aie', 'Apprends', 'Profites', 'Lis', 'Évite', 'Marche (?:vers|dix|doucement)', 'Marche,',
          'Reste pour', 'Commence par', 'Compte le pas', 'Remarque le', 'Célèbre de'),
-       trasEmoji('Demande-moi', 'Touche', 'Choisis', 'Essaie', 'Regarde', 'Cherche', 'Va'),
+       trasEmoji('Demande-moi', 'Touche', 'Choisis', 'Essaie', 'Réessaie', 'Regarde', 'Cherche', 'Va'),
        /* y en medio de la frase, en minuscula: «Dans Safari, touche… et choisis…», «: vérifie avant de…» */
        new RegExp('(?:[,:;—–]\\s*|\\set\\s+|\\sou\\s+)(?:va|vas-y|choisis|choisis-en|sois|vérifie|consulte|prends|mets|mets-le|touche|touche-la|cherche|cherche-la|lis|essaie|respire|regarde|demande|donne-lui)(?![' + L_ + '])', 'u'),
        /* «tu» ya caza «tu peux», «as-tu», «peux-tu»: «peux», «veux», «fais»… solos
