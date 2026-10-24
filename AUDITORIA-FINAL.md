@@ -2279,6 +2279,214 @@ Al recontar salió una cosa de antes: el párrafo de las cifras de idiomas
 (en «Idiomas», abajo) se había quedado en 1.822 filas cuando la frase de la
 tienda pasó a una fila. El título sí decía 1.821. Ya lo cuenta.
 
+## El pellizco del mapa, las fichas del Teide contra sus fuentes y Open-Meteo (24 de octubre, noveno bloque)
+
+Jerome, el 24 de octubre: «El zoom con los dedos funciona en la app […], lo
+bueno es ver que no es lento o aparece parcialmente»; de las fichas del
+Teide, «verifícalas y aporta el cambio que es necesario solo si las fuentes
+están buenas»; y «Mira por Open-Meteo algo seguro para cambiarlo. No quiero
+algo aproximado».
+
+### El pellizco, medido
+
+Un móvil emulado en Chromium (390 × 844, ×3, táctil), un pellizco de verdad
+(`Input.synthesizePinchGesture`), la CPU normal y cuatro veces más lenta, y
+las teselas de OpenStreetMap servidas con 120 a 250 ms de red. Se cuentan los
+fotogramas del gesto y, cada 50 ms después de soltar, qué parte del mapa
+tiene teselas pintadas. Tres capas: las calles (OSM), la isla
+(`tenerife-base.pmtiles`) y la isla detallada (`tenerife-osm.pmtiles`).
+
+- **Al alejar, el mapa salía a medias.** Leaflet no tiene teselas para la
+  franja nueva hasta que llegan. Con las calles, al soltar estaba pintado
+  del 44 al 53 % de la pantalla, y no se llenaba hasta 1,0 a 1,7 s después.
+  Con la isla base, del 54 al 88 %. La detallada llegaba al 100 %, pero
+  porque se pintaba a mitad del gesto, y eso es lo que la hacía ir a saltos.
+- **Con la isla, a saltos en un móvil lento.** La capa vectorial se volvía a
+  pintar a mitad del gesto: con la CPU ×4, el peor fotograma era de 167 a
+  300 ms, y había de 4 a 9 de más de 50 ms en cada pellizco.
+
+Lo que cambia, en `index.html`:
+
+- **Debajo de todas las capas va la isla base, a zoom 10** (`ponerFondoIsla`).
+  Son 16 teselas (4 × 4) que cubren la zona del mapa, se pintan una vez y se
+  estiran. Lo que todavía no ha llegado se ve borroso, no en blanco. No
+  descarga nada: lee el fichero que ya guarda el service worker, o el que va
+  dentro de la app de las tiendas. Si no está, no hay fondo, como antes, y
+  se vuelve a mirar al primer zoom. Va sin rótulos, porque estirados no se
+  leen; con las carreteras más finas que en la capa de la isla (0,7 y no
+  1,4), porque estiradas eran bandas gruesas; y no pide teselas de OSM,
+  porque su política no lo deja: «Bulk
+  downloading is any pre-emptive fetching of tiles other than those a user is
+  actively viewing». Cada tesela se pinta a un píxel por píxel
+  (`devicePixelRatio: 1`): 256 KB, y no 2,4 MB en un móvil ×3. Son 4 MB en
+  total. Y se piden siempre las 16, no solo las de la pantalla: tras un
+  salto (un `setView` de más de 4 niveles, como al abrir una ficha desde la
+  lista), Leaflet borra las que tenía, y con una sola el resto de la
+  pantalla volvía a salir en blanco (84 % en la prueba). Es el mismo punto
+  que cambia el complemento Leaflet.EdgeBuffer, `_getTiledPixelBounds`.
+- **Las dos capas de la isla ya no pintan a mitad del gesto**
+  (`updateWhenZooming: false`). Pintan al soltar.
+
+Con el código final: tres pasadas con el fondo y tres sin él (calles e
+isla), y una más con las tres capas. Cada pasada, tres pellizcos (acercar,
+alejar y acercar deprisa) con la CPU normal y con la CPU ×4:
+
+| | antes | ahora |
+|---|---|---|
+| calles, al alejar: pintado al soltar | 44 a 53 % | 100 % |
+| isla base, al alejar: pintado al soltar | 54 a 88 % | 100 % |
+| isla (las dos), CPU normal: peor fotograma del pellizco | 17 a 183 ms | 17 a 33 ms |
+| isla (las dos), CPU ×4: peor fotograma del pellizco | 167 a 300 ms | 50 a 117 ms |
+| calles, CPU normal: peor fotograma | 17 a 50 ms | 17 a 50 ms |
+| calles, CPU ×4: peor fotograma | 33 a 150 ms | 33 a 117 ms (una vez, 217) |
+
+En las 54 mediciones con el fondo, ni un hueco al soltar. Lo que cuesta, con
+la CPU ×4 y la isla: al alejar, el peor fotograma pasa de 50 a 83 ms
+(mediana de tres), porque ahora hay algo que pintar en la franja nueva.
+
+### Las fichas del Teide, frase a frase
+
+Las seis fichas del 22 de octubre más la de Las Narices, contra Tenerife ON
+(las fichas del PNT 07, 09, 10, 12 y 16), Volcano Teide (la del teleférico y
+su blog del 21 de octubre), la guía de miradores de Parques Nacionales
+(«Asómese y conózcanos») y webtenerife. Solo cambia lo que las fuentes
+contradicen o no sostienen, en los diez idiomas y en la fuente del polaco:
+
+- **Las siete islas.** `pico-teide-cumbre` y `mir-rambleta-teide` decían
+  «las siete islas Canarias en días claros» (en La Rambleta,
+  «simultáneamente»). Volcano Teide nombra cuatro: «On clear days, you can
+  glimpse the nearby islands of La Gomera, El Hierro, La Palma and Gran
+  Canaria». Desde La Rambleta, la guía de miradores ve «la Caldera de las
+  Cañadas en su totalidad, así como la zona sur de la isla de Tenerife y, a
+  lo lejos, la isla de Gran Canaria». Las del oeste se ven desde el mirador
+  de Pico Viejo, a 0,72 km por el PNT 12 y sin reserva: «if the day is clear,
+  you can also see the islands of La Gomera, La Palma and El Hierro». Fuera
+  los «360°», que no salen en ninguna, también de la categoría y de las
+  etiquetas.
+- **La Rambleta.** Los «5-10 °C en verano» no salen en ninguna fuente.
+  Volcano Teide: «there can be a more than 10⁰ difference in temperature
+  between the base of Mount Teide and its peak». De las colas la empresa no
+  dice nada; dice que el billete «exclusively» se vende en línea, y que se
+  compre antes.
+- **El PNT 07 ya pide reserva.** `montana-blanca` decía que solo el último
+  tramo. Tenerife ON, hoy: «prior authorisation must be requested on this
+  same page», «Access to the trail without a reservation may be subject to a
+  penalty»; plazas cada lunes a las 07:00 para los 56 días siguientes; tarifa
+  de 09:00 a 17:00 para quien no reside en Tenerife; y la cumbre, «an
+  additional authorisation».
+- **Pico Viejo.** Los 3.135 m (`ruta-pico-viejo`, `mir-narices-teide`) no
+  salen en ninguna fuente oficial. Tenerife ON pone el cráter «at an altitude
+  of 3100 m», y la guía de miradores, «800 m de diámetro y 200 m de
+  profundidad». Fuera «Menos concurrido que el Teide», sin fuente.
+- **El «Sendero del Sanatorio a Pico Viejo» no existe.** Ninguna de las
+  tres rutas oficiales que llegan a Pico Viejo (PNT 09, 23 y 28) sale del
+  Sanatorio, y ninguna mide 20 km ni dura 7-8 h. El sendero del Sanatorio es
+  el PNT 16: de la TF-21 (km 43,3) al de Siete Cañadas, 4,58 km, 1 h 45 min,
+  dificultad media, entre 2.295 y 2.197 m, sin reserva. La ficha cuenta
+  ahora ese, con la salida que marca el mapa de su página en Tenerife ON
+  (28.253674, -16.625022, a 110 m de la ficha del teleférico). El id
+  `sendero-pico-viejo` se queda, para no perder los favoritos guardados, y
+  la ficha sigue en el Norte (La Orotava) en «Organiza tu día». Sus
+  etiquetas nuevas, «Sanatorio» y «PNT 16», van declaradas sin traducir.
+- **Al paso.** En neerlandés, «zie je» pasa a «ziet u»; en búlgaro, la
+  categoría de Las Narices decía «Наристе»; y los millares, con el separador
+  de cada idioma.
+
+La página del teleférico de Volcano Teide dice todavía que la autorización
+de la cumbre es «free of charge». La ficha sigue a Tenerife ON, que es quien
+la da, y que la cobra en las horas del teleférico a quien no reside en
+Tenerife.
+
+### Una segunda mirada
+
+Los textos nuevos y cambiados los revisó después, en los diez idiomas, un
+agente que no los había escrito, con las citas de las fuentes y las reglas
+del trato de cada idioma. Los hechos cuadran con las fuentes en todos y no
+hay tuteo. Encontró, y se cambió:
+
+- En chino, Siete Cañadas era «七峡谷», «siete cañones», también en la ficha
+  del tramo 2 del GR-131. Ahora es «七卡尼亚达斯», transcrito como Las
+  Cañadas («拉斯卡尼亚达斯»). Las Narices llevan el mismo nombre en la
+  descripción y en la categoría («泰德之鼻»). Y en chino tradicional, «網路上»,
+  como el resto del texto (公尺, 健行).
+- En neerlandés, «het pad vraagt vooraf toestemming» se lee como «el sendero
+  pide permiso»: ahora, «Voor het pad is vooraf toestemming … nodig».
+- En inglés, a la altitud del Sanatorio le faltaba «at an altitude of», y se
+  leía como una distancia; y «2,661 m», con su espacio.
+- En francés, los millares de tres categorías («3 715 m», «3 555 m», «2 661
+  m»), con el espacio que no se parte.
+- Y el «0 °C» de la cumbre, con espacio, como los «10 °C» nuevos.
+
+Se quedan, porque las fuentes los sostienen: los 55 min, la dificultad media
+y el 60 % del PNT 10; la TF-21, km 40,2, y los 2.350 m del PNT 07; las 5 a 7
+horas de la subida (Tenerife ON, 5 h 55 + 55 min; webtenerife, 5 h 40); y
+«el mirador más alto de España accesible sin senderismo», que sale de las
+cotas: por encima de los 3.555 m de La Rambleta, en España solo queda la
+cumbre, y a esa se sube a pie. «Una de las mejores rutas del Parque
+Nacional» es una opinión y se queda como tal.
+
+### Open-Meteo: la API gratuita no vale para esta app
+
+Sus términos: «You may only use the free API services for non-commercial
+purposes», y son comerciales los «Websites or apps that have subscriptions
+or display advertisements». La app enseña negocios con plan «Patrocinado».
+Lo seguro, con los mismos datos y las mismas peticiones, es el plan **API
+Standard**: 1.000.000 de llamadas al mes, licencia comercial, «Fixed monthly
+price — no per-call overages or surprise charges», el servidor
+`customer-api.open-meteo.com` y la clave en `&apikey=`. La página carga el
+precio con Stripe y no se lee desde aquí; dos fuentes de 2026 dan 29 € al
+mes o 319 € al año. La clave no puede ir en la app: iría como secreto de
+GitHub (`OPEN_METEO_API_KEY`), y un robot, como el de los avisos de AEMET,
+dejaría cada hora `datos/tiempo.json` con 48 horas. Son 288 llamadas cada
+vez (144 puntos de mar y 144 de tiempo) y 214.272 al mes como mucho, el 21 %
+del plan, haya los usuarios que haya. Y falta, con cualquier plan, el enlace
+que pide la licencia CC BY 4.0 junto a cada dato: «You must include a link
+next to any location Open-Meteo data are displayed». Nada de esto está hecho:
+espera a que Jerome se suscriba y guarde la clave.
+
+### Cómo se comprueba
+
+`tools/auditar_mapa.js`, **bloque 6**, 15 controles. Sin navegador: que el
+fondo lee la isla del cache (o del fichero de la app) y nunca de la red; zoom
+10, debajo de todo, sin rótulos ni OSM; la zona de la isla a un píxel por
+píxel; las 16 teselas siempre, y que la Leaflet y la protomaps-leaflet de
+`vendor/` sigan usando lo que se cambia; las dos capas de la isla con
+`updateWhenZooming: false`; y cuándo se pone. En el navegador: sin la isla
+guardada no hay fondo ni descarga; guardada, el fondo con sus 16 teselas de
+256 × 256; tras un salto, otra vez las 16; el pellizco de 14 a 12,5, con el
+100 % pintado al soltar; y, quitando el fondo, el mismo gesto deja huecos
+(32,5 %), para que se vea que la medida sabe ponerse en rojo.
+
+`tools/auditar_cielo.js`, parte **16a**: las seis fichas en los diez idiomas,
+sin las siete islas, los 3.135 m, los «360°», los 5-10 °C, el sendero de 20
+km, el «menos concurrido», «七峡谷» ni el «vraagt toestemming» neerlandés; el
+PNT 16 con la TF-21, el PNT 04 y los 4,58 km; el PNT 07 con las 07:00, las
+09:00 y las 17:00; La Rambleta con el PNT 12 y los 0,72 km; el cráter a unos
+3.100 m y sus 800 m; y la ficha del Sanatorio con su nombre y su punto.
+Pasado por los textos de antes, el control los marca todos.
+
+Lo que no se puede medir aquí se mira en el móvil: el pellizco en un iPhone y
+en un Android, con las calles y con la isla, y lo que dura lo borroso con la
+red de verdad.
+
+### El resultado
+
+Sobre el árbol final (los cinco commits encima de `ac10788`), el 24 de
+octubre de 2026: `auditar.sh` entero sin un solo fallo. `auditar_mapa.js`, 91
+controles, con el bloque 6; `auditar_cielo.js`, 302, con la parte 16a;
+`barrido_pantallas.js`, 106 pantallas y fichas por idioma y 0 textos sin
+traducir; `auditar_etiquetas.js`, 0 etiquetas sin traducir ni declarar;
+`castellano_suelto.js` y `auditar_fuente_pl.js`, en verde;
+`auditar_registro.js`, el castellano todo de usted (pendientes: francés 411,
+alemán 552, italiano 581, neerlandés 526, chino y chino tradicional 299,
+búlgaro 229, polaco 486); el cirílico, 1.903 nombres y 0 variantes
+sospechosas; `zonas_lugares.py`, al día; `auditar_web.js`, 44 tablas y 1828
+filas; `barrido_idiomas.js`, 3.969; la descarga, 1.042 kB en castellano,
+1.157 en búlgaro y 1.142 en polaco. No corren aquí los tres controles que
+leen los `.pmtiles` desde Python (`auditar_ubicacion.py`,
+`auditar_en_el_mar.py` e `informe_lugares.js`): les falta el módulo
+`pmtiles`, que no se puede instalar sin PyPI.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:

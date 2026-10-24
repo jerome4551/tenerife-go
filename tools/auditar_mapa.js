@@ -596,6 +596,114 @@ function ok(cond, txt, detalle) {
     ok(habiaAntes || !fs.existsSync(DESTINO), 'el banco de pruebas se retira al terminar');
   }
 
+  /* ── BLOQUE 6 · el pellizco: ni a saltos ni a medias (24 de octubre de 2026) ──
+
+     Jerome: «lo bueno es ver que no es lento o aparece parcialmente». Al alejar con los
+     dedos, la franja nueva no tiene teselas hasta que llegan: media pantalla en blanco. Ahora
+     va debajo la isla base pintada a zoom 10 (ponerFondoIsla), leida del cache del service
+     worker y nunca de la red; y la capa de la isla no pinta a mitad del gesto. Aqui: que el
+     fondo no descarga nada, que esta donde tiene que estar y que, con un pellizco de verdad
+     (Input.synthesizePinchGesture) en un movil emulado y teselas con 150-250 ms de red, al
+     soltar no queda nada en blanco; y, quitando el fondo, el mismo gesto deja huecos, para
+     que se vea que la medida sabe ponerse en rojo. */
+  console.log('\n════════ el mapa · bloque 6, el pellizco sin huecos ════════\n');
+  {
+    const html = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+    const fFondo = (html.match(/function ponerFondoIsla\(\) \{[\s\S]*?\n\}\n/) || [''])[0];
+    const fIsla = (html.match(/function construirIsla\(blob, clave, detallado, zMax\) \{[\s\S]*?\n\}\n/) || [''])[0];
+    ok(/caches\.match\(ISLA_URL\)/.test(fFondo) && /window\.TGO_NATIVO\s*\?\s*fetch\(ISLA_URL\)/.test(fFondo) && (fFondo.match(/fetch\(/g) || []).length === 1,
+       'el fondo lee la isla base del cache del service worker (o del fichero de la app de las tiendas), nunca de la red');
+    ok(/maxNativeZoom: 10/.test(fFondo) && /zIndex: 0/.test(fFondo) && /labelRules: \[\]/.test(fFondo) && !/openstreetmap/.test(fFondo),
+       'pintado a zoom 10, debajo de todas las capas, sin rotulos y sin pedir teselas de OpenStreetMap');
+    ok(/bounds: tenerifeBounds/.test(fFondo) && /devicePixelRatio: 1,/.test(fFondo),
+       'solo la zona de la isla, a un pixel por pixel de tesela (256 KB por tesela, no 2,4 MB en un movil x3)');
+    /* el fondo tiene siempre las 16 teselas de la zona: cambia el metodo de Leaflet que dice
+       cuales pedir. Si un dia se cambia la Leaflet de vendor/ y ese metodo ya no existe o ya no
+       se usa, el cambio no haria nada sin avisar: por eso se mira aqui */
+    const leafletV = fs.readFileSync(path.join(RAIZ, 'vendor', 'leaflet.js'), 'utf8');
+    const protoV = fs.readFileSync(path.join(RAIZ, 'vendor', 'protomaps-leaflet.js'), 'utf8');
+    ok(/f\._getTiledPixelBounds = function \(\) \{\s*return L\.bounds\(map\.project\(tenerifeBounds\.getNorthWest\(\), this\._tileZoom\),\s*map\.project\(tenerifeBounds\.getSouthEast\(\), this\._tileZoom\)\);/.test(fFondo)
+       && /_getTiledPixelBounds:function\(/.test(leafletV) && /this\._getTiledPixelBounds\(t\),o=this\._pxBoundsToTileRange\(e\)/.test(leafletV)
+       && /this\.devicePixelRatio=\(o=r\.devicePixelRatio\)!=null\?o:window\.devicePixelRatio/.test(protoV) && /this\.tileSize=256\*this\.devicePixelRatio/.test(protoV),
+       'el fondo pide siempre toda la zona, y la Leaflet y la protomaps-leaflet de vendor/ siguen usando lo que se cambia');
+    ok((fIsla.match(/updateWhenZooming: false/g) || []).length === 2,
+       'las dos capas de la isla (base y detalle) no pintan a mitad del pellizco');
+    ok(/requestIdleCallback[\s\S]{0,120}ponerFondoIsla\(\)/.test(html) && /map\.on\('zoomstart', function \(\) \{ if \(!_fondoIsla\) ponerFondoIsla\(\); \}\)/.test(html),
+       'se pone cuando el arranque termina, y se vuelve a mirar al primer zoom');
+
+    const PNG = fs.readFileSync(path.join(RAIZ, 'icon-192.png'));   // una imagen cualquiera hace de tesela
+    const browser6 = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-proxy-server', '--no-sandbox'] });
+    try {
+      const ctx = await browser6.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
+      const page = await ctx.newPage();
+      const errores = []; page.on('pageerror', e => errores.push(e.message));
+      const base = []; page.on('request', r => { if (/tenerife-base\.pmtiles/.test(r.url())) base.push(r.url()); });
+      let n = 0;
+      await page.route(/tile\.openstreetmap\.org/, async r => { n++; await new Promise(z => setTimeout(z, 150 + (n * 37) % 100)); r.fulfill({ status: 200, contentType: 'image/png', body: PNG }); });
+      await page.route(/^https?:\/\/(?!127\.0\.0\.1)(?!.*tile\.openstreetmap\.org)/, r => r.abort());
+      await page.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
+      await page.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'load' });
+      await page.waitForTimeout(3000);
+      const sinCache = await page.evaluate(() => ({ fondo: _fondoIsla, isla: !!layers.isla }));
+      ok(sinCache.fondo === null && base.length === 0,
+         'sin la isla guardada, no hay fondo y no se descarga nada al arrancar', JSON.stringify(sinCache) + ' · ' + base.length + ' peticiones');
+      // lo que hace el service worker al instalarse: guardar la isla base
+      await page.evaluate(async () => { const c = await caches.open('auditar-mapa-precache'); await c.put('mapa/tenerife-base.pmtiles', await fetch('mapa/tenerife-base.pmtiles')); });
+      base.length = 0;
+      await page.reload({ waitUntil: 'load' });
+      if (await page.$('.v19-w-lang[data-lang="es"]')) { await page.click('.v19-w-lang[data-lang="es"]'); await page.waitForTimeout(200); await page.click('#v19-welcome-start'); }
+      const puesto = await page.evaluate(async () => {
+        for (let i = 0; i < 60 && !(_fondoIsla && _fondoIsla._map); i++) await new Promise(r => setTimeout(r, 100));
+        const f = _fondoIsla && _fondoIsla._map ? _fondoIsla : null;
+        return f ? { z: f.options.maxNativeZoom, zi: f.options.zIndex, debajo: +getComputedStyle(f.getContainer()).zIndex < +getComputedStyle(layers[currentLayer].getContainer()).zIndex, capa: currentLayer } : null;
+      });
+      ok(puesto && puesto.z === 10 && puesto.zi === 0 && puesto.debajo && base.every(u => /^http:\/\/127\.0\.0\.1/.test(u)),
+         'con la isla guardada, el fondo esta puesto: zoom 10, debajo de las calles, y leido del cache', JSON.stringify(puesto));
+      // como al abrir la app: la isla entera a la vista, y el fondo pintado
+      const pintado = await page.evaluate(async () => {
+        for (let i = 0; i < 80; i++) { const t = Object.values(_fondoIsla._tiles || {}); if (t.length && t.every(x => x.loaded)) return t.length; await new Promise(r => setTimeout(r, 100)); }
+        return 0;
+      });
+      ok(pintado === 16, 'con la isla entera a la vista, el fondo pinta las 16 teselas de zoom 10 de la zona', pintado);
+      const memoria = await page.evaluate(() => Object.values(_fondoIsla._tiles).map(t => t.el.width + 'x' + t.el.height).filter((v, i, a) => a.indexOf(v) === i));
+      ok(memoria.length === 1 && memoria[0] === '256x256', 'cada tesela del fondo es un lienzo de 256 x 256, aunque el movil sea x3', memoria.join(' '));
+      /* el pellizco, medido: que parte del mapa queda cubierta por teselas ya pintadas al soltar */
+      const cobertura = () => page.evaluate(() => {
+        const cont = document.getElementById('map').getBoundingClientRect(), rects = [];
+        document.querySelectorAll('#map .leaflet-tile-loaded').forEach(el => { const r = el.getBoundingClientRect(); if (r.width > 1 && getComputedStyle(el).opacity !== '0') rects.push(r); });
+        let dentro = 0, total = 0;
+        for (let y = cont.top + 5; y < cont.bottom; y += 20) for (let x = cont.left + 5; x < cont.right; x += 20) { total++; if (rects.some(r => x >= r.left && x <= r.right && y >= r.top && y <= r.bottom)) dentro++; }
+        return dentro / total;
+      });
+      const cdp = await ctx.newCDPSession(page);
+      /* cada gesto en un sitio distinto, para que las teselas del zoom nuevo no esten ya en la cache del navegador */
+      /* un salto como el de abrir una ficha desde la lista (setView sin animacion, que borra las
+         teselas que habia), y despues alejar con los dedos */
+      const alejar = async (centro) => {
+        await page.evaluate((c) => map.setView(c, 14, { animate: false }), centro);
+        for (let i = 0; i < 60; i++) { if (await cobertura() >= 0.999) break; await page.waitForTimeout(100); }
+        await page.waitForTimeout(400);
+        const fondo = await page.evaluate(() => _fondoIsla && _fondoIsla._map ? Object.values(_fondoIsla._tiles).filter(t => t.loaded).length : -1);
+        await cdp.send('Input.synthesizePinchGesture', { x: 195, y: 420, scaleFactor: 0.4, relativeSpeed: 600, gestureSourceType: 'touch' });
+        return { z: await page.evaluate(() => map.getZoom()), c: await cobertura(), fondo };
+      };
+      const con = await alejar([28.405, -16.54]);
+      ok(con.fondo === 16, 'tras el salto, el fondo vuelve a tener las 16 teselas pintadas', con.fondo);
+      ok(con.z < 14 && con.c >= 0.999, 'alejar con los dedos (de 14 a ' + con.z + '): al soltar, el 100 % del mapa tiene algo pintado', (con.c * 100).toFixed(1) + ' %');
+      await page.evaluate(() => { map.removeLayer(_fondoIsla); });
+      const sin = await alejar([28.06, -16.72]);
+      ok(sin.c < 0.9, 'y sin el fondo, el mismo gesto deja huecos (' + (sin.c * 100).toFixed(1) + ' % cubierto): la medida sabe ponerse en rojo', (sin.c * 100).toFixed(1) + ' %');
+      await page.evaluate(() => { _fondoIsla.addTo(map); });
+      await page.evaluate(async () => { await islaCapa(); setStyle('isla'); });
+      const isla = await page.evaluate(() => ({ capa: currentLayer, uwz: layers.isla && layers.isla.options.updateWhenZooming }));
+      ok(isla.capa === 'isla' && isla.uwz === false, 'la capa de la isla, puesta, no pinta a mitad del gesto', JSON.stringify(isla));
+      ok(errores.length === 0, 'sin errores de pagina', errores.slice(0, 3).join(' | '));
+      await ctx.close();
+    } finally {
+      await browser6.close();
+    }
+  }
+
   console.log('\n  ' + (fallos ? fallos + ' MAL de ' + hechos : hechos + ' controles, todos en verde') + '\n');
   process.exit(fallos ? 1 : 0);
 })();

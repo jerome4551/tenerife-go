@@ -1,6 +1,6 @@
 # Revisión de los 980 lugares
 
-**17 de octubre de 2026.** Generado con `node tools/informe_lugares.js`.
+**24 de octubre de 2026.** Generado con `node tools/informe_lugares.js`.
 Barre los 980, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
@@ -338,9 +338,9 @@ menos preciso de cada ficha. Es la cuenta entera de los 980, no un umbral:
 | 1 | ~11 km | **2** |
 | 2 | ~1,1 km | **29** |
 | 3 | ~110 m | **139** |
-| 4 | ~11 m | **555** |
+| 4 | ~11 m | **554** |
 | 5 | ~1 m | **42** |
-| 6 | ~10 cm | **187** |
+| 6 | ~10 cm | **188** |
 | 7 | ~1 cm | **25** |
 | 15 |  | **1** |
 

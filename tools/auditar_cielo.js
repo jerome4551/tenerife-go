@@ -1004,6 +1004,30 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
     for (const id of FT) { const t = (J[id] || {}).desc || ''; if (!t || MAL_OTRO.test(t) || (id !== 'observatorio' && !/Tenerife ON/.test(t)) || (id === 'observatorio' && !/volcanoteide\.com/.test(t))) malTi.push(l + '.' + id); }
   }
   ok(!malTi.length, 'y en los otros nueve idiomas (idiomas/<l>.json): Tenerife ON, sin el teleferico a 14 € ni el «TF-6»', malTi.join(', '));
+  /* 24 de octubre de 2026 (AUDITORIA-FINAL.md, noveno bloque): lo que las fuentes cambiaron en
+     estas fichas y en la de Las Narices. Las siete islas no se ven a la vez (Volcano Teide nombra
+     cuatro, y las del oeste, desde el mirador de Pico Viejo, PNT 12); el crater de Pico Viejo esta
+     a unos 3.100 m (Tenerife ON, PNT 09), no a 3.135; el PNT 07 ya pide reserva, con tarifa de 09:00
+     a 17:00; y el «Sendero del Sanatorio a Pico Viejo» de 20 km no existe: el del Sanatorio es el
+     PNT 16 */
+  const FT2 = ['pico-teide-cumbre', 'montana-blanca', 'mir-rambleta-teide', 'ruta-pico-viejo', 'sendero-pico-viejo', 'mir-narices-teide'];
+  const VIEJO = /siete islas|seven Canary|sept îles|sieben Kanarischen|sette isole|zeven Canarische|七座|седемте Канарски|siedem Wysp|3[.,  ]?135(?!\d)|360 ?°|360度|Sanatorio a Pico Viejo|20 km|5-10 ?°C|5至10|Menos concurrido|Less crowded|Moins fréquenté|Weniger überfüllt|Meno affollato|Minder druk|比泰德峰人少|По-малко посещаван|Mniej uczęszczany|七峡谷|七峽谷|toestemming vragen|vraagt (?:vooraf |een aparte )?toestemming/i;
+  const textos = { es: {} };
+  for (const id of FT2) textos.es[id] = descEs(id);
+  for (const l of IDI.filter(l => l !== 'es')) { const J = JSON.parse(lee('idiomas/' + l + '.json')); textos[l] = {}; for (const id of FT2) textos[l][id] = (J[id] || {}).desc || ''; }
+  const mal24 = [];
+  for (const l of Object.keys(textos)) {
+    const t = textos[l];
+    for (const id of FT2) { const m = t[id].match(VIEJO); if (!t[id] || m) mal24.push(l + '.' + id + (m ? ' «' + m[0] + '»' : ' vacia')); }
+    if (!/TF-21/.test(t['sendero-pico-viejo']) || !/PNT 04/.test(t['sendero-pico-viejo']) || !/4[.,]58/.test(t['sendero-pico-viejo'])) mal24.push(l + '.sendero-pico-viejo sin el PNT 16 (de la TF-21 al PNT 04, 4,58 km)');
+    if (!/07:00/.test(t['montana-blanca']) || !/09:00/.test(t['montana-blanca']) || !/17:00/.test(t['montana-blanca'])) mal24.push(l + '.montana-blanca sin la reserva del PNT 07');
+    if (!/PNT 12/.test(t['mir-rambleta-teide']) || !/0[.,]72/.test(t['mir-rambleta-teide'])) mal24.push(l + '.mir-rambleta-teide sin el mirador de Pico Viejo');
+    if (!/3[., ]?100/.test(t['ruta-pico-viejo']) || !/800/.test(t['ruta-pico-viejo']) || !/3[., ]?100/.test(t['mir-narices-teide'])) mal24.push(l + ' sin el crater a unos 3.100 m');
+  }
+  ok(!mal24.length && /name:"Sendero del Sanatorio \(PNT 16\)", emoji:"[^"]*", color:"#6d4c41", lat:28\.253674, lng:-16\.625022,/.test(index)
+     && !/zie je/.test(textos.nl['mir-narices-teide']) && /Ноздрите на Тейде · 2661 м/.test(lee('idiomas/bg.json')),
+     'las fichas del Teide en los diez idiomas, con lo que dicen las fuentes del 24 de octubre: cuatro islas a la vista y no siete, el crater de Pico Viejo a unos 3.100 m, la reserva del PNT 07 y el Sanatorio, que es el PNT 16, con la salida de su mapa',
+     mal24.slice(0, 8).join(' · '));
   /* las lluvias con la Luna arriba parte de la noche */
   ok(/if \(lunaAlt < 0 && luz >= 0\.3\) \{\s*var po = A\.SearchRiseSet\(A\.Body\.Moon, obs\(\), -1, n\.oscuro, n\.claro\.ut - n\.oscuro\.ut\);\s*if \(po && po\.ut < mejor\.u\) lunaPone = po\.date;/.test(modulo)
      && /T\('CondBuenasDesde', \{ h: hora\(e\.lunaPone\) \}\)/.test(modulo) && /T\('CondBuenasHasta', \{ h: hora\(e\.lunaSale\) \}\)/.test(modulo)

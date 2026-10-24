@@ -10522,12 +10522,12 @@ const places = [
     tags:["Senderismo","Volcánico","Fotografía","Icónico","Teide","Roca","Circular","Fácil","Popular"] },
 
   { id:"montana-blanca", warn:"altura", category:"senderismo", name:"Montaña Blanca — Acceso Cumbre", emoji:"🏔️", color:"#90a4ae", lat:28.259658109488427, lng:-16.603249312245193,
-    desc:{ es:"El punto de partida para subir a pie al Pico del Teide (3.715 m): el sendero PNT 07 Montaña Blanca–La Rambleta, que sale de la TF-21 (km 40,2), a unos 2.350 m. El último tramo, de La Rambleta al cráter, es el PNT 10 y necesita autorización previa en Tenerife ON. Mire allí las condiciones del día: algunas franjas tienen tarifa. La ascensión completa dura entre 5 y 7 horas. Experiencia impresionante y exigente." },
+    desc:{ es:"El punto de partida para subir a pie al Pico del Teide (3.715 m): el sendero PNT 07 Montaña Blanca–La Rambleta, que sale de la TF-21 (km 40,2), a unos 2.350 m. Necesita autorización previa en Tenerife ON, y sin reserva puede haber sanción. Las plazas salen cada lunes a las 07:00 (hora de Canarias) para las ocho semanas siguientes. Entre las 09:00 y las 17:00 tiene tarifa para quien no reside en Tenerife; el importe se ve al reservar. El último tramo, de La Rambleta al cráter, es el PNT 10 y necesita otra autorización aparte. La ascensión completa dura entre 5 y 7 horas. Experiencia impresionante y exigente." },
     cat:{ es:"Senderismo · Cumbre Teide" },
     tags:["Teide","Cumbre","Senderismo","Permiso","Exigente"] },
 
   { id:"ruta-pico-viejo", warn:"altura", category:"senderismo", name:"Ruta Pico Viejo — Cráter", emoji:"🌋", color:"#6d4c41", lat:28.2622, lng:-16.6728,
-    desc:{ es:"El cráter hermano del Teide, con 3.135 m. El sendero PNT 09 (Teide–Pico Viejo–Mirador de Las Narices del Teide) rodea Pico Viejo por el sur, por debajo del borde del cráter. Menos concurrido que el Teide. Reserva obligatoria en Tenerife ON, también en el PNT 23, que llega a la degollada de Pico Viejo: sin reserva puede haber sanción. Una de las mejores rutas del Parque Nacional." },
+    desc:{ es:"El cráter hermano del Teide, a unos 3.100 m de altitud: 800 m de diámetro y 200 m de profundidad. El sendero PNT 09 (Teide–Pico Viejo–Mirador de Las Narices del Teide) rodea Pico Viejo por el sur, por debajo del borde del cráter. Reserva obligatoria en Tenerife ON, también en el PNT 23, que llega a la degollada de Pico Viejo: sin reserva puede haber sanción. Una de las mejores rutas del Parque Nacional." },
     cat:{ es:"Cráter · Parque Nacional" },
     tags:["Cráter","Teide","Senderismo","Fotografía","Parque Nacional"] },
 
@@ -10578,10 +10578,14 @@ const places = [
     cat:{ es:"Cumbre · Cañadas (Difícil · 11 km · 5h)" },
     tags:["Senderismo","Cañadas","Cumbre","Teide","Difícil","2718m","Vistas"] },
 
-  { id:"sendero-pico-viejo", warn:"altura", category:"senderismo", name:"Sendero del Sanatorio a Pico Viejo", emoji:"🌋", color:"#6d4c41", lat:28.2654, lng:-16.6695,
-    desc:{ es:"Una de las rutas más exigentes del Teide. 20 km ida y vuelta, 7-8 horas. Inicio en el aparcamiento del Sanatorio. Asciende hasta el cráter del Pico Viejo (3.135 m), con paisajes lunares de coladas negras y rojas. Sin teleférico, todo a pie. Solo para senderistas experimentados con buena forma física. Mejor abril-junio. Los senderos oficiales que llegan a Pico Viejo (PNT 09 y PNT 23) piden reserva previa en Tenerife ON: sin ella puede haber sanción. Llevar mucha agua, comida, ropa de abrigo y empezar muy temprano." },
-    cat:{ es:"Cráter · Teide (Muy Difícil · 20 km · 7-8h)" },
-    tags:["Senderismo","Teide","Pico Viejo","Cráter","Muy Difícil","3135m","Experimentado"] },
+  /* 24 de octubre de 2026. Esta ficha contaba un «Sendero del Sanatorio a Pico Viejo» de 20 km y
+     7-8 h que no sale en ninguna fuente oficial. El del Sanatorio es el PNT 16 de Tenerife ON, de la
+     TF-21 al sendero de Siete Cañadas, y es el que se cuenta ahora, con la salida que marca su mapa
+     (28.253674, -16.625022). El id se queda como estaba para no perder los favoritos guardados. */
+  { id:"sendero-pico-viejo", warn:"altura", category:"senderismo", name:"Sendero del Sanatorio (PNT 16)", emoji:"🌋", color:"#6d4c41", lat:28.253674, lng:-16.625022,
+    desc:{ es:"Sendero oficial del Parque Nacional del Teide. Sale de la carretera de Las Cañadas (TF-21, km 43,3), al pie del Teide, y sigue una antigua pista hasta el sendero de Siete Cañadas (PNT 04), al pie de los escarpes de Guajara: 4,58 km de ida, 1 h 45 min, dificultad media según Tenerife ON, entre 2.295 y 2.197 m de altitud. Por el camino, las curiosas formas de la lava del domo de Montaña Blanca y, en primavera, las colmenas de la apreciada miel de retama. Acceso libre, sin reserva. Antes de ir, mire en Tenerife ON si está cerrado por operaciones de control del muflón." },
+    cat:{ es:"Senderismo · Teide · PNT 16 (Media · 4,6 km · 1 h 45 min)" },
+    tags:["Senderismo","Teide","Sanatorio","PNT 16","Siete Cañadas","Guajara","Miel","Parque Nacional","Gratis"] },
 
   { id:"sendero-teno-baracan", warn:"sendero", category:"senderismo", name:"Teno Alto — Baracán (circular)", emoji:"🐐", color:"#558b2f", lat:28.3416, lng:-16.8538,
     desc:{ es:"Ruta circular preciosa por el Parque Rural de Teno. ~10 km, 4 horas. Parte del pueblo de Teno Alto (caseríos de cabras, queserías artesanales) y sube al Pico Baracán (1.002 m) con vistas espectaculares al Teide y a La Gomera, La Palma y El Hierro en días claros. Atraviesa fayal-brezal y laurisilva única en altitud. Dificultad media. Bar y tienda en Teno Alto para reponer fuerzas." },
@@ -10914,7 +10918,7 @@ const places = [
     tags:["Volcán","Cráter","Embalse","Buenavista del Norte","Los Silos","Isla Baja","Noroeste","Acceso Restringido"] },
 
   { id:"pico-teide-cumbre", warn:"altura", category:"montana", name:"Pico del Teide — Cumbre (3.715 m)", emoji:"🌋", color:"#b71c1c", lat:28.2725, lng:-16.6422,
-    desc:{ es:"La cumbre del Pico del Teide (3.715 m) es el punto más alto de España, el más alto de cualquier isla del Atlántico y el tercer volcán más alto del mundo desde su base oceánica. Se sube a pie desde La Rambleta (estación superior del teleférico, 3.555 m) por el sendero Telesforo Bravo (PNT 10): unos 55 min, de dificultad media, con pendientes de hasta el 60 % y el esfuerzo de la altitud. Necesita autorización previa en Tenerife ON (tenerifeon.es): entre las 9:00 y las 17:00 tiene tarifa para los visitantes, y el importe se ve al reservar. Las plazas salen cada lunes a las 07:00 (hora de Canarias) para las ocho semanas siguientes y se agotan pronto. Equipo obligatorio: calzado de montaña, pantalón largo y forro polar o ropa de abrigo. En la cumbre: fumarolas de azufre, vistas a las siete islas Canarias en días claros y una sensación única de estar en el techo de España. La temperatura puede bajar de 0°C." },
+    desc:{ es:"La cumbre del Pico del Teide (3.715 m) es el punto más alto de España, el más alto de cualquier isla del Atlántico y el tercer volcán más alto del mundo desde su base oceánica. Se sube a pie desde La Rambleta (estación superior del teleférico, 3.555 m) por el sendero Telesforo Bravo (PNT 10): unos 55 min, de dificultad media, con pendientes de hasta el 60 % y el esfuerzo de la altitud. Necesita autorización previa en Tenerife ON (tenerifeon.es): entre las 9:00 y las 17:00 tiene tarifa para los visitantes, y el importe se ve al reservar. Las plazas salen cada lunes a las 07:00 (hora de Canarias) para las ocho semanas siguientes y se agotan pronto. Equipo obligatorio: calzado de montaña, pantalón largo y forro polar o ropa de abrigo. En la cumbre: fumarolas de azufre, en días claros vistas a La Gomera, El Hierro, La Palma y Gran Canaria, y una sensación única de estar en el techo de España. La temperatura puede bajar de 0 °C." },
     cat:{ es:"Cumbre · 3.715m · España · Teide · Permiso" },
     tags:["Cumbre","Teide","3715m","España","Volcán","Permiso","Fumarolas","Rambleta","Teleférico","Canarias"] },
 
@@ -14642,14 +14646,14 @@ const places = [
     tags:["Mirador","Lomo Molino","El Tanque","Isla Baja","Teide","Norte","Viñedos","Noroeste"] },
 
   { id:"mir-narices-teide", category:"mirador", name:"Mirador de las Narices del Teide", emoji:"🌋", color:"#b71c1c", lat:28.2384, lng:-16.6983,
-    desc:{ es:"Uno de los miradores más impresionantes del Parque Nacional del Teide, en la carretera TF-38 (zona Los Escanillos, Guía de Isora). Vista directa al Pico Viejo (3.135 m) y a los 5 km² de coladas de lava negra de la última gran erupción de 1798, que generó las 'bocas de fuego' conocidas como las Narices del Teide (2.661 m). En días despejados se ven La Gomera, La Palma y El Hierro. Parking gratuito. Ideal para amanecer y atardecer, especialmente en otoño e invierno. A 8,4 km del Teleférico del Teide." },
+    desc:{ es:"Uno de los miradores más impresionantes del Parque Nacional del Teide, en la carretera TF-38 (zona Los Escanillos, Guía de Isora). Vista directa al Pico Viejo (cráter a unos 3.100 m) y a los 5 km² de coladas de lava negra de la última gran erupción de 1798, que generó las 'bocas de fuego' conocidas como las Narices del Teide (2.661 m). En días despejados se ven La Gomera, La Palma y El Hierro. Parking gratuito. Ideal para amanecer y atardecer, especialmente en otoño e invierno. A 8,4 km del Teleférico del Teide." },
     cat:{ es:"Mirador · Narices del Teide · 2.661 m · TF-38" },
     tags:["Mirador","Narices del Teide","Pico Viejo","Volcán","Teide","2661m","TF-38","Lava","1798","Impresionante","Parking"] },
 
   { id:"mir-rambleta-teide", warn:"altura", category:"mirador", name:"Mirador La Rambleta (Teide · 3.555 m)", emoji:"🌋", color:"#b71c1c", lat:28.27, lng:-16.639,
-    desc:{ es:"La Rambleta es la estación superior del Teleférico del Teide, a 3.555 metros de altitud — el mirador más alto de España accesible sin senderismo. Vistas de 360° sobre el Parque Nacional: el Teide dominando sobre las nubes, Pico Viejo, las Cañadas, la caldera y en días claros las siete islas Canarias simultáneamente. Acceso en teleférico desde la estación base, a 2.356 m (ida y vuelta, adulto: desde 42 € no residente y desde 10,50 € residente; precios de volcanoteide.com, octubre de 2026). Desde aquí parte el sendero Telesforo Bravo (PNT 10) hacia la cumbre del Teide: unos 55 min, con autorización previa de Tenerife ON, que no va incluida en el billete. Temperatura media: 5-10°C en verano, bajo cero en invierno. Llevar ropa de abrigo siempre. Las colas en temporada alta pueden ser largas — comprar el billete del teleférico en línea." },
-    cat:{ es:"Mirador · Teide · 3.555m · Teleférico · 360°" },
-    tags:["Mirador","La Rambleta","Teide","3555m","Teleférico","360°","Cumbre","Parque Nacional","Siete Islas","Alto","España"] },
+    desc:{ es:"La Rambleta es la estación superior del Teleférico del Teide, a 3.555 metros de altitud — el mirador más alto de España accesible sin senderismo. Desde aquí se ve, hacia abajo, toda la Caldera de Las Cañadas, el sur de Tenerife y, a lo lejos, Gran Canaria. La Gomera, La Palma y El Hierro se ven en días claros desde el mirador de Pico Viejo, a 0,72 km por el sendero PNT 12, sin reserva. Acceso en teleférico desde la estación base, a 2.356 m (ida y vuelta, adulto: desde 42 € no residente y desde 10,50 € residente; precios de volcanoteide.com, octubre de 2026). Desde aquí parte el sendero Telesforo Bravo (PNT 10) hacia la cumbre del Teide: unos 55 min, con autorización previa de Tenerife ON, que no va incluida en el billete. Entre la base del Teide y la cumbre puede haber más de 10 °C de diferencia: lleve siempre ropa de abrigo. El billete del teleférico solo se vende en línea: cómprelo con antelación." },
+    cat:{ es:"Mirador · Teide · 3.555m · Teleférico" },
+    tags:["Mirador","La Rambleta","Teide","3555m","Teleférico","Cumbre","Parque Nacional","Alto","España"] },
 
   // ══ SURF adicional ═════════════════════════════════════
   { id:"surf-las-americas", category:"surf", name:"Playa de Las Américas — Surf Escuelas", emoji:"🏄", color:"#e91e63", lat:28.0573, lng:-16.7290,
@@ -16384,6 +16388,13 @@ function fuenteBlob(blob, clave) {
 
    Se saca de la cabecera del propio fichero, no de una constante: asi da
    igual con que zoom se regenere el mapa de OSM. */
+/* updateWhenZooming: false (24 de octubre de 2026). Con el pellizco, Leaflet pinta un nivel
+   nuevo cada vez que el zoom cruza medio nivel, y aqui cada tesela se dibuja en el hilo de la
+   pagina: con un movil emulado 4 veces mas lento que este ordenador, el gesto iba a saltos
+   (fotogramas de 216 a 275 ms, de 6 a 8 de mas de 50 ms). Sin pintar a mitad del gesto, el
+   peor fotograma baja a 50-84 ms: durante el pellizco se estira lo que ya hay y el nivel nuevo
+   se pinta al soltar, con el fondo de la isla debajo (ponerFondoIsla) para que no quede nada
+   en blanco mientras tanto. */
 function construirIsla(blob, clave, detallado, zMax) {
   const P = protomapsL;
   if (detallado) {
@@ -16395,12 +16406,14 @@ function construirIsla(blob, clave, detallado, zMax) {
       url: new pmtiles.PMTiles(fuenteBlob(blob, clave)),
       flavor: 'light',
       maxDataZoom: zMax,
+      updateWhenZooming: false,
       lang: (currentLang === 'zht' ? 'zh' : (currentLang || 'es'))
     });
   }
   return P.leafletLayer({
     url: new pmtiles.PMTiles(fuenteBlob(blob, clave)),
     maxDataZoom: zMax,
+    updateWhenZooming: false,
     backgroundColor: '#a8c8e0',
     attribution: 'GSHHG · GTFS TITSA',
     paintRules: [
@@ -16582,6 +16595,77 @@ window.addEventListener('online', function () { volverDeIsla(); });
    fallen seis veces: se va derecho a la isla. */
 pintarOpcionIsla();
 if (islaPosible() && navigator.onLine === false) irAIslaSinRed();
+
+/* ── EL FONDO DE LA ISLA, DEBAJO DE TODAS LAS CAPAS (24 de octubre de 2026) ──────────
+   Jerome: «lo bueno es ver que no es lento o aparece parcialmente». Medido con un movil
+   emulado (390x844, x3) y un pellizco de verdad: al alejar, Leaflet no tiene teselas para la
+   franja nueva hasta que llegan. Con las calles y 120-250 ms de red por tesela, la mitad de la
+   pantalla se quedaba en blanco al soltar (cobertura del 51-53 %) y no se llenaba hasta 1,1 a
+   1,7 s despues; con la isla, el 54 % hasta que se pintaba.
+   Debajo de todas va ahora la isla base, la nuestra, pintada a zoom 10 y estirada: unas pocas
+   teselas para toda la isla, que se pintan una vez. Lo que todavia no ha llegado se ve borroso,
+   no en blanco: cobertura del 100 % al soltar, con las calles y con la isla.
+   No descarga nada: lee el fichero que el service worker ya guarda (o el que viaja dentro de
+   la app de las tiendas); si no esta, no hay fondo, como antes, y se vuelve a mirar al primer
+   zoom. Sin rotulos: estirados no se leen. Y no pide teselas de OpenStreetMap que nadie mira,
+   que su politica no deja («Bulk downloading is any pre-emptive fetching of tiles other than
+   those a user is actively viewing», operations.osmfoundation.org/policies/tiles). */
+let _fondoIsla = null;
+function ponerFondoIsla() {
+  if (_fondoIsla || !islaPosible() || typeof map === 'undefined' || !map) return;
+  _fondoIsla = 'leyendo';
+  const leer = window.TGO_NATIVO
+    ? fetch(ISLA_URL).then(function (r) { return r.ok ? r : null; })
+    : (window.caches ? caches.match(ISLA_URL) : Promise.resolve(null));
+  leer.then(function (r) { return r ? r.blob() : null; })
+    .then(function (blob) {
+      if (!blob) { _fondoIsla = null; return; }
+      return new pmtiles.PMTiles(fuenteBlob(blob, ISLA_URL)).getHeader()
+        .then(function (h) { return h.maxZoom; }, function () { return 13; })
+        .then(function (zMax) {
+          const P = protomapsL;
+          const f = P.leafletLayer({
+            url: new pmtiles.PMTiles(fuenteBlob(blob, ISLA_URL)),
+            maxDataZoom: zMax,
+            /* siempre las mismas teselas de zoom 10, a cualquier zoom */
+            minNativeZoom: 10,
+            maxNativeZoom: 10,
+            /* la zona por la que se mueve el mapa (maxBounds), que es la misma que cubre el
+               fichero de la isla base */
+            bounds: tenerifeBounds,
+            /* un pixel por pixel de tesela: va estirado y borroso de todas formas, y asi cada
+               tesela ocupa 256 KB de memoria y no 2,4 MB (en un movil x3) */
+            devicePixelRatio: 1,
+            zIndex: 0,
+            updateWhenZooming: false,
+            backgroundColor: '#a8c8e0',
+            attribution: 'GSHHG · GTFS TITSA',
+            /* las carreteras, mas finas que en la capa de la isla (0,7 y no 1,4): estiradas
+               cinco o diez veces, con 1,4 eran bandas gruesas */
+            paintRules: [
+              { dataLayer: 'tierra',    symbolizer: new P.PolygonSymbolizer({ fill: '#eef1e6' }) },
+              { dataLayer: 'carretera', symbolizer: new P.LineSymbolizer({ color: '#c2a86a', width: 0.7 }) }
+            ],
+            labelRules: []
+          });
+          /* Y todas las teselas de esa zona, siempre, no solo las que se ven: son 16 (4 x 4).
+             Leaflet pide solo las de la pantalla, y tras un salto (un setView de mas de 4
+             niveles, como al abrir una ficha desde la lista, borra las que tenia) le quedaba una
+             sola: al alejar despues, el resto de la pantalla salia en blanco (84 % cubierto en la
+             prueba). Es el mismo punto que cambia el complemento Leaflet.EdgeBuffer; la
+             auditoria del mapa comprueba que la Leaflet de vendor/ lo sigue teniendo. */
+          f._getTiledPixelBounds = function () {
+            return L.bounds(map.project(tenerifeBounds.getNorthWest(), this._tileZoom),
+                            map.project(tenerifeBounds.getSouthEast(), this._tileZoom));
+          };
+          f.addTo(map);
+          _fondoIsla = f;
+        });
+    })
+    .catch(function () { _fondoIsla = null; });
+}
+(window.requestIdleCallback || function (f) { return setTimeout(f, 1500); })(function () { ponerFondoIsla(); });
+map.on('zoomstart', function () { if (!_fondoIsla) ponerFondoIsla(); });
 
 // Aviso breve en pantalla (sin consola, que en movil no se ve)
 function showLayerMsg(txt) {
