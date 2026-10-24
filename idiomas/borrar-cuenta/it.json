@@ -6,7 +6,7 @@
  "correoTxt": "Ci scriva a {correo} dall’indirizzo e-mail del Suo account, con oggetto «{asunto}». Lo eliminiamo al massimo entro un mese dal ricevimento della Sua e-mail (GDPR, articolo 12, paragrafo 3).",
  "asunto": "Elimina il mio account",
  "borraTitulo": "Cosa viene eliminato",
- "borraTxt": "L’indirizzo e-mail, la password (conservata cifrata), i preferiti salvati nel cloud e, se sono stati salvati nell’account, il profilo e i progressi.",
+ "borraTxt": "Il Suo indirizzo e-mail, la Sua password (conservata cifrata), i preferiti che ha salvato nel cloud e, se salvati anche lì, il Suo profilo e i Suoi progressi.",
  "noTitulo": "Cosa non viene eliminato con l’account",
  "noPush": "Le notifiche: si disattivano nel browser o nelle impostazioni del telefono.",
  "noDispositivo": "Quello che è salvato sul Suo dispositivo, come la lingua o i Suoi preferiti: sparisce quando cancella i dati del sito nel browser o disinstalla l’app."

@@ -6,7 +6,7 @@
  "correoTxt": "Schrijf ons op {correo} vanaf het e-mailadres van uw account, met als onderwerp «{asunto}». We verwijderen het uiterlijk een maand nadat we uw e-mail hebben ontvangen (AVG, artikel 12, lid 3).",
  "asunto": "Mijn account verwijderen",
  "borraTitulo": "Wat er wordt verwijderd",
- "borraTxt": "Uw e-mailadres, uw wachtwoord (versleuteld bewaard), de favorieten die u in de cloud hebt opgeslagen en, als u ze in uw account hebt opgeslagen, uw profiel en voortgang.",
+ "borraTxt": "Uw e-mailadres, uw wachtwoord (versleuteld bewaard), de favorieten die u in de cloud heeft opgeslagen en, als u ze in uw account heeft opgeslagen, uw profiel en voortgang.",
  "noTitulo": "Wat niet met het account wordt verwijderd",
  "noPush": "Meldingen: die zet u uit in uw browser of in de instellingen van uw telefoon.",
  "noDispositivo": "Wat op uw toestel staat, zoals de taal of uw favorieten: dat verdwijnt als u de sitegegevens in uw browser wist of de app verwijdert."
