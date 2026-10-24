@@ -42,6 +42,16 @@
    LO QUE NO HACE. No dice en que color esta el semaforo ni si hay peligro por
    su cuenta: eso lo dicen el 112, el Gobierno de Canarias y ES-Alert.
 
+   DOS NOTIFICACIONES, Y NINGUNA DE EMERGENCIA (24 de octubre de 2026; Jerome:
+   «que no sea una alarma que asuste a la gente, más un consejo de quedarse
+   informados», «2 sí perfecto», y las alertas y los terremotos no: «mejor
+   seguir tu recomendación»). Las dos las compone enviar-notificacion.js con
+   filas de aqui, tal cual, en el idioma de cada movil: los domingos, un
+   consejo (el titulo de una guia y una de sus filas) en vez de la frase del
+   dia; y cuando el boletin de INVOLCAN cambia de color, el aviso con su fecha
+   y lo que pide ese color. Al tocarlas se abre su guia (#sos-<guia>).
+   Cambiar una de esas filas cambia tambien la notificacion.
+
    COMO SE PINTA. Todo con createElement y textContent; innerHTML solo para los
    iconos SVG de este mismo fichero (SOS_ICO), nunca con nada que venga de
    fuera ni de localStorage. Los textos salen de EMERG_UI en cada pintado: al
