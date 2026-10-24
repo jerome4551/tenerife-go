@@ -44,7 +44,7 @@
   },
   "dgpceTsunami": {
    "error": "HTTP Error 403: Forbidden",
-   "fallos": 1,
+   "fallos": 2,
    "url": "https://www.interior.gob.es/opencms/pdf/archivos-y-documentacion/documentacion-y-publicaciones/publicaciones-descargables/proteccion-civil/Guia_de_informacion_riesgo_tsunamis_126230890.pdf"
   },
   "directriz": {
@@ -259,7 +259,7 @@
   },
   "madridIncendio": {
    "error": "HTTP Error 404: Not Found",
-   "fallos": 1,
+   "fallos": 2,
    "url": "https://www.comunidad.madrid/sites/default/files/doc/presidencia/diptico_consejos_como_actuar_en_un_incendio_casa.pdf"
   },
   "manualApp112": {
@@ -313,7 +313,7 @@
   },
   "planMaremotosIgn": {
    "error": "mas de 15000000 bytes",
-   "fallos": 1,
+   "fallos": 2,
    "url": "https://www.ign.es/web/resources/acercaDe/libDigPub/Plan-Estatal-Maremotos.pdf"
   },
   "planes": {
