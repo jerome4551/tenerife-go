@@ -1023,7 +1023,10 @@
     poner(setDelNavegador()); poner(lengua()); poner(avatarActual().set); poner(setAbierto); poner('tf');
     return ids;
   }
-  function renderSets() {
+  /* Las pestañas y, al final, la tira, una sola vez: con animar, entrando una a una (al
+     tocar una pestaña o un pais). Antes la pintaban dos veces renderSets y quien la llamaba:
+     con los 49 de «De oro», en el movil lento, el clic tardaba el doble (454 ms; ahora, 211). */
+  function renderSets(animar) {
     var box = $('tgp-sets'), mas = $('tgp-paises-btn');
     box.querySelectorAll('.tgp-set').forEach(function (n) { n.remove(); });
     if (!setAbierto) setAbierto = avatarActual().set;
@@ -1048,7 +1051,7 @@
        scrollIntoView, que bajaba la pantalla entera al abrirla en un movil bajo o
        en horizontal (48 px a 320x568, 156 px a 740x360). */
     if (paisesAbierto) renderPaises();
-    renderStrip(false);
+    renderStrip(!!animar);
   }
   /* «Todos los paises»: los 47 sets por orden alfabetico del idioma de la app
      (Tenerife, el primero), con un buscador que vale en ese idioma y en ingles
@@ -1130,7 +1133,7 @@
     if (nuevoOro) st.oro[a.id] = hoy();
     if (st.avatar !== id) { st.avatar = id; marcar('perfil'); }
     guardar();
-    renderHero(true); renderSets(); renderStrip(false);
+    renderHero(true); renderSets();
     jugar($('tgp-ava-big'));
     var b = $('tgp-strip').querySelector('.tgp-av[data-id="' + id + '"]'); if (b) jugar(b);
     confeti(nuevoOro ? ORO_CONFETI : [AV.set(a.set).color, '#D4AF37', '#F5C76B', '#FFFFFF']);
@@ -1532,14 +1535,14 @@
   /* ── eventos del cuerpo (una vez, al montarlo) ── */
   function enganchar() {
     $('tgp-back').addEventListener('click', function () { cerrar(); });
-    $('tgp-sets').addEventListener('click', function (e) { var b = e.target.closest('.tgp-set'); if (!b) return; setAbierto = b.dataset.set; renderSets(); renderStrip(true); });
+    $('tgp-sets').addEventListener('click', function (e) { var b = e.target.closest('.tgp-set'); if (!b) return; setAbierto = b.dataset.set; renderSets(true); });
     /* «Todos los paises»: la lista se abre y se cierra con su boton; elegir un pais lo
        pone en las pestañas, abre su tira y cierra la lista */
     $('tgp-paises-btn').addEventListener('click', function () { abrirPaises(!paisesAbierto); });
     $('tgp-buscar').addEventListener('input', renderPaises);
     $('tgp-paises-grid').addEventListener('click', function (e) {
       var b = e.target.closest('.tgp-pais'); if (!b) return;
-      setAbierto = b.dataset.set; abrirPaises(false); renderSets(); renderStrip(true);
+      setAbierto = b.dataset.set; abrirPaises(false); renderSets(true);
       var chip = $('tgp-sets').querySelector('.tgp-set.is-on'); if (chip) chip.focus({ preventScroll: true });
       $('tgp-avatares').scrollIntoView({ block: 'nearest', behavior: reducido ? 'auto' : 'smooth' });
     });
