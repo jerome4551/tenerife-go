@@ -322,10 +322,115 @@ async function muchos() {
   if (mal) console.log('   (lo que dijo el envio: ' + lineas.slice(0, 6).join(' · ') + ')');
 }
 
+/* ── 4 · el consejo del domingo (24 de octubre de 2026). Sale de las filas
+   del panel SOS: aqui se leen por cuenta propia, del modulo, y se compara lo
+   que le llega a cada idioma. ── */
+const SOS_SRC = fs.readFileSync(path.join(RAIZ, 'modulos', 'emergencias.js'), 'utf8');
+const FSOS = {};
+for (const m of SOS_SRC.matchAll(/^\s*"(\w+)"\s*:\s*(\{"es":.*\})\s*,?\s*$/gm)) { try { FSOS[m[1]] = JSON.parse(m[2]); } catch (e) { /* no es una fila */ } }
+const SOS_LOC = JSON.parse(/var SOS_LOCALE = (\{[^}]*\});/.exec(SOS_SRC)[1]);
+const APP = 'https://jerome4551.github.io/tenerife-go/';
+
+/* Corre enviar-notificacion.js con el reloj parado en `ahora`, Supabase y
+   web-push de mentira y los argumentos de `modo`; devuelve lo que se envio. */
+async function correr(modo, ahora, subs, env) {
+  const enviados = [];
+  const cargar = Module._load;
+  Module._load = function (pedido, ...resto) {
+    if (pedido === 'web-push') return {
+      setVapidDetails() {},
+      sendNotification: async (sub, payload, op) => { enviados.push({ endpoint: sub.endpoint, p: JSON.parse(payload), op }); }
+    };
+    return cargar.call(this, pedido, ...resto);
+  };
+  const RealDate = global.Date, T = Date.parse(ahora);
+  const Real = RealDate.__real || RealDate;
+  global.Date = class extends Real {
+    constructor(...a) { if (!a.length) super(T); else super(...a); }
+    static now() { return T; }
+  };
+  global.Date.__real = Real;
+  global.fetch = async (url) => {
+    const u = String(url);
+    if (u.includes('push_sends?select')) return { ok: true, status: 200, json: async () => [{ sent_date: '2026-10-01' }] };
+    if (u.includes('push_sends')) return { ok: true, status: 201, text: async () => '' };
+    if (u.includes('push_subs')) return { ok: true, status: 200, json: async () => pagina(subs, u) };
+    return { ok: false, status: 500, text: async () => 'peticion no esperada: ' + u };
+  };
+  const antesEnv = {};
+  for (const [k, v] of Object.entries(env || {})) { antesEnv[k] = process.env[k]; process.env[k] = v; }
+  const antesArgv = process.argv.slice();
+  process.argv = [process.argv[0], 'enviar-notificacion.js'].concat(modo);
+  const log = console.log; const lineas = [];
+  console.log = (...a) => lineas.push(a.join(' '));
+  try {
+    delete require.cache[require.resolve(path.join(RAIZ, 'enviar-notificacion.js'))];
+    require(path.join(RAIZ, 'enviar-notificacion.js'));
+    const t = performance.now() + 15000;
+    while (enviados.length < subs.length && performance.now() < t && modo[0] !== '--semaforo-decidir') await new Promise(r => setTimeout(r, 20));
+    await new Promise(r => setTimeout(r, 60));
+  } finally {
+    console.log = log;
+    process.argv = antesArgv;
+    for (const [k, v] of Object.entries(antesEnv)) { if (v === undefined) delete process.env[k]; else process.env[k] = v; }
+    global.Date = Real;
+    Module._load = cargar;
+  }
+  return { enviados, lineas };
+}
+const subsIdiomas = pre => IDIOMAS.map(l => ({ endpoint: 'https://push.prueba.invalid/' + pre + l, p256dh: 'k', auth: 'a', lang: l }))
+  .concat([{ endpoint: 'https://push.prueba.invalid/' + pre + 'xx', p256dh: 'k', auth: 'a', lang: 'xx' },
+           { endpoint: 'https://push.prueba.invalid/' + pre + 'nulo', p256dh: 'k', auth: 'a', lang: null }]);
+
+/* Los doce consejos, en su orden, copiados de enviar-notificacion.js a
+   proposito: cambiar la lista alli sin mirar aqui lo canta este control. Solo
+   filas que informan sin asustar (Jerome, 24 de octubre: «que no sea una
+   alarma que asuste a la gente»). */
+const CONSEJOS = [['esalert', 'sosGuiaEsAlert', 'sosEsa2'], ['visita', 'sosGuiaVisita', 'sosVis1'], ['esalert', 'sosGuiaEsAlert', 'sosEsa1'],
+  ['semaforo', 'sosGuiaSemaforo', 'sosSemIntro'], ['plan', 'sosGuiaPlan', 'sosPlan1'], ['visita', 'sosGuiaVisita', 'sosVis3'],
+  ['esalert', 'sosGuiaEsAlert', 'sosEsa5'], ['mochila', 'sosGuiaMochila', 'sosMocIntro'], ['visita', 'sosGuiaVisita', 'sosVis4'],
+  ['montana', 'sosGuiaMontana', 'sosMon1'], ['esalert', 'sosGuiaEsAlert', 'sosEsa3'], ['esalert', 'sosGuiaEsAlert', 'sosEsa8']];
+
+async function elDomingo() {
+  console.log('\n=== 4 · los domingos, un consejo del panel SOS en vez de la frase ===');
+  const guias = new Set([...SOS_SRC.matchAll(/\{ id: '([a-z]+)', t: '(sosGuia\w+)'/g)].map(m => m[1] + '/' + m[2]));
+  for (const [g, t, f] of CONSEJOS) {
+    const faltan = IDIOMAS.filter(l => !(FSOS[t] && FSOS[t][l]) || !(FSOS[f] && FSOS[f][l]));
+    ok2(!faltan.length && guias.has(g + '/' + t), 'el consejo ' + g + '/' + f + ': su guia existe y sus dos filas estan en los ' + IDIOMAS.length + ' idiomas', faltan.join(' '));
+  }
+  // doce domingos seguidos desde el primero, y el decimotercero vuelve al primero
+  for (let i = 0; i <= CONSEJOS.length; i++) {
+    const dia = new Date(Date.UTC(2026, 9, 25 + 7 * i, 9, 30));
+    const c = CONSEJOS[i % CONSEJOS.length];
+    const subs = subsIdiomas('d' + i + '-');
+    const { enviados, lineas } = await correr([], dia.toISOString(), subs, { FORCE: '' });
+    const malos = [];
+    for (const s of subs) {
+      const l = (s.lang && FRASES.frases[0][s.lang]) ? s.lang : 'es';
+      const e = enviados.find(x => x.endpoint === s.endpoint);
+      const quiere = { title: FRASES.titulo[l], body: FSOS[c[1]][l] + '\n' + FSOS[c[2]][l], url: APP + '#sos-' + c[0], lang: l };
+      if (!e || e.p.title !== quiere.title || e.p.body !== quiere.body || e.p.url !== quiere.url || e.p.lang !== l || e.p.tag !== undefined) malos.push(s.lang + ': ' + JSON.stringify(e && e.p));
+    }
+    ok2(enviados.length === subs.length && !malos.length, dia.toISOString().slice(0, 10) + ' (domingo): «' + FSOS[c[1]].es + '» · ' + c[2] +
+        ', en el idioma de cada uno, con el titulo de cada dia y lleva a #sos-' + c[0], malos.slice(0, 2).join(' | ') + (malos.length ? '' : '') + (enviados.length !== subs.length ? ' (' + enviados.length + ' envios) ' + lineas.join(' · ') : ''));
+  }
+  // un lunes, la frase de siempre
+  {
+    const subs = subsIdiomas('lunes-');
+    const { enviados } = await correr([], '2026-11-02T09:30:00Z', subs, { FORCE: '' });
+    const dia = Math.floor((Date.UTC(2026, 10, 2) - Date.UTC(2026, 0, 0)) / 86400000);
+    const frase = FRASES.frases[dia % FRASES.frases.length];
+    ok2(enviados.length === subs.length && enviados.every(e => e.p.body === frase[e.p.lang] && e.p.url === APP), 'un lunes, la frase del dia de siempre');
+  }
+}
+
+const ok2 = (cond, que, detalle) => ver(cond, que, cond ? (detalle && detalle.startsWith('«') ? detalle : '') : detalle);
+
 (async () => {
   await laApp();
   await elEnvio();
   await muchos();
+  await elDomingo();
   console.log(mal ? '\n*** ' + mal + ' comprobacion(es) de la notificacion en su idioma, en rojo ***'
                   : '\ncada movil recibe la notificacion en su idioma, y la sigue si lo cambia');
   process.exit(mal ? 1 : 0);

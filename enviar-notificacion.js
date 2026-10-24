@@ -2,7 +2,8 @@
    TENERIFE GO  ·  Envio de la notificacion diaria
    ---------------------------------------------------------------------
    Corre en GitHub Actions cada manana. Lee las suscripciones de Supabase
-   y envia a cada dispositivo la frase del dia en su idioma.
+   y envia a cada dispositivo la frase del dia en su idioma. Los domingos,
+   en vez de la frase, un consejo del panel SOS (CONSEJOS, mas abajo).
 
    Variables de entorno (se ponen como Secrets del repo en GitHub):
      SUPABASE_URL          https://aupjvdrubjytryzqirdn.supabase.co
@@ -19,7 +20,6 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const webpush = require('web-push');
 
 const SUPABASE_URL         = (process.env.SUPABASE_URL || '').replace(/\/+$/, '');
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY || '';
@@ -70,6 +70,73 @@ function dayOfYear(y, m, d) {
   const start = Date.UTC(y, 0, 0);
   const cur   = Date.UTC(y, m - 1, d);
   return Math.floor((cur - start) / 86400000); // 1..366
+}
+
+/* --- Las filas del panel SOS (modulos/emergencias.js) ---
+   El consejo del domingo no trae textos propios: son
+   filas del panel, las mismas que se leen en la app, verificadas contra su
+   fuente oficial, en los diez idiomas y de usted. Se leen del modulo, sin
+   copiarlas aqui: si el panel cambia una fila, la notificacion dice lo mismo
+   que el panel. Si falta una fila o uno de sus idiomas, no se compone nada a
+   mano. */
+const IDIOMAS_SOS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+function leerPanelSOS() {
+  const src = fs.readFileSync(path.join(__dirname, 'modulos', 'emergencias.js'), 'utf8');
+  const ini = src.indexOf('var EMERG_UI = {'), fin = src.indexOf('\n  };', ini);
+  if (ini < 0 || fin < 0) throw new Error('no encuentro las filas (EMERG_UI) en modulos/emergencias.js');
+  const filas = {};
+  for (const linea of src.slice(ini, fin).split('\n')) {
+    const m = /^\s*"(\w+)"\s*:\s*(\{.*\})\s*,?\s*$/.exec(linea);
+    if (!m) continue;
+    try { filas[m[1]] = JSON.parse(m[2]); } catch (e) { /* una fila que no se entiende no se usa */ }
+  }
+  const loc = /var SOS_LOCALE = (\{[^}]*\});/.exec(src);
+  return { filas, locale: loc ? JSON.parse(loc[1]) : {} };
+}
+function filaSOS(panel, k, lang) {
+  const f = panel.filas[k];
+  if (!f || typeof f[lang] !== 'string' || !f[lang].trim()) throw new Error('falta la fila ' + k + ' en «' + lang + '»');
+  return f[lang];
+}
+
+/* --- El consejo del domingo ---
+   Jerome, 24 de octubre de 2026: «no es malo preparar la gente de veces
+   cuando para que se queda informada», y «que no sea una alarma que asuste a
+   la gente, más un consejo de quedarse informados de que hacer en tal caso.
+   Que las alertas asustaron a algunas gente por no estar informadas».
+   Los domingos, la notificacion de la manana trae, en vez de la frase, una
+   fila del panel SOS debajo del titulo de su guia, con el «Buenos dias» de
+   siempre. Es la misma notificacion (ese dia no sale otra) y al tocarla se
+   abre esa guia. Solo filas que informan sin asustar: que es ES-Alert y que
+   hacer cuando llega (tambien si es un simulacro), el hotel, el plan, la
+   mochila, la montana. Doce, una cada domingo: cada una vuelve a los tres
+   meses. La primera, el 25 de octubre de 2026. */
+const CONSEJOS = [
+  ['esalert',  'sosGuiaEsAlert',  'sosEsa2'],      // SIMULACRO o PRUEBA: es un ensayo
+  ['visita',   'sosGuiaVisita',   'sosVis1'],      // pregunte en su hotel
+  ['esalert',  'sosGuiaEsAlert',  'sosEsa1'],      // que es ES-Alert
+  ['semaforo', 'sosGuiaSemaforo', 'sosSemIntro'],  // que es el semaforo
+  ['plan',     'sosGuiaPlan',     'sosPlan1'],     // un punto de encuentro
+  ['visita',   'sosGuiaVisita',   'sosVis3'],      // los idiomas del 112
+  ['esalert',  'sosGuiaEsAlert',  'sosEsa5'],      // no llame al 112 para preguntar
+  ['mochila',  'sosGuiaMochila',  'sosMocIntro'],  // la mochila
+  ['visita',   'sosGuiaVisita',   'sosVis4'],      // ES-Alert en un movil extranjero
+  ['montana',  'sosGuiaMontana',  'sosMon1'],      // diga a alguien su ruta
+  ['esalert',  'sosGuiaEsAlert',  'sosEsa3'],      // si es real: calma, leerlo y seguirlo
+  ['esalert',  'sosGuiaEsAlert',  'sosEsa8']       // nunca le pedira datos personales
+];
+const CONSEJO_PRIMERO = Date.UTC(2026, 9, 25);     // domingo, 25 de octubre de 2026
+function consejoDelDia(y, m, d) {
+  const hoy = Date.UTC(y, m - 1, d);
+  if (new Date(hoy).getUTCDay() !== 0) return null;
+  const n = Math.round((hoy - CONSEJO_PRIMERO) / (7 * 86400000)) % CONSEJOS.length;
+  return CONSEJOS[(n + CONSEJOS.length) % CONSEJOS.length];
+}
+/* El titulo de la guia y debajo la fila: un salto de linea, que vale igual en
+   los diez idiomas (los dos puntos no se escriben igual en frances ni en
+   chino). */
+function textoConsejo(panel, c, lang) {
+  return filaSOS(panel, c[1], lang) + '\n' + filaSOS(panel, c[2], lang);
 }
 
 const sbHeaders = {
@@ -146,6 +213,35 @@ async function main() {
   const fraseHoy = CONT.frases[idx];
   console.log(`Frase del dia #${idx}: "${fraseHoy.es}"`);
 
+  /* El consejo del domingo, si toca. Antes de enviar nada se compone en los
+     diez idiomas: si falla una fila, ese domingo va la frase de siempre. */
+  let consejo = consejoDelDia(now.year, now.month, now.day), panel = null;
+  if (consejo) {
+    try {
+      panel = leerPanelSOS();
+      for (const l of IDIOMAS_SOS) textoConsejo(panel, consejo, l);
+      console.log(`Domingo: en vez de la frase, el consejo ${consejo[0]}/${consejo[2]}: "${textoConsejo(panel, consejo, 'es').replace('\n', ' · ')}"`);
+    } catch (e) {
+      console.log(`::warning::El consejo del domingo no sale (${e.message}): va la frase del dia.`);
+      consejo = null;
+    }
+  }
+
+  await enviarATodos(sLang => {
+    const lang = (fraseHoy[sLang] ? sLang : 'es');
+    if (consejo) {
+      const l = IDIOMAS_SOS.indexOf(lang) >= 0 ? lang : 'es';
+      return { title: CONT.titulo[l] || CONT.titulo.es, body: textoConsejo(panel, consejo, l),
+               url: APP_URL + '#sos-' + consejo[0], lang: l };
+    }
+    return { title: CONT.titulo[lang] || CONT.titulo.es, body: fraseHoy[lang] || fraseHoy.es,
+             url: APP_URL, lang: lang };
+  }, 6 * 3600);
+}
+
+/* Lee todas las suscripciones y le manda a cada una lo que `componer` diga
+   para su idioma: {title, body, url, lang} y, si hace falta, un tag propio. */
+async function enviarATodos(componer, ttl) {
   // --- Leer suscripciones (service_role ignora RLS) ---
   /* Supabase devuelve como mucho unas cuantas filas por peticion (Max rows:
      1.000 en cada proyecto, si nadie lo cambia), y la service_role no se lo
@@ -166,22 +262,17 @@ async function main() {
   console.log(`Suscripciones: ${subs.length}`);
   if (!subs.length) { console.log('Nadie suscrito todavia. Nada que enviar.'); return; }
 
+  const webpush = require('web-push');
   webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC, VAPID_PRIVATE);
 
   let enviados = 0, fallidos = 0, limpiados = 0;
 
   for (const s of subs) {
-    const lang = (fraseHoy[s.lang] ? s.lang : 'es');
-    const payload = JSON.stringify({
-      title: CONT.titulo[lang] || CONT.titulo.es,
-      body:  fraseHoy[lang]    || fraseHoy.es,
-      url:   APP_URL,
-      lang:  lang
-    });
+    const payload = JSON.stringify(componer(s.lang));
     const subscription = { endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } };
 
     try {
-      await webpush.sendNotification(subscription, payload, { TTL: 6 * 3600 });
+      await webpush.sendNotification(subscription, payload, { TTL: ttl });
       enviados++;
     } catch (err) {
       const code = err && err.statusCode;
