@@ -33,7 +33,8 @@
  *     JSON (un portal cautivo); los precios de las gasolineras, igual (y
  *     sin senal de quien llama: el plazo de 8 s es el del propio shim); y
  *     los elementos de los satelites del panel del cielo (modulos/cielo.js):
- *     vivos primero y, sin red, los de dentro;
+ *     vivos primero y, sin red, los de la ultima copia viva guardada en el
+ *     movil si es mas nueva que la de dentro, o los de dentro (24-10-2026);
  *   · la CSP deja esas peticiones (si no las dejara, no llegarian a la
  *     ruta interceptada: eso es lo que se cuenta);
  *   · el mapa detallado: detalleEnServidor() dice null (nada que
@@ -110,7 +111,7 @@ async function pagina(ctx, puerto, extra, idioma) {
       geolocation: { latitude: 28.4636, longitude: -16.2518 }, permissions: ['geolocation'] });
     const dentro = JSON.parse(fs.readFileSync(path.join(WWW, 'datos', 'avisos-aemet.json'), 'utf8'));
     const satDentro = JSON.parse(fs.readFileSync(path.join(WWW, 'datos', 'satelites.json'), 'utf8'));
-    const satVivo = Object.assign({}, satDentro, { fuente: 'COPIA VIVA DE PRUEBA' });
+    let satVivo = Object.assign({}, satDentro, { fuente: 'COPIA VIVA DE PRUEBA' });
     let modo = 'vivo';   // vivo | corte | error500 | cuelgue | basura (200 con un cuerpo que no es JSON)
     const rutaViva = async r => {
       const u = r.request().url();
@@ -235,6 +236,39 @@ async function pagina(ctx, puerto, extra, idioma) {
     ok(sat2 === satDentro.fuente, 'sin red hacia fuera, los elementos de los satelites son los de dentro', sat2);
     ok(e2.length === 0, 'sin errores de pagina', e2.join(' | '));
     await p2.close();
+
+    /* Y sin red, la ULTIMA copia viva que se guardo, si es mas nueva que la de
+       dentro (24-10-2026): antes, sin red salian siempre los de dentro, y a los
+       7 dias de la version ya no habia pasos aunque la app se hubiera abierto
+       ayer con conexion. La mas nueva se decide por la epoca de sus elementos. */
+    const corrido = (s, dias) => new Date(Date.parse(s) + dias * 864e5).toISOString();
+    const satCon = (fuente, dias) => Object.assign({}, satDentro, { fuente, sat: satDentro.sat.map(s => Object.assign({}, s, { epoca: corrido(s.epoca, dias) })) });
+    const leerSat = pg => pg.evaluate(async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); const d = await TG_CIELO.satelites(); return d && d.fuente; });
+    satVivo = satCon('COPIA VIVA MAS NUEVA', 0.5); modo = 'vivo';
+    const { p: p3, errores: e3 } = await pagina(ctx, PUERTO_APP, async p => { await p.route(VIVA + '**', rutaViva); });
+    const sat3 = await leerSat(p3);
+    const guardada3 = await p3.evaluate(() => { try { return (JSON.parse(localStorage.getItem('tgo_cielo_satelites_v1') || 'null') || {}).fuente; } catch (e) { return null; } });
+    ok(sat3 === 'COPIA VIVA MAS NUEVA' && guardada3 === 'COPIA VIVA MAS NUEVA', 'con red, los elementos vivos se usan y se guardan en el movil', JSON.stringify([sat3, guardada3]));
+    await p3.close();
+    modo = 'corte';
+    const { p: p4, errores: e4 } = await pagina(ctx, PUERTO_APP, async p => { await p.route(VIVA + '**', rutaViva); });
+    const sat4 = await leerSat(p4);
+    ok(sat4 === 'COPIA VIVA MAS NUEVA', 'sin red, los de la ultima copia viva guardada, que es mas nueva que la de dentro', sat4);
+    await p4.close();
+    /* una guardada de antes de una version nueva (mas vieja que la de dentro)
+       pierde; y una con la epoca en el futuro, tambien */
+    let otras = [];
+    for (const [fuente, dias] of [['GUARDADA VIEJA', -30], ['GUARDADA DEL FUTURO', 10]]) {
+      const { p: px, errores: ex } = await pagina(ctx, PUERTO_APP, async p => {
+        await p.route(VIVA + '**', rutaViva);
+        await p.addInitScript(g => { try { localStorage.setItem('tgo_cielo_satelites_v1', g); } catch (e) {} }, JSON.stringify(satCon(fuente, dias)));
+      });
+      otras.push([fuente, await leerSat(px), ex.length]);
+      await px.close();
+    }
+    ok(otras.every(x => x[1] === satDentro.fuente), 'sin red, una copia guardada mas vieja que la de dentro, o del futuro, no se usa: salen los de dentro', JSON.stringify(otras));
+    ok(e3.length === 0 && e4.length === 0 && otras.every(x => x[2] === 0), 'sin errores de pagina', e3.concat(e4).join(' | '));
+    satVivo = Object.assign({}, satDentro, { fuente: 'COPIA VIVA DE PRUEBA' });
 
     /* Google Analytics (22-10-2026): en la app no hay. Paginas SIN la
        respuesta al aviso guardada (pagina() guarda «rechazado» para que el

@@ -32,7 +32,7 @@ faq/         10 ficheros · 156 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.056 kB** en castellano · **1.170 kB** en el peor caso (búlgaro) · 1.156 kB en polaco, el 24 de octubre por la tarde, con los bloques quinto a octavo del cielo, el trato de usted, el perfil con los de oro y el botón SOS con sus avisos. Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.067 kB** en castellano · **1.184 kB** en el peor caso (búlgaro) · 1.168 kB en polaco, el 24 de octubre por la noche, con los bloques quinto a octavo del cielo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el asistente al día con todo lo de octubre y, esa noche, la fecha de nacimiento, los satélites sin red y el botón del bus. El asistente y lo de esa noche suman 11 kB (14 en búlgaro y 12 en polaco): sus 156 respuestas en cada idioma, `faq/<idioma>.json`, que se piden al arrancar, las frases nuevas de la política y el código del botón del bus. Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -4120,7 +4120,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 47 tablas, 2867 filas (y 5.008 filas, dentro y fuera del fuente)
+## Idiomas · 47 tablas, 2869 filas (y 5.010 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -4198,7 +4198,10 @@ menos, las de los avatares que se van: 2868 filas y 5.009. Y por la
 tarde, las banderas del SOS pasan a ser las seis de la leyenda de cada
 playa (fuera las cuatro del Decreto anulado y las filas de sus dos fuentes:
 595 en `EMERG_UI`) y la nube del perfil pide antes el año de nacimiento (una
-fila más, 426 en `PERFIL_UI`): 2867 filas y 5.008. El
+fila más, 426 en `PERFIL_UI`): 2867 filas y 5.008. Y esa noche, el aviso de
+«Solo accesibles en bus» en los diez idiomas (una fila en `UI_TX`) y la
+fecha de nacimiento entera en el perfil (una más, 427 en `PERFIL_UI`): 2869
+filas y 5.010. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -10563,20 +10566,21 @@ fuego, y sal-09 ya la nombra.
   `privacidad.html` rehecha con `generar_privacidad.py`) y el asistente
   también (app-39). La edad se cuenta como antes, con el año solo (año de hoy
   menos año de nacimiento): quien cumple 16 en diciembre cuenta como de 16
-  desde enero.
+  desde enero. Esa misma noche, con la fecha entera (abajo).
 
 **Lo que la app hace y el asistente ya no promete** (para decidir):
 
 - En la app de las tiendas, el fichero de los satélites que baja
   `tgoFetchDatos` no se guarda: sin red sale el del paquete, que deja de valer
   7 días después de la versión. Y `cieloOfflineListo` dice que los satélites
-  funcionan sin conexión, sin ese límite.
+  funcionan sin conexión, sin ese límite. Arreglado esa noche (abajo).
 - En la web, `faq/<idioma>.json` y los textos de los lugares de cada idioma
   no van en el precache: la primera visita no los guarda (el service worker se
   registra después de pedirlos). El asistente lo dice como es.
 - Con «Solo accesibles en bus» y ninguna línea encendida, el mapa se queda
   vacío y el aviso, «🚏 Activa una línea de bus», está escrito a mano en
-  castellano, de tú, para los diez idiomas.
+  castellano, de tú, para los diez idiomas. Arreglado esa noche, con cuatro
+  cosas más del mismo botón (abajo).
 - «Mi ruta», la de la pestaña «Ruta del día», no se guarda: se pierde al
   cerrar la app. El asistente lo dice y manda a Favoritos.
 - La tarjeta de las normas del cielo dice «La Ruleta» a secas (el Decreto:
@@ -10586,6 +10590,130 @@ fuego, y sal-09 ya la nombra.
   `PARKINGS` y `fetchParkingTeresitas()`, que no existen, y el `try` lo calla.
   Si algún día sale, pone «plazas» en castellano y «Tiempo real» sin dato en
   directo.
+
+
+## La fecha de nacimiento, los satélites sin red y el botón del bus (24 de octubre, noche)
+
+Jerome, a lo que quedaba por decidir: «1 no mucha gente usa la app entonces
+no va cambiar mucho. 2 No, que sea preciso su fecha de nacimiento: es el
+cálculo correcto saber si tiene 16. 3 mira cómo podemos hacer que funcione.
+4 ponle con usted, pero verifica un poco lo de este botón, si busca bien las
+líneas cerca».
+
+**1 · La nube de quien ya la tenía con 14 o 15 años**: se queda como estaba.
+
+**2 · La fecha de nacimiento entera.** «Sus datos» pide ahora la fecha (un
+campo de fecha, con el selector del móvil) en vez del año, y la edad se
+cuenta por el día: quien cumple 16 mañana todavía no puede encender la nube;
+quien los cumple hoy, sí (el día del cumpleaños cuenta entero, Código Civil,
+art. 315). El año va donde iba siempre (`st.nacimiento`, y en la cuenta, la
+columna `nacimiento`); el mes y el día (`st.nacimiento_md`) se quedan en el
+móvil: para la edad exacta no hace falta subir más, y `supabase/perfil.sql`
+no cambia (no hay nada que ejecutar en Supabase). Si el año llega cambiado
+de otro móvil, el mes y el día de aquí se borran, porque ya no son de esa
+fecha. Un perfil de antes, con el año solo, ve el campo vacío y debajo «Solo
+está el año (1990): ponga la fecha completa.», y hasta que la ponga no puede
+encender la nube; lo que ya estaba encendido sigue encendido (el punto 1).
+El IMC usa la misma edad para decir si es adulto. La descarga del perfil
+lleva también `fecha_nacimiento`. Altura y peso van juntos y la fecha
+debajo, en su fila: un campo de fecha no cabe en un tercio de pantalla. El
+campo escucha también `change`, además de `input`: si un navegador avisa solo
+al cerrar el selector de fecha, la fecha elegida se guarda igual
+(`probar_perfil.js`, 21g; con `input` solo, no se guardaría).
+Textos, en los diez idiomas: el rótulo («Fecha de nacimiento»), la fila
+nueva `perfilNacSoloAnio`, `perfilNubePideEdad` («Ponga antes su fecha de
+nacimiento…») y la nota de «Sus datos», que dice que de la fecha a la cuenta
+solo va el año (`PERFIL_UI`, 427 filas con los de oro); la política
+(`ppDatosPerfilTxt`: la fecha, los 16 «según la fecha de nacimiento» y que
+a la cuenta va solo el año), y el asistente: app-37 y app-39, que contesta
+también «¿por qué me pide la fecha de nacimiento?» en los diez idiomas.
+
+**3 · Los satélites sin red, en la app de las tiendas.** Allí no hay service
+worker: sin red, `tgoFetchDatos` daba la copia que viaja dentro del paquete,
+y a los 7 días de la versión ya no había pasos aunque la app se hubiera
+abierto ayer con conexión. Ahora `modulos/cielo.js` guarda en el móvil la
+última copia buena de `datos/satelites.json` (`tgo_cielo_satelites_v1`,
+1 kB de datos públicos de CelesTrak) y, sin red, usa la más nueva de las
+dos por la época más reciente de sus elementos: una guardada de antes de una
+versión nueva pierde contra la de dentro, y una con la época en el futuro no
+se usa. En la web lo hace el service worker y esto no actúa. El panel ya
+decía la fecha de los elementos y que con más de 7 días no hay pasos;
+`cieloOfflineListo` es verdad ahora también en la app. La política lo nombra
+(`ppDatosPrefTxt`, en los diez idiomas).
+
+**4 · «Solo accesibles en bus».** El aviso, de usted y en los diez idiomas
+(`busAccesoSinLineas`, en `UI_TX`): «Active al menos una línea de bus».
+Y al mirar el botón, cuatro cosas más, que ningún control veía:
+
+- **Buscaba en un solo recorrido por línea.** `placeHasActiveBusStop` miraba
+  `line.paradas`, que guarda UN recorrido; TITSA publica varios (861 patrones
+  para 181 líneas) y el campo `l` del catálogo de paradas los cuenta todos,
+  como ya hace el buscador de paradas. Con un recorrido solo se dejaba 520
+  parejas línea-lugar de 6.701, en 94 de las 181 líneas de guagua: la
+  Catedral de La Laguna con la 274 (su parada Deán Palahí está a 94 m; la
+  más cercana del recorrido guardado, a 685 m), el Mirador de Humboldt con
+  la 104 (67 m frente a 1.408 m), el Palacio de Carta y el Castillo de San
+  Cristóbal con la 934. Ahora mira todas las paradas de cada línea, y tarda
+  5 ms con las del aeropuerto sur contra los 980 lugares.
+- **Sin líneas, el mapa se quedaba vacío**, aunque el comentario del código
+  decía desde el 1 de agosto «mostrar aviso, no ocultar todo». Ahora se ve
+  todo, con el aviso.
+- **El interruptor de la fila no se encendía nunca**: leía
+  `window._busAccessFilterActive`, que nadie escribía. Ahora sí, y es un
+  interruptor de verdad (`role="switch"`, `aria-checked`, Intro y espacio).
+- **Con el filtro puesto, los botones de los aeropuertos encendían sus líneas
+  y el mapa se quedaba con lo de antes**; igual al ir a una parada desde el
+  buscador, desde «Paradas cercanas» y con un enlace compartido. Ahora los
+  seis caminos rehacen el mapa (`busFiltroAlDia`).
+- Y al abrir las categorías, la fila cambiaba de nombre: de «Solo accesibles
+  en bus» a «Accesible en bus (500 m)», con los 500 m dos veces. Le escribía
+  encima el rótulo del interruptor viejo, que no se ve; ahora es siempre
+  `catSoloBus`, el que cita el asistente (app-34).
+
+`tools/probar_bus_acceso.js`, nuevo y en `auditar.sh`: 50 controles en verde
+(con cada línea de una muestra, los lugares del mapa son justo los que están
+a 500 m o menos de alguna de sus paradas, contados aparte con
+`tools/cargar.js`); contra el `index.html` de antes, 39 en rojo.
+
+**Lo que leyó otro revisor.** Todos los textos nuevos o cambiados, en los
+diez idiomas: tres arreglos, aplicados. En inglés, «(for your date of birth,
+only the year)» en vez de «(of your …)», en la nota de «Sus datos» y en la
+política; en francés, «également» en vez de «aussi» delante del nombre
+(«Dans l’application de l’App Store, également les dernières données des
+satellites»). En los otros ocho idiomas, nada.
+
+**Cómo se comprobó.** Dos veces: sobre `6e9094e` y, cuando `main` trajo los de
+oro del perfil, otra vez sobre `f5e16c5`, con los dos commits encima
+(`modulos/perfil.js`, la política y el asistente, juntados a mano con lo de
+`main`, y las respuestas rehechas con los rótulos de ese día: en italiano, en
+polaco y en búlgaro había cambiado el nombre del botón de crear la cuenta, y
+en búlgaro también el de borrarla). En la segunda,
+`probar_bus_acceso.js` (50), `probar_app.js` (con los tres casos de los
+satélites), `probar_perfil.js` (136), `auditar_perfil.js` (74),
+`probar_fechas_oro.js`, `probar_faq.js` (0 fallos de 177), `auditar_faq.js`,
+`auditar_registro.js` (76.986 textos, todo de usted), `auditar_idioma.js` (0
+hallazgos en los nueve idiomas), `castellano_suelto.js`, `auditar_letras.js`,
+`auditar_claves_tx.js`, `auditar_reservas.py`, `auditar_seguridad.py`,
+`generar_privacidad.py --comprobar`, `generar_borrar_cuenta.py --comprobar`,
+`app_preparar.js --comprobar`, `auditar_readme.js`, `vigia_sos.py --probar`,
+`auditar_emergencias.js` (39), `probar_emergencias.js` (261),
+`probar_notificacion_idioma.js`, `auditar_sw.js` (48), `probar_rutas.js`,
+`probar_organiza.js`, `probar_avisos.js`, `auditar_xss.js`, `auditar_tour.js`,
+`auditar_arranque.js`, `auditar_sin_traducir.js`, `auditar_web.js` (47 tablas
+y 2.869 filas), `barrido_idiomas.js` (5.010 filas), `probar_movil.js`,
+`probar_nombres.js` y `barrido_pantallas.js` (183 pantallas y fichas por
+idioma, nada sin traducir): en verde. Y el resto de `auditar.sh`, uno por
+uno (la sintaxis, la red, los datos, las gasolineras, los municipios, el
+mapa, los idiomas fuera del fuente, la App Store, Google Play y los robots
+del SOS), en verde, menos tres que no se pudieron pasar:
+`auditar_ubicacion.py`, `auditar_en_el_mar.py` e `informe_lugares.js` piden
+`pmtiles`, que en este contenedor no se puede instalar (miran los lugares y
+la costa, que esto no toca). `auditar_cielo.js`, 6 de 195 en rojo, y los
+mismos 6 en `main` sin tocar (`f5e16c5`), pasado justo después: los sensores
+de «Apunte al cielo», la ficha al tocar el nombre de un astro y un navegador
+que no acaba, en este contenedor (por la tarde eran 5; el de la ficha falla
+ahora también en `main`). La descarga, 1.067 kB en castellano y 1.184 en
+búlgaro (arriba, en «Qué hay»).
 
 ---
 
@@ -10638,6 +10766,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json`, con el contorno oficial de cada zona y las zonas de la isla (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, contornos, ficheros rotos, el latido de 3 horas |
 | `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos, los kilómetros del coche y lo que se comparte del itinerario |
+| `tools/probar_bus_acceso.js` | «Solo accesibles en bus» usado de verdad: sin líneas, el mapa entero y el aviso de su idioma en los diez; con cada línea de una muestra, los lugares del mapa son justo los que están a 500 m o menos de alguna de sus paradas (todas: el campo `l` del catálogo), contados aparte con `tools/cargar.js`; los aeropuertos y la búsqueda de paradas rehacen el mapa; el interruptor (clase, `aria-checked`, Intro y espacio) y su nombre con las categorías abiertas en los diez idiomas; y que no tarde |
 | `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, Norte y Sur sin paradas de la otra zona (y «Otro» tampoco), nunca dos paradas del mismo sitio (comprobado con código propio), el aviso cuando no hay más, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano |
 | `tools/probar_play.js` | lo que pide Google Play (LANZAMIENTO-PLAY.md, Fase 1), en un navegador y con un Supabase falso: la tienda que no se ve ni se abre, el botón de administrador solo para quien lo es, borrar la cuenta (botón, confirmación, fallos y borrado) en los diez idiomas y `borrar-cuenta.html` sin JavaScript |
 | `tools/generar_borrar_cuenta.py` | escribe `borrar-cuenta.html` desde `idiomas/borrar-cuenta/` y los botones de la app; con `--comprobar`, para si no está al día |
@@ -10655,13 +10784,13 @@ Y cada bloque por separado, si hace falta:
 | `tools/completar_cat.js` | devuelve a las etiquetas `cat` los trozos que perdieron, con el glosario del propio catálogo |
 | `tools/auditar_registro.js` | el trato de usted: las marcas del tuteo de cada idioma en todo lo que se ve (la app, las tablas, las fichas, la política, el asistente, el cielo, la ficha de la tienda, las frases de cada mañana); los idiomas hechos, en rojo con cualquiera; los demás, contados como pendientes; con `--lista <idioma> <fichero>`, sus textos con marcas, y con `--todos <idioma> <fichero>`, todos, para repasar a mano lo que las marcas no ven (el imperativo sin pronombre); los rótulos de botón que van en imperativo, en `ROTULOS_IT`, `ROTULOS_BG` y `ROTULOS_PL`, y la voz de quien usa la app en polaco, en `VOZ_PL` (su cita entre comillas, o en `<b>` en polaco, tampoco cuenta) |
 | `tools/app_preparar.js` | monta `app/www/`, la app de la App Store (la de la raíz con la marca `TGO_NATIVO`), y escribe las plantillas de iOS que salen de la política; con `--comprobar`, que no falte nada de lo que la app pide, que no viaje nada de la lista de lo que nunca viaja y que las plantillas sean las de hoy |
-| `tools/probar_app.js` | la app con la marca en Chromium (sin service worker, los datos del día con su copia de dentro, sin Google Analytics, los diez idiomas) y la web sin ella |
+| `tools/probar_app.js` | la app con la marca en Chromium (sin service worker, los datos del día con su copia de dentro, sin Google Analytics, los diez idiomas) y la web sin ella; y los satélites sin red: la última copia viva guardada si es más nueva que la de dentro, y nunca una guardada más vieja o con la época en el futuro |
 | `tools/auditar_app_store.js` | la ficha de la App Store contra los límites de Apple, las directrices y lo que hay, en los diez idiomas y en la variante en-US |
 | `tools/capturas_app_store.js` | las capturas de la tienda (iPhone 1206×2622, iPad 2064×2752), de `app/www/` servido aparte; para si la página no lleva la marca o un estado no llega a lo que dice |
 | `tools/app_store_metadata.js` | la ficha y las capturas en el formato de `fastlane deliver` (`app/fastlane/metadata/`, `…/screenshots/`); con `--comprobar`, las diez localizaciones, los límites y los tamaños |
 | `tools/cielo_uai.js` | los nombres de la UAI de la carta del cielo en chino, chino tradicional y búlgaro (`CIELO_UAI`, en `modulos/cielo.js`), de las traducciones de Stellarium que baja `cielo_fuentes.sh`; los coteja con la cultura celeste china y entre sí; con `--comprobar`, para si lo escrito no es lo que sale de las fuentes (lo pasa `auditar_cielo.js`) |
-| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 235 avatares en 47 sets y sus 49 de oro (SVG sin nada que se ejecute, solo con etiquetas de dibujo y 2.200 bytes como mucho, «class» solo en las piezas que se mueven y nunca con `transform`, ids con la forma que pide `perfil.sql`, los 36 países de Europa ni uno más ni uno menos, la bandera de cada set, cada avatar con una de las nueve animaciones; los de oro, uno por set y tres en Tenerife, detrás de los cinco, con la regla de su fiesta y una ventana cada año de 2026 a 2045), las 426 filas de `PERFIL_UI` en los diez idiomas, la edad de la nube (16, y sin año de nacimiento no se enciende), lo que la pantalla nunca hace, sus enganches con la app, que cada animación tenga su regla y nada se mueva con «reducir movimiento», que «Sorpréndeme» nunca dé uno de oro y que la lista de los de oro conseguidos no suba a la nube, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas, rangos, fechas de 1900 a 2100 y el tope de 2.000 pesos y 2.000 caminatas, la misma cifra que la app) |
-| `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql`, con sus fechas y su tope de 2.000, y, como Supabase, da como mucho 1.000 filas por consulta), la nube con más filas de las que caben en una consulta, el tope lleno, las visitas comprobadas en el mapa, el selector de los 47 sets (el país del navegador primero, «Todos los países» y su buscador), los de oro con la fecha cambiada en el reloj del navegador (fuera de su día, en su fiesta, después, «De oro», «Sorpréndeme» y la descarga) y el movimiento al tocar, nada con «reducir movimiento», los 284 avatares y sus nombres sin cortar, y los diez idiomas a 360, 390 y 430 px, también los de oro en cinco estados (150 pantallas) |
+| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 235 avatares en 47 sets y sus 49 de oro (SVG sin nada que se ejecute, solo con etiquetas de dibujo y 2.200 bytes como mucho, «class» solo en las piezas que se mueven y nunca con `transform`, ids con la forma que pide `perfil.sql`, los 36 países de Europa ni uno más ni uno menos, la bandera de cada set, cada avatar con una de las nueve animaciones; los de oro, uno por set y tres en Tenerife, detrás de los cinco, con la regla de su fiesta y una ventana cada año de 2026 a 2045), las 427 filas de `PERFIL_UI` en los diez idiomas, la edad de la nube (16, contada por la fecha de nacimiento entera, y sin ella no se enciende; a la nube, el año solo), lo que la pantalla nunca hace, sus enganches con la app, que cada animación tenga su regla y nada se mueva con «reducir movimiento», que «Sorpréndeme» nunca dé uno de oro y que la lista de los de oro conseguidos no suba a la nube, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas, rangos, fechas de 1900 a 2100 y el tope de 2.000 pesos y 2.000 caminatas, la misma cifra que la app) |
+| `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql`, con sus fechas y su tope de 2.000, y, como Supabase, da como mucho 1.000 filas por consulta), la nube con más filas de las que caben en una consulta, el tope lleno, las visitas comprobadas en el mapa, el selector de los 47 sets (el país del navegador primero, «Todos los países» y su buscador), los de oro con la fecha cambiada en el reloj del navegador (fuera de su día, en su fiesta, después, «De oro», «Sorpréndeme» y la descarga) y el movimiento al tocar, nada con «reducir movimiento», los 284 avatares y sus nombres sin cortar, y los diez idiomas a 360, 390 y 430 px, también los de oro en cinco estados (150 pantallas); y la edad de la nube contada por la fecha de nacimiento (quien cumple 16 mañana, todavía no; hoy, sí), con la fecha guardada también cuando el selector avisa solo con «change» |
 | `tools/probar_fechas_oro.js` | las fechas de los de oro, sin navegador: el motor de `modulos/avatares.js` con una regla de ejemplo de cada tipo (la Pascua y la ortodoxa, un día fijo que se adelanta si cae en domingo, un día de la semana entre dos fechas, el enésimo día de la semana de un mes y el último, una tabla de fechas, una fiesta de dos días que cruza el año, el Carnaval de sábado a martes y una excepción, como la de Santa Cruz en 2027): 51 casos, con sus Pascuas y sus días de la semana comprobados aparte |
 | `tools/auditar_emergencias.js` | el panel de emergencias (SOS) en Node: cada fila en los diez idiomas y pedida por el código, las ocho del armazón en `UI_TX`, las fuentes de cada guía, los grupos y los «Vea también», las banderas y los teléfonos, los enlaces (https y de los dominios oficiales), el armazón con el 112 y el rótulo «SOS», el service worker (en `CORE`, con su rama y fuera de «red primero»), el atajo del manifiesto, que cada fichero de `window.SOS_DATOS` tenga su robot encendido, y ninguno encendido sin él, y que lo que escriben los robots vaya en «red primero» |
 | `tools/probar_emergencias.js` | el panel de emergencias en un navegador: la barra de abajo con el SOS a 320 y 360 px y el panel a 360, 390 y 430 en los diez idiomas, las veinticinco guías con sus fuentes y «atrás», los teléfonos de la tarjeta del 112, las coordenadas, el cambio de idioma, los hospitales, los avisos de AEMET y la franja del resumen, lo que enseña con los datos de los robots (frescos, viejos y rotos), el módulo que no llega, `#sos` y sin conexión |

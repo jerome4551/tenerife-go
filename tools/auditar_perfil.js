@@ -44,7 +44,7 @@
  *      excepcion de 2027 del Carnaval) las prueba tools/probar_fechas_oro.js.
  *
  * QUE MIRA (parte 2, la pantalla: modulos/perfil.js)
- *   6. las 426 filas de PERFIL_UI (95 de la pantalla, 47 de sets, 284 de
+ *   6. las 427 filas de PERFIL_UI (96 de la pantalla, 47 de sets, 284 de
  *      avatares: 235 y 49 de oro), con lo que comprobaba validar_i18n.py del encargo: los diez
  *      idiomas y ninguno en blanco; los mismos {marcadores} que el castellano;
  *      ni comillas dobles ASCII ni guiones blandos u otros invisibles; los
@@ -293,8 +293,8 @@ console.log('\n=== el perfil: la pantalla (modulos/perfil.js) ===');
 let PUI = {};
 try { PUI = ROT.grab('var PERFIL_UI = {', 0, MOD); } catch (e) { PUI = {}; }
 const claves = Object.keys(PUI);
-ok(claves.length === 426, 'PERFIL_UI: 426 filas', claves.length);
-ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 284, '47 filas de sets y 284 de avatares, 235 y 49 de oro (y 95 de la pantalla)');
+ok(claves.length === 427, 'PERFIL_UI: 427 filas', claves.length);
+ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 284, '47 filas de sets y 284 de avatares, 235 y 49 de oro (y 96 de la pantalla)');
 ok(/\n  Object\.assign\(UI_TX, PERFIL_UI\);\n/.test(MOD), 'se funden en UI_TX con Object.assign(UI_TX, PERFIL_UI), como CIELO_UI');
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 ok(JSON.stringify(IDI) === JSON.stringify(LENGUAS), 'los diez idiomas son los de SUPPORTED_LANGS', LENGUAS.join(','));
@@ -387,10 +387,18 @@ const inserts = (MOD.match(/\.insert\(/g) || []).length, altas = (MOD.match(/\.a
 const enciende = (MOD.match(/function nubeEncender\(\) \{[\s\S]*?\n  \}/) || [''])[0];
 ok(inserts === 1 && /from\('perfiles'\)\.insert\(alta\)/.test(MOD) && altas === 1 && /c\.alta = true/.test(enciende), 'la fila del permiso (perfiles) solo la crea «Acepto»: un insert, y la marca de alta solo la pone nubeEncender()', inserts + ' / ' + altas);
 ok(/var EDAD_NUBE = 16;/.test(MOD) && /var EDAD_ADULTO = 20;/.test(MOD), 'la nube desde los 16 años (Jerome, 24/10/2026; la LOPDGDD, art. 7, deja desde los 14) y las categorias del IMC desde los 20 (OMS)');
-/* y sin año de nacimiento no se puede dar el permiso: antes se pide la edad */
+/* y sin la fecha de nacimiento entera no se puede dar el permiso: antes se pide.
+   Con el año solo, quien cumple 16 en diciembre contaba como de 16 desde enero
+   (Jerome, 24/10/2026: «es el cálculo correcto saber si tiene 16») */
 ok(/function nubeVetada\(\) \{ return sinEdadParaNube\(\) \|\| menorParaNube\(\); \}/.test(MOD)
+   && /function sinEdadParaNube\(\) \{ return !\(st\.nacimiento && st\.nacimiento_md\); \}/.test(MOD)
+   && /function edad\(\) \{ return edadEn\(st\.nacimiento, st\.nacimiento_md\); \}/.test(MOD)
    && (MOD.match(/nubeVetada\(\)/g) || []).length >= 4 && !/menorParaNube\(\)\) return/.test(MOD),
-   'sin el año de nacimiento, o con menos de 16, el interruptor de la nube no se enciende ni «Acepto» da el permiso');
+   'sin la fecha de nacimiento entera, o con menos de 16 contados por el dia, el interruptor de la nube no se enciende ni «Acepto» da el permiso');
+/* la fecha, en el movil; a la nube, el año solo, como siempre (perfil.sql no cambia) */
+ok(/id="tgp-nac" type="date"/.test(MOD) && !/nacimiento_md[^\n]*(upsert|insert)/.test(CODIGO)
+   && /nacimiento: st\.nacimiento, objetivo_kg: st\.objetivo_kg, creado: st\.creado, updated_at/.test(MOD),
+   'el campo es una fecha; a la nube sube el año solo (el mes y el dia se quedan en el movil)');
 ok(!/<\/script/i.test(MOD), 'modulos/perfil.js no trae «</script» (tools/fuente.js lo pega en linea)');
 const prototipo = ['sembrar', 'LANG_NAMES', 'PROTO', 'EXTRA', 'BADGES', 'LOCALE', 'st.lang', 'st.demo', 'tgp-lang', 'tgp-demo', 'tgp-demo-fecha', 'tgp-demo-fiesta', 'hoyOro', 'protoIdioma', 'protoEjemplo', 'protoCopiar', 'tgp-modal', 'tgp.v4']
   .filter(x => new RegExp('(^|[^\\w.-])' + x.replace(/[.-]/g, '\\$&') + '(?![\\w-])').test(CODIGO));

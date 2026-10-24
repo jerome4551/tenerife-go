@@ -185,6 +185,11 @@ echo; echo "════════ rutas: guaguas a hora fija y lo que se ve a
 # «A→B» decia que no habia guagua entre La Laguna y el Puerto de la Cruz, con
 # la frase de la guagua del Teide, y varios textos salian en castellano.
 control probar_rutas.js node tools/probar_rutas.js "$PUERTO"
+echo; echo "════════ «Solo accesibles en bus»: todas las paradas de cada linea, y lo que se ve, en los diez idiomas ════════"
+# Desde el 24 de octubre de 2026: miraba un solo recorrido por linea y se
+# dejaba 520 parejas linea-lugar de 6.701; sin lineas vaciaba el mapa con un
+# aviso en castellano y de tu, y el interruptor de la fila no se encendia.
+control probar_bus_acceso.js node tools/probar_bus_acceso.js "$PUERTO"
 echo; echo "════════ «Organice su día» entero, en los diez idiomas, con los tramos calculados ════════"
 # Desde el 13 de octubre de 2026: el tiempo entre paradas era un rotulo fijo
 # («En guagua ~25 min» para cualquier tramo) y varios titulos salian sin traducir.

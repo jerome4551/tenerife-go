@@ -72,10 +72,11 @@
     "perfilAvatarGuardado": {"es": "Avatar guardado", "en": "Avatar saved", "fr": "Avatar enregistré", "de": "Avatar gespeichert", "it": "Avatar salvato", "nl": "Avatar opgeslagen", "zh": "头像已保存", "zht": "頭像已儲存", "bg": "Аватарът е запазен", "pl": "Awatar zapisany"},
     "perfilBloqueado": {"es": "Se desbloquea con {n} visita comprobada ({v} de {n})|Se desbloquea con {n} visitas comprobadas ({v} de {n})", "en": "Unlocks after {n} verified visit ({v} of {n})|Unlocks after {n} verified visits ({v} of {n})", "fr": "Se débloque après {n} visite vérifiée ({v} sur {n})|Se débloque après {n} visites vérifiées ({v} sur {n})", "de": "Wird nach {n} bestätigten Besuch freigeschaltet ({v} von {n})|Wird nach {n} bestätigten Besuchen freigeschaltet ({v} von {n})", "it": "Si sblocca con {n} visita verificata ({v} su {n})|Si sblocca con {n} visite verificate ({v} su {n})", "nl": "Wordt ontgrendeld na {n} bevestigd bezoek ({v} van {n})|Wordt ontgrendeld na {n} bevestigde bezoeken ({v} van {n})", "zh": "确认到访{n}个地点后解锁（{v}/{n}）", "zht": "確認到訪{n}個地點後解鎖（{v}/{n}）", "bg": "Отключва се след {n} потвърдено посещение ({v} от {n})|Отключва се след {n} потвърдени посещения ({v} от {n})", "pl": "Odblokowuje się po {n} potwierdzonej wizycie ({v} z {n})|Odblokowuje się po {n} potwierdzonych wizytach ({v} z {n})|Odblokowuje się po {n} potwierdzonych wizytach ({v} z {n})"},
     "perfilDatos": {"es": "Sus datos", "en": "Your details", "fr": "Vos données", "de": "Ihre Daten", "it": "Dati personali", "nl": "Uw gegevens", "zh": "我的数据", "zht": "我的資料", "bg": "Вашите данни", "pl": "Dane osobowe"},
-    "perfilDatosNota": {"es": "Se guardan en este dispositivo y, solo si usted activa la opción en «Cuenta», también en su cuenta.", "en": "They’re stored on this device, and in your account only if you turn that on under «Account».", "fr": "Elles sont enregistrées sur cet appareil et, uniquement si vous activez l’option dans «Compte», également dans votre compte.", "de": "Diese Daten werden auf diesem Gerät gespeichert und nur dann auch in Ihrem Konto, wenn Sie das unter «Konto» einschalten.", "it": "Sono salvati su questo dispositivo e, solo se attiva l’opzione in «Account», anche nell’account.", "nl": "Ze worden op dit apparaat opgeslagen en, alleen als u dat onder «Account» aanzet, ook in uw account.", "zh": "保存在本设备上；只有在您于「账户」中开启后，才会同时保存到您的账户。", "zht": "儲存在此裝置上；只有在您於「帳戶」中開啟後，才會同時儲存到您的帳戶。", "bg": "Пазят се на това устройство, а в акаунта ви – само ако включите тази опция в «Акаунт».", "pl": "Są zapisywane na tym urządzeniu, a na koncie – tylko po włączeniu tej opcji w sekcji «Konto»."},
+    "perfilDatosNota": {"es": "Se guardan en este dispositivo y, solo si usted activa la opción en «Cuenta», también en su cuenta (de la fecha de nacimiento, solo el año).", "en": "They’re stored on this device, and in your account only if you turn that on under «Account» (for your date of birth, only the year).", "fr": "Elles sont enregistrées sur cet appareil et, uniquement si vous activez l’option dans «Compte», également dans votre compte (de la date de naissance, seulement l’année).", "de": "Diese Daten werden auf diesem Gerät gespeichert und nur dann auch in Ihrem Konto, wenn Sie das unter «Konto» einschalten (vom Geburtsdatum nur das Jahr).", "it": "Sono salvati su questo dispositivo e, solo se attiva l’opzione in «Account», anche nell’account (della data di nascita, solo l’anno).", "nl": "Ze worden op dit apparaat opgeslagen en, alleen als u dat onder «Account» aanzet, ook in uw account (van de geboortedatum alleen het jaar).", "zh": "保存在本设备上；只有在您于「账户」中开启后，才会同时保存到您的账户（出生日期只保存年份）。", "zht": "儲存在此裝置上；只有在您於「帳戶」中開啟後，才會同時儲存到您的帳戶（出生日期只儲存年份）。", "bg": "Пазят се на това устройство, а в акаунта ви – само ако включите тази опция в «Акаунт» (от датата на раждане – само годината).", "pl": "Są zapisywane na tym urządzeniu, a na koncie – tylko po włączeniu tej opcji w sekcji «Konto» (z daty urodzenia tylko rok)."},
     "perfilAltura": {"es": "Altura", "en": "Height", "fr": "Taille", "de": "Größe", "it": "Altezza", "nl": "Lengte", "zh": "身高", "zht": "身高", "bg": "Ръст", "pl": "Wzrost"},
     "perfilPeso": {"es": "Peso", "en": "Weight", "fr": "Poids", "de": "Gewicht", "it": "Peso", "nl": "Gewicht", "zh": "体重", "zht": "體重", "bg": "Тегло", "pl": "Waga"},
-    "perfilNacimiento": {"es": "Año de nacimiento", "en": "Birth year", "fr": "Année de naissance", "de": "Geburtsjahr", "it": "Anno di nascita", "nl": "Geboortejaar", "zh": "出生年份", "zht": "出生年份", "bg": "Година на раждане", "pl": "Rok urodzenia"},
+    "perfilNacimiento": {"es": "Fecha de nacimiento", "en": "Date of birth", "fr": "Date de naissance", "de": "Geburtsdatum", "it": "Data di nascita", "nl": "Geboortedatum", "zh": "出生日期", "zht": "出生日期", "bg": "Дата на раждане", "pl": "Data urodzenia"},
+    "perfilNacSoloAnio": {"es": "Solo está el año ({a}): ponga la fecha completa.", "en": "Only the year is saved ({a}): enter the full date.", "fr": "Seule l’année est enregistrée ({a}) : indiquez la date complète.", "de": "Gespeichert ist nur das Jahr ({a}): Tragen Sie das vollständige Datum ein.", "it": "C’è solo l’anno ({a}): indichi la data completa.", "nl": "Alleen het jaar is opgeslagen ({a}): vul de volledige datum in.", "zh": "目前只保存了年份（{a}）：请填写完整日期。", "zht": "目前只儲存了年份（{a}）：請填寫完整日期。", "bg": "Запазена е само годината ({a}): въведете пълната дата.", "pl": "Zapisany jest tylko rok ({a}): trzeba podać pełną datę."},
     "perfilAnios": {"es": "{n} año|{n} años", "en": "{n} year old|{n} years old", "fr": "{n} an|{n} ans", "de": "{n} Jahr|{n} Jahre", "it": "{n} anno|{n} anni", "nl": "{n} jaar|{n} jaar", "zh": "{n}岁", "zht": "{n}歲", "bg": "{n} година|{n} години", "pl": "{n} rok|{n} lata|{n} lat"},
     "perfilUnidades": {"es": "Unidades", "en": "Units", "fr": "Unités", "de": "Einheiten", "it": "Unità", "nl": "Eenheden", "zh": "单位", "zht": "單位", "bg": "Мерни единици", "pl": "Jednostki"},
     "perfilGuardar": {"es": "Guardar", "en": "Save", "fr": "Enregistrer", "de": "Speichern", "it": "Salva", "nl": "Opslaan", "zh": "保存", "zht": "儲存", "bg": "Запази", "pl": "Zapisz"},
@@ -140,7 +141,7 @@
     "perfilNubeQuitarPendiente": {"es": "La copia guardada en su cuenta se borrará en cuanto haya conexión.", "en": "The copy in the cloud will be deleted as soon as there is a connection.", "fr": "La copie dans le cloud sera effacée dès que la connexion sera rétablie.", "de": "Die Kopie in der Cloud wird gelöscht, sobald eine Verbindung besteht.", "it": "La copia nel cloud verrà cancellata non appena ci sarà una connessione.", "nl": "De kopie in de cloud wordt gewist zodra er verbinding is.", "zh": "联网后将删除云端的副本。", "zht": "連線後將刪除雲端的副本。", "bg": "Копието в облака ще бъде изтрито, веднага щом има връзка.", "pl": "Kopia w chmurze zostanie usunięta, gdy tylko pojawi się połączenie."},
     "perfilBorradoNube": {"es": "Datos del perfil borrados de este dispositivo y de su cuenta", "en": "Profile data deleted from this device and from your account", "fr": "Données du profil effacées de cet appareil et de votre compte", "de": "Profildaten von diesem Gerät und aus Ihrem Konto gelöscht", "it": "Dati del profilo cancellati da questo dispositivo e dall’account", "nl": "Profielgegevens van dit apparaat en uit uw account gewist", "zh": "已从本设备和您的账户中删除个人资料数据", "zht": "已從此裝置和您的帳戶中刪除個人檔案資料", "bg": "Данните от профила са изтрити от това устройство и от акаунта ви", "pl": "Dane profilu usunięte z tego urządzenia i z konta"},
     "perfilNubeEdad": {"es": "Disponible a partir de los {n} años.", "en": "Available from age {n}.", "fr": "Disponible à partir de {n} ans.", "de": "Ab {n} Jahren verfügbar.", "it": "Disponibile a partire dai {n} anni.", "nl": "Beschikbaar vanaf {n} jaar.", "zh": "年满{n}岁方可使用。", "zht": "年滿{n}歲方可使用。", "bg": "Достъпно от {n}-годишна възраст.", "pl": "Dostępne po ukończeniu {n} lat."},
-    "perfilNubePideEdad": {"es": "Ponga antes su año de nacimiento en «Sus datos»: disponible a partir de los {n} años.", "en": "First enter your birth year in «Your details»: available from age {n}.", "fr": "Indiquez d’abord votre année de naissance dans «Vos données» : disponible à partir de {n} ans.", "de": "Tragen Sie zuerst Ihr Geburtsjahr unter «Ihre Daten» ein: ab {n} Jahren verfügbar.", "it": "Indichi prima il Suo anno di nascita in «Dati personali»: disponibile a partire dai {n} anni.", "nl": "Vul eerst uw geboortejaar in bij «Uw gegevens»: beschikbaar vanaf {n} jaar.", "zh": "请先在「我的数据」中填写出生年份：年满{n}岁方可使用。", "zht": "請先在「我的資料」中填寫出生年份：年滿{n}歲方可使用。", "bg": "Първо въведете годината си на раждане във «Вашите данни»: достъпно от {n}-годишна възраст.", "pl": "Najpierw trzeba podać rok urodzenia w sekcji «Dane osobowe»: dostępne po ukończeniu {n} lat."},
+    "perfilNubePideEdad": {"es": "Ponga antes su fecha de nacimiento en «Sus datos»: disponible a partir de los {n} años.", "en": "First enter your date of birth in «Your details»: available from age {n}.", "fr": "Indiquez d’abord votre date de naissance dans «Vos données» : disponible à partir de {n} ans.", "de": "Tragen Sie zuerst Ihr Geburtsdatum unter «Ihre Daten» ein: ab {n} Jahren verfügbar.", "it": "Indichi prima la Sua data di nascita in «Dati personali»: disponibile a partire dai {n} anni.", "nl": "Vul eerst uw geboortedatum in bij «Uw gegevens»: beschikbaar vanaf {n} jaar.", "zh": "请先在「我的数据」中填写出生日期：年满{n}岁方可使用。", "zht": "請先在「我的資料」中填寫出生日期：年滿{n}歲方可使用。", "bg": "Първо въведете датата си на раждане във «Вашите данни»: достъпно от {n}-годишна възраст.", "pl": "Najpierw trzeba podać datę urodzenia w sekcji «Dane osobowe»: dostępne po ukończeniu {n} lat."},
     "perfilSet_es": {"es": "España", "en": "Spain", "fr": "Espagne", "de": "Spanien", "it": "Spagna", "nl": "Spanje", "zh": "西班牙", "zht": "西班牙", "bg": "Испания", "pl": "Hiszpania"},
     "perfilSet_en": {"es": "Reino Unido", "en": "United Kingdom", "fr": "Royaume-Uni", "de": "Vereinigtes Königreich", "it": "Regno Unito", "nl": "Verenigd Koninkrijk", "zh": "英国", "zht": "英國", "bg": "Великобритания", "pl": "Wielka Brytania"},
     "perfilSet_de": {"es": "Alemania", "en": "Germany", "fr": "Allemagne", "de": "Deutschland", "it": "Germania", "nl": "Duitsland", "zh": "德国", "zht": "德國", "bg": "Германия", "pl": "Niemcy"},
@@ -502,6 +503,29 @@
   function dias(a, b) { return Math.round((fecha(b) - fecha(a)) / 86400000); }
   function hoy() { return ymd(new Date()); }
   function esFecha(s) { return typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && !isNaN(fecha(s)); }
+  /* La fecha de nacimiento entera (24-10-2026). Jerome: «que sea preciso su
+     fecha de nacimiento: es el cálculo correcto para saber si tiene 16». El año
+     va donde iba siempre (st.nacimiento, y en la nube, la columna nacimiento);
+     el mes y el dia (st.nacimiento_md, «MM-DD») se quedan en el movil: para la
+     edad exacta no hace falta subir nada mas, y perfil.sql no cambia. Una
+     fecha que exista de verdad (nada de 30 de febrero), de 1900 a hoy. */
+  function esFechaNac(anio, md) {
+    if (!(anio >= 1900) || typeof md !== 'string' || !/^\d{2}-\d{2}$/.test(md)) return false;
+    var s = anio + '-' + md;
+    return ymd(fecha(s)) === s && s <= hoy();
+  }
+  /* La edad, contando el dia del cumpleaños (Codigo Civil, art. 315: «se
+     incluirá completo el día del nacimiento»). Con el año solo (los perfiles
+     de antes), la del año: sirve para el IMC, no para la nube. */
+  function edadEn(anio, md, ref) {
+    if (!anio) return null;
+    var r = ref || new Date(), e = r.getFullYear() - anio;
+    if (md) {
+      var m = r.getMonth() + 1, d = r.getDate(), bm = +md.slice(0, 2), bd = +md.slice(3, 5);
+      if (m < bm || (m === bm && d < bd)) e--;
+    }
+    return e;
+  }
   /* Postgres devuelve las horas con microsegundos («…34.261123+00:00»); Safari no siempre
      los lee: se dejan en milisegundos antes de Date.parse. */
   function instante(s) { return typeof s === 'string' && s.length <= 40 ? Date.parse(s.replace(/(\.\d{3})\d+/, '$1')) : NaN; }
@@ -566,7 +590,7 @@
     /* editado: cuando se toco el perfil por ultima vez (para juntarlo con la nube).
        nube: null o { uid, desde, ok }: el permiso de ESA cuenta (desde = cuando se dio;
        ok = este movil ya se junto con la nube). colas: lo que falta por subir, por cuenta. */
-    return { v: 1, nombre: '', avatar: '', unidades: 'metric', altura_cm: null, nacimiento: null, objetivo_kg: null,
+    return { v: 1, nombre: '', avatar: '', unidades: 'metric', altura_cm: null, nacimiento: null, nacimiento_md: null, objetivo_kg: null,
       medidas: [], km: [], creado: hoy(), rango: 30, tab: 'peso', editado: null, nube: null, colas: {}, oro: {} };
   }
   function leerNube(n) { return (n && typeof n === 'object' && esUid(n.uid) && esInstante(n.desde)) ? { uid: n.uid, desde: n.desde, ok: n.ok === true } : null; }
@@ -599,6 +623,7 @@
     d.unidades = s.unidades === 'imperial' ? 'imperial' : 'metric';
     d.altura_cm = (s.altura_cm >= RANGO.cm[0] && s.altura_cm <= RANGO.cm[1]) ? s.altura_cm : null;
     d.nacimiento = (s.nacimiento >= 1900 && s.nacimiento <= anio) ? s.nacimiento : null;
+    d.nacimiento_md = (d.nacimiento && esFechaNac(d.nacimiento, s.nacimiento_md)) ? s.nacimiento_md : null;
     d.objetivo_kg = (s.objetivo_kg >= RANGO.kg[0] && s.objetivo_kg <= RANGO.kg[1]) ? s.objetivo_kg : null;
     d.creado = esFecha(s.creado) ? s.creado : d.creado;
     var vistos = {};
@@ -726,14 +751,15 @@
      · Las visitas comprobadas no suben nunca.
      · st.colas[uid]: lo que falta por subir (1) o borrar (0), clave a clave; cada
        marca lleva un numero que crece, para no perder lo que se toca mientras sube.
-     · Por debajo de EDAD_NUBE (segun el año de nacimiento) no se ofrece encenderla,
-       y sin año de nacimiento tampoco: antes se pide (perfilNubePideEdad). Apagarla,
+     · Por debajo de EDAD_NUBE (segun la fecha de nacimiento, entera) no se ofrece
+       encenderla, y sin ella tampoco: antes se pide (perfilNubePideEdad). Apagarla,
        siempre. Lo que ya estaba encendido sigue encendido: el permiso se dio con la
        regla de entonces. */
   /* Jerome, 24/10/2026: «Antes de 16 no es recomendable usar mucho el móvil. Mucho
      país ya obligan a definir su edad antes de usarlas. Como Francia hace poco».
      Desde los 16 y con el año de nacimiento puesto. (La LOPDGDD, art. 7, deja
-     consentir desde los 14; la app pide 16.) */
+     consentir desde los 14; la app pide 16.) Y el mismo dia, por la tarde:
+     con la fecha entera, no el año solo. */
   var EDAD_NUBE = 16;
   var NUBE_ESPERA = 1500;      /* ms entre el ultimo cambio y la subida */
   var NUBE_PLAZO = 15000;      /* una peticion que tarda mas cuenta como fallida (y se reintenta) */
@@ -742,8 +768,10 @@
   function clienteNube() { var A = window.AppAuth; try { return A && A.getClient ? A.getClient() : null; } catch (e) { return null; } }
   function nubeEncendida() { var u = sesion(); return !!(u && st.nube && st.nube.uid === u.id); }
   function menorParaNube() { var e = edad(); return e !== null && e < EDAD_NUBE; }
-  function sinEdadParaNube() { return edad() === null; }
-  /* lo que impide dar el permiso: no haber puesto el año de nacimiento o no llegar a EDAD_NUBE */
+  /* sin la fecha entera no se puede saber si ya tiene 16: con el año solo, quien
+     los cumple en diciembre contaba como de 16 desde enero */
+  function sinEdadParaNube() { return !(st.nacimiento && st.nacimiento_md); }
+  /* lo que impide dar el permiso: no haber puesto la fecha de nacimiento o no llegar a EDAD_NUBE */
   function nubeVetada() { return sinEdadParaNube() || menorParaNube(); }
   function colaDe(uid) {
     if (!st.colas[uid]) st.colas[uid] = { uid: uid, n: 0, alta: false, baja: false, perfil: 0, pesos: {}, km: {} };
@@ -933,7 +961,7 @@
     /* el perfil: la primera vez gana el ultimo que se edito y lo vacio se rellena con
        lo del otro lado; despues, la nube, salvo un cambio de aqui que espera en la cola.
        «Viajero desde»: la fecha mas antigua de las dos. */
-    var nb = perfilDeNube(fila), CAMPOS = ['nombre', 'avatar', 'unidades', 'altura_cm', 'nacimiento', 'objetivo_kg'];
+    var nb = perfilDeNube(fila), CAMPOS = ['nombre', 'avatar', 'unidades', 'altura_cm', 'nacimiento', 'objetivo_kg'], nacAntes = st.nacimiento;
     var ganaMovil = primera ? !!(st.editado && (!esInstante(fila.updated_at) || instante(st.editado) > instante(fila.updated_at))) : !!c.perfil;
     var subir = false;
     CAMPOS.forEach(function (k) {
@@ -946,6 +974,8 @@
       else st[k] = (k === 'nombre' || k === 'avatar') ? '' : null;   /* lo vaciaron en otro movil */
     });
     if (st.avatar && AV.esOro(st.avatar) && !tieneOro(st.avatar)) st.oro[st.avatar] = '';   /* lo cogio en otro movil */
+    /* el mes y el dia no viajan: si el año llega cambiado de otro movil, dejan de ser de esa fecha */
+    if (st.nacimiento !== nacAntes) st.nacimiento_md = null;
     if (nb.creado && nb.creado < st.creado) st.creado = nb.creado; else if (primera && nb.creado !== st.creado) subir = true;
     if (subir && !c.perfil) { c.n++; c.perfil = c.n; }
     st.nube.ok = true;
@@ -955,7 +985,7 @@
 
   function ordenadas() { return st.medidas.slice().sort(function (a, b) { return a.d < b.d ? -1 : 1; }); }
   function pesoActual() { var m = ordenadas(); return m.length ? m[m.length - 1].kg : null; }
-  function edad() { return st.nacimiento ? new Date().getFullYear() - st.nacimiento : null; }
+  function edad() { return edadEn(st.nacimiento, st.nacimiento_md); }
   /* El pais de quien mira, por los idiomas del navegador (navigator.languages,
      que se lee en el movil y no se envia): «sv-SE» -> Suecia, «de-AT» -> Austria,
      «nl-BE» -> Belgica. Solo decide que set sale primero; no se guarda.
@@ -1185,17 +1215,19 @@
     $('tgp-altura').value = st.altura_cm ? (imp ? String(Math.round(st.altura_cm / CM_IN)) : mostrarNum(st.altura_cm, st.altura_cm % 1 ? 1 : 0)) : '';
     var p = pesoActual();
     $('tgp-peso').value = p ? mostrarNum(deKg(p), 1) : '';
-    $('tgp-nac').value = st.nacimiento || '';
+    $('tgp-nac').max = hoy();
+    $('tgp-nac').value = (st.nacimiento && st.nacimiento_md) ? st.nacimiento + '-' + st.nacimiento_md : '';
     $('tgp-objetivo').value = st.objetivo_kg ? mostrarNum(deKg(st.objetivo_kg), 1) : '';
     ['tgp-objetivo'].forEach(function (id) { $(id).setAttribute('aria-invalid', 'false'); $(id + '-h').textContent = ''; $(id + '-h').classList.remove('error'); });
     panel.querySelectorAll('#tgp-unidades button').forEach(function (b) { b.classList.toggle('is-on', b.dataset.u === st.unidades); });
     tocado = { altura: false, peso: false, nac: false };
     ayudas();
   }
-  function leerAnio() {
+  /* el campo de la fecha: vacio -> null; una fecha buena -> { a, md }; si no, undefined */
+  function leerNac() {
     var s = String($('tgp-nac').value || '').trim(); if (!s) return null;
-    var n = /^\d{4}$/.test(s) ? parseInt(s, 10) : NaN, anio = new Date().getFullYear();
-    return (n >= 1900 && n <= anio) ? n : undefined;
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s), a = m ? +m[1] : 0, md = m ? m[2] + '-' + m[3] : '';
+    return (m && esFechaNac(a, md)) ? { a: a, md: md } : undefined;
   }
   function pies(cm) { var inch = Math.round(cm / CM_IN); return Math.floor(inch / 12) + '′' + (inch % 12) + '″'; }
   function stones(kg) { var lb = Math.round(kg * KG_LB); return Math.floor(lb / 14) + ' st ' + (lb % 14) + ' lb'; }
@@ -1204,17 +1236,20 @@
     var h = hv ? aCm(hv) : null, p = pv ? aKg(pv) : null;
     if (hv !== undefined) $('tgp-altura-h').textContent = h ? (imperial() ? fmt(h, 0) + ' cm' : pies(h)) : '';
     if (pv !== undefined) $('tgp-peso-h').textContent = p ? (imperial() ? fmt(p, 1) + ' kg' : stones(p)) : '';
-    var n = leerAnio(), anio = new Date().getFullYear(), ayN = $('tgp-nac-h');
+    var n = leerNac(), anio = new Date().getFullYear(), ayN = $('tgp-nac-h');
     $('tgp-nac').setAttribute('aria-invalid', n === undefined ? 'true' : 'false');
     ayN.classList.toggle('error', n === undefined);
-    ayN.textContent = n === undefined ? tx('perfilRango', { min: '1900', max: String(anio) }) : (n ? tx('perfilAnios', { n: anio - n }) : '');
+    /* un perfil de antes, con el año solo: el campo sale vacio y se dice por que */
+    ayN.textContent = n === undefined ? tx('perfilRango', { min: '1900', max: String(anio) })
+      : n ? tx('perfilAnios', { n: edadEn(n.a, n.md) })
+      : (!tocado.nac && st.nacimiento && !st.nacimiento_md) ? tx('perfilNacSoloAnio', { a: String(st.nacimiento) }) : '';
     var box = $('tgp-imc');
     if (h && p) {
       /* Se clasifica el mismo numero que se enseña (redondeado a un decimal):
          sin esto, 24,96 salia «25,0» con la etiqueta «Normal». */
       var imc = Math.round(p / Math.pow(h / 100, 2) * 10) / 10, cat, cls;
       if (imc < 18.5) { cat = 'perfilImcBajo'; cls = 'warn'; } else if (imc < 25) { cat = 'perfilImcNormal'; cls = 'ok'; } else if (imc < 30) { cat = 'perfilImcSobre'; cls = 'warn'; } else { cat = 'perfilImcObes'; cls = 'bad'; }
-      var e = n ? anio - n : edad(), adulto = e === null || e >= EDAD_ADULTO;
+      var e = n ? edadEn(n.a, n.md) : edad(), adulto = e === null || e >= EDAD_ADULTO;
       $('tgp-imc-val').textContent = fmt(imc, 1);
       $('tgp-imc-cat').textContent = tx(cat); $('tgp-imc-cat').className = 'cat ' + cls; $('tgp-imc-cat').hidden = !adulto;
       $('tgp-imc-joven').hidden = adulto;
@@ -1223,13 +1258,13 @@
   }
   function guardarDatos(ev) {
     ev.preventDefault();
-    var hv = campo('tgp-altura', rAltura(), 'tgp-altura-h'), pv = campo('tgp-peso', rPeso(), 'tgp-peso-h'), n = leerAnio();
+    var hv = campo('tgp-altura', rAltura(), 'tgp-altura-h'), pv = campo('tgp-peso', rPeso(), 'tgp-peso-h'), n = leerNac();
     if (hv === undefined) { $('tgp-altura').focus(); return; }
     if (pv === undefined) { $('tgp-peso').focus(); return; }
     if (n === undefined) { ayudas(); $('tgp-nac').focus(); return; }
     if (tocado.peso && pv !== null && pesoNoCabe(hoy())) { avisoTope('tgp-peso-h'); $('tgp-peso').focus(); return; }
     if (tocado.altura) st.altura_cm = hv === null ? null : aCm(hv);
-    if (tocado.nac) st.nacimiento = n;
+    if (tocado.nac) { st.nacimiento = n ? n.a : null; st.nacimiento_md = n ? n.md : null; }
     if (tocado.altura || tocado.nac) marcar('perfil');
     /* El peso solo se anota si se ha cambiado: entonces es «el peso de hoy». */
     if (tocado.peso && pv !== null) anotarPeso(hoy(), aKg(pv));
@@ -1513,7 +1548,8 @@
      v: la version del formato, la misma que lleva tenerife.perfil; con el id de
      cada caminata, que es su clave en la nube. */
   function exportar() {
-    var datos = { v: 1, perfil: { nombre: st.nombre, avatar: avatarActual().id, altura_cm: st.altura_cm, nacimiento: st.nacimiento, objetivo_kg: st.objetivo_kg, unidades: st.unidades, creado: st.creado }, pesos: ordenadas(), caminatas: st.km.map(function (k) { return { id: k.id, d: k.d, km: k.km }; }), avatares_oro: st.oro };
+    var datos = { v: 1, perfil: { nombre: st.nombre, avatar: avatarActual().id, altura_cm: st.altura_cm, nacimiento: st.nacimiento,
+      fecha_nacimiento: (st.nacimiento && st.nacimiento_md) ? st.nacimiento + '-' + st.nacimiento_md : null, objetivo_kg: st.objetivo_kg, unidades: st.unidades, creado: st.creado }, pesos: ordenadas(), caminatas: st.km.map(function (k) { return { id: k.id, d: k.d, km: k.km }; }), avatares_oro: st.oro };
     var blob = new Blob([JSON.stringify(datos, null, 2) + '\n'], { type: 'application/json' });
     return compartirFichero(blob, 'tenerife-go-perfil.json', tx('perfilExportar'));
   }
@@ -1583,6 +1619,9 @@
     });
     $('tgp-form').addEventListener('submit', guardarDatos);
     [['tgp-altura', 'altura'], ['tgp-peso', 'peso'], ['tgp-nac', 'nac']].forEach(function (c) { $(c[0]).addEventListener('input', function () { tocado[c[1]] = true; ayudas(); }); });
+    /* el campo de la fecha, tambien con «change»: por si un navegador avisa solo al
+       cerrar el selector de fecha. Sin esto la fecha elegida no se guardaria. */
+    $('tgp-nac').addEventListener('change', function () { tocado.nac = true; ayudas(); });
     $('tgp-unidades').addEventListener('click', function (e) {
       var b = e.target.closest('button'); if (!b || b.dataset.u === st.unidades) return;
       /* Solo si la persona ha escrito una altura nueva se convierte; si no, la guardada no se toca. */
@@ -1874,8 +1913,11 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 .tgp-link { background: none; border: 0; color: var(--bad); text-decoration: underline; text-underline-offset: 3px; padding: 6px; font-size: .9rem; }
 
 /* datos */
-.tgp-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-@media (max-width: 380px) { .tgp-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.tgp-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+/* la fecha de nacimiento (24-10-2026) necesita su fila: un campo de fecha no cabe
+   en un tercio de pantalla de movil. Altura y peso, juntos; la fecha, debajo. */
+.tgp-field-fecha { grid-column: 1 / -1; }
+.tgp-input-fecha { padding-right: 12px; min-height: 44px; }
 .tgp-field { display: grid; gap: 5px; min-width: 0; }
 .tgp-field label { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .tgp-input-wrap { position: relative; }
@@ -2176,9 +2218,9 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
           <div class="tgp-input-wrap"><input class="tgp-input" id="tgp-peso" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-describedby="tgp-peso-h"><span class="tgp-unit" id="tgp-peso-u">kg</span></div>
           <div class="tgp-help" id="tgp-peso-h" aria-live="polite"></div>
         </div>
-        <div class="tgp-field">
-          <label for="tgp-nac">Año de nacimiento</label>
-          <div class="tgp-input-wrap"><input class="tgp-input" id="tgp-nac" type="text" inputmode="numeric" maxlength="4" autocomplete="off" enterkeyhint="done" aria-describedby="tgp-nac-h"></div>
+        <div class="tgp-field tgp-field-fecha">
+          <label for="tgp-nac">Fecha de nacimiento</label>
+          <div class="tgp-input-wrap"><input class="tgp-input tgp-input-fecha" id="tgp-nac" type="date" min="1900-01-01" autocomplete="bday" enterkeyhint="done" aria-describedby="tgp-nac-h"></div>
           <div class="tgp-help" id="tgp-nac-h" aria-live="polite"></div>
         </div>
       </div>

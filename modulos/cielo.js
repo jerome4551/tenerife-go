@@ -5129,10 +5129,36 @@
     });
     /* en la aplicacion de las tiendas (TGO-NATIVO) los elementos se piden primero a la web viva: tgoFetchDatos, en index.html */
     var pedir = typeof tgoFetchDatos === 'function' ? tgoFetchDatos : fetch;
-    var datos = pedir('./datos/satelites.json').then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+    var datos = pedir('./datos/satelites.json').then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(satelitesMasNuevos);
     S.sat.carga = Promise.all([motor, datos]).then(function (x) { prepararSatelites(x[1]); S.sat.fallo = false; },
       function (e) { S.sat.carga = null; S.sat.fallo = true; throw e; });
     return S.sat.carga;
+  }
+  /* SIN RED EN LA APP DE LAS TIENDAS (24-10-2026). Alli no hay service
+     worker: sin red, tgoFetchDatos da la copia que viaja dentro del paquete,
+     la del dia de la version, y a los 7 dias de la version ya no habia pasos
+     aunque la app se hubiera abierto ayer con conexion. Jerome: «mira como
+     podemos hacer que funcione». Ahora la ultima copia buena se guarda en el
+     movil, y sin red se usa la mas nueva de las dos, por la epoca mas
+     reciente de sus elementos (una copia guardada de antes de una version
+     nueva pierde contra la de dentro). Son 1 kB de datos publicos de
+     CelesTrak, nada de quien usa la app. En la web lo hace el service
+     worker, con la red primero, y esto no actua. */
+  var SAT_GUARDADOS = 'tgo_cielo_satelites_v1';
+  function epocaMaxDe(d) {
+    var m = 0;
+    ((d && d.sat) || []).forEach(function (s) { var x = Date.parse(s && s.epoca); if (x > m) m = x; });
+    return m;
+  }
+  function satelitesMasNuevos(d) {
+    if (!window.TGO_NATIVO) return d;
+    var g = null;
+    try { g = JSON.parse(localStorage.getItem(SAT_GUARDADOS) || 'null'); } catch (e) { g = null; }
+    var mg = epocaMaxDe(g);
+    /* una guardada con una epoca de mas de un dia en el futuro no es buena */
+    if (g && Array.isArray(g.sat) && mg > epocaMaxDe(d) && mg <= Date.now() + 864e5) return g;
+    try { if (epocaMaxDe(d)) localStorage.setItem(SAT_GUARDADOS, JSON.stringify(d)); } catch (e) {}
+    return d;
   }
   function prepararSatelites(d) {
     var lista = [];

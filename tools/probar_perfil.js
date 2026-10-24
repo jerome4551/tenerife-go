@@ -79,6 +79,10 @@ function ok(cond, que, detalle) {
 const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 const dia = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
 const HOY = dia(0);
+/* una fecha de nacimiento de hace n años (y masDias dias mas tarde): para la
+   edad exacta de la nube (24/10/2026) */
+const haceAnios = (n, masDias = 0) => { const d = new Date(); d.setFullYear(d.getFullYear() - n); d.setDate(d.getDate() + masDias); return ymd(d); };
+const NAC = '1990-05-17';
 const mismoInstante = (a, b) => Math.abs(Date.parse(String(a).replace(/(\.\d{3})\d+/, '$1')) - Date.parse(String(b).replace(/(\.\d{3})\d+/, '$1'))) < 2;
 /* Los datos de ejemplo del prototipo (su sembrar()): 15 pesos bajando despacio en 45
    dias y una semana de paseos. Las pruebas de la nube cuentan con ellos. */
@@ -93,7 +97,7 @@ function ejemplo() {
   const kms = [4.2, 0, 7.8, 3.1, 0, 11.4, 5.6], km = [];
   for (let j = 6; j >= 0; j--) if (kms[6 - j]) km.push({ id: 'ejemplo-caminata-' + j + '-' + Math.random().toString(36).slice(2, 10), d: dia(j), km: kms[6 - j] });
   const c = new Date(); c.setMonth(c.getMonth() - 1);
-  return { v: 1, nombre: 'Alex', avatar: '', unidades: 'metric', altura_cm: 178, nacimiento: 1990, objetivo_kg: 78, medidas, km, creado: ymd(c), rango: 30, tab: 'peso', editado: null, nube: null, colas: {} };
+  return { v: 1, nombre: 'Alex', avatar: '', unidades: 'metric', altura_cm: 178, nacimiento: 1990, nacimiento_md: '05-17', objetivo_kg: 78, medidas, km, creado: ymd(c), rango: 30, tab: 'peso', editado: null, nube: null, colas: {} };
 }
 
 async function contexto(b, opc) {
@@ -143,7 +147,7 @@ async function regresiones(b) {
   await abrirPerfilYa(pg);
   const E = f => pg.evaluate(f);
   const n0 = await E('TG_PERFIL.estado().medidas.length');
-  await pg.fill('#tgp-nac', '1990'); await pg.click('#tgp-save'); await pg.waitForTimeout(250);
+  await pg.fill('#tgp-nac', NAC); await pg.click('#tgp-save'); await pg.waitForTimeout(250);
   ok(await E('TG_PERFIL.estado().medidas.length') === n0 && await E(`TG_PERFIL.estado().medidas.every(m => m.d !== '${HOY}')`), '1 «Guardar» no inventa un peso de hoy');
   await pg.fill('#tgp-altura', '176'); await pg.click('#tgp-save'); await pg.waitForTimeout(200);
   await pg.click('#tgp-unidades button[data-u="imperial"]'); await pg.waitForTimeout(120); await pg.click('#tgp-unidades button[data-u="metric"]'); await pg.waitForTimeout(120);
@@ -151,7 +155,7 @@ async function regresiones(b) {
   await pg.fill('#tgp-altura', '180'); await pg.fill('#tgp-peso', '80,9'); await pg.waitForTimeout(150);
   const imc = [await pg.innerText('#tgp-imc-val'), await E(`document.getElementById('tgp-imc-cat').textContent`)];
   ok(imc[0] === '25,0' && imc[1] === 'Sobrepeso', '3 IMC 24,97 -> 25,0 Sobrepeso', imc);
-  await pg.fill('#tgp-nac', String(new Date().getFullYear() - 14)); await pg.fill('#tgp-altura', '165'); await pg.fill('#tgp-peso', '70'); await pg.waitForTimeout(150);
+  await pg.fill('#tgp-nac', haceAnios(14)); await pg.fill('#tgp-altura', '165'); await pg.fill('#tgp-peso', '70'); await pg.waitForTimeout(150);
   ok(await E(`document.getElementById('tgp-imc-cat').hidden && !document.getElementById('tgp-imc-joven').hidden`), '4 con 14 años: sin categoria y con la nota', await E(`document.getElementById('tgp-imc-joven').textContent`));
   await pg.fill('#tgp-altura', '250,5'); await pg.waitForTimeout(100);
   ok((await pg.innerText('#tgp-altura-h')).includes('Entre'), '5 fuera de rango lo dice', await pg.innerText('#tgp-altura-h'));
@@ -184,8 +188,9 @@ async function regresiones(b) {
   const exp = JSON.parse(fs.readFileSync(await descarga.path(), 'utf8'));
   ok(descarga.suggestedFilename() === 'tenerife-go-perfil.json' && exp.v === 1 && exp.perfil && Array.isArray(exp.pesos) && exp.caminatas.length && exp.caminatas.every(c => c.id && c.d && c.km),
     '18 la descarga es tenerife-go-perfil.json, con v:1 y el id de cada caminata', { nombre: descarga.suggestedFilename(), v: exp.v });
+  ok(exp.perfil.fecha_nacimiento === NAC && exp.perfil.nacimiento === 1990, '18b y con la fecha de nacimiento entera (y el año, como antes)', exp.perfil);
   await E(`setLang('en')`); await pg.waitForTimeout(150);
-  const fechas = await E(`[...document.querySelectorAll('#perfil-panel input[type=date]')].map(e => e.getAttribute('aria-label'))`);
+  const fechas = await E(`[...document.querySelectorAll('#perfil-panel input[type=date]:not(#tgp-nac)')].map(e => e.getAttribute('aria-label'))`);
   ok(fechas.length === 2 && fechas.every(t => t === 'Date'), '11 en ingles, los campos de fecha no dicen «Fecha»', fechas);
   await E(`setLang('es')`); await pg.waitForTimeout(150);
   ok(await E(`getComputedStyle(document.getElementById('tgp-borrar-confirm')).display`) === 'none', '14 la confirmacion de borrar empieza cerrada (se ve de verdad, no solo el atributo)');
@@ -214,12 +219,35 @@ async function regresiones(b) {
   await pg.waitForTimeout(150);
   const sw = () => pg.locator('#tgp-nube').getAttribute('aria-checked');
   ok(await pg.locator('#tgp-nube').count() === 1 && await sw() === 'false', '21 con sesion, el interruptor de la nube sale apagado');
-  /* 24/10/2026: sin año de nacimiento no se puede dar el permiso (y con menos de 16, tampoco: n22) */
+  /* 24/10/2026: sin fecha de nacimiento no se puede dar el permiso (y con menos de 16, tampoco: n22) */
   const dis0 = await E(`document.getElementById('tgp-nube').disabled`), sub0 = await pg.innerText('#tgp-nube-box .sub');
   await pg.click('#tgp-nube', { force: true }); await pg.waitForTimeout(100);
-  ok(dis0 && sub0.includes('año de nacimiento') && sub0.includes('16 años') && await E(`getComputedStyle(document.getElementById('tgp-nube-confirm')).display`) === 'none',
-    '21b sin año de nacimiento el interruptor no se enciende y pide el año', [dis0, sub0]);
-  await pg.fill('#tgp-nac', '1990'); await pg.click('#tgp-save'); await pg.waitForTimeout(200);
+  ok(dis0 && sub0.includes('fecha de nacimiento') && sub0.includes('16 años') && await E(`getComputedStyle(document.getElementById('tgp-nube-confirm')).display`) === 'none',
+    '21b sin fecha de nacimiento el interruptor no se enciende y pide la fecha', [dis0, sub0]);
+  /* y la edad, contada por el dia (Jerome, 24/10/2026: «es el cálculo correcto
+     saber si tiene 16»): con el año solo, quien los cumple mañana ya contaba */
+  const nubeCon = async f => {
+    await pg.fill('#tgp-nac', f); await pg.click('#tgp-save'); await pg.waitForTimeout(200);
+    return [await E(`document.getElementById('tgp-nube').disabled`), await pg.innerText('#tgp-nube-box .sub'), await pg.innerText('#tgp-nac-h')];
+  };
+  let c16 = await nubeCon(haceAnios(16, 1));
+  ok(c16[0] && c16[1].includes('a partir de los 16 años') && c16[2] === '15 años', '21c quien cumple 16 mañana todavía no puede (15 años)', c16);
+  c16 = await nubeCon(haceAnios(16));
+  ok(!c16[0] && c16[2] === '16 años', '21d quien los cumple hoy, sí (16 años)', c16);
+  const md = await E('[TG_PERFIL.estado().nacimiento, TG_PERFIL.estado().nacimiento_md]');
+  ok(md[0] === +haceAnios(16).slice(0, 4) && md[1] === haceAnios(16).slice(5), '21e se guarda el año y, aparte, el mes y el dia', md);
+  await pg.fill('#tgp-nac', haceAnios(-1)); await pg.click('#tgp-save'); await pg.waitForTimeout(150);
+  const raro = [await E(`document.getElementById('tgp-nac').getAttribute('aria-invalid')`), await E('TG_PERFIL.estado().nacimiento_md'), await pg.innerText('#tgp-nac-h')];
+  ok(raro[0] === 'true' && raro[1] === haceAnios(16).slice(5) && raro[2].includes('Entre'), '21f una fecha de nacimiento en el futuro no se guarda y lo dice', raro);
+  await pg.fill('#tgp-nac', NAC); await pg.click('#tgp-save'); await pg.waitForTimeout(200);
+  /* un navegador que avisa solo con «change», al cerrar el selector de fecha (sin «input»):
+     la fecha elegida se guarda igual */
+  const soloChange = haceAnios(17);
+  await E(`(() => { const i = document.getElementById('tgp-nac'); i.value = '${soloChange}'; i.dispatchEvent(new Event('change', { bubbles: true })); })()`);
+  await pg.click('#tgp-save'); await pg.waitForTimeout(200);
+  const g21 = await E('[TG_PERFIL.estado().nacimiento, TG_PERFIL.estado().nacimiento_md]');
+  ok(g21[0] === +soloChange.slice(0, 4) && g21[1] === soloChange.slice(5), '21g la fecha se guarda también si el selector avisa solo con «change»', g21);
+  await pg.fill('#tgp-nac', NAC); await pg.click('#tgp-save'); await pg.waitForTimeout(200);
   await pg.click('#tgp-nube'); await pg.waitForTimeout(120);
   const vis = await E(`getComputedStyle(document.getElementById('tgp-nube-confirm')).display`);
   await pg.click('#tgp-nube-no'); await pg.waitForTimeout(120);
@@ -582,8 +610,8 @@ async function nube(b) {
   await pg.click('#tgp-borrar-local'); const aviso = await pg.innerText('#tgp-borrar-texto'); await pg.click('#tgp-borrar-si'); await pg.waitForTimeout(900);
   ok(aviso.includes('y de su cuenta') && !(await nubeDe('perfiles')).length && !(await nubeDe('pesos')).length && !(await st()).medidas.length && (await st()).nube === null && await sw() === 'false' && (await toast()).includes('y de su cuenta'),
     'n17 borrar el perfil con la nube: de aqui y de la cuenta', { aviso, toast: await toast() });
-  /* otra cuenta en el mismo movil (antes, el año de nacimiento, que se fue con el perfil) */
-  await pg.fill('#tgp-nac', '1990'); await pg.click('#tgp-save'); await pg.waitForTimeout(150);
+  /* otra cuenta en el mismo movil (antes, la fecha de nacimiento, que se fue con el perfil) */
+  await pg.fill('#tgp-nac', NAC); await pg.click('#tgp-save'); await pg.waitForTimeout(150);
   await pg.fill('#tgp-peso-nuevo', '70'); await pg.click('#tgp-add-peso button[type=submit]'); await pg.waitForTimeout(150);
   await pg.click('#tgp-nube'); await pg.click('#tgp-nube-si'); await colaVacia();
   await E('TGP_DEMO_NUBE.cuenta(1)'); await pg.waitForTimeout(700);
@@ -617,12 +645,12 @@ async function nube(b) {
      && s10.km.some(x => x.id === 'nube-caminata-0001'),
      'n21 al entrar, el permiso de la cuenta (dado en otro movil) enciende este y junta los dos lados', { nombre: s10.nombre, creado: s10.creado, nube: w10.length, aqui: s10.medidas.length });
   await pg.click('#tgp-nube'); await pg.click('#tgp-nube-quitar-si'); await pg.waitForTimeout(900);
-  await pg.fill('#tgp-nac', String(new Date().getFullYear() - 10)); await pg.click('#tgp-save'); await pg.waitForTimeout(200);
+  await pg.fill('#tgp-nac', haceAnios(10)); await pg.click('#tgp-save'); await pg.waitForTimeout(200);
   const dis = await E(`document.getElementById('tgp-nube').disabled`), sub = await pg.innerText('#tgp-nube-box .sub');
   await pg.click('#tgp-nube', { force: true }); await pg.waitForTimeout(100);
   ok(dis && sub.includes('a partir de los 16 años') && await E(`getComputedStyle(document.getElementById('tgp-nube-confirm')).display`) === 'none', 'n22 con 10 años: el interruptor no se puede encender y dice por que', [dis, sub]);
-  await pg.fill('#tgp-nac', '1990'); await pg.click('#tgp-save'); await pg.waitForTimeout(200);
-  ok(!(await E(`document.getElementById('tgp-nube').disabled`)) && (await pg.innerText('#tgp-nube-box .sub')).includes('perderlos'), 'n23 con un año adulto vuelve a poder encenderse');
+  await pg.fill('#tgp-nac', NAC); await pg.click('#tgp-save'); await pg.waitForTimeout(200);
+  ok(!(await E(`document.getElementById('tgp-nube').disabled`)) && (await pg.innerText('#tgp-nube-box .sub')).includes('perderlos'), 'n23 con una fecha de adulto vuelve a poder encenderse');
   await pg.click('#tgp-nube'); await pg.click('#tgp-nube-si'); await colaVacia();
   await E('TGP_DEMO_NUBE.red(false)'); await pg.fill('#tgp-peso-fecha', dia(4)); await pg.fill('#tgp-peso-nuevo', '74,4'); await pg.click('#tgp-add-peso button[type=submit]'); await pg.waitForTimeout(2600);
   await E('TG_PERFIL.esperar()');

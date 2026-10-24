@@ -219,6 +219,9 @@ const CASOS = [
      (Jerome, 24 de octubre de 2026) */
   ['es', '¿desde qué edad puedo guardar mi perfil en la nube?', 'a partir de los 16 años'],
   ['en', 'save my profile to the cloud',     'from age 16'],
+  /* y por la tarde, con la fecha entera: a la cuenta solo va el año */
+  ['es', '¿por qué me pide la fecha de nacimiento?', 'a su cuenta solo va el año'],
+  ['en', 'date of birth',                    'only the year goes to your account'],
   /* y las dos notificaciones que entraron en main esa tarde: el aviso del
      semaforo volcanico cuando cambia de color y el consejo de los domingos */
   ['es', '¿me avisa la app si cambia el semáforo volcánico?', 'cuando el semáforo cambia de color'],
