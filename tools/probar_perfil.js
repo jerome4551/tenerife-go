@@ -7,7 +7,7 @@
  * usa la pantalla de verdad, dentro de la app, como la usaria alguien. Son las
  * pruebas con las que se verifico el encargo (PARA-CLAUDE-CODE-PERFIL.md), que
  * venian para el prototipo, pasadas a la app, y lo que pide la nota encima:
- *   1. las regresiones de la verificacion (pruebas/regresiones.py, 41): «Guardar»
+ *   1. las regresiones de la verificacion (pruebas/regresiones.py, 51): «Guardar»
  *      no inventa un peso, 176 cm ida y vuelta, el IMC y su categoria, la nota de
  *      menos de 20 años, «81,5» y «815», los plurales, borrar un km, la descarga,
  *      borrar los datos con confirmacion, el set Tenerife y el interruptor;
@@ -16,8 +16,17 @@
  *      tildes y en ingles, elegir un pais, un avatar de Europa que vuelve al abrir,
  *      Escape, el cambio de idioma con la lista abierta, «Sorpréndeme» y nada
  *      fuera de sitio a 360 px; y los cortes de los nombres (cortes_nombres.py):
- *      los 235 de avatar y los 47 de set, en los diez idiomas, ninguna palabra mas
- *      ancha que su caja y, en la tira, dos lineas como mucho;
+ *      los 284 de avatar (235 y 49 de oro) y los 47 de set, en los diez idiomas,
+ *      ninguna palabra mas ancha que su caja y, en la tira, dos lineas como mucho;
+ *      y la fecha de los de oro, que quepa en su boton, tambien en «De oro»;
+ *   1c. los de oro y el movimiento (las 10 del 23 de octubre por la tarde, de la
+ *      37 a la 46): fuera de su dia, candado y fecha, y tocarlo dice cuando; el dia
+ *      de su fiesta, el punto, «Hoy», la nota, y se coge; sigue siendo suyo pasada
+ *      la fiesta y al volver a abrir; «De oro» con las banderas y la cuenta;
+ *      «Sorpréndeme» nunca da uno de oro; Tenerife cerrado con su de oro en su
+ *      fiesta; las fiestas de varios dias; la descarga con los de oro; y tocar un
+ *      avatar lo mueve, nada con «reducir movimiento». La fecha de hoy se cambia con
+ *      el reloj del navegador (clock.setFixedTime): la app no tiene otra;
  *   2. la nube con permiso (pruebas/nube.py, 33), contra una nube de mentira que
  *      se porta como supabase/perfil.sql (RLS, 23503, cascade, check, columnas):
  *      tools/perfil_nube_de_prueba.js, la demo-nube.js del encargo, que solo en
@@ -27,13 +36,23 @@
  *      1.500 pesos y 1.200 caminatas en la cuenta, un movil nuevo los recibe
  *      todos, la vuelta siguiente no quita ninguno, y con un tope mas bajo
  *      tambien llegan;
+ *   2c. el tope (nube.py, 34-37): 2.000 pesos y 2.000 caminatas llegan; con el
+ *      tope lleno, uno de un dia nuevo no se anota y lo dice debajo del campo, y
+ *      cambiar el peso de un dia que ya lo tiene si, y sube;
  *   3. las visitas comprobadas en el mapa (pruebas/probar_visitas.py, 11);
- *   4. lo de la nota: los 235 avatares pintados; uno de cada set, en el heroe y en
+ *   4. lo de la nota: los 284 avatares pintados; uno de cada set, en el heroe y en
  *      el boton de la cuenta; los dos botones de «Cuenta» abren el perfil; cada
  *      texto fijo del cuerpo (TEXTOS) da con su elemento y su clave; y en los
  *      diez idiomas, a 360, 390 y 430 px: ningun rotulo con una palabra partida,
  *      nada fuera de la pantalla, ningun texto vacio, nada en castellano fuera del
- *      castellano y ningun error.
+ *      castellano y ningun error;
+ *   4b. los de oro en pantalla (barrido_oro.py): diez idiomas, tres anchos y cinco
+ *      estados (hoy; «De oro»; el 1 de marzo de 2027, Baba Marta y los dos
+ *      Mărțișor, en «De oro» y en el set bulgaro; y el Carnaval de 2027 con
+ *      Tenerife cerrado): ni marcadores sueltos, ni «undefined», ni castellano fuera
+ *      del castellano, ni palabras cortadas, ni nada fuera de la pantalla, y cada
+ *      distintivo de oro dentro de su boton. Con PERFIL_CAPTURAS=<carpeta>, las
+ *      capturas a 390 px del 1 de marzo y del Carnaval en los diez idiomas.
  * Las peticiones que no son a 127.0.0.1 se cortan: nada sale de aqui.
  */
 'use strict';
@@ -177,8 +196,15 @@ async function regresiones(b) {
   ok(await E(`getComputedStyle(document.getElementById('tgp-imc')).display`) === 'none', '15 sin datos, la caja del IMC no se ve');
   await pg.click('.tgp-set[data-set="tf"]'); await pg.waitForTimeout(150);
   const nota = await pg.innerText('#tgp-lock-note');
-  ok(nota.includes('(3 de 10)') && await E(`getComputedStyle(document.getElementById('tgp-lock-why')).display`) !== 'none' && await E(`[...document.querySelectorAll('#tgp-strip .tgp-av')].every(b => b.disabled)`),
-    '19 el set Tenerife empieza cerrado: «(3 de 10)», la explicacion y los cinco bloqueados', nota);
+  /* los cinco, bloqueados; sus tres de oro no (tocarlos dice cuando se consiguen). Si hoy es
+     la fiesta de uno de ellos, la nota es la suya, que corre mas prisa (1c lo prueba con fecha) */
+  const tf19 = await E(`(() => { const h = new Date(), hoy = h.getFullYear() + '-' + String(h.getMonth() + 1).padStart(2, '0') + '-' + String(h.getDate()).padStart(2, '0');
+    const cinco = [...document.querySelectorAll('#tgp-strip .tgp-av:not(.is-oro)')], oros = [...document.querySelectorAll('#tgp-strip .tgp-av.is-oro')];
+    return { fiesta: TG_AVATARES.oros.some(a => a.set === 'tf' && TG_AVATARES.disponible(a.id, hoy)),
+      cinco: cinco.length === 5 && cinco.every(b => b.disabled), oros: oros.length === 3 && oros.every(b => !b.disabled && (b.classList.contains('is-cerrado') || !!b.querySelector('.tgp-oro-hoy'))) }; })()`);
+  const why19 = await E(`getComputedStyle(document.getElementById('tgp-lock-why')).display`) !== 'none';
+  ok((tf19.fiesta ? nota.includes('¡es hoy!') : nota.includes('(3 de 10)') && why19) && tf19.cinco && tf19.oros,
+    '19 el set Tenerife empieza cerrado: «(3 de 10)», la explicacion y los cinco bloqueados; sus tres de oro, no (con su fecha)', [nota, tf19]);
   await E(`(() => { const v = JSON.parse(localStorage.getItem('tenerife.visited')); localStorage.setItem('tenerife.visitas', JSON.stringify(v.slice(0, 10).map(id => ({ id, d: '${HOY}' })))); TG_PERFIL.repintar(); })()`);
   await pg.waitForTimeout(200); await pg.click('.tgp-set[data-set="tf"]'); await pg.waitForTimeout(150);
   const libre = await E(`[...document.querySelectorAll('#tgp-strip .tgp-av')].every(b => !b.disabled)`);
@@ -263,8 +289,9 @@ async function selector(b) {
   await pg.click('#tgp-paises-grid .tgp-pais[data-set="pt"]'); await pg.waitForTimeout(300);
   const chips = await E(`[...document.querySelectorAll('#tgp-sets .tgp-set')].map(b => b.dataset.set + (b.getAttribute('aria-pressed') === 'true' ? '*' : ''))`);
   const tira = await E(`[...document.querySelectorAll('#tgp-strip .tgp-av')].map(b => b.dataset.id)`);
-  ok(chips.includes('pt*') && tira.length === 5 && tira.every(x => x.startsWith('pt-')) && await E(`document.getElementById('tgp-paises').hidden`) && await pg.getAttribute('#tgp-paises-btn', 'aria-expanded') === 'false',
-    '31 elegir un pais lo pone en las pestañas, abre su tira y cierra la lista', [chips, tira]);
+  ok(chips.includes('pt*') && tira.length === 6 && tira.every(x => x.startsWith('pt-')) && tira.filter(x => x.includes('-oro-')).length === 1 && !tira[4].includes('-oro-') && tira[5].includes('-oro-')
+     && await E(`document.getElementById('tgp-paises').hidden`) && await pg.getAttribute('#tgp-paises-btn', 'aria-expanded') === 'false',
+    '31 elegir un pais lo pone en las pestañas, abre su tira (sus cinco y, detras, su de oro) y cierra la lista', [chips, tira]);
   /* 32: elegido, y la app entera vuelve a abrirse */
   await pg.click('#tgp-strip .tgp-av >> nth=2'); await pg.waitForTimeout(300);
   await abrirApp(pg, 'es');
@@ -320,6 +347,9 @@ async function selector(b) {
     });
     return out;
   }, sel);
+  /* la fecha de los de oro («17 mar», «14–17 feb», ✓): en una linea, dentro de su boton */
+  const FECHAS = () => p2.evaluate(() => [...document.querySelectorAll('#tgp-strip .tgp-av .tgp-oro-fecha')]
+    .filter(e => e.scrollWidth > e.closest('.tgp-av').clientWidth + 0.5).map(e => 'fecha: ' + e.textContent + ' ' + e.scrollWidth + '>' + e.closest('.tgp-av').clientWidth));
   const ids = await p2.evaluate(() => TG_AVATARES.sets.map(s => s.id));
   for (const L of LENG) {
     await p2.evaluate(l => setLang(l), L); await p2.waitForTimeout(300);
@@ -339,12 +369,128 @@ async function selector(b) {
       await p2.click('#tgp-paises-btn'); await p2.waitForTimeout(60);
       await p2.click('#tgp-paises-grid .tgp-pais[data-set="' + s + '"]'); await p2.waitForTimeout(60);
       (await MIDE('#tgp-strip .tgp-av .name')).forEach(x => malos.push(s + ': ' + x));
+      (await FECHAS()).forEach(x => malos.push(s + ': ' + x));
     }
+    await p2.click('.tgp-set[data-set="oro"]'); await p2.waitForTimeout(120);
+    (await MIDE('#tgp-strip .tgp-av .name')).concat(await FECHAS()).forEach(x => malos.push('oro: ' + x));
     if (malos.length) cortes[L] = malos;
   }
   ok(!Object.keys(fuera36).length && !e2.length, '36 a 360 px, en los diez idiomas, nada se sale (la lista, las pestañas y el boton)', [fuera36, e2]);
-  ok(!Object.keys(cortes).length, '36b los 235 nombres de avatar y los 47 de set, en los diez idiomas a 360 px: ninguna palabra mas ancha que su caja, y en la tira dos lineas como mucho', cortes);
+  ok(!Object.keys(cortes).length, '36b los 284 nombres de avatar (235 y 49 de oro) y los 47 de set, en los diez idiomas a 360 px: ninguna palabra mas ancha que su caja, en la tira dos lineas como mucho, y la fecha de los de oro en su boton, tambien en «De oro»', cortes);
   await c2.close();
+}
+
+/* ── 1c. los de oro y el movimiento al tocarlos (regresiones.py, 37-46) ── */
+/* La fecha de hoy: la app la lee del movil (hoy()), y aqui se cambia con el reloj del
+   navegador, a mediodia en UTC, que en la isla es el mismo dia. Despues, TG_PERFIL.repintar(),
+   como al volver a abrir el perfil. */
+async function fechaOro(pg, d) {
+  await pg.clock.setFixedTime(new Date(d + 'T12:00:00Z'));
+  await pg.evaluate(() => TG_PERFIL.repintar()); await pg.waitForTimeout(150);
+}
+/* un set, por su pestaña o, si no esta entre ellas, por «Todos los paises» */
+async function abrirSet(pg, s) {
+  if (await pg.locator('#tgp-sets .tgp-set[data-set="' + s + '"]').count()) await pg.click('#tgp-sets .tgp-set[data-set="' + s + '"]');
+  else { await pg.click('#tgp-paises-btn'); await pg.waitForTimeout(120); await pg.click('#tgp-paises-grid .tgp-pais[data-set="' + s + '"]'); }
+  await pg.waitForTimeout(150);
+}
+async function oro(b) {
+  console.log('\n=== 1c. los de oro y el movimiento al tocarlos (regresiones.py, 37-46) ===');
+  const ctx = await contexto(b, { timezoneId: 'Atlantic/Canary' }), pg = await ctx.newPage(), errs = errores(pg);
+  await abrirApp(pg, 'es');
+  /* 12 lugares marcados y 3 comprobados: el set Tenerife, cerrado */
+  await pg.evaluate(hoy => {
+    const ids = places.slice(0, 12).map(p => p.id);
+    localStorage.setItem('tenerife.visited', JSON.stringify(ids));
+    localStorage.setItem('tenerife.visitas', JSON.stringify(ids.slice(0, 3).map(id => ({ id, d: hoy }))));
+    localStorage.removeItem('tenerife.perfil');
+  }, HOY);
+  await abrirPerfilYa(pg);
+  const E = f => pg.evaluate(f);
+  /* las fechas de la prueba, del catalogo: un dia sin ninguna fiesta, el primero con una sola
+     de fuera de Tenerife, y el primero de una de Tenerife (desde el 1 de enero de 2027) */
+  const plan = await E(`(() => { const A = TG_AVATARES; let d = new Date(Date.UTC(2027, 0, 1)), libre = null, fiesta = null, id = null, tf = null, tfId = null;
+    for (let i = 0; i < 800; i++, d.setUTCDate(d.getUTCDate() + 1)) {
+      const s = d.toISOString().slice(0, 10), hoy = A.oros.filter(a => A.disponible(a.id, s));
+      if (!hoy.length && !libre) libre = s;
+      const uno = hoy.filter(a => a.set !== 'tf' && !A.oros.some(c => c !== a && A.disponible(c.id, s)));
+      if (uno.length && !fiesta) { fiesta = s; id = uno[0].id; }
+      const t = hoy.filter(a => a.set === 'tf'); if (t.length && !tf) { tf = s; tfId = t[0].id; }
+    }
+    return { libre, fiesta, id, tf, tfId, n: A.oros.length }; })()`);
+  const bt = '#tgp-strip .tgp-av[data-id="' + plan.id + '"]';
+  /* 37 */
+  await fechaOro(pg, plan.libre); await abrirSet(pg, plan.id.split('-')[0]);
+  const cerrado = await E(`(b => !!b && b.classList.contains('is-cerrado') && !!b.querySelector('.tgp-oro-candado') && !!b.querySelector('.tgp-oro-fecha') && !b.disabled)(document.querySelector('${bt}'))`);
+  const aria = await pg.getAttribute(bt, 'aria-label'), antes = await E('TG_PERFIL.estado().avatar');
+  await pg.click(bt); await pg.waitForTimeout(150);
+  const t37 = await pg.innerText('#tgp-toast'), no = await E(`document.querySelector('${bt}').classList.contains('tga-no')`);
+  ok(cerrado && aria.includes('avatar de oro') && t37.includes('solo se consigue') && await E('TG_PERFIL.estado().avatar') === antes && no && !(await E('Object.keys(TG_PERFIL.estado().oro)')).includes(plan.id),
+    '37 fuera de su dia, el de oro sale con candado y su fecha; tocarlo dice cuando y no lo elige', [plan, cerrado, aria, t37, no]);
+  /* 38 */
+  await fechaOro(pg, plan.fiesta); await abrirSet(pg, plan.id.split('-')[0]);
+  const hoyChip = await E(`document.querySelector('#tgp-sets .tgp-set[data-set="oro"]').classList.contains('is-hoy')`);
+  const insignia = await E(`!!document.querySelector('${bt} .tgp-oro-hoy')`), nota38 = await pg.innerText('#tgp-lock-note');
+  await pg.click(bt); await pg.waitForTimeout(250);
+  const e38 = await E('JSON.parse(JSON.stringify(TG_PERFIL.estado()))'), juega = await E(`document.getElementById('tgp-ava-big').classList.contains('tga-play')`);
+  ok(hoyChip && insignia && nota38.includes('¡es hoy!') && e38.oro[plan.id] === plan.fiesta && e38.avatar === plan.id && (await pg.innerText('#tgp-toast')).includes('para siempre') && juega,
+    '38 el dia de su fiesta: punto en «De oro», «Hoy», la nota lo dice, y tocarlo lo coge (con la fecha) y lo mueve', [hoyChip, insignia, nota38, e38.oro, juega]);
+  /* 39 */
+  await fechaOro(pg, plan.libre > plan.fiesta ? plan.libre : '2030-01-02'); await abrirSet(pg, plan.id.split('-')[0]);
+  await pg.click('#tgp-strip .tgp-av:not(.is-oro) >> nth=0'); await pg.waitForTimeout(200);
+  const mio = await E(`(b => !b.classList.contains('is-cerrado') && !!b.querySelector('.tgp-oro-fecha') && b.querySelector('.tgp-oro-fecha').textContent.indexOf('✓') >= 0)(document.querySelector('${bt}'))`);
+  await pg.click(bt); await pg.waitForTimeout(200);
+  ok(mio && await E('TG_PERFIL.estado().avatar') === plan.id, '39 pasada la fiesta sigue siendo suyo: sin candado, con ✓, y se vuelve a elegir', mio);
+  /* 40 */
+  await abrirApp(pg, 'es'); await abrirPerfilYa(pg); await fechaOro(pg, '2030-01-02');
+  ok(await E('TG_PERFIL.estado().avatar') === plan.id && (await E('Object.keys(TG_PERFIL.estado().oro)')).includes(plan.id) && (await pg.innerText('#tgp-meta')).includes('🏅'),
+    '40 al volver a abrir la app, el de oro sigue elegido y sigue siendo suyo (y el heroe lleva la medalla)', await pg.innerText('#tgp-meta'));
+  /* 41 */
+  await pg.click('#tgp-sets .tgp-set[data-set="oro"]'); await pg.waitForTimeout(250);
+  const tira = await E(`[...document.querySelectorAll('#tgp-strip .tgp-av')].map(b => [b.dataset.id, (b.querySelector('.tgp-oro-fecha') || {}).textContent || '', (b.querySelector('.tgp-oro-bandera') || {}).textContent || ''])`);
+  const banderas = await E('Object.fromEntries(TG_AVATARES.oros.map(a => [a.id, TG_AVATARES.set(a.set).bandera]))'), nota41 = await pg.innerText('#tgp-lock-note');
+  ok(tira.length === plan.n && tira.every(([i, , fl]) => i.includes('-oro-') && fl === banderas[i]) && tira[tira.length - 1][0] === plan.id && tira[tira.length - 1][1].includes('✓') && nota41.includes('1 de ' + plan.n),
+    '41 «De oro»: los 49, cada uno con la bandera de su set, los suyos al final, y la cuenta', [tira.length, tira.slice(0, 3), tira[tira.length - 1], nota41]);
+  /* 42 */
+  const vistos = new Set();
+  for (let i = 0; i < 60; i++) { await pg.click('#tgp-random'); await pg.waitForTimeout(20); vistos.add(await E('TG_PERFIL.estado().avatar')); }
+  ok(![...vistos].some(v => v.includes('-oro-')), '42 «Sorpréndeme» nunca da uno de oro', [...vistos].sort().slice(0, 8));
+  /* 43 */
+  await fechaOro(pg, plan.tf); await abrirSet(pg, 'tf');
+  const b5 = await E(`[...document.querySelectorAll('#tgp-strip .tgp-av:not(.is-oro)')].every(b => b.disabled)`);
+  await pg.click('#tgp-strip .tgp-av[data-id="' + plan.tfId + '"]'); await pg.waitForTimeout(250);
+  ok(b5 && await E('TG_PERFIL.estado().avatar') === plan.tfId, '43 Tenerife cerrado (3 visitas): sus cinco bloqueados, pero su de oro se coge en su fiesta', [b5, await E('TG_PERFIL.estado().avatar')]);
+  /* 44 */
+  const largas = await E(`(() => { const A = TG_AVATARES, r = [];
+    A.oros.filter(a => (a.oro.dias || 1) > 1).forEach(a => { const v = A.ventana(a.id, 2027), d = new Date(v.desde + 'T00:00:00Z'), dias = [];
+      for (let i = -1; i <= a.oro.dias; i++) { const x = new Date(d); x.setUTCDate(d.getUTCDate() + i); dias.push(A.disponible(a.id, x.toISOString().slice(0, 10))); }
+      r.push([a.id, dias]); });
+    return r; })()`);
+  ok(largas.length >= 5 && largas.every(([, d]) => d[0] === false && d[d.length - 1] === false && d.slice(1, -1).every(Boolean)),
+    '44 las fiestas de varios dias: se puede todos sus dias, ni el de antes ni el de despues', largas);
+  /* 45 */
+  const [descarga] = await Promise.all([pg.waitForEvent('download', { timeout: 8000 }), pg.click('#tgp-export')]);
+  const exp = JSON.parse(fs.readFileSync(await descarga.path(), 'utf8'));
+  ok((exp.avatares_oro || {})[plan.id] === plan.fiesta && plan.tfId in (exp.avatares_oro || {}), '45 la descarga lleva los de oro conseguidos, con su fecha', exp.avatares_oro);
+  ok(!errs.length, '45b sin errores', errs);
+  await ctx.close();
+  /* 46: tocar mueve; con «reducir movimiento», nada */
+  const c2 = await contexto(b, { reducedMotion: 'reduce' }), p2 = await c2.newPage(), e2 = errores(p2);
+  await abrirApp(p2, 'es'); await p2.evaluate(() => localStorage.removeItem('tenerife.perfil')); await abrirPerfilYa(p2);
+  await p2.click('#tgp-strip .tgp-av >> nth=1'); await p2.waitForTimeout(100); await p2.click('#tgp-strip .tgp-av >> nth=1'); await p2.waitForTimeout(100);
+  await p2.click('#tgp-ava-big', { force: true }); await p2.waitForTimeout(50);
+  const sin = await p2.evaluate(() => !document.querySelector('.tga-play'));
+  await c2.close();
+  const c3 = await contexto(b), p3 = await c3.newPage(), e3 = errores(p3);
+  await abrirApp(p3, 'es'); await p3.evaluate(() => localStorage.removeItem('tenerife.perfil')); await abrirPerfilYa(p3);
+  await p3.click('#tgp-strip .tgp-av >> nth=1'); await p3.waitForTimeout(100);
+  const b1 = await p3.evaluate(() => !!document.querySelector('#tgp-strip .tgp-av.is-on.tga-play') && document.getElementById('tgp-ava-big').classList.contains('tga-play'));
+  await p3.waitForTimeout(1600); const fin = await p3.evaluate(() => !document.querySelector('.tga-play'));
+  await p3.click('#tgp-ava-big', { force: true }); await p3.waitForTimeout(50);
+  const b2 = await p3.evaluate(() => document.getElementById('tgp-ava-big').classList.contains('tga-play'));
+  const anim = await p3.evaluate(() => { const m = document.querySelector('#tgp-ava-big .tga-m'); return m ? getComputedStyle(m).animationName : ''; });
+  await c3.close();
+  ok(b1 && fin && b2 && anim && anim !== 'none' && sin && !e2.length && !e3.length, '46 tocar un avatar lo mueve un segundo (el elegido y el del heroe), y nada con «reducir movimiento»', [b1, fin, b2, anim, sin, e2, e3]);
 }
 
 /* ── 2. la nube con permiso ───────────────────────────────────────────── */
@@ -560,6 +706,50 @@ async function volumen(b) {
   await ctx.close();
 }
 
+/* ── 2c. el tope: 2.000 pesos y 2.000 caminatas (nube.py, 34-37) ─────────── */
+async function tope(b) {
+  console.log('\n=== 2c. el tope: 2.000 pesos y 2.000 caminatas por cuenta, como perfil.sql ===');
+  const ctx = await contexto(b), pg = await ctx.newPage(), errs = errores(pg);
+  const vacio = Object.assign(ejemplo(), { medidas: [], km: [] });
+  await ctx.addInitScript(d => { try { if (!sessionStorage.getItem('perfil-sembrado')) { localStorage.setItem('tenerife.perfil', d); sessionStorage.setItem('perfil-sembrado', '1'); } } catch (e) {} }, JSON.stringify(vacio));
+  await abrirApp(pg, 'es');
+  await conNube(pg); await pg.evaluate(() => TGP_DEMO_NUBE.reiniciar());
+  const E = f => pg.evaluate(f);
+  const [U1] = await E('TGP_DEMO_NUBE.uids');
+  const ayer = new Date(Date.now() - 86400000).toISOString();
+  const pesos = [], caminatas = [];
+  for (let n = 1; n <= 2000; n++) pesos.push({ user_id: U1, fecha: dia(n), kg: 70 });
+  for (let n = 0; n < 2000; n++) caminatas.push({ user_id: U1, id: 'tope-caminata-' + String(n).padStart(6, '0'), fecha: dia(1 + n % 300), km: 5 });
+  await pg.evaluate(([U1, ayer, d, p, c]) => {
+    TGP_DEMO_NUBE.poner('perfiles', [{ user_id: U1, consentido_en: ayer, nombre: 'Tope', avatar: null, unidades: 'metric', altura_cm: 175, nacimiento: 1980, objetivo_kg: 75, creado: d, updated_at: ayer }]);
+    TGP_DEMO_NUBE.poner('pesos', p); TGP_DEMO_NUBE.poner('caminatas', c);
+  }, [U1, ayer, dia(2100), pesos, caminatas]);
+  await abrirPerfilYa(pg);
+  const st = () => E('JSON.parse(JSON.stringify(TG_PERFIL.estado()))');
+  const enNube = async t => (await E(`TGP_DEMO_NUBE.tabla('${t}')`)).filter(f => f.user_id === U1);
+  const colaVacia = () => pg.waitForFunction(() => !Object.keys(TG_PERFIL.estado().colas).length, null, { timeout: 30000 });
+  await E('TG_PERFIL.sincronizar()'); await colaVacia();
+  const s0 = await st();
+  ok(s0.medidas.length === 2000 && s0.km.length === 2000, 'n34 2.000 pesos y 2.000 caminatas de la cuenta llegan todos (dos paginas de 1.000)', [s0.medidas.length, s0.km.length]);
+  const cifras = t => t.replace(/[\s.  ,]/g, '');
+  await pg.click('#tgp-evo-tabs button[data-tab="peso"]'); await pg.waitForTimeout(100);
+  await pg.fill('#tgp-peso-fecha', HOY); await pg.fill('#tgp-peso-nuevo', '69,5'); await pg.click('#tgp-add-peso button[type=submit]'); await pg.waitForTimeout(400);
+  const ayuda = await pg.innerText('#tgp-peso-nuevo-h'), s1 = await st();
+  ok(s1.medidas.length === 2000 && ayuda.includes('el máximo') && cifras(ayuda).includes('2000') && (await enNube('pesos')).every(f => f.fecha !== HOY) && !Object.keys(s1.colas).length,
+    'n35 con 2.000 pesos, el de un dia nuevo no se anota: lo dice debajo del campo y no sube nada', ayuda);
+  await pg.fill('#tgp-peso-fecha', dia(5)); await pg.fill('#tgp-peso-nuevo', '68,8'); await pg.click('#tgp-add-peso button[type=submit]'); await colaVacia();
+  const p5 = (await enNube('pesos')).filter(f => f.fecha === dia(5)).map(f => f.kg);
+  ok(JSON.stringify(p5) === '[68.8]' && (await enNube('pesos')).length === 2000 && (await st()).medidas.length === 2000,
+    'n36 en el tope, cambiar el peso de un dia que ya lo tiene si se puede, y sube (upsert: no suma filas)', p5);
+  await pg.click('#tgp-evo-tabs button[data-tab="km"]'); await pg.waitForTimeout(100);
+  await pg.fill('#tgp-km-fecha', HOY); await pg.fill('#tgp-km-nuevo', '3'); await pg.click('#tgp-add-km button[type=submit]'); await pg.waitForTimeout(400);
+  const ayudaK = await pg.innerText('#tgp-km-nuevo-h'), s3 = await st();
+  ok(s3.km.length === 2000 && ayudaK.includes('el máximo') && (await enNube('caminatas')).length === 2000 && !Object.keys(s3.colas).length,
+    'n37 con 2.000 caminatas no se anota otra: lo dice debajo del campo y no sube nada', ayudaK);
+  ok(!errs.length, 'n37b sin errores JS ni de consola', errs);
+  await ctx.close();
+}
+
 /* ── 3. las visitas comprobadas ───────────────────────────────────────── */
 async function visitas(b) {
   console.log('\n=== 3. las visitas comprobadas, en el mapa (probar_visitas.py) ===');
@@ -621,7 +811,7 @@ async function pantalla(b) {
     return n.length !== 1 || n[0].getAttribute(como === 'tx' ? 'data-tx' : 'data-tx-' + como) !== clave;
   }).map(t => t[0]), TEXTOS);
   ok(TEXTOS.length > 30 && !textosMal.length, 'p2b los ' + TEXTOS.length + ' textos fijos del cuerpo (TEXTOS): cada selector da con un solo elemento, y lleva su clave', textosMal);
-  /* los 235 avatares, set a set, pintados de verdad: cada set se abre desde «Todos los paises» */
+  /* los 284 avatares (235 y 49 de oro), set a set, pintados de verdad: cada set se abre desde «Todos los paises» */
   const sets = await pg.evaluate(() => TG_AVATARES.sets.map(s => s.id));
   const pintados = [], elegidos = [];
   for (const s of sets) {
@@ -641,7 +831,7 @@ async function pantalla(b) {
       if (e.estado === primero.id && e.heroe && e.boton === primero.id && e.guardado === primero.id) elegidos.push(s); else elegidos.push(s + ':MAL ' + JSON.stringify(e));
     } else elegidos.push(s + ':cerrado');
   }
-  ok(pintados.length === 235 && new Set(pintados).size === 235, 'p3 los 235 avatares se pintan en la tira, cada uno con su recorte y su degradado', pintados.length);
+  ok(pintados.length === 284 && new Set(pintados).size === 284, 'p3 los 284 avatares se pintan en la tira, cada uno con su recorte y su degradado', pintados.length);
   ok(elegidos.length === 47 && elegidos.every(x => !x.includes(':')), 'p4 uno de cada uno de los 47 sets (Tenerife incluido, con 10 visitas comprobadas): queda elegido, en el heroe, guardado y en el boton de la cuenta', elegidos.filter(x => x.includes(':')));
   await ctx.close();
 
@@ -700,15 +890,101 @@ async function pantalla(b) {
   }
 }
 
+/* ── 4b. los de oro en pantalla (barrido_oro.py) ───────────────────────── */
+/* lo que miraba barrido_oro.py en el prototipo: los textos que se ven (y los aria-label y
+   placeholder), las palabras mas anchas que su caja, lo que se sale, y los distintivos de oro
+   dentro de su boton (2 px de margen: el candado y la bandera asoman a proposito por la
+   esquina del dibujo, no del boton) */
+const JS_ORO = () => {
+  const raiz = document.getElementById('tgp'), textos = [], cortes = [], desborde = [];
+  const w = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT);
+  while (w.nextNode()) {
+    const n = w.currentNode, el = n.parentElement, t = n.textContent.trim();
+    if (!t || !el || el.closest('select')) continue;
+    const r = el.getBoundingClientRect(), cs = getComputedStyle(el);
+    if (r.width === 0 || cs.visibility === 'hidden' || el.closest('[hidden]')) continue;
+    textos.push(t);
+  }
+  raiz.querySelectorAll('[aria-label], [placeholder]').forEach(e => ['aria-label', 'placeholder'].forEach(a => { const v = e.getAttribute(a); if (v) textos.push('@' + a + ':' + v); }));
+  const cv = document.createElement('canvas').getContext('2d');
+  raiz.querySelectorAll('.tgp-tile .k, .tgp-av .name, .tgp-oro-hoy, .tgp-oro-fecha, .tgp-stamp .nm, .tgp-stamp .th, .tgp-set span, .tgp-chip span, .tgp-btn, .tgp-seg button, .tgp-ranges button, label, .tgp-imc .cat, .tgp-nube .lbl, .tgp-nube .sub, .tgp-lock-why, .tgp-lock-note, .tgp-confirm p').forEach(e => {
+    if (!e.offsetParent) return;
+    const cs = getComputedStyle(e); cv.font = cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+    const ls = parseFloat(cs.letterSpacing) || 0, ancho = e.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    let txt = e.textContent.trim(); if (cs.textTransform === 'uppercase') txt = txt.toUpperCase();
+    txt.split(/\s+/).flatMap(x => x.split(/(?<=-)/)).filter(x => !/[　-鿿]/.test(x)).forEach(x => { const m = cv.measureText(x).width + ls * x.length; if (m > ancho + 0.5) cortes.push(e.className + ' «' + x + '» ' + m.toFixed(0) + '>' + ancho.toFixed(0)); });
+  });
+  raiz.querySelectorAll('*').forEach(e => {
+    if (e.closest('.tgp-strip') || e.closest('.tgp-sets') || e.closest('.tgp-log') || e.tagName === 'svg' || e.closest('svg')) return;
+    const cs = getComputedStyle(e); if (cs.display === 'none') return;
+    if (e.children.length === 0 && e.textContent.trim() && e.scrollWidth > e.clientWidth + 1 && cs.overflow !== 'visible') desborde.push(e.className + ' «' + e.textContent.trim().slice(0, 40) + '»');
+    const r = e.getBoundingClientRect(); if (r.right > innerWidth + 1 && !e.closest('.tgp-hero')) desborde.push('fuera: ' + (e.id || e.className) + ' ' + Math.round(r.right));
+  });
+  raiz.querySelectorAll('#tgp-strip .tgp-av.is-oro').forEach(bo => { const rb = bo.getBoundingClientRect();
+    bo.querySelectorAll('.tgp-oro-hoy, .tgp-oro-fecha, .tgp-oro-bandera, .tgp-oro-candado').forEach(x => { const r = x.getBoundingClientRect();
+      if (r.width && (r.left < rb.left - 2 || r.right > rb.right + 2 || r.top < rb.top - 2 || r.bottom > rb.bottom + 2)) desborde.push('distintivo fuera de su boton: ' + x.className + ' «' + x.textContent + '» en ' + bo.dataset.id); }); });
+  /* en el prototipo la pantalla era la pagina; en la app es su panel, encima del mapa */
+  return { textos, cortes: [...new Set(cortes)], desborde: [...new Set(desborde)].slice(0, 12), sw: document.getElementById('perfil-panel').scrollWidth - innerWidth };
+};
+async function barridoOro(b) {
+  console.log('\n=== 4b. los de oro en pantalla: diez idiomas, tres anchos y cinco estados (barrido_oro.py) ===');
+  const CAPTURAS = process.env.PERFIL_CAPTURAS || '';
+  /* nombres propios que ese idioma deja en castellano a proposito (los revisores de cada idioma; tambien en IGUAL_UI de auditar_idioma.js) */
+  const ACEPTADOS = { nl: new Set(['Día de Canarias']) };
+  const hallazgos = {}; let pantallas = 0;
+  for (const ancho of [360, 390, 430]) {
+    const ctx = await contexto(b, { viewport: { width: ancho, height: 900 }, timezoneId: 'Atlantic/Canary' }), pg = await ctx.newPage(), errs = errores(pg);
+    await abrirApp(pg, 'es');
+    await pg.evaluate(() => { localStorage.removeItem('tenerife.perfil'); localStorage.removeItem('tenerife.visitas'); });   /* Tenerife, cerrado */
+    await abrirPerfilYa(pg);
+    let base = new Set();
+    for (const L of LENG) {
+      await pg.evaluate(l => setLang(l), L); await pg.waitForTimeout(300);
+      for (const estado of ['hoy', 'deoro', 'fiesta', 'carnaval']) {
+        if (estado === 'hoy') await fechaOro(pg, HOY);
+        else if (estado === 'deoro') { await fechaOro(pg, HOY); await abrirSet(pg, 'oro'); }
+        else if (estado === 'fiesta') { await fechaOro(pg, '2027-03-01'); await abrirSet(pg, 'oro'); }
+        else { await fechaOro(pg, '2027-02-21'); await abrirSet(pg, 'tf'); }
+        for (const paso of (estado === 'fiesta' ? [null, 'bg'] : [null])) {
+          if (paso) await abrirSet(pg, paso);
+          pantallas++;
+          const r = await pg.evaluate(JS_ORO), k = L + '@' + ancho, h = hallazgos[k] || (hallazgos[k] = []);
+          if (L === 'es') r.textos.forEach(t => base.add(t));
+          r.textos.forEach(t => {
+            if (/\{[a-z]+\}/.test(t)) h.push(estado + ' marcador: ' + t);
+            if (/\bundefined\b|\bNaN\b|\bnull\b|\[object/.test(t)) h.push(estado + ' raro: ' + t);
+            if (L !== 'es' && base.has(t) && !(ACEPTADOS[L] && ACEPTADOS[L].has(t)) && /[áéíóúñ¿¡]/i.test(t)) h.push(estado + ' igual que en castellano: ' + t);
+          });
+          r.cortes.forEach(x => h.push(estado + ' cortada: ' + x)); r.desborde.forEach(x => h.push(estado + ' ' + x));
+          if (r.sw > 0) h.push(estado + ' scroll de lado: ' + r.sw);
+          if (CAPTURAS && ancho === 390 && (estado === 'fiesta' || estado === 'carnaval')) {
+            await pg.locator('#tgp-strip').scrollIntoViewIfNeeded(); await pg.waitForTimeout(80);
+            const y = await pg.evaluate(() => Math.max(0, document.querySelector('#tgp-sets').getBoundingClientRect().top - 60));
+            await pg.screenshot({ path: path.join(CAPTURAS, L + '-' + estado + (paso ? '-' + paso : '') + '.png'), clip: { x: 0, y, width: ancho, height: 420 } });
+          }
+        }
+      }
+    }
+    if (errs.length) hallazgos['errores@' + ancho] = errs;
+    await ctx.close();
+  }
+  const malos = Object.entries(hallazgos).filter(([, v]) => v.length);
+  ok(pantallas === 150 && !malos.length, '4b los de oro, en ' + pantallas + ' pantallas (diez idiomas, tres anchos y cinco estados): ni marcadores sueltos, ni castellano fuera del castellano, ni palabras cortadas, ni nada fuera de la pantalla, y cada distintivo de oro dentro de su boton',
+    Object.fromEntries(malos.map(([k, v]) => [k, [...new Set(v)].slice(0, 6)])));
+}
+
 (async () => {
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-proxy-server'] });
   try {
     await regresiones(b);
     await selector(b);
+    await oro(b);
     await nube(b);
     await volumen(b);
+    await tope(b);
     await visitas(b);
     await pantalla(b);
+    await barridoOro(b);
   } finally { await b.close(); }
   console.log('\n  ' + cuenta + ' controles, ' + (fallos ? fallos + ' con fallo' : 'todos en verde'));
   process.exit(fallos ? 1 : 0);

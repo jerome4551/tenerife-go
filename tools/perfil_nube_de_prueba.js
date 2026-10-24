@@ -9,8 +9,10 @@
      no tiene permisos);
    · pesos y caminatas no pueden existir sin su fila de perfiles (23503);
    · borrar la fila de perfiles se lleva sus pesos y caminatas (on delete cascade);
-   · los mismos límites que los check de perfil.sql (23514), la clave repetida en un
-     insert (23505);
+   · los mismos límites que los check de perfil.sql (23514), también la fecha de cada
+     peso y cada caminata, de 1900 a 2100; la clave repetida en un insert (23505); y sus
+     topes: 2.000 pesos y 2.000 caminatas por cuenta (54000), contados como el disparador,
+     solo si entra alguna fila nueva (como en la entrega de los de oro, 23 de octubre);
    · sin red, cada petición devuelve lo que devuelve supabase-js cuando no hay
      conexión: { data: null, error: { message: 'TypeError: Failed to fetch' } }.
    · como Supabase, una consulta devuelve como mucho 1.000 filas (Max rows del
@@ -33,6 +35,7 @@
     pesos: ['user_id', 'fecha', 'kg'],
     caminatas: ['user_id', 'id', 'fecha', 'km']
   };
+  var TOPE = { pesos: 2000, caminatas: 2000 };   /* los disparadores de perfil.sql */
   function nuevo() { return { sesion: true, cuenta: 0, admin: false, red: true, maxFilas: 1000, t: { perfiles: [], pesos: [], caminatas: [] } }; }
   function cargar() {
     try { var s = JSON.parse(localStorage.getItem(KEY)); if (s && s.t && s.t.perfiles && s.t.pesos && s.t.caminatas) return s; } catch (e) {}
@@ -53,6 +56,7 @@
       if (f.objetivo_kg != null && !(f.objetivo_kg >= 20 && f.objetivo_kg <= 400)) return 'perfiles_objetivo';
       if (!f.consentido_en) return 'consentido_en not null';
     }
+    if ((t === 'pesos' || t === 'caminatas') && !(/^\d{4}-\d{2}-\d{2}$/.test(f.fecha) && f.fecha >= '1900-01-01' && f.fecha <= '2100-12-31')) return t + '_fecha';
     if (t === 'pesos' && !(f.kg >= 20 && f.kg <= 400)) return 'pesos_kg';
     if (t === 'caminatas') {
       if (!(String(f.id).length >= 8 && String(f.id).length <= 64)) return 'caminatas_id';
@@ -115,6 +119,8 @@
         if (j >= 0) copia[j] = g; else copia.push(g);
         hechas.push(g);
       }
+      if (TOPE[q.t] && copia.filter(function (f) { return f.user_id === UID; }).length > TOPE[q.t] && copia.length > tabla.length)
+        return fallo('54000', 'demasiad' + (q.t === 'pesos' ? 'os pesos' : 'as caminatas') + ' en esta cuenta');   /* el disparador cuenta solo si entró alguna fila nueva */
       s.t[q.t] = copia; guardar();
       return { data: q.devolver ? hechas.map(function (f) { return proyectar(f, q.cols); }) : null, error: null, status: 201 };
     }

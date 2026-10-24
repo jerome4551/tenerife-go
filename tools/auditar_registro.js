@@ -234,8 +234,9 @@ const MARCAS = {
        /* la segunda persona del presente acaba en -ш (можеш, виждаш, отвориш), y la de
           вие en -те: toda palabra en -аш, -яш, -еш, -иш es de ти, salvo las que no son
           verbo («сякаш», «бакшиш», «наш», «ваш», «душ») (22 de octubre); y los nombres
-          de los avatares de Europa: «сладкиш», «гулаш», «Папанаш» y «Пелеш» (23 de octubre) */
-       new RegExp('(?<![' + L_ + '])(?!(?:сякаш|бакшиш|наш|ваш|душ|кеш|мишмаш|гуляш|финиш|сладкиш|гулаш|папанаш|пелеш)(?![' + L_ + ']))[а-яё]+(?:аш|яш|еш|иш)(?![' + L_ + '])', 'iu'),
+          de los avatares de Europa: «сладкиш», «гулаш», «Папанаш» y «Пелеш» (23 de octubre),
+          y con los de oro, «фиш» («Фиш енд чипс») y «Марамуреш» (23 de octubre, tarde) */
+       new RegExp('(?<![' + L_ + '])(?!(?:сякаш|бакшиш|наш|ваш|душ|кеш|мишмаш|гуляш|финиш|сладкиш|гулаш|папанаш|пелеш|фиш|марамуреш)(?![' + L_ + ']))[а-яё]+(?:аш|яш|еш|иш)(?![' + L_ + '])', 'iu'),
        /* «те» de complemento («те чака», «те води»): «те» es tambien «ellos» («те се
           номерират»), asi que solo con los verbos que lo llevan en la app */
        palI('те (?:чака|води|събужда|предупреди|радва|пазят|приема|гледа|успокоява|прави|връща|приближава|учи|изненада|докосне|проветри|придружи|подреди|успокои|вика)')],
@@ -300,6 +301,8 @@ const ROTULOS_IT = new Set([
   'Vedi info', 'Vedi la descrizione completa', 'Vedi su aemet.es', 'Vedi sulla mappa', 'Vedi sulla mappa del cielo', '📍 Vedi sulla mappa',
   '🔗 Vedi orari su titsa.com', '🗺️ Vedi tutti sulla mappa', 'Verifica la bussola', 'Aggiungi ai preferiti', 'Aggiungi al mio calendario', 'Aggiungi al negozio',
   'Aggiungi al percorso', 'Aggiungi escursione', '⭐ I consigli di Jérôme — Aggiungi attività', 'Apri in Google Maps', 'Apri la legenda',
+  /* los del perfil (modulos/perfil.js, 23 de octubre de 2026) */
+  'Aggiungi', 'Cerca un paese', 'Crea account o accedi', 'Salva', 'Scarica i dati del profilo',
   /* los del sistema, que la app cita tal cual: el menu de Safari y el de Chrome */
   'Aggiungi a Home', 'Installa app',
 ]);
@@ -318,6 +321,8 @@ const ROTULOS_BG = new Set([
   'Свържи се', 'Опитай отново', 'Създай маршрут с {n} вида →', 'Създай маршрут →', 'Създай нов маршрут', 'Използвай като начало на маршрут', 'Слушай',
   'Провери компаса', 'Избери друга дата', 'Насочи към небето', 'Приближи',
   'Покажи всички', 'Покажи на картата', 'Покажи на картата на небето', 'Покажи пътя му тази нощ', 'Скрий пътя',
+  /* los del perfil (modulos/perfil.js, 23 de octubre de 2026) */
+  'Добави', 'Запази', 'Изтегли данните на профила', 'Изтрий', 'Изтрий данните на профила от това устройство', 'Изтрий от облака', 'Промени името',
   /* los del sistema, que la app cita tal cual: el menu de Safari */
   'Добави към начален екран',
 ]);
@@ -352,6 +357,9 @@ const ROTULOS_PL = new Set([
   '‹ Zmień część wyspy', 'Zmień język', 'Zmień to miejsce', '‹ Zmień zajęcia', 'Znajdź go na niebie', 'Zobacz informacje', 'Zobacz kalendarz',
   'Zobacz na aemet.es', '📍 Zobacz na mapie', 'Zobacz na żywo', 'Zobacz pełny opis', 'Zobacz przewodnik', '🔗 Zobacz rozkład na titsa.com',
   '🗺️ Zobacz wszystkie na mapie', 'Zresetuj planer',
+  /* los del perfil (modulos/perfil.js, 23 de octubre de 2026) */
+  'Dodaj', 'Pobierz dane profilu', 'Szukaj kraju', 'Tak, usuń', 'Usuń dane profilu z tego urządzenia', 'Usuń z chmury', 'Załóż konto lub zaloguj się',
+  'Zapisz', 'Zmień imię',
 ]);
 /* la voz de quien usa la app («Zaskocz mnie», «Zaprowadź mnie», «Przypomnij mi w
    aplikacji», lo que se escribe al asistente), como «Sorpréndeme» y «Llévame»

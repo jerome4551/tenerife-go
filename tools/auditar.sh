@@ -238,14 +238,18 @@ echo; echo "════════ el cielo de Tenerife: textos, catalogo, cal
 control auditar_cielo.js node tools/auditar_cielo.js "$PUERTO"
 echo; echo "════════ el perfil y los avatares ════════"
 # Desde el 22 de octubre de 2026. Los avatares (235 desde el 23, con los 36
-# paises de Europa) son SVG escritos a mano que la app pinta con innerHTML:
-# ninguno puede llevar nada que se ejecute, y ningun otro control abre el
-# catalogo. Y las filas de la pantalla (363 desde el 23), sus
-# enganches con la app y lo que nunca puede hacer (sin navegador). Y la
-# pantalla usada de verdad: las regresiones, la nube con permiso (contra una
-# nube de mentira que se porta como supabase/perfil.sql), las visitas
-# comprobadas en el mapa, los 235 avatares y los diez idiomas a tres anchos.
+# paises de Europa, y 49 de oro) son SVG escritos a mano que la app pinta con
+# innerHTML: ninguno puede llevar nada que se ejecute, y ningun otro control
+# abre el catalogo. Y las filas de la pantalla (425 con los de oro), sus
+# enganches con la app y lo que nunca puede hacer (sin navegador). Las
+# fechas de los de oro, sin navegador: cada tipo de regla, las dos Pascuas, las
+# ventanas de varios dias y la excepcion de 2027 del Carnaval. Y la pantalla
+# usada de verdad: las regresiones, los de oro con la fecha cambiada, la nube
+# con permiso (contra una nube de mentira que se porta como supabase/perfil.sql)
+# y su tope, las visitas comprobadas en el mapa, los 284 avatares, los diez
+# idiomas a tres anchos y los de oro en cinco estados.
 control auditar_perfil.js node tools/auditar_perfil.js
+control probar_fechas_oro.js node tools/probar_fechas_oro.js modulos/avatares.js
 control probar_perfil.js node tools/probar_perfil.js "$PUERTO"
 echo; echo "════════ emergencias (SOS): textos, fuentes, enlaces, y el panel de verdad en los diez idiomas y sin conexion ════════"
 # Desde el 22 de octubre de 2026. El panel se carga al abrirlo

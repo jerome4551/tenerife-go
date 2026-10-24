@@ -208,11 +208,16 @@ window.__estados = [
      sus partes (solo en este navegador); «Todos los paises» abierto, con los 47
      sets; y cada uno de los 47 sets de avatares (23 de octubre: los diez idiomas,
      Tenerife y 36 paises de Europa), abierto desde esa lista, como lo haria
-     quien la usa; el de Tenerife, abierto con 10 visitas comprobadas. */
+     quien la usa; el de Tenerife, abierto con 10 visitas comprobadas. Cada set
+     lleva detras su avatar de oro (en Tenerife, tres), con su fecha; y «De oro»,
+     los 49 juntos con la bandera de su set (23 de octubre, tarde). */
   ['perfil', async () => { __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); await espera(700); }],
   ['perfil:todos los paises', async () => {
       __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); await espera(300);
       const b = document.getElementById('tgp-paises-btn'); if (b && b.getAttribute('aria-expanded') !== 'true') b.click(); await espera(300); }],
+  ['perfil:de oro', async () => {
+      __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); await espera(300);
+      const o = document.querySelector('#tgp-sets .tgp-set[data-set="oro"]'); if (o) o.click(); await espera(300); }],
   ...['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'tf', 'ie', 'dk', 'se', 'no', 'fi', 'is', 'ee', 'lv', 'lt', 'at', 'be', 'ch', 'lu', 'li', 'mc',
       'pt', 'gr', 'mt', 'hr', 'si', 'ba', 'rs', 'me', 'mk', 'al', 'ad', 'sm', 'cy', 'cz', 'sk', 'hu', 'ro', 'md', 'ua', 'by', 'ru'].map(s => ['perfil:avatares ' + s, async () => {
       __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); await espera(300);
@@ -429,6 +434,15 @@ const LATINOS = IDI.filter(l => !['zh', 'zht', 'bg'].includes(l));
   const N = [...new Set(nombres.concat(decl))].filter(x => x && x.length > 2).sort((a, c) => c.length - a.length);
   const trozos = []; for (let i = 0; i < N.length; i += 300) trozos.push(new RegExp(N.slice(i, i + 300).map(esc).join('|'), 'gi'));
   const sinNombres = t => { let s = t; for (const r of trozos) s = s.replace(r, ' '); return s; };
+  /* Lo aceptado en un idioma vale tambien dentro de un texto mas largo de ese idioma, y lo
+     demas del texto se sigue mirando: el nombre de un avatar va en su aria-label, y en
+     neerlandes «Día de Canarias, gouden avatar, op 30 mei» cantaba «día» (24 de octubre de 2026) */
+  const trozoAcept = {};
+  for (const [l, ts] of Object.entries(aceptado)) {
+    const xs = [...ts].filter(x => x.length > 2).sort((a, c) => c.length - a.length);
+    if (xs.length) trozoAcept[l] = new RegExp(xs.map(esc).join('|'), 'g');
+  }
+  const sinAceptado = (l, t) => trozoAcept[l] ? t.replace(trozoAcept[l], ' ') : t;
 
   let total = 0, errores = 0;
   const P = (t, v) => console.log('  ' + String(t).padEnd(44, '.') + ' ' + v);
@@ -447,7 +461,7 @@ const LATINOS = IDI.filter(l => !['zh', 'zht', 'bg'].includes(l));
       const esSet = new Set(res.es.porEstado[est] || []);
       for (const t of ts) {
         if (aceptado[L] && aceptado[L].has(t.replace(/^\[[a-z-]+\] /, ''))) continue;
-        const limpio = sinNombres(t.replace(/^\[[a-z-]+\] /, ''));
+        const limpio = sinNombres(sinAceptado(L, t.replace(/^\[[a-z-]+\] /, '')));
         const pal = (limpio.toLowerCase().match(/[\p{L}]+/gu) || []);
         const m = [];
         if (esSet.has(t) && /[áéíóúñ¿¡]/i.test(limpio) && pal.some(w => w.length > 3)) m.push('igual que en castellano');

@@ -146,5 +146,26 @@
   "pl": [
    "· Oparzenia przez meduzy (En Familia, 2025)"
   ]
+ },
+ "Dos nombres de los avatares de oro y de los nuevos (modulos/perfil.js): «Hallgrímskirkja» (perfilAv_is_hallgrimskirkja), la iglesia de Reikiavik, que se escribe con su nombre islandés en todos los idiomas de letra latina, como «Péckvillchen»; y «Día de Canarias» (perfilAv_tf_oro_canarias), que el neerlandés deja con su nombre en castellano, como se ve en las islas. Los miraron los revisores de cada idioma de la entrega de los de oro, y validar_i18n.py los da por buenos (23/10/2026)": {
+  "en": [
+   "Hallgrímskirkja"
+  ],
+  "fr": [
+   "Hallgrímskirkja"
+  ],
+  "de": [
+   "Hallgrímskirkja"
+  ],
+  "it": [
+   "Hallgrímskirkja"
+  ],
+  "nl": [
+   "Hallgrímskirkja",
+   "Día de Canarias"
+  ],
+  "pl": [
+   "Hallgrímskirkja"
+  ]
  }
 }

@@ -449,18 +449,22 @@ const IGUAL_UI = {
   zh: [], zht: [], bg: [],
   pl: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Alfa Centauri', 'Kaus Australis']
 };
-/* LOS AVATARES DE EUROPA (23 de octubre de 2026, modulos/perfil.js). Nombres
-   propios que en estos idiomas se escriben igual que en castellano: un pais
-   (Liechtenstein), un edificio (Casa de la Vall) y cosas que se llaman como en
-   su lengua (Pastel de nata, Sklandrausis, Péckvillchen, Kelb tal-Fenek), mas
-   cuatro que ese idioma escribe asi. Los miraron los revisores de cada idioma;
-   si un dia alguien deja otro nombre en castellano, se canta. */
+/* LOS AVATARES (modulos/perfil.js; 23 de octubre de 2026, con los de oro).
+   Nombres propios que en estos idiomas se escriben igual que en castellano:
+   un pais (Liechtenstein), edificios y lugares (Casa de la Vall,
+   Hallgrímskirkja, Orheiul Vechi), fiestas que se llaman como en su lengua
+   (Falles de Sant Joan; los carnavales de Binche y Rijeka en frances, como
+   el de Santa Cruz, que ya estaba; el Día de Canarias en neerlandes) y cosas
+   que se llaman como en su lengua (Pastel de nata, Fish and chips,
+   Péckvillchen). Los miraron los revisores de cada idioma; si un dia alguien
+   deja otro nombre en castellano, se canta. */
 for (const L of ['en', 'fr', 'de', 'it', 'nl', 'pl'])
-  IGUAL_UI[L].push('Liechtenstein', 'Casa de la Vall', 'Sklandrausis', 'Péckvillchen', 'Kelb tal-Fenek');
-for (const L of ['en', 'fr', 'it', 'nl', 'pl']) IGUAL_UI[L].push('Pastel de nata');
-IGUAL_UI.fr.push('Art nouveau de Riga');
-IGUAL_UI.it.push('Valle del Madriu', 'Fougasse monegasca');
-IGUAL_UI.pl.push('Bosanski lonac');
+  IGUAL_UI[L].push('Liechtenstein', 'Casa de la Vall', 'Péckvillchen', 'Hallgrímskirkja', 'Falles de Sant Joan');
+for (const L of ['en', 'fr', 'it', 'nl', 'pl']) IGUAL_UI[L].push('Pastel de nata', 'Fish and chips');
+for (const L of ['en', 'fr', 'de', 'it', 'nl']) IGUAL_UI[L].push('Orheiul Vechi');
+IGUAL_UI.fr.push('Art nouveau de Riga', 'Carnaval de Binche', 'Carnaval de Rijeka');
+IGUAL_UI.it.push('Valle del Madriu');
+IGUAL_UI.nl.push('Día de Canarias');
 
 /* Los nombres de sitio no se declaran a mano: se sacan del propio catalogo.
    El ultimo trozo de cada `cat` en castellano es siempre el municipio o el
