@@ -16257,6 +16257,110 @@ L.Map.TouchZoom.prototype._onTouchEnd = function () {
   if (m.options.zoomAnimation) m._animateZoom(c, z, true, false); else m._resetView(c, z);
 };
 
+/* Los gestos de zoom de los mapas de los móviles (24 de octubre de 2026, noche).
+   Jerome: «mira si el zoom puede hacerse mejor todavía». El pellizco ya era preciso; lo que
+   faltaba eran los otros gestos que cualquiera hace con un mapa en la mano:
+   · el doble toque acercaba medio nivel (Leaflet acerca zoomDelta, que aquí es 0,5 para que la
+     rueda y los botones vayan suaves). Ahora, un nivel entero, como en los mapas del móvil;
+   · tocar con dos dedos a la vez no hacía nada. Ahora aleja un nivel, alrededor del punto entre
+     los dedos;
+   · tocar dos veces y, sin levantar el dedo, arrastrar, movía el mapa. Ahora es el zoom con una
+     mano: hacia abajo acerca, hacia arriba aleja, alrededor del punto tocado, y al soltar se
+     ajusta al medio nivel como el pellizco, con las teselas pedidas ya al empezar.
+   Un toque sobre un marcador, una ventana o un botón se deja a Leaflet. Medido con toques de
+   verdad en un móvil emulado: tools/auditar_mapa.js, bloque 9. */
+L.Map.DoubleClickZoom.prototype._onDoubleClick = function (e) {
+  const m = this._map, z = m.getZoom(), z2 = e.originalEvent.shiftKey ? z - 1 : z + 1;
+  if (m.options.doubleClickZoom === 'center') m.setZoom(z2); else m.setZoomAround(e.containerPoint, z2);
+};
+function gestosZoom(map) {
+  const cont = map.getContainer();
+  const PX_POR_NIVEL = 120;            // arrastrando con un dedo: un nivel cada 120 px
+  const fuera = t => !!(t && t.closest && t.closest('.leaflet-marker-icon, .leaflet-popup, .leaflet-control, .leaflet-tooltip'));
+  const punto = t => map.mouseEventToContainerPoint(t);
+  const centroPara = (ll, p, z) => map.unproject(map.project(ll, z).subtract(p.subtract(map.getSize()._divideBy(2))), z);
+  const opc = { capture: true, passive: false };
+  let toque = null;     // el último toque corto de un dedo: { t, p }
+  let uno = null;       // un dedo abajo: { t0, p0, movido }
+  let dos = null;       // dos dedos abajo: { t0, ini, medio, z0, movido }
+  let rapido = null;    // doble toque y arrastre: { p0, y0, z0, ll, z, movido, anim }
+
+  function mover(e) {
+    if (!rapido) return;
+    e.preventDefault(); e.stopPropagation();
+    if (e.touches.length !== 1) return;
+    const dy = e.touches[0].clientY - rapido.y0;
+    if (!rapido.movido && Math.abs(dy) < 6) return;
+    if (!rapido.movido) { rapido.movido = true; map._stop(); map._moveStart(true, false); }
+    const z = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), rapido.z0 + dy / PX_POR_NIVEL));
+    const c = centroPara(rapido.ll, rapido.p0, z);
+    rapido.z = z;
+    L.Util.cancelAnimFrame(rapido.anim);
+    rapido.anim = L.Util.requestAnimFrame(function () { map._move(c, z, { pinch: true, round: false }); });
+  }
+  function soltar(e) {
+    if (!rapido) return;
+    e.preventDefault(); e.stopPropagation();
+    if (e.touches.length > 0) return;
+    document.removeEventListener('touchmove', mover, opc);
+    document.removeEventListener('touchend', soltar, opc);
+    document.removeEventListener('touchcancel', soltar, opc);
+    const r = rapido; rapido = null;
+    L.Util.cancelAnimFrame(r.anim);
+    if (!r.movido) { map.setZoomAround(r.p0, r.z0 + 1); return; }   // fue un doble toque
+    const z = map._limitZoom(r.z), c = centroPara(r.ll, r.p0, z);
+    if (map.options.zoomAnimation) map._animateZoom(c, z, true, false); else map._resetView(c, z);
+  }
+
+  cont.addEventListener('touchstart', function (e) {
+    // otro dedo a mitad del zoom con un dedo: se ignora, y Leaflet no empieza un pellizco
+    if (rapido) { e.preventDefault(); e.stopImmediatePropagation(); return; }
+    const n = e.touches.length;
+    if (n === 1) {
+      const p = punto(e.touches[0]);
+      if (toque && !fuera(e.target) && e.timeStamp - toque.t < 300 && p.distanceTo(toque.p) < 40 && !map._animatingZoom) {
+        // el segundo toque: el gesto es nuestro, así que Leaflet ni arrastra ni cuenta un doble clic
+        e.preventDefault(); e.stopImmediatePropagation();
+        rapido = { p0: p, y0: e.touches[0].clientY, z0: map.getZoom(), ll: map.containerPointToLatLng(p), z: map.getZoom(), movido: false, anim: 0 };
+        toque = null; uno = null;
+        document.addEventListener('touchmove', mover, opc);
+        document.addEventListener('touchend', soltar, opc);
+        document.addEventListener('touchcancel', soltar, opc);
+        return;
+      }
+      uno = fuera(e.target) ? null : { t0: e.timeStamp, p0: p, movido: false };
+      dos = null;
+    } else if (n === 2 && !fuera(e.target)) {
+      uno = null; toque = null;
+      const ini = {};
+      for (const t of e.touches) ini[t.identifier] = punto(t);
+      dos = { t0: e.timeStamp, ini: ini, medio: punto(e.touches[0]).add(punto(e.touches[1]))._divideBy(2), z0: map.getZoom(), movido: false };
+    } else { uno = null; dos = null; }
+  }, opc);
+  cont.addEventListener('touchmove', function (e) {
+    if (uno && e.touches.length === 1 && punto(e.touches[0]).distanceTo(uno.p0) > 10) uno.movido = true;
+    if (dos) for (const t of e.touches) { const i = dos.ini[t.identifier]; if (i && punto(t).distanceTo(i) > 12) dos.movido = true; }
+  }, { capture: true, passive: true });
+  cont.addEventListener('touchend', function (e) {
+    if (uno && e.touches.length === 0) {
+      toque = (!uno.movido && e.timeStamp - uno.t0 < 300) ? { t: e.timeStamp, p: uno.p0 } : null;
+      uno = null;
+    }
+    if (dos && e.touches.length === 0) {
+      const d = dos; dos = null;
+      if (!d.movido && e.timeStamp - d.t0 < 300) {
+        /* si el pellizco de Leaflet llegó a mover algo, primero termina su ajuste */
+        const alejar = function () {
+          if (map._animatingZoom) { map.once('zoomend', alejar); return; }
+          map.setZoomAround(d.medio, map._limitZoom(d.z0 - 1));
+        };
+        setTimeout(alejar, 0);
+      }
+    }
+  }, { capture: true, passive: true });
+  cont.addEventListener('touchcancel', function () { uno = null; dos = null; toque = null; }, { capture: true, passive: true });
+}
+
 map = L.map('map', {
   maxBounds: tenerifeBounds,
   maxBoundsViscosity: 0.7,  // suave — permite ver algo de océano pero vuelve sola
@@ -16269,6 +16373,7 @@ map = L.map('map', {
   zoomDelta: 0.5,       // rueda más suave
   wheelPxPerZoomLevel: 120  // scroll más suave (menos agresivo)
 });
+gestosZoom(map);
 /* Los rotulos de Leaflet son ingles fijo ("Zoom in"/"Zoom out") y los pone
    al crear el control. Se le dan los nuestros y se vuelven a poner cuando
    cambia el idioma. */
@@ -16481,37 +16586,348 @@ function fuenteBlob(blob, clave) {
    peor fotograma baja a 50-84 ms: durante el pellizco se estira lo que ya hay y el nivel nuevo
    se pinta al soltar, con el fondo de la isla debajo (ponerFondoIsla) para que no quede nada
    en blanco mientras tanto. */
-function construirIsla(blob, clave, detallado, zMax) {
-  const P = protomapsL;
-  if (detallado) {
-    /* El .pmtiles de OSM viene con el esquema de Protomaps -earth, water,
-       roads, places...-, asi que se estila con su propio flavor, que ademas
-       ya pinta los senderos (kind 'path'). El idioma se fija al construir:
-       si el usuario lo cambia, setLang tira la capa y se rehace. */
-    return P.leafletLayer({
-      url: new pmtiles.PMTiles(fuenteBlob(blob, clave)),
-      flavor: 'light',
-      maxDataZoom: zMax,
-      updateWhenZooming: false,
-      lang: (currentLang === 'zht' ? 'zh' : (currentLang || 'es'))
-    });
+/* El dibujo de los mapas de la isla (24 de octubre de 2026, noche).
+   Jerome: «sigue trabajando sobre el mapa para dibujarlo lo mejor posible». El mapa detallado
+   se pintaba con el estilo «light» que trae protomaps-leaflet, y no estaba hecho para esta
+   isla: el mar cian; todas las carreteras blancas e iguales, de la autopista a la calle; los
+   senderos, blancos y finos, casi invisibles sobre el monte; la mitad de la isla pintada de
+   verde, porque los espacios protegidos (el Parque Nacional, Anaga, Teno...) iban rellenos
+   como si fueran bosque, también la roca y el malpaís de las Cañadas; ni barcos, ni teleférico,
+   ni picos, ni el nombre de una carretera. Ahora se pinta con un estilo propio, sobre los
+   mismos datos de OpenStreetMap:
+   · el mar y la tierra, del mismo color que las teselas de OpenStreetMap (openstreetmap-carto,
+     style.mss: @water-color #aad3df y @land-color #f2efe9), en los tres mapas: el fondo de la
+     isla, el mapa base y el detallado. Así, al hacer zoom con las calles, lo que aún no ha
+     llegado y se ve con el fondo no cambia de color al llegar;
+   · el uso del suelo con su color: cultivo, matorral, pasto, bosque, roca, arena, ciudad,
+     parques. Del Parque Nacional, solo el borde;
+   · las carreteras por categorías, con borde: autopista, principal, secundaria, terciaria,
+     calle; los túneles tenues; los puentes por encima;
+   · los senderos, marrones y discontinuos, y las pistas; las escaleras; los barcos y el
+     teleférico;
+   · los rótulos: pueblos por tamaño, barrios, parajes, playas, los picos con su altitud y las
+     matrículas de las carreteras (TF-1, TF-21...).
+   Todo sale del propio fichero: nombres, altitudes y matrículas son los de OpenStreetMap.
+   Pintarlo cuesta algo más que el estilo light. Medido en un móvil emulado 4 veces más lento:
+   lo que más costaba era el contorno de los edificios, las juntas redondas y los bordes de las
+   calles pequeñas de lejos, y se quitaron; lo que queda está en AUDITORIA-FINAL.md. */
+const MAPA_MAR = '#aad3df', MAPA_TIERRA = '#f2efe9';
+
+/* Un rótulo con un margen alrededor, para que dos rótulos no se toquen: protomaps-leaflet
+   descarta el que choca con otro, pero mide solo las letras, y el halo blanco quedaba pegado. */
+function rotuloConMargen(sim, m) {
+  return {
+    place(layout, geom, feature) {
+      const r = sim.place(layout, geom, feature);
+      if (r) for (const l of r) l.bboxes = l.bboxes.map(b => ({ minX: b.minX - m, minY: b.minY - m, maxX: b.maxX + m, maxY: b.maxY + m }));
+      return r;
+    }
+  };
+}
+
+/* El mapa detallado: el .pmtiles de OSM, con el esquema de Protomaps (basemap v4: earth,
+   water, landuse, roads, places, pois...). */
+function estiloIslaDetallada(P, idioma) {
+  const C = {
+    cultivo: '#ebefd6', matorral: '#e1e9cd', pasto: '#e4ecd0', bosque: '#cde2bf',
+    roca: '#e4dfd6', arena: '#f4e6bf', humedal: '#d8e8de',
+    residencial: '#ebe7e0', comercio: '#efe5e1', industria: '#e8e4ec', escuela: '#f2e8d6',
+    hospital: '#f4dfdf', cementerio: '#d9e4d1', militar: '#ece6e4',
+    parque: '#d2e8c2', deporte: '#c8e3b8', golf: '#d0e8c0', zoo: '#d6e8ca',
+    playa: '#f5e5b8', aeropuerto: '#e6e6ec', pista_aterrizaje: '#d2d2da', rodadura: '#dadae2',
+    peatonal: '#f7f4ee', muelle: '#f6f4f0', presa: '#d9d5cf',
+    edificio: '#ddd5ca', agua_linea: '#93bcd8', acantilado: '#a59a8d',
+    parque_nacional: '#4e8a55', limite: '#b8aec2',
+    // las carreteras: relleno y borde (_b)
+    autopista: '#f6bd6a', autopista_b: '#d38d3b',
+    principal: '#fbd88e', principal_b: '#d2a65c',
+    secundaria: '#fdebb9', secundaria_b: '#cfb68a',
+    terciaria: '#ffffff', terciaria_b: '#cbbfae',
+    menor: '#ffffff', menor_b: '#d5cbbe',
+    servicio: '#ffffff', servicio_b: '#dcd3c7',
+    peatonal_b: '#d9d0c3', muelle_b: '#cfc8bd',
+    sendero: '#a0522d', pista: '#8a6d4d', acera: '#c4a68e', bici: '#5b8fc9',
+    ferry: '#5f8fc4', teleferico: '#4a4038',
+    // los rótulos
+    t_ciudad: '#1f2937', t_pueblo: '#2b3440', t_aldea: '#3d4652', t_barrio: '#737985',
+    t_paraje: '#6f6a62', t_pico: '#6d4c33', t_playa: '#8f7032', t_parque: '#3f7a45',
+    t_calle: '#5c5248', t_sendero: '#8a4a2a', halo: '#ffffff'
+  };
+  const FUENTE = 'system-ui, sans-serif';
+  const nombre = ['name:' + idioma, 'name'];
+  const exp = P.exp;
+  const en = lista => { const s = new Set(lista); return (z, f) => s.has(f.props.kind); };
+
+  /* la clase de cada vía, calculada una vez por objeto */
+  function claseVia(p) {
+    const k = p.kind, d = p.kind_detail;
+    if (k === 'highway') return 'autopista';
+    if (k === 'major_road') {
+      if (d === 'trunk' || d === 'trunk_link' || d === 'primary' || d === 'primary_link') return 'principal';
+      if (d === 'secondary' || d === 'secondary_link') return 'secundaria';
+      if (d === 'parking_aisle') return 'servicio';
+      return 'terciaria';
+    }
+    if (k === 'minor_road') {
+      if (d === 'service' || d === 'driveway' || d === 'alley' || d === 'parking_aisle') return 'servicio';
+      return 'menor';
+    }
+    if (k === 'path') {
+      if (d === 'path') return 'sendero';
+      if (d === 'track') return 'pista';
+      if (d === 'steps') return 'escalera';
+      if (d === 'footway') return 'acera';
+      if (d === 'cycleway') return 'bici';
+      if (d === 'pedestrian') return 'peatonal';
+      if (d === 'pier') return 'muelle';
+      return 'servicio';     // driveway, alley, parking_aisle, slipway
+    }
+    if (k === 'ferry') return 'ferry';
+    if (k === 'aerialway') return 'teleferico';
+    if (k === 'aeroway') return d === 'runway' ? 'pista_aterrizaje' : 'rodadura';
+    return 'otra';
   }
-  return P.leafletLayer({
-    url: new pmtiles.PMTiles(fuenteBlob(blob, clave)),
-    maxDataZoom: zMax,
-    updateWhenZooming: false,
-    backgroundColor: '#a8c8e0',
-    attribution: 'GSHHG · GTFS TITSA',
+  const clase = f => (f._tgoClase || (f._tgoClase = claseVia(f.props)));
+  const esClase = c => (z, f) => clase(f) === c && !f.props.is_tunnel;   // las vías: los túneles van aparte
+  const esCamino = c => (z, f) => clase(f) === c;                       // los caminos, también por los túneles
+
+  /* anchos en px de pantalla por zoom (curva exponencial, como el estilo de Protomaps) */
+  const ANCHO = {
+    autopista:  exp(1.6, [[7, 0.6], [10, 1.4], [12, 2.4], [14, 5], [16, 9.5], [18, 19], [19, 26]]),
+    principal:  exp(1.6, [[8, 0.5], [10, 1.1], [12, 2.0], [14, 4.2], [16, 8.5], [18, 17], [19, 23]]),
+    secundaria: exp(1.6, [[9, 0.4], [10, 0.7], [12, 1.6], [14, 3.4], [16, 7], [18, 14], [19, 19]]),
+    terciaria:  exp(1.6, [[10, 0.4], [12, 1.1], [14, 2.8], [16, 6], [18, 12.5], [19, 17]]),
+    menor:      exp(1.6, [[12, 0.4], [13, 0.8], [14, 1.9], [16, 4.8], [18, 10.5], [19, 14]]),
+    servicio:   exp(1.6, [[13, 0.4], [14, 0.9], [16, 2.6], [18, 6.5], [19, 9]]),
+    peatonal:   exp(1.6, [[13, 0.6], [14, 1.6], [16, 4.2], [18, 9.5], [19, 13]]),
+    muelle:     exp(1.6, [[13, 0.8], [14, 1.6], [16, 4.5], [18, 11], [19, 15]])
+  };
+  // el borde, lo que sobresale por cada lado; y desde qué zoom se dibuja: las calles pequeñas,
+  // solo de cerca (de lejos no se distinguían y era una parte grande del coste)
+  const BORDE = exp(1.4, [[11, 0.5], [13, 0.9], [15, 1.4], [18, 2.4]]);
+  const DESDE_BORDE = { autopista: 11, principal: 11, secundaria: 12, terciaria: 14, menor: 15, servicio: 16, peatonal: 15, muelle: 15 };
+  const via = (c, z, f) => ANCHO[c](z) * (f.props.is_link ? 0.72 : 1);   // los ramales, algo más estrechos
+
+  /* --- la pintura, de abajo arriba --- */
+  const paint = [];
+  const uso = (lista, fill) => paint.push({ dataLayer: 'landuse', filter: en(lista), symbolizer: new P.PolygonSymbolizer({ fill: fill }) });
+
+  paint.push({ dataLayer: 'earth', filter: (z, f) => f.geomType === 3, symbolizer: new P.PolygonSymbolizer({ fill: MAPA_TIERRA }) });
+  uso(['farmland', 'orchard', 'vineyard', 'allotments', 'plant_nursery', 'greenhouse_horticulture'], C.cultivo);
+  uso(['scrub', 'heath'], C.matorral);
+  uso(['meadow', 'grassland', 'grass'], C.pasto);
+  uso(['wood', 'forest'], C.bosque);
+  uso(['bare_rock', 'scree', 'shingle'], C.roca);
+  uso(['sand'], C.arena);
+  uso(['wetland'], C.humedal);
+  uso(['residential'], C.residencial);
+  uso(['commercial', 'retail'], C.comercio);
+  uso(['industrial', 'quarry', 'railway'], C.industria);
+  uso(['school', 'university', 'college', 'kindergarten'], C.escuela);
+  uso(['hospital'], C.hospital);
+  uso(['military', 'naval_base'], C.militar);
+  uso(['cemetery'], C.cementerio);
+  uso(['park', 'garden', 'village_green', 'playground', 'dog_park', 'recreation_ground'], C.parque);
+  uso(['pitch', 'stadium', 'sports_centre'], C.deporte);
+  uso(['golf_course'], C.golf);
+  uso(['zoo', 'theme_park'], C.zoo);
+  uso(['beach'], C.playa);
+  uso(['aerodrome', 'airfield'], C.aeropuerto);
+  uso(['pedestrian'], C.peatonal);
+  uso(['pier'], C.muelle);
+  uso(['dam'], C.presa);
+
+  // el agua: el mar y lo demás, del color del fondo
+  paint.push({ dataLayer: 'water', filter: (z, f) => f.geomType === 3, symbolizer: new P.PolygonSymbolizer({ fill: MAPA_MAR }) });
+  // barrancos y canales, de cerca
+  paint.push({ dataLayer: 'water', minzoom: 14, filter: (z, f) => f.geomType === 2,
+    symbolizer: new P.LineSymbolizer({ color: C.agua_linea,
+      width: (z, f) => (f.props.kind === 'river' ? 1.6 : f.props.kind === 'canal' ? 1.1 : 0.7) * exp(1.4, [[14, 0.9], [15, 1], [18, 1.8]])(z) }) });
+  // el Parque Nacional, solo el borde: los demás espacios protegidos no
+  paint.push({ dataLayer: 'landuse', minzoom: 9, filter: en(['national_park']),
+    symbolizer: new P.LineSymbolizer({ color: C.parque_nacional, opacity: 0.7, dash: [6, 3], width: exp(1.4, [[9, 1], [13, 1.6], [16, 2.2]]) }) });
+  // los límites municipales
+  paint.push({ dataLayer: 'boundaries', minzoom: 10, filter: (z, f) => f.props.kind === 'locality',
+    symbolizer: new P.LineSymbolizer({ color: C.limite, dash: [4, 2, 1, 2], width: exp(1.4, [[10, 0.6], [14, 1], [17, 1.4]]) }) });
+  // los acantilados
+  paint.push({ dataLayer: 'earth', minzoom: 12, filter: (z, f) => f.geomType === 2 && f.props.kind === 'cliff',
+    symbolizer: new P.LineSymbolizer({ color: C.acantilado, width: exp(1.4, [[12, 0.6], [15, 1.1], [18, 1.6]]) }) });
+  // los edificios, sin contorno: trazarlo era lo que más costaba en el centro de las ciudades
+  paint.push({ dataLayer: 'buildings', minzoom: 13, symbolizer: new P.PolygonSymbolizer({ fill: C.edificio }) });
+  // el aeropuerto
+  paint.push({ dataLayer: 'roads', filter: (z, f) => clase(f) === 'rodadura',
+    symbolizer: new P.LineSymbolizer({ color: C.rodadura, width: exp(1.6, [[11, 0.6], [14, 3], [16, 8], [18, 18]]) }) });
+  paint.push({ dataLayer: 'roads', filter: (z, f) => clase(f) === 'pista_aterrizaje',
+    symbolizer: new P.LineSymbolizer({ color: C.pista_aterrizaje, width: exp(1.6, [[10, 1.5], [12, 4], [14, 10], [16, 28], [18, 70]]) }) });
+  // los túneles, tenues y sin borde
+  paint.push({ dataLayer: 'roads', minzoom: 12, filter: (z, f) => !!f.props.is_tunnel && !!ANCHO[clase(f)],
+    symbolizer: new P.LineSymbolizer({ opacity: 0.45, perFeature: true, color: (z, f) => C[clase(f)], width: (z, f) => via(clase(f), z, f) }) });
+  // los caminos, por debajo de las carreteras
+  paint.push({ dataLayer: 'roads', minzoom: 14, filter: esCamino('pista'),
+    symbolizer: new P.LineSymbolizer({ color: C.pista, dash: [7, 3], width: exp(1.4, [[14, 1.2], [15, 1.6], [18, 2.4]]) }) });
+  paint.push({ dataLayer: 'roads', minzoom: 15, filter: esCamino('acera'),
+    symbolizer: new P.LineSymbolizer({ color: C.acera, opacity: 0.8, width: exp(1.4, [[15, 0.8], [16, 1], [18, 1.6]]) }) });
+  paint.push({ dataLayer: 'roads', minzoom: 14, filter: esCamino('bici'),
+    symbolizer: new P.LineSymbolizer({ color: C.bici, dash: [4, 2], width: exp(1.4, [[14, 1], [16, 1.5], [18, 2.2]]) }) });
+  paint.push({ dataLayer: 'roads', minzoom: 13, filter: esCamino('sendero'),
+    symbolizer: new P.LineSymbolizer({ color: C.sendero, dash: [4, 2.5], width: exp(1.4, [[13, 1.2], [15, 1.7], [18, 2.6]]) }) });
+  paint.push({ dataLayer: 'roads', minzoom: 14, filter: esCamino('escalera'),
+    symbolizer: new P.LineSymbolizer({ color: C.sendero, dash: [1.5, 1.5], width: exp(1.4, [[14, 2.2], [16, 3.4], [18, 5]]) }) });
+  // las carreteras: primero todos los bordes y luego todos los rellenos, de la menor a la mayor
+  const ORDEN = ['servicio', 'muelle', 'peatonal', 'menor', 'terciaria', 'secundaria', 'principal', 'autopista'];
+  for (const c of ORDEN) paint.push({ dataLayer: 'roads', minzoom: DESDE_BORDE[c], filter: esClase(c),
+    symbolizer: new P.LineSymbolizer({ color: C[c + '_b'], perFeature: true, width: (z, f) => via(c, z, f) + 2 * BORDE(z) }) });
+  for (const c of ORDEN) paint.push({ dataLayer: 'roads', filter: esClase(c),
+    symbolizer: new P.LineSymbolizer({ color: C[c], perFeature: true, width: (z, f) => via(c, z, f) }) });
+  // los puentes, otra vez por encima, con su borde
+  const puente = (z, f) => !!f.props.is_bridge && !f.props.is_tunnel && !!ANCHO[clase(f)];
+  paint.push({ dataLayer: 'roads', minzoom: 13, filter: puente,
+    symbolizer: new P.LineSymbolizer({ perFeature: true, color: (z, f) => C[clase(f) + '_b'], width: (z, f) => via(clase(f), z, f) + 2 * BORDE(z) + 1 }) });
+  paint.push({ dataLayer: 'roads', minzoom: 13, filter: puente,
+    symbolizer: new P.LineSymbolizer({ perFeature: true, color: (z, f) => C[clase(f)], width: (z, f) => via(clase(f), z, f) }) });
+  // los barcos y el teleférico
+  paint.push({ dataLayer: 'roads', minzoom: 9, filter: (z, f) => clase(f) === 'ferry',
+    symbolizer: new P.LineSymbolizer({ color: C.ferry, dash: [5, 4], opacity: 0.6, width: exp(1.4, [[9, 0.7], [13, 1.1], [16, 1.5]]) }) });
+  paint.push({ dataLayer: 'roads', minzoom: 11, filter: (z, f) => clase(f) === 'teleferico',
+    symbolizer: new P.LineSymbolizer({ color: C.teleferico, width: exp(1.4, [[11, 1], [14, 1.6], [17, 2.2]]) }) });
+  paint.push({ dataLayer: 'roads', minzoom: 13, filter: (z, f) => clase(f) === 'teleferico',
+    symbolizer: new P.LineSymbolizer({ color: C.teleferico, dash: [1.5, 9], width: exp(1.4, [[13, 5], [16, 7]]) }) });
+
+  /* --- los rótulos --- */
+  const texto = o => rotuloConMargen(new P.CenteredTextSymbolizer(Object.assign({ labelProps: nombre, stroke: C.halo, width: 2, lineHeight: 1.25, maxLineChars: 14 }, o)), 3);
+  const fuente = (peso, px, estilo) => (estilo ? estilo + ' ' : '') + peso + ' ' + px + 'px ' + FUENTE;
+  const mz = f => (typeof f.props.min_zoom === 'number' ? f.props.min_zoom : 0);
+  const sitio = (...ds) => { const s = new Set(ds); return (z, f) => s.has(f.props.kind_detail) && z >= mz(f); };
+  const barrio = sitio('suburb', 'quarter');
+  const porPoblacion = (a, b) => (b.population || 0) - (a.population || 0);
+
+  /* un pico: un triángulo y, debajo, el nombre y la altitud que trae el mapa */
+  function SimboloPico() {}
+  SimboloPico.prototype.place = function (layout, geom, feature) {
+    const p = feature.props;
+    const nom = p['name:' + idioma] || p.name;
+    if (!nom || typeof nom !== 'string') return;
+    const alt = (typeof p.elevation === 'number' && p.elevation > 0) ? Math.round(p.elevation) + ' m' : '';
+    const f1 = fuente(600, 11.5, 'italic'), f2 = fuente(500, 10.5);
+    const sc = layout.scratch;
+    sc.font = f1; const w1 = sc.measureText(nom).width;
+    sc.font = f2; const w2 = alt ? sc.measureText(alt).width : 0;
+    const w = Math.max(w1, w2), a = geom[0][0];
+    const caja = { minX: a.x - w / 2 - 2, minY: a.y - 5, maxX: a.x + w / 2 + 2, maxY: a.y + 22 + (alt ? 12 : 0) };
+    return [{ anchor: a, bboxes: [caja], draw: function (ctx) {
+      ctx.globalAlpha = 1;
+      ctx.beginPath(); ctx.moveTo(0, -4.5); ctx.lineTo(4.5, 3.5); ctx.lineTo(-4.5, 3.5); ctx.closePath();
+      ctx.lineJoin = 'round'; ctx.lineWidth = 2; ctx.strokeStyle = C.halo; ctx.stroke();
+      ctx.fillStyle = C.t_pico; ctx.fill();
+      ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ctx.lineJoin = 'miter'; ctx.miterLimit = 2;
+      ctx.font = f1; ctx.lineWidth = 3.5; ctx.strokeStyle = C.halo; ctx.strokeText(nom, 0, 6.5); ctx.fillStyle = C.t_pico; ctx.fillText(nom, 0, 6.5);
+      if (alt) { ctx.font = f2; ctx.strokeText(alt, 0, 19); ctx.fillText(alt, 0, 19); }
+      ctx.textAlign = 'start'; ctx.textBaseline = 'alphabetic';
+    } }];
+  };
+
+  /* la matrícula de una carretera (TF-1, TF-21...), en el punto medio del trozo más largo que
+     cae en la tesela, y una sola cada 300 px */
+  function SimboloRef(borde) { this.borde = borde; }
+  SimboloRef.prototype.place = function (layout, geom, feature) {
+    const ref = feature.props.ref;
+    if (!ref || typeof ref !== 'string' || ref.length > 7) return;
+    let mejor = null, largo = 0;
+    for (const linea of geom) {
+      let L = 0;
+      for (let i = 1; i < linea.length; i++) L += Math.hypot(linea[i].x - linea[i - 1].x, linea[i].y - linea[i - 1].y);
+      if (L > largo) { largo = L; mejor = linea; }
+    }
+    if (!mejor || largo < 60) return;
+    let mitad = largo / 2, a = mejor[0];
+    for (let i = 1; i < mejor.length; i++) {
+      const d = Math.hypot(mejor[i].x - mejor[i - 1].x, mejor[i].y - mejor[i - 1].y);
+      if (mitad <= d) { const t = d ? mitad / d : 0; a = { x: mejor[i - 1].x + (mejor[i].x - mejor[i - 1].x) * t, y: mejor[i - 1].y + (mejor[i].y - mejor[i - 1].y) * t }; break; }
+      mitad -= d;
+    }
+    const f = fuente(700, 10);
+    layout.scratch.font = f;
+    const w = layout.scratch.measureText(ref).width + 8, h = 14, borde = this.borde;
+    return [{ anchor: new mejor[0].constructor(a.x, a.y),
+      bboxes: [{ minX: a.x - w / 2 - 1, minY: a.y - h / 2 - 1, maxX: a.x + w / 2 + 1, maxY: a.y + h / 2 + 1 }],
+      deduplicationKey: 'ref:' + ref, deduplicationDistance: 300,
+      draw: function (ctx) {
+        ctx.globalAlpha = 1;
+        const x = -w / 2, y = -h / 2, r = 3;
+        ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+        ctx.fillStyle = '#ffffff'; ctx.fill(); ctx.lineWidth = 1.2; ctx.strokeStyle = borde; ctx.stroke();
+        ctx.font = f; ctx.fillStyle = '#3a3532'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(ref, 0, 0.5);
+        ctx.textAlign = 'start'; ctx.textBaseline = 'alphabetic';
+      } }];
+  };
+  const calle = o => new P.LineLabelSymbolizer(Object.assign({ labelProps: nombre, stroke: C.halo, width: 2.5, fill: C.t_calle, font: fuente(500, 11) }, o));
+  const vias = (...cs) => { const s = new Set(cs); return (z, f) => s.has(clase(f)); };
+
+  // por orden de prioridad: si dos chocan, se queda el de más arriba
+  const labels = [
+    { dataLayer: 'places', filter: sitio('city'), sort: porPoblacion,
+      symbolizer: texto({ fill: C.t_ciudad, width: 2.5, font: z => fuente(700, z >= 11 ? 17 : 15) }) },
+    { dataLayer: 'places', minzoom: 9, filter: sitio('town'), sort: porPoblacion,
+      symbolizer: texto({ fill: C.t_pueblo, font: z => fuente(600, z >= 12 ? 15 : 13.5) }) },
+    { dataLayer: 'places', minzoom: 11, filter: sitio('village'), sort: porPoblacion,
+      symbolizer: texto({ fill: C.t_pueblo, font: z => fuente(600, z >= 13 ? 13.5 : 12.5) }) },
+    { dataLayer: 'roads', minzoom: 10, filter: vias('autopista', 'principal'), symbolizer: new SimboloRef(C.autopista_b) },
+    { dataLayer: 'pois', minzoom: 10, maxzoom: 12, filter: (z, f) => f.props.kind === 'national_park',
+      symbolizer: texto({ fill: C.t_parque, font: fuente(600, 12, 'italic'), maxLineChars: 12 }) },
+    { dataLayer: 'places', minzoom: 12, filter: sitio('hamlet'), sort: porPoblacion,
+      symbolizer: texto({ fill: C.t_aldea, font: fuente(500, 12) }) },
+    // los barrios con población (Playa de las Américas, Costa Adeje, Los Gigantes...) desde z13; los demás, desde z14
+    { dataLayer: 'places', minzoom: 13, filter: (z, f) => barrio(z, f) && (z >= 14 || (f.props.population_rank || 0) >= 3), sort: porPoblacion,
+      symbolizer: texto({ fill: C.t_barrio, font: fuente(600, 10.5), textTransform: 'uppercase' }) },
+    { dataLayer: 'pois', minzoom: 14, filter: (z, f) => f.props.kind === 'peak',
+      sort: (a, b) => (b.elevation || 0) - (a.elevation || 0), symbolizer: new SimboloPico() },
+    { dataLayer: 'pois', minzoom: 14, filter: (z, f) => f.props.kind === 'beach',
+      symbolizer: texto({ fill: C.t_playa, font: fuente(600, 11.5, 'italic') }) },
+    { dataLayer: 'roads', minzoom: 13, filter: vias('secundaria'), symbolizer: new SimboloRef(C.secundaria_b) },
+    { dataLayer: 'places', minzoom: 14, filter: sitio('neighbourhood'),
+      symbolizer: texto({ fill: C.t_barrio, font: fuente(500, 11) }) },
+    { dataLayer: 'places', minzoom: 14, filter: sitio('locality', 'isolated_dwelling', 'farm'),
+      symbolizer: texto({ fill: C.t_paraje, font: fuente(500, 11, 'italic') }) },
+    { dataLayer: 'roads', minzoom: 14, filter: vias('autopista', 'principal', 'secundaria', 'terciaria'), symbolizer: calle({}) },
+    { dataLayer: 'roads', minzoom: 16, filter: vias('menor', 'peatonal', 'servicio'), symbolizer: calle({ font: fuente(500, 10.5) }) },
+    { dataLayer: 'roads', minzoom: 14, filter: vias('sendero', 'pista', 'teleferico'),
+      symbolizer: calle({ fill: C.t_sendero, font: fuente(500, 10.5, 'italic') }) }
+  ];
+  return { paintRules: paint, labelRules: labels, backgroundColor: MAPA_MAR };
+}
+
+/* El mapa base, el que viaja dentro de la app (tools/mapa_base.py): la costa, la red de
+   carreteras que recorren las guaguas y los núcleos. Las carreteras, como las principales del
+   detallado. */
+function estiloIslaBase(P) {
+  const exp = P.exp;
+  return {
+    backgroundColor: MAPA_MAR,
     paintRules: [
-      { dataLayer: 'tierra',    symbolizer: new P.PolygonSymbolizer({ fill: '#eef1e6' }) },
-      { dataLayer: 'carretera', symbolizer: new P.LineSymbolizer({ color: '#c2a86a', width: 1.4 }) }
+      { dataLayer: 'tierra', symbolizer: new P.PolygonSymbolizer({ fill: MAPA_TIERRA }) },
+      { dataLayer: 'carretera', minzoom: 9, symbolizer: new P.LineSymbolizer({ color: '#d2a65c', width: exp(1.6, [[9, 1.2], [11, 1.9], [13, 3.4], [16, 9]]) }) },
+      { dataLayer: 'carretera', symbolizer: new P.LineSymbolizer({ color: '#fbd88e', width: exp(1.6, [[8, 0.6], [11, 1.2], [13, 2.2], [16, 7]]) }) }
     ],
     labelRules: [
-      { dataLayer: 'sitio', symbolizer: new P.CenteredTextSymbolizer({
+      { dataLayer: 'sitio', symbolizer: rotuloConMargen(new P.CenteredTextSymbolizer({
           labelProps: ['nombre'], fill: '#33404f',
-          font: '600 12px system-ui, sans-serif', stroke: '#ffffff', width: 2 }) }
+          font: '600 12px system-ui, sans-serif', stroke: '#ffffff', width: 2 }), 3) }
     ]
-  });
+  };
+}
+
+function construirIsla(blob, clave, detallado, zMax) {
+  const P = protomapsL;
+  /* El idioma se fija al construir: si el usuario lo cambia, setLang tira la capa y se rehace.
+     El chino viene en el fichero como name:zh-Hans y name:zh-Hant (el esquema v4 de Protomaps),
+     no como name:zh: pidiendo 'zh', como hasta ahora, los rótulos salían en castellano. */
+  const idioma = currentLang === 'zht' ? 'zh-Hant' : currentLang === 'zh' ? 'zh-Hans' : (currentLang || 'es');
+  return P.leafletLayer(Object.assign({
+    url: new pmtiles.PMTiles(fuenteBlob(blob, clave)),
+    maxDataZoom: zMax,
+    updateWhenZooming: false        // las dos, la base y la detallada
+  }, detallado ? estiloIslaDetallada(P, idioma) : estiloIslaBase(P),
+     detallado ? { lang: idioma } : { attribution: 'GSHHG · GTFS TITSA' }));
 }
 
 function islaCapa() {
@@ -16724,12 +17140,13 @@ function ponerFondoIsla() {
             devicePixelRatio: 1,
             zIndex: 0,
             updateWhenZooming: false,
-            backgroundColor: '#a8c8e0',
+            backgroundColor: MAPA_MAR,
             attribution: 'GSHHG · GTFS TITSA',
-            /* las carreteras, mas finas que en la capa de la isla (0,7 y no 1,4): estiradas
-               cinco o diez veces, con 1,4 eran bandas gruesas */
+            /* el mar y la tierra, los de los otros mapas (MAPA_MAR, MAPA_TIERRA); las carreteras,
+               mas finas que en la capa de la isla (0,7): estiradas cinco o diez veces, mas
+               gruesas eran bandas */
             paintRules: [
-              { dataLayer: 'tierra',    symbolizer: new P.PolygonSymbolizer({ fill: '#eef1e6' }) },
+              { dataLayer: 'tierra',    symbolizer: new P.PolygonSymbolizer({ fill: MAPA_TIERRA }) },
               { dataLayer: 'carretera', symbolizer: new P.LineSymbolizer({ color: '#c2a86a', width: 0.7 }) }
             ],
             labelRules: []

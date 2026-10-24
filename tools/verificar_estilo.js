@@ -14,9 +14,11 @@
  *
  * COMO SE MIDE
  *   Se monta la capa igual que index.html —vendor/protomaps-leaflet.js, un
- *   PMTiles sobre Blob, flavor 'light'— sobre varios puntos de Tenerife, y se
- *   cuentan los pixeles que NO son el color de fondo. Un mapa en blanco da
- *   cero: es exactamente el sintoma que se quiere cazar, medido tal cual.
+ *   PMTiles sobre Blob y el estilo de la app, estiloIslaDetallada, sacado del
+ *   propio index.html (hasta el 24 de octubre de 2026 era el flavor 'light'
+ *   del bundle)— sobre varios puntos de Tenerife, y se cuentan los pixeles que
+ *   NO son el color de fondo. Un mapa en blanco da cero: es exactamente el
+ *   sintoma que se quiere cazar, medido tal cual.
  */
 'use strict';
 const fs = require('fs');
@@ -44,6 +46,18 @@ const PUNTOS = [
   { n: 'la isla',   lat: 28.290, lng: -16.560, z: 10 }
 ];
 const MINIMO = 0.5;   // % de pixeles pintados por debajo del cual es un mapa en blanco
+
+/* El estilo de la app, tal como esta en index.html: los colores compartidos y las funciones
+   que arman las reglas (lo mismo que mira tools/auditar_mapa.js). */
+function estiloDeLaApp() {
+  const html = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+  const trozo = re => { const m = html.match(re); if (!m) throw new Error('no esta en index.html: ' + re); return m[0]; };
+  return [
+    trozo(/\nconst MAPA_MAR = '#[0-9a-f]{6}', MAPA_TIERRA = '#[0-9a-f]{6}';\n/),
+    trozo(/\nfunction rotuloConMargen\(sim, m\) \{[\s\S]*?\n\}\n/),
+    trozo(/\nfunction estiloIslaDetallada\(P, idioma\) \{[\s\S]*?\n\}\n/)
+  ].join('\n').replace(/^const /m, 'var ');
+}
 
 (async () => {
   const fichero = process.argv[2];
@@ -85,6 +99,7 @@ const MINIMO = 0.5;   // % de pixeles pintados por debajo del cual es un mapa en
     const errores = [];
     page.on('pageerror', e => errores.push(e.message));
     await page.goto('http://127.0.0.1:' + puerto + '/', { waitUntil: 'networkidle' });
+    await page.addScriptTag({ content: estiloDeLaApp() });
 
     const cab = await page.evaluate(async () => {
       const blob = await (await fetch('/f.pmtiles')).blob();
@@ -95,7 +110,7 @@ const MINIMO = 0.5;   // % de pixeles pintados por debajo del cual es un mapa en
       });
       const h = await pm.getHeader();
       // la capa, montada EXACTAMENTE como en index.html
-      window.__capa = protomapsL.leafletLayer({ url: pm, flavor: 'light', lang: 'es' });
+      window.__capa = protomapsL.leafletLayer(Object.assign({ url: pm, lang: 'es' }, estiloIslaDetallada(protomapsL, 'es')));
       window.__map = L.map('m', { zoomControl: false, attributionControl: false });
       window.__capa.addTo(window.__map);
       return { minZoom: h.minZoom, maxZoom: h.maxZoom, bytes: blob.size };
@@ -104,7 +119,7 @@ const MINIMO = 0.5;   // % de pixeles pintados por debajo del cual es un mapa en
     // Node no entiende %-11s ni %.1f: eso es printf, no util.format.
     console.log('\n' + fichero + '  ·  ' + (cab.bytes / 1e6).toFixed(1) + ' MB  ·  z'
                 + cab.minZoom + ' a z' + cab.maxZoom + '\n');
-    console.log('  Se dibuja con vendor/protomaps-leaflet.js y flavor "light",');
+    console.log('  Se dibuja con vendor/protomaps-leaflet.js y el estilo de index.html,');
     console.log('  igual que en la app. Se cuentan los pixeles no-fondo.\n');
 
     for (const p of PUNTOS) {

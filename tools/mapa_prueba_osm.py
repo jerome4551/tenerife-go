@@ -7,9 +7,10 @@ mapa_prueba_osm.py — un .pmtiles pequeno con el ESQUEMA DE PROTOMAPS.
 Escribe tools/datos/prueba-osm.pmtiles.
 
 PARA QUE
-  El bloque 4 descarga un .pmtiles de OSM y lo dibuja con los estilos que
-  trae protomaps-leaflet (flavor 'light'), que esperan las capas earth,
-  water, roads, places, landuse, landcover, buildings y boundaries.
+  El bloque 4 descarga un .pmtiles de OSM y lo dibuja con el estilo de la
+  app (estiloIslaDetallada, en index.html; hasta el 24 de octubre de 2026,
+  el flavor 'light' de protomaps-leaflet), que espera las capas earth,
+  water, roads, places, pois, landuse, buildings y boundaries.
 
   Ese fichero lo genera el usuario y no cabe en el repositorio. Sin algo con
   ese esquema no se puede probar NADA de la maquinaria -descargar, guardar,

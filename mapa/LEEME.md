@@ -13,14 +13,22 @@ porque no están en ningún dato nuestro.
 No hace falta tocarlo salvo que cambien esos datos. Si se regenera, sale byte
 a byte igual.
 
-## `tenerife-osm.pmtiles` — no está; hay que generarlo
+## `tenerife-osm.pmtiles` — está (12 MB, desde el 13 de octubre de 2026) y se genera con el workflow
 
-Es el detalle fino: senderos, edificios, usos del suelo. **La app ya sabe
-usarlo**: en cuanto este fichero aparezca aquí, el panel de la ⓘ ofrece
-descargarlo y la capa «Isla offline» pasa a dibujarlo. No hay que tocar
-ninguna línea de código.
+Es el detalle fino: senderos, edificios, usos del suelo. Como está aquí, el
+panel de la ⓘ ofrece descargarlo y la capa «Isla offline» pasa a dibujarlo.
+Si no estuviera, no se vería nada de eso y la app usaría el mapa base.
 
-Mientras no esté, no se ve nada de eso y la app usa el mapa base.
+### Cómo se dibuja
+
+Con el estilo propio de la app, `estiloIslaDetallada` en `index.html` (desde el
+24 de octubre de 2026; antes, el *flavor* `light` de `protomaps-leaflet`): el
+mar y la tierra de las teselas de OpenStreetMap, el uso del suelo con su color,
+las carreteras por categorías y con borde, los senderos marrones y
+discontinuos, los barcos, el teleférico, los picos con su altitud y las
+matrículas de las carreteras. El mapa base, con `estiloIslaBase`, con el mismo
+mar y la misma tierra. `tools/auditar_mapa.js` (bloque 8) comprueba que todas
+las vías y usos del suelo del fichero tienen su regla y lo pinta de verdad.
 
 ### Requisitos
 
@@ -80,7 +88,8 @@ Anaga, Teide, Adeje y La Orotava, no el centro de la caja, que en Tenerife cae
 en mitad de la caldera—.
 
 El séptimo mira **el par**: monta la capa con el `vendor/protomaps-leaflet.js`
-que corre en el móvil y cuenta los píxeles que no son fondo.
+y el estilo de `index.html`, los que corren en el móvil, y cuenta los píxeles
+que no son fondo.
 
     node tools/verificar_estilo.js ruta/al/fichero.pmtiles     # suelto
 
@@ -95,9 +104,9 @@ Si pasa, se copia aquí como `tenerife-osm.pmtiles` y se sube.
 ### Sobre la generación del esquema
 
 Los *builds* diarios son **basemap v4**. Y el estilo que lleva la app también:
-`vendor/protomaps-leaflet.js` filtra por `kind`, `kind_detail` y `min_zoom`, y
-**no tiene ni una** aparición de `pmap:kind` ni `pmap:min_zoom`, que eran los
-nombres de la generación anterior. Medido, no supuesto, y hay un control en
+`estiloIslaDetallada` (`index.html`) filtra por `kind`, `kind_detail` y
+`min_zoom`, y **no tiene ni una** aparición de `pmap:kind` ni `pmap:min_zoom`,
+que eran los nombres de la generación anterior. Medido, no supuesto, y hay un control en
 `tools/auditar_mapa.js` que lo vuelve a medir en cada auditoría.
 
 Cuidado con una confusión que cuesta cara: **5.1.0 es la versión de la

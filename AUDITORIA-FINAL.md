@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.060 kB** en castellano · **1.174 kB** en el peor caso (búlgaro) · 1.160 kB en polaco, el 24 de octubre por la noche, con los bloques quinto a décimo del cielo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos y el Carnaval de 2027. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.073 kB** en castellano · **1.188 kB** en el peor caso (búlgaro) · 1.173 kB en polaco, el 31 de octubre, con los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres: sin él, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -3450,6 +3450,185 @@ polaco de trabajo:
     Canarias).
 
   No se aplica.
+
+## El dibujo del mapa y los gestos de zoom (24 de octubre, noche, undécimo bloque)
+
+Jerome, a las 18:44: «Sigue trabajando sobre el mapa para dibujarlo lo mejor
+posible; mira si el zoom puede hacerse mejor todavía».
+
+### El dibujo
+
+El mapa detallado de la isla (el `.pmtiles` de OpenStreetMap que se descarga
+desde la ⓘ) se pintaba con el estilo `light` que trae `protomaps-leaflet`, que
+no está hecho para esta isla. Visto en un móvil emulado en el Puerto, Anaga,
+las Cañadas, Los Cristianos, Santa Cruz y Los Gigantes, de z10 a z19:
+
+- el mar, cian (`#80deea`), y la tierra, gris;
+- todas las vías blancas e iguales, de la TF-1 a una calle;
+- los senderos, blancos y finos: en Anaga, casi invisibles;
+- media isla verde: los espacios protegidos (el Parque Nacional, el Parque
+  Rural de Anaga, Teno…) se rellenaban como bosque, también la roca y el
+  malpaís de las Cañadas;
+- ni los barcos, ni el teleférico, ni un pico, ni la matrícula de una
+  carretera, aunque todo está en el fichero.
+
+Ahora se pinta con un estilo propio, `estiloIslaDetallada` en `index.html`,
+sobre los mismos datos:
+
+- **el mar y la tierra, los de las teselas de OpenStreetMap**
+  (`openstreetmap-carto`, `style/style.mss`: `@water-color: #aad3df` y
+  `@land-color: #f2efe9`), en los tres mapas: el fondo de la isla, el mapa
+  base y el detallado. Al hacer zoom con las calles, lo que aún no ha llegado y
+  se ve con el fondo ya no cambia de color al llegar;
+- **el uso del suelo con su color**: cultivo, matorral, pasto, bosque, roca,
+  arena, ciudad, parques, colegios, hospitales. Del Parque Nacional, solo el
+  borde, discontinuo; los demás espacios protegidos, nada (son la mitad de la
+  isla);
+- **las carreteras por categorías, con borde**: autopista, principal,
+  secundaria, terciaria, calle, servicio; los ramales algo más estrechos; los
+  túneles tenues; los puentes por encima;
+- **los senderos marrones y discontinuos**, las pistas, las escaleras, el
+  carril bici; **los barcos y el teleférico**;
+- **los rótulos**: pueblos por tamaño, barrios (los que tienen población, como
+  Playa de las Américas o Los Gigantes, ya a z13), parajes, playas, **los picos
+  con su altitud** y **las matrículas** de las carreteras (TF-1, TF-21…), una
+  sola por tramo.
+
+Todo sale del fichero: los nombres, las altitudes y las matrículas son los de
+OpenStreetMap. Y con la app en chino, los rótulos salen ya en chino: el
+fichero trae los nombres como `name:zh-Hans` y `name:zh-Hant` (el esquema v4
+de Protomaps), no como `name:zh`, que es lo que se pedía, así que salían en
+castellano. Ahora Santa Cruz es 圣克鲁斯-德特内里费 y La Orotava, 劳罗塔瓦,
+donde OpenStreetMap tiene el nombre. El mapa base (el que viaja en la app) pasa al mismo mar y la
+misma tierra, con las carreteras como las principales del detallado. Antes y
+ahora, en cuatro sitios, en la imagen que acompaña a la nota 15 para Claude
+Code (`mapa-antes-ahora.png`); se rehace con el estilo de antes y el de ahora
+sobre el mismo fichero, como hace el bloque 8.
+
+### Lo que cuesta pintarlo
+
+Más dibujo cuesta más. Se midió cuánto tarda el mapa en quedar nítido (todas
+las teselas del nivel nuevo pintadas) tras un cambio de zoom, en cinco vistas,
+con la CPU normal y cuatro veces más lenta (un móvil modesto), medianas de
+cinco pasadas:
+
+| tras el zoom | `light` (CPU ×1) | ahora (×1) | `light` (CPU ×4) | ahora (×4) |
+|---|---|---|---|---|
+| Los Cristianos, de 14 a 12,5 | 0,27 s | 0,23 s | 1,08 s | 1,07 s |
+| el Puerto, de 12 a 14 | 0,16 s | 0,23 s | 0,65 s | 0,91 s |
+| el Puerto, de 14 a 13 | 0,25 s | 0,26 s | 1,08 s | 1,23 s |
+| Santa Cruz, de 15 a 16 | 0,14 s | 0,17 s | 0,56 s | 0,76 s |
+| Anaga, de 13 a 15 | 0,12 s | 0,15 s | 0,38 s | 0,59 s |
+
+Con la primera versión del estilo, en el móvil lento, Santa Cruz a z16
+tardaba 1,30 s y el Puerto a z14, 1,26 (medianas de tres pasadas). Una traza
+del hilo principal dijo dónde se iba el tiempo: no en el JavaScript (unos 2 ms
+por tesela) sino en rasterizar el lienzo. Lo que más costaba, y se quitó o se
+retrasó:
+
+- **el contorno de los edificios** (un tercio de lo que se pinta en el centro
+  de Santa Cruz): los edificios van rellenos, sin contorno;
+- **las juntas y puntas redondas** de las vías (entre un 15 y un 20 %): en
+  inglete;
+- **los bordes de las calles pequeñas de lejos**: las calles, desde z15; las
+  terciarias, desde z14;
+- **a z13**: los barrancos, las pistas y los nombres de las carreteras pasan a
+  z14 (a z13 quedan las matrículas);
+- el espaciado entre letras de los barrios (con él, cada letra se pinta
+  aparte).
+
+Se probó también a juntar todo lo de cada regla en un solo trazo: salió más
+lento y se descartó.
+
+### Los gestos
+
+El pellizco ya era preciso (décimo bloque). Faltaban los otros gestos que
+cualquiera hace con un mapa en la mano (`gestosZoom`, en `index.html`):
+
+| con toques de verdad en un móvil emulado | antes | ahora |
+|---|---|---|
+| doble toque | medio nivel | un nivel, y el punto tocado no se mueve (0 px) |
+| doble toque y arrastrar 120 px hacia abajo | arrastraba el mapa | acerca un nivel, alrededor del punto (0 px) |
+| doble toque y arrastrar 180 px hacia arriba | arrastraba el mapa | aleja nivel y medio, alrededor del punto (0 px) |
+| tocar con dos dedos | nada | aleja un nivel, alrededor del punto entre los dedos (0 px) |
+| un toque, arrastrar, pellizcar | — | igual que antes |
+
+El zoom con un dedo es el de los mapas de los móviles: hacia abajo acerca y
+hacia arriba aleja, un nivel cada 120 px; al soltar se ajusta al medio nivel
+como el pellizco, con las teselas pedidas ya al empezar. Un toque sobre un
+marcador, una ventana o un botón se deja a Leaflet.
+
+### Cómo se comprueba
+
+`tools/auditar_mapa.js`, **bloque 8** (14 controles): que los dos mapas de la
+isla usan el estilo de la app, sin el `flavor`; que el mar y la tierra son
+`#aad3df` y `#f2efe9` y los comparten el fondo, el mapa base y el detallado;
+que no queda ninguno de los colores de antes; que el chino pide las claves
+que trae el fichero, y que el fichero las trae así (y ningún `name:zh`); que
+todas las vías del fichero (29 tipos en ocho sitios, de z12 a z14) tienen su
+regla, y todos los usos del suelo su color, salvo los espacios protegidos; y,
+pintando el fichero de
+verdad: los senderos se ven en Anaga a z15 (0,4 % de la pantalla, de su
+color), y con el `flavor` de antes, 0 %, para que se vea que la medida sabe
+ponerse en rojo; 13 picos con su altitud en las Cañadas a z14; 8 matrículas en
+el Puerto a z12, ninguna repetida a menos de 300 px; y mar adentro, el 99 % de
+la pantalla del color del fondo.
+
+**Bloque 9** (14 controles): que la Leaflet de `vendor/` acerca `zoomDelta` con
+el doble clic y que la app lo cambia por un nivel antes de crear el mapa, y
+pone los gestos en cuanto lo crea; y, con toques de verdad
+(`Input.dispatchTouchEvent`), cada fila de la tabla de arriba; que un
+segundo dedo a mitad del zoom con un dedo se ignora sin dejar atascado el
+pellizco de después; y que un toque en un marcador sigue abriendo su ventana.
+Con la Leaflet de `vendor/` sola y las mismas opciones, los mismos toques dan
+medio nivel, el mapa arrastrado y nada.
+
+`tools/verificar_estilo.js` y el paso 7 de `tools/verificar_osm.py`, que
+deciden si un `.pmtiles` nuevo se ve, montan ahora la capa con el estilo de
+`index.html`, y la lista de capas que pide (`CAPAS_DEL_ESTILO`) pasa a ser la
+del estilo: `boundaries`, `buildings`, `earth`, `landuse`, `places`, `pois`,
+`roads` y `water`. Con el fichero de verdad, 100 % y todo en verde.
+
+### El resultado
+
+Sobre el árbol final (los siete commits encima de `ac10788`), el 24 de
+octubre de 2026 por la noche: `auditar.sh` entero sin un solo fallo.
+`auditar_mapa.js`, 126 controles, con los bloques 8 y 9; `auditar_cielo.js`,
+302 (con las fuentes en `/tmp`; sin ellas, los seis que rehacen el catálogo y
+el motor de los satélites se saltan y quedan 296); `barrido_pantallas.js`,
+106 pantallas y fichas por idioma y 0 textos sin traducir;
+`auditar_etiquetas.js`, 0 sin traducir ni declarar; `auditar_registro.js`,
+el castellano todo de usted (pendientes, los mismos que en el noveno bloque);
+el cirílico, 1.903 nombres y 0 variantes sospechosas; `auditar_web.js`, 44
+tablas y 1828 filas; `barrido_idiomas.js`, 3.969; la descarga, 1.052 kB en
+castellano, 1.166 en búlgaro y 1.152 en polaco. Los tres controles que leen
+los `.pmtiles` desde Python siguen sin poder correr aquí, como en el noveno
+bloque.
+
+
+### Encima del main del 31 de octubre
+
+El parche se perdió con el reinicio del entorno y llegó otra vez el 31 de
+octubre, con la misma nota 15 (`PARA-CLAUDE-CODE-15.md`). Lo que se comprobó
+antes de juntarlo:
+
+- **La huella.** La del parche, `ecb5a4e5…`, es la de la nota y la del que
+  llegó el 24. Los seis primeros, los de la nota 14, están en `main` desde el
+  24 de octubre (el décimo bloque es `14c21e9`): entra solo el `0007`.
+- **Cómo entra.** Con `git am` encima del `main` del 31 de octubre: los seis
+  ficheros de código y de herramientas, limpios; este informe, a mano (esta
+  sección, en su sitio, y la cifra de la descarga de la cabecera, medida otra
+  vez con `tools/peso_descarga.py`).
+- **El navegador de las pruebas.** Los bloques 8 y 9 abrían Chromium por la
+  ruta de la versión 1194; el `main` pasó todas las pruebas a su enlace fijo,
+  `/opt/pw-browsers/chromium`, el 30 de octubre. Estos dos, igual.
+- **El código.** El doble toque, y el doble clic con el ratón, acercan un
+  nivel: `zoomSnap` y `zoomDelta` siguen en 0,5, para la rueda y los botones.
+  Un toque en un marcador, en su ventana o en un botón del mapa sigue siendo
+  de Leaflet. Al soltar el zoom con un dedo, el mismo ajuste que el pellizco
+  del décimo bloque, con las teselas pedidas al empezar. El estilo pinta el
+  mismo fichero: no descarga nada ni pide nada fuera, y los nombres, las
+  altitudes y las matrículas son los de OpenStreetMap.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 

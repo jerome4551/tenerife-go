@@ -44,8 +44,8 @@ sin error. Comparar numeros de version no sirve: no siempre estan en los
 metadatos y no dicen lo que de verdad importa.
 
 Lo que hace el paso 7 es probar el par concreto: carga el fichero con el
-protomaps-leaflet que hay en vendor/ —el mismo que corre en el movil del
-usuario— y cuenta cuantos rasgos dibuja de verdad. Si sale cero, no importa
+protomaps-leaflet que hay en vendor/ y el estilo de la app —los mismos que
+corren en el movil del usuario— y cuenta cuantos rasgos dibuja de verdad. Si sale cero, no importa
 que versiones sean: ese fichero con este estilo da un mapa en blanco.
 """
 import sys, os, json, gzip, zlib, struct
@@ -57,12 +57,13 @@ LIMITE_NAVEGADOR = 25 * 1024 * 1024         # subida por el navegador de GitHub
 LIMITE_CLI       = 100 * 1024 * 1024        # push por linea de comandos
 
 # Las capas que pide de verdad el estilo que lleva la app. NO es una lista de
-# memoria: sale de preguntarle a vendor/protomaps-leaflet.js que dataLayer
-# nombran sus reglas, y tools/auditar_mapa.js comprueba en cada auditoria que
-# esta constante sigue coincidiendo con lo que el bundle pide. Si algun dia se
-# actualiza el vendor y cambia, la auditoria lo canta.
-CAPAS_DEL_ESTILO = {'boundaries','buildings','earth','landcover','landuse',
-                    'places','roads','water'}
+# memoria: sale de preguntarle al estilo de la app (estiloIslaDetallada, en
+# index.html; hasta el 24 de octubre de 2026 era el flavor 'light' de
+# vendor/protomaps-leaflet.js) que dataLayer nombran sus reglas, y
+# tools/auditar_mapa.js comprueba en cada auditoria que esta constante sigue
+# coincidiendo. Si algun dia cambia el estilo, la auditoria lo canta.
+CAPAS_DEL_ESTILO = {'boundaries','buildings','earth','landuse','places',
+                    'pois','roads','water'}
 
 CAPAS_PROTOMAPS = {'earth','water','landuse','natural','physical_line',
                    'buildings','boundaries','places','roads','transit',
@@ -356,10 +357,10 @@ def main():
         tiene = capas & CAPAS_DEL_ESTILO
         pct = len(tiene) * 100 // len(CAPAS_DEL_ESTILO)
         # La referencia son las capas que pide EL ESTILO DE ESTA APP -las 8 que
-        # nombran las reglas de vendor/protomaps-leaflet.js-, no el juego
+        # nombran las reglas de estiloIslaDetallada, en index.html-, no el juego
         # canonico entero de Protomaps. Con el canonico (13) un fichero
         # perfecto para nosotros saldria al 62 % y pareceria roto.
-        print(f'         referencia: las {len(CAPAS_DEL_ESTILO)} capas que pide vendor/protomaps-leaflet.js')
+        print(f'         referencia: las {len(CAPAS_DEL_ESTILO)} capas que pide el estilo de la app (index.html)')
         print(f'         el fichero trae {len(tiene)}')
         if tiene != CAPAS_DEL_ESTILO:
             print('         faltan: ' + ', '.join(sorted(CAPAS_DEL_ESTILO - capas)))
@@ -379,7 +380,8 @@ def main():
     #
     # Los pasos 1 a 6 miran el fichero. Este mira el PAR: se monta la capa
     # con el vendor/protomaps-leaflet.js que corre en el movil del usuario y
-    # se cuentan los pixeles que no son fondo. Comparar numeros de version no
+    # el estilo de la app (index.html), y se cuentan los pixeles que no son
+    # fondo. Comparar numeros de version no
     # sirve -no siempre estan, y no dicen lo que importa-; esto sí: si sale
     # cero, ese fichero con este estilo da un mapa en blanco, sean de la
     # generacion que sean.
@@ -393,7 +395,7 @@ def main():
             if t.startswith('OK ') or t.startswith('MAL '):
                 print('         ' + t)
         (ok if r.returncode == 0 else mal)(
-            'se dibuja de verdad con vendor/protomaps-leaflet.js'
+            'se dibuja de verdad con vendor/protomaps-leaflet.js y el estilo de la app'
             if r.returncode == 0 else
             'MAPA EN BLANCO: el esquema del fichero y el del estilo no se entienden')
     except FileNotFoundError:

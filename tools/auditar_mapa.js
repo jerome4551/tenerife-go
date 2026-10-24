@@ -15,6 +15,20 @@ const RAIZ = path.dirname(__dirname);
 const PUERTO = process.argv[2] || 8766;
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
 
+/* El estilo de los mapas de la isla tal como esta en index.html: los colores compartidos y
+   las funciones que arman las reglas. Lo usan el bloque 1 (que capas pide) y el bloque 8 (el
+   dibujo), sobre una pagina que solo carga vendor/. */
+function estiloDeLaApp() {
+  const html = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+  const trozo = re => { const m = html.match(re); if (!m) throw new Error('no esta en index.html: ' + re); return m[0]; };
+  return [
+    trozo(/\nconst MAPA_MAR = '#[0-9a-f]{6}', MAPA_TIERRA = '#[0-9a-f]{6}';\n/),
+    trozo(/\nfunction rotuloConMargen\(sim, m\) \{[\s\S]*?\n\}\n/),
+    trozo(/\nfunction estiloIslaDetallada\(P, idioma\) \{[\s\S]*?\n\}\n/),
+    trozo(/\nfunction estiloIslaBase\(P\) \{[\s\S]*?\n\}\n/)
+  ].join('\n').replace(/^const /m, 'var ');
+}
+
 let fallos = 0, hechos = 0;
 function ok(cond, txt, detalle) {
   hechos++;
@@ -78,10 +92,13 @@ function ok(cond, txt, detalle) {
     /* Que capas pide de verdad el estilo, y por que propiedad filtra.
        tools/verificar_osm.py lleva esa lista escrita para poder decidir sin
        navegador si un .pmtiles se va a ver; aqui se comprueba que sigue
-       coincidiendo con lo que el bundle pide. Si se actualiza vendor/ y
-       cambia, esto lo canta en vez de dejar el verificador mintiendo. */
+       coincidiendo con lo que pide el estilo de la app (estiloIslaDetallada,
+       en index.html, desde el 24 de octubre de 2026; antes era el flavor
+       'light' del bundle). Si cambia, esto lo canta en vez de dejar el
+       verificador mintiendo. */
+    await page.addScriptTag({ content: estiloDeLaApp() });
     const estilo = await page.evaluate(() => {
-      const c = protomapsL.leafletLayer({ flavor: 'light', url: 'x' });
+      const c = estiloIslaDetallada(protomapsL, 'es');
       const reglas = c.paintRules.concat(c.labelRules);
       const capas = [...new Set(reglas.map(r => r.dataLayer))].sort();
       const rasgo = props => ({ props, geomType: 2, geom: [], numVertices: 0, bbox: {} });
@@ -93,7 +110,7 @@ function ok(cond, txt, detalle) {
       .match(/CAPAS_DEL_ESTILO = \{([^}]*)\}/);
     const lista = enPy ? enPy[1].match(/'([a-z]+)'/g).map(x => x.replace(/'/g, '')).sort() : [];
     ok(JSON.stringify(lista) === JSON.stringify(estilo.capas),
-       'la lista de capas de verificar_osm.py es la que pide el bundle',
+       'la lista de capas de verificar_osm.py es la que pide el estilo de la app',
        JSON.stringify(lista) + ' vs ' + JSON.stringify(estilo.capas));
 
     /* La generacion del esquema, medida y no supuesta. El estilo de v4 filtra
@@ -626,8 +643,8 @@ function ok(cond, txt, detalle) {
        && /_getTiledPixelBounds:function\(/.test(leafletV) && /this\._getTiledPixelBounds\(t\),o=this\._pxBoundsToTileRange\(e\)/.test(leafletV)
        && /this\.devicePixelRatio=\(o=r\.devicePixelRatio\)!=null\?o:window\.devicePixelRatio/.test(protoV) && /this\.tileSize=256\*this\.devicePixelRatio/.test(protoV),
        'el fondo pide siempre toda la zona, y la Leaflet y la protomaps-leaflet de vendor/ siguen usando lo que se cambia');
-    ok((fIsla.match(/updateWhenZooming: false/g) || []).length === 2,
-       'las dos capas de la isla (base y detalle) no pintan a mitad del pellizco');
+    ok(/updateWhenZooming: false/.test(fIsla) && !/updateWhenZooming: true/.test(fIsla) && (fIsla.match(/P\.leafletLayer\(/g) || []).length === 1,
+       'las dos capas de la isla (base y detalle, una sola llamada a leafletLayer) no pintan a mitad del pellizco');
     ok(/requestIdleCallback[\s\S]{0,120}ponerFondoIsla\(\)/.test(html) && /map\.on\('zoomstart', function \(\) \{ if \(!_fondoIsla\) ponerFondoIsla\(\); \}\)/.test(html),
        'se pone cuando el arranque termina, y se vuelve a mirar al primer zoom');
 
@@ -787,6 +804,275 @@ function ok(cond, txt, detalle) {
       await ctx.close();
     } finally {
       await browser7.close();
+    }
+  }
+
+  /* ── BLOQUE 8 · el dibujo del mapa (24 de octubre de 2026, noche) ──
+
+     Jerome: «sigue trabajando sobre el mapa para dibujarlo lo mejor posible». El mapa detallado
+     se pintaba con el flavor 'light' de protomaps-leaflet: mar cian, todas las vias blancas e
+     iguales, los senderos blancos y casi invisibles, la mitad de la isla verde (los espacios
+     protegidos, rellenos), sin barcos, teleferico, picos ni matriculas. Ahora lo pinta un estilo
+     propio, estiloIslaDetallada (index.html), sobre los mismos datos. Aqui: que la app lo usa en
+     los dos mapas de la isla y en el fondo, con el mar y la tierra de las teselas de OSM; que no
+     queda ninguna via ni ningun uso del suelo de los datos sin su regla; y, pintando de verdad
+     el fichero de OSM (o el banco de pruebas), que los senderos se ven, que salen los picos con
+     su altitud y las matriculas, una sola por tramo, y que el mar es del color del fondo. Con el
+     flavor 'light' los senderos no se ven: la medida sabe ponerse en rojo. */
+  console.log('\n════════ el mapa · bloque 8, el dibujo ════════\n');
+  {
+    const html = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+    const fIsla = (html.match(/function construirIsla\(blob, clave, detallado, zMax\) \{[\s\S]*?\n\}\n/) || [''])[0];
+    const fFondo = (html.match(/function ponerFondoIsla\(\) \{[\s\S]*?\n\}\n/) || [''])[0];
+    const fBase = (html.match(/\nfunction estiloIslaBase\(P\) \{[\s\S]*?\n\}\n/) || [''])[0];
+    const fDet = (html.match(/\nfunction estiloIslaDetallada\(P, idioma\) \{[\s\S]*?\n\}\n/) || [''])[0];
+    ok(/estiloIslaDetallada\(P, idioma\)/.test(fIsla) && /estiloIslaBase\(P\)/.test(fIsla) && !/flavor/.test(fIsla),
+       'los dos mapas de la isla se pintan con el estilo de la app, sin el flavor de protomaps-leaflet');
+    /* el mar y la tierra de openstreetmap-carto (style/style.mss: @water-color #aad3df,
+       @land-color #f2efe9), en los tres: asi, al hacer zoom con las calles, el fondo que asoma
+       mientras llegan las teselas no cambia de color al llegar */
+    ok(/\nconst MAPA_MAR = '#aad3df', MAPA_TIERRA = '#f2efe9';\n/.test(html),
+       'el mar y la tierra son los de las teselas de OpenStreetMap (#aad3df y #f2efe9)');
+    ok(/backgroundColor: MAPA_MAR/.test(fFondo) && /fill: MAPA_TIERRA/.test(fFondo)
+       && /backgroundColor: MAPA_MAR/.test(fBase) && /fill: MAPA_TIERRA/.test(fBase)
+       && /fill: MAPA_MAR/.test(fDet) && /fill: MAPA_TIERRA/.test(fDet) && /backgroundColor: MAPA_MAR/.test(fDet),
+       'el fondo de la isla, el mapa base y el detallado comparten esos dos colores');
+    ok(!/#a8c8e0|#eef1e6|#80deea/i.test(fFondo + fIsla + fBase + fDet),
+       'no queda ninguno de los colores de antes (#a8c8e0, #eef1e6, el cian #80deea)');
+    ok(/currentLang === 'zht' \? 'zh-Hant' : currentLang === 'zh' \? 'zh-Hans'/.test(fIsla) && /\['name:' \+ idioma, 'name'\]/.test(fDet),
+       'los rotulos, en el idioma de la app; el chino, con las claves del fichero (name:zh-Hans y name:zh-Hant)');
+
+    const REAL = fs.existsSync(path.join(RAIZ, 'mapa/tenerife-osm.pmtiles'));
+    const FICH = REAL ? 'mapa/tenerife-osm.pmtiles' : 'tools/datos/prueba-osm.pmtiles';
+    const browser8 = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-proxy-server', '--no-sandbox'] });
+    try {
+      const page = await browser8.newPage({ viewport: { width: 512, height: 512 }, deviceScaleFactor: 1 });
+      const errores = []; page.on('pageerror', e => errores.push(e.message));
+      // la pagina, en el mismo origen que el servidor: si no, leer el .pmtiles con fetch lo tumba CORS
+      await page.goto('http://127.0.0.1:' + PUERTO + '/vendor/leaflet.css');
+      await page.setContent(`
+        <link rel="stylesheet" href="http://127.0.0.1:${PUERTO}/vendor/leaflet.css">
+        <style>html,body{margin:0}#m{width:512px;height:512px}</style><div id="m"></div>
+        <script src="http://127.0.0.1:${PUERTO}/vendor/leaflet.js"><\/script>
+        <script src="http://127.0.0.1:${PUERTO}/vendor/pmtiles.js"><\/script>
+        <script src="http://127.0.0.1:${PUERTO}/vendor/protomaps-leaflet.js"><\/script>`, { waitUntil: 'networkidle' });
+      await page.addScriptTag({ content: estiloDeLaApp() });
+      const r = await page.evaluate(async ([URL_F]) => {
+        const blob = await (await fetch(URL_F)).blob();
+        const fuente = k => ({ getKey: () => k, getBytes: (o, n) => blob.slice(o, o + n).arrayBuffer().then(d => ({ data: d })) });
+        const estilo = estiloIslaDetallada(protomapsL, 'es');
+        const capa = protomapsL.leafletLayer(Object.assign({ url: new pmtiles.PMTiles(fuente('a')), maxDataZoom: 14 }, estilo));
+        const view = [...capa.views.values()][0];
+        const tesela = (la, ln, z) => { const n = 2 ** z; return { x: Math.floor((ln + 180) / 360 * n), y: Math.floor((1 - Math.log(Math.tan(la * Math.PI / 180) + 1 / Math.cos(la * Math.PI / 180)) / Math.PI) / 2 * n), z }; };
+        /* cada via y cada uso del suelo de los datos, con su regla */
+        const sinVia = new Set(), sinUso = new Set(), clases = new Set();
+        const pintaVia = estilo.paintRules.filter(x => x.dataLayer === 'roads');
+        const pintaUso = estilo.paintRules.filter(x => x.dataLayer === 'landuse' && x.symbolizer.constructor.name === 'PolygonSymbolizer');
+        for (const [la, ln] of [[28.4145, -16.5449], [28.531, -16.282], [28.049, -16.719], [28.4682, -16.2546], [28.258, -16.625], [28.247, -16.838], [28.0444, -16.5725], [28.487, -16.315]]) {
+          for (const z of [12, 13, 14]) {
+            let t; try { t = await view.getDisplayTile(tesela(la, ln, z)); } catch (e) { continue; }
+            for (const f of (t.data.get('roads') || [])) {
+              const k = f.props.kind + '/' + (f.props.kind_detail || '');
+              if (!pintaVia.some(x => !x.filter || x.filter(16, f))) sinVia.add(k); else clases.add(k);
+            }
+            for (const f of (t.data.get('landuse') || [])) if (!pintaUso.some(x => !x.filter || x.filter(16, f))) sinUso.add(f.props.kind);
+          }
+        }
+        /* el chino del fichero: name:zh-Hans y name:zh-Hant, no name:zh */
+        const chino = { hans: 0, hant: 0, zh: 0 };
+        { let t; try { t = await view.getDisplayTile(tesela(28.4682, -16.2546, 10)); } catch (e) {}
+          for (const f of ((t && t.data.get('places')) || [])) { if (f.props['name:zh-Hans']) chino.hans++; if (f.props['name:zh-Hant']) chino.hant++; if (f.props['name:zh']) chino.zh++; } }
+        /* pintar de verdad: senderos en Anaga a z15, picos en las Cañadas a z14, matriculas a z12 */
+        const map = L.map('m', { zoomControl: false, attributionControl: false, fadeAnimation: false });
+        const pixeles = async (c, z, cual) => {
+          map.setView(c, z, { animate: false });
+          for (let i = 0; i < 100; i++) { await new Promise(r => setTimeout(r, 50)); const ts = Object.values((cual || capa)._tiles || {}); if (ts.length && ts.every(x => x.loaded)) break; }
+          await new Promise(r => setTimeout(r, 400));
+          /* solo lo que se ve: Leaflet guarda teselas de alrededor fuera de la pantalla */
+          let total = 0; const cuenta = {};
+          const M = document.getElementById('m').getBoundingClientRect();
+          for (const cv of document.querySelectorAll('#m canvas')) {
+            const R = cv.getBoundingClientRect(); if (!R.width || getComputedStyle(cv).opacity === '0') continue;
+            const x0 = Math.max(R.left, M.left), y0 = Math.max(R.top, M.top), x1 = Math.min(R.right, M.right), y1 = Math.min(R.bottom, M.bottom);
+            if (x1 <= x0 || y1 <= y0) continue;
+            const ex = cv.width / R.width, ey = cv.height / R.height;
+            const d = cv.getContext('2d').getImageData(Math.floor((x0 - R.left) * ex), Math.floor((y0 - R.top) * ey), Math.max(1, Math.floor((x1 - x0) * ex)), Math.max(1, Math.floor((y1 - y0) * ey))).data;
+            for (let i = 0; i < d.length; i += 4) { total++; const k = d[i] + ',' + d[i + 1] + ',' + d[i + 2]; cuenta[k] = (cuenta[k] || 0) + 1; }
+          }
+          return { total, cuenta };
+        };
+        const cerca = (cuenta, hex, tol) => { const r0 = parseInt(hex.slice(1, 3), 16), g0 = parseInt(hex.slice(3, 5), 16), b0 = parseInt(hex.slice(5, 7), 16); let n = 0; for (const [k, v] of Object.entries(cuenta)) { const [r, g, b] = k.split(',').map(Number); if (Math.abs(r - r0) + Math.abs(g - g0) + Math.abs(b - b0) <= tol) n += v; } return n; };
+        capa.addTo(map);
+        const anaga = await pixeles([28.531, -16.282], 15);
+        const senderos = 100 * cerca(anaga.cuenta, '#a0522d', 24) / anaga.total;
+        const rotulos = (z, nombre) => {
+          const i = capa.labelRules.findIndex(x => x.symbolizer.constructor.name === nombre);
+          const idx = capa.labelers.getIndex(z); const out = [];
+          if (idx) for (const set of idx.current.values()) for (const l of set) if (l.order === i) out.push(l);
+          return out;
+        };
+        await pixeles([28.262, -16.615], 14);
+        const picos = rotulos(14, 'SimboloPico').length;
+        await pixeles([28.4145, -16.5449], 12);
+        const refs = rotulos(12, 'SimboloRef');
+        let repetidas = 0;
+        for (let a = 0; a < refs.length; a++) for (let b = a + 1; b < refs.length; b++)
+          if (refs[a].deduplicationKey === refs[b].deduplicationKey && refs[a].anchor.dist(refs[b].anchor) < 300) repetidas++;
+        const mar = await pixeles([28.52, -16.55], 12);
+        const delMar = 100 * cerca(mar.cuenta, MAPA_MAR, 3) / mar.total;
+        capa.remove();
+        /* lo mismo con el flavor 'light' de antes */
+        const light = protomapsL.leafletLayer({ url: new pmtiles.PMTiles(fuente('b')), maxDataZoom: 14, flavor: 'light', lang: 'es' });
+        light.addTo(map);
+        const anagaL = await pixeles([28.531, -16.282], 15, light);
+        const senderosLight = 100 * cerca(anagaL.cuenta, '#a0522d', 24) / anagaL.total;
+        return { sinVia: [...sinVia], sinUso: [...sinUso], clases: clases.size, senderos: +senderos.toFixed(2), senderosLight: +senderosLight.toFixed(2),
+                 picos, refs: refs.length, repetidas, delMar: +delMar.toFixed(1), chino };
+      }, ['http://127.0.0.1:' + PUERTO + '/' + FICH]);
+      ok(r.sinVia.length === 0, 'todas las vias de los datos (' + r.clases + ' tipos en 8 sitios, z12-z14) tienen su regla', r.sinVia.join(', '));
+      const PERMITIDOS = ['national_park', 'nature_reserve', 'protected_area', 'other'];
+      ok(r.sinUso.every(k => PERMITIDOS.includes(k)),
+         'todos los usos del suelo tienen su color, salvo los espacios protegidos (del Parque Nacional, solo el borde)', r.sinUso.join(', '));
+      ok(r.senderos >= 0.15, 'los senderos se ven: ' + r.senderos + ' % de la pantalla en Anaga a z15 es de su color (' + FICH + ')', JSON.stringify(r));
+      ok(r.senderosLight < 0.05, 'y con el flavor light de antes, ' + r.senderosLight + ' %: la medida sabe ponerse en rojo', JSON.stringify(r));
+      if (REAL) {
+        ok(r.picos >= 3, 'salen los picos con su altitud: ' + r.picos + ' en las Cañadas a z14', JSON.stringify(r));
+        ok(r.refs >= 2 && r.repetidas === 0, 'salen las matriculas de las carreteras (' + r.refs + ' en el Puerto a z12), ninguna repetida a menos de 300 px', JSON.stringify(r));
+      }
+      if (REAL) ok(r.chino.hans > 0 && r.chino.hant > 0 && r.chino.zh === 0,
+         'y el fichero trae el chino asi: ' + r.chino.hans + ' sitios con name:zh-Hans alrededor de Santa Cruz a z10, ' + r.chino.zh + ' con name:zh', JSON.stringify(r.chino));
+      ok(r.delMar >= 90, 'el mar se pinta del color del fondo (' + r.delMar + ' % de la pantalla, mar adentro)', JSON.stringify(r));
+      ok(errores.length === 0, 'sin errores de pagina', errores.slice(0, 3).join(' | '));
+    } finally {
+      await browser8.close();
+    }
+  }
+
+  /* ── BLOQUE 9 · los gestos de zoom de los moviles (24 de octubre de 2026, noche) ──
+
+     Jerome: «mira si el zoom puede hacerse mejor todavía». Leaflet acerca medio nivel con el
+     doble toque (zoomDelta, que aqui es 0,5), y no trae el toque con dos dedos (alejar) ni el
+     zoom con un dedo (doble toque y arrastrar). La app los añade (gestosZoom). Aqui, con toques
+     de verdad (Input.dispatchTouchEvent) en un movil emulado: cada gesto hace lo suyo y el punto
+     tocado se queda en su sitio; un toque, arrastrar y pellizcar siguen como estaban. Y en una
+     pagina con la Leaflet de vendor/ sola y las mismas opciones, los mismos toques: medio nivel,
+     el mapa arrastrado y nada: la medida sabe ponerse en rojo. */
+  console.log('\n════════ el mapa · bloque 9, los gestos ════════\n');
+  {
+    const html = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
+    const leafletV = fs.readFileSync(path.join(RAIZ, 'vendor', 'leaflet.js'), 'utf8');
+    ok(leafletV.includes('_onDoubleClick:function(t){var e=this._map,i=e.getZoom(),n=e.options.zoomDelta,i=t.originalEvent.shiftKey?i-n:i+n;"center"===e.options.doubleClickZoom?e.setZoom(i):e.setZoomAround(t.containerPoint,i)}'),
+       'la Leaflet de vendor/ acerca zoomDelta con el doble clic: es lo que la app sustituye');
+    const dbl = (html.match(/L\.Map\.DoubleClickZoom\.prototype\._onDoubleClick = function \(e\) \{[\s\S]*?\n\};\n/) || [''])[0];
+    ok(/z2 = e\.originalEvent\.shiftKey \? z - 1 : z \+ 1;/.test(dbl) && /m\.setZoomAround\(e\.containerPoint, z2\)/.test(dbl) && html.indexOf(dbl) < html.indexOf("map = L.map('map', {"),
+       'la app acerca un nivel entero con el doble clic, alrededor del punto (antes de crear el mapa)');
+    ok(/\n\}\);\ngestosZoom\(map\);\n/.test(html) && /function gestosZoom\(map\) \{/.test(html),
+       'y pone los gestos en cuanto crea el mapa');
+
+    const PNG = fs.readFileSync(path.join(RAIZ, 'icon-192.png'));
+    const browser9 = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-proxy-server', '--no-sandbox'] });
+    try {
+      const probar = async (ctx, page) => {
+        const cdp = await ctx.newCDPSession(page);
+        const toque = (type, pts) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: pts.map((q, i) => ({ x: q[0], y: q[1], id: i + 1, radiusX: 4, radiusY: 4, force: 1 })) });
+        const espera = ms => new Promise(r => setTimeout(r, ms));
+        const uno = async (x, y) => { await toque('touchStart', [[x, y]]); await espera(60); await toque('touchEnd', []); };
+        const G = {
+          'un toque': { p: [195, 300], f: () => uno(195, 300) },
+          'doble toque': { p: [150, 300], f: async () => { await uno(150, 300); await espera(120); await uno(150, 300); } },
+          'doble toque y abajo 120 px': { p: [240, 260], f: async () => { await uno(240, 260); await espera(120); await toque('touchStart', [[240, 260]]); await espera(40); for (let i = 1; i <= 15; i++) { await toque('touchMove', [[240, 260 + 8 * i]]); await espera(16); } await espera(40); await toque('touchEnd', []); } },
+          'doble toque y arriba 180 px': { p: [200, 420], f: async () => { await uno(200, 420); await espera(120); await toque('touchStart', [[200, 420]]); await espera(40); for (let i = 1; i <= 15; i++) { await toque('touchMove', [[200, 420 - 12 * i]]); await espera(16); } await espera(40); await toque('touchEnd', []); } },
+          'toque con dos dedos': { p: [200, 320], f: async () => { await toque('touchStart', [[150, 300], [250, 340]]); await espera(80); await toque('touchEnd', []); } },
+          'arrastrar 100 px': { p: null, f: async () => { await toque('touchStart', [[200, 400]]); await espera(30); for (let i = 1; i <= 12; i++) { await toque('touchMove', [[200, 400 + 100 * i / 12]]); await espera(16); } await toque('touchEnd', []); } },
+          'pellizcar x2': { p: [200, 330], f: () => cdp.send('Input.synthesizePinchGesture', { x: 200, y: 330, scaleFactor: 2, relativeSpeed: 600, gestureSourceType: 'touch' }) }
+        };
+        const caja = await page.evaluate(() => { const r = map.getContainer().getBoundingClientRect(); return { x: r.left, y: r.top }; });
+        const res = {};
+        for (const [nombre, g] of Object.entries(G)) {
+          await page.evaluate(() => { map.setView([28.43, -16.545], 13, { animate: false }); });
+          await espera(700);
+          const pc = g.p ? [g.p[0] - caja.x, g.p[1] - caja.y] : null;
+          const a = await page.evaluate(pc => ({ z: map.getZoom(), c: map.getCenter(), ll: pc && map.containerPointToLatLng(pc), clics: window.__clics }), pc);
+          await g.f();
+          await espera(900);
+          const d = await page.evaluate(a => { const q = a.ll && map.latLngToContainerPoint(a.ll); const c0 = map.latLngToContainerPoint(a.c); return { z: map.getZoom(), q: q && [q.x, q.y], mov: c0.distanceTo(map.getSize().divideBy(2)), clics: window.__clics - a.clics }; }, a);
+          res[nombre] = { dz: +(d.z - a.z).toFixed(2), deriva: pc && d.q ? +Math.hypot(d.q[0] - pc[0], d.q[1] - pc[1]).toFixed(1) : null, mov: +d.mov.toFixed(0), clics: d.clics };
+        }
+        return res;
+      };
+      const ctx = await browser9.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
+      const page = await ctx.newPage();
+      const errores = []; page.on('pageerror', e => errores.push(e.message));
+      await page.route(/tile\.openstreetmap\.org/, r => r.fulfill({ status: 200, contentType: 'image/png', body: PNG }));
+      await page.route(/^https?:\/\/(?!127\.0\.0\.1)(?!.*tile\.openstreetmap\.org)/, r => r.abort());
+      await page.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
+      await page.goto('http://127.0.0.1:' + PUERTO + '/index.html', { waitUntil: 'load' });
+      if (await page.$('.v19-w-lang[data-lang="es"]')) { await page.click('.v19-w-lang[data-lang="es"]'); await page.waitForTimeout(200); await page.click('#v19-welcome-start'); }
+      await page.waitForTimeout(1200);
+      await page.evaluate(() => { window.__clics = 0; map.on('click', () => window.__clics++); });
+      const app = await probar(ctx, page);
+      const t = JSON.stringify;
+      ok(app['un toque'].dz === 0 && app['un toque'].clics === 1, 'un toque: ni zoom ni movimiento, y la app recibe su clic', t(app['un toque']));
+      ok(app['doble toque'].dz === 1 && app['doble toque'].deriva <= 1, 'doble toque: acerca un nivel entero y el punto tocado no se mueve (' + app['doble toque'].deriva + ' px)', t(app['doble toque']));
+      ok(app['doble toque y abajo 120 px'].dz === 1 && app['doble toque y abajo 120 px'].deriva <= 1, 'doble toque y arrastrar hacia abajo 120 px: acerca un nivel, alrededor del punto tocado', t(app['doble toque y abajo 120 px']));
+      ok(app['doble toque y arriba 180 px'].dz === -1.5 && app['doble toque y arriba 180 px'].deriva <= 1, 'doble toque y arrastrar hacia arriba 180 px: aleja nivel y medio, alrededor del punto tocado', t(app['doble toque y arriba 180 px']));
+      ok(app['toque con dos dedos'].dz === -1 && app['toque con dos dedos'].deriva <= 1 && app['toque con dos dedos'].clics === 0, 'toque con dos dedos: aleja un nivel, alrededor del punto entre los dedos', t(app['toque con dos dedos']));
+      ok(app['arrastrar 100 px'].dz === 0 && Math.abs(app['arrastrar 100 px'].mov - 100) <= 2, 'arrastrar con un dedo sigue moviendo el mapa, sin zoom', t(app['arrastrar 100 px']));
+      ok(app['pellizcar x2'].dz >= 1 && app['pellizcar x2'].deriva <= 1, 'y el pellizco sigue acercando, con el punto entre los dedos quieto', t(app['pellizcar x2']));
+      /* un segundo dedo a mitad del zoom con un dedo: se ignora, y el pellizco de despues funciona */
+      const borde = await (async () => {
+        const cdp = await ctx.newCDPSession(page);
+        const toque = (type, pts) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: pts.map((q, i) => ({ x: q[0], y: q[1], id: i + 1, radiusX: 4, radiusY: 4, force: 1 })) });
+        const espera = ms => new Promise(r => setTimeout(r, ms));
+        await page.evaluate(() => map.setView([28.43, -16.545], 13, { animate: false })); await espera(600);
+        await toque('touchStart', [[200, 300]]); await espera(60); await toque('touchEnd', []); await espera(120);
+        await toque('touchStart', [[200, 300]]); await espera(40);
+        for (let i = 1; i <= 6; i++) { await toque('touchMove', [[200, 300 + 10 * i]]); await espera(16); }
+        await toque('touchStart', [[200, 360], [300, 500]]); await espera(40);
+        for (let i = 1; i <= 6; i++) { await toque('touchMove', [[200, 360 + 5 * i], [300, 500 + 20 * i]]); await espera(16); }
+        await toque('touchEnd', []); await espera(900);
+        const z1 = await page.evaluate(() => map.getZoom());
+        await page.evaluate(() => map.setView([28.43, -16.545], 13, { animate: false })); await espera(600);
+        await cdp.send('Input.synthesizePinchGesture', { x: 200, y: 330, scaleFactor: 2, relativeSpeed: 600, gestureSourceType: 'touch' });
+        await espera(900);
+        return { z1, pellizco: await page.evaluate(() => map.getZoom()) };
+      })();
+      ok(borde.z1 === 13.5 && borde.pellizco > 13.9, 'un segundo dedo a mitad del zoom con un dedo se ignora (60 px, medio nivel), y el pellizco de despues funciona', t(borde));
+      /* un toque en un marcador sigue siendo de Leaflet: abre su ventana y no hay zoom */
+      const marcador = await (async () => {
+        const cdp = await ctx.newCDPSession(page);
+        const toque = (type, pts) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: pts.map((q, i) => ({ x: q[0], y: q[1], id: i + 1, radiusX: 4, radiusY: 4, force: 1 })) });
+        await page.evaluate(() => { map.closePopup(); map.setView([28.4145, -16.5449], 15, { animate: false }); window.__pop = 0; map.on('popupopen', () => window.__pop++); });
+        await page.waitForTimeout(1500);
+        const m = await page.evaluate(() => {
+          const r = [...document.querySelectorAll('.leaflet-marker-icon')].filter(e => !e.classList.contains('marker-cluster'))
+            .map(e => e.getBoundingClientRect()).find(r => r.top > 150 && r.bottom < 700 && r.left > 20 && r.right < 370);
+          return r ? { x: r.left + r.width / 2, y: r.top + r.height / 2 } : null;
+        });
+        if (!m) return null;
+        const z0 = await page.evaluate(() => map.getZoom());
+        await toque('touchStart', [[m.x, m.y]]); await page.waitForTimeout(60); await toque('touchEnd', []); await page.waitForTimeout(800);
+        return await page.evaluate(z0 => ({ ventanas: window.__pop, dz: map.getZoom() - z0 }), z0);
+      })();
+      ok(marcador && marcador.ventanas === 1 && marcador.dz === 0, 'un toque en un marcador sigue abriendo su ventana, sin zoom', t(marcador));
+      ok(errores.length === 0, 'sin errores de pagina', errores.slice(0, 3).join(' | '));
+      await ctx.close();
+
+      /* la Leaflet de vendor/ sola, con las opciones de zoom de la app */
+      const ctx2 = await browser9.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
+      const page2 = await ctx2.newPage();
+      await page2.setContent(`
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="http://127.0.0.1:${PUERTO}/vendor/leaflet.css">
+        <style>html,body{margin:0}#m{width:390px;height:788px;margin-top:56px}</style><div id="m"></div>
+        <script src="http://127.0.0.1:${PUERTO}/vendor/leaflet.js"><\/script>`, { waitUntil: 'networkidle' });
+      await page2.evaluate(() => { window.map = L.map('m', { zoomSnap: 0.5, zoomDelta: 0.5, zoomControl: false }).setView([28.43, -16.545], 13); window.__clics = 0; map.on('click', () => window.__clics++); });
+      const sola = await probar(ctx2, page2);
+      ok(sola['doble toque'].dz === 0.5 && sola['doble toque y abajo 120 px'].dz === 0 && sola['doble toque y abajo 120 px'].mov >= 100 && sola['toque con dos dedos'].dz === 0,
+         'y con la Leaflet de vendor/ sola: medio nivel, el mapa arrastrado y nada; la medida sabe ponerse en rojo', t({ doble: sola['doble toque'], arrastre: sola['doble toque y abajo 120 px'], dos: sola['toque con dos dedos'] }));
+      await ctx2.close();
+    } finally {
+      await browser9.close();
     }
   }
 
