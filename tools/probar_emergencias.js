@@ -285,6 +285,27 @@ async function abrirApp(b, L, opc) {
     await ctx.close();
   }
 
+  /* El consejo del domingo y el aviso del semaforo (24 de octubre de 2026)
+     llevan a una guia. Con la app ya abierta, sw.js no la recarga: le manda a
+     la pagina {tgo: 'abrir', url} (tools/auditar_sw.js prueba esa mitad). */
+  console.log('— la notificacion, con la app ya abierta');
+  {
+    const { ctx, p, errores } = await abrirApp(b, 'es');
+    const manda = d => p.evaluate(x => { navigator.serviceWorker.dispatchEvent(new MessageEvent('message', { data: x })); }, d);
+    const vista = () => p.evaluate(() => { const c = document.getElementById('sos-cuerpo'); return c ? c.getAttribute('data-vista') : null; });
+    await manda({ tgo: 'abrir', url: BASE + '#sos-esalert' }); await p.waitForTimeout(1500);
+    ok(await p.isVisible('#sos-panel') && await vista() === 'esalert', 'el consejo del domingo abre su guia (#sos-esalert)', await vista());
+    await p.evaluate(() => TG_SOS.cerrar()); await p.waitForTimeout(500);
+    await manda({ tgo: 'abrir', url: BASE + '#sos-semaforo' }); await p.waitForTimeout(800);
+    ok(await p.isVisible('#sos-panel') && await vista() === 'semaforo', 'el aviso del semaforo abre la suya (#sos-semaforo)', await vista());
+    await p.evaluate(() => TG_SOS.cerrar()); await p.waitForTimeout(500);
+    await manda({ tgo: 'abrir', url: BASE + '#bus=110' }); await manda({ tgo: 'otra', url: BASE + '#sos' }); await manda('#sos');
+    await p.waitForTimeout(800);
+    ok(!(await p.isVisible('#sos-panel')), 'un mensaje que no es eso no abre nada');
+    ok(!errores.length, 'sin errores de pagina', errores);
+    await ctx.close();
+  }
+
   console.log('— sin red, con el service worker');
   {
     const { ctx, p, errores } = await abrirApp(b, 'es', { sw: true });

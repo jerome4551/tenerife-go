@@ -437,14 +437,22 @@ self.addEventListener('push', e => {
 });
 
 /* Al tocar la notificacion: si la app ya esta abierta se trae al frente
-   en vez de abrir una pestana mas. */
+   en vez de abrir una pestana mas.
+   El consejo del domingo y el aviso del semaforo (24 de octubre de 2026)
+   llevan a una guia del panel SOS (#sos-...). Con la app ya abierta, traerla
+   al frente no basta: se le dice a la pagina que la abra (el bloque
+   EMERGENCIAS de index.html lo escucha). Cerrada, se abre con esa direccion
+   y el panel la lee al arrancar. */
 self.addEventListener('notificationclick', e => {
   e.notification.close();
   const destino = (e.notification.data && e.notification.data.url) || './index.html';
   e.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(lista => {
       for (const c of lista) {
-        if (c.url.indexOf(self.registration.scope) === 0 && 'focus' in c) return c.focus();
+        if (c.url.indexOf(self.registration.scope) === 0 && 'focus' in c) {
+          try { c.postMessage({ tgo: 'abrir', url: destino }); } catch (_) {}
+          return c.focus();
+        }
       }
       return self.clients.openWindow(destino);
     })

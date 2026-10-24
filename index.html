@@ -35759,6 +35759,16 @@ html.sos-abierto, html.sos-abierto body { overflow: hidden; }
   function iniciar() {
     var x = document.getElementById('sos-cerrar'); if (x) x.addEventListener('click', cerrar);
     if (/^#sos(-[a-z]+)?$/.test(location.hash)) setTimeout(function () { abrir(location.hash.slice(5) || null); }, 600);
+    /* Con la app ya abierta, tocar el consejo del domingo o el aviso del
+       semaforo no la vuelve a cargar: el service worker dice aqui que guia
+       abrir (sw.js, 'notificationclick'). Solo #sos o #sos-<guia>. */
+    if (navigator.serviceWorker && navigator.serviceWorker.addEventListener) {
+      navigator.serviceWorker.addEventListener('message', function (ev) {
+        var d = ev && ev.data;
+        var m = d && d.tgo === 'abrir' && typeof d.url === 'string' && /#sos(-[a-z]+)?$/.exec(d.url);
+        if (m) abrir(m[1] ? m[1].slice(1) : null);
+      });
+    }
     var luego = window.requestIdleCallback || function (f) { return setTimeout(f, 2500); };
     luego(comprobarPunto);
     /* Con la app abierta horas: al volver a ella, otra vez si hace mas de

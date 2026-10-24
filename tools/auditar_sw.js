@@ -287,6 +287,50 @@ function opaca() {
     }
   }
 
+  /* ── 9d. las notificaciones: cada una con su tag, y al tocarla, su guia ──
+     El consejo del domingo y el aviso del semaforo (24 de octubre de 2026)
+     llevan a una guia del panel SOS. Con la app cerrada, se abre con esa
+     direccion; con la app ya abierta, traerla al frente no basta: el service
+     worker le dice a la pagina que guia abrir. */
+  {
+    const SITIO = 'https://jerome4551.github.io/tenerife-go/';
+    const sw = cargarSW(async () => { throw new Error('sin red'); });
+    const mostradas = [];
+    sw.self_.registration.showNotification = async (t, o) => { mostradas.push({ t, o }); };
+    const empujar = async datos => {
+      let p = null;
+      for (const f of sw.manejadores.push || []) f({ data: { json: () => datos, text: () => JSON.stringify(datos) }, waitUntil: x => { p = x; } });
+      await p;
+      return mostradas[mostradas.length - 1];
+    };
+    const d = await empujar({ title: 'Buenos días ☀️', body: 'frase', url: SITIO, lang: 'es' });
+    ok(d && d.t === 'Buenos días ☀️' && d.o.tag === 'tgo-diaria' && d.o.data.url === SITIO,
+       'la frase de cada dia sale con su tag de siempre (tgo-diaria) y su direccion', JSON.stringify(d && d.o));
+    const g = await empujar({ title: 'El semáforo volcánico', body: 'b', url: SITIO + '#sos-semaforo', lang: 'es', tag: 'tgo-semaforo' });
+    ok(g && g.o.tag === 'tgo-semaforo' && g.o.data.url === SITIO + '#sos-semaforo',
+       'el aviso del semaforo sale con su tag (no borra la frase del dia) y lleva a #sos-semaforo', JSON.stringify(g && g.o));
+
+    const tocar = async (abiertas, url) => {
+      sw.self_.registration.scope = SITIO;
+      const hechas = { mensajes: [], foco: 0, abre: [] };
+      const ventanas = abiertas.map(u => ({ url: u, focus: async () => { hechas.foco++; }, postMessage: m => hechas.mensajes.push(m) }));
+      sw.self_.clients.matchAll = async () => ventanas;
+      sw.self_.clients.openWindow = async u => { hechas.abre.push(u); };
+      let p = null;
+      for (const f of sw.manejadores.notificationclick || []) f({ notification: { close() {}, data: { url } }, waitUntil: x => { p = x; } });
+      await p;
+      return hechas;
+    };
+    const guia = SITIO + '#sos-esalert';
+    const a = await tocar([SITIO + 'index.html'], guia);
+    ok(a.foco === 1 && a.abre.length === 0 && a.mensajes.length === 1 && a.mensajes[0].tgo === 'abrir' && a.mensajes[0].url === guia,
+       'con la app abierta, tocar el consejo la trae al frente y le dice que abra su guia', JSON.stringify(a));
+    const c = await tocar([], guia);
+    ok(c.abre.length === 1 && c.abre[0] === guia && c.foco === 0, 'con la app cerrada, la abre en la guia del consejo', JSON.stringify(c));
+    const o = await tocar(['https://otro.sitio.invalid/'], guia);
+    ok(o.abre.length === 1 && o.mensajes.length === 0, 'una ventana de otro sitio no recibe nada: se abre la app', JSON.stringify(o));
+  }
+
   /* ── 10. la unica suposicion que el ambito falso no puede comprobar ──
 
      Todo lo de arriba prueba el flujo, no el navegador. Lo que el arreglo da
