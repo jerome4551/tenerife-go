@@ -6,9 +6,9 @@
   "La app no ensena estos precios si «fecha» tiene mas de 2 dias."
  ],
  "fuente": "Ministerio para la Transicion Ecologica y el Reto Demografico, Geoportal de Gasolineras",
- "fecha": "2026-10-24T14:02:50Z",
- "fecha_ministerio": "24/10/2026 16:02:50",
- "franja": "2026-10-24 15:00",
+ "fecha": "2026-10-25T07:41:28Z",
+ "fecha_ministerio": "25/10/2026 8:41:28",
+ "franja": "2026-10-25 07:00",
  "municipios": {
   "Adeje": {
    "gasolineras": 14,
@@ -99,11 +99,6 @@
      "id": "gas-7780-arona",
      "ideess": "7780",
      "precio": 1.7
-    },
-    {
-     "id": "gas-12370-arona",
-     "ideess": "12370",
-     "precio": 1.709
     },
     {
      "id": "gas-8280-arona",
@@ -637,7 +632,7 @@
    "diesel": 1.699
   },
   "gas-10633-san-miguel-de-abona": {
-   "g95": 1.609,
+   "g95": 1.599,
    "diesel": 1.729
   },
   "gas-10635-arafo": {
@@ -709,8 +704,8 @@
    "diesel": 1.739
   },
   "gas-12370-arona": {
-   "g95": 1.559,
-   "diesel": 1.709
+   "g95": 1.569,
+   "diesel": 1.719
   },
   "gas-12381-la-orotava": {
    "g95": 1.579,
@@ -728,7 +723,7 @@
    "diesel": 1.739
   },
   "gas-12630-arafo": {
-   "g95": 1.579,
+   "g95": 1.569,
    "diesel": 1.729
   },
   "gas-12776-adeje": {
@@ -1176,8 +1171,8 @@
    "diesel": 1.709
   },
   "gas-7859-san-miguel-de-abona": {
-   "g95": 1.459,
-   "diesel": 1.609
+   "g95": 1.559,
+   "diesel": 1.709
   },
   "gas-7860-san-cristobal-de-la-laguna": {
    "g95": 1.565,
