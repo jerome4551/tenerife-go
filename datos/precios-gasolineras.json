@@ -6,9 +6,9 @@
   "La app no ensena estos precios si «fecha» tiene mas de 2 dias."
  ],
  "fuente": "Ministerio para la Transicion Ecologica y el Reto Demografico, Geoportal de Gasolineras",
- "fecha": "2026-10-25T17:06:45Z",
- "fecha_ministerio": "25/10/2026 18:06:45",
- "franja": "2026-10-25 15:00",
+ "fecha": "2026-10-26T07:56:45Z",
+ "fecha_ministerio": "26/10/2026 8:56:45",
+ "franja": "2026-10-26 07:00",
  "municipios": {
   "Adeje": {
    "gasolineras": 14,
@@ -474,11 +474,6 @@
      "precio": 1.409
     },
     {
-     "id": "gas-13201-san-miguel-de-abona",
-     "ideess": "13201",
-     "precio": 1.419
-    },
-    {
      "id": "gas-15913-san-miguel-de-abona",
      "ideess": "15913",
      "precio": 1.419
@@ -494,11 +489,6 @@
      "id": "gas-13292-san-miguel-de-abona",
      "ideess": "13292",
      "precio": 1.559
-    },
-    {
-     "id": "gas-13201-san-miguel-de-abona",
-     "ideess": "13201",
-     "precio": 1.569
     },
     {
      "id": "gas-15913-san-miguel-de-abona",
@@ -652,7 +642,7 @@
    "diesel": 1.699
   },
   "gas-10633-san-miguel-de-abona": {
-   "g95": 1.609,
+   "g95": 1.599,
    "diesel": 1.729
   },
   "gas-10635-arafo": {
@@ -743,7 +733,7 @@
    "diesel": 1.739
   },
   "gas-12630-arafo": {
-   "g95": 1.579,
+   "g95": 1.569,
    "diesel": 1.739
   },
   "gas-12776-adeje": {
@@ -755,8 +745,8 @@
    "diesel": 1.738
   },
   "gas-13201-san-miguel-de-abona": {
-   "g95": 1.419,
-   "diesel": 1.569
+   "g95": 1.498,
+   "diesel": 1.698
   },
   "gas-13228-adeje": {
    "g95": 1.599,
@@ -983,8 +973,8 @@
    "diesel": 1.709
   },
   "gas-7713-santa-cruz-de-tenerife": {
-   "g95": 1.589,
-   "diesel": 1.759
+   "g95": 1.579,
+   "diesel": 1.749
   },
   "gas-7718-fasnia": {
    "g95": 1.579,
@@ -1063,7 +1053,7 @@
    "diesel": 1.739
   },
   "gas-7767-la-matanza-de-acentejo": {
-   "g95": 1.609,
+   "g95": 1.619,
    "diesel": 1.759
   },
   "gas-7768-la-orotava": {
@@ -1427,7 +1417,7 @@
    "diesel": 1.749
   },
   "gas-tf5-lalaguna": {
-   "g95": 1.579,
+   "g95": 1.569,
    "diesel": 1.749
   },
   "gas-tf5-los-realejos": {
