@@ -2,8 +2,13 @@
  "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
  "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
  "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
- "consultado": "2026-10-29T06:33:23Z",
+ "consultado": "2026-10-29T10:28:04Z",
  "alertas": [
+  {
+   "t": "2026-10-29T10:08:27Z",
+   "titulo": "El Gobierno de Canarias finaliza la situación de prealerta por calima en el archipiélago",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-situacion-de-prealerta-por-calima-en-el-archipielago-4/"
+  },
   {
    "t": "2026-10-26T12:44:10Z",
    "titulo": "El Gobierno de Canarias declara la situación de prealerta por calima en todo el Archipiélago",
@@ -58,11 +63,6 @@
    "t": "2026-10-11T10:44:10Z",
    "titulo": "El Gobierno de Canarias finaliza la situación de prealerta por lluvias",
    "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-situacion-de-prealerta-por-lluvias-6/"
-  },
-  {
-   "t": "2026-10-09T10:59:07Z",
-   "titulo": "El Gobierno declara la prealerta por lluvia en Lanzarote, La Graciosa, Fuerteventura, Gran Canaria y Tenerife",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-declara-la-prealerta-por-lluvia-en-lanzarote-la-graciosa-fuerteventura-gran-canaria-y-tenerife/"
   }
  ],
  "descartados": 0
