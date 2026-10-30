@@ -1709,7 +1709,14 @@ async function apunta(b) {
      'lo leido se guarda en el movil 30 dias (tgo_cielo_wiki_v1: ' + w.cache.length + ' resumenes, por astro e idioma)', w.cache.join(', '));
   const pedidasMal = pedidas.filter(x => !/^(en|de|fr)\.wikipedia\.org\/(api\/rest_v1\/page\/summary\/|w\/api\.php\?)/.test(x));
   ok(pedidas.length > 0 && !pedidasMal.length, 'solo se pidio el resumen y los enlaces entre idiomas (' + pedidas.length + ' peticiones)', pedidasMal.join(' · '));
-  /* «Apunta al cielo» con los sensores simulados: a lo mas brillante que este arriba */
+  /* «Apunta al cielo» con los sensores simulados: a lo mas brillante que este arriba.
+     A una hora fija y de noche, desde el 30 de octubre de 2026: con la hora de
+     verdad, a las 17:00 de Canarias y sin planetas altos, elegia Arturo, que de
+     dia la app no pinta (en pintarCielo el limite de magnitud sale de lo oscuro
+     que esta el cielo, `oscuridad`), y el circulo decia la constelacion: la
+     prueba salia bien o mal segun la hora a la que se pasara. La noche, la de las
+     Geminidas de 2026, como las capturas. */
+  await p.clock.setFixedTime(new Date('2026-12-13T22:00:00Z'));
   const v = await p.evaluate(async () => {
     const A = Astronomy, D = TG_CIELO.estado.datos, o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h), t = A.MakeTime(new Date());
     const horiz = (ra, dec) => { const h = A.Horizon(t, o, ra, dec, 'normal'); return { alt: h.altitude, az: h.azimuth }; };
@@ -2192,7 +2199,11 @@ async function satelites(b) {
   const malPaso = [];
   r.pasos.forEach((x, i) => {
     const q = x.sat + ' ' + new Date(x.max).toISOString().slice(0, 16);
-    if (!(x.ini < x.max && x.max <= x.fin)) malPaso.push(q + ': orden de instantes');
+    /* el primero puede ser el maximo, igual que el ultimo: si sale de la sombra de
+       la Tierra ya bajando, lo mas alto que se ve es donde aparece (la ISS el
+       5-11-2026 culmina a 47,8° a las 05:35:43, aun en la sombra, y sale al Sol a
+       las 05:36:03, a 46,3°); si entra en la sombra subiendo, donde desaparece */
+    if (!((x.desdeSombra ? x.ini <= x.max : x.ini < x.max) && x.max <= x.fin)) malPaso.push(q + ': orden de instantes');
     if (!(x.dur >= 20 && Math.abs((x.fin - x.ini) / 1000 - x.dur) < 1.5)) malPaso.push(q + ': duracion ' + x.dur);
     if (!(x.altMax >= 10 && x.altMax >= x.altIni - 0.01 && x.altMax >= x.altFin - 0.01)) malPaso.push(q + ': el maximo no es el maximo');
     /* ya arriba al oscurecer (o aun arriba al amanecer): el paso empieza (acaba) con el Sol a −6° */

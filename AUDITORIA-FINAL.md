@@ -2825,6 +2825,31 @@ con la Luna dentro del círculo y «Ya»: debe decir cuántos grados iba
 desviada y, después, la Luna dibujada cae encima de la de verdad. Y con un
 satélite como objetivo, al entrar en la sombra, el aviso lo dice.
 
+## Dos pruebas del cielo que dependían de la hora y de los datos (30 de octubre)
+
+La auditoría del identificador salió con `auditar_cielo.js` en rojo, y el
+mismo control, pasado sobre el `main` de antes (sin el cambio), daba lo
+mismo: no venía del identificador. Eran dos pruebas, no la app.
+
+- **«Apunte al cielo»: el círculo no nombraba a Arturo.** La prueba apuntaba
+  a lo más brillante que estuviera arriba a la hora de verdad. A las 17:00 de
+  Canarias, sin planetas altos, eligió Arturo; y de día la app no lo pinta (en
+  `pintarCielo` el límite de magnitud sale de lo oscuro que está el cielo),
+  así que el círculo decía «Constelación: Boyero». Es lo correcto: de día no se
+  ve. La prueba salía bien o mal según la hora. Ahora se hace a una hora fija,
+  de noche (la de las Gemínidas de 2026, como las capturas): apunta a Saturno.
+- **El paso de la ISS del 5 de noviembre: «orden de instantes».** Con los
+  elementos que trajo el robot el 29 de octubre, la ISS culmina a 47,8° a las
+  05:35:43, todavía en la sombra de la Tierra, y sale al Sol a las 05:36:03, a
+  46,3°, ya bajando: lo más alto que se ve es donde aparece, y la app da el
+  máximo en ese instante, como dice su código («el extremo mismo, si sube o
+  baja hasta la sombra»). La prueba aceptaba que el máximo fuera el final
+  (entra en la sombra subiendo) y no que fuera el principio. Ahora acepta los
+  dos si el paso sale de la sombra; un principio después del máximo, o igual
+  sin salir de la sombra, sigue en rojo.
+
+`auditar_cielo.js`: 307 de 307.
+
 ## El dominio: tenerifego.app (30 de octubre)
 
 El 28 de octubre Jerome puso la web en su dominio, `https://tenerifego.app/`
