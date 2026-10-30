@@ -58,9 +58,36 @@
  *   · 210 itinerarios (catorce tarjetas, Norte, Sur y toda la isla, cinco
  *     azares) y «Naturaleza» en el Sur con sesenta azares: ninguno repite;
  *   · kayak y pesca en el Sur, siete fichas en cinco sitios: salen cinco
- *     paradas, una por sitio, y el aviso de que no hay mas;
+ *     paradas, una por sitio, y el aviso de que no hay mas (con media hora
+ *     cada una: con la suya, cinco no caben en un dia, y aqui se mira el
+ *     sitio, no el tiempo);
  *   · «🔄 Otro» no trae nunca el mismo sitio ni repite otro del itinerario;
  *   · y en las sugerencias de «Ruta del día», cada sitio una vez.
+ *
+ * Y desde el 30 de octubre de 2026 (Jerome, con la captura de dos guachinches
+ * seguidos: «Día completo si es demasiado tiempo» y «deja dos guachiche
+ * seguidos lo que no es realmente interesante después de comer, comer otra
+ * vez»):
+ *   · los topes del codigo son los de las tarjetas, en los diez idiomas
+ *     (DP_TOPE_MIN, DP_MIN_PARADAS y DP_STOPS contra «7–8 h · 5–6 paradas»);
+ *   · donde se come, con una lista propia de tipos de ficha: cada lugar de
+ *     gastronomia es de comer o una visita, ninguno sin clasificar, y la app
+ *     dice lo mismo de todos los lugares;
+ *   · lo que no se puede visitar (Los Patos, la Bodega Frontos) esta en
+ *     DP_NO_VISITABLE mientras su ficha lo diga, y nada mas;
+ *   · en castellano, 1.344 itinerarios (catorce tarjetas, cuatro tiempos,
+ *     cuatro transportes, tres zonas, dos azares), sumando lo que se ve en
+ *     pantalla, cada visita y cada tramo: todos caben en el tope de su
+ *     tarjeta; una comida como mucho, a mitad del dia si es medio o
+ *     completo, la ultima de la mañana y la primera de la tarde; «Pausa
+ *     comida» y 🍽️ en ella y en nada mas, y las visitas numeradas seguidas;
+ *     nada cerrado;
+ *   · en guagua, cada tramo: a pie si es un paseo (hasta 1 km andando) o si
+ *     se llega antes, hasta 2,6 km, con su tiempo andando y 🚶; con linea,
+ *     nunca un paseo; sin guagua, solo si no se puede ir andando;
+ *   · «🔄 Otro» cambia una visita por otra visita y la comida por otro sitio
+ *     de comer, y nunca trae nada cerrado;
+ *   · y compartir numera igual que la pantalla.
  *
  *     node tools/probar_organiza.js [puerto]
  *     node tools/probar_organiza.js [puerto] de,zh     solo esos (y el castellano)
@@ -101,6 +128,15 @@ const RECORRER = async () => {
   Math.random = () => { sem.v = (sem.v * 16807) % 2147483647; return (sem.v - 1) / 2147483646; };
   const t = (tabla, k) => (tabla[k] && (tabla[k][L] || '')) || '';
   const out = { L, pasos: {}, itinerarios: {}, titulos: {}, textos: {}, zonas: {} };
+  /* donde se come y lo que esta cerrado, con listas propias, no las de la app:
+     el tipo es lo primero de cat.es de la ficha */
+  const TIPOS_COMER = ['Guachinche', 'Cocina Canaria', 'Marisquería', 'Café-Restaurante', 'Mariscos'];
+  const TIPOS_VISITA = ['Bodega', 'Bodega Centenaria', 'D.O.', 'Mercado', 'Mercado Local', 'Museo del Vino'];
+  const tipo = p => String((p.cat && p.cat.es) || '').split('·')[0].trim();
+  const comer = p => p.category === 'barbacoa' || (p.category === 'gastronomia' && TIPOS_COMER.includes(tipo(p)));
+  const CERRADOS = { 'playa-los-patos': 'Acceso oficialmente cerrado y vallado', 'bodega-frontos-granadilla': 'Bodega inactiva al público' };
+  // los topes de cada tiempo y el subtitulo de su tarjeta en este idioma
+  out.topes = DP_TIMES.map(o => ({ id: o.id, sub: (o.tx[L] || [])[1] || '', tope: DP_TOPE_MIN[o.id], min: DP_MIN_PARADAS[o.id], max: DP_STOPS[o.id] }));
   const textos = (nombre) => {
     const raiz = document.getElementById('route-panel');
     const vis = el => el && (el.checkVisibility ? el.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true }) : !!el.offsetParent);
@@ -178,9 +214,11 @@ const RECORRER = async () => {
     const r = {
       titulo: limpio(document.getElementById('dpi-result-title').textContent),
       aviso: av && !av.hidden ? limpio(av.textContent) : '',
-      paradas: dpCurrentStops.map(p => ({ id: p.id, lat: p.lat, lng: p.lng, cat: p.category, zonas: ['norte', 'sur'].filter(z => DP_ZONA_DE[z].has(p.id)) })),
+      paradas: dpCurrentStops.map(p => ({ id: p.id, lat: p.lat, lng: p.lng, cat: p.category, comida: comer(p), zonas: ['norte', 'sur'].filter(z => DP_ZONA_DE[z].has(p.id)) })),
       nombres: [...document.querySelectorAll('#dpi-itinerary .dp-stop-name')].map(e => limpio(e.textContent)),
+      nums: [...document.querySelectorAll('#dpi-itinerary .dp-stop-num')].map(e => limpio(e.textContent)),
       tramos: [...document.querySelectorAll('#dpi-itinerary .dp-sep-text')].map(e => limpio(e.textContent)),
+      tramosInfo: [...document.querySelectorAll('#dpi-itinerary .dp-separator')].map(s => ({ icono: limpio(s.querySelector('.dp-sep-icon').textContent), lineas: s.querySelectorAll('.line-badge').length })),
       lineas: [...document.querySelectorAll('#dpi-itinerary .dp-sep-text .line-badge')].map(e => limpio(e.textContent)),
       acciones: [...document.querySelectorAll('#dpi-itinerary .dp-stop')].map(s => ({
         ver: limpio((s.querySelector('.dp-stop-tag') || {}).textContent), llegar: limpio((s.querySelector('.dp-nav-btn') || {}).textContent),
@@ -235,15 +273,17 @@ const RECORRER = async () => {
     const cambios = [];
     for (let i = 0; i < dpCurrentStops.length; i++) {
       const antes = dpCurrentStops[i], usados = new Set(dpUsedIds);
-      const cats = dpiCategorias().concat([antes.category]);
-      const cand = places.filter(p => cats.includes(p.category) && !usados.has(p.id) && p.name && p.lat && p.lng && DP_ZONA_DE.sur.has(p.id) && !dpCurrentStops.some(st => dpMismoSitio(st, p)))
+      // una visita por otra visita y la comida por otro sitio de comer; nada cerrado
+      const cats = comer(antes) ? [antes.category] : dpiCategorias().concat([antes.category]);
+      const cand = places.filter(p => cats.includes(p.category) && comer(p) === comer(antes) && !CERRADOS[p.id]
+          && !usados.has(p.id) && p.name && p.lat && p.lng && DP_ZONA_DE.sur.has(p.id) && !dpCurrentStops.some(st => dpMismoSitio(st, p)))
         .map(p => ({ id: p.id, cat: p.category, d: hav(antes, p) })).sort((a, b) => a.d - b.d);
       const misma = cand.filter(x => x.cat === antes.category);
       const esperados = (misma.length ? misma : cand).slice(0, 5).map(x => x.id);
       dpiSwapOne(i);
       const despues = dpCurrentStops[i];
       cambios.push({ antes: antes.id, despues: despues.id, enSur: DP_ZONA_DE.sur.has(despues.id), esperado: esperados.includes(despues.id), esperados,
-        mismoSitio: mismo(antes, despues), repetidos: repetidos(dpCurrentStops) });
+        mismoSitio: mismo(antes, despues), repetidos: repetidos(dpCurrentStops), comidaPorComida: comer(antes) === comer(despues), cerrado: !!CERRADOS[despues.id] });
     }
     out.zonas.otro = cambios;
   }
@@ -290,6 +330,9 @@ const RECORRER = async () => {
       grupoExiste: DP_MISMO_SITIO.every(g => g.every(x => !!id(x))) };
     // kayak y pesca en el Sur: siete fichas, cinco sitios
     DP_ZONES.__prueba = ['kayak', 'pesca'];
+    // con su duracion (pesca, cinco horas) cinco no caben en un dia: aqui se mira el sitio, no el tiempo
+    const durOrig = { kayak: DP_DURATION.kayak, pesca: DP_DURATION.pesca };
+    DP_DURATION.kayak = DP_DURATION.pesca = 30;
     sem.v = 7;
     dpiReset(); dpiTime = 'fullday'; dpiSelectedZones = ['__prueba']; dpiZone = '__prueba'; dpiZona = 'sur'; dpiTransport = 'coche';
     document.querySelectorAll('.dpi-step').forEach(x => x.classList.remove('active'));
@@ -307,6 +350,7 @@ const RECORRER = async () => {
       aviso: av && !av.hidden ? av.textContent.trim() : '', avisoFila: tx('dpZonaSinMas'),
       otroIgual: antes === dpCurrentStops.map(p => p.id).join(','), otroRepite: repetidos(dpCurrentStops) };
     delete DP_ZONES.__prueba;
+    Object.assign(DP_DURATION, durOrig);
     // «Ruta del día»: en sus sugerencias, cada sitio una vez
     out.zonas.rutaDia = Object.keys(DAY_TRIP_ZONES).map(z => {
       selectDayTripZone(z);
@@ -319,6 +363,88 @@ const RECORRER = async () => {
     });
     currentDayTripZone = null;
     out.zonas.sinZona = places.filter(p => !DP_ZONA_DE.norte.has(p.id) && !DP_ZONA_DE.sur.has(p.id)).map(p => p.id);
+
+    /* ── 30 de octubre de 2026: la comida, lo cerrado y el tiempo ── */
+    const p30 = out.plan30 = {};
+    // donde se come: todo lugar de gastronomia, clasificado; y la app dice lo mismo de todos
+    p30.sinClasificar = places.filter(p => p.category === 'gastronomia' && !TIPOS_COMER.includes(tipo(p)) && !TIPOS_VISITA.includes(tipo(p))).map(p => p.id + ' (' + tipo(p) + ')');
+    p30.comer = places.filter(comer).length;
+    p30.distinta = places.filter(p => dpEsComida(p) !== comer(p)).map(p => p.id);
+    // lo cerrado: en DP_NO_VISITABLE lo que su ficha dice cerrado, y nada mas
+    p30.cerrados = Object.entries(CERRADOS).map(([id, frase]) => { const p = places.find(x => x.id === id);
+      return [id, !!p && String((p.desc && p.desc.es) || '').includes(frase), DP_NO_VISITABLE.has(id)]; });
+    p30.noVisitable = [...DP_NO_VISITABLE].sort();
+    // 1.344 itinerarios, sumando lo que se ve: cada visita y cada tramo
+    const PAUSA = dpT('pausaComida'), SIN = tx('dpSinGuagua');
+    const num = s => { const m = String(s).match(/~(\d+)/); return m ? +m[1] : 0; };
+    const hav30 = (a, b) => { const R = 6371, r = x => x * Math.PI / 180, dl = r(b.lat - a.lat), dn = r(b.lng - a.lng);
+      const h = Math.sin(dl / 2) ** 2 + Math.cos(r(a.lat)) * Math.cos(r(b.lat)) * Math.sin(dn / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
+    const mal30 = { tope: [], comidas: [], sitio: [], etiqueta: [], numeros: [], cerrado: [], guagua: [] };
+    let n30 = 0, conMinimo = 0, aPie = 0, conLinea = 0;
+    for (const c of DP_CARDS) for (const tiempo of ['morning', 'afternoon', 'halfday', 'fullday']) for (const modo of ['coche', 'guagua', 'pie', 'bici'])
+    for (const zona of ['norte', 'sur', 'igual']) for (let k = 1; k <= 2; k++) {
+      sem.v = 3000 + k;
+      dpiReset(); dpiTime = tiempo; dpiSelectedZones = [c.id]; dpiZone = c.id; dpiZona = zona; dpiTransport = modo;
+      dpiGenerate(); n30++;
+      const st = dpCurrentStops.slice(), nombre = c.id + '/' + tiempo + '/' + modo + '/' + zona + '/' + k;
+      if (!st.length) continue;
+      const conComida = tiempo === 'halfday' || tiempo === 'fullday';
+      const iCs = st.map((p, i) => comer(p) ? i : -1).filter(i => i >= 0);
+      const visitas = st.length - (conComida ? iCs.length : 0);
+      const seps = [...document.querySelectorAll('#dpi-itinerary .dp-separator')];
+      const total = [...document.querySelectorAll('#dpi-itinerary .dp-stop-meta')].map(e => num(e.textContent))
+        .concat(seps.map(s => num(s.querySelector('.dp-sep-text').textContent))).reduce((a, b) => a + b, 0);
+      const sinGuagua = seps.some(s => limpio(s.querySelector('.dp-sep-text').textContent) === SIN);
+      if (total > DP_TOPE_MIN[tiempo] || sinGuagua) mal30.tope.push(nombre + ': ' + total + ' min' + (sinGuagua ? ', sin guagua' : '') + ' · ' + st.map(p => p.id).join(','));
+      if (visitas >= Math.min(DP_MIN_PARADAS[tiempo], DP_STOPS[tiempo])) conMinimo++;
+      if (iCs.length > 1) mal30.comidas.push(nombre + ': ' + iCs.map(i => st[i].id).join(' + '));
+      if (iCs.length === 1) {
+        const i = iCs[0];
+        const bien = conComida ? Math.abs(i - (st.length - 1 - i)) <= 1 : tiempo === 'morning' ? i === st.length - 1 : i === 0;
+        if (!bien) mal30.sitio.push(nombre + ': la comida es la ' + (i + 1) + ' de ' + st.length);
+      }
+      let v = 0;
+      [...document.querySelectorAll('#dpi-itinerary .dp-stop')].forEach((el, i) => {
+        const esC = comer(st[i]), nn = limpio(el.querySelector('.dp-stop-num').textContent);
+        if (el.querySelector('.dp-stop-meta').textContent.includes(PAUSA) !== esC) mal30.etiqueta.push(nombre + ': ' + st[i].id);
+        if (esC ? nn !== '🍽️' : nn !== String(++v)) mal30.numeros.push(nombre + ': ' + st[i].id + ' = ' + nn);
+      });
+      st.forEach(p => { if (CERRADOS[p.id]) mal30.cerrado.push(nombre + ': ' + p.id); });
+      // en guagua: a pie si es un paseo o si se llega antes; con linea, nunca un paseo; sin guagua, solo si no se puede andar
+      if (modo === 'guagua') seps.forEach((s, i) => {
+        const km = hav30(st[i], st[i + 1]) * 1.3, apie = Math.round(km / 4.5 * 60);
+        const icono = limpio(s.querySelector('.dp-sep-icon').textContent), texto = limpio(s.querySelector('.dp-sep-text').textContent);
+        const lineas = s.querySelectorAll('.line-badge').length, min = num(texto), que = nombre + ' tramo ' + (i + 1) + ' (' + km.toFixed(2) + ' km): ' + icono + ' ' + texto;
+        if (lineas) { conLinea++; if (icono !== '🚌' || km <= 1 || (km <= 2.6 && min >= apie)) mal30.guagua.push(que); }
+        else if (texto === SIN) { if (icono !== '🚌' || km <= 2.6) mal30.guagua.push(que); }
+        else { aPie++; if (icono !== '🚶' || km > 2.6 || min !== apie) mal30.guagua.push(que); }
+      });
+    }
+    p30.matriz = { n: n30, conMinimo, aPie, conLinea, mal: mal30 };
+    // «Otro» con «Sorpréndeme», medio dia: la comida por otro sitio de comer, una visita por otra visita, nada cerrado
+    const otro = [];
+    for (let k = 1; k <= 6; k++) {
+      sem.v = 500 + k;
+      dpiReset(); dpiTime = 'halfday'; dpiSelectedZones = ['mix']; dpiZone = 'mix'; dpiZona = 'igual'; dpiTransport = 'coche';
+      dpiGenerate();
+      for (let i = 0; i < dpCurrentStops.length; i++) {
+        const antes = dpCurrentStops[i];
+        dpiSwapOne(i);
+        const despues = dpCurrentStops[i];
+        if (comer(antes) !== comer(despues) || CERRADOS[despues.id] || dpCurrentStops.filter(comer).length > 1) otro.push(k + ': ' + antes.id + ' → ' + despues.id);
+      }
+    }
+    p30.otro = otro;
+    // compartir: la misma lista que la pantalla (las visitas numeradas, la comida con 🍽️)
+    sem.v = 501;
+    dpiReset(); dpiTime = 'fullday'; dpiSelectedZones = ['mix']; dpiZone = 'mix'; dpiZona = 'igual'; dpiTransport = 'coche';
+    dpiGenerate();
+    let compartido = '';
+    const share0 = Object.getOwnPropertyDescriptor(navigator, 'share');
+    Object.defineProperty(navigator, 'share', { value: d => { compartido = d.text; return Promise.resolve(); }, configurable: true });
+    try { dpShare(); } finally { if (share0) Object.defineProperty(navigator, 'share', share0); else delete navigator.share; }
+    p30.compartir = { lineas: compartido.split('\n').filter(l => /^(\d+\. |🍽️ )/.test(l)).map(l => l.match(/^(\d+)\. /) ? l.match(/^(\d+)\./)[1] : '🍽️'),
+      pantalla: [...document.querySelectorAll('#dpi-itinerary .dp-stop-num')].map(e => limpio(e.textContent)) };
   }
   /* el Teide, su teleferico, los Roques de Garcia y el Mirador de Cherfe (Jerome,
      17 de octubre de 2026), en las dos; lo demas de
@@ -427,6 +553,13 @@ const RECORRER = async () => {
       caso(`[${L}] ${modo}: minutos de visita en «${F.min}»`, acc.every(a => new RegExp('~\\d+ ' + F.min.replace('.', '\\.')).test(a.meta)), acc.map(a => a.meta).join(' | '));
       const comida = acc.filter(a => a.meta.includes(F.pausa));
       if (modo !== 'pie' || comida.length) caso(`[${L}] ${modo}: la pausa para comer dice «${F.pausa}»`, comida.length >= 1, acc.map(a => a.meta).join(' | '));
+      {
+        const malNum = []; let v = 0;
+        it.paradas.forEach((p, i) => { if (p.comida ? it.nums[i] !== '🍽️' : it.nums[i] !== String(++v)) malNum.push(p.id + ' = ' + it.nums[i]); });
+        caso(`[${L}] ${modo}: «${F.pausa}» y 🍽️ solo en el sitio de comer, y las visitas numeradas seguidas`,
+          it.paradas.length === acc.length && it.paradas.every((p, i) => acc[i].meta.includes(F.pausa) === p.comida) && malNum.length === 0,
+          malNum.join(', ') + ' | ' + it.paradas.map((p, i) => p.id + ': ' + acc[i].meta).join(' | '));
+      }
       caso(`[${L}] ${modo}: botones de abajo, su «title» y su «aria-label»`, igual(it.pie, F.pie), JSON.stringify(it.pie));
       const gpx = (GPX_T[L] || {}).btnDay;
       caso(`[${L}] ${modo}: el boton GPX dice «${gpx}»`, !!gpx && it.gpx === gpx, it.gpx);
@@ -439,8 +572,8 @@ const RECORRER = async () => {
       caso(`[${L}] ${zona}: el titulo dice la zona («${z.tituloFila}»)`, z.titulo === z.tituloFila && !z.aviso, JSON.stringify([z.titulo, z.aviso]));
     }
     {
-      const o = d.zonas.otro, mal = o.filter(x => !x.enSur || !x.esperado || x.despues === x.antes || x.mismoSitio || x.repetidos.length);
-      caso(`[${L}] «Otro» en el Sur: ${o.length} cambios, en el Sur, en lo elegido, entre los cinco mas cercanos y sin repetir sitio`, o.length >= 4 && mal.length === 0, JSON.stringify(mal).slice(0, 400));
+      const o = d.zonas.otro, mal = o.filter(x => !x.enSur || !x.esperado || x.despues === x.antes || x.mismoSitio || x.repetidos.length || !x.comidaPorComida || x.cerrado);
+      caso(`[${L}] «Otro» en el Sur: ${o.length} cambios, en el Sur, en lo elegido, entre los cinco mas cercanos, sin repetir sitio, la comida por otro sitio de comer y nada cerrado`, o.length >= 4 && mal.length === 0, JSON.stringify(mal).slice(0, 400));
       const ms = d.zonas['museo-sur'], mn = d.zonas['museo-norte'];
       const museosSur = ms.paradas.filter(p => p.cat !== 'gastronomia').map(p => p.id).sort();
       caso(`[${L}] Museos en el Sur: estan los ${ms.hay.length} que hay y lo dice («${ms.avisoFila}»)`,
@@ -449,6 +582,23 @@ const RECORRER = async () => {
       const ld = d.zonas.lasDos;
       caso(`[${L}] el Teide (sus tres fichas: volcan, cumbre y con perro), su teleferico, los Roques de Garcia y el Mirador de Cherfe salen en el Norte y en el Sur`, ld.dos.every(([, n, s]) => n && s), JSON.stringify(ld.dos));
       caso(`[${L}] La Ruleta, el Llano de Ucanca, Masca y los Acantilados de Los Gigantes, solo en el Norte`, ld.norte.every(([, n, s]) => n && !s), JSON.stringify(ld.norte));
+    }
+    if (d.plan30) {
+      const p = d.plan30, m = p.matriz, ej = a => a.slice(0, 6).join(' | ');
+      caso(`[es] cada lugar de gastronomia es de comer o una visita (de comer, con las barbacoas: ${p.comer})`, p.sinClasificar.length === 0, p.sinClasificar.join(', '));
+      caso(`[es] la app dice lo mismo de donde se come, en todos los lugares`, p.distinta.length === 0, p.distinta.join(', '));
+      caso(`[es] lo que no se puede visitar (${p.cerrados.map(x => x[0]).join(', ')}): en DP_NO_VISITABLE mientras su ficha lo diga, y nada mas`,
+        p.cerrados.every(x => x[1] && x[2]) && JSON.stringify(p.noVisitable) === JSON.stringify(p.cerrados.map(x => x[0]).sort()), JSON.stringify([p.cerrados, p.noVisitable]));
+      caso(`[es] ${m.n} itinerarios, sumando lo que se ve, cada visita y cada tramo: todos caben en el tope de su tarjeta`, m.mal.tope.length === 0, ej(m.mal.tope));
+      caso(`[es] los mismos: una comida como mucho`, m.mal.comidas.length === 0, ej(m.mal.comidas));
+      caso(`[es] los mismos: la comida a mitad del dia, la ultima de la mañana y la primera de la tarde`, m.mal.sitio.length === 0, ej(m.mal.sitio));
+      caso(`[es] los mismos: «Pausa comida» y 🍽️ solo donde se come, y las visitas numeradas seguidas`, m.mal.etiqueta.length === 0 && m.mal.numeros.length === 0, ej(m.mal.etiqueta.concat(m.mal.numeros)));
+      caso(`[es] los mismos: nada cerrado`, m.mal.cerrado.length === 0, ej(m.mal.cerrado));
+      caso(`[es] en guagua, ${m.aPie} tramos a pie y ${m.conLinea} con linea: a pie el paseo y lo que se anda antes, con linea nunca un paseo, y sin guagua solo lo que no se anda`,
+        m.mal.guagua.length === 0 && m.aPie > 0 && m.conLinea > 0, ej(m.mal.guagua));
+      console.log(`  info  ${m.conMinimo} de ${m.n} con las paradas que promete su tarjeta; los demas, menos, para caber en su tiempo`);
+      caso(`[es] «Otro» con «Sorpréndeme»: la comida por otro sitio de comer, una visita por otra visita, nada cerrado`, p.otro.length === 0, ej(p.otro));
+      caso(`[es] compartir numera igual que la pantalla (${p.compartir.pantalla.join(' ')})`, p.compartir.pantalla.length > 2 && JSON.stringify(p.compartir.lineas) === JSON.stringify(p.compartir.pantalla), JSON.stringify(p.compartir));
     }
     if (d.zonas.azar) {
       caso(`[es] ${d.zonas.azar.n} itinerarios (catorce tarjetas, Norte, Sur y toda la isla, cinco azares): ninguna parada de la otra zona`, d.zonas.azar.malas.length === 0, d.zonas.azar.malas.slice(0, 8).join(' | '));
@@ -466,6 +616,13 @@ const RECORRER = async () => {
       caso(`[es] «Ruta del día»: en las sugerencias, cada sitio una vez (${rd.map(x => x.z + ' ' + x.items + ' de ' + x.fichas).join(', ')})`,
         rd.length === 3 && rd.every(x => x.items === x.sitios && x.repetidos.length === 0) && rd.some(x => x.fichas > x.sitios), JSON.stringify(rd));
       caso(`[es] todos los lugares tienen zona`, d.zonas.sinZona.length === 0, d.zonas.sinZona.slice(0, 8).join(', '));
+    }
+    {
+      const malT = d.topes.filter(x => {
+        const m = x.sub.match(/(\d+)–(\d+)\D+?(\d+)(?:–(\d+))?/);
+        return !m || +m[2] * 60 !== x.tope || +m[3] !== x.min || +(m[4] || m[3]) !== x.max;
+      });
+      caso(`[${L}] los topes del itinerario son los de sus tarjetas (${d.topes.map(x => x.sub).join(' / ')})`, d.topes.length === 4 && malT.length === 0, JSON.stringify(malT));
     }
     caso(`[${L}] Senderismo en la tarjeta Deporte y no en Naturaleza`, d.deporte.includes('senderismo') && !d.naturaleza.includes('senderismo'), JSON.stringify([d.deporte, d.naturaleza]));
     if (d.cambio) {

@@ -3042,6 +3042,74 @@ este entorno) va dicho en `GOOGLE-PLAY.md`: la descripción de la categoría
 «Emergencias y primeros auxilios» de la declaración de salud, y si el paquete
 de PWABuilder declara el permiso del ID de publicidad.
 
+## «Organice su día»: una comida, en sus horas y nada cerrado (30 de octubre)
+
+Jerome, con la captura de un «Lo mejor de hoy» con dos guachinches seguidos:
+«Día completo si es demasiado tiempo» y «deja dos guachiche seguidos lo que
+no es realmente interesante después de comer, comer otra vez». Antes de tocar
+nada se midió con veinte azares en cada combinación (cuatro tiempos, cuatro
+transportes, tres zonas y diecisiete juegos de tarjetas): 16.320 itinerarios,
+sumando lo que la propia app dice de cada visita (`DP_DURATION`) y de cada
+tramo (`dpTramo`).
+
+```
+                                                    antes    ahora
+no caben en las horas de su tarjeta                 7.432        0
+  el día completo en guagua                  999 de 1.020        0
+«Pausa comida» en una bodega, un mercado...         3.511        0
+dos comidas                                         1.538        0
+un tramo «Sin guagua directa»                       1.058        0
+un lugar cerrado al público                           689        0
+```
+
+- **Las horas.** Cada tarjeta dice sus horas y sus paradas («7–8 h · 5–6
+  paradas»), y el itinerario no las miraba: un día completo en guagua llegaba
+  a sumar casi 27 horas, con tramos de hasta 248 minutos. Ahora se suman las visitas y
+  los tramos y, si no cabe, sale la visita que más tiempo quita. De los grupos
+  de paradas que salen al azar se queda el primero que cabe con las paradas
+  que promete la tarjeta; si ninguno, el que más mete en sus horas. En bici no
+  hay velocidad comprobada y solo cuentan las visitas. Los topes
+  (`DP_TOPE_MIN`, `DP_MIN_PARADAS`) son los de las tarjetas, y la prueba los
+  coteja con ellas en los diez idiomas.
+- **La comida.** Una, y donde se come: lo dice el tipo de la ficha
+  (guachinche, cocina canaria, marisquería, café-restaurante, mariscos). Las
+  bodegas, los mercados, la Ruta del Vino y el Museo del Vino son visitas. En
+  medio día y día completo, a mitad, en el sitio que menos se desvía del
+  camino; por la mañana, la última parada; por la tarde, la primera. En
+  «Picnic & BBQ» la comida es la zona de barbacoa, y en medio día, donde no
+  caben la acampada y la barbacoa, queda la barbacoa sola. Las visitas se
+  numeran seguidas (1, 2, 🍽️, 3), en pantalla y al compartir; antes la comida
+  se comía un número.
+- **Lo cerrado.** La Playa de Los Patos («Acceso oficialmente cerrado y
+  vallado») y la Bodega Frontos («Bodega inactiva al público») no se proponen
+  (`DP_NO_VISITABLE`); siguen en el mapa con su aviso. Los miradores de Las
+  Teresitas y de Humboldt tienen cerrado el edificio, no las vistas: siguen.
+- **En guagua, a pie lo que es un paseo.** Entre dos sitios a menos de 500 m
+  decía de media «~33 min» y una línea, y andando son 5. Ahora, hasta 1 km
+  andando (lo cómodo para el planificador de guaguas, `IDEAL_WALK_KM`), a pie;
+  y hasta 2,6 km (`MAX_WALK_KM`), a pie si se llega antes. Con 🚶.
+- **«🔄 Otro»** cambia una visita por otra visita y la comida por otro sitio de
+  comer (en una bodega podía traer un guachinche), nunca por algo cerrado, y
+  de los cinco más cercanos, uno con el que el itinerario siga cabiendo.
+- **Lo que tarda.** Cada tramo en guagua cuesta de 5 a 30 ms de calcular.
+  Primero se mira a ojo qué grupos pueden ganar, y solo esos se calculan.
+
+Controles, en `probar_organiza.js` (de 548 a 609 casos), con listas propias y
+no las de la app: cada lugar de gastronomía clasificado, de comer o visita, y
+la app dice lo mismo de todos; lo cerrado, mientras su ficha lo diga; los
+topes, contra las tarjetas en los diez idiomas; 1.344 itinerarios en
+castellano, sumando lo que se ve en pantalla (todos caben, una comida como
+mucho y en su sitio, «Pausa comida» y 🍽️ solo en ella, las visitas seguidas,
+nada cerrado, y en guagua cada tramo a pie o con línea según toque); «Otro»
+y compartir. Seis fallos metidos a propósito (dos comidas, lo cerrado, sin
+tope, la etiqueta de antes, la guagua para un paseo, la comida al principio):
+la prueba los coge todos.
+
+Las capturas de las tiendas llevan otro plan fijo (semilla 67: Fasnia, a
+comer en Porís de Abona, su embarcadero y Abades, 293 minutos). El de antes
+(semilla 178) sumaba 407 minutos en una tarjeta de 4 a 5 horas y ponía la
+«Pausa comida» en una bodega.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -11091,7 +11159,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/avisos_aemet.py` | baja los avisos de AEMET para Tenerife y escribe `datos/avisos-aemet.json`, con el contorno oficial de cada zona y las zonas de la isla (lo lanza `.github/workflows/avisos-aemet.yml`); si algo no cuadra, no escribe |
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, contornos, ficheros rotos, el latido de 3 horas |
 | `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos, los kilómetros del coche y lo que se comparte del itinerario |
-| `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, Norte y Sur sin paradas de la otra zona (y «Otro» tampoco), nunca dos paradas del mismo sitio (comprobado con código propio), el aviso cuando no hay más, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano |
+| `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, Norte y Sur sin paradas de la otra zona (y «Otro» tampoco), nunca dos paradas del mismo sitio (comprobado con código propio), el aviso cuando no hay más, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano; y desde el 30 de octubre, que cada itinerario quepa en las horas de su tarjeta, una comida como mucho y donde se come, nada cerrado, en guagua a pie lo que es un paseo, y «Otro» y compartir con las mismas reglas |
 | `tools/probar_play.js` | lo que pide Google Play (LANZAMIENTO-PLAY.md, Fase 1), en un navegador y con un Supabase falso: la tienda que no se ve ni se abre, el botón de administrador solo para quien lo es, borrar la cuenta (botón, confirmación, fallos y borrado) en los diez idiomas y `borrar-cuenta.html` sin JavaScript |
 | `tools/generar_borrar_cuenta.py` | escribe `borrar-cuenta.html` desde `idiomas/borrar-cuenta/` y los botones de la app; con `--comprobar`, para si no está al día |
 | `tools/pagina_fija.py` | el armazón de las páginas fijas de la raíz: diez idiomas que se cambian sin JavaScript; lo común, en `idiomas/paginas/` |

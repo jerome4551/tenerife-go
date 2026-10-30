@@ -32724,7 +32724,9 @@ function dpFlyToPlace(placeId) {
 function dpShare() {
   const stops = (Array.isArray(dpCurrentStops) ? dpCurrentStops : []).filter(p => p && p.name);
   if (!stops.length) return;
-  const list = stops.map((p, i) => `${i+1}. ${p.emoji || '📍'} ${p.name}`).join('\n');
+  // como en pantalla: las visitas numeradas seguidas, y la comida con 🍽️
+  let n = 0;
+  const list = stops.map(p => dpEsComida(p) ? `🍽️ ${p.name}` : `${++n}. ${p.emoji || '📍'} ${p.name}`).join('\n');
   const t0 = DP_TIMES.find(o => o.id === (dpiTime || dpTime));
   const dur = t0 ? (t0.tx[currentLang] || t0.tx.es)[0] : '';
   const titulo = tx('dpCompartirTitulo');
@@ -32968,23 +32970,152 @@ function dpOrderByProximity(list) {
   return out;
 }
 
+/* El orden de las visitas: el recorrido mas corto de los que salen
+   empezando por cada una (vecino mas proximo), no desde una al azar. */
+function dpOrdenar(list) {
+  if (list.length <= 2) return list.slice();
+  let mejor = null, largo = Infinity;
+  for (let i = 0; i < list.length; i++) {
+    const r = dpOrderByProximity([list[i]].concat(list.slice(0, i), list.slice(i + 1)));
+    let l = 0;
+    for (let j = 1; j < r.length; j++) l += haversineKm(r[j - 1].lat, r[j - 1].lng, r[j].lat, r[j].lng);
+    if (l < largo) { largo = l; mejor = r; }
+  }
+  return mejor;
+}
+
+/* El tope de cada tiempo, en minutos, y las paradas que promete como minimo:
+   lo que dice su tarjeta (DP_TIMES: «2–3 h · 2 paradas», «3–4 h · 2–3»,
+   «4–5 h · 3–4» y «7–8 h · 5–6»). Hasta el 30 de octubre de 2026 no se
+   miraba, y el dia completo en guagua no cabia casi nunca en sus 8 horas, con
+   tramos de mas de dos horas (Jerome: «Día completo si es demasiado
+   tiempo»). Ahora las visitas (DP_DURATION) y los tramos (dpTramo) no pasan
+   del tope. En bici no hay velocidad comprobada: solo cuentan las visitas.
+   probar_organiza.js coteja estos numeros con las tarjetas en los diez
+   idiomas. */
+const DP_TOPE_MIN = { morning: 180, afternoon: 240, halfday: 300, fullday: 480 };
+const DP_MIN_PARADAS = { morning: 2, afternoon: 2, halfday: 3, fullday: 5 };
+
+/* Donde se come. Hasta el 30 de octubre de 2026 la «Pausa comida» era
+   cualquier lugar de gastronomia (una bodega, un mercado, la Ruta del Vino),
+   y con «Sorpréndeme» podian salir dos guachinches seguidos (Jerome: «deja
+   dos guachiche seguidos lo que no es realmente interesante después de
+   comer, comer otra vez»). Ahora se come una vez, y donde se come: lo dice
+   el tipo de la ficha, lo primero de cat.es. Las bodegas, los mercados, la
+   Ruta del Vino y el Museo del Vino son visitas. En «Picnic & BBQ», la
+   comida es la zona de barbacoa: a eso se va. */
+const DP_COMIDA_TIPOS = new Set(['Guachinche', 'Cocina Canaria', 'Marisquería', 'Café-Restaurante', 'Mariscos']);
+function dpEsComida(p) {
+  return !!p && (p.category === 'barbacoa'
+    || (p.category === 'gastronomia' && DP_COMIDA_TIPOS.has(String((p.cat && p.cat.es) || '').split('·')[0].trim())));
+}
+
+/* Lo que no se propone: su propia ficha dice que no se puede visitar. La
+   Playa de Los Patos («Acceso oficialmente cerrado y vallado»; «¿Dónde me
+   baño hoy?» tampoco la saca, noBano) y la Bodega Frontos («Bodega inactiva
+   al público: el restaurante y las visitas cerraron»). Siguen en el mapa,
+   con su aviso. Si uno reabre, se quita de aqui al cambiar su ficha:
+   probar_organiza.js mira que las dos cosas vayan juntas. */
+const DP_NO_VISITABLE = new Set(['playa-los-patos', 'bodega-frontos-granadilla']);
+
+/* Lo que dura un itinerario: sus visitas y sus tramos. Un tramo sin guagua
+   no cabe nunca. */
+function dpMinutos(stops, modo) {
+  let min = 0, sinGuagua = 0;
+  stops.forEach((p, i) => {
+    min += DP_DURATION[p.category] || 30;
+    if (!i) return;
+    const t = dpTramo(stops[i - 1], p, modo);
+    if (t.sinGuagua) sinGuagua++;
+    else if (t.min != null) min += t.min;
+  });
+  return { min, sinGuagua, coste: min + sinGuagua * 10000 };
+}
+
+/* Los minutos de un tramo, para ajustar un itinerario: los de dpTramo, y uno
+   sin guagua no cabe nunca. */
+function dpTramoMin(modo) {
+  return (a, b) => { const t = dpTramo(a, b, modo); return t.sinGuagua ? 10000 : (t.min || 0); };
+}
+/* Y uno en guagua a ojo, sin calcular la guagua, que es lo que cuesta: andando
+   si es un paseo; si no, andar hasta la parada mas cercana de cada lado, la
+   espera de la linea mas frecuente de alli y el trayecto como en coche (o
+   andando, si se llega antes); sin paradas, no hay guagua. Solo sirve para
+   ver que grupos pueden ganar: el itinerario que sale lleva las guaguas de
+   verdad. */
+function dpTramoMinRapido(a, b) {
+  const recta = haversineKm(a.lat, a.lng, b.lat, b.lng), km = recta * BUS_PLAN.WALK_DETOUR;
+  const andando = Math.round(km / BUS_PLAN.WALK_SPEED_KMH * 60);
+  if (km <= BUS_PLAN.IDEAL_WALK_KM) return andando;
+  const pa = dpParadas(a), pb = dpParadas(b);
+  if (!pa.length || !pb.length) return km <= BUS_PLAN.MAX_WALK_KM ? andando : 10000;
+  const hastaParada = ps => Math.min(...ps.map(s => s.walkKm)) / BUS_PLAN.WALK_SPEED_KMH * 60;
+  const espera = Math.min(...pa.map(s => Math.min(...s.lines.map(l => parseFrequencyMinutes(l.line.frecuencia)))));
+  const enGuagua = Math.round(hastaParada(pa) + espera + estimacionCoche(recta).min + hastaParada(pb));
+  return km <= BUS_PLAN.MAX_WALK_KM ? Math.min(andando, enGuagua) : enGuagua;
+}
+
+/* Si no cabe, fuera una visita: la que mas tiempo quita. Con comida, del
+   lado que tenga mas visitas, para que se siga comiendo a mitad del dia; la
+   comida no se quita. Se para con una visita; si lo elegido es comer
+   (comidaSola: «Picnic & BBQ», en medio dia, no cabe la zona de acampada y
+   la barbacoa), con la comida sola. Quitar una del medio pide el tramo entre
+   sus vecinas, que en guagua es lo que cuesta calcular: solo se pide si esa
+   visita aun puede ser la que mas quita. */
+function dpAjustar(stops, tramo, tope, conComida, comidaSola) {
+  const st = stops.slice();
+  const dura = p => DP_DURATION[p.category] || 30;
+  let coste = st.reduce((s, p, i) => s + dura(p) + (i ? tramo(st[i - 1], p) : 0), 0);
+  while (coste > tope) {
+    const iC = conComida ? st.findIndex(dpEsComida) : -1;
+    if (st.length - (iC >= 0 ? 1 : 0) <= (iC >= 0 && comidaSola ? 0 : 1)) break;
+    const ops = [];
+    st.forEach((p, i) => {
+      if (i === iC) return;
+      if (iC >= 0 && (i < iC ? iC < st.length - 1 - iC : st.length - 1 - iC < iC)) return;
+      ops.push({ i, max: dura(p) + (i ? tramo(st[i - 1], p) : 0) + (i < st.length - 1 ? tramo(p, st[i + 1]) : 0) });
+    });
+    ops.sort((a, b) => b.max - a.max);
+    let mejor = null;
+    for (const o of ops) {
+      if (mejor && o.max <= mejor.quita) break;
+      const quita = o.max - (o.i > 0 && o.i < st.length - 1 ? tramo(st[o.i - 1], st[o.i + 1]) : 0);
+      if (!mejor || quita > mejor.quita) mejor = { i: o.i, quita };
+    }
+    if (!mejor) break;
+    st.splice(mejor.i, 1);
+    coste -= mejor.quita;
+  }
+  return { st, coste };
+}
+
 function dpiGenerate() {
   const nStops = DP_STOPS[dpiTime] || 3;
+  const tope = DP_TOPE_MIN[dpiTime] || DP_TOPE_MIN.fullday;
+  const conComida = dpiTime === 'fullday' || dpiTime === 'halfday';
   const cats = dpiCategorias();
   const all  = (typeof places !== 'undefined' ? places : []);
-  // Con Norte o Sur, solo los lugares de esa zona (DP_ZONA_LUGAR)
-  const pool = all.filter(p => cats.includes(p.category) && p.name && p.lat && p.lng && dpiEnZona(p));
+  // Con Norte o Sur, solo los lugares de esa zona (DP_ZONA_LUGAR); nunca uno
+  // que no se puede visitar; y si la comida va aparte, ningun sitio de comer
+  const vale = p => p.name && p.lat && p.lng && dpiEnZona(p) && !DP_NO_VISITABLE.has(p.id);
+  const pool = all.filter(p => cats.includes(p.category) && vale(p) && !(conComida && dpEsComida(p)));
   dpiAviso = false;
   if (!pool.length) { dpiAviso = dpiZona !== 'igual'; dpiRenderResult([]); return; }
 
   const radius = (DP_RADIUS[dpiTransport] || DP_RADIUS.coche)[dpiTime] || 22;
+  const sitiosZona = new Set(pool.map(dpSitio)).size;
+  const minParadas = Math.min(DP_MIN_PARADAS[dpiTime] || 1, nStops, sitiosZona);
+  // la comida, de lo elegido si es de comer (Gastronomía, Picnic & BBQ); si no, un sitio de comer
+  const catsComida = cats.filter(c => c === 'gastronomia' || c === 'barbacoa');
+  const comidaSola = catsComida.length > 0;
+  if (!catsComida.length) catsComida.push('gastronomia');
 
-  /* Se prueban varias semillas al azar y se elige la que forme el mejor
-     grupo cercano: primero que haya suficientes paradas, luego que haya
-     variedad de categorías. Así el día queda concentrado en una comarca. */
+  /* Se prueban varias semillas al azar y se ordenan por el grupo cercano que
+     forman: primero que haya suficientes paradas, luego que haya variedad
+     de categorías. Así el día queda concentrado en una comarca. */
   const shuffled = pool.slice().sort(() => Math.random() - 0.5);
   const seeds = shuffled.slice(0, Math.min(14, shuffled.length));
-  let best = null;
+  const grupos = [];
   for (const seed of seeds) {
     for (const r of [radius, radius * 1.6, radius * 2.5]) {
       const near = pool.filter(p => haversineKm(seed.lat, seed.lng, p.lat, p.lng) <= r);
@@ -32992,49 +33123,85 @@ function dpiGenerate() {
       const sitios = new Set(near.map(dpSitio)).size;
       if (sitios < Math.min(nStops, 2)) continue;
       const variety = new Set(near.map(p => p.category)).size;
-      const score = Math.min(sitios, nStops * 3) * 10 + variety;
-      if (!best || score > best.score) best = { seed, near, score, r };
+      grupos.push({ seed, near, r, score: Math.min(sitios, nStops * 3) * 10 + variety });
       break; // este radio ya sirve para esta semilla
     }
   }
-  if (!best) best = { seed: shuffled[0], near: pool, r: radius };
+  if (!grupos.length) grupos.push({ seed: shuffled[0], near: pool, r: radius, score: 0 });
+  grupos.sort((a, b) => b.score - a.score);
 
-  // Selección dentro del grupo, priorizando variedad de categorías
-  const cand = best.near.slice().sort(() => Math.random() - 0.5);
-  const selected = [];
-  const usedCats = new Set();
-  // nunca dos del mismo sitio (DP_SITIO)
-  for (const p of cand) {
-    if (selected.length >= nStops) break;
-    if (!usedCats.has(p.category) && !selected.some(s => dpMismoSitio(s, p))) { selected.push(p); usedCats.add(p.category); }
-  }
-  for (const p of cand) {
-    if (selected.length >= nStops) break;
-    if (!selected.some(s => dpMismoSitio(s, p))) selected.push(p);
+  const armar = g => {
+    // Selección dentro del grupo, priorizando variedad de categorías;
+    // nunca dos del mismo sitio (DP_SITIO) ni dos sitios de comer
+    const cand = g.near.slice().sort(() => Math.random() - 0.5);
+    const selected = [];
+    const usedCats = new Set();
+    const entra = p => !selected.some(s => dpMismoSitio(s, p)) && !(dpEsComida(p) && selected.some(dpEsComida));
+    for (const p of cand) {
+      if (selected.length >= nStops) break;
+      if (!usedCats.has(p.category) && entra(p)) { selected.push(p); usedCats.add(p.category); }
+    }
+    for (const p of cand) {
+      if (selected.length >= nStops) break;
+      if (entra(p)) selected.push(p);
+    }
+    const st = dpOrdenar(selected);
+    // sin comida aparte, la parada de comer va a mediodia: la ultima de la
+    // mañana, la primera de la tarde
+    const iC = st.findIndex(dpEsComida);
+    if (iC >= 0) {
+      const c = st.splice(iC, 1)[0];
+      if (dpiTime === 'afternoon') st.unshift(c); else st.push(c);
+    }
+    /* Comida: a mitad de las visitas (con un numero impar, antes o despues de
+       la de en medio), en el sitio de comer que menos se desvia de ese tramo.
+       Antes se cogía de toda la isla y podía mandar a comer a 60 km del resto
+       de paradas; luego, cerca de la primera parada. */
+    if (conComida && st.length) {
+      const d = (x, y) => haversineKm(x.lat, x.lng, y.lat, y.lng);
+      const comer = all.filter(p => catsComida.includes(p.category) && dpEsComida(p) && vale(p) && !st.some(s => dpMismoSitio(s, p)));
+      const food = [];
+      new Set([Math.floor(st.length / 2), Math.ceil(st.length / 2)]).forEach(k => {
+        const A = st[k - 1], B = st[k];
+        comer.forEach(p => food.push({ p, k, d: (A ? d(A, p) : 0) + (B ? d(p, B) : 0) - (A && B ? d(A, B) : 0) }));
+      });
+      const cerca = food.filter(x => x.d <= g.r * 1.3).sort((a, b) => a.d - b.d).slice(0, 5);
+      if (cerca.length) { const f = cerca[Math.floor(Math.random() * cerca.length)]; st.splice(f.k, 0, f.p); }
+    }
+    return st;
+  };
+
+  /* Primero, lo que podria meter cada grupo en su tiempo sin calcular
+     guaguas (dpTramoMinRapido); luego, de los que mas pueden meter, con los
+     tramos de verdad: el primero que cabe con las paradas que promete la
+     tarjeta. Si ninguno, el que mas visitas mete en su tiempo, y si ninguno
+     cabe, el que menos se pasa. Los que no pueden mejorar al elegido (no
+     caben, o no meten mas visitas, o no se pasan menos) no se calculan. */
+  const exacto = dpTramoMin(dpiTransport);
+  const rapido = dpiTransport === 'guagua' ? dpTramoMinRapido : exacto;
+  const visitas = st => st.filter(p => !(conComida && dpEsComida(p))).length;
+  const planes = grupos.map(g => {
+    const st = armar(g), r = dpAjustar(st, rapido, tope, conComida, comidaSola);
+    return { st, max: visitas(r.st), costeMax: r.coste };
+  });
+  const orden = planes.map((x, i) => i).sort((i, j) => planes[j].max - planes[i].max || i - j);
+  let elegido = null;
+  for (const i of orden) {
+    const x = planes[i];
+    if (elegido && (elegido.cabe ? x.costeMax > tope || x.max <= elegido.visitas : x.costeMax >= elegido.coste)) continue;
+    const { st, coste } = dpAjustar(x.st, exacto, tope, conComida, comidaSola);
+    const plan = { st, coste, cabe: coste <= tope, visitas: visitas(st) };
+    if (!elegido || (plan.cabe && !elegido.cabe) || (plan.cabe === elegido.cabe
+        && (plan.visitas > elegido.visitas || (plan.visitas === elegido.visitas && plan.coste < elegido.coste)))) elegido = plan;
+    if (plan.cabe && plan.visitas >= minParadas) break;
   }
   /* Con Norte o Sur puede que no haya bastantes (Museos, en el Sur, son
      dos). Se dice solo si de verdad no queda ninguno mas en la zona: si
-     faltan porque los demas estan lejos, la frase seria falsa. */
-  dpiAviso = dpiZona !== 'igual' && selected.length < nStops && selected.length === new Set(pool.map(dpSitio)).size;
+     faltan porque los demas estan lejos o no caben en el tiempo, la frase
+     seria falsa. */
+  dpiAviso = dpiZona !== 'igual' && elegido.visitas < nStops && elegido.visitas === sitiosZona;
 
-  // Comida: también cercana. Antes se cogía de toda la isla y podía
-  // mandar a comer a 60 km del resto de paradas.
-  if (dpiTime === 'fullday' || dpiTime === 'halfday') {
-    const ref = selected[0] || best.seed;
-    const food = all
-      .filter(p => p.category === 'gastronomia' && p.name && p.lat && p.lng && dpiEnZona(p))
-      .filter(p => !selected.some(s => dpMismoSitio(s, p)))
-      .map(p => ({ p, d: haversineKm(ref.lat, ref.lng, p.lat, p.lng) }))
-      .filter(x => x.d <= best.r * 1.3)
-      .sort((a, b) => a.d - b.d)
-      .slice(0, 5);
-    if (food.length) {
-      const g = food[Math.floor(Math.random() * food.length)].p;
-      selected.splice(Math.floor(selected.length / 2), 0, g);
-    }
-  }
-
-  dpiRenderResult(dpOrderByProximity(selected.slice(0, nStops + 1)));
+  dpiRenderResult(elegido.st);
 }
 
 function dpiRenderResult(stops) {
@@ -33061,21 +33228,26 @@ function dpiRenderResult(stops) {
   if (aviso) { aviso.textContent = dpiAviso ? tx('dpZonaSinMas') : ''; aviso.hidden = !dpiAviso; }
 
   const container = document.getElementById('dpi-itinerary');
+  // las visitas, numeradas seguidas: la comida lleva 🍽️ y no se salta un numero
+  let visita = 0;
   container.innerHTML = stops.map((place, i) => {
     const name  = escapeHtml(place.name);
     const desc  = dpDesc(place, 100);
     const dur   = DP_DURATION[place.category] || 30;
     const emoji = escapeHtml(place.emoji || '📍');
-    const isLunch = place.category === 'gastronomia';
+    const isLunch = dpEsComida(place);
+    if (!isLunch) visita++;
     const transit = i < stops.length - 1
       ? (() => {
         const tIcons = {coche:'🚗',guagua:'🚌',pie:'🚶',bici:'🚲'};
-        return `<div class="dp-separator"><span class="dp-sep-icon">${tIcons[dpiTransport]||'🚗'}</span><span class="dp-sep-text">${dpTramoHtml(place, stops[i + 1], dpiTransport)}</span></div>`;
+        // en guagua, el tramo que se hace andando lleva el que anda
+        const icono = dpTramo(place, stops[i + 1], dpiTransport).aPie ? '🚶' : (tIcons[dpiTransport] || '🚗');
+        return `<div class="dp-separator"><span class="dp-sep-icon">${icono}</span><span class="dp-sep-text">${dpTramoHtml(place, stops[i + 1], dpiTransport)}</span></div>`;
       })() : '';
     return `
       <div class="dp-stop" id="dpi-stop-${i}">
         <div class="dp-stop-left">
-          <div class="dp-stop-num">${isLunch ? '🍽️' : i+1}</div>
+          <div class="dp-stop-num">${isLunch ? '🍽️' : visita}</div>
           <div class="dp-stop-line"></div>
         </div>
         <div class="dp-stop-body">
@@ -33106,9 +33278,16 @@ function dpiRenderResult(stops) {
      a BUS_PLAN.WALK_SPEED_KMH, como el planificador de guaguas;
    · en guagua, ese planificador entre las dos paradas, a cualquier hora
      porque el itinerario no la tiene: la linea, o las dos del transbordo, y
-     el tiempo con lo que se camina y se espera; si no hay, se dice;
+     el tiempo con lo que se camina y se espera; si no hay, se dice; y si
+     andando se llega antes, a pie;
    · en bici no hay velocidad comprobada: solo los kilometros. */
 const _dpTramos = new Map();
+// las paradas de guagua de cada lugar, una vez: un itinerario las pide muchas
+const _dpParadas = new Map();
+function dpParadas(p) {
+  if (!_dpParadas.has(p.id)) _dpParadas.set(p.id, paradasPorLinea(p.lat, p.lng));
+  return _dpParadas.get(p.id);
+}
 function dpTramo(a, b, modo) {
   const k = a.id + '>' + b.id + ':' + modo;
   if (_dpTramos.has(k)) return _dpTramos.get(k);
@@ -33118,14 +33297,26 @@ function dpTramo(a, b, modo) {
     const km = recta * BUS_PLAN.WALK_DETOUR;
     r = { km, min: Math.round(km / BUS_PLAN.WALK_SPEED_KMH * 60) };
   } else if (modo === 'guagua') {
+    /* A pie si es un paseo (BUS_PLAN.IDEAL_WALK_KM, lo que el planificador
+       de guaguas da por comodo), y si no, cuando andando se llega antes que
+       en guagua o no hay guagua, hasta lo que da por andable
+       (BUS_PLAN.MAX_WALK_KM). Hasta el 30 de octubre de 2026, entre dos
+       sitios a menos de 500 m decia de media «~33 min» y una linea, y
+       andando son 5. */
+    const km = recta * BUS_PLAN.WALK_DETOUR;
+    const aPie = { km, min: Math.round(km / BUS_PLAN.WALK_SPEED_KMH * 60), aPie: true };
     r = { sinGuagua: true };
-    try {
-      const plan = findBestBusPlan(paradasPorLinea(a.lat, a.lng), paradasPorLinea(b.lat, b.lng), { cualquierHora: true });
-      // la misma eleccion que A→B: el transbordo solo si ahorra mas de 5 minutos
-      let best = plan.direct;
-      if (plan.transfer && (!plan.direct || plan.transfer.totalMin < plan.direct.totalMin - 5)) best = plan.transfer;
-      if (best) r = { min: Math.round(best.totalMin), lineas: best.type === 'transfer' ? [best.line1, best.line2] : [best.line] };
-    } catch (e) {}
+    if (km <= BUS_PLAN.IDEAL_WALK_KM) r = aPie;
+    else {
+      try {
+        const plan = findBestBusPlan(dpParadas(a), dpParadas(b), { cualquierHora: true });
+        // la misma eleccion que A→B: el transbordo solo si ahorra mas de 5 minutos
+        let best = plan.direct;
+        if (plan.transfer && (!plan.direct || plan.transfer.totalMin < plan.direct.totalMin - 5)) best = plan.transfer;
+        if (best) r = { min: Math.round(best.totalMin), lineas: best.type === 'transfer' ? [best.line1, best.line2] : [best.line] };
+      } catch (e) {}
+      if (km <= BUS_PLAN.MAX_WALK_KM && (r.sinGuagua || aPie.min <= r.min)) r = aPie;
+    }
   } else if (modo === 'bici') {
     r = { km: estimacionCoche(recta).km };
   } else {
@@ -33149,13 +33340,20 @@ function dpTramoHtml(a, b, modo) {
    elegido, en la zona elegida, y uno de los cinco mas cercanos a la parada
    que se cambia, de la misma categoria si los hay. La comida, por otra. Y
    nunca del mismo sitio que esta parada ni que otra del itinerario
-   (DP_SITIO): cambiar la playa por su ficha de surf no es cambiar. */
+   (DP_SITIO): cambiar la playa por su ficha de surf no es cambiar.
+   Desde el 30 de octubre de 2026, una visita se cambia por otra visita y la
+   comida por otro sitio de comer (en una bodega podia traer un guachinche y
+   comer dos veces), nunca por uno que no se puede visitar (DP_NO_VISITABLE),
+   y de esos cinco, al azar, uno con el que el itinerario siga cabiendo en su
+   tiempo; si con ninguno cabe, el que menos se pasa. */
 function dpiSwapOne(idx) {
   const current = dpCurrentStops[idx];
   if (!current) return;
-  const cats = dpiCategorias().concat([current.category]);
+  const comida = dpEsComida(current);
+  const cats = comida ? [current.category] : dpiCategorias().concat([current.category]);
   const candidates = (typeof places !== 'undefined' ? places : [])
-    .filter(p => cats.includes(p.category) && !dpUsedIds.has(p.id) && p.name && p.lat && p.lng && dpiEnZona(p)
+    .filter(p => cats.includes(p.category) && dpEsComida(p) === comida && !DP_NO_VISITABLE.has(p.id)
+      && !dpUsedIds.has(p.id) && p.name && p.lat && p.lng && dpiEnZona(p)
       // ni del sitio de esta parada ni del de ninguna otra del itinerario
       && !dpCurrentStops.some(st => dpMismoSitio(st, p)))
     .map(p => ({ p, d: haversineKm(current.lat, current.lng, p.lat, p.lng) }))
@@ -33163,7 +33361,15 @@ function dpiSwapOne(idx) {
   const sameCat = candidates.filter(x => x.p.category === current.category);
   const cerca = (sameCat.length ? sameCat : candidates).slice(0, 5);
   if (!cerca.length) { return; }
-  const pick = cerca[Math.floor(Math.random() * cerca.length)].p;
+  const tope = DP_TOPE_MIN[dpiTime] || DP_TOPE_MIN.fullday;
+  let pick = null, menor = Infinity;
+  for (const x of cerca.slice().sort(() => Math.random() - 0.5)) {
+    const prueba = dpCurrentStops.slice();
+    prueba[idx] = x.p;
+    const t = dpMinutos(prueba, dpiTransport);
+    if (t.coste <= tope) { pick = x.p; break; }
+    if (t.coste < menor) { menor = t.coste; pick = x.p; }
+  }
   dpUsedIds.delete(current.id);
   dpUsedIds.add(pick.id);
   dpCurrentStops[idx] = pick;
