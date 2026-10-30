@@ -45,6 +45,7 @@ const CASTELLANO = ['Llamar al 112', 'Qué hacer', 'Prepárese', 'La mochila de 
   'Incendio forestal', 'Lluvias e inundaciones', 'Calor y calima', 'Avisos de AEMET para Tenerife',
   'Si alguien se encuentra mal', 'Primeros auxilios', 'En el edificio y en la calle', 'Fuego en un edificio', 'Fiestas y aglomeraciones'];
 const AVISOS = require('./avisos_prueba').ficheros().conAvisos;
+const SIN_AVISOS = require('./avisos_prueba').ficheros().sinAvisos;
 
 let fallos = 0, hechos = 0;
 function ok(c, txt, det) { hechos++; if (c) console.log('  OK  ' + txt); else { fallos++; console.log('  MAL ' + txt + (det !== undefined ? '   -> ' + JSON.stringify(det) : '')); } }
@@ -209,6 +210,10 @@ async function abrirApp(b, L, opc) {
       await p.route('**/datos/sismos-ign.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: typeof datos.sismos === 'string' ? datos.sismos : JSON.stringify(datos.sismos) }));
       await p.route('**/datos/semaforo-involcan.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: typeof datos.semaforo === 'string' ? datos.semaforo : JSON.stringify(datos.semaforo) }));
       await p.route('**/datos/alertas-canarias.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: typeof datos.alertas === 'string' ? datos.alertas : JSON.stringify(datos.alertas) }));
+      /* y AEMET, sin avisos: el resumen de arriba lleva tambien los suyos, y con
+         los de verdad del dia «ningun resumen» salia en rojo (el 30 de octubre
+         de 2026, los dos amarillos del 1 de noviembre) */
+      await p.route('**/datos/avisos-aemet.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(SIN_AVISOS) }));
     } });
     const punto = async () => p.evaluate(() => { const e = document.getElementById('v19-nav-sos-punto'); return e.hidden ? '' : e.className; });
     const encender = async () => { await p.evaluate(() => { window.SOS_DATOS = ['./datos/sismos-ign.json', './datos/semaforo-involcan.json', './datos/alertas-canarias.json']; TG_SOS_PUNTO(); }); await p.waitForTimeout(700); };

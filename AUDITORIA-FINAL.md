@@ -3110,6 +3110,18 @@ comer en Porís de Abona, su embarcadero y Abades, 293 minutos). El de antes
 (semilla 178) sumaba 407 minutos en una tarjeta de 4 a 5 horas y ponía la
 «Pausa comida» en una bodega.
 
+## La prueba de emergencias, sin los avisos de AEMET de verdad (30 de octubre)
+
+La auditoría del arreglo de las capturas salió con un control en rojo en
+`probar_emergencias.js`: con los datos de los robots viejos, «y arriba,
+ningún resumen». El resumen salía con los dos avisos amarillos reales de
+AEMET para el 1 de noviembre (lluvias y tormentas), que el robot trajo el
+30 a las 18:10. La app hace lo que debe: los avisos de AEMET van en el
+resumen. La prueba cambiaba por datos suyos los terremotos, el semáforo y
+las alertas, y no los avisos de AEMET: salía bien o mal según el día. Ahora
+ese caso sirve también AEMET, sin avisos (`avisos_prueba.js`). Con los
+mismos datos de los robots: antes, 260 de 261; ahora, 261 de 261.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
