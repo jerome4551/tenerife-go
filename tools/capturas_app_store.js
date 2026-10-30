@@ -8,9 +8,11 @@
  *   · iPad de 13", obligatoria si la app va en iPad: 2064 x 2752 (1032 x 1376 a 2x).
  * PNG sin transparencia, hasta diez por tamano. Sin montaje ni rotulos: lo
  * que se ve es la app tal cual (los rotulos, si Jerome los quiere, se ponen
- * encima despues). La noche del cielo es fija (la de las Geminidas de 2026)
- * para que las capturas sean las mismas en cada pasada; los avisos de AEMET
- * y los precios salen de las copias de prueba, como en barrido_pantallas.js.
+ * encima despues). La noche del cielo es fija (la de las Geminidas de 2026),
+ * y el plan de «Organice su dia» tambien (la suerte, fija), para que las
+ * capturas sean las mismas en cada pasada y en los diez idiomas; los avisos
+ * de AEMET y los precios salen de las copias de prueba, como en
+ * barrido_pantallas.js.
  *
  * El puerto sirve app/www/ (la app de la tienda, con la marca), no la raiz,
  * que es la web: sin el mapa detallado dentro y con el boton flotante de la
@@ -66,9 +68,29 @@ const ESTADOS = `window.__capturas = [
       const hoja = document.getElementById('detail-sheet'), globo = document.querySelector('.leaflet-popup');
       if (!((hoja && hoja.getBoundingClientRect().height > 100 && /Teresitas/.test(hoja.innerText)) || (globo && /Teresitas/.test(globo.innerText)))) throw new Error('la ficha de Las Teresitas no esta a la vista'); }],
   ['guaguas', async () => { showNearbyStops(28.4636, -16.2518); await espera(1500); }],
-  ['organiza', async () => { toggleRoutePanel(); switchRouteTab('planner'); dpiSelectTime('fullday');
+  /* «Organice su dia» elige al azar (Math.random), y cada idioma salia con
+     otro plan, alguno con lo que no se ensena: el 30 de octubre de 2026, en
+     polaco, a comer en la Bodega Frontos, que su ficha da por cerrada al
+     publico, y en castellano, el mirador de Las Teresitas, cerrado. Con la
+     suerte fija, el mismo plan en los diez idiomas y en cada pasada: medio
+     dia, Naturaleza y Playa, en guagua, semilla 178 (las piscinas de El
+     Caleton, el puerto de Garachico, El Guincho, el Drago y la Cueva del Rey,
+     todo en la 363 y ningun tramo de mas de 35 minutos). Si con otros datos
+     sale un lugar con aviso (⚠️) o un tramo sin guagua, para: otra semilla. */
+  ['organiza', async () => { toggleRoutePanel(); switchRouteTab('planner'); dpiSelectTime('halfday');
       document.querySelectorAll('#dpi-zone-grid .dp-zone-card').forEach(c => { if (['naturaleza', 'playa'].includes(c.dataset.zone)) dpiToggleZone(c); });
-      dpiConfirmZones(); dpiSelectTransport('guagua', document.querySelector('#dpi-transport-grid .dp-time-card[data-opt="guagua"]')); await espera(1500); }],
+      dpiConfirmZones();
+      const generar = dpiGenerate, azar = Math.random;
+      window.dpiGenerate = () => {
+        let a = 178;   // mulberry32
+        Math.random = () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+        try { generar(); } finally { Math.random = azar; }
+      };
+      dpiSelectTransport('guagua', document.querySelector('#dpi-transport-grid .dp-time-card[data-opt="guagua"]')); await espera(1500);
+      const conAviso = dpCurrentStops.filter(x => /^⚠️/.test((x.desc && x.desc.es) || '')).map(x => x.name);
+      const tramos = [...document.querySelectorAll('#dpi-itinerary .dp-sep-text')].map(e => e.textContent.trim());
+      if (conAviso.length || !tramos.length || tramos.some(t => !/~[0-9]+/.test(t)))
+        throw new Error('el plan fijo de «Organice su dia» ya no vale (semilla 178): ' + (conAviso.join(', ') || tramos.join(' / '))); }],
   ['cielo', async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); await TG_CIELO.satelites().catch(function () {});
       await TG_CIELO.ver('noche', '2026-12-13'); await espera(800); }],
   ['apunta', async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); const VS = TG_CIELO.vista({ sinGuia: true }); await espera(300); for (let i = 0; i < 100 && !VS.tipoEv && !VS.sinSensor; i++) await espera(20);   // espera a que la vista escuche
