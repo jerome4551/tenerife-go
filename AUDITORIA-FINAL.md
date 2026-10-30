@@ -3005,6 +3005,43 @@ la noche; el índice ya dice cómo se calcula, con Open-Meteo dentro. Si
 Jerome quiere que se diga en todos los sitios, es una frase nueva en los
 diez idiomas.
 
+## Google Play: la ficha, las capturas y lo que se contesta (30 de octubre)
+
+Jerome: «termina en prioridad lo que hace falta por presentar la app a Google
+y Apple». De Google Play no había nada escrito sobre la ficha ni sobre lo que
+pregunta Play Console. Ahora, en `GOOGLE-PLAY.md`, pantalla por pantalla, con
+la frase de la política que respalda cada respuesta.
+
+- **La ficha, sin texto nuevo** (`datos/google-play/ficha.json`, la hace y la
+  coteja `tools/google_play_ficha.js`, en `auditar.sh`): la descripción
+  completa es la de la App Store, sin la frase de los negocios patrocinados;
+  la breve, su texto promocional sin «en su bolsillo» (80 caracteres), y en
+  alemán y en neerlandés «offline», como ya lo dice la app en esos idiomas.
+  Once fichas: los diez idiomas y la variante americana del inglés. Si
+  cambia la de la App Store, `--escribir`; si no cuadra un ancla, para.
+- **Anuncios: No**, mientras no haya ningún patrocinado (Jerome: «De momento
+  no tenemos ninguno»). Para Google, un contenido patrocinado dentro de la app
+  es un anuncio: con el primero, «Sí», el plan de pago de Open-Meteo y la
+  frase de vuelta. La ficha no promete «sin anuncios».
+- **Seguridad de los datos:** la app de Play es la web, y la web lleva Google
+  Analytics si se aceptan las cookies (la de la App Store, no): por eso hay
+  aquí datos que en la App Store no están. Doce tipos, todos opcionales,
+  ninguno compartido, cada uno con su apartado de la política.
+- **La declaración de apps de salud**, que Google pide a todas: el perfil
+  guarda peso, peso objetivo, altura y kilómetros (opcional).
+- **Las capturas, a 1080 × 1920** (`capturas_app_store.js --play`): Play no
+  acepta las del iPhone (el lado largo no puede pasar del doble del corto).
+  Siete por idioma, de los mismos estados que las de la App Store.
+- **El gráfico de funciones, 1024 × 500** (`tools/grafico_play.js`): el
+  logotipo de Jerome tal cual y el cielo de la app, uno por idioma, porque el
+  cielo lleva los nombres de los planetas y las estrellas. Cada idioma con sus
+  gráficos: si no, Play enseña los de `es-ES` a todo el mundo, en castellano.
+
+Lo que no se ha podido leer desde aquí (la ayuda de Google Play no se abre en
+este entorno) va dicho en `GOOGLE-PLAY.md`: la descripción de la categoría
+«Emergencias y primeros auxilios» de la declaración de salud, y si el paquete
+de PWABuilder declara el permiso del ID de publicidad.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:

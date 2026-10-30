@@ -22,6 +22,15 @@
  *     node tools/capturas_app_store.js 8766 --idiomas=todos --solo=ficha   solo ese estado (el numero se conserva)
  *
  * Deja capturas-app-store/<idioma>/<aparato>-<n>-<estado>.png (fuera de git).
+ *
+ * --play (30 de octubre de 2026): las de Google Play, de los mismos estados.
+ * Play no acepta las del iPhone (de 320 a 3840 px por lado, y el lado largo
+ * no puede pasar del doble del corto; PNG de 24 bits sin transparencia): un
+ * movil de 432 x 768 a 2,5x, 1080 x 1920, el tamano que se suele recomendar.
+ * Van a capturas-google-play/<idioma>/ (fuera de git). La app de Play es la web dentro de Chrome, instalada: se ve igual
+ * que app/www/ (sin el banner de instalar ni el boton de la PWA), salvo el
+ * aviso de cookies, que no sale en las capturas en ninguna de las dos.
+ *     node tools/capturas_app_store.js 8766 --play --idiomas=es,en
  */
 'use strict';
 const fs = require('fs');
@@ -33,7 +42,8 @@ const CHROMIUM = fs.existsSync('/opt/pw-browsers/chromium') && !process.env.TGO_
 
 const RAIZ = path.join(__dirname, '..');
 const PUERTO = process.argv[2] || '8766';
-const SALIDA = path.join(RAIZ, 'capturas-app-store');
+const PLAY = process.argv.includes('--play');
+const SALIDA = path.join(RAIZ, PLAY ? 'capturas-google-play' : 'capturas-app-store');
 const html = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
 const TODOS = ((html.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1]).split(',').map(x => x.trim().replace(/['"]/g, '')).filter(Boolean);
 const arg = (process.argv.find(a => a.startsWith('--idiomas=')) || '').slice(10);
@@ -41,7 +51,7 @@ const IDIOMAS = !arg ? ['es', 'en'] : arg === 'todos' ? TODOS : arg.split(',');
 const SOLO = (process.argv.find(a => a.startsWith('--solo=')) || '').slice(7).split(',').filter(Boolean);
 const AVISOS = JSON.stringify(require('./avisos_prueba').ficheros().conAvisos);
 
-const APARATOS = [
+const APARATOS = PLAY ? [{ nombre: 'android', viewport: { width: 432, height: 768 }, escala: 2.5, movil: true }] : [
   { nombre: 'iphone', viewport: { width: 402, height: 874 }, escala: 3, movil: true },
   { nombre: 'ipad', viewport: { width: 1032, height: 1376 }, escala: 2, movil: true },
 ];

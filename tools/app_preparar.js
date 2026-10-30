@@ -282,7 +282,7 @@ function comprobar(montado) {
      service worker, los controles, los robots, las carpetas de trabajo y
      las fuentes de los idiomas, los documentos, los registros, las tablas
      de Supabase, las claves de nadie) */
-  const NUNCA = /^(sw\.js|tools\/|\.github\/|supabase\/|registro\/|chk\/|app\/|capturas-app-store\/|datos\/(osm-geofabrik|auditoria-osm|entregas|gasolineras\/|verificado\.json|app-store)|idiomas\/(pl-fuente|pl-lugares|glosario-cat|paginas|privacidad|borrar-cuenta|castellano-aceptado|pantalla-aceptado|etiquetas-sin-traducir)|faq\/(fuente|indice\.json)|frases\.json|enviar-notificacion\.js|consulta-overpass|og-image|.*\.(md|py|sh|sql|overpassql|env|pem|key)$)/;
+  const NUNCA = /^(sw\.js|tools\/|\.github\/|supabase\/|registro\/|chk\/|app\/|capturas-app-store\/|capturas-google-play\/|datos\/(osm-geofabrik|auditoria-osm|entregas|gasolineras\/|verificado\.json|app-store|google-play)|idiomas\/(pl-fuente|pl-lugares|glosario-cat|paginas|privacidad|borrar-cuenta|castellano-aceptado|pantalla-aceptado|etiquetas-sin-traducir)|faq\/(fuente|indice\.json)|frases\.json|enviar-notificacion\.js|consulta-overpass|og-image|.*\.(md|py|sh|sql|overpassql|env|pem|key)$)/;
   const sobran = montado.copiados.filter(f => NUNCA.test(f));
   ok(sobran.length === 0 && montado.copiados.length >= 80 && !fs.existsSync(path.join(WWW, 'sw.js')) && !fs.existsSync(path.join(WWW, 'tools')),
      'y nada mas: ni sw.js, ni controles, ni robots, ni carpetas de trabajo, ni documentos, ni claves (' + montado.copiados.length + ' ficheros cotejados contra la lista de lo que nunca viaja)', sobran.join(', '));

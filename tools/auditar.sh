@@ -218,6 +218,10 @@ control auditar_app_store.js node tools/auditar_app_store.js
 # La ficha en el formato de `fastlane deliver` (la App Store sin Mac): las diez
 # localizaciones, cada fichero dentro de su limite, las capturas si las hay.
 control app_store_metadata.js node tools/app_store_metadata.js --comprobar
+# La ficha de Google Play (desde el 30 de octubre de 2026): la de la App Store
+# sin la frase de los patrocinados (en Play, «sin anuncios» mientras no haya
+# ninguno), la breve del texto promocional y los limites de Play.
+control google_play_ficha.js node tools/google_play_ficha.js
 
 echo "════════ erratas al transliterar al cirilico ════════"
 control auditar_cirilico.py python3 tools/auditar_cirilico.py
