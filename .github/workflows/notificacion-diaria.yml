@@ -95,6 +95,6 @@ jobs:
           # Ventana ancha a proposito: absorbe el retraso de GitHub. Lo que
           # impide enviar dos veces es push_sends, no esto.
           TARGET_HOURS:         '7,8,9,10,11,12,13,14,15,16'
-          APP_URL:              'https://jerome4551.github.io/tenerife-go/'
+          APP_URL:              'https://tenerifego.app/'
           FORCE:                ${{ github.event_name == 'workflow_dispatch' && inputs.forzar != 'no' && '1' || '0' }}
         run: node enviar-notificacion.js

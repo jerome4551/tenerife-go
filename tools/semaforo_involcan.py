@@ -53,7 +53,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SALIDA = os.path.join(RAIZ, 'datos', 'semaforo-involcan.json')
 CANAL = 'https://www.involcan.org/wp-content/uploads/GUAYOTA/guayota-tfe-es-co.pdf'
 LATIDO = dt.timedelta(hours=12)
-UA = 'TenerifeGo/1.0 (+https://jerome4551.github.io/tenerife-go/)'
+UA = 'TenerifeGo/1.0 (+https://tenerifego.app/)'
 MESES = {'enero': 1, 'febrero': 2, 'marzo': 3, 'abril': 4, 'mayo': 5, 'junio': 6, 'julio': 7, 'agosto': 8,
          'septiembre': 9, 'setiembre': 9, 'octubre': 10, 'noviembre': 11, 'diciembre': 12}
 COLOR = re.compile(r'sem[aá]foro\s+volc[aá]nico\s+se\s+encuentra\s+en\s+posici[oó]n\s+(VERDE|AMARILLO|NARANJA|ROJO)\b', re.I)

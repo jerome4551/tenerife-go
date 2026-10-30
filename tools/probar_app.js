@@ -25,7 +25,7 @@
  *     ningun script ni sale nada hacia Google; en la web, el aviso sale y
  *     al aceptar se pide gtag.js (control);
  *   · los datos que cambian a diario se piden PRIMERO a la web viva
- *     (https://jerome4551.github.io/tenerife-go/datos/…): los avisos de
+ *     (https://tenerifego.app/datos/…): los avisos de
  *     AEMET con dos avisos en la copia viva y ninguno en la de dentro ->
  *     wxDatos trae dos; si la viva no responde (red cortada), da HTTP 500 o
  *     se cuelga mas de 8 s -> la copia de dentro (ninguno, con la fecha del
@@ -66,7 +66,7 @@ const RAIZ = path.join(__dirname, '..');
 const PUERTO = Number(process.argv[2] || 8766);
 const PUERTO_APP = PUERTO + 1;
 const WWW = path.join(RAIZ, 'app', 'www');
-const VIVA = 'https://jerome4551.github.io/tenerife-go/';
+const VIVA = 'https://tenerifego.app/';
 const AVISOS = require('./avisos_prueba').ficheros();
 const UA_IPHONE = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1';
 const IDIOMAS = ((fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8').match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1])

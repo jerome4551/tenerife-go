@@ -4703,7 +4703,7 @@
       envolverTexto(g, T('ImagenMejor', { l: mejor.join(' · ') }), W - 2 * M).slice(0, 2).forEach(function (s) { g.fillText(s, M, y); y += 42; });
     }
     g.fillStyle = 'rgba(255,255,255,0.5)'; F(500, 27);
-    g.fillText('Tenerife Go · jerome4551.github.io/tenerife-go', M, H - 52);
+    g.fillText('Tenerife Go · tenerifego.app', M, H - 52);
     g.textAlign = 'right'; g.fillText(T('Titulo'), W - M, H - 52); g.textAlign = 'left';
     return c;
   }
@@ -4793,7 +4793,7 @@
     g.fillStyle = 'rgba(255,255,255,0.8)'; g.font = Math.round(11 * dpr) + 'px DM Sans, system-ui, sans-serif';
     g.fillText(recortarTexto(g, T('CapturaDesde', { f: dia(opc.fecha) + ' · ' + hora(opc.fecha) }), max), m, H + pie * 0.52);
     g.fillStyle = 'rgba(255,255,255,0.5)';
-    g.fillText(recortarTexto(g, 'Tenerife Go · jerome4551.github.io/tenerife-go', max), m, H + pie * 0.8);
+    g.fillText(recortarTexto(g, 'Tenerife Go · tenerifego.app', max), m, H + pie * 0.8);
     return aBlob(c);
   }
   function capturarY(V, opc, boton) {
@@ -4952,14 +4952,14 @@
   }
   function icsEvento(e) {
     var tr = tramoEvento(e), tit = tituloEvento(e);
-    var desc = detalleEvento(e).concat([T('IcsHora', { h: hora(e.t) }), 'Tenerife Go · https://jerome4551.github.io/tenerife-go/']).join('\n');
+    var desc = detalleEvento(e).concat([T('IcsHora', { h: hora(e.t) }), 'Tenerife Go · https://tenerifego.app/']).join('\n');
     var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Tenerife Go//Cielo de Tenerife//' + lang().toUpperCase(), 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
              'BEGIN:VEVENT',
-             'UID:' + idEvento(e).replace(/[^A-Za-z0-9]+/g, '-') + '@jerome4551.github.io',
+             'UID:' + idEvento(e).replace(/[^A-Za-z0-9]+/g, '-') + '@tenerifego.app',
              'DTSTAMP:' + icsFecha(new Date()), 'DTSTART:' + icsFecha(tr[0]), 'DTEND:' + icsFecha(tr[1]),
              'SUMMARY:' + icsTexto(tit), 'DESCRIPTION:' + icsTexto(desc),
              'LOCATION:' + icsTexto('Observatorio del Teide (Izaña), Tenerife'), 'GEO:' + OBS.lat + ';' + OBS.lon,
-             'URL:https://jerome4551.github.io/tenerife-go/',
+             'URL:https://tenerifego.app/',
              /* un paso dura minutos: la alarma, media hora antes; lo demas, la vispera */
              'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:' + (e.tipo === 'paso' ? '-PT30M' : '-P1D'), 'DESCRIPTION:' + icsTexto(T(e.tipo === 'paso' ? 'IcsAvisoPaso' : 'IcsAviso', { e: tit })), 'END:VALARM',
              'END:VEVENT', 'END:VCALENDAR'];

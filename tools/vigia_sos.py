@@ -53,7 +53,7 @@ import urllib.robotparser
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODULO = os.path.join(RAIZ, 'modulos', 'emergencias.js')
 ESTADO = os.path.join(RAIZ, 'tools', 'datos', 'vigia-sos.json')
-UA = 'TenerifeGo/1.0 (+https://jerome4551.github.io/tenerife-go/)'
+UA = 'TenerifeGo/1.0 (+https://tenerifego.app/)'
 TOPE = 15_000_000
 ROTO_TRAS = 3
 # lo que se guarda del texto de cada pagina, para ensenar el trozo que cambia

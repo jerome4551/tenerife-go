@@ -205,7 +205,7 @@ function opaca() {
     const basica = txt => { const r = new Response(txt, { status: 200 }); Object.defineProperty(r, 'type', { value: 'basic' }); return r; };
     let version = 'red-1', hayRed = true;
     const sw = cargarSW(async () => { if (!hayRed) throw new Error('sin red'); return basica(version); });
-    const U = 'https://jerome4551.github.io/tenerife-go/datos/titsa.js';
+    const U = 'https://tenerifego.app/datos/titsa.js';
     const espera = () => new Promise(r => setTimeout(r, 20));
     const r1 = await pedir(sw, U); await espera();
     ok(r1 && await r1.text() === 'red-1', 'con red, la red de guaguas sale de la red');
@@ -230,7 +230,7 @@ function opaca() {
     for (const pag of ['borrar-cuenta.html', 'privacidad.html']) {
       let version = 'texto-1', hayRed = true;
       const sw = cargarSW(async () => { if (!hayRed) throw new Error('sin red'); return basica(version); });
-      const U = 'https://jerome4551.github.io/tenerife-go/' + pag;
+      const U = 'https://tenerifego.app/' + pag;
       await pedir(sw, U); await espera();
       version = 'texto-2';
       const r2 = await pedir(sw, U); await espera();
@@ -259,7 +259,7 @@ function opaca() {
     const core = (src.match(/const CORE = \[([\s\S]*?)\];/) || [, ''])[1];
     const CIELO = ['modulos/cielo.js', 'vendor/astronomy.browser.min.js', 'datos/cielo.json'];
     for (const f of CIELO) ok(core.includes("'./" + f + "'"), f + ' esta en el precache (CORE)');
-    const SITIO = 'https://jerome4551.github.io/tenerife-go/';
+    const SITIO = 'https://tenerifego.app/';
     class Peticion extends Request {
       constructor(u, o) { super(typeof u === 'string' ? new URL(u, SITIO).href : u, o); }
     }
@@ -293,7 +293,7 @@ function opaca() {
      direccion; con la app ya abierta, traerla al frente no basta: el service
      worker le dice a la pagina que guia abrir. */
   {
-    const SITIO = 'https://jerome4551.github.io/tenerife-go/';
+    const SITIO = 'https://tenerifego.app/';
     const sw = cargarSW(async () => { throw new Error('sin red'); });
     const mostradas = [];
     sw.self_.registration.showNotification = async (t, o) => { mostradas.push({ t, o }); };

@@ -4,7 +4,9 @@ Guía de Tenerife en forma de PWA: un mapa con lugares de toda la isla y la
 red entera de guaguas y tranvía, traducida a diez idiomas, que funciona sin
 conexión una vez cargada.
 
-Publicada en GitHub Pages: <https://jerome4551.github.io/tenerife-go/>
+Publicada en GitHub Pages, en su dominio: <https://tenerifego.app/> (desde el
+28 de octubre de 2026; la dirección de antes,
+<https://jerome4551.github.io/tenerife-go/>, lleva a la nueva)
 
 ---
 

@@ -50,7 +50,7 @@ import urllib.request
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SALIDA = os.path.join(RAIZ, 'datos', 'satelites.json')
 FUENTE = 'https://celestrak.org/NORAD/elements/gp.php?CATNR={n}&FORMAT=tle'
-UA = 'TenerifeGo/1.0 (+https://jerome4551.github.io/tenerife-go/)'
+UA = 'TenerifeGo/1.0 (+https://tenerifego.app/)'
 # numero de catalogo, clave en la app, nombre con el que lo llama CelesTrak
 OBJETOS = [(25544, 'iss', 'ISS (ZARYA)'), (48274, 'tiangong', 'CSS (TIANHE)'), (20580, 'hubble', 'HST')]
 MAX_DIAS = 7                    # la app no ensena pasos con elementos mas viejos

@@ -16,7 +16,7 @@
      VAPID_PRIVATE         clave privada VAPID (SECRETA)
    Opcionales:
      VAPID_SUBJECT         mailto:tenerife.go.app@gmail.com  (por defecto)
-     APP_URL               https://jerome4551.github.io/tenerife-go/
+     APP_URL               https://tenerifego.app/
      TARGET_HOURS          "9,10"  (horas de Canarias en que se permite enviar)
      FORCE                 "1" para saltar la comprobacion horaria (pruebas)
    ===================================================================== */
@@ -30,7 +30,7 @@ const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY || '';
 const VAPID_PUBLIC         = process.env.VAPID_PUBLIC || '';
 const VAPID_PRIVATE        = process.env.VAPID_PRIVATE || '';
 const VAPID_SUBJECT        = process.env.VAPID_SUBJECT || 'mailto:tenerife.go.app@gmail.com';
-const APP_URL              = process.env.APP_URL || 'https://jerome4551.github.io/tenerife-go/';
+const APP_URL              = process.env.APP_URL || 'https://tenerifego.app/';
 /* La ventana era '9,10' y eso la rompio. GitHub no lanza los cron a su hora:
    medido sobre las ejecuciones reales del 29 de agosto al 8 de septiembre,
    sale entre 4 y 6 HORAS tarde, siempre. Con los cron a las 08:07-09:37 UTC

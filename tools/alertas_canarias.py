@@ -67,7 +67,7 @@ ENLACE_OK = re.compile(r'^https://www3\.gobiernodecanarias\.org/noticias/[A-Za-z
 CUANTAS = 12
 DIAS = 30
 LATIDO = dt.timedelta(hours=3)
-UA = 'TenerifeGo/1.0 (+https://jerome4551.github.io/tenerife-go/)'
+UA = 'TenerifeGo/1.0 (+https://tenerifego.app/)'
 
 
 class Parar(Exception):

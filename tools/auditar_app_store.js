@@ -112,8 +112,8 @@ ok(tiendas.every(t => LOCALIZACIONES.includes(t)) && new Set(tiendas).size === t
    'las localizaciones de la tienda existen en App Store Connect y no se repiten (' + tiendas.join(' ') + ')');
 ok(Array.isArray(F.tienda.bg) && F.tienda.bg.length === 0 && /bulgaro/i.test(F.notaBg || ''), 'el bulgaro no tiene localizacion en la tienda, y la ficha lo dice (notaBg)');
 ok(/^\d{4} \S/.test(F.copyright || ''), 'copyright con el ano delante (' + F.copyright + ')');
-ok(F.urlSoporte === F.urlPrivacidad && /\/privacidad\.html$/.test(F.urlSoporte) && /^https:\/\/jerome4551\.github\.io\/tenerife-go\/$/.test(F.urlMarketing),
-   'Support URL y Privacy Policy URL son privacidad.html, Marketing URL es la web');
+ok(F.urlSoporte === F.urlPrivacidad && F.urlPrivacidad === F.urlMarketing + 'privacidad.html' && /^https:\/\/tenerifego\.app\/$/.test(F.urlMarketing),
+   'Support URL y Privacy Policy URL son privacidad.html, Marketing URL es la web, y las tres en el dominio (https://tenerifego.app/)');
 const priv = fs.readFileSync(path.join(RAIZ, 'privacidad.html'), 'utf8');
 ok(/mailto:[^"]+@[^"]+/.test(priv) && /Tenerife/.test(priv), 'privacidad.html lleva el correo de contacto y el lugar: vale como Support URL');
 ok(['Travel', 'Navigation', 'Reference', 'Education', 'Weather', 'Utilities', 'Lifestyle'].includes(F.categoria) && F.categoriaSecundaria !== F.categoria,

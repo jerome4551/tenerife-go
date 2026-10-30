@@ -2,7 +2,7 @@
 <!--
   ══════════════════════════════════════════════════════════════════════
   TENERIFE GO — Guia turistica interactiva de Tenerife
-  https://jerome4551.github.io/tenerife-go
+  https://tenerifego.app
 
   Copyright (c) 2026 Jerome B. Todos los derechos reservados.
   All rights reserved.
@@ -36,7 +36,7 @@
 <meta charset="UTF-8">
 <meta name="author" content="Jerome B">
 <meta name="copyright" content="Copyright (c) 2026 Jerome B - Todos los derechos reservados">
-<meta name="rights" content="https://jerome4551.github.io/tenerife-go">
+<meta name="rights" content="https://tenerifego.app">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
 <!-- TGO-NATIVO: la misma app dentro de la aplicacion de las tiendas
      (Capacitor, 21 de octubre de 2026). tools/app_preparar.js copia este
@@ -50,7 +50,9 @@
      web, TGO_NATIVO no existe y nada de esto actua. -->
 <script>
 window.TGO_NATIVO = window.TGO_NATIVO === true;
-var TGO_BASE_VIVA = 'https://jerome4551.github.io/tenerife-go/';
+/* La web viva, en su dominio desde el 28 de octubre de 2026 (antes
+   jerome4551.github.io/tenerife-go, que GitHub redirige aqui). */
+var TGO_BASE_VIVA = 'https://tenerifego.app/';
 /* Un fichero de datos: en la web, tal cual (el service worker lo sirve red
    primero); en la app nativa, la copia viva con 8 segundos de plazo y, si
    no llega, no responde bien, se corta a medias o no es JSON, la copia que
@@ -149,7 +151,7 @@ window.onunhandledrejection = function(e) {
         document.documentElement.style.display = '';
         document.body.textContent = '';
         var a = document.createElement('a');
-        a.href = 'https://jerome4551.github.io/tenerife-go/';
+        a.href = 'https://tenerifego.app/';
         a.target = '_blank';
         a.rel = 'noopener noreferrer';
         a.textContent = 'Abrir Tenerife Go';
@@ -162,7 +164,7 @@ window.onunhandledrejection = function(e) {
 </script>
 
 <title>Tenerife Go — Mapa Interactivo</title>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://jerome4551.github.io https://*.supabase.co wss://*.supabase.co https://energia.serviciosmin.gob.es https://sedeaplicaciones.minetur.gob.es https://nominatim.openstreetmap.org https://router.project-osrm.org https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://tenerifego.app https://*.supabase.co wss://*.supabase.co https://energia.serviciosmin.gob.es https://sedeaplicaciones.minetur.gob.es https://nominatim.openstreetmap.org https://router.project-osrm.org https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
 <!-- Google tag (gtag.js) — GA4 · Consent Mode v2 (básico) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -195,7 +197,7 @@ window.onunhandledrejection = function(e) {
       "@type": "WebApplication",
       "name": "Tenerife Go",
       "alternateName": "Tenerife GO — Mapa Interactivo de Tenerife",
-      "url": "https://jerome4551.github.io/tenerife-go/",
+      "url": "https://tenerifego.app/",
       "description": "Guía turística gratuita de Tenerife con mapa interactivo: 980 lugares, playas, senderos, miradores, gastronomía canaria, guachinches, transporte TITSA, rutas, planificador de día y avisos meteorológicos de AEMET. Disponible en 10 idiomas. Somos parte de ti.",
       "applicationCategory": "TravelApplication",
       "operatingSystem": "Web, Android, iOS",
@@ -204,7 +206,7 @@ window.onunhandledrejection = function(e) {
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
       "author": { "@type": "Person", "name": "Jérôme B" },
-      "image": "https://jerome4551.github.io/tenerife-go/og-image.jpg",
+      "image": "https://tenerifego.app/og-image.jpg",
       "featureList": "Mapa interactivo offline, 980 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, avisos meteorológicos de AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
     },
     {
@@ -224,10 +226,10 @@ window.onunhandledrejection = function(e) {
      Twitter/X Card y URL canónica
      ════════════════════════════════════════════════════════════ -->
 <meta property="og:type"        content="website"/>
-<meta property="og:url"         content="https://jerome4551.github.io/tenerife-go/"/>
+<meta property="og:url"         content="https://tenerifego.app/"/>
 <meta property="og:title"       content="Tenerife Go — Tu guía interactiva de la isla"/>
 <meta property="og:description" content="Somos parte de ti. Descubra playas, senderos, gastronomía, transporte y los mejores rincones de Tenerife en un mapa interactivo gratuito."/>
-<meta property="og:image"       content="https://jerome4551.github.io/tenerife-go/og-image.jpg"/>
+<meta property="og:image"       content="https://tenerifego.app/og-image.jpg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height"content="630"/>
 <meta property="og:locale"      content="es_ES"/>
@@ -236,9 +238,9 @@ window.onunhandledrejection = function(e) {
 <meta name="twitter:card"        content="summary_large_image"/>
 <meta name="twitter:title"       content="Tenerife Go — Tu guía interactiva de la isla"/>
 <meta name="twitter:description" content="Playas, senderos, gastronomía, transporte y los mejores rincones de Tenerife en un mapa interactivo gratuito."/>
-<meta name="twitter:image"       content="https://jerome4551.github.io/tenerife-go/og-image.jpg"/>
+<meta name="twitter:image"       content="https://tenerifego.app/og-image.jpg"/>
 
-<link rel="canonical" href="https://jerome4551.github.io/tenerife-go/"/>
+<link rel="canonical" href="https://tenerifego.app/"/>
 
 <!-- ════════════════════════════════════════════════════════════
      PWA — Progressive Web App
@@ -20500,7 +20502,7 @@ function buildShareData(place) {
   // file:// y capacitor:// → usar URL pública de producción
   const isNative = window.TGO_NATIVO === true || location.protocol === 'file:' || location.protocol === 'capacitor:' || location.protocol === 'ionic:';
   const baseUrl = isNative
-    ? 'https://jerome4551.github.io/tenerife-go/#lugar=' + place.id
+    ? 'https://tenerifego.app/#lugar=' + place.id
     : (location.origin + location.pathname + '#lugar=' + place.id);
 
   // 2. Enlace Google Maps con coordenadas + etiqueta
@@ -30728,7 +30730,7 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
   function gpxBuild(title, wpts, trk, rte) {
     var out = [];
     out.push('<?xml version="1.0" encoding="UTF-8"?>');
-    out.push('<gpx version="1.1" creator="Tenerife Go — jerome4551.github.io/tenerife-go" xmlns="http://www.topografix.com/GPX/1/1">');
+    out.push('<gpx version="1.1" creator="Tenerife Go — tenerifego.app" xmlns="http://www.topografix.com/GPX/1/1">');
     out.push('<metadata><name>' + xmlEsc(title) + '</name><author><name>Tenerife Go · By Jérôme B</name></author></metadata>');
 
     (wpts || []).forEach(function(w) {

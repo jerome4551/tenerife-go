@@ -329,7 +329,7 @@ const SOS_SRC = fs.readFileSync(path.join(RAIZ, 'modulos', 'emergencias.js'), 'u
 const FSOS = {};
 for (const m of SOS_SRC.matchAll(/^\s*"(\w+)"\s*:\s*(\{"es":.*\})\s*,?\s*$/gm)) { try { FSOS[m[1]] = JSON.parse(m[2]); } catch (e) { /* no es una fila */ } }
 const SOS_LOC = JSON.parse(/var SOS_LOCALE = (\{[^}]*\});/.exec(SOS_SRC)[1]);
-const APP = 'https://jerome4551.github.io/tenerife-go/';
+const APP = 'https://tenerifego.app/';
 const os = require('os');
 
 /* Corre enviar-notificacion.js con el reloj parado en `ahora`, Supabase y

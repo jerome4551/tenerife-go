@@ -296,7 +296,7 @@ function comprobar(montado) {
      && /var TGO_BASE_VIVA = 'https:\/\/jerome4551\.github\.io\/tenerife-go\/';/.test(index),
      'index.html: la marca se respeta (TGO_NATIVO === true), tgoFetchDatos y la direccion viva');
   const csp = (index.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/) || [, ''])[1];
-  ok(/connect-src [^;]*https:\/\/jerome4551\.github\.io/.test(csp), 'la CSP deja pedir a la web viva (connect-src https://jerome4551.github.io)');
+  ok(/connect-src [^;]*https:\/\/tenerifego\.app[ ;]/.test(csp) && !/jerome4551\.github\.io/.test(csp), 'la CSP deja pedir a la web viva, en su dominio (connect-src https://tenerifego.app), y ya no a la direccion vieja');
   ok(/if \(window\.TGO_NATIVO\) return;\s*\n\s*\/\/ Registrar tras 'load'/.test(index), 'sin service worker con la marca');
   ok(/if \(window\.TGO_NATIVO\) return true;\s*\/\/ TGO-NATIVO/.test(index) && /!window\.TGO_NATIVO && \(isStandalone\(\) \|\| \('serviceWorker' in navigator\)\)/.test(index),
      'con la marca cuenta como instalada (ni banner de instalar ni boton flotante)');

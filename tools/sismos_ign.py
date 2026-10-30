@@ -68,7 +68,7 @@ ZONA = {'lat': [27.85, 28.75], 'lon': [-17.05, -15.95]}
 HORA_DEL_CANAL = dt.timezone.utc
 LATIDO = dt.timedelta(hours=3)
 GEO = '{http://www.w3.org/2003/01/geo/wgs84_pos#}'
-UA = 'TenerifeGo/1.0 (+https://jerome4551.github.io/tenerife-go/)'
+UA = 'TenerifeGo/1.0 (+https://tenerifego.app/)'
 FICHA = re.compile(r'^https?://www\.ign\.es/web/ign/portal/sis-catalogo-terremotos/-/catalogo-terremotos/detailTerremoto\?evid=([A-Za-z0-9]+)$')
 
 

@@ -116,7 +116,7 @@ jobs:
           VAPID_PUBLIC:         ${{ secrets.VAPID_PUBLIC }}
           VAPID_PRIVATE:        ${{ secrets.VAPID_PRIVATE }}
           VAPID_SUBJECT:        'mailto:tenerife.go.app@gmail.com'
-          APP_URL:              'https://jerome4551.github.io/tenerife-go/'
+          APP_URL:              'https://tenerifego.app/'
         run: |
           if [ ! -s "$RUNNER_TEMP/aviso-semaforo.json" ]; then
             echo "Nada que avisar"

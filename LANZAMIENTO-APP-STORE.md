@@ -20,7 +20,7 @@ pone al principio de `index.html`: `window.TGO_NATIVO = true`. Con ella:
 | Qué | En la web | En la app de la tienda |
 |---|---|---|
 | Caché sin conexión | El service worker (`sw.js`) guarda `index.html`, el módulo del cielo, el mapa de la isla… | No hay service worker: todo lo de la app viaja dentro del paquete (26,0 MB, 96 ficheros): el mapa, los lugares, las guaguas, el cielo entero, los idiomas y, desde el 22 de octubre, la librería de la cuenta (`vendor/supabase.js`, la misma versión y la misma huella que antes venía de jsDelivr). WKWebView no registra service workers en el esquema `capacitor://`. |
-| Datos que cambian a diario (precios, avisos de AEMET, elementos de los satélites) | Red primero, caché de respaldo (el service worker) | `tgoFetchDatos()`: primero la copia viva de `https://jerome4551.github.io/tenerife-go/datos/…` con 8 s de plazo, leída entera y comprobada (que sea JSON); si no llega, no responde bien, se corta a medias o no es JSON (un portal cautivo), la copia que viaja dentro (la del día en que se montó la app). |
+| Datos que cambian a diario (precios, avisos de AEMET, elementos de los satélites) | Red primero, caché de respaldo (el service worker) | `tgoFetchDatos()`: primero la copia viva de `https://tenerifego.app/datos/…` con 8 s de plazo, leída entera y comprobada (que sea JSON); si no llega, no responde bien, se corta a medias o no es JSON (un portal cautivo), la copia que viaja dentro (la del día en que se montó la app). |
 | «Instalar la app», botón flotante de la PWA | Salen | No salen: ya está instalada. |
 | Avisos push | Web Push con `sw.js` | WKWebView no tiene Web Push: los dos botones «Activar notificaciones» (el de la cuenta y el de «Continuar como invitado») y sus mensajes van ocultos, y `pushInit()` no pregunta nunca. Los avisos nativos (APNs) son otro trabajo (§8). |
 | Google Analytics y el aviso de cookies | Solo si se acepta el aviso: entonces se carga GA4 (Consent Mode v2, señales publicitarias denegadas) | No hay (22 de octubre de 2026): `gtag` no se configura, `tgoLoadGA()` no carga nada y el aviso de cookies no sale. La política lo dice («La aplicación de la App Store no usa Google Analytics», `ppStatsTienda`). Para saber cuánto se usa, App Store Connect tiene su propia analítica (*App Analytics*). |
@@ -28,7 +28,7 @@ pone al principio de `index.html`: `window.TGO_NATIVO = true`. Con ella:
 | Confirmar el correo de la cuenta | Supabase vuelve a la web | Vuelve a la web viva (`capacitor://localhost` no es una dirección a la que volver). |
 | Compartir un lugar | El enlace de la web | El enlace de la web viva (ya lo hacía con `capacitor://`). |
 | «Antes de subir al Teide» (el cielo, «Dónde ir») | Mira en la caché del móvil los seis ficheros del panel | «Guardado en el móvil» siempre: viajan en el paquete. |
-| La CSP | `connect-src 'self' …` | `connect-src` lleva además `https://jerome4551.github.io`, para esos datos. |
+| La CSP | `connect-src 'self' …` | `connect-src` lleva además `https://tenerifego.app`, para esos datos. |
 | El asistente | Sus respuestas | En cuatro, la suya (`faq/fuente/nativo/respuestas.json`, diez idiomas): «¿Funciona sin conexión?» (desde la primera vez; «Satélite» y «Topo» con red), «¿Cómo instalo la app?» (ya está instalada: nada de navegador ni de otras plataformas, directriz 2.3.10), «¿Qué datos guarda la app?» (ni notificaciones ni estadísticas: Google Analytics solo está en la web) y «¿Puedo recibir una frase cada mañana?» (no manda notificaciones). |
 | Sin permiso para la cámara o los sensores | «Se puede dar en los ajustes del navegador» | Sin esa frase (`cieloCamaraPermisoApp`, `cieloSensoresPermisoApp`): dónde se vuelve a dar en iOS se mira en el iPhone (§7, 1). |
 
@@ -150,7 +150,7 @@ la app los pide a la web viva.
 - *Age Rating*: el cuestionario entero en «No / Ninguno» → 4+.
 - *Pricing*: Free; *Availability*: todos los países.
 - *App Privacy*: §5.4. *Privacy Policy URL*:
-  `https://jerome4551.github.io/tenerife-go/privacidad.html`.
+  `https://tenerifego.app/privacidad.html`.
 
 ### 5.2 La ficha, por idioma
 
@@ -244,7 +244,7 @@ que cubrir los SDK de terceros: Capacitor trae el suyo.
 - *Notes* (hasta 4000 bytes, en el idioma que sea). Propuesta, en inglés:
 
 > Tenerife Go is a free travel guide for the island of Tenerife. All of its content ships inside the app and works offline: the island map (vector tiles bundled), 980 places, the 183 bus and tram lines, and a night-sky module computed on the device (Astronomy Engine) with an AR view that uses the camera, compass and motion sensors. The app does not load its interface from a remote web view. What it does fetch over the network: small daily data files (fuel prices, weather warnings, satellite orbital elements) from our site, with bundled copies as fallback; weather and sea forecasts (Open-Meteo); and, when the user asks for them, live fuel prices (Spanish Ministry open data), driving routes (OSRM), address search (Nominatim) and Wikipedia summaries.
-> Permissions are optional and asked in context: location (map and routes), camera and motion (only inside "Point at the sky"). The account is optional (email + password, our own system) and can be deleted from inside the app (Account → Delete account). No in-app purchases, no subscriptions, no third-party ad networks; a few local businesses are labelled as sponsored. Privacy policy: https://jerome4551.github.io/tenerife-go/privacidad.html
+> Permissions are optional and asked in context: location (map and routes), camera and motion (only inside "Point at the sky"). The account is optional (email + password, our own system) and can be deleted from inside the app (Account → Delete account). No in-app purchases, no subscriptions, no third-party ad networks; a few local businesses are labelled as sponsored. Privacy policy: https://tenerifego.app/privacidad.html
 
 ### 5.6 Antes de pulsar *Submit for Review*
 
@@ -313,12 +313,12 @@ IDFA).
   llega hoy por Web Push a la web; en la app harían falta `@capacitor/push-notifications`,
   la clave APNs en la cuenta de Apple y un envío aparte. Hasta entonces, el
   botón va oculto en la app.
-- **Enlaces universales** (`https://jerome4551.github.io/tenerife-go/#lugar=…`
-  abriendo la app en vez de Safari): `apple-app-site-association` en la
-  raíz del **dominio**, es decir, en el repositorio de usuario
-  `jerome4551.github.io` (no en el del proyecto), dentro de `.well-known/`
-  (con Jekyll hay que incluir la carpeta a mano); entra con la Fase 2
-  (dominio propio) del documento de Google Play.
+- **Enlaces universales** (`https://tenerifego.app/#lugar=…` abriendo la
+  app en vez de Safari): `apple-app-site-association` en la raíz del
+  dominio, dentro de `.well-known/` (con Jekyll hay que incluir la carpeta a
+  mano, o publicar sin Jekyll). Desde el 28 de octubre de 2026 la app tiene
+  su dominio, `tenerifego.app`, así que ya se puede; sigue sin ser necesario
+  para la primera versión.
 - **Google Play**: el TWA de PWABuilder (el documento de Jerome «De la
   PWA a Google Play», tres fases; la Fase 1 está en `AUDITORIA-FINAL.md`),
   que no necesita nada de esto: la PWA tal cual.

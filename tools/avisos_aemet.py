@@ -85,7 +85,7 @@ LATIDO = dt.timedelta(hours=3)
 CAP = '{urn:oasis:names:tc:emergency:cap:1.2}'
 # Sin cabecera Origin: el cortafuegos de aemet.es rechaza las peticiones que
 # la llevan («Request Rejected», comprobado el 12/10/2026 desde GitHub).
-UA = 'TenerifeGo/1.0 (+https://jerome4551.github.io/tenerife-go/)'
+UA = 'TenerifeGo/1.0 (+https://tenerifego.app/)'
 
 
 class Parar(Exception):
