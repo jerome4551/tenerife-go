@@ -63,12 +63,13 @@ luz roja, los diez idiomas) es el mismo código y se comporta igual.
    física o autónomo, la app sale en la tienda con el nombre del
    desarrollador. Con la cuenta: Xcode firma, TestFlight y App Store
    Connect.
-2. **El identificador de la app** (`appId` de `capacitor.config.json`,
-   propuesto `com.tenerifego.app`). Se escribe al revés de un dominio, no
-   hace falta tener el dominio, pero **no se puede cambiar después de
-   publicar**. Si Jerome registra un dominio para la Fase 2 de Google Play
-   (el documento «De la PWA a Google Play»), mejor ese (`es.tenerifego.app`,
-   por ejemplo) antes de la primera subida.
+2. **El identificador de la app** (`appId` de `capacitor.config.json`):
+   **`tenerifego.app`**, decidido por Jerome el 30 de octubre de 2026 («Yo
+   quiero tenerifego.app»), el mismo que el dominio y el mismo en Google
+   Play. **No se puede cambiar después de publicar.** Lo habitual es
+   escribirlo con el dominio al revés, pero es una recomendación: Apple
+   solo pide letras, números, guiones y puntos, y Android, al menos dos
+   partes separadas por un punto que empiecen por letra.
 3. **El icono a 1024×1024.** App Store Connect lo pide a ese tamaño y sin
    transparencia; el del repositorio es de 512 y el de la plantilla está
    ampliado. Se ve bien, pero el original a 1024 (o el vectorial del que
@@ -400,7 +401,7 @@ prueba, y sus registros dicen dónde para si para.
    acaba en rojo diciendo que falta la ficha, y es lo esperado. Entonces,
    una sola vez, en App Store Connect (la web): Apps → «+» → *New App*: iOS,
    nombre «Tenerife Go», idioma Spanish (Spain), el Bundle ID
-   `com.tenerifego.app`, SKU `tenerife-go`, acceso completo. La API de
+   `tenerifego.app`, SKU `tenerife-go`, acceso completo. La API de
    Apple no deja crear la ficha, y fastlane solo podría entrando con el
    Apple ID y la verificación en dos pasos, que un runner no tiene. Otra vez
    `alta` (ahora en verde); luego `testflight`; luego `ficha`. Cada

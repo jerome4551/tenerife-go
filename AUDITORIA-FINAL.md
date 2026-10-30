@@ -2864,6 +2864,42 @@ direcciones de vuelta del correo, lo dejó hecho él. Lo demás, aquí; Jerome:
   `Access-Control-Allow-Origin: *` (la app de las tiendas los pide desde otro
   origen); que `http` lleva a `https`, y la dirección vieja, a la nueva.
 
+## El identificador de la app: tenerifego.app (30 de octubre)
+
+El nombre con el que las dos tiendas conocen la app (el *Bundle ID* de
+Apple y el *Package ID* de Google Play) iba propuesto como
+`com.tenerifego.app` (más arriba, en «El proyecto de Capacitor», tal como se
+escribió entonces). PWABuilder, para Google Play, proponía otro: da la
+vuelta al dominio y añade `twa` (`app.tenerifego.twa`). Jerome: «Porque
+app.tenerifego? Yo quiero tenerifego.app». Es el dominio tal cual, el mismo
+en las dos tiendas, y no se puede cambiar después de publicar.
+
+Vale en las dos, con sus reglas:
+
+- **Android** ([developer.android.com/build/configure-app-module](https://developer.android.com/build/configure-app-module)):
+  al menos dos partes separadas por un punto, cada una empieza por una letra,
+  y solo letras, números y `_`. Bubblewrap, con el que PWABuilder hace el
+  paquete de Android, lo comprueba así (`validatePackageId`, en
+  `packages/core/src/lib/util.ts`), y además que ninguna parte sea una
+  palabra reservada de Java: `tenerifego` y `app` no lo son.
+- **Apple** ([CFBundleIdentifier](https://developer.apple.com/documentation/bundleresources/information-property-list/cfbundleidentifier)):
+  letras, números, guiones y puntos. Escribir el dominio al revés es lo
+  habitual, pero es una recomendación, no una regla.
+
+Lo que cambia:
+
+- Los cuatro sitios que lo llevan: `app/capacitor.config.json` (`appId`),
+  `app/fastlane/Appfile`, `app/fastlane/Fastfile` y
+  `.github/workflows/app-store.yml` (`TGO_APP_ID`). Y la guía,
+  `LANZAMIENTO-APP-STORE.md`: la decisión, y el Bundle ID que se escribe al
+  crear la app en App Store Connect.
+- **La prueba.** `app_preparar.js` pedía tres partes como mínimo
+  (`com.algo.app`): con `tenerifego.app` habría salido en rojo. Ahora pide
+  `tenerifego.app` justo, igual en los cuatro sitios, y si uno dice otra
+  cosa, sale en rojo y enseña los cuatro. Probado al revés: con el
+  identificador de antes en cualquiera de los cuatro, rojo; con los cuatro
+  bien, verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:

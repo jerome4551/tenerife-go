@@ -1,4 +1,4 @@
 # El identificador de la app: el mismo que capacitor.config.json (appId). No se
 # cambia despues de publicar. El equipo (team_id) viene del secreto APPLE_TEAM_ID.
-app_identifier(ENV["TGO_APP_ID"] || "com.tenerifego.app")
+app_identifier(ENV["TGO_APP_ID"] || "tenerifego.app")
 team_id(ENV["APPLE_TEAM_ID"]) if ENV["APPLE_TEAM_ID"]

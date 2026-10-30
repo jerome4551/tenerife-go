@@ -52,7 +52,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  TGO_APP_ID: com.tenerifego.app
+  TGO_APP_ID: tenerifego.app
   # fastlane pide un idioma UTF-8 (si no, avisa y algun texto puede salir mal)
   LANG: en_US.UTF-8
   LC_ALL: en_US.UTF-8

@@ -1,5 +1,5 @@
 {
-  "appId": "com.tenerifego.app",
+  "appId": "tenerifego.app",
   "appName": "Tenerife Go",
   "webDir": "www",
   "loggingBehavior": "none",

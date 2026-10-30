@@ -374,8 +374,18 @@ function comprobar(montado) {
   ok(fs.existsSync(path.join(PLANTILLAS, 'aplicar.sh')) && fs.existsSync(path.join(APP, 'capacitor.config.json')) && fs.existsSync(path.join(APP, 'package.json')),
      'app/: capacitor.config.json, package.json y ios/plantillas/aplicar.sh');
   const cfg = JSON.parse(fs.readFileSync(path.join(APP, 'capacitor.config.json'), 'utf8'));
-  ok(cfg.webDir === 'www' && /^[a-z][a-z0-9]*(\.[a-z][a-z0-9]*){2,}$/.test(cfg.appId || '') && cfg.appName === 'Tenerife Go',
-     'capacitor.config.json: webDir www, appId en forma de dominio al reves (' + cfg.appId + '), appName «Tenerife Go»');
+  ok(cfg.webDir === 'www' && cfg.appName === 'Tenerife Go', 'capacitor.config.json: webDir www, appName «Tenerife Go»');
+  /* el identificador lo decidio Jerome el 30 de octubre de 2026 («Yo quiero
+     tenerifego.app»), el mismo en Google Play, y no se cambia despues de
+     publicar: si alguno de los cuatro sitios que lo llevan dice otra cosa, rojo.
+     Vale en las dos tiendas: Android pide al menos dos partes que empiecen por
+     letra (letras, numeros y _), y Apple, letras, numeros, guiones y puntos */
+  const ids = [cfg.appId,
+    (lee('app/fastlane/Appfile').match(/^app_identifier\(ENV\["TGO_APP_ID"\] \|\| "([^"]*)"\)$/m) || [])[1],
+    (lee('app/fastlane/Fastfile').match(/^APP_ID += +ENV\["TGO_APP_ID"\] \|\| "([^"]*)"$/m) || [])[1],
+    (lee('.github/workflows/app-store.yml').match(/^ +TGO_APP_ID: (\S+)$/m) || [])[1]];
+  ok(ids.every(i => i === 'tenerifego.app'),
+     'el identificador de la app, tenerifego.app, igual en capacitor.config.json, Appfile, Fastfile y app-store.yml', ids.join(' · '));
   const gi = lee('.gitignore');
   ok(/^app\/www\/$/m.test(gi) && /^app\/ios\/App\/$/m.test(gi) && /^app\/node_modules\/$/m.test(gi), '.gitignore: app/www/, app/ios/App/ y app/node_modules/ no entran en git');
 }
