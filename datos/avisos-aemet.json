@@ -3,10 +3,10 @@
  "canal": "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAP6596_RSS.xml",
  "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos?p=6596",
  "aemet": {
-  "fichero": "Z_CAP_C_LEMM_20261030180416_AFAP6596.tar.gz",
-  "publicado": "2026-10-30T18:04:16+00:00",
+  "fichero": "Z_CAP_C_LEMM_20261030225001_AFAP6596.tar.gz",
+  "publicado": "2026-10-30T22:50:01+00:00",
   "titulo": "Estado completo de avisos para Tenerife",
-  "alcance": "2026-11-01T23:59:59+00:00",
+  "alcance": "2026-11-02T23:59:59+00:00",
   "zonas_isla": [
    "659601",
    "659601C",
@@ -16,7 +16,7 @@
    "659603C"
   ]
  },
- "consultado": "2026-10-30T21:41:59Z",
+ "consultado": "2026-10-30T23:14:13Z",
  "avisos": [
   {
    "id": "2.49.0.0.724.0.ES.20261030180416.659602PRP102001793383456",
@@ -75,6 +75,186 @@
    },
    "en": {
     "descripcion": "Baja probabilidad.",
+    "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
+   }
+  },
+  {
+   "id": "2.49.0.0.724.0.ES.20261030225001.659601PRP102181793400601",
+   "nivel": "amarillo",
+   "fenomeno": "PR",
+   "fenomeno_es": "Lluvias",
+   "parametro": "P1",
+   "parametro_es": "Precipitación acumulada en una hora",
+   "valor": "20 mm",
+   "probabilidad": "40%-70%",
+   "zonas": [
+    {
+     "codigo": "659601",
+     "nombre_es": "Norte de Tenerife",
+     "poligonos": [
+      "28.49,-16.43 28.43,-16.39 28.39,-16.44 28.35,-16.48 28.31,-16.5 28.28,-16.54 28.25,-16.55 28.2,-16.64 28.21,-16.68 28.27,-16.7 28.31,-16.79 28.27,-16.85 28.31,-16.88 28.34,-16.92 28.36,-16.92 28.37,-16.86 28.39,-16.83 28.38,-16.81 28.37,-16.75 28.38,-16.7 28.4,-16.67 28.39,-16.6 28.42,-16.55 28.42,-16.52 28.44,-16.47 28.49,-16.43"
+     ]
+    }
+   ],
+   "inicio": "2026-11-02T00:00:00+00:00",
+   "fin": "2026-11-02T17:59:59+00:00",
+   "emitido": "2026-10-30T22:50:01Z",
+   "es": {
+    "descripcion": "Precipitación acumulada en una hora: 20 mm.",
+    "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
+   },
+   "en": {
+    "descripcion": "One-hour accumulated precipitation: 20 mm.",
+    "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
+   }
+  },
+  {
+   "id": "2.49.0.0.724.0.ES.20261030225001.659602PRP102181793400601",
+   "nivel": "amarillo",
+   "fenomeno": "PR",
+   "fenomeno_es": "Lluvias",
+   "parametro": "P1",
+   "parametro_es": "Precipitación acumulada en una hora",
+   "valor": "20 mm",
+   "probabilidad": "40%-70%",
+   "zonas": [
+    {
+     "codigo": "659602",
+     "nombre_es": "Área metropolitana de Tenerife",
+     "poligonos": [
+      "28.49,-16.43 28.52,-16.42 28.55,-16.38 28.56,-16.33 28.58,-16.32 28.56,-16.22 28.59,-16.16 28.55,-16.12 28.52,-16.15 28.48,-16.23 28.45,-16.25 28.38,-16.36 28.34,-16.36 28.34,-16.39 28.39,-16.44 28.43,-16.39 28.49,-16.43"
+     ]
+    }
+   ],
+   "inicio": "2026-11-02T00:00:00+00:00",
+   "fin": "2026-11-02T17:59:59+00:00",
+   "emitido": "2026-10-30T22:50:01Z",
+   "es": {
+    "descripcion": "Precipitación acumulada en una hora: 20 mm.",
+    "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
+   },
+   "en": {
+    "descripcion": "One-hour accumulated precipitation: 20 mm.",
+    "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
+   }
+  },
+  {
+   "id": "2.49.0.0.724.0.ES.20261030225001.659603PRP102181793400601",
+   "nivel": "amarillo",
+   "fenomeno": "PR",
+   "fenomeno_es": "Lluvias",
+   "parametro": "P1",
+   "parametro_es": "Precipitación acumulada en una hora",
+   "valor": "20 mm",
+   "probabilidad": "40%-70%",
+   "zonas": [
+    {
+     "codigo": "659603",
+     "nombre_es": "Este, sur y oeste de Tenerife",
+     "poligonos": [
+      "28.27,-16.85 28.31,-16.79 28.27,-16.7 28.21,-16.68 28.2,-16.64 28.25,-16.55 28.28,-16.54 28.31,-16.5 28.35,-16.48 28.39,-16.44 28.34,-16.39 28.34,-16.36 28.31,-16.36 28.2,-16.42 28.14,-16.44 28.08,-16.49 28.03,-16.55 28.03,-16.6 28.0,-16.64 28.0,-16.68 28.01,-16.71 28.05,-16.71 28.05,-16.74 28.09,-16.74 28.11,-16.77 28.21,-16.84 28.27,-16.85"
+     ]
+    }
+   ],
+   "inicio": "2026-11-02T00:00:00+00:00",
+   "fin": "2026-11-02T17:59:59+00:00",
+   "emitido": "2026-10-30T22:50:01Z",
+   "es": {
+    "descripcion": "Precipitación acumulada en una hora: 20 mm.",
+    "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
+   },
+   "en": {
+    "descripcion": "One-hour accumulated precipitation: 20 mm.",
+    "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
+   }
+  },
+  {
+   "id": "2.49.0.0.724.0.ES.20261030225001.659601TOTO02181793400601",
+   "nivel": "amarillo",
+   "fenomeno": "TO",
+   "fenomeno_es": "Tormentas",
+   "parametro": "TO",
+   "parametro_es": "Tormentas",
+   "valor": "",
+   "probabilidad": "40%-70%",
+   "zonas": [
+    {
+     "codigo": "659601",
+     "nombre_es": "Norte de Tenerife",
+     "poligonos": [
+      "28.49,-16.43 28.43,-16.39 28.39,-16.44 28.35,-16.48 28.31,-16.5 28.28,-16.54 28.25,-16.55 28.2,-16.64 28.21,-16.68 28.27,-16.7 28.31,-16.79 28.27,-16.85 28.31,-16.88 28.34,-16.92 28.36,-16.92 28.37,-16.86 28.39,-16.83 28.38,-16.81 28.37,-16.75 28.38,-16.7 28.4,-16.67 28.39,-16.6 28.42,-16.55 28.42,-16.52 28.44,-16.47 28.49,-16.43"
+     ]
+    }
+   ],
+   "inicio": "2026-11-02T00:00:00+00:00",
+   "fin": "2026-11-02T17:59:59+00:00",
+   "emitido": "2026-10-30T22:50:01Z",
+   "es": {
+    "descripcion": "",
+    "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
+   },
+   "en": {
+    "descripcion": "",
+    "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
+   }
+  },
+  {
+   "id": "2.49.0.0.724.0.ES.20261030225001.659602TOTO02181793400601",
+   "nivel": "amarillo",
+   "fenomeno": "TO",
+   "fenomeno_es": "Tormentas",
+   "parametro": "TO",
+   "parametro_es": "Tormentas",
+   "valor": "",
+   "probabilidad": "40%-70%",
+   "zonas": [
+    {
+     "codigo": "659602",
+     "nombre_es": "Área metropolitana de Tenerife",
+     "poligonos": [
+      "28.49,-16.43 28.52,-16.42 28.55,-16.38 28.56,-16.33 28.58,-16.32 28.56,-16.22 28.59,-16.16 28.55,-16.12 28.52,-16.15 28.48,-16.23 28.45,-16.25 28.38,-16.36 28.34,-16.36 28.34,-16.39 28.39,-16.44 28.43,-16.39 28.49,-16.43"
+     ]
+    }
+   ],
+   "inicio": "2026-11-02T00:00:00+00:00",
+   "fin": "2026-11-02T17:59:59+00:00",
+   "emitido": "2026-10-30T22:50:01Z",
+   "es": {
+    "descripcion": "",
+    "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
+   },
+   "en": {
+    "descripcion": "",
+    "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
+   }
+  },
+  {
+   "id": "2.49.0.0.724.0.ES.20261030225001.659603TOTO02181793400601",
+   "nivel": "amarillo",
+   "fenomeno": "TO",
+   "fenomeno_es": "Tormentas",
+   "parametro": "TO",
+   "parametro_es": "Tormentas",
+   "valor": "",
+   "probabilidad": "40%-70%",
+   "zonas": [
+    {
+     "codigo": "659603",
+     "nombre_es": "Este, sur y oeste de Tenerife",
+     "poligonos": [
+      "28.27,-16.85 28.31,-16.79 28.27,-16.7 28.21,-16.68 28.2,-16.64 28.25,-16.55 28.28,-16.54 28.31,-16.5 28.35,-16.48 28.39,-16.44 28.34,-16.39 28.34,-16.36 28.31,-16.36 28.2,-16.42 28.14,-16.44 28.08,-16.49 28.03,-16.55 28.03,-16.6 28.0,-16.64 28.0,-16.68 28.01,-16.71 28.05,-16.71 28.05,-16.74 28.09,-16.74 28.11,-16.77 28.21,-16.84 28.27,-16.85"
+     ]
+    }
+   ],
+   "inicio": "2026-11-02T00:00:00+00:00",
+   "fin": "2026-11-02T17:59:59+00:00",
+   "emitido": "2026-10-30T22:50:01Z",
+   "es": {
+    "descripcion": "",
+    "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
+   },
+   "en": {
+    "descripcion": "",
     "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
    }
   }
