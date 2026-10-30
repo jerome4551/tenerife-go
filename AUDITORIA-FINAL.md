@@ -2821,6 +2821,45 @@ con la Luna dentro del círculo y «Ya»: debe decir cuántos grados iba
 desviada y, después, la Luna dibujada cae encima de la de verdad. Y con un
 satélite como objetivo, al entrar en la sombra, el aviso lo dice.
 
+## El dominio: tenerifego.app (30 de octubre)
+
+El 28 de octubre Jerome puso la web en su dominio, `https://tenerifego.app/`
+(el fichero `CNAME`, que solo toca él), y GitHub lleva la dirección de antes
+(`https://jerome4551.github.io/tenerife-go/`) a la nueva. Supabase, con las
+direcciones de vuelta del correo, lo dejó hecho él. Lo demás, aquí; Jerome:
+«es ahora tu trabajo verificar que todo funcione con el domain».
+
+- **Lo que ya iba bien, sin tocar.** La app usa rutas relativas: el
+  manifiesto (`start_url: ./index.html`), el service worker (`sw.js`, con
+  alcance `./`), las páginas y los datos. En la raíz del dominio funciona
+  igual que dentro de `/tenerife-go/`.
+- **La dirección escrita a mano, ahora `https://tenerifego.app/`.** En
+  `index.html`: la canónica, la vista previa al compartir (Open Graph,
+  Twitter y schema.org), el enlace de un lugar desde la app de las tiendas,
+  el GPX, el enlace de salida del marco y la copia viva de los datos de la
+  app de las tiendas (`TGO_BASE_VIVA`), con su `connect-src` en la CSP, de
+  donde sale `https://jerome4551.github.io`. En `modulos/cielo.js`: el pie de
+  las imágenes que se comparten y el calendario (la descripción, la URL y el
+  UID de cada evento). La notificación diaria y el aviso del semáforo
+  (`APP_URL`, en `enviar-notificacion.js` y en sus dos workflows). La
+  dirección con la que se presentan los seis robots que leen las fuentes
+  oficiales. Y la ficha de la App Store (soporte, web y privacidad), con su
+  guía y las notas para el revisor.
+- **Las pruebas, con el dominio:** `app_preparar.js` (la CSP pide a
+  `tenerifego.app`, y ya no a la dirección vieja), `auditar_sw.js`,
+  `probar_app.js`, `probar_notificacion_idioma.js` y `auditar_app_store.js`
+  (las tres direcciones de la ficha, en el dominio).
+- **Para quien ya la usaba:** lo guardado en el móvil (favoritos, ajustes)
+  se queda en la dirección vieja. Jerome: «solo amigos la usaban y saben que
+  iba a pasar». Lo de la nube del perfil va con la cuenta y no se pierde.
+- **Comprobarlo desde fuera.** Desde aquí no se llega a la web publicada:
+  `.github/workflows/comprobar-dominio.yml` se lanza a mano, sin horario, y
+  solo lee. Mira que la web, la política, el borrado de la cuenta, el
+  manifiesto, el service worker, la imagen de la vista previa y los datos
+  responden en el dominio, con certificado válido; que los datos llevan
+  `Access-Control-Allow-Origin: *` (la app de las tiendas los pide desde otro
+  origen); que `http` lleva a `https`, y la dirección vieja, a la nueva.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
