@@ -1,0 +1,63 @@
+# Comprobar el dominio: la web viva en https://tenerifego.app, vista desde fuera.
+#
+# POR QUE EXISTE
+#   El 28 de octubre de 2026 la web paso a su dominio (el CNAME lo puso Jerome).
+#   Desde el entorno de Claude Code no se llega a la web publicada, y desde aqui
+#   si: se lanza a mano (workflow_dispatch), no tiene horario, solo lee (curl) y
+#   no escribe nada en el repositorio. Mira lo que necesitan la web, la app de
+#   las tiendas (la copia viva de los datos, con CORS) y las fichas de Google y
+#   Apple (la politica y el borrado de la cuenta), y que la direccion vieja
+#   lleve a la nueva. Si algo no cuadra, el trabajo sale en rojo y lo dice.
+name: Comprobar el dominio
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  comprobar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: La web en tenerifego.app, y la direccion vieja
+        run: |
+          set -u
+          fallos=0
+          linea() { echo "$1" | tee -a "$GITHUB_STEP_SUMMARY"; }
+          # mira URL CODIGO [TEXTO]: el codigo HTTP sin seguir redirecciones, el
+          # certificado valido (curl falla si no) y, si se da, un texto del cuerpo
+          mira() {
+            local url=$1 esperado=$2 texto=${3:-}
+            local r codigo
+            r=$(curl -sS --max-time 20 -o cuerpo.txt -D cabeceras.txt -w '%{http_code} %{redirect_url}' "$url" 2>&1) || { linea "MAL  $url · $r"; fallos=$((fallos+1)); return; }
+            codigo=${r%% *}
+            if [ "$codigo" != "$esperado" ]; then linea "MAL  $url · $r (se esperaba $esperado)"; fallos=$((fallos+1)); return; fi
+            if [ -n "$texto" ] && ! grep -qF "$texto" cuerpo.txt; then linea "MAL  $url · $codigo, pero sin «$texto»"; fallos=$((fallos+1)); return; fi
+            linea "OK   $url · $r"
+          }
+          linea "### El dominio, $(date -u +%FT%TZ)"
+          mira https://tenerifego.app/ 200 '<link rel="canonical" href="https://tenerifego.app/"/>'
+          mira https://tenerifego.app/index.html 200 'Tenerife Go'
+          mira https://tenerifego.app/privacidad.html 200 'mailto:'
+          mira https://tenerifego.app/borrar-cuenta.html 200 'Tenerife Go'
+          mira https://tenerifego.app/manifest.webmanifest 200 '"start_url"'
+          mira https://tenerifego.app/sw.js 200 'CACHE'
+          mira https://tenerifego.app/og-image.jpg 200
+          mira https://tenerifego.app/datos/avisos-aemet.json 200 '"fuente"'
+          # la app de las tiendas pide la copia viva desde otro origen: CORS abierto
+          if grep -qi '^access-control-allow-origin: \*' cabeceras.txt; then linea "OK   datos: Access-Control-Allow-Origin: *"; else linea "MAL  datos: sin Access-Control-Allow-Origin: *"; fallos=$((fallos+1)); fi
+          # http lleva a https, y la direccion de antes, a la nueva
+          mira http://tenerifego.app/ 301
+          grep -qi '^location: https://tenerifego.app/' cabeceras.txt && linea "OK   http lleva a https://tenerifego.app/" || { linea "MAL  http no lleva a https://tenerifego.app/"; fallos=$((fallos+1)); }
+          mira https://jerome4551.github.io/tenerife-go/ 301
+          grep -qi '^location: https://tenerifego.app/' cabeceras.txt && linea "OK   la direccion vieja lleva a https://tenerifego.app/" || { linea "MAL  la direccion vieja no lleva a https://tenerifego.app/"; fallos=$((fallos+1)); }
+          # el certificado: emisor y caducidad
+          echo | openssl s_client -connect tenerifego.app:443 -servername tenerifego.app 2>/dev/null | openssl x509 -noout -issuer -enddate | sed 's/^/     /' | tee -a "$GITHUB_STEP_SUMMARY"
+          # www: solo se informa (puede no estar configurado)
+          r=$(curl -sS --max-time 20 -o /dev/null -w '%{http_code} %{redirect_url}' https://www.tenerifego.app/ 2>&1) || true
+          linea "--   www.tenerifego.app · $r (informativo)"
+          linea ""
+          if [ "$fallos" -gt 0 ]; then linea "**$fallos en rojo**"; exit 1; fi
+          linea "**Todo en verde**"
