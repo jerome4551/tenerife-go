@@ -3351,6 +3351,11 @@
   function flecha(ctx, V, P, I, dpr, reloj) {
     var e = vectorSel(V.objetivo, I);
     if (!e) return;
+    /* Un satelite en la sombra de la Tierra no se ve: el aviso de arriba lo
+       dice en vez de «siga la flecha». (24-10-2026: el Hubble entro en la
+       sombra a las 21:03:16 y el aviso siguio pidiendo seguir la flecha, sin
+       decir que ya no se podia ver; la ficha si lo decia.) */
+    if (V.objetivo.sat) { var st = satPorClave(V.objetivo.sat), sx = st && satSirve(st, I.t.date.getTime()) ? dondeSat(st, I.t.date) : null; V.objetivo.sombra = !!(sx && sx.alt > 0 && !sx.sol); }
     var B = V.B || baseVista(V), q = [0, 0, 0];
     var X = pto(e, B.r), Y = pto(e, B.u), Z = pto(e, B.f);
     var dentro = P(e, q) && q[0] > 30 * dpr && q[1] > 30 * dpr && q[0] < V.W - 30 * dpr && q[1] < V.H - 30 * dpr;
@@ -3983,7 +3988,8 @@
     /* lo que se busca: ¿ya esta en el circulo? */
     if (V.objetivo) {
       var o = V.objetivo;
-      if (o.cerca && !VI.vibro) { VI.vibro = true; try { navigator.vibrate && navigator.vibrate(40); } catch (x) {} pintarObjetivo(true); }
+      if (!!o.sombra !== VI.sombraObjetivo) { VI.sombraObjetivo = !!o.sombra; pintarObjetivo(!!o.cerca); }
+      else if (o.cerca && !VI.vibro) { VI.vibro = true; try { navigator.vibrate && navigator.vibrate(40); } catch (x) {} pintarObjetivo(true); }
       else if (!o.cerca && VI.vibro) { VI.vibro = false; pintarObjetivo(false); }
       else if (!o.cerca && Math.round(o.grados || 0) !== VI.gradosObjetivo) { VI.gradosObjetivo = Math.round(o.grados || 0); pintarObjetivo(false); }
     }
@@ -4088,7 +4094,7 @@
   function ponerObjetivo(sel) {
     if (!VI) return;
     if (VI.comprobando) { VI.comprobando = null; pintarComprobar(); pintarChips(); }
-    VI.V.objetivo = sel; VI.vibro = false; VI.gradosObjetivo = null;
+    VI.V.objetivo = sel; VI.vibro = false; VI.gradosObjetivo = null; VI.sombraObjetivo = undefined;
     cerrarHoja();
     var I = instante(new Date(Date.now() + VI.desfase * 60000)), e = vectorSel(sel, I);
     if (e && !VI.V.sensores) { var h = altAzDe(e); VI.V.az = h.az; VI.V.alt = limitar(h.alt, -30, 85); }
@@ -4102,7 +4108,7 @@
     var c = cosaDe(s);
     o.appendChild(el('span', null, '🎯 '));
     o.appendChild(c.des && c.nombre === c.des ? desig(c.nombre) : el('b', null, c.nombre));
-    o.appendChild(el('span', null, ' · ' + (cerca ? T('AhiEsta') : T('AGrados', { g: numero(VI.V.objetivo.grados || 0, 0) }))));
+    o.appendChild(el('span', null, ' · ' + (s.sombra ? T('SatEnSombra') : cerca ? T('AhiEsta') : T('AGrados', { g: numero(VI.V.objetivo.grados || 0, 0) }))));
     o.appendChild(botonMapa('✕', null, function () { VI.V.objetivo = null; pintarObjetivo(false); }, cerrarTxt(), 'cv-btn cv-btn-mini'));
     o.classList.toggle('cerca', !!cerca);
     o.hidden = false;
@@ -5041,12 +5047,18 @@
     }
     return mejor ? { est: mejor } : null;
   }
+  function inconfundible(ref) { return !!ref && (ref.planeta === 'Sun' || ref.planeta === 'Moon'); }
   function comprobarBrujula() {
     if (!VI || !VI.V.sensores) return;
     var fecha = new Date(Date.now() + VI.desfase * 60000), I = instante(fecha), ref = referenciaBrujula(I);
     if (!ref) { avisar(T('ComprobarAbajo'), 7000); return; }
     VI.comprobando = ref;
-    VI.V.objetivo = ref; VI.vibro = false; VI.gradosObjetivo = null;
+    /* Con el Sol o la Luna no hay flecha: apuntaria a donde la app cree que
+       estan, que es justo lo que va desviado (el 24-10-2026, en la prueba del
+       Hubble de Jerome, la brujula iba 43 grados torcida: la flecha le habria
+       alejado de la Luna de verdad). Se ven sin ayuda. Con un planeta o una
+       estrella, si: ayuda a saber cual es. */
+    VI.V.objetivo = inconfundible(ref) ? null : ref; VI.vibro = false; VI.gradosObjetivo = null; VI.sombraObjetivo = undefined;
     cerrarHoja(); pintarComprobar(); pintarChips();
   }
   function pintarComprobar() {
@@ -5073,8 +5085,17 @@
     if (!e || !B) { avisar(T('SensoresEspera'), 5000); return; }
     var hr = altAzDe(e), hc = altAzDe(B.f);
     var sep = Math.acos(limitar(pto(e, B.f), -1, 1)) / RAD;
-    if (sep > 25) { avisar(T('ComprobarLejos', { c: c.nombre, g: numero(Math.round(sep), 0) }), 7000); return; }
     var dAz = difAng(hr.az, hc.az), dAlt = hr.alt - hc.alt;
+    /* Hasta 25 grados vale cualquier astro. Mas alla, solo el Sol y la Luna,
+       que no se confunden con nada, y solo si la altura cuadra: la altura sale
+       de la gravedad, no de la brujula, y si cuadra es que el movil apunta a
+       ellos y lo que falla es el rumbo, sea cuanto sea. Cerca del cenit el
+       rumbo no se mide bien, y ahi no. (24-10-2026: con la Luna a 35 grados y
+       la brujula de Jerome 43 grados torcida, «Ya» habria dicho «queda a 35°
+       del circulo», los 35 de cielo que son esos 43 de rumbo a esa altura, con
+       la Luna dentro.) */
+    var porAltura = inconfundible(VI.comprobando) && Math.abs(dAlt) <= 6 && hr.alt < 70;
+    if (sep > 25 && !porAltura) { avisar(T('ComprobarLejos', { c: c.nombre, g: numero(Math.round(sep), 0) }), 7000); return; }
     VI.ajuste = ((VI.ajuste + dAz + 540) % 360) - 180;
     guardar('tgo_cielo_ajuste', VI.ajuste.toFixed(1));
     VI.comprobada = Date.now(); VI.comprobando = null; VI.V.objetivo = null;

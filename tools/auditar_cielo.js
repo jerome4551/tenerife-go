@@ -2063,6 +2063,75 @@ async function quejas(b) {
      'lo dice («' + vista.aviso.slice(0, 40) + '…»), el chip queda «' + vista.chip + '» y el circulo ya nombra a ' + vista.ref, JSON.stringify({ aviso: vista.aviso, chip: vista.chip, centro: vista.centro }));
   ok(vista.cap.video && vista.cap.type === 'image/png' && vista.cap.size > 20000, 'la captura de la vista con la camara (falsa) debajo es un PNG (' + Math.round(vista.cap.size / 1024) + ' kB)', JSON.stringify(vista.cap));
   ok(/±15°/.test(vista.chipIOS) && /Precisión de la brújula: ±15°/.test(vista.chipTitulo), 'iOS: la precision de la brujula (webkitCompassAccuracy 15) sale en el chip: «' + vista.chipIOS + '»', vista.chipTitulo);
+  /* La brujula muy torcida (24-10-2026, la prueba del Hubble de Jerome: con la
+     Luna a 35 grados, el rumbo del movil iba 43 grados desviado, y «Ya» habria
+     contestado «queda a 35° del circulo» con la Luna dentro). A esa hora y con
+     esa Luna: con la altura bien, «Ya» corrige los 43 grados; con la altura 10
+     grados mal, no, porque podria ser otra cosa; y mientras se comprueba con la
+     Luna no hay flecha, que apuntaria justo a donde va desviado. */
+  const torcida = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    const A = Astronomy, D = TG_CIELO.estado.datos, o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h), out = {};
+    const ahoraDeVerdad = Date.now, T0 = Date.parse('2026-10-24T20:05:00Z');
+    const dec = TG_CIELO.declinacion(new Date(T0));
+    const magnetico = az => (az - dec + 360) % 360;
+    const evento = (az, alt) => { const ev = new Event('deviceorientationabsolute'); Object.assign(ev, { alpha: (360 - magnetico(az)) % 360, beta: 90 + alt, gamma: 0, absolute: true }); window.dispatchEvent(ev); };
+    const t = A.MakeTime(new Date(T0)), eq = A.Equator(A.Body.Moon, t, o, true, true), x = A.Horizon(t, o, eq.ra, eq.dec, 'normal');
+    out.luna = { alt: x.altitude, az: x.azimuth };
+    const aviso = () => document.querySelector('#cielo-vista .cv-aviso').textContent;
+    try {
+      Date.now = () => T0;
+      for (const [k, dAlt] of [['bien', 0], ['mal', 10]]) {
+        TG_CIELO.cerrarVista(); try { localStorage.removeItem('tgo_cielo_ajuste'); } catch (e) {}
+        const V = TG_CIELO.vista({ sinGuia: true }); await espera(300);
+        evento(x.azimuth + 43, x.altitude + dAlt); await espera(700);
+        const ref = TG_CIELO.comprobar(); await espera(200);
+        out[k] = { ref: ref && ref.planeta, flecha: !!(V && V.V && V.V.objetivo) };
+        out[k].r = TG_CIELO.comprobarYa() || null; await espera(200);
+        out[k].ajuste = TG_CIELO.ajuste(); out[k].aviso = aviso();
+      }
+    } finally { Date.now = ahoraDeVerdad; }
+    TG_CIELO.cerrarVista(); try { localStorage.removeItem('tgo_cielo_ajuste'); } catch (e) {}
+    return out;
+  });
+  ok(torcida.bien.ref === 'Moon' && !torcida.bien.flecha && torcida.bien.r && Math.abs(torcida.bien.r.dAz + 43) < 0.5 && Math.abs(torcida.bien.ajuste + 43) < 0.5 && /iba 43° desviada/.test(torcida.bien.aviso),
+     'la brujula 43° torcida (la prueba del Hubble, 24-10-2026, con la Luna a ' + Math.round(torcida.luna.alt) + '°): con la Luna en el circulo y la altura bien, «Ya» corrige los 43° y lo dice; mientras se comprueba con la Luna no hay flecha', JSON.stringify(torcida.bien));
+  ok(torcida.mal.ref === 'Moon' && !torcida.mal.r && Math.abs(torcida.mal.ajuste) < 0.01 && /queda a \d+° del círculo/.test(torcida.mal.aviso),
+     '…y con la altura 10° mal no corrige nada (podria ser otra cosa) y lo dice: «' + torcida.mal.aviso.slice(0, 50) + '…»', JSON.stringify(torcida.mal));
+  /* El aviso de un satelite en la sombra de la Tierra (24-10-2026: el Hubble
+     entro en la sombra a las 21:03:16 y el aviso siguio con «siga la flecha»,
+     sin decir que ya no se podia ver). Con los elementos de hoy: un momento en que
+     un satelite esta alto y a oscuras, y otro en que esta alto y al Sol. */
+  const sombraSat = await p.evaluate(async () => {
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    await TG_CIELO.satelites();
+    const out = {}, ahoraDeVerdad = Date.now, t0 = ahoraDeVerdad.call(Date);
+    let enSombra = null, alSol = null;
+    for (const clave of ['iss', 'tiangong', 'hubble']) {
+      for (let s = 0; s < 3 * 86400 && !(enSombra && alSol); s += 20) {
+        const f = new Date(t0 + s * 1000), d = TG_CIELO.dondeSat(clave, f);
+        if (!d || d.alt < 15) continue;
+        if (!d.sol && !enSombra) enSombra = { clave, t: f.getTime(), alt: d.alt };
+        if (d.sol && !alSol) alSol = { clave, t: f.getTime(), alt: d.alt };
+      }
+    }
+    const banner = () => (document.querySelector('#cielo-vista .cv-objetivo') || {}).textContent || '';
+    try {
+      for (const [k, c] of [['sombra', enSombra], ['sol', alSol]]) {
+        if (!c) { out[k] = null; continue; }
+        Date.now = () => c.t;
+        TG_CIELO.cerrarVista();
+        TG_CIELO.vista({ objetivo: { sat: c.clave }, sinGuia: true }); await espera(900);
+        out[k] = { clave: c.clave, alt: Math.round(c.alt), hora: new Date(c.t).toISOString().slice(0, 16), txt: banner() };
+      }
+    } finally { Date.now = ahoraDeVerdad; }
+    TG_CIELO.cerrarVista();
+    return out;
+  });
+  ok(sombraSat.sombra && /Ahora está en la sombra de la Tierra: no se ve/.test(sombraSat.sombra.txt) && !/siga la flecha|Ahí está/.test(sombraSat.sombra.txt),
+     'un satelite alto y en la sombra de la Tierra (' + (sombraSat.sombra ? sombraSat.sombra.clave + ' a ' + sombraSat.sombra.alt + '°, ' + sombraSat.sombra.hora + ' UTC' : '?') + '): el aviso dice que no se ve, no «siga la flecha»', JSON.stringify(sombraSat.sombra));
+  ok(sombraSat.sol && /siga la flecha|Ahí está/.test(sombraSat.sol.txt) && !/sombra/.test(sombraSat.sol.txt),
+     '…y al Sol (' + (sombraSat.sol ? sombraSat.sol.clave + ' a ' + sombraSat.sol.alt + '°' : '?') + '), el aviso de siempre: «' + (sombraSat.sol ? sombraSat.sol.txt.slice(0, 50) : '') + '»', JSON.stringify(sombraSat.sol));
   /* la Luna llena aclara el cielo: la misma vista (hacia la Luna, alta) con
      Luna llena y con Luna nueva, y la media del lienzo tiene que ser mayor */
   const luz = await p.evaluate(async () => {
