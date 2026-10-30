@@ -3110,6 +3110,55 @@ comer en Porís de Abona, su embarcadero y Abades, 293 minutos). El de antes
 (semilla 178) sumaba 407 minutos en una tarjeta de 4 a 5 horas y ponía la
 «Pausa comida» en una bodega.
 
+## El estado de cada lugar: lo cerrado no se sugiere en ninguna parte (30 de octubre)
+
+Jerome, el 30 de octubre, con lo que verificó ese día:
+
+- **La Playa de Los Patos, «cerrado».** El acceso está cerrado por decreto del
+  Ayuntamiento de La Orotava (28 de diciembre de 2023), y sigue cerrado en
+  2026. «Fuera del planificador y de cualquier sugerencia o puntuación de
+  baño. Se queda en el mapa, con aviso de cierre.»
+- **La Bodega Frontos, «solo_reserva».** Visitas privadas con reserva, para un
+  mínimo de 4 adultos, y eventos. Fuera de «comer» y del planificador.
+- **«Regla general, sin excepciones por nombre».** `estado`, `fuente` y
+  `verificado` en la ficha de cada lugar, y solo se propone lo que no tiene
+  estado o está «abierto». Necesitar reserva no es estar cerrado.
+
+Hecho:
+
+- **Los datos.** Los dos llevan en su ficha `estado`, `fuente` y `verificado`
+  (2026-10-30). Las fuentes son los enlaces de Jerome: el decreto y la web de
+  la bodega. Van en una línea aparte, y así las herramientas que leen la
+  primera línea de cada lugar la siguen leyendo igual. Desde aquí no se
+  pudieron abrir las dos fuentes, porque el entorno no llega a `laorotava.es`
+  ni a `frontos.es`: va lo que verificó Jerome.
+- **La regla, `lugarSugerible`, en los seis sitios que proponen lugares:**
+  - «Organice su día» y su «Otro»;
+  - el dado (`dadoPool`);
+  - «¿Dónde me baño hoy?»;
+  - las sugerencias de «Ruta del día»;
+  - las listas del Asistente: por categoría y «qué hacer».
+
+  Sustituye a `DP_NO_VISITABLE` (los dos lugares, por nombre, en el
+  planificador) y al `noBano` de Los Patos. Por su nombre, el Asistente sigue
+  dando la ficha, y el mapa la enseña con su aviso, en los diez idiomas.
+- **La ficha de la Bodega Frontos, en los diez idiomas:** empieza por «⚠️ Solo
+  con reserva: visitas privadas, para un mínimo de 4 adultos, y eventos».
+  Desaparece el restaurante, de la descripción y de las etiquetas. Desaparece
+  también la «cita previa» del final, porque ya lo dice la primera frase. Lo
+  demás, como estaba.
+
+Control nuevo, `tools/probar_estado.js` (26 casos), con su propia regla:
+
+- los datos: cada estado con su fuente y su fecha, y los dos de Jerome;
+- el aviso, en los diez idiomas;
+- que no se propongan en ninguna parte. Se mira con los de verdad y con un
+  estado de prueba en lugares que sí salen: desaparecen con «cerrado» y con
+  «solo_reserva», y vuelven con «abierto».
+
+Se quitó la regla en cada uno de los seis sitios, uno a uno, y la prueba lo
+detectó siempre.
+
 ## La prueba de emergencias, sin los avisos de AEMET de verdad (30 de octubre)
 
 La auditoría del arreglo de las capturas salió con un control en rojo en
@@ -5185,12 +5234,13 @@ no la secundaria**.
 | Con alias de búsqueda, que los 3 filtros leen | **58** |
 | Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
 | De esos, `warn:"mar"` | **50** |
-| URLs de lugar sin cifrar | **0** de 16 |
+| URLs de lugar sin cifrar | **0** de 18 |
 
 Cada cifra de esta tabla, y las dos del texto de abajo (los filtros del alias
 y las líneas con más de dos terminales), las coteja `auditar_datos.js`: si una
 cambia y la tabla no, se pone en rojo. Hasta el 18 de octubre decía «0 de 164»
-y «786» con 162 y 980.
+y «786» con 162 y 980. Las URLs pasaron de 16 a 18 el 30 de octubre: las dos
+fuentes del estado (Los Patos y la Bodega Frontos).
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no
@@ -11172,6 +11222,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/probar_avisos_aemet.py` | el lector de avisos con copias reales de AEMET (`tools/pruebas/aemet/`): retiradas, sustituidos, caducados, costa, contornos, ficheros rotos, el latido de 3 horas |
 | `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos, los kilómetros del coche y lo que se comparte del itinerario |
 | `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, Norte y Sur sin paradas de la otra zona (y «Otro» tampoco), nunca dos paradas del mismo sitio (comprobado con código propio), el aviso cuando no hay más, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano; y desde el 30 de octubre, que cada itinerario quepa en las horas de su tarjeta, una comida como mucho y donde se come, nada cerrado, en guagua a pie lo que es un paseo, y «Otro» y compartir con las mismas reglas |
+| `tools/probar_estado.js` | el estado de los lugares (`estado`, `fuente`, `verificado`): cada uno válido y con su fuente; lo que no está «abierto», con su aviso en los diez idiomas y fuera de todo lo que propone lugares (el planificador y «Otro», el dado, «¿Dónde me baño hoy?», «Ruta del día» y el Asistente), con los de verdad y con un estado de prueba |
 | `tools/probar_play.js` | lo que pide Google Play (LANZAMIENTO-PLAY.md, Fase 1), en un navegador y con un Supabase falso: la tienda que no se ve ni se abre, el botón de administrador solo para quien lo es, borrar la cuenta (botón, confirmación, fallos y borrado) en los diez idiomas y `borrar-cuenta.html` sin JavaScript |
 | `tools/generar_borrar_cuenta.py` | escribe `borrar-cuenta.html` desde `idiomas/borrar-cuenta/` y los botones de la app; con `--comprobar`, para si no está al día |
 | `tools/pagina_fija.py` | el armazón de las páginas fijas de la raíz: diez idiomas que se cambian sin JavaScript; lo común, en `idiomas/paginas/` |

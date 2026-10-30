@@ -189,6 +189,10 @@ echo; echo "════════ «Organice su día» entero, en los diez id
 # Desde el 13 de octubre de 2026: el tiempo entre paradas era un rotulo fijo
 # («En guagua ~25 min» para cualquier tramo) y varios titulos salian sin traducir.
 control probar_organiza.js node tools/probar_organiza.js "$PUERTO"
+echo; echo "════════ el estado de los lugares: lo cerrado, ni en el planificador ni en ninguna sugerencia ════════"
+# Desde el 30 de octubre de 2026 (Jerome: «Regla general, sin excepciones por
+# nombre»): estado, fuente y verificado en la ficha de cada lugar.
+control probar_estado.js node tools/probar_estado.js "$PUERTO"
 
 echo "════════ lo que pide Google Play (LANZAMIENTO-PLAY.md, Fase 1), en un navegador ════════"
 # Desde el 16 de octubre de 2026: la tienda fuera de la vista y el boton de

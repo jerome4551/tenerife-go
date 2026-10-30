@@ -73,8 +73,9 @@
  *   · donde se come, con una lista propia de tipos de ficha: cada lugar de
  *     gastronomia es de comer o una visita, ninguno sin clasificar, y la app
  *     dice lo mismo de todos los lugares;
- *   · lo que no se puede visitar (Los Patos, la Bodega Frontos) esta en
- *     DP_NO_VISITABLE mientras su ficha lo diga, y nada mas;
+ *   · lo que no se sugiere (un estado que no es «abierto», en la ficha del
+ *     lugar: Los Patos, la Bodega Frontos) no sale nunca, con su propia
+ *     regla; en el resto de la app lo mira probar_estado.js;
  *   · en castellano, 1.344 itinerarios (catorce tarjetas, cuatro tiempos,
  *     cuatro transportes, tres zonas, dos azares), sumando lo que se ve en
  *     pantalla, cada visita y cada tramo: todos caben en el tope de su
@@ -134,7 +135,8 @@ const RECORRER = async () => {
   const TIPOS_VISITA = ['Bodega', 'Bodega Centenaria', 'D.O.', 'Mercado', 'Mercado Local', 'Museo del Vino'];
   const tipo = p => String((p.cat && p.cat.es) || '').split('·')[0].trim();
   const comer = p => p.category === 'barbacoa' || (p.category === 'gastronomia' && TIPOS_COMER.includes(tipo(p)));
-  const CERRADOS = { 'playa-los-patos': 'Acceso oficialmente cerrado y vallado', 'bodega-frontos-granadilla': 'Bodega inactiva al público' };
+  // lo que no se sugiere: un estado que no es «abierto» (Jerome, 30 de octubre de 2026)
+  const NO_SUGERIBLE = p => !!p && !!p.estado && p.estado !== 'abierto';
   // los topes de cada tiempo y el subtitulo de su tarjeta en este idioma
   out.topes = DP_TIMES.map(o => ({ id: o.id, sub: (o.tx[L] || [])[1] || '', tope: DP_TOPE_MIN[o.id], min: DP_MIN_PARADAS[o.id], max: DP_STOPS[o.id] }));
   const textos = (nombre) => {
@@ -275,7 +277,7 @@ const RECORRER = async () => {
       const antes = dpCurrentStops[i], usados = new Set(dpUsedIds);
       // una visita por otra visita y la comida por otro sitio de comer; nada cerrado
       const cats = comer(antes) ? [antes.category] : dpiCategorias().concat([antes.category]);
-      const cand = places.filter(p => cats.includes(p.category) && comer(p) === comer(antes) && !CERRADOS[p.id]
+      const cand = places.filter(p => cats.includes(p.category) && comer(p) === comer(antes) && !NO_SUGERIBLE(p)
           && !usados.has(p.id) && p.name && p.lat && p.lng && DP_ZONA_DE.sur.has(p.id) && !dpCurrentStops.some(st => dpMismoSitio(st, p)))
         .map(p => ({ id: p.id, cat: p.category, d: hav(antes, p) })).sort((a, b) => a.d - b.d);
       const misma = cand.filter(x => x.cat === antes.category);
@@ -283,7 +285,7 @@ const RECORRER = async () => {
       dpiSwapOne(i);
       const despues = dpCurrentStops[i];
       cambios.push({ antes: antes.id, despues: despues.id, enSur: DP_ZONA_DE.sur.has(despues.id), esperado: esperados.includes(despues.id), esperados,
-        mismoSitio: mismo(antes, despues), repetidos: repetidos(dpCurrentStops), comidaPorComida: comer(antes) === comer(despues), cerrado: !!CERRADOS[despues.id] });
+        mismoSitio: mismo(antes, despues), repetidos: repetidos(dpCurrentStops), comidaPorComida: comer(antes) === comer(despues), cerrado: NO_SUGERIBLE(despues) });
     }
     out.zonas.otro = cambios;
   }
@@ -370,10 +372,8 @@ const RECORRER = async () => {
     p30.sinClasificar = places.filter(p => p.category === 'gastronomia' && !TIPOS_COMER.includes(tipo(p)) && !TIPOS_VISITA.includes(tipo(p))).map(p => p.id + ' (' + tipo(p) + ')');
     p30.comer = places.filter(comer).length;
     p30.distinta = places.filter(p => dpEsComida(p) !== comer(p)).map(p => p.id);
-    // lo cerrado: en DP_NO_VISITABLE lo que su ficha dice cerrado, y nada mas
-    p30.cerrados = Object.entries(CERRADOS).map(([id, frase]) => { const p = places.find(x => x.id === id);
-      return [id, !!p && String((p.desc && p.desc.es) || '').includes(frase), DP_NO_VISITABLE.has(id)]; });
-    p30.noVisitable = [...DP_NO_VISITABLE].sort();
+    // lo que no se sugiere: que lo haya, para que «nada cerrado» mire algo
+    p30.noSugeribles = places.filter(NO_SUGERIBLE).map(p => p.id + ' (' + p.estado + ')');
     // 1.344 itinerarios, sumando lo que se ve: cada visita y cada tramo
     const PAUSA = dpT('pausaComida'), SIN = tx('dpSinGuagua');
     const num = s => { const m = String(s).match(/~(\d+)/); return m ? +m[1] : 0; };
@@ -409,7 +409,7 @@ const RECORRER = async () => {
         if (el.querySelector('.dp-stop-meta').textContent.includes(PAUSA) !== esC) mal30.etiqueta.push(nombre + ': ' + st[i].id);
         if (esC ? nn !== '🍽️' : nn !== String(++v)) mal30.numeros.push(nombre + ': ' + st[i].id + ' = ' + nn);
       });
-      st.forEach(p => { if (CERRADOS[p.id]) mal30.cerrado.push(nombre + ': ' + p.id); });
+      st.forEach(p => { if (NO_SUGERIBLE(p)) mal30.cerrado.push(nombre + ': ' + p.id); });
       // en guagua: a pie si es un paseo o si se llega antes; con linea, nunca un paseo; sin guagua, solo si no se puede andar
       if (modo === 'guagua') seps.forEach((s, i) => {
         const km = hav30(st[i], st[i + 1]) * 1.3, apie = Math.round(km / 4.5 * 60);
@@ -431,7 +431,7 @@ const RECORRER = async () => {
         const antes = dpCurrentStops[i];
         dpiSwapOne(i);
         const despues = dpCurrentStops[i];
-        if (comer(antes) !== comer(despues) || CERRADOS[despues.id] || dpCurrentStops.filter(comer).length > 1) otro.push(k + ': ' + antes.id + ' → ' + despues.id);
+        if (comer(antes) !== comer(despues) || NO_SUGERIBLE(despues) || dpCurrentStops.filter(comer).length > 1) otro.push(k + ': ' + antes.id + ' → ' + despues.id);
       }
     }
     p30.otro = otro;
@@ -587,8 +587,7 @@ const RECORRER = async () => {
       const p = d.plan30, m = p.matriz, ej = a => a.slice(0, 6).join(' | ');
       caso(`[es] cada lugar de gastronomia es de comer o una visita (de comer, con las barbacoas: ${p.comer})`, p.sinClasificar.length === 0, p.sinClasificar.join(', '));
       caso(`[es] la app dice lo mismo de donde se come, en todos los lugares`, p.distinta.length === 0, p.distinta.join(', '));
-      caso(`[es] lo que no se puede visitar (${p.cerrados.map(x => x[0]).join(', ')}): en DP_NO_VISITABLE mientras su ficha lo diga, y nada mas`,
-        p.cerrados.every(x => x[1] && x[2]) && JSON.stringify(p.noVisitable) === JSON.stringify(p.cerrados.map(x => x[0]).sort()), JSON.stringify([p.cerrados, p.noVisitable]));
+      caso(`[es] hay lugares que no se sugieren, para que «nada cerrado» mire algo (${p.noSugeribles.join(', ')})`, p.noSugeribles.length > 0, JSON.stringify(p.noSugeribles));
       caso(`[es] ${m.n} itinerarios, sumando lo que se ve, cada visita y cada tramo: todos caben en el tope de su tarjeta`, m.mal.tope.length === 0, ej(m.mal.tope));
       caso(`[es] los mismos: una comida como mucho`, m.mal.comidas.length === 0, ej(m.mal.comidas));
       caso(`[es] los mismos: la comida a mitad del dia, la ultima de la mañana y la primera de la tarde`, m.mal.sitio.length === 0, ej(m.mal.sitio));

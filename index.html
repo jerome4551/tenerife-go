@@ -10406,6 +10406,8 @@ const places = [
     tags:["Arena Negra","Escondida","Norte"] },
 
   { id:"playa-los-patos", category:"playa", cats:["playa","nudista"], name:"Playa de Los Patos", emoji:"🌋", color:"#7f8c8d", lat:28.4205, lng:-16.5094,
+    estado:"cerrado", verificado:"2026-10-30",
+    fuente:"https://www.laorotava.es/sites/default/files/documentos/20231228_resolucion_decreto_de_alcaldia_decreto_de_presidencia_decreto_2023-9319_26378-2023._decreto_cierre_playa_los_patos_2.pdf",
     desc:{ es:"⚠️ Acceso oficialmente cerrado y vallado: la antigua escalera es impracticable y las sendas del acantilado son empinadas y peligrosas; quien baja lo hace bajo su propia responsabilidad. Gran playa salvaje de arena negra de unos 700 m bajo los acantilados de El Rincón, en La Orotava, vecina de El Bollullo. La playa naturista clásica del norte: sin servicios, fuerte oleaje y corrientes. Sin aparcamiento propio." },
     cat:{ es:"Playa naturista · La Orotava" },
     tags:["Nudista","Salvaje","Arena negra","Acceso cerrado","Corrientes","El Rincón"] },
@@ -14809,9 +14811,10 @@ const places = [
     tags:["Casa del Vino","El Sauzal","Vino","Museo","Enoturismo","Cata","DO Tenerife","Norte","Teide"] },
 
   { id:"bodega-frontos-granadilla", category:"gastronomia", name:"Bodega Frontos (Granadilla de Abona)", emoji:"🍷", color:"#880e4f", lat:28.1350, lng:-16.5505,
-    desc:{ es:"⚠️ Bodega inactiva al público: el restaurante y las visitas cerraron; el espacio solo acoge eventos privados puntuales. Bodega Frontos, situada en Los Blanquitos (Granadilla de Abona), es más que una bodega: un parque temático dedicado al vino en plena DO Abona. Más de 540.000 m² de finca en las medianías del sur, a 600 m de altitud. Producción ecológica premiada internacionalmente. Visitas guiadas a bodega y viñedo, catas, restaurante de cocina canaria y Casa Tasca para eventos. El complejo incluye arquitectura excavada en la tosca volcánica. Familia Luengo desde 1949. Cita previa para visitas." },
+    estado:"solo_reserva", verificado:"2026-10-30", fuente:"https://frontos.es/en/home/",
+    desc:{ es:"⚠️ Solo con reserva: visitas privadas, para un mínimo de 4 adultos, y eventos. Bodega Frontos, situada en Los Blanquitos (Granadilla de Abona), es más que una bodega: un parque temático dedicado al vino en plena DO Abona. Más de 540.000 m² de finca en las medianías del sur, a 600 m de altitud. Producción ecológica premiada internacionalmente. Visitas guiadas a bodega y viñedo, catas y Casa Tasca para eventos. El complejo incluye arquitectura excavada en la tosca volcánica. Familia Luengo desde 1949." },
     cat:{ es:"Bodega · DO Abona · Granadilla · Enoturismo" },
-    tags:["Bodega","Frontos","Granadilla","DO Abona","Vino","Ecoturismo","Ecológico","Sur","Restaurante","Visitas","Cata","1949"] },
+    tags:["Bodega","Frontos","Granadilla","DO Abona","Vino","Ecoturismo","Ecológico","Sur","Visitas","Cata","1949"] },
 
   { id:"bodega-cueva-rey-icod", category:"gastronomia", name:"Bodegas Insulares Tenerife — Cueva del Rey (Icod)", emoji:"🍷", color:"#880e4f", lat:28.3787, lng:-16.7060,
     desc:{ es:"Una de las bodegas más emblemáticas de la DO Ycoden-Daute-Isora, en Icod de los Vinos (Camino Cueva del Rey 1). Bodegas Insulares Tenerife es la cooperativa más grande de la isla, con más de 1.000 viticultores asociados. Visitas guiadas a la bodega tradicional (parcialmente subterránea), degustación de vinos Listán Blanco, Listán Negro y variedades locales recuperadas, maridaje con quesos y embutidos canarios. Tienda de vinos y productos locales. Cita previa para grupos." },
@@ -15920,6 +15923,17 @@ const places = [
    no pidio. Si aun no ha llegado, lo hara su propio .then. */
 TG_LUGARES_I18N.aplicarPendientes();
 
+/* Lo que se sugiere. Un lugar puede llevar en su ficha estado, fuente y
+   verificado (la fecha en que se comprobo en esa fuente). Jerome, 30 de
+   octubre de 2026: «El planificador solo propone POIs sin estado o con
+   estado "abierto"», y lo cerrado, «fuera del planificador y de cualquier
+   sugerencia o puntuación de baño». Uno «cerrado» o «solo_reserva» sigue en
+   el mapa y en su ficha, con su aviso, pero no se propone: ni en «Organice
+   su día» (tampoco con «Otro»), ni en «¿Dónde me baño hoy?», ni en el dado,
+   ni en las sugerencias de «Ruta del día», ni en las listas del Asistente.
+   Sin excepciones por nombre: solo el estado. */
+function lugarSugerible(p) { return !!p && (!p.estado || p.estado === 'abierto'); }
+
 // ══════════════════════════════════════════════════════════
 //  ESTADO
 // ══════════════════════════════════════════════════════════
@@ -16128,22 +16142,28 @@ function updateDiceLabel() {
   b.title = SURPRISE_I18N[lg];
   b.setAttribute('aria-label', SURPRISE_I18N[lg]);
 }
+// Lo que puede salir en el dado: lo que se sugiere (lugarSugerible), con los
+// filtros de la vista (categorias, favoritos); si con ellos no queda nada, todo
+// lo que se sugiere.
+function dadoPool() {
+  var todos = places.filter(lugarSugerible), pool = todos;
+  if (typeof selectedCategories !== 'undefined' && selectedCategories.size > 0) {
+    pool = pool.filter(function (p) {
+      return selectedCategories.has(p.category) ||
+             (p.cats && p.cats.some(function (c) { return selectedCategories.has(c); }));
+    });
+  }
+  if (typeof showOnlyFavorites !== 'undefined' && showOnlyFavorites &&
+      typeof favorites !== 'undefined' && favorites.size > 0) {
+    pool = pool.filter(function (p) { return favorites.has(p.id); });
+  }
+  return pool.length ? pool : todos;
+}
 function surpriseMe() {
   try {
     var b = document.getElementById('dice-btn');
     if (b) { b.classList.remove('spin'); void b.offsetWidth; b.classList.add('spin'); }
-    var pool = places;
-    if (typeof selectedCategories !== 'undefined' && selectedCategories.size > 0) {
-      pool = pool.filter(function (p) {
-        return selectedCategories.has(p.category) ||
-               (p.cats && p.cats.some(function (c) { return selectedCategories.has(c); }));
-      });
-    }
-    if (typeof showOnlyFavorites !== 'undefined' && showOnlyFavorites &&
-        typeof favorites !== 'undefined' && favorites.size > 0) {
-      pool = pool.filter(function (p) { return favorites.has(p.id); });
-    }
-    if (!pool.length) pool = places;
+    var pool = dadoPool();
     var p = pool[Math.floor(Math.random() * pool.length)];
     map.flyTo([p.lat, p.lng], 15, { duration: 1.1 });
     setTimeout(function () {
@@ -20748,7 +20768,7 @@ function renderDayTripCatalog() {
   const mostrados = [];
   zone.suggestionIds.forEach(id => {
     const place = places.find(p => p.id === id);
-    if (!place) return;
+    if (!place || !lugarSugerible(place)) return;
     if (typeof dpMismoSitio === 'function' && mostrados.some(q => dpMismoSitio(q, place))) return;
     mostrados.push(place);
     const isAdded = dayTripStops.includes(id);
@@ -28420,7 +28440,7 @@ function chatBuildReply(r){
         p=places[i];
         var hitK=r.cats.keys.indexOf(p.category)>=0;
         if(!hitK&&p.cats){for(var c2=0;c2<p.cats.length;c2++){if(r.cats.keys.indexOf(p.cats[c2])>=0){hitK=true;break;}}}
-        if(hitK)pool.push(p);
+        if(hitK&&lugarSugerible(p))pool.push(p);
       }
       zk=r.zone||null;
       if(zk){f=[];for(i=0;i<pool.length;i++){if(chatZoneOf(pool[i])===zk)f.push(pool[i]);}pool=f;}
@@ -28446,7 +28466,7 @@ function chatBuildReply(r){
       break;
     case 'what':
       pool=[];
-      for(i=0;i<places.length;i++){p=places[i];if(!CHAT_WHAT_EXCLUDE[p.category])pool.push(p);}
+      for(i=0;i<places.length;i++){p=places[i];if(!CHAT_WHAT_EXCLUDE[p.category]&&lugarSugerible(p))pool.push(p);}
       zk=r.zone||null;
       if(zk){f=[];for(i=0;i<pool.length;i++){if(chatZoneOf(pool[i])===zk)f.push(pool[i]);}pool=f;}
       ref=r.anchor||r.pos||null;
@@ -33010,14 +33030,6 @@ function dpEsComida(p) {
     || (p.category === 'gastronomia' && DP_COMIDA_TIPOS.has(String((p.cat && p.cat.es) || '').split('·')[0].trim())));
 }
 
-/* Lo que no se propone: su propia ficha dice que no se puede visitar. La
-   Playa de Los Patos («Acceso oficialmente cerrado y vallado»; «¿Dónde me
-   baño hoy?» tampoco la saca, noBano) y la Bodega Frontos («Bodega inactiva
-   al público: el restaurante y las visitas cerraron»). Siguen en el mapa,
-   con su aviso. Si uno reabre, se quita de aqui al cambiar su ficha:
-   probar_organiza.js mira que las dos cosas vayan juntas. */
-const DP_NO_VISITABLE = new Set(['playa-los-patos', 'bodega-frontos-granadilla']);
-
 /* Lo que dura un itinerario: sus visitas y sus tramos. Un tramo sin guagua
    no cabe nunca. */
 function dpMinutos(stops, modo) {
@@ -33095,9 +33107,10 @@ function dpiGenerate() {
   const conComida = dpiTime === 'fullday' || dpiTime === 'halfday';
   const cats = dpiCategorias();
   const all  = (typeof places !== 'undefined' ? places : []);
-  // Con Norte o Sur, solo los lugares de esa zona (DP_ZONA_LUGAR); nunca uno
-  // que no se puede visitar; y si la comida va aparte, ningun sitio de comer
-  const vale = p => p.name && p.lat && p.lng && dpiEnZona(p) && !DP_NO_VISITABLE.has(p.id);
+  // Con Norte o Sur, solo los lugares de esa zona (DP_ZONA_LUGAR); solo lo
+  // que se sugiere (lugarSugerible: ni cerrado ni solo con reserva); y si la
+  // comida va aparte, ningun sitio de comer
+  const vale = p => p.name && p.lat && p.lng && dpiEnZona(p) && lugarSugerible(p);
   const pool = all.filter(p => cats.includes(p.category) && vale(p) && !(conComida && dpEsComida(p)));
   dpiAviso = false;
   if (!pool.length) { dpiAviso = dpiZona !== 'igual'; dpiRenderResult([]); return; }
@@ -33343,7 +33356,7 @@ function dpTramoHtml(a, b, modo) {
    (DP_SITIO): cambiar la playa por su ficha de surf no es cambiar.
    Desde el 30 de octubre de 2026, una visita se cambia por otra visita y la
    comida por otro sitio de comer (en una bodega podia traer un guachinche y
-   comer dos veces), nunca por uno que no se puede visitar (DP_NO_VISITABLE),
+   comer dos veces), nunca por uno que no se sugiere (lugarSugerible),
    y de esos cinco, al azar, uno con el que el itinerario siga cabiendo en su
    tiempo; si con ninguno cabe, el que menos se pasa. */
 function dpiSwapOne(idx) {
@@ -33352,7 +33365,7 @@ function dpiSwapOne(idx) {
   const comida = dpEsComida(current);
   const cats = comida ? [current.category] : dpiCategorias().concat([current.category]);
   const candidates = (typeof places !== 'undefined' ? places : [])
-    .filter(p => cats.includes(p.category) && dpEsComida(p) === comida && !DP_NO_VISITABLE.has(p.id)
+    .filter(p => cats.includes(p.category) && dpEsComida(p) === comida && lugarSugerible(p)
       && !dpUsedIds.has(p.id) && p.name && p.lat && p.lng && dpiEnZona(p)
       // ni del sitio de esta parada ni del de ninguna otra del itinerario
       && !dpCurrentStops.some(st => dpMismoSitio(st, p)))
@@ -34822,17 +34835,18 @@ const PLAYAS_ORIENTACION = {
   'playa-jaquita':           { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'playa-la-caleta-adeje':   { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
   'playa-las-gaviotas':      { ori: 'SE', badWind: ['E','SE','S'], deducida: true },
-  /* Los Patos NO entra en "donde me bano hoy": su propia ficha dice
-     "Acceso oficialmente cerrado y vallado", y aun asi estaba puntuando 80
-     y compitiendo por salir recomendada. Es el caso de Playa Jardin al
-     reves: alli el panel excluia una playa abierta, aqui recomendaba una
-     cerrada. Ningun dato de oleaje detecta una valla.
+  /* Los Patos NO entra en "donde me bano hoy": su acceso esta cerrado por
+     decreto del Ayuntamiento de La Orotava (28 de diciembre de 2023), y aun
+     asi llego a puntuar 80 y a competir por salir recomendada. Es el caso de
+     Playa Jardin al reves: alli el panel excluia una playa abierta, aqui
+     recomendaba una cerrada. Ningun dato de oleaje detecta una valla.
 
-     Se usa noBano, el mecanismo que ya existia sin usar: el panel ni pide
-     su dato de mar. La ficha del lugar sigue en el mapa con su aviso, que
-     es donde tiene que estar. Para reactivarla: quitar noBano cuando se
-     reabra el acceso Y se actualice la descripcion. */
-  'playa-los-patos':         { noBano: true, ori: 'NW', badWind: ['W','NW','N'], deducida: true },
+     Hasta el 30 de octubre de 2026 la sacaba noBano; desde entonces, su
+     estado («cerrado», en su ficha, con la fuente y la fecha: lugarSugerible),
+     sin excepciones por nombre (Jerome). La ficha sigue en el mapa con su
+     aviso, que es donde tiene que estar. Para reactivarla: cambiar su estado,
+     con la fuente, cuando se reabra el acceso, Y su descripcion. */
+  'playa-los-patos':         { ori: 'NW', badWind: ['W','NW','N'], deducida: true },
   'playa-puertito':          { ori: 'E', badWind: ['NE','E','SE'], deducida: true },
   'playa-puertito-adeje':    { ori: 'SW', badWind: ['S','SW','W'] },   // cala tras la punta
   'playa-puerto-santiago':   { ori: 'SW', badWind: ['S','SW','W'], deducida: true },
@@ -35191,7 +35205,8 @@ async function renderBanoHoy(){
     const o = PLAYAS_ORIENTACION[id];
     if(o.noBano) return null;   // prohibicion de bano: ni se pide su dato
     const pl = (typeof places!=='undefined') ? places.find(function(q){ return q.id===id; }) : null;
-    if(!pl) return null;
+    // ni cerrada ni solo con reserva (lugarSugerible): ni se pide su dato
+    if(!pl || !lugarSugerible(pl)) return null;
     // deducida decide como puntua scorePlaya. Si no se copia aqui, la rama
     // angular no se ejecuta nunca y nada falla: solo puntua peor.
     return { id:id, name:pl.name, lat:pl.lat, lng:pl.lng, ori:o.ori, badWind:o.badWind,
