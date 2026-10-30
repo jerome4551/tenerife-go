@@ -2814,7 +2814,11 @@ Playwright deniega lo demás, y la vista no escuchaba (cinco controles en
 rojo, con el código de antes y con el de ahora). Ahora conceden también los
 sensores, como quien los permite en su móvil, y esperan a que la vista
 escuche antes de mandarle lecturas (`3711e4a`). La app no cambia por eso: en
-un móvil, el permiso de los sensores lo da la persona, o viene dado.
+un móvil, el permiso de los sensores lo da la persona, o viene dado. Y el
+analizador de JavaScript (acorn), que ocho herramientas pedían dentro de
+eslint, en el entorno nuevo está en otro sitio: `tools/acorn_local.js` lo
+busca en los dos, y si no está en ninguno la herramienta para y lo dice,
+como antes.
 
 **En el móvil:** al abrir «Apunte al cielo» de noche, «Comprobar la brújula»
 con la Luna dentro del círculo y «Ya»: debe decir cuántos grados iba

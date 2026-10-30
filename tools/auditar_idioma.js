@@ -702,7 +702,7 @@ for (const p of PLACES) {
    ya iba desincronizado antes y el bloque de TITSA lo volvia a poner en fase
    por casualidad. barrido_idiomas.js aprendio esto antes (ver alli). */
 let acorn;
-try { acorn = require('/opt/node22/lib/node_modules/eslint/node_modules/acorn'); }
+try { acorn = require('./acorn_local'); }
 catch (e) {
   console.error('no se encuentra acorn: sin analizador no se puede barrer el fuente,');
   console.error('y contar llaves a mano ya dio verde sobre lo que no miraba.');

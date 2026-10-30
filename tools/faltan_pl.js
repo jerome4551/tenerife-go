@@ -11,7 +11,7 @@
  */
 'use strict';
 const fs=require('fs'),path=require('path');
-const acorn=require('/opt/node22/lib/node_modules/eslint/node_modules/acorn');
+const acorn=require('./acorn_local');
 const src=fs.readFileSync(path.join(__dirname,'..','index.html'),'utf8');
 const L=process.argv[2]||'pl', SOLO=process.argv[3]||null;
 /* Las tablas declaradas SIN-TRADUCIR en el fuente no son huecos: son codigos

@@ -24,7 +24,7 @@
  */
 'use strict';
 const fs = require('fs'), path = require('path');
-const acorn = require('/opt/node22/lib/node_modules/eslint/node_modules/acorn');
+const acorn = require('./acorn_local');
 const RAIZ = path.dirname(__dirname);
 const RUTA = path.join(RAIZ, 'index.html');
 const LANG = process.argv[2];

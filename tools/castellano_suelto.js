@@ -70,7 +70,7 @@ const path = require('path');
 const FUENTE = require('./fuente');
 const { PLACES, LINES, CAT } = require('./cargar');
 let acorn;
-try { acorn = require('/opt/node22/lib/node_modules/eslint/node_modules/acorn'); }
+try { acorn = require('./acorn_local'); }
 catch (e) { console.error('Cannot find module acorn: sin el no se pueden leer las filas del fuente'); process.exit(2); }
 
 const RAIZ = FUENTE.RAIZ;

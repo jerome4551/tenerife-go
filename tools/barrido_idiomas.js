@@ -56,7 +56,7 @@ const LISTA = process.argv.indexOf('--lista') !== -1;
    acorn viene con eslint, que ya esta instalado; si no estuviera, esto
    tiene que REVENTAR, no seguir a ojo. */
 let acorn;
-try { acorn = require('/opt/node22/lib/node_modules/eslint/node_modules/acorn'); }
+try { acorn = require('./acorn_local'); }
 catch (e) {
   console.error('no se encuentra acorn. Sin analizador no se puede barrer este');
   console.error('fichero: contar llaves a mano ya dio verde sobre lo que no miraba.');

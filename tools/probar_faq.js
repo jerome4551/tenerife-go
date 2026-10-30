@@ -30,7 +30,7 @@ global.fetch = function (url) {
 };
 // LANGS de verdad: chatDetectCats busca las categorias por su nombre
 // traducido y con un LANGS de mentira esto no probaria nada.
-const acorn = require('/opt/node22/lib/node_modules/eslint/node_modules/acorn');
+const acorn = require('./acorn_local');
 function sacarConst(nombre) {
   let valor = null;
   html.replace(/<script(?![^>]*src=)[^>]*>([\s\S]*?)<\/script>/g, (m, js) => {

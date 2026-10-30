@@ -83,7 +83,7 @@ console.log('Donde vive la red\n');
   let solo = false, detalle = 'no existe';
   if (src) {
     try {
-      const acorn = require('/opt/node22/lib/node_modules/eslint/node_modules/acorn');
+      const acorn = require('./acorn_local');
       const ast = acorn.parse(src, { ecmaVersion: 'latest', sourceType: 'script' });
       const que = ast.body.map(n => n.type === 'VariableDeclaration' && n.kind === 'const' && n.declarations.length === 1 ? n.declarations[0].id.name : n.type);
       let raro = '';
