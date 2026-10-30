@@ -549,13 +549,16 @@ calculado con el motor).
   guarda vista (`tgo_cielo_guia`). El chip **«🎯 Comprobar la brújula»**
   elige la referencia (el Sol si está a más de 8° —con el aviso de no
   mirarlo—, la Luna si se ve, el planeta más brillante a más de 10°, o la
-  estrella más brillante a más de 15°), la señala con la flecha y pide
+  estrella más brillante a más de 15°), la señala con la flecha (con el Sol
+  o la Luna no, desde el 24 de octubre: se ven sin ayuda, y la flecha
+  apuntaría justo a donde va desviado) y pide
   ponerla en el círculo y tocar «Ya»: entonces mide la diferencia en acimut
   entre donde la brújula dice que se apunta y donde está el astro de verdad,
   la suma al ajuste (el mismo que se arrastra a mano, guardado en el móvil)
   y lo dice («Brújula corregida: iba 10° desviada»; «iba bien: solo 1° de
-  desvío»; a más de 25° del círculo, «acércalo más»; si la altura difiere
-  más de 6°, el móvil no está nivelado y lo dice). El chip de los sensores
+  desvío»; a más de 25° del círculo, «acérquelo más», salvo con el Sol o la
+  Luna y la altura bien, que corrige el desvío sea cual sea; si la altura
+  difiere más de 6°, el móvil no está nivelado y lo dice). El chip de los sensores
   lleva ✓ cuando se ha comprobado y, en iOS, la precisión que da el sistema
   (`webkitCompassAccuracy`, «±15°»; Android no la da, por eso la
   comprobación). Star Walk 2 no deja recalibrar; Sky Map «dejó de poder
@@ -2741,6 +2744,82 @@ terremotos y los elementos de los satélites.
 - Las fichas de Montaña Blanca, La Rambleta y el Sanatorio (el punto, junto
   al teleférico), en castellano y en otro idioma; y el botón de fiestas,
   con el Carnaval de 2027 el 23 de febrero.
+
+## La brújula muy torcida y el satélite en la sombra (24 de octubre, noche)
+
+Jerome probó el paso del Hubble del 24 de octubre en su iPhone, con
+«Apunte al cielo» y la cámara, y mandó tres capturas de las 21:05: «la luna
+se veía en la pantalla demasiado a la derecha de la realidad. Tenía la luna
+en la galaxia de Andrómeda y después […] cerca de Titawin»; y el Hubble «salió
+de la pantalla […] sobre las 21:06». Lo que dicen las capturas, contado con
+el motor de la app:
+
+- **La brújula iba 43° torcida, no el cálculo.** A las 21:05 la Luna estaba a
+  35° de altura, hacia el este (100°). En la tercera captura la Luna de
+  verdad (la mancha de luz de la cámara) cae dentro del círculo, donde la
+  app pinta Titawin: a la misma altura (35,4°; la Luna, a 35,5°), pero al
+  noreste (57°). La altura, que sale de la gravedad, cuadra al grado; el
+  rumbo, que sale de la brújula, iba 43° desviado. El chip decía «Sensores
+  ±15°» (la precisión que da iOS) y llevaba un ajuste a mano de −9° («↺
+  −9°»), que lo empeoraba: sin él, el desvío habría sido de 34°.
+- **«Comprobar la brújula» no lo habría arreglado.** Solo corregía hasta 25°:
+  con la Luna dentro del círculo, «Ya» habría contestado «Luna queda a 35° del
+  círculo: acérquelo más y vuelva a tocar “Ya”» (35° de cielo: los 43° de
+  rumbo, a esa altura). Y la flecha de la comprobación apuntaba a donde la
+  app creía que estaba la Luna, es decir, 43° a la derecha de la de verdad.
+- **El Hubble.** Salió a las 21:00:47 y entró en la sombra de la Tierra a las
+  21:03:16, a 25° hacia el sur; desde ahí no se puede ver. Que no se viera a
+  simple vista puede pasar (bajo, dos minutos y medio al Sol). Pero el aviso
+  de arriba siguió diciendo «a N°: siga la flecha», sin decir que ya no se
+  podía ver; la ficha sí lo decía («Ahora está en la sombra de la Tierra: no
+  se ve»). Bajó de 10° a las 21:07.
+
+Lo que cambia, en `modulos/cielo.js`:
+
+- Con el Sol o la Luna, que no se confunden con nada, «Ya» corrige el desvío
+  de rumbo sea cual sea, si la altura cuadra (6° como mucho) y no están
+  cerca del cenit (menos de 70°), donde el rumbo no se mide bien. Con un
+  planeta o una estrella sigue el límite de 25°, porque podría ser otro.
+- Mientras se comprueba con el Sol o la Luna no hay flecha.
+- Con un satélite como objetivo, el aviso de arriba dice «Ahora está en la
+  sombra de la Tierra: no se ve» mientras lo está, en vez de «siga la
+  flecha». Es el texto de la ficha, que ya estaba en los diez idiomas: no
+  hay texto nuevo.
+
+Sin cambiar: lo que da iOS. Por qué la brújula de ese iPhone iba 43° torcida
+(el magnetómetro cerca de la casa, o la referencia que iOS toma al empezar)
+no se puede saber sin el móvil; la comprobación con la Luna lo corrige sea
+cual sea la causa.
+
+**Cómo se comprueba.** `tools/auditar_cielo.js`, cuatro controles más (307
+en total), con los sensores simulados a la hora de la prueba (las 21:05 del
+24 de octubre) y la Luna a 36°: con el rumbo 43° torcido y la altura bien,
+«Ya» mide −43°, lo corrige y lo dice, y mientras se comprueba con la Luna no
+hay flecha; con la altura 10° mal, no corrige y lo dice. Y con los elementos
+orbitales del día, un satélite alto en la sombra de la Tierra (el aviso dice
+que no se ve) y otro al Sol (el aviso de siempre). Con el `modulos/cielo.js`
+de antes, el primero y el tercero salen en rojo: «Luna queda a 35° del
+círculo», con la flecha puesta, y «¡Ahí está!» con la Estación en la sombra.
+La medida sabe ponerse en rojo. Con el arreglo, `auditar_cielo.js` entero en
+verde.
+
+**Las pruebas, en el entorno nuevo (30 de octubre).** El entorno de las
+pruebas se renovó con otro Chromium (el 153), y las 27 herramientas que abren
+el navegador lo buscaban por la ruta del de octubre: ahora usan el enlace
+fijo `/opt/pw-browsers/chromium` (`69200cb`). Ese Chromium tiene, como
+Safari, `DeviceOrientationEvent.requestPermission`, y «Apunte al cielo» lo
+pide: las pruebas que abrían el navegador concediendo solo la cámara (o solo
+la ubicación) dejaban denegados los sensores, porque al conceder una lista
+Playwright deniega lo demás, y la vista no escuchaba (cinco controles en
+rojo, con el código de antes y con el de ahora). Ahora conceden también los
+sensores, como quien los permite en su móvil, y esperan a que la vista
+escuche antes de mandarle lecturas (`3711e4a`). La app no cambia por eso: en
+un móvil, el permiso de los sensores lo da la persona, o viene dado.
+
+**En el móvil:** al abrir «Apunte al cielo» de noche, «Comprobar la brújula»
+con la Luna dentro del círculo y «Ya»: debe decir cuántos grados iba
+desviada y, después, la Luna dibujada cae encima de la de verdad. Y con un
+satélite como objetivo, al entrar en la sombra, el aviso lo dice.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
