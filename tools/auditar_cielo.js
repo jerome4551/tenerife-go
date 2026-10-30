@@ -1561,7 +1561,7 @@ async function sinConexion(b) {
    corta): no se sabe, asi que no se dice nada ni se guarda. */
 async function apunta(b) {
   titulo('9. «Apunte al cielo», la ficha y Wikipedia');
-  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera'], isMobile: true, hasTouch: true });
+  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera', 'accelerometer', 'gyroscope', 'magnetometer'], isMobile: true, hasTouch: true });
   const WIKI = {
     'en/Alpha_Orionis': { type: 'standard', title: 'Betelgeuse', titles: { canonical: 'Betelgeuse' }, description: 'Red supergiant star in the constellation Orion',
       extract: 'Betelgeuse is a red supergiant star of spectral type M1-2 and one of the largest stars visible to the naked eye.',
@@ -1722,8 +1722,17 @@ async function apunta(b) {
     const magnetico = az => (az - dec + 360) % 360;                  // azimut verdadero -> rumbo de la brujula
     const evento = (az, alt) => { const ev = new Event('deviceorientationabsolute'); Object.assign(ev, { alpha: (360 - magnetico(az)) % 360, beta: 90 + alt, gamma: 0, absolute: true }); window.dispatchEvent(ev); };
     const espera = ms => new Promise(r => setTimeout(r, ms));
-    TG_CIELO.vista({ sinGuia: true });
-    await espera(200);
+    /* El Chromium de las pruebas desde el 30-10-2026 (el 153) tiene, como
+       Safari, DeviceOrientationEvent.requestPermission, y la vista pide el
+       permiso de los sensores. Por eso el contexto concede tambien los
+       sensores (accelerometer, gyroscope, magnetometer) y no solo la camara:
+       Playwright, al conceder una lista, deniega lo demas, y con el permiso
+       denegado la vista no escucha (lo que pasaria en un movil que lo
+       deniega). Y como la vista empieza a escuchar cuando el navegador
+       contesta, unos milisegundos despues, se espera a que escuche
+       (VS.tipoEv) antes de mandarle lecturas. */
+    const VS = TG_CIELO.vista({ sinGuia: true });
+    await espera(200); for (let i = 0; i < 100 && !VS.tipoEv && !VS.sinSensor; i++) await espera(20);
     const out = { nombre: c.nombre, h: c.h, dec };
     out.sinSensor = document.querySelector('#cielo-vista .cv-aviso').textContent;
     evento(c.h.az, c.h.alt); await espera(700);
@@ -1782,7 +1791,7 @@ async function apunta(b) {
     const espera = ms => new Promise(r => setTimeout(r, ms));
     /* Chromium tiene deviceorientationabsolute: se le pide al panel el
        camino de iOS (deviceorientation + webkitCompassHeading) */
-    TG_CIELO.vista({ evento: 'deviceorientation', sinGuia: true }); await espera(150);
+    const VS = TG_CIELO.vista({ evento: 'deviceorientation', sinGuia: true }); await espera(150); for (let i = 0; i < 100 && !VS.tipoEv && !VS.sinSensor; i++) await espera(20);
     const dec = TG_CIELO.declinacion(new Date());
     const ev = (alpha, beta, h) => { const e = new Event('deviceorientation'); Object.assign(e, { alpha, beta, gamma: 0, absolute: false, webkitCompassHeading: h, webkitCompassAccuracy: 10 }); window.dispatchEvent(e); };
     const H = (0 - dec + 360) % 360;                            // la brujula apuntando al norte verdadero
@@ -1816,7 +1825,7 @@ async function apunta(b) {
        espacio; comas, puntos y coma y barras escapados; DTSTART en UTC. */
 async function quejas(b) {
   titulo('10. lo que piden las reseñas: retrogrados, fases, fotos, indice, .ics, avisos, fecha, recorrido, captura y brujula');
-  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera'], isMobile: true, hasTouch: true });
+  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera', 'accelerometer', 'gyroscope', 'magnetometer'], isMobile: true, hasTouch: true });
   await p.evaluate(async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); setLang('es'); });
   /* retrogrados */
   const retro = await p.evaluate(() => TG_CIELO.eventos('2026-10-17').filter(e => e.tipo === 'retro').map(e => ({ p: e.p, ini: e.ini, t: e.t.toISOString(), otro: e.otro && e.otro.toISOString(), con: e.con })));
@@ -1984,7 +1993,7 @@ async function quejas(b) {
     try { localStorage.removeItem('tgo_cielo_guia'); localStorage.removeItem('tgo_cielo_ajuste'); } catch (e) {}
     const A = Astronomy, D = TG_CIELO.estado.datos, o = new A.Observer(D.obs.lat, D.obs.lon, D.obs.h), out = {};
     let t = A.MakeTime(new Date());
-    TG_CIELO.vista({}); await espera(300);
+    const VS = TG_CIELO.vista({}); await espera(300); for (let i = 0; i < 100 && !VS.tipoEv && !VS.sinSensor; i++) await espera(20);
     const guia = document.querySelector('#cielo-vista .cv-guia');
     out.guia = !guia.hidden; out.guiaTxt = guia.innerText;
     out.pasos = guia.querySelectorAll('.cv-guia-paso').length;
@@ -2041,7 +2050,7 @@ async function quejas(b) {
     document.querySelectorAll('#cielo-vista .cv-btn')[1].click(); await espera(200);
     TG_CIELO.cerrarVista(); await espera(100);
     /* la segunda vez, sin guia; y la precision de iOS en el chip */
-    TG_CIELO.vista({ evento: 'deviceorientation' }); await espera(200);
+    const VS2 = TG_CIELO.vista({ evento: 'deviceorientation' }); await espera(200); for (let i = 0; i < 100 && !VS2.tipoEv && !VS2.sinSensor; i++) await espera(20);
     out.guia2 = !document.querySelector('#cielo-vista .cv-guia').hidden;
     const ev = new Event('deviceorientation'); Object.assign(ev, { alpha: 37, beta: 50, gamma: 0, absolute: false, webkitCompassHeading: 100, webkitCompassAccuracy: 15 }); window.dispatchEvent(ev);
     await espera(900);
@@ -2083,7 +2092,7 @@ async function quejas(b) {
       Date.now = () => T0;
       for (const [k, dAlt] of [['bien', 0], ['mal', 10]]) {
         TG_CIELO.cerrarVista(); try { localStorage.removeItem('tgo_cielo_ajuste'); } catch (e) {}
-        const V = TG_CIELO.vista({ sinGuia: true }); await espera(300);
+        const V = TG_CIELO.vista({ sinGuia: true }); await espera(300); for (let i = 0; i < 100 && !V.tipoEv && !V.sinSensor; i++) await espera(20);
         evento(x.azimuth + 43, x.altitude + dAlt); await espera(700);
         const ref = TG_CIELO.comprobar(); await espera(200);
         out[k] = { ref: ref && ref.planeta, flecha: !!(V && V.V && V.V.objetivo) };
@@ -2162,7 +2171,7 @@ async function quejas(b) {
    cotejada en 11a con los vectores oficiales. */
 async function satelites(b) {
   titulo('11. la Estacion Espacial y los satelites: pasos, tarjeta, calendario, carta, vista, ficha, .ics, avisos, idiomas');
-  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera'], isMobile: true, hasTouch: true });
+  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera', 'accelerometer', 'gyroscope', 'magnetometer'], isMobile: true, hasTouch: true });
   const epocaMax = Math.max(...SATJSON.sat.map(x => new Date(x.epoca).getTime()));
   const e = new Date(epocaMax), T0 = new Date(Date.UTC(e.getUTCFullYear(), e.getUTCMonth(), e.getUTCDate() + 1, 18, 0, 0));
   await p.clock.setFixedTime(T0);
@@ -2246,7 +2255,7 @@ async function satelites(b) {
       out.ficha = document.querySelector('#cielo-panel .cielo-ficha, #cielo-panel .cielo-hoja') ? document.querySelector('#cielo-panel .cielo-ficha, #cielo-panel .cielo-hoja').innerText : '';
       /* «Apunta al cielo»: los sensores al satelite */
       const x = TG_CIELO.dondeSat(q.sat, new Date()), dec = TG_CIELO.declinacion(new Date());
-      TG_CIELO.vista({ sinGuia: true }); await espera(300);
+      const VS = TG_CIELO.vista({ sinGuia: true }); await espera(300); for (let i = 0; i < 100 && !VS.tipoEv && !VS.sinSensor; i++) await espera(20);
       const ev = new Event('deviceorientationabsolute'); Object.assign(ev, { alpha: (360 - ((x.az - dec + 360) % 360)) % 360, beta: 90 + x.alt, gamma: 0, absolute: true }); window.dispatchEvent(ev);
       await espera(900);
       out.centro = document.querySelector('#cielo-vista .cv-nombre').innerText;
@@ -2438,7 +2447,7 @@ function pasosAparte(T0, pasos) {
    elementos de la JPL. */
 async function tercerBloque(b) {
   titulo('12. la noche guiada, el sistema solar hoy, la luz roja completa y sin red en el Teide');
-  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera'], isMobile: true, hasTouch: true });
+  const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { permissions: ['camera', 'accelerometer', 'gyroscope', 'magnetometer'], isMobile: true, hasTouch: true });
   const epocaMax = Math.max(...SATJSON.sat.map(x => new Date(x.epoca).getTime()));
   const e0 = new Date(epocaMax), T0 = new Date(Date.UTC(e0.getUTCFullYear(), e0.getUTCMonth(), e0.getUTCDate() + 1, 18, 0, 0));
   await p.clock.setFixedTime(T0);

@@ -61,7 +61,7 @@ const ESTADOS = `window.__capturas = [
       dpiConfirmZones(); dpiSelectTransport('guagua', document.querySelector('#dpi-transport-grid .dp-time-card[data-opt="guagua"]')); await espera(1500); }],
   ['cielo', async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); await TG_CIELO.satelites().catch(function () {});
       await TG_CIELO.ver('noche', '2026-12-13'); await espera(800); }],
-  ['apunta', async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); TG_CIELO.vista({ sinGuia: true }); await espera(300);
+  ['apunta', async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); const VS = TG_CIELO.vista({ sinGuia: true }); await espera(300); for (let i = 0; i < 100 && !VS.tipoEv && !VS.sinSensor; i++) await espera(20);   // espera a que la vista escuche
       const ev = new Event('deviceorientationabsolute'); Object.assign(ev, { alpha: 180, beta: 130, gamma: 0, absolute: true }); window.dispatchEvent(ev); await espera(1200); }],
   ['sistema', async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar();
       TG_CIELO.estado.sis.vista = 'ext'; TG_CIELO.estado.sis.sel = 'Jupiter'; await TG_CIELO.ver('noche', '2026-12-13'); await espera(500);
@@ -77,7 +77,7 @@ window.espera = ms => new Promise(r => setTimeout(r, ms));`;
     for (const L of IDIOMAS) {
       for (const ap of APARATOS) {
         const ctx = await browser.newContext({ viewport: ap.viewport, deviceScaleFactor: ap.escala, isMobile: ap.movil, hasTouch: true, serviceWorkers: 'block',
-          geolocation: { latitude: 28.4636, longitude: -16.2518 }, permissions: ['geolocation', 'camera'] });
+          geolocation: { latitude: 28.4636, longitude: -16.2518 }, permissions: ['geolocation', 'camera', 'accelerometer', 'gyroscope', 'magnetometer'] });   // los sensores, para «Apunte al cielo»
         const p = await ctx.newPage();
         await p.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); localStorage.setItem('tgo_cielo_guia', '1'); } catch (e) {} });
         await p.route('**/datos/avisos-aemet.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: AVISOS }));

@@ -126,7 +126,7 @@ window.__estados = [
      grados arriba: la hoja de lo que haya en el circulo, y la busqueda. Lo
      que se ve se recoge del DOM (las designaciones van marcadas). */
   ['cielo:apunta', async () => {
-      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); TG_CIELO.vista({ sinGuia: true }); await espera(200);
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); const VS = TG_CIELO.vista({ sinGuia: true }); await espera(200); for (let i = 0; i < 100 && !VS.tipoEv && !VS.sinSensor; i++) await espera(20);   // espera a que la vista escuche (el permiso de los sensores tarda unos ms)
       const ev = new Event('deviceorientationabsolute'); Object.assign(ev, { alpha: 180, beta: 130, gamma: 0, absolute: true }); window.dispatchEvent(ev);
       await espera(900);
       document.querySelector('#cielo-vista .cv-nombre').click(); await espera(500); }],
@@ -140,7 +140,7 @@ window.__estados = [
       await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); try { localStorage.removeItem('tgo_cielo_guia'); } catch (e) {}
       TG_CIELO.vista({}); await espera(400); }],
   ['cielo:apunta comprobar', async () => {
-      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); TG_CIELO.vista({ sinGuia: true }); await espera(200);
+      await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); const VS = TG_CIELO.vista({ sinGuia: true }); await espera(200); for (let i = 0; i < 100 && !VS.tipoEv && !VS.sinSensor; i++) await espera(20);   // espera a que la vista escuche (el permiso de los sensores tarda unos ms)
       const ev = new Event('deviceorientationabsolute'); Object.assign(ev, { alpha: 180, beta: 130, gamma: 0, absolute: true }); window.dispatchEvent(ev);
       await espera(500); TG_CIELO.comprobar(); await espera(400); }],
   ['cielo:calendario fases', async () => {
@@ -329,7 +329,7 @@ window.__textos = () => {
 
 async function recorrer(b, L) {
   const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block',
-    geolocation: { latitude: 28.4636, longitude: -16.2518 }, permissions: ['geolocation'] });
+    geolocation: { latitude: 28.4636, longitude: -16.2518 }, permissions: ['geolocation', 'accelerometer', 'gyroscope', 'magnetometer'] });   // los sensores, para «Apunte al cielo»: al conceder una lista, lo demas queda denegado
   const p = await ctx.newPage();
   const err = []; p.on('pageerror', e => err.push(e.message));
   await p.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
