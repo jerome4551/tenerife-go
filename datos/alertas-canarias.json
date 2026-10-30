@@ -2,8 +2,13 @@
  "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
  "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
  "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
- "consultado": "2026-10-30T10:29:23Z",
+ "consultado": "2026-10-30T13:40:19Z",
  "alertas": [
+  {
+   "t": "2026-10-30T12:50:56Z",
+   "titulo": "El Gobierno de Canarias declara la situación de prealerta por lluvias en El Hierro, La Palma, La Gomera y Tenerife",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-situacion-de-prealerta-por-lluvias-en-el-hierro-la-palma-la-gomera-y-tenerife/"
+  },
   {
    "t": "2026-10-29T10:08:27Z",
    "titulo": "El Gobierno de Canarias finaliza la situación de prealerta por calima en el archipiélago",
@@ -58,11 +63,6 @@
    "t": "2026-10-15T18:16:15Z",
    "titulo": "El Gobierno finaliza la prealerta por riesgo de incendios forestales en islas occidentales y Gran Canaria",
    "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-finaliza-la-prealerta-por-riesgo-de-incendios-forestales-en-islas-occidentales-y-gran-canaria/"
-  },
-  {
-   "t": "2026-10-11T10:44:10Z",
-   "titulo": "El Gobierno de Canarias finaliza la situación de prealerta por lluvias",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-situacion-de-prealerta-por-lluvias-6/"
   }
  ],
  "descartados": 0
