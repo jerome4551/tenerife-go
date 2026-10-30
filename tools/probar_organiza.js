@@ -89,6 +89,12 @@
  *   · «🔄 Otro» cambia una visita por otra visita y la comida por otro sitio
  *     de comer, y nunca trae nada cerrado;
  *   · y compartir numera igual que la pantalla.
+ * Y «(reserva necesaria)» (Jerome: «Solo en el planificador un pequeño
+ * (reserva necesaria) en la que la necesitan»): en cada idioma, en la parada
+ * que la necesita y solo en ella; en los 1.344, en todas las que la llevan y
+ * en ninguna mas; cada lugar que la lleva lo dice en su ficha, y lo que su
+ * ficha da por obligatorio (reserva o permiso obligatorio, imprescindible,
+ * necesita autorizacion, solo con cita) la lleva.
  *
  *     node tools/probar_organiza.js [puerto]
  *     node tools/probar_organiza.js [puerto] de,zh     solo esos (y el castellano)
@@ -242,6 +248,15 @@ const RECORRER = async () => {
     decimal: (1.5).toLocaleString(PRECIOS_GAS_LOCALE[L]).replace(/\d/g, ''),
     lineasExisten: TITSA_LINES.map(l => String(l.numero)),
   };
+  // ── «(reserva necesaria)»: en la parada que la necesita, y solo en ella
+  {
+    const conR = places.find(p => p.reserva && !p.estado), sinR = places.find(p => !p.reserva && !p.estado && p.category === 'playa');
+    dpiRenderResult([sinR, conR]);
+    out.reserva = { ids: [sinR.id, conR.id], fila: t(DP_UI, 'reservaNecesaria'),
+      metas: [...document.querySelectorAll('#dpi-itinerary .dp-stop-meta')].map(e => limpio(e.textContent)),
+      nombres: [...document.querySelectorAll('#dpi-itinerary .dp-stop-name')].map(e => limpio(e.textContent)) };
+    textos('reserva necesaria');
+  }
   // ── el titulo con cada tarjeta, y con tres a la vez
   for (const c of DP_CARDS) {
     const r = await genera('afternoon', [c.id], 'coche');
@@ -379,7 +394,7 @@ const RECORRER = async () => {
     const num = s => { const m = String(s).match(/~(\d+)/); return m ? +m[1] : 0; };
     const hav30 = (a, b) => { const R = 6371, r = x => x * Math.PI / 180, dl = r(b.lat - a.lat), dn = r(b.lng - a.lng);
       const h = Math.sin(dl / 2) ** 2 + Math.cos(r(a.lat)) * Math.cos(r(b.lat)) * Math.sin(dn / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
-    const mal30 = { tope: [], comidas: [], sitio: [], etiqueta: [], numeros: [], cerrado: [], guagua: [] };
+    const mal30 = { tope: [], comidas: [], sitio: [], etiqueta: [], numeros: [], cerrado: [], guagua: [], reserva: [] };
     let n30 = 0, conMinimo = 0, aPie = 0, conLinea = 0;
     for (const c of DP_CARDS) for (const tiempo of ['morning', 'afternoon', 'halfday', 'fullday']) for (const modo of ['coche', 'guagua', 'pie', 'bici'])
     for (const zona of ['norte', 'sur', 'igual']) for (let k = 1; k <= 2; k++) {
@@ -408,6 +423,8 @@ const RECORRER = async () => {
         const esC = comer(st[i]), nn = limpio(el.querySelector('.dp-stop-num').textContent);
         if (el.querySelector('.dp-stop-meta').textContent.includes(PAUSA) !== esC) mal30.etiqueta.push(nombre + ': ' + st[i].id);
         if (esC ? nn !== '🍽️' : nn !== String(++v)) mal30.numeros.push(nombre + ': ' + st[i].id + ' = ' + nn);
+        const r = el.querySelector('.dp-stop-reserva');
+        if (!!r !== !!st[i].reserva || (r && limpio(r.textContent) !== dpT('reservaNecesaria'))) mal30.reserva.push(nombre + ': ' + st[i].id);
       });
       st.forEach(p => { if (NO_SUGERIBLE(p)) mal30.cerrado.push(nombre + ': ' + p.id); });
       // en guagua: a pie si es un paseo o si se llega antes; con linea, nunca un paseo; sin guagua, solo si no se puede andar
@@ -421,6 +438,16 @@ const RECORRER = async () => {
       });
     }
     p30.matriz = { n: n30, conMinimo, aPie, conLinea, mal: mal30 };
+    // la reserva, contra la ficha: el que la lleva lo dice, y lo que la ficha da por obligatorio la lleva
+    const DICE = /reserv|cita\b|permiso|autoriza/i;
+    const OBLIGA = /(reserva|permiso)[^.]{0,25}(obligatori|imprescindible)|imprescindible reservar|reservar imprescindible|necesita autorizaci[oó]n|solo visitas con cita/i;
+    const desc = p => String((p.desc && p.desc.es) || '');
+    p30.reservaSinTexto = places.filter(p => p.reserva && !DICE.test(desc(p))).map(p => p.id);
+    // de lo que el planificador puede proponer: el rotulo solo sale ahi (el centro de visitantes de Masca dice
+    // «Reserva obligatoria para bajar el barranco», que es del sendero, y no es de ninguna tarjeta)
+    const EN_PLAN = new Set(DP_CARDS.flatMap(c => c.cats));
+    p30.obligaSinReserva = places.filter(p => EN_PLAN.has(p.category) && !p.estado && OBLIGA.test(desc(p)) && !p.reserva).map(p => p.id);
+    p30.conReserva = places.filter(p => p.reserva).length;
     // «Otro» con «Sorpréndeme», medio dia: la comida por otro sitio de comer, una visita por otra visita, nada cerrado
     const otro = [];
     for (let k = 1; k <= 6; k++) {
@@ -593,6 +620,9 @@ const RECORRER = async () => {
       caso(`[es] los mismos: la comida a mitad del dia, la ultima de la mañana y la primera de la tarde`, m.mal.sitio.length === 0, ej(m.mal.sitio));
       caso(`[es] los mismos: «Pausa comida» y 🍽️ solo donde se come, y las visitas numeradas seguidas`, m.mal.etiqueta.length === 0 && m.mal.numeros.length === 0, ej(m.mal.etiqueta.concat(m.mal.numeros)));
       caso(`[es] los mismos: nada cerrado`, m.mal.cerrado.length === 0, ej(m.mal.cerrado));
+      caso(`[es] los mismos: «(reserva necesaria)» en las paradas que la llevan, y en ninguna mas`, m.mal.reserva.length === 0, ej(m.mal.reserva));
+      caso(`[es] los ${p.conReserva} lugares con reserva lo dicen en su ficha`, p.conReserva > 0 && p.reservaSinTexto.length === 0, p.reservaSinTexto.join(', '));
+      caso(`[es] y lo que su ficha da por obligatorio (reserva o permiso obligatorio, imprescindible, necesita autorizacion, solo con cita) lleva reserva`, p.obligaSinReserva.length === 0, p.obligaSinReserva.join(', '));
       caso(`[es] en guagua, ${m.aPie} tramos a pie y ${m.conLinea} con linea: a pie el paseo y lo que se anda antes, con linea nunca un paseo, y sin guagua solo lo que no se anda`,
         m.mal.guagua.length === 0 && m.aPie > 0 && m.conLinea > 0, ej(m.mal.guagua));
       console.log(`  info  ${m.conMinimo} de ${m.n} con las paradas que promete su tarjeta; los demas, menos, para caber en su tiempo`);
@@ -623,6 +653,11 @@ const RECORRER = async () => {
       });
       caso(`[${L}] los topes del itinerario son los de sus tarjetas (${d.topes.map(x => x.sub).join(' / ')})`, d.topes.length === 4 && malT.length === 0, JSON.stringify(malT));
     }
+    {
+      const r = d.reserva;
+      caso(`[${L}] «${r.fila}» en la parada que necesita reserva (${r.ids[1]}), y no en la otra (${r.ids[0]})`,
+        !!r.fila && r.metas.length === 2 && !r.metas[0].includes(r.fila) && r.metas[1].includes(r.fila), JSON.stringify(r));
+    }
     caso(`[${L}] Senderismo en la tarjeta Deporte y no en Naturaleza`, d.deporte.includes('senderismo') && !d.naturaleza.includes('senderismo'), JSON.stringify([d.deporte, d.naturaleza]));
     if (d.cambio) {
       const c = d.cambio, it = d.itinerarios.coche;
@@ -637,6 +672,7 @@ const RECORRER = async () => {
   const nombres = new Set();
   for (const L of IDIOMAS) for (const m of ['coche', 'guagua', 'pie', 'bici']) res[L].itinerarios[m].nombres.forEach(n => nombres.add(n));
   for (const L of IDIOMAS) for (const r of Object.values(res[L].zonas)) if (r && r.nombres) r.nombres.forEach(n => nombres.add(n));
+  for (const L of IDIOMAS) (res[L].reserva.nombres || []).forEach(n => nombres.add(n));
   for (const L of IDIOMAS) {
     if (L === 'es') continue;
     const iguales = [];

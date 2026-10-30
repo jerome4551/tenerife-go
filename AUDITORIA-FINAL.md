@@ -3159,6 +3159,38 @@ Control nuevo, `tools/probar_estado.js` (26 casos), con su propia regla:
 Se quitó la regla en cada uno de los seis sitios, uno a uno, y la prueba lo
 detectó siempre.
 
+## «(reserva necesaria)» en el planificador (30 de octubre)
+
+Jerome: «es diferente necesitar una reserva o autorización. Que cerrado!
+Tenemos las informaciones y los link para las reservas. Solo en el
+planificador un pequeño (reserva necesaria) en la que la necesitan».
+
+- **Qué lugares.** Los que su propia ficha dice que hace falta para ir, que ya
+  traen el enlace: reserva o permiso obligatorio, imprescindible, con cita,
+  con autorización previa. Son 33 (`reserva:true`, en la línea de debajo de
+  la primera):
+  - el Barranco del Infierno, Masca, Pico Viejo, Montaña Blanca, la cumbre del
+    Teide y su teleférico;
+  - El Pijaral, la Cueva del Viento y el Observatorio;
+  - el Real Club de Golf y la escalada de Guaria;
+  - dos guachinches, que dicen «reserva imprescindible»;
+  - tres bodegas;
+  - las 17 zonas de acampada públicas, que piden permiso en Tenerife ON.
+- **Qué lugares no.** Donde la reserva solo se recomienda, la piden solo los
+  grupos en un sitio abierto a todos o es para una parte del sitio. Tampoco
+  donde la ficha solo dice «Reservar.», sin más, en tres bodegas.
+- **Siguen en el planificador**, con un pequeño «(reserva necesaria)» junto a
+  los minutos, en el dorado de la app y en los diez idiomas. Solo ahí.
+
+Controles, en `probar_organiza.js` (de 609 a 622 casos):
+
+- en cada idioma, el rótulo sale en la parada que necesita reserva y no en la
+  otra;
+- en los 1.344 itinerarios, sale en todas las paradas que la llevan y en
+  ninguna más;
+- cada lugar con reserva lo dice en su ficha;
+- y lo que una ficha del planificador da por obligatorio lleva la reserva.
+
 ## La prueba de emergencias, sin los avisos de AEMET de verdad (30 de octubre)
 
 La auditoría del arreglo de las capturas salió con un control en rojo en
@@ -5012,7 +5044,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 47 tablas, 2868 filas (y 5.009 filas, dentro y fuera del fuente)
+## Idiomas · 47 tablas, 2869 filas (y 5.010 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5086,7 +5118,9 @@ mismo día, «Para evitar un incendio» en «Fuego en un edificio»: nueve filas
 más en `EMERG_UI`, que llega a 597, hasta 2806 filas y 4.947. Y esa
 tarde, los de oro del perfil: `PERFIL_UI` pasa de 363 a 425, con 91 filas
 nuevas (13 de la pantalla, los 29 avatares que entran y los 49 de oro) y 29
-menos, las de los avatares que se van: 2868 filas y 5.009. El
+menos, las de los avatares que se van: 2868 filas y 5.009. El 30 de
+octubre, una más en `DP_UI`, «(reserva necesaria)» de «Organice su día»:
+2869 filas y 5.010. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de

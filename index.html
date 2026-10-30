@@ -10521,6 +10521,7 @@ const places = [
     tags:["Barranco","Senderismo","Fotografía"] },
 
   { id:"observatorio", warn:"altura", category:"montana", name:"Observatorio Teide", emoji:"🔭", color:"#9b59b6", lat:28.2987, lng:-16.5106,
+    reserva:true,
     desc:{ es:"Observatorio del Instituto de Astrofísica de Canarias (IAC) en Izaña, a 2.390 m. Se visita de día, con guía y reserva previa (volcanoteide.com, enlazada desde la web del IAC); de noche no se visita. No se admiten menores de 8 años." },
     cat:{ es:"Astronomía" },
     tags:["Astronomía","Estrellas","Ciencia"] },
@@ -10531,11 +10532,13 @@ const places = [
     tags:["Senderismo","Volcánico","Fotografía","Icónico","Teide","Roca","Circular","Fácil","Popular"] },
 
   { id:"montana-blanca", warn:"altura", category:"senderismo", name:"Montaña Blanca — Acceso Cumbre", emoji:"🏔️", color:"#90a4ae", lat:28.259658109488427, lng:-16.603249312245193,
+    reserva:true,
     desc:{ es:"El punto de partida para subir a pie al Pico del Teide (3.715 m): el sendero PNT 07 Montaña Blanca–La Rambleta, que sale de la TF-21 (km 40,2), a unos 2.350 m. Necesita autorización previa en Tenerife ON, y sin reserva puede haber sanción. Las plazas salen cada lunes a las 07:00 (hora de Canarias) para las ocho semanas siguientes. Entre las 09:00 y las 17:00 tiene tarifa para quien no reside en Tenerife; el importe se ve al reservar. El último tramo, de La Rambleta al cráter, es el PNT 10 y necesita otra autorización aparte. La ascensión completa dura entre 5 y 7 horas. Experiencia impresionante y exigente." },
     cat:{ es:"Senderismo · Cumbre Teide" },
     tags:["Teide","Cumbre","Senderismo","Permiso","Exigente"] },
 
   { id:"ruta-pico-viejo", warn:"altura", category:"senderismo", name:"Ruta Pico Viejo — Cráter", emoji:"🌋", color:"#6d4c41", lat:28.2622, lng:-16.6728,
+    reserva:true,
     desc:{ es:"El cráter hermano del Teide, a unos 3.100 m de altitud: 800 m de diámetro y 200 m de profundidad. El sendero PNT 09 (Teide–Pico Viejo–Mirador de Las Narices del Teide) rodea Pico Viejo por el sur, por debajo del borde del cráter. Reserva obligatoria en Tenerife ON, también en el PNT 23, que llega a la degollada de Pico Viejo: sin reserva puede haber sanción. Una de las mejores rutas del Parque Nacional." },
     cat:{ es:"Cráter · Parque Nacional" },
     tags:["Cráter","Teide","Senderismo","Fotografía","Parque Nacional"] },
@@ -10556,6 +10559,7 @@ const places = [
     tags:["Anaga","Laurisilva","Cresta","Fotografía","Moderado"] },
 
   { id:"ruta-masca-playa", category:"senderismo", cats:["senderismo","naturaleza"], name:"Ruta Masca — Playa (Barranco)", emoji:"🏊", color:"#0277bd", lat:28.2947, lng:-16.851,
+    reserva:true,
     desc:{ es:"⚠️ Acceso regulado por el Cabildo: reserva previa obligatoria en su web oficial y calzado de montaña homologado. El embarcadero está cerrado al tráfico recreativo, por lo que el sendero es obligatorio de bajada y de subida. La ruta de senderismo más famosa y espectacular de Tenerife. 3 horas de descenso por el barranco hasta la playa virgen de Masca. Recogida en barco incluida al final. Reserva obligatoria. Solo en grupo organizado." },
     cat:{ es:"Barranco · Masca" },
     tags:["Masca","Barranco","Barco","Reserva","Espectacular","Senderismo","Teno"] },
@@ -10573,6 +10577,7 @@ const places = [
     tags:["Senderismo","Anaga","Laurisilva","Accesible","Familia","Fácil","Norte","Bus"] },
 
   { id:"sendero-pijaral", category:"senderismo", name:"Bosque Encantado · El Pijaral", emoji:"🌲", color:"#1b5e20", lat:28.5562, lng:-16.1798,
+    reserva:true,
     desc:{ es:"⚠️ PERMISO OBLIGATORIO GRATUITO en centralreservas.tenerife.es (45 personas/día). Ruta circular de 6,7 km por la Reserva Natural Integral de El Pijaral, en pleno corazón de Anaga. Bosque de laurisilva relíctico del Terciario, helechos píjaras de hasta 3 m. Mirador Cabezo del Tejo con vistas a Taganana. Dificultad media, 3 horas. Inicio en aparcamiento La Ensillada (TF-123)." },
     cat:{ es:"Sendero · Anaga (Medio · 3h · Permiso)" },
     tags:["Senderismo","Anaga","Laurisilva","Permiso","Reserva","Medio","Norte"] },
@@ -10702,6 +10707,7 @@ const places = [
 
   // ─── SUR (3 nuevos) ─────────────────────────────────────────
   { id:"sendero-barranco-infierno", category:"senderismo", cats:["senderismo","naturaleza"], name:"Barranco del Infierno (Adeje)", emoji:"💧", color:"#0277bd", lat:28.1263, lng:-16.7237,
+    reserva:true,
     desc:{ es:"⚠️ RESERVA OBLIGATORIA en barrancodelinfierno.es (300 personas/día, 11€). Ruta más visitada del sur. 6,5 km ida y vuelta, 3,5 horas. Entrada en el casco de Adeje. Recorre la 'Garganta del Infierno' hasta la cascada más alta de Tenerife (80 m). Casco obligatorio (proporcionado). No apta menores de 5 años. Cuevas guanches a lo largo del recorrido. Cerrada días de lluvia o viento. Llevar agua y calzado de senderismo." },
     cat:{ es:"Barranco · Adeje (Medio · 6,5 km · 3,5h · Reserva)" },
     tags:["Senderismo","Adeje","Barranco","Cascada","Reserva","Guanches","Sur","11€","Naturaleza"] },
@@ -10782,6 +10788,7 @@ const places = [
     tags:["Golf","Las Américas","18 Hoyos","Par 72","Sur","Arona","Turístico","Océano","La Gomera"] },
 
   { id:"rcg-tenerife", category:"golf", name:"Real Club de Golf de Tenerife (Tacoronte)", emoji:"⛳", color:"#1a237e", lat:28.4872, lng:-16.3793,
+    reserva:true,
     desc:{ es:"El campo de golf más antiguo de Tenerife y uno de los más históricos de España, fundado en 1932 (con antecesores desde 1896). 18 hoyos Par 71, 5.740 m. Situado en Tacoronte, a 600 m de altitud, rodeado de arboleda autóctona. Campo clásico con todos los hoyos con nombre propio. Cuota de socios y green fee de visitantes. Reserva previa imprescindible." },
     cat:{ es:"Golf · Real Club · 18 Hoyos · Par 71 · Tacoronte · 1932" },
     tags:["Golf","Real Club","Tacoronte","18 Hoyos","Par 71","Histórico","1932","Norte","Clásico","Arboleda"] },
@@ -10927,6 +10934,7 @@ const places = [
     tags:["Volcán","Cráter","Embalse","Buenavista del Norte","Los Silos","Isla Baja","Noroeste","Acceso Restringido"] },
 
   { id:"pico-teide-cumbre", warn:"altura", category:"montana", name:"Pico del Teide — Cumbre (3.715 m)", emoji:"🌋", color:"#b71c1c", lat:28.2725, lng:-16.6422,
+    reserva:true,
     desc:{ es:"La cumbre del Pico del Teide (3.715 m) es el punto más alto de España, el más alto de cualquier isla del Atlántico y el tercer volcán más alto del mundo desde su base oceánica. Se sube a pie desde La Rambleta (estación superior del teleférico, 3.555 m) por el sendero Telesforo Bravo (PNT 10): unos 55 min, de dificultad media, con pendientes de hasta el 60 % y el esfuerzo de la altitud. Necesita autorización previa en Tenerife ON (tenerifeon.es): entre las 9:00 y las 17:00 tiene tarifa para los visitantes, y el importe se ve al reservar. Las plazas salen cada lunes a las 07:00 (hora de Canarias) para las ocho semanas siguientes y se agotan pronto. Equipo obligatorio: calzado de montaña, pantalón largo y forro polar o ropa de abrigo. En la cumbre: fumarolas de azufre, en días claros vistas a La Gomera, El Hierro, La Palma y Gran Canaria, y una sensación única de estar en el techo de España. La temperatura puede bajar de 0 °C." },
     cat:{ es:"Cumbre · 3.715m · España · Teide · Permiso" },
     tags:["Cumbre","Teide","3715m","España","Volcán","Permiso","Fumarolas","Rambleta","Teleférico","Canarias"] },
@@ -11070,6 +11078,7 @@ const places = [
     tags:["Histórico","Colonial","Balcones","Artesanía","La Orotava"] },
 
   { id:"cueva-viento", category:"museo", name:"Cueva del Viento", emoji:"🕳️", color:"#455a64", lat:28.352021, lng:-16.703998,
+    reserva:true,
     desc:{ es:"El tubo volcánico más largo de Europa con más de 18 km. Formado hace 27.000 años por la lava del Teide. Visitas guiadas limitadas. Imprescindible reservar." },
     cat:{ es:"Tubo Volcánico · Icod" },
     tags:["Volcánico","Geología","Único","Reserva","Icod"] },
@@ -11180,6 +11189,7 @@ const places = [
     tags:["Guachinche","Tradicional","Vino","Carne","Norte"] },
 
   { id:"guachinche-casa-pedro", category:"gastronomia", name:"Casa Pedro (Los Realejos)", emoji:"🥩", color:"#6d1414", lat:28.3984, lng:-16.5758,
+    reserva:true,
     desc:{ es:"Cocina casera canaria, vino blanco propio destacado, ambiente acogedor y dueños atentos. La carne de cabra es una de las mejores que se sirven en la isla. 📍 C. La Longuera 10, Los Realejos · 🕐 Vie-Sáb 13:00-17:00 y 19:00-22:00 · Lun 13:00-17:00 · ☎ 664 78 66 11. Reservar imprescindible." },
     cat:{ es:"Guachinche · Los Realejos" },
     tags:["Guachinche","Top","Vino","Cabra","Norte"] },
@@ -11205,6 +11215,7 @@ const places = [
     tags:["Guachinche","Brasa","Vino","Carne","Norte"] },
 
   { id:"guachinche-ana-eva", category:"gastronomia", name:"La Huerta de Ana y Eva", emoji:"🍷", color:"#5d1a1a", lat:28.4538, lng:-16.4495,
+    reserva:true,
     desc:{ es:"Guachinche de La Matanza de Acentejo. Premiado entre los mejores de Tenerife. Carne de cabra exquisita, pollo a la brasa, champiñones con almogrote, escaldón de gofio. Servicio rápido y muy atento. 📍 C. Obispo Pérez Cáceres 25, La Matanza · 🕐 Lun-Vie 13:00-17:00, cierra fines de semana · ☎ 648 93 21 71. Reserva imprescindible." },
     cat:{ es:"Guachinche · La Matanza" },
     tags:["Guachinche","Top","Cabra","Vino","Norte"] },
@@ -11286,16 +11297,19 @@ const places = [
     tags:["Bodega","D.O.","Premiada","Cata","Familiar"] },
 
   { id:"bodega-suertes-marques", category:"gastronomia", name:"Bodegas Suertes del Marqués (La Orotava)", emoji:"🍇", color:"#4a148c", lat:28.3720, lng:-16.5431,
+    reserva:true,
     desc:{ es:"Reconocida internacionalmente entre las 100 mejores bodegas del mundo según Wine & Spirits. Vinos de las variedades Listán Blanco y Listán Negro de viñedos centenarios. Solo visitas con cita previa. 📍 La Perdoma, La Orotava · ☎ 922 50 13 00. Etiquetas emblemáticas: Trenzado, La Solana, El Esquilón, Vidonia." },
     cat:{ es:"Bodega · D.O. Valle de La Orotava" },
     tags:["Bodega","Top Mundial","D.O.","Premium","Norte"] },
 
   { id:"bodega-vinatigo", category:"gastronomia", name:"Bodegas Viñátigo (Ycoden-Daute-Isora)", emoji:"🍇", color:"#4a148c", lat:28.3814, lng:-16.6548,
+    reserva:true,
     desc:{ es:"Bodega especializada en variedades autóctonas y casi extintas. Pionera en recuperar uvas raras como Vijariego, Marmajuelo, Listán Gacho. Tour con cata de 6 vinos. 📍 Trav. Juandana s/n, La Guancha · 🕐 Lun-Vie 8:00-16:00, cierra fin de semana · ☎ 922 82 87 68. Reserva imprescindible." },
     cat:{ es:"Bodega · D.O. Ycoden-Daute-Isora" },
     tags:["Bodega","Top","D.O.","Autóctonas","Cata"] },
 
   { id:"bodega-cumbres-abona", category:"gastronomia", name:"Bodegas Cumbres de Abona (Arico)", emoji:"🍇", color:"#4a148c", lat:28.1713, lng:-16.4900,
+    reserva:true,
     desc:{ es:"Cooperativa de la D.O. Abona, la más alta de España (1.000-1.700 m). Único productor de aceite de oliva de Tenerife además de vinos. Cata + tour + tienda. 📍 Camino del Viso s/n, Teguedite (Vilaflor) · 🕐 Lun-Vie 7:00-15:00, Sáb 8:00-13:00, cierra Dom · ☎ 922 76 86 04. Visitas con cita." },
     cat:{ es:"Bodega · D.O. Abona" },
     tags:["Bodega","D.O.","Aceite","Cata","Sur"] },
@@ -11329,6 +11343,7 @@ const places = [
     tags:["Ballenas","Delfines","Barco","Familia","Sur"] },
 
   { id:"teide-teleforico", category:"familia", name:"Teleférico del Teide", emoji:"🚡", color:"#e64a19", lat:28.2545, lng:-16.6258,
+    reserva:true,
     desc:{ es:"Sube hasta 3.555 m en 8 minutos. Reserva imprescindible. Vistas de todo el archipiélago." },
     cat:{ es:"Teleférico · Parque Nacional" },
     tags:["Teleférico","Teide","Imprescindible","Familia"] },
@@ -13439,6 +13454,7 @@ const places = [
     tags:["Escalada","Arico","Boulder","Escalada deportiva","Internacional","Basalto","Barranco","Este","Tenerife Climbing House","Guía Roja","1300 vías"] },
 
   { id:"escal-guaria", category:"escalada", name:"Escalada Guaría (Guía de Isora)", emoji:"🧗", color:"#4e342e", lat:28.19667, lng:-16.75611,
+    reserva:true,
     desc:{ es:"Escuela de escalada deportiva en el Risco de Guaría, en Guía de Isora, dentro del Monumento Natural de la Montaña de Tejina. Más de 130 vías en varios sectores —Entrada, Peter Punk, Comando 25, Utah, Big Wall y Tralla—, sobre roca volcánica y con las líneas más largas de la isla, muchas por encima de los 35 m. Nivel medio-alto: hay poco por debajo de 6a. PERMISO OBLIGATORIO del Cabildo, se pide por internet y hay un cupo diario de 70 personas. De febrero a junio se cierran vías por la nidificación del halcón tagarote. Orientación sur y sol todo el día: mejor madrugar. Se aparca en Acojeja sin bloquear portones ni accesos a las fincas, y se sube a pie entre 15 y 30 minutos. Vistas al Atlántico y a La Gomera." },
     cat:{ es:"Escalada · Guaría · Guía de Isora · Sur · Deportiva" },
     tags:["Escalada","Guaría","Guía de Isora","Sur","Deportiva","Basalto","Permiso","Monumento Natural","Montaña de Tejina","Acojeja","La Gomera","TF-82"] },
@@ -15024,18 +15040,21 @@ const places = [
     address:"Urb. San Marcos, Icod de los Vinos",
     tags:["Camping","Privado","San Marcos","Icod","Noroeste","Autocaravana"] },
   { id:"camping-madre-agua", warn:"incendio", category:"camping", name:"Campamento Madre del Agua (Granadilla)", emoji:"🏕️", color:"#1c2833", lat:28.1823, lng:-16.5953,
+    reserva:true,
     desc:{ es:"Campamento oficial del Cabildo de Tenerife en Granadilla de Abona, en el Parque Natural de la Corona Forestal. Enclave remoto y tranquilo en el pinar del sur. Para campamentos de grupos (colegios, asociaciones) con autorización previa (se solicita en Tenerife ON)." },
     cat:{ es:"Campamento · Granadilla de Abona · Cabildo" },
     hours:{ es:"Reserva de grupos · Tenerife ON" },
     phone:"636 12 10 20",
     tags:["Campamento","Cabildo","Granadilla","Corona Forestal","Grupos","Permiso","Sur"] },
   { id:"camping-barranco-arena", warn:"incendio", category:"camping", name:"Campamento Barranco de la Arena (La Guancha)", emoji:"🏕️", color:"#1c2833", lat:28.3372, lng:-16.6273,
+    reserva:true,
     desc:{ es:"Campamento oficial del Cabildo de Tenerife en La Guancha, en el Parque Natural de la Corona Forestal. Comparte instalaciones con el Aula en la Naturaleza, cerca de El Lagar. Para campamentos de grupos (colegios, asociaciones) con autorización previa (se solicita en Tenerife ON)." },
     cat:{ es:"Campamento · La Guancha · Cabildo" },
     hours:{ es:"Reserva de grupos · Tenerife ON" },
     phone:"922 23 91 53",
     tags:["Campamento","Cabildo","La Guancha","Aula Naturaleza","Grupos","Permiso","Norte"] },
   { id:"camping-la-caldera", warn:"incendio", category:"camping", name:"Zona Acampada La Caldera (La Orotava)", emoji:"🏕️", color:"#1c2833", lat:28.3575, lng:-16.5016,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en La Orotava. Está en el Parque Natural de la Corona Forestal. Punto de partida de varios senderos por el bosque. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · La Orotava · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15043,6 +15062,7 @@ const places = [
     address:"La Caldera, La Orotava, Tenerife",
     tags:["Camping","Cabildo","La Orotava","Norte","Permiso","Naturaleza"] },
   { id:"camping-ramon-caminero", warn:"incendio", category:"camping", name:"Zona Acampada Ramón Caminero (La Orotava)", emoji:"🏕️", color:"#1c2833", lat:28.3297, lng:-16.5328,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en La Orotava. Está en el Parque Natural de la Corona Forestal. Con vistas sobre el mar de nubes. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · La Orotava · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15050,6 +15070,7 @@ const places = [
     address:"Ramón Caminero, La Orotava, Tenerife",
     tags:["Camping","Cabildo","La Orotava","Norte","Permiso","Naturaleza"] },
   { id:"camping-las-lajas", warn:"incendio", category:"camping", name:"Zona Acampada Las Lajas (Adeje)", emoji:"🏕️", color:"#1c2833", lat:28.190608, lng:-16.665057,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en Adeje. Está en el Parque Natural de la Corona Forestal. En alta montaña, junto al Parque Nacional del Teide; hábitat del pinzón azul. Aforo de 30 plazas. Reserva obligatoria para todos en Tenerife ON, de 12:00 a 12:00 y un máximo de 7 días. Junto a un área recreativa con aseos y fogones. El agua NO es potable: hay que llevarla." },
     cat:{ es:"Zona Acampada · Adeje · Cabildo" },
     hours:{ es:"Reserva obligatoria en Tenerife ON · de 12:00 a 12:00 · máximo 7 días" },
@@ -15057,6 +15078,7 @@ const places = [
     address:"Altos de Adeje, Adeje",
     tags:["Camping","Cabildo","Adeje","Cumbre","Permiso","Naturaleza"] },
   { id:"camping-arenas-negras", warn:"incendio", category:"camping", name:"Zona Acampada Arenas Negras (Garachico)", emoji:"🏕️", color:"#1c2833", lat:28.3199, lng:-16.7576,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en Garachico. Está en el Parque Natural de la Corona Forestal. Contraste de arena volcánica negra, pinos y mar al fondo. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · Garachico · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15064,6 +15086,7 @@ const places = [
     address:"Arenas Negras, Garachico, Tenerife",
     tags:["Camping","Cabildo","Garachico","Norte","Permiso","Naturaleza"] },
   { id:"camping-san-jose-llanos", warn:"incendio", category:"camping", name:"Zona Acampada San José de Los Llanos (El Tanque)", emoji:"🏕️", color:"#1c2833", lat:28.3276, lng:-16.7835,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en El Tanque. Está en el Parque Natural de la Corona Forestal. Con zona de juegos y restaurante cercano. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · El Tanque · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15071,6 +15094,7 @@ const places = [
     address:"San José de Los Llanos, El Tanque, Tenerife",
     tags:["Camping","Cabildo","El Tanque","Norte","Permiso","Naturaleza"] },
   { id:"camping-las-hayas", warn:"incendio", category:"camping", name:"Zona Acampada Las Hayas (Icod de los Vinos)", emoji:"🏕️", color:"#1c2833", lat:28.3339, lng:-16.6772,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en Icod de los Vinos. Está en el Parque Natural de la Corona Forestal. Acceso por pista de tierra: mejor con 4x4. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · Icod de los Vinos · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15078,6 +15102,7 @@ const places = [
     address:"Las Hayas, Icod de los Vinos, Tenerife",
     tags:["Camping","Cabildo","Icod de los Vinos","Norte","Permiso","Naturaleza"] },
   { id:"camping-las-calderetas", warn:"incendio", category:"camping", name:"Zona Acampada Las Calderetas (El Sauzal)", emoji:"🏕️", color:"#1c2833", lat:28.447, lng:-16.4115,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en El Sauzal. Está en el Parque Natural de la Corona Forestal. Con senderos señalizados y zona de juegos. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · El Sauzal · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15085,6 +15110,7 @@ const places = [
     address:"Las Calderetas, El Sauzal, Tenerife",
     tags:["Camping","Cabildo","El Sauzal","Norte","Permiso","Naturaleza"] },
   { id:"camping-la-tahona", warn:"incendio", category:"camping", name:"Zona Acampada La Tahona (San Juan de la Rambla)", emoji:"🏕️", color:"#1c2833", lat:28.3518, lng:-16.6306,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en San Juan de la Rambla. Está en el Parque Natural de la Corona Forestal. Acceso por carretera estrecha y empinada. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · San Juan de la Rambla · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15092,6 +15118,7 @@ const places = [
     address:"La Tahona, San Juan de la Rambla, Tenerife",
     tags:["Camping","Cabildo","San Juan de la Rambla","Norte","Permiso","Naturaleza"] },
   { id:"camping-el-contador", warn:"incendio", category:"camping", name:"Zona Acampada El Contador (Arico)", emoji:"🏕️", color:"#1c2833", lat:28.2076, lng:-16.5401,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en Arico. Está en el Parque Natural de la Corona Forestal. Acceso por pista de tierra: mejor con 4x4. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · Arico · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15099,6 +15126,7 @@ const places = [
     address:"El Contador, Arico, Tenerife",
     tags:["Camping","Cabildo","Arico","Sur","Permiso","Naturaleza"] },
   { id:"camping-los-pedregales", warn:"incendio", category:"camping", name:"Zona Acampada Los Pedregales (Buenavista del Norte)", emoji:"🏕️", color:"#1c2833", lat:28.3419, lng:-16.8566,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en Buenavista del Norte. Está en el Parque Rural de Teno. Entre palmeras del macizo de Teno; solo tiendas, sin autocaravanas. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · Buenavista del Norte · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15106,6 +15134,7 @@ const places = [
     address:"Los Pedregales, Buenavista del Norte, Tenerife",
     tags:["Camping","Cabildo","Buenavista del Norte","Teno","Permiso","Naturaleza"] },
   { id:"camping-fuente-pedro", warn:"incendio", category:"camping", name:"Zona Acampada Fuente de Pedro (San Juan de la Rambla)", emoji:"🏕️", color:"#1c2833", lat:28.3396, lng:-16.6238,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en San Juan de la Rambla. Está en el Parque Natural de la Corona Forestal. Acceso por pista de tierra: mejor con 4x4. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · San Juan de la Rambla · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15113,6 +15142,7 @@ const places = [
     address:"Fuente de Pedro, San Juan de la Rambla, Tenerife",
     tags:["Camping","Cabildo","San Juan de la Rambla","Norte","Permiso","Naturaleza"] },
   { id:"camping-fuente-llano", warn:"incendio", category:"camping", name:"Zona Acampada Fuente del Llano (Arico)", emoji:"🏕️", color:"#1c2833", lat:28.2195, lng:-16.5532,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en Arico. Está en el Parque Natural de la Corona Forestal. Cielo excelente para ver las estrellas; acceso con 4x4. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · Arico · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15120,6 +15150,7 @@ const places = [
     address:"Fuente del Llano, Arico, Tenerife",
     tags:["Camping","Cabildo","Arico","Sur","Permiso","Naturaleza"] },
   { id:"camping-chio", warn:"incendio", category:"camping", name:"Zona Acampada Chío (Guía de Isora)", emoji:"🏕️", color:"#1c2833", lat:28.2666, lng:-16.7466,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en Guía de Isora. Está en el Parque Natural de la Corona Forestal. En el pinar de Chío, cerca del acceso al Teide y con zona de juegos. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · Guía de Isora · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15127,6 +15158,7 @@ const places = [
     address:"Chío, Guía de Isora, Tenerife",
     tags:["Camping","Cabildo","Guía de Isora","Oeste","Permiso","Naturaleza"] },
   { id:"camping-el-lagar", warn:"incendio", category:"camping", name:"Zona Acampada El Lagar (Icod de los Vinos)", emoji:"🏕️", color:"#1c2833", lat:28.3433, lng:-16.6543,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en Icod de los Vinos. Está en el Parque Natural de la Corona Forestal. Con vistas al Teide y senderos por el bosque. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · Icod de los Vinos · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15134,6 +15166,7 @@ const places = [
     address:"El Lagar, Icod de los Vinos, Tenerife",
     tags:["Camping","Cabildo","Icod de los Vinos","Norte","Permiso","Naturaleza"] },
   { id:"camping-las-raices", warn:"incendio", category:"camping", name:"Zona Acampada Las Raíces (La Esperanza)", emoji:"🏕️", color:"#1c2833", lat:28.4198, lng:-16.3784,
+    reserva:true,
     desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en La Esperanza. Está en el Parque Natural de la Corona Forestal. Punto de partida de varios senderos por el bosque. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · La Esperanza · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
@@ -15933,6 +15966,13 @@ TG_LUGARES_I18N.aplicarPendientes();
    ni en las sugerencias de «Ruta del día», ni en las listas del Asistente.
    Sin excepciones por nombre: solo el estado. */
 function lugarSugerible(p) { return !!p && (!p.estado || p.estado === 'abierto'); }
+/* Y necesitar reserva no es estar cerrado (Jerome, 30 de octubre de 2026: «es
+   diferente necesitar una reserva o autorización. Que cerrado!»): se sigue
+   proponiendo, y en el planificador lleva un pequeño «(reserva necesaria)».
+   reserva:true, solo donde su propia ficha dice que hace falta para ir, con
+   su enlace: reserva o permiso obligatorio, imprescindible, con cita, con
+   autorizacion previa. Si solo se recomienda, o la piden solo los grupos en
+   un sitio abierto a todos, no. */
 
 // ══════════════════════════════════════════════════════════
 //  ESTADO
@@ -31923,6 +31963,8 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
   font-size:0.73rem; color:rgba(255,255,255,0.45);
   display:flex; gap:8px; flex-wrap:wrap; margin-bottom:5px;
 }
+/* «(reserva necesaria)»: pequeño, como lo demas de la linea, en el dorado de la app */
+.dp-stop-reserva { color:#c9a84c; }
 .dp-stop-desc {
   font-size:0.78rem; color:rgba(255,255,255,0.6); line-height:1.45;
 }
@@ -32434,7 +32476,7 @@ const DP_ZONAS = [
   {id:"sur",icon:"☀️",tx:{"es":["Sur", "Los Cristianos, Costa Adeje"],"en":["South", "Los Cristianos, Costa Adeje"],"fr":["Sud", "Los Cristianos, Costa Adeje"],"de":["Süden", "Los Cristianos, Costa Adeje"],"it":["Sud", "Los Cristianos, Costa Adeje"],"nl":["Zuid", "Los Cristianos, Costa Adeje"],"zh":["南部", "洛斯克里斯蒂亚诺斯、阿德赫海岸"],"zht":["南部", "洛斯克里斯蒂亞諾斯、阿德赫海岸"],"bg":["Юг", "Лос Кристианос, Коста Адехе"],"pl":["Południe", "Los Cristianos, Costa Adeje"]}},
   {id:"igual",icon:"🏝️",tx:{"es":["Me da igual", "Toda la isla"],"en":["I don’t mind", "The whole island"],"fr":["Peu importe", "Toute l’île"],"de":["Ist mir egal", "Die ganze Insel"],"it":["Non importa", "Tutta l’isola"],"nl":["Maakt niet uit", "Het hele eiland"],"zh":["都可以", "全岛"],"zht":["都可以", "全島"],"bg":["Няма значение", "Целият остров"],"pl":["Wszystko jedno", "Cała wyspa"]}}
 ];
-const DP_UI = {"tr15coche":{"es": "15 min en coche", "en": "15 min by car", "fr": "15 min en voiture", "de": "15 Min. mit dem Auto", "it": "15 min in auto", "nl": "15 min met de auto", "zh": "自驾 15 分钟", "zht": "自駕 15 分鐘", "bg": "15 мин с кола", "pl": "15 min samochodem"},"tr20titsa":{"es": "20 min en guagua TITSA", "en": "20 min on a TITSA bus", "fr": "20 min en bus TITSA", "de": "20 Min. mit dem TITSA-Bus", "it": "20 min in autobus TITSA", "nl": "20 min met de TITSA-bus", "zh": "乘 TITSA 公交 20 分钟", "zht": "搭 TITSA 公車 20 分鐘", "bg": "20 мин с автобус TITSA", "pl": "20 min autobusem TITSA"},"tr10pie":{"es": "10 min a pie", "en": "10 min on foot", "fr": "10 min à pied", "de": "10 Min. zu Fuß", "it": "10 min a piedi", "nl": "10 min te voet", "zh": "步行 10 分钟", "zht": "步行 10 分鐘", "bg": "10 мин пеша", "pl": "10 min pieszo"},"tr20coche":{"es": "20 min en coche", "en": "20 min by car", "fr": "20 min en voiture", "de": "20 Min. mit dem Auto", "it": "20 min in auto", "nl": "20 min met de auto", "zh": "自驾 20 分钟", "zht": "自駕 20 分鐘", "bg": "20 мин с кола", "pl": "20 min samochodem"},"tr30guagua":{"es": "30 min en guagua", "en": "30 min by bus", "fr": "30 min en bus", "de": "30 Min. mit dem Bus", "it": "30 min in autobus", "nl": "30 min met de bus", "zh": "乘公交 30 分钟", "zht": "搭公車 30 分鐘", "bg": "30 мин с автобус", "pl": "30 min autobusem"},"zNaturaleza":{"es": "🌿 Naturaleza", "en": "🌿 Nature", "fr": "🌿 Nature", "de": "🌿 Natur", "it": "🌿 Natura", "nl": "🌿 Natuur", "zh": "🌿 自然", "zht": "🌿 自然", "bg": "🌿 Природа", "pl": "🌿 Przyroda"},"zCultura":{"es": "🏛️ Cultura", "en": "🏛️ Culture", "fr": "🏛️ Culture", "de": "🏛️ Kultur", "it": "🏛️ Cultura", "nl": "🏛️ Cultuur", "zh": "🏛️ 文化", "zht": "🏛️ 文化", "bg": "🏛️ Култура", "pl": "🏛️ Kultura"},"zPlaya":{"es": "🏖️ Playa", "en": "🏖️ Beach", "fr": "🏖️ Plage", "de": "🏖️ Strand", "it": "🏖️ Spiaggia", "nl": "🏖️ Strand", "zh": "🏖️ 海滩", "zht": "🏖️ 海灘", "bg": "🏖️ Плаж", "pl": "🏖️ Plaża"},"zGastronomia":{"es": "🍽️ Gastronomía", "en": "🍽️ Food", "fr": "🍽️ Gastronomie", "de": "🍽️ Gastronomie", "it": "🍽️ Gastronomia", "nl": "🍽️ Gastronomie", "zh": "🍽️ 美食", "zht": "🍽️ 美食", "bg": "🍽️ Кухня", "pl": "🍽️ Gastronomia"},"zFamilia":{"es": "👨‍👩‍👧 Familia", "en": "👨‍👩‍👧 Family", "fr": "👨‍👩‍👧 Famille", "de": "👨‍👩‍👧 Familie", "it": "👨‍👩‍👧 Famiglia", "nl": "👨‍👩‍👧 Gezin", "zh": "👨‍👩‍👧 亲子", "zht": "👨‍👩‍👧 親子", "bg": "👨‍👩‍👧 Семейство", "pl": "👨‍👩‍👧 Rodzina"},"zMix":{"es": "✨ Lo mejor de hoy", "en": "✨ Today's best", "fr": "✨ Le meilleur du jour", "de": "✨ Das Beste von heute", "it": "✨ Il meglio di oggi", "nl": "✨ Het beste van vandaag", "zh": "✨ 今日精选", "zht": "✨ 今日精選", "bg": "✨ Най-доброто за днес", "pl": "✨ Najlepsze na dziś"},"tuItinerario":{"es": "Su itinerario", "en": "Your itinerary", "fr": "Votre itinéraire", "de": "Ihre Route", "it": "Il Suo itinerario", "nl": "Uw route", "zh": "您的行程", "zht": "您的行程", "bg": "Вашият маршрут", "pl": "Proponowany plan"},"verMapa":{"es": "📍 Ver mapa", "en": "📍 See on map", "fr": "📍 Voir sur la carte", "de": "📍 Auf der Karte", "it": "📍 Vedi sulla mappa", "nl": "📍 Op de kaart", "zh": "📍 在地图上看", "zht": "📍 在地圖上看", "bg": "📍 Виж на картата", "pl": "📍 Zobacz na mapie"},"otroLugar":{"es": "🔄 Otro", "en": "🔄 Another", "fr": "🔄 Un autre", "de": "🔄 Anderer", "it": "🔄 Un altro", "nl": "🔄 Een andere", "zh": "🔄 换一个", "zht": "🔄 換一個", "bg": "🔄 Друго", "pl": "🔄 Inne"},"cambiarEste":{"es": "Cambiar este lugar", "en": "Change this place", "fr": "Changer ce lieu", "de": "Diesen Ort wechseln", "it": "Cambia questo luogo", "nl": "Deze plek wisselen", "zh": "更换这个地点", "zht": "更換這個地點", "bg": "Смени това място", "pl": "Zmień to miejsce"},"quitarDeRuta":{"es": "Quitar del itinerario", "en": "Remove from itinerary", "fr": "Retirer de l’itinéraire", "de": "Aus der Route entfernen", "it": "Togli dall’itinerario", "nl": "Uit de route halen", "zh": "从行程中移除", "zht": "從行程中移除", "bg": "Премахни от маршрута", "pl": "Usuń z planu"},"pausaComida":{"es": "Pausa comida", "en": "Lunch break", "fr": "Pause déjeuner", "de": "Mittagspause", "it": "Pausa pranzo", "nl": "Lunchpauze", "zh": "午餐时间", "zht": "午餐時間", "bg": "Пауза за обяд", "pl": "Przerwa na obiad"},"pausa":{"es": "🍽️ Pausa", "en": "🍽️ Break", "fr": "🍽️ Pause", "de": "🍽️ Pause", "it": "🍽️ Pausa", "nl": "🍽️ Pauze", "zh": "🍽️ 休息", "zht": "🍽️ 休息", "bg": "🍽️ Пауза", "pl": "🍽️ Przerwa"},"timeTitle":{"es":"\u00bfCu\u00e1nto tiempo tiene?","en":"How much time do you have?","fr":"Combien de temps avez-vous ?","de":"Wie viel Zeit haben Sie?","it":"Quanto tempo ha?","nl":"Hoeveel tijd heeft u?","zh":"\u60a8\u6709\u591a\u5c11\u65f6\u95f4\uff1f","zht":"\u60a8\u6709\u591a\u5c11\u6642\u9593\uff1f", "bg":"С колко време разполагате?", pl: "Ile czasu do dyspozycji?"},"transportTitle":{"es":"\u00bfC\u00f3mo se mueve?","en":"How do you get around?","fr":"Comment vous d\u00e9placez-vous ?","de":"Wie sind Sie unterwegs?","it":"Come si muove?","nl":"Hoe verplaatst u zich?","zh":"\u60a8\u600e\u4e48\u51fa\u884c\uff1f","zht":"\u60a8\u600e\u9ebc\u51fa\u884c\uff1f", "bg":"Как се придвижвате?", pl: "Czym się poruszać?"},"dayTypeTitle":{"es":"\u00bfQu\u00e9 tipo de d\u00eda busca?","en":"What kind of day are you after?","fr":"Quel genre de journ\u00e9e ?","de":"Was f\u00fcr ein Tag soll es sein?","it":"Che tipo di giornata cerca?","nl":"Wat voor dag zoekt u?","zh":"\u60f3\u8981\u4ec0\u4e48\u6837\u7684\u4e00\u5929\uff1f","zht":"\u60f3\u8981\u4ec0\u9ebc\u6a23\u7684\u4e00\u5929\uff1f", "bg":"Какъв ден търсите?", pl: "Jaki ma być ten dzień?"},"backTime":{"es":"\u2039 Cambiar tiempo","en":"\u2039 Change time","fr":"\u2039 Changer la dur\u00e9e","de":"\u2039 Zeit \u00e4ndern","it":"\u2039 Cambia durata","nl":"\u2039 Tijd wijzigen","zh":"\u2039 \u66f4\u6539\u65f6\u957f","zht":"\u2039 \u66f4\u6539\u6642\u9577", "bg":"‹ Смени времето", pl: "‹ Zmień czas"},"backActivities":{"es":"\u2039 Cambiar actividades","en":"\u2039 Change activities","fr":"\u2039 Changer d\u2019activit\u00e9s","de":"\u2039 Aktivit\u00e4ten \u00e4ndern","it":"\u2039 Cambia attivit\u00e0","nl":"\u2039 Activiteiten wijzigen","zh":"\u2039 \u66f4\u6539\u6d3b\u52a8","zht":"\u2039 \u66f4\u6539\u6d3b\u52d5", "bg":"‹ Смени дейностите", pl: "‹ Zmień zajęcia"},"createBtn":{"es":"Crear itinerario \u2192","en":"Create itinerary \u2192","fr":"Cr\u00e9er l\u2019itin\u00e9raire \u2192","de":"Route erstellen \u2192","it":"Crea itinerario \u2192","nl":"Route maken \u2192","zh":"\u751f\u6210\u884c\u7a0b \u2192","zht":"\u7522\u751f\u884c\u7a0b \u2192", "bg":"Създай маршрут →", pl: "Utwórz plan →"},"zonaTitle":{"es": "¿Qué zona de la isla?", "en": "Which area of the island?", "fr": "Quelle zone de l’île ?", "de": "Welcher Teil der Insel?", "it": "Quale zona dell’isola?", "nl": "Welk gebied van het eiland?", "zh": "想去岛上哪个区域？", "zht": "想去島上哪個區域？", "bg": "В коя част на острова?", "pl": "Która część wyspy?"},"backZona":{"es": "‹ Cambiar zona", "en": "‹ Change area", "fr": "‹ Changer de zone", "de": "‹ Inselteil ändern", "it": "‹ Cambia zona", "nl": "‹ Gebied wijzigen", "zh": "‹ 更改区域", "zht": "‹ 更改區域", "bg": "‹ Смени частта на острова", "pl": "‹ Zmień część wyspy"}};
+const DP_UI = {"tr15coche":{"es": "15 min en coche", "en": "15 min by car", "fr": "15 min en voiture", "de": "15 Min. mit dem Auto", "it": "15 min in auto", "nl": "15 min met de auto", "zh": "自驾 15 分钟", "zht": "自駕 15 分鐘", "bg": "15 мин с кола", "pl": "15 min samochodem"},"tr20titsa":{"es": "20 min en guagua TITSA", "en": "20 min on a TITSA bus", "fr": "20 min en bus TITSA", "de": "20 Min. mit dem TITSA-Bus", "it": "20 min in autobus TITSA", "nl": "20 min met de TITSA-bus", "zh": "乘 TITSA 公交 20 分钟", "zht": "搭 TITSA 公車 20 分鐘", "bg": "20 мин с автобус TITSA", "pl": "20 min autobusem TITSA"},"tr10pie":{"es": "10 min a pie", "en": "10 min on foot", "fr": "10 min à pied", "de": "10 Min. zu Fuß", "it": "10 min a piedi", "nl": "10 min te voet", "zh": "步行 10 分钟", "zht": "步行 10 分鐘", "bg": "10 мин пеша", "pl": "10 min pieszo"},"tr20coche":{"es": "20 min en coche", "en": "20 min by car", "fr": "20 min en voiture", "de": "20 Min. mit dem Auto", "it": "20 min in auto", "nl": "20 min met de auto", "zh": "自驾 20 分钟", "zht": "自駕 20 分鐘", "bg": "20 мин с кола", "pl": "20 min samochodem"},"tr30guagua":{"es": "30 min en guagua", "en": "30 min by bus", "fr": "30 min en bus", "de": "30 Min. mit dem Bus", "it": "30 min in autobus", "nl": "30 min met de bus", "zh": "乘公交 30 分钟", "zht": "搭公車 30 分鐘", "bg": "30 мин с автобус", "pl": "30 min autobusem"},"zNaturaleza":{"es": "🌿 Naturaleza", "en": "🌿 Nature", "fr": "🌿 Nature", "de": "🌿 Natur", "it": "🌿 Natura", "nl": "🌿 Natuur", "zh": "🌿 自然", "zht": "🌿 自然", "bg": "🌿 Природа", "pl": "🌿 Przyroda"},"zCultura":{"es": "🏛️ Cultura", "en": "🏛️ Culture", "fr": "🏛️ Culture", "de": "🏛️ Kultur", "it": "🏛️ Cultura", "nl": "🏛️ Cultuur", "zh": "🏛️ 文化", "zht": "🏛️ 文化", "bg": "🏛️ Култура", "pl": "🏛️ Kultura"},"zPlaya":{"es": "🏖️ Playa", "en": "🏖️ Beach", "fr": "🏖️ Plage", "de": "🏖️ Strand", "it": "🏖️ Spiaggia", "nl": "🏖️ Strand", "zh": "🏖️ 海滩", "zht": "🏖️ 海灘", "bg": "🏖️ Плаж", "pl": "🏖️ Plaża"},"zGastronomia":{"es": "🍽️ Gastronomía", "en": "🍽️ Food", "fr": "🍽️ Gastronomie", "de": "🍽️ Gastronomie", "it": "🍽️ Gastronomia", "nl": "🍽️ Gastronomie", "zh": "🍽️ 美食", "zht": "🍽️ 美食", "bg": "🍽️ Кухня", "pl": "🍽️ Gastronomia"},"zFamilia":{"es": "👨‍👩‍👧 Familia", "en": "👨‍👩‍👧 Family", "fr": "👨‍👩‍👧 Famille", "de": "👨‍👩‍👧 Familie", "it": "👨‍👩‍👧 Famiglia", "nl": "👨‍👩‍👧 Gezin", "zh": "👨‍👩‍👧 亲子", "zht": "👨‍👩‍👧 親子", "bg": "👨‍👩‍👧 Семейство", "pl": "👨‍👩‍👧 Rodzina"},"zMix":{"es": "✨ Lo mejor de hoy", "en": "✨ Today's best", "fr": "✨ Le meilleur du jour", "de": "✨ Das Beste von heute", "it": "✨ Il meglio di oggi", "nl": "✨ Het beste van vandaag", "zh": "✨ 今日精选", "zht": "✨ 今日精選", "bg": "✨ Най-доброто за днес", "pl": "✨ Najlepsze na dziś"},"tuItinerario":{"es": "Su itinerario", "en": "Your itinerary", "fr": "Votre itinéraire", "de": "Ihre Route", "it": "Il Suo itinerario", "nl": "Uw route", "zh": "您的行程", "zht": "您的行程", "bg": "Вашият маршрут", "pl": "Proponowany plan"},"verMapa":{"es": "📍 Ver mapa", "en": "📍 See on map", "fr": "📍 Voir sur la carte", "de": "📍 Auf der Karte", "it": "📍 Vedi sulla mappa", "nl": "📍 Op de kaart", "zh": "📍 在地图上看", "zht": "📍 在地圖上看", "bg": "📍 Виж на картата", "pl": "📍 Zobacz na mapie"},"otroLugar":{"es": "🔄 Otro", "en": "🔄 Another", "fr": "🔄 Un autre", "de": "🔄 Anderer", "it": "🔄 Un altro", "nl": "🔄 Een andere", "zh": "🔄 换一个", "zht": "🔄 換一個", "bg": "🔄 Друго", "pl": "🔄 Inne"},"cambiarEste":{"es": "Cambiar este lugar", "en": "Change this place", "fr": "Changer ce lieu", "de": "Diesen Ort wechseln", "it": "Cambia questo luogo", "nl": "Deze plek wisselen", "zh": "更换这个地点", "zht": "更換這個地點", "bg": "Смени това място", "pl": "Zmień to miejsce"},"quitarDeRuta":{"es": "Quitar del itinerario", "en": "Remove from itinerary", "fr": "Retirer de l’itinéraire", "de": "Aus der Route entfernen", "it": "Togli dall’itinerario", "nl": "Uit de route halen", "zh": "从行程中移除", "zht": "從行程中移除", "bg": "Премахни от маршрута", "pl": "Usuń z planu"},"pausaComida":{"es": "Pausa comida", "en": "Lunch break", "fr": "Pause déjeuner", "de": "Mittagspause", "it": "Pausa pranzo", "nl": "Lunchpauze", "zh": "午餐时间", "zht": "午餐時間", "bg": "Пауза за обяд", "pl": "Przerwa na obiad"},"reservaNecesaria":{"es": "(reserva necesaria)", "en": "(booking required)", "fr": "(réservation nécessaire)", "de": "(Reservierung erforderlich)", "it": "(prenotazione necessaria)", "nl": "(reservering nodig)", "zh": "（需预约）", "zht": "（需預約）", "bg": "(необходима резервация)", "pl": "(wymagana rezerwacja)"},"pausa":{"es": "🍽️ Pausa", "en": "🍽️ Break", "fr": "🍽️ Pause", "de": "🍽️ Pause", "it": "🍽️ Pausa", "nl": "🍽️ Pauze", "zh": "🍽️ 休息", "zht": "🍽️ 休息", "bg": "🍽️ Пауза", "pl": "🍽️ Przerwa"},"timeTitle":{"es":"\u00bfCu\u00e1nto tiempo tiene?","en":"How much time do you have?","fr":"Combien de temps avez-vous ?","de":"Wie viel Zeit haben Sie?","it":"Quanto tempo ha?","nl":"Hoeveel tijd heeft u?","zh":"\u60a8\u6709\u591a\u5c11\u65f6\u95f4\uff1f","zht":"\u60a8\u6709\u591a\u5c11\u6642\u9593\uff1f", "bg":"С колко време разполагате?", pl: "Ile czasu do dyspozycji?"},"transportTitle":{"es":"\u00bfC\u00f3mo se mueve?","en":"How do you get around?","fr":"Comment vous d\u00e9placez-vous ?","de":"Wie sind Sie unterwegs?","it":"Come si muove?","nl":"Hoe verplaatst u zich?","zh":"\u60a8\u600e\u4e48\u51fa\u884c\uff1f","zht":"\u60a8\u600e\u9ebc\u51fa\u884c\uff1f", "bg":"Как се придвижвате?", pl: "Czym się poruszać?"},"dayTypeTitle":{"es":"\u00bfQu\u00e9 tipo de d\u00eda busca?","en":"What kind of day are you after?","fr":"Quel genre de journ\u00e9e ?","de":"Was f\u00fcr ein Tag soll es sein?","it":"Che tipo di giornata cerca?","nl":"Wat voor dag zoekt u?","zh":"\u60f3\u8981\u4ec0\u4e48\u6837\u7684\u4e00\u5929\uff1f","zht":"\u60f3\u8981\u4ec0\u9ebc\u6a23\u7684\u4e00\u5929\uff1f", "bg":"Какъв ден търсите?", pl: "Jaki ma być ten dzień?"},"backTime":{"es":"\u2039 Cambiar tiempo","en":"\u2039 Change time","fr":"\u2039 Changer la dur\u00e9e","de":"\u2039 Zeit \u00e4ndern","it":"\u2039 Cambia durata","nl":"\u2039 Tijd wijzigen","zh":"\u2039 \u66f4\u6539\u65f6\u957f","zht":"\u2039 \u66f4\u6539\u6642\u9577", "bg":"‹ Смени времето", pl: "‹ Zmień czas"},"backActivities":{"es":"\u2039 Cambiar actividades","en":"\u2039 Change activities","fr":"\u2039 Changer d\u2019activit\u00e9s","de":"\u2039 Aktivit\u00e4ten \u00e4ndern","it":"\u2039 Cambia attivit\u00e0","nl":"\u2039 Activiteiten wijzigen","zh":"\u2039 \u66f4\u6539\u6d3b\u52a8","zht":"\u2039 \u66f4\u6539\u6d3b\u52d5", "bg":"‹ Смени дейностите", pl: "‹ Zmień zajęcia"},"createBtn":{"es":"Crear itinerario \u2192","en":"Create itinerary \u2192","fr":"Cr\u00e9er l\u2019itin\u00e9raire \u2192","de":"Route erstellen \u2192","it":"Crea itinerario \u2192","nl":"Route maken \u2192","zh":"\u751f\u6210\u884c\u7a0b \u2192","zht":"\u7522\u751f\u884c\u7a0b \u2192", "bg":"Създай маршрут →", pl: "Utwórz plan →"},"zonaTitle":{"es": "¿Qué zona de la isla?", "en": "Which area of the island?", "fr": "Quelle zone de l’île ?", "de": "Welcher Teil der Insel?", "it": "Quale zona dell’isola?", "nl": "Welk gebied van het eiland?", "zh": "想去岛上哪个区域？", "zht": "想去島上哪個區域？", "bg": "В коя част на острова?", "pl": "Która część wyspy?"},"backZona":{"es": "‹ Cambiar zona", "en": "‹ Change area", "fr": "‹ Changer de zone", "de": "‹ Inselteil ändern", "it": "‹ Cambia zona", "nl": "‹ Gebied wijzigen", "zh": "‹ 更改区域", "zht": "‹ 更改區域", "bg": "‹ Смени частта на острова", "pl": "‹ Zmień część wyspy"}};
 
 // Duración estimada por categoría (minutos)
 const DP_DURATION = {
@@ -33265,7 +33307,7 @@ function dpiRenderResult(stops) {
         </div>
         <div class="dp-stop-body">
           <div class="dp-stop-name">${emoji} ${name}</div>
-          <div class="dp-stop-meta"><span>⏱ ~${dur} ${escapeHtml(tx('routeMin'))}</span>${isLunch ? '<span>'+escapeHtml(dpT('pausaComida'))+'</span>' : ''}</div>
+          <div class="dp-stop-meta"><span>⏱ ~${dur} ${escapeHtml(tx('routeMin'))}</span>${isLunch ? '<span>'+escapeHtml(dpT('pausaComida'))+'</span>' : ''}${place.reserva ? '<span class="dp-stop-reserva">'+escapeHtml(dpT('reservaNecesaria'))+'</span>' : ''}</div>
           <div class="dp-stop-desc">${desc}</div>
           <div class="dp-stop-actions">
             <span class="dp-stop-tag" onclick="dpFlyToPlace('${escapeAttr(place.id)}')">${escapeHtml(dpT('verMapa'))}</span>

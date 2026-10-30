@@ -992,7 +992,8 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
      'los enlaces: el brillo del cielo del IAC, los eclipses del IGN en su direccion de ahora y HYG en Codeberg (el GitHub esta archivado)');
   /* las seis fichas del Teide (index.html y los nueve idiomas), sin lo que la revision vio mal */
   const FT = ['pico-teide-cumbre', 'montana-blanca', 'mir-rambleta-teide', 'ruta-pico-viejo', 'sendero-pico-viejo', 'observatorio'];
-  const descEs = id => (index.match(new RegExp('\\{ id:"' + id + '",[^\\n]*\\n\\s*desc:\\{ es:"((?:[^"\\\\]|\\\\.)*)" \\}')) || [, ''])[1];
+  /* entre la primera linea y la descripcion puede haber otras: reserva, estado, fuente, verificado (30 de octubre) */
+  const descEs = id => (index.match(new RegExp('\\{ id:"' + id + '",[^\\n]*\\n(?:\\s*(?:reserva|estado|fuente|verificado):[^\\n]*\\n)*\\s*desc:\\{ es:"((?:[^"\\\\]|\\\\.)*)" \\}')) || [, ''])[1];
   const MAL_ES = /Permiso gratuito|~\s?14\s?€|No requiere permiso|astroturismo nocturno|Mejor observatorio solar|Sendero 10 \(TF-6\)|mucho agua/;
   const malT = FT.filter(id => !descEs(id) || MAL_ES.test(descEs(id)) || (id !== 'observatorio' && !/Tenerife ON/.test(descEs(id))));
   ok(!malT.length && /de noche no se visita/.test(descEs('observatorio')) && /desde 42 € no residente y desde 10,50 € residente/.test(descEs('mir-rambleta-teide')),
