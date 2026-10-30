@@ -20,9 +20,10 @@
  *      cabecera), la linea «window.TGO_NATIVO = true»: con ella la app no
  *      registra service worker, no ofrece instalarse, esconde los dos
  *      botones de avisos push (el de la cuenta y el de «Continuar como
- *      invitado»), no carga Google Analytics ni ensena su aviso de cookies
- *      (22-10-2026) y pide los datos que cambian a diario a la web viva, con
- *      los de dentro de respaldo. Es la UNICA diferencia con la web.
+ *      invitado») y pide los datos que cambian a diario a la web viva, con
+ *      los de dentro de respaldo. Es la UNICA diferencia con la web. (Google
+ *      Analytics y su aviso de cookies tambien miraban la marca; desde el
+ *      30-10-2026 no estan en ninguna parte.)
  *   3. Escribe app/ios/plantillas/<idioma>.lproj/InfoPlist.strings, los
  *      textos de los permisos de iOS (camara, ubicacion, sensores) en los
  *      diez idiomas, SACADOS de la politica de privacidad
@@ -333,21 +334,22 @@ function comprobar(montado) {
      && /NSPrivacyCollectedDataTypeName</.test(priv) && /NSPrivacyCollectedDataTypeHealth</.test(priv) && /NSPrivacyCollectedDataTypeFitness</.test(priv)
      && !/NSPrivacyCollectedDataTypeTracking<\/key>\s*<true\/>/.test(priv),
      'PrivacyInfo.xcprivacy: sin rastreo, sin dominios de rastreo, y los datos que la politica dice que salen (correo, id de usuario, favoritos, coordenadas, busquedas y, con permiso, el perfil: nombre, salud y forma fisica)');
-  /* Google Analytics (22-10-2026): solo en la web. Con la marca, gtag no se
-     configura, tgoLoadGA() vuelve sin cargar nada y el bloque del aviso de
-     cookies sale antes de nada; asi que el manifiesto no declara analitica
-     (ni uso, ni ubicacion aproximada, ni identificador). Si alguien quita
-     una de las tres puertas, o vuelve a declarar analitica sin ellas, para
-     aqui; probar_app.js lo mira ademas en el navegador. */
-  ok(/if \(!window\.TGO_NATIVO\) \{\s*gtag\('consent', 'default'/.test(index)
-     && /function tgoLoadGA\(\)\{\s*if \(window\.TGO_NATIVO \|\| window\.__tgoGA\) return;/.test(index)
-     && /\(function\(\)\{\s*if \(window\.TGO_NATIVO\) return;[^\n]*\n\s*var KEY = 'tgo_consent'/.test(index),
-     'Google Analytics solo en la web: con la marca no se configura, tgoLoadGA() no carga nada y el aviso de cookies no sale');
+  /* Google Analytics: hasta el 30-10-2026 solo en la web (la marca lo
+     apagaba en la app); desde entonces, en ninguna parte (Jerome: «Google
+     analítica puedes quitarlo»). Si vuelve -su cargador, su dominio en la
+     CSP o el aviso de cookies-, para aqui: el manifiesto no declara
+     analitica (ni uso, ni ubicacion aproximada, ni identificador), y la
+     politica dice que no la hay. probar_app.js lo mira ademas en el
+     navegador. */
+  ok(!/googletagmanager|google-analytics|analytics\.google|gtag\(|tgoLoadGA|tgo_consent|consent-banner/.test(index.replace("localStorage.removeItem('tgo_consent')", '')),
+     'sin Google Analytics en index.html: ni su cargador, ni sus dominios en la CSP, ni el aviso de cookies');
+  ok(/localStorage\.removeItem\('tgo_consent'\)/.test(index) && /if \(\/\^_ga\(_\|\$\)\/\.test\(n\)\)/.test(index),
+     'y lo que dejo en el dispositivo quien lo acepto antes (su respuesta y las cookies _ga) se borra al abrir');
   ok(!/NSPrivacyCollectedDataTypePurposeAnalytics|NSPrivacyCollectedDataType(?:ProductInteraction|CoarseLocation|DeviceID)</.test(priv),
      'PrivacyInfo.xcprivacy: sin analitica (ni uso, ni ubicacion aproximada, ni identificador), porque en la app no hay Google Analytics');
   const polEs = JSON.parse(lee('idiomas/privacidad/es.json'));
-  ok(/App Store/.test(polEs.ppStatsTienda || '') && /Google Analytics/.test(polEs.ppStatsTienda || ''),
-     'la politica lo dice (ppStatsTienda): la aplicacion de la App Store no usa Google Analytics', polEs.ppStatsTienda);
+  ok(/no usa Google Analytics/.test(polEs.ppStatsNo || '') && /no pone cookies/.test(polEs.ppStatsNo || ''),
+     'la politica lo dice (ppStatsNo): la app no usa Google Analytics ni pone cookies', polEs.ppStatsNo);
   /* los dos plist bien formados: python3 los lee con plistlib */
   const { spawnSync } = require('child_process');
   for (const f of ['Info.plist.fragmento.plist', 'PrivacyInfo.xcprivacy']) {

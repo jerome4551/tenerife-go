@@ -7,8 +7,8 @@
  * las marcas del tuteo de ese idioma:
  *
  *   · la app viva: UI_TX y LANGS (index.html, servido en el puerto dado);
- *   · los diccionarios {es:'…', en:'…'} sueltos de index.html (el aviso de
- *     cookies, mensajes, el tour…) y places[] (la ficha de cada lugar, en
+ *   · los diccionarios {es:'…', en:'…'} sueltos de index.html (mensajes, el
+ *     tour…) y places[] (la ficha de cada lugar, en
  *     castellano), y la ficha en los demas idiomas (idiomas/<l>.json);
  *   · la politica (idiomas/privacidad/), la pagina de borrar la cuenta
  *     (idiomas/borrar-cuenta/), la ficha de la App Store
@@ -451,7 +451,7 @@ async function textos() {
     mete('index.html', 'linea ' + linea(m.index), m[1], cadena(m[2], m[3]));
   }
   /* y las tablas de un idioma entero, «es: { clave: '…', … }» (las frases del
-     asistente, la instalacion, el mar, el GPX, el aviso de cookies…): del
+     asistente, la instalacion, el mar, el GPX…): del
      «{» a su pareja, saltando lo que va entre comillas, y dentro cada
      «clave: 'texto'» y cada texto de una lista */
   for (const m of index.matchAll(/(?:^|[{,\s])["']?(es|en|fr|de|it|nl|zh|zht|bg|pl)["']?\s*:\s*\{/g)) {

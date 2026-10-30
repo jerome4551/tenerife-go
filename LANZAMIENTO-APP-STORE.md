@@ -23,13 +23,13 @@ pone al principio de `index.html`: `window.TGO_NATIVO = true`. Con ella:
 | Datos que cambian a diario (precios, avisos de AEMET, elementos de los satélites) | Red primero, caché de respaldo (el service worker) | `tgoFetchDatos()`: primero la copia viva de `https://tenerifego.app/datos/…` con 8 s de plazo, leída entera y comprobada (que sea JSON); si no llega, no responde bien, se corta a medias o no es JSON (un portal cautivo), la copia que viaja dentro (la del día en que se montó la app). |
 | «Instalar la app», botón flotante de la PWA | Salen | No salen: ya está instalada. |
 | Avisos push | Web Push con `sw.js` | WKWebView no tiene Web Push: los dos botones «Activar notificaciones» (el de la cuenta y el de «Continuar como invitado») y sus mensajes van ocultos, y `pushInit()` no pregunta nunca. Los avisos nativos (APNs) son otro trabajo (§8). |
-| Google Analytics y el aviso de cookies | Solo si se acepta el aviso: entonces se carga GA4 (Consent Mode v2, señales publicitarias denegadas) | No hay (22 de octubre de 2026): `gtag` no se configura, `tgoLoadGA()` no carga nada y el aviso de cookies no sale. La política lo dice («La aplicación de la App Store no usa Google Analytics», `ppStatsTienda`). Para saber cuánto se usa, App Store Connect tiene su propia analítica (*App Analytics*). |
+| Google Analytics y el aviso de cookies | No hay desde el 30 de octubre de 2026 (hasta entonces, GA4 solo si se aceptaba el aviso). Al abrir, se borran la respuesta al aviso y las cookies `_ga` que quedaran de antes | No hay: hasta el 30 de octubre la marca lo apagaba, y desde ese día no está en ninguna parte. La política lo dice («La app no usa Google Analytics ni ninguna otra herramienta de estadísticas», `ppStatsNo`). Para saber cuánto se usa, App Store Connect tiene su propia analítica (*App Analytics*). |
 | El mapa detallado (`tenerife-osm.pmtiles`, 12 MB) | Se descarga desde la app y se guarda en Cache Storage | Viaja dentro: «nada que descargar ni borrar». |
 | Confirmar el correo de la cuenta | Supabase vuelve a la web | Vuelve a la web viva (`capacitor://localhost` no es una dirección a la que volver). |
 | Compartir un lugar | El enlace de la web | El enlace de la web viva (ya lo hacía con `capacitor://`). |
 | «Antes de subir al Teide» (el cielo, «Dónde ir») | Mira en la caché del móvil los seis ficheros del panel | «Guardado en el móvil» siempre: viajan en el paquete. |
 | La CSP | `connect-src 'self' …` | `connect-src` lleva además `https://tenerifego.app`, para esos datos. |
-| El asistente | Sus respuestas | En cuatro, la suya (`faq/fuente/nativo/respuestas.json`, diez idiomas): «¿Funciona sin conexión?» (desde la primera vez; «Satélite» y «Topo» con red), «¿Cómo instalo la app?» (ya está instalada: nada de navegador ni de otras plataformas, directriz 2.3.10), «¿Qué datos guarda la app?» (ni notificaciones ni estadísticas: Google Analytics solo está en la web) y «¿Puedo recibir una frase cada mañana?» (no manda notificaciones). |
+| El asistente | Sus respuestas | En cuatro, la suya (`faq/fuente/nativo/respuestas.json`, diez idiomas): «¿Funciona sin conexión?» (desde la primera vez; «Satélite» y «Topo» con red), «¿Cómo instalo la app?» (ya está instalada: nada de navegador ni de otras plataformas, directriz 2.3.10), «¿Qué datos guarda la app?» (sin las notificaciones, que en la app no hay) y «¿Puedo recibir una frase cada mañana?» (no manda notificaciones). |
 | Sin permiso para la cámara o los sensores | «Se puede dar en los ajustes del navegador» | Sin esa frase (`cieloCamaraPermisoApp`, `cieloSensoresPermisoApp`): dónde se vuelve a dar en iOS se mira en el iPhone (§7, 1). |
 
 Todo lo demás (el mapa, las 183 líneas, los 980 lugares, el cielo entero
@@ -41,7 +41,7 @@ luz roja, los diez idiomas) es el mismo código y se comporta igual.
 
 | Fichero | Qué |
 |---|---|
-| `index.html` | El bloque `TGO-NATIVO` de la cabecera (`TGO_NATIVO`, `TGO_BASE_VIVA`, `tgoFetchDatos`) y las trece puertas que miran la marca (service worker, «instalada» —que quita el banner—, botón flotante, el botón de push y `pushInit`, mapa detallado ×2, correo de confirmación, enlace de compartir, las respuestas del asistente, y Google Analytics ×3: su configuración, `tgoLoadGA()` y el aviso de cookies); `connect-src`. En la web nada cambia (`probar_app.js` lo mira). |
+| `index.html` | El bloque `TGO-NATIVO` de la cabecera (`TGO_NATIVO`, `TGO_BASE_VIVA`, `tgoFetchDatos`) y las diez puertas que miran la marca (service worker, «instalada» —que quita el banner—, botón flotante, el botón de push y `pushInit`, mapa detallado ×2, correo de confirmación, enlace de compartir y las respuestas del asistente; las tres de Google Analytics —su configuración, `tgoLoadGA()` y el aviso de cookies— se fueron con él el 30 de octubre de 2026); `connect-src`. En la web nada cambia (`probar_app.js` lo mira). |
 | `modulos/cielo.js` | Los elementos de los satélites se piden con `tgoFetchDatos` si existe (`pedir`); `cacheListo()` da «guardado» con la marca. |
 | `tools/app_preparar.js` | Monta `app/www/` (lista cerrada de lo que viaja; nada de carpetas de trabajo ni controles) y escribe las plantillas de iOS que salen de la política de privacidad; `--comprobar` coteja que no falta nada de lo que `index.html`, las dos páginas fijas y `sw.js` piden, que `www/index.html` es el de la raíz más esa línea, y que las plantillas son las de hoy. |
 | `app/capacitor.config.json`, `app/package.json`, `app/LEEME.md`, `.gitignore` | El proyecto de Capacitor (8.x; `app/www/`, `app/ios/App/` y `node_modules/` fuera de git). |
@@ -211,13 +211,12 @@ política ya dice (`idiomas/privacidad/es.json`), y es lo que declara
 | Fitness («exercise data») | Sí (los kilómetros que se anotan, en la cuenta solo con permiso) | Sí | No | App Functionality | lo mismo |
 | Precise Location | Sí (al pedir una ruta o el tiempo) | No | No | App Functionality | «Si pides una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas»; «Open-Meteo: las coordenadas del lugar o de la zona cuya previsión consultas» |
 | Search History | Sí (al buscar una dirección) | No | No | App Functionality | «Nominatim: el texto que escribes al buscar una dirección» |
-| Product Interaction, Coarse Location, Device ID, Crash Data, Photos, Contacts, Purchases, Advertising Data… | No | | | | «La aplicación de la App Store no usa Google Analytics» (`ppStatsTienda`); la cámara y los sensores «no salen del móvil»; sin el IDFA; sin SDK de fallos |
+| Product Interaction, Coarse Location, Device ID, Crash Data, Photos, Contacts, Purchases, Advertising Data… | No | | | | «La app no usa Google Analytics ni ninguna otra herramienta de estadísticas» (`ppStatsNo`); la cámara y los sensores «no salen del móvil»; sin el IDFA; sin SDK de fallos |
 
-Sin analítica: desde el 22 de octubre de 2026 la app de la tienda no lleva
-Google Analytics. Dentro de ella `gtag` no se configura, `tgoLoadGA()` no
-carga nada y el aviso de cookies no sale; `app_preparar.js` y
-`probar_app.js` lo comprueban, y la política lo dice. Si algún día se
-quisiera medir el uso dentro de la app, habría que declarar Product
+Sin analítica: desde el 22 de octubre de 2026 la app de la tienda no llevaba
+Google Analytics, y desde el 30 no está en ninguna parte, tampoco en la web;
+`app_preparar.js` y `probar_app.js` lo comprueban, y la política lo dice. Si
+algún día se quisiera medir el uso dentro de la app, habría que declarar Product
 Interaction, Coarse Location y Device ID (Analytics): Apple pide declarar
 también lo que recogen los terceros cuyo código va en la app («including
 the practices of third-party partners whose code you integrate into your

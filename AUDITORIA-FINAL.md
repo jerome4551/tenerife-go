@@ -3203,6 +3203,64 @@ las alertas, y no los avisos de AEMET: salía bien o mal según el día. Ahora
 ese caso sirve también AEMET, sin avisos (`avisos_prueba.js`). Con los
 mismos datos de los robots: antes, 260 de 261; ahora, 261 de 261.
 
+## Sin Google Analytics (30 de octubre)
+
+Jerome: «Google analítica puedes quitarlo. Aremos preguntas a los usuarios
+en su momento con encuestas o diver modos».
+
+- **Fuera de todo, en la web y en las tiendas:**
+  - el cargador de GA4 (`G-5Q3G5RW067`);
+  - sus dominios en la CSP, uno en `script-src` y tres en `connect-src`;
+  - el aviso de cookies: su HTML, su CSS, su script y sus textos en los diez
+    idiomas;
+  - las tres puertas de la marca que lo apagaban en la app.
+
+  La app ya no pone ninguna cookie: la cuenta va en `localStorage`.
+- **Lo que quedaba en el móvil de quien lo aceptó en la web.** Al abrir la
+  app se borran su respuesta al aviso (`tgo_consent`) y las cookies `_ga` y
+  `_ga_…` de este dominio. Las de la dirección de antes
+  (`jerome4551.github.io`) no se pueden borrar desde aquí, porque es otro
+  sitio, y en él ya no se carga nada.
+- **La política, en los diez idiomas.** El apartado 3 dice ahora «La app no
+  usa Google Analytics ni ninguna otra herramienta de estadísticas, y no pone
+  cookies: no hay aviso de cookies porque no hay nada que aceptar»
+  (`ppStatsNo`). Además:
+  - Google Analytics sale de los terceros;
+  - las estadísticas salen de «Datos que recogemos» y de la base legal;
+  - «su respuesta al aviso de cookies» sale de lo que se guarda en el
+    dispositivo.
+
+  Son 8 claves menos, 1 nueva y 2 cambiadas: de 61 claves a 54. Las
+  tablas de idioma pasan a 46, con 2859 filas, y 5.003 dentro y fuera del
+  fuente.
+  `privacidad.html` y el panel salen de `generar_privacidad.py`, como
+  siempre.
+- **La FAQ.** «¿Qué datos guarda la app?» (`app-27`) dice «No hay
+  estadísticas de uso ni cookies», en la web y en la app, en los diez
+  idiomas. La respuesta de la app sigue aparte: no habla de notificaciones,
+  porque dentro no las hay.
+- **Las tiendas:**
+  - **Google Play** (`GOOGLE-PLAY.md` §4): en «Seguridad de los datos» ya no
+    van «Ubicación aproximada» ni «Interacciones con la app», y el «ID de
+    dispositivo» es solo la suscripción a las notificaciones. Si el
+    formulario ya se rellenó con ellas, se quitan.
+  - **La App Store** no cambia: su app ya no lo llevaba.
+    `LANZAMIENTO-APP-STORE.md` cuenta ahora diez puertas de la marca, no
+    trece.
+- **Controles:**
+  - `app_preparar.js`: que no vuelvan el cargador, los dominios ni el aviso,
+    y que esté la limpieza.
+  - `probar_app.js`: en la app y en la web, sin respuesta guardada y con
+    «aceptado» y sus cookies de antes, que no haya aviso, ni `gtag`, ni nada
+    hacia Google, y que la respuesta y las cookies queden borradas. Pasa 48
+    de 48.
+  - `auditar_faq.js`, en verde.
+- **Fuera del repo:** la propiedad de Google Analytics guarda lo que
+  recogió. Si Jerome quiere borrarlo: *Administrar → Propiedad → Detalles de
+  la propiedad → Mover a la papelera*. A los 35 días se borra para siempre
+  (support.google.com/analytics/answer/1042032, leído el 30 de octubre de
+  2026).
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -5044,7 +5102,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 47 tablas, 2869 filas (y 5.010 filas, dentro y fuera del fuente)
+## Idiomas · 46 tablas, 2859 filas (y 5.003 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5120,7 +5178,10 @@ tarde, los de oro del perfil: `PERFIL_UI` pasa de 363 a 425, con 91 filas
 nuevas (13 de la pantalla, los 29 avatares que entran y los 49 de oro) y 29
 menos, las de los avatares que se van: 2868 filas y 5.009. El 30 de
 octubre, una más en `DP_UI`, «(reserva necesaria)» de «Organice su día»:
-2869 filas y 5.010. El
+2869 filas y 5.010. Y ese día, sin Google Analytics: siete filas menos en
+`UI_TX`, las de la política (ocho fuera y una nueva), y fuera la tabla del
+aviso de cookies, con sus tres textos: 46 tablas, 2859 filas y 5.003 (esa
+tabla, que va por idioma, no entraba en la cuenta de `barrido_idiomas.js`). El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -11273,7 +11334,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/completar_cat.js` | devuelve a las etiquetas `cat` los trozos que perdieron, con el glosario del propio catálogo |
 | `tools/auditar_registro.js` | el trato de usted: las marcas del tuteo de cada idioma en todo lo que se ve (la app, las tablas, las fichas, la política, el asistente, el cielo, la ficha de la tienda, las frases de cada mañana); los idiomas hechos, en rojo con cualquiera; los demás, contados como pendientes; con `--lista <idioma> <fichero>`, sus textos con marcas, y con `--todos <idioma> <fichero>`, todos, para repasar a mano lo que las marcas no ven (el imperativo sin pronombre); los rótulos de botón que van en imperativo, en `ROTULOS_IT`, `ROTULOS_BG` y `ROTULOS_PL`, y la voz de quien usa la app en polaco, en `VOZ_PL` (su cita entre comillas, o en `<b>` en polaco, tampoco cuenta) |
 | `tools/app_preparar.js` | monta `app/www/`, la app de la App Store (la de la raíz con la marca `TGO_NATIVO`), y escribe las plantillas de iOS que salen de la política; con `--comprobar`, que no falte nada de lo que la app pide, que no viaje nada de la lista de lo que nunca viaja y que las plantillas sean las de hoy |
-| `tools/probar_app.js` | la app con la marca en Chromium (sin service worker, los datos del día con su copia de dentro, sin Google Analytics, los diez idiomas) y la web sin ella |
+| `tools/probar_app.js` | la app con la marca en Chromium (sin service worker, los datos del día con su copia de dentro, los diez idiomas) y la web sin ella; y en las dos, desde el 30 de octubre, que no hay Google Analytics ni aviso de cookies, y que lo que dejó en el móvil de quien lo aceptó se borra al abrir |
 | `tools/auditar_app_store.js` | la ficha de la App Store contra los límites de Apple, las directrices y lo que hay, en los diez idiomas y en la variante en-US |
 | `tools/capturas_app_store.js` | las capturas de la tienda (iPhone 1206×2622, iPad 2064×2752), de `app/www/` servido aparte; para si la página no lleva la marca o un estado no llega a lo que dice |
 | `tools/app_store_metadata.js` | la ficha y las capturas en el formato de `fastlane deliver` (`app/fastlane/metadata/`, `…/screenshots/`); con `--comprobar`, las diez localizaciones, los límites y los tamaños |

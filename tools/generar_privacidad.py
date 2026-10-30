@@ -121,8 +121,9 @@ TERCEROS = [
     ('Wikipedia · Wikimedia', 'https://foundation.wikimedia.org/wiki/Policy:Privacy_policy', 'ppTercWiki'),
     # Las tipografias viven en vendor/fuentes/ desde hace tiempo, y la
     # libreria de Supabase en vendor/supabase.js desde el 22/10/2026: ni
-    # Google Fonts ni jsDelivr reciben nada, y salen de la lista.
-    ('Google Analytics', 'https://policies.google.com/privacy', 'ppTercGa'),
+    # Google Fonts ni jsDelivr reciben nada, y salen de la lista. Google
+    # Analytics salio el 30/10/2026: la app ya no lo usa (Jerome: «Google
+    # analítica puedes quitarlo»).
 ]
 
 
@@ -209,12 +210,13 @@ def cuerpo(L, panel):
     # panel del cielo los usa en el dispositivo y nada sale de el.
     for a, b in (('ppDatosFav', 'ppDatosFavTxt'), ('ppDatosPerfil', 'ppDatosPerfilTxt'), ('ppDatosPref', 'ppDatosPrefTxt'),
                  ('ppDatosPush', 'ppDatosPushTxt'), ('ppDatosSensores', 'ppDatosSensoresTxt'),
-                 ('ppDatosCamara', 'ppDatosCamaraTxt'), ('ppDatosStats', 'ppDatosStatsTxt')):
+                 ('ppDatosCamara', 'ppDatosCamaraTxt')):
         m.append(li(a, b))
     m += [f'{sangria(4)}</ul>', '']
-    # ppStatsTienda (22 de octubre de 2026): la app de la App Store no lleva
-    # Google Analytics (index.html, con la marca TGO_NATIVO); solo la web.
-    m += [h(3, 'ppStatsTitulo')] + [par(k) for k in ('ppStatsAntes', 'ppStatsSi', 'ppStatsConsent', 'ppStatsGuarda', 'ppStatsTienda')] + ['']
+    # Desde el 30 de octubre de 2026 no hay estadisticas ni cookies, ni en la
+    # web ni en las tiendas: el apartado lo dice (antes contaba Google
+    # Analytics, su aviso de cookies y que la app de la App Store no lo usaba).
+    m += [h(3, 'ppStatsTitulo'), par('ppStatsNo'), '']
     m += [h(4, 'ppPubTitulo')] + [par(k) for k in ('ppPubQue', 'ppPubNoDatos')] + ['']
     m += [h(5, 'ppTercTitulo'), par('ppTercIntro'), f'{sangria(4)}<ul>']
     for nombre, url, k in TERCEROS:

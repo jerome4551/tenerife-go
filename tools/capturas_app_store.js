@@ -30,8 +30,7 @@
  * no puede pasar del doble del corto; PNG de 24 bits sin transparencia): un
  * movil de 432 x 768 a 2,5x, 1080 x 1920, el tamano que se suele recomendar.
  * Van a capturas-google-play/<idioma>/ (fuera de git). La app de Play es la web dentro de Chrome, instalada: se ve igual
- * que app/www/ (sin el banner de instalar ni el boton de la PWA), salvo el
- * aviso de cookies, que no sale en las capturas en ninguna de las dos.
+ * que app/www/ (sin el banner de instalar ni el boton de la PWA).
  *     node tools/capturas_app_store.js 8766 --play --idiomas=es,en
  */
 'use strict';

@@ -92,8 +92,8 @@ vista, el crédito de OpenStreetMap y el de Open-Meteo (`AUDITORIA-FINAL.md`).
   ni comparten contenido; la ubicación no se comparte con otros usuarios; sin
   compras.
 - **ID de publicidad:** No, si el paquete de PWABuilder no declara el permiso
-  `AD_ID` (Play Console lo dice al subirlo si lo lleva): Google Analytics, en
-  la web, va con cookies, no con el ID de publicidad de Android.
+  `AD_ID` (Play Console lo dice al subirlo si lo lleva): la app no lo usa, y
+  desde el 30-10-2026 no lleva Google Analytics.
 - **Apps gubernamentales, funciones financieras, noticias:** no.
 - **Declaración de apps de salud.** La pide Google a todas las apps, también a
   las que no tienen nada de salud. El perfil (opcional) guarda peso, peso
@@ -109,9 +109,10 @@ vista, el crédito de OpenStreetMap y el de Open-Meteo (`AUDITORIA-FINAL.md`).
 ## 4. Seguridad de los datos
 
 Lo que va al formulario sale de la política (`privacidad.html`, §2 a §5).
-La app de Google Play es la web: **lleva Google Analytics si se acepta el
-aviso de cookies** (la de la App Store, no). Por eso aparecen aquí datos que en
-la App Store no están.
+La app de Google Play es la web: lleva las notificaciones (la de la App Store,
+no). Por eso aparece aquí un dato que en la App Store no está: la suscripción
+a las notificaciones. **Desde el 30-10-2026 no hay Google Analytics** ni en la
+web ni en las tiendas, así que nada va marcado «Analíticas».
 
 - ¿Recoge o comparte datos de usuario? **Sí.**
 - ¿Van cifrados en tránsito? **Sí** (todo va por HTTPS: §9).
@@ -120,8 +121,8 @@ la App Store no están.
   que pide el formulario para borrar la cuenta.
 - Cómo se crea la cuenta: con correo y contraseña.
 
-Ningún dato se **comparte** (en el sentido de Google): Supabase y Google
-Analytics los tratan por cuenta de la app, y lo que va a OSRM y a Nominatim
+Ningún dato se **comparte** (en el sentido de Google): Supabase los trata por
+cuenta de la app, y lo que va a OSRM y a Nominatim
 sale porque la persona lo pide (una ruta, una dirección). Todos son
 **opcionales**. No se marca ninguno como «tratado de forma efímera»: eso
 depende de cómo lo traten esos servicios, y no se puede comprobar.
@@ -129,22 +130,23 @@ depende de cómo lo traten esos servicios, y no se puede comprobar.
 | Tipo de datos (Play) | Qué es en la app | Para qué | Política |
 |---|---|---|---|
 | Ubicación precisa | origen y destino de una ruta en coche, a OSRM | Funciones de la app | §2 Geolocalización, §5 |
-| Ubicación aproximada | el país que Google Analytics saca de la IP, si se aceptan las cookies | Analíticas | §3 |
 | Correo electrónico | el de la cuenta (Supabase) | Gestión de la cuenta | §2 Cuenta |
 | ID de usuario | el de la cuenta (Supabase) | Gestión de la cuenta | §2 Cuenta |
 | Nombre | el nombre o apodo del perfil, en la cuenta con su permiso | Funciones de la app | §2 Perfil |
 | Otra información personal | el año de nacimiento del perfil, en la cuenta con su permiso | Funciones de la app | §2 Perfil |
 | Información de salud | peso, peso objetivo y altura, en la cuenta con consentimiento expreso | Funciones de la app | §2 Perfil |
 | Información de actividad física | los kilómetros que anote, en la cuenta con su permiso | Funciones de la app | §2 Perfil |
-| Interacciones con la app | las pantallas vistas, a Google Analytics, si se aceptan las cookies | Analíticas | §3 |
 | Historial de búsqueda en la app | el texto de una dirección que se busca, a Nominatim | Funciones de la app | §5 |
 | Otras acciones | los favoritos, con cuenta | Funciones de la app | §2 Favoritos |
-| ID de dispositivo u otros | la suscripción a las notificaciones (dirección de envío y claves) y la cookie de Google Analytics | Funciones de la app; Analíticas | §2 Notificaciones, §3 |
+| ID de dispositivo u otros | la suscripción a las notificaciones (dirección de envío y claves) | Funciones de la app | §2 Notificaciones |
 
 No se recogen: fotos ni vídeos (la cámara no sale del móvil), audio,
 archivos, calendario (los `.ics` se crean en el móvil), contactos, mensajes,
-datos financieros, historial web, ni diagnósticos (la app no manda informes de
-errores). Las visitas comprobadas se quedan en el móvil (§2 Perfil).
+datos financieros, historial web, diagnósticos (la app no manda informes de
+errores), ni la ubicación aproximada o las interacciones con la app: eran de
+Google Analytics, que no está desde el 30-10-2026 (§3). Si ya se rellenó el
+formulario con ellas, se quitan. Las visitas comprobadas se quedan en el móvil
+(§2 Perfil).
 
 ## 5. Prueba cerrada y producción
 
