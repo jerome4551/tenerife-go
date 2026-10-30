@@ -2925,6 +2925,86 @@ Lo que cambia:
   identificador de antes en cualquiera de los cuatro, rojo; con los cuatro
   bien, verde.
 
+## Los créditos de Open-Meteo, junto a cada dato (30 de octubre)
+
+Jerome: «Open meteo estaba resuelto podíamos usarlo verifica eso».
+Verificado en sus propios textos (open-meteo.com no se abre desde aquí: su
+web está en su repositorio, `open-meteo/open-meteo-website`, y se leyó ahí):
+
+- **Se puede usar gratis**, sin clave, mientras la app no tenga anuncios ni
+  suscripciones: «Non-commercial use … Private or non-profit websites or
+  apps that do not have subscriptions or advertising»; comercial, «Websites
+  or apps that have subscriptions or display advertisements» y «Commercial
+  products or promotional activities». Con el primer negocio patrocinado ya
+  no vale: Jerome, el 30 de octubre, «De momento no tenemos ninguno». Topes:
+  «Less than 10'000 API calls per day, 5'000 per hour and 600 per minute».
+- **Lo que pide a cambio** (su página de licencia): los datos son CC BY 4.0,
+  «You must give appropriate credit, provide a link to the licence», y «You
+  must include a link next to any location Open-Meteo data are displayed».
+  Y en la documentación del mar: «All users of Open-Meteo data must provide
+  a clear attribution to the providers of the models they use as well as a
+  reference to Open-Meteo».
+
+**Qué modelos son, en Tenerife.** Lo dice su código (`open-meteo/open-meteo`,
+`Sources/App/Controllers/ForecastapiController.swift`, el de hoy, 2060d80),
+que es el que elige con `best_match`, lo que pide la app:
+
+- **El tiempo:** «Every forecast is built on a global backbone of DWD ICON,
+  NOAA GFS and ECMWF IFS», y encima, según la zona, un modelo regional. Para
+  28° N y 16° O no entra ninguno: los de Europa empiezan más al norte
+  (ICON-EU, en 29,5° N; AROME, en 42,1° N). Quedan DWD, NOAA y ECMWF.
+- **El mar** (`marine_best_match`): MFWAM para el oleaje y SMOC para las
+  corrientes, las mareas y la temperatura del agua, los dos de Copernicus
+  Marine («generated using E.U. Copernicus Marine Service Information»,
+  doi 10.48670/moi-00017 y moi-00016); el EWAM de DWD empieza en 30° N y no
+  llega; y el oleaje de ECMWF, de reserva, si MFWAM lleva más de 26 horas sin
+  actualizarse.
+
+**Lo que había:** «Open-Meteo · Atlantic/Canary», sin enlace, en el pie del
+panel del mar y en el de los microclimas, a 9 px y con muy poco contraste. Y
+nada en los otros cinco sitios donde salen sus datos.
+
+**Lo que hay ahora**, en los siete:
+
+| Dónde | Qué datos | El crédito |
+|---|---|---|
+| El panel del mar (el pie) | el mar y, en «Báñese hoy aquí», el viento | Open-Meteo.com · CC BY 4.0 · DWD · NOAA · ECMWF · Generated using E.U. Copernicus Marine Service Information |
+| ¿Dónde hace sol ahora? (el pie) | el tiempo | Open-Meteo.com · CC BY 4.0 · DWD · NOAA · ECMWF |
+| «El mar aquí», en el globo | el mar, el viento y el UV | el de los dos; si solo llega uno, el de ese |
+| El mar de los charcos, en su globo | la ola | Open-Meteo.com · CC BY 4.0 · ECMWF · Generated using E.U. Copernicus Marine Service Information |
+| Las nubes, en «Esta noche» | las nubes | el del tiempo |
+| El índice de la noche | las nubes, si las cuenta | el del tiempo, solo entonces |
+| La imagen que se comparte | las nubes, si las cuenta | el del tiempo, escrito (en una imagen no cabe un enlace) |
+
+- «Open-Meteo.com» lleva a `https://open-meteo.com/`, «CC BY 4.0» a la
+  licencia y la frase de Copernicus a `https://marine.copernicus.eu/`; los
+  tres se abren fuera de la app.
+- **No se traduce, y se marca:** son nombres propios y la fórmula que pide
+  la licencia de Copernicus Marine, que se escribe tal cual, en inglés
+  («Generated using E.U. Copernicus Marine Service Information»). Va con
+  `data-sin-traducir`, como iba el crédito de antes.
+- **Que se lea:** a 11 px (lo mínimo de Apple) y con el contraste de las
+  notas del cielo (4,5:1), con los enlaces subrayados; en los pies, a la
+  izquierda del botón ↻, sin pisarlo, a 390 y a 360 px.
+- Se hace en un solo sitio, `tgoCreditoMeteo` (`index.html`); los dos pies lo
+  llevan escrito en el HTML, y la prueba mira que digan lo mismo.
+
+**La prueba:** `probar_play.js`, parte 1.7 (16 comprobaciones, con un
+Open-Meteo de mentira: desde aquí no se llega al de verdad): el crédito en
+los siete sitios, con sus enlaces, su letra y donde cae; el globo con el mar,
+con el tiempo o con los dos; el del charco una sola vez al abrirlo otra
+vez; el índice y la imagen sin crédito cuando no hay nubes; y los pies,
+iguales en los diez idiomas. 249 de 249. Probado al revés, con el
+código de antes y la prueba nueva: 14 de las 16 en rojo; las dos que pasan
+son las que tienen que pasar también sin créditos (sin nubes, nada que
+acreditar; y sin errores de página).
+
+Sin cambiar: la licencia CC BY pide también decir si los datos se cambian.
+La app los redondea y saca de ellos un estado («Tranquilo») o el índice de
+la noche; el índice ya dice cómo se calcula, con Open-Meteo dentro. Si
+Jerome quiere que se diga en todos los sitios, es una frase nueva en los
+diez idiomas.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:

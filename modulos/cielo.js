@@ -2373,6 +2373,8 @@
     t.appendChild(fila(T('NubesAltas'), numero(media, 0) + ' %'));
     t.appendChild(fila(T('NubesBajas'), numero(bajas, 0) + ' %'));
     t.appendChild(el('div', 'cielo-nota', T('NubesNota')));
+    /* el credito de Open-Meteo, con sus enlaces (index.html, tgoCreditoMeteo) */
+    if (typeof window.tgoCreditoMeteo === 'function') t.appendChild(window.tgoCreditoMeteo('tiempo'));
     return t;
   }
 
@@ -4656,6 +4658,7 @@
     bt.addEventListener('click', function () { compartirNoche(n, bt); });
     t.appendChild(bt);
     t.appendChild(el('div', 'cielo-nota', T('IndiceComo')));
+    if (x.nubes !== null && typeof window.tgoCreditoMeteo === 'function') t.appendChild(window.tgoCreditoMeteo('tiempo'));
     return t;
   }
   /* La imagen que se comparte: el cielo de esa noche (la misma carta,
@@ -4703,6 +4706,8 @@
       envolverTexto(g, T('ImagenMejor', { l: mejor.join(' · ') }), W - 2 * M).slice(0, 2).forEach(function (s) { g.fillText(s, M, y); y += 42; });
     }
     g.fillStyle = 'rgba(255,255,255,0.5)'; F(500, 27);
+    /* las nubes son de Open-Meteo: en una imagen no cabe un enlace, va el credito escrito */
+    if (x.nubes !== null) g.fillText(recortarTexto(g, 'Open-Meteo.com · CC BY 4.0 · DWD · NOAA · ECMWF', W - 2 * M), M, H - 94);
     g.fillText('Tenerife Go · tenerifego.app', M, H - 52);
     g.textAlign = 'right'; g.fillText(T('Titulo'), W - M, H - 52); g.textAlign = 'left';
     return c;

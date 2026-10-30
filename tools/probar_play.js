@@ -48,6 +48,17 @@
  *     solo por red y fuera de Cache Storage- esta en auditar_sw.js, y que sin
  *     red el mapa cae a la isla, en auditar_mapa.js.)
  *
+ * 1.7 OPEN-METEO (30 de octubre de 2026)
+ *   · junto a cada dato suyo, el credito con sus enlaces (Open-Meteo.com y
+ *     CC BY 4.0) y quien hace los modelos: el tiempo, DWD, NOAA y ECMWF; el
+ *     mar, la frase de Copernicus Marine. En el pie del panel del mar y en el
+ *     de los microclimas (los dos igual que tgoCreditoMeteo, a 390 y a 360 px,
+ *     sin pisar el boton de al lado), en «El mar aquí» del globo (con el mar,
+ *     el tiempo o los dos, segun lo que llegue), debajo del mar de los charcos
+ *     (una vez, aunque se abra otra vez), en las nubes y el indice de la noche
+ *     (este, solo si cuenta las nubes) y escrito en la imagen que se comparte;
+ *     a 11 px como minimo e igual en los diez idiomas (data-sin-traducir).
+ *
  * Supabase no esta aqui: se le da a la app un cliente falso, con la sesion y
  * las respuestas que toca en cada caso (sin sesion, con sesion normal, con
  * sesion de administrador). La app lo usa igual que el de verdad.
@@ -598,6 +609,178 @@ function supabaseFalso(cfg) {
     caso(`con la capa de calles, el credito dice «© OpenStreetMap» y enlaza a su pagina de derechos y licencia («${r.texto}»)`,
       r.capa === 'streets' && r.enlace === 'OpenStreetMap' && /© OpenStreetMap/.test(r.texto) && r.nueva && r.visible, JSON.stringify(r));
     caso('sin errores de pagina (credito del mapa)', errores.length === 0, errores.join(' / '));
+    await ctx.close();
+  }
+
+  console.log('\n=== 1.7 Open-Meteo: el credito, con enlace, junto a cada dato ===');
+  {
+    const TIEMPO = 'Open-Meteo.com · CC BY 4.0 · DWD · NOAA · ECMWF';
+    const COPERNICUS = 'Generated using E.U. Copernicus Marine Service Information';
+    const MAR = 'Open-Meteo.com · CC BY 4.0 · ECMWF · ' + COPERNICUS;
+    const AMBOS = TIEMPO + ' · ' + COPERNICUS;
+    const ENLACES = [['https://open-meteo.com/', 'Open-Meteo.com'], ['https://creativecommons.org/licenses/by/4.0/', 'CC BY 4.0']];
+    const enlacesDe = q => ENLACES.concat(q === TIEMPO ? [] : [['https://marine.copernicus.eu/', COPERNICUS]]);
+    const ctx = await nav.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
+    const pg = await ctx.newPage();
+    const errores = [];
+    pg.on('pageerror', e => errores.push(e.message));
+    await pg.route('**/vendor/supabase.js', r => r.abort());
+    const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', 'base64');
+    await pg.route(/tile\.openstreetmap\.org/, r => r.fulfill({ status: 200, contentType: 'image/png', body: PNG }));
+    /* Desde aqui no se llega a Open-Meteo: un mar en calma, un alisio y unas
+       nubes, para cada punto que se pida (las nubes, desde ayer a las 00 UTC y
+       cuatro dias, para que caigan en la noche que toque) */
+    const T0 = new Date(); T0.setUTCHours(0, 0, 0, 0); T0.setUTCDate(T0.getUTCDate() - 1);
+    const horas = [...Array(96)].map((_, i) => new Date(T0.getTime() + i * 3600000).toISOString().slice(0, 16));
+    const servir = (r, uno) => {
+      const u = new URL(r.request().url()), n = (u.searchParams.get('latitude') || '').split(',').length;
+      return r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(n > 1 ? [...Array(n)].map(() => uno(u)) : uno(u)) });
+    };
+    const unMar = u => Object.assign({ current: { wave_height: 0.5, wave_period: 7, swell_wave_height: 0.3, swell_wave_period: 8, sea_surface_temperature: 22 } },
+      u.searchParams.get('hourly') ? { hourly: { time: horas.slice(24, 48), wave_height: horas.slice(24, 48).map(() => 0.5), wave_period: horas.slice(24, 48).map(() => 7),
+        swell_wave_height: horas.slice(24, 48).map(() => 0.3), swell_wave_period: horas.slice(24, 48).map(() => 8) } } : {});
+    let nubesFallan = false;
+    await pg.route(u => u.hostname === 'marine-api.open-meteo.com', r => servir(r, unMar));
+    await pg.route(u => u.hostname === 'api.open-meteo.com', r => {
+      const u = new URL(r.request().url());
+      if (u.searchParams.get('hourly')) return nubesFallan ? r.fulfill({ status: 503, body: 'no' })
+        : servir(r, () => ({ hourly: { time: horas, cloud_cover_low: horas.map(() => 40), cloud_cover_mid: horas.map(() => 10), cloud_cover_high: horas.map(() => 20) } }));
+      return servir(r, () => ({ current: { temperature_2m: 22, weather_code: 1, wind_speed_10m: 12, wind_direction_10m: 45, cloud_cover: 20, is_day: 1, uv_index: 5 },
+                                current_units: { wind_speed_10m: 'km/h' } }));
+    });
+    await pg.addInitScript(supabaseFalso, { user: null });
+    await pg.addInitScript(() => { try { ['tgo_mar_cache_v1', 'tgo_bano_cache_v2', 'tgo_sea_cache_v1', 'tgo_cielo_nubes_v1'].forEach(k => localStorage.removeItem(k)); } catch (e) {} });
+    await pg.goto(BASE, { waitUntil: 'networkidle' });
+    try { await pg.click('#v19-welcome-start', { timeout: 3000 }); } catch (e) {}
+    await pg.waitForFunction(() => typeof setLang === 'function' && typeof markerMap !== 'undefined', null, { timeout: 30000 });
+    await pg.evaluate(() => setLang('es'));
+    /* lo que se ve de un credito: el texto, los enlaces, la letra y donde cae */
+    const leer = (raiz, junto) => pg.evaluate(([raiz, junto]) => {
+      const e = typeof raiz === 'string' ? document.querySelector(raiz) : null;
+      if (!e) return null;
+      const r = e.getBoundingClientRect(), b = junto ? document.querySelector(junto) : null, rb = b && b.getBoundingClientRect();
+      return { texto: e.textContent.replace(/\s+/g, ' ').trim(), exento: !!e.closest('[data-sin-traducir]'),
+               enlaces: [...e.querySelectorAll('a')].map(a => [a.getAttribute('href'), a.textContent, a.target === '_blank' && /noopener/.test(a.rel)]),
+               px: parseFloat(getComputedStyle(e).fontSize), visible: r.width > 0 && r.height > 0,
+               dentro: r.left >= -0.5 && r.right <= innerWidth + 0.5, pisa: rb ? !(r.right <= rb.left + 0.5 || r.bottom <= rb.top || r.top >= rb.bottom) : false };
+    }, [raiz, junto]);
+    const bien = (x, q) => !!x && x.texto === q && x.exento && x.px >= 11 && x.visible && x.dentro && !x.pisa
+      && JSON.stringify(x.enlaces.map(a => [a[0], a[1]])) === JSON.stringify(enlacesDe(q)) && x.enlaces.every(a => a[2]);
+    // la funcion dice lo que se espera, y los pies del HTML dicen lo mismo que la funcion
+    const fn = await pg.evaluate(() => typeof tgoCreditoMeteo !== 'function' ? null
+      : ['tiempo', 'mar', 'ambos'].map(q => { const d = tgoCreditoMeteo(q); return [d.textContent, d.innerHTML]; }));
+    caso('tgoCreditoMeteo: el tiempo, «' + TIEMPO + '»; el mar, «' + MAR + '»; los dos, juntos',
+      !!fn && fn[0][0] === TIEMPO && fn[1][0] === MAR && fn[2][0] === AMBOS, fn ? JSON.stringify(fn.map(x => x[0])) : 'no hay tgoCreditoMeteo');
+    const pies = await pg.evaluate(() => [document.querySelector('#mar-panel .mar-source').innerHTML, document.querySelector('#mc-panel .mc-source').innerHTML]);
+    caso('los pies del panel del mar y de los microclimas, igual que tgoCreditoMeteo (los dos y el tiempo)',
+      !!fn && pies[0] === fn[2][1] && pies[1] === fn[0][1], JSON.stringify(pies));
+    // el panel del mar y el de los microclimas, abiertos, a 390 y a 360 px
+    await pg.evaluate(() => document.getElementById('mar-btn').click());
+    await pg.waitForFunction(() => document.querySelectorAll('#mar-list .mar-row').length > 0, null, { timeout: 15000 });
+    for (const [w, h] of [[390, 844], [360, 740]]) {
+      await pg.setViewportSize({ width: w, height: h }); await pg.waitForTimeout(250);
+      const x = await leer('#mar-panel .mar-source', '#mar-refresh');
+      caso(`[${w} px] el panel del mar: «${AMBOS}», con sus enlaces, a ${x && x.px} px, sin pisar ↻`, bien(x, AMBOS), JSON.stringify(x));
+    }
+    await pg.evaluate(() => document.getElementById('mar-close').click());
+    await pg.setViewportSize({ width: 390, height: 844 });
+    await pg.evaluate(() => document.getElementById('mc-btn').click());
+    await pg.waitForFunction(() => document.querySelectorAll('#mc-list .mc-row, #mc-list > *').length > 0, null, { timeout: 15000 });
+    for (const [w, h] of [[390, 844], [360, 740]]) {
+      await pg.setViewportSize({ width: w, height: h }); await pg.waitForTimeout(250);
+      const x = await leer('#mc-panel .mc-source', '#mc-refresh');
+      caso(`[${w} px] los microclimas: «${TIEMPO}», con sus enlaces, sin pisar «Actualizar»`, bien(x, TIEMPO), JSON.stringify(x));
+    }
+    await pg.evaluate(() => document.getElementById('mc-close').click());
+    await pg.setViewportSize({ width: 390, height: 844 });
+    // «El mar aquí», en el globo de una playa, en castellano y en chino
+    const globo = async id => {
+      await pg.evaluate(id => { const p = places.find(q => q.id === id); map.setView([p.lat, p.lng], 15, { animate: false }); }, id);
+      await pg.waitForTimeout(400);
+      await pg.evaluate(id => markerMap[id].openPopup(), id);
+      await pg.waitForFunction(id => !!document.querySelector('.popup-sea-wrap[data-place-id="' + id + '"] .popup-sea-toggle'), id, { timeout: 10000 });
+      await pg.evaluate(id => document.querySelector('.popup-sea-wrap[data-place-id="' + id + '"] .popup-sea-toggle').click(), id);
+      await pg.waitForFunction(id => { const d = document.querySelector('.popup-sea-wrap[data-place-id="' + id + '"] .popup-sea-details'); return d && d.dataset.loaded === 'done'; }, id, { timeout: 10000 });
+      const x = await leer('.popup-sea-wrap[data-place-id="' + id + '"] .popup-sea-details .om-credito');
+      await pg.evaluate(() => map.closePopup());
+      return x;
+    };
+    for (const L of ['es', 'zh']) {
+      await pg.evaluate(L => setLang(L), L);
+      const x = await globo('el-duque');
+      caso(`[${L}] «El mar aquí» (Playa del Duque): «${AMBOS}», con sus enlaces`, bien(x, AMBOS), JSON.stringify(x));
+    }
+    await pg.evaluate(() => setLang('es'));
+    const solo = await pg.evaluate(() => {
+      const p = places.find(q => q.id === 'el-duque'), m = { current: { wave_height: 0.5 } }, w = { current: { wind_speed_10m: 12 } };
+      const de = h => { const d = document.createElement('div'); d.innerHTML = h; const c = d.querySelectorAll('.om-credito'); return c.length === 1 ? c[0].textContent : c.length + ' creditos'; };
+      return [de(seaBuildHtml(m, null, p)), de(seaBuildHtml(null, w, p))];
+    });
+    caso('«El mar aquí» solo con el mar, el credito del mar; solo con el tiempo, el del tiempo', solo[0] === MAR && solo[1] === TIEMPO, JSON.stringify(solo));
+    // el mar de los charcos y piscinas naturales: debajo, una vez
+    const charco = await pg.evaluate(() => (places.find(p => p.category === 'piscinas' && markerMap[p.id]) || {}).id);
+    const piscina = async () => {
+      await pg.evaluate(id => { const p = places.find(q => q.id === id); map.setView([p.lat, p.lng], 15, { animate: false }); }, charco);
+      await pg.waitForTimeout(400);
+      await pg.evaluate(id => markerMap[id].openPopup(), charco);
+      await pg.waitForFunction(() => !!document.querySelector('.popup-inner .popup-sea.sea-calm'), null, { timeout: 10000 });
+      const r = await pg.evaluate(() => {
+        const b = document.querySelector('.popup-inner .popup-sea'), s = b.nextElementSibling;
+        if (s && s.classList.contains('om-credito')) s.id = 'om-credito-charco';
+        return { tras: !!s && s.classList.contains('om-credito'), n: b.parentNode.querySelectorAll(':scope > .om-credito').length };
+      });
+      const x = await leer('#om-credito-charco');
+      await pg.evaluate(() => map.closePopup());
+      return Object.assign(r, { x });
+    };
+    const p1 = await piscina(), p2 = await piscina();
+    caso(`el mar del charco (${charco}): debajo, «${MAR}», con sus enlaces; y una sola vez al abrirlo otra vez`,
+      p1.tras && p1.n === 1 && bien(p1.x, MAR) && p2.tras && p2.n === 1 && bien(p2.x, MAR), JSON.stringify([p1, p2]));
+    // el cielo: las nubes, el indice y la imagen, en castellano y en bulgaro
+    await pg.evaluate(async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); });
+    const noche = async L => {
+      await pg.evaluate(L => setLang(L), L);
+      await pg.evaluate(() => TG_CIELO.ver('noche'));
+      await pg.waitForFunction(() => !!TG_CIELO.estado.nubes, null, { timeout: 10000 });
+      await pg.evaluate(() => TG_CIELO.ver('noche'));
+      return pg.evaluate(() => {
+        const marca = (sel, id) => { const t = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta')].find(t => t.querySelector(sel)); const c = t && t.querySelector('.om-credito'); if (c) c.id = id; return !!t; };
+        return { nubes: marca('.cielo-nubes', 'om-credito-nubes'), indice: marca('.cielo-indice', 'om-credito-indice') };
+      });
+    };
+    for (const L of ['es', 'bg']) {
+      const t = await noche(L);
+      const xn = await leer('#om-credito-nubes'), xi = await leer('#om-credito-indice');
+      caso(`[${L}] el cielo, «Esta noche»: en las nubes y en el indice, «${TIEMPO}», con sus enlaces`, t.nubes && t.indice && bien(xn, TIEMPO) && bien(xi, TIEMPO), JSON.stringify({ t, xn, xi }));
+      await pg.evaluate(() => { document.querySelectorAll('#om-credito-nubes, #om-credito-indice').forEach(e => e.removeAttribute('id')); });
+    }
+    const textos = () => pg.evaluate(() => {
+      const C = CanvasRenderingContext2D.prototype, o = C.fillText, out = [];
+      C.fillText = function (s) { out.push(String(s)); return o.apply(this, arguments); };
+      try { TG_CIELO.imagenNoche(TG_CIELO.estado.fecha); } finally { C.fillText = o; }   // la noche que se mira, 'AAAA-MM-DD'
+      return out;
+    });
+    const conNubes = await textos();
+    caso('la imagen de la noche, con las nubes: «' + TIEMPO + '» escrito, encima de «Tenerife Go · tenerifego.app»',
+      conNubes.includes(TIEMPO) && conNubes.indexOf(TIEMPO) === conNubes.indexOf('Tenerife Go · tenerifego.app') - 1, JSON.stringify(conNubes.slice(-4)));
+    // sin prevision de nubes: ni en el indice ni en la imagen
+    nubesFallan = true;
+    await pg.evaluate(() => { try { localStorage.removeItem('tgo_cielo_nubes_v1'); } catch (e) {} TG_CIELO.estado.nubes = null; return TG_CIELO.ver('noche'); });
+    const sin = await pg.evaluate(() => {
+      const t = [...document.querySelectorAll('#cielo-panel .cielo-tarjeta')].find(t => t.querySelector('.cielo-indice'));
+      return { indice: !!t, credito: !!(t && t.querySelector('.om-credito')), nubes: !![...document.querySelectorAll('#cielo-panel .cielo-nubes')].length };
+    });
+    const sinNubes = await textos();
+    caso('sin prevision de nubes: el indice sin credito, ni tarjeta de nubes, ni credito en la imagen',
+      sin.indice && !sin.credito && !sin.nubes && !sinNubes.some(s => /Open-Meteo/.test(s)), JSON.stringify({ sin, fin: sinNubes.slice(-3) }));
+    // igual en los diez idiomas: el pie del mar, tal cual
+    const porIdioma = [];
+    for (const L of IDIOMAS) {
+      const t = await pg.evaluate(L => { setLang(L); return [document.querySelector('#mar-panel .mar-source').textContent, document.querySelector('#mc-panel .mc-source').textContent]; }, L);
+      if (t[0] !== AMBOS || t[1] !== TIEMPO) porIdioma.push(L + ': ' + t.join(' / '));
+    }
+    caso('en los ' + IDIOMAS.length + ' idiomas, los dos pies dicen lo mismo (nombres propios y la frase de Copernicus)', IDIOMAS.length === 10 && !porIdioma.length, porIdioma.join(' · '));
+    caso('sin errores de pagina (creditos de Open-Meteo)', errores.length === 0, errores.join(' / '));
     await ctx.close();
   }
 

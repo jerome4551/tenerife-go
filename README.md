@@ -491,6 +491,15 @@ idiomas, sin el módulo y sin conexión.
 | Wikipedia | Fotos de los lugares; en el cielo, el resumen del astro que se abre | Las fichas salen sin foto; la del astro, sin resumen (lo ya leído se guarda 30 días) |
 | Supabase | Cuentas y favoritos, el perfil en la cuenta (solo con permiso), anuncios, panel admin, suscripciones push (la tienda está oculta: `TIENDA_ACTIVA = false`) | Esas secciones quedan vacías; el perfil sigue en el dispositivo y se sube cuando vuelve |
 
+**Los créditos de Open-Meteo.** Junto a cada dato suyo (el panel del mar,
+los microclimas, «El mar aquí» y el mar de los charcos en el globo, y las
+nubes y el índice de la noche en el panel del cielo, también escrito en la
+imagen que se comparte) va el crédito que pide su licencia: «Open-Meteo.com»
+y «CC BY 4.0» con sus enlaces, quien hace los modelos (DWD, NOAA y ECMWF para
+el tiempo) y, con el mar, la frase de Copernicus Marine, «Generated using
+E.U. Copernicus Marine Service Information». Son nombres propios y una
+fórmula de licencia: iguales en todos los idiomas. Lo vigila `probar_play.js`.
+
 Los dos paneles que dependen del tiempo —el del mar y el de «Báñate aquí
 hoy»— **se ocultan si no hay dato real**. Es deliberado: una
 recomendación inventada manda a alguien al agua.

@@ -2019,7 +2019,9 @@ window.onunhandledrejection = function(e) {
   .mar-close { background: none; border: none; color: rgba(255,255,255,0.5); font-size: 1rem; cursor: pointer; padding: 2px 4px; }
   .mar-footer { display: flex; align-items: center; justify-content: space-between;
                 margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.07); }
-  .mar-source { font-size: 0.58rem; color: rgba(255,255,255,0.3); }
+  /* el credito de Open-Meteo, con sus enlaces (30 de octubre de 2026): a 11 px, lo minimo que
+     pide Apple, y con el contraste de las notas (4,5:1), que se tiene que poder leer */
+  .mar-source { flex: 1; min-width: 0; margin-right: 10px; font-size: 11px; line-height: 1.4; color: rgba(255,255,255,0.62); }
   .mar-refresh { background: none; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;
                  color: rgba(255,255,255,0.6); font-size: 0.8rem; padding: 3px 9px; cursor: pointer; }
   /* ---- EL MAR HOY ---- */
@@ -6315,6 +6317,9 @@ window.onunhandledrejection = function(e) {
 .popup-sea-v{font-weight:600;color:#e5e7eb;text-align:right;word-break:break-word;}
 .popup-sea-loading,.popup-sea-err{font-size:12px;color:#9ca3af;text-align:center;padding:2px 0;}
 .popup-sea-warn{margin-top:8px;padding:7px 9px;border-radius:8px;font-size:12px;line-height:1.35;color:#fcd34d;background:rgba(251,191,36,0.10);border:1px solid rgba(251,191,36,0.35);}
+/* el credito de Open-Meteo (tgoCreditoMeteo), junto a cada dato suyo: como los pies de los paneles */
+.om-credito{margin:6px 0 2px;font-size:11px;line-height:1.4;color:rgba(255,255,255,0.62);overflow-wrap:anywhere;}
+.om-credito a,.mar-source a,.mc-source a{color:inherit;text-decoration:underline;text-decoration-color:rgba(255,255,255,0.35);text-underline-offset:2px;}
 </style>
 </head>
 <body>
@@ -18121,6 +18126,42 @@ async function fetchWikiPhoto(place, lang) {
 // ── ESTADO DEL MAR + VIENTO + UV (POIs de costa) ─────────────────────
 // Se muestra en el popup de lugares de costa/agua. Carga perezosa al abrir
 // el popup (como las fotos), con cache por lugar. Usa Open-Meteo (ya en CSP).
+/* LOS CREDITOS DE OPEN-METEO (30 de octubre de 2026). Su licencia: «You must
+   include a link next to any location Open-Meteo data are displayed», con el
+   enlace a la licencia (CC BY 4.0), y «All users of Open-Meteo data must
+   provide a clear attribution to the providers of the models they use». Los
+   de Tenerife, en su codigo (ForecastapiController.swift, best_match y
+   marine_best_match): el tiempo, de DWD (ICON), NOAA (GFS) y ECMWF (IFS), porque
+   los regionales de Europa no llegan (ICON-EU empieza a 29,5° N); el mar, de
+   Copernicus Marine (el oleaje de MFWAM; corrientes, mareas y temperatura del
+   agua), con el de ECMWF de reserva si MFWAM se retrasa mas de 26 horas (el
+   EWAM de DWD empieza a 30° N). Copernicus pide su frase tal cual, en ingles:
+   «Generated using E.U. Copernicus Marine Service Information». Son nombres
+   propios y una formula de licencia, iguales en los diez idiomas
+   (data-sin-traducir). que: 'tiempo', 'mar' o 'ambos'. Los pies de los
+   paneles del mar y de los microclimas lo llevan escrito en el HTML, y
+   probar_play.js mira que digan lo mismo que esta funcion. */
+function tgoCreditoMeteo(que) {
+  var d = document.createElement('div');
+  d.className = 'om-credito';
+  d.setAttribute('data-sin-traducir', 'credito de la fuente de datos');
+  function enlace(href, txt) {
+    var a = document.createElement('a');
+    a.href = href; a.target = '_blank'; a.rel = 'noopener';
+    a.appendChild(document.createTextNode(txt));
+    d.appendChild(a);
+  }
+  function texto(s) { d.appendChild(document.createTextNode(s)); }
+  enlace('https://open-meteo.com/', 'Open-Meteo.com');
+  texto(' \u00b7 ');
+  enlace('https://creativecommons.org/licenses/by/4.0/', 'CC BY 4.0');
+  texto(que === 'mar' ? ' \u00b7 ECMWF' : ' \u00b7 DWD \u00b7 NOAA \u00b7 ECMWF');
+  if (que !== 'tiempo') {
+    texto(' \u00b7 ');
+    enlace('https://marine.copernicus.eu/', 'Generated using E.U. Copernicus Marine Service Information');
+  }
+  return d;
+}
 const COAST_CATS = ['playa','piscinas','surf','buceo','kayak','pesca','windsurf','faros'];
 const SEA_CACHE = {};
 const SEA_TTL = 30 * 60 * 1000;   // 30 min
@@ -18339,6 +18380,8 @@ function seaBuildHtml(marine, weather, place) {
   if (t.warn && !(place && place.warn === 'mar')) {
     html += '<div class="popup-sea-warn">⚠️ ' + escapeHtml(t.warn) + '</div>';
   }
+  /* el credito de lo que haya llegado: el mar, el tiempo o los dos */
+  html += tgoCreditoMeteo(marine && weather ? 'ambos' : (marine ? 'mar' : 'tiempo')).outerHTML;
   return html;
 }
 /* EL AVISO COSTERO DE AEMET EN EL GLOBO (21 de octubre de 2026). Jerome
@@ -28815,7 +28858,7 @@ function processUserMessage(text){
   </div>
   <div id="mar-list"></div>
   <div class="mar-footer">
-    <span class="mar-source" data-sin-traducir="credito de la fuente de datos">Open-Meteo · Atlantic/Canary</span>
+    <span class="mar-source" data-sin-traducir="credito de la fuente de datos"><a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · DWD · NOAA · ECMWF · <a href="https://marine.copernicus.eu/" target="_blank" rel="noopener">Generated using E.U. Copernicus Marine Service Information</a></span>
     <button class="mar-refresh" id="mar-refresh">↻</button>
   </div>
 </div>
@@ -29295,7 +29338,7 @@ else document.addEventListener('DOMContentLoaded', wxIniciar);
   display: flex; align-items: center; justify-content: space-between;
   padding: 8px 15px 11px; border-top: 1px solid rgba(255,255,255,0.07);
 }
-.mc-source { font-size: 0.6rem; color: rgba(255,255,255,0.22); }
+.mc-source { flex: 1; min-width: 0; margin-right: 10px; font-size: 11px; line-height: 1.4; color: rgba(255,255,255,0.62); }
 .mc-refresh {
   background: none; border: none; color: rgba(255,255,255,0.35);
   font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; gap: 4px;
@@ -29325,7 +29368,7 @@ else document.addEventListener('DOMContentLoaded', wxIniciar);
   <div id="mc-sunset"></div>
   <div id="mc-avisos" class="mc-avisos" style="display:none"></div>
   <div class="mc-footer">
-    <span class="mc-source" data-sin-traducir="credito de la fuente de datos">Open-Meteo · Atlantic/Canary</span>
+    <span class="mc-source" data-sin-traducir="credito de la fuente de datos"><a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · DWD · NOAA · ECMWF</span>
     <button class="mc-refresh" id="mc-refresh">↻ <span id="mc-refresh-txt" data-tx="wxActualizar">Actualizar</span></button>
   </div>
 </div>
@@ -30559,6 +30602,11 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
     hv.className = 'sea-h';
     hv.textContent = h.toFixed(1) + ' m';
     el.appendChild(icon); el.appendChild(txt); el.appendChild(hv);
+    /* el credito de Open-Meteo, debajo y una sola vez (30 de octubre de 2026) */
+    var sig = el.nextElementSibling;
+    if (typeof tgoCreditoMeteo === 'function' && !(sig && sig.classList.contains('om-credito'))) {
+      el.parentNode.insertBefore(tgoCreditoMeteo('mar'), el.nextSibling);
+    }
   }
 
   var seaInFlight = {};
