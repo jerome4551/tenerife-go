@@ -433,7 +433,7 @@ const json = f => JSON.parse(lee(f));
 async function textos() {
   const out = [];
   const mete = (o, k, l, t) => { if (typeof t === 'string' && t.trim()) out.push({ o, k: String(k), l, t }); };
-  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-proxy-server'] });
+  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-proxy-server'] });
   try {
     const p = await (await nav.newContext({ serviceWorkers: 'block' })).newPage();
     await p.route(/^https?:\/\/(?!127\.0\.0\.1)/, r => r.abort());

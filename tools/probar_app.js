@@ -103,7 +103,7 @@ async function pagina(ctx, puerto, extra, idioma) {
   ok(prep.status === 0 && fs.existsSync(path.join(WWW, 'index.html')), 'app/www/ montado y cotejado con tools/app_preparar.js --comprobar', (prep.stdout + prep.stderr).split('\n').filter(l => /MAL|\*\*\*/.test(l)).join(' | '));
   const srv = spawn('python3', ['-m', 'http.server', String(PUERTO_APP), '--bind', '127.0.0.1'], { cwd: WWW, stdio: 'ignore' });
   await espera(1500);
-  const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-proxy-server'] });
+  const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-proxy-server'] });
   try {
     const vivos = [];   // lo que se pide a la web viva
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, userAgent: UA_IPHONE, hasTouch: true,

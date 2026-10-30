@@ -118,7 +118,7 @@ function esperado(datos, places, pos, radio, comb) {
   return c.filter(x => x.precio <= c[2].precio).map(x => x.id);
 }
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const datos = JSON.parse(fs.readFileSync(S + '/pc_frescos.json'));
   let fallos = 0;
   const mal = t => { fallos++; console.log('  FALLO', t); };

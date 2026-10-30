@@ -61,7 +61,7 @@ const FOTO = () => {
 };
 
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const url = 'http://127.0.0.1:' + PUERTO + '/index.html';
 
   /* Los idiomas salen del fuente, no de una lista aqui: el dia que entre uno

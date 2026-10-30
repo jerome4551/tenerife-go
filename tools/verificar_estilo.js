@@ -28,7 +28,7 @@ const RAIZ = path.dirname(__dirname);
    GitHub Actions, que es donde se genera el mapa de verdad porque tiene la
    salida a red que aqui falta. */
 const AQUI = '/opt/node22/lib/node_modules/playwright';
-const CHROME_AQUI = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
+const CHROME_AQUI = '/opt/pw-browsers/chromium';
 let chromium;
 try { chromium = require(AQUI).chromium; }
 catch (e) { chromium = require('playwright').chromium; }

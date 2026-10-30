@@ -46,7 +46,7 @@ const BASE = 'http://127.0.0.1:' + PUERTO + '/index.html';
 const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 
 (async () => {
-  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const pg = await (await nav.newContext({ serviceWorkers: 'block' })).newPage();
   await pg.route('**/vendor/supabase.js', r => r.abort());
   await pg.addInitScript(() => {

@@ -128,7 +128,7 @@ for (const l of IDI) {
 /* ── 4. que el navegador los pegue de verdad ─────────────────────────────── */
 (async () => {
   const { chromium } = require('/opt/node22/lib/node_modules/playwright');
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const url = 'http://127.0.0.1:' + PUERTO + '/index.html';
   console.log('\n=== en el navegador ===');
   try {

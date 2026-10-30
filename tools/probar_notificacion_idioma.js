@@ -62,7 +62,7 @@ const ver = (ok, que, detalle) => {
 
 async function laApp() {
   console.log('=== 1 · la app: con que idioma guarda la suscripcion ===');
-  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const ctx = await nav.newContext({ serviceWorkers: 'block', viewport: { width: 390, height: 844 } });
   const pg = await ctx.newPage();
   await pg.route('**/vendor/supabase.js', r => r.abort());
@@ -202,7 +202,7 @@ async function laApp() {
 
   /* Y donde no se puede (un navegador sin push): el boton sin cuenta sale
      apagado y dice por que, como el de la sesion iniciada. */
-  const nav2 = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const nav2 = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const pg2 = await (await nav2.newContext({ serviceWorkers: 'block', viewport: { width: 390, height: 844 } })).newPage();
   await pg2.route('**/vendor/supabase.js', r => r.abort());
   await pg2.addInitScript(() => {

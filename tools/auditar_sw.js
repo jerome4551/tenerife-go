@@ -354,7 +354,7 @@ function opaca() {
     try {
       const { chromium } = require('/opt/node22/lib/node_modules/playwright');
       browser = await chromium.launch({
-        executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+        executablePath: '/opt/pw-browsers/chromium',
         args: ['--no-proxy-server', '--no-sandbox']
       });
       const page = await browser.newPage();

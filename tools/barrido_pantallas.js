@@ -419,7 +419,7 @@ const CHOCA = { it: ['marzo', 'agosto'], nl: ['ver'], pl: ['parada'], fr: ['lune
 const LATINOS = IDI.filter(l => !['zh', 'zht', 'bg'].includes(l));
 
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const res = {};
   let nombres = [];
   for (const L of IDI) { res[L] = await recorrer(b, L); if (!nombres.length) nombres = res[L].nombres; }

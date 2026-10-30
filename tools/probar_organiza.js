@@ -341,7 +341,7 @@ const RECORRER = async () => {
 };
 
 (async () => {
-  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const abrirPagina = async (L) => {
     const ctx = await nav.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
     const pg = await ctx.newPage();

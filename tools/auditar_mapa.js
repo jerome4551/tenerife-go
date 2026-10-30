@@ -42,7 +42,7 @@ function ok(cond, txt, detalle) {
   }
 
   const browser = await chromium.launch({
-    executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+    executablePath: '/opt/pw-browsers/chromium',
     args: ['--no-proxy-server', '--no-sandbox']
   });
   try {
@@ -143,7 +143,7 @@ function ok(cond, txt, detalle) {
        bloques + ' bloques, ' + conHora + ' con hora');
 
     const browser2 = await chromium.launch({
-      executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+      executablePath: '/opt/pw-browsers/chromium',
       args: ['--no-proxy-server', '--no-sandbox']
     });
     try {
@@ -213,7 +213,7 @@ function ok(cond, txt, detalle) {
   console.log('\n════════ mapa sin conexion · bloque 3, la capa en la app ════════\n');
   {
     const browser3 = await chromium.launch({
-      executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+      executablePath: '/opt/pw-browsers/chromium',
       args: ['--no-proxy-server', '--no-sandbox']
     });
     try {
@@ -352,7 +352,7 @@ function ok(cond, txt, detalle) {
   console.log('\n════════ mapa sin conexion · la prueba de verdad ════════\n');
   {
     const browser4 = await chromium.launch({
-      executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+      executablePath: '/opt/pw-browsers/chromium',
       args: ['--no-proxy-server', '--no-sandbox']
     });
     try {
@@ -430,7 +430,7 @@ function ok(cond, txt, detalle) {
     ok(fs.existsSync(FIXTURE), 'existe el banco de pruebas tools/datos/prueba-osm.pmtiles');
 
     const browser5 = await chromium.launch({
-      executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+      executablePath: '/opt/pw-browsers/chromium',
       args: ['--no-proxy-server', '--no-sandbox']
     });
     try {
@@ -632,7 +632,7 @@ function ok(cond, txt, detalle) {
        'se pone cuando el arranque termina, y se vuelve a mirar al primer zoom');
 
     const PNG = fs.readFileSync(path.join(RAIZ, 'icon-192.png'));   // una imagen cualquiera hace de tesela
-    const browser6 = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-proxy-server', '--no-sandbox'] });
+    const browser6 = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-proxy-server', '--no-sandbox'] });
     try {
       const ctx = await browser6.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
       const page = await ctx.newPage();
@@ -732,7 +732,7 @@ function ok(cond, txt, detalle) {
        'las tres capas de teselas (calles, satelite y relieve) no piden nada a mitad del gesto');
 
     const PNG = fs.readFileSync(path.join(RAIZ, 'icon-192.png'));
-    const browser7 = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-proxy-server', '--no-sandbox'] });
+    const browser7 = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-proxy-server', '--no-sandbox'] });
     try {
       const ctx = await browser7.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
       const page = await ctx.newPage();

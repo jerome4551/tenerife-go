@@ -125,7 +125,7 @@ const CONSULTAS = [
 const formaPl = n => n === 1 ? 'miejsce' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 'miejsca' : 'miejsc';
 
 (async () => {
-  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const ctx = await nav.newContext({
     viewport: { width: 390, height: 844 },   // un telefono, no un escritorio
     isMobile: true, hasTouch: true, deviceScaleFactor: 3,

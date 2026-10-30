@@ -82,7 +82,7 @@ async function openMeteo(pg) {
 }
 
 (async () => {
-  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const ctx = await nav.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true,
                                      serviceWorkers: 'block' });
 

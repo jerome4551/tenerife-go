@@ -29,7 +29,7 @@ const path = require('path');
 /* Playwright y su Chromium: los de esta maquina, o los que diga TGO_PLAYWRIGHT
    (en GitHub Actions, el paquete instalado con `npx playwright install chromium`) */
 const { chromium } = require(process.env.TGO_PLAYWRIGHT || '/opt/node22/lib/node_modules/playwright');
-const CHROMIUM = fs.existsSync('/opt/pw-browsers/chromium-1194/chrome-linux/chrome') && !process.env.TGO_PLAYWRIGHT ? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' : undefined;
+const CHROMIUM = fs.existsSync('/opt/pw-browsers/chromium') && !process.env.TGO_PLAYWRIGHT ? '/opt/pw-browsers/chromium' : undefined;
 
 const RAIZ = path.join(__dirname, '..');
 const PUERTO = process.argv[2] || '8766';

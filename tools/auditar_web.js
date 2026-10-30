@@ -20,7 +20,7 @@ const path = require('path');
 const fs = require('fs');
 const RAIZ = path.dirname(__dirname);
 const PUERTO = process.argv[2] || 8766;
-const CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
+const CHROME = '/opt/pw-browsers/chromium';
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
 
 /* El fuente entero, no solo index.html: los modulos de carga perezosa

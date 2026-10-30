@@ -1074,7 +1074,7 @@ function fin() {
 async function navegador() {
   const { chromium } = require('/opt/node22/lib/node_modules/playwright');
   /* la camara falsa de Chromium: un video de prueba, sin pedir permiso, para la parte 9 */
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium',
     args: ['--no-proxy-server', '--no-sandbox', '--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'] });
   try {
     if (toca(6)) await calculos(b);

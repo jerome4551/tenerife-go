@@ -30,7 +30,7 @@ const REDES = [['5G bueno', 100], ['5G normal', 50], ['4G bueno', 20],
                ['4G flojo', 5], ['una barra', 2], ['muy mala señal', 0.5]];
 
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium',
                                     args: ['--no-proxy-server', '--no-sandbox'] });
   console.log('fichero: ' + (BYTES / 1048576).toFixed(2) + ' MB · razon z15 estimada: ×' + RAZON_Z15.toFixed(2) + '\n');
   console.log('red'.padEnd(16) + 'Mbps'.padStart(6) + 'z14 real'.padStart(12) + 'z15 (regla 3)'.padStart(16) + 'montaje'.padStart(10));

@@ -209,7 +209,7 @@ async function idioma(b, L) {
 }
 
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const P = (k, v) => console.log('  ' + String(k).padEnd(44, '.') + ' ' + v);
   console.log('=== el tour de bienvenida, en los ' + IDIOMAS.length + ' idiomas ===');
   const res = {};

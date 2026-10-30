@@ -24,7 +24,7 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
 
 (async () => {
   const puerto = process.argv[2] || '8777';
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const p = await b.newPage({ viewport: { width: ANCHO, height: ALTO } });
   const errores = [];
   p.on('pageerror', e => errores.push(e.message));

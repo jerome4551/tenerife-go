@@ -25,7 +25,7 @@ const PUERTO = process.argv[2] || '8820';
 const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   let total = 0;
   for (const L of IDIOMAS) {
     const ctx = await b.newContext({ viewport: { width: 360, height: 740 } });

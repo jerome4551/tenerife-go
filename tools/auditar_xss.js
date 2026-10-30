@@ -6,7 +6,7 @@ const PUERTO = process.argv[2] || 8766;
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
 const PAY = '<img src=x onerror="window.PWNED=1">';
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium',
                                     args: ['--no-proxy-server', '--no-sandbox'] });
   const p = await (await b.newContext({ serviceWorkers: 'block' })).newPage();
   const errs = []; p.on('pageerror', e => errs.push(e.message));

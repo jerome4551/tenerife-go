@@ -9,7 +9,7 @@
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
 const fs = require('fs');
 (async () => {
-  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const pg = await nav.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
   const b64 = fs.readFileSync(require('path').join(__dirname, '..', 'icon-512.png')).toString('base64');
   // el fondo propio del logo es mas oscuro (#05060A) que #0F1117: los bordes,
