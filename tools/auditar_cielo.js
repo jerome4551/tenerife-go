@@ -1890,7 +1890,7 @@ async function quejas(b) {
     const get = k => (des.find(l => l.startsWith(k + ':')) || '').slice(k.length + 1);
     if (get('DTSTART') !== fechaIcs(ini)) mal.push('DTSTART ' + get('DTSTART') + ' y no ' + fechaIcs(ini));
     if (get('DTEND') !== fechaIcs(fin)) mal.push('DTEND ' + get('DTEND') + ' y no ' + fechaIcs(fin));
-    if (!/^[A-Za-z0-9-]+@jerome4551\.github\.io$/.test(get('UID'))) mal.push('UID ' + get('UID'));
+    if (!/^[A-Za-z0-9-]+@tenerifego\.app$/.test(get('UID'))) mal.push('UID ' + get('UID'));
     if (!/Hora de Canarias: \d\d:\d\d/.test(get('DESCRIPTION').replace(/\\n/g, '\n'))) mal.push('DESCRIPTION sin la hora de Canarias');
     if (/[^\\][,;]/.test(get('LOCATION'))) mal.push('LOCATION sin escapar');
     if (!get('SUMMARY')) mal.push('sin SUMMARY');
@@ -2304,7 +2304,7 @@ async function satelites(b) {
     if (!des.includes('TRIGGER:-PT30M') || !/Dentro de media hora/.test(get('DESCRIPTION') + des.join('\n'))) malIcs.push('alarma: ' + des.filter(l => /TRIGGER|media hora/.test(l)).join(' '));
     if (!/paso visible/.test(get('SUMMARY')) || !new RegExp(nom[primero.sat]).test(get('SUMMARY'))) malIcs.push('SUMMARY ' + get('SUMMARY'));
     if (!/Aparece a las|Sale de la sombra|Ya arriba/.test(get('DESCRIPTION').replace(/\\n/g, '\n')) || !/Más alto/.test(get('DESCRIPTION')) || /undefined/.test(ics.txt)) malIcs.push('DESCRIPTION ' + get('DESCRIPTION').slice(0, 80));
-    if (!/^paso-[a-z]+-\d{4}-\d\d-\d\dT\d\d@jerome4551\.github\.io$/.test(get('UID'))) malIcs.push('UID ' + get('UID'));
+    if (!/^paso-[a-z]+-\d{4}-\d\d-\d\dT\d\d@tenerifego\.app$/.test(get('UID'))) malIcs.push('UID ' + get('UID'));
     ok(!malIcs.length && ics.nAvisos === 1 && ics.avId === ics.id && /^paso\|[a-z]+\|\d{4}-\d\d-\d\dT\d\d$/.test(ics.id),
        'el .ics del paso: de la aparicion a la desaparicion, alarma media hora antes, el nombre y el detalle; y el aviso en la app se pone y se quita (id ' + ics.id + ')', malIcs.join(' | ') + ' avisos ' + ics.nAvisos);
     /* la nota al descargar el .ics de un paso (22-10-2026): decia «con un

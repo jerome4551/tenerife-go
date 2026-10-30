@@ -224,7 +224,7 @@ async function pagina(ctx, puerto, extra, idioma) {
     ok(teide && /cielo-offline-ok/.test(teide[0]) && /^✓ /.test(teide[1]) && teide[2] === true, '«Antes de subir al Teide» dice «guardado en el movil» (todo viaja dentro; cacheListo() true sin cache)', JSON.stringify(teide));
     /* el enlace de compartir */
     const enlace = await p.evaluate(() => JSON.stringify(buildShareData(places[0])));
-    ok(/https:\/\/jerome4551\.github\.io\/tenerife-go\/#lugar=/.test(enlace) && !/127\.0\.0\.1/.test(enlace), 'el enlace de compartir un lugar apunta a la web viva, no al origen de la app', enlace);
+    ok(/https:\/\/tenerifego\.app\/#lugar=/.test(enlace) && !/127\.0\.0\.1/.test(enlace), 'el enlace de compartir un lugar apunta a la web viva, no al origen de la app', enlace);
     ok(errores.length === 0, 'sin errores de pagina al final', errores.join(' | '));
     await p.close();
 

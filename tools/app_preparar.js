@@ -293,7 +293,7 @@ function comprobar(montado) {
      'app/www/index.html es el index.html de la raiz mas la linea «window.TGO_NATIVO = true», delante del bloque TGO-NATIVO');
   /* lo que esa marca tiene que encontrar en index.html */
   ok(/window\.TGO_NATIVO = window\.TGO_NATIVO === true;/.test(index) && /function tgoFetchDatos\(ruta, opc\)/.test(index)
-     && /var TGO_BASE_VIVA = 'https:\/\/jerome4551\.github\.io\/tenerife-go\/';/.test(index),
+     && /var TGO_BASE_VIVA = 'https:\/\/tenerifego\.app\/';/.test(index),
      'index.html: la marca se respeta (TGO_NATIVO === true), tgoFetchDatos y la direccion viva');
   const csp = (index.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/) || [, ''])[1];
   ok(/connect-src [^;]*https:\/\/tenerifego\.app[ ;]/.test(csp) && !/jerome4551\.github\.io/.test(csp), 'la CSP deja pedir a la web viva, en su dominio (connect-src https://tenerifego.app), y ya no a la direccion vieja');
