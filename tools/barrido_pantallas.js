@@ -226,6 +226,19 @@ window.__estados = [
       __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('viaje'); await espera(300);
       const b = document.getElementById('tgp-paises-btn'); if (b && b.getAttribute('aria-expanded') !== 'true') b.click(); await espera(150);
       const p = document.querySelector('#tgp-paises-grid .tgp-pais[data-set="' + s + '"]'); if (p) p.click(); await espera(300); }]),
+  /* «Su cuerpo» (31 de octubre de 2026), encima del perfil: los musculos con las series de
+     __cuerpoDatos, el aspecto, la hoja del pecho con sus ejercicios y la ficha del primero. Sin
+     historial (TG_CUERPO_SIN_HISTORIA, abajo): aqui se miran los textos; el historial lo prueba
+     probar_cuerpo.js */
+  ['cuerpo', async () => { __perfilDatos(); __cuerpoDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuerpo'); await window.abrirCuerpo(); await espera(700); }],
+  ['cuerpo:aspecto', async () => { __perfilDatos(); __cuerpoDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuerpo'); await window.abrirCuerpo({ modo: 'aspecto' }); await espera(700); }],
+  ['cuerpo:hoja', async () => { __perfilDatos(); __cuerpoDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuerpo'); await window.abrirCuerpo({ modo: 'musculos' }); await espera(300);
+      document.querySelector('#tgc-lista .tgc-fila[data-g="pecho"]').click();
+      for (let i = 0; i < 50 && !document.querySelector('.tgc-ej-fila'); i++) await espera(100); await espera(300); }],
+  ['cuerpo:ficha', async () => { __perfilDatos(); __cuerpoDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuerpo'); await window.abrirCuerpo({ modo: 'musculos' }); await espera(300);
+      document.querySelector('#tgc-lista .tgc-fila[data-g="pecho"]').click();
+      for (let i = 0; i < 50 && !document.querySelector('.tgc-ej-fila'); i++) await espera(100);
+      const e = document.querySelector('.tgc-ej-fila'); if (e) e.click(); await espera(500); }],
   ['favoritos', async () => { document.getElementById('v19-nav-fav').click(); }],
   ['nav rutas', async () => { document.getElementById('v19-nav-routes').click(); }],
   /* Emergencias (22 de octubre de 2026): el inicio del panel SOS, sus 25
@@ -254,6 +267,19 @@ window.__estados = [
       window.__extra = t; }],
 ];
 window.espera = ms => new Promise(r => setTimeout(r, ms));
+/* «Su cuerpo» sin historial en el barrido: su cerrar() hace history.back(), y aqui se cierra todo
+   de golpe entre pantalla y pantalla. Lo lee el modulo al cargarse, con la primera de sus pantallas */
+window.TG_CUERPO_SIN_HISTORIA = true;
+/* las series de «Su cuerpo» para sus pantallas (las del ejemplo de la entrega, inventadas): con
+   numeros en el resumen y en el historial de cada grupo */
+window.__cuerpoDatos = () => {
+  const d = n => { const x = new Date(); x.setDate(x.getDate() - n); return x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0') + '-' + String(x.getDate()).padStart(2, '0'); };
+  const S = [[0, 'press-banca-barra', ['pecho'], 4], [1, 'hip-thrust-barra', ['gluteos'], 5], [2, 'dominadas', ['dorsal'], 4],
+    [4, 'sentadilla-trasera-barra', ['cuadriceps', 'gluteos'], 5], [6, 'flexion', ['pecho'], 4], [6, null, ['hombros'], 3]];
+  const t = Date.now() - 1e6, series = [];
+  S.forEach(x => x[2].forEach(g => { const s = { d: d(x[0]), g, n: x[3], t: t + series.length }; if (x[1]) s.e = x[1]; series.push(s); }));
+  localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series }));
+};
 /* los datos del perfil para su estado: 12 lugares marcados (10 comprobados, para
    que el set Tenerife se abra), pesos y caminatas; solo si aun no hay perfil */
 window.__perfilDatos = () => {
@@ -284,6 +310,7 @@ window.__cierra = async () => {
   document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
   document.body.click();
   try { window.TG_CIELO && TG_CIELO.cerrar(); } catch (e) {}
+  try { if (window.TG_CUERPO && TG_CUERPO.abierto()) TG_CUERPO.cerrar(); } catch (e) {}
   try { window.TG_PERFIL && TG_PERFIL.cerrar(); } catch (e) {}
   try { if (window.TG_CIELO) { TG_CIELO.quitarAvisos(); TG_CIELO.estado.cal = 'todo'; TG_CIELO.estado.mapa.rastro = null; } } catch (e) {}
   for (const id of ['mar-panel','mc-panel','fi-panel','wx-panel','cielo-panel']) { const e = document.getElementById(id); if (e) e.style.display = 'none'; }

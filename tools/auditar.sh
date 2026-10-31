@@ -48,9 +48,10 @@ echo "  scripts en linea: $(ls chk/*.js 2>/dev/null | wc -l), con fallo: $mal"
 # de 2026. extract_js.py solo saca los bloques en linea, asi que va aqui.
 # Y modulos/cielo.js, el panel del cielo, que se carga al abrirlo (17 de
 # octubre de 2026). Y modulos/avatares.js y modulos/perfil.js, el catalogo y
-# la pantalla del perfil (22 de octubre de 2026), y modulos/emergencias.js, el
-# panel SOS (22 de octubre de 2026).
-for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js; do
+# la pantalla del perfil (22 de octubre de 2026), modulos/emergencias.js, el
+# panel SOS (22 de octubre de 2026), y modulos/cuerpo.js, «Su cuerpo» (31 de
+# octubre de 2026).
+for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js modulos/cuerpo.js; do
   if node --check "$f"; then echo "  $f ok"; else mal=$((mal+1)); fi
 done
 [ "$mal" != 0 ] && falla sintaxis
@@ -266,6 +267,14 @@ echo; echo "════════ el perfil y los avatares ══════
 control auditar_perfil.js node tools/auditar_perfil.js
 control probar_fechas_oro.js node tools/probar_fechas_oro.js modulos/avatares.js
 control probar_perfil.js node tools/probar_perfil.js "$PUERTO"
+echo; echo "════════ «Su cuerpo»: el dibujo y la pantalla, encima del perfil y en los diez idiomas ════════"
+# Desde el 31 de octubre de 2026 (modulos/cuerpo.js, que se abre desde la pestaña Cuerpo del
+# perfil). El dibujo, sin navegador: cada opcion del aspecto da un SVG sano y lo guardado se
+# valida. La pantalla, de verdad: los diez idiomas, anotar, el aspecto, lo guardado roto, los 533
+# ejercicios, el «atras» con el perfil debajo, sin el modulo, y un fichero de ejercicios
+# manipulado que no ejecuta nada.
+control probar_figura.js node tools/probar_figura.js
+control probar_cuerpo.js node tools/probar_cuerpo.js "$PUERTO"
 echo; echo "════════ emergencias (SOS): textos, fuentes, enlaces, y el panel de verdad en los diez idiomas y sin conexion ════════"
 # Desde el 22 de octubre de 2026. El panel se carga al abrirlo
 # (modulos/emergencias.js); el 112 vive en el armazon y tiene que llamar
