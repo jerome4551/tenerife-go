@@ -6,9 +6,9 @@
   "La app no ensena estos precios si «fecha» tiene mas de 2 dias."
  ],
  "fuente": "Ministerio para la Transicion Ecologica y el Reto Demografico, Geoportal de Gasolineras",
- "fecha": "2026-10-31T07:03:25Z",
- "fecha_ministerio": "31/10/2026 8:03:25",
- "franja": "2026-10-31 07:00",
+ "fecha": "2026-10-31T15:24:37Z",
+ "fecha_ministerio": "31/10/2026 16:24:37",
+ "franja": "2026-10-31 15:00",
  "municipios": {
   "Adeje": {
    "gasolineras": 14,
@@ -329,12 +329,12 @@
     {
      "id": "gas-15901-la-orotava",
      "ideess": "15901",
-     "precio": 1.479
+     "precio": 1.477
     },
     {
      "id": "gas-16315-la-orotava",
      "ideess": "16315",
-     "precio": 1.479
+     "precio": 1.477
     }
    ],
    "diesel": [
@@ -355,6 +355,16 @@
    "cuantas": 2,
    "g95": [
     {
+     "id": "gas-15044-los-realejos",
+     "ideess": "15044",
+     "precio": 1.457
+    },
+    {
+     "id": "gas-10970-los-realejos",
+     "ideess": "10970",
+     "precio": 1.458
+    },
+    {
      "id": "gas-14769-los-realejos",
      "ideess": "14769",
      "precio": 1.458
@@ -366,6 +376,16 @@
     }
    ],
    "diesel": [
+    {
+     "id": "gas-15044-los-realejos",
+     "ideess": "15044",
+     "precio": 1.609
+    },
+    {
+     "id": "gas-10970-los-realejos",
+     "ideess": "10970",
+     "precio": 1.614
+    },
     {
      "id": "gas-14769-los-realejos",
      "ideess": "14769",
@@ -454,6 +474,11 @@
    "cuantas": 2,
    "g95": [
     {
+     "id": "gas-13201-san-miguel-de-abona",
+     "ideess": "13201",
+     "precio": 1.419
+    },
+    {
      "id": "gas-13292-san-miguel-de-abona",
      "ideess": "13292",
      "precio": 1.419
@@ -471,19 +496,14 @@
    ],
    "diesel": [
     {
-     "id": "gas-13292-san-miguel-de-abona",
-     "ideess": "13292",
-     "precio": 1.619
-    },
-    {
      "id": "gas-15913-san-miguel-de-abona",
      "ideess": "15913",
-     "precio": 1.619
+     "precio": 1.579
     },
     {
      "id": "gas-16520-san-miguel-de-abona",
      "ideess": "16520",
-     "precio": 1.619
+     "precio": 1.579
     }
    ]
   },
@@ -627,7 +647,7 @@
    "diesel": 1.719
   },
   "gas-10633-san-miguel-de-abona": {
-   "g95": 1.599,
+   "g95": 1.609,
    "diesel": 1.719
   },
   "gas-10635-arafo": {
@@ -659,8 +679,8 @@
    "diesel": 1.739
   },
   "gas-10970-los-realejos": {
-   "g95": 1.479,
-   "diesel": 1.657
+   "g95": 1.458,
+   "diesel": 1.614
   },
   "gas-10990-los-realejos": {
    "g95": 1.529,
@@ -727,11 +747,11 @@
   },
   "gas-12784-adeje": {
    "g95": 1.598,
-   "diesel": 1.738
+   "diesel": 1.729
   },
   "gas-13201-san-miguel-de-abona": {
-   "g95": 1.498,
-   "diesel": 1.698
+   "g95": 1.419,
+   "diesel": 1.619
   },
   "gas-13228-adeje": {
    "g95": 1.599,
@@ -794,8 +814,8 @@
    "diesel": 1.749
   },
   "gas-15044-los-realejos": {
-   "g95": 1.459,
-   "diesel": 1.615
+   "g95": 1.457,
+   "diesel": 1.609
   },
   "gas-15101-tegueste": {
    "g95": 1.585,
@@ -822,12 +842,12 @@
    "diesel": 1.589
   },
   "gas-15901-la-orotava": {
-   "g95": 1.479,
+   "g95": 1.477,
    "diesel": 1.619
   },
   "gas-15913-san-miguel-de-abona": {
    "g95": 1.419,
-   "diesel": 1.619
+   "diesel": 1.579
   },
   "gas-16015-adeje": {
    "g95": 1.467,
@@ -846,7 +866,7 @@
    "diesel": 1.599
   },
   "gas-16315-la-orotava": {
-   "g95": 1.479,
+   "g95": 1.477,
    "diesel": 1.619
   },
   "gas-16466-santa-cruz-de-tenerife": {
@@ -855,7 +875,7 @@
   },
   "gas-16520-san-miguel-de-abona": {
    "g95": 1.419,
-   "diesel": 1.619
+   "diesel": 1.579
   },
   "gas-7616-granadilla-de-abona": {
    "g95": 1.584,
