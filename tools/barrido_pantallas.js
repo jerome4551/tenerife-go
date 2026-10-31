@@ -239,6 +239,15 @@ window.__estados = [
       document.querySelector('#tgc-lista .tgc-fila[data-g="pecho"]').click();
       for (let i = 0; i < 50 && !document.querySelector('.tgc-ej-fila'); i++) await espera(100);
       const e = document.querySelector('.tgc-ej-fila'); if (e) e.click(); await espera(500); }],
+  /* el diseño nuevo (31 de octubre, noche): sin nada anotado, la lamina dice que hacer; y con el
+     año de nacimiento de alguien de 15 años, escrito en el formulario del perfil y guardado con su
+     boton, la recomendacion de su edad y sin la marca del 10. Va la ultima de las del cuerpo: deja
+     el perfil con esos 15 años, y lo que viene detras no lo mira */
+  ['cuerpo:vacio', async () => { __perfilDatos(); localStorage.removeItem('tenerife.cuerpo'); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuerpo'); await window.abrirCuerpo(); await espera(700); }],
+  ['cuerpo:menor', async () => { __perfilDatos(); __cuerpoDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuerpo'); await espera(300);
+      const n = document.getElementById('tgp-nac'); n.value = String(new Date().getFullYear() - 15); n.dispatchEvent(new Event('input', { bubbles: true }));
+      document.getElementById('tgp-save').click(); await espera(300);
+      await window.abrirCuerpo(); await espera(700); }],
   ['favoritos', async () => { document.getElementById('v19-nav-fav').click(); }],
   ['nav rutas', async () => { document.getElementById('v19-nav-routes').click(); }],
   /* Emergencias (22 de octubre de 2026): el inicio del panel SOS, sus 25

@@ -4,11 +4,12 @@
  *
  *     node tools/probar_cuerpo.js PUERTO
  *
- * Son las pruebas de la entrega del cuerpo (probar_prototipo.js, 24 de octubre de 2026), pasadas
- * del prototipo a la app el 31 de octubre: el idioma se cambia con setLang(); el ejemplo se
- * escribe en tenerife.cuerpo como lo escribia el prototipo (series inventadas, solo para la
- * prueba); y la tarjeta es la del perfil. Lo que solo tenia sentido en el prototipo, la pagina
- * sin historial, se cambia por lo de la app:
+ * Son las pruebas de la entrega del cuerpo (probar_prototipo.js: las del 24 de octubre de 2026 y,
+ * desde el 31, las 166 del diseño nuevo), pasadas del prototipo a la app el 31 de octubre: el
+ * idioma se cambia con setLang(); el ejemplo se escribe en tenerife.cuerpo como lo escribia el
+ * prototipo (series inventadas, solo para la prueba), y su «Empezar vacío» lo quita; y la tarjeta
+ * es la del perfil. Lo que solo tenia sentido en el prototipo, la pagina sin historial, se cambia
+ * por lo de la app:
  *   - «Su cuerpo» va encima del perfil: el perfil queda inerte debajo, y Escape y «atras» cierran
  *     «Su cuerpo» y dejan el perfil abierto, en su pestaña Cuerpo (10);
  *   - si el modulo no llega, la tarjeta lo dice, y con red otra vez se abre (10b);
@@ -18,7 +19,11 @@
  *   - las fuentes en cada idioma (14): las notas que la entrega escribio en castellano en los
  *     titulos de las 961 fuentes («conjunto de datos», «folleto…», «barra»…) salen traducidas en
  *     los nueve idiomas, sin navegador (con la tabla y la funcion del propio modulo) y en una
- *     ficha de verdad en tres idiomas.
+ *     ficha de verdad en tres idiomas;
+ *   - los menores (15): el prototipo escribe el año de nacimiento a mano en tenerife.perfil (4c);
+ *     aqui se escribe en el formulario del perfil, el de verdad, y se guarda con su boton: con 15
+ *     años, ni la marca del 10 ni su texto, y la recomendacion de su edad; con 30, o sin año, la
+ *     marca vuelve.
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -62,6 +67,11 @@ async function tarjeta(pg) {
   await pg.waitForFunction(() => window.TG_CUERPO && TG_CUERPO.abierto(), null, { timeout: 15000 });
   await pg.waitForTimeout(300);
 }
+/* sin nada anotado (el «Empezar vacío» del prototipo) */
+async function vacio(pg) {
+  await pg.evaluate(() => { localStorage.removeItem('tenerife.cuerpo'); TG_CUERPO.abrir(); });
+  await pg.waitForTimeout(150);
+}
 async function idioma(pg, l) { await pg.evaluate(l => setLang(l), l); await pg.waitForTimeout(150); }
 /* el ejemplo del prototipo, tal cual: inventado, para ver el mapa con niveles. Cada fila: hace
    cuantos dias, el ejercicio (o null si se anoto solo el grupo), sus grupos principales y las
@@ -102,7 +112,7 @@ async function ejemplo(pg) {
     p.querySelectorAll('[data-tx],[data-tx-aria],[data-tx-ph]').forEach(n => ['data-tx', 'data-tx-aria', 'data-tx-ph'].forEach(at => { const k = n.getAttribute(at); if (k && !UI_TX[k]) malos.push('sin fila ' + k); }));
     return { n: p.querySelectorAll('[data-tx],[data-tx-aria]').length, ph: p.querySelectorAll('[data-tx-ph]').length, malos };
   });
-  prueba('textos fijos puestos (75 elementos, con la línea de la IA, y 1 placeholder)', r2.n === 75 && r2.ph === 1, r2.n + '/' + r2.ph);
+  prueba('textos fijos puestos (77 elementos, con la línea de la IA, y 1 placeholder)', r2.n === 77 && r2.ph === 1, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -150,13 +160,59 @@ async function ejemplo(pg) {
   const todos = [...new Set((grFrente + ',' + grEsp).split(','))].sort().join(',');
   prueba('los 12 grupos están en el dibujo', todos.split(',').length === 12, todos);
 
+  // 4b. la semana día a día: 7 días, hoy marcado y elegido, sus cuentas cuadran con el resumen
+  const r4b = await pg.evaluate(() => {
+    const dias = [...document.querySelectorAll('#tgc-dias7 .tgc-dia')];
+    const n = d => { const s = TG_CUERPO.estado().series; return s.filter(x => x.d === d).reduce((a, x) => a + x.n, 0); };
+    return { n: dias.length, hoy: dias[6].getAttribute('aria-current') === 'date' && dias[6].getAttribute('aria-pressed') === 'true',
+             suma: dias.reduce((a, b) => a + n(b.dataset.d), 0), conSeries: dias.filter(b => n(b.dataset.d) > 0).length,
+             barras: dias.filter(b => !b.querySelector('.tgc-dia-barra').classList.contains('cero')).length,
+             nombre: dias[6].getAttribute('aria-label'), txt: document.getElementById('tgc-dia-txt').textContent, grupos: document.getElementById('tgc-dia-grupos').textContent };
+  });
+  prueba('semana: 7 días, hoy marcado y elegido', r4b.n === 7 && r4b.hoy, JSON.stringify(r4b));
+  prueba('semana: la suma de los días es la del resumen (76)', r4b.suma === 76, String(r4b.suma));
+  prueba('semana: un día con barra por cada día con fuerza (5)', r4b.conSeries === 5 && r4b.barras === 5, r4b.conSeries + '/' + r4b.barras);
+  prueba('semana: hoy, con sus series y sus grupos', /: 10 series$/.test(r4b.txt) && r4b.nombre === r4b.txt && r4b.grupos === 'Pecho, Hombros, Tríceps', r4b.txt + ' | ' + r4b.grupos);
+  await pg.click('#tgc-dias7 li:nth-child(6) .tgc-dia'); await pg.waitForTimeout(60);
+  const r4c = await pg.evaluate(() => ({ el: [...document.querySelectorAll('#tgc-dias7 .tgc-dia')].map(b => b.getAttribute('aria-pressed')).join(','),
+    txt: document.getElementById('tgc-dia-txt').textContent, grupos: document.getElementById('tgc-dia-grupos').textContent }));
+  prueba('semana: tocar ayer enseña ayer', r4c.el === 'false,false,false,false,false,true,false' && /: 12 series$/.test(r4c.txt) && r4c.grupos === 'Abdomen y lumbares, Glúteos y cadera, Pantorrillas y espinillas', JSON.stringify(r4c));
+  await pg.click('#tgc-dias7 li:nth-child(4) .tgc-dia'); await pg.waitForTimeout(60);   // hace 3 días: el ejemplo no tiene nada
+  prueba('semana: un día sin nada lo dice', await pg.evaluate(() => document.getElementById('tgc-dia-grupos').textContent === 'sin anotar' && /: 0 series$/.test(document.getElementById('tgc-dia-txt').textContent)));
+
+  // 4c. los 12 grupos como barras: el largo es el de las series, todas igual de largas, la marca del 10 en el mismo sitio
+  const r4d = await pg.evaluate(() => {
+    const filas = [...document.querySelectorAll('#tgc-lista .tgc-fila')];
+    const caja = filas.map(b => b.querySelector('.tgc-barra').getBoundingClientRect());
+    const marcas = filas.map(b => b.querySelector('.tgc-barra-ref')).filter(Boolean).map(m => m.getBoundingClientRect().left);
+    const s = n => Number(n.querySelector('.tgc-fila-n').textContent.match(/\d+/)[0]);
+    const prop = filas.every(b => { const w = parseFloat(b.querySelector('.tgc-barra .tgc-nivel').style.width); return Math.abs(w - 100 * s(b) / 20) < 0.11; });
+    return { n: filas.length, iguales: caja.every(r => Math.abs(r.width - caja[0].width) < 0.5 && Math.abs(r.left - caja[0].left) < 0.5),
+             marcas: marcas.length, enSuSitio: marcas.every(x => Math.abs(x - marcas[0]) < 0.5), prop, ref: !document.getElementById('tgc-ref').hidden,
+             nombre: filas[0].textContent.replace(/\s+/g, ' ').trim() };
+  });
+  prueba('grupos: 12 barras del mismo largo', r4d.n === 12 && r4d.iguales, JSON.stringify(r4d));
+  prueba('grupos: el largo de cada barra son sus series (escala de 20)', r4d.prop);
+  prueba('grupos: la marca del 10 en el mismo sitio en las 12 (adultos)', r4d.marcas === 12 && r4d.enSuSitio && r4d.ref);
+  prueba('grupos: el botón dice el grupo, las series y cuándo', r4d.nombre === 'Pecho 8 series hoy', r4d.nombre);
+  // de 14 a 17 años (perfil con el año de nacimiento): la recomendación de la OMS para su edad y sin la marca del 10
+  await pg.evaluate(() => { localStorage.setItem('tenerife.perfil', JSON.stringify({ nacimiento: new Date().getFullYear() - 15 })); TG_CUERPO.repintar(); });
+  const r4e = await pg.evaluate(() => ({ marcas: document.querySelectorAll('#tgc-lista .tgc-barra-ref').length, ref: document.getElementById('tgc-ref').hidden,
+    reco: document.getElementById('tgc-reco').textContent }));
+  prueba('menores: sin la marca del 10 ni su texto, con la recomendación de su edad', r4e.marcas === 0 && r4e.ref && /5 a 17|3 días/.test(r4e.reco), JSON.stringify(r4e));
+  await pg.evaluate(() => { localStorage.removeItem('tenerife.perfil'); TG_CUERPO.repintar(); });
+
   // 5. la hoja: tocar el pecho en el dibujo, anotar, borrar y deshacer
   await pg.evaluate(() => { const z = document.querySelector('#tgc-cara-frente .tgf-z[data-g="pecho"]'); z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
   await pg.waitForTimeout(300);
   prueba('la hoja se abre desde el dibujo', await pg.evaluate(() => !document.getElementById('tgc-hoja').hidden && document.getElementById('tgc-hoja-tit').textContent === 'Pecho'));
   prueba('el foco va a la hoja', await pg.evaluate(() => document.activeElement && document.activeElement.id === 'tgc-hoja-tit'));
   prueba('lo de debajo, inerte', await pg.evaluate(() => document.getElementById('tgc').inert === true));
-  prueba('selección marcada en el dibujo', await pg.evaluate(() => document.querySelectorAll('#tgc-cara-frente g[pointer-events="none"] path').length > 0));
+  prueba('selección marcada en el dibujo', await pg.evaluate(() => document.querySelectorAll('#tgc-cara-frente .tgf-marca path').length > 0));
+  prueba('la hoja lleva el maniquí con su grupo en oro', await pg.evaluate(() => {
+    const z = [...document.querySelectorAll('#tgc-hoja-mini .tgf-z')];
+    return z.length > 10 && z.filter(x => x.dataset.g === 'pecho').every(x => /-n3\)$/.test(x.getAttribute('fill'))) && z.filter(x => x.dataset.g !== 'pecho').every(x => /-n0\)$/.test(x.getAttribute('fill')));
+  }));
   await pg.click('#tgc-mas'); await pg.click('#tgc-mas');
   prueba('paso: 5', await pg.evaluate(() => document.getElementById('tgc-n').value) === '5');
   await pg.click('#tgc-ayer'); await pg.click('#tgc-guardar'); await pg.waitForTimeout(150);
@@ -179,12 +235,24 @@ async function ejemplo(pg) {
   prueba('Escape cierra la hoja', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto()));
   prueba('lo de debajo vuelve a funcionar', await pg.evaluate(() => document.getElementById('tgc').inert === false));
 
-  // 6. girar
+  // 6. «Músculos»: las dos vistas a la vez, con su pie; «Girar» solo en «Aspecto»
+  const r6 = await pg.evaluate(() => {
+    const f = document.getElementById('tgc-cara-frente'), e = document.getElementById('tgc-cara-espalda'), rf = f.getBoundingClientRect(), re = e.getBoundingClientRect();
+    return { ocultas: [f, e].map(x => x.getAttribute('aria-hidden')).join(','), lado: rf.right <= re.left + 1 && Math.abs(rf.top - re.top) < 1 && rf.width > 100,
+             pies: ['tgc-cap-frente', 'tgc-cap-espalda'].map(i => document.getElementById(i).offsetParent !== null && document.getElementById(i).textContent).join('|'),
+             girar: document.getElementById('tgc-girar').offsetParent === null };
+  });
+  prueba('músculos: las dos vistas, una al lado de la otra y las dos legibles', r6.ocultas === 'false,false' && r6.lado, JSON.stringify(r6));
+  prueba('músculos: cada vista con su pie', r6.pies === 'de frente|de espaldas', r6.pies);
+  prueba('músculos: sin «Girar»', r6.girar);
+  await pg.click('#tgc-modo-a'); await pg.waitForTimeout(100);
+  prueba('aspecto: una sola vista legible', await pg.evaluate(() => document.getElementById('tgc-cara-frente').getAttribute('aria-hidden') === 'false' && document.getElementById('tgc-cara-espalda').getAttribute('aria-hidden') === 'true'));
   await pg.click('#tgc-girar'); await pg.waitForTimeout(100);
   prueba('girar: de espaldas', await pg.evaluate(() => document.getElementById('tgc-giro').classList.contains('is-espalda') &&
     document.getElementById('tgc-cara-espalda').getAttribute('aria-hidden') === 'false' && document.getElementById('tgc-cara-frente').getAttribute('aria-hidden') === 'true' &&
-    document.getElementById('tgc-girar').getAttribute('aria-label') === 'Ver de frente'));
+    document.getElementById('tgc-girar').getAttribute('aria-label') === 'Ver de frente' && document.getElementById('tgc-vista').textContent === 'de espaldas'));
   await pg.click('#tgc-girar');
+  await pg.click('#tgc-modo-m'); await pg.waitForTimeout(100);
 
   // 7. el aspecto: cambiar y que se guarde
   await pg.click('#tgc-modo-a'); await pg.waitForTimeout(100);
@@ -224,6 +292,16 @@ async function ejemplo(pg) {
   prueba('roto: solo la anotación válida', r8.series.length === 1 && r8.series[0].g === 'biceps' && r8.series[0].t === 0, JSON.stringify(r8.series));
   await pg.evaluate(() => { localStorage.setItem('tenerife.cuerpo', '{no es json'); TG_CUERPO.abrir(); });
   prueba('JSON roto: pantalla vacía y sin errores', await pg.evaluate(() => TG_CUERPO.estado().series.length === 0) && errores.length === 0, errores.join(' | '));
+
+  // 8b. la lámina vacía dice qué hacer; con series, no; la entrada (barrido y barras que crecen) solo al abrir
+  await vacio(pg); await pg.waitForTimeout(150);
+  const r8b = await pg.evaluate(() => ({ visible: document.getElementById('tgc-pista').offsetParent !== null, txt: document.getElementById('tgc-pista-txt').textContent,
+    entra: document.getElementById('tgc').classList.contains('tgc-entra') }));
+  prueba('vacío: la lámina invita a anotar', r8b.visible && r8b.txt === 'Toque un músculo del dibujo o de la lista para anotar series.', JSON.stringify(r8b));
+  await ejemplo(pg); await pg.waitForTimeout(150);
+  prueba('con series: sin la invitación', await pg.evaluate(() => document.getElementById('tgc-pista').hidden));
+  await pg.waitForTimeout(1900);
+  prueba('la entrada se quita sola (las barras no vuelven a crecer al anotar)', await pg.evaluate(() => !document.getElementById('tgc').classList.contains('tgc-entra')));
 
   // 9. borrar todo, con confirmación en la página
   await ejemplo(pg); await pg.waitForTimeout(100);
@@ -394,7 +472,6 @@ async function ejemplo(pg) {
   const r11 = await pg.evaluate(() => { const n = TG_FIGURA.MUSC.nivel, L = TG_FIGURA.lum; const c = (a, b) => { const x = L(a), y = L(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }; return [1, 2, 3].map(i => c(n[0], n[i])); });
   prueba('niveles con 3:1 o más frente a sin trabajar', r11.every(x => x >= 3), r11.map(x => x.toFixed(2)).join(', '));
 
-
   // 13. (la app) la seguridad: un fichero de ejercicios manipulado, y lo guardado con HTML
   {
     const c3 = await contexto(b), p3 = await c3.newPage(), e3 = []; vigilar(p3, e3);
@@ -466,6 +543,31 @@ async function ejemplo(pg) {
       await pg.click('#tgc-ej-cerrar'); await pg.waitForTimeout(200);
     }
     await idioma(pg, 'es');
+  }
+
+  // 15. (la app) los menores, con el año de nacimiento escrito en el formulario del perfil, el de
+  //     verdad: sin la marca del 10 ni su texto, y con la recomendación de su edad; con un año de
+  //     adulto, o sin año, la marca vuelve
+  {
+    const c5 = await contexto(b), p5 = await c5.newPage(), e5 = []; vigilar(p5, e5);
+    await abrirApp(p5); await abrirPerfilCuerpo(p5);
+    const anio = await p5.evaluate(() => new Date().getFullYear());
+    const conAnio = async (v) => {
+      if (await p5.evaluate(() => !!(window.TG_CUERPO && TG_CUERPO.abierto()))) { await p5.keyboard.press('Escape'); await p5.waitForTimeout(250); }
+      await p5.fill('#tgp-nac', v); await p5.click('#tgp-save'); await p5.waitForTimeout(200);
+      const guardado = await p5.evaluate(() => (JSON.parse(localStorage.getItem('tenerife.perfil')) || {}).nacimiento);
+      await tarjeta(p5);
+      return Object.assign({ guardado }, await p5.evaluate(() => ({ marcas: document.querySelectorAll('#tgc-lista .tgc-barra-ref').length,
+        ref: !document.getElementById('tgc-ref').hidden, reco: document.getElementById('tgc-reco').textContent })));
+    };
+    const m15 = await conAnio(String(anio - 15));
+    prueba('perfil con 15 años: sin la marca del 10 ni su texto, y la recomendación de 5 a 17 años', m15.guardado === anio - 15 && m15.marcas === 0 && !m15.ref && /^La OMS \(2020\) recomienda de 5 a 17 años/.test(m15.reco), JSON.stringify(m15));
+    const a15 = await conAnio(String(anio - 30));
+    prueba('perfil con 30 años: la marca en los 12 grupos, su texto y la recomendación de adultos', a15.guardado === anio - 30 && a15.marcas === 12 && a15.ref && /recomiendan a los adultos/.test(a15.reco), JSON.stringify(a15));
+    const s15 = await conAnio('');
+    prueba('perfil sin año: como un adulto', s15.guardado === null && s15.marcas === 12 && s15.ref && /recomiendan a los adultos/.test(s15.reco), JSON.stringify(s15));
+    prueba('…sin errores de página', e5.length === 0, e5.join(' | '));
+    await c5.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
