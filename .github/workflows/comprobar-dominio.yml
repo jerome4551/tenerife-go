@@ -8,6 +8,8 @@
 #   las tiendas (la copia viva de los datos, con CORS) y las fichas de Google y
 #   Apple (la politica y el borrado de la cuenta), y que la direccion vieja
 #   lleve a la nueva. Si algo no cuadra, el trabajo sale en rojo y lo dice.
+#   Y desde el 31 de octubre de 2026, un segundo trabajo: el banner de instalar
+#   en la web publicada, en un navegador de verdad (tools/probar_instalar.js).
 name: Comprobar el dominio
 
 on:
@@ -61,3 +63,42 @@ jobs:
           linea ""
           if [ "$fallos" -gt 0 ]; then linea "**$fallos en rojo**"; exit 1; fi
           linea "**Todo en verde**"
+
+  instalar:
+    # Lo que vio Jerome el 31 de octubre de 2026 desde Instagram en el iPhone:
+    # el banner de instalar que no se iba y ningun camino para instalarla. Se
+    # mira en la web publicada, con los user-agent de Safari y de Instagram, en
+    # los diez idiomas. Primero, que la web sea la de este commit: index.html
+    # igual al del repositorio (con una consulta que no este en la cache de
+    # GitHub Pages; hasta 10 minutos, lo que tarda en publicar).
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Playwright (Chromium)
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: La web publicada, la de este commit
+        run: |
+          local_=$(sha256sum index.html | cut -d' ' -f1)
+          for i in $(seq 1 40); do
+            vivo=$(curl -sS --max-time 20 "https://tenerifego.app/index.html?comprobar=${GITHUB_RUN_ID}-$i" | sha256sum | cut -d' ' -f1)
+            if [ "$vivo" = "$local_" ]; then echo "publicada, intento $i" | tee -a "$GITHUB_STEP_SUMMARY"; exit 0; fi
+            sleep 15
+          done
+          echo "MAL  a los 10 minutos, la web publicada no es la de este commit" | tee -a "$GITHUB_STEP_SUMMARY"; exit 1
+
+      - name: El banner de instalar, en Safari y en el navegador de Instagram
+        env:
+          TGO_PLAYWRIGHT: ${{ github.workspace }}/node_modules/playwright
+        run: |
+          set -o pipefail
+          node tools/probar_instalar.js "https://tenerifego.app/index.html?comprobar=${GITHUB_RUN_ID}" | tee salida.txt
+          { echo '### El banner de instalar, en la web publicada'; echo '```'; tail -1 salida.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

@@ -3324,6 +3324,12 @@ Control nuevo, `tools/probar_instalar.js` (65 casos), con los textos de
 - a 320 y a 430 px, con los textos más largos (el alemán);
 - y ningún error de página.
 
+Y en la web publicada, que desde aquí no se alcanza: `comprobar-dominio.yml`,
+lanzado a mano desde GitHub, tiene un segundo trabajo. Espera a que
+`index.html` en tenerifego.app sea el del repositorio y pasa
+`probar_instalar.js` contra la web publicada, con su dirección en lugar del
+puerto.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:

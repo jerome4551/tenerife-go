@@ -29,13 +29,23 @@
  *   · a 320 y a 430 px, con los textos mas largos, dentro de la pantalla;
  *   · y ningun error de pagina.
  *
- *     node tools/probar_instalar.js [puerto]
+ *     node tools/probar_instalar.js [puerto]                      (auditar.sh)
+ *     node tools/probar_instalar.js https://tenerifego.app/index.html
+ *   con una direccion, contra la web publicada: lo lanza comprobar-dominio.yml
+ *   desde GitHub, porque desde el entorno de Claude Code no se llega a ella.
+ *   Los textos se cotejan con los de index.html de esta copia, la publicada.
  */
 'use strict';
-const { chromium } = require('/opt/node22/lib/node_modules/playwright');
+/* Playwright: el de esta maquina, o el que diga TGO_PLAYWRIGHT (en GitHub) */
+const { chromium } = require(process.env.TGO_PLAYWRIGHT || '/opt/node22/lib/node_modules/playwright');
 const fs = require('fs'), path = require('path');
-const PUERTO = process.argv[2] || '8766';
-const BASE = 'http://127.0.0.1:' + PUERTO + '/index.html';
+const ARG = process.argv[2] || '8766';
+const BASE = /^https?:\/\//.test(ARG) ? ARG : 'http://127.0.0.1:' + ARG + '/index.html';
+const ORIGEN = new URL(BASE).origin;
+/* lo que copia «Copiar el enlace»: la direccion, sin consulta ni «#» */
+const LIMPIA = ORIGEN + new URL(BASE).pathname;
+/* una direccion con algo detras: la de BASE con su consulta, mas lo que se le añada */
+const con = (consulta, hash) => { const u = new URL(BASE); for (const [k, v] of Object.entries(consulta || {})) u.searchParams.set(k, v); if (hash) u.hash = hash; return u.href; };
 const RAIZ = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
 const IDIOMAS = ((html.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1])
@@ -77,12 +87,13 @@ async function abrir(ua, L, op) {
     locale: 'es-ES', serviceWorkers: 'block', permissions: ['clipboard-read', 'clipboard-write'] });
   const p = await ctx.newPage();
   p.on('pageerror', e => errores.push((L || '') + ' ' + e.message));
-  await p.route(/^https?:\/\/(?!127\.0\.0\.1)/, r => r.abort());
+  /* fuera, solo la propia web: ni mapas ni fuentes de otros sitios */
+  await p.route(u => new URL(u).origin !== ORIGEN, r => r.abort());
   await p.addInitScript(inst => {
     try { localStorage.setItem('tenerife.tour.seen', '99'); } catch (e) {}
     if (inst) Object.defineProperty(navigator, 'standalone', { get: () => true });
   }, !!op.instalada);
-  await p.goto(BASE + (op.consulta || ''), { waitUntil: 'load' });
+  await p.goto(op.url || BASE, { waitUntil: 'load' });
   await p.waitForTimeout(300);
   const lang = await p.$('.v19-w-lang[data-lang="' + (L || 'es') + '"]');
   if (lang) { await lang.click(); await p.waitForTimeout(150); }
@@ -148,7 +159,7 @@ async function enTandas(lista, n, fn) {
     console.log('\n=== el navegador de Instagram en el iPhone, en los ' + IDIOMAS.length + ' idiomas ===');
     const insta = {};
     await enTandas(IDIOMAS, 5, async L => {
-      const { ctx, p } = await abrir(UA.instagram, L, { consulta: '?fbclid=prueba#mapa' });
+      const { ctx, p } = await abrir(UA.instagram, L, { url: con({ fbclid: 'prueba' }, 'mapa') });
       const r = { sale: await sale(p) };
       r.m = await medir(p);
       if (r.sale) {
@@ -171,7 +182,7 @@ async function enTandas(lista, n, fn) {
         escondido(r.despues) && r.v && r.v.titulo === T.instTitulo[L] && r.v.pasos.length === 2 && r.v.pasos[0] === plano(T.instAppIos[L]) && r.v.pasos[1] === plano(T.instIos[L])
         && r.v.botones.join('|') === T.copiarEnlace[L] + '|' + T.instOk[L], JSON.stringify({ despues: r.despues, v: r.v }));
       caso(L + ': «Copiar el enlace» copia la direccion sin «?fbclid» ni «#» y dice «' + r.boton + '»',
-        r.copiado === BASE && r.boton === T.enlaceCopiado[L] && r.desactivado === true, JSON.stringify({ copiado: r.copiado, boton: r.boton }));
+        r.copiado === LIMPIA && r.boton === T.enlaceCopiado[L] && r.desactivado === true, JSON.stringify({ copiado: r.copiado, boton: r.boton }));
     }
 
     console.log('\n=== el cambio de idioma, con el banner a la vista ===');
