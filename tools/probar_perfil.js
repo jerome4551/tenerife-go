@@ -627,8 +627,11 @@ async function pestanas(b) {
   await pg.evaluate(() => { document.getElementById('perfil-panel').scrollTop = 99999; }); await pg.waitForTimeout(150);
   await pg.click('#tgp-tab-cuerpo'); await pg.waitForTimeout(200);
   const pos = await pg.evaluate(() => {
-    const cab = document.querySelector('.tgp-top').getBoundingClientRect(), barra = document.getElementById('tgp-tabs').getBoundingClientRect(), datos = document.getElementById('tgp-datos').getBoundingClientRect();
-    return { cab: Math.round(cab.bottom), barra: [Math.round(barra.top), Math.round(barra.bottom)], datos: Math.round(datos.top) };
+    /* lo primero de la pestaña nueva: desde «Su cuerpo» (31 de octubre de 2026) es su tarjeta,
+       encima de «Sus datos» */
+    const primera = document.getElementById('tgp-p-cuerpo').firstElementChild;
+    const cab = document.querySelector('.tgp-top').getBoundingClientRect(), barra = document.getElementById('tgp-tabs').getBoundingClientRect(), datos = primera.getBoundingClientRect();
+    return { cab: Math.round(cab.bottom), barra: [Math.round(barra.top), Math.round(barra.bottom)], primera: primera.id, datos: Math.round(datos.top) };
   });
   ok(Math.abs(pos.barra[0] - pos.cab) <= 2 && pos.datos >= pos.barra[1] && pos.datos <= pos.barra[1] + 30,
     'p6 al cambiar de pestaña desde abajo, la barra queda bajo la cabecera y la pestaña nueva empieza justo debajo', pos);
