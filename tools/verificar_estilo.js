@@ -55,6 +55,7 @@ function estiloDeLaApp() {
   return [
     trozo(/\nconst MAPA_MAR = '#[0-9a-f]{6}', MAPA_TIERRA = '#[0-9a-f]{6}';\n/),
     trozo(/\nfunction rotuloConMargen\(sim, m\) \{[\s\S]*?\n\}\n/),
+    trozo(/\nfunction rotuloChino\(sim, idioma, prop\) \{[\s\S]*?\n\}\n/),
     trozo(/\nfunction estiloIslaDetallada\(P, idioma\) \{[\s\S]*?\n\}\n/)
   ].join('\n').replace(/^const /m, 'var ');
 }

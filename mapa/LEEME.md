@@ -30,6 +30,14 @@ matrículas de las carreteras. El mapa base, con `estiloIslaBase`, con el mismo
 mar y la misma tierra. `tools/auditar_mapa.js` (bloque 8) comprueba que todas
 las vías y usos del suelo del fichero tienen su regla y lo pinta de verdad.
 
+Los rótulos van en el idioma de la app. En chino, los del fichero no valen (en
+`name:zh-Hant` trae los mismos caracteres simplificados que en `name:zh-Hans`):
+desde el 31 de octubre de 2026, los pueblos llevan el nombre que les dan las
+fichas de la app (`MAPA_NOMBRES_ZH`, en `index.html`) y lo demás va en
+castellano. Esa tabla la escribe `tools/nombres_chinos_mapa.py` con los nombres
+que salen en los dos `.pmtiles`: si se rehace uno, hay que volver a pasar el
+guion, y la auditoría lo canta si no se hace.
+
 ### Requisitos
 
 | | |

@@ -23,10 +23,12 @@ function estiloDeLaApp() {
   const trozo = re => { const m = html.match(re); if (!m) throw new Error('no esta en index.html: ' + re); return m[0]; };
   return [
     trozo(/\nconst MAPA_MAR = '#[0-9a-f]{6}', MAPA_TIERRA = '#[0-9a-f]{6}';\n/),
+    trozo(/\nconst MAPA_NOMBRES_ZH = \{[\s\S]*?\n\};\n/),
     trozo(/\nfunction rotuloConMargen\(sim, m\) \{[\s\S]*?\n\}\n/),
+    trozo(/\nfunction rotuloChino\(sim, idioma, prop\) \{[\s\S]*?\n\}\n/),
     trozo(/\nfunction estiloIslaDetallada\(P, idioma\) \{[\s\S]*?\n\}\n/),
-    trozo(/\nfunction estiloIslaBase\(P\) \{[\s\S]*?\n\}\n/)
-  ].join('\n').replace(/^const /m, 'var ');
+    trozo(/\nfunction estiloIslaBase\(P, idioma\) \{[\s\S]*?\n\}\n/)
+  ].join('\n').replace(/^const /mg, 'var ');
 }
 
 let fallos = 0, hechos = 0;
@@ -824,9 +826,9 @@ function ok(cond, txt, detalle) {
     const html = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8');
     const fIsla = (html.match(/function construirIsla\(blob, clave, detallado, zMax\) \{[\s\S]*?\n\}\n/) || [''])[0];
     const fFondo = (html.match(/function ponerFondoIsla\(\) \{[\s\S]*?\n\}\n/) || [''])[0];
-    const fBase = (html.match(/\nfunction estiloIslaBase\(P\) \{[\s\S]*?\n\}\n/) || [''])[0];
+    const fBase = (html.match(/\nfunction estiloIslaBase\(P, idioma\) \{[\s\S]*?\n\}\n/) || [''])[0];
     const fDet = (html.match(/\nfunction estiloIslaDetallada\(P, idioma\) \{[\s\S]*?\n\}\n/) || [''])[0];
-    ok(/estiloIslaDetallada\(P, idioma\)/.test(fIsla) && /estiloIslaBase\(P\)/.test(fIsla) && !/flavor/.test(fIsla),
+    ok(/estiloIslaDetallada\(P, idioma\)/.test(fIsla) && /estiloIslaBase\(P, idioma\)/.test(fIsla) && !/flavor/.test(fIsla),
        'los dos mapas de la isla se pintan con el estilo de la app, sin el flavor de protomaps-leaflet');
     /* el mar y la tierra de openstreetmap-carto (style/style.mss: @water-color #aad3df,
        @land-color #f2efe9), en los tres: asi, al hacer zoom con las calles, el fondo que asoma
@@ -839,8 +841,8 @@ function ok(cond, txt, detalle) {
        'el fondo de la isla, el mapa base y el detallado comparten esos dos colores');
     ok(!/#a8c8e0|#eef1e6|#80deea/i.test(fFondo + fIsla + fBase + fDet),
        'no queda ninguno de los colores de antes (#a8c8e0, #eef1e6, el cian #80deea)');
-    ok(/currentLang === 'zht' \? 'zh-Hant' : currentLang === 'zh' \? 'zh-Hans'/.test(fIsla) && /const nombre = \/\^zh\/\.test\(idioma\) \? \['name'\] : \['name:' \+ idioma, 'name'\];/.test(fDet),
-       'los rotulos, en el idioma de la app; en chino, en castellano (el chino del fichero no vale: mas abajo)');
+    ok(/currentLang === 'zht' \? 'zh-Hant' : currentLang === 'zh' \? 'zh-Hans'/.test(fIsla) && /const nombre = \/\^zh\/\.test\(idioma\) \? \['tgo:zh', 'name'\] : \['name:' \+ idioma, 'name'\];/.test(fDet),
+       'los rotulos, en el idioma de la app; en chino, los pueblos con el nombre de las fichas y lo demas en castellano (el chino del fichero no vale: mas abajo)');
 
     const REAL = fs.existsSync(path.join(RAIZ, 'mapa/tenerife-osm.pmtiles'));
     const FICH = REAL ? 'mapa/tenerife-osm.pmtiles' : 'tools/datos/prueba-osm.pmtiles';
@@ -944,20 +946,27 @@ function ok(cond, txt, detalle) {
       /* si un dia el fichero trae el tradicional de verdad, esto lo canta: entonces se puede mirar
          otra vez si el mapa en chino usa sus nombres */
       if (REAL) ok(r.chino.hant > 0 && r.chino.copia === r.chino.hant,
-         'pero en name:zh-Hant trae los mismos caracteres simplificados que en name:zh-Hans (' + r.chino.copia + ' de ' + r.chino.hant + '): por eso en chino los rotulos van en castellano', JSON.stringify(r.chino));
+         'pero en name:zh-Hant trae los mismos caracteres simplificados que en name:zh-Hans (' + r.chino.copia + ' de ' + r.chino.hant + '): por eso no se usa, y en chino los pueblos llevan el nombre de las fichas', JSON.stringify(r.chino));
 
       /* La altitud de los picos y los rotulos en chino (31 de octubre de 2026). La altitud sale con
          los metros como los escribe la app en cada idioma: sus fichas del Teide dicen 3715 м en
-         bulgaro, 3715米 en chino y 3715公尺 en chino tradicional. Y en chino los rotulos van en
-         castellano. Lo mismo con el estilo tal como llego el 24 de octubre (las claves del fichero
-         y ' m' en todos): la medida sabe ponerse en rojo. */
+         bulgaro, 3715米 en chino y 3715公尺 en chino tradicional. Y en chino, los pueblos llevan el
+         nombre que les dan las fichas (MAPA_NOMBRES_ZH, de tools/nombres_chinos_mapa.py) y lo demas
+         va en castellano, en el mapa detallado y en el base. Lo mismo con el estilo tal como llego
+         el 24 de octubre (las claves del fichero y ' m' en todos) y con todo en castellano: la
+         medida sabe ponerse en rojo. */
       const LENGUAS = ((html.match(/const SUPPORTED_LANGS = \[([^\]]*)\]/) || ['', ''])[1].match(/'([a-z]+)'/g) || []).map(x => x.replace(/'/g, ''));
+      const NOMBRE_AHORA = "const nombre = /^zh/.test(idioma) ? ['tgo:zh', 'name'] : ['name:' + idioma, 'name'];";
       const ANTES = fDet.replace('function estiloIslaDetallada(P, idioma) {', 'function estiloIslaDetalladaAntes(P, idioma) {')
-        .replace("const nombre = /^zh/.test(idioma) ? ['name'] : ['name:' + idioma, 'name'];", "const nombre = ['name:' + idioma, 'name'];")
+        .replace(NOMBRE_AHORA, "const nombre = ['name:' + idioma, 'name'];")
         .replace('Math.round(p.elevation) + METROS', "Math.round(p.elevation) + ' m'");
-      const sustituido = /estiloIslaDetalladaAntes/.test(ANTES) && ANTES.includes("const nombre = ['name:' + idioma, 'name'];") && ANTES.includes("Math.round(p.elevation) + ' m'");
-      await page.addScriptTag({ content: ANTES });
-      const r2 = await page.evaluate(async ([URL_F, LENGUAS]) => {
+      const CASTELLANO = fDet.replace('function estiloIslaDetallada(P, idioma) {', 'function estiloIslaDetalladaCastellano(P, idioma) {')
+        .replace(NOMBRE_AHORA, "const nombre = /^zh/.test(idioma) ? ['name'] : ['name:' + idioma, 'name'];");
+      const sustituido = /estiloIslaDetalladaAntes/.test(ANTES) && ANTES.includes("const nombre = ['name:' + idioma, 'name'];") && ANTES.includes("Math.round(p.elevation) + ' m'")
+        && /estiloIslaDetalladaCastellano/.test(CASTELLANO) && CASTELLANO.includes("? ['name'] :");
+      const TABLA = new Function('return ' + (html.match(/\nconst MAPA_NOMBRES_ZH = (\{[\s\S]*?\n\});\n/) || ['', '{}'])[1])();
+      await page.addScriptTag({ content: ANTES + '\n' + CASTELLANO });
+      const r2 = await page.evaluate(async ([URL_F, URL_B, LENGUAS]) => {
         const idiomaDe = l => (l === 'zht' ? 'zh-Hant' : l === 'zh' ? 'zh-Hans' : l);   // como construirIsla
         /* el rotulo de un pico de 3715 m, en cada idioma */
         const altitud = (fn, l) => {
@@ -972,15 +981,16 @@ function ok(cond, txt, detalle) {
         };
         const alt = {}, altAntes = {};
         for (const l of LENGUAS) { alt[l] = altitud(estiloIslaDetallada, l); altAntes[l] = altitud(estiloIslaDetalladaAntes, l); }
-        /* los rotulos que se pintan de verdad alrededor de Santa Cruz a z11 */
-        const blob = await (await fetch(URL_F)).blob();
+        /* los rotulos que se pintan de verdad alrededor de Santa Cruz a z11, en el detallado y en el base */
+        const blob = await (await fetch(URL_F)).blob(), blobB = await (await fetch(URL_B)).blob();
+        const fuenteDe = (b, k) => ({ getKey: () => k, getBytes: (o, n) => b.slice(o, o + n).arrayBuffer().then(d => ({ data: d })) });
+        const zBase = (await new pmtiles.PMTiles(fuenteDe(blobB, 'h')).getHeader()).maxZoom;
         const div = document.createElement('div');
         div.style.cssText = 'width:512px;height:512px;position:absolute;left:0;top:600px';
         document.body.appendChild(div);
         const mapa = L.map(div, { zoomControl: false, attributionControl: false, fadeAnimation: false }).setView([28.4682, -16.2546], 11, { animate: false });
-        const pintados = async (fn, l, k) => {
-          const fuente = { getKey: () => k, getBytes: (o, n) => blob.slice(o, o + n).arrayBuffer().then(d => ({ data: d })) };
-          const capa = protomapsL.leafletLayer(Object.assign({ url: new pmtiles.PMTiles(fuente), maxDataZoom: 14 }, fn(protomapsL, idiomaDe(l))));
+        const pintados = async (fn, l, k, base) => {
+          const capa = protomapsL.leafletLayer(Object.assign({ url: new pmtiles.PMTiles(fuenteDe(base ? blobB : blob, k)), maxDataZoom: base ? zBase : 14 }, fn(protomapsL, idiomaDe(l))));
           const textos = [], C = CanvasRenderingContext2D.prototype, f0 = C.fillText;
           C.fillText = function (t) { textos.push(String(t)); return f0.apply(this, arguments); };
           try {
@@ -992,14 +1002,18 @@ function ok(cond, txt, detalle) {
         };
         const han = /[\u3400-\u9fff]/;
         const res = {};
-        for (const [nom, fn, l, k] of [['zh', estiloIslaDetallada, 'zh', 'c'], ['zht', estiloIslaDetallada, 'zht', 'd'], ['es', estiloIslaDetallada, 'es', 'e'], ['zhtAntes', estiloIslaDetalladaAntes, 'zht', 'f']]) {
-          const t = await pintados(fn, l, k);
+        const base = {};
+        for (const [nom, fn, l, k, b] of [['zh', estiloIslaDetallada, 'zh', 'c'], ['zht', estiloIslaDetallada, 'zht', 'd'], ['es', estiloIslaDetallada, 'es', 'e'],
+                                          ['zhtAntes', estiloIslaDetalladaAntes, 'zht', 'f'], ['zhCastellano', estiloIslaDetalladaCastellano, 'zh', 'g'],
+                                          ['base-zh', estiloIslaBase, 'zh', 'i', 1], ['base-zht', estiloIslaBase, 'zht', 'j', 1], ['base-es', estiloIslaBase, 'es', 'k', 1]]) {
+          const t = await pintados(fn, l, k, b);
           // «Santa Cruz de Tenerife» va en dos lineas (maxLineChars 14), y cada una se pinta aparte
-          res[nom] = { textos: t.length, han: t.filter(x => han.test(x)), santaCruz: t.includes('Santa Cruz de') && t.includes('Tenerife') };
+          const v = { textos: t.length, han: t.filter(x => han.test(x)), santaCruz: t.includes('Santa Cruz de') && t.includes('Tenerife') };
+          if (b) base[nom.slice(5)] = v; else res[nom] = v;
         }
         mapa.remove();
-        return { alt, altAntes, res };
-      }, ['http://127.0.0.1:' + PUERTO + '/' + FICH, LENGUAS]);
+        return { alt, altAntes, res, base };
+      }, ['http://127.0.0.1:' + PUERTO + '/' + FICH, 'http://127.0.0.1:' + PUERTO + '/mapa/tenerife-base.pmtiles', LENGUAS]);
       const METROS_APP = { bg: ' м', zh: '米', zht: '公尺' };
       const fichaTeide = l => fs.readFileSync(path.join(RAIZ, l === 'es' ? 'index.html' : 'idiomas/' + l + '.json'), 'utf8');
       const malAlt = LENGUAS.filter(l => r2.alt[l] !== 'Teide / 3715' + (METROS_APP[l] || ' m'));
@@ -1010,11 +1024,18 @@ function ok(cond, txt, detalle) {
       const altRojo = LENGUAS.filter(l => r2.altAntes[l] !== 'Teide / 3715' + (METROS_APP[l] || ' m'));
       ok(sustituido && altRojo.join() === 'zh,zht,bg',
          'y con el estilo tal como llego (3715 m en todos), ' + altRojo.join(', ') + ' salen mal: la medida sabe ponerse en rojo', JSON.stringify(r2.altAntes));
-      const RZ = r2.res;
-      ok(RZ.es.santaCruz && RZ.zh.santaCruz && RZ.zht.santaCruz && RZ.zh.han.length === 0 && RZ.zht.han.length === 0 && RZ.zh.textos > 5,
-         'en chino, los rotulos en castellano: alrededor de Santa Cruz a z11 se pintan ' + RZ.zh.textos + ' textos, ninguno en caracteres chinos, y la ciudad sale «Santa Cruz de Tenerife», como en castellano', JSON.stringify(RZ));
-      ok(sustituido && RZ.zhtAntes.han.length > 0 && !RZ.zhtAntes.santaCruz,
-         'y con las claves del fichero, el chino tradicional pintaba en simplificado (' + RZ.zhtAntes.han.join(', ') + '): la medida sabe ponerse en rojo', JSON.stringify(RZ.zhtAntes));
+      const RZ = r2.res, RB = r2.base;
+      const ZH = new Set(Object.values(TABLA).map(v => v[0])), ZHT = new Set(Object.values(TABLA).map(v => v[1]));
+      const ajenos = (lista, tabla) => lista.filter(x => !tabla.has(x));
+      const SC = TABLA['Santa Cruz de Tenerife'] || [], LL = TABLA['San Cristóbal de La Laguna'] || [];
+      ok(Object.keys(TABLA).length >= 40 && RZ.zh.han.includes(SC[0]) && RZ.zh.han.includes(LL[0]) && RZ.zht.han.includes(SC[1]) && RZ.zht.han.includes(LL[1])
+         && ajenos(RZ.zh.han, ZH).length === 0 && ajenos(RZ.zht.han, ZHT).length === 0 && RZ.es.han.length === 0 && RZ.es.santaCruz,
+         'en chino, los pueblos con el nombre de sus fichas (' + Object.keys(TABLA).length + ' en MAPA_NOMBRES_ZH): alrededor de Santa Cruz a z11, ' + RZ.zh.han.join(', ') + ' y en tradicional ' + RZ.zht.han.join(', ') + '; nada en chino que no sea de la tabla, y lo demas en castellano', JSON.stringify(RZ));
+      ok(RB.zh.han.includes(SC[0]) && RB.zht.han.includes(SC[1]) && ajenos(RB.zh.han, ZH).length === 0 && ajenos(RB.zht.han, ZHT).length === 0 && RB.es.han.length === 0,
+         'y en el mapa base, el que va dentro de la app, igual: ' + RB.zh.han.join(', ') + ' y en tradicional ' + RB.zht.han.join(', '), JSON.stringify(RB));
+      ok(sustituido && ajenos(RZ.zhtAntes.han, ZHT).length > 0 && RZ.zhCastellano.han.length === 0,
+         'y con las claves del fichero, el tradicional pintaba en simplificado (' + ajenos(RZ.zhtAntes.han, ZHT).join(', ') + '), y con todo en castellano, ningun pueblo en chino: la medida sabe ponerse en rojo',
+         JSON.stringify({ antes: RZ.zhtAntes, castellano: RZ.zhCastellano }));
       ok(r.delMar >= 90, 'el mar se pinta del color del fondo (' + r.delMar + ' % de la pantalla, mar adentro)', JSON.stringify(r));
       ok(errores.length === 0, 'sin errores de pagina', errores.slice(0, 3).join(' | '));
     } finally {

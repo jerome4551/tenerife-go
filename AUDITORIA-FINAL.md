@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.073 kB** en castellano · **1.188 kB** en el peor caso (búlgaro) · 1.174 kB en polaco, el 31 de octubre, con los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.076 kB** en castellano · **1.190 kB** en el peor caso (búlgaro) · 1.176 kB en polaco, el 31 de octubre, con los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco; y los nombres de las fichas en el mapa en chino, 2,6 kB (3 en castellano, 2 en búlgaro y en polaco), porque su tabla va dentro de `index.html`. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -3674,6 +3674,68 @@ Con el estilo tal como llegó (las claves del fichero y «m» en todos), lo mism
 sale mal: el búlgaro y los dos chinos con «m», y en tradicional
 圣克鲁斯-德特内里费, 拉古纳的圣克里斯托瓦尔 y 劳罗塔瓦. La medida sabe ponerse
 en rojo.
+
+## El mapa en chino, con los nombres de las fichas (31 de octubre)
+
+Jerome, el mismo 31 de octubre, a «¿Quieres que el mapa en chino use los
+nombres de las fichas?»: «si». Hasta entonces, en chino, los rótulos del mapa
+iban en castellano: el chino del fichero de OpenStreetMap no vale (más arriba).
+
+Las fichas no traducen el título de un lugar, pero sí el pueblo con el que
+acaba su categoría: la del Mirador de Humboldt, «Mirador · La Orotava», es
+«观景台 · 拉奥罗塔瓦» en chino y «觀景台 · 拉奧羅塔瓦» en chino tradicional. De ahí
+sale el nombre de cada pueblo. `tools/nombres_chinos_mapa.py` junta las parejas
+(chino, tradicional) de todas las fichas, y cada pueblo se queda con la que
+más fichas usan. Escribe la tabla en `index.html` (`MAPA_NOMBRES_ZH`) y, con
+`--comprobar`, la auditoría mira que está al día.
+
+- **55 pueblos y sitios**: 53 en el mapa detallado y 38 en el base. Solo entran
+  los que salen en el mapa, con el nombre del mapa. Lo demás sigue en
+  castellano: Las Dehesas, El Bebedero o Arafo no tienen ficha que los nombre
+  en chino.
+- **Los nombres cortos.** En el mapa salen los oficiales, y algunas fichas
+  usan el corto: Santa Cruz de Tenerife (Santa Cruz), San Cristóbal de La
+  Laguna (La Laguna), Granadilla de Abona (Granadilla), Icod de los Vinos
+  (Icod), La Matanza de Acentejo (La Matanza), Puerto de la Cruz (Puerto
+  Cruz), San Juan de la Rambla (San Juan Rambla), Playa de las Américas (Las
+  Américas) y Valle de San Lorenzo (Valle San Lorenzo). «Buenavista» no: sale
+  en el mapa con ese nombre, un barrio, y el guion paró.
+- **Donde las fichas no dicen todas lo mismo**, el mapa lleva el que más
+  usan:
+
+| Pueblo | En el mapa | Lo otro que dicen las fichas |
+|---|---|---|
+| Santa Cruz de Tenerife | 圣克鲁斯 (49 fichas) | 特内里费圣克鲁斯 (1) |
+| Costa Adeje | 阿德赫海岸 (11) | 科斯塔阿德赫 (1) |
+| Icod de los Vinos | 伊科德 (7) | 葡萄酒城伊科德 (2) |
+| Los Realejos | 洛斯雷亚莱霍斯 (7) | 洛斯雷阿莱霍斯 (1) |
+| Granadilla de Abona | 格拉纳迪利亚 (5) | 阿沃纳的格拉纳迪利亚 (1) |
+| Guía de Isora | 圭亚德伊索拉 (5) | 吉亚德伊索拉 (4) |
+| El Sauzal | 埃尔绍萨尔 (2) | 索萨尔 (1) |
+| Punta del Hidalgo | 伊达尔戈角 (2) | 蓬塔德尔伊达尔戈 (1) |
+| San Juan de la Rambla | 圣胡安德拉兰布拉 (2) | 圣胡安兰布拉 (1) |
+| Buenavista del Norte | 布埃纳维斯塔 (1; 56 veces en los textos) | 北布埃纳维斯塔 (1; 6 veces) |
+| Costa del Silencio | 寂静海岸 (1; 10 veces) | 静默海岸 (1; 4 veces) |
+
+Si dos empatan en fichas y en veces, el guion para y no elige. En tradicional
+no queda ningún carácter que las propias fichas escriben solo en simplificado,
+ni al revés. Las fichas no se han tocado: que digan todas lo mismo es otra
+tarea, y la decide Jerome.
+
+**Cómo se pinta.** `rotuloChino`, en `index.html`, le pone al rótulo de cada
+pueblo el nombre de la tabla en una copia del rasgo; el rasgo del fichero no
+se toca. Vale para el mapa detallado y para el base (`estiloIslaBase` recibe
+ya el idioma).
+
+**Cómo se comprueba.** `tools/nombres_chinos_mapa.py --comprobar`, en
+`auditar.sh`. Y `tools/auditar_mapa.js`, bloque 8 (20 controles, 132 en
+total): pintando de verdad alrededor de Santa Cruz a z11, en chino y en
+tradicional, en el mapa detallado y en el base, los pueblos salen con el
+nombre de sus fichas (圣克鲁斯, 拉拉古纳, 拉奥罗塔瓦, 克鲁斯港…; 聖克魯斯, 拉拉古納…),
+no sale nada en chino que no sea de la tabla y lo demás va en castellano. Con
+las claves del fichero, el tradicional pintaba en simplificado
+(圣克鲁斯-德特内里费, 拉古纳的圣克里斯托瓦尔, 劳罗塔瓦), y con todo en castellano,
+ningún pueblo en chino: la medida sabe ponerse en rojo.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 

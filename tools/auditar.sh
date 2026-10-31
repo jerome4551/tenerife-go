@@ -112,6 +112,9 @@ control verificar_fichas_app.js node tools/verificar_fichas_app.js "$PUERTO"
 echo; echo "════════ texto de reserva en castellano ════════"
 control auditar_reservas.py python3 tools/auditar_reservas.py
 echo; echo "════════ mapa sin conexion ════════"
+# En chino, los pueblos del mapa con el nombre de las fichas: la tabla de index.html la escribe
+# tools/nombres_chinos_mapa.py y tiene que estar al dia (Jerome, 31 de octubre de 2026).
+control nombres_chinos_mapa.py python3 tools/nombres_chinos_mapa.py --comprobar
 control auditar_mapa.js node tools/auditar_mapa.js "$PUERTO"
 echo; echo "════════ idiomas, arranque y rendimiento ════════"
 control auditar_web.js node tools/auditar_web.js "$PUERTO"

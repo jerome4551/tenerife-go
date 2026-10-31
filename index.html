@@ -16613,6 +16613,71 @@ function fuenteBlob(blob, clave) {
    calles pequeñas de lejos, y se quitaron; lo que queda está en AUDITORIA-FINAL.md. */
 const MAPA_MAR = '#aad3df', MAPA_TIERRA = '#f2efe9';
 
+/* >>> nombres chinos del mapa · los escribe tools/nombres_chinos_mapa.py: NO SE TOCAN A MANO.
+   En chino, los pueblos del mapa llevan el nombre que les dan las fichas de la app (el
+   pueblo con el que acaba su categoria: la del Mirador de Humboldt, «Mirador · La
+   Orotava», es «观景台 · 拉奥罗塔瓦»), el que mas fichas usan: [chino, chino tradicional].
+   Lo que no esta aqui, en castellano.
+   Jerome, 31 de octubre de 2026. */
+const MAPA_NOMBRES_ZH = {
+  'Adeje': ['阿德赫', '阿德赫'],
+  'Alcalá': ['阿尔卡拉', '阿爾卡拉'],
+  'Arico': ['阿里科', '阿里科'],
+  'Arona': ['阿罗纳', '阿羅納'],
+  'Bajamar': ['巴哈马尔', '巴哈馬爾'],
+  'Buenavista': ['布埃纳维斯塔', '布埃納維斯塔'],
+  'Buenavista del Norte': ['布埃纳维斯塔', '布埃納維斯塔'],
+  'Candelaria': ['坎德拉里亚', '坎德拉里亞'],
+  'Costa Adeje': ['阿德赫海岸', '阿德赫海岸'],
+  'Costa del Silencio': ['寂静海岸', '寂靜海岸'],
+  'Cruz del Carmen': ['克鲁斯德尔卡门', '克魯斯德爾卡門'],
+  'El Médano': ['埃尔梅达诺', '埃爾梅達諾'],
+  'El Palmar': ['埃尔帕尔马', '埃爾帕爾馬'],
+  'El Rosario': ['埃尔罗萨里奥', '埃爾羅薩里奧'],
+  'El Sauzal': ['埃尔绍萨尔', '埃爾紹薩爾'],
+  'Fasnia': ['法斯尼亚', '法斯尼亞'],
+  'Garachico': ['加拉奇科', '加拉奇科'],
+  'Granadilla de Abona': ['格拉纳迪利亚', '格拉納迪利亞'],
+  'Guía de Isora': ['圭亚德伊索拉', '圭亞德伊索拉'],
+  'Güímar': ['圭马尔', '圭馬爾'],
+  'Icod de los Vinos': ['伊科德', '伊科德'],
+  'La Guancha': ['拉关查', '拉關查'],
+  'La Matanza de Acentejo': ['拉马坦萨', '拉馬坦薩'],
+  'La Orotava': ['拉奥罗塔瓦', '拉奧羅塔瓦'],
+  'Las Cañadas': ['山间台地', '山間台地'],
+  'Las Chafiras': ['拉斯查菲拉斯', '拉斯查菲拉斯'],
+  'Las Galletas': ['拉斯加列塔斯', '拉斯加列塔斯'],
+  'Las Lagunetas': ['拉斯拉古内塔斯', '拉斯拉古內塔斯'],
+  'Los Abrigos': ['洛斯阿夫里戈斯', '洛斯阿夫里戈斯'],
+  'Los Cristianos': ['洛斯克里斯蒂亚诺斯', '洛斯克里斯蒂亞諾斯'],
+  'Los Gigantes': ['洛斯希甘特斯', '洛斯希甘特斯'],
+  'Los Realejos': ['洛斯雷亚莱霍斯', '洛斯雷亞萊霍斯'],
+  'Los Silos': ['洛斯西洛斯', '洛斯西洛斯'],
+  'Masca': ['马斯卡', '馬斯卡'],
+  'Montaña Roja': ['红山', '紅山'],
+  'Playa San Juan': ['圣胡安海滩', '聖胡安海灘'],
+  'Playa de las Américas': ['美洲海滩', '美洲海灘'],
+  'Porís de Abona': ['波里斯德阿博纳', '波里斯德阿博納'],
+  'Puerto Santiago': ['圣地亚哥港', '聖地亞哥港'],
+  'Puerto de la Cruz': ['克鲁斯港', '克魯斯港'],
+  'Punta de Abona': ['阿沃纳角', '阿沃納角'],
+  'Punta del Hidalgo': ['伊达尔戈角', '伊達爾戈角'],
+  'San Andrés': ['圣安德烈斯', '聖安德烈斯'],
+  'San Cristóbal de La Laguna': ['拉拉古纳', '拉拉古納'],
+  'San Juan de la Rambla': ['圣胡安德拉兰布拉', '聖胡安德拉蘭布拉'],
+  'San Miguel': ['圣米格尔', '聖米格爾'],
+  'San Miguel de Abona': ['圣米格尔德阿博纳', '聖米格爾德阿博納'],
+  'Santa Cruz de Tenerife': ['圣克鲁斯', '聖克魯斯'],
+  'Santa Úrsula': ['圣乌苏拉', '聖烏蘇拉'],
+  'Santiago del Teide': ['圣地亚哥德尔泰德', '聖地亞哥德爾泰德'],
+  'Tacoronte': ['塔科龙特', '塔科龍特'],
+  'Tegueste': ['特格斯特', '特格斯特'],
+  'Teide': ['泰德峰', '泰德峰'],
+  'Valle de Guerra': ['瓦勒德格拉', '瓦勒德格拉'],
+  'Valle de San Lorenzo': ['圣洛伦索谷', '聖洛倫索谷']
+};
+/* <<< nombres chinos del mapa */
+
 /* Un rótulo con un margen alrededor, para que dos rótulos no se toquen: protomaps-leaflet
    descarta el que choca con otro, pero mide solo las letras, y el halo blanco quedaba pegado. */
 function rotuloConMargen(sim, m) {
@@ -16621,6 +16686,21 @@ function rotuloConMargen(sim, m) {
       const r = sim.place(layout, geom, feature);
       if (r) for (const l of r) l.bboxes = l.bboxes.map(b => ({ minX: b.minX - m, minY: b.minY - m, maxX: b.maxX + m, maxY: b.maxY + m }));
       return r;
+    }
+  };
+}
+
+/* En chino, un pueblo lleva el nombre que le dan las fichas de la app (MAPA_NOMBRES_ZH, arriba) y lo
+   demás, el castellano (31 de octubre de 2026). El rótulo lo lee de una propiedad más, 'tgo:zh',
+   puesta en una copia del rasgo: el rasgo del fichero no se toca. */
+function rotuloChino(sim, idioma, prop) {
+  const i = idioma === 'zh-Hans' ? 0 : idioma === 'zh-Hant' ? 1 : -1;
+  if (i < 0 || typeof MAPA_NOMBRES_ZH !== 'object') return sim;
+  return {
+    place(layout, geom, feature) {
+      const n = MAPA_NOMBRES_ZH[feature.props[prop]];
+      if (!n) return sim.place(layout, geom, feature);
+      return sim.place(layout, geom, Object.assign({}, feature, { props: Object.assign({}, feature.props, { 'tgo:zh': n[i] }) }));
     }
   };
 }
@@ -16654,12 +16734,13 @@ function estiloIslaDetallada(P, idioma) {
     t_calle: '#5c5248', t_sendero: '#8a4a2a', halo: '#ffffff'
   };
   const FUENTE = 'system-ui, sans-serif';
-  /* los nombres, en el idioma de la app; en chino, en castellano (31 de octubre de 2026). El fichero
-     trae nombre chino en muy pocos sitios (14 en toda la isla, 8 pueblos de Tenerife) y no vale: en
-     name:zh-Hant vienen los mismos caracteres simplificados que en name:zh-Hans (圣克鲁斯, no 聖克魯斯),
-     y en simplificado cinco de los ocho no son los de la app (劳罗塔瓦 donde sus fichas dicen
-     拉奥罗塔瓦). Si no se traduce, se deja en castellano. */
-  const nombre = /^zh/.test(idioma) ? ['name'] : ['name:' + idioma, 'name'];
+  /* los nombres, en el idioma de la app. En chino, los del fichero no valen (31 de octubre de 2026):
+     los trae en muy pocos sitios (14 en toda la isla, 8 pueblos de Tenerife), en name:zh-Hant vienen
+     los mismos caracteres simplificados que en name:zh-Hans (圣克鲁斯, no 聖克魯斯), y en simplificado
+     cinco de los ocho no son los de la app (劳罗塔瓦 donde sus fichas dicen 拉奥罗塔瓦). Así que los
+     pueblos llevan el nombre de las fichas (rotuloChino y MAPA_NOMBRES_ZH; Jerome, el mismo día) y
+     lo demás, el castellano. */
+  const nombre = /^zh/.test(idioma) ? ['tgo:zh', 'name'] : ['name:' + idioma, 'name'];
   /* la altitud de los picos, con los metros como los escribe la app en cada idioma (sus fichas del
      Teide: 3715 m, 3715 м, 3715米, 3715公尺) */
   const METROS = { bg: ' м', 'zh-Hans': '米', 'zh-Hant': '公尺' }[idioma] || ' m';
@@ -16802,7 +16883,7 @@ function estiloIslaDetallada(P, idioma) {
     symbolizer: new P.LineSymbolizer({ color: C.teleferico, dash: [1.5, 9], width: exp(1.4, [[13, 5], [16, 7]]) }) });
 
   /* --- los rótulos --- */
-  const texto = o => rotuloConMargen(new P.CenteredTextSymbolizer(Object.assign({ labelProps: nombre, stroke: C.halo, width: 2, lineHeight: 1.25, maxLineChars: 14 }, o)), 3);
+  const texto = o => rotuloConMargen(rotuloChino(new P.CenteredTextSymbolizer(Object.assign({ labelProps: nombre, stroke: C.halo, width: 2, lineHeight: 1.25, maxLineChars: 14 }, o)), idioma, 'name'), 3);
   const fuente = (peso, px, estilo) => (estilo ? estilo + ' ' : '') + peso + ' ' + px + 'px ' + FUENTE;
   const mz = f => (typeof f.props.min_zoom === 'number' ? f.props.min_zoom : 0);
   const sitio = (...ds) => { const s = new Set(ds); return (z, f) => s.has(f.props.kind_detail) && z >= mz(f); };
@@ -16906,8 +16987,8 @@ function estiloIslaDetallada(P, idioma) {
 
 /* El mapa base, el que viaja dentro de la app (tools/mapa_base.py): la costa, la red de
    carreteras que recorren las guaguas y los núcleos. Las carreteras, como las principales del
-   detallado. */
-function estiloIslaBase(P) {
+   detallado. En chino, los núcleos con el nombre de las fichas (rotuloChino). */
+function estiloIslaBase(P, idioma) {
   const exp = P.exp;
   return {
     backgroundColor: MAPA_MAR,
@@ -16917,9 +16998,9 @@ function estiloIslaBase(P) {
       { dataLayer: 'carretera', symbolizer: new P.LineSymbolizer({ color: '#fbd88e', width: exp(1.6, [[8, 0.6], [11, 1.2], [13, 2.2], [16, 7]]) }) }
     ],
     labelRules: [
-      { dataLayer: 'sitio', symbolizer: rotuloConMargen(new P.CenteredTextSymbolizer({
-          labelProps: ['nombre'], fill: '#33404f',
-          font: '600 12px system-ui, sans-serif', stroke: '#ffffff', width: 2 }), 3) }
+      { dataLayer: 'sitio', symbolizer: rotuloConMargen(rotuloChino(new P.CenteredTextSymbolizer({
+          labelProps: ['tgo:zh', 'nombre'], fill: '#33404f',
+          font: '600 12px system-ui, sans-serif', stroke: '#ffffff', width: 2 }), idioma, 'nombre'), 3) }
     ]
   };
 }
@@ -16928,13 +17009,14 @@ function construirIsla(blob, clave, detallado, zMax) {
   const P = protomapsL;
   /* El idioma se fija al construir: si el usuario lo cambia, setLang tira la capa y se rehace.
      El chino, con las claves del esquema v4 de Protomaps (zh-Hans y zh-Hant; el fichero no trae
-     name:zh). Sus rótulos van en castellano, y sus metros, 米 y 公尺: ver estiloIslaDetallada. */
+     name:zh). En chino, los pueblos con el nombre de las fichas y lo demás en castellano; los
+     metros, 米 y 公尺: ver estiloIslaDetallada. */
   const idioma = currentLang === 'zht' ? 'zh-Hant' : currentLang === 'zh' ? 'zh-Hans' : (currentLang || 'es');
   return P.leafletLayer(Object.assign({
     url: new pmtiles.PMTiles(fuenteBlob(blob, clave)),
     maxDataZoom: zMax,
     updateWhenZooming: false        // las dos, la base y la detallada
-  }, detallado ? estiloIslaDetallada(P, idioma) : estiloIslaBase(P),
+  }, detallado ? estiloIslaDetallada(P, idioma) : estiloIslaBase(P, idioma),
      detallado ? { lang: idioma } : { attribution: 'GSHHG · GTFS TITSA' }));
 }
 
