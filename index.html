@@ -13422,7 +13422,9 @@ const places = [
     tags:["Kayak","Radazul","El Rosario","Transparente","SUP","Este","Fondo de Cristal","Local","Volcánico","Biodiversidad"] },
 
   { id:"kayak-punta-teno", category:"kayak", name:"Kayak Punta de Teno — Costa Virgen (Noroeste)", emoji:"🛶", color:"#1b5e20", lat:28.342, lng:-16.923,
-    desc:{ es:"Punta de Teno, en el extremo noroeste de Tenerife y dentro del Parque Rural de Teno, ofrece la ruta de kayak más salvaje e inexplorada de la isla. Aguas cristalinas, formaciones volcánicas espectaculares, silencio absoluto y vistas directas a La Gomera y los acantilados de Los Gigantes en la distancia. Sin masificación. Punto de partida desde la propia Punta de Teno (acceso solo en bus lanzadera TF-369 desde Buenavista, o bicicleta — en coche acceso restringido). Ruta avanzada por condiciones variables del Atlántico norte. Solo con buen tiempo y guía experimentado." },
+    estado:"cerrado", verificado:"2026-10-31",
+    fuente:"https://diariodeavisos.elespanol.com/2026/10/desprendimiento-rocas-carretera-punta-teno-tenerife/",
+    desc:{ es:"⚠️ Sin acceso por carretera: la TF-445 a Punta de Teno está cortada por un desprendimiento desde el 29 de octubre de 2026, y aún no hay fecha de reapertura. Punta de Teno, en el extremo noroeste de Tenerife y dentro del Parque Rural de Teno, ofrece la ruta de kayak más salvaje e inexplorada de la isla. Aguas cristalinas, formaciones volcánicas espectaculares, silencio absoluto y vistas directas a La Gomera y los acantilados de Los Gigantes en la distancia. Sin masificación. Punto de partida desde la propia Punta de Teno (acceso solo en bus lanzadera TF-369 desde Buenavista, o bicicleta — en coche acceso restringido). Ruta avanzada por condiciones variables del Atlántico norte. Solo con buen tiempo y guía experimentado." },
     cat:{ es:"Kayak · Punta de Teno · Parque Rural Teno · Avanzado" },
     tags:["Kayak","Punta de Teno","Teno","Noroeste","Virgen","Sin masificar","La Gomera","Volcánico","Avanzado","Bus TF-369"] },
 
@@ -13787,7 +13789,9 @@ const places = [
     tags:["Barbacoa","Gratuita","Icod de los Vinos","Corona Forestal","24 mesas","Pinar"] },
 
   { id:"ar-las-hayas", warn:"incendio", category:"barbacoa", name:"Área Recreativa Las Hayas", emoji:"🪵", color:"#bf360c", lat:28.3500, lng:-16.6900,
-    desc:{ es:"Área recreativa en los altos de Icod de los Vinos, Corona Forestal. 20 mesas. Fogones gratuitos. Puede estar cerrada — consultar tenerifeon.es antes de ir." },
+    estado:"cerrado", verificado:"2026-10-31", nota:"inferido: la zona de acampada de al lado (camping-las-hayas) esta cerrada por obras segun Tenerife ON, y el area recreativa no tiene aviso propio",
+    fuente:"https://www.tenerifeon.es/equipamientos/zona-de-acampada/las-hayas",
+    desc:{ es:"⚠️ La zona de acampada de al lado está cerrada temporalmente por obras, según Tenerife ON. El área recreativa no tiene aviso propio: consulte tenerifeon.es antes de ir. Área recreativa en los altos de Icod de los Vinos, Corona Forestal. 20 mesas. Fogones gratuitos." },
     cat:{ es:"Barbacoa Gratuita · Icod de los Vinos · 20 mesas" },
     tags:["Barbacoa","Gratuita","Icod de los Vinos","Corona Forestal","20 mesas","Verificar estado"] },
 
@@ -13875,7 +13879,9 @@ const places = [
   // ══════════════════════════════════════════════════════════
 
   { id:"faro-teno", category:"faros", cats:["faros","naturaleza"], name:"Faro de Teno", emoji:"🔦", color:"#1a237e", lat:28.3421, lng:-16.9229,
-    desc:{ es:"El faro más icónico de Tenerife, en el extremo noroeste. Construido en 1897, se alza sobre los imponentes acantilados de Teno a 70 m sobre el mar. Acceso por la espectacular y estrecha carretera TF-445 —reservada para residentes y transporte público— que serpentea entre montañas. Desde el faro, vistas épicas hacia La Gomera y los Gigantes. Ecosistema marino protegido con delfines y tortugas." },
+    estado:"cerrado", verificado:"2026-10-31",
+    fuente:"https://diariodeavisos.elespanol.com/2026/10/desprendimiento-rocas-carretera-punta-teno-tenerife/",
+    desc:{ es:"⚠️ Sin acceso por carretera: la TF-445 a Punta de Teno está cortada por un desprendimiento desde el 29 de octubre de 2026, y aún no hay fecha de reapertura. El faro más icónico de Tenerife, en el extremo noroeste. Construido en 1897, se alza sobre los imponentes acantilados de Teno a 70 m sobre el mar. Acceso por la espectacular y estrecha carretera TF-445 —reservada para residentes y transporte público— que serpentea entre montañas. Desde el faro, vistas épicas hacia La Gomera y los Gigantes. Ecosistema marino protegido con delfines y tortugas." },
     cat:{ es:"Faro Histórico · Buenavista del Norte" },
     tags:["Icónico","Acantilados","Histórico","Noroeste","Puesta de Sol","La Gomera","Fotogénico"] },
 
@@ -15069,8 +15075,10 @@ const places = [
     address:"San José de Los Llanos, El Tanque, Tenerife",
     tags:["Camping","Cabildo","El Tanque","Norte","Permiso","Naturaleza"] },
   { id:"camping-las-hayas", warn:"incendio", category:"camping", name:"Zona Acampada Las Hayas (Icod de los Vinos)", emoji:"🏕️", color:"#1c2833", lat:28.3339, lng:-16.6772,
+    estado:"cerrado", verificado:"2026-10-31",
+    fuente:"https://www.tenerifeon.es/equipamientos/zona-de-acampada/las-hayas",
     reserva:true,
-    desc:{ es:"Zona de acampada oficial del Cabildo de Tenerife en Icod de los Vinos. Está en el Parque Natural de la Corona Forestal. Acceso por pista de tierra: mejor con 4x4. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
+    desc:{ es:"⚠️ Cerrada temporalmente por obras, según Tenerife ON. Zona de acampada oficial del Cabildo de Tenerife en Icod de los Vinos. Está en el Parque Natural de la Corona Forestal. Acceso por pista de tierra: mejor con 4x4. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON)." },
     cat:{ es:"Zona Acampada · Icod de los Vinos · Cabildo" },
     hours:{ es:"Permiso previo obligatorio · reserva en Tenerife ON" },
     phone:"922 23 95 00",

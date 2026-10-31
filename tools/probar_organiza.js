@@ -368,13 +368,14 @@ const RECORRER = async () => {
       otroIgual: antes === dpCurrentStops.map(p => p.id).join(','), otroRepite: repetidos(dpCurrentStops) };
     delete DP_ZONES.__prueba;
     Object.assign(DP_DURATION, durOrig);
-    // «Ruta del día»: en sus sugerencias, cada sitio una vez
+    // «Ruta del día»: en sus sugerencias, cada sitio una vez; y lo que no se
+    // sugiere (un estado que no es «abierto») no sale (31 de octubre de 2026)
     out.zonas.rutaDia = Object.keys(DAY_TRIP_ZONES).map(z => {
       selectDayTripZone(z);
       const ids = [...document.querySelectorAll('#daytrip-catalog-list .catalog-item-add')]
         .map(b => ((b.getAttribute('onclick') || '').match(/toggleDayTripStop\('([^']+)'\)/) || [])[1]).filter(Boolean);
       const vistos = ids.map(i => places.find(p => p.id === i)).filter(Boolean);
-      const lista = DAY_TRIP_ZONES[z].suggestionIds.map(i => places.find(p => p.id === i)).filter(Boolean);
+      const lista = DAY_TRIP_ZONES[z].suggestionIds.map(i => places.find(p => p.id === i)).filter(p => p && !NO_SUGERIBLE(p));
       const sitios = []; lista.forEach(p => { if (!sitios.some(q => mismo(p, q))) sitios.push(p); });
       return { z, items: vistos.length, sitios: sitios.length, fichas: lista.length, repetidos: repetidos(vistos) };
     });

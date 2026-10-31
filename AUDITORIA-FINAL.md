@@ -3364,6 +3364,49 @@ quita entera (`bodega-cueva-rey-icod`).
   (`idiomas/castellano-aceptado.json`). Solo la necesitaba esta ficha, y
   `castellano_suelto.js` avisa de las aceptadas que ya no hacen falta.
 
+## Cerrados de verdad: Punta de Teno y Las Hayas (31 de octubre)
+
+Jerome, el 31 de octubre, en «Cerrados de verdad (fuera de toda
+sugerencia)», además de Los Patos, que ya lo estaba:
+
+- **Punta de Teno.** «La TF-445 está cortada por un desprendimiento desde
+  el 29 de octubre, sin fecha de reapertura». La prensa lo confirma: cayó en
+  el km 9, la vía está cortada desde el km 4,5 y el Cabildo no da fecha
+  (Diario de Avisos, RTVC, Diario de Tenerife). Al final de la TF-445 hay
+  dos fichas: el Faro de Teno (`faro-teno`) y el kayak de Punta de Teno
+  (`kayak-punta-teno`). Las dos, «cerrado», con la noticia de Diario de
+  Avisos como fuente. Ninguna ficha es un «mirador de Teno».
+  - **Es temporal:** se quita cuando el Cabildo la reabra.
+  - **El sendero PR-TF 51**, que acaba en ese faro, se queda como está hasta
+    que Jerome diga.
+- **Las Hayas.** «Tenerife ON marca la zona de acampada “cerrada
+  temporalmente por obras”; el área recreativa contigua no tiene aviso
+  propio, así que ese estado va inferido». Las dos van «cerrado», con la
+  página de la zona de acampada de Tenerife ON como fuente.
+  - En el área recreativa, el campo `nota` dice que su estado es inferido, y
+    su aviso lo dice también a quien la mira.
+  - Su frase de antes («Puede estar cerrada — consultar tenerifeon.es…»)
+    queda sustituida por el aviso.
+
+Cada una empieza por «⚠️» y su aviso, en los diez idiomas y en el polaco de
+trabajo:
+- Teno: «Sin acceso por carretera: la TF-445 a Punta de Teno está cortada
+  por un desprendimiento desde el 29 de octubre de 2026, y aún no hay fecha
+  de reapertura».
+- La zona de acampada: «Cerrada temporalmente por obras, según Tenerife ON».
+- El área recreativa: «La zona de acampada de al lado está cerrada
+  temporalmente por obras, según Tenerife ON. El área recreativa no tiene
+  aviso propio: consulte tenerifeon.es antes de ir».
+
+Siguen en el mapa y salen de todo lo que propone lugares. `probar_estado.js`
+los ve sin cambiar nada: 26 de 26, seis que no se sugieren, y cada uno con su
+aviso en los diez idiomas. Las URLs de lugar pasan de 18 a 22.
+
+`probar_organiza.js` contaba en las sugerencias de «Ruta del día» también lo
+que no se sugiere. Con los de Teno y Las Hayas, la app enseñaba tres menos
+(80 de 82 en el Norte y 58 de 59 en el Sur), que es lo que debe. Ahora la
+prueba los quita con la misma regla.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -5436,14 +5479,15 @@ no la secundaria**.
 | Con alias de búsqueda, que los 3 filtros leen | **58** |
 | Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
 | De esos, `warn:"mar"` | **50** |
-| URLs de lugar sin cifrar | **0** de 18 |
+| URLs de lugar sin cifrar | **0** de 22 |
 
 Cada cifra de esta tabla, y las dos del texto de abajo (los filtros del alias
 y las líneas con más de dos terminales), las coteja `auditar_datos.js`: si una
 cambia y la tabla no, se pone en rojo. Hasta el 18 de octubre decía «0 de 164»
 y «786» con 162 y 980. Las URLs pasaron de 16 a 18 el 30 de octubre: las dos
 fuentes del estado (Los Patos y la Bodega Frontos). Y los lugares, de 980 a
-979 el 31 de octubre: la bodega Cueva del Rey, cerrada.
+979 el 31 de octubre: la bodega Cueva del Rey, cerrada. Ese día, las URLs, a
+22: las fuentes de los cuatro cerrados nuevos (Punta de Teno y Las Hayas).
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no
