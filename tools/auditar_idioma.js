@@ -469,6 +469,9 @@ IGUAL_UI.fr.push('Art nouveau de Riga', 'Carnaval de Binche', 'Carnaval de Rijek
 IGUAL_UI.it.push('Valle del Madriu', 'Fougasse monegasca');
 IGUAL_UI.nl.push('Día de Canarias');
 IGUAL_UI.pl.push('Bosanski lonac');
+/* «SU CUERPO» (modulos/cuerpo.js; 31 de octubre de 2026): en frances, «Variante de
+   {nombre}» se escribe igual que en castellano */
+IGUAL_UI.fr.push('Variante de {nombre}');
 
 /* Los nombres de sitio no se declaran a mano: se sacan del propio catalogo.
    El ultimo trozo de cada `cat` en castellano es siempre el municipio o el

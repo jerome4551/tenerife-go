@@ -111,6 +111,10 @@
     "perfilCuenta": {"es": "Cuenta", "en": "Account", "fr": "Compte", "de": "Konto", "it": "Account", "nl": "Account", "zh": "账户", "zht": "帳戶", "bg": "Акаунт", "pl": "Konto"},
     "perfilPestanaViaje": {"es": "Viaje", "en": "Travel", "fr": "Voyage", "de": "Reise", "it": "Viaggio", "nl": "Reis", "zh": "旅行", "zht": "旅行", "bg": "Пътуване", "pl": "Podróż"},
     "perfilPestanaCuerpo": {"es": "Cuerpo", "en": "Body", "fr": "Corps", "de": "Körper", "it": "Corpo", "nl": "Lichaam", "zh": "身体", "zht": "身體", "bg": "Тяло", "pl": "Ciało"},
+    "perfilCuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
+    "perfilCuerpoTexto": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
+    "perfilCuerpoAbrir": {"es": "Abrir", "en": "Open", "fr": "Ouvrir", "de": "Öffnen", "it": "Apri", "nl": "Openen", "zh": "打开", "zht": "打開", "bg": "Отвори", "pl": "Otwórz"},
+    "perfilCuerpoError": {"es": "No se pudo abrir. Compruebe la conexión e inténtelo de nuevo.", "en": "Couldn’t open it. Check your connection and try again.", "fr": "Impossible de l’ouvrir. Vérifiez la connexion et réessayez.", "de": "Öffnen nicht möglich. Prüfen Sie die Verbindung und versuchen Sie es erneut.", "it": "Impossibile aprirlo. Controlli la connessione e riprovi.", "nl": "Openen is niet gelukt. Controleer de verbinding en probeer het opnieuw.", "zh": "无法打开。请检查网络连接后重试。", "zht": "無法開啟。請檢查網路連線後重試。", "bg": "Не можа да се отвори. Проверете връзката и опитайте отново.", "pl": "Nie udało się otworzyć. Proszę sprawdzić połączenie i spróbować ponownie."},
     "perfilNube": {"es": "Sus favoritos se guardan en su cuenta; su perfil y sus medidas, solo en este dispositivo.", "en": "Your favourites are saved to your account; your profile and measurements stay on this device.", "fr": "Vos favoris sont enregistrés dans votre compte ; votre profil et vos mesures restent sur cet appareil.", "de": "Ihre Favoriten werden in Ihrem Konto gespeichert, Ihr Profil und Ihre Messwerte nur auf diesem Gerät.", "it": "I preferiti vengono salvati nell’account; profilo e misure restano su questo dispositivo.", "nl": "Uw favorieten worden in uw account opgeslagen; uw profiel en metingen blijven op dit apparaat.", "zh": "您的收藏保存在账户中；个人资料和身高体重等数据只保存在本设备上。", "zht": "您的收藏會儲存在帳戶中；個人檔案和身高體重等資料只儲存在此裝置上。", "bg": "Любимите ви се пазят в акаунта ви; профилът и измерванията ви остават само на това устройство.", "pl": "Ulubione zapisują się na koncie; profil i pomiary zostają tylko na tym urządzeniu."},
     "perfilSoloDispositivo": {"es": "Sin cuenta: todo se guarda solo en este dispositivo", "en": "No account: everything stays on this device only", "fr": "Sans compte : tout est enregistré uniquement sur cet appareil", "de": "Ohne Konto: Alles wird nur auf diesem Gerät gespeichert", "it": "Senza account: tutto resta solo su questo dispositivo", "nl": "Zonder account: alles wordt alleen op dit apparaat opgeslagen", "zh": "未登录：所有内容仅保存在本设备", "zht": "未登入：所有內容僅儲存在此裝置上", "bg": "Без акаунт: всичко се пази само на това устройство", "pl": "Bez konta: wszystko zostaje tylko na tym urządzeniu"},
     "perfilCrearCuenta": {"es": "Crear cuenta o entrar", "en": "Sign up or log in", "fr": "Créer un compte ou se connecter", "de": "Konto erstellen oder anmelden", "it": "Crea account o accedi", "nl": "Account aanmaken of inloggen", "zh": "注册或登录", "zht": "註冊或登入", "bg": "Регистрирай се или влез", "pl": "Załóż konto lub zaloguj się"},
@@ -1623,6 +1627,14 @@
     if (typeof window.ResizeObserver === 'function') { try { new ResizeObserver(medirCabecera).observe(panel.querySelector('.tgp-top')); } catch (e) {} }
     window.addEventListener('resize', medirCabecera);
     panel.addEventListener('scroll', alDesplazar, { passive: true });
+    /* «Su cuerpo» (31 de octubre de 2026): su pantalla va encima del perfil; la pide
+       index.html (abrirCuerpo) la primera vez. Si no llega (sin red y sin haberla guardado
+       nunca), se dice debajo del boton */
+    $('tgp-cuerpo-abrir').addEventListener('click', function () {
+      var aviso = $('tgp-cuerpo-error'); aviso.hidden = true;
+      if (typeof window.abrirCuerpo !== 'function') { aviso.hidden = false; return; }
+      window.abrirCuerpo().catch(function () { aviso.hidden = false; });
+    });
     $('tgp-tabs').addEventListener('click', function (e) { var b = e.target.closest('.tgp-tab'); if (b) irAPestana(b.dataset.pestana, false); });
     $('tgp-tabs').addEventListener('keydown', function (e) {
       var i = PESTANAS.indexOf(st.pestana), n = PESTANAS.length, j = null;
@@ -1763,16 +1775,20 @@
     if (antesDeAbrir && typeof antesDeAbrir.focus === 'function' && document.contains(antesDeAbrir)) { try { antesDeAbrir.focus({ preventScroll: true }); } catch (x) {} }
     antesDeAbrir = null;
   }
-  /* La ficha de la cuenta y el panel de administrador se abren desde aqui y van
-     encima: «atras» y Escape los dejan a ellos, y el perfil se queda debajo. */
+  /* La ficha de la cuenta, el panel de administrador y «Su cuerpo» se abren desde aqui y
+     van encima: «atras» y Escape los dejan a ellos, y el perfil se queda debajo. */
   function fichaEncima() {
     var m = document.getElementById('auth-modal-backdrop'), a = document.getElementById('admin-overlay');
-    return !!((m && m.classList.contains('show')) || (a && a.classList.contains('open')));
+    return !!((m && m.classList.contains('show')) || (a && a.classList.contains('open')) ||
+      (window.TG_CUERPO && typeof window.TG_CUERPO.abierto === 'function' && window.TG_CUERPO.abierto()));
   }
   /* el «atras» del movil: el back() que hace cerrar() llega aqui tambien, y se distingue del dedo */
-  window.addEventListener('popstate', function () {
+  window.addEventListener('popstate', function (e) {
     if (atrasPendiente) { atrasPendiente = false; return; }
     if (!abierto) return;
+    /* las entradas de «Su cuerpo» llevan tgPerfil: volver a una entrada del perfil o de lo que
+       tiene encima no lo cierra (cierra lo de encima, que mira el mismo popstate) */
+    if (e && e.state && e.state.tgPerfil) return;
     historia = false;
     var m = document.getElementById('auth-modal-backdrop');
     if (m && m.classList.contains('show') && typeof window.closeAuthModal === 'function') {
@@ -1991,6 +2007,7 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 .tgp-tab[aria-selected="true"] { background: var(--gold); color: #1a1407; }
 .tgp-tab:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
 .tgp-pestana { display: grid; gap: 14px; min-width: 0; }
+.tgp-cuerpo-error { margin: 10px 0 0; color: var(--bad); font-size: .85rem; }
 .tgp-pestana[hidden] { display: none; }
 .tgp-seg { display: inline-flex; border: 1px solid var(--border); border-radius: 12px; padding: 3px; background: rgba(15,17,23,0.5); gap: 2px; }
 .tgp-seg button { border: 0; background: transparent; color: var(--muted); padding: 6px 12px; border-radius: 9px; font-size: .85rem; font-weight: 500; transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out); }
@@ -2281,6 +2298,13 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
   </div>
 
   <div class="tgp-pestana" role="tabpanel" id="tgp-p-cuerpo" aria-labelledby="tgp-tab-cuerpo" hidden>
+  <section class="tgp-card tgp-cuerpo" id="tgp-cuerpo">
+    <div class="tgp-card-head"><h2 id="tgp-cuerpo-h">Su cuerpo</h2></div>
+    <p class="tgp-note">Sus músculos, su semana y su personaje</p>
+    <button type="button" class="tgp-btn gold wide" id="tgp-cuerpo-abrir" aria-labelledby="tgp-cuerpo-abrir-txt tgp-cuerpo-h"><span id="tgp-cuerpo-abrir-txt">Abrir</span></button>
+    <p class="tgp-cuerpo-error" id="tgp-cuerpo-error" role="alert" hidden>No se pudo abrir. Compruebe la conexión e inténtelo de nuevo.</p>
+  </section>
+
   <section class="tgp-card" id="tgp-datos">
     <div class="tgp-card-head"><h2>Sus datos</h2></div>
     <p class="tgp-note">Se guardan en este dispositivo y, solo si usted activa la opción en «Cuenta», también en su cuenta.</p>
@@ -2416,6 +2440,10 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
     ['#tgp-tab-viaje .txt', 'tx', 'perfilPestanaViaje'],
     ['#tgp-tab-cuerpo .txt', 'tx', 'perfilPestanaCuerpo'],
     ['#tgp-tab-cuenta .txt', 'tx', 'perfilCuenta'],
+    ['#tgp-cuerpo h2', 'tx', 'perfilCuerpoTitulo'],
+    ['#tgp-cuerpo .tgp-note', 'tx', 'perfilCuerpoTexto'],
+    ['#tgp-cuerpo-abrir-txt', 'tx', 'perfilCuerpoAbrir'],
+    ['#tgp-cuerpo-error', 'tx', 'perfilCuerpoError'],
     ['#tgp-name-edit', 'aria', 'perfilEditarNombre'],
     ['#tgp-hero .tgp-lema', 'tx', 'perfilLema'],
     ['#tgp-avatares h2', 'tx', 'perfilElegirAvatar'],

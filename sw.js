@@ -43,6 +43,11 @@ const CORE = [
      nombre de la cache, el service worker nuevo los precarga al instalarse
      con cache: 'reload'. */
   './modulos/avatares.js', './modulos/perfil.js',
+  /* «Su cuerpo» (31 de octubre de 2026), que se abre desde el perfil: el modulo, aqui y
+     «red primero» abajo, como el perfil. Sus 533 ejercicios (datos/ejercicios*.json: el
+     comun y uno por idioma, unos 200 kB cada uno) no se precargan: se guardan al usarlos,
+     tambien «red primero», y asi sin conexion sale lo ultimo que se abrio. */
+  './modulos/cuerpo.js',
   /* El panel de EMERGENCIAS (22 de octubre de 2026): tiene que estar sin
      conexion desde el primer dia, y no esperar a la red: va abajo con su
      propia estrategia (cache al instante, red por detras). */
@@ -342,6 +347,8 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/modulos/cielo.js') ||
           url.pathname.endsWith('/modulos/avatares.js') ||
           url.pathname.endsWith('/modulos/perfil.js') ||
+          url.pathname.endsWith('/modulos/cuerpo.js') ||
+          /\/datos\/ejercicios(-[a-z]{2,3})?\.json$/.test(url.pathname) ||
           url.pathname.endsWith('/datos/cielo.json') ||
           url.pathname.endsWith('/datos/satelites.json') ||
           url.pathname.endsWith('/datos/precios-gasolineras.json') ||

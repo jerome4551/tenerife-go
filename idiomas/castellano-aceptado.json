@@ -45,6 +45,9 @@
   "el panel SOS (22 de octubre de 2026, noche): @112canarias es la cuenta del 112 en las redes, y se escribe asi en todos los idiomas": {
    "todos": ["canarias@es:@112canarias"]
   },
+  "«Su cuerpo» (31 de octubre de 2026): palabras de ese idioma que se escriben igual que el castellano (en frances, «lignes directrices», las directrices de la OMS)": {
+   "fr": ["directrices@es:directrices sobre actividad física"]
+  },
   "en chino, la palabra castellana entre parentesis DESPUES de traducirla, para reconocerla en los carteles": {
    "zh": ["malpaís", "baile@es:baile mago", "mago@es:baile mago"],
    "zht": ["malpaís", "baile@es:baile mago", "mago@es:baile mago"]

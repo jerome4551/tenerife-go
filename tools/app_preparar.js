@@ -93,7 +93,9 @@ const CARPETAS = [
   ['idiomas/etiquetas', f => /\.json$/.test(f)],
   ['idiomas/cielo', f => IDIOMAS.includes(f.replace(/\.json$/, '')) && /\.json$/.test(f)],
   ['faq', f => IDIOMAS.includes(f.replace(/\.json$/, '')) && /\.json$/.test(f)],
-  ['datos', f => DATOS.includes(f)],
+  /* y los 533 ejercicios de «Su cuerpo» (31 de octubre de 2026): dentro de la app no hay
+     service worker que los guarde */
+  ['datos', f => DATOS.includes(f) || /^ejercicios(-[a-z]{2,3})?\.json$/.test(f)],
   ['modulos', f => /\.js$/.test(f)],
   ['vendor', f => /\.(js|css|txt)$/.test(f)],
   ['vendor/fuentes', f => /\.woff2$/.test(f)],

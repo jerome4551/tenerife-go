@@ -44,7 +44,7 @@
  *      excepcion de 2027 del Carnaval) las prueba tools/probar_fechas_oro.js.
  *
  * QUE MIRA (parte 2, la pantalla: modulos/perfil.js)
- *   6. las 455 filas de PERFIL_UI (96 de la pantalla, 47 de sets, 312 de
+ *   6. las 459 filas de PERFIL_UI (100 de la pantalla, 47 de sets, 312 de
  *      avatares: 235, 49 de oro y 28 retirados), con lo que comprobaba validar_i18n.py del encargo: los diez
  *      idiomas y ninguno en blanco; los mismos {marcadores} que el castellano;
  *      ni comillas dobles ASCII ni guiones blandos u otros invisibles; los
@@ -327,8 +327,8 @@ console.log('\n=== el perfil: la pantalla (modulos/perfil.js) ===');
 let PUI = {};
 try { PUI = ROT.grab('var PERFIL_UI = {', 0, MOD); } catch (e) { PUI = {}; }
 const claves = Object.keys(PUI);
-ok(claves.length === 455, 'PERFIL_UI: 455 filas', claves.length);
-ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 312 && !claves.includes('perfilAv_en_cabina'), '47 filas de sets y 312 de avatares: 235, 49 de oro y 28 retirados (y 96 de la pantalla, con las dos pestañas); ninguna de la cabina');
+ok(claves.length === 459, 'PERFIL_UI: 459 filas', claves.length);
+ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 312 && !claves.includes('perfilAv_en_cabina'), '47 filas de sets y 312 de avatares: 235, 49 de oro y 28 retirados (y 100 de la pantalla, con las dos pestañas y las cuatro de la tarjeta «Su cuerpo»); ninguna de la cabina');
 ok(/\n  Object\.assign\(UI_TX, PERFIL_UI\);\n/.test(MOD), 'se funden en UI_TX con Object.assign(UI_TX, PERFIL_UI), como CIELO_UI');
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 ok(JSON.stringify(IDI) === JSON.stringify(LENGUAS), 'los diez idiomas son los de SUPPORTED_LANGS', LENGUAS.join(','));

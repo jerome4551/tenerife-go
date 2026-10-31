@@ -5578,7 +5578,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 45 tablas, 2897 filas (y 5.044 filas, dentro y fuera del fuente)
+## Idiomas · 46 tablas, 3132 filas (y 5.279 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5665,7 +5665,10 @@ descripción y su categoría): 5.014. Y ese mismo día, los nombres de los 29
 avatares retirados, que vuelven a `PERFIL_UI` (454): 2896 filas y 5.043; y
 los nombres de dos de las tres pestañas del perfil, Viaje y Cuerpo (456):
 2898 filas y 5.045; y sin la cabina roja británica, una menos (455): 2897
-filas y 5.044. El
+filas y 5.044. Y ese mismo día, «Su cuerpo»: una tabla más, `CUERPO_UI` de
+`modulos/cuerpo.js`, con sus 231 filas, que `tools/fuente.js` pega al
+fuente, y las cuatro de su tarjeta en el perfil (459): 46 tablas, 3132 filas
+y 5.279. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de

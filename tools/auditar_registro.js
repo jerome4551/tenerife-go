@@ -17,8 +17,10 @@
  *     del cielo (modulos/cielo.js, y las curiosidades de las constelaciones,
  *     un fichero por idioma: idiomas/cielo/<l>.json), la pantalla del perfil
  *     (modulos/perfil.js), el panel de emergencias (modulos/emergencias.js,
- *     22 de octubre de 2026) y las etiquetas de las fichas (tags[] de
- *     index.html e idiomas/etiquetas/<l>.json).
+ *     22 de octubre de 2026), «Su cuerpo» (modulos/cuerpo.js, y el nombre y
+ *     los pasos de sus 533 ejercicios, un fichero por idioma:
+ *     datos/ejercicios-<l>.json; 31 de octubre de 2026) y las etiquetas de
+ *     las fichas (tags[] de index.html e idiomas/etiquetas/<l>.json).
  *
  * Los idiomas de HECHOS ya estan pasados a usted: cualquier marca es un
  * fallo y se lista. Los demas se cuentan como pendientes (no fallan), para
@@ -305,6 +307,8 @@ const ROTULOS_IT = new Set([
   'Aggiungi', 'Cerca un paese', 'Crea account o accedi', 'Salva', 'Scarica i dati del profilo',
   /* los del sistema, que la app cita tal cual: el menu de Safari y el de Chrome */
   'Aggiungi a Home', 'Installa app',
+  /* los de «Su cuerpo» (modulos/cuerpo.js) y el de su tarjeta en el perfil, «Apri» (31 de octubre de 2026) */
+  'Apri', 'Annulla',
 ]);
 
 /* Los del bulgaro (22 de octubre de 2026): el boton en imperativo («Затвори»,
@@ -325,6 +329,8 @@ const ROTULOS_BG = new Set([
   'Добави', 'Запази', 'Изтегли данните на профила', 'Изтрий', 'Изтрий данните на профила от това устройство', 'Изтрий от облака', 'Промени името',
   /* los del sistema, que la app cita tal cual: el menu de Safari */
   'Добави към начален екран',
+  /* los de «Su cuerpo» (modulos/cuerpo.js) y el de su tarjeta en el perfil, «Отвори» (31 de octubre de 2026) */
+  'Отвори', 'Завърти', 'Покажи отзад', 'Покажи отпред', 'Изтрий: {series}, {fecha}', 'Да, изтрий', 'Отмени',
 ]);
 
 /* Los del polaco (22 de octubre de 2026): el boton en imperativo («Zamknij»,
@@ -360,6 +366,8 @@ const ROTULOS_PL = new Set([
   /* los del perfil (modulos/perfil.js, 23 de octubre de 2026) */
   'Dodaj', 'Pobierz dane profilu', 'Szukaj kraju', 'Tak, usuń', 'Usuń dane profilu z tego urządzenia', 'Usuń z chmury', 'Załóż konto lub zaloguj się',
   'Zapisz', 'Zmień imię',
+  /* los de «Su cuerpo» (modulos/cuerpo.js) y el de su tarjeta en el perfil, «Otwórz» (31 de octubre de 2026) */
+  'Otwórz', 'Obróć', 'Pokaż od tyłu', 'Pokaż od przodu', 'Usuń: {series}, {fecha}', 'Usuń dane z sekcji «Ciało»', 'Cofnij', 'Szukaj w ćwiczeniach tej grupy', 'Szukaj ćwiczenia…',
 ]);
 /* la voz de quien usa la app («Zaskocz mnie», «Zaprowadź mnie», «Przypomnij mi w
    aplikacji», lo que se escribe al asistente), como «Sorpréndeme» y «Llévame»
@@ -400,6 +408,9 @@ const EXENTOS = [
   /* las curiosidades de las constelaciones (idiomas/cielo/, 22 de octubre de 2026) */
   ['it', /perché sia così carico di bestiame: porta una capra/, 'el auriga «porta una capra», «lleva una cabra»: tercera persona, no el imperativo (cieloCurConAur)'],
   ['pl', /błagała bogów o pomoc, a ci zmienili ją w klacz/, '«a ci zmienili»: «ci» es el demostrativo, «y estos la convirtieron», no «a ti» (cieloCurConEqu)'],
+  /* los pasos de los ejercicios de «Su cuerpo» (datos/ejercicios-<l>.json, 31 de octubre de 2026) */
+  ['fr', /pour que le tronc tienne entre les genoux et le banc/, '«que le tronc tienne»: el subjuntivo de tenir, en tercera persona (el tronco), no el «la tienne» de tu (estiramiento-dorsal-codos-banco, paso 1)'],
+  ['it', /^Non scendere oltre i 90 gradi di flessione del gomito/, 'los pasos van en infinitivo, como las instrucciones en italiano («Staccare», «Abbassarlo», «e spingere» en el mismo paso): «Non scendere» es el infinitivo negativo, no el imperativo de tu (fondos-entre-bancos, paso 3)'],
 ];
 
 function exento(l, t) {
@@ -495,12 +506,25 @@ async function textos() {
     if (fs.existsSync(path.join(RAIZ, ef))) for (const [k, t] of Object.entries(json(ef))) { etiq.add(k); mete(ef, k, l, t); }
   }
   for (const t of etiq) mete('etiquetas (tags[])', t, 'es', t);
-  /* las filas de los modulos de carga perezosa (CIELO_UI, PERFIL_UI y, desde
-     el 22 de octubre de 2026, EMERG_UI del panel SOS), una por linea */
-  for (const f of ['modulos/cielo.js', 'modulos/perfil.js', 'modulos/emergencias.js']) {
+  /* las filas de los modulos de carga perezosa (CIELO_UI, PERFIL_UI, desde el 22
+     de octubre de 2026 EMERG_UI del panel SOS y, desde el 31, CUERPO_UI de «Su
+     cuerpo»), una por linea */
+  for (const f of ['modulos/cielo.js', 'modulos/perfil.js', 'modulos/emergencias.js', 'modulos/cuerpo.js']) {
     for (const m of lee(f).matchAll(/^\s*"?([A-Za-z0-9_-]+)"?: (\{"es": .*\}),?\s*$/gm)) {
       let d; try { d = JSON.parse(m[2]); } catch (e) { continue; }
       for (const l of IDI) mete(f, m[1], l, d[l]);
+    }
+  }
+  /* los 533 ejercicios de «Su cuerpo» (31 de octubre de 2026): su nombre y sus pasos,
+     un fichero por idioma ({ id: [nombre, [paso, …]] }). Los pasos hablan a quien
+     hace el ejercicio: de usted, como lo demas */
+  for (const l of IDI) {
+    const f = 'datos/ejercicios-' + l + '.json';
+    if (!fs.existsSync(path.join(RAIZ, f))) continue;
+    for (const [id, e] of Object.entries(json(f))) {
+      if (!Array.isArray(e)) continue;
+      mete(f, id, l, e[0]);
+      (Array.isArray(e[1]) ? e[1] : []).forEach((p, i) => mete(f, id + ' paso ' + (i + 1), l, p));
     }
   }
   /* las 88 curiosidades de las constelaciones, un fichero por idioma desde el 22 */

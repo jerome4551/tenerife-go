@@ -36528,6 +36528,32 @@ html.cielo-rojo body::before {
   }
   window.TG_PERFIL_CARGAR = cargarPerfil;
   window.abrirPerfil = abrirPerfil;
+
+  /* CARGA-PEREZOSA: modulos/cuerpo.js
+     La pantalla «Su cuerpo» (31 de octubre de 2026): el personaje, los musculos y los
+     ejercicios, con sus estilos y sus textos en los diez idiomas, 226 kB (69 kB
+     comprimido). Se pide al tocar «Abrir» en su tarjeta, en la pestaña Cuerpo del
+     perfil, y va encima de el; los 533 ejercicios (datos/ejercicios*.json, el comun y
+     el del idioma), al abrir la biblioteca. El service worker precarga el modulo, y los
+     ejercicios los guarda al usarlos. Si no llega, la tarjeta lo dice. */
+  var MODULO_CUERPO = './modulos/cuerpo.js', cargaCuerpo = null;
+  function cargarCuerpo() {
+    if (window.TG_CUERPO) return Promise.resolve();
+    if (cargaCuerpo) return cargaCuerpo;
+    cargaCuerpo = new Promise(function (ok, mal) {
+      var s = document.createElement('script');
+      s.src = MODULO_CUERPO;
+      s.onload = function () { if (window.TG_CUERPO) ok(); else mal(new Error('cuerpo')); };
+      s.onerror = function () { s.remove(); mal(new Error('cuerpo')); };
+      document.head.appendChild(s);
+    }).catch(function (e) { cargaCuerpo = null; throw e; });
+    return cargaCuerpo;
+  }
+  function abrirCuerpo(op) {
+    return cargarCuerpo().then(function () { window.TG_CUERPO.abrir(op); });
+  }
+  window.TG_CUERPO_CARGAR = cargarCuerpo;
+  window.abrirCuerpo = abrirCuerpo;
   /* Al arrancar, solo con un avatar elegido y cuando el movil esta libre: el
      mapa y la barra van antes */
   function iniciar() {
