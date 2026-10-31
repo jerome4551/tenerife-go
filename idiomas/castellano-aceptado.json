@@ -48,6 +48,11 @@
   "«Su cuerpo» (31 de octubre de 2026): palabras de ese idioma que se escriben igual que el castellano (en frances, «lignes directrices», las directrices de la OMS)": {
    "fr": ["directrices@es:directrices sobre actividad física"]
   },
+  "«Su cuerpo» (31 de octubre de 2026): el nombre de una fuente, r/bodyweightfitness, el foro de Reddit de su «Recommended Routine»; se escribe igual en todos los idiomas": {
+   "zh": ["bodyweightfitness@es:r/bodyweightfitness"],
+   "zht": ["bodyweightfitness@es:r/bodyweightfitness"],
+   "bg": ["bodyweightfitness@es:r/bodyweightfitness"]
+  },
   "en chino, la palabra castellana entre parentesis DESPUES de traducirla, para reconocerla en los carteles": {
    "zh": ["malpaís", "baile@es:baile mago", "mago@es:baile mago"],
    "zht": ["malpaís", "baile@es:baile mago", "mago@es:baile mago"]

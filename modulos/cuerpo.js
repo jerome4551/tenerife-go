@@ -33,7 +33,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (232 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (256 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
@@ -258,6 +258,30 @@
     "cuerpoSecundario": {"es": "Secundario", "en": "Secondary", "fr": "Secondaire", "de": "Hilfsmuskeln", "it": "Secondari", "nl": "Hulpspieren", "zh": "辅助肌群", "zht": "輔助肌群", "bg": "Помощни", "pl": "Pomocnicze"},
     "cuerpoAnotarEj": {"es": "Anotar series de este ejercicio", "en": "Log sets of this exercise", "fr": "Noter des séries de cet exercice", "de": "Sätze dieser Übung eintragen", "it": "Annotare le serie di questo esercizio", "nl": "Sets van deze oefening noteren", "zh": "记录这个动作的组数", "zht": "記錄這個動作的組數", "bg": "Записване на серии от това упражнение", "pl": "Zapisywanie serii tego ćwiczenia"},
     "cuerpoAnotadoEj": {"es": "{ejercicio}: {n} serie anotada|{ejercicio}: {n} series anotadas", "en": "{ejercicio}: {n} set logged|{ejercicio}: {n} sets logged", "fr": "{ejercicio} : {n} série notée|{ejercicio} : {n} séries notées", "de": "{ejercicio}: {n} Satz eingetragen|{ejercicio}: {n} Sätze eingetragen", "it": "{ejercicio}: {n} serie annotata|{ejercicio}: {n} serie annotate", "nl": "{ejercicio}: {n} set genoteerd|{ejercicio}: {n} sets genoteerd", "zh": "{ejercicio}：已记录 {n} 组", "zht": "{ejercicio}：已記錄 {n} 組", "bg": "{ejercicio}: записана {n} серия|{ejercicio}: записани {n} серии", "pl": "{ejercicio}: zapisano {n} serię|{ejercicio}: zapisano {n} serie|{ejercicio}: zapisano {n} serii"},
+    "cuerpoNF_datos": {"es": "conjunto de datos", "en": "dataset", "fr": "jeu de données", "de": "Datensatz", "it": "set di dati", "nl": "dataset", "zh": "数据集", "zht": "資料集", "bg": "набор от данни", "pl": "zbiór danych"},
+    "cuerpoNF_articulo": {"es": "artículo para profesionales", "en": "article for professionals", "fr": "article pour les professionnels", "de": "Fachartikel", "it": "articolo per professionisti", "nl": "artikel voor professionals", "zh": "面向专业人士的文章", "zht": "給專業人士的文章", "bg": "статия за специалисти", "pl": "artykuł dla specjalistów"},
+    "cuerpoNF_estudioACE": {"es": "estudio patrocinado por ACE", "en": "study sponsored by ACE", "fr": "étude financée par l’ACE", "de": "von ACE geförderte Studie", "it": "studio finanziato da ACE", "nl": "door ACE gesponsorde studie", "zh": "ACE 资助的研究", "zht": "ACE 資助的研究", "bg": "проучване, финансирано от ACE", "pl": "badanie sponsorowane przez ACE"},
+    "cuerpoNF_hojaPacientes": {"es": "hoja para pacientes", "en": "patient leaflet", "fr": "fiche pour les patients", "de": "Patienteninformation", "it": "scheda per i pazienti", "nl": "patiëntenfolder", "zh": "患者须知", "zht": "病患須知", "bg": "листовка за пациенти", "pl": "ulotka dla pacjentów"},
+    "cuerpoNF_videoTexto": {"es": "vídeo y texto", "en": "video and text", "fr": "vidéo et texte", "de": "Video und Text", "it": "video e testo", "nl": "video en tekst", "zh": "视频和文字", "zht": "影片和文字", "bg": "видео и текст", "pl": "wideo i tekst"},
+    "cuerpoNF_maquina": {"es": "máquina", "en": "machine", "fr": "machine", "de": "Gerät", "it": "macchina", "nl": "machine", "zh": "器械", "zht": "機械", "bg": "машина", "pl": "maszyna"},
+    "cuerpoNF_ejercicios": {"es": "ejercicios", "en": "exercises", "fr": "exercices", "de": "Übungen", "it": "esercizi", "nl": "oefeningen", "zh": "练习", "zht": "練習", "bg": "упражнения", "pl": "ćwiczenia"},
+    "cuerpoNF_folleto": {"es": "folleto", "en": "leaflet", "fr": "brochure", "de": "Broschüre", "it": "opuscolo", "nl": "folder", "zh": "小册子", "zht": "小冊子", "bg": "брошура", "pl": "broszura"},
+    "cuerpoNF_comunitaria": {"es": "fuente comunitaria", "en": "community source", "fr": "source communautaire", "de": "Community-Quelle", "it": "fonte della comunità", "nl": "communitybron", "zh": "社区来源", "zht": "社群來源", "bg": "източник от общността", "pl": "źródło społecznościowe"},
+    "cuerpoNF_barra": {"es": "barra", "en": "barbell", "fr": "barre", "de": "Langhantel", "it": "bilanciere", "nl": "halterstang", "zh": "杠铃", "zht": "槓鈴", "bg": "щанга", "pl": "sztanga"},
+    "cuerpoNF_mancuernas": {"es": "mancuernas", "en": "dumbbells", "fr": "haltères", "de": "Kurzhanteln", "it": "manubri", "nl": "dumbbells", "zh": "哑铃", "zht": "啞鈴", "bg": "дъмбели", "pl": "hantle"},
+    "cuerpoNF_banda": {"es": "banda", "en": "band", "fr": "bande élastique", "de": "Widerstandsband", "it": "elastico", "nl": "weerstandsband", "zh": "弹力带", "zht": "彈力帶", "bg": "ластик", "pl": "guma oporowa"},
+    "cuerpoNF_bandasPoleas": {"es": "bandas o poleas", "en": "bands or cables", "fr": "bandes élastiques ou poulies", "de": "Bänder oder Kabelzug", "it": "elastici o cavi", "nl": "banden of kabels", "zh": "弹力带或绳索", "zht": "彈力帶或拉力器", "bg": "ластици или скрипци", "pl": "gumy lub wyciągi"},
+    "cuerpoNF_poleaBanco": {"es": "polea y banco", "en": "cable and bench", "fr": "poulie et banc", "de": "Kabelzug und Bank", "it": "cavo e panca", "nl": "kabel en bank", "zh": "绳索和凳子", "zht": "拉力器和長凳", "bg": "скрипец и пейка", "pl": "wyciąg i ławka"},
+    "cuerpoNF_fitball": {"es": "con fitball", "en": "with an exercise ball", "fr": "avec ballon de gym", "de": "mit Gymnastikball", "it": "con la fitball", "nl": "met fitnessbal", "zh": "用健身球", "zht": "用健身球", "bg": "с фитнес топка", "pl": "z piłką gimnastyczną"},
+    "cuerpoNF_fondosMaquina": {"es": "Fondos en máquina", "en": "Machine dip", "fr": "Dips à la machine", "de": "Dips am Gerät", "it": "Dip alla macchina", "nl": "Dips op de machine", "zh": "器械臂屈伸", "zht": "機械撐體", "bg": "Кофички на машина", "pl": "Dipy na maszynie siedząc"},
+    "cuerpoNF_biblioteca": {"es": "biblioteca de salud", "en": "health library", "fr": "bibliothèque santé", "de": "Gesundheitsbibliothek", "it": "biblioteca della salute", "nl": "gezondheidsbibliotheek", "zh": "健康资料库", "zht": "健康資料庫", "bg": "здравна библиотека", "pl": "biblioteka zdrowia"},
+    "cuerpoNF_extractoHK": {"es": "extracto en Human Kinetics", "en": "excerpt on Human Kinetics", "fr": "extrait sur Human Kinetics", "de": "Auszug bei Human Kinetics", "it": "estratto su Human Kinetics", "nl": "fragment op Human Kinetics", "zh": "Human Kinetics 节选", "zht": "Human Kinetics 節選", "bg": "откъс в Human Kinetics", "pl": "fragment w Human Kinetics"},
+    "cuerpoNF_mccall": {"es": "Pete McCall, septiembre de 2015", "en": "Pete McCall, September 2015", "fr": "Pete McCall, septembre 2015", "de": "Pete McCall, September 2015", "it": "Pete McCall, settembre 2015", "nl": "Pete McCall, september 2015", "zh": "Pete McCall，2015年9月", "zht": "Pete McCall，2015年9月", "bg": "Pete McCall, септември 2015 г.", "pl": "Pete McCall, wrzesień 2015"},
+    "cuerpoNF_ucsf": {"es": "Universidad de California, San Francisco", "en": "University of California, San Francisco", "fr": "Université de Californie à San Francisco", "de": "University of California, San Francisco", "it": "Università della California, San Francisco", "nl": "University of California, San Francisco", "zh": "加州大学旧金山分校", "zht": "加州大學舊金山分校", "bg": "Калифорнийски университет, Сан Франциско", "pl": "Uniwersytet Kalifornijski w San Francisco"},
+    "cuerpoNF_sussex": {"es": "Universidad de Sussex", "en": "University of Sussex", "fr": "Université du Sussex", "de": "University of Sussex", "it": "Università del Sussex", "nl": "University of Sussex", "zh": "萨塞克斯大学", "zht": "薩塞克斯大學", "bg": "Съсекски университет", "pl": "Uniwersytet Sussex"},
+    "cuerpoNF_programaCasa": {"es": "Programa de ejercicio en casa", "en": "Home exercise programme", "fr": "Programme d’exercices à domicile", "de": "Übungsprogramm für zu Hause", "it": "Programma di esercizi a casa", "nl": "Oefenprogramma voor thuis", "zh": "居家锻炼计划", "zht": "居家運動計畫", "bg": "Програма за упражнения у дома", "pl": "Program ćwiczeń w domu"},
+    "cuerpoNF_copiaRutina": {"es": "copia de la Recommended Routine de r/bodyweightfitness", "en": "copy of the Recommended Routine from r/bodyweightfitness", "fr": "copie de la Recommended Routine de r/bodyweightfitness", "de": "Kopie der Recommended Routine von r/bodyweightfitness", "it": "copia della Recommended Routine di r/bodyweightfitness", "nl": "kopie van de Recommended Routine van r/bodyweightfitness", "zh": "r/bodyweightfitness 的 Recommended Routine 副本", "zht": "r/bodyweightfitness 的 Recommended Routine 副本", "bg": "копие на Recommended Routine от r/bodyweightfitness", "pl": "kopia Recommended Routine z r/bodyweightfitness"},
+    "cuerpoNF_hojaEjercicio": {"es": "hoja de ejercicio", "en": "exercise sheet", "fr": "fiche d’exercice", "de": "Übungsblatt", "it": "scheda dell’esercizio", "nl": "oefenblad", "zh": "练习说明", "zht": "練習說明", "bg": "лист с упражнение", "pl": "karta ćwiczenia"},
     "cuerpoFuentesEj": {"es": "Fuentes", "en": "Sources", "fr": "Sources", "de": "Quellen", "it": "Fonti", "nl": "Bronnen", "zh": "来源", "zht": "來源", "bg": "Източници", "pl": "Źródła"},
     "cuerpoNotaFuentesEj": {"es": "Los pasos están escritos con palabras propias a partir de estas fuentes. El nivel es orientativo: es el de la fuente cuando esta lo da y, si no, una estimación.", "en": "The steps are written in our own words from these sources. The level is a guide: it is the source’s own where one gives it, and an estimate otherwise.", "fr": "Les étapes sont rédigées avec nos propres mots à partir de ces sources. Le niveau est indicatif : c’est celui de la source quand elle l’indique, sinon une estimation.", "de": "Die Schritte sind auf Grundlage dieser Quellen in eigenen Worten geschrieben. Das Niveau ist ein Richtwert: Es stammt aus der Quelle, wenn diese es angibt, sonst ist es geschätzt.", "it": "I passaggi sono scritti con parole proprie a partire da queste fonti. Il livello è indicativo: è quello della fonte quando lo indica, altrimenti è una stima.", "nl": "De stappen zijn in eigen woorden geschreven op basis van deze bronnen. Het niveau is een richtlijn: het komt uit de bron als die het aangeeft, anders is het een schatting.", "zh": "步骤根据这些来源用自己的话写成。难度仅供参考：来源有标注时采用来源的难度，否则为估计。", "zht": "步驟依據這些來源以自己的話寫成。難度僅供參考：來源有標示時採用來源的難度，否則為估計。", "bg": "Стъпките са написани със собствени думи въз основа на тези източници. Нивото е ориентировъчно: взето е от източника, когато той го посочва, а иначе е приблизителна оценка.", "pl": "Kroki opisano własnymi słowami na podstawie tych źródeł. Poziom jest orientacyjny: pochodzi ze źródła, jeśli źródło go podaje, a w przeciwnym razie jest szacunkowy."},
     "cuerpoCargandoEj": {"es": "Cargando los ejercicios…", "en": "Loading the exercises…", "fr": "Chargement des exercices…", "de": "Die Übungen werden geladen…", "it": "Caricamento degli esercizi…", "nl": "De oefeningen worden geladen…", "zh": "正在载入动作…", "zht": "正在載入動作…", "bg": "Упражненията се зареждат…", "pl": "Wczytywanie ćwiczeń…"},
@@ -1182,6 +1206,29 @@
   function locale() { return (typeof PRECIOS_GAS_LOCALE === 'object' && PRECIOS_GAS_LOCALE[lengua()]) || 'es-ES'; }
   function fmtFecha(s) { return fecha(s).toLocaleDateString(locale(), { day: 'numeric', month: 'short' }); }
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  /* Las fuentes de cada ejercicio, en el idioma de la app (31 de octubre de 2026). La entrega
+     escribio en castellano las notas entre parentesis («conjunto de datos», «folleto PIL1597»…) y
+     cuatro descripciones de una fuente («Programa de ejercicio en casa», «Universidad de
+     Sussex»…), y salian igual en los diez idiomas. Van con su fila de CUERPO_UI; lo demas es el
+     titulo original de cada fuente y se queda como esta. */
+  var NOTAS_FUENTE = { 'conjunto de datos': 'cuerpoNF_datos', 'artículo para profesionales': 'cuerpoNF_articulo',
+    'estudio patrocinado por ACE': 'cuerpoNF_estudioACE', 'hoja para pacientes': 'cuerpoNF_hojaPacientes', 'vídeo y texto': 'cuerpoNF_videoTexto',
+    'máquina': 'cuerpoNF_maquina', 'ejercicios': 'cuerpoNF_ejercicios', 'folleto': 'cuerpoNF_folleto', 'fuente comunitaria': 'cuerpoNF_comunitaria',
+    'barra': 'cuerpoNF_barra', 'mancuernas': 'cuerpoNF_mancuernas', 'banda': 'cuerpoNF_banda', 'bandas o poleas': 'cuerpoNF_bandasPoleas',
+    'polea y banco': 'cuerpoNF_poleaBanco', 'con fitball': 'cuerpoNF_fitball', 'Fondos en máquina': 'cuerpoNF_fondosMaquina',
+    'biblioteca de salud': 'cuerpoNF_biblioteca', 'extracto en Human Kinetics': 'cuerpoNF_extractoHK',
+    'Pete McCall, septiembre de 2015': 'cuerpoNF_mccall', 'Universidad de California, San Francisco': 'cuerpoNF_ucsf' };
+  var TROZOS_FUENTE = [['Programa de ejercicio en casa', 'cuerpoNF_programaCasa'], ['copia de la Recommended Routine de r/bodyweightfitness', 'cuerpoNF_copiaRutina'],
+    ['Universidad de Sussex', 'cuerpoNF_sussex'], ['hoja de ejercicio', 'cuerpoNF_hojaEjercicio']];
+  function fuenteTxt(t) {
+    var s = String(t).replace(/\(([^()]+)\)/g, function (m, n) {
+      if (NOTAS_FUENTE[n]) return '(' + tx(NOTAS_FUENTE[n]) + ')';
+      var f = /^folleto (.+)$/.exec(n);
+      return f ? '(' + tx('cuerpoNF_folleto') + ' ' + f[1] + ')' : m;
+    });
+    TROZOS_FUENTE.forEach(function (p) { s = s.split(p[0]).join(tx(p[1])); });
+    return s;
+  }
   function nombre(g) { return tx('cuerpoG_' + g) || g; }
   /* sin conjunción: varios nombres de grupo ya la llevan («Glúteos y cadera»), y «A, B y cadera y C» se lee mal */
   function lista(nombres) { return nombres.join(/^zh/.test(lengua()) ? '、' : ', '); }
@@ -1586,8 +1633,10 @@
     pintarPaso('tgc-ej');
     var ul = $('tgc-ej-fuentes'); ul.textContent = '';
     x.f.forEach(function (q) {
-      var li = el('li'), a = el('a', '', q[0]);
+      var li = el('li'), a = el('a', '', fuenteTxt(q[0]));
       a.href = q[1]; a.target = '_blank'; a.rel = 'noopener noreferrer';
+      /* la cita: el nombre del sitio y el titulo original de la pagina no se traducen (la nota, si) */
+      a.setAttribute('data-sin-traducir', 'el título original de la fuente');
       li.appendChild(a); ul.appendChild(li);
     });
   }
