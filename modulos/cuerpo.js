@@ -1255,6 +1255,10 @@
   function nombre(g) { return tx('cuerpoG_' + g) || g; }
   /* sin conjunción: varios nombres de grupo ya la llevan («Glúteos y cadera»), y «A, B y cadera y C» se lee mal */
   function lista(nombres) { return nombres.join(/^zh/.test(lengua()) ? '、' : ', '); }
+  /* «el día: sus series», con los dos puntos de cada idioma, como las filas del modulo: en
+     frances con su espacio delante («samedi 31 octobre : 10 séries») y en chino los de ancho
+     completo, sin espacios («10月31日星期六：10 组») */
+  function dosPuntos(a, b) { var l = lengua(); return a + (/^zh/.test(l) ? '：' : (l === 'fr' ? ' : ' : ': ')) + b; }
   function cuando(d) {
     if (!d) return tx('cuerpoSinAnotar');
     var n = dias(d, hoy());
@@ -1458,7 +1462,7 @@
       var li = el('li'), b = el('button', 'tgc-dia' + (o.d === h ? ' es-hoy' : ''));
       b.type = 'button'; b.dataset.d = o.d;
       b.setAttribute('aria-pressed', o.d === diaSel ? 'true' : 'false');
-      b.setAttribute('aria-label', fmtDia(o.d, true) + ': ' + tx('cuerpoNSeries', { n: o.n }));
+      b.setAttribute('aria-label', dosPuntos(fmtDia(o.d, true), tx('cuerpoNSeries', { n: o.n })));
       if (o.d === h) b.setAttribute('aria-current', 'date');
       var col = el('span', 'tgc-dia-col'), barra = el('i', 'tgc-dia-barra' + (o.n ? '' : ' cero'));
       if (o.n) { barra.style.height = Math.max(4, Math.round(64 * o.n / max)) + 'px'; barra.style.animationDelay = (i * 45) + 'ms'; }
@@ -1471,7 +1475,7 @@
   function renderDia(ds) {
     var o = (ds || semana()).filter(function (x) { return x.d === diaSel; })[0];
     if (!o) return;
-    $('tgc-dia-txt').textContent = fmtDia(o.d, true) + ': ' + tx('cuerpoNSeries', { n: o.n });
+    $('tgc-dia-txt').textContent = dosPuntos(fmtDia(o.d, true), tx('cuerpoNSeries', { n: o.n }));
     var gs = GRUPOS.filter(function (g) { return o.g[g]; }).map(nombre);
     $('tgc-dia-grupos').textContent = gs.length ? lista(gs) : tx('cuerpoSinAnotar');
   }

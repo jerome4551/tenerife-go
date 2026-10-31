@@ -570,6 +570,21 @@ async function ejemplo(pg) {
     await c5.close();
   }
 
+  // 16. (la app) la línea del día de la semana, con los dos puntos de cada idioma, como las filas del
+  //     módulo: en francés con su espacio delante, en chino los de ancho completo y sin espacios; y
+  //     el botón del día se llama igual
+  {
+    const DOS = { fr: /^\S.*\S : 10 séries$/, zh: /^[^:：\s]+：10 组$/, zht: /^[^:：\s]+：10 組$/, de: /^\S.*\S: 10 Sätze$/ };
+    await ejemplo(pg);   // hoy, 10 series
+    for (const L of Object.keys(DOS)) {
+      await idioma(pg, L); await pg.waitForTimeout(100);
+      const r16 = await pg.evaluate(() => { const b = document.querySelector('#tgc-dias7 .tgc-dia[aria-pressed="true"]');
+        return { txt: document.getElementById('tgc-dia-txt').textContent, nombre: b && b.getAttribute('aria-label') }; });
+      prueba(L + ': la línea del día, con los dos puntos de su idioma («' + r16.txt + '»), y el botón del día se llama igual', DOS[L].test(r16.txt) && r16.nombre === r16.txt, JSON.stringify(r16));
+    }
+    await idioma(pg, 'es');
+  }
+
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
   console.log('\n  ' + (ok + mal) + ' controles, ' + (mal ? mal + ' en rojo' : 'todos en verde'));
   await b.close();
