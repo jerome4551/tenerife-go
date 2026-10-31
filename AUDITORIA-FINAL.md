@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.080 kB** en castellano · **1.195 kB** en el peor caso (búlgaro) · 1.181 kB en polaco, el 1 de noviembre, con el mapa base recortado del detallado, que suma 114 bytes de `index.html` comprimido (los comentarios del estilo y del fondo de la isla, menos el estilo propio del base y dos filas de la tabla china) y por redondeo no se nota (el mapa base no cuenta: no se pide al arrancar), con la isla en 3D, «Su cuerpo», los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. La isla en 3D suma 2 kB (3 en polaco, por redondeo): el botón «3D», su estilo, su cargador con la huella del relieve y sus tres filas en los diez idiomas; el motor (`modulos/isla3d.js`) y el relieve se piden al tocarlo. Sin ella, con «Su cuerpo», 1.078, 1.193 y 1.178. «Su cuerpo» suma 2 kB en castellano y en polaco, y 3 en búlgaro: su cargador y su apartado de la política, en los diez idiomas, van en `index.html`; la pantalla y sus ejercicios se piden al abrirla. Sin él, con el perfil de las tres pestañas, 1.076, 1.190 y 1.176, como antes. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco; y los nombres de las fichas en el mapa en chino, 2,6 kB (3 en castellano, 2 en búlgaro y en polaco), porque su tabla va dentro de `index.html`. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.081 kB** en castellano · **1.196 kB** en el peor caso (búlgaro) · 1.182 kB en polaco, el 1 de noviembre, con la cumbre del Teide en el mapa plano, que suma 1.105 bytes de `index.html` comprimido (`ponerCimas`, su regla y sus comentarios), con el mapa base recortado del detallado, que suma 114 bytes de `index.html` comprimido (los comentarios del estilo y del fondo de la isla, menos el estilo propio del base y dos filas de la tabla china) y por redondeo no se nota (el mapa base no cuenta: no se pide al arrancar), con la isla en 3D, «Su cuerpo», los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. La isla en 3D suma 2 kB (3 en polaco, por redondeo): el botón «3D», su estilo, su cargador con la huella del relieve y sus tres filas en los diez idiomas; el motor (`modulos/isla3d.js`) y el relieve se piden al tocarlo. Sin ella, con «Su cuerpo», 1.078, 1.193 y 1.178. «Su cuerpo» suma 2 kB en castellano y en polaco, y 3 en búlgaro: su cargador y su apartado de la política, en los diez idiomas, van en `index.html`; la pantalla y sus ejercicios se piden al abrirla. Sin él, con el perfil de las tres pestañas, 1.076, 1.190 y 1.176, como antes. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco; y los nombres de las fichas en el mapa en chino, 2,6 kB (3 en castellano, 2 en búlgaro y en polaco), porque su tabla va dentro de `index.html`. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -3972,21 +3972,31 @@ es una línea de barco (azul, la de los barcos): ningún límite municipal cae
 en el mar (de los 4.319 vértices de límite de z13, ninguno a más de 15 m de
 la costa por el lado del mar).
 
-**Lo que no se ha tocado.** La cumbre del Teide: en OpenStreetMap va como
-volcán, y Protomaps no mete los volcanes en `pois`, así que en el mapa plano
-«Teide» sale como paraje, desde z14, sin triángulo ni altitud (sí salen Pico
-Viejo, Montaña Blanca y los demás picos). En el 3D sale de su ficha, con su
-altitud oficial. Ponerle el triángulo en el mapa
-plano con el dato de la ficha sería mezclar un dato de la app con los de
-OpenStreetMap: lo decide Jerome.
+**La cumbre del Teide, con su triángulo.** En OpenStreetMap va como volcán, y
+Protomaps no mete los volcanes en `pois`: en los dos mapas salía como un paraje
+más («Teide», en gris y desde z14), sin triángulo ni altitud, mientras Pico
+Viejo, Montaña Blanca y los demás picos sí la llevaban. Se le preguntó a Jerome
+si ponerla con el dato de su ficha, porque es mezclar un dato de la app con los
+de OpenStreetMap, y dijo «luz verde». Ahora `ponerCimas` (`index.html`) la
+añade como un pico más a la capa `pois` de la tesela que la contiene, al
+leerla (el fichero no se toca): en el sitio de su ficha (`pico-teide-cumbre`,
+a unos 25 m del vértice geodésico «Teide» del IGN, hoja 1091, número 109190) y
+con la altitud de la ficha, la oficial del IGN (3.715 m), con su triángulo y
+sus metros en el idioma de la app (泰德峰 y 3715米 en chino). Sale desde z11,
+antes que los pueblos pequeños, y el paraje de OSM del mismo nombre, que es esa
+cumbre, deja de salir. En el 3D ya salía igual (sus `HITOS`).
 
 **Lo que se comprueba.** `python3 tools/mapa_base.py --comprobar` (que el
 base es el que sale del detallado, su cabecera y su caja, el crédito, las
 capas, que no lleva nada de lo que no tiene que llevar, el tope de 1,5 MB y su
-huella en `sw.js`) y `tools/auditar_mapa.js`, 134 controles: el bloque 2 mira las seis capas del
+huella en `sw.js`) y `tools/auditar_mapa.js`, 137 controles: el bloque 2 mira las seis capas del
 base y su crédito; el 8, que el base se pinta con el estilo del detallado y
 que el fondo lleva el crédito de las calles, y sigue pintando el base en
-chino, en tradicional y en castellano alrededor de Santa Cruz.
+chino, en tradicional y en castellano alrededor de Santa Cruz; y la cumbre del
+Teide, pintando los dos mapas a z11, z13 y z15 (y en chino): un solo rótulo de
+cima, con su triángulo a menos de un píxel de la ficha, «Teide» y «3715 m», y
+ningún paraje «Teide» al lado; sin `ponerCimas`, ninguna cima y el paraje: la
+medida sabe ponerse en rojo.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
@@ -6249,12 +6259,9 @@ el portal Infoplayas Canarias como origen.
 
 ## Decisión pendiente
 
-- **La cumbre del Teide en el mapa plano** (31 de octubre): en OpenStreetMap
-  va como volcán y Protomaps no mete los volcanes en `pois`, así que en los dos
-  mapas de la isla sale como paraje («Teide», desde z14), sin triángulo ni
-  altitud. En el 3D sale de su ficha, con los 3.715 m. Ponerle el triángulo en
-  el mapa plano con el dato de la ficha sería mezclar un dato de la app con los
-  de OpenStreetMap: lo decide Jerome.
+- ~~La cumbre del Teide en el mapa plano~~ **hecho** (31 de octubre, Jerome:
+  «luz verde»): ver «La cumbre del Teide, con su triángulo», en «El mapa de la
+  isla, rincón por rincón».
 - ~~351 rótulos repetidos sin distinguir~~ **cerrado**: la fila del buscador
   pinta el municipio. «Cementerio» daba cinco filas con texto idéntico y ahora
   da cero. Los 351 rótulos siguen ahí —son sitios distintos de verdad— pero ya

@@ -27,8 +27,21 @@ function estiloDeLaApp() {
     trozo(/\nfunction rotuloConMargen\(sim, m\) \{[\s\S]*?\n\}\n/),
     trozo(/\nfunction rotuloChino\(sim, idioma, prop\) \{[\s\S]*?\n\}\n/),
     trozo(/\nfunction estiloIslaDetallada\(P, idioma\) \{[\s\S]*?\n\}\n/),
-    trozo(/\nfunction estiloIslaBase\(P, idioma\) \{[\s\S]*?\n\}\n/)
+    trozo(/\nfunction estiloIslaBase\(P, idioma\) \{[\s\S]*?\n\}\n/),
+    trozo(/\nconst MAPA_CIMAS = \[[\s\S]*?\];\n/),
+    trozo(/\nfunction ponerCimas\(capa, idioma\) \{[\s\S]*?\n\}\n/),
+    // las fichas de las cimas, con su coordenada de places[] (ponerCimas las busca ahi)
+    'var places = ' + JSON.stringify(fichasDeCimas(html)) + ';'
   ].join('\n').replace(/^const /mg, 'var ');
+}
+
+/* {id, lat, lng} de cada ficha que nombra MAPA_CIMAS, sacadas de places[] en index.html */
+function fichasDeCimas(html) {
+  const ids = ((html.match(/\nconst MAPA_CIMAS = \[[\s\S]*?\];\n/) || [''])[0].match(/ficha: '([^']+)'/g) || []).map(x => x.slice(8, -1));
+  return ids.map(id => {
+    const m = html.match(new RegExp('\\{ id:"' + id + '",[^\\n]*?lat:([-\\d.]+),\\s*lng:([-\\d.]+)'));
+    return m ? { id, lat: +m[1], lng: +m[2] } : null;
+  }).filter(Boolean);
 }
 
 let fallos = 0, hechos = 0;
@@ -916,10 +929,11 @@ function ok(cond, txt, detalle) {
         capa.addTo(map);
         const anaga = await pixeles([28.531, -16.282], 15);
         const senderos = 100 * cerca(anaga.cuenta, '#a0522d', 24) / anaga.total;
+        // los rotulos de todas las reglas con ese simbolo (los picos van en dos: las cimas de las fichas, desde z11, y los demas)
         const rotulos = (z, nombre) => {
-          const i = capa.labelRules.findIndex(x => x.symbolizer.constructor.name === nombre);
+          const is = new Set(capa.labelRules.map((x, i) => x.symbolizer.constructor.name === nombre ? i : -1).filter(i => i >= 0));
           const idx = capa.labelers.getIndex(z); const out = [];
-          if (idx) for (const set of idx.current.values()) for (const l of set) if (l.order === i) out.push(l);
+          if (idx) for (const set of idx.current.values()) for (const l of set) if (is.has(l.order)) out.push(l);
           return out;
         };
         await pixeles([28.262, -16.615], 14);
@@ -1046,6 +1060,71 @@ function ok(cond, txt, detalle) {
          'y con las claves del fichero, el tradicional pintaba en simplificado (' + ajenos(RZ.zhtAntes.han, ZHT).join(', ') + '), y con todo en castellano, ningun pueblo en chino: la medida sabe ponerse en rojo',
          JSON.stringify({ antes: RZ.zhtAntes, castellano: RZ.zhCastellano }));
       ok(r.delMar >= 90, 'el mar se pinta del color del fondo (' + r.delMar + ' % de la pantalla, mar adentro)', JSON.stringify(r));
+
+      /* La cumbre del Teide (31 de octubre de 2026, tarde). En OSM va como volcan y Protomaps no
+         la trae en `pois`: salia como paraje, sin triangulo ni altitud. ponerCimas (index.html) la
+         pone como un pico mas, en el sitio de su ficha y con los 3.715 m, y quita el paraje del
+         mismo nombre. Aqui, pintando de verdad los dos mapas a z11, z13 y z15: un solo rotulo de
+         cima, «Teide» y «3715 m», con el triangulo a menos de un pixel de la ficha, y ningun
+         paraje «Teide»; en chino, 泰德峰 y 3715米. Y sin ponerCimas, ninguna cima y el paraje a
+         z15: la medida sabe ponerse en rojo. */
+      const fichas = fichasDeCimas(html);
+      ok(fichas.length === 1 && fichas[0].id === 'pico-teide-cumbre' && /ponerCimas\(P\.leafletLayer\(/.test(fIsla),
+         'las cimas de las fichas (MAPA_CIMAS): la del Teide, con su coordenada de places[], y las dos capas de la isla pasan por ponerCimas', JSON.stringify(fichas));
+      const r3 = await page.evaluate(async ([URL_F, URL_B]) => {
+        const blobs = { d: await (await fetch(URL_F)).blob(), b: await (await fetch(URL_B)).blob() };
+        const fuenteDe = (b, k) => ({ getKey: () => k, getBytes: (o, n) => b.slice(o, o + n).arrayBuffer().then(d => ({ data: d })) });
+        const zBase = (await new pmtiles.PMTiles(fuenteDe(blobs.b, 'hb')).getHeader()).maxZoom;
+        const ficha = places.find(x => x.id === 'pico-teide-cumbre');
+        const div = document.createElement('div');
+        div.style.cssText = 'width:512px;height:512px;position:absolute;left:0;top:1200px';
+        document.body.appendChild(div);
+        const mapa = L.map(div, { zoomControl: false, attributionControl: false, fadeAnimation: false, zoomAnimation: false });
+        const mirar = async (cual, idioma, z, conCimas, k) => {
+          const est = cual === 'b' ? estiloIslaBase(protomapsL, idioma) : estiloIslaDetallada(protomapsL, idioma);
+          let capa = protomapsL.leafletLayer(Object.assign({ url: new pmtiles.PMTiles(fuenteDe(blobs[cual], k)), maxDataZoom: cual === 'b' ? zBase : 14, updateWhenZooming: false }, est));
+          if (conCimas) capa = ponerCimas(capa, idioma);
+          const textos = [], C = CanvasRenderingContext2D.prototype, f0 = C.fillText;
+          C.fillText = function (t) { textos.push(String(t)); return f0.apply(this, arguments); };
+          try {
+            mapa.setView([ficha.lat, ficha.lng], z, { animate: false });
+            capa.addTo(mapa);
+            for (let i = 0; i < 100; i++) { await new Promise(r => setTimeout(r, 50)); const ts = Object.values(capa._tiles || {}); if (ts.length && ts.every(x => x.loaded)) break; }
+            await new Promise(r => setTimeout(r, 400));
+          } finally { C.fillText = f0; }
+          // los rotulos colocados a ese zoom: los de la regla de las cimas y los de la de los parajes
+          const iCima = capa.labelRules.findIndex(x => x.dataLayer === 'pois' && x.filter && x.filter(z, { props: { kind: 'peak', 'tgo:cima': 'x' } }) && !x.filter(z, { props: { kind: 'peak' } }));
+          const iParaje = capa.labelRules.findIndex(x => x.dataLayer === 'places' && x.filter && x.filter(15, { props: { kind: 'locality', kind_detail: 'locality', min_zoom: 0 } }));
+          const idx = capa.labelers.getIndex(z), cimas = [], parajes = [];
+          if (idx) for (const set of idx.current.values()) for (const l of set) { if (l.order === iCima) cimas.push(l); if (l.order === iParaje) parajes.push(l); }
+          // donde cae la ficha, en pixeles del mismo indice (los del mundo a ese zoom, por el tamano de tesela de la vista)
+          const tam = [...capa.views.values()][0].tileCache.tileSize, n = (1 << z) * tam / (1 << ([...capa.views.values()][0].levelDiff || 0));
+          const s = Math.sin(ficha.lat * Math.PI / 180);
+          const fx = (ficha.lng + 180) / 360 * n, fy = (0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)) * n;
+          const d = l => Math.hypot(l.anchor.x - fx, l.anchor.y - fy);
+          // cada rotulo se pinta en cada tesela que pisa: aqui cuentan los textos distintos, no las veces
+          const res = { cimas: cimas.length, lejos: cimas.length ? Math.round(Math.min(...cimas.map(d)) * 10) / 10 : null,
+                        // el paraje «Teide» de OSM esta a unos 130 m de la ficha (unos 30 px a z15); La Rambleta, a unos 80
+                        parajesCerca: parajes.filter(l => d(l) < 50).length, iCima, iParaje,
+                        nombres: [...new Set(textos.filter(t => t === 'Teide' || t === '泰德峰'))], metros: [...new Set(textos.filter(t => /^3715( m|米|公尺)$/.test(t)))] };
+          capa.remove();
+          return res;
+        };
+        const out = {};
+        for (const [cual, idioma, z, con] of [['d', 'es', 11, 1], ['d', 'es', 13, 1], ['d', 'es', 15, 1], ['b', 'es', 13, 1], ['b', 'es', 15, 1],
+                                                ['d', 'zh-Hans', 15, 1], ['b', 'zh-Hant', 13, 1], ['d', 'es', 15, 0], ['b', 'es', 15, 0]])
+          out[cual + '-' + idioma + '-z' + z + (con ? '' : '-sin')] = await mirar(cual, idioma, z, con, cual + idioma + z + con);
+        mapa.remove(); div.remove();
+        return out;
+      }, ['http://127.0.0.1:' + PUERTO + '/' + FICH, 'http://127.0.0.1:' + PUERTO + '/mapa/tenerife-base.pmtiles']);
+      const conCima = Object.entries(r3).filter(([k]) => !k.endsWith('-sin'));
+      const bienCima = ([k, v]) => v.cimas === 1 && v.lejos !== null && v.lejos <= 1 && v.parajesCerca === 0 && v.metros.length === 1 &&
+        (/zh-Hans/.test(k) ? v.metros[0] === '3715米' && v.nombres.join() === '泰德峰' : /zh-Hant/.test(k) ? v.metros[0] === '3715公尺' && v.nombres.join() === '泰德峰' : v.metros[0] === '3715 m' && v.nombres.join() === 'Teide');
+      if (REAL) ok(conCima.every(bienCima),
+         'la cumbre del Teide, con su triangulo y sus 3.715 m en los dos mapas (z11, z13 y z15; en chino, 泰德峰 y 3715米 / 3715公尺), a menos de un pixel de su ficha, y sin el paraje «Teide» de OSM al lado',
+         JSON.stringify(r3));
+      if (REAL) ok(r3['d-es-z15-sin'].cimas === 0 && r3['d-es-z15-sin'].parajesCerca >= 1 && r3['d-es-z15-sin'].metros.length === 0 && r3['b-es-z15-sin'].cimas === 0 && r3['b-es-z15-sin'].parajesCerca >= 1,
+         'y sin ponerCimas, ninguna cima y el paraje «Teide» sin altitud: la medida sabe ponerse en rojo', JSON.stringify({ d: r3['d-es-z15-sin'], b: r3['b-es-z15-sin'] }));
       ok(errores.length === 0, 'sin errores de pagina', errores.slice(0, 3).join(' | '));
     } finally {
       await browser8.close();

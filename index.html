@@ -16715,6 +16715,57 @@ function rotuloChino(sim, idioma, prop) {
   };
 }
 
+/* Las cimas que OpenStreetMap no trae como pico (31 de octubre de 2026, tarde). La cumbre del
+   Teide va en OSM como volcán, y Protomaps no mete los volcanes en `pois`: en los dos mapas de la
+   isla salía como un paraje más («Teide», en gris y de z14), sin triángulo ni altitud. Jerome, ese
+   día: que salga. Se añade como un pico más a la capa `pois` de la tesela que la contiene, al
+   leerla (el fichero no se toca): en el sitio de su ficha (pico-teide-cumbre, a unos 25 m del
+   vértice geodésico «Teide» del IGN) y con la altitud de la ficha, la oficial del IGN (3.715 m);
+   y el paraje de OSM con el mismo nombre, que es esa cumbre, deja de salir. En el 3D sale igual
+   (HITOS, en modulos/isla3d.js). */
+const MAPA_CIMAS = [{ ficha: 'pico-teide-cumbre', nombre: 'Teide', metros: 3715 }];
+function ponerCimas(capa, idioma) {
+  const lista = [];
+  for (const c of MAPA_CIMAS) {
+    const p = (typeof places !== 'undefined' && Array.isArray(places)) ? places.find(x => x.id === c.ficha) : null;
+    if (p && isFinite(p.lat) && isFinite(p.lng)) lista.push(Object.assign({ lat: p.lat, lng: p.lng }, c));
+  }
+  const iz = idioma === 'zh-Hans' ? 0 : idioma === 'zh-Hant' ? 1 : -1;
+  if (!lista.length || !capa || !capa.views) return capa;
+  for (const v of capa.views.values()) {
+    const src = v.tileCache && v.tileCache.source;
+    if (!src || src._tgoCimas) continue;
+    const leer = src.get.bind(src);
+    src._tgoCimas = true;
+    src.get = function (c, tam) {
+      return leer(c, tam).then(function (capas) {
+        if (!capas || !capas.size) return capas;
+        const n = 1 << c.z;
+        for (const cima of lista) {
+          // el paraje de OSM con el nombre de la cima: la cima lo sustituye
+          const sitios = capas.get('places');
+          if (sitios) capas.set('places', sitios.filter(f => !(f.props.kind === 'locality' && f.props.name === cima.nombre)));
+          const s = Math.sin(cima.lat * Math.PI / 180);
+          const x = ((cima.lng + 180) / 360 * n - c.x) * tam;
+          const y = ((0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)) * n - c.y) * tam;
+          if (!(x >= 0 && y >= 0 && x < tam && y < tam)) continue;
+          // un punto de la misma clase que los del fichero (la tesela de una cima siempre trae tierra)
+          let molde = null;
+          for (const fs of capas.values()) { for (const f of fs) { if (f.geom && f.geom[0] && f.geom[0][0]) { molde = f.geom[0][0]; break; } } if (molde) break; }
+          if (!molde) continue;
+          const props = { kind: 'peak', name: cima.nombre, elevation: cima.metros, min_zoom: 0, 'tgo:cima': cima.ficha };
+          if (iz >= 0 && MAPA_NOMBRES_ZH[cima.nombre]) props['tgo:zh'] = MAPA_NOMBRES_ZH[cima.nombre][iz];
+          const pois = (capas.get('pois') || []).slice();
+          pois.push({ geomType: 1, geom: [[new molde.constructor(x, y)]], numVertices: 1, bbox: { minX: x, minY: y, maxX: x, maxY: y }, props: props });
+          capas.set('pois', pois);
+        }
+        return capas;
+      });
+    };
+  }
+  return capa;
+}
+
 /* El mapa detallado: el .pmtiles de OSM, con el esquema de Protomaps (basemap v4: earth,
    water, landuse, roads, places, pois...). */
 function estiloIslaDetallada(P, idioma) {
@@ -16968,6 +17019,8 @@ function estiloIslaDetallada(P, idioma) {
       symbolizer: texto({ fill: C.t_ciudad, width: 2.5, font: z => fuente(700, z >= 11 ? 17 : 15) }) },
     { dataLayer: 'places', minzoom: 9, filter: sitio('town'), sort: porPoblacion,
       symbolizer: texto({ fill: C.t_pueblo, font: z => fuente(600, z >= 12 ? 15 : 13.5) }) },
+    // las cimas de las fichas (el Teide, ponerCimas): desde z11 y antes que los pueblos pequeños
+    { dataLayer: 'pois', minzoom: 11, filter: (z, f) => !!f.props['tgo:cima'], symbolizer: new SimboloPico() },
     { dataLayer: 'places', minzoom: 11, filter: sitio('village'), sort: porPoblacion,
       symbolizer: texto({ fill: C.t_pueblo, font: z => fuente(600, z >= 13 ? 13.5 : 12.5) }) },
     { dataLayer: 'roads', minzoom: 10, filter: vias('autopista', 'principal'), symbolizer: new SimboloRef(C.autopista_b) },
@@ -16978,7 +17031,7 @@ function estiloIslaDetallada(P, idioma) {
     // los barrios con población (Playa de las Américas, Costa Adeje, Los Gigantes...) desde z13; los demás, desde z14
     { dataLayer: 'places', minzoom: 13, filter: (z, f) => barrio(z, f) && (z >= 14 || (f.props.population_rank || 0) >= 3), sort: porPoblacion,
       symbolizer: texto({ fill: C.t_barrio, font: fuente(600, 10.5), textTransform: 'uppercase' }) },
-    { dataLayer: 'pois', minzoom: 14, filter: (z, f) => f.props.kind === 'peak',
+    { dataLayer: 'pois', minzoom: 14, filter: (z, f) => f.props.kind === 'peak' && !f.props['tgo:cima'],
       sort: (a, b) => (b.elevation || 0) - (a.elevation || 0), symbolizer: new SimboloPico() },
     { dataLayer: 'pois', minzoom: 14, filter: (z, f) => f.props.kind === 'beach',
       symbolizer: texto({ fill: C.t_playa, font: fuente(600, 11.5, 'italic') }) },
@@ -17015,14 +17068,14 @@ function construirIsla(blob, clave, detallado, zMax) {
      name:zh). En chino, los pueblos con el nombre de las fichas y lo demás en castellano; los
      metros, 米 y 公尺: ver estiloIslaDetallada. */
   const idioma = currentLang === 'zht' ? 'zh-Hant' : currentLang === 'zh' ? 'zh-Hans' : (currentLang || 'es');
-  return P.leafletLayer(Object.assign({
+  return ponerCimas(P.leafletLayer(Object.assign({
     url: new pmtiles.PMTiles(fuenteBlob(blob, clave)),
     maxDataZoom: zMax,
     updateWhenZooming: false        // las dos, la base y la detallada
   }, detallado ? estiloIslaDetallada(P, idioma) : estiloIslaBase(P, idioma),
      /* los dos son de OpenStreetMap: el crédito, el que pone protomaps-leaflet (Protomaps ©
         OpenStreetMap, con el enlace a su página de derechos de autor) */
-     { lang: idioma }));
+     { lang: idioma })), idioma);
 }
 
 function islaCapa() {
