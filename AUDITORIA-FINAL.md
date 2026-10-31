@@ -3407,6 +3407,50 @@ que no se sugiere. Con los de Teno y Las Hayas, la app enseñaba tres menos
 (80 de 82 en el Norte y 58 de 59 en el Sur), que es lo que debe. Ahora la
 prueba los quita con la misma regla.
 
+## Lo que no estaba cerrado, con lo que dicen las fuentes (31 de octubre)
+
+Jerome, el 31 de octubre, «Falsos positivos que no hay que marcar como
+cerrados». Ninguno de ellos tenía estado. Donde la ficha decía algo que no
+es, se cambia por lo que dicen las fuentes, en los diez idiomas y en el
+polaco de trabajo:
+
+- **Mirador de Humboldt.** La ficha decía que el edificio y la cafetería
+  seguían cerrados «por problemas de licencias». Lo cerrado es la planta
+  baja: en julio de 2014 un juzgado ordenó cerrar el negocio que la ocupaba
+  (elDiario.es). El mirador está abierto. Sale también «Cafetería» de lo que
+  ofrece, porque era ese negocio.
+- **Barranco del Infierno.** Decía «300 personas/día, 11€» y «Cerrada días
+  de lluvia o viento». La web oficial (barrancodelinfierno.es) dice otra
+  cosa:
+  - el aforo es de 20 personas cada 30 minutos;
+  - si hay que cerrar por el tiempo o por seguridad, avisan por correo a las
+    8:30 del mismo día.
+
+  Se va también el precio, que además estaba viejo: no hay precios en la
+  app.
+- **Área recreativa El Contador.** Decía «Puede estar cerrada». Tenerife ON:
+  abre los fines de semana y festivos, de la salida a la puesta del sol, sin
+  reserva.
+- **PR-TF 10.** El aviso de obras «L-V 7-15:30» era del GR 131, no de este
+  sendero: fuera.
+- **PR-TF 8 (Afur–Taganana).** No hay ningún aviso vigente: fuera el «AVISO
+  OFICIAL».
+
+**Lo que no se cambia, y se le pregunta a Jerome:**
+- **Suertes del Marqués y Cumbres de Abona.** «Ninguna fuente dice “cita
+  previa”». Pero un directorio de vinos (enprimeurclub.com) da Suertes del
+  Marqués como «Appointment only». De Cumbres de Abona no hay nada ni a
+  favor ni en contra. Siguen con su «(reserva necesaria)» hasta que diga.
+- **El texto que mandó de Montaña Blanca**, que parece un resumen de
+  buscador, choca con lo que ya está verificado:
+  - el permiso del pico no es gratis: desde el 19 de enero de 2026 tiene
+    tarifa de 9:00 a 17:00, no de 9:00 a 18:00;
+  - se pide en Tenerife ON, no en la web de Parques Nacionales;
+  - el refugio de Altavista reabrió en julio de 2026 (Diario de Avisos, 24h
+    Canarias).
+
+  No se aplica.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
