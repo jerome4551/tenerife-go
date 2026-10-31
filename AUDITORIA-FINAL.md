@@ -27,7 +27,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 
 | | |
 |---|---|
-| Lugares | **980**, con descripción y categoría en 10 idiomas (lo coteja `auditar_datos.js`) |
+| Lugares | **979**, con descripción y categoría en 10 idiomas (lo coteja `auditar_datos.js`) |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
@@ -3330,6 +3330,40 @@ lanzado a mano desde GitHub, tiene un segundo trabajo. Espera a que
 `probar_instalar.js` contra la web publicada, con su dirección en lugar del
 puerto.
 
+## La bodega Cueva del Rey, fuera (31 de octubre)
+
+Jerome, el 31 de octubre: «Bodega Cueva del Rey (Icod). Cerrado
+permanentemente quítala». No es como Los Patos, que sigue en el mapa con su
+aviso: un negocio que ya no existe no tiene nada que enseñar, así que se
+quita entera (`bodega-cueva-rey-icod`).
+
+- **Lo que se quita:** su ficha de `index.html`; su descripción y su
+  categoría en los nueve idiomas (`idiomas/<idioma>.json`); y la del polaco
+  de trabajo (`idiomas/pl-lugares/07.json`).
+- **Las zonas del planificador** las vuelve a escribir
+  `tools/zonas_lugares.py`, como siempre.
+- **La ficha decía además cosas de otra bodega.** Mezclaba la bodega Cueva
+  del Rey con la cooperativa Bodegas Insulares Tenerife, que tiene su
+  propia ficha (`bodega-insulares`).
+- **Las cifras pasan de 980 a 979 lugares:**
+  - el JSON-LD de `index.html` (los buscadores);
+  - la ficha de la App Store, en los diez idiomas y en inglés de EE. UU.;
+  - la de Google Play, que se rehace de ella con `google_play_ficha.js
+    --escribir`;
+  - las notas al revisor de Apple (`LANZAMIENTO-APP-STORE.md`);
+  - el README, donde «gastronomía» baja de 38 a 37;
+  - `REVISION-LUGARES.md`, que se vuelve a generar;
+  - y las tablas de este documento.
+
+  Si la ficha de Google Play ya se copió en Play Console, hay que cambiar
+  «980» por «979».
+- **Se queda** la etiqueta «Cueva del Rey» en
+  `idiomas/etiquetas-sin-traducir.json`: es un nombre de sitio, que no se
+  traduce, y la lista no es de lo que se usa.
+- **Sale «listán»** de las palabras aceptadas en todos los idiomas
+  (`idiomas/castellano-aceptado.json`). Solo la necesitaba esta ficha, y
+  `castellano_suelto.js` avisa de las aceptadas que ya no hacen falta.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -5171,7 +5205,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 45 tablas, 2867 filas (y 5.016 filas, dentro y fuera del fuente)
+## Idiomas · 45 tablas, 2867 filas (y 5.014 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5252,7 +5286,9 @@ octubre, una más en `DP_UI`, «(reserva necesaria)» de «Organice su día»:
 aviso de cookies, con sus tres textos: 46 tablas, 2859 filas y 5.003 (esa
 tabla, que va por idioma, no entraba en la cuenta de `barrido_idiomas.js`). El
 31 de octubre, los pasos para instalar la app, que eran una tabla por idioma
-(5 textos), pasan a `PWA_TX` con 8 más: 45 tablas, 2867 filas y 5.016. El
+(5 textos), pasan a `PWA_TX` con 8 más: 45 tablas, 2867 filas y 5.016. Y ese
+día, sin la bodega Cueva del Rey, dos filas menos de `places[]` (su
+descripción y su categoría): 5.014. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -5394,8 +5430,8 @@ no la secundaria**.
 | Paradas o lugares fuera de Tenerife | **0** |
 | Parada repetida consecutiva en una línea | **0** |
 | `via` con punto mal formado | **0** de 26.593 |
-| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **980** |
-| Ids de lugar que cumplen `[a-z0-9-]` | **980** |
+| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **979** |
+| Ids de lugar que cumplen `[a-z0-9-]` | **979** |
 | Con calidad de agua, y su año | **46** · 46 |
 | Con alias de búsqueda, que los 3 filtros leen | **58** |
 | Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
@@ -5406,7 +5442,8 @@ Cada cifra de esta tabla, y las dos del texto de abajo (los filtros del alias
 y las líneas con más de dos terminales), las coteja `auditar_datos.js`: si una
 cambia y la tabla no, se pone en rojo. Hasta el 18 de octubre decía «0 de 164»
 y «786» con 162 y 980. Las URLs pasaron de 16 a 18 el 30 de octubre: las dos
-fuentes del estado (Los Patos y la Bodega Frontos).
+fuentes del estado (Los Patos y la Bodega Frontos). Y los lugares, de 980 a
+979 el 31 de octubre: la bodega Cueva del Rey, cerrada.
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no

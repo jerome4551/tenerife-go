@@ -1,7 +1,7 @@
-# Revisión de los 980 lugares
+# Revisión de los 979 lugares
 
-**24 de octubre de 2026.** Generado con `node tools/informe_lugares.js`.
-Barre los 980, no una muestra. Lo que no se puede comprobar desde aquí sale
+**31 de octubre de 2026.** Generado con `node tools/informe_lugares.js`.
+Barre los 979, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
 ## 0 · El estado de cada área, de un vistazo
@@ -21,7 +21,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 164 verificadas con su fuente · 816 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
+| `coordenadas` | abierto | 164 verificadas con su fuente · 815 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
 | `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
 | `avisos_aemet` | **cerrado** | tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un nav |
@@ -99,7 +99,7 @@ parecía que todo fallaba siempre.
 | | fichas |
 |---|---|
 | **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **164** |
-| Coordenada nunca comprobada por nadie | **816** |
+| Coordenada nunca comprobada por nadie | **815** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
 todavía.** Son dos cosas distintas y este informe no las mezcla.
@@ -331,13 +331,13 @@ cuáles, así que desde aquí no se pueden separar.
 ## 1 · Con cuánta precisión está escrita cada coordenada
 
 Decimales **significativos** —los ceros de la derecha no cuentan— del eje
-menos preciso de cada ficha. Es la cuenta entera de los 980, no un umbral:
+menos preciso de cada ficha. Es la cuenta entera de los 979, no un umbral:
 
 | decimales | cuadrícula | fichas |
 |---|---|---|
 | 1 | ~11 km | **2** |
 | 2 | ~1,1 km | **29** |
-| 3 | ~110 m | **139** |
+| 3 | ~110 m | **138** |
 | 4 | ~11 m | **554** |
 | 5 | ~1 m | **42** |
 | 6 | ~10 cm | **188** |
@@ -519,9 +519,9 @@ Salida de `node tools/auditar_municipio.js`:
 
 ```
 === el municipio que dice la ficha, contra donde cae el punto ===
-  lugares....................................... 980
-    que nombran un municipio.................... 511
-    de esos, comprobados contra el POLIGONO del Cabildo 501
+  lugares....................................... 979
+    que nombran un municipio.................... 510
+    de esos, comprobados contra el POLIGONO del Cabildo 500
     y con el punto en el agua: no cae en ningun municipio 10
   solo nombran una zona de varios municipios.... 15
   no declaran municipio......................... 454
@@ -573,14 +573,14 @@ tenerife.es, webtenerife.com, eldia.es y los dos endpoints de Overpass dan
 `000` o `403`. Todo lo de arriba sale de cruzar datos que ya estaban dentro
 del repositorio.
 
-## 6 · Lo que sí queda comprobado sobre los 980
+## 6 · Lo que sí queda comprobado sobre los 979
 
 | comprobación | resultado |
 |---|---|
-| Caen dentro de la caja de Tenerife | **980 de 980** |
-| Caen en tierra (capa `earth` de OSM) | **971** de 980; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
-| Ids únicos y con el formato `[a-z0-9-]` | **980** de 980 |
-| Tienen `desc` y `cat` en los diez idiomas | **980** de 980 |
+| Caen dentro de la caja de Tenerife | **979 de 979** |
+| Caen en tierra (capa `earth` de OSM) | **970** de 979; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
+| Ids únicos y con el formato `[a-z0-9-]` | **979** de 979 |
+| Tienen `desc` y `cat` en los diez idiomas | **979** de 979 |
 | Referencias huérfanas desde el planificador | **0** de 162 |
 | Zonas de baño sin orientación | **0** de 100 |
 | `lifeguard` con un valor que no sea true/false/null | **0** |

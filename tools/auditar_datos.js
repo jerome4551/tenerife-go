@@ -183,8 +183,10 @@ console.log('\n=== lugares ===');
    `pendiente_de_jerome` en la misma entrega. No tienen fuente oficial; entran
    con el OK de Jerome: «vivo aquí y conozco estos lugares».
    Esta cifra subio una vez por sesion de gasolineras hasta la ultima alta, y se
-   cambia A MANO a proposito: asi ningun lugar entra sin que nadie lo vea. */
-debe('lugares', PLACES.length, PLACES.length === 980);
+   cambia A MANO a proposito: asi ningun lugar entra sin que nadie lo vea.
+   980 -> 979 el 31 de octubre de 2026: la bodega Cueva del Rey (Icod), cerrada.
+   Jerome: «Cerrado permanentemente quítala». */
+debe('lugares', PLACES.length, PLACES.length === 979);
 /* Y el resumen de arriba de AUDITORIA-FINAL.md («# 1 · Qué hay»): decia 787
    con 980 en el mapa (17 de octubre de 2026). Ahora se coteja aqui. */
 {

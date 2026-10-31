@@ -32,7 +32,7 @@ pone al principio de `index.html`: `window.TGO_NATIVO = true`. Con ella:
 | El asistente | Sus respuestas | En cuatro, la suya (`faq/fuente/nativo/respuestas.json`, diez idiomas): «¿Funciona sin conexión?» (desde la primera vez; «Satélite» y «Topo» con red), «¿Cómo instalo la app?» (ya está instalada: nada de navegador ni de otras plataformas, directriz 2.3.10), «¿Qué datos guarda la app?» (sin las notificaciones, que en la app no hay) y «¿Puedo recibir una frase cada mañana?» (no manda notificaciones). |
 | Sin permiso para la cámara o los sensores | «Se puede dar en los ajustes del navegador» | Sin esa frase (`cieloCamaraPermisoApp`, `cieloSensoresPermisoApp`): dónde se vuelve a dar en iOS se mira en el iPhone (§7, 1). |
 
-Todo lo demás (el mapa, las 183 líneas, los 980 lugares, el cielo entero
+Todo lo demás (el mapa, las 183 líneas, los 979 lugares, el cielo entero
 con «Apunta al cielo», los satélites, la noche guiada, el sistema solar, la
 luz roja, los diez idiomas) es el mismo código y se comporta igual.
 `tools/probar_app.js` lo comprueba en Chromium: con la marca y sin ella.
@@ -243,7 +243,7 @@ que cubrir los SDK de terceros: Capacitor trae el suyo.
 - *Contact*: los del punto 3.4.
 - *Notes* (hasta 4000 bytes, en el idioma que sea). Propuesta, en inglés:
 
-> Tenerife Go is a free travel guide for the island of Tenerife. All of its content ships inside the app and works offline: the island map (vector tiles bundled), 980 places, the 183 bus and tram lines, and a night-sky module computed on the device (Astronomy Engine) with an AR view that uses the camera, compass and motion sensors. The app does not load its interface from a remote web view. What it does fetch over the network: small daily data files (fuel prices, weather warnings, satellite orbital elements) from our site, with bundled copies as fallback; weather and sea forecasts (Open-Meteo); and, when the user asks for them, live fuel prices (Spanish Ministry open data), driving routes (OSRM), address search (Nominatim) and Wikipedia summaries.
+> Tenerife Go is a free travel guide for the island of Tenerife. All of its content ships inside the app and works offline: the island map (vector tiles bundled), 979 places, the 183 bus and tram lines, and a night-sky module computed on the device (Astronomy Engine) with an AR view that uses the camera, compass and motion sensors. The app does not load its interface from a remote web view. What it does fetch over the network: small daily data files (fuel prices, weather warnings, satellite orbital elements) from our site, with bundled copies as fallback; weather and sea forecasts (Open-Meteo); and, when the user asks for them, live fuel prices (Spanish Ministry open data), driving routes (OSRM), address search (Nominatim) and Wikipedia summaries.
 > Permissions are optional and asked in context: location (map and routes), camera and motion (only inside "Point at the sky"). The account is optional (email + password, our own system) and can be deleted from inside the app (Account → Delete account). No in-app purchases, no subscriptions, no third-party ad networks; a few local businesses are labelled as sponsored. Privacy policy: https://tenerifego.app/privacidad.html
 
 ### 5.6 Antes de pulsar *Submit for Review*

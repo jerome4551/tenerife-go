@@ -37,9 +37,6 @@
   "ten+: el nombre de la tarjeta de transporte de la isla": {
    "todos": ["ten"]
   },
-  "Listán: la variedad de uva (Listán Negro, Listán Blanco); es su nombre": {
-   "todos": ["listán"]
-  },
   "el panel SOS (22 de octubre de 2026): palabras de ese idioma que se escriben igual que el castellano. Van aparte de la lista general de abajo para no tocar su linea": {
    "en": ["gases", "fiestas@es:En conciertos, fiestas", "rallies@es:En los rallies"],
    "fr": ["graves@es:heridos graves"],
