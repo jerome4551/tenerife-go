@@ -97,12 +97,35 @@ function ejemplo() {
   return { v: 1, nombre: 'Alex', avatar: '', unidades: 'metric', altura_cm: 178, nacimiento: 1990, objetivo_kg: 78, medidas, km, creado: ymd(c), rango: 30, tab: 'peso', editado: null, nube: null, colas: {} };
 }
 
+/* Las pestañas del perfil (31 de octubre de 2026): para tocar algo de Cuerpo o de Cuenta hay
+   que abrir su pestaña, como haria quien usa la app. Antes de cada clic, de cada campo que se
+   rellena y de cada tecla, y antes de leer lo que se ve (un texto escondido se lee sin sus
+   saltos de linea), se abre la pestaña de lo que se toca o se lee si estaba cerrada (con
+   TG_PERFIL.pestana, lo mismo que tocarla). Las pestañas mismas las prueba la parte 1d. */
+async function abrirSuPestana(pg, sel) {
+  if (typeof sel !== 'string') return;
+  await pg.evaluate(s => {
+    let e = null; try { e = document.querySelector(s.split(' >> ')[0]); } catch (x) { return; }
+    const p = e && e.closest('.tgp-pestana[hidden]');
+    if (p && window.TG_PERFIL && TG_PERFIL.pestana) TG_PERFIL.pestana(p.id.replace('tgp-p-', ''));
+  }, sel).catch(() => {});
+}
+function conPestanas(pg) {
+  for (const m of ['click', 'dblclick', 'tap', 'fill', 'type', 'press', 'check', 'uncheck', 'selectOption', 'focus', 'hover',
+                   'innerText', 'textContent', 'inputValue', 'getAttribute', 'isVisible', 'isHidden', 'isChecked', 'waitForSelector']) {
+    const orig = pg[m].bind(pg);
+    pg[m] = async (sel, ...resto) => { await abrirSuPestana(pg, sel); return orig(sel, ...resto); };
+  }
+  return pg;
+}
 async function contexto(b, opc) {
   const ctx = await b.newContext(Object.assign({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block', locale: 'es-ES', acceptDownloads: true }, opc || {}));
   await ctx.route('**/*', r => r.request().url().startsWith('http://127.0.0.1') ? r.continue() : r.abort());
   await ctx.addInitScript(() => {
     try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {}
   });
+  const nueva = ctx.newPage.bind(ctx);
+  ctx.newPage = async () => conPestanas(await nueva());
   return ctx;
 }
 /* la app cargada y la bienvenida pasada (sale siempre la primera vez) */
@@ -512,6 +535,133 @@ async function oro(b) {
     '47 un avatar retirado (en-cabina) se conserva: en el boton de la cuenta y en el heroe, con su nombre; no sale en la tira, y al elegir otro se va', [botonT, avT, metaT, tiraT, despuesT, eT]);
 }
 
+/* ── 1d. las pestañas (31 de octubre de 2026) ──────────────────────────────
+   Jerome: «como está en perfil está feo, busca cómo organizarlo mejor». La pantalla era una
+   sola columna; ahora va en tres pestañas: Viaje (el avatar y su isla), Cuerpo (sus datos y
+   su evolucion) y Cuenta. Aqui: lo que enseña cada una y nada mas, el lector de pantalla
+   (tablist, tab, tabpanel, aria-selected, aria-controls), el teclado de WAI-ARIA (flechas,
+   Inicio y Fin; solo la abierta entra con el tabulador), que recuerda la ultima al cerrar y
+   al volver a abrir la app (y un valor raro guardado vuelve a Viaje), sus nombres en los
+   diez idiomas, y que al cambiar desde abajo la pestaña nueva empieza bajo la barra. */
+async function pestanas(b) {
+  console.log('\n=== 1d. las pestañas: Viaje, Cuerpo y Cuenta ===');
+  const ctx = await contexto(b), pg = await ctx.newPage(), errs = errores(pg);
+  await ctx.addInitScript(d => { try { if (!sessionStorage.getItem('pestanas')) { localStorage.setItem('tenerife.perfil', d); sessionStorage.setItem('pestanas', '1'); } } catch (e) {} }, JSON.stringify(ejemplo()));
+  await abrirApp(pg, 'es'); await abrirPerfilYa(pg);
+  const ver = () => pg.evaluate(() => {
+    const vis = id => { const e = document.getElementById(id); return !!e && !e.closest('[hidden]') && e.getBoundingClientRect().height > 0; };
+    const tabs = [...document.querySelectorAll('#tgp-tabs [role="tab"]')];
+    return {
+      sel: tabs.filter(t => t.getAttribute('aria-selected') === 'true').map(t => t.dataset.pestana),
+      tabindex: tabs.map(t => t.tabIndex),
+      foco: document.activeElement && document.activeElement.dataset ? document.activeElement.dataset.pestana || '' : '',
+      ver: ['tgp-avatares', 'tgp-isla', 'tgp-datos', 'tgp-evo', 'tgp-cuenta'].filter(vis),
+      guardada: JSON.parse(localStorage.getItem('tenerife.perfil') || '{}').pestana
+    };
+  });
+  const aria = await pg.evaluate(() => {
+    const l = document.getElementById('tgp-tabs'), tabs = [...l.querySelectorAll('.tgp-tab')];
+    return l.getAttribute('role') === 'tablist' && tabs.length === 3 && tabs.every(t => {
+      const p = document.getElementById(t.getAttribute('aria-controls'));
+      return t.getAttribute('role') === 'tab' && t.tagName === 'BUTTON' && p && p.getAttribute('role') === 'tabpanel' && p.getAttribute('aria-labelledby') === t.id;
+    });
+  });
+  const v0 = await ver();
+  ok(aria && v0.sel.join() === 'viaje' && v0.ver.join() === 'tgp-avatares,tgp-isla' && v0.tabindex.join() === '0,-1,-1',
+    'p1 al abrir, la pestaña Viaje: el avatar y su isla, y nada mas; tablist, tab y tabpanel enlazados para el lector de pantalla', [aria, v0]);
+  await pg.click('#tgp-tab-cuerpo'); await pg.waitForTimeout(150);
+  const v1 = await ver();
+  await pg.click('#tgp-tab-cuenta'); await pg.waitForTimeout(150);
+  const v2 = await ver();
+  ok(v1.sel.join() === 'cuerpo' && v1.ver.join() === 'tgp-datos,tgp-evo' && v1.tabindex.join() === '-1,0,-1' && v1.guardada === 'cuerpo'
+    && v2.sel.join() === 'cuenta' && v2.ver.join() === 'tgp-cuenta' && v2.guardada === 'cuenta',
+    'p2 tocar Cuerpo enseña sus datos y su evolucion; tocar Cuenta, la cuenta; cada vez, solo esa, y se guarda', [v1, v2]);
+  /* el teclado: con el foco en la pestaña abierta */
+  await pg.focus('#tgp-tab-cuenta');
+  const teclas = [];
+  for (const [k, esperada] of [['ArrowRight', 'viaje'], ['ArrowRight', 'cuerpo'], ['ArrowLeft', 'viaje'], ['End', 'cuenta'], ['Home', 'viaje']]) {
+    await pg.keyboard.press(k); await pg.waitForTimeout(80);
+    const v = await ver(); teclas.push(k + '→' + v.sel.join() + '/' + v.foco + (v.sel.join() === esperada && v.foco === esperada ? '' : ' MAL'));
+  }
+  ok(teclas.every(t => !t.includes('MAL')), 'p3 el teclado: las flechas (dando la vuelta), Inicio y Fin cambian de pestaña y llevan el foco a ella', teclas);
+  /* la ultima se recuerda: al cerrar y abrir, y al volver a abrir la app */
+  await pg.click('#tgp-tab-cuerpo'); await pg.waitForTimeout(100);
+  await pg.evaluate(() => TG_PERFIL.cerrar()); await pg.waitForTimeout(200); await abrirPerfilYa(pg);
+  const v3 = await ver();
+  await pg.reload({ waitUntil: 'load' }); await abrirApp(pg, 'es'); await abrirPerfilYa(pg);
+  const v4 = await ver();
+  await pg.evaluate(() => { const s = JSON.parse(localStorage.getItem('tenerife.perfil')); s.pestana = '<b>x</b>'; localStorage.setItem('tenerife.perfil', JSON.stringify(s)); });
+  await pg.reload({ waitUntil: 'load' }); await abrirApp(pg, 'es'); await abrirPerfilYa(pg);
+  const v5 = await ver();
+  ok(v3.sel.join() === 'cuerpo' && v4.sel.join() === 'cuerpo' && v4.ver.join() === 'tgp-datos,tgp-evo' && v5.sel.join() === 'viaje',
+    'p4 la ultima pestaña se recuerda al cerrar el perfil y al volver a abrir la app; un valor raro guardado vuelve a Viaje', [v3.sel, v4.sel, v5.sel]);
+  /* sus nombres, en los diez idiomas */
+  const nombres = {};
+  for (const L of LENG) {
+    await pg.evaluate(l => setLang(l), L); await pg.waitForTimeout(250);
+    nombres[L] = await pg.evaluate(() => [...document.querySelectorAll('#tgp-tabs .tgp-tab .txt')].map(e => e.textContent.trim()).join(' / '));
+  }
+  const ESPERA = { es: 'Viaje / Cuerpo / Cuenta', en: 'Travel / Body / Account', fr: 'Voyage / Corps / Compte', de: 'Reise / Körper / Konto', it: 'Viaggio / Corpo / Account',
+    nl: 'Reis / Lichaam / Account', zh: '旅行 / 身体 / 账户', zht: '旅行 / 身體 / 帳戶', bg: 'Пътуване / Тяло / Акаунт', pl: 'Podróż / Ciało / Konto' };
+  const malNombre = LENG.filter(l => nombres[l] !== ESPERA[l]);
+  ok(LENG.length === 10 && !malNombre.length, 'p5 las tres pestañas, con su nombre en los diez idiomas', malNombre.map(l => l + ': ' + nombres[l]));
+  await pg.evaluate(() => setLang('es')); await pg.waitForTimeout(200);
+  /* desde abajo: la pestaña nueva empieza bajo la barra, no a media pagina */
+  await pg.evaluate(() => TG_PERFIL.pestana('viaje')); await pg.waitForTimeout(100);
+  await pg.evaluate(() => { document.getElementById('perfil-panel').scrollTop = 99999; }); await pg.waitForTimeout(150);
+  await pg.click('#tgp-tab-cuerpo'); await pg.waitForTimeout(200);
+  const pos = await pg.evaluate(() => {
+    const cab = document.querySelector('.tgp-top').getBoundingClientRect(), barra = document.getElementById('tgp-tabs').getBoundingClientRect(), datos = document.getElementById('tgp-datos').getBoundingClientRect();
+    return { cab: Math.round(cab.bottom), barra: [Math.round(barra.top), Math.round(barra.bottom)], datos: Math.round(datos.top) };
+  });
+  ok(Math.abs(pos.barra[0] - pos.cab) <= 2 && pos.datos >= pos.barra[1] && pos.datos <= pos.barra[1] + 30,
+    'p6 al cambiar de pestaña desde abajo, la barra queda bajo la cabecera y la pestaña nueva empieza justo debajo', pos);
+  /* con la letra grande del movil (aqui, al doble) la cabecera crece, y en bulgaro su titulo
+     pasa a dos lineas: la barra, pegada arriba, sigue justo debajo, sin que la tape */
+  const tapa = {}; let altoBg = 0;
+  for (const esc of [1, 2]) for (const L of LENG) {
+    await pg.evaluate(([l, e]) => { setLang(l); document.documentElement.style.fontSize = (16 * e) + 'px'; }, [L, esc]); await pg.waitForTimeout(120);
+    const r = await pg.evaluate(() => {
+      document.getElementById('perfil-panel').scrollTop = 99999;
+      const c = document.querySelector('.tgp-top').getBoundingClientRect(), t = document.getElementById('tgp-tabs').getBoundingClientRect();
+      return [Math.round(c.height), Math.round((t.top - c.bottom) * 10) / 10];
+    });
+    if (Math.abs(r[1]) > 0.5) tapa[L + ' x' + esc] = r;
+    if (L === 'bg' && esc === 2) altoBg = r[0];
+  }
+  await pg.evaluate(() => { document.documentElement.style.fontSize = ''; setLang('es'); }); await pg.waitForTimeout(200);
+  ok(!Object.keys(tapa).length && altoBg > 100, 'p6b con la letra al doble, y en búlgaro con el título en dos líneas: en los diez idiomas, la barra pegada arriba queda justo debajo de la cabecera, sin que la tape', { tapa, altoBg });
+  /* con la barra pegada, la cabecera va entera: por la franja de su degradado se veia pasar
+     lo de debajo; arriba del todo, su degradado de siempre */
+  const fondo = () => pg.evaluate(() => ({ con: document.getElementById('perfil-panel').classList.contains('tgp-con-barra'), img: getComputedStyle(document.querySelector('.tgp-top')).backgroundImage, barra: getComputedStyle(document.getElementById('tgp-tabs')).backgroundColor }));
+  await pg.evaluate(() => { document.getElementById('perfil-panel').scrollTop = 99999; }); await pg.waitForTimeout(200);
+  const abajo = await fondo();
+  await pg.evaluate(() => { document.getElementById('perfil-panel').scrollTop = 0; }); await pg.waitForTimeout(200);
+  const arriba = await fondo();
+  ok(abajo.con && abajo.img === 'none' && !arriba.con && /gradient/.test(arriba.img) && /^rgb\(/.test(abajo.barra),
+    'p6c al bajar, con la barra pegada, la cabecera va entera y la barra es opaca: no se ve pasar nada por debajo; arriba, la cabecera con su degradado', { abajo, arriba });
+  /* sus nombres, enteros: a 320 y a 360 px, con la letra del movil a 1,3, en los diez idiomas */
+  const partidos = {};
+  for (const w of [320, 360]) {
+    await pg.setViewportSize({ width: w, height: 844 }); await pg.waitForTimeout(150);
+    await pg.evaluate(() => { document.documentElement.style.fontSize = '20.8px'; });
+    for (const L of LENG) {
+      await pg.evaluate(l => setLang(l), L); await pg.waitForTimeout(100);
+      const m = await pg.evaluate(() => [...document.querySelectorAll('#tgp-tabs .tgp-tab')].filter(t => {
+        const x = t.querySelector('.txt'), rg = document.createRange(); rg.selectNodeContents(x);
+        const lineas = new Set([...rg.getClientRects()].map(q => Math.round(q.top))).size;
+        return (lineas > 1 && !/\s/.test(x.textContent.trim())) || t.scrollWidth > t.clientWidth + 1;
+      }).map(t => t.textContent.trim()));
+      if (m.length) partidos[w + ' ' + L] = m;
+    }
+  }
+  await pg.evaluate(() => { document.documentElement.style.fontSize = ''; setLang('es'); });
+  await pg.setViewportSize({ width: 390, height: 844 }); await pg.waitForTimeout(200);
+  ok(!Object.keys(partidos).length, 'p6d los nombres de las pestañas, enteros y dentro de su pestaña, a 320 y a 360 px con la letra del móvil a 1,3: en los diez idiomas', partidos);
+  ok(!errs.length, 'p7 las pestañas, sin errores de pagina', errs.slice(0, 3));
+  await ctx.close();
+}
+
 /* ── 2. la nube con permiso ───────────────────────────────────────────── */
 async function nube(b) {
   console.log('\n=== 2. la nube con permiso (nube.py), contra una nube que se porta como perfil.sql ===');
@@ -855,7 +1005,7 @@ async function pantalla(b) {
   await ctx.close();
 
   /* los diez idiomas, a tres anchos, con datos en cada parte */
-  const ROTULOS = '.tgp-tile .k, .tgp-tile .v, .tgp-stamp .nm, .tgp-stamp .th, .tgp-set, .tgp-mas, .tgp-pais .name, .tgp-btn, .tgp-chip, .tgp-card h2, .tgp-top h1, .tgp-field label, .tgp-seg button, .tgp-ranges button, .tgp-legend span, .tgp-lema, .tgp-eyebrow';
+  const ROTULOS = '.tgp-tab .txt, .tgp-tile .k, .tgp-tile .v, .tgp-stamp .nm, .tgp-stamp .th, .tgp-set, .tgp-mas, .tgp-pais .name, .tgp-btn, .tgp-chip, .tgp-card h2, .tgp-top h1, .tgp-field label, .tgp-seg button, .tgp-ranges button, .tgp-legend span, .tgp-lema, .tgp-eyebrow';
   for (const ancho of [360, 390, 430]) {
     const c2 = await contexto(b, { viewport: { width: ancho, height: 900 } }), p2 = await c2.newPage(), e2 = errores(p2);
     await c2.addInitScript(d => { try { localStorage.setItem('tenerife.perfil', d); } catch (e) {} }, JSON.stringify(ejemplo()));
@@ -867,6 +1017,10 @@ async function pantalla(b) {
     let es = null; const partidas = [], fuera = [], vacios = [], castellano = [];
     for (const L of LENG) {
       await p2.evaluate(l => setLang(l), L); await p2.waitForTimeout(450);
+      /* las tres pestañas (31 de octubre de 2026): lo que no se ve no se mide, asi que se
+         abren una a una */
+      for (const P of ['viaje', 'cuerpo', 'cuenta']) {
+      await p2.evaluate(p => TG_PERFIL.pestana(p), P); await p2.waitForTimeout(120);
       const r = await p2.evaluate(([sel, l]) => {
         const panel = document.getElementById('perfil-panel'), out = { partidas: [], fuera: [], vacios: [], textos: [] };
         /* una palabra de un rotulo que acaba en dos lineas. Cortar en el guion de un
@@ -897,8 +1051,10 @@ async function pantalla(b) {
         return out;
       }, [ROTULOS, L]);
       r.partidas.forEach(x => partidas.push(L + ':' + x)); r.fuera.forEach(x => fuera.push(L + ':' + x)); r.vacios.forEach(x => vacios.push(L + ':' + x));
-      if (L === 'es') es = new Set(r.textos);
+      if (L === 'es') { es = es || new Set(); r.textos.forEach(x => es.add(x)); }
       else r.textos.forEach(x => { if (es.has(x) && /[áéíóúñ¿¡]/i.test(x)) castellano.push(L + ':' + x); });
+      }
+      await p2.evaluate(() => TG_PERFIL.pestana('viaje'));
     }
     ok(!partidas.length, 'p5 a ' + ancho + ' px, en los diez idiomas: ningun rotulo con una palabra partida en dos lineas (sin guion)', [...new Set(partidas)].slice(0, 12));
     ok(!fuera.length, 'p6 a ' + ancho + ' px: nada se sale de la pantalla', [...new Set(fuera)].slice(0, 12));
@@ -998,6 +1154,7 @@ async function barridoOro(b) {
     await regresiones(b);
     await selector(b);
     await oro(b);
+    await pestanas(b);
     await nube(b);
     await volumen(b);
     await tope(b);

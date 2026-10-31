@@ -5578,7 +5578,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 45 tablas, 2896 filas (y 5.043 filas, dentro y fuera del fuente)
+## Idiomas · 45 tablas, 2898 filas (y 5.045 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5662,7 +5662,9 @@ tabla, que va por idioma, no entraba en la cuenta de `barrido_idiomas.js`). El
 (5 textos), pasan a `PWA_TX` con 8 más: 45 tablas, 2867 filas y 5.016. Y ese
 día, sin la bodega Cueva del Rey, dos filas menos de `places[]` (su
 descripción y su categoría): 5.014. Y ese mismo día, los nombres de los 29
-avatares retirados, que vuelven a `PERFIL_UI` (454): 2896 filas y 5.043. El
+avatares retirados, que vuelven a `PERFIL_UI` (454): 2896 filas y 5.043; y
+los nombres de dos de las tres pestañas del perfil, Viaje y Cuerpo (456):
+2898 filas y 5.045. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -11354,6 +11356,81 @@ K6 está registrado por BT y sus derechos de autor duran hasta 2030
 (`AVATARES-ORO.md`); la nota la conserva, como a los otros 28, para quien ya
 la llevaba. Si prefiere que esa no vuelva, se dice y se quita: quien la
 lleve verá el avatar de inicio y podrá elegir otro.
+
+### Las tres pestañas: Viaje, Cuerpo y Cuenta (31 de octubre)
+
+Jerome, el 31: «Ahí como está en perfil está feo busca cómo organizarlo
+mejor». La pantalla era una sola columna. Con los datos de ejemplo de las
+pruebas (15 pesos y una semana de paseos), a 390 × 844: 2.906 px, tres
+pantallas y media; sus datos empezaban justo debajo de la primera pantalla
+(en el píxel 844), su isla en el 2.007 y la cuenta en el 2.472.
+
+Ahora, debajo del héroe (el avatar, el nombre y el lema, que se quedan
+arriba), tres pestañas, que al bajar se quedan fijas debajo de la cabecera:
+
+| Pestaña | Lo que lleva | Largo, con los mismos datos |
+|---|---|---|
+| 🧭 Viaje | el avatar y su isla, con los sellos | 1.391 px |
+| 💪 Cuerpo | sus datos y su evolución, el peso y los paseos | 1.707 px; los datos, en el 534 |
+| 👤 Cuenta | la cuenta, la nube con permiso, la descarga y el borrado | 968 px; la cuenta, en el 534 |
+
+- «Su isla» sube junto al avatar: los dos son el pasaporte de viajero.
+  Nada más cambia de sitio dentro de su tarjeta, ni de texto.
+- Se recuerda la última pestaña, solo en el móvil (`pestana`, en
+  `tenerife.perfil`): no sube a la nube (`camposPerfil()` dice lo que sube)
+  ni va en la descarga de datos. Un valor raro guardado vuelve a Viaje.
+- El lector de pantalla y el teclado, como pide WAI-ARIA: `tablist`, `tab` y
+  `tabpanel` enlazados; las flechas (dando la vuelta), Inicio y Fin; solo
+  la pestaña abierta entra con el tabulador.
+- Al cambiar de pestaña desde abajo, la nueva empieza justo debajo de la
+  barra, no a media página.
+- La barra se pega justo debajo de la cabecera, mida lo que mida. En una
+  línea, la cabecera mide 56 px; con la letra grande del móvil (al doble),
+  74, y en búlgaro su título pasa a dos líneas: 131. Con 56 px fijos, la
+  cabecera tapaba la barra de 18 a 75 px. Ahora se mide (`ResizeObserver`,
+  y al pintar las pestañas): en 4 anchos (de 320 a 430 px), 3 tamaños de
+  letra y los diez idiomas, 120 casos, no la tapa nunca.
+- La barra es opaca, y mientras está pegada arriba la cabecera va entera,
+  sin el degradado de abajo. En el primer intento, al bajar en Cuerpo, por
+  la barra se transparentaba «IMC 25,7», y por la franja del degradado,
+  entre el título y la barra, se veía pasar «36 años». Arriba del todo, la
+  cabecera lleva su degradado de siempre.
+- En cada pestaña, el icono encima del nombre, que así tiene todo el ancho,
+  y la letra a la medida de la pantalla (`clamp`). Con el icono al lado, a
+  320 px «Пътуване» se partía, y con la letra del móvil a 1,15 se partían
+  seis nombres. Medido en 200 casos (de 320 a 430 px, cinco tamaños de
+  letra, de 1 a 2, y los diez idiomas): ninguno se parte hasta la letra a
+  1,3. Con la letra a 1,5, a 320 px, se parte «Пътуване», y al doble, 14
+  nombres: partir la palabra es lo último, para que no se salga de su
+  pestaña.
+- Sus nombres, en los diez idiomas: Viaje / Cuerpo / Cuenta, Travel / Body
+  / Account, Voyage / Corps / Compte, Reise / Körper / Konto, Viaggio /
+  Corpo / Account, Reis / Lichaam / Account, 旅行 / 身体 / 账户, 旅行 / 身體 /
+  帳戶, Пътуване / Тяло / Акаунт, Podróż / Ciało / Konto. «Cuenta» es la
+  fila que ya tenía su tarjeta; entran dos: 456 filas.
+- Cuerpo es también el sitio de «Su cuerpo», la entrega que viene después.
+
+**Los controles:**
+
+- `probar_perfil.js`, parte 1d nueva, las pestañas: al abrir, Viaje y nada
+  más, con su `tablist`, `tab` y `tabpanel` enlazados (p1); tocar cada una
+  enseña lo suyo y se guarda (p2); el teclado (p3); la última se recuerda al
+  cerrar y al volver a abrir la app, y un valor raro vuelve a Viaje (p4);
+  sus nombres en los diez idiomas (p5); desde abajo (p6); con la letra al
+  doble, en los diez idiomas (p6b); la cabecera entera y la barra opaca al
+  bajar, y el degradado arriba (p6c); los nombres enteros a 320 y a 360 px
+  con la letra a 1,3, en los diez idiomas (p6d); sin errores (p7). En el
+  resto de la prueba, antes de tocar o de leer algo de Cuerpo o de Cuenta
+  se abre su pestaña, como haría quien usa la app (`TG_PERFIL.pestana`, lo
+  mismo que tocarla).
+- `barrido_pantallas.js`: el perfil con cada una de las tres abierta
+  («perfil», «perfil:cuerpo» y «perfil:cuenta»): lo que no se ve no se
+  mira.
+- `auditar_perfil.js`: 456 filas, 96 de la pantalla. `auditar_web.js` y
+  `barrido_idiomas.js`: 2898 filas y 5.045.
+
+**Lo que pesa.** `modulos/perfil.js`, 291 kB (90 comprimido; con los
+retirados, 283 y 88). La primera descarga no cambia.
 
 ## La tarifa del sendero del pico, con la fuente oficial (23 de octubre, noche)
 

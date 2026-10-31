@@ -109,6 +109,8 @@
     "perfilSiguienteLogro": {"es": "{n} lugar más para «{logro}»|{n} lugares más para «{logro}»", "en": "{n} more place to unlock “{logro}”|{n} more places to unlock “{logro}”", "fr": "Encore {n} lieu pour « {logro} »|Encore {n} lieux pour « {logro} »", "de": "Noch {n} Ort bis „{logro}“|Noch {n} Orte bis „{logro}“", "it": "Ancora {n} luogo per «{logro}»|Ancora {n} luoghi per «{logro}»", "nl": "Nog {n} plek voor “{logro}”|Nog {n} plekken voor “{logro}”", "zh": "再访问{n}个地点即可获得“{logro}”", "zht": "再造訪{n}個地點即可獲得「{logro}」", "bg": "Още {n} място до „{logro}“|Още {n} места до „{logro}“", "pl": "Jeszcze {n} miejsce do osiągnięcia „{logro}”|Jeszcze {n} miejsca do osiągnięcia „{logro}”|Jeszcze {n} miejsc do osiągnięcia „{logro}”"},
     "perfilLugares": {"es": "{n} lugar|{n} lugares", "en": "{n} place|{n} places", "fr": "{n} lieu|{n} lieux", "de": "{n} Ort|{n} Orte", "it": "{n} luogo|{n} luoghi", "nl": "{n} plek|{n} plekken", "zh": "{n}个地点", "zht": "{n}個地點", "bg": "{n} място|{n} места", "pl": "{n} miejsce|{n} miejsca|{n} miejsc"},
     "perfilCuenta": {"es": "Cuenta", "en": "Account", "fr": "Compte", "de": "Konto", "it": "Account", "nl": "Account", "zh": "账户", "zht": "帳戶", "bg": "Акаунт", "pl": "Konto"},
+    "perfilPestanaViaje": {"es": "Viaje", "en": "Travel", "fr": "Voyage", "de": "Reise", "it": "Viaggio", "nl": "Reis", "zh": "旅行", "zht": "旅行", "bg": "Пътуване", "pl": "Podróż"},
+    "perfilPestanaCuerpo": {"es": "Cuerpo", "en": "Body", "fr": "Corps", "de": "Körper", "it": "Corpo", "nl": "Lichaam", "zh": "身体", "zht": "身體", "bg": "Тяло", "pl": "Ciało"},
     "perfilNube": {"es": "Sus favoritos se guardan en su cuenta; su perfil y sus medidas, solo en este dispositivo.", "en": "Your favourites are saved to your account; your profile and measurements stay on this device.", "fr": "Vos favoris sont enregistrés dans votre compte ; votre profil et vos mesures restent sur cet appareil.", "de": "Ihre Favoriten werden in Ihrem Konto gespeichert, Ihr Profil und Ihre Messwerte nur auf diesem Gerät.", "it": "I preferiti vengono salvati nell’account; profilo e misure restano su questo dispositivo.", "nl": "Uw favorieten worden in uw account opgeslagen; uw profiel en metingen blijven op dit apparaat.", "zh": "您的收藏保存在账户中；个人资料和身高体重等数据只保存在本设备上。", "zht": "您的收藏會儲存在帳戶中；個人檔案和身高體重等資料只儲存在此裝置上。", "bg": "Любимите ви се пазят в акаунта ви; профилът и измерванията ви остават само на това устройство.", "pl": "Ulubione zapisują się na koncie; profil i pomiary zostają tylko na tym urządzeniu."},
     "perfilSoloDispositivo": {"es": "Sin cuenta: todo se guarda solo en este dispositivo", "en": "No account: everything stays on this device only", "fr": "Sans compte : tout est enregistré uniquement sur cet appareil", "de": "Ohne Konto: Alles wird nur auf diesem Gerät gespeichert", "it": "Senza account: tutto resta solo su questo dispositivo", "nl": "Zonder account: alles wordt alleen op dit apparaat opgeslagen", "zh": "未登录：所有内容仅保存在本设备", "zht": "未登入：所有內容僅儲存在此裝置上", "bg": "Без акаунт: всичко се пази само на това устройство", "pl": "Bez konta: wszystko zostaje tylko na tym urządzeniu"},
     "perfilCrearCuenta": {"es": "Crear cuenta o entrar", "en": "Sign up or log in", "fr": "Créer un compte ou se connecter", "de": "Konto erstellen oder anmelden", "it": "Crea account o accedi", "nl": "Account aanmaken of inloggen", "zh": "注册或登录", "zht": "註冊或登入", "bg": "Регистрирай се или влез", "pl": "Załóż konto lub zaloguj się"},
@@ -511,6 +513,8 @@
   if (!AV) return;
 
   var KEY = 'tenerife.perfil';
+  /* las pestañas de la pantalla (31 de octubre de 2026): la abierta se guarda en st.pestana */
+  var PESTANAS = ['viaje', 'cuerpo', 'cuenta'];
   var KG_LB = 2.20462, CM_IN = 2.54;
   /* Rangos admitidos: los mismos al escribir, al leer del dispositivo, al leer
      de la nube y en los check de perfil.sql. */
@@ -596,7 +600,7 @@
        nube: null o { uid, desde, ok }: el permiso de ESA cuenta (desde = cuando se dio;
        ok = este movil ya se junto con la nube). colas: lo que falta por subir, por cuenta. */
     return { v: 1, nombre: '', avatar: '', unidades: 'metric', altura_cm: null, nacimiento: null, objetivo_kg: null,
-      medidas: [], km: [], creado: hoy(), rango: 30, tab: 'peso', editado: null, nube: null, colas: {}, oro: {} };
+      medidas: [], km: [], creado: hoy(), rango: 30, tab: 'peso', pestana: 'viaje', editado: null, nube: null, colas: {}, oro: {} };
   }
   function leerNube(n) { return (n && typeof n === 'object' && esUid(n.uid) && esInstante(n.desde)) ? { uid: n.uid, desde: n.desde, ok: n.ok === true } : null; }
   function leerColas(cs) {
@@ -639,6 +643,7 @@
     d.colas = leerColas(s.colas);
     d.rango = [30, 90, 365].indexOf(s.rango) >= 0 ? s.rango : 30;
     d.tab = s.tab === 'km' ? 'km' : 'peso';
+    d.pestana = PESTANAS.indexOf(s.pestana) >= 0 ? s.pestana : 'viaje';
     /* los de oro: solo ids de oro del catalogo; el avatar elegido, si es de oro, es suyo */
     d.oro = leerOro(s.oro);
     if (d.avatar && AV.esOro(d.avatar) && !Object.prototype.hasOwnProperty.call(d.oro, d.avatar)) d.oro[d.avatar] = '';
@@ -1560,11 +1565,73 @@
     } catch (e) { return 'fallo'; }
   }
 
-  function renderTodo() { aplicarTextos(); renderHero(false); renderSets(); renderDatos(); renderEvo(); renderIsla(); renderCuenta(); }
+  /* ── las pestañas (31 de octubre de 2026). Jerome: «como está en perfil está feo, busca
+     cómo organizarlo mejor». Era una sola columna de casi 3.000 px con el pasaporte de
+     viajero, el peso y la cuenta, uno detras de otro. Ahora, tres pestañas: Viaje (el avatar
+     y su isla), Cuerpo (sus datos y su evolucion) y Cuenta. Se recuerda la ultima, solo en
+     este dispositivo (st.pestana; no sube a la nube). El teclado, como pide WAI-ARIA: las
+     flechas, Inicio y Fin; solo la pestaña abierta entra con el tabulador. ── */
+  function renderPestanas() {
+    PESTANAS.forEach(function (p) {
+      var b = $('tgp-tab-' + p), on = p === st.pestana;
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+      b.tabIndex = on ? 0 : -1;
+      $('tgp-p-' + p).hidden = !on;
+    });
+    medirCabecera();
+  }
+  /* La barra se pega justo debajo de la cabecera, mida lo que mida: en una linea son 56 px,
+     pero con la letra grande del movil crece (74 px al doble), y en bulgaro el titulo pasa
+     a dos lineas (131). Con 56 fijos, la cabecera la tapaba. Se mide al pintar las
+     pestañas (al abrir y al cambiar de idioma), y cada vez que la cabecera cambia de
+     tamaño (ResizeObserver; y, sin el, al cambiar el tamaño de la ventana). */
+  function medirCabecera() {
+    var cab = panel && panel.querySelector('.tgp-top'), h = cab ? cab.getBoundingClientRect().height : 0;
+    if (h > 0) $('tgp-tabs').style.setProperty('--tgp-cab', h + 'px');
+    marcarBarra();
+  }
+  /* Con la barra pegada bajo la cabecera, la cabecera va entera (#perfil-panel.tgp-con-barra):
+     se mira al desplazar (una vez por fotograma) y al pintar las pestañas. */
+  var marcaPendiente = false;
+  function marcarBarra() {
+    if (!panel || panel.hidden) return;
+    var cab = panel.querySelector('.tgp-top'), barra = $('tgp-tabs');
+    var pegada = barra.getBoundingClientRect().top - cab.getBoundingClientRect().bottom < 1;
+    if (pegada !== panel.classList.contains('tgp-con-barra')) panel.classList.toggle('tgp-con-barra', pegada);
+  }
+  function alDesplazar() {
+    if (marcaPendiente) return;
+    marcaPendiente = true;
+    requestAnimationFrame(function () { marcaPendiente = false; marcarBarra(); });
+  }
+  function irAPestana(p, foco) {
+    if (PESTANAS.indexOf(p) < 0) return;
+    var cambia = p !== st.pestana;
+    st.pestana = p; guardar(); renderPestanas();
+    if (foco) { try { $('tgp-tab-' + p).focus({ preventScroll: true }); } catch (e) {} }
+    /* si iba por debajo de la cabecera, la pestaña nueva empieza justo debajo de la barra */
+    if (cambia && panel) {
+      var cab = panel.querySelector('.tgp-top'), h = $('tgp-hero');
+      var y = h.getBoundingClientRect().bottom - panel.getBoundingClientRect().top + panel.scrollTop + 14 - (cab ? cab.offsetHeight : 0);
+      if (panel.scrollTop > y) panel.scrollTop = Math.max(0, y);
+    }
+  }
+  function renderTodo() { aplicarTextos(); renderPestanas(); renderHero(false); renderSets(); renderDatos(); renderEvo(); renderIsla(); renderCuenta(); }
 
   /* ── eventos del cuerpo (una vez, al montarlo) ── */
   function enganchar() {
     $('tgp-back').addEventListener('click', function () { cerrar(); });
+    if (typeof window.ResizeObserver === 'function') { try { new ResizeObserver(medirCabecera).observe(panel.querySelector('.tgp-top')); } catch (e) {} }
+    window.addEventListener('resize', medirCabecera);
+    panel.addEventListener('scroll', alDesplazar, { passive: true });
+    $('tgp-tabs').addEventListener('click', function (e) { var b = e.target.closest('.tgp-tab'); if (b) irAPestana(b.dataset.pestana, false); });
+    $('tgp-tabs').addEventListener('keydown', function (e) {
+      var i = PESTANAS.indexOf(st.pestana), n = PESTANAS.length, j = null;
+      if (e.key === 'ArrowRight') j = (i + 1) % n; else if (e.key === 'ArrowLeft') j = (i + n - 1) % n;
+      else if (e.key === 'Home') j = 0; else if (e.key === 'End') j = n - 1;
+      if (j === null) return;
+      e.preventDefault(); irAPestana(PESTANAS[j], true);
+    });
     $('tgp-sets').addEventListener('click', function (e) { var b = e.target.closest('.tgp-set'); if (!b) return; setAbierto = b.dataset.set; renderSets(true); });
     /* «Todos los paises»: la lista se abre y se cierra con su boton; elegir un pais lo
        pone en las pestañas, abre su tira y cierra la lista */
@@ -1908,6 +1975,24 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 .tgp-add-help { grid-column: 1 / -1; min-height: 0; }
 .tgp-add-help:empty { display: none; }
 .tgp-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+/* ── las pestañas: Viaje, Cuerpo y Cuenta, fijas debajo de la cabecera ── */
+/* top: justo debajo de la cabecera; --tgp-cab es su altura de verdad (medirCabecera).
+   Opaca: lo que pasa por debajo no se transparenta */
+.tgp-tabs { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--tgp-cab, 56px)); z-index: 4; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border: 1px solid var(--border); border-radius: 16px; background: var(--dark); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
+/* el icono encima del nombre: el nombre tiene todo el ancho de la pestaña. Con el icono al
+   lado, a 320 px «Пътуване» se partia, y con la letra del movil a 1,15 se partian seis
+   nombres; asi, ninguno en los diez idiomas de 320 a 430 px hasta la letra a 1,3. La letra,
+   a la medida de la pantalla */
+.tgp-tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-width: 0; min-height: 44px; padding: 6px 2px; border: 0; border-radius: 12px; background: transparent; color: var(--muted); font-size: clamp(.84rem, 3.9vw, .95rem); font-weight: 600; line-height: 1.1; text-align: center; transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out); }
+.tgp-tab .ico { font-size: 1.05rem; line-height: 1; }
+.tgp-tab .txt { max-width: 100%; overflow-wrap: anywhere; }
+/* con la barra pegada arriba, la cabecera va entera, sin su degradado de abajo: por esa
+   franja se veia pasar lo de debajo, entre el titulo y la barra (marcarBarra) */
+#perfil-panel.tgp-con-barra .tgp-top { background: var(--dark); }
+.tgp-tab[aria-selected="true"] { background: var(--gold); color: #1a1407; }
+.tgp-tab:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+.tgp-pestana { display: grid; gap: 14px; min-width: 0; }
+.tgp-pestana[hidden] { display: none; }
 .tgp-seg { display: inline-flex; border: 1px solid var(--border); border-radius: 12px; padding: 3px; background: rgba(15,17,23,0.5); gap: 2px; }
 .tgp-seg button { border: 0; background: transparent; color: var(--muted); padding: 6px 12px; border-radius: 9px; font-size: .85rem; font-weight: 500; transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out); }
 .tgp-seg button.is-on { background: var(--gold); color: #1a1407; }
@@ -2162,6 +2247,13 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
     <p class="tgp-lema">Su pasaporte de viajero</p>
   </section>
 
+  <div class="tgp-tabs" id="tgp-tabs" role="tablist" aria-labelledby="tgp-titulo">
+    <button type="button" class="tgp-tab" role="tab" id="tgp-tab-viaje" data-pestana="viaje" aria-controls="tgp-p-viaje" aria-selected="true"><span class="ico" aria-hidden="true">🧭</span><span class="txt">Viaje</span></button>
+    <button type="button" class="tgp-tab" role="tab" id="tgp-tab-cuerpo" data-pestana="cuerpo" aria-controls="tgp-p-cuerpo" aria-selected="false" tabindex="-1"><span class="ico" aria-hidden="true">💪</span><span class="txt">Cuerpo</span></button>
+    <button type="button" class="tgp-tab" role="tab" id="tgp-tab-cuenta" data-pestana="cuenta" aria-controls="tgp-p-cuenta" aria-selected="false" tabindex="-1"><span class="ico" aria-hidden="true">👤</span><span class="txt">Cuenta</span></button>
+  </div>
+
+  <div class="tgp-pestana" role="tabpanel" id="tgp-p-viaje" aria-labelledby="tgp-tab-viaje">
   <section class="tgp-card" id="tgp-avatares">
     <div class="tgp-card-head"><h2 id="tgp-avatares-h">Elija su avatar</h2></div>
     <div class="tgp-sets" id="tgp-sets" role="group" aria-labelledby="tgp-avatares-h">
@@ -2180,6 +2272,16 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
     <p class="tgp-lock-why" id="tgp-lock-why" hidden>Una visita queda comprobada si marca el lugar como visitado estando allí. Lo comprueba el móvil con su ubicación, que no se envía a ningún sitio.</p>
   </section>
 
+  <section class="tgp-card" id="tgp-isla">
+    <div class="tgp-card-head"><h2>Su isla</h2><span class="tgp-eyebrow" data-sin-traducir="marca">Tenerife Go</span></div>
+    <div class="tgp-isla-tiles" id="tgp-isla-tiles"></div>
+    <div class="tgp-progress" id="tgp-progress"><div class="bar"><div class="fill" id="tgp-progress-fill"></div></div><div class="txt" id="tgp-progress-txt"></div></div>
+    <div class="tgp-eyebrow tgp-sellos-titulo">Sus sellos</div>
+    <div class="tgp-stamps" id="tgp-stamps"></div>
+  </section>
+  </div>
+
+  <div class="tgp-pestana" role="tabpanel" id="tgp-p-cuerpo" aria-labelledby="tgp-tab-cuerpo" hidden>
   <section class="tgp-card" id="tgp-datos">
     <div class="tgp-card-head"><h2>Sus datos</h2></div>
     <p class="tgp-note">Se guardan en este dispositivo y, solo si usted activa la opción en «Cuenta», también en su cuenta.</p>
@@ -2264,15 +2366,9 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
       <ul class="tgp-log" id="tgp-km-log"></ul>
     </div>
   </section>
+  </div>
 
-  <section class="tgp-card" id="tgp-isla">
-    <div class="tgp-card-head"><h2>Su isla</h2><span class="tgp-eyebrow" data-sin-traducir="marca">Tenerife Go</span></div>
-    <div class="tgp-isla-tiles" id="tgp-isla-tiles"></div>
-    <div class="tgp-progress" id="tgp-progress"><div class="bar"><div class="fill" id="tgp-progress-fill"></div></div><div class="txt" id="tgp-progress-txt"></div></div>
-    <div class="tgp-eyebrow tgp-sellos-titulo">Sus sellos</div>
-    <div class="tgp-stamps" id="tgp-stamps"></div>
-  </section>
-
+  <div class="tgp-pestana" role="tabpanel" id="tgp-p-cuenta" aria-labelledby="tgp-tab-cuenta" hidden>
   <section class="tgp-card tgp-account" id="tgp-cuenta">
     <div class="tgp-card-head"><h2>Cuenta</h2></div>
     <div id="tgp-cuenta-who"></div>
@@ -2301,6 +2397,7 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
       </div>
     </div>
   </section>
+  </div>
 
 </div>
 
@@ -2317,6 +2414,9 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
   var TEXTOS = [
     ['#tgp-back', 'aria', 'ariaCerrar'],
     ['#tgp-titulo', 'tx', 'perfilTitulo'],
+    ['#tgp-tab-viaje .txt', 'tx', 'perfilPestanaViaje'],
+    ['#tgp-tab-cuerpo .txt', 'tx', 'perfilPestanaCuerpo'],
+    ['#tgp-tab-cuenta .txt', 'tx', 'perfilCuenta'],
     ['#tgp-name-edit', 'aria', 'perfilEditarNombre'],
     ['#tgp-hero .tgp-lema', 'tx', 'perfilLema'],
     ['#tgp-avatares h2', 'tx', 'perfilElegirAvatar'],
@@ -2371,6 +2471,8 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
     repintar: function () { if (!st.avatar) setAbierto = null; if (abierto) renderTodo(); },
     sincronizar: sincronizar,
     estado: function () { return st; },
-    esperar: function () { return nubeCadena; }
+    esperar: function () { return nubeCadena; },
+    /* abre una de las pestañas ('viaje', 'cuerpo' o 'cuenta'), con el perfil abierto */
+    pestana: function (p) { if (abierto) irAPestana(p, false); }
   };
 })();

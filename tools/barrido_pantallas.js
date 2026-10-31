@@ -211,16 +211,19 @@ window.__estados = [
      quien la usa; el de Tenerife, abierto con 10 visitas comprobadas. Cada set
      lleva detras su avatar de oro (en Tenerife, tres), con su fecha; y «De oro»,
      los 49 juntos con la bandera de su set (23 de octubre, tarde). */
-  ['perfil', async () => { __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); await espera(700); }],
+  ['perfil', async () => { __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('viaje'); await espera(700); }],
+  /* sus pestañas Cuerpo y Cuenta (31 de octubre de 2026): lo que no se ve no se mira */
+  ['perfil:cuerpo', async () => { __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuerpo'); await espera(700); }],
+  ['perfil:cuenta', async () => { __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuenta'); await espera(700); }],
   ['perfil:todos los paises', async () => {
-      __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); await espera(300);
+      __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('viaje'); await espera(300);
       const b = document.getElementById('tgp-paises-btn'); if (b && b.getAttribute('aria-expanded') !== 'true') b.click(); await espera(300); }],
   ['perfil:de oro', async () => {
-      __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); await espera(300);
+      __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('viaje'); await espera(300);
       const o = document.querySelector('#tgp-sets .tgp-set[data-set="oro"]'); if (o) o.click(); await espera(300); }],
   ...['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'tf', 'ie', 'dk', 'se', 'no', 'fi', 'is', 'ee', 'lv', 'lt', 'at', 'be', 'ch', 'lu', 'li', 'mc',
       'pt', 'gr', 'mt', 'hr', 'si', 'ba', 'rs', 'me', 'mk', 'al', 'ad', 'sm', 'cy', 'cz', 'sk', 'hu', 'ro', 'md', 'ua', 'by', 'ru'].map(s => ['perfil:avatares ' + s, async () => {
-      __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); await espera(300);
+      __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('viaje'); await espera(300);
       const b = document.getElementById('tgp-paises-btn'); if (b && b.getAttribute('aria-expanded') !== 'true') b.click(); await espera(150);
       const p = document.querySelector('#tgp-paises-grid .tgp-pais[data-set="' + s + '"]'); if (p) p.click(); await espera(300); }]),
   ['favoritos', async () => { document.getElementById('v19-nav-fav').click(); }],

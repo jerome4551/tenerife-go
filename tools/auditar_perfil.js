@@ -44,7 +44,7 @@
  *      excepcion de 2027 del Carnaval) las prueba tools/probar_fechas_oro.js.
  *
  * QUE MIRA (parte 2, la pantalla: modulos/perfil.js)
- *   6. las 454 filas de PERFIL_UI (94 de la pantalla, 47 de sets, 313 de
+ *   6. las 456 filas de PERFIL_UI (96 de la pantalla, 47 de sets, 313 de
  *      avatares: 235, 49 de oro y 29 retirados), con lo que comprobaba validar_i18n.py del encargo: los diez
  *      idiomas y ninguno en blanco; los mismos {marcadores} que el castellano;
  *      ni comillas dobles ASCII ni guiones blandos u otros invisibles; los
@@ -325,8 +325,8 @@ console.log('\n=== el perfil: la pantalla (modulos/perfil.js) ===');
 let PUI = {};
 try { PUI = ROT.grab('var PERFIL_UI = {', 0, MOD); } catch (e) { PUI = {}; }
 const claves = Object.keys(PUI);
-ok(claves.length === 454, 'PERFIL_UI: 454 filas', claves.length);
-ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 313, '47 filas de sets y 313 de avatares: 235, 49 de oro y 29 retirados (y 94 de la pantalla)');
+ok(claves.length === 456, 'PERFIL_UI: 456 filas', claves.length);
+ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 313, '47 filas de sets y 313 de avatares: 235, 49 de oro y 29 retirados (y 96 de la pantalla, con las dos pestañas)');
 ok(/\n  Object\.assign\(UI_TX, PERFIL_UI\);\n/.test(MOD), 'se funden en UI_TX con Object.assign(UI_TX, PERFIL_UI), como CIELO_UI');
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 ok(JSON.stringify(IDI) === JSON.stringify(LENGUAS), 'los diez idiomas son los de SUPPORTED_LANGS', LENGUAS.join(','));
