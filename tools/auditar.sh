@@ -193,6 +193,10 @@ echo; echo "════════ el estado de los lugares: lo cerrado, ni en
 # Desde el 30 de octubre de 2026 (Jerome: «Regla general, sin excepciones por
 # nombre»): estado, fuente y verificado en la ficha de cada lugar.
 control probar_estado.js node tools/probar_estado.js "$PUERTO"
+echo; echo "════════ instalar la app: el banner y sus pasos, en Safari y en el navegador de otra app ════════"
+# Desde el 31 de octubre de 2026. Jerome, desde Instagram en el iPhone: «no
+# podemos instalar nada», y el banner no se iba al pulsar «Instalar».
+control probar_instalar.js node tools/probar_instalar.js "$PUERTO"
 
 echo "════════ lo que pide Google Play (LANZAMIENTO-PLAY.md, Fase 1), en un navegador ════════"
 # Desde el 16 de octubre de 2026: la tienda fuera de la vista y el boton de

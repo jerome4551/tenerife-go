@@ -3261,6 +3261,69 @@ en su momento con encuestas o diver modos».
   (support.google.com/analytics/answer/1042032, leído el 30 de octubre de
   2026).
 
+## Instalar la app desde el navegador de otra app (31 de octubre)
+
+Jerome, desde Instagram en el iPhone: «Abre safari y de ahí no podemos
+instalar nada o no vi como. También la pantalla instalar se queda ahí y no
+desaparece cuando empuja instalar». Su captura no era Safari, era el
+navegador de Instagram: lo pone debajo de la dirección.
+
+- **El banner no se iba.** Tenía `left: 50%` y ningún ancho, así que solo
+  podía ocupar media pantalla: 240 px de 390. El texto se partía palabra a
+  palabra y el banner crecía hacia arriba. Al pulsar «Instalar» bajaba su
+  propia altura (`translateY(120%)`) y seguía asomando encima de la barra de
+  abajo. Reproducido en el navegador con el user-agent de Instagram: su
+  borde de arriba quedaba a 751 px, en una pantalla de 844.
+  - Ahora va de margen a margen, hasta 480 px.
+  - Escondido, baja más que su altura y que la distancia al borde, y deja de
+    verse y de poder tocarse.
+  - En 400 px o menos, el botón pasa a una segunda fila: en una sola, el
+    texto se quedaba en unos 100 px.
+- **Desde el navegador de otra app no se puede instalar.** Se reconoce de
+  tres maneras:
+  - por la marca de Instagram, Facebook, TikTok… en el user-agent;
+  - en el iPhone, porque le falta «Safari/»;
+  - en Android, por «; wv)», la marca de la vista web.
+
+  El banner dice «Aquí no se puede instalar: ábrala en Safari» y lleva «Ver
+  cómo», con dos pasos. El primero: tocar «⋯» arriba a la derecha y abrir la
+  página en el navegador, o copiar el enlace con el botón y pegarlo en
+  Safari; el enlace va sin el `?fbclid` que añade la app. El segundo, ya en
+  Safari: «Compartir» → «Añadir a pantalla de inicio». Lo que dice el menú
+  «⋯» cambia de una app a otra y de una versión a otra, así que no se cita.
+  En Android son «⋮» y Chrome. Allí no llega `beforeinstallprompt`, así que
+  antes no salía nada.
+- **Los pasos de Safari, con iOS 26.** Con las pestañas en modo compacto,
+  «Compartir» está dentro de «•••» (ithinkdiff.com y heise.de, leídos el 31
+  de octubre de 2026). Chrome, Firefox o Edge en el iPhone llevan sus propios
+  pasos.
+- **Lo que no se usa:** el atajo `x-safari-https://` para saltar a Safari.
+  Varios usuarios cuentan que Instagram lo ha bloqueado, y desde aquí no se
+  puede comprobar.
+- **Los textos** van en `PWA_TX` (clave → idioma), en los diez idiomas. La
+  tabla por idioma de los pasos, que la auditoría de idiomas no recorría,
+  pasa a sus filas: 5 que ya estaban y 8 nuevas. El banner dice el nombre
+  entero, «Tenerife Go». Y se vuelve a rotular si se cambia de idioma con él
+  a la vista: sale a los 4 s, encima de la pantalla de bienvenida, que es
+  donde se elige el idioma. En `auditar_registro.js`, los tres rótulos con
+  el nombre nuevo y «Skopiuj link».
+- **Idiomas:** 45 tablas, 2867 filas y 5.016.
+
+Control nuevo, `tools/probar_instalar.js` (65 casos), con los textos de
+`PWA_TX` tal cual:
+- en los diez idiomas, en Safari del iPhone: el banner con sus textos, de
+  margen a margen, sin desbordar ni tapar la barra; «Instalar» lo esconde
+  del todo y enseña los pasos con «•••»;
+- en los diez idiomas, en el navegador de Instagram: el banner, los dos
+  pasos y «Copiar el enlace», que copia la dirección limpia;
+- el cambio de idioma con el banner a la vista;
+- Facebook, una vista web sin marca, Instagram en Android y Chrome en el
+  iPhone;
+- sin banner: la app ya instalada, después de «×» (y al volver) y Chrome de
+  Android sin `beforeinstallprompt`;
+- a 320 y a 430 px, con los textos más largos (el alemán);
+- y ningún error de página.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -5102,7 +5165,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 46 tablas, 2859 filas (y 5.003 filas, dentro y fuera del fuente)
+## Idiomas · 45 tablas, 2867 filas (y 5.016 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5182,6 +5245,8 @@ octubre, una más en `DP_UI`, «(reserva necesaria)» de «Organice su día»:
 `UI_TX`, las de la política (ocho fuera y una nueva), y fuera la tabla del
 aviso de cookies, con sus tres textos: 46 tablas, 2859 filas y 5.003 (esa
 tabla, que va por idioma, no entraba en la cuenta de `barrido_idiomas.js`). El
+31 de octubre, los pasos para instalar la app, que eran una tabla por idioma
+(5 textos), pasan a `PWA_TX` con 8 más: 45 tablas, 2867 filas y 5.016. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -11318,6 +11383,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/probar_rutas.js` | Rutas usadas de verdad: guaguas en trayectos conocidos a hora fija, y en los diez idiomas el aviso al elegir origen, el botón tras calcular, sin parada, fuera de horario, ninguna línea, los minutos, los kilómetros del coche y lo que se comparte del itinerario |
 | `tools/probar_organiza.js` | «Organiza tu día» entero en los diez idiomas, con el azar fijo: los pasos contra sus tablas, cada tramo calculado otra vez por su cuenta, el título con las catorce tarjetas, Senderismo en Deporte, Norte y Sur sin paradas de la otra zona (y «Otro» tampoco), nunca dos paradas del mismo sitio (comprobado con código propio), el aviso cuando no hay más, el cambio de idioma con el itinerario abierto y ningún texto igual que en castellano; y desde el 30 de octubre, que cada itinerario quepa en las horas de su tarjeta, una comida como mucho y donde se come, nada cerrado, en guagua a pie lo que es un paseo, y «Otro» y compartir con las mismas reglas |
 | `tools/probar_estado.js` | el estado de los lugares (`estado`, `fuente`, `verificado`): cada uno válido y con su fuente; lo que no está «abierto», con su aviso en los diez idiomas y fuera de todo lo que propone lugares (el planificador y «Otro», el dado, «¿Dónde me baño hoy?», «Ruta del día» y el Asistente), con los de verdad y con un estado de prueba |
+| `tools/probar_instalar.js` | instalar la app desde el móvil, en los diez idiomas: el banner de margen a margen, sin desbordar ni tapar la barra de abajo, y escondido del todo al pulsarlo; los pasos de Safari (con «•••», iOS 26), los del navegador de otra app (Instagram, Facebook, una vista web sin marca, Instagram en Android) con «Copiar el enlace», y los de Chrome en el iPhone; el cambio de idioma con el banner a la vista; sin banner con la app instalada, después de «×» y en Chrome de Android; a 320 y 430 px |
 | `tools/probar_play.js` | lo que pide Google Play (LANZAMIENTO-PLAY.md, Fase 1), en un navegador y con un Supabase falso: la tienda que no se ve ni se abre, el botón de administrador solo para quien lo es, borrar la cuenta (botón, confirmación, fallos y borrado) en los diez idiomas y `borrar-cuenta.html` sin JavaScript |
 | `tools/generar_borrar_cuenta.py` | escribe `borrar-cuenta.html` desde `idiomas/borrar-cuenta/` y los botones de la app; con `--comprobar`, para si no está al día |
 | `tools/pagina_fija.py` | el armazón de las páginas fijas de la raíz: diez idiomas que se cambian sin JavaScript; lo común, en `idiomas/paginas/` |

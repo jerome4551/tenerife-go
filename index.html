@@ -22898,25 +22898,41 @@ window.addEventListener('hashchange', () => {
      ════════════════════════════════════════════════════════════════════ -->
 <style>
   /* Estilos del paso 6 — solo afectan a elementos nuevos */
+  /* Con «left: 50%» y sin ancho, el banner solo podia ocupar media pantalla:
+     el texto se partia palabra a palabra, crecia hacia arriba, y al bajarlo
+     su propia altura (translateY(120%)) seguia asomando encima de la barra
+     de abajo. Es lo que vio Jerome el 31 de octubre de 2026 en el iPhone,
+     dentro de Instagram: «la pantalla instalar se queda ahi y no desaparece
+     cuando empuja instalar». Ahora va de margen a margen, hasta 480 px, y
+     escondido baja mas que su altura y la distancia al borde, y ademas deja
+     de verse y de poder tocarse. */
   .pwa-install-banner {
     position: fixed;
     bottom: calc(120px + env(safe-area-inset-bottom, 0px));
-    left: 50%;
-    transform: translateX(-50%) translateY(120%);
+    left: 12px;
+    right: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+    transform: translateY(calc(100% + 140px + env(safe-area-inset-bottom, 0px)));
+    visibility: hidden;
     background: #1B2330;
     border: 1px solid rgba(212,175,55,0.4);
     border-radius: 16px;
     padding: 0.85rem 1rem;
-    display: flex;
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) auto auto;
     align-items: center;
-    gap: var(--space-4);
+    column-gap: var(--space-4);
     box-shadow: var(--shadow-lg);
     z-index: 9999;
-    max-width: calc(100vw - 32px);
-    transition: transform var(--t-slower) var(--ease-emph);
+    transition: transform var(--t-slower) var(--ease-emph), visibility 0s linear var(--t-slower);
     pointer-events: auto;
   }
-  .pwa-install-banner.show { transform: translateX(-50%) translateY(0); }
+  .pwa-install-banner.show {
+    transform: translateY(0);
+    visibility: visible;
+    transition: transform var(--t-slower) var(--ease-emph), visibility 0s;
+  }
   .pwa-install-banner .pwa-ib-icon {
     width: 36px;
     height: 36px;
@@ -22960,6 +22976,14 @@ window.addEventListener('hashchange', () => {
     padding: 0 4px;
     height: auto;
     width: auto;
+  }
+  /* En 400 px o menos, el boton baja a una segunda fila: en una sola, el texto
+     se quedaba en una columna de unos 100 px (cinco lineas en aleman, a 320 px,
+     dentro de Instagram) */
+  @media (max-width: 400px) {
+    .pwa-install-banner { grid-template-columns: 36px minmax(0, 1fr) auto; row-gap: 10px; }
+    .pwa-install-banner .pwa-ib-install { grid-column: 2 / 4; grid-row: 2; justify-self: end; }
+    .pwa-install-banner .pwa-ib-close { grid-column: 3; grid-row: 1; align-self: start; }
   }
 
   .pwa-toast {
@@ -23060,6 +23084,18 @@ window.addEventListener('hashchange', () => {
   .pwa-modal .pwa-modal-row:last-of-type { border-bottom: none; }
   .pwa-modal .pwa-modal-row span:first-child { color: rgba(240,236,228,0.6); }
   .pwa-modal .pwa-modal-row span:last-child { color: #D4AF37; font-weight: 500; }
+  .pwa-modal .pwa-paso,
+  .pwa-modal .pwa-pasos {
+    font-size: 0.85rem;
+    color: rgba(240,236,228,0.75);
+    line-height: 1.5;
+    margin: 0.5rem 0 1rem;
+  }
+  .pwa-modal .pwa-pasos { padding-left: 1.3rem; }
+  .pwa-modal .pwa-pasos li + li { margin-top: 0.6rem; }
+  .pwa-modal .pwa-paso b,
+  .pwa-modal .pwa-pasos b { color: #f0ece4; }
+  .pwa-modal .pwa-enlace { color: #D4AF37; word-break: break-all; -webkit-user-select: all; user-select: all; }
   .pwa-modal .pwa-modal-actions {
     display: flex;
     flex-direction: column;
@@ -23161,9 +23197,27 @@ window.addEventListener('hashchange', () => {
      china no ve lo que hay dentro. */
   var PWA_TX = {
     instalarApp:   { es:'Instalar aplicación', en:'Install app', fr:'Installer l\u2019application', de:'App installieren', it:'Installa l\u2019app', nl:'App installeren', zh:'安装应用', zht:'安裝應用', bg:'Инсталирай приложението', pl: "Zainstaluj aplikację" },
-    instalarNombre:{ es:'Instalar Tenerife', en:'Install Tenerife', fr:'Installer Tenerife', de:'Tenerife installieren', it:'Installa Tenerife', nl:'Tenerife installeren', zh:'安装 Tenerife', zht:'安裝 Tenerife', bg:'Инсталирай Tenerife', pl: "Zainstaluj Tenerife" },
+    instalarNombre:{ es:'Instalar Tenerife Go', en:'Install Tenerife Go', fr:'Installer Tenerife Go', de:'Tenerife Go installieren', it:'Installa Tenerife Go', nl:'Tenerife Go installeren', zh:'安装 Tenerife Go', zht:'安裝 Tenerife Go', bg:'Инсталирай Tenerife Go', pl:'Zainstaluj Tenerife Go' },
     accesoRapido:  { es:'Acceso rápido y funciona sin conexión', en:'Quick access, works offline', fr:'Accès rapide, fonctionne hors ligne', de:'Schneller Zugriff, auch offline', it:'Accesso rapido, funziona offline', nl:'Snelle toegang, werkt offline', zh:'打开更快，离线也能用', zht:'開啟更快，離線也能用', bg:'Бърз достъп и работи без интернет', pl: "Szybki dostęp, działa bez internetu" },
     instalar:      { es:'Instalar', en:'Install', fr:'Installer', de:'Installieren', it:'Installa', nl:'Installeren', zh:'安装', zht:'安裝', bg:'Инсталирай', pl: "Zainstaluj" },
+    /* Instalar desde el navegador de otra app -Instagram, Facebook, TikTok…- y
+       los pasos de la ventana (31 de octubre de 2026). Los pasos de iOS, con
+       lo de iOS 26: con las pestañas en modo compacto, «Compartir» está dentro
+       de «•••». Lo que dice el menú «⋯» de cada app cambia de una a otra y de
+       una version a otra; por eso no se cita, se dice lo que hay que hacer. */
+    enAppIos: { es:'Aquí no se puede instalar: ábrala en Safari.', en:'It can’t be installed from here: open it in Safari.', fr:'Impossible de l’installer ici : ouvrez-la dans Safari.', de:'Hier lässt sie sich nicht installieren: Öffnen Sie sie in Safari.', it:'Da qui non si può installare: la apra in Safari.', nl:'Installeren kan hier niet: open de app in Safari.', zh:'这里无法安装：请在 Safari 中打开。', zht:'這裡無法安裝：請在 Safari 中開啟。', bg:'Оттук не може да се инсталира: отворете го в Safari.', pl:'Stąd nie da się jej zainstalować: trzeba ją otworzyć w Safari.' },
+    enAppAnd: { es:'Aquí no se puede instalar: ábrala en el navegador.', en:'It can’t be installed from here: open it in your browser.', fr:'Impossible de l’installer ici : ouvrez-la dans le navigateur.', de:'Hier lässt sie sich nicht installieren: Öffnen Sie sie im Browser.', it:'Da qui non si può installare: la apra nel browser.', nl:'Installeren kan hier niet: open de app in de browser.', zh:'这里无法安装：请在浏览器中打开。', zht:'這裡無法安裝：請在瀏覽器中開啟。', bg:'Оттук не може да се инсталира: отворете го в браузъра.', pl:'Stąd nie da się jej zainstalować: trzeba ją otworzyć w przeglądarce.' },
+    verComo: { es:'Ver cómo', en:'See how', fr:'Voir comment', de:'So geht’s', it:'Come fare', nl:'Zo werkt het', zh:'查看方法', zht:'查看方法', bg:'Вижте как', pl:'Jak to zrobić' },
+    instTitulo: { es:'Instalar la app', en:'Install the app', fr:'Installer l’app', de:'App installieren', it:'Installa l’app', nl:'App installeren', zh:'安装应用', zht:'安裝應用', bg:'Инсталирай приложението', pl:'Zainstaluj aplikację' },
+    instIos: { es:'En <b>Safari</b>, toque <b>Compartir</b> (el cuadrado con una flecha; si no lo ve, toque antes <b>•••</b>) y elija <b>Añadir a pantalla de inicio</b>.', en:'In <b>Safari</b>, tap <b>Share</b> (the square with an arrow; if you can’t see it, tap <b>•••</b> first) and choose <b>Add to Home Screen</b>.', fr:'Dans <b>Safari</b>, touchez <b>Partager</b> (le carré avec une flèche ; si vous ne le voyez pas, touchez d’abord <b>•••</b>) et choisissez <b>Sur l’écran d’accueil</b>.', de:'Tippen Sie in <b>Safari</b> auf <b>Teilen</b> (das Quadrat mit Pfeil; wenn Sie es nicht sehen, zuerst auf <b>•••</b>) und wählen Sie <b>Zum Home-Bildschirm</b>.', it:'In <b>Safari</b>, tocchi <b>Condividi</b> (il quadrato con la freccia; se non lo vede, tocchi prima <b>•••</b>) e scelga <b>Aggiungi a Home</b>.', nl:'Tik in <b>Safari</b> op <b>Deel</b> (het vierkant met de pijl; ziet u het niet, tik dan eerst op <b>•••</b>) en kies <b>Zet op beginscherm</b>.', zh:'在 <b>Safari</b> 中点击<b>分享</b>按钮（带箭头的方块；如果看不到，请先点击<b>•••</b>），然后选择<b>添加到主屏幕</b>。', zht:'在 <b>Safari</b> 中點擊<b>分享</b>按鈕（帶箭頭的方塊；如果看不到，請先點擊<b>•••</b>），然後選擇<b>加入主畫面</b>。', bg:'В <b>Safari</b> докоснете <b>Сподели</b> (квадратът със стрелка; ако не го виждате, първо докоснете <b>•••</b>) и изберете <b>Добави към начален екран</b>.', pl:'W <b>Safari</b> wystarczy dotknąć <b>Udostępnij</b> (kwadrat ze strzałką; jeśli go nie widać, najpierw <b>•••</b>) i wybrać <b>Do ekranu początkowego</b>.' },
+    instIosOtro: { es:'Toque <b>Compartir</b> y elija <b>Añadir a pantalla de inicio</b>. Si no aparece, abra esta página en <b>Safari</b>.', en:'Tap <b>Share</b> and choose <b>Add to Home Screen</b>. If it isn’t there, open this page in <b>Safari</b>.', fr:'Touchez <b>Partager</b> et choisissez <b>Sur l’écran d’accueil</b>. Si l’option n’apparaît pas, ouvrez cette page dans <b>Safari</b>.', de:'Tippen Sie auf <b>Teilen</b> und wählen Sie <b>Zum Home-Bildschirm</b>. Fehlt die Option, öffnen Sie diese Seite in <b>Safari</b>.', it:'Tocchi <b>Condividi</b> e scelga <b>Aggiungi a Home</b>. Se non compare, apra questa pagina in <b>Safari</b>.', nl:'Tik op <b>Deel</b> en kies <b>Zet op beginscherm</b>. Staat het er niet bij, open deze pagina dan in <b>Safari</b>.', zh:'点击<b>分享</b>，然后选择<b>添加到主屏幕</b>。如果没有这一项，请在 <b>Safari</b> 中打开本页。', zht:'點擊<b>分享</b>，然後選擇<b>加入主畫面</b>。如果沒有這一項，請在 <b>Safari</b> 中開啟本頁。', bg:'Докоснете <b>Сподели</b> и изберете <b>Добави към начален екран</b>. Ако няма такава опция, отворете тази страница в <b>Safari</b>.', pl:'Wystarczy dotknąć <b>Udostępnij</b> i wybrać <b>Do ekranu początkowego</b>. Jeśli tej opcji nie ma, trzeba otworzyć tę stronę w <b>Safari</b>.' },
+    instAppIos: { es:'Toque <b>⋯</b> arriba a la derecha y abra la página en el navegador. O copie el enlace con el botón de abajo y péguelo en <b>Safari</b>.', en:'Tap <b>⋯</b> at the top right and open the page in your browser. Or copy the link with the button below and paste it into <b>Safari</b>.', fr:'Touchez <b>⋯</b> en haut à droite et ouvrez la page dans le navigateur. Ou copiez le lien avec le bouton ci-dessous et collez-le dans <b>Safari</b>.', de:'Tippen Sie oben rechts auf <b>⋯</b> und öffnen Sie die Seite im Browser. Oder kopieren Sie den Link mit der Schaltfläche unten und fügen Sie ihn in <b>Safari</b> ein.', it:'Tocchi <b>⋯</b> in alto a destra e apra la pagina nel browser. Oppure copi il link con il pulsante qui sotto e lo incolli in <b>Safari</b>.', nl:'Tik rechtsboven op <b>⋯</b> en open de pagina in de browser. Of kopieer de link met de knop hieronder en plak hem in <b>Safari</b>.', zh:'点击右上角的<b>⋯</b>，在浏览器中打开本页。也可以用下面的按钮复制链接，再粘贴到 <b>Safari</b> 中。', zht:'點擊右上角的<b>⋯</b>，在瀏覽器中開啟本頁。也可以用下面的按鈕複製連結，再貼到 <b>Safari</b> 中。', bg:'Докоснете <b>⋯</b> горе вдясно и отворете страницата в браузъра. Или копирайте връзката с бутона отдолу и я поставете в <b>Safari</b>.', pl:'Wystarczy dotknąć <b>⋯</b> w prawym górnym rogu i otworzyć stronę w przeglądarce. Można też skopiować link przyciskiem poniżej i wkleić go w <b>Safari</b>.' },
+    instAppAnd: { es:'Toque <b>⋮</b> arriba a la derecha y abra la página en el navegador. O copie el enlace con el botón de abajo y péguelo en <b>Chrome</b>.', en:'Tap <b>⋮</b> at the top right and open the page in your browser. Or copy the link with the button below and paste it into <b>Chrome</b>.', fr:'Touchez <b>⋮</b> en haut à droite et ouvrez la page dans le navigateur. Ou copiez le lien avec le bouton ci-dessous et collez-le dans <b>Chrome</b>.', de:'Tippen Sie oben rechts auf <b>⋮</b> und öffnen Sie die Seite im Browser. Oder kopieren Sie den Link mit der Schaltfläche unten und fügen Sie ihn in <b>Chrome</b> ein.', it:'Tocchi <b>⋮</b> in alto a destra e apra la pagina nel browser. Oppure copi il link con il pulsante qui sotto e lo incolli in <b>Chrome</b>.', nl:'Tik rechtsboven op <b>⋮</b> en open de pagina in de browser. Of kopieer de link met de knop hieronder en plak hem in <b>Chrome</b>.', zh:'点击右上角的<b>⋮</b>，在浏览器中打开本页。也可以用下面的按钮复制链接，再粘贴到 <b>Chrome</b> 中。', zht:'點擊右上角的<b>⋮</b>，在瀏覽器中開啟本頁。也可以用下面的按鈕複製連結，再貼到 <b>Chrome</b> 中。', bg:'Докоснете <b>⋮</b> горе вдясно и отворете страницата в браузъра. Или копирайте връзката с бутона отдолу и я поставете в <b>Chrome</b>.', pl:'Wystarczy dotknąć <b>⋮</b> w prawym górnym rogu i otworzyć stronę w przeglądarce. Można też skopiować link przyciskiem poniżej i wkleić go w <b>Chrome</b>.' },
+    instAnd: { es:'En <b>Chrome</b>, abra el menú <b>⋮</b> y elija <b>Instalar aplicación</b>.', en:'In <b>Chrome</b>, open the <b>⋮</b> menu and choose <b>Install app</b>.', fr:'Dans <b>Chrome</b>, ouvrez le menu <b>⋮</b> et choisissez <b>Installer l’application</b>.', de:'Öffnen Sie in <b>Chrome</b> das Menü <b>⋮</b> und wählen Sie <b>App installieren</b>.', it:'In <b>Chrome</b>, apra il menu <b>⋮</b> e scelga <b>Installa app</b>.', nl:'Open in <b>Chrome</b> het menu <b>⋮</b> en kies <b>App installeren</b>.', zh:'在 <b>Chrome</b> 中打开<b>⋮</b>菜单，选择<b>安装应用</b>。', zht:'在 <b>Chrome</b> 中打開<b>⋮</b>選單，選擇<b>安裝應用程式</b>。', bg:'В <b>Chrome</b> отворете менюто <b>⋮</b> и изберете <b>Инсталирай приложението</b>.', pl:'W <b>Chrome</b> wystarczy otworzyć menu <b>⋮</b> i wybrać <b>Zainstaluj aplikację</b>.' },
+    instPc: { es:'En el navegador, busque el icono de <b>instalar</b> en la barra de direcciones, o abra el menú y elija <b>Instalar</b>.', en:'In your browser, look for the <b>install</b> icon in the address bar, or open the menu and choose <b>Install</b>.', fr:'Dans le navigateur, cherchez l’icône <b>installer</b> dans la barre d’adresse, ou ouvrez le menu et choisissez <b>Installer</b>.', de:'Suchen Sie im Browser das <b>Installieren</b>-Symbol in der Adresszeile oder öffnen Sie das Menü und wählen Sie <b>Installieren</b>.', it:'Nel browser, cerchi l’icona <b>installa</b> nella barra degli indirizzi, oppure apra il menu e scelga <b>Installa</b>.', nl:'Zoek in uw browser het <b>installeren</b>-icoon in de adresbalk, of open het menu en kies <b>Installeren</b>.', zh:'在浏览器地址栏查找<b>安装</b>图标，或打开菜单选择<b>安装</b>。', zht:'在瀏覽器網址列尋找<b>安裝</b>圖示，或打開選單選擇<b>安裝</b>。', bg:'В браузъра потърсете иконата за <b>инсталиране</b> в адресната лента или отворете менюто и изберете <b>Инсталирай</b>.', pl:'W przeglądarce wystarczy poszukać ikony <b>instalacji</b> w pasku adresu albo otworzyć menu i wybrać <b>Zainstaluj</b>.' },
+    copiarEnlace: { es:'Copiar el enlace', en:'Copy the link', fr:'Copier le lien', de:'Link kopieren', it:'Copia il link', nl:'Link kopiëren', zh:'复制链接', zht:'複製連結', bg:'Копирай връзката', pl:'Skopiuj link' },
+    enlaceCopiado: { es:'Enlace copiado', en:'Link copied', fr:'Lien copié', de:'Link kopiert', it:'Link copiato', nl:'Link gekopieerd', zh:'链接已复制', zht:'連結已複製', bg:'Връзката е копирана', pl:'Link skopiowany' },
+    instOk: { es:'Entendido', en:'Got it', fr:'Compris', de:'Verstanden', it:'Ho capito', nl:'Begrepen', zh:'知道了', zht:'知道了', bg:'Разбрах', pl:'Rozumiem' },
     cerrar:        { es:'Cerrar', en:'Close', fr:'Fermer', de:'Schließen', it:'Chiudi', nl:'Sluiten', zh:'关闭', zht:'關閉', bg:'Затвори', pl: "Zamknij" },
     versionNueva:  { es:'Nueva versión disponible', en:'New version available', fr:'Nouvelle version disponible', de:'Neue Version verfügbar', it:'Nuova versione disponibile', nl:'Nieuwe versie beschikbaar', zh:'有新版本可用', zht:'有新版本可用', bg:'Налична е нова версия', pl: "Dostępna nowa wersja" },
     recargar:      { es:'Recargar', en:'Reload', fr:'Recharger', de:'Neu laden', it:'Ricarica', nl:'Herladen', zh:'重新载入', zht:'重新載入', bg:'Презареди', pl: "Odśwież" },
@@ -23222,8 +23276,9 @@ window.addEventListener('hashchange', () => {
     b.textContent = ptx('instalarNombre');
     caja.textContent = '';
     caja.appendChild(b);
-    caja.appendChild(document.createTextNode(ptx('accesoRapido')));
-    el.querySelector('.pwa-ib-install').textContent = ptx('instalar');
+    var enApp = navegadorDeApp();
+    caja.appendChild(document.createTextNode(ptx(enApp ? (isIOS() ? 'enAppIos' : 'enAppAnd') : 'accesoRapido')));
+    el.querySelector('.pwa-ib-install').textContent = ptx(enApp ? 'verComo' : 'instalar');
     el.querySelector('.pwa-ib-close').setAttribute('aria-label', ptx('cerrar'));
   }
   function textoToast(el) {
@@ -23270,6 +23325,31 @@ window.addEventListener('hashchange', () => {
 
   function isAndroidUA() {
     try { return /Android/i.test(navigator.userAgent || ''); } catch (_) { return false; }
+  }
+
+  /* El navegador de otra app (Instagram, Facebook, TikTok…): una vista web
+     dentro de esa app, desde la que no se puede instalar nada. Jerome abrio
+     tenerifego.app desde Instagram el 31 de octubre de 2026 y no habia
+     manera. Se reconoce por la marca que la app pone en el user-agent o, en
+     el iPhone, porque le falta «Safari/», que llevan Safari y los demas
+     navegadores (Chrome, Firefox, Edge); en Android, por «; wv)», la marca
+     de la vista web. La app instalada tampoco lo lleva, pero a esa ya no se
+     le ofrece instalar (isStandalone). */
+  function navegadorDeApp() {
+    try {
+      var ua = navigator.userAgent || '';
+      if (/Instagram|FBAN|FBAV|FB_IAB|FBIOS|MessengerForiOS|musical_ly|BytedanceWebview|TikTok|LinkedInApp|Snapchat|Pinterest|MicroMessenger|\bLine\/|GSA\//.test(ua)) return true;
+      if (isIOS() && !/Safari\//.test(ua)) return true;
+      if (isAndroidUA() && /; wv\)/.test(ua)) return true;
+      return false;
+    } catch (_) { return false; }
+  }
+
+  /* Otro navegador del iPhone (Chrome, Firefox, Edge…): desde iOS 16.4
+     tambien añade a la pantalla de inicio desde Compartir, pero sus menus no
+     son los de Safari. */
+  function otroNavegadorIOS() {
+    try { return /CriOS|FxiOS|EdgiOS|OPiOS|OPT\/|DuckDuckGo|Ddg\//.test(navigator.userAgent || ''); } catch (_) { return false; }
   }
 
   function getInstallDismissed() {
@@ -23326,6 +23406,12 @@ window.addEventListener('hashchange', () => {
 
     document.body.appendChild(el);
     installBannerEl = el;
+    /* se rotula al mostrarse, y sale a los 4 s: en la primera visita, encima
+       de la pantalla de bienvenida, que es donde se elige el idioma. Sin esto
+       se quedaba en el de antes (31 de octubre de 2026) */
+    try { TG_IDIOMA.registrar('banner de instalar', function () {
+      if (installBannerEl) textoBanner(installBannerEl);
+    }); } catch (e) {}
     return el;
   }
 
@@ -23342,34 +23428,62 @@ window.addEventListener('hashchange', () => {
   }
 
   function showInstallInstructions() {
-    // Textos por idioma. Chino en escapes \uXXXX para evitar problemas de codificacion.
-    var TX = {
-      es:{t:'Instalar la app',ios:'En <b>Safari</b>, toque el botón <b>Compartir</b> (cuadrado con flecha) y elija <b>Añadir a pantalla de inicio</b>.',and:'En <b>Chrome</b>, abra el menú <b>\u22EE</b> y elija <b>Instalar aplicación</b>.',pc:'En el navegador, busque el icono de <b>instalar</b> en la barra de direcciones, o abra el menú y elija <b>Instalar</b>.',ok:'Entendido'},
-      en:{t:'Install the app',ios:'In <b>Safari</b>, tap the <b>Share</b> button (square with arrow) and choose <b>Add to Home Screen</b>.',and:'In <b>Chrome</b>, open the <b>\u22EE</b> menu and choose <b>Install app</b>.',pc:'In your browser, look for the <b>install</b> icon in the address bar, or open the menu and choose <b>Install</b>.',ok:'Got it'},
-      fr:{t:'Installer l\u2019app',ios:'Dans <b>Safari</b>, touchez le bouton <b>Partager</b> (carré avec flèche) et choisissez <b>Sur l\u2019écran d\u2019accueil</b>.',and:'Dans <b>Chrome</b>, ouvrez le menu <b>\u22ee</b> et choisissez <b>Installer l\u2019application</b>.',pc:'Dans le navigateur, cherchez l\u2019icône <b>installer</b> dans la barre d\u2019adresse, ou ouvrez le menu et choisissez <b>Installer</b>.',ok:'Compris'},
-      de:{t:'App installieren',ios:'Tippen Sie in <b>Safari</b> auf <b>Teilen</b> (Quadrat mit Pfeil) und wählen Sie <b>Zum Home-Bildschirm</b>.',and:'Öffnen Sie in <b>Chrome</b> das Menü <b>\u22ee</b> und wählen Sie <b>App installieren</b>.',pc:'Suchen Sie im Browser das <b>Installieren</b>-Symbol in der Adresszeile oder öffnen Sie das Menü und wählen Sie <b>Installieren</b>.',ok:'Verstanden'},
-      it:{t:'Installa l\u2019app',ios:'In <b>Safari</b>, tocchi <b>Condividi</b> (quadrato con freccia) e scelga <b>Aggiungi a Home</b>.',and:'In <b>Chrome</b>, apra il menu <b>\u22ee</b> e scelga <b>Installa app</b>.',pc:'Nel browser, cerchi l\u2019icona <b>installa</b> nella barra degli indirizzi, oppure apra il menu e scelga <b>Installa</b>.',ok:'Ho capito'},
-      nl:{t:'App installeren',ios:'Tik in <b>Safari</b> op <b>Deel</b> (vierkant met pijl) en kies <b>Zet op beginscherm</b>.',and:'Open in <b>Chrome</b> het menu <b>\u22EE</b> en kies <b>App installeren</b>.',pc:'Zoek in uw browser het <b>installeren</b>-icoon in de adresbalk, of open het menu en kies <b>Installeren</b>.',ok:'Begrepen'},
-      zh:{t:'\u5B89\u88C5\u5E94\u7528',ios:'\u5728 <b>Safari</b> \u4E2D\u70B9\u51FB<b>\u5206\u4EAB</b>\u6309\u94AE\uFF08\u5E26\u7BAD\u5934\u7684\u65B9\u5757\uFF09\uFF0C\u9009\u62E9<b>\u6DFB\u52A0\u5230\u4E3B\u5C4F\u5E55</b>\u3002',and:'\u5728 <b>Chrome</b> \u4E2D\u6253\u5F00<b>\u22EE</b>\u83DC\u5355\uFF0C\u9009\u62E9<b>\u5B89\u88C5\u5E94\u7528</b>\u3002',pc:'\u5728\u6D4F\u89C8\u5668\u5730\u5740\u680F\u67E5\u627E<b>\u5B89\u88C5</b>\u56FE\u6807\uFF0C\u6216\u6253\u5F00\u83DC\u5355\u9009\u62E9<b>\u5B89\u88C5</b>\u3002',ok:'\u77E5\u9053\u4E86'},
-      zht:{t:'\u5B89\u88DD\u61C9\u7528',ios:'\u5728 <b>Safari</b> \u4E2D\u9EDE\u64CA<b>\u5206\u4EAB</b>\u6309\u9215\uFF08\u5E36\u7BAD\u982D\u7684\u65B9\u584A\uFF09\uFF0C\u9078\u64C7<b>\u52A0\u5165\u4E3B\u756B\u9762</b>\u3002',and:'\u5728 <b>Chrome</b> \u4E2D\u6253\u958B<b>\u22EE</b>\u9078\u55AE\uFF0C\u9078\u64C7<b>\u5B89\u88DD\u61C9\u7528\u7A0B\u5F0F</b>\u3002',pc:'\u5728\u700F\u89BD\u5668\u7DB2\u5740\u5217\u5C0B\u627E<b>\u5B89\u88DD</b>\u5716\u793A\uFF0C\u6216\u6253\u958B\u9078\u55AE\u9078\u64C7<b>\u5B89\u88DD</b>\u3002',ok:'\u77E5\u9053\u4E86'},
-      bg:{t:'Инсталирай приложението',ios:'В <b>Safari</b> докоснете бутона <b>Сподели</b> (квадрат със стрелка) и изберете <b>Добави към начален екран</b>.',and:'В <b>Chrome</b> отворете менюто <b>⋮</b> и изберете <b>Инсталирай приложението</b>.',pc:'В браузъра потърсете иконата за <b>инсталиране</b> в адресната лента или отворете менюто и изберете <b>Инсталирай</b>.',ok:'Разбрах'}, pl: {"t":"Zainstaluj aplikację","ios":"W <b>Safari</b> wystarczy dotknąć przycisku <b>Udostępnij</b> (kwadrat ze strzałką) i wybrać <b>Do ekranu początkowego</b>.","and":"W <b>Chrome</b> wystarczy otworzyć menu <b>⋮</b> i wybrać <b>Zainstaluj aplikację</b>.","pc":"W przeglądarce wystarczy poszukać ikony <b>instalacji</b> w pasku adresu albo otworzyć menu i wybrać <b>Zainstaluj</b>.","ok":"Rozumiem"}
-    };
-    var L = TX.es;
-    try { if (typeof currentLang !== 'undefined' && TX[currentLang]) L = TX[currentLang]; } catch (_) {}
-    var body = isIOS() ? L.ios : (isAndroidUA() ? L.and : L.pc);
+    /* Los textos, en PWA_TX (clave -> idioma), como el resto del modulo: antes
+       iban aqui en una tabla por idioma que la auditoria de idiomas no
+       recorria. Dentro del navegador de otra app, dos pasos: salir al
+       navegador (o copiar el enlace) y, alli, añadirla a la pantalla de
+       inicio. Los pasos llevan <b> y son nuestros; el titulo y los botones,
+       con esc(). */
+    var ios = isIOS(), enApp = navegadorDeApp();
+    var cuerpo = enApp
+      ? '<ol class="pwa-pasos"><li>' + ptx(ios ? 'instAppIos' : 'instAppAnd') + '</li><li>' + ptx(ios ? 'instIos' : 'instAnd') + '</li></ol>'
+      : '<p class="pwa-paso">' + ptx(ios ? (otroNavegadorIOS() ? 'instIosOtro' : 'instIos') : (isAndroidUA() ? 'instAnd' : 'instPc')) + '</p>';
 
     var bd = ensureModalBackdrop();
     bd.querySelector('.pwa-modal').innerHTML =
-      '<h3>' + L.t + '</h3>' +
-      '<p style="font-size:0.85rem;color:rgba(240,236,228,0.75);line-height:1.5;margin:0.5rem 0 1rem">' +
-      body + '</p>' +
+      '<h3>' + esc(ptx('instTitulo')) + '</h3>' + cuerpo +
       '<div class="pwa-modal-actions">' +
-      '<button type="button" class="pwa-modal-ok">' + L.ok + '</button>' +
+      (enApp ? '<button type="button" class="pwa-modal-copiar">' + esc(ptx('copiarEnlace')) + '</button>' : '') +
+      '<button type="button" class="pwa-modal-ok">' + esc(ptx('instOk')) + '</button>' +
       '</div>';
+    var copiar = bd.querySelector('.pwa-modal-copiar');
+    if (copiar) copiar.addEventListener('click', safe(function() { copiarEnlace(copiar); }));
     bd.querySelector('.pwa-modal-ok').addEventListener('click', safe(function() {
       bd.classList.remove('show');
     }));
     bd.classList.add('show');
+  }
+
+  /* La direccion de la app, sin lo que le añada la otra app (?fbclid=…) ni el
+     #. Si el portapapeles no deja, la de siempre con un textarea; y si ni
+     eso, la direccion a la vista en lugar del boton, para copiarla a mano. */
+  function copiarEnlace(boton) {
+    var url = location.origin + location.pathname;
+    function hecho() { boton.textContent = ptx('enlaceCopiado'); boton.disabled = true; }
+    function aMano() {
+      try {
+        var t = document.createElement('textarea');
+        t.value = url;
+        t.setAttribute('readonly', '');
+        t.style.position = 'fixed'; t.style.top = '0'; t.style.opacity = '0';
+        document.body.appendChild(t);
+        t.select(); t.setSelectionRange(0, url.length);
+        var ok = document.execCommand('copy');
+        document.body.removeChild(t);
+        if (ok) { hecho(); return; }
+      } catch (_) {}
+      var p = document.createElement('p');
+      p.className = 'pwa-paso pwa-enlace';
+      p.textContent = url;
+      boton.parentNode.replaceChild(p, boton);
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(hecho, aMano);
+        return;
+      }
+    } catch (_) {}
+    aMano();
   }
 
   // Listener para beforeinstallprompt (Android/Chrome/Edge)
@@ -23381,10 +23495,11 @@ window.addEventListener('hashchange', () => {
     setTimeout(safe(showInstallBanner), 3000);
   }));
 
-  // En iOS, mostrar banner si no está instalada (no hay beforeinstallprompt)
+  // En iOS, mostrar banner si no está instalada (no hay beforeinstallprompt);
+  // y en el navegador de otra app, tambien en Android: alli tampoco llega.
   window.addEventListener('load', safe(function() {
     setTimeout(safe(function() {
-      if (isIOS() && !isStandalone() && !getInstallDismissed()) {
+      if ((isIOS() || navegadorDeApp()) && !isStandalone() && !getInstallDismissed()) {
         showInstallBanner();
       }
     }), 4000);
