@@ -1251,13 +1251,14 @@
   /* Los colores del 3D: los del suelo, para verse con luz y sombra. Sin
      rellenar los espacios protegidos (el Parque Nacional es roca, no bosque)
      y sin nombres: los nombres van aparte, siempre de cara. */
-  function reglasDrape(detallado) {
+  /* Las mismas reglas para los dos mapas: el base es, desde el 31 de octubre por la tarde, un
+     recorte del detallado con el mismo esquema (tools/mapa_base.py). Lo que no trae (usos del
+     suelo, edificios, senderos), no se pinta: con el base quedan las carreteras, las calles y los
+     embalses sobre el color por altura. */
+  function reglasDrape() {
     var P = protomapsL;
     function k() { var a = arguments; return function (z, f) { for (var i = 0; i < a.length; i++) if (f.props.kind === a[i]) return true; return false; }; }
     function kd() { var a = arguments; return function (z, f) { for (var i = 0; i < a.length; i++) if (f.props.kind_detail === a[i]) return true; return false; }; }
-    if (!detallado) {
-      return [{ dataLayer: 'carretera', symbolizer: new P.LineSymbolizer({ color: '#d9a441', width: 1.6, opacity: 0.95 }) }];
-    }
     var poli = function (capa, fill, filtro, op) { return { dataLayer: capa, symbolizer: new P.PolygonSymbolizer({ fill: fill, opacity: op || 1 }), filter: filtro }; };
     var linea = function (capa, color, ancho, filtro, extra) {
       var o = { color: color, width: ancho, lineCap: 'round', lineJoin: 'round' };
@@ -1355,7 +1356,7 @@
     var vez = (S.detVez = (S.detVez || 0) + 1);
     S.det = S.det || {};
     S.det.pendiente = true;
-    var st = new protomapsL.Static({ url: m.pm, paintRules: reglasDrape(m.detallado), labelRules: [], maxDataZoom: m.zMax, levelDiff: 0 });
+    var st = new protomapsL.Static({ url: m.pm, paintRules: reglasDrape(), labelRules: [], maxDataZoom: m.zMax, levelDiff: 0 });
     var w = S.gl2 ? 2048 : 1536;
     var cv = document.createElement('canvas');
     cv.width = w; cv.height = w;
@@ -1394,7 +1395,7 @@
     var vez = (S.drapeVez = (S.drapeVez || 0) + 1);
     return mapaParaDrape().then(function (m) {
       if (vez !== S.drapeVez) return false;
-      var st = new protomapsL.Static({ url: m.pm, paintRules: reglasDrape(m.detallado), labelRules: [], maxDataZoom: m.zMax, levelDiff: 0 });
+      var st = new protomapsL.Static({ url: m.pm, paintRules: reglasDrape(), labelRules: [], maxDataZoom: m.zMax, levelDiff: 0 });
       var tope = Math.min(S.gl.getParameter(S.gl.MAX_TEXTURE_SIZE) || 2048, 4096);
       var w = Math.min(tope, (S.gl2 && S.w * S.dpr > 1400) ? 3072 : 2048), h = Math.round(w * S.alto / S.ancho);
       var cv = document.createElement('canvas');

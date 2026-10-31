@@ -1,205 +1,368 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-mapa_base.py — construye el mapa base que viaja DENTRO de la app.
+mapa_base.py — el mapa base que viaja DENTRO de la app, recortado del detallado.
 
-    python3 tools/mapa_base.py
-
-Escribe mapa/tenerife-base.pmtiles.
+    python3 tools/mapa_base.py              # escribe mapa/tenerife-base.pmtiles
+    python3 tools/mapa_base.py --comprobar  # el del repositorio, ¿es el que sale del detallado?
 
 POR QUE EXISTE
   La app se abrio en un avion y salio el mapa en blanco. Guardar las teselas
-  que el usuario ya ha mirado -lo que hace ahora el service worker- arregla
-  ese caso, pero no el de alguien que instala la app y se va al monte. Para
-  eso el mapa tiene que venir dentro.
+  que el usuario ya ha mirado -lo que hace el service worker- arregla ese
+  caso, pero no el de alguien que instala la app y se va al monte. Para eso el
+  mapa tiene que venir dentro: este, en el precache del service worker.
 
-DE DONDE SALEN LOS DATOS
-  De la propia app. No se descarga nada y no se inventa nada:
+DE DONDE SALE (desde el 31 de octubre de 2026, por la tarde)
+  De mapa/tenerife-osm.pmtiles, el mapa detallado que ya esta en el
+  repositorio (OpenStreetMap, con el esquema de Protomaps): las mismas
+  teselas de z6 a z13, con solo una parte de lo que llevan. La geometria se
+  copia tal cual, byte a byte: no se recorta, no se simplifica y no se mueve
+  ni una coordenada. Por eso la costa es la misma en el mapa base, en el
+  detallado y en el 3D, y el estilo tambien (estiloIslaBase llama a
+  estiloIslaDetallada, en index.html).
 
-    tierra     tools/datos/costa_tenerife.json — el poligono de la isla,
-               GSHHG a resolucion full, 1.542 vertices.
-    carretera  los `via` de las 183 lineas de TITSA_LINES — 26.593 vertices
-               de trazado real sacados de shapes.txt del GTFS. Se unen y se
-               deduplican: 183 lineas comparten calzada, y lo que queda es la
-               red viaria, no las rutas de guagua.
-    sitio      los nucleos y ciudades de places[] — coordenadas reales de la
-               propia app, no centroides ni geocodificacion.
+  Jerome, 31 de octubre de 2026: «verifica la carta completa 2D de la mapa
+  offline. La quiero de qualidad superior en cada rincón». El de antes se
+  hacia con la costa de GSHHG (1.542 vertices: de cerca, a tramos rectos, y
+  con las calas comidas, de 250 a 500 m) y con los trazados de las 183 lineas
+  de guagua del GTFS de TITSA como carreteras: todas iguales, solo por donde
+  pasa una guagua, y con rectas donde un trazado del GTFS salta (al norte de
+  Adeje dibujaba una cuña de dos rectas que no es ninguna carretera). Pesaba
+  1,06 MB, casi todo esas lineas sin simplificar en los zooms bajos. Medido
+  el mismo dia, a z13 y en toda la isla (doce cuadros de 1.600 x 1.600 px):
+  el mar del mapa base de antes se separaba del de OpenStreetMap en 252.881
+  pixeles; el de este, en 4.431, que son rotulos y lineas de barco sobre el
+  agua, no costa. Este pesa 1,09 MB.
 
-  Lo que NO lleva: senderos y curvas de nivel, que no estan en ningun dato
-  que tengamos. Para eso hace falta un .pmtiles de OSM, que es el bloque 4 y
-  es opcional. Este de aqui es el suelo: costa, carreteras y nombres, siempre
-  presente y sin que nadie tenga que descargar nada.
+QUE LLEVA (CAPAS) Y QUE NO
+  earth    la tierra y los acantilados                  todo
+  water    embalses, balsas, lagunas, piscinas...       los poligonos menos el
+                                                        mar, que es el fondo
+  landuse  el Parque Nacional                           solo se pinta su borde
+  roads    autopistas y carreteras, barcos, teleferico,
+           pistas del aeropuerto; y en z13 las calles   (residential,
+           y las calles peatonales                      unclassified,
+                                                        living_street, road;
+                                                        y pedestrian)
+  places   ciudades, pueblos, aldeas, caserios, barrios y parajes
+  pois     los picos con su altitud, las playas y el Parque Nacional
+  NO lleva senderos, pistas, aceras, caminos de servicio, edificios, el resto de los
+           usos del suelo, los limites municipales ni los barrancos: eso es
+           el mapa detallado, que se descarga desde la ⓘ (12 MB).
+  De cada rasgo, solo las propiedades que mira el estilo (PROPIEDADES).
 
 ZOOM
-  z6 a z13. De z14 para arriba el renderizador reutiliza el z13 -es lo que
-  hace maxDataZoom-, asi que generar mas solo engorda el fichero.
+  z6 a z13, como antes. De z14 para arriba el renderizador reescala el z13
+  (maxDataZoom sale de la cabecera del propio fichero).
+
+SI SE REHACE EL DETALLADO
+  Hay que rehacer este (y nombres_chinos_mapa.py): el workflow
+  generar-mapa.yml lo hace al hacer commit del detallado, y --comprobar, que
+  pasa en tools/auditar.sh, lo canta si no se hace.
+
+LA HUELLA EN sw.js
+  El service worker sirve este fichero de su precache, que solo se rehace
+  cuando cambia sw.js. Por eso sw.js lleva su huella (MAPA_BASE_HUELLA, los
+  16 primeros caracteres de su sha256): la escribe esta herramienta al
+  generar el mapa y la coteja --comprobar. Sin ella, un mapa base nuevo no
+  llegaria a quien ya tiene la app instalada. Sale el mismo fichero
+  byte a byte cada vez (gzip sin la hora dentro, el JSON ordenado). Si alguna
+  vez un zlib distinto comprimiera distinto, --comprobar lo dice y compara el
+  contenido: el de cada tesela, sin comprimir.
+
+Sin paquetes: lee y escribe con tools/pmtiles_ligero.py.
 """
-import json, math, os, re, sys, gzip
+import hashlib
+import json
+import os
+import re
+import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from shapely.geometry import Polygon, LineString, MultiLineString, Point, box, mapping
-from shapely.ops import transform as sh_transform
-import mapbox_vector_tile as mvt
-from pmtiles.writer import Writer
-from pmtiles.tile import TileType, Compression, zxy_to_tileid
-
-# ── que el fichero salga igual en cada ejecucion ──────────────────────────
-# gzip escribe la hora dentro de cada bloque comprimido, asi que dos
-# generaciones seguidas daban un fichero distinto: 4 bytes de diferencia, pero
-# 1,1 MB de diff binario en el repositorio cada vez que se regenerara, sin que
-# hubiera cambiado ni un dato.
-#
-# Dos de esos bloques -el directorio raiz y los metadatos- los comprime la
-# propia libreria pmtiles con un gzip.compress() sin mtime, donde no se puede
-# pasar el parametro. De ahi que se fuerce aqui, para todo el proceso. No es
-# el PYTHONHASHSEED: se probo, y con la semilla fija seguian saliendo los
-# mismos 4 bytes distintos.
-_gzip_compress = gzip.compress
-gzip.compress = lambda datos, nivel=9, **kw: _gzip_compress(datos, nivel, mtime=0)
+import pmtiles_ligero as pl
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FUENTE = os.path.join(RAIZ, 'mapa', 'tenerife-osm.pmtiles')
 SALIDA = os.path.join(RAIZ, 'mapa', 'tenerife-base.pmtiles')
 Z_MIN, Z_MAX = 6, 13
-EXTENT = 4096
-# La caja de navegacion del mapa de la app, ni mas ni menos.
+# La caja de navegacion del mapa de la app, ni mas ni menos (la del detallado).
 BBOX = (-16.98, 27.90, -16.08, 28.65)
+CENTRO = (10, -16.53, 28.275)
+TOPE_BYTES = 1500000
+SW = os.path.join(RAIZ, 'sw.js')
+HUELLA_RE = re.compile(r"^const MAPA_BASE_HUELLA = '([0-9a-f]{16})';$", re.M)
 
-R = 6378137.0
-def a_mercator(lon, lat):
-    x = math.radians(lon) * R
-    y = math.log(math.tan(math.pi / 4 + math.radians(lat) / 2)) * R
-    return x, y
-def merc_geom(g):
-    return sh_transform(lambda xs, ys: tuple(zip(*[a_mercator(x, y) for x, y in zip(xs, ys)])), g)
-
-def caja_tesela(z, x, y):
-    """Limites de una tesela en metros de Mercator."""
-    n = 2 ** z
-    lado = 2 * math.pi * R / n
-    x0 = -math.pi * R + x * lado
-    y1 = math.pi * R - y * lado
-    return (x0, y1 - lado, x0 + lado, y1)
-
-def rango_teselas(z):
-    def xt(lon): return int((lon + 180) / 360 * 2 ** z)
-    def yt(lat):
-        r = math.radians(lat)
-        return int((1 - math.log(math.tan(r) + 1 / math.cos(r)) / math.pi) / 2 * 2 ** z)
-    return xt(BBOX[0]), yt(BBOX[3]), xt(BBOX[2]), yt(BBOX[1])
+# Los diez idiomas de la app, con las claves del esquema de Protomaps (el chino,
+# zh-Hans y zh-Hant; en chino el estilo pinta los pueblos con MAPA_NOMBRES_ZH).
+IDIOMAS = ('es', 'en', 'fr', 'de', 'it', 'nl', 'bg', 'pl', 'zh-Hans', 'zh-Hant')
+PROPIEDADES = frozenset(('kind', 'kind_detail', 'min_zoom', 'name', 'ref', 'is_tunnel', 'is_bridge',
+                         'is_link', 'population', 'population_rank', 'elevation')
+                        + tuple('name:' + i for i in IDIOMAS))
+CAPAS = ('earth', 'water', 'landuse', 'roads', 'places', 'pois')
+VIAS = frozenset(('highway', 'major_road', 'ferry', 'aerialway', 'aeroway'))
+CALLES = frozenset(('residential', 'unclassified', 'living_street', 'road'))
+# Las calles peatonales (en Protomaps van con los caminos, kind=path): sin ellas, el casco de La
+# Laguna, que es casi todo peatonal, salia a huecos.
+PEATONALES = frozenset(('pedestrian',))
+Z_CALLES = 13
+# Todos los nombres de lugar que pinta el estilo: de los pueblos a los parajes (la cumbre del Teide,
+# La Rambleta, las Cañadas...), que salen de z14 para arriba. Son poco peso y son los rincones.
+SITIOS = frozenset(('city', 'town', 'village', 'hamlet', 'suburb', 'quarter', 'neighbourhood',
+                    'locality', 'isolated_dwelling', 'farm'))
+PUNTOS = frozenset(('peak', 'beach', 'national_park'))
+# Una tesela de mar abierto al suroeste de la isla (z12): en el base no lleva nada.
+MAR_ABIERTO = (12, 1859, 1719)
 
 
-def leer_datos():
-    src = open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
-    # Los `via` de las lineas viven en datos/titsa.js desde el 9 de octubre de
-    # 2026; los nucleos siguen en places[], dentro de index.html.
-    red = open(os.path.join(RAIZ, 'datos', 'titsa.js'), encoding='utf-8').read()
+def entra(capa, z, tipo, p):
+    """¿Va este rasgo al mapa base? p: sus propiedades."""
+    k = p.get('kind')
+    if capa == 'earth':
+        return True
+    if capa == 'water':
+        return tipo == 3 and k != 'ocean'
+    if capa == 'landuse':
+        return k == 'national_park'
+    if capa == 'roads':
+        if k in VIAS:
+            return True
+        if z < Z_CALLES:
+            return False
+        d = p.get('kind_detail')
+        return (k == 'minor_road' and d in CALLES) or (k == 'path' and d in PEATONALES)
+    if capa == 'places':
+        return p.get('kind_detail') in SITIOS
+    if capa == 'pois':
+        return k in PUNTOS
+    return False
 
-    costa = json.load(open(os.path.join(RAIZ, 'tools/datos/costa_tenerife.json'), encoding='utf-8'))
-    tierra = Polygon([(p[1], p[0]) for p in costa['anillo']])          # [lat,lon] -> (lon,lat)
-    if not tierra.is_valid:
-        tierra = tierra.buffer(0)
 
-    vias = []
-    for m in re.finditer(r'via:\s*\[\s*(\[[^\]]*\](?:\s*,\s*\[[^\]]*\])*)\s*\]', red):
-        pts = [tuple(map(float, p.split(','))) for p in re.findall(r'\[([-\d.]+,\s*[-\d.]+)\]', m.group(1))]
-        if len(pts) > 1:
-            vias.append(LineString([(lo, la) for la, lo in pts]))       # a (lon,lat)
-    # Sin trazados el mapa saldria sin carreteras y sin dar error: se para.
-    if not vias:
-        raise SystemExit('ABORTADO: no encuentro ningun `via` en datos/titsa.js')
-
-    # Nucleos y ciudades: los dos prefijos apuntan al mismo sitio en muchos
-    # casos, asi que se quedan por nombre y coordenada, sin repetir.
-    sitios, vistos = [], set()
-    for m in re.finditer(r'\{\s*id:"((?:nucleo|ciudad)-[a-z0-9\-]+)",[^\n]*?name:"((?:[^"\\]|\\.)*)"[^\n]*?lat:([-\d.]+),\s*lng:([-\d.]+)', src):
-        nombre = m.group(2)
-        clave = (round(float(m.group(3)), 3), round(float(m.group(4)), 3))
-        if clave in vistos:
+def recortar(buf, z, cuenta):
+    """Los bytes MVT de la tesela del base, a partir de los de la detallada (b'' si no queda nada)."""
+    salida = []
+    for nombre, claves, valores, rasgos, ext in pl.capas_crudas(buf):
+        if nombre not in CAPAS:
             continue
-        vistos.add(clave)
-        sitios.append((Point(float(m.group(4)), float(m.group(3))), nombre))
+        nclaves, nvalores, iclave, ivalor, nuevos = [], [], {}, {}, []
+        for w in rasgos:
+            tags, tipo, geo = pl.rasgo_crudo(w)
+            p = {claves[tags[i]]: pl.valor(valores[tags[i + 1]]) for i in range(0, len(tags) - 1, 2)}
+            if not entra(nombre, z, tipo, p):
+                continue
+            t = []
+            for i in range(0, len(tags) - 1, 2):
+                k, v = claves[tags[i]], valores[tags[i + 1]]
+                if k not in PROPIEDADES:
+                    continue
+                if k not in iclave:
+                    iclave[k] = len(nclaves)
+                    nclaves.append(k)
+                if v not in ivalor:
+                    ivalor[v] = len(nvalores)
+                    nvalores.append(v)
+                t += [iclave[k], ivalor[v]]
+            r = (pl.campo_bytes(2, b''.join(pl.vint(x) for x in t)) if t else b'')
+            nuevos.append(r + pl.campo_vint(3, tipo) + pl.campo_bytes(4, geo))
+            cuenta[nombre] = cuenta.get(nombre, 0) + 1
+        if not nuevos:
+            continue
+        capa = pl.campo_vint(15, 2) + pl.campo_bytes(1, nombre.encode('utf-8'))
+        capa += b''.join(pl.campo_bytes(2, r) for r in nuevos)
+        capa += b''.join(pl.campo_bytes(3, k.encode('utf-8')) for k in nclaves)
+        capa += b''.join(pl.campo_bytes(4, v) for v in nvalores)
+        capa += pl.campo_vint(5, ext)
+        salida.append(pl.campo_bytes(3, capa))
+    return b''.join(salida)
 
-    return tierra, vias, sitios
+
+def sha256(ruta):
+    h = hashlib.sha256()
+    with open(ruta, 'rb') as f:
+        for trozo in iter(lambda: f.read(1 << 20), b''):
+            h.update(trozo)
+    return h.hexdigest()
+
+
+def construir():
+    """{tile_id: MVT}, los metadatos y las cuentas por capa."""
+    if not os.path.exists(FUENTE):
+        raise SystemExit('ABORTADO: no esta %s, que es de donde sale el mapa base' % os.path.relpath(FUENTE, RAIZ))
+    src = pl.PMTiles(FUENTE)
+    try:
+        mf = src.metadatos()
+        capas_f = sorted(v.get('id') for v in mf.get('vector_layers', []))
+        # Con otro esquema el mapa saldria vacio sin dar error: se para.
+        for c in ('earth', 'roads', 'places'):
+            if c not in capas_f:
+                raise SystemExit('ABORTADO: %s no trae la capa %s (¿no es el esquema de Protomaps?): %s'
+                                 % (os.path.relpath(FUENTE, RAIZ), c, ', '.join(capas_f)))
+        teselas, cuenta = {}, {}
+        for z, x, y, buf in src.todas():
+            if Z_MIN <= z <= Z_MAX:
+                mvt = recortar(buf, z, cuenta)
+                if mvt:
+                    teselas[pl.zxy_a_id(z, x, y)] = mvt
+    finally:
+        src.cerrar()
+    campos = {
+        'earth': ['kind', 'min_zoom', 'name'],
+        'water': ['kind', 'kind_detail', 'min_zoom', 'name'],
+        'landuse': ['kind', 'min_zoom', 'name'],
+        'roads': ['kind', 'kind_detail', 'min_zoom', 'name', 'ref', 'is_tunnel', 'is_bridge', 'is_link'],
+        'places': ['kind', 'kind_detail', 'min_zoom', 'name', 'population', 'population_rank'],
+        'pois': ['kind', 'min_zoom', 'name', 'elevation'],
+    }
+    meta = {
+        'name': 'Tenerife Go — mapa base',
+        'description': ('Recorte ligero de mapa/tenerife-osm.pmtiles (OpenStreetMap, esquema de Protomaps): '
+                        'la tierra y la costa, las carreteras, los pueblos, los picos y las playas, de z%d a z%d. '
+                        'Lo hace tools/mapa_base.py.' % (Z_MIN, Z_MAX)),
+        'attribution': mf.get('attribution') or '<a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap</a>',
+        'type': 'baselayer',
+        'vector_layers': [{'id': c, 'fields': {k: 'String' for k in campos[c]}} for c in CAPAS if cuenta.get(c)],
+        'tgo:fuente': {
+            'fichero': 'mapa/tenerife-osm.pmtiles',
+            'sha256': sha256(FUENTE),
+            'version': mf.get('version'),
+            'datos_osm_hasta': mf.get('planetiler:osm:osmosisreplicationtime'),
+        },
+    }
+    return teselas, meta, cuenta
+
+
+def escribir(ruta, teselas, meta):
+    return pl.escribir_pmtiles(ruta, teselas, meta, {'zmin': Z_MIN, 'zmax': Z_MAX, 'bbox': BBOX, 'centro': CENTRO})
+
+
+def huella_en_sw():
+    """La huella que lleva sw.js, o None si no esta la linea (una sola vez)."""
+    m = HUELLA_RE.findall(open(SW, encoding='utf-8').read())
+    return m[0] if len(m) == 1 else None
+
+
+def escribir_huella(h):
+    s = open(SW, encoding='utf-8').read()
+    if len(HUELLA_RE.findall(s)) != 1:
+        raise SystemExit('ABORTADO: sw.js no tiene una (y solo una) linea «const MAPA_BASE_HUELLA = \'...\';»')
+    nuevo = HUELLA_RE.sub("const MAPA_BASE_HUELLA = '%s';" % h, s)
+    if nuevo != s:
+        with open(SW, 'w', encoding='utf-8') as f:
+            f.write(nuevo)
+
+
+def comprobar():
+    fallos = []
+
+    def mal(m):
+        fallos.append(m)
+        print('  FALLO: ' + m)
+
+    def ok(m):
+        print('  ok  ' + m)
+
+    if not os.path.exists(SALIDA):
+        print('  FALLO: no esta %s' % os.path.relpath(SALIDA, RAIZ))
+        return 1
+    teselas, meta, cuenta = construir()
+    tmp = SALIDA + '.comprobar'
+    try:
+        escribir(tmp, teselas, meta)
+        igual = open(tmp, 'rb').read() == open(SALIDA, 'rb').read()
+    finally:
+        if os.path.exists(tmp):
+            os.remove(tmp)
+
+    p = pl.PMTiles(SALIDA)
+    try:
+        c = p.cab
+        hay = {pl.id_a_zxy(t): None for t, _, _ in p.entradas()}
+        if igual:
+            ok('es el que sale de mapa/tenerife-osm.pmtiles, byte a byte (%d teselas)' % len(teselas))
+        else:
+            # ¿el mismo contenido, comprimido de otra forma?
+            dentro = {pl.zxy_a_id(z, x, y): d for z, x, y, d in p.todas()}
+            if dentro == teselas and p.metadatos() == json.loads(json.dumps(meta, ensure_ascii=False)):
+                ok('mismas teselas y metadatos que salen del detallado (comprimidos de otra forma: otro zlib)')
+            else:
+                mal('no es el que sale de mapa/tenerife-osm.pmtiles: python3 tools/mapa_base.py '
+                    '(¿se rehizo el detallado sin rehacer el base?)')
+        if (c['zmin'], c['zmax'], c['tipo']) == (Z_MIN, Z_MAX, 1):
+            ok('z%d a z%d, teselas vectoriales (MVT)' % (Z_MIN, Z_MAX))
+        else:
+            mal('cabecera: zoom %s-%s, tipo %s' % (c['zmin'], c['zmax'], c['tipo']))
+        caja = (c['lon_min'], c['lat_min'], c['lon_max'], c['lat_max'])
+        if all(abs(a - b) < 1e-6 for a, b in zip(caja, BBOX)):
+            ok('la caja es la de la app: %s' % ', '.join('%.2f' % v for v in caja))
+        else:
+            mal('la caja es %s y la de la app %s' % (caja, BBOX))
+        m = p.metadatos()
+        if 'OpenStreetMap' in (m.get('attribution') or ''):
+            ok('los metadatos dan el credito a OpenStreetMap')
+        else:
+            mal('los metadatos no nombran a OpenStreetMap: %r' % m.get('attribution'))
+        capas = sorted(v['id'] for v in m.get('vector_layers', []))
+        if set(capas) <= set(CAPAS) and {'earth', 'roads', 'places'} <= set(capas):
+            ok('capas: %s' % ', '.join(capas))
+        else:
+            mal('capas: %s' % ', '.join(capas))
+        if MAR_ABIERTO not in hay:
+            ok('una tesela de mar abierto no ocupa sitio (z%d/%d/%d)' % MAR_ABIERTO)
+        else:
+            mal('la tesela de mar abierto z%d/%d/%d lleva algo' % MAR_ABIERTO)
+        # lo que no tiene que ir: senderos, edificios, el mar como poligono
+        prohibido = {}
+        for z, x, y, d in p.todas():
+            for nombre, claves, valores, rasgos, _ in pl.capas_crudas(d):
+                if nombre not in CAPAS:
+                    prohibido['capa ' + nombre] = prohibido.get('capa ' + nombre, 0) + 1
+                    continue
+                for w in rasgos:
+                    tags, tipo, _ = pl.rasgo_crudo(w)
+                    q = {claves[tags[i]]: pl.valor(valores[tags[i + 1]]) for i in range(0, len(tags) - 1, 2)}
+                    if not entra(nombre, z, tipo, q):
+                        k = '%s/%s' % (nombre, q.get('kind'))
+                        prohibido[k] = prohibido.get(k, 0) + 1
+                    sobra = set(q) - PROPIEDADES
+                    if sobra:
+                        k = 'propiedad ' + ','.join(sorted(sobra))
+                        prohibido[k] = prohibido.get(k, 0) + 1
+        if not prohibido:
+            ok('ni senderos, ni edificios, ni el mar, ni propiedades que el estilo no mira')
+        else:
+            mal('lleva lo que no tiene que llevar: %s' % prohibido)
+        h, en_sw = sha256(SALIDA)[:16], huella_en_sw()
+        if en_sw == h:
+            ok('sw.js lleva su huella (%s): un mapa base nuevo llega a quien ya tiene la app' % h)
+        else:
+            mal('sw.js lleva la huella %s y la del mapa base es %s: python3 tools/mapa_base.py' % (en_sw, h))
+        b = os.path.getsize(SALIDA)
+        if b <= TOPE_BYTES:
+            ok('%.2f MB: cabe en el precache (tope %.1f MB)' % (b / 1e6, TOPE_BYTES / 1e6))
+        else:
+            mal('%.2f MB pasa del tope de %.1f MB del precache' % (b / 1e6, TOPE_BYTES / 1e6))
+        print('  rasgos por capa: ' + ', '.join('%s %d' % (k, cuenta[k]) for k in CAPAS if k in cuenta))
+    finally:
+        p.cerrar()
+    print('\n  MAPA BASE: %s' % ('EN VERDE' if not fallos else '%d FALLO(S)' % len(fallos)))
+    return 1 if fallos else 0
 
 
 def main():
-    print('Leyendo los datos de la propia app...')
-    tierra, vias, sitios = leer_datos()
-    print('  tierra    : %d vertices' % len(tierra.exterior.coords))
-    print('  via       : %d lineas, %d vertices' % (len(vias), sum(len(v.coords) for v in vias)))
-    print('  sitios    : %d nucleos' % len(sitios))
-
-    # Las 183 se dibujan tal cual. Medido antes de decidirlo: de 26.410
-    # segmentos solo 236 estan repetidos al metro -un 1%-, porque cada trazado
-    # se simplifico por su cuenta y casi ninguno comparte vertice. Un
-    # unary_union para "unir la calzada" nodifica en cada cruce y sube de
-    # 26.593 vertices a 237.308: nueve veces mas fichero para dibujar lo
-    # mismo. Que dos trazados casi paralelos se pisen no es problema: a escala
-    # de mapa se lee como una carretera, que es lo que es.
-    tierra_m = merc_geom(tierra)
-    red_m = MultiLineString([merc_geom(t) for t in vias])
-    sitios_m = [(merc_geom(p), n) for p, n in sitios]
-
-    os.makedirs(os.path.dirname(SALIDA), exist_ok=True)
-    escritas = 0
-    with open(SALIDA, 'wb') as fh:
-        w = Writer(fh)
-        for z in range(Z_MIN, Z_MAX + 1):
-            x0, y0, x1, y1 = rango_teselas(z)
-            lado = 2 * math.pi * R / (2 ** z)
-            # Simplificar a un pixel de la tesela: por debajo de eso no se ve.
-            tol = lado / EXTENT * 4
-            for x in range(x0, x1 + 1):
-                for y in range(y0, y1 + 1):
-                    caja = caja_tesela(z, x, y)
-                    # margen para que las lineas no se corten en el borde
-                    marco = box(caja[0] - lado * 0.05, caja[1] - lado * 0.05,
-                                caja[2] + lado * 0.05, caja[3] + lado * 0.05)
-                    capas = []
-                    t = tierra_m.intersection(marco)
-                    if not t.is_empty:
-                        t = t.simplify(tol, preserve_topology=True)
-                        if not t.is_empty:
-                            capas.append({'name': 'tierra', 'features': [{'geometry': t.wkt, 'properties': {}}]})
-                    r = red_m.intersection(marco)
-                    if not r.is_empty:
-                        r = r.simplify(tol, preserve_topology=False)
-                        if not r.is_empty:
-                            capas.append({'name': 'carretera', 'features': [{'geometry': r.wkt, 'properties': {}}]})
-                    if z >= 9:
-                        dentro = [(p, n) for p, n in sitios_m if marco.contains(p)]
-                        if dentro:
-                            capas.append({'name': 'sitio', 'features':
-                                [{'geometry': p.wkt, 'properties': {'nombre': n}} for p, n in dentro]})
-                    if not capas:
-                        continue
-                    datos = mvt.encode(capas, default_options={
-                        'quantize_bounds': caja, 'extents': EXTENT, 'y_coord_down': False,
-                        'on_invalid_geometry': mvt.encoder.on_invalid_geometry_make_valid})
-                    w.write_tile(zxy_to_tileid(z, x, y), gzip.compress(datos, 6))
-                    escritas += 1
-            print('  z%-2d  %d teselas acumuladas' % (z, escritas))
-
-        w.finalize({
-            'tile_type': TileType.MVT, 'tile_compression': Compression.GZIP,
-            'min_zoom': Z_MIN, 'max_zoom': Z_MAX,
-            'min_lon_e7': int(BBOX[0] * 1e7), 'min_lat_e7': int(BBOX[1] * 1e7),
-            'max_lon_e7': int(BBOX[2] * 1e7), 'max_lat_e7': int(BBOX[3] * 1e7),
-            'center_zoom': 10,
-            'center_lon_e7': int((BBOX[0] + BBOX[2]) / 2 * 1e7),
-            'center_lat_e7': int((BBOX[1] + BBOX[3]) / 2 * 1e7),
-        }, {
-            'name': 'Tenerife Go — mapa base',
-            'description': 'Costa (GSHHG), red viaria (trazado real del GTFS de TITSA) y nucleos. Se genera con tools/mapa_base.py.',
-            'attribution': 'Costa: GSHHG · Viario: GTFS de TITSA · © Tenerife Go',
-            'vector_layers': [
-                {'id': 'tierra', 'fields': {}},
-                {'id': 'carretera', 'fields': {}},
-                {'id': 'sitio', 'fields': {'nombre': 'String'}},
-            ],
-        })
-    print('\n%s  ·  %d teselas  ·  %.1f MB' % (os.path.relpath(SALIDA, RAIZ), escritas,
-                                               os.path.getsize(SALIDA) / 1e6))
+    if '--comprobar' in sys.argv[1:]:
+        return comprobar()
+    print('Recortando %s ...' % os.path.relpath(FUENTE, RAIZ))
+    teselas, meta, cuenta = construir()
+    r = escribir(SALIDA, teselas, meta)
+    escribir_huella(sha256(SALIDA)[:16])
+    print('  huella en sw.js: %s' % huella_en_sw())
+    print('  rasgos por capa: ' + ', '.join('%s %d' % (k, cuenta[k]) for k in CAPAS if k in cuenta))
+    print('%s  ·  %d teselas (%d distintas)  ·  %.2f MB' % (os.path.relpath(SALIDA, RAIZ), r['teselas'],
+                                                          r['contenidos'], r['bytes'] / 1e6))
+    if r['bytes'] > TOPE_BYTES:
+        print('  OJO: pasa del tope de %.1f MB del precache' % (TOPE_BYTES / 1e6))
+        return 1
+    return 0
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

@@ -32,15 +32,18 @@ DE DONDE SALE CADA NOMBRE
     categorias de las dos), ni al reves.
 
 QUE NOMBRES ENTRAN
-  Solo los que salen en el mapa: los rotulos del mapa detallado
-  (mapa/tenerife-osm.pmtiles, capa places, propiedad name) y los del mapa base
-  (mapa/tenerife-base.pmtiles, capa sitio, propiedad nombre). En el mapa
-  salen los nombres oficiales, y algunas fichas usan el corto: ALIAS dice que
-  pueblo es cada uno (el oficial tiene que salir en el mapa y el corto no; si
-  no, el guion PARA). Lo que no sale en ninguna ficha se queda en castellano.
+  Solo los que salen en el mapa: los rotulos de los dos mapas de la isla
+  (mapa/tenerife-osm.pmtiles y mapa/tenerife-base.pmtiles, capa places,
+  propiedad name; el base, desde la tarde del 31 de octubre de 2026, es un
+  recorte del detallado, y antes traia los nucleos de places[] en su capa
+  sitio). En el mapa salen los nombres oficiales, y algunas fichas usan el
+  corto: ALIAS dice que pueblo es cada uno (el oficial tiene que salir en el
+  mapa y el corto no; si no, el guion PARA). Lo que no sale en ninguna ficha
+  se queda en castellano.
 
-Los .pmtiles se leen con pmtiles y mapbox_vector_tile (tools/requisitos.txt),
-como auditar_ubicacion.py.
+Los .pmtiles se leen con tools/pmtiles_ligero.py, sin paquetes (hasta el 31 de
+octubre por la tarde, con pmtiles y mapbox_vector_tile): asi corre tambien en
+el workflow que rehace el mapa detallado, que tiene que rehacer esta tabla.
 """
 import collections
 import gzip
@@ -91,20 +94,28 @@ def categorias():
 
 def nombres_del_mapa():
     """Los rotulos de lugar de los dos mapas: {nombre: 'detallado'|'base'|'los dos'}."""
-    from pmtiles.reader import Reader, MmapSource, all_tiles
-    import mapbox_vector_tile as mvt
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import pmtiles_ligero as pl
     vistos = collections.defaultdict(set)
-    for fich, capa, prop, cual in ((OSM, 'places', 'name', 'detallado'), (BASE, 'sitio', 'nombre', 'base')):
+    for fich, capa, prop, cual in ((OSM, 'places', 'name', 'detallado'), (BASE, 'places', 'name', 'base')):
         if not os.path.exists(fich):
             para('no esta %s' % os.path.relpath(fich, RAIZ))
-        with open(fich, 'rb') as f:
-            for _, data in all_tiles(Reader(MmapSource(f)).get_bytes):
-                if data[:2] == b'\x1f\x8b':
-                    data = gzip.decompress(data)
-                for ft in mvt.decode(data).get(capa, {}).get('features', []):
-                    n = ft['properties'].get(prop)
-                    if isinstance(n, str) and n:
-                        vistos[n].add(cual)
+        p = pl.PMTiles(fich)
+        try:
+            for _, _, _, data in p.todas():
+                for nombre, claves, valores, rasgos, _ in pl.capas_crudas(data):
+                    if nombre != capa or prop not in claves:
+                        continue
+                    i = claves.index(prop)
+                    for w in rasgos:
+                        tags = pl.rasgo_crudo(w)[0]
+                        for k in range(0, len(tags) - 1, 2):
+                            if tags[k] == i:
+                                n = pl.valor(valores[tags[k + 1]])
+                                if isinstance(n, str) and n:
+                                    vistos[n].add(cual)
+        finally:
+            p.cerrar()
     return {n: ('los dos' if len(v) == 2 else next(iter(v))) for n, v in vistos.items()}
 
 

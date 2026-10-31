@@ -114,6 +114,9 @@ control verificar_fichas_app.js node tools/verificar_fichas_app.js "$PUERTO"
 echo; echo "════════ texto de reserva en castellano ════════"
 control auditar_reservas.py python3 tools/auditar_reservas.py
 echo; echo "════════ mapa sin conexion ════════"
+# El mapa base es un recorte del detallado (31 de octubre de 2026, tarde): tiene que ser el que
+# sale de mapa/tenerife-osm.pmtiles tal como esta, o los dos mapas dirian costas distintas.
+control mapa_base.py python3 tools/mapa_base.py --comprobar
 # En chino, los pueblos del mapa con el nombre de las fichas: la tabla de index.html la escribe
 # tools/nombres_chinos_mapa.py y tiene que estar al dia (Jerome, 31 de octubre de 2026).
 control nombres_chinos_mapa.py python3 tools/nombres_chinos_mapa.py --comprobar

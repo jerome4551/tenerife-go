@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.080 kB** en castellano · **1.195 kB** en el peor caso (búlgaro) · 1.181 kB en polaco, el 1 de noviembre, con la isla en 3D, «Su cuerpo», los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. La isla en 3D suma 2 kB (3 en polaco, por redondeo): el botón «3D», su estilo, su cargador con la huella del relieve y sus tres filas en los diez idiomas; el motor (`modulos/isla3d.js`) y el relieve se piden al tocarlo. Sin ella, con «Su cuerpo», 1.078, 1.193 y 1.178. «Su cuerpo» suma 2 kB en castellano y en polaco, y 3 en búlgaro: su cargador y su apartado de la política, en los diez idiomas, van en `index.html`; la pantalla y sus ejercicios se piden al abrirla. Sin él, con el perfil de las tres pestañas, 1.076, 1.190 y 1.176, como antes. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco; y los nombres de las fichas en el mapa en chino, 2,6 kB (3 en castellano, 2 en búlgaro y en polaco), porque su tabla va dentro de `index.html`. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.080 kB** en castellano · **1.195 kB** en el peor caso (búlgaro) · 1.181 kB en polaco, el 1 de noviembre, con el mapa base recortado del detallado, que suma 114 bytes de `index.html` comprimido (los comentarios del estilo y del fondo de la isla, menos el estilo propio del base y dos filas de la tabla china) y por redondeo no se nota (el mapa base no cuenta: no se pide al arrancar), con la isla en 3D, «Su cuerpo», los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. La isla en 3D suma 2 kB (3 en polaco, por redondeo): el botón «3D», su estilo, su cargador con la huella del relieve y sus tres filas en los diez idiomas; el motor (`modulos/isla3d.js`) y el relieve se piden al tocarlo. Sin ella, con «Su cuerpo», 1.078, 1.193 y 1.178. «Su cuerpo» suma 2 kB en castellano y en polaco, y 3 en búlgaro: su cargador y su apartado de la política, en los diez idiomas, van en `index.html`; la pantalla y sus ejercicios se piden al abrirla. Sin él, con el perfil de las tres pestañas, 1.076, 1.190 y 1.176, como antes. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco; y los nombres de las fichas en el mapa en chino, 2,6 kB (3 en castellano, 2 en búlgaro y en polaco), porque su tabla va dentro de `index.html`. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -3877,6 +3877,117 @@ diez idiomas, sin red con el service worker, un PNG con un valor cambiado (no
 se dibuja y lo dice), la GPU que se pierde y vuelve, WebGL 1 (dibuja, sin
 sombras) y sin WebGL (lo dice y no revienta).
 
+## El mapa de la isla, rincón por rincón: el mapa base, recortado del detallado (31 de octubre, tarde)
+
+Jerome, 31 de octubre de 2026: «verifica la carta completa 2D de la mapa
+offline. La quiero de qualidad superior en cada rincón».
+
+**Cómo se miró.** Los dos mapas sin conexión, pintados con el estilo de
+`index.html` y el `protomaps-leaflet` de `vendor/`, sobre un fondo magenta para
+contar lo que quedara sin pintar: la isla entera a z12 y a z13, en cuadros de
+1.600 × 1.600 px; 41 sitios (un punto de cada municipio y diez rincones: las
+puntas de Teno, Anaga y Rasca, el Teide, Masca, El Médano, Las Teresitas, los
+dos aeropuertos y Garachico) a z12, z14, z16 y z18; y el mar de un mapa contra
+el del otro, píxel a píxel.
+En las 328 capturas de los sitios y en las de la isla entera, ningún píxel
+sin pintar y ningún error de página, en los dos mapas.
+
+**Lo que estaba mal.**
+
+- **El mapa base, el que viaja dentro de la app, era otro mapa.** La costa, la
+  de GSHHG (1.542 vértices): de cerca, a tramos rectos (de Punta del Hidalgo a
+  Taganana, casi una sola recta), sin los muelles del puerto de Santa Cruz y
+  con calas comidas. A z13, su mar se separaba del de OpenStreetMap en
+  **252.881 píxeles** de la isla entera (doce cuadros, 30,7 millones de
+  píxeles). Las carreteras, los trazados de las 183 líneas del GTFS de TITSA:
+  todas iguales, sin nombre ni matrícula, solo por donde pasa una guagua, y con
+  rectas donde un trazado salta: al norte de Adeje dibujaba una cuña de dos
+  rectas que no es ninguna carretera. Y 54 nombres, los núcleos de `places[]`.
+  En los zooms bajos, esas líneas iban casi sin simplificar: 162 kB sin
+  comprimir en las dos teselas de z6.
+
+**Lo que se hizo.**
+
+- **El mapa base es ahora un recorte del detallado** (`tools/mapa_base.py`,
+  reescrito): las mismas teselas de OpenStreetMap de z6 a z13, con la
+  geometría copiada tal cual, byte a byte. Lleva la tierra con sus acantilados,
+  los embalses y balsas, el borde del Parque Nacional, las autopistas y
+  carreteras con su categoría y su matrícula, y en z13 las calles (también las
+  peatonales: sin ellas, el casco de La Laguna salía a huecos), los barcos, el
+  teleférico, 1.547 nombres de lugar, de las ciudades a los parajes (en el
+  Teide: «Teide», «La Rambleta», «Huevos del Teide»), los picos con su altitud
+  y las playas; no lleva senderos, pistas, aceras, edificios, el resto de los
+  usos del suelo, límites ni barrancos, que son el detallado. Pesa 1.093.589
+  bytes (antes, 1.056.373: un 3,5 % más, por los nombres). Se pinta con el mismo estilo (`estiloIslaBase` llama
+  a `estiloIslaDetallada`) y lleva el crédito de OpenStreetMap (antes, «GSHHG ·
+  GTFS TITSA»). A z13, su mar y el del detallado se separan en **4.431
+  píxeles** de la isla entera: rótulos y líneas de barco que caen sobre el
+  agua, no costa.
+- **Sin paquetes.** `tools/pmtiles_ligero.py`, que ya leía, ahora también
+  escribe PMTiles; `mapa_base.py` sale igual byte a byte cada vez, y
+  `--comprobar` lo rehace en memoria y lo coteja con el del repositorio (en
+  `auditar.sh`). Con el mapa base de antes se pone en rojo (cuatro fallos: no
+  es el que sale del detallado, el crédito, las capas, y lo que lleva).
+- **Si se rehace el detallado**, el workflow `generar-mapa.yml` rehace el base
+  y la tabla de los nombres en chino antes de hacer commit, con `--comprobar`
+  de los dos.
+- **La huella del mapa base en `sw.js`** (`MAPA_BASE_HUELLA`, como la del
+  relieve): el service worker sirve el base de su precache, que solo se rehace
+  cuando cambia `sw.js`. Sin ella, el mapa base nuevo no habría llegado nunca a
+  los móviles que ya tienen la app (con el 3D llegaría esta vez, porque el 3D
+  también cambia `sw.js`, pero no la siguiente). La escribe `mapa_base.py` y
+  la coteja su `--comprobar`.
+- **Los nombres en chino** (`tools/nombres_chinos_mapa.py`) se leen ahora con
+  `pmtiles_ligero.py`: corre sin `pip`, también aquí, donde antes no podía.
+  Con el mapa base de antes da exactamente la tabla que había en `index.html`;
+  con el de ahora, 53 pueblos: salen «Arico» y «El Rosario», que eran núcleos
+  de la app y ya no están en ningún mapa (en OpenStreetMap esos pueblos son
+  «Villa de Arico» y «La Esperanza», que en chino van en castellano, como todo
+  lo que no está en la tabla).
+- **El fondo de la isla** (`ponerFondoIsla`, debajo de todas las capas) lee la
+  tierra y las carreteras del mapa base nuevo, con el crédito de OpenStreetMap
+  letra por letra igual que el de las calles (Leaflet no lo repite).
+- **En el 3D**, con el mapa base, encima del relieve van ahora las carreteras
+  por categorías, las calles y los embalses (las mismas reglas que con el
+  detallado), y no las líneas de guagua.
+
+**Lo que cuesta pintarlo.** Lleva más cosas, pero pinta igual o más rápido:
+el de antes llevaba las líneas de guagua casi sin simplificar. Medido con un
+móvil emulado (390 × 844, ×2) y la CPU 4 veces más lenta, lo que tarda en
+quedar nítido tras un cambio de zoom, mediana de cinco (las mismas vistas que
+el undécimo bloque):
+
+| tras el zoom | antes | ahora |
+|---|---|---|
+| Los Cristianos, 14 → 12,5 | 0,41 s | 0,32 s |
+| el Puerto, 12 → 14 | 0,26 s | 0,21 s |
+| el Puerto, 14 → 13 | 0,41 s | 0,28 s |
+| Santa Cruz, 15 → 16 | 0,42 s | 0,33 s |
+| Anaga, 13 → 15 | 0,19 s | 0,23 s |
+
+**Lo que se miró y estaba bien.** El detallado, en los 41 sitios y a los
+cuatro zooms: costa, carreteras, senderos, rótulos y matrículas en su sitio.
+La línea de puntos que rodea Anaga mar adentro parecía un límite municipal y
+es una línea de barco (azul, la de los barcos): ningún límite municipal cae
+en el mar (de los 4.319 vértices de límite de z13, ninguno a más de 15 m de
+la costa por el lado del mar).
+
+**Lo que no se ha tocado.** La cumbre del Teide: en OpenStreetMap va como
+volcán, y Protomaps no mete los volcanes en `pois`, así que en el mapa plano
+«Teide» sale como paraje, desde z14, sin triángulo ni altitud (sí salen Pico
+Viejo, Montaña Blanca y los demás picos). En el 3D sale de su ficha, con su
+altitud oficial. Ponerle el triángulo en el mapa
+plano con el dato de la ficha sería mezclar un dato de la app con los de
+OpenStreetMap: lo decide Jerome.
+
+**Lo que se comprueba.** `python3 tools/mapa_base.py --comprobar` (que el
+base es el que sale del detallado, su cabecera y su caja, el crédito, las
+capas, que no lleva nada de lo que no tiene que llevar, el tope de 1,5 MB y su
+huella en `sw.js`) y `tools/auditar_mapa.js`, 134 controles: el bloque 2 mira las seis capas del
+base y su crédito; el 8, que el base se pinta con el estilo del detallado y
+que el fondo lleva el crédito de las calles, y sigue pintando el base en
+chino, en tradicional y en castellano alrededor de Santa Cruz.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -6138,6 +6249,12 @@ el portal Infoplayas Canarias como origen.
 
 ## Decisión pendiente
 
+- **La cumbre del Teide en el mapa plano** (31 de octubre): en OpenStreetMap
+  va como volcán y Protomaps no mete los volcanes en `pois`, así que en los dos
+  mapas de la isla sale como paraje («Teide», desde z14), sin triángulo ni
+  altitud. En el 3D sale de su ficha, con los 3.715 m. Ponerle el triángulo en
+  el mapa plano con el dato de la ficha sería mezclar un dato de la app con los
+  de OpenStreetMap: lo decide Jerome.
 - ~~351 rótulos repetidos sin distinguir~~ **cerrado**: la fila del buscador
   pinta el municipio. «Cementerio» daba cinco filas con texto idéntico y ahora
   da cero. Los 351 rótulos siguen ahí —son sitios distintos de verdad— pero ya
@@ -6365,7 +6482,9 @@ repositorio: mientras no esté, la sección ni se ve y la app usa el mapa base.
 Ese fichero lo tiene que generar una persona: desde este contenedor el proxy
 no deja salir a Geofabrik, Overpass ni Protomaps. Cómo, en «Fuera del repo».
 
-**Qué lleva y qué no.** Costa (GSHHG), red viaria (los `via` de las 183 líneas,
+**Qué lleva y qué no.** (Así era hasta el 31 de octubre de 2026; desde esa
+tarde, el mapa base es un recorte del detallado: «El mapa de la isla, rincón
+por rincón».) Costa (GSHHG), red viaria (los `via` de las 183 líneas,
 trazado real del GTFS) y 54 núcleos con su nombre. **No lleva senderos ni
 curvas de nivel**: no están en ningún dato que tengamos. Y la costa de GSHHG
 tiene 250–500 m de error en las calas —lo midió el control de orientación—,
@@ -12342,7 +12461,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/orientacion.py` | deduce orientación de playa desde la costa · **suspendido por su propio control** |
 | `tools/auditar_sw.js` | el service worker en un ámbito falso: mapa sin conexión, tope y actualizaciones; y las notificaciones: cada una con su tag, y al tocarla, su guía, también con la app abierta |
 | `tools/auditar_mapa.js` | el mapa sin conexión, bloque a bloque; el pellizco con un gesto de verdad en un móvil emulado (bloque 6): todo pintado al soltar, sin saltos, y el fondo de la isla con sus 16 teselas; y al soltarlo (bloque 7): el punto que estaba entre los dedos, quieto, ninguna tesela pedida a mitad del gesto y la primera enseguida, con la Leaflet de `vendor/` que se sustituye |
-| `tools/mapa_base.py` | genera `mapa/tenerife-base.pmtiles` desde los datos del propio repositorio |
+| `tools/mapa_base.py` | genera `mapa/tenerife-base.pmtiles` desde los datos del propio repositorio: desde el 31 de octubre de 2026, un recorte del mapa detallado (`--comprobar` lo coteja) |
 | `tools/mapa_prueba_osm.py` | banco de pruebas con el esquema de Protomaps, para poder probar el bloque 4 |
 | `tools/verificar_osm.py` | revisa un `.pmtiles` de OSM antes de subirlo · 7 pasos |
 | `tools/verificar_estilo.js` | mide si ese fichero **se ve** con el estilo que lleva la app |

@@ -5,13 +5,35 @@
 1,1 MB. **Viaja dentro de la app**, en el precache del service worker, así que
 funciona sin conexión desde el primer arranque y sin descargar nada.
 
-Lo genera `python3 tools/mapa_base.py` con datos que ya están en el
-repositorio: la costa de GSHHG, el trazado real de las 183 líneas del GTFS de
-TITSA y 54 núcleos con su nombre. **No lleva senderos ni curvas de nivel**,
-porque no están en ningún dato nuestro.
+Desde el 31 de octubre de 2026 por la tarde es **un recorte del mapa
+detallado** (`tenerife-osm.pmtiles`, abajo): las mismas teselas de
+OpenStreetMap de z6 a z13, con la geometría copiada tal cual, byte a byte. Lleva
+la tierra y la costa con sus acantilados, los embalses y balsas, el borde del
+Parque Nacional, las autopistas y carreteras con su categoría y su matrícula
+(y en z13 las calles, también las peatonales), los barcos, el teleférico, los
+nombres de lugar que pinta el estilo, de las ciudades a los parajes (1.547),
+los picos con su altitud y las playas. **No lleva** senderos, pistas, aceras,
+edificios, el resto de los usos del suelo, los límites municipales ni los
+barrancos: eso es el detallado. Como tiene el mismo esquema, se pinta con
+el mismo estilo (`estiloIslaBase` llama a `estiloIslaDetallada`) y la costa es
+la misma en los dos mapas y en el 3D. El crédito, el de OpenStreetMap.
 
-No hace falta tocarlo salvo que cambien esos datos. Si se regenera, sale byte
-a byte igual.
+Lo genera `python3 tools/mapa_base.py`, sin paquetes (lee y escribe con
+`tools/pmtiles_ligero.py`); `--comprobar` lo rehace en memoria y lo coteja con
+el del repositorio, y pasa en `tools/auditar.sh`. **Si se rehace el
+detallado, hay que rehacer este** (y `tools/nombres_chinos_mapa.py`, que saca
+la tabla de los nombres en chino de los dos): el workflow de abajo lo hace al
+hacer commit. Sale byte a byte igual cada vez. Al generarlo escribe su huella
+en `sw.js` (`MAPA_BASE_HUELLA`): el service worker lo sirve de su precache, que
+solo se rehace cuando cambia `sw.js`, y sin la huella un mapa base nuevo no
+llegaría a quien ya tiene la app.
+
+Antes era la costa de GSHHG (1.542 vértices: de cerca, a tramos rectos, con
+calas comidas), el trazado de las 183 líneas del GTFS de TITSA como carreteras
+(todas iguales, y con rectas donde un trazado salta: al norte de Adeje dibujaba
+una cuña que no es ninguna carretera) y 54 núcleos de `places[]`. A z13, su mar
+se separaba del de OpenStreetMap en 252.881 píxeles de toda la isla; el de
+ahora, en 4.431 (rótulos y líneas que caen sobre el agua).
 
 ## `tenerife-osm.pmtiles` — está (12 MB, desde el 13 de octubre de 2026) y se genera con el workflow
 

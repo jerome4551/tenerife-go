@@ -209,7 +209,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: tenerife-osm-pmtiles
-      - name: Commit a mapa/tenerife-osm.pmtiles
+      - name: Commit a mapa/tenerife-osm.pmtiles (y el mapa base que sale de el)
         run: |
           set -euo pipefail
           if [ ! -s tenerife-osm.pmtiles ]; then
@@ -218,9 +218,18 @@ jobs:
           fi
           mkdir -p mapa
           mv tenerife-osm.pmtiles mapa/tenerife-osm.pmtiles
+          # El mapa base es un recorte del detallado y la tabla de los nombres en chino sale de
+          # los dos (31 de octubre de 2026): se rehacen con el detallado nuevo, o la auditoria
+          # se pone en rojo. mapa_base.py escribe tambien la huella del base en sw.js, para que
+          # el mapa nuevo llegue a los moviles que ya tienen la app. Son guiones del repositorio, solo con Python, sin paquetes: aqui
+          # sigue sin correr nada de terceros. Si alguno para, no se hace commit de nada.
+          python3 tools/mapa_base.py
+          python3 tools/mapa_base.py --comprobar
+          python3 tools/nombres_chinos_mapa.py
+          python3 tools/nombres_chinos_mapa.py --comprobar
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add mapa/tenerife-osm.pmtiles
+          git add mapa/tenerife-osm.pmtiles mapa/tenerife-base.pmtiles index.html sw.js
           if git diff --cached --quiet; then
             echo "El fichero es identico al que ya estaba. No hay nada que commitear."
             exit 0

@@ -9,6 +9,13 @@ pmtiles y mapbox_vector_tile; este no necesita ninguno, porque el relieve se
 genera en un workflow y se coteja en auditar.sh, y en ninguno de los dos
 sitios tiene que depender de un pip install para saber donde esta la costa.
 
+Desde la tarde del mismo dia tambien ESCRIBE (escribir_pmtiles): con el
+tools/mapa_base.py, que saca el mapa base del detallado, y lo lee
+tools/nombres_chinos_mapa.py (todas()). Solo lo que hace falta aqui: teselas
+MVT en gzip, el directorio raiz sin hojas (si no cabe en los 16 KB que dice la
+especificacion, para) y el fichero «agrupado» (clustered), con las teselas
+repetidas una sola vez.
+
 LA Y VA HACIA ABAJO. Las coordenadas que devuelve decodificar() son las de la
 tesela tal cual vienen en el MVT: (0,0) arriba a la izquierda y la y crece
 hacia el sur, como los pixeles. No hay que voltear nada (la trampa de
@@ -17,8 +24,11 @@ costa.py era de mapbox_vector_tile, que la devuelve con el origen abajo).
     from pmtiles_ligero import PMTiles, decodificar
     p = PMTiles('mapa/tenerife-osm.pmtiles')
     capas = decodificar(p.tesela(13, 3709, 3437))   # {'earth': (4096, [(tipo, props, partes)]), ...}
+    for z, x, y, datos in p.todas(): ...             # todas las teselas, en el orden del fichero
+    escribir_pmtiles('salida.pmtiles', {zxy_a_id(z, x, y): mvt, ...}, metadatos, cabecera)
 """
 import gzip
+import hashlib
 import json
 import math
 import struct
@@ -83,6 +93,29 @@ def zxy_a_id(z, x, y):
     return base + d
 
 
+def id_a_zxy(tid):
+    """La inversa de zxy_a_id."""
+    z, base = 0, 0
+    while tid >= base + (1 << (2 * z)):
+        base += 1 << (2 * z)
+        z += 1
+    t, n = tid - base, 1 << z
+    x = y = 0
+    s = 1
+    while s < n:
+        rx = 1 & (t // 2)
+        ry = 1 & (t ^ rx)
+        if ry == 0:
+            if rx == 1:
+                x, y = s - 1 - x, s - 1 - y
+            x, y = y, x
+        x += s * rx
+        y += s * ry
+        t //= 4
+        s *= 2
+    return z, x, y
+
+
 class PMTiles:
     def __init__(self, ruta):
         self.f = open(ruta, 'rb')
@@ -139,6 +172,30 @@ class PMTiles:
                 return _descomprimir(self._leer(self.cab['datos_off'] + eoff, elen), self.cab['comp_tesela'])
             return None
         return None
+
+    def entradas(self):
+        """[(tile_id, desplazamiento, largo)] de todas las teselas, por tile_id, con las
+        repeticiones (run_length) desplegadas y entrando en los directorios hoja."""
+        out = []
+
+        def recorrer(off, n, nivel):
+            if nivel > 3:
+                raise ValueError('directorios hoja anidados de mas')
+            for eid, run, eoff, elen in self._dir(off, n):
+                if run == 0:
+                    recorrer(self.cab['hojas_off'] + eoff, elen, nivel + 1)
+                else:
+                    for k in range(run):
+                        out.append((eid + k, eoff, elen))
+        recorrer(self.cab['raiz_off'], self.cab['raiz_len'], 0)
+        out.sort()
+        return out
+
+    def todas(self):
+        """(z, x, y, bytes MVT descomprimidos) de cada tesela del fichero."""
+        for tid, off, n in self.entradas():
+            z, x, y = id_a_zxy(tid)
+            yield z, x, y, _descomprimir(self._leer(self.cab['datos_off'] + off, n), self.cab['comp_tesela'])
 
 
 # ─────────────────────────── MVT ───────────────────────────
@@ -281,3 +338,128 @@ def tesela_de(lon, lat, z):
     x = (lon + 180.0) / 360.0 * n
     y = (1 - math.log(math.tan(math.radians(lat)) + 1 / math.cos(math.radians(lat))) / math.pi) / 2 * n
     return x, y
+
+
+# ─────────────────────────── escribir ───────────────────────────
+def vint(n):
+    """Un varint de protobuf (y de los directorios de PMTiles)."""
+    out = bytearray()
+    while True:
+        b = n & 0x7f
+        n >>= 7
+        if n:
+            out.append(b | 0x80)
+        else:
+            out.append(b)
+            return bytes(out)
+
+
+def campo_bytes(f, b):
+    """Un campo protobuf de tipo 2 (longitud y bytes)."""
+    return vint((f << 3) | 2) + vint(len(b)) + b
+
+
+def campo_vint(f, v):
+    """Un campo protobuf de tipo 0 (varint)."""
+    return vint(f << 3) + vint(v)
+
+
+def capas_crudas(buf):
+    """Las capas de una tesela MVT sin decodificar la geometria, para poder copiarla tal cual:
+    [(nombre, claves, valores_crudos, rasgos_crudos, extension)]. valores_crudos son los
+    mensajes Value tal como vienen (sirven de clave y se vuelven a escribir sin tocar)."""
+    out = []
+    for f, v in _campos(buf):
+        if f != 3:
+            continue
+        nombre, claves, valores, rasgos, ext = None, [], [], [], 4096
+        for g, w in _campos(v):
+            if g == 1:
+                nombre = w.decode('utf-8')
+            elif g == 2:
+                rasgos.append(w)
+            elif g == 3:
+                claves.append(w.decode('utf-8'))
+            elif g == 4:
+                valores.append(bytes(w))
+            elif g == 5:
+                ext = w
+        out.append((nombre, claves, valores, rasgos, ext))
+    return out
+
+
+def rasgo_crudo(w):
+    """(tags, tipo, geometria cruda) de un rasgo MVT sin decodificar."""
+    tags, tipo, geo = [], 0, b''
+    for g, z in _campos(w):
+        if g == 2:
+            tags = _empaquetados(z)
+        elif g == 3:
+            tipo = z
+        elif g == 4:
+            geo = bytes(z)
+    return tags, tipo, geo
+
+
+def valor(crudo):
+    """El valor de un mensaje Value crudo."""
+    return _valor(crudo)
+
+
+def _gz(b):
+    # mtime=0: sin la hora dentro, el mismo contenido da siempre el mismo fichero
+    return gzip.compress(b, 9, mtime=0)
+
+
+def _directorio(ents):
+    out = bytearray(vint(len(ents)))
+    ult = 0
+    for tid, _, _, _ in ents:
+        out += vint(tid - ult)
+        ult = tid
+    for _, run, _, _ in ents:
+        out += vint(run)
+    for _, _, _, ln in ents:
+        out += vint(ln)
+    for i, (_, _, off, ln) in enumerate(ents):
+        out += vint(0 if (i > 0 and off == ents[i - 1][2] + ents[i - 1][3]) else off + 1)
+    return bytes(out)
+
+
+def escribir_pmtiles(ruta, teselas, metadatos, cab):
+    """Un PMTiles v3 con teselas MVT en gzip.
+
+    teselas: {tile_id: bytes MVT sin comprimir}. metadatos: el JSON (dict).
+    cab: {'zmin', 'zmax', 'bbox': (lon0, lat0, lon1, lat1), 'centro': (z, lon, lat)}.
+    Devuelve las cuentas: entradas del directorio, contenidos distintos, teselas y bytes."""
+    datos, vistos, ents = bytearray(), {}, []
+    for tid in sorted(teselas):
+        t = _gz(teselas[tid])
+        h = hashlib.sha256(t).digest()
+        if ents and ents[-1][0] + ents[-1][1] == tid and vistos.get(h) == ents[-1][2]:
+            e = ents[-1]
+            ents[-1] = (e[0], e[1] + 1, e[2], e[3])
+            continue
+        if h not in vistos:
+            vistos[h] = len(datos)
+            datos += t
+        ents.append((tid, 1, vistos[h], len(t)))
+    raiz = _gz(_directorio(ents))
+    if 127 + len(raiz) > 16384:
+        raise ValueError('el directorio raiz no cabe en los primeros 16 KB: harian falta hojas')
+    meta = _gz(json.dumps(metadatos, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode('utf-8'))
+    o_raiz, o_meta = 127, 127 + len(raiz)
+    o_datos = o_meta + len(meta)
+    e7 = lambda v: int(round(v * 1e7))
+    b, c = cab['bbox'], cab['centro']
+    h = b'PMTiles' + bytes([3])
+    h += struct.pack('<QQQQQQQQ', o_raiz, len(raiz), o_meta, len(meta), o_datos, 0, o_datos, len(datos))
+    h += struct.pack('<QQQ', sum(e[1] for e in ents), len(ents), len(vistos))
+    h += bytes([1, 2, 2, 1, cab['zmin'], cab['zmax']])      # agrupado; gzip; gzip; MVT
+    h += struct.pack('<iiii', e7(b[0]), e7(b[1]), e7(b[2]), e7(b[3]))
+    h += bytes([c[0]]) + struct.pack('<ii', e7(c[1]), e7(c[2]))
+    assert len(h) == 127
+    with open(ruta, 'wb') as f:
+        f.write(h + raiz + meta + bytes(datos))
+    return {'entradas': len(ents), 'contenidos': len(vistos), 'teselas': sum(e[1] for e in ents),
+            'bytes': len(h) + len(raiz) + len(meta) + len(datos)}

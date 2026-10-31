@@ -131,9 +131,13 @@ function ok(cond, txt, detalle) {
 
   /* ── BLOQUE 2 · el mapa base que viaja dentro de la app ──
 
-     Lo genera tools/mapa_base.py con datos que ya estaban en el repositorio:
-     la costa de GSHHG, los `via` de las 183 lineas y los nucleos de places[].
-     No se descarga nada de fuera y no se inventa ninguna coordenada. */
+     Lo genera tools/mapa_base.py con un dato que ya estaba en el repositorio:
+     desde el 31 de octubre de 2026 por la tarde, es un recorte del mapa
+     detallado (mapa/tenerife-osm.pmtiles, OpenStreetMap), con su geometria
+     copiada tal cual; antes, la costa de GSHHG, los `via` de las 183 lineas y
+     los nucleos de places[]. No se descarga nada de fuera y no se inventa
+     ninguna coordenada. Que sea el que sale del detallado, byte a byte, lo
+     mira tools/mapa_base.py --comprobar (en tools/auditar.sh). */
   console.log('\n════════ mapa sin conexion · bloque 2, el mapa base ════════\n');
 
   const MAPA = 'mapa/tenerife-base.pmtiles';
@@ -204,6 +208,7 @@ function ok(cond, txt, detalle) {
           minZoom: cab.minZoom, maxZoom: cab.maxZoom, tipo: cab.tileType,
           bytes: blob.size,
           capas: (meta.vector_layers || []).map(v => v.id).sort(),
+          credito: meta.attribution || '',
           tierra: !!(tierra && tierra.data && tierra.data.byteLength),
           mar: !!(mar && mar.data && mar.data.byteLength),
           centro: [cab.centerLat, cab.centerLon]
@@ -213,8 +218,9 @@ function ok(cond, txt, detalle) {
       ok(r.tipo === 1, 'el archivo declara vector tiles (MVT)', r.tipo);
       ok(r.minZoom === 6 && r.maxZoom === 13, 'zoom 6 a 13; de ahi para arriba reescala el renderizador',
          r.minZoom + '-' + r.maxZoom);
-      ok(JSON.stringify(r.capas) === JSON.stringify(['carretera', 'sitio', 'tierra']),
-         'lleva las tres capas: tierra, carretera y sitio', r.capas.join(','));
+      ok(JSON.stringify(r.capas) === JSON.stringify(['earth', 'landuse', 'places', 'pois', 'roads', 'water']),
+         'lleva las seis capas del detallado que pinta: earth, water, landuse, roads, places y pois (ni senderos ni edificios)', r.capas.join(','));
+      ok(/OpenStreetMap/.test(r.credito), 'y dice de donde sale: ' + r.credito.replace(/<[^>]*>/g, ''), r.credito);
       ok(r.tierra, 'una tesela de Santa Cruz trae datos');
       ok(!r.mar, 'una tesela de mar abierto no ocupa sitio', r.mar);
       ok(Math.abs(r.centro[0] - 28.275) < 0.01 && Math.abs(r.centro[1] + 16.53) < 0.01,
@@ -830,13 +836,16 @@ function ok(cond, txt, detalle) {
     const fDet = (html.match(/\nfunction estiloIslaDetallada\(P, idioma\) \{[\s\S]*?\n\}\n/) || [''])[0];
     ok(/estiloIslaDetallada\(P, idioma\)/.test(fIsla) && /estiloIslaBase\(P, idioma\)/.test(fIsla) && !/flavor/.test(fIsla),
        'los dos mapas de la isla se pintan con el estilo de la app, sin el flavor de protomaps-leaflet');
+    /* el base es un recorte del detallado, con el mismo esquema (31 de octubre de 2026, tarde): el mismo
+       estilo, y el credito el de OpenStreetMap, no el de GSHHG y las guaguas */
+    ok(/\n  return estiloIslaDetallada\(P, idioma\);\n\}\n$/.test(fBase) && !/GSHHG|TITSA/.test(fIsla + fFondo) && /attribution: layers\.streets\.getAttribution\(\)/.test(fFondo),
+       'el mapa base se pinta con el mismo estilo que el detallado, y el fondo de la isla lleva el credito de OpenStreetMap de las calles');
     /* el mar y la tierra de openstreetmap-carto (style/style.mss: @water-color #aad3df,
        @land-color #f2efe9), en los tres: asi, al hacer zoom con las calles, el fondo que asoma
        mientras llegan las teselas no cambia de color al llegar */
     ok(/\nconst MAPA_MAR = '#aad3df', MAPA_TIERRA = '#f2efe9';\n/.test(html),
        'el mar y la tierra son los de las teselas de OpenStreetMap (#aad3df y #f2efe9)');
     ok(/backgroundColor: MAPA_MAR/.test(fFondo) && /fill: MAPA_TIERRA/.test(fFondo)
-       && /backgroundColor: MAPA_MAR/.test(fBase) && /fill: MAPA_TIERRA/.test(fBase)
        && /fill: MAPA_MAR/.test(fDet) && /fill: MAPA_TIERRA/.test(fDet) && /backgroundColor: MAPA_MAR/.test(fDet),
        'el fondo de la isla, el mapa base y el detallado comparten esos dos colores');
     ok(!/#a8c8e0|#eef1e6|#80deea/i.test(fFondo + fIsla + fBase + fDet),

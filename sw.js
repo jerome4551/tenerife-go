@@ -19,6 +19,13 @@ const CACHE = 'tgo-v7-2026-09-01-teselas';
    --comprobar. La misma va en index.html. */
 const RELIEVE_HUELLA = 'ninguno';
 
+/* La huella del mapa base (31 de octubre de 2026, tarde): los 16 primeros caracteres del
+   sha256 de mapa/tenerife-base.pmtiles. El mapa base se sirve del precache (cache primero), y
+   el precache solo se rehace cuando cambia este fichero: sin la huella, un mapa base nuevo (el
+   workflow generar-mapa.yml lo rehace con cada mapa detallado nuevo) no llegaria nunca a los
+   moviles que ya tienen la app. La escribe tools/mapa_base.py y la coteja su --comprobar. */
+const MAPA_BASE_HUELLA = '2bc177440a93d319';
+
 /* El cache del mapa va aparte y a proposito.
 
    Aparte del CACHE de la app porque el manejador de 'activate' borra todo
@@ -87,10 +94,12 @@ const CORE = [
   // La libreria de la cuenta (Supabase), alojada aqui desde el 22 de octubre
   // de 2026: sin conexion, la cuenta tambien arranca.
   './vendor/supabase.js',
-  /* El mapa base de la isla: 1,1 MB de costa, red viaria y nucleos, hecho
-     con datos que ya estaban en el repositorio. Va en el precache a
-     proposito, no en una descarga aparte: quien se pierde en el monte no
-     tuvo antes la precaucion de pulsar "descargar mapa". */
+  /* El mapa base de la isla: 1,1 MB de OpenStreetMap (la costa, las
+     carreteras, los pueblos, los picos y las playas), recortado del mapa
+     detallado que ya esta en el repositorio (tools/mapa_base.py; su huella,
+     arriba). Va en el precache a proposito, no en una descarga aparte: quien
+     se pierde en el monte no tuvo antes la precaucion de pulsar "descargar
+     mapa". */
   './mapa/tenerife-base.pmtiles',
   /* Las fuentes. Antes venian de fonts.googleapis.com, asi que sin
      cobertura la app se veia con la tipografia del sistema: una app

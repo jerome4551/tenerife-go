@@ -16472,9 +16472,11 @@ layers.streets.addTo(map);
 let currentLayer = 'streets';
 
 /* ── LA CAPA DE LA ISLA, LA QUE FUNCIONA SIN RED ──────────────────────
-   mapa/tenerife-base.pmtiles viaja dentro de la app: 1,1 MB de costa, red
-   viaria y nucleos, precargado por el service worker. Nadie tiene que
-   acordarse de descargar nada antes de subir al monte.
+   mapa/tenerife-base.pmtiles viaja dentro de la app: 1,1 MB de costa,
+   carreteras, pueblos, parajes, picos y playas de OpenStreetMap (un
+   recorte del mapa detallado, tools/mapa_base.py), precargado por el
+   service worker. Nadie tiene que acordarse de descargar nada antes de
+   subir al monte.
 
    Se construye la primera vez que hace falta y no al arrancar: son 1,1 MB
    que quien tiene cobertura no va a necesitar. Y se pide ENTERO, sin
@@ -16632,7 +16634,6 @@ const MAPA_MAR = '#aad3df', MAPA_TIERRA = '#f2efe9';
 const MAPA_NOMBRES_ZH = {
   'Adeje': ['阿德赫', '阿德赫'],
   'Alcalá': ['阿尔卡拉', '阿爾卡拉'],
-  'Arico': ['阿里科', '阿里科'],
   'Arona': ['阿罗纳', '阿羅納'],
   'Bajamar': ['巴哈马尔', '巴哈馬爾'],
   'Buenavista': ['布埃纳维斯塔', '布埃納維斯塔'],
@@ -16643,7 +16644,6 @@ const MAPA_NOMBRES_ZH = {
   'Cruz del Carmen': ['克鲁斯德尔卡门', '克魯斯德爾卡門'],
   'El Médano': ['埃尔梅达诺', '埃爾梅達諾'],
   'El Palmar': ['埃尔帕尔马', '埃爾帕爾馬'],
-  'El Rosario': ['埃尔罗萨里奥', '埃爾羅薩里奧'],
   'El Sauzal': ['埃尔绍萨尔', '埃爾紹薩爾'],
   'Fasnia': ['法斯尼亚', '法斯尼亞'],
   'Garachico': ['加拉奇科', '加拉奇科'],
@@ -16995,24 +16995,17 @@ function estiloIslaDetallada(P, idioma) {
   return { paintRules: paint, labelRules: labels, backgroundColor: MAPA_MAR };
 }
 
-/* El mapa base, el que viaja dentro de la app (tools/mapa_base.py): la costa, la red de
-   carreteras que recorren las guaguas y los núcleos. Las carreteras, como las principales del
-   detallado. En chino, los núcleos con el nombre de las fichas (rotuloChino). */
+/* El mapa base, el que viaja dentro de la app. Desde el 31 de octubre de 2026 por la tarde es un
+   recorte del detallado (tools/mapa_base.py): las mismas teselas de OpenStreetMap de z6 a z13,
+   con la tierra, el agua, el borde del Parque Nacional, las carreteras (y en z13 las calles y las
+   peatonales), los nombres de lugar hasta los parajes, los picos y las playas, y sin senderos,
+   edificios, usos del suelo ni límites. Mismo esquema, así que se pinta con el mismo estilo: lo
+   que no trae, no se pinta. Antes era la costa
+   de GSHHG (de cerca, a tramos rectos) con los trazados de las guaguas como carreteras (todas
+   iguales, y con rectas donde el trazado del GTFS salta). Jerome: «la quiero de qualidad superior
+   en cada rincón». */
 function estiloIslaBase(P, idioma) {
-  const exp = P.exp;
-  return {
-    backgroundColor: MAPA_MAR,
-    paintRules: [
-      { dataLayer: 'tierra', symbolizer: new P.PolygonSymbolizer({ fill: MAPA_TIERRA }) },
-      { dataLayer: 'carretera', minzoom: 9, symbolizer: new P.LineSymbolizer({ color: '#d2a65c', width: exp(1.6, [[9, 1.2], [11, 1.9], [13, 3.4], [16, 9]]) }) },
-      { dataLayer: 'carretera', symbolizer: new P.LineSymbolizer({ color: '#fbd88e', width: exp(1.6, [[8, 0.6], [11, 1.2], [13, 2.2], [16, 7]]) }) }
-    ],
-    labelRules: [
-      { dataLayer: 'sitio', symbolizer: rotuloConMargen(rotuloChino(new P.CenteredTextSymbolizer({
-          labelProps: ['tgo:zh', 'nombre'], fill: '#33404f',
-          font: '600 12px system-ui, sans-serif', stroke: '#ffffff', width: 2 }), idioma, 'nombre'), 3) }
-    ]
-  };
+  return estiloIslaDetallada(P, idioma);
 }
 
 function construirIsla(blob, clave, detallado, zMax) {
@@ -17027,7 +17020,9 @@ function construirIsla(blob, clave, detallado, zMax) {
     maxDataZoom: zMax,
     updateWhenZooming: false        // las dos, la base y la detallada
   }, detallado ? estiloIslaDetallada(P, idioma) : estiloIslaBase(P, idioma),
-     detallado ? { lang: idioma } : { attribution: 'GSHHG · GTFS TITSA' }));
+     /* los dos son de OpenStreetMap: el crédito, el que pone protomaps-leaflet (Protomaps ©
+        OpenStreetMap, con el enlace a su página de derechos de autor) */
+     { lang: idioma }));
 }
 
 function islaCapa() {
@@ -17241,13 +17236,16 @@ function ponerFondoIsla() {
             zIndex: 0,
             updateWhenZooming: false,
             backgroundColor: MAPA_MAR,
-            attribution: 'GSHHG · GTFS TITSA',
-            /* el mar y la tierra, los de los otros mapas (MAPA_MAR, MAPA_TIERRA); las carreteras,
-               mas finas que en la capa de la isla (0,7): estiradas cinco o diez veces, mas
-               gruesas eran bandas */
+            /* el mapa base es de OpenStreetMap (desde el 31 de octubre de 2026): el mismo crédito,
+               letra por letra, que la capa de las calles, para que Leaflet no lo repita */
+            attribution: layers.streets.getAttribution(),
+            /* el mar y la tierra, los de los otros mapas (MAPA_MAR, MAPA_TIERRA); las carreteras
+               (autopistas y carreteras, no las calles), mas finas que en la capa de la isla (0,7):
+               estiradas cinco o diez veces, mas gruesas eran bandas */
             paintRules: [
-              { dataLayer: 'tierra',    symbolizer: new P.PolygonSymbolizer({ fill: MAPA_TIERRA }) },
-              { dataLayer: 'carretera', symbolizer: new P.LineSymbolizer({ color: '#c2a86a', width: 0.7 }) }
+              { dataLayer: 'earth', filter: function (z, f) { return f.geomType === 3; }, symbolizer: new P.PolygonSymbolizer({ fill: MAPA_TIERRA }) },
+              { dataLayer: 'roads', filter: function (z, f) { return f.props.kind === 'highway' || f.props.kind === 'major_road'; },
+                symbolizer: new P.LineSymbolizer({ color: '#c2a86a', width: 0.7 }) }
             ],
             labelRules: []
           });
