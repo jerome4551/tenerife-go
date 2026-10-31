@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.073 kB** en castellano · **1.188 kB** en el peor caso (búlgaro) · 1.173 kB en polaco, el 31 de octubre, con los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres: sin él, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.073 kB** en castellano · **1.188 kB** en el peor caso (búlgaro) · 1.174 kB en polaco, el 31 de octubre, con los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -3629,6 +3629,51 @@ antes de juntarlo:
   del décimo bloque, con las teselas pedidas al empezar. El estilo pinta el
   mismo fichero: no descarga nada ni pide nada fuera, y los nombres, las
   altitudes y las matrículas son los de OpenStreetMap.
+
+### La altitud de los picos y los rótulos en chino (31 de octubre)
+
+Mirando el dibujo en los diez idiomas, dos cosas no estaban bien:
+
+- **La altitud de los picos** salía «3715 m» en los diez. La app escribe los
+  metros a su manera en tres idiomas, y así lo dicen sus fichas del Teide:
+  «3715 м» en búlgaro, «3715米» en chino y «3715公尺» en chino tradicional.
+  Ahora el mapa también. En los demás, «3715 m», sin el punto de los miles,
+  como en los mapas.
+- **Los rótulos en chino.** El fichero trae nombre chino en 14 sitios de toda
+  la isla (de z10 a z14), de ellos 8 pueblos de Tenerife, y no vale:
+  - en `name:zh-Hant` vienen los mismos caracteres simplificados que en
+    `name:zh-Hans` (圣克鲁斯-德特内里费, no 聖克魯斯…), así que el chino
+    tradicional habría salido en simplificado;
+  - en simplificado, cinco de los ocho no se llaman como en las fichas de la
+    app:
+
+| Pueblo | El fichero | Las fichas de la app |
+|---|---|---|
+| La Orotava | 劳罗塔瓦 | 拉奥罗塔瓦 |
+| Santiago del Teide | 桑蒂亚戈德尔泰德 | 圣地亚哥德尔泰德 |
+| Icod de los Vinos | 伊科德洛斯维诺斯 | 葡萄酒城伊科德 (y 伊科德) |
+| San Cristóbal de La Laguna | 拉古纳的圣克里斯托瓦尔 | 拉拉古纳 |
+| Santa Cruz de Tenerife | 圣克鲁斯-德特内里费 | 特内里费圣克鲁斯 (y 圣克鲁斯) |
+
+Si no se traduce, se deja en castellano. En los dos chinos, los rótulos del
+mapa siguen en castellano, como antes del undécimo bloque. Que el mapa en chino
+use los nombres de las fichas es otra cosa, y la decide Jerome.
+
+**Cómo se comprueba.** `tools/auditar_mapa.js`, bloque 8, cinco controles más
+(19, y 131 en total):
+- la altitud de un pico de 3715 m, pintada en los diez idiomas, con los metros
+  de sus fichas del Teide;
+- en chino y en chino tradicional, los rótulos que se pintan de verdad
+  alrededor de Santa Cruz a z11: 25 textos, ninguno en caracteres chinos, y la
+  ciudad, «Santa Cruz de Tenerife», como en castellano;
+- que en el fichero `name:zh-Hant` es una copia de `name:zh-Hans` (4 de 4
+  alrededor de Santa Cruz): si un día trae el tradicional de verdad, el
+  control lo canta y se puede mirar otra vez.
+
+Con el estilo tal como llegó (las claves del fichero y «m» en todos), lo mismo
+sale mal: el búlgaro y los dos chinos con «m», y en tradicional
+圣克鲁斯-德特内里费, 拉古纳的圣克里斯托瓦尔 y 劳罗塔瓦. La medida sabe ponerse
+en rojo.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 

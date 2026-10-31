@@ -16654,7 +16654,15 @@ function estiloIslaDetallada(P, idioma) {
     t_calle: '#5c5248', t_sendero: '#8a4a2a', halo: '#ffffff'
   };
   const FUENTE = 'system-ui, sans-serif';
-  const nombre = ['name:' + idioma, 'name'];
+  /* los nombres, en el idioma de la app; en chino, en castellano (31 de octubre de 2026). El fichero
+     trae nombre chino en muy pocos sitios (14 en toda la isla, 8 pueblos de Tenerife) y no vale: en
+     name:zh-Hant vienen los mismos caracteres simplificados que en name:zh-Hans (圣克鲁斯, no 聖克魯斯),
+     y en simplificado cinco de los ocho no son los de la app (劳罗塔瓦 donde sus fichas dicen
+     拉奥罗塔瓦). Si no se traduce, se deja en castellano. */
+  const nombre = /^zh/.test(idioma) ? ['name'] : ['name:' + idioma, 'name'];
+  /* la altitud de los picos, con los metros como los escribe la app en cada idioma (sus fichas del
+     Teide: 3715 m, 3715 м, 3715米, 3715公尺) */
+  const METROS = { bg: ' м', 'zh-Hans': '米', 'zh-Hant': '公尺' }[idioma] || ' m';
   const exp = P.exp;
   const en = lista => { const s = new Set(lista); return (z, f) => s.has(f.props.kind); };
 
@@ -16805,9 +16813,9 @@ function estiloIslaDetallada(P, idioma) {
   function SimboloPico() {}
   SimboloPico.prototype.place = function (layout, geom, feature) {
     const p = feature.props;
-    const nom = p['name:' + idioma] || p.name;
+    const nom = (nombre.length > 1 && p[nombre[0]]) || p.name;
     if (!nom || typeof nom !== 'string') return;
-    const alt = (typeof p.elevation === 'number' && p.elevation > 0) ? Math.round(p.elevation) + ' m' : '';
+    const alt = (typeof p.elevation === 'number' && p.elevation > 0) ? Math.round(p.elevation) + METROS : '';
     const f1 = fuente(600, 11.5, 'italic'), f2 = fuente(500, 10.5);
     const sc = layout.scratch;
     sc.font = f1; const w1 = sc.measureText(nom).width;
@@ -16919,8 +16927,8 @@ function estiloIslaBase(P) {
 function construirIsla(blob, clave, detallado, zMax) {
   const P = protomapsL;
   /* El idioma se fija al construir: si el usuario lo cambia, setLang tira la capa y se rehace.
-     El chino viene en el fichero como name:zh-Hans y name:zh-Hant (el esquema v4 de Protomaps),
-     no como name:zh: pidiendo 'zh', como hasta ahora, los rótulos salían en castellano. */
+     El chino, con las claves del esquema v4 de Protomaps (zh-Hans y zh-Hant; el fichero no trae
+     name:zh). Sus rótulos van en castellano, y sus metros, 米 y 公尺: ver estiloIslaDetallada. */
   const idioma = currentLang === 'zht' ? 'zh-Hant' : currentLang === 'zh' ? 'zh-Hans' : (currentLang || 'es');
   return P.leafletLayer(Object.assign({
     url: new pmtiles.PMTiles(fuenteBlob(blob, clave)),
