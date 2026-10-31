@@ -281,13 +281,16 @@ control probar_figura.js node tools/probar_figura.js
 control probar_cuerpo.js node tools/probar_cuerpo.js "$PUERTO"
 echo; echo "════════ la isla en 3D: el relieve, los textos y la vista de verdad en un movil emulado, sin conexion ════════"
 # Desde el 31 de octubre de 2026. El relieve (mapa/tenerife-relieve*.png y
-# .json) lo hace tools/relieve_construir.py desde el Copernicus DEM (el
-# workflow generar-relieve.yml) y lo coteja --comprobar, con su huella en
-# sw.js e index.html. La vista se carga al tocar «3D» (modulos/isla3d.js) y
+# .json) lo hace tools/relieve_construir.py desde el MDT05 del IGN
+# (tools/relieve_ign.py) o, si no sale, desde el Copernicus DEM (el workflow
+# generar-relieve.yml) y lo coteja --comprobar, con su huella en sw.js e
+# index.html. La vista se carga al tocar «3D» (modulos/isla3d.js) y
 # ningun otro control la abre: sin relieve, que el boton no sale y no se pide
 # nada; con el, la vista de verdad: los gestos, la luz y las sombras, los
 # idiomas, «atras», sin red, WebGL 1 y la GPU que se pierde.
 control relieve_construir.py python3 tools/relieve_construir.py --comprobar
+# relieve_ign.py solo corre en el workflow, que tiene red: aqui, que se puede cargar
+control relieve_ign.py python3 -c "import sys; sys.path.insert(0, 'tools'); import relieve_ign"
 control auditar_isla3d.js node tools/auditar_isla3d.js "$PUERTO"
 echo; echo "════════ emergencias (SOS): textos, fuentes, enlaces, y el panel de verdad en los diez idiomas y sin conexion ════════"
 # Desde el 22 de octubre de 2026. El panel se carga al abrirlo

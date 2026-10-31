@@ -7,18 +7,29 @@ relieve_construir.py — el relieve de Tenerife para «La isla en 3D»
     python3 tools/relieve_construir.py DEM.tif [DEM.tif ...]
         rehace los tres ficheros del relieve en mapa/ a partir del modelo
         digital del terreno oficial (las teselas que cubran la isla)
+    python3 tools/relieve_construir.py --fuente ign-mdt05 --registro REG.json
+            [--cotejar COPERNICUS.tif ...] MOSAICO.tif
+        lo mismo con el MDT05 del IGN (el mosaico que deja relieve_ign.py),
+        y con --cotejar, comparado con el Copernicus DEM: si no casan, para
     python3 tools/relieve_construir.py --comprobar
         coteja los tres ficheros de mapa/ (lo pasa tools/auditar.sh); sin
         red y solo con numpy y Pillow
 
-LA FUENTE
-  Copernicus DEM GLO-30 (Agencia Espacial Europea / Union Europea): una
-  altura cada segundo de arco (unos 30 m), en teselas de un grado, publicas
-  en el registro de datos abiertos de AWS (s3://copernicus-dem-30m, sin
-  cuenta). Tenerife cabe entera en
-  Copernicus_DSM_COG_10_N28_00_W017_00_DEM.tif. La descarga la hace
-  .github/workflows/generar-relieve.yml, que tiene red; aqui solo se
-  transforma. La tesela que entra se anota en el .json con su sha256.
+LAS FUENTES (FUENTES, abajo)
+  ign-mdt05 (la de primera, desde el 31 de octubre de 2026 por la tarde:
+  Jerome, «Fuentes 3D la mejor pero gratis»): el Modelo Digital del Terreno
+  con paso de malla de 5 metros (MDT05) del IGN, de los vuelos LiDAR del
+  PNOA, terreno sin arboles ni edificios, exactitud vertical de 50 cm; CC BY
+  4.0. Lo baja tools/relieve_ign.py de la API de coberturas de la IDEE.
+  copernicus-glo30 (la de respaldo: si el IGN no sale o no casa): Copernicus
+  DEM GLO-30 (Agencia Espacial Europea / Union Europea), un modelo de
+  superficie con una altura cada segundo de arco (unos 30 m), en teselas de
+  un grado, publicas en el registro de datos abiertos de AWS
+  (s3://copernicus-dem-30m, sin cuenta). Tenerife cabe casi entera en
+  Copernicus_DSM_COG_10_N28_00_W017_00_DEM.tif.
+  Las descargas las hace .github/workflows/generar-relieve.yml, que tiene
+  red; aqui solo se transforma. Lo que entra se anota en el .json con su
+  sha256, y el credito de la fuente, palabra por palabra.
 
 LA COSTA NO SALE DEL MODELO, SALE DEL MAPA
   La linea de costa es la de la capa `earth` de mapa/tenerife-osm.pmtiles,
@@ -46,12 +57,16 @@ LO QUE ESCRIBE (en mapa/)
   lo bajen al precache, y le dice a index.html que hay relieve sin preguntar
   a nadie.
 
-LA LICENCIA
-  «Licence for Copernicus DEM instance COP-DEM-GLO-30-F Global 30m Full, Free
-  & Open», articulo 6: quien ensena el modelo al publico pone una nota, la del
-  6(b) si lo ha adaptado (aqui, remuestreado a 60 m y con la costa de OSM), y
-  la frase de la responsabilidad del 6(c), las dos palabra por palabra.
-  Estan abajo (NOTA_6B y NOTA_6C), van al .json y el 3D las ensena.
+LAS LICENCIAS
+  IGN: CC BY 4.0, y para una obra derivada (aqui, el MDT05 pasado a celdas
+  de 60 m y con la costa de OSM) el IGN pide «Obra derivada de <producto>
+  <fecha> CC-BY 4.0 <productor>» al pie del mapa y en los metadatos; el
+  metadato del MDT05 da «MDT05-cob1 2008-2015 CC-BY 4.0 scne.es». Va en
+  NOTA_IGN, al .json y al 3D.
+  Copernicus: «Licence for Copernicus DEM instance COP-DEM-GLO-30-F Global
+  30m Full, Free & Open», articulo 6: quien ensena el modelo al publico pone
+  una nota, la del 6(b) si lo ha adaptado, y la frase de la responsabilidad
+  del 6(c), las dos palabra por palabra (NOTA_6B y NOTA_6C).
 
 POR QUE UN PNG Y NO UN BINARIO
   GitHub Pages no comprime los .bin; el PNG si va comprimido y el navegador
@@ -86,6 +101,34 @@ NOTA_6B = ('produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © A
            '2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved')
 NOTA_6C = ('The organisations in charge of the Copernicus programme by law or by delegation do not incur any '
            'liability for any use of the Copernicus WorldDEM-30')
+# El MDT05 del IGN (31 de octubre de 2026, tarde). La atribucion de una obra derivada, con la
+# plantilla de las condiciones de uso del IGN («Obra derivada de <identificador del producto>
+# <fecha> CC-BY 4.0 <atribucion de productores>»; en ingles, «Work derived from ...»,
+# FOOT-Condiciones_Uso_eng.pdf) y el identificador, la fecha y el productor del metadato del
+# MDT05 en la IDEE (spaignMDT05: «MDT05-cob1 2008-2015 CC-BY 4.0 scne.es»).
+NOTA_IGN = 'Obra derivada de MDT05-cob1 2008-2015 CC-BY 4.0 scne.es'
+
+# Lo que el .json dice de cada fuente posible, y lo que coteja --comprobar. modulos/isla3d.js
+# lleva los mismos creditos (DEM_FUENTES) y tools/auditar_isla3d.js coteja las copias.
+FUENTES = {
+    'ign-mdt05': dict(
+        nombre='Modelo Digital del Terreno con paso de malla de 5 metros (MDT05) de España, 1.ª cobertura (IGN)',
+        licencia=dict(nombre='CC BY 4.0', url='https://creativecommons.org/licenses/by/4.0/'),
+        condiciones='https://www.ign.es/resources/licencia/Condiciones_licenciaUso_IGN.pdf',
+        metadato='https://www.idee.es/csw-inspire-idee/srv/spa/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetRecordById'
+                 '&outputSchema=http://www.isotc211.org/2005/gmd&ElementSetName=full&ID=spaignMDT05',
+        credito=NOTA_IGN, responsabilidad=''),
+    'copernicus-glo30': dict(
+        nombre='Copernicus DEM GLO-30',
+        registro='https://registry.opendata.aws/copernicus-dem/',
+        licencia=LICENCIA, credito=NOTA_6B, responsabilidad=NOTA_6C),
+}
+# Para que un relieve que use el IGN se de por bueno, comparado con el Copernicus DEM (que es de
+# superficie: arboles y casas encima) en las celdas de tierra: la mediana de la diferencia y la
+# media de su valor absoluto no pueden pasar de esto. Un dato mal georreferenciado, en otras
+# unidades o de otro sitio se va a cientos de metros.
+COTEJO_MEDIANA_MAX_M = 15.0
+COTEJO_MEDIA_ABS_MAX_M = 40.0
 
 # La huella del relieve: los 16 primeros caracteres del sha256 del .json, o
 # «ninguno» mientras no haya relieve. Va en dos sitios, una linea en cada uno:
@@ -452,17 +495,36 @@ def controles(dm, b, ao):
                 muestras=muestras)
 
 
-def construir(rutas):
+def construir(rutas, fuente='copernicus-glo30', registro=None, cotejar=None):
     import numpy as np
     from PIL import Image
+    if fuente not in FUENTES:
+        raise SystemExit('  FALLA  fuente desconocida: %s (hay %s)' % (fuente, ', '.join(FUENTES)))
     M = malla()
     print('  malla: %d x %d celdas de %.0f m (Mercator, paso %.3f m)' % (M['ancho'], M['alto'], PASO_SUELO, M['paso']))
     H, fuentes = alturas_desde_dem(rutas, M)
-    print('  modelo: %s' % ', '.join(f['fichero'] for f in fuentes))
+    print('  modelo: %s (%s)' % (', '.join(f['fichero'] for f in fuentes), fuente))
     tierra_hi, nt = tierra_osm(M)
     print('  costa: %d teselas z%d de la capa earth' % (nt, Z_COSTA))
     sdf, frac = distancia_costa(tierra_hi, M)
     tierra = sdf >= 0
+    cotejo = None
+    if cotejar:
+        # la misma malla con el otro modelo, y la diferencia en las celdas de tierra con los dos
+        H2, f2 = alturas_desde_dem(cotejar, M)
+        ambos = tierra & np.isfinite(H) & np.isfinite(H2)
+        d = (H - H2)[ambos]
+        if d.size < 0.9 * int(tierra.sum()):
+            raise SystemExit('  FALLA  cotejo: solo %d de %d celdas de tierra con los dos modelos' % (d.size, int(tierra.sum())))
+        cotejo = dict(con=', '.join(x['fichero'] for x in f2), celdas=int(d.size),
+                      mediana_m=round(float(np.median(d)), 2), media_abs_m=round(float(np.mean(np.abs(d))), 2),
+                      p05_m=round(float(np.percentile(d, 5)), 2), p95_m=round(float(np.percentile(d, 95)), 2))
+        print('  cotejo con %s: diferencia mediana %.2f m, media absoluta %.2f m (p5 %.1f, p95 %.1f), %d celdas' % (
+            cotejo['con'], cotejo['mediana_m'], cotejo['media_abs_m'], cotejo['p05_m'], cotejo['p95_m'], cotejo['celdas']))
+        if abs(cotejo['mediana_m']) > COTEJO_MEDIANA_MAX_M or cotejo['media_abs_m'] > COTEJO_MEDIA_ABS_MAX_M:
+            raise SystemExit('  FALLA  el modelo no casa con %s (mediana %.1f m, media absoluta %.1f m; tope %.0f y %.0f): '
+                             'no se usa' % (cotejo['con'], cotejo['mediana_m'], cotejo['media_abs_m'],
+                                            COTEJO_MEDIANA_MAX_M, COTEJO_MEDIA_ABS_MAX_M))
     faltan = tierra & np.isnan(H)
     relleno = None
     if faltan.any():
@@ -507,11 +569,19 @@ def construir(rutas):
     jm, im_ = divmod(i_max, M['ancho'])
     Xm = M['x0'] + (im_ + 0.5) * M['paso']
     Ym = M['y0'] - (jm + 0.5) * M['paso']
+    fu = dict(id=fuente, teselas=fuentes)
+    fu.update(FUENTES[fuente])
+    if registro:
+        # de donde salio el mosaico (relieve_ign.py): el servicio y lo que se pidio, sin la lista entera
+        r = json.load(open(registro, encoding='utf-8'))
+        fu['descarga'] = {k: r[k] for k in ('servicio', 'coleccion', 'peticion', 'fecha', 'malla_origen', 'factor',
+                                             'mosaico', 'peticiones', 'sin_datos', 'partidos', 'bytes',
+                                             'cobertura_tierra', 'herramienta') if k in r}
+    if cotejo:
+        fu['cotejo'] = cotejo
     meta = dict(
         formato=1,
-        fuente=dict(nombre='Copernicus DEM GLO-30', teselas=fuentes,
-                    registro='https://registry.opendata.aws/copernicus-dem/',
-                    licencia=LICENCIA, credito=NOTA_6B, responsabilidad=NOTA_6C),
+        fuente=fu,
         costa=dict(fuente='OpenStreetMap: capa earth de mapa/tenerife-osm.pmtiles (z%d)' % Z_COSTA,
                    metros_por_unidad=COSTA_M_UNIDAD, cero=128),
         malla=dict(x0=M['x0'], y0=M['y0'], paso=M['paso'], ancho=M['ancho'], alto=M['alto'],
@@ -573,10 +643,25 @@ def comprobar():
     from PIL import Image
     meta = json.load(open(META, encoding='utf-8'))
     fu = meta.get('fuente', {})
-    if fu.get('credito') != NOTA_6B or fu.get('responsabilidad') != NOTA_6C or fu.get('licencia') != LICENCIA:
-        mal('las notas de la licencia del .json no son las del articulo 6, palabra por palabra: hay que regenerar')
+    fid = fu.get('id') or ('copernicus-glo30' if fu.get('nombre') == 'Copernicus DEM GLO-30' else None)
+    if fid not in FUENTES:
+        mal('el .json dice que la fuente es «%s», y no es ninguna de %s' % (fu.get('id') or fu.get('nombre'), ', '.join(FUENTES)))
+    elif any(fu.get(k) != v for k, v in FUENTES[fid].items()):
+        mal('lo que el .json dice de la fuente (%s) no es lo de FUENTES, palabra por palabra: hay que regenerar' % fid)
+    elif fid == 'copernicus-glo30':
+        ok('la fuente, el Copernicus DEM, con las dos notas de su licencia (6(b) y 6(c)), palabra por palabra')
     else:
-        ok('las dos notas de la licencia del Copernicus DEM (6(b) y 6(c)), palabra por palabra')
+        ok('la fuente, %s, con su credito palabra por palabra: «%s»' % (fid, fu.get('credito')))
+    if fid == 'ign-mdt05' and not fu.get('cotejo'):
+        # el MDT05 solo se da por bueno comparado con el Copernicus DEM (construir con --cotejar)
+        mal('el relieve es del IGN y no lleva el cotejo con el Copernicus DEM: hay que construirlo con --cotejar')
+    elif fid != 'copernicus-glo30' and fu.get('cotejo'):
+        c = fu['cotejo']
+        if abs(c.get('mediana_m', 1e9)) > COTEJO_MEDIANA_MAX_M or c.get('media_abs_m', 1e9) > COTEJO_MEDIA_ABS_MAX_M:
+            mal('el cotejo con %s no pasa: mediana %s m, media absoluta %s m' % (c.get('con'), c.get('mediana_m'), c.get('media_abs_m')))
+        else:
+            ok('cotejado con %s: diferencia mediana %s m, media absoluta %s m, en %s celdas de tierra' % (
+                c.get('con'), c.get('mediana_m'), c.get('media_abs_m'), c.get('celdas')))
     rel = meta.get('relleno')
     if rel:
         if rel.get('celdas', 0) > RELLENO_MAX_CELDAS or rel.get('distancia_max_m', 0) > RELLENO_MAX_M:
@@ -664,7 +749,14 @@ def comprobar():
 if __name__ == '__main__':
     if len(sys.argv) >= 2 and sys.argv[1] == '--comprobar':
         sys.exit(comprobar())
-    if len(sys.argv) < 2 or sys.argv[1].startswith('-'):
+    import argparse
+    ap = argparse.ArgumentParser(description='El relieve de «La isla en 3D» (ver la cabecera).')
+    ap.add_argument('rutas', nargs='*', help='el modelo: las teselas o el mosaico, GeoTIFF en grados')
+    ap.add_argument('--fuente', default='copernicus-glo30', choices=sorted(FUENTES))
+    ap.add_argument('--registro', help='el .json de relieve_ign.py, para el .json del relieve')
+    ap.add_argument('--cotejar', nargs='+', help='el otro modelo, para compararlos en tierra')
+    args = ap.parse_args()
+    if not args.rutas:
         print(__doc__)
         sys.exit(2)
-    sys.exit(construir(sys.argv[1:]))
+    sys.exit(construir(args.rutas, args.fuente, args.registro, args.cotejar))

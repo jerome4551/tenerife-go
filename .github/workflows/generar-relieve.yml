@@ -1,18 +1,26 @@
-name: Generar relieve 3D (Copernicus DEM)
+name: Generar relieve 3D (MDT05 del IGN; si no sale, Copernicus DEM)
 
 # Se lanza a mano: repositorio -> Actions -> "Generar relieve 3D" -> Run workflow.
 # Desde el movil, en Safari, vale igual.
 #
 # QUE HACE
-#   Baja las teselas oficiales del modelo digital del terreno que cubren
-#   Tenerife (Copernicus DEM GLO-30, ESA / Union Europea, en el registro de
-#   datos abiertos de AWS: sin cuenta ni clave) y las convierte con
-#   tools/relieve_construir.py en los tres ficheros que usa «La isla en 3D»:
-#   mapa/tenerife-relieve.png, mapa/tenerife-relieve-ao.png y
-#   mapa/tenerife-relieve.json. Despues los coteja con --comprobar y, en el
-#   mismo commit, pone la huella del relieve nuevo en sw.js y en index.html
-#   (ver HUELLAS en la herramienta): un sw.js distinto es lo que hace que los
-#   moviles que ya tienen la app bajen el relieve al precache.
+#   Primero, el MDT05 del IGN (31 de octubre de 2026, tarde; Jerome: «Fuentes
+#   3D la mejor pero gratis»): el modelo digital del TERRENO de 5 m de los
+#   vuelos LiDAR del PNOA, CC BY 4.0, sin cuenta, desde la API de coberturas
+#   de la IDEE (tools/relieve_ign.py, a trozos). Lo compara con el Copernicus
+#   DEM y, si casa y pasa --comprobar, el relieve sale de el. Si no (el
+#   servicio no contesta o devuelve otra cosa, falta tierra, no casa, o no
+#   pasa --comprobar), el relieve sale del Copernicus DEM GLO-30 (ESA / Union
+#   Europea, en el registro de datos abiertos de AWS: sin cuenta ni clave),
+#   como antes, y el resumen dice por que. Con fuente = copernicus, solo
+#   Copernicus.
+#   tools/relieve_construir.py hace los tres ficheros que usa «La isla en
+#   3D»: mapa/tenerife-relieve.png, mapa/tenerife-relieve-ao.png y
+#   mapa/tenerife-relieve.json, con el credito de la fuente que haya servido.
+#   Despues los coteja con --comprobar y, en el mismo commit, pone la huella
+#   del relieve nuevo en sw.js y en index.html (ver HUELLAS en la
+#   herramienta): un sw.js distinto es lo que hace que los moviles que ya
+#   tienen la app bajen el relieve al precache.
 #
 # LAS TESELAS
 #   La isla va de 27,998 N (la punta de Rasca, en la costa del mapa) a 28,59 N:
@@ -33,15 +41,21 @@ on:
         description: 'true = genera y verifica pero NO hace commit'
         required: false
         default: 'false'
+      fuente:
+        description: 'ign = el MDT05 del IGN, y si no sale, Copernicus; copernicus = solo Copernicus'
+        required: false
+        default: 'ign'
 
 permissions: {}
 
 jobs:
   generar:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 75
     permissions:
       contents: read
+    outputs:
+      fuente: ${{ steps.construir.outputs.fuente }}
     steps:
       - name: Traer el repositorio
         uses: actions/checkout@v5
@@ -51,6 +65,9 @@ jobs:
           set -euo pipefail
           python3 -m pip install --quiet numpy pillow scipy
           python3 -c "import numpy, PIL, scipy; print('numpy', numpy.__version__, '· Pillow', PIL.__version__, '· scipy', scipy.__version__)"
+          # rasterio lee cualquier GeoTIFF que devuelva la IDEE (con cualquier compresion); si no
+          # se instala, relieve_ign.py lee con Pillow
+          python3 -m pip install --quiet rasterio || echo "::warning::rasterio no se ha instalado: relieve_ign.py leera con Pillow"
 
       - name: Bajar las teselas del Copernicus DEM
         run: |
@@ -71,10 +88,47 @@ jobs:
           ls -l dem/
           sha256sum dem/*.tif
 
-      - name: Construir el relieve
+      - name: Bajar el MDT05 del IGN
+        id: ign
+        if: github.event.inputs.fuente != 'copernicus'
+        continue-on-error: true
+        # si la IDEE va muy lenta o no contesta, este paso se corta solo y el relieve sale de
+        # Copernicus; sin este tope, el del job (75 min) lo cortaria todo y no saldria ninguno.
+        # Un paso que se pasa de tiempo queda «failure» y, con continue-on-error, el job sigue
+        # (actions/runner, src/Runner.Worker/StepsRunner.cs y ApplyContinueOnError)
+        timeout-minutes: 40
         run: |
-          set -euo pipefail
-          python3 tools/relieve_construir.py dem/*.tif | tee construir.txt
+          set -o pipefail
+          python3 tools/relieve_ign.py dem-ign 2>&1 | tee ign.txt
+
+      - name: Construir el relieve
+        id: construir
+        run: |
+          set -uo pipefail
+          : > construir.txt
+          # construir y comprobar: si cualquiera de los dos falla, esa fuente no vale
+          probar() {
+            python3 tools/relieve_construir.py "$@" 2>&1 | tee -a construir.txt &&
+              python3 tools/relieve_construir.py --comprobar 2>&1 | tee comprobar.txt &&
+              grep -qx '  RELIEVE EN VERDE' comprobar.txt
+          }
+          FUENTE=copernicus-glo30
+          if [ "${{ steps.ign.outcome }}" = "success" ] && [ -s dem-ign/ign-mdt05-tenerife.tif ]; then
+            if probar dem-ign/ign-mdt05-tenerife.tif --fuente ign-mdt05 \
+                 --registro dem-ign/ign-mdt05-tenerife.json --cotejar dem/*.tif; then
+              FUENTE=ign-mdt05
+            else
+              echo "::warning::El relieve con el MDT05 del IGN no ha pasado (ver arriba): se hace con el Copernicus DEM"
+            fi
+          elif [ "${{ github.event.inputs.fuente }}" != "copernicus" ]; then
+            echo "::warning::El MDT05 del IGN no se ha podido bajar (ver el paso anterior): el relieve se hace con el Copernicus DEM"
+          fi
+          if [ "$FUENTE" = copernicus-glo30 ]; then
+            # lo del IGN que se hubiera escrito a medias no se queda: se rehace todo con Copernicus
+            probar dem/*.tif || { echo "::error::Tampoco sale con el Copernicus DEM."; exit 1; }
+          fi
+          echo "fuente=$FUENTE" >> "$GITHUB_OUTPUT"
+          echo "Fuente del relieve: $FUENTE"
 
       - name: Comprobar
         run: |
@@ -88,8 +142,13 @@ jobs:
           {
             echo "## Relieve 3D de Tenerife"
             echo ""
+            echo "**Fuente: ${{ steps.construir.outputs.fuente || 'ninguna' }}** (MDT05 del IGN: ${{ steps.ign.outcome || 'no se intento' }})"
+            echo ""
             echo '```'
             ls -l dem/ 2>/dev/null || true
+            echo ""
+            echo "--- el MDT05 del IGN (lo ultimo) ---"
+            tail -n 25 ign.txt 2>/dev/null || echo "(no se intento)"
             echo ""
             cat construir.txt 2>/dev/null || echo "(no llego a construirse)"
             echo ""
@@ -150,5 +209,5 @@ jobs:
             echo "El relieve no ha cambiado: no hay commit."
             exit 0
           fi
-          git commit -m "Relieve 3D: Copernicus DEM GLO-30 con la costa del mapa detallado"
+          git commit -m "Relieve 3D: ${{ needs.generar.outputs.fuente }} con la costa del mapa detallado"
           git push

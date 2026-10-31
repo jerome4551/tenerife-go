@@ -3998,6 +3998,105 @@ cima, con su triángulo a menos de un píxel de la ficha, «Teide» y «3715 m»
 ningún paraje «Teide» al lado; sin `ponerCimas`, ninguna cima y el paraje: la
 medida sabe ponerse en rojo.
 
+## El relieve del 3D, del MDT05 del IGN (31 de octubre, tarde)
+
+Jerome, 31 de octubre de 2026, sobre las fuentes del 3D
+(`claude/FUENTES-3D.md`, en el proyecto): «Fuentes 3D la mejor pero gratis».
+
+**Cuál.** De las fuentes oficiales que se miraron ese día, la mejor gratis
+para Tenerife es el **MDT05 del IGN**: el Modelo Digital del Terreno con paso
+de malla de 5 metros, de los vuelos LiDAR del PNOA (1.ª cobertura). Es el
+**terreno**, sin árboles ni edificios (el Copernicus DEM de antes es de
+superficie: los lleva encima), con una exactitud vertical de 50 cm según su
+metadato; licencia CC BY 4.0, uso comercial incluido, y sin cuenta. El MDT02
+(2 m) no aporta nada a celdas de 60 m y solo se baja hoja a hoja, con cuenta a
+partir de la vigésima; los demás, o piden cuenta, o no dejan el uso comercial,
+o son peores.
+
+**Cómo llega.** `tools/relieve_ign.py` (nuevo) lo pide a la API de coberturas
+de la IDEE (`api-coverages.idee.es`, colección
+`EL.ElevationGridCoverage_4258_5_C`, «MDT Islas Canarias EPSG:4258 5») con la
+forma de los ejemplos del blog de la IDEE
+(`/coverage?subset=Lat(s:n),Long(o:e)&f=COG`). La API dice que el tamaño de
+descarga está limitado, sin cifra: se pide la isla a trozos de 0,04° (unos 900
+× 900 píxeles), solo los que tocan tierra, y si uno no sale, en cuatro más
+pequeños; lo pasajero (sin red, una respuesta cortada a medias, 429, 502, 503,
+504) se reintenta con esperas.
+Una primera petición pequeña en el centro de la isla da la malla de la
+colección; cada trozo se encaja en ella al píxel y solo cuenta su núcleo (así
+dos trozos no suman dos veces el mismo píxel). Sale un mosaico de bloques de
+3 × 3 píxeles (unos 14 m), que `tools/relieve_construir.py` pasa a las celdas
+de 60 m como hacía con Copernicus.
+
+**Cuándo no se usa.** `relieve_construir.py --cotejar` lo compara con el
+Copernicus DEM en las celdas de tierra: con una diferencia mediana de más de
+15 m, o una media de su valor absoluto de más de 40 m, para (un dato mal
+georreferenciado, en otras unidades o de otro sitio se va a cientos de
+metros); y `--comprobar` no da por bueno un relieve del IGN que no lleve esa
+comparación. Y el workflow **Generar relieve 3D** prueba primero el IGN (bajar,
+con 40 minutos de tope, construir y `--comprobar`) y, si algo de eso no sale,
+hace el relieve con el Copernicus DEM, como antes, y lo dice en el resumen. Lo
+de los 40 minutos: si la IDEE fuera muy lenta, el tope del job (75) lo
+cortaría todo y no saldría ningún relieve; un paso que se pasa de tiempo queda
+en «failure» y, con `continue-on-error`, el job sigue (leído en el código del
+runner de GitHub, `actions/runner`: `StepsRunner.cs`). El `.json` del relieve
+lleva de cuál sale (`fuente.id`), lo que se bajó (`fuente.descarga`) y la
+comparación (`fuente.cotejo`).
+
+**El crédito.** El IGN pide, para una obra derivada, «Obra derivada de
+<producto> <fecha> CC-BY 4.0 <productor>» al pie del mapa y en los metadatos
+(sus condiciones de uso, comprobadas ese día en su versión inglesa: «Work
+derived from …»), con el identificador, la fecha y el productor del metadato
+del MDT05 en la IDEE: «MDT05-cob1 2008-2015 CC-BY 4.0 scne.es». El 3D enseña
+«Obra derivada de MDT05-cob1 2008-2015 CC-BY 4.0 scne.es», siempre entero (en
+un móvil de 390 px son dos líneas) y sin «ⓘ», y con Copernicus, sus dos notas
+como antes. El crédito sale de la fuente que dice el `.json`, pero el texto no
+sale nunca del `.json`: está en `modulos/isla3d.js` (`DEM_FUENTES`) y en la
+herramienta (`FUENTES`); un relieve con otra fuente no se dibuja.
+
+**Cómo se probó, sin red.** Desde aquí no se llega a la IDEE (el proxy la
+para), así que no se ha bajado ni un píxel de verdad: eso lo hace el workflow.
+Se probó todo contra un servidor de prueba que imita la API (GeoTIFF en
+grados, con un límite de tamaño, con 503 de vez en cuando, con respuestas
+cortadas a medias y con los dos enganches de píxel, PixelIsArea y
+PixelIsPoint) y alturas de mentira. Con una campana en el Teide: el mosaico
+sale igual en tierra partiendo los trozos o no, y con respuestas cortadas, y
+entero (100 % de las 570.610 celdas de tierra); con el mismo mosaico 100 m
+más alto, `--cotejar` para y no escribe nada. Un relieve del IGN hecho sin
+`--cotejar` no pasa `--comprobar`. Y el paso «Construir el relieve» del
+workflow, sacado tal cual: con el IGN bueno, sale del IGN; con el malo, de
+Copernicus y con el aviso; si la descarga falló, de Copernicus y con el otro
+aviso.
+
+Para abrir el 3D hacían falta alturas con la forma de la isla: las de la
+maqueta de desarrollo (que nunca va al repositorio) con un cono del Teide como
+el de verdad en el sitio de su ficha, 3.715 m arriba. La maqueta sola tiene
+la punta a 207 m de la ficha (en la ficha, 3.323 m), y la campana no da
+sombras a 500–1.200 m de la cumbre: cada una dejaba un control en rojo. Con
+esas alturas, en dos copias del repositorio, un relieve del IGN (cotejo:
+−3,1 m de mediana, los 3 m que se le pusieron al Copernicus de mentira) y uno
+de Copernicus, los dos con `--comprobar` en verde, y el 3D abierto de verdad
+en un móvil emulado: con el del IGN, **56 controles, ninguno en rojo** (el crédito del IGN
+entero al entrar y tras el primer gesto, en dos líneas y sin «ⓘ»; la cumbre a
+3.691 m; las sombras del atardecer); con el de Copernicus, **57 controles, ninguno en rojo** (sus
+dos notas, plegadas al primer gesto). Y en los dos, un relieve de una fuente
+que el módulo no conoce no se dibuja.
+
+Midiendo el crédito del IGN en ese móvil salió un fallo que la auditoría no
+veía: «ⓘ» seguía a la vista (y el crédito ocupaba 43 px en vez de 32), porque
+el `display` del estilo del módulo le ganaba al `hidden` del navegador, y la
+auditoría miraba `hidden`, no lo que se ve. Ahora el módulo lo esconde de
+verdad (`.i3-c-mas[hidden]`, como ya hacía con la nota 6(c)) y la auditoría
+mira lo que se ve: las líneas que ocupa el crédito, contadas en las cajas de
+su texto, y si «ⓘ» tiene caja. Con el módulo de antes del arreglo, la misma
+medida da «ⓘ» a la vista (43 px); con el de ahora, dos líneas y sin «ⓘ»
+(32 px): sabe ponerse en rojo.
+
+**Lo que falta.** Lanzar el workflow con el bloque en `main`: la primera vez
+dirá si la API de la IDEE contesta como dice su documentación (el formato de
+`subset`, el tamaño máximo, el GeoTIFF que devuelve). Si no, el relieve sale de
+Copernicus y el resumen dice por qué.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -6250,7 +6349,8 @@ el portal Infoplayas Canarias como origen.
 - **El relieve de «La isla en 3D»** (31 de octubre): está todo menos el
   relieve, que desde donde se hizo no se pudo bajar (solo se llega a GitHub).
   Falta lanzar una vez el workflow «Generar relieve 3D» con el bloque ya en
-  `main`; hasta entonces el botón «3D» no sale. Después, `bash
+  `main` (probará primero el MDT05 del IGN y, si no sale, Copernicus);
+  hasta entonces el botón «3D» no sale. Después, `bash
   tools/auditar.sh` con el relieve dentro abre la vista de verdad, con la
   cumbre del Teide a su altura y la sombra del atardecer.
 - ~~73 paradas sin municipio~~ **cerrado**: cruzadas con los límites

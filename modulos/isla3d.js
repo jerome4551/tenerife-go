@@ -5,8 +5,8 @@
 
    QUE DIBUJA
    El relieve de verdad de la isla (mapa/tenerife-relieve.png, una celda de
-   60 m, del Copernicus DEM GLO-30 con la costa del mapa detallado: lo hace
-   tools/relieve_construir.py), con encima el mismo mapa de la app
+   60 m, del MDT05 del IGN o, si no sale, del Copernicus DEM GLO-30, con la
+   costa del mapa detallado: lo hace tools/relieve_construir.py), con encima el mismo mapa de la app
    (mapa/tenerife-osm.pmtiles si esta descargado; si no, el mapa base que
    viaja dentro) pintado con unos colores pensados para verse en relieve, y
    los nombres de pueblos, cimas y macizos que saca la misma herramienta del
@@ -24,8 +24,9 @@
    Se pinta solo cuando algo cambia: quieto, no gasta bateria.
 
    El «atras» del movil, Escape y «2D» cierran (una entrada en el historial,
-   como el SOS y el cielo). Abajo, las dos notas que pide la licencia del
-   Copernicus DEM (DEM_NOTA, DEM_RESPONSABILIDAD) y © OpenStreetMap.
+   como el SOS y el cielo). Abajo, el credito de la fuente del relieve (el del
+   MDT05 del IGN, IGN_NOTA; o las dos notas que pide la licencia del Copernicus
+   DEM, DEM_NOTA y DEM_RESPONSABILIDAD: DEM_FUENTES) y © OpenStreetMap.
 
    tools/auditar_isla3d.js lo abre de verdad en un movil emulado, sin red,
    en los diez idiomas, y comprueba lo que dibuja. */
@@ -71,6 +72,24 @@
      tools/auditar_isla3d.js coteja las tres copias. */
   var DEM_NOTA = 'produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved';
   var DEM_RESPONSABILIDAD = 'The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30';
+  /* El MDT05 del IGN (31 de octubre de 2026, tarde: Jerome, «Fuentes 3D la mejor pero gratis»):
+     CC BY 4.0, y para una obra derivada el IGN pide «Obra derivada de <producto> <fecha> CC-BY 4.0
+     <productor>» al pie del mapa, con el identificador, la fecha y el productor de su metadato.
+     Es corto: va siempre entero, sin plegar. */
+  var IGN_NOTA = 'Obra derivada de MDT05-cob1 2008-2015 CC-BY 4.0 scne.es';
+  /* El credito de cada fuente del relieve, por el id que dice su .json (fuente.id;
+     tools/relieve_construir.py, FUENTES). Una fuente que no este aqui no se dibuja: el credito
+     no sale nunca del .json. tools/auditar_isla3d.js coteja estas copias con las de la
+     herramienta. */
+  var DEM_FUENTES = {
+    'copernicus-glo30': { nota: DEM_NOTA, responsabilidad: DEM_RESPONSABILIDAD, plegada: 'Copernicus WorldDEM-30' },
+    'ign-mdt05': { nota: IGN_NOTA, responsabilidad: '', plegada: '' }
+  };
+  function fuenteDem(meta) {
+    var f = (meta && meta.fuente) || {};
+    var id = f.id || (f.nombre === 'Copernicus DEM GLO-30' ? 'copernicus-glo30' : '');
+    return Object.prototype.hasOwnProperty.call(DEM_FUENTES, id) ? DEM_FUENTES[id] : null;
+  }
   /* el credito de OSM con su enlace a derechos de autor y licencia, como el
      del mapa plano (LANZAMIENTO-PLAY.md 1.6) */
   var OSM_DERECHOS = 'https://www.openstreetmap.org/copyright';
@@ -206,7 +225,9 @@
           if (Math.round(H[q] / esc) !== s[2] || costa[q] !== s[3] || ao[q] !== s[4]) bien = false;
         }
         if (!bien) throw new Error('mal-leido');
-        S.meta = meta; S.H = H; S.costa = costa; S.ao = ao;
+        var dem = fuenteDem(meta);
+        if (!dem) throw new Error('fuente');
+        S.meta = meta; S.H = H; S.costa = costa; S.ao = ao; S.dem = dem;
         S.ancho = m.ancho; S.alto = m.alto;
         S.k = Math.cos(m.lat_ref * Math.PI / 180);
         S.c = m.paso * S.k;
@@ -1604,6 +1625,8 @@
     '#isla3d .i3-c-resp[hidden]{display:none}',
     '#isla3d .i3-c-mas{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;margin-left:2px;padding:0;border:0;border-radius:13px;background:transparent;color:inherit;font:600 0.92rem "DM Sans",system-ui,sans-serif;vertical-align:middle;cursor:pointer}',
     '#isla3d .i3-c-mas:focus-visible{outline:2px solid #f5c76b;outline-offset:1px}',
+    /* sin esto, el display de arriba gana al [hidden] del navegador y «ⓘ» sale con el IGN */
+    '#isla3d .i3-c-mas[hidden]{display:none}',
     '#isla3d.noche .i3-creditos{color:rgba(230,236,245,0.84);background:rgba(10,14,24,0.58)}',
     '#isla3d .i3-estado{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);max-width:min(86vw,440px);background:rgba(15,17,23,0.9);color:#f3f4f6;border:1px solid rgba(201,168,76,0.45);font:500 0.92rem/1.45 "DM Sans",system-ui,sans-serif;padding:16px 18px;border-radius:16px;text-align:center;display:none}',
     '#isla3d .i3-estado.si{display:block}',
@@ -1638,7 +1661,7 @@
     var pie = el('div', 'i3-pie');
     var aviso = el('div', 'i3-aviso'); aviso.setAttribute('role', 'status');
     var cred = el('div', 'i3-creditos');
-    cred.setAttribute('data-sin-traducir', 'creditos: las notas de la licencia del Copernicus DEM van en ingles, palabra por palabra; Copernicus y OpenStreetMap son nombres propios');
+    cred.setAttribute('data-sin-traducir', 'creditos: el de la fuente del relieve va palabra por palabra (el del IGN en castellano, las notas del Copernicus DEM en ingles); IGN, Copernicus y OpenStreetMap son nombres propios');
     var cRel = el('span'), cDem = el('span'), cMapa = el('span'), cResp = el('span', 'i3-c-resp');
     var cOsm = el('a', null, 'OpenStreetMap'); cOsm.href = OSM_DERECHOS; cOsm.target = '_blank'; cOsm.rel = 'noopener';
     var cMas = el('button', 'i3-c-mas', 'ⓘ'); cMas.type = 'button';
@@ -1708,13 +1731,16 @@
     u.cMas.title = T('Creditos'); u.cMas.setAttribute('aria-label', T('Creditos'));
     creditos(S.credAbiertos);
   }
-  /* las notas del Copernicus DEM, enteras o plegadas («ⓘ») */
+  /* el credito del relieve, el de su fuente: las notas del Copernicus DEM, enteras o plegadas
+     («ⓘ»); el del IGN, siempre entero (es corto), y entonces «ⓘ» no hace falta */
   function creditos(enteras) {
     S.credAbiertos = !!enteras;
     if (!S.ui) return;
-    S.ui.cDem.textContent = enteras ? DEM_NOTA : 'Copernicus WorldDEM-30';
-    S.ui.cResp.textContent = enteras ? DEM_RESPONSABILIDAD + '.' : '';
-    S.ui.cResp.hidden = !enteras;
+    var d = S.dem, plegable = !!(d && d.plegada);
+    S.ui.cDem.textContent = !d ? '' : (enteras || !plegable) ? d.nota : d.plegada;
+    S.ui.cResp.textContent = d && enteras && d.responsabilidad ? d.responsabilidad + '.' : '';
+    S.ui.cResp.hidden = !S.ui.cResp.textContent;
+    S.ui.cMas.hidden = !plegable;
     S.ui.cMas.setAttribute('aria-expanded', enteras ? 'true' : 'false');
   }
   function estadoTxt(t) {

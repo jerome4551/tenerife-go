@@ -11,16 +11,20 @@
  *    los cuatro ficheros en CORE y en «red primero»; la app de las tiendas
  *    (app_preparar.js) los copia; las dos notas de la licencia del
  *    Copernicus DEM, las mismas palabra por palabra en el modulo y en
- *    relieve_construir.py; el relieve y su huella en sw.js e index.html
+ *    relieve_construir.py, y las dos fuentes del relieve (el MDT05 del IGN y
+ *    el Copernicus DEM) con el mismo credito en los dos (DEM_FUENTES y
+ *    FUENTES); el relieve y su huella en sw.js e index.html
  *    (relieve_construir.py --comprobar); sin eval ni console.log ni
  *    innerHTML en el modulo.
  * 2. En Chromium, movil emulado (390 x 844, x2, tactil). Si el servidor no
  *    tiene relieve: el boton no sale y no se pide nada del 3D. Si lo tiene,
  *    con WebGL:
  *    · el boton «3D» sale, no pisa al de categorias, y abre la vista;
- *    · al entrar, la ayuda de los gestos y las notas de la licencia enteras,
- *      con el enlace de OpenStreetMap; al primer gesto se pliegan y «ⓘ» las
- *      vuelve a abrir;
+ *    · al entrar, la ayuda de los gestos y el credito de la fuente del
+ *      relieve que dice su .json, con el enlace de OpenStreetMap: con el
+ *      Copernicus DEM, las notas de la licencia enteras, que al primer gesto
+ *      se pliegan y «ⓘ» las vuelve a abrir; con el MDT05 del IGN, su credito,
+ *      siempre entero y sin «ⓘ»;
  *    · se dibuja: relieve, mapa encima, rotulos; mar azul y tierra que no lo es
  *      en los pixeles donde tienen que estar;
  *    · la vista entra donde estaba el mapa plano y, al volver, el mapa plano
@@ -40,7 +44,8 @@
  *      luz de mapa, sin sombras;
  *    · los diez idiomas: el titulo, los botones y el aviso de cada uno;
  *    · sin red, con el service worker: abre igual (todo de la cache);
- *    · un PNG tocado (una sola alteracion) no se dibuja: lo dice;
+ *    · un PNG tocado (una sola alteracion) no se dibuja: lo dice; ni un
+ *      relieve de una fuente que el modulo no conoce;
  *    · con WebGL 1: dibuja igual, sin sombras proyectadas;
  *    · sin WebGL: lo dice y no revienta.
  * 3. Lo que tarda: fotogramas de un arrastre con la CPU 4 veces mas lenta
@@ -62,6 +67,26 @@ const HUECO = /\{(\w+)\}/g;
 const TEIDE = { lat: 28.2725, lon: -16.6422 };
 
 let fallos = 0, hechos = 0, NOTAS = {};
+/* el credito del 3D tal como se ve (corre en la pagina): el texto, el que se ve de verdad, las
+   lineas que ocupa (las cajas de su texto, juntas por altura) y si «ⓘ» se ve: con .hidden no
+   basta, el CSS del modulo le puede ganar (paso con el IGN el 31 de octubre de 2026) */
+const LEER_CREDITOS = () => {
+  const c = document.querySelector('#isla3d .i3-creditos'), m = c.querySelector('.i3-c-mas');
+  const ys = [], w = document.createTreeWalker(c, NodeFilter.SHOW_TEXT);
+  for (let n = w.nextNode(); n; n = w.nextNode()) {
+    if (!n.textContent.trim()) continue;
+    const r = document.createRange(); r.selectNodeContents(n);
+    for (const q of r.getClientRects()) if (q.width > 0 && q.height > 0) ys.push((q.top + q.bottom) / 2);
+  }
+  ys.sort((a, b) => a - b);
+  let lineas = 0, ult = -1e9;
+  for (const y of ys) { if (y - ult > 7) lineas++; ult = y; }
+  const cs = m && getComputedStyle(m);
+  return { txt: c.textContent, visible: c.innerText, lineas, alto: c.getBoundingClientRect().height,
+           exp: m && m.getAttribute('aria-expanded'), masSeVe: !!(m && m.getClientRects().length && cs.display !== 'none' && cs.visibility !== 'hidden') };
+};
+/* la fuente del relieve que sirve el servidor (su .json, fuente.id): el credito que tiene que salir */
+let FUENTE = '';
 function ok(c, txt, det) { hechos++; if (c) console.log('  OK  ' + txt); else { fallos++; console.log('  MAL ' + txt + (det !== undefined ? '   -> ' + (typeof det === 'string' ? det : JSON.stringify(det)) : '')); } }
 function info(txt) { console.log('  ··  ' + txt); }
 const lee = f => fs.readFileSync(path.join(RAIZ, f), 'utf8');
@@ -152,12 +177,25 @@ function sinNavegador() {
   /* las notas que pide la licencia del Copernicus DEM (articulo 6(b) y 6(c)):
      las mismas, palabra por palabra, en el modulo y en la herramienta, que
      las escribe en el .json (y --comprobar coteja el .json) */
-  const notas = cp.spawnSync('python3', ['-c', 'import sys, json; sys.path.insert(0, "tools"); import relieve_construir as r; print(json.dumps([r.NOTA_6B, r.NOTA_6C]))'], { cwd: RAIZ, encoding: 'utf8' });
+  const notas = cp.spawnSync('python3', ['-c', 'import sys, json; sys.path.insert(0, "tools"); import relieve_construir as r; print(json.dumps([r.NOTA_6B, r.NOTA_6C, {k: [v["credito"], v["responsabilidad"]] for k, v in r.FUENTES.items()}]))'], { cwd: RAIZ, encoding: 'utf8' });
   let n6 = null; try { n6 = JSON.parse(notas.stdout); } catch (e) {}
   const enMod = k => (mod.match(new RegExp("var " + k + " = '([^']*)';")) || [])[1];
-  NOTAS = { b: enMod('DEM_NOTA'), c: enMod('DEM_RESPONSABILIDAD'), osm: enMod('OSM_DERECHOS') };
+  NOTAS = { b: enMod('DEM_NOTA'), c: enMod('DEM_RESPONSABILIDAD'), ign: enMod('IGN_NOTA'), osm: enMod('OSM_DERECHOS') };
   ok(n6 && NOTAS.b === n6[0] && NOTAS.c === n6[1] && /^produced using Copernicus WorldDEM-30 © DLR e\.V\. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved$/.test(NOTAS.b),
      'las dos notas de la licencia del Copernicus DEM (6(b) y 6(c)): las mismas, palabra por palabra, en el modulo y en relieve_construir.py', { modulo: NOTAS, herramienta: n6 });
+  /* el credito de cada fuente del relieve (31 de octubre de 2026, tarde: el MDT05 del IGN, con el de
+     Copernicus de respaldo): las mismas fuentes y los mismos creditos en el modulo (DEM_FUENTES) y en
+     la herramienta (FUENTES), y el del IGN, el de su plantilla de obra derivada con el dato de su metadato */
+  const vars = { DEM_NOTA: NOTAS.b, DEM_RESPONSABILIDAD: NOTAS.c, IGN_NOTA: NOTAS.ign, "''": '' };
+  const tabla = {};
+  for (const m of ((mod.match(/var DEM_FUENTES = \{([\s\S]*?)\n  \};/) || [, ''])[1]).matchAll(/'([a-z0-9-]+)': \{ nota: ([A-Z_]+|''), responsabilidad: ([A-Z_]+|''), plegada: '([^']*)' \}/g))
+    tabla[m[1]] = [vars[m[2]], vars[m[3]], m[4]];
+  const deLaHerramienta = (n6 && n6[2]) || {};
+  ok(Object.keys(tabla).sort().join() === Object.keys(deLaHerramienta).sort().join() && Object.keys(tabla).length === 2
+     && Object.keys(tabla).every(k => tabla[k][0] === deLaHerramienta[k][0] && tabla[k][1] === deLaHerramienta[k][1])
+     && NOTAS.ign === 'Obra derivada de MDT05-cob1 2008-2015 CC-BY 4.0 scne.es' && tabla['ign-mdt05'][2] === '' && tabla['copernicus-glo30'][2] === 'Copernicus WorldDEM-30',
+     'las dos fuentes del relieve, con el mismo credito en el modulo y en relieve_construir.py: el MDT05 del IGN («' + NOTAS.ign + '», siempre entero) y el Copernicus DEM (sus dos notas, plegables)',
+     { modulo: tabla, herramienta: deLaHerramienta });
   ok(NOTAS.osm === 'https://www.openstreetmap.org/copyright', 'el credito de OpenStreetMap enlaza a su pagina de derechos de autor y licencia, como el del mapa plano', NOTAS.osm);
   ok(/'isla3d': 'modulos\/isla3d\.js'|modulos\/isla3d\.js/.test(lee('tools/auditar.sh')), 'auditar.sh comprueba la sintaxis del modulo');
   const rel = cp.spawnSync('python3', [path.join(RAIZ, 'tools', 'relieve_construir.py'), '--comprobar'], { encoding: 'utf8' });
@@ -170,8 +208,12 @@ function sinNavegador() {
    vista entera; sin el, que el boton no salga y no se pida nada del 3D. */
 async function servidorConRelieve() {
   try {
-    const r = await fetch(new URL('mapa/tenerife-relieve.json', BASE), { method: 'HEAD' });
-    return r.ok;
+    const r = await fetch(new URL('mapa/tenerife-relieve.json', BASE));
+    if (!r.ok) return false;
+    const f = ((await r.json()) || {}).fuente || {};
+    FUENTE = f.id || (f.nombre === 'Copernicus DEM GLO-30' ? 'copernicus-glo30' : '?');
+    console.log('  (el relieve del servidor es de ' + FUENTE + ')');
+    return true;
   } catch (e) { return false; }
 }
 
@@ -188,7 +230,7 @@ async function sinRelieve() {
   p.on('request', r => { if (/isla3d|tenerife-relieve/.test(r.url())) pedidos.push(r.method() + ' ' + r.url()); });
   await p.goto(BASE, { waitUntil: 'networkidle' });
   await p.waitForTimeout(1500);
-  const r = await p.evaluate(() => { const b = document.getElementById('isla3d-btn'); return { hay: !!b, oculto: !b || b.hidden, modulo: typeof window.TG_ISLA3D }; });
+  const r = await p.evaluate(() => { const b = document.getElementById('isla3d-btn'); return { hay: !!b, oculto: !b || (b.hidden && !b.getClientRects().length), modulo: typeof window.TG_ISLA3D }; });
   ok(r.hay && r.oculto && r.modulo === 'undefined', 'sin relieve, el boton «3D» no sale y el modulo no se carga', r);
   ok(!pedidos.length, 'y no se pide nada del 3D: ni el modulo ni el relieve (en la app de las tiendas seria un 404)', pedidos);
   ok(!errores.length, 'cero errores de pagina', errores.slice(0, 5));
@@ -235,7 +277,8 @@ async function navegador() {
     const b = document.getElementById('isla3d-btn'), c = document.getElementById('category-btn');
     if (!b) return null;
     const r = b.getBoundingClientRect(), q = c ? c.getBoundingClientRect() : null;
-    return { oculto: b.hidden, r: [r.left, r.top, r.right, r.bottom], pisa: q ? !(r.bottom <= q.top || r.top >= q.bottom || r.right <= q.left || r.left >= q.right) : false };
+    // que se vea de verdad: con .hidden no basta (el CSS le puede ganar)
+    return { oculto: b.hidden || !b.getClientRects().length || r.width < 30, r: [r.left, r.top, r.right, r.bottom], pisa: q ? !(r.bottom <= q.top || r.top >= q.bottom || r.right <= q.left || r.left >= q.right) : false };
   });
   ok(bot && !bot.oculto && bot.r[2] <= 390 && bot.r[0] >= 0 && !bot.pisa, 'el boton «3D» sale, dentro de la pantalla y sin pisar al de categorias', bot);
   const UI0 = literal(lee('modulos/isla3d.js'), 'var ISLA3D_UI = {');
@@ -244,14 +287,17 @@ async function navegador() {
   /* al entrar: la ayuda de los gestos (una vez; antes la tapaba «Dibujando el
      mapa…», que sale justo entonces) y las notas de la licencia enteras */
   await esperar(p, x => x.listo);
-  const entrada = await p.evaluate(() => {
-    const c = document.querySelector('#isla3d .i3-creditos'), a = c.querySelector('a'), m = c.querySelector('.i3-c-mas'), r = c.getBoundingClientRect();
-    return { aviso: TG_ISLA3D._prueba.estado().aviso, cred: c.textContent, href: a && a.href, expandido: m && m.getAttribute('aria-expanded'),
-             dentro: r.left >= 0 && r.right <= innerWidth && r.bottom <= innerHeight, historia: history.state };
-  });
+  const entrada = await p.evaluate(LEER_CREDITOS).then(x => p.evaluate(() => {
+    const c = document.querySelector('#isla3d .i3-creditos'), a = c.querySelector('a'), r = c.getBoundingClientRect();
+    return { aviso: TG_ISLA3D._prueba.estado().aviso, href: a && a.href, dentro: r.left >= 0 && r.right <= innerWidth && r.bottom <= innerHeight, historia: history.state };
+  }).then(y => Object.assign(x, y)));
   ok(entrada.aviso === UI0.isla3dAyuda.es, 'al entrar, la ayuda de los gestos («' + UI0.isla3dAyuda.es + '»)', entrada.aviso);
-  ok(entrada.cred.indexOf(NOTAS.b) >= 0 && entrada.cred.indexOf(NOTAS.c) >= 0 && entrada.href === NOTAS.osm && entrada.expandido === 'true' && entrada.dentro,
-     'al entrar, las dos notas de la licencia del Copernicus DEM enteras y © OpenStreetMap con su enlace, dentro de la pantalla', entrada);
+  if (FUENTE === 'ign-mdt05')
+    ok(entrada.txt.indexOf(NOTAS.ign) >= 0 && entrada.txt.indexOf('Copernicus') < 0 && entrada.href === NOTAS.osm && !entrada.masSeVe && entrada.lineas <= 2 && entrada.dentro,
+       'al entrar, el credito del MDT05 del IGN entero («' + NOTAS.ign + '»), sin «ⓘ», y © OpenStreetMap con su enlace, en ' + entrada.lineas + ' lineas, dentro de la pantalla', entrada);
+  else
+    ok(entrada.txt.indexOf(NOTAS.b) >= 0 && entrada.txt.indexOf(NOTAS.c) >= 0 && entrada.href === NOTAS.osm && entrada.exp === 'true' && entrada.masSeVe && entrada.dentro,
+       'al entrar, las dos notas de la licencia del Copernicus DEM enteras, con «ⓘ», y © OpenStreetMap con su enlace, dentro de la pantalla', entrada);
   ok(entrada.historia && entrada.historia.tgIsla3d === 1, 'abrir deja una entrada en el historial: «atras» del movil cierra el 3D y no la app', entrada.historia);
   let e = await esperar(p, x => x.listo && x.drape && x.cuadros > 3);
   ok(e && e.listo && !e.sinWebGL, 'la vista abre con WebGL (' + (e && e.gl2 ? 'WebGL 2' : 'WebGL 1') + ')', e);
@@ -327,14 +373,20 @@ async function navegador() {
   ok(dArr < 25, 'arrastrar con un dedo: el sitio que estaba bajo el dedo sigue bajo el dedo (' + Math.round(dArr) + ' m)', { g0, g1 });
   info('al soltar sigue un poco por la inercia: ' + Math.round(dRe) + ' m');
   /* las notas, plegadas tras el primer gesto; «ⓘ» las abre */
-  const plegadas = await p.evaluate(() => { const c = document.querySelector('#isla3d .i3-creditos'); return { txt: c.textContent, alto: c.getBoundingClientRect().height, exp: c.querySelector('.i3-c-mas').getAttribute('aria-expanded') }; });
-  ok(plegadas.exp === 'false' && plegadas.txt.indexOf(NOTAS.c) < 0 && /Copernicus WorldDEM-30/.test(plegadas.txt) && /OpenStreetMap/.test(plegadas.txt) && plegadas.alto < 40,
-     'tras el primer gesto, las notas se pliegan a una linea (' + Math.round(plegadas.alto) + ' px): «' + plegadas.txt + '»', plegadas);
-  await p.click('#isla3d .i3-c-mas');
-  await p.waitForTimeout(200);
-  const otraVez = await p.evaluate(() => { const c = document.querySelector('#isla3d .i3-creditos'); return { txt: c.textContent, exp: c.querySelector('.i3-c-mas').getAttribute('aria-expanded'), etiqueta: c.querySelector('.i3-c-mas').getAttribute('aria-label') }; });
-  ok(otraVez.exp === 'true' && otraVez.txt.indexOf(NOTAS.b) >= 0 && otraVez.txt.indexOf(NOTAS.c) >= 0 && otraVez.etiqueta === UI0.isla3dCreditos.es,
-     '«ⓘ» las vuelve a abrir enteras (y se llama «' + otraVez.etiqueta + '»)', otraVez);
+  const plegadas = await p.evaluate(LEER_CREDITOS);
+  if (FUENTE === 'ign-mdt05') {
+    // entero no se pliega: en un movil de 390 px, dos lineas como mucho, y sin «ⓘ», que no abriria nada
+    ok(plegadas.txt.indexOf(NOTAS.ign) >= 0 && !plegadas.masSeVe && /OpenStreetMap/.test(plegadas.txt) && plegadas.lineas <= 2,
+       'tras el primer gesto, el credito del IGN sigue entero y sin «ⓘ», en ' + plegadas.lineas + ' lineas (' + Math.round(plegadas.alto) + ' px): «' + plegadas.visible + '»', plegadas);
+  } else {
+    ok(plegadas.exp === 'false' && plegadas.txt.indexOf(NOTAS.c) < 0 && /Copernicus WorldDEM-30/.test(plegadas.txt) && /OpenStreetMap/.test(plegadas.txt) && plegadas.masSeVe && plegadas.lineas === 1,
+       'tras el primer gesto, las notas se pliegan a una linea, con «ⓘ» (' + Math.round(plegadas.alto) + ' px): «' + plegadas.visible + '»', plegadas);
+    await p.click('#isla3d .i3-c-mas');
+    await p.waitForTimeout(200);
+    const otraVez = await p.evaluate(() => { const c = document.querySelector('#isla3d .i3-creditos'); return { txt: c.textContent, exp: c.querySelector('.i3-c-mas').getAttribute('aria-expanded'), etiqueta: c.querySelector('.i3-c-mas').getAttribute('aria-label') }; });
+    ok(otraVez.exp === 'true' && otraVez.txt.indexOf(NOTAS.b) >= 0 && otraVez.txt.indexOf(NOTAS.c) >= 0 && otraVez.etiqueta === UI0.isla3dCreditos.es,
+       '«ⓘ» las vuelve a abrir enteras (y se llama «' + otraVez.etiqueta + '»)', otraVez);
+  }
   await p.evaluate(() => TG_ISLA3D._prueba.irA(-16.52, 28.40, 12000, 0, 45));
   await quieto(p);
   /* pellizcar: acerca y el punto entre los dedos no se mueve */
@@ -535,6 +587,26 @@ async function navegador() {
   await p.waitForTimeout(3000);
   x = await estado(p);
   ok(x && !x.listo && /no se ha le|no se dibuja/.test(x.estado), 'un PNG con un solo valor cambiado no se dibuja, y lo dice', x);
+  await ctx.close();
+
+  /* ── un relieve de una fuente que el modulo no conoce no se dibuja: el credito
+     no sale nunca del .json (DEM_FUENTES) ── */
+  ({ ctx, p } = await nueva());
+  await p.route('**/mapa/tenerife-relieve.json', async route => {
+    // index.html pregunta antes con un HEAD (sin cuerpo): ese pasa tal cual
+    if (route.request().method() !== 'GET') return route.continue();
+    const r = await route.fetch();
+    const j = JSON.parse(await r.text());
+    j.fuente = Object.assign({}, j.fuente, { id: 'otra-fuente', credito: 'CREDITO DE OTRA FUENTE' });
+    await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(j) });
+  });
+  await arrancar(p, 'es');
+  await p.click('#isla3d-btn');
+  await p.waitForTimeout(3000);
+  x = await estado(p);
+  const credOtra = await p.evaluate(() => { const c = document.querySelector('#isla3d .i3-creditos'); return c ? c.textContent : ''; });
+  ok(x && !x.listo && /No se pudo abrir la isla en 3D/.test(x.estado) && credOtra.indexOf('CREDITO DE OTRA FUENTE') < 0,
+     'un relieve de una fuente que el modulo no conoce no se dibuja, y lo dice', { x, credOtra });
   await ctx.close();
 
   /* ── el movil le quita la GPU a la pagina (iOS, en segundo plano) y se la devuelve ── */
