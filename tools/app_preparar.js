@@ -12,7 +12,8 @@
  *      y borrar-cuenta.html, los diez idiomas (idiomas/<l>.json y
  *      idiomas/etiquetas/), el asistente (faq/<l>.json), los datos que lee
  *      index.html (datos/), el modulo del cielo, vendor/ entero (librerias,
- *      fuentes, imagenes de Leaflet, licencias) y los dos mapas (.pmtiles).
+ *      fuentes, imagenes de Leaflet, licencias), los dos mapas (.pmtiles) y
+ *      el relieve de «La isla en 3D» (mapa/tenerife-relieve*.png y .json).
  *      Ni sw.js (dentro de la app no hay service worker), ni las carpetas de
  *      trabajo (idiomas/pl-fuente, datos/osm-geofabrik, faq/fuente...), ni
  *      los controles.
@@ -100,7 +101,7 @@ const CARPETAS = [
   ['vendor', f => /\.(js|css|txt)$/.test(f)],
   ['vendor/fuentes', f => /\.woff2$/.test(f)],
   ['vendor/images', f => /\.png$/.test(f)],
-  ['mapa', f => /\.pmtiles$/.test(f)],
+  ['mapa', f => /\.pmtiles$/.test(f) || /^tenerife-relieve(-ao)?\.(png|json)$/.test(f)],
 ];
 
 const MARCA = '<script>window.TGO_NATIVO = true;</script>\n';
@@ -265,11 +266,21 @@ function comprobar(montado) {
   const sosDatos = (((index.match(/window\.SOS_DATOS = \[([^\]]*)\]/) || [, ''])[1]).match(/'[^']+'/g) || [])
     .map(x => limpia(x.slice(1, -1)));
   for (const rel of sosDatos) if (!enWww(rel)) faltan.add('window.SOS_DATOS → ' + rel);
-  /* sw.js: CORE y red-primero, menos el propio sw.js */
+  /* sw.js: CORE y red-primero, menos el propio sw.js.
+     El relieve de «La isla en 3D» (31 de octubre de 2026) no lo pone nadie a
+     mano: lo genera el workflow generar-relieve.yml. Hasta entonces sw.js lo
+     lista igual (el precache va uno a uno y el que falta no tumba nada) y el
+     boton «3D» no sale, tampoco en la app, que entonces va sin el. Por eso,
+     y SOLO si no esta ninguno de los tres, no se piden aqui: uno o dos
+     sueltos son un relieve a medias, y eso si para. */
   const sw = lee('sw.js');
+  const RELIEVE = ['mapa/tenerife-relieve.json', 'mapa/tenerife-relieve.png', 'mapa/tenerife-relieve-ao.png'];
+  const sinRelieve = RELIEVE.every(f => !existe(f));
+  if (sinRelieve) console.log('  --   el relieve de «La isla en 3D» aun no esta generado (generar-relieve.yml): la app va sin el 3D y sin su boton');
   for (const m of sw.matchAll(/'\.\/([^']+)'/g)) {
     const rel = m[1];
     if (rel === '' || rel === 'sw.js' || /\.(json|js|css|pmtiles|woff2|webmanifest|html|png)$/.test(rel) === false) continue;
+    if (sinRelieve && RELIEVE.includes(rel)) continue;
     if (!enWww(rel)) faltan.add('sw.js → ' + rel);
   }
   /* los idiomas */

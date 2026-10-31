@@ -36805,6 +36805,103 @@ html.sos-abierto, html.sos-abierto body { overflow: hidden; }
 </script>
 <!-- ══ fin EMERGENCIAS ══ -->
 
+<!-- ══ LA ISLA EN 3D (31 de octubre de 2026) ══ -->
+<style>
+/* El boton «3D», debajo del de categorias y con su mismo aspecto. Nace
+   oculto y solo aparece si el relieve esta (mapa/tenerife-relieve.json): mas
+   vale no ofrecer una vista que no se puede pintar. */
+#isla3d-btn { position: absolute; top: 108px; right: 14px; z-index: 500; width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(27,35,48,0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border); color: var(--gold); font: 700 0.78rem 'DM Sans', system-ui, sans-serif; letter-spacing: 0.02em;
+  display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); cursor: pointer; padding: 0;
+  -webkit-tap-highlight-color: transparent; }
+#isla3d-btn[hidden] { display: none; }
+#isla3d-btn:active { transform: scale(0.94); }
+#isla3d-btn:focus-visible { outline: 2px solid #f5c76b; outline-offset: 2px; }
+</style>
+
+<button id="isla3d-btn" type="button" hidden data-tx-title="isla3dBoton" data-tx-aria="isla3dBoton" title="Ver la isla en 3D" aria-label="Ver la isla en 3D">3D</button>
+
+<script>
+(function () {
+  'use strict';
+  /* CARGA-PEREZOSA: modulos/isla3d.js
+     «La isla en 3D»: el relieve de verdad de la isla (Copernicus DEM GLO-30,
+     con la costa del mapa detallado) con el mapa encima, sin conexion. El
+     motor (WebGL a mano, sin bibliotecas) y sus textos en los diez idiomas
+     viven en modulos/isla3d.js y se piden la primera vez que alguien toca
+     «3D»; el relieve son tres ficheros de mapa/ que hace
+     tools/relieve_construir.py (y el workflow generar-relieve.yml). El
+     service worker precachea los cuatro, asi que en el monte abre sin
+     cobertura. tools/fuente.js y tools/fuente.py leen esta linea y pegan el
+     modulo al final del fuente, como los <script src>. */
+  try {
+    Object.assign(UI_TX, {
+      "isla3dBoton": {"es": "Ver la isla en 3D", "en": "View the island in 3D", "fr": "Voir l’île en 3D", "de": "Die Insel in 3D ansehen", "it": "Vedere l’isola in 3D", "nl": "Het eiland in 3D bekijken", "zh": "以 3D 查看岛屿", "zht": "以 3D 檢視島嶼", "bg": "Вижте острова в 3D", "pl": "Wyspa w 3D"},
+      "isla3dCargando": {"es": "Preparando el relieve…", "en": "Preparing the relief…", "fr": "Préparation du relief…", "de": "Das Relief wird vorbereitet…", "it": "Preparazione del rilievo…", "nl": "Het reliëf wordt voorbereid…", "zh": "正在准备地形…", "zht": "正在準備地形…", "bg": "Подготвяне на релефа…", "pl": "Przygotowywanie rzeźby terenu…"},
+      "isla3dErrorCarga": {"es": "No se pudo abrir la isla en 3D. Vuelva a intentarlo más tarde.", "en": "The island in 3D could not be opened. Please try again later.", "fr": "Impossible d’ouvrir l’île en 3D. Réessayez plus tard.", "de": "Die Insel in 3D konnte nicht geöffnet werden. Versuchen Sie es später erneut.", "it": "Non è stato possibile aprire l’isola in 3D. Riprovi più tardi.", "nl": "Het eiland in 3D kon niet worden geopend. Probeer het later opnieuw.", "zh": "无法打开 3D 岛屿，请稍后再试。", "zht": "無法開啟 3D 島嶼，請稍後再試。", "bg": "Островът в 3D не можа да се отвори. Опитайте отново по-късно.", "pl": "Nie udało się otworzyć wyspy w 3D. Proszę spróbować później."}
+    });
+  } catch (e) {}
+  /* La huella del relieve: los 16 primeros caracteres del sha256 de
+     mapa/tenerife-relieve.json, o «ninguno» mientras no se haya generado. La
+     escriben tools/relieve_construir.py y el workflow generar-relieve.yml (la
+     misma que RELIEVE_HUELLA en sw.js) y la coteja relieve_construir.py
+     --comprobar. Con «ninguno» no se pregunta a nadie: ni sale el boton ni se
+     pide un fichero que no existe, que en la app de las tiendas es un 404. */
+  var RELIEVE_HUELLA = 'ninguno';
+  var MODULO = './modulos/isla3d.js', META = 'mapa/tenerife-relieve.json', carga = null;
+  function cargar() {
+    if (window.TG_ISLA3D) return Promise.resolve();
+    if (carga) return carga;
+    carga = new Promise(function (ok, mal) {
+      var s = document.createElement('script');
+      s.src = MODULO;
+      s.onload = function () { if (window.TG_ISLA3D) ok(); else mal(new Error('isla3d')); };
+      s.onerror = function () { s.remove(); mal(new Error('isla3d')); };
+      document.head.appendChild(s);
+    }).catch(function (e) { carga = null; throw e; });
+    return carga;
+  }
+  /* ¿Hay relieve? Sin huella, no. En la app de las tiendas viaja dentro
+     (app_preparar.js lo copia y su --comprobar lo exige); en la web, si el
+     service worker ya lo tiene, sin preguntar a nadie, y si no, un HEAD (que
+     no gasta datos): sin conexion y sin el relieve guardado, el boton no
+     sale, porque no se podria abrir. */
+  function hayRelieve() {
+    if (RELIEVE_HUELLA === 'ninguno') return Promise.resolve(false);
+    if (window.TGO_NATIVO) return Promise.resolve(true);
+    var enCache = window.caches ? caches.match(META).then(function (r) { return !!r; }).catch(function () { return false; }) : Promise.resolve(false);
+    return enCache.then(function (si) {
+      if (si) return true;
+      return fetch(META, { method: 'HEAD' }).then(function (r) { return r.ok; }).catch(function () { return false; });
+    });
+  }
+  function abrir() {
+    if (window.TG_ISLA3D) { window.TG_ISLA3D.abrir(); return; }
+    try { showLayerToast(tx('isla3dCargando')); } catch (e) {}
+    cargar().then(function () { window.TG_ISLA3D.abrir(); },
+                  function () { try { showLayerToast(tx('isla3dErrorCarga')); } catch (e) {} });
+  }
+  function iniciar() {
+    var btn = document.getElementById('isla3d-btn');
+    if (!btn) return;
+    /* junto al boton de categorias, en la misma capa del mapa */
+    var cat = document.querySelector('.category-btn-wrap');
+    if (cat && cat.parentNode) cat.parentNode.insertBefore(btn, cat.nextSibling);
+    btn.addEventListener('click', function (e) { e.stopPropagation(); abrir(); });
+    hayRelieve().then(function (si) {
+      btn.hidden = !si;
+      if (si && location.hash === '#isla3d') setTimeout(abrir, 600);
+    });
+  }
+  /* Para las herramientas de tools/ */
+  window.TG_ISLA3D_CARGAR = cargar;
+  if (document.readyState !== 'loading') iniciar();
+  else document.addEventListener('DOMContentLoaded', iniciar);
+})();
+</script>
+<!-- ══ fin LA ISLA EN 3D ══ -->
+
 <script>
 </script>
 

@@ -6,6 +6,19 @@
    abrio por primera vez. */
 const CACHE = 'tgo-v7-2026-09-01-teselas';
 
+/* La huella del relieve de «La isla en 3D» (31 de octubre de 2026): los 16
+   primeros caracteres del sha256 de mapa/tenerife-relieve.json, o «ninguno»
+   mientras no se haya generado. Dos cosas:
+   · con «ninguno», el precache no pide los tres ficheros del relieve (serian
+     tres 404 en cada instalacion);
+   · cambia con el relieve, y un sw.js distinto es lo que hace que los moviles
+     que ya tienen la app instalen otra vez el service worker y bajen el
+     relieve nuevo al precache (CORE), aunque no abran el 3D con conexion.
+   La escriben tools/relieve_construir.py y el workflow generar-relieve.yml,
+   en el mismo commit que el relieve, y la coteja relieve_construir.py
+   --comprobar. La misma va en index.html. */
+const RELIEVE_HUELLA = 'ninguno';
+
 /* El cache del mapa va aparte y a proposito.
 
    Aparte del CACHE de la app porque el manejador de 'activate' borra todo
@@ -52,6 +65,13 @@ const CORE = [
      conexion desde el primer dia, y no esperar a la red: va abajo con su
      propia estrategia (cache al instante, red por detras). */
   './modulos/emergencias.js',
+  /* La isla en 3D (31 de octubre de 2026): el modulo y el relieve, tres
+     ficheros de mapa/ que hace tools/relieve_construir.py. Tienen que estar
+     sin conexion desde el primer dia, como el cielo: el 3D se mira en el
+     monte. Van tambien «red primero» abajo, y los tres juntos: el .json lleva
+     las sumas con las que el modulo comprueba los dos PNG, asi que uno nuevo
+     con los PNG de antes no se dibuja (lo dice, en vez de pintar mal). */
+  './modulos/isla3d.js', './mapa/tenerife-relieve.json', './mapa/tenerife-relieve.png', './mapa/tenerife-relieve-ao.png',
   /* Los satelites (21 de octubre de 2026): el motor SGP4 y los elementos
      orbitales que renueva el robot cada dia. Los elementos van tambien «red
      primero» abajo: cambian a diario. */
@@ -107,7 +127,8 @@ self.addEventListener('install', e => {
   // faltara tumbaria toda la instalacion.
   e.waitUntil(
     caches.open(CACHE).then(c => Promise.all(
-      CORE.map(u => c.add(new Request(u, { cache: 'reload' })).catch(() => {}))
+      CORE.filter(u => RELIEVE_HUELLA !== 'ninguno' || !/\/mapa\/tenerife-relieve/.test(u))
+        .map(u => c.add(new Request(u, { cache: 'reload' })).catch(() => {}))
     )).catch(() => {})
   );
   self.skipWaiting();
@@ -349,6 +370,8 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/modulos/perfil.js') ||
           url.pathname.endsWith('/modulos/cuerpo.js') ||
           /\/datos\/ejercicios(-[a-z]{2,3})?\.json$/.test(url.pathname) ||
+          url.pathname.endsWith('/modulos/isla3d.js') ||
+          /\/mapa\/tenerife-relieve(-ao)?\.(png|json)$/.test(url.pathname) ||
           url.pathname.endsWith('/datos/cielo.json') ||
           url.pathname.endsWith('/datos/satelites.json') ||
           url.pathname.endsWith('/datos/precios-gasolineras.json') ||

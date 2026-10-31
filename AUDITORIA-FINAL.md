@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.078 kB** en castellano · **1.193 kB** en el peor caso (búlgaro) · 1.178 kB en polaco, el 31 de octubre, con «Su cuerpo», los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. «Su cuerpo» suma 2 kB en castellano y en polaco, y 3 en búlgaro: su cargador y su apartado de la política, en los diez idiomas, van en `index.html`; la pantalla y sus ejercicios se piden al abrirla. Sin él, con el perfil de las tres pestañas, 1.076, 1.190 y 1.176, como antes. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco; y los nombres de las fichas en el mapa en chino, 2,6 kB (3 en castellano, 2 en búlgaro y en polaco), porque su tabla va dentro de `index.html`. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.080 kB** en castellano · **1.195 kB** en el peor caso (búlgaro) · 1.181 kB en polaco, el 1 de noviembre, con la isla en 3D, «Su cuerpo», los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. La isla en 3D suma 2 kB (3 en polaco, por redondeo): el botón «3D», su estilo, su cargador con la huella del relieve y sus tres filas en los diez idiomas; el motor (`modulos/isla3d.js`) y el relieve se piden al tocarlo. Sin ella, con «Su cuerpo», 1.078, 1.193 y 1.178. «Su cuerpo» suma 2 kB en castellano y en polaco, y 3 en búlgaro: su cargador y su apartado de la política, en los diez idiomas, van en `index.html`; la pantalla y sus ejercicios se piden al abrirla. Sin él, con el perfil de las tres pestañas, 1.076, 1.190 y 1.176, como antes. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco; y los nombres de las fichas en el mapa en chino, 2,6 kB (3 en castellano, 2 en búlgaro y en polaco), porque su tabla va dentro de `index.html`. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -3737,6 +3737,146 @@ las claves del fichero, el tradicional pintaba en simplificado
 (圣克鲁斯-德特内里费, 拉古纳的圣克里斯托瓦尔, 劳罗塔瓦), y con todo en castellano,
 ningún pueblo en chino: la medida sabe ponerse en rojo.
 
+## La isla en 3D, sin conexión (31 de octubre)
+
+Jerome, 31 de octubre de 2026: «Sigue intentando hacer mejor con un modo 3D en
+offline pero top top dibujado y sigue verificando si no hiciste fallo».
+
+**Qué es.** Un botón «3D» en el mapa, debajo del de categorías, que abre la
+isla en relieve: el terreno de verdad, con el mapa de la app encima, los nombres
+de pueblos, macizos y cimas, la ubicación del usuario si el GPS está encendido,
+y dos luces: la de los mapas de relieve (del noroeste, como el sombreado
+multidireccional suizo) y la del sol de ahora (o la luna, de noche), con las
+sombras que proyecta el relieve. Al entrar arranca desde arriba con la misma
+vista del mapa plano y se inclina; el botón «2D», el «atrás» del móvil y Escape
+vuelven al mapa plano centrado donde se miraba en 3D. Todo está en el móvil:
+sin cobertura abre igual.
+
+**El relieve.** `tools/relieve_construir.py` lo hace con el modelo oficial
+Copernicus DEM GLO-30 (ESA / Unión Europea, una altura cada segundo de arco) y
+lo deja en tres ficheros de `mapa/` (los describe `mapa/RELIEVE.md`):
+
+| fichero | qué |
+|---|---|
+| `tenerife-relieve.png` | RGB, 1.405 × 1.169 celdas de 60 m en la malla de Web Mercator de las teselas: R y G, la altura en decímetros (0 = mar); B, la distancia a la costa con signo (4 m por unidad) |
+| `tenerife-relieve-ao.png` | gris: la fracción de cielo visible de cada celda (16 direcciones hasta 3,8 km), calculada al construir y no en el móvil |
+| `tenerife-relieve.json` | la malla, las escalas, las teselas de origen con su sha256, la licencia con sus dos notas, los nombres (77 pueblos de OSM, 6 macizos y valles, 436 cimas con nombre y altitud) y los controles con los que el módulo comprueba que ha leído el PNG sin tocar un valor |
+
+La costa **no sale del modelo**: es la de la capa `earth` de
+`mapa/tenerife-osm.pmtiles`, la misma que dibuja el mapa detallado y que usa
+`tools/costa.py`. Donde el mapa dice mar, la altura es 0; donde dice tierra,
+al menos 0,1 m. Superficie de tierra que sale: 2.045 km² (la oficial, 2.034,38).
+
+La isla va de 27,998° N (la punta de Rasca, en esa costa) a 28,59° N: casi
+entera en la tesela N28 W017 del modelo; la punta de Rasca, unos 200 m al sur
+de 28° N, cae en la N27 W017. Se piden las dos. Si la del sur no existe, las
+pocas celdas de la orilla sin modelo toman la altura de la celda con modelo
+más cercana y el `.json` lo apunta (`relleno`); más de 300 celdas, o alguna a
+más de 600 m de una con modelo, y la herramienta para.
+
+**Cómo llega el relieve.** Desde el contenedor donde se hizo solo se llega a
+GitHub, no a AWS, y la tesela adjunta desde el móvil llega convertida en foto
+(un JPG en blanco y negro: la silueta, sin alturas). Lo genera el workflow
+**Generar relieve 3D** (`.github/workflows/generar-relieve.yml`) cuando esté en
+`main`: baja las dos teselas, construye, pasa `--comprobar` y hace commit.
+Hasta entonces el botón no sale. La tubería entera (leer la tesela, las dos
+juntas sin franja entre ellas, el relleno de Rasca, la huella, `--comprobar`)
+se probó con teselas sintéticas en el formato de las de Copernicus (Float32,
+DEFLATE con predicción de coma flotante, en bloques de 1024, PixelIsPoint), en
+una copia del repositorio; y el motor, con un relieve de maqueta que nunca va
+al repositorio.
+
+La **huella** del relieve (los 16 primeros caracteres del sha256 del `.json`,
+o `ninguno`) va en `sw.js` y en `index.html` (`RELIEVE_HUELLA`): un relieve
+nuevo cambia `sw.js`, y eso hace que los móviles que ya tienen la app lo bajen
+al precache aunque no abran el 3D con red; con `ninguno`, el precache no lo
+pide, el botón no sale y no se pide nada (en la app de las tiendas, preguntar
+por un fichero que no va dentro es un 404). La escriben la herramienta y el
+workflow, y la coteja `--comprobar`.
+
+**La licencia.** «Licence for Copernicus DEM instance COP-DEM-GLO-30-F Global
+30m Full, Free & Open», artículo 6: quien enseña el modelo al público pone,
+palabra por palabra, la nota de los datos adaptados (6(b): «produced using
+Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space
+GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all
+rights reserved») y la frase de la responsabilidad (6(c): «The organisations
+in charge of the Copernicus programme by law or by delegation do not incur any
+liability for any use of the Copernicus WorldDEM-30»). El 3D las enseña
+enteras al abrirse, con «© OpenStreetMap» enlazado a su página de derechos
+(como el mapa plano), y las pliega a una línea al primer gesto; «ⓘ» las abre
+otra vez.
+
+**El motor.** WebGL a mano en `modulos/isla3d.js`, sin bibliotecas: una malla
+por teselas de 64 × 64 celdas con niveles de detalle y faldones, la luz por
+píxel con la pendiente de la celda (el detalle del relieve no depende de la
+malla), el mapa encima pintado con `protomaps-leaflet` en dos lienzos (toda la
+isla a ~40 m por píxel y, de cerca, solo lo que se mira a 3-20 m), por trozos
+de 512 px para no congelar los gestos, y los nombres de cara siempre, con
+choques evitados y tapados por el relieve cuando toca. Las sombras: un pase en
+la GPU que, desde cada punto de una máscara de 120 m, avanza hacia el sol (o
+la luna) por las alturas y mira si algo lo tapa, con penumbra; se rehace
+cuando la luz se mueve más de ~0,4° (con la vista quieta, una vez por minuto
+se mira el sol), y solo con WebGL 2: con WebGL 1 se ve igual, sin sombras
+proyectadas. Si el móvil le quita la GPU a la página (iOS, en segundo plano),
+lo dice, y cuando la devuelve se rehace todo solo. Se pinta solo cuando algo
+cambia.
+
+**Los gestos.** Un dedo arrastra (el sitio agarrado se queda bajo el dedo);
+pellizcar acerca o aleja alrededor del punto entre los dedos; girar dos dedos
+gira; subir o bajar dos dedos inclina; doble toque acerca, toque con dos dedos
+aleja; la brújula pone el norte arriba. Al soltar, el punto de giro pasa al
+suelo del centro de la pantalla sin mover la vista.
+
+**Lo que se repasó y estaba mal** (antes de subir nada):
+
+- **La punta de Rasca, fuera del modelo.** La captura de Jerome de la tesela
+  N28 W017 enseñaba la isla tocando el borde de abajo: la costa del mapa baja
+  a 27,998° N y la tesela llega a 28°. Con una sola tesela, el workflow se
+  habría parado al construir («celdas de tierra sin altura»). Ahora pide las
+  dos; y dos teselas vecinas casan sin una franja de celdas sin altura entre
+  ellas (se leía hasta el último centro de píxel, no hasta el borde).
+- **El crédito del modelo no era el que pide su licencia** («Copernicus DEM
+  GLO-30 (UE/ESA)»): ahora las dos notas del artículo 6, palabra por palabra.
+- **«© OpenStreetMap» sin enlace** en el 3D, cuando el mapa plano lo enlaza
+  desde LANZAMIENTO-PLAY.md 1.6.
+- **La ayuda de los gestos no salía nunca:** «Dibujando el mapa…», que sale
+  justo al entrar, la tapaba, y ya no volvía.
+- **Sombras de una luz que no existe:** de noche sin luna, con «Sol de ahora»,
+  se proyectaban sombras desde la luz de mapa.
+- **La app de las tiendas pedía el relieve aunque no lo llevara:** un 404 en
+  cada arranque (lo vio `probar_app.js`). Y `app_preparar.js --comprobar`
+  pedía en `app/www/` los tres ficheros de `sw.js` aunque no existieran.
+- **Los móviles que ya tienen la app** no habrían bajado el relieve al
+  precache hasta el siguiente cambio de `sw.js`; y, mientras no hubiera
+  relieve, cada instalación del service worker pedía los tres ficheros (tres
+  404). Ahora, la huella.
+- **Perder la GPU no tenía vuelta con el 3D abierto:** decía «vuelva a
+  abrirlo» aunque el navegador la devolviera, y quedaban texturas de la GPU
+  perdida a medio usar. Ahora se rehace sola al volver.
+- **Las sombras, a la resolución entera del relieve:** cada cambio de luz
+  recorría hasta 300 pasos desde cada una de sus 1,6 millones de celdas.
+  Ahora la máscara va a 120 m: cuatro veces menos trabajo, y se ve igual.
+- **La auditoría se daba por buena sola en tres sitios:** el aviso de la noche
+  valía con «cualquier texto de más de diez letras» (también la ayuda); su
+  cabecera decía que probaba el atardecer y no lo hacía; y decía que sin
+  relieve el botón no salía sin abrir un navegador para verlo.
+
+**Lo que se comprueba.** `tools/auditar_isla3d.js`, en `auditar.sh`: los
+textos (22 filas en diez idiomas), los enganches (CARGA-PEREZOSA, `sw.js`, la
+app de las tiendas), las dos notas de la licencia iguales en el módulo y en la
+herramienta, el relieve y su huella con `--comprobar`; sin relieve, que el
+botón no sale y no se pide nada del 3D; y con relieve, en un móvil emulado con
+WebGL: el botón, la ayuda y las notas al entrar (y plegadas tras el primer
+gesto), la vista, el mar y la tierra en sus píxeles, la cumbre del Teide de la
+ficha en su sitio y a su altura, los gestos con toques de verdad, «2D»,
+«atrás» y Escape sin dejar entradas en el historial, la luz a horas fijas
+calculadas con el mismo Astronomy Engine (mediodía; atardecer, con la cumbre
+del Teide haciendo sombra hacia donde no está el sol y no hacia él; noche con
+luna, con sombras; noche sin luna, sin ellas; luz de mapa, sin ellas), los
+diez idiomas, sin red con el service worker, un PNG con un valor cambiado (no
+se dibuja y lo dice), la GPU que se pierde y vuelve, WebGL 1 (dibuja, sin
+sombras) y sin WebGL (lo dice y no revienta).
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -5578,7 +5718,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 46 tablas, 3159 filas (y 5.306 filas, dentro y fuera del fuente)
+## Idiomas · 49 tablas, 3183 filas (y 5.330 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5671,7 +5811,11 @@ fuente, y las cuatro de su tarjeta en el perfil (459): 46 tablas, 3132 filas
 y 5.279; y su línea de la IA, una más en `CUERPO_UI` (232): 3133 filas y
 5.280; y en la política, «Su cuerpo (opcional)», dos más: 3135 filas y 5.282;
 y las notas de las fuentes de sus ejercicios, 24 más en `CUERPO_UI` (256):
-3159 filas y 5.306. El
+3159 filas y 5.306. Y la isla en 3D, encima: 3 tablas y 24 filas más,
+`ISLA3D_UI` con 19 y las dos de una fila que no se traducen (`ISLA3D_LOCALE` e
+`ISLA3D_NOMBRE`) en `modulos/isla3d.js`, que `tools/fuente.js` pega al fuente,
+y en `UI_TX` las tres que hacen falta antes de cargarlo (el botón, «preparando
+el relieve» y el error): 49 tablas, 3183 filas y 5.330. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -5982,6 +6126,12 @@ el portal Infoplayas Canarias como origen.
 
 ## Se puede hacer, hace falta un dato
 
+- **El relieve de «La isla en 3D»** (31 de octubre): está todo menos el
+  relieve, que desde donde se hizo no se pudo bajar (solo se llega a GitHub).
+  Falta lanzar una vez el workflow «Generar relieve 3D» con el bloque ya en
+  `main`; hasta entonces el botón «3D» no sale. Después, `bash
+  tools/auditar.sh` con el relieve dentro abre la vista de verdad, con la
+  cumbre del Teide a su altura y la sombra del atardecer.
 - ~~73 paradas sin municipio~~ **cerrado**: cruzadas con los límites
   municipales del Cabildo. Las 2.514 tienen municipio y son los 31 de la isla.
 - ~~precios que afirman lo que TITSA no cobra~~ **cerrado**: ver abajo.

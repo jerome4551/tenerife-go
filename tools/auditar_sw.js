@@ -42,7 +42,9 @@ class CachesFalso {
 /* `Peticion`: el Request con el que corre sw.js. El de Node no acepta rutas
    relativas ('./datos/cielo.json'), y la instalacion pide el precache asi:
    para probarla hace falta uno que las resuelva contra el sitio (9c). */
-function cargarSW(fetchFalso, Peticion = Request) {
+/* `fuente`: otro texto de sw.js en vez del del repositorio (9e lo usa para
+   probar las dos huellas del relieve). */
+function cargarSW(fetchFalso, Peticion = Request, fuente) {
   const cachesFalso = new CachesFalso();
   const manejadores = {};
   const self_ = {
@@ -50,7 +52,7 @@ function cargarSW(fetchFalso, Peticion = Request) {
     skipWaiting: () => {}, clients: { claim: async () => {}, matchAll: async () => [] },
     registration: { showNotification: async () => {} }
   };
-  const src = fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8');
+  const src = fuente || fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8');
   new Function('self', 'caches', 'fetch', 'Request', 'Response', 'URL', src)(
     self_, cachesFalso, fetchFalso, Peticion, Response, URL);
   return { manejadores, cachesFalso, self_ };
@@ -329,6 +331,33 @@ function opaca() {
     ok(c.abre.length === 1 && c.abre[0] === guia && c.foco === 0, 'con la app cerrada, la abre en la guia del consejo', JSON.stringify(c));
     const o = await tocar(['https://otro.sitio.invalid/'], guia);
     ok(o.abre.length === 1 && o.mensajes.length === 0, 'una ventana de otro sitio no recibe nada: se abre la app', JSON.stringify(o));
+  }
+
+  /* ── 9e. el relieve de «La isla en 3D» (31 de octubre de 2026) ──
+     Con RELIEVE_HUELLA = 'ninguno' (el relieve aun no se ha generado), la
+     instalacion no pide sus tres ficheros: serian tres 404 cada vez. Con una
+     huella, los guarda los tres con el modulo: es lo que deja el 3D sin
+     conexion desde el primer dia. */
+  {
+    const src = fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8');
+    const SITIO = 'https://tenerifego.app/';
+    class Peticion extends Request {
+      constructor(u, o) { super(typeof u === 'string' ? new URL(u, SITIO).href : u, o); }
+    }
+    const linea = /^const RELIEVE_HUELLA = '([^']*)';$/m;
+    ok(linea.test(src), 'sw.js lleva la huella del relieve (const RELIEVE_HUELLA)', (src.match(linea) || [])[1]);
+    const guardados = async huella => {
+      const sw = cargarSW(async () => { throw new Error('sin red'); }, Peticion, src.replace(linea, "const RELIEVE_HUELLA = '" + huella + "';"));
+      const esperas = [];
+      for (const f of sw.manejadores.install) f({ waitUntil: p => esperas.push(p) });
+      await Promise.all(esperas);
+      const app = await sw.cachesFalso.open((src.match(/const CACHE = '([^']+)'/) || [])[1]);
+      const urls = (await app.keys()).map(r => r.url);
+      return { relieve: urls.filter(u => /\/mapa\/tenerife-relieve/.test(u)).length, modulo: urls.some(u => /\/modulos\/isla3d\.js$/.test(u)) };
+    };
+    const sin = await guardados('ninguno'), con = await guardados('0123456789abcdef');
+    ok(sin.relieve === 0 && sin.modulo, 'sin relieve generado (huella «ninguno»), la instalacion no pide sus tres ficheros', JSON.stringify(sin));
+    ok(con.relieve === 3 && con.modulo, 'con relieve, la instalacion guarda los tres con el modulo (sin conexion desde el primer dia)', JSON.stringify(con));
   }
 
   /* ── 10. la unica suposicion que el ambito falso no puede comprobar ──

@@ -508,8 +508,8 @@ async function textos() {
   for (const t of etiq) mete('etiquetas (tags[])', t, 'es', t);
   /* las filas de los modulos de carga perezosa (CIELO_UI, PERFIL_UI, desde el 22
      de octubre de 2026 EMERG_UI del panel SOS y, desde el 31, CUERPO_UI de «Su
-     cuerpo»), una por linea */
-  for (const f of ['modulos/cielo.js', 'modulos/perfil.js', 'modulos/emergencias.js', 'modulos/cuerpo.js']) {
+     cuerpo» e ISLA3D_UI de «La isla en 3D»), una por linea */
+  for (const f of ['modulos/cielo.js', 'modulos/perfil.js', 'modulos/emergencias.js', 'modulos/cuerpo.js', 'modulos/isla3d.js']) {
     for (const m of lee(f).matchAll(/^\s*"?([A-Za-z0-9_-]+)"?: (\{"es": .*\}),?\s*$/gm)) {
       let d; try { d = JSON.parse(m[2]); } catch (e) { continue; }
       for (const l of IDI) mete(f, m[1], l, d[l]);

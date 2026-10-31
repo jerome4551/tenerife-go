@@ -22,6 +22,8 @@ Publicada en GitHub Pages, en su dominio: <https://tenerifego.app/> (desde el
 | `modulos/cuerpo.js` | La pantalla «Su cuerpo», que se abre desde la pestaña Cuerpo del perfil y va encima de él: un personaje en SVG propio, de frente y de espaldas a la vez, con el aspecto que elige cada persona; unos 35 músculos en 12 grupos, que se iluminan en oro con las series anotadas en los últimos 7 días; la semana, día a día; los 12 grupos en barras, con la marca de las 10 series por semana del ACSM para los adultos; y la biblioteca de 533 ejercicios, con sus pasos y sus fuentes. Lo anotado se queda en el dispositivo. Su código, sus estilos y sus textos en los diez idiomas; lo hace el `construir.py` de su entrega. Se pide al abrirlo. |
 | `datos/ejercicios.json`, `datos/ejercicios-<idioma>.json` | Los 533 ejercicios de «Su cuerpo»: sus grupos, su material, su nivel y sus fuentes, y su nombre y sus pasos en cada idioma. Se piden al abrir la biblioteca, el común y el del idioma, y el service worker los guarda al usarlos. |
 | `modulos/emergencias.js` | El panel «Emergencias» del botón SOS: qué hacer ante una erupción, un terremoto u otra emergencia en Tenerife y a quién llamar, con sus fuentes oficiales y sus textos en los diez idiomas. Se pide al abrirlo y el service worker lo guarda desde el primer día; la barra del 112 está en `index.html` y llama aunque el módulo no llegue. |
+| `modulos/isla3d.js` | «La isla en 3D», el botón «3D» del mapa: el relieve de verdad de la isla con el mapa encima, los nombres, la luz del sol de ahora con sus sombras (o la luna) y los gestos, en WebGL a mano y sin bibliotecas, con sus textos en los diez idiomas. Se pide al tocar el botón y el service worker lo guarda con el relieve, para que abra sin conexión. |
+| `mapa/tenerife-relieve*.png` y `.json` | El relieve de «La isla en 3D»: una celda de 60 m del Copernicus DEM GLO-30 (ESA / Unión Europea) con la costa del mapa detallado. Lo hace `tools/relieve_construir.py` desde el workflow «Generar relieve 3D»; mientras no exista, el botón no sale. Qué es cada fichero, la licencia y cómo se rehace: `mapa/RELIEVE.md`. |
 | `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
 | `datos/satelites.json` | Los elementos orbitales (TLE) de la Estación Espacial Internacional, de Tiangong y del Hubble, de CelesTrak, con su época. Los renueva el robot `tools/satelites_traer.py` dos veces al día; el panel calcula con ellos los pasos visibles. |
 | `datos/planetas.json` | Las cifras de la NASA (NSSDCA) de los ocho planetas, la Luna y el Sol —diámetro, día, año sideral, lunas, temperatura, gravedad, anillos, masa, densidad—, con la fecha de cada tabla. El panel del cielo lleva una copia (`CIELO_PLANETAS`) para la ficha del planeta y las curiosidades. |
@@ -33,14 +35,14 @@ Publicada en GitHub Pages, en su dominio: <https://tenerifego.app/> (desde el
 | `frases.json` | Las 365 frases de la notificación diaria, una por día del año. |
 | `vendor/` | Leaflet 1.9.4 y Leaflet.markercluster 1.5.3, alojados aquí en vez de en un CDN; las dos librerías del mapa sin conexión (`pmtiles.js` y `protomaps-leaflet.js`), las tipografías, Astronomy Engine (MIT), el motor de cálculo del panel del cielo, y satellite.js 7.1.0 (MIT), el SGP4 de los pasos de los satélites, compilado desde su fuente por `tools/satelites_construir.js` (se pide solo al abrir el panel). |
 | `supabase/*.sql` | Las tablas y sus políticas de seguridad, para poder recrear el proyecto. |
-| `.github/workflows/` | Los robots: la notificación diaria, los avisos de AEMET, los precios de las gasolineras, el mapa y los elementos orbitales de los satélites (`satelites.yml`, dos veces al día); y los cuatro del panel de emergencias: los terremotos del IGN cerca de Tenerife (`sismos-ign.yml`, cada hora), el semáforo del boletín semanal de INVOLCAN (`semaforo-involcan.yml`, cuatro veces al día), las alertas del Gobierno de Canarias (`alertas-canarias.yml`, cada hora) y el vigía de las páginas oficiales del panel (`vigia-sos.yml`, los lunes). Y `app-store.yml`, que no es un robot: se lanza a mano y compila, firma y sube la app a TestFlight y su ficha a App Store Connect en una máquina macOS de GitHub (la App Store sin Mac). Y `comprobar-dominio.yml`, que tampoco es un robot: se lanza a mano y mira desde fuera que la web responde bien en su dominio (`tenerifego.app`). |
+| `.github/workflows/` | Los robots: la notificación diaria, los avisos de AEMET, los precios de las gasolineras, el mapa y los elementos orbitales de los satélites (`satelites.yml`, dos veces al día); y los cuatro del panel de emergencias: los terremotos del IGN cerca de Tenerife (`sismos-ign.yml`, cada hora), el semáforo del boletín semanal de INVOLCAN (`semaforo-involcan.yml`, cuatro veces al día), las alertas del Gobierno de Canarias (`alertas-canarias.yml`, cada hora) y el vigía de las páginas oficiales del panel (`vigia-sos.yml`, los lunes). Y dos que no son robots: «Generar relieve 3D» (`generar-relieve.yml`), que se lanza a mano y hace el relieve de «La isla en 3D», y `app-store.yml`: se lanza a mano y compila, firma y sube la app a TestFlight y su ficha a App Store Connect en una máquina macOS de GitHub (la App Store sin Mac). Y `comprobar-dominio.yml`, que tampoco es un robot: se lanza a mano y mira desde fuera que la web responde bien en su dominio (`tenerifego.app`). |
 | `tools/` | Los controles y las herramientas; `bash tools/auditar.sh` los pasa todos. Entre ellos, `verificar_red.js` (la red de guaguas), `extract_js.py`, `gtfs_red.py` y `auditar_readme.js`, que coteja las cifras de este fichero. |
 | `app/` | La misma aplicación para la App Store: el proyecto de Capacitor (`capacitor.config.json`, `package.json`), las plantillas de iOS (permisos en los diez idiomas, manifiesto de privacidad, icono, arranque) y `LEEME.md`. `tools/app_preparar.js` monta `app/www/` desde la raíz; `datos/app-store/ficha.json` es la ficha de la tienda en los diez idiomas. Los pasos, en `LANZAMIENTO-APP-STORE.md`. |
 | `AUDITORIA-FINAL.md` | Estado del proyecto, auditoría, lo que falta y las trampas conocidas. |
 
 Es un monolito a propósito, no un proyecto a medio modularizar. No hay
 build, ni dependencias que instalar, ni paso de compilación: se sirve
-`index.html` y funciona. Las piezas aparte son cinco. La red de guaguas, que son
+`index.html` y funciona. Las piezas aparte son seis. La red de guaguas, que son
 datos y no código: 1 MB que solo se usa con las guaguas y que dentro de la
 página había que leer y compilar en cada apertura. El panel del cielo
 (`modulos/cielo.js`, con su motor y su catálogo), que se pide solo cuando
@@ -52,7 +54,9 @@ toca «Cuenta», por lo mismo. Y el panel de emergencias
 idiomas), que el service worker guarda desde el primer día para que abra sin
 conexión. Y «Su cuerpo» (`modulos/cuerpo.js`, 77 kB comprimidos, y sus
 ejercicios, el común y el de cada idioma, de 24 a 48 kB comprimidos cada uno),
-que se pide al abrirlo desde la pestaña Cuerpo del perfil.
+que se pide al abrirlo desde la pestaña Cuerpo del perfil. Y «La isla en 3D»
+(`modulos/isla3d.js`, con su relieve en `mapa/`), que se pide al tocar «3D» y
+que el service worker también guarda desde el primer día.
 
 ### Probarlo en local
 
