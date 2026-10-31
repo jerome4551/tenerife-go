@@ -3,8 +3,8 @@
  "canal": "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAP6596_RSS.xml",
  "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos?p=6596",
  "aemet": {
-  "fichero": "Z_CAP_C_LEMM_20261031102827_AFAP6596.tar.gz",
-  "publicado": "2026-10-31T10:28:27+00:00",
+  "fichero": "Z_CAP_C_LEMM_20261031104031_AFAP6596.tar.gz",
+  "publicado": "2026-10-31T10:40:31+00:00",
   "titulo": "Estado completo de avisos para Tenerife",
   "alcance": "2026-11-02T23:59:59+00:00",
   "zonas_isla": [
@@ -16,7 +16,7 @@
    "659603C"
   ]
  },
- "consultado": "2026-10-31T10:34:29Z",
+ "consultado": "2026-10-31T11:11:17Z",
  "avisos": [
   {
    "id": "2.49.0.0.724.0.ES.20261031102827.659602PRP102001793442507",
@@ -169,7 +169,7 @@
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261030225001.659601PRP102181793400601",
+   "id": "2.49.0.0.724.0.ES.20261031104031.659601PRP102181793443231",
    "nivel": "amarillo",
    "fenomeno": "PR",
    "fenomeno_es": "Lluvias",
@@ -188,7 +188,7 @@
    ],
    "inicio": "2026-11-02T00:00:00+00:00",
    "fin": "2026-11-02T17:59:59+00:00",
-   "emitido": "2026-10-30T22:50:01Z",
+   "emitido": "2026-10-31T10:40:31Z",
    "es": {
     "descripcion": "Precipitación acumulada en una hora: 20 mm.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
@@ -199,7 +199,7 @@
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261030225001.659602PRP102181793400601",
+   "id": "2.49.0.0.724.0.ES.20261031104031.659602PRP102181793443231",
    "nivel": "amarillo",
    "fenomeno": "PR",
    "fenomeno_es": "Lluvias",
@@ -218,7 +218,7 @@
    ],
    "inicio": "2026-11-02T00:00:00+00:00",
    "fin": "2026-11-02T17:59:59+00:00",
-   "emitido": "2026-10-30T22:50:01Z",
+   "emitido": "2026-10-31T10:40:31Z",
    "es": {
     "descripcion": "Precipitación acumulada en una hora: 20 mm.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
@@ -229,7 +229,7 @@
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261030225001.659603PRP102181793400601",
+   "id": "2.49.0.0.724.0.ES.20261031104031.659603PRP102181793443231",
    "nivel": "amarillo",
    "fenomeno": "PR",
    "fenomeno_es": "Lluvias",
@@ -248,7 +248,7 @@
    ],
    "inicio": "2026-11-02T00:00:00+00:00",
    "fin": "2026-11-02T17:59:59+00:00",
-   "emitido": "2026-10-30T22:50:01Z",
+   "emitido": "2026-10-31T10:40:31Z",
    "es": {
     "descripcion": "Precipitación acumulada en una hora: 20 mm.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
@@ -259,7 +259,7 @@
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261030225001.659601TOTO02181793400601",
+   "id": "2.49.0.0.724.0.ES.20261031104031.659601TOTO02181793443231",
    "nivel": "amarillo",
    "fenomeno": "TO",
    "fenomeno_es": "Tormentas",
@@ -278,7 +278,7 @@
    ],
    "inicio": "2026-11-02T00:00:00+00:00",
    "fin": "2026-11-02T17:59:59+00:00",
-   "emitido": "2026-10-30T22:50:01Z",
+   "emitido": "2026-10-31T10:40:31Z",
    "es": {
     "descripcion": "",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
@@ -289,7 +289,7 @@
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261030225001.659602TOTO02181793400601",
+   "id": "2.49.0.0.724.0.ES.20261031104031.659602TOTO02181793443231",
    "nivel": "amarillo",
    "fenomeno": "TO",
    "fenomeno_es": "Tormentas",
@@ -308,7 +308,7 @@
    ],
    "inicio": "2026-11-02T00:00:00+00:00",
    "fin": "2026-11-02T17:59:59+00:00",
-   "emitido": "2026-10-30T22:50:01Z",
+   "emitido": "2026-10-31T10:40:31Z",
    "es": {
     "descripcion": "",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
@@ -319,7 +319,7 @@
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261030225001.659603TOTO02181793400601",
+   "id": "2.49.0.0.724.0.ES.20261031104031.659603TOTO02181793443231",
    "nivel": "amarillo",
    "fenomeno": "TO",
    "fenomeno_es": "Tormentas",
@@ -338,7 +338,7 @@
    ],
    "inicio": "2026-11-02T00:00:00+00:00",
    "fin": "2026-11-02T17:59:59+00:00",
-   "emitido": "2026-10-30T22:50:01Z",
+   "emitido": "2026-10-31T10:40:31Z",
    "es": {
     "descripcion": "",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
