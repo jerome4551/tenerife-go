@@ -17,8 +17,10 @@ Publicada en GitHub Pages, en su dominio: <https://tenerifego.app/> (desde el
 | `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 979 lugares (980 hasta el 31 de octubre, cuando se quitó una bodega cerrada). Medido el 24 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada, el modo nativo de la App Store, el perfil y el botón SOS con sus robots encendidos: 35.785 líneas, 2,5 MB (763 kB con gzip). |
 | `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
 | `modulos/cielo.js` | El panel 🔭 «Cielo de Tenerife»: su código y sus textos en los diez idiomas. No se carga al arrancar: lo pide `index.html` la primera vez que alguien abre el panel. |
-| `modulos/perfil.js` | La pantalla «Su perfil», la que abre «Cuenta»: el avatar y el nombre, los datos con el IMC, la evolución del peso y de los kilómetros que anota la persona, su isla con los logros, y la cuenta, con la nube solo con permiso. Su código, sus estilos y sus textos en los diez idiomas. Se pide la primera vez que alguien toca «Cuenta». |
+| `modulos/perfil.js` | La pantalla «Su perfil», la que abre «Cuenta»: el avatar y el nombre y, en tres pestañas, Viaje (el avatar y su isla con los logros), Cuerpo (la tarjeta de «Su cuerpo», los datos con el IMC y la evolución del peso y de los kilómetros que anota la persona) y Cuenta (con la nube solo con permiso). Su código, sus estilos y sus textos en los diez idiomas. Se pide la primera vez que alguien toca «Cuenta». |
 | `modulos/avatares.js` | Los 235 avatares del perfil, dibujos SVG propios en 47 sets de cinco: uno por cada idioma de la app, el de Tenerife, que se abre con 10 visitas comprobadas, y uno por cada uno de 36 países de Europa. Y 49 de oro, uno por set y tres en Tenerife, que solo se cogen el día de su fiesta (la fecha la calcula el móvil, sin red) y se quedan. Todos se mueven un segundo al tocarlos. Se pide al abrir el perfil, o al arrancar si ya hay uno elegido, para el botón de la cuenta. |
+| `modulos/cuerpo.js` | La pantalla «Su cuerpo», que se abre desde la pestaña Cuerpo del perfil y va encima de él: un personaje en SVG propio, de frente y de espaldas, con el aspecto que elige cada persona; unos 35 músculos en 12 grupos, que se iluminan con las series anotadas en los últimos 7 días; y la biblioteca de 533 ejercicios, con sus pasos y sus fuentes. Lo anotado se queda en el dispositivo. Su código, sus estilos y sus textos en los diez idiomas; lo hace el `construir.py` de su entrega. Se pide al abrirlo. |
+| `datos/ejercicios.json`, `datos/ejercicios-<idioma>.json` | Los 533 ejercicios de «Su cuerpo»: sus grupos, su material, su nivel y sus fuentes, y su nombre y sus pasos en cada idioma. Se piden al abrir la biblioteca, el común y el del idioma, y el service worker los guarda al usarlos. |
 | `modulos/emergencias.js` | El panel «Emergencias» del botón SOS: qué hacer ante una erupción, un terremoto u otra emergencia en Tenerife y a quién llamar, con sus fuentes oficiales y sus textos en los diez idiomas. Se pide al abrirlo y el service worker lo guarda desde el primer día; la barra del 112 está en `index.html` y llama aunque el módulo no llegue. |
 | `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
 | `datos/satelites.json` | Los elementos orbitales (TLE) de la Estación Espacial Internacional, de Tiangong y del Hubble, de CelesTrak, con su época. Los renueva el robot `tools/satelites_traer.py` dos veces al día; el panel calcula con ellos los pasos visibles. |
@@ -38,7 +40,7 @@ Publicada en GitHub Pages, en su dominio: <https://tenerifego.app/> (desde el
 
 Es un monolito a propósito, no un proyecto a medio modularizar. No hay
 build, ni dependencias que instalar, ni paso de compilación: se sirve
-`index.html` y funciona. Las piezas aparte son cuatro. La red de guaguas, que son
+`index.html` y funciona. Las piezas aparte son cinco. La red de guaguas, que son
 datos y no código: 1 MB que solo se usa con las guaguas y que dentro de la
 página había que leer y compilar en cada apertura. El panel del cielo
 (`modulos/cielo.js`, con su motor y su catálogo), que se pide solo cuando
@@ -48,7 +50,9 @@ sus avatares, `modulos/avatares.js`), que se pide la primera vez que alguien
 toca «Cuenta», por lo mismo. Y el panel de emergencias
 (`modulos/emergencias.js`, 236 kB comprimidos, con sus textos en los diez
 idiomas), que el service worker guarda desde el primer día para que abra sin
-conexión.
+conexión. Y «Su cuerpo» (`modulos/cuerpo.js`, 72 kB comprimidos, y sus
+ejercicios, el común y el de cada idioma, de 24 a 48 kB comprimidos cada uno),
+que se pide al abrirlo desde la pestaña Cuerpo del perfil.
 
 ### Probarlo en local
 

@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.076 kB** en castellano · **1.190 kB** en el peor caso (búlgaro) · 1.176 kB en polaco, el 31 de octubre, con los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco; y los nombres de las fichas en el mapa en chino, 2,6 kB (3 en castellano, 2 en búlgaro y en polaco), porque su tabla va dentro de `index.html`. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.078 kB** en castellano · **1.193 kB** en el peor caso (búlgaro) · 1.179 kB en polaco, el 31 de octubre, con «Su cuerpo», los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. «Su cuerpo» suma 2 kB en castellano y 3 en búlgaro y en polaco: su cargador y su apartado de la política, en los diez idiomas, van en `index.html`; la pantalla y sus ejercicios se piden al abrirla. Sin él, con el perfil de las tres pestañas, 1.076, 1.190 y 1.176, como antes. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco; y los nombres de las fichas en el mapa en chino, 2,6 kB (3 en castellano, 2 en búlgaro y en polaco), porque su tabla va dentro de `index.html`. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -11486,6 +11486,128 @@ páginas (la red de esta sesión no llega a esas webs).
 
 **Lo que pesa.** `modulos/avatares.js`, 450 kB (123 comprimido; con los 29,
 450 y 123); `modulos/perfil.js`, 290 kB (90 comprimido).
+
+## «Su cuerpo»: el personaje, los músculos y los ejercicios (31 de octubre)
+
+Jerome, el 24 de octubre: «Podemos preparar algo muy completo para dieta,
+deporte, acompañamiento del asistente, evolución del cuerpo (con un personaje
+grande que puede adaptar a su apariencia…)». Y el 31: «empieza lo del cuerpo
+que lo último fue el número 3». Entran la parte 2 (el personaje), la parte 3
+(la biblioteca de ejercicios) y el personaje nuevo: la entrega del 24,
+reenviada el 31, con sus huellas SHA-256 comprobadas antes de usar nada. Va
+encima del perfil de las tres pestañas, y se abre desde la de Cuerpo.
+
+**Lo que trae**, un commit por bloque:
+
+| Bloque | Commit | Qué |
+|---|---|---|
+| 1, el módulo | `38b7eca` | `modulos/cuerpo.js` tal cual (`42398e36…f657`) y los 533 ejercicios: `datos/ejercicios.json` y uno por idioma |
+| 2, la entrada | `6712ba5` | el cargador en `index.html`; la tarjeta «Su cuerpo», la primera de la pestaña Cuerpo; el «atrás» y el Escape del perfil, que respetan lo que va encima; el service worker; la app de las tiendas; y las herramientas de idioma, que ven el módulo desde aquí |
+| 3, los textos | `7bce404` | los botones en italiano, en imperativo como el resto de la app; dos de búlgaro y dos de polaco, como los mismos botones de la app; y la línea de la IA |
+| 4, la privacidad | `83b0d56` | «Su cuerpo (opcional)» en la política, en los diez idiomas |
+| 5, las fuentes | `25f88bc` | las notas que la entrega escribió en castellano en los títulos de las fuentes de los ejercicios, en cada idioma |
+| 6, las pruebas | `98d2121` | `probar_figura.js` y `probar_cuerpo.js`, y sus cuatro pantallas en el barrido |
+
+**Cómo se ve.** La pestaña Cuerpo del perfil empieza con una tarjeta «Su
+cuerpo» (el título y el lema son los del módulo) y su botón «Abrir». La
+pantalla va encima del perfil, que queda inerte debajo; «atrás» y Escape la
+cierran y dejan el perfil abierto, en su pestaña. Si el módulo no llega (sin
+red y sin haberlo guardado nunca), la tarjeta lo dice: «No se pudo abrir.
+Compruebe la conexión e inténtelo de nuevo», como el cielo.
+
+**Lo que se miró aparte, antes de meterlo:**
+
+- El módulo se reconstruye igual, byte a byte, con el `construir.py` de la
+  entrega. El de ahora sale de sus fuentes con los cambios del bloque 3:
+  cambian 11 filas de `CUERPO_UI` y entra una, y nada más. Esas fuentes van a
+  Jerome para la sesión que hace el cuerpo, que las tiene que traer en la
+  próxima entrega (`cuerpo-fuentes-31oct.zip`).
+- La seguridad. Lo que viene de la persona y de los ficheros de ejercicios se
+  pinta como texto; `innerHTML`, solo para el cuerpo de la pantalla y los
+  dibujos que hace el propio código. Un enlace de fuente solo sale si empieza
+  por `https://`, y se abre en otra pestaña, sin `opener`. Lo guardado
+  (`tenerife.cuerpo`) se valida campo a campo al leerlo. Nada sale del
+  dispositivo: ni a la nube ni a la cuenta.
+- Los botones. Los revisores del cuerpo habían pasado los italianos a
+  infinitivo «como el perfil publicado («Salvare», «Eliminare»)». El perfil
+  cambió el 23 (Jerome: «Imperativo, como el resto») y ahora dice «Salva» y
+  «Elimina»: vuelven al imperativo. Los títulos de sección se quedan como los
+  dejaron, porque no son botones.
+- La IA. El artículo 50 del Reglamento de IA de la UE se aplica desde el 2 de
+  agosto de 2026: un texto hecho con IA para informar al público solo se libra
+  de decirlo si lo revisa y lo firma una persona. Hasta esa firma, el pie dice
+  «Preparado con ayuda de IA a partir de las fuentes citadas», en los diez
+  idiomas, como pide la revisión de la entrega.
+- Las fuentes. La entrega escribió en castellano, dentro de
+  `datos/ejercicios.json`, las notas entre paréntesis de los títulos de las
+  fuentes («conjunto de datos» en 117, «artículo para profesionales» en 43,
+  «hoja para pacientes», «folleto PIL1597», «barra», «mancuernas»…) y cuatro
+  descripciones («Programa de ejercicio en casa», «Universidad de Sussex»…), y
+  salían igual en los diez idiomas: lo vio el barrido de pantallas en la ficha
+  del press de banca. Ahora van con 24 filas de `CUERPO_UI`, con los
+  materiales como los nombres de los ejercicios de cada idioma (barra:
+  barbell, barre, Langhantel, bilanciere, halterstang, 杠铃, 槓鈴, щанга,
+  sztanga), y el módulo las pone al pintar la ficha. El nombre del sitio y el
+  título original de cada página son la cita y se quedan como son (llevan
+  `data-sin-traducir`, como «Tenerife Go» en el perfil); también «Extensión de
+  gluteos en polea», que es el nombre del ejercicio en el conjunto de datos de
+  wger.
+- Ninguna línea de dolor: la de «pare si nota dolor» espera su fuente y la
+  decisión de Jerome, y no está en la app.
+
+**Las herramientas de idioma**, con el módulo dentro del fuente:
+
+- `auditar_registro.js` lee ahora también las 232 filas de `CUERPO_UI` y el
+  nombre y los pasos de los 533 ejercicios en cada idioma: 101.216 textos, los
+  nueve idiomas que distinguen el trato, todo de usted. Los botones nuevos, en
+  `ROTULOS_IT`, `ROTULOS_BG` y `ROTULOS_PL`. Dos excepciones, con su motivo:
+  «que le tronc tienne» (el subjuntivo de *tenir*, en tercera persona) y «Non
+  scendere», el infinitivo de los pasos en italiano («Staccare», «Abbassarlo»,
+  «e spingere» en el mismo paso).
+- `auditar_idioma.js`, en francés, «Variante de {nombre}», que se escribe
+  igual que en castellano; `castellano-aceptado.json`, «lignes directrices»
+  (las de la OMS) y, en chino, chino tradicional y búlgaro,
+  «r/bodyweightfitness», el foro de Reddit de una fuente.
+- `castellano_suelto.js`, `auditar_letras.js`, `auditar_frases.js` y
+  `auditar_claves_tx.js`, en verde; `auditar_web.js` y `barrido_idiomas.js`,
+  46 tablas, 3159 filas y 5.306.
+
+**Los controles** (bloque 5):
+
+- `probar_figura.js`, las 45 de la entrega, leyendo el dibujo del trozo de
+  `modulos/cuerpo.js` que lo lleva: 45 de 45.
+- `probar_cuerpo.js`: las de `probar_prototipo.js` de la entrega, dentro de la
+  app y desde la tarjeta del perfil, y lo de la app: el «atrás» y el Escape con
+  el perfil debajo, el módulo que no llega y vuelve, y la seguridad (un fichero
+  de ejercicios con HTML en un nombre y en un paso y con enlaces `javascript:`
+  y `http:` no ejecuta nada; lo guardado con HTML, tampoco) y las notas de
+  las 961 fuentes en los nueve idiomas: 160 de 160.
+- `barrido_pantallas.js`, cuatro pantallas más por idioma: «Su cuerpo» con
+  los músculos, con el aspecto, la hoja del pecho con sus ejercicios y la ficha
+  del primero. En los diez idiomas, 0 textos sin traducir y 0 errores de
+  página.
+
+**Lo que pesa.** `modulos/cuerpo.js`, 237 kB (72 kB comprimido; huella
+`437648ad…280e`); los
+ejercicios, de 148 a 312 kB cada uno (de 24 a 48 kB comprimidos). Nada de eso
+cuenta en la primera descarga: el módulo se pide al abrirlo y los ejercicios
+al abrir la biblioteca, el común y el del idioma. `index.html` crece con el
+cargador y con el apartado de la política, en los diez idiomas: la primera
+descarga pasa de 1.076 a 1.078 kB en castellano, de 1.190 a 1.193 en búlgaro
+y de 1.176 a 1.179 en polaco (`tools/peso_descarga.py`).
+
+**Lo que queda para Jerome:**
+
+- La firma editorial, la suya y, si puede, la de un profesional sanitario
+  colegiado. Con ella, la línea de la IA dirá quién lo revisó y cuándo.
+- La revisión nativa y sanitaria de los textos en los nueve idiomas, sobre
+  todo de los nombres de los músculos.
+- Las tres decisiones abiertas: las 12 posturas reclinadas, el nivel de los
+  saltos a una pierna y la línea «pare si nota dolor», con su fuente.
+- La prueba con VoiceOver y TalkBack.
+- Pasar `cuerpo-fuentes-31oct.zip` a la sesión que hace el cuerpo: sus
+  fuentes con los cambios de los bloques 3 y 5, para que la próxima entrega
+  los traiga.
 
 ## La tarifa del sendero del pico, con la fuente oficial (23 de octubre, noche)
 
