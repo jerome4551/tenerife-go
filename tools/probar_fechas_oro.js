@@ -1,9 +1,19 @@
-// tools/probar_fechas_oro.js — el motor de fechas de los avatares de oro (modulos/avatares.js), sin navegador.
-//   node tools/probar_fechas_oro.js [ruta de avatares.js]   (por defecto, modulos/avatares.js)
-// Es pruebas/fechas.test.js de la entrega de los de oro (23 de octubre de 2026), igual salvo
-// estas tres lineas y la ruta por defecto. Lo lanza tools/auditar.sh.
-// Toma el motor de avatares.js (desde «var INDICE» hasta el final) y lo prueba con reglas
-// de ejemplo de cada tipo. Esperado: FECHAS EN VERDE.
+#!/usr/bin/env node
+/* probar_fechas_oro.js — el motor de fechas de los avatares de oro (23 de octubre de 2026).
+ *
+ *     node tools/probar_fechas_oro.js [ruta de avatares.js]   (por defecto, modulos/avatares.js)
+ *
+ * POR QUE EXISTE. Cada avatar de oro solo se coge el dia de su fiesta, y la fecha la calcula
+ * el movil sin red (modulos/avatares.js: fija, enesimo, entre, pascua, pascua-ortodoxa y
+ * tabla, con dias y excepciones). Un error aqui abre o cierra una medalla el dia que no es.
+ * Toma el motor (desde «var INDICE» hasta el final) y lo prueba con reglas de ejemplo de cada
+ * tipo: las Pascuas de 2024 a 2045, comprobadas con dateutil.easter de python-dateutil (que
+ * coincide con el motor en todas las de 1990 a 2099), Midsommar, el domingo que mueve una
+ * fiesta, el enesimo y el ultimo dia de la semana del mes, una ventana que cruza el año,
+ * una tabla lunar y una excepcion. Y despues, las tres de Tenerife en el catalogo de verdad
+ * (el Carnaval de 2027, del 21 al 23 de febrero: RTVC, 27 de marzo de 2026). Esperado:
+ * FECHAS EN VERDE. Era pruebas/fechas.test.js del encargo.
+ */
 const fs = require('fs'), path = require('path');
 const ruta = process.argv[2] || path.join(__dirname, '..', 'modulos', 'avatares.js');
 const src = fs.readFileSync(ruta, 'utf8'), ini = src.indexOf('  var INDICE = {}');
@@ -22,7 +32,8 @@ const SETS = [{ id: 'xx', bandera: 'x', color: '#000000', avatares: [
   { id: 'xx-excepcion', a: 'bote', oro: { tipo: 'pascua', desfase: -49, dias: 3, excepciones: { '2027': '02-21' } }, g: ['#000000', '#FFFFFF'], m: '' },
 ] }];
 global.window = {};
-eval("(function () { 'use strict'; var SETS = " + JSON.stringify(SETS) + ";\n" + rt);
+/* RETIRADOS: los 29 que el encargo de oro sustituyo (fuera de los sets); aqui, ninguno */
+eval("(function () { 'use strict'; var SETS = " + JSON.stringify(SETS) + "; var RETIRADOS = [];\n" + rt);
 const A = window.TG_AVATARES;
 let fallos = 0;
 function igual(nombre, v, esperado) { const ok = JSON.stringify(v) === JSON.stringify(esperado); if (!ok) fallos++; console.log((ok ? 'ok   ' : 'FALLO') + ' ' + nombre + ' → ' + JSON.stringify(v) + (ok ? '' : ' (esperado ' + JSON.stringify(esperado) + ')')); }
@@ -58,5 +69,14 @@ igual('sin excepción, la regla (2026: 15-17 de febrero)', A.ventana('xx-excepci
 igual('esOro', [A.esOro('xx-rey'), A.esOro('nada')], [true, false]);
 // Cambio de hora: en Europa/Madrid el 29-3-2026; la cuenta va en UTC y no se mueve
 igual('pascua 2026 + 1 (cambio de hora cerca)', A.ventana('xx-pascua', 2026).hasta, '2026-04-05');
+// Las tres de Tenerife, en el catalogo de verdad
+const vm = require('vm'), ctxC = { window: {} };
+vm.createContext(ctxC); vm.runInContext(src, ctxC, { filename: ruta });
+const C = ctxC.window.TG_AVATARES;
+igual('Carnaval de Santa Cruz 2026 (domingo a martes de Carnaval)', C.ventana('tf-oro-carnaval', 2026), { desde: '2026-02-15', hasta: '2026-02-17' });
+igual('Carnaval de Santa Cruz 2027 (su excepción: RTVC, 27-3-2026)', C.ventana('tf-oro-carnaval', 2027), { desde: '2027-02-21', hasta: '2027-02-23' });
+igual('Día de Canarias 2027', C.ventana('tf-oro-canarias', 2027), { desde: '2027-05-30', hasta: '2027-05-30' });
+igual('Noche de San Juan 2027 (23 y 24)', C.ventana('tf-oro-sanjuan', 2027), { desde: '2027-06-23', hasta: '2027-06-24' });
+igual('49 de oro en el catálogo', C.oros.length, 49);
 console.log(fallos ? fallos + ' FALLOS' : 'FECHAS EN VERDE');
 process.exit(fallos ? 1 : 0);

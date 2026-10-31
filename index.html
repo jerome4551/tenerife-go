@@ -36450,8 +36450,9 @@ html.cielo-rojo body::before {
   'use strict';
   /* CARGA-PEREZOSA: modulos/avatares.js
      El catalogo de avatares del perfil (22 de octubre de 2026): 235 dibujos
-     SVG propios desde el 23, con los 36 paises de Europa, y 49 de oro desde
-     el 24: 410 kB (112 kB comprimido). No se pide al arrancar: solo si la persona ya
+     SVG propios desde el 23, con los 36 paises de Europa, 49 de oro desde
+     el 24 y, desde el 31, los 29 retirados, que conserva quien ya llevaba
+     uno: 450 kB (123 kB comprimido). No se pide al arrancar: solo si la persona ya
      eligio uno (para pintarlo en el boton de la cuenta, cuando el movil esta
      libre) y al abrir el perfil. El service worker lo precarga, asi que sin
      cobertura tambien sale. tools/fuente.js y tools/fuente.py leen esta
@@ -36499,8 +36500,8 @@ html.cielo-rojo body::before {
 
   /* CARGA-PEREZOSA: modulos/perfil.js
      La pantalla «Su perfil» (22 de octubre de 2026): su codigo, sus estilos,
-     su cuerpo y sus textos en los diez idiomas, 275 kB (85 kB comprimido)
-     desde el 24, con los de oro. Se pide la
+     su cuerpo y sus textos en los diez idiomas, 283 kB (88 kB comprimido)
+     desde el 31, con los de oro y los nombres de los 29 retirados. Se pide la
      primera vez que alguien toca «Cuenta», despues del catalogo de avatares,
      que perfil.js lee en cuanto corre (por eso van encadenados). El service
      worker lo precarga. Si no llega (sin red y sin haberlo guardado nunca),

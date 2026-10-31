@@ -40,9 +40,10 @@
 (function () {
   'use strict';
 
-  /* Los textos de la pantalla (94), de los sets (47) y de los avatares (284:
-     235 y 49 de oro, que se llaman como su fiesta),
-     en los diez idiomas. El trato, de usted (Jerome, 21 de octubre). Se
+  /* Los textos de la pantalla (94), de los sets (47), de los avatares (284:
+     235 y 49 de oro, que se llaman como su fiesta) y, al final, de los 29
+     retirados (modulos/avatares.js: quien ya llevaba uno lo conserva y su nombre
+     tiene que salir), en los diez idiomas. El trato, de usted (Jerome, 21 de octubre). Se
      quedan como estan, porque son la voz de quien usa la app: «Sorpréndeme»,
      los titulos chinos con 我的 y «Acepto». */
   var PERFIL_UI = {
@@ -470,7 +471,36 @@
     "perfilAv_ru_samovar": {"es": "Samovar", "en": "Samovar", "fr": "Samovar", "de": "Samowar", "it": "Samovar", "nl": "Samovar", "zh": "茶炊", "zht": "茶炊", "bg": "Самовар", "pl": "Samowar"},
     "perfilAv_ru_balalaika": {"es": "Balalaica", "en": "Balalaika", "fr": "Balalaïka", "de": "Balalaika", "it": "Balalaica", "nl": "Balalaika", "zh": "巴拉莱卡琴", "zht": "巴拉萊卡琴", "bg": "Балалайка", "pl": "Bałałajka"},
     "perfilAv_ru_blinis": {"es": "Blinis", "en": "Blini", "fr": "Blinis", "de": "Blini", "it": "Blini", "nl": "Blini", "zh": "俄式薄饼", "zht": "俄式薄餅", "bg": "Блини", "pl": "Bliny"},
-    "perfilAv_ru_oro_maslenitsa": {"es": "Máslenitsa", "en": "Maslenitsa", "fr": "Maslenitsa", "de": "Masleniza", "it": "Maslenica", "nl": "Maslenitsa", "zh": "谢肉节", "zht": "謝肉節", "bg": "Масленица", "pl": "Maslenica"}
+    "perfilAv_ru_oro_maslenitsa": {"es": "Máslenitsa", "en": "Maslenitsa", "fr": "Maslenitsa", "de": "Masleniza", "it": "Maslenica", "nl": "Maslenitsa", "zh": "谢肉节", "zht": "謝肉節", "bg": "Масленица", "pl": "Maslenica"},
+    "perfilAv_en_cabina": {"es": "Cabina telefónica", "en": "Phone box", "fr": "Cabine téléphonique", "de": "Telefonzelle", "it": "Cabina telefonica", "nl": "Telefooncel", "zh": "红色电话亭", "zht": "紅色電話亭", "bg": "Телефонна кабина", "pl": "Budka telefoniczna"},
+    "perfilAv_en_paraguas": {"es": "Paraguas", "en": "Umbrella", "fr": "Parapluie", "de": "Regenschirm", "it": "Ombrello", "nl": "Paraplu", "zh": "雨伞", "zht": "雨傘", "bg": "Чадър", "pl": "Parasol"},
+    "perfilAv_pl_flor": {"es": "Flor recortada", "en": "Paper-cut flower", "fr": "Fleur en papier", "de": "Papierblume", "it": "Fiore di carta", "nl": "Papieren bloem", "zh": "剪纸花", "zht": "剪紙花", "bg": "Хартиено цвете", "pl": "Wycinanka"},
+    "perfilAv_bg_shevitsa": {"es": "Bordado", "en": "Embroidery", "fr": "Broderie", "de": "Stickerei", "it": "Ricamo", "nl": "Borduurwerk", "zh": "刺绣", "zht": "刺繡", "bg": "Шевица", "pl": "Haft"},
+    "perfilAv_ie_hurling": {"es": "Hurling", "en": "Hurling", "fr": "Hurling", "de": "Hurling", "it": "Hurling", "nl": "Hurling", "zh": "爱尔兰式曲棍球", "zht": "愛爾蘭式曲棍球", "bg": "Хърлинг", "pl": "Hurling"},
+    "perfilAv_dk_cisne": {"es": "Cisne", "en": "Swan", "fr": "Cygne", "de": "Schwan", "it": "Cigno", "nl": "Zwaan", "zh": "天鹅", "zht": "天鵝", "bg": "Лебед", "pl": "Łabędź"},
+    "perfilAv_no_salmon": {"es": "Salmón", "en": "Salmon", "fr": "Saumon", "de": "Lachs", "it": "Salmone", "nl": "Zalm", "zh": "三文鱼", "zht": "鮭魚", "bg": "Сьомга", "pl": "Łosoś"},
+    "perfilAv_fi_kantele": {"es": "Kantele", "en": "Kantele", "fr": "Kantele", "de": "Kantele", "it": "Kantele", "nl": "Kantele", "zh": "康特勒琴", "zht": "康特勒琴", "bg": "Кантеле", "pl": "Kantele"},
+    "perfilAv_is_basalto": {"es": "Columnas de basalto", "en": "Basalt columns", "fr": "Orgues basaltiques", "de": "Basaltsäulen", "it": "Colonne di basalto", "nl": "Basaltzuilen", "zh": "玄武岩柱", "zht": "玄武岩柱", "bg": "Базалтови колони", "pl": "Kolumny bazaltowe"},
+    "perfilAv_ee_lobo": {"es": "Lobo", "en": "Wolf", "fr": "Loup", "de": "Wolf", "it": "Lupo", "nl": "Wolf", "zh": "狼", "zht": "狼", "bg": "Вълк", "pl": "Wilk"},
+    "perfilAv_lv_lavandera": {"es": "Lavandera blanca", "en": "White wagtail", "fr": "Bergeronnette grise", "de": "Bachstelze", "it": "Ballerina bianca", "nl": "Witte kwikstaart", "zh": "白鹡鸰", "zht": "白鶺鴒", "bg": "Бяла стърчиопашка", "pl": "Pliszka siwa"},
+    "perfilAv_lv_sklandrausis": {"es": "Sklandrausis", "en": "Sklandrausis", "fr": "Sklandrausis", "de": "Sklandrausis", "it": "Sklandrausis", "nl": "Sklandrausis", "zh": "拉脱维亚胡萝卜挞", "zht": "拉脫維亞胡蘿蔔塔", "bg": "Скландраусис", "pl": "Sklandrausis"},
+    "perfilAv_be_saxofon": {"es": "Saxofón", "en": "Saxophone", "fr": "Saxophone", "de": "Saxofon", "it": "Sassofono", "nl": "Saxofoon", "zh": "萨克斯管", "zht": "薩克斯風", "bg": "Саксофон", "pl": "Saksofon"},
+    "perfilAv_lu_mullerthal": {"es": "Cascada del Mullerthal", "en": "Mullerthal waterfall", "fr": "Cascade du Mullerthal", "de": "Wasserfall im Müllerthal", "it": "Cascata del Mullerthal", "nl": "Waterval in het Mullerthal", "zh": "米勒塔尔瀑布", "zht": "米勒塔爾瀑布", "bg": "Водопадът в Мюлертал", "pl": "Wodospad w Mullerthalu"},
+    "perfilAv_mc_fougasse": {"es": "Fougasse monegasca", "en": "Monégasque fougasse", "fr": "Fougasse monégasque", "de": "Monegassische Fougasse", "it": "Fougasse monegasca", "nl": "Monegaskische fougasse", "zh": "摩纳哥茴香甜饼", "zht": "摩納哥茴香甜餅", "bg": "Монакска питка", "pl": "Fougasse monakijska"},
+    "perfilAv_mt_kelb_tal_fenek": {"es": "Kelb tal-Fenek", "en": "Kelb tal-Fenek", "fr": "Kelb tal-Fenek", "de": "Kelb tal-Fenek", "it": "Kelb tal-Fenek", "nl": "Kelb tal-Fenek", "zh": "法老王猎犬", "zht": "法老王獵犬", "bg": "Келб тал-фенек", "pl": "Kelb tal-Fenek"},
+    "perfilAv_ba_lonac": {"es": "Bosanski lonac", "en": "Bosnian pot", "fr": "Marmite bosnienne", "de": "Bosnischer Topf", "it": "Pentola bosniaca", "nl": "Bosnische stoofpot", "zh": "波斯尼亚炖锅", "zht": "波士尼亞燉鍋", "bg": "Босненски лонец", "pl": "Bosanski lonac"},
+    "perfilAv_ba_molinos": {"es": "Molinos del Pliva", "en": "Pliva watermills", "fr": "Moulins de la Pliva", "de": "Wassermühlen an der Pliva", "it": "Mulini sul Pliva", "nl": "Watermolens aan de Pliva", "zh": "普利瓦河水磨坊", "zht": "普利瓦河水磨坊", "bg": "Воденичките на Плива", "pl": "Młyny nad Plivą"},
+    "perfilAv_rs_uvac": {"es": "Meandros del Uvac", "en": "Uvac meanders", "fr": "Méandres de l’Uvac", "de": "Mäander des Uvac", "it": "Meandri dell’Uvac", "nl": "Meanders van de Uvac", "zh": "乌瓦茨河曲流", "zht": "烏瓦茨河曲流", "bg": "Меандрите на Увац", "pl": "Meandry Uvacu"},
+    "perfilAv_rs_sargan": {"es": "Tren de Šargan", "en": "Šargan Eight railway", "fr": "Train de Šargan", "de": "Šargan-Bahn", "it": "Treno di Šargan", "nl": "Šargantrein", "zh": "沙尔甘八字铁路", "zht": "沙爾甘八字鐵路", "bg": "Шарганската осмица", "pl": "Kolej Šargan"},
+    "perfilAv_me_tara": {"es": "Cañón del Tara", "en": "Tara Canyon", "fr": "Canyon de la Tara", "de": "Tara-Schlucht", "it": "Canyon del Tara", "nl": "Tarakloof", "zh": "塔拉河峡谷", "zht": "塔拉河峽谷", "bg": "Каньонът на Тара", "pl": "Kanion Tary"},
+    "perfilAv_al_aguila": {"es": "Águila real", "en": "Golden eagle", "fr": "Aigle royal", "de": "Steinadler", "it": "Aquila reale", "nl": "Steenarend", "zh": "金雕", "zht": "金鵰", "bg": "Скален орел", "pl": "Orzeł przedni"},
+    "perfilAv_ad_telesilla": {"es": "Telesilla", "en": "Chairlift", "fr": "Télésiège", "de": "Sessellift", "it": "Seggiovia", "nl": "Stoeltjeslift", "zh": "吊椅索道", "zht": "纜椅", "bg": "Седалков лифт", "pl": "Wyciąg krzesełkowy"},
+    "perfilAv_cy_ciclamen": {"es": "Ciclamen de Chipre", "en": "Cyprus cyclamen", "fr": "Cyclamen de Chypre", "de": "Zypern-Alpenveilchen", "it": "Ciclamino di Cipro", "nl": "Cyprische cyclaam", "zh": "塞浦路斯仙客来", "zht": "賽普勒斯仙客來", "bg": "Кипърска циклама", "pl": "Cyklamen cypryjski"},
+    "perfilAv_cz_pravcice": {"es": "Puerta de Pravčice", "en": "Pravčice Gate", "fr": "Porte de Pravčice", "de": "Prebischtor", "it": "Porta di Pravčice", "nl": "Poort van Pravčice", "zh": "普拉夫奇采门", "zht": "普拉夫奇采門", "bg": "Правчицката порта", "pl": "Brama Pravčicka"},
+    "perfilAv_ro_pelicano": {"es": "Pelícano", "en": "Pelican", "fr": "Pélican", "de": "Pelikan", "it": "Pellicano", "nl": "Pelikaan", "zh": "鹈鹕", "zht": "鵜鶘", "bg": "Пеликан", "pl": "Pelikan"},
+    "perfilAv_md_uvas": {"es": "Uvas", "en": "Grapes", "fr": "Raisin", "de": "Trauben", "it": "Uva", "nl": "Druiven", "zh": "葡萄", "zht": "葡萄", "bg": "Грозде", "pl": "Winogrona"},
+    "perfilAv_ua_kalyna": {"es": "Viburno", "en": "Guelder rose", "fr": "Viorne obier", "de": "Gewöhnlicher Schneeball", "it": "Viburno", "nl": "Gelderse roos", "zh": "欧洲荚蒾", "zht": "歐洲莢蒾", "bg": "Калина", "pl": "Kalina"},
+    "perfilAv_ru_pajaro_fuego": {"es": "Pájaro de fuego", "en": "Firebird", "fr": "Oiseau de feu", "de": "Feuervogel", "it": "Uccello di fuoco", "nl": "Vuurvogel", "zh": "火鸟", "zht": "火鳥", "bg": "Жар-птица", "pl": "Żar-ptak"}
   };
   Object.assign(UI_TX, PERFIL_UI);
 

@@ -457,14 +457,18 @@ const IGUAL_UI = {
    el de Santa Cruz, que ya estaba; el Día de Canarias en neerlandes) y cosas
    que se llaman como en su lengua (Pastel de nata, Fish and chips,
    Péckvillchen). Los miraron los revisores de cada idioma; si un dia alguien
-   deja otro nombre en castellano, se canta. */
+   deja otro nombre en castellano, se canta. Y los de cuatro de los retirados
+   (31 de octubre de 2026: quien ya llevaba uno lo conserva, y su nombre sale),
+   que estaban aqui antes de los de oro y se fueron con ellos: Sklandrausis y
+   Kelb tal-Fenek, Fougasse monegasca en italiano y Bosanski lonac en polaco. */
 for (const L of ['en', 'fr', 'de', 'it', 'nl', 'pl'])
-  IGUAL_UI[L].push('Liechtenstein', 'Casa de la Vall', 'Péckvillchen', 'Hallgrímskirkja', 'Falles de Sant Joan');
+  IGUAL_UI[L].push('Liechtenstein', 'Casa de la Vall', 'Péckvillchen', 'Hallgrímskirkja', 'Falles de Sant Joan', 'Sklandrausis', 'Kelb tal-Fenek');
 for (const L of ['en', 'fr', 'it', 'nl', 'pl']) IGUAL_UI[L].push('Pastel de nata', 'Fish and chips');
 for (const L of ['en', 'fr', 'de', 'it', 'nl']) IGUAL_UI[L].push('Orheiul Vechi');
 IGUAL_UI.fr.push('Art nouveau de Riga', 'Carnaval de Binche', 'Carnaval de Rijeka');
-IGUAL_UI.it.push('Valle del Madriu');
+IGUAL_UI.it.push('Valle del Madriu', 'Fougasse monegasca');
 IGUAL_UI.nl.push('Día de Canarias');
+IGUAL_UI.pl.push('Bosanski lonac');
 
 /* Los nombres de sitio no se declaran a mano: se sacan del propio catalogo.
    El ultimo trozo de cada `cat` en castellano es siempre el municipio o el

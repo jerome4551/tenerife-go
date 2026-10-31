@@ -44,8 +44,8 @@
  *      excepcion de 2027 del Carnaval) las prueba tools/probar_fechas_oro.js.
  *
  * QUE MIRA (parte 2, la pantalla: modulos/perfil.js)
- *   6. las 425 filas de PERFIL_UI (94 de la pantalla, 47 de sets, 284 de
- *      avatares: 235 y 49 de oro), con lo que comprobaba validar_i18n.py del encargo: los diez
+ *   6. las 454 filas de PERFIL_UI (94 de la pantalla, 47 de sets, 313 de
+ *      avatares: 235, 49 de oro y 29 retirados), con lo que comprobaba validar_i18n.py del encargo: los diez
  *      idiomas y ninguno en blanco; los mismos {marcadores} que el castellano;
  *      ni comillas dobles ASCII ni guiones blandos u otros invisibles; los
  *      plurales con sus formas (3 en polaco, 1 en chino) y {n} en cada una;
@@ -153,9 +153,18 @@ ok(normales.length === 235 && AV.total === 235, '235 avatares sin contar los de 
 ok(oros.length === 49 && Array.isArray(AV.oros) && AV.oros.length === 49 && AV.oros.every(a => oros.includes(a)), '49 de oro, los de TG_AVATARES.oros', oros.length + ' / ' + (AV.oros || []).length);
 const malSet = sets.filter(s => s.avatares.filter(a => !a.oro).length !== 5 || s.avatares.slice(0, 5).some(a => a.oro) || s.avatares.filter(a => a.oro).length !== (s.id === 'tf' ? 3 : 1));
 ok(!malSet.length, '5 avatares por set y, detras de los cinco, su de oro: uno por set y tres en Tenerife (Carnaval, Dia de Canarias y San Juan)', malSet.map(s => s.id + ':' + s.avatares.map(a => a.oro ? 'O' : 'n').join('')).join(', '));
-ok(new Set(ids).size === ids.length, 'ningun id repetido');
+/* Los 29 retirados (la nota corregida de los de oro, 31 de octubre de 2026): los que el
+   encargo de oro cambio por otros mas tipicos. Quien eligio uno lo conserva: se pintan
+   (porId, svg), pero no estan en ningun set ni entre los de oro, ni cuentan en el total, ni
+   salen en «Sorpréndeme» (que coge de los sets). */
+const RETIRADOS = Array.isArray(AV.retirados) ? AV.retirados : [], idsRet = RETIRADOS.map(a => a.id);
+const malRet = RETIRADOS.filter(a => !a.retirado || AV.porId(a.id) !== a || !AV.esRetirado(a.id) || AV.esOro(a.id) || !AV.set(a.set) || !a.id.startsWith(a.set + '-') || !/class="tg-avatar"/.test(AV.svg(a.id))).map(a => a.id);
+ok(RETIRADOS.length === 29 && !malRet.length && !todos.some(a => a.retirado) && !(AV.oros || []).some(a => a.retirado) && !idsRet.some(i => ids.includes(i)) && AV.esRetirado(ids[0]) === false,
+  'los 29 retirados: se pintan para quien ya llevaba uno, pero no estan en ningun set ni entre los de oro', RETIRADOS.length + ' ' + malRet.join(', '));
+const todosIds = ids.concat(idsRet);
+ok(new Set(todosIds).size === todosIds.length, 'ningun id repetido (los retirados incluidos)');
 const FORMA = /^[a-z]{2,3}-[a-z]+(-[a-z]+)*$/;
-ok(ids.every(i => FORMA.test(i) && i.length >= 4 && i.length <= 24), 'cada id con la forma de un id del catalogo (la de perfil.sql: 4 a 24 letras y guiones)', ids.filter(i => !FORMA.test(i)).join(', '));
+ok(todosIds.every(i => FORMA.test(i) && i.length >= 4 && i.length <= 24), 'cada id con la forma de un id del catalogo (la de perfil.sql: 4 a 24 letras y guiones), tambien los retirados', todosIds.filter(i => !FORMA.test(i)).join(', '));
 ok(sets.every(s => s.avatares.every(a => a.id.startsWith(s.id + '-'))), 'cada id empieza por el de su set');
 ok(sets.every(s => s.avatares.every(a => !!a.oro === a.id.startsWith(s.id + '-oro-'))), 'los de oro, y solo ellos, se llaman <set>-oro-…', todos.filter(a => !!a.oro !== /-oro-/.test(a.id)).map(a => a.id).join(', '));
 /* las nueve animaciones y las diez piezas que se mueven solas: las de avatares.js tienen
@@ -196,7 +205,7 @@ const PROHIBIDO = [
    elemento con transform: la animacion le pondria el suyo encima */
 const DIBUJO = new Set(['g', 'path', 'circle', 'ellipse', 'rect', 'polygon', 'polyline', 'line']);
 const malMotivo = [];
-sets.forEach(s => s.avatares.forEach(a => {
+todos.concat(RETIRADOS).forEach(a => {
   for (const [re, que] of PROHIBIDO) if (re.test(a.m)) malMotivo.push(a.id + ': ' + que);
   const e = bienCerrado(a.m); if (e) malMotivo.push(a.id + ': ' + e);
   const otras = [...new Set([...a.m.matchAll(/<([a-zA-Z][\w:-]*)/g)].map(m => m[1]))].filter(x => !DIBUJO.has(x));
@@ -210,11 +219,11 @@ sets.forEach(s => s.avatares.forEach(a => {
   }
   if (a.m.includes("'")) malMotivo.push(a.id + ': comilla simple');
   const bytes = Buffer.byteLength(a.m, 'utf8'); if (bytes > 2200) malMotivo.push(a.id + ': ' + bytes + ' bytes');
-}));
-ok(!malMotivo.length, 'los 284 motivos, SVG bien cerrado y sin nada que ejecute ni pida nada: solo etiquetas de dibujo, sin id, style ni comillas simples, «class» solo con las piezas que se mueven y nunca con transform, y 2.200 bytes como mucho', malMotivo.join(' · '));
+});
+ok(!malMotivo.length && todos.length + RETIRADOS.length === 313, 'los ' + (todos.length + RETIRADOS.length) + ' motivos (235, 49 de oro y 29 retirados), SVG bien cerrado y sin nada que ejecute ni pida nada: solo etiquetas de dibujo, sin id, style ni comillas simples, «class» solo con las piezas que se mueven y nunca con transform, y 2.200 bytes como mucho', malMotivo.join(' · '));
 
 const malSvg = [];
-for (const x of todos) {
+for (const x of todos.concat(RETIRADOS)) {
   const i = x.id, a = AV.svg(i), b = AV.svg(i, { etiqueta: 'Nombre <de> "prueba" & más' });
   const idsA = [...a.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]), idsB = [...b.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
   /* el degradado y el recorte; los de oro, ademas, el oro de la medalla y su recorte */
@@ -222,7 +231,8 @@ for (const x of todos) {
   if (idsA.length !== nIds || idsB.length !== nIds || idsA.some(y => idsB.includes(y))) malSvg.push(i + ': ids ' + idsA.join(',') + ' / ' + idsB.join(','));
   if (bienCerrado(a) || bienCerrado(b)) malSvg.push(i + ': ' + (bienCerrado(a) || bienCerrado(b)));
   if (!/aria-hidden="true"/.test(a) || !/role="img" aria-label="Nombre de prueba  más"/.test(b)) malSvg.push(i + ': etiqueta');
-  if (!a.includes('<g class="tga-m tga-' + x.a + '">')) malSvg.push(i + ': sin su animacion en el grupo del motivo');
+  /* los retirados no traen animacion: svg() les da la de por defecto, «bote» */
+  if (!a.includes('<g class="tga-m tga-' + (x.retirado ? 'bote' : x.a) + '">')) malSvg.push(i + ': sin su animacion en el grupo del motivo');
   if (!!x.oro !== /class="tg-avatar tg-oro"/.test(a) || (x.oro && !/class="tga-chispas"/.test(a))) malSvg.push(i + ': ' + (x.oro ? 'no sale como medalla' : 'sale como medalla sin ser de oro'));
 }
 ok(!malSvg.length, 'svg(): ids propios en cada llamada, SVG bien cerrado, oculto al lector de pantalla sin etiqueta y con la etiqueta limpia de <, >, & y comillas; el motivo, en el grupo de su animacion; los de oro, y solo ellos, como medalla con sus destellos', malSvg.slice(0, 5).join(' · '));
@@ -315,8 +325,8 @@ console.log('\n=== el perfil: la pantalla (modulos/perfil.js) ===');
 let PUI = {};
 try { PUI = ROT.grab('var PERFIL_UI = {', 0, MOD); } catch (e) { PUI = {}; }
 const claves = Object.keys(PUI);
-ok(claves.length === 425, 'PERFIL_UI: 425 filas', claves.length);
-ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 284, '47 filas de sets y 284 de avatares, 235 y 49 de oro (y 94 de la pantalla)');
+ok(claves.length === 454, 'PERFIL_UI: 454 filas', claves.length);
+ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 313, '47 filas de sets y 313 de avatares: 235, 49 de oro y 29 retirados (y 94 de la pantalla)');
 ok(/\n  Object\.assign\(UI_TX, PERFIL_UI\);\n/.test(MOD), 'se funden en UI_TX con Object.assign(UI_TX, PERFIL_UI), como CIELO_UI');
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 ok(JSON.stringify(IDI) === JSON.stringify(LENGUAS), 'los diez idiomas son los de SUPPORTED_LANGS', LENGUAS.join(','));
@@ -367,10 +377,10 @@ ok(!malFilas.length, 'las ' + claves.length + ' filas: diez idiomas, marcadores,
 const permiso = PUI.perfilNubeConsentimiento || {}, acepto = PUI.perfilNubeAcepto || {};
 const sinAcepto = IDI.filter(l => !String(permiso[l] || '').includes('«' + acepto[l] + '»') && !String(permiso[l] || '').includes('「' + acepto[l] + '」'));
 ok(acepto.es && !sinAcepto.length, 'el texto del permiso nombra el boton «Acepto» tal cual en cada idioma', sinAcepto.join(','));
-const filaAv = new Set(ids.map(i => 'perfilAv_' + i.replace(/-/g, '_'))), filaSet = new Set(idsSet.map(i => 'perfilSet_' + i));
+const filaAv = new Set(todosIds.map(i => 'perfilAv_' + i.replace(/-/g, '_'))), filaSet = new Set(idsSet.map(i => 'perfilSet_' + i));
 const sinFila = [...filaAv, ...filaSet].filter(k => !PUI[k]);
 const deMas = claves.filter(k => (k.startsWith('perfilAv_') && !filaAv.has(k)) || (k.startsWith('perfilSet_') && !filaSet.has(k)));
-ok(!sinFila.length && !deMas.length, 'una fila por set y por avatar del catalogo, y ninguna de mas', sinFila.concat(deMas).join(', '));
+ok(!sinFila.length && !deMas.length, 'una fila por set y por avatar del catalogo (los de oro y los retirados incluidos), y ninguna de mas', sinFila.concat(deMas).join(', '));
 /* la app sin el perfil: UI_TX de index.html (sus trozos) y CIELO_UI */
 const APP_UI = Object.assign({}, ROT.grab('const UI_TX = Object.assign('));
 for (let pos = 0; ;) { const i = index.indexOf('Object.assign(UI_TX, {', pos); if (i < 0) break; Object.assign(APP_UI, ROT.grab('Object.assign(UI_TX, {', i)); pos = i + 10; }

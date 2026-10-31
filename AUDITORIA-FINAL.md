@@ -5578,7 +5578,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 45 tablas, 2867 filas (y 5.014 filas, dentro y fuera del fuente)
+## Idiomas · 45 tablas, 2896 filas (y 5.043 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5661,7 +5661,8 @@ tabla, que va por idioma, no entraba en la cuenta de `barrido_idiomas.js`). El
 31 de octubre, los pasos para instalar la app, que eran una tabla por idioma
 (5 textos), pasan a `PWA_TX` con 8 más: 45 tablas, 2867 filas y 5.016. Y ese
 día, sin la bodega Cueva del Rey, dos filas menos de `places[]` (su
-descripción y su categoría): 5.014. El
+descripción y su categoría): 5.014. Y ese mismo día, los nombres de los 29
+avatares retirados, que vuelven a `PERFIL_UI` (454): 2896 filas y 5.043. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -11190,7 +11191,8 @@ está en el catálogo, y la app lo descarta, como cualquier id que no conoce,
 también si llega de la nube. Allí se queda en su fila hasta que la cuenta
 suba el perfil otra vez: sin avatar, sube vacío (`null`, que el check de
 `perfiles.avatar` admite). Jerome: «No pasa van a elegir de nuevo con más
-elección».
+elección». (Desde el 31 de octubre, quien llevaba uno lo conserva: abajo,
+«Los 29 retirados».)
 
 **Los controles** (bloque 6):
 
@@ -11278,6 +11280,80 @@ VERDE»**, ningún control en rojo ni roto:
   si no son las de la regla, se añade el año en `excepciones`, como 2027.
 - Las declaraciones de las tiendas no cambian: la lista de los de oro
   conseguidos no sale del dispositivo.
+
+### Los 29 retirados: quien llevaba uno lo conserva (31 de octubre)
+
+La nota corregida del encargo de oro (`PARA-CLAUDE-CODE-PERFIL.md`, con
+`perfil-oro-main.zip`; sus huellas, comprobadas antes de usar nada) trae lo
+que faltaba al subir los de oro: los 29 avatares que el encargo cambió por
+otros más típicos ya se podían elegir, y quien llevaba uno lo perdía sin
+saber por qué (arriba, «Los 29 que se van»). Ahora siguen en el catálogo
+como `RETIRADOS`:
+
+- `modulos/avatares.js`, el de la nota tal cual (`c07bc4de…313e`): los 29,
+  con `retirado: true` y fuera de los sets. `porId()` y `svg()` los
+  encuentran, `esRetirado(id)` lo dice, y `total` se cuenta de los sets:
+  sigue en 235. No salen en ninguna tira, ni en «Sorpréndeme», ni entre los
+  de oro. Se pintan en el héroe y en el botón de la cuenta de quien ya
+  llevaba uno, también si le llega de la nube; si elige otro, ese ya no
+  vuelve.
+- `modulos/perfil.js`: las 29 filas de sus nombres en los diez idiomas, al
+  final de `PERFIL_UI`. Son 454.
+- Lo demás de la nota no se aplica: la nota se escribió para un `main` sin
+  los de oro, y en `main` ya están, con lo que Jerome decidió después. El
+  tope sigue siendo el de `supabase/perfil.sql`, 2.000 pesos y 2.000
+  caminatas por cuenta, ya ejecutado en Supabase (Jerome: «Supabase está
+  hecho normalmente»; la nota decía 20.000 y no tocar Supabase), y la
+  lectura por páginas sigue siendo `leerTodas()`, la que prueban la v1 a la
+  v3 y la n34.
+
+**Lo que se miró aparte, antes de meterlo**, contra el catálogo de antes del
+encargo de oro (`d21f8c4`) y las filas de entonces (`270c301`):
+
+- Los 29 que se fueron con los de oro son estos 29, ni uno más ni uno menos.
+- De cada uno, el dibujo, el set, el nombre y todos los demás campos, byte a
+  byte: iguales. Las 29 filas de sus nombres, también.
+- `svg()` da el mismo dibujo que entonces, con y sin etiqueta (58 de 58),
+  dentro del grupo de la animación que llevan todos desde el 24: como no
+  traen una suya, la de por defecto, «bote».
+
+**Los controles:**
+
+- `auditar_perfil.js`, 74 en verde. Nuevo, los 29 retirados: se pintan, no
+  están en ningún set ni entre los de oro, su id tiene la forma de los del
+  catálogo y no se repite con ninguno; y en los que ya había, los 313
+  motivos (235, 49 de oro y 29 retirados) y sus `svg()`, y una fila por
+  avatar, los retirados incluidos.
+- `probar_perfil.js`, la 47: con `en-cabina` guardado, sale en el botón de
+  la cuenta y en el héroe, con su nombre («Cabina telefónica»); no está en
+  la tira de su set, y al elegir otro, se va.
+- `auditar_web.js` y `barrido_idiomas.js`: 45 tablas, 2896 filas y 5.043,
+  las 29 de más, todas en los diez idiomas; el título de «Idiomas» ya lo
+  dice.
+- `auditar_idioma.js`: los nombres de cuatro de los retirados se escriben
+  igual que en castellano en algunos idiomas, y estaban declarados antes de
+  los de oro, que los quitaron al quitar sus avatares: vuelven
+  «Sklandrausis» y «Kelb tal-Fenek» en seis idiomas, «Fougasse monegasca»
+  en italiano y «Bosanski lonac» en polaco. Sin ellos, cinco idiomas en
+  rojo.
+- `probar_fechas_oro.js`, el de la nota tal cual (`81631dd8…`): toma el
+  motor de las fechas del catálogo, y el catálogo de antes no traía
+  `RETIRADOS`; con el viejo, la prueba no llegaba a correr. Y prueba
+  también las tres de oro de Tenerife en el catálogo de verdad: 56 «ok» y
+  «FECHAS EN VERDE».
+
+**Lo que pesa.** `modulos/avatares.js`, 450 kB (123 kB comprimido; antes,
+410 y 112); `modulos/perfil.js`, 283 kB (88; antes, 275 y 85). En la primera
+descarga no cambia nada: los dos se piden al tocar «Cuenta», y en
+`index.html` cambian solo los comentarios de sus cargadores, con lo que
+pesan ahora; `tools/peso_descarga.py` da los mismos 1.076, 1.190 y 1.176 kB.
+
+**Lo que queda para Jerome:** la cabina roja británica (`en-cabina`) es uno
+de los 29. El encargo de oro la cambió por el Big Ben porque el diseño de la
+K6 está registrado por BT y sus derechos de autor duran hasta 2030
+(`AVATARES-ORO.md`); la nota la conserva, como a los otros 28, para quien ya
+la llevaba. Si prefiere que esa no vuelva, se dice y se quita: quien la
+lleve verá el avatar de inicio y podrá elegir otro.
 
 ## La tarifa del sendero del pico, con la fuente oficial (23 de octubre, noche)
 

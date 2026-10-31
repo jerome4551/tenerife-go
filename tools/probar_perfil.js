@@ -26,7 +26,8 @@
  *      «Sorpréndeme» nunca da uno de oro; Tenerife cerrado con su de oro en su
  *      fiesta; las fiestas de varios dias; la descarga con los de oro; y tocar un
  *      avatar lo mueve, nada con «reducir movimiento». La fecha de hoy se cambia con
- *      el reloj del navegador (clock.setFixedTime): la app no tiene otra;
+ *      el reloj del navegador (clock.setFixedTime): la app no tiene otra. Y la 47
+ *      (31 de octubre): quien llevaba uno de los 29 retirados lo conserva;
  *   2. la nube con permiso (pruebas/nube.py, 33), contra una nube de mentira que
  *      se porta como supabase/perfil.sql (RLS, 23503, cascade, check, columnas):
  *      tools/perfil_nube_de_prueba.js, la demo-nube.js del encargo, que solo en
@@ -491,6 +492,24 @@ async function oro(b) {
   const anim = await p3.evaluate(() => { const m = document.querySelector('#tgp-ava-big .tga-m'); return m ? getComputedStyle(m).animationName : ''; });
   await c3.close();
   ok(b1 && fin && b2 && anim && anim !== 'none' && sin && !e2.length && !e3.length, '46 tocar un avatar lo mueve un segundo (el elegido y el del heroe), y nada con «reducir movimiento»', [b1, fin, b2, anim, sin, e2, e3]);
+
+  /* 47: los retirados (la nota corregida de los de oro). Quien eligio uno de los 29 antes del
+     encargo de oro lo conserva: en el boton de la cuenta y en el heroe, con su nombre; no sale
+     en la tira de su set, y si elige otro, ese ya no vuelve */
+  const cT = await contexto(b), pT = await cT.newPage(), eT = errores(pT);
+  await cT.addInitScript(d => { try { if (!sessionStorage.getItem('retirado')) { localStorage.setItem('tenerife.perfil', d); sessionStorage.setItem('retirado', '1'); } } catch (e) {} }, JSON.stringify(Object.assign(ejemplo(), { avatar: 'en-cabina' })));
+  await abrirApp(pT, 'es');
+  await pT.waitForFunction(() => document.querySelector('#auth-btn .tg-avatar-cuenta'), null, { timeout: 15000 }).catch(() => {});
+  const botonT = await pT.evaluate(() => (document.querySelector('#auth-btn .tg-avatar-cuenta') || { dataset: {} }).dataset.id);
+  await abrirPerfilYa(pT);
+  const metaT = await pT.innerText('#tgp-meta'), avT = await pT.evaluate(() => TG_PERFIL.estado().avatar);
+  await abrirSet(pT, 'en');
+  const tiraT = await pT.evaluate(() => [...document.querySelectorAll('#tgp-strip .tgp-av')].map(x => x.dataset.id));
+  await pT.click('#tgp-strip .tgp-av >> nth=0'); await pT.waitForTimeout(200);
+  const despuesT = await pT.evaluate(() => TG_PERFIL.estado().avatar);
+  await cT.close();
+  ok(botonT === 'en-cabina' && avT === 'en-cabina' && metaT.includes('Cabina telefónica') && !tiraT.includes('en-cabina') && tiraT.length === 6 && despuesT === tiraT[0] && !eT.length,
+    '47 un avatar retirado (en-cabina) se conserva: en el boton de la cuenta y en el heroe, con su nombre; no sale en la tira, y al elegir otro se va', [botonT, avT, metaT, tiraT, despuesT, eT]);
 }
 
 /* ── 2. la nube con permiso ───────────────────────────────────────────── */
