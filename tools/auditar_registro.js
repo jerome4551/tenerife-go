@@ -308,7 +308,7 @@ const ROTULOS_IT = new Set([
   /* los del sistema, que la app cita tal cual: el menu de Safari y el de Chrome */
   'Aggiungi a Home', 'Installa app',
   /* los de «Su cuerpo» (modulos/cuerpo.js) y el de su tarjeta en el perfil, «Apri» (31 de octubre de 2026) */
-  'Apri', 'Annulla',
+  'Apri', 'Gira', 'Vedi da dietro', 'Vedi di fronte', 'Elimina i dati di «Corpo»', 'Sì, elimina', 'Elimina: {series}, {fecha}', 'Torna a {grupo}', 'Cerca tra gli esercizi di questo gruppo', 'Cerca un esercizio…', 'Annulla',
 ]);
 
 /* Los del bulgaro (22 de octubre de 2026): el boton en imperativo («Затвори»,
@@ -330,7 +330,7 @@ const ROTULOS_BG = new Set([
   /* los del sistema, que la app cita tal cual: el menu de Safari */
   'Добави към начален екран',
   /* los de «Su cuerpo» (modulos/cuerpo.js) y el de su tarjeta en el perfil, «Отвори» (31 de octubre de 2026) */
-  'Отвори', 'Завърти', 'Покажи отзад', 'Покажи отпред', 'Изтрий: {series}, {fecha}', 'Да, изтрий', 'Отмени',
+  'Отвори', 'Завърти', 'Покажи отзад', 'Покажи отпред', 'Изтрий: {series}, {fecha}', 'Изтрий данните от «Вашето тяло»', 'Да, изтрий', 'Отмени',
 ]);
 
 /* Los del polaco (22 de octubre de 2026): el boton en imperativo («Zamknij»,
@@ -367,7 +367,7 @@ const ROTULOS_PL = new Set([
   'Dodaj', 'Pobierz dane profilu', 'Szukaj kraju', 'Tak, usuń', 'Usuń dane profilu z tego urządzenia', 'Usuń z chmury', 'Załóż konto lub zaloguj się',
   'Zapisz', 'Zmień imię',
   /* los de «Su cuerpo» (modulos/cuerpo.js) y el de su tarjeta en el perfil, «Otwórz» (31 de octubre de 2026) */
-  'Otwórz', 'Obróć', 'Pokaż od tyłu', 'Pokaż od przodu', 'Usuń: {series}, {fecha}', 'Usuń dane z sekcji «Ciało»', 'Cofnij', 'Szukaj w ćwiczeniach tej grupy', 'Szukaj ćwiczenia…',
+  'Otwórz', 'Obróć', 'Pokaż od tyłu', 'Pokaż od przodu', 'Usuń: {series}, {fecha}', 'Usuń dane z sekcji «Ciało»', 'Cofnij', 'Wróć do: {grupo}', 'Szukaj w ćwiczeniach tej grupy', 'Szukaj ćwiczenia…',
 ]);
 /* la voz de quien usa la app («Zaskocz mnie», «Zaprowadź mnie», «Przypomnij mi w
    aplikacji», lo que se escribe al asistente), como «Sorpréndeme» y «Llévame»
