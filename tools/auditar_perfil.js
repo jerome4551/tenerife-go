@@ -44,8 +44,8 @@
  *      excepcion de 2027 del Carnaval) las prueba tools/probar_fechas_oro.js.
  *
  * QUE MIRA (parte 2, la pantalla: modulos/perfil.js)
- *   6. las 456 filas de PERFIL_UI (96 de la pantalla, 47 de sets, 313 de
- *      avatares: 235, 49 de oro y 29 retirados), con lo que comprobaba validar_i18n.py del encargo: los diez
+ *   6. las 455 filas de PERFIL_UI (96 de la pantalla, 47 de sets, 312 de
+ *      avatares: 235, 49 de oro y 28 retirados), con lo que comprobaba validar_i18n.py del encargo: los diez
  *      idiomas y ninguno en blanco; los mismos {marcadores} que el castellano;
  *      ni comillas dobles ASCII ni guiones blandos u otros invisibles; los
  *      plurales con sus formas (3 en polaco, 1 en chino) y {n} en cada una;
@@ -153,14 +153,16 @@ ok(normales.length === 235 && AV.total === 235, '235 avatares sin contar los de 
 ok(oros.length === 49 && Array.isArray(AV.oros) && AV.oros.length === 49 && AV.oros.every(a => oros.includes(a)), '49 de oro, los de TG_AVATARES.oros', oros.length + ' / ' + (AV.oros || []).length);
 const malSet = sets.filter(s => s.avatares.filter(a => !a.oro).length !== 5 || s.avatares.slice(0, 5).some(a => a.oro) || s.avatares.filter(a => a.oro).length !== (s.id === 'tf' ? 3 : 1));
 ok(!malSet.length, '5 avatares por set y, detras de los cinco, su de oro: uno por set y tres en Tenerife (Carnaval, Dia de Canarias y San Juan)', malSet.map(s => s.id + ':' + s.avatares.map(a => a.oro ? 'O' : 'n').join('')).join(', '));
-/* Los 29 retirados (la nota corregida de los de oro, 31 de octubre de 2026): los que el
-   encargo de oro cambio por otros mas tipicos. Quien eligio uno lo conserva: se pintan
+/* Los 28 retirados (la nota corregida de los de oro, 31 de octubre de 2026): los que el
+   encargo de oro cambio por otros mas tipicos. Eran 29: la cabina roja britanica
+   (en-cabina) no esta, ni en el catalogo ni en las filas, porque su diseño no es libre de
+   derechos (Jerome, 31-10-2026: «si no es libre de derecho quítala»). Quien eligio uno lo conserva: se pintan
    (porId, svg), pero no estan en ningun set ni entre los de oro, ni cuentan en el total, ni
    salen en «Sorpréndeme» (que coge de los sets). */
 const RETIRADOS = Array.isArray(AV.retirados) ? AV.retirados : [], idsRet = RETIRADOS.map(a => a.id);
 const malRet = RETIRADOS.filter(a => !a.retirado || AV.porId(a.id) !== a || !AV.esRetirado(a.id) || AV.esOro(a.id) || !AV.set(a.set) || !a.id.startsWith(a.set + '-') || !/class="tg-avatar"/.test(AV.svg(a.id))).map(a => a.id);
-ok(RETIRADOS.length === 29 && !malRet.length && !todos.some(a => a.retirado) && !(AV.oros || []).some(a => a.retirado) && !idsRet.some(i => ids.includes(i)) && AV.esRetirado(ids[0]) === false,
-  'los 29 retirados: se pintan para quien ya llevaba uno, pero no estan en ningun set ni entre los de oro', RETIRADOS.length + ' ' + malRet.join(', '));
+ok(RETIRADOS.length === 28 && !malRet.length && !AV.porId('en-cabina') && !todos.some(a => a.retirado) && !(AV.oros || []).some(a => a.retirado) && !idsRet.some(i => ids.includes(i)) && AV.esRetirado(ids[0]) === false,
+  'los 28 retirados: se pintan para quien ya llevaba uno, pero no estan en ningun set ni entre los de oro; y la cabina roja britanica, que no es libre de derechos, no esta', RETIRADOS.length + ' ' + malRet.join(', '));
 const todosIds = ids.concat(idsRet);
 ok(new Set(todosIds).size === todosIds.length, 'ningun id repetido (los retirados incluidos)');
 const FORMA = /^[a-z]{2,3}-[a-z]+(-[a-z]+)*$/;
@@ -220,7 +222,7 @@ todos.concat(RETIRADOS).forEach(a => {
   if (a.m.includes("'")) malMotivo.push(a.id + ': comilla simple');
   const bytes = Buffer.byteLength(a.m, 'utf8'); if (bytes > 2200) malMotivo.push(a.id + ': ' + bytes + ' bytes');
 });
-ok(!malMotivo.length && todos.length + RETIRADOS.length === 313, 'los ' + (todos.length + RETIRADOS.length) + ' motivos (235, 49 de oro y 29 retirados), SVG bien cerrado y sin nada que ejecute ni pida nada: solo etiquetas de dibujo, sin id, style ni comillas simples, «class» solo con las piezas que se mueven y nunca con transform, y 2.200 bytes como mucho', malMotivo.join(' · '));
+ok(!malMotivo.length && todos.length + RETIRADOS.length === 312, 'los ' + (todos.length + RETIRADOS.length) + ' motivos (235, 49 de oro y 28 retirados), SVG bien cerrado y sin nada que ejecute ni pida nada: solo etiquetas de dibujo, sin id, style ni comillas simples, «class» solo con las piezas que se mueven y nunca con transform, y 2.200 bytes como mucho', malMotivo.join(' · '));
 
 const malSvg = [];
 for (const x of todos.concat(RETIRADOS)) {
@@ -325,8 +327,8 @@ console.log('\n=== el perfil: la pantalla (modulos/perfil.js) ===');
 let PUI = {};
 try { PUI = ROT.grab('var PERFIL_UI = {', 0, MOD); } catch (e) { PUI = {}; }
 const claves = Object.keys(PUI);
-ok(claves.length === 456, 'PERFIL_UI: 456 filas', claves.length);
-ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 313, '47 filas de sets y 313 de avatares: 235, 49 de oro y 29 retirados (y 96 de la pantalla, con las dos pestañas)');
+ok(claves.length === 455, 'PERFIL_UI: 455 filas', claves.length);
+ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 312 && !claves.includes('perfilAv_en_cabina'), '47 filas de sets y 312 de avatares: 235, 49 de oro y 28 retirados (y 96 de la pantalla, con las dos pestañas); ninguna de la cabina');
 ok(/\n  Object\.assign\(UI_TX, PERFIL_UI\);\n/.test(MOD), 'se funden en UI_TX con Object.assign(UI_TX, PERFIL_UI), como CIELO_UI');
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 ok(JSON.stringify(IDI) === JSON.stringify(LENGUAS), 'los diez idiomas son los de SUPPORTED_LANGS', LENGUAS.join(','));

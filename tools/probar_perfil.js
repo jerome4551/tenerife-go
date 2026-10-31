@@ -27,7 +27,8 @@
  *      fiesta; las fiestas de varios dias; la descarga con los de oro; y tocar un
  *      avatar lo mueve, nada con «reducir movimiento». La fecha de hoy se cambia con
  *      el reloj del navegador (clock.setFixedTime): la app no tiene otra. Y la 47
- *      (31 de octubre): quien llevaba uno de los 29 retirados lo conserva;
+ *      (31 de octubre): quien llevaba uno de los 28 retirados lo conserva; la 47b,
+ *      la cabina roja britanica, que ya no esta, se descarta;
  *   2. la nube con permiso (pruebas/nube.py, 33), contra una nube de mentira que
  *      se porta como supabase/perfil.sql (RLS, 23503, cascade, check, columnas):
  *      tools/perfil_nube_de_prueba.js, la demo-nube.js del encargo, que solo en
@@ -516,11 +517,11 @@ async function oro(b) {
   await c3.close();
   ok(b1 && fin && b2 && anim && anim !== 'none' && sin && !e2.length && !e3.length, '46 tocar un avatar lo mueve un segundo (el elegido y el del heroe), y nada con «reducir movimiento»', [b1, fin, b2, anim, sin, e2, e3]);
 
-  /* 47: los retirados (la nota corregida de los de oro). Quien eligio uno de los 29 antes del
+  /* 47: los retirados (la nota corregida de los de oro). Quien eligio uno de los 28 antes del
      encargo de oro lo conserva: en el boton de la cuenta y en el heroe, con su nombre; no sale
      en la tira de su set, y si elige otro, ese ya no vuelve */
   const cT = await contexto(b), pT = await cT.newPage(), eT = errores(pT);
-  await cT.addInitScript(d => { try { if (!sessionStorage.getItem('retirado')) { localStorage.setItem('tenerife.perfil', d); sessionStorage.setItem('retirado', '1'); } } catch (e) {} }, JSON.stringify(Object.assign(ejemplo(), { avatar: 'en-cabina' })));
+  await cT.addInitScript(d => { try { if (!sessionStorage.getItem('retirado')) { localStorage.setItem('tenerife.perfil', d); sessionStorage.setItem('retirado', '1'); } } catch (e) {} }, JSON.stringify(Object.assign(ejemplo(), { avatar: 'en-paraguas' })));
   await abrirApp(pT, 'es');
   await pT.waitForFunction(() => document.querySelector('#auth-btn .tg-avatar-cuenta'), null, { timeout: 15000 }).catch(() => {});
   const botonT = await pT.evaluate(() => (document.querySelector('#auth-btn .tg-avatar-cuenta') || { dataset: {} }).dataset.id);
@@ -531,8 +532,23 @@ async function oro(b) {
   await pT.click('#tgp-strip .tgp-av >> nth=0'); await pT.waitForTimeout(200);
   const despuesT = await pT.evaluate(() => TG_PERFIL.estado().avatar);
   await cT.close();
-  ok(botonT === 'en-cabina' && avT === 'en-cabina' && metaT.includes('Cabina telefónica') && !tiraT.includes('en-cabina') && tiraT.length === 6 && despuesT === tiraT[0] && !eT.length,
-    '47 un avatar retirado (en-cabina) se conserva: en el boton de la cuenta y en el heroe, con su nombre; no sale en la tira, y al elegir otro se va', [botonT, avT, metaT, tiraT, despuesT, eT]);
+  ok(botonT === 'en-paraguas' && avT === 'en-paraguas' && metaT.includes('Paraguas') && !tiraT.includes('en-paraguas') && tiraT.length === 6 && despuesT === tiraT[0] && !eT.length,
+    '47 un avatar retirado (en-paraguas) se conserva: en el boton de la cuenta y en el heroe, con su nombre; no sale en la tira, y al elegir otro se va', [botonT, avT, metaT, tiraT, despuesT, eT]);
+
+  /* 47b: la cabina roja britanica (en-cabina) ya no esta: su diseño no es libre de derechos
+     (Jerome, 31-10-2026). Quien la llevaba ve el avatar con el que empieza todo el mundo, y
+     el boton de la cuenta, su icono: como con cualquier id que la app no conoce */
+  const cC = await contexto(b), pC = await cC.newPage(), eC = errores(pC);
+  await cC.addInitScript(d => { try { if (!sessionStorage.getItem('cabina')) { localStorage.setItem('tenerife.perfil', d); sessionStorage.setItem('cabina', '1'); } } catch (e) {} }, JSON.stringify(Object.assign(ejemplo(), { avatar: 'en-cabina' })));
+  await abrirApp(pC, 'es');
+  await pC.waitForFunction(() => window.TG_AVATARES, null, { timeout: 15000 }).catch(() => {});
+  await pC.waitForTimeout(300);
+  const botonC = await pC.evaluate(() => ({ caja: !!document.querySelector('#auth-btn .tg-avatar-cuenta'), con: document.getElementById('auth-btn').classList.contains('con-avatar'), cat: !!(window.TG_AVATARES && TG_AVATARES.porId('en-cabina')), ret: window.TG_AVATARES ? TG_AVATARES.retirados.length : -1 }));
+  await abrirPerfilYa(pC);
+  const avC = await pC.evaluate(() => TG_PERFIL.estado().avatar), metaC = await pC.innerText('#tgp-meta');
+  await cC.close();
+  ok(!botonC.caja && !botonC.con && !botonC.cat && botonC.ret === 28 && avC === '' && metaC.includes('Sol') && !metaC.includes('Cabina') && !eC.length,
+    '47b la cabina roja britanica (en-cabina) ya no esta: el boton de la cuenta se queda con su icono y el heroe enseña el avatar de inicio («Sol»), sin errores', [botonC, avC, metaC, eC]);
 }
 
 /* ── 1d. las pestañas (31 de octubre de 2026) ──────────────────────────────

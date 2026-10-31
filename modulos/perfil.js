@@ -41,7 +41,7 @@
   'use strict';
 
   /* Los textos de la pantalla (94), de los sets (47), de los avatares (284:
-     235 y 49 de oro, que se llaman como su fiesta) y, al final, de los 29
+     235 y 49 de oro, que se llaman como su fiesta) y, al final, de los 28
      retirados (modulos/avatares.js: quien ya llevaba uno lo conserva y su nombre
      tiene que salir), en los diez idiomas. El trato, de usted (Jerome, 21 de octubre). Se
      quedan como estan, porque son la voz de quien usa la app: «Sorpréndeme»,
@@ -474,7 +474,6 @@
     "perfilAv_ru_balalaika": {"es": "Balalaica", "en": "Balalaika", "fr": "Balalaïka", "de": "Balalaika", "it": "Balalaica", "nl": "Balalaika", "zh": "巴拉莱卡琴", "zht": "巴拉萊卡琴", "bg": "Балалайка", "pl": "Bałałajka"},
     "perfilAv_ru_blinis": {"es": "Blinis", "en": "Blini", "fr": "Blinis", "de": "Blini", "it": "Blini", "nl": "Blini", "zh": "俄式薄饼", "zht": "俄式薄餅", "bg": "Блини", "pl": "Bliny"},
     "perfilAv_ru_oro_maslenitsa": {"es": "Máslenitsa", "en": "Maslenitsa", "fr": "Maslenitsa", "de": "Masleniza", "it": "Maslenica", "nl": "Maslenitsa", "zh": "谢肉节", "zht": "謝肉節", "bg": "Масленица", "pl": "Maslenica"},
-    "perfilAv_en_cabina": {"es": "Cabina telefónica", "en": "Phone box", "fr": "Cabine téléphonique", "de": "Telefonzelle", "it": "Cabina telefonica", "nl": "Telefooncel", "zh": "红色电话亭", "zht": "紅色電話亭", "bg": "Телефонна кабина", "pl": "Budka telefoniczna"},
     "perfilAv_en_paraguas": {"es": "Paraguas", "en": "Umbrella", "fr": "Parapluie", "de": "Regenschirm", "it": "Ombrello", "nl": "Paraplu", "zh": "雨伞", "zht": "雨傘", "bg": "Чадър", "pl": "Parasol"},
     "perfilAv_pl_flor": {"es": "Flor recortada", "en": "Paper-cut flower", "fr": "Fleur en papier", "de": "Papierblume", "it": "Fiore di carta", "nl": "Papieren bloem", "zh": "剪纸花", "zht": "剪紙花", "bg": "Хартиено цвете", "pl": "Wycinanka"},
     "perfilAv_bg_shevitsa": {"es": "Bordado", "en": "Embroidery", "fr": "Broderie", "de": "Stickerei", "it": "Ricamo", "nl": "Borduurwerk", "zh": "刺绣", "zht": "刺繡", "bg": "Шевица", "pl": "Haft"},

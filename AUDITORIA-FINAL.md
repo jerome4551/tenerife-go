@@ -5578,7 +5578,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 45 tablas, 2898 filas (y 5.045 filas, dentro y fuera del fuente)
+## Idiomas · 45 tablas, 2897 filas (y 5.044 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -5664,7 +5664,8 @@ día, sin la bodega Cueva del Rey, dos filas menos de `places[]` (su
 descripción y su categoría): 5.014. Y ese mismo día, los nombres de los 29
 avatares retirados, que vuelven a `PERFIL_UI` (454): 2896 filas y 5.043; y
 los nombres de dos de las tres pestañas del perfil, Viaje y Cuerpo (456):
-2898 filas y 5.045. El
+2898 filas y 5.045; y sin la cabina roja británica, una menos (455): 2897
+filas y 5.044. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -11355,7 +11356,9 @@ de los 29. El encargo de oro la cambió por el Big Ben porque el diseño de la
 K6 está registrado por BT y sus derechos de autor duran hasta 2030
 (`AVATARES-ORO.md`); la nota la conserva, como a los otros 28, para quien ya
 la llevaba. Si prefiere que esa no vuelva, se dice y se quita: quien la
-lleve verá el avatar de inicio y podrá elegir otro.
+lleve verá el avatar de inicio y podrá elegir otro. Jerome, ese mismo día:
+«la cabina roja británica si no es libre de derecho quítala». No lo es:
+fuera (abajo, «La cabina roja británica, fuera»).
 
 ### Las tres pestañas: Viaje, Cuerpo y Cuenta (31 de octubre)
 
@@ -11431,6 +11434,52 @@ arriba), tres pestañas, que al bajar se quedan fijas debajo de la cabecera:
 
 **Lo que pesa.** `modulos/perfil.js`, 291 kB (90 comprimido; con los
 retirados, 283 y 88). La primera descarga no cambia.
+
+### La cabina roja británica, fuera (31 de octubre)
+
+Jerome, a la pregunta de arriba: «la cabina roja británica si no es libre de
+derecho quítala». No lo es. Además de las notas de la entrega
+(`AVATARES-ORO.md` y `VERIFICACION-PERFIL.md`), lo dicen:
+
+- Wikipedia, «Red telephone box»: muchos de los diseños de la cabina están
+  protegidos por marcas registradas y derechos de autor de British
+  Telecommunications plc.
+- La sala de prensa de BT, «BT's classic British red phone box rings up 80
+  years»: la K6 es un diseño registrado de British Telecommunications plc.
+- The Register (24 de agosto de 2011): en los noventa, BT registró el
+  diseño como marca.
+- Su autor, Giles Gilbert Scott, murió en 1960 (RIBA, Science Museum
+  Group); la entrega cuenta que sus derechos de autor duran hasta 2030.
+
+Las tres primeras, leídas en el buscador: desde aquí no se pueden abrir sus
+páginas (la red de esta sesión no llega a esas webs).
+
+**Lo que cambia:**
+
+- `modulos/avatares.js`: fuera la cabina (`en-cabina`) de `RETIRADOS`:
+  quedan 28. Del fichero de la nota cambian solo eso y los dos comentarios
+  que lo cuentan.
+- `modulos/perfil.js`: fuera su fila, «Cabina telefónica» en los diez
+  idiomas: 455 filas.
+- Quien la llevaba ve el avatar con el que empieza todo el mundo (el
+  primero del set de su país o de su idioma) y puede elegir otro, y el
+  botón de la cuenta vuelve a su icono: como con cualquier id que la app no
+  conoce, también si llega de la nube. Allí se queda en su fila hasta que
+  la cuenta suba el perfil otra vez, y entonces sube vacío (`null`, que
+  admite el check de `perfiles.avatar`).
+
+**Los controles:**
+
+- `auditar_perfil.js`: 28 retirados, y ni la cabina en el catálogo ni su
+  fila; 312 motivos y 455 filas.
+- `probar_perfil.js`: la 47, con otro retirado, el paraguas
+  (`en-paraguas`), y la 47b, nueva: con la cabina guardada, el botón de la
+  cuenta se queda con su icono y el héroe enseña «Sol», el de inicio en
+  castellano, sin errores.
+- `auditar_web.js` y `barrido_idiomas.js`: 2897 filas y 5.044.
+
+**Lo que pesa.** `modulos/avatares.js`, 450 kB (123 comprimido; con los 29,
+450 y 123); `modulos/perfil.js`, 290 kB (90 comprimido).
 
 ## La tarifa del sendero del pico, con la fuente oficial (23 de octubre, noche)
 
