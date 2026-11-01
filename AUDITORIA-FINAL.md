@@ -6421,7 +6421,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3183 filas (y 5.330 filas, dentro y fuera del fuente)
+## Idiomas · 49 tablas, 3182 filas (y 5.329 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -6518,7 +6518,11 @@ y las notas de las fuentes de sus ejercicios, 24 más en `CUERPO_UI` (256):
 `ISLA3D_UI` con 19 y las dos de una fila que no se traducen (`ISLA3D_LOCALE` e
 `ISLA3D_NOMBRE`) en `modulos/isla3d.js`, que `tools/fuente.js` pega al fuente,
 y en `UI_TX` las tres que hacen falta antes de cargarlo (el botón, «preparando
-el relieve» y el error): 49 tablas, 3183 filas y 5.330. El
+el relieve» y el error): 49 tablas, 3183 filas y 5.330. El 1 de noviembre, las
+banderas del panel SOS pasan a ser las de la leyenda del mapa: entran cuatro
+filas en `EMERG_UI` (la negra, la naranja, la morada y su fuente) y salen cinco
+(la púrpura, la de cuadros, las dos rojas, la bicolor y la nota de la púrpura
+de las picaduras): 3182 filas y 5.329. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de

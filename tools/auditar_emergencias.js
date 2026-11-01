@@ -45,7 +45,10 @@ const DOMINIOS = ['gobiernodecanarias.org', '112canarias.com', 'boe.es', 'involc
      Consejo Europeo de Resucitacion y sus traducciones oficiales, el NHS, la
      SEUP, la AESAN, el Servicio de Informacion Toxicologica...) */
   'ivhhn.org', 'educacionfpydeportes.gob.es', 'interior.gob.es', 'tenerifeon.es', 'europa.eu', 'erc.edu', 'ircouncil.it',
-  'resus.org.uk', 'ilcor.org', 'nhs.uk', 'seup.org', 'comunidad.madrid', 'alicante.es', 'aesan.gob.es', 'mjusticia.gob.es'];
+  'resus.org.uk', 'ilcor.org', 'nhs.uk', 'seup.org', 'comunidad.madrid', 'alicante.es', 'aesan.gob.es', 'mjusticia.gob.es',
+  /* 1 de noviembre: el portal Infoplayas Canarias, el origen de las banderas
+     que se usan hoy (el mismo visor al que lleva el globo de cada playa) */
+  'infoplayascanarias.es'];
 /* Los robots que dan datos al panel: su fichero y su flujo */
 const ROBOTS = { 'sismos-ign.json': 'sismos-ign.yml', 'semaforo-involcan.json': 'semaforo-involcan.yml', 'alertas-canarias.json': 'alertas-canarias.yml' };
 const SHELL = ['sosNavAria', 'sosTitulo', 'sosLlamar', 'sosLlamarSub', 'sosCargando', 'sosErrorCarga', 'sosReintentar', 'sosVolver'];
@@ -171,10 +174,10 @@ const vacios = SUBS.filter(s => !SOS.guias.some(g => g.grupo === 'hacer' && g.su
 ok(!vacios.length, 'ningun grupo vacio', vacios.join(', '));
 const idsGuias = new Set(SOS.guias.map(g => g.id));
 ok(idsGuias.size === SOS.guias.length && [...idsGuias].every(id => /^[a-z]+$/.test(id)), 'los ids de las guias, unicos y en minusculas (#sos-<guia>)');
-/* las banderas del Decreto 116/2018 y de la Orden de 22 de julio de 2022
-   (anexo III): las cuatro de colores, la de cuadros de los deportes
-   nauticos, dos rojas a los lados de un peligro y la bicolor de zona segura */
-const BANDERAS = ['verde', 'amarilla', 'roja', 'purpura', 'ajedrez', 'dosrojas', 'segura'];
+/* las banderas: las seis que se usan hoy en las playas de Canarias, las de la
+   leyenda del mapa. Nada del Decreto 116/2018, anulado, ni de la Orden de 22
+   de julio de 2022, que modificaba sus anexos (1 de noviembre de 2026) */
+const BANDERAS = ['verde', 'amarilla', 'roja', 'negra', 'naranja', 'morada'];
 const irMal = [], banMal = [], telMal = [];
 SOS.guias.forEach(g => g.b.forEach(b => {
   if (b.ir && (!idsGuias.has(b.ir) || b.ir === g.id)) irMal.push(g.id + '→' + b.ir);
@@ -183,6 +186,33 @@ SOS.guias.forEach(g => g.b.forEach(b => {
 }));
 ok(!irMal.length, 'cada «Vea también» lleva a otra guia que existe', irMal.join(', '));
 ok(!banMal.length, 'las banderas son las de las playas de Canarias (' + BANDERAS.join(', ') + ')', banMal.join(', '));
+/* y dicen lo mismo que la leyenda de banderas del mapa (index.html,
+   LANGS.banderas*), letra a letra y en los diez idiomas: la misma fuente y el
+   mismo texto. «Bañarse con seguridad» lleva las seis, en su orden. El chino
+   tradicional es el simplificado con ZHT_OVERRIDES encima, como en la app */
+const LEYENDA = { verde: 'banderasVerde', amarilla: 'banderasAmarilla', roja: 'banderasRoja',
+  negra: 'banderasNegra', naranja: 'banderasNaranja', morada: 'banderasMorada' };
+const cabLangs = [...idx.matchAll(/^ {2}["']?(es|en|fr|de|it|nl|zh|bg|pl)["']?\s*:\s*\{\s*$|^const ZHT_OVERRIDES = \{\s*$/gm)]
+  .map(m => [m.index, m[1] || 'zht']);
+const leyenda = {};
+Object.values(LEYENDA).forEach(k => {
+  const re = new RegExp('^[ \\t]*["\']?' + k + '["\']?\\s*:\\s*(["\'])((?:\\\\.|(?!\\1).)*)\\1', 'gm');
+  for (const m of idx.matchAll(re)) {
+    const cab = cabLangs.filter(c => c[0] < m.index).pop();
+    if (!cab) continue;
+    const v = m[1] === '"' ? JSON.parse('"' + m[2] + '"') : JSON.parse('"' + m[2].replace(/\\'/g, "'").replace(/"/g, '\\"') + '"');
+    (leyenda[cab[1]] = leyenda[cab[1]] || {})[k] = v;
+  }
+});
+if (leyenda.zh) leyenda.zht = Object.assign({}, leyenda.zh, leyenda.zht || {});
+const leyMal = [];
+SOS.guias.forEach(g => g.b.forEach(b => (b.banderas || []).forEach(x => LANGS.forEach(l => {
+  const quiero = (leyenda[l] || {})[LEYENDA[x[0]]];
+  if (!quiero || (UI[x[1]] || {})[l] !== quiero) leyMal.push(g.id + ':' + x[0] + '.' + l);
+}))));
+const playaBan = ((SOS.guias.find(g => g.id === 'playa') || { b: [] }).b.find(b => b.banderas) || { banderas: [] }).banderas.map(x => x[0]).join();
+ok(!leyMal.length && playaBan === BANDERAS.join(), 'las banderas dicen lo mismo que la leyenda del mapa, en los diez idiomas, y «Bañarse con seguridad» lleva las seis',
+  leyMal.slice(0, 4).join(' · ') + (playaBan === BANDERAS.join() ? '' : ' · playa: ' + playaBan));
 ok(!telMal.length && /^\d{9}$/.test(SOS.telSalvamento || ''), 'los telefonos que se marcan, solo cifras (Salvamento Maritimo, ' + SOS.telSalvamento + ')', telMal.join(', '));
 /* los de la tarjeta del 112: el 012 por su numero largo (el corto no vale
    desde un movil extranjero) y el Servicio de Informacion Toxicologica */
