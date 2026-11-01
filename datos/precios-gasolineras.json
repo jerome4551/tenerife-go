@@ -6,9 +6,9 @@
   "La app no ensena estos precios si «fecha» tiene mas de 2 dias."
  ],
  "fuente": "Ministerio para la Transicion Ecologica y el Reto Demografico, Geoportal de Gasolineras",
- "fecha": "2026-11-01T07:37:20Z",
- "fecha_ministerio": "01/11/2026 8:37:20",
- "franja": "2026-11-01 07:00",
+ "fecha": "2026-11-01T15:16:43Z",
+ "fecha_ministerio": "01/11/2026 16:16:43",
+ "franja": "2026-11-01 15:00",
  "municipios": {
   "Adeje": {
    "gasolineras": 14,
@@ -647,7 +647,7 @@
    "diesel": 1.719
   },
   "gas-10633-san-miguel-de-abona": {
-   "g95": 1.609,
+   "g95": 1.619,
    "diesel": 1.729
   },
   "gas-10635-arafo": {
@@ -738,8 +738,8 @@
    "diesel": 1.789
   },
   "gas-12630-arafo": {
-   "g95": 1.569,
-   "diesel": 1.739
+   "g95": 1.579,
+   "diesel": 1.749
   },
   "gas-12776-adeje": {
    "g95": 1.599,
