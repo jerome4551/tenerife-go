@@ -174,6 +174,12 @@ function sinNavegador() {
      'sw.js: los cuatro, «red primero» (el .json y los PNG llegan juntos o no llegan)');
   ok(/tenerife-relieve\(-ao\)\?\\\.\(png\|json\)/.test(lee('tools/app_preparar.js')), 'la app de las tiendas lleva el relieve dentro (app_preparar.js)');
   ok(!/\beval\s*\(|console\.log|\.innerHTML\b|new Function/.test(mod), 'el modulo: sin eval, sin console.log, sin innerHTML');
+  /* el relieve se lee con <img>, no con createImageBitmap (1 de noviembre de 2026): en WebKit
+     (Safari, el iPhone), createImageBitmap cambiaba el PNG gris del cielo visible en +-2 y el 3D
+     no se dibujaba («El relieve no se ha leido bien»). Esta auditoria corre en Chromium, que no
+     lo ve, y por eso se mira en el codigo, sin sus comentarios, que lo explican y lo nombran. */
+  const sinComentarios = mod.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/(^|[^:])\/\/[^\n]*/g, '$1');
+  ok(!/createImageBitmap/.test(sinComentarios), 'el relieve se lee con <img>, no con createImageBitmap: en WebKit (Safari, el iPhone) cambia el PNG gris en +-2 y el 3D no se dibuja');
   /* las notas que pide la licencia del Copernicus DEM (articulo 6(b) y 6(c)):
      las mismas, palabra por palabra, en el modulo y en la herramienta, que
      las escribe en el .json (y --comprobar coteja el .json) */
