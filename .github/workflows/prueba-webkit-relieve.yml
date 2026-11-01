@@ -1,0 +1,39 @@
+name: Prueba del relieve en WebKit (solo en la rama de trabajo)
+
+# Solo vive en la rama de trabajo de la sesion y corre al subir a ella: no va a main.
+# El iPhone dice «El relieve no se ha leido bien en este navegador». Esto lee los dos PNG
+# del relieve como modulos/isla3d.js, en WebKit (el motor de Safari) en un Mac, y los
+# compara byte a byte con lo que llevan dentro; y abre el 3D de la app en un iPhone
+# emulado. No escribe nada en el repositorio.
+on:
+  push:
+    branches: [claude/tenerife-go-security-review-7r5ayk]
+
+permissions:
+  contents: read
+
+jobs:
+  webkit:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Playwright con WebKit
+        run: |
+          set -euo pipefail
+          npm install --no-save playwright@1.56.1
+          npx playwright install webkit
+      - name: Lo que tiene que leer el navegador
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet pillow || python3 -m pip install --quiet --break-system-packages pillow
+          python3 prueba-webkit/variantes.py
+      - name: Leer el relieve en WebKit
+        run: |
+          set -euo pipefail
+          python3 -m http.server 8123 --bind 127.0.0.1 > /dev/null 2>&1 &
+          for i in $(seq 1 50); do curl -s -o /dev/null http://127.0.0.1:8123/index.html && break; sleep 0.2; done
+          { echo "## El relieve en WebKit"; echo; node prueba-webkit/leer.js 8123; } | tee -a "$GITHUB_STEP_SUMMARY"
