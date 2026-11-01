@@ -4580,6 +4580,125 @@ ejecutar.
   de la leyenda del mapa (Protección Civil · Infoplayas), con su enlace
   comprobado.
 
+## Nada del Decreto 116/2018 ni de la Orden de 2022: las banderas del panel SOS, las del mapa (1 de noviembre)
+
+Del apartado anterior quedaba la Orden de 22 de julio de 2022, la de las
+banderas, entre las fuentes del panel SOS. Esa Orden modificaba los anexos del
+Decreto 116/2018, que anuló el Tribunal Supremo (27-9-2023, BOC 82 de
+25-4-2024). Jerome, el 1 de noviembre: «no debemos tener nada de él».
+
+Es la lección 21 de este documento («Una norma anulada no deja de citarse
+sola»), otra vez. La leyenda de banderas del mapa se rehízo sin esa norma el 12
+de agosto (`261fb94`), con las seis banderas que la Subdirección de Protección
+Civil y Emergencias del Gobierno de Canarias confirmó por escrito. Pero el panel
+SOS, hecho en octubre, volvió a sacar sus banderas de la Orden.
+
+**Lo que tenía el panel**, sacado de la Orden:
+
+- **«Bañarse con seguridad»:** siete banderas, las del anexo III: verde,
+  amarilla, roja, púrpura, cuadros blancos y negros, dos rojas y la bicolor
+  roja y amarilla. Con textos como «Amarilla: precaución, el baño tiene
+  limitaciones».
+- **Las picaduras:** «la bandera púrpura avisa de peligro por fauna marina
+  […]. Siempre va junto a una bandera amarilla o roja».
+- **Las fuentes de las dos guías:** la Orden.
+- **«Fuentes», al pie del inicio, que enseña todo `SOS_FUENTES`:** la Orden y
+  también el decreto, que desde `0f1833d` ninguna guía citaba (se había
+  quedado para que el vigía siguiera mirando su página).
+
+**Lo que tiene ahora** (`fc333f1`, en `main` `7664baf`), con el texto de la
+leyenda del mapa, letra a letra, en los diez idiomas:
+
+| Bandera | Antes (de la Orden) | Ahora (como en el mapa) |
+|---|---|---|
+| Verde | buenas condiciones para el baño | baño seguro |
+| Amarilla | precaución, el baño tiene limitaciones | baño con precaución |
+| Roja | prohibido bañarse | prohibido el baño |
+| Negra | — | prohibido el baño por contaminación o riesgo para la salud |
+| Naranja | — | playa sin servicio de vigilancia |
+| Morada, o blanca con una medusa | púrpura: peligro por fauna marina; siempre con la amarilla o la roja | presencia de fauna marina |
+| Cuadros, dos rojas y bicolor | estaban | fuera: solo salían de la Orden |
+
+- **Las fuentes de cada línea:**
+  - Las seis banderas: la Subdirección de Protección Civil y Emergencias, por
+    escrito (agosto).
+  - La verde, la amarilla y la roja, además, en los «Consejos para las
+    actividades en el mar» del Gobierno de Canarias, que el vigía guarda
+    palabra por palabra: «la bandera roja indica prohibición del baño, la
+    amarilla precaución y la verde que las condiciones para el baño son
+    buenas».
+  - «Haga caso a la bandera aunque el mar parezca tranquilo» se queda: esa
+    misma página dice «Aunque no veas motivo aparente para la prohibición del
+    baño, respeta las normas».
+- **Las picaduras** acaban con la fila de la morada, en vez de la nota de la
+  púrpura.
+- **La fuente nueva** (`banderasHoy`), en las dos guías y en lugar de la Orden,
+  se lee «Gobierno de Canarias · Banderas en uso hoy en las playas de Canarias
+  (Subdirección de Protección Civil y Emergencias · portal Infoplayas
+  Canarias)». En cada idioma lleva las palabras de la nota de la leyenda.
+  Enlaza al visor de Infoplayas (`https://webmap.infoplayascanarias.es/`), el
+  mismo al que ya lleva el globo de cada playa:
+  - el dominio entra en la lista de `auditar_emergencias.js`;
+  - el vigía no lo mira, porque el visor cambia cada día.
+
+**Fuera de las fuentes** (`79c2667`, en `main` `9557573`): el decreto y la
+Orden, con sus títulos en los diez idiomas. Ya no salen tampoco en «Fuentes» del
+inicio. El vigía guarda solo las fuentes que siguen en `SOS_FUENTES`, así que en
+su próxima pasada las quita de `tools/datos/vigia-sos.json`. No se ha tocado a
+mano.
+
+**Lo que no cambia:**
+
+- La leyenda del mapa y su nota. La nota dice que el decreto fue anulado, pero
+  no usa nada de él.
+- La respuesta de la FAQ sobre las banderas (`sal-02`), que ya era la del
+  mapa.
+- `SOS_REVISADO`.
+
+**Los controles nuevos**, en `tools/auditar_emergencias.js`:
+
+- **Las banderas del panel dicen lo mismo que la leyenda del mapa**, letra a
+  letra y en los diez idiomas. Además, «Bañarse con seguridad» tiene que llevar
+  las seis. Probado al revés, sale en rojo:
+  - con una letra cambiada en alemán;
+  - sin la naranja;
+  - con el texto del mapa cambiado en chino tradicional.
+- **Nada del decreto ni de la Orden**, ni en las fuentes ni en ninguna fila.
+  Probado al revés: con el módulo de antes sale en rojo, con `decretoPlayas`,
+  `ordenPlayas` y `fte_decretoPlayas`.
+
+**Visto en el navegador**, a 390 px: «Bañarse con seguridad» y las picaduras, en
+castellano, alemán, chino y búlgaro. La negra se ve sobre el fondo oscuro,
+porque lleva un borde claro, y nada se sale.
+
+**Las cifras:**
+
+- `auditar_emergencias.js`, 39 de 39.
+- `probar_emergencias.js`, 261 de 261.
+- `vigia_sos.py --probar`, en verde (89 fuentes).
+- Los controles rápidos, en verde: `castellano_suelto.js`,
+  `auditar_letras.js`, `auditar_frases.js`, `auditar_claves_tx.js` y
+  `auditar_cirilico.py`, con 2.308 nombres propios en cirílico y ninguna
+  variante sospechosa.
+- `modulos/emergencias.js` pasa de 634.778 a 629.928 bytes. No cuenta en la
+  primera descarga, porque se pide al abrir el panel.
+- Las filas de idiomas, tres menos, en el título de «Idiomas»: 3182 y 5.329
+  con el primer commit y 3180 y 5.327 con el segundo.
+
+**Una primera vuelta de la auditoría**, sobre los dos commits sin ese título al
+día, salió en rojo en `auditar_web.js` y `barrido_idiomas.js`. Los dos cotejan
+el título de «Idiomas» de este documento con lo que miden: decía 3183 y 5.330, y
+había 3180 y 5.327. Se paró a los 14 minutos. Ahora cada commit lleva su cifra,
+comprobada en los dos con `barrido_idiomas.js`.
+
+**La auditoría entera**, sobre `79c2667` (en `main`, `9557573`, encima del robot
+de los avisos de AEMET, `baddc78`, que solo cambia `datos/avisos-aemet.json`):
+«AUDITORIA EN VERDE», ningún control en rojo ni sin ejecutar.
+
+**Lo que queda fuera, y se dice:** la bandera de cuadros, las dos rojas y la
+bicolor roja y amarilla. No tienen más fuente que la Orden. Vuelven solo si
+aparece una fuente vigente, y se busca si Jerome quiere.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
