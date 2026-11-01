@@ -4488,6 +4488,98 @@ EN VERDE», ningún control en rojo ni sin ejecutar.
 **Lo que queda:** mirarlo en el iPhone. Hay que abrir la pestaña Cuerpo y ver el
 personaje, una hoja, el «atrás» y la parte de arriba con la isla dinámica.
 
+## Ocho decisiones sobre lo que ya se publica: el panel SOS y el Teide (1 de noviembre)
+
+La investigación de «Su cuerpo» (la otra sesión, en «“Su cuerpo”: lo que decides
+tú», del 31 de octubre) encontró ocho cosas que revisar en textos que la app ya
+publica: cinco del panel SOS y tres respuestas del Teide. Jerome las decidió el
+1 de noviembre, una a una, con el texto de ahora, la propuesta en los diez
+idiomas y lo comprobado de cada fuente.
+
+| # | Qué | Decisión | Commit |
+|---|---|---|---|
+| 12 | Corriente de resaca (`sosPla2`): «Apártese de donde rompen las olas…» | Dejarlo como está | — |
+| 13 | Calima (`sosCal7`) | Las dos cosas: «no haga ejercicio al aire libre y evite el ejercicio intenso» | `cb2b0e6` |
+| 14 | El Decreto 116/2018, anulado, en las fuentes de dos guías del mar | Quitarlo | `0f1833d` |
+| 15 | Agotamiento por calor (`sosCalAgot`): «más de una hora» | Dejarlo como está | — |
+| 16 | Oxígeno a 3.700 m (`tei-10`): «cerca de la mitad» | «alrededor de un tercio menos» | `d78f519` |
+| 17 | «A esa altura el cuerpo rinde la mitad» (`tei-07`) | Quitarlo | `c6c6406` |
+| 18 | Niños en el teleférico (`tei-14`) | Las normas, donde son: en el teleférico | `6692db4` |
+| 20 | Convulsiones en alemán (`sosCalGolpeSig`, `sosAux1`) | «Krampfanfälle» y «krampfanfallartige Bewegungen» | `239a8b0` |
+
+**Cómo se comprobaron las fuentes.** La red de esta sesión no deja abrir las
+webs de las fuentes: `www.gobiernodecanarias.org`, `www.sanidad.gob.es`,
+`www.weather.gov`, `rnli.org`… Por eso hay dos clases de comprobación:
+
+- **Letra a letra**: las páginas del Gobierno de Canarias que guarda el vigía
+  (`tools/datos/vigia-sos.json`, del 24 de octubre). Son «Consejos para las
+  actividades en el mar», «Consejos ante fenómenos costeros» y «Consejos ante
+  la calima».
+- **En el buscador**: lo demás, que se da como leído allí y no como comprobado
+  en la página:
+  - Sanidad de Canarias, sobre la calima;
+  - el Ministerio de Sanidad, sobre el agotamiento por calor y el baño;
+  - el NHS;
+  - la ILS y la RNLI;
+  - las normas del Teleférico del Teide;
+  - la tabla de altitud del Family Practice Notebook;
+  - las fuentes alemanas del golpe de calor.
+
+  El cálculo de la atmósfera estándar (ISO 2533) es propio.
+
+Se pensó en leerlas con un workflow de GitHub, que sí tiene red, en la rama de
+trabajo de la sesión. No se hizo: habría sido saltarse la configuración de red
+que eligió Jerome. Para leerlas aquí letra a letra, Jerome tiene que añadir esos
+dominios en la red del entorno.
+
+**La 14, línea a línea.** Antes de quitar el decreto se cotejaron todas las
+líneas de «Alguien en apuros en el agua» y «Bañarse con seguridad»:
+
+- casi todas están en el texto literal de las dos páginas del mar y la costa;
+- las de reanimación, en las guías del ERC que también se citan;
+- en las notas y el decálogo del Ministerio de Sanidad, leídos en el
+  buscador:
+  - nadar de espaldas moviendo solo las piernas;
+  - el alcohol;
+  - bañarse acompañado y nunca de noche;
+  - que vigilar a los niños es cosa de los adultos y no del socorrista.
+- Solo «Avísele enseguida y siga sus indicaciones» (al socorrista) no se ha
+  encontrado en ninguna fuente que se pueda leer desde aquí.
+
+Ninguna línea cambia: solo la lista de fuentes. El decreto se queda en
+`SOS_FUENTES`, con su motivo, para que el vigía siga mirando su página. La Orden
+de 22 de julio de 2022, la de las banderas, solo modifica los anexos de ese
+decreto; se le dijo a Jerome, y se queda (eligió quitar solo el decreto).
+
+**El Teide.** Las tres respuestas van en el bloque
+`faq/fuente/faq-kb-bloque-B1-teide.json` (nueve idiomas) y en su suplemento
+búlgaro, y `tools/generar_faq.py` rehace los diez ficheros. Antes de tocarlos se
+comprobó que el generador reproducía byte a byte lo publicado. Si la otra sesión
+vuelve a mandar el bloque B1, tiene que llevar estos tres cambios.
+
+**La fecha del panel.** `SOS_REVISADO` sigue en el 22 de octubre, la revisión
+entera del panel. Lo de hoy son correcciones sueltas y queda aquí, con su
+fuente.
+
+**Los controles rápidos**, antes de la auditoría entera, en verde:
+`castellano_suelto.js`, `auditar_letras.js`, `auditar_frases.js`,
+`auditar_claves_tx.js`, `auditar_faq.js`, `auditar_cirilico.py` (2.307 nombres
+propios en cirílico, ninguna variante sospechosa) y `auditar_emergencias.js` (37
+controles).
+
+**La auditoría entera**, sobre `6692db4`, el mismo commit que va a `main`, sin
+ningún robot en medio: «AUDITORIA EN VERDE», ningún control en rojo ni sin
+ejecutar.
+
+**Lo que queda:**
+
+- Leer letra a letra lo que solo se leyó en el buscador, cuando la red del
+  entorno lo permita.
+- La fuente de «Avísele enseguida y siga sus indicaciones».
+- La Orden de 2022 de las banderas, si Jerome quiere cambiarla por la fuente
+  de la leyenda del mapa (Protección Civil · Infoplayas), con su enlace
+  comprobado.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
