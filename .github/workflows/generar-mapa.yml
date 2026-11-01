@@ -13,6 +13,11 @@ on:
       maxzoom:
         description: 'Zoom maximo (14 por defecto; 15 da mas detalle de sendero)'
         required: false
+        # una lista cerrada: GitHub no deja lanzarlo con otro valor
+        type: choice
+        options:
+          - '14'
+          - '15'
         default: '14'
       fecha_build:
         description: 'Build AAAAMMDD. Vacio = busca el mas reciente que responda'
@@ -82,9 +87,17 @@ jobs:
 
       - name: Buscar un build diario que responda
         id: build
+        # Lo que se escribe al lanzarlo entra por el entorno, no pegado en el codigo del shell
+        # (1 de noviembre de 2026), y solo vale vacio o una fecha AAAAMMDD.
+        env:
+          FECHA_PEDIDA: ${{ github.event.inputs.fecha_build }}
         run: |
           set -euo pipefail
-          FECHA="${{ github.event.inputs.fecha_build }}"
+          FECHA="$FECHA_PEDIDA"
+          if ! [[ "$FECHA" =~ ^([0-9]{8})?$ ]]; then
+            echo "::error::fecha_build tiene que ir vacia o ser una fecha AAAAMMDD (por ejemplo 20261031)."
+            exit 1
+          fi
           if [ -n "$FECHA" ]; then
             echo "Fecha forzada: $FECHA"
             echo "fecha=$FECHA" >> $GITHUB_OUTPUT
@@ -110,19 +123,28 @@ jobs:
           exit 1
 
       - name: Leer los metadatos del build
+        env:
+          FECHA: ${{ steps.build.outputs.fecha }}
         run: |
           set -euo pipefail
-          ./pmtiles show "https://build.protomaps.com/${{ steps.build.outputs.fecha }}.pmtiles" \
+          ./pmtiles show "https://build.protomaps.com/${FECHA}.pmtiles" \
             | tee metadatos.txt | head -40
 
       - name: Extraer Tenerife
+        env:
+          FECHA: ${{ steps.build.outputs.fecha }}
+          MAXZOOM: ${{ github.event.inputs.maxzoom }}
         run: |
           set -euo pipefail
+          if ! [[ "$MAXZOOM" =~ ^1[45]$ ]]; then
+            echo "::error::maxzoom tiene que ser 14 o 15."
+            exit 1
+          fi
           ./pmtiles extract \
-            "https://build.protomaps.com/${{ steps.build.outputs.fecha }}.pmtiles" \
+            "https://build.protomaps.com/${FECHA}.pmtiles" \
             tenerife-osm.pmtiles \
             --bbox=-16.98,27.90,-16.08,28.65 \
-            --maxzoom=${{ github.event.inputs.maxzoom }}
+            --maxzoom="$MAXZOOM"
           ls -l tenerife-osm.pmtiles
 
       - name: Comprobar el tamano
@@ -166,16 +188,21 @@ jobs:
 
       - name: Resumen legible en el movil
         if: always()
+        env:
+          FECHA: ${{ steps.build.outputs.fecha }}
+          MAXZOOM: ${{ github.event.inputs.maxzoom }}
+          MB: ${{ steps.tam.outputs.mb }}
+          PCT: ${{ steps.verif.outputs.pct }}
         run: |
           {
             echo "## Mapa offline de Tenerife"
             echo ""
             echo "| | |"
             echo "|---|---|"
-            echo "| Build | ${{ steps.build.outputs.fecha }} |"
-            echo "| Zoom maximo | ${{ github.event.inputs.maxzoom }} |"
-            echo "| **Tamano** | **${{ steps.tam.outputs.mb }} MB** |"
-            echo "| **Compatibilidad (paso 7)** | **${{ steps.verif.outputs.pct }}** |"
+            echo "| Build | ${FECHA} |"
+            echo "| Zoom maximo | ${MAXZOOM} |"
+            echo "| **Tamano** | **${MB} MB** |"
+            echo "| **Compatibilidad (paso 7)** | **${PCT}** |"
             echo ""
             echo '```'
             cat verificacion.txt 2>/dev/null || echo "(la verificacion no llego a ejecutarse)"
@@ -210,6 +237,10 @@ jobs:
         with:
           name: tenerife-osm-pmtiles
       - name: Commit a mapa/tenerife-osm.pmtiles (y el mapa base que sale de el)
+        env:
+          FECHA: ${{ needs.generar.outputs.fecha }}
+          MAXZOOM: ${{ github.event.inputs.maxzoom }}
+          MB: ${{ needs.generar.outputs.mb }}
         run: |
           set -euo pipefail
           if [ ! -s tenerife-osm.pmtiles ]; then
@@ -234,6 +265,6 @@ jobs:
             echo "El fichero es identico al que ya estaba. No hay nada que commitear."
             exit 0
           fi
-          git commit -m "mapa: base OSM de Tenerife (build ${{ needs.generar.outputs.fecha }}, z0-${{ github.event.inputs.maxzoom }}, ${{ needs.generar.outputs.mb }} MB)"
+          git commit -m "mapa: base OSM de Tenerife (build ${FECHA}, z0-${MAXZOOM}, ${MB} MB)"
           git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
