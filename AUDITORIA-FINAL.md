@@ -4097,6 +4097,122 @@ dirá si la API de la IDEE contesta como dice su documentación (el formato de
 `subset`, el tamaño máximo, el GeoTIFF que devuelve). Si no, el relieve sale de
 Copernicus y el resumen dice por qué.
 
+## La isla en 3D, encima de «Su cuerpo» (1 de noviembre)
+
+Jerome, el 31 de octubre: «Te envío la mapa 3D. Ponla en la fila para cuando
+termine este trabajo! Recuerda auditar completamente tu trabajo. No quiero
+errores de codificación, fallos de seguridad!». Llegaron los cuatro parches de
+las notas 17 y 18, con sus huellas SHA-256 comprobadas antes de usar nada (el
+bundle no vino, y no hace falta). Sobre `7dea23e`, `git am` a secas da el
+árbol `e49b1feb…`, el mismo que dice la nota 18. Entró cuando «Su cuerpo»
+estaba terminado y con su auditoría entera en verde.
+
+**Cómo entra.** Encima de «Su cuerpo» (`f47de06`), parche a parche, y un commit
+más:
+
+| Commit | Qué |
+|---|---|
+| `b04be7c` | la isla en 3D (el `0001`) |
+| `18ab6ad` | el mapa base, recortado del detallado (el `0002`) |
+| `ba6e98a` | la cumbre del Teide en el mapa plano (el `0003`) |
+| `6dc1034` | el relieve del MDT05 del IGN (el `0004`) |
+| `ab623bd` | el workflow del relieve: lo que se elige al lanzarlo ya no entra en el shell |
+
+En 19 de los 23 ficheros que tocan los parches, el cambio es el mismo que en la
+entrega, línea a línea: `index.html`, `sw.js`, el módulo, los dos workflows, el
+mapa base y las herramientas. Los otros cuatro llevan los dos lados:
+
+- `tools/auditar.sh` y `tools/auditar_registro.js`: las listas de módulos
+  llevan `modulos/cuerpo.js` y `modulos/isla3d.js`, y los dos bloques de la
+  auditoría, el de «Su cuerpo» y el de la isla en 3D, van uno detrás del
+  otro.
+- `README.md`: «las piezas aparte» pasan a seis (las guaguas, el cielo, el
+  perfil, emergencias, «Su cuerpo» y la isla en 3D).
+- `AUDITORIA-FINAL.md`: la «Descarga» de la cabecera y las cifras de
+  «Idiomas», sacadas de las herramientas sobre cada commit, no sumadas a mano.
+  Los mensajes de los cuatro commits llevan también las cifras de esta pila:
+  el del `0001` decía las de antes de rebasarlo, como avisaba la nota 18.
+
+La primera descarga, commit a commit (`tools/peso_descarga.py`):
+
+| | castellano | búlgaro | polaco | `index.html` comprimido |
+|---|---|---|---|---|
+| «Su cuerpo» (`f47de06`) | 1.078 kB | 1.193 kB | 1.178 kB | 782.896 bytes |
+| + la isla en 3D | 1.080 | 1.195 | 1.181 | + 2.192 |
+| + el mapa base | 1.080 | 1.195 | 1.181 | + 114 |
+| + la cumbre del Teide | 1.081 | 1.196 | 1.182 | + 1.105 |
+| + el relieve del IGN y el workflow | 1.081 | 1.196 | 1.182 | igual |
+
+Y «Idiomas»: 49 tablas, 3183 filas y 5.330 (`auditar_web.js` y
+`barrido_idiomas.js`).
+
+**La seguridad, antes de meterlo:**
+
+- `modulos/isla3d.js` no pinta HTML en ningún sitio: los textos van con
+  `textContent`, y los nombres del mapa se dibujan en el lienzo
+  (`fillText`), así que un nombre de OpenStreetMap con HTML no ejecuta nada.
+  Solo pide ficheros de la propia app: el relieve, el mapa base o el
+  detallado guardado y `vendor/astronomy.browser.min.js`. Sin `eval`, sin
+  `Function` y sin workers.
+- `index.html` (el cargador del 3D y `ponerCimas`) y `sw.js` (el precache y
+  «red primero»): constantes, el `<script>` del propio módulo y un `HEAD` al
+  `.json` del relieve. La cumbre del Teide se añade a la tesela ya leída con
+  los datos de su ficha.
+- Las herramientas de Python (`relieve_ign.py`, `relieve_construir.py`,
+  `pmtiles_ligero.py`, `mapa_base.py` y `nombres_chinos_mapa.py`) no usan
+  `subprocess`, `eval` ni `pickle`. `relieve_ign.py` solo habla con
+  `https://api-coverages.idee.es`, con la verificación de TLS de Python. Lo
+  que escriben en `index.html` y en `sw.js` son las dos huellas (16
+  caracteres hexadecimales) y la tabla china, que sale de las fichas de la
+  app: un nombre del mapa que no es un pueblo de las fichas no entra.
+- Los dos workflows solo se lanzan a mano y con permisos mínimos
+  (`permissions: {}` arriba y, en cada job, `contents: read` o `write`). El
+  job que hace el commit del relieve no ejecuta nada de lo que se baja, y el
+  de `generar-mapa.yml` solo guiones del repositorio, con Python y sin
+  paquetes.
+- Lo único que se cambió (`ab623bd`): el paso «Construir el relieve» pegaba
+  en el código del shell el texto de la opción «fuente». Solo puede lanzar el
+  workflow quien tiene permiso de escritura, pero con otro texto se habría
+  ejecutado en el runner. Ahora «fuente» es una lista cerrada (ign o
+  copernicus), y la opción y el resultado del paso del IGN entran al guion
+  por variables de entorno. El YAML se lee y sus pasos pasan `bash -n`. Las
+  expresiones que quedan en el workflow solo pueden valer lo que escriben el
+  propio guion o GitHub.
+- Visto de paso y sin tocar: `generar-mapa.yml` pega igual «fecha_build» y
+  «maxzoom» en el shell desde antes de esta entrega. También lo lanza solo
+  quien tiene permiso de escritura. Se puede cerrar del mismo modo, en otro
+  commit, si Jerome quiere.
+
+**Antes de la auditoría entera**, sobre `ab623bd`, en verde:
+
+- `relieve_construir.py --comprobar`: sin relieve, con la huella en
+  `ninguno`;
+- `relieve_ign.py`: se carga;
+- `mapa_base.py --comprobar` y `nombres_chinos_mapa.py --comprobar`, con 53
+  pueblos;
+- `auditar_isla3d.js`: 19 de 19, sin relieve;
+- `auditar_sw.js`: 51;
+- `auditar_mapa.js`: 137;
+- `auditar_web.js` (49 tablas y 3183 filas, las de la cabecera) y
+  `barrido_idiomas.js` (5.330);
+- `auditar_registro.js`, `auditar_readme.js`, `auditar_claves_tx.js`,
+  `auditar_cirilico.py`, `auditar_seguridad.py`, `castellano_suelto.js`,
+  `auditar_letras.js`, `auditar_frases.js` y `auditar_datos.js`.
+
+**La auditoría entera**, sobre `ab623bd`: «AUDITORIA EN VERDE», ningún control en
+rojo ni sin ejecutar. Lo que pedía la nota 17: aquí `pmtiles` y
+`mapbox_vector_tile` están instalados, y `auditar_ubicacion.py`,
+`auditar_en_el_mar.py` e `informe_lugares.js` corren y salen en verde. El
+`tsc` de aquí es el 6.0.2, y `auditar_cielo.js` da 307 de 307.
+
+**Lo que falta, como dicen las notas, y todo cuando Jerome lo diga:**
+
+1. Subirlo.
+2. Lanzar «Generar relieve 3D» (`fuente` = `ign`).
+3. Traer su commit y pasar otra vez la auditoría entera, ya con la vista de
+   verdad: la cumbre a su altura y la sombra del atardecer.
+4. Mirarlo en el móvil.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
