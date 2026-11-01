@@ -11979,6 +11979,29 @@ páginas (la red de esta sesión no llega a esas webs).
 **Lo que pesa.** `modulos/avatares.js`, 450 kB (123 comprimido; con los 29,
 450 y 123); `modulos/perfil.js`, 290 kB (90 comprimido).
 
+**La auditoría entera de los tres** (los retirados, las pestañas y la cabina,
+`3fac3da`; esta documentación aparte, como siempre): **«AUDITORIA EN
+VERDE»**, ningún control en rojo ni roto. La primera vuelta, sobre la pila
+de antes, dejó uno sin poder ejecutar: `probar_fechas_oro.js` toma el motor
+de las fechas del catálogo, y el catálogo de ahora trae `RETIRADOS`; la
+nota traía su versión nueva, y se puso en el commit de los retirados. Y antes
+de esa vuelta, `auditar_idioma.js` habría cantado los nombres de cuatro
+retirados en cinco idiomas: se vio y se puso en el mismo commit.
+
+- `auditar_perfil.js`, 74 de 74; `probar_fechas_oro.js`, 56 «ok» y «FECHAS
+  EN VERDE»; `probar_perfil.js`, 141 de 141, con las pestañas, la letra al
+  doble y los 28 retirados.
+- `auditar_registro.js`, 76.556 textos: los nueve idiomas que distinguen el
+  trato, todo de usted.
+- `auditar_web.js`, 45 tablas y 2897 filas; `barrido_idiomas.js`, 5.044, lo
+  que dice este documento.
+- `barrido_pantallas.js`, 185 pantallas y fichas por idioma, con el perfil
+  en sus tres pestañas: 0 textos sin traducir y 0 errores de página.
+- `auditar_cirilico.py`, 0 sospechosas de 2.245 nombres; `auditar_sw.js`,
+  48 de 48; `auditar_mapa.js`, 132 de 132; `auditar_cielo.js`, 307 de 307;
+  `auditar_emergencias.js`, 37, y `probar_emergencias.js`, 261, en verde;
+  `probar_faq.js`, 0 fallos de 122; la app de las tiendas, 112 ficheros.
+
 ## «Su cuerpo»: el personaje, los músculos y los ejercicios (31 de octubre)
 
 Jerome, el 24 de octubre: «Podemos preparar algo muy completo para dieta,
