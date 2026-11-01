@@ -44,6 +44,11 @@ on:
       fuente:
         description: 'ign = el MDT05 del IGN, y si no sale, Copernicus; copernicus = solo Copernicus'
         required: false
+        # una lista cerrada: GitHub no deja lanzarlo con otro valor
+        type: choice
+        options:
+          - ign
+          - copernicus
         default: 'ign'
 
 permissions: {}
@@ -103,6 +108,11 @@ jobs:
 
       - name: Construir el relieve
         id: construir
+        # lo que viene de fuera del guion (la opcion elegida al lanzarlo y como acabo el paso del
+        # IGN) entra por variables de entorno, no pegado en el codigo del shell
+        env:
+          FUENTE_PEDIDA: ${{ github.event.inputs.fuente }}
+          IGN_RESULTADO: ${{ steps.ign.outcome }}
         run: |
           set -uo pipefail
           : > construir.txt
@@ -113,14 +123,14 @@ jobs:
               grep -qx '  RELIEVE EN VERDE' comprobar.txt
           }
           FUENTE=copernicus-glo30
-          if [ "${{ steps.ign.outcome }}" = "success" ] && [ -s dem-ign/ign-mdt05-tenerife.tif ]; then
+          if [ "$IGN_RESULTADO" = "success" ] && [ -s dem-ign/ign-mdt05-tenerife.tif ]; then
             if probar dem-ign/ign-mdt05-tenerife.tif --fuente ign-mdt05 \
                  --registro dem-ign/ign-mdt05-tenerife.json --cotejar dem/*.tif; then
               FUENTE=ign-mdt05
             else
               echo "::warning::El relieve con el MDT05 del IGN no ha pasado (ver arriba): se hace con el Copernicus DEM"
             fi
-          elif [ "${{ github.event.inputs.fuente }}" != "copernicus" ]; then
+          elif [ "$FUENTE_PEDIDA" != "copernicus" ]; then
             echo "::warning::El MDT05 del IGN no se ha podido bajar (ver el paso anterior): el relieve se hace con el Copernicus DEM"
           fi
           if [ "$FUENTE" = copernicus-glo30 ]; then
