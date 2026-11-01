@@ -224,6 +224,15 @@ const urlMal = urls.filter(u => {
   return !DOMINIOS.some(d => h === d || h.endsWith('.' + d));
 });
 ok(!urlMal.length, 'los ' + urls.length + ' enlaces son https y de dominios oficiales o de la lista', urlMal.join(' '));
+/* nada del Decreto 116/2018, que anulo el Tribunal Supremo (27-9-2023, BOC 82
+   de 25-4-2024), ni de la Orden de 22 de julio de 2022, que modificaba sus
+   anexos: ni entre las fuentes (tampoco en las «Fuentes» del inicio, que las
+   ensenan todas) ni en ninguna fila (Jerome, 1 de noviembre de 2026: «no
+   debemos tener nada de él»). Una norma anulada no deja de citarse sola */
+const ANULADA = /116\/2018|\/boc\/2018\/152\/|\/boc\/2022\/148\//;
+const anuladaMal = Object.entries(SOS.fuentes).filter(([, f]) => ANULADA.test(f.url || '')).map(([id]) => id)
+  .concat(Object.keys(UI).filter(k => ANULADA.test(JSON.stringify(UI[k]))));
+ok(!anuladaMal.length, 'nada del Decreto 116/2018, anulado, ni de la Orden de 2022 que modificaba sus anexos: ni en las fuentes ni en las filas', anuladaMal.join(', '));
 
 /* ── 4. index.html, sw.js, manifiesto ── */
 console.log('— index.html, sw.js y el manifiesto');
