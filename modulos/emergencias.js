@@ -10,8 +10,9 @@
    INT/1071/2026), los terremotos y los maremotos (el IGN, Proteccion Civil y
    el Plan Estatal de maremotos de 2021), los incendios, las lluvias, el
    viento, las tormentas, el calor, la calima, la montana y el mar (los
-   consejos del Gobierno de Canarias, el Decreto 116/2018 de las playas y la
-   Orden de 2022 de sus banderas, Sanidad y Salvamento Maritimo), los primeros
+   consejos del Gobierno de Canarias, la Orden de 2022 de las banderas de las
+   playas, Sanidad y Salvamento Maritimo; el Decreto 116/2018, que esa Orden
+   modificaba, lo anulo el Tribunal Supremo y ya no se cita), los primeros
    auxilios (las guias del Consejo Europeo de Resucitacion de 2025), el fuego
    en un edificio, el apagon y las aglomeraciones. Cada guia lleva sus
    fuentes.
@@ -746,6 +747,9 @@
     nhsPicaduras:  { org: 'sosOrgNhs', fte: 'fte_nhsPicaduras', url: 'https://www.nhs.uk/conditions/jellyfish-and-other-sea-creature-stings/' },
     preevidCarabela: { org: 'sosOrgMurcia', fte: 'fte_preevidCarabela', url: 'https://www.murciasalud.es/preevid/22399' },
     preevid:       { org: 'sosOrgMurcia', fte: 'fte_preevid', url: 'https://www.murciasalud.es/preevid/20042' },
+    /* Ninguna guia lo cita desde el 1 de noviembre de 2026 (Jerome: «Quitar el decreto»): lo anulo
+       el Tribunal Supremo (27-9-2023), como dice la leyenda de las banderas del mapa. Se queda aqui
+       solo para que el vigia siga mirando su pagina del BOC */
     decretoPlayas: { org: 'sosOrgGobierno', fte: 'fte_decretoPlayas', url: 'https://www.gobiernodecanarias.org/boc/2018/152/002.html' },
     ordenPlayas:   { org: 'sosOrgGobierno', fte: 'fte_ordenPlayas', url: 'https://www.gobiernodecanarias.org/boc/2022/148/001.html' },
     planes:        { org: 'sosOrgGobierno', fte: 'fte_planes', url: 'https://www.gobiernodecanarias.org/emergencias/planes-de-emergencias/' },
@@ -855,7 +859,7 @@
           { h: 'sosResFuera' }, { pasos: ['sosRes4', 'sosRes5', 'sosRes10', 'sosRes6', 'sosRes7', 'sosRes8'] },
           { h: 'sosResBarco' }, { lista: ['sosRes9', 'sosRes11', 'sosRes12'] }, { tel: ['sosTelSalvamento', TEL_SALVAMENTO] },
           { ir: 'auxilios' }, { ir: 'playa' }],
-      f: ['gobMar', 'gobCosteros', 'ercLego', 'ercEspeciales', 'aeped', 'seupInmersion', 'transportes', 'sanidadAcuatico', 'decretoPlayas'] },
+      f: ['gobMar', 'gobCosteros', 'ercLego', 'ercEspeciales', 'aeped', 'seupInmersion', 'transportes', 'sanidadAcuatico'] },
     { id: 'picaduras', t: 'sosGuiaPicaduras', ico: 'medusa', grupo: 'hacer', sub: 'mar',
       b: [{ p: 'sosPicIntro' },
           { h: 'sosPicMedusa' }, { pasos: ['sosPic1', 'sosPic2', 'sosPic3', 'sosPic7', 'sosPic4', 'sosPic5', 'sosPic6', 'sosPic8'] },
@@ -875,7 +879,7 @@
           { h: 'sosPlaNinos' }, { lista: ['sosPla11', 'sosPla12', 'sosPla13'] },
           { h: 'sosPlaBarco' }, { lista: ['sosPla14', 'sosPla15', 'sosPla16'] },
           { ir: 'rescate' }, { ir: 'picaduras' }],
-      f: ['gobMar', 'gobCosteros', 'sanidadAcuatico', 'decretoPlayas', 'ordenPlayas'] },
+      f: ['gobMar', 'gobCosteros', 'sanidadAcuatico', 'ordenPlayas'] },
     { id: 'semaforo', t: 'sosGuiaSemaforo', ico: 'semaforo', grupo: 'hacer', sub: 'volcan',
       b: [{ p: 'sosSemIntro' },
           { semaforo: [
@@ -997,8 +1001,9 @@
   var CLAVE_MOCHILA = 'tenerife.mochila';
   /* Los avisos que se pueden pintar con color: los del semaforo del PEVOLCA */
   var COLORES = { verde: 1, amarillo: 1, naranja: 1, rojo: 1 };
-  /* Las banderas de las playas de Canarias (Decreto 116/2018 y Orden de 22
-     de julio de 2022, anexo III): su color va en CSS y su significado en la
+  /* Las banderas de las playas de Canarias (Orden de 22 de julio de 2022,
+     anexo III, que modificaba los del Decreto 116/2018, anulado por el Tribunal
+     Supremo; son las que siguen en uso): su color va en CSS y su significado en la
      fila. Ademas de las cuatro de siempre: la de cuadros (deportes nauticos),
      dos rojas a los lados de un peligro y la bicolor de «zona segura». */
   var BANDERAS = { verde: 1, amarilla: 1, roja: 1, purpura: 1, ajedrez: 1, dosrojas: 1, segura: 1 };
