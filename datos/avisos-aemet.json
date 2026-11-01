@@ -3,8 +3,8 @@
  "canal": "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAP6596_RSS.xml",
  "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos?p=6596",
  "aemet": {
-  "fichero": "Z_CAP_C_LEMM_20261101083706_AFAP6596.tar.gz",
-  "publicado": "2026-11-01T08:37:06+00:00",
+  "fichero": "Z_CAP_C_LEMM_20261101102751_AFAP6596.tar.gz",
+  "publicado": "2026-11-01T10:27:51+00:00",
   "titulo": "Estado completo de avisos para Tenerife",
   "alcance": "2026-11-03T23:59:59+00:00",
   "zonas_isla": [
@@ -16,7 +16,7 @@
    "659603C"
   ]
  },
- "consultado": "2026-11-01T09:41:54Z",
+ "consultado": "2026-11-01T10:48:15Z",
  "avisos": [
   {
    "id": "2.49.0.0.724.0.ES.20261101083706.659602PRP102001793522226",
@@ -259,7 +259,7 @@
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261031225002.659601PRP103061793487002",
+   "id": "2.49.0.0.724.0.ES.20261101102751.659601PRP103211793528871",
    "nivel": "amarillo",
    "fenomeno": "PR",
    "fenomeno_es": "Lluvias",
@@ -277,8 +277,8 @@
     }
    ],
    "inicio": "2026-11-03T00:00:00+00:00",
-   "fin": "2026-11-03T05:59:59+00:00",
-   "emitido": "2026-10-31T22:50:02Z",
+   "fin": "2026-11-03T20:59:59+00:00",
+   "emitido": "2026-11-01T10:27:51Z",
    "es": {
     "descripcion": "Precipitación acumulada en una hora: 20 mm.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
@@ -289,7 +289,7 @@
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261031225002.659602PRP103061793487002",
+   "id": "2.49.0.0.724.0.ES.20261101102751.659602PRP103211793528871",
    "nivel": "amarillo",
    "fenomeno": "PR",
    "fenomeno_es": "Lluvias",
@@ -307,8 +307,8 @@
     }
    ],
    "inicio": "2026-11-03T00:00:00+00:00",
-   "fin": "2026-11-03T05:59:59+00:00",
-   "emitido": "2026-10-31T22:50:02Z",
+   "fin": "2026-11-03T20:59:59+00:00",
+   "emitido": "2026-11-01T10:27:51Z",
    "es": {
     "descripcion": "Precipitación acumulada en una hora: 20 mm.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
@@ -319,13 +319,13 @@
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261031225002.659603PRP103061793487002",
+   "id": "2.49.0.0.724.0.ES.20261101102751.659603PRP103211793528871",
    "nivel": "amarillo",
    "fenomeno": "PR",
    "fenomeno_es": "Lluvias",
    "parametro": "P1",
    "parametro_es": "Precipitación acumulada en una hora",
-   "valor": "15 mm",
+   "valor": "20 mm",
    "probabilidad": "40%-70%",
    "zonas": [
     {
@@ -337,14 +337,14 @@
     }
    ],
    "inicio": "2026-11-03T00:00:00+00:00",
-   "fin": "2026-11-03T05:59:59+00:00",
-   "emitido": "2026-10-31T22:50:02Z",
+   "fin": "2026-11-03T20:59:59+00:00",
+   "emitido": "2026-11-01T10:27:51Z",
    "es": {
-    "descripcion": "Precipitación acumulada en una hora: 15 mm.",
+    "descripcion": "Precipitación acumulada en una hora: 20 mm.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
    },
    "en": {
-    "descripcion": "One-hour accumulated precipitation: 15 mm.",
+    "descripcion": "One-hour accumulated precipitation: 20 mm.",
     "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
    }
   }
