@@ -169,30 +169,28 @@
   }
 
   /* ───────────────────────── el relieve ───────────────────────── */
+  /* Con <img> y no con createImageBitmap (1 de noviembre de 2026): en WebKit (Safari, el
+     iPhone), createImageBitmap con colorSpaceConversion «none» cambiaba el PNG gris del cielo
+     visible (272.733 de sus 1.642.445 valores, en ±2: 255 pasaba a 254), las sumas del .json no
+     cuadraban y el 3D decia «El relieve no se ha leido bien». Con <img>, WebKit y Chromium lo
+     leen exacto, byte a byte, el gris y el de color (probado en un Mac con WebKit 26). */
   function leerPNG(url) {
     return fetch(url).then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.blob();
     }).then(function (b) {
-      var img = function () {
-        return new Promise(function (ok, mal) {
-          var u = URL.createObjectURL(b), i = new Image();
-          i.onload = function () { URL.revokeObjectURL(u); ok(i); };
-          i.onerror = function () { URL.revokeObjectURL(u); mal(new Error('png')); };
-          i.src = u;
-        });
-      };
-      if (window.createImageBitmap) {
-        return createImageBitmap(b, { premultiplyAlpha: 'none', colorSpaceConversion: 'none' }).catch(img);
-      }
-      return img();
+      return new Promise(function (ok, mal) {
+        var u = URL.createObjectURL(b), i = new Image();
+        i.onload = function () { URL.revokeObjectURL(u); ok(i); };
+        i.onerror = function () { URL.revokeObjectURL(u); mal(new Error('png')); };
+        i.src = u;
+      });
     }).then(function (im) {
       var w = im.width, h = im.height, c = document.createElement('canvas');
       c.width = w; c.height = h;
       var g = c.getContext('2d', { willReadFrequently: true });
       g.drawImage(im, 0, 0);
       var d = g.getImageData(0, 0, w, h).data;
-      if (im.close) im.close();
       c.width = c.height = 0;
       return { w: w, h: h, d: d };
     });
