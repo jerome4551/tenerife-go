@@ -715,15 +715,15 @@
         ]
       },
       "a": {
-        "es": "⏱️ El tramo final son apenas 0,66 km, pero se va cerca de una hora: empieza a unos 3.542 m, acaba en 3.714 m y tiene pendientes de hasta el 60 %. La dificultad oficial es media, aunque a esa altura el cuerpo rinde la mitad. No es apto si tiene problemas de corazón, respiratorios o de movilidad.",
-        "en": "⏱️ The final stretch is barely 0.66 km, but it takes close to an hour: it starts around 3,542 m, ends at 3,714 m and has slopes of up to 60 %. Officially it is medium difficulty, although at that altitude your body delivers half of what it normally does. Not suitable if you have heart, breathing or mobility problems.",
-        "de": "⏱️ Das letzte Stück ist knapp 0,66 km lang, dauert aber fast eine Stunde: Start bei rund 3.542 m, Ziel auf 3.714 m, Steigungen bis 60 %. Offiziell mittelschwer, auch wenn der Körper in dieser Höhe nur halb so viel leistet. Nicht geeignet bei Herz-, Atemwegs- oder Bewegungsproblemen.",
-        "fr": "⏱️ Le tronçon final fait à peine 0,66 km, mais il prend près d’une heure : il démarre vers 3.542 m, finit à 3.714 m et grimpe jusqu’à 60 % de pente. Difficulté officielle moyenne, même si à cette altitude le corps donne moitié moins. À éviter en cas de problèmes cardiaques, respiratoires ou de mobilité.",
-        "it": "⏱️ Il tratto finale è appena 0,66 km, ma ci vuole quasi un’ora: parte sui 3.542 m, finisce a 3.714 m e ha pendenze fino al 60 %. Difficoltà ufficiale media, anche se a quella quota il corpo rende la metà. Non adatto a chi ha problemi cardiaci, respiratori o di mobilità.",
-        "nl": "⏱️ Het laatste stuk is amper 0,66 km, maar kost bijna een uur: het begint rond 3.542 m, eindigt op 3.714 m en heeft hellingen tot 60 %. Officieel middelzwaar, al levert uw lichaam op die hoogte de helft. Niet geschikt bij hart-, adem- of mobiliteitsproblemen.",
-        "pl": "⏱️ Ostatni odcinek to ledwie 0,66 km, ale zajmuje blisko godzinę: zaczyna się około 3.542 m, kończy na 3.714 m i ma nachylenia do 60 %. Oficjalnie trudność średnia, choć na tej wysokości organizm daje połowę tego co zwykle. Nieodpowiedni przy problemach z sercem, oddychaniem lub poruszaniem się.",
-        "zh": "⏱️ 最后一段只有 0.66 公里，却要走近一个小时：起点约 3,542 米，终点 3,714 米，坡度最高达 60%。官方评为中等难度，但在这个海拔身体只剩一半力气。有心脏、呼吸或行动问题的人不适合。",
-        "zht": "⏱️ 最後一段只有 0.66 公里，卻要走近一個小時：起點約 3,542 公尺，終點 3,714 公尺，坡度最高達 60%。官方評為中等難度，但在這個海拔身體只剩一半力氣。有心臟、呼吸或行動問題的人不適合。"
+        "es": "⏱️ El tramo final son apenas 0,66 km, pero se va cerca de una hora: empieza a unos 3.542 m, acaba en 3.714 m y tiene pendientes de hasta el 60 %. La dificultad oficial es media. No es apto si tiene problemas de corazón, respiratorios o de movilidad.",
+        "en": "⏱️ The final stretch is barely 0.66 km, but it takes close to an hour: it starts around 3,542 m, ends at 3,714 m and has slopes of up to 60 %. Officially it is medium difficulty. Not suitable if you have heart, breathing or mobility problems.",
+        "de": "⏱️ Das letzte Stück ist knapp 0,66 km lang, dauert aber fast eine Stunde: Start bei rund 3.542 m, Ziel auf 3.714 m, Steigungen bis 60 %. Offiziell mittelschwer. Nicht geeignet bei Herz-, Atemwegs- oder Bewegungsproblemen.",
+        "fr": "⏱️ Le tronçon final fait à peine 0,66 km, mais il prend près d’une heure : il démarre vers 3.542 m, finit à 3.714 m et grimpe jusqu’à 60 % de pente. Difficulté officielle moyenne. À éviter en cas de problèmes cardiaques, respiratoires ou de mobilité.",
+        "it": "⏱️ Il tratto finale è appena 0,66 km, ma ci vuole quasi un’ora: parte sui 3.542 m, finisce a 3.714 m e ha pendenze fino al 60 %. Difficoltà ufficiale media. Non adatto a chi ha problemi cardiaci, respiratori o di mobilità.",
+        "nl": "⏱️ Het laatste stuk is amper 0,66 km, maar kost bijna een uur: het begint rond 3.542 m, eindigt op 3.714 m en heeft hellingen tot 60 %. Officieel middelzwaar. Niet geschikt bij hart-, adem- of mobiliteitsproblemen.",
+        "pl": "⏱️ Ostatni odcinek to ledwie 0,66 km, ale zajmuje blisko godzinę: zaczyna się około 3.542 m, kończy na 3.714 m i ma nachylenia do 60 %. Oficjalnie trudność średnia. Nieodpowiedni przy problemach z sercem, oddychaniem lub poruszaniem się.",
+        "zh": "⏱️ 最后一段只有 0.66 公里，却要走近一个小时：起点约 3,542 米，终点 3,714 米，坡度最高达 60%。官方评为中等难度。有心脏、呼吸或行动问题的人不适合。",
+        "zht": "⏱️ 最後一段只有 0.66 公里，卻要走近一個小時：起點約 3,542 公尺，終點 3,714 公尺，坡度最高達 60%。官方評為中等難度。有心臟、呼吸或行動問題的人不適合。"
       },
       "follow": [
         "tei-10",
